@@ -480,6 +480,11 @@ class Title {
 		if( preg_match( $rxTc, $r ) ) {
 			return false;
 		}
+		
+		# "." and ".." conflict with the directories of those names
+		if ( $r === "." || $r === ".." ) {
+			return false;
+		}
 
 		if( $this->mInterwiki == "") $t = $wgLang->ucfirst( $r );
 		$this->mDbkeyform = $t;
