@@ -565,6 +565,8 @@ function wfPurgeSquidServers ($urlArr) {
 }
 
 # Windows-compatible version of escapeshellarg()
+# Windows doesn't recognise single-quotes in the shell, but the escapeshellarg() 
+# function puts single quotes in regardless of OS
 function wfEscapeShellArg( )
 {
 	$args = func_get_args();
@@ -576,11 +578,11 @@ function wfEscapeShellArg( )
 		} else {
 			$first = false;
 		}
-
-		if ( function_exists( 'escapeshellarg' ) ) {
-			$retVal .= escapeshellarg( $arg );
-		} else {
+	
+		if ( wfIsWindows() ) {
 			$retVal .= '"' . str_replace( '"','\"', $arg ) . '"';
+		} else {
+			$retVal .= escapeshellarg( $arg );
 		}
 	}
 	return $retVal;
@@ -837,5 +839,13 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 		return;
 	}
 }
+
+function wfIsWindows() {   
+	if (substr(php_uname(), 0, 7) == 'Windows') {   
+		return true;   
+	} else {   
+		return false;   
+	}   
+} 
 
 ?>
