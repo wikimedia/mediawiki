@@ -188,7 +188,7 @@ class Title {
 		$t =& new Title();
 		$t->mInterwiki = '';
 		$t->mFragment = '';
-		$t->mNamespace = $ns;
+		$t->mNamespace = IntVal( $ns );
 		$t->mDbkeyform = $title;
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
 		$t->mUrlform = wfUrlencode( $title );
@@ -478,7 +478,7 @@ class Title {
 	 * @param int $n the namespace index, one of the NS_xxxx constants
 	 * @access public
 	 */
-	function setNamespace( $n ) { $this->mNamespace = $n; }
+	function setNamespace( $n ) { $this->mNamespace = IntVal( $n; ) }
 	/**
 	 * Get the interwiki prefix (or null string)
 	 * @return string
