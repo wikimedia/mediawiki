@@ -21,7 +21,7 @@ function fixalpha(){
         if (bg.match(/\.png/i) != null){
             var mypng = bg.substring(5,bg.length-2);
             logoa.style.backgroundImage = "none";
-            logoa.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+mypng+"', sizingMethod='image')";
+            logoa.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+mypng+"', sizingMethod='crop')";
         }
     }
 }
