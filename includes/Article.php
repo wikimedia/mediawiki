@@ -32,19 +32,35 @@ class Article {
 		$this->mTouched = '19700101000000';
 	}
 
+	# Get revision text associated with an old or archive row
+	# $row is usually an object from wfFetchRow(), both the flags and the text field must be included
 	/* static */ function getRevisionText( $row, $prefix = 'old_' ) {
-		# Deal with optional compression of archived pages.
-		# This can be done periodically via maintenance/compressOld.php, and
-		# as pages are saved if $wgCompressRevisions is set.
-		$text = $prefix . 'text';
-		$flags = $prefix . 'flags';
-		if( isset( $row->$flags ) && (false !== strpos( $row->$flags, 'gzip' ) ) ) {
-			return gzinflate( $row->$text );
+		# Get data
+		$textField = $prefix . 'text';
+		$flagsField = $prefix . 'flags';
+
+		if ( isset( $row->$flagsField ) ) {
+			$flags = explode( ",", $row->$flagsField );
+		} else {
+			$flags = array();
 		}
-		if( isset( $row->$text ) ) {
-			return $row->$text;
+
+		if ( isset( $row->$textField ) ) {
+			$text = $row->$textField;
+		} else {
+			return false;
 		}
-		return false;
+
+		if ( in_array( 'link', $flags ) ) {
+			# Handle link type
+			$text = Article::followLink( $text );
+		} elseif ( in_array( 'gzip', $flags ) ) {
+			# Deal with optional compression of archived pages.
+			# This can be done periodically via maintenance/compressOld.php, and
+			# as pages are saved if $wgCompressRevisions is set.
+			return gzinflate( $text );
+		}
+		return $text;
 	}
 	
 	/* static */ function compressRevisionText( &$text ) {
@@ -60,6 +76,120 @@ class Article {
 		return 'gzip';
 	}
 	
+	# Returns the text associated with a "link" type old table row
+	/* static */ function followLink( $link ) {
+		# Split the link into fields and values
+		$lines = explode( '\n', $link );
+		$hash = '';
+		$locations = array();
+		foreach ( $lines as $line ) {
+			# Comments
+			if ( $line{0} == '#' ) {
+				continue;
+			}
+			# Field/value pairs
+			if ( preg_match( '/^(.*?)\s*:\s*(.*)$/', $line, $matches ) ) {
+				$field = strtolower($matches[1]);
+				$value = $matches[2];
+				if ( $field == 'hash' ) {
+					$hash = $value;
+				} elseif ( $field == 'location' ) {
+					$locations[] = $value;
+				}
+			}
+		}
+
+		if ( $hash === '' ) {
+			return false;
+		}
+
+		# Look in each specified location for the text
+		$text = false;
+		foreach ( $locations as $location ) {
+			$text = Article::fetchFromLocation( $location, $hash );
+			if ( $text !== false ) {
+				break;
+			}
+		}
+
+		return $text;
+	}
+
+	/* static */ function fetchFromLocation( $location, $hash ) {
+		global $wgDatabase, $wgKnownDBServers;
+		$fname = 'fetchFromLocation';
+		wfProfileIn( $fname );
+		
+		$p = strpos( $location, ':' );
+		if ( $p === false ) {
+			wfProfileOut( $fname );
+			return false;
+		}
+
+		$type = substr( $location, 0, $p );
+		$text = false;
+		switch ( $type ) {
+			case 'mysql':
+				# MySQL locations are specified by mysql://<machineID>/<dbname>/<tblname>/<index>
+				# Machine ID 0 is the current connection
+				if ( preg_match( '/^mysql:\/\/(\d+)\/([A-Za-z_]+)\/([A-Za-z_]+)\/([A-Za-z_]+)$/', 
+				  $location, $matches ) ) {
+					$machineID = $matches[1];
+					$dbName = $matches[2];
+					$tblName = $matches[3];
+					$index = $matches[4];
+					if ( $machineID == 0 ) {
+						# Current connection
+						$db =& wfGetDB();
+					} else {
+						# Alternate connection
+						$db =& $wgLoadBalancer->getConnection( $machineID );
+						
+						if ( array_key_exists( $machineId, $wgKnownMysqlServers ) ) {
+							# Try to open, return false on failure
+							$params = $wgKnownDBServers[$machineId];
+							$db = Database::newFromParams( $params['server'], $params['user'], $params['password'], 
+								$dbName, 1, false, true, true );
+						}
+					}
+					if ( $db->isOpen() ) {
+						$index = wfStrencode( $index );
+						$res = $db->query( "SELECT blob_data FROM $dbName.$tblName WHERE blob_index='$index'", $fname );
+						$row = $db->fetchObject( $res );
+						$text = $row->text_data;
+					}
+				}
+				break;
+			case 'file':
+				# File locations are of the form file://<filename>, relative to the current directory
+				if ( preg_match( '/^file:\/\/(.*)$', $location, $matches ) )
+				$filename = strstr( $location, 'file://' );
+				$text = @file_get_contents( $matches[1] );
+		}
+		if ( $text !== false ) {
+			# Got text, now we need to interpret it
+			# The first line contains information about how to do this
+			$p = strpos( $text, '\n' );
+			$type = substr( $text, 0, $p );
+			$text = substr( $text, $p + 1 );
+			switch ( $type ) {
+				case 'plain':
+					break;
+				case 'gzip':
+					$text = gzinflate( $text );
+					break;
+				case 'object':
+					$object = unserialize( $text );
+					$text = $object->getItem( $hash );
+					break;
+				default:
+					$text = false;
+			}
+		}
+		wfProfileOut( $fname );
+		return $text;
+	}
+
 	# Note that getContent/loadContent may follow redirects if
 	# not told otherwise, and so may cause a change to mTitle.
 
