@@ -252,8 +252,10 @@ class EditPage {
 		
 		if ( 0 != $wgUser->getID() ) {
 			$checkboxhtml=
-			"<input tabindex=3 type=checkbox value=1 name='wpMinoredit'".($wpMinoredit?" checked":"").">{$minor}".
-			"<input tabindex=4 type=checkbox name='wpWatchthis'".($wpWatchthis?" checked":"").">{$watchthis}<br>";
+			"<input tabindex=3 type=checkbox value=1 name='wpMinoredit'".($wpMinoredit?" checked":"")." id='wpMinoredit'>".
+			"<label for='wpMinoredit'>{$minor}</label>".
+			"<input tabindex=4 type=checkbox name='wpWatchthis'".($wpWatchthis?" checked":"")." id='wpWatchthis'>".
+			"<label for='wpWatchthis'>{$watchthis}</label><br>";
 			
 		} else {
 			$checkboxhtml="";
