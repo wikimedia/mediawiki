@@ -759,6 +759,27 @@ function wfPurgeSquidServers ($urlArr) {
 	SquidUpdate::purge( $urlArr );
 }
 
+# Windows-compatible version of escapeshellarg()
+function wfEscapeShellArg( )
+{
+	$args = func_get_args();
+	$first = true;
+	$retVal = "";
+	foreach ( $args as $arg ) {
+		if ( !$first ) { 
+			$retVal .= " ";
+		} else {
+			$first = false;
+		}
+
+		if (substr(php_uname(), 0, 7) == "Windows") {
+			$retVal .= "\"$arg\"";
+		} else {
+			$retVal .= escapeshellarg( $arg );
+		}
+	}
+	return $retVal;
+}
 
 # wfMerge attempts to merge differences between three texts. 
 # Returns true for a clean merge and false for failure or a conflict.
@@ -771,6 +792,8 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	if(! file_exists( $wgDiff3 ) ){ 
 		return false;
 	}
+
+	# Make temporary files
 	$td = "/tmp/";
 	$oldtextFile = fopen( $oldtextName = tempnam( $td, "merge-old-" ), "w" );
 	$mytextFile = fopen( $mytextName = tempnam( $td, "merge-mine-" ), "w" );
@@ -779,8 +802,15 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	fwrite( $oldtextFile, $old ); fclose( $oldtextFile ); 
 	fwrite( $mytextFile, $mine ); fclose( $mytextFile ); 
 	fwrite( $yourtextFile, $yours ); fclose( $yourtextFile );
-	$cmd = "{$wgDiff3} -a --overlap-only $mytextName $oldtextName $yourtextName";
-	$handle = popen( $cmd, "r" );
+
+	# Check for a conflict
+	#$cmd = "{$wgDiff3} -a --overlap-only $mytextName $oldtextName $yourtextName";
+    $cmd = wfEscapeShellArg( $wgDiff3 ) . " -a --overlap-only " .
+      wfEscapeShellArg( $mytextName ) . " " .
+      wfEscapeShellArg( $oldtextName ) . " " .
+      wfEscapeShellArg( $yourtextName );
+	  print "$cmd\n";
+    $handle = popen( $cmd, "r" );
 
 	if( fgets( $handle ) ){
 		$conflict = true;
@@ -788,7 +818,12 @@ function wfMerge( $old, $mine, $yours, &$result ){
 		$conflict = false;
 	}
 	pclose( $handle );
-	$cmd = "{$wgDiff3} -a -e --merge $mytextName $oldtextName $yourtextName";
+
+	# Merge differences
+	#$cmd = "{$wgDiff3} -a -e --merge $mytextName $oldtextName $yourtextName";
+	$cmd = wfEscapeShellArg( $wgDiff3 ) . " -a -e --merge " . 
+	  wfEscapeShellArg( $mytextName, $oldtextName, $yourtextName );
+	print "$cmd\n";
 	$handle = popen( $cmd, "r" );
 	$result = "";
 	do {
@@ -799,7 +834,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 		$result .= $data;
 	} while ( true );
 	pclose( $handle );
-	unlink( $mytextName ); unlink( $oldtextName ); unlink( $yourtextName );
+	#unlink( $mytextName ); unlink( $oldtextName ); unlink( $yourtextName );
 	return ! $conflict;
 }
 
