@@ -5,13 +5,6 @@
 # Note: edit user interface and cache support functions have been
 # moved to separate EditPage and CacheManager classes.
 
-/* CHECK MERGE @@@
-   TEST THIS @@@
-
-   * s/\$wgTitle/\$this->mTitle/ performed, many replacements
-   * mTitle variable added to class
-*/
-
 include_once( "CacheManager.php" );
 
 class Article {
@@ -361,7 +354,7 @@ class Article {
 		}
 
 		$wgLinkCache->preFill( $this->mTitle );
-		$wgOut->addWikiText( $text );
+		$wgOut->addWikiText( $text, true, $this );
 
 		$this->viewUpdates();
 		wfProfileOut( $fname );
@@ -569,7 +562,7 @@ class Article {
 
 		# Now update the link cache by parsing the text	
 		$wgOut = new OutputPage();
-		$wgOut->addWikiText( $text );
+		$wgOut->addWikiText( $text, true, $this );
 
 		if( $wgMwRedir->matchStart( $text ) )
 			$r = "redirect=no";

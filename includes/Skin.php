@@ -70,7 +70,7 @@ class Skin {
 	{
 		global $wgOut, $wgUser;
 
-		if ( $wgOut->isQuickbarSupressed() ) { return 0; }
+		if ( $wgOut->isQuickbarSuppressed() ) { return 0; }
 		$q = $wgUser->getOption( "quickbar" );
 		if ( "" == $q ) { $q = 0; }
 		return $q;

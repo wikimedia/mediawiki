@@ -27,7 +27,7 @@ class DifferenceEngine {
 			$wgOut->addHTML( $mtext );
 			return;
 		}
-		$wgOut->supressQuickbar();
+		$wgOut->suppressQuickbar();
 		$wgOut->setSubtitle( wfMsg( "difference" ) );
 		$wgOut->setRobotpolicy( "noindex,follow" );
 		
