@@ -1,9 +1,6 @@
 # MediaWiki Parser test cases
 # see also http://meta.wikimedia.org/wiki/Parser_testing
 
-# At present these assume that $wgUseTidy is false and may break
-# if it is enabled.
-
 !! test
 Blank input
 !! input
@@ -89,7 +86,14 @@ sed abit.
 :and a colon
 </nowiki>
 !! result
-<p>Lorem ipsum dolor sed abit. sed nullum. :and a colon</p>
+<p>Lorem ipsum dolor
+
+sed abit.
+  sed nullum.
+
+:and a colon
+
+</p>
 !! end
 
 !! test
@@ -129,27 +133,27 @@ comment test 1
 !! end
 
 !! test
-!! disabled
 comment test 2
 !! input
 asdf
 <!-- comment 1 -->
 jkl
 !! result
-<p>asdf jkl
+<p>asdf
+jkl
 </p>
 !! end
 
 !! test
 comment test 3
-!! disabled
 !! input
 asdf
 <!-- comment 1 -->
 <!-- comment 2 -->
 jkl
 !! result
-<p>asdf jkl
+<p>asdf
+jkl
 </p>
 !! end
 
@@ -230,15 +234,24 @@ Quotes
 !! input
 Normal text. '''Bold text.''' Normal text. ''Italic text.''
 
-'''Bold text..
-
-..spanning two paragraphs (should not work).'''
-
 Normal text. '''''Bold italic text.''''' Normal text.
+!!result
+<p>Normal text. <b>Bold text.</b> Normal text. <i>Italic text.</i>
+</p><p>Normal text. <i><b>Bold italic text.</b></i> Normal text.
+</p>
+!! end
 
+
+!! test
+Unclosed and unmatched quotes
+!! input
 '''''Bold italic text '''with bold deactivated''' in between.'''''
 
 '''''Bold italic text ''with italic deactivated'' in between.'''''
+
+'''Bold text..
+
+..spanning two paragraphs (should not work).'''
 
 '''Bold tag left open
 
@@ -251,12 +264,10 @@ Normal text.
 
 ''Tom'''s car is bigger than ''Susan'''s.
 !! result
-<p>Normal text. <b>Bold text.</b> Normal text. <i>Italic text.</i>
+<p><i><b>Bold italic text</b> with bold deactivated <b>in between.</b></i>
+</p><p><b><i>Bold italic text</i> with italic deactivated <i>in between.</i></b><p>
 </p><p><b>Bold text..</b>
 </p><p>..spanning two paragraphs (should not work).
-</p><p>Normal text. <i><b>Bold italic text.</b></i> Normal text.
-</p><p><i><b>Bold italic text</b> with bold deactivated <b>in between.</b></i>
-</p><p><b><i>Bold italic text</i> with italic deactivated <i>in between.</i></b>
 </p><p><b>Bold tag left open</b>
 </p><p><i>Italic tag left open</i>
 </p><p>Normal text.
@@ -272,15 +283,18 @@ Normal text.
 Internal links
 !! input
 Plain link, capitalized: [[Main Page]]
+
+Plain link, uncapitalized: [[main Page]]
 !! result
-<p>Plain link, capitalized: <a href="/wiki/Main_Page" title ="Main Page">Main Page</a>
+<p>Plain link, capitalized: <a href="__SCRIPT__/Main_Page" title="Main Page">Main Page</a>
+</p><p>Plain link, uncapitalized: <a href="__SCRIPT__/Main_Page" title="Main Page">main Page</a>
+</p>
 !! end
 
 !! test
 Internal links 2
 !! disabled
 !!input
-Plain link, uncapitalized: [[main Page]]
 
 Piped link: [[Main Page|The Main Page]]
 
@@ -306,7 +320,6 @@ Plain link to URL: [[http://www.example.org]]
 
 Piped link to URL: [[http://www.example.org|an example URL]]
 !! result
-</p><p>Plain link, uncapitalized: <a href="/wiki/Main_Page">main Page</a>
 </p><p>Piped link: <a href="/wiki/Main_Page">The Main Page</a></p>
 <p>Broken link: <a href="/w/wiki.phtml?title=Zigzagzogzagzig&action=edit" class="new">Zigzagzogzagzig</a></p>
 <p>Link with prefix: xxx<a href="/wiki/Main_Page">main Page</a>, xxx<a href="/wiki/Main_Page">Main Page</a>, Xxx<a href=
