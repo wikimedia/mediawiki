@@ -49,7 +49,7 @@ class Group {
 		
 		if($this->id) {
 			$dbr =& wfGetDB( DB_SLAVE );
-			$r = $dbr->selectRow('`group`', array('group_id', 'group_name', 'group_description', 'group_rights'), array( 'group_id' => $this->id ), $fname );
+			$r = $dbr->selectRow('group', array('group_id', 'group_name', 'group_description', 'group_rights'), array( 'group_id' => $this->id ), $fname );
 			$this->id = $r->group_id;
 			$this->name = $r->group_name;
 			$this->description = $r->group_description;
@@ -57,7 +57,7 @@ class Group {
 			$this->dataLoaded = true;
 		} else {
 			$dbr =& wfGetDB( DB_SLAVE );
-			$r = $dbr->selectRow('`group`', array('group_id', 'group_name', 'group_description', 'group_rights'), array( 'group_name' => $this->name ), $fname );
+			$r = $dbr->selectRow('group', array('group_id', 'group_name', 'group_description', 'group_rights'), array( 'group_name' => $this->name ), $fname );
 			$this->id = $r->group_id;
 			$this->name = $r->group_name;
 			$this->description = $r->group_description;
@@ -70,7 +70,7 @@ class Group {
 	function addToDatabase() {
 		$fname = 'Group::addToDatabase';
 		$dbw =& wfGetDB( DB_MASTER );
-		$dbw->insert( '`group`',
+		$dbw->insert( 'group',
 			array(
 				'group_name' => $this->name,
 				'group_description' => $this->description,
@@ -87,7 +87,7 @@ class Group {
 
 		$dbw =& wfGetDB( DB_MASTER );
 		
-		$dbw->update( '`group`',
+		$dbw->update( 'group',
 			array( /* SET */
 				'group_name' => $this->name,
 				'group_description' => $this->description,
@@ -131,7 +131,7 @@ class Group {
 	function nameFromId($id) {
 		$fname = 'Group::nameFromId';
 		$dbr =& wfGetDB( DB_SLAVE );
-		$r = $dbr->selectRow( '`group`', array( 'group_name' ), array( 'group_id' => $id ), $fname );
+		$r = $dbr->selectRow( 'group', array( 'group_name' ), array( 'group_id' => $id ), $fname );
 		
 		if($r === false) {
 			return '';
@@ -147,7 +147,7 @@ class Group {
 	function idFromName($name) {
 		$fname = 'Group::idFromName';
 		$dbr =& wfGetDB( DB_SLAVE );
-		$r = $dbr->selectRow( '`group`', array( 'group_id' ), array( 'group_name' => $name ), $fname );
+		$r = $dbr->selectRow( 'group', array( 'group_id' ), array( 'group_name' => $name ), $fname );
 
 		if($r === false) {
 			return 0;
