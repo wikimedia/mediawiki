@@ -14,7 +14,7 @@ function compressOldPages( $start = 0 ) {
 	$old = $dbw->tableName( 'old' );
 	do {
 		$end = $start + $chunksize;
-		$res = dbw->select( 'old', array( 'old_id','old_flags','old_namespace','old_title','old_text' ),
+		$res = $dbw->select( 'old', array( 'old_id','old_flags','old_namespace','old_title','old_text' ),
 			"old_id>=$start", $fname, array( 'ORDER BY' => 'old_id', 'LIMIT' => $chunksize, 'FOR UPDATE' ) );
 		if( $dbw->numRows( $res ) == 0 ) {
 			break;
