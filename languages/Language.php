@@ -2223,6 +2223,14 @@ class Language {
 			}
 		}
 	}
+
+	/*
+		returns an array of extra options used by User::getPageRenderHash()
+	*/
+	function getExtraHashOptions() {
+		return array();
+	}
+
 }
 
 # This should fail gracefully if there's not a localization available
