@@ -181,7 +181,7 @@ class SearchEngine {
 		$num = wfNumRows($res1);
 
 		if ( $wgDisableTextSearch ) {
-			$wgOut->addHTML( wfMsg( "searchdisabled", $search, $wgInputEncoding ) );
+			$wgOut->addHTML( wfMsg( "searchdisabled", htmlspecialchars( $search ), $wgInputEncoding ) );
 		} else {
 			$sk = $wgUser->getSkin();
 			$text = wfMsg( "searchresulttext", $sk->makeKnownLink(
@@ -251,11 +251,7 @@ class SearchEngine {
 				wfFreeResult( $res1 );
 				$wgOut->addHTML( "</ol>\n" );
 			}
-		}
-		
-		if ( $wgDisableTextSearch ) {
-			$wgOut->addHTML( wfMsg( "searchdisabled", $search, $wgInputEncoding ) );
-		} else {
+
 			if ( 0 == wfNumRows( $res2 ) ) {
 				$wgOut->addHTML( "<h2>" . wfMsg( "notextmatches" ) .
 				  "</h2>\n" );
