@@ -23,6 +23,9 @@ include_once("LanguageUtf8.php");
 	7	=> "Figura_diskutim",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_diskutim",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsSq = array(

@@ -130,6 +130,14 @@ class MagicWord {
 		return $wgMagicFound;
 	}
 
+	function matchStartAndRemove( &$text ) {
+		global $wgMagicFound;
+		$wgMagicFound = false;
+		$text = preg_replace_callback( $this->getRegexStart(), "pregRemoveAndRecord", $text );
+		return $wgMagicFound;
+	}		
+
+
 	# Replaces the word with something else
 	function replace( $replacement, $subject )
 	{
@@ -193,6 +201,14 @@ class MagicWord {
 
 		$result = preg_replace( $search, $replace, $subject );
 		return !($result === $subject);
+	}
+
+	# Adds all the synonyms of this MagicWord to an array, to allow quick lookup in a list of magic words
+	function addToArray( &$array, $value ) 
+	{
+		foreach ( $this->mSynonyms as $syn ) {
+			$array[$syn] = $value;
+		}
 	}
 }
 

@@ -19,6 +19,9 @@
 	7	=> "Soubor_diskuse",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_diskuse",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 # Zdědit apriorní preference: wgDefaultUserOptionsEn

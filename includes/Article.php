@@ -429,19 +429,7 @@ class Article {
 		
 		# standard deferred updates
 		$this->editUpdates( $text );
-		
-		# Squid purging
-		if ( $wgUseSquid ) {
-			$urlArr = Array( 
-				$this->mTitle->getInternalURL(),
-				$this->mTitle->getInternalURL('action=history')
-			);			
-			wfPurgeSquidServers($urlArr);
-			/* this needs to be done after LinksUpdate */
-			$u = new SquidUpdate($this->mTitle);
-			array_push( $wgDeferredUpdateList, $u );
-		}
-		
+
 		$this->showArticle( $text, wfMsg( "newarticle" ) );
 	}
 
@@ -549,14 +537,25 @@ class Article {
 		# standard deferred updates
 		$this->editUpdates( $text );
 		
-		# Squid updates
 		
+		$urls = array();
+		# Template namespace
+		# Purge all articles linking here
+		if ( $this->mTitle->getNamespace() == NS_TEMPLATE) {
+			$titles = $this->mTitle->getLinksTo();
+			Title::touchArray( $titles );
+			if ( $wgUseSquid ) {
+				foreach ( $titles as $title ) {
+					$urls[] = $title->getInternalURL();
+				}
+			}
+		}
+	
+		# Squid updates
 		if ( $wgUseSquid ) {
-			$urlArr = Array( 
-				$this->mTitle->getInternalURL(),
-				$this->mTitle->getInternalURL('action=history')
-			);			
-			wfPurgeSquidServers($urlArr);
+			$urls = array_merge( $urls, $this->mTitle->getSquidURLs() );
+			$u = new SquidUpdate( $urls );
+			$u->doUpdate();
 		}
 
 		$this->showArticle( $text, wfMsg( "updated" ) );
@@ -670,6 +669,7 @@ class Article {
 	{
 		global $wgUser, $wgOut, $wgMessageCache;
 		global $wpConfirm, $wpReason, $image, $oldimage;
+		$fname = "Article::delete";
 
 		# This code desperately needs to be totally rewritten
 		
@@ -682,8 +682,8 @@ class Article {
 			return;
 		}
 
-		# Can't delete cached MediaWiki namespace (i.e. vital messages)
-		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && $wgMessageCache->isCacheable( $this->mTitle->getDBkey() ) ) {
+		# Can't delete MediaWiki namespace 
+		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			$wgOut->fatalError( wfMsg( "cannotdelete" ) );
 			return;
 		}
@@ -696,7 +696,7 @@ class Article {
 			return;
 		}
 
-		if ( $_POST["wpConfirm"] ) {
+		if ( @$_POST["wpConfirm"] ) {
 			$this->doDelete();
 			return;
 		}
@@ -722,12 +722,13 @@ class Article {
 			# if this is a mini-text, we can paste part of it into the deletion reason
 
 			#if this is empty, an earlier revision may contain "useful" text
+			$blanked = false;
 			if($s->cur_text!="") {
 				$text=$s->cur_text;
 			} else {
 				if($old) {
 					$text = Article::getRevisionText( $old );
-					$blanked=1;
+					$blanked = true;
 				}
 				
 			}
@@ -803,66 +804,65 @@ class Article {
 		$fname = "Article::doDelete";
 		wfDebug( "$fname\n" );
 
-		$this->doDeleteArticle( $this->mTitle );
-		$deleted = $this->mTitle->getPrefixedText();
+		if ( $this->doDeleteArticle() ) {	
+			$deleted = $this->mTitle->getPrefixedText();
 
-		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
-		$wgOut->setRobotpolicy( "noindex,nofollow" );
+			$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
+			$wgOut->setRobotpolicy( "noindex,nofollow" );
 
-		$sk = $wgUser->getSkin();
-		$loglink = $sk->makeKnownLink( $wgLang->getNsText(
-		  Namespace::getWikipedia() ) .
-		  ":" . wfMsg( "dellogpage" ), wfMsg( "deletionlog" ) );
+			$sk = $wgUser->getSkin();
+			$loglink = $sk->makeKnownLink( $wgLang->getNsText(
+			  Namespace::getWikipedia() ) .
+			  ":" . wfMsg( "dellogpage" ), wfMsg( "deletionlog" ) );
 
-		$text = wfMsg( "deletedtext", $deleted, $loglink );
+			$text = wfMsg( "deletedtext", $deleted, $loglink );
 
-		$wgOut->addHTML( "<p>" . $text );
-		$wgOut->returnToMain( false );
+			$wgOut->addHTML( "<p>" . $text );
+			$wgOut->returnToMain( false );
+		} else {
+			$wgOut->fatalError( wfMsg( "cannotdelete" ) );
+		}
 	}
 
-	function doDeleteArticle( $title )
+	# Delete the article, returns success
+	function doDeleteArticle()
 	{
-		global $wgUser, $wgOut, $wgLang, $wgRequest;
+		global $wgUser, $wgLang, $wgRequest;
 		global  $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
 
 		$fname = "Article::doDeleteArticle";
 		wfDebug( "$fname\n" );
 
-		$ns = $title->getNamespace();
-		$t = wfStrencode( $title->getDBkey() );
-		$id = $title->getArticleID();
+		$ns = $this->mTitle->getNamespace();
+		$t = wfStrencode( $this->mTitle->getDBkey() );
+		$id = $this->mTitle->getArticleID();
 
-		if ( "" == $t ) {
-			$wgOut->fatalError( wfMsg( "cannotdelete" ) );
-			return;
+		if ( "" == $t || $id == 0 ) {
+			return false;
 		}
 
 		$u = new SiteStatsUpdate( 0, 1, -$this->isCountable( $this->getContent( true ) ) );
 		array_push( $wgDeferredUpdateList, $u );
 		
+		$linksTo = $this->mTitle->getLinksTo();
+
 		# Squid purging
 		if ( $wgUseSquid ) {
-			$urlArr = Array(
+			$urls = array(	
 				$this->mTitle->getInternalURL(),
-				$this->mTitle->getInternalURL('action=history')
+				$this->mTitle->getInternalURL( "history" ) 
 			);
-			wfPurgeSquidServers($urlArr);
-
-			/* prepare the list of urls to purge */
-			$sql = "SELECT cur_namespace,cur_title FROM links,cur WHERE l_to={$id} and l_from=cur_id" ;
-			$res = wfQuery ( $sql, DB_READ ) ;
-			while ( $BL = wfFetchObject ( $res ) )
-			{
-				$tobj = Title::MakeTitle( $BL->cur_namespace, $BL->cur_title ) ; 
-				$blurlArr[] = $tobj->getInternalURL();
+			foreach ( $linksTo as $linkTo ) {
+				$urls[] = $linkTo->getInternalURL();
 			}
-			wfFreeResult ( $res ) ;
-			$u = new SquidUpdate( $this->mTitle, $blurlArr );
+
+			$u = new SquidUpdate( $urls );
 			array_push( $wgDeferredUpdateList, $u );
 
 		}
 
-		
+		# Client and file cache invalidation
+		Title::touchArray( $linksTo );
 
 		# Move article and history to the "archive" table
 		$sql = "INSERT INTO archive (ar_namespace,ar_title,ar_text," .
@@ -894,55 +894,45 @@ class Article {
        		wfQuery( $sql, DB_WRITE, $fname );
 
 		# Finally, clean up the link tables
+		$t = wfStrencode( $this->mTitle->getPrefixedDBkey() );
 
-		if ( 0 != $id ) {
+		Article::onArticleDelete( $this->mTitle );
+		
+		$sql = "INSERT INTO brokenlinks (bl_from,bl_to) VALUES ";
+		$first = true;
 
-			$t = wfStrencode( $title->getPrefixedDBkey() );
-
-			Article::onArticleDelete( $title );
-
-			$sql = "SELECT l_from FROM links WHERE l_to={$id}";
-			$res = wfQuery( $sql, DB_READ, $fname );
-
-			$sql = "INSERT INTO brokenlinks (bl_from,bl_to) VALUES ";
-			$now = wfTimestampNow();
-			$sql2 = "UPDATE cur SET cur_touched='{$now}' WHERE cur_id IN (";
-			$first = true;
-
-			while ( $s = wfFetchObject( $res ) ) {
-				if ( ! $first ) { $sql .= ","; $sql2 .= ","; }
-				$first = false;
-				$sql .= "({$s->l_from},'{$t}')";
-				$sql2 .= "{$s->l_from}";
-			}
-			$sql2 .= ")";
-			if ( ! $first ) {
-				wfQuery( $sql, DB_WRITE, $fname );
-				wfQuery( $sql2, DB_WRITE, $fname );
-			}
-			wfFreeResult( $res );
-
-			$sql = "DELETE FROM links WHERE l_to={$id}";
-			wfQuery( $sql, DB_WRITE, $fname );
-
-			$sql = "DELETE FROM links WHERE l_from={$id}";
-			wfQuery( $sql, DB_WRITE, $fname );
-
-			$sql = "DELETE FROM imagelinks WHERE il_from={$d}";
-			wfQuery( $sql, DB_WRITE, $fname );
-
-			$sql = "DELETE FROM brokenlinks WHERE bl_from={$id}";
+		foreach ( $linksTo as $titleObj ) {
+			if ( ! $first ) { $sql .= ","; }
+			$first = false;
+			# Get article ID. Efficient because it was loaded into the cache by getLinksTo().
+			$linkID = $titleObj->getArticleID(); 
+			$sql .= "({$linkID},'{$t}')";
+		}
+		if ( ! $first ) {
 			wfQuery( $sql, DB_WRITE, $fname );
 		}
+
+		$sql = "DELETE FROM links WHERE l_to={$id}";
+		wfQuery( $sql, DB_WRITE, $fname );
+
+		$sql = "DELETE FROM links WHERE l_from={$id}";
+		wfQuery( $sql, DB_WRITE, $fname );
+
+		$sql = "DELETE FROM imagelinks WHERE il_from={$id}";
+		wfQuery( $sql, DB_WRITE, $fname );
+
+		$sql = "DELETE FROM brokenlinks WHERE bl_from={$id}";
+		wfQuery( $sql, DB_WRITE, $fname );
 		
 		$log = new LogPage( wfMsg( "dellogpage" ), wfMsg( "dellogpagetext" ) );
-		$art = $title->getPrefixedText();
+		$art = $this->mTitle->getPrefixedText();
 		$wpReason = $wgRequest->getText( "wpReason" );
 		$log->addEntry( wfMsg( "deletedarticle", $art ), $wpReason );
 
 		# Clear the cached article id so the interface doesn't act like we exist
 		$this->mTitle->resetArticleID( 0 );
 		$this->mTitle->mArticleID = 0;
+		return true;
 	}
 
 	function rollback()
@@ -1101,7 +1091,7 @@ class Article {
 	
 	/* Caching functions */
 
-	# checkLastModified returns true iff it has taken care of all
+	# checkLastModified returns true if it has taken care of all
 	# output to the client that is necessary for this request.
 	# (that is, it has sent a cached version of the page)
 	function tryFileCache() {
@@ -1214,11 +1204,28 @@ class Article {
 	#
 	# This is a good place to put code to clear caches, for instance. 
 
+	# This is called on page move and undelete, as well as edit	
 	/* static */ function onArticleCreate($title_obj){
-		global $wgEnablePersistentLC, $wgEnableParserCache;
+		global $wgEnablePersistentLC, $wgEnableParserCache, $wgUseSquid, $wgDeferredUpdateList;
+
+		$titles = $title_obj->getBrokenLinksTo();
+		
+		# Purge squid 
+		if ( $wgUseSquid ) {
+			$urls = $title_obj->getSquidURLs();
+			foreach ( $titles as $linkTitle ) {
+				$urls[] = $linkTitle->getInternalURL();
+			}
+			$u = new SquidUpdate( $urls );
+			array_push( $wgDeferredUpdateList, $u );
+		}
+
+		# Clear persistent link cache
 		if ( $wgEnablePersistentLC ) {
 			LinkCache::linksccClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
 		}
+
+		# Clear parser cache (not really used)
 		if ( $wgEnableParserCache ) {
 			OutputPage::parsercacheClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
 		}
@@ -1243,10 +1250,6 @@ class Article {
 			OutputPage::parsercacheClearPage( $title_obj->getArticleID(), $title_obj->getNamespace() );
 		}
 	}
-}
-
-function wfReplaceSubstVar( $matches ) {
-	return wfMsg( $matches[1] );
 }
 
 ?>

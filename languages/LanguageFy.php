@@ -26,6 +26,9 @@ if($wgMetaNamespace === FALSE)
 	7	=> "Ofbyld_oerlis",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_oerlis",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsFy = array(

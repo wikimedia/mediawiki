@@ -17,6 +17,9 @@ if($wgMetaNamespace === FALSE)
 	7	=> "Bild_Diskussion",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_Diskussion",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsDe = array(

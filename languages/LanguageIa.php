@@ -19,7 +19,10 @@
 	6	=> "Imagine",
 	7	=> "Discussion_Imagine",
 	8	=> "MediaWiki",
-	9	=> "Discussion_MediaWiki"
+	9	=> "Discussion_MediaWiki",
+	10  => "Template",
+	11  => "Template_talk"
+
 
 );
 

@@ -64,18 +64,26 @@ function wfSpecialUndelete( $par )
     
     $sk = $wgUser->getSkin();
     $wgOut->setPagetitle( wfMsg( "undeletepage" ) );
-
-    $sql = "SELECT ar_minor_edit,ar_timestamp,ar_user,ar_user_text,ar_comment
-      FROM archive WHERE ar_namespace={$namespace} AND ar_title=\"{$title}\"
-      ORDER BY ar_timestamp DESC";
+	
+	# Get text of first revision
+	$sql = "SELECT ar_text FROM archive WHERE ar_namespace={$namespace} AND ar_title=\"{$title}\"
+      ORDER BY ar_timestamp DESC LIMIT 1";
     $ret = wfQuery( $sql, DB_READ );
 
 	if( wfNumRows( $ret ) == 0 ) {
 		$wgOut->addWikiText( wfMsg( "nohistory" ) );
 		return 0;
 	}
-	
+	$row = wfFetchObject( $ret );
     $wgOut->addWikiText( wfMsg( "undeletehistory" ) . "\n<hr>\n" . $row->ar_text );
+
+	# Get remaining revisions
+	$sql = "SELECT ar_minor_edit,ar_timestamp,ar_user,ar_user_text,ar_comment
+      FROM archive WHERE ar_namespace={$namespace} AND ar_title=\"{$title}\"
+      ORDER BY ar_timestamp DESC";
+	$ret = wfQuery( $sql, DB_READ );
+	# Ditch first row
+	$row = wfFetchObject( $ret );
 
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Undelete" );
 	$action = $titleObj->escapeLocalURL( "action=submit" );
@@ -106,8 +114,8 @@ function wfSpecialUndelete( $par )
     $wgOut->addHTML("</ul>");
     
 	return 0;
-}
-	
+}	
+
 /* private */ function doUndeleteArticle( $namespace, $title )
 	{
 		global $wgUser, $wgOut, $wgLang, $target, $wgDeferredUpdateList;
@@ -182,13 +190,6 @@ function wfSpecialUndelete( $par )
 			array_push( $wgDeferredUpdateList, $u );
 				
 			Article::onArticleCreate( $to );
-
-			# Squid purging
-			if ( $wgUseSquid ) {
-				/* this needs to be done after LinksUpdate */
-				$u = new SquidUpdate($to);
-				array_push( $wgDeferredUpdateList, $u );
-			}
 
 			#TODO: SearchUpdate, etc.
 		}

@@ -16,7 +16,10 @@
 	6	=> "ภาพ",
 	7	=> "คุยเกี่ยวกับภาพ",
 	8	=> "MediaWiki",
-	9	=> "คุยเกี่ยวกับ_MediaWiki"
+	9	=> "คุยเกี่ยวกับ_MediaWiki",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsTh = array(

@@ -17,6 +17,9 @@
 	7	=> "Imagen_Discusión",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_Discusión",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsEs = array(

@@ -21,6 +21,9 @@
         7       => "Bild_diskussion",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_diskussion",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* inherit standard defaults */

@@ -23,6 +23,9 @@ $wgEditEncoding		= "x";
 	7	=> "Dosiera_diskuto",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_diskuto",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 # Heredu apriorajn preferojn: wgDefaultUserOptionsEn

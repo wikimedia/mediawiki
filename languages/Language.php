@@ -26,6 +26,19 @@ define("MAG_IMG_LEFT",       18);
 define("MAG_IMG_NONE",       19);
 define("MAG_IMG_WIDTH",      20);
 define("MAG_IMG_CENTER",      21);
+define("MAG_INT", 22);
+
+$wgVariableIDs = array(
+	MAG_CURRENTMONTH,
+	MAG_CURRENTMONTHNAME,
+	MAG_CURRENTDAY,
+	MAG_CURRENTDAYNAME,
+	MAG_CURRENTYEAR,
+	MAG_CURRENTTIME,
+	MAG_NUMBEROFARTICLES,
+	MAG_CURRENTMONTHNAMEGEN
+);
+
 
 
 #--------------------------------------------------------------------------
@@ -47,23 +60,20 @@ if($wgMetaNamespace === FALSE)
 	$wgMetaNamespace = str_replace( " ", "_", $wgSitename );
 
 /* private */ $wgNamespaceNamesEn = array(
-	-2	=> "Media",
-	-1	=> "Special",
-	0	=> "",
-	1	=> "Talk",
-	2	=> "User",
-	3	=> "User_talk",
-	4	=> $wgMetaNamespace,
-	5	=> $wgMetaNamespace . "_talk",
-	6	=> "Image",
-	7	=> "Image_talk",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_talk"
-	
-	# Temporarily commented out:
-	/*,
-	10	=> "Template",
-	11	=> "Template_talk"*/
+	NS_MEDIA            => "Media",
+	NS_SPECIAL          => "Special",
+	NS_MAIN	            => "",
+	NS_TALK	            => "Talk",
+	NS_USER             => "User",
+	NS_USER_TALK        => "User_talk",
+	NS_WIKIPEDIA        => $wgMetaNamespace,
+	NS_WIKIPEDIA_TALK   => $wgMetaNamespace . "_talk",
+	NS_IMAGE            => "Image",
+	NS_IMAGE_TALK       => "Image_talk",
+	NS_MEDIAWIKI        => "MediaWiki",
+	NS_MEDIAWIKI_TALK   => "MediaWiki_talk",
+	NS_TEMPLATE         => "Template",
+	NS_TEMPLATE_TALK    => "Template_talk"
 );
 
 /* private */ $wgDefaultUserOptionsEn = array(
@@ -331,31 +341,36 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	"Sep", "Oct", "Nov", "Dec"
 );
 
+# Note to translators: 
+#   Please include the English words as synonyms.  This allows people 
+#   from other wikis to contribute more easily.
+# 
 /* private */ $wgMagicWordsEn = array(
 #   ID                                 CASE  SYNONYMS
     MAG_REDIRECT             => array( 0,    "#redirect"              ),
     MAG_NOTOC                => array( 0,    "__NOTOC__"              ),
     MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__"      ),
     MAG_START                => array( 0,    "__START__"              ),
-    MAG_CURRENTMONTH         => array( 1,    "{{CURRENTMONTH}}"       ),
-    MAG_CURRENTMONTHNAME     => array( 1,    "{{CURRENTMONTHNAME}}"   ),
-    MAG_CURRENTDAY           => array( 1,    "{{CURRENTDAY}}"         ),
-    MAG_CURRENTDAYNAME       => array( 1,    "{{CURRENTDAYNAME}}"     ),
-    MAG_CURRENTYEAR          => array( 1,    "{{CURRENTYEAR}}"        ),
-    MAG_CURRENTTIME          => array( 1,    "{{CURRENTTIME}}"        ),
-    MAG_NUMBEROFARTICLES     => array( 1,    "{{NUMBEROFARTICLES}}"   ),
-    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "{{CURRENTMONTHNAMEGEN}}"),
-	MAG_MSG                  => array( 0,    "{{MSG:$1}}"             ),
-	MAG_SUBST                => array( 0,    "{{SUBST:$1}}"           ),
-    MAG_MSGNW                => array( 0,    "{{MSGNW:$1}}"           ),
+    MAG_CURRENTMONTH         => array( 1,    "CURRENTMONTH"           ),
+    MAG_CURRENTMONTHNAME     => array( 1,    "CURRENTMONTHNAME"       ),
+    MAG_CURRENTDAY           => array( 1,    "CURRENTDAY"             ),
+    MAG_CURRENTDAYNAME       => array( 1,    "CURRENTDAYNAME"         ),
+    MAG_CURRENTYEAR          => array( 1,    "CURRENTYEAR"            ),
+    MAG_CURRENTTIME          => array( 1,    "CURRENTTIME"            ),
+    MAG_NUMBEROFARTICLES     => array( 1,    "NUMBEROFARTICLES"       ),
+    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN"    ),
+	MAG_MSG                  => array( 0,    "MSG:"                   ),
+	MAG_SUBST                => array( 0,    "SUBST:"                 ),
+    MAG_MSGNW                => array( 0,    "MSGNW:"                 ),
 	MAG_END                  => array( 0,    "__END__"                ),
     MAG_IMG_THUMBNAIL        => array( 1,    "thumbnail", "thumb"     ),
     MAG_IMG_RIGHT            => array( 1,    "right"                  ),
     MAG_IMG_LEFT             => array( 1,    "left"                   ),
     MAG_IMG_NONE             => array( 1,    "none"                   ),
     MAG_IMG_WIDTH            => array( 1,    "$1px"                   ),
-    MAG_IMG_CENTER           => array( 1,    "center", "centre"       )
-
+    MAG_IMG_CENTER           => array( 1,    "center", "centre"       ),
+    MAG_INT                  => array( 0,    "INT:"                   )
+    
 );
 
 # All special pages have to be listed here: a description of ""
@@ -399,12 +414,12 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 #	"Categories"	=> "Page categories",
 	"Export"		=> "XML page export",
 	"Version"		=> "Show MediaWiki version",
+	"Allmessages"	=> "All system messages"
 );
 
 /* private */ $wgSysopSpecialPagesEn = array(
 	"Blockip"		=> "Block a user/IP address",
 	"Asksql"		=> "Query the database",
-	"Allmessages"	=> "All system messages",
 	"Undelete"		=> "Restore deleted pages",
 	"Makesysop"		=> "Turn a user into a sysop",
 	"Import"		=> "Import a page with history",
@@ -645,7 +660,7 @@ You should log in and change your password now.",
 "passwordsent"	=> "A new password has been sent to the e-mail address
 registered for \"$1\".
 Please log in again after you receive it.",
-"loginend"		=> "",
+"loginend"		=> "&nbsp;",
 
 # Edit page toolbar
 "bold_sample"=>"Bold text",
@@ -1724,7 +1739,7 @@ class Language {
 	function linkPrefixExtension() { return false; }
 
 
-	function getMagicWords() 
+	function &getMagicWords() 
 	{
 		global $wgMagicWordsEn;
 		return $wgMagicWordsEn;
@@ -1733,8 +1748,8 @@ class Language {
 	# Fill a MagicWord object with data from here
 	function getMagic( &$mw )
 	{
-		$raw = $this->getMagicWords(); # don't worry, it's reference counted not deep copy
-		$rawEntry = $raw[$mw->mId];
+		$raw =& $this->getMagicWords(); 
+        $rawEntry = $raw[$mw->mId];
 		$mw->mCaseSensitive = $rawEntry[0];
 		$mw->mSynonyms = array_slice( $rawEntry, 1 );
 	}

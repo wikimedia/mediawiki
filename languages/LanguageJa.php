@@ -22,6 +22,9 @@ include_once( "LanguageUtf8.php" );
 	7	=> "画像‐ノート" /* "Image_talk" */,
 	8	=> "MediaWiki",
 	9	=> "MediaWikiノート",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsJa = array(

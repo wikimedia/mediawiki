@@ -31,7 +31,10 @@ include_once("LanguageUtf8.php");
 	6	=> "تصویر",
 	7	=> "بحث_تصویر",
 	8	=> "مدیاویکی",
-	9	=> "بحث_مدیاویکی"
+	9	=> "بحث_مدیاویکی",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsFa = array(

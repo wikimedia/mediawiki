@@ -23,6 +23,9 @@
 	7	=> "Imej_Perbualan",#Image_talk
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_Perbualan",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsMs = array(

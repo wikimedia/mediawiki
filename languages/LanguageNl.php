@@ -18,7 +18,10 @@
  6 => "Afbeelding",
  7 => "Overleg_afbeelding",
  8 => "MediaWiki",
- 9 => "Overleg_MediaWiki"
+ 9 => "Overleg_MediaWiki",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsNl = array(

@@ -17,7 +17,10 @@ include_once("LanguageUtf8.php");
 	6	=> "Obrázok",
 	7	=> "Komentár_k_obrázku",
 	8	=> "MediaWiki",
-	9	=> "Komentár_k_MediaWiki"
+	9	=> "Komentár_k_MediaWiki",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsSk = array(
