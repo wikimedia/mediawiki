@@ -57,11 +57,12 @@ class LanguageZh extends LanguageUtf8 {
 	}
 	
 	function convert($text) {
-		
+
 		// no conversion if redirecting
 		if(substr($text,0,9) == "#REDIRECT") {
 			return $text;
 		}
+        
 		// determine the preferred language from the request header
 		$tolang = $this->getPreferredLanguage();
 	
@@ -96,10 +97,13 @@ class LanguageZh extends LanguageUtf8 {
 				$text = $text.$this->simp2trad($a{1});
 			}
 		}
+
 		return $text;
 	}
 	
-
+    function getVariants() {
+        return array("zh_cn", "zh_tw");
+    }
 
 
     /* these just calls the method of the corresponding class */
