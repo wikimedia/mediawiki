@@ -776,6 +776,40 @@ class Article {
 	}
 	
 	/**
+	 * If the given revision is newer than the currently set page_latest,
+	 * update the page record. Otherwise, do nothing.
+	 *
+	 * @param Database $dbw
+	 * @param Revision $revision
+	 */
+	function updateIfNewerOn( &$dbw, $revision ) {
+		$fname = 'Article::updateIfNewerOn';
+		wfProfileIn( $fname );
+		
+		$row = $dbw->selectRow(
+			array( 'revision', 'page' ),
+			array( 'rev_id', 'rev_timestamp' ),
+			array(
+				'page_id' => $this->getId(),
+				'page_latest=rev_id' ),
+			$fname );
+		if( $row ) {
+			if( $row->rev_timestamp >= $revision->getTimestamp() ) {
+				wfProfileOut( $fname );
+				return false;
+			}
+			$prev = $row->rev_id;
+		} else {
+			# No or missing previous revision; mark the page as new
+			$prev = 0;
+		}
+		
+		$ret = $this->updateRevisionOn( $dbw, $revision->getId(), $revision->getText(), $prev );
+		wfProfileOut( $fname );
+		return $ret;
+	}
+	
+	/**
 	 * Theoretically we could defer these whole insert and update
 	 * functions for after display, but that's taking a big leap
 	 * of faith, and we want to be able to report database
