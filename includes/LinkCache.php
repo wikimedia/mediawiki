@@ -141,6 +141,22 @@ class LinkCache {
 		wfProfileIn( $fname );
 		# Note -- $fromtitle is a Title *object*
 		$dbkeyfrom = wfStrencode( $fromtitle->getPrefixedDBKey() );
+
+
+		$res = wfQuery("SELECT lcc_cacheobj FROM linkscc WHERE lcc_title = '{$dbkeyfrom}'", 
+		       	       DB_READ);
+		$row = wfFetchObject( $res );
+		if( $row != FALSE){
+		  $cacheobj = gzuncompress( $row->lcc_cacheobj );
+		  $cc = unserialize( $cacheobj );
+		  $this->mGoodLinks = $cc->mGoodLinks;
+		  $this->mBadLinks = $cc->mBadLinks;
+		  $this->mPreFilled = true;
+		  wfProfileOut( $fname );
+		  return;
+		} 
+
+
 		$sql = "SELECT cur_id,cur_namespace,cur_title
 			FROM cur,links
 			WHERE cur_id=l_to AND l_from='{$dbkeyfrom}'";
@@ -166,7 +182,12 @@ class LinkCache {
 		$this->mOldBadLinks = $this->mBadLinks;
 		$this->mOldGoodLinks = $this->mGoodLinks;
 		$this->mPreFilled = true;
-		
+
+		// put fetched link data into cache
+		$serCachegz = wfStrencode( gzcompress( serialize( $this ), 3) );
+		wfQuery("REPLACE INTO linkscc VALUES({$id}, '{$dbkeyfrom}', '{$serCachegz}')", 
+			DB_WRITE);
+
 		wfProfileOut( $fname );
 	}
 

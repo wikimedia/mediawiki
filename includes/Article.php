@@ -338,6 +338,11 @@ class Article {
 		$newid = wfInsertId();
 		$this->mTitle->resetArticleID( $newid );
 
+		// Purge related entries in links cache on new page, to heal broken links
+		$ptitle = wfStrencode( $ttl );
+		wfQuery("DELETE linkscc FROM linkscc,brokenlinks ".
+			"WHERE lcc_pageid=bl_from AND bl_to='{$ptitle}'", DB_WRITE);
+		
 		$sql = "INSERT INTO recentchanges (rc_timestamp,rc_cur_time," .
 		  "rc_namespace,rc_title,rc_new,rc_minor,rc_cur_id,rc_user," .
 		  "rc_user_text,rc_comment,rc_this_oldid,rc_last_oldid,rc_bot) VALUES (" .
@@ -454,6 +459,13 @@ class Article {
 			$sql = "UPDATE recentchanges SET rc_cur_time='{$now}' " .
 			  "WHERE rc_cur_id=" . $this->getID();
 			wfQuery( $sql, DB_WRITE, $fname );
+			
+			// Purge related entries in link cache when a page change
+			// (probably just affects anything when article changes stub state)
+			$pageid=$this->getID();
+			wfQuery("DELETE linkscc FROM linkscc,links ".
+				"WHERE lcc_title=links.l_from AND l_to={$pageid}", DB_WRITE);
+
 		}
 		if( $wgDBtransactions ) {
 			$sql = "COMMIT";
@@ -830,6 +842,12 @@ class Article {
 		# Finally, clean up the link tables
 
 		if ( 0 != $id ) {
+
+                        // Purge related entries in links cache on delete,
+                        wfQuery("DELETE linkscc FROM linkscc,links ".
+                                "WHERE lcc_title=links.l_from AND l_to={$id}", DB_WRITE);
+                        wfQuery("DELETE FROM linkscc WHERE lcc_title='{$t}'", DB_WRITE);
+
 			$t = wfStrencode( $title->getPrefixedDBkey() );
 			$sql = "SELECT l_from FROM links WHERE l_to={$id}";
 			$res = wfQuery( $sql, DB_READ, $fname );
