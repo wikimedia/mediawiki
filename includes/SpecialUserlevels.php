@@ -11,7 +11,7 @@ require_once('Group.php');
 /** Entry point */
 function wfSpecialUserlevels($par=null) {
 	global $wgRequest;
-	// print_r($_POST);
+//	print_r($_POST);
 	$form = new UserlevelsForm($wgRequest);
 	$form->execute();
 }
@@ -99,12 +99,7 @@ class UserlevelsForm extends HTMLForm {
 	 */
 	function saveUserGroups($username,$removegroup,$addgroup) {
 		$u = User::NewFromName($username);
-		
-		print "ADD:\n";
-		print_r($addgroup);
-		print "DEL:\n";
-		print_r($removegroup);
-		
+
 		if(is_null($u)) {
 			$wgOut->addHTML('<p>'.wfMsg('nosuchusershort',$username).'</p>');
 			return;
@@ -118,8 +113,8 @@ class UserlevelsForm extends HTMLForm {
 
 		$groups = $u->getGroups();
 		// remove then add groups		
-		$groups = array_diff($groups, $removegroup);
-		$groups = array_merge($groups, $addgroup);
+		if(isset($removegroup)) { $groups = array_diff($groups, $removegroup); }
+		if(isset($addgroup)) { $groups = array_merge($groups, $addgroup); }
 		// save groups in user object and database
 		$u->setGroups($groups);
 		$u->saveSettings();
