@@ -173,7 +173,7 @@ function wfSpecialUndelete( $par )
 		$log = new LogPage( wfMsg( "dellogpage" ), wfMsg( "dellogpagetext" ) );
 		$log->addEntry( wfMsg( "undeletedarticle", $target ), "" );
 
-		$wgout->addwikitext(str_replace("$1", $target, wfmsg("undeletedtext")));
+		$wgOut->addwikitext(str_replace("$1", $target, wfmsg("undeletedtext")));
 		return 0;
 	}
 ?>
