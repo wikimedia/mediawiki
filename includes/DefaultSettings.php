@@ -50,6 +50,7 @@ $wgAmericanDates    = false; # Enable for English module to print dates
 							 # as eg 'May 12' instead of '12 May'
 $wgLocalInterwiki   = "w";
 $wgShowIPinHeader	= true; # For non-logged in users
+$wgUseDynamicDates	= true; # Allows the user to pick their preferred date format
 
 # Miscellaneous configuration settings
 #
@@ -59,6 +60,8 @@ $wgDebugComments	= false;
 $wgReadOnly			= false;
 $wgSqlLogFile		= "{$wgUploadDirectory}/sqllog_mFhyRe6";
 $wgLogQueries		= false;
+$wgUseBetterLinksUpdate = true;
+
 
 # Client-side caching:
 $wgCachePages       = true; # Allow client-side caching of pages
