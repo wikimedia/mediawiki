@@ -261,6 +261,8 @@ class UtfNormal {
 		preg_replace( '/[\x00-\x08\x0b\x0c\x0e-\x1f]/', UTF8_REPLACEMENT, $string );
 		
 		# ASCII is always valid NFC!
+		# If we're only ever given plain ASCII, we can avoid the overhead
+		# of initializing the decomposition tables by skipping out early.
 		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
 		
 		UtfNormal::loadData();
@@ -297,59 +299,81 @@ class UtfNormal {
 		
 		# Chop the text into pure-ASCII and non-ASCII areas;
 		# large ASCII parts can be handled much more quickly.
-		# Don't chop up for little newlines or spaces, though,
+		# Don't chop up Unicode areas for punctuation, though,
 		# that wastes energy.
-		preg_match_all( '/([\x00-\x7f]+|[\x80-\xff][\x0a\x20\x80-\xff]*)/', $string, $matches );
+		preg_match_all(
+			'/([\x00-\x7f]+|[\x80-\xff][\x00-\x40\x5b-\x5f\x7b-\xff]*)/',
+			$string, $matches );
 		
-		$out = '';
+		ob_start();
 		$looksNormal = true;
 		foreach( $matches[1] as $str ) {
 			if( $str{0} < "\x80" ) {
-				$out .= $str;
+				# ASCII chunk: guaranteed to be valid UTF-8
+				# and in normal form C, so output it quick.
+				echo $str;
 				continue;
 			}
+			
+			# We'll have to examine the chunk byte by byte to ensure
+			# that it consists of valid UTF-8 sequences, and to see
+			# if any of them might not be normalized.
+			#
+			# Since PHP is not the fastest language on earth, some of
+			# this code is a little ugly with inner loop optimizations.
+			
 			$len = strlen( $str );
 			$tail = false;
 			$head = '';
-			
 			for( $i = 0; $i < $len; $i++ ) {
-				$c = $str{$i};
 				if( $tail ) {
-					if( $c >= "\x80" && $c < "\xc0" ) {
+					if( ( $c = $str{$i} ) >= "\x80" && $c < "\xc0" ) {
 						$sequence .= $c;
 						if( --$remaining ) {
 							# Keep adding bytes...
 							continue;
 						}
-	
+						
+						# We have come to the end of the sequence...
 						if( isset( $checkit[$head] ) ) {
 							# Do some more detailed validity checks, for
 							# invalid characters and illegal sequences.
-							$head = ord( $head );
-							if( ( $head == 0xed && $sequence >= UTF8_SURROGATE_FIRST
-									&& $sequence <= UTF8_SURROGATE_LAST)
-								|| ($head  < 0xc2 && $sequence <= UTF8_OVERLONG_A)
-								|| ($head == 0xe0 && $sequence <= UTF8_OVERLONG_B)
-								|| ($head == 0xef && 
-									($sequence >= UTF8_FDD0 && $sequence <= UTF8_FDEF)
-									|| ($sequence == UTF8_FFFE)
-									|| ($sequence == UTF8_FFFF) )
-								|| ($head == 0xf0 && $sequence <= UTF8_OVERLONG_C)
-								|| ($head >= 0xf0 && $sequence > UTF8_MAX) ) {
-								$out .= UTF8_REPLACEMENT;
-								$tail = false;
-								continue;
+							if( $head == "\xed" ) {
+								# 0xed is relatively frequent in Korean, which
+								# abuts the surrogate area, so we're doing
+								# this check separately.
+								if( $sequence >= UTF8_SURROGATE_FIRST ) {
+									echo UTF8_REPLACEMENT;
+									$tail = false;
+									continue;
+								}
+							} else {
+								$n = ord( $head );
+								if(    ($n  < 0xc2 && $sequence <= UTF8_OVERLONG_A)
+									|| ($n == 0xe0 && $sequence <= UTF8_OVERLONG_B)
+									|| ($n == 0xef && 
+										($sequence >= UTF8_FDD0 && $sequence <= UTF8_FDEF)
+										|| ($sequence == UTF8_FFFE)
+										|| ($sequence == UTF8_FFFF) )
+									|| ($n == 0xf0 && $sequence <= UTF8_OVERLONG_C)
+									|| ($n >= 0xf0 && $sequence > UTF8_MAX) ) {
+									echo UTF8_REPLACEMENT;
+									$tail = false;
+									continue;
+								}
 							}
 						}
 						
 						if( isset( $utfCheckNFC[$sequence] ) ||
 							isset( $utfCombiningClass[$sequence] ) ) {
-							# If it's NO or MAYBE, we'll have to do the slow check.
+							# If it's NO or MAYBE, we'll have to rip
+							# the string apart and put it back together.
+							# That's going to be mighty slow.
 							$looksNormal = false;
 						}
 						
 						# The sequence is legal!
-						$out .= $sequence;
+						echo $sequence;
 						$tail = false;
 						$head = '';
 						continue;
@@ -357,29 +381,29 @@ class UtfNormal {
 					# Not a valid tail byte! DIscard the char we've been building.
 					#printf ("Invalid '%x' in tail with %d remaining bytes\n", $n, $remaining );
 					$tail = false;
-					$out .= UTF8_REPLACEMENT;
+					echo UTF8_REPLACEMENT;
 				}
-				if( $remaining = $tailBytes[$c] ) {
+				if( $remaining = $tailBytes[$c = $str{$i}] ) {
 					$tail = true;
-					$sequence = $c;
-					$head = $c;
+					$sequence = $head = $c;
 				} elseif( $c < "\x80" ) {
-					$out .= $c;
+					echo $c;
 				} elseif( $c < "\xc0" ) {
 					# illegal tail bytes or head byte of overlong sequence
 					if( $head == '' ) {
 						# Don't add if we're continuing a too-long sequence
-						$out .= UTF8_REPLACEMENT;
+						echo UTF8_REPLACEMENT;
 					}
 				} else {
-					$out .= UTF8_REPLACEMENT;
+					echo UTF8_REPLACEMENT;
 				}
 			}
 			if( $tail ) {
-				$out .= UTF8_REPLACEMENT;
+				echo UTF8_REPLACEMENT;
 			}
 		}
-		$string = $out;
+		$string = ob_get_contents();
+		ob_end_clean();
 		return $looksNormal;
 	}
 	
