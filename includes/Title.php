@@ -147,7 +147,7 @@ class Title {
 		$t->mFragment = '';
 		$t->mNamespace = $ns;
 		$t->mDbkeyform = $title;
-		$t->mArticleID = ( $ns >= 0 ) ? 0 : -1;
+		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
 		$t->mUrlform = wfUrlencode( $title );
 		$t->mTextform = str_replace( '_', ' ', $title );
 		return $t;
@@ -185,6 +185,10 @@ class Title {
 				}
 				
 				$rt = Title::newFromText( $m[1] );
+				# Disallow redirects to Special:Userlogout
+				if ( $rt->getNamespace() == NS_SPECIAL && preg_match( '/^Userlogout/i', $rt->getText ) ) {
+					$rt = NULL;
+				}
 			}
 		}
 		return $rt;
