@@ -284,7 +284,7 @@ class OutputPage {
 		}
 
 		$sk->outputPage( $this );
-		flush();
+		# flush();
 	}
 
 	function out( $ins )
