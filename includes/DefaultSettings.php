@@ -954,6 +954,6 @@ $wgSearchForwardUrl = null;
 $wgNoFollowLinks = true;
 
 } else {
-	die();
+	die("MEDIAWIKI not defined, this is not a valid entry point\n");
 }
 ?>
