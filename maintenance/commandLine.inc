@@ -77,8 +77,8 @@ if ( $sep == ":" && strpos( `hostname -a`, "wikimedia.org" ) !== false ) {
 	# This is for the IRC scripts, which now run as the apache user
 	# The apache user doesn't have access to the wikiadmin_pass command
 	if ( $_ENV['USER'] != "apache" ) {
-		$wgDBadminuser = "wikiadmin";
-		$wgDBadminpassword = trim(`wikiadmin_pass`);
+		$wgDBuser = $wgDBadminuser = "wikiadmin";
+		$wgDBpassword = $wgDBadminpassword = trim(`wikiadmin_pass`);
 	}
 
 	putenv( "wikilang=$lang");
@@ -105,8 +105,11 @@ if ( $sep == ":" && strpos( `hostname -a`, "wikimedia.org" ) !== false ) {
 
 # Turn off output buffering again, it might have been turned on in the settings files
 @ob_end_flush();
-# Same with this one
+# Same with these
 $wgCommandLineMode = true;
+$wgDBuser = $wgDBadminuser;
+$wgDBpassword = $wgDBadminpassword;
+
 
 $wgUsePHPTal = false;
 define("MEDIAWIKI",true);
