@@ -73,7 +73,9 @@ function relativeforfloats() {
 function setrelative (nodes) {
     var i = 0;
     while (i < nodes.length) {
-        if(nodes[i].style.float != null || nodes[i].align != null) nodes[i].style.position = 'relative';
+        if(nodes[i].style.float != ('none'|null) ||
+                nodes[i].align != (''|null|'none'))
+            nodes[i].style.position = 'relative';
         i++;
     }
 }
