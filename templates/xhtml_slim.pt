@@ -5,17 +5,13 @@
     <meta http-equiv="Content-Type" content="${mimetype}; charset=${charset}" />
 	${headlinks}
     <title tal:content="pagetitle">Exciting xhtml slimfast</title>
-
+    <style tal:omit-tag="" tal:condition="rtl" tal:define="rtlcss string:@import url(${stylepath}/${skinname}/rtl.css);;" />
     <style type="text/css" media="screen">
       /*<![CDATA[*/
       @import url(${stylepath}/${skinname}/main.css);
+      ${rtlcss}
       /* custom css, could be either a pref or a subpage of the the user page */
       /* @import url(${stylepath}/custom.css); */
-      /*]]>*/
-    </style>
-    <style tal:condition="rtl" type="text/css">
-      /*<![CDATA[*/
-      @import url(${stylepath}/rtl.css); */
       /*]]>*/
     </style>
     <link rel="stylesheet" type="text/css" media="print" href="${stylepath}/commonPrint.css" />
@@ -27,7 +23,7 @@
     <script type="text/javascript"> /*<![CDATA[*/ if(addcss){addcss('${stylepath}/${skinname}/');} /*]]>*/</script>
   </head>
 
-  <body tal:attributes="ondblclick body-ondblclick|default">
+  <body tal:attributes="ondblclick body-ondblclick|default;dir dir">
     <div id="visual-portal-wrapper">
 
       <div id="portal-column-content">
