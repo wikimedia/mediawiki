@@ -81,8 +81,12 @@ class PHPTAL_Generator
                 $this->_code .= $code;
             }
             if ($this->_gettext_required) {
+            	# Protect against the string and the inclusion.
+            	# Note: some really obscure characters might still break.
+            	$path = addslashes( PT_IP );
+            	$path = str_replace( array( '$', '\\' ), array( '\\$', '\\\\' ), $path );
                 $this->_code = preg_replace('/^<\?php/sm', 
-                                            '<?php require_once "' . addslashes( PT_IP ) . '/GetText.php";', 
+                                            '<?php require_once "' . $path . '/GetText.php";', 
                                            $this->_code, 
                                            1);
             }
