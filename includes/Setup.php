@@ -257,7 +257,6 @@ function setupLangObj(&$langclass) {
 				}
 
 			}";
-
 		eval($snip);
 	}
 
@@ -281,9 +280,8 @@ if( !$wgUser->mDataLoaded ) {
 
 // wgLanguageCode now specifically means the UI language
 $wgLanguageCode = $wgUser->getOption('language');
-if( empty( $wgLanguageCode ) ) {
-	# Quick hack for upgrades where this will be blank,
-	# and it's not handled right. Set to default.
+# Validate $wgLanguageCode, which will soon be sent to an eval()
+if( empty( $wgLanguageCode ) || !preg_match( '/^[a-z\-]*$/', $wgLanguageCode ) ) {
 	$wgLanguageCode = $wgContLanguageCode;
 }
 

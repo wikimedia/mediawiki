@@ -91,6 +91,11 @@ class PreferencesForm {
 				}
 			}
 		}
+
+		# Validate language
+		if ( !preg_match( '/^[a-z\-]*$/', $this->mUserLanguage ) ) {
+			$this->mUserLanguage = 'nolanguage';
+		}
 	}
 
 	function execute() {
