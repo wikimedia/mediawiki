@@ -1177,6 +1177,9 @@ class Parser
 					$url = substr( $url, 0, -$numSepChars );
 				}
 
+				# Replace &amp; from obsolete syntax with &
+				$url = str_replace( '&amp;', '&', $url );
+
 				# Is this an external image?
 				$text = $this->maybeMakeImageLink( $url );
 				if ( $text === false ) {
@@ -1197,7 +1200,7 @@ class Parser
 		if ( $this->mOptions->getAllowExternalImages() ) {
 			if ( preg_match( EXT_IMAGE_REGEX, $url ) ) {
 				# Image found
-				$text = $sk->makeImage( $url );
+				$text = $sk->makeImage( htmlspecialchars( $url ) );
 			}
 		}
 		return $text;
