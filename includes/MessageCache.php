@@ -16,6 +16,8 @@ class MessageCache
 	var $mInitialised = false;
 
 	function initialise( &$memCached, $useDB, $expiry, $memcPrefix, $secondaryDB = false) {
+		$fname = "MessageCache::initialise";
+		wfProfileIn( $fname );
 		$this->mUseCache = !is_null( $memCached );
 		$this->mMemc = &$memCached;
 		$this->mDisable = !$useDB;
@@ -24,11 +26,16 @@ class MessageCache
 		$this->mMemcKey = "$memcPrefix:messages";
 		$this->mKeys = false; # initialised on demand
 		$this->mInitialised = true;
+		wfProfileIn( "$fname-parseropt" );
 		$this->mParserOptions = ParserOptions::newFromUser( $u=NULL );
+		wfProfileIn( "$fname-parseropt" );
+		wfProfileOut( "$fname-parser" );
 		$this->mParser = new Parser;
+		wfProfileOut( "$fname-parser" );
 		$this->mSecondaryDB = $secondaryDB;
 		
 		$this->load();
+		wfProfileOut( $fname );
 	}
 
 	# Loads messages either from memcached or the database, if not disabled
@@ -40,23 +47,30 @@ class MessageCache
 		if ( $this->mDisable ) {
 			return true;
 		}
-		
+		$fname = "MessageCache::load";
+		wfProfileIn( $fname );
 		$success = true;
 		
 		if ( $this->mUseCache ) {
+			wfProfileIn( "$fname-fromcache" );
 			$this->mCache = $this->mMemc->get( $this->mMemcKey );
+			wfProfileOut( "$fname-fromcache" );
 			
 			# If there's nothing in memcached, load all the messages from the database
 			if ( !$this->mCache ) {
 				$this->lock();
 				# Other threads don't need to load the messages if another thread is doing it.
 				if ( $this->mMemc->set( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT ) ) {
+					wfProfileIn( "$fname-load" );
 					$this->loadFromDB();
+					wfProfileOut( "$fname-load" );
 					# Save in memcached
 					# Keep trying if it fails, this is kind of important
+					wfProfileIn( "$fname-save" );
 					for ( $i=0; $i<20 && !$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry ); $i++ ) {
 						usleep(mt_rand(500000,1500000));
 					}
+					wfProfileOut( "$fname-save" );
 					if ( $i == 20 ) {
 						$this->mMemc->set( $this->mMemcKey, "error", 3600 );
 						wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
@@ -82,6 +96,7 @@ class MessageCache
 				$this->mCache = false;
 			}
 		}
+		wfProfileOut( $fname );
 		return $success;
 	}
 
