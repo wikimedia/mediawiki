@@ -268,7 +268,7 @@ novaj aldonaj kaj aliaj ŝanĝoj, probable pro laŭkutima flegado de la datumaro
 Bonvolu reprovu post iom da tempo.
 
 La ŝlosinto lasis la jenan mesaĝon:
-<p>$1\n",
+<p>$1</p>\n",
 "missingarticle" => "La datumbazo ne trovis la tekston de
 artikolo, kiun ĝi devus trovi, nomita \"$1\".
 Ĉi tio ne estas eraro de la datumbazo, sed probable cimo en la programo.
@@ -311,8 +311,8 @@ kiel la sama aŭ kiel alia uzulo.\n", #FIXME
 "yourpasswordagain" => "Retajpu pasvorton",
 "newusersonly"	=> " (nur novaj uzuloj)",
 "remembermypassword" => "Rememoru mian pasvorton.",
-"loginproblem"	=> "<b>Okazis problemo pri via ensalutado.</b><br>Bonvolu reprovi!",
-"alreadyloggedin" => "<font color=\"red\"><b>Uzulo $1, vi jam estas ensalutinta!</b></font><br>\n",
+"loginproblem"	=> "<b>Okazis problemo pri via ensalutado.</b><br />Bonvolu reprovi!",
+"alreadyloggedin" => "<font color=\"red\"><b>Uzulo $1, vi jam estas ensalutinta!</b></font><br />\n",
 
 "login"			=> "Ensalutu", #FIXME, what exactly do the following go to?
 "userlogin"		=> "Ensalutu",
@@ -353,7 +353,7 @@ Bonvolu saluti denove ricevinte ĝin.",
 "showpreview"	=> "Antaŭrigardu", #FIXME eh?
 "blockedtitle"	=> "Uzulo forbarita", #FIXME ĉu 'Konto forbarita'?
 "blockedtext"	=> "Via konto aŭ IP-adreso estis forbarita fare de $1,
-kiu priskribis la kialon jene:<br>$2
+kiu priskribis la kialon jene:<br />$2
 <p>Vi rajtas kontakti tiun administranton por pridiskuti la forbaradon.", #FIXME - sistemestro?
 "newarticle"	=> "(Nova)",
 "newarticletext" => "Vi sekvis ligilon al paĝo jam ne ekzistanta.
@@ -461,8 +461,8 @@ montriĝos en la rezulto).",
 "powersearch" => "Trovu",
 
 "powersearchtext" => "
-Serĉu en sekcioj: :<br>
-$1<br>
+Serĉu en sekcioj: :<br />
+$1<br />
 $2 Kun alidirektiloj   Serĉu $3 $9",
 "searchdisabled" => "<p>Oni provizore malŝaltis serĉadon per la plenteksta
 indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per google:</p>
@@ -479,9 +479,9 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Google Search\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio
 name=sitesearch value=\"\"> TTT <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> {$wgServer} <br>
+value=\"{$wgServer}\" checked> {$wgServer} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -644,7 +644,7 @@ kiam ĝi estis kreita, kaj kiu kreis ĝin; kaj ion ajn, kion vi scias pri ĝi.",
 "deleteimg"		=> "for",
 "imghistlegend" => "(nun) = ĉi tiu estas la nuna versio de la dosiero, (for) = forigu
 ĉi tiun malnovan version, (res) = restarigu ĉi tiun malnovan version.
-<br><i>Por vidi la dosieron laŭdate, alklaku la daton</i>.",
+<br /><i>Por vidi la dosieron laŭdate, alklaku la daton</i>.",
 "imagelinks"	=> "Ligiloj al la dosiero",
 "linkstoimage"	=> "La jenaj paĝoj ligas al ĉi tiu dosiero:",
 "nolinkstoimage" => "Neniu paĝo ligas al ĉi tiu dosiero.",
@@ -671,9 +671,9 @@ Kelkaj funkcioj povas streĉi la datumbazon, do bonvolu ne reŝuti post ĉiu rip
 "maintenancebacklink"	=> "Revenu al la ilaro",
 "disambiguations"	=> "Misligitaj apartigiloj",
 "disambiguationspage"	=> "Vikipedio:Apartigiloj",
-"disambiguationstext"	=> "La jenaj paĝoj alligas <i>paĝon-apartigilon</i>. Ili devus anstataŭe alligi la ĝustan temon.<br>Oni konsideras tiujn paĝojn, kiujn alligas $1 apartigiloj.<br>Ligado el ne-artikolaj sekcioj <i>ne</i> listiĝas ĉi tie.",
+"disambiguationstext"	=> "La jenaj paĝoj alligas <i>paĝon-apartigilon</i>. Ili devus anstataŭe alligi la ĝustan temon.<br />Oni konsideras tiujn paĝojn, kiujn alligas $1 apartigiloj.<br />Ligado el ne-artikolaj sekcioj <i>ne</i> listiĝas ĉi tie.",
 "doubleredirects"	=> "Duoblaj alidirektadoj",
-"doubleredirectstext"	=> "<b>Atentu:</b> Eblas, ke la jena listo enhavas falsajn rezultojn. Ĝenerale, tio signifas, ke estas plua teksto kun ligiloj post la #REDIRECT.<br>
+"doubleredirectstext"	=> "<b>Atentu:</b> Eblas, ke la jena listo enhavas falsajn rezultojn. Ĝenerale, tio signifas, ke estas plua teksto kun ligiloj post la #REDIRECT.<br />
 Ĉiu linio montras ligilojn ĉe la unua kaj dua alidirektadoj, kaj la unua linio de la teksto de la dua alidirektado, kiu ĝenerale montras la \"veran\" artikolon, kiu devus celi la unuan alidirektadon.",
 "brokenredirects"	=> "Rompitaj alidirektadoj",
 "brokenredirectstext"	=> "La jenaj alidirektadoj ligas al neekzistantaj artikoloj.",
@@ -711,7 +711,7 @@ Kelkaj funkcioj povas streĉi la datumbazon, do bonvolu ne reŝuti post ĉiu rip
 "debug"			=> "Kontraŭcima", #CHUCK ĉu "malcimigu"? | Pli bone "sencimigi" /Bertilo
 "newpages"		=> "Novaj paĝoj",
 "movethispage"	=> "Movu la paĝon",
-"unusedimagestext" => "<p>Notu, ke aliaj TTT-ejoj, ekzemple
+"unusedimagestext" => "Notu, ke aliaj TTT-ejoj, ekzemple
 la alilingvaj Vikipedioj, povas rekte ligi al dosiero per URL.
 Tio ne estus enkalkutita en la jena listo.",
 "booksources"	=> "Libroservoj",
@@ -798,7 +798,7 @@ Elektu forigotajn paĝojn kaj alklaku 'forprenu elektitajn' sube.",
 "deletesub"		=> "(Forigas \"$1\")",
 "historywarning" => "Averto: la forigota paĝo havas historion: ",
 "confirmdeletetext" => "Vi forigos la artikolon aŭ dosieron kaj
-forviŝos ĝian tutan historion el la datumaro.<br>
+forviŝos ĝian tutan historion el la datumaro.<br />
 Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas
 la sekvojn, kaj ke vi ja sekvas la [[Vikipedio:Reguloj pri forigado|regulojn pri forigado]].",
 "confirmcheck"	=> "Jes, mi tutkore certas ke mi volas forigi tiun artikolon/dosieron.",
@@ -880,7 +880,7 @@ vandalumitaj).",
 "noblockreason" => "Vi nepre klarigu kialon pri la forbaro.",
 "blockipsuccesssub" => "Sukcesis forbari",
 "blockipsuccesstext" => "\"$1\" estas forbarita.
-<br>Vidu la [[Special:Ipblocklist|liston de IP-forbaroj]].",
+<br />Vidu la [[Special:Ipblocklist|liston de IP-forbaroj]].",
 "unblockip"		=> "Malforbaru IP-adreson/nomon",
 "unblockiptext"	=> "Per la jena formulo vi povas repovigi al iu
 forbarita IP-adreso/nomo la povon enskribi en la vikio.",
@@ -914,7 +914,7 @@ Bonvolu certigu, ke vi efektive intencas tion fari.",
 "lockdbsuccesssub" => "Datumaro ŝlosita",
 "unlockdbsuccesssub" => "Datumaro malŝlosita",
 "lockdbsuccesstext" => "La datumaro de Vikipedio estas ŝlosita.
-<br>Ne forgesu malŝlosi ĝin post kiam vi finos la riparadon.",
+<br />Ne forgesu malŝlosi ĝin post kiam vi finos la riparadon.",
 "unlockdbsuccesstext" => "La datumaro de Vikipedio estas malŝlosita.",
 
 # SQL query
