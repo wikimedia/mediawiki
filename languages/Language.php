@@ -292,23 +292,23 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 # set "portal" => "-"
 
 'portal'		=> 'Community portal',
-'portal-url'		=> '{{ns:4}}:Community Portal',
+'portal-url'		=> 'Project:Community Portal',
 'about'			=> 'About',
 "aboutsite"      => "About {{SITENAME}}",
-"aboutpage"		=> "{{ns:4}}:About",
+"aboutpage"		=> "Project:About",
 'article' => 'Content page',
 'help'			=> 'Help',
-"helppage"		=> "{{ns:12}}:Contents",
+"helppage"		=> "Help:Contents",
 "wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "Bug reports",
-"bugreportspage" => "{{ns:4}}:Bug_reports",
-'sitesupport'   => 'Donations', 
-'sitesupport-url' => '{{ns:4}}:Site support',
+"bugreportspage" => "Project:Bug_reports",
+'sitesupport'   => '-', # To enable, something like 'Donations', 
+'sitesupport-url' => 'Project:Site support',
 'faq'			=> 'FAQ',
-"faqpage"		=> "{{ns:4}}:FAQ",
+"faqpage"		=> "Project:FAQ",
 "edithelp"		=> "Editing help",
 "newwindow"		=> "(opens in new window)",
-"edithelppage"	=> "{{ns:12}}:Editing",
+"edithelppage"	=> "Help:Editing",
 'cancel'		=> 'Cancel',
 'qbfind'		=> 'Find',
 'qbbrowse'		=> 'Browse',
@@ -333,7 +333,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 # set "disclaimers" => "-"
 
 'disclaimers' => 'Disclaimers',
-"disclaimerpage" => "{{ns:4}}:General_disclaimer",
+"disclaimerpage" => "Project:General_disclaimer",
 "errorpagetitle" => "Error",
 "returnto"		=> "Return to $1.",
 "tagline"      	=> "From {{SITENAME}}",
@@ -376,7 +376,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'poweredby'	=> "{{SITENAME}} is powered by [http://www.mediawiki.org/ MediaWiki], an open source wiki engine.",
 'printsubtitle' => "(From {{SERVER}})",
 'protectedpage' => 'Protected page',
-'administrators' => "{{ns:4}}:Administrators",
+'administrators' => "Project:Administrators",
 'sysoptitle'	=> 'Sysop access required',
 'sysoptext'		=> "The action you have requested can only be
 performed by users with \"sysop\" status.
@@ -486,7 +486,7 @@ Query: $2
 'viewsource' => 'View source',
 'protectedtext' => "This page has been locked to prevent editing; there are
 a number of reasons why this may be so, please see
-[[{{ns:4}}:Protected page]].
+[[Project:Protected page]].
 
 You can view and copy the source of this page:",
 'seriousxhtmlerrors' => 'There were serious xhtml markup errors detected by tidy.',
@@ -594,7 +594,7 @@ Please log in again after you receive it.",
 'blockedtitle'	=> 'User is blocked',
 'blockedtext'	=> "Your user name or IP address has been blocked by $1.
 The reason given is this:<br />''$2''<p>You may contact $1 or one of the other
-[[{{ns:4}}:Administrators|administrators]] to discuss the block.
+[[Project:Administrators|administrators]] to discuss the block.
 
 Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]].
 
@@ -614,7 +614,7 @@ Your IP address is $3. Please include this address in any queries you make.
 'newarticletext' =>
 "You've followed a link to a page that doesn't exist yet.
 To create the page, start typing in the box below
-(see the [[{{ns:4}}:Help|help page]] for more info).
+(see the [[Project:Help|help page]] for more info).
 If you are here by mistake, just click your browser's '''back''' button.",
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
 'anontalkpagetext' => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.'' ",
@@ -667,7 +667,7 @@ so you will not be able to save your edits right now. You may wish to cut-n-past
 the text into a text file and save it for later.',
 'protectedpagewarning' => "WARNING:  This page has been locked so that only
 users with sysop privileges can edit it. Be sure you are following the
-<a href='$wgScript/{{ns:4}}:Protected_page_guidelines'>protected page
+<a href='$wgScript/Project:Protected_page_guidelines'>protected page
 guidelines</a>.",
 'templatesused'	=> 'Templates used on this page:',
 
@@ -769,7 +769,7 @@ to set user preferences.",
 'prefslogintext' => "You are logged in as \"$1\".
 Your internal ID number is $2.
 
-See [[{{ns:4}}:User preferences help]] for help deciphering the options.",
+See [[Project:User preferences help]] for help deciphering the options.",
 'prefsreset'	=> 'Preferences have been reset from storage.',
 'qbsettings'	=> 'Quickbar settings',
 'qbsettingsnote'	=> 'This preference only works in the \'Standard\' and the \'CologneBlue\' skin.',
@@ -919,7 +919,7 @@ you may be blocked from uploading if you abuse the system.",
 'filesource' => 'Source',
 'affirmation'	=> "I affirm that the copyright holder of this file
 agrees to license it under the terms of the $1.",
-'copyrightpage' => "{{ns:4}}:Copyrights",
+'copyrightpage' => "Project:Copyrights",
 'copyrightpagename' => "{{SITENAME}} copyright",
 'uploadedfiles'	=> 'Uploaded files',
 'noaffirmation' => 'You must affirm that your upload does not violate any copyrights.',
@@ -992,7 +992,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'maintnancepagetext'	=> 'This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)',
 'maintenancebacklink'	=> 'Back to Maintenance Page',
 'disambiguations'	=> 'Disambiguation pages',
-'disambiguationspage'	=> "{{ns:4}}:Links_to_disambiguating_pages",
+'disambiguationspage'	=> "Project:Links_to_disambiguating_pages",
 'disambiguationstext'	=> "The following pages link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 'doubleredirects'	=> 'Double Redirects',
 'doubleredirectstext'	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" target page, which the first redirect should point to.",
@@ -1119,7 +1119,7 @@ or has chosen not to receive e-mail from other users.',
 'watchnologintext'	=> "You must be <a href=\"{{localurl:Special:Userlogin}}\">logged in</a>
 to modify your watchlist.",
 'addedwatch'		=> 'Added to watchlist',
-'addedwatchtext'	=> "The page \"$1\" has been added to your [[{{ns:-1}}:Watchlist|watchlist]].
+'addedwatchtext'	=> "The page \"$1\" has been added to your [[Special:Watchlist|watchlist]].
 Future changes to this page and its associated Talk page will be listed there,
 and the page will appear '''bolded''' in the [[Special:Recentchanges|list of recent changes]] to
 make it easier to pick out.
@@ -1167,7 +1167,7 @@ at the bottom of the screen.',
 or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
-[[{{ns:4}}:Policy]].",
+[[Project:Policy]].",
 'confirmcheck'	=> 'Yes, I really want to delete this.',
 'actioncomplete' => 'Action complete',
 'deletedtext'	=> "\"$1\" has been deleted.
@@ -1193,7 +1193,7 @@ Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
 'revertpage'	=> "Reverted edit of $2, changed back to last version by $1",
 'protectlogpage' => 'Protection_log',
 'protectlogtext' => "Below is a list of page locks/unlocks.
-See [[{{ns:4}}:Protected page]] for more information.",
+See [[Project:Protected page]] for more information.",
 'protectedarticle' => "protected $1",
 'unprotectedarticle' => "unprotected $1",
 'protectsub' =>"(Protecting \"$1\")",
@@ -1222,7 +1222,7 @@ will not be automatically replaced.',
 'undeletedarticle' => "restored \"$1\"",
 'undeletedrevisions' => "$1 revisions restored",
 'undeletedtext'   => "[[$1]] has been successfully restored.
-See [[{{ns:4}}:Deletion_log]] for a record of recent deletions and restorations.",
+See [[Special:Log/delete]] for a record of recent deletions and restorations.",
 
 # Contributions
 #
@@ -1252,7 +1252,7 @@ to perform this function on.',
 'blockiptext'	=> "Use the form below to block write access
 from a specific IP address or username.
 This should be done only only to prevent vandalism, and in
-accordance with [[{{ns:4}}:Policy|policy]].
+accordance with [[Project:Policy|policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 'ipaddress'		=> 'IP Address/username',
