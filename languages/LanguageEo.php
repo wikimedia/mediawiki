@@ -307,6 +307,7 @@ kiel la sama aŭ kiel alia uzulo.\n", #FIXME
 "userlogin"		=> "Ensalutu",
 "logout"		=> "Elsalutu",
 "userlogout"	=> "Elsalutu",
+"notloggedin"	=> "Ne ensalutinta",
 "createaccount"	=> "Kreu novan konton",
 "badretype"		=> "La pasvortoj kiujn vi tajpis ne egalas.",
 "userexists"	=> "Jam estas uzulo kun la nomo kiun vi elektis. Bonvolu elekti alian nomon.",
