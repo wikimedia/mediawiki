@@ -1,18 +1,14 @@
 <?php
 
 /**
- * DO NOT USE !!!  Unless you want to help developping it.
+ * This is PostgreSQL database abstraction layer.
+ * 
+ * As it includes more generic version for DB functions, 
+ * than MySQL ones, some of them should be moved to parent
+ * Database class.
  *
- * This file is an attempt to port the mysql database layer to postgreSQL. The
- * only thing done so far is s/mysql/pg/ and dieing if function haven't been
- * ported.
- *
- * As said brion 07/06/2004 :
- * "table definitions need to be changed. fulltext index needs to work differently
- * things that use the last insert id need to be changed. Probably other things
- * need to be changed. various semantics may be different."
- *
- * Hashar
+ * STATUS: Working PG implementation of MediaWiki
+ * TODO: Installer support
  *
  * @package MediaWiki
  */
