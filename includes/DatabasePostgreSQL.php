@@ -169,18 +169,10 @@ class Database {
 			$sqlx = wordwrap(strtr($sqlx,"\t\n","  "));
 			wfDebug( "SQL: $sqlx\n" );
 		}
-		if( $this->mBufferResults ) {
-			print $sql."<br/>\n";
-			$ret = pg_query( $this->mConn , $sql);
-		} else {
-			// TODO FIXME : php doesnt get a postgre unbuffered query
-			// $ret = mysql_unbuffered_query( $sql, $this->mConn );
-			// I(hashar) am assuming that pg_send_query does the same
-			$ret = pg_send_query( $this->mConn , $sql);
-		}
-	
+
+		$ret = pg_query( $this->mConn , $sql);
 		if ( false === $ret ) {
-			$error = pg_result_error( $this->mConn );
+			$error = pg_last_error( $this->mConn );
 			// TODO FIXME : no error number function in postgre
 			// $errno = mysql_errno( $this->mConn );
 			if( $this->mIgnoreErrors ) {
@@ -212,15 +204,15 @@ class Database {
 		# TODO:
 		# hashar : not sure if the following test really trigger if the object
 		#          fetching failled.
-		if( pg_result_error($this->mConn) ) {
-			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( pg_result_error($this->mConn) ) );
+		if( pg_last_error($this->mConn) ) {
+			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( pg_last_error($this->mConn) ) );
 		}
 		return $row;
 	}
 	function numRows( $res ) {
 		@$n = pg_num_rows( $res ); 
-		if( pg_result_error($this->mConn) ) {
-			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( pg_result_error($this->mConn) ) );
+		if( pg_last_error($this->mConn) ) {
+			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( pg_last_error($this->mConn) ) );
 		}
 		return $n;
 	}
@@ -233,7 +225,7 @@ class Database {
 	}
 	function dataSeek( $res, $row ) { return pg_result_seek( $res, $row ); }
 	function lastErrno() { return $this->lastError(); }
-	function lastError() { return pg_result_error(); }
+	function lastError() { return pg_last_error(); }
 	function affectedRows() { return pg_affected_rows( $this->mConn ); }
 	
 	# Simple UPDATE wrapper
