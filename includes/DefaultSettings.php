@@ -80,7 +80,6 @@ $wgLocalDatabases   = array();
 $wgDBservers		= false; # e.g. array("larousse", "pliny")
 $wgDBloads			= false; # e.g. array(0.6, 0.4);
 
-
 # memcached settings
 # See docs/memcached.doc
 #
@@ -123,7 +122,7 @@ $wgSiteSupportPage	= "";
 #
 $wgReadOnlyFile         = "{$wgUploadDirectory}/lock_yBgMBwiR";
 
-# The debug log file should be not be publically accessible if it is
+# The debug log file should be not be publicly accessible if it is
 # used, as it may contain private data.
 $wgDebugLogFile         = "";
 $wgDebugRedirects		= false;
@@ -137,7 +136,12 @@ $wgDebugDumpSql         = false;
 # but there has been a database error" pages.
 $wgIgnoreSQLErrors      = false;
 
+# Should [[Category:Dog]] on a page associate it with the
+# category "Dog"? (a link to that category page will be
+# added to the article, clicking it reveals a list of
+# all articles in the category)
 $wgUseCategoryMagic		= true;
+
 $wgEnablePersistentLC	= false;	# Persistent link cache in linkscc table; FAILS on MySQL 3.x
 $wgCompressedPersistentLC = true; # use gzcompressed blobs
 
@@ -263,7 +267,6 @@ $wgCompressRevisions = false;
 
 # This is the list of preferred extensions for uploading files. Uploading
 # files with extensions not in this list will trigger a warning.
-
 $wgFileExtensions = array( "png", "jpg", "jpeg", "ogg" );
 
 # Files with these extensions will never be allowed as uploads.
@@ -300,7 +303,6 @@ $wgNamespacesToBeSearchedDefault = array( -1 => 0, 0 => 1, 1 => 0,
 $wgSiteNotice = "";
 
 # Whether to allow anonymous users to set changes to 'minor'
-
 $wgAllowAnonymousMinor = false;
 
 ## Set $wgUseImageResize to true if you want to enable dynamic
@@ -318,6 +320,9 @@ $wgUseImageResize		= false;
 $wgUseImageMagick		= false;
 $wgImageMagickConvertCommand    = "/usr/bin/convert";
 
+# PHPTal is a library for page templates. MediaWiki includes
+# a recent PHPTal distribution. It is required to use the
+# Monobook (default) skin.
 $wgUsePHPTal = true;
 
 if( !isset( $wgCommandLineMode ) ) {
@@ -327,12 +332,12 @@ if( !isset( $wgCommandLineMode ) ) {
 # Show seconds in Recent Changes
 $wgRCSeconds = false;
 
-
 # RDF metadata toggles
 $wgEnableDublinCoreRdf = false;
 $wgEnableCreativeCommonsRdf = false;
 
 # Override for copyright metadata.
+# TODO: these options need documentation
 $wgRightsPage = NULL;
 $wgRightsUrl = NULL;
 $wgRightsText = NULL;
@@ -350,20 +355,33 @@ $wgCapitalLinks = true;
 # can be imported, these should be 'trusted'.
 $wgImportSources = array();
 
-# For credit to authors. Set to zero to hide attribution block.
+# Set this to the number of authors that you want to be credited
+# below an article text. Set it to zero to hide the attribution block.
+# Note that this will require checking the table of old revisions,
+# which can have a significant impact on performance for large wikis.
 $wgMaxCredits = 0;
 
-# Text matching this regex will be recognised as spam
+# Text matching this regular expression will be recognised as spam
+# See http://en.wikipedia.org/wiki/Regular_expression
 $wgSpamRegex = false; 
 
 # Go button goes straight to the edit screen if the article doesn't exist
 $wgGoToEdit = false;
 
-# Allow limited user-specified HTML?
+# Allow limited user-specified HTML in wiki pages?
 # It will be run through a whitelist for security.
+# Set this to false if you want wiki pages to consist only of wiki
+# markup. Note that replacements do not yet exist for all HTML
+# constructs.
 $wgUserHtml = true;
 
-# Optional: use tidy to make sure the output is sane, switch on by setting $wgUseTidy = true;
+# $wgUseTidy: use tidy to make sure HTML output is sane.
+# This should only be enabled if $wgUserHtml is true.
+# tidy is a free tool that fixes broken HTML. 
+# See http://www.w3.org/People/Raggett/tidy/
+# $wgTidyBin should be set to the path of the binary and 
+# $wgTidyConf to the path of the configuration file.
+# $wgTidyOpts can include any number of parameters.
 $wgUseTidy = false;
 $wgTidyBin = 'tidy';
 $wgTidyConf = $IP.'/extensions/tidy/tidy.conf'; 
@@ -373,6 +391,7 @@ $wgTidyOpts = '';
 $wgDefaultSkin = "monobook";
 
 # Board of Trustees vote
+# This is primarily of interest to the Wikimedia Foundation wikis.
 $wgBoardVoteDB = "boardvote";
 $wgContributingCandidates = array();
 $wgVolunteerCandidates = array();
