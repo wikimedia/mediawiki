@@ -1845,7 +1845,7 @@ class Parser
 			$text = $this->replaceVariables( $text, $assocArgs );
 
 			# Resume the link cache and register the inclusion as a link
-			if ( $mOutputType == OT_HTML && !is_null( $title ) ) {
+			if ( $this->mOutputType == OT_HTML && !is_null( $title ) ) {
 				$wgLinkCache->addLinkObj( $title );
 			}
 		}
