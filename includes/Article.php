@@ -305,7 +305,8 @@ class Article {
 	{
 		global $wgUser, $wgOut, $wgLang;
 		global $oldid, $diff; # From query
-		global $wgLinkCache, $IP;
+		global $wgLinkCache, $IP, $wgEnableParserCache;
+		
 		$fname = "Article::view";
 		wfProfileIn( $fname );
 
@@ -354,7 +355,12 @@ class Article {
 		}
 
 		$wgLinkCache->preFill( $this->mTitle );
-		$wgOut->addWikiText( $text, true, $this );
+		
+		if( $wgEnableParserCache && intval($wgUser->getOption( "stubthreshold" )) == 0 ){
+			$wgOut->addWikiText( $text, true, $this );
+		} else {
+			$wgOut->addWikiText( $text );
+		}
 
 		$this->viewUpdates();
 		wfProfileOut( $fname );
