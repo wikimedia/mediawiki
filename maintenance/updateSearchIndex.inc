@@ -15,6 +15,8 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 	$start = wfStrencode( $start );
 	$end = wfStrencode( $end );
 
+	$doneTitles = array();
+
 	$sql = "SELECT rc_cur_id,rc_type,rc_moved_to_ns,rc_moved_to_title FROM recentchanges
 	  WHERE rc_this_oldid=0 AND rc_timestamp BETWEEN '$start' AND '$end'";
 	$res = wfQuery( $sql, DB_READ, $fname );
@@ -46,16 +48,21 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 			$u = new SearchUpdate( $row->rc_cur_id, $title, false );
 			output( "\n" );
 		} else {
+			# Edit
 			# Get cur row
 			$curRow = wfGetArray( 'cur', array( 'cur_namespace', 'cur_title', 'cur_text' ), array( 'cur_id' => $row->rc_cur_id ) );
 			if ( $curRow ) {
 				$titleObj = Title::makeTitle( $curRow->cur_namespace, $curRow->cur_title );
 				$title = $titleObj->getPrefixedDBkey();
-				output( $title );
-				# Update searchindex
-				$u = new SearchUpdate( $row->rc_cur_id, $curRow->cur_title, $curRow->cur_text );
-				$u->doUpdate();
-				output( "\n" );
+				# Only update if this article has not been updated during this run
+				if ( empty( $doneTitles[$title] ) ) {
+					$doneTitles[$title] = 1;
+					output( "{$row->rc_id}\t$title" );
+					# Update searchindex
+					$u = new SearchUpdate( $row->rc_cur_id, $curRow->cur_title, $curRow->cur_text );
+					$u->doUpdate();
+					output( "\n" );
+				}
 			}
 		}
 	}
