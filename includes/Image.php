@@ -13,7 +13,9 @@
  */
 class Image
 {
-	/* private */
+	/**#@+
+	 * @access private
+	 */
 	var	$name,		# name of the image
 		$imagePath,	# Path of the image
 		$url,		# Image URL
@@ -27,8 +29,15 @@ class Image
 		$type,		#  |
 		$attr;		# /
 
+	/**#@-*/
 
 
+	/**
+	 * Create an Image object from an image name
+	 *
+	 * @param string $name name of the image, used to create a title object using Title::makeTitleSafe
+	 * @access public
+	 */
 	function Image( $name )
 	{
 		global $wgUploadDirectory,$wgHashedUploadDirectory;
@@ -64,6 +73,14 @@ class Image
 		$this->historyLine = 0;
 	}
 
+	/**
+	 * Factory function
+	 *
+	 * Create a new image object from a title object.
+	 *
+	 * @param Title $nt Title object. Must be from namespace "image"
+	 * @access public
+	 */
 	function newFromTitle( $nt )
 	{
 		$img = new Image( $nt->getDBKey() );
@@ -71,52 +88,104 @@ class Image
 		return $img;
 	}
 
+	/**
+	 * Return the name of this image
+	 * @access public
+	 */
 	function getName()
 	{
 		return $this->name;
 	}
 
+	/**
+	 * Return the associated title object
+	 * @access public
+	 */
 	function getTitle()
 	{
 		return $this->title;
 	}
 
+	/**
+	 * Return the URL of the image file
+	 * @access public
+	 */
 	function getURL()
 	{
 		return $this->url;
 	}
 
+	/**
+	 * Return the image path of the image in the
+	 * local file system as an absolute path
+	 * @access public
+	 */
 	function getImagePath()
 	{
 		return $this->imagePath;
 	}
 
+	/**
+	 * Return the width of the image
+	 *
+	 * Returns -1 if the file specified is not a known image type
+	 * @access public
+	 */
 	function getWidth()
 	{
 		return $this->width;
 	}
 
+	/**
+	 * Return the height of the image
+	 *
+	 * Returns -1 if the file specified is not a known image type
+	 * @access public
+	 */
 	function getHeight()
 	{
 		return $this->height;
 	}
 
+	/**
+	 * Return the size of the image file, in bytes
+	 * @access public
+	 */
 	function getSize()
 	{
 		$st = stat( $this->getImagePath() );
 		return $st['size'];
 	}
 
+	/**
+	 * Return the type of the image
+	 *
+	 * -  1 GIF
+	 * -  2 JPG
+	 * -  3 PNG
+	 * - 15 WBMP
+	 * - 16 XBM
+	 */
 	function getType()
 	{
 		return $this->type;
 	}
 
+	/**
+	 * Return the escapeLocalURL of this image
+	 * @access public
+	 */
 	function getEscapeLocalURL()
 	{
 		return $this->title->escapeLocalURL();
 	}
 
+	/**
+	 * Return the URL of an image, provided its name.
+	 *
+	 * @param string $name	Name of the image, without the leading Image:
+	 * @access public
+	 */
 	function wfImageUrl( $name )
 	{
 		global $wgUploadPath,$wgUploadBaseUrl,$wgHashedUploadDirectory;
@@ -130,11 +199,20 @@ class Image
         	return wfUrlencode( $url );
 	}
 
+	/**
+	 * Returns true iff the image file exists on disk.
+	 *
+	 * @access public
+	 */
 	function exists()
 	{
 		return $this->fileExists;
 	}
 
+	/**
+	 *
+	 * @access private
+	 */
 	function thumbUrl( $width, $subdir='thumb' ) {
 		global $wgUploadPath,$wgHashedUploadDirectory;
 		$name = $this->thumbName( $width );
@@ -149,10 +227,32 @@ class Image
 		return wfUrlencode($url);
 	}
 
+	/**
+	 * Return the file name of a thumbnail of the specified width
+	 *
+	 * @param integer $width	Width of the thumbnail image
+	 * @access private
+	 */
 	function thumbName( $width ) {
 		return $width."px-".$this->name;
 	}
 
+	/**
+	 * Create a thumbnail of the image having the specified width/height.
+	 * The thumbnail will not be created if the width is larger than the
+	 * image's width. Let the browser do the scaling in this case.
+	 * The thumbnail is stored on disk and is only computed if the thumbnail
+	 * file does not exist OR if it is older than the image.
+	 * Returns the URL.
+	 * 
+	 * Keeps aspect ratio of original image. If both width and height are
+	 * specified, the generated image will be no bigger than width x height,
+	 * and will also have correct aspect ratio.
+	 *
+	 * @param integer $width	maximum width of the generated thumbnail
+	 * @param integer $height	maximum height of the image (optional)
+	 * @access public
+	 */
 	function createThumb( $width, $height=-1 ) {
 		if ( $height == -1 ) {
 			return $this->renderThumb( $width );
@@ -178,6 +278,8 @@ class Image
 	 * The thumbnail is stored on disk and is only computed if the thumbnail
 	 * file does not exist OR if it is older than the image.
 	 * Returns the URL.
+	 *
+	 * @access private
 	 */
 	function /* private */ renderThumb( $width ) {
 		global $wgUploadDirectory;
@@ -310,6 +412,8 @@ class Image
 	 *  0      return line for current version
 	 *  1      query for old versions, return first one
 	 *  2, ... return next old version from above query
+	 *
+	 * @access public
 	 */
 	function nextHistoryLine()
 	{
@@ -336,6 +440,10 @@ class Image
 		return $dbr->fetchObject( $this->historyRes );
 	}
 
+	/**
+	 * Reset the history pointer to the first element of the history
+	 * @access public
+	 */
 	function resetHistory()
 	{
 		$this->historyLine = 0;
@@ -345,6 +453,14 @@ class Image
 } //class
 
 
+/**
+ * Returns the image directory of an image
+ * If the directory does not exist, it is created.
+ * The result is an absolute path.
+ * 
+ * @param string $fname		file name of the image file
+ * @access public
+ */
 function wfImageDir( $fname )
 {
 	global $wgUploadDirectory, $wgHashedUploadDirectory;
@@ -362,11 +478,29 @@ function wfImageDir( $fname )
 	return $dest;
 }
 
+/**
+ * Returns the image directory of an image's thubnail
+ * If the directory does not exist, it is created.
+ * The result is an absolute path.
+ * 
+ * @param string $fname		file name of the thumbnail file, including file size prefix
+ * @param string $subdir	(optional) subdirectory of the image upload directory that should be used for storing the thumbnail. Default is 'thumb'
+ * @access public
+ */
 function wfImageThumbDir( $fname , $subdir='thumb')
 {
 	return wfImageArchiveDir( $fname, $subdir );
 }
 
+/**
+ * Returns the image directory of an image's old version
+ * If the directory does not exist, it is created.
+ * The result is an absolute path.
+ * 
+ * @param string $fname		file name of the thumbnail file, including file size prefix
+ * @param string $subdir	(optional) subdirectory of the image upload directory that should be used for storing the old version. Default is 'archive'
+ * @access public
+ */
 function wfImageArchiveDir( $fname , $subdir='archive')
 {
 	global $wgUploadDirectory, $wgHashedUploadDirectory;
@@ -389,6 +523,9 @@ function wfImageArchiveDir( $fname , $subdir='archive')
 	return $archive;
 }
 
+/**
+ * Record an image upload in the upload log.
+ */
 function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source = "" )
 {
 	global $wgUser, $wgLang, $wgTitle, $wgOut, $wgDeferredUpdateList;
@@ -501,6 +638,13 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 	$log->addEntry( 'upload', $descTitle, $desc );
 }
 
+/**
+ * Returns the image URL of an image's old version
+ * 
+ * @param string $fname		file name of the image file
+ * @param string $subdir	(optional) subdirectory of the image upload directory that is used by the old version. Default is 'archive'
+ * @access public
+ */
 function wfImageArchiveUrl( $name, $subdir='archive' )
 {
 	global $wgUploadPath, $wgHashedUploadDirectory;
