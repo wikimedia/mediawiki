@@ -1467,6 +1467,8 @@ Type the name of the user in the box and press the button to make the user an ad
 # Validation
 'val_yes' => 'Yes',
 'val_no' => 'No',
+'val_revision' => 'Revision',
+'val_time' => 'Time',
 'val_list_header' => '<th>#</th><th>Topic</th><th>Range</th><th>Action</th>',
 'val_add' => 'Add',
 'val_del' => 'Delete',
