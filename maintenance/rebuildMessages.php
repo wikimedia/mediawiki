@@ -39,6 +39,12 @@ $wgTitle = Title::newFromText( "Rebuild messages script" );
 $wgCommandLineMode = true;
 set_time_limit(0);
 
+if ( count( $argv ) >= 3 ) {
+	$messages = loadArrayFromFile( $argv[3] );
+} else {
+	$messages = false;
+}
+
 if ( $response == 0 ) {
 	$row = wfGetArray( "cur", array("count(*) as c"), array("cur_namespace" => NS_MEDIAWIKI) );
 	print "Current namespace size: {$row->c}\n";
@@ -62,10 +68,10 @@ if ( $response == 0 ) {
 
 switch ( $response ) {
 	case 1:
-		initialiseMessages( false );
+		initialiseMessages( false, $messages );
 		break;
 	case 2:
-		initialiseMessages( true );
+		initialiseMessages( true, $messages );
 		break;
 }
 
