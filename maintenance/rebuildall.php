@@ -6,7 +6,7 @@
 require_once( "commandLine.inc" );
 
 #require_once( "rebuildlinks.inc" );
-require_once( "refreshlinks.inc" );
+require_once( "refreshLinks.inc" );
 require_once( "rebuildtextindex.inc" );
 require_once( "rebuildrecentchanges.inc" );
 
