@@ -1769,8 +1769,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'deletedrevision' => 'Deleted old revision $1.',
 
 # browsing diffs
-'previousdiff' => '&larr; Go to previous diff',
-'nextdiff' => 'Go to next diff &rarr;',
+'previousdiff' => '← Previous diff',
+'nextdiff' => 'Next diff →',
 
 'imagemaxsize' => 'Limit images on image description pages to: ',
 'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
@@ -2016,23 +2016,23 @@ class Language {
 	function date( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false ) {
 		global $wgAmericanDates, $wgUser;
 		
-		$ts=wfTimestamp(TS_MW,$ts);
+		$ts=wfTimestamp(TS_MW,$ts); // FIXME: Is this even needed anymore?
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
-
 		
-		if ( $format == MW_DATE_USER_FORMAT ) {
+		// It's probably best to turn this whole mess into a function -ævar
+		if ( $format ) {
 			$datePreference = $wgUser->getOption( 'date' );
 		} else {
 			$options = $this->getDefaultUserOptions();
 			$datePreference = $options['date'];
 		}
 
-		if ($datePreference == '0') {
+		if ($datePreference == '0') { // Not == 0 for the obvious reasons
 			$datePreference = $wgAmericanDates ? 1 : 2;
 		}
 
-		$month = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) );
+		$month = $this->getMonthName( substr( $ts, 4, 2 ) );
 		$day = $this->formatNum( 0 + substr( $ts, 6, 2 ) );
 		$year = $this->formatNum( substr( $ts, 0, 4 ) );
 		
@@ -2043,15 +2043,22 @@ class Language {
 			default: return "$month $day, $year";
 		}
 	}
-
-	function time( $ts, $adj = false, $seconds = false, $timecorrection = false ) {
+	
+	function time( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false ) {
 		global $wgUser;
 		$ts=wfTimestamp(TS_MW,$ts);
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
+		if ( $format ) {
+			$datePreference = $wgUser->getOption( 'date' );
+		} else {
+			$options = $this->getDefaultUserOptions();
+			$datePreference = $options['date'];
+		} if ($datePreference == '0') {$datePreference = $wgAmericanDates ? 1 : 2;}
+
 		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
-		if ( $seconds || $wgUser->getOption( 'date' ) == 'ISO 8601' ) {
+		if ( $seconds || $format == 'ISO 8601' ) {
 			$t .= ':' . substr( $ts, 12, 2 );
 		}
 		return $this->formatNum( $t );
@@ -2061,10 +2068,17 @@ class Language {
 		global $wgUser;
 		$ts=wfTimestamp(TS_MW,$ts);
 
-		switch ( $wgUser->getOption( 'date' ) ) {
+		if ( $format ) {
+		 	$datePreference = $wgUser->getOption( 'date' );
+		} else {
+			$options = $this->getDefaultUserOptions();
+			$datePreference = $options['date'];
+		} if ($datePreference == '0') {$datePreference = $wgAmericanDates ? 1 : 2;}
+		
+		switch ( $datePreference ) {
 			case 'ISO 8601': return $this->date( $ts, $adj, $format, $timecorrection ) . ' ' .
-				$this->time( $ts, $adj, false, $timecorrection );
-			default: return $this->time( $ts, $adj, false, $timecorrection ) . ', ' .
+				$this->time( $ts, $adj, $format, $timecorrection );
+			default: return $this->time( $ts, $adj, $format, $timecorrection ) . ', ' .
 				$this->date( $ts, $adj, $format, $timecorrection );
 		}
 	}
