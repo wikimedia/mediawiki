@@ -34,7 +34,11 @@
 
 /** */
 require_once 'UtfNormalUtil.php';
-require_once 'UtfNormalData.inc';
+
+global $utfCombiningClass, $utfCanonicalComp, $utfCanonicalDecomp;
+$utfCombiningClass = NULL;
+$utfCanonicalComp = NULL;
+$utfCanonicalDecomp = NULL;
 
 # Load compatibility decompositions on demand if they are needed.
 global $utfCompatibilityDecomp;
@@ -196,6 +200,17 @@ class UtfNormal {
 	}
 	
 	/**
+	 * Load the basic composition data if necessary
+	 * @access private
+	 */
+	function loadData() {
+		global $utfCombiningClass, $utfCanonicalComp, $utfCanonicalDecomp;
+		if( !isset( $utfCombiningClass ) ) {
+			require_once( 'UtfNormalData.inc' );
+		}
+	}
+	
+	/**
 	 * Returns true if the string is _definitely_ in NFC.
 	 * Returns false if not or uncertain.
 	 * @param string $string a valid UTF-8 string. Input is not validated.
@@ -206,6 +221,7 @@ class UtfNormal {
 		# If it's pure ASCII, let it through.
 		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
 		
+		UtfNormal::loadData();
 		global $utfCheckNFC, $utfCombiningClass;
 		$len = strlen( $string );
 		for( $i = 0; $i < $len; $i++ ) {
@@ -245,6 +261,7 @@ class UtfNormal {
 		# ASCII is always valid NFC!
 		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
 		
+		UtfNormal::loadData();
 		global $utfCheckNFC, $utfCombiningClass;
 		$len = strlen( $string );
 		$out = '';
@@ -359,6 +376,7 @@ class UtfNormal {
 	 * @access private
 	 */
 	function NFD( $string ) {
+		UtfNormal::loadData();
 		global $utfCanonicalDecomp;
 		return UtfNormal::fastCombiningSort(
 			UtfNormal::fastDecompose( $string, $utfCanonicalDecomp ) );
@@ -398,6 +416,7 @@ class UtfNormal {
 	 * @return string a UTF-8 string decomposed, not yet normalized (needs sorting)
 	 */
 	function fastDecompose( &$string, &$map ) {
+		UtfNormal::loadData();
 		$len = strlen( $string );
 		$out = '';
 		for( $i = 0; $i < $len; $i++ ) {
@@ -457,6 +476,7 @@ class UtfNormal {
 	 * @return string a UTF-8 string with combining characters sorted in canonical order
 	 */
 	function fastCombiningSort( $string ) {
+		UtfNormal::loadData();
 		global $utfCombiningClass;
 		$replacedCount = 1;
 		while( $replacedCount > 0 ) {
@@ -507,6 +527,7 @@ class UtfNormal {
 	 * @return string a UTF-8 string with canonical precomposed characters used where possible
 	 */
 	function fastCompose( $string ) {
+		UtfNormal::loadData();
 		global $utfCanonicalComp, $utfCombiningClass;
 		$len = strlen( $string );
 		$out = '';
