@@ -49,10 +49,10 @@ function wfSpecialWatchlist()
 	}
 
 	if ( ! isset( $days ) ) {
-		$big = 250;
+		$big = 1000;
 		if($nitems > $big) {
 			# Set default cutoff shorter
-			$days = (1.0 / 24.0); # 1 hour...
+			$days = (12.0 / 24.0); # 12 hours...
 		} else {
 			$days = 0; # no time cutoff for shortlisters
 		}
