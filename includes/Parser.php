@@ -1710,6 +1710,13 @@ class Parser
 		if ( !$found ) {
 			return $matches[0];
 		} else {
+			# replace ==section headers==
+			# XXX this needs to go away once we have a better parser.
+			for ( $i = 1; $i <= 6; ++$i ) {
+				$h = substr( '======', 0, $i );
+				$text = preg_replace( "/^{$h}([^=].*){$h}\\s?$/m",
+				  "${h}\\1 __MWTEMPLATESECTION__${h}\\2", $text );
+			}
 			return $text;
 		}
 	}
@@ -1973,6 +1980,7 @@ class Parser
 
 		# headline counter
 		$headlineCount = 0;
+		$sectionCount = 0; # headlineCount excluding template sections
 
 		# Ugh .. the TOC should have neat indentation levels which can be
 		# passed to the skin functions. These are determined here
@@ -1984,6 +1992,11 @@ class Parser
 		$level = 0;
 		$prevlevel = 0;
 		foreach( $matches[3] as $headline ) {
+			$istemplate = 0;
+			if (strstr($headline, "__MWTEMPLATESECTION__")) {
+				$istemplate = 1;
+				$headline = str_replace("__MWTEMPLATESECTION__", "", $headline);
+			}
 			$numbering = '';
 			if( $level ) {
 				$prevlevel = $level;
@@ -2064,22 +2077,24 @@ class Parser
 			if( $doShowToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
 				$toc .= $sk->tocLine($anchor,$tocline,$toclevel);
 			}
-			if( $showEditLink ) {
+			if( $showEditLink && !$istemplate ) {
 				if ( empty( $head[$headlineCount] ) ) {
 					$head[$headlineCount] = '';
 				}
-				$head[$headlineCount] .= $sk->editSectionLink($headlineCount+1);
+				$head[$headlineCount] .= $sk->editSectionLink($sectionCount+1);
 			}
 
 			# Add the edit section span
 			if( $rightClickHack ) {
-				$headline = $sk->editSectionScript($headlineCount+1,$headline);
+				$headline = $sk->editSectionScript($sectionCount+1,$headline);
 			}
 
 			# give headline the correct <h#> tag
 			@$head[$headlineCount] .= "<a name=\"$anchor\"></a><h".$level.$matches[2][$headlineCount] .$headline.'</h'.$level.'>';
 
 			$headlineCount++;
+			if( !$istemplate )
+				$sectionCount++;
 		}
 
 		if( $doShowToc ) {
