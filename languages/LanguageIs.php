@@ -1160,10 +1160,6 @@ class LanguageIs extends LanguageUtf8 {
 		return false;
 	}
 
-	function specialPage( $name ) {
-		return $this->getNsText( Namespace::getSpecial() ) . ":" . $name;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsIs;
 		return $wgQuickbarSettingsIs;
@@ -1189,13 +1185,6 @@ class LanguageIs extends LanguageUtf8 {
 		global $wgMonthNamesIs;
 		return $wgMonthNamesIs[$key-1];
 	}
-	
-	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
-		global $wgMonthNamesIs;
-		return $wgMonthNamesIs[$key-1];
-	}
 
 	function getMonthAbbreviation( $key )
 	{
@@ -1207,52 +1196,6 @@ class LanguageIs extends LanguageUtf8 {
 	{
 		global $wgWeekdayNamesIs;
 		return $wgWeekdayNamesIs[$key-1];
-	}
-
-	function userAdjust( $ts )
-	{
-		global $wgUser, $wgLocalTZoffset;
-
-		$diff = $wgUser->getOption( "timecorrection" );
-		if ( ! is_numeric( $diff ) ) {
-			$diff = isset( $wgLocalTZoffset ) ? $wgLocalTZoffset : 0;
-		}
-		if ( 0 == $diff ) { return $ts; }
-
-		$t = mktime( ( (int)substr( $ts, 8, 2) ) + $diff,
-		  (int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
-		  (int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
-		  (int)substr( $ts, 0, 4 ) );
-		return date( "YmdHis", $t );
-	}
-	function date( $ts, $adj = false )
-	{
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = (0 + substr( $ts, 6, 2 )) . ". " .
-		$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-  		" " .
-  		substr( $ts, 0, 4 );
-		return $d;
-	}
-
- 
-	function time( $ts, $adj = false )
-	{
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
-	}
-
-	function timeanddate( $ts, $adj = false )
-	{
-		return $this->time( $ts, $adj ) . ", " . $this->date( $ts, $adj );
-	}
-
-	function rfc1123( $ts )
-	{
-		return date( "D, d M Y H:i:s T", $ts );
 	}
 
 	function getValidSpecialPages()
@@ -1276,7 +1219,11 @@ class LanguageIs extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesIs;
-		return $wgAllMessagesIs[$key];
+		if( isset( $wgAllMessagesIs[$key] ) ) {
+			return $wgAllMessagesIs[$key];
+		} else {
+			return "";
+		}
 	}
 	
 	function getAllMessages()
@@ -1290,99 +1237,10 @@ class LanguageIs extends LanguageUtf8 {
 		return $wgMathNamesIs;
 	}
 
-	function iconv( $in, $out, $string ) {
-		# For most languages, this is a wrapper for iconv
-		return iconv( $in, $out, $string );
-	}
-	
-	function ucfirst( $string ) {
-		# For most languages, this is a wrapper for ucfirst()
-		return ucfirst( $string );
-	}
-	
-	function checkTitleEncoding( $s ) {
-        global $wgInputEncoding;
-		
-        # Check for UTF-8 URLs; Internet Explorer produces these if you
-		# type non-ASCII chars in the URL bar or follow unescaped links.
-        	$ishigh = preg_match( '/[\x80-\xff]/', $s);
-		$isutf = ($ishigh ? preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-                '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s ) : true );
-
-		if( ($wgInputEncoding != "utf-8") and $ishigh and $isutf )
-			return iconv( "UTF-8", $wgInputEncoding, $s );
-		
-		if( ($wgInputEncoding == "utf-8") and $ishigh and !$isutf )
-			return utf8_encode( $s );
-		
-		# Other languages can safely leave this function, or replace
-		# it with one to detect and convert another legacy encoding.
-		return $s;
-	}
-	
-	function stripForSearch( $in ) {
-		# Some languages have special punctuation to strip out
-		# or characters which need to be converted for MySQL's
-		# indexing to grok it correctly. Make such changes here.
-		return $in;
-	}
-
-
-	function setAltEncoding() {
-		# Some languages may have an alternate char encoding option
-		# (Esperanto X-coding, Japanese furigana conversion, etc)
-		# If 'altencoding' is checked in user prefs, this gives a
-		# chance to swap out the default encoding settings.
-		#global $wgInputEncoding, $wgOutputEncoding, $wgEditEncoding;
-	}
-
-	function recodeForEdit( $s ) {
-		# For some languages we'll want to explicitly specify
-		# which characters make it into the edit box raw
-		# or are converted in some way or another.
-		# Note that if wgOutputEncoding is different from
-		# wgInputEncoding, this text will be further converted
-		# to wgOutputEncoding.
-		global $wgInputEncoding, $wgEditEncoding;
-		if( $wgEditEncoding == "" or
-		  $wgEditEncoding == $wgInputEncoding ) {
-			return $s;
-		} else {
-			return $this->iconv( $wgInputEncoding, $wgEditEncoding, $s );
-		}
-	}
-
-	function recodeInput( $s ) {
-		# Take the previous into account.
-		global $wgInputEncoding, $wgOutputEncoding, $wgEditEncoding;
-		if($wgEditEncoding != "") {
-			$enc = $wgEditEncoding;
-		} else {
-			$enc = $wgOutputEncoding;
-		}
-		if( $enc == $wgInputEncoding ) {
-			return $s;
-		} else {
-			return $this->iconv( $enc, $wgInputEncoding, $s );
-		}
-	}
-
-	# For right-to-left language support
-	function isRTL() { return false; }
-
 	function getMagicWords() 
 	{
 		global $wgMagicWordsIs;
 		return $wgMagicWordsIs;
-	}
-
-	# Fill a MagicWord object with data from here
-	function getMagic( &$mw )
-	{
-		$raw = $this->getMagicWords(); # don't worry, it's reference counted not deep copy
-		$rawEntry = $raw[$mw->mId];
-		$mw->mCaseSensitive = $rawEntry[0];
-		$mw->mSynonyms = array_slice( $rawEntry, 1 );
 	}
 }
 
