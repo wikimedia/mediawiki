@@ -75,7 +75,7 @@ class OutputPage {
 				header( "Last-Modified: {$lastmod}" );			
 				wfDebug( "CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
 				$this->reportTime(); # For profiling
-				exit;
+				wfAbruptExit();
 			} else {
 				wfDebug( "READY  client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
 				$this->mLastModified = $lastmod;
@@ -362,7 +362,7 @@ class OutputPage {
 		$this->returnToMain( false );
 
 		$this->output();
-		exit;
+		wfAbruptExit();
 	}
 
 	function sysopRequired()
@@ -418,7 +418,7 @@ class OutputPage {
 		
 		if ( $wgCommandLineMode ) {
 			print "$msg\n";
-			exit();
+			wfAbruptExit();
 		}
 		$sk = $wgUser->getSkin();
 		$shlink = $sk->makeKnownLink( wfMsgNoDB( "searchhelppage" ),
@@ -427,7 +427,7 @@ class OutputPage {
 
 		$this->mBodytext = $msg;
 		$this->output();
-		exit();
+		wfAbruptExit();
 	}
 
 	function readOnlyPage( $source = "", $protected = false )
@@ -465,7 +465,7 @@ class OutputPage {
 
 		$this->mBodytext = $message;
 		$this->output();
-		exit;
+		wfAbruptExit();
 	}
 
 	function unexpectedValueError( $name, $val )

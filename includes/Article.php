@@ -1212,7 +1212,7 @@ class Article {
 				wfDebug( " tryFileCache() - about to load\n" );
 				$cache->loadFromFileCache();
 				$wgOut->reportTime(); # For profiling
-				exit;
+				wfAbruptExit();
 			} else {
 				wfDebug( " tryFileCache() - starting buffer\n" );			
 				if($cache->useGzip() && wfClientAcceptsGzip()) {

@@ -87,7 +87,7 @@ function wfEmergencyAbort( $msg = "" ) {
 	header( "Cache-control: none" );
 	header( "Pragma: nocache" );
 	echo $text;
-	exit;
+	wfAbruptExit();
 }
 
 # $db: DB_READ  = -1    read from slave (or only server)
@@ -102,7 +102,6 @@ function wfQuery( $sql, $db, $fname = "" )
 		# wfGeneralizeSQL will probably cut down the query to reasonable
 		# logging size most of the time. The substr is really just a sanity check.
 		$profName = "wfQuery: " . substr( wfGeneralizeSQL( $sql ), 0, 255 ); 
-
 		wfProfileIn( $profName );
 	}
 
@@ -128,7 +127,7 @@ function wfQuery( $sql, $db, $fname = "" )
 
 	if ( false === $ret ) {
 		$wgOut->databaseError( $fname );
-		exit;
+		wfAbruptExit();
 	}
 	
 	if ( $wgProfiling ) {
