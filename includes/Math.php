@@ -130,7 +130,7 @@ class MathRenderer {
 			$md5_sql = wfStrencode( pack("H32", $this->md5) ); # Binary packed, not hex
 			$sql = "REPLACE INTO math VALUES ('".$md5_sql."', '".$outmd5_sql."', ".$this->conservativeness.", ".$sql_html.", ".$sql_mathml.")";
 			
-			$res = wfQuery( $sql, DB_READ, "MathRenderer::render" );
+			$res = wfQuery( $sql, DB_WRITE, "MathRenderer::render" );
 			# we don't really care if it fails
 		}
 		
