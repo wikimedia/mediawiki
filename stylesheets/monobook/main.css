@@ -317,6 +317,7 @@ div.thumb {
     margin-bottom: 0.5em;
     border-style: solid; border-color: White;
     width: auto;
+    overflow: auto;
 }
 div.thumb div {
     border:1px solid #cccccc;
@@ -343,25 +344,6 @@ div.magnify a, div.magnify img {
     border: none !important;
     background: none !important;
 }
-
-.urlexpansion,
-.hiddenStructure {
-    display: none;
-}
-img.tex { vertical-align: middle; }
-/*
-** classes for special content elements like town boxes
-** intended to be referenced directly from the wiki src
-*/
-/* table standards */
-table.rimage {
-    float:right; 
-    width:1pt; 
-    position:relative;
-    margin-left:1em; 
-    margin-bottom:1em;
-    text-align:center;
-}
 div.tright {
     float: right;
     border-width: 0.5em 0 0.8em 1.4em;
@@ -372,6 +354,35 @@ div.tleft {
     border: 0.5em 1.4em 0.8em 0;
 }
 
+.urlexpansion,
+.hiddenStructure {
+    display: none;
+}
+img.tex { vertical-align: middle; }
+/*
+** classes for special content elements like town boxes
+** intended to be referenced directly from the wiki src
+*/
+
+/*
+** User styles
+*/
+
+/* table standards */
+table.rimage {
+    float:right; 
+    width:1pt; 
+    position:relative;
+    margin-left:1em; 
+    margin-bottom:1em;
+    text-align:center;
+}
+.toccolours { 
+    border:1px solid #aaaaaa;
+    background-color:#f9f9f9;
+    padding:5px;
+    font-size: 95%;
+}
 div.townBox {
     position:relative;
     float:right;
