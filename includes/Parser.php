@@ -256,32 +256,36 @@ class Parser
 		return $rnd;
 	}
 
+	# This method generates the list of subcategories and pages for a category
 	function categoryMagic ()
 	{
 		global $wgLang , $wgUser ;
-		if ( !$this->mOptions->getUseCategoryMagic() ) return ;
-		$id = $this->mTitle->getArticleID() ;
+		if ( !$this->mOptions->getUseCategoryMagic() ) return ; # Doesn't use categories at all
+
 		$cns = Namespace::getCategory() ;
-		if ( $this->mTitle->getNamespace() != $cns ) return "" ;
-		$ti = $this->mTitle->getText() ;
+		if ( $this->mTitle->getNamespace() != $cns ) return "" ; # This ain't a category page
+
 		$r = "<br style=\"clear:both;\"/>\n";
 
-		$articles = array() ;
-		$parents = array () ;
-		$children = array() ;
 
 		$sk =& $wgUser->getSkin() ;
 
+		$articles = array() ;
+		$children = array() ;
 		$data = array () ;
-		$sql1 = "SELECT DISTINCT cur_title,cur_namespace FROM cur,links WHERE l_to={$id} AND l_from=cur_id";
-		$sql2 = "SELECT DISTINCT cur_title,cur_namespace FROM cur,brokenlinks WHERE bl_to={$id} AND bl_from=cur_id" ;
+		$id = $this->mTitle->getArticleID() ;
 
-		$res = wfQuery ( $sql1, DB_READ ) ;
+		# For existing categories
+		$sql = "SELECT DISTINCT cur_title,cur_namespace FROM cur,links WHERE l_to={$id} AND l_from=cur_id";
+		$res = wfQuery ( $sql, DB_READ ) ;
 		while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
 
-		$res = wfQuery ( $sql2, DB_READ ) ;
+		# For non-existing categories
+		$sql = "SELECT DISTINCT cur_title,cur_namespace FROM cur,brokenlinks WHERE bl_to={$id} AND bl_from=cur_id" ;
+		$res = wfQuery ( $sql, DB_READ ) ;
 		while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
 
+		# For all pages that link to this category
 		foreach ( $data AS $x )
 		{
 			$t = $wgLang->getNsText ( $x->cur_namespace ) ;
@@ -289,14 +293,14 @@ class Parser
 			$t .= $x->cur_title ;
 
 			if ( $x->cur_namespace == $cns ) {
-				array_push ( $children , $sk->makeLink ( $t ) ) ;
+				array_push ( $children , $sk->makeLink ( $t ) ) ; # Subcategory
 			} else {
-				array_push ( $articles , $sk->makeLink ( $t ) ) ;
+				array_push ( $articles , $sk->makeLink ( $t ) ) ; # Page in this category
 			}
 		}
 		wfFreeResult ( $res ) ;
 
-		# Children
+		# Showing subcategories
 		if ( count ( $children ) > 0 )
 		{
 			asort ( $children ) ;
@@ -304,9 +308,10 @@ class Parser
 			$r .= implode ( ", " , $children ) ;
 		}
 
-		# Articles
+		# Showing pages in this category
 		if ( count ( $articles ) > 0 )
 		{
+			$ti = $this->mTitle->getText() ;
 			asort ( $articles ) ;
 			$h =  wfMsg( "category_header", $ti );
 			$r .= "<h2>{$h}</h2>\n" ;
