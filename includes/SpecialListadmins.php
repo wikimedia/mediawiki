@@ -1,51 +1,23 @@
 <?php
 /**
- *
+ * This old a redirect to Special:Listusers that now implement a filter
+ * by user groups. The listadmins special page is now deprecated but kept
+ * for backward compatibility.
+ * 
  * @package MediaWiki
  * @subpackage SpecialPage
+ * @deprecated
  */
 
 /**
- *
- */
-require_once("QueryPage.php");
-
-/**
- * This class is used to get a list of users flagged with "sysop" right.
- *
- * @package MediaWiki
- * @subpackage SpecialPage
- */
-class ListAdminsPage extends PageQueryPage {
-
-	function getName() {
-		return 'Listadmins';
-	}
-
-	function sortDescending() {
-		return false;
-	}
-
-	function getSQL() {
-		$dbr =& wfGetDB( DB_SLAVE );
-		$user = $dbr->tableName( 'user' );
-		$user_rights = $dbr->tableName( 'user_rights' );
-		$userspace = Namespace::getUser();
-		return "SELECT ur_rights as type,{$userspace} as namespace,".
-		       "user_name as title, user_name as value ".
-		       "FROM {$user} ,{$user_rights} WHERE user_id=ur_user AND ur_rights LIKE '%sysop%'";
-	}
-}
-
-/**
- * constructor
+ * Just redirect to Special:Listusers.
+ * Kept for backward compatibility.
  */
 function wfSpecialListadmins() {
-	list( $limit, $offset ) = wfCheckLimits();
-
-	$sla = new ListAdminsPage();
-
-	return $sla->doQuery( $offset, $limit );
+	global $wgOut;
+	$t = Title::makeTitle( NS_SPECIAL, "Listusers" );
+	$wgOut->redirect ($t->getFullURL());
 }
+
 
 ?>
