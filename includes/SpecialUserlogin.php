@@ -438,7 +438,7 @@ class LoginForm {
 	<input tabindex='2' type='password' name=\"wpPassword\" value=\"{$encPassword}\" size='20' />
 	</td>
 	<td align='left'>
-	<input tabindex='7' type='checkbox' name=\"wpRemember\" value=\"1\" id=\"wpRemember\"$checked /><label for=\"wpRemember\">$rmp</label>
+	<input tabindex='4' type='checkbox' name=\"wpRemember\" value=\"1\" id=\"wpRemember\"$checked /><label for=\"wpRemember\">$rmp</label>
 	</td>
 	</tr>");
 
@@ -448,13 +448,13 @@ class LoginForm {
 	$wgOut->addHTML("<tr><td colspan='3'>&nbsp;</td></tr><tr>
 	<td align='right'>$ypa:</td>
 	<td align='left'>
-	<input tabindex='4' type='password' name=\"wpRetype\" value=\"{$encRetype}\" 
+	<input tabindex='5' type='password' name=\"wpRetype\" value=\"{$encRetype}\" 
 	size='20' />
 	</td><td>$nuo</td></tr>
 	<tr>
 	<td align='right'>$ye:</td>
 	<td align='left'>
-	<input tabindex='6' type='text' name=\"wpEmail\" value=\"{$encEmail}\" size='20' />
+	<input tabindex='7' type='text' name=\"wpEmail\" value=\"{$encEmail}\" size='20' />
 	</td>");
 		    
 	if ($wgAllowRealName) {
@@ -462,12 +462,12 @@ class LoginForm {
                              </tr><tr>
 	                     <td align='right'>$yrn:</td>
 	                     <td align='left'>
-	                      <input tabindex='6' type='text' name=\"wpRealName\" value=\"{$encRealName}\" size='20' />
+	                      <input tabindex='8' type='text' name=\"wpRealName\" value=\"{$encRealName}\" size='20' />
 			      </td>");
 	}
 		    
 	$wgOut->addHTML("<td align='left'>
-	<input tabindex='7' type='submit' name=\"wpCreateaccount\" value=\"{$ca}\" />
+	<input tabindex='9' type='submit' name=\"wpCreateaccount\" value=\"{$ca}\" />
 	$cambutton
 	</td></tr>");
 		}
@@ -476,7 +476,7 @@ class LoginForm {
 	<tr><td colspan='3'>&nbsp;</td></tr><tr>
 	<td colspan='3' align='left'>
 	<p>$efl<br />
-	<input tabindex='8' type='submit' name=\"wpMailmypassword\" value=\"{$mmp}\" /></p>
+	<input tabindex='10' type='submit' name=\"wpMailmypassword\" value=\"{$mmp}\" /></p>
 	</td></tr></table>
 	</form>\n" );
 		$wgOut->addHTML( $endText );
