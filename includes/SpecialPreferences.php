@@ -309,7 +309,6 @@ class PreferencesForm {
 	/**
 	 * @access private
 	 */
-
 	function mainPrefsForm( $err ) {
 		global $wgUser, $wgOut, $wgLang, $wgUseDynamicDates, $wgValidSkinNames;
 	        global $wgAllowRealName, $wgImageLimits;
@@ -513,6 +512,7 @@ class PreferencesForm {
 		</div> " .
 		$this->getToggle( "editwidth" ) .
 		$this->getToggle( "showtoolbar" ) .
+		$this->getToggle( "previewonfirst" ) .
 		$this->getToggle( "previewontop" ) .
 		$this->getToggle( "watchdefault" ) .
 		$this->getToggle( "minordefault" ) . "
