@@ -214,23 +214,18 @@ class Parser
 
 		$text = Parser::extractTags("nowiki", $text, $nowiki_content, $uniq_prefix);
 		foreach( $nowiki_content as $marker => $content ){
-			if( $render ){
+			//if( $render ){
 				//# use span to mark nowiki areas, note the trailing whitespace in span to avoid collisions with other spans
 				//$nowiki_content[$marker] = '<span class="nowiki">'.wfEscapeHTMLTagsOnly( $content )."</span  >";
-				$nowiki_content[$marker] = $content;
-			} else {
+			//} else {
 				$nowiki_content[$marker] = "<nowiki>$content</nowiki>";
-			}
+			//}
 		}
 
 		$text = Parser::extractTags("hiero", $text, $hiero_content, $uniq_prefix);
 		foreach( $hiero_content as $marker => $content ){
-			if( $render ) {
-				if( $GLOBALS['wgUseWikiHiero'] ) {
-					$hiero_content[$marker] = WikiHiero( $content, WH_MODE_HTML);
-				} else {
-					$hiero_content[$marker] = "&lt;hiero&gt;$content&lt;/hiero&gt;";
-				}
+			if( $render && $GLOBALS['wgUseWikiHiero']){
+				$hiero_content[$marker] = WikiHiero( $content, WH_MODE_HTML);
 			} else {
 				$hiero_content[$marker] = "<hiero>$content</hiero>";
 			}
@@ -238,12 +233,8 @@ class Parser
 		
 		$text = Parser::extractTags("timeline", $text, $timeline_content, $uniq_prefix);
 		foreach( $timeline_content as $marker => $content ){
-			if( $render ) {
-				if( $render && $GLOBALS['wgUseTimeline']){
-					$timeline_content[$marker] = renderTimeline( $content );
-				} else {
-					$timeline_content[$marker] = "&lt;timeline&gt;$content&lt;/timeline&gt;";
-				}
+			if( $render && $GLOBALS['wgUseTimeline']){
+				$timeline_content[$marker] = renderTimeline( $content );
 			} else {
 				$timeline_content[$marker] = "<timeline>$content</timeline>";
 			}
@@ -255,7 +246,7 @@ class Parser
 				if( $this->mOptions->getUseTeX() ) {
 					$math_content[$marker] = renderMath( $content );
 				} else {
-					$math_content[$marker] = "&lt;math&gt;$content&lt;/math&gt;";
+					$math_content[$marker] = "&lt;math&gt;$content&lt;math&gt;";
 				}
 			} else {
 				$math_content[$marker] = "<math>$content</math>";
@@ -264,7 +255,7 @@ class Parser
 
 		$text = Parser::extractTags("pre", $text, $pre_content, $uniq_prefix);
 		foreach( $pre_content as $marker => $content ){
-			if( $render ) {
+			if( $render ){
 				$pre_content[$marker] = "<pre>" . wfEscapeHTMLTagsOnly( $content ) . "</pre>";
 			} else {
 				$pre_content[$marker] = "<pre>$content</pre>";
