@@ -4,11 +4,6 @@ function wfSpecialRecentchanges( $par )
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
 	global $days, $hideminor, $from, $hidebots; # From query string
-	$days      = $_REQUEST["days"];
-	$hideminor = $_REQUEST["hideminor"];
-	$from      = $_REQUEST["from"];
-	$hidebots  = $_REQUEST["hidebots"];
-
 	$fname = "wfSpecialRecentchanges";
 
 	if( $par ) {

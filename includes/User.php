@@ -493,11 +493,6 @@ class User {
 		} else {
 			setcookie( "{$wgDBname}Password", "", time() - 3600 );
 		}
-		# Store Session variables
-		$_SESSION["wsUserID"]       = $wsUserID;
-		$_SESSION["wsUserName"]     = $wsUserName;
-		$_SESSION["wsUserPassword"] = $wsUserPassword;
-		$_SESSION["wsUploadFiles"]  = $wsUploadFiles;
 	}
 
 	function logout()

@@ -42,8 +42,6 @@ class Article {
 	function getContent( $noredir = false )
 	{
 		global $action,$section,$count; # From query string
-		$section = $_REQUEST["section"];
-		$count   = $_REQUEST['count'];
 		$fname =  "Article::getContent"; 
 		wfProfileIn( $fname );
 
@@ -702,8 +700,6 @@ class Article {
 	{
 		global $wgUser, $wgOut;
 		global $wpConfirm, $wpReason, $image, $oldimage;
-		$wpReason  = $_REQUEST["wpReason"];
-		$wpConfirm = $_REQUEST["wpConfirm"];
 
 		# This code desperately needs to be totally rewritten
 		
@@ -956,7 +952,6 @@ class Article {
 	function rollback()
 	{
 		global $wgUser, $wgLang, $wgOut, $from;
-		$from = $_REQUEST["from"];
 
 		if ( ! $wgUser->isSysop() ) {
 			$wgOut->sysopRequired();

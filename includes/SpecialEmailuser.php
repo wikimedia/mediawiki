@@ -53,8 +53,6 @@ class EmailUserForm {
 	{
 		global $wgOut, $wgUser, $wgLang;
 		global $wpSubject, $wpText, $target;
-		$wpSubject = $_REQUEST["wpSubject"];
-		$wpText    = $_REQUEST["wpText"];
 
 		$wgOut->setPagetitle( wfMsg( "emailpage" ) );
 		$wgOut->addWikiText( wfMsg( "emailpagetext" ) );
@@ -107,11 +105,9 @@ class EmailUserForm {
 	{
 		global $wgOut, $wgUser, $wgLang, $wgOutputEncoding;
 		global $wpSubject, $wpText, $target;
-		$wpSubject = $_REQUEST["wpSubject"];
-		$wpText    = $_REQUEST["wpText"];
 	    
 		$from = wfQuotedPrintable( $wgUser->getName() ) . " <" . $wgUser->getEmail() . ">";
-  	        $to = wfQuotedPrintable( $this->mAddress );
+  	    $to = wfQuotedPrintable( $this->mAddress );
 
 		$headers =
 			"MIME-Version: 1.0\r\n" .

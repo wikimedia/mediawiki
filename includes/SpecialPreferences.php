@@ -65,25 +65,6 @@ function wfSpecialPreferences()
 	global $wpSkin, $wpMath, $wpDate, $wpUserEmail, $wpEmailFlag, $wpNick, $wpSearch, $wpRecent;
 	global $wpSearchLines, $wpSearchChars, $wpStubs;
 	global $wpRows, $wpCols, $wpHourDiff, $HTTP_POST_VARS;
-	$wpQuickbar    = $_REQUEST["wpQuickbar"];
-	$wpOldpass     = $_REQUEST["wpOldpass"];
-	$wpNewpass     = $_REQUEST["wpNewpass"];
-	$wpRetypePass  = $_REQUEST["wpRetypePass"];
-	$wpSkin        = $_REQUEST["wpSkin"];
-	$wpMath        = $_REQUEST["wpMath"];
-	$wpDate        = $_REQUEST["wpDate"];
-	$wpUserEmail   = $_REQUEST["wpUserEmail"];
-	$wpEmailFlag   = $_REQUEST["wpEmailFlag"];
-	$wpNick        = $_REQUEST["wpNick"];
-	$wpSearch      = $_REQUEST["wpSearch"];
-	$wpRecent      = $_REQUEST["wpRecent"];
-	$wpSearchLines = $_REQUEST["wpSearchLines"];
-	$wpSearchChars = $_REQUEST["wpSearchChars"];
-	$wpStubs       = $_REQUEST["wpStubs"];
-	$wpRows        = $_REQUEST["wpRows"];
-	$wpCols        = $_REQUEST["wpCols"];
-	$wpHourDiff    = $_REQUEST["wpHourDiff"];
-
 
 	if ( "" != $wpNewpass ) {
 		if ( $wpNewpass != $wpRetypePass ) {
@@ -120,7 +101,8 @@ function wfSpecialPreferences()
 	foreach ( $namespaces as $i => $namespaces ) {
 		if ( $i >= 0 ) {
 			$nsvar = "wpNs$i";
-			$wgUser->setOption( "searchNs{$i}", validateCheckbox( $_REQUEST[$nsvar] ) );
+			global $$nsvar;
+			$wgUser->setOption( "searchNs{$i}", validateCheckbox( $$nsvar ) );
 		}
 	}
 

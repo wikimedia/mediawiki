@@ -23,9 +23,6 @@ class IPBlockForm {
 	{
 		global $wgOut, $wgUser, $wgLang;
 		global $ip, $wpBlockAddress, $wpBlockReason;
-		$wpBlockAddress  = $_REQUEST["wpBlockAddress"];
-		$wpBlockReason   = $_REQUEST["wpBlockReason"];
-		$ip              = $_REQUEST["ip"];
 
 		$wgOut->setPagetitle( wfMsg( "blockip" ) );
 		$wgOut->addWikiText( wfMsg( "blockiptext" ) );
@@ -63,9 +60,6 @@ class IPBlockForm {
 	{
 		global $wgOut, $wgUser, $wgLang;
 		global $ip, $wpBlockAddress, $wpBlockReason, $wgSysopUserBans;
-		$wpBlockAddress  = $_REQUEST["wpBlockAddress"];
-		$wpBlockReason   = $_REQUEST["wpBlockReason"];
-		$ip              = $_REQUEST["ip"];
 		
 		$userId = 0;
 		$wpBlockAddress = trim( $wpBlockAddress );
@@ -109,10 +103,11 @@ class IPBlockForm {
 	function showSuccess()
 	{
 		global $wgOut, $wgUser;
+		global $ip;
 
 		$wgOut->setPagetitle( wfMsg( "blockip" ) );
 		$wgOut->setSubtitle( wfMsg( "blockipsuccesssub" ) );
-		$text = wfMsg( "blockipsuccesstext", $_REQUEST["ip"] );
+		$text = wfMsg( "blockipsuccesstext", $ip );
 		$wgOut->addWikiText( $text );
 	}
 }

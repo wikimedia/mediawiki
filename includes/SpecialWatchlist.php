@@ -6,10 +6,6 @@ function wfSpecialWatchlist()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
 	global $days, $limit, $target; # From query string
-	$days      = $_REQUEST["days"];
-	$limit     = $_REQUEST["limit"];
-	$target    = $_REQUEST["target"];
-
 	$fname = "wfSpecialWatchlist";
 
 	$wgOut->setPagetitle( wfMsg( "watchlist" ) );
