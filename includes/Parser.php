@@ -30,7 +30,7 @@
 # of inclusions of any given page, thus bringing any attack back to O(N).
 #
 
-define( "MAX_INCLUDE_REPEAT", 5 );
+define( "MAX_INCLUDE_REPEAT", 20 );
 define( "MAX_INCLUDE_SIZE", 1000000 ); // 1 Million
 
 # Allowed values for $mOutputType
@@ -143,7 +143,7 @@ class Parser
 		} else {
 			$fixtags = array(
 				# french spaces, last one Guillemet-left
-				'/ (\\?|:|!|\\302\\273)/i' => '&nbsp;\\1',
+				'/ (\\?|:|;|!|\\302\\273)/i' => '&nbsp;\\1',
 				# french spaces, Guillemet-right
 				'/(\\302\\253) /i' => '\\1&nbsp;',
 				'/([^> ]+(&#x30(1|3|9);)[^< ]*)/i' => '<span class="diacrit">\\1</span>',
