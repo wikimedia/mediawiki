@@ -377,42 +377,41 @@ class SearchEngine {
 
 	function goResult()
 	{
-		global $wgOut, $wgArticle, $wgTitle;
+		global $wgOut;
 		$fname = "SearchEngine::goResult";
 		
 		$search		= $_REQUEST['search'];
 
 		# First try to go to page as entered		
 		#
-		$wgArticle = new Article();
-		$wgTitle = Title::newFromText( $search );
+		$t = Title::newFromText( $search );
 
-		if ( 0 != $wgArticle->getID() ) {
-			$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
+		if ( 0 != $t->getArticleID() ) {
+			$wgOut->redirect( wfLocalUrl( $t->getPrefixedURL() ) );
 			return;
 		}
 
 		# Now try all lower case (i.e. first letter capitalized)
 		#
-		$wgTitle = Title::newFromText( strtolower( $search ) );
-		if ( 0 != $wgArticle->getID() ) {
-			$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
+		$t = Title::newFromText( strtolower( $search ) );
+		if ( 0 != $t->getArticleID() ) {
+			$wgOut->redirect( wfLocalUrl( $t->getPrefixedURL() ) );
 			return;
 		}
 
 		# Now try capitalized string
 		#
-		$wgTitle=Title::newFromText( ucwords( strtolower( $search ) ) );
-		if ( 0 != $wgArticle->getID() ) {
-			$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
+		$t = Title::newFromText( ucwords( strtolower( $search ) ) );
+		if ( 0 != $t->getArticleID() ) {
+			$wgOut->redirect( wfLocalUrl( $t->getPrefixedURL() ) );
 			return;
 		}
 
 		# Now try all upper case
 		#
-		$wgTitle = Title::newFromText( strtoupper( $search ) );
-		if ( 0 != $wgArticle->getID() ) {
-			$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
+		$t = Title::newFromText( strtoupper( $search ) );
+		if ( 0 != $t->getArticleID() ) {
+			$wgOut->redirect( wfLocalUrl( $t->getPrefixedURL() ) );
 			return;
 		}
 
@@ -428,9 +427,8 @@ class SearchEngine {
 		if ( isset( $res ) && 0 != wfNumRows( $res ) ) {
 	 		$s = wfFetchObject( $res );
 
-			$wgTitle = Title::newFromDBkey( $s->cur_title );
-			$wgTitle->setNamespace( $s->cur_namespace );
-			$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
+			$t = Title::makeTitle( $s->cur_namespace, $s->cur_title );
+			$wgOut->redirect( wfLocalUrl( $t->getPrefixedURL() ) );
 			return;
 		}
 		$wgOut->addHTML( wfMsg("nogomatch", 
