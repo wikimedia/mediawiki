@@ -498,6 +498,15 @@ External links: URL within URL (original bug 2)
 </p>
 !! end
 
+!! test
+BUG 361: URL inside bracketed URL
+!! input
+[http://www.example.com/foo http://www.example.com/bar]
+!! result
+<p><a href="http://www.example.com/foo" class='external' title="http://www.example.com/foo">http://www.example.com/bar</a><span class='urlexpansion'> (<i>http://www.example.com/foo</i>)</span>
+</p>
+!! end
+
 ###
 ### Quotes
 ###
@@ -1351,7 +1360,7 @@ Image caption with a free URL
 !! input
 [[Image:foo|http://example.com]]
 !! result
-<p><a href="/wiki/Image:Foo" class="image" title="http://example.com"><img src="/images/1/13/Foo" alt="http://example.com" />http://example.com</a>
+<p><a href="/wiki/Image:Foo" class="image" title="http://example.com"><img src="/images/1/13/Foo" alt="http://example.com" /></a>
 </p>
 !! end
 
@@ -1361,6 +1370,7 @@ Thumbnail image caption with a free URL
 [[Image:foo|thumb|http://example.com]]
 !! result
 <div class="thumb tright"><div style="width:182px;"><b>Missing image</b><br /><i>Foo</i>   <div class="thumbcaption" ><a href="http://example.com" class='external'>http://example.com</a></div></div></div>
+
 !! end
 
 !! test
