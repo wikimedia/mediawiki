@@ -375,9 +375,6 @@ class Title {
 		$n = $wgLang->getNsText( $this->mNamespace );
 		if ( "" != $n ) { $n .= ":"; }
 		$u = str_replace( "$1", $n . $this->mUrlform, $p );
-		if ( "" != $this->mFragment ) {
-			$u .= "#" . wfUrlencode( $this->mFragment );
-		}
 		return $u;
 	}
 
@@ -531,7 +528,7 @@ class Title {
 		if( in_array( $name, $wgWhitelistRead ) ) return true;
 		
 		# Compatibility with old settings
-		if( $this->getNamespace() == NS_ARTICLE ) {
+		if( $this->getNamespace() == NS_MAIN ) {
 			if( in_array( ":" . $name, $wgWhitelistRead ) ) return true;
 		}
 		return false;
