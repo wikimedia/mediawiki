@@ -11,6 +11,19 @@
 function wfSpecialAllmessages() {
 	global $wgOut, $wgAllMessagesEn, $wgRequest, $wgMessageCache, $wgTitle;
 	global $wgLanguageCode, $wgContLanguageCode, $wgContLang;
+	global $wgUseDatabaseMessages;
+
+	if($wgLanguageCode != $wgContLanguageCode &&
+		!in_array($wgLanguageCode, $wgContLang->getVariants())) {
+		$err = wfMsg('allmessagesnotsupportedUI');
+		$wgOut->addHTML( $err );
+		return;
+	}
+	if(!$wgUseDatabaseMessages) {
+		$wgOut->addHTML(wfMsg('allmessagesnotsupportedDB'));
+		return;
+	}
+
 	$fname = "wfSpecialAllMessages";
 	wfProfileIn( $fname );
 	
@@ -20,12 +33,6 @@ function wfSpecialAllmessages() {
 	
 	$navText = wfMsg( 'allmessagestext', $mwMsg->getSynonym( 0 ) );
 
-	if($wgLanguageCode != $wgContLanguageCode &&
-       !in_array($wgLanguageCode, $wgContLang->getVariants())) {
-		$err = wfMsg('allmessagesnotsupported');
-		$wgOut->addHTML( $err );
-		return;
-	}
 
 	$first = true;
 	$sortedArray = $wgAllMessagesEn;
