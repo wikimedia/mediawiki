@@ -742,8 +742,8 @@ class Article {
 	 * Update the page record to point to a newly saved revision.
 	 *
 	 * @param Database $dbw
-	 * @param int $revId
-	 * @param string $text -- used to set length and redirect status if given
+	 * @param Revision $revision -- for ID number, and text used to set
+	                                length and redirect status fields
 	 * @param int $lastRevision -- if given, will not overwrite the page field
 	 *                             when different from the currently set value.
 	 *                             Giving 0 indicates the new page flag should
@@ -751,7 +751,7 @@ class Article {
 	 * @return bool true on success, false on failure
 	 * @access private
 	 */
-	function updateRevisionOn( &$dbw, $revId, $text = '', $lastRevision = null ) {
+	function updateRevisionOn( &$dbw, $revision, $lastRevision = null ) {
 		$fname = 'Article::updateToRevision';
 		wfProfileIn( $fname );
 		
@@ -760,9 +760,10 @@ class Article {
 			# An extra check against threads stepping on each other
 			$conditions['page_latest'] = $lastRevision;
 		}
+		$text = $revision->getText();
 		$dbw->update( 'page',
 			array( /* SET */
-				'page_latest'      => $revId,
+				'page_latest'      => $revision->getId(),
 				'page_touched'     => $dbw->timestamp(),
 				'page_is_new'      => ($lastRevision === 0) ? 0 : 1,
 				'page_is_redirect' => Article::isRedirect( $text ),
@@ -804,7 +805,7 @@ class Article {
 			$prev = 0;
 		}
 		
-		$ret = $this->updateRevisionOn( $dbw, $revision->getId(), $revision->getText(), $prev );
+		$ret = $this->updateRevisionOn( $dbw, $revision, $prev );
 		wfProfileOut( $fname );
 		return $ret;
 	}
@@ -846,7 +847,7 @@ class Article {
 		$this->mTitle->resetArticleID( $newid );
 		
 		# Update the page record with revision data
-		$this->updateRevisionOn( $dbw, $revisionId, $text, 0 );
+		$this->updateRevisionOn( $dbw, $revision, 0 );
 
 		Article::onArticleCreate( $this->mTitle );
 		RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary );
@@ -1044,7 +1045,7 @@ class Article {
 			$revisionId = $revision->insertOn( $dbw );
 			
 			# Update page
-			$ok = $this->updateRevisionOn( $dbw, $revisionId, $text, $lastRevision );
+			$ok = $this->updateRevisionOn( $dbw, $revision, $lastRevision );
 
 			if( !$ok ) {
 				/* Belated edit conflict! Run away!! */
@@ -1991,7 +1992,7 @@ class Article {
 			'minor_edit' => $minor ? 1 : 0,
 			) );
 		$revisionId = $revision->insertOn( $dbw );
-		$this->updateRevisionOn( $dbw, $revisionId, $text );
+		$this->updateRevisionOn( $dbw, $revision );
 		$dbw->commit();
 		
 		wfProfileOut( $fname );
