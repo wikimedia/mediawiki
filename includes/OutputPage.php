@@ -86,7 +86,10 @@ class OutputPage {
 	 */
 	function checkLastModified ( $timestamp ) {
 		global $wgLang, $wgCachePages, $wgUser;
-		$timestamp=wfTimestamp(TS_MW,$timestamp);
+		if ( !$timestamp || $timestamp == '19700101000000' ) {
+			wfDebug( "CACHE DISABLED, NO TIMESTAMP\n" );
+			return;
+		}
 		if( !$wgCachePages ) {
 			wfDebug( "CACHE DISABLED\n", false );
 			return;
@@ -96,6 +99,7 @@ class OutputPage {
 			return;
 		}
 
+		$timestamp=wfTimestamp(TS_MW,$timestamp);
 		$lastmod = wfTimestamp( TS_RFC2822, max( $timestamp, $wgUser->mTouched ) );
 
 		if( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
