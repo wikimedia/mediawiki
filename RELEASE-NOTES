@@ -17,6 +17,7 @@ Major changes from 1.3.x:
 * Support for faster C++ diff module (WikiDiff extension)
 * More scary link caching modes
 * Old manually maintained log pages replaced with searchable Special:Log
+* Skins system more modular : templates and css are now in /skins/
 * ... and more!
 
 === Caveats ===

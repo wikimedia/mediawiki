@@ -15,7 +15,7 @@
 class SkinCologneBlue extends Skin {
 
 	function getStylesheet() {
-		return "cologneblue.css";
+		return "common/cologneblue.css";
 	}
 	function getSkinName() {
 		return "cologneblue";

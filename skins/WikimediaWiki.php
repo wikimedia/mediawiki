@@ -25,6 +25,7 @@ class SkinWikimediawiki extends SkinMonoBook {
 	function initPage( &$out ) {
 		SkinPHPTal::initPage( $out );
 		$this->skinname = 'wikimediawiki';
+		$this->stylename = 'monobook';
 		$this->template = 'WikimediaWiki';
 	}
 

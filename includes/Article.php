@@ -816,7 +816,7 @@ class Article {
 				$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
 			} else if ( $rt = Title::newFromRedirect( $text ) ) {
 				# Display redirect
-				$imageUrl = $wgStylePath.'/images/redirect.png';
+				$imageUrl = $wgStylePath.'/common/images/redirect.png';
 				$targetUrl = $rt->escapeLocalURL();
 				$titleText = htmlspecialchars( $rt->getPrefixedText() );
 				$link = $sk->makeLinkObj( $rt );

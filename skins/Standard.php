@@ -23,7 +23,7 @@ class SkinStandard extends Skin {
 		$s = parent::getHeadScripts();
 		if ( 3 == $this->qbSetting() ) { # Floating left
 			$s .= "<script language='javascript' type='text/javascript' " .
-			  "src='{$wgStylePath}/sticky.js'></script>\n";
+			  "src='{$wgStylePath}/common/sticky.js'></script>\n";
 		}
 		return $s;
 	}
@@ -36,7 +36,7 @@ class SkinStandard extends Skin {
 		$s = '';
 		if ( 3 == $this->qbSetting() ) { # Floating left
 			$s .= "<style type='text/css'>\n" .
-			  "@import '{$wgStylePath}/quickbar.css';\n</style>\n";
+			  "@import '{$wgStylePath}/common/quickbar.css';\n</style>\n";
 		}
 		$s .= parent::getUserStyles();
 		return $s;

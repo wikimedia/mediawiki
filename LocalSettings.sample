@@ -65,8 +65,8 @@ $wgArticlePath      = "{$wgScript}/$1";
 
 ## Normally you don't need to change these once the above are set...
 #
-$wgStylePath   = "{$wgScriptPath}/style";
-$wgStyleSheetDirectory = "{$IP}/style";
+$wgStylePath   = "{$wgScriptPath}/skins";
+$wgStyleSheetDirectory = "{$IP}/skins";
 
 $wgUploadPath       = "{$wgScriptPath}/upload";
 $wgUploadDirectory	= "{$IP}/upload";
