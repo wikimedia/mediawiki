@@ -1763,7 +1763,7 @@ class Skin {
 	function beginImageHistoryList()
 	{
 		$s = "\n<h2>" . wfMsg( "imghistory" ) . "</h2>\n" .
-		  "<p>" . wfMsg( "imghistlegend" ) . "\n<ul class='special'>";
+		  "<p>" . wfMsg( "imghistlegend" ) . "</p>\n<ul class='special'>";
 		return $s;
 	}
 
@@ -2204,7 +2204,7 @@ class Skin {
 	   and by the user contributions list. It is responsible for formatting edit
 	   comments. It escapes any HTML in the comment, but adds some CSS to format
 	   auto-generated comments (from section editing) and formats [[wikilinks]].
-	   Main author: Erik Möller (moeller@scireview.de)
+	   Main author: Erik MÃ¶ller (moeller@scireview.de)
 	*/
 	function formatComment($comment)
 	{

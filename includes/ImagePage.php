@@ -100,10 +100,10 @@ class ImagePage extends Article {
 		$res = wfQuery( $sql, DB_READ, "Article::imageLinks" );
 
 		if ( 0 == wfNumRows( $res ) ) {
-			$wgOut->addHtml( "<p>" . wfMsg( "nolinkstoimage" ) . "\n" );
+			$wgOut->addHtml( "<p>" . wfMsg( "nolinkstoimage" ) . "</p>\n" );
 			return;
 		}
-		$wgOut->addHTML( "<p>" . wfMsg( "linkstoimage" ) .  "\n<ul>" );
+		$wgOut->addHTML( "<p>" . wfMsg( "linkstoimage" ) .  "</p>\n<ul>" );
 
 		$sk = $wgUser->getSkin();
 		while ( $s = wfFetchObject( $res ) ) {
@@ -245,7 +245,7 @@ class ImagePage extends Article {
 
 		$text = wfMsg( "deletedtext", $deleted, $loglink );
 
-		$wgOut->addHTML( "<p>" . $text );
+		$wgOut->addHTML( "<p>" . $text . "</p>\n" );
 		$wgOut->returnToMain( false );
 	}
 

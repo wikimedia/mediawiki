@@ -385,7 +385,7 @@ class OutputPage {
 		$this->enableClientCache( false );
 
 		$this->mBodytext = "";
-		$this->addHTML( "<p>" . wfMsg( $msg ) . "\n" );
+		$this->addHTML( "<p>" . wfMsg( $msg ) . "</p>\n" );
 		$this->returnToMain( false );
 
 		$this->output();

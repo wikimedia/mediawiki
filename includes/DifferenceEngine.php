@@ -1114,7 +1114,7 @@ class TableDiffFormatter extends DiffFormatter
 	}
 
 	function emptyLine() {
-		return "<td colspan=2>&nbsp;</td>";
+		return "<td colspan='2'>&nbsp;</td>";
 	}
 
 	function contextLine( $line ) {

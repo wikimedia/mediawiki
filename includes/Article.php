@@ -791,7 +791,7 @@ class Article {
 		if( ($old=wfFetchObject($res)) && !$confirm ) {
 			$skin=$wgUser->getSkin();
 			$wgOut->addHTML("<b>".wfMsg("historywarning"));
-			$wgOut->addHTML( $skin->historyLink() ."</b><p>");
+			$wgOut->addHTML( $skin->historyLink() ."</b>");
 		}
 
 		$sql="SELECT cur_text FROM cur WHERE cur_namespace=$ns and cur_title='$etitle'";
@@ -915,7 +915,7 @@ class Article {
 
 			$text = wfMsg( "deletedtext", $deleted, $loglink );
 
-			$wgOut->addHTML( "<p>" . $text );
+			$wgOut->addHTML( "<p>" . $text . "</p>\n" );
 			$wgOut->returnToMain( false );
 		} else {
 			$wgOut->fatalError( wfMsg( "cannotdelete" ) );
