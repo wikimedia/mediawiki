@@ -1839,30 +1839,30 @@ cl_sortkey" ;
 		} else {
 			# replace ==section headers==
 			# XXX this needs to go away once we have a better parser.
-                       if ( $this->mOutputType != OT_WIKI && !$brokenlink ) {
-                               if( !is_null( $title ) )
-                                       $encodedname = base64_encode($title->getPrefixedDBkey());
-                               else
-                                       $encodedname = base64_encode("");
-                               $matches = preg_split('/(^={1,6}.*?={1,6}\s*?$)/m', $text, -1,
-                                       PREG_SPLIT_DELIM_CAPTURE);
-                               $text = '';
-                               $nsec = 0;
-                               for( $i = 0; $i < count($matches); $i += 2 ) {
-                                       if ($matches[$i] == "" && $matches[$i + 1] == "") break;
-                                       $text .= $matches[$i];
-                                       $hl = $matches[$i + 1];
-                                       if( strstr($hl, "<!--MWTEMPLATESECTION") ) {
-                                               $text .= $hl;
-                                               continue;
-                                       }
-                                       preg_match('/^(={1,6})(.*?)(={1,6})\s*?$/m', $hl, $m2);
-                                       $text .= $m2[1] . $m2[2] . "<!--MWTEMPLATESECTION="
-                                               . $encodedname . "&" . base64_encode("$nsec") . "-->" . $m2[3];
+			if ( $this->mOutputType != OT_WIKI && !$brokenlink ) {
+				if( !is_null( $title ) )
+					$encodedname = base64_encode($title->getPrefixedDBkey());
+				else
+					$encodedname = base64_encode("");
+				$matches = preg_split('/(^={1,6}.*?={1,6}\s*?$)/m', $text, -1,
+					PREG_SPLIT_DELIM_CAPTURE);
+				$text = '';
+				$nsec = 0;
+				for( $i = 0; $i < count($matches); $i += 2 ) {
+					if ($matches[$i] == "" && $matches[$i + 1] == "") break;
+					$text .= $matches[$i];
+					$hl = $matches[$i + 1];
+					if( strstr($hl, "<!--MWTEMPLATESECTION") ) {
+						$text .= $hl;
+						continue;
+					}
+					preg_match('/^(={1,6})(.*?)(={1,6})\s*?$/m', $hl, $m2);
+					$text .= $m2[1] . $m2[2] . "<!--MWTEMPLATESECTION="
+						. $encodedname . "&" . base64_encode("$nsec") . "-->" . $m2[3];
 
-                                       $nsec++;
+					$nsec++;
 				}
-                        }
+			}
 			return $text;
 		}
 	}
@@ -2108,7 +2108,7 @@ cl_sortkey" ;
 				$istemplate = 1;
 				$templatetitle = base64_decode($mat[1]);
 				$templatesection = 1 + (int)base64_decode($mat[2]);
-				$headline = preg_replace("/<!--MWTEMPLATESECTION=([^&]+)&([^_]+)--/", "", $headline);
+				$headline = preg_replace("/<!--MWTEMPLATESECTION=([^&]+)&([^_]+)-->/", "", $headline);
 			}
 			$numbering = '';
 			if( $level ) {
@@ -2186,10 +2186,10 @@ cl_sortkey" ;
 				if ( empty( $head[$headlineCount] ) ) {
 					$head[$headlineCount] = '';
 				}
-                                if( $istemplate )
-                                        $head[$headlineCount] .= $sk->editSectionLinkForOther($templatetitle, $templatesection);
-                                else
-                                        $head[$headlineCount] .= $sk->editSectionLink($sectionCount+1);
+				if( $istemplate )
+					$head[$headlineCount] .= $sk->editSectionLinkForOther($templatetitle, $templatesection);
+				else
+					$head[$headlineCount] .= $sk->editSectionLink($sectionCount+1);
 
 			}
 
