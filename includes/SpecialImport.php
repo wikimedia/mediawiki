@@ -1,13 +1,29 @@
-<?
+<?php
+# Copyright (C) 2003 Brion Vibber <brion@pobox.com>
+# http://www.mediawiki.org/
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or 
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+# http://www.gnu.org/copyleft/gpl.html
 
 function wfSpecialImport( $page = "" ) {
-	global $wgOut, $wgLang;
+	global $wgOut, $wgLang, $wgRequest, $wgTitle;
 	
-	if( $_REQUEST['action'] == 'submit') {
-		$importer = WikiImporter::fromUpload();
-		if( empty($importer) ) {
-			$wgOut->addHTML( wfMsg( "importnofile" ) );
-		} else {
+	if( $wgRequest->wasPosted() && $wgRequest->getVal( 'action' ) == 'submit') {
+		$importer = new WikiImporter;
+		if( $importer->setupFromUpload( "xmlimport" ) ) {
+			$importer->setRevisionHandler( "wfImportRevision" );
 			if( $importer->doImport() ) {
 				# Success!
 				$wgOut->addHTML( "<p>" . wfMsg( "importsuccess" ) . "</p>" );
@@ -15,56 +31,173 @@ function wfSpecialImport( $page = "" ) {
 				$wgOut->addHTML( "<p>" . wfMsg( "importfailed",
 					htmlspecialchars( $importer->getError() ) ) . "</p>" );
 			}
+		} else {
+			$wgOut->addWikiText( htmlspecialchars( $importer->getError() ) );
 		}
 	}
 	
 	$wgOut->addWikiText( "<p>" . wfMsg( "importtext" ) . "</p>" );
-	$action = wfLocalUrlE( $wgLang->SpecialPage( "Import" ) );
+	$action = $wgTitle->escapeLocalUrl();
 	$wgOut->addHTML( "
-<form enctype='multipart/form-data'  method='post' action=\"$action\">
-<input type='hidden' name='action' value='submit' />
-<input type='file' name='xmlimport' value='' size='40' /><br />
-<input type='submit' value='" . wfMsg( "uploadbtn" ) . "'/>
+<form enctype='multipart/form-data' method='post' action=\"$action\">
+	<input type='hidden' name='action' value='submit' />
+	<input type='hidden' name='MAX_FILE_SIZE' value='200000' />
+	<input type='file' name='xmlimport' value='' size='40' /><br />
+	<input type='submit' value='" . htmlspecialchars( wfMsg( "uploadbtn" ) ) . "'/>
 </form>
 " );
 }
 
-function wfISO86012Timestamp( $ts ) {
-	#2003-08-05T18:30:02Z
-	# Warning: overly simplistic!
-	return preg_replace( '/^(....)-(..)-(..)T(..):(..):(..)$/', '$1$2$3$4$5$6', $ts );
+function wfImportRevision( $revision ) {
+	$fname = "wfImportRevision";
+	
+	# Sneak a single revision into place
+	$ns = $revision->title->getNamespace();
+	$t = wfStrencode( $revision->title->getDBkey() );
+	$text = wfStrencode( $revision->text );
+	$ts = wfStrencode( $revision->timestamp );
+	$its = wfStrencode( wfInvertTimestamp( $revision->timestamp ) ) ;
+	$minor = 0; # ??
+	$flags = "";
+	
+	# Make sure it doesn't already exist
+	$res = wfQuery( "SELECT COUNT(*) FROM old WHERE old_namespace=$ns AND old_title='$t' AND old_timestamp='$ts'", DB_WRITE, $fname );
+	$numrows = wfNumRows( $res );
+	wfFreeResult( $res );
+	if( $numrows > 0 ) {
+		return "gaaah";
+	}
+	
+	$res = wfQuery( "INSERT INTO old " .
+	  "(old_namespace,old_title,old_text,old_comment,old_user,old_user_text," .
+	  "old_timestamp,inverse_timestamp,old_minor_edit,old_flags) " .
+	  "VALUES ($ns,'$t','$text','$comment',$user,'$user_text','$ts','$its',$minor,'$flags')",
+	  DB_WRITE, $fname );
+	
+	return true;
+}
+
+class WikiRevision {
+	var $title = NULL;
+	var $timestamp = "20010115000000";
+	var $user = 0;
+	var $user_text = "";
+	var $text = "";
+	
+	function setTitle( $text ) {
+		$text = $this->fixEncoding( $text );
+		$this->title = Title::newFromText( $text );
+	}
+	
+	function setTimestamp( $ts ) {
+		# 2003-08-05T18:30:02Z
+		$this->timestamp = preg_replace( '/^(....)-(..)-(..)T(..):(..):(..)Z$/', '$1$2$3$4$5$6', $ts );
+	}
+	
+	function setUsername( $user ) {
+		$this->user_text = $this->fixEncoding( $user );
+	}
+	
+	function setUserIP( $ip ) {
+		$this->user_text = $this->fixEncoding( $ip );
+	}
+	
+	function setText( $text ) {
+		$this->text = $this->fixEncoding( $text );
+	}
+	
+	function fixEncoding( $data ) {
+		global $wgLang, $wgInputEncoding;
+		
+		if( strcasecmp( $wgInputEncoding, "utf-8" ) == 0 ) {
+			return $data;
+		} else {
+			return $wgLang->iconv( "utf-8", $wgInputEncoding, $data );
+		}
+	}
+	
+	function getTitle() {
+		return $this->title;
+	}
+	
+	function getTimestamp() {
+		return $this->timestamp;
+	}
+	
+	function getUser() {
+		return $this->user_text;
+	}
+	
+	function getText() {
+		return $this->text;
+	}
 }
 
 class WikiImporter {
-	var $mSource, $mError;
+	var $mSource = NULL;
+	var $mError = "";
+	var $mXmlError = XML_ERROR_NONE;
+	var $mRevisionHandler = NULL;
+	var $lastfield;
 	
 	function WikiImporter() {
-		$this->mSource = NULL;
-		$this->mError = XML_ERROR_NONE;
+		$this->setRevisionHandler( array( &$this, "defaultRevisionHandler" ) );
 	}
 	
-	/* static */ function fromUpload() {
-		if( !empty( $_FILES['xmlimport'] ) ) {
-			$fname = $_FILES['xmlimport']['tmp_name'];
-			if( is_uploaded_file($fname ) ) {
-				$im = new WikiImporter;
-				$im->mSource = file_get_contents( $fname );
-				return $im;
-			}
+	function setError( $err ) {
+		$this->mError = $err;
+		return false;
+	}
+	
+	function getError() {
+		if( $this->mXmlError == XML_ERROR_NONE ) {
+			return $this->mError;
+		} else {
+			return xml_error_string( $this->mXmlError );
 		}
-		return NULL;
+	}
+	
+	function throwXmlError( $err ) {
+		$this->debug( "FAILURE: $err" );
+	}
+	
+	function setupFromFile( $filename ) {
+		$this->mSource = file_get_contents( $filename );
+		return true;
+	}
+
+	function setupFromUpload( $fieldname = "xmlimport" ) {
+		global $wgOut;
+		
+		$upload =& $_FILES[$fieldname];
+		
+		if( !isset( $upload ) ) {
+			return $this->setError( wfMsg( "importnofile" ) );
+		}
+		if( !empty( $upload['error'] ) ) {
+			return $this->setError( wfMsg( "importuploaderror", $upload['error'] ) );
+		}
+		$fname = $upload['tmp_name'];
+		if( is_uploaded_file( $fname ) ) {
+			return $this->setupFromFile( $fname );
+		} else {
+			return $this->setError( wfMsg( "importnofile" ) );
+		}
+	}
+	
+	function setupFromURL( $url ) {
+		# FIXME
+		wfDebugDieBacktrace( "Not yet implemented." );
 	}
 	
 	function doImport() {
-		if( !$this->mSource ) return false;
-		
-		/*FIXME*/
-		global $wgOut;
-		$wgOut->addHTML( "<pre>" . htmlspecialchars($this->mSource) . "</pre>" );
+		if( empty( $this->mSource ) ) {
+			return $this->setError( wfMsg( "importnotext" ) );
+		}
 		
 		$parser = xml_parser_create( "UTF-8" );
 		
-		/* case folding violates XML standard, turn it off */
+		# case folding violates XML standard, turn it off
 		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
 		
 		xml_set_object( $parser, &$this );
@@ -72,31 +205,39 @@ class WikiImporter {
 		
 		if( !xml_parse( $parser, $this->mSource, true ) ) {
 			# return error message
-			$this->mError = xml_get_error_code( $parser );
+			$this->mXmlError = xml_get_error_code( $parser );
 			xml_parser_free( $parser );
 			return false;
 		}
 		xml_parser_free( $parser );
+		
 		return true;
 	}
 	
-	function getError() {
-		return xml_error_string( $this->mError );
-	}
-	
-	function throwXmlError( $err ) {
-		#echo htmlspecialchars("\n** $err **\n");
-		#die();
-		$this->debug( "FAILURE: $err" );
-	}
-	
 	function debug( $data ) {
-		global $wgOut;
-		if( true )
-			$wgOut->addHTML( htmlspecialchars( $data ) . "<br>\n" );
+		# global $wgOut;
+		# $wgOut->addHTML( htmlspecialchars( $data ) . "<br>\n" );
 	}
 	
-	/* xml parser callbacks */
+	function setRevisionHandler( $functionref ) {
+		$this->mRevisionHandler = $functionref;
+	}
+	
+	function defaultRevisionHandler( $revision ) {
+		$this->debug( "Got revision:" );
+		if( is_object( $revision->title ) ) {
+			$this->debug( "-- Title: " . $revision->title->getPrefixedText() );
+		} else {
+			$this->debug( "-- Title: <invalid>" );
+		}
+		$this->debug( "-- User: " . $revision->user_text );
+		$this->debug( "-- Timestamp: " . $revision->timestamp );
+		$this->debug( "-- Text: " . $revision->text );
+	}
+	
+	
+	
+	# XML parser callbacks from here out -- beware!
 	function donothing( $parser, $x, $y="" ) {
 		#$this->debug( "donothing" );
 	}
@@ -136,20 +277,25 @@ class WikiImporter {
 			xml_set_character_data_handler( $parser, "char_append" );
 			break;
 		case "revision":
+			$this->workRevision = new WikiRevision;
+			$this->workRevision->setTitle( $this->workTitle );
 			xml_set_element_handler( $parser, "in_revision", "out_revision" );
 			break;
 		default:
 			return $this->throwXMLerror( "Element <$name> not allowed in a <page>." );
 		}
 	}
+	
 	function out_page( $parser, $name ) {
 		$this->debug( "out_page $name" );
 		if( $name != "page" ) {
 			return $this->throwXMLerror( "Expected </page>, got </$name>" );
 		}
 		xml_set_element_handler( $parser, "in_mediawiki", "out_mediawiki" );
+		
+		$this->workTitle = NULL;
+		$this->workRevision = NULL;
 	}
-	
 	
 	function in_nothing( $parser, $name, $attribs ) {
 		$this->debug( "in_nothing $name" );
@@ -157,8 +303,7 @@ class WikiImporter {
 	}
 	function char_append( $parser, $data ) {
 		$this->debug( "char_append '$data'" );
-		$x = $this->appendfield;
-		$this->pagedata->$x .= $data;
+		$this->appenddata .= $data;
 	}
 	function out_append( $parser, $name ) {
 		$this->debug( "out_append $name" );
@@ -167,6 +312,27 @@ class WikiImporter {
 		}
 		xml_set_element_handler( $parser, "in_$this->parenttag", "out_$this->parenttag" );
 		xml_set_character_data_handler( $parser, "donothing" );
+		switch( $this->appendfield ) {
+		case "title":
+			$this->workTitle = $this->appenddata;
+			break;
+		case "text":
+			$this->workRevision->setText( $this->appenddata );
+			break;
+		case "username":
+			$this->workRevision->setUsername( $this->appenddata );
+			break;
+		case "ip":
+			$this->workRevision->setUserIP( $this->appenddata );
+			break;
+		case "timestamp":
+			$this->workRevision->setTimestamp( $this->appenddata );
+			break;
+		default;
+			$this->debug( "Bad append: {$this->appendfield}" );
+		}
+		$this->appendfield = "";
+		$this->appenddata = "";
 	}
 	
 	function in_revision( $parser, $name, $attribs ) {
@@ -194,6 +360,8 @@ class WikiImporter {
 			return $this->throwXMLerror( "Expected </revision>, got </$name>" );
 		}
 		xml_set_element_handler( $parser, "in_page", "out_page" );
+		
+		call_user_func( $this->mRevisionHandler, $this->workRevision );
 	}
 	
 	function in_contributor( $parser, $name, $attribs ) {
@@ -201,13 +369,17 @@ class WikiImporter {
 		switch( $name ) {
 		case "username":
 		case "ip":
-			
+			$this->parenttag = "contributor";
+			$this->appendfield = $name;
+			xml_set_element_handler( $parser, "in_nothing", "out_append" );
+			xml_set_character_data_handler( $parser, "char_append" );
 			break;
 		default:
 			$this->throwXMLerror( "Invalid tag <$name> in <contributor>" );
 		}
 	}
-	function out_contributor( $parser, $name, $attribs ) {
+	
+	function out_contributor( $parser, $name ) {
 		$this->debug( "out_contributor $name" );
 		if( $name != "contributor" ) {
 			return $this->throwXMLerror( "Expected </contributor>, got </$name>" );
