@@ -58,6 +58,7 @@ require_once( 'BlockCache.php' );
 require_once( 'Parser.php' );
 require_once( 'ParserCache.php' );
 require_once( 'WebRequest.php' );
+require_once( 'SpecialPage.php' );
 
 $wgRequest = new WebRequest();
 
@@ -218,6 +219,10 @@ $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
 $wgParserCache = new ParserCache();
 $wgParser = new Parser();
 $wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
+
+if ( !$wgAllowSysopQueries ) {
+	SpecialPage::removePage( 'Asksql' );
+}
 
 # Placeholders in case of DB error
 $wgTitle = Title::newFromText( wfMsg( 'badtitle' ) );
