@@ -132,12 +132,6 @@ CREATE TABLE oldimage (
   oi_timestamp char(14) binary NOT NULL default ''
 ) TYPE=MyISAM PACK_KEYS=1;
 
-DROP TABLE IF EXISTS random;
-CREATE TABLE random (
-  ra_current tinyint(1) unsigned not null default 0,
-  ra_title varchar(255) binary not null default ''
-) TYPE=MyISAM PACK_KEYS=1;
-
 DROP TABLE IF EXISTS recentchanges;
 CREATE TABLE recentchanges (
   rc_timestamp varchar(14) binary NOT NULL default '',

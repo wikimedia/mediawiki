@@ -40,8 +40,6 @@ GRANT SELECT ON {$wgDBname}.image
  TO {$wgDBsqluser}@'%' IDENTIFIED BY '{$wgDBsqlpassword}';
 GRANT SELECT ON {$wgDBname}.oldimage
  TO {$wgDBsqluser}@'%' IDENTIFIED BY '{$wgDBsqlpassword}';
-GRANT SELECT ON {$wgDBname}.random
- TO {$wgDBsqluser}@'%' IDENTIFIED BY '{$wgDBsqlpassword}';
 GRANT SELECT ON {$wgDBname}.recentchanges
  TO {$wgDBsqluser}@'%' IDENTIFIED BY '{$wgDBsqlpassword}';
 GRANT SELECT ON {$wgDBname}.watchlist
@@ -72,8 +70,6 @@ GRANT SELECT ON {$wgDBname}.image
  TO {$wgDBsqluser}@localhost IDENTIFIED BY '{$wgDBsqlpassword}';
 GRANT SELECT ON {$wgDBname}.oldimage
  TO {$wgDBsqluser}@localhost IDENTIFIED BY '{$wgDBsqlpassword}';
-GRANT SELECT ON {$wgDBname}.random
- TO {$wgDBsqluser}@localhost IDENTIFIED BY '{$wgDBsqlpassword}';
 GRANT SELECT ON {$wgDBname}.recentchanges
  TO {$wgDBsqluser}@localhost IDENTIFIED BY '{$wgDBsqlpassword}';
 GRANT SELECT ON {$wgDBname}.watchlist
@@ -103,8 +99,6 @@ GRANT SELECT ON {$wgDBname}.ipblocks
 GRANT SELECT ON {$wgDBname}.image
  TO {$wgDBsqluser}@localhost.localdomain IDENTIFIED BY '{$wgDBsqlpassword}';
 GRANT SELECT ON {$wgDBname}.oldimage
- TO {$wgDBsqluser}@localhost.localdomain IDENTIFIED BY '{$wgDBsqlpassword}';
-GRANT SELECT ON {$wgDBname}.random
  TO {$wgDBsqluser}@localhost.localdomain IDENTIFIED BY '{$wgDBsqlpassword}';
 GRANT SELECT ON {$wgDBname}.recentchanges
  TO {$wgDBsqluser}@localhost.localdomain IDENTIFIED BY '{$wgDBsqlpassword}';
