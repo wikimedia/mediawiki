@@ -1,8 +1,12 @@
 <?php
 
 # Globals used: 
-#    major:  $wgUser, $wgTitle, 
-#    minor:  $wgUseTex
+#    objects:   $wgUser, $wgTitle, $wgLang, $wgDateFormatter, $wgLinkCache, $wgCurOut, $wgArticle
+#
+#    query:     $wpPreview
+#               
+#    settings:  $wgUseTex, $wgUseCategoryMagic, $wgUseDynamicDates, $wgInterwikiMagic,
+#               $wgNamespacesWithSubpages, $wgLanguageCode, $wgUseLinkPrefixCombination
 
 class Parser
 {
@@ -52,22 +56,7 @@ class Parser
 		$text = str_replace( $unique, wfHtmlEscapeFirst( $unique ), $text );
 		$text = str_replace( $unique2, wfHtmlEscapeFirst( $unique2 ), $text );
 		$text = str_replace( $unique3, wfHtmlEscapeFirst( $unique3 ), $text );
-		
-		/*
-		global $wgEnableParserCache;
-		$use_parser_cache = 
-			$wgEnableParserCache && $action == "view" &&
-			intval($wgUser->getOption( "stubthreshold" )) == 0 && 
-			is_object($article) && $article->getID() > 0;
-
-		if( $use_parser_cache ){
-			if( $this->fillFromParserCache() ){
-				wfProfileOut( $fname );
-				return;
-			}
-		}
-		*/
-		
+			
 		while ( "" != $text ) {
 			$p = preg_split( "/<\\s*nowiki\\s*>/i", $text, 2 );
 			$stripped .= $p[0];
@@ -131,12 +120,6 @@ class Parser
 			$text = preg_replace( "/{$unique}{$i}s/", str_replace( $specialChars, 
 				$escapedChars, $nwlist[$i] ), $text );
 		}
-		
-		/*
-		if($use_parser_cache ){
-			$this->saveParserCache( $text );
-		}
-		*/
 		
 		$this->mOutput->setText( $text );
 		wfProfileOut( $fname );
@@ -255,102 +238,102 @@ function fixTagAttributes ( $t )
 
 function doTableStuff ( $t )
 {
-  $t = explode ( "\n" , $t ) ;
-  $td = array () ; # Is currently a td tag open?
-  $ltd = array () ; # Was it TD or TH?
-  $tr = array () ; # Is currently a tr tag open?
-  $ltr = array () ; # tr attributes
-  foreach ( $t AS $k => $x )
-    {
-      $x = rtrim ( $x ) ;
-      $fc = substr ( $x , 0 , 1 ) ;
-      if ( "{|" == substr ( $x , 0 , 2 ) )
-	{
-	  $t[$k] = "<table " . $this->fixTagAttributes ( substr ( $x , 3 ) ) . ">" ;
-	  array_push ( $td , false ) ;
-	  array_push ( $ltd , "" ) ;
-	  array_push ( $tr , false ) ;
-	  array_push ( $ltr , "" ) ;
-	}
-      else if ( count ( $td ) == 0 ) { } # Don't do any of the following
-      else if ( "|}" == substr ( $x , 0 , 2 ) )
-	{
-	  $z = "</table>\n" ;
-          $l = array_pop ( $ltd ) ;
-          if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
-	  if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
-          array_pop ( $ltr ) ;
-	  $t[$k] = $z ;
-	}
-/*      else if ( "|_" == substr ( $x , 0 , 2 ) ) # Caption
-        { 
-        $z = trim ( substr ( $x , 2 ) ) ;
-        $t[$k] = "<caption>{$z}</caption>\n" ;
-        }*/
-      else if ( "|-" == substr ( $x , 0 , 2 ) ) # Allows for |---------------
-	{
-          $x = substr ( $x , 1 ) ;
-          while ( $x != "" && substr ( $x , 0 , 1 ) == '-' ) $x = substr ( $x , 1 ) ;
-          $z = "" ;
-          $l = array_pop ( $ltd ) ;
-          if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
-	  if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
-          array_pop ( $ltr ) ;
-	  $t[$k] = $z ;
-          array_push ( $tr , false ) ;
-	  array_push ( $td , false ) ;
-          array_push ( $ltd , "" ) ;
-          array_push ( $ltr , $this->fixTagAttributes ( $x ) ) ;
-	}
-      else if ( "|" == $fc || "!" == $fc || "|+" == substr ( $x , 0 , 2 ) ) # Caption
-	{
-          if ( "|+" == substr ( $x , 0 , 2 ) )
-              {
-              $fc = "+" ;
-              $x = substr ( $x , 1 ) ;
-              }
-          $after = substr ( $x , 1 ) ;
-          if ( $fc == "!" ) $after = str_replace ( "!!" , "||" , $after ) ;
-          $after = explode ( "||" , $after ) ;
-          $t[$k] = "" ;
-          foreach ( $after AS $theline )
-             {
-	  $z = "" ;
-	  if ( $fc != "+" )
-	  {  
-            $tra = array_pop ( $ltr ) ;
-            if ( !array_pop ( $tr ) ) $z = "<tr {$tra}>\n" ;
-            array_push ( $tr , true ) ;
-            array_push ( $ltr , "" ) ;
-	  }
+	$t = explode ( "\n" , $t ) ;
+	$td = array () ; # Is currently a td tag open?
+		$ltd = array () ; # Was it TD or TH?
+		$tr = array () ; # Is currently a tr tag open?
+		$ltr = array () ; # tr attributes
+		foreach ( $t AS $k => $x )
+		{
+			$x = rtrim ( $x ) ;
+			$fc = substr ( $x , 0 , 1 ) ;
+			if ( "{|" == substr ( $x , 0 , 2 ) )
+			{
+				$t[$k] = "<table " . $this->fixTagAttributes ( substr ( $x , 3 ) ) . ">" ;
+				array_push ( $td , false ) ;
+				array_push ( $ltd , "" ) ;
+				array_push ( $tr , false ) ;
+				array_push ( $ltr , "" ) ;
+			}
+			else if ( count ( $td ) == 0 ) { } # Don't do any of the following
+			else if ( "|}" == substr ( $x , 0 , 2 ) )
+			{
+				$z = "</table>\n" ;
+				$l = array_pop ( $ltd ) ;
+				if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
+				if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+				array_pop ( $ltr ) ;
+				$t[$k] = $z ;
+			}
+			/*      else if ( "|_" == substr ( $x , 0 , 2 ) ) # Caption
+					{ 
+					$z = trim ( substr ( $x , 2 ) ) ;
+					$t[$k] = "<caption>{$z}</caption>\n" ;
+					}*/
+			else if ( "|-" == substr ( $x , 0 , 2 ) ) # Allows for |---------------
+			{
+				$x = substr ( $x , 1 ) ;
+				while ( $x != "" && substr ( $x , 0 , 1 ) == '-' ) $x = substr ( $x , 1 ) ;
+				$z = "" ;
+				$l = array_pop ( $ltd ) ;
+				if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
+				if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+				array_pop ( $ltr ) ;
+				$t[$k] = $z ;
+				array_push ( $tr , false ) ;
+				array_push ( $td , false ) ;
+				array_push ( $ltd , "" ) ;
+				array_push ( $ltr , $this->fixTagAttributes ( $x ) ) ;
+			}
+			else if ( "|" == $fc || "!" == $fc || "|+" == substr ( $x , 0 , 2 ) ) # Caption
+			{
+				if ( "|+" == substr ( $x , 0 , 2 ) )
+				{
+					$fc = "+" ;
+					$x = substr ( $x , 1 ) ;
+				}
+				$after = substr ( $x , 1 ) ;
+				if ( $fc == "!" ) $after = str_replace ( "!!" , "||" , $after ) ;
+				$after = explode ( "||" , $after ) ;
+				$t[$k] = "" ;
+				foreach ( $after AS $theline )
+				{
+					$z = "" ;
+					if ( $fc != "+" )
+					{  
+						$tra = array_pop ( $ltr ) ;
+						if ( !array_pop ( $tr ) ) $z = "<tr {$tra}>\n" ;
+						array_push ( $tr , true ) ;
+						array_push ( $ltr , "" ) ;
+					}
 
-          $l = array_pop ( $ltd ) ;
-	  if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
-          if ( $fc == "|" ) $l = "TD" ;
-          else if ( $fc == "!" ) $l = "TH" ;
-          else if ( $fc == "+" ) $l = "CAPTION" ;
-          else $l = "" ;
-          array_push ( $ltd , $l ) ;
-	  $y = explode ( "|" , $theline , 2 ) ;
-          if ( count ( $y ) == 1 ) $y = "{$z}<{$l}>{$y[0]}" ;
-          else $y = $y = "{$z}<{$l} ".$this->fixTagAttributes($y[0]).">{$y[1]}" ;
-          $t[$k] .= $y ;
-	  array_push ( $td , true ) ;
-             }
+					$l = array_pop ( $ltd ) ;
+					if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+					if ( $fc == "|" ) $l = "TD" ;
+					else if ( $fc == "!" ) $l = "TH" ;
+					else if ( $fc == "+" ) $l = "CAPTION" ;
+					else $l = "" ;
+					array_push ( $ltd , $l ) ;
+					$y = explode ( "|" , $theline , 2 ) ;
+					if ( count ( $y ) == 1 ) $y = "{$z}<{$l}>{$y[0]}" ;
+					else $y = $y = "{$z}<{$l} ".$this->fixTagAttributes($y[0]).">{$y[1]}" ;
+					$t[$k] .= $y ;
+					array_push ( $td , true ) ;
+				}
+			}
+		}
+
+	# Closing open td, tr && table
+	while ( count ( $td ) > 0 )
+	{
+		if ( array_pop ( $td ) ) $t[] = "</td>" ;
+		if ( array_pop ( $tr ) ) $t[] = "</tr>" ;
+		$t[] = "</table>" ;
 	}
-    }
 
-# Closing open td, tr && table
-while ( count ( $td ) > 0 )
-{
-if ( array_pop ( $td ) ) $t[] = "</td>" ;
-if ( array_pop ( $tr ) ) $t[] = "</tr>" ;
-$t[] = "</table>" ;
-}
-
-  $t = implode ( "\n" , $t ) ;
-#		$t = $this->removeHTMLtags( $t );
-  return $t ;
+	$t = implode ( "\n" , $t ) ;
+	#		$t = $this->removeHTMLtags( $t );
+	return $t ;
 }
 
 	# Well, OK, it's actually about 14 passes.  But since all the
