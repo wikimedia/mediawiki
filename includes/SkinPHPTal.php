@@ -324,6 +324,7 @@ if( defined( "MEDIAWIKI" ) ) {
 				/* set up the classes for the talk link */
 				$talk_class = (Namespace::isTalk( $wgTitle->getNamespace()) ? 'selected' : false);				
 				$talktitle = Title::newFromText( $this->titletxt );
+				$this->checkTitle($talktitle, $this->titletxt);	
 				$talktitle = $talktitle->getTalkPage();
 				$this->checkTitle($talktitle, $this->titletxt);	
 				if($talktitle->getArticleId() != 0) { 
