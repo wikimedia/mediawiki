@@ -302,7 +302,7 @@ class memcached
       $res = trim(fgets($sock));
       
       if ($this->_debug)
-         printf("MemCache: delete %s (%s)\n", $key, $res);
+         $this->_debugprint(sprintf("MemCache: delete %s (%s)\n", $key, $res));
       
       if ($res == "DELETED")
          return true;
@@ -388,8 +388,8 @@ class memcached
       
       if ($this->_debug)
          foreach ($val as $k => $v)
-            printf("MemCache: sock %s got %s => %s\r\n", $sock, $k, $v);
-      
+            $this->_debugprint(sprintf("MemCache: sock %s got %s => %s\r\n", $sock, $k, $v));
+
       return $val[$key];
    }
 
@@ -452,7 +452,7 @@ class memcached
       
       if ($this->_debug)
          foreach ($val as $k => $v)
-            printf("MemCache: got %s => %s\r\n", $k, $v);
+            $this->_debugprint(sprintf("MemCache: got %s => %s\r\n", $k, $v));
             
       return $val;
    }
@@ -820,7 +820,7 @@ class memcached
             {
                // Something is borked!
                if ($this->_debug)
-                  printf("Something is borked!  key %s expecting %d got %d length\n", $rkey, $len+2, $offset);
+                  $this->_debugprint(sprintf("Something is borked!  key %s expecting %d got %d length\n", $rkey, $len+2, $offset));
 
                unset($ret[$rkey]);
                $this->_close_sock($sock);
@@ -837,7 +837,7 @@ class memcached
 
          } else 
          {
-            print("Error parsing memcached response\n");
+            $this->_debugprint("Error parsing memcached response\n");
             return 0;
          }
       }
@@ -875,7 +875,7 @@ class memcached
          $val = serialize($val);
          $flags |= MEMCACHE_SERIALIZED;
          if ($this->_debug)
-            printf("client: serializing data as it is not scalar\n");
+            $this->_debugprint(sprintf("client: serializing data as it is not scalar\n"));
       }
       
       $len = strlen($val);
@@ -889,7 +889,7 @@ class memcached
          if ($c_len < $len*(1 - COMPRESS_SAVINGS))
          {
             if ($this->_debug)
-               printf("client: compressing data; was %d bytes is now %d bytes\n", $len, $c_len);
+               $this->_debugprint(sprintf("client: compressing data; was %d bytes is now %d bytes\n", $len, $c_len));
             $val = $c_val;
             $len = $c_len;
             $flags |= MEMCACHE_COMPRESSED;
@@ -904,7 +904,7 @@ class memcached
       {
          if ($flags & MEMCACHE_COMPRESSED)
             $val = 'compressed data';
-         printf("MemCache: %s %s => %s (%s)\n", $cmd, $key, $val, $line);
+         $this->_debugprint(sprintf("MemCache: %s %s => %s (%s)\n", $cmd, $key, $val, $line));
       }
       if ($line == "STORED")
          return true;
@@ -942,6 +942,10 @@ class memcached
       $this->_cache_sock[$host] = $sock;
       
       return $this->_cache_sock[$host];
+   }
+
+   function _debugprint($str){
+      print($str);
    }
 
    // }}}
