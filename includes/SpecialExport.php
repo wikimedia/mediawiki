@@ -46,6 +46,7 @@ function pages2xml( $pages, $curonly = false ) {
 function page2xml( $page, $curonly, $full = false ) {
 	global $wgInputCharset, $wgLang;
 	$title = Title::NewFromText( $page );
+	if( !$title ) return "";
 	$t = wfStrencode( $title->getDBKey() );
 	$ns = $title->getNamespace();
 	$sql = "SELECT cur_id as id,cur_timestamp as timestamp,cur_user as user,cur_user_text as user_text," .
