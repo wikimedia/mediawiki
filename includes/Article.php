@@ -532,6 +532,7 @@ class Article {
 		$encDBkey = $dbr->addQuotes( $title->getDBkey() );
 		$ns = $title->getNamespace();
 		$user = $this->getUser();
+		$pageId = $this->getId();
 
 		$sql = "SELECT rev_user, rev_user_text, user_real_name, MAX(rev_timestamp) as timestamp
 			FROM $revTable LEFT JOIN $userTable ON rev_user = user_id
