@@ -45,7 +45,7 @@ class AncientPagesPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgLang;
 
-		$d = $wgLang->timeanddate( wfTimestamp( $result->value ), true );
+		$d = $wgLang->timeanddate( wfTimestamp( TS_MW, $result->value ), true );
 		$link = $skin->makeKnownLink( $result->title, "" );
 		return "{$link} ({$d})";
 	}
