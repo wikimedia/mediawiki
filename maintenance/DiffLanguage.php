@@ -40,8 +40,8 @@ require_once( "commandLine.inc" );
 $wgLanguageCode = strtoupper(substr($wgLanguageCode,0,1)).strtolower(substr($wgLanguageCode,1));
 
 # read command line argument
-if ( isset($argv[1]) ) {
-	$lang = $argv[1];
+if ( isset($args[0]) ) {
+	$lang = $args[0];
 
 # or prompt a simple menu
 } else {

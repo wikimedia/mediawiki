@@ -3,8 +3,6 @@
 # The wiki should be put into read-only mode while this script executes
 
 require_once( "commandLine.inc" );
-# the below should probably be moved into commandLine.inc at some point
-require_once( "../AdminSettings.php" );
 require_once( "convertLinks.inc" );
 
 convertLinks();

@@ -1,4 +1,7 @@
 <?php
+
+# This script was used to convert the live Wikimedia wikis from 1.2 to 1.3
+
 $maintenance = "/home/wikipedia/common/php-new/maintenance";
 require_once( "$maintenance/liveCmdLine.inc" );
 require_once( "$maintenance/InitialiseMessages.inc" );
