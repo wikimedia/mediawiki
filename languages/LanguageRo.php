@@ -79,16 +79,35 @@ include_once("LanguageUtf8.php");
 	"Duminică", "Luni", "Marţi", "Miercuri", "Joi",
 	"Vineri", "Sâmbătă"
 );
-
+# Yes, the month names start with small letters in Romanian.
 /* private */ $wgMonthNamesRo = array(
-	"Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie",
-	"Iulie", "August", "Septembrie", "Octombrie", "Noiembrie",
-	"Decembrie"
+	"ianuarie", "februarie", "martie", "aprilie", "mai", "iunie",
+	"iulie", "august", "septembrie", "octombrie", "noiembrie",
+	"decembrie"
 );
 
 /* private */ $wgMonthAbbreviationsRo = array(
 	"Ian", "Feb", "Mar", "Apr", "Mai", "Iun", "Iul", "Aug",
 	"Sep", "Oct", "Noi", "Dec"
+);
+
+/* private */ $wgMagicWordsEn = array(
+#   ID                                 CASE  SYNONYMS
+    MAG_REDIRECT             => array( 0,    "#redirect"              ),
+    MAG_NOTOC                => array( 0,    "__FARACUPRINS__"              ),
+    MAG_NOEDITSECTION        => array( 0,    "__FARAEDITSECTIUNE__"      ),
+    MAG_START                => array( 0,    "__START__"              ),
+    MAG_CURRENTMONTH         => array( 1,    "{{NUMARLUNACURENTA}}"       ),
+    MAG_CURRENTMONTHNAME     => array( 1,    "{{NUMELUNACURENTA}}"   ),
+    MAG_CURRENTDAY           => array( 1,    "{{NUMARZIUACURENTA}}"         ),   
+    MAG_CURRENTDAYNAME       => array( 1,    "{{NUMEZIUACURENTA}}"     ),
+    MAG_CURRENTYEAR          => array( 1,    "{{ANULCURENT}}"        ),
+    MAG_CURRENTTIME          => array( 1,    "{{ORACURENTA}}"        ),
+    MAG_NUMBEROFARTICLES     => array( 1,    "{{NUMARDEARTICOLE}}"   ),
+    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "{{NUMELUNACURENTAGEN}}"),
+	MAG_MSG                  => array( 1,    "{{MSJ:$1}}"             ),
+	MAG_SUBST                => array( 1,    "{{SUBST:$1}}"           ),
+    MAG_MSGNW                => array( 1,    "{{MSJNOU:$1}}"           )
 );
 
 # All special pages have to be listed here: a description of ""
@@ -162,6 +181,8 @@ include_once("LanguageUtf8.php");
 "wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "Raportare probleme",
 "bugreportspage" => "Wikipedia:Rapoarte_probleme",
+"sitesupport"   => "Donaţii",
+"sitesupportpage" => "", # If not set, won't appear. Can be wiki page or URL
 "faq"			=> "Întrebări frecvente",
 "faqpage"		=> "Wikipedia:Întrebări_frecvente",
 "edithelp"		=> "Ajutor pentru editare",
@@ -173,6 +194,8 @@ include_once("LanguageUtf8.php");
 "qbpageoptions" => "Opţiuni ale paginii",
 "qbpageinfo"	=> "Informaţii ale paginii",
 "qbmyoptions"	=> "Opţiunile mele",
+"qbspecialpages"	=> "Pagini speciale",
+"moredotdotdot"	=> "Altele...",
 "mypage"		=> "Pagina mea",
 "mytalk"		=> "Discuţiile mele",
 "currentevents" => "Evenimente curente",
@@ -191,7 +214,7 @@ include_once("LanguageUtf8.php");
 "unprotectthispage" => "Deprotejează pagina",
 "newpage" => "Pagină nouă",
 "talkpage"		=> "Discută pagina",
-"postcomment"	=> "Agaugă comentariu",
+"postcomment"	=> "Adaugă comentariu",
 "articlepage"	=> "Vezi articolul",
 "subjectpage"	=> "Vezi subiectul", # For compatibility
 "userpage" => "Vezi pagina utilizatorului",
@@ -224,6 +247,8 @@ Vezi $1.",
 "toc" => "Cuprins",
 "showtoc" => "arată",
 "hidetoc" => "ascunde",
+"thisisdeleted" => "Vezi sau recuperează $1?",
+"restorelink" => "$1 editări şterse",
 
 # Main script and global functions
 #
@@ -270,6 +295,16 @@ Administratorul care a blocat-o a oferit această explicaţie:
 "badtitletext"	=> "Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.",
 "perfdisabled" => "Ne pare rău! Această funcţionalitate a fost dezactivată temporar în timpul orelor de vârf din motive de performanţă. Vă rugăm să reveniţi la altă oră şi încercaţi din nou.", // Didn't provide any off-peak hours because they may differ on the Romanian Wikipedia.
 "perfdisabledsub"	=> "Iată o copie salvată de la $1:",
+"wrong_wfQuery_params" => "Număr incorect de parametri pentru wfQuery()<br>
+Funcţia: $1<br>
+Query: $2
+",
+"viewsource" => "Vezi sursa",
+"protectedtext" => "Această pagină a fost protejată la editare;
+există mai multe motive posibile pentru aceasta, vezi
+[[$wgMetaNamespace:Pagină protejată]].
+
+Puteţi vedea şi copia sursa acestei pagini:",
 
 # Login and logout pages
 #
@@ -302,6 +337,8 @@ Adresa de mail este opţională; dacă vă pierdeţi parola o puteţi cere la ad
 "yournick"		=> "Versiune scurtă a numelui, pentru semnături",
 "emailforlost"	=> "Dacă vă pierdeţi parola, puteţi cere să vi se trimită una nouă la adresa de mail.",
 "loginerror"	=> "Eroare de autentificare",
+"nocookies"	=> "Cookie-uri deactivate",
+"nocookiestext"	=> "Wiki foloseşte cookie-uri pentru a autentifica utilizatorii. Browser-ul Dvs. are cookies dezactivate. Vă rugăm să le activaţi în browser şi să încercaţi din nou.",
 "noname"		=> "Numele de utilizator pe care l-aţi specificat este invalid.",
 "loginsuccesstitle" => "Autentificare reuşită",
 "loginsuccess"	=> "Aţi fost autentificat în Wikipedia ca \"$1\".",
@@ -430,6 +467,28 @@ Vă rugăm să încercaţi o altă căutare.",
 Caută în secţiunile:<br>
 $1<br>
 $2 Redirecţionări&nbsp; Căutări după $3 $9",
+
+"searchdisabled" => "<p>Ne pare rău! Căutarea după text a fost dezactivată temporar, din motive de performanţă. Între timp puteţi folosi căutarea prin Google mai jos, însă aceasta poate să dea rezultate învechite.</p>
+
+<!-- SiteSearch Google -->
+<FORM method=GET action=\"http://www.google.com/search\">
+<TABLE bgcolor=\"#FFFFFF\"><tr><td>
+<A HREF=\"http://www.google.com/\">
+<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
+border=\"0\" ALT=\"Google\"></A>
+</td>
+<td>
+<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
+<INPUT type=submit name=btnG VALUE=\"Caută pe Google\">
+<font size=-1>
+<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br>
+<input type='hidden' name='ie' value='$2'>
+<input type='hidden' name='oe' value='$2'>
+</font>
+</td></tr></TABLE>
+</FORM>
+<!-- SiteSearch Google -->",
+
 "blanknamespace" => "(Principală)",
 
 
@@ -552,6 +611,8 @@ Toate datele/orele sunt afişate ca timp universal (UTC).
 ",
 "filename"		=> "Nume fişier",
 "filedesc"		=> "Sumar",
+"filestatus" => "Statutul drepturilor de autor",
+"filesource" => "Sursa",
 "affirmation"	=> "Afirm că persoana care deţine drepturile de autor asupra acestui fişier este de acord cu termenii licenţei $1.",
 "copyrightpage" => "Wikipedia:Drepturi_de_autor",
 "copyrightpagename" => "Drepturi de autor în Wikipedia",
@@ -724,6 +785,7 @@ pagini urmărite şi apăsaţi pe butonul corespunzător din partea de jos a pag
 "couldntremove" => "Elementul '$1' nu a putut fi şters...",
 "iteminvalidname" => "E o problemă cu elementul '$1', numele este invalid...",
 "wlnote" => "Dedesubt găsiţi ultimele $1 schimbări din ultimele <b>$2</b> ore.",
+"wlshowlast" => "Arată ultimele $1 ore $2 zile $3",
 
 # Delete/protect/revert
 #
@@ -764,7 +826,12 @@ Ultima editare a fost făcută de către [[Utilizator:$3|$3]] ([[Discuţie utili
 #   only shown if there is an edit comment
 "editcomment" => "Comentariul de editare a fost: \"<i>$1</i>\".",
 "revertpage"	=> "Revenit la ultima editare de către $1",
+"protectlogpage" => "Jurnal_protecţii",
+"protectlogtext" => "Dedesubt găsiţi lista de blocări/deblocări ale paginilor.
+Vezi [[$wgMetaNamespace:Pagină protejată]] pentru mai multe informaţii.",
 "historywarning" => "Atenţie! Pagina pe care o ştergeţi are istorie: ",
+"protectedarticle" => "protejat [[$1]]",
+"unprotectedarticle" => "deprotejat [[$1]]",
 
 # Undelete
 "undelete" => "Recuperează pagina ştearsă",
@@ -830,6 +897,13 @@ drepturile de scriere pentru o adresă IP blocată anterior..",
 "blocklink"		=> "blochează",
 "unblocklink"	=> "deblochează",
 "contribslink"	=> "contribuţii",
+"autoblocker"	=> "Autoblocat fiindcă folosiţi aceeaşi [[adresă IP]] ca şi \"$1\". Motivul este \"$2\".",
+"blocklogpage"	=> "Jurnal_blocări",
+"blocklogentry"	=> 'blocat "$1"',
+"blocklogtext"	=> "Acesta este un jurnal al acţiunilor de blocare şi deblocare.
+[[Adresă IP|Adresele IP]] blocate automat nu sunt afişate.
+Vedeţi [[Special:Ipblocklist|Lista de adrese blocate]] pentru o listă explicită a adreselor blocate în acest moment.",
+"unblocklogentry"	=> 'deblocat "$1"',
 
 # Developer tools
 #
@@ -917,7 +991,16 @@ să unificaţi manual cele două pagini de discuţii.",
 "movetalk"		=> "Mută şi pagina de \"discuţii\" dacă se poate.",
 "talkpagemoved" => "Şi pagina de discuţii asociată a fost mutată.",
 "talkpagenotmoved" => "Pagina asociată de discuţii <strong>nu</strong> a fost mutată.",
+"export"		=> "Exportă pagini",
+"exporttext"	=> "Puteţi exporta textul şi istoria unei pagini anume sau ale unui grup
+de pagini în XML. Acesta poate fi apoi importat în alt Wiki care rulează software MediaWiki,
+pate fi transformat sau păstrat pur şi simplu fiindcă doriţi Dvs. să-l păstraţi.",
+"exportcuronly"	=> "Include numai versiunea curentă, nu şi toată istoria",
 
+# Namespace 8 related
+
+"allmessages"	=> "Toate_mesajele",
+"allmessagestext"	=> "Aceasta este lista completă a mesajelor disponibile în domeniul \"MediaWiki:\"",
 );
 
 class LanguageRo extends LanguageUtf8 {
