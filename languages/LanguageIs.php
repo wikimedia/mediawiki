@@ -875,7 +875,9 @@ class LanguageIs extends LanguageUtf8 {
 	
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
-		$date = (0 + substr( $ts, 6, 2 )) . '. ' . $this->getMonthName( substr( $ts, 4, 2 ) );
+		$date = (0 + substr( $ts, 6, 2 )) . '. ' .
+			$this->getMonthName( substr( $ts, 4, 2 ) ) . ' ' .
+			substr($ts, 0, 4); 
 		return $date;
 	}
 }
