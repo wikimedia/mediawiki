@@ -1,4 +1,12 @@
 <?php
+/**
+ * This script is used to clear the interwiki links for ALL languages in
+ * memcached.
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
+
+/** */
 require_once('commandLine.inc');
 
 foreach ( $wgLocalDatabases as $db ) {

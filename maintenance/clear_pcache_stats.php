@@ -1,4 +1,10 @@
 <?php
+/**
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
+
+/** */
 require_once('commandLine.inc');
 
 foreach ( $wgLocalDatabases as $db ) {
@@ -8,6 +14,7 @@ foreach ( $wgLocalDatabases as $db ) {
 	noisyDelete("$db:stats:pcache_miss_absent");
 }
 
+/** @todo document */
 function noisyDelete( $key ) {
 	global $wgMemc;
 	/*

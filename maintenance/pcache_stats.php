@@ -1,4 +1,10 @@
 <?php
+/**
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
+
+/** */
 require_once('commandLine.inc');
 
 $hits = intval($wgMemc->get("$wgDBname:stats:pcache_hit"));

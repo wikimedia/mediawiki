@@ -1,10 +1,15 @@
 <?php
-
+/**
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 error_reporting(E_ALL);
 
+/** */
 require_once( "commandLine.inc" );
 require_once( 'includes/SpecialExport.php' );
 
+/** */
 function dumpReplayLog( $start ) {
 	$dbw =& wfGetDB( DB_MASTER );
 	$recentchanges = $dbw->tableName( 'recentchanges' );
@@ -22,6 +27,7 @@ function dumpReplayLog( $start ) {
 	$dbw->freeResult( $result );
 }
 
+/** */
 function dumpReplayEntry( $row ) {
 	$title = Title::MakeTitle( $row->rc_namespace, $row->rc_title );
 	switch( $row->rc_type ) {

@@ -1,9 +1,14 @@
 <?php
+/**
+ * Squid purge benchmark script
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
-/* Squid purge benchmark script */
-
+/** */
 require_once( "commandLine.inc" );
 
+/** @todo document */
 function benchSquid( $urls, $trials = 1 ) {
 	$start = wfTime();
 	for( $i = 0; $i < $trials; $i++) {
@@ -16,6 +21,7 @@ function benchSquid( $urls, $trials = 1 ) {
 		count( $urls ), $pertrial * 1000.0, $pertitle * 1000.0 );
 }
 
+/** @todo document */
 function randomUrlList( $length ) {
 	$list = array();
 	for( $i = 0; $i < $length; $i++ ) {
@@ -24,11 +30,13 @@ function randomUrlList( $length ) {
 	return $list;
 }
 
+/** @todo document */
 function randomUrl() {
 	global $wgServer, $wgArticlePath;
 	return $wgServer . str_replace( '$1', randomTitle(), $wgArticlePath );
 }
 
+/** @todo document */
 function randomTitle() {
 	$str = '';
 	$length = mt_rand( 1, 20 );
@@ -54,5 +62,4 @@ if( !$wgUseSquid ) {
 		print "$trial\n";
 	}
 }
-
 ?>
