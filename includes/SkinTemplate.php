@@ -816,7 +816,7 @@ class SkinTemplate extends Skin {
 			$action = $wgRequest->getText('action');
 			
 			# if we're previewing the CSS page, use it
-			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
+			if( $wgTitle->isCssSubpage() and $this->userCanPreview( $action ) ) {
 				# we are previewing
 				$siteargs = "&maxage=0";
 				# use the raw css just posted directly in the header of the page
@@ -856,7 +856,7 @@ class SkinTemplate extends Skin {
 		$action = $wgRequest->getText('action');
 
 		if( $wgAllowUserJs && $this->loggedin ) {
-			if($wgTitle->isJsSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
+			if( $wgTitle->isJsSubpage() and $this->userCanPreview( $action ) ) {
 				# XXX: additional security check/prompt?
 				$this->userjsprev = '/*<![CDATA[*/ ' . $wgRequest->getText('wpTextbox1') . ' /*]]>*/';
 			} else {

@@ -94,11 +94,17 @@ class EditPage {
 				# If the form is incomplete, force to preview.
 				$this->preview  = true;
 			} else {
-				# Some browsers will not report any submit button
-				# if the user hits enter in the comment box.
-				# The unmarked state will be assumed to be a save,
-				# if the form seems otherwise complete.
-				$this->preview = $request->getCheck( 'wpPreview' );
+				if( $this->tokenOk( $request ) ) {
+					# Some browsers will not report any submit button
+					# if the user hits enter in the comment box.
+					# The unmarked state will be assumed to be a save,
+					# if the form seems otherwise complete.
+					$this->preview = $request->getCheck( 'wpPreview' );
+				} else {
+					# Page might be a hack attempt posted from
+					# an external site. Preview instead of saving.
+					$this->preview = true;
+				}
 			}
 			$this->save    = !$this->preview;
 			if( !preg_match( '/^\d{14}$/', $this->edittime )) {
@@ -125,6 +131,24 @@ class EditPage {
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
 	}
 
+	/**
+	 * Make sure the form isn't faking a user's credentials.
+	 *
+	 * @param WebRequest $request
+	 * @return bool
+	 * @access private
+	 */
+	function tokenOk( &$request ) {
+		global $wgUser;
+		if( $wgUser->getId() == 0 ) {
+			# Anonymous users may not have a session
+			# open. Don't tokenize.
+			return true;
+		} else {
+			return $wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
+		}
+	}
+	
 	function submit() {
 		$this->edit();
 	}
@@ -515,6 +539,20 @@ htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
 <input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n" );
 
+		if ( 0 != $wgUser->getID() ) {
+			/**
+			 * To make it harder for someone to slip a user a page
+			 * which submits an edit form to the wiki without their
+			 * knowledge, a random token is associated with the login
+			 * session. If it's not passed back with the submission,
+			 * we won't save the page, or render user JavaScript and
+			 * CSS previews.
+			 */
+			$token = htmlspecialchars( $wgUser->editToken() );
+			$wgOut->addHTML( "
+<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
+		}
+		
 		if ( $isConflict ) {
 			require_once( "DifferenceEngine.php" );
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourdiff" ) . "</h2>\n" );
