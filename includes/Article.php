@@ -661,7 +661,7 @@ class Article {
 
 		$sql = "SELECT old_user, old_user_text, user_real_name, MAX(old_timestamp) as timestamp
 			FROM $oldTable LEFT JOIN $userTable ON old_user = user_id
-			WHERE old_namespace = $user
+			WHERE old_namespace = $ns
 			AND old_title = $encDBkey
 			AND old_user != $user
 			GROUP BY old_user, old_user_text, user_real_name
