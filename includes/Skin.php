@@ -1696,7 +1696,7 @@ class Skin {
 		$mwWidth  =& MagicWord::get( MAG_IMG_WIDTH );
 		$mwCenter =& MagicWord::get( MAG_IMG_CENTER );
 		$mwFramed =& MagicWord::get( MAG_IMG_FRAMED );
-		$alt = $part[count($part)-1];
+		$alt = '';
 
 		$height = $framed = $thumb = false;
 		$manual_thumb = "" ;
@@ -1732,6 +1732,8 @@ class Skin {
 				}
 			} elseif ( ! is_null( $mwFramed->matchVariableStartToEnd($val) ) ) {
 				$framed=true;
+			} else {
+				$alt = $val;
 			}
 		}
 		if ( 'center' == $align )
@@ -1770,9 +1772,6 @@ class Skin {
 			if ( '' == $manual_thumb ) $url = $img->createThumb( $width );
 		}
 
-		if ( empty( $alt ) ) {
-			$alt = preg_replace( '/\.(.+?)^/', '', $img->getName() );
-		}
 		$alt = preg_replace( '/<[^>]*>/', '', $alt );
 		$alt = preg_replace('/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/', '&amp;', $alt);
 		$alt = str_replace( array('<', '>', '"'), array('&lt;', '&gt;', '&quot;'), $alt );
