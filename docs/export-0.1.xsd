@@ -63,13 +63,10 @@
 	
 	<complexType name="ContributorType">
 		<sequence>
+			<element name="username" type="string" minOccurs="0"/>
 			<element name="id" type="positiveInteger" minOccurs="0" />
 			
-			<!-- A contributor will contain one or perhaps both of these: -->
-			<element name="username" type="string" minOccurs="0"/>
 			<element name="ip" type="string" minOccurs="0"/>
-			
-			<!-- How do I say that it can't be empty? -->
 		</sequence>
 	</complexType>
 
