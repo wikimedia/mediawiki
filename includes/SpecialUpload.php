@@ -236,8 +236,8 @@ action=\"{$action}\">
   . htmlspecialchars( $wpUploadDescription ) . "\" size=40>
 </td></tr><tr>
 <td align=right>
-<input tabindex=3 type=checkbox name=\"wpUploadAffirm\" value=\"1\">
-</td><td align=left>{$ca}</td></tr>
+<input tabindex=3 type=checkbox name=\"wpUploadAffirm\" value=\"1\" id=\"wpUploadAffirm\">
+</td><td align=left><label for=\"wpUploadAffirm\">{$ca}</label></td></tr>
 <tr><td>&nbsp;</td><td align=left>
 <input tabindex=5 type=submit name=\"wpUpload\" value=\"{$ulb}\">
 </td></tr></table></form>\n" );
