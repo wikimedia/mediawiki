@@ -1479,7 +1479,20 @@ class Language {
 
 	function getUserToggle( $tog ) {
 		$togs =& $this->getUserToggles();
-		return $togs[$tog];
+		if( isset( $togs[$tog] ) ) {
+			return $togs[$tog];
+		}
+		
+		# Fallback to English if not set
+		$deftogs =& Language::getUserToggles();
+		if( isset( $deftogs[$tog] ) ) {
+			return $deftogs[$tog];
+		}
+		
+		# This shouldn't happen unless someone
+		# made a mistake in Language.php. Return
+		# something other than NULL at least...
+		return $tog;
 	}
 
 	function getLanguageNames() {
