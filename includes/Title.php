@@ -758,9 +758,10 @@ class Title {
 		$retVal = array();
 		if ( wfNumRows( $res ) ) {
 			while ( $row = wfFetchObject( $res ) ) {
-				$titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title );
-				$wgLinkCache->addGoodLink( $row->cur_id, $titleObj->getPrefixedDBkey() );
-				$retVal[] = $titleObj;
+				if ( $titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title ) ) {
+					$wgLinkCache->addGoodLink( $row->cur_id, $titleObj->getPrefixedDBkey() );
+					$retVal[] = $titleObj;
+				}
 			}
 		}
 		wfFreeResult( $res );
