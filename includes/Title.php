@@ -487,6 +487,13 @@ class Title {
 		if ( -1 == $this->mNamespace ) { return false; }
 		# if ( 0 == $this->getArticleID() ) { return false; }
 		if ( $this->mDbkeyform == "_" ) { return false; }
+		# protect css/js subpages of user pages
+		# XXX: this might be better using restrictions
+		if( Namespace::getUser() == $this->mNamespace
+			and preg_match("/\\.(css|js)$/", $this->mTextform )
+			and !$wgUser->isDeveloper()
+			and !preg_match("/^".$wgUser->getName()."/", $this->mTextform) )
+		{ return false; }
 
 		$ur = $wgUser->getRights();
 		foreach ( $this->getRestrictions() as $r ) {
