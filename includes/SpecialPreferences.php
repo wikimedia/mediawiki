@@ -172,9 +172,6 @@ class PreferencesForm {
 		array_push( $wgDeferredUpdateList, $up );
 		$wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
 		$po = ParserOptions::newFromUser( $wgUser );
-		print get_class( $wgUser->getSkin() ) . "<br>\n";
-		print get_class( $po->mSkin ) . "<br>\n";
-		print get_class( $wgOut->mParserOptions->mSkin ) . "<br>\n";
 		$this->mainPrefsForm( wfMsg( "savedprefs" ) );
 	}
 
