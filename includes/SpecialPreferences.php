@@ -27,7 +27,7 @@ function wfSpecialPreferences() {
 class PreferencesForm {
 	var $mQuickbar, $mOldpass, $mNewpass, $mRetypePass, $mStubs;
 	var $mRows, $mCols, $mSkin, $mMath, $mDate, $mUserEmail, $mEmailFlag, $mNick;
-	var $mUserLanguage;
+	var $mUserLanguage, $mUserVariant;
 	var $mSearch, $mRecent, $mHourDiff, $mSearchLines, $mSearchChars, $mAction;
 	var $mReset, $mPosted, $mToggles, $mSearchNs, $mRealName, $mImageSize;
 
@@ -53,6 +53,7 @@ class PreferencesForm {
 		$this->mEmailFlag = $request->getCheck( 'wpEmailFlag' ) ? 1 : 0;
 		$this->mNick = $request->getVal( 'wpNick' );
 		$this->mUserLanguage = $request->getVal( 'wpUserLanguage' );
+        $this->mUserVariant = $request->getVal( 'wpUserVariant' );
 		$this->mSearch = $request->getVal( 'wpSearch' );
 		$this->mRecent = $request->getVal( 'wpRecent' );
 		$this->mHourDiff = $request->getVal( 'wpHourDiff' );
@@ -178,6 +179,7 @@ class PreferencesForm {
 		$wgUser->setEmail( $this->mUserEmail );
 		$wgUser->setRealName( $this->mRealName );
 		$wgUser->setOption( 'language', $this->mUserLanguage );
+        $wgUser->setOption( 'variant', $this->mUserVariant );
 		$wgUser->setOption( 'nickname', $this->mNick );
 		$wgUser->setOption( 'quickbar', $this->mQuickbar );
 		$wgUser->setOption( 'skin', $this->mSkin );
@@ -222,6 +224,7 @@ class PreferencesForm {
 		$this->mUserEmail = $wgUser->getEmail();
 		$this->mRealName = ($wgAllowRealName) ? $wgUser->getRealName() : '';
 		$this->mUserLanguage = $wgUser->getOption( 'language');
+        $this->mUserVariant = $wgUser->getOption( 'variant');
 		if ( 1 == $wgUser->getOption( 'disablemail' ) ) { $this->mEmailFlag = 1; }
 		else { $this->mEmailFlag = 0; }
 		$this->mNick = $wgUser->getOption( 'nickname' );
@@ -357,6 +360,7 @@ class PreferencesForm {
 		$yem = wfMsg( 'youremail' );
 		$yrn = ($wgAllowRealName) ? wfMsg( 'yourrealname' ) : '';
 		$yl  = wfMsg( 'yourlanguage' );
+        $yv  = wfMsg( 'yourvariant' );
 		$emf = wfMsg( 'emailflag' );
 		$ynn = wfMsg( 'yournick' );
 		$stt = wfMsg ( 'stubthreshold' ) ;
@@ -397,6 +401,30 @@ class PreferencesForm {
             $wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
         }
         $wgOut->addHtml("</label></div>\n" );
+
+        /* see if there are multiple language variants to choose from*/
+        $variants = $wgLang->getVariants();
+        $size=sizeof($variants);
+
+        $variantArray=array();
+        foreach($variants as $v) {
+            $v = str_replace( '_', '-', strtolower($v));
+            print "v=$v\n";
+            if($name=$wgLanguageNames[$v]) {
+                $variantArray[$v] = $name;
+            }
+        }
+        $size=sizeof($variantArray);
+
+        if(sizeof($variantArray) > 1) {
+		    $wgOut->addHtml("
+              <div><label>$yv: <select name=\"wpUserVariant\" />\n");
+            foreach($variantArray as $code => $name) {
+              $sel = ($code==$this->mUserVariant)? "selected" : "";
+              $wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
+            }
+            $wgOut->addHtml("</label></div>\n");
+        }
 
 		# Fields for changing password
 		#
