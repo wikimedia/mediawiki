@@ -57,7 +57,7 @@ require_once( "LanguageUtf8.php" );
         "köyläwsez",
         "Ğínwar 15, 2001",
         "15. Ğínwar 2001",
-        "2001 Ğínwar 15"
+        "2001 Ğínwar 15",
         "2001-01-15"
 );
 
