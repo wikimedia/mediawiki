@@ -762,28 +762,8 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 		$id = $descTitle->getArticleID();
 
 		if ( $id == 0 ) {
-			$seqVal = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
-			$dbw->insert( 'cur',
-				array(
-					'cur_id' => $seqVal,
-					'cur_namespace' => NS_IMAGE,
-					'cur_title' => $name,
-					'cur_comment' => $desc,
-					'cur_user' => $wgUser->getID(),
-					'cur_user_text' => $wgUser->getName(),
-					'cur_timestamp' => $dbw->timestamp($now),
-					'cur_is_new' => 1,
-					'cur_text' => $textdesc,
-					'inverse_timestamp' => $won,
-					'cur_touched' => $dbw->timestamp($now)
-				), $fname
-			);
-			$id = $dbw->insertId() or 0; # We should throw an error instead
-
-			RecentChange::notifyNew( $now, $descTitle, 0, $wgUser, $desc );
-
-			$u = new SearchUpdate( $id, $name, $desc );
-			$u->doUpdate();
+			$article = new Article( $descTitle );
+			$article->insertNewArticle( $textdesc, $desc, false, false );
 		}
 	} else {
 		# Collision, this is an update of an image
