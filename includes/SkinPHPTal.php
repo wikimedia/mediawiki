@@ -64,7 +64,8 @@
 			global $wgScript, $wgStylePath, $wgLanguageCode, $wgUseNewInterlanguage;
 			global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
 			global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgSiteNotice;
-			
+		        global $wgMaxCredits, $wgShowCreditsIfMax;
+		    
 			extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 
 			$this->initPage( $out );
@@ -177,6 +178,16 @@
 				}
 				$tpl->set('lastmod', $this->lastModified());
 			        $tpl->set('copyright',$this->getCopyright());
+			    
+			        $this->credits = false;
+		    
+			        if (isset($wgMaxCredits) && $wgMaxCredits != 0) {
+   			            require_once("Credits.php");
+			            $this->credits = getCredits($wgArticle, $wgMaxCredits, $wgShowCreditsIfMax);
+			        }
+		    
+ 		                $tpl->setRef( "credits", $this->credits );
+			    
 			} elseif ( isset( $oldid ) && !isset( $diff ) ) {
 				$tpl->set('copyright', $this->getCopyright());
 			}
@@ -189,7 +200,7 @@
 			$tpl->setRef( "debug", $out->mDebugtext );
 			$tpl->set( "reporttime", $out->reportTime() );
 			$tpl->set( "sitenotice", $wgSiteNotice );
-			
+		    
 			$tpl->setRef( "bodytext", $out->mBodytext );
 
 			$language_urls = array();
