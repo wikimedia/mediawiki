@@ -130,19 +130,20 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 
 
 /* private */ $wgWeekdayNamesEn = array(
-	'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
-	'Friday', 'Saturday'
+	'sunday', 'monday', 'tuesday', 'wednesday', 'thursday',
+	'friday', 'saturday'
 );
 
+
 /* private */ $wgMonthNamesEn = array(
-	'January', 'February', 'March', 'April', 'May', 'June',
-	'July', 'August', 'September', 'October', 'November',
-	'December'
+	'january', 'february', 'march', 'april', 'may', 'june',
+	'july', 'august', 'september', 'october', 'november',
+	'december'
 );
 
 /* private */ $wgMonthAbbreviationsEn = array(
-	'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
-	'Sep', 'Oct', 'Nov', 'Dec'
+	'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug',
+	'sep', 'oct', 'nov', 'dec'
 );
 
 # Note to translators:
@@ -205,6 +206,38 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 
 /* private */ $wgAllMessagesEn = array(
 
+# dates
+'sunday' => 'Sunday', 
+'monday' => 'Monday',
+'tuesday' => 'Tuesday',
+'wednesday' => 'Wednesday',
+'thursday' => 'Thursday',
+'friday' => 'Friday',
+'saturday' => 'Saturday',
+'january' => 'January',
+'february' => 'February',
+'march' => 'March',
+'april' => 'April',
+'may' => 'May',
+'june' => 'June',
+'july' => 'July',
+'august' => 'August',
+'september' => 'September',
+'october' => 'October',
+'november' => 'November',
+'december' => 'December',
+'jan' => 'Jan',
+'feb' => 'Feb',
+'mar' => 'Mar',
+'apr' => 'Apr',
+'may' => 'May',
+'jun' => 'Jun',
+'jul' => 'Jul',
+'aug' => 'Aug',
+'sep' => 'Sep',
+'oct' => 'Oct',
+'nov' => 'Nov',
+'dec' => 'Dec',
 # Bits of text used by many pages:
 #
 'categories' => 'Categories',
@@ -1485,7 +1518,7 @@ class Language {
 	function getMonthName( $key )
 	{
 		global $wgMonthNamesEn;
-		return $wgMonthNamesEn[$key-1];
+		return wfMsg($wgMonthNamesEn[$key-1]);
 	}
 
 	/* by default we just return base form */
@@ -1497,13 +1530,13 @@ class Language {
 	function getMonthAbbreviation( $key )
 	{
 		global $wgMonthAbbreviationsEn;
-		return @$wgMonthAbbreviationsEn[$key-1];
+		return wfMsg(@$wgMonthAbbreviationsEn[$key-1]);
 	}
 
 	function getWeekdayName( $key )
 	{
 		global $wgWeekdayNamesEn;
-		return $wgWeekdayNamesEn[$key-1];
+		return wfMsg($wgWeekdayNamesEn[$key-1]);
 	}
 
 	function userAdjust( $ts )

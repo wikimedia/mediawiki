@@ -79,21 +79,6 @@ if($wgMetaNamespace === FALSE)
 	"Lehmanns Fachbuchhandlung" => "http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1",
 );
 
-/* private */ $wgWeekdayNamesDe = array(
-	"Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag",
-	"Freitag", "Samstag"
-);
-
-/* private */ $wgMonthNamesDe = array(
-	"Januar", "Februar", "März", "April", "Mai", "Juni",
-	"Juli", "August", "September", "Oktober", "November",
-	"Dezember"
-);
-
-/* private */ $wgMonthAbbreviationsDe = array(
-	"Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug",
-	"Sep", "Okt", "Nov", "Dez"
-);
 
 /* private */ $wgValidSpecialPagesDe = array(
   "Userlogin"           => "",
@@ -144,6 +129,39 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgAllMessagesDe = array(
+# Dates
+'sunday' => "Sonntag",
+'monday' => "Montag",
+'tuesday' => "Dienstag",
+'wednesday' => "Mittwoch",
+'thursday' => "Donnerstag",
+'friday' => "Freitag",
+'saturday' => "Samstag",
+'january' => "Januar",
+'february' => "Februar",
+'march' => "März",
+'april' => "April",
+'may' => "Mai",
+'june' => "Juni",
+'july' => "Juli",
+'august' => "August",
+'september' => "September",
+'october' => "Oktober",
+'november' => "November",
+'december' => "Dezember",
+'jan' => "Jan",
+'feb' => "Feb",
+'mar' => "Mär",
+'apr' => "Apr",
+'may' => "Mai",
+'jun' => "Jun",
+'jul' => "Jul",
+'aug' => "Aug",
+'sep' => "Sep",
+'oct' => "Okt",
+'nov' => "Nov",
+'dec' => "Dez",
+
 
 # Bits of text used by many pages:
 #
@@ -1208,24 +1226,6 @@ class LanguageDe extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesDe;
 		return $wgUserTogglesDe;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesDe;
-		return $wgMonthNamesDe[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsDe;
-		return $wgMonthAbbreviationsDe[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesDe;
-		return $wgWeekdayNamesDe[$key-1];
 	}
 
 	# Inherit userAdjust()
