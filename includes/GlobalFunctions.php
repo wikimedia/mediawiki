@@ -545,10 +545,10 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 			  ",'" . wfStrencode( $textdesc ) . "','{$won}','{$now}')";
 			wfQuery( $sql, DB_WRITE, $fname );
 			$id = wfInsertId() or 0; # We should throw an error instead
-			$sql = "INSERT INTO recentchanges (rc_namespace,rc_title,
-				rc_comment,rc_user,rc_user_text,rc_timestamp,rc_new,
-				rc_cur_id,rc_cur_time) VALUES ({$common},{$id},'{$now}')";
-            wfQuery( $sql, DB_WRITE, $fname );
+			
+			$titleObj = Title::makeTitle( NS_IMAGE, $name );
+			RecentChange::notifyNew( $now, $titleObj, 0, $wgUser, $desc );
+			
 			$u = new SearchUpdate( $id, $name, $desc );
 			$u->doUpdate();
 		}
