@@ -677,6 +677,11 @@ $wgUseRCPatrol = true;
 #	      );
 
 # Enable SOAP interface. Off by default
+# SOAP is a protocoll for remote procedure calls (RPC) using http as middleware.
+# This interface can be used by bots or special clients to receive articles from
+# a wiki.
+# Most bots use the normal HTTP interface and don't use SOAP.
+# If unsure, set to false.
 $wgEnableSOAP = false;
 
 } else {
