@@ -273,7 +273,7 @@ class User {
 			$this->mNewpassword = $s->user_newpassword;
 			$this->decodeOptions( $s->user_options );
 			$this->mRights = explode( ",", strtolower( $s->user_rights ) );
-			$this->mTouched = $s->user_touched;
+			$this->mTouched = wfTimestamp(TS_MW,$s->user_touched);
 		}
 
 		$this->mDataLoaded = true;
@@ -570,7 +570,7 @@ class User {
 		 		'user_email' => $this->mEmail,
 				'user_options' => $this->encodeOptions(),
 				'user_rights' => implode( ",", $this->mRights ),
-				'user_touched' => $this->mTouched
+				'user_touched' => $dbw->timestamp($this->mTouched)
 			), array( /* WHERE */
 				'user_id' => $this->mId
 			), $fname
