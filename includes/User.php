@@ -1014,6 +1014,15 @@ class User {
 	 */
 	function checkPassword( $password ) {
 		$this->loadFromDatabase();
+		
+		global $wgAuth;
+		if( $wgAuth->authenticate( $this->getName(), $password ) ) {
+			return true;
+		} elseif( $wgAuth->strict() ) {
+			/* Auth plugin doesn't allow local authentication */
+			return false;
+		}
+		
 		$ep = $this->encryptPassword( $password );
 		if ( 0 == strcmp( $ep, $this->mPassword ) ) {
 			return true;

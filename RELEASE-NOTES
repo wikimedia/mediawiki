@@ -33,6 +33,7 @@ Major changes from 1.3.x:
 * New tag "<gallery>" to generate a table of image thumbnails
 * Installer die if it can not write LocalSettings.php (bug #733)
 * Various special pages no more show the rss/atom feed links (bug #705)
+* Support for external authentication plug-ins
 * ... and more!
 
 === Caveats ===

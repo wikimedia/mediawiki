@@ -827,6 +827,11 @@ $wgLoggedInGroupId = 2;
 
 $wgWhitelistRead = array ( ':Accueil', ':Main_Page');
 
+/**
+ * Authentication plugin.
+ */
+$wgAuth = null;
+
 } else {
 	die();
 }

@@ -194,10 +194,25 @@ class LoginForm {
 			}
 		}
 
+		return $this->initUser( $u );
+	}
+	
+	/**
+	 * Actually add a user to the database.
+	 * Give it a User object that has been initialised with a name.
+	 *
+	 * @param User $u
+	 * @return User
+	 * @access private
+	 */
+	function &initUser( &$u ) {
 		$u->addToDatabase();
 		$u->setPassword( $this->mPassword );
 		$u->setEmail( $this->mEmail );
 		$u->setRealName( $this->mRealName );
+		
+		global $wgAuth;
+		$wgAuth->initUser( $u );
 
 		if ( $this->mRemember ) { $r = 1; }
 		else { $r = 0; }
@@ -224,11 +239,24 @@ class LoginForm {
 		}
 		$id = $u->idForName();
 		if ( 0 == $id ) {
-			$this->mainLoginForm( wfMsg( 'nosuchuser', $u->getName() ) );
-			return;
+			global $wgAuth;
+			/**
+			 * If the external authentication plugin allows it,
+			 * automatically create a new account for users that
+			 * are externally defined but have not yet logged in.
+			 */
+			if( $wgAuth->autoCreate() &&
+			    $wgAuth->userExists( $u->getName() ) &&
+			    $wgAuth->authenticate( $u->getName(), $this->mPassword ) ) {
+			    $u =& $this->initUser( $u );
+			} else {
+				$this->mainLoginForm( wfMsg( 'nosuchuser', $u->getName() ) );
+				return;
+			}
+		} else {
+			$u->setId( $id );
+			$u->loadFromDatabase();
 		}
-		$u->setId( $id );
-		$u->loadFromDatabase();
 		if (!$u->checkPassword( $this->mPassword )) {
 			$this->mainLoginForm( wfMsg( 'wrongpassword' ) );
 			return;
