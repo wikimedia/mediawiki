@@ -144,18 +144,37 @@ class Revision {
 	 * @access private
 	 */
 	function Revision( $row ) {
-		$this->mId        = IntVal( $row->rev_id );
-		$this->mPage      = IntVal( $row->rev_page );
-		$this->mComment   =         $row->rev_comment;
-		$this->mUserText  =         $row->rev_user_text;
-		$this->mUser      = IntVal( $row->rev_user );
-		$this->mMinorEdit = IntVal( $row->rev_minor_edit );
-		$this->mTimestamp =         $row->rev_timestamp;
+		if( is_object( $row ) ) {
+			$this->mId        = IntVal( $row->rev_id );
+			$this->mPage      = IntVal( $row->rev_page );
+			$this->mComment   =         $row->rev_comment;
+			$this->mUserText  =         $row->rev_user_text;
+			$this->mUser      = IntVal( $row->rev_user );
+			$this->mMinorEdit = IntVal( $row->rev_minor_edit );
+			$this->mTimestamp =         $row->rev_timestamp;
 		
-		$this->mCurrent   = ( $row->rev_id == $row->page_latest );
-		$this->mTitle     = Title::makeTitle( $row->page_namespace,
-		                                      $row->page_title );
-		$this->mText      = $this->getRevisionText( $row );
+			$this->mCurrent   = ( $row->rev_id == $row->page_latest );
+			$this->mTitle     = Title::makeTitle( $row->page_namespace,
+			                                      $row->page_title );
+			$this->mText      = $this->getRevisionText( $row );
+		} elseif( is_array( $row ) ) {
+			// Build a new revision to be saved...
+			global $wgUser;
+			
+			$this->mId        = isset( $row['id']         ) ? IntVal( $row['id']         ) : null;
+			$this->mPage      = isset( $row['page']       ) ? IntVal( $row['page']       ) : null;
+			$this->mComment   = isset( $row['comment']    ) ? StrVal( $row['comment']    ) : null;
+			$this->mUserText  = isset( $row['user_text']  ) ? StrVal( $row['user_text']  ) : $wgUser->getName();
+			$this->mUser      = isset( $row['user']       ) ? IntVal( $row['user']       ) : $wgUser->getId();
+			$this->mMinorEdit = isset( $row['minor_edit'] ) ? IntVal( $row['minor_edit'] ) : 0;
+			$this->mTimestamp = isset( $row['timestamp']  ) ? StrVal( $row['timestamp']  ) : wfTimestamp( TS_MW );
+			$this->mText      = isset( $row['text']       ) ? StrVal( $row['text']       ) : '';
+			
+			$this->mTitle     = null; # Load on demand if needed
+			$this->mCurrent   = false;
+		} else {
+			wfDebugDieBacktrace( 'Revision constructor passed invalid row format.' );
+		}
 	}
 	
 	/**#@+
@@ -345,6 +364,50 @@ class Revision {
 			}
 		}
 		return implode( ',', $flags );
+	}
+	
+	/**
+	 * Insert a new revision into the database, returning the new revision ID
+	 * number on success and dies horribly on failure.
+	 *
+	 * @param Database $dbw
+	 * @return int
+	 */
+	function insertOn( &$dbw ) {
+		$fname = 'Revision::insertOn';
+		wfProfileIn( $fname );
+		
+		$mungedText = $this->mText;
+		$flags = Revision::compressRevisionText( $mungedText );
+		
+		# Record the text to the text table
+		$old_id = isset( $this->mId )
+			? $this->mId
+			: $dbw->nextSequenceValue( 'text_old_id_val' );
+		$dbw->insert( 'text',
+			array(
+				'old_id' => $old_id,
+				'old_text' => $mungedText,
+				'old_flags' => $flags,
+			), $fname
+		);
+		$revisionId = $dbw->insertId();
+		
+		# Record the edit in revisions
+		$dbw->insert( 'revision',
+			array(
+				'rev_id'         => $revisionId,
+				'rev_page'       => $this->mPage,
+				'rev_comment'    => $this->mComment,
+				'rev_minor_edit' => $this->mMinorEdit ? 1 : 0,
+				'rev_user'       => $this->mUser,
+				'rev_user_text'  => $this->mUserText,
+				'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
+			), $fname
+		);
+		
+		wfProfileOut( $fname );
+		return $revisionId;
 	}
 }
 ?>
