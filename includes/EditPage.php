@@ -355,12 +355,12 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 
 		if ( $isConflict ) {
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourdiff" ) . "</h2>\n" );
-			DifferenceEngine::showDiff( $wpTextbox2, $wpTextbox1,
+			DifferenceEngine::showDiff( $this->textbox2, $this->textbox1,
 			  wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
 
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourtext" ) . "</h2>
 <textarea tabindex=6 name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
-. htmlspecialchars( $wgLang->recodeForEdit( $wpTextbox2 ) ) .
+. htmlspecialchars( $wgLang->recodeForEdit( $this->textbox2 ) ) .
 "
 </textarea>" );
 		}
