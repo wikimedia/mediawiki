@@ -6,10 +6,12 @@ function wfSpecialAllpages( $par=NULL )
 	$indexMaxperpage = 480;
 	$toplevelMaxperpage = 50;
 	$from = $wgRequest->getVal( 'from' );
-	$namespace = $wgRequest->getVal( 'namespace' );
-	if ( is_null($namespace) ) { $namespace = 0; }
-	$arr = $wgLang->getNamespaces();
-	$wgOut->setPagetitle ( $namespace > 0 ? wfMsg ( 'allpagesnamespace', $arr[$namespace] )
+	$namespace = $wgRequest->getInt( 'namespace' );
+	$names = $wgLang->getNamespaces();
+	if( !isset( $names[$namespace] ) ) {
+		$namespace = 0;
+	}
+	$wgOut->setPagetitle ( $namespace > 0 ? wfMsg ( 'allpagesnamespace', $names[$namespace] )
 	                                      : wfMsg ( 'allarticles' ) );
 
 	if ( $par ) {
