@@ -331,6 +331,8 @@ class Parser
 	# languages due to sorting issues, so they might want to turn it
 	# off.
 	function categoryMagic() {
+		global $wgLinkCache;
+		$wgLinkCache->suspend();
 		$msg = wfMsg('usenewcategorypage');
 		if ( '0' == @$msg[0] )
 		{
@@ -338,6 +340,7 @@ class Parser
 		} else {
 			return $this->newCategoryMagic();
 		}
+		$wgLinkCache->resume();
 	}
 
 	# This method generates the list of subcategories and pages for a category
