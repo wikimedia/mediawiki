@@ -272,7 +272,7 @@ class User {
 		if ( !$this->mBlockedby ) {
 			# Check first against slave, and optionally from master.
 			$block = $wgBlockCache->get( $wgIP, true );
-			if ( !block && !$bFromSlave )
+			if ( !$block && !$bFromSlave )
 				{
 				# Not blocked: check against master, to make sure.
 				$wgBlockCache->clearLocal( );
