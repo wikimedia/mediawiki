@@ -918,7 +918,6 @@ eller et billede sammen med hele den tilhørende historie fra databasen.
 Bekræft venligst at du virkelig vil gøre dette, at du forstår
 konsekvenserne, og at du gør dette i overensstemmelse med
 [[Wikipedia:Politik]].",
-"confirmcheck"	=> "Ja, jeg vil virkelig slette den her.",
 "actioncomplete" => "Gennemført",
 "deletedtext"	=> "\"$1\" er slettet.
 Se $2 for en fortegnelse over de nyeste sletninger.",

@@ -743,7 +743,6 @@ Morebitne spremembe te strani in njena pripadajoča pogovorna stran bosta navede
 "historywarning" => "OPOZORILO: stran, ki jo želite brisati ima zgodovino: ",
 "confirmdeletetext" => "Za stalno boste zbrisali stran ali sliko skupaj z zgodovino iz podatkovne baze.
 Prosimo potrdite vaš namen, da razumete posledice in da to počnete v skladu s [[Wikipedija:Pravila|pravili]].",
-"confirmcheck"	 => "Da, resnično želim to zbrisati.",
 "actioncomplete" => "Poseg zaključen",
 "deletedtext"	 => "\"$1\" je zbrisana.
 Glej $2 za zabeležbe nadavnih brisanj.",

@@ -899,7 +899,6 @@ or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
 [[$wgMetaNamespace:Policy]].",
-"confirmcheck"	=> "بله، جداً می‌خواهم این را حذف کنم.",
 "actioncomplete" => "عمل انجام شد",
 "deletedtext"	=> "«$1» حذف شده است.
 برای سابقه‌ی حذف‌های اخیر به $2 مراجعه کنید.",

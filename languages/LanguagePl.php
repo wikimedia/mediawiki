@@ -886,7 +886,6 @@ lub plik z bazy danych razem z dotyczącą ich historią.
 Potwierdź, proszę, swoje zamiary, tzn., że rozumiesz konsekwencje,
 i że robisz to w zgodzie z
 [[{{ns:4}}:Zasady i wskazówki|zasadami Wikipedii]].",
-"confirmcheck" => "Tak, naprawdę chcę usunąć.",
 "actioncomplete" => "Operacja wykonana",
 
 "deletedtext" => "Usunięto \"$1\".

@@ -768,7 +768,6 @@ facilitar su identification.</p>
 o imagine del base de datos, conjunctemente con tote su chronologia de versiones.
 Per favor, confirma que, si tu intende facer lo, tu comprende le consequentias,
 e tu lo face de accordo con [[Wikipedia:Policy]].",
-"confirmcheck"	=> "Si, io realmente desira eliminar isto.",
 "actioncomplete" => "Action complete",
 "deletedtext"	=> "\"$1\" ha essite eliminate.
 Vide $2 pro un registro de eliminationes recente.",

@@ -746,7 +746,6 @@ Les prochaines modifications de cette page et de la page discussion associée se
 "confirmdeletetext" => "Vous êtes sur le point de supprimer définitivement de la base de données une page
 ou une image, ainsi que toutes ses versions antérieures.
 Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[Wikipédia:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].",
-"confirmcheck"	=> "Oui, je confirme la suppression.",
 "actioncomplete" => "Suppression effectuée",
 "deletedtext"	=> "\"$1\" a été supprimé.
 Voir $2 pour une liste des suppressions récentes.",

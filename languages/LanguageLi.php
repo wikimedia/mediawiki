@@ -592,7 +592,6 @@ Indien u een pagina wenst te verwijderen van uw volgliest klik dan op \"Van volg
 "deletesub"  => "(Verwijderen \"$1\")",
 "confirmdeletetext" => "U bent staat op het punt een pagina of afbeelding voorgoed te verwijderen. Dit verwijdert alle inhoud en geschiedenis van de database. Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt, en dat uw verwijdering overeenkomt met de [[Wikipedia:Instructies]].",
 
-"confirmcheck" => "Ja, ik wil dit voorgoed verwijderen.",
 "actioncomplete" => "Actie voltooid",
 "deletedtext" => "\"$1\" is verwijderd. Zie $2 voor een overzicht van recente verwijderingen.",
 "deletedarticle" => "\"$1\" is verwijderd",

@@ -267,7 +267,6 @@ performed by sysops with  \"bureaucrat\" status.",*/
 #'commentedit' => " (comment)",
 'compareselectedversions' => "Palyginti pasirinktas versijas",
 'confirm' => "Tvirtinu",
-'confirmcheck' => "Taip, aš tikrai noriu tai ištrinti.",
 'confirmdelete' => "Trynimo veiksmo patvirtinimas",
 'confirmdeletetext' => "Jūs pasirinkote ištrinti straipsnį ar paveikslėlį
 kartu su visa istorija iš duomenų bazės.

@@ -782,7 +782,6 @@ eller bild med all dess historia från databasen.
 Bekräfta att du förstår vad du håller på med och vilka konsekvenser
 detta leder till, och att det följer 
 [[Wikipedia:Policy]].", 
-"confirmcheck"          => "Ja, jag vill verkligen ta bort det här.", //"
 "actioncomplete"        => "Genomfört",
 "deletedtext"           => "\"$1\" har blivit borttagen.
 Se $2 för lista över senaste borttagningar",

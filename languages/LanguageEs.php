@@ -829,7 +829,6 @@ en forma permanente,
 así como todo su historial, de la base de datos.
 Por favor, confirma que realmente quieres hacer eso, que entiendes las
 consecuencias, y que lo estás haciendo de acuerdo con [[$wgMetaNamespace:Políticas]].",
-"confirmcheck"	=> "Sí, realmente quiero borrar esto.",
 "actioncomplete" => "Acción completa",
 "deletedtext"	=> "\"$1\" ha sido borrado.
 Ve $2 para un registro de los borrados más recientes.",

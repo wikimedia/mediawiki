@@ -448,7 +448,6 @@ doar de administratori cu statut de \"birocrat\".",
 'commentedit' => " (comentariu)",
 'compareselectedversions' => "Compară versiunile selectate",
 'confirm' => "Confirmă",
-'confirmcheck' => "Da, chiar vreau să şterg.",
 'confirmdelete' => "Confirmă ştergere",
 'confirmdeletetext' => "Eşti pe cale să ştergi permanent o pagină
 sau imagine din baza de date, împreună cu istoria asociată.

@@ -734,7 +734,6 @@ Canvis futurs a aquesta pàgina i a la vostra pàgina de discussió associada hi
 de forma permanent, així com tota la seva història de la base de dades.
 Confirmeu que realment ho voleu fer, que enteneu les
 conseqüències, i que el esteu fent està d'acord amb [[{{ns:4}}:Polítiques]].",
-"confirmcheck"	=> "Sí, realment ho vull esborrar.",
 "actioncomplete" => "Acció completa",
 "deletedtext"	=> "\"$1\" ha estat esborrat.
 Mostra $2 per a un registre dels esborrats més recents.",

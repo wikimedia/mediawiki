@@ -632,7 +632,6 @@ a bude počítány v seznamu tvých Oblíbených.
 "deletesub"		=> "(Odstraňuje se \"$1\")",
 "confirmdeletetext" => "Odstraníš článek nebo soubor a smažeš celou jeho historii z databáze.<br />
 Potvrď prosím, že to opravdu chceš, že si uvědomuješ důsledky a že dodržuješ [[Wikipedie:Pravidla o odstraňování]].",
-"confirmcheck"	=> "Ano, jsem naprosto jist, že chci toto odstranit.",
 "actioncomplete" => "Provedeno",
 "deletedtext"	=> "\"$1\" je odstraněno.
 Pohleď na záznam posledních odstranění.",

@@ -846,7 +846,6 @@ or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
 [[$wgMetaNamespace:Policy]].",
-"confirmcheck"	=> "Yes, I really want to delete this.",
 "actioncomplete" => "Action complete",
 "deletedtext"	=> "\"$1\" has been deleted.
 See $2 for a record of recent deletions.",
