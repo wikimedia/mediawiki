@@ -2,7 +2,15 @@
 require_once( "LanguageUtf8.php" );
 require_once( "LanguageZh_cn.php");
 require_once( "LanguageZh_tw.php");
-require_once( "ZhConversion.php");
+
+/* caching the conversion tables */
+$zhSimp2Trad = $wgMemc->get($key1 = "$wgDBname:zhConvert:s2t");
+$zhTrad2Simp = $wgMemc->get($key2 = "$wgDBname:zhConvert:t2s");
+if(empty($zhSimp2Trad) || empty($zhTrad2Simp)) {
+    require_once("includes/ZhConversion.php");
+    $wgMemc->set($key1, $zhSimp2Trad);
+    $wgMemc->set($key2, $zhTrad2Simp);
+}
 
 /* class that handles both Traditional and Simplified Chinese
    right now it only distinguish zh_cn and zh_tw (actuall, zh_cn and
@@ -53,13 +61,13 @@ class LanguageZh extends LanguageUtf8 {
   /* the Simplified/Traditional conversion stuff */
 
 	function simp2trad($text) {
-		global $wgZhSimp2Trad;
-		return strtr($text, $wgZhSimp2Trad);
+		global $zhSimp2Trad;
+		return strtr($text, $zhSimp2Trad);
 	}
 
 	function trad2simp($text) {
-		global $wgZhTrad2Simp;
-		return strtr($text, $wgZhTrad2Simp);
+		global $zhTrad2Simp;
+		return strtr($text, $zhTrad2Simp);
 	}
 	
 	function autoConvert($text) {
