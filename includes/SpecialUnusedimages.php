@@ -1,7 +1,6 @@
 <?php
 
-function wfSpecialUnusedimages()
-{
+function wfSpecialUnusedimages() {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
 	$fname = "wfSpecialUnusedimages";
 
@@ -20,10 +19,10 @@ function wfSpecialUnusedimages()
 
 	$sl = wfViewPrevNext( $offset, $limit,
 	  $wgLang->specialPage( "Unusedimages" ) );
-	$wgOut->addHTML( "<br>{$sl}\n" );
+	$wgOut->addHTML( "<br />{$sl}</p>\n" );
 
 	$ins = $wgLang->getNsText ( 6 ) ;
-	$s = "<ol start=" . ( $offset + 1 ) . ">";
+	$s = "<ol start='" . ( $offset + 1 ) . "'>";
 	while ( $obj = wfFetchObject( $res ) ) {
 		$name = $obj->img_name;
 		$dlink = $sk->makeKnownLink( "{$ins}:{$name}", wfMsg( "imgdesc" ) );
@@ -43,9 +42,9 @@ function wfSpecialUnusedimages()
 		$s .= "</li>\n";
 	}
 	wfFreeResult( $res );
-	$s .= "</ol>";
+	$s .= "</ol>\n\n";
 	$wgOut->addHTML( $s );
-	$wgOut->addHTML( "<p>{$sl}\n" );
+	$wgOut->addHTML( "<p>{$sl}</p>\n" );
 }
 
 ?>

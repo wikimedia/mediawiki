@@ -49,23 +49,31 @@ class IPUnblockForm {
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
-			$wgOut->addHTML( "<p><font color='red' size='+1'>{$err}</font>\n" );
+			$wgOut->addHTML( "<p class='error'>{$err}</p>\n" );
 		}
 		
-		$wgOut->addHTML( "<p>
+		$wgOut->addHTML( "
 <form id=\"unblockip\" method=\"post\" action=\"{$action}\">
-<table border=0><tr>
-<td align=right>{$ipa}:</td>
-<td align=left>
-<input tabindex=1 type=text size=20 name=\"wpUnblockAddress\" value=\"" . htmlspecialchars( $this->ip ) . "\">
-</td></tr><tr>
-<td align=right>{$ipr}:</td>
-<td align=left>
-<input tabindex=1 type=text size=40 name=\"wpUnblockReason\" value=\"" . htmlspecialchars( $this->reason ) . "\">
-</td></tr><tr>
-<td>&nbsp;</td><td align=left>
-<input tabindex=2 type=submit name=\"wpBlock\" value=\"{$ipus}\">
-</td></tr></table>
+	<table border='0'>
+		<tr>
+			<td align='right'>{$ipa}:</td>
+			<td align='left'>
+				<input tabindex='1' type='text' size='20' name=\"wpUnblockAddress\" value=\"" . htmlspecialchars( $this->ip ) . "\" />
+			</td>
+		</tr>
+		<tr>
+			<td align='right'>{$ipr}:</td>
+			<td align='left'>
+				<input tabindex='1' type='text' size='40' name=\"wpUnblockReason\" value=\"" . htmlspecialchars( $this->reason ) . "\" />
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td align='left'>
+				<input tabindex='2' type='submit' name=\"wpBlock\" value=\"{$ipus}\" />
+			</td>
+		</tr>
+	</table>
 </form>\n" );
 
 	}

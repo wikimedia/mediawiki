@@ -91,7 +91,7 @@ class SearchEngine {
 
 			$checked = "";
 			if ( $checkboxValue == 1 ) {
-				$checked = " checked";
+				$checked = " checked='checked'";
 				$this->addtoquery["ns{$i}"] = 1;
 				array_push( $this->namespacesToSearch, $i );
 			}
@@ -103,8 +103,8 @@ class SearchEngine {
 			if ( $tempText !== "" ) { 
 				$tempText .= " "; 
 			}
-			$tempText .= "<input type=checkbox value=\"1\" name=\"" .
-			  "ns{$i}\"{$checked}>{$name}\n";
+			$tempText .= "<input type='checkbox' value=\"1\" name=\"" .
+			  "ns{$i}\"{$checked} />{$name}\n";
 		}
 		$ret = str_replace ( "$1", $tempText, $ret );
 
@@ -113,25 +113,25 @@ class SearchEngine {
 		$checked = "";
 		if ( $listredirs == 1 ) {
 			$this->addtoquery["redirs"] = 1;
-			$checked = " checked";
+			$checked = " checked='checked'";
 		}
-		$tempText = "<input type=checkbox value=1 name=\"redirs\"{$checked}>\n";
+		$tempText = "<input type='checkbox' value='1' name=\"redirs\"{$checked} />\n";
 		$ret = str_replace( "$2", $tempText, $ret );
 
 		# Search field
 
-		$tempText = "<input type=text name=\"search\" value=\"" .
-			htmlspecialchars( $search ) ."\" width=80>\n";
+		$tempText = "<input type='text' name=\"search\" value=\"" .
+			htmlspecialchars( $search ) ."\" width='80' />\n";
         $ret = str_replace( "$3", $tempText, $ret );
 
 		# Searchx button
 
-		$tempText = "<input type=submit name=\"searchx\" value=\"" .
-		  wfMsg("powersearch") . "\">\n";
+		$tempText = "<input type='submit' name=\"searchx\" value=\"" .
+		  wfMsg("powersearch") . "\" />\n";
 		$ret = str_replace( "$9", $tempText, $ret );
 
 		global $wgScript;
-		$ret = "<br><br>\n<form id=\"powersearch\" method=\"get\" " .
+		$ret = "<br /><br />\n<form id=\"powersearch\" method=\"get\" " .
 		  "action=\"$wgScript\">\n{$ret}\n</form>\n";
 
 		if ( isset ( $searchx ) ) {
@@ -167,7 +167,7 @@ class SearchEngine {
 		$this->parseQuery();
 		if ( "" == $this->mTitlecond || "" == $this->mTextcond ) {
 			$wgOut->addHTML( "<h2>" . wfMsg( "badquery" ) . "</h2>\n" .
-			  "<p>" . wfMsg( "badquerytext" ) );
+			  "<p>" . wfMsg( "badquerytext" ) . "</p>\n" );
 			return;
 		}
 		list( $limit, $offset ) = wfCheckLimits( 20, "searchlimit" );
@@ -193,7 +193,7 @@ class SearchEngine {
 			$this->parseQuery();
 			if ( "" == $this->mTitlecond || "" == $this->mTextcond ) {
 				$wgOut->addHTML( "<h2>" . wfMsg( "badquery" ) . "</h2>\n" .
-				  "<p>" . wfMsg( "badquerytext" ) );
+				  "<p>" . wfMsg( "badquerytext" ) . "</p>\n" );
 				return;
 			}
 			list( $limit, $offset ) = wfCheckLimits( 20, "searchlimit" );
@@ -222,7 +222,7 @@ class SearchEngine {
 			} else {
 			  $top = wfShowingResultsNum( $offset, $limit, $num );
 			}
-			$wgOut->addHTML( "<p>{$top}\n" );
+			$wgOut->addHTML( "<p>{$top}</p>\n" );
 	
 			# For powersearch
 	
@@ -234,7 +234,7 @@ class SearchEngine {
 	
 			$sl = wfViewPrevNext( $offset, $limit, "",
 			  "search=" . wfUrlencode( $this->mUsertext ) . $a2l );
-			$wgOut->addHTML( "<br>{$sl}\n" );
+			$wgOut->addHTML( "<br />{$sl}\n" );
 	
 			$foundsome = false;
 	
@@ -269,9 +269,9 @@ class SearchEngine {
 				$wgOut->addHTML( "</ol>\n" );
 			}
 			if ( ! $foundsome ) {
-				$wgOut->addHTML( "<p>" . wfMsg( "nonefound" ) . "\n" );
+				$wgOut->addHTML( "<p>" . wfMsg( "nonefound" ) . "</p>\n" );
 			}
-			$wgOut->addHTML( "<p>{$sl}\n" );
+			$wgOut->addHTML( "<p>{$sl}</p>\n" );
 			$wgOut->addHTML( $powersearch );
 		}
 	}
@@ -411,7 +411,7 @@ class SearchEngine {
 			$line = preg_replace( $pat2,
 			  "<font color='red'>\\1</font>", $line );
 
-			$wgOut->addHTML( "<br><small>{$lineno}: {$line}</small>\n" );
+			$wgOut->addHTML( "<br /><small>{$lineno}: {$line}</small>\n" );
 		}
 		$wgOut->addHTML( "</li>\n" );
 	}
@@ -464,7 +464,7 @@ class SearchEngine {
 
 		# No match, generate an edit URL
 		$t = Title::newFromText( $this->mUsertext );
-		$wgOut->addHTML( wfMsg("nogomatch", $t->escapeLocalURL( "action=edit" ) ) . "\n<p>" );
+		$wgOut->addHTML( "<p>" . wfMsg("nogomatch", $t->escapeLocalURL( "action=edit" ) ) . "</p>\n" );
 
 		# Try a fuzzy title search
 		$anyhit = false;

@@ -38,11 +38,11 @@ function wfSpecialImagelist()
 		$lt = $wgLang->formatNum( "${limit}" );
 		$sql .= " LIMIT {$limit}";
 	}
-	$wgOut->addHTML( "<p>" . wfMsg( "imglegend" ) . "\n" );
+	$wgOut->addHTML( "<p>" . wfMsg( "imglegend" ) . "</p>\n" );
 
 	$text = wfMsg( "imagelisttext",
 		"<strong>{$lt}</strong>", "<strong>{$st}</strong>" );
-	$wgOut->addHTML( "<p>{$text}\n<p>" );
+	$wgOut->addHTML( "<p>{$text}\n</p>" );
 
 	$sk = $wgUser->getSkin();
 	$cap = wfMsg( "ilshowmatch" );
@@ -52,9 +52,8 @@ function wfSpecialImagelist()
 
 	$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
 	  "{$action}\">" .
-	  "{$cap}: <input type=text size=8 name=\"wpIlMatch\" value=\"\"> " .
-	  "<input type=submit name=\"wpIlSubmit\" value=\"{$sub}\"></form>" );
-
+	  "{$cap}: <input type='text' size='8' name=\"wpIlMatch\" value=\"\" /> " .
+	  "<input type='submit' name=\"wpIlSubmit\" value=\"{$sub}\" /></form>" );
 	$nums = array( 50, 100, 250, 500 );
 	$here = $wgLang->specialPage( "Imagelist" );
 
@@ -68,7 +67,7 @@ function wfSpecialImagelist()
 		  "sort=bysize&limit={$num}" );
 	}
 	$text = wfMsg( "showlast", $fill, $bysize );
-	$wgOut->addHTML( "{$text}<br>\n" );
+	$wgOut->addHTML( "<p>{$text}<br />\n" );
 
 	$fill = "";
 	$first = true;
@@ -80,7 +79,7 @@ function wfSpecialImagelist()
 		  "sort=bydate&limit={$num}" );
 	}
 	$text = wfMsg( "showlast", $fill, $bydate );
-	$wgOut->addHTML( "{$text}<br>\n<p>" );
+	$wgOut->addHTML( "{$text}</p>\n<p>" );
 
 	$res = wfQuery( $sql, DB_READ, "wfSpecialImagelist" );
 	while ( $s = wfFetchObject( $res ) ) {
@@ -103,8 +102,9 @@ function wfSpecialImagelist()
 		if ( "" != $s->img_description ) {
 			$l .= " <em>({$s->img_description})</em>";
 		}
-		$wgOut->addHTML( "{$l}<br>\n" );
+		$wgOut->addHTML( "{$l}<br />\n" );
 	}
+	$wgOut->addHTML( "</p>" );
 	wfFreeResult( $res );
 }
 
