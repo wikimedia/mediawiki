@@ -18,6 +18,7 @@ require_once( "Database.php" );
 
 class DatabasePgsql extends Database {
 	var $mInsertId = NULL;
+	var $mLastResult = NULL;
 
 	function DatabasePgsql($server = false, $user = false, $password = false, $dbName = false, 
 		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
@@ -75,7 +76,7 @@ class DatabasePgsql extends Database {
 	}
 	
 	function doQuery( $sql ) {
-		return pg_query( $this->mConn , $sql);
+		return $this->mLastResult=pg_query( $this->mConn , $sql);
 	}
 		
 	function queryIgnore( $sql, $fname = "" ) {
