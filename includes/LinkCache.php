@@ -62,6 +62,8 @@ class LinkCache {
 		if ( isset( $index ) ) {
 			unset( $this->mBadLinks[$index] );
 		}
+		global $wgMemc, $wgDBname;
+		$wgMemc->delete( "$wgDBname:linkcache:title:$title" );
 	}
 
 	function suspend() { $this->mActive = false; }
@@ -76,6 +78,7 @@ class LinkCache {
 		$id = $this->getGoodLinkID( $title );
 		if ( 0 != $id ) { return $id; }
 
+		global $wgMemc, $wgDBname;
 		wfProfileIn( "LinkCache::addLink-checkdatabase" );
 
 		$nt = Title::newFromDBkey( $title );
@@ -83,15 +86,20 @@ class LinkCache {
 		$t = $nt->getDBkey();
 
 		if ( "" == $t ) { return 0; }
-		$sql = "SELECT HIGH_PRIORITY cur_id FROM cur WHERE cur_namespace=" .
-		  "{$ns} AND cur_title='" . wfStrencode( $t ) . "'";
-		$res = wfQuery( $sql, "LinkCache::addLink" );
 
-		if ( 0 == wfNumRows( $res ) ) {
-			$id = 0;
-		} else {
-			$s = wfFetchObject( $res );
-			$id = $s->cur_id;
+		$id = $wgMemc->get( $key = "$wgDBname:linkcache:title:$title" );
+		if( $id === FALSE ) {
+			$sql = "SELECT HIGH_PRIORITY cur_id FROM cur WHERE cur_namespace=" .
+			  "{$ns} AND cur_title='" . wfStrencode( $t ) . "'";
+			$res = wfQuery( $sql, "LinkCache::addLink" );
+
+			if ( 0 == wfNumRows( $res ) ) {
+				$id = 0;
+			} else {
+				$s = wfFetchObject( $res );
+				$id = $s->cur_id;
+			}
+			$wgMemc->add( $key, $id, time()+3600 );
 		}
 		if ( 0 == $id ) { $this->addBadLink( $title ); }
 		else { $this->addGoodLink( $id, $title ); }
@@ -200,5 +208,6 @@ class LinkCache {
 		$this->mBadLinks = array();
 		$this->mImageLinks = array();
 	}
+	
 }
 ?>

@@ -129,23 +129,22 @@ class User {
 		return $this->mBlockreason;
 	}
 
-	function loadFromSession()
+	/* static */ function loadFromSession()
 	{
 		global $HTTP_COOKIE_VARS, $wsUserID, $wsUserName, $wsUserPassword;
+		global $wgMemc, $wgDBname;
 
 		if ( isset( $wsUserID ) ) {
 			if ( 0 != $wsUserID ) {
 				$sId = $wsUserID;
 			} else {
-				$this->mId = 0;
-				return;
+				return new User();
 			}
 		} else if ( isset( $HTTP_COOKIE_VARS["wcUserID"] ) ) {
 			$sId = $HTTP_COOKIE_VARS["wcUserID"];
 			$wsUserID = $sId;
 		} else {
-			$this->mId = 0;
-			return;
+			return new User();
 		}
 		if ( isset( $wsUserName ) ) {
 			$sName = $wsUserName;
@@ -153,30 +152,40 @@ class User {
 			$sName = $HTTP_COOKIE_VARS["wcUserName"];
 			$wsUserName = $sName;
 		} else {
-			$this->mId = 0;
-			return;
+			return new User();
 		}
 
 		$passwordCorrect = FALSE;
-		$this->mId = $sId;
-		$this->loadFromDatabase();
+		$user = $wgMemc->get( $key = "$wgDBname:user:user_id:$sId" );
+		if($makenew = !$user) {
+			wfDebug( "User::loadFromSession() unable to load from memcached\n" );
+			$user = new User();
+			$user->mId = $sId;
+			$user->loadFromDatabase();
+		} else {
+			wfDebug( "User::loadFromSession() got from cache!\n" );
+		}
 
 		if ( isset( $wsUserPassword ) ) {
-			$passwordCorrect = $wsUserPassword == $this->mPassword;
+			$passwordCorrect = $wsUserPassword == $user->mPassword;
 		} else if ( isset( $HTTP_COOKIE_VARS["wcUserPassword"] ) ) {
-			$this->mCookiePassword = $HTTP_COOKIE_VARS["wcUserPassword"];
-			$wsUserPassword = $this->addSalt( $this->mCookiePassword );
-			$passwordCorrect = $wsUserPassword == $this->mPassword;
+			$user->mCookiePassword = $HTTP_COOKIE_VARS["wcUserPassword"];
+			$wsUserPassword = $user->addSalt( $user->mCookiePassword );
+			$passwordCorrect = $wsUserPassword == $user->mPassword;
 		} else {
-			$this->mId = 0;
-			$this->loadDefaults(); # Can't log in from session
-			return;
+			return new User(); # Can't log in from session
 		}
 
-		if ( ( $sName == $this->mName ) && $passwordCorrect ) {
-			return;
+		if ( ( $sName == $user->mName ) && $passwordCorrect ) {
+			if($makenew) {
+				if($wgMemc->set( $key, $user ))
+					wfDebug( "User::loadFromSession() successfully saved user\n" );
+				else
+					wfDebug( "User::loadFromSession() unable to save to memcached\n" );
+			}
+			return $user;
 		}
-		$this->loadDefaults(); # Can't log in from session
+		return new User(); # Can't log in from session
 	}
 
 	function loadFromDatabase()
@@ -491,7 +500,7 @@ class User {
 
 	function saveSettings()
 	{
-		global $wgUser;
+		global $wgMemc, $wgDBname;
 
 		if ( ! $this->mNewtalk ) {
 			if( $this->mId ) {
@@ -515,6 +524,8 @@ class User {
 		  "user_touched= '" . wfStrencode( $this->mTouched ) .
 		  "' WHERE user_id={$this->mId}";
 		wfQuery( $sql, "User::saveSettings" );
+		#$wgMemc->replace( "$wgDBname:user:user_id:$this->mId", $this );
+		$wgMemc->delete( "$wgDBname:user:user_id:$this->mId" );
 	}
 
 	# Checks if a user with the given name exists

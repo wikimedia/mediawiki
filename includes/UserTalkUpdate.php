@@ -15,7 +15,7 @@ class UserTalkUpdate {
 	function doUpdate()
 	{
 	
-		global $wgUser, $wgLang;
+		global $wgUser, $wgLang, $wgMemc, $wgDBname;
 		$fname = "UserTalkUpdate::doUpdate";
 
 		# If namespace isn't User_talk:, do nothing.
@@ -27,7 +27,6 @@ class UserTalkUpdate {
 		# If the user talk page is our own, clear the flag
 		# whether we are reading it or writing it.
 		if ( 0 == strcmp( $this->mTitle, $wgUser->getName() ) ) {
-			
 			$wgUser->setNewtalk( 0 );			
 			$wgUser->saveSettings();
 
@@ -39,13 +38,12 @@ class UserTalkUpdate {
 				$user->setID(User::idFromName($this->mTitle));
 				if ($id=$user->getID()) {									
 					$sql = "INSERT INTO user_newtalk (user_id) values ({$id})";
-					
+					$wgMemc->delete( "$wgDBname:user:user_id:$id" );
 				} else { #anon
 					
 					if(preg_match("/^\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}$/",$this->mTitle)) { #real anon (user:xxx.xxx.xxx.xxx)
 					
 						$sql = "INSERT INTO user_newtalk (user_id,user_ip) values (0,\"{$this->mTitle}\")";		
-						
 					}					
 				
 				}
