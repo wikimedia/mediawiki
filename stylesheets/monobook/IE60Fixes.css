@@ -28,7 +28,9 @@
     background-color: White;
     padding-bottom: 0.2em;
 }
-
+#portlet-contentViews li a:hover {
+    padding-bottom: 0.5em;
+}
 /* log in etc */
 #portal-personaltools {
     padding-bottom: 0.1em;
