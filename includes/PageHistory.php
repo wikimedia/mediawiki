@@ -127,7 +127,7 @@ class PageHistory {
 		$s = '<p>' . wfMsg( 'histlegend' ) . '</p>';
 		$s .= '<form action="' . $wgTitle->escapeLocalURL( '-' ) . '" method="get">';
 		$prefixedkey = htmlspecialchars($wgTitle->getPrefixedDbKey());
-		$s .= "<input type='hidden' name='title' value='{$prefixedkey}' />\n";
+		$s .= "<input type='hidden' name='title' value=\"{$prefixedkey}\" />\n";
 		$s .= !empty($this->submitbuttonhtml1) ? $this->submitbuttonhtml1."\n":'';
 		$s .= '<ul id="pagehistory">';
 		return $s;
