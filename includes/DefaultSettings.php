@@ -459,6 +459,8 @@ $wgProxyList = array();  # big list of banned IP addresses, in the keys not the 
 # This should always be customised in LocalSettings.php
 $wgSecretKey = false;
 
+$wgProxyKey = false; # deprecated, replaced by $wgSecretKey
+
 # Number of accounts each IP address may create, 0 to disable.
 # Requires memcached
 $wgAccountCreationThrottle = 0;
