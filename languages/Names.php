@@ -22,7 +22,7 @@
 	'bn' => '&#2476;&#2494;&#2434;&#2482;&#2494; - (Bangla)',	# Bengali
 	'bm' => 'Bambara',
 	'bo' => 'Bod skad',		# Tibetan
-	'br' => 'Brezhoneg',	# Breton 
+	'br' => 'Brezhoneg',	# Breton
 	'bs' => 'Bosanski',		# Bosnian
 	'ca' => 'Catal&agrave;',	# Catalan
 	'ce' => '&#1053;&#1086;&#1093;&#1095;&#1080;&#1081;&#1085;',	# Chechen
@@ -34,7 +34,7 @@
 	'cr' => 'Nehiyaw',		# Cree
 	'cs' => '&#268;esky',	# Czech
 	'csb' => 'Kasz&euml;bscziej',	# Cassubian - FIXME
-	'cv' => '&#1063;&#1233;&#1074;&#1072;&#1096; - (&#264;&#259;va&#349;)',	# Chuvash 
+	'cv' => '&#1063;&#1233;&#1074;&#1072;&#1096; - (&#264;&#259;va&#349;)',	# Chuvash
 	'cy' => 'Cymraeg',		# Welsh
 	'da' => 'Dansk',		# Danish
 	'de' => 'Deutsch',		# German
@@ -59,7 +59,7 @@
 	'gd' => 'G&agrave;idhlig',	# Scots Gaelic
 	'gl' => 'Galego',		# Gallegan
 	'gn' => 'Ava&ntilde;e\'&#7869;',	# Guarani
-	'gu' => '&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752;',	# Gujarati 
+	'gu' => '&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752;',	# Gujarati
 	'gv' => 'Gaelg',		# Manx
 	'ha' => '&#1607;&#1614;&#1608;&#1615;&#1587;&#1614;',	# Hausa
 	'haw' => 'Hawai`i',		# Hawaiian
@@ -93,7 +93,7 @@
 	'kn' => '&#3221;&#3240;&#3277;&#3240;&#3233;',	# Kannada
 	'ko' => '&#54620;&#44397;&#50612;',	# Korean
 	'kr' => 'Kanuri',
-	'ks' => '&#2325;&#2358;&#2381;&#2350;&#2368;&#2352;&#2368; - (&#1603;&#1588;&#1605;&#1610;&#1585;&#1610;)',	# Kashmiri 
+	'ks' => '&#2325;&#2358;&#2381;&#2350;&#2368;&#2352;&#2368; - (&#1603;&#1588;&#1605;&#1610;&#1585;&#1610;)',	# Kashmiri
 	'ku' => 'Kurd&icirc;',	# Kurdish
 	'kv' => 'Komi',
 	'kw' => 'Kernewek',		# Cornish
@@ -103,7 +103,7 @@
 	'lg' => 'Luganda',		# Ganda
 	'li' => 'Limburgs',		# Limburgian
 	'ln' => 'Lingala',		# Lingala
-	'lo' => 'Pha xa lao',	# Laotian 
+	'lo' => 'Pha xa lao',	# Laotian
 	'lt' => 'Lietuvi&#371;',	# Lithuanian
 	'lv' => 'Latvie&scaron;u',	# Latvian
 	'mg' => 'Malagasy',		# Malagasy - FIXME
@@ -119,7 +119,7 @@
 	'mt' => 'bil-Malti',	# Maltese
 	'mus' => 'Muscogee',
 	'my' => 'Myanmasa',	# Burmese
-	'na' => 'Nauru',		# Nauruan
+	'na' => 'Nauruose',		# Nauruan
 	'nb' => 'Bokm&aring;l',		# Norwegian (Bokmal)
 	'nah' => 'Nahuatl',
 	'nds' => 'Plattd&uuml;&uuml;tsch',	# Low German ''or'' Low Saxon
@@ -178,7 +178,7 @@
 	'to' => 'Tonga',		# Tonga - FIXME
 	'tokipona' => 'Toki Pona',      # Toki Pona
 	'tp' => 'Toki Pona',		# Toki Pona - non-standard language code
-	'tpi' => 'Tok Pisin',	# Tok Pisin 
+	'tpi' => 'Tok Pisin',	# Tok Pisin
 	'tr' => 'T&uuml;rk&ccedil;e',	# Turkish
 	'ts' => 'Xitsonga',		# Tsonga
 	'tt' => 'Tatar&ccedil;a',	# Tatar
