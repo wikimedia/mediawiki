@@ -2218,7 +2218,7 @@ class Skin {
 		$link = "<a href=\"#$anchor\">$tocline</a><br />";
 		if($level) {
 			return "$link\n";
-		} else { 
+		} else {
 			return "<div class='tocline'>$link</div>\n";
 		}
 
@@ -2239,7 +2239,7 @@ class Skin {
 	# These two do not check for permissions: check $wgTitle->userCanEdit before calling them
 	function editSectionScript( $section, $head ) {
 		global $wgTitle, $wgRequest;
-		if( $wgRequest->getInt( "oldid" ) ) {
+		if( $wgRequest->getInt( "oldid" ) && ( $wgRequest->getVal( "diff" ) != "0" ) ) {
 			return $head;
 		}
 		$url = $wgTitle->escapeLocalURL( "action=edit&section=$section" );
@@ -2249,17 +2249,17 @@ class Skin {
 	function editSectionLink( $section ) {
 		global $wgRequest;
 		global $wgTitle, $wgUser, $wgLang;
-		
+
 		if( $wgRequest->getInt( "oldid" ) && ( $wgRequest->getVal( "diff" ) != "0" ) ) {
 			# Section edit links would be out of sync on an old page.
 			# But, if we're diffing to the current page, they'll be
 			# correct.
 			return "";
 		}
-		
+
 		$editurl = "&section={$section}";
 		$url = $this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg("editsection"),"action=edit".$editurl);
-		
+
 		if( $wgLang->isRTL() ) {
 			$farside = "left";
 			$nearside = "right";
