@@ -50,11 +50,9 @@ div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
 #portlet-logo a:hover {
     cursor: pointer;
 }
-.visualClear {
+div.visualClear {
     width:100%;
-    height: 0px;
-    padding:0;
-    margin:0;
+    line-height: 0;
 }
 textarea {
     overflow: scroll;
