@@ -158,7 +158,8 @@ MC_ERR_LOADITEM_END		// _load_items failed to receive END response
 MC_ERR_LOADITEM_BYTES	// _load_items bytes read larger than bytes available
 MC_ERR_GET				// failed to get value associated with key
 
-
+// Turns compression on or off; 0=off, 1=on
+MemCacheClient::set_compression($setting)
 
 EXAMPLE:
 <?php
