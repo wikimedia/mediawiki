@@ -544,6 +544,7 @@ Your e-mail address is optional; if you lose your password you can request
 that it be to the address you give.<br>\n",
 
 "login"			=> "Log in",
+"loginprompt"           => "You must have cookies enabled to log in to $wgSitename.",
 "userlogin"		=> "Log in",
 "logout"		=> "Log out",
 "userlogout"	=> "Log out",
@@ -559,8 +560,8 @@ contact you through the website without you having to reveal your
 email address to them, and it also helps you if you forget your   
 password.",
 "loginerror"	=> "Login error",
-"nocookies"	=> "Cookies disabled",
-"nocookiestext"	=> "The wiki uses cookies to log in users. You have cookies disabled. Please enable them and try again.",
+"nocookiesnew"	=> "The user account was created, but you are not logged in. $wgSitename uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.",
+"nocookieslogin"	=> "$wgSitename uses cookies to log in users. You have cookies disabled. Please enable them and try again.",
 "noname"		=> "You have not specified a valid user name.",
 "loginsuccesstitle" => "Login successful",
 "loginsuccess"	=> "You are now logged in to $wgSitename as \"$1\".",
