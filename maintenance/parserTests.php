@@ -298,6 +298,7 @@ class ParserTest {
 			'wgNamespacesWithSubpages' => array( 0 => preg_match('/\\bsubpage\\b/i', $opts)),
 			'wgMaxTocLevel' => 999,
 			'wgCapitalLinks' => true,
+			'wgDefaultUserOptions' => array(),
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
@@ -307,6 +308,9 @@ class ParserTest {
 		$GLOBALS['wgLoadBalancer']->loadMasterPos();
 		$GLOBALS['wgMessageCache']->initialise( new BagOStuff(), false, 0, $GLOBALS['wgDBname'] );
 		$this->setupDatabase();
+		
+		global $wgUser;
+		$wgUser = new User();
 	}
 	
 	# List of temporary tables to create, without prefix
