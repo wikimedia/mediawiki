@@ -531,12 +531,13 @@ if( defined( "MEDIAWIKI" ) ) {
 		}
 		/* private */ function setupUserCssJs () {
 			global $wgRequest, $wgTitle;
+			global $wgAllowUserCss, $wgAllowUserJs;
 			$action = $wgRequest->getText('action');
 			# generated css
 			$this->usercss = '@import "'.$this->makeUrl('-','action=raw&gen=css').'";'."\n";
 			
-			if( $this->loggedin ) {
-				if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
+			if( $this->loggedin && $wgAllowUserCss ) {
+				if( $wgTitle->isCssSubpage() and $this->userCanPreview( $action ) ) {
 					# generated css
 					$this->usercss = '@import "'.$this->makeUrl('-','action=raw&smaxage=0&maxage=0&gen=css').'";'."\n";
 					// css preview
@@ -548,7 +549,9 @@ if( defined( "MEDIAWIKI" ) ) {
 					$this->usercss .= '@import "'.
 					$this->makeUrl($this->userpage.'/'.$this->skinname.'.css', 'action=raw&ctype=text/css').'";'."\n";
 				}
-				if($wgTitle->isJsSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
+			}
+			if( $this->loggedin && $wgAllowUserJs ) {
+				if( $wgTitle->isJsSubpage() and $this->userCanPreview( $action ) ) {
 					# XXX: additional security check/prompt?
 					$this->userjsprev = $wgRequest->getText('wpTextbox1');
 				} else {

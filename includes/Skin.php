@@ -166,6 +166,30 @@ class Skin {
 		return $r;
 	}
 
+	/**
+	 * To make it harder for someone to slip a user a fake
+	 * user-JavaScript or user-CSS preview, a random token
+	 * is associated with the login session. If it's not
+	 * passed back with the preview request, we won't render
+	 * the code.
+	 *
+	 * @param string $action
+	 * @return bool
+	 * @access private
+	 */
+	function userCanPreview( $action ) {
+		global $wgTitle, $wgRequest, $wgUser;
+		
+		if( $action != 'submit' )
+			return false;
+		if( !$wgRequest->wasPosted() )
+			return false;
+		if( !$wgTitle->userCanEditCssJsSubpage() ) 
+			return false;
+		return $wgUser->matchEditToken(
+			$wgRequest->getVal( 'wpEditToken' ) );
+	}
+	
 	# get the user/site-specific stylesheet, SkinPHPTal called from RawPage.php (settings are cached that way)
 	function getUserStylesheet() {
 		global $wgOut, $wgStylePath, $wgLang, $wgUser, $wgRequest, $wgTitle, $wgAllowUserCss;
@@ -174,7 +198,7 @@ class Skin {
 		$s = "@import \"$wgStylePath/$sheet\";\n";
 		if($wgLang->isRTL()) $s .= "@import \"$wgStylePath/common_rtl.css\";\n";
 		if( $wgAllowUserCss && $wgUser->getID() != 0 ) { # logged in
-			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
+			if($wgTitle->isCssSubpage() && $this->userCanPreview( $action ) ) {
 				$s .= $wgRequest->getText('wpTextbox1');
 			} else {
 				$userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();

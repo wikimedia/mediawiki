@@ -9,7 +9,7 @@ if( defined( "MEDIAWIKI" ) ) {
 # like $wgScriptPath, you must also localize everything that
 # depends on it.
 
-$wgVersion			= '1.3.9';
+$wgVersion			= '1.3.10';
 
 $wgSitename         = 'MediaWiki'; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
@@ -315,7 +315,7 @@ $wgCompressRevisions = false;
 
 # This is the list of preferred extensions for uploading files. Uploading
 # files with extensions not in this list will trigger a warning.
-$wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg', 'ogg' );
+$wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg' );
 
 # Files with these extensions will never be allowed as uploads.
 $wgFileBlacklist = array(
@@ -474,10 +474,14 @@ $wgAllowRealName = true;
 $wgExtensionFunctions = array();
 
 # Allow user Javascript page?
-$wgAllowUserJs = true;
+# This enables a lot of neat customizations, but may
+# increase security risk to users and server load.
+$wgAllowUserJs = false;
 
 # Allow user Cascading Style Sheets (CSS)?
-$wgAllowUserCss = true;
+# This enables a lot of neat customizations, but may
+# increase security risk to users and server load.
+$wgAllowUserCss = false;
 
 # Filter for Special:Randompage. Part of a WHERE clause
 $wgExtraRandompageSQL = false;

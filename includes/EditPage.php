@@ -73,7 +73,14 @@ class EditPage {
 		if( !preg_match( '/^\d{14}$/', $this->edittime )) $this->edittime = "";
 
 		$this->preview = $request->getCheck( 'wpPreview' );
-		$this->save = $request->wasPosted() && !$this->preview;
+		if( $this->tokenOk( $request ) ) {
+			$this->save    = $request->wasPosted() && !$this->preview;
+		} else {
+			# Page might be a hack attempt posted from
+			# an external site. Preview instead of saving.
+ 			$this->save    = false;
+ 			$this->preview = $request->wasPosted();
+		}
 		$this->minoredit = $request->getCheck( 'wpMinoredit' );
 		$this->watchthis = $request->getCheck( 'wpWatchthis' );
 
@@ -81,6 +88,24 @@ class EditPage {
 
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
+	}
+
+	/**
+	 * Make sure the form isn't faking a user's credentials.
+	 *
+	 * @param WebRequest $request
+	 * @return bool
+	 * @access private
+	 */
+	function tokenOk( &$request ) {
+		global $wgUser;
+		if( $wgUser->getId() == 0 ) {
+			# Anonymous users may not have a session
+			# open. Don't tokenize.
+			return true;
+		} else {
+			return $wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
+		}
 	}
 
 	# Since there is only one text field on the edit form,
@@ -235,6 +260,20 @@ class EditPage {
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
 
+		if ( 0 != $wgUser->getID() ) {
+			/**
+			 * To make it harder for someone to slip a user a page
+			 * which submits an edit form to the wiki without their
+			 * knowledge, a random token is associated with the login
+			 * session. If it's not passed back with the submission,
+			 * we won't save the page, or render user JavaScript and
+			 * CSS previews.
+			 */
+			$token = htmlspecialchars( $wgUser->editToken() );
+			$wgOut->addHTML( "
+<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
+		}
+		
 		if ( $isConflict ) {
 			$s = wfMsg( "editconflict", $this->mTitle->getPrefixedText() );
 			$wgOut->setPageTitle( $s );
@@ -441,6 +480,20 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
 <input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n" );
 
+		if ( 0 != $wgUser->getID() ) {
+			/**
+			 * To make it harder for someone to slip a user a page
+			 * which submits an edit form to the wiki without their
+			 * knowledge, a random token is associated with the login
+			 * session. If it's not passed back with the submission,
+			 * we won't save the page, or render user JavaScript and
+			 * CSS previews.
+			 */
+			$token = htmlspecialchars( $wgUser->editToken() );
+			$wgOut->addHTML( "
+<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
+		}
+		
 		if ( $isConflict ) {
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourdiff" ) . "</h2>\n" );
 			DifferenceEngine::showDiff( $this->textbox2, $this->textbox1,

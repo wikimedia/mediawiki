@@ -3,6 +3,34 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== Version 1.3.10, 2005-02-03 ==
+
+MediaWiki 1.3.10 is a security release.
+
+An attacker could craft a URL which, when visited by a particular
+logged-in user, would execute arbitrary JavaScript code on the user's
+browser in the wiki's site context. This attack has been blocked, and as
+an extra precaution the user CSS and JavaScript subpage support is now
+disabled by default. Sites which want this ability may set $wgAllowUserCss
+and $wgAllowUserJs in LocalSettings.php.
+
+Additional protections have been added against off-site form submissions
+hijacking user credentials. Authors of bot tools may need to update their
+code to include additional fields.
+
+All wikis running 1.3.x are strongly urged to upgrade to 1.3.10.
+
+Changes from 1.3.9:
+* Logged-in edits and preview of user CSS/JS are now locked to a session token.
+* Per-user CSS and JavaScript subpage customizations now disabled by default.
+  They can be re-enabled via $wgAllowUserJs and $wgAllowUserCss.
+* Removed .ogg from the default uploads whitelist as an extra precaution.
+  If your web server is configured to serve Ogg files with the correct
+  Content-Type header, you can re-add it in LocalSettings.php:
+    $wgFileExtensions[] = 'ogg';
+
+
+
 == Version 1.3.9, 2004-12-12 ==
 
 MediaWiki 1.3.9 is a security and bug fix release.
