@@ -42,11 +42,12 @@ class PageArchive {
 	
 	function &listRevisions() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		$sql = "SELECT ar_minor_edit,ar_timestamp,ar_user,ar_user_text,ar_comment
-		  FROM archive WHERE ar_namespace=" . $this->title->getNamespace() .
-		  " AND ar_title='" . $dbr->strencode( $this->title->getDBkey() ) .
-		  "' ORDER BY ar_timestamp DESC";
-		return $dbr->resultObject( $dbr->query( $sql ) );
+		return $dbr->resultObject( $dbr->select( 'archive',
+			array( 'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text', 'ar_comment' ),
+			array( 'ar_namespace' => $this->title->getNamespace(),
+			       'ar_title' => $this->title->getDBkey() ),
+			'PageArchive::listRevisions',
+			array( 'ORDER BY' => 'ar_timestamp DESC' ) ) );
 	}
 	
 	function getRevisionText( $timestamp ) {
@@ -55,20 +56,18 @@ class PageArchive {
 			array( 'ar_text', 'ar_flags' ),
 			array( 'ar_namespace' => $this->title->getNamespace(),
 			       'ar_title' => $this->title->getDbkey(),
-			       'ar_timestamp' => $timestamp ) );
+			       'ar_timestamp' => $dbr->timestamp( $timestamp ) ) );
 		return Article::getRevisionText( $row, "ar_" );
 	}
 	
 	function getLastRevisionText() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		$archive = $dbr->tableName( 'archive' );
-		
-		# Get text of first revision
-		$sql = "SELECT ar_text,ar_flags FROM $archive WHERE ar_namespace=" . $this->title->getNamespace() . " AND ar_title='" .
-		  $dbr->strencode( $this->title->getDBkey() ) . "' ORDER BY ar_timestamp DESC LIMIT 1";
-		$ret = $dbr->query( $sql );
-		$row = $dbr->fetchObject( $ret );
-		$dbr->freeResult( $ret );
+		$row = $dbr->selectRow( 'archive',
+			array( 'ar_text', 'ar_flags' ),
+			array( 'ar_namespace' => $this->title->getNamespace(),
+			       'ar_title' => $this->title->getDBkey() ),
+			'PageArchive::getLastRevisionText',
+			'ORDER BY ar_timestamp DESC LIMIT 1' );
 		if( $row ) {
 			return Article::getRevisionText( $row, "ar_" );
 		} else {
@@ -99,7 +98,11 @@ class PageArchive {
 		$t = $dbw->strencode( $ttl );
 
 		# Move article and history from the "archive" table
-		$sql = "SELECT COUNT(*) AS count FROM $cur WHERE cur_namespace={$namespace} AND cur_title='{$t}' FOR UPDATE";
+		$sql = "SELECT COUNT(*) AS count FROM $cur WHERE cur_namespace={$namespace} AND cur_title='{$t}'";
+		global $wgDBtype;
+		if( $wgDBtype != 'PostgreSQL' ) { # HACKHACKHACKHACK
+			$sql .= ' FOR UPDATE';
+		}
 		$res = $dbw->query( $sql, $fname );
 		$row = $dbw->fetchObject( $res );
 		$now = wfTimestampNow();
@@ -141,7 +144,7 @@ class PageArchive {
 			
 			$newid = $dbw->insertId();
 			if( $restoreAll ) {
-				$oldones = "AND ar_timestamp<{$max}";
+				$oldones = "AND ar_timestamp<" . $dbw->addQuotes( $dbw->timestamp( $max ) );
 			}
 		} else {
 			# If already exists, put history entirely into old table
@@ -350,10 +353,11 @@ class UndeleteForm {
 		$wgOut->addHTML("<ul>");
 		$target = urlencode( $this->mTarget );
 		while( $row = $revisions->fetchObject() ) {
-			$checkBox = "<input type=\"checkbox\" name=\"ts{$row->ar_timestamp}\" value=\"1\" />";
+			$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
+			$checkBox = "<input type=\"checkbox\" name=\"ts$ts\" value=\"1\" />";
 			$pageLink = $sk->makeKnownLinkObj( $titleObj,
 				$wgLang->timeanddate( $row->ar_timestamp, true ),
-				"target=$target&timestamp={$row->ar_timestamp}" );
+				"target=$target&timestamp=$ts" );
 			$userLink = htmlspecialchars( $row->ar_user_text );
 			if( $row->ar_user ) {
 				$userLink = $sk->makeKnownLinkObj(
