@@ -80,7 +80,7 @@ class ImagePage extends Article {
 				if ( $width != $this->img->getWidth() || $height != $this->img->getHeight() ) {
 					if( $wgUseImageResize ) {
 						$thumbnail = $this->img->getThumbnail( $width );
-						print "<pre>thumb ". $thumbnail->getSize() ."\nimg  ".$this->img->getSize()."</pre>";
+
 						if (    ( ! $this->img->mustRender() )
 						     && ( $thumbnail->getSize() > $this->img->getSize() ) ) {
 							# the thumbnail is bigger thatn the original image.
