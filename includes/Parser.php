@@ -1434,11 +1434,6 @@ class Parser
 		# PHP global rebinding syntax is a bit weird, need to use the GLOBALS array
 		$GLOBALS['wgCurParser'] =& $this;
 
-		if ( $this->mOutputType == OT_HTML || $this->mOutputType == OT_MSG ) {
-			# Variable substitution
-			$text = preg_replace_callback( "/{{([$titleChars]*?)}}/", 'wfVariableSubstitution', $text );
-		}
-		
 		if ( $this->mOutputType == OT_HTML ) {
 			# Argument substitution
 			$text = preg_replace_callback( "/{{{([$titleChars]*?)}}}/", 'wfArgSubstitution', $text );
@@ -1450,19 +1445,6 @@ class Parser
 		array_pop( $this->mArgStack );
 
 		wfProfileOut( $fname );
-		return $text;
-	}
-
-	function variableSubstitution( $matches ) {
-		if ( !$this->mVariables ) {
-			$this->initialiseVariables();
-		}
-		if ( array_key_exists( $matches[1], $this->mVariables ) ) {
-			$text = $this->mVariables[$matches[1]];
-			$this->mOutput->mContainsOldMagic = true;
-		} else {
-			$text = $matches[0];
-		}
 		return $text;
 	}
 
@@ -2556,11 +2538,6 @@ function wfBraceSubstitution( $matches ) {
 function wfArgSubstitution( $matches ) {
 	global $wgCurParser;
 	return $wgCurParser->argSubstitution( $matches );
-}
-
-function wfVariableSubstitution( $matches ) {
-	global $wgCurParser;
-	return $wgCurParser->variableSubstitution( $matches );
 }
 
 /**
