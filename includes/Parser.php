@@ -148,7 +148,7 @@ class Parser
 		}
 
 
-		if( true or $this->mOptions->getUseTeX() ){
+		if( $this->mOptions->getUseTeX() ){
 			$text = Parser::extractTags("math", $text, $math_content, $uniq_prefix);
 			foreach( $math_content as $marker => $content ){
 				if( $render ){
