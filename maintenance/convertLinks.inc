@@ -87,7 +87,7 @@ function convertLinks() {
 			}
 		}
 		$dbw->freeResult( $res );
-		$dbw->setBufferResults( true );
+		$dbw->bufferResults( true );
 		print "Finished loading IDs.\n\n";
 		performanceLog( "Took " . (getMicroTime() - $baseTime) . " seconds to load IDs.\n\n" );
 	#--------------------------------------------------------------------
