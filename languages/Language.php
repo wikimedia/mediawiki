@@ -68,7 +68,8 @@ if($wgMetaNamespace === FALSE)
 	'davinci' => 'DaVinci',
 	'mono' => 'Mono',
 	'monobook' => 'MonoBook',
-	'myskin' => 'MySkin'
+	'myskin' => 'MySkin',
+	'chick' => 'Chick'
 );
 
 define( "MW_MATH_PNG",    0 );
@@ -1764,13 +1765,13 @@ class Language {
 	}
 
 	function checkTitleEncoding( $s ) {
-        global $wgInputEncoding;
+		global $wgInputEncoding;
 
-        # Check for UTF-8 URLs; Internet Explorer produces these if you
+		# Check for UTF-8 URLs; Internet Explorer produces these if you
 		# type non-ASCII chars in the URL bar or follow unescaped links.
-        $ishigh = preg_match( '/[\x80-\xff]/', $s);
+		$ishigh = preg_match( '/[\x80-\xff]/', $s);
 		$isutf = ($ishigh ? preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-                '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s ) : true );
+		         '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s ) : true );
 
 		if( ($wgInputEncoding != 'utf-8') and $ishigh and $isutf )
 			return @iconv( 'UTF-8', $wgInputEncoding, $s );
