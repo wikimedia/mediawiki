@@ -29,8 +29,7 @@ function wfSpecialUserlogin()
 	global $wgOut, $wpEmail, $wpName;
 	
 	if ("" == $wpEmail) {
-		$m = str_replace( "$1", $wpName, wfMsg( "noemail" ) );
-		mainLoginForm( $m );
+		mainLoginForm( wfMsg( "noemail", $wpName ) );
 		return;
 	}
 
@@ -50,9 +49,7 @@ function wfSpecialUserlogin()
 	$wgOut->setRobotpolicy( "noindex,nofollow" );
 	$wgOut->setArticleFlag( false );
 
-	$m = str_replace( "$1", $u->getName(), wfMsg( "accmailtext" ) );
-	$m = str_replace( "$2", $u->getEmail(), $m );
-	$wgOut->addWikiText( $m );
+	$wgOut->addWikiText( wfMsg( "accmailtext", $u->getName(), $u->getEmail() ) );
 	$wgOut->returnToMain( false );
 
 	$u = 0;
@@ -71,8 +68,7 @@ function wfSpecialUserlogin()
 	}
 
 	$wgUser = $u;
-	$m = str_replace( "$1", $wgUser->getName(), wfMsg( "welcomecreation" ) );
-	successfulLogin( $m );
+	successfulLogin( wfMsg( "welcomecreation", $wgUser->getName() ) );
 }
 
 
@@ -133,8 +129,7 @@ function wfSpecialUserlogin()
 	$u = User::newFromName( $wpName );
 	$id = $u->idForName();
 	if ( 0 == $id ) {
-		$m = str_replace( "$1", $u->getName(), wfMsg( "nosuchuser" ) );
-		mainLoginForm( $m );
+		mainLoginForm( wfMsg( "nosuchuser", $u->getName() ) );
 		return;
 	}
 	$u->setId( $id );
@@ -158,8 +153,7 @@ function wfSpecialUserlogin()
 	$u->setOption( "rememberpassword", $r );
 
 	$wgUser = $u;
-	$m = str_replace( "$1", $wgUser->getName(), wfMsg( "loginsuccess" ) );
-	successfulLogin( $m );
+	successfulLogin( wfMsg( "loginsuccess", $wgUser->getName() ) );
 }
 
 /* private */ function mailPassword()
@@ -174,8 +168,7 @@ function wfSpecialUserlogin()
 	$u = User::newFromName( $wpName );
 	$id = $u->idForName();
 	if ( 0 == $id ) {
-		$m = str_replace( "$1", $u->getName(), wfMsg( "nosuchuser" ) );
-		mainLoginForm( $m );
+		mainLoginForm( wfMsg( "nosuchuser", $u->getName() ) );
 		return;
 	}
 	$u->setId( $id );
@@ -185,8 +178,7 @@ function wfSpecialUserlogin()
 		return;
 	}
 
-	$m = str_replace( "$1", $u->getName(), wfMsg( "passwordsent" ) );
-	mainLoginForm( $m );
+	mainLoginForm( wfMsg( "passwordsent", $u->getName() ) );
 }
 
 
@@ -196,8 +188,7 @@ function wfSpecialUserlogin()
 	global $wgPasswordSender;
 
 	if ( "" == $u->getEmail() ) {
-		$m = str_replace( "$1", $u->getName(), wfMsg( "noemail" ) );
-		mainLoginForm( $m );
+		mainLoginForm( wfMsg( "noemail", $u->getName() ) );
 		return;
 	}
 	$np = User::randomPassword();
@@ -209,9 +200,7 @@ function wfSpecialUserlogin()
 	$ip = getenv( "REMOTE_ADDR" );
 	if ( "" == $ip ) { $ip = "(Unknown)"; }
 
-	$m = str_replace( "$1", $ip, wfMsg( "passwordremindertext" ) );
-	$m = str_replace( "$2", $u->getName(), $m );
-	$m = str_replace( "$3", $np, $m );
+	$m = wfMsg( "passwordremindertext", $ip, $u->getName(), $np );
 
 	mail( $u->getEmail(), wfMsg( "passwordremindertitle" ), $m,
 	  "MIME-Version: 1.0\r\n" .

@@ -9,7 +9,7 @@ function wfSpecialWatchlist()
 	$fname = "wfSpecialWatchlist";
 
 	$wgOut->setPagetitle( wfMsg( "watchlist" ) );
-	$sub = str_replace( "$1", $wgUser->getName(), wfMsg( "watchlistsub" ) );
+	$sub = wfMsg( "watchlistsub", $wgUser->getName() );
 	$wgOut->setSubtitle( $sub );
 	$wgOut->setRobotpolicy( "noindex,nofollow" );
 

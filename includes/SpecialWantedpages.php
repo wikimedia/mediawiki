@@ -42,7 +42,7 @@ function wfSpecialWantedpages()
 		$nt = Title::newFromDBkey( $obj->bl_to );
 
 		$plink = $sk->makeBrokenLink( $nt->getPrefixedText(), "" );
-		$nl = str_replace( "$1", $obj->nlinks, wfMsg( "nlinks" ) );
+		$nl = wfMsg( "nlinks", $obj->nlinks );
 		$nlink = $sk->makeKnownLink( $wgLang->specialPage(
 		  "Whatlinkshere" ), $nl, "target=" . $nt->getPrefixedURL() );
 
