@@ -544,7 +544,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$fname = 'EditPage::mergeChangesInto';
 		$oldDate = $this->edittime;
 		$dbw =& wfGetDB( DB_MASTER );
-		$obj = $dbr->getArray( 'cur', array( 'cur_text' ), array( 'cur_id' => $this->mTitle->getArticleID() ), 
+		$obj = $dbw->getArray( 'cur', array( 'cur_text' ), array( 'cur_id' => $this->mTitle->getArticleID() ), 
 			$fname, 'FOR UPDATE' );
 
 		$yourtext = $obj->cur_text;
