@@ -17,13 +17,13 @@
 			$messages[$key]['statmsg'] = wfMsgNoDb( $key );
 			$messages[$key]['msg'] = wfMsg ( $key );
 		}
-		if ($ot == 'html') {
+		if ($ot == 'php') {
+			$navText .= makePhp($messages);
+			$wgOut->addHTML('PHP | <a href="'.$wgTitle->getLocalUrl('ot=html').'">HTML</a><pre>'.htmlspecialchars($navText).'</pre>');
+		} else {
 			$navText .= makeWikiText($messages);
 			$wgOut->addHTML('<a href="'.$wgTitle->getLocalUrl('ot=php').'">PHP</a> | HTML');
 			$wgOut->addWikiText($navText);
-		} else {
-			$navText .= makePhp($messages);
-			$wgOut->addHTML('PHP | <a href="'.$wgTitle->getLocalUrl('ot=html').'">HTML</a><pre>'.htmlspecialchars($navText).'</pre>');
 		}
 		return;
 	}
