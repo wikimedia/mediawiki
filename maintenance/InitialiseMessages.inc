@@ -28,16 +28,6 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 
 	$timestamp = wfTimestampNow();
 	$invTimestamp = wfInvertTimestamp( $timestamp );
-	$navText = '{{int:allmessagestext}}';
-	$navText .= "
-
-<table border=1 width=100%><tr><td>
-'''Name'''
-</td><td>
-'''Default text'''
-</td><td>
-'''Current text'''
-</td></tr>";
 	
 	print "Initialising \"MediaWiki\" namespace...\n";
 
@@ -141,18 +131,6 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 			  '$invTimestamp',
 			  '$timestamp')";
 		}
-		
-		# Make table row for navigation page
-		$message = wfEscapeWikiText( $message );
-		$navText .= 
-"<tr><td>
-[$wgServer$wgScript?title=MediaWiki:$title&action=edit $key]<br>
-[[$mwtalk:$title|$talk]]
-</td><td>
-$message
-</td><td>
-{{int:$title}}
-</td></tr>";
 	}
 
 	# Perform the insert query
@@ -160,20 +138,6 @@ $message
 		$dbw->query( $sql, $fname );
 	}
 
-	# Write the navigation page
-
-	$navText .= '</table>';
-	$title = wfMsgNoDB( 'allmessages' );
-	$titleObj = Title::makeTitle( NS_WIKIPEDIA, $title );
-	$wgArticle = new Article( $titleObj );
-	$wgOut->disable();
-	$wgUser = User::newFromName( 'MediaWiki default' );
-	if ( $titleObj->getArticleID() ) {
-		$wgArticle->updateArticle( $navText, '', 0, 0 );
-	} else {
-		$wgArticle->insertNewArticle( $navText, '', 0, 0 );
-	}
-	
 	# Clear the relevant memcached key
 	print 'Clearing message cache...';
 	$wgMessageCache->clear();
