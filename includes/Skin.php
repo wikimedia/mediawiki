@@ -433,10 +433,14 @@ class Skin {
 		return $printfooter . $this->doAfterContent();
 	}
 	
-	function printFooter() {
+	function printSource() {
 		global $wgTitle;
 		$url = htmlspecialchars( $wgTitle->getFullURL() );
-		return "<p>" . wfMsg( "retrievedfrom", "<a href=\"$url\">$url</a>" ) .
+		return wfMsg( "retrievedfrom", "<a href=\"$url\">$url</a>" );
+	}
+	
+	function printFooter() {
+		return "<p>" .  $this->printSource() .
 			"</p>\n\n<p>" . $this->pageStats() . "</p>\n";
 	}
 	
