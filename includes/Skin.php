@@ -46,13 +46,14 @@ class RCCacheEntry extends RecentChange
 class Skin {
 
 	/* private */ var $lastdate, $lastline;
-
+	var $linktrail ; # linktrail regexp
 	var $rc_cache ; # Cache for Enhanced Recent Changes
 	var $rcCacheIndex ; # Recent Changes Cache Counter for visibility toggle
 	var $rcMoveIndex;
 
 	function Skin()
 	{
+		$this->linktrail = wfMsg("linktrail");
 	}
 
 	function getSkinNames()
@@ -1341,7 +1342,7 @@ class Skin {
 
 		$inside = "";
 		if ( "" != $trail ) {
-			if ( preg_match( wfMsg("linktrail"), $trail, $m ) ) {
+			if ( preg_match( $this->linktrail, $trail, $m ) ) {
 				$inside = $m[1];
 				$trail = $m[2];
 			}
@@ -1370,7 +1371,7 @@ class Skin {
 
 		$inside = "";
 		if ( "" != $trail ) {
-			if ( preg_match( wfMsg("linktrail"), $trail, $m ) ) {
+			if ( preg_match( $this->linktrail, $trail, $m ) ) {
 				$inside = $m[1];
 				$trail = $m[2];
 			}
@@ -1400,7 +1401,7 @@ class Skin {
 
 		$inside = "";
 		if ( "" != $trail ) {
-			if ( preg_match( wfMsg("linktrail"), $trail, $m ) ) {
+			if ( preg_match( $this->linktrail, $trail, $m ) ) {
 				$inside = $m[1];
 				$trail = $m[2];
 			}
