@@ -616,25 +616,24 @@ class SkinTemplate extends Skin {
 
 				# Validate tab. TODO: add validation to logged-in user rights 
 				if($wgUseValidation){ # && $wgUser->isAllowed('validate')){
-				#$oid = $oldid ? '&revision='.IntVal( $oldid ) : "" ;
-				if ( $oldid ) $oid = IntVal( $oldid ) ; # Use the oldid
-				else
-					{# Trying to get the current article revision through this weird stunt
-					$tid = $this->mTitle->getArticleID();
-					$tns = $this->mTitle->getNamespace();
-					$sql = "SELECT page_latest FROM page WHERE page_id={$tid} AND page_namespace={$tns}" ;
-					$res = wfQuery( $sql, DB_READ );
-					if( $s = wfFetchObject( $res ) )
-						$oid = $s->page_latest ;
-					else $oid = "" ; # Something's wrong, like the article has been deleted in the last 10 ns
-					}
-				if ( $oid != "" ) {
-					$oid = "&revision={$oid}" ;
-					$content_actions['validate'] = array(
-						'class' => ($action == 'validate') ? 'selected' : false,
-						'text' => wfMsg('val_tab'),
-						'href' => $this->mTitle->getLocalUrl( "action=validate{$oid}" )
-						);
+					if ( $oldid ) $oid = IntVal( $oldid ) ; # Use the oldid
+					else
+						{# Trying to get the current article revision through this weird stunt
+						$tid = $this->mTitle->getArticleID();
+						$tns = $this->mTitle->getNamespace();
+						$sql = "SELECT page_latest FROM page WHERE page_id={$tid} AND page_namespace={$tns}" ;
+						$res = wfQuery( $sql, DB_READ );
+						if( $s = wfFetchObject( $res ) )
+							$oid = $s->page_latest ;
+						else $oid = "" ; # Something's wrong, like the article has been deleted in the last 10 ns
+						}
+					if ( $oid != "" ) {
+						$oid = "&revision={$oid}" ;
+						$content_actions['validate'] = array(
+							'class' => ($action == 'validate') ? 'selected' : false,
+							'text' => wfMsg('val_tab'),
+							'href' => $this->mTitle->getLocalUrl( "action=validate{$oid}" )
+							);
 					}
 				}
 			}

@@ -1251,7 +1251,10 @@ class Article {
 		include_once ( "SpecialValidate.php" ) ; # The "Validation" class
 		
 		$v = new Validation ;
-		$t = $v->validatePageForm ( $this , $revision ) ;
+		if ( $wgRequest->getVal ( "mode" , "" ) == "list" )
+			$t = $v->showList ( $this ) ;
+		else
+			$t = $v->validatePageForm ( $this , $revision ) ;
 		
 		$wgOut->addHTML ( $t ) ;
 	}
