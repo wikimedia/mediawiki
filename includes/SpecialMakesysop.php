@@ -9,7 +9,7 @@ function wfSpecialMakesysop()
 		$wgOut->errorpage( "movenologin", "movenologintext" );
 		return;
 	}
-	if (! $wgUser->isBureaucrat()){
+	if (! $wgUser->isBureaucrat() && ! $wgUser->isDeveloper() ){
 		$wgOut->errorpage( "bureaucrattitle", "bureaucrattext" );
 		return;
 	}
@@ -32,9 +32,13 @@ class MakesysopForm {
 	function showForm( $err = "")
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $wpNewTitle, $wpOldTitle, $wpMovetalk, $target;
+		global $wpNewTitle, $wpOldTitle, $wpMovetalk, $target, $wpRights, $wpMakesysopUser;
 
-		$wgOut->setPagetitle( wfMsg( "makesysoptitle" ) );
+		if ( $wgUser->isDeveloper() ) {
+			$wgOut->setPageTitle( wfMsg( "set_user_rights" ) );
+		} else {
+			$wgOut->setPagetitle( wfMsg( "makesysoptitle" ) );
+		}
 
 		$wgOut->addWikiText( wfMsg( "makesysoptext" ) );
 
@@ -46,16 +50,23 @@ class MakesysopForm {
 			$wgOut->addHTML( "<p><font color='red' size='+1'>{$err}</font>\n" );
 		}
 		$namedesc = wfMsg( "makesysopname" );
+		if ( isset( $wpMakesysopUser ) ) {
+			$encUser = htmlspecialchars( $wpMakesysopUser );
+		} else {
+			$encUser = "";
+		}
+
 		$wgOut->addHTML( "<p>
 			<form id=\"makesysop\" method=\"post\" action=\"{$action}\">
 			<table border=0>
 			<tr>
 				<td align=right>$namedesc</td>
 				<td align=left>
-					<input type=text size=40 name=\"wpMakesysopUser\">
+					<input type=text size=40 name=\"wpMakesysopUser\" value=\"$encUser\">
 				</td>
 			</tr>" 
 		);
+		/*
 		$makeburo = wfMsg( "setbureaucratflag" );
 		$wgOut->addHTML(
 			"<tr>
@@ -63,9 +74,31 @@ class MakesysopForm {
 					<input type=checkbox name=\"wpSetBureaucrat\" value=1>$makeburo
 				</td>
 			</tr>"
-		);
+		);*/
 
-		$mss = wfMsg( "makesysopsubmit" );
+		if ( $wgUser->isDeveloper() ) {
+			$rights = wfMsg( "rights" );
+			if ( isset( $wpRights ) ) {
+				$encRights = htmlspecialchars( $wpRights );
+			} else {
+				$encRights = "sysop";
+			}
+
+			$wgOut->addHTML( "
+				<tr>
+					<td align=right>$rights</td>
+					<td align=left>
+						<input type=text size=40 name=\"wpRights\" value=\"$encRights\">
+					</td>
+				</tr>" 
+			);
+		}
+
+		if ( $wgUser->isDeveloper() ) {
+			$mss = wfMsg( "set_user_rights" );
+		} else {
+			$mss = wfMsg( "makesysopsubmit" );
+		}
 		$wgOut->addHTML(
 			"<tr>
 				<td>&nbsp;</td><td align=left>
@@ -79,18 +112,18 @@ class MakesysopForm {
 	function doSubmit()
 	{
 		global $wgOut, $wgUser, $wgLang, $wpMakesysopUser, $wpSetBureaucrat;
-		global $wgDBname, $wgMemc;
-		/*
+		global $wgDBname, $wgMemc, $wpRights;
+		
 		$parts = explode( "@", $wpMakesysopUser );
-		if( count( $parts ) == 2){
+		if( count( $parts ) == 2 && $wgUser->isDeveloper() ){
 			$username = addslashes( $parts[0] );
 			$usertable = $parts[1] . "wiki.user";
 			$dbName = $parts[1] . "wiki";
-		} else {*/
-		$username = addslashes( $wpMakesysopUser );
+		} else {
+			$username = addslashes( $wpMakesysopUser );
 			$usertable = "user";
 			$dbName = $wgDBname;
-		#}
+		}
 		$prev = wfIgnoreSQLErrors( TRUE );
 		$res = wfQuery("SELECT user_id, user_rights FROM user WHERE user_name = '{$username}'", DB_WRITE);
 		wfIgnoreSQLErrors( $prev );
@@ -104,23 +137,28 @@ class MakesysopForm {
 		$id = intval( $row->user_id );
 		$rightsNotation = array();
 
-		if( $row->user_rights ){
-			$rights = explode(",", $row->user_rights );
-			if(! in_array("sysop", $rights ) ){
-				$rights[] = "sysop";
-				$rightsNotation[] = "+sysop ";
-			}
-			if ( $wpSetBureaucrat && !in_array( "bureaucrat", $rights ) ) {
-				$rights[] = "bureaucrat";
-				$rightsNotation[] = "+bureaucrat ";
-			}
-			$newrights = addslashes( implode( ",", $rights ) );
+		if ( $wgUser->isDeveloper() ) {
+			$newrights = (string)$wpRights;
+			$rightsNotation[] = "=$wpRights";
 		} else {
-			$newrights = "sysop";
-			$rightsNotation[] = "+sysop";
-			if ( $wpSetBureaucrat ) {
-				$rightsNotation[] = "+bureaucrat";
-				$newrights .= ",bureaucrat";
+			if( $row->user_rights ){
+				$rights = explode(",", $row->user_rights );
+				if(! in_array("sysop", $rights ) ){
+					$rights[] = "sysop";
+					$rightsNotation[] = "+sysop ";
+				}
+				if ( $wpSetBureaucrat && !in_array( "bureaucrat", $rights ) ) {
+					$rights[] = "bureaucrat";
+					$rightsNotation[] = "+bureaucrat ";
+				}
+				$newrights = addslashes( implode( ",", $rights ) );
+			} else {
+				$newrights = "sysop";
+				$rightsNotation[] = "+sysop";
+				if ( $wpSetBureaucrat ) {
+					$rightsNotation[] = "+bureaucrat";
+					$newrights .= ",bureaucrat";
+				}
 			}
 		}
 		
@@ -143,10 +181,16 @@ class MakesysopForm {
 
 	function showSuccess()
 	{
-		global $wgOut, $wpMakesysopUser;
+		global $wgOut, $wpMakesysopUser, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( "makesysoptitle" ) );
-		$text = wfMsg( "makesysopok", $wpMakesysopUser );
+
+		if ( $wgUser->isDeveloper() ) {
+			$text = wfMsg( "user_rights_set", $wpMakesysopUser );
+		} else {
+			$text = wfMsg( "makesysopok", $wpMakesysopUser );
+		}
+		$text .= "\n\n";
 		$wgOut->addWikiText( $text );
 		$this->showForm();
 
@@ -154,10 +198,14 @@ class MakesysopForm {
 
 	function showFail()
 	{
-		global $wgOut, $wpMakesysopUser;
+		global $wgOut, $wpMakesysopUser, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( "makesysoptitle" ) );
-		$this->showForm( wfMsg( "makesysopfail", $wpMakesysopUser ) );
+		if ( $wgUser->isDeveloper() ) {
+			$this->showForm( wfMsg( "set_rights_fail", $wpMakesysopUser ) );
+		} else {
+			$this->showForm( wfMsg( "makesysopfail", $wpMakesysopUser ) );
+		}
 	}
 }
 ?>

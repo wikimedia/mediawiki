@@ -78,7 +78,7 @@ class User {
 		$this->mEmail = "";
 		$this->mPassword = $this->mNewpassword = "";
 		$this->mRights = array();
-		$defOpt = $wgLang->getDefaultUserOptions() ;
+		$defOpt = $wgLang->getDefaultAnonOptions() ;
 		foreach ( $defOpt as $oname => $val ) {
 			$this->mOptions[$oname] = $val;
 		}
@@ -90,6 +90,12 @@ class User {
 		$this->mBlockedby = -1; # Unset
 		$this->mTouched = '0'; # Allow any pages to be cached
 		$this->cookiePassword = "";
+	}
+
+	function loadDefaultUserOptions()
+	{
+		global $wgLang;
+		$this->mOptions = $wgLang->getDefaultUserOptions();
 	}
 
 	/* private */ function getBlockedStatus()
