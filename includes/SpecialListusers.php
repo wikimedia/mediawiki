@@ -1,4 +1,8 @@
 <?php
+#
+# This class is used to get a list of user. The ones with specials
+# rights (sysop, bureaucrat, developer) will have them displayed
+# next to their names.
 
 require_once("QueryPage.php");
 

@@ -1,4 +1,7 @@
 <?php
+#
+# This class is used to get a list of users flagged with "sysop"
+# right.
 
 require_once("QueryPage.php");
 
