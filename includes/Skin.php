@@ -61,6 +61,8 @@ $wgLinkHolders = array(
 	'texts' => array(),
 	'titles' => array()
 );
+global $wgInterwikiLinkHolders;
+$wgInterwikiLinkHolders = array();
 
 /**
  * @todo document
@@ -1534,7 +1536,12 @@ class Skin {
 					$trail = $m[2];
 				}
 			}
-			$retVal = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>{$trail}";
+			# Assume $this->postParseLinkColour(). This prevents
+			# interwiki links from being parsed as external links.
+			global $wgInterwikiLinkHolders;
+			$t = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>";
+			$nr = array_push($wgInterwikiLinkHolders, $t);
+			$retVal = '<!--IWLINK '. ($nr-1) ."-->{$trail}";
 		} elseif ( 0 == $nt->getNamespace() && "" == $nt->getText() ) {
 			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
 		} elseif ( ( -1 == $nt->getNamespace() ) ||

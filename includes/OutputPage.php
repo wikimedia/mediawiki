@@ -935,6 +935,15 @@ class OutputPage {
 				"outputReplaceMatches",
 				$text);
 			wfProfileOut( $fname.'-replace' );
+
+			wfProfileIn( $fname.'-interwiki' );
+			global $wgInterwikiLinkHolders;
+			$outputReplace = $wgInterwikiLinkHolders;
+			$text = preg_replace_callback(
+				'/<!--IWLINK (.*?)-->/',
+				"outputReplaceMatches",
+				$text);
+			wfProfileOut( $fname.'-interwiki' );
 		}
 		wfProfileOut( $fname );
 		return $colours;

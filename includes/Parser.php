@@ -1,7 +1,5 @@
 <?php
 
-// require_once('Tokenizer.php');
-
 /**
  * File for Parser and related classes
  *
@@ -661,12 +659,11 @@ class Parser
 			$text = $wgDateFormatter->reformat( $this->mOptions->getDateFormat(), $text );
 		}
 		$text = $this->doAllQuotes( $text );
-		$text = $this->replaceExternalLinks( $text );
 		$text = $this->doMagicLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
 		# Another call to replace links and images inside captions of images
 		$text = $this->replaceInternalLinks ( $text );
-
+		$text = $this->replaceExternalLinks( $text );
 		$text = $this->doTableStuff( $text );
 		$text = $this->formatHeadings( $text, $isMain );
 		$sk =& $this->mOptions->getSkin();
@@ -1126,6 +1123,14 @@ class Parser
 				if(preg_match('/%/', $m[1] )) $m[1] = urldecode($m[1]);
 				$trail = $m[3];
 			} else { # Invalid form; output directly
+				$s .= $prefix . '[[' . $line ;
+				continue;
+			}
+
+			# Don't allow internal links to pages containing
+			# PROTO: where PROTO is a valid URL protocol; these
+			# should be external links.
+			if (preg_match('/((?:'.URL_PROTOCOLS.'):)/', $m[1])) {
 				$s .= $prefix . '[[' . $line ;
 				continue;
 			}
@@ -1772,14 +1777,16 @@ class Parser
 		# Did we encounter this template already? If yes, it is in the cache
 		# and we need to check for loops.
 		if ( !$found && isset( $this->mTemplates[$part1] ) ) {
+			# set $text to cached message.
+			$text = $this->mTemplates[$part1];
+			$found = true;
+
 			# Infinite loop test
 			if ( isset( $this->mTemplatePath[$part1] ) ) {
 				$noparse = true;
 				$found = true;
+				$text .= '<!-- WARNING: template loop detected -->';
 			}
-			# set $text to cached message.
-			$text = $this->mTemplates[$part1];
-			$found = true;
 		}
 
 		# Load from database
