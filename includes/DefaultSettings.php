@@ -963,6 +963,11 @@ $wgSearchForwardUrl = null;
  */
 $wgNoFollowLinks = true;
 
+/**
+ * Array of disabled article actions, e.g. view, edit, dublincore, delete, etc.
+ */
+$wgDisabledActions = array();
+
 } else {
 	die("MEDIAWIKI not defined, this is not a valid entry point\n");
 }
