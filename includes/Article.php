@@ -1877,7 +1877,6 @@ class Article {
 				$shortTitle != $wgUser->getName())
 			{
 				$other = User::newFromName($shortTitle);
-				$other->setID(User::idFromName($shortTitle));
 				$other->setNewtalk(1);
 				$other->saveNewtalk();
 			}

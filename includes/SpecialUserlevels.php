@@ -115,12 +115,11 @@ class UserlevelsForm extends HTMLForm {
 			$wgOut->addHTML('<p>'.wfMsg('nosuchusershort',$username).'</p>');
 			return;
 		}
-		$id = $u->idForName();
-		if($id == 0) {
+
+		if($u->getID() == 0) {
 			$wgOut->addHTML('<p>'.wfMsg('nosuchusershort',$username).'</p>');
 			return;
 		}		
-		$u->setID( $id );
 
 		$groups = $u->getGroups();
 		$logcomment = ' ';
@@ -214,12 +213,11 @@ class UserlevelsForm extends HTMLForm {
 			$wgOut->addHTML('<p>'.wfMsg('nosuchusershort',$username).'</p>');
 			return;
 		}
-		$id = $user->idForName();
-		if($id == 0) {
+
+		if($user->getID() == 0) {
 			$wgOut->addHTML('<p>'.wfMsg('nosuchusershort',$username).'</p>');
 			return;
 		}		
-		$user->setID( $id );
 		
 		$groups = $user->getGroups();
 

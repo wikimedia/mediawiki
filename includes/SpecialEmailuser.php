@@ -40,13 +40,12 @@ function wfSpecialEmailuser( $par ) {
 		return;
 	}
 	$nu = User::newFromName( $nt->getText() );
-	$id = $nu->idForName();
 
-	if ( 0 == $id ) {
+	if ( 0 == $nu->getID() ) {
 		$wgOut->errorpage( "noemailtitle", "noemailtext" );
 		return;
 	}
-	$nu->setID( $id );
+
 	$address = $nu->getEmail();
 
 	if ( ( false === strpos( $address, "@" ) ) ||

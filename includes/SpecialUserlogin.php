@@ -240,8 +240,7 @@ class LoginForm {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return;
 		}
-		$id = $u->idForName();
-		if ( 0 == $id ) {
+		if ( 0 == $u->getID() ) {
 			global $wgAuth;
 			/**
 			 * If the external authentication plugin allows it,
@@ -257,7 +256,6 @@ class LoginForm {
 				return;
 			}
 		} else {
-			$u->setId( $id );
 			$u->loadFromDatabase();
 		}
 		if (!$u->checkPassword( $this->mPassword )) {
@@ -302,12 +300,11 @@ class LoginForm {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return;
 		}
-		$id = $u->idForName();
-		if ( 0 == $id ) {
+		if ( 0 == $u->getID() ) {
 			$this->mainLoginForm( wfMsg( 'nosuchuser', $u->getName() ) );
 			return;
 		}
-		$u->setId( $id );
+
 		$u->loadFromDatabase();
 
 		$error = $this->mailPasswordInternal( $u );
