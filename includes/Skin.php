@@ -1802,8 +1802,8 @@ class Skin {
 			}
 			if ( 'center' == $align )
 			{
-				$prefix  = '<span style="text-align: center">';
-				$postfix = '</span>';
+				$prefix  = '<div class="center">';
+				$postfix = '</div>';
 				$align   = 'none';
 			}
 	

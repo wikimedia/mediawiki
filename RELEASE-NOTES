@@ -18,6 +18,8 @@ Changes from 1.3.5:
   extension. (This extension is not enabled by default.)
 * Fixed potential HTML/JavaScript injection attack via raw page views to
   a maliciously crafted wiki page.
+* (bug 187, bug 669) Fixed centered thumbnails, using <div> instead of
+  <span>.
 
 
 == Version 1.3.5, 2004-09-30 ==
