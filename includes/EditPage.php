@@ -621,7 +621,7 @@ htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 		$title = $this->mTitle->getDBkey();
 		$obj = $dbw->getArray( 'old', 
 			array( 'old_text','old_flags'), 
-			array( 'old_namespace' => $ns, 'old_title' => $title, 
+			array( 'old_articleid' => $this->mTitle->getArticleID(), 
 				'old_timestamp' => $dbw->timestamp($oldDate)),
 			$fname );
 		$oldText = Article::getRevisionText( $obj );

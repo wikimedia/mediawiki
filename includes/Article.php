@@ -382,7 +382,7 @@ class Article {
 	function &getOldContentFields() {
 		global $wgArticleOldContentFields;
 		if ( !$wgArticleOldContentFields ) {
-			$wgArticleOldContentFields = array( 'old_namespace','old_title','old_text','old_timestamp',
+			$wgArticleOldContentFields = array( 'old_articleid','old_text','old_timestamp',
 			  'old_user','old_user_text','old_comment','old_flags' );
 		}
 		return $wgArticleOldContentFields;
@@ -475,9 +475,8 @@ class Article {
 				return;
 			}
 
-			if( $this->mTitle->getNamespace() != $s->old_namespace ||
-				$this->mTitle->getDBkey() != $s->old_title ) {
-				$oldTitle = Title::makeTitle( $s->old_namesapce, $s->old_title );
+			if( $this->mTitle->getArticleID() != $s->old_articleid ) {
+				$oldTitle = Title::newFromID( $s->old_articleid );
 				$this->mTitle = $oldTitle;
 				$wgTitle = $oldTitle;
 			}
@@ -708,14 +707,13 @@ class Article {
 		$dbr =& $this->getDB();
 		$oldTable = $dbr->tableName( 'old' );
 		$userTable = $dbr->tableName( 'user' );
-		$encDBkey = $dbr->addQuotes( $title->getDBkey() );
+		$artid = $title->getArticleID();
 		$ns = $title->getNamespace();
 		$user = $this->getUser();
 
 		$sql = "SELECT old_user, old_user_text, user_real_name, MAX(old_timestamp) as timestamp
 			FROM $oldTable LEFT JOIN $userTable ON old_user = user_id
-			WHERE old_namespace = $user
-			AND old_title = $encDBkey
+			WHERE old_articleid = $artid
 			AND old_user != $user
 			GROUP BY old_user, old_user_text, user_real_name
 			ORDER BY timestamp DESC";
@@ -951,9 +949,10 @@ class Article {
 			$dbw =& wfGetDB( DB_MASTER );
 			$ns = $this->mTitle->getNamespace();
 			$title = $this->mTitle->getDBkey();
+			$aid = $this->mTitle->getArticleID();
 			$obj = $dbw->getArray( 'old', 
 				array( 'old_text','old_flags'), 
-				array( 'old_namespace' => $ns, 'old_title' => $title, 
+				array( 'old_articleid' => $aid, 
 					'old_timestamp' => $dbw->timestamp($edittime)),
 				$fname );
 			$oldtext = Article::getRevisionText( $obj );
@@ -1112,8 +1111,7 @@ class Article {
 				$dbw->insertArray( 'old',
 					array(
 						'old_id' => $dbw->nextSequenceValue( 'old_old_id_seq' ),
-						'old_namespace' => $this->mTitle->getNamespace(),
-						'old_title' => $this->mTitle->getDBkey(),
+						'old_articleid' => $this->mTitle->getArticleID(),
 						'old_text' => $oldtext,
 						'old_comment' => $this->getComment(),
 						'old_user' => $this->getUser(),
@@ -1470,12 +1468,11 @@ class Article {
 		$dbr =& $this->getDB();
 		$ns = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getDBkey();
+		$artid = $this->mTitle->getArticleID();
 		$old = $dbr->getArray( 'old',
 			array( 'old_text', 'old_flags' ),
-			array(
-				'old_namespace' => $ns,
-				'old_title' => $title,
-			), $fname, $this->getSelectOptions( array( 'ORDER BY' => 'inverse_timestamp' ) )
+			array( 'old_articleid' => $artid ),
+			$fname, $this->getSelectOptions( array( 'ORDER BY' => 'inverse_timestamp' ) )
 		);
 
 		if( $old !== false && !$confirm ) {
@@ -1671,6 +1668,7 @@ class Article {
 		$recentchangesTable = $dbw->tableName( 'recentchanges' );
 		$linksTable = $dbw->tableName( 'links' );
 		$brokenlinksTable = $dbw->tableName( 'brokenlinks' );
+		$artid = $this->mTitle->getArticleID();
 
 		$dbw->insertSelect( 'archive', 'cur',
 			array(
@@ -1689,10 +1687,10 @@ class Article {
 			), $fname
 		);
 
-		$dbw->insertSelect( 'archive', 'old',
+		$dbw->insertSelect( 'archive', 'cur,old',
 			array(
-				'ar_namespace' => 'old_namespace',
-				'ar_title' => 'old_title',
+				'ar_namespace' => 'cur_namespace',
+				'ar_title' => 'cur_title',
 				'ar_text' => 'old_text',
 				'ar_comment' => 'old_comment',
 				'ar_user' => 'old_user',
@@ -1701,15 +1699,14 @@ class Article {
 				'ar_minor_edit' => 'old_minor_edit',
 				'ar_flags' => 'old_flags'
 			), array(
-				'old_namespace' => $ns,
-				'old_title' => $t,
+				'old_articleid' => $artid
 			), $fname
 		);
 
 		# Now that it's safely backed up, delete it
 
 		$dbw->delete( 'cur', array( 'cur_namespace' => $ns, 'cur_title' => $t ), $fname );
-		$dbw->delete( 'old', array( 'old_namespace' => $ns, 'old_title' => $t ), $fname );
+		$dbw->delete( 'old', array( 'old_articleid' => $artid ), $fname );
 		$dbw->delete( 'recentchanges', array( 'rc_namespace' => $ns, 'rc_title' => $t ), $fname );
 
 		# Finally, clean up the link tables
@@ -1801,10 +1798,9 @@ class Article {
 		$s = $dbw->getArray( 'old',
 			array( 'old_text','old_user','old_user_text','old_timestamp','old_flags' ),
 			array(
-				'old_namespace' => $n,
-				'old_title' => $tt,
+				'old_articleid' => $pid,
 				"old_user <> {$uid} OR old_user_text <> '{$ut}'"
-			), $fname, array( 'FOR UPDATE', 'USE INDEX' => 'name_title_timestamp' )
+			), $fname, array( 'FOR UPDATE', 'USE INDEX' => 'articleid_timestamp' )
 		);
 		if( $s === false ) {
 			# Something wrong
@@ -2017,8 +2013,7 @@ class Article {
 		# Save to history
 		$dbw->insertSelect( 'old', 'cur',
 			array(
-				'old_namespace' => 'cur_namespace',
-				'old_title' => 'cur_title',
+				'old_articleid' => 'cur_id',
 				'old_text' => 'cur_text',
 				'old_comment' => 'cur_comment',
 				'old_user' => 'cur_user',
@@ -2172,7 +2167,7 @@ class Article {
 
 		$basenamespace = $wgTitle->getNamespace() & (~1);
 		$cur_clause = array( 'cur_title' => $wgTitle->getDBkey(), 'cur_namespace' => $basenamespace );
-		$old_clause = array( 'old_title' => $wgTitle->getDBkey(), 'old_namespace' => $basenamespace );
+		$old_clause = array( 'old_articleid' => $wgTitle->getArticleID() );
 		$wl_clause  = array( 'wl_title' => $wgTitle->getDBkey(), 'wl_namespace' => $basenamespace );
 		$fullTitle = $wgTitle->makeName($basenamespace, $wgTitle->getDBKey());
 		$wgOut->setPagetitle(  $fullTitle );
@@ -2205,13 +2200,15 @@ class Article {
 
 			# now for the Talk page ...
 			$cur_clause = array( 'cur_title' => $wgTitle->getDBkey(), 'cur_namespace' => $basenamespace+1 );
-			$old_clause = array( 'old_title' => $wgTitle->getDBkey(), 'old_namespace' => $basenamespace+1 );
 
 			# does it exist?
 			$exists = $dbr->selectField( 'cur', 'COUNT(*)', $cur_clause, $fname, $this->getSelectOptions() );
 
 			# number of edits
 			if ($exists > 0) {
+				$oldartid = $dbr->selectField( 'cur', 'cur_id', 
+					$cur_clause, $fname, $this->getSelectOptions());
+				$old_clause = array( 'old_articleid' => $oldartid );
 				$old = $dbr->selectField( 'old', 'COUNT(*)', $old_clause, $fname, $this->getSelectOptions() );
 				$wgOut->addHTML( '<li>' . wfMsg("numtalkedits", $old + 1) . '</li>');
 			}

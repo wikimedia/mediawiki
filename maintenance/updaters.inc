@@ -27,6 +27,7 @@ $wgNewFields = array(
 	array( 'recentchanges', 'rc_patrolled',     'patch-rc-patrol.sql' ),
 	array( 'user',          'user_real_name',   'patch-user-realname.sql' ),
 	array( 'user',          'user_token',       'patch-user_token.sql' ),
+	array( 'old',		'old_articleid',    'patch-remove-old-title-namespace.sql' ),
 );
 
 function add_table( $name, $patch ) {

@@ -27,8 +27,7 @@ class DifferenceEngine {
 			$this->mNewid = intval($old);
 			$dbr =& wfGetDB( DB_SLAVE );
 			$this->mOldid = $dbr->selectField( 'old', 'old_id',
-				"old_title='" . $wgTitle->getDBkey() . "'" .
-				' AND old_namespace=' . $wgTitle->getNamespace() .
+				"old_articleid = " . $wgTitle->getArticleID() .
 				" AND old_id<{$this->mNewid} ORDER BY old_id DESC" );
 
 		} elseif ( 'next' == $new ) {
@@ -39,8 +38,7 @@ class DifferenceEngine {
 			$this->mOldid = intval($old);
 			$dbr =& wfGetDB( DB_SLAVE );
 			$this->mNewid = $dbr->selectField( 'old', 'old_id',
-				"old_title='" . $wgTitle->getDBkey() . "'" .
-				' AND old_namespace=' . $wgTitle->getNamespace() .
+				"old_articleid = " . $wgTitle->getArticleID() .
 				" AND old_id>{$this->mOldid} ORDER BY old_id " );
 			if ( false === $this->mNewid ) {
 				# if no result, NewId points to the newest old revision. The only newer
@@ -273,7 +271,7 @@ class DifferenceEngine {
 			$this->mNewUser = $s->cur_user_text;
 			$this->mNewComment = $s->cur_comment;
 		} else {
-			$s = $dbr->getArray( 'old', array( 'old_namespace','old_title','old_timestamp', 'old_text',
+			$s = $dbr->getArray( 'old', array( 'old_articleid', 'old_timestamp', 'old_text',
 				'old_flags','old_user_text','old_comment' ), array( 'old_id' => $this->mNewid ), $fname );
 
 			if ( $s === false ) {
@@ -284,7 +282,7 @@ class DifferenceEngine {
 			$this->mNewtext = Article::getRevisionText( $s );
 
 			$t = $wgLang->timeanddate( $s->old_timestamp, true );
-			$this->mNewPage = Title::MakeTitle( $s->old_namespace, $s->old_title );
+			$this->mNewPage = Title::newFromID( $s->old_articleid );
 			$newLink = $wgTitle->getLocalUrl ('oldid=' . $this->mNewid);
 			$this->mPagetitle = wfMsg( 'revisionasof', $t );
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
@@ -293,11 +291,10 @@ class DifferenceEngine {
 		}
 		if ( 0 == $this->mOldid ) {
 			$s = $dbr->getArray( 'old',
-				array( 'old_namespace','old_title','old_timestamp','old_text', 'old_flags','old_user_text','old_comment' ),
+				array( 'old_timestamp','old_text', 'old_flags','old_user_text','old_comment' ),
 				array( /* WHERE */
-					'old_namespace' => $this->mNewPage->getNamespace(),
-					'old_title' => $this->mNewPage->getDBkey()
-				), $fname, array( 'ORDER BY' => 'inverse_timestamp', 'USE INDEX' => 'name_title_timestamp' )
+					'old_articleid' => $this->mNewPage->getArticleID(),
+				), $fname, array( 'ORDER BY' => 'inverse_timestamp', 'USE INDEX' => 'articleid_timestamp' )
 			);
 			if ( $s === false ) {
 				wfDebug( 'Unable to load ' . $this->mNewPage->getPrefixedDBkey . " from old\n" );
@@ -305,7 +302,7 @@ class DifferenceEngine {
 			}
 		} else {
 			$s = $dbr->getArray( 'old',
-				array( 'old_namespace','old_title','old_timestamp','old_text','old_flags','old_user_text','old_comment'),
+				array( 'old_timestamp','old_text','old_flags','old_user_text','old_comment'),
 				array( 'old_id' => $this->mOldid ),
 				$fname
 			);
@@ -314,7 +311,7 @@ class DifferenceEngine {
 				return false;
 			}
 		}
-		$this->mOldPage = Title::MakeTitle( $s->old_namespace, $s->old_title );
+		$this->mOldPage = Title::newFromID( $wgTitle->getArticleID() );
 		$this->mOldtext = Article::getRevisionText( $s );
 
 		$t = $wgLang->timeanddate( $s->old_timestamp, true );

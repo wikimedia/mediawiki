@@ -49,10 +49,11 @@ class Title {
 		$this->mInterwiki = $this->mUrlform =
 		$this->mTextform = $this->mDbkeyform = '';
 		$this->mArticleID = -1;
+		$this->mID = -1;
 		$this->mNamespace = 0;
 		$this->mRestrictionsLoaded = false;
 		$this->mRestrictions = array();
-        $this->mDefaultNamespace = 0;
+		$this->mDefaultNamespace = 0;
 	}
 
 	# From a prefixed DB key
@@ -968,8 +969,8 @@ class Title {
 		$fname = 'Title::moveOverExistingRedirect';
 		$comment = wfMsg( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 		
-        $now = wfTimestampNow();
-        $won = wfInvertTimestamp( $now );
+		$now = wfTimestampNow();
+		$won = wfInvertTimestamp( $now );
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
 		$dbw =& wfGetDB( DB_MASTER );
@@ -1014,21 +1015,6 @@ class Title {
 		
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
 
-		# Fix the redundant names for the past revisions of the target page.
-		# The redirect should have no old revisions.
-		$dbw->updateArray(
-			/* table */ 'old',
-			/* SET */ array( 
-				'old_namespace' => $nt->getNamespace(),
-				'old_title' => $nt->getDBkey(),
-			),
-			/* WHERE */ array( 
-				'old_namespace' => $this->getNamespace(),
-				'old_title' => $this->getDBkey(),
-			),
-			$fname
-		);
-		
 		RecentChange::notifyMoveOverRedirect( $now, $this, $nt, $wgUser, $comment );
 
 		# Swap links
@@ -1136,19 +1122,6 @@ class Title {
 		$newid = $dbw->insertId();
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
 
-		# Rename old entries
-		$dbw->updateArray( 
-			/* table */ 'old',
-			/* SET */ array(
-				'old_namespace' => $nt->getNamespace(),
-				'old_title' => $nt->getDBkey()
-			),
-			/* WHERE */ array(
-				'old_namespace' => $this->getNamespace(),
-				'old_title' => $this->getDBkey()
-			), $fname
-		);
-		
 		# Record in RC
 		RecentChange::notifyMoveToNew( $now, $this, $nt, $wgUser, $comment );
 
@@ -1208,8 +1181,7 @@ class Title {
 		# Does the article have a history?
 		$row = $dbw->getArray( 'old', array( 'old_id' ), 
 			array( 
-				'old_namespace' => $nt->getNamespace(),
-				'old_title' => $nt->getDBkey() 
+				'old_articleid' => $nt->getArticleID()
 			), $fname, 'FOR UPDATE' 
 		);
 
@@ -1325,7 +1297,8 @@ class Title {
 	}
 
 	function oldCond() {
-		return array( 'old_namespace' => $this->mNamespace, 'old_title' => $this->mDbkeyform );
+		#return array( 'old_namespace' => $this->mNamespace, 'old_title' => $this->mDbkeyform );
+		return array( 'old_articleid' => $this->getArticleID() );
 	}
 }
 ?>
