@@ -879,7 +879,6 @@ li#contentaction-watch {
 /*
 ** footer
 */
-
 #portal-footer {
     background-color: White;
     border-top: 1px solid #fabd23;
@@ -893,22 +892,22 @@ li#contentaction-watch {
     display: inline;
     margin-right: 2em;
 }
-#footer-about,
-#footer-disclaimer {
+/* hide from incapable browsers */
+head:first-child+body #portal-footer li {
     white-space: nowrap;
 }
-
 #footer-poweredbyico, #footer-copyrightico {
-	width: 88px;
-	margin: 0 8px;
-	position: relative;
-	top: -2px; /* Bump it up just a tad */
+        margin: 0 8px;
+        position: relative;
+        top: -2px; /* Bump it up just a tad */
 }
 #footer-poweredbyico {
-	float: right;
+        float: right;
+        height: 1%;
 }
 #footer-copyrightico {
-	float: left;
+        float: left;
+        height: 1%;
 }
 
 /* 
@@ -927,6 +926,11 @@ li#contentaction-watch {
 }
 *>html #portlet-contentViews li.selected a {
     border-color: #fabd23;
+}
+/* footer icons need a fixed width */
+*>html #footer-poweredbyico,
+*>html #footer-copyrightico {
+    width: 88px;
 }
 
 /* more IE fixes */
