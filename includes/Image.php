@@ -91,6 +91,12 @@ class Image
 		return $this->height;
 	}
 
+	function getSize()
+	{
+		$st = stat( $this->getImagePath() );
+		return $st['size'];
+	}
+
 	function getType()
 	{
 		return $this->type;

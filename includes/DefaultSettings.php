@@ -527,10 +527,6 @@ $wgSiteNotice = "";
 # 
 $wgUseImageResize		= false;
 
-## Set maximum width of images on image description pages.
-## Images bigger than this will be rendered down.
-$wgMaxImageWidth = 800;
-
 ## Resizing can be done using PHP's internal image libraries
 ## or using ImageMagick. The later supports more file formats
 ## than PHP, which only supports PNG, GIF, JPG, XBM and WBMP.
@@ -693,6 +689,17 @@ $wgExtraNamespaces = NULL;
 # Most bots use the normal HTTP interface and don't use SOAP.
 # If unsure, set to false.
 $wgEnableSOAP = false;
+
+# Limit images on image description pages to a user-selectable limit. In order to
+# reduce disk usage, limits can only be selected from a list. This is the list of
+# settings the user can choose from:
+$wgImageLimits = array (
+	array(320,240),
+	array(640,480),
+	array(800,600),
+	array(1024,768),
+	array(1280,1024),
+	array(10000,10000) );
 
 } else {
 	die();

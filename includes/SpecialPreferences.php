@@ -26,7 +26,7 @@ class PreferencesForm {
 	var $mRows, $mCols, $mSkin, $mMath, $mDate, $mUserEmail, $mEmailFlag, $mNick;
 	var $mUserLanguage;
 	var $mSearch, $mRecent, $mHourDiff, $mSearchLines, $mSearchChars, $mAction;
-	var $mReset, $mPosted, $mToggles, $mSearchNs, $mRealName;
+	var $mReset, $mPosted, $mToggles, $mSearchNs, $mRealName, $mImageSize;
 
 	/**
 	 * Constructor
@@ -55,6 +55,8 @@ class PreferencesForm {
 		$this->mHourDiff = $request->getVal( 'wpHourDiff' );
 		$this->mSearchLines = $request->getVal( 'wpSearchLines' );
 		$this->mSearchChars = $request->getVal( 'wpSearchChars' );
+		$this->mImageSize = $request->getVal( 'wpImageSize' );
+
 		$this->mAction = $request->getVal( 'action' );
 		$this->mReset = $request->getCheck( 'wpReset' );
 		$this->mPosted = $request->wasPosted();
@@ -186,6 +188,7 @@ class PreferencesForm {
 		$wgUser->setOption( 'cols', $this->validateInt( $this->mCols, 4, 1000 ) );
 		$wgUser->setOption( 'stubthreshold', $this->validateIntOrNull( $this->mStubs ) );
 		$wgUser->setOption( 'timecorrection', $this->validateTimeZone( $this->mHourDiff, -12, 14 ) );
+		$wgUser->setOption( 'imagesize', $this->mImageSize );
 
 		# Set search namespace options
 		foreach( $this->mSearchNs as $i => $value ) {
@@ -231,6 +234,7 @@ class PreferencesForm {
 		$this->mSearch = $wgUser->getOption( 'searchlimit' );
 		$this->mSearchLines = $wgUser->getOption( 'contextlines' );
 		$this->mSearchChars = $wgUser->getOption( 'contextchars' );
+		$this->mImageSize = $wgUser->getOption( 'imagesize' );
 		$this->mRecent = $wgUser->getOption( 'rclimit' );
 
 		$togs = $wgLang->getUserToggles();
@@ -301,7 +305,7 @@ class PreferencesForm {
 	 */
 	function mainPrefsForm( $err ) {
 		global $wgUser, $wgOut, $wgLang, $wgUseDynamicDates, $wgValidSkinNames;
-	        global $wgAllowRealName;
+	        global $wgAllowRealName, $wgImageLimits;
 	    
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
@@ -490,6 +494,15 @@ class PreferencesForm {
 		" . $this->getToggle( "hideminor" ) .
 		$this->getToggle( "usenewrc" ) . "
 		<div><label>$stt: <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>
+                <div><label>".wfMsg('imagemaxsize')."<select name=\"wpImageSize\">");
+		
+		$imageLimitOptions='';
+		foreach ( $wgImageLimits as $index => $limits ) {
+			$selected = ($index == $this->mImageSize) ? ' selected ': '';
+			$imageLimitOptions .= "<option value=\"{$index}\" {$selected}>{$limits[0]}x{$limits[1]}</option>\n";
+		}
+		$wgOut->addHTML( "{$imageLimitOptions}</select></label></div>
+
 	</fieldset>
 	
 	<fieldset>

@@ -37,11 +37,16 @@ class ImagePage extends Article {
 
 	function openShowImage()
 	{
-		global $wgOut, $wgUser, $wgRequest, $wgMaxImageWidth, $wgUseImageResize;
+		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, $wgUseImageResize;
 		$this->img  = Image::newFromTitle( $this->mTitle );
 		$url  = $this->img->getUrl();
 		$anchoropen = '';
 		$anchorclose = '';
+		if ( $wgUseImageResize && $wgUser->getOption( 'imagesize' ) != '' ) {
+			$max = $wgImageLimits[ intval( $wgUser->getOption( 'imagesize' ) ) ];
+			$maxWidth = $max[0];
+			$maxHeight = $max[1];
+		}
 
 
 		if ( $this->img->exists() ) {
@@ -52,14 +57,24 @@ class ImagePage extends Article {
 				# image
 				$width = $this->img->getWidth();
 				$height = $this->img->getHeight();
-				if ( $width > $wgMaxImageWidth && $wgUseImageResize ) {
+				if ( $width > $maxWidth && $wgUseImageResize ) {
+					$msg = wfMsg('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
 					$anchoropen  = "<a href=\"{$url}\">";
-					$anchorclose = '</a>';
-					$url=$this->img->createThumb( $wgMaxImageWidth );
-					$height = floor( $height * $wgMaxImageWidth / $width );
-					$width  = $wgMaxImageWidth;
+					$anchorclose = "<br>{$msg}</a>";
+
+					$url = $this->img->createThumb( $maxWidth );
+					$height = floor( $height * $maxWidth / $width );
+					$width  = $maxWidth;
+				} elseif ( $height > $maxHeight && $wgUseImageResize ) {
+					$msg = wfMsg('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
+					$anchoropen  = "<a href=\"{$url}\">";
+					$anchorclose = "<br>{$msg}</a>";
+
+					$width = floor( $width * $maxHeight / $height );
+					$height = $maxHeight;
+					$url = $this->img->createThumb( $width );
 				}
-				$s = "<div class=\"fullImage\">" . $anchoropen .
+				$s = "<div class=\"fullImageLink\">" . $anchoropen .
 				     "<img border=\"0\" src=\"{$url}\" width=\"{$width}\" height=\"{$height}\" alt=\"" .
 				     $wgRequest->getVal( 'image' )."\" />" . $anchorclose . "</div>";
 			} else {
