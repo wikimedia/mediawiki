@@ -215,6 +215,10 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1204) Blocks do not expire automatically
 * (bug 1184) expiry time of indefinite blocks shown as the current time
 * (bug 1317) Fix external links in image captions
+* (bug 1084) Fix logo not rendering centrally in IE
+* (bug 288) Fix tabs wrapping in IE6
+* (bug 119) Fix full-width tabs with RTL text in IE
+* (bug 1323) Fix logo rendering off-screen in IE with RTL language
 
 === Caveats ===
 
