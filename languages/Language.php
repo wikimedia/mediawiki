@@ -901,6 +901,7 @@ See [[{{ns:4}}:User preferences help]] for help deciphering the options.",
 "stubthreshold" => "Threshold for stub display",
 "recentchangescount" => "Number of titles in recent changes",
 "savedprefs"	=> "Your preferences have been saved.",
+"timezonelegend" => "Time zone",
 "timezonetext"	=> "Enter number of hours your local time differs
 from server time (UTC).",
 "localtime"	=> "Local time display",
