@@ -117,6 +117,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1015) [partial] -- use comment formatter on image gallery text
 * Allow customization of all UI languages
 * use $wgForceUIMsgAsContentMsg to make regular UI messages act as content
+* new user option for zh users to disable language conversion
 
 === Caveats ===
 
