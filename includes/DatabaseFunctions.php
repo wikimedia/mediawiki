@@ -95,12 +95,15 @@ function wfEmergencyAbort( $msg = "" ) {
 function wfQuery( $sql, $db, $fname = "" )
 {
 	global $wgLastDatabaseQuery, $wgOut, $wgDebugDumpSql;
+	global $wgProfiling;
 
-        # wfGeneralizeSQL will probably cut down the query to reasonable
-        # logging size most of the time. The substr is really just a sanity check.
-        $profName = "wfQuery: " . substr( wfGeneralizeSQL( $sql ), 0, 255 ); 
-	
-	wfProfileIn( $profName );
+	if ( $wgProfiling ) {
+		# wfGeneralizeSQL will probably cut down the query to reasonable
+		# logging size most of the time. The substr is really just a sanity check.
+		$profName = "wfQuery: " . substr( wfGeneralizeSQL( $sql ), 0, 255 ); 
+
+		wfProfileIn( $profName );
+	}
 
 	if ( !is_numeric( $db ) ) {
 		# Someone has tried to call this the old way
@@ -122,7 +125,10 @@ function wfQuery( $sql, $db, $fname = "" )
 		$wgOut->databaseError( $fname );
 		exit;
 	}
-	wfProfileOut( $profName );
+	
+	if ( $wgProfiling ) {
+		wfProfileOut( $profName );
+	}
 	return $ret;
 }
 
