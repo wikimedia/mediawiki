@@ -517,7 +517,7 @@ class OutputPage {
 		wfAbruptExit();
 	}
 
-	function readOnlyPage( $source = "", $protected = false )
+	function readOnlyPage( $source = null, $protected = false )
 	{
 		global $wgUser, $wgReadOnlyFile;
 
@@ -530,13 +530,16 @@ class OutputPage {
 		} else {
 			$this->setPageTitle( wfMsg( "readonly" ) );
 			$reason = file_get_contents( $wgReadOnlyFile );
-			$this->addHTML( wfMsg( "readonlytext", $reason ) );
+			$this->addWikiText( wfMsg( "readonlytext", $reason ) );
 		}
 		
-		if($source) {
+		if( is_string( $source ) ) {
+			if( strcmp( $source, "" ) == 0 ) {
+				$source = wfMsg( "noarticletext" );
+			}
 			$rows = $wgUser->getOption( "rows" );
 			$cols = $wgUser->getOption( "cols" );
-			$text = "</p>\n<textarea cols='$cols' rows='$rows' readonly>" .
+			$text = "\n<textarea cols='$cols' rows='$rows' readonly='readonly'>" .
 				htmlspecialchars( $source ) . "\n</textarea>";
 			$this->addHTML( $text );
 		}
