@@ -675,7 +675,8 @@ class Parser
 							$nextToken = $tokenizer->nextToken();
 							$txt .= $nextToken["text"];
 						}
-						$txt = $this->handleInternalLink( $txt, $prefix );
+						$fakestate = $this->mStripState;
+						$txt = $this->handleInternalLink( $this->unstrip($txt,$fakestate), $prefix );
 
 						# did the tag start with 3 [ ?						
 						if($threeopen) {
