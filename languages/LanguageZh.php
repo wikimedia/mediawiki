@@ -171,7 +171,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 'february' => "2月",
 'march' => "3月",
 'april' => "4月",
-'may' => "5月",
+'may_long' => "5月",
 'june' => "6月",
 'july' => "7月",
 'august' => "8月",

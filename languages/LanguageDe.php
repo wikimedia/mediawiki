@@ -141,7 +141,7 @@ if($wgMetaNamespace === FALSE)
 'february' => "Februar",
 'march' => "März",
 'april' => "April",
-'may' => "Mai",
+'may_long' => "Mai",
 'june' => "Juni",
 'july' => "Juli",
 'august' => "August",
