@@ -1,24 +1,38 @@
-// IE fix javascript
-var rslt = navigator.appVersion.match(/MSIE (\d+\.\d+)/, '');
-if (rslt != null ) var version = Number(rslt[1]);
-else var version = 0;
+// IE fixes javascript
 
-window.attachEvent("onload", hookit);
+var isMSIE55 = (window.showModalDialog && window.clipboardData && window.createPopup);
+
+if (document.attachEvent)
+  document.attachEvent('onreadystatechange', hookit);
+
 function hookit() {
-    fixalpha();
-    relativeforfloats();
+    if (document.getElementById && document.getElementById('bodyContent')) {
+        fixalpha();
+        relativeforfloats();
+    }
 }
 
 // png alpha transparency fixes
-function fixalpha(){
+function fixalpha() {
     // bg
-    if(version >= 5.5) {
-        var logoa = document.getElementById('p-logo').firstChild;
+    if (isMSIE55) {
+        var plogo = document.getElementById('p-logo');
+        var logoa = plogo.getElementsByTagName('a')[0];
         var bg = logoa.currentStyle.backgroundImage;
-        if (bg.match(/\.png/i) != null){
-            var mypng = bg.substring(5,bg.length-2);
-            logoa.style.backgroundImage = "none";
-            logoa.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+mypng+"', sizingMethod='crop')";
+        var imageUrl = bg.substring(5, bg.length-2);
+
+        if (imageUrl.substr(imageUrl.length-4).toLowerCase() == '.png') {
+            var logospan = logoa.appendChild(document.createElement('span'));
+           
+            logoa.style.backgroundImage = 'none';
+            logospan.style.filter = 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='+imageUrl+')';
+            logospan.style.height = '100%';
+            logospan.style.position = 'absolute';
+            logospan.style.width = '100%';
+            logospan.style.cursor = 'hand';
+            // Center image with hack for IE5.5
+            logospan.style.left = '50%';
+            logospan.style.setExpression('marginLeft', '"-" + (this.offsetWidth / 2) + "px"');
         }
     }
 }
