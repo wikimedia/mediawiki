@@ -64,7 +64,7 @@ class ListUsersPage extends QueryPage {
 		// form header
 		$out = '<form method="get" action="'.$action.'">' .
 				'<input type="hidden" name="title" value="'.$special.'" />' .
-				'Group: <select name="group">';
+				wfMsg( 'speciallistusersgrouplabel' ) . '<select name="group">';
 
 		// get all group names and id
 		$dbr = & wfGetDB( DB_SLAVE );
@@ -82,7 +82,7 @@ class ListUsersPage extends QueryPage {
 		}
 		$out .= '</select> ';
 
-		$out .= 'User: <input type="text" name="username" /> ';
+		$out .= wfMsg( 'speciallistusersuserlabel' ) . '<input type="text" name="username" /> ';
 
 		// OK button, end of form.
 		$out .= '<input type="submit" /></form>';

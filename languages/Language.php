@@ -1788,6 +1788,10 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'specialloguserlabel' => 'User: ',
 'speciallogtitlelabel' => 'Title: ',
 
+# labels for Group: and User: ond Special:Listusers
+'speciallistusersuserlabel' => 'User: ',
+'speciallistusersgrouplabel' => 'Group: ',
+
 'passwordtooshort' => 'Your password is too short. It must have at least $1 characters.',
 
 );
