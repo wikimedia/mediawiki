@@ -543,8 +543,7 @@ alt=\"Google\" align=\"middle\"></a>
 "rcnote"		=> "下面是最近<strong>$2</strong>天內最新的<strong>$1</strong>次改動。",
 "rcnotefrom"	=> "下面是自<b>$2</b>（最多顯示<b>$1</b>）。",
 "rclistfrom"	=> "顯示自$1以來的新更改",
-# "rclinks"		=> "顯示最後$2小時／$3天內的$1此修改",
-"rclinks"		=> "顯示最近 $2 天內最新的 $1 次改動。",
+"rclinks"		=> "顯示最近 $2 天內最新的 $1 次改動。<br />$3",
 "rchide"		=> "以$4形式；$1個小修改；$2個二級名字空間；$3個多重修改",
 "diff"			=> "差異",
 "hist"			=> "歷史",
@@ -936,6 +935,61 @@ alt=\"Google\" align=\"middle\"></a>
 "movetalk"		=> "如果可能的話，請同時移動對話頁。",
 "talkpagemoved" => "相應的對話頁也已經移動。",
 "talkpagenotmoved" => "相應的對話頁<strong>沒有</strong>被移動。",
+
+
+# some untranslated messages as of 1.4 beta1
+'1movedto2' => "$1移動到$2", //"$1 moved to $2",
+'1movedto2_redir' => "$1重定向到$2", //"$1 moved to $2 over redirect",
+'acct_creation_throttle_hit' => "對不起，您已經註冊了$1賬號。你不能再註冊了。", //"Sorry, you have already created $1 accounts. You can't make any more.",
+'addgroup' => "增加新的組", //"Add Group",
+'allarticles' => "所有條目", //"All articles",
+'allmessages' => "系統界面", //"All system messages",
+'allmessagesnotsupportedDB' => "系統界面功能處於關閉狀態 (wgUseDatabaseMessages)。", //"Special:AllMessages not supported because wgUseDatabaseMessages is off.",
+'allmessagestext' => "這裡列出所有可定製的系統界面。", //"This is a list of all system messages available in the MediaWiki: namespace.",
+'allpagesformtext1' => "列出從 $1 起的條目", //"Display pages starting at: $1",
+'allpagesformtext2' => "選定名字空間： $1 $1", //"Choose namespace: $1 $2",
+'allpagesnamespace' => "所有 $1 名字空間的條目", //"All pages ($1 namespace)",
+'allpagesnext' => "下一頁", //"Next",
+'allpagesprev' => "上一頁", //"Previous",
+'allpagessubmit' => "提交", //"Go",
+'ancientpages' => "老條目", //"Oldest pages",
+'and' => "和", //"and",
+'anontalk' => "該IP的對話頁", //"Talk for this IP",
+'anonymous' => "匿名用戶", //"Anonymous user(s) of 1.4",
+'article' => "條目", //"Content page",
+'autoblocker' => "你的IP和被封了的 \"$1\" 是一樣的。封鎖原因： \"$2\".",//"Autoblocked because you share an IP address with \"$1\". Reason \"$2\".",
+'blocklogentry' => "封鎖 $1, $2",//"blocked \"$1\" with an expiry time of $2",
+'blocklogpage' => "封鎖記錄", //"Block_log",
+'categoriespagetext' => "以下列出所有的頁面分類。", //"The following categories exists in the wiki.",
+'categoryarticlecount' => "該類頁面共有 $1 條目", //There are $1 articles in this category.",
+'clearyourcache' => "'''註意：''' 保存設置後，要清掉瀏覽器的緩存才能生效：'''Mozilla:''' 點''刷新'' （或用快鍵''Ctrl-R''），'''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''。",//"'''Note:''' After saving, you have to clear your browser cache to see the changes: '''Mozilla:''' click ''Reload'' (or ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'edit' => "編輯", //"Edit",
+'navigation' => "導航", //"Navigation",
+'nstab-category' => "分類", //"Category",
+'nstab-help' => "幫助",//"Help",
+'nstab-image' => "圖像",//"Image",
+'nstab-main' => "條目", //"Article",
+'nstab-mediawiki' => "界面",//"Message",
+'nstab-special' => "特殊",//"Special",
+'nstab-template' => "模板", //"Template",
+'nstab-user' => "用戶頁面", //"User page",
+'nstab-wp' => "關於", //"About",
+'portal' => "社區",//"Community portal",
+'prefs-help-userdata' => "*<strong>真實姓名</strong>（可選）：用以對您的貢獻署名。<br />*<strong>點子郵件</strong>（可選）：讓他人通過網站在不知道您的電子郵件地址的情況下通過電子郵件與您聯絡，以及通過電子郵件取得遺忘的密碼。", /*"* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />
+* <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your
+email address to them, and it can be used to send you a new password if you forget it.", */
+'prefs-misc' => "雜項", //"Misc settings",
+'prefs-personal' => "用戶數據",//"User data",
+'prefs-rc' => "最近更新", //"Recent changes and stub display",
+'showhideminor' => "$1 小修改 | $2 bots | $3 登錄用戶 | $4 檢查過的", //"$1 minor edits | $2 bots | $3 logged in users | $4 patrolled edits ",
+'skin' => "皮膚", //"Skin",
+'talk' => "討論",//"Discussion",
+'timezonelegend' => "時區", //"Time zone",
+'toolbox' => "工具",//"Toolbox",
+'watch' => "監視",//"Watch",
+'yourlanguage' => "界面語言", //"Your language"
+'yourrealname' => "真實姓名*", //"Your real name"
+'yourvariant' => "中文字體", //"language variant"
 
 );
 

@@ -1387,7 +1387,7 @@ to a previously blocked IP address or username.',
 'blocklogpage'	=> 'Block_log',
 'blocklogentry'	=> 'blocked "$1" with an expiry time of $2',
 'blocklogtext'	=> 'This is a log of user blocking and unblocking actions. Automatically
-blocked IP addresses are not be listed. See the [[Special:Ipblocklist|IP block list]] for
+blocked IP addresses are not listed. See the [[Special:Ipblocklist|IP block list]] for
 the list of currently operational bans and blocks.',
 'unblocklogentry'	=> 'unblocked "$1"',
 'range_block_disabled'	=> 'The sysop ability to create range blocks is disabled.',
@@ -1551,7 +1551,7 @@ article [[Train]].
 
 'allmessages'	=> 'All system messages',
 'allmessagestext'	=> 'This is a list of all system messages available in the MediaWiki: namespace.',
-'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:AllMessages at this site.',
+'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:AllMessages at this site. ',
 'allmessagesnotsupportedDB' => 'Special:AllMessages not supported because wgUseDatabaseMessages is off.',
 
 # Thumbnails
@@ -1742,6 +1742,14 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'sitesettings-performance' => 'Performance',
 'sitesettings-images' => 'Images',
 
+# short names for language variants used for language conversion links. 
+# to disable showing a particular link, set it to 'disable', e.g.
+# 'variantname-zh-sg' => 'disable',
+'variantname-zh-cn' => 'cn',
+'variantname-zh-tw' => 'tw',
+'variantname-zh-hk' => 'hk',
+'variantname-zh-sg' => 'sg',
+'variantname-zh' => 'zh',
 
 );
 
@@ -1798,6 +1806,12 @@ class Language {
 		return false;
 	}
 
+	# short names for language variants used for language conversion links. 
+	# so far only used by zh
+	function getVariantname( $code ) {
+		return wfMsg( 'variantname-' . $code );
+	}
+
 	function specialPage( $name ) {
 		return $this->getNsText(NS_SPECIAL) . ':' . $name;
 	}
@@ -1851,7 +1865,8 @@ class Language {
 
 	function getMonthName( $key ) {
 		global $wgMonthNamesEn, $wgContLang;
-		if( get_class( $wgContLang ) == get_class( $this ) )
+		// see who called us and use the correct message function
+		if( get_class( $wgContLang->getLangObj() ) == get_class( $this ) )
 			return wfMsgForContent($wgMonthNamesEn[$key-1]);
 		else
 			return wfMsg($wgMonthNamesEn[$key-1]);
@@ -1864,15 +1879,17 @@ class Language {
 
 	function getMonthAbbreviation( $key ) {
 		global $wgMonthAbbreviationsEn, $wgContLang;
-		if( get_class( $wgContLang ) == get_class( $this ) )
+		// see who called us and use the correct message function
+		if( get_class( $wgContLang->getLangObj() ) == get_class( $this ) )
 			return wfMsgForContent(@$wgMonthAbbreviationsEn[$key-1]);
 		else
 			return wfMsg(@$wgMonthAbbreviationsEn[$key-1]);
 	}
 
 	function getWeekdayName( $key ) {
-		global $wgWeekdayNamesEn,  $wgContLang;
-		if( get_class( $wgContLang ) == get_class( $this ) )
+		global $wgWeekdayNamesEn, $wgContLang;
+		// see who called us and use the correct message function
+		if( get_class( $wgContLang->getLangObj() ) == get_class( $this ) )
 			return wfMsgForContent($wgWeekdayNamesEn[$key-1]);
 		else
 			return wfMsg($wgWeekdayNamesEn[$key-1]);
@@ -2174,105 +2191,8 @@ class Language {
 		return $text;
 	}
 
-	# convert text to different variants of a language. the automatic
-	# conversion is done in autoConvert(). here we parse the text 
-	# marked with -{}-, which specifies special conversions of the 
-	# text that can not be accomplished in autoConvert()
-	#
-	# syntax of the markup:
-	# -{code1:text1;code2:text2;...}-  or
-	# -{text}- in which case no conversion should take place for text
+	# convert text to different variants of a language.
 	function convert( $text , $isTitle=false) {
-		global $wgDisableLangConversion;
-		if($wgDisableLangConversion)
-			return $text; 
-		if(sizeof($this->getVariants())<2) 
-			return $text;
-		
-		if($isTitle)
-			return $this->convertTitle($text);
-
-		// no conversion if redirecting
-		if(substr($text,0,9) == "#REDIRECT") {
-			return $text;
-		}
-
-
-		$plang = $this->getPreferredVariant();
-		$fallback = $this->getVariantFallback($plang);
-
-		$tarray = explode("-{", $text);
-		$tfirst = array_shift($tarray);
-		$text = $this->autoConvert($tfirst);
-		
-		foreach($tarray as $txt) {
-			$marked = explode("}-", $txt);
-			
-			$choice = explode(";", $marked{0});
-			if(!array_key_exists(1, $choice)) {
-				/* a single choice */
-				$text .= $choice{0};
-			} else {
-				$choice1=false;
-				$choice2=false;
-				foreach($choice as $c) {
-					$v = explode(":", $c);
-					if(!array_key_exists(1, $v)) {
-						//syntax error in the markup, give up
-						break;			
-					}
-					$code = trim($v{0});
-					$content = trim($v{1});
-					if($code == $plang) {
-						$choice1 = $content;
-						break;
-					}
-					if($code == $fallback)
-						$choice2 = $content;
-				}
-				if ( $choice1 )
-					$text .= $choice1;
-				elseif ( $choice2 )
-					$text .= $choice2;
-				else
-					$text .= $marked{0};
-			}
-			if(array_key_exists(1, $marked))
-				$text .= $this->autoConvert($marked{1});
-		}
-		
-		return $text;
-	}
-
-	/* this does the real conversion to the preferred variant.
-	   see LanguageZh.php for example
-	*/
-	function autoConvert( $text, $toVariant=false ) {
-		return $text;
-	}
-
-	/* returns all possible variants of the given text
-
-	   normally we will just call autoConvert() for each variant, but
-	   in case of zh where the conversion is performed by zhdaemon, 
-	   possibily over the network, we want to 
-	   cut down the number of connections to save time. 
-	*/
-	function autoConvertToAllVariants($text) {
-		$ret = array();
-		$variants = $this->getVariants();
-		if(sizeof($variants)==1) {
-			return $false;
-		}
-		foreach( $variants as $lang=>$v ) {
-			$ret[$v] = $this->autoConvert( $text, $v );
-		}
-		return $ret;
-	}
-
-	/* hook for converting the title, which may needs special treatment
-	*/
-	function convertTitle( $text ) {
 		return $text;
 	}
 
@@ -2293,67 +2213,24 @@ class Language {
 	}
 
 	function getPreferredVariant() {
-		global $wgUser;
-
-		$lang ='';		
-
-		// if user logged in, get in from user's preference
-		if( $wgUser->getID() != 0 ) {
-			$lang = $wgUser->getOption( 'variant' );
-		}
-		if($lang != '')
-			return $lang;
-
-		// if we have multiple variants for this langauge, 
-		// pick the first one that's not utf8 (it could be
-		// utf8 if the language does not have a language file)
-		$v = $this->getVariants();
-		if( !empty( $v ) ) {
-			return $v[0];
-		}
-		if($lang != '')
-			return $lang;
-
-		// get it from the class name
-		$lang = strtolower( substr( get_class( $this ), 8 ) );
-
-		return $lang;
+		return strtolower( substr( get_class( $this ), 8 ) );
 	}
 
 	/* if a language supports multiple variants, it is
 		possible that non-existing link in one variant
 		actually exists in another variant. this function 
-		tries to find it.
+		tries to find it. See e.g. LanguageZh.php
 
 	*/
 	function findVariantLink( &$link, &$nt ) {
-		static $count=0; //used to limit this operation
-		static $cache=array();
-		global $wgDisableLangConversion;
-		$count++;
-		if( $wgDisableLangConversion || $count > 50)
-			return;
-		$variants = $this->autoConvertToAllVariants($link);
-		if($variants == false) //give up
-			return;
-		foreach( $variants as $v ) {
-			if(isset($cache[$v]))
-				continue;
-			$cache[$v] = 1;
-			$varnt = Title::newFromText( $v );
-			if( $varnt && $varnt->getArticleID() > 0 ) {
-				$nt = $varnt;
-				$link = $v;
-				break;
-			}
-		}
+		return;
 	}
 
 	/*
 		returns an array of extra options used by User::getPageRenderHash()
 	*/
 	function getExtraHashOptions() {
-		return array();
+		return '';
 	}
 	
 	/**
@@ -2368,6 +2245,10 @@ class Language {
 		$trail = $this->getMessage( 'linktrail' );
 		if( empty( $trail ) ) $trail = Language::linkTrail();
 		return $trail;
+	}
+
+	function getLangObj() {
+		return $this;
 	}
 
 }

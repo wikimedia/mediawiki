@@ -16,15 +16,7 @@ class LanguageZh extends LanguageZh_cn {
 	function LanguageZh() {
 		global $wgUseZhdaemon, $wgZhdaemonHost, $wgZhdaemonPort;
 		global $wgDisableLangConversion, $wgUser;
-        
-		if( $wgUser->getID()!=0 ) {
-			/* allow user to diable conversion */
-			if( $wgDisableLangConversion == false &&
-				$wgUser->getOption('nolangconversion') == 1)
-				$wgDisableLangConversion = true;
-		}		
 
-		$this->mZhLanguageCode = $this->getPreferredVariant();
 		if($wgUseZhdaemon) {
 			$this->mZhClient=new ZhClient($wgZhdaemonHost, $wgZhdaemonPort);
 			if(!$this->mZhClient->isconnected())
@@ -36,23 +28,29 @@ class LanguageZh extends LanguageZh_cn {
 	}
 	
 	/* 
-		get preferred language variants. eventually this will check the
-		user's preference setting as well, once the language option in
-		the setting pages is finalized.
+		get preferred language variants.
 	*/
 	function getPreferredVariant() {
-		global $wgUser;
+		global $wgUser, $wgRequest;
 		
 		if($this->mZhLanguageCode)
 			return $this->mZhLanguageCode;
-		
-		// get language variant preference for logged in users 
+
+		// see if the preference is set in the request
+		$zhreq = $wgRequest->getText( 'variant' );
+		if( in_array( $zhreq, $this->getVariants() ) ) {
+			$this->mZhLanguageCode = $zhreq;
+			return $zhreq;
+		}
+
+		// get language variant preference from logged in users 
 		if($wgUser->getID()!=0) {
 			$this->mZhLanguageCode = $wgUser->getOption('variant');
 		}
-		else {
+
+		if( !$this->mZhLanguageCode ) {
 			// see if some zh- variant is set in the http header,
-			$this->mZhLanguageCode="zh-cn";
+			$this->mZhLanguageCode="zh";
 			$header = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
 			$zh = strstr($header, 'zh-');
 			if($zh) {
@@ -75,11 +73,11 @@ class LanguageZh extends LanguageZh_cn {
 			"\"$1\"", $text);
 	}
 
-
-	
 	function autoConvert($text, $toVariant=false) {
 		if(!$toVariant) 
 			$toVariant = $this->getPreferredVariant();
+		if($toVariant == 'zh')
+			return $text;
 		$fname="zhautoConvert";
 		wfProfileIn( $fname );
 		$t = $this->mZhClient->convert($text, $toVariant);
@@ -92,12 +90,90 @@ class LanguageZh extends LanguageZh_cn {
 		wfProfileIn( $fname );
 		$ret = $this->mZhClient->convertToAllVariants($text);
 		if($ret == false) {//fall back...
-			$ret = Language::autoConvertToAllVariants($text);
+			$ret = ZhClientFake::autoConvertToAllVariants($text);
 		}
 		wfProfileOut( $fname );
 		return $ret;
 	}
     
+	# convert text to different variants of a language. the automatic
+	# conversion is done in autoConvert(). here we parse the text 
+	# marked with -{}-, which specifies special conversions of the 
+	# text that can not be accomplished in autoConvert()
+	#
+	# syntax of the markup:
+	# -{code1:text1;code2:text2;...}-  or
+	# -{text}- in which case no conversion should take place for text
+	function convert( $text , $isTitle=false) {
+		global $wgDisableLangConversion;
+
+		if($wgDisableLangConversion)
+			return $text; 
+		
+		// no conversion if redirecting
+		if(strtolower( substr( $text,0,9 ) ) == "#redirect") {
+			return $text;
+		}
+
+		if( $isTitle ) {
+			global $wgRequest;
+			$isredir = $wgRequest->getText( 'redirect', 'yes' );
+			$action = $wgRequest->getText( 'action' );
+			if ( $isredir == 'no' || $action == 'edit' ) {
+				return $text;
+			}
+			else {
+				$text = $this->convertTitle($text);
+				return $text;
+			}
+		}
+
+		$plang = $this->getPreferredVariant();
+		$fallback = $this->getVariantFallback($plang);
+
+		$tarray = explode("-{", $text);
+		$tfirst = array_shift($tarray);
+		$text = $this->autoConvert($tfirst);
+		foreach($tarray as $txt) {
+			$marked = explode("}-", $txt);
+			
+			$choice = explode(";", $marked{0});
+			if(!array_key_exists(1, $choice)) {
+				/* a single choice */
+				$text .= $choice{0};
+			} else {
+				$choice1=false;
+				$choice2=false;
+				foreach($choice as $c) {
+					$v = explode(":", $c);
+					if(!array_key_exists(1, $v)) {
+						//syntax error in the markup, give up
+						break;			
+					}
+					$code = trim($v{0});
+					$content = trim($v{1});
+					if($code == $plang) {
+						$choice1 = $content;
+						break;
+					}
+					if($code == $fallback)
+						$choice2 = $content;
+				}
+				if ( $choice1 )
+					$text .= $choice1;
+				elseif ( $choice2 )
+					$text .= $choice2;
+				else
+					$text .= $marked{0};
+			}
+			if(array_key_exists(1, $marked))
+				$text .= $this->autoConvert($marked{1});
+		}
+		
+		return $text;
+	}
+
+
 	# only convert titles having more than one character
 	function convertTitle($text) {
 		$len=0;
@@ -111,11 +187,12 @@ class LanguageZh extends LanguageZh_cn {
 	}
 
 	function getVariants() {
-		return array("zh-cn", "zh-tw", "zh-sg", "zh-hk");
+		return array("zh", "zh-cn", "zh-tw", "zh-sg", "zh-hk");
 	}
 
 	function getVariantFallback($v) {
 		switch ($v) {
+		case 'zh': return 'zh-cn'; break;
 		case 'zh-cn': return 'zh-sg'; break;
 		case 'zh-sg': return 'zh-cn'; break;
 		case 'zh-tw': return 'zh-hk'; break;
@@ -147,8 +224,34 @@ class LanguageZh extends LanguageZh_cn {
 		return $ret;
 	}
 
+	function findVariantLink( &$link, &$nt ) {
+		static $count=0; //used to limit this operation
+		static $cache=array();
+		global $wgDisableLangConversion;
+		$pref = $this->getPreferredVariant();
+		if( $wgDisableLangConversion || $pref == 'zh' || $count > 50)
+			return;
+		$count++;
+		$variants = $this->autoConvertToAllVariants($link);
+		if($variants == false) //give up
+			return;
+		foreach( $variants as $v ) {
+			if(isset($cache[$v]))
+				continue;
+			$cache[$v] = 1;
+			$varnt = Title::newFromText( $v );
+			if( $varnt && $varnt->getArticleID() > 0 ) {
+				$nt = $varnt;
+				$link = $v;
+				break;
+			}
+		}
+	}
+
 	function getExtraHashOptions() {
-		return array('variant', 'nolangconversion');
+		global $wgUser;
+		$variant = $this->getPreferredVariant();
+		return '!' . $variant ;
 	}
 }
 ?>

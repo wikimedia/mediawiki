@@ -151,7 +151,7 @@ require_once( "LanguageUtf8.php" );
 "tog-watchdefault" => "监视新的以及更改过的文章", /* "Watch new and modified articles", */
 "tog-minordefault" => "细微编辑为默认设置", /* "Mark all edits minor by default", */
 "tog-previewontop" => "在编辑框上方显示预览", /* "Show preview before edit box and not after it" */
-"tog-nolangconversion" => "不进行繁简体转换", /* "disable language conversion" */
+
 # Dates
 
 'sunday' => "星期日",
@@ -545,8 +545,7 @@ alt=\"Google\" align=\"middle\"></a>
 "rcnote"		=> "下面是最近<strong>$2</strong>天内最新的<strong>$1</strong>次改动。",
 "rcnotefrom"	=> "下面是自<b>$2</b>（最多显示<b>$1</b>）。",
 "rclistfrom"	=> "显示自$1以来的新更改",
-# "rclinks"		=> "显示最后$2小时／$3天内的$1此修改",
-"rclinks"		=> "显示最近 $2 天内最新的 $1 次改动。",
+"rclinks"		=> "显示最近 $2 天内最新的 $1 次改动。<br />$3",
 "rchide"		=> "以$4形式；$1个小修改；$2个二级名字空间；$3个多重修改",
 "diff"			=> "差异",
 "hist"			=> "历史",
@@ -952,6 +951,69 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 'mw_math_html' => "如果可以用HTML，否则用PNG图像",   /* "HTML if possible or else PNG" */
 'mw_math_source' => "显示为TeX代码(使用文字浏览器时)",  /* "Leave it as TeX (for text browsers)" */
 'mw_math_modern' => "推荐为新版浏览器使用",  /* "Recommended for modern browsers" */
+
+# some untranslated messages as of 1.4 beta1
+'1movedto2' => "$1移动到$2", //"$1 moved to $2",
+'1movedto2_redir' => "$1重定向到$2", //"$1 moved to $2 over redirect",
+'acct_creation_throttle_hit' => "对不起，您已经注册了$1账号。你不能再注册了。", //"Sorry, you have already created $1 accounts. You can't make any more.",
+'addgroup' => "增加新的组", //"Add Group",
+'allarticles' => "所有条目", //"All articles",
+'allmessages' => "系统界面", //"All system messages",
+'allmessagesnotsupportedDB' => "系统界面功能处于关闭状态 (wgUseDatabaseMessages)。", //"Special:AllMessages not supported because wgUseDatabaseMessages is off.",
+'allmessagestext' => "这里列出所有可定制的系统界面。", //"This is a list of all system messages available in the MediaWiki: namespace.",
+'allpagesformtext1' => "列出从 $1 起的条目", //"Display pages starting at: $1",
+'allpagesformtext2' => "选定名字空间： $1 $1", //"Choose namespace: $1 $2",
+'allpagesnamespace' => "所有 $1 名字空间的条目", //"All pages ($1 namespace)",
+'allpagesnext' => "下一页", //"Next",
+'allpagesprev' => "上一页", //"Previous",
+'allpagessubmit' => "提交", //"Go",
+'ancientpages' => "老条目", //"Oldest pages",
+'and' => "和", //"and",
+'anontalk' => "该IP的对话页", //"Talk for this IP",
+'anonymous' => "匿名用户", //"Anonymous user(s) of 1.4",
+'article' => "条目", //"Content page",
+'autoblocker' => "你的IP和被封了的 \"$1\" 是一样的。封锁原因： \"$2\".",//"Autoblocked because you share an IP address with \"$1\". Reason \"$2\".",
+'blocklogentry' => "封锁 $1, $2",//"blocked \"$1\" with an expiry time of $2",
+'blocklogpage' => "封锁记录", //"Block_log",
+'categoriespagetext' => "以下列出所有的页面分类。", //"The following categories exists in the wiki.",
+'categoryarticlecount' => "该类页面共有 $1 条目", //There are $1 articles in this category.",
+'clearyourcache' => "'''注意：''' 保存设置后，要清掉浏览器的缓存才能生效：'''Mozilla:''' 点''刷新'' （或用快键''Ctrl-R''），'''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''。",//"'''Note:''' After saving, you have to clear your browser cache to see the changes: '''Mozilla:''' click ''Reload'' (or ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'edit' => "编辑", //"Edit",
+'navigation' => "导航", //"Navigation",
+'nstab-category' => "分类", //"Category",
+'nstab-help' => "帮助",//"Help",
+'nstab-image' => "图像",//"Image",
+'nstab-main' => "条目", //"Article",
+'nstab-mediawiki' => "界面",//"Message",
+'nstab-special' => "特殊",//"Special",
+'nstab-template' => "模板", //"Template",
+'nstab-user' => "用户页面", //"User page",
+'nstab-wp' => "关于", //"About",
+'portal' => "社区",//"Community portal",
+'prefs-help-userdata' => "*<strong>真实姓名</strong>（可选）：用以对您的贡献署名。<br />*<strong>点子邮件</strong>（可选）：让他人通过网站在不知道您的电子邮件地址的情况下通过电子邮件与您联络，以及通过电子邮件取得遗忘的密码。", /*"* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />
+* <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your
+email address to them, and it can be used to send you a new password if you forget it.", */
+'prefs-misc' => "杂项", //"Misc settings",
+'prefs-personal' => "用户数据",//"User data",
+'prefs-rc' => "最近更新", //"Recent changes and stub display",
+'showhideminor' => "$1 小修改 | $2 bots | $3 登录用户 | $4 检查过的", //"$1 minor edits | $2 bots | $3 logged in users | $4 patrolled edits ",
+'skin' => "皮肤", //"Skin",
+'talk' => "讨论",//"Discussion",
+'timezonelegend' => "时区", //"Time zone",
+'toolbox' => "工具",//"Toolbox",
+'watch' => "监视",//"Watch",
+'yourlanguage' => "界面语言", //"Your language"
+'yourrealname' => "真实姓名*", //"Your real name"
+'yourvariant' => "中文字体", //"language variant"
+
+# short names for language variants used for language conversion links. 
+# to disable showing a particular link, set it to 'disable', e.g.
+# 'variantname-zh-sg' => 'disable',
+'variantname-zh-cn' => '大陆简体',
+'variantname-zh-tw' => '台湾繁体',
+'variantname-zh-hk' => '香港繁体',
+'variantname-zh-sg' => '新加坡简体',
+'variantname-zh' => '不转换',
 
 );
 
