@@ -82,6 +82,18 @@ function do_update_files() {
 	copydirectory( "./stylesheets", $wgStyleSheetDirectory );
 	
 	copyfile( "./images", "wiki.png", $wgUploadDirectory );
+	copyfile( "./images", "button_bold.gif", $wgUploadDirectory );
+	copyfile( "./images", "button_extlink.gif", $wgUploadDirectory );
+	copyfile( "./images", "button_headline.gif", $wgUploadDirectory );
+	copyfile( "./images", "button_hr.gif", $wgUploadDirectory );
+	copyfile( "./images", "button_image.gif", $wgUploadDirectory );
+	copyfile( "./images", "button_italic.gif", $wgUploadDirectory );
+	copyfile( "./images", "button_link.gif", $wgUploadDirectory );
+	copyfile( "./images", "button_math.gif", $wgUploadDirectory );
+	copyfile( "./images", "button_media.gif", $wgUploadDirectory );
+	copyfile( "./images", "button_sig.gif", $wgUploadDirectory );
+	copyfile( "./images", "button_template.gif", $wgUploadDirectory );
+
 	copyfile( "./languages", "Language.php", $IP );
 	copyfile( "./languages", "Language" . ucfirst( $wgLanguageCode ) . ".php", $IP );
 	
