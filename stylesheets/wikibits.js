@@ -1,4 +1,7 @@
 // Wikipedia JavaScript support functions
+var noOverwrite=false; // if this is true, the toolbar will no longer overwrite the infobox when you move the mouse over individual items
+var alertText;
+var mozVote="";
 
 // Un-trap us from framesets
 if( window.top != window ) window.top.location = window.location;
@@ -43,7 +46,7 @@ function fetchTimezone() {
 	var tzRaw = localclock.getTimezoneOffset();
 	var tzHour = Math.floor( Math.abs(tzRaw) / 60);
 	var tzMin = Math.abs(tzRaw) % 60;
-	var tzString = ((tzRaw >= 0) ? "-" : "") + ((tzHour < 10) ? "0" : "") + tzHour + 
+	var tzString = ((tzRaw >= 0) ? "-" : "") + ((tzHour < 10) ? "0" : "") + tzHour +
 		":" + ((tzMin < 10) ? "0" : "") + tzMin;
 	return tzString;
 }
@@ -83,27 +86,49 @@ function toggleToc() {
 // we use it to avoid creating the toolbar where javascript is not enabled
 function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
 
-
 	speedTip=escapeQuotes(speedTip);
 	tagOpen=escapeQuotes(tagOpen);
 	tagClose=escapeQuotes(tagClose);
 	sampleText=escapeQuotes(sampleText);
+	var mouseOver="";
+
+	// we can't change the selection, so we show example texts
+	// when moving the mouse instead, until the first button is clicked
+	if(!document.selection) {
+		// filter backslashes so it can be shown in the infobox		
+		var re=new RegExp("\\\\n","g");
+		tagOpen=tagOpen.replace(re,"");
+		tagClose=tagClose.replace(re,"");
+		mouseOver = "onMouseover=\"if(!noOverwrite){document.infoform.infobox.value='"+tagOpen+sampleText+tagClose+"'};\"";
+	}
+
 	document.write("<a href=\"#\" onclick=\"javascript:insertTags");
 	document.write("('"+tagOpen+"','"+tagClose+"','"+sampleText+"');\">");
-	document.write("<img width=\"23\" height=\"22\" src=\""+imageFile+"\" border=\"0\" ALT=\""+speedTip+"\" TITLE=\""+speedTip+"\">");
+
+        document.write("<img width=\"23\" height=\"22\" src=\""+imageFile+"\" border=\"0\" ALT=\""+speedTip+"\" TITLE=\""+speedTip+"\""+mouseOver+">");
 	document.write("</a>");
 	return;
 }
 
-function addInfobox(infoText) {
+function addInfobox(infoText,text_alert,text_moz) {
+	alertText=text_alert;
+	var clientPC = navigator.userAgent.toLowerCase(); // Get client info
+	if(clientPC.indexOf('gecko')!=-1) { mozVote=text_moz; }
+
+	var re=new RegExp("\\\\n","g");
+	alertText=alertText.replace(re,"\n");
+	mozVote=mozVote.replace(re,"\n");
 
 	// if no support for changing selection, add a small copy & paste field
 	var clientPC = navigator.userAgent.toLowerCase(); // Get client info
-	var is_nav = ((clientPC.indexOf('mozilla')!=-1) && (clientPC.indexOf('spoofer')==-1)
+	/*var is_nav = ((clientPC.indexOf('mozilla')!=-1) && (clientPC.indexOf('spoofer')==-1)
                 && (clientPC.indexOf('compatible') == -1) && (clientPC.indexOf('opera')==-1)
                 && (clientPC.indexOf('webtv')==-1) && (clientPC.indexOf('hotjava')==-1)
-		&& (clientPC.indexOf('khtml')==-1) && (clientPC.indexOf('gecko')==-1));
- 	if(!document.selection && !is_nav) {
+		&& (clientPC.indexOf('khtml')==-1));*/
+
+	// document.selection is an IE property. If it is not available, we generates
+	// an infobox used by the toolbar in other browsers.
+	if(!document.selection) {
  		infoText=escapeQuotesHTML(infoText);
 	 	document.write("<form name='infoform' id='infoform'>"+
 			"<input size=80 id='infobox' name='infobox' value=\""+
@@ -146,31 +171,42 @@ function insertTags(tagOpen, tagClose, sampleText) {
 			document.selection.createRange().text = tagOpen + theSelection + tagClose;
 		}
 	// Mozilla -- disabled because it induces a scrolling bug which makes it virtually unusable
-	} else if(false && txtarea.selectionStart || txtarea.selectionStart == '0') {
+	//
+	/*
+	} else if(txtarea.selectionStart || txtarea.selectionStart == '0') {
  		var startPos = txtarea.selectionStart;
 		var endPos = txtarea.selectionEnd;
 		var myText = (txtarea.value).substring(startPos, endPos);
 		if(!myText) { myText=sampleText;}
 		if(myText.charAt(myText.length - 1) == " "){ // exclude ending space char, if any
-			subst = tagOpen + myText.substring(0, (myText.length - 1)) + tagClose + " "; 
+			subst = tagOpen + myText.substring(0, (myText.length - 1)) + tagClose + " ";
 		} else {
-			subst = tagOpen + myText + tagClose; 
+			subst = tagOpen + myText + tagClose;
 		}
 		txtarea.value = txtarea.value.substring(0, startPos) + subst + txtarea.value.substring(endPos, txtarea.value.length);
 		txtarea.focus();
 		var cPos=startPos+(tagOpen.length+myText.length+tagClose.length);
 		txtarea.selectionStart=cPos;
 		txtarea.selectionEnd=cPos;
+	*/
 	// All others
 	} else {
-		// Append at the end: Some people find that annoying
-		//txtarea.value += tagOpen + sampleText + tagClose;
-		//txtarea.focus();
-		var re=new RegExp("\\n","g");
-		tagOpen=tagOpen.replace(re,"");
-		tagClose=tagClose.replace(re,"");
-		document.infoform.infobox.value=tagOpen+sampleText+tagClose;
+		var copy_alertText=alertText;
+		var re1=new RegExp("\\$1","g");
+		var re2=new RegExp("\\$2","g");
+		copy_alertText=copy_alertText.replace(re1,sampleText);
+		copy_alertText=copy_alertText.replace(re2,tagOpen+sampleText+tagClose);
+		var text;
+		if (sampleText) {
+			text=prompt(copy_alertText+mozVote);
+		} else {
+			text="";
+		}
+		if(!text) { text=sampleText;}
+		text=tagOpen+text+tagClose;
+		document.infoform.infobox.value=text;
 		txtarea.focus();
+		noOverwrite=true;
 	}
 	// reposition cursor if possible
 	if (txtarea.createTextRange) txtarea.caretPos = document.selection.createRange().duplicate();
