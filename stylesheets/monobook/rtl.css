@@ -169,7 +169,10 @@ li#pt-login {
 }
 /* js pref toc */
 #preftoc { float: right; }
+/* workaround for moz bug, displayed bullets on left side */
+#preftoc li { list-style: none; }
 #prefcontrol { float: right; }
+fieldset.prefsection,
 fieldset.operaprefsection { 
     margin-right: 15em;
     margin-left: 0;
