@@ -502,7 +502,7 @@ div.townBox dl dd {
     padding: 0;
 }
 /* the auto-generated edit comments */
-#autocomment { color: gray; }
+.autocomment { color: gray; }
 
 
 /*
