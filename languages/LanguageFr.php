@@ -29,28 +29,28 @@ require_once( "LanguageUtf8.php" );
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsFr = array(
-	"Aucune", "Gauche", "Droite", "Flottante à gauche"
+	'Aucune', 'Gauche', 'Droite', 'Flottante à gauche'
 );
 
 /* private */ $wgSkinNamesFr = array(
-	'standard' => "Standard",
-	'nostalgia' => "Nostalgie",
-	'cologneblue' => "Cologne Blue",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
+	'standard'		=> 'Standard',
+	'nostalgia'		=> 'Nostalgie',
+	'cologneblue'	=> 'Cologne Blue',
+	'smarty'		=> 'Paddington',
+	'montparnasse'	=> 'Montparnasse',
+	'davinci'		=> 'DaVinci',
+	'mono'			=> 'Mono',
+	'monobook'		=> 'MonoBook',
+	'myskin'		=> 'MySkin'
 );
 
 
 
 /* private */ $wgBookstoreListFr = array(
-	"Amazon.fr" => "http://www.amazon.fr/exec/obidos/ISBN=$1",
-	"alapage.fr"	=> "http://www.alapage.com/mx/?tp=F&type=101&l_isbn=$1&donnee_appel=ALASQ&devise=&",
-	"fnac.com"	=> "http://www3.fnac.com/advanced/book.do?isbn=$1",
-	"chapitre.com"	=> "http://www.chapitre.com/frame_rec.asp?isbn=$1",
+	'Amazon.fr'		=> "http://www.amazon.fr/exec/obidos/ISBN=$1",
+	'alapage.fr'	=> "http://www.alapage.com/mx/?tp=F&type=101&l_isbn=$1&donnee_appel=ALASQ&devise=&",
+	'fnac.com'		=> "http://www3.fnac.com/advanced/book.do?isbn=$1",
+	'chapitre.com'	=> "http://www.chapitre.com/frame_rec.asp?isbn=$1",
 );
 
 
@@ -59,26 +59,26 @@ require_once( "LanguageUtf8.php" );
 // is the right thing for some of them (such as the "targeted" ones).
 
 /* private */ $wgValidSpecialPagesFr = array(
-	"Userlogin"     => "",
-	"Userlogout"    => "",
-	"Preferences"   => "Préférences",
-	"Watchlist"     => "Liste de suivi",
-	"Recentchanges" => "Modifications récentes",
-	"Upload"        => "Copier un fichier",
-	"Imagelist"     => "Liste des images",
-	"Listusers"     => "Liste des participants",
-	"Statistics"    => "Statistiques",
-	"Randompage"    => "Une page au hasard",
+	'Userlogin'     => '',
+	'Userlogout'    => '',
+	'Preferences'   => 'Préférences',
+	'Watchlist'     => 'Liste de suivi',
+	'Recentchanges' => 'Modifications récentes',
+	'Upload'        => 'Copier un fichier',
+	'Imagelist'     => 'Liste des images',
+	'Listusers'     => 'Liste des participants',
+	'Statistics'    => 'Statistiques',
+	'Randompage'    => 'Une page au hasard',
 
-	"Lonelypages"   => "Pages orphelines",
-	"Unusedimages"  => "Images orphelines",
-	"Popularpages"  => "Les plus populaires",
-	"Wantedpages"   => "Les plus demandées",
-	"Shortpages"    => "Articles courts",
-	"Longpages"     => "Articles longs",
-	"Newpages"      => "Nouvelles pages",
-	"Ancientpages"	=> "Anciennes pages",
-	"Allpages"      => "Toutes les pages",
+	'Lonelypages'   => 'Pages orphelines',
+	'Unusedimages'  => 'Images orphelines',
+	'Popularpages'  => 'Les plus populaires',
+	'Wantedpages'   => 'Les plus demandées',
+	'Shortpages'    => 'Articles courts',
+	'Longpages'     => 'Articles longs',
+	'Newpages'      => 'Nouvelles pages',
+	'Ancientpages'	=> 'Anciennes pages',
+	'Allpages'      => 'Toutes les pages',
 
 	"Ipblocklist"   => "Adresses IP bloquées",
 	"Maintenance"   => "Page de maintenance",
@@ -98,10 +98,10 @@ require_once( "LanguageUtf8.php" );
 /* private */ $wgSysopSpecialPagesFr = array(
 	"Blockip"       => "Bloquer une adresse IP",
 	"Asksql"        => "Accès SQL",
-	"Makesysop"	=> "Donner les droits d'administrateur",
+	"Makesysop"		=> "Donner les droits d'administrateur",
 
 	"Undelete"      => "Gérer les pages effacées",
-	"Import"	=> "Importer une page avec l'historique"
+	"Import"		=> "Importer une page avec l'historique"
 );
 
 /* private */ $wgDeveloperSpecialPagesFr = array(
@@ -115,7 +115,7 @@ require_once( "LanguageUtf8.php" );
 
 # User Toggles
 
-"tog-hover"  => "Afficher des info-bulles sur les liens wiki",
+"tog-hover" => "Afficher des info-bulles sur les liens wiki",
 "tog-underline" => "Liens soulignés",
 "tog-highlightbroken" => "Liens vers les sujets non existants en rouge",
 "tog-justify" => "Paragraphes justifiés",
@@ -417,7 +417,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 'loginreqtitle'	=> 'Nom d\'utilisateur nécessaire',
 'loginreqtext'	=> "Vous devez vous [[Special:Userlogin|connecter]] pour voir les autres pages.",
 "accmailtitle" => "Mot de passe envoyé.",
-"accmailtext" => "Le mot de passe de '$1' a été envoyé à $2.",
+"accmailtext" => "Le mot de passe de « $1 » a été envoyé à $2.",
 
 "newarticle"   => "(Nouveau)",
 "newarticletext" => "Saisissez ici le texte de votre article.",
@@ -1070,44 +1070,44 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 "importtext"	=> "Exportez un fichier depuis le wiki source en utilisant la fonction Special:Export, sauvez la page sur votre disque puis envoyez là ici.",
 
 # Keyboard access keys for power users
-'accesskey-anontalk' => 'n',
-'accesskey-anonuserpage' => '.',
-'accesskey-article' => 'a',
-'accesskey-contributions' => '',
-'accesskey-currentevents' => '',
-'accesskey-delete' => 'd',
-'accesskey-edit' => 'e',
-'accesskey-emailuser' => '',
-'accesskey-help' => '',
-'accesskey-history' => 'h',
-'accesskey-login' => 'o',
-'accesskey-logout' => 'o',
-'accesskey-mainpage' => 'z',
-'accesskey-minoredit' => 'i',
-'accesskey-move' => 'm',
-'accesskey-mycontris' => 'y',
-'accesskey-mytalk' => 'n',
-'accesskey-portal' => '',
-'accesskey-preferences' => '',
-'accesskey-preview' => 'p',
-'accesskey-protect' => '-',
-'accesskey-randompage' => 'x',
-'accesskey-recentchanges' => 'r',
+'accesskey-anontalk'		=> 'n',
+'accesskey-anonuserpage'	=> '.',
+'accesskey-article'			=> 'a',
+'accesskey-contributions'	=> '',
+'accesskey-currentevents'	=> '',
+'accesskey-delete'			=> 'd',
+'accesskey-edit'			=> 'e',
+'accesskey-emailuser'		=> '',
+'accesskey-help'			=> '',
+'accesskey-history'			=> 'h',
+'accesskey-login'			=> 'o',
+'accesskey-logout'			=> 'o',
+'accesskey-mainpage'		=> 'z',
+'accesskey-minoredit'		=> 'i',
+'accesskey-move'			=> 'm',
+'accesskey-mycontris'		=> 'y',
+'accesskey-mytalk'			=> 'n',
+'accesskey-portal'			=> '',
+'accesskey-preferences'		=> '',
+'accesskey-preview'			=> 'p',
+'accesskey-protect'			=> '-',
+'accesskey-randompage'		=> 'x',
+'accesskey-recentchanges'	=> 'r',
 'accesskey-recentchangeslinked' => 'c',
-'accesskey-save' => 's',
-'accesskey-search' => 'f',
-'accesskey-sitesupport' => '',
-'accesskey-specialpage' => '',
-'accesskey-specialpages' => 'q',
-'accesskey-talk' => 't',
-'accesskey-undelete' => 'd',
-'accesskey-unwatch' => 'w',
-'accesskey-upload' => 'u',
-'accesskey-userpage' => '.',
-'accesskey-viewsource' => 'e',
-'accesskey-watch' => 'w',
-'accesskey-watchlist' => 'l',
-'accesskey-whatlinkshere' => 'b',
+'accesskey-save'			=> 's',
+'accesskey-search'			=> 'f',
+'accesskey-sitesupport'		=> '',
+'accesskey-specialpage'		=> '',
+'accesskey-specialpages'	=> 'q',
+'accesskey-talk'			=> 't',
+'accesskey-undelete'		=> 'd',
+'accesskey-unwatch'			=> 'w',
+'accesskey-upload'			=> 'u',
+'accesskey-userpage'		=> '.',
+'accesskey-viewsource'		=> 'e',
+'accesskey-watch'			=> 'w',
+'accesskey-watchlist'		=> 'l',
+'accesskey-whatlinkshere'	=> 'b',
 
 # tooltip help for the main actions
 'tooltip-anontalk' => 'Discussion des éditions faites à partir de cette adresse ip [alt-n]',
@@ -1164,13 +1164,14 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 "and"	=> "et",
 "contributions" => "Basé sur le travail de $1.",
 "siteusers"	=> "Utilisateur(s) $1 de {{SITENAME}}",
+
 # Math
-	'mw_math_png' => "Toujours produire une image PNG",  
-	'mw_math_simple' => "HTML si très simple, autrement PNG", 
-	'mw_math_html' => "HTML si possible, autrement PNG", 
-	'mw_math_source' => "Laisser le code TeX original",
-	'mw_math_modern' => "Pour les navigateurs modernes",
-	'mw_math_mathml' => 'MathML',
+'mw_math_png' => "Toujours produire une image PNG",  
+'mw_math_simple' => "HTML si très simple, autrement PNG", 
+'mw_math_html' => "HTML si possible, autrement PNG", 
+'mw_math_source' => "Laisser le code TeX original",
+'mw_math_modern' => "Pour les navigateurs modernes",
+'mw_math_mathml' => 'MathML',
 );
 
 class LanguageFr extends LanguageUtf8
