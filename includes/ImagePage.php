@@ -26,7 +26,7 @@ class ImagePage extends Article {
 
 	function openShowImage()
 	{
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser,$wgRequest;
 		$name = $this->mTitle->getText();
 		$path = wfImagePath( $name );
 		$url   = wfImageUrl( $name );
@@ -38,9 +38,10 @@ class ImagePage extends Article {
 			
 			if ( $type != "" ) {
 				# image
-				$s = "<center><img src=\"{$url}\" width=\"{$width}\" height=\"{$height}\" /></center>";
+				$s = "<span style=\"text-align: center\"><img src=\"{$url}\" width=\"{$width}\" height=\"{$height}\"".
+				"alt=\"".$wgRequest->getVal( 'image' )."\" /></span>";
 			} else {
-				$s = "<center>".$sk->makeMediaLink($name,"")."</center>";
+				$s = "<span style=\"text-align: center\">".$sk->makeMediaLink($name,"")."</span>";
 			}
 			$wgOut->addHTML( $s );
 		}
