@@ -156,27 +156,6 @@ class ParserTest {
 		print "Running test $desc... ";
 
 		$this->setupGlobals();
-		
-		# This is ugly, but we need a way to modify the database
-		# without breaking anything. Currently it isn't possible
-		# to roll back transactions, which might help with this.
-		# -- wtm
-		static $setupDB = false;
-		if (!$setupDB && $GLOBALS['wgDBprefix'] === 'parsertest') {
-			$db =& wfGetDB( DB_MASTER );
-			if (0) {
-				# XXX CREATE TABLE ... LIKE requires MySQL 4.1
-				$tables = array('cur', 'interwiki', 'brokenlinks', 'recentchanges');
-				foreach ($tables as $tbl) {
-					$db->query('CREATE TEMPORARY TABLE ' . $GLOBALS['wgDBprefix'] . "$tbl LIKE $tbl");
-				}
-			}
-			else {
-				# HACK, sorry
-				dbsource( 'maintenance/parserTests.sql', $db );
-			}
-			$setupDB = true;
-		}
 
 		$user =& new User();
 		$options =& ParserOptions::newFromUser( $user );
@@ -237,13 +216,48 @@ class ParserTest {
 			'wgSitename' => 'MediaWiki',
 			'wgLanguageCode' => 'en',
 			'wgUseLatin1' => false,
-			'wgLang' => new LanguageUtf8(),
 			'wgDBprefix' => 'parsertest',
+			
+			'wgLoadBalancer' => LoadBalancer::newFromParams( $GLOBALS['wgDBservers'] ),
+			'wgLang' => new LanguageUtf8(),
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
 			$this->savedGlobals[$var] = $GLOBALS[$var];
 			$GLOBALS[$var] = $val;
+		}
+		$GLOBALS['wgLoadBalancer']->loadMasterPos();
+		$this->setupDatabase();
+	}
+	
+	/**
+	 * Set up a temporary set of wiki tables to work with for the tests.
+	 * Currently this will only be done once per run, and any changes to
+	 * the db will be visible to later tests in the run.
+	 *
+	 * This is ugly, but we need a way to modify the database
+	 * without breaking anything. Currently it isn't possible
+	 * to roll back transactions, which might help with this.
+	 * -- wtm
+	 *
+	 * @access private
+	 */
+	function setupDatabase() {
+		static $setupDB = false;
+		if (!$setupDB && $GLOBALS['wgDBprefix'] === 'parsertest') {
+			$db =& wfGetDB( DB_MASTER );
+			if (0) {
+				# XXX CREATE TABLE ... LIKE requires MySQL 4.1
+				$tables = array('cur', 'interwiki', 'brokenlinks', 'recentchanges');
+				foreach ($tables as $tbl) {
+					$db->query('CREATE TEMPORARY TABLE ' . $GLOBALS['wgDBprefix'] . "$tbl LIKE $tbl");
+				}
+			}
+			else {
+				# HACK, sorry
+				dbsource( 'maintenance/parserTests.sql', $db );
+			}
+			$setupDB = true;
 		}
 	}
 	
@@ -374,9 +388,11 @@ class ParserTest {
 	 * @access private
 	 */
 	function addArticle($name, $text) {
+		$this->setupGlobals();
 		$title = Title::newFromText( $name );
 		$art = new Article($title);
 		$art->insertNewArticle($text, '', false, false );
+		$this->teardownGlobals();
 	}
 }
 
