@@ -18,7 +18,9 @@ GRANT DELETE,INSERT,SELECT,UPDATE ON `{$wgDBname}`.*
 GRANT DELETE,INSERT,SELECT,UPDATE ON `{$wgDBname}`.*
  TO {$wgDBuser}@localhost.localdomain IDENTIFIED BY '{$wgDBpassword}';
 
-GRANT SELECT (user_id,user_name,user_rights,user_options) ON `{$wgDBname}`.user
+GRANT SELECT (user_id,user_name,user_options) ON `{$wgDBname}`.user
+ TO {$wgDBsqluser}@'%' IDENTIFIED BY '{$wgDBsqlpassword}';
+GRANT SELECT ON `{$wgDBname}`.user_rights
  TO {$wgDBsqluser}@'%' IDENTIFIED BY '{$wgDBsqlpassword}';
 GRANT SELECT ON `{$wgDBname}`.cur
  TO {$wgDBsqluser}@'%' IDENTIFIED BY '{$wgDBsqlpassword}';
@@ -47,8 +49,10 @@ GRANT SELECT ON `{$wgDBname}`.watchlist
 GRANT SELECT ON `{$wgDBname}`.math
  TO {$wgDBsqluser}@'%' IDENTIFIED BY '{$wgDBsqlpassword}';
 
-GRANT SELECT (user_id,user_name,user_rights,user_options)
+GRANT SELECT (user_id,user_name,user_options)
  ON `{$wgDBname}`.user
+ TO {$wgDBsqluser}@localhost IDENTIFIED BY '{$wgDBsqlpassword}';
+GRANT SELECT ON `{$wgDBname}`.user_rights
  TO {$wgDBsqluser}@localhost IDENTIFIED BY '{$wgDBsqlpassword}';
 GRANT SELECT ON `{$wgDBname}`.cur
  TO {$wgDBsqluser}@localhost IDENTIFIED BY '{$wgDBsqlpassword}';
@@ -77,8 +81,10 @@ GRANT SELECT ON `{$wgDBname}`.watchlist
 GRANT SELECT ON `{$wgDBname}`.math
  TO {$wgDBsqluser}@localhost IDENTIFIED BY '{$wgDBsqlpassword}';
 
-GRANT SELECT (user_id,user_name,user_rights,user_options)
+GRANT SELECT (user_id,user_name,user_options)
  ON `{$wgDBname}`.user
+ TO {$wgDBsqluser}@localhost.localdomain IDENTIFIED BY '{$wgDBsqlpassword}';
+GRANT SELECT ON `{$wgDBname}`.user_rights
  TO {$wgDBsqluser}@localhost.localdomain IDENTIFIED BY '{$wgDBsqlpassword}';
 GRANT SELECT ON `{$wgDBname}`.cur
  TO {$wgDBsqluser}@localhost.localdomain IDENTIFIED BY '{$wgDBsqlpassword}';

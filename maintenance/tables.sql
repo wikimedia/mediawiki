@@ -8,12 +8,17 @@ CREATE TABLE user (
   user_id int(5) unsigned NOT NULL auto_increment,
   user_name varchar(255) binary NOT NULL default '',
   user_real_name varchar(255) binary NOT NULL default '',
-  user_rights tinyblob NOT NULL default '',
   user_password tinyblob NOT NULL default '',
   user_newpassword tinyblob NOT NULL default '',
   user_email tinytext NOT NULL default '',
   user_options blob NOT NULL default '',
   user_touched char(14) binary NOT NULL default '',
+  UNIQUE KEY user_id (user_id)
+) PACK_KEYS=1;
+
+CREATE TABLE user_rights (
+  user_id int(5) unsigned NOT NULL,
+  user_rights tinyblob NOT NULL default '',
   UNIQUE KEY user_id (user_id)
 ) PACK_KEYS=1;
 

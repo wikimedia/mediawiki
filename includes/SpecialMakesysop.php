@@ -123,16 +123,20 @@ class MakesysopForm {
 	{
 		global $wgOut, $wgUser, $wgLang;
 		global $wgDBname, $wgMemc, $wgLocalDatabases;
+
+		$fname = 'MakesysopForm::doSubmit';
 		
 		$dbw =& wfGetDB( DB_MASTER );
-		$parts = explode( "@", $this->mUser );
-		$usertable = $dbw->tableName( 'user' );
+		$parts = explode( '@', $this->mUser );
+		$user_rights = $dbw->tableName( 'user_rights' );
+		$usertable   = $dbw->tableName( 'user' );
 
-		if( count( $parts ) == 2 && $wgUser->isDeveloper() && strpos( '.', $usertable ) === false ){
+		if( count( $parts ) == 2 && $wgUser->isDeveloper() && strpos( '.', $user_rights ) === false ){
 			$username = $dbw->strencode( $parts[0] );
 			if ( array_key_exists( $parts[1], $wgLocalDatabases ) ) {
 				$dbName = $wgLocalDatabases[$parts[1]];
-				$usertable = $dbName . "." . $usertable;
+				$user_rights = $dbName . '.' . $user_rights;
+				$usertable   = $usertable . '.' . $usertable;
 			} else {
 				$this->showFail();
 				return;
@@ -143,10 +147,10 @@ class MakesysopForm {
 		}
 		if ( $username{0} == "#" ) {
 			$id = intval( substr( $username, 1 ) );
-			$sql = "SELECT user_id,user_rights FROM $usertable WHERE user_id=$id FOR UPDATE";
+			$sql = "SELECT user_id,user_rights FROM $user_rights WHERE user_id=$id FOR UPDATE";
 		} else {
 			$encName = $dbw->strencode( $username );
-			$sql = "SELECT user_id, user_rights FROM $usertable WHERE user_name = '{$username}' FOR UPDATE";
+			$sql = "SELECT u.user_id, user_rights FROM $usertable u LEFT JOIN $user_rights r ON u.user_id=r.user_id WHERE user_name = '{$username}' FOR UPDATE";
 		}
 		
 		$prev = $dbw->ignoreErrors( TRUE );
@@ -190,8 +194,10 @@ class MakesysopForm {
 		if ( count( $rightsNotation ) == 0 ) {
 			$this->showFail();
 		} else {
-			$sql = "UPDATE $usertable SET user_rights = '{$newrights}' WHERE user_id = $id LIMIT 1";
-			$dbw->query($sql);
+			#$sql = "UPDATE $user_rights SET user_rights = '{$newrights}' WHERE user_id = $id LIMIT 1";
+			#$dbw->query($sql);
+			$dbw->replace( $user_rights, array( array( 'user_id', 'user_rights' )),
+				array( 'user_id' => $id, 'user_rights' => $newrights ) , $fname );
 			$wgMemc->delete( "$dbName:user:id:$id" );
 			
 			$log = new LogPage( 'rights' );
