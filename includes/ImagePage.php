@@ -57,16 +57,16 @@ class ImagePage extends Article {
 				# image
 				$width = $this->img->getWidth();
 				$height = $this->img->getHeight();
+				$msg = wfMsg('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
 				if ( $width > $maxWidth && $wgUseImageResize ) {
-					$msg = wfMsg('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
 					$anchoropen  = "<a href=\"{$url}\">";
 					$anchorclose = "<br>{$msg}</a>";
 
 					$url = $this->img->createThumb( $maxWidth );
 					$height = floor( $height * $maxWidth / $width );
 					$width  = $maxWidth;
-				} elseif ( $height > $maxHeight && $wgUseImageResize ) {
-					$msg = wfMsg('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
+				} 
+				if ( $height > $maxHeight && $wgUseImageResize ) {
 					$anchoropen  = "<a href=\"{$url}\">";
 					$anchorclose = "<br>{$msg}</a>";
 
