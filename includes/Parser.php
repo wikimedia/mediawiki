@@ -146,7 +146,6 @@ class Parser
 				'/ (\\?|:|;|!|\\302\\273)/i' => '&nbsp;\\1',
 				# french spaces, Guillemet-right
 				'/(\\302\\253) /i' => '\\1&nbsp;',
-				'/([^> ]+(&#x30(1|3|9);)[^< ]*)/i' => '<span class="diacrit">\\1</span>',
 				'/<center *>/i' => '<div class="center">',
 				'/<\\/center *>/i' => '</div>'
 			);
