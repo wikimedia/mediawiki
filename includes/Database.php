@@ -274,16 +274,16 @@ class Database {
 		
 		$this->mLastQuery = $sql;
 		
-		if ( $this->debug() ) {
-			$sqlx = substr( $sql, 0, 500 );
-			$sqlx = wordwrap(strtr($sqlx,"\t\n",'  '));
-			wfDebug( "SQL: $sqlx\n" );
-		}
 		# Add a comment for easy SHOW PROCESSLIST interpretation
 		if ( $fname ) {
 			$commentedSql = "/* $fname */ $sql";
 		} else {
 			$commentedSql = $sql;
+		}
+		if ( $this->debug() ) {
+			$sqlx = substr( $commentedSql, 0, 500 );
+			$sqlx = wordwrap(strtr($sqlx,"\t\n",'  '));
+			wfDebug( "SQL: $sqlx\n" );
 		}
 		
 		# If DBO_TRX is set, start a transaction
