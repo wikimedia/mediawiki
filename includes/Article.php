@@ -900,7 +900,7 @@ class Article {
 			return;
 		}
 		
-		# Secret enhanced rollback, marks edits rc_bot=1
+		# Enhanced rollback, marks edits rc_bot=1
 		$bot = !!$_REQUEST['bot'];
 		
 		# Replace all this user's current edits with the next one down
@@ -931,7 +931,7 @@ class Article {
 				$wgOut->addHTML(
 					wfMsg("editcomment",
 					htmlspecialchars( $s->cur_comment ) ) );
-				}
+			}
 			return;
 		}
 		
@@ -958,7 +958,7 @@ class Article {
 		}
 
 		# Save it!
-		$newcomment = wfMsg( "revertpage", $s->old_user_text );
+		$newcomment = wfMsg( "revertpage", $s->old_user_text, $from );
 		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->addHTML( "<h2>" . $newcomment . "</h2>\n<hr>\n" );
