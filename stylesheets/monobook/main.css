@@ -37,7 +37,7 @@
 */
 
 body {
-    font: x-small "Bitstream Vera Sans", Verdana, "Lucida Grande", Lucida, Helvetica, Arial, sans-serif;
+    font: x-small sans-serif;
     background: #f9f9f9 url("headbg.jpg") 0px 0px no-repeat;
     color: Black;
     margin: 0;
@@ -92,7 +92,7 @@ hr {
 h1, h2, h3, h4, h5, h6 {
     color: Black;
     background: none;
-    font-family: "Bitstream Vera Sans", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
+    font-family: sans-serif;
     font-weight: normal;
     margin: 0;
     padding-top: 0.5em;
