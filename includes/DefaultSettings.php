@@ -57,6 +57,31 @@ $wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
 $wgEmergencyContact = 'wikiadmin@' . $wgServerName;
 $wgPasswordSender	= 'Wikipedia Mail <apache@' . $wgServerName . '>';
 
+# If you operate multiple wikis, you can define a shared upload
+# path here. Uploads to this wiki will NOT be put there - they
+# will be put into $wgUploadDirectory.
+#
+# If $wgUseSharedUploads is set, the wiki will look in the
+# shared repository if no file of the given name is found in
+# the local repository (for [[Image:..]], [[Media:..]] links).
+# Thumbnails will also be looked for and generated in this
+# directory.
+#
+$wgUseSharedUploads = false;
+# Leave this blank if it is the same server. NO FINAL SLASH -
+# it is concatenated with $wgSharedUploadPath.
+# Example: "http://commons.wikimedia.org"
+$wgSharedUploadBaseUrl = "";
+# Path on the web server where shared uploads can be found
+$wgSharedUploadPath = "/shared/images";
+# Path on the file system where shared uploads can be found
+$wgSharedUploadDirectory = "/var/www/wiki3/images";
+# Set this to false especially if you have a set of files that need to be
+# accessible by all wikis, and you do not want to use the hash (path/a/aa/)
+# directory layout.
+$wgHashedSharedUploadDirectory = true;
+
+
 # For using a direct (authenticated) SMTP server connection.
 # "host" => 'SMTP domain', "IDHost" => 'domain for MessageID', "port" => "25", "auth" => true/false, "username" => user, "password" => password
 $wgSMTP				= false;

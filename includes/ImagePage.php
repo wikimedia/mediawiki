@@ -45,7 +45,11 @@ class ImagePage extends Article {
 			} else {
 				$s = "<div class=\"fullMedia\">".$sk->makeMediaLink($this->img->getName(),"")."</div>";
 			}
+			if($this->img->fromSharedDirectory) {
+				$s.="<div class=\"sharedUploadNotice\">".wfMsg("sharedupload")."</div>";
+			}
 			$wgOut->addHTML( $s );
+			
 		}
 	}
 	

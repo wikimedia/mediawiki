@@ -902,3 +902,7 @@ fieldset.operaprefsection { margin-left: 15em }
 .printfooter {
 	display: none;
 }
+
+.sharedUploadNotice {
+        font-style: italic;
+}

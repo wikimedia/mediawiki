@@ -859,6 +859,7 @@ this old version, (rev) = revert to this old version.
 'imagelinks'	=> 'Image links',
 'linkstoimage'	=> 'The following pages link to this image:',
 'nolinkstoimage' => 'There are no pages that link to this image.',
+'sharedupload' => 'This file is a shared upload and may be used by other projects.',
 
 # Statistics
 #
