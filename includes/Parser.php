@@ -1273,7 +1273,7 @@ class Parser
 		# Load from database
 		if ( !$found ) {
 			$title = Title::newFromText( $text, NS_TEMPLATE );
-			if ( !is_null( $text ) && !$title->isExternal() ) {
+			if ( is_object( $title ) && !$title->isExternal() ) {
 				# Check for excessive inclusion
 				$dbk = $title->getPrefixedDBkey();
 				if ( !array_key_exists( $dbk, $this->mIncludeCount ) ) {
