@@ -67,7 +67,7 @@ function wfLocalUrl( $a, $q = "" )
 	} else if ($wgScript != '' ) {
 		$a = "{$wgScript}?title={$a}&{$q}";	
 	} else { //XXX ugly hack for toplevel wikis
-		$a = "/{$a}&{$q}";	
+		$a = "/{$a}?{$q}";
 	}
 	return $a;
 }
