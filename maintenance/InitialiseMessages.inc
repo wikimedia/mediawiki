@@ -14,9 +14,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 
 	$wgUser = new User;
 	$wgUser->setLoaded( true ); # Don't load from DB
-	$wgUser->setName( "Template namespace initialisation script" );
-	$wgUser->addRight( "bot" );
-	$wgUser = User::newFromName( 'MediaWiki default' );
+	$wgUser->setName( "MediaWiki default" );
 	
 	# Don't try to draw messages from the database we're initialising
 	$wgMessageCache->disable();
@@ -113,17 +111,9 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		if ( array_key_exists( $title, $existingTitles ) ) {
 			if ( $existingTitles[$title] == "chuck" || $overwrite) {
 				print "$title\n";
-				# Save old current version
-				$sql = "insert into old (old_namespace,old_title,old_text,old_comment,old_user,old_user_text,old_timestamp)
-				  select cur_namespace,cur_title,cur_text,cur_comment,cur_user,cur_user_text,cur_timestamp 
-				  from cur where cur_namespace=8 and cur_title='$title'";
-				wfQuery( $sql, DB_WRITE );
-				# Update text
-				$sql = "update cur set cur_text='$dbencMsg',cur_timestamp='$timestamp',cur_user=0,
-				  cur_user_text='$username', inverse_timestamp=$invTimestamp, cur_comment='',
-				  cur_is_new=0,cur_is_redirect=0,cur_minor_edit=0, cur_touched='$timestamp' 
-				  WHERE cur_namespace=8 and cur_title='$title'";
-				wfQuery( $sql, DB_WRITE );
+				$mwTitleObj = Title::makeTitle( NS_MEDIAWIKI, $title );
+				$article = new Article( $mwTitleObj );
+				$article->quickSave( $message );
 			}
 			$doInsert = false;
 		} else {

@@ -1530,7 +1530,7 @@ class Article {
 		wfProfileIn( $fname );
 
 		$ns = $this->mTitle->getNamespace();
-		$dbkey = $this->mTitle->getDBkey;
+		$dbkey = $this->mTitle->getDBkey();
 		$encDbKey = wfStrencode( $dbkey );
 		$timestamp = wfTimestampNow();
 		
@@ -1559,10 +1559,13 @@ class Article {
 		if ( $numRows ) {
 			# Update article
 			$fields['cur_is_new'] = 0;
-			wfUpdateArray( $fields, array( 'cur_namespace' => $ns, 'cur_title' => $dbkey ), $fname );
+			wfUpdateArray( "cur", $fields, array( 'cur_namespace' => $ns, 'cur_title' => $dbkey ), $fname );
 		} else {
 			# Insert new article
 			$fields['cur_is_new'] = 1;
+			$fields['cur_namespace'] = $ns;
+			$fields['cur_title'] = $dbkey;
+			$fields['cur_random'] = $rand = number_format( mt_rand() / mt_getrandmax(), 12, ".", "" );
 			wfInsertArray( "cur", $fields, $fname );
 		}
 		wfProfileOut( $fname );
