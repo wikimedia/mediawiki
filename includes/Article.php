@@ -1620,13 +1620,11 @@ class Article {
 
 	/* private */ function setOldSubtitle()
 	{
-		global $wgLang, $wgOut, $wgUser;
+		global $wgLang, $wgOut;
 
 		$td = $wgLang->timeanddate( $this->mTimestamp, true );
-		$sk = $wgUser->getSkin();
-		$lnk = $sk->makeKnownLinkObj ( $this->mTitle, wfMsg( 'revisionasoflink' ) );
-		$r = wfMsg( 'revisionasof', $td, $lnk );
-		$wgOut->setSubtitle( $r );
+		$r = wfMsg( 'revisionasof', $td );
+		$wgOut->setSubtitle( "({$r})" );
 	}
 
 	# This function is called right before saving the wikitext,
