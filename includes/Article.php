@@ -1667,7 +1667,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 	
 	function saveToFileCache( $text ) {
 		global $wgUseGzip, $wgCompressByDefault;
-		if(length($text) == 0) return "";
+		if(strcmp($text,"") == 0) return "";
 		
         wfDebug(" saveToFileCache()\n", false);
 		$filename=$this->fileCacheName();
