@@ -526,12 +526,15 @@ class Title {
 	 * @access public
 	 */
 	function getPrefixedText() {
+		global $wgContLang;
 		if ( empty( $this->mPrefixedText ) ) {
 			$s = $this->prefix( $this->mTextform );
 			$s = str_replace( '_', ' ', $s );
 			$this->mPrefixedText = $s;
 		}
-		return $this->mPrefixedText;
+		//convert to the desired language variant
+		$t = $wgContLang->convert($this->mPrefixedText);
+		return $t;
 	}
 	
 	/**
@@ -542,11 +545,14 @@ class Title {
 	 * @access public
 	 */
 	function getFullText() {
+		global $wgContLang;
 		$text = $this->getPrefixedText();
 		if( '' != $this->mFragment ) {
 			$text .= '#' . $this->mFragment;
 		}
-		return $text;
+		//convert to desired language variant
+		$t = $wgContLang->convert($text);
+		return $t;
 	}
 
 	/**

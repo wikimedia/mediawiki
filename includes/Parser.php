@@ -1160,7 +1160,30 @@ class Parser
 				$s .= $prefix . '[[' . $line;
 				continue;
 			}
-			
+
+			//check other language variants of the link
+			//if the article does not exist
+			if($nt->getArticleID() == 0) {
+				global $wgContLang;
+				$variants = $wgContLang->getVariants();
+				$varnt = false; 
+				if(sizeof($variants) > 1) {
+					foreach ( $variants as $v ) {
+						if($v == $wgContLang->getPreferredVariant())
+							continue;
+						$varlink = $wgContLang->autoConvert($link, $v);
+						$varnt = Title::newFromText($varlink);
+						if($varnt && $varnt->getArticleID()>0) {
+							break;
+						}
+					}
+				}
+				if($varnt && $varnt->getArticleID()>0) {
+					$nt = $varnt;
+					$link = $varlink;
+				}
+			}
+
 			$ns = $nt->getNamespace();
 			$iw = $nt->getInterWiki();
 			

@@ -63,14 +63,17 @@ class LanguageZh extends LanguageZh_cn {
 		return strtr($text, $zhTrad2Simp);
 	}
 	
-	function autoConvert($text) {
-        if($this->getPreferredVariant() == "zh-cn") {
-            return $this->trad2simp($text);
-        }
-        else {
-            return $this->simp2trad($text);
-        }
-    }
+	function autoConvert($text, $toVariant=false) {
+		if(!$toVariant) 
+			$toVariant = $this->getPreferredVariant();
+
+		if($toVariant == "zh-cn") {
+			return $this->trad2simp($text);
+		}
+		else {
+			return $this->simp2trad($text);
+		}
+	}
 
     function getVariants() {
         return array("zh-cn", "zh-tw");
