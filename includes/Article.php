@@ -941,6 +941,7 @@ class Article {
 	function rollback()
 	{
 		global $wgUser, $wgLang, $wgOut, $from;
+		global $wgUseSquid, $wgInternalServer;
 
 		if ( ! $wgUser->isSysop() ) {
 			$wgOut->sysopRequired();
@@ -1014,6 +1015,14 @@ class Article {
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->addHTML( "<h2>" . $newcomment . "</h2>\n<hr>\n" );
 		$this->updateArticle( Article::getRevisionText( $s ), $newcomment, 1, $this->mTitle->userIsWatching(), "", $bot );
+		
+		# Squid purging 
+		if ( $wgUseSquid ) {
+			$urlArr = Array( 
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL())
+			);			
+			wfPurgeSquidServers($urlArr);
+		}
 		
 		Article::onArticleEdit( $this->mTitle );
 		$wgOut->returnToMain( false );
