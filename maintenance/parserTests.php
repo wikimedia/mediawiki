@@ -257,6 +257,7 @@ class ParserTest {
 			'wgScript' => '/index.php',
 			'wgScriptPath' => '/',
 			'wgArticlePath' => '/wiki/$1',
+			'wgUploadPath' => '/images',
 			'wgSitename' => 'MediaWiki',
 			'wgLanguageCode' => 'en',
 			'wgUseLatin1' => false,
