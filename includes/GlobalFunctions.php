@@ -46,6 +46,21 @@ if( !function_exists('is_a') ) {
 	}
 }
 
+# UTF-8 substr function based on a PHP manual comment
+if ( !function_exists( 'mb_substr' ) ) {
+	function mb_substr($str,$start) 
+	{ 
+		preg_match_all("/./us", $str, $ar); 
+
+		if(func_num_args() >= 3) { 
+			$end = func_get_arg(2); 
+			return join("",array_slice($ar[0],$start,$end)); 
+		} else { 
+			return join("",array_slice($ar[0],$start)); 
+		}
+	}
+}
+
 # html_entity_decode exists in PHP 4.3.0+ but is FATALLY BROKEN even then,
 # with no UTF-8 support.
 function do_html_entity_decode( $string, $quote_style=ENT_COMPAT, $charset='ISO-8859-1' ) {

@@ -206,7 +206,8 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_NS                   => array( 0,    'NS:'                    ),
 	MAG_LOCALURL             => array( 0,    'LOCALURL:'              ),
 	MAG_LOCALURLE            => array( 0,    'LOCALURLE:'             ),
-	MAG_SERVER               => array( 0,    'SERVER'                 )
+	MAG_SERVER               => array( 0,    'SERVER'                 ),
+	MAG_GRAMMAR              => array( 0,    'GRAMMAR:'               )
 );
 
 #-------------------------------------------------------------------
@@ -1925,10 +1926,16 @@ class Language {
 			return $ellipsis . $string;
 		}
 	}
+
+	# Grammatical transformations, needed for inflected languages
+	# Invoked by putting {{grammar:case|word}} in a message
+	function convertGrammar( $word, $case ) {
+		return $word;
+	}
 }
 
 # This should fail gracefully if there's not a localization available
-@include_once( 'Language' . ucfirst( $wgLanguageCode ) . '.php' );
+include_once( 'Language' . ucfirst( $wgLanguageCode ) . '.php' );
 
 }
 ?>

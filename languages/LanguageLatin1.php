@@ -251,6 +251,10 @@ class LanguageLatin1 {
 	function truncate( $string, $length, $ellipsis = "" ) {
 		return Language::truncate( $string, $length, $ellipsis );
 	}
+
+	function convertGrammar( $word, $case ) {
+		return $word;
+	}
 }
 
 ?>

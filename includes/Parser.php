@@ -1422,11 +1422,12 @@ class Parser
 		# PHP global rebinding syntax is a bit weird, need to use the GLOBALS array
 		$GLOBALS['wgCurParser'] =& $this;
 
-
-		if ( $this->mOutputType == OT_HTML ) {
+		if ( $this->mOutputType == OT_HTML || $this->mOutputType == OT_MSG ) {
 			# Variable substitution
 			$text = preg_replace_callback( "/{{([$nonBraceChars]*?)}}/", 'wfVariableSubstitution', $text );
-
+		}
+		
+		if ( $this->mOutputType == OT_HTML ) {
 			# Argument substitution
 			$text = preg_replace_callback( "/(\\n?){{{([$titleChars]*?)}}}/", 'wfArgSubstitution', $text );
 		}
@@ -1599,6 +1600,15 @@ class Parser
 			$this->mOutput->mContainsOldMagic = true;
 		}
 
+		# GRAMMAR
+		if ( !$found && $argc == 1 ) {
+			$mwGrammar =& MagicWord::get( MAG_GRAMMAR );
+			if ( $mwGrammar->matchStartAndRemove( $part1 ) ) {
+				$text = $wgLang->convertGrammar( $args[0], $part1 );
+				$found = true;
+			}
+		}
+
 		# Template table test
 
 		# Did we encounter this template already? If yes, it is in the cache
@@ -1681,8 +1691,9 @@ class Parser
 				$wgLinkCache->addLinkObj( $title );
 			}
 		}
-				# Empties the template path
-				$this->mTemplatePath = array();
+
+		# Empties the template path
+		$this->mTemplatePath = array();
 
 		if ( !$found ) {
 			return $matches[0];
