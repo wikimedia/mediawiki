@@ -5,12 +5,11 @@ function wfSpecialWhatlinkshere($par = NULL)
 	global $wgUser, $wgOut, $target;
 	$fname = "wfSpecialWhatlinkshere";
 
-	if($par) {
+	if(!empty($par)) {
 		$target = $par;
-	} else {
+	} else if (!empty($_REQUEST['target'])) {
 		$target = $_REQUEST['target'] ;
-	}
-	if ( "" == $target ) {
+	} else {
 		$wgOut->errorpage( "notargettitle", "notargettext" );
 		return;
 	}
