@@ -337,7 +337,7 @@ class Skin {
 
 	function pageTitleLinks()
 	{
-		global $wgOut, $wgTitle, $oldid, $action, $diff, $wgUser, $wgLang;
+		global $wgOut, $wgTitle, $oldid, $action, $diff, $wgUser, $wgLang, $wgUseApproval ;
 
 		$s = $this->printableLink();
 
@@ -348,7 +348,16 @@ class Skin {
 				$style = $this->getInternalLinkAttributes( $link, $name );
 				$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
 			}
-		}
+# This will show the "Approve" link if $wgUseApproval=true;
+if ( isset ( $wgUseApproval ) && $wgUseApproval )
+{
+  $t = $wgTitle->getDBkey();
+  $name = "Approve this article" ; 
+  $link = "http://test.wikipedia.org/w/magnus/wiki.phtml?title={$t}&action=submit&doit=1" ;
+#wfEscapeHTML( wfImageUrl( $name ) );
+  $style = $this->getExternalLinkAttributes( $link, $name );
+  $s .= " | <a href=\"{$link}\"{$style}>{$name}</a>" ;
+}		}
 		if ( "history" == $action || isset( $diff ) || isset( $oldid ) ) {
 			$s .= " | " . $this->makeKnownLink( $wgTitle->getPrefixedText(),
 			  wfMsg( "currentrev" ) );
