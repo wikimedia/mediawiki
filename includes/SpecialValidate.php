@@ -491,6 +491,7 @@ class Validation {
 	}
 
 	function getVersionLink( &$title , $timestamp ) {
+		global $wgLang;
 		$dbkey = $title->getDBkey();
 		$this->find_this_version( $dbkey, $timestamp, $table_id, $table_name );
 		if( $table_name == 'cur' ) {
