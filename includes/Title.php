@@ -1344,6 +1344,7 @@ class Title {
 	 * @access public
 	 */
 	function moveTo( &$nt, $auth = true ) {
+		global $wgUser;
 		if( !$this or !$nt ) {
 			return 'badtitletext';
 		}
@@ -1610,6 +1611,9 @@ class Title {
 		);
 		$newid = $dbw->insertId();
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
+
+		// attach revision to the new page
+		$dbw->update( 'revision', array('rev_page' => $newid), array('rev_id' => $revid), $fname);
 
 		# Record in RC
 		// Replaced by a log entry
