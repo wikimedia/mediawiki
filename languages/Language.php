@@ -295,7 +295,7 @@ global $wgLanguageNames;
 	"ti" => "Tigrinya",		# Tigrinya - FIXME
 	"tk" => "&#1578;&#1585;&#1603;&#1605;&#1606; / &#1058;&#1091;&#1088;&#1082;&#1084;&#1077;&#1085;",	# Turkmen
 	"tl" => "Tagalog",		# Tagalog (Filipino)
-	"tlh" => "tlhIngan-Hol",	# Klingon
+	#"tlh" => "tlhIngan-Hol",	# Klingon - no interlanguage links allowed
 	"tn" => "Setswana",		# Setswana
 	"to" => "Tonga",		# Tonga - FIXME
 	"tokipona" => "Toki Pona",      # Toki Pona
@@ -1937,7 +1937,7 @@ class Language {
 	}
 }
 
+header("X-Human-Language: $wgLanguageCode");
 # This should fail gracefully if there's not a localization available
 @include_once( "Language" . ucfirst( $wgLanguageCode ) . ".php" );
-
 ?>
