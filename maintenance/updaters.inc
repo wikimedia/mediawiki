@@ -8,7 +8,6 @@
 
 require_once 'convertLinks.inc';
 require_once 'InitialiseMessages.inc';
-require_once 'archives/moveCustomMessages.inc';
 
 $wgNewTables = array(
 #            table          patch file (in maintenance/archives)
@@ -201,14 +200,6 @@ function do_all_updates() {
 	do_image_name_unique_update(); flush();
 
 	do_logging_encoding(); flush();
-
-	if ( isTemplateInitialised() ) {
-		print "Template namespace already initialised\n";
-	} else {
-		moveCustomMessages( 1 ); flush();
-		moveCustomMessages( 2 ); flush();
-		moveCustomMessages( 3 ); flush();
-	}
 
 	initialiseMessages(); flush();
 }
