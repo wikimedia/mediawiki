@@ -107,6 +107,14 @@ img.tex { vertical-align: middle; }
         padding: 5px;
         font-size: 95%;
 }
+#toc .tocindent { margin-left: 2em; }
+#toc .tocline { margin-bottom: 0px; }
+#toc p { margin: 0 }
+#toc .toctoggle { font-size: 94%; }
+#toc .editsection { 
+    margin-top: 0.7em; 
+    font-size: 94%;
+}
 
 .error {
 	color: red;
