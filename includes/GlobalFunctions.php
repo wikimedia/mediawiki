@@ -1051,4 +1051,37 @@ function wfIsWindows() {
 	}   
 } 
 
+/**
+ * Swap two variables
+ */
+function swap( &$x, &$y ) {
+	$z = $x;
+	$x = $y;
+	$y = $z;
+}
+
+function wfGetSiteNotice() {
+	global $wgSiteNotice;
+	$fname = 'wfGetSiteNotice';
+	wfProfileIn( $fname );
+
+	$notice = wfMsg( 'sitenotice' );
+	if($notice == '&lt;sitenotice&gt;') $notice = '';
+	# Allow individual wikis to turn it off
+	if ( $notice == '-' ) {
+		$notice = '';
+	} else {
+		if ($notice == '') {
+			$notice = $wgSiteNotice;
+		}
+		if($notice != '-' && $notice != '') {
+			$specialparser = new Parser();
+			$parserOutput = $specialparser->parse( $notice, $wgTitle, $wgOut->mParserOptions, false );
+			$notice = $parserOutput->getText();
+		}
+	}
+	wfProfileOut( $fname );
+	return $notice;
+}
+
 ?>
