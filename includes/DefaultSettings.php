@@ -678,12 +678,13 @@ $wgUseRCPatrol = true;
 # If you rename it, then you can access them through the new namespace name.
 #
 # Custom namespaces should start at 100.
-#$wgExtraNamespaces= 
-#	array(100 => "Hilfe", 
+#$wgExtraNamespaces =
+#	array(100 => "Hilfe",
 #	      101 => "Hilfe_Diskussion",
-#	      102 =>"Aide", 
-#	      103 =>"Discussion_Aide"
+#	      102 => "Aide",
+#	      103 => "Discussion_Aide"
 #	      );
+$wgExtraNamespaces = NULL;
 
 # Enable SOAP interface. Off by default
 # SOAP is a protocoll for remote procedure calls (RPC) using http as middleware.

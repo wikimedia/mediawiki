@@ -34,8 +34,8 @@ $wgCanonicalNamespaceNames = array(
 	NS_CATEGORY_TALK    => 'Category_talk'
 );
 
-if(isset($wgExtraNamespaces)) {
-	$wgCanonicalNamespaceNames=$wgCanonicalNamespaceNames+$wgExtraNamespaces;
+if( defined( 'MEDIAWIKI' ) && is_array( $wgExtraNamespaces ) ) {
+	$wgCanonicalNamespaceNames = $wgCanonicalNamespaceNames + $wgExtraNamespaces;
 }
 
 /**
