@@ -2,7 +2,7 @@
 Installing Wikipedia Phase III Software
 ----
 
-The Wikipedia software was developed collabortively by
+The Wikipedia software was developed collaboratively by
 many people, so it's something of a hodgepodge. The
 main wiki software itself is written in PHP, and requires
 the Apache web server and MySQL database. The optional
@@ -30,12 +30,17 @@ Before installing the software, you must copy the file
 "LocalSettings.sample" to "LocalSettings.php", and
 "AdminSettings.sample" to "AdminSettings.php", and
 customize both of the php files to your local setup
-(things like installation parh, passwords, etc.) The
+(things like installation path, passwords, etc.) The
 script install.php can then be run to install the
 software. It must be run from the command line with
 PHP: that is, type "php install.php" (you may need to
 specify the path the php executable). You will probably
 need to run as root.
+
+ Hint: If you are using Debian, the PHP interpreter is 
+ not part of the "php4" package; you need to install
+ php4-cgi separately (the interpreter will be called 
+ php4).
 
 This script will copy all the necessary software over to
 the directories you have specified in the settings files.
@@ -49,7 +54,7 @@ to your MySQL installation.
 
 If you are merely updating an existing installation, run
 "php update.php" instead of install.  This will copy all
-the software, and also run any dtabase updates that may
+the software, and also run any database updates that may
 be necessary. These should give appropriate warnings if
 there are any dangerous ones.
 
