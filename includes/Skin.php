@@ -1721,12 +1721,20 @@ class Skin {
 	}
 
 	function makeImageLinkObj( $nt, $alt = '' ) {
-		global $wgContLang, $wgUseImageResize;
+		global $wgContLang, $wgUseImageResize, $wgMemc, $wgImageHtmlCacheExpiry, $wgDBname;
 		$img   = Image::newFromTitle( $nt );
 		$url   = $img->getViewURL();
 
 		$align = '';
 		$prefix = $postfix = '';
+
+		if ( $wgImageHtmlCacheExpiry ) {
+			$key = "$wgDBname:imagehtml:" . $nt->getDBkey() . ":$alt";
+			$s = $wgMemc->get( $key );
+			if ( $s ) {
+				return $s;
+			}
+		}
 
 		# Check if the alt text is of the form "options|alt text"
 		# Options are:
@@ -1809,44 +1817,55 @@ class Skin {
 			if ( ! isset($width) ) {
 				$width = 180;
 			}
-			return $prefix.$this->makeThumbLinkObj( $img, $alt, $align, $width, $height, $framed, $manual_thumb ).$postfix;
+			$s = $prefix.$this->makeThumbLinkObj( $img, $alt, $align, $width, $height, $framed, $manual_thumb ).$postfix;
 
-		} elseif ( isset($width) ) {
-
-			# Create a resized image, without the additional thumbnail
-			# features
-
-			if (    ( ! $height === false )
-			     && ( $img->getHeight() * $width / $img->getWidth() > $height ) ) {
-				$width = $img->getWidth() * $height / $img->getHeight();
-			}
-			if ( '' == $manual_thumb ) $url = $img->createThumb( $width );
-		}
-
-		$alt = preg_replace( '/<[^>]*>/', '', $alt );
-		$alt = preg_replace('/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/', '&amp;', $alt);
-		$alt = str_replace( array('<', '>', '"'), array('&lt;', '&gt;', '&quot;'), $alt );
-
-		$u = $nt->escapeLocalURL();
-		if ( $url == '' ) {
-			$s = wfMsg( 'missingimage', $img->getName() );
-			$s .= "<br />{$alt}<br />{$url}<br />\n";
 		} else {
-			$s = '<a href="'.$u.'" class="image" title="'.$alt.'">' .
-				 '<img src="'.$url.'" alt="'.$alt.'" longdesc="'.$u.'" /></a>';
+			if ( isset($width) ) {
+
+				# Create a resized image, without the additional thumbnail
+				# features
+
+				if (    ( ! $height === false )
+					 && ( $img->getHeight() * $width / $img->getWidth() > $height ) ) {
+					$width = $img->getWidth() * $height / $img->getHeight();
+				}
+				if ( '' == $manual_thumb ) $url = $img->createThumb( $width );
+			}
+
+			$alt = preg_replace( '/<[^>]*>/', '', $alt );
+			$alt = preg_replace('/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/', '&amp;', $alt);
+			$alt = str_replace( array('<', '>', '"'), array('&lt;', '&gt;', '&quot;'), $alt );
+
+			$u = $nt->escapeLocalURL();
+			if ( $url == '' ) {
+				$s = wfMsg( 'missingimage', $img->getName() );
+				$s .= "<br />{$alt}<br />{$url}<br />\n";
+			} else {
+				$s = '<a href="'.$u.'" class="image" title="'.$alt.'">' .
+					 '<img src="'.$url.'" alt="'.$alt.'" longdesc="'.$u.'" /></a>';
+			}
+			if ( '' != $align ) {
+				$s = "<div class=\"float{$align}\"><span>{$s}</span></div>";
+			}
+			$s = str_replace("\n", ' ',$prefix.$s.$postfix);
 		}
-		if ( '' != $align ) {
-			$s = "<div class=\"float{$align}\"><span>{$s}</span></div>";
+
+		# Cache HTML if requested
+		if ( $wgImageHtmlCacheExpiry ) {
+			$wgMemc->set( $key, $s, $wgImageHtmlCacheExpiry );
 		}
-		return str_replace("\n", ' ',$prefix.$s.$postfix);
+		return $s;
 	}
 
 	/**
 	 * Make HTML for a thumbnail including image, border and caption
 	 * $img is an Image object
 	 */
-	function makeThumbLinkObj( $img, $label = '', $align = 'right', $boxwidth = 180, $boxheight=false, $framed=false , $manual_thumb = "" ) {
+	function makeThumbLinkObj( $img, $label = '', $align = 'right', $boxwidth = 180, 
+	  $boxheight=false, $framed=false , $manual_thumb = "" ) 
+	{
 		global $wgStylePath, $wgContLang;
+
 		# $image = Title::makeTitleSafe( NS_IMAGE, $name );
 		$url  = $img->getViewURL();
 

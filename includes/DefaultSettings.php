@@ -650,6 +650,12 @@ $wgSVGConverters = array(
 $wgSVGConverter = 'ImageMagick'; # Pick one of the above
 $wgSVGConverterPath = ''; # If not in the executable PATH, specify
 
+
+# Set to a number of seconds to cache the HTML associated with an image. This 
+# is an emergency optimisation feature and will cause lots of problems. It is
+# recommended that the expiry be very short and that the users be warned.
+$wgImageHtmlCacheExpiry = 0;
+
 if( !isset( $wgCommandLineMode ) ) {
 	$wgCommandLineMode = false;
 }
