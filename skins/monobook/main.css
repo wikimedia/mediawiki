@@ -317,7 +317,7 @@ div.floatright, table.floatright {
     clear: right;
     float: right;
     position: relative;
-    margin: 0;
+    margin: 0 0 0.5em 0.5em;
     border: 0
 /*
     border: 0.5em solid White;
@@ -328,7 +328,7 @@ div.floatright p { font-style: italic; }
 div.floatleft, table.floatleft {
     float: left;
     position: relative;
-    margin: 0;
+    margin: 0 0.5em 0.5em 0;
     border: 0
 /*
     margin: 0.3em 0.5em 0.5em 0;
