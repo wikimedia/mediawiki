@@ -250,7 +250,9 @@ class CategoryPage extends Article {
                         // get and display header
                         $r .= '<table width="100%"><tr valign="top">';
 
-                        // loop through the chunks
+			$prev_start_char = ""; 
+
+			// loop through the chunks
                         for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0;
                                 $chunkIndex < 3;
                                 $chunkIndex++, $startChunk = $endChunk, $endChunk += $chunk + 1)
@@ -268,7 +270,11 @@ class CategoryPage extends Article {
                                              ($articles_start_char[$index] != $articles_start_char[$index - 1]) )
 
                                         {
-                                                $r .= "</ul><h3>{$articles_start_char[$index]}</h3>\n<ul>";
+						$cont_msg = "";
+						if($articles_start_char[$index] == $prev_start_char)
+							$cont_msg = wfMsg('listingcontinuesabbrev');
+						$r .= "</ul><h3>{$articles_start_char[$index]}$cont_msg</h3>\n<ul>";
+						$prev_start_char = $articles_start_char[$index];
                                         }
 
                                         $r .= "<li>{$articles[$index]}</li>";
