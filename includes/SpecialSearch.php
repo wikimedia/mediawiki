@@ -21,6 +21,7 @@
 
 function wfSpecialSearch( $par ) {
 	global $wgOutput;
+	require_once( 'SearchEngine.php' );
 	$searchEngine = new SearchEngine( $par );
 	$searchEngine->showResults();
 }

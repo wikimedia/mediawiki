@@ -55,7 +55,6 @@ require_once( 'Article.php' );
 require_once( 'MagicWord.php' );
 require_once( 'memcached-client.php' );
 require_once( 'Block.php' );
-require_once( 'SearchEngine.php' );
 require_once( 'MessageCache.php' );
 require_once( 'BlockCache.php' );
 require_once( 'Parser.php' );
