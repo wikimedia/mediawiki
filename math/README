@@ -16,3 +16,7 @@ texvc output format is like that:
 %5 - md5, 32 hex characters
 %h - html code, without \0 characters
 %m - mathml code, without \0 characters
+
+
+
+(GNU make is required to compile; if 'make' fails, try 'gmake'.)
