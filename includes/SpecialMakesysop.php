@@ -148,7 +148,7 @@ class MakesysopForm {
 		}
 		
 		$prev = wfIgnoreSQLErrors( TRUE );
-		$res = wfQuery("SELECT user_id, user_rights FROM $usertable WHERE user_name = '{$username}'", DB_WRITE);
+		$res = wfQuery( $sql, DB_WRITE );
 		wfIgnoreSQLErrors( $prev );
 
 		if( wfLastErrno() || ! $username || wfNumRows( $res ) == 0 ){
