@@ -11,8 +11,8 @@
 	1	=> "Discusión",
 	2	=> "Usuario",
 	3	=> "Usuario_Discusión",
-	4	=> "Wikipedia",
-	5	=> "Wikipedia_Discusión",
+	4	=> $wgMetaNamespace,
+	5	=> "{$wgMetaNamespace}_Discusión",
 	6	=> "Imagen",
 	7	=> "Imagen_Discusión",
 	8	=> "MediaWiki",
@@ -152,18 +152,18 @@
 "mainpage"		=> "Portada",
 "mainpagetext"	=> "Software wiki instalado con éxito.",
 "about"			=> "Acerca de",
-"aboutwikipedia" => "Acerca de Wikipedia",
-"aboutpage"		=> "Wikipedia:Acerca de",
+"aboutwikipedia" => "Acerca de $wgSitename",
+"aboutpage"		=> "$wgMetaNamespace:Acerca de",
 "help"			=> "Ayuda",
-"helppage"		=> "Wikipedia:Ayuda",
-"wikititlesuffix"		=>"Wikipedia",
+"helppage"		=> "$wgMetaNamespace:Ayuda",
+"wikititlesuffix"		=>"$wgSitename",
 "bugreports"	=> "Informes de error de software",
-"bugreportspage" => "Wikipedia:Informes_de_error",
+"bugreportspage" => "$wgMetaNamespace:Informes_de_error",
 
 "faq"			=> "FAQ",
-"faqpage"		=> "Wikipedia:FAQ",
+"faqpage"		=> "$wgMetaNamespace:FAQ",
 "edithelp"		=> "Ayuda de edición",
-"edithelppage"	=> "Wikipedia:Cómo_se_edita_una_página",
+"edithelppage"	=> "$wgMetaNamespace:Cómo_se_edita_una_página",
 "cancel"		=> "Cancelar",
 "qbfind"		=> "Encontrar",
 "qbbrowse"		=> "Hojear",
@@ -176,7 +176,7 @@
 "currentevents" => "Actualidad",
 "errorpagetitle" => "Error",
 "returnto"		=> "Regresa a $1.",
-"fromwikipedia"	=> "De Wikipedia, la enciclopedia libre.",
+"fromwikipedia"	=> "De $wgSitename, la enciclopedia libre.",
 "whatlinkshere"	=> "Páginas que enlazan aquí",
 "help"			=> "Ayuda",
 "search"		=> "Buscar",
@@ -201,10 +201,10 @@
 "redirectedfrom" => "(Redirigido desde $1)",
 "lastmodified"	=> "Esta página fue modificada por última vez el $1.",
 "viewcount"		=> "Esta página ha sido visitada $1 veces.",
-"gnunote" => "Todo el texto se hace disponible bajo los términos de la <a class=internal href='$wgScriptPath/GNU_FDL'>Licencia de Documentación Libre GNU (GNU FDL)",
+"gnunote" => "Todo el texto se hace disponible bajo los términos de la <a class=internal href='/wiki/GNU_FDL'>Licencia de Documentación Libre GNU (GNU FDL)",
 "printsubtitle" => "(De http://es.wikipedia.org)",
 "protectedpage" => "Página protegida",
-"administrators" => "Wikipedia:Administradores",
+"administrators" => "$wgMetaNamespace:Administradores",
 "sysoptitle"	=> "Acceso de Administrador requerido",
 "sysoptext"		=> "La acción que has requerido sólo puede ser llevada a cabo
  por usuarios con status de administrador.
@@ -216,7 +216,7 @@ Ver $1.",
 "nbytes"		=> "$1 bytes",
 "go"			=> "Ir",
 "ok"			=> "OK",
-"sitetitle"		=> "Wikipedia",
+"sitetitle"		=> "$wgSitename",
 "sitesubtitle"	=> "La Enciclopedia Libre",
 "retrievedfrom" => "Obtenido de \"$1\"",
 "newmessages" => "Tienes $1.",
@@ -233,10 +233,10 @@ Ver $1.",
 #
 "nosuchaction"	=> "No existe tal acción",
 "nosuchactiontext" => "La acción especificada por el URL no es
- reconocida por el software de Wikipedia",
+ reconocida por el software de $wgSitename",
 "nosuchspecialpage" => "No existe esa página especial",
 "nospecialpagetext" => "Has requerido una página especial que no es
- reconocida por el software de Wikipedia.",
+ reconocida por el software de $wgSitename.",
 
 # General errors
 #
@@ -260,7 +260,7 @@ MySQL retornó el error \"$3: $4\".\n",
 "readonly"		=> "Base de datos bloqueada",
 "cachederror"	=> "Esta es una copia guardada en el cache de la página requerida, y puede no estar actualizada.",
 "enterlockreason" => "Explica el motivo del bloqueo, incluyendo una estimación de cuándo se producirá el desbloqueo",
-"readonlytext"	=> "La base de datos de Wikipedia está temporalmente
+"readonlytext"	=> "La base de datos de $wgSitename está temporalmente
 bloqueada para nuevas entradas u otras modificaciones, probablemente
 para mantenimiento de rutina, después de lo cual volverá a la normalidad.
 El administrador que la bloqueó ofreció esta explicación:
@@ -291,11 +291,11 @@ notando el URL.",
 # Login and logout pagesítulo
 "logouttitle"	=> "Fin de sesión",
 "logouttext"	=> "Has terminado tu sesión.
-Puedes continuar usando Wikipedia en forma anónima, o puedes
+Puedes continuar usando $wgSitename en forma anónima, o puedes
 iniciar sesión otra vez como el mismo u otro usuario.\n",
 
 "welcomecreation" => "<h2>Bienvenido(a), $1!</h2><p>Tu cuenta ha sido creada. 
-No olvides perzonalizar tus preferencia de Wikipedia.",
+No olvides perzonalizar tus preferencia de $wgSitename.",
 
 "loginpagetitle" => "Registrarse/Entrar",
 "yourname"		=> "Tu nombre de usuario",
@@ -320,14 +320,14 @@ No olvides perzonalizar tus preferencia de Wikipedia.",
 "loginerror"	=> "Error de inicio de sesión",
 "noname"		=> "No has especificado un nombre de usuario válido.",
 "loginsuccesstitle" => "Inicio de sesión exitoso",
-"loginsuccess"	=> "Has iniciado tu sesión en Wikipedia como \"$1\".",
+"loginsuccess"	=> "Has iniciado tu sesión en $wgSitename como \"$1\".",
 "nosuchuser"	=> "No existe usuario alguno llamado \"$1\".
 Revisa tu deletreo, o usa la forma abajo para crear una nueva cuenta de usuario.",
 "wrongpassword"	=> "La contraseña que ingresaste es incorrecta. Por favor inténtalo de nuevo.",
 "mailmypassword" => "Envíame una nueva contraseña por correo electrónico",
-"passwordremindertitle" => "Recordatorio de contraseña de Wikipedia",
+"passwordremindertitle" => "Recordatorio de contraseña de $wgSitename",
 "passwordremindertext" => "Alguien (probablemente tú, desde la direccion IP $1)
-solicitó que te enviaramos una nueva contraseña para iniciar sesión en Wikipedia.
+solicitó que te enviaramos una nueva contraseña para iniciar sesión en $wgSitename.
 La contraseña para el usuario \"$2\" es ahora \"$3\".
 Ahora deberías iniciar sesion y cambiar tu contraseña.",
 "noemail"		=> "No hay dirección electrónica (e-mail) registrada para el(la) usuario(a) \"$1\".",
@@ -345,10 +345,10 @@ Por favor entra otra vez después de que la recibas.",
 "showpreview"	=> "Mostrar previsualización",
 "blockedtitle"	=> "El usuario está bloqueado",
 "blockedtext"	=> "Tu nombre de usuario o dirección IP ha sido bloqueada por $1.
-La razón dada es la que sigue:<br>$2<p> Puedes contactar a $1 o a otro de los [[Wikipedia:Administradores|administradores]] para
+La razón dada es la que sigue:<br>$2<p> Puedes contactar a $1 o a otro de los [[$wgMetaNamespace:Administradores|administradores]] para
 discutir el bloqueo.",
 "newarticle"	=> "(Nuevo)",
-"newarticletext" => "Wikipedia es una enciclopedia en desarrollo, y esta página aún no existe. Puedes pedir información en [[Wikipedia:Consultas]], pero no esperes una respuesta pronta. Si lo que quieres es crear esta página, empieza a escribir en la caja que sigue. Si llegaste aquí por error, presiona la tecla para volver a la página anterior de tu navegador.",
+"newarticletext" => "$wgSitename es una enciclopedia en desarrollo, y esta página aún no existe. Puedes pedir información en [[$wgMetaNamespace:Consultas]], pero no esperes una respuesta pronta. Si lo que quieres es crear esta página, empieza a escribir en la caja que sigue. Si llegaste aquí por error, presiona la tecla para volver a la página anterior de tu navegador.",
 "anontalkpagetext" => "---- ''Esta es la página de discusión para un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su [[dirección IP]] numérica para adentificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y sientes que comentarios irreleventes han sido dirigidos a ti, por favor [[Especial:Userlogin|crea una cuenta o entra]] para evitar confusiones futuras con otros usuarios anónimos.'' ",
 "noarticletext" => "(En este momento no hay texto en esta página)",
 
@@ -374,7 +374,7 @@ Vas a tener que incorporar tus cambios en el texto existente.
  de esta página.
 Si la grabas, los cambios hechos desde esa revisión se perderán.</strong>\n",
 "yourdiff"		=> "Diferencias",
-"copyrightwarning" => "Ayuda de edición, caracteres especiales: á é í ó ú Á É Í Ó Ú ü Ü ñ Ñ ¡ ¿ <br><br>Nota por favor que todas las contribuciones a Wikipedia 
+"copyrightwarning" => "Ayuda de edición, caracteres especiales: á é í ó ú Á É Í Ó Ú ü Ü ñ Ñ ¡ ¿ <br><br>Nota por favor que todas las contribuciones a $wgSitename 
 se consideran hechas públicas bajo la Licencia de Documentación Libre GNU 
 (ver detalles en $1). 
  Si no deseas que la gente corrija tus escritos sin piedad 
@@ -389,7 +389,7 @@ Por favor considera la posibilidad de descomponer esta página en secciones más p
 Puedes \"cortar y pegar\" a un archivo de texto en tu computador, y grabarlo para
 intentarlo después.",
 "protectedpagewarning" => "ADVERTENCIA: Esta página ha sido bloqueda de manera que s&ocute;lo usuarios con privilegios de administrador pueden editarla. Asegúrate de que estás siguiendo las 
-<a href='$wgScriptPath/Wikipedia:Guías_para_páginas_protegidas'>guías para páginas protegidas</a>.",
+<a href='/wiki/$wgMetaNamespace:Guías_para_páginas_protegidas'>guías para páginas protegidas</a>.",
 # History pages
 #
 "revhistory"	=> "Historia de revisiones",
@@ -417,9 +417,9 @@ Por favor revisa el URL que usaste para acceder a esta página.\n",
 # Search results
 #
 "searchresults" => "Resultados de búsqueda",
-"searchhelppage" => "Wikipedia:Búsqueda",
-"searchingwikipedia" => "Buscando en Wikipedia",
-"searchresulttext" => "Para más información acerca de búsquedas en Wikipedia, ve a $1.",
+"searchhelppage" => "$wgMetaNamespace:Búsqueda",
+"searchingwikipedia" => "Buscando en $wgSitename",
+"searchresulttext" => "Para más información acerca de búsquedas en $wgSitename, ve a $1.",
 "searchquery"	=> "Para consulta \"$1\"",
 
 "badquery"		=> "Consulta de búsqueda formateada en forma incorrecta",
@@ -523,15 +523,15 @@ y la hora del servidor (UTC).",
 #
 "changes" => "cambios",
 "recentchanges" => "Cambios Recientes",
-"recentchangestext" => "Sigue los cambios más recientes a Wikipedia en esta página.
-[[Wikipedia:Bienvenidos|Bienvenidos]]!
-Por favor, mira estas páginas: [[wikipedia:FAQ|Wikipedia FAQ]],
-[[Wikipedia:Políticas y guías|políticas de Wikipedia]]
-(especialmente [[wikipedia:Convenciones de nombres|las convenciones para nombrar artículos]] y
-[[wikipedia:Punto de vista neutral|punto de vista neutral]]).
+"recentchangestext" => "Sigue los cambios más recientes a $wgSitename en esta página.
+[[$wgMetaNamespace:Bienvenidos|Bienvenidos]]!
+Por favor, mira estas páginas: [[$wgMetaNamespace:FAQ|$wgSitename FAQ]],
+[[$wgMetaNamespace:Políticas y guías|políticas de $wgSitename]]
+(especialmente [[$wgMetaNamespace:Convenciones de nombres|las convenciones para nombrar artículos]] y
+[[$wgMetaNamespace:Punto de vista neutral|punto de vista neutral]]).
 
-Si quieres que Wikipedia tenga éxito, es muy importante que no agregues
-material restringido por [[wikipedia:Copyrights|derechos de autor]].
+Si quieres que $wgSitename tenga éxito, es muy importante que no agregues
+material restringido por [[$wgMetaNamespace:Copyrights|derechos de autor]].
 
 La responsabilidad legal realmente podría dañar el proyecto, así que por favor no lo hagas.
 
@@ -570,8 +570,8 @@ para subir archivos.",
 previamente, ve a la <a href=\"" . wfLocalUrlE( "Especial:Imagelist" ) .
 "\">lista de imágenes subidas</a>.
 Los archivos subidos y borrados son registrados en el <a href=\"" .
-wfLocalUrlE( "Wikipedia:Registro de subidas" ) . "\">registro de subidas</a>.
-Consulta también la <a href=\"" . wfLocalUrlE( "Wikipedia:Política de uso de imágenes" ) .
+wfLocalUrlE( "$wgMetaNamespace:Registro de subidas" ) . "\">registro de subidas</a>.
+Consulta también la <a href=\"" . wfLocalUrlE( "$wgMetaNamespace:Política de uso de imágenes" ) .
 "\">política de uso de imágenes</a>.
 <p>Usa el formulario siguiente para subir nuevos archivos de imágenes que
 vas a usar para ilustrar tus artículos.
@@ -589,7 +589,7 @@ Por favor, dale a tus archivos nombres descriptivos para evitar confusiones.
 Para incluir la imagen en un artículo, usa un enlace de la forma
 <b>[[imagen:archivo.jpg]]</b> o <b>[[imagen:archivo.png|alt text]]</b>
 o <b>[[media:archivo.ogg]]</b> para sonidos.
-<p>Por favor recuerda que, al igual que con las páginas Wikipedia, otros pueden
+<p>Por favor recuerda que, al igual que con las páginas $wgSitename, otros pueden
 editar o borrar los archivos que has subido si piensan que es bueno para
 la enciclopedia, y se te puede bloquear, impidiéndote subir más archivos si abusas del sistema.",
 "uploadlog"		=> "registro de subidas",
@@ -603,8 +603,8 @@ subido más recientemente. Todas las horas son del servidor (UTC).
 "filedesc"		=> "Sumario",
 "affirmation"	=> "Afirmo que el dueño del copyright de este archivo
 está de acuerdo en licenciarlo bajo los términos de $1.",
-"copyrightpage" => "Wikipedia:Copyrights",
-"copyrightpagename" => "Wikipedia copyright",
+"copyrightpage" => "$wgMetaNamespace:Copyrights",
+"copyrightpagename" => "$wgSitename copyright",
 "uploadedfiles"	=> "Archivos subidos",
 "noaffirmation" => "Tú debes afirmar que tus subidas de archivos no violan ningún copyright.",
 "ignorewarning"	=> "Ignora la advertencia y graba el archivo de todos modos.",
@@ -653,7 +653,7 @@ esta versión antigua, (rev) = revertir a esta versión antigua.
 "sitestats"		=> "Estadísticas del sitio",
 "userstats"		=> "Estadísticas de usuario",
 "sitestatstext" => "Hay un total de <b>$1</b> páginas en la base de datos.
-Esto incluye páginas de discusión, páginas acerca de Wikipedia, páginas mínimas,
+Esto incluye páginas de discusión, páginas acerca de $wgSitename, páginas mínimas,
 redirecciones, y otras que probablemente no puedan calificarse como artículos.
 Excluyéndolas, hay <b>$2</b> páginas que probablemente son artículos legítimos.<p>
 Ha habido un total de <b>$3</b> visitas a páginas, y <b>$4</b> ediciones de página
@@ -669,8 +669,8 @@ de los cuales <b>$2</b> son administradores (ver $3).",
 "maintnancepagetext"	=> "Esta página incluye varias herramientas útiles para el mantenimiento diario de la enciclopedia. Algunas de estas funciones tienden a sobrecargar la base de datos, asi que, por favor, no vuelvas a cargar la página después de cada ítem que arregles ;-)",
 "maintenancebacklink"	=> "Volver a la Página de Mantenimiento",
 "disambiguations"	=> "Páginas de desambiguación",
-"disambiguationspage"	=> "Wikipedia:Enlaces a páginas de desambiguación",
-"disambiguationstext"	=> "Los siguientes artículos enlazan a una <i>página de desambiguación</i>. Deberían enlazar al artículo apropiado.<br>Una página es considerada de desambiguación si está enlazada desde $1.<br>Enlaces desde otros espacios de nombre (Como Wikipedia: o usuario:) <b>no</b> son listados aquí.",
+"disambiguationspage"	=> "$wgMetaNamespace:Enlaces a páginas de desambiguación",
+"disambiguationstext"	=> "Los siguientes artículos enlazan a una <i>página de desambiguación</i>. Deberían enlazar al artículo apropiado.<br>Una página es considerada de desambiguación si está enlazada desde $1.<br>Enlaces desde otros espacios de nombre (Como $wgMetaNamespace: o usuario:) <b>no</b> son listados aquí.",
 "doubleredirects"	=> "Redirecciones Dobles",
 "doubleredirectstext"	=> "<b>Atención:</b> Esta lista puede contener falsos positivos. Eso significa usualmente que hay texto adicional con enlaces bajo el primer #REDIRECT.<br>\nCada fila contiene enlaces al segundo y tercer redirect, así como la primera línea del segundo redirect, en la que usualmente se encontrará el artículo \"real\" al que el primer redirect debería apuntar.",
 "brokenredirects"	=> "Redirecciones incorrectas",
@@ -718,7 +718,7 @@ con un URL directo, y de esa manera todavía estar listada aquí
 a pesar de estar en uso activo.",
 "booksources"   => "Fuentes de libros",
 "booksourcetext" => "A continuación hay una lista de enlaces a otros sitios que venden libros nuevos y usados, y también pueden contener información adicional acerca de los libros que estás buscando.
-Wikipedia no está relacionada con ninguno de estos negocios, y esta lista no debe ser considerada un patrocinio de los mismos.",
+$wgSitename no está relacionada con ninguno de estos negocios, y esta lista no debe ser considerada un patrocinio de los mismos.",
 "alphaindexline" => "$1 a $2",
 
 # Email this user
@@ -795,7 +795,7 @@ click el botón 'remover seleccionados' en el fin de la pantalla.",
 en forma permanente,
 así como toda su historia, de la base de datos.
 Por favor, confirma que realmente quieres hacer eso, que entiendes las
-consecuencias, y que lo estás haciendo de acuerdo con [[Wikipedia:Políticas]].",
+consecuencias, y que lo estás haciendo de acuerdo con [[$wgMetaNamespace:Políticas]].",
 "confirmcheck"	=> "Sí, realmente quiero borrar esto.",
 "actioncomplete" => "Acción completa",
 "deletedtext"	=> "\"$1\" ha sido borrado.
@@ -835,7 +835,7 @@ Si una nueva página con el mismo nombre ha sido creada desde el borrado, las ver
 "undeletebtn" => "Restaurar!",
 "undeletedarticle" => "restaurado \"$1\"",
 "undeletedtext"   => "El artículo [[$1]] ha sido restaurado con éxito.
-Ve [[Wikipedia:Registro_de_borrados]] para una lista de borrados y restauraciones recientes.",
+Ve [[$wgMetaNamespace:Registro_de_borrados]] para una lista de borrados y restauraciones recientes.",
 
 # Contributions
 #
@@ -864,7 +864,7 @@ llevar a cabo esta función.",
 "blockiptext"	=> "Usa el formulario siguiente para bloquear el
 acceso de escritura desde una dirección IP específica.
 Esto debería hacerse sólo para prevenir vandalismo, y de
-acuerdo a las [[Wikipedia:Políticas| políticas de Wikipedia]].
+acuerdo a las [[$wgMetaNamespace:Políticas| políticas de $wgSitename]].
 Explica la razón específica del bloqueo (por ejemplo, citando
 ls páginas en particular que han sido objeto de vandalismo desde la dirección IP a bloquear).",
 "ipaddress"		=> "Dirección IP",
@@ -902,15 +902,15 @@ acceso de escritura a una dirección IP previamente bloqueada.",
 "locknoconfirm" => "No has confirmado lo que deseas hacer.",
 "lockdbsuccesssub" => "El bloqueo se ha realizado con éxito",
 "unlockdbsuccesssub" => "El desbloqueo se ha realizado con éxito",
-"lockdbsuccesstext" => "La base de datos de Wikipedia ha sido bloqueada.
+"lockdbsuccesstext" => "La base de datos de $wgSitename ha sido bloqueada.
 <br>Recuerda retirar el bloqueo después de completar las tareas de mantenimiento.",
-"unlockdbsuccesstext" => "La base de datos de Wikipedia ha sido desbloqueada.",
+"unlockdbsuccesstext" => "La base de datos de $wgSitename ha sido desbloqueada.",
 
 # SQL query
 #
 "asksql"		=> "Consulta SQL",
 "asksqltext"	=> "Usa el formulario que sigue para hacer una consulta directa
-a la base de datos de Wikipedia. Usa comillas simples ('como estas') para delimitar
+a la base de datos de $wgSitename. Usa comillas simples ('como estas') para delimitar
 cadenas de caracteres literales.
 Esto puede añadir una carga considerable al servidor, así que
 por favor usa esta función lo menos possible.",
@@ -918,7 +918,7 @@ por favor usa esta función lo menos possible.",
 "sqlquery"		=> "Entra la consulta",
 "querybtn"		=> "Envía la consulta",
 "selectonly"	=> "Consultas diferentes a \"SELECT\" están restringidas sólo
-a Wikipedia developers.",
+a $wgSitename developers.",
 "querysuccessful" => "Consulta exitosa",
 
 # Move page
