@@ -1658,29 +1658,44 @@ class Skin {
 
 	function tocIndent($level) {
 
-		while($level--) $rv.="<ul style=\"list-style-type:none;margin:0px;\">";
+		while($level--) $rv.="<div style=\"margin-left:2em;\">\n";
 		return $rv;
 
 	}
 
 	function tocUnindent($level) {
-		while($level--) $rv.="</ul>";
+		while($level--) $rv.="</div>\n";
 		return $rv;
 	}
 
-	function tocLine($anchor,$tocline) {
+	// parameter level defines if we are on an indentation level
+	function tocLine($anchor,$tocline,$level) {
+		
+		if($level) { 
+		
+			return "<A CLASS=\"internal\" HREF=\"#".$anchor."\">".$tocline."</A><BR>\n";
+		} else { 
 
-		return "<li><A CLASS=\"internal\" HREF=\"#".$anchor."\">".$tocline."</A></li>";
+			return "<div style=\"margin-bottom:0px;\">\n".
+			"<A CLASS=\"internal\" HREF=\"#".$anchor."\">".$tocline."</A><BR>\n".
+			"</div>\n";
+		}
 
 	}
 
 	function tocTable($toc) {
 
+/* does not auto-expand, use table for now
+	return "
+	<div><div style=\"border-width:1px;background-color:#f3f3ff;border-color:#8888aa;border-style:solid;padding:1em;padding-bottom:1em;\">
+	<b>".wfMsg("toc")."</b><P>
+	$toc</div></div>";
+*/
 	return
-	"<table border=\"0\" bgcolor=\"#8888aa\" cellpadding=\"0\" cellspacing=\"1\"><tr><td>" .
-	"<table border=\"0\" bgcolor=\"#f3f3ff\" CELLPADDING=5><tr><td>".
-	"<b>".wfMsg("toc")."</b><p>".
-	$toc."</td></tr></table></td></tr></table><P>";
+	"<table border=\"0\" bgcolor=\"#8888aa\" cellpadding=\"0\" cellspacing=\"1\"><tr><td>\n" .
+	"<table border=\"0\" bgcolor=\"#f3f3ff\" CELLPADDING=5><tr><td>\n".
+	"<b>".wfMsg("toc")."</b><p>\n".
+	$toc."</td></tr></table></td></tr></table><P>\n";
 	}
 
 	function editSectionLink($section) {

@@ -1225,21 +1225,17 @@ class OutputPage {
 		foreach($matches[3] as $headline) {
 			if($level) { $prevlevel=$level;}
 			$level=$matches[1][$c];
-			if(($nh||$st) && $level>$prevlevel) { 
+			if(($nh||$st) && $prevlevel && $level>$prevlevel) { 
 							
 				$h[$level]=0; // reset when we enter a new level				
-				if($toclevel) {
-					$toc.=$sk->tocIndent($level-$prevlevel);
-				}
-				$toclevel++;
+				$toc.=$sk->tocIndent($level-$prevlevel);
+				$toclevel+=$level-$prevlevel;
 			
 			} 
 			if(($nh||$st) && $level<$prevlevel) {
 				$h[$level+1]=0; // reset when we step back a level
-				if($toclevel) {
-					$toc.=$sk->tocUnindent($prevlevel-$level);
-				}
-				$toclevel--;
+				$toc.=$sk->tocUnindent($prevlevel-$level);
+				$toclevel-=$prevlevel-$level;
 
 			}
 			$h[$level]++; // count number of headlines for each level
@@ -1271,7 +1267,7 @@ class OutputPage {
 			$anchor=$canonized_headline;
 			if($refcount[$c]>1) {$anchor.="_".$refcount[$c];}
 			if($st) {
-				$toc.=$sk->tocLine($anchor,$tocline);
+				$toc.=$sk->tocLine($anchor,$tocline,$toclevel);
 			}
 			if($es && !isset($wpPreview)) {
 				$head[$c].=$sk->editSectionLink($c+1);
@@ -1288,31 +1284,27 @@ class OutputPage {
 
 		if($st) {
 			$toclines=$c;
-			while($toclevel>0) {
-				$toc.="</ul>";
-				$toclevel--;
-			}
-
+			$toc.=$sk->tocUnindent($toclevel);
 			$toc=$sk->tocTable($toc);
 		}
-
 
 		// split up and insert constructed headlines
 		
 		$blocks=preg_split("/<H[1-6].*?>.*?<\/H[1-6]>/i",$text);
 		$i=0;
 
+
 		foreach($blocks as $block) {
 			if($es && !isset($wpPreview) && $c>0 && $i==0) {
 				$full.=$sk->editSectionLink(0);				
 			}
-
 			$full.=$block;
+			if($st && $toclines>3 && !$i) {
+				$full="<a name=\"top\"></a>".$full.$toc;
+			}
+
 			$full.=$head[$i];
 			$i++;
-		}
-		if($st && $toclines>3) {
-			$full=$toc."<a name=\"top\"></a>".$full;
 		}
 		return $full;
 	}
