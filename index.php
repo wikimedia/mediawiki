@@ -1,5 +1,4 @@
 <?php
-
 #apd_set_pprof_trace();
 # Main wiki script; see design.doc
 #
@@ -8,11 +7,46 @@ $wgRequestTime = microtime();
 unset( $IP );
 @ini_set( 'allow_url_fopen', 0 ); # For security...
 if( !file_exists( 'LocalSettings.php' ) ) {
-	if ( file_exists( 'config/LocalSettings.php' ) ) {
-		die( "To complete the installation, move <tt>config/LocalSettings.php</tt> to the parent directory.\n" );
-	} else {
-		die( "You'll have to <a href='config/index.php'>set the wiki up</a> first!" );
-	}
+	define( 'MEDIAWIKI', true );
+	require_once( 'includes/DefaultSettings.php' ); # used for printing the version
+?>
+<!DOCTYPE html PUBLIC "-//W3C/DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>MediaWiki <?php echo $wgVersion ?></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<style type='text/css' media='screen, projection'>
+			html, body {
+				color: #000;
+				background-color: #fff;
+				font-family: serif;
+				text-align:center;
+			}
+
+			h1 {
+				font-size: 150%;
+			}
+		</style>
+	</head>
+	<body>
+		<img src='skins/common/images/wiki.png' alt='The MediaWiki logo' />
+		
+		<h1>MediaWiki <?php echo $wgVersion ?></h1>
+		<div class='error'>
+		<?
+		if ( file_exists( 'config/LocalSettings.php' ) ) {
+			echo( "To complete the installation, move <tt>config/LocalSettings.php</tt> to the parent directory." );
+		} else {
+			echo( "You'll have to <a href='config/index.php' title='setup'>set the wiki up</a> first!" );
+		}
+		?>
+
+		</div>
+	</body>
+</html>
+<?
+	die();
 }
 
 # Valid web server entry point, enable includes.
