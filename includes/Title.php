@@ -172,6 +172,9 @@ class Title {
 	 * Create a new Title from a namespace index and a DB key.
 	 * It's assumed that $ns and $title are *valid*, for instance when
 	 * they came directly from the database or a special page name.
+	 * For convenience, spaces are converted to underscores so that
+	 * eg user_text fields can be used directly.
+	 *
 	 * @param int $ns the namespace of the article
 	 * @param string $title the unprefixed database key form
 	 * @return Title the new object
@@ -183,9 +186,9 @@ class Title {
 		$t->mInterwiki = '';
 		$t->mFragment = '';
 		$t->mNamespace = IntVal( $ns );
-		$t->mDbkeyform = $title;
+		$t->mDbkeyform = str_replace( ' ', '_', $title );
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
-		$t->mUrlform = wfUrlencode( $title );
+		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
 		$t->mTextform = str_replace( '_', ' ', $title );
 		return $t;
 	}
