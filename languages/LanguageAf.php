@@ -907,7 +907,11 @@ class LanguageAf extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesAf;
-		return $wgAllMessagesAf[$key];
+		if( isset( $wgAllMessagesAf[$key] ) ) {
+			return $wgAllMessagesAf[$key];
+		} else {
+			return Language::getMessage( $key );
+		}
 	}
 }
 
