@@ -341,7 +341,7 @@ class Skin {
 	function afterContent()
 	{
 		global $wgUser, $wgOut, $wgServer;
-		global $wgTitle;
+		global $wgTitle, $wgLang;
 		
 		if ( $wgOut->isPrintable() ) {
 			$s = "\n</div>\n";
@@ -355,7 +355,7 @@ class Skin {
 			} else { $lm = ""; }
 
 			$cr = wfMsg( "gnunote" );
-			$s .= "<p><em>{$rf}{$lm} {$cr}</em>\n";
+			$s .= "<p>" . $wgLang->emphasize("{$rf}{$lm} {$cr}\n");
 			return $s;
 		}
 		return $this->doAfterContent();
@@ -1685,7 +1685,7 @@ class Skin {
 	# Enhanced RC ungrouped line
 	function recentChangesBlockLine ( $rcObj ) 
 	{
-		global $wgUploadPath ;
+		global $wgUploadPath, $wgLang ;
 		
 		# Get rc_xxxx variables
 		extract( $rcObj->mAttribs ) ;
@@ -1736,8 +1736,9 @@ class Skin {
 		$r .= $rcObj->usertalklink ;
 		
 		# Comment
-		if ( $rc_comment != "" && $rc_type != RC_MOVE )
-			$r .= " <em>(".wfEscapeHTML($rc_comment).")</em>" ;
+		if ( $rc_comment != "" && $rc_type != RC_MOVE ) {
+			$r .= $wgLang->emphasize( " (".wfEscapeHTML($rc_comment).")" );
+		}
 		$r .= "<br>\n" ;
 		return $r ;
 	}
@@ -1745,7 +1746,7 @@ class Skin {
 	# Enhanced RC group
 	function recentChangesBlockGroup ( $block ) 
 	{
-		global $wgUploadPath ;
+		global $wgUploadPath, $wgLang ;
 		
 		$r = "" ;
 		$M = wfMsg( "minoreditletter" );
@@ -1848,8 +1849,9 @@ class Skin {
 			$r .= $rcObj->lastlink ;
 			$r .= ") . . ".$rcObj->userlink ;
 			$r .= $rcObj->usertalklink ;
-			if ( $rc_comment != "" )
-				$r .= " <em>(".wfEscapeHTML($rc_comment).")</em>" ;
+			if ( $rc_comment != "" ) {
+				$r .= $wgLang->emphasize( " (".wfEscapeHTML($rc_comment).")" ) ;
+			}
 			$r .= "<br>\n" ;
 		}
 		$r .= "</div>\n" ;
@@ -1985,7 +1987,7 @@ class Skin {
 
 		# Add comment
 		if ( "" != $rc_comment && "*" != $rc_comment && $rc_type != RC_MOVE ) {
-			$s .= " <em>(" . wfEscapeHTML( $rc_comment ) . ")</em>";
+			$s .= $wgLang->emphasize(" (" . wfEscapeHTML( $rc_comment ) . ")");
 		}
 		$s .= "</li>\n";
 
@@ -2144,7 +2146,7 @@ class Skin {
 		  . " . . {$ul} ({$nb})";
 
 		if ( "" != $c && "*" != $c ) {
-			$s .= " <em>(" . wfEscapeHTML( $c ) . ")</em>";
+			$s .= $wgLang->emphasize(" (" . wfEscapeHTML( $c ) . ")");
 		}
 		$s .= "</li>\n";
 		return $s;

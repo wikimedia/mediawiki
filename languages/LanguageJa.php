@@ -1174,6 +1174,12 @@ class LanguageJa extends LanguageUtf8 {
 		return $s;
 	}
 
+	# Italic is not appropriate for Japanese script
+	# Unfortunately most browsers do not recognise this, and render <em> as italic
+	function emphasize( $text )
+	{
+		return "<b>$text</b>";
+	}
 }
 
 ?>
