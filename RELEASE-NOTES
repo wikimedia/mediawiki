@@ -451,6 +451,9 @@ pages for purposes of page relevancy ranking.
 * (bug 1736) typo in SpecialValidate.php
 * (bug 73) Upload doesn't run edit updates on description page (links,
   search index and categories)
+* Support for manually converting article title to different Chinese
+  variants (for zh)
+
 
 === Caveats ===
 
