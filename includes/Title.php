@@ -1533,13 +1533,9 @@ class Title {
 		$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
 
-		# Record in RC
-		// Replaced by a log entry
-		// RecentChange::notifyMoveOverRedirect( $now, $this, $nt, $wgUser, $comment );
-
 		# Log the move
 		$log = new LogPage( 'move' );
-		$log->addEntry( 'move_redir', $this, '', array(1 => $nt->getText()) );
+		$log->addEntry( 'move_redir', $this, '', array( 1 => $nt->getPrefixedText() ) );
 		
 		# Swap links
 		
@@ -1649,13 +1645,9 @@ class Title {
 		$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
 
-		# Record in RC
-		// Replaced by a log entry
-		// RecentChange::notifyMoveToNew( $now, $this, $nt, $wgUser, $comment );
-
 		# Log the move
 		$log = new LogPage( 'move' );
-		$log->addEntry( 'move', $this, '', array(1 => $nt->getText()) );
+		$log->addEntry( 'move', $this, '', array( 1 => $nt->getPrefixedText()) );
 
 		# Purge squid and linkscc as per article creation
 		Article::onArticleCreate( $nt );
