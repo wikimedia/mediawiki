@@ -46,7 +46,7 @@ define('MAG_NAMESPACE', 32);
 define('MAG_TOC', 33);
 define('MAG_GRAMMAR', 34);
 define('MAG_NOTITLECONVERT', 35);
-
+define('MAG_NOCONTENTCONVERT', 36);
 define('MAG_CURRENTWEEK', 37);
 define('MAG_CURRENTDOW', 38);
 
