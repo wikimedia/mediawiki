@@ -66,7 +66,7 @@ class EditPage {
 		}
 		if ( $this->save ) {
 			$this->editForm( 'save' );
-		} else if ( $this->preview ) {
+		} else if ( $this->preview or $wgUser->getOption('previewonfirst')) {
 			$this->editForm( 'preview' );
 		} else { # First time through
 			$this->editForm( 'initial' );
@@ -402,8 +402,14 @@ class EditPage {
 				$parserOutput = $wgParser->parse( $previewtext , $wgTitle, $parserOptions );
 				$wgOut->addHTML( $parserOutput->mText );
 			} else {
+				# if user want to see preview when he edit an article
+				if( $wgUser->getOption('previewonfirst') and ($this->textbox1 == '')) {
+					$this->textbox1 = $this->mArticle->getContent(true);
+				}
+
 				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $this->textbox1 ) ."\n\n",
-						$wgTitle, $parserOptions );
+						$wgTitle, $parserOptions );		
+				
 				$previewHTML = $parserOutput->mText;
 
 				if($wgUser->getOption('previewontop')) {

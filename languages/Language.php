@@ -132,6 +132,7 @@ define( 'MW_DATE_USER_FORMAT', true );
 	'watchdefault',
 	'minordefault',
 	'previewontop',
+	'previewonfirst',
 	'nocache',
 );
 
@@ -255,6 +256,7 @@ global $wgRightsText;
 'tog-watchdefault' => 'Add pages you edit to your watchlist',
 'tog-minordefault' => 'Mark all edits minor by default',
 'tog-previewontop' => 'Show preview before edit box and not after it',
+'tog-previewonfirst' => 'Show preview on first edit',
 'tog-nocache' => 'Disable page caching',
 
 # dates
