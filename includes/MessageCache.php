@@ -96,7 +96,7 @@ class MessageCache
 					}
 					wfProfileOut( $fname.'-save' );
 					if ( $i == 20 ) {
-						$this->mMemc->set( $this->mMemcKey, 'error', 86400 );
+						$this->mMemc->set( $this->mMemcKey, 'error', 60*5 );
 						wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
 					}
 				}
