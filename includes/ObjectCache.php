@@ -370,16 +370,31 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 }
 
 /**
- * @todo document
+ * This is a wrapper for Turck MMCache's shared memory functions. 
+ * 
+ * You can store objects with mmcache_put() and mmcache_get(), but Turck seems 
+ * to use a weird custom serializer that randomly segfaults. So we wrap calls 
+ * with serialize()/unserialize().
+ * 
+ * The thing I noticed about the Turck serialized data was that unlike ordinary
+ * serialize(), it contained the names of methods, and judging by the amount of 
+ * binary data, perhaps even the bytecode of the methods themselves. It may be 
+ * that Turck's serializer is faster, so a possible future extension would be 
+ * to use it for arrays but not for objects.
+ *
  * @package MediaWiki
  */
 class TurckBagOStuff extends BagOStuff {
 	function get($key) {
-		return mmcache_get( $key );
+		$val = mmcache_get( $key );
+		if ( is_string( $val ) ) {
+			$val = unserialize( $val );
+		}
+		return $val;
 	}
 
 	function set($key, $value, $exptime=0) {
-		mmcache_put( $key, $value, $exptime );
+		mmcache_put( $key, serialize( $value ), $exptime );
 		return true;
 	}
 	

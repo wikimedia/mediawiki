@@ -277,13 +277,13 @@ $wgLinkCacheMemcached = false; # Not fully tested
 
 /**
  * Turck MMCache shared memory
- * You can use this for persistent caching where your wiki runs on a small
- * number of servers. Mutually exclusive with memcached. MMCache must be
- * installed.
+ * You can use this for persistent caching where your wiki runs on a single 
+ * server. Enabled by default if Turck is installed. Mutually exclusive with
+ * memcached, memcached is used if both are specified.
  *
  * @global bool $wgUseTurckShm Enable or disabled Turck MMCache
  */
-$wgUseTurckShm      = false;
+$wgUseTurckShm      = function_exists( 'mmcache_get' );
 
 
 # Language settings
