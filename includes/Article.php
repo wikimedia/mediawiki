@@ -1072,7 +1072,7 @@ class Article {
 	function validate ()
 	{
 		global $wgOut ;
-		$wgOut->setPagetitle( wfMsg( 'validate' ) . " : " . $this->mTitle->getPrefixedText()  );
+		$wgOut->setPagetitle( wfMsg( 'validate' ) . ": " . $this->mTitle->getPrefixedText()  );
 		$wgOut->setRobotpolicy( 'noindex,follow' );
 		if ( $this->mTitle->getNamespace() != 0 )
 			{
