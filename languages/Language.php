@@ -262,7 +262,7 @@ global $wgRightsText;
 'tog-highlightbroken' => 'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
 'tog-justify'	=> 'Justify paragraphs',
 'tog-hideminor' => 'Hide minor edits in recent changes',
-'tog-usenewrc' => 'Enchanted recent changes (not for all browsers)',
+'tog-usenewrc' => 'Enhanced recent changes (not for all browsers)',
 'tog-numberheadings' => 'Auto-number headings',
 'tog-showtoolbar'		=> 'Show edit toolbar',
 'tog-editondblclick' => 'Edit pages on double click (JavaScript)',
