@@ -1422,6 +1422,7 @@ class Parser
 		}
 		
 		$stripState = false;
+		$text = str_replace("\r\n", "\n", $text);
 		$text = $this->strip( $text, $stripState, false );
 		$text = $this->pstPass2( $text, $user );
 		$text = $this->unstrip( $text, $stripState );
