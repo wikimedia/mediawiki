@@ -1009,6 +1009,11 @@ class Article {
 		$wgOut->addHTML( "<h2>" . $newcomment . "</h2>\n<hr>\n" );
 		$this->updateArticle( $s->old_text, $newcomment, 1, $this->mTitle->userIsWatching() );
 
+		global $wgEnablePersistentLC;
+		if ( $wgEnablePersistentLC ) {
+			wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
+		}
+	
 		$wgOut->returnToMain( false );
 	}
 	
