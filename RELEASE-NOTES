@@ -13,6 +13,8 @@ Changes from 1.3.2:
 * Fix for $wgDebugDumpSql debug mode.
 * $wgExtraNamespaces setting for configuring additional namespaces
   (see note in DefaultSettings.php)
+* 'recache' on query pages now disabled when miser mode is on; special case the
+  global settings in your LocalSettings.php to do automatic updates.
 * Don't block UTF-8 titles containing byte 0xA0 (bug added in 1.3.2)
 * Watch/unwatch tabs now shown on edit pages in MonoBook.
 * Fix default skin in Irish localization (ga)
