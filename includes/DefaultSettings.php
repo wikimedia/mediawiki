@@ -121,8 +121,8 @@ $wgEnableParserCache = false; # requires that php was compiled --with-zlib
 $wgHitcounterUpdateFreq = 1;
 
 # User rights 
-$wgWhitelistEdit = false;
-$wgWhitelistRead = false;
+$wgWhitelistEdit = false;   # true = user must login to edit.
+$wgWhitelistRead = false;	# Pages anonymous user may see, like: = array ( ":Main_Page", "Special:Userlogin", "Wikipedia:Help");
 $wgWhitelistAccount = array ( "user" => 1, "sysop" => 1, "developer" => 1 );
 $wgSysopUserBans        = false; # Allow sysops to ban logged-in users
 $wgSysopRangeBans		= false; # Allow sysops to ban IP ranges

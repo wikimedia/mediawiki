@@ -692,6 +692,8 @@ Your IP address is $3. Please include this address in any queries you make.
 "whitelistreadtext" => "You have to [[Special:Userlogin|login]] to read articles.",
 "whitelistacctitle" => "You are not allowed to create an account",
 "whitelistacctext" => "To be allowed to create accounts in this Wiki you have to [[Special:Userlogin|log]] in and have the appropriate permissions.",
+"loginreqtitle"	=> "Login Required",
+"loginreqtext"	=> "You must [[special:Userlogin|login]] to view other pages.",
 "accmailtitle" => "Password sent.",
 "accmailtext" => "The Password for '$1' has been sent to $2.",
 "newarticle"	=> "(New)",
