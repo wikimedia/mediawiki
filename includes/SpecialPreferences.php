@@ -5,6 +5,9 @@
  * @subpackage SpecialPage
  */
 
+if( !defined( 'MEDIAWIKI' ) )
+	die();
+
 /* to get a list of languages in setting user's language preference */
 require_once('languages/Names.php');
 
@@ -320,7 +323,7 @@ class PreferencesForm {
 		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgUseDynamicDates, $wgValidSkinNames;
 		global $wgAllowRealName, $wgImageLimits;
 		global $wgLanguageNames, $wgDisableLangConversion;
-
+		global $wgContLanguageCode;
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
@@ -414,7 +417,7 @@ class PreferencesForm {
 			global $IP;
 			/* only add languages that have a file */
 			$langfile="$IP/languages/Language".str_replace('-', '_', ucfirst($code)).".php";
-			if(file_exists($langfile)) {
+			if(file_exists($langfile) || $code == $wgContLanguageCode) {
 				$sel = ($code == $this->mUserLanguage)? 'selected="selected"' : '';
 				$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
 			}

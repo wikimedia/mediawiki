@@ -1,5 +1,9 @@
 <?php
 
+if( !defined( 'MEDIAWIKI' ) ) die();
+
+require_once( 'includes/SkinTemplate.php' );
+
 /**
  * HTML template for Special:Userlogin form
  * @package MediaWiki

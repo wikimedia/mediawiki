@@ -342,9 +342,14 @@ function wfMsg( $key ) {
  * Get a message from anywhere, for the content
  */
 function wfMsgForContent( $key ) {
+	global $wgForceUIMsgAsContentMsg;
 	$args = func_get_args();
 	array_shift( $args );
-	return wfMsgReal( $key, $args, true, true );
+	$forcontent = true;
+	if( is_array( $wgForceUIMsgAsContentMsg ) &&
+		in_array( $key, $wgForceUIMsgAsContentMsg ) )
+		$forcontent = false;
+	return wfMsgReal( $key, $args, true, $forcontent );
 }
 
 /**
@@ -360,9 +365,14 @@ function wfMsgNoDB( $key ) {
  * Get a message from the language file, for the content
  */
 function wfMsgNoDBForContent( $key ) {
+	global $wgForceUIMsgAsContentMsg;
 	$args = func_get_args();
 	array_shift( $args );
-	return wfMsgReal( $key, $args, false, true );
+	$forcontent = true;
+	if( is_array( $wgForceUIMsgAsContentMsg ) &&
+		in_array( $key,	$wgForceUIMsgAsContentMsg ) )
+		$forcontent = false;
+	return wfMsgReal( $key, $args, false, $forcontent );
 }
 
 
@@ -378,46 +388,16 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 	$fname = 'wfMsgReal';
 	wfProfileIn( $fname );
 
-	if( $forContent ) {
-		/**
-		 * Message is needed for page content, and needs
-		 * to be consistent with the site's configured
-		 * language. It might be part of a page title,
-		 * or a link, or text that will go into the
-		 * parser cache and be served back to other 
-		 * visitors.
-		 */
-		$cache = &$wgMessageCache;
-		$lang = &$wgContLang;
-	} else {
-		/**
-		 * Message is for display purposes only.
-		 * The user may have selected a conversion-based
-		 * language variant or a separate user interface
-		 * language; if so use that.
-		 */
-		if ( is_object( $wgContLang ) ) {
-			if( in_array( $wgLanguageCode, $wgContLang->getVariants() ) ) {
-				$cache = &$wgMessageCache;
-				$lang = &$wgLang;
-			} else {
-				$cache = false;
-				$lang = &$wgLang;
-			}
+	if( is_object( $wgMessageCache ) ) {
+		$message = $wgMessageCache->get( $key, $useDB, $forContent );
+    }
+	else {
+		if( $forContent ) {
+			$lang = &$wgContLang;
 		} else {
-			$cache = false;
-			$lang = false;
+			$lang = &$wgLang;
 		}
-	}
 
-
-	if( is_object( $cache ) ) {
-		$message = $cache->get( $key, $useDB, $forContent );
-	} else {
-		if ( !is_object( $lang ) ) {
-			$lang = new Language;
-		}
-	
 		wfSuppressWarnings();
 		$message = $lang->getMessage( $key );
 		wfRestoreWarnings();

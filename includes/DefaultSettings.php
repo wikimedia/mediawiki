@@ -19,7 +19,7 @@ if( defined( 'MEDIAWIKI' ) ) {
  * MediaWiki version number
  * @global string $wgVersion
  */
-$wgVersion			= '1.4-beta0';
+$wgVersion			= '1.4beta2';
 
 /** 
  * Name of the site.
@@ -842,14 +842,26 @@ $wgBrowserBlackList = array(
 # $wgLocaltimezone = 'PST8PDT';
 # $wgLocaltimezone = 'Europe/Sweden';
 # $wgLocaltimezone = 'CET';
+$wgLocaltimezone = null;
 
-# User level management
-# The number is the database id of a group you want users to be attached by
-# default. A better interface should be coded [av]
-$wgAnonGroupId = 1;
-$wgLoggedInGroupId = 2;
+/*
+When translating messages with wfMsg(), it is not always clear what should
+be considered UI messages and what shoud be content messages. 
 
-$wgWhitelistRead = array ( ':Accueil', ':Main_Page');
+For example, for regular wikipedia site like en, there should be only one 
+'mainpage', therefore when getting the link of 'mainpage', we should 
+treate it as content of the site and call wfMsgForContent(), while for 
+rendering the text of the link, we call wfMsg(). The code in default
+behaves this way. However, sites like common do offer different versions 
+of 'mainpage' and the like for different languages. This array provides a
+way to override the default behavior. For example, to allow language specific
+mainpage and community portal, set
+
+$wgForceUIMsgAsContentMsg = array( 'mainpage', 'portal-url' );
+
+*/
+$wgForceUIMsgAsContentMsg = array();
+
 
 /**
  * Authentication plugin.

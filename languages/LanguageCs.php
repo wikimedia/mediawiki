@@ -266,8 +266,8 @@ Můžete pracovat ve Wikipedii anonymně, nebo se přihlásit znovu jako stejný
 "yourpasswordagain" => "Napište heslo znovu",
 "newusersonly"	=> " (pouze noví uživatelé)",
 "remembermypassword" => "Pamatuj si mé heslo od seance k seanci.",
-"loginproblem"	=> "<b>Nastal problém při vašem přihlášení.</b><br>Zkuste to znovu!",
-"alreadyloggedin" => "<font color=\"red\"><b>Uživateli $1, již jste přihlášen!</b></font><br>\n",
+"loginproblem"	=> "<b>Nastal problém při vašem přihlášení.</b><br />Zkuste to znovu!",
+"alreadyloggedin" => "<font color=\"red\"><b>Uživateli $1, již jste přihlášen!</b></font><br />\n",
 
 "login"			=> "Přihlašte se", #FIXME, what exactly do the following go to?
 "userlogin"		=> "Přihlašte se",
@@ -303,7 +303,7 @@ Doporučujeme, abyste se nyní přihlásil a raději změnil heslo.", #FIXME
 "showpreview"	=> "Ukaž náhled", #FIXME eh?
 "blockedtitle"	=> "Uživatel odblokován", #FIXME cu 'Konto forbarita'?
 "blockedtext"	=> "Váš účet nebo IP-adresa byly odblokovány osobou ,
-která popsala příčinu takto:<br><p>Máte právo se spojit se správcem systému a prodiskutovat odblokování.", #FIXME - sistemestro?
+která popsala příčinu takto:<br /><p>Máte právo se spojit se správcem systému a prodiskutovat odblokování.", #FIXME - sistemestro?
 "newarticle"	=> "(Nový)",
 "newarticletext" => "Vložte sem text nového článku.", #FIXME?
 "noarticletext" => "(Článek zatím neobsahuje text)", #FIXME
@@ -366,8 +366,8 @@ která popsala příčinu takto:<br><p>Máte právo se spojit se správcem syst�
 "nonefound"		=> "<strong>Poznámka</strong>: neúspěšné hledání zaviňuje často zadání slov, které nejsou v indexu, nebo mnoha slov najednou (jen stránky, které obsahují všechna zadaná slova, se objeví ve výsledku).",
 "powersearch" => "Sercu",
 #"powersearchtext" => "Hledej"
-#Sercu en sekcioj: :<br>
-#<br>
+#Sercu en sekcioj: :<br />
+#<br />
 # Kun alidirektiloj &nbsp; Sercu  ",
 
 # Preferences page
@@ -508,7 +508,7 @@ Věnuj pozornost následujícímu odkazu: ($2) na stránku popisu a napiš pár 
 "deleteimg"		=> "for",
 "deleteimgcompletely"		=> "for",
 "imghistlegend" => "(nun) = toto je současná verze souboru, (for) = odstranit tuto starou verzi, (res) = obnovit starou verzi.
-<br><i>Click on date to see image uploaded on that date</i>.",
+<br /><i>Click on date to see image uploaded on that date</i>.",
 "imagelinks"	=> "Odkazy k souboru ",
 "linkstoimage"	=> "K souboru odkazují tyto stránky:",
 "nolinkstoimage" => "Žádná stránka neodkazuje na tento soubor.",
@@ -534,9 +534,9 @@ To je v průměru jedna stránka na <b></b> návštěv, a na <b></b> redakcí.",
 "maintenancebacklink"	=> "Návrat k nástrojům",
 "disambiguations"	=> "Špatně odkázané oddělovače ",
 "disambiguationspage"	=> "Wikipedie:Oddělovače",
-"disambiguationstext"	=> "Tyto stránky odkazují na <i>stránkový oddělovač</i>. Měly by místo toho odkazovat na správný subjekt.<br>Bereme do úvahy stránky, které odkazují na oddělovač.<br>Odkazy na sekci nečlánkových souborů <i>ne</i> se zapisují zde.",
+"disambiguationstext"	=> "Tyto stránky odkazují na <i>stránkový oddělovač</i>. Měly by místo toho odkazovat na správný subjekt.<br />Bereme do úvahy stránky, které odkazují na oddělovač.<br />Odkazy na sekci nečlánkových souborů <i>ne</i> se zapisují zde.",
 "doubleredirects"	=> "Dvojité přesměrování",
-"doubleredirectstext"	=> "<b>Pozor:</b> Může se stát, že tento seznam bude obsahovat falešné pozitivy. Všeobecně to znamená, že existuje další text s odkazy po #REDIERCT.<br>
+"doubleredirectstext"	=> "<b>Pozor:</b> Může se stát, že tento seznam bude obsahovat falešné pozitivy. Všeobecně to znamená, že existuje další text s odkazy po #REDIERCT.<br />
 Každý řádek ukazuje odkaz k prvnímu a druhému přesměrování, plus první řádek textu druhého přesměrování, který všeobecně ukazuje \"skutečný\" hlavní článek, na který odkazuje první přesměrování.",
 "brokenredirects"	=> "Přerušené přesměrování",
 "brokenredirectstext"	=> "Tato přesměrování se vztahují na neexistující články.",
@@ -630,7 +630,7 @@ a bude počítány v seznamu tvých Oblíbených.
 "confirm"		=> "Potvrdit",
 "confirmdelete" => "Potvrdit odstranění",
 "deletesub"		=> "(Odstraňuje se \"$1\")",
-"confirmdeletetext" => "Odstraníš článek nebo soubor a smažeš celou jeho historii z databáze.<br>
+"confirmdeletetext" => "Odstraníš článek nebo soubor a smažeš celou jeho historii z databáze.<br />
 Potvrď prosím, že to opravdu chceš, že si uvědomuješ důsledky a že dodržuješ [[Wikipedie:Pravidla o odstraňování]].",
 "confirmcheck"	=> "Ano, jsem naprosto jist, že chci toto odstranit.",
 "actioncomplete" => "Provedeno",
@@ -691,7 +691,7 @@ Níže objasni přesný důvod (např. uveď stránku, která se stala terčem v
 "noblockreason" => "Nutno uvést důvod zablokování.",
 "blockipsuccesssub" => "Úspěšné zablokování",
 "blockipsuccesstext" => "Adresa IP \"$1\" je zablokována.
-<br>Viz [[Special:Ipblocklist|seznam zablokování IP]].",
+<br />Viz [[Special:Ipblocklist|seznam zablokování IP]].",
 "unblockip"		=> "Zrušit blokování adresy IP",
 "unblockiptext"	=> "Tímto formulářem možno obnovit právo blokované adresy IP opět přispívat do wikipedie.",
 "ipusubmit"		=> "Zrušit blokování adresy",
@@ -716,7 +716,7 @@ Níže objasni přesný důvod (např. uveď stránku, která se stala terčem v
 "lockdbsuccesssub" => "Databáze uzamknuta",
 "unlockdbsuccesssub" => "Databáze odemknuta",
 "lockdbsuccesstext" => "Databáze wikipedie je uzamknuta.
-<br>Nezapomeň ji odemknout po opravách.",
+<br />Nezapomeň ji odemknout po opravách.",
 "unlockdbsuccesstext" => "Databáze wikipedie je odemknuta.",
 
 # SQL query

@@ -137,7 +137,7 @@ require_once( "LanguageZh_cn.php" );
    "tog-editondblclick" => "雙擊頁面編輯(JavaScript)",
 	"tog-editsection"=>"允許通過點擊[編輯]鏈結編輯段落",
  	"tog-editsectiononrightclick"=>"允許右擊標題編輯段落(JavaScript)",
- 	"tog-showtoc"=>"顯示目錄<br>(針對一頁超過3個標題的文章)",
+ 	"tog-showtoc"=>"顯示目錄<br />(針對一頁超過3個標題的文章)",
 	"tog-rememberpassword" => "下次登陸記住密碼",/* "Remember password across sessions", */
 	"tog-editwidth" => "編輯欄位寬度",/* "Edit box has full width", */
 	"tog-editondblclick" => "雙擊編輯頁面（Javascript）",/* "Edit pages on double click (JavaScript)", */
@@ -322,8 +322,8 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "yourpasswordagain" => "再次輸入密碼",
 "newusersonly"	=> "（僅限新用戶）",
 "remembermypassword" => "下次登錄記住密碼。",
-"loginproblem"	=> "<b>登錄有問題。</b><br>再試一次！",
-"alreadyloggedin" => "<font color=red><b>用戶$1，您已經登錄了!</b></font><br>\n",
+"loginproblem"	=> "<b>登錄有問題。</b><br />再試一次！",
+"alreadyloggedin" => "<font color=red><b>用戶$1，您已經登錄了!</b></font><br />\n",
 
 "login"			=> "登錄",
 "userlogin"		=> "用戶登錄",
@@ -363,7 +363,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "showpreview"	=> "顯示預覽",
 "blockedtitle"	=> "用戶被封",
 "blockedtext"	=> "您的用戶名或網址已被$1封。
-理由是：<br>'''$2'''<p>您可以與$1向其他任何[[維基百科:管理員|管理員]]詢問。",
+理由是：<br />'''$2'''<p>您可以與$1向其他任何[[維基百科:管理員|管理員]]詢問。",
  "whitelistedittitle" => "登錄後才可編輯",
  	 "whitelistedittext" => "您必須先[[特殊:登錄]]才可編輯頁面。",
  	 "whitelistreadtitle" => "登錄後才可閱讀",
@@ -400,7 +400,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "yourdiff"		=> "差別",
 "copyrightwarning" => "請注意對W維基百科的任何貢獻都將被認為是在GNU自由文檔協議證書下發佈。
 (細節請見$1).
-如果您不希望您的文字被任意修改和再散佈，請不要提交。<br>
+如果您不希望您的文字被任意修改和再散佈，請不要提交。<br />
 您同時也向我們保證你所提交的內容是你自己所作，或得自一個不受版權保護或相似自由的來源。
 <strong>不要在未獲授權的情況下發表！</strong>",
 
@@ -460,7 +460,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "nonefound"		=> "<strong>注意：</strong>失敗的搜索往往是由於試圖搜索諸如“的”或“和”之類的常見字所引起。",
 "powersearch" => "搜索",
 "powersearchtext" => "
-搜索名字空間：<br>$1<br>$2列出重定向頁面；搜索$3 $9",
+搜索名字空間：<br />$1<br />$2列出重定向頁面；搜索$3 $9",
 
 "searchdisabled" => "<p>維基百科內部搜索功能由於高峰時段服務器超載而停止使用。
 您可以暫時通過
@@ -478,9 +478,9 @@ alt=\"Google\" align=\"middle\"></a>
 <input type=text name=\"q\" size=31 maxlength=255 value=\"$1\">
 <input type=submit name=\"sa\" value=\"Google搜索\">
 <input type=hidden name=\"cof\" value=\"LW:135;L:http://zh-tw.wikipedia.org/upload/wiki.png;LH:133;AH:left;S:http://www.wikiped<font face=arial,sans-serif size=-1>
-<input type=hidden name=\"domains\" value=\"zh-tw.wikipedia.org\"><br>
+<input type=hidden name=\"domains\" value=\"zh-tw.wikipedia.org\"><br />
 <input type=radio name=\"sitesearch\" value=\"\"> 搜索WWW
-<input type=radio name=\"sitesearch\" value=\"zh-tw.wikipedia.org\" checked> 搜索zh-tw.wikipedia.org </font><br>
+<input type=radio name=\"sitesearch\" value=\"zh-tw.wikipedia.org\" checked> 搜索zh-tw.wikipedia.org </font><br />
 </td></tr></table></form>
 <!-- Search Google -->\n",
 
@@ -636,7 +636,7 @@ alt=\"Google\" align=\"middle\"></a>
 "deleteimg"		=> "刪",
 "imghistlegend" => "題跋: (現) = 目前的圖像，(刪) = 刪除舊版本，
 (複) = 恢復到舊版本。
-<br><i>點擊日期查看當天上載的圖像</i>.",
+<br /><i>點擊日期查看當天上載的圖像</i>.",
 "imagelinks"	=> "圖像鏈接",
 
 "linkstoimage"	=> "以下頁面連接到本圖像：",
@@ -663,10 +663,10 @@ alt=\"Google\" align=\"middle\"></a>
 "maintenancebacklink"	=> "返回維護頁",
 "disambiguations"	=> "消含糊頁",
 "disambiguationspage"	=> "維基百科:鏈接到消歧義的頁面",
-"disambiguationstext"	=> "以下的條目都有到消含糊頁的鏈接，但它們應該是鏈到適當的題目。<br>一個頁面會被視為消含糊頁如果它是鏈自$1.<br>由其它他名字空間來的鏈接<i>不會</i>在這兒被列出來。",
+"disambiguationstext"	=> "以下的條目都有到消含糊頁的鏈接，但它們應該是鏈到適當的題目。<br />一個頁面會被視為消含糊頁如果它是鏈自$1.<br />由其它他名字空間來的鏈接<i>不會</i>在這兒被列出來。",
 "doubleredirects"	=> "雙重重定向",
 "doubleredirectstext"	=> "<b>請注意：</b> 這列表可能包括不正確的反應。
-這通常表示在那頁面第一個#REDIRECT之下還有文字。<br>\n
+這通常表示在那頁面第一個#REDIRECT之下還有文字。<br />\n
 每一行都包含到第一跟第二個重定向頁的鏈接，以及第二個重定向頁的第一行文字，
 通常顯示的都會是\“真正\” 的目標頁面，也就是第一個重定向頁應該指向的條目。",
 "brokenredirects"	=> "損壞的重定向頁",
@@ -855,7 +855,7 @@ alt=\"Google\" align=\"middle\"></a>
 "noblockreason" => "您必須說明查封的具體理由。",
 "blockipsuccesssub" => "查封成功",
 "blockipsuccesstext" => "網址“$1”已經被查封。
-<br>參看[[特殊:被封網址列表|被封網址列表]]以復審查封。",
+<br />參看[[特殊:被封網址列表|被封網址列表]]以復審查封。",
 "unblockip"		=> "解除禁封網址",
 "unblockiptext"	=> "用下面的表單來恢復先前被禁封的網址的書寫權。",
 "ipusubmit"		=> "解除禁封",
@@ -883,7 +883,7 @@ alt=\"Google\" align=\"middle\"></a>
 
 "unlockdbsuccesssub" => "數據庫開放",
 "lockdbsuccesstext" => "維基百科數據庫已經上鎖。
-<br>請記住在維護完成後重新開放數據庫。",
+<br />請記住在維護完成後重新開放數據庫。",
 "unlockdbsuccesstext" => "維基百科數據庫重新開放。",
 
 # SQL query

@@ -283,8 +283,8 @@ Käyttäjätunnuksesi on luotu.
 "yourpasswordagain" => "Salasana uudelleen",
 "newusersonly"	=> " (vain uudet käyttäjät)",
 "remembermypassword" => "Muista salasana saman yhteyden istunnoissa",
-"loginproblem"	=> "<b>Sisäänkirjautumisessasi oli ongelmia.</b><br>Yritä uudelleen!",
-"alreadyloggedin" => "<font color=red><b>Käyttäjä $1, olet jo kirjautunut sisään!</b></font><br>\n",
+"loginproblem"	=> "<b>Sisäänkirjautumisessasi oli ongelmia.</b><br />Yritä uudelleen!",
+"alreadyloggedin" => "<font color=red><b>Käyttäjä $1, olet jo kirjautunut sisään!</b></font><br />\n",
 "notloggedin"	=> "Et ole kirjautunut",
 
 "login"			=> "Kirjaudu sisään",
@@ -323,7 +323,7 @@ sähköpostiosoitteeseen. Kirjaudu sisään uudestaan, kun olet saanut sen.",
 "showpreview"	=> "Esikatsele",
 "blockedtitle"	=> "Pääsy käyttäjältä estetty",
 "blockedtext"	=> "$1 on estänyt pääsysi Wikpediaan joko käyttäjänimesi tai IP-osoitteesi perusteella.
-Syynä tähän on:<br>''$2''<p>Ota yhteyttä henkilöön $1 tai johonkuhun
+Syynä tähän on:<br />''$2''<p>Ota yhteyttä henkilöön $1 tai johonkuhun
 muuhun [[{{ns:project}}:ylläpitäjät|ylläpitäjään]] keskustellaksesi estosta.",
 "newarticle"	=> "(uusi)",
 "newarticletext" => "Olet seurannut linkkiä sivulle, jota ei ole vielä olemassa.Luodaksesi sivun, kirjoita alla olevaan laatikkoon  (katso [[{{ns:project}}:Ohje|ohjeesta]] lisätietoja). Jos tarkoituksesi ei ole luoda uutta sivua, paina selaimesi '''back'''-painiketta.",
@@ -348,7 +348,7 @@ Jos tallennat sen, kaikki tämän version jälkeen tehdyt muutokset katoavat.</s
 "copyrightwarning" => "Huomaa, että kaikki {{grammar:illative|{{SITENAME}}}} tehtävät tuotokset 
 katsotaan julkaistuksi GNU Free Documentation -lisenssin mukaisesti 
 (katso sivulta $1 yksityiskohtia). Jos et halua, että kirjoitustasi 
-muokataan armottomasti ja uudelleenkäytetään vapaasti, älä tallenna kirjoitustasi.<br>
+muokataan armottomasti ja uudelleenkäytetään vapaasti, älä tallenna kirjoitustasi.<br />
 Lupaa myös, että kirjoitit tämän itse, tai kopioit sen jostain vapaasta lähteestä. 
 <strong>ÄLÄ KÄYTÄ TEKIJÄNOIKEUDEN ALAISTA MATERIAALIA ILMAN LUPAA!</strong>",
 "longpagewarning" => "VAROITUS: Tämän sivun tekstiosuus on $1 kilotavua pitkä. Joillakin selaimilla voi olla vaikeuksia yli 32 kilotavun kokoisten sivujen muokkaamisessa. Harkitse, voisiko sivun jakaa pienempiin osiin.",
@@ -403,8 +403,8 @@ joita ei indeksoida, tai useamman kuin yhden hakutermin määrittelemisestä (va
 joilla on kaikki hakutermin sanat, näkyvät tuloksissa).",
 "powersearch" => "Etsi",
 "powersearchtext" => "
-Haku nimiavaruuksista:<br>
-$1<br>
+Haku nimiavaruuksista:<br />
+$1<br />
 $2 Listaa uudelleenohjaukset &nbsp; Etsi $3 $9",
 
 # Preferences page
@@ -568,7 +568,7 @@ mistä se on peräisin, milloin se on luotu, kuka sen loi ja mahdollisesti muita
 "deleteimgcompletely"		=> "poista",
 "imghistlegend" => "Merkinnät: (nyk.) = nykyinen kuva, (poista) = poista 
 tämä vanha versio, (palauta) = palauta kuva tähän vanhaan versioon.
-<br><i>Klikkaa päiväystä nähdäksesi silloin tallennettu kuva</i>.",
+<br /><i>Klikkaa päiväystä nähdäksesi silloin tallennettu kuva</i>.",
 "imagelinks"	=> "Kuvalinkit",
 "linkstoimage"	=> "Seuraavilta sivuilta on linkki tähän kuvaan:",
 "nolinkstoimage" => "Tähän kuvaan ei ole linkkejä miltään sivulta.",
@@ -597,9 +597,9 @@ Keskimäärin sivua on muokattu  <b>$5</b> kertaa, ja muokkausta kohden sivua on
 "maintenancebacklink"	=> "Takaisin ylläpitosivulle",
 "disambiguations"	=> "Tarkennussivu",
 "disambiguationspage"	=> "{{ns:project}}:Linkkejä_tarkennussivuihin",
-"disambiguationstext"	=> "Seuraavat artikkelit linkittävät <i>tarkennussivuun</i>. Sen sijasta niiden pitäisi linkittää asianomaiseen aiheeseen.<br>Sivua kohdellaan tarkennussivuna jos siihen on linkki sivulta $1.<br>Linkkejä muihin nimiavaruuksiin <i>ei</i> ole listattu tässä.",
+"disambiguationstext"	=> "Seuraavat artikkelit linkittävät <i>tarkennussivuun</i>. Sen sijasta niiden pitäisi linkittää asianomaiseen aiheeseen.<br />Sivua kohdellaan tarkennussivuna jos siihen on linkki sivulta $1.<br />Linkkejä muihin nimiavaruuksiin <i>ei</i> ole listattu tässä.",
 "doubleredirects"	=> "Kaksinkertaiset uudelleenohjaukset",
-"doubleredirectstext"	=> "<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECT:in jälkeen on tekstiä.<br>\nJokaisella rivillä on linkit ensimmäiseen ja toiseen uudelleenohjaukseen sekä toisen uudelleenohjauksen kohteen ensimmäiseen riviin, eli yleensä \"oikeaan\" kohteeseen, johon ensimmäisen uudelleenohjauksen pitäisi osoittaa.",
+"doubleredirectstext"	=> "<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECT:in jälkeen on tekstiä.<br />\nJokaisella rivillä on linkit ensimmäiseen ja toiseen uudelleenohjaukseen sekä toisen uudelleenohjauksen kohteen ensimmäiseen riviin, eli yleensä \"oikeaan\" kohteeseen, johon ensimmäisen uudelleenohjauksen pitäisi osoittaa.",
 "brokenredirects"	=> "Virheelliset uudelleenohjaukset",
 "brokenredirectstext"	=> "Seuraavat uudelleenohjaukset on linkitetty artikkeleihin, joita ei ole olemassa.",
 "selflinks"		=> "Sivut, jotka linkittävät itseensä",
@@ -761,7 +761,7 @@ Ilmoita syy alapuolella (esimerkiksi lista vandalisoiduista sivuista).",
 "noblockreason" => "Sinun täytyy antaa syy estämiselle.",
 "blockipsuccesssub" => "Esto onnistui",
 "blockipsuccesstext" => "IP-osoite \"$1\" on estetty.
-<br>Katso [[Erityissivut:Ipblocklist|IP-estolista]] katsellaksesi estoja.",
+<br />Katso [[Erityissivut:Ipblocklist|IP-estolista]] katsellaksesi estoja.",
 "unblockip"		=> "Poista IP-osoitteen muokkausesto",
 "unblockiptext"	=> "Käytä allaolevaa lomaketta poistaaksesi kirjoitusesto aikaisemmin estetyltä IP-osoitteelta.",
 "ipusubmit"		=> "Poista tämän osoitteen esto",
@@ -786,7 +786,7 @@ Ilmoita syy alapuolella (esimerkiksi lista vandalisoiduista sivuista).",
 "lockdbsuccesssub" => "Tietokannan lukitseminen onnistui",
 "unlockdbsuccesssub" => "Tietokannan vapauttaminen onnistui",
 "lockdbsuccesstext" => "Wikipedia-tietokanta on lukittu.
-<br>Muista vapauttaa tietokanta ylläpitotoimenpiteiden jälkeen.",
+<br />Muista vapauttaa tietokanta ylläpitotoimenpiteiden jälkeen.",
 "unlockdbsuccesstext" => "Wikipedia-tietokanta on vapautettu.",
 
 # SQL query

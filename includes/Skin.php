@@ -83,7 +83,8 @@ class Skin {
 	/**#@-*/
 
 	function Skin() {
-		$this->linktrail = wfMsgForContent('linktrail');
+		global $wgContLang;
+		$this->linktrail = $wgContLang->linkTrail();
 		
 		# Cache option lookups done very frequently
 		$options = array( 'highlightbroken', 'hover' );
@@ -534,9 +535,12 @@ class Skin {
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->getNamespace() == Namespace::getImage() ) {
 				$name = $wgTitle->getDBkey();
-				$link = htmlspecialchars( Image::wfImageUrl( $name ) );
-				$style = $this->getInternalLinkAttributes( $link, $name );
-				$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
+				$image = new Image( $wgTitle->getDBkey() );
+				if( $image->exists() ) {
+					$link = htmlspecialchars( $image->getURL() );
+					$style = $this->getInternalLinkAttributes( $link, $name );
+					$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
+				}
 			}
 			# This will show the "Approve" link if $wgUseApproval=true;
 			if ( isset ( $wgUseApproval ) && $wgUseApproval )
@@ -1402,7 +1406,6 @@ class Skin {
 						if ( $s->cur_is_redirect OR $s->cur_namespace != 0 ) {
 							$size = $threshold*2 ; # Really big
 						}
-						$dbr->freeResult( $res );
 					} else {
 						$size = $threshold*2 ; # Really big
 					}

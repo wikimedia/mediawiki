@@ -31,10 +31,6 @@ OutputPage::setEncodings(); # Not really used yet
 $action = $wgRequest->getVal( "action", "view" );
 $title = $wgRequest->getVal( "title" );
 
-# Placeholders in case of DB error
-$wgTitle = Title::newFromText( wfMsgForContent( "badtitle" ) );
-$wgArticle = new Article($wgTitle);
-
 $action = strtolower( trim( $action ) );
 if ($wgRequest->getVal( "printable" ) == "yes") {
 	$wgOut->setPrintable();

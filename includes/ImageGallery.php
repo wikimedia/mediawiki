@@ -33,10 +33,10 @@ class ImageGallery
 	 * Add an image to the gallery.
 	 *
 	 * @param Image  $image  Image object that is added to the gallery
-	 * @param string $text   Additional text to be shown. The name and size of the image are always shown.
+	 * @param string $html   Additional HTML text to be shown. The name and size of the image are always shown.
 	 */
-	function add( $image, $text='' ) {
-		$this->mImages[] = array( &$image, $text );
+	function add( $image, $html='' ) {
+		$this->mImages[] = array( &$image, $html );
 	}
 
 	/**
@@ -90,26 +90,47 @@ class ImageGallery
 			$name = $img->getName();
 			$nt = $img->getTitle();
 
+			// Not an image. Just print the name and skip.
+			if ( $nt->getNamespace() != NS_IMAGE ) {
+				$s .= '<td valign="top" width="150px" style="background-color:#F0F0F0;">' .
+					htmlspecialchars( $nt->getText() ) . '</td>' .  (($i%4==3) ? "</tr>\n" : '');
+				$i++;
+
+				continue;
+			}
+
 			//TODO
 			//$ul = $sk->makeLink( $wgContLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
 
-			$nb = $this->mShowBytes ? 
-				wfMsg( "nbytes", $wgLang->formatNum( $img->getSize() ) )  . '<br />' :
+			if( $this->mShowBytes ) {
+				if( $img->exists() ) {
+					$nb = wfMsg( 'nbytes', $wgLang->formatNum( $img->getSize() ) );
+				} else {
+					$nb = wfMsg( 'filemissing' );
+				}
+				$nb = htmlspecialchars( $nb ) . '<br />';
+			} else {
+				$nb = '';
+			}
+				
 				'' ;
 			$textlink = $this->mShowFilename ?
-				$sk->makeKnownLinkObj( $nt, Language::truncate( $nt->getText(), 20, '...' ) ) . '<br />' :
+				$sk->makeKnownLinkObj( $nt, htmlspecialchars( $wgLang->truncate( $nt->getText(), 20, '...' ) ) ) . '<br />' :
 				'' ;
 
 			$s .= ($i%4==0) ? '<tr>' : '';
 			$s .= '<td valign="top" width="150px" style="background-color:#F0F0F0;">' .
 				'<table width="100%" height="150px">'.
 				'<tr><td align="center" valign="center" style="background-color:#F8F8F8;border:solid 1px #888888;">' .
-				$sk->makeKnownLinkObj( $nt, '<img  src="'.$img->createThumb(120,120).'" alt="">' ) . '</td></tr></table> ' .
+				$sk->makeKnownLinkObj( $nt, '<img  src="'.$img->createThumb(120,120).'" alt="" />' ) . '</td></tr></table> ' .
 				$textlink . $text . $nb; 
 
-			$s .= '</td>' .  (($i%4==3) ? '</tr>' : '');
+			$s .= "</td>\n" .  (($i%4==3) ? "</tr>\n" : '');
 
 			$i++;
+		}
+		if( $i %4 != 0 ) {
+			$s .= "</tr>\n";
 		}
 		$s .= '</table>';
 

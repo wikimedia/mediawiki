@@ -451,14 +451,14 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::buildContentActionUrls';
 		wfProfileIn( $fname );
 		
-		global $wgTitle, $wgUser, $wgOut, $wgRequest, $wgUseValidation;
+		global $wgTitle, $wgUser, $wgRequest, $wgUseValidation;
 		$action = $wgRequest->getText( 'action' );
 		$section = $wgRequest->getText( 'section' );
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$diff = $wgRequest->getVal( 'diff' );
 		$content_actions = array();
 
-		if( $this->iscontent and !$wgOut->isQuickbarSuppressed() ) {
+		if( $this->iscontent ) {
 
 			$nskey = $this->getNameSpaceKey();
 			$is_active = !Namespace::isTalk( $wgTitle->getNamespace()) ;

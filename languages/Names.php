@@ -122,14 +122,14 @@
 	'mus' => 'Muscogee',
 	'my' => 'Myanmasa',	# Burmese
 	'na' => 'Ekakair&#361; Naoero',		# Nauruan
-	'nb' => 'Bokm&aring;l',		# Norwegian (Bokmal)
+	'nb' => 'Norsk (bokm&aring;l)',		# Norwegian (Bokmal)
 	'nah' => 'Nahuatl',
 	'nds' => 'Plattd&uuml;&uuml;tsch',	# Low German ''or'' Low Saxon
 	'ne' => '&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;',	# Nepali
 	'ng' => 'Ndonga',
 	'nl' => 'Nederlands',	# Dutch
 	'ne' => '&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;',	# Nepali
-	'nn' => 'Nynorsk'	,	# (Norwegian) Nynorsk
+	'nn' => 'Norsk (nynorsk)'	,	# (Norwegian) Nynorsk
 	'no' => 'Norsk',		# Norwegian
 	'nv' => 'Din&eacute; bizaad',	# Navajo
 	'ny' => 'Chi-Chewa',	# Chichewa
@@ -185,6 +185,7 @@
 	'tr' => 'T&uuml;rk&ccedil;e',	# Turkish
 	'ts' => 'Xitsonga',		# Tsonga
 	'tt' => 'Tatar&ccedil;a',	# Tatar
+	'tum' => 'chiTumbuka',  # Tumbuka
 	'tw' => 'Twi',			# Twi -- FIXME
 	'ty' => 'Reo M&#257;`ohi',	# Tahitian
 	'ug' => 'Oyghurque',	# Uyghur

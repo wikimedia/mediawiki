@@ -26,6 +26,11 @@
  */
 
 /** */
+
+if( php_sapi_name() != 'cli' ) {
+	die( "Run me from the command line please.\n" );
+}
+
 require_once 'UtfNormalUtil.php';
 
 $in = fopen("DerivedNormalizationProps.txt", "rt" );

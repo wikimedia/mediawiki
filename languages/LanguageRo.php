@@ -157,19 +157,19 @@ require_once("LanguageUtf8.php");
 "tog-highlightbroken" => "Formatează legăturile inexistente <a href=\"\" class=\"new\">în felul acesta</a> (alternativa este aşa<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Aliniază paragrafele",
 "tog-hideminor" => "Ascunde schimbările minore în pagina de schimbări recente",
-"tog-usenewrc" => "Îmbunătăţeşte structura paginii de schimbări minore<br>(nu merge în toate browserele)",
+"tog-usenewrc" => "Îmbunătăţeşte structura paginii de schimbări minore<br />(nu merge în toate browserele)",
 "tog-numberheadings" => "Auto-numerotează titlurile",
 "tog-showtoolbar" => "Show edit toolbar",
 "tog-editondblclick" => "Editează paginile cu dublu clic (JavaScript)",
 "tog-editsection" => "Permite editarea secţiunilor folosind legături [editează] pe pagină",
-"tog-editsectiononrightclick"=>"Permite editarea secţiunilor la apăsarea<br>butonului din dreapta al mouse-ului pe titlu<br>(necesită JavaScript)",
-"tog-showtoc" => "Arată cuprinsul paginilor<br>(pentru pagini cu cel puţin trei titluri)",
+"tog-editsectiononrightclick"=>"Permite editarea secţiunilor la apăsarea<br />butonului din dreapta al mouse-ului pe titlu<br />(necesită JavaScript)",
+"tog-showtoc" => "Arată cuprinsul paginilor<br />(pentru pagini cu cel puţin trei titluri)",
 "tog-rememberpassword" => "Păstrează parola între sesiuni",
 "tog-editwidth" => "Lăţime maximă pentru caseta de editare",
 "tog-watchdefault" => "Urmăreşte articolele pe care le creezi sau le editezi",
 "tog-minordefault" => "Marchează implicit toate editările ca minore",
 "tog-previewontop" => "Arată pagina după caseta de editare, nu înainte",
-"tog-nocache" => "Nu folosi cache (conexiunea merge mai greu,<br>dar sunt afişate toate modificările paginilor)",
+"tog-nocache" => "Nu folosi cache (conexiunea merge mai greu,<br />dar sunt afişate toate modificările paginilor)",
 
 # Dates
 #
@@ -335,8 +335,8 @@ Administratorul care a blocat-o a oferit această explicaţie:
 "badtitletext"	=> "Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.",
 "perfdisabled" => "Ne pare rău! Această funcţionalitate a fost dezactivată temporar în timpul orelor de vârf din motive de performanţă. Vă rugăm să reveniţi la altă oră şi încercaţi din nou.", // Didn't provide any off-peak hours because they may differ on the Romanian Wikipedia.
 "perfdisabledsub"	=> "Iată o copie salvată de la $1:",
-"wrong_wfQuery_params" => "Număr incorect de parametri pentru wfQuery()<br>
-Funcţia: $1<br>
+"wrong_wfQuery_params" => "Număr incorect de parametri pentru wfQuery()<br />
+Funcţia: $1<br />
 Query: $2
 ",
 "viewsource" => "Vezi sursa",
@@ -359,8 +359,8 @@ Nu uitaţi să vă personalizaţi preferinţele în Wikipedia.",
 "yourpasswordagain" => "Repetaţi parola",
 "newusersonly"	=> " (doar pentru utilizatori noi)",
 "remembermypassword" => "Reţine-mi parola între sesiuni.",
-"loginproblem"	=> "<b>A fost o problemă cu autentificarea Dvs.</b><br>Încercaţi din nou!",
-"alreadyloggedin" => "<font color=red><b>Sunteţi deja autentificat ca $1!</b></font><br>\n",
+"loginproblem"	=> "<b>A fost o problemă cu autentificarea Dvs.</b><br />Încercaţi din nou!",
+"alreadyloggedin" => "<font color=red><b>Sunteţi deja autentificat ca $1!</b></font><br />\n",
 
 "notloggedin" => "Nu sunteţi autentificat",
 
@@ -407,7 +407,7 @@ Vă rugăm să vă autentificaţi pe Wikipedia după ce o primiţi.",
 "showpreview"	=> "Arată previzualizare",
 "blockedtitle"	=> "Utilizatorul este blocat",
 "blockedtext"	=> "Utilizatorul sau parola Dvs. au fost blocate de $1.
-Motivul oferit pentru blocare a fost:<br>''$2''<p>Puteţi contacta pe $1 sau pe unul dintre ceilalţi
+Motivul oferit pentru blocare a fost:<br />''$2''<p>Puteţi contacta pe $1 sau pe unul dintre ceilalţi
 [[Wikipedia:administratori|administratori]] pentru a discuta această blocare.",
 "whitelistedittitle" => "Este necesară autentificarea pentru a edita",
 "whitelistedittext" => "Trebuie să vă [[Special:Userlogin|autentificaţi]] pentru a edita articole.",
@@ -442,9 +442,9 @@ Va trebui să editaţi manual caseta de sus pentru a reflecta modificările pe c
 "storedversion" => "Versiunea curentă",
 "editingold"	=> "<strong>ATENŢIE! Editaţi o variantă mai veche a acestei pagini! Orice modificări care s-au făcut de la această versiune şi până la cea curentă se vor pierde!</strong>\n",
 "yourdiff"		=> "Diferenţe",
-"copyrightwarning" => "Ajutor pentru editare, caractere speciale: ă â î ş ţ Ă Â Î Ş Ţ<br><br>Reţineţi că toate contribuţiile la Wikipedia sunt considerate ca respectând licenţa GNU Free Documentation License
+"copyrightwarning" => "Ajutor pentru editare, caractere speciale: ă â î ş ţ Ă Â Î Ş Ţ<br /><br />Reţineţi că toate contribuţiile la Wikipedia sunt considerate ca respectând licenţa GNU Free Documentation License
 (vezi $1 pentru detalii).
-Dacă nu doriţi ca ceea ce scrieţi să fie editat fără milă şi redistribuit în voie, atunci nu trimiteţi materialele respective aici.<br>
+Dacă nu doriţi ca ceea ce scrieţi să fie editat fără milă şi redistribuit în voie, atunci nu trimiteţi materialele respective aici.<br />
 De asemenea, trimiţând aceste materiale aici vă angajaţi că le-aţi scris Dvs. sau că sunt copiate dintr-o sursă care permite includerea materialelor sub această licenţă.
 <strong>NU TRIMITEŢI MATERIALE PROTEJATE DE DREPTURI DE AUTOR FĂRĂ PERMISIUNE!</strong>",
 "longpagewarning" => "ATENŢIE! Conţinutul acestei pagini are $1 KB; unele browsere au probleme la editarea paginilor în jur de 32 KB sau mai mari.
@@ -503,8 +503,8 @@ Vă rugăm să încercaţi o altă căutare.",
 "nonefound"		=> "<strong>Notă</strong>: căutările nereuşite sunt în general datorate căutării unor cuvinte prea comune care nu sunt indexate, sau cautărilor a mai multe cuvinte (numai articolele care conţin ''toate'' cuvintele specificate apar ca rezultate).",
 "powersearch" => "Caută",
 "powersearchtext" => "
-Caută în secţiunile:<br>
-$1<br>
+Caută în secţiunile:<br />
+$1<br />
 $2 Redirecţionări&nbsp; Căutări după $3 $9",
 
 "searchdisabled" => "<p>Ne pare rău! Căutarea după text a fost dezactivată temporar, din motive de performanţă. Între timp puteţi folosi căutarea prin Google mai jos, însă aceasta poate să dea rezultate învechite.</p>
@@ -521,7 +521,7 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Caută pe Google\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br>
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -697,7 +697,7 @@ Vă rugăm să vizitaţi această legătură: ($2) pentru a descrie fişierul ş
 "deleteimg"		=> "şterg",
 "deleteimgcompletely"		=> "şterg",
 "imghistlegend" => "Legend: (actuală) = versiunea curentă a imaginii, (şterg) = şterge această versiune veche, (rev) = revino la această versiune veche.
-<br><i>Apăsaţi pe dată pentru a vedea versiunea trimisă la data respectivă</i>.",
+<br /><i>Apăsaţi pe dată pentru a vedea versiunea trimisă la data respectivă</i>.",
 "imagelinks"	=> "Legăturile imaginii",
 "linkstoimage"	=> "Următoarele pagini leagă la această imagine:",
 "nolinkstoimage" => "Nici o pagină nu se leagă la această imagine.",
@@ -723,9 +723,9 @@ Dintre aceştia <b>$2</b> sunt administratori (vezi $3).",
 "maintenancebacklink"	=> "Înapoi la pagina administrativă",
 "disambiguations"	=> "Pagini de dezambiguizare",
 "disambiguationspage"	=> "Wikipedia:Legături_către_paginile_de_dezambiguizare",
-"disambiguationstext"	=> "Următoarele articole conţin legături către cel puţin o <i>pagină de dezambiguizare</i>. Legăturile respective ar trebui făcute către paginile specifice.<br>O pagină este considerată ca fiind de dezambiguizare dacă există o legătură în ea dinspre $1.<br>Legăturile dinspre alte secţiuni Wikipedia <i>nu sunt</i> luate în considerare aici.",
+"disambiguationstext"	=> "Următoarele articole conţin legături către cel puţin o <i>pagină de dezambiguizare</i>. Legăturile respective ar trebui făcute către paginile specifice.<br />O pagină este considerată ca fiind de dezambiguizare dacă există o legătură în ea dinspre $1.<br />Legăturile dinspre alte secţiuni Wikipedia <i>nu sunt</i> luate în considerare aici.",
 "doubleredirects"	=> "Redirectări duble",
-"doubleredirectstext"	=> "<b>Atenţie:</b> Această listă poate conţine articole care nu sunt în fapt duble redirectări. Asta înseamnă de obicei că există text adiţional sub primul #REDIRECT.<br>\nFiecare rând care conţine legături către prima sau a doua redirectare, ca şi prima linie din textul celei de-a doua redirectări, de obicei conţinând numele \"real\" al articolului ţintă, către care ar trebui să arate prima redirectare.",
+"doubleredirectstext"	=> "<b>Atenţie:</b> Această listă poate conţine articole care nu sunt în fapt duble redirectări. Asta înseamnă de obicei că există text adiţional sub primul #REDIRECT.<br />\nFiecare rând care conţine legături către prima sau a doua redirectare, ca şi prima linie din textul celei de-a doua redirectări, de obicei conţinând numele \"real\" al articolului ţintă, către care ar trebui să arate prima redirectare.",
 "brokenredirects"	=> "Redirectări greşite",
 "brokenredirectstext"	=> "Următoarele redirectări arată către articole inexistente.",
 "selflinks"		=> "Pagini cu legături ciclice",
@@ -935,7 +935,7 @@ au fost vandalizate de acest utilizator).",
 "noblockreason" => "Trebuie să includeţi un motiv pentru blocare.",
 "blockipsuccesssub" => "Utilizatorul a fost blocat",
 "blockipsuccesstext" => "Adresa IP \"$1\" a fost blocată.
-<br>Vezi [[Special:Ipblocklist|lista de adrese IP blocate]] pentru a revizui adresele blocate.",
+<br />Vezi [[Special:Ipblocklist|lista de adrese IP blocate]] pentru a revizui adresele blocate.",
 "unblockip"		=> "Deblochează adresă IP",
 "unblockiptext"	=> "Folosiţi chestionarul de mai jos pentru a restaura
 drepturile de scriere pentru o adresă IP blocată anterior..",
@@ -977,7 +977,7 @@ Vă rugăm să confirmaţi că intenţionaţi acest lucru.",
 "lockdbsuccesssub" => "Baza de date a fost blocată",
 "unlockdbsuccesssub" => "Baza de date a fost deblocată",
 "lockdbsuccesstext" => "Baza de date Wikipedia a fost blocată la scriere.
-<br>Nu uitaţi să o deblocaţi după ce terminaţi operaţiunile administrative pentru care aţi blocat-o.",
+<br />Nu uitaţi să o deblocaţi după ce terminaţi operaţiunile administrative pentru care aţi blocat-o.",
 "unlockdbsuccesstext" => "Baza de date Wikipedia a fost deblocată.",
 
 # SQL query

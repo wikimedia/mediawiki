@@ -286,12 +286,12 @@ Võite kasutada Vikipeediat anonüümselt või uuesti sisse logida sama või tei
 "yourpasswordagain" => "Sisestage parool uuesti",
 "newusersonly"	=> " (ainult uued kasutajad)",
 "remembermypassword" => "Parooli meeldejätmine tulevasteks seanssideks.",
-"loginproblem"	=> "<b>Sisselogimine ei õnnestunud.</b><br>Proovige uuesti!",
-"alreadyloggedin" => "<font color=red><b>Kasutaja $1, Te olete juba sisse loginud!</b></font><br>\n",
+"loginproblem"	=> "<b>Sisselogimine ei õnnestunud.</b><br />Proovige uuesti!",
+"alreadyloggedin" => "<font color=red><b>Kasutaja $1, Te olete juba sisse loginud!</b></font><br />\n",
 
 "areyounew"		=> "Kui olete Vikipeedias uustulnuk ja tahate saada kasutajakontot, siis 
 sisestage kasutajanimi, seejärel parool (kaks korda).
-E-posti aadress ei ole kohustuslik; kui Te kaotate oma parooli, võite lasta selle saata Teie poolt antud aadressil.<br>\n",
+E-posti aadress ei ole kohustuslik; kui Te kaotate oma parooli, võite lasta selle saata Teie poolt antud aadressil.<br />\n",
 
 "login"			=> "Logi sisse",
 "userlogin"		=> "Logi sisse",
@@ -330,7 +330,7 @@ Pärast parooli saamist palun logige sisse.",
 "showpreview"	=> "Näita eelvaadet",
 "blockedtitle"	=> "Kasutaja on blokeeritud",
 "blockedtext"	=> "Teie kasutajanime või IP-aadressi blokeeris $1.
-Tema põhjendus on järgmine:<br>''$2''<p>Küsimuse arutamiseks võite pöörduda $1 või mõne teise
+Tema põhjendus on järgmine:<br />''$2''<p>Küsimuse arutamiseks võite pöörduda $1 või mõne teise
 [[Vikipeedia:administraatorid|administraatori]] poole.",
 "newarticle"	=> "(Uus)",
 "newarticletext" =>
@@ -359,7 +359,7 @@ Kui Te selle salvestate, siis kõik Teie tehtud muudatused lähevad kaduma.</str
 "yourdiff"		=> "Erinevused",
 "copyrightwarning" => "Pidage silmas, et kõik Vikipeediale tehtud kaastööd loetakse avaldatuks vastavalt litsentsile GNU Free Documentation License
 (üksikasjad on leheküljel $1).
-Kui Te ei soovi, et Teie poolt kirjutatut halastamatult redigeeritakse ja omal äranägemisel kasutatakse, siis ärge seda siia salvestage.<br>
+Kui Te ei soovi, et Teie poolt kirjutatut halastamatult redigeeritakse ja omal äranägemisel kasutatakse, siis ärge seda siia salvestage.<br />
 Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsenduseta allikast. 
 <strong>ÄRGE SAATKE AUTORIÕIGUSEGA KAITSTUD MATERJALI ILMA LOATA!</strong>",
 "longpagewarning" => "HOIATUS: Selle lehekülje pikkus ületab $1 kilobaiti. Mõne brauseri puhul valmistab raskusi 32 kilobaidile läheneva pikkusega lehekülgede redigeerimine. Palun kaaluge selle lehekülje sisu jaotamist lühemate lehekülgede vahel.",
@@ -415,8 +415,8 @@ ning $3 artikli tekstis.",
 või kasutatakse mitut otsingusõna (tulemina ilmuvad ainult leheküljed, mis sisaldavad kõiki otsingusõnu).",
 "powersearch" => "Otsi",
 "powersearchtext" => "
-Otsing nimeruumidest :<br>
-$1<br>
+Otsing nimeruumidest :<br />
+$1<br />
 $2 Loetle ümbersuunamisi &nbsp; Otsi $3 $9",
 
 
@@ -555,7 +555,7 @@ created and by whom, and anything else you may know about it.",
 "deleteimgcompletely"		=> "del",
 "imghistlegend" => "Legend: (viim) = see on pildi viimane versioon, (del) = kustuta
 see vana versioon, (taas) = taasta see vana versioon.
-<br><i>Click on date to see image uploaded on that date</i>.",
+<br /><i>Click on date to see image uploaded on that date</i>.",
 "imagelinks"	=> "Image links",
 "linkstoimage"	=> "Sellele pildile viitavad järgmised leheküljed:",
 "nolinkstoimage" => "Selle pildile ei viita ükski lehekülg.",
@@ -583,9 +583,9 @@ Nende hulgas on <b>$2</b> administraatorit (vt $3).",
 "maintenancebacklink"	=> "Tagasi hooldusleheküljele",
 "disambiguations"	=> "Disambiguation pages",
 "disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
-"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
+"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
-"doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
+"doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
 "brokenredirects"	=> "Broken Redirects",
 "brokenredirectstext"	=> "The following redirects link to a non-existing article.",
 "selflinks"		=> "Iseendale viitavad leheküljed",
@@ -769,7 +769,7 @@ pages that were vandalized).",
 "noblockreason" => "You must supply a reason for the block.",
 "blockipsuccesssub" => "Block succeeded",
 "blockipsuccesstext" => "IP-aadress \"$1\" on blokeeritud.
-<br>See [[Special:Ipblocklist|IP block list]] to review blocks.",
+<br />See [[Special:Ipblocklist|IP block list]] to review blocks.",
 "unblockip"		=> "Unblock IP address",
 "unblockiptext"	=> "Use the form below to restore write access
 to a previously blocked IP address.",
@@ -802,7 +802,7 @@ Please confirm that this is what you intend to do.",
 "lockdbsuccesssub" => "Andmebaas kirjutuskaitse all",
 "unlockdbsuccesssub" => "Kirjutuspääs taastatud",
 "lockdbsuccesstext" => "Vikipeedia andmebaas on nüüd kirjutuskaitse all.
-<br>Kui Teie hooldustöö on läbi, ärge unustage taastada kirjutuspääs!",
+<br />Kui Teie hooldustöö on läbi, ärge unustage taastada kirjutuspääs!",
 "unlockdbsuccesstext" => "Vikipeedia andmebaasi kirjutuspääs on taastatud.",
 
 # SQL query

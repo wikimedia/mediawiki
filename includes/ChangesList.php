@@ -397,7 +397,7 @@ class ChangesList {
 		$blockLink='';
 		if ( ( 0 == $rc_user ) && $wgUser->isAllowed('block') ) {
 			$blockLinkPage = Title::makeTitle( NS_SPECIAL, 'Blockip' );
-			$blockLink = $this->skin->makeKnownLink( $blockLinkPage,
+			$blockLink = $this->skin->makeKnownLinkObj( $blockLinkPage,
 				$message['blocklink'], 'ip='.$rc_user_text );
 
 		}

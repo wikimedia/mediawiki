@@ -58,6 +58,9 @@ require_once( "LanguageUtf8.php" );
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
+/* private */ $wgUserTogglesZh_cn = array(
+	'nolangconversion',
+) + $wgUserTogglesEn;
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -140,14 +143,14 @@ require_once( "LanguageUtf8.php" );
 "tog-editondblclick" => "双击页面编辑(JavaScript)",
 "tog-editsection"=>"允许通过点击[编辑]链接编辑段落",
 "tog-editsectiononrightclick"=>"允许右击标题编辑段落(JavaScript)",
-"tog-showtoc"=>"显示目录<br>(针对一页超过3个标题的文章)",
+"tog-showtoc"=>"显示目录<br />(针对一页超过3个标题的文章)",
 "tog-rememberpassword" => "下次登陆记住密码", /* "Remember password across sessions", */
 "tog-editwidth" => "编辑栏位宽度", /* "Edit box has full width", */
 "tog-editondblclick" => "双击编辑页面（Javascript）", /* "Edit pages on double click (JavaScript)", */
 "tog-watchdefault" => "监视新的以及更改过的文章", /* "Watch new and modified articles", */
 "tog-minordefault" => "细微编辑为默认设置", /* "Mark all edits minor by default", */
 "tog-previewontop" => "在编辑框上方显示预览", /* "Show preview before edit box and not after it" */
-
+"tog-nolangconversion" => "不进行繁简体转换", /* "disable language conversion" */
 # Dates
 
 'sunday' => "星期日",
@@ -322,8 +325,8 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "yourpasswordagain" => "再次输入密码",
 "newusersonly"	=> "（仅限新用户）",
 "remembermypassword" => "下次登录记住密码。",
-"loginproblem"	=> "<b>登录有问题。</b><br>再试一次！",
-"alreadyloggedin" => "<font color=red><b>用户$1，您已经登录了!</b></font><br>\n",
+"loginproblem"	=> "<b>登录有问题。</b><br />再试一次！",
+"alreadyloggedin" => "<font color=red><b>用户$1，您已经登录了!</b></font><br />\n",
 
 "login"			=> "登录",
 "userlogin"		=> "用户登录",
@@ -363,7 +366,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "showpreview"	=> "显示预览",
 "blockedtitle"	=> "用户被封",
 "blockedtext"	=> "您的用户名或IP地址已被$1封。
-理由是：<br>'''$2'''<p>您可以与$1向其他任何[[Wikipedia:管理员|管理员]]询问。",
+理由是：<br />'''$2'''<p>您可以与$1向其他任何[[Wikipedia:管理员|管理员]]询问。",
  "whitelistedittitle" => "登录后才可编辑",
  	 "whitelistedittext" => "您必须先[[Special:Userlogin|登录]]才可编辑页面。",
  	 "whitelistreadtitle" => "登录后才可阅读",
@@ -400,7 +403,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "yourdiff"		=> "差别",
 "copyrightwarning" => "请注意对Wikipedia的任何贡献都将被认为是在GNU自由文档协议证书下发布。
 (细节请见$1).
-如果您不希望您的文字被任意修改和再散布，请不要提交。<br>
+如果您不希望您的文字被任意修改和再散布，请不要提交。<br />
 您同时也向我们保证你所提交的内容是你自己所作，或得自一个不受版权保护或相似自由的来源。
 <strong>不要在未获授权的情况下发表！</strong>",
 
@@ -458,7 +461,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "nonefound"		=> "<strong>注意：</strong>失败的搜索往往是由于试图搜索诸如“的”或“和”之类的常见字所引起。",
 "powersearch" => "搜索",
 "powersearchtext" => "
-搜索名字空间：<br>$1<br>$2列出重定向页面；搜索$3 $9",
+搜索名字空间：<br />$1<br />$2列出重定向页面；搜索$3 $9",
 
 "searchdisabled" => "<p>Wikipedia内部搜索功能由于高峰时段服务器超载而停止使用。
 您可以暂时通过
@@ -476,9 +479,9 @@ alt=\"Google\" align=\"middle\"></a>
 <input type=text name=\"q\" size=31 maxlength=255 value=\"$1\">
 <input type=submit name=\"sa\" value=\"Google搜索\">
 <input type=hidden name=\"cof\" value=\"LW:135;L:http://zh.wikipedia.org/upload/wiki.png;LH:133;AH:left;S:http://www.wikiped<font face=arial,sans-serif size=-1>
-<input type=hidden name=\"domains\" value=\"zh.wikipedia.org\"><br>
+<input type=hidden name=\"domains\" value=\"zh.wikipedia.org\"><br />
 <input type=radio name=\"sitesearch\" value=\"\"> 搜索WWW
-<input type=radio name=\"sitesearch\" value=\"zh.wikipedia.org\" checked> 搜索zh.wikipedia.org </font><br>
+<input type=radio name=\"sitesearch\" value=\"zh.wikipedia.org\" checked> 搜索zh.wikipedia.org </font><br />
 </td></tr></table></form>
 <!-- Search Google -->\n",
 
@@ -639,7 +642,7 @@ alt=\"Google\" align=\"middle\"></a>
 "deleteimgcompletely"		=> "删",
 "imghistlegend" => "egend: (现) = 目前的图像，(删) = 删除旧版本，
 (复) = 恢复到旧版本。
-<br><i>点击日期查看当天上载的图像</i>.",
+<br /><i>点击日期查看当天上载的图像</i>.",
 "imagelinks"	=> "图像链接",
 
 "linkstoimage"	=> "以下页面连接到本图像：",
@@ -666,10 +669,10 @@ alt=\"Google\" align=\"middle\"></a>
 "maintenancebacklink"	=> "返回维护页",
 "disambiguations"	=> "消含糊页",
 "disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
-"disambiguationstext"	=> "以下的条目都有到消含糊页的链接，但它们应该是链到适当的题目。<br>一个页面会被视为消含糊页如果它是链自$1.<br>由其它他名字空间来的链接<i>不会</i>在这儿被列出来。",
+"disambiguationstext"	=> "以下的条目都有到消含糊页的链接，但它们应该是链到适当的题目。<br />一个页面会被视为消含糊页如果它是链自$1.<br />由其它他名字空间来的链接<i>不会</i>在这儿被列出来。",
 "doubleredirects"	=> "双重重定向",
 "doubleredirectstext"	=> "<b>请注意：</b> 这列表可能包括不正确的反应。
-这通常表示在那页面第一个#REDIRECT之下还有文字。<br>\n
+这通常表示在那页面第一个#REDIRECT之下还有文字。<br />\n
 每一行都包含到第一跟第二个重定向页的链接，以及第二个重定向页的第一行文字，
 通常显示的都会是\“真正\” 的目标页面，也就是第一个重定向页应该指向的条目。",
 "brokenredirects"	=> "损坏的重定向页",
@@ -859,7 +862,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "noblockreason" => "您必须说明查封的具体理由。",
 "blockipsuccesssub" => "查封成功",
 "blockipsuccesstext" => "IP地址“$1”已经被查封。
-<br>参看[[Special:被封IP地址列表|被封IP地址列表]]以复审查封。",
+<br />参看[[Special:被封IP地址列表|被封IP地址列表]]以复审查封。",
 "unblockip"		=> "解除禁封IP地址",
 "unblockiptext"	=> "用下面的表单来恢复先前被禁封的IP地址的书写权。",
 "ipusubmit"		=> "解除禁封",
@@ -887,7 +890,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 
 "unlockdbsuccesssub" => "数据库开放",
 "lockdbsuccesstext" => "Wikipedia数据库已经上锁。
-<br>请记住在维护完成后重新开放数据库。",
+<br />请记住在维护完成后重新开放数据库。",
 "unlockdbsuccesstext" => "Wikipedia数据库重新开放。",
 
 # SQL query
@@ -956,6 +959,11 @@ class LanguageZh_cn extends LanguageUtf8 {
 	function getBookstoreList () {
 		global $wgBookstoreListZh_cn ;
 		return $wgBookstoreListZh_cn ;
+	}
+
+	function getUserToggles() {
+		global $wgUserTogglesZh_cn;
+		return $wgUserTogglesZh_cn;
 	}
 
 	function getNamespaces() {

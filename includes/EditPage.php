@@ -292,11 +292,11 @@ class EditPage {
 					$s = wfMsg('editingsection', $this->mTitle->getPrefixedText() );
 				}
 				if(!$this->preview) {
-					$sectitle=preg_match("/^=+(.*?)=+/mi",
-				  	$this->textbox1,
-				  	$matches);
-					if( !empty( $matches[1] ) ) {
-						$this->summary = "/* ". trim($matches[1])." */ ";
+					preg_match( "/^(=+)(.+)\\1/mi",
+						$this->textbox1,
+						$matches );
+					if( !empty( $matches[2] ) ) {
+						$this->summary = "/* ". trim($matches[2])." */ ";
 					}
 				}
 			} else {

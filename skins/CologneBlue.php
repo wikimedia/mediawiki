@@ -7,6 +7,9 @@
  * @subpackage Skins
  */
 
+if( !defined( 'MEDIAWIKI' ) )
+	die();
+
 /**
  * @todo document
  * @package MediaWiki
