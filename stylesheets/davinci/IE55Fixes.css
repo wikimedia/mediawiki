@@ -1,0 +1,21 @@
+/* IE5.5/win- only fixes */
+
+/* slightly smaller top margin for the content area */
+
+#portlet-contentViews li a,
+#portlet-contentViews .selected a,
+#portlet-contentViews li a:hover {
+    padding-bottom: 0.2em;
+}
+
+#portal-personaltools {
+    padding-bottom: 0.1em;
+}
+
+body {
+    font-size: xx-small;
+}
+
+.portlet {
+    overflow:hidden;
+}
