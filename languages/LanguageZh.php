@@ -189,7 +189,9 @@ class LanguageZh extends LanguageZh_cn {
 				$m = explode( '=>', $t );
 				if( count( $m ) != 2)
 					continue;
-				$ret[trim($m[0])] = trim($m[1]);
+				// trim any trailling comments starting with '//'
+				$tt = explode('//', $m[1], 2);
+				$ret[trim($m[0])] = trim($tt[0]);
 			}
 		}
 		$parsed[$key] = true;
