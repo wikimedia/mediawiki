@@ -786,7 +786,7 @@ cl_sortkey" ;
 			$text = $wgDateFormatter->reformat( $this->mOptions->getDateFormat(), $text );
 		}
 		$text = $this->doAllQuotes( $text );
-		// $text = $this->doExponant( $text );
+		// $text = $this->doExponent( $text );
 		$text = $this->replaceExternalLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
 		$text = $this->replaceInternalLinks ( $text );
@@ -808,9 +808,9 @@ cl_sortkey" ;
 	}
 	
 	# Parse ^^ tokens and return html
-	/* private */ function doExponant ( $text )
+	/* private */ function doExponent ( $text )
 	{
-		$fname = 'Parser::doExponant';
+		$fname = 'Parser::doExponent';
 		wfProfileIn( $fname);
 		$text = preg_replace('/\^\^(.*)\^\^/','<small><sup>\\1</sup></small>', $text);
 		wfProfileOut( $fname);
