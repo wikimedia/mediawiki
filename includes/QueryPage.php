@@ -1,6 +1,6 @@
 <?php
 
-require_once ( "Feed.php" );
+require_once ( 'Feed.php' );
 
 # This is a class for doing query pages; since they're almost all the same,
 # we factor out some of the functionality into a superclass, and let
@@ -11,7 +11,7 @@ class QueryPage {
 	# specified in SpecialPage.php and in Language.php as a language message param.
 
 	function getName() {
-		return "";
+		return '';
 	}
 
 	# Subclasses return an SQL query here.
@@ -39,14 +39,14 @@ class QueryPage {
 
 	# Don't override this unless you're darn sure.
 	function getOrderLimit( $offset, $limit ) {
-		return " ORDER BY value " .
-			($this->sortDescending() ? "DESC" : "")
+		return ' ORDER BY value ' .
+			($this->sortDescending() ? 'DESC' : '')
 			. wfLimitResult($limit,$offset);
 	}
 
 	function getOrder() {
-		return " ORDER BY value " .
-			($this->sortDescending() ? "DESC" : "");
+		return ' ORDER BY value ' .
+			($this->sortDescending() ? 'DESC' : '');
 	}
 
 	# Is this query expensive (for some definition of expensive)? Then we
@@ -62,7 +62,7 @@ class QueryPage {
 	# result data. You should be able to grab SQL results off of it.
 
 	function formatResult( $skin, $result ) {
-		return "";
+		return '';
 	}
 
 	# This is the actual workhorse. It does everything needed to make a
@@ -73,7 +73,7 @@ class QueryPage {
 		global $wgMiserMode;
 
 		$sname = $this->getName();
-		$fname = get_class($this) . "::doQuery";
+		$fname = get_class($this) . '::doQuery';
 		$sql = $this->getSQL();
 		$dbr =& wfGetDB( DB_SLAVE );
 		$dbw =& wfGetDB( DB_MASTER );
@@ -83,7 +83,7 @@ class QueryPage {
 		$res = false;
 
 		if ( $this->isExpensive() ) {
-			$recache = $wgRequest->getBool( "recache" );
+			$recache = $wgRequest->getBool( 'recache' );
 			if( $recache ) {
 				# Clear out any old cached data
 				$dbw->delete( 'querycache', array( 'qc_type' => $sname ), $fname );
@@ -99,13 +99,13 @@ class QueryPage {
 					if ( $first ) {
 						$first = false;
 					} else {
-						$insertSql .= ",";
+						$insertSql .= ',';
 					}
-					$insertSql .= "(" .
-						$dbw->addQuotes( $row->type ) . "," .
-						$dbw->addQuotes( $row->namespace ) . "," .
-						$dbw->addQuotes( $row->title ) . "," .
-						$dbw->addQuotes( $row->value ) . ")";
+					$insertSql .= '(' .
+						$dbw->addQuotes( $row->type ) . ',' .
+						$dbw->addQuotes( $row->namespace ) . ',' .
+						$dbw->addQuotes( $row->title ) . ',' .
+						$dbw->addQuotes( $row->value ) . ')';
 				}
 
 				# Save results into the querycache table on the master
@@ -163,7 +163,7 @@ class QueryPage {
 	}
 
 	# Similar to above, but packaging in a syndicated feed instead of a web page
-	function doFeed( $class = "" ) {
+	function doFeed( $class = '' ) {
 		global $wgFeedClasses;
 		global $wgOut, $wgLanguageCode, $wgLang;
 		if( isset($wgFeedClasses[$class]) ) {
@@ -175,7 +175,7 @@ class QueryPage {
 
 			$dbr =& wfGetDB( DB_SLAVE );
 			$sql = $this->getSQL() . $this->getOrder().$dbr->limitResult( 50, 0 );
-			$res = $dbr->query( $sql, "QueryPage::doFeed" );
+			$res = $dbr->query( $sql, 'QueryPage::doFeed' );
 			while( $obj = $dbr->fetchObject( $res ) ) {
 				$item = $this->feedResult( $obj );
 				if( $item ) $feed->outItem( $item );
@@ -199,10 +199,10 @@ class QueryPage {
 			if( isset( $row->timestamp ) ) {
 				$date = $row->timestamp;
 			} else {
-				$date = "";
+				$date = '';
 			}
 
-			$comments = "";
+			$comments = '';
 			if( $title ) {
 				$talkpage = $title->getTalkPage();
 				$comments = $talkpage->getFullURL();
@@ -221,11 +221,11 @@ class QueryPage {
 	}
 
 	function feedItemDesc( $row ) {
-		$text = "";
+		$text = '';
 		if( isset( $row->comment ) ) {
 			$text = htmlspecialchars( $row->comment );
 		} else {
-			$text = "";
+			$text = '';
 		}
 
 		if( isset( $row->text ) ) {
@@ -239,7 +239,7 @@ class QueryPage {
 		if( isset( $row->user_text ) ) {
 			return $row->user_text;
 		} else {
-			return "";
+			return '';
 		}
 	}
 
