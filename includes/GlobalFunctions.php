@@ -65,7 +65,7 @@ function wfLocalUrl( $a, $q = "" )
 	} else if ( "" == $q ) {
 		$a = str_replace( "$1", $a, $wgArticlePath );
 	} else {
-		$a = "/{$a}&{$q}";	
+		$a = "{$wgScript}?title={$a}&{$q}";	
 	}
 	return $a;
 }
@@ -758,7 +758,6 @@ function wfPurgeSquidServers ($urlArr) {
     }
     $totalsockets = count($wgSquidServers) * $sockspersq;
     $sockets = Array();
-    $t = microtime(1);
     
     /* this sets up the sockets and tests the first socket for each server. */
     for ($ss=0;$ss < count($wgSquidServers);$ss++) {
