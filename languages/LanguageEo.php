@@ -74,24 +74,6 @@ $wgEditEncoding		= "x";
 # $wgBookstoreListEo = ..
 
 
-# Note capitalization; also some uses may require addition of final -n
-/* private */ $wgWeekdayNamesEo = array(
-	"dimanĉo", "lundo", "mardo", "merkredo" , "ĵaŭdo",
-	"vendredo", "sabato"
-);
-
-# Double-check capitalization
-/* private */ $wgMonthNamesEo = array(
-	"januaro", "februaro", "marto", "aprilo", "majo", "junio",
-	"julio", "aŭgusto", "septembro", "oktobro", "novembro",
-	"decembro"
-);
-
-# Hmm
-/* private */ $wgMonthAbbreviationsEo = array(
-	"Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aŭg",
-	"Sep", "Okt", "Nov", "Dec"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -149,6 +131,39 @@ $wgEditEncoding		= "x";
 );
 
 /* private */ $wgAllMessagesEo = array(
+# Dates
+
+'sunday' => "dimanĉo",
+'monday' => "lundo",
+'tuesday' => "mardo",
+'wednesday' => "merkredo",
+'thursday' => "ĵaŭdo",
+'friday' => "vendredo",
+'saturday' => "sabato",
+'january' => "januaro",
+'february' => "februaro",
+'march' => "marto",
+'april' => "aprilo",
+'may_long' => "majo",
+'june' => "junio",
+'july' => "julio",
+'august' => "aŭgusto",
+'september' => "septembro",
+'october' => "oktobro",
+'november' => "novembro",
+'december' => "decembro",
+'jan' => "Jan",
+'feb' => "Feb",
+'mar' => "Mar",
+'apr' => "Apr",
+'may' => "Maj",
+'jun' => "Jun",
+'jul' => "Jul",
+'aug' => "Aŭg",
+'sep' => "Sep",
+'oct' => "Okt",
+'nov' => "Nov",
+'dec' => "Dec",
 
 # Teksteroj uzataj fare de diversaj paĝoj:
 #
@@ -1034,24 +1049,6 @@ class LanguageEo extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesEo;
 		return $wgUserTogglesEo;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesEo;
-		return $wgMonthNamesEo[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsEo;
-		return $wgMonthAbbreviationsEo[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesEo;
-		return $wgWeekdayNamesEo[$key-1];
 	}
 
 	# Heredu userAdjust()

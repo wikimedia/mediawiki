@@ -77,21 +77,6 @@
 /* Just inherit the (mostly) native-language plus latinized formed */
 /* private */ $wgLanguageNamesIt = $wgLanguageNamesEn;
 
-/* private */ $wgWeekdayNamesIt = array(
-	"Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì",
-	"Venerdì", "Sabato"
-);
-
-/* private */ $wgMonthNamesIt = array(
-	"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
-	"Luglio", "Agosto", "Settembre", "Ottobre", "Novembre",
-	"Dicembre"
-);
-
-/* private */ $wgMonthAbbreviationsIt = array(
-	"Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago",
-	"Set", "Ott", "Nov", "Dic"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -144,6 +129,39 @@
 );
 
 /* private */ $wgAllMessagesIt = array(
+# dates
+'sunday' => 'Domenica',
+'monday' => 'Lunedì',
+'tuesday' => 'Martedì',
+'wednesday' => 'Mercoledì',
+'thursday' => 'Giovedì',
+'friday' => 'Venerdì',
+'saturday' => 'Sabato',
+'january' => 'Gennaio',
+'february' => 'Febbraio',
+'march' => 'Marzo',
+'april' => 'Aprile',
+'may_long' => 'Maggio',
+'june' => 'Giugno',
+'july' => 'Luglio',
+'august' => 'Agosto',
+'september' => 'Settembre',
+'october' => 'Ottobre',
+'november' => 'Novembre',
+'december' => 'Dicembre',
+'jan' => 'Gen',
+'feb' => 'Feb',
+'mar' => 'Mar',
+'apr' => 'Apr',
+'may' => 'Mag',
+'jun' => 'Giu',
+'jul' => 'Lug',
+'aug' => 'Ago',
+'sep' => 'Set',
+'oct' => 'Ott',
+'nov' => 'Nov',
+'dec' => 'Dic',
+
 
 # Bits of text used by many pages:
 #
@@ -841,24 +859,6 @@ class LanguageIt extends LanguageUtf8 {
 			return "";
 		}
 		return $wgLanguageNamesIt[$code];
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesIt;
-		return $wgMonthNamesIt[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsIt;
-		return $wgMonthAbbreviationsIt[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesIt;
-		return $wgWeekdayNamesIt[$key-1];
 	}
 
 	function date( $ts, $adj = false )

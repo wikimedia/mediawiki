@@ -110,21 +110,6 @@ define( "MW_MATH_MATHML", 5 );
    ease of navigation -- people should be able to recognize their own
    languages! */
 
-/* private */ $wgWeekdayNamesSv = array(
-        "söndag", "måndag", "tisdag", "onsdag", "torsdag",
-        "fredag", "lördag"
-);
-
-/* private */ $wgMonthNamesSv = array(
-        "januari", "februari", "mars", "april", "maj", "juni",
-        "juli", "augusti", "september", "oktober", "november",
-        "december"
-);
-
-/* private */ $wgMonthAbbreviationsSv = array(
-        "jan", "feb", "mar", "apr", "maj", "jun", "jul", "aug",
-        "sep", "okt", "nov", "dec"
-);
 
 // All special pages have to be listed here: a description of ""
 // will make them not show up on the "Special Pages" page, which
@@ -180,6 +165,40 @@ $wgValidSpecialPagesSv = array(
 );
 
 /* private */ $wgAllMessagesSv = array(
+// Dates
+
+'sunday' => "söndag",
+'monday' => "måndag",
+'tuesday' => "tisdag",
+'wednesday' => "onsdag",
+'thursday' => "torsdag",
+'friday' => "fredag",
+'saturday' => "lördag",
+'january' => "januari",
+'february' => "februari",
+'march' => "mars",
+'april' => "april",
+'may_long' => "maj",
+'june' => "juni",
+'july' => "juli",
+'august' => "augusti",
+'september' => "september",
+'october' => "oktober",
+'november' => "november",
+'december' => "december",
+'jan' => "jan",
+'feb' => "feb",
+'mar' => "mar",
+'apr' => "apr",
+'may' => "maj",
+'jun' => "jun",
+'jul' => "jul",
+'aug' => "aug",
+'sep' => "sep",
+'oct' => "okt",
+'nov' => "nov",
+'dec' => "dec",
+
 
 // Bits of text used by many pages:
 //	
@@ -1078,21 +1097,6 @@ class LanguageSv extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesSv;
 		return $wgUserTogglesSv;
-	}
-	
-	function getMonthName( $key ) {
-		global $wgMonthNamesSv;
-		return $wgMonthNamesSv[$key-1];
-	}
-	
-	function getMonthAbbreviation( $key ) {
-		global $wgMonthAbbreviationsSv;
-		return $wgMonthAbbreviationsSv[$key-1];
-	}
-	
-	function getWeekdayName( $key ) {
-		global $wgWeekdayNamesSv;
-		return $wgWeekdayNamesSv[$key-1];
 	}
 	
 	# Inherit userAdjust()

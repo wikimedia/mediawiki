@@ -93,23 +93,6 @@
     "Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesPt = array(
-    "Domingo", "Segunda", "Terça-Feira", "Quarta-Feira", "Quinta-Feira",
-    "Sexta-Feira", "Sábado"
-
-);
-
-/* private */ $wgMonthNamesPt = array(
-    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-    "Julho", "Agosto", "Setembro", "Outubro", "Novembro",
-    "Dezembro"
-
-);
-
-/* private */ $wgMonthAbbreviationsPt = array(
-    "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago",
-    "Set", "Out", "Nov", "Dez"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -164,6 +147,39 @@
 );
 
 /* private */ $wgAllMessagesPt = array(
+# Dates
+'sunday' => 'Domingo',
+'monday' => 'Segunda',
+'tuesday' => 'Terça-Feira',
+'wednesday' => 'Quarta-Feira',
+'thursday' => 'Quinta-Feira',
+'friday' => 'Sexta-Feira',
+'saturday' => 'Sábado',
+'january' => 'Janeiro',
+'february' => 'Fevereiro',
+'march' => 'Março',
+'april' => 'Abril',
+'may_long' => 'Maio',
+'june' => 'Junho',
+'july' => 'Julho',
+'august' => 'Agosto',
+'september' => 'Setembro',
+'october' => 'Outubro',
+'november' => 'Novembro',
+'december' => 'Dezembro',
+'jan' => 'Jan',
+'feb' => 'Fev',
+'mar' => 'Mar',
+'apr' => 'Abr',
+'may' => 'Mai',
+'jun' => 'Jun',
+'jul' => 'Jul',
+'aug' => 'Ago',
+'sep' => 'Set',
+'oct' => 'Out',
+'nov' => 'Nov',
+'dec' => 'Dez',
+
 
 # Bits of text used by many pages:
 #
@@ -980,37 +996,6 @@ class LanguagePt extends LanguageUtf8 {
         return $wgUserTogglesPt;
     }
 
-    function getMonthName( $key )
-    {
-        global $wgMonthNamesPt;
-        return $wgMonthNamesPt[$key-1];
-    }
-    
-    /* by default we just return base form */
-    function getMonthNameGen( $key )
-    {
-        global $wgMonthNamesPt;
-        return $wgMonthNamesPt[$key-1];
-    }
-    
-    function getMonthRegex()
-    {
-        global $wgMonthNamesPt;
-        return implode( "|", $wgMonthNamesEn );
-    }
-
-    function getMonthAbbreviation( $key )
-    {
-        global $wgMonthAbbreviationsPt;
-        return $wgMonthAbbreviationsPt[$key-1];
-    }
-
-    function getWeekdayName( $key )
-    {
-        global $wgWeekdayNamesPt;
-        return $wgWeekdayNamesPt[$key-1];
-    }
- 
     function timeanddate( $ts, $adj = false )
     {
         return $this->time( $ts, $adj ) . ", " . $this->date( $ts, $adj );
