@@ -1308,7 +1308,6 @@ ta[\'pt-mycontris\'] = new Array(\'y\',\'List of my contributions\');
 ta[\'pt-login\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\'); 
 ta[\'pt-anonlogin\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\'); 
 ta[\'pt-logout\'] = new Array(\'o\',\'Log out\'); 
-ta[\'ca-article\'] = new Array(\'a\',\'View the content page\'); 
 ta[\'ca-talk\'] = new Array(\'t\',\'Discussion about the content page\'); 
 ta[\'ca-edit\'] = new Array(\'e\',\'You can edit this page. Please use the preview button before saving.\'); 
 ta[\'ca-addsection\'] = new Array(\'+\',\'Add a comment to this discussion.\'); 
