@@ -247,7 +247,6 @@ pre {
     border: 1px dashed #2f6fab;
     color: Black;
     background-color: #f9f9f9;
-    overflow: auto;
 }
 .pre a {
     text-decoration: none;
@@ -900,8 +899,8 @@ li#contentaction-watch {
     display: inline;
 }
 /* the full-size images are in center tags */
-*>html #bodyContent center, 
-*>html #bodyContent pre {
+* html #bodyContent center, 
+* html #bodyContent pre {
     overflow: auto;
 }
 
