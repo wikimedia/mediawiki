@@ -808,9 +808,7 @@ class Article {
 		$this->viewUpdates();
 		wfProfileOut( $fname );
 
-		include_once( "UserMailer.php" );
-		$wgEnotif = new EmailNotification ();
-		$wgEnotif->Clear( $wgUser->getID(), $this->mTitle->getDBkey(), $this->mTitle->getNamespace() );
+		$wgUser->clearNotification( $this->mTitle );
 	}
 
 	/**

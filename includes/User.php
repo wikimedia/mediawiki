@@ -795,7 +795,51 @@ class User {
 		$wl->removeWatch();
 		$this->invalidateCache();
 	}
+
+	/**
+	 * Clear the user's notification timestamp for the given title.
+	 * If e-notif e-mails are on, they will receive notification mails on
+	 * the next change of the page if it's watched etc.
+	 */
+	function clearNotification( $title ) {
+		$dbw =& wfGetDB( DB_MASTER );
+		$success = $dbw->update( 'watchlist',
+				array( /* SET */
+					'wl_notificationtimestamp' => 0
+				), array( /* WHERE */
+					'wl_title' => $title->getDBkey(),
+					'wl_namespace' => $title->getNamespace(),
+					'wl_user' => $this->getId()
+				), 'User::clearLastVisited'
+		);
+	}
+	
 	/**#@-*/
+
+	/**
+	 * Resets all of the given user's page-change notification timestamps.
+	 * If e-notif e-mails are on, they will receive notification mails on
+	 * the next change of any watched page.
+	 *
+	 * @param int $currentUser user ID number
+	 * @access public
+	 */
+	function clearAllNotifications( $currentUser ) {
+		if( $currentUser != 0 )  {
+	
+			$dbw =& wfGetDB( DB_MASTER );
+			$success = $dbw->update( 'watchlist',
+				array( /* SET */
+					'wl_notificationtimestamp' => 0
+				), array( /* WHERE */
+					'wl_user' => $currentUser
+				), 'UserMailer::clearAll'
+			);
+
+		# 	we also need to clear here the "you have new message" notification for the own user_talk page
+		#	This is cleared one page view later in Article::viewUpdates();
+		}
+	}
 
 	/**
 	 * @access private
