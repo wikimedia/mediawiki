@@ -168,11 +168,9 @@ $message
 	}
 	
 	# Clear the relevant memcached key
-	if( $wgUseMemCached ) {
-		print 'Clearing message cache...';
-		$wgMemc->delete( $wgDBname.':messages' );
-		print "Done.\n";
-	}
+	print 'Clearing message cache...';
+	$wgMessageCache->clear();
+	print "Done.\n";
 }
 
 function loadLanguageFile( $filename )
