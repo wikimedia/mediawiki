@@ -120,6 +120,7 @@ class Parser
 				'/ (\\?|:|!|\\302\\273)/i' => '&nbsp;\\1', 
 				# french spaces, Guillemet-right
 				'/(\\302\\253) /i' => '\\1&nbsp;', 
+				'/([^> ]+(&#x30(1|3|9);)[^< ]*)/i' => '<span class="diacrit">\\1</span>', 
 				'/<center *>/i' => '<div class="center">',
 				'/<\\/center *>/i' => '</div>'
 			);
@@ -1823,6 +1824,7 @@ cl_sortkey" ;
 		
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
+		$forceTocHere = false;
 		if( !$this->mTitle->userCanEdit() ) {
 			$showEditLink = 0;
 			$rightClickHack = 0;
@@ -1858,12 +1860,21 @@ cl_sortkey" ;
 			$doShowToc = 0;
 		}
 
-		# if the string __FORCETOC__ (not case-sensitive) occurs in the HTML,
-		# override above conditions and always show TOC
-		$mw =& MagicWord::get( MAG_FORCETOC );
-		if ($mw->matchAndRemove( $text ) ) {
+		# if the string __TOC__ (not case-sensitive) occurs in the HTML,
+		# override above conditions and always show TOC at that place
+		$mw =& MagicWord::get( MAG_TOC );
+		if ($mw->match( $text ) ) {
 			$doShowToc = 1;
+			$forceTocHere = true;
+		} else {
+			# if the string __FORCETOC__ (not case-sensitive) occurs in the HTML,
+			# override above conditions and always show TOC above first header
+			$mw =& MagicWord::get( MAG_FORCETOC );
+			if ($mw->matchAndRemove( $text ) ) {
+				$doShowToc = 1;
+			}
 		}
+		
 
 
 		# We need this to perform operations on the HTML
@@ -1993,7 +2004,7 @@ cl_sortkey" ;
 				# $full .= $sk->editSectionLink(0);
 			}
 			$full .= $block;
-			if( $doShowToc && !$i && $isMain) {
+			if( $doShowToc && !$i && $isMain && !$forceTocHere) {
 			# Top anchor now in skin
 				$full = $full.$toc;
 			}
@@ -2003,8 +2014,12 @@ cl_sortkey" ;
 			}
 			$i++;
 		}
-
-		return $full;
+		if($forceTocHere) {
+			$mw =& MagicWord::get( MAG_TOC );
+			return $mw->replace( $toc, $full );
+		} else {
+			return $full;
+		}
 	}
 
 	# Return an HTML link for the "ISBN 123456" text
