@@ -242,6 +242,10 @@ If upgrading from an older release, see the file UPGRADE;
 * Fix for script execution vulnerability.
 
 
+=== Beta 6 fixes ===
+
+* (bug 1335) implement 'tooltip-watch' in Language.php
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not

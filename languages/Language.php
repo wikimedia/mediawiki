@@ -1486,6 +1486,7 @@ article [[Train]].
 'tooltip-save' => 'Save your changes [alt-s]',
 'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
 'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page. [alt-v]',
+'tooltip-watch' => 'Add this page to your watchlist [alt-w]',
 
 # stylesheets
 
