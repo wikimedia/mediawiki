@@ -113,5 +113,5 @@ foreach($wgAllMessagesEn as $index => $localized)
 	}
 }
 echo "----\n";
-echo "$lang language is complete at ".(100 - $i/count($wgAllMessagesEn) * 100)."%\n";
+echo "$lang language is complete at ".number_format((100 - $i/count($wgAllMessagesEn) * 100),2)."%\n";
 echo "$i unlocalised message of the ".count($wgAllMessagesEn)." messages available.\n";
