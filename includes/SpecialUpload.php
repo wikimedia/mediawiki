@@ -149,6 +149,8 @@ class UploadForm {
 				}
 				if($warning != '') return $this->uploadWarning($warning);
 			}
+		} else {
+			return $this->uploadError('<li>'.wfMsg( 'emptyfile' ).'</li>');
 		}
 		if ( !is_null( $this->mUploadOldVersion ) ) {
 			$wgUploadOldVersion = $this->mUploadOldVersion;
