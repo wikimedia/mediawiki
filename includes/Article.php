@@ -360,7 +360,7 @@ class Article {
 			$id = $this->getID();
 			if ( 0 == $id ) return;
 
-			$s = $dbr->selectRow( 'cur', $this->getCurContentFields(), array( 'cur_id' => $id ), $fname, 
+			$s = $dbr->selectRow( 'cur', $this->getCurContentFields(), array( 'cur_id' => $id ), $fname,
 				$this->getSelectOptions() );
 			if ( $s === false ) {
 				return;
@@ -386,7 +386,7 @@ class Article {
 					}
 					$rid = $rt->getArticleID();
 					if ( 0 != $rid ) {
-						$redirRow = $dbr->selectRow( 'cur', $this->getCurContentFields(), 
+						$redirRow = $dbr->selectRow( 'cur', $this->getCurContentFields(),
 							array( 'cur_id' => $rid ), $fname, $this->getSelectOptions() );
 
 						if ( $redirRow !== false ) {
@@ -408,7 +408,7 @@ class Article {
 			$this->mTitle->mRestrictions = explode( ',', trim( $s->cur_restrictions ) );
 			$this->mTitle->mRestrictionsLoaded = true;
 		} else { # oldid set, retrieve historical version
-			$s = $dbr->getArray( 'old', $this->getOldContentFields(), array( 'old_id' => $oldid ), 
+			$s = $dbr->getArray( 'old', $this->getOldContentFields(), array( 'old_id' => $oldid ),
 				$fname, $this->getSelectOptions() );
 			if ( $s === false ) {
 				return;
@@ -450,7 +450,7 @@ class Article {
 				return false;
 			}
 
-			$s = $dbr->selectRow( 'cur', $this->getCurContentFields(), array( 'cur_id' => $id ), 
+			$s = $dbr->selectRow( 'cur', $this->getCurContentFields(), array( 'cur_id' => $id ),
 				$fname, $this->getSelectOptions() );
 			if ( $s === false ) {
 				return false;
@@ -463,7 +463,7 @@ class Article {
 				if( $rt &&  $rt->getInterwiki() == '' && $rt->getNamespace() != NS_SPECIAL ) {
 					$rid = $rt->getArticleID();
 					if ( 0 != $rid ) {
-						$redirRow = $dbr->selectRow( 'cur', $this->getCurContentFields(), 
+						$redirRow = $dbr->selectRow( 'cur', $this->getCurContentFields(),
 							array( 'cur_id' => $rid ), $fname, $this->getSelectOptions() );
 
 						if ( $redirRow !== false ) {
@@ -485,7 +485,7 @@ class Article {
 			$this->mTitle->mRestrictions = explode( ',', trim( $s->cur_restrictions ) );
 			$this->mTitle->mRestrictionsLoaded = true;
 		} else { # oldid set, retrieve historical version
-			$s = $dbr->selectRow( 'old', $this->getOldContentFields(), array( 'old_id' => $oldid ), 
+			$s = $dbr->selectRow( 'old', $this->getOldContentFields(), array( 'old_id' => $oldid ),
 				$fname, $this->getSelectOptions() );
 			if ( $s === false ) {
 				return false;
@@ -505,7 +505,7 @@ class Article {
 	function forUpdate( $x = NULL ) {
 		return wfSetVar( $this->mForUpdate, $x );
 	}
-	
+
 	# Get the database which should be used for reads
 	function &getDB() {
 		if ( $this->mForUpdate ) {
@@ -524,10 +524,10 @@ class Article {
 			} else {
 				$options = 'FOR UPDATE';
 			}
-		} 
+		}
 		return $options;
 	}
-	
+
 	function getID() {
 		if( $this->mTitle ) {
 			return $this->mTitle->getArticleID();
@@ -540,7 +540,7 @@ class Article {
 		if ( -1 == $this->mCounter ) {
 			$id = $this->getID();
 			$dbr =& $this->getDB();
-			$this->mCounter = $dbr->selectField( 'cur', 'cur_counter', 'cur_id='.$id, 
+			$this->mCounter = $dbr->selectField( 'cur', 'cur_counter', 'cur_id='.$id,
 				'Article::getCount', $this->getSelectOptions() );
 		}
 		return $this->mCounter;
@@ -631,7 +631,7 @@ class Article {
 		$sql .= ' '. $this->getSelectOptions();
 
 		$res = $dbr->query($sql, $fname);
-		
+
 		while ( $line = $dbr->fetchObject( $res ) ) {
 			$contribs[] = array($line->old_user, $line->old_user_text, $line->user_real_name);
 		}
@@ -764,7 +764,7 @@ class Article {
 
 		# Add link titles as META keywords
 		$wgOut->addMetaTags() ;
-			
+
 		$this->viewUpdates();
 		wfProfileOut( $fname );
 	}
@@ -833,7 +833,7 @@ class Article {
 
 		# The talk page isn't in the regular link tables, so we need to update manually:
 		$talkns = $ns ^ 1; # talk -> normal; normal -> talk
-		$dbw->updateArray( 'cur', array('cur_touched' => $dbw->timestamp($now) ), 
+		$dbw->updateArray( 'cur', array('cur_touched' => $dbw->timestamp($now) ),
 			array(  'cur_namespace' => $talkns, 'cur_title' => $ttl ), $fname );
 
 		# standard deferred updates
@@ -1137,7 +1137,7 @@ class Article {
 
 
 	# Add this page to my watchlist
-	
+
 	function watch( $add = true ) {
 		global $wgUser, $wgOut, $wgLang;
 		global $wgDeferredUpdateList;
@@ -1225,7 +1225,7 @@ class Article {
 	}
 
 	# Output protection confirmation dialog
-	
+
 	function confirmProtect( $par, $reason, $limit = 'sysop'  ) {
 		global $wgOut;
 
@@ -1294,7 +1294,7 @@ class Article {
 	}
 
 	# UI entry point for page deletion
-	
+
 	function delete() {
 		global $wgUser, $wgOut, $wgMessageCache, $wgRequest;
 		$fname = 'Article::delete';
@@ -1402,7 +1402,7 @@ class Article {
 	}
 
 	# Output deletion confirmation dialog
-	
+
 	function confirmDelete( $par, $reason ) {
 		global $wgOut;
 
@@ -1455,7 +1455,7 @@ class Article {
 
 
 	# Perform a deletion and output success or failure messages
-	
+
 	function doDelete( $reason ) {
 		global $wgOut, $wgUser, $wgLang;
 		$fname = 'Article::doDelete';
@@ -1998,7 +1998,7 @@ class Article {
 		if ($exists < 1) {
 			$wgOut->addHTML( wfMsg('noarticletext') );
 		} else {
-			$numwatchers = $dbr->selectField( 'watchlist', 'COUNT(*)', $wl_clause, $fname, 
+			$numwatchers = $dbr->selectField( 'watchlist', 'COUNT(*)', $wl_clause, $fname,
 				$this->getSelectOptions() );
 			$wgOut->addHTML( "<ul><li>" . wfMsg("numwatchers", $numwatchers) . '</li>' );
 			$old = $dbr->selectField( 'old', 'COUNT(*)', $old_clause, $fname, $this->getSelectOptions() );
@@ -2010,7 +2010,7 @@ class Article {
 			# - then, find the number of *other* authors in 'old'
 
 			# find 'cur' author
-			$cur_author = $dbr->selectField( 'cur', 'cur_user_text', $cur_clause, $fname, 
+			$cur_author = $dbr->selectField( 'cur', 'cur_user_text', $cur_clause, $fname,
 				$this->getSelectOptions() );
 
 			# find number of 'old' authors excluding 'cur' author
@@ -2037,7 +2037,7 @@ class Article {
 				$cur_author = $dbr->selectField( 'cur', 'cur_user_text', $cur_clause, $fname,
 					$this->getSelectOptions() );
 				$authors = $dbr->selectField( 'cur', 'COUNT(DISTINCT old_user_text)',
-					$old_clause + array( 'old_user_text<>' . $dbr->addQuotes( $cur_author ) ), 
+					$old_clause + array( 'old_user_text<>' . $dbr->addQuotes( $cur_author ) ),
 					$fname, $this->getSelectOptions() );
 
 				$wgOut->addHTML( '<li>' . wfMsg('numtalkauthors', $authors) . '</li></ul>' );

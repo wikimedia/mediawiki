@@ -1369,15 +1369,15 @@ title. Please merge them manually.',
 
 'export'		=> 'Export pages',
 'exporttext'	=> 'You can export the text and editing history of a particular page or
-set of pages wrapped in some XML. In the future, this may then be imported into another 
-wiki running MediaWiki software, although there is no support for this feature in the 
+set of pages wrapped in some XML. In the future, this may then be imported into another
+wiki running MediaWiki software, although there is no support for this feature in the
 current version.
 
-To export article pages, enter the titles in the text box below, one title per line, and 
-select whether you want the current version as well as all old versions, with the page 
+To export article pages, enter the titles in the text box below, one title per line, and
+select whether you want the current version as well as all old versions, with the page
 history lines, or just the current version with the info about the last edit.
 
-In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/Train]] for the 
+In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/Train]] for the
 article [[Train]].
 ',
 'exportcuronly'	=> 'Include only the current revision, not the full history',
