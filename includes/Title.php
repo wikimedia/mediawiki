@@ -201,7 +201,7 @@ class Title {
 		# Theoretically 0x80-0x9F of ISO 8859-1 should be disallowed, but
 		# this breaks interlanguage links
 		
-		$set = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z{}~\\x80-\\xFF";
+		$set = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF";
 		return $set;
 	}
 	
