@@ -31,6 +31,27 @@ $wgAlterSpecs = array();
 
 do_revision_updates();
 
+alter_ipblocks();
+
+#
+# Run ALTER TABLE queries.
+#
+if ( count( $wgAlterSpecs ) ) {
+	$rconn = mysql_connect( $wgDBserver, $wgDBadminuser, $wgDBadminpassword );
+	mysql_select_db( $wgDBname );
+	print "\n";
+	foreach ( $wgAlterSpecs as $table => $specs ) {
+		$sql = "ALTER TABLE $table $specs";
+		print "$sql;\n";
+		$res = mysql_query( $sql, $rconn );
+		if ( $res === false ) {
+			print "MySQL error: " . mysql_error( $rconn ) . "\n";
+		}
+	}
+	mysql_close( $rconn );
+}
+
+
 #
 # Copy files into installation directories
 #
@@ -104,28 +125,8 @@ function readconsole() {
 }
 
 function do_revision_updates() {
-	global $wgSoftwareRevision, $wgAlterSpecs, $wgDBserver, $wgDBadminuser;
-	global $wgDBadminpassword, $wgDBname;
-
+	global $wgSoftwareRevision;
 	if ( $wgSoftwareRevision < 1001 ) { update_passwords(); }
-	if ( $wgSoftwareRevision < 1002 ) { alter_ipblocks(); }
-
-	# Run ALTER TABLE queries.
-
-	if ( count( $wgAlterSpecs ) ) {
-		$rconn = mysql_connect( $wgDBserver, $wgDBadminuser, $wgDBadminpassword );
-		mysql_select_db( $wgDBname );
-		print "\n";
-		foreach ( $wgAlterSpecs as $table => $specs ) {
-			$sql = "ALTER TABLE $table $specs";
-			print "$sql;\n";
-			$res = mysql_query( $sql, $rconn );
-			if ( $res === false ) {
-				print "MySQL error: " . mysql_error( $rconn ) . "\n";
-			}
-		}
-		mysql_close( $rconn );
-	}
 }
 
 function update_passwords() {
@@ -155,7 +156,6 @@ function update_passwords() {
 
 function alter_ipblocks() {
 	global $wgAlterSpecs;
-	$fname = "Update script: alter_ipblocks";
 	
 	if ( field_exists( "ipblocks", "ipb_id" ) ) {
 		return;
