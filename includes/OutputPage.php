@@ -1,4 +1,6 @@
 <?php
+if( defined( "MEDIAWIKI" ) ) {
+
 # See design.doc
 
 if($wgUseTeX) require_once( "Math.php" );
@@ -853,5 +855,7 @@ class OutputPage {
 		wfProfileOut( $fname );
 		return ( $out );
 	}
+}
+
 }
 ?>

@@ -483,7 +483,7 @@ class WikiImporter {
 				'old_comment' => $this->getComment(),
 				'old_user' => intval( $user->getId() ),
 				'old_user_text' => $user->getName(),
-				'old_timestamp' => $this->timestamp
+				'old_timestamp' => $this->timestamp,
 				'inverse_timestamp' => wfInvertTimestamp( $this->timestamp ),
 				'old_minor_edit' => 0,
 				'old_flags' => ''
