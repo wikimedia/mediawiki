@@ -761,6 +761,7 @@ $wgNavigationLinks = array (
 $wgCategoryMagicGallery = true;
 
 # Browser Blacklist for unicode non compliant browsers
+# Contains a list of regexps : "/regexp/"  matching problematic browsers
 $wgBrowserBlackList = array();
 
 } else {
