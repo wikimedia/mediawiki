@@ -289,12 +289,12 @@ class DatabasePgsql extends Database {
 				foreach ( $uniqueIndexes as $index ) {
 					if ( $first ) {
 						$first = false;
+						$sql .= "(";
 					} else {
 						$sql .= ') OR (';
 					}
 					if ( is_array( $index ) ) {
 						$first2 = true;
-						$sql .= "(";
 						foreach ( $index as $col ) {
 							if ( $first2 ) { 
 								$first2 = false;
@@ -303,16 +303,16 @@ class DatabasePgsql extends Database {
 							}
 							$sql .= $col.'=' . $this->addQuotes( $row[$col] );
 						}
-				} else {
+					} else {
 						$sql .= $index.'=' . $this->addQuotes( $row[$index] );
-				}
+					}
 				}
 				$sql .= ')';
 				$this->query( $sql, $fname );
 			}
 
 			# Now insert the row
-			$sql = "INSERT INTO $table (" . $this->makeList( array_flip( $row ), LIST_NAMES ) .') VALUES (' .
+			$sql = "INSERT INTO $table (" . $this->makeList( array_keys( $row ), LIST_NAMES ) .') VALUES (' .
 				$this->makeList( $row, LIST_COMMA ) . ')';
 			$this->query( $sql, $fname );
 		}
