@@ -451,6 +451,7 @@ class UploadForm {
 	<input type=hidden name=\"wpUploadAffirm\" value=\"1\" />
 	<input type=hidden name=\"wpIgnoreWarning\" value=\"1\" />
 	<input type=hidden name=\"wpSessionKey\" value=\"" . htmlspecialchars( $this->mSessionKey ) . "\" />
+	<input type=hidden name=\"wpUploadDescription\" value=\"" . htmlspecialchars( $this->mUploadDescription ) . "\" />
 	{$copyright}
 	<table border='0'><tr>
 	<tr><td align='right'>
