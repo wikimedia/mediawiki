@@ -411,7 +411,7 @@ class Article {
                        " FROM old, user " .
                        " WHERE old.old_user = user.user_id " .
 		       " AND old.old_namespace = " . $title->getNamespace() .
-                       " AND old.old_title = '" . $title->getDBkey() . "'" .
+                       " AND old.old_title = \"" . $title->getDBkey() . "\"" .
                        " AND old.old_user != 0 " .
                        " AND old.old_user != " . $this->getUser() . 
                        " GROUP BY old.old_user " . 
