@@ -200,16 +200,17 @@ class Skin {
 
 	function doGetUserStyles()
 	{
-		global $wgUser;
+		global $wgUser, $wgLang;
 
-		$s = '';
+		$csspage = $wgLang->getNsText( NS_MEDIAWIKI ) . ":" . $this->getSkinName() . ".css";
+		$s = '@import "'.$this->makeUrl($csspage, 'action=raw&ctype=text/css')."\";\n";
+
 		if ( 1 == $wgUser->getOption( 'underline' ) ) {
 			# Don't override browser settings
 		} else {
 			# CHECK MERGE @@@
 			# Force no underline
-			$s .= 'a { ' .
-			  "text-decoration: none; }\n";
+			$s .= "a { text-decoration: none; }\n";
 		}
 		if ( 1 == $wgUser->getOption( 'highlightbroken' ) ) {
 			$s .= "a.new, #quickbar a.new { color: #CC2200; }\n";
