@@ -413,6 +413,8 @@ If upgrading from an older release, see the file UPGRADE;
 * Make conversion table for zh-sg default to zh-cn, and zh-hk default to zh-tw
 * Fix PHP notice in MonoBook when counters disabled
 * (bug 1696) Update namespaces, dates in uk localization
+* (bug 551) Installer warns about magic_quotes_runtime and magic_quotes_sybase
+  instead of trying to install with corrupt table files
 
 
 === Caveats ===
