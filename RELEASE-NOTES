@@ -10,6 +10,7 @@ Changes from 1.3.5:
 * (bug 296) Variables in user interface messages are no longer substituted
   at install time, so changes to the site name etc should be easier to make
 * (bug 149) Special:Recentchanges "changes from" link preserves limit
+* (bug 433) tooltip for "Undelete" tab now labeled correctly
 * Fixed potential HTML/JavaScript injection attack in the UnicodeConverter
   extension. (This extension is not enabled by default.)
 * Fixed potential HTML/JavaScript injection attack via raw page views to

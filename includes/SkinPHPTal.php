@@ -417,7 +417,7 @@ if( defined( "MEDIAWIKI" ) ) {
 					//article doesn't exist or is deleted
 					if($wgUser->isSysop()){
 						if( $n = $wgTitle->isDeleted() ) {
-							$content_actions['delete'] = array(
+							$content_actions['undelete'] = array(
 								'class' => false,
 								'text' => wfMsg( "undelete_short", $n ),
 								'href' => $this->makeSpecialUrl('Undelete/'.$this->thispage)
