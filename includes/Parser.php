@@ -1397,11 +1397,20 @@ class Parser
 					# ; title : definition text
 					# So we check for : in the remainder text to split up the
 					# title and definition, without b0rking links.
-					# FIXME: This is not foolproof. Something better in Tokenizer might help.
-					if( preg_match( '/^(.*?):(.*)$/', $t, $match ) ) {
-						$term = $match[1];
+					# Don't count ':' in a URL
+					$pos = 0;
+					while (($colon = strpos($t, ':', $pos)) !== false) {
+						$m1 = substr($t, 0, $colon);
+						$m2 = substr($t, $colon + 1);
+						if (!preg_match('/(?:'.URL_PROTOCOLS.')$/', $m1)) {
+							break;
+						}
+						$pos = $colon + 1;
+					}
+					if( $colon !== false ) {
+						$term = $m1;
 						$output .= $term . $this->nextItem( ':' );
-						$t = $match[2];
+						$t = $m2;
 					}
 				}
 			} elseif( $prefixLength || $lastPrefixLength ) {
@@ -1422,10 +1431,19 @@ class Parser
 
 					if ( ';' == $char ) {
 						# FIXME: This is dupe of code above
-						if( preg_match( '/^(.*?):(.*)$/', $t, $match ) ) {
-							$term = $match[1];
+						$pos = 0;
+						while (($colon = strpos($t, ':', $pos)) !== false) {
+							$m1 = substr($t, 0, $colon);
+							$m2 = substr($t, $colon + 1);
+							if (!preg_match('/(?:'.URL_PROTOCOLS.')$/', $m1)) {
+								break;
+							}
+							$pos = $colon + 1;
+						}
+						if( $colon !== false ) {
+							$term = $m1;
 							$output .= $term . $this->nextItem( ':' );
-							$t = $match[2];
+							$t = $m2;
 						}
 					}
 					++$commonPrefixLength;
