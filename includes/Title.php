@@ -1400,7 +1400,7 @@ class Title {
 	/* private */ function moveOverExistingRedirect( &$nt ) {
 		global $wgUser, $wgLinkCache, $wgUseSquid, $wgMwRedir;
 		$fname = 'Title::moveOverExistingRedirect';
-		$comment = wfMsg( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
+		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 		
 		$now = wfTimestampNow();
 		$won = wfInvertTimestamp( $now );
@@ -1527,7 +1527,7 @@ class Title {
 		global $wgUser, $wgLinkCache, $wgUseSquid;
 		global $wgMwRedir;
 		$fname = 'MovePageForm::moveToNewTitle';
-		$comment = wfMsg( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
+		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
