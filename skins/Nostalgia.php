@@ -1,23 +1,31 @@
 <?php
-# See skin.doc
+/**
+ * See skin.doc
+ *
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Skins
+ */
 
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Skins
+ */
 class SkinNostalgia extends Skin {
 
-	function initPage()
-	{
+	function initPage() {
 		# ...
 	}
 
-	function getStylesheet()
-	{
-		return "nostalgia.css";
+	function getStylesheet() {
+		return 'nostalgia.css';
 	}
 	function getSkinName() {
 		return "nostalgia";
 	}
 
-	function doBeforeContent()
-	{
+	function doBeforeContent() {
 		global $wgUser, $wgOut, $wgTitle, $wgSiteNotice;
 
 		$s = "\n<div id='content'>\n<div id='topbar'>";
@@ -44,8 +52,7 @@ class SkinNostalgia extends Skin {
 		return $s;
 	}
 
-	function topLinks()
-	{
+	function topLinks() {
 		global $wgOut, $wgUser;
 		$sep = " |\n";
 
@@ -66,8 +73,7 @@ class SkinNostalgia extends Skin {
 		return $s;
 	}
 
-	function doAfterContent()
-	{
+	function doAfterContent() {
 		global $wgUser, $wgOut;
 
 		$s = "\n</div><br clear='all' />\n";
