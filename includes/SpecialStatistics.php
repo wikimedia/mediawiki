@@ -36,7 +36,7 @@ function wfSpecialStatistics()
 	$total = $row->total;
 
 	$sql = "SELECT COUNT(user_id) AS total FROM user " .
-	  "WHERE user_rights <> ''";
+	  "WHERE user_rights LIKE '%sysop%'";
 	$res = wfQuery( $sql, $fname );
 	$row = wfFetchObject( $res );
 	$admins = $row->total;
