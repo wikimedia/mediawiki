@@ -148,7 +148,7 @@ function indexShowChunk( $from )
 		$out2 .= " | " . $sk->makeKnownLink(
 			$wgLang->specialPage( "Allpages" ),
 			wfMsg ( 'nextpage', $s->cur_title ),
-			"from=" . wfStrencode( $s->cur_title ) );
+			"from=" . urlencode( $s->cur_title ) );
 	}
 	$out2 .= "</div>";
 

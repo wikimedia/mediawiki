@@ -4,6 +4,10 @@
 
 # Exit if there are not enough parameters, or if it's not command line mode
 
+if( php_sapi_name() != 'cli' ) {
+	die('');
+}
+
 $output = "";
 if ( ( isset( $_REQUEST ) && array_key_exists( "argv", $_REQUEST ) ) || count( $argv ) < 4 ) {
 	$output .= "Incorrect parameters\n";

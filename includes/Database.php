@@ -460,7 +460,7 @@ class Database {
 		if( function_exists( "mysql_thread_id" ) ) {
 			# This will kill the query if it's still running after $timeout seconds.
 			$tid = mysql_thread_id( $this->mConn );
-			exec( "php $IP/killthread.php $timeout $tid &>/dev/null &" );
+			exec( "php $IP/includes/killthread.php " . IntVal( $timeout ) . " $tid &>/dev/null &" );
 		}
 	}
 
