@@ -94,9 +94,11 @@ class MessageCache
 	
 	function getKeys() {
 		global $wgAllMessagesEn, $wgLang;
-		$ucfirst = get_class($wgLang) . "::ucfirst";
 		if ( !$this->mKeys ) {
-			$this->mKeys = array_map( $ucfirst, array_keys( $wgAllMessagesEn ) );
+			$this->mKeys = array();
+			foreach ( $wgAllMessagesEn as $key => $value ) {
+				array_push( $wgLang->ucfirst( $key ), $this->mKeys );
+			}
 		}
 		return $this->mKeys;
 	}
