@@ -23,9 +23,9 @@ $skinDir = dir($IP.'/skins');
 
 # while code from www.php.net
 while (false !== ($file = $skinDir->read())) {
-	if(preg_match('/^(.*).php$/',$file, $matches)) {
+	if(preg_match('/^([^.].*)\.php$/',$file, $matches)) {
 		$aSkin = $matches[1];
-	$wgValidSkinNames[strtolower($aSkin)] = $aSkin;
+		$wgValidSkinNames[strtolower($aSkin)] = $aSkin;
 	}
 }
 $skinDir->close();
