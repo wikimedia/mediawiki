@@ -2,13 +2,13 @@
 
 function wfSpecialAllmessages()
 {
-	global $wgUser, $wgOut, $wgAllMessagesEn, $wgServer, $wgScript, $wgLang;
+	global $wgUser, $wgOut, $wgAllMessagesEn, $wgServer, $wgScript, $wgLang, $wgMessageCache;
 	
 	$talk = $wgLang->getNsText( NS_TALK );
 	$mwnspace = $wgLang->getNsText( NS_MEDIAWIKI );
 	$mwtalk = $wgLang->getNsText( NS_MEDIAWIKI_TALK );
 	$mwMsg =& MagicWord::get( MAG_MSG );
-	$navText = str_replace( "$1", "allmessagestext", $mwMsg->getSynonym( 0 ) );
+	$navText = str_replace( "$1", $mwMsg->getSynonym( 0 ), wfMsg("allmessagestext" ) );
 	$navText .= "
 
 <table border=1 cellspacing=0 width=100%><tr bgcolor=#b2b2ff><td>
@@ -28,7 +28,9 @@ function wfSpecialAllmessages()
 		$titleObj = Title::newFromText( $key );
 		$title = $titleObj->getDBkey();
 		
-		$message = wfMsgNoDB( $key );
+		$wgMessageCache->disable();
+		$message = wfMsg( $key );
+		$wgMessageCache->enable();
 		$mw = wfMsg ( $key );
 
 		$colorIt = ($message == $mw) ? " bgcolor=\"#f0f0ff\"" : " bgcolor=\"#ffe2e2\"";
