@@ -13,8 +13,9 @@
     <script type="text/javascript" src="${stylepath}/wikibits.js"></script>
     <script type="text/javascript"> /*<![CDATA[*/ if(addcss){addcss('${stylepath}/${skinname}/');} /*]]>*/</script>
     <style tal:condition="rtl" type="text/css">/*<![CDATA[*/@import url(${stylepath}/${skinname}/rtl.css);/*]]>*/</style>
-    <style tal:condition="usercss" type="text/css">/*<![CDATA[*/ @import url(${usercss}); /*]]>*/</style>
-    <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script>
+    <style tal:condition="usercss" type="text/css">/*<![CDATA[*/ ${usercss} /*]]>*/</style>
+    <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script><script 
+      tal:condition="userjsprev" type="text/javascript">/*<![CDATA[*/${userjsprev}/*]]>*/</script>
   </head>
 
   <body tal:attributes="ondblclick body-ondblclick|default">

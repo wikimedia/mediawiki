@@ -486,19 +486,20 @@ class Title {
 	# Can $wgUser edit this page?
 	function userCanEdit()
 	{
-		global $wgUser;
 
 		if ( -1 == $this->mNamespace ) { return false; }
 		# if ( 0 == $this->getArticleID() ) { return false; }
 		if ( $this->mDbkeyform == "_" ) { return false; }
+		//if ( $this->isCssJsSubpage() and !$this->userCanEditCssJsSubpage() ) { return false; }
 		# protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
+		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssJsSubpage() from working
+		global $wgUser;
 		if( Namespace::getUser() == $this->mNamespace
 			and preg_match("/\\.(css|js)$/", $this->mTextform )
 			and !$wgUser->isSysop()
 			and !preg_match("/^".$wgUser->getName()."/", $this->mTextform) )
 		{ return false; }
-
 		$ur = $wgUser->getRights();
 		foreach ( $this->getRestrictions() as $r ) {
 			if ( "" != $r && ( ! in_array( $r, $ur ) ) ) {
@@ -506,6 +507,22 @@ class Title {
 			}
 		}
 		return true;
+	}
+
+	function isCssJsSubpage() {
+		return ( Namespace::getUser() == $this->mNamespace and preg_match("/\\.(css|js)$/", $this->mTextform ) );
+	}
+	function isCssSubpage() {
+		return ( Namespace::getUser() == $this->mNamespace and preg_match("/\\.css$/", $this->mTextform ) );
+	}
+	function isJsSubpage() {
+		return ( Namespace::getUser() == $this->mNamespace and preg_match("/\\.js$/", $this->mTextform ) );
+	}
+	function userCanEditCssJsSubpage() {
+		# protect css/js subpages of user pages
+		# XXX: this might be better using restrictions
+		global $wgUser;
+		return ( $wgUser->isSysop() or preg_match("/^".$wgUser->getName()."/", $this->mTextform) );
 	}
 
 	# Accessor/initialisation for mRestrictions

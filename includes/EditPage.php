@@ -106,12 +106,14 @@ class EditPage {
 	{
 		global $wgOut, $wgUser;
 		global $wgLang, $wgParser, $wgTitle;
-	    global $wgAllowAnonymousMinor;
-	    global $wgWhitelistEdit;
+		global $wgAllowAnonymousMinor;
+		global $wgWhitelistEdit;
 		global $wgSpamRegex;
 
 		$sk = $wgUser->getSkin();
 		$isConflict = false;
+		// css / js subpages of user pages get a special treatment
+		$isCssJsSubpage = Namespace::getUser() == $wgTitle->getNamespace() and preg_match("/\\.(css|js)$/", $wgTitle->getText() );
 
 		if(!$this->mTitle->getArticleID()) { # new article
 			$wgOut->addWikiText(wfmsg("newarticletext"));
@@ -178,7 +180,7 @@ class EditPage {
 			} else {
 				# switch from section editing to normal editing in edit conflict
 				if($isConflict) {
-                    # Attempt merge
+					# Attempt merge
 					if( $this->mergeChangesInto( $text ) ){
 						// Successful merge! Maybe we should tell the user the good news?
 						$isConflict = false;
@@ -287,7 +289,7 @@ class EditPage {
 		$copywarn = wfMsg( "copyrightwarning", $sk->makeKnownLink(
 		  wfMsg( "copyrightpage" ) ) );
 
-		if( $wgUser->getOption("showtoolbar") ) {
+		if( $wgUser->getOption("showtoolbar") and !$isCssJsSubpage ) {
 			# prepare toolbar for edit buttons
 			$toolbar = $sk->getEditToolbar();
 		} else {
@@ -337,15 +339,27 @@ class EditPage {
 			$parserOptions->setUseCategoryMagic( false );
 			$parserOptions->setEditSection( false );
 			$parserOptions->setEditSectionOnRightClick( false );
-			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $previewtext ) ."\n\n",
+			# don't parse user css/js, show message about preview
+			# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here
+			if ( $isCssJsSubpage ) {
+				if(preg_match("/\\.css$/", $wgTitle->getText() ) ) {
+					$previewtext = wfMsg('usercsspreview');
+				} else if(preg_match("/\\.js$/", $wgTitle->getText() ) ) {
+					$previewtext = wfMsg('userjspreview');
+				}
+				$parserOutput = $wgParser->parse( $previewtext , $wgTitle, $parserOptions );
+				$wgOut->addHTML( $parserOutput->mText );
+			} else {
+				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $previewtext ) ."\n\n",
 				$wgTitle, $parserOptions );
-			$previewHTML = $parserOutput->mText;
+				$previewHTML = $parserOutput->mText;
 
-			if($wgUser->getOption("previewontop")) {
-				$wgOut->addHTML($previewhead);
-				$wgOut->addHTML($previewHTML);
+				if($wgUser->getOption("previewontop")) {
+					$wgOut->addHTML($previewhead);
+					$wgOut->addHTML($previewHTML);
+				}
+				$wgOut->addHTML( "<br style=\"clear:both;\" />\n" );
 			}
-			$wgOut->addHTML( "<br clear=\"all\" />\n" );
 		}
 
 		# if this is a comment, show a subject line at the top, which is also the edit summary.
