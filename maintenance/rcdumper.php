@@ -1,10 +1,13 @@
 <?
 
 $wgCommandLineMode = true;
+$fmB = chr(2);
+$fmU = chr(31);
 
 $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
 if ( $argv[1] ) {
 	$lang = $argv[1];
+	putenv( "wikilang=$lang");
 	$settingsFile = "/apache/htdocs/{$argv[1]}/w/LocalSettings.php";
 	$newpath = "/apache/common/php$sep";
 } else {
@@ -13,7 +16,6 @@ if ( $argv[1] ) {
 }
 
 if ( $argv[2] ) {
-	print $argv[2] . "\n";
 	$patterns = explode( ",", $argv[2]);
 } else {
 	$patterns = false;
@@ -25,12 +27,11 @@ if ( ! is_readable( $settingsFile ) ) {
 	exit();
 }
 
+ini_set( "include_path", "$newpath$IP$sep$include_path" );
+
 $wgCommandLineMode = true;
 $DP = "../includes";
 include_once( $settingsFile );
-
-ini_set( "include_path", "$newpath$IP$sep$include_path" );
-
 include_once( "Setup.php" );
 $wgTitle = Title::newFromText( "RC dumper" );
 $wgCommandLineMode = true;
@@ -42,6 +43,7 @@ $oldTimestamp = $row->rc_timestamp;
 
 while (1) {
 	$res = wfQuery( "SELECT * FROM recentchanges WHERE rc_timestamp>'$oldTimestamp' ORDER BY rc_timestamp", DB_READ );
+	$rowIndex = 0;
 	while ( $row = wfFetchObject( $res ) ) {
 		$ns = $wgLang->getNsText( $row->rc_namespace ) ;
 		if ( $ns ) {
@@ -59,7 +61,15 @@ while (1) {
 		$comment = str_replace($bad, $empty, $comment);
 		$title = str_replace($bad, $empty, $title);
 		$user = str_replace($bad, $empty, $row->rc_user_text);
-		$url = "http://$lang.wikipedia.org/wiki/" . urlencode($title);
+		$lastid = IntVal($row->rc_last_oldid);
+		$flag = ($row->rc_minor ? "M" : "") . ($row->rc_new ? "N" : "");
+		if ( $row->rc_new ) {
+			$url = "http://$lang.wikipedia.org/wiki/" . urlencode($title);
+		} else {
+			$url = "http://$lang.wikipedia.org/w/wiki.phtml?title=" . urlencode($title) .
+				"&diff=0&oldid=$lastid";
+		}
+		$boldTitle = $fmB . str_replace("_", " ", $title) . $fmB;
 
 		if ( $patterns ) {
 			foreach ( $patterns as $pattern ) {
@@ -68,9 +78,19 @@ while (1) {
 					break;
 				}
 			}
-		}		
-		print( "$url     ($user) $comment\n" );
+		}
+		if ( $comment !== "" ) {
+			$comment = "($comment)";
+		}
+		
+		$fullString = "$boldTitle   $flag   $url   $user $comment\n"; 
+
+		if ( $fullString{0} == "/" ) {
+			$fullString = " $fullString";
+		}
+		print( $fullString );
 		$oldTimestamp = $row->rc_timestamp;
+		sleep(1);
 	}
 	sleep(5);
 }
