@@ -8,9 +8,11 @@
 
 function dropTextIndex()
 {
-	echo "Dropping index...\n";
-	$sql = "ALTER TABLE searchindex DROP INDEX si_title, DROP INDEX si_text";
-	$res = wfQuery($sql, DB_WRITE, "dropTextIndex" );
+	if ( wfIndexExists( "searchindex", "si_title" ) ) {
+		echo "Dropping index...\n";
+		$sql = "ALTER TABLE searchindex DROP INDEX si_title, DROP INDEX si_text";
+		$res = wfQuery($sql, DB_WRITE, "dropTextIndex" );
+	}
 }
 
 function createTextIndex()

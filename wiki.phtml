@@ -40,28 +40,28 @@ if ( "" == $title && "delete" != $action ) {
 } else {
 	$wgTitle = Title::newFromURL( $title );
 #	if( $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" or strncmp($wgTitle->getDBkey(),"_",1) == 0 ) {
-	if( $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" ) {
+	if( !$wgTitle or $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" ) {
+		$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 		$wgOut->errorpage( "badtitle", "badtitletext" );
 		$wgOut->output();
 		exit;
 	}
 }
-wfProfileOut();
-if ( -1 == $wgTitle->getNamespace() ) {
+wfProfileOut( "main-misc-setup" );
+
+if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
 	wfSpecialPage();
 } else if ( "" != $search ) {
-	include_once( "$IP/SearchEngine.php" );
 	if($go) {
-	
-		wfGo ($search);
-	
+		wfGo( $search );
 	} else {
-	
 		wfSearch( $search );
-		
 	}
-		
 } else {
+	if ( Namespace::getMedia() == $wgTitle->getNamespace() ) {
+		$wgTitle = Title::makeTitle( Namespace::getImage(), $wgTitle->getDBkey() );
+	}	
+	
 	switch( $wgTitle->getNamespace() ) {
 	case 6:
 		include_once( "$IP/ImagePage.php" );

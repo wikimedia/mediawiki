@@ -36,6 +36,7 @@ include_once( "$IP/Article.php" );
 include_once( "$IP/MagicWord.php" );
 include_once( "$IP/MemCachedClient.inc.php" );
 include_once( "$IP/Block.php" );
+include_once( "$IP/SearchEngine.php" );
 
 wfProfileOut( "$fname-includes" );
 wfProfileIn( "$fname-memcached" );
@@ -75,7 +76,6 @@ if( ! class_exists( $wgLangClass ) ) {
 	$wgLangClass = "LanguageUtf8";
 }
 $wgLang = new $wgLangClass();
-
 
 $wgUser = User::loadFromSession();
 $wgDeferredUpdateList = array();

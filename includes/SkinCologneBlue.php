@@ -19,7 +19,7 @@ class SkinCologneBlue extends Skin {
 		$qb = $this->qbSetting();
 
 		$s .= "\n<div id='content'>\n<div id='topbar'>" .
-		  "<table width='98%' border=0 cellspacing=0 cellpadding=8><tr>";
+		  "<table width='100%' border=0 cellspacing=0 cellpadding=8><tr>";
 
 		$s .= "<td class='top' align=left valign=middle nowrap>";
 		$s .= "<a href=\"" . wfLocalUrlE( wfMsg( "mainpage" ) ) . "\">";

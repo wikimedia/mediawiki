@@ -75,7 +75,7 @@ Downloads:
   apc-cvs.tar.gz
 
 And for math support:
-  ocaml-3.06.tar.gz
+  ocaml-3.06.tar.gz (3.04 doesn't work)
   (TeTeX, ImageMagick, and GhostScript come with most Linux distros)
 
 1. MySQL strongly recommends using gcc 2.95 to compile MySQL.

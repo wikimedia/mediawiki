@@ -3,10 +3,15 @@
 function wfSpecialUpload()
 {
 	global $wgUser, $wgOut, $wpUpload, $wpReUpload, $action;
-
+	global $wgDisableUploads;
+	
 	$fields = array( "wpUploadFile", "wpUploadDescription" );
 	wfCleanFormFields( $fields );
 
+    if ( $wgDisableUploads ) {
+    	$wgOut->addWikiText( wfMsg( "uploaddisabled" ) );
+    	return;
+    }
 	if ( ( 0 == $wgUser->getID() )
 		or $wgUser->isBlocked() ) {
 		$wgOut->errorpage( "uploadnologin", "uploadnologintext" );

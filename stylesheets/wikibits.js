@@ -74,7 +74,7 @@ function toggleToc() {
 	}
 }
 
-
+/* CHECK MERGE @@@ */
 /* Temporary hack for Mozilla bug; revert to quirks mode handling of <hr> */
 if(navigator.userAgent &&
    navigator.userAgent.indexOf('Gecko') != -1 &&

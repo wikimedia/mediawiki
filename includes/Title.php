@@ -15,7 +15,6 @@ class Title {
 		$this->mNamespace = 0;
 		$this->mRestrictionsLoaded = false;
 		$this->mRestrictions = array();
-		$this->mPrefixedText = false;
 	}
 
 	# Static factory methods
@@ -28,7 +27,6 @@ class Title {
 			return $t;
 		else
 			return NULL;
-		return $t;
 	}
 
 	function newFromText( $text )
@@ -189,7 +187,8 @@ class Title {
 
 	function getPrefixedText()
 	{
-		if ( $this->mPrefixedText === false ) {
+	   # TEST THIS @@@
+		if ( empty( $this->mPrefixedText ) ) {
 			$s = $this->prefix( $this->mTextform );
 			$s = str_replace( "_", " ", $s );
 			$this->mPrefixedText = $s;
@@ -244,7 +243,7 @@ class Title {
 	{
 		return wfEscapeHTML( $this->getPrefixedText() );
 	}
-
+	
 	function isExternal() { return ( "" != $this->mInterwiki ); }
 
 	function isProtected()
@@ -337,6 +336,14 @@ class Title {
 		$this->mRestrictionsLoaded = false;
 		$this->mRestrictions = array();
 	}
+	
+	function invalidateCache() {
+		$now = wfTimestampNow();
+		$ns = $this->getNamespace();
+		$ti = wfStrencode( $this->getDBkey() );
+		$sql = "UPDATE cur SET cur_touched='$now' WHERE cur_namespace=$ns AND cur_title='$ti'";
+		return wfQuery( $sql, "Title::invalidateCache" );
+	}
 
 	/* private */ function prefix( $name )
 	{
@@ -399,7 +406,7 @@ class Title {
 		if ( ":" == $t{0} ) {
 			$r = substr( $t, 1 );
 		} else {
-	 		if ( preg_match( "/^((?:i|x|[a-z]{2,3})(?:-[a-z0-9]+)?|[A-Za-z0-9_\\x80-\\xff]+):(.*)$/", $t, $m ) ) {
+	 		if ( preg_match( "/^((?:i|x|[a-z]{2,3})(?:-[a-z0-9]+)?|[A-Za-z0-9_\\x80-\\xff]+):_*(.*)$/", $t, $m ) ) {
 				#$p = strtolower( $m[1] );
 				$p = $m[1];
 				if ( $ns = $wgLang->getNsIndex( strtolower( $p ) )) {

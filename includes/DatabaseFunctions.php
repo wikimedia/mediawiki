@@ -95,28 +95,31 @@ function wfEmergencyAbort( $msg = "" ) {
 # Replication is not actually implemented just yet
 function wfQuery( $sql, $db, $fname = "" )
 {
-	global $wgLastDatabaseQuery, $wgOut;
-##	wfProfileIn( "wfQuery" );
+	global $wgLastDatabaseQuery, $wgOut, $wgDebugDumpSql;
+	$profName = "wfQuery(\"" . strtr( substr($sql, 0, 80 ), "\t\n\r", "   " ) . "...\")";
+	wfProfileIn( $profName );
 
 	if ( !is_numeric( $db ) ) {
 		# Someone has tried to call this the old way
-		$wgOut->fatalError( wfMsgNoDB( "wrong_wfQuery_params" ) );
+		$wgOut->fatalError( wfMsgNoDB( "wrong_wfQuery_params", $db, $sql ) );
 	}
 	
 	$wgLastDatabaseQuery = $sql;
+	
+	if( $wgDebugDumpSql ) {
+		$sqlx = substr( $sql, 0, 500 );
+		$sqlx = wordwrap(strtr($sqlx,"\t\n","  "));
+		wfDebug( "SQL: $sqlx\n" );
+	}
+
 	$conn = wfGetDB();
 	$ret = mysql_query( $sql, $conn );
 
-	if ( "" != $fname ) {
-#		wfDebug( "{$fname}:SQL: {$sql}\n", true );
-	} else {
-#		wfDebug( "SQL: {$sql}\n", true );
-	}
 	if ( false === $ret ) {
 		$wgOut->databaseError( $fname );
 		exit;
 	}
-##	wfProfileOut();
+	wfProfileOut( $profName );
 	return $ret;
 }
 
@@ -189,4 +192,34 @@ function wfInvertTimestamp( $ts ) {
 	);
 }
 
+function wfFieldExists( $table, $field )
+{
+	$fname = "wfFieldExists";
+	$res = wfQuery( "DESCRIBE $table", DB_READ, $fname );
+	$found = false;
+	
+	while ( $row = wfFetchObject( $res ) ) {
+		if ( $row->Field == $field ) {
+			$found = true;
+			break;
+		}
+	}
+	return $found;
+}
+
+function wfIndexExists( $table, $index ) 
+{
+	global $wgDBname;
+	$fname = "wfIndexExists";
+	$sql = "SHOW INDEXES FROM $table";
+	$res = wfQuery( $sql, DB_READ, $fname );
+	$found = false;
+	while ( $row = wfFetchObject( $res ) ) {
+		if ( $row->Key_name == $index ) {
+			$found = true;
+			break;
+		}
+	}
+	return $found;
+}
 ?>

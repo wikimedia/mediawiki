@@ -65,7 +65,6 @@ function wfSpecialPreferences()
 	global $wpSkin, $wpMath, $wpDate, $wpEmail, $wpEmailFlag, $wpNick, $wpSearch, $wpRecent;
 	global $wpSearchLines, $wpSearchChars, $wpStubs;
 	global $wpRows, $wpCols, $wpHourDiff, $HTTP_POST_VARS;
-	global $wpNs0, $wpNs1, $wpNs2, $wpNs3, $wpNs4, $wpNs5, $wpNs6, $wpNs7;
 
 	if ( "" != $wpNewpass ) {
 		if ( $wpNewpass != $wpRetype ) {
@@ -95,16 +94,17 @@ function wfSpecialPreferences()
 	$wgUser->setOption( "cols", validateInt( $wpCols, 4, 1000 ) );
 	$wgUser->setOption( "stubthreshold", validateIntOrNull( $wpStubs ) );
 	$wgUser->setOption( "timecorrection", validateIntOrNull( $wpHourDiff, -12, 14 ) );
-
-	$wgUser->setOption( "searchNs0", validateCheckbox( $wpNs0 ) );
-	$wgUser->setOption( "searchNs1", validateCheckbox( $wpNs1 ) );
-	$wgUser->setOption( "searchNs2", validateCheckbox( $wpNs2 ) );
-	$wgUser->setOption( "searchNs3", validateCheckbox( $wpNs3 ) );
-	$wgUser->setOption( "searchNs4", validateCheckbox( $wpNs4 ) );
-	$wgUser->setOption( "searchNs5", validateCheckbox( $wpNs5 ) );
-	$wgUser->setOption( "searchNs6", validateCheckbox( $wpNs6 ) );
-	$wgUser->setOption( "searchNs7", validateCheckbox( $wpNs7 ) );
-
+	
+	$namespaces = $wgLang->getNamespaces();
+	# Set search namespace options
+	# Note: namespaces don't necessarily have consecutive keys
+	foreach ( $namespaces as $i => $namespaces ) {
+		if ( $i >= 0 ) {
+			$nsvar = "wpNs$i";
+			global $$nsvar;
+			$wgUser->setOption( "searchNs{$i}", validateCheckbox( $$nsvar ) );
+		}
+	}
 
 	$wgUser->setOption( "disablemail", validateCheckbox( $wpEmailFlag ) );
 
@@ -155,37 +155,32 @@ function wfSpecialPreferences()
 	}
 }
 
-
-
-
 /* private */ function namespacesCheckboxes()
 {
 	global $wgLang, $wgUser;
-	$nscb = array();
-
 	
-	for ($i = 0; ($i < 8); $i++)
-	{
-		$nscb[$i] = $wgUser->getOption( "searchNs".$i );
-	}
-
 	# Determine namespace checkboxes
-
-	$ns = $wgLang->getNamespaces();
-	array_shift( $ns ); /* Skip "Special" */
-
+	$namespaces = $wgLang->getNamespaces();
 	$r1 = "";
-	for ( $i = 0; $i < count( $ns ); ++$i ) {
-		$checked = "";
-		if ( $nscb[$i] == 1 ) {
-			$checked = " checked";
-		}
-		$name = str_replace( "_", " ", $ns[$i] );
-		if ( "" == $name ) { $name = wfMsg( "blanknamespace" ); }
 
-		if ( 0 != $i ) { $r1 .= " "; }
-		$r1 .= "<label><input type=checkbox value=\"1\" name=\"" .
-		  "wpNs{$i}\"{$checked}>{$name}</label>\n";
+	foreach ( $namespaces as $i => $name ) {
+		# Skip special or anything similar
+		if ( $i >= 0 ) {
+			$checked = "";
+			if ( $wgUser->getOption( "searchNs$i" ) ) {
+				$checked = " checked";
+			}
+			$name = str_replace( "_", " ", $namespaces[$i] );
+			if ( "" == $name ) { 
+				$name = wfMsg( "blanknamespace" ); 
+			}
+
+			if ( 0 != $i ) { 
+				$r1 .= " "; 
+			}
+			$r1 .= "<label><input type=checkbox value=\"1\" name=\"" .
+			  "wpNs$i\"{$checked}>{$name}</label>\n";
+		}
 	}
 	
 	return $r1;

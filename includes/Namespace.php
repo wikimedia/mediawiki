@@ -10,6 +10,7 @@ class Namespace {
 	function getUser() { return 2; }
 	function getWikipedia() { return 4; }
 	function getImage() { return 6; }
+	function getMedia() { return -2; }
 
 	function isMovable( $index )
 	{

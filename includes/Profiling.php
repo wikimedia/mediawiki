@@ -1,7 +1,5 @@
 <?
 # This file is only included if profiling is enabled
-$wgDebugProfiling = true;
-
 function wfProfileIn( $functionname )
 {
 	global $wgProfiler;
@@ -40,12 +38,20 @@ class Profiler
 	
 	function profileIn( $functionname )
 	{
+		global $wgDebugFunctionEntry;
+		if ( $wgDebugFunctionEntry && function_exists( "wfDebug" ) ) {
+			wfDebug( "Entering $functionname\n" );
+		}
 		array_push( $this->mWorkStack, array($functionname, count( $this->mWorkStack ), microtime() ) );
 	}
 
 	function profileOut( $functionname) 
 	{
-		global $wgDebugProfiling;
+		global $wgDebugProfiling, $wgDebugFunctionEntry;
+		if ( $wgDebugFunctionEntry && function_exists( "wfDebug" ) ) {
+			wfDebug( "Exiting $functionname\n" );
+		}
+		
 		$bit = array_pop( $this->mWorkStack );
 		
 		if ( !$bit ) {
@@ -75,9 +81,9 @@ class Profiler
 		if( !count( $this->mStack ) ) {
 			return "No profiling output\n";
 		}
-		
-		$format = "%-49s %6d %6.3f %6.3f %6.3f%%\n";
-		$titleFormat = "%-49s %9s %9s %9s %9s\n";
+		$width = 125;
+		$format = "%-" . ($width - 28) . "s %6d %6.3f %6.3f %6.3f%%\n";
+		$titleFormat = "%-" . ($width - 28) . "s %9s %9s %9s %9s\n";
 		$prof = "\nProfiling data\n";
 		$prof .= sprintf( $titleFormat, "Name", "Calls", "Total", "Each", "%" );
 		$this->mCollated = array();

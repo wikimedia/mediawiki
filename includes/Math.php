@@ -2,8 +2,8 @@
 
 function linkToMathImage ( $tex, $outputhash )
 {
-    global $wgMathPath;
-    return "<img src=\"".$wgMathPath."/".$outputhash.".png\" alt=\"".wfEscapeHTML($tex)."\">";
+	global $wgMathPath;
+	return "<img src=\"".$wgMathPath."/".$outputhash.".png\" alt=\"".wfEscapeHTML($tex)."\">";
 }
 
 function renderMath( $tex )
@@ -26,8 +26,18 @@ function renderMath( $tex )
 	$sql = "SELECT math_outputhash,math_html_conservativeness,math_html FROM math WHERE math_inputhash = '".$md5_sql."'";
 
     $res = wfQuery( $sql, DB_READ, $fname );
-    if ( wfNumRows( $res ) == 0 )
-    {
+
+	if( $rpage = wfFetchObject ( $res ) ) {
+		$outputhash = unpack( "H32md5", $rpage->math_outputhash . "                " );
+		$outputhash = $outputhash ['md5'];
+		if( file_exists( "$wgMathDirectory/$outputhash.png" ) ) {
+			if (($math == 0) || ($rpage->math_html == '') || (($math == 1) && ($rpage->math_html_conservativeness != 2)) || (($math == 4) && ($rpage->math_html_conservativeness == 0)))
+			    return linkToMathImage ( $tex, $outputhash );
+			else
+		    	return $rpage->math_html;
+		}
+	}
+	
 	$cmd = "./math/texvc ".escapeshellarg($wgTmpDirectory)." ".
 		      escapeshellarg($wgMathDirectory)." ".escapeshellarg($tex)." ".escapeshellarg($wgInputEncoding);
 	$contents = `$cmd`;
@@ -94,23 +104,13 @@ function renderMath( $tex )
 
 	$sql = "REPLACE INTO math VALUES ('".$md5_sql."', '".$outmd5_sql."', ".$conservativeness.", ".$sql_html.", ".$sql_mathml.")";
 	
-	$res = wfQuery( $sql, DB_WRITE, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 	# we don't really care if it fails
 
 	if (($math == 0) || ($rpage->math_html == '') || (($math == 1) && ($conservativeness != 2)) || (($math == 4) && ($conservativeness == 0)))
 	    return linkToMathImage($tex, $outmd5);
 	else
 	    return $outhtml;
-    } else {
-	$rpage = wfFetchObject ( $res );
-	$outputhash = unpack( "H32md5", $rpage->math_outputhash . "                " );
-	$outputhash = $outputhash ['md5'];
-	
-	if (($math == 0) || ($rpage->math_html == '') || (($math == 1) && ($rpage->math_html_conservativeness != 2)) || (($math == 4) && ($rpage->math_html_conservativeness == 0)))
-	    return linkToMathImage ( $tex, $outputhash );
-	else
-	    return $rpage->math_html;
-    }
 }
 
 ?>

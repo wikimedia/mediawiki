@@ -87,6 +87,7 @@ function wfShowIndirectLinks( $level, $lid )
 		$nt = Title::newFromDBkey( $row->l_from );
 		if( !$nt ) {
 			$wgOut->addHTML( "<!-- bad backlink: " . htmlspecialchars( $row->l_from ) . " -->\n" );
+			continue;
 		}
 		$ns = $nt->getNamespace();
 		$t = wfStrencode( $nt->getDBkey() );

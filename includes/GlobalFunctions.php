@@ -25,6 +25,17 @@ if ( phpversion() == "4.0.6" ) {
 	}
 }
 
+if( !function_exists('iconv') ) {
+	# Assume will only ever use utf-8 and iso-8859-1.
+	# This will *not* work in all circumstances.
+	function iconv( $from, $to, $string ) {
+		if(strcasecmp( $from, to ) == 0) return $string;
+		if(strcasecmp( $from, "utf-8" ) == 0) return utf8_decode( $string );
+		if(strcasecmp( $to, "utf-8" ) == 0) return utf8_encode( $string );
+		return $string;
+	}
+}
+
 $wgRandomSeeded = false;
 
 function wfSeedRandom()
@@ -78,6 +89,8 @@ function wfImageUrl( $img )
 	global $wgUploadPath;
 
 	$nt = Title::newFromText( $img );
+	if( !$nt ) return "";
+
 	$name = $nt->getDBkey();
 	$hash = md5( $name );
 
@@ -130,12 +143,12 @@ function wfMungeToUtf8($string) {
 
 function wfDebug( $text, $logonly = false )
 {
-	global $wgOut, $wgDebugLogFile, $wgDebugComments;
+	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly;
 
 	if ( $wgDebugComments && !$logonly ) {
 		$wgOut->debug( $text );
 	}
-	if ( "" != $wgDebugLogFile ) {
+	if ( "" != $wgDebugLogFile && !$wgProfileOnly ) {
 		error_log( $text, 3, $wgDebugLogFile );
 	}
 }
@@ -462,6 +475,9 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 	  }
 	else $textdesc = $desc ;
 
+	$now = wfTimestampNow();
+	$won = wfInvertTimestamp( $now );
+	
 	if ( 0 == wfNumRows( $res ) ) {
 		$sql = "INSERT INTO image (img_name,img_size,img_timestamp," .
 		  "img_description,img_user,img_user_text) VALUES ('" .

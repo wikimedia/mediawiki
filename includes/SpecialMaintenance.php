@@ -47,7 +47,7 @@ function wfSpecialMaintenance( $par=NULL )
 	$l = $l[0] ;
 	$r .= $l.">\n" ;
 	$r .= "<input type=submit name='submitmll' value='" ;
-	$r .= wfMsg("missinglanguagelinksbutton");
+	$r .= htmlspecialchars(wfMsg("missinglanguagelinksbutton"), ENT_QUOTES);
 	$r .= "'>\n" ;
 	$r .= "<select name=thelang>\n" ;
 	$a = $wgLang->getLanguageNames();

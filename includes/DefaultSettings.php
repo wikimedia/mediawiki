@@ -6,6 +6,9 @@
 # like $wgScriptPath, you must also localize everything that
 # depends on it.
 
+$wgSitename         = "Wikipedia";
+$wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
+
 $wgServer           = "http://" . getenv( "SERVER_NAME" );
 $wgScriptPath	    = "/wiki";
 $wgScript           = "{$wgScriptPath}/wiki.phtml";
@@ -27,7 +30,6 @@ $wgPasswordSender	= "Wikipedia Mail <apache@www.wikipedia.org>\r\nReply-To: webm
 #
 $wgDBserver         = "localhost";
 $wgDBname           = "wikidb";
-$wgDBintlname       = "intl";
 $wgDBconnection     = "";
 $wgDBuser           = "wikiuser";
 $wgDBpassword       = "userpass";
@@ -48,7 +50,6 @@ $wgMemCachedDebug   = false;
 #
 $wgLanguageCode     = "en";
 $wgInterwikiMagic	= true; # Treat language links as magic connectors, not inline links
-$wgUseNewInterlanguage = false;
 $wgInputEncoding	= "ISO-8859-1";
 $wgOutputEncoding	= "ISO-8859-1";
 $wgEditEncoding		= "";
@@ -65,6 +66,9 @@ $wgUseDynamicDates	= true; # Allows the user to pick their preferred date format
 # Not recommended unless memcached is installed
 $wgUseDatabaseMessages = false;
 
+$wgExtraSubtitle	= "";
+$wgSiteSupportPage	= "";
+
 # Miscellaneous configuration settings
 #
 $wgReadOnlyFile         = "{$wgUploadDirectory}/lock_yBgMBwiR";
@@ -74,40 +78,16 @@ $wgReadOnly             = false;
 $wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
 $wgLogQueries           = false;
 $wgUseBetterLinksUpdate = true;
+$wgUseCategoryMagic		= false;
+$wgEnablePersistentLC	= false; # Persistent link cache, needs the linkscc table
 
-# User rights settings
+# User rights 
+$wgWhitelistEdit = false;
+$wgWhitelistRead = false;
+$wgWhitelistAccount = array ( "user" => 1, "sysop" => 1, "developer" => 1 );
 $wgSysopUserBans        = false; # Allow sysops to ban logged-in users
 $wgIPBlockExpiration    = 86400; # IP blocks expire after this many seconds, 0=infinite
 $wgUserBlockExpiration  = 0; # As above, but for logged-in users
-
-# The following three config variables are used to define
-# the rights of users in your system. 
-#
-# If wgWhitelistEdit is set to true, only logged in users
-# are allowed to edit articles.
-# If wgWhitelistRead is set to true, only logged in users
-# are allowed to read articles.
-#
-# wgWhitelistAccount lists user types that can add user accounts:
-# "key" => 1 defines permission if user has right "key".
-#
-# Typical setups are:
-#
-# Everything goes (this is the default behaviour):
-# $wgWhitelistEdit = false;
-# $wgWhitelistRead = false;
-# $wgWhitelistAccount = array ( "user" => 1, "sysop" => 1, "developer" => 1 );
-#
-# Invitation-only closed shop type of system
-# $wgWhitelistEdit = true;
-# $wgWhitelistRead = true;
-# $wgWhitelistAccount = array ( "user" => 0, "sysop" => 1, "developer" => 1 );
-#
-# Public website, closed editorial team
-# $wgWhitelistEdit = true;
-# $wgWhitelistRead = false;
-# $wgWhitelistAccount = array ( "user" => 0, "sysop" => 1, "developer" => 1 );
-
 
 # Client-side caching:
 $wgCachePages       = true; # Allow client-side caching of pages
@@ -128,7 +108,20 @@ $wgCookieExpiration = 2592000;
 $wgAllowExternalImages = true;
 $wgMiserMode = false; # Disable database-intensive features
 $wgUseTeX = false;
+
+# Profiling / debugging
 $wgProfiling = false; # Enable for more detailed by-function times in debug log
+$wgProfileLimit = 0.0; # Only record profiling info for pages that took longer than this
+$wgProfileOnly = false; # Don't put non-profiling info into log file
+$wgDebugProfiling = false; # Detects non-matching wfProfileIn/wfProfileOut calls
+$wgDebugFunctionEntry = 0; # Output debug message on every wfProfileIn/wfProfileOut
+
+
+$wgDisableCounters = false;
+$wgDisableTextSearch = false;
+$wgDisableSearchUpdate = false; # If you've disabled search semi-permanently, this also disables updates to the table. If you ever re-enable, be sure to rebuild the search table.
+$wgDisableUploads = false;
+$wgDisableAnonTalk = false;
 
 # We can serve pages compressed in order to save bandwidth,
 # but this will increase CPU usage.

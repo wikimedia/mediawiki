@@ -1,6 +1,6 @@
 <?
-global $IP;
-include_once( "$IP/SpecialRecentchanges.php" );
+include_once( "SpecialRecentchanges.php" );
+include_once( "WatchedItem.php" );
 
 function wfSpecialWatchlist()
 {
@@ -25,11 +25,8 @@ function wfSpecialWatchlist()
 		foreach($id as $one) {
 			$t = Title::newFromURL( $one );
 			if($t->getDBkey() != "") {
-				$sql = "DELETE FROM watchlist WHERE wl_user=$uid AND " .
-					"wl_namespace=" . $t->getNamespace() . " AND " .
-					"wl_title='" . wfStrencode( $t->getDBkey() ) . "'";
-				$res = wfQuery( $sql, DB_WRITE );
-				if($res === FALSE) {
+				$wl = WatchedItem::fromUserTitle( $wgUser, $t );
+				if( $wl->removeWatch() === false ) {
 					$wgOut->addHTML( "<br />\n" . wfMsg( "couldntremove", htmlspecialchars($one) ) );
 				} else {
 					$wgOut->addHTML( " (" . htmlspecialchars($one) . ")" );

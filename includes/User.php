@@ -1,6 +1,8 @@
 <?
 # See user.doc
 
+include_once( "WatchedItem.php" );
+
 class User {
 	/* private */ var $mId, $mName, $mPassword, $mEmail, $mNewtalk;
 	/* private */ var $mRights, $mOptions;
@@ -196,10 +198,11 @@ class User {
 			}
 			wfFreeResult( $res );
 		} else {
+		  	# TEST THIS @@@
 			global $wgDBname, $wgMemc;
 			$key = "$wgDBname:newtalk:ip:{$this->mName}";
 			$newtalk = $wgMemc->get( $key );
-/*			if($newtalk === false) {
+			if($newtalk === false) {
 				$sql = "SELECT 1 FROM user_newtalk WHERE user_ip='{$this->mName}'";
 				$res = wfQuery ($sql, DB_READ, "User::loadFromDatabase" );
 
@@ -207,9 +210,9 @@ class User {
 				wfFreeResult( $res );
 
 				$wgMemc->set( $key, $this->mNewtalk, time() ); // + 1800 );
-			} else {*/
+			} else {
 				$this->mNewtalk = $newtalk ? 1 : 0;
-#			}
+			}
 		}
 		if(!$this->mId) {
 			$this->mDataLoaded = true;
@@ -404,45 +407,21 @@ class User {
 		return $this->mSkin;
 	}
 
-	function isWatched( $title )
-	{
-		# Note - $title should be a Title _object_
-		# Pages and their talk pages are considered equivalent for watching;
-		# remember that talk namespaces are numbered as page namespace+1.
-		if( $this->mId ) {
-			$sql = "SELECT 1 FROM watchlist
-			  WHERE wl_user={$this->mId} AND
-			  wl_namespace = " . ($title->getNamespace() & ~1) . " AND
-			  wl_title='" . wfStrencode( $title->getDBkey() ) . "'";
-			$res = wfQuery( $sql, DB_READ );
-			return (wfNumRows( $res ) > 0);
-		} else {
-			return false;
-		}
+	function isWatched( $title ) {
+		$wl = WatchedItem::fromUserTitle( $this, $title );
+		return $wl->isWatched();
 	}
-
-	function addWatch( $title )
-	{
-		if( $this->mId ) {
-			# REPLACE instead of INSERT because occasionally someone
-			# accidentally reloads a watch-add operation.
-			$sql = "REPLACE INTO watchlist (wl_user, wl_namespace,wl_title)
-			  VALUES ({$this->mId}," . (($title->getNamespace() | 1) - 1) .
-			  ",'" . wfStrencode( $title->getDBkey() ) . "')";
-			wfQuery( $sql, DB_WRITE );
-			$this->invalidateCache();
-		}
+	
+	function addWatch( $title ) {
+		$wl = WatchedItem::fromUserTitle( $this, $title );
+		$wl->addWatch();
+		$this->invalidateCache();
 	}
-
-	function removeWatch( $title )
-	{
-		if( $this->mId ) {
-			$sql = "DELETE FROM watchlist WHERE wl_user={$this->mId} AND
-			  wl_namespace=" . (($title->getNamespace() | 1) - 1) .
-			  " AND wl_title='" . wfStrencode( $title->getDBkey() ) . "'";
-			wfQuery( $sql, DB_WRITE );
-            $this->invalidateCache();
-		}
+	
+	function removeWatch( $title ) {
+		$wl = WatchedItem::fromUserTitle( $this, $title );
+		$wl->removeWatch();
+		$this->invalidateCache();
 	}
 
 
@@ -525,7 +504,6 @@ class User {
 		  "user_touched= '" . wfStrencode( $this->mTouched ) .
 		  "' WHERE user_id={$this->mId}";
 		wfQuery( $sql, DB_WRITE, "User::saveSettings" );
-		#$wgMemc->replace( "$wgDBname:user:id:$this->mId", $this );
 		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
 	}
 
