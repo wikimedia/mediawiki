@@ -14,20 +14,20 @@
  */
 function wfSpecialContributions( $par = '' ) {
 	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest;
-	$fname = "wfSpecialContributions";
+	$fname = 'wfSpecialContributions';
 
 	if( $par )
 		$target = $par;
 	else
 		$target = $wgRequest->getVal( 'target' );
 
-	if ( "" == $target ) {
-		$wgOut->errorpage( "notargettitle", "notargettext" );
+	if ( '' == $target ) {
+		$wgOut->errorpage( 'notargettitle', 'notargettext' );
 		return;
 	}
 
 	# FIXME: Change from numeric offsets to date offsets
-	list( $limit, $offset ) = wfCheckLimits( 50, "" );
+	list( $limit, $offset ) = wfCheckLimits( 50, '' );
 	$offlimit = $limit + $offset;
 	$querylimit = $offlimit + 1;
 	$hideminor = ($wgRequest->getVal( 'hideminor' ) ? 1 : 0);
@@ -37,7 +37,7 @@ function wfSpecialContributions( $par = '' ) {
 
 	$nt = Title::newFromURL( $target );
 	if ( !$nt ) {
-		$wgOut->errorpage( "notargettitle", "notargettext" );
+		$wgOut->errorpage( 'notargettitle', 'notargettext' );
 		return;
 	}
 	$nt->setNamespace( Namespace::getUser() );
@@ -48,39 +48,39 @@ function wfSpecialContributions( $par = '' ) {
 		$ul = $nt->getText();
 	} else {
 		$ul = $sk->makeLinkObj( $nt, htmlspecialchars( $nt->getText() ) );
-		$userCond = "=" . $id;
+		$userCond = '=' . $id;
 	}
 	$talk = $nt->getTalkPage();
 	if( $talk ) {
-		$ul .= " (" . $sk->makeLinkObj( $talk, $wgLang->getNsText(Namespace::getTalk(0)) ) . ")";
+		$ul .= ' (' . $sk->makeLinkObj( $talk, $wgLang->getNsText(Namespace::getTalk(0)) ) . ')';
 	}
 
 
 	if ( $target == 'newbies' ) {
 		# View the contributions of all recently created accounts
 		$max = $dbr->selectField( 'user', 'max(user_id)', false, $fname );
-		$userCond = ">" . ($max - $max / 100);
+		$userCond = '>' . ($max - $max / 100);
 		$ul = wfMsg ( 'newbies' );
 		$id = 0;
 	}
 
-	$wgOut->setSubtitle( wfMsg( "contribsub", $ul ) );
+	$wgOut->setSubtitle( wfMsg( 'contribsub', $ul ) );
 
 	if ( $hideminor ) {
-		$cmq = "AND cur_minor_edit=0";
-		$omq = "AND old_minor_edit=0";
-		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
-	  	  WfMsg( "show" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
+		$cmq = 'AND cur_minor_edit=0';
+		$omq = 'AND old_minor_edit=0';
+		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
+	  	  WfMsg( 'show' ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&offset={$offset}&limit={$limit}&hideminor=0" );
 	} else {
-		$cmq = $omq = "";
+		$cmq = $omq = '';
 		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
-	  	  WfMsg( "hide" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
+	  	  WfMsg( 'hide' ), 'target=' . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&offset={$offset}&limit={$limit}&hideminor=1" );
 	}
 
 	extract( $dbr->tableNames( 'old', 'cur' ) );
-	if ( $userCond == "" ) {
+	if ( $userCond == '' ) {
 		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM $cur " .
 		  "WHERE cur_user_text='" . $dbr->strencode( $nt->getText() ) . "' {$cmq} " .
 		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
@@ -106,16 +106,16 @@ function wfSpecialContributions( $par = '' ) {
 	$wgOut->addHTML( "<p>{$top}\n" );
 
 	$sl = wfViewPrevNext( $offset, $limit,
-	  $wgContLang->specialpage( "Contributions" ),
+	  $wgContLang->specialpage( 'Contributions' ),
 	  "hideminor={$hideminor}&target=" . wfUrlEncode( $target ),
 	  ($nCur + $nOld) <= $offlimit);
 
-        $shm = wfMsg( "showhideminor", $mlink );
+        $shm = wfMsg( 'showhideminor', $mlink );
 	$wgOut->addHTML( "<br />{$sl} ($shm)</p>\n");
 
 
 	if ( 0 == $nCur && 0 == $nOld ) {
-		$wgOut->addHTML( "\n<p>" . wfMsg( "nocontribs" ) . "</p>\n" );
+		$wgOut->addHTML( "\n<p>" . wfMsg( 'nocontribs' ) . "</p>\n" );
 		return;
 	}
 	if ( 0 != $nCur ) { $obj1 = $dbr->fetchObject( $res1 ); }
@@ -250,7 +250,7 @@ function ucDaysLink( $lim, $d ) {
 
 	$target = $wgRequest->getText( 'target' );
 	$sk = $wgUser->getSkin();
-	$s = $sk->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
+	$s = $sk->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
 	  "{$d}", "target={$target}&days={$d}&limit={$lim}" );
 	return $s;
 }
