@@ -220,6 +220,15 @@ $wgCacheEpoch = '20030516000000';
 $wgUseFileCache = false;
 $wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
 
+# When using the file cache, we can store the cached HTML gzipped to save disk
+# space. Pages will then also be served compressed to clients that support it.
+# THIS IS NOT COMPATIBLE with ob_gzhandler which is now enabled if supported in
+# the default LocalSettings.php! If you enable this, remove that setting first.
+#
+# Requires zlib support enabled in PHP.
+$wgUseGzip = false;
+
+
 $wgCookieExpiration = 2592000;
 
 # Squid-related settings
@@ -279,11 +288,6 @@ $wgDisableSearchUpdate = false; # If you've disabled search semi-permanently, th
 $wgDisableUploads = true; # Uploads have to be specially set up to be secure
 $wgRemoteUploads = false; # Set to true to enable the upload _link_ while local uploads are disabled. Assumes that the special page link will be bounced to another server where uploads do work.
 $wgDisableAnonTalk = false;
-
-# We can serve pages compressed in order to save bandwidth,
-# but this will increase CPU usage.
-# Requires zlib support enabled in PHP.
-$wgUseGzip = function_exists( 'gzencode' );
 
 # Path to the GNU diff3 utility. If the file doesn't exist,
 # edit conflicts will fall back to the old behaviour (no merging).
