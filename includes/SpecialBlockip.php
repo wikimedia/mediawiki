@@ -46,15 +46,11 @@ class IPBlockForm {
 	}
 	
 	function showForm( $err ) {
-		global $wgOut, $wgUser, $wgLang, $wgDefaultBlockExpiry;
+		global $wgOut, $wgUser, $wgLang, $wgBlockExpiryOptions;
 		global $wgRequest;
 
 		$wgOut->setPagetitle( htmlspecialchars( wfMsg( 'blockip' ) ) );
 		$wgOut->addWikiText( htmlspecialchars( wfMsg( 'blockiptext' ) ) );
-
-		if ( is_null( $this->BlockExpiry ) || $this->BlockExpiry === '' ) {
-			$this->BlockExpiry = $wgDefaultBlockExpiry;
-		}
 
 		$mIpaddress = htmlspecialchars( wfMsg( 'ipaddress' ) );
 		$mIpbexpiry = htmlspecialchars( wfMsg( 'ipbexpiry' ) );
@@ -71,6 +67,10 @@ class IPBlockForm {
 		$scBlockAddress = htmlspecialchars( $this->BlockAddress );
 		$scBlockExpiry = htmlspecialchars( $this->BlockExpiry );
 		$scBlockReason = htmlspecialchars( $this->BlockReason );
+
+		$blockExpiryOptions = join("</option><option>", split(",", $wgBlockExpiryOptions));
+		$blockExpiryOptions = "<option>" . $blockExpiryOptions . "</option>";
+
 		$token = htmlspecialchars( $wgUser->editToken() );
 		
 		$wgOut->addHTML( "
@@ -85,17 +85,8 @@ class IPBlockForm {
 		<tr>
 			<td align=\"right\">{$mIpbexpiry}:</td>
 			<td align=\"left\">
-				<select name=\"wpBlockExpiry\"/>
-					<option>2 hours</option>
-					<option>1 day</option>
-					<option>3 days</option>
-					<option>1 week</option>	
-					<option>2 weeks</option>	
-					<option>1 month</option>
-					<option>3 months</option>
-					<option>6 months</option>
-					<option>1 year</option>
-					<option>indefinite</option>
+				<select tabindex='2' name=\"wpBlockExpiry\"/>
+					<?= $blockExpiryOptions ?>
 				</select>
 			</td>
 		</tr>
@@ -169,6 +160,7 @@ class IPBlockForm {
 
 		}
 		
+
 		if ( $this->BlockReason == '') {
 			$this->showForm( wfMsg( 'noblockreason' ) );
 			return;
@@ -181,7 +173,6 @@ class IPBlockForm {
 			$this->BlockReason, wfTimestampNow(), 0, $expiry );
 		
 		if (wfRunHooks('BlockIp', $ban, $wgUser)) {
-			
 			$ban->insert();
 			
 			wfRunHooks('BlockIpComplete', $ban, $wgUser);
