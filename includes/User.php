@@ -144,7 +144,7 @@ class User {
 		}
 		session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain );
 		session_cache_limiter( "private, must-revalidate" );
-		session_start();
+		@session_start();
 	}
 
 	/* static */ function loadFromSession()
