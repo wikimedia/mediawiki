@@ -74,7 +74,7 @@ Naming/coding conventions:
   follow these guidelines, it will probably be easier for you
   to collaborate with others on the project, but if you want
   to contribute without bothering, by all means do so (and don't
-  be surprized if I reformat your code).
+  be surprised if I reformat your code).
 
   - I have the code indented with tabs to save file size and
     so that users can set their tab stops to any depth they like.
@@ -114,6 +114,6 @@ Naming/coding conventions:
     that's probably an error).
 
     Other conventions: Top-level functions are wfFuncname(), names
-    if session variables are wsName, cookies wcName, and form field
+    of session variables are wsName, cookies wcName, and form field
     values wpName ("p" for "POST").
 
