@@ -625,7 +625,7 @@ class User {
 		# If the user is already blocked with an expiry date, we don't 
 		# want to pile on top of that!
 		if($userblock->mExpiry) {
-			$ipblock->mExpiry = $userblock->mExpiry;
+			$ipblock->mExpiry = min ( $userblock->mExpiry, Block::getAutoblockExpiry( $ipblock->mTimestamp ));
 		} else {
 			$ipblock->mExpiry = Block::getAutoblockExpiry( $ipblock->mTimestamp );
 		}
