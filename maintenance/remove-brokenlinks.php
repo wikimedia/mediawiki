@@ -15,7 +15,7 @@ $n = 0;
 echo "Checking for broken brokenlinks...\n";
 
 $dbw =& wfGetDB( DB_MASTER );
-extract( $dbw->tableNames( 'brokenlinks', 'cur', 'linkscc' );
+extract( $dbw->tableNames( 'brokenlinks', 'cur', 'linkscc' ) );
 
 $res = $dbw->select( 'cur', array( 'cur_namespace', 'cur_title', 'cur_id' ), false );
 
