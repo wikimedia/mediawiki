@@ -268,8 +268,10 @@ class UtfNormal {
 		UtfNormal::loadData();
 		global $utfCheckNFC, $utfCombiningClass;
 		
-		static $checkit = null, $tailBytes = null;
+		static $checkit = null, $tailBytes = null, $utfCheckOrCombining = null;
 		if( !isset( $checkit ) ) {
+			$utfCheckOrCombining = array_merge( $utfCheckNFC, $utfCombiningClass );
+
 			# Head bytes for sequences which we should do further validity checks
 			$checkit = array_flip( array_map( 'chr',
 					array( 0xc0, 0xc1, 0xe0, 0xed, 0xef,
@@ -335,6 +337,8 @@ class UtfNormal {
 						}
 						
 						# We have come to the end of the sequence...
+						$tail = false;
+						
 						if( isset( $checkit[$head] ) ) {
 							# Do some more detailed validity checks, for
 							# invalid characters and illegal sequences.
@@ -344,7 +348,6 @@ class UtfNormal {
 								# this check separately.
 								if( $sequence >= UTF8_SURROGATE_FIRST ) {
 									echo UTF8_REPLACEMENT;
-									$tail = false;
 									continue;
 								}
 							} else {
@@ -358,14 +361,12 @@ class UtfNormal {
 									|| ($n == 0xf0 && $sequence <= UTF8_OVERLONG_C)
 									|| ($n >= 0xf0 && $sequence > UTF8_MAX) ) {
 									echo UTF8_REPLACEMENT;
-									$tail = false;
 									continue;
 								}
 							}
 						}
 						
-						if( isset( $utfCheckNFC[$sequence] ) ||
-							isset( $utfCombiningClass[$sequence] ) ) {
+						if( isset( $utfCheckOrCombining[$sequence] ) ) {
 							# If it's NO or MAYBE, we'll have to rip
 							# the string apart and put it back together.
 							# That's going to be mighty slow.
@@ -374,12 +375,10 @@ class UtfNormal {
 						
 						# The sequence is legal!
 						echo $sequence;
-						$tail = false;
 						$head = '';
 						continue;
 					}
 					# Not a valid tail byte! DIscard the char we've been building.
-					#printf ("Invalid '%x' in tail with %d remaining bytes\n", $n, $remaining );
 					$tail = false;
 					echo UTF8_REPLACEMENT;
 				}
@@ -399,6 +398,8 @@ class UtfNormal {
 				}
 			}
 			if( $tail ) {
+				# We ended the chunk in the middle of a sequence;
+				# that's so not cool.
 				echo UTF8_REPLACEMENT;
 			}
 		}
