@@ -154,10 +154,11 @@ class LinkCache {
 			if( $row != FALSE){
 				$cacheobj = gzuncompress( $row->lcc_cacheobj );
 				$cc = unserialize( $cacheobj );
-				$this->mGoodLinks = $cc->mGoodLinks;
-				$this->mBadLinks = $cc->mBadLinks;
+				$this->mOldGoodLinks = $this->mGoodLinks = $cc->mGoodLinks;
+				$this->mOldBadLinks = $this->mBadLinks = $cc->mBadLinks;
 				$this->mPreFilled = true;
 				wfProfileOut( $fname );
+				wfDebug( "LinkCache::preFill - got from linkscc\n" );
 				return;
 			} 
 		}
@@ -194,6 +195,7 @@ class LinkCache {
 			$serCachegz = wfStrencode( gzcompress( serialize( $this ), 3) );
 			wfQuery("REPLACE INTO linkscc VALUES({$id}, '{$dbkeyfrom}', '{$serCachegz}')", 
 				DB_WRITE);
+				wfDebug( "LinkCache::preFill - saved to linkscc\n" );
 		}
 
 		wfProfileOut( $fname );
@@ -206,6 +208,8 @@ class LinkCache {
 
 	function getBadAdditions() 
 	{
+		#wfDebug( "mOldBadLinks: " . implode( ', ', array_keys( $this->mOldBadLinks ) ) . "\n" );
+		#wfDebug( "mBadLinks: " . implode( ', ', array_keys( $this->mBadLinks ) ) . "\n" );
 		return array_values( array_diff( array_keys( $this->mBadLinks ), array_keys( $this->mOldBadLinks ) ) );
 	}
 

@@ -492,6 +492,7 @@ class Article {
 			  "WHERE rc_cur_id=" . $this->getID();
 			wfQuery( $sql, DB_WRITE, $fname );
 			
+			global $wgEnablePersistentLC;
 			if ( $wgEnablePersistentLC ) {
 
 				// Purge link cache for this page 
