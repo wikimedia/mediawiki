@@ -132,10 +132,6 @@ function wfSpecialRecentchanges( $par ) {
 	$batch = new LinkBatch;
 	while( $row = $dbr->fetchObject( $res ) ){
 		$rows[] = $row;
-		
-		// Title
-		$batch->add( $row->rc_namespace, $row->rc_title );
-
 		// User page link
 		$title = Title::makeTitleSafe( NS_USER, $row->rc_user_text );
 		$batch->addObj( $title );
