@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${lang}" lang="${lang}" dir="${dir}">
+  <head>
+    <meta http-equiv="Content-Type" content="${mimetype}; charset=${charset}" />
+    ${headlinks}
+    <title tal:content="pagetitle">Exciting xhtml slimfast</title>
+    <style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "${stylepath}/${skinname}/main.css"; /*]]>*/</style>
+    <script type="text/javascript" tal:attributes="src jsvarurl"></script>
+    <script type="text/javascript" src="${stylepath}/wikibits.js"></script>
+    <style tal:condition="usercss" type="text/css">/*<![CDATA[*/ ${usercss} /*]]>*/</style>
+    <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script><script
+      tal:condition="userjsprev" type="text/javascript">/*<![CDATA[*/${userjsprev}/*]]>*/</script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div class="searchBox">
+      <form name="searchform" action="${searchaction}" id="searchform">
+        <input id="searchInput" name="search" type="text" size="15"
+        i18n:attributes="accesskey string:accesskey-search | default" />
+        <input type='submit' name="go" value="Go" class="searchButton"
+        i18n:attributes="value string:go" />&nbsp;<input type='submit' name="fulltext"
+        value="Search" class="searchButton" i18n:attributes="value string:search" />
+      </form>
+    </div>
+    <div id="siteNotice" tal:condition="sitenotice" tal:content="structure sitenotice"></div>
+    <h1 class="firstHeading" tal:content="title">Leonardo da Vinci</h1>
+    <div id="siteSub" i18n:translate="string:fromwikipedia">From Wikipedia, the free encyclopedia.</div>
+    <div id="contentSub" tal:content="structure subtitle"></div>
+    <div id="contentUndel" tal:condition="undelete" tal:content="structure undelete"></div>
+    <div tal:condition="newtalk" class="usermessage" tal:content="structure newtalk"></div>
+    <div tal:condition="catlinks" id="catlinks" tal:content="structure catlinks"></div>
+    <!-- start content -->
+        ${bodytext}
+    <!-- end content -->
+    <hr />
+
+    <div id="p-cactions" class="portlet">
+      <strong>Views:</strong>
+      <span tal:repeat="action content_actions"> <a
+         tal:attributes="id string:ca-${repeat/action/key}; class action/class|default;
+            href action/href|default" tal:content="action/text">Linktext</a> </span>
+    </div>
+
+    <div class="portlet" id="p-personal">
+      <strong><span i18n:translate="string:personaltools">Personal Tools</span>:</strong>
+      <span tal:repeat="item personal_urls"> <a
+         tal:attributes="id string:pt-${repeat/item/key}; href item/href;
+            class item/class|default" tal:content="item/text">Log in</a> </span>
+    </div>
+
+    <div class="portlet" id="p-nav">
+      <strong><span i18n:translate="string:navigation">Navigation</span>:</strong>
+      <a href="${nav_urls/mainpage/href}" i18n:translate="string:mainpage">Main Page</a>
+      <a href="${nav_urls/portal/href}" i18n:translate="string:portal">Community Portal</a>
+      <a href="${nav_urls/currentevents/href}" i18n:translate="string:currentevents">Current Events</a>
+      <a href="${nav_urls/recentchanges/href}" i18n:translate="string:recentchanges">Recent Changes</a>
+      <a href="${nav_urls/randompage/href}" i18n:translate="string:randompage">Random Page</a>
+      <a href="${nav_urls/help/href}" i18n:translate="string:help">Help</a>
+      <a tal:condition="nav_urls/sitesupport/href" href="${nav_urls/sitesupport/href}"
+        i18n:translate="string:sitesupport">Donations</a>
+    </div>
+
+    <div class="portlet" id="p-tb">
+      <strong><span i18n:translate="string:toolbox">Toolbox</span>:</strong>
+      <a href="${nav_urls/whatlinkshere/href}" i18n:translate="string:whatlinkshere">What links here</a>
+      <a href="${nav_urls/recentchangeslinked/href}" i18n:translate="string:recentchangeslinked">Related Changes</a>
+      <span tal:condition="feeds" id="feedlinks">
+        <span i18n:translate="string:feedlinks">Feeds:</span>
+        <span tal:repeat="feed feeds"> <a tal:attributes="id string:feed-${repeat/feed/key};
+              href feed/href;" tal:content="feed/text">rss</a> </span>
+      </span>
+      <a tal:condition="nav_urls/contributions/href" href="${nav_urls/contributions/href}" i18n:translate="string:contributions">Contributions</a>
+      <a tal:condition="nav_urls/emailuser/href" href="${nav_urls/emailuser/href}" i18n:translate="string:emailuser">Email this user</a>
+      <a tal:condition="loggedin" href="${nav_urls/upload/href}" i18n:translate="string:upload">Upload a file</a>
+      <a href="${nav_urls/specialpages/href}" i18n:translate="string:specialpages">Special Pages</a>
+    </div>
+
+    <div id="p-lang" class="portlet" tal:condition="language_urls">
+      <strong><span i18n:translate="string:otherlanguages">Other languages</span>:</strong>
+      <span tal:repeat="langlink language_urls"> <a tal:attributes="href langlink/href"
+         tal:content="structure langlink/text">English</a> </span>
+    </div>
+
+    <hr style="clear: both;" />
+
+    <div id="footer">
+      <span tal:condition="poweredbyico">${poweredbyico}</span>
+      <span tal:condition="copyrightico">${copyrightico}</span>
+      <ul id="f-list">
+        <li id="f-lastmod" tal:condition="lastmod">${lastmod}</li>
+        <li id="f-viewcount" tal:condition="viewcount">${viewcount}</li>
+        <li id="f-credits" tal:condition="credits">${credits}</li>
+        <li id="f-copyright" tal:condition="copyright">${copyright}</li>
+        <li id="f-about" tal:condition="about">${about}</li>
+        <li id="f-disclaimer" tal:condition="disclaimer">${disclaimer}</li>
+      </ul>
+    </div>
+    ${reporttime}
+  </body>
+</html>
