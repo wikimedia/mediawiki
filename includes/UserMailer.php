@@ -44,10 +44,10 @@ function userMailer( $to, $from, $subject, $body )
 	else
 	{
 		$headers =
-			"MIME-Version: 1.0\r\n" .
-			"Content-type: text/plain; charset={$wgOutputEncoding}\r\n" .
-			"Content-transfer-encoding: 8bit\r\n" .
-			"From: {$from}\r\n" .
+			"MIME-Version: 1.0\n" .
+			"Content-type: text/plain; charset={$wgOutputEncoding}\n" .
+			"Content-transfer-encoding: 8bit\n" .
+			"From: {$from}\n" .
 			"X-Mailer: MediaWiki interuser e-mailer";
 
 		$wgErrorString = "";
