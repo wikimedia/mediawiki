@@ -935,26 +935,39 @@ class Title {
 		$linksToOld = $this->getLinksTo();
 		$linksToNew = $nt->getLinksTo();
 		
-		# Make function to convert Titles to IDs
-		$titleToID = create_function('$t', 'return $t->getArticleID();');
+		# Delete them all
+		$sql = "DELETE FROM links WHERE l_to=$oldid OR l_to=$newid";
+		wfQuery( $sql, DB_WRITE, $fname );
 
-		# Reassign links to old title
-		if ( count( $linksToOld ) ) {
-			$sql = "UPDATE links SET l_to=$newid WHERE l_from IN (";
-			$sql .= implode( ",", array_map( $titleToID, $linksToOld ) );
-			$sql .= ")";
+		# Reinsert
+		if ( count( $linksToOld ) || count( $linksToNew )) {
+			$sql = "INSERT INTO links (l_from,l_to) VALUES ";
+			$first = true;
+
+			# Insert links to old title
+			foreach ( $linksToOld as $linkTitle ) {
+				if ( $first ) {
+					$first = false;
+				} else {
+					$sql .= ",";
+				}
+				$id = $linkTitle->getArticleID();
+				$sql .= "($id,$newid)";
+			}
+
+			# Insert links to new title
+			foreach ( $linksToNew as $linkTitle ) {
+				if ( $first ) {
+					$first = false;
+				} else {
+					$sql .= ",";
+				}
+				$id = $linkTitle->getArticleID();
+				$sql .= "($id, $oldid)";
+			}
+
 			wfQuery( $sql, DB_WRITE, $fname );
 		}
-		
-		# Reassign links to new title
-		if ( count( $linksToNew ) ) {
-			$sql = "UPDATE links SET l_to=$oldid WHERE l_from IN (";
-			$sql .= implode( ",", array_map( $titleToID, $linksToNew ) );
-			$sql .= ")";
-			wfQuery( $sql, DB_WRITE, $fname );
-		}
-
-		# Note: the insert below must be after the updates above!
 
 		# Now, we record the link from the redirect to the new title.
 		# It should have no other outgoing links...
