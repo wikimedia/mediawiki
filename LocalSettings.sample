@@ -40,6 +40,8 @@ $wgSitename         = "MediaWiki";
 
 # Normally the server will be auto-detected, but you can
 # force the base URL. Don't forget http:// (or https://)!
+# If you are running php as CGI, the $_SERVER variable might
+# not be set, you will then need to manually set $wgServer
 #
 #$wgServer           = "http://www.myhost.com";
 
