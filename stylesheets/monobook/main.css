@@ -659,7 +659,7 @@ div.townBox dl dd {
     top: 0;
     left: 0;
     height: 155px;
-    width: 135px;
+    width: 12em;
     overflow: visible;
 }
 #portlet-logo h5 { display: none; }
@@ -667,7 +667,7 @@ div.townBox dl dd {
 #portlet-logo a:hover {
     display: block;
     height: 155px;
-    width: 135px;
+    width: 12.2em;
     background-repeat: no-repeat;
     text-decoration: none;
 }
