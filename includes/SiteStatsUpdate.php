@@ -33,7 +33,7 @@ class SiteStatsUpdate {
 
 		$sql = "UPDATE LOW_PRIORITY site_stats SET " . implode ( ",", $a ) .
 		  " WHERE ss_row_id=1";
-		wfQuery( $sql, "SiteStatsUpdate::doUpdate" );
+		wfQuery( $sql, DB_WRITE, "SiteStatsUpdate::doUpdate" );
 	}
 }
 

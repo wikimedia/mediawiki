@@ -49,20 +49,20 @@ function wfSpecialContributions( $par = "" )
 		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment FROM cur " .
 		  "WHERE cur_user_text='" . wfStrencode( $nt->getText() ) . "' {$cmq} " .
 		  "ORDER BY inverse_timestamp LIMIT {$offset}, {$limit}";
-		$res1 = wfQuery( $sql, $fname );
+		$res1 = wfQuery( $sql, DB_READ, $fname );
 
 		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment FROM old " .
 		  "WHERE old_user_text='" . wfStrencode( $nt->getText() ) . "' {$omq} " .
 		  "ORDER BY inverse_timestamp LIMIT {$offset}, {$limit}";
-		$res2 = wfQuery( $sql, $fname );
+		$res2 = wfQuery( $sql, DB_READ, $fname );
 	} else {
 		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment FROM cur " .
 		  "WHERE cur_user={$id} {$cmq} ORDER BY inverse_timestamp LIMIT {$offset}, {$limit}";
-		$res1 = wfQuery( $sql, $fname );
+		$res1 = wfQuery( $sql, DB_READ, $fname );
 
 		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment FROM old " .
 		  "WHERE old_user={$id} {$omq} ORDER BY inverse_timestamp LIMIT {$offset}, {$limit}";
-		$res2 = wfQuery( $sql, $fname );
+		$res2 = wfQuery( $sql, DB_READ, $fname );
 	}
 	$nCur = wfNumRows( $res1 );
 	$nOld = wfNumRows( $res2 );

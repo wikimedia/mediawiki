@@ -85,7 +85,7 @@ function wfSpecialImagelist()
 	$text = str_replace( "$2", $bydate, $text );
 	$wgOut->addHTML( "{$text}<br>\n<p>" );
 
-	$res = wfQuery( $sql, "wfSpecialImagelist" );
+	$res = wfQuery( $sql, DB_READ, "wfSpecialImagelist" );
 	while ( $s = wfFetchObject( $res ) ) {
 		$name = $s->img_name;
 		$ut = $s->img_user_text;

@@ -11,7 +11,7 @@ function wfSpecialAncientpages()
 	  "cur_timestamp FROM cur USE INDEX (cur_timestamp) " .
 	  "WHERE cur_namespace=0 AND cur_is_redirect=0 " .
 	  " ORDER BY cur_timestamp LIMIT {$offset}, {$limit}";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 	$top = wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );

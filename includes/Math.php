@@ -25,7 +25,7 @@ function renderMath( $tex )
     else
 	$sql = "SELECT math_outputhash,math_html_conservativeness,math_html FROM math WHERE math_inputhash = '".$md5_sql."'";
 
-    $res = wfQuery( $sql, $fname );
+    $res = wfQuery( $sql, DB_READ, $fname );
     if ( wfNumRows( $res ) == 0 )
     {
 	$cmd = "./math/texvc ".escapeshellarg($wgTmpDirectory)." ".
@@ -94,7 +94,7 @@ function renderMath( $tex )
 
 	$sql = "REPLACE INTO math VALUES ('".$md5_sql."', '".$outmd5_sql."', ".$conservativeness.", ".$sql_html.", ".$sql_mathml.")";
 	
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_WRITE, $fname );
 	# we don't really care if it fails
 
 	if (($math == 0) || ($rpage->math_html == '') || (($math == 1) && ($conservativeness != 2)) || (($math == 4) && ($conservativeness == 0)))

@@ -28,7 +28,7 @@ class SearchUpdate {
 			$sql = "UPDATE LOW_PRIORITY searchindex SET si_title='" .
 			  wfStrencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) .
 			  "' WHERE si_page={$this->mId}";
-			wfQuery( $sql, "SearchUpdate::doUpdate" );
+			wfQuery( $sql, DB_WRITE, "SearchUpdate::doUpdate" );
 			return;
 		}
 		
@@ -71,7 +71,7 @@ class SearchUpdate {
 		$sql = "REPLACE DELAYED INTO searchindex (si_page,si_title,si_text) VALUES ({$this->mId},'" .
 		  wfStrencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) . "','" .
 		  wfStrencode( $text ) . "')";
-		wfQuery( $sql, "SearchUpdate::doUpdate" );
+		wfQuery( $sql, DB_WRITE, "SearchUpdate::doUpdate" );
 	}
 }
 

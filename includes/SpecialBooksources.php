@@ -34,7 +34,7 @@ class BookSourceList {
 			$sql = "SELECT cur_text FROM cur " .
 				"WHERE cur_namespace=4 and cur_title='" .
 				wfStrencode( $bstitle->getDBkey() ) . "'";
-			$res = wfQuery( $sql, $fname );
+			$res = wfQuery( $sql, DB_READ, $fname );
 			if( ( $s = wfFetchObject( $res ) ) and ( $s->cur_text != "" ) ) {	
 				$bstext = $s->cur_text;
 				$bstext = str_replace( "MAGICNUMBER", $this->mIsbn, $bstext );
