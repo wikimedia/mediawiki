@@ -45,12 +45,13 @@ function wfSpecialMovepage() {
  * @subpackage SpecialPage
  */
 class MovePageForm {
-	var $oldTitle, $newTitle; # Text input
+	var $oldTitle, $newTitle, $reason; # Text input
 		
 	function MovePageForm() {
 		global $wgRequest;
 		$this->oldTitle = $wgRequest->getText( 'wpOldTitle', $wgRequest->getVal( 'target' ) );
 		$this->newTitle = $wgRequest->getText( 'wpNewTitle' );
+		$this->reason = $wgRequest->getText( 'wpReason' );
 	}
 	
 	function showForm( $err ) {
@@ -64,26 +65,28 @@ class MovePageForm {
 		}
 
 		$ot = Title::newFromURL( $this->oldTitle );
-		$ott = $ot->getPrefixedText();
+		$oldTitle = $ot->getPrefixedText();
 		
 		$encOldTitle = htmlspecialchars( $this->oldTitle );
 		if( $this->newTitle == '' ) {
 			# Show the current title as a default
 			# when the form is first opened.
-			$encNewTitle = $ott;
+			$encNewTitle = $oldTitle;
 		} else {
 			$encNewTitle = htmlspecialchars( $this->newTitle );
 		}
+		$encReason = htmlspecialchars( $this->reason );
 
 		$wgOut->addWikiText( wfMsg( 'movepagetext' ) );
 		if ( !$ot->isTalkPage() ) {
 			$wgOut->addWikiText( wfMsg( 'movepagetalktext' ) );
 		}
 
-		$ma = wfMsg( 'movearticle' );
-		$newt = wfMsg( 'newtitle' );
-		$mpb = wfMsg( 'movepagebtn' );
+		$movearticle = wfMsg( 'movearticle' );
+		$newtitle = wfMsg( 'newtitle' );
+		$movepagebtn = wfMsg( 'movepagebtn' );
 		$movetalk = wfMsg( 'movetalk' );
+		$movereason = wfMsg( 'movereason' );
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Movepage' );
 		$action = $titleObj->escapeLocalURL( 'action=submit' );
@@ -97,14 +100,20 @@ class MovePageForm {
 <form id=\"movepage\" method=\"post\" action=\"{$action}\">
 	<table border='0'>
 		<tr>
-			<td align='right'>{$ma}:</td>
-			<td align='left'><strong>{$ott}</strong></td>
+			<td align='right'>{$movearticle}:</td>
+			<td align='left'><strong>{$oldTitle}</strong></td>
 		</tr>
 		<tr>
-			<td align='right'>{$newt}:</td>
+			<td align='right'>{$newtitle}:</td>
 			<td align='left'>
 				<input type='text' size='40' name=\"wpNewTitle\" value=\"{$encNewTitle}\" />
 				<input type='hidden' name=\"wpOldTitle\" value=\"{$encOldTitle}\" />
+			</td>
+		</tr>
+		<tr>
+			<td align='right'>{$movereason}:</td>
+			<td align='left'>
+				<input type='text' size=40 name=\"wpReason\" value=\"{$encReason}\" />
 			</td>
 		</tr>" );
 
@@ -121,7 +130,7 @@ class MovePageForm {
 		<tr>
 			<td>&nbsp;</td>
 			<td align='left'>
-				<input type='submit' name=\"wpMove\" value=\"{$mpb}\" />
+				<input type='submit' name=\"wpMove\" value=\"{$movepagebtn}\" />
 			</td>
 		</tr>
 	</table>
@@ -148,7 +157,7 @@ class MovePageForm {
 			return;
 		}
 
-		$error = $ot->moveTo( $nt );
+		$error = $ot->moveTo( $nt, true, $this->reason );
 		if ( $error !== true ) {
 			$this->showForm( wfMsg( $error ) );
 			return;
@@ -192,7 +201,7 @@ class MovePageForm {
 			$ntt = Title::makeTitle( $nns, $nt->getDBkey() );
 
 			# Attempt the move
-			$error = $ott->moveTo( $ntt );
+			$error = $ott->moveTo( $ntt, true, $this->reason );
 			if ( $error === true ) {
 				$talkmoved = 1;
 			} else {

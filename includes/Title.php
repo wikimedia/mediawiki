@@ -1404,7 +1404,7 @@ class Title {
 	 * @return mixed true on success, message name on failure
 	 * @access public
 	 */
-	function moveTo( &$nt, $auth = true ) {
+	function moveTo( &$nt, $auth = true, $reason = '' ) {
 		global $wgUser;
 		if( !$this or !$nt ) {
 			return 'badtitletext';
@@ -1441,9 +1441,9 @@ class Title {
 			if ( ! $this->isValidMoveTarget( $nt ) ) {
 				return 'articleexists';
 			}
-			$this->moveOverExistingRedirect( $nt );
+			$this->moveOverExistingRedirect( $nt, $reason );
 		} else { # Target didn't exist, do normal move.
-			$this->moveToNewTitle( $nt, $newid );
+			$this->moveToNewTitle( $nt, $newid, $reason );
 		}
 
 		# Fixing category links (those without piped 'alternate' names) to be sorted under the new title
@@ -1484,10 +1484,14 @@ class Title {
 	 * 	be a redirect
 	 * @access private
 	 */
-	/* private */ function moveOverExistingRedirect( &$nt ) {
+	/* private */ function moveOverExistingRedirect( &$nt, $reason = '' ) {
 		global $wgUser, $wgLinkCache, $wgUseSquid, $wgMwRedir;
 		$fname = 'Title::moveOverExistingRedirect';
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
+
+		if ( $reason ) {
+			$comment .= ": $reason";
+		}
 		
 		$now = wfTimestampNow();
 		$rand = wfRandom();
@@ -1535,7 +1539,7 @@ class Title {
 
 		# Log the move
 		$log = new LogPage( 'move' );
-		$log->addEntry( 'move_redir', $this, '', array( 1 => $nt->getPrefixedText() ) );
+		$log->addEntry( 'move_redir', $this, $reason, array( 1 => $nt->getPrefixedText() ) );
 		
 		# Swap links
 		
@@ -1600,11 +1604,14 @@ class Title {
 	 * @param int &$newid set to be the new article ID
 	 * @access private
 	 */
-	/* private */ function moveToNewTitle( &$nt, &$newid ) {
+	/* private */ function moveToNewTitle( &$nt, &$newid, $reason = '' ) {
 		global $wgUser, $wgLinkCache, $wgUseSquid;
 		global $wgMwRedir;
 		$fname = 'MovePageForm::moveToNewTitle';
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
+		if ( $reason ) {
+			$comment .= ": $reason";
+		}
 
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
@@ -1647,7 +1654,7 @@ class Title {
 
 		# Log the move
 		$log = new LogPage( 'move' );
-		$log->addEntry( 'move', $this, '', array( 1 => $nt->getPrefixedText()) );
+		$log->addEntry( 'move', $this, $reason, array( 1 => $nt->getPrefixedText()) );
 
 		# Purge squid and linkscc as per article creation
 		Article::onArticleCreate( $nt );
