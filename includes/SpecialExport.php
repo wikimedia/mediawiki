@@ -69,8 +69,8 @@ function page2xml( $page, $curonly, $full = false ) {
 				"WHERE old_namespace=$ns AND old_title='$t' ORDER BY old_timestamp";
 			$res = wfQuery( $sql, DB_READ );
 
-			while( $s = wfFetchObject( $res ) ) {
-				$xml .= revision2xml( $s, $full, false );
+			while( $s2 = wfFetchObject( $res ) ) {
+				$xml .= revision2xml( $s2, $full, false );
 			}
 		}
 		$xml .= revision2xml( $s, $full, true );
