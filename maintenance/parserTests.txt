@@ -1786,6 +1786,16 @@ http://example.com[[Image:foobar.jpg]]
 </p>
 !!end
 
+!! test
+Bug 1186 news: in the middle of text
+!! input
+http://en.wikinews.org/wiki/Wikinews:Workplace
+!! result
+<p><a href="http://en.wikinews.org/wiki/Wikinews:Workplace" class='external'>http://en.wikinews.org/wiki/Wikinews:Workplace</a>
+</p>
+!!end
+
+
 TODO:
 more images
 more tables
