@@ -5,6 +5,7 @@
 	'af' => 'Afrikaans',	# Afrikaans
 	'ak' => 'Akana',		# Akan
 	'an' => 'Aragon&eacute;s',      # Aragonese
+	'ang' => 'Anglo Saxon',	# Old English
 	'als' => 'Els&auml;ssisch',	# Alsatian
 	'am' => '&#4768;&#4635;&#4653;&#4763;',	# Amharic
 	'ar' => '&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;',	# Arabic
