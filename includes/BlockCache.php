@@ -130,7 +130,6 @@ class BlockCache
 /**
  * Add a block to the global $wgBlockCache
  *
- * @package MediaWiki
  * @param Object $block  A "Block"-object
  * @param Any    $tag    unused
  */
