@@ -2,18 +2,26 @@
 
 include_once('Tokenizer.php');
 
-# Globals used: 
-#    objects:   $wgUser, $wgTitle, $wgLang, $wgDateFormatter, $wgLinkCache, $wgCurOut, $wgArticle
+# PHP Parser 
+# 
+# Converts wikitext to HTML. 
 #
-#    query:     $wpPreview
-#               
-#    settings:  $wgUseTex, $wgUseCategoryMagic, $wgUseDynamicDates, $wgInterwikiMagic,
-#               $wgNamespacesWithSubpages, $wgLanguageCode, $wgUseLinkPrefixCombination
+# Globals used: 
+#    objects:   $wgLang, $wgDateFormatter, $wgLinkCache, $wgCurOut
+#
+#    settings:  $wgUseTex*, $wgUseCategoryMagic*, $wgUseDynamicDates*, $wgInterwikiMagic*,
+#               $wgNamespacesWithSubpages, $wgLanguageCode, $wgAllowExternalImages*
+#
+#      * only within ParserOptions
 
 class Parser
 {
+	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mLastSection, $mDTopen;
-	
+
+	# Temporary:
+	var $mOptions, $mTitle;
+
 	function Parser()
 	{
 		$this->clearState();
@@ -32,9 +40,8 @@ class Parser
 	#
 	# Returns a ParserOutput
 	#
-	function parse( $text, $linestart = true, $clearState = true )
+	function parse( $text, &$title, $options, $linestart = true, $clearState = true )
 	{
-		global $wgUseTeX;
 		$fname = "Parser::parse";
 		wfProfileIn( $fname );
 		$unique  = "3iyZiyA7iMwg5rhxP0Dcc9oTnj8qD1jm1Sfv4";
@@ -53,7 +60,10 @@ class Parser
 		if ( $clearState ) {
 			$this->clearState();
 		}
-				
+		
+		$this->mOptions = $options;
+		$this->mTitle =& $title;
+		
 		# Replace any instances of the placeholders
 		$text = str_replace( $unique, wfHtmlEscapeFirst( $unique ), $text );
 		$text = str_replace( $unique2, wfHtmlEscapeFirst( $unique2 ), $text );
@@ -72,7 +82,7 @@ class Parser
 			}
 		}
 
-		if( $wgUseTeX ) {
+		if( $this->mOptions->getUseTeX() ) {
 			while ( "" != $stripped ) {
 				$p = preg_split( "/<\\s*math\\s*>/i", $stripped, 2 );
 				$stripped2 .= $p[0];
@@ -130,11 +140,11 @@ class Parser
 
 	function categoryMagic ()
 	{
-		global $wgTitle , $wgUseCategoryMagic, $wgLang ;
-		if ( !isset ( $wgUseCategoryMagic ) || !$wgUseCategoryMagic ) return ;
-		$id = $wgTitle->getArticleID() ;
+		global $wgLang ;
+		if ( !$this->mOptions->getUseCategoryMagic() ) return ;
+		$id = $this->mTitle->getArticleID() ;
 		$cat = ucfirst ( wfMsg ( "category" ) ) ;
-		$ti = $wgTitle->getText() ;
+		$ti = $this->mTitle->getText() ;
 		$ti = explode ( ":" , $ti , 2 ) ;
 		if ( $cat != $ti[0] ) return "" ;
 		$r = "<br break=all>\n" ;
@@ -144,8 +154,7 @@ class Parser
 		$children = array() ;
 
 
-		global $wgUser ;
-		$sk = $wgUser->getSkin() ;
+		$sk =& $this->mGetSkin();
 
 		$doesexist = false ;
 		if ( $doesexist ) {
@@ -198,145 +207,145 @@ class Parser
 		return $r ;
 	}
 
-function getHTMLattrs ()
-{
-		$htmlattrs = array( # Allowed attributes--no scripting, etc.
-			"title", "align", "lang", "dir", "width", "height",
-			"bgcolor", "clear", /* BR */ "noshade", /* HR */
-			"cite", /* BLOCKQUOTE, Q */ "size", "face", "color",
-			/* FONT */ "type", "start", "value", "compact",
-			/* For various lists, mostly deprecated but safe */
-			"summary", "width", "border", "frame", "rules",
-			"cellspacing", "cellpadding", "valign", "char",
-			"charoff", "colgroup", "col", "span", "abbr", "axis",
-			"headers", "scope", "rowspan", "colspan", /* Tables */
-			"id", "class", "name", "style" /* For CSS */
-		);
-return $htmlattrs ;
-}
-
-function fixTagAttributes ( $t )
-{
-	if ( trim ( $t ) == "" ) return "" ; # Saves runtime ;-)
-	$htmlattrs = $this->getHTMLattrs() ;
-  
-	# Strip non-approved attributes from the tag
-	$t = preg_replace(
-		"/(\\w+)(\\s*=\\s*([^\\s\">]+|\"[^\">]*\"))?/e",
-		"(in_array(strtolower(\"\$1\"),\$htmlattrs)?(\"\$1\".((\"x\$3\" != \"x\")?\"=\$3\":'')):'')",
-		$t);
-	# Strip javascript "expression" from stylesheets. Brute force approach:
-	# If anythin offensive is found, all attributes of the HTML tag are dropped
-
-	if( preg_match( 
-		"/style\\s*=.*(expression|tps*:\/\/|url\\s*\().*/is",
-		wfMungeToUtf8( $t ) ) )
+	function getHTMLattrs ()
 	{
-		$t="";
+		$htmlattrs = array( # Allowed attributes--no scripting, etc.
+				"title", "align", "lang", "dir", "width", "height",
+				"bgcolor", "clear", /* BR */ "noshade", /* HR */
+				"cite", /* BLOCKQUOTE, Q */ "size", "face", "color",
+				/* FONT */ "type", "start", "value", "compact",
+				/* For various lists, mostly deprecated but safe */
+				"summary", "width", "border", "frame", "rules",
+				"cellspacing", "cellpadding", "valign", "char",
+				"charoff", "colgroup", "col", "span", "abbr", "axis",
+				"headers", "scope", "rowspan", "colspan", /* Tables */
+				"id", "class", "name", "style" /* For CSS */
+				);
+		return $htmlattrs ;
 	}
 
-	return trim ( $t ) ;
-}
+	function fixTagAttributes ( $t )
+	{
+		if ( trim ( $t ) == "" ) return "" ; # Saves runtime ;-)
+		$htmlattrs = $this->getHTMLattrs() ;
+	  
+		# Strip non-approved attributes from the tag
+		$t = preg_replace(
+			"/(\\w+)(\\s*=\\s*([^\\s\">]+|\"[^\">]*\"))?/e",
+			"(in_array(strtolower(\"\$1\"),\$htmlattrs)?(\"\$1\".((\"x\$3\" != \"x\")?\"=\$3\":'')):'')",
+			$t);
+		# Strip javascript "expression" from stylesheets. Brute force approach:
+		# If anythin offensive is found, all attributes of the HTML tag are dropped
 
-function doTableStuff ( $t )
-{
-	$t = explode ( "\n" , $t ) ;
-	$td = array () ; # Is currently a td tag open?
-		$ltd = array () ; # Was it TD or TH?
-		$tr = array () ; # Is currently a tr tag open?
-		$ltr = array () ; # tr attributes
-		foreach ( $t AS $k => $x )
+		if( preg_match( 
+			"/style\\s*=.*(expression|tps*:\/\/|url\\s*\().*/is",
+			wfMungeToUtf8( $t ) ) )
 		{
-			$x = rtrim ( $x ) ;
-			$fc = substr ( $x , 0 , 1 ) ;
-			if ( "{|" == substr ( $x , 0 , 2 ) )
-			{
-				$t[$k] = "<table " . $this->fixTagAttributes ( substr ( $x , 3 ) ) . ">" ;
-				array_push ( $td , false ) ;
-				array_push ( $ltd , "" ) ;
-				array_push ( $tr , false ) ;
-				array_push ( $ltr , "" ) ;
-			}
-			else if ( count ( $td ) == 0 ) { } # Don't do any of the following
-			else if ( "|}" == substr ( $x , 0 , 2 ) )
-			{
-				$z = "</table>\n" ;
-				$l = array_pop ( $ltd ) ;
-				if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
-				if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
-				array_pop ( $ltr ) ;
-				$t[$k] = $z ;
-			}
-			/*      else if ( "|_" == substr ( $x , 0 , 2 ) ) # Caption
-					{ 
-					$z = trim ( substr ( $x , 2 ) ) ;
-					$t[$k] = "<caption>{$z}</caption>\n" ;
-					}*/
-			else if ( "|-" == substr ( $x , 0 , 2 ) ) # Allows for |---------------
-			{
-				$x = substr ( $x , 1 ) ;
-				while ( $x != "" && substr ( $x , 0 , 1 ) == '-' ) $x = substr ( $x , 1 ) ;
-				$z = "" ;
-				$l = array_pop ( $ltd ) ;
-				if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
-				if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
-				array_pop ( $ltr ) ;
-				$t[$k] = $z ;
-				array_push ( $tr , false ) ;
-				array_push ( $td , false ) ;
-				array_push ( $ltd , "" ) ;
-				array_push ( $ltr , $this->fixTagAttributes ( $x ) ) ;
-			}
-			else if ( "|" == $fc || "!" == $fc || "|+" == substr ( $x , 0 , 2 ) ) # Caption
-			{
-				if ( "|+" == substr ( $x , 0 , 2 ) )
-				{
-					$fc = "+" ;
-					$x = substr ( $x , 1 ) ;
-				}
-				$after = substr ( $x , 1 ) ;
-				if ( $fc == "!" ) $after = str_replace ( "!!" , "||" , $after ) ;
-				$after = explode ( "||" , $after ) ;
-				$t[$k] = "" ;
-				foreach ( $after AS $theline )
-				{
-					$z = "" ;
-					if ( $fc != "+" )
-					{  
-						$tra = array_pop ( $ltr ) ;
-						if ( !array_pop ( $tr ) ) $z = "<tr {$tra}>\n" ;
-						array_push ( $tr , true ) ;
-						array_push ( $ltr , "" ) ;
-					}
-
-					$l = array_pop ( $ltd ) ;
-					if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
-					if ( $fc == "|" ) $l = "TD" ;
-					else if ( $fc == "!" ) $l = "TH" ;
-					else if ( $fc == "+" ) $l = "CAPTION" ;
-					else $l = "" ;
-					array_push ( $ltd , $l ) ;
-					$y = explode ( "|" , $theline , 2 ) ;
-					if ( count ( $y ) == 1 ) $y = "{$z}<{$l}>{$y[0]}" ;
-					else $y = $y = "{$z}<{$l} ".$this->fixTagAttributes($y[0]).">{$y[1]}" ;
-					$t[$k] .= $y ;
-					array_push ( $td , true ) ;
-				}
-			}
+			$t="";
 		}
 
-	# Closing open td, tr && table
-	while ( count ( $td ) > 0 )
-	{
-		if ( array_pop ( $td ) ) $t[] = "</td>" ;
-		if ( array_pop ( $tr ) ) $t[] = "</tr>" ;
-		$t[] = "</table>" ;
+		return trim ( $t ) ;
 	}
 
-	$t = implode ( "\n" , $t ) ;
-	#		$t = $this->removeHTMLtags( $t );
-	return $t ;
-}
+	function doTableStuff ( $t )
+	{
+		$t = explode ( "\n" , $t ) ;
+		$td = array () ; # Is currently a td tag open?
+			$ltd = array () ; # Was it TD or TH?
+			$tr = array () ; # Is currently a tr tag open?
+			$ltr = array () ; # tr attributes
+			foreach ( $t AS $k => $x )
+			{
+				$x = rtrim ( $x ) ;
+				$fc = substr ( $x , 0 , 1 ) ;
+				if ( "{|" == substr ( $x , 0 , 2 ) )
+				{
+					$t[$k] = "<table " . $this->fixTagAttributes ( substr ( $x , 3 ) ) . ">" ;
+					array_push ( $td , false ) ;
+					array_push ( $ltd , "" ) ;
+					array_push ( $tr , false ) ;
+					array_push ( $ltr , "" ) ;
+				}
+				else if ( count ( $td ) == 0 ) { } # Don't do any of the following
+				else if ( "|}" == substr ( $x , 0 , 2 ) )
+				{
+					$z = "</table>\n" ;
+					$l = array_pop ( $ltd ) ;
+					if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
+					if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+					array_pop ( $ltr ) ;
+					$t[$k] = $z ;
+				}
+				/*      else if ( "|_" == substr ( $x , 0 , 2 ) ) # Caption
+						{ 
+						$z = trim ( substr ( $x , 2 ) ) ;
+						$t[$k] = "<caption>{$z}</caption>\n" ;
+						}*/
+				else if ( "|-" == substr ( $x , 0 , 2 ) ) # Allows for |---------------
+				{
+					$x = substr ( $x , 1 ) ;
+					while ( $x != "" && substr ( $x , 0 , 1 ) == '-' ) $x = substr ( $x , 1 ) ;
+					$z = "" ;
+					$l = array_pop ( $ltd ) ;
+					if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
+					if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+					array_pop ( $ltr ) ;
+					$t[$k] = $z ;
+					array_push ( $tr , false ) ;
+					array_push ( $td , false ) ;
+					array_push ( $ltd , "" ) ;
+					array_push ( $ltr , $this->fixTagAttributes ( $x ) ) ;
+				}
+				else if ( "|" == $fc || "!" == $fc || "|+" == substr ( $x , 0 , 2 ) ) # Caption
+				{
+					if ( "|+" == substr ( $x , 0 , 2 ) )
+					{
+						$fc = "+" ;
+						$x = substr ( $x , 1 ) ;
+					}
+					$after = substr ( $x , 1 ) ;
+					if ( $fc == "!" ) $after = str_replace ( "!!" , "||" , $after ) ;
+					$after = explode ( "||" , $after ) ;
+					$t[$k] = "" ;
+					foreach ( $after AS $theline )
+					{
+						$z = "" ;
+						if ( $fc != "+" )
+						{  
+							$tra = array_pop ( $ltr ) ;
+							if ( !array_pop ( $tr ) ) $z = "<tr {$tra}>\n" ;
+							array_push ( $tr , true ) ;
+							array_push ( $ltr , "" ) ;
+						}
+
+						$l = array_pop ( $ltd ) ;
+						if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+						if ( $fc == "|" ) $l = "TD" ;
+						else if ( $fc == "!" ) $l = "TH" ;
+						else if ( $fc == "+" ) $l = "CAPTION" ;
+						else $l = "" ;
+						array_push ( $ltd , $l ) ;
+						$y = explode ( "|" , $theline , 2 ) ;
+						if ( count ( $y ) == 1 ) $y = "{$z}<{$l}>{$y[0]}" ;
+						else $y = $y = "{$z}<{$l} ".$this->fixTagAttributes($y[0]).">{$y[1]}" ;
+						$t[$k] .= $y ;
+						array_push ( $td , true ) ;
+					}
+				}
+			}
+
+		# Closing open td, tr && table
+		while ( count ( $td ) > 0 )
+		{
+			if ( array_pop ( $td ) ) $t[] = "</td>" ;
+			if ( array_pop ( $tr ) ) $t[] = "</tr>" ;
+			$t[] = "</table>" ;
+		}
+
+		$t = implode ( "\n" , $t ) ;
+		#		$t = $this->removeHTMLtags( $t );
+		return $t ;
+	}
 
 	# Well, OK, it's actually about 14 passes.  But since all the
 	# hard lifting is done inside PHP's regex code, it probably
@@ -344,7 +353,6 @@ function doTableStuff ( $t )
 	#
 	function doWikiPass2( $text, $linestart )
 	{
-		global $wgUser, $wgLang, $wgUseDynamicDates;
 		$fname = "OutputPage::doWikiPass2";
 		wfProfileIn( $fname );
 		
@@ -357,9 +365,9 @@ function doTableStuff ( $t )
 		$text = $this->doHeadings( $text );
 		$text = $this->doBlockLevels( $text, $linestart );
 		
-		if($wgUseDynamicDates) {
+		if($this->mOptions->getUseDynamicDates()) {
 			global $wgDateFormatter;
-			$text = $wgDateFormatter->reformat( $wgUser->getOption("date"), $text );
+			$text = $wgDateFormatter->reformat( $this->mOptions->getDateFormat(), $text );
 		}
 
 		$text = $this->replaceExternalLinks( $text );
@@ -370,7 +378,7 @@ function doTableStuff ( $t )
 		$text = $this->magicRFC( $text );
 		$text = $this->formatHeadings( $text );
 
-		$sk = $wgUser->getSkin();
+		$sk =& $this->mOptions->getSkin();
 		$text = $sk->transformContent( $text );
 		$text .= $this->categoryMagic () ;
 
@@ -410,10 +418,6 @@ function doTableStuff ( $t )
 	
 	/* private */ function subReplaceExternalLinks( $s, $protocol, $autonumber )
 	{
-		global $wgUser, $printable;
-		global $wgAllowExternalImages;
-
-
 		$unique = "4jzAfzB8hNvf4sqyO9Edd8pSmk9rE2in0Tgw3";
 		$uc = "A-Za-z0-9_\\/~%\\-+&*#?!=()@\\x80-\\xFF";
 		
@@ -433,9 +437,9 @@ function doTableStuff ( $t )
 		  "((?i){$images})([^{$uc}]|$)/";
 		  
 		$e2 = "/(^|[^\\[])({$protocol}:)(([".$uc."]|[".$sep."][".$uc."])+)([^". $uc . $sep. "]|[".$sep."]|$)/";
-		$sk = $wgUser->getSkin();
+		$sk =& $this->mOptions->getSkin();
 
-		if ( $autonumber and $wgAllowExternalImages) { # Use img tags only for HTTP urls
+		if ( $autonumber and $this->mOptions->getAllowExternalImages() ) { # Use img tags only for HTTP urls
 			$s = preg_replace( $e1, "\\1" . $sk->makeImage( "{$unique}:\\3" .
 			  "/\\4.\\5", "\\4.\\5" ) . "\\6", $s );
 		}
@@ -466,7 +470,7 @@ function doTableStuff ( $t )
 				$s .= "[{$protocol}:" . $line;
 				continue;
 			}
-			if ( $printable == "yes") $paren = " (<i>" . htmlspecialchars ( $link ) . "</i>)";
+			if ( $this->mOptions->getPrintable() ) $paren = " (<i>" . htmlspecialchars ( $link ) . "</i>)";
 			else $paren = "";
 			$la = $sk->getExternalLinkAttributes( $link, $text );
 			$s .= "<a href='{$link}'{$la}>{$text}</a>{$paren}{$trail}";
@@ -641,17 +645,15 @@ function doTableStuff ( $t )
 
 	/* private */ function handleInternalLink( $line )
 	{
-		global $wgTitle, $wgUser, $wgLang;
-		global $wgLinkCache, $wgInterwikiMagic, $wgUseCategoryMagic;
+		global $wgLang, $wgLinkCache;
 		global $wgNamespacesWithSubpages, $wgLanguageCode;
 		static $fname = "OutputPage::replaceInternalLinks" ;
 		wfProfileIn( $fname );
 
 		wfProfileIn( "$fname-setup" );
 		static $tc = FALSE;
-		static $sk = FALSE;
 		if ( !$tc ) { $tc = Title::legalChars() . "#"; }
-		if ( !$sk ) { $sk = $wgUser->getSkin(); }
+		$sk =& $this->mOptions->getSkin();
 
 		# Match a link having the form [[namespace:link|alternate]]trail
 		static $e1 = FALSE;
@@ -668,13 +670,12 @@ function doTableStuff ( $t )
 		static $special = FALSE;
 		static $media = FALSE;
 		static $category = FALSE;
-		static $nottalk = "";
 		if ( !$image ) { $image = Namespace::getImage(); }
 		if ( !$special ) { $special = Namespace::getSpecial(); }
 		if ( !$media ) { $media = Namespace::getMedia(); }
 		if ( !$category ) { $category = wfMsg ( "category" ) ; }
-		if ( $nottalk=="" ) { $nottalk = !Namespace::isTalk( $wgTitle->getNamespace() ); }
-
+		
+		$nottalk = !Namespace::isTalk( $this->mTitle->getNamespace() );
 
 		wfProfileOut( "$fname-setup" );
 
@@ -708,8 +709,8 @@ function doTableStuff ( $t )
 			} else {
 				$noslash=substr($m[1],1);
 			}
-			if($wgNamespacesWithSubpages[$wgTitle->getNamespace()]) { # subpages allowed here
-				$link = $wgTitle->getPrefixedText(). "/" . trim($noslash);
+			if($wgNamespacesWithSubpages[$this->mTitle->getNamespace()]) { # subpages allowed here
+				$link = $this->mTitle->getPrefixedText(). "/" . trim($noslash);
 				if( "" == $text ) {
 					$text= $m[1]; 
 				} # this might be changed for ugliness reasons
@@ -743,7 +744,7 @@ function doTableStuff ( $t )
 				return $s;
 			}
 		}
-		if( ( $nt->getPrefixedText() == $wgTitle->getPrefixedText() ) &&
+		if( ( $nt->getPrefixedText() == $this->mTitle->getPrefixedText() ) &&
 		    ( strpos( $link, "#" ) == FALSE ) ) {
 			$s .= $prefix . "<strong>" . $text . "</strong>" . $trail;
 			return $s;
@@ -1110,15 +1111,14 @@ function doTableStuff ( $t )
  * */
 	/* private */ function formatHeadings( $text )
 	{
-		global $wgUser,$wgArticle,$wgTitle,$wpPreview;
-		$nh=$wgUser->getOption( "numberheadings" );
-		$st=$wgUser->getOption( "showtoc" );
-		if(!$wgTitle->userCanEdit()) {
+		$nh=$this->mOptions->getNumberHeadings();
+		$st=$this->mOptions->getShowToc();
+		if(!$this->mTitle->userCanEdit()) {
 			$es=0;
 			$esr=0;
 		} else {
-			$es=$wgUser->getID() && $wgUser->getOption( "editsection" );
-			$esr=$wgUser->getID() && $wgUser->getOption( "editsectiononrightclick" );
+			$es=$this->mOptions->getEditSection();
+			$esr=$this->mOptions->getEditSectionOnRightClick();
 		}
 
 		# Inhibit editsection links if requested in the page
@@ -1136,10 +1136,10 @@ function doTableStuff ( $t )
 
 		# never add the TOC to the Main Page. This is an entry page that should not
 		# be more than 1-2 screens large anyway
-		if($wgTitle->getPrefixedText()==wfMsg("mainpage")) {$st=0;}
+		if($this->mTitle->getPrefixedText()==wfMsg("mainpage")) {$st=0;}
 
 		# We need this to perform operations on the HTML
-		$sk=$wgUser->getSkin();
+		$sk =& $this->mOptions->getSkin();
 
 		# Get all headlines for numbering them and adding funky stuff like [edit]
 		# links
@@ -1206,7 +1206,7 @@ function doTableStuff ( $t )
 			if($st) {
 				$toc.=$sk->tocLine($anchor,$tocline,$toclevel);
 			}
-			if($es && !isset($wpPreview)) {
+			if($es) {
 				$head[$c].=$sk->editSectionLink($c+1);
 			}
 			
@@ -1220,7 +1220,7 @@ function doTableStuff ( $t )
 			
 			// Add the edit section link
 			
-			if($esr && !isset($wpPreview)) {
+			if($esr) {
 				$head[$c]=$sk->editSectionScript($c+1,$head[$c]);	
 			}
 			
@@ -1241,7 +1241,7 @@ function doTableStuff ( $t )
 		$i=0;
 
 		foreach($blocks as $block) {
-			if(($es) && !isset($wpPreview) && $c>0 && $i==0) {
+			if(($es) && $c>0 && $i==0) {
 			    # This is the [edit] link that appears for the top block of text when 
 				# section editing is enabled
 				$full.=$sk->editSectionLink(0);
@@ -1323,6 +1323,80 @@ class ParserOutput
 	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
 }
 
+class ParserOptions
+{
+	# All variables are private
+	var $mUseTeX;                    # Use texvc to expand <math> tags
+	var $mUseCategoryMagic;          # Treat [[Category:xxxx]] tags specially
+	var $mUseDynamicDates;           # Use $wgDateFormatter to format dates
+	var $mInterwikiMagic;            # Interlanguage links are removed and returned in an array
+	var $mAllowExternalImages;       # Allow external images inline
+	var $mSkin;                      # Reference to the preferred skin
+	var $mDateFormat;                # Date format index
+	var $mEditSection;               # Create "edit section" links
+	var $mEditSectionOnRightClick;   # Generate JavaScript to edit section on right click
+	var $mPrintable;                 # Generate printable output
+	var $mNumberHeadings;            # Automatically number headings
+	var $mShowToc;                   # Show table of contents
+
+	function getUseTeX() { return $this->mUseTeX; }
+	function getUseCategoryMagic() { return $this->mUseCategoryMagic; }
+	function getUseDynamicDates() { return $this->mUseDynamicDates; }
+	function getInterwikiMagic() { return $this->mInterwikiMagic; }
+	function getAllowExternalImages() { return $this->mAllowExternalImages; }
+	function getSkin() { return $this->mSkin; }
+	function getDateFormat() { return $this->mDateFormat; }
+	function getEditSection() { return $this->mEditSection; }
+	function getEditSectionOnRightClick() { return $this->mEditSectionOnRightClick; }
+	function getPrintable() { return $this->mPrintable; }
+	function getNumberHeadings() { return $this->mNumberHeadings; }
+	function getShowToc() { return $this->mShowToc; }
+
+	function setUseTeX( $x ) { return wfSetVar( $this->mUseTeX, $x ); }
+	function setUseCategoryMagic( $x ) { return wfSetVar( $this->mUseCategoryMagic, $x ); }
+	function setUseDynamicDates( $x ) { return wfSetVar( $this->mUseDynamicDates, $x ); }
+	function setInterwikiMagic( $x ) { return wfSetVar( $this->mInterwikiMagic, $x ); }
+	function setAllowExternalImages( $x ) { return wfSetVar( $this->mAllowExternalImages, $x ); }
+	function setSkin( $x ) { return wfSetRef( $this->mSkin, $x ); }
+	function setDateFormat( $x ) { return wfSetVar( $this->mDateFormat, $x ); }
+	function setEditSection( $x ) { return wfSetVar( $this->mEditSection, $x ); }
+	function setEditSectionOnRightClick( $x ) { return wfSetVar( $this->mEditSectionOnRightClick, $x ); }
+	function setPrintable( $x ) { return wfSetVar( $this->mPrintable, $x ); }
+	function setNumberHeadings( $x ) { return wfSetVar( $this->mNumberHeadings, $x ); }
+	function setShowToc( $x ) { return wfSetVar( $this->mShowToc, $x ); }
+
+	/* static */ function newFromUser( &$user ) 
+	{
+		$popts = new ParserOptions;
+		$popts->initialiseFromUser( &$user );
+		return $popts;
+	}
+
+	function initialiseFromUser( &$userInput ) 
+	{
+		global $wgUseTeX, $wgUseCategoryMagic, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
+		
+		if ( !$userInput ) {
+			$user = new User;
+		} else {
+			$user =& $userInput;
+		}
+
+		$this->mUseTeX = $wgUseTeX;
+		$this->mUseCategoryMagic = $wgUseCategoryMagic;
+		$this->mUseDynamicDates = $wgUseDynamicDates;
+		$this->mInterwikiMagic = $wgInterwikiMagic;
+		$this->mAllowExternalImages = $wgAllowExternalImages;
+		$this->mSkin =& $user->getSkin();
+		$this->mDateFormat = $user->getOption( "date" );
+		$this->mEditSection = $user->getOption( "editsection" );
+		$this->mEditSectionOnRightClick = $user->getOption( "editsectiononrightclick" );
+		$this->mPrintable = false;
+		$this->mNumberHeadings = $user->getOption( "numberheadings" );
+		$this->mShowToc = $user->getOption( "showtoc" );
+	}
+}
+	
 # Regex callbacks, used in OutputPage::replaceVariables
 
 # Just get rid of the dangerous stuff

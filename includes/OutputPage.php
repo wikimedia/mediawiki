@@ -15,6 +15,7 @@ class OutputPage {
 	var $mDoNothing;
 	var $mContainsOldMagic, $mContainsNewMagic; 
 	var $mIsArticleRelated;
+	var $mParserOptions;
 
 	function OutputPage()
 	{
@@ -30,6 +31,7 @@ class OutputPage {
 		$this->mCategoryLinks = array() ;
 		$this->mDoNothing = false;
 		$this->mContainsOldMagic = $this->mContainsNewMagic = 0;
+		$this->mParserOptions = ParserOptions::newFromUser( $temp = NULL );
 	}
 
 	function addHeader( $name, $val ) { array_push( $this->mHeaders, "$name: $val" ) ; }
@@ -136,6 +138,11 @@ class OutputPage {
 	function addHeadtext( $text ) { $this->mHeadtext .= $text; }
 	function debug( $text ) { $this->mDebugtext .= $text; }
 
+	function setParserOptions( $options )
+	{
+		return wfSetVar( $this->mParserOptions, $options );
+	}
+
 	# First pass--just handle <nowiki> sections, pass the rest off
 	# to doWikiPass2() which does all the real work.
 	#
@@ -143,7 +150,7 @@ class OutputPage {
 	#
 	function addWikiText( $text, $linestart = true, $cacheArticle = NULL )
 	{
-		global $wgParser, $wgParserCache, $wgUser;
+		global $wgParser, $wgParserCache, $wgUser, $wgTitle;
 
 		$parserOutput = false;
 		if ( $cacheArticle ) {
@@ -151,7 +158,7 @@ class OutputPage {
 		}
 
 		if ( $parserOutput === false ) {
-			$parserOutput = $wgParser->parse( $text, $linestart );
+			$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
 			if ( $cacheArticle ) {
 				$wgParserCache->save( $parserOutput, $cacheArticle, $wgUser );
 			}
