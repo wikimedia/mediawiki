@@ -93,6 +93,17 @@ class Parser
 		$text = $this->strip( $text, $this->mStripState );
 		$text = $this->doWikiPass2( $text, $linestart );
 		$text = $this->unstrip( $text, $this->mStripState );
+		# Clean up special characters
+		$fixtags = array(
+			"/<hr *>/i" => '<hr/>',
+			"/<br *>/i" => '<br/>', 
+			"/<center *>/i"=>'<span style="text-align:center;">',
+			"/<\\/center *>/i" => '</span>',
+			# Clean up spare ampersands; note that we probably ought to be
+			# more careful about named entities.
+			'/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/' => '&amp;'
+		);
+		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
 		
 		$this->mOutput->setText( $text );
 		wfProfileOut( $fname );
@@ -488,20 +499,6 @@ class Parser
 
 		$sk =& $this->mOptions->getSkin();
 		$text = $sk->transformContent( $text );
-		$fixtags = array(
-			"/<hr *>/i" => '<hr/>',
-			"/<br *>/i" => '<br/>', 
-			"/<center *>/i"=>'<span style="text-align:center;">',
-			"/<\\/center *>/i" => '</span>'
-		);
-		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
-
-		# Clean up spare ampersands; note that we probably ought to be
-		# more careful about named entities.
-		$text = preg_replace(
-			'/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/',
-			'&amp;',
-			$text );
 
 		$text .= $this->categoryMagic () ;
 		
@@ -1039,12 +1036,11 @@ class Parser
 		# and making lists from lines starting with * # : etc.
 		#
 		$a = explode( "\n", $text );
-		$lastPref = $text = $lastLine = '';
-		$this->mDTopen = $inBlockElem = false;
+		$lastPref = $text = '';
+		$this->mDTopen = $inBlockElem = $pstack = false;
 
 		if ( ! $linestart ) { $text .= array_shift( $a ); }
 		foreach ( $a as $t ) {
-			if ( "" != $text ) { $text .= "\n"; }
 
 			$oLine = $t;
 			$opl = strlen( $lastPref );
@@ -1052,9 +1048,10 @@ class Parser
 			$pref = substr( $t, 0, $npl );
 			$pref2 = str_replace( ";", ":", $pref );
 			$t = substr( $t, $npl );
-
+			// list generation
 			if ( 0 != $npl && 0 == strcmp( $lastPref, $pref2 ) ) {
 				$text .= $this->nextItem( substr( $pref, -1 ) );
+				if ( $pstack ) { $pstack = false; }
 
 				if ( ";" == substr( $pref, -1 ) ) {
 					$cpos = strpos( $t, ":" );
@@ -1066,6 +1063,7 @@ class Parser
 				}
 			} else if (0 != $npl || 0 != $opl) {
 				$cpl = $this->getCommon( $pref, $lastPref );
+				if ( $pstack ) { $pstack = false; }
 
 				while ( $cpl < $opl ) {
 					$text .= $this->closeList( $lastPref{$opl-1} );
@@ -1090,7 +1088,7 @@ class Parser
 				}
 				$lastPref = $pref2;
 			}
-			if ( 0 == $npl ) { # No prefix--go to paragraph mode
+			if ( 0 == $npl ) { # No prefix (not in list)--go to paragraph mode
 				$uniq_prefix = UNIQ_PREFIX;
 				// XXX: use a stack for nestable elements like span, table and div
 				$openmatch = preg_match("/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<div|<pre|<tr|<td|<p)/i", $t );
@@ -1098,6 +1096,7 @@ class Parser
 					"/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|".
 					"<\\/div|<hr|<\\/td|<\\/pre|<\\/p|".$uniq_prefix."-pre)/i", $t );
 				if ( $openmatch or $closematch ) {
+					if ( $pstack ) { $pstack = false; }
 					$text .= $this->closeParagraph();
 					if ( $closematch  ) {
 						$inBlockElem = false;
@@ -1106,25 +1105,44 @@ class Parser
 					}
 				} else if ( !$inBlockElem ) {
 					if ( " " == $t{0} ) {
-						$newSection = "pre";
+						// pre
 						if ($this->mLastSection != 'pre') {
-							$text .= $this->closeParagraph();
-							$text .= "<" . $newSection . ">";
-							$this->mLastSection = $newSection;
+							$pstack = false;
+							$text .= $this->closeParagraph().'<pre>';
+							$this->mLastSection = 'pre';
 						}
 					} else { 
-						$newSection = "p";
-						if ( ''==trim($t) && ( '' != trim($lastLine) )) {
-							$text .= $this->closeParagraph();
-							$text .= "<" . $newSection . ">";
-							$this->mLastSection = $newSection;
-						}			
+						// paragraph
+						if ( '' == trim($t) ) {
+							if ( $pstack ) {
+								$text .= $pstack.'<br/>';
+								$pstack = false;
+								$this->mLastSection = 'p';
+							} else {
+								if ($this->mLastSection != 'p' ) {
+									$text .= $this->closeParagraph();
+									$this->mLastSection = '';
+									$pstack = "<p>";
+								} else {
+									$pstack = '</p><p>';
+								}
+							}
+						} else {
+							if ( $pstack ) {
+								$text .= $pstack;
+								$pstack = false;
+								$this->mLastSection = 'p';
+							} else if ($this->mLastSection != 'p') {
+								$text .= $this->closeParagraph().'<p>';
+								$this->mLastSection = 'p';
+							}
+						}
 					}
-
 				} 
 			}
-			$lastLine = $t;
-			$text .= $t;
+			if ($pstack === false) {
+				$text .= $t."\n";
+			}
 		}
 		while ( $npl ) {
 			$text .= $this->closeList( $pref2{$npl-1} );
