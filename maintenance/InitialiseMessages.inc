@@ -79,9 +79,7 @@ function initialiseMessages( $overwrite = false) {
 		$sql = "DELETE FROM cur WHERE cur_namespace=$ns AND cur_title='$title'";
 		wfQuery( $sql, DB_WRITE, $fname );
 	}
-	#print $navText;
-	#$navText = substr($navText, 0, 1000);
-	$navText = str_repeat( "*", 1000 );
+	
 	$sql = "INSERT INTO cur (cur_namespace, cur_title, cur_text,
 		cur_user_text, cur_timestamp, cur_restrictions,
 		cur_is_new, inverse_timestamp, cur_touched) VALUES (
