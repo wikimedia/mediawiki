@@ -256,6 +256,13 @@ class ParserTest {
 	 * @access private
 	 */
 	function setupGlobals($opts = '') {
+		# Save the prefixed / quoted table names for later use when we make the temporaries.
+		$db =& wfGetDB( DB_READ );
+		$this->oldTableNames = array();
+		foreach( $this->listTables() as $table ) {
+			$this->oldTableNames[$table] = $db->tableName( $table );
+		}
+		
 		$settings = array(
 			'wgServer' => 'http://localhost',
 			'wgScript' => '/index.php',
@@ -280,6 +287,20 @@ class ParserTest {
 		$this->setupDatabase();
 	}
 	
+	# List of temporary tables to create, without prefix
+	# Some of these probably aren't necessary
+	function listTables() {
+		return array('user', 'cur', 'old', 'links',
+			'brokenlinks', 'imagelinks', 'categorylinks',
+			'linkscc', 'site_stats', 'hitcounter',
+			'ipblocks', 'image', 'oldimage',
+			'recentchanges',
+			'watchlist', 'math', 'searchindex',
+			'interwiki', 'querycache',
+			'objectcache'
+		);
+	}
+	
 	/**
 	 * Set up a temporary set of wiki tables to work with for the tests.
 	 * Currently this will only be done once per run, and any changes to
@@ -295,28 +316,16 @@ class ParserTest {
 		if (!$setupDB && $wgDBprefix === 'parsertest') {
 			$db =& wfGetDB( DB_MASTER );
 
-			# List of temporary tables to create, without prefix
-			# Some of these probably aren't necessary
-			$tables = array('user', 'cur', 'old', 'links',
-				'brokenlinks', 'imagelinks', 'categorylinks',
-				'linkscc', 'site_stats', 'hitcounter',
-				'ipblocks', 'image', 'oldimage',
-				'recentchanges',
-				'watchlist', 'math', 'searchindex',
-				'interwiki', 'querycache',
-				'objectcache', 'blobs', 'validate'
-			);
-			
-			# List of tables whose contents we need to copy
-			$copy_tables = array('interwiki');
+			$tables = $this->listTables();
 
 			if (!(strcmp($db->getServerVersion(), '4.1') < 0 and stristr($db->getSoftwareLink(), 'MySQL'))) {
 				# Database that supports CREATE TABLE ... LIKE
 				foreach ($tables as $tbl) {
-					$db->query("CREATE TEMPORARY TABLE $wgDBprefix$tbl (LIKE $tbl)");
+					$newTableName = $db->tableName( $tbl );
+					$tableName = $this->oldTableNames[$tbl];
+					$db->query("CREATE TEMPORARY TABLE $newTableName (LIKE $tableName INCLUDING DEFAULTS)");
 				}
-			}
-			else {
+			} else {
 				# Hack for MySQL versions < 4.1, which don't support
 				# "CREATE TABLE ... LIKE". Note that
 				# "CREATE TEMPORARY TABLE ... SELECT * FROM ... LIMIT 0"
@@ -336,17 +345,25 @@ class ParserTest {
 
 			}
 
-			foreach ($copy_tables as $tbl) {
-				$db->query("INSERT INTO $wgDBprefix$tbl SELECT * FROM $tbl");
-			}
-
 			# Hack: insert a few Wikipedia in-project interwiki prefixes,
 			# for testing inter-language links
-			$db->query("INSERT INTO ${wgDBprefix}interwiki
-				(iw_prefix,iw_url,iw_local) VALUES
-				('zh','http://zh.wikipedia.org/wiki/$1',1),
-				('es','http://es.wikipedia.org/wiki/$1',1),
-				('fr','http://fr.wikipedia.org/wiki/$1',1)");
+			$db->insertArray( 'interwiki', array(
+				array( 'iw_prefix' => 'Wikipedia',
+				       'iw_url'    => 'http://en.wikipedia.org/wiki/$1',
+				       'iw_local'  => 0 ),
+				array( 'iw_prefix' => 'MeatBall',
+				       'iw_url'    => 'http://www.usemod.com/cgi-bin/mb.pl?$1',
+				       'iw_local'  => 0 ),
+				array( 'iw_prefix' => 'zh',
+				       'iw_url'    => 'http://zh.wikipedia.org/wiki/$1',
+				       'iw_local'  => 1 ),
+				array( 'iw_prefix' => 'es',
+				       'iw_url'    => 'http://es.wikipedia.org/wiki/$1',
+				       'iw_local'  => 1 ),
+				array( 'iw_prefix' => 'fr',
+				       'iw_url'    => 'http://fr.wikipedia.org/wiki/$1',
+				       'iw_local'  => 1 ) ) );
+
 
 			$setupDB = true;
 		}
