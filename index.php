@@ -129,6 +129,10 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 				wfCreativeCommonsRdf( $wgArticle );
 			}
 			break;
+  	        case "credits":
+	                require_once( "includes/Credits.php" );
+			showCreditsPage( $wgArticle );
+	                break;
 		case "edit":
 		case "submit":
 			if( !$wgCommandLineMode && !$wgRequest->checkSessionCookie() ) {
