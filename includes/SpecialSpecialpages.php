@@ -2,23 +2,13 @@
 
 function wfSpecialSpecialpages()
 {
-	global $wgLang, $wgOut, $wgUser, $wgSpecialPages;
+	global $wgLang, $wgOut, $wgUser;
 	
 	$wgOut->setRobotpolicy( "index,nofollow" );
 	$sk = $wgUser->getSkin();	
-
-	# Categorise special pages
-
-	$pages = array(
-	  "" => array(),
-	  "sysop" => array(),
-	  "developer" => array()
-	);
-
-	foreach ( $wgSpecialPages as $page ) {
-		$pages[$page->getRestriction()][$page->getName()] = $page;
-	}
-
+	
+	# Get listable pages
+	$pages = SpecialPage::getPages();
 
 	# all users special pages
 	wfSpecialSpecialpages_gen($pages[""],"spheading",$sk);

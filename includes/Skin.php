@@ -1033,29 +1033,21 @@ class Skin {
 	{
 		global $wgUser, $wgOut, $wgLang, $wgServer, $wgRedirectScript;
 		$a = array();
-
-		$validSP = $wgLang->getValidSpecialPages();
-
-		foreach ( $validSP as $name => $desc ) {
-			if ( "" == $desc ) { continue; }
-			$a[$name] = $desc;
+		$pages = SpecialPage::getPages();
+		
+		foreach ( $pages[""] as $name => $page ) {
+			$a[$name] = $page->getDescription();
 		}
 		if ( $wgUser->isSysop() )
 		{ 
-			$sysopSP = $wgLang->getSysopSpecialPages();
-
-			foreach ( $sysopSP as $name => $desc ) {
-				if ( "" == $desc ) { continue; }
-				$a[$name] = $desc ;
+			foreach ( $pages["sysop"] as $name => $page ) {
+				$a[$name] = $page->getDescription();
 			}
 		}
 		if ( $wgUser->isDeveloper() )
 		{ 
-			$devSP = $wgLang->getDeveloperSpecialPages();
-
-			foreach ( $devSP as $name => $desc ) {
-				if ( "" == $desc ) { continue; }
-				$a[$name] = $desc ;
+			foreach ( $pages["developer"] as $name => $page ) {
+				$a[$name] = $page->getDescription() ;
 			}
 		}
 		$go = wfMsg( "go" );
