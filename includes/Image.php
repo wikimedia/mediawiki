@@ -122,6 +122,9 @@ class Image
 		global $wgImageMagickConvertCommand;
 		global $wgUseImageMagick;
 		global $wgUseSquid, $wgInternalServer;
+
+		$width = IntVal( $width );
+
 		$thumbName = $this->thumbName( $width );
 		$thumbPath = wfImageThumbDir( $thumbName )."/".$thumbName;
 		$thumbUrl  = $this->thumbUrl( $width );
@@ -133,7 +136,6 @@ class Image
 		}
 		
 		# Sanity check $width
-		$width = IntVal( $width );
 		if( $width <= 0 ) {
 			# BZZZT
 			return "";
