@@ -1,5 +1,10 @@
 <?php
+/**
+ * Contain a class for special pages
+ * @package MediaWiki
+ */
 
+/** */
 class SearchEngine {
 	var $limit = 10;
 	var $offset = 0;
@@ -193,6 +198,7 @@ class SearchEngine {
 	
 }
 
+/** */
 class SearchEngineDummy {
 	function search( $term ) {
 		return null;

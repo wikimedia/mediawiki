@@ -11,7 +11,7 @@
 function wfSpecialUnlockdb() {
 	global $wgUser, $wgOut, $wgRequest;
 
-	if ( ! $wgUser->isDeveloper() ) {
+	if ( ! $wgUser->isAllowed('siteadmin') ) {
 		$wgOut->developerRequired();
 		return;
 	}

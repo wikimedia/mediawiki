@@ -30,7 +30,7 @@ class NewPagesPage extends QueryPage {
 	function getSQL() {
 		global $wgUser, $wgOnlySysopsCanPatrol, $wgUseRCPatrol;
 		$usepatrol = ( $wgUseRCPatrol && $wgUser->getID() != 0 &&
-		               ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) ) ? 1 : 0;
+		               ( $wgUser->isAllowed('patrol') || !$wgOnlySysopsCanPatrol ) ) ? 1 : 0;
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'recentchanges', 'cur' ) );
 
@@ -74,7 +74,7 @@ class NewPagesPage extends QueryPage {
 		# mark the article as patrolled if it isn't already
 		if ( $wgUseRCPatrol && !is_null ( $result->usepatrol ) && $result->usepatrol &&
 		     $result->patrolled == 0 && $wgUser->getID() != 0 &&
-		     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
+		     ( $wgUser->isAllowed('patrol') || !$wgOnlySysopsCanPatrol ) )
 			$link = $skin->makeKnownLink( $result->title, '', "rcid={$result->rcid}" );
 		else
 			$link = $skin->makeKnownLink( $result->title, '' );

@@ -294,7 +294,7 @@ class Skin {
 		}
 		else $a = array( 'bgcolor' => '#FFFFFF' );
 		if($wgOut->isArticle() && $wgUser->getOption('editondblclick') &&
-		  (!$wgTitle->isProtected() || $wgUser->isSysop()) ) {
+		  (!$wgTitle->isProtected() || $wgUser->isAllowed('protect')) ) {
 			$t = wfMsg( 'editthispage' );
 			$oid = $red = '';
 			if ( !empty($redirect) && $redirect == 'no' ) {
@@ -597,7 +597,7 @@ class Skin {
 
 	function getUndeleteLink() {
 		global $wgUser, $wgTitle, $wgContLang, $action;
-		if( $wgUser->isSysop() &&
+		if( $wgUser->isAllowed('rollback') &&
 			(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
 			($n = $wgTitle->isDeleted() ) ) {
 			return wfMsg( 'thisisdeleted',
@@ -800,10 +800,11 @@ class Skin {
 					}
 				}
 			}
-			if ( $wgUser->isSysop() && $wgTitle->getArticleId() ) {
-				$s .= "\n<br />" . $this->deleteThisPage() .
-				$sep . $this->protectThisPage() .
-				$sep . $this->moveThisPage();
+			if ( $wgTitle->getArticleId() ) {
+				$s .= "\n<br />";
+				if($wgUser->isAllowed('delete')) { $s .= $this->deleteThisPage(); }
+				if($wgUser->isAllowed('protect')) { $s .= $sep . $this->protectThisPage(); }
+				if($wgUser->isAllowed('move')) { $s .= $sep . $this->moveThisPage(); }
 			}
 			$s .= "<br />\n" . $this->otherLanguages();
 		}
@@ -1020,7 +1021,7 @@ class Skin {
 		global $wgUser, $wgOut, $wgTitle, $wgRequest;
 
 		$diff = $wgRequest->getVal( 'diff' );
-		if ( $wgTitle->getArticleId() && ( ! $diff ) && $wgUser->isSysop() ) {
+		if ( $wgTitle->getArticleId() && ( ! $diff ) && $wgUser->isAllowed('delete') ) {
 			$n = $wgTitle->getPrefixedText();
 			$t = wfMsg( 'deletethispage' );
 
@@ -1035,7 +1036,7 @@ class Skin {
 		global $wgUser, $wgOut, $wgTitle, $wgRequest;
 
 		$diff = $wgRequest->getVal( 'diff' );
-		if ( $wgTitle->getArticleId() && ( ! $diff ) && $wgUser->isSysop() ) {
+		if ( $wgTitle->getArticleId() && ( ! $diff ) && $wgUser->isAllowed('protect') ) {
 			$n = $wgTitle->getPrefixedText();
 
 			if ( $wgTitle->isProtected() ) {
@@ -2220,7 +2221,7 @@ class Skin {
 				$diffLink = wfMsg( 'diff' );
 			} else {
 				if ( $wgUseRCPatrol && $rc_patrolled == 0 && $wgUser->getID() != 0 &&
-				     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
+				     ( $wgUser->isAllowed('protect') || !$wgOnlySysopsCanPatrol ) )
 					$rcidparam = "&rcid={$rc_id}";
 				else
 					$rcidparam = "";
@@ -2242,7 +2243,7 @@ class Skin {
 			# If it's a new article, there is no diff link, but if it hasn't been
 			# patrolled yet, we need to give users a way to do so
 			if ( $wgUseRCPatrol && $rc_type == RC_NEW && $rc_patrolled == 0 &&
-			     $wgUser->getID() != 0 && ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
+			     $wgUser->getID() != 0 && ( $wgUser->isAllowed('patrol') || !$wgOnlySysopsCanPatrol ) )
 				$articleLink = $this->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
 			else
 				$articleLink = $this->makeKnownLinkObj( $rc->getTitle(), '' );
@@ -2277,7 +2278,7 @@ class Skin {
 		}
 		# Block link
 		$blockLink='';
-		if ( ( 0 == $rc_user ) && $wgUser->isSysop() ) {
+		if ( ( 0 == $rc_user ) && $wgUser->isAllowed('block') ) {
 			$blockLink = $this->makeKnownLink( $wgContLang->specialPage(
 			  'Blockip' ), wfMsg( 'blocklink' ), 'ip='.$rc_user_text );
 
@@ -2379,7 +2380,7 @@ class Skin {
 		$userTalkLink= $this->makeLink($utns . ':'.$rc_user_text, $talkname );
 
 		global $wgDisableAnonTalk;
-		if ( ( 0 == $rc_user ) && $wgUser->isSysop() ) {
+		if ( ( 0 == $rc_user ) && $wgUser->isAllowed('block') ) {
 			$blockLink = $this->makeKnownLink( $wgContLang->specialPage(
 			  'Blockip' ), wfMsg( 'blocklink' ), 'ip='.$rc_user_text );
 			if( $wgDisableAnonTalk )
@@ -2498,7 +2499,7 @@ class Skin {
 		if ( $iscur ) {
 			$url = Image::wfImageUrl( $img );
 			$rlink = $cur;
-			if ( $wgUser->isSysop() ) {
+			if ( $wgUser->isAllowed('delete') ) {
 				$link = $wgTitle->escapeLocalURL( 'image=' . $wgTitle->getPartialURL() .
 				  '&action=delete' );
 				$style = $this->getInternalLinkAttributes( $link, $delall );

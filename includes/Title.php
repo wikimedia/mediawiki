@@ -755,13 +755,13 @@ class Title {
 	function userCanEdit() {
 		global $wgUser;
 		if ( -1 == $this->mNamespace ) { return false; }
-		if ( NS_MEDIAWIKI == $this->mNamespace && !$wgUser->isSysop() ) { return false; }
+		if ( NS_MEDIAWIKI == $this->mNamespace && !$wgUser->isAllowed('editinterface') ) { return false; }
 		# if ( 0 == $this->getArticleID() ) { return false; }
 		if ( $this->mDbkeyform == '_' ) { return false; }
 		# protect global styles and js
 		if ( NS_MEDIAWIKI == $this->mNamespace 
 	             && preg_match("/\\.(css|js)$/", $this->mTextform )
-		     && !$wgUser->isSysop() )
+		     && !$wgUser->isAllowed('editinterface') )
 		{ return false; }
 		//if ( $this->isCssJsSubpage() and !$this->userCanEditCssJsSubpage() ) { return false; }
 		# protect css/js subpages of user pages
@@ -769,10 +769,11 @@ class Title {
 		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssJsSubpage() from working
 		if( Namespace::getUser() == $this->mNamespace
 			and preg_match("/\\.(css|js)$/", $this->mTextform )
-			and !$wgUser->isSysop()
+			and !$wgUser->isAllowed('editinterface')
 			and !preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) )
 		{ return false; }
 		$ur = $wgUser->getRights();
+
 		foreach ( $this->getRestrictions() as $r ) {
 			if ( '' != $r && ( ! in_array( $r, $ur ) ) ) {
 				return false;
@@ -790,15 +791,25 @@ class Title {
 		global $wgUser;
 		global $wgWhitelistRead;
 		
-		if( 0 != $wgUser->getID() ) return true;
-		if( !is_array( $wgWhitelistRead ) ) return true;
-		
-		$name = $this->getPrefixedText();
-		if( in_array( $name, $wgWhitelistRead ) ) return true;
-		
-		# Compatibility with old settings
-		if( $this->getNamespace() == NS_MAIN ) {
-			if( in_array( ':' . $name, $wgWhitelistRead ) ) return true;
+		if($wgUser->isAllowed('read')) {
+			return true;
+		} else {
+			$name = $this->getPrefixedText();
+
+			/** user can create an account */
+			if($wgUser->isAllowed('createaccount')
+			   && $name == 'Special:Userlogin') { return true; }
+			 else { 
+			 echo $name;
+			 print_r($wgUser->getRights());
+			 }
+
+			/** some pages are explicitly allowed */
+			if( in_array( $name, $wgWhitelistRead ) ) return true;
+			# Compatibility with old settings
+			if( $this->getNamespace() == NS_MAIN ) {
+				if( in_array( ':' . $name, $wgWhitelistRead ) ) return true;
+			}
 		}
 		return false;
 	}
@@ -837,7 +848,7 @@ class Title {
 	 */
 	function userCanEditCssJsSubpage() {
 		global $wgUser;
-		return ( $wgUser->isSysop() or preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) );
+		return ( $wgUser->isAllowed('editinterface') or preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) );
 	}
 
 	/**

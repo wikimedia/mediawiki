@@ -807,6 +807,14 @@ $wgBrowserBlackList = array(
 # $wgLocaltimezone = 'Europe/Sweden';
 # $wgLocaltimezone = 'CET';
 
+# User level management
+# The number is the database id of a group you want users to be attached by
+# default. A better interface should be coded [av]
+$wgAnonGroupId = 1;
+$wgLoggedInGroupId = 2;
+
+$wgWhitelistRead = array ( ':Accueil', ':Main_Page');
+
 } else {
 	die();
 }

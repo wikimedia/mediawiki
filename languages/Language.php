@@ -1030,8 +1030,17 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'listadmins'	=> 'Admins list',
 'specialpages'	=> 'Special pages',
 'spheading'		=> 'Special pages for all users',
+'asksqlpheading' => 'asksql level',
+'blockpheading' => 'block level',
+'createaccountpheading' => 'createaccount level',
+'deletepheading' => 'delete level',
+'userrightspheading' => 'userrights level',
+'siteadminpheading' => 'siteadmin level',
+
+/** obsoletes
 'sysopspheading' => 'For sysop use only',
 'developerspheading' => 'For developer use only',
+*/
 'protectpage'	=> 'Protect page',
 'recentchangeslinked' => 'Related changes',
 'rclsub'		=> "(to pages linked from \"$1\")",

@@ -227,7 +227,7 @@ class SkinStandard extends Skin {
 				if ( $wgTitle->userCanEdit() )
 					$s .= $sep . $this->moveThisPage();
 			}
-			if ( $wgUser->isSysop() and $articleExists ) {
+			if ( $wgUser->isAllowed('delete') and $articleExists ) {
 				$s .= $sep . $this->deleteThisPage() .
 				$sep . $this->protectThisPage();
 			}

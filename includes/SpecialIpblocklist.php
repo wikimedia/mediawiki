@@ -21,7 +21,7 @@ function wfSpecialIpblocklist() {
 		$msg = wfMsg( "ipusuccess", htmlspecialchars( $ip ) );
 		$ipu->showList( $msg );
 	} else if ( "submit" == $action && $wgRequest->wasPosted() ) {
-		if ( ! $wgUser->isSysop() ) {
+		if ( ! $wgUser->isAllowed('block') ) {
 			$wgOut->sysopRequired();
 			return;
 		}
@@ -161,7 +161,7 @@ function wfAddRow( $block, $tag ) {
 		$wgOut->addHTML( " ({$clink})" );
 	}
 
-	if ( $wgUser->isSysop() ) {
+	if ( $wgUser->isAllowed('block') ) {
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Ipblocklist" );
 		$ublink = "<a href=\"" . 
 		  $titleObj->escapeLocalURL( "action=unblock&ip=" . urlencode( $addr ) ) . "\">" .

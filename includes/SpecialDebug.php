@@ -11,7 +11,7 @@
 function wfSpecialDebug() {
 	global $wgUser, $wgOut;
 
-	if ( ! $wgUser->isDeveloper() ) {
+	if ( ! $wgUser->isAllowed('siteadmin') ) {
 		$wgOut->developerRequired();
 		return;
 	}

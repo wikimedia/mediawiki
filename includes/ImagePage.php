@@ -159,7 +159,7 @@ class ImagePage extends Article {
 		
 		# Only sysops can delete images. Previously ordinary users could delete 
 		# old revisions, but this is no longer the case.
-		if ( !$wgUser->isSysop() ) {
+		if ( !$wgUser->isAllowed('delete') ) {
 			$wgOut->sysopRequired();
 			return;
 		}

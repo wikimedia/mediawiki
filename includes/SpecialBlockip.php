@@ -12,7 +12,7 @@
 function wfSpecialBlockip() {
 	global $wgUser, $wgOut, $wgRequest;
 
-	if ( ! $wgUser->isSysop() ) {
+	if ( ! $wgUser->isAllowed('block') ) {
 		$wgOut->sysopRequired();
 		return;
 	}

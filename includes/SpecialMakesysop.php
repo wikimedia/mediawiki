@@ -1,9 +1,13 @@
 <?php
 /**
- *
+ * File is replaced by SpecialUserlevels. It is kept here for migration purposes
  * @package MediaWiki
  * @subpackage SpecialPage
+ * @deprecated
  */
+
+wfDebugDieBacktrace('Use SpecialUserlevels instead !!'); // [av]
+
 
 /**
  *
@@ -20,7 +24,7 @@ function wfSpecialMakesysop() {
 		$wgOut->errorpage( "movenologin", "movenologintext" );
 		return;
 	}
-	if (! $wgUser->isBureaucrat() && ! $wgUser->isDeveloper() ){
+	if (! $wgUser->isAllowed('userrights') ) {
 		$wgOut->errorpage( "bureaucrattitle", "bureaucrattext" );
 		return;
 	}

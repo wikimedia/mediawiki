@@ -27,7 +27,7 @@ $wgSpecialPages = array(
 	'BrokenRedirects'	=> new UnlistedSpecialPage ( 'BrokenRedirects' ),
 	'Disambiguations'	=> new UnlistedSpecialPage ( 'Disambiguations' ),
 	
-	'Userlogin'         => new SpecialPage( 'Userlogin' ),
+	'Userlogin'         => new SpecialPage( 'Userlogin', 'createaccount' ),
 	'Userlogout'        => new UnlistedSpecialPage( 'Userlogout' ),
 	'Preferences'       => new SpecialPage( 'Preferences' ),
 	'Watchlist'         => new SpecialPage( 'Watchlist' ),
@@ -80,17 +80,18 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 	'Allmessages'	=> new SpecialPage( 'Allmessages' ),
 	'Search'		=> new UnlistedSpecialPage( 'Search' ),
 	'Log'           => new SpecialPage( 'Log' ),
-	'Blockip'		=> new SpecialPage( 'Blockip', 'sysop' ),
-	'Asksql'		=> new SpecialPage( 'Asksql', 'sysop' ),
-	'Undelete'		=> new SpecialPage( 'Undelete', 'sysop' ),
-	'Makesysop'		=> new SpecialPage( 'Makesysop', 'sysop' ),
+	'Blockip'		=> new SpecialPage( 'Blockip', 'block' ),
+	'Asksql'		=> new SpecialPage( 'Asksql', 'asksql' ),
+	'Undelete'		=> new SpecialPage( 'Undelete', 'delete' ),
+	// Makesysop is obsolete, replaced by Special:Userlevels [av]
+	# 'Makesysop'		=> new SpecialPage( 'Makesysop', 'userrights' ),
 
 # Special:Import is half-written
 #	"Import"		=> new SpecialPage( "Import", "sysop" ),
-	'Lockdb'		=> new SpecialPage( 'Lockdb', 'developer' ),
-	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'developer' ),
-	'Sitesettings'  => new SpecialPage( 'Sitesettings', 'sysop' ),
-	'Userlevels'	=> new SpecialPage( 'Userlevels', 'sysop' ),
+	'Lockdb'		=> new SpecialPage( 'Lockdb', 'siteadmin' ),
+	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'siteadmin' ),
+	'Sitesettings'  => new SpecialPage( 'Sitesettings', 'siteadmin' ),
+	'Userlevels'	=> new SpecialPage( 'Userlevels', 'userrights' ),
 ));
 
 /**

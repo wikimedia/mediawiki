@@ -11,7 +11,8 @@ require_once('Group.php');
 /** Entry point */
 function wfSpecialUserlevels($par=null) {
 	global $wgRequest;
-//	print_r($_POST);
+	# Debug statement
+	// print_r($_POST);
 	$form = new UserlevelsForm($wgRequest);
 	$form->execute();
 }
@@ -54,7 +55,8 @@ class UserlevelsForm extends HTMLForm {
 			if($this->mRequest->getCheck('savegroup')) {
 				$this->saveGroup($this->mRequest->getVal('editgroup-name'),
 				                 $this->mRequest->getVal('editgroup-oldname'),
-				                 $this->mRequest->getVal('editgroup-description'));
+				                 $this->mRequest->getVal('editgroup-description'),
+								 $this->mRequest->getVal('editgroup-getrights'));
 			
 			} elseif($this->mRequest->getCheck('saveusergroups')) {
 				$this->saveUserGroups($this->mRequest->getVal('user-editname'),
@@ -70,9 +72,10 @@ class UserlevelsForm extends HTMLForm {
 	 * @param string $newname Group name.
 	 * @param string $oldname Old (current) group name.
 	 * @param string $description Group description.
-	 * @todo FIXME : doesnt validate anything.
+	 *
+	 * @todo FIXME : doesnt validate anything. Log is incorrect.
 	 */
-	function saveGroup($newname, $oldname, $description) {
+	function saveGroup($newname, $oldname, $description, $rights) {
 		$newame = trim($newname);
 	
 		if($oldname == '') {
@@ -86,7 +89,13 @@ class UserlevelsForm extends HTMLForm {
 		// save stuff
 		$g->setName($newname);
 		$g->setDescription($description);
+		if(isset($rights)) { $g->setRights( implode(',',$rights) ); }
+		
 		$g->save();
+
+		$log = new LogPage( 'rights' );
+		$log->addEntry( 'rights', Title::makeTitle( NS_SPECIAL, $g->getName()) , ' '.$g->getRights() );
+
 	}
 
 	/**
@@ -96,6 +105,8 @@ class UserlevelsForm extends HTMLForm {
 	 * @param string $username Username to apply changes to.
 	 * @param array $removegroup id of groups to be removed.
 	 * @param array $addgroup id of groups to be added.
+	 *
+	 * @todo Log groupname instead of group id.
 	 */
 	function saveUserGroups($username,$removegroup,$addgroup) {
 		$u = User::NewFromName($username);
@@ -112,12 +123,22 @@ class UserlevelsForm extends HTMLForm {
 		$u->setID( $id );
 
 		$groups = $u->getGroups();
+		$logcomment = ' ';
 		// remove then add groups		
-		if(isset($removegroup)) { $groups = array_diff($groups, $removegroup); }
-		if(isset($addgroup)) { $groups = array_merge($groups, $addgroup); }
+		if(isset($removegroup)) {
+			$groups = array_diff($groups, $removegroup);
+			$logcomment .= implode( ' -', $removegroup);
+			}
+		if(isset($addgroup)) {
+			$groups = array_merge($groups, $addgroup);
+			$logcomment .= implode( ' +', $addgroup );
+			}
 		// save groups in user object and database
 		$u->setGroups($groups);
 		$u->saveSettings();
+
+		$log = new LogPage( 'rights' );
+		$log->addEntry( 'rights', Title::makeTitle( NS_USER, $u->getName() ), $logcomment );
 	}
 
 	/**
@@ -143,7 +164,7 @@ class UserlevelsForm extends HTMLForm {
 				$this->textbox( 'user-editname' ) .
 				'<input type="submit" name="ssearchuser" value="'.wfMsg('editusergroup').'">'
 		));
-		$wgOut->addHTML( "</form>" );
+		$wgOut->addHTML( '</form>' );
 	}
 
 	/**
@@ -152,28 +173,33 @@ class UserlevelsForm extends HTMLForm {
 	 */
 	function editGroupForm($groupID = 0) {
 		global $wgOut;
-		
+
 		if($this->mRequest->getVal('seditgroup')) {
 		// fetch data if we edit a group
 			$g = Group::newFromID($groupID);
-			$gName = $g->getName();
-			$gDescription = $g->getDescription();
 			$fieldname = 'editgroup';
 		} else {
 		// default datas when we add a group
-			$gName = '';
-			$gDescription = '';
+			$g = new group();
 			$fieldname = 'addgroup';
 		}
+
+		$gName = $g->getName();
+		$gDescription = $g->getDescription();
+
 
 		$wgOut->addHTML( "<form name=\"editGroup\" action=\"$this->action\" method=\"post\">".
 		                '<input type="hidden" name="editgroup-oldname" value="'.$gName.'">');
 		$wgOut->addHTML( $this->fieldset( $fieldname,
 			$this->textbox( 'editgroup-name', $gName ) .
 			$this->textareabox( 'editgroup-description', $gDescription ) .
+			'<br /><table border="0" align="center"><tr><td>'.
+			$this->HTMLSelectRights($g->getRights()).
+			'</td></table>'.			
 			'<input type="submit" name="savegroup" value="'.wfMsg('savegroup').'">'
 			));
-		$wgOut->addHTML( "</form>" );
+
+		$wgOut->addHTML( "</form>\n" );
 	}
 
 	/**
@@ -201,7 +227,7 @@ class UserlevelsForm extends HTMLForm {
 						 '<input type="hidden" name="user-editname" value="'.$username.'">');
 		$wgOut->addHTML( $this->fieldset( 'editusergroup',
 			wfMsg('editing', $this->mRequest->getVal('user-editname')).'.<br />' .
-			'<table border="0"><tr><td>'.
+			'<table border="0" align="center"><tr><td>'.
 			$this->HTMLSelectGroups('groupsmember', $groups,true,6).
 			'</td><td>'.
 			$this->HTMLSelectGroups('groupsavailable', $groups,true,6,true).
@@ -209,7 +235,7 @@ class UserlevelsForm extends HTMLForm {
 			'<p>'.wfMsg('userlevels-groupshelp').'</p>'.
 			'<input type="submit" name="saveusergroups" value="'.wfMsg('saveusergroups').'">'
 			));
-		$wgOut->addHTML( "</form>" );
+		$wgOut->addHTML( "</form>\n" );
 	}
 
 
@@ -243,10 +269,25 @@ class UserlevelsForm extends HTMLForm {
 				$out .= 'value="'.$g->group_id.'">'.$g->group_name.'</option>';
 			}
 		}
-			
 		$out .= '</select>';
 		return $out;
 	}
-
+	
+	function HTMLSelectRights($selected='') {
+		global $wgAvailableRights;
+		$out = '<select name="editgroup-getrights[]" multiple>';
+		$groupRights = explode(',',$selected);
+		
+		foreach($wgAvailableRights as $right) {
+		
+			// check box when right exist
+			if(in_array($right, $groupRights)) { $selected = 'selected'; }
+			else { $selected = ''; }
+						
+			$out .= '<option  '.$selected.' value="'.$right.'">'.$right.'</option>';
+		}
+		$out .= '</fieldset>';
+		return $out;
+	}
 }
 ?>
