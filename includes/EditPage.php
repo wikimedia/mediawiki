@@ -278,9 +278,11 @@ class EditPage {
 		$copywarn = wfMsg( "copyrightwarning", $sk->makeKnownLink(
 		  wfMsg( "copyrightpage" ) ) );
 
-		if($wgUser->getOption("showtoolbar")) {
-			// prepare toolbar for edit buttons
-			$toolbar=$sk->getEditToolbar();
+		if( $wgUser->getOption("showtoolbar") ) {
+			# prepare toolbar for edit buttons
+			$toolbar = $sk->getEditToolbar();
+		} else {
+			$toolbar = "";
 		}
 
 		// activate checkboxes if user wants them to be always active
