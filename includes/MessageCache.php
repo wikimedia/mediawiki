@@ -246,36 +246,7 @@ class MessageCache
 			if(!$isfullkey && ($langcode != $wgContLanguageCode) ) {
 				$title .= '/' . $langcode;
 			}
-
-			# Try the cache
-			if( $this->mUseCache && is_array( $this->mCache ) && array_key_exists( $title, $this->mCache ) ) {
-				$message = $this->mCache[$title];
-			}
-
-			if ( !$message && $this->mUseCache ) {
-				$message = $this->mMemc->get( $this->mMemcKey . ':' . $title );
-				if( $message ) {
-					$this->mCache[$title] = $message;
-				}
-			}
-
-			# If it wasn't in the cache, load each message from the DB individually
-			if ( !$message ) {
-				$dbr =& wfGetDB( DB_SLAVE );
-				$result = $dbr->selectRow( 'cur', array('cur_text'),
-				  array( 'cur_namespace' => NS_MEDIAWIKI, 'cur_title' => $title ),
-				  'MessageCache::get' );
-				if ( $result ) {
-					$message = $result->cur_text;
-					if( $this->mUseCache ) {
-						$this->mCache[$title] = $message;
-						/* individual messages may be often 
-						   recached until proper purge code exists 
-						*/
-						$this->mMemc->set( $this->mMemcKey . ':' . $title, $message, 300 );
-					}
-				}
-			}
+			$message = $this->getFromCache( $title );
 		}
 		# Try the extension array
 		if( !$message ) {
@@ -296,6 +267,13 @@ class MessageCache
 			wfRestoreWarnings();
 		}
 
+		# Is this a custom message? Try the default language in the db...
+		if( !$message &&
+			!$this->mDisable && $useDB &&
+			!$isfullkey && ($langcode != $wgContLanguageCode) ) {
+			$message = $this->getFromCache( $lang->ucfirst( $key ) );
+		}
+		
 		# Final fallback
 		if( !$message ) {
 			$message = "&lt;$key&gt;";
@@ -303,6 +281,42 @@ class MessageCache
 
 		# Replace brace tags
 		$message = $this->transform( $message );
+		return $message;
+	}
+
+	function getFromCache( $title ) {
+		$message = false;
+		
+		# Try the cache
+		if( $this->mUseCache && is_array( $this->mCache ) && array_key_exists( $title, $this->mCache ) ) {
+			$message = $this->mCache[$title];
+		}
+
+		if ( !$message && $this->mUseCache ) {
+			$message = $this->mMemc->get( $this->mMemcKey . ':' . $title );
+			if( $message ) {
+				$this->mCache[$title] = $message;
+			}
+		}
+
+		# If it wasn't in the cache, load each message from the DB individually
+		if ( !$message ) {
+			$dbr =& wfGetDB( DB_SLAVE );
+			$result = $dbr->selectRow( 'cur', array('cur_text'),
+			  array( 'cur_namespace' => NS_MEDIAWIKI, 'cur_title' => $title ),
+			  'MessageCache::get' );
+			if ( $result ) {
+				$message = $result->cur_text;
+				if( $this->mUseCache ) {
+					$this->mCache[$title] = $message;
+					/* individual messages may be often 
+					   recached until proper purge code exists 
+					*/
+					$this->mMemc->set( $this->mMemcKey . ':' . $title, $message, 300 );
+				}
+			}
+		}
+		
 		return $message;
 	}
 
