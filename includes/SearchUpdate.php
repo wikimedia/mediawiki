@@ -30,6 +30,9 @@ class SearchUpdate {
 		if( $wgDisableSearchUpdate || !$this->mId ) {
 			return false;
 		}
+		$fname = "SearchUpdate::doUpdate";
+		wfProfileIn( $fname );
+
 		require_once( 'SearchEngine.php' );
 		$lc = SearchEngine::legalSearchChars() . "&#;";
 		$db =& wfGetDB( DB_MASTER );
@@ -42,12 +45,14 @@ class SearchUpdate {
 			  $db->strencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) .
 			  "' WHERE si_page={$this->mId}";
 			$db->query( $sql, "SearchUpdate::doUpdate" );
+			wfProfileOut( $fname );
 			return;
 		}
 
 		# Language-specific strip/conversion
 		$text = $wgLang->stripForSearch( $this->mText );
 
+		wfProfileIn( "$fname-regexps" );
 		$text = preg_replace( "/<\\/?\\s*[A-Za-z][A-Za-z0-9]*\\s*([^>]*?)>/",
 		  " ", strtolower( " " . $text /*$this->mText*/ . " " ) ); # Strip HTML markup
 		$text = preg_replace( "/(^|\\n)\\s*==\\s+([^\\n]+)\\s+==\\s/sD",
@@ -75,16 +80,32 @@ class SearchUpdate {
 		$text = preg_replace( "/[^{$lc}]+/", " ", $text );
 
 		# Handle 's, s'
-		$text = preg_replace( "/([{$lc}]+)'s /", "\\1 \\1's ", $text );
-		$text = preg_replace( "/([{$lc}]+)s' /", "\\1s ", $text );
+		#
+		#   $text = preg_replace( "/([{$lc}]+)'s /", "\\1 \\1's ", $text );
+		#   $text = preg_replace( "/([{$lc}]+)s' /", "\\1s ", $text );
+		#
+		# These tail-anchored regexps are insanely slow. The worst case comes
+		# when Japanese or Chinese text (ie, no word spacing) is written on
+		# a wiki configured for Western UTF-8 mode. The Unicode characters are
+		# expanded to hex codes and the "words" are very long paragraph-length
+		# monstrosities. On a large page the above regexps may take over 20
+		# seconds *each* on a 1GHz-level processor.
+		#
+		# Following are reversed versions which are consistently fast
+		# (about 3 milliseconds on 1GHz-level processor).
+		#
+		$text = strrev( preg_replace( "/ s'([{$lc}]+)/", " s'\\1 \\1", strrev( $text ) ) );
+		$text = strrev( preg_replace( "/ 's([{$lc}]+)/", " s\\1", strrev( $text ) ) );
 
 		# Strip wiki '' and '''
 		$text = preg_replace( "/''[']*/", " ", $text );
+		wfProfileOut( "$fname-regexps" );
 		
 		$sql = "REPLACE  INTO $searchindex (si_page,si_title,si_text) VALUES ({$this->mId},'" .
 		  $db->strencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) . "','" .
 		  $db->strencode( $text ) . "')";
 		$db->query( $sql, "SearchUpdate::doUpdate" );
+		wfProfileOut( $fname );
 	}
 }
 
