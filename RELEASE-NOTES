@@ -131,6 +131,8 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 922) bogus DOS line endings in LanguageEl.php
 * Fix index usage in contribs
 * Caching and load limiting options for Recentchanges RSS/Atom feed
+* (bug 1074) Add stock icons for non-image files in gallery/Newimages
+* Add width and height attributes on thumbs in gallery/Newimages
 
 === Caveats ===
 

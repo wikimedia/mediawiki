@@ -344,6 +344,22 @@ class Image
 	 * @access public
 	 */
 	function createThumb( $width, $height=-1 ) {
+		$thumb = $this->getThumbnail( $width, $height );
+		if( is_null( $thumb ) ) return '';
+		return $thumb->getUrl();
+	}
+	
+	/**
+	 * As createThumb, but returns a ThumbnailImage object. This can
+	 * provide access to the actual file, the real size of the thumb,
+	 * and can produce a convenient <img> tag for you.
+	 *
+	 * @param integer $width	maximum width of the generated thumbnail
+	 * @param integer $height	maximum height of the image (optional)
+	 * @return ThumbnailImage
+	 * @access public
+	 */
+	function &getThumbnail( $width, $height=-1 ) {
 		if ( $height == -1 ) {
 			return $this->renderThumb( $width );
 		}
@@ -358,7 +374,28 @@ class Image
 			$thumbwidth = $thumbwidth * $height / $thumbheight;
 			$thumbheight = $height;
 		}
-		return $this->renderThumb( $thumbwidth );
+		$thumb = $this->renderThumb( $thumbwidth );
+		if( is_null( $thumb ) ) {
+			$thumb = $this->iconThumb();
+		}
+		return $thumb;
+	}
+	
+	/**
+	 * @return ThumbnailImage
+	 */
+	function iconThumb() {
+		global $wgStylePath, $wgStyleDirectory;
+		
+		$try = array( 'fileicon-' . $this->extension . '.png', 'fileicon.png' );
+		foreach( $try as $icon ) {
+			$path = '/common/images/' . $icon;
+			$filepath = $wgStyleDirectory . $path;
+			if( file_exists( $filepath ) ) {
+				return new ThumbnailImage( $filepath, $wgStylePath . $path );
+			}
+		}
+		return null;
 	}
 		
 	/**
@@ -367,8 +404,10 @@ class Image
 	 * image's width. Let the browser do the scaling in this case.
 	 * The thumbnail is stored on disk and is only computed if the thumbnail
 	 * file does not exist OR if it is older than the image.
-	 * Returns the URL.
+	 * Returns an object which can return the pathname, URL, and physical
+	 * pixel size of the thumbnail -- or null on failure.
 	 *
+	 * @return ThumbnailImage
 	 * @access private
 	 */
 	function /* private */ renderThumb( $width ) {
@@ -385,18 +424,18 @@ class Image
 		if ( ! $this->exists() )
 		{
 			# If there is no image, there will be no thumbnail
-			return '';
+			return null;
 		}
 		
 		# Sanity check $width
 		if( $width <= 0 ) {
 			# BZZZT
-			return '';
+			return null;
 		}
 
 		if( $width > $this->width && !$this->mustRender() ) {
 			# Don't make an image bigger than the source
-			return $this->getViewURL();
+			return new ThumbnailImage( $this->getImagePath(), $this->getViewURL() );
 		}
 
 		if ( (! file_exists( $thumbPath ) ) || ( filemtime($thumbPath) < filemtime($this->imagePath) ) ) {
@@ -483,8 +522,6 @@ class Image
 				}
 				imagedestroy( $dst_image );
 				imagedestroy( $src_image );
-
-
 			}
 			#
 			# Check for zero-sized thumbnails. Those can be generated when 
@@ -506,7 +543,7 @@ class Image
 				wfPurgeSquidServers($urlArr);
 			}
 		}
-		return $thumbUrl;
+		return new ThumbnailImage( $thumbPath, $thumbUrl );
 	} // END OF function createThumb
 
 	/**
@@ -834,6 +871,60 @@ function getSVGsize( $filename ) {
 	
 	return array( $width, $height, 'SVG',
 		"width=\"$width\" height=\"$height\"" );
+}
+
+
+/**
+ * Wrapper class for thumbnail images
+ */
+class ThumbnailImage {
+	/**
+	 * @param string $path Filesystem path to the thumb
+	 * @param string $url URL path to the thumb
+	 * @access private
+	 */
+	function ThumbnailImage( $path, $url ) {
+		$this->url = $url;
+		$this->path = $path;
+		$size = @getimagesize( $this->path );
+		if( $size ) {
+			$this->width = $size[0];
+			$this->height = $size[1];
+		} else {
+			$this->width = 0;
+			$this->height = 0;
+		}
+	}
+	
+	function getUrl() {
+		return $this->url;
+	}
+	
+	/**
+	 * Return HTML <img ... /> tag for the thumbnail, will include
+	 * width and height attributes and a blank alt text (as required).
+	 *
+	 * You can set or override additional attributes by passing an
+	 * associative array of name => data pairs. The data will be escaped
+	 * for HTML output, so should be in plaintext.
+	 *
+	 * @param array $attribs
+	 * @return string
+	 * @access public
+	 */
+	function toHtml( $attribs = array() ) {
+		$attribs['src'] = $this->url;
+		$attribs['width'] = $this->width;
+		$attribs['height'] = $this->height;
+		if( !isset( $attribs['alt'] ) ) $attribs['alt'] = '';
+
+		$html = '<img ';
+		foreach( $attribs as $name => $data ) {
+			$html .= $name . '="' . htmlspecialchars( $data ) . '" ';
+		}
+		$html .= '/>';
+		return $html;
+	}
 }
 
 ?>
