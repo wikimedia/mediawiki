@@ -31,6 +31,7 @@ class SearchTsearch2 extends SearchEngine {
 	function SearchTsearch2( &$db ) {
 		$this->db =& $db;
 		$this->db->setSchema('tsearch');
+		$this->mRanking = true;
 	}
 	
 	function getIndexField( $fulltext ) {
@@ -68,17 +69,28 @@ class SearchTsearch2 extends SearchEngine {
 		
 		$searchon = preg_replace('/(\s+)/','&',$searchon);
 		$searchon = $this->db->strencode( $searchon );
-		$field = $this->getIndexField( $fulltext );
-		return " $field @@ to_tsquery('$searchon')";
+		return $searchon;
 	}
+
+	function queryRanking($filteredTerm, $fulltext) {
+		$field = $this->getIndexField( $fulltext );
+		$searchon = $this->parseQuery($filteredTerm,$fulltext);
+		if ($this->mRanking)
+			return " ORDER BY rank($field,to_tsquery('$searchon')) DESC";
+		else
+			return "";
+	}
+		
 
 	function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
+		$field = $this->getIndexField( $fulltext );
 		$cur = $this->db->tableName( 'cur' );
 		$searchindex = $this->db->tableName( 'searchindex' );
 		return 'SELECT cur_id, cur_namespace, cur_title, cur_text ' .
 			"FROM $cur,$searchindex " .
-			'WHERE cur_id=si_page AND ' . $match;
+			'WHERE cur_id=si_page AND ' . 
+			" $field @@ to_tsquery ('$match') " ;
 	}
 
         function update( $id, $title, $text ) {
