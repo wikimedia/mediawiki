@@ -729,7 +729,7 @@ class Parser
 		} elseif ( $state["strong"] !== false ) {
 			$s .= "</strong><em>";
 			$state["strong"] = FALSE;
-			$state["em"] = $token["pos"];
+			$state["em"] = @$token["pos"];
 		} else { # not $em and not $strong
 			$s .= "<strong><em>";
 			$state["strong"] = $state["em"] = isset($token["pos"]) ? $token["pos"] : true;
