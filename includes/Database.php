@@ -352,6 +352,100 @@ class Database {
 	}
 
 
+	/**
+	 * Intended to be compatible with the PEAR::DB wrapper functions.
+	 * http://pear.php.net/manual/en/package.database.db.intro-execute.php
+	 *
+	 * ? = scalar value, quoted as necessary
+	 * ! = raw SQL bit (a function for instance)
+	 * & = filename; reads the file and inserts as a blob
+	 *     (we don't use this though...)
+	 */
+	function prepare( $sql, $func = 'Database::prepare' ) {
+		/* MySQL doesn't support prepared statements (yet), so just
+		   pack up the query for reference. We'll manually replace
+		   the bits later. */
+		return array( 'query' => $sql, 'func' => $func );
+	}
+	
+	function freePrepared( $prepared ) {
+		/* No-op for MySQL */
+	}
+	
+	/**
+	 * Execute a prepared query with the various arguments
+	 * @param string $prepared the prepared sql
+	 * @param mixed $args Either an array here, or put scalars as varargs
+	 */
+	function execute( $prepared, $args = null ) {
+		if( !is_array( $args ) ) {
+			# Pull the var args
+			$args = func_get_args();
+			array_shift( $args );
+		}
+		$sql = $this->fillPrepared( $prepared['query'], $args );
+		return $this->query( $sql, $prepared['func'] );
+	}
+	
+	/**
+	 * Prepare & execute an SQL statement, quoting and inserting arguments
+	 * in the appropriate places.
+	 * @param 
+	 */
+	function safeQuery( $query, $args = null ) {
+		$prepared = $this->prepare( $query, 'Database::safeQuery' );
+		if( !is_array( $args ) ) {
+			# Pull the var args
+			$args = func_get_args();
+			array_shift( $args );
+		}
+		$retval = $this->execute( $prepared, $args );
+		$this->freePrepared( $prepared );
+		return $retval;
+	}
+	
+	/**
+	 * For faking prepared SQL statements on DBs that don't support
+	 * it directly.
+	 * @param string $preparedSql - a 'preparable' SQL statement
+	 * @param array $args - array of arguments to fill it with
+	 * @return string executable SQL
+	 */
+	function fillPrepared( $preparedQuery, $args ) {
+		$n = 0;
+		reset( $args );
+		$this->preparedArgs =& $args;
+		return preg_replace_callback( '/(\\\\[?!&]|[?!&])/',
+			array( &$this, 'fillPreparedArg' ), $preparedQuery );
+	}
+	
+	/**
+	 * preg_callback func for fillPrepared()
+	 * The arguments should be in $this->preparedArgs and must not be touched
+	 * while we're doing this.
+	 * 
+	 * @param array $matches
+	 * @return string
+	 * @access private
+	 */
+	function fillPreparedArg( $matches ) {
+		switch( $matches[1] ) {
+			case '\\?': return '?';
+			case '\\!': return '!';
+			case '\\&': return '&';
+		}
+		list( $n, $arg ) = each( $this->preparedArgs );
+		switch( $matches[1] ) {
+			case '?': return $this->addQuotes( $arg );
+			case '!': return $arg;
+			case '&':
+				# return $this->addQuotes( file_get_contents( $arg ) );
+				wfDebugDieBacktrace( '& mode is not implemented. If it\'s really needed, uncomment the line above.' );
+			default:
+				wfDebugDieBacktrace( 'Received invalid match. This should never happen!' );
+		}
+	}
+	
 	/**#@+
 	 * @param mixed $res A SQL result
 	 */
