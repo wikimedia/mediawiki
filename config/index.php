@@ -299,10 +299,7 @@ if( $conf->HaveGD ) {
 $conf->UseImageResize = $conf->HaveGD || $conf->ImageMagick;
 
 # $conf->IP = "/Users/brion/Sites/inplace";
-chdir( ".." );
-$conf->IP = getcwd();
-$conf->IP = preg_replace( "/\\\\/","\\\\\\\\",$conf->IP );  // For Windows, \ -> \\ 
-chdir( "config" );
+$conf->IP = dirname( dirname( __FILE__ ) );
 print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt></li>\n";
 
 # $conf->ScriptPath = "/~brion/inplace";
@@ -813,7 +810,7 @@ function writeLocalSettings( $conf ) {
 
 \$IP = \"{$slconf['IP']}\";
 ini_set( \"include_path\", \".$sep\$IP$sep\$IP/includes$sep\$IP/languages\" );
-include_once( \"DefaultSettings.php\" );
+require_once( \"DefaultSettings.php\" );
 
 # If PHP's memory limit is very low, some operations may fail.
 " . ($conf->raiseMemory ? '' : '# ' ) . "ini_set( 'memory_limit', '20M' );" . "
