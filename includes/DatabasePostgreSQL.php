@@ -1,4 +1,5 @@
 <?php
+# $Id$
 #
 # DO NOT USE !!!  Unless you want to help developping it.
 #
@@ -330,11 +331,7 @@ class Database {
 	# If errors are explicitly ignored, returns NULL on failure
 	function indexExists( $table, $index, $fname = "Database::indexExists" ) 
 	{
-		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
-		# SHOW INDEX should work for 3.x and up:
-		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
-		// FIXME: hashar : probably need investigation here
-		$sql = "SELECT 'INDEX' FROM '$table'";
+		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='$table'";
 		$res = $this->query( $sql, DB_READ, $fname );
 		if ( !$res ) {
 			return NULL;
@@ -504,24 +501,24 @@ function wfEmergencyAbort( &$conn ) {
 
 function wfStrencode( $s )
 {
-	return addslashes( $s );
+	return pg_escape_string( $s );
 }
 
-# Ideally we'd be using actual time fields in the db
+# Use PostgreSQL timestamp without timezone data type
 function wfTimestamp2Unix( $ts ) {
-	return gmmktime( ( (int)substr( $ts, 8, 2) ),
-		  (int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
-		  (int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
-		  (int)substr( $ts, 0, 4 ) );
+	return gmmktime( ( (int)substr( $ts, 11, 2) ),
+                  (int)substr( $ts, 14, 2 ), (int)substr( $ts, 17, 2 ),
+                  (int)substr( $ts, 5, 2 ), (int)substr( $ts, 8, 2 ),
+                  (int)substr( $ts, 0, 4 ) );
 }
 
 function wfUnix2Timestamp( $unixtime ) {
-	return gmdate( "YmdHis", $unixtime );
+	return gmdate( "Y-m-d H:i:s", $unixtime );
 }
 
 function wfTimestampNow() {
 	# return NOW
-	return gmdate( "YmdHis" );
+	return gmdate( "Y-m-d H:i:s" );
 }
 
 # Sorting hack for MySQL 3, which doesn't use index sorts for DESC
