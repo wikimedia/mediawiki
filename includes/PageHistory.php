@@ -105,10 +105,8 @@ class PageHistory {
 	{
 		global $wgTitle;
 		$this->lastdate = $this->lastline = "";
-		$s = "\n<p>" . wfMsg( "histlegend" ) . "</p>\n<ul class='special'>";
-		$url = $wgTitle->getFullURL("-");
-		$s .= "<script type='text/javascript'>
-			//<![CDATA[
+		$s = "\n<script type='text/javascript'>
+			/*<![CDATA[*/
 			var sel = -1;
 			function anysel(oid){ 
 				row = document.getElementById(\"ver\" + oid);
@@ -135,8 +133,10 @@ class PageHistory {
 				u = \"{$url}diff=\" + diff + \"&oldid=\" + oldid;
 				location.href=u;
 			}
-			//]]>
+			/*]]>*/
 		</script>";
+		$s .= "\n<p>" . wfMsg( "histlegend" ) . "</p>\n<ul class='special'>";
+		$url = $wgTitle->getFullURL("-");
 		return $s;
 	}
 
