@@ -544,18 +544,16 @@ $wgEmailNotificationMailsSentFromPageEditor	= false; # false: Enotif mails appea
 # If set to false, the corresponding input form on the user preference page is suppressed
 # It call this to be a "user-preferences-option (UPO)"
 $wgEmailAuthentication				= true; # UPO (if this is set to false, texts referring to authentication are suppressed)
-$wgEmailNotificationForWatchlistPages		= true; # UPO
-$wgEmailNotificationForUserTalkPages		= true;	# UPO
-$wgEmailNotificationRevealPageEditorAddress	= true;	# UPO; reply-to address may be filled with page editor's address (if user allowed this in the preferences)
+$wgEmailNotificationForWatchlistPages		= false; # UPO
+$wgEmailNotificationForUserTalkPages		= false;	# UPO
+$wgEmailNotificationRevealPageEditorAddress	= false;	# UPO; reply-to address may be filled with page editor's address (if user allowed this in the preferences)
 $wgEmailNotificationForMinorEdits		= true;	# UPO; false: "minor edits" on pages do not trigger notification mails.
 #							# Attention: _every_ change on a user_talk page trigger a notification mail (if the user is not yet notified)
 
-# Show recent changes in UseMod style, i.e. only the recent change of a page is listed
-$wgRCUseModStyle 				= true; # UPO
 # Show watching users in recent changes, watchlist and page history views
-$wgRCShowWatchingUsers 				= true; # UPO
+$wgRCShowWatchingUsers 				= false; # UPO
 # Show watching users in Page views
-$wgPageShowWatchingUsers 			= true;
+$wgPageShowWatchingUsers 			= false;
 # Show "Updated (since my last visit)" marker in RC view, watchlist and history view for watched pages with new changes
 $wgShowUpdatedMarker 				= true; # UPO
 

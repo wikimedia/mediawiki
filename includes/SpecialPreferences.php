@@ -358,7 +358,7 @@ class PreferencesForm {
 		global $wgAllowRealName, $wgImageLimits;
 		global $wgLanguageNames, $wgDisableLangConversion;
 		global $wgEmailNotificationForWatchlistPages, $wgEmailNotificationForUserTalkPages,$wgEmailNotificationForMinorEdits;
-		global $wgRCUseModStyle, $wgRCShowWatchingUsers, $wgEmailNotificationRevealPageEditorAddress;
+		global $wgRCShowWatchingUsers, $wgEmailNotificationRevealPageEditorAddress;
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
 		global $wgContLanguageCode;
 
@@ -622,13 +622,12 @@ class PreferencesForm {
 	</fieldset>\n\n" );
 
 		$shownumberswatching = ($wgRCShowWatchingUsers) ? $this->getToggle('shownumberswatching') : '';
-		$rcusemodstyle = ($wgRCUseModStyle) ? $this->getToggle('rcusemodstyle') : '';
 
 		$wgOut->addHTML( "
 	<fieldset><legend>".wfMsg('prefs-rc')."</legend>
 		<div><label>$rcc: <input type='text' name=\"wpRecent\" value=\"$this->mRecent\" size='6' /></label></div>" .
 		$this->getToggle( "hideminor" ) . $shownumberswatching .
-		$this->getToggle( "usenewrc" ) . $rcusemodstyle . $this->getToggle('showupdated', wfMsg('updatedmarker')) .
+		$this->getToggle( "usenewrc" ) . $this->getToggle('showupdated', wfMsg('updatedmarker')) .
 		"<div><label>$stt: <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>
                 <div><label>".wfMsg('imagemaxsize')."<select name=\"wpImageSize\">");
 		
