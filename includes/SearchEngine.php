@@ -229,7 +229,7 @@ class SearchEngine {
 			$a2l .= "&{$ak}={$this->addToQuery[$ak]}" ;
 		}
 
-		$prevnext = wfViewPrevNext( $offset, $limit, '',
+		$prevnext = wfViewPrevNext( $offset, $limit, 'Special:Search',
 		  'search=' . wfUrlencode( $this->filteredText ) . $a2l );
 		$wgOut->addHTML( "<br />{$prevnext}\n" );
 
@@ -507,7 +507,7 @@ class SearchEngine {
 		} else {
 			$editurl = ''; # ?? 
 		}
-		$wgOut->addHTML( '<p>' . wfMsg('nogomatch', $editurl, htmlspecialchars( $search ) ) . "</p>\n" );
+		$wgOut->addHTML( '<p>' . wfMsg('nogomatch', $editurl, htmlspecialchars( $this->rawText ) ) . "</p>\n" );
 
 		# Try a fuzzy title search
 		$anyhit = false;
