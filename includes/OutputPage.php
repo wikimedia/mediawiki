@@ -87,6 +87,7 @@ class OutputPage {
 	function checkLastModified ( $timestamp )
 	{
 		global $wgLang, $wgCachePages, $wgUser;
+		$timestamp=wfTimestamp(TS_MW,$timestamp);
 		if( !$wgCachePages ) {
 			wfDebug( "CACHE DISABLED\n", false );
 			return;
@@ -101,17 +102,16 @@ class OutputPage {
 			return;
 		}
 
-		$lastmod = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix( max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
+		$lastmod = gmdate( "D, j M Y H:i:s", wfTimestamp(TS_UNIX, max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
 
 		if( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
 			# IE sends sizes after the date like this:
 			# Wed, 20 Aug 2003 06:51:19 GMT; length=5202
 			# this breaks strtotime().
 			$modsince = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
-			$ismodsince = wfUnix2Timestamp( strtotime( $modsince ) );
+			$ismodsince = wfTimestamp( TS_MW, strtotime( $modsince ) );
 			wfDebug( "-- client send If-Modified-Since: " . $modsince . "\n", false );
 			wfDebug( "--  we might send Last-Modified : $lastmod\n", false );
-
 			if( ($ismodsince >= $timestamp ) and $wgUser->validateCache( $ismodsince ) ) {
 				# Make sure you're in a place you can leave when you call us!
 				header( "HTTP/1.0 304 Not Modified" );
