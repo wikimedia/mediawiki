@@ -14,9 +14,8 @@ class RawPage {
 		$this->mTitle =& $article->mTitle;
 			
 		$ctype = $wgRequest->getText( 'ctype' );
-		$charset = $wgRequest->getText( 'charset' );
-		$smaxage = $wgRequest->getText( 'smaxage' );
-		$maxage = $wgRequest->getText( 'maxage' );
+		$smaxage = $wgRequest->getInt( 'smaxage', $wgSquidMaxage );
+		$maxage = $wgRequest->getInt( 'maxage', $wgSquidMaxage );
 		$this->mOldId = $wgRequest->getInt( 'oldid' );
 		# special case for 'generated' raw things: user css/js
 		$gen = $wgRequest->getText( 'gen' );
@@ -31,9 +30,9 @@ class RawPage {
 		} else {
 			$this->mGen = false;
 		}
-		$this->mCharset = !empty($charset) ? $charset : $wgInputEncoding;
-		$this->mSmaxage = ($smaxage != '') ? $smaxage : 0;
-		$this->mMaxage = ($maxage != '') ? $maxage : 86400;
+		$this->mCharset = $wgInputEncoding;
+		$this->mSmaxage = $smaxage;
+		$this->mMaxage = $maxage;
 		if(empty($ctype) or !in_array($ctype, $allowedCTypes)) {
 			$this->mContentType = 'text/x-wiki';
 		} else {
@@ -67,8 +66,6 @@ class RawPage {
 		# special case
 		if($ns == NS_MEDIAWIKI) {
 			$rawtext = wfMsg($t);
-			if($wgInputEncoding != $this->mCharset)
-			$rawtext = $wgLang->iconv( $wgInputEncoding, $this->mCharset, $rawtext );
 			return $rawtext;
 		}
 		# else get it from the DB
@@ -85,8 +82,6 @@ class RawPage {
 		$res = wfQuery( $sql, DB_READ );
 		if( $s = wfFetchObject( $res ) ) {
 			$rawtext = Article::getRevisionText( $s, "" );
-			if($wgInputEncoding != $this->mCharset)
-			$rawtext = $wgLang->iconv( $wgInputEncoding, $this->mCharset, $rawtext );
 			header( 'Last-modified: '.gmdate( "D, j M Y H:i:s", wfTimestamp2Unix( $s->timestamp )).' GMT' );
 			return $rawtext;
 		} else {
