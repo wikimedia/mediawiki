@@ -143,6 +143,7 @@ if( !is_writable( "." ) ) {
 
 
 include( "../install-utils.inc" );
+include( "../maintenance/updaters.inc" );
 class ConfigData {
 	function getEncoded( $data ) {
 		# Hackish
@@ -319,7 +320,21 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgDatabase->selectDB( $wgDBname );
 		
 		if( $wgDatabase->tableExists( "cur" ) ) {
-			print "<li>There are already MediaWiki tables in this database. Skipping rest of database setup...</li>\n";
+			print "<li>There are already MediaWiki tables in this database. Checking if updates are needed...</li>\n<pre>";
+			
+			chdir( ".." );
+			flush();
+			do_ipblocks_update(); flush();
+			do_interwiki_update(); flush();
+			do_index_update(); flush();
+			do_linkscc_update(); flush();
+			do_hitcounter_update(); flush();
+			do_recentchanges_update(); flush();
+			initialiseMessages(); flush();
+			chdir( "config" );
+			
+			print "</pre>\n";
+			print "<li>Finished update checks.</li>\n";
 		} else {
 			# FIXME: Check for errors
 			print "<li>Creating tables...";
@@ -387,11 +402,14 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 		/* Write out the config file now that all is well */
 		print "<p>Creating LocalSettings.php...</p>\n\n";
+		$localSettings =  "<" . "?php\n$local\n?" . ">";
 		$f = fopen( "LocalSettings.php", "xt" );
 		if( $f == false ) {
-			dieout( "Couldn't write out LocalSettings.php. Check that the directory permissions are correct and that there isn't already a fiel of that name here." );
+			dieout( "Couldn't write out LocalSettings.php. Check that the directory permissions are correct and that there isn't already a file of that name here...</p>\n" .
+			"<p>Here's the file that would have been written, try to paste it into place manually:</p>\n" .
+			"<pre>\n" . htmlspecialchars( $localSettings ) . "</pre>\n" );
 		}
-		fwrite( $f, "<" . "?php\n$local\n?" . ">" );
+		fwrite( $f, $localSettings );
 		fclose( $f );
 		
 		print "<p>Success! Move the LocalSettings.php file into the parent directory, then follow
@@ -554,13 +572,14 @@ function writeLocalSettings( $conf ) {
 		$conf->LanguageCode = "en";
 		$conf->Encoding = "UTF-8";
 	}
+	$sep = (DIRECTORY_SEPARATOR == "\\") ? ";" : ":";
 	return "
 # This file was automatically generated. Don't touch unless you
 # know what you're doing; see LocalSettings.sample for an edit-
 # friendly file.
 
 \$IP = \"{$conf->IP}\";
-ini_set( \"include_path\", \"\$IP/includes:\$IP/languages:\" . ini_get(\"include_path\") );
+ini_set( \"include_path\", \"\$IP/includes$sep\$IP/languages$sep\" . ini_get(\"include_path\") );
 include_once( \"DefaultSettings.php\" );
 
 if( \$wgCommandLineMode ) {
