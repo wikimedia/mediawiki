@@ -93,8 +93,36 @@ class PageHistory {
 
 	function beginHistoryList()
 	{
+		global $wgTitle;
 		$this->lastdate = $this->lastline = "";
 		$s = "\n<p>" . wfMsg( "histlegend" ) . "\n<ul>";
+		$url = wfLocalUrl( $wgTitle->getPrefixedText(), "dummy=1");
+		$s .= "<SCRIPT>
+			var sel = -1;
+			function anysel(oid){ 
+				row = document.getElementById(\"ver\" + oid);
+				if( row.selected ){
+					row.style.backgroundColor=row.oldbg; 
+					row.selected = 0;
+					sel = -1;
+				} else {
+					row.oldbg = row.style.backgroundColor;
+					row.style.backgroundColor=\"lightgrey\"; 
+					row.selected = 1;
+					if( sel == -1){
+						sel = oid;
+					} else {
+						dodiff(sel, oid);
+					}
+				}
+				return false; 
+			} 
+			function dodiff(v1, v2){
+				if(v2 > v1){ tmp = v1; v1 = v2; v2 = tmp; }
+				u = \"{$url}&diff=\" + v1 + \"&oldid=\" + v2;
+				location.href=u;
+			}
+		</SCRIPT>";
 		return $s;
 	}
 
@@ -146,13 +174,13 @@ class PageHistory {
 		} else {
 			$curlink = $cur;
 		}
-		$s .= "({$curlink}) (!OLDID!{$oid}!) . .";
-
+		$any .= "<INPUT TYPE=CHECKBOX onClick='anysel($oid)' TITLE='Select any two versions to diff them'>";
+		$s .= "({$curlink}) (!OLDID!{$oid}!) $any. .";
 		$M = wfMsg( "minoreditletter" );
 		if ( $isminor ) {
 			$s .= " <strong>{$M}</strong>";
 		}
-		$s .= " {$link} . . {$ul}";
+		$s .= " <span ID='ver$oid'>{$link} . . {$ul}</span>";
 
 		if ( "" != $c && "*" != $c ) {
 			$s .= " <em>(" . wfEscapeHTML($c) . ")</em>";
