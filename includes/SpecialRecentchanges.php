@@ -51,13 +51,23 @@ function wfSpecialRecentchanges( $par )
 	}
 	if ( $hideminor ) {
 		$hidem = "AND rc_minor=0";
-		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchanges" ),
-	  	  WfMsg( "show" ), "days={$days}&limit={$limit}&hideminor=0" );
+                $mltitle = wfMsg( "show" );
+                $mlhide = 0;
+
 	} else {
 		$hidem = "";
-		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchanges" ),
-	  	  WfMsg( "hide" ), "days={$days}&limit={$limit}&hideminor=1" );
+                $mltitle = wfMsg( "hide" );
+                $mlhide = 1;
 	}
+
+        if ( isset( $from ) ) {
+          $mlparams = "from={$from}&hideminor={$mlhide}";
+        } else {
+          $mlparams = "days={$days}&limit={$limit}&hideminor=0";
+        }
+
+        $mlink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchanges" ),
+                                     $mltitle, $mlparams );
 	
 	if ( !isset( $hidebots ) ) {
 		$hidebots = 1;
@@ -82,11 +92,11 @@ function wfSpecialRecentchanges( $par )
 	}
 	$wgOut->addHTML( "\n<hr>\n{$note}\n<br>" );
 
-	$note = rcDayLimitLinks( $days, $limit );
+	$note = rcDayLimitLinks( $days, $limit, "Recentchanges",  "hideminor={$hideminor}", false, $mlink );
 
 	$note .= "<br>\n" . wfMsg( "rclistfrom",
 	  $sk->makeKnownLink( $wgLang->specialPage( "Recentchanges" ),
-	  $wgLang->timeanddate( $now, true ), "from=$now" ) );
+	  $wgLang->timeanddate( $now, true ), "hideminor={$hideminor}&from=$now" ) );
 
 	$wgOut->addHTML( "{$note}\n" );
 
@@ -143,7 +153,7 @@ function rcDaysLink( $lim, $d, $page="Recentchanges", $more="" )
 	return $s;
 }
 
-function rcDayLimitLinks( $days, $limit, $page="Recentchanges", $more="", $doall = false )
+function rcDayLimitLinks( $days, $limit, $page="Recentchanges", $more="", $doall = false, $mlink = "" )
 {
 	if ($more != "") $more .= "&";
 	$cl = rcCountLink( 50, $days, $page, $more ) . " | " .
@@ -157,7 +167,8 @@ function rcDayLimitLinks( $days, $limit, $page="Recentchanges", $more="", $doall
 	  rcDaysLink( $limit, 14, $page, $more  ) . " | " .
 	  rcDaysLink( $limit, 30, $page, $more  ) .
 	  ( $doall ? ( " | " . rcDaysLink( $limit, 0, $page, $more ) ) : "" );
-	$note = wfMsg( "rclinks", $cl, $dl, $mlink );
+        $shm = wfMsg( "showhideminor", $mlink );
+	$note = wfMsg( "rclinks", $cl, $dl, $shm );
 	return $note;
 }
 
