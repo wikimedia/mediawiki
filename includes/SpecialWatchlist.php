@@ -29,7 +29,7 @@ function wfSpecialWatchlist() {
 
 	$uid = $wgUser->getID();
 	if( $uid == 0 ) {
-		$wgOut->addHTML( wfMsg( 'nowatchlist' ) );
+		$wgOut->addWikiText( wfMsg( 'nowatchlist' ) );
 		return;
 	}
 
@@ -39,14 +39,15 @@ function wfSpecialWatchlist() {
 	$remove = $wgRequest->getVal( 'remove' );
 	$id = $wgRequest->getArray( 'id' );
 
-	$wgOut->addHTML( wfMsg( 'email_notification_infotext' ) );
+	$wgOut->addWikiText( wfMsg( 'email_notification_infotext' ) );
 
 	if( $wgRequest->getVal( 'reset' ) == 'all' ) {
 		$wgUser->clearAllNotifications( $uid );
 	}
 
 	if(($action == 'submit') && isset($remove) && is_array($id)) {
-		$wgOut->addHTML( wfMsg( 'removingchecked' ) );
+		$wgOut->addWikiText( wfMsg( 'removingchecked' ) );
+		$wgOut->addHTML( '<p>' );
 		foreach($id as $one) {
 			$t = Title::newFromURL( $one );
 			if($t->getDBkey() != '') {
@@ -60,14 +61,14 @@ function wfSpecialWatchlist() {
 				$wgOut->addHTML( "<br />\n" . wfMsg( 'iteminvalidname', htmlspecialchars($one) ) );
 			}
 		}
-		$wgOut->addHTML( "done.\n<p>" );
+		$wgOut->addHTML( "done.</p>\n" );
 	}
 
 	if ( $wgUseWatchlistCache ) {
 		$memckey = "$wgDBname:watchlist:id:" . $wgUser->getId();
 		$cache_s = @$wgMemc->get( $memckey );
 		if( $cache_s ){
-			$wgOut->addHTML( wfMsg('wlsaved') );
+			$wgOut->addWikiText( wfMsg('wlsaved') );
 			$wgOut->addHTML( $cache_s );
 			return;
 		}
@@ -86,7 +87,7 @@ function wfSpecialWatchlist() {
 	$nitems = $s->n;
 
 	if($nitems == 0) {
-        $wgOut->addHTML( wfMsg( 'nowatchlist' ) );
+        $wgOut->addWikiText( wfMsg( 'nowatchlist' ) );
         return;
 	}
 	
@@ -118,7 +119,7 @@ function wfSpecialWatchlist() {
 	}
 
 	if(isset($_REQUEST['magic'])) {
-		$wgOut->addHTML( wfMsg( 'watchlistcontains', $wgLang->formatNum( $nitems ) ) .
+		$wgOut->addWikiText( wfMsg( 'watchlistcontains', $wgLang->formatNum( $nitems ) ) .
 			'<p>' . wfMsg( 'watcheditlist' ) . "</p>\n" );
 
 		$wgOut->addHTML( '<form action=\'' .
