@@ -13,7 +13,7 @@ function wfSpecialAncientpages()
 	if ( ! $offset ) { $offset = 0; }
 
 	$sql = "SELECT cur_title,cur_user,cur_user_text,cur_comment," .
-	  "cur_timestamp FROM cur " .
+	  "cur_timestamp FROM cur USE INDEX (namespace_redirect_timestamp) " .
 	  "WHERE cur_namespace=0 AND cur_is_redirect=0 " .
 	  " ORDER BY cur_timestamp LIMIT {$offset}, {$limit}";
 	$res = wfQuery( $sql, $fname );
