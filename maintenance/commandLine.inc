@@ -6,6 +6,8 @@ if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
 	exit();
 }
 
+define("MEDIAWIKI",true);
+
 # Process command line arguments
 # $options becomes an array with keys set to the option names
 # $optionsWithArgs is an array of GNU-style options that take an argument. The arguments are returned
@@ -100,9 +102,9 @@ if ( $sep == ":" && strpos( `hostname`, "wikimedia.org" ) !== false ) {
 	$wgCommandLineMode = true;
 	$DP = $IP;
 	require_once( "$IP/includes/Defines.php" );
-	include_once( $settingsFile );
+	require_once( $settingsFile );
 	ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" );
-	include_once( "$IP/AdminSettings.php" );
+	require_once( "$IP/AdminSettings.php" );
 }
 
 # Turn off output buffering again, it might have been turned on in the settings files
@@ -114,7 +116,6 @@ $wgDBpassword = $wgDBadminpassword;
 
 
 $wgUsePHPTal = false;
-define("MEDIAWIKI",true);
 require_once( "Setup.php" );
 require_once( "install-utils.inc" );
 $wgTitle = Title::newFromText( "Command line script" );
