@@ -544,6 +544,7 @@ email address to them, and it can be used to send you a new password if you forg
 'loginsuccess'	=> "You are now logged in to {{SITENAME}} as \"$1\".",
 'nosuchuser'	=> "There is no user by the name \"$1\".
 Check your spelling, or use the form below to create a new user account.",
+'nosuchusershort'	=> "There is no user by the name \"$1\". Check your spelling.",
 'wrongpassword'	=> 'The password you entered is incorrect. Please try again.',
 'mailmypassword' => 'Mail me a new password',
 'passwordremindertitle' => "Password reminder from {{SITENAME}}",
