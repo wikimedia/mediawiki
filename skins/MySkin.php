@@ -8,20 +8,20 @@
  */
 
 /** */
-if ($wgUsePHPTal) {
-require_once('includes/SkinPHPTal.php');
+require_once('MonoBook.php');
 
 /**
  * @todo document
  * @package MediaWiki
  * @subpackage Skins
  */
-class SkinMySkin extends SkinPHPTal {
+class SkinMySkin extends SkinTemplate {
 	function initPage( &$out ) {
-		SkinPHPTal::initPage( $out );
-		$this->skinname = 'myskin';
+		SkinTemplate::initPage( $out );
+		$this->skinname  = 'myskin';
+		$this->stylename = 'myskin';
+		$this->template  = 'MonoBookTemplate';
 	}
 }
 
-}
 ?>
