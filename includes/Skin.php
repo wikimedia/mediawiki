@@ -364,7 +364,7 @@ class Skin {
 		}
 
 		if ( 1 == $wgUser->getOption( 'hover' ) ) {
-			$r .= ' title ="' . $nt->getEscapedText() . '"';
+			$r .= ' title="' . $nt->getEscapedText() . '"';
 		}
 		return $r;
 	}
