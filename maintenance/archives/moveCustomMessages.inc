@@ -1,5 +1,11 @@
 <?
 
+function isTemplateInitialised() {
+	$sql = "SELECT 1 FROM cur WHERE cur_namespace=" . NS_TEMPLATE . " LIMIT 1";
+	$res = wfQuery( $sql, DB_READ );
+	return wfNumRows( $res ) ? true : false;
+}
+
 function moveCustomMessages( $phase ) {
 	global $wgUser, $wgAllMessagesEn, $wgDeferredUpdateList, $wgLang ;
 	$wgUser = new User;

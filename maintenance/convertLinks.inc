@@ -1,6 +1,8 @@
 <?php
 
 function convertLinks() {
+	print "Converting links table to ID-ID...\n";
+	
 	global $wgLang, $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname;
 	
 	$numRows = $tuplesAdded = $numBadLinks = $curRowsRead = 0; #counters etc
@@ -149,6 +151,7 @@ function convertLinks() {
 		print "Conversion complete.  The converted table is at links_temp;\n";
 		print "the original links table is unchanged.\n";
 	}
+}
 
 #--------------------------------------------------------------------
 

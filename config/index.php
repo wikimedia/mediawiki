@@ -153,6 +153,9 @@ if( !is_writable( "." ) ) {
 
 require( "../install-utils.inc" );
 require( "../maintenance/updaters.inc" );
+require( "../maintenance/convertLinks.inc" );
+require( "../maintenance/archives/moveCustomMessages.inc" );
+
 class ConfigData {
 	function getEncoded( $data ) {
 		# Hackish
@@ -399,11 +402,20 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			do_linkscc_update(); flush();
 			do_hitcounter_update(); flush();
 			do_recentchanges_update(); flush();
-			echo "FIXME: need the link table change here\n";
+			convertLinks(); flush();
 			do_user_real_name_update(); flush();
 			do_querycache_update(); flush();
 			do_objectcache_update(); flush();
 			do_categorylinks_update(); flush();
+			
+			if ( isTemplateInitialised() ) {
+				print "Template namespace already initialised\n";
+			} else {
+				moveCustomMessages( 1 ); flush();
+				moveCustomMessages( 2 ); flush();
+				moveCustomMessages( 3 ); flush();
+			}
+
 			initialiseMessages(); flush();
 			chdir( "config" );
 			
@@ -686,8 +698,19 @@ function writeLocalSettings( $conf ) {
 	$pretty = ($conf->prettyURLs ? "" : "# ");
 	$ugly = ($conf->prettyURLs ? "# " : "");
 	$rights = ($conf->RightsUrl) ? "" : "# ";
+	
+	$file = @fopen( "/dev/random", "r" );
+	if ( $file ) {
+		$proxyKey = bin2hex( fread( $file, 32 ) );
+		fclose( $file );
+	} else {
+		$proxyKey = "";
+		for ( $i=0; $i<8; $i++ ) {
+			$proxyKey .= dechex(mt_rand(0, 0x7fffffff));
+		}
+		print "Warning: \$wgProxyKey is insecure\n";
+	}
 
-#	$proxyKey = Parser::getRandomString() . Parser::getRandomString();
 	# Add slashes to strings for double quoting
 	$slconf = array_map( "addslashes", get_object_vars( $conf ) );
 
@@ -698,7 +721,7 @@ function writeLocalSettings( $conf ) {
 # If you make manual changes, please keep track in case you need to
 # recreate them later.
 
-\$IP = \"{$slconf[IP]}\";
+\$IP = \"{$slconf['IP']}\";
 ini_set( \"include_path\", \"\$IP/includes$sep\$IP/languages$sep\" . ini_get(\"include_path\") );
 include_once( \"DefaultSettings.php\" );
 
@@ -711,9 +734,9 @@ if ( \$wgCommandLineMode ) {
 	{$zlib}if( !ini_get( 'zlib.output_compression' ) ) ob_start( 'ob_gzhandler' );
 }
 
-\$wgSitename         = \"{$slconf[Sitename]}\";
+\$wgSitename         = \"{$slconf['Sitename']}\";
 
-\$wgScriptPath	    = \"{$slconf[ScriptPath]}\";
+\$wgScriptPath	    = \"{$slconf['ScriptPath']}\";
 \$wgScript           = \"\$wgScriptPath/index.php\";
 \$wgRedirectScript   = \"\$wgScriptPath/redirect.php\";
 
@@ -728,13 +751,13 @@ if ( \$wgCommandLineMode ) {
 \$wgUploadPath       = \"\$wgScriptPath/images\";
 \$wgUploadDirectory  = \"\$IP/images\";
 
-\$wgEmergencyContact = \"{$slconf[EmergencyContact]}\";
-\$wgPasswordSender	= \"{$slconf[PasswordSender]}\";
+\$wgEmergencyContact = \"{$slconf['EmergencyContact']}\";
+\$wgPasswordSender	= \"{$slconf['PasswordSender']}\";
 
-\$wgDBserver         = \"{$slconf[DBserver]}\";
-\$wgDBname           = \"{$slconf[DBname]}\";
-\$wgDBuser           = \"{$slconf[DBuser]}\";
-\$wgDBpassword       = \"{$slconf[DBpassword]}\";
+\$wgDBserver         = \"{$slconf['DBserver']}\";
+\$wgDBname           = \"{$slconf['DBname']}\";
+\$wgDBuser           = \"{$slconf['DBuser']}\";
+\$wgDBpassword       = \"{$slconf['DBpassword']}\";
 
 ## To allow SQL queries through the wiki's Special:Askaql page,
 ## uncomment the next lines. THIS IS VERY INSECURE. If you want
@@ -764,15 +787,14 @@ if ( \$wgCommandLineMode ) {
 
 \$wgLocalInterwiki   = \$wgSitename;
 
-\$wgLanguageCode = \"{$slconf[LanguageCode]}\";
-" . ($conf->Encoding ? "\$wgInputEncoding = \$wgOutputEncoding = \"{$slconf[Encoding]}\";" : "" ) . "
+\$wgLanguageCode = \"{$slconf['LanguageCode']}\";
+" . ($conf->Encoding ? "\$wgInputEncoding = \$wgOutputEncoding = \"{$slconf['Encoding']}\";" : "" ) . "
+
+\$wgProxyKey = \"$proxyKey\";
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
 # \$wgDefaultSkin = 'monobook';
-
-## This is incomplete, ignore it:
-#\$wgProxyKey = $proxyKey;
 
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
