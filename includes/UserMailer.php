@@ -6,7 +6,7 @@
 # Otherwise it just uses the standard PHP 'mail' function.
 function userMailer( $to, $from, $subject, $body )
 {
-	global $wgUser, $wgSMTP, $wgOutputEncoding;
+	global $wgUser, $wgSMTP, $wgOutputEncoding, $wgErrorString;
 	
   	$qto = wfQuotedPrintable( $to );
 	
@@ -49,10 +49,19 @@ function userMailer( $to, $from, $subject, $body )
 			"Reply-To: {$from}\r\n" .
 			"To: {$qto}\r\n" .
 			"X-Mailer: MediaWiki interuser e-mailer";
+
+		$wgErrorString = "";
+		set_error_handler( "mailErrorHandler" );
 		mail( $to, $subject, $body, $headers );
-		
-		return "";
+		restore_error_handler();
+
+		return $wgErrorString;
 	}
+}
+
+function mailErrorHandler( $code, $string ) {
+	global $wgErrorString;
+	$wgErrorString = preg_replace( "/^mail\(\): /", "", $string );
 }
 
 ?>
