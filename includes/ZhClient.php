@@ -154,6 +154,7 @@ class ZhClientFake {
 		$this->zh2HK = $wgMemc->get($key4 = "$wgDBname:zhConvert:hk");
 		if(empty($this->zh2TW) || empty($this->zh2CN) || empty($this->zh2SG) || empty($this->zh2HK)) {
 			require_once("includes/ZhConversion.php");
+			global $zh2TW, $zh2CN, $zh2HK, $zh2SG;
 			$this->zh2TW = $zh2TW;
 			$this->zh2CN = $zh2CN;
 			$this->zh2HK = $zh2HK;
