@@ -1,5 +1,5 @@
 <?php
-# Copyright (C) 2003 Brion Vibber <brion@pobox.com>
+# Copyright (C) 2004 Magnus Manske <magnus.manske@web.de>
 # http://www.mediawiki.org/
 # 
 # This program is free software; you can redistribute it and/or modify
