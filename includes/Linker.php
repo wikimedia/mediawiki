@@ -231,8 +231,7 @@ class Linker {
 						array( 'page_len',
 							'page_namespace',
 							'page_is_redirect' ),
-						array( 'page_id' => $aid,
-							'old_id = page_latest' ), $fname ) ;
+						array( 'page_id' => $aid ), $fname ) ;
 					if ( $s !== false ) {
 						$size = $s->page_len;
 						if ( $s->page_is_redirect OR $s->page_namespace != NS_MAIN ) {
