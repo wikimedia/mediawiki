@@ -40,7 +40,7 @@ class LanguageZh extends LanguageZh_cn {
 	var $mTablesLoaded = false;
 	var $mCacheKey;
 	var $mDoTitleConvert = true, $mDoContentConvert = true;
-
+	var $mTitleDisplay=false;
 	function LanguageZh() {
 		global $wgDBname;
 		$this->mCacheKey = $wgDBname . ":zhtables";
@@ -322,6 +322,9 @@ class LanguageZh extends LanguageZh_cn {
 			if( !$this->mDoTitleConvert )
 				return $text;
 
+			if( $this->mTitleDisplay != false )
+				return $this->mTitleDisplay;
+
 			global $wgRequest;
 			$isredir = $wgRequest->getText( 'redirect', 'yes' );
 			$action = $wgRequest->getText( 'action' );
@@ -344,11 +347,23 @@ class LanguageZh extends LanguageZh_cn {
 		$text = $this->autoConvert($tfirst);
 		foreach($tarray as $txt) {
 			$marked = explode("}-", $txt);
-			
 			$choice = explode(";", $marked{0});
+			/* see if this conversion is specifically for the
+			  article title
+			*/
+			$fortitle = false;
+			$tt = explode("T|", $marked{0}, 2);
+			if(sizeof($tt) == 2) {
+				$choice = explode(";", $tt[1]);
+				$fortitle = true;
+			}
+			else {
+				$choice = explode(";", $marked{0});
+			}
+			$disp = '';
 			if(!array_key_exists(1, $choice)) {
 				/* a single choice */
-				$text .= $choice{0};
+				$disp = $choice{0};
 			} else {
 				$choice1=false;
 				$choice2=false;
@@ -368,12 +383,17 @@ class LanguageZh extends LanguageZh_cn {
 						$choice2 = $content;
 				}
 				if ( $choice1 )
-					$text .= $choice1;
+					$disp = $choice1;
 				elseif ( $choice2 )
-					$text .= $choice2;
+					$disp = $choice2;
 				else
-					$text .= $marked{0};
+					$disp = $marked{0};
 			}
+
+			if($fortitle)
+				$this->mTitleDisplay = $disp;
+			else
+				$text .= $disp;
 			if(array_key_exists(1, $marked))
 				$text .= $this->autoConvert($marked{1});
 		}
