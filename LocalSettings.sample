@@ -231,7 +231,5 @@ $wgLocalInterwiki   = $wgSitename;
 # Browser-related setting
 #
 # Array of regexps for UNICODE compliant browser.
-# Firefox supports UNICODE, but that's only an example.
-$wgBrowserBlackList = array("/Firefox/");
-
+$wgBrowserBlackList = "/Mozilla\/4./";
 ?>
