@@ -1,5 +1,5 @@
 <?php
-if( defined( "MEDIAWIKI" ) ) {
+if( defined( 'MEDIAWIKI' ) ) {
 
 #
 # In general you should not make customizations in these language files
@@ -72,21 +72,21 @@ if($wgMetaNamespace === FALSE)
 	'chick' => 'Chick'
 );
 
-define( "MW_MATH_PNG",    0 );
-define( "MW_MATH_SIMPLE", 1 );
-define( "MW_MATH_HTML",   2 );
-define( "MW_MATH_SOURCE", 3 );
-define( "MW_MATH_MODERN", 4 );
-define( "MW_MATH_MATHML", 5 );
+define( 'MW_MATH_PNG',    0 );
+define( 'MW_MATH_SIMPLE', 1 );
+define( 'MW_MATH_HTML',   2 );
+define( 'MW_MATH_SOURCE', 3 );
+define( 'MW_MATH_MODERN', 4 );
+define( 'MW_MATH_MATHML', 5 );
 
 # Validation types
 $wgValidationTypesEn = array (
-	"0" => "Style|Awful|Awesome|5",
-	"1" => "Legal|Illegal|Legal|5",
-	"2" => "Completeness|Stub|Extensive|5",
-	"3" => "Facts|Wild guesses|Solid as a rock|5",
-	"4" => "Suitable for 1.0 (paper)|No|Yes|2",
-	"5" => "Suitable for 1.0 (CD)|No|Yes|2"
+	'0' => "Style|Awful|Awesome|5",
+	'1' => "Legal|Illegal|Legal|5",
+	'2' => "Completeness|Stub|Extensive|5",
+	'3' => "Facts|Wild guesses|Solid as a rock|5",
+	'4' => "Suitable for 1.0 (paper)|No|Yes|2",
+	'5' => "Suitable for 1.0 (CD)|No|Yes|2"
 );
 
 /* private */ $wgMathNamesEn = array(
@@ -99,8 +99,8 @@ $wgValidationTypesEn = array (
 );
 
 # Whether to use user or default setting in Language::date()
-define( "MW_DATE_DEFAULT", false );
-define( "MW_DATE_USER_FORMAT", true );
+define( 'MW_DATE_DEFAULT', false );
+define( 'MW_DATE_USER_FORMAT', true );
 
 /* private */ $wgDateFormatsEn = array(
 	'No preference',
@@ -132,15 +132,15 @@ define( "MW_DATE_USER_FORMAT", true );
 );
 
 /* private */ $wgBookstoreListEn = array(
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
+	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
+	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
+	'Barnes & Noble' => 'http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
+	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
 );
 
 # Read language names
 global $wgLanguageNames;
-require_once( "Names.php" );
+require_once( 'Names.php' );
 
 $wgLanguageNamesEn =& $wgLanguageNames;
 
@@ -365,10 +365,10 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'imagepage' => 	'View image page',
 'viewtalkpage' => 'View discussion',
 'otherlanguages' => 'Other languages',
-'redirectedfrom' => "(Redirected from $1)",
-'lastmodified'	=> "This page was last modified $1.",
-'viewcount'		=> "This page has been accessed $1 times.",
-'copyright'	=> "Content is available under $1.",
+'redirectedfrom' => '(Redirected from $1)',
+'lastmodified'	=> 'This page was last modified $1.',
+'viewcount'		=> 'This page has been accessed $1 times.',
+'copyright'	=> 'Content is available under $1.',
 'poweredby'	=> "{{SITENAME}} is powered by [http://www.mediawiki.org/ MediaWiki], an open source wiki engine.",
 'printsubtitle' => "(From {{SERVER}})",
 'protectedpage' => 'Protected page',
@@ -384,7 +384,7 @@ See $1.",
 'bureaucrattitle'	=> 'Bureaucrat access required',
 "bureaucrattext"	=> "The action you have requested can only be
 performed by sysops with  \"bureaucrat\" status.",
-'nbytes'		=> "$1 bytes",
+'nbytes'		=> '$1 bytes',
 'go'			=> 'Go',
 'ok'			=> 'OK',
 'sitetitle'		=> "{{SITENAME}}",
@@ -1664,8 +1664,8 @@ class Language {
 		if ( $tz === '' ) {
 			$hrDiff = isset( $wgLocalTZoffset ) ? $wgLocalTZoffset : 0;
 			$minDiff = 0;
-		} elseif ( strpos( $tz, ":" ) !== false ) {
-			$tzArray = explode( ":", $tz );
+		} elseif ( strpos( $tz, ':' ) !== false ) {
+			$tzArray = explode( ':', $tz );
 			$hrDiff = intval($tzArray[0]);
 			$minDiff = intval($hrDiff < 0 ? -$tzArray[1] : $tzArray[1]);
 		} else {
@@ -1913,7 +1913,7 @@ class Language {
 	#
 	# $length does not include the optional ellipsis.
 	# If $length is negative, snip from the beginning
-	function truncate( $string, $length, $ellipsis = "" ) {
+	function truncate( $string, $length, $ellipsis = '' ) {
 		if( $length == 0 ) {
 			return $ellipsis;
 		}
