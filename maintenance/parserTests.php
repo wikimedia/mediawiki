@@ -256,7 +256,7 @@ class ParserTest {
 		
 		$this->teardownGlobals();
 		
-		if( $result === $out ) {
+		if( $result === $out && $this->wellFormed( $out ) ) {
 			return $this->showSuccess( $desc );
 		} else {
 			return $this->showFailure( $desc, $result, $out );
@@ -504,6 +504,9 @@ class ParserTest {
 		if( $this->showDiffs ) {
 			print $this->quickDiff( $result, $html );
 		}
+		if( !$this->wellFormed( $html ) ) {
+			print "XML error: $this->mXmlError\n";
+		}
 		return false;
 	}
 	
@@ -629,6 +632,56 @@ class ParserTest {
 		}
 		return $text;
 	}
+	
+	function wellFormed( $text ) {
+		$html = 
+			'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" ' .
+			'"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">' .
+			'<html>' .
+			$text .
+			'</html>';
+		
+		$parser = xml_parser_create( "UTF-8" );
+		
+		# case folding violates XML standard, turn it off
+		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
+		
+		if( !xml_parse( $parser, $html, true ) ) {
+			$err = xml_error_string( xml_get_error_code( $parser ) );
+			$position = xml_get_current_byte_index( $parser );
+			$fragment = $this->extractFragment( $html, $position );
+			$this->mXmlError = "$err at byte $position:\n$fragment";
+			xml_parser_free( $parser );
+			return false;
+		}
+		xml_parser_free( $parser );
+		return true;
+	}
+	
+	function extractFragment( $text, $position ) {
+		$start = max( 0, $position - 10 );
+		$before = $position - $start;
+		$fragment = '...' .
+			$this->termColor( 34 ) .
+			substr( $text, $start, $before ) .
+			$this->termColor( 0 ) .
+			$this->termColor( 31 ) .
+			$this->termColor( 1 ) .
+			substr( $text, $position, 1 ) .
+			$this->termColor( 0 ) .
+			$this->termColor( 34 ) .
+			substr( $text, $position + 1, 9 ) .
+			$this->termColor( 0 ) .
+			'...';
+		$display = str_replace( "\n", ' ', $fragment );
+		$caret = '   ' .
+			str_repeat( ' ', $before ) .
+			$this->termColor( 31 ) .
+			'^' .
+			$this->termColor( 0 );
+		return "$display\n$caret";
+	}
+	
 }
 
 if( isset( $options['help'] ) ) {
