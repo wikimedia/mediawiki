@@ -19,18 +19,20 @@
 	
 	dl.setup dd {
 	}
-	dl.setup dt {
-		font-size: 0.8em;
-		margin-left: 10em;
-		margin-right: 200px;
-		margin-bottom: 2em;
-	}
 	dl.setup dd label {
+		clear: left;
 		font-weight: bold;
 		width: 10em;
 		float: left;
 		text-align: right;
 		padding-right: 1em;
+	}
+	dl.setup dt {
+		clear: left;
+		font-size: 0.8em;
+		margin-left: 10em;
+		/* margin-right: 200px; */
+		margin-bottom: 2em;
 	}
 	.error {
 		color: red;
@@ -150,11 +152,8 @@ print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt
 $conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $_SERVER["REQUEST_URI"] );
 print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</tt></li>\n";
 
-?>
-</ul>
-
-
-<?php
+	$conf->posted = ($_SERVER["REQUEST_METHOD"] == "POST");
+	
 	$conf->Sitename = ucfirst( importPost( "Sitename", "" ) );
 	$conf->EmergencyContact = importPost( "EmergencyContact", $_SERVER["SERVER_ADMIN"] );
 	$conf->DBserver = importPost( "DBserver", "localhost" );
@@ -178,8 +177,133 @@ if( $conf->DBpassword != $conf->DBpassword2 ) {
 	$errs["DBpassword2"] = "Passwords don't match!";
 }
 
+if( $conf->posted && ( 0 == count( $errs ) ) ) {
+	do { /* So we can 'continue' to end prematurely */
+		$conf->Root = ($conf->RootPW != "");
+		
+		/* Load up the settings and get installin' */
+		$local = writeLocalSettings( $conf );
+		$wgCommandLineMode = false;
+		eval($local);
+
+		$wgDBadminuser = $wgDBuser;
+		$wgDBadminpassword = $wgDBpassword;
+		$wgCommandLineMode = true;
+		$wgUseDatabaseMessages = false;	/* FIXME: For database failure */
+		include_once( "Setup.php" );
+
+		if( $conf->Root ) {
+			$wgDatabase = Database::newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
+		} else {
+			$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, "", 1 );
+		}
+		$wgDatabase->mIgnoreErrors = true;
+		
+		if ( !$wgDatabase->isOpen() ) {
+			$errs["DBserver"] = "Couldn't connect to database";
+			continue;
+		}
+
+		@$myver = mysql_get_server_info( $wgDatabase->mConn );
+		if( !$myver ) {
+			print "<li>MySQL error " . ($err = mysql_errno() ) .
+				": " . htmlspecialchars( mysql_error() );
+			switch( $err ) {
+			case 1045:
+				if( $conf->Root ) {
+					$errs["RootPW"] = "Check password";
+				} else {
+					$errs["DBuser"] = "Check name/pass";
+					$errs["DBpassword"] = "or enter root";
+					$errs["DBpassword2"] = "password below";
+					$errs["RootPW"] = "Got root?";
+				}
+				break;
+			case 2002:
+			case 2003:
+				$errs["DBserver"] = "Connection failed";
+				break;
+			default:
+				$errs["DBserver"] = "Couldn't connect to database";
+			}
+			continue;
+		}
+		print "<li>Connected to database... $myver";
+		if( version_compare( $myver, "4.0.0" ) >= 0 ) {
+			print "; enabling MySQL 4 enhancements";
+			$conf->DBmysql4 = true;
+			$local = writeLocalSettings( $conf );
+		}
+		print "</li>\n";
+		
+		@$sel = mysql_select_db( $wgDBname, $wgDatabase->mConn );
+		if( $sel ) {
+			print "<li>Database <tt>" . htmlspecialchars( $wgDBname ) . "</tt> exists</li>\n";
+		} else {
+			$res = $wgDatabase->query( "CREATE DATABASE `$wgDBname`" );
+			if( !$res ) {
+				print "<li>Couldn't create database <tt>" .
+					htmlspecialchars( $wgDBname ) .
+					"</tt>; try with root access or check your username/pass.</li>\n";
+				$errs["RootPW"] = "&lt;- Enter";
+				continue;
+			}
+			print "<li>Created database <tt>" . htmlspecialchars( $wgDBname ) . "</tt></li>\n";
+		}
+		
+		$wgDatabase->selectDB( $wgDBname );
+		
+		if( $wgDatabase->tableExists( "cur" ) ) {
+			print "<li>There are already MediaWiki tables in this database. Skipping rest of database setup...</li>\n";
+		} else {
+			# FIXME: Check for errors
+			print "<li>Creating tables...";
+			dbsource( "../maintenance/tables.sql", $wgDatabase );
+			dbsource( "../maintenance/interwiki.sql", $wgDatabase );
+			dbsource( "../maintenance/indexes.sql", $wgDatabase );
+			print " done.</li>\n";
+			
+			print "<li>Initializing data...";
+			$wgDatabase->query( "INSERT INTO site_stats (ss_row_id,ss_total_views," .
+				"ss_total_edits,ss_good_articles) VALUES (1,0,0,0)" );
+			
+			# FIXME: Initial sysop account
+			# FIXME: Main page, logs
+			# FIXME: Initialize messages
+			print "<li>(NYI: accounts, pages, messages)</li>\n";
+			
+			if( $conf->Root ) {
+				# Grant user permissions
+				dbsource( "../maintenance/users.sql", $wgDatabase );
+			}
+		}
+
+		/* Write out the config file now that all is well */
+		print "<p>Creating LocalSettings.php...</p>\n\n";
+		$f = fopen( "LocalSettings.php", "xt" );
+		if( $f == false ) {
+			dieout( "Couldn't write out LocalSettings.php. Check that the directory permissions are correct and that there isn't already a fiel of that name here." );
+		}
+		fwrite( $f, "<" . "?php\n$local\n?" . ">" );
+		fclose( $f );
+		
+		print "<p>Success! Move the LocalSettings.php file into the parent directory, then follow
+		<a href='{$conf->ScriptPath}/index.php'>this link</a> to your wiki.</p>\n";
+		
+	} while( false );
+}
+?>
+</ul>
+
+
+<?php
+
 if( count( $errs ) ) {
 	/* Display options form */
+	
+	if( $conf->posted ) {
+		echo "<p class='error'>Something's not quite right yet; make sure everything below is filled out correctly.</p>\n";
+	}
 ?>
 <h2>Database config</h2>
 
@@ -281,29 +405,15 @@ if( count( $errs ) ) {
 </form>
 
 <?php
-} else {
-	/* Go for it! */
-	print "<p>Creating LocalSettings.php...</p>\n\n";
-	
-	$local = writeLocalSettings( $conf );
-	$f = fopen( "LocalSettings.php", "xt" );
-	if( $f == false ) {
-		dieout( "Couldn't write out LocalSettings.php. Check that the directory permissions are correct and that there isn't already a fiel of that name here." );
-	}
-	fwrite( $f, $local );
-	fclose( $f );
-	
-	print "<p>Success! Move the LocalSettings.php file into the parent directory, then follow
-	<a href='{$conf->ScriptPath}/index.php'>this link</a> to your wiki.</p>\n";
 }
 
 /* -------------------------------------------------------------------------------------- */
 
 function writeAdminSettings( $conf ) {
-	return "<" . "?php
+	return "
 \$wgDBadminuser      = \"{$conf->DBadminuser}\";
 \$wgDBadminpassword  = \"{$conf->DBadminpassword}\";
-?" . ">";
+";
 }
 
 function writeLocalSettings( $conf ) {
@@ -316,14 +426,14 @@ function writeLocalSettings( $conf ) {
 		$conf->LanguageCode = "en";
 		$conf->Encoding = "UTF-8";
 	}
-	return "<" . "?php
+	return "
 # This file was automatically generated. Don't touch unless you
 # know what you're doing; see LocalSettings.sample for an edit-
 # friendly file.
 
 \$IP = \"{$conf->IP}\";
-ini_set( \"include_path\", ini_get(\"include_path\") . \":\$IP/includes:\$IP/languages\" );
-include_once( \"includes/DefaultSettings.php\" );
+ini_set( \"include_path\", \"\$IP/includes:\$IP/languages:\" . ini_get(\"include_path\") );
+include_once( \"DefaultSettings.php\" );
 
 if( \$wgCommandLineMode ) {
 	die( \"Can't use command-line utils with in-place install yet, sorry.\" );
@@ -371,7 +481,7 @@ if( \$wgCommandLineMode ) {
 \$wgLanguageCode = \"{$conf->LanguageCode}\";
 " . ($conf->Encoding ? "\$wgInputEncoding = \$wgOutputEncoding = \"{$conf->Encoding}\";" : "" ) . "
 
-?" . ">";
+";
 }
 
 function dieout( $text ) {
@@ -398,10 +508,13 @@ function aField( &$conf, $field, $text, $type = "" ) {
 }
 
 function getLanguageList() {
-	$wgLanguageCode = "xxx";
-	function wfLocalUrl( $x ) { return $x; }
-	function wfLocalUrlE( $x ) { return $x; }
-	include( "../languages/Language.php" );
+	global $wgLanguageNames;
+	if( !isset( $wgLanguageNames ) ) {
+		$wgLanguageCode = "xxx";
+		function wfLocalUrl( $x ) { return $x; }
+		function wfLocalUrlE( $x ) { return $x; }
+		include( "../languages/Language.php" );
+	}
 	
 	$codes = array();
 	$latin1 = array( "da", "de", "en", "es", "fr", "nl", "sv" );
@@ -423,4 +536,6 @@ function getLanguageList() {
 }
 
 ?>
+
+</body>
 </html>

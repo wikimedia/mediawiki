@@ -193,7 +193,7 @@ class Database {
 	function insertId() { return mysql_insert_id( $this->mConn ); }
 	function dataSeek( $res, $row ) { return mysql_data_seek( $res, $row ); }
 	function lastErrno() { return mysql_errno( $this->mConn ); }
-	function lastError() { return mysql_error(  $this->mConn ); }
+	function lastError() { return mysql_error( $this->mConn ); }
 	function affectedRows() { return mysql_affected_rows( $this->mConn ); }
 	
 	# Simple UPDATE wrapper
@@ -313,7 +313,8 @@ class Database {
 			echo "** " . $this->lastError() . "\n";
 			return false;
 		}
-		for( $i = $this->numRows( $res ) - 1; $i--; $i > 0 ) {
+		$nTables = $this->numRows( $res );
+		for( $i = 0; $i < $nTables; $i++ ) {
 			if( mysql_tablename( $res, $i ) == $table ) return true;
 		}
 		return false;
@@ -383,7 +384,7 @@ class Database {
 	
 	function selectDB( $db ) 
 	{
-		$this->mDatabase = $db;
+		$this->mDBname = $db;
 		mysql_select_db( $db, $this->mConn );
 	}
 
