@@ -161,7 +161,7 @@ class MakesysopForm {
 		$rightsNotation = array();
 
 		if ( $wgUser->isDeveloper() ) {
-			$newrights = wfStrencode( (string)$this->mRights ) );
+			$newrights = wfStrencode( (string)$this->mRights );
 			$rightsNotation[] = "=$this->mRights";
 		} else {
 			if( $row->user_rights ){
