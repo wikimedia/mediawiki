@@ -12,7 +12,7 @@ require_once( 'Image.php' );
 	'standard'		=> 'Standard',
 	'nostalgia'		=> 'Nostalgia',
 	'cologneblue'	=> 'CologneBlue'
-) + $wgExtraSkins;
+);
 if( $wgUsePHPTal ) {
     #$wgValidSkinNames[] = 'PHPTal';
     #$wgValidSkinNames['davinci'] = 'DaVinci';
