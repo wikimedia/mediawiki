@@ -1443,7 +1443,7 @@ article [[Train]].
 
 'allmessages'	=> 'All system messages',
 'allmessagestext'	=> 'This is a list of all system messages available in the MediaWiki: namespace.',
-'allmessagesnotsupportedUI' => 'Your current interface language is not supported by Special:AllMessages at this site.',
+'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:AllMessages at this site.',
 'allmessagesnotsupportedDB' => 'Special:AllMessages not supported because wgUseDatabaseMessages is off.',
 
 # Thumbnails
