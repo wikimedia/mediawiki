@@ -1212,6 +1212,11 @@ $wgUseExternalEditor = true;
 
 $wgSortSpecialPages = true;
 
+/**
+ * Array of disabled article actions, e.g. view, edit, dublincore, delete, etc.
+ */
+$wgDisabledActions = array();
+
 } else {
 	die();
 }
