@@ -213,8 +213,11 @@ class User {
 
 	function loadFromDatabase()
 	{
-		if ( $this->mDataLoaded ) { return; }
-		
+		global $wgCommandLineMode;
+		if ( $this->mDataLoaded || $wgCommandLineMode ) {
+			return;
+		}
+
 		# Paranoia
 		$this->mId = IntVal( $this->mId );
 
