@@ -45,21 +45,33 @@ function rebuildLinkTablesPass1()
 		  $m, PREG_PATTERN_ORDER );
 
 		if ( 0 != $numlinks ) {
+			$first = true;
 			$sql = "INSERT INTO rebuildlinks (rl_f_id,rl_f_title,rl_to) VALUES ";
 			for ( $i = 0; $i < $numlinks; ++$i ) {
 				$nt = Title::newFromText( $m[1][$i] );
-				$dest = addslashes( $nt->getPrefixedDBkey() );
+				if (! $nt)
+				{
+					$txt = $m[1][$i];
+					print "error in '$ns:{$row->cur_title}' :\t'$txt'\n";
+					continue;
+				}
 
-				if ( 0 != $i ) { $sql .= ","; }
+				if (!$first)
+					$sql .= ",";
+				else
+					$first = false;
+
+				$dest = addslashes( $nt->getPrefixedDBkey() );
 				$sql .= "({$id},'{$title}','{$dest}')";
 			}
-			wfQuery( $sql, DB_WRITE );
+
+			if (! $first) { wfQuery( $sql, DB_WRITE  ); }
 		}
 		if ( ( ++$count % 1000 ) == 0 ) {
 			print "$count of $total articles scanned.\n";
 		}
 	}
-	print "$count articles scanned.\n";
+	print "$total articles scanned.\n";
 	mysql_free_result( $res );
 
 	$sql = "UNLOCK TABLES";
@@ -92,25 +104,23 @@ function rebuildLinkTablesPass2()
 	$res = wfQuery( $sql, DB_WRITE );
 
 	$sql = "INSERT INTO imagelinks (il_from,il_to) VALUES ";
-	$sqlX = "";
 	$first = true;
-	while ( $row = wfFetchObject( $res ) ) {
+	while ( $row = wfFetchObject( $res ) )
+	{
 		$iname = addslashes( substr( $row->rl_to, $inslen ) );
 		$pname = addslashes( $row->rl_f_title );
 
-		if ( ! $first ) { $sqlX .= ","; }
-		$first = false;
+		if ( ! $first )
+			$sql .= ",";
+		else
+			$first = false;
 
-		$sqlX .= "('{$pname}','{$iname}')";
+		$sql .= "('{$pname}','{$iname}')";
 	}
-	if ($sqlX != "") {
-	  $sql .= $sqlX;
-	  wfFreeResult( $res );
-	  wfQuery( $sql, DB_WRITE );
-	}
+	wfFreeResult( $res );
+	if ( ! $first ) { wfQuery( $sql, DB_WRITE ); }
 
-	$sql = "SELECT DISTINCT rl_to FROM rebuildlinks " .
-	  "ORDER BY rl_to";
+	$sql = "SELECT DISTINCT rl_to FROM rebuildlinks ORDER BY rl_to";
 	$res = wfQuery( $sql, DB_WRITE );
 	$count = 0;
 	$total = wfNumRows( $res );
@@ -119,6 +129,11 @@ function rebuildLinkTablesPass2()
 		if ( 0 == strncmp( "$ins:", $row->rl_to, $inslen ) ) { continue; }
 
 		$nt = Title::newFromDBkey( $row->rl_to );
+		if (! $nt)
+		{
+			print "error pass2: '{$row->rl_to}'\n";
+			continue;
+		}
 		$id = $nt->getArticleID();
 		$to = addslashes( $row->rl_to );
 
@@ -128,10 +143,14 @@ function rebuildLinkTablesPass2()
 
 			$sql = "INSERT INTO brokenlinks (bl_from,bl_to) VALUES ";
 			$first = true;
-			while ( $row2 = wfFetchObject( $res2 ) ) {
+			while ( $row2 = wfFetchObject( $res2 ) )
+			{
+				if (! $first)
+					$sql .= ",";
+				else
+					$first = false;
+
 				$from = $row2->rl_f_id;
-				if ( ! $first ) { $sql .= ","; }
-				$first = false;
 				$sql .= "({$from},'{$to}')";
 			}
 			wfFreeResult( $res2 );
@@ -142,10 +161,14 @@ function rebuildLinkTablesPass2()
 
 			$sql = "INSERT INTO links (l_from,l_to) VALUES ";
 			$first = true;
-			while ( $row2 = wfFetchObject( $res2 ) ) {
+			while ( $row2 = wfFetchObject( $res2 ) )
+			{
+				if (! $first)
+					$sql .= ",";
+				else
+					$first = false;
+
 				$from = addslashes( $row2->rl_f_title );
-				if ( ! $first ) { $sql .= ","; }
-				$first = false;
 				$sql .= "('{$from}',{$id})";
 			}
 			wfFreeResult( $res2 );
