@@ -1022,6 +1022,11 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 			return;
 		}
 
+		if ( $wpConfirm ) {
+			$this->doDelete();
+			return;
+		}
+
 		# determine whether this page has earlier revisions
 		# and insert a warning if it does
 		# we select the text because it might be useful below
@@ -1083,6 +1088,8 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 	function confirmDelete( $par = "" )
 	{
 		global $wgOut;
+
+		wfDebug( "Article::confirmDelete\n" );
 		
 		$sub = htmlspecialchars( $this->mTitle->getPrefixedText() );
 		$wgOut->setSubtitle( wfMsg( "deletesub", $sub ) );
@@ -1117,6 +1124,7 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		global $wgOut, $wgUser, $wgLang;
 		global $wpReason;
 		$fname = "Article::doDelete";
+		wfDebug( "$fname\n" );
 
 		$this->doDeleteArticle( $this->mTitle );
 		$deleted = $this->mTitle->getPrefixedText();
@@ -1141,6 +1149,8 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		global $wgUser, $wgOut, $wgLang, $wpReason, $wgDeferredUpdateList;
 
 		$fname = "Article::doDeleteArticle";
+		wfDebug( "$fname\n" );
+
 		$ns = $title->getNamespace();
 		$t = wfStrencode( $title->getDBkey() );
 		$id = $title->getArticleID();
