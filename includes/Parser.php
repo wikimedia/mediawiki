@@ -3,40 +3,21 @@
 // require_once('Tokenizer.php');
 
 /**
- * PHP Parser
- * 
- * Processes wiki markup
- *
- * There are two main entry points into the Parser class:
- * parse()
- *   produces HTML output
- * preSaveTransform().
- *   produces altered wiki markup.
- *
- * Globals used:
- *    objects:   $wgLang, $wgDateFormatter, $wgLinkCache, $wgCurParser
- *
- * NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
- *
- * settings:
- *  $wgUseTex*, $wgUseDynamicDates*, $wgInterwikiMagic*,
- *  $wgNamespacesWithSubpages, $wgAllowExternalImages*,
- *  $wgLocaltimezone
- *
- *  * only within ParserOptions
+ * File for Parser and related classes
  *
  * @package MediaWiki
+ * @version $Id$
  */
 
 /**
  * Variable substitution O(N^2) attack
  *
-* Without countermeasures, it would be possible to attack the parser by saving
-* a page filled with a large number of inclusions of large pages. The size of
-* the generated page would be proportional to the square of the input size.
-* Hence, we limit the number of inclusions of any given page, thus bringing any
-* attack back to O(N).
-*/
+ * Without countermeasures, it would be possible to attack the parser by saving
+ * a page filled with a large number of inclusions of large pages. The size of
+ * the generated page would be proportional to the square of the input size.
+ * Hence, we limit the number of inclusions of any given page, thus bringing any
+ * attack back to O(N).
+ */
 define( 'MAX_INCLUDE_REPEAT', 100 );
 define( 'MAX_INCLUDE_SIZE', 1000000 ); // 1 Million
 
@@ -72,11 +53,39 @@ define( 'EXT_IMAGE_REGEX',
 );
 
 /**
- * @todo document
+ * PHP Parser
+ * 
+ * Processes wiki markup
+ *
+ * <pre>
+ * There are three main entry points into the Parser class:
+ * parse()
+ *   produces HTML output
+ * preSaveTransform().
+ *   produces altered wiki markup.
+ * transformMsg()
+ *   performs brace substitution on MediaWiki messages
+ *
+ * Globals used:
+ *    objects:   $wgLang, $wgDateFormatter, $wgLinkCache, $wgCurParser
+ *
+ * NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
+ *
+ * settings:
+ *  $wgUseTex*, $wgUseDynamicDates*, $wgInterwikiMagic*,
+ *  $wgNamespacesWithSubpages, $wgAllowExternalImages*,
+ *  $wgLocaltimezone
+ *
+ *  * only within ParserOptions
+ * </pre>
+ *
  * @package MediaWiki
  */
 class Parser
 {
+	/**#@+
+	 * @access private
+	 */
 	# Persistent:
 	var $mTagHooks;
 
@@ -90,7 +99,13 @@ class Parser
 		                // multiple SQL queries for the same string
 	    $mTemplatePath;	// stores an unsorted hash of all the templates already loaded
 		                // in this path. Used for loop detection.
+	/**#@-*/
 
+	/**
+	 * Constructor
+	 * 
+	 * @access public
+	 */
 	function Parser() {
  		$this->mTemplates = array();
  		$this->mTemplatePath = array();
@@ -98,6 +113,11 @@ class Parser
 		$this->clearState();
 	}
 
+	/**
+	 * Clear Parser state
+	 *
+	 * @access private
+	 */
 	function clearState() {
 		$this->mOutput = new ParserOutput;
 		$this->mAutonumber = 0;
@@ -110,11 +130,13 @@ class Parser
 		$this->mInPre = false;
 	}
 
-	# First pass--just handle <nowiki> sections, pass the rest off
-	# to internalParse() which does all the real work.
-	#
-	# Returns a ParserOutput
-	#
+	/**
+	 * First pass--just handle <nowiki> sections, pass the rest off
+	 * to internalParse() which does all the real work.
+	 *
+	 * @access private
+	 * @return ParserOutput a ParserOutput
+	 */
 	function parse( $text, &$title, $options, $linestart = true, $clearState = true ) {
 		global $wgUseTidy;
 		$fname = 'Parser::parse';
@@ -171,21 +193,30 @@ class Parser
 		return $this->mOutput;
 	}
 
-	/* static */ function getRandomString() {
+	/**
+	 * Get a random string
+	 *
+	 * @access private
+	 * @static
+	 */
+	function getRandomString() {
 		return dechex(mt_rand(0, 0x7fffffff)) . dechex(mt_rand(0, 0x7fffffff));
 	}
 
-	# Replaces all occurrences of <$tag>content</$tag> in the text
-	# with a random marker and returns the new text. the output parameter
-	# $content will be an associative array filled with data on the form
-	# $unique_marker => content.
-
-	# If $content is already set, the additional entries will be appended
-
-	# If $tag is set to STRIP_COMMENTS, the function will extract
-	# <!-- HTML comments -->
-
-	/* static */ function extractTags($tag, $text, &$content, $uniq_prefix = ''){
+	/** 
+	 * Replaces all occurrences of <$tag>content</$tag> in the text
+	 * with a random marker and returns the new text. the output parameter
+	 * $content will be an associative array filled with data on the form
+	 * $unique_marker => content.
+	 * 
+	 * If $content is already set, the additional entries will be appended
+	 * If $tag is set to STRIP_COMMENTS, the function will extract
+	 * <!-- HTML comments -->
+	 *
+	 * @access private
+	 * @static
+	 */
+	function extractTags($tag, $text, &$content, $uniq_prefix = ''){
 		$rnd = $uniq_prefix . '-' . $tag . Parser::getRandomString();
 		if ( !$content ) {
 			$content = array( );
@@ -217,15 +248,19 @@ class Parser
 		return $stripped;
 	}
 
-	# Strips and renders <nowiki>, <pre>, <math>, <hiero>
-	# If $render is set, performs necessary rendering operations on plugins
-	# Returns the text, and fills an array with data needed in unstrip()
-	# If the $state is already a valid strip state, it adds to the state
-
-	# When $stripcomments is set, HTML comments <!-- like this -->
-	# will be stripped in addition to other tags. This is important
-	# for section editing, where these comments cause confusion when
-	# counting the sections in the wikisource
+	/**
+	 * Strips and renders nowiki, pre, math, hiero
+	 * If $render is set, performs necessary rendering operations on plugins
+	 * Returns the text, and fills an array with data needed in unstrip()
+	 * If the $state is already a valid strip state, it adds to the state
+	 *
+	 * @param bool $stripcomments when set, HTML comments <!-- like this -->
+	 *  will be stripped in addition to other tags. This is important
+	 *  for section editing, where these comments cause confusion when
+	 *  counting the sections in the wikisource
+	 *
+	 * @access private
+	 */
 	function strip( $text, &$state, $stripcomments = false ) {
 		$render = ($this->mOutputType == OT_HTML);
 		$html_content = array();
@@ -333,7 +368,12 @@ class Parser
 		return $text;
 	}
 
-	# always call unstripNoWiki() after this one
+	/**
+	 * restores pre, math, and heiro removed by strip()
+	 *
+	 * always call unstripNoWiki() after this one
+	 * @access private
+	 */
 	function unstrip( $text, &$state ) {
 		# Must expand in reverse order, otherwise nested tags will be corrupted
 		$contentDict = end( $state );
@@ -347,7 +387,12 @@ class Parser
 
 		return $text;
 	}
-	# always call this after unstrip() to preserve the order
+
+	/**
+	 * always call this after unstrip() to preserve the order
+	 *
+	 * @access private
+	 */
 	function unstripNoWiki( $text, &$state ) {
 		# Must expand in reverse order, otherwise nested tags will be corrupted
 		for ( $content = end($state['nowiki']); $content !== false; $content = prev( $state['nowiki'] ) ) {
@@ -364,9 +409,13 @@ class Parser
 		return $text;
 	}
 
-	# Add an item to the strip state
-	# Returns the unique tag which must be inserted into the stripped text
-	# The tag will be replaced with the original text in unstrip()
+	/**
+	 * Add an item to the strip state
+	 * Returns the unique tag which must be inserted into the stripped text
+	 * The tag will be replaced with the original text in unstrip()
+	 *
+	 * @access private
+	 */
 	function insertStripItem( $text, &$state ) {
 		$rnd = UNIQ_PREFIX . '-item' . Parser::getRandomString();
 		if ( !$state ) {
@@ -381,7 +430,11 @@ class Parser
 		return $rnd;
 	}
 
-	# Return allowed HTML attributes
+	/**
+	 * Return allowed HTML attributes
+	 *
+	 * @access private
+	 */
 	function getHTMLattrs () {
 		$htmlattrs = array( # Allowed attributes--no scripting, etc.
 				'title', 'align', 'lang', 'dir', 'width', 'height',
@@ -398,7 +451,11 @@ class Parser
 		return $htmlattrs ;
 	}
 
-	# Remove non approved attributes and javascript in css
+	/**
+	 * Remove non approved attributes and javascript in css
+	 *
+	 * @access private
+	 */
 	function fixTagAttributes ( $t ) {
 		if ( trim ( $t ) == '' ) return '' ; # Saves runtime ;-)
 		$htmlattrs = $this->getHTMLattrs() ;
@@ -424,7 +481,11 @@ class Parser
 		return trim ( $t ) ;
 	}
 
-	# interface with html tidy, used if $wgUseTidy = true
+	/**
+	 * interface with html tidy, used if $wgUseTidy = true
+	 *
+	 * @access private
+	 */
 	function tidy ( $text ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
 		global $wgInputEncoding, $wgOutputEncoding;
@@ -472,7 +533,11 @@ class Parser
 		}
 	}
 
-	# parse the wiki syntax used to render tables
+	/**
+	 * parse the wiki syntax used to render tables
+	 *
+	 * @access private
+	 */
 	function doTableStuff ( $t ) {
 		$fname = 'Parser::doTableStuff';
 		wfProfileIn( $fname );
@@ -570,6 +635,12 @@ class Parser
 		return $t ;
 	}
 
+	/**
+	 * Helper function for parse() that transforms wiki markup into
+	 * HTML. Only called for $mOutputType == OT_HTML.
+	 *
+	 * @access private
+	 */
 	function internalParse( $text, $linestart, $args = array(), $isMain=true ) {
         global $wgLang;
 
@@ -592,6 +663,7 @@ class Parser
 		$text = $this->replaceExternalLinks( $text );
 		$text = $this->doMagicLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
+		# Another call to replace links and images inside captions of images
 		$text = $this->replaceInternalLinks ( $text );
 
 		$text = $this->unstrip( $text, $this->mStripState );
@@ -606,7 +678,13 @@ class Parser
 		return $text;
 	}
 
-	/* private */ function &doMagicLinks( &$text ) {
+	/**
+	 * Replace special strings like "ISBN xxx" and "RFC xxx" with
+	 * magic external links.
+	 *
+	 * @access private
+	 */
+	function &doMagicLinks( &$text ) {
 		global $wgUseGeoMode;
 		$text = $this->magicISBN( $text );
 		if ( isset( $wgUseGeoMode ) && $wgUseGeoMode ) {
@@ -616,8 +694,12 @@ class Parser
 		return $text;
 	}
 
-	# Parse ^^ tokens and return html
-	/* private */ function doExponent ( $text ) {
+	/**
+	 * Parse ^^ tokens and return html
+	 *
+	 * @access private
+	 */
+	function doExponent ( $text ) {
 		$fname = 'Parser::doExponent';
 		wfProfileIn( $fname);
 		$text = preg_replace('/\^\^(.*)\^\^/','<small><sup>\\1</sup></small>', $text);
@@ -625,8 +707,12 @@ class Parser
 		return $text;
 	}
 
-	# Parse headers and return html
-	/* private */ function doHeadings( $text ) {
+	/**
+	 * Parse headers and return html
+	 *
+	 * @access private
+	 */
+	function doHeadings( $text ) {
 		$fname = 'Parser::doHeadings';
 		wfProfileIn( $fname );
 		for ( $i = 6; $i >= 1; --$i ) {
@@ -638,7 +724,12 @@ class Parser
 		return $text;
 	}
 
-	/* private */ function doAllQuotes( $text ) {
+	/**
+	 * Replace single quotes with HTML markup
+	 * @access private
+	 * @return string the altered text
+	 */
+	function doAllQuotes( $text ) {
 		$fname = 'Parser::doAllQuotes';
 		wfProfileIn( $fname );
 		$outtext = '';
@@ -651,7 +742,11 @@ class Parser
 		return $outtext;
 	}
 
-	/* private */ function doQuotes( $text ) {
+	/**
+	 * Helper function for doAllQuotes()
+	 * @access private
+	 */
+	function doQuotes( $text ) {
 		$arr = preg_split ("/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE);
 		if (count ($arr) == 1)
 			return $text;
@@ -812,11 +907,16 @@ class Parser
 		}
 	}
 
-	# Note: we have to do external links before the internal ones,
-	# and otherwise take great care in the order of things here, so
-	# that we don't end up interpreting some URLs twice.
-
-	/* private */ function replaceExternalLinks( $text ) {
+	/**
+	 * Replace external links
+	 *
+ 	 * Note: we have to do external links before the internal ones,
+	 * and otherwise take great care in the order of things here, so
+	 * that we don't end up interpreting some URLs twice.
+	 *
+	 * @access private
+	 */
+	function replaceExternalLinks( $text ) {
 		$fname = 'Parser::replaceExternalLinks';
 		wfProfileIn( $fname );
 
@@ -890,7 +990,10 @@ class Parser
 		return $s;
 	}
 
-	# Replace anything that looks like a URL with a link
+	/**
+	 * Replace anything that looks like a URL with a link
+	 * @access private
+	 */
 	function replaceFreeExternalLinks( $text ) {
 		$bits = preg_split( '/((?:'.URL_PROTOCOLS.'):)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		$s = array_shift( $bits );
@@ -937,7 +1040,10 @@ class Parser
 		return $s;
 	}
 
-	# make an image if it's allowed
+	/**
+	 * make an image if it's allowed
+	 * @access private
+	 */
 	function maybeMakeImageLink( $url ) {
 		$sk =& $this->mOptions->getSkin();
 		$text = false;
@@ -950,8 +1056,12 @@ class Parser
 		return $text;
 	}
 	
-	# The wikilinks [[ ]] are procedeed here.
-	/* private */ function replaceInternalLinks( $s ) {
+	/**
+	 * Process [[ ]] wikilinks
+	 *
+	 * @access private
+	 */
+	function replaceInternalLinks( $s ) {
 		global $wgLang, $wgLinkCache;
 		global $wgNamespacesWithSubpages;
 		static $fname = 'Parser::replaceInternalLinks' ;
@@ -1138,8 +1248,10 @@ class Parser
 		return $s;
 	}
 
-	# Some functions here used by doBlockLevels()
-	#
+	/**#@+
+	 * Used by doBlockLevels()
+	 * @access private
+	 */
 	/* private */ function closeParagraph() {
 		$result = '';
 		if ( '' != $this->mLastSection ) {
@@ -1210,8 +1322,15 @@ class Parser
 		else {	return '<!-- ERR 3 -->'; }
 		return $text."\n";
 	}
+	/**#@-*/
 
-	/* private */ function doBlockLevels( $text, $linestart ) {
+	/**
+	 * Make lists from lines starting with ':', '*', '#', etc.
+	 *
+	 * @access private
+	 * @return string the lists rendered as HTML
+	 */
+	function doBlockLevels( $text, $linestart ) {
 		$fname = 'Parser::doBlockLevels';
 		wfProfileIn( $fname );
 
@@ -1369,7 +1488,11 @@ class Parser
 		return $output;
 	}
 
-	# Return value of a magic variable (like PAGENAME)
+	/**
+	 * Return value of a magic variable (like PAGENAME)
+	 *
+	 * @access private
+	 */
 	function getVariableValue( $index ) {
 		global $wgLang, $wgSitename, $wgServer;
 
@@ -1406,7 +1529,11 @@ class Parser
 		}
 	}
 
-	# initialise the magic variables (like CURRENTMONTHNAME)
+	/**
+	 * initialise the magic variables (like CURRENTMONTHNAME)
+	 *
+	 * @access private
+	 */
 	function initialiseVariables() {
 		global $wgVariableIDs;
 		$this->mVariables = array();
@@ -1416,7 +1543,21 @@ class Parser
 		}
 	}
 
-	/* private */ function replaceVariables( $text, $args = array() ) {
+	/**
+	 * Replace magic variables, templates, and template arguments
+	 * with the appropriate text. Templates are substituted recursively,
+	 * taking care to avoid infinite loops.
+	 *
+	 * Note that the substitution depends on value of $mOutputType:
+	 *  OT_WIKI: only {{subst:}} templates
+	 *  OT_MSG: only magic variables
+	 *  OT_HTML: all templates and magic variables
+	 * 
+	 * @param string $tex The text to transform
+	 * @param array $args Key-value pairs representing template parameters to substitute
+	 * @access private
+	 */
+	function replaceVariables( $text, $args = array() ) {
 		global $wgLang, $wgScript, $wgArticlePath;
 
 		# Prevent too big inclusions
@@ -1473,6 +1614,16 @@ class Parser
 		return $args;
 	}
 
+	/**
+	 * Return the text of a template, after recursively
+	 * replacing any variables or templates within the template.
+	 *
+	 * @param array $matches The parts of the template
+	 *  $matches[1]: the title, i.e. the part before the |
+	 *  $matches[2]: the parameters (including a leading |), if  any
+	 * @return string the text of the template
+	 * @access private
+	 */
 	function braceSubstitution( $matches ) {
 		global $wgLinkCache, $wgLang;
 		$fname = 'Parser::braceSubstitution';
@@ -1703,7 +1854,10 @@ class Parser
 		}
 	}
 
-	# Triple brace replacement -- used for template arguments
+	/**
+	 * Triple brace replacement -- used for template arguments
+	 * @access private
+	 */
 	function argSubstitution( $matches ) {
 		$arg = trim( $matches[1] );
 		$text = $matches[0];
@@ -1718,7 +1872,10 @@ class Parser
 		return $text;
 	}
 
-	# Returns true if the function is allowed to include this entity
+	/**
+	 * Returns true if the function is allowed to include this entity
+	 * @access private
+	 */
 	function incrementIncludeCount( $dbk ) {
 		if ( !array_key_exists( $dbk, $this->mIncludeCount ) ) {
 			$this->mIncludeCount[$dbk] = 0;
@@ -1731,8 +1888,12 @@ class Parser
 	}
 
 
-	# Cleans up HTML, removes dangerous tags and attributes
-	/* private */ function removeHTMLtags( $text ) {
+	/**
+	 * Cleans up HTML, removes dangerous tags and attributes, and
+	 * removes HTML comments
+	 * @access private
+	 */
+	function removeHTMLtags( $text ) {
 		global $wgUseTidy, $wgUserHtml;
 		$fname = 'Parser::removeHTMLtags';
 		wfProfileIn( $fname );
@@ -1891,14 +2052,17 @@ class Parser
 		return $text;
 	}
 
-	# This function accomplishes several tasks:
-	# 1) Auto-number headings if that option is enabled
-	# 2) Add an [edit] link to sections for logged in users who have enabled the option
-	# 3) Add a Table of contents on the top for users who have enabled the option
-	# 4) Auto-anchor headings
-	#
-	# It loops through all headlines, collects the necessary data, then splits up the
-	# string and re-inserts the newly formatted headlines.
+	/**
+	 * This function accomplishes several tasks:
+	 * 1) Auto-number headings if that option is enabled
+	 * 2) Add an [edit] link to sections for logged in users who have enabled the option
+	 * 3) Add a Table of contents on the top for users who have enabled the option
+	 * 4) Auto-anchor headings
+	 *	
+	 * It loops through all headlines, collects the necessary data, then splits up the
+	 * string and re-inserts the newly formatted headlines.
+	 * @access private
+	 */
 	/* private */ function formatHeadings( $text, $isMain=true ) {
 		global $wgInputEncoding, $wgMaxTocLevel, $wgLang, $wgLinkHolders;
 
@@ -2118,8 +2282,11 @@ class Parser
 		}
 	}
 
-	# Return an HTML link for the "ISBN 123456" text
-	/* private */ function magicISBN( $text ) {
+	/**
+	 * Return an HTML link for the "ISBN 123456" text
+	 * @access private
+	 */
+	function magicISBN( $text ) {
 		global $wgLang;
 		$fname = 'Parser::magicISBN';
 		wfProfileIn( $fname );
@@ -2163,8 +2330,11 @@ class Parser
 		return $text;
 	}
 
-	# Return an HTML link for the "GEO ..." text
-	/* private */ function magicGEO( $text ) {
+	/**
+	 * Return an HTML link for the "GEO ..." text
+	 * @access private
+	 */
+	function magicGEO( $text ) {
 		global $wgLang, $wgUseGeoMode;
 		$fname = 'Parser::magicGEO';
 		wfProfileIn( $fname );
@@ -2274,6 +2444,18 @@ class Parser
 		return $text;
 	}
 
+	/**
+	 * Transform wiki markup when saving a page by doing \r\n -> \n
+	 * conversion, substitting signatures, {{subst:}} templates, etc.
+	 *
+	 * @param string $text the text to transform
+	 * @param Title &$title the Title object for the current article
+	 * @param User &$user the User object describing the current user
+	 * @param ParserOptions $options parsing options
+	 * @param bool $clearState whether to clear the parser state first
+	 * @return string the altered wiki markup
+	 * @access public
+	 */
 	function preSaveTransform( $text, &$title, &$user, $options, $clearState = true ) {
 		$this->mOptions = $options;
 		$this->mTitle =& $title;
@@ -2303,7 +2485,11 @@ class Parser
 		return $text;
 	}
 
-	/* private */ function pstPass2( $text, &$user ) {
+	/**
+	 * Pre-save transform helper function
+	 * @access private
+	 */
+	function pstPass2( $text, &$user ) {
 		global $wgLang, $wgLocaltimezone, $wgCurParser;
 
 		# Variable replacement
@@ -2370,8 +2556,11 @@ class Parser
 		return $text;
 	}
 
-	# Set up some variables which are usually set up in parse()
-	# so that an external function can call some class members with confidence
+	/**
+	 * Set up some variables which are usually set up in parse()
+	 * so that an external function can call some class members with confidence
+	 * @access public
+	 */
 	function startExternalParse( &$title, $options, $outputType, $clearState = true ) {
 		$this->mTitle =& $title;
 		$this->mOptions = $options;
@@ -2381,6 +2570,14 @@ class Parser
 		}
 	}
 
+	/**
+	 * Transform a MediaWiki message by replacing magic variables.
+	 * 
+	 * @param string $text the text to transform
+	 * @param ParserOptions $options  options
+	 * @return string the text with variables substituted
+	 * @access public
+	 */
 	function transformMsg( $text, $options ) {
 		global $wgTitle;
 		static $executing = false;
@@ -2401,9 +2598,12 @@ class Parser
 		return $text;
 	}
 
-	# Create an HTML-style tag, e.g. <yourtag>special text</yourtag>
-	# Callback will be called with the text within
-	# Transform and return the text within
+	/**
+	 * Create an HTML-style tag, e.g. <yourtag>special text</yourtag>
+	 * Callback will be called with the text within
+	 * Transform and return the text within
+	 * @access public
+	 */
 	function setHook( $tag, $callback ) {
 		$oldVal = @$this->mTagHooks[$tag];
 		$this->mTagHooks[$tag] = $callback;
