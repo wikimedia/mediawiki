@@ -21,8 +21,8 @@ class UncategorizedPagesPage extends PageQueryPage {
 		extract( $dbr->tableNames( 'cur', 'categorylinks' ) );
 
 		return "SELECT 'Uncategorizedpages' as type, cur_namespace AS namespace, cur_title AS title, cur_title AS value " .
-			"FROM $cur LEFT JOIN $categorylinks ON cur_id=cl_to ".
-			"WHERE cl_to IS NULL AND cur_namespace=0 AND cur_is_redirect=0";
+			"FROM $cur LEFT JOIN $categorylinks ON cur_id=cl_from ".
+			"WHERE cl_from IS NULL AND cur_namespace=0 AND cur_is_redirect=0";
 	}
 }
 
