@@ -530,7 +530,7 @@ BUG 289: ">"-token in bracketed URL
 !! input
 [http://www.example.com/<hello> stuff]
 !! result
-<p>[http://www.example.com/&lt;hello&gt; stuff]
+<p><a href="http://www.example.com/" class='external' title="http://www.example.com/">&lt;hello&gt; stuff</a><span class='urlexpansion'> (<i>http://www.example.com/</i>)</span>
 </p>
 !!end
 
@@ -539,7 +539,25 @@ BUG 289: literal ">"-token in bracketed URL
 !! input
 [http://www.example.com/<b>html</b> stuff]
 !! result
-<p>[http://www.example.com/<b >html</b > stuff]
+<p><a href="http://www.example.com/" class='external' title="http://www.example.com/"><b >html</b > stuff</a><span class='urlexpansion'> (<i>http://www.example.com/</i>)</span>
+</p>
+!!end
+
+!! test
+BUG 289: literal double quote at end of URL
+!! input
+http://www.example.com/"hello"
+!! result
+<p><a href="http://www.example.com/" class='external'>http://www.example.com/</a>"hello"
+</p>
+!!end
+
+!! test
+BUG 289: literal double quote in bracketed URL
+!! input
+[http://www.example.com/"hello" stuff]
+!! result
+<p><a href="http://www.example.com/" class='external' title="http://www.example.com/">"hello" stuff</a><span class='urlexpansion'> (<i>http://www.example.com/</i>)</span>
 </p>
 !!end
 
