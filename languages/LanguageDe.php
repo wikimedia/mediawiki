@@ -644,7 +644,10 @@ Alle Zeiten sind UTC.
 "badfiletype"	=> "\".$1\" ist kein empfohlenes Dateiformat.",
 "largefile"		=> "Bitte keine Bilder über 100 KByte hochladen.",
 "successfulupload" => "Erfolgreich hochgeladen",
-"fileuploaded"	=> "Die Datei \"$1\" wurde erfolgreich hochgeladen.",
+"fileuploaded"	=> "Die Datei \"$1\" wurde erfolgreich hochgeladen. Bitte 
+verwenden Sie diesen ($2) Link zur Beschreibungsseite und füllen Sie die 
+Informationen über die Datei aus, insbesondere seine Herkunft, von wem und wann es 
+gemacht wurde und besondere Angaben zum Copyright, falls notwendig.",
 "uploadwarning" => "Warnung",
 "savefile"		=> "Datei speichern",
 "uploadedimage" => "\"$1\" hochgeladen",
@@ -924,7 +927,7 @@ um eine Seite zu verschieben.",
 "newtitle"		=> "Zu neuem Titel",
 "movepagebtn"	=> "Artikel verschieben",
 "pagemovedsub"	=> "Verschiebung erfolgreich",
-"pagemovedtext" => "Artikel \"$1\" wurde nach \"$2\" verschoben.",
+"pagemovedtext" => "Artikel \"[[$1]]\" wurde nach \"[[$2]]\" verschoben.",
 "articleexists" => "Unter diesem Namen existiert bereits ein Artikel.
 Bitte wählen Sie einen anderen Namen.",
 "talkexists"    => "Die Seite selbst wurde erfolgreich verschoben, aber die
