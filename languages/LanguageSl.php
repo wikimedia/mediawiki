@@ -36,14 +36,6 @@ include_once( "LanguageUtf8.php" );
 	9	=> "MediaWiki_talk",
 );
 
-/* private */ $wgDefaultUserOptionsSl = array(
-	"quickbar" => 1, "underline" => 1, "hover" => 1,
-	"cols" => 80, "rows" => 25, "searchlimit" => 20,
-	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0
-);
-
 /* private */ $wgQuickbarSettingsSl = array(
 	"Brez", "Levo nepomično", "Desno nepomično", "Levo leteče"
 );
@@ -871,6 +863,11 @@ V teh primerih boste morali prestaviti ali povezati stran ročno, če to želite
 #--------------------------------------------------------------------------
 
 class LanguageSl extends LanguageUtf8 {
+
+  function getDefaultUserOptions () {
+   $opt = Language::getDefaultUserOptions();
+   return $opt;
+  }
 
  function getNamespaces() {
   global $wgNamespaceNamesSl;

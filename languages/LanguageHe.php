@@ -24,14 +24,6 @@ include_once("LanguageUtf8.php");
 	9	=> "MediaWiki_talk",
 );
 
-/* private */ $wgDefaultUserOptionsHe = array(
-	"quickbar" => 2, "underline" => 1, "hover" => 1,
-	"cols" => 80, "rows" => 25, "searchlimit" => 20,
-	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0
-);
-
 /* private */ $wgQuickbarSettingsHe = array(
 	"ללא", "קבוע משמאל", "קבוע מימין", "צף משמאל"
 );
@@ -774,10 +766,11 @@ $3 $9",
 
 class LanguageHe extends LanguageUtf8 {
 
-	function getDefaultUserOptions () {
-		global $wgDefaultUserOptionsHe ;
-		return $wgDefaultUserOptionsHe ;
-	}
+        function getDefaultUserOptions () {
+                $opt = Language::getDefaultUserOptions();
+		$opt["quickbar"]=2;
+                return $opt;
+        }
 
 	function getBookstoreList () {
 		global $wgBookstoreListHe ;

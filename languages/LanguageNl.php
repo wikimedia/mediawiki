@@ -21,17 +21,6 @@
  9 => "Overleg_MediaWiki"
 );
 
-/* private */ $wgDefaultUserOptionsNl = array(
- "quickbar" => 1, "underline" => 1, "hover" => 1,
- "cols" => 80, "rows" => 25, "searchlimit" => 20,
- "contextlines" => 5, "contextchars" => 50,
- "skin" => 0, "math" => 1, "rcdays" => 3, "rclimit" => 50,
- "highlightbroken" => 0, "stubthreshold" => 0,
- "previewontop" => 1, "editsection" => 0,
- "editsectiononrightclick" => 0, "showtoc" => 0,
- "date" => 2
-);
-
 /* private */ $wgQuickbarSettingsNl = array(
  "Uitgeschakeld", "Links vast", "Rechts vast", "Links zwevend"
 );
@@ -1000,9 +989,10 @@ te zijn om een pagina te verplaatsen.",
 
 class LanguageNl extends Language {
 
- function getDefaultUserOptions () {
-  global $wgDefaultUserOptionsNl ;
-  return $wgDefaultUserOptionsNl ;
+  function getDefaultUserOptions () {
+    $opt = Language::getDefaultUserOptions();
+    $opt["date"]=2;
+    return $opt;
   }
 
  function getBookstoreList () {

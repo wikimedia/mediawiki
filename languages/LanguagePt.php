@@ -24,16 +24,6 @@
 	9	=> "MediaWiki_Discussão",
 );
 
-/* private */ $wgDefaultUserOptionsPt = array(
-	"quickbar" => 1, "underline" => 1, "hover" => 1,
-	"cols" => 80, "rows" => 25, "searchlimit" => 20,
-	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0,
-	"previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, "showtoc"=>1,
-	"date" => 0
-);
-
 /* private */ $wgQuickbarSettingsPt = array(
 	"Nada", "Fixado à esquerda", "Fixado à direita", "Flutuando à Esquerda"
 );
@@ -932,6 +922,11 @@ include_once( "LanguageUtf8.php" );
 
 class LanguagePt extends LanguageUtf8 {
 
+        function getDefaultUserOptions () {
+                $opt = Language::getDefaultUserOptions();
+                return $opt;
+        }
+
 	function getBookstoreList () {
 		global $wgBookstoreListPt;
 		return $wgBookstoreListPt;
@@ -1035,11 +1030,14 @@ class LanguagePt extends LanguageUtf8 {
 		return $wgDeveloperSpecialPagesPt;
 	}
 
-	function getMessage( $key )
-	{
-		global $wgAllMessagesPt;
-		return $wgAllMessagesPt[$key];
-	}
+       function getMessage( $key )
+        {
+                global $wgAllMessagesPt;
+                if(array_key_exists($key, $wgAllMessagesPt))
+                        return $wgAllMessagesPt[$key];
+                else
+                        return Language::getMessage($key);
+        }
 }
 
 ?>

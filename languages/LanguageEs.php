@@ -19,18 +19,6 @@
 	9	=> "MediaWiki_Discusión",
 );
 
-/* Note that some default options can be customized -- see
-   '$wgDefaultUserOptionsEn' in Language.php */
-/* private */ $wgDefaultUserOptionsEs = array(
-	"quickbar" => 1, "underline" => 1, "hover" => 1,
-	"cols" => 80, "rows" => 25, "searchlimit" => 20,
-	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0,
-	"previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, "showtoc"=>1,
-	"date" => 0
-);
-
 /* private */ $wgQuickbarSettingsEs = array(
 
 	"None", "Fixed left", "Fixed right", "Floating left"
@@ -978,8 +966,12 @@ Por favor, elije otro nombre.",
 class LanguageEs extends Language {
 
 	# Inherent default user options unless customization is desired
+        function getDefaultUserOptions () {
+	        $opt = Language::getDefaultUserOptions();
+                return $opt;
+        }
 
-    function getBookstoreList () {
+    	function getBookstoreList () {
 		global $wgBookstoreListEn ;
 		return $wgBookstoreListEn ;
 	}
