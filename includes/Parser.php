@@ -43,6 +43,9 @@ define( "OT_HTML", 1 );
 define( "OT_WIKI", 2 );
 define( "OT_MSG", 3 );
 
+# prefix for escaping, used in two functions at least
+define( "UNIQ_PREFIX", "NaodW29");
+
 class Parser
 {
 	# Cleared with clearState():
@@ -141,7 +144,7 @@ class Parser
 		$pre_content = array();
 
 		# Replace any instances of the placeholders
-		$uniq_prefix = "NaodW29";
+		$uniq_prefix = UNIQ_PREFIX;
 		$text = str_replace( $uniq_prefix, wfHtmlEscapeFirst( $uniq_prefix ), $text );
 
 		$text = Parser::extractTags("nowiki", $text, $nowiki_content, $uniq_prefix);
@@ -1026,6 +1029,7 @@ class Parser
 				$lastPref = $pref2;
 			}
 			if ( 0 == $npl ) { # No prefix--go to paragraph mode
+				$uniq_prefix = UNIQ_PREFIX;
 				if ( preg_match(
 				  "/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<div)/i", $t ) ) {
 					$text .= $this->closeParagraph();
