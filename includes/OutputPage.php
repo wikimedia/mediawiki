@@ -247,7 +247,7 @@ class OutputPage {
 	}
 
 	function sendCacheControl() {
-		global $wgUseSquid, $wgUseESI;
+		global $wgUseSquid, $wgUseESI, $wgSquidMaxage;
 		# FIXME: This header may cause trouble with some versions of Internet Explorer
 		header( "Vary: Accept-Encoding, Cookie" );
 		if( $this->mLastModified != "" ) {
@@ -259,17 +259,17 @@ class OutputPage {
 					wfDebug( "** proxy caching with ESI; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
-					header( 'Surrogate-Control: max-age=18000+18000, content="ESI/1.0"');
+					header( 'Surrogate-Control: max-age='.$wgSquidMaxage.'+'.$wgSquidMaxage.', content="ESI/1.0"');
 					header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
 				} else {
 					# We'll purge the proxy cache for anons explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
-					# The Squid need to replace the Cache-Control header with 
+					# IMPORTANT! The Squid needs to replace the Cache-Control header with 
 					# Cache-Control: s-maxage=0, must-revalidate, max-age=0
 					wfDebug( "** local proxy caching; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
-					header( "Cache-Control: s-maxage=18000, must-revalidate, max-age=0" );
+					header( "Cache-Control: s-maxage='.$wgSquidMaxage.', must-revalidate, max-age=0" );
 				}
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates

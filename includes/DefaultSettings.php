@@ -149,6 +149,10 @@ $wgCookieExpiration = 2592000;
 # Internal server name as known to Squid, if different
 # $wgInternalServer = 'http://yourinternal.tld:8000';
  $wgInternalServer = $wgServer;
+# Cache timeout for the squid, will be sent as s-maxage (without ESI) or 
+# Surrogate-Control (with ESI). Without ESI, you should strip out s-maxage in the Squid config.
+# 18000 seconds = 12 hours, more cache hits with 2678400 = 31 days
+ $wgSquidMaxage = 18000;
 # A list of proxy servers (ips if possible) to purge on changes
 # don't specify ports here (80 is default)
 # $wgSquidServers = array('127.0.0.1');
