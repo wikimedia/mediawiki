@@ -750,9 +750,10 @@ class Title {
 		# "." and ".." conflict with the directories of those namesa
 		if ( strpos( $r, "." ) !== false &&
 		     ( $r === "." || $r === ".." ||
-		       strpos( $r, "./" ) === 0 ||
-		       strpos( $r, "/./" !== false ) ||
-		       strpos( $r, "/../" !== false ) ) )
+		       strpos( $r, "./" ) === 0  ||
+		       strpos( $r, "../" ) === 0 ||
+		       strpos( $r, "/./" ) !== false ||
+		       strpos( $r, "/../" ) !== false ) )
 		{
 			wfProfileOut( $fname );
 			return false;
