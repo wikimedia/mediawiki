@@ -115,4 +115,11 @@ MediaWiki namespace:
 	stores: an array where the keys are DB keys and the values are messages
 	set in: wfMsg(), Article::editUpdates() both call wfLoadAllMessages()
 	cleared by: nothing
+
+Watchlist:
+	key: $wgDBname:watchlist:id:$userID
+	ex: wikidb:watchlist:id:4635
+	stores: HTML string
+	cleared by: nothing, expiry time $wgWLCacheTimeout (1 hour)
+	note: emergency optimisation only
 ... more to come ...
