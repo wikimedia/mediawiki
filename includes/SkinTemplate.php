@@ -804,7 +804,9 @@ class SkinTemplate extends Skin {
 			
 			# if we're previewing the CSS page, use it
 			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
-				$siteargs .= "&smaxage=0&maxage=0";
+				# we are previewing
+				$siteargs .= "&maxage=0";
+				# use the raw css just posted directly in the header of the page
 				$usercss = $wgRequest->getText('wpTextbox1');
 			} else {
 				$usercss = '@import "' .
@@ -812,11 +814,13 @@ class SkinTemplate extends Skin {
 								 'action=raw&ctype=text/css') . '";' ."\n";
 			}
 			if ( $wgUseSiteCss ) {
-				$sitecss = '@import "'.$this->makeUrl($this->userpage.'/-','action=raw&gen=css' . $siteargs ).'";'."\n";
+				# no point in server-side caching for user-generated stylesheets, hence smaxage=0. Client caches.
+				$sitecss = '@import "'.$this->makeUrl($this->userpage.'/-','action=raw&smaxage=0&gen=css' . $siteargs ).'";'."\n";
 			}
 			
 		} else if ( $wgUseSiteCss ) {
 			# If we use the site's dynamic CSS, throw that in, too
+			# Full caching, both server-side and client-side
 			$sitecss = '@import "'.$this->makeUrl('-','action=raw&gen=css' ).'";'."\n";
 		}
 		
