@@ -1,8 +1,8 @@
 <?php
 if( defined( "MEDIAWIKI" ) ) {
 
-$wgInputEncoding    = "utf-8";
-$wgOutputEncoding	= "utf-8";
+$wgInputEncoding    = "UTF-8";
+$wgOutputEncoding	= "UTF-8";
 
 $wikiUpperChars = $wgMemc->get( $key1 = "$wgDBname:utf8:upper" );
 $wikiLowerChars = $wgMemc->get( $key2 = "$wgDBname:utf8:lower" );
