@@ -249,7 +249,7 @@ class SkinCologneBlue extends Skin {
 
 		$s .= "<input type=text name=\"search\" size=14 value=\""
 		  . htmlspecialchars(substr($search,0,256)) . "\">"
-		  . "<br><input type=submit name=\"go\" value=\"" . wfMsg( "go" ) . "\"> <input type=submit value=\"" . wfMsg( "search" ) . "\"></form>";
+		  . "<br><input type=submit name=\"go\" value=\"" . wfMsg( "go" ) . "\"> <input type=submit name=\"fulltext\" value=\"" . wfMsg( "search" ) . "\"></form>";
 
 		return $s;
 	}
