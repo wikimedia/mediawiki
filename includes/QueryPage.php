@@ -40,6 +40,11 @@ class QueryPage {
 			. wfLimitResult($limit,$offset);
 	}
 
+	function getOrder() {
+		return " ORDER BY value " .
+			($this->sortDescending() ? "DESC" : "");
+	}
+
 	# Is this query expensive (for some definition of expensive)? Then we
 	# don't let it run in miser mode. $wgDisableQueryPages causes all query
 	# pages to be declared expensive. Some query pages are always expensive.
@@ -81,7 +86,7 @@ class QueryPage {
 
 				# Do query on the (possibly out of date) slave server
 				$maxstored = 1000;
-				$res = $dbr->query( $sql . $this->getOrderLimit( 0, $maxstored ), $fname );
+				$res = $dbr->query( $sql . $this->getOrder() . $dbr->limitResult( $maxstored,0 ), $fname );
 
 				# Fetch results
 				$insertSql = "INSERT INTO $querycache (qc_type,qc_namespace,qc_title,qc_value) VALUES ";
@@ -122,7 +127,8 @@ class QueryPage {
 			}
 		}
 		if ( $res === false ) {
-			$res = $dbr->query( $sql . $this->getOrderLimit( $offset, $limit ), $fname );
+			$res = $dbr->query( $sql . $this->getOrder() . 
+					    $dbr->limitResult( $limit,$offset ), $fname );
 			$num = $dbr->numRows($res);
 		}
 
@@ -163,7 +169,7 @@ class QueryPage {
 			$feed->outHeader();
 
 			$dbr =& wfGetDB( DB_SLAVE );
-			$sql = $this->getSQL() . $this->getOrderLimit( 0, 50 );
+			$sql = $this->getSQL() . $this->getOrder().$dbr->limitResult( 50, 0 );
 			$res = $dbr->query( $sql, "QueryPage::doFeed" );
 			while( $obj = $dbr->fetchObject( $res ) ) {
 				$item = $this->feedResult( $obj );
