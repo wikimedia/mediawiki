@@ -873,8 +873,8 @@ class User {
 		$this->mId = $dbw->insertId();
 		$dbw->insert( 'user_rights',
 			array(
-				'ur_user_id' => $this->mId,
-				'ur_user_rights' => implode( ',', $this->mRights )
+				'ur_user' => $this->mId,
+				'ur_rights' => implode( ',', $this->mRights )
 			), $fname
 		);
 		
