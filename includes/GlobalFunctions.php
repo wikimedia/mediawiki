@@ -109,9 +109,9 @@ function wfImagePath( $img )
 	$name = $nt->getDBkey();
 	$hash = md5( $name );
 
-	$url = "{$wgUploadDirectory}/" . $hash{0} . "/" .
+	$path = "{$wgUploadDirectory}/" . $hash{0} . "/" .
 	  substr( $hash, 0, 2 ) . "/{$name}";
-	return wfUrlencode( $url );
+	return $path;
 }
 
 function wfThumbUrl( $img )
