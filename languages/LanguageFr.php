@@ -68,13 +68,17 @@
 	"editondblclick" => "Double cliquer pour éditer une page (JavaScript)",
 	"editsection"	=> "Éditer une section via les liens [éditer]", //Looxix (Enable section editing via [edit] links)
 	"editsectiononrightclick"	=> "Éditer une section en cliquant à droite<br> sur le titre de la section", // Looxix 
-	"showtoc"	=> "Afficher la table des matières<br>(pour les articles ayant plus de 3 sections)",
+	"showtoc"	=> "Afficher la table des matières<br> (pour les articles ayant plus de 3 sections)",
 	"rememberpassword" => "Se souvenir de mon mot de passe (cookie)",
 	"editwidth" => "La fenêtre d'édition s'affiche en pleine largeur",
 	"watchdefault" => "Suivre les articles que je crée ou modifie",
 	"minordefault" => "Mes modifications sont considérées<br> comme mineures par défaut",
 	"previewontop" => "La prévisualisation s'affiche au<br> dessus de la boite de rédaction",
 	"nocache" => "Désactiver le cache des pages" // Looxix "Disable page caching"
+);
+
+/* private */ $wgBookstoreListFr = array(
+	"Amazon.fr" => "http://www.amazon.fr/exec/obidos/ISBN=$1"
 );
 
 /* private */ $wgLanguageNamesFr = array(
@@ -260,14 +264,14 @@
 
 	"Ipblocklist"   => "Adresses IP bloquées",
 	"Maintenance"   => "Page de maintenance",
-	"Specialpages"  => "", // ces pages doivent reste vides !
+	"Specialpages"  => "", // ces pages doivent rester vides !
 	"Contributions" => "",
 	"Emailuser"     => "",
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"      => "",
-	"Booksources"   => "Librairies en ligne",
-	"Categories"	=> "Page des catégories"	// Looxix "Page categories"
+	"Booksources"   => "Librairies en ligne"
+//	"Categories"	=> "Page des catégories"	// Looxix "Page categories"
 );
 
 /* private */ $wgSysopSpecialPagesFr = array(
@@ -284,7 +288,8 @@
 
 /* private */ $wgAllMessagesFr = array(
 
-// Bits of text used by many pages:
+# Bits of text used by many pages:
+#
 "categories"	=> "Catégories de la page", // Looxix "Page categories",
 "category"	=> "catégorie",			// Looxix "category",
 "category_header" => "Articles dans la catégorie \"$1\"", // Looxix "Articles in category \"$1\"",
@@ -302,6 +307,8 @@
 "wikititlesuffix" => "Wikipédia",
 "bugreports"    => "Rapport d'erreurs",
 "bugreportspage" => "Wikipédia:Rapport d'erreurs",
+"sitesupport"	=> "Participer en faisant un don",
+"sitesupportpage"	=> "Wikipédia:Donations",
 "faq"           => "FAQ",
 "faqpage"       => "Wikipédia:FAQ",
 "edithelp"      => "Aide",
@@ -322,7 +329,6 @@
 "whatlinkshere" => "Références à cette page",
 "help"          => "Aide",
 "search"        => "Rechercher",
-// Looxix "go"		=> "S'y rendre",
 "history"       => "Historique",
 "printableversion" => "Version imprimable",
 "editthispage"  => "Modifier cette page",
@@ -477,7 +483,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 
 "newarticle"   => "(Nouveau)",
 "newarticletext" => "Saisissez ici le texte de votre article.",
-"anontalkpagetext" => "--- ''Ceci est la page de discussion pour un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utiliser l'[[adresse IP]] numérique pour l'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion à l'avenir.", 
+"anontalkpagetext" => "---- ''Ceci est la page de discussion pour un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utiliser l'[[adresse IP]] numérique pour l'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion à l'avenir.", 
 "noarticletext" => "(Il n'y a pour l'instant aucun texte sur cette page)",
 "updated"      => "(Mis à jour)",
 "note"         => "<strong>Note :</strong> ",
@@ -498,7 +504,7 @@ La zone d'édition supérieure contient le texte tel qu'il est enregistré actuelle
 quelques navigateurs gèrent mal les pages approchant ou dépassant 32 ko lors de leur rédaction.
 Peut-être serait-il mieux que vous divisiez la page en sections plus petites.", // Panoramix
 "readonlywarning" => "AVERTISSEMENT : cette page a été bloquée pour maintenance,
-vous ne porrez donc pas sauvegardez vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.", // Looxix 
+vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.", // Looxix 
 "protectedpagewarning" => "AVERTISSEMENT : cette page a été bloquée.
 Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier. Soyez certain que
 vous suivez les <a href='/wiki/Wikipédia:Page protégée'>directives concernant les pages protégées</a>.", // Looxix
@@ -520,16 +526,16 @@ vous suivez les <a href='/wiki/Wikipédia:Page protégée'>directives concernant le
 "histlegend" => "Légende : (actu) = différence avec la version actuelle ,
 (dern) = différence avec la version précédente, M = modification mineure",
 
-// Diffs
-
+#  Diffs
+#
 "difference" => "(Différences entre les versions)",
 "loadingrev" => "chargement de l'ancienne version pour comparaison",
 "lineno"  => "Ligne $1:",
 "editcurrent" => "Modifier la version actuelle de cette page",
 
 
-// Search results
-
+# Search results
+#
 "searchresults" => "Résultat de la recherche",
 "searchhelppage" => "Wikipédia:Recherche",
 "searchingwikipedia" => "Chercher dans Wikipédia",
@@ -620,11 +626,11 @@ Jetez un coup d'&oelig;il sur ces pages&nbsp;: [[Wikipédia:FAQ|foire aux questio
 [[Wikipédia:La neutralité de point de vue|la neutralité de point de vue]]),
 et [[Wikipédia:Les faux-pas les plus courants|les faux-pas les plus courants]].
 
-Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[Wikipédia:Copyrights|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet. ",
+Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[Wikipédia:Copyright|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet. ",
 "rcloaderr"  => "Chargement des dernières modifications",
 "rcnote"  => "Voici les <strong>$1</strong> dernières modifications effectuées au cours des <strong>$2</strong> derniers jours.",
-"rcnotefrom"	=> "Voici les modifications effectuées depuis <strong>$2</strong> (jusqu'à <b>$1</b>).",
-"rclistfrom"	=> "Afficher les nouvelles modifications depuis $1",
+"rcnotefrom"	=> "Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).",
+"rclistfrom"	=> "Afficher les nouvelles modifications depuis le $1.",
 # "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 dernières heures / $3 derniers jours",
 # "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours.",
 "rclinks"	=> "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours; $3 modifications mineures.",	// Looxix
@@ -765,7 +771,7 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 #
 "orphans"       => "Pages orphelines",
 "lonelypages"   => "Pages orphelines",
-"unusedimages"  => "Images inutilisées",
+"unusedimages"  => "Images orphelines",
 "popularpages"  => "Pages les plus consultées",
 "nviews"        => "$1 consultations",
 "wantedpages"   => "Pages les plus demandées",
@@ -785,7 +791,7 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "debug"         => "Déboguer",
 "newpages"      => "Nouvelles pages",
 "ancientpages"	=> "Articles les plus anciens",	// Looxix
-"intl"		    => "Liens inter-langues",
+// "intl"		    => "Liens inter-langues",
 "movethispage"  => "Déplacer la page",
 "unusedimagestext" => "<p>N'oubliez pas que d'autres sites, comme certains Wikipédias non francophones, peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu'elle est en réalité utilisée.",
 "booksources"   => "Ouvrages de référence",
@@ -837,7 +843,7 @@ Les prochaines modifications de cette page et de la page discussion associée ser
 "unwatchthispage" => "Ne plus suivre",
 "notanarticle"	=> "Aucun article",
 "watchnochange" => "Aucune des pages que vous suivez n'ont été modifiées pendant la période affichée", // Looxix 
-"watchdetails" => "($1 pages suivies, sans compter les pages de discussion;
+"watchdetails" => "Vous suivez $1 pages, sans compter les pages de discussion. L
 $2 pages en total modifiées depuis la limite;
 $3...
 <a href='$4'>afficher et modifier la liste complète</a>.)", // Looxix 
@@ -845,13 +851,11 @@ $3...
 "watchmethod-list" => "vérification des pages suivies pour des modifications récentes", // Looxix 
 "removechecked" => "Retirer de la liste de suivi les articles sélectionnés", // Looxix 
 "watchlistcontains" => "Votre liste de suivi contient $1 pages", // Looxix 
-"watcheditlist" => "Ceci est votre liste de suivi par ordre alphabétique.
-Sélectionnez les pages que vous souhaitez retirer de la list
-et cliquez le bouton 'remove checked' en haut de l'écran", // Looxix 
+"watcheditlist" => "Ceci est votre liste de suivi par ordre alphabétique. Sélectionnez les pages que vous souhaitez retirer de la liste et cliquez le bouton \"retirer de la liste de suivi\" en bas de l'écran.", // Looxix 
 "removingchecked" => "Les articles sélectionnés sont retirés de votre liste de suivi...", // Looxix 
 "couldntremove" => "Impossible de retirer l'article '$1'...", // Looxix "Couldn't remove item '$1'...",
 "iteminvalidname" => "Problème avec l'article '$1': les nom est invalide...", // Looxix 
-"wlnote" => "Ci-dessous se trouve les $1 dernières modifications depuis les <b>$2</b> dernières heures", // Looxix 
+"wlnote" => "Ci-dessous se trouve les $1 dernières modifications depuis les <b>$2</b> dernières heures.", // Looxix 
 
 
 # Delete/protect/revert
@@ -1040,6 +1044,11 @@ class LanguageFr extends Language
 		global $wgDefaultUserOptionsFr;
 		return $wgDefaultUserOptionsFr;
 	}
+
+        function getBookstoreList () {
+                global $wgBookstoreListFr ;
+                return $wgBookstoreListFr ;
+        }
 
 	function getNamespaces()
 	{
