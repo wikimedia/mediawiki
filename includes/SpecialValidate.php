@@ -23,6 +23,7 @@ class Validation
 	function find_this_version ( $article_title , &$article_time , &$id , &$tab )
 		{
 		$id = "" ;
+		$tab = "" ;
 		$sql = "SELECT cur_id,cur_timestamp FROM cur WHERE cur_namespace=0 AND cur_title='{$article_title}'" ;
 		$res = wfQuery( $sql, DB_READ );
 		if( $s = wfFetchObject( $res ) )
@@ -174,7 +175,10 @@ class Validation
 			{
 			$tablestyle = "cellspacing=0 cellpadding=2" ;
 			if ( $article_time == $time ) $tablestyle .=" style='border: 2px solid red'" ;
-			$html .= str_replace ( "$1" , gmdate("F d, Y H:i:s",wfTimestamp2Unix($time)) , wfMsg("val_version_of") ) ;
+			$html .= "<h2>" . str_replace ( "$1" , gmdate("F d, Y H:i:s",wfTimestamp2Unix($time)) , wfMsg("val_version_of") ) ;
+			$this->find_this_version ( $article_title , $time , $table_id , $table_name ) ;
+			if ( $table_name == "cur" ) $html .= " (" . wfMsg ( 'val_this_is_current_version' ) . ")" ;
+			$html .= "</h2>\n" ;
 			$html .= "<form method=post>\n" ;
 			$html .= "<input type=hidden name=oldtime value='{$time}'>" ;
 			$html .= "<table {$tablestyle}>\n" ;
@@ -200,13 +204,21 @@ class Validation
 				$html .= "<td><input type=text name='comment{$idx}' value='{$comment}'></td>" ;
 				$html .= "</tr>\n" ;
 				}
-			$html .= "<tr><td {$topstyle} colspan=2></td><td {$topstyle} colspan=3>" ;
+			$html .= "<tr><td {$topstyle} colspan=2>" ;
+			
+			# link to version
+			$title = Title::newFromDBkey ( $article_title ) ;
+			if ( $table_name == "cur" ) $link_version = $title->getLocalURL( "" ) ;
+			else $link_version = $title->getLocalURL( "oldid={$table_id}" ) ;
+			$link_version = "<a href=\"{$link_version}\">" . wfMsg ( 'val_view_version' ) . "</a>" ;
+			$html .= $link_version ;
+			$html .= "</td><td {$topstyle} colspan=5>" ;
 			$html .= "<input type=checkbox name=merge_other value=1 checked>" ;
 			$html .= wfMsg ( 'val_merge_old' );
 			$html .= "<br><input type=checkbox name=clear_other value=1 checked>" ;
 			$html .= wfMsg ( 'val_clear_old', $skin->makeKnownLinkObj( $article ) );
 			$html .= "</td><td {$topstyle} align=right valign=center><input type=submit name=doit value='" . wfMsg("ok") . "'></td>" ;
-			$html .= "<td {$topstyle} colspan=2></td></tr></table></form>\n" ;
+			$html .= "</tr></table></form>\n" ;
 			}
 		
 		global $wgArticle ;
