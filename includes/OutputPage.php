@@ -1433,7 +1433,8 @@ $t[] = "</table>" ;
 					}
 				}
 			}
-
+			
+			// The canonized header is a version of the header text safe to use for links
 			
 			$canonized_headline=preg_replace("/<.*?>/","",$headline); // strip out HTML
 			$tocline=$canonized_headline;
@@ -1442,12 +1443,20 @@ $t[] = "</table>" ;
 			$refer[$c]=$canonized_headline;
 			$refers[$canonized_headline]++;  // count how many in assoc. array so we can track dupes in anchors
 			$refcount[$c]=$refers[$canonized_headline];
+			
+			// Prepend the number to the heading text
+			
 			if($nh||$st) {
 				$tocline=$numbering ." ". $tocline;
-				if($nh) {
+				
+				// Don't number the heading if it is the only one (looks silly)
+				if($nh && count($matches[3]) > 1) {
 					$headline=$numbering . " " . $headline; // the two are different if the line contains a link
-				}				
+				}
 			}
+			
+			// Create the anchor for linking from the TOC to the section
+			
 			$anchor=$canonized_headline;
 			if($refcount[$c]>1) {$anchor.="_".$refcount[$c];}
 			if($st) {
@@ -1456,14 +1465,21 @@ $t[] = "</table>" ;
 			if($es && !isset($wpPreview)) {
 				$head[$c].=$sk->editSectionLink($c+1);
 			}
-			$head[$c].="<H".$level.$matches[2][$c]
+			
+			// Put it all together
+			
+			$head[$c].="<h".$level.$matches[2][$c]
 			 ."<a name=\"".$anchor."\">"
 			 .$headline
 			 ."</a>"
-			 ."</H".$level.">";
+			 ."</h".$level.">";
+			
+			// Add the edit section link
+			
 			if($esr && !isset($wpPreview)) {
 				$head[$c]=$sk->editSectionScript($c+1,$head[$c]);	
 			}
+			
 			$numbering="";
 			$c++;
 			$dot=0;
@@ -1480,12 +1496,11 @@ $t[] = "</table>" ;
 		$blocks=preg_split("/<H[1-6].*?>.*?<\/H[1-6]>/i",$text);
 		$i=0;
 
-
 		foreach($blocks as $block) {
 			if(($es) && !isset($wpPreview) && $c>0 && $i==0) {
 			    # This is the [edit] link that appears for the top block of text when 
 				# section editing is enabled
-				$full.=$sk->editSectionLink(0);				
+				$full.=$sk->editSectionLink(0);
 			}
 			$full.=$block;
 			if($st && $toclines>3 && !$i) {
@@ -1496,6 +1511,7 @@ $t[] = "</table>" ;
 			$full.=$head[$i];
 			$i++;
 		}
+		
 		return $full;
 	}
 
@@ -1506,30 +1522,30 @@ $t[] = "</table>" ;
 		$a = split( "ISBN ", " $text" );
 		if ( count ( $a ) < 2 ) return $text;
 		$text = substr( array_shift( $a ), 1);
-        $valid = "0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$valid = "0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 		foreach ( $a as $x ) {
 			$isbn = $blank = "" ;
 			while ( " " == $x{0} ) {
-                $blank .= " ";
-                $x = substr( $x, 1 );
+				$blank .= " ";
+				$x = substr( $x, 1 );
 			}
-            while ( strstr( $valid, $x{0} ) != false ) {
+            		while ( strstr( $valid, $x{0} ) != false ) {
 				$isbn .= $x{0};
 				$x = substr( $x, 1 );
 			}
-            $num = str_replace( "-", "", $isbn );
-            $num = str_replace( " ", "", $num );
+			$num = str_replace( "-", "", $isbn );
+			$num = str_replace( " ", "", $num );
 
-            if ( "" == $num ) {
+			if ( "" == $num ) {
 				$text .= "ISBN $blank$x";
-            } else {
+			} else {
 				$text .= "<a href=\"" . wfLocalUrlE( $wgLang->specialPage(
-				  "Booksources"), "isbn={$num}" ) . "\" CLASS=\"internal\">ISBN $isbn</a>";
+				  "Booksources"), "isbn={$num}" ) . "\" class=\"internal\">ISBN $isbn</a>";
 				$text .= $x;
 			}
 		}
-        return $text;
+		return $text;
 	}
 
 	/* private */ function magicRFC( $text )
