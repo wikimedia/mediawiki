@@ -91,6 +91,16 @@ class QueryPage {
 	function getPageHeader( ) {
 		return '';
 	}
+	
+	/**
+	 * Some special pages (for example SpecialListusers) might not return the
+	 * current object formatted, but return the previous one instead.
+	 * Setting this to return true, will call one more time wfFormatResult to
+	 * be sure that the very last result is formatted and shown.
+	 */
+	function tryLastResult( ) {
+		return false;
+	}
 
 	/**
 	 * This is the actual workhorse. It does everything needed to make a
@@ -183,6 +193,7 @@ class QueryPage {
 
 		if ( $num > 0 ) {
 			$s = "<ol start='" . ( $offset + 1 ) . "' class='special'>";
+
 			# Only read at most $num rows, because $res may contain the whole 1000
 			for ( $i = 0; $i < $num && $obj = $dbr->fetchObject( $res ); $i++ ) {
 				$format = $this->formatResult( $sk, $obj );
@@ -192,6 +203,16 @@ class QueryPage {
 					$s .= "<li{$attr}>{$format}</li>\n";
 				}
 			}
+
+			if($this->tryLastResult()) {
+				// flush the very last result
+				$obj = null;
+				$format = $this->formatResult( $sk, $obj );
+				if( $format ) {
+					$s .= "<li{$attr}>{$format}</li>\n";
+				}
+			}
+			
 			$dbr->freeResult( $res );
 			$s .= '</ol>';
 			$wgOut->addHTML( $s );

@@ -27,7 +27,7 @@
 /**
  *
  */
-require_once("QueryPage.php");
+require_once('QueryPage.php');
 
 /**
  * This class is used to get a list of user. The ones with specials
@@ -40,9 +40,11 @@ require_once("QueryPage.php");
 class ListUsersPage extends QueryPage {
 	var $requestedGroup = '';
 	var $requestedUser = '';
-		
+	var $previousResult = false;
+	var $concatGroups = '';
+	
 	function getName() {
-		return "Listusers";
+		return 'Listusers';
 	}
 	function isSyndicated() { return false; }
 
@@ -75,7 +77,7 @@ class ListUsersPage extends QueryPage {
 		
 		// build the dropdown list menu using datas from the database
 		while($agroup = $dbr->fetchObject( $result )) {
-			$selected = ($agroup->group_id == $this->requestedGroup) ? " selected " : "" ;
+			$selected = ($agroup->group_id == $this->requestedGroup) ? ' selected ' : '' ;
 			$out.= '<option value="'.$agroup->group_id.'" '.$selected.'>'.$agroup->group_name.'</option>';
 		}
 		$out .= '</select> ';
@@ -104,35 +106,63 @@ class ListUsersPage extends QueryPage {
 		
 		$userspace = Namespace::getUser();
 		$sql = "SELECT group_name as type, $userspace AS namespace, user_name AS title, user_name as value " .
-			"FROM $user LEFT JOIN $user_groups ON user_id =ug_user " .
+			"FROM $user ".
+			"LEFT JOIN $user_groups ON user_id =ug_user " .
 			"LEFT JOIN $group ON ug_group = group_id ";
-		
+
 		if($this->requestedGroup != '') {
 			$sql .=  "WHERE group_id= '" . IntVal( $this->requestedGroup ) . "' ";
 			if($this->requestedUser != '') {
-				$sql .= "AND user_name = " . $dbr->addQuotes( $this->requestedUser ) . " ";
+				$sql .= "AND user_name = " . $dbr->addQuotes( $this->requestedUser ) . ' ';
 			}
 		} else {
 			if($this->requestedUser !='') {
-				$sql .= "WHERE user_name = " . $dbr->addQuotes( $this->requestedUser ) . " ";
+				$sql .= "WHERE user_name = " . $dbr->addQuotes( $this->requestedUser ) . ' ';
 			}	
 		}				
 		
 		return $sql;
 	}
 	
+	/**
+	 * When calling formatResult we output the previous result instead of the
+	 * current one. We need an additional step to flush out the last result.
+	 */
+	function tryLastResult( ) {
+		return true;
+	}
+	
 	function sortDescending() {
 		return false;
 	}
 
+	function appendGroups($group) {
+		$this->concatGroups	.= $group.' ';	
+	}
+
+	function clearGroups() {
+		$this->concatGroups = '';	
+	}
+/*
+	var $previousResult = false;
+	var $concatGroups = '';
+*/
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
-		$name = $skin->makeLink( $wgContLang->getNsText($result->namespace) . ':' . $result->title, $result->title );
-		if( '' != $result->type ) {
-			$name .= ' (' .
-			$skin->makeLink( wfMsgForContent( 'administrators' ), $result->type) .
-			')';
+		$name = false;
+
+		if($this->previousResult->title != $result->title && $this->previousResult != false) {
+			// Different username, give back name(group1,group2)
+			$name = $skin->makeLink( $wgContLang->getNsText($this->previousResult->namespace) . ':' . $this->previousResult->title, $this->previousResult->title );
+			$name .= $this->concatGroups ? '('.substr($this->concatGroups,0,-1).')' : '';
+			$this->clearGroups();
 		}
+
+		if($result->type != '') {
+		$this->appendGroups( $skin->makeLink( wfMsgForContent( 'administrators' ), $result->type ) );
+		}			
+
+		$this->previousResult = $result;
 		return $name;
 	}
 }
