@@ -341,7 +341,7 @@ if( defined( "MEDIAWIKI" ) ) {
 				}
 
 				if ( $wgTitle->userCanEdit() ) {
-					$oid = ( $oldid && ! isset( $diff ) ) ? "&oldid={$oldid}" : false;
+					$oid = ( $oldid && ! isset( $diff ) ) ? '&oldid='.IntVal( $oldid ) : false;
 					$istalk = ( Namespace::isTalk( $wgTitle->getNamespace()) );
 					$istalkclass = $istalk?' istalk':'';
 					$content_actions['edit'] = array(
@@ -357,7 +357,7 @@ if( defined( "MEDIAWIKI" ) ) {
 						);
 					}
 				} else {
-				        $oid = ( $oldid && ! isset( $diff ) ) ? "&oldid={$oldid}" : '';
+					$oid = ( $oldid && ! isset( $diff ) ) ? '&oldid='.IntVal( $oldid ) : '';
 					$content_actions['viewsource'] = array('class' => ($action == 'edit') ? 'selected' : false,
 					'text' => wfMsg('viewsource'),
 					'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid));
