@@ -99,6 +99,7 @@ td.diff-context {
 
 img { border: none; }
 img.tex { vertical-align: middle; }
+span.texhtml { font: 110% serif; }
 
 
 #toc {
