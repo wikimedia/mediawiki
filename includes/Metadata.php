@@ -108,11 +108,11 @@ function wfCreativeCommonsRdf($article) {
 	dcElement('identifier', dcReallyFullUrl($article->mTitle));
 	dcElement('date', dcDate($article->getTimestamp()));
 	dcPerson('creator', $article->getUser());
+
+	$contributors = $article->getContributors();
 	
-	$contributors = dcContributors($article);
-	
-	foreach ($contributors as $user_name => $cid) {
-		dcPerson('contributor', $cid, $user_name);
+	foreach ($contributors as $cid => $user_parts) {
+		dcPerson('contributor', $cid, $user_parts[0]);
 	}
 	
 	dcRights($article);
