@@ -64,7 +64,7 @@
 			global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgOut;
 			global $wgScript, $wgStyleSheetPath, $wgLanguageCode, $wgUseNewInterlanguage;
 			global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
-			global $wgDisableCounters, $wgLogo;
+			global $wgDisableCounters, $wgLogo, $action;
 			
 			extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 
@@ -84,8 +84,10 @@
 			#}
 
 			$tpl->setRef( "title", &$this->titletxt ); // ?
-			$taction =  $this->getPageTitleActionText();
-			$taction = !empty($taction)?' - '.$taction:'';
+			if(!empty($action) {
+				$taction =  $this->getPageTitleActionText();
+			        $taction = !empty($taction)?' - '.$taction:'';
+			} else { $taction = '';	}
 			$tpl->set( "pagetitle", wfMsg( "pagetitle", $this->titletxt.$taction ) );
 			$tpl->setRef( "thispage", &$this->thispage );
 			$tpl->set( "subtitle", $out->getSubtitle() );
