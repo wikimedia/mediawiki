@@ -3,7 +3,23 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
-== Version 1.3.9, ****-**-** ==
+== Version 1.3.9, 2004-12-12 ==
+
+MediaWiki 1.3.9 is a security and bug fix release.
+
+A flaw in upload handling has been found which may allow upload and 
+execution of arbitrary scripts with the permissions of the web server.
+Only wikis that have enabled uploads and have a vulnerable Apache 
+configuration will be affected, but to be safe all wikis should upgrade.
+
+Wikis with uploads available should either disable uploads or upgrade to
+1.3.9 immediately; if other files are customized and require merging 
+changes, includes/SpecialUpload.php may be replaced individually to add
+the fix.
+
+(It is also recommended to configure your web server to disable script
+execution in the 'images' subdirectory where uploads are placed, which
+prevents most attacks even if the wiki fails.)
 
 Changes from 1.3.8:
 * Backported "Templates used in this page"-feature of EditPage
@@ -12,6 +28,9 @@ Changes from 1.3.8:
 * (bug 1010) fix broken Commons image link on Classic & Cologne Blue
 * (bug 1004) Norsk language names for interwiki links changed,
   Nauruan language name changed
+* Enhance upload extension blacklist to protect against vulnerable
+  Apache configurations
+
 
 == Version 1.3.8, 2004-11-15 ==
 

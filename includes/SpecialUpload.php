@@ -156,14 +156,18 @@ class UploadForm {
 		# Chop off any directories in the given filename
 		$basename = basename( $this->mOname );
 
-		if( preg_match( '/^(.*)\.([^.]*)$/', $basename, $matches ) ) {
-			$partname = $matches[1];
-			$ext      = $matches[2];
+		/**
+		 * We'll want to blacklist against *any* 'extension', and use
+		 * only the final one for the whitelist.
+		 */
+		list( $partname, $ext ) = $this->splitExtensions( $basename );
+		if( count( $ext ) ) {
+			$finalExt = $ext[count( $ext ) - 1];
 		} else {
-		    $partname = $basename;
-		    $ext = '';
+			$finalExt = '';
 		}
-
+		$fullExt = implode( '.', $ext );
+		
 		if ( strlen( $partname ) < 3 ) {
 			$this->mainUploadForm( wfMsg( 'minlength' ) );
 			return;
@@ -192,9 +196,10 @@ class UploadForm {
 		/* Don't allow users to override the blacklist */
 		global $wgStrictFileExtensions;
 		global $wgFileExtensions, $wgFileBlacklist;
-		if( $this->checkFileExtension( $ext, $wgFileBlacklist ) ||
-			($wgStrictFileExtensions && !$this->checkFileExtension( $ext, $wgFileExtensions ) ) ) {
-			return $this->uploadError( wfMsg( 'badfiletype', htmlspecialchars( $ext ) ) );
+		if( $this->checkFileExtensionList( $ext, $wgFileBlacklist ) ||
+			($wgStrictFileExtensions &&
+				!$this->checkFileExtension( $finalExt, $wgFileExtensions ) ) ) {
+			return $this->uploadError( wfMsg( 'badfiletype', htmlspecialchars( $fullExt ) ) );
 		}
 		
 		/**
@@ -202,7 +207,7 @@ class UploadForm {
 		 * type but it's corrupt or data of the wrong type, we should
 		 * probably not accept it.
 		 */
-		if( !$this->verify( $this->mUploadTempName, $ext ) ) {
+		if( !$this->verify( $this->mUploadTempName, $finalExt ) ) {
 			return $this->uploadError( wfMsg( 'uploadcorrupt' ) );
 		}
 		
@@ -217,8 +222,8 @@ class UploadForm {
 	
 			global $wgCheckFileExtensions;
 			if ( $wgCheckFileExtensions ) {
-				if ( ! $this->checkFileExtension( $ext, $wgFileExtensions ) ) {
-					$warning .= '<li>'.wfMsg( 'badfiletype', htmlspecialchars( $ext ) ).'</li>';
+				if ( ! $this->checkFileExtension( $finalExt, $wgFileExtensions ) ) {
+					$warning .= '<li>'.wfMsg( 'badfiletype', htmlspecialchars( $fullExt ) ).'</li>';
 				}
 			}
 	
@@ -535,6 +540,20 @@ class UploadForm {
 	/* -------------------------------------------------------------- */
 
 	/**
+	 * Split a file into a base name and all dot-delimited 'extensions'
+	 * on the end. Some web server configurations will fall back to
+	 * earlier pseudo-'extensions' to determine type and execute
+	 * scripts, so the blacklist needs to check them all.
+	 *
+	 * @return array
+	 */
+	function splitExtensions( $filename ) {
+		$bits = explode( '.', $filename );
+		$basename = array_shift( $bits );
+		return array( $basename, $bits );
+	}
+	
+	/**
 	 * Perform case-insensitive match against a list of file extensions.
 	 * Returns true if the extension is in the list.
 	 *
@@ -546,6 +565,23 @@ class UploadForm {
 		return in_array( strtolower( $ext ), $list );
 	}
 
+	/**
+	 * Perform case-insensitive match against a list of file extensions.
+	 * Returns true if any of the extensions are in the list.
+	 *
+	 * @param array $ext
+	 * @param array $list
+	 * @return bool
+	 */
+	function checkFileExtensionList( $ext, $list ) {
+		foreach( $ext as $e ) {
+			if( in_array( strtolower( $e ), $list ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * Returns false if the file is of a known type but can't be recognized,
 	 * indicating a corrupt file.
