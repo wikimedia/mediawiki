@@ -55,3 +55,8 @@ body {
     background: url(external.png) center right no-repeat;
     padding-right: 13px;
 }
+/* show the hand */
+#portlet-logo a,
+#portlet-logo a:hover {
+    cursor: pointer;
+}

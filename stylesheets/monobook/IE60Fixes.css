@@ -63,4 +63,9 @@ div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
     position:relative;
 }
 
+/* show the hand */
+#portlet-logo a,
+#portlet-logo a:hover {
+    cursor: pointer;
+}
 /*{ border:1px solid Red !important;}*/
