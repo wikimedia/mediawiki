@@ -148,20 +148,20 @@ class ZhClient {
 class ZhClientFake {
 	function ZhClientFake() {
 		global $wgMemc, $wgDBname;
-		$this->zh2TW = $wgMemc->get($key1 = "$wgDBname:zhConvert:tw");
-		$this->zh2CN = $wgMemc->get($key2 = "$wgDBname:zhConvert:cn");
-		$this->zh2SG = $wgMemc->get($key3 = "$wgDBname:zhConvert:sg");
-		$this->zh2HK = $wgMemc->get($key4 = "$wgDBname:zhConvert:hk");
-		if(empty($this->zh2TW) || empty($this->zh2CN) || empty($this->zh2SG) || empty($this->zh2HK)) {
+		$this->mZh2TW = $wgMemc->get($key1 = "$wgDBname:zhConvert:tw");
+		$this->mZh2CN = $wgMemc->get($key2 = "$wgDBname:zhConvert:cn");
+		$this->mZh2SG = $wgMemc->get($key3 = "$wgDBname:zhConvert:sg");
+		$this->mZh2HK = $wgMemc->get($key4 = "$wgDBname:zhConvert:hk");
+		if(empty($this->mZh2TW) || empty($this->mZh2CN) || empty($this->mZh2SG) || empty($this->mZh2HK)) {
 			require("includes/ZhConversion.php");
-			$this->zh2TW = $zh2TW;
-			$this->zh2CN = $zh2CN;
-			$this->zh2HK = $zh2HK;
-			$this->zh2SG = $zh2SG;
-			$wgMemc->set($key1, $this->zh2TW);
-			$wgMemc->set($key2, $this->zh2CN);
-			$wgMemc->set($key3, $this->zh2SG);
-			$wgMemc->set($key4, $this->zh2HK);
+			$this->mZh2TW = $zh2TW;
+			$this->mZh2CN = $zh2CN;
+			$this->mZh2HK = $zh2HK;
+			$this->mZh2SG = $zh2SG;
+			$wgMemc->set($key1, $this->mZh2TW);
+			$wgMemc->set($key2, $this->mZh2CN);
+			$wgMemc->set($key3, $this->mZh2SG);
+			$wgMemc->set($key4, $this->mZh2HK);
 		}
 	}
 
@@ -175,7 +175,7 @@ class ZhClientFake {
 	 * @access private
 	 */
 	function zh2tw($text) {
-		return strtr($text, $this->zh2TW);
+		return strtr($text, $this->mZh2TW);
 	}
 
 	/**
@@ -184,7 +184,7 @@ class ZhClientFake {
 	 * @access private
 	 */
 	function zh2cn($text) {
-		return strtr($text, $this->zh2CN);
+		return strtr($text, $this->mZh2CN);
 	}
 
 	/**
@@ -193,7 +193,7 @@ class ZhClientFake {
 	 * @access private
 	 */
 	function zh2sg($text) {
-		return strtr(strtr($text, $this->zh2CN), $this->zh2SG);
+		return strtr(strtr($text, $this->mZh2CN), $this->mZh2SG);
 	}
 
 	/**
@@ -202,7 +202,7 @@ class ZhClientFake {
 	 * @access private
 	 */
 	function zh2hk($text) {
-		return strtr(strtr($text, $this->zh2TW), $this->zh2HK);
+		return strtr(strtr($text, $this->mZh2TW), $this->mZh2HK);
 	}
 
 	/**
