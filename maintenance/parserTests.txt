@@ -261,6 +261,26 @@ Simple definition
 
 !! end
 
+!! test
+Definition list with no space
+!! input
+;name:Definition
+!! result
+<dl><dt>name</dt><dd>Definition
+</dd></dl>
+
+!!end
+
+!! test
+Definition list with URL link
+!! input
+; http://example.com/ : definition
+!! result
+<dl><dt> <a href="http://example.com/" class='external'>http://example.com/</a></dt><dd> definition
+</dd></dl>
+
+!! end
+
 ###
 ### External links
 ###
