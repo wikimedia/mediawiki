@@ -1,5 +1,16 @@
 = MediaWiki release notes =
 
+== Version 1.2.6, 2004-05-24 ==
+* Spam blocker ($wgSpamRegex - refuses to save edits that match)
+* Updated documentation about $wgWhitelistRead
+* Ensure that searchindex table is created as MyISAM
+* Interwiki cache timeout (memcached)
+* Fix uploads on Windows with magic_quotes_gpc
+* Some config fixes for Windows (slashes etc)
+* Local interwiki URL redirects
+* Fixed obscure deletion problem in squid mode on corrupt entries
+* Language files updated to remove more hard-coded "Wikipedia" strings
+
 == Version 1.2.5, 2004-05-03 ==
 * Fixed install problem with blank root password
 * Fixed Special:Emailuser/Username links

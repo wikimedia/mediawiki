@@ -12,7 +12,7 @@
 # that our code is sloppy. We know it's sloppy.
 error_reporting( E_ALL & ~E_NOTICE );
 
-$wgVersion			= "1.2.5";
+$wgVersion			= "1.2.6";
 
 $wgSitename         = "MediaWiki"; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
