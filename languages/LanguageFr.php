@@ -7,6 +7,7 @@
 // encapsulates some of the magic-ness.
 
 /* private */ $wgNamespaceNamesFr = array(
+	-2	=> "Media",
 	-1 => "Special",
 	0 => "",
 	1 => "Discuter",
@@ -15,9 +16,7 @@
 	4 => "Wikipédia",
 	5 => "Discussion_Wikipédia",
 	6 => "Image",
-	7 => "Discussion_Image",
-	8 => "MediaWiki",
-	9 => "Discussion_MediaWiki"
+	7 => "Discussion_Image"
 );
 
 /* using default options */
@@ -48,7 +47,7 @@
 );
 
 /* private */ $wgSkinNamesFr = array(
-	"Normal", "Nostalgie", "Cologne Blue", "Paddington", "Montparnasse"
+	"Normal", "Nostalgie", "Cologne Blue"
 );
 
 /* private */ $wgMathNamesFr = array(
@@ -114,6 +113,7 @@
 	"Listusers"     => "Liste des participants",
 	"Statistics"    => "Statistiques",
 	"Randompage"    => "Une page au hasard",
+
 	"Lonelypages"   => "Pages orphelines",
 	"Unusedimages"  => "Images orphelines",
 	"Popularpages"  => "Les plus populaires",
@@ -123,6 +123,7 @@
 	"Newpages"      => "Nouvelles pages",
 	"Ancientpages"	=> "Anciennes pages",
 	"Allpages"      => "Toutes les pages",
+
 	"Ipblocklist"   => "Adresses IP bloquées",
 	"Maintenance"   => "Page de maintenance",
 	"Specialpages"  => "", // ces pages doivent rester vides !
@@ -131,9 +132,8 @@
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"      => "",
-	"Booksources"   => "Librairies en ligne",
-	"Categories"	=> "Page des catégories",	// Looxix "Page categories"
-	"Export"	=> ""
+	"Booksources"   => "Librairies en ligne"
+//	"Categories"	=> "Page des catégories"	// Looxix "Page categories"
 );
 
 /* private */ $wgSysopSpecialPagesFr = array(
@@ -170,7 +170,7 @@
 "bugreports"    => "Rapport d'erreurs",
 "bugreportspage" => "Wikipédia:Rapport d'erreurs",
 "sitesupport"	=> "Participer en faisant un don",
-"sitesupportpage"	=> "Wikipédia:Dons",
+"sitesupportpage"	=> "Wikipédia:Donations",
 "faq"           => "FAQ",
 "faqpage"       => "Wikipédia:FAQ",
 "edithelp"      => "Aide",
@@ -250,11 +250,7 @@ Voir $1.",
 <blockquote><tt>$1</tt></blockquote>
 depuis la fonction \"<tt>$2</tt>\".
 MySQL a renvoyé l'erreur \"<tt>$3: $4</tt>\".",
-"dberrortextcl" => "Une erreur de syntaxe s'est produite lors d'une requête ur la base de donnée. La dernière requête était:
-\"$1\"
-à partir de la fonction \"$2\".
-MySQL a retourné l'erreur suivante \"$3: $4\".\n",
-"noconnect"	=> "Désolé&nbsp;! Suite à des problèmes techniques, il est impossible de se connecter à la base de données pour le moment.", //"Connexion impossible à la base de données sur $1",
+"noconnect"	=> "Désolé! Suite à des problèmes techniques, il est impossible de se connecter à la base de données pour le moment.", //"Connexion impossible à la base de données sur $1",
 "nodb"		=> "Sélection impossible de la base de données $1",
 "cachederror"	=> "Ceci est une copie de la page demandée et peut ne pas être à jour",
 "readonly"	=> "Mises à jour bloquées sur la base de données",
@@ -275,7 +271,7 @@ Veuillez rapporter cette erreur à un administrateur, en lui indiquant l'adresse 
 "cannotdelete"	=> "Impossible de supprimer la page ou l'image indiquée.",
 "badtitle"	=> "Mauvais titre",
 "badtitletext"	=> "Le titre de la page demandée est invalide, vide ou le lien interlangue est invalide",
-"perfdisabled" => "Désolé&nbsp;! Cette fonctionnalité est temporairement désactivée
+"perfdisabled" => "Désolé! Cette fonctionnalité est temporairement désactivée
 car elle ralentit la base de données à un point tel que plus personne
 ne peut utiliser le wiki.",
 "perfdisabledsub" => "Ceci est une copie de sauvegarde de $1:",
@@ -285,9 +281,11 @@ ne peut utiliser le wiki.",
 # Login and logout pages
 #
 "logouttitle"	=> "Déconnexion",
-"logouttext"	=> "Vous êtes à présent déconnecté(e).  Vous pouvez continuer à utiliser Wikipédia de façon anonyme, ou vous reconnecter, éventuellement sous un autre nom. Veillez noter tant que la cache de votre navigateur n'apas été effacée, certaines pages pourront continuer de s'afficher comme si vous étiez toujours connecté(e).\n",
+"logouttext"	=> "Vous êtes à présent déconnecté(e).
+Vous pouvez continuer à utiliser Wikipédia de façon anonyme, ou vous reconnecter, éventuellement sous un autre nom.\n",
 
-"welcomecreation" => "<h2>Bienvenue, $1&nbsp;!</h2><p>Votre compte d'utilisateur a été créé. N'oubliez pas de personnaliser votre Wikipédia en consultant la page Préférences.",
+"welcomecreation" => "<h2>Bienvenue, $1!</h2><p>Votre compte d'utilisateur a été créé.
+N'oubliez pas de personnaliser votre Wikipédia en consultant la page Préférences.",
 
 "loginpagetitle"     => "Votre identifiant",
 "yourname"           => "Votre nom d'utilisateur",
@@ -295,8 +293,8 @@ ne peut utiliser le wiki.",
 "yourpasswordagain"  => "Entrez à nouveau votre mot de passe",
 "newusersonly"       => " (nouveaux utilisateurs uniquement)",
 "remembermypassword" => "Se souvenir de mon mot de passe (cookie)",
-"loginproblem"       => "<b>Problème d'identification.</b><br>Essayez à nouveau&nbsp;&nbsp;!",
-"alreadyloggedin"    => "<font color=red><b>Utilisateur $1, vous êtes déjà identifié&nbsp;!</b></font><br>\n",
+"loginproblem"       => "<b>Problème d'identification.</b><br>Essayez à nouveau !",
+"alreadyloggedin"    => "<font color=red><b>Utilisateur $1, vous êtes déjà identifié!</b></font><br>\n",
 
 "areyounew"	=> "Si vous êtes nouveau sur Wikipédia et souhaitez créer un compte utilisateur, entrez un nom d'utilisateur et tapez deux fois votre mot de passe. L'adresse électronique est optionnelle, mais si vous perdez votre mot de passe, vous pourrez en demander un nouveau que nous vous ferons parvenir par ce moyen.<br>\n",
 
@@ -304,7 +302,6 @@ ne peut utiliser le wiki.",
 "userlogin"     => "Identification",
 "logout"        => "Déconnexion",
 "userlogout"    => "Déconnexion",
-"notloggedin"	=> "Non connecté",
 "createaccount" => "Créer un nouveau compte",
 "createaccountmail"	=> "par courriel", // Looxix "by eMail",
 "badretype"     => "Les deux mots de passe que vous avez saisis ne sont pas identiques.",
@@ -338,7 +335,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 "preview"      => "Prévisualiser",
 "showpreview"  => "Prévisualisation",
 "blockedtitle" => "Utilisateur bloqué",
-"blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br>$2<p> Vous pouvez contacter $1 ou un des autres [[Wikipédia:Administrateurs|administateurs]] pour en discuter.",
+"blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br>$2<p> Vous pouvez contacter l'administrateur pour en discuter.",
 "whitelistedittitle" => "Login requis pour rédiger", // Looxix "Login required to edit",
 "whitelistedittext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir rédiger", // Looxix 
 "whitelistreadtitle" => "Login requis pour lire", // Looxix "Login required to read",
@@ -354,11 +351,11 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 "noarticletext" => "(Il n'y a pour l'instant aucun texte sur cette page)",
 "updated"      => "(Mis à jour)",
 "note"         => "<strong>Note :</strong> ",
-"previewnote"  => "Attention, ce texte n'est qu'une prévisualisation et n'a pas encore été sauvegardé&nbsp;!",
+"previewnote"  => "Attention, ce texte n'est qu'une prévisualisation et n'a pas encore été sauvegardé!",
 "previewconflict" => "La prévisualisation montre le texte de cette page tel qu'il apparaîtra une fois sauvegardé.",
 "editing"      => "modification de $1",
-"sectionedit"	=> " (section)",
-"commentedit"	=> " (commentaire)",
+"section edit"	=> " (section)",
+"comment edit"	=> " (commentaire)",
 "editconflict" => "Conflit de modification : $1",
 "explainconflict" => "<b>Cette page a été sauvegardée après que vous avez commencé à la modifier.
 La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.\n<p>",
@@ -366,7 +363,7 @@ La zone d'édition supérieure contient le texte tel qu'il est enregistré actuelle
 "storedversion" => "Version enregistrée",
 "editingold"   => "<strong>Attention : vous êtes en train de modifier une version obsolète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>\n",
 "yourdiff"  => "Différences",
-"copyrightwarning" => "Toutes les contributions à Wikipédia sont considérées comme publiées sous les termes de la GNU Free Documentation Licence, une licence de documentation libre (Voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient édités et distribués à volonté, ne les envoyez pas. De même, merci de ne contribuer qu'en apportant vos propres écrits ou des écrits issus d'une source libre de droits. <b>N'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE&nbsp;!</b>",
+"copyrightwarning" => "Toutes les contributions à Wikipédia sont considérées comme publiées sous les termes de la GNU Free Documentation Licence, une licence de documentation libre (Voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient édités et distribués à volonté, ne les envoyez pas. De même, merci de ne contribuer qu'en apportant vos propres écrits ou des écrits issus d'une source libre de droits. <b>N'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE!</b>",
 "longpagewarning" => "AVERTISSEMENT : cette page a une longueur de $1 ko;
 quelques navigateurs gèrent mal les pages approchant ou dépassant 32 ko lors de leur rédaction.
 Peut-être serait-il mieux que vous divisiez la page en sections plus petites.", // Panoramix
@@ -390,7 +387,7 @@ vous suivez les <a href='/wiki/Wikipédia:Page protégée'>directives concernant le
 "next"   => "suiv",
 "last"   => "dern",
 "orig"   => "orig",
-"histlegend" => "Légende : (actu) = différence avec la version actuelle,
+"histlegend" => "Légende : (actu) = différence avec la version actuelle ,
 (dern) = différence avec la version précédente, M = modification mineure",
 
 #  Diffs
@@ -435,30 +432,7 @@ contenant tous les termes apparaissent dans les résultats).",
 Rechercher dans les espaces :<br>
 $1<br>
 $2 Inclure les page de redirections &nbsp; Rechercher $3 $9",
-"searchdisabled" => "<p>La fonction de recherche sur l'entièreté du texte a été temporairement désactivée à cause de la grande charge que cela impose au serveur. Nous espérons la rétablir prochainement lorsque nous disposerons d'un serveur plus puissant. En attendant, vous pouvez faire la recherche avec Google:</p>
-                                                                                                                                                        
-<!-- SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.com/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.com/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
-<INPUT type=submit name=btnG VALUE=\"Google Search\">
-<font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio
-name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> {$wgServer} <br>
-<input type='hidden' name='ie' value='$2'>
-<input type='hidden' name='oe' value='$2'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->
-",
-"blanknamespace" => "(Principal)",
+"blanknamespace" => "(Principal)",	// FIXME FvdP: trad de "(Main)"
 
 # Preferences page
 #
@@ -509,7 +483,7 @@ Voir [[Wikipédia:Aide pour les préférences]] pour les explications concernant le
 "changes"	=> "modifications",
 "recentchanges" => "Modifications récentes",
 "recentchangestext" => "Suivez sur cette page les dernières modifications de Wikipédia.
-[[Wikipédia:Bienvenue|Bienvenue]] aux nouveaux participants&nbsp;!
+[[Wikipédia:Bienvenue|Bienvenue]] aux nouveaux participants!
 Jetez un coup d'&oelig;il sur ces pages&nbsp;: [[Wikipédia:FAQ|foire aux questions]],
 [[Wikipédia:Recommandations et règles à suivre|recommandations et règles à suivre]]
 (notamment [[Wikipédia:Règles de nommage|conventions de nommage]],
@@ -525,7 +499,6 @@ Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pas 
 # "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours.",
 "rclinks"	=> "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours; $3 modifications mineures.",	// Looxix
 "rchide"  => "in $4 form; $1 modifications mineures; $2 espaces secondaires; $3 modifications multiples.", // FIXME
-"rcliu"		=> "; $1 modifications par des contributeurs connectés",
 "diff"            => "diff",
 "hist"            => "hist",
 "hide"            => "cacher",
@@ -550,7 +523,7 @@ Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pas 
 pour copier des fichiers sur le serveur.",
 "uploadfile"   => "Copier un fichier",
 "uploaderror"  => "Erreur",
-"uploadtext"   => "<strong>STOP&nbsp;!</strong> Avant de copier votre fichier sur le serveur,
+"uploadtext"   => "<strong>STOP !</strong> Avant de copier votre fichier sur le serveur,
 prenez connaissance des <a href=\"" .wfLocalUrlE( "Wikipédia:règles d'utilisation des images" ) . "\">règles d'utilisation des images</a> de Wikipédia et assurez-vous que vous les respectez.<br>N'oubliez pas de remplir la <a href=\"" .wfLocalUrlE( "Wikipédia:Page de description d'une image" ). "\">page de description de l'image</a> quand celle-ci sera sur le serveur.
 <p>Pour voir les images déjà placées sur le serveur ou pour effectuer une recherche parmi celles-ci,
 allez à la <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) ."\">liste des images</a>.
@@ -577,8 +550,6 @@ L'heure indiquée est celle du serveur (UTC).
 ",
 "filename"  => "Nom",
 "filedesc"  => "Description",
-"filestatus" => "Statut du copyright",
-"filesource" => "Source",
 "affirmation" => "Je déclare que le détenteur du copyright de ce fichier accepte de le diffuser selon les termes de la $1.",
 "copyrightpage" => "Wikipédia:Copyright",
 "copyrightpagename" => "licence Wikipédia",
@@ -592,7 +563,7 @@ L'heure indiquée est celle du serveur (UTC).
 "successfulupload" => "Copie réussie",
 "fileuploaded" => "Le fichier \"$1\" a été copié sur le serveur.
 Suivez ce lien: ($2) pour accéder à la page de description, et donner des informations sur le fichier, par exemple son origine, sa date de création, son auteur, ou tout autre renseignement en votre possession.",
-"uploadwarning" => "Attention&nbsp;!",
+"uploadwarning" => "Attention !",
 "savefile"  => "Sauvegarder le fichier",
 "uploadedimage" => " \"$1\" copié sur le serveur",
 
@@ -655,11 +626,9 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "mispeelings"           => "Pages avec fautes d'orthographe",
 "mispeelingstext"               => "Les pages suivantes contiennent une faute d'orthographe courante (la liste de celles-ci est sur $1). L'orthographe correcte est peut-être (ceci).",
 "mispeelingspage"       => "Liste de fautes d'orthographe courantes",
-
-# les 3 messages suivants ne sont plus utilisés (plus de page Special:Intl)
 "missinglanguagelinks"  => "Liens inter-langues manquants",
 "missinglanguagelinksbutton"    => "Je n'ai pas trouvé de lien/langue pour cette page",
-"missinglanguagelinkstext"      => "Ces articles ne lient pas à leur 'contrepartie' dans $1. Les redirections et les liens ne sont pas affichés.",
+"missinglanguagelinkstext"      => "Ces articles ne lient pas à leur 'contrepartie' in $1. Les redirections et les liens ne sont pas affichés.",
 
 
 # Miscellaneous special pages
@@ -748,9 +717,6 @@ Les prochaines modifications de cette page et de la page discussion associée ser
 "couldntremove" => "Impossible de retirer l'article '$1'...",
 "iteminvalidname" => "Problème avec l'article '$1': le nom est invalide...",
 "wlnote" => "Ci-dessous se trouve les $1 dernières modifications depuis les <b>$2</b> dernières heures.", // Looxix 
-"wlshowlast"	=> "Afficher les dernières ",
-"wlhours"	=> " heures",
-"wldays"	=> " jours",
 
 
 # Delete/protect/revert
@@ -806,7 +772,7 @@ La corbeille peut être effacée périodiquement.",
 Si une nouvelle page avec le même nom a été crée depuis la suppression,
 les révisions restaurées apparaîtront dans l'historique antérieur et la version courante ne sera pas automatiquement remplacée.",
 "undeleterevision" => "Version effacée ($1)", // Looxix "Deleted revision as of $1",	
-"undeletebtn"	=> "Restaurer&nbsp;!",
+"undeletebtn"	=> "Restaurer!",
 "undeletedarticle" => "restauré \"$1\"",	// FvdP "restored \"$1\""
 "undeletedtext"   => "L'article [[$1]] a été restauré avec succès.
 Voir [[Wikipedia:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.",
@@ -855,10 +821,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont
 "unblocklink"	=> "débloquer",
 "contribslink"	=> "contribs",
 "autoblocker"	=> "Autobloqué parce que vous partagez une adresse IP avec \"$1\". Raison : \"$2\".",
-"blocklogpage"	=> "Trace_des effacements",
-"blocklogentry"	=> 'blocage de "$1"',
-"blocklogtext"	=> "Ceci est la trace des blocages et déblocages ds utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.",
-"unblocklogentry"	=> 'déblocage de "$1"',
+
 
 # Developer tools
 #
@@ -902,7 +865,7 @@ Wikipédia.",
 "movepagetext" => "Utilisez le formulaire ci-dessous pour renommer un article, en déplaçant toutes ses versions antérieures vers le nouveau nom.
 Le titre précédent deviendra une page de redirection vers le nouveau titre.
 Les liens vers l'ancien titre ne seront pas modifiés et la page discussion, si elle existe, ne sera pas déplacée.<br>
-<b>ATTENTION&nbsp;!</b>
+<b>ATTENTION!</b>
 Il peut s'agir d'un changement radical et inattendu pour un article souvent consulté;
 assurez-vous que vous en comprenez bien les conséquences avant de procéder.",
 "movepagetalktext" => "La page de discussion associé, si présente, sera automatiquement déplacée avec '''sauf si:'''
@@ -932,14 +895,6 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 "talkpagemoved" => "La page discussion correspondante a également été déplacée.",
 "talkpagenotmoved" => "La page discussion correspondante n'a <strong>pas</strong> été déplacée.",
 
-"export"	=> "Exporter des pages",
-"exporttext"	=> "Vous pouvez exporter en XML le texte et l'historique d'une page ou d'un ensemble de pages; le résultat peut alores être importé dans un autre wiki fonctionnant avec le logiciel MediaWiki, transformé ou sauvegardé pour votre usage personnel.",
-"exportcuronly"	=> "Exporter uniquement la version courante sans l'historique",
-
-# Namespace 8 related
-
-"allmessages"	=> "Tous les messages",
-"allmessagestext"	=> "Ceci est la liste de tous les messages disponibles dans l'espace MediaWiki"
 );
 
 class LanguageFr extends Language
@@ -1009,16 +964,6 @@ class LanguageFr extends Language
 	{
 		global $wgUserTogglesFr;
 		return $wgUserTogglesFr;
-	}
-
-	function getLanguageName( $code )
-	{
-		global $wgLanguageNamesFr;
-		if ( ! array_key_exists( $code, $wgLanguageNamesFr ) ) 
-		{
-			return "";
-		}
-		return $wgLanguageNamesFr[$code];
 	}
 
 	function getMonthName( $key )

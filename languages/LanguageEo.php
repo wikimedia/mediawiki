@@ -1,5 +1,7 @@
 <?
 include("LanguageUtf8.php");
+$wgInputEncoding	= "utf-8";
+$wgOutputEncoding	= "utf-8";
 $wgEditEncoding		= "x";
 
 # See language.doc
@@ -9,12 +11,13 @@ $wgEditEncoding		= "x";
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesEo = array(
-	-1	=> "Speciala", # FIXME Is it safe to change this?
+	-2	=> "Media",
+	-1	=> "Speciala",
 	0	=> "",
 	1	=> "Diskuto",
 	2	=> "Vikipediisto",
 	3	=> "Vikipediista_diskuto",
-	4	=> "Vikipedio",
+	4	=> "Vikipedio", # FIXME: Generalize v-isto kaj v-io
 	5	=> "Vikipedia_diskuto",
 	6	=> "Dosiero", #FIXME: Check the magic for Image: and Media:
 	7	=> "Dosiera_diskuto"
@@ -34,7 +37,8 @@ $wgEditEncoding		= "x";
 	"Ĉiam krei PNG-bildon",
 	"HTMLigu se simple, aŭ PNG",
 	"HTMLigu se eble, aŭ PNG",
-	"Lasu TeX-fonton (por tekstfoliumiloj)"
+	"Lasu TeX-fonton (por tekstfoliumiloj)",
+	"Rekomendita por modernaj foliumiloj",
 );
 
 /* private */ $wgUserTogglesEo = array(
@@ -45,12 +49,16 @@ $wgEditEncoding		= "x";
 	"hideminor" => "Kaŝu malgrandajn redaktetojn ĉe <i>Lastaj ŝanĝoj</i>",
 	"usenewrc"  => "Novstila Lastaj Ŝanĝoj (bezonas JavaSkripton)",
 	"numberheadings" => "Aŭtomate numeru sekciojn",
+	"editondblclick" => "Redaktu per duobla alklako (JavaScript)",
+	"editsection" => "Montru [redaktu]-ligiloj por sekcioj",
+	"editsectiononrightclick" => "Redaktu sekciojn per dekstra musklako",
+	"showtoc" => "Montru liston de enhavoj",
 	"rememberpassword" => "Memoru mian pasvorton",
 	"editwidth" => "Redaktilo estu plenlarĝa",
-	"editondblclick" => "Redaktu per duobla alklako (JavaScript)",
 	"watchdefault" => "Priatentu paĝojn de vi redaktintajn",
 	"minordefault" => "Marku ĉiujn redaktojn malgrandaj",
-	"altencoding" => "Montru supersignojn X-sisteme"
+	"previewontop" => "Montru antaŭrigardon antaŭ redaktilo",
+	"altencoding" => "Montru supersignojn X-sisteme" # FIXME: forpreni cxi tiun; estas cimoplena
 );
 
 # Se eble, trovu Esperantajn libroservoj traserĉeblaj laŭ ISBN
@@ -103,6 +111,7 @@ $wgEditEncoding		= "x";
 	"Shortpages"	=> "Mallongaj artikoloj",
 	"Longpages"		=> "Longegaj artikoloj",
 	"Newpages"		=> "Novaj artikoloj",
+	"Ancientpages"	=> "Antikvaj artikoloj",
 	"Allpages"		=> "Ĉiu paĝo laŭ titolo",
 
 	"Ipblocklist"	=> "Forbaritaj IP-adresoj",
@@ -144,6 +153,8 @@ $wgEditEncoding		= "x";
 "wikititlesuffix" => "Vikipedio",
 "bugreports"	=> "Raportu cimojn",
 "bugreportspage" => "Vikipedio:Raportu_cimojn",
+"sitesupport"   => "Subteno",
+"sitesupportpage" => "", # FIXME
 "faq"			=> "Oftaj demandoj",
 "faqpage"		=> "Vikipedio:Oftaj demandoj",
 "edithelp"		=> "Helpo pri redaktado",
@@ -173,8 +184,9 @@ $wgEditEncoding		= "x";
 "unprotectthispage" => "Malprotektu la paĝon", #FIXME: ĉu 'malgardu', 'ne plu', ktp? / "(mal)gardi" ne estas bona /Bertilo
 "newpage"		=> "Nova paĝo",
 "talkpage"		=> "Diskutu la paĝon",
-"subjectpage"	=> "Vidu la artikolon", #FIXME: ?
+"postcomment"   => "Afiŝu komenton",
 "articlepage"	=> "Vidu la artikolon",
+"subjectpage"	=> "Vidu la artikolon", #FIXME: ?
 "userpage"		=> "Vidu personan paĝon",
 "wikipediapage"	=> "Vidu meta-paĝon",
 "imagepage"		=> "Vidu dosieropaĝon",
@@ -202,6 +214,13 @@ Vidu $1.",
 "retrievedfrom" => "Citita el \"$1\"", #FIXME: Aperas post presita paĝo
 "newmessages"	=> "Jen $1 por vi.",
 "newmessageslink" => "nova mesaĝo",
+"editsection"   => "redaktu",
+"toc"           => "Enhavo",
+"showtoc"       => "montru",
+"hidetoc"       => "kaŝu",
+"thisisdeleted" => "Vidu aŭ restarigu $1?",
+"restorelink" => "$1 forigita(j)n versio(j)n",
+
 # Main script and global functions
 #
 "nosuchaction"	=> "Ne ekzistas tia ago",
@@ -222,8 +241,9 @@ Jen la plej laste provita informmendo:
 <blockquote><tt><nowiki>$1</nowiki></tt></blockquote>
 el la funkcio \"<tt>$2</tt>\". 
 MySQL redonis eraron  \"<tt>$3: $4</tt>\".",
-"noconnect"		=> "Neeblis konekti al la datumbazo je $1",
+"noconnect"		=> "Neeblis konekti al la datumbazo; estas ia erarao aŭ oni riparadas la servilon.",
 "nodb"			=> "Neeblis elekti datumaron $1",
+"cachederror"   => "Intertempe, jen konservita kopio de la petita paĝo (ĝi eble ne estas ĝisdata).",
 "readonly"		=> "Datumaro ŝlosita, nurlega",
 "enterlockreason" => "Bonvolu klarigi, kial oni ŝlosas la datumaron, kaj
 la estimatan tempon de malŝlosado.",
@@ -249,6 +269,15 @@ Bonvolu raporti ĉi tion al iu sistemestro, kaj rimarkigi la retadreson (URL).",
 "badtitle"		=> "Nevalida titolo",
 "badtitletext"	=> "La petita paĝotitolo estas nevalida, malplena, aŭ
 malĝuste ligita interlingva aŭ intervikia titolo.",
+"perfdisabled" => "Ni petas pardonon! La petita funkcio estas malebligita
+provizore por konservi la rapidecon de la servilo.",
+"perfdisabledsub" => "Jen konservita kopio laŭ $1:",
+"viewsource" => "Vidu vikitekston",
+"protectedtext" => "Tiu ĉi paĝon estas ŝlosita kontraŭ redaktado;
+estas diversaj eblaj kialoj por tio.
+Bv legi [[Vikipedio:Ŝlositaj paĝoj]].
+
+Vi ja rajtas vidi kaj kopii la fontotekston de la vikipaĝo:",
 
 # Login and logout pages
 #
@@ -330,6 +359,8 @@ bonvolu [[Speciala:Userlogin|kreu konton aŭ ensalutu]].",
 "previewconflict" => "La jena antaŭrigardo montras la tekston el la supra tekstujo,
 kiel ĝi aperos se vi elektos konservi la paĝon.", #FIXME
 "editing"		=> "Redaktante $1",
+"sectionedit"	=> " (sekcion)",
+"commentedit"	=> " (komenton)",
 "editconflict"	=> "Redakta konflikto: $1",
 "explainconflict" => "Iu alia ŝanĝis la paĝon post kiam vi ekredaktis.
 La supra tekstujo enhavas la aktualan tekston de la artikolo.
@@ -351,6 +382,12 @@ fonto senkopirajta. <strong>NE UZU KOPIRAJTAJN VERKOJN SENPERMESE!</strong>",
 "longpagewarning" => "AVERTO: Tiu ĉi paĝo longas $1 kilobitokojn; kelkaj retumiloj
 povas fuŝi redaktante paĝojn je longo proksime aŭ preter 32kb.
 Se eble, bonvolu disigi la paĝon al malpli grandajn paĝerojn.",
+"readonlywarning" => "AVERTO: La datumbazo estas ŝlosita por teknika laboro;
+pro tio neeblas nun konservi vian redaktadon. Vi povas elkopii kaj englui
+la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.",
+"protectedpagewarning" => "AVERTO: Tiu ĉi paĝo estas ŝlosita kontraŭ redaktado
+krom per administrantoj (t.e., vi). Bv certiĝi, ke vi sekvas la normojn de
+la komunumo per via redaktado. Vidu [[Vikipedio:Ŝlositaj paĝoj]].",
 
 # History pages
 #
@@ -404,6 +441,7 @@ kaj $3 artikolojn laŭ enhavo.",
 "nextn"			=> "$1 sekvajn",
 "viewprevnext"	=> "Montru ($1) ($2) ($3).",
 "showingresults" => "Montras <b>$1</b> trovitajn ekde la <b>$2</b>-a.",
+"showingresultsnum" => "Montras <b>$3</b> trovitajn ekde la<b>$2</b>-a.",
 "nonefound"		=> "<strong>Noto</strong>: malsukcesaj serĉoj ofte
 okazas ĉar oni serĉas tro da ofte uzataj vortoj, kiujn ne enhavas la indekso,
 aŭ ĉar oni petas tro da serĉvortoj (nur paĝoj kiuj enhavas ĉiun serĉvorton
@@ -414,6 +452,31 @@ montriĝos en la rezulto).",
 Serĉu en sekcioj: :<br>
 $1<br>
 $2 Kun alidirektiloj   Serĉu $3 $9",
+"searchdisabled" => "<p>Oni provizore malŝaltis serĉadon per la plenteksta
+indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per google:</p>
+                                                                                                                                                        
+<!-- SiteSearch Google -->
+<FORM method=GET action=\"http://www.google.com/search\">
+<TABLE bgcolor=\"#FFFFFF\"><tr><td>
+<A HREF=\"http://www.google.com/\">
+<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
+border=\"0\" ALT=\"Google\"></A>
+</td>
+<td>
+<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
+<INPUT type=submit name=btnG VALUE=\"Google Search\">
+<font size=-1>
+<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio
+name=sitesearch value=\"\"> TTT <input type=radio name=sitesearch
+value=\"{$wgServer}\" checked> {$wgServer} <br>
+<input type='hidden' name='ie' value='$2'>
+<input type='hidden' name='oe' value='$2'>
+</font>
+</td></tr></TABLE>
+</FORM>
+<!-- SiteSearch Google -->
+",
+"blanknamespace" => "(Artikoloj)",
 
 # Preferences page
 #
@@ -445,7 +508,6 @@ Via interna identeconumero estas $2.",
 "searchresultshead" => "Agordaĵoj pri serĉorezulto",
 "resultsperpage" => "Montru trovitajn po",
 "contextlines"	=> "Montru liniojn el paĝoj po",
-
 "contextchars"	=> "Montru literojn el linioj ĝis po",
 "stubthreshold" => "Indiku paĝojn malpli grandajn ol",
 "recentchangescount" => "Montru kiom da titoloj en 'Lastaj ŝanĝoj'",
@@ -455,28 +517,16 @@ loka horzono malsamas disde tiu de la servilo (UTC).
 Ekzemple, por la Centra Eŭropa Horzono, indiku \"1\" vintre aŭ \"2\" dum somertempo.",
 "localtime"	=> "Loka horzono",
 "timezoneoffset" => "Malsamo", #FIXME (?)
+"servertime"	=> "Norma tempo aktuale",
+"guesstime"		=> "Petu al foliumilo",
 "emailflag"     => "Malakceptu retmesaĝojn de aliaj vikipediistoj",
+"defaultns"		=> "Serĉu la jenajn sekciojn:",
 
 # Recent changes
 #
 "changes"	=> "ŝanĝoj", # RIPARUMIN n?
 "recentchanges" => "Lastaj ŝanĝoj",
-"recentchangestext" => "Sekvu la plej lastajn ŝanĝojn al la Vikipedio per ĉi tiu paĝo.
-[[vikipedio:Bonvenon al la Vikipedio|Bonvenon al la Vikipedio]]!
-Bonvolu legi ĉi tiujn paĝojn: [[vikipedio:Oftaj demandoj|Oftaj demandoj]],
-[[vikipedio:Konsiletoj|Konsiletoj]]
-(aparte [[vikipedio:Nomoj de titoloj|Nomoj de titoloj]]
-kaj [[vikipedio:Neŭtrala vidpunkto|Neŭtrala vidpunkto]]),
-kaj [[vikipedio:Oftaj eraroj|Oftaj vikipediaj eraroj]].
-
-
-Se vi volas, ke la Vikipedio sukcesu, tre gravas ke vi ne aldonu
-materialojn kiujn oni ne laŭleĝe rajtas aldoni pro [[Vikipedio:Kopirajto|kopirajto]].
-La leĝa respondeco vere povus malhelpi la projekton,
-do bonvolu ne fari tion.
-
-Ankaŭ vidu la [http://meta.wikipedia.org/wiki/Special:Recentchanges lastatempan pri-vikipedian diskuton]
-(plurlingve)",
+"recentchangestext" => "Sekvu la plej lastajn ŝanĝojn al la vikio per ĉi tiu paĝo.",
 "rcloaderr"		=> "Ŝarĝas lastajn ŝanĝojn",
 "rcnote"		=> "Jen la plej lastaj <b>$1</b> ŝanĝoj en la lastaj <b>$2</b> tagoj.",
 "rcnotefrom"	=> "Jen la ŝanĝoj ekde <b>$2</b> (lastaj ĝis <b>$1</b>).",
@@ -559,6 +609,7 @@ kiam ĝi estis kreita, kaj kiu kreis ĝin; kaj ion ajn, kion vi scias pri ĝi.",
 "uploadwarning" => "Averto",
 "savefile"		=> "Konservu dosieron",
 "uploadedimage" => "alŝutis \"$1\"",
+"uploaddisabled" => "Ni petas pardonon, sed oni malebligis alŝutadon.",
 
 # Image list
 #
@@ -706,13 +757,32 @@ kaj estos kalkulita en la listo de via atentaro.
 "watchthispage"	=> "Priatentu paĝon",
 "unwatchthispage" => "Malatentu paĝon",
 "notanarticle"	=> "Ne estas artikolo",
+"watchnochange" => "Neniu artikolo en via atentaro redaktiĝis dum la prispektita tempoperiodo.",
+"watchdetails" => "(Vi priatentas $1 paĝojn [krom diskutopaĝoj];
+laste $2 paĝoj entute redaktiĝis en la vikio; $3...
+<a href='$4'>redaktu vian atentaron</a>.)",
+"watchmethod-recent" => "traserĉas lastajn redaktojn",
+"watchmethod-list" => "traserĉas priatentitajn",
+"removechecked" => "Forprenu elektitajn el la listo",
+"watchlistcontains" => "Via atentaro enhavas $1 paĝojn.",
+"watcheditlist" => "Jen listo de ĉiu paĝtitolo en via atentaro.
+Elektu forigotajn paĝojn kaj alklaku 'forprenu elektitajn' sube.",
+"removingchecked" => "Forprenas elektitajn...",
+"couldntremove" => "Neeblas forigi titolon '$1'...",
+"iteminvalidname" => "Ia eraro pri '$1', nevalida titolo...",
+"wlnote" => "Jen la lastaj $1 redaktoj de la lastaj <b>$2</b> horoj.",
+
 
 # Delete/protect/revert
 #
 "deletepage"	=> "Forigu paĝon",
 "confirm"		=> "Konfirmu",
+"excontent"		=> "enhavis:",
+"exbeforeblank" => "antaŭ malplenigo enhavis:",
+"exblank"       => "estis malplena",
 "confirmdelete" => "Konfirmu forigadon",
 "deletesub"		=> "(Forigas \"$1\")",
+"historywarning" => "Averto: la forigota paĝo havas historion: ",
 "confirmdeletetext" => "Vi forigos la artikolon aŭ dosieron kaj
 forviŝos ĝian tutan historion el la datumaro.<br>
 Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas
@@ -734,7 +804,14 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.",
 "imagereverted" => "Restarigo de antaŭa versio sukcesis.",
 "rollback"	=> "Restarigu antaŭan redakton",
 "rollbacklink" => "restarigu antaŭan",
-"cantrollback" => "Neeblas restarigu antaŭan redakton; la redaktinto lasta estas la sola de la paĝo.",
+"rollbackfailed" => "Restarigo malsukcesis",
+"cantrollback" => "Neeblas restarigi antaŭan redakton; la redaktinto lasta estas la sola de la paĝo.",
+"alreadyrolled" => "Neeblas restarigi lastan redakton al [[$1]]
+de [[Vikipediisto:$2|$2]] ([[Vikipediista diskuto:$2|diskuto]]) pro tio,
+ke oni intertempe redaktis la paĝon.
+
+Lasta redaktinto estas [[Vikipediisto:$3|$3]] ([[Vikipediista diskuto:$3|diskuto]]). ",
+"editcomment" => "La komento estis: '<i>$1</i>'.",
 "revertpage"	=> "Restarigis lastan redakton de $1",
 
 # Undelete
@@ -761,6 +838,7 @@ Vidu [[Vikipedio:Loglibro de forigoj]] por registro de lastatempaj forigoj kaj r
 "nocontribs"	=> "Trovis neniajn redaktojn laŭ tiu kriterio.",
 "ucnote"		=> "Jen la <b>$1</b> lastaj redaktoj de tiu Vikipediisto dum la <b>$2</b> lastaj tagoj.",
 "uclinks"		=> "Montru la $1 lastajn redaktojn; montru la $2 lastajn tagojn.",
+"uctop"			=> " (lasta)",
 
 # What links here
 #
@@ -774,31 +852,32 @@ Vidu [[Vikipedio:Loglibro de forigoj]] por registro de lastatempaj forigoj kaj r
 
 # Block/unblock IP
 #
-"blockip"		=> "Forbaru IP-adreson",
-"blockiptext"	=> "Per la jena formularo vi povas forbari iun IP-adreson
-je la rajto enskribiĝi en la vikion.
+"blockip"		=> "Forbaru IP-adreson/nomon",
+"blockiptext"	=> "Per la jena formularo vi povas forbari iun nomon aŭ
+IP-adreson de la rajto enskribiĝi en la vikion.
 Oni tion faru ''nur'' por eviti vandalismon, kaj sekvante la
 [[Vikipedio:Reguloj pri forbarado|regulojn pri forbarado]].
 Klarigu la precizan kialon malsupre (ekzemple, citu paĝojn, kiuj estis
 vandalumitaj).",
-"ipaddress"		=> "IP-adreso",
+"ipaddress"		=> "IP-adreso/nomo",
 "ipbreason"		=> "Kialo",
 "ipbsubmit"		=> "Forbaru la adreson",
-"badipaddress"	=> "La IP-adreso estas misformita.",
+"badipaddress"	=> "Neniu uzanto, aŭ la IP-adreso estas misformita.",
 "noblockreason" => "Vi nepre klarigu kialon pri la forbaro.",
 "blockipsuccesssub" => "Sukcesis forbari",
-"blockipsuccesstext" => "La IP-adreso \"$1\" estas forbarita.
+"blockipsuccesstext" => "\"$1\" estas forbarita.
 <br>Vidu la [[Special:Ipblocklist|liston de IP-forbaroj]].",
-"unblockip"		=> "Malforbaru IP-adreson",
+"unblockip"		=> "Malforbaru IP-adreson/nomon",
 "unblockiptext"	=> "Per la jena formulo vi povas repovigi al iu
-forbarita IP-adreso la povon enskribi en la vikio.",
+forbarita IP-adreso/nomo la povon enskribi en la vikio.",
 "ipusubmit"		=> "Malforbaru la adreson",
-"ipusuccess"	=> "IP-adreso \"$1\" estas malforbarita",
-"ipblocklist"	=> "Listo de forbaritaj IP-adresoj",
+"ipusuccess"	=> "\"$1\" estas malforbarita",
+"ipblocklist"	=> "Listo de forbaritaj IP-adresoj/nomoj",
 "blocklistline"	=> "Je $1, $2 forbaris $3",
 "blocklink"		=> "forbaru",
 "unblocklink"	=> "malforbaru",
 "contribslink"	=> "kontribuoj",
+"autoblocker"	=> "Provizore forbarita aŭtomate pro tio, ke vi uzas saman IP-adreson kiel \"$1\", kiu estis blokita pro tio: \"$2\".",
 
 # Developer tools
 #
