@@ -715,6 +715,15 @@ class User {
 	function getUserPage() {
 		return Title::makeTitle( NS_USER, $this->mName );
 	}
+
+	/* static */ function getMaxID() {
+		$row = wfGetArray( 'user', array('max(user_id) as m'), false );
+		return $row->m;
+	}
+
+	function isNewbie() {
+		return $this->mId > User::getMaxID() * 0.99 && !$this->isSysop() || $this->getID() == 0;
+	}
 }
 
 ?>
