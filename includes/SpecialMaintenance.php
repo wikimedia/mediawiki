@@ -31,8 +31,11 @@ function wfSpecialMaintenance( $par=NULL ) {
 	# Call the subfunction requested by the user
 	switch( $subfunction ) {
 	case 'disambiguations': return wfSpecialDisambiguations() ; break;
+	
+	# doubleredirects & brokenredirects are old maintenance subpages.
 	case 'doubleredirects': return wfSpecialDoubleRedirects() ; break;
 	case 'brokenredirects': return wfSpecialBrokenRedirects() ; break;
+	
 	case 'selflinks':       return wfSpecialSelfLinks()       ; break;
 	case 'mispeelings':     return wfSpecialMispeelings()     ; break;
 	case 'missinglanguagelinks': return wfSpecialMissingLanguageLinks() ; break;
@@ -50,8 +53,8 @@ function wfSpecialMaintenance( $par=NULL ) {
 	# Links to subfunctions
 	$r .= "<UL>\n" ;
 	#$r .= "<li>".getMPL("disambiguations")."</li>\n" ; # Doesn't work
-	$r .= '<li>'.getMPL("doubleredirects")."</li>\n" ;
-	$r .= '<li>'.getMPL("brokenredirects")."</li>\n" ;
+	$r .= '<li>'.$sk->makeKnownLink( sns().':DoubleRedirects', wfMsg('doubleredirects')) . "</li>\n";
+	$r .= '<li>'.$sk->makeKnownLink( sns().':BrokenRedirects', wfMsg('brokenredirects')) . "</li>\n";
 	#$r .= "<li>".getMPL("selflinks")."</li>\n" ; # Doesn't work
 	$r .= '<li>'.getMPL("mispeelings")."</li>\n" ;
 
@@ -157,89 +160,16 @@ function wfSpecialDisambiguations() {
 	$wgOut->addHTML( "<p>{$sl}\n" );
 }
 
-
+# TODO & FIXME
+# DoubleRedirects and BrokenRedirects are now using the QueryPage class.
+# Might want to automaticly redirect users to the new pages instead
+# of dieing.
 function wfSpecialDoubleRedirects() {
-	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	$fname = 'wfSpecialDoubleRedirects';
-
-	list( $limit, $offset ) = wfCheckLimits();
-	$dbr =& wfGetDB( DB_SLAVE );
-	extract( $dbr->tableNames( 'cur', 'links' ) );
-
-	$sql = "SELECT ca.cur_namespace as ns_a, ca.cur_title as title_a," . 
-	       "  cb.cur_namespace as ns_b, cb.cur_title as title_b," .
-		   "  cb.cur_text AS rt " . 
-	       "FROM $links,$cur AS ca,$cur AS cb ". 
-	       "WHERE ca.cur_is_redirect=1 AND cb.cur_is_redirect=1 AND l_to=cb.cur_id " .
-	       "  AND l_from=ca.cur_id LIMIT {$offset}, {$limit}" ;
-
-	$res = $dbr->query( $sql, $fname );
-
-	$top = getMaintenancePageBacklink( 'doubleredirects' );
-	$top .= '<p>'.wfMsg("doubleredirectstext")."</p><br>\n";
-	$top .= wfShowingResults( $offset, $limit );
-	$wgOut->addHTML( "<p>{$top}\n" );
-
-	$sl = wfViewPrevNext( $offset, $limit, 'REPLACETHIS' ) ;
-	$sl = str_replace ( 'REPLACETHIS' , sns().':Maintenance&subfunction=doubleredirects' , $sl ) ;
-	$wgOut->addHTML( "<br>{$sl}\n" );
-
-	$sk = $wgUser->getSkin();
-	$s = '<ol start=' . ( $offset + 1 ) . '>';
-	while ( $obj = $dbr->fetchObject( $res ) ) {
-		$n = explode ( "\n" , $obj->rt ) ;
-		$n = $n[0] ;
-		$sourceTitle = Title::makeTitle( $obj->ns_a, $obj->title_a );
-		$destTitle = Title::makeTitle( $obj->ns_b, $obj->title_b );
-
-		$l1 = $sk->makeKnownLinkObj( $sourceTitle , '' , 'redirect=no' ) ; 
-		$l2 = $sk->makeKnownLinkObj( $destTitle , '' , 'redirect=no' ) ;
-		$l3 = $sk->makeBrokenLinkObj( $sourceTitle , '('.wfMsg('qbedit').')' , 'redirect=no' ) ;
-		$s .= "<li>{$l1} {$l3} => {$l2} (\"{$n}\")</li>\n" ;
-	}
-	$dbr->freeResult( $res );
-	$s .= '</ol>';
-	$wgOut->addHTML( $s );
-	$wgOut->addHTML( "<p>{$sl}\n" );
+	wfDebugDieBacktrace( 'SpecialMaintenance.php:wfSpecialDoubleRedirects() is obsolete use SpecialDoubleRedirects.php');
 }
 
-
 function wfSpecialBrokenRedirects() {
-	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	$fname = 'wfSpecialBrokenRedirects';
-
-	list( $limit, $offset ) = wfCheckLimits();
-	$dbr =& wfGetDB( DB_SLAVE );
-	extract( $dbr->tableNames( 'cur', 'brokenlinks' ) );
-
-
-	$sql = "SELECT bl_to,cur_title FROM $brokenlinks,$cur " .
-	  "WHERE cur_is_redirect=1 AND cur_namespace=0 AND bl_from=cur_id " . 
-	  "LIMIT {$offset}, {$limit}" ;
-
-	$res = $dbr->query( $sql, $fname );
-
-	$top = getMaintenancePageBacklink( 'brokenredirects' );
-	$top .= '<p>'.wfMsg('brokenredirectstext')."</p><br>\n";
-	$top .= wfShowingResults( $offset, $limit );
-	$wgOut->addHTML( "<p>{$top}\n" );
-
-	$sl = wfViewPrevNext( $offset, $limit, 'REPLACETHIS' ) ;
-	$sl = str_replace ( 'REPLACETHIS' , sns().":Maintenance&subfunction=brokenredirects" , $sl ) ;
-	$wgOut->addHTML( "<br>{$sl}\n" );
-
-	$sk = $wgUser->getSkin();
-	$s = '<ol start=' . ( $offset + 1 ) . '>';
-	while ( $obj = $dbr->fetchObject( $res ) ) {
-		$l1 = $sk->makeKnownLink ( $obj->cur_title , '' , 'redirect=no' ) ;
-		$l2 = $sk->makeBrokenLink ( $obj->cur_title , "(".wfMsg("qbedit").")" , "redirect=no" ) ;
-		$l3 = $sk->makeBrokenLink ( $obj->bl_to , '' , 'redirect=no' ) ;
-		$s .= "<li>{$l1} {$l2} => {$l3}</li>\n" ;
-	}
-	$dbr->freeResult( $res );
-	$s .= '</ol>';
-	$wgOut->addHTML( $s );
-	$wgOut->addHTML( "<p>{$sl}\n" );
+	wfDebugDieBacktrace( 'SpecialMaintenance.php:wfSpecialBrokenRedirects() is obsolete use SpecialBrokenRedirects.php');
 }
 
 
