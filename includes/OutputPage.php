@@ -502,7 +502,7 @@ class OutputPage {
 		if($source) {
 			$rows = $wgUser->getOption( "rows" );
 			$cols = $wgUser->getOption( "cols" );
-			$text .= "</p>\n<textarea cols='$cols' rows='$rows' readonly>" .
+			$text = "</p>\n<textarea cols='$cols' rows='$rows' readonly>" .
 				htmlspecialchars( $source ) . "\n</textarea>";
 			$this->addHTML( $text );
 		}
