@@ -1,5 +1,4 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${lang}" lang="${lang}" dir="${dir}">
   <head>
     <meta http-equiv="Content-Type" content="${mimetype}; charset=${charset}" />
@@ -16,7 +15,6 @@
     <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script><script 
       tal:condition="userjsprev" type="text/javascript">/*<![CDATA[*/${userjsprev}/*]]>*/</script>
   </head>
-
   <body tal:attributes="ondblclick body-ondblclick|default; class nsclass|default">
     <div id="globalWrapper">
       <div id="column-content">
@@ -28,25 +26,16 @@
 	    <div id="contentSub" tal:content="structure subtitle"></div>
 	    <div id="contentSub" tal:condition="undelete" tal:content="structure undelete"></div>
 	    <div id="siteNotice" tal:condition="sitenotice" tal:content="structure sitenotice"></div>
-	    <!-- <esi:include src="userxy/message"/> cached per user, purged on new message-->
 	    <div tal:condition="newtalk" class="usermessage" tal:content="structure newtalk"></div>
-	    <!-- the content area is cached with the remaining inexpensive skeleton, one version for all.
-	    The edit links and right-click section stuff can be attached from js -->
 	    <!-- start content -->
-
 	    ${bodytext}
-
 	    <div tal:condition="catlinks" id="catlinks" tal:content="structure catlinks"></div>
 	    <!-- end content -->
 	    <div class="visualClear"></div>
 	  </div>
 	</div>
       </div>
-      <!-- end of main content block -->
-      <!-- start of the left (by default at least) column -->
       <div id="column-one">
-	<!--<esi:include src="thisurl?esiview=contentviews&watch=0&priv=sysop"/> tricky to purge because of the many different versions,
-	might not be worth it for non-anons -->
 	<div id="p-cactions" class="portlet">
 	  <h5>Views</h5>
 	  <ul>
@@ -56,7 +45,6 @@
 	      tal:content="action/text">Linktext</a></li>
 	  </ul>
 	</div>
-	<!--<esi:include src="userxy?ptools"/> cached per user, just rendered once per session -->
 	<div class="portlet" id="p-personal">
 	  <h5 i18n:translate="string:personaltools">Personal Tools</h5>
 	  <div class="pBody">
@@ -68,7 +56,6 @@
 	    </ul>
 	  </div>
 	</div>
-	<!--<esi:include src="staticLogoNaviSearch"/> same for all pages, contains quite a few messages that are worth caching -->
 	<div class="portlet" id="p-logo">
 	  <a style="background-image: url(${logopath});" href="${nav_urls/mainpage/href}" i18n:attributes="title string:mainpage"></a>
 	</div>
@@ -106,7 +93,6 @@
 	    </form>
 	  </div>
 	</div>
-	<!--<esi:include src="thisurl?esiview=toolbox&loggedin=0"/> one anon, one logged-in user version per page because of the links -->
 	<div class="portlet" id="p-tb">
 	  <h5 i18n:translate="string:toolbox">Toolbox</h5>
 	  <div class="pBody">
@@ -133,8 +119,6 @@
 	    </ul>
 	  </div>
 	</div>
-	<!-- end staticLogoNaviSearch -->
-
 	<div id="p-lang" class="portlet" tal:condition="language_urls">
 	  <h5 i18n:translate="string:otherlanguages">Language</h5>
 	  <div class="pBody">
@@ -147,7 +131,6 @@
 	  </div>
 	</div>
       </div><!-- end of the left (by default at least) column -->
-      <!--<esi:include src="thisurl?esiview=toolbox&loggedin=0"/> static footer, same for all pages but contains a few messaged that are worth caching --> 
       <div class="visualClear"></div>
       <div id="footer">
 	<div id="f-poweredbyico" tal:condition="poweredbyico">${poweredbyico}</div>
