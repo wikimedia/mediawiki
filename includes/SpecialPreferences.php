@@ -487,6 +487,10 @@ class PreferencesForm {
 			} else {
 				$sn = $skinname;
 			}
+			global $wgDefaultSkin;
+			if( $skinkey == $wgDefaultSkin ) {
+				$sn .= ' (' . wfMsg( 'default' ) . ')';
+			}
 			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpSkin\"
 	value=\"$skinkey\"$checked /> {$sn}</label></div>\n" );
 		}

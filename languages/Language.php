@@ -813,6 +813,7 @@ from server time (UTC).',
 'guesstimezone' => 'Fill in from browser',
 'emailflag'		=> 'Disable e-mail from other users',
 'defaultns'		=> 'Search in these namespaces by default:',
+'default'		=> 'default',
 
 # User levels special page
 #
