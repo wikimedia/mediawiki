@@ -50,7 +50,7 @@ div.thumbnail-none, div.thumbnail-right, div.thumbnail-left {
 	padding: 2px;
 	border:1px solid #8888aa;
 	background:#CCCCCC;
-	margin: 0.3em auto 0.5em;
+	margin: 0.3em 0 0.5em;
 	font-size: 85%;
 	text-align: center;
 }
