@@ -186,6 +186,8 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1241) Don't show 'cont.' for first entry of the category list
 * (bug 1240) Special:Preferences was broken in Slovenian locale when
   $wgUseDynamicDates is enabled
+* Added magic word MAG_NOCONTENTCONVERT to supress the conversion of the
+  content of an article. Useful in zh:
 
 === Caveats ===
 
