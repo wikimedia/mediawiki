@@ -390,6 +390,7 @@ class Article {
 		$won = wfInvertTimestamp( $now );
 		wfSeedRandom();
 		$rand = number_format( mt_rand() / mt_getrandmax(), 12, ".", "" );
+		$isminor = ( $isminor && $wgUser->getID() ) ? 1 : 0;
 		$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
 		  "cur_comment,cur_user,cur_timestamp,cur_minor_edit,cur_counter," .
 		  "cur_restrictions,cur_user_text,cur_is_redirect," .
@@ -397,7 +398,7 @@ class Article {
 		  wfStrencode( $text ) . "', '" .
 		  wfStrencode( $summary ) . "', '" .
 		  $wgUser->getID() . "', '{$now}', " .
-		  ( $isminor ? 1 : 0 ) . ", 0, '', '" .
+		  $isminor . ", 0, '', '" .
 		  wfStrencode( $wgUser->getName() ) . "', $redir, 1, $rand, '{$now}', '{$won}')";
 		$res = wfQuery( $sql, DB_WRITE, $fname );
 
@@ -447,7 +448,7 @@ class Article {
 			}
 		}
 		if ( $this->mMinorEdit ) { $me1 = 1; } else { $me1 = 0; }
-		if ( $minor ) { $me2 = 1; } else { $me2 = 0; }		
+		if ( $minor && $wgUser->getID() ) { $me2 = 1; } else { $me2 = 0; }		
 		if ( preg_match( "/^((" . $wgMwRedir->getBaseRegex() . ")[^\\n]+)/i", $text, $m ) ) {
 			$redir = 1;
 			$text = $m[1] . "\n"; # Remove all content but redirect
