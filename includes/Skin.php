@@ -99,12 +99,10 @@ class Skin {
 	var $rc_cache ; # Cache for Enhanced Recent Changes
 	var $rcCacheIndex ; # Recent Changes Cache Counter for visibility toggle
 	var $rcMoveIndex;
-	var $postParseLinkColour = true;
+	var $postParseLinkColour = false;
 	/**#@-*/
 
 	function Skin() {
-		global $wgUseOldExistenceCheck;
-		$postParseLinkColour = !$wgUseOldExistenceCheck;
 		$this->linktrail = wfMsg('linktrail');
 	}
 

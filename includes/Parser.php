@@ -1103,7 +1103,12 @@ class Parser
 		static $tc = FALSE;
 		# the % is needed to support urlencoded titles as well
 		if ( !$tc ) { $tc = Title::legalChars() . '#%'; }
+		
 		$sk =& $this->mOptions->getSkin();
+		global $wgUseOldExistenceCheck;
+		# "Post-parse link colour check" works only on wiki text since it's now
+		# in Parser. Enable it, then disable it when we're done.
+		$saveParseColour = $sk->postParseLinkColour( !$wgUseOldExistenceCheck );
 
 		$redirect = MagicWord::get ( MAG_REDIRECT ) ;
 
@@ -1337,6 +1342,7 @@ class Parser
 			}
 			$s .= $sk->makeLinkObj( $nt, $text, '', $trail, $prefix );
 		}
+		$sk->postParseLinkColour( $saveParseColour );
 		wfProfileOut( $fname );
 		return $s;
 	}
