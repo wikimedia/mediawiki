@@ -240,20 +240,14 @@ class ParserTest {
 			$output =& $parser->parse( $input, $title, $options );
 			$out = $output->getText();
 
-			$op = new OutputPage();
-			$op->replaceLinkHolders($out);
-
 			if (preg_match('/\\bill\\b/i', $opts)) {
-				$out .= implode( ' ', $output->getLanguageLinks() );
+				$out = $this->tidy( implode( ' ', $output->getLanguageLinks() ) );
 			}	
-			if (preg_match('/\\bcat\\b/i', $opts)) {
-				$out .= implode( ' ', $output->getCategoryLinks() );
+			else if (preg_match('/\\bcat\\b/i', $opts)) {
+				$out = $this->tidy ( implode( ' ', $output->getCategoryLinks() ) );
 			}
 
-			if ($GLOBALS['wgUseTidy']) {
-				$out = Parser::tidy($out);
-				$result = Parser::tidy($result);
-			}
+			$result = $this->tidy($result);
 		}
 		
 		$this->teardownGlobals();
@@ -379,7 +373,11 @@ class ParserTest {
 				       'iw_local'  => 1 ),
 				array( 'iw_prefix' => 'fr',
 				       'iw_url'    => 'http://fr.wikipedia.org/wiki/$1',
-				       'iw_local'  => 1 ) ) );
+				       'iw_local'  => 1 ),
+				array( 'iw_prefix' => 'ru',
+				       'iw_url'    => 'http://ru.wikipedia.org/wiki/$1',
+				       'iw_local'  => 1 ),
+				) );
 
 
 			$setupDB = true;
@@ -511,9 +509,9 @@ class ParserTest {
 
 	/**
 	 * Insert a temporary test article
-	 * @param $name string the title, including any prefix
-	 * @param $text string the article text
-	 * @param $line int the input line number, for reporting errors
+	 * @param string $name the title, including any prefix
+	 * @param string $text the article text
+	 * @param int $line the input line number, for reporting errors
 	 * @static
 	 * @access private
 	 */
@@ -533,9 +531,29 @@ class ParserTest {
 		$art->insertNewArticle($text, '', false, false );
 		$this->teardownGlobals();
 	}
+
+	/*
+	 * Run the "tidy" command on text if the $wgUseTidy
+	 * global is true
+	 *
+	 * @param string $text the text to tidy
+	 * @return string
+	 * @static
+	 * @access private
+	 */
+	function tidy( $text ) {
+		global $wgUseTidy;
+		if ($wgUseTidy) {
+			$text = Parser::tidy($text);
+		}
+		return $text;
+	}
 }
 
-$wgTitle = Title::newFromText( 'Parser test script' );
+# There is a convention that the parser should never
+# refer to $wgTitle directly, but instead use the title
+# passed to it.
+$wgTitle = Title::newFromText( 'Parser test script do not use' );
 $tester =& new ParserTest();
 
 # Note: the command line setup changes the current working directory
