@@ -84,6 +84,19 @@ class ChannelFeed extends FeedItem {
 	function outFooter() {
 		# print "</feed>";
 	}
+	
+	function outXmlHeader( $mimetype="application/xml" ) {
+		global $wgServer, $wgStylePath, $wgOut;
+		
+		# We take over from $wgOut, excepting its cache header info
+		$wgOut->disable();
+		header( "Content-type: $mimetype; charset=UTF-8" );
+		$wgOut->sendCacheControl();
+		
+		print '<' . '?xml version="1.0" encoding="utf-8"?' . ">\n";
+		print '<' . '?xml-stylesheet type="text/css" href="' .
+			htmlspecialchars( "$wgServer$wgStylePath/feed.css" ) . '"?' . ">\n";
+	}
 }
 
 class RSSFeed extends ChannelFeed {
@@ -93,14 +106,9 @@ class RSSFeed extends ChannelFeed {
 	}
 	
 	function outHeader() {
-		global $wgVersion, $wgOut;
+		global $wgVersion;
 		
-		# We take over from $wgOut, excepting its cache header info
-		$wgOut->disable();
-		header( "Content-type: application/xml; charset=UTF-8" );
-		$wgOut->sendCacheControl();
-		
-		print '<' . '?xml version="1.0" encoding="utf-8"?' . ">\n";
+		$this->outXmlHeader();
 		?><rss version="2.0">
 	<channel>
 		<title><?php print $this->getTitle() ?></title>
@@ -141,12 +149,7 @@ class AtomFeed extends ChannelFeed {
 	function outHeader() {
 		global $wgVersion, $wgOut;
 		
-		# We take over from $wgOut, excepting its cache header info
-		$wgOut->disable();
-		header( "Content-type: application/xml; charset=UTF-8" );
-		$wgOut->sendCacheControl();
-		
-		print '<' . '?xml version="1.0" encoding="utf-8"?' . ">\n";
+		$this->outXmlHeader();
 		?><feed version="0.3" xml:lang="<?php print $this->getLanguage() ?>">	
 		<title><?php print $this->getTitle() ?></title>
 		<link rel="alternate" type="text/html" href="<?php print $this->getUrl() ?>"/>
