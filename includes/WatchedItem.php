@@ -60,6 +60,8 @@ class WatchedItem {
 
 	function removeWatch()
 	{
+		$fname = 'WatchedItem::removeWatch';
+
 		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->delete( 'watchlist', 
 			array( 
