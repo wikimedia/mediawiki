@@ -475,12 +475,21 @@ function wfDebugDieBacktrace( $msg = '' ) {
 		}
 		$backtrace = debug_backtrace();
 		foreach( $backtrace as $call ) {
-			$f = explode( DIRECTORY_SEPARATOR, $call['file'] );
-			$file = $f[count($f)-1];
-			if ( $wgCommandLineMode ) {
-				$msg .= "$file line {$call['line']} calls ";
+			if( isset( $call['file'] ) ) {
+				$f = explode( DIRECTORY_SEPARATOR, $call['file'] );
+				$file = $f[count($f)-1];
 			} else {
-				$msg .= '<li>' . $file . ' line ' . $call['line'] . ' calls ';
+				$file = '-';
+			}
+			if( isset( $call['line'] ) ) {
+				$line = $call['line'];
+			} else {
+				$line = '-';
+			}
+			if ( $wgCommandLineMode ) {
+				$msg .= "$file line $line calls ";
+			} else {
+				$msg .= '<li>' . $file . ' line ' . $line . ' calls ';
 			}
 			if( !empty( $call['class'] ) ) $msg .= $call['class'] . '::';
 			$msg .= $call['function'] . '()';
@@ -1017,6 +1026,10 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 	} elseif (preg_match("/^(\d{1,13})$/",$ts,$datearray)) {
 		# TS_UNIX
 		$uts=$ts;
+	} else {
+		# Bogus value; fall back to the epoch...
+		wfDebug("wfTimestamp() given bogus time value.\n");
+		$uts = 0;
 	}
 
 	if ($ts==0)
@@ -1031,7 +1044,7 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 	case TS_RFC2822:
 		return gmdate( "D, j M Y H:i:s", $uts ) . ' GMT';
 	default:
-		return;
+		wfDebugDieBacktrace( 'wfTimestamp() called with illegal output type.');
 	}
 }
 
