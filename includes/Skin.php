@@ -774,10 +774,8 @@ class Skin {
 				if($id || $ip) { # both anons and non-anons have contri list
 					$s .= $sep . $this->userContribsLink();
 				}
-				if ( 0 != $wgUser->getID() ) { # show only to signed in users
-					if($id) {	# can only email non-anons
-						$s .= $sep . $this->emailUserLink();
-					}
+				if( $this->showEmailUser( $id ) ) {
+					$s .= $sep . $this->emailUserLink();
 				}
 			}
 			if ( $wgTitle->getArticleId() ) {
@@ -1091,6 +1089,14 @@ class Skin {
 		return $s;
 	}
 
+	function showEmailUser( $id ) {
+		global $wgEnableEmail, $wgEnableUserEmail, $wgUser;
+		return $wgEnableEmail &&
+		       $wgEnableUserEmail &&
+		       0 != $wgUser->getID() && # show only to signed in users
+		       0 != $id; # can only email non-anons
+	}
+	
 	function emailUserLink() {
 		global $wgTitle, $wgContLang;
 

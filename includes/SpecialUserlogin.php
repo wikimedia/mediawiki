@@ -35,7 +35,7 @@ class LoginForm {
 	var $mLoginattempt, $mRemember, $mEmail;
 	
 	function LoginForm( &$request ) {
-		global $wgLang, $wgAllowRealName;
+		global $wgLang, $wgAllowRealName, $wgEnableEmail;
 
 		$this->mName = $request->getText( 'wpName' );
 		$this->mPassword = $request->getText( 'wpPassword' );
@@ -44,13 +44,19 @@ class LoginForm {
 		$this->mCookieCheck = $request->getVal( 'wpCookieCheck' );
 		$this->mPosted = $request->wasPosted();
 		$this->mCreateaccount = $request->getCheck( 'wpCreateaccount' );
-		$this->mCreateaccountMail = $request->getCheck( 'wpCreateaccountMail' );
-		$this->mMailmypassword = $request->getCheck( 'wpMailmypassword' );
+		$this->mCreateaccountMail = $request->getCheck( 'wpCreateaccountMail' )
+		                            && $wgEnableEmail;
+		$this->mMailmypassword = $request->getCheck( 'wpMailmypassword' )
+		                         && $wgEnableEmail;
 		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
 		
-		$this->mEmail = $request->getText( 'wpEmail' );
+		if( $wgEnableEmail ) {
+			$this->mEmail = $request->getText( 'wpEmail' );
+		} else {
+			$this->mEmail = '';
+		}
 		if( $wgAllowRealName ) {
 		    $this->mRealName = $request->getText( 'wpRealName' );
 		} else {
@@ -379,7 +385,7 @@ class LoginForm {
 	 */
 	function mainLoginForm( $err ) {
 		global $wgUser, $wgOut, $wgLang;
-		global $wgDBname, $wgAllowRealName;
+		global $wgDBname, $wgAllowRealName, $wgEnableEmail;
 
 		if ( '' == $this->mName ) {
 			if ( 0 != $wgUser->getID() ) {
@@ -408,8 +414,9 @@ class LoginForm {
 		$template->set( 'action', $titleObj->getLocalUrl( $q ) );
 		$template->set( 'error', $err );
 		$template->set( 'create', $wgUser->isAllowedToCreateAccount() );
-		$template->set( 'createemail', $wgUser->getID() != 0 );
+		$template->set( 'createemail', $wgEnableEmail && $wgUser->getID() != 0 );
 		$template->set( 'userealname', $wgAllowRealName );
+		$template->set( 'useemail', $wgEnableEmail );
 		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) );
 		
 		$wgOut->setPageTitle( wfMsg( 'userlogin' ) );

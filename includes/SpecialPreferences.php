@@ -176,7 +176,10 @@ class PreferencesForm {
 			}
 			$wgUser->setPassword( $this->mNewpass );
 		}
-		$wgUser->setEmail( $this->mUserEmail );
+		global $wgEnableEmail;
+		if( $wgEnableEmail ) {
+			$wgUser->setEmail( $this->mUserEmail );
+		}
 		$wgUser->setRealName( $this->mRealName );
 		$wgUser->setOption( 'language', $this->mUserLanguage );
         $wgUser->setOption( 'variant', $this->mUserVariant );
@@ -200,7 +203,10 @@ class PreferencesForm {
 			$wgUser->setOption( "searchNs{$i}", $value );
 		}
 		
-		$wgUser->setOption( 'disablemail', $this->mEmailFlag );
+		global $wgEnableUserEmail;
+		if( $wgEnableEmail && $wgEnableUserEmail ) {
+			$wgUser->setOption( 'disablemail', $this->mEmailFlag );
+		}
 
 		# Set user toggles
 		foreach ( $this->mToggles as $tname => $tvalue ) {
@@ -388,9 +394,18 @@ class PreferencesForm {
 			if ($wgAllowRealName) {
 			$wgOut->addHTML("<div><label>$yrn: <input type='text' name=\"wpRealName\" value=\"{$this->mRealName}\" size='20' /></label></div>");
 		}
+		
+		global $wgEnableEmail, $wgEnableUserEmail;
+		if( $wgEnableEmail ) {
+			$wgOut->addHTML("
+			<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>" );
+			if( $wgEnableUserEmail ) {
+				$wgOut->addHTML("
+				<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" />$emf</label></div>" );
+			}
+		}
+		
 		$wgOut->addHTML("
-		<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>
-		<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" />$emf</label></div>
 		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>
 		<div><label>$yl: <select name=\"wpUserLanguage\">\n");
 

@@ -218,7 +218,7 @@ class SkinCologneBlue extends Skin {
 				$id=User::idFromName($wgTitle->getText());
 				if ($id != 0) {
 					$s .= $sep . $this->userContribsLink();
-					if ( 0 != $wgUser->getID() ) {
+					if( $this->showEmailUser( $id ) ) {
 						$s .= $sep . $this->emailUserLink();
 					}
 				}
