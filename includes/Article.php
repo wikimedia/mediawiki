@@ -674,7 +674,6 @@ class Article {
 				$catlinks = $parseout->getCategoryLinks();
 				$wgOut->addCategoryLinks($catlinks);
 				$skin = $wgUser->getSkin();
-				#$wgOut->addHTML($skin->getCategoryLinks());
 			} else if ( $pcache ) {
 				# Display content and save to parser cache
 				$wgOut->addPrimaryWikiText( $text, $this );
