@@ -535,11 +535,13 @@ class OutputPage {
 		$this->fatalError( wfMsg( "filenotfound", $name ) );
 	}
 
-	function returnToMain( $auto = true )
+	function returnToMain( $auto = true, $returnto = NULL )
 	{
 		global $wgUser, $wgOut, $wgRequest;
 		
-		$returnto = $wgRequest->getText( 'returnto' );
+		if ( $returnto == NULL ) {
+			$returnto = $wgRequest->getText( 'returnto' );
+		}
 
 		$sk = $wgUser->getSkin();
 		if ( "" == $returnto ) {
