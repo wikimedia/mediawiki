@@ -96,8 +96,8 @@ $wgInputEncoding	= "ISO-8859-1";
 $wgOutputEncoding	= "ISO-8859-1";
 $wgEditEncoding		= "";
 $wgMimeType			= "text/html";
-$wgDocType          = "-//W3C//DTD HTML 4.01 Transitional//EN";
-$wgDTD              = "http://www.w3.org/TR/html4/loose.dtd";
+$wgDocType			= "-//W3C//DTD XHTML 1.0 Transitional//EN";
+$wgDTD				= "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd";
 $wgUseDynamicDates  = false; # Enable to allow rewriting dates in page text
 							 # DOES NOT FORMAT CORRECTLY FOR MOST LANGUAGES
 $wgAmericanDates    = false; # Enable for English module to print dates
