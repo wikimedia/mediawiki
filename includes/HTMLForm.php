@@ -68,7 +68,7 @@ class HTMLForm {
 	function textareabox ( $varname, $value='', $size=20 ) {
 		$value = isset( $_POST[$varname] ) ? $_POST[$varname] : $value;
 		return '<div><label>'.wfMsg( $this->mName.'-'.$varname ).
-		       "<textarea name=\"{$varname}\" rows=\"5\" cols=\"{$size}\">$value</textarea>\n";
+		       "<textarea name=\"{$varname}\" rows=\"5\" cols=\"{$size}\">$value</textarea></label></div>\n";
 	}
 
 	/* 
