@@ -28,6 +28,7 @@
 	    <div tal:condition="catlinks" id="catlinks" tal:content="structure catlinks"></div>
 	    <h3 id="siteSub" i18n:translate="string:fromwikipedia">From Wikipedia, the free encyclopedia.</h3>
 	    <div id="contentSub" tal:content="structure subtitle"></div>
+	    <div id="siteNotice" tal:condition="sitenotice" tal:content="structure sitenotice"></div>
 	    <!-- <esi:include src="userxy/message"/> cached per user, purged on new message-->
 	    <div tal:condition="newtalk" class="usermessage" tal:content="structure newtalk"></div>
 	    <!-- the content area is cached with the remaining inexpensive skeleton, one version for all.

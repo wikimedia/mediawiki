@@ -851,6 +851,10 @@ fieldset.operaprefsection { margin-left: 15em }
 /* debugging tool.. */
 /*div{ border:1px solid #000000;}*/
 
+#siteNotice {
+    border: 1px solid red;
+}
+
 
 /* Mac IE 5.0 fix; floated content turns invisible */
 * > html #column-content {
