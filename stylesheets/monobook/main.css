@@ -265,11 +265,16 @@ pre {
     margin: -1.6em 0 0.6em 1em;
     color: #7d7d7d;
 }
-
 #siteSubtitle {
     display: none;    
 }
-
+#catlinks {
+    width: 40%;
+    text-align: right;
+    float: right;
+    position: relative;
+    margin-top: -1.5em;
+}
 
 #content {
     padding: 0 0 1em 0em;
@@ -331,6 +336,11 @@ pre {
     text-decoration: none;
 }
 
+/* emulate center */
+.center {
+    width: 100%;
+    text-align: center;
+}
 /*
 ** mediawiki-specific styles
 */
