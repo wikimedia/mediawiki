@@ -2,4 +2,4 @@
 -- 2003-05-23 Erik Moeller <moeller@scireview.de>
 
 ALTER TABLE cur
-   ADD KEY namespace_redirect_timestamp(cur_namespace,cur_is_redirect,cur_timestamp);
+   ADD INDEX namespace_redirect_timestamp(cur_namespace,cur_is_redirect,cur_timestamp);
