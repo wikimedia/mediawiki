@@ -66,7 +66,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"rememberpassword" => "Remember password across sessions",
 	"editwidth" => "Edit box has full width",
 	"editondblclick" => "Edit pages on double click (JavaScript)",
-	"watchdefault" => "Watch new and modified articles",
+	"watchdefault" => "Add pages you edit to your watchlist",
 	"minordefault" => "Mark all edits minor by default",
 	"previewontop" => "Show preview before edit box and not after it",
 	"nocache" => "Disable page caching"
@@ -365,6 +365,8 @@ See $1.",
 "newmessageslink" => "new messages",
 "editsection"=>"edit",
 "toc" => "Table of contents",
+"showtoc" => "show",
+"hidetoc" => "hide",
 
 # Main script and global functions
 #
@@ -611,7 +613,9 @@ $2 List redirects &nbsp; Search for $3 $9",
   wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
 to set user preferences.",
 "prefslogintext" => "You are logged in as \"$1\".
-Your internal ID number is $2.",
+Your internal ID number is $2.
+
+See [[Wikipedia:User preferences help]] for help deciphering the options.",
 "prefsreset"	=> "Preferences have been reset from storage.",
 "qbsettings"	=> "Quickbar settings", 
 "changepassword" => "Change password",
