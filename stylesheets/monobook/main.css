@@ -691,7 +691,7 @@ div.townBox dl dd {
 }
 input.searchButton {
     margin-top:1px;
-    padding: 0 0.4em; !important
+    padding: 0 0.4em!important;
     font-size: 95%;
     cursor: pointer;
     background-color: White;
@@ -966,6 +966,11 @@ head:first-child+body #portal-footer li {
     display: inline;
     overflow: auto;
     width: 100%;
+}
+* html #bodyContent table,
+* html #bodyContent div,
+* html #bodyContent span {
+    position: relative;
 }
 
 /* opera 6 fixes */
