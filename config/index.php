@@ -330,13 +330,16 @@ $conf->IP = dirname( dirname( __FILE__ ) );
 print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt></li>\n";
 
 # $conf->ScriptPath = "/~brion/inplace";
-$conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $_SERVER["REQUEST_URI"] );
+$conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $_SERVER["SCRIPT_NAME"] );
 print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</tt></li>\n";
 
 	$conf->posted = ($_SERVER["REQUEST_METHOD"] == "POST");
 
 	$conf->Sitename = ucfirst( importPost( "Sitename", "" ) );
-	$conf->EmergencyContact = importPost( "EmergencyContact", $_SERVER["SERVER_ADMIN"] );
+	$defaultEmail = empty( $_SERVER["SERVER_ADMIN"] )
+		? 'root@localhost'
+		: $_SERVER["SERVER_ADMIN"];
+	$conf->EmergencyContact = importPost( "EmergencyContact", $defaultEmail );
 	$conf->DBserver = importPost( "DBserver", "localhost" );
 	$conf->DBname = importPost( "DBname", "wikidb" );
 	$conf->DBuser = importPost( "DBuser", "wikiuser" );

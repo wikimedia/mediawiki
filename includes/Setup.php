@@ -115,7 +115,7 @@ if ( $wgCommandLineMode ) {
 		wfDebug( "$name: $value\n" );
 	}
 	wfDebug( "\n" );
-} else {
+} elseif( isset( $_SERVER['REQUEST_URI'] ) ) {
 	wfDebug( $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . "\n" );
 }
 
