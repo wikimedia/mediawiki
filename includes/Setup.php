@@ -36,8 +36,10 @@ if( $wgUseMemCached ) {
 	$wgMemc->set_debug( $wgMemCachedDebug );
 
 	# Test it to see if it's working
-	if ( $wgDebugLogFile && !$wgMemc->set( "test", "", 0 ) ) {
+	# This is necessary because otherwise wfMsg would be extremely inefficient
+	if ( !$wgMemc->set( "test", "", 0 ) ) {
 		wfDebug( "Memcached error: " . $wgMemc->error_string() . "\n" );
+		$wgUseMemCached = false;
 	}
 }
 
