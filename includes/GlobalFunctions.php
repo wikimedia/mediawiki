@@ -353,10 +353,11 @@ function wfReadOnly() {
 $wgReplacementKeys = array( '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9' );
 
 /**
- * Get a message from anywhere
+ * Get a message from anywhere, for the UI elements
  */
 function wfMsg( $key ) {
 	global $wgRequest;
+
 	if ( $wgRequest->getVal( 'debugmsg' ) ) {
 		if ( $key == 'linktrail' /* a special case where we want to return something specific */ )
 			return "/^()(.*)$/sD";
@@ -371,9 +372,9 @@ function wfMsg( $key ) {
 }
 
 /**
- * Get a message from anywhere, but don't call Language::convert
+ * Get a message from anywhere, for the content
  */
-function wfMsgNoConvert( $key ) {
+function wfMsgForContent( $key ) {
 	global $wgRequest;
 	if ( $wgRequest->getVal( 'debugmsg' ) ) {
 		if ( $key == 'linktrail' /* a special case where we want to return something specific */ )
@@ -385,11 +386,13 @@ function wfMsgNoConvert( $key ) {
 	if ( count( $args ) ) {
 		array_shift( $args );
 	}
-	return wfMsgReal( $key, $args, true, false );
+	return wfMsgReal( $key, $args, true, true );
+    
+
 }
 
 /**
- * Get a message from the language file
+ * Get a message from the language file, for the UI elements
  */
 function wfMsgNoDB( $key ) {
 	$args = func_get_args();
@@ -400,35 +403,42 @@ function wfMsgNoDB( $key ) {
 }
 
 /**
- * Get a message from the language file, but don't call Language::convert
+ * Get a message from the language file, for the content
  */
-function wfMsgNoDBNoConvert( $key ) {
+function wfMsgNoDBForContent( $key ) {
+
 	$args = func_get_args();
 	if ( count( $args ) ) {
 		array_shift( $args );
 	}
-	return wfMsgReal( $key, $args, false, false );
+	return wfMsgReal( $key, $args, false, true );
 }
 
 /**
  * Really get a message
  */
-function wfMsgReal( $key, $args, $useDB, $convert=true ) {
-	global $wgReplacementKeys, $wgMessageCache, $wgLang;
+function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
+	global $wgReplacementKeys;
+    if($forContent) {
+        global $wgContMessageCache, $wgContLang;
+        $cache = &$wgContMessageCache;
+        $lang = &$wgContLang;
+    }
+    else {
+        global $wgMessageCache, $wgLang;
+        $cache = &$wgMessageCache;
+        $lang = &$wgLang;
+    }
 
 	$fname = 'wfMsg';
 	wfProfileIn( $fname );
-	if ( is_object($wgMessageCache) ) {
-		$message = $wgMessageCache->get( $key, $useDB );
-	} elseif ( is_object($wgLang) ) {
-		$message = $wgLang->getMessage( $key );
+	if ( is_object($cache) ) {
+		$message = $cache->get( $key, $useDB );
+	} elseif (is_object($lang)) {
+		$message = $lang->getMessage( $key );
 	} else {
 		wfDebug( "No language object when getting $key\n" );
 		$message = "&lt;$key&gt;";
-	}
-
-	if ( $convert ) {
-		$message = $wgLang->convert($message);
 	}
 
 	# Replace arguments
