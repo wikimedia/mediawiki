@@ -8,24 +8,24 @@
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesIt = array(
-    NS_MEDIA            => "Media",
-    NS_SPECIAL          => "Speciale",
-    NS_MAIN             => "",
-    NS_TALK             => "Discussione",
-    NS_USER             => "Utente",
-    NS_USER_TALK        => "Discussioni_utente",
-    NS_WIKIPEDIA        => "Wikipedia",
-    NS_WIKIPEDIA_TALK   => "Discussioni_Wikipedia",
-    NS_IMAGE            => "Immagine",
-    NS_IMAGE_TALK       => "Discussioni_immagine",
-    NS_MEDIAWIKI        => "MediaWiki",
-    NS_MEDIAWIKI_TALK   => "Discussioni_MediaWiki",
-    NS_TEMPLATE         => "Template",
-    NS_TEMPLATE_TALK    => "Discussioni_template",
-    NS_HELP             => "Aiuto",
-    NS_HELP_TALK        => "Discussioni_aiuto",
-    NS_CATEGORY         => "Categoria",
-    NS_CATEGORY_TALK    => "Discussioni_categoria"
+    NS_MEDIA            => 'Media',
+    NS_SPECIAL          => 'Speciale',
+    NS_MAIN             => '',
+    NS_TALK             => 'Discussione',
+    NS_USER             => 'Utente',
+    NS_USER_TALK        => 'Discussioni_utente',
+    NS_PROJECT          => $wgMetaNamespace,
+    NS_PROJECT_TALK     => 'Discussioni_'.$wgMetaNamespace,
+    NS_IMAGE            => 'Immagine',
+    NS_IMAGE_TALK       => 'Discussioni_immagine',
+    NS_MEDIAWIKI        => 'MediaWiki',
+    NS_MEDIAWIKI_TALK   => 'Discussioni_MediaWiki',
+    NS_TEMPLATE         => 'Template',
+    NS_TEMPLATE_TALK    => 'Discussioni_template',
+    NS_HELP             => 'Aiuto',
+    NS_HELP_TALK        => 'Discussioni_aiuto',
+    NS_CATEGORY         => 'Categoria',
+    NS_CATEGORY_TALK    => 'Discussioni_categoria'
 
 ) + $wgNamespaceNamesEn;
 
