@@ -63,7 +63,7 @@ a {
     background: none;
 }
 a:visited { color: #5a3696; }
-a:active { color: Orange; }
+a:active { color: #faa700; }
 a:hover { text-decoration: underline; }
 a.stub { color: #772233; }
 a.new,
@@ -235,7 +235,10 @@ span.subpages { display: block; }
     font-size: 95%;
     padding: 0 0.9em 0 0.9em;
 }
-#siteNotice p { margin: none; padding: none; }
+#siteNotice p {
+    margin: 0;
+    padding: 0;
+}
 .error {
     color: red;
     font-size: larger;
@@ -441,7 +444,7 @@ div.townBox {
     float:right;
     background:White;
     margin-left:1em;
-    border: 1px solid Grey;
+    border: 1px solid gray;
     padding:0.3em;
     width: 200px;
     overflow: hidden;
@@ -968,7 +971,7 @@ span.updatedmarker {
 	background-color:#00FF00;
 }
 span.newpageletter {
-	font-weight:bold
+	font-weight:bold;
 	color:black;
 	background-color:yellow;
 }
