@@ -897,9 +897,14 @@ class Skin {
 
 		if ( ! $wgOut->isArticle() || $diff ) {
 			$s = wfMsg( "protectedpage" );
-		} else if ( $wgTitle->userCanEdit() ) {
+		} else {
 			$n = $wgTitle->getPrefixedText();
-			$t = wfMsg( "editthispage" );
+			if ( $wgTitle->userCanEdit() ) {
+				$t = wfMsg( "editthispage" );
+			} else {
+				#$t = wfMsg( "protectedpage" );
+				$t = wfMsg( "viewsource" );
+			}
 			$oid = $red = "";
 
 			if ( $redirect ) { $red = "&redirect={$redirect}"; }
@@ -907,8 +912,6 @@ class Skin {
 				$oid = "&oldid={$oldid}";
 			}
 			$s = $this->makeKnownLink( $n, $t, "action=edit{$oid}{$red}" );
-		} else {
-			$s = wfMsg( "protectedpage" );
 		}
 		return $s;
 	}
