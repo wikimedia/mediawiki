@@ -100,6 +100,8 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 987) Reverted bogus fix for bug 502
 * (bug 992) Fix enhanced recent changes in PHP5
 * (bug 1009) Fix Special:Makesysop when using table prefixes
+* (bug 1010) fix broken Commons image link on Classic & Cologne Blue
+
 
 === Caveats ===
 
