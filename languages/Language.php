@@ -1561,7 +1561,10 @@ amusement.",
 "spamprotectiontitle" => "Spam protection filter",
 "spamprotectiontext" => "The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site. 
 
-You might want to check the following regular expression for patterns that are currently blocked:"
+You might want to check the following regular expression for patterns that are currently blocked:",
+"subcategorycount" => "There are $1 subcategories to this category.",
+"categoryarticlecount" => "There are $1 articles in this category.",
+"usenewcategorypage" => "1\n\nSet first character to \"0\" to disable the new category page layout."
 
 
 );

@@ -333,8 +333,25 @@ class Parser
 		return $rnd;
 	}
 
+	# categoryMagic
+	# generate a list of subcategories and pages for a category
+	# depending on wfMsg("usenewcategorypage") it either calls the new
+	# or the old code. The new code will not work properly for some
+	# languages due to sorting issues, so they might want to turn it
+	# off.
+	function categoryMagic()
+	{
+		$msg = wfMsg("usenewcategorypage");
+		if ( "0" == @$msg[0] )
+		{
+			return $this->oldCategoryMagic();
+		} else {
+			return $this->newCategoryMagic();
+		}
+	}
+
 	# This method generates the list of subcategories and pages for a category
-	function categoryMagic ()
+	function oldCategoryMagic ()
 	{
 		global $wgLang , $wgUser ;
 		if ( !$this->mOptions->getUseCategoryMagic() ) return ; # Doesn't use categories at all
@@ -385,6 +402,181 @@ class Parser
 			$h =  wfMsg( "category_header", $ti );
 			$r .= "<h2>{$h}</h2>\n" ;
 			$r .= implode ( ", " , $articles ) ;
+		}
+
+
+		return $r ;
+	}
+
+
+
+	function newCategoryMagic ()
+	{
+		global $wgLang , $wgUser ;
+		if ( !$this->mOptions->getUseCategoryMagic() ) return ; # Doesn't use categories at all
+
+		$cns = Namespace::getCategory() ;
+		if ( $this->mTitle->getNamespace() != $cns ) return "" ; # This ain't a category page
+
+		$r = "<br style=\"clear:both;\"/>\n";
+
+
+		$sk =& $wgUser->getSkin() ;
+
+		$articles = array() ;
+		$articles_start_char = array();
+		$children = array() ;
+		$children_start_char = array();
+		$data = array () ;
+		$id = $this->mTitle->getArticleID() ;
+
+		# FIXME: add limits
+		$t = wfStrencode( $this->mTitle->getDBKey() );
+		$sql = "SELECT DISTINCT cur_title,cur_namespace,cl_sortkey FROM 
+cur,categorylinks WHERE cl_to='$t' AND cl_from=cur_id ORDER BY 
+cl_sortkey" ;
+		$res = wfQuery ( $sql, DB_READ ) ;
+		while ( $x = wfFetchObject ( $res ) )
+		{
+			$data[] = $x ;
+		}
+
+		# For all pages that link to this category
+		foreach ( $data as $x )
+		{
+			$t = $wgLang->getNsText ( $x->cur_namespace ) ;
+			if ( $t != "" ) $t .= ":" ;
+			$t .= $x->cur_title ;
+			
+			if ( $x->cur_namespace == $cns ) {
+				array_push ( $children, $sk->makeKnownLink ( $t, $x->cur_title) ) ; # Subcategory
+				array_push ( $children_start_char, $wgLang->firstChar( $x->cl_sortkey ) ) ;
+			} else {
+				array_push ( $articles , $sk->makeLink ( $t ) ) ; # Page in this category
+				array_push ( $articles_start_char, $wgLang->firstChar( $x->cl_sortkey ) ) ;
+			}
+		}
+		wfFreeResult ( $res ) ;
+
+		$ti = $this->mTitle->getText() ;
+
+		# Don't show subcategories section if there are none.
+		if ( count ( $children ) > 0 )
+		{
+			# Showing subcategories
+			$r .= "<h2>" . wfMsg( "subcategories" ) . "</h2>\n"
+				. wfMsg( "subcategorycount", count( $children ) );
+			if ( count ( $children ) > 20) {
+			
+				// divide list into three equal chunks
+				$chunk = (int) (count ( $children ) / 3);
+
+				// get and display header
+				$r .= "<table width=\"100%\"><tr valign=\"top\">";
+			
+				$startChunk = 0;
+				$endChunk = $chunk;
+			
+				// loop through the chunks
+				for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0; 
+					$chunkIndex < 3;
+					$chunkIndex++, $startChunk = $endChunk, $endChunk += $chunk + 1)
+				{
+				
+					$r .= "<td><ul>";
+					// output all subcategories to category
+					for ($index = $startChunk ;
+						$index < $endChunk && $index < count($children);
+						$index++ )
+					{
+						// check for change of starting letter or begging of chunk
+						if ( ($children_start_char[$index] != $children_start_char[$index - 1])
+							|| ($index == $startChunk) )
+						{
+							$r .= "</ul><h3>{$children_start_char[$index]}</h3>\n<ul>";
+						}
+				
+						$r .= "<li>{$children[$index]}</li>";
+					}
+					$r .= "</ul></td>";
+				
+							
+				}
+				$r .= "</tr></table>";
+			} else {
+				// for short lists of subcategories to category.
+	
+				$r .= "<h3>{$children_start_char[0]}</h3>\n";
+				$r .= "<ul><li>".$children[0]."</li>";
+				for ($index = 1; $index < count($children); $index++ )
+				{
+					if ($children_start_char[$index] != $children_start_char[$index - 1])
+					{
+						$r .= "</ul><h3>{$children_start_char[$index]}</h3>\n<ul>";
+					}
+				
+					$r .= "<li>{$children[$index]}</li>";
+				}
+				$r .= "</ul>";
+			}
+		} # END of if ( count($children) > 0 )
+
+		$r .= "<h2>" . wfMsg( "category_header", $ti ) . "</h2>\n" .
+			wfMsg( "categoryarticlecount", count( $articles ) );
+
+		# Showing articles in this category
+		if ( count ( $articles ) > 6) {
+			$ti = $this->mTitle->getText() ;
+			
+			// divide list into three equal chunks
+			$chunk = (int) (count ( $articles ) / 3);
+			
+			// get and display header
+			$r .= "<table width=\"100%\"><tr valign=\"top\">";
+			
+			// loop through the chunks
+			for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0; 
+				$chunkIndex < 3;
+				$chunkIndex++, $startChunk = $endChunk, $endChunk += $chunk + 1)
+			{
+				
+				$r .= "<td><ul>";
+				
+				// output all articles in category
+				for ($index = $startChunk ;
+					$index < $endChunk && $index < count($articles);
+					$index++ )
+				{
+					// check for change of starting letter or begging of chunk
+					if ( ($articles_start_char[$index] != $articles_start_char[$index - 1])
+						|| ($index == $startChunk) )
+					{
+						$r .= "</ul><h3>{$articles_start_char[$index]}</h3>\n<ul>";
+					}
+				
+					$r .= "<li>{$articles[$index]}</li>";
+				}
+				$r .= "</ul></td>";
+				
+	
+			}
+			$r .= "</tr></table>";
+		} else {
+			// for short lists of articles in categories.
+			$ti = $this->mTitle->getText() ;
+			
+			$r .= "<h3>".$articles_start_char[0]."</h3>\n";
+			$r .= "<ul><li>".$articles[0]."</li>";
+			for ($index = 1; $index < count($articles); $index++ )
+			{
+				if ($articles_start_char[$index] != $articles_start_char[$index - 1])
+				{
+					$r .= "</ul><h3>{$articles_start_char[$index]}</h3>\n<ul>";
+				}
+				
+				$r .= "<li>{$articles[$index]}</li>";
+			}
+			$r .= "</ul>";
 		}
 
 
