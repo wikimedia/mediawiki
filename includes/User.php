@@ -849,7 +849,6 @@ class User {
 	 * Determine whether the user is a newbie. Newbies are either
 	 * anonymous IPs, or the 1% most recently created accounts.
 	 * Bots and sysops are excluded.
-	 * @document how are defined newbies.
 	 * @return bool True if it is a newbie.
 	 */
 	function isNewbie() {
