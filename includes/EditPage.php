@@ -521,7 +521,7 @@ class EditPage {
 		global $wgRightsText;
 		$copywarn = "<div id=\"editpage-copywarn\">\n" .
 			wfMsg( $wgRightsText ? 'copyrightwarning' : 'copyrightwarning2',
-				'[[' . wfMsg( 'copyrightpage' ) . ']]',
+				'[[' . wfMsgForContent( 'copyrightpage' ) . ']]',
 				$wgRightsText ) . "\n</div>";
 
 		if( $wgUser->getOption('showtoolbar') and !$isCssJsSubpage ) {
