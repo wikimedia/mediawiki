@@ -510,7 +510,7 @@ class User {
 	}
 
 	/**
-	 * Wheter user is a bot
+	 * Whether the user is a bot
 	 */
 	function isBot() {
 		$this->loadFromDatabase();
@@ -579,7 +579,7 @@ class User {
 	
 	/**
 	 * Check watched status of an article
-	 * @return bool Wheter article is watched
+	 * @return bool True if article is watched
 	 */
 	function isWatched( $title ) {
 		$wl = WatchedItem::fromUserTitle( $this, $title );
@@ -846,7 +846,9 @@ class User {
 	}
 
 	/**
-	 * Wheter the user is newbie
+	 * Determine whether the user is a newbie. Newbies are either
+	 * anonymous IPs, or the 1% most recently created accounts.
+	 * Bots and sysops are excluded.
 	 * @document how are defined newbies.
 	 * @return bool True if it is a newbie.
 	 */
