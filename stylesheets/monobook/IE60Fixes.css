@@ -63,6 +63,7 @@ textarea {
     overflow: hidden;
 }
 div.editsection,
+#catlinks,
 div.tright,
 div.tleft {
     position: relative;

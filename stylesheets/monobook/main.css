@@ -262,18 +262,19 @@ pre {
 #documentSubtitle {
     font-size: 84%;
     line-height: 1.2em;
-    margin: -1.6em 0 0.6em 1em;
+    margin: 0 0 1.4em 1em;
     color: #7d7d7d;
+    width: auto;
 }
 #siteSubtitle {
     display: none;    
 }
 #catlinks {
-    width: 40%;
+    margin: 0;
+    padding: 0;
+    width: 34%;
     text-align: right;
     float: right;
-    position: relative;
-    top: -1.5em;
 }
 
 #content {
@@ -287,12 +288,14 @@ pre {
 
 /* Some space under the headers in the content area */
 #bodyContent h1,
-.documentFirstHeading,
 #bodyContent h2,
 #bodyContent h3,
 #bodyContent h4,
 #bodyContent h5 {
     margin-bottom:0.8em;
+}
+.documentFirstHeading {
+    margin-bottom:0.1em;
 }
 
 
