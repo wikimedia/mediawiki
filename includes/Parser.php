@@ -86,6 +86,7 @@ class Parser
 	#
 	function parse( $text, &$title, $options, $linestart = true, $clearState = true )
 	{
+		global $wgUseTidy;
 		$fname = "Parser::parse";
 		wfProfileIn( $fname );
 
@@ -102,20 +103,29 @@ class Parser
 		$text = $this->internalParse( $text, $linestart );
 		$text = $this->unstrip( $text, $this->mStripState );
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
-		$fixtags = array(
-			"/<hr *>/i" => '<hr/>',
-			"/<br *>/i" => '<br/>',
-			"/<center *>/i"=>'<div class="center">',
-			"/<\\/center *>/i" => '</div>',
-			# Clean up spare ampersands; note that we probably ought to be
-			# more careful about named entities.
-			'/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/' => '&amp;'
-		);
-		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
-
+		if(!$wgUseTidy) {
+			$fixtags = array(
+				"/<hr *>/i" => '<hr/>',
+				"/<br *>/i" => '<br/>',
+				"/<center *>/i"=>'<div class="center">',
+				"/<\\/center *>/i" => '</div>',
+				# Clean up spare ampersands; note that we probably ought to be
+				# more careful about named entities.
+				'/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/' => '&amp;'
+			);
+			$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
+		} else {
+			$fixtags = array(
+				"/<center *>/i"=>'<div class="center">',
+				"/<\\/center *>/i" => '</div>'
+			);
+			$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
+		}
 		# only once and last
 		$text = $this->doBlockLevels( $text, $linestart );
-
+		if($wgUseTidy) {
+			$text = $this->tidy($text);
+		}
 		$this->mOutput->setText( $text );
 		wfProfileOut( $fname );
 		return $this->mOutput;
@@ -390,6 +400,29 @@ class Parser
 		}
 
 		return trim ( $t ) ;
+	}
+
+	/* interface with html tidy, used if $wgUseTidy = true */
+	function tidy ( $text ) {
+		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
+		$cleansource = '';
+		$descriptorspec = array(
+			0 => array("pipe", "r"),
+			1 => array("pipe", "w"),
+			2 => array("file", "/dev/null", "a")
+		);
+		$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts", $descriptorspec, $pipes);
+		if (is_resource($process)) {
+			fwrite($pipes[0], $text);
+			fclose($pipes[0]);
+			while (!feof($pipes[1])) {
+				$cleansource .= fgets($pipes[1], 1024);
+			}
+			fclose($pipes[1]);
+			$return_value = proc_close($process);
+		}
+		return preg_replace("/(^.*<body[^>]*>|<\\/body[^>]*>.*$)/s", '', $cleansource);
+
 	}
 
 	function doTableStuff ( $t )
