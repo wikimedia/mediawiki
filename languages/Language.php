@@ -2169,20 +2169,35 @@ class Language {
 
 	function getPreferredVariant() {
 		global $wgUser;
-		
+
+		$lang ='';		
+
 		// if user logged in, get in from user's preference
-		if( $wgUser->getID() != 0 )
-			return $wgUser->getOption( 'variant' );
-		
+		if( $wgUser->getID() != 0 ) {
+			$lang = $wgUser->getOption( 'variant' );
+		}
+		if($lang != '')
+			return $lang;
+
 		// if we have multiple variants for this langauge, 
-		// pick the first one as default
+		// pick the first one that's not utf8 (it could be
+		// utf8 if the language does not have a language file)
 		$v = $this->getVariants();
-		if( !empty( $v ) )
-			return $v{0};
-		
-		// otherwise there should really be just one variant, 
+		if( !empty( $v ) ) {
+			foreach ($v as $v2) {
+				if($v2 != 'utf8') {
+					$lang = $v2;
+					break;
+				}
+			}
+		}
+		if($lang != '')
+			return $lang;
+
 		// get it from the class name
 		$lang = strtolower( substr( get_class( $this ), 8 ) );
+		if($lang == 'utf8')
+			$lang = 'en';
 		return $lang;
 	}
 
