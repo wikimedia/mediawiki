@@ -1,5 +1,8 @@
 <?php
-# Main wiki script; see design.doc
+/**
+ * Main wiki script; see docs/design.doc
+ * @package MediaWiki
+ */
 
 $wgRequestTime = microtime();
 
