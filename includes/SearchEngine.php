@@ -310,6 +310,7 @@ class SearchEngine {
 				$cond .= " (MATCH (##field##) AGAINST ('" .
 				  wfStrencode( $word ). "'))";
 				$last = $word;
+				$word = preg_quote( $word );
 				array_push( $this->mSearchterms, "\\b" . $word . "\\b" );
 			}
 		}
@@ -335,6 +336,8 @@ class SearchEngine {
 		$q = $this->mUsertext;
 		$qq = wfStrencode( $wgLang->stripForSearch( $q ) );
 		$this->mSearchterms = preg_split( '/\s+/', $q );
+		$this->mSearchterms = array_map( "preg_quote", $this->mSearchterms );
+		
 		$this->mTitlecond = " MATCH(si_title) AGAINST('$qq' IN BOOLEAN MODE)";
 		$this->mTextcond = " (MATCH(si_text) AGAINST('$qq' IN BOOLEAN MODE) AND cur_is_redirect=0)";
 	}
@@ -363,6 +366,7 @@ class SearchEngine {
 			if ( 0 == $contextlines ) { break; }
 			--$contextlines;
 			++$lineno;
+			wfDebug( "Search highlight pattern is '$pat1'\n" );
 			if ( ! preg_match( $pat1, $line, $m ) ) { continue; }
 
 			$pre = $m[1];
