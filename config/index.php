@@ -855,14 +855,14 @@ function writeLocalSettings( $conf ) {
 
 	$file = @fopen( "/dev/urandom", "r" );
 	if ( $file ) {
-		$proxyKey = bin2hex( fread( $file, 32 ) );
+		$secretKey = bin2hex( fread( $file, 32 ) );
 		fclose( $file );
 	} else {
-		$proxyKey = "";
+		$secretKey = "";
 		for ( $i=0; $i<8; $i++ ) {
-			$proxyKey .= dechex(mt_rand(0, 0x7fffffff));
+			$secretKey .= dechex(mt_rand(0, 0x7fffffff));
 		}
-		print "<li>Warning: \$wgProxyKey is insecure</li>\n";
+		print "<li>Warning: \$wgSecretKey key is insecure, generated with mt_rand(). Consider changing it manually.</li>\n";
 	}
 
 	# Add slashes to strings for double quoting
@@ -957,7 +957,7 @@ if ( \$wgCommandLineMode ) {
 \$wgLanguageCode = \"{$slconf['LanguageCode']}\";
 \$wgUseLatin1 = " . ($conf->Latin1 ? 'true' : 'false') . ";\n
 
-\$wgProxyKey = \"$proxyKey\";
+\$wgProxyKey = \"$secretKey\";
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':

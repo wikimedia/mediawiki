@@ -521,13 +521,16 @@ class User {
 
 	# Set the random token (used for persistent authentication)
 	function setToken( $token = false ) {
+		global $wgSecretKey, $wgProxyKey, $wgDBname;
 		if ( !$token ) {
-			$this->mToken = '';
-			# Take random data from PRNG
-			# This is reasonably secure if the PRNG has been seeded correctly
-			for ($i = 0; $i<USER_TOKEN_LENGTH / 4; $i++) {
-				$this->mToken .= sprintf( "%04X", mt_rand( 0, 65535 ) );
+			if ( $wgSecretKey ) {
+				$key = $wgSecretKey;
+			} elseif ( $wgProxyKey ) {
+				$key = $wgProxyKey;
+			} else {
+				$key = microtime();
 			}
+			$this->mToken = md5( $wgSecretKey . mt_rand( 0, 0x7fffffff ) . $wgDBname . $this->mId );
 		} else {
 			$this->mToken = $token;
 		}

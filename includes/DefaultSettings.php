@@ -454,8 +454,10 @@ $wgBlockOpenProxies = false; # Automatic open proxy test on edit
 $wgProxyPorts = array( 80, 81, 1080, 3128, 6588, 8000, 8080, 8888, 65506 );
 $wgProxyScriptPath = "$IP/proxy_check.php";
 $wgProxyMemcExpiry = 86400;
-$wgProxyKey = 'W1svekXc5u6lZllTZOwnzEk1nbs';
 $wgProxyList = array();  # big list of banned IP addresses, in the keys not the values
+
+# This should always be customised in LocalSettings.php
+$wgSecretKey = false;
 
 # Number of accounts each IP address may create, 0 to disable.
 # Requires memcached
