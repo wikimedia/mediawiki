@@ -62,7 +62,7 @@ class Article {
 	# not told otherwise, and so may cause a change to mTitle.
 
 	# Return the text of this revision
-	function getContent( $noredir = false )
+	function getContent( $noredir )
 	{
 		global $wgRequest;
 
@@ -111,7 +111,7 @@ class Article {
 						# split it up by section
 						$secs =
 						  preg_split(
-						  "/(^=+.*?=+|^<h[1-6].*?>.*?<\/h[1-6].*?>)/mi",
+						  "/(^=+.*?=+|^<h[1-6].*?" . ">.*?<\/h[1-6].*?" . ">)/mi",
 						  $striptext, -1,
 						  PREG_SPLIT_DELIM_CAPTURE);
 
@@ -483,7 +483,7 @@ class Article {
 			}
 		}
 
-		$text = $this->getContent(); # May change mTitle
+		$text = $this->getContent( false ); # May change mTitle by following a redirect
 		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 
 		# We're looking at an old revision
@@ -586,7 +586,7 @@ class Article {
 	/* Side effects: loads last edit */
 	function getTextOfLastEditWithSectionReplacedOrAdded($section, $text, $summary = ""){
 		$this->loadLastEdit();
-		$oldtext = $this->getContent();
+		$oldtext = $this->getContent( true );
 		if ($section != "") {
 			if($section=="new") {
 				if($summary) $subject="== {$summary} ==\n\n";
@@ -602,7 +602,7 @@ class Article {
 
 				# now that we can be sure that no pseudo-sections are in the source,
 				# split it up
-				$secs=preg_split("/(^=+.*?=+|^<h[1-6].*?>.*?<\/h[1-6].*?>)/mi",
+				$secs=preg_split("/(^=+.*?=+|^<h[1-6].*?" . ">.*?<\/h[1-6].*?" . ">)/mi",
 				  $oldtext,-1,PREG_SPLIT_DELIM_CAPTURE);
 				$secs[$section*2]=$text."\n\n"; // replace with edited
 				if($section) { $secs[$section*2-1]=""; } // erase old headline
@@ -1197,7 +1197,7 @@ class Article {
 			return;
 		}
 		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage( $this->getContent() );
+			$wgOut->readOnlyPage( $this->getContent( true ) );
 			return;
 		}
 		
