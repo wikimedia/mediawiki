@@ -26,9 +26,51 @@ require_once("LanguageUtf8.php");
 
 /* private */ $wgMonthNamesAr = array(
 	"يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو",
-	"يوليو", "أغسطس", "سبتمبر", "اكتوبر", "نوفمبر",
+	"يوليو", "اغسطس", "سبتمبر", "اكتوبر", "نوفمبر",
 	"ديسمبر"
 );
+
+
+/* private */ $wgValidSpecialPagesAr = array(
+	"Userlogin"		=> "دخول المستخدم",
+	"Userlogout"	=> "خروج المستخدم",
+	"Preferences"	=> "إعدادات",
+	"Watchlist"		=> "قائمة مراقبتي",
+	"Recentchanges" => "احدث التغييرات",
+	"Upload"		=> "تحميل ملف",
+	"Imagelist"		=> "قائمة الصور",
+	"Listusers"		=> "قائمة الأعضاء",
+	"Statistics"	=> "إحصائيات",
+	"Randompage"	=> "صفحة عشوائية",
+
+	"Lonelypages"	=> "صفحات يتيمة",
+	"Unusedimages"	=> "صور يتيمة",
+	"Popularpages"	=> "صفحات شعبية",
+	"Wantedpages"	=> "مواضيع مطلوبة",
+	"Shortpages"	=> "صفحات قصيرة",
+	"Longpages"		=> "صفحات طويلة",
+	"Newpages"		=> "صفحات جديدة",
+	"Ancientpages"	=> "صفحات قديمة",
+        "Deadendpages"  => "صفحات نهائية بدون وصلات",
+#	"Intl"                => "Interlanguage Links",
+	"Allpages"		=> "كل الصفحات مرتبة حسب العنوان",
+
+	"Ipblocklist"	=> "العضويات المجمدة",
+	"Maintenance"	=> "صفحة الصيانة",
+	"Specialpages"  => "صفحات خاصة",
+	"Contributions" => "مساهمات",
+	"Emailuser"		=> "",
+	"Whatlinkshere" => "ماذا يتصل هنا",
+	"Recentchangeslinked" => "",
+	"Movepage"		=> "",
+        "Blockme"       => "",
+	"Booksources"	=> "مصادر و مراجع خارجية",
+#	"Categories"	=> "Page categories",
+	"Export"		=> "تصدير صفحات XML",
+	"Version"		=> "حول الإصدار الحالي من MediaWiki",
+);
+
+
 
 /* private */ $wgAllMessagesAr = array(
 
@@ -1257,6 +1299,13 @@ class LanguageAr extends LanguageUtf8 {
 			return $number;
 		}
 	}
+
+	function getValidSpecialPages()
+	{
+	        global $wgValidSpecialPagesAr;
+	        return $wgValidSpecialPagesAr;
+	}
+
 }
 
 ?>
