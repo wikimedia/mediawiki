@@ -313,10 +313,10 @@ class EditPage {
 
 		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedText(),
 		  wfMsg( "cancel" ) );
-		$edithelpurl = $sk->makeUrl( wfMsg( "edithelppage" ));
-		$edithelp = '<a onclick="window.open('.
-		"'$edithelpurl', 'helpwindow', 'width=610,height=400,left=10,top=10,scrollbars=yes'".'); return false;" href="'.$edithelpurl.'">'.
-		wfMsg( "edithelp" ).'</a>';
+		$edithelpurl = $sk->makeUrl( wfMsg( 'edithelppage' ));
+		$edithelp = '<a target="helpwindow" href="'.$edithelpurl.'">'.
+			htmlspecialchars( wfMsg( 'edithelp' ) ).'</a> '.
+			htmlspecialchars( wfMsg( 'newwindow' ) );
 		$copywarn = wfMsg( "copyrightwarning", $sk->makeKnownLink(
 		  wfMsg( "copyrightpage" ) ) );
 
