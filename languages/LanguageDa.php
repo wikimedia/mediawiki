@@ -18,24 +18,24 @@ require_once( "LanguageUtf8.php" );
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesDa = array(
-	-2	=> "Media",
-	-1	=> "Speciel",
-	0	=> "",
-	1	=> "Diskussion",
-	2	=> "Bruger",
-	3	=> "Bruger_diskussion",
-	4	=> "Wikipedia",
-	5	=> "Wikipedia_diskussion",
-	6	=> "Billede",
-	7	=> "Billede_diskussion",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_diskussion",
-	10  => "Skabelon",
-	11  => "Skabelon_diskussion",
-	12  => "Hjælp",
-	13  => "Hjælp_diskussion",
-	14  => "Kategori",
-	15  => "Kategori_diskussion"
+	NS_MEDIA			=> 'Media',
+	NS_SPECIAL			=> 'Speciel',
+	NS_MAIN				=> '',
+	NS_TALK				=> 'Diskussion',
+	NS_USER				=> 'Bruger',
+	NS_USER_TALK		=> 'Bruger_diskussion',
+	NS_PROJECT			=> $wgMetaNamespace,
+	NS_PROJECT_TALK		=> $wgMetaNamespace.'_diskussion',
+	NS_IMAGE			=> 'Billede',
+	NS_IMAGE_TALK		=> 'Billede_diskussion',
+	NS_MEDIAWIKI		=> 'MediaWiki',
+	NS_MEDIAWIKI_TALK	=> 'MediaWiki_diskussion',
+	NS_TEMPLATE  		=> 'Skabelon',
+	NS_TEMPLATE_TALK	=> 'Skabelon_diskussion',
+	NS_HELP				=> 'Hjælp',
+	NS_HELP_TALK		=> 'Hjælp_diskussion',
+	NS_CATEGORY			=> 'Kategori',
+	NS_CATEGORY_TALK	=> 'Kategori_diskussion'
 
 ) + $wgNamespaceNamesEn;
 
