@@ -359,7 +359,7 @@ div.tleft {
     display: none;
 }
 img.tex { vertical-align: middle; }
-span.texhtml { font: 110% serif; }
+span.texhtml { font-family: serif; }
 /*
 ** classes for special content elements like town boxes
 ** intended to be referenced directly from the wiki src
