@@ -47,7 +47,7 @@ if ( !wfNumRows( $res ) ) {
 
 	while ( $row = wfFetchObject( $res ) ) {
 		if ( array_key_exists( $row->l_from, $ids ) ) {
-			$links[$row->l_from][$row->l_to] = 1;
+			$links[$ids[$row->l_from]][$row->l_to] = 1;
 		} else {
 			$numBad ++;
 		}
@@ -75,7 +75,7 @@ if ( !wfNumRows( $res ) ) {
 }
 
 # Swap in the new table
-wfQuery( "RENAME TABLE links TO links_backup, links_temp TO links" );
+wfQuery( "RENAME TABLE links TO links_backup, links_temp TO links", DB_WRITE );
 
 print "Conversion complete. The old table remains at links_backup, delete at your leisure.\n";
 
