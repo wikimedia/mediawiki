@@ -170,7 +170,8 @@ class SearchEngine {
 					wfMsg( "searchhelppage" ), wfMsg( "searchingwikipedia" ) ) );
 		$wgOut->addHTML( $header );
 
-		$this->parseQuery();
+		$dbr =& wfGetDB( DB_SLAVE );
+		$this->parseQuery( $dbr );
 		if ( "" == $this->mTitlecond || "" == $this->mTextcond ) {
 			$wgOut->addHTML( "<h2>" . wfMsg( "badquery" ) . "</h2>\n" .
 			  "<p>" . wfMsg( "badquerytext" ) . "</p>\n" );
@@ -180,7 +181,6 @@ class SearchEngine {
 
 		$searchnamespaces = $this->queryNamespaces();
 		$redircond = $this->searchRedirects();
-		$dbr =& wfGetDB( DB_SLAVE );
 		$searchindex = $dbr->tableName( 'searchindex' );
 		$cur = $dbr->tableName( 'cur' );
 		
