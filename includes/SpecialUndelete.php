@@ -134,7 +134,7 @@ class UndeleteForm {
 	</form>");
 
 		$log = $dbr->selectField( "cur", "cur_text", 
-			array( 'cur_namespace' => NS_WIKIPEDIA, 'cur_title' => wfMsg("dellogpage") ) );
+			array( 'cur_namespace' => NS_PROJECT, 'cur_title' => wfMsg("dellogpage") ) );
 		if(preg_match("/^(.*".
 			preg_quote( ($namespace ? ($wgLang->getNsText($namespace) . ":") : "")
 			. str_replace("_", " ", $title), "/" ).".*)$/m", $log, $m)) {

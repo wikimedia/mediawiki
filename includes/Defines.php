@@ -31,8 +31,8 @@ define('NS_CATEGORY_TALK', 15);
 
 # Fix the code and remove these...
 define('NS_WP', NS_PROJECT);
-define('NS_WIKIPEDIA', NS_PROJECT);
 define('NS_WP_TALK', NS_PROJECT_TALK);
+define('NS_WIKIPEDIA', NS_PROJECT);
 define('NS_WIKIPEDIA_TALK', NS_PROJECT_TALK);
 
 ?>

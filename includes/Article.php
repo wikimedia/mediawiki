@@ -1468,7 +1468,7 @@ class Article {
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 			$sk = $wgUser->getSkin();
-			$loglink = $sk->makeKnownLink( $wgLang->getNsText( NS_WIKIPEDIA ) .
+			$loglink = $sk->makeKnownLink( $wgLang->getNsText( NS_PROJECT ) .
 			  ':' . wfMsg( 'dellogpage' ), wfMsg( 'deletionlog' ) );
 
 			$text = wfMsg( 'deletedtext', $deleted, $loglink );

@@ -18,8 +18,8 @@ if( defined( 'MEDIAWIKI' ) ) {
 	NS_TALK	            => 'Talk',
 	NS_USER             => 'User',
 	NS_USER_TALK        => 'User_talk',
-	NS_WIKIPEDIA        => 'Project',
-	NS_WIKIPEDIA_TALK   => 'Project_talk',
+	NS_PROJECT          => 'Project',
+	NS_PROJECT_TALK     => 'Project_talk',
 	NS_IMAGE            => 'Image',
 	NS_IMAGE_TALK       => 'Image_talk',
 	NS_MEDIAWIKI        => 'MediaWiki',
@@ -37,7 +37,7 @@ class Namespace {
 	/* These functions are deprecated */
 	function getSpecial() { return NS_SPECIAL; }
 	function getUser() { return NS_USER; }
-	function getWikipedia() { return NS_WP; }
+	function getWikipedia() { return NS_PROJECT; }
 	function getImage() { return NS_IMAGE; }
 	function getMedia() { return NS_MEDIA; }
 	function getCategory() { return NS_CATEGORY; }
@@ -52,13 +52,10 @@ class Namespace {
 
 	function isTalk( $index )
 	{
-		if ( NS_TALK == $index || NS_USER_TALK == $index || NS_WP_TALK
-	== $index || NS_IMAGE_TALK == $index || NS_MEDIAWIKI_TALK == $index ||
-	NS_TEMPLATE_TALK == $index || NS_HELP_TALK == $index ||
-	NS_CATEGORY_TALK == $index ) {
-			return true;
-		}
-		return false;
+		return ( $index == NS_TALK           || $index == NS_USER_TALK     ||
+				 $index == NS_PROJECT_TALK   || $index == NS_IMAGE_TALK    ||
+				 $index == NS_MEDIAWIKI_TALK || $index == NS_TEMPLATE_TALK ||
+				 $index == NS_HELP_TALK      || $index == NS_CATEGORY_TALK );
 	}
 
 	# Get the talk namespace corresponding to the given index

@@ -526,8 +526,8 @@ if( defined( "MEDIAWIKI" ) ) {
 					return 'nstab-media';
 				case NS_SPECIAL:
 					return 'nstab-special';
-				case NS_WP:
-				case NS_WP_TALK:
+				case NS_PROJECT:
+				case NS_PROJECT_TALK:
 					return 'nstab-wp';
 				case NS_IMAGE:
 				case NS_IMAGE_TALK:
