@@ -229,6 +229,9 @@ $wgLocalInterwiki   = $wgSitename;
 # $wgSquidServers = array('127.0.0.1');
 
 # Browser-related setting
-$wgBrowserBlackList = array();
+#
+# Array of regexps for UNICODE compliant browser.
+# Firefox supports UNICODE, but that's only an example.
+$wgBrowserBlackList = array("/Firefox/");
 
 ?>
