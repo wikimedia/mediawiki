@@ -1074,7 +1074,7 @@ class Article {
 			  $this->mTitle->getDBkey() );
 			array_push( $wgDeferredUpdateList, $u );
 
-			if ( $this->getNamespace == NS_MEDIAWIKI ) {
+			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$messageCache = $wgMemc->get( "$wgDBname:messages" );
 				if (!$messageCache) {
 					$messageCache = wfLoadAllMessages();
