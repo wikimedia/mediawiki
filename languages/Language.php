@@ -660,6 +660,7 @@ the text into a text file and save it for later.',
 users with sysop privileges can edit it. Be sure you are following the
 <a href='$wgScript/{{ns:4}}:Protected_page_guidelines'>protected page
 guidelines</a>.",
+'templatesused'	=> 'Templates used on this page:',
 
 # History pages
 #
@@ -1013,7 +1014,7 @@ this list should not be construed as an endorsement.",
 'alphaindexline' => "$1 to $2",
 'version'		=> 'Version',
 
-# Specific to All pages
+# Special:Allpages
 'nextpage'          => 'Next page ($1)',
 'articlenamespace'  => '(articles)',
 'allpagesformtext'  => 'Display pages starting at: $1 Choose namespace: $2 $3',
