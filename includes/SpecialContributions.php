@@ -198,8 +198,8 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $t
 		} else {
 			$difftext .= wfMsg('newarticle');
 		}
-		$sysop = $wgUser->isSysop();
-		if($sysop ) {
+		
+		if( $wgUser->isAllowed('rollback') ) {
 			$extraRollback = $wgRequest->getBool( 'bot' ) ? '&bot=1' : '';
 			# $target = $wgRequest->getText( 'target' );
 			$topmarktext .= ' ['. $sk->makeKnownLink( $page,

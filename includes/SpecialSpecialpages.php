@@ -9,7 +9,7 @@
  *
  */
 function wfSpecialSpecialpages() {
-	global $wgLang, $wgOut, $wgUser;
+	global $wgLang, $wgOut, $wgUser, $wgAvailableRights;
 	
 	$wgOut->setRobotpolicy( 'index,nofollow' );
 	$sk = $wgUser->getSkin();	
@@ -17,6 +17,24 @@ function wfSpecialSpecialpages() {
 	# Get listable pages
 	$pages = SpecialPage::getPages();
 
+	/** pages available to all */
+	wfSpecialSpecialpages_gen($pages[''],'spheading',$sk);
+
+	/** show pages splitted by user rights */
+	foreach($wgAvailableRights as $right) {
+		/** only show pages a user can access */
+		if( $wgUser->isAllowed($right) ) {
+			/** some rights might not have any special page associated */
+			if(isset($pages[$right])) {
+			wfSpecialSpecialpages_gen($pages[$right], $right.'pheading', $sk);
+			}
+		}
+	
+	}
+
+/** FIXME : spheading, sysopspheading, developerspheading need to be removed
+from language files [av] */
+/**
 	# all users special pages
 	wfSpecialSpecialpages_gen($pages[''],'spheading',$sk);
 
@@ -30,6 +48,7 @@ function wfSpecialSpecialpages() {
 		wfSpecialSpecialpages_gen($pages['developer'],'developerspheading',$sk);
 
 	}
+*/
 }
 
 /**

@@ -109,14 +109,14 @@ class DifferenceEngine {
 			'target=' . urlencode($this->mOldUser) );
 		$newContribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), $contribs,
 			'target=' . urlencode($this->mNewUser) );
-		if ( !$this->mNewid && $wgUser->isSysop() ) {
+		if ( !$this->mNewid && $wgUser->isAllowed('rollback') ) {
 			$rollback = '&nbsp;&nbsp;&nbsp;<strong>[' . $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'rollbacklink' ),
 				'action=rollback&from=' . urlencode($this->mNewUser) ) . ']</strong>';
 		} else {
 			$rollback = '';
 		}
 		if ( $wgUseRCPatrol && $this->mRcidMarkPatrolled != 0 && $wgUser->getID() != 0 &&
-		     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
+		     ( $wgUser->isAllowed('rollback') || !$wgOnlySysopsCanPatrol ) )
 		{
 			$patrol = ' [' . $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'markaspatrolleddiff' ),
 				"action=markpatrolled&rcid={$this->mRcidMarkPatrolled}" ) . ']';

@@ -1774,4 +1774,3 @@ more tables
 math
 character entities
 and much more
-

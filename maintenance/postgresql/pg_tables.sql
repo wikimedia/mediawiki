@@ -281,7 +281,7 @@ CREATE TABLE "group" (
 
 -- Relation table between user and groups
 CREATE TABLE user_groups (
-	user_id integer NOT NULL,
-	group_id integer NOT NULL,
+	ug_user integer NOT NULL,
+	ug_group integer NOT NULL,
 	PRIMARY KEY  (user_id,group_id)
 );

@@ -20,7 +20,7 @@ function wfSpecialAsksql() {
 		$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
 		return;
 	}
-	if( !$wgUser->isSysop() ) {
+	if( !$wgUser->isAllowed('asksql') ) {
 		$wgOut->sysopRequired();
 		return;
 	}

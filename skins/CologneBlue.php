@@ -185,11 +185,13 @@ class SkinCologneBlue extends Skin {
 			if ( 0 != $wgUser->getID() ) {
 				$s .= $sep . $this->moveThisPage();
 			}
-			if ( $wgUser->isSysop() ) {
+			if ( $wgUser->isAllowed('delete') ) {
 				$dtp = $this->deleteThisPage();
 				if ( "" != $dtp ) {
 					$s .= $sep . $dtp;
 				}
+			}
+			if ( $wgUser->isAllowed('protect') ) {
 				$ptp = $this->protectThisPage();
 				if ( "" != $ptp ) {
 					$s .= $sep . $ptp;

@@ -162,7 +162,13 @@ class LogPage {
 			return "$action $titleLink";
 		}
 	}
-	
+
+	/**
+	 * Add a log entry
+	 * @param string $action one of 'block', 'protect', 'rights', 'delete', 'upload'
+	 * @param &$target
+	 * @param string $comment Description associated
+	 */
 	function addEntry( $action, &$target, $comment ) {
 		global $wgLang, $wgUser;
 		

@@ -885,7 +885,7 @@ class Article {
 		# If we have been passed an &rcid= parameter, we want to give the user a
 		# chance to mark this new article as patrolled.
 		if ( $wgUseRCPatrol && !is_null ( $rcid ) && $rcid != 0 && $wgUser->getID() != 0 &&
-		     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
+		     ( $wgUser->isAllowed('patrol') || !$wgOnlySysopsCanPatrol ) )
 		{
 			$wgOut->addHTML( wfMsg ( 'markaspatrolledlink',
 				$sk->makeKnownLinkObj ( $this->mTitle, wfMsg ( 'markaspatrolledtext' ),
@@ -1284,7 +1284,7 @@ class Article {
 			$wgOut->loginToUse();
 			return;
 		}
-		if ( $wgOnlySysopsCanPatrol && !$wgUser->isSysop() )
+		if ( $wgOnlySysopsCanPatrol && !$wgUser->isAllowed('patrol') )
 		{
 			$wgOut->sysopRequired();
 			return;
@@ -1355,7 +1355,7 @@ class Article {
 	function protect( $limit = 'sysop' ) {
 		global $wgUser, $wgOut, $wgRequest;
 
-		if ( ! $wgUser->isSysop() ) {
+		if ( ! $wgUser->isAllowed('protect') ) {
 			$wgOut->sysopRequired();
 			return;
 		}
@@ -1482,7 +1482,7 @@ class Article {
 		# This code desperately needs to be totally rewritten
 
 		# Check permissions
-		if ( ( ! $wgUser->isSysop() ) ) {
+		if ( ( ! $wgUser->isAllowed('delete') ) ) {
 			$wgOut->sysopRequired();
 			return;
 		}
@@ -1790,7 +1790,7 @@ class Article {
 		global $wgUser, $wgOut, $wgRequest;
 		$fname = 'Article::rollback';
 
-		if ( ! $wgUser->isSysop() ) {
+		if ( ! $wgUser->isAllowed('rollback') ) {
 			$wgOut->sysopRequired();
 			return;
 		}

@@ -9,6 +9,7 @@
  *
  */
 require_once( 'WatchedItem.php' );
+require_once( 'Group.php' );
 
 # Number of characters in user_token field
 define( 'USER_TOKEN_LENGTH', 32 );
@@ -326,16 +327,21 @@ class User {
 	 * Load a user from the database
 	 */
 	function loadFromDatabase() {
-		global $wgCommandLineMode;
+		global $wgCommandLineMode, $wgAnonGroupId, $wgLoggedInGroupId;
 		$fname = "User::loadFromDatabase";
 		if ( $this->mDataLoaded || $wgCommandLineMode ) {
 			return;
 		}
-		
+
 		# Paranoia
 		$this->mId = IntVal( $this->mId );
 
+		/** Anonymous user */
 		if(!$this->mId) {
+			/** Get rights */
+			$anong = Group::newFromId($wgAnonGroupId);
+			$anong->loadFromDatabase();
+			$this->mRights = explode(',', $anong->getRights());
 			$this->mDataLoaded = true;
 			return;
 		} # the following stuff is for non-anonymous users only
@@ -354,16 +360,28 @@ class User {
 			$this->decodeOptions( $s->user_options );
 			$this->mTouched = wfTimestamp(TS_MW,$s->user_touched);
 			$this->mToken = $s->user_token;
-			
-			$this->mRights = explode( ",", strtolower( 
-				$dbr->selectField( 'user_rights', 'ur_rights', array( 'ur_user' => $this->mId ) )
-			) );
-			
+
 			// Get groups id
 			$res = $dbr->select( 'user_groups', array( 'ug_group' ), array( 'ug_user' => $this->mId ) );
+
 			while($group = $dbr->fetchRow($res)) {
 				$this->mGroups[] = $group[0];
 			}
+
+			// add the default group for logged in user
+			$this->mGroups[] = $wgLoggedInGroupId;
+
+			$this->mRights = array();
+			// now we merge groups rights to get this user rights
+			foreach($this->mGroups as $aGroupId) {
+				$g = Group::newFromId($aGroupId);
+				$g->loadFromDatabase();
+				$this->mRights = array_merge($this->mRights, explode(',', $g->getRights()));
+			}
+			
+			// array merge duplicate rights which are part of several groups
+			$this->mRights = array_unique($this->mRights);
+			
 			$dbr->freeResult($res);
 		}
 
@@ -557,29 +575,46 @@ class User {
 		$this->invalidateCache();
 	}
 
+	/**
+	 * Check if a user is sysop
+	 * Die with backtrace. Use User:isAllowed() instead.
+	 * @deprecated
+	 */
 	function isSysop() {
+	/**
 		$this->loadFromDatabase();
 		if ( 0 == $this->mId ) { return false; }
 
 		return in_array( 'sysop', $this->mRights );
+	*/
+	wfDebugDieBacktrace("User::isSysop() is deprecated. Use User::isAllowed() instead");
 	}
 
+	/** @deprecated */
 	function isDeveloper() {
+	/**
 		$this->loadFromDatabase();
 		if ( 0 == $this->mId ) { return false; }
 
 		return in_array( 'developer', $this->mRights );
+	*/
+	wfDebugDieBacktrace("User::isDeveloper() is deprecated. Use User::isAllowed() instead");
 	}
 
+	/** @deprecated */
 	function isBureaucrat() {
+	/**
 		$this->loadFromDatabase();
 		if ( 0 == $this->mId ) { return false; }
 
 		return in_array( 'bureaucrat', $this->mRights );
+	*/
+	wfDebugDieBacktrace("User::isBureaucrat() is deprecated. Use User::isAllowed() instead");
 	}
 
 	/**
 	 * Whether the user is a bot
+	 * @todo need to be migrated to the new user level management sytem
 	 */
 	function isBot() {
 		$this->loadFromDatabase();
@@ -588,6 +623,16 @@ class User {
 		# if ( 0 == $this->mId ) { return false; }
 
 		return in_array( 'bot', $this->mRights );
+	}
+
+	/**
+	 * Check if user is allowed to access a feature / make an action
+	 * @param string $action Action to be checked (see $wgAvailableRights in Defines.php for possible actions).
+	 * @return boolean True: action is allowed, False: action should not be allowed
+	 */
+	function isAllowed($action='') {
+		$this->loadFromDatabase();
+		return in_array( $action , $this->mRights );
 	}
 
 	/**
@@ -775,6 +820,7 @@ class User {
 		
 		// delete old groups
 		$dbw->delete( 'user_groups', array( 'ug_user' => $this->mId), $fname);
+		
 		// save new ones
 		foreach ($this->mGroups as $group) {
 			$dbw->replace( 'user_groups',
@@ -827,8 +873,8 @@ class User {
 		$this->mId = $dbw->insertId();
 		$dbw->insert( 'user_rights',
 			array(
-				'ur_user' => $this->mId,
-				'ur_rights' => implode( ',', $this->mRights )
+				'ur_user_id' => $this->mId,
+				'ur_user_rights' => implode( ',', $this->mRights )
 			), $fname
 		);
 		

@@ -208,7 +208,6 @@ class SkinPHPTal extends Skin {
 		$tpl->set( "watch", $wgTitle->userIsWatching() ? "unwatch" : "watch" );
 		$tpl->set( "protect", count($wgTitle->getRestrictions()) ? "unprotect" : "protect" );
 		$tpl->set( "helppage", wfMsg('helppage'));
-		$tpl->set( "sysop", $wgUser->isSysop() );
 		*/
 		$tpl->set( 'searchaction', $this->escapeSearchLink() );
 		$tpl->setRef( 'stylepath', $wgStylePath );
@@ -474,9 +473,10 @@ class SkinPHPTal extends Skin {
 					'href' => $this->makeUrl($this->thispage, 'action=rollback'),
 					'ttip' => wfMsg('tooltip-rollback'),
 					'akey' => wfMsg('accesskey-rollback'));
-				}*/
+				}
+				*/
 
-				if($wgUser->isSysop()){
+				if($wgUser->isAllowed('protect')){
 					if(!$wgTitle->isProtected()){
 						$content_actions['protect'] = array(
 							'class' => ($action == 'protect') ? 'selected' : false,
@@ -491,6 +491,8 @@ class SkinPHPTal extends Skin {
 							'href' => $this->makeUrl($this->thispage, 'action=unprotect')
 						);
 					}
+				}
+				if($wgUser->isAllowed('delete')){
 					$content_actions['delete'] = array(
 						'class' => ($action == 'delete') ? 'selected' : false,
 						'text' => wfMsg('delete'),
@@ -507,7 +509,7 @@ class SkinPHPTal extends Skin {
 				}
 			} else {
 				//article doesn't exist or is deleted
-				if($wgUser->isSysop()){
+				if($wgUser->isAllowed('delete')){
 					if( $n = $wgTitle->isDeleted() ) {
 						$content_actions['undelete'] = array(
 							'class' => false,
