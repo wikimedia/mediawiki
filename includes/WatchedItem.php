@@ -11,8 +11,12 @@
 class WatchedItem {
 	var $mTitle, $mUser;
 
-	# Create a WatchedItem object with the given user and title
-	/* static */ function &fromUserTitle( &$user, &$title ) {
+	/**
+	 * Create a WatchedItem object with the given user and title
+	 * @todo document
+	 * @private
+	 */
+	function &fromUserTitle( &$user, &$title ) {
 		$wl = new WatchedItem;
 		$wl->mUser =& $user;
 		$wl->mTitle =& $title;
@@ -38,8 +42,7 @@ class WatchedItem {
 	/**
 	 * Is mTitle being watched by mUser?
 	 */
-	function isWatched()
-	{
+	function isWatched() {
 		# Pages and their talk pages are considered equivalent for watching;
 		# remember that talk namespaces are numbered as page namespace+1.
 		global $wgMemc;
@@ -57,8 +60,11 @@ class WatchedItem {
 		return $iswatched;
 	}
 
+	/**
+	 * @todo document
+	 */
 	function addWatch() {
-		$fname = "WatchedItem::addWatch";
+		$fname = 'WatchedItem::addWatch';
 		# REPLACE instead of INSERT because occasionally someone
 		# accidentally reloads a watch-add operation.
 		$dbw =& wfGetDB( DB_MASTER );
@@ -98,9 +104,10 @@ class WatchedItem {
 			), $fname
 		);
 
-		# the following code compensates the new behaviour, introduced by the enotif patch,
-		# that every single watched page needs now to be listed in watchlist
-		# namespace:page and namespace_talk:page had separate entries: clear them
+		# the following code compensates the new behaviour, introduced by the
+		# enotif patch, that every single watched page needs now to be listed
+		# in watchlist namespace:page and namespace_talk:page had separate
+		# entries: clear them
 		$dbw->delete( 'watchlist',
 			array(
 				'wl_user' => $this->id,
