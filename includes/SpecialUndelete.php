@@ -48,14 +48,14 @@ function wfSpecialUndelete( $par )
     
     if(!preg_match("/[0-9]{14}/",$timestamp)) return 0;
     
-    $sql = "SELECT ar_text FROM archive WHERE ar_namespace={$namespace} AND ar_title=\"{$title}\" AND ar_timestamp={$timestamp}";
+    $sql = "SELECT ar_text,ar_flags FROM archive WHERE ar_namespace={$namespace} AND ar_title=\"{$title}\" AND ar_timestamp={$timestamp}";
     $ret = wfQuery( $sql, DB_READ );
     $row = wfFetchObject( $ret );
     
     $wgOut->setPagetitle( wfMsg( "undeletepage" ) );
     $wgOut->addWikiText( "(" . wfMsg( "undeleterevision", $wgLang->date($timestamp, true) )
-      . ")\n<hr>\n" . $row->ar_text );
-    
+      . ")\n<hr>\n" . Article::getRevisionText( $row, "ar_" ) );
+
 	return 0;
 }
 
@@ -127,7 +127,7 @@ function wfSpecialUndelete( $par )
 
 		if( $row->count == 0) {
 			# Have to create new article...
-			$sql = "SELECT ar_text,ar_timestamp FROM archive WHERE ar_namespace={$namespace} AND ar_title='{$t}' ORDER BY ar_timestamp DESC LIMIT 1";
+			$sql = "SELECT ar_text,ar_timestamp,ar_flags FROM archive WHERE ar_namespace={$namespace} AND ar_title='{$t}' ORDER BY ar_timestamp DESC LIMIT 1";
 			$res = wfQuery( $sql, DB_READ, $fname );
 			$s = wfFetchObject( $res );
 			$max = $s->ar_timestamp;
