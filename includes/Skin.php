@@ -154,9 +154,9 @@ class Skin {
 	}
 
 	function getHeadScripts() {
-		global $wgStylePath, $wgUser, $wgLang;
+		global $wgStylePath, $wgUser, $wgLang, $wgAllowUserJs;
 		$r = "<script type=\"text/javascript\" src=\"{$wgStylePath}/wikibits.js\"></script>\n";
-		if( $wgUser->getID() != 0 ) { # logged in	
+		if( $wgAllowUserJs && $wgUser->getID() != 0 ) { # logged in
 			$userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
 			$userjs = htmlspecialchars($this->makeUrl($userpage.'/'.$this->getSkinName().'.js', 'action=raw&ctype=text/javascript'));
 			$r .= '<script type="text/javascript" src="'.$userjs."\"></script>\n";
@@ -166,12 +166,12 @@ class Skin {
 
 	# get the user/site-specific stylesheet, SkinPHPTal called from RawPage.php (settings are cached that way)
 	function getUserStylesheet() {
-		global $wgOut, $wgStylePath, $wgLang, $wgUser, $wgRequest, $wgTitle;
+		global $wgOut, $wgStylePath, $wgLang, $wgUser, $wgRequest, $wgTitle, $wgAllowUserCss;
 		$sheet = $this->getStylesheet();
 		$action = $wgRequest->getText('action');
 		$s = "@import \"$wgStylePath/$sheet\";\n";
 		if($wgLang->isRTL()) $s .= "@import \"$wgStylePath/common_rtl.css\";\n";
-		if( $wgUser->getID() != 0 ) { # logged in	
+		if( $wgAllowUserCss && $wgUser->getID() != 0 ) { # logged in
 			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
 				$s .= $wgRequest->getText('wpTextbox1');
 			} else {

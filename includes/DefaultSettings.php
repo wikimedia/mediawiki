@@ -420,4 +420,10 @@ $wgAllowRealName = true;
 # Extensions
 $wgExtensionFunctions = array();
 
+# Allow user Javascript page?
+$wgAllowUserJs = true;
+
+# Allow user Cascading Style Sheets (CSS)?
+$wgAllowUserCss = true;
+
 ?>
