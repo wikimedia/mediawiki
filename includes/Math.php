@@ -30,7 +30,7 @@ class MathRenderer {
 	
 		if( $this->mode == MW_MATH_SOURCE ) {
 			# No need to render or parse anything more!
-			return ('$ '.htmlspecialchars( $tex ).' $');
+			return ('$ '.htmlspecialchars( $this->tex ).' $');
 		}
 		
 		if( !$this->_recall() ) {
