@@ -415,8 +415,16 @@ class OutputPage {
 		list( $usec, $sec ) = explode( " ", $wgRequestTime );
 		$start = (float)$sec + (float)$usec;
 		$elapsed = $now - $start;
-		$uname = posix_uname();
-		$hostname = $uname['nodename'];
+		
+		# Use real server name if available, so we know which machine
+		# in a server farm generated the current page.
+		$uname = @posix_uname();
+		if( is_array( $uname ) && isset( $uname['nodename'] ) ) {
+			$hostname = $uname['nodename'];
+		} else {
+			# This may be a virtual server.
+			$hostname = $_SERVER['SERVER_NAME'];
+		}
 		$com = sprintf( "<!-- Served by %s in %01.2f secs. -->",
 		  $hostname, $elapsed );
 		return $com;
