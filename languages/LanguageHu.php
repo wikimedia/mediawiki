@@ -1,14 +1,41 @@
 <?php
+#
+# Hungarian localisation for MediaWiki
+#
 
 require_once("LanguageUtf8.php");
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
 
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
+if($wgMetaNamespace === FALSE)
+        $wgMetaNamespace = str_replace( " ", "_", $wgSitename );
+
+# suffixed project name (Wikipédia -> Wikipédiá) -- ról, ba, k
+$wgSitenameROL = $wgSitename . "ról";
+$wgSitenameBA = $wgSitename . "ba";
+$wgSitenameK = $wgSitename . "k";
+if( 0 == strcasecmp( "Wikipédia", $wgSitename ) ) { 
+	$wgSitenameROL = "Wikipédiáról";
+	$wgSitenameBA  = "Wikipédiába";
+	$wgSitenameK   = "Wikipédiák";	
+
+} elseif( 0 == strcasecmp( "Wikidézet", $wgSitename ) ) { 
+	$wgSitenameROL = "Wikidézetről";
+	$wgSitenameBA  = "Wikidézetbe";
+	$wgSitenameK   = "Wikidézetek";	
+
+} elseif( 0 == strcasecmp( "Wikiszótár", $wgSitename ) ) { 
+	$wgSitenameROL = "Wikiszótárról";
+	$wgSitenameBA  = "Wikiszótárba";
+	$wgSitenameK   = "Wikiszótárak";	
+
+} elseif( 0 == strcasecmp( "Wikikönyvek", $wgSitename ) ) { 
+	$wgSitenameROL = "Wikikönyvekről";
+	$wgSitenameBA  = "Wikikönyvekbe";
+	$wgSitenameK   = "Wikikönyvek";	
+}
+
 /* private */ $wgNamespaceNamesHu = array(
 	NS_MEDIA			=> "Média",
 	NS_SPECIAL			=> "Speciális",
@@ -16,8 +43,8 @@ require_once("LanguageUtf8.php");
 	NS_TALK				=> "Vita",
 	NS_USER				=> "User",
 	NS_USER_TALK		=> "User_vita",
-	NS_PROJECT			=> "Wikipédia",
-	NS_PROJECT_TALK		=> "Wikipédia_vita",
+	NS_PROJECT			=> $wgMetaNamespace,
+	NS_PROJECT_TALK		=> $wgMetaNamespace . "_vita",
 	NS_IMAGE			=> "Kép",
 	NS_IMAGE_TALK		=> "Kép_vita",
 	NS_MEDIAWIKI		=> "MediaWiki",
@@ -58,7 +85,7 @@ require_once("LanguageUtf8.php");
 );
 
 
-/* Change bookstore list through the wiki page [[hu:Wikipédia:Külső könyvinformációk]] */
+/* Change bookstore list through the wiki page [[hu:{$wgMetaNamespace}:Külső könyvinformációk]] */
 
 /* Language names should be the native names. Inherit common array from Language.php */
 
@@ -99,7 +126,7 @@ require_once("LanguageUtf8.php");
 	"Recentchangeslinked" => "Kapcsolódó változások",
 	"Movepage"	=> "Lap mozgatása",
 	"Booksources"	=> "Külső könyvinformációk",
-#	"Categories" => "Lapkategóriák",
+	"Categories" => "Lapkategóriák",
 	"Export" => "XML export",
 	"Version" => "Version",
 );
@@ -187,17 +214,17 @@ require_once("LanguageUtf8.php");
 "mainpage"		=> "Kezdőlap",
 "mainpagetext"	=> "Wiki szoftver sikeresen telepítve.",
 "about"			=> "Névjegy",
-"aboutsite"      => "A Wikipédiáról",
-"aboutpage"		=> "Wikipédia:Névjegy",
+"aboutsite"      => "A $wgSitenameROL",
+"aboutpage"		=> "{$wgMetaNamespace}:Névjegy",
 "help"			=> "Segítség",
-"helppage"		=> "Wikipédia:Segítség",
-"wikititlesuffix" => "Wikipédia",
+"helppage"		=> "{$wgMetaNamespace}:Segítség",
+"wikititlesuffix" => $wgSitename,
 "bugreports"	=> "Hibajelentés",
-"bugreportspage" => "Wikipédia:Hibajelentések",
+"bugreportspage" => "{$wgMetaNamespace}:Hibajelentések",
 "faq"			=> "GyIK",
-"faqpage"		=> "Wikipédia:GyIK",
+"faqpage"		=> "{$wgMetaNamespace}:GyIK",
 "edithelp"		=> "Segítség a szerkesztéshez",
-"edithelppage"	=> "Wikipédia:Hogyan_szerkessz_egy_lapot",
+"edithelppage"	=> "{$wgMetaNamespace}:Hogyan_szerkessz_egy_lapot",
 "cancel"		=> "Vissza",
 "qbfind"		=> "Keresés",
 "qbbrowse"		=> "Böngészés",
@@ -237,7 +264,7 @@ require_once("LanguageUtf8.php");
 "gnunote" 		=> "Minden szöveg a <a class=internal href='/wiki/GNU_FDL'>GNU Szabad Dokumentációk Liszensze</a> feltételei mellett érhető el.",
 "printsubtitle" => "(From http://www.wikipedia.org/)",
 "protectedpage" => "Védett lap",
-"administrators" => "Wikipédia:Adminisztrátorok",
+"administrators" => "{$wgMetaNamespace}:Adminisztrátorok",
 "sysoptitle"	=> "Sysop hozzáférés szükséges",
 "sysoptext"		=> "Az általad kért tevékenységet csak \"sysopok\" végezhetik el.
 Lásd $1.",
@@ -248,7 +275,7 @@ See $1.",
 "nbytes"		=> "$1 byte",
 "go"			=> "Menj",
 "ok"			=> "OK",
-"sitetitle"		=> "Wikipédia",
+"sitetitle"		=> $wgSitename,
 "sitesubtitle"	=> "A szabad enciklopédia",
 "retrievedfrom" => "Retrieved from \"$1\"",
 "newmessages" 	=> "$1 van.",
@@ -263,10 +290,10 @@ See $1.",
 # Main script and global functions
 #
 "nosuchaction"	=> "Nincs ilyen tevékenység",
-"nosuchactiontext" => "Az URL által megadott tevékenységet a Wikipédia
+"nosuchactiontext" => "Az URL által megadott tevékenységet a $wgSitename
 software nem ismeri fel",
 "nosuchspecialpage" => "Nincs ilyen speciális lap",
-"nospecialpagetext" => "Olyan speciális lapot kértél amit a Wikipédia
+"nospecialpagetext" => "Olyan speciális lapot kértél amit a $wgSitename
 software nem ismer fel.",
 
 # General errors
@@ -289,7 +316,7 @@ A MySQL hiba \"$3: $4\".\n",
 "readonly"		=> "Adatbázis lezárva",
 "enterlockreason" => "Add meg a lezárás indoklását valamint egy becslést,
 hogy mikor kerül a lezárás feloldásra",
-"readonlytext"	=> "A Wikipédia adatbázis jelenleg le van zárva az új
+"readonlytext"	=> "A $wgSitename adatbázis jelenleg le van zárva az új
 szócikkek és módosítások elől, valószínűleg adatbázis karbantartás miatt, 
 aminek a végén minden visszaáll a régi kerékvágásba.
 Az adminisztrátor aki a lezárást elvégezte az alábbi magyarázatot adta:
@@ -324,12 +351,12 @@ wikit használni.",
 #
 "logouttitle"	=> "Kilépés",
 "logouttext"	=> "Kiléptél.
-Folytathatod a Wikipédia használatát név nélkül, vagy beléphetsz
+Folytathatod a $wgSitename használatát név nélkül, vagy beléphetsz
 újra vagy másik felhasználóként.\n",
 
 "welcomecreation" => "<h2>Üdvözöllek, $1!</h2><p>A felhasználói környezeted
 létrehoztam.
-Ne felejtsd el átnézni a személyes Wikipédia beállításaidat.",
+Ne felejtsd el átnézni a személyes $wgSitename beállításaidat.",
 
 "loginpagetitle" => "Belépés",
 "yourname"		=> "A felhasználói neved",
@@ -358,12 +385,12 @@ elfelejted a jelszavadat.",
 "loginerror"	=> "Belépési hiba.",
 "noname"		=> "Nem adtál meg érvényes felhasználói nevet.",
 "loginsuccesstitle" => "Sikeres belépés",
-"loginsuccess"	=> "Beléptél a Wikipédiába \"$1\"-ként.",
+"loginsuccess"	=> "Beléptél a $wgSitenameBA \"$1\"-ként.",
 "nosuchuser"	=> "Nincs olyan felhasználó hogy \"$1\".
 Ellenőrizd a gépelést, vagy készíts új nevet a fent látható űrlappal.",
 "wrongpassword"	=> "A megadott jelszó helytelen.",
 "mailmypassword" => "Küldd el nekem a jelszavamat emailben",
-"passwordremindertitle" => "Wikipédia jelszó emlékeztető",
+"passwordremindertitle" => "$wgSitename jelszó emlékeztető",
 "passwordremindertext" => "Valaki (vélhetően te, a $1 IP számról)
 azt kérte, hogy küldjük el a jelszavadat.
 A jelszavad a \"$2\" felhasználóhoz most \"$3\".
@@ -385,7 +412,7 @@ Lépj be a levélben található adatokkal.",
 "blockedtext"	=> "A felhasználói neved vagy IP számod $1 letiltotta.
 Az indoklás:<br>''$2''
 <p>Felveheted a kapcsolatot $1 adminnal vagy bármely más
-[[Wikipédia:adminisztrátorok|adminisztrátorral]] hogy megvitasd a letiltást.",
+[[{$wgMetaNamespace}:adminisztrátorok|adminisztrátorral]] hogy megvitasd a letiltást.",
 "whitelistedittitle" => "A szerkesztéshez be kell lépned",
 "whitelistedittext" => "A szócikkek szerkesztéséhez [[Special:Userlogin|be kell lépned]].",
 "whitelistreadtitle" => "Az olvasáshoz be kell lépned",
@@ -398,7 +425,7 @@ Az indoklás:<br>''$2''
 "newarticletext" =>
 "Egy olyan lapra jutottál ami még nem létezik.
 A lap létrehozásához kezdd el írni a szövegét lenti keretbe
-(a [[Wikipédia:Segítség|segítség]] lapon lelsz további 
+(a [[{$wgMetaNamespace}:Segítség|segítség]] lapon lelsz további 
 információkat).
 Ha tévedésből jöttél ide, csak nyomd meg a böngésző '''Vissza/Back'''
 gombját.",
@@ -429,7 +456,7 @@ Ha elmented, akkor az ezen változat után végzett összes
 módosítás elvész.</strong>\n",
 "yourdiff"		=> "Eltérések",
 "copyrightwarning" => "Kérlek vedd figyelembe hogy minden
-Wikipédiába küldött anyag a GNU Szabad Dokumentum Licenc alatti
+$wgSitenameBA küldött anyag a GNU Szabad Dokumentum Licenc alatti
 publikálásnak számít (lásd $1 a részletekért).
 Ha nem akarod, hogy az írásod könyörtelenül módosíthassák vagy
 tetszés szerint terjesszék, akkor ne küldd be ide.<br>
@@ -446,7 +473,7 @@ ezért a módosításaidat most nem lehetséges elmenteni. Érdemes a szöveget
 kimásolni és elmenteni egy szövegszerkesztőben a későbbi mentéshez.",
 "protectedpagewarning" => "FIGYELEM: A lap lezárásra került és ilyenkor
 csak a Sysop jogú adminisztrátorok tudják szerkeszteni. Ellenőrizd, hogy
-betartod a <a href='/wiki/Wikipédia:Zárt_lapok_irányelve'>zárt lapok 
+betartod a <a href='/wiki/{$wgMetaNamespace}:Zárt_lapok_irányelve'>zárt lapok 
 irányelvét</a>.",
 
 # History pages
@@ -478,7 +505,7 @@ A = Apró változtatás",
 # Search results
 #
 "searchresults" => "A keresés eredménye",
-"searchresulttext" => "További információkkal a keresésről [[Project:Keresés|Keresés a Wikipédiában]] szolgál.",
+"searchresulttext" => "További információkkal a keresésről [[Project:Keresés|Keresés a $wgSitenameban]] szolgál.",
 "searchquery"	=> "A \"$1\" kereséshez",
 "badquery"		=> "Hibás formájú keresés",
 "badquerytext"	=> "Nem tudjuk a kérésedet végrehajtani.
@@ -583,14 +610,14 @@ idő a GMT-től eltér (Magyarországon nyáron 2, télen 1).",
 
 "changes" 		=> "változtatás",
 "recentchanges" => "Friss változtatások",
-"recentchangestext" => "Ezen a lapon követheted a Wikipédián történt legutóbbi 
-változtatásokat. [[Wikipédia:Üdvözlünk_látogató|Üdvözlünk, látogató]]!
-Légy szíves ismerkedj meg az alábbi lapokkal: [[Wikipédia:GyIK|Wikipédia GyIK]],
-[[Wikipédia:Irányelvek]] (különösen az [[Wikipédia:Elnevezési szokások|elnevezési szokásokat]],
-a [[wikipédia:Semleges nézőpont|semleges nézőpontot]]), és a
-[[wikipédia:Legelterjedtebb baklövések|legelterjedtebb baklövéseket]].
+"recentchangestext" => "Ezen a lapon követheted a $wgSitenamen történt legutóbbi 
+változtatásokat. [[{$wgMetaNamespace}:Üdvözlünk_látogató|Üdvözlünk, látogató]]!
+Légy szíves ismerkedj meg az alábbi lapokkal: [[{$wgMetaNamespace}:GyIK|$wgSitename GyIK]],
+[[{$wgMetaNamespace}:Irányelvek]] (különösen az [[{$wgMetaNamespace}:Elnevezési szokások|elnevezési szokásokat]],
+a [[{$wgMetaNamespace}:Semleges nézőpont|semleges nézőpontot]]), és a
+[[{$wgMetaNamespace}:Legelterjedtebb baklövések|legelterjedtebb baklövéseket]].
 Ha azt szeretnéd hogy a Wikipedia sikeres legyen akkor nagyon fontos, hogy 
-soha ne add hozzá mások [[wikipédia:Copyright|jogvédett és nem felhasználható]]
+soha ne add hozzá mások [[{$wgMetaNamespace}:Copyright|jogvédett és nem felhasználható]]
 anyagait.
 A jogi problémák komolyan árthatnak a projektnek ezért kérünk arra, hogy ne tegyél
 ilyet.
@@ -657,7 +684,7 @@ elkerüld a félreértéseket. A képet a cikkbe a
 formában használhatod és '''<nowiki>[[media:file.ogg]]</nowiki>''' formában 
 a hanganyagokat.
 
-Kérünk hogy vedd figyelembe azt, hogy mint minden Wikipédia 
+Kérünk hogy vedd figyelembe azt, hogy mint minden $wgSitename 
 lap esetében bárki szerkesztheti vagy törölheti a felküldésedet
 ha úgy ítéli meg, hogy az hasznos a lexikonnak, vagy letiltásra
 kerülhetsz a felküldési lehetőségről ha visszaélsz a rendszerrel.",
@@ -674,8 +701,8 @@ Minden időpont a server idejében (UTC) van megadva.
 "filesource" 	=> "Forrás",
 "affirmation"	=> "Igazolom hogy ezen file szerzői jogainak tulajdonosa
 elfogadja azt, hogy az anyag a $1 licenc alapján publikálásra kerül.",
-"copyrightpage" => "Wikipédia:Copyright",
-"copyrightpagename" => "Wikipédia copyright",
+"copyrightpage" => "{$wgMetaNamespace}:Copyright",
+"copyrightpagename" => "$wgSitename copyright",
 "uploadedfiles"	=> "Felküldött file-ok",
 "noaffirmation" => "Igazolnod kell azt, hogy a felküldött file-ok 
 nem sértenek szerzői jogokat!",
@@ -726,12 +753,12 @@ más információ amit meg tudsz adni.",
 "sitestats"		=> "Server statisztika",
 "userstats"		=> "User statisztika",
 "sitestatstext" => "Az adatbázisban összesen <b>$1</b> lap található.
-Ebben benne vannak a \"vita\" lapok, a Wikipédiáról szóló lapok, a
+Ebben benne vannak a \"vita\" lapok, a $wgSitenameROL szóló lapok, a
 minimális \"csonk\" lapok, átirányítások és hasonlók amik vélhetően nem
 számítanak igazi szócikkeknek. 
 Ezeket nem számítva <b>$2</b> lapunk van ami valószínűleg igazi szócikknek
 számít.<p>
-A magyar Wikipédia indítása óta (2003 júl 8) <b>$3</b> alkalommal néztek meg
+A magyar $wgSitename indítása óta (2003 júl 8) <b>$3</b> alkalommal néztek meg
 lapokat a rendszeren, és <b>$4</b> alkalommal szerkesztett valaki lapot.
 Ezek alapján átlagosan egy lapot <b>$5</b> alkalommal szerkesztettek, és
 szerkesztésenként <b>$6</b> alkalommal nézték meg.",
@@ -744,7 +771,7 @@ Ebből <b>$2</b> darab adminisztrátor (lásd $3).",
 "maintnancepagetext" => "Ezen a lapon a mindennapi karbantartáshoz hasznos dologkat lelsz. Mivel ezek az adatbázist a szokásosnál jobban terhelik kérlek ne nyomj minden kijavított cikk után reloadot ;-)",
 "maintenancebacklink" => "Vissza a karbantartás lapra",
 "disambiguations" => "Egyértelműsítő lapok",
-"disambiguationspage" => "Wikipédia:Egyértelműsítő lapok",
+"disambiguationspage" => "{$wgMetaNamespace}:Egyértelműsítő lapok",
 "disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
 "doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
@@ -754,7 +781,7 @@ Ebből <b>$2</b> darab adminisztrátor (lásd $3).",
 "selflinkstext"	=> "The following pages contain a link to themselves, which they should not.",
 "mispeelings"           => "Pages with misspellings",
 "mispeelingstext"	=> "The following pages contain a common misspelling, which are listed on $1. The correct spelling might be given (like this).",
-"mispeelingspage"	=> "Wikipédia:Gyakori elírások listája",
+"mispeelingspage"	=> "{$wgMetaNamespace}:Gyakori elírások listája",
 "missinglanguagelinks"  => "Missing Language Links",
 "missinglanguagelinksbutton"    => "Find missing language links for",
 "missinglanguagelinkstext"      => "These articles do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.",
@@ -789,14 +816,14 @@ Ebből <b>$2</b> darab adminisztrátor (lásd $3).",
 "intl"			=> "Nyelvek közötti linkek",
 "movethispage"	=> "Mozgasd ezt a lapot",
 "unusedimagestext" => "<p>Vedd figyelembe azt hogy más
-lapok - mint például a nemzetközi Wikipédiák - közvetlenül
+lapok - mint például a nemzetközi $wgSitenameK - közvetlenül
 hivatkozhatnak egy file URL-jére, ezért szerepelhet itt annak
 ellenére hogy aktívan használják.",
 "booksources"	=> "Könyvforrások",
 "booksourcetext" => "Lentebb néhány hivatkozás található olyan lapokra,
 ahol új vagy használt könyveket árusítanak, vagy további információkkal
 szolgálhatnak az általad vizsgált könyvről.
-A Wikipédia semmilyen módon nem áll kapcsolatba ezen cégekkel és
+A $wgSitename semmilyen módon nem áll kapcsolatba ezen cégekkel és
 ezt a listát semmiképpen ne tekintsd bármiféle ajánlásnak.",
 # FIXME: huh?
 "alphaindexline" => "$1 -> $2",
