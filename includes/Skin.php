@@ -2,7 +2,6 @@
 
 require_once( "Feed.php" );
 require_once( "Image.php" );
-require_once( "CardSet.php" );
 
 # See skin.doc
 
@@ -2698,12 +2697,6 @@ class Skin {
 		return $toolbar;
 	}
 
-	// Return a new cardset.
-	// By overloading this function, Skins can alter the appearance of e.g. the preferences
-	function newCardSet( $title = "")
-	{
-		return new CardSet( $title );
-	}
 }
 
 require_once( "SkinStandard.php" );
