@@ -389,16 +389,14 @@ class Database {
 
 	function startTimer( $timeout )
 	{
-		$thisdir = dirname( getenv( "SCRIPT_FILENAME" ) );
+		global $IP;
+
 		$tid = mysql_thread_id( $this->mConn );
-		$this->mTimerProc = popen( "php $thisdir/killthread.php $timeout $tid &", "w" );
+		exec( "php $IP/killthread.php $timeout $tid &>/dev/null &" );
 	}
 
 	function stopTimer()
 	{
-		if ( $this->mTimerProc ) {
-			pclose( $this->mTimerProc );
-		}
 	}
 
 }
