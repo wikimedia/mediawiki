@@ -7,7 +7,8 @@ function wfSpecialUpload()
 	$fields = array( "wpUploadFile", "wpUploadDescription" );
 	wfCleanFormFields( $fields );
 
-	if ( 0 == $wgUser->getID() ) {
+	if ( ( 0 == $wgUser->getID() )
+		or $wgUser->isBlocked() ) {
 		$wgOut->errorpage( "uploadnologin", "uploadnologintext" );
 		return;
 	}
