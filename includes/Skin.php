@@ -215,12 +215,14 @@ class Skin {
 		} elseif( $left ) {
 			$s .= $this->getQuickbarCompensator( $rows );
 		}
-		$s .= "<td {$borderhack} align=left valign=top>";
+		$l = $wgLang->isRTL() ? "right" : "left";
+		$s .= "<td {$borderhack} align='$l' valign='top'>";
 
 		$s .= $this->topLinks() ;
 		$s .= "<p class='subtitle'>" . $this->pageTitleLinks();
 
-		$s .= "</td>\n<td {$borderhack} valign=top align=right nowrap>";
+		$r = $wgLang->isRTL() ? "left" : "right";
+		$s .= "</td>\n<td {$borderhack} valign='top' align='$r' nowrap>";
 		$s .= $this->nameAndLogin();
 		$s .= "\n<br>" . $this->searchForm() . "</td>";
 
@@ -286,7 +288,8 @@ class Skin {
 		if ( $shove && $left ) { # Left
 			$s .= $this->getQuickbarCompensator();
 		}
-		$s .= "<td class='bottom' align=left valign=top>";
+		$l = $wgLang->isRTL() ? "right" : "left";
+		$s .= "<td class='bottom' align='$l' valign='top'>";
 
 		$s .= $this->bottomLinks();
 		$s .= "\n<br>" . $this->mainPageLink()
