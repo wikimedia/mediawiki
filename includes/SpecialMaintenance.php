@@ -1,58 +1,73 @@
 <?php
 
-function sns()
-{
+# shortcut to get the current language "special" namespace name
+function sns() {
 	global $wgLang ;
 	$ns = $wgLang->getNamespaces() ;
-	return $ns[-1] ;
+	return $ns[NS_SPECIAL] ;
 }
 
-function wfSpecialMaintenance( $par=NULL )
-{
+
+# Entry point
+function wfSpecialMaintenance( $par=NULL ) {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest, $wgLanguageCode;
 	global $wgMiserMode;
 
+	# This pages is expensive ressource wise
 	if ( $wgMiserMode ) {
-		$wgOut->addWikiText( wfMsg( "perfdisabled" ) );
+		$wgOut->addWikiText( wfMsg( 'perfdisabled' ) );
 		return;
 	}
 	
+	# Get parameters from the URL
 	$submitmll = $wgRequest->getVal( 'submitmll' );
 
-	if( $par )
+	if( $par ) {
 		$subfunction = $par;
-	else
+	} else {
 		$subfunction = $wgRequest->getText( 'subfunction' );
+	}
 
-	if ( $subfunction == "disambiguations" ) return wfSpecialDisambiguations() ;
-	if ( $subfunction == "doubleredirects" ) return wfSpecialDoubleRedirects() ;
-	if ( $subfunction == "brokenredirects" ) return wfSpecialBrokenRedirects() ;
-	if ( $subfunction == "selflinks" ) return wfSpecialSelfLinks() ;
-	if ( $subfunction == "mispeelings" ) return wfSpecialMispeelings() ;
-	if ( $subfunction == "missinglanguagelinks" ) return wfSpecialMissingLanguageLinks() ;
+	# Call the subfunction requested by the user
+	switch( $subfunction ) {
+	case 'disambiguations': return wfSpecialDisambiguations() ; break;
+	case 'doubleredirects': return wfSpecialDoubleRedirects() ; break;
+	case 'brokenredirects': return wfSpecialBrokenRedirects() ; break;
+	case 'selflinks':       return wfSpecialSelfLinks()       ; break;
+	case 'mispeelings':     return wfSpecialMispeelings()     ; break;
+	case 'missinglanguagelinks': return wfSpecialMissingLanguageLinks() ; break;
+	}
+	
 	if ( !is_null( $submitmll ) ) return wfSpecialMissingLanguageLinks() ;
 
 	$sk = $wgUser->getSkin();
 	$ns = $wgLang->getNamespaces() ;
-	$r = wfMsg("maintnancepagetext") ;
+
+	# Generate page output
+	
+	$r = wfMsg('maintnancepagetext') ;
+	
+	# Links to subfunctions
 	$r .= "<UL>\n" ;
 	#$r .= "<li>".getMPL("disambiguations")."</li>\n" ; # Doesn't work
-	$r .= "<li>".getMPL("doubleredirects")."</li>\n" ;
-	$r .= "<li>".getMPL("brokenredirects")."</li>\n" ;
+	$r .= '<li>'.getMPL("doubleredirects")."</li>\n" ;
+	$r .= '<li>'.getMPL("brokenredirects")."</li>\n" ;
 	#$r .= "<li>".getMPL("selflinks")."</li>\n" ; # Doesn't work
-	$r .= "<li>".getMPL("mispeelings")."</li>\n" ;
+	$r .= '<li>'.getMPL("mispeelings")."</li>\n" ;
 
-	$r .= "<li>";
-	$l = getMPL("missinglanguagelinks");
-	$l = str_replace ( "</a>" , "" , $l ) ;
-	$l = str_replace ( "<a " , "<FORM method=post " , $l ) ;
-	$l = explode ( ">" , $l ) ;
-	$l = $l[0] ;
+	# Interface for the missing language links
+	$r .= '<li>';
+	  $l = getMPL('missinglanguagelinks');
+	  $l = str_replace ( '</a>' , '' , $l ) ;
+	  $l = str_replace ( '<a ' , '<FORM method="post" ' , $l ) ;
+	  $l = explode ( '>' , $l ) ;
+	  $l = $l[0] ;
 	$r .= $l.">\n" ;
-	$r .= "<input type=submit name='submitmll' value='" ;
-	$r .= htmlspecialchars(wfMsg("missinglanguagelinksbutton"), ENT_QUOTES);
-	$r .= "'>\n" ;
-	$r .= "<select name=thelang>\n" ;
+	$r .= '<input type="submit" name="submitmll" value="' ;
+	$r .= htmlspecialchars(wfMsg('missinglanguagelinksbutton'), ENT_QUOTES);
+	$r .= "\">\n" ;
+	$r .= "<select name=\"thelang\">\n" ;
+	
 	$a = $wgLang->getLanguageNames();
 	$ak = array_keys ( $a ) ;
 	foreach ( $ak AS $k ) {
@@ -66,33 +81,32 @@ function wfSpecialMaintenance( $par=NULL )
 	$wgOut->addHTML ( $r ) ;
 }
 
-function getMPL ( $x )
-{
+# Generate a maintenance page link
+function getMPL ( $x ) {
 	global $wgUser , $wgLang;
 	$sk = $wgUser->getSkin() ;
-	return $sk->makeKnownLink(sns().":Maintenance",wfMsg($x),"subfunction={$x}") ;
+	return $sk->makeKnownLink( sns().":Maintenance" , wfMsg($x), 'subfunction='.$x ) ;
 }
 
-function getMaintenancePageBacklink( $subfunction )
-{
+
+function getMaintenancePageBacklink( $subfunction ) {
 	global $wgUser , $wgLang;
 	$sk = $wgUser->getSkin() ;
 	$ns = $wgLang->getNamespaces() ;
 	$r = $sk->makeKnownLink (
-		$ns[-1].":Maintenance",
-		wfMsg("maintenancebacklink") ) ;
+		$ns[-1].':Maintenance',
+		wfMsg( 'maintenancebacklink' ) ) ;
 	$t = wfMsg ( $subfunction ) ;
 	
-	$s = "<table width=100% border=0><tr><td>";
-	$s .= "<h2>{$t}</h2></td><td align=right>";
+	$s = '<table width="100%" border="0"><tr><td>';
+	$s .= '<h2>'.$t.'</h2></td><td align="right">';
 	$s .= "{$r}</td></tr></table>\n" ;
 	return $s ;
 }
 
 # Broken function
 # Suggest deprecating this in favour of a Special:Whatlinkshere with prev/next links [TS]
-function wfSpecialDisambiguations()
-{
+function wfSpecialDisambiguations() {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
 	$fname = "wfSpecialDisambiguations";
 
@@ -138,15 +152,15 @@ function wfSpecialDisambiguations()
 		$s .= "<li>{$l1} {$l3} => {$l2}</li>\n" ;
 	}
 	$dbr->freeResult( $res );
-	$s .= "</ol>";
+	$s .= '</ol>';
 	$wgOut->addHTML( $s );
 	$wgOut->addHTML( "<p>{$sl}\n" );
 }
 
-function wfSpecialDoubleRedirects()
-{
+
+function wfSpecialDoubleRedirects() {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	$fname = "wfSpecialDoubleRedirects";
+	$fname = 'wfSpecialDoubleRedirects';
 
 	list( $limit, $offset ) = wfCheckLimits();
 	$dbr =& wfGetDB( DB_SLAVE );
@@ -161,38 +175,38 @@ function wfSpecialDoubleRedirects()
 
 	$res = $dbr->query( $sql, $fname );
 
-	$top = getMaintenancePageBacklink( "doubleredirects" );
-	$top .= "<p>".wfMsg("doubleredirectstext")."</p><br>\n";
+	$top = getMaintenancePageBacklink( 'doubleredirects' );
+	$top .= '<p>'.wfMsg("doubleredirectstext")."</p><br>\n";
 	$top .= wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
 
-	$sl = wfViewPrevNext( $offset, $limit, "REPLACETHIS" ) ;
-	$sl = str_replace ( "REPLACETHIS" , sns().":Maintenance&subfunction=doubleredirects" , $sl ) ;
+	$sl = wfViewPrevNext( $offset, $limit, 'REPLACETHIS' ) ;
+	$sl = str_replace ( 'REPLACETHIS' , sns().':Maintenance&subfunction=doubleredirects' , $sl ) ;
 	$wgOut->addHTML( "<br>{$sl}\n" );
 
 	$sk = $wgUser->getSkin();
-	$s = "<ol start=" . ( $offset + 1 ) . ">";
+	$s = '<ol start=' . ( $offset + 1 ) . '>';
 	while ( $obj = $dbr->fetchObject( $res ) ) {
 		$n = explode ( "\n" , $obj->rt ) ;
 		$n = $n[0] ;
 		$sourceTitle = Title::makeTitle( $obj->ns_a, $obj->title_a );
 		$destTitle = Title::makeTitle( $obj->ns_b, $obj->title_b );
 
-		$l1 = $sk->makeKnownLinkObj( $sourceTitle , "" , "redirect=no" ) ; 
-		$l2 = $sk->makeKnownLinkObj( $destTitle , "" , "redirect=no" ) ;
-		$l3 = $sk->makeBrokenLinkObj( $sourceTitle , "(".wfMsg("qbedit").")" , "redirect=no" ) ;
+		$l1 = $sk->makeKnownLinkObj( $sourceTitle , '' , 'redirect=no' ) ; 
+		$l2 = $sk->makeKnownLinkObj( $destTitle , '' , 'redirect=no' ) ;
+		$l3 = $sk->makeBrokenLinkObj( $sourceTitle , '('.wfMsg('qbedit').')' , 'redirect=no' ) ;
 		$s .= "<li>{$l1} {$l3} => {$l2} (\"{$n}\")</li>\n" ;
 	}
 	$dbr->freeResult( $res );
-	$s .= "</ol>";
+	$s .= '</ol>';
 	$wgOut->addHTML( $s );
 	$wgOut->addHTML( "<p>{$sl}\n" );
 }
 
-function wfSpecialBrokenRedirects()
-{
+
+function wfSpecialBrokenRedirects() {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	$fname = "wfSpecialBrokenRedirects";
+	$fname = 'wfSpecialBrokenRedirects';
 
 	list( $limit, $offset ) = wfCheckLimits();
 	$dbr =& wfGetDB( DB_SLAVE );
@@ -205,35 +219,35 @@ function wfSpecialBrokenRedirects()
 
 	$res = $dbr->query( $sql, $fname );
 
-	$top = getMaintenancePageBacklink( "brokenredirects" );
-	$top .= "<p>".wfMsg("brokenredirectstext")."</p><br>\n";
+	$top = getMaintenancePageBacklink( 'brokenredirects' );
+	$top .= '<p>'.wfMsg('brokenredirectstext')."</p><br>\n";
 	$top .= wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
 
-	$sl = wfViewPrevNext( $offset, $limit, "REPLACETHIS" ) ;
-	$sl = str_replace ( "REPLACETHIS" , sns().":Maintenance&subfunction=brokenredirects" , $sl ) ;
+	$sl = wfViewPrevNext( $offset, $limit, 'REPLACETHIS' ) ;
+	$sl = str_replace ( 'REPLACETHIS' , sns().":Maintenance&subfunction=brokenredirects" , $sl ) ;
 	$wgOut->addHTML( "<br>{$sl}\n" );
 
 	$sk = $wgUser->getSkin();
-	$s = "<ol start=" . ( $offset + 1 ) . ">";
+	$s = '<ol start=' . ( $offset + 1 ) . '>';
 	while ( $obj = $dbr->fetchObject( $res ) ) {
-		$l1 = $sk->makeKnownLink ( $obj->cur_title , "" , "redirect=no" ) ;
+		$l1 = $sk->makeKnownLink ( $obj->cur_title , '' , 'redirect=no' ) ;
 		$l2 = $sk->makeBrokenLink ( $obj->cur_title , "(".wfMsg("qbedit").")" , "redirect=no" ) ;
-		$l3 = $sk->makeBrokenLink ( $obj->bl_to , "" , "redirect=no" ) ;
+		$l3 = $sk->makeBrokenLink ( $obj->bl_to , '' , 'redirect=no' ) ;
 		$s .= "<li>{$l1} {$l2} => {$l3}</li>\n" ;
 	}
 	$dbr->freeResult( $res );
-	$s .= "</ol>";
+	$s .= '</ol>';
 	$wgOut->addHTML( $s );
 	$wgOut->addHTML( "<p>{$sl}\n" );
 }
 
+
 # This doesn't really work anymore, because self-links are now displayed as
 # unlinked bold text, and are not entered into the link table.
-function wfSpecialSelfLinks()
-{
+function wfSpecialSelfLinks() {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	$fname = "wfSpecialSelfLinks";
+	$fname = 'wfSpecialSelfLinks';
 
 	list( $limit, $offset ) = wfCheckLimits();
 
@@ -243,41 +257,41 @@ function wfSpecialSelfLinks()
 
 	$res = wfQuery( $sql, DB_SLAVE, $fname );
 
-	$top = getMaintenancePageBacklink( "selflinks" );
-	$top .= "<p>".wfMsg("selflinkstext")."</p><br>\n";
+	$top = getMaintenancePageBacklink( 'selflinks' );
+	$top .= '<p>'.wfMsg('selflinkstext')."</p><br>\n";
 	$top .= wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
 
-	$sl = wfViewPrevNext( $offset, $limit, "REPLACETHIS" ) ;
-	$sl = str_replace ( "REPLACETHIS" , sns().":Maintenance&subfunction=selflinks" , $sl ) ;
+	$sl = wfViewPrevNext( $offset, $limit, 'REPLACETHIS' ) ;
+	$sl = str_replace ( 'REPLACETHIS' , sns().":Maintenance&subfunction=selflinks" , $sl ) ;
 	$wgOut->addHTML( "<br>{$sl}\n" );
 
 	$sk = $wgUser->getSkin();
-	$s = "<ol start=" . ( $offset + 1 ) . ">";
+	$s = '<ol start=' . ( $offset + 1 ) . '>';
 	while ( $obj = wfFetchObject( $res ) ) {
 		$title = Title::makeTitle( $obj->cur_namespace, $obj->cur_title );
 		$s .= "<li>".$sk->makeKnownLinkObj( $title )."</li>\n" ;
 	}
 	wfFreeResult( $res );
-	$s .= "</ol>";
+	$s .= '</ol>';
 	$wgOut->addHTML( $s );
 	$wgOut->addHTML( "<p>{$sl}\n" );
 }
 
-function wfSpecialMispeelings ()
-{
+
+function wfSpecialMispeelings () {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
 	$sk = $wgUser->getSkin();
-	$fname = "wfSpecialMispeelings";
+	$fname = 'wfSpecialMispeelings';
 
 	list( $limit, $offset ) = wfCheckLimits();
 	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'cur', 'searchindex' ) );
 
 	# Determine page name
-	$ms = wfMsg ( "mispeelingspage" ) ;
-	$mss = str_replace ( " " , "_" , $ms );
-	$msp = $wgLang->getNsText(4).":".$ms ;
+	$ms = wfMsg ( 'mispeelingspage' ) ;
+	$mss = str_replace ( ' ' , '_' , $ms );
+	$msp = $wgLang->getNsText(4).':'.$ms ;
 	$msl = $sk->makeKnownLink ( $msp ) ;
 
 	# Load list from database
@@ -285,14 +299,14 @@ function wfSpecialMispeelings ()
 	$l = explode ( "\n" , $l ) ;
 	$a = array () ;
 	foreach ( $l as $x )
-		if ( substr ( trim ( $x ) , 0 , 1 ) == "*" )
+		if ( substr ( trim ( $x ) , 0 , 1 ) == '*' )
 			$a[] = strtolower ( trim ( substr ( trim ( $x ) , 1 ) ) );
 	asort ( $a ) ;
 
 	$cnt = 0 ;
 	$b = array () ;
 	foreach ( $a AS $x ) {
-		if ( $cnt < $offset+$limit && $x != "" ) {
+		if ( $cnt < $offset+$limit && $x != '' ) {
 			$y = $x ;
 			$x = preg_replace( '/^(\S+).*$/', '$1', $x );
 			$sql = "SELECT DISTINCT cur_title FROM $cur,$searchindex WHERE cur_id=si_page AND ".
@@ -301,14 +315,14 @@ function wfSpecialMispeelings ()
 			$res = $dbr->query( $sql, $fname );
 			while ( $obj = $dbr->fetchObject ( $res ) ) {
 				if ( $cnt >= $offset AND $cnt < $offset+$limit ) {
-					if ( $y != "" ) {
+					if ( $y != '' ) {
 						if ( count ( $b ) > 0 ) $b[] = "</OL>\n" ;
 						$b[] = "<H3>{$y}</H3>\n<OL start=".($cnt+1).">\n" ;
-						$y = "" ;
+						$y = '' ;
 					}
-					$b[] = "<li>".
+					$b[] = '<li>'.
 						$sk->makeKnownLink ( $obj->cur_title ).
-						" (".
+						' ('.
 						$sk->makeBrokenLink ( $obj->cur_title , wfMsg ( "qbedit" ) ).
 						")</li>\n" ;
 				}
@@ -316,29 +330,28 @@ function wfSpecialMispeelings ()
 			}
 		}
 	}
-	$top = getMaintenancePageBacklink( "mispeelings" );
-	$top .= "<p>".wfMsg( "mispeelingstext", $msl )."</p><br>\n";
+	$top = getMaintenancePageBacklink( 'mispeelings' );
+	$top .= "<p>".wfMsg( 'mispeelingstext', $msl )."</p><br>\n";
 	$top .= wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
 
-	$sl = wfViewPrevNext( $offset, $limit, "REPLACETHIS" ) ;
-	$sl = str_replace ( "REPLACETHIS" , sns().":Maintenance&subfunction=mispeelings" , $sl ) ;
+	$sl = wfViewPrevNext( $offset, $limit, 'REPLACETHIS' ) ;
+	$sl = str_replace ( 'REPLACETHIS' , sns().":Maintenance&subfunction=mispeelings" , $sl ) ;
 	$wgOut->addHTML( "<br>{$sl}\n" );
 
-	$s = implode ( "" , $b ) ;
-	if ( count ( $b ) > 0 ) $s .= "</ol>";
+	$s = implode ( '' , $b ) ;
+	if ( count ( $b ) > 0 ) $s .= '</ol>';
 	$wgOut->addHTML( $s );
 	$wgOut->addHTML( "<p>{$sl}\n" );
 }
 
 
-function wfSpecialMissingLanguageLinks()
-{
+function wfSpecialMissingLanguageLinks() {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest;
 	
-	$fname = "wfSpecialMissingLanguageLinks";
+	$fname = 'wfSpecialMissingLanguageLinks';
 	$thelang = $wgRequest->getText( 'thelang' );
-	if ( $thelang == "w" ) $thelang = "en" ; # Fix for international wikis
+	if ( $thelang == 'w' ) $thelang = 'en' ; # Fix for international wikis
 
 	list( $limit, $offset ) = wfCheckLimits();
 	$dbr =& wfGetDB( DB_SLAVE );
@@ -352,23 +365,23 @@ function wfSpecialMissingLanguageLinks()
 	$res = $dbr->query( $sql, $fname );
 
 
-	$mll = wfMsg( "missinglanguagelinkstext", $wgLang->getLanguageName($thelang) );
+	$mll = wfMsg( 'missinglanguagelinkstext', $wgLang->getLanguageName($thelang) );
 
-	$top = getMaintenancePageBacklink( "missinglanguagelinks" );
+	$top = getMaintenancePageBacklink( 'missinglanguagelinks' );
 	$top .= "<p>$mll</p><br>";
 	$top .= wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
 
-	$sl = wfViewPrevNext( $offset, $limit, "REPLACETHIS" ) ;
-	$sl = str_replace ( "REPLACETHIS" , sns().":Maintenance&subfunction=missinglanguagelinks&thelang={$thelang}" , $sl ) ;
+	$sl = wfViewPrevNext( $offset, $limit, 'REPLACETHIS' ) ;
+	$sl = str_replace ( 'REPLACETHIS' , sns().":Maintenance&subfunction=missinglanguagelinks&thelang={$thelang}" , $sl ) ;
 	$wgOut->addHTML( "<br>{$sl}\n" );
 
 	$sk = $wgUser->getSkin();
-	$s = "<ol start=" . ( $offset + 1 ) . ">";
+	$s = '<ol start=' . ( $offset + 1 ) . '>';
 	while ( $obj = $dbr->fetchObject( $res ) )
 		$s .= "<li>".$sk->makeKnownLink ( $obj->cur_title )."</li>\n" ;
 	$dbr->freeResult( $res );
-	$s .= "</ol>";
+	$s .= '</ol>';
 	$wgOut->addHTML( $s );
 	$wgOut->addHTML( "<p>{$sl}\n" );
 }
