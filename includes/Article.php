@@ -1573,22 +1573,26 @@ class Article {
 		$fname = 'Article::doDelete';
 		wfDebug( $fname."\n" );
 
-		if ( $this->doDeleteArticle( $reason ) ) {
-			$deleted = $this->mTitle->getPrefixedText();
-
-			$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
-			$wgOut->setRobotpolicy( 'noindex,nofollow' );
-
-			$sk = $wgUser->getSkin();
-			$loglink = $sk->makeKnownLink( $wgContLang->getNsText( NS_PROJECT ) .
-			  ':' . wfMsgForContent( 'dellogpage' ), wfMsg( 'deletionlog' ) );
-
-			$text = wfMsg( 'deletedtext', $deleted, $loglink );
-
-			$wgOut->addHTML( '<p>' . $text . "</p>\n" );
-			$wgOut->returnToMain( false );
-		} else {
-			$wgOut->fatalError( wfMsg( 'cannotdelete' ) );
+		if (wfRunHooks('ArticleDelete', $this, $wgUser, $reason)) {
+			if ( $this->doDeleteArticle( $reason ) ) {
+				$deleted = $this->mTitle->getPrefixedText();
+				
+				$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
+				$wgOut->setRobotpolicy( 'noindex,nofollow' );
+				
+				$sk = $wgUser->getSkin();
+				$loglink = $sk->makeKnownLink( $wgContLang->getNsText( NS_PROJECT ) .
+											   ':' . wfMsgForContent( 'dellogpage' ),
+											   wfMsg( 'deletionlog' ) );
+				
+				$text = wfMsg( 'deletedtext', $deleted, $loglink );
+				
+				$wgOut->addHTML( '<p>' . $text . "</p>\n" );
+				$wgOut->returnToMain( false );
+				wfRunHooks('ArticleDeleteComplete', $this, $wgUser, $reason);
+			} else {
+				$wgOut->fatalError( wfMsg( 'cannotdelete' ) );
+			}
 		}
 	}
 
