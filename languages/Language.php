@@ -1228,6 +1228,11 @@ Type the name of the user in the box and press the button to make the user an ad
 'set_rights_fail'	=> "<b>User rights for \"$1\" could not be set. (Did you enter the name correctly?)</b>",
 'makesysop'         => 'Make a user into a sysop',
 
+# Validation
+'val_clear_old' => 'Clear my other validation data for <a href="$1">the article</a>',
+'val_noop' => 'No opinion',
+'val_percent' => '<b>$1%</b> ($2 of $3 points)',
+
 # Move page
 #
 'movepage'		=> 'Move page',
