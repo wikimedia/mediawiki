@@ -699,8 +699,11 @@ class OutputPage {
 			$ret .= " />\n";
 		}
 		if( $this->isSyndicated() ) {
+			# FIXME: centralize the mime-type and name information in Feed.php
 			$link = $wgRequest->escapeAppendQuery( "feed=rss" );
-			$ret .= "<link rel='alternate' type='application/rss+xml' title='RSS' href='$link' />\n";
+			$ret .= "<link rel='alternate' type='application/rss+xml' title='RSS 2.0' href='$link' />\n";
+			$link = $wgRequest->escapeAppendQuery( "feed=atom" );
+			$ret .= "<link rel='alternate' type='application/rss+atom' title='Atom 0.3' href='$link' />\n";
 		}
 		# FIXME: get these working
 		# $fix = htmlspecialchars( $wgStylePath . "/ie-png-fix.js" );
