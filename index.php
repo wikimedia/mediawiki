@@ -56,8 +56,8 @@ if ( "" != $search ) {
 	$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 	$wgOut->errorpage( "badtitle", "badtitletext" );
 } else if ( ( $action == "view" ) && $wgTitle->getPrefixedDBKey() != $title ) {
-	/* redirect to canonical url */
-	$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
+	/* redirect to canonical url, make it a 301 to allow caching */
+	$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ), '301');
 } else if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
 	wfSpecialPage();
 } else {
