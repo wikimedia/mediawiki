@@ -77,7 +77,7 @@ class PageHistory {
 			$this->mTitle->getPrefixedText(),
 			"action=history", $atend );
 		$s = $numbar;
-		$this->submitbuttonhtml = ( $this->linesonpage > 1) ? '<input class="historysubmit" 
+		$this->submitbuttonhtml = ( $this->linesonpage > 0) ? '<input class="historysubmit" 
 		type="submit" accesskey="'.wfMsg('accesskey-compareselectedversions').
 			'" title="'.wfMsg('tooltip-compareselectedversions').'" value="'.wfMsg('compareselectedversions')."\" />" :
 			'';
