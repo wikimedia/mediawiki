@@ -1254,23 +1254,32 @@ class Article {
 	# This is a good place to put code to clear caches, for instance. 
 
 	/* static */ function onArticleCreate($title_obj){
-		global $wgEnablePersistentLC;
+		global $wgEnablePersistentLC, $wgEnableParserCache;
 		if ( $wgEnablePersistentLC ) {
 			LinkCache::linksccClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
+		}
+		if ( $wgEnableParserCache ) {
+			OutputPage::parsercacheClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
 		}
 	}
 
 	/* static */ function onArticleDelete($title_obj){
-		global $wgEnablePersistentLC;
+		global $wgEnablePersistentLC, $wgEnableParserCache;
 		if ( $wgEnablePersistentLC ) {
 			LinkCache::linksccClearLinksTo( $title_obj->getArticleID() );
+		}
+		if ( $wgEnableParserCache ) {
+			OutputPage::parsercacheClearLinksTo( $title_obj->getArticleID() );
 		}
 	}
 
 	/* static */ function onArticleEdit($title_obj){
-		global $wgEnablePersistentLC;
+		global $wgEnablePersistentLC, $wgEnableParserCache;
 		if ( $wgEnablePersistentLC ) {
 			LinkCache::linksccClearPage( $title_obj->getArticleID() );
+		}
+		if ( $wgEnableParserCache ) {
+			OutputPage::parsercacheClearPage( $title_obj->getArticleID() );
 		}
 	}
 }

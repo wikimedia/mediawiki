@@ -89,6 +89,8 @@ $wgUseCategoryMagic		= false;
 $wgEnablePersistentLC	= false;	# Persistent link cache in linkscc table; FAILS on MySQL 3.x
 $wgCompressedPersistentLC = true; # use gzcompressed blobs
 
+$wgEnableParserCache = false; # requires that php was compiled --with-zlib
+
 # User rights 
 $wgWhitelistEdit = false;
 $wgWhitelistRead = false;

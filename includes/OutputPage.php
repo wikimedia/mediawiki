@@ -14,6 +14,7 @@ class OutputPage {
 	var $mLanguageLinks, $mSupressQuickbar;
 	var $mOnloadHandler;
 	var $mDoNothing;
+	var $mContainsOldMagic, $mContainsNewMagic; 
 
 	function OutputPage()
 	{
@@ -29,6 +30,7 @@ class OutputPage {
                 $this->mCategoryLinks = array() ;
 		$this->mAutonumber = 0;
 		$this->mDoNothing = false;
+		$this->mContainsOldMagic = $this->mContainsNewMagic = 0;
 	}
 
 	function addHeader( $name, $val ) { array_push( $this->mHeaders, "$name: $val" ) ; }
@@ -121,10 +123,9 @@ class OutputPage {
 	# First pass--just handle <nowiki> sections, pass the rest off
 	# to doWikiPass2() which does all the real work.
 	#
-
 	function addWikiText( $text, $linestart = true )
 	{
-		global $wgUseTeX;
+		global $wgUseTeX, $wgArticle, $wgUser, $action;
 		$fname = "OutputPage::addWikiText";
 		wfProfileIn( $fname );
 		$unique  = "3iyZiyA7iMwg5rhxP0Dcc9oTnj8qD1jm1Sfv4";
@@ -139,6 +140,19 @@ class OutputPage {
 		$stripped = "";
 		$stripped2 = "";
 		$stripped3 = "";
+
+		global $wgEnableParserCache;
+		$use_parser_cache = 
+			$wgEnableParserCache && $action == "view" &&
+			intval($wgUser->getOption( "stubthreshold" )) == 0 && 
+			isset($wgArticle) && $wgArticle->getID() > 0;
+
+		if( $use_parser_cache ){
+			if( $this->fillFromParserCache() ){
+				wfProfileOut( $fname );
+				return;
+			}
+		}
 
 		while ( "" != $text ) {
 			$p = preg_split( "/<\\s*nowiki\\s*>/i", $text, 2 );
@@ -202,6 +216,10 @@ class OutputPage {
 				$escapedChars, $nwlist[$i] ), $text );
 		}
 		$this->addHTML( $text );
+
+		if($use_parser_cache ){
+			$this->saveParserCache( $text );
+		}
 		wfProfileOut( $fname );
 	}
 
@@ -1218,44 +1236,54 @@ $t[] = "</table>" ;
 		$v = date( "m" );
 		$mw =& MagicWord::get( MAG_CURRENTMONTH );
 		$text = $mw->replace( $v, $text );
-		
+		if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
+
 		$v = $wgLang->getMonthName( date( "n" ) );
 		$mw =& MagicWord::get( MAG_CURRENTMONTHNAME );
 		$text = $mw->replace( $v, $text );
+		if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
 		
 		$v = $wgLang->getMonthNameGen( date( "n" ) );
 		$mw =& MagicWord::get( MAG_CURRENTMONTHNAMEGEN );
 		$text = $mw->replace( $v, $text );
+		if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
 		
 		$v = date( "j" );
 		$mw = MagicWord::get( MAG_CURRENTDAY );
 		$text = $mw->replace( $v, $text );
+		if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
 		
 		$v = $wgLang->getWeekdayName( date( "w" )+1 );
 		$mw =& MagicWord::get( MAG_CURRENTDAYNAME );
 		$text = $mw->replace( $v, $text );
+		if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
 		
 		$v = date( "Y" );
 		$mw =& MagicWord::get( MAG_CURRENTYEAR );
 		$text = $mw->replace( $v, $text );
+		if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
 	
 		$v = $wgLang->time( wfTimestampNow(), false );
 		$mw =& MagicWord::get( MAG_CURRENTTIME );
 		$text = $mw->replace( $v, $text );
+		if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
 
 		$mw =& MagicWord::get( MAG_NUMBEROFARTICLES );
 		if ( $mw->match( $text ) ) {
 			$v = wfNumberOfArticles();
 			$text = $mw->replace( $v, $text );
+			if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
 		}
 
 		# "Variables" with an additional parameter e.g. {{MSG:wikipedia}}
 		# The callbacks are at the bottom of this file
 		$mw =& MagicWord::get( MAG_MSG );
 		$text = $mw->substituteCallback( $text, "wfReplaceMsgVar" );
+		if( $mw->getWasModified() ) { $this->mContainsNewMagic++; }
 
 		$mw =& MagicWord::get( MAG_MSGNW );
 		$text = $mw->substituteCallback( $text, "wfReplaceMsgnwVar" );
+		if( $mw->getWasModified() ) { $this->mContainsNewMagic++; }
 
 		wfProfileOut( $fname );
 		return $text;
@@ -1355,7 +1383,6 @@ $t[] = "</table>" ;
 		wfProfileOut( $fname );
 		return $text;
 	}
-
 
 /* 
  * 
@@ -1599,6 +1626,76 @@ $t[] = "</table>" ;
 
 		$ret .= "</head>\n";
 		return $ret;
+	}
+
+	/* private */ function fillFromParserCache(){
+		global $wgUser, $wgArticle;
+		$hash = $wgUser->getPageRenderingHash();
+		$pageid = intval( $wgArticle->getID() );
+		$res = wfQuery("SELECT pc_data FROM parsercache WHERE pc_pageid = {$pageid} ".
+			" AND pc_prefhash = '{$hash}' AND pc_expire > NOW()", DB_WRITE);
+		$row = wfFetchObject ( $res );		
+		if( $row ){
+			$data = unserialize( gzuncompress($row->pc_data) );
+			$this->addHTML( $data['html'] );
+			$this->mLanguageLinks = $data['mLanguageLinks'];
+			$this->mCategoryLinks = $data['mCategoryLinks'];
+			wfProfileOut( $fname );
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/* private */ function saveParserCache( $text ){
+		global $wgUser, $wgArticle;
+		$hash = $wgUser->getPageRenderingHash();
+		$pageid = intval( $wgArticle->getID() );
+		$title = wfStrencode( $wgArticle->mTitle->getPrefixedDBKey() );
+		$data = array();
+		$data['html'] = $text;
+		$data['mLanguageLinks'] = $this->mLanguageLinks;
+		$data['mCategoryLinks'] = $this->mCategoryLinks;
+		$ser = addslashes( gzcompress( serialize( $data ) ) );
+		if( $this->mContainsOldMagic ){
+			$expire = "1 HOUR";
+		} else if( $this->mContainsNewMagic ){
+			$expire = "1 DAY";
+		} else {
+			$expire = "7 DAY";
+		}
+
+		wfQuery("REPLACE INTO parsercache (pc_prefhash,pc_pageid,pc_title,pc_data, pc_expire) ".
+			"VALUES('{$hash}', {$pageid}, '{$title}', '{$ser}', ".
+				"DATE_ADD(NOW(), INTERVAL {$expire}))", DB_WRITE);
+
+		if( rand() % 50 == 0 ){ // more efficient to just do it sometimes
+			$this->purgeParserCache();
+		}
+	}
+	
+	/* static private */ function purgeParserCache(){
+		wfQuery("DELETE FROM parsercache WHERE pc_expire < NOW() LIMIT 250", DB_WRITE);
+	}
+
+	/* static */ function parsercacheClearLinksTo( $pid ){
+		$pid = intval( $pid );
+		wfQuery("DELETE parsercache FROM parsercache,links ".
+			"WHERE pc_title=links.l_from AND l_to={$pid}", DB_WRITE);
+		wfQuery("DELETE FROM parsercache WHERE pc_pageid='{$pid}'", DB_WRITE);
+	}
+
+	# $title is a prefixed db title, for example like Title->getPrefixedDBkey() returns.
+	/* static */ function parsercacheClearBrokenLinksTo( $title ){
+		$title = wfStrencode( $title );
+		wfQuery("DELETE parsercache FROM parsercache,brokenlinks ".
+			"WHERE pc_pageid=bl_from AND bl_to='{$title}'", DB_WRITE);
+	}
+
+	# $pid is a page id
+	/* static */ function parsercacheClearPage( $pid ){
+		$pid = intval( $pid );
+		wfQuery("DELETE FROM parsercache WHERE pc_pageid='{$pid}'", DB_WRITE);
 	}
 }
 
