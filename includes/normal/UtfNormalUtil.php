@@ -69,6 +69,20 @@ function hexSequenceToUtf8( $sequence ) {
 }
 
 /**
+ * Take a UTF-8 string and return a space-separated series of hex
+ * numbers representing Unicode code points. For debugging.
+ *
+ * @param string $str
+ * @return string
+ * @access private
+ */
+function utf8ToHexSequence( $str ) {
+	return rtrim( preg_replace( '/(.)/uSe',
+	                            'sprintf("%04x ", utf8ToCodepoint("$1"))',
+	                            $str ) );
+}
+
+/**
  * Determine the Unicode codepoint of a single-character UTF-8 sequence.
  * Does not check for invalid input data.
  *
