@@ -421,6 +421,18 @@ function do_inverse_timestamp() {
 	}
 }
 
+function do_text_id() {
+	global $wgDatabase;
+	if( $wgDatabase->fieldExists( 'revision', 'rev_text_id' ) ) {
+		echo "...rev_text_id already in place.\n";
+	} else {
+		echo "Adding rev_text_id field... ";
+		dbsource( 'maintenance/archives/patch-rev_text_id.sql', $wgDatabase );
+		echo "ok\n";
+	}
+}
+
+
 function do_all_updates() {
 	global $wgNewTables, $wgNewFields;
 	
@@ -452,6 +464,7 @@ function do_all_updates() {
 	
 	do_schema_restructuring(); flush();
 	do_inverse_timestamp(); flush();
+	do_text_id(); flush();
 
 	initialiseMessages(); flush();
 }

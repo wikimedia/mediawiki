@@ -82,12 +82,13 @@ class SearchMySQL3 extends SearchEngine {
 
 	function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
-		$page = $this->db->tableName( 'page' );
-		$text = $this->db->tableName( 'text' );
+		$page        = $this->db->tableName( 'page' );
+		$revision    = $this->db->tableName( 'revision' );
+		$text        = $this->db->tableName( 'text' );
 		$searchindex = $this->db->tableName( 'searchindex' );
 		return 'SELECT page_id, page_namespace, page_title, old_flags, old_text ' .
-			"FROM $page,$text,$searchindex " .
-			'WHERE page_id=si_page AND page_latest=old_id AND ' . $match;
+			"FROM $page,$revision,$text,$searchindex " .
+			'WHERE page_id=si_page AND page_latest=rev_id AND rev_text_id=old_id AND ' . $match;
 	}
 
 	function update( $id, $title, $text ) {

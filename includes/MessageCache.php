@@ -144,9 +144,9 @@ class MessageCache
 				$conditions['page_title']=MessageCacheHints::get();
 			}
 		}
-		$res = $dbr->select( array( 'page', 'text' ),
+		$res = $dbr->select( array( 'page', 'revision', 'text' ),
 			array( 'page_title', 'old_text', 'old_flags' ),
-			'page_is_redirect=0 AND page_namespace = '.NS_MEDIAWIKI.' AND page_latest = old_id',
+			'page_is_redirect=0 AND page_namespace='.NS_MEDIAWIKI.' AND page_latest=rev_id AND rev_text_id=old_id',
 			$fname
 		);
 

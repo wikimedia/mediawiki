@@ -1502,12 +1502,19 @@ class Title {
 		# a conflict on the unique namespace+title index...
 		$dbw->delete( 'page', array( 'page_id' => $newid ), $fname );
 		
+		# Save a null revision in the page's history notifying of the move
+		$nullRevision = Revision::newNullRevision( $dbw, $oldid,
+			wfMsg( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() ),
+			true );
+		$nullRevId = $nullRevision->insertOn( $dbw );
+		
 		# Change the name of the target page:
 		$dbw->update( 'page',
 			/* SET */ array( 
-				'page_touched' => $dbw->timestamp($now), 
+				'page_touched'   => $dbw->timestamp($now), 
 				'page_namespace' => $nt->getNamespace(),
-				'page_title' => $nt->getDBkey()
+				'page_title'     => $nt->getDBkey(),
+				'page_latest'    => $nullRevId,
 			), 
 			/* WHERE */ array( 'page_id' => $oldid ),
 			$fname
@@ -1610,12 +1617,19 @@ class Title {
 		wfSeedRandom();
 		$rand = wfRandom();
 
+		# Save a null revision in the page's history notifying of the move
+		$nullRevision = Revision::newNullRevision( $dbw, $oldid,
+			wfMsg( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() ),
+			true );
+		$nullRevId = $nullRevision->insertOn( $dbw );
+		
 		# Rename cur entry
 		$dbw->update( 'page',
 			/* SET */ array(
-				'page_touched' => $now,
+				'page_touched'   => $now,
 				'page_namespace' => $nt->getNamespace(),
-				'page_title' => $nt->getDBkey()
+				'page_title'     => $nt->getDBkey(),
+				'page_latest'    => $nullRevId,
 			),
 			/* WHERE */ array( 'page_id' => $oldid ),
 			$fname
@@ -1685,9 +1699,9 @@ class Title {
 
 		# Is it a redirect?
 		$id  = $nt->getArticleID();
-		$obj = $dbw->selectRow( array( 'page', 'text') ,
-			array( 'page_is_redirect','old_text' ), 
-			array( 'page_id' => $id, 'page_latest=old_id' ),
+		$obj = $dbw->selectRow( array( 'page', 'revision', 'text'),
+			array( 'page_is_redirect','old_text' ),
+			array( 'page_id' => $id, 'page_latest=rev_id', 'rev_text_id=old_id' ),
 			$fname, 'FOR UPDATE' );
 
 		if ( !$obj || 0 == $obj->page_is_redirect ) { 
