@@ -64,7 +64,8 @@ class IPUnblockForm {
 		global $wpUnblockAddress;
 
 		$block = new Block();
-		
+		$wpUnblockAddress = trim( $wpUnblockAddress );
+
 		if ( $wpUnblockAddress{0} == "#" ) {
 			$block->mId = substr( $wpUnblockAddress, 1 );
 		} else {
