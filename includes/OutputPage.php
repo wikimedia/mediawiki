@@ -122,7 +122,7 @@ class OutputPage {
 		}
 	}
 
-	function isArticleRelated( $v )
+	function isArticleRelated()
 	{
 		return $this->mIsArticleRelated;
 	}
