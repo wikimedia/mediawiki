@@ -274,6 +274,11 @@ $wgNamespacesToBeSearchedDefault = array( -1 => 0, 0 => 1, 1 => 0,
 $wgSiteNotice = "";
 
 # Whether to allow anonymous users to set changes to 'minor'
-
 $wgAllowAnonymousMinor = false;
+
+$wgBlockOpenProxies = false; # Automatic open proxy test on edit
+$wgProxyPorts = array( 80, 81, 1080, 3128, 8080 );
+$wgProxyScriptPath = "$IP/proxy_check.php";
+$wgProxyMemcExpiry = 86400;
+
 ?>
