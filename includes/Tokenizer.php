@@ -8,8 +8,11 @@ class Tokenizer {
 
 	/* private */ function Tokenizer()
 	{
+		global $wgLang;
+
 		$this->mPos=0;
 		$this->mTokenQueue=array();
+		$this->linkPrefixExtension = $wgLang->linkPrefixExtension();
 	}
 
 	# factory function
@@ -54,8 +57,7 @@ class Tokenizer {
 	// proceeds character by character through the text, looking for characters needing
 	// special attention. Those are currently: I, R, ', [, ], newline
 	//
-	// TODO: prefixed links for Arabic wikipedia not implemented yet
-	//       handling of French blanks not yet implemented
+	// TODO:  handling of French blanks not yet implemented
 	function nextToken()
 	{
 		$fname = "Tokenizer::nextToken";
@@ -64,8 +66,8 @@ class Tokenizer {
 		if ( count( $this->mQueuedToken ) != 0 ) {
 			// still one token from the last round around. Return that one first.
 			$token = array_shift( $this->mQueuedToken );
-		} else if ( $this->mPos > $this->mTextLength )
-		{	// If no text is left, return "false".
+		} else if ( $this->mPos > $this->mTextLength ) {
+		 	// If no text is left, return "false".
 			$token = false;
 		} else {
 
@@ -98,8 +100,21 @@ class Tokenizer {
 					     		$this->mPos += 3;
 							break 2; // switch + while
 						} else if ( $this->continues("[") ) {
-						     	$queueToken["type"] = "[[";
+							$queueToken["type"] = "[[";
 							$queueToken["text"] = "";
+							// Check for a "prefixed link", e.g. Al[[Khazar]]
+							// Mostly for arabic wikipedia
+							if ( $this->linkPrefixExtension ) {
+								while (    $this->linkPrefixExtension
+									&& ($len = strlen( $token["text"] ) ) > 0 
+									&& !ctype_space( $token["text"][$len-1] ) )
+								{
+									//prepend the character to the link's open tag
+									$queueToken["text"] = $token["text"][$len-1] . $queueToken["text"];
+									//remove character from the end of the text token
+									$token["text"] = substr( $token["text"], 0, -1);
+								}
+							}
 							$this->mQueuedToken[] = $queueToken;
 					     		$this->mPos += 2;
 							break 2; // switch + while 
@@ -158,7 +173,7 @@ class Tokenizer {
 
 	// function continues
 	// checks whether the mText continues with $cont from mPos+1
-	function continues( $cont )
+	/* private */ function continues( $cont )
 	{
 		// If string is not long enough to contain $cont, return false
 		if ( $this->mTextLength < $this->mPos + strlen( $cont ) )
