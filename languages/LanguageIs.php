@@ -39,7 +39,7 @@ if($wgMetaNamespace === FALSE)
 
 /* private */ $wgDefaultUserOptionsIs = array(
 	"date" => 2
-);
+) + $wgDefaultUserOptionsEn;
 
 # Note to translators:
 #   Please include the English words as synonyms.  This allows people
