@@ -1065,7 +1065,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'movethispage'	=> 'Move this page',
 'unusedimagestext' => '<p>Please note that other web sites may link to an image with
 a direct URL, and so may still be listed here despite being
-in active use.',
+in active use.</p>',
 'booksources'	=> 'Book sources',
 'categoriespagetext' => 'The following categories exists in the wiki.',
 'data'	=> 'Data',

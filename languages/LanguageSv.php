@@ -432,7 +432,7 @@ av den här sidan. Om du sparar den, kommer alla ändringar på denns sida före
 att betrakta som utgivna under GNU Free Documentation License
 (se $1 för detaljer).
 Om du inte vill ha din text redigerad och kopierad efter andras gottfinnade så skall du inte skriva någon text här.<br />
-Du lovar oss också att du skrev texten själv, eller kopierade från public domain eller liknande fri resurs.<BR>
+Du lovar oss också att du skrev texten själv, eller kopierade från public domain eller liknande fri resurs.<br />
 <strong>LÄGG ALDRIG UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN FÖRFATTARENS TILLÅTELSE!</strong>",
 
 "longpagewarning"       => "VARNING: Den här artikeln är $1 kilobytes lång; vissa äldre webbläsare

@@ -1804,7 +1804,7 @@ class Skin {
 		$u = $nt->escapeLocalURL();
 		if ( $url == '' ) {
 			$s = wfMsg( 'missingimage', $img->getName() );
-			$s .= "<br>{$alt}<br>{$url}<br>\n";
+			$s .= "<br />{$alt}<br />{$url}<br />\n";
 		} else {
 			$s = '<a href="'.$u.'" class="image" title="'.$alt.'">' .
 				 '<img src="'.$url.'" alt="'.$alt.'" longdesc="'.$u.'" /></a>';
