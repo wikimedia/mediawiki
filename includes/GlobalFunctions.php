@@ -65,7 +65,7 @@ function wfLocalUrl( $a, $q = "" )
 	} else if ( "" == $q ) {
 		$a = str_replace( "$1", $a, $wgArticlePath );
 	} else {
-		$a = "{$wgScript}?title={$a}&{$q}";	
+		$a = "/{$a}&{$q}";	
 	}
 	return $a;
 }
@@ -773,10 +773,7 @@ function wfPurgeSquidServers ($urlArr) {
                 } else {
                     @fputs($socket,"PURGE " . $urlArr[0] . " HTTP/1.0\r\n".
                     "Connection: Keep-Alive\r\n\r\n");
-		    $res = '';
-		    while (strlen($res) < 230 ) {
-			$res .= @fread($socket,512);
-		    }
+		    $res = @fread($socket,512);
 		    /* Squid only returns http headers with 200 or 404 status, 
 		    if there's more returned something's wrong */
 		    if (strlen($res) > 250) {
@@ -803,8 +800,10 @@ function wfPurgeSquidServers ($urlArr) {
             for ($s=0;$s < $totalsockets;$s++) {
 		if($r != 0) {
 		    $res = '';
-		    while (strlen($res) < 230 ) {
+		    $esc = 0;
+		    while (strlen($res) < 230 && $esc < 4  ) {
 			$res .= @fread($sockets[$s],512);
+			$esc++;
 		    }
 		}
                 $urindex = $r + $urlspersocket * ($s - $sockspersq * floor($s / $sockspersq));
