@@ -542,7 +542,9 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$res = wfQuery("SELECT old_text FROM old WHERE old_namespace = $ns AND ".
 		  "old_title = '{$title}' AND old_timestamp = '{$oldDate}'", DB_WRITE);
 		$obj = wfFetchObject($res);
-		if(wfMerge($obj->old_text, $text, $yourtext, $result)){
+		$oldText = Article::getRevisionText( $obj );
+		
+		if(wfMerge($oldText, $text, $yourtext, $result)){
 			$text = $result;
 			return true;
 		} else {
