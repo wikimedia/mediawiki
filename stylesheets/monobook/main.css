@@ -53,7 +53,7 @@ body {
 
 /* general styles */
 
-table {
+table, td {
     font-size: 100%;
     background: White;
 }
