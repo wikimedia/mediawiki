@@ -158,7 +158,7 @@ if ( $wgUseDynamicDates ) {
 	$wgDateFormatter = new DateFormatter;
 }
 
-if( !$wgCommandLineMode && isset( $_COOKIE[ini_get("session.name")] )  ) {
+if( !$wgCommandLineMode && ( isset( $_COOKIE[ini_get("session.name")] ) || isset( $_COOKIE["{$wgDBname}Password"] ) ) ) {
 	User::SetupSession();
 }
 
