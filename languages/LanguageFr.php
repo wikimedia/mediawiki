@@ -186,6 +186,8 @@
 "qbpageoptions" => "Page d'option",
 "qbpageinfo"    => "Page d'information",
 "qbmyoptions"   => "Mes options",
+"qbspecialpages"	=> "Pages spéciales",
+"moredotdotdot"	=> "Et plus...",
 "mypage"        => "Ma page",
 "mytalk"        => "Ma page de discussion",
 "currentevents" => "Actualités",
