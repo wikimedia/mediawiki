@@ -821,7 +821,6 @@ class Parser
 
 		$text = $this->removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text, $args );
-		print $text;
 
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
 
