@@ -791,14 +791,15 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::setupUserCss';
 		wfProfileIn( $fname );
 		
-		global $wgRequest, $wgTitle, $wgAllowUserCss, $wgUseSiteCss, $wgContLang;
+		global $wgRequest, $wgTitle, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath;
 
-		$sitecss = "";
-		$usercss = "";
-		$siteargs = "";
+		$sitecss = '';
+		$usercss = '';
+		$siteargs = '';
+		
+		if ($wgContLang->isRTL()) $sitecss .= '@import "' . $wgStylePath . '/' . $this->stylename . '/rtl.css";' . "\n";
 		
 		if ( $wgUseSiteCss ) {
-			if ($wgContLang->isRTL()) $sitecss .= '@import "' . $wgStylePath . '/' . $this->stylename.'/rtl.css";' . "\n";
 			$sitecss .= '@import "' . $this->makeNSUrl(ucfirst($this->skinname) . '.css', 'action=raw&ctype=text/css&smaxage=' . $wgSquidMaxage, NS_MEDIAWIKI) . '";' . "\n";
 		}
 
@@ -826,7 +827,7 @@ class SkinTemplate extends Skin {
 		} else if ( $wgUseSiteCss ) {
 			# If we use the site's dynamic CSS, throw that in, too
 			# Full caching, both server-side and client-side
-			$sitecss .= '@import "'.$this->makeUrl('-','action=raw&gen=css' ).'";'."\n";
+			$sitecss .= '@import "' . $this->makeUrl('-','action=raw&gen=css' ) . '";' . "\n";
 		}
 		
 		# If we use any dynamic CSS, make a little CDATA block out of it.
@@ -866,9 +867,7 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::getUserStylesheet';
 		wfProfileIn( $fname );
 		
-		global $wgUser, $wgRequest, $wgTitle, $wgContLang, $wgSquidMaxage, $wgStylePath;
-		$action = $wgRequest->getText('action');
-		$maxage = $wgRequest->getText('maxage');
+		global $wgUser;
 		$s = "/* generated user stylesheet */\n";
 
 		if($wgUser->getID() != 0) {
