@@ -181,9 +181,13 @@ class OutputPage {
 	}
 	
 	function getLanguageLinks() {
-		global $wgTitle, $wgLanguageCode;
-		global $wgDBconnection, $wgDBname;
 		return $this->mLanguageLinks;
+	}
+	function addLanguageLinks($newLinkArray) {
+		$this->mLanguageLinks += $newLinkArray;
+	}
+	function setLanguageLinks($newLinkArray) {
+		$this->mLanguageLinks = $newLinkArray;
 	}
 	function suppressQuickbar() { $this->mSuppressQuickbar = true; }
 	function isQuickbarSuppressed() { return $this->mSuppressQuickbar; }
