@@ -291,7 +291,7 @@ class LogViewer {
 			$this->getTypeMenu() .
 			$this->getUserInput() .
 			$this->getTitleInput() .
-			"<input type='submit' />" .
+			"<input type='submit' value=\"" . wfMsg( 'querybtn' ) . "\" />" .
 			"</form>" );
 	}
 	
