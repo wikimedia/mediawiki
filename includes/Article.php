@@ -988,8 +988,7 @@ class Article {
 			array_push( $wgDeferredUpdateList, $u );
 
 			if ( $this->getNamespace == NS_MEDIAWIKI ) {
-				$key = "$wgDBname:MediaWiki:title:" . $this->mTitle->getDBkey();
-				$wgMemc->delete( $key );
+				$wgMemc->delete( "$wgDBname:messages" );
 			}
 		}
 	}
