@@ -239,5 +239,12 @@ class MessageCache
 			$this->mExtensionMessages[$key] = $value;
 		}
 	}
+	
+	# Clear all stored messages. Mainly used after a mass rebuild.
+	function clear() {
+		if( $this->mUseCache ) {
+			$this->mMemc->delete( $this->mMemcKey );
+		}
+	}
 }
 ?>
