@@ -49,7 +49,7 @@ if($wgMetaNamespace === FALSE)
 	"cols" => 80, "rows" => 25, "searchlimit" => 20,
 	"contextlines" => 5, "contextchars" => 50,
 	"skin" => $wgDefaultSkin, "math" => 1, "rcdays" => 7, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0, "collapsethreshold" => 30000,
+	"highlightbroken" => 1, "stubthreshold" => 0, "collapsethreshold" => 5000,
 	"previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, "showtoc"=>1,
 	"showtoolbar" =>1,
 	"date" => 0
