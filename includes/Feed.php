@@ -21,7 +21,7 @@
 
 $wgFeedClasses = array(
 	"rss" => "RSSFeed",
-	# "atom" => "AtomFeed",
+	"atom" => "AtomFeed",
 	);
 
 class FeedItem {
@@ -31,12 +31,13 @@ class FeedItem {
 	var $Date = "";
 	var $Author = "";
 	
-	function FeedItem( $Title, $Description, $Url, $Date = "", $Author = "" ) {
+	function FeedItem( $Title, $Description, $Url, $Date = "", $Author = "", $Comments = "" ) {
 		$this->Title = $Title;
 		$this->Description = $Description;
 		$this->Url = $Url;
 		$this->Date = $Date;
 		$this->Author = $Author;
+		$this->Comments = $Comments;
 	}
 	
 	/* Static... */
@@ -67,6 +68,9 @@ class FeedItem {
 	function getAuthor() {
 		return $this->xmlEncode( $this->Author );
 	}
+	function getComments() {
+		return $this->xmlEncode( $this->Comments );
+	}
 }
 
 class ChannelFeed extends FeedItem {
@@ -83,9 +87,9 @@ class ChannelFeed extends FeedItem {
 }
 
 class RSSFeed extends ChannelFeed {
+
 	function formatTime( $ts ) {
-		// need to use RFC 822 time format
-		return gmdate( "r", wfTimestamp2Unix( $ts ) );
+		return gmdate( "D, d M Y H:i:s \G\M\T", wfTimestamp2Unix( $ts ) );
 	}
 	
 	function outHeader() {
@@ -116,7 +120,7 @@ class RSSFeed extends ChannelFeed {
 			<description><?php print $item->getDescription() ?></description>
 			<?php if( $item->getDate() ) { ?><pubDate><?php print $this->formatTime( $item->getDate() ) ?></pubDate><?php } ?>
 			<?php if( $item->getAuthor() ) { ?><author><?php print $item->getAuthor() ?></author><?php }?>
-
+			<?php if( $item->getComments() ) { ?><comments><?php print $item->getComments() ?></comments><?php }?>
 		</item>
 <?php
 	}
@@ -125,6 +129,56 @@ class RSSFeed extends ChannelFeed {
 	?>
 	</channel>
 </rss><?php
+	}
+}
+
+class AtomFeed extends ChannelFeed {
+	function formatTime( $ts ) {
+		// need to use RFC 822 time format at least for rss2.0
+		return gmdate( "Y-m-d\TH:i:s", wfTimestamp2Unix( $ts ) );
+	}
+
+	function outHeader() {
+		global $wgVersion, $wgOut;
+		
+		# We take over from $wgOut, excepting its cache header info
+		$wgOut->disable();
+		header( "Content-type: application/xml; charset=UTF-8" );
+		$wgOut->sendCacheControl();
+		
+		print '<' . '?xml version="1.0" encoding="utf-8"?' . ">\n";
+		?><feed version="0.3" xml:lang="<?php print $this->getLanguage()."-".$this->getLanguage() ?>">	
+		<title><?php print $this->getTitle() ?></title>
+		<link rel="alternate" type="text/html" href="<?php print $this->getUrl() ?>"/>
+		<modified><?php print $this->formatTime( wfTimestampNow() ) ?>Z</modified>
+		<tagline><?php print $this->getDescription() ?></tagline>
+		<generator>MediaWiki <?php print $wgVersion ?></generator>
+		
+<?php
+	}
+	
+	function outItem( $item ) {
+	?>
+	<entry>
+		<title><?php print $item->getTitle() ?></title>
+		<link rel="alternate" type="text/html" href="<?php print $item->getUrl() ?>"/>
+		<?php if( $item->getDate() ) { ?>
+		<modified><?php print $this->formatTime( $item->getDate() ) ?>Z</modified>
+		<issued><?php print $this->formatTime( $item->getDate() ) ?></issued>
+		<created><?php print $this->formatTime( $item->getDate() ) ?>Z</created><?php } ?>
+	
+		<summary type="text/plain"><?php print $item->getDescription() ?></summary>
+		<?php if( $item->getAuthor() ) { ?><author><name><?php print $item->getAuthor() ?></name><url></url><email></email></author><?php }?>
+		<comment>foobar</comment>
+	</entry>
+
+<?php /* FIXME need to add comments
+	<?php if( $item->getComments() ) { ?><dc:comment><?php print $item->getComments() ?></dc:comment><?php }?>
+      */
+	}
+	
+	function outFooter() {?>
+	</feed><?php
 	}
 }
 

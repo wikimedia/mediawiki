@@ -98,8 +98,8 @@ class QueryPage {
 	function doFeed( $class = "" ) {
 		global $wgFeedClasses;
 		global $wgOut, $wgLanguageCode, $wgLang;
-		if( $class == "rss" ) {
-			$feed = new RSSFeed(
+		if( isset($wgFeedClasses[$class]) ) {
+			$feed = new $wgFeedClasses[$class](
 				$this->feedTitle(),
 				$this->feedDesc(),
 				$this->feedUrl() );
@@ -140,12 +140,23 @@ class QueryPage {
 			} elseif( isset( $row->rc_cur_timestamp ) ) {
 				$date = $row->rc_cur_timestamp;
 			}
+			
+			$comments = "";
+			if( isset( $row->cur_comment ) ) {
+				$comments = $row->cur_comment;
+			} elseif( isset( $row->old_comment ) ) {
+				$comments = $row->old_comment;
+			} elseif( isset( $row->rc_cur_comment ) ) {
+				$comments = $row->rc_cur_comment;
+			}
+			
 			return new FeedItem(
 				$title->getText(),
 				$this->feedItemDesc( $row ),
 				$title->getFullURL(),
 				$date,
-				$this->feedItemAuthor( $row ) );
+				$this->feedItemAuthor( $row ),
+				$comments);
 		} else {
 			return NULL;
 		}
@@ -170,10 +181,16 @@ class QueryPage {
 	}
 	
 	function feedItemAuthor( $row ) {
+		/* old code
 		$fields = array( "cur_user_text", "old_user_text", "rc_user_text" );
 		foreach( $fields as $field ) {
 			if( isset( $row->$field ) ) return $row->field;
 		}
+		
+		new code follow, that's an ugly hack to fix things: */
+		if( isset( $row->cur_user_text ) ) return $row->cur_user_text;
+		if( isset( $row->old_user_text ) ) return $row->old_user_text;
+		if( isset( $row->rc_user_text  ) ) return $row->rc_user_text;
 		return "";
 	}
 	

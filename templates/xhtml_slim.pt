@@ -146,7 +146,7 @@
                 <span tal:repeat="feed feeds" 
                   tal:attributes="id string:feed-${repeat/feed/key};"><a 
                     tal:attributes="href feed/href; title feed/ttip|default"
-                    tal:content="feed/text">rss</a></span>
+                    tal:content="feed/text">rss</a>&nbsp;</span>
                 </li>
                 <li tal:condition="nav_urls/contributions/href"><a href="${nav_urls/contributions/href}"
                   i18n:attributes="accesskey string:accesskey-contributions|default; title string:tooltip-contributions|default" 
