@@ -33,7 +33,8 @@ function wfSpecialExport( $page = "" ) {
 
 function pages2xml( $pages, $curonly = false ) {
 	global $wgLanguageCode, $wgInputEncoding, $wgLang;
-	$xml = "<mediawiki version=\"0.1\" xml:ns=\"$wgLanguageCode\">\n";
+	$xml = "<" . "?xml version=\"1.0\" encoding=\"UTF-8\" ?" . ">\n" .
+		"<mediawiki version=\"0.1\" xml:lang=\"$wgLanguageCode\">\n";
 	foreach( $pages as $page ) {
 		$xml .= page2xml( $page, $curonly );
 	}
