@@ -123,7 +123,7 @@ dd {
 	margin-left: 0;
 	margin-right: 1.6em;
 }
-#documentSubtitle {
+#contentSub {
 	margin-right: 1em;
 	margin-left: 0;
 }
@@ -139,24 +139,24 @@ div.townBox dl dd {
 	margin-left: 0;
 	margin-right: 1.1em;
 }
-#portal-personaltools li {
+#p-personal li {
 	margin-left: 0;
 	margin-right: 1em;
 }
 
-li#contentaction-talk,
-li#contentaction-watch {
+li#ca-talk,
+li#ca-watch {
 	margin-right: auto;
 	margin-left: 1.6em;
 }
 
-#portal-personaltools li {
+#p-personal li {
     float: left;
 }
 /* Fix link icons */
-li#personaltools-userpage,
-li#personaltools-anonuserpage,
-li#personaltools-login {
+li#pt-userpage,
+li#pt-anonuserpage,
+li#pt-login {
 	background: none;
 	padding-left: 0;
 }
@@ -167,10 +167,3 @@ li#personaltools-login {
 #footer {
     clear: both;
 }
-/* IE 6 fix fixes, hide from everything else */
-i {content: "\"/*" }
-* html #documentContent { border-left: 1px solid #aaaaaa; }
-* html body { padding-left: 10px; }
-/* */ 
-/* testarea: same negative margin as on #portal-column-content don't ask why..*/
-/* the body margin is an ugly workaround for the onLoad-disappearing right padding on #documentContent */
