@@ -217,12 +217,17 @@ if( $wgCommandLineMode ) {
 }
 
 // FIXME : we don't know what the user entered (see SpecialPreferences.php [AV])
-if(isset($wgUser->mOptions['language'])) {
+if( count( $wgUserLanguages ) &&
+	!empty( $wgUser->mOptions['language'] ) &&
+	in_array( $wgUser->mOptions['language'], $wgUserLanguages ) ) {
 	// Change language of the site
 	$wgLanguageCode = $wgUser->mOptions['language'];
 	// we will load messages from file instead of from database
 	$wgUseDatabaseMessages = false;
-	}
+	# FIXME: THIS WILL BREAK NAMESPACES, VARIABLES,
+	# SEARCH INDEX UPDATES, AND MANY MANY THINGS.
+	# DO NOT USE THIS MODE EXCEPT FOR TESTING RIGHT NOW.
+}
 
 wfProfileOut( $fname.'-User' );
 wfProfileIn( $fname.'-language' );
