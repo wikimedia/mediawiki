@@ -20,12 +20,7 @@ function zhOnArticleSaveComplete($article, $user, $text, $summary, $isminor, $is
 		$c = count($t);
 		if( $c > 1 && $t[0] == 'Zhconversiontable' ) {
 			if(in_array($t[1], array('zh-cn', 'zh-tw', 'zh-sg', 'zh-hk'))) {
-				if($c == 3)
-					$sub = $t[2];
-				else
-					$sub = '';
-				$newtable = $wgContLang->parseCachedTable($t[1], $sub, false);
-				$wgContLang->updateTable($t[1], $newtable);			
+				$wgContLang->reloadTables();
 			}
 		}
 	}
@@ -80,17 +75,26 @@ class LanguageZh extends LanguageZh_cn {
 		}
 	}
 
+	function reloadTables() {
+		if($this->mTables)
+			unset($this->mTables);
+		$this->mTablesLoaded = false;
+		$this->loadTables(false);
+	}
+
 	// load conversion tables either from the cache or the disk
-	function loadTables() {
+	function loadTables($fromcache=true) {
 		global $wgMemc;
 		if( $this->mTablesLoaded )
 			return;
 		$this->mTablesLoaded = true;
-		$this->mTables = $wgMemc->get( $this->mCacheKey );
-		if( !empty( $this->mTables ) ) //all done
-			return;
-
-		// not in cache. we will first load the tables from file
+		if($fromcache) {
+			$this->mTables = $wgMemc->get( $this->mCacheKey );
+			if( !empty( $this->mTables ) ) //all done
+				return;
+		}
+		// not in cache, or we need a fresh reload. 
+		// we will first load the tables from file
 		// then update them using things in MediaWiki:Zhconversiontable/*
 		global $wgMessageCache;
 		require( "includes/ZhConversion.php" );
