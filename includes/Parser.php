@@ -906,7 +906,8 @@ class Parser
 		}
 		if( ( $nt->getPrefixedText() == $this->mTitle->getPrefixedText() ) &&
 		    ( strpos( $link, "#" ) == FALSE ) ) {
-			$s .= $prefix . "<strong>" . $text . "</strong>" . $trail;
+			# Self-links are handled specially; generally de-link and change to bold.
+			$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, "", $trail );
 			return $s;
 		}
 
