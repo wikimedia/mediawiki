@@ -91,6 +91,7 @@ class IPBlockForm {
 				if ( $wgSysopRangeBans ) {
 					if ( $matches[2] > 31 || $matches[2] < 16 ) {
 						$this->showForm( wfMsg( "ip_range_invalid" ) );
+						return;
 					}
 					$this->BlockAddress = Block::normaliseRange( $this->BlockAddress );
 				} else {
