@@ -75,7 +75,7 @@ header( "Content-type: text/html; charset=utf-8" );
 <div id="credit">
  <center>
   <a href="http://www.mediawiki.org/">
-   <img src="../skins/common/images/wiki.png" width="135" height="135" alt="" border="0" />
+   <img src="../skins/common/images/mediawiki.png" width="135" height="135" alt="" border="0" />
   </a>
  </center>
 
