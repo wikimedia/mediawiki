@@ -434,24 +434,30 @@ class ParserXML EXTENDS Parser
 		$this->mInPre = false;
 	}
 	
-	function parse( $text, &$title, $options, $linestart = true, $clearState = true ) {
-		 global $wgWiki2xml ;
-		$tmpfname = tempnam("/tmp", "FOO");
+	/**
+	* Turns the wikitext into XML by calling the external parser
+	*
+	*/
+	function runXMLparser ( &$text ) {
+		global $wgWiki2xml ;
 
+		$tmpfname = tempnam("/tmp", "FOO");
 		$handle = fopen($tmpfname, "w");
 		fwrite($handle, $text);
 		fclose($handle);
+		exec ( $wgWiki2xml . " < " . $tmpfname , $a ) ;
+		$text = implode ( "\n" , $a ) ;
+		unlink($tmpfname);		 
+	}
 
-		 exec ( $wgWiki2xml . " < " . $tmpfname , $a ) ;
-		 $text = implode ( "\n" , $a ) ;
-
-		unlink($tmpfname);
-
+	function parse( $text, &$title, $options, $linestart = true, $clearState = true ) {
+		$this->runXMLparser ( $text ) ;
 		$nowikicount = 0 ;
 		$w = new xml2php;
 		$result = $w->scanString( $text );
-		$text = $result->makeXHTML ( $this ) . "<hr>" . $text ;
-		$text .= "<hr>" . $result->myPrint();
+
+		if ( 1 ) $text = $result->makeXHTML ( $this ) ; # No debugging info
+		else $text = $result->makeXHTML ( $this ) . "<hr>" . $text . "<hr>" . $result->myPrint();
 		
 		$this->mOutput->setText ( $text ) ;
 		return $this->mOutput;
