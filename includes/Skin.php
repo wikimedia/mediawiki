@@ -1515,7 +1515,7 @@ class Skin {
 		$thumbPath = wfImageArchiveDir( $thumbName, "thumb" )."/".$thumbName;
 		$thumbUrl  = wfImageArchiveUrl( $thumbName, "thumb" );
 
-		if (     (! file_exists( $thumbPath )) 
+		if (     (! file_exists( $thumbPath ) && file_exists( $imgPath )) 
 		     ||  ( filemtime($thumbPath) < filemtime($imgPath) ) ) {
 		        if ( $wgUseImageMagick ) {
 				# use ImageMagick

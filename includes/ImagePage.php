@@ -30,18 +30,20 @@ class ImagePage extends Article {
 		$name = $this->mTitle->getText();
 		$path = wfImagePath( $name );
 		$url   = wfImageUrl( $name );
-		
-		list($width, $height, $type, $attr) = getimagesize( $path );
 
-		$sk = $wgUser->getSkin();
+		if ( file_exists( $path ) ) {
+			list($width, $height, $type, $attr) = getimagesize( $path );
 
-		if ( $type != "" ) {
-			# image
-			$s .= "<center><img src=\"{$url}\" width=\"{$width}\" height=\"{$height}\"></center>";
-		} else {
-			$s .= "<center>".$sk->makeMediaLink($name,"")."</center>";
+			$sk = $wgUser->getSkin();
+
+			if ( $type != "" ) {
+				# image
+				$s .= "<center><img src=\"{$url}\" width=\"{$width}\" height=\"{$height}\"></center>";
+			} else {
+				$s .= "<center>".$sk->makeMediaLink($name,"")."</center>";
+			}
+			$wgOut->AddHTML( $s );
 		}
-		$wgOut->AddHTML( $s );
 	}
 	
 	function closeShowImage()
