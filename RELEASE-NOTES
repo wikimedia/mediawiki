@@ -143,6 +143,8 @@ If upgrading from an older release, see the file UPGRADING.
 
 * (bug 1090) Fix sitesupport links in CB/classic skins
 * Gracefully ignore non-legal titles in a <gallery>
+* Fix message page caching behavior when $wgCapitalLinks is turned off
+  after installation and the wiki is subsequently upgraded
 
 === Caveats ===
 
