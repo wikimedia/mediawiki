@@ -873,7 +873,7 @@ function wfAcceptToPrefs( $accept, $def = "*/*" ) {
 	
 	foreach( $parts as $part ) {
 		# FIXME: doesn't deal with params like 'text/html; level=1'
-		list( $value, $qpart ) = explode( ";", $part );
+		@list( $value, $qpart ) = explode( ";", $part );
 		if( !isset( $qpart ) ) {
 			$prefs[$value] = 1;
 		} elseif( preg_match( '/q\s*=\s*(\d*\.\d+)/', $qpart, $match ) ) {
