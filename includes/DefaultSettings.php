@@ -19,7 +19,7 @@ if( defined( 'MEDIAWIKI' ) ) {
  * MediaWiki version number
  * @global string $wgVersion
  */
-$wgVersion			= '1.4beta3';
+$wgVersion			= '1.4beta4';
 
 /** 
  * Name of the site.
@@ -905,6 +905,19 @@ $wgHooks = array();
  */
 
 $wgDisableInternalSearch = false;
+
+/**
+ * Set this to a URL to forward search requests to some external location.
+ * If the URL includes '$1', this will be replaced with the URL-encoded
+ * search term.
+ * 
+ * For example, to forward to Google you'd have something like:
+ * $wgSearchForwardUrl = 'http://www.google.com/search?q=$1' .
+ *                       '&domains=http://example.com' .
+ *                       '&sitesearch=http://example.com' .
+ *                       '&ie=utf-8&oe=utf-8';
+ */
+$wgSearchForwardUrl = null;
 
 } else {
 	die();

@@ -4,7 +4,7 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 
-== MediaWiki 1.4 BETA 3 ==
+== MediaWiki 1.4 BETA 4 ==
 
 Users of earlier betas, take note that there is a security fix for
 uploads in this release.
@@ -192,6 +192,9 @@ If upgrading from an older release, see the file UPGRADING.
 * recursively parse subpages of MediaWiki:Zhconversiontable
 * (bug 1144) Fix export for fy language
 * make removal of an entry from zhconversiontable work
+* (bug 752) Don't insert newline in link title for url with %0a
+* Fix missing search box contents in MonoBook skin
+* Add option to forward search directly to an external URL (eg google)
 
 === Caveats ===
 
