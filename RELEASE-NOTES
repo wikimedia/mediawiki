@@ -229,6 +229,9 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1339) Fix order of @imports in Cologne Blue CSS
 * Don't try to create links without namespaces ([[Category:]] link bug)
 * Memcached data compression fixes
+* Several valid XHTML fixes
+* (bug 624) Fix IE freezing rendering whilst waiting for CSS with MonoBook
+* (bug 211) Fix tabbed preferences with XHTML MIME type 
 
 === Caveats ===
 
