@@ -8,10 +8,6 @@ class ListUsersPage extends QueryPage {
 		return "Listusers";
 	}
 
-	function isExpensive() {
-		return false;
-	}
-
 	function getSQL() {
 		global $wgIsPg;
 		$usertable = $wgIsPg?'"user"':'user';
