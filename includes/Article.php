@@ -1152,8 +1152,6 @@ class Article {
 		$wgParser->forUpdate( $oldUpdate );
 
 		if ( !$wgUseDumbLinkUpdate ) {
-			print nl2br(var_export($wgLinkCache, true));
-			
 			# Move the current links back to the second register
 			$wgLinkCache->swapRegisters();
 
