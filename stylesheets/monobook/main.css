@@ -61,13 +61,13 @@ table {
 }
 a {
     text-decoration: none;
-    color: #005189;
+    color: #0014a6;
     background: none;
 }
 a:visited { color: #5a3696; }
 a:active { color: Orange; }
 a:hover { text-decoration: underline; }
-a.stub,
+a.stub { color: #772233; }
 a.new { color:#ba0000; }
 
 img {
@@ -720,7 +720,7 @@ li#pt-login {
 }
 #p-cactions li a {
     background-color: White;
-    color: #005189;
+    color: #0014a6;
     border: none;
     padding: 0 0.8em 0.3em 0.8em;
     text-decoration: none;
@@ -802,7 +802,7 @@ head:first-child+body #footer li { white-space: nowrap; }
 #preftoc a,
 #preftoc a:active {
     display: block;
-    color: #005189;
+    color: #0014a6;
 }
 #prefcontrol { 
     clear: both;
