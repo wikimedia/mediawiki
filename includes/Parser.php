@@ -110,8 +110,8 @@ class Parser
 				"/(.) (\\?|:|!|\\302\\273)/i"=>"\\1&nbsp;\\2", 
 				# french spaces, Guillemet-right
 				"/(\\302\\253) /i"=>"\\1&nbsp;", 
-				"/<hr *>/i" => '<hr/>',
-				"/<br *>/i" => '<br/>',
+				"/<hr *>/i" => '<hr />',
+				"/<br *>/i" => '<br />',
 				"/<center *>/i"=>'<div class="center">',
 				"/<\\/center *>/i" => '</div>',
 				# Clean up spare ampersands; note that we probably ought to be
@@ -584,7 +584,7 @@ class Parser
 		$text = $this->removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text, $args );
 
-		$text = preg_replace( "/(^|\n)-----*/", "\\1<hr/>", $text );
+		$text = preg_replace( "/(^|\n)-----*/", "\\1<hr />", $text );
 
 		$text = $this->doHeadings( $text );
 		if($this->mOptions->getUseDynamicDates()) {
@@ -1119,7 +1119,7 @@ class Parser
 						// paragraph
 						if ( '' == trim($t) ) {
 							if ( $paragraphStack ) {
-								$output .= $paragraphStack.'<br/>';
+								$output .= $paragraphStack.'<br />';
 								$paragraphStack = false;
 								$this->mLastSection = 'p';
 							} else {
@@ -1885,7 +1885,7 @@ class Parser
 		/*
 		$pairs = array(
 			"/<br.+(clear|break)=[\"']?(all|both)[\"']?\\/?>/i" => '<br style="clear:both;"/>',
-			"/<br *?>/i" => "<br/>",
+			"/<br *?>/i" => "<br />",
 		);
 		$text = preg_replace(array_keys($pairs), array_values($pairs), $text);
 		*/
