@@ -15,7 +15,9 @@
 	4 => "Wikipédia",
 	5 => "Discussion_Wikipédia",
 	6 => "Image",
-	7 => "Discussion_Image"
+	7 => "Discussion_Image",
+	8 => "MediaWiki",
+	9 => "Discussion_MediaWiki"
 );
 
 /* using default options */
@@ -46,7 +48,7 @@
 );
 
 /* private */ $wgSkinNamesFr = array(
-	"Normal", "Nostalgie", "Cologne Blue"
+	"Normal", "Nostalgie", "Cologne Blue", "Paddington", "Montparnasse"
 );
 
 /* private */ $wgMathNamesFr = array(
@@ -251,7 +253,6 @@
 	"Listusers"     => "Liste des participants",
 	"Statistics"    => "Statistiques",
 	"Randompage"    => "Une page au hasard",
-
 	"Lonelypages"   => "Pages orphelines",
 	"Unusedimages"  => "Images orphelines",
 	"Popularpages"  => "Les plus populaires",
@@ -261,7 +262,6 @@
 	"Newpages"      => "Nouvelles pages",
 	"Ancientpages"	=> "Anciennes pages",
 	"Allpages"      => "Toutes les pages",
-
 	"Ipblocklist"   => "Adresses IP bloquées",
 	"Maintenance"   => "Page de maintenance",
 	"Specialpages"  => "", // ces pages doivent rester vides !
@@ -270,8 +270,9 @@
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"      => "",
-	"Booksources"   => "Librairies en ligne"
-//	"Categories"	=> "Page des catégories"	// Looxix "Page categories"
+	"Booksources"   => "Librairies en ligne",
+	"Categories"	=> "Page des catégories",	// Looxix "Page categories"
+	"Export"	=> ""
 );
 
 /* private */ $wgSysopSpecialPagesFr = array(
@@ -308,7 +309,7 @@
 "bugreports"    => "Rapport d'erreurs",
 "bugreportspage" => "Wikipédia:Rapport d'erreurs",
 "sitesupport"	=> "Participer en faisant un don",
-"sitesupportpage"	=> "Wikipédia:Donations",
+"sitesupportpage"	=> "Wikipédia:Dons",
 "faq"           => "FAQ",
 "faqpage"       => "Wikipédia:FAQ",
 "edithelp"      => "Aide",
@@ -419,11 +420,9 @@ ne peut utiliser le wiki.",
 # Login and logout pages
 #
 "logouttitle"	=> "Déconnexion",
-"logouttext"	=> "Vous êtes à présent déconnecté(e).
-Vous pouvez continuer à utiliser Wikipédia de façon anonyme, ou vous reconnecter, éventuellement sous un autre nom.\n",
+"logouttext"	=> "Vous êtes à présent déconnecté(e).  Vous pouvez continuer à utiliser Wikipédia de façon anonyme, ou vous reconnecter, éventuellement sous un autre nom. Veillez noter tant que la cache de votre navigateur n'apas été effacée, certaines pages pourront continuer de s'afficher comme si vous étiez toujours connecté(e).\n",
 
-"welcomecreation" => "<h2>Bienvenue, $1!</h2><p>Votre compte d'utilisateur a été créé.
-N'oubliez pas de personnaliser votre Wikipédia en consultant la page Préférences.",
+"welcomecreation" => "<h2>Bienvenue, $1!</h2><p>Votre compte d'utilisateur a été créé. N'oubliez pas de personnaliser votre Wikipédia en consultant la page Préférences.",
 
 "loginpagetitle"     => "Votre identifiant",
 "yourname"           => "Votre nom d'utilisateur",
@@ -473,7 +472,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 "preview"      => "Prévisualiser",
 "showpreview"  => "Prévisualisation",
 "blockedtitle" => "Utilisateur bloqué",
-"blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br>$2<p> Vous pouvez contacter l'administrateur pour en discuter.",
+"blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br>$2<p> Vous pouvez contacter $1 ou un des autres [[Wikipédia:Administrateurs|administateurs]] pour en discuter.",
 "whitelistedittitle" => "Login requis pour rédiger", // Looxix "Login required to edit",
 "whitelistedittext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir rédiger", // Looxix 
 "whitelistreadtitle" => "Login requis pour lire", // Looxix "Login required to read",
@@ -570,7 +569,30 @@ contenant tous les termes apparaissent dans les résultats).",
 Rechercher dans les espaces :<br>
 $1<br>
 $2 Inclure les page de redirections &nbsp; Rechercher $3 $9",
-"blanknamespace" => "(Principal)",	// FIXME FvdP: trad de "(Main)"
+"searchdisabled" => "<p>La fonction de recherche sur l'entièreté du texte a été temporairement désactivée à cause de la grande charge que cela impose au serveur. Nous espérons la rétablir prochainement lorsque nous disposerons d'un serveur plus puissant. En attendant, vous pouvez faire la recherche avec Google:</p>
+                                                                                                                                                        
+<!-- SiteSearch Google -->
+<FORM method=GET action=\"http://www.google.com/search\">
+<TABLE bgcolor=\"#FFFFFF\"><tr><td>
+<A HREF=\"http://www.google.com/\">
+<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
+border=\"0\" ALT=\"Google\"></A>
+</td>
+<td>
+<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
+<INPUT type=submit name=btnG VALUE=\"Google Search\">
+<font size=-1>
+<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio
+name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
+value=\"{$wgServer}\" checked> {$wgServer} <br>
+<input type='hidden' name='ie' value='$2'>
+<input type='hidden' name='oe' value='$2'>
+</font>
+</td></tr></TABLE>
+</FORM>
+<!-- SiteSearch Google -->
+",
+"blanknamespace" => "(Principal)",
 
 # Preferences page
 #
@@ -688,6 +710,8 @@ L'heure indiquée est celle du serveur (UTC).
 ",
 "filename"  => "Nom",
 "filedesc"  => "Description",
+"filestatus" => "Statut du copyright",
+"filesource" => "Source",
 "affirmation" => "Je déclare que le détenteur du copyright de ce fichier accepte de le diffuser selon les termes de la $1.",
 "copyrightpage" => "Wikipédia:Copyright",
 "copyrightpagename" => "licence Wikipédia",
@@ -855,6 +879,9 @@ Les prochaines modifications de cette page et de la page discussion associée ser
 "couldntremove" => "Impossible de retirer l'article '$1'...",
 "iteminvalidname" => "Problème avec l'article '$1': le nom est invalide...",
 "wlnote" => "Ci-dessous se trouve les $1 dernières modifications depuis les <b>$2</b> dernières heures.", // Looxix 
+"wlshowlast"	=> "Afficher les dernières ",
+"wlhours"	=> " heures",
+"wldays"	=> " jours",
 
 
 # Delete/protect/revert
@@ -959,7 +986,10 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont
 "unblocklink"	=> "débloquer",
 "contribslink"	=> "contribs",
 "autoblocker"	=> "Autobloqué parce que vous partagez une adresse IP avec \"$1\". Raison : \"$2\".",
-
+"blocklogpage"	=> "Trace_des effacements",
+"blocklogentry"	=> 'blocage de "$1"',
+"blocklogtext"	=> "Ceci est la trace des blocages et déblocages ds utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.",
+"unblocklogentry"	=> 'déblocage de "$1"',
 
 # Developer tools
 #
@@ -1033,6 +1063,14 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 "talkpagemoved" => "La page discussion correspondante a également été déplacée.",
 "talkpagenotmoved" => "La page discussion correspondante n'a <strong>pas</strong> été déplacée.",
 
+"export"	=> "Exporter des pages",
+"exporttext"	=> "Vous pouvez exporter en XML le texte et l'historique d'une page ou d'un ensemble de pages; le résultat peut alores être importé dans un autre wiki fonctionnant avec le logiciel MediaWiki, transformé ou sauvegardé pour votre usage personnel.",
+"exportcuronly"	=> "Exporter uniquement la version courante sans l'historique",
+
+# Namespace 8 related
+
+"allmessages"	=> "Tous les messages",
+"allmessagestext"	=> "Ceci est la liste de tous les messages disponibles dans l'espace MediaWiki"
 );
 
 class LanguageFr extends Language
