@@ -405,6 +405,24 @@
 			$nav_urls['help'] = array('href' => htmlspecialchars( $this->makeI18nUrl('helppage')));
 			$nav_urls['upload'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Upload')));
 			$nav_urls['specialpages'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Specialpages')));
+			
+			
+			$id=User::idFromName($wgTitle->getText());
+			$ip=User::isIP($wgTitle->getText());
+
+			if($id || $ip) { # both anons and non-anons have contri list
+				$nav_urls['contributions'] = array(
+					'href' => htmlspecialchars( $this->makeSpecialUrl('Contributions', "target=" . $wgTitle->getPartialURL() ) )
+				);
+			}
+			if ( 0 != $wgUser->getID() ) { # show only to signed in users
+				if($id) {	# can only email non-anons
+					$nav_urls['emailuser'] = array(
+						'href' => htmlspecialchars( $this->makeSpecialUrl('Emailuser', "target=" . $wgTitle->getPartialURL() ) )
+					);
+				}
+			}
+
 
 			return $nav_urls;
 		}

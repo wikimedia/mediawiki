@@ -140,10 +140,16 @@
                 <li><a href="${nav_urls/recentchangeslinked/href}"
                   i18n:attributes="accesskey string:accesskey-recentchangeslinked|default;title string:tooltip-recentchangeslinked | default"
                   i18n:translate="string:recentchangeslinked">Related Changes</a></li>
+                <li tal:condition="nav_urls/contributions/href"><a href="${nav_urls/contributions/href}"
+                  i18n:attributes="accesskey string:accesskey-contributions|default; title string:tooltip-contributions|default" 
+                  i18n:translate="string:contributions">Contributions</a></li>
+                <li tal:condition="nav_urls/emailuser/href"><a href="${nav_urls/emailuser/href}"
+                  i18n:attributes="accesskey string:accesskey-emailuser|default; title string:tooltip-emailuser|default" 
+                  i18n:translate="string:emailuser">Email this user</a></li>
                 <li><a href="${nav_urls/specialpages/href}"
                   i18n:attributes="accesskey string:accesskey-specialpages|default;title string:tooltip-specialpages|default"
                   i18n:translate="string:specialpages">Special Pages</a></li>
-                <li tal:condition="loggedin"><a href="${nav_urls/upload/href"
+                <li tal:condition="loggedin"><a href="${nav_urls/upload/href}"
                   i18n:attributes="accesskey string:accesskey-upload|default; title string:tooltip-upload|default" 
                   i18n:translate="string:upload">Upload a file</a></li>
               </ul>

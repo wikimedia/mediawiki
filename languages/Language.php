@@ -1495,6 +1495,8 @@ amusement.",
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
+'accesskey-contributions' => '',
+'accesskey-emailuser' => '',
 
 # tooltip help for the main actions
 'tooltip-article' => 'View the article [alt-a]',
@@ -1532,6 +1534,8 @@ amusement.",
 'tooltip-minoredit' => 'Mark this as a minor edit [alt-i]',
 'tooltip-save' => 'Save you changes [alt-s]',
 'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
+'tooltip-contributions' => 'View the list of contributions of this user',
+'tooltip-emailuser' => 'Send a mail to this user',
 
 # Metadata
 "nodublincore" => "Dublin Core RDF metadata disabled for this server.",
