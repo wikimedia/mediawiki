@@ -276,14 +276,17 @@ class Parser
 		$id = $this->mTitle->getArticleID() ;
 
 		# For existing categories
-		$sql = "SELECT DISTINCT cur_title,cur_namespace FROM cur,links WHERE l_to={$id} AND l_from=cur_id";
-		$res = wfQuery ( $sql, DB_READ ) ;
-		while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
-
-		# For non-existing categories
-		$sql = "SELECT DISTINCT cur_title,cur_namespace FROM cur,brokenlinks WHERE bl_to={$id} AND bl_from=cur_id" ;
-		$res = wfQuery ( $sql, DB_READ ) ;
-		while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
+		if( $id ) {
+			$sql = "SELECT DISTINCT cur_title,cur_namespace FROM cur,links WHERE l_to={$id} AND l_from=cur_id";
+			$res = wfQuery ( $sql, DB_READ ) ;
+			while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
+		} else {
+			# For non-existing categories
+			$t = wfStrencode( $this->mTitle->getPrefixedDBKey() );
+			$sql = "SELECT DISTINCT cur_title,cur_namespace FROM cur,brokenlinks WHERE bl_to='$t' AND bl_from=cur_id" ;
+			$res = wfQuery ( $sql, DB_READ ) ;
+			while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
+		}
 
 		# For all pages that link to this category
 		foreach ( $data AS $x )
