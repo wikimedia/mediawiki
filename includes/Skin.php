@@ -187,7 +187,7 @@ class Skin {
 
 	function doBeforeContent()
 	{
-		global $wgUser, $wgOut, $wgTitle;
+		global $wgUser, $wgOut, $wgTitle, $wgLang;
 		wfProfileIn( "Skin::doBeforeContent" );
 
 		$s = "";
@@ -205,10 +205,14 @@ class Skin {
 		$s .= "\n<div id='content'>\n<div id='topbar'>" .
 		  "<table width='98%' border=0 cellspacing=0><tr>";
 
-		if ( 0 == $qb ) {
+		$shove = ($qb != 0);
+		$left = ($qb == 1 || $qb == 3);
+		if($wgLang->isRTL()) $left = !$left;
+		
+		if ( !$shove ) {
 			$s .= "<td class='top' align=left valign=top rowspan='{$rows}'>" .
 			  $this->logoText() . "</td>";
-		} else if ( 1 == $qb || 3 == $qb ) { # Left
+		} elseif( $left ) {
 			$s .= $this->getQuickbarCompensator( $rows );
 		}
 		$s .= "<td {$borderhack} align=left valign=top>";
@@ -224,7 +228,7 @@ class Skin {
 			$s .= "</tr>\n<tr><td class='top' colspan=\"2\">$langlinks</td>";
 		}
 
-		if ( 2 == $qb ) { # Right
+		if ( $shove && !$left ) { # Right
 			$s .= $this->getQuickbarCompensator( $rows );
 		}
 		$s .= "</tr></table>\n</div>\n";
@@ -266,7 +270,7 @@ class Skin {
 
 	function doAfterContent()
 	{
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgLang;
 		wfProfileIn( "Skin::doAfterContent" );
 
 		$s = "\n</div><br clear=all>\n";
@@ -275,7 +279,11 @@ class Skin {
 		$s .= "<table width='98%' border=0 cellspacing=0><tr>";
 
 		$qb = $this->qbSetting();
-		if ( 1 == $qb || 3 == $qb ) { # Left
+		$shove = ($qb != 0);
+		$left = ($qb == 1 || $qb == 3);
+		if($wgLang->isRTL()) $left = !$left;
+
+		if ( $shove && $left ) { # Left
 			$s .= $this->getQuickbarCompensator();
 		}
 		$s .= "<td class='bottom' align=left valign=top>";
@@ -288,7 +296,7 @@ class Skin {
 		  . "<br>" . $this->pageStats();
 
 		$s .= "</td>";
-		if ( 2 == $qb ) { # Right
+		if ( $shove && !$left ) { # Right
 			$s .= $this->getQuickbarCompensator();
 		}
 		$s .= "</tr></table>\n</div>\n</div>\n";
