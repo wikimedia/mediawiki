@@ -25,7 +25,7 @@
 	"contextlines" => 5, "contextchars" => 50,
 	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
 	"highlightbroken" => 1, "stubthreshold" => 0,
-	"previewontop" => 1
+	"previewontop" => 1, "editsection"=>1, "showtoc"=>1
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
@@ -53,6 +53,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"hideminor" => "Hide minor edits in recent changes",
 	"usenewrc" => "Enhanced recent changes (not for all browsers)",
 	"numberheadings" => "Auto-number headings",
+	"editsection"=>"Show links for editing individual sections",
+	"showtoc"=>"Show table of contents for articles with more than 3 headings",
 	"rememberpassword" => "Remember password across sessions",
 	"editwidth" => "Edit box has full width",
 	"editondblclick" => "Edit pages on double click (JavaScript)",
@@ -351,6 +353,8 @@ See $1.",
 "retrievedfrom" => "Retrieved from \"$1\"",
 "newmessages" => "You have $1.",
 "newmessageslink" => "new messages",
+"editsection"=>"edit",
+"toc" => "Table of contents",
 
 # Main script and global functions
 #

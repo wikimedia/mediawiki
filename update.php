@@ -10,7 +10,7 @@ if ( ! ( is_readable( "./LocalSettings.php" )
 	exit();
 }
 
-$DP = "./includes";
+$IP = "./includes";
 include_once( "./LocalSettings.php" );
 include_once( "./AdminSettings.php" );
 
@@ -23,7 +23,7 @@ if ( $wgUseTeX && ( ! is_executable( "./math/texvc" ) ) ) {
 umask( 000 );
 set_time_limit( 0 );
 
-include_once( "{$IP}/Version.php" );
+include_once( "Version.php" );
 include_once( "{$IP}/Setup.php" );
 $wgTitle = Title::newFromText( "Update script" );
 $wgCommandLineMode = true;
