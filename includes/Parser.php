@@ -105,6 +105,10 @@ class Parser
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
 		if(!$wgUseTidy) {
 			$fixtags = array(
+				# french spaces, last one Guillemet-left
+				"/ (\\?|:|!|\\302\\273)/i"=>'&nbsp;\\1', 
+				# french spaces, Guillemet-right
+				"/\\302\\253 /i"=>'\\302\\253&nbsp;', 
 				"/<hr *>/i" => '<hr/>',
 				"/<br *>/i" => '<br/>',
 				"/<center *>/i"=>'<div class="center">',
@@ -116,6 +120,10 @@ class Parser
 			$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
 		} else {
 			$fixtags = array(
+				# french spaces, last one Guillemet-left
+				"/ (\\?|:|!|\\302\\273)/i"=>'&nbsp;\\1', 
+				# french spaces, Guillemet-right
+				"/\\302\\253 /i"=>'\\302\\253&nbsp;', 
 				"/<center *>/i"=>'<div class="center">',
 				"/<\\/center *>/i" => '</div>'
 			);
