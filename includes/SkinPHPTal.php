@@ -559,12 +559,12 @@ class SkinPHPTal extends Skin {
 		global $wgNavigationLinks;
 		$result = array();
 		foreach ( $wgNavigationLinks as $link ) {
-		        if (wfMsg( $link['text'] ) != '-') {
+			if (wfMsg( $link['text'] ) != '-') {
 			    $result[] = array(
-					      'text' => wfMsg( $link['text'] ),
-					      'href' => $this->makeInternalOrExternalUrl( wfMsgForContent( $link['href'] ) ),
-					      'id' => 'n-'.$link['text']
-					      );
+								  'text' => wfMsg( $link['text'] ),
+								  'href' => $this->makeInternalOrExternalUrl( wfMsgForContent( $link['href'] ) ),
+								  'id' => 'n-'.$link['text']
+								  );
 			}
 		}
 		return $result;
@@ -585,16 +585,8 @@ class SkinPHPTal extends Skin {
 		$nav_urls['mainpage'] = array('href' => $this->makeI18nUrl('mainpage'));
 		$nav_urls['randompage'] = array('href' => $this->makeSpecialUrl('Randompage'));
 		$nav_urls['recentchanges'] = array('href' => $this->makeSpecialUrl('Recentchanges'));
-	        $ce = wfMsg('currentevents');
-	        wfDebug("Got to before here");
-	        if (strcmp($ce, '-') != 0) {
-		    wfDebug("GOT TO HERE");
-		    $nav_urls['currentevents'] = array('href' => $this->makeI18nUrl('currentevents'));
-		}
-	        $portal = wfMsg('portal');
-	        if (strcmp($portal, '-') != 0) {
-		    $nav_urls['portal'] =  array('href' => $this->makeI18nUrl('portal-url'));
-		}
+		$nav_urls['currentevents'] = (wfMsg('currentevents') != '-') ? array('href' => $this->makeI18nUrl('currentevents')) : false;
+		$nav_urls['portal'] =  (wfMsg('portal') != '-') ? array('href' => $this->makeI18nUrl('portal-url')) : false;
 		$nav_urls['bugreports'] = array('href' => $this->makeI18nUrl('bugreportspage'));
 		// $nav_urls['sitesupport'] = array('href' => $this->makeI18nUrl('sitesupportpage'));
 		$nav_urls['sitesupport'] = array('href' => $wgSiteSupportPage);
