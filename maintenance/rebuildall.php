@@ -27,8 +27,7 @@ set_time_limit(0);
 $wgDBuser			= $wgDBadminuser;
 $wgDBpassword		= $wgDBadminpassword;
 
-rebuildLinkTablesPass1();
-rebuildLinkTablesPass2();
+rebuildLinkTables();
 
 dropTextIndex();
 rebuildTextIndex();
