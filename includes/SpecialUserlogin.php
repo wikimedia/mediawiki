@@ -69,8 +69,8 @@ class LoginForm {
 	{
 		global $wgOut;
 		
-		if ("" == $this->mEmail) {
-			$this->mainLoginForm( wfMsg( "noemail", $this->mName ) );
+		if ('' == $this->mEmail) {
+			$this->mainLoginForm( wfMsg( 'noemail', htmlspecialchars( $this->mName ) ) );
 			return;
 		}
 
@@ -282,9 +282,9 @@ class LoginForm {
 
 		$m = wfMsg( "passwordremindertext", $ip, $u->getName(), $np );
 
-		$error = userMailer( $u->getEmail(), $wgPasswordSender, wfMsg( "passwordremindertitle" ), $m );
-		  
-		return $error;
+		$error = userMailer( $u->getEmail(), $wgPasswordSender, wfMsg( 'passwordremindertitle' ), $m );
+		
+		return htmlspecialchars( $error );
 	}
 
 
@@ -341,8 +341,8 @@ class LoginForm {
 		$mmp = wfMsg( "mailmypassword" );
 		$endText = wfMsg( "loginend" );
 
-		if ( $endText = "&lt;loginend&gt;" ) {
-			$endText = "";
+		if ( $endText == '&lt;loginend&gt;' ) {
+			$endText = '';
 		}
 
 		if ( "" == $this->mName ) {
