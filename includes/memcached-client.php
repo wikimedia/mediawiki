@@ -737,13 +737,7 @@ class memcached
     */
    function _hashfunc ($key)
    {
-      $hash = 0;
-      for ($i=0; $i<strlen($key); $i++)
-      {
-         $hash = $hash*33 + ord($key[$i]);
-      }
-      
-      return $hash;
+      return crc32($key);
    }
 
    // }}}
