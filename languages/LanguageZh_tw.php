@@ -51,40 +51,6 @@ require_once( "LanguageZh_cn.php" );
 	"推薦為新版流覽器使用"  /* "Recommended for modern browsers" */
 );
 
-/* private */ $wgUserTogglesZh_tw = array(
-	"hover"		=> "滑過維基鏈結時顯示注釋",
-/* "Show hoverbox over wiki links",*/
-	"underline" => "下劃鏈結",
-/* "Underline links", */
-	"highlightbroken" => "毀壞的鏈結格式<a href=\"\" class=\"new\">像這樣</a> (或者像這個<a href=\"\" class=\"internal\">?</a>)",
-/* "Format broken links <a href=\"\" class=\"new\">like
-this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
-	"justify"	=> "段落對齊",
-/* "Justify paragraphs", */
-	"hideminor" => "最近更改中隱藏細微修改",
-/* "Hide minor edits in recent changes", */
-	"usenewrc" => "最近更改增強（只適用部分流覽器）",
-/* "Enhanced recent changes (not for all browsers)", */
-	"numberheadings" => "標題自動編號",
-	"showtoolbar" => "顯示編輯工具欄",
-/* "Auto-number headings", */
-   "editondblclick" => "雙擊頁面編輯(JavaScript)",
-                 "editsection"=>"允許通過點擊[編輯]鏈結編輯段落",
- 	         "editsectiononrightclick"=>"允許右擊標題編輯段落(JavaScript)",
- 	         "showtoc"=>"顯示目錄<br>(針對一頁超過3個標題的文章)",
-	"rememberpassword" => "下次登陸記住密碼",
-/* "Remember password across sessions", */
-	"editwidth" => "編輯欄位寬度",
-/* "Edit box has full width", */
-	"editondblclick" => "雙擊編輯頁面（Javascript）",
-/* "Edit pages on double click (JavaScript)", */
-	"watchdefault" => "監視新的以及更改過的文章",
-/* "Watch new and modified articles", */
-	"minordefault" => "細微編輯為默認設置",
-/* "Mark all edits minor by default", */
-	"previewontop" => "在編輯框上方顯示預覽"
-/* "Show preview before edit box and not after it" */
-);
 
 /* private */ $wgBookstoreListZh_tw = array(
 	"博客來書店" => "http://www.books.com.tw/exep/openfind_book_keyword.php?cat1=4&key1=$1",
@@ -158,6 +124,28 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 );
 
 /* private */ $wgAllMessagesZh_tw = array(
+
+/* User toggles */
+	"tog-hover"		=> "滑過維基鏈結時顯示注釋", /* "Show hoverbox over wiki links",*/
+	"tog-underline" => "下劃鏈結", /* "Underline links", */
+	"tog-highlightbroken" => "毀壞的鏈結格式<a href=\"\" class=\"new\">像這樣</a> (或者像這個<a href=\"\" class=\"internal\">?</a>)", /* "Format broken links <a href=\"\" class=\"new\">like this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
+	"tog-justify"	=> "段落對齊", /* "Justify paragraphs", */
+	"tog-hideminor" => "最近更改中隱藏細微修改", /* "Hide minor edits in recent changes", */
+	"tog-usenewrc" => "最近更改增強（只適用部分流覽器）", /* "Enhanced recent changes (not for all browsers)", */
+	"tog-numberheadings" => "標題自動編號",
+	"tog-showtoolbar" => "顯示編輯工具欄",/* "Auto-number headings", */
+   "tog-editondblclick" => "雙擊頁面編輯(JavaScript)",
+	"tog-editsection"=>"允許通過點擊[編輯]鏈結編輯段落",
+ 	"tog-editsectiononrightclick"=>"允許右擊標題編輯段落(JavaScript)",
+ 	"tog-showtoc"=>"顯示目錄<br>(針對一頁超過3個標題的文章)",
+	"tog-rememberpassword" => "下次登陸記住密碼",/* "Remember password across sessions", */
+	"tog-editwidth" => "編輯欄位寬度",/* "Edit box has full width", */
+	"tog-editondblclick" => "雙擊編輯頁面（Javascript）",/* "Edit pages on double click (JavaScript)", */
+	"tog-watchdefault" => "監視新的以及更改過的文章",/* "Watch new and modified articles", */
+	"tog-minordefault" => "細微編輯為默認設置",/* "Mark all edits minor by default", */
+	"tog-previewontop" => "在編輯框上方顯示預覽", /* "Show preview before edit box and not after it" */
+
+
 
 # Bits of text used by many pages:
 #
@@ -999,12 +987,6 @@ class LanguageZh_tw extends LanguageZh_cn {
 		global $wgMathNamesZh_tw;
 		return $wgMathNamesZh_tw;
 	}
-
-	function getUserToggles() {
-		global $wgUserTogglesZh_tw;
-		return $wgUserTogglesZh_tw;
-	}
-
 
 	function getValidSpecialPages()
 	{
