@@ -682,7 +682,7 @@ Dintre aceştia <b>$2</b> sunt administratori (vezi $3).",
 "booksourcetext" => "Dedesubt găsiţi o listă de surse de cărţi noi şi vechi, şi e posibil să găsiţi şi informaţii adiţionale legate de titlurile pe care le căutaţi.
 Wikipedia nu este afiliată niciuneia dintre aceste afaceri,
 iar lista de mai jos nu constituie nici un fel de garanţie sau validare a serviciilor respective din partea Wikipedia.",
-"alphaindexline" => "$1 către $2",
+"alphaindexline" => "De la $1 la $2",
 
 # Email this user
 #
