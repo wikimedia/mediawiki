@@ -1631,6 +1631,7 @@ class Parser
 		$found = false;
 		$nowiki = false;
 		$noparse = false;
+		$brokenlink = false;
 
 		$title = NULL;
 
@@ -1788,6 +1789,7 @@ class Parser
 				if ( $this->mOutputType == OT_HTML && !$found ) {
 					$text = '[['.$title->getPrefixedText().']]';
 					$found = true;
+					$brokenlink = true;
 				}
 
 				# Template cache array insertion
@@ -1846,7 +1848,7 @@ class Parser
 		} else {
 			# replace ==section headers==
 			# XXX this needs to go away once we have a better parser.
-			if ( $this->mOutputType != OT_WIKI ) {
+			if ( $this->mOutputType != OT_WIKI && !$brokenlink ) {
 				if( !is_null( $title ) )
 					$encodedname = base64_encode($title->getPrefixedDBkey());
 				else
