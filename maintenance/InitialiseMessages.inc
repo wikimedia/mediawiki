@@ -113,7 +113,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 				print "$title\n";
 				$mwTitleObj = Title::makeTitle( NS_MEDIAWIKI, $title );
 				$article = new Article( $mwTitleObj );
-				$article->quickSave( $message );
+				$article->quickEdit( $message );
 			}
 			$doInsert = false;
 		} else {
