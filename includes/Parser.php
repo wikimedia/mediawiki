@@ -108,7 +108,7 @@ class Parser
 
 	/* static */ function extractTags($tag, $text, &$content, $uniq_prefix = ""){
 		$result = array();
-		$rnd = $uniq_prefix . Parser::getRandomString();
+		$rnd = $uniq_prefix . '-' . $tag . Parser::getRandomString();
 		$content = array( );
 		$n = 1;
 		$stripped = "";
@@ -178,9 +178,9 @@ class Parser
 		$text = Parser::extractTags("pre", $text, $pre_content, $uniq_prefix);
 		foreach( $pre_content as $marker => $content ){
 			if( $render ){
-				$pre_content[$marker] = "\n<pre>" . wfEscapeHTMLTagsOnly( $content ) . "</pre>";
+				$pre_content[$marker] = "<pre>" . wfEscapeHTMLTagsOnly( $content ) . "</pre>";
 			} else {
-				$pre_content[$marker] = "\n<pre>$content</pre>";
+				$pre_content[$marker] = "<pre>$content</pre>";
 			}
 		}
 		
@@ -547,8 +547,8 @@ class Parser
 
 	/* private */ function handle3Quotes( &$state, $token )
 	{
-		if ( $state["strong"] ) {
-			if ( $state["em"] && $state["em"] > $state["strong"] )
+		if ( $state["strong"] !== false ) {
+			if ( $state["em"] !== false && $state["em"] > $state["strong"] )
 			{
 				# ''' lala ''lala '''
 				$s = "</em></strong><em>";
@@ -565,8 +565,8 @@ class Parser
 
 	/* private */ function handle2Quotes( &$state, $token )
 	{
-		if ( $state["em"] ) {
-			if ( $state["strong"] && $state["strong"] > $state["em"] )
+		if ( $state["em"] !== false ) {
+			if ( $state["strong"] !== false && $state["strong"] > $state["em"] )
 			{
 				# ''lala'''lala'' ....'''
 				$s = "</strong></em><strong>";
@@ -584,18 +584,18 @@ class Parser
 	/* private */ function handle5Quotes( &$state, $token )
 	{
 		$s = "";
-		if ( $state["em"] && $state["strong"] ) {
+		if ( $state["em"] !== false && $state["strong"] ) {
 			if ( $state["em"] < $state["strong"] ) {
 				$s .= "</strong></em>";
 			} else {
 				$s .= "</em></strong>";
 			}
 			$state["strong"] = $state["em"] = FALSE;
-		} elseif ( $state["em"] ) {
+		} elseif ( $state["em"] !== false ) {
 			$s .= "</em><strong>";
 			$state["em"] = FALSE;
 			$state["strong"] = $token["pos"];
-		} elseif ( $state["strong"] ) {
+		} elseif ( $state["strong"] !== false ) {
 			$s .= "</strong><em>";
 			$state["strong"] = FALSE;
 			$state["em"] = $token["pos"];
@@ -1027,10 +1027,10 @@ class Parser
 			}
 			if ( 0 == $npl ) { # No prefix--go to paragraph mode
 				if ( preg_match(
-				  "/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<div|<pre)/i", $t ) ) {
+				  "/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<div)/i", $t ) ) {
 					$text .= $this->closeParagraph();
 					$inBlockElem = true;
-				} else if ( preg_match("/(<hr|<\\/td)/i", $t ) ) {
+				} else if ( preg_match("/(<hr|<\\/td|".$uniq_prefix."-pre)/i", $t ) ) {
 					$text .= $this->closeParagraph();
 					$inBlockElem = false;
 				}
@@ -1057,7 +1057,7 @@ class Parser
 					}
 				}
 				if ( $inBlockElem &&
-				  preg_match( "/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|<\\/p<\\/div|<\\/pre)/i", $t ) ) {
+				  preg_match( "/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|<\\/p<\\/div)/i", $t ) ) {
 					$inBlockElem = false;
 				}
 			}
