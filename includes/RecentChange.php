@@ -76,7 +76,7 @@ class RecentChange
 		$this->mExtra = $extra;
 	}
 
-	function getTitle()
+	function &getTitle()
 	{
 		if ( $this->mTitle === false ) {
 			$this->mTitle = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
