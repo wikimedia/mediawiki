@@ -314,7 +314,9 @@
 			if( $this->iscontent ) {
 
 				$nskey = $this->getNameSpaceKey();
-				$content_actions[$nskey] = array('class' => (!Namespace::isTalk( $wgTitle->getNamespace())) ? 'selected' : false,
+				$is_active = !Namespace::isTalk( $wgTitle->getNamespace()) ;
+				if ( $action == 'validate' ) $is_active = false ; # Show article tab deselected when validating
+				$content_actions[$nskey] = array('class' => ($is_active) ? 'selected' : false,
 				'text' => wfMsg($nskey),
 				'href' => $this->makeArticleUrl($this->thispage));
 
@@ -435,7 +437,8 @@
 					}
 				}
 
-				if ( $wgUseValidation && /*$wgUser->getID() != 0 && */ $wgTitle->getArticleId() && $wgTitle->getNamespace() == 0 ) {
+				# Show validate tab
+				if ( $wgUseValidation && $wgTitle->getArticleId() && $wgTitle->getNamespace() == 0 ) {
 					global $wgArticle ;
 					$article_time = "&timestamp=" . $wgArticle->mTimestamp ;
 					$content_actions['validate'] = array('class' => ($action == 'validate') ? 'selected' : false ,

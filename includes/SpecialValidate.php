@@ -60,7 +60,7 @@ class Validation
 	
 	function validate_form ( $article_title = "" )
 		{
-		global $wgOut, $wgLang, $wgUser;
+		global $wgOut, $wgLang, $wgUser, $wgArticle ;
 		
 		if ( $wgUser->getID() == 0 ) # Anon
 			{
@@ -164,6 +164,8 @@ class Validation
 					if ( $rad != -1 ) wfQuery( $sql, DB_WRITE );
 					}
 				}
+			$wgArticle->showArticle( "Juhuu", wfMsg( 'val_validated' ) );
+			return ; # Show article instead of validation page
 			}
 		
 		# Generating HTML
@@ -171,7 +173,9 @@ class Validation
 		
 		$skin = $wgUser->getSkin() ;
 		$staturl = $skin->makeSpecialURL ( "validate" , "mode=stat_page&article_title={$article_title}" ) ;
-		$html .= "<a href=\"{$staturl}\">" . wfMsg('val_stat_link_text') . "</a><br>\n" ;
+		$listurl = $skin->makeSpecialURL ( "validate" , "mode=list_page" ) ;
+		$html .= "<a href=\"{$staturl}\">" . wfMsg('val_stat_link_text') . "</a> \n" ;
+		$html .= "<a href=\"{$listurl}\">" . wfMsg('val_article_lists') . "</a><br>\n" ;
 		$html .= "<small>" . wfMsg('val_form_note') . "</small><br>\n" ;
 		
 		# Generating data tables
@@ -227,7 +231,6 @@ class Validation
 			$html .= "</tr></table></form>\n" ;
 			}
 		
-		global $wgArticle ;
 		$html .= "<h2>" . wfMsg ( 'preview' ) . "</h2>" ;
 		$wgOut->addHTML ( $html ) ;
 		$wgOut->addWikiText ( $wgArticle->getContent( true ) ) ;
@@ -269,6 +272,11 @@ class Validation
  
 		# Generating HTML
 		$html = "<h1>Page validation statistics</h1>\n" ;
+
+		$skin = $wgUser->getSkin() ;
+		$listurl = $skin->makeSpecialURL ( "validate" , "mode=list_page" ) ;
+		$html .= "<a href=\"{$listurl}\">" . wfMsg('val_article_lists') . "</a><br><br>\n" ;
+
 		$html .= "<table border=1 cellpadding=2 style='font-size:8pt;'>\n" ;
 		$html .= "<tr><th>" . wfMsg('val_version') . "</th>" ;
 		foreach ( $validationtypes AS $idx => $title )
@@ -354,6 +362,10 @@ class Validation
 		else $num = 0 ;
 		return $num ;
 		}
+		
+	function getArticleList ()
+		{
+		}
 
 	}
 
@@ -364,13 +376,18 @@ function wfSpecialValidate( $page = "" )
 	else $mode = "form" ;
 	$v = new Validation ;
 	$html = "" ;
-	if ( $mode == "form" )
+/*	if ( $mode == "form" )
 		{
 		$html = $v->validate_form () ;
 		}
-	else if ( $mode == "stat_page" )
+	else */
+	if ( $mode == "stat_page" )
 		{
 		$html = $v->getPageStatistics () ;
+		}
+	else if ( $mode == "list_page" )
+		{
+		$html = $v->getArticleList () ;
 		}
 	
 	$wgOut->addHTML( $html ) ;
