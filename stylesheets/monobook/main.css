@@ -405,15 +405,12 @@ div.townBox dl dd {
 /* Page history styling */
 /* the auto-generated edit comments */
 .autocomment { color: gray; }
-#pagehistory span.hlinedesc { margin-left: 1.4em }
-#pagehistory span.hflag { 
-    margin-left: -1em;
-    font-weight: bold;
+#pagehistory span.user { 
+    margin-left: 1.4em;
+    margin-right: 0.4em;
 }
-#pagehistory li { 
-    border: 1px solid White;
-    padding-left: 1em;
-}
+#pagehistory span.minor { font-weight: bold; }
+#pagehistory li { border: 1px solid White; }
 #pagehistory li.selected { 
     background-color:#f9f9f9;
     border:1px dashed #aaaaaa;
