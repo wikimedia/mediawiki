@@ -72,6 +72,10 @@ class AuthPlugin {
 	 * when asked to login a user who doesn't exist locally but does in the
 	 * external auth database.
 	 *
+	 * If you don't automatically create accounts, you must still create
+	 * accounts in some way. It's not possible to authenticate without
+	 * a local account.
+	 *
 	 * This is just a question, and shouldn't perform any actions.
 	 *
 	 * @return bool
