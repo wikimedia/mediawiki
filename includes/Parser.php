@@ -3083,7 +3083,12 @@ class Parser
 			} else {
 				$label = '';
 			}
-			$ig->add( Image::newFromTitle( $nt ), $label );
+			
+			# FIXME: Use the full wiki parser and add its links
+			# to the page's links.
+			$html = $this->mOptions->mSkin->formatComment( $label );
+			
+			$ig->add( Image::newFromTitle( $nt ), $html );
 			$wgLinkCache->addImageLinkObj( $nt );
 		}
 		return $ig->toHTML();
