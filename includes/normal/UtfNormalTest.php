@@ -157,6 +157,7 @@ function testNormals( &$u, $c, $comment, $reportFailure = false ) {
 	$result = testNFD( $u, $c, $comment, $reportFailure ) && $result;
 	$result = testNFKC( $u, $c, $comment, $reportFailure ) && $result;
 	$result = testNFKD( $u, $c, $comment, $reportFailure ) && $result;
+	$result = testCleanUp( $u, $c, $comment, $reportFailure ) && $result;
 	
 	global $verbose;
 	if( $verbose && !$result && !$reportFailure ) {
@@ -185,6 +186,20 @@ function testNFC( &$u, $c, $comment, $verbose ) {
 	$result = verbosify( $c[2], $u->toNFC( $c[3] ), 3, 'NFC', $verbose ) && $result;
 	$result = verbosify( $c[4], $u->toNFC( $c[4] ), 4, 'NFC', $verbose ) && $result;
 	$result = verbosify( $c[4], $u->toNFC( $c[5] ), 5, 'NFC', $verbose ) && $result;
+	return $result;
+}
+
+function testCleanUp( &$u, $c, $comment, $verbose ) {
+	$x = $c[1];
+	$result = verbosify( $c[2], $u->cleanUp( $x ), 1, 'cleanUp', $verbose );
+	$x = $c[2];
+	$result = verbosify( $c[2], $u->cleanUp( $x ), 2, 'cleanUp', $verbose ) && $result;
+	$x = $c[3];
+	$result = verbosify( $c[2], $u->cleanUp( $x ), 3, 'cleanUp', $verbose ) && $result;
+	$x = $c[4];
+	$result = verbosify( $c[4], $u->cleanUp( $x ), 4, 'cleanUp', $verbose ) && $result;
+	$x = $c[5];
+	$result = verbosify( $c[4], $u->cleanUp( $x ), 5, 'cleanUp', $verbose ) && $result;
 	return $result;
 }
 
@@ -220,6 +235,8 @@ function testInvariant( &$u, $char, $desc, $reportFailure = false ) {
 	$result = verbosify( $char, $u->toNFD( $char ), 1, 'NFD', $reportFailure ) && $result;
 	$result = verbosify( $char, $u->toNFKC( $char ), 1, 'NFKC', $reportFailure ) && $result;
 	$result = verbosify( $char, $u->toNFKD( $char ), 1, 'NFKD', $reportFailure ) && $result;
+	$c = $char;
+	$result = verbosify( $char, $u->cleanUp( $char ), 1, 'cleanUp', $reportFailure ) && $result;
 	global $verbose;
 	if( $verbose && !$result && !$reportFailure ) {
 		print $desc;
