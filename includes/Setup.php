@@ -208,10 +208,9 @@ $wgLoadBalancer->loadMasterPos();
 wfProfileOut( $fname.'-database' );
 wfProfileIn( $fname.'-User' );
 
-# Extension setup functions
-# Entries should be added to this variable during the inclusion 
-# of the extension file. This allows the extension to perform 
-# any necessary initialisation in the fully initialised environment
+# Skin setup functions
+# Entries can be added to this variable during the inclusion 
+# of the extension file. Skins can then perform any necessary initialisation.
 foreach ( $wgSkinExtensionFunctions as $func ) {
 	$func();
 }
@@ -351,7 +350,7 @@ $wgArticle = new Article($wgTitle);
 wfProfileOut( $fname.'-misc2' );
 wfProfileIn( $fname.'-extensions' );
 
-# Extension setup functions
+# Extension setup functions for extensions other than skins
 # Entries should be added to this variable during the inclusion 
 # of the extension file. This allows the extension to perform 
 # any necessary initialisation in the fully initialised environment
