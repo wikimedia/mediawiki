@@ -407,6 +407,18 @@ function do_schema_restructuring() {
 	}
 }
 
+function do_inverse_timestamp() {
+	global $wgDatabase;
+	$fname="do_schema_restructuring";
+	if( $wgDatabase->fieldExists( 'revision', 'inverse_timestamp' ) ) {
+		echo "Removing revision.inverse_timestamp and fixing indexes... ";
+		dbsource( 'maintenance/archives/patch-inverse_timestamp.sql', $wgDatabase );
+		echo "ok\n";
+	} else {
+		echo "revision timestamp indexes already up to 2005-03-13\n";
+	}
+}
+
 function do_all_updates() {
 	global $wgNewTables, $wgNewFields;
 	
@@ -437,6 +449,7 @@ function do_all_updates() {
 	do_logging_encoding(); flush();
 	
 	do_schema_restructuring(); flush();
+	do_inverse_timestamp(); flush();
 
 	initialiseMessages(); flush();
 }
