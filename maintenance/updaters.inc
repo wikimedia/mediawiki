@@ -157,6 +157,19 @@ function do_group_update() {
 		echo "ok\n";
 	} else {
 		echo "...group definitions already in place.\n";
+		$res = $wgDatabase->safeQuery( "SELECT COUNT(*) AS n FROM !
+		                                 WHERE group_name IN ('Sysops','Bureaucrat')
+		                                   AND group_rights NOT LIKE 'sysop'",
+		                               $wgDatabase->tableName( 'group' ) );
+		$row = $wgDatabase->fetchObject( $res );
+		$wgDatabase->freeResult( $res );
+		if( $row->n ) {
+			echo "Fixing sysops group permissions... ";
+			dbsource( "maintenance/archives/patch-group-sysopfix.sql" );
+			echo "ok\n";
+		} else {
+			echo "...sysop group permissions look ok.\n";
+		}
 	}
 }
 
