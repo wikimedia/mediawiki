@@ -10,6 +10,7 @@ include_once("{$IP}/Utf8Case.php");
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesPl = array(
+        -2      => "Media",
         -1      => "Specjalna",
         0       => "",
         1       => "Dyskusja",
@@ -18,7 +19,9 @@ include_once("{$IP}/Utf8Case.php");
         4       => "Wikipedia",
         5       => "Dyskusja_Wikipedii",
         6       => "Grafika",
-        7       => "Dyskusja_grafiki"
+        7       => "Dyskusja_grafiki",
+                8       => "MediaWiki",
+                9       => "Dyskusja_MediaWiki"
 );
 
 /* private */ $wgDefaultUserOptionsPl = array(
@@ -92,7 +95,9 @@ include_once("{$IP}/Utf8Case.php");
         "bh"    => "biharska",
         "bi"    => "bislama",
         "my"    => "birmańska",
+        "br"    => "bretoński",
         "bs"    => "bośniacka",
+                "ch"    => "czamorro",
         "km"    => "kambodżańska",
         "ca"    => "katalońska",
         "zh"    => "chińska",
@@ -136,6 +141,7 @@ include_once("{$IP}/Utf8Case.php");
         "jv"    => "jawajska",
         "kn"    => "kannada",
         "ks"    => "kaszmirska",
+                "kw"    => "kornijski",
         "kk"    => "kazachska",
         "rw"    => "kinya-ruanda",
         "ky"    => "kirgiska",
@@ -307,6 +313,8 @@ include_once("{$IP}/Utf8Case.php");
 "wikititlesuffix" => "Wikipedia",
 "bugreports" => "Raport o błędach",
 "bugreportspage" => "Wikipedia:Błędy",
+"sitesupport" => "Dary pieniężne",
+"sitesupportpage" => "http://wikimediafoundation.org/fundraising", # If not set, won't appear. Can be wiki page or URL
 "faq" => "FAQ",
 "faqpage" => "Wikipedia:FAQ",
 "edithelp" => "Pomoc w edycji",
@@ -371,8 +379,8 @@ Zobacz $1.",
 "toc" => "Spis treści",
 "showtoc" => "pokaż",
 "hidetoc" => "schowaj",
-"thisisdeleted" => "Pokaż/odtwórz $1 ?",
-"restorelink" => "skasowane wersje, w sumie $1",
+"thisisdeleted" => "Pokaż/odtwórz $1",
+"restorelink" => "skasowane wersje (w sumie $1)",
 
 # Main script and global functions
 #
@@ -399,7 +407,7 @@ Ostatnie, nieudane zapytanie to:
 \"$1\"
 wywołane zostało przez funkcję \"$2\".
 MySQL zgłosił błąd \"$3: $4\".\n",
-"noconnect" => "Przepraszamy! Wikipedia ma chwilowe problemy techniczne. Nie można połączyć się z serwerem bazy danych.",
+"noconnect" => "Wikipedia ma chwilowo problemy techniczne. Nie można połączyć się z serwerem bazy danych. Przepraszamy!",
 "nodb" => "Nie można odnaleźć bazy danych $1",
 "cachederror" => "Poniższy tekst strony jest kopią znajdującą się w pamięci podręcznej i może być już niekatualny.",
 "readonly" => "Baza danych jest zablokowana",
@@ -430,10 +438,15 @@ podając także powyższy adres.",
 "badtitle" => "Niepoprawny tytuł",
 "badtitletext" => "Podano niepoprawny tytuł strony. Prawdopodobnie zawiera
 znaki, których użycie jest zabronione lub jest pusty.",
-"perfdisabled" => "Przepraszamy! By odciążyć serwer, wykonanie tej czynności
-zostało w okresie szczytu tymczasowo uniemożliwione. Wróć, proszę,
-i spróbuj jeszcze raz między 02:00 a 14:00 czasu UTC.",
+"perfdisabled" => "By odciążyć serwer w godzinach szczytu czasowo zablokowaliśmy
+wykonanie tej czynności. Wróć proszę i spróbuj jeszcze raz między 02.00 a 14.00
+czasu UTC. Przepraszamy!",
 "perfdisabledstub" => "Oto ostatnia zapisana wersja strony z $1",
+"viewsource" => "Tekst źródłowy",
+"protectedtext" => "Wyłączono możliwość edycji tej strony; istnieje kilka powodów
+dla których jest to robione - zobacz [[Wikipedia:Strona_zabezpieczona]]
+
+Tekst źródłowy strony można w dalszym ciągu podejrzeć i skopiować.",
 
 # Login and logout pages
 #
@@ -545,7 +558,7 @@ artykułu. Proponujemy przenieść jej tekst do prywatnego pliku
 (wytnij/wklej) i zachować na później.",
 "protectedpagewarning" => "UWAGA: Modyfikacja tej strony została zablokowana.
 Mogą ją edytować jedynie użytkownicy z prawami administracyjnymi.
-Upewnij się że postępujesz zgodnie z
+Upewnij się, że postępujesz zgodnie z
 <a href='/wiki/Wikipedia:Blokowanie_stron'>zasadami dotyczącymi
 zablokowanych stron</a>.",
 
@@ -559,6 +572,7 @@ zablokowanych stron</a>.",
 Sprawdź proszę URL użyty przez Ciebie by uzyskać dostęp do tej strony.\n",
 "loadhist" => "Pobieranie historii tej strony",
 "currentrev" => "Aktualna wersja",
+
 "revisionasof" => "Wersja z dnia $1",
 "cur" => "bież",
 "next" => "następna",
@@ -607,6 +621,32 @@ tylko te, które zawierają wszystkie podane słowa).",
 Szukaj w przestrzeniach nazw :<br>
 $1<br>
 $2 Pokaż przekierowania   Szukany tekst $3 $9",
+"searchdisabled" => "<p>Ze względu na duże obciążenie serwera wyszukiwanie
+w treści artykułów zostało czasowo wyłączone; mamy nadzieję, że 
+po zbliżającej się modyfikacji sprzętu możliwość ta zostanie przywrócona.
+W międzyczasie polecamy wyszukiwanie za pomocą Google:</p>
+
+<!-- SiteSearch Google -->
+<FORM method=GET action=\"http://www.google.com/search\">
+<TABLE bgcolor=\"#FFFFFF\"><tr><td>
+<A HREF=\"http://www.google.com/\">
+<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
+border=\"0\" ALT=\"Google\"></A>
+</td>
+<td>
+<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
+<INPUT type=submit name=btnG VALUE=\"Google Search\">
+<font size=-1>
+<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio
+name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
+value=\"{$wgServer}\" checked> {$wgServer} <br>
+<input type='hidden' name='ie' value='$2'>
+<input type='hidden' name='oe' value='$2'>
+</font>
+</td></tr></TABLE>
+</FORM>
+<!-- SiteSearch Google -->
+",
 "blanknamespace" => "(Główna)",
 
 
@@ -753,6 +793,7 @@ i cokolwiek co wiesz o pliku, a wydaje Ci się ważne.",
 "uploadwarning" => "Ostrzeżenie o przesyłce",
 "savefile" => "Zapisz plik",
 "uploadedimage" => "przesłano \"$1\"",
+"uploaddisabled" => "Przepraszamy! Możliwość przesyłania plików na ten serwer została wyłączona.",
 
 # Image list
 #
@@ -868,6 +909,7 @@ na tej liście mimo, że żadna strona tej Wikipedii nie odwołuje się do nich.
 które pośredniczą w sprzedaży nowych i używanych książek i mogą podać
 informacje o książkach, których szukasz.
 Wikipedia nie jest stowarzyszona z żadnym ze sprzedawców,
+
 a ta lista nie powinna być interpretowana jako świadectwo udziału w zyskach.",
 "alphaindexline" => "$1 --> $2",
 
@@ -877,7 +919,7 @@ a ta lista nie powinna być interpretowana jako świadectwo udziału w zyskach."
 "mailnologintext" => "Musisz się <a href=\"" .
   wfLocalUrl( "Specjalna:Userlogin" ) . "\">zalogować</a>
 i mieć wpisany aktualny adres e-mailowy w swoich <a href=\"" .
-  wfLocalUrl( "Specjalna:Preferencje" ) . "\">preferencjach</a>,
+  wfLocalUrl( "Specjalna:Preferences" ) . "\">preferencjach</a>,
 aby móc wysłać e-mail do innych użytkowników.",
 "emailuser" => "Wyślij e-mail do tego użytkownika",
 "emailpage" => "Wyślij e-mail do użytkownika",
@@ -932,6 +974,7 @@ $3...
 "removechecked" => "Usuń zaznaczone pozycje z listy obserwowanych",
 "watcheditlist" => "Oto alfabetyczna lista obserwowanych stron.
 Zaznacz, które z nich mamy usunąć z listy i kliknij przycisk
+
 <i>Usuń...</i> znajdujący się na dole strony.",
 "removingchecked" => "Usuwamy zaznaczone pozycje z listy obserwowanych...",
 "couldntremove" => "Nie można było usunąć pozycji '$1'...",
