@@ -1765,9 +1765,9 @@ class Language {
 	function getMonthName( $key ) {
 		global $wgMonthNamesEn, $wgContLang;
 		// see who called us and use the correct message function
-		if( get_class( $wgContLang ) == get_class( $this ) )
+		if( get_class( $wgContLang->getLangObj() ) == get_class( $this ) )
 			return wfMsgForContent($wgMonthNamesEn[$key-1]);
-		else	
+		else
 			return wfMsg($wgMonthNamesEn[$key-1]);
 	}
 
@@ -1779,7 +1779,7 @@ class Language {
 	function getMonthAbbreviation( $key ) {
 		global $wgMonthAbbreviationsEn, $wgContLang;
 		// see who called us and use the correct message function
-		if( get_class( $wgContLang ) == get_class( $this ) )
+		if( get_class( $wgContLang->getLangObj() ) == get_class( $this ) )
 			return wfMsgForContent(@$wgMonthAbbreviationsEn[$key-1]);
 		else
 			return wfMsg(@$wgMonthAbbreviationsEn[$key-1]);
@@ -1788,7 +1788,7 @@ class Language {
 	function getWeekdayName( $key ) {
 		global $wgWeekdayNamesEn, $wgContLang;
 		// see who called us and use the correct message function
-		if( get_class( $wgContLang ) == get_class( $this ) )
+		if( get_class( $wgContLang->getLangObj() ) == get_class( $this ) )
 			return wfMsgForContent($wgWeekdayNamesEn[$key-1]);
 		else
 			return wfMsg($wgWeekdayNamesEn[$key-1]);
@@ -2135,6 +2135,10 @@ class Language {
 		$trail = $this->getMessage( 'linktrail' );
 		if( empty( $trail ) ) $trail = Language::linkTrail();
 		return $trail;
+	}
+
+	function getLangObj() {
+		return $this;
 	}
 }
 
