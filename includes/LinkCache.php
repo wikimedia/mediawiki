@@ -101,7 +101,6 @@ class LinkCache {
 	function addLinkObj( &$nt )
 	{
 		global $wgMemc, $wgLinkCacheMemcached;
-
 		$title = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $title ) ) { return 0; }		
 		$id = $this->getGoodLinkID( $title );
@@ -118,10 +117,10 @@ class LinkCache {
 			return 0; 
 		}
 		
-		$id = FALSE;
+		$id = NULL;
 		if( $wgLinkCacheMemcached )
 			$id = $wgMemc->get( $key = $this->getKey( $title ) );
-		if( ! $id ) {
+		if( ! is_integer( $id ) ) {
 			$sql = "SELECT cur_id FROM cur WHERE cur_namespace=" .
 			  "{$ns} AND cur_title='" . wfStrencode( $t ) . "'";
 			$res = wfQuery( $sql, DB_READ, "LinkCache::addLink" );
@@ -133,7 +132,7 @@ class LinkCache {
 				$id = $s->cur_id;
 			}
 			if( $wgLinkCacheMemcached )
-				$wgMemc->add( $key, $id, time()+3600 );
+				$wgMemc->add( $key, $id, 3600*24 );
 		}
 		
 		if ( 0 == $id ) { $this->addBadLink( $title ); }
