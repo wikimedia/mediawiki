@@ -688,7 +688,7 @@ class Parser
 			$state["strong"] = FALSE;
 		} else {
 			$s = "<strong>";
-			$state["strong"] = isset($token["pos"]) ? $token["pos"] : true;
+			$state["strong"] = $token["pos"];
 		}
 		return $s;
 	}
@@ -706,7 +706,7 @@ class Parser
 			$state["em"] = FALSE;
 		} else {
 			$s = "<em>";
-			$state["em"] = isset($token["pos"]) ? $token["pos"] : true;
+			$state["em"] = $token["pos"];
 
 		}
 		return $s;
@@ -729,10 +729,10 @@ class Parser
 		} elseif ( $state["strong"] !== false ) {
 			$s .= "</strong><em>";
 			$state["strong"] = FALSE;
-			$state["em"] = @$token["pos"];
+			$state["em"] = $token["pos"];
 		} else { # not $em and not $strong
 			$s .= "<strong><em>";
-			$state["strong"] = $state["em"] = isset($token["pos"]) ? $token["pos"] : true;
+			$state["strong"] = $state["em"] = $token["pos"];
 		}
 		return $s;
 	}
