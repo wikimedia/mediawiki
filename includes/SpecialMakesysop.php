@@ -111,9 +111,40 @@ class MakesysopForm {
 
 	function doSubmit()
 	{
+
 		global $wgOut, $wgUser, $wgLang, $wpMakesysopUser, $wpSetBureaucrat;
 		global $wgDBname, $wgMemc, $wpRights, $wgLocalDatabases;
-		
+
+		$parts = explode( "@", $wpMakesysopUser );
+		if( count( $parts ) == 2 && $wgUser->isDeveloper() ){
+			$username = $parts[0];
+			if ( array_key_exists( $parts[1], $wgLocalDatabases ) ) {
+				$dbName = $wgLocalDatabases[$parts[1]];
+				$usertable = $dbName . ".user";
+			} else {
+				$this->showFail();
+				return;
+			}
+		} else {
+			$username = $wpMakesysopUser;
+			$usertable = "user";
+			$dbName = $wgDBname;
+		}
+		if ( $username{0} == "#" ) {
+			$id = intval( substr( $username, 1 ) );
+			$sql = "SELECT user_id,user_rights FROM $usertable WHERE user_id=$id";
+		} else {
+			$encName = wfStrencode( $username );
+			$sql = "SELECT user_id, user_rights FROM $usertable WHERE user_name = '{$encName}'";
+		}
+
+		$prev = wfIgnoreSQLErrors( TRUE );
+		$res = wfQuery( $sql, DB_WRITE);
+		wfIgnoreSQLErrors( $prev );
+
+		global $wgOut, $wgUser, $wgLang, $wpMakesysopUser, $wpSetBureaucrat;
+		global $wgDBname, $wgMemc, $wpRights, $wgLocalDatabases;
+
 		$parts = explode( "@", $wpMakesysopUser );
 		if( count( $parts ) == 2 && $wgUser->isDeveloper() ){
 			$username = wfStrencode( $parts[0] );
@@ -129,6 +160,15 @@ class MakesysopForm {
 			$usertable = "user";
 			$dbName = $wgDBname;
 		}
+		if ( $username{0} == "#" ) {
+                        $id = intval( substr( $username, 1 ) );
+                        $sql = "SELECT user_id,user_rights FROM $usertable WHERE user_id=$id";
+                } else {
+                        $encName = wfStrencode( $username );
+                        $sql = "SELECT user_id, user_rights FROM $usertable WHERE user_name = '{$username}'";
+                }
+		
+		
 		$prev = wfIgnoreSQLErrors( TRUE );
 		$res = wfQuery("SELECT user_id, user_rights FROM $usertable WHERE user_name = '{$username}'", DB_WRITE);
 		wfIgnoreSQLErrors( $prev );
