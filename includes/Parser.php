@@ -416,7 +416,7 @@ class Parser
 		$text = $this->replaceInternalLinks ( $text );
 		$text = $this->doTableStuff ( $text ) ;
 
-		$text = $this->magicISBN( $text );
+		#$text = $this->magicISBN( $text );
 		$text = $this->magicRFC( $text );
 		$text = $this->formatHeadings( $text );
 
@@ -655,6 +655,9 @@ class Parser
 				case "":
 					# empty token
 					$txt="";
+					break;
+				case "ISBN ":
+					$txt = $this->doMagicISBN( $tokenizer );
 					break;
 				default:
 					# Call language specific Hook.
@@ -1304,35 +1307,48 @@ class Parser
 		return $full;
 	}
 
-	/* private */ function magicISBN( $text )
+	/* private */ function doMagicISBN( &$tokenizer )
 	{
 		global $wgLang;
 
-		$a = split( "ISBN ", " $text" );
-		if ( count ( $a ) < 2 ) return $text;
-		$text = substr( array_shift( $a ), 1);
-		$valid = "0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		# Check whether next token is a text token
+		# If yes, fetch it and convert the text into a
+		# Special::BookSources link
+		$token = $tokenizer->previewToken();
+		while ( $token["type"] == "" )
+		{
+			$tokenizer->nextToken();
+			$token = $tokenizer->previewToken();
+		}
+		if ( $token["type"] == "text" )
+		{
+			$token = $tokenizer->nextToken();
+			$x = $token["text"];
+			$valid = "0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-		foreach ( $a as $x ) {
 			$isbn = $blank = "" ;
 			while ( " " == $x{0} ) {
 				$blank .= " ";
 				$x = substr( $x, 1 );
 			}
-            		while ( strstr( $valid, $x{0} ) != false ) {
+			while ( strstr( $valid, $x{0} ) != false ) {
 				$isbn .= $x{0};
 				$x = substr( $x, 1 );
 			}
 			$num = str_replace( "-", "", $isbn );
 			$num = str_replace( " ", "", $num );
-
+		
 			if ( "" == $num ) {
 				$text .= "ISBN $blank$x";
 			} else {
 				$titleObj = Title::makeTitle( NS_SPECIAL, "Booksources" );
-				$text .= "<a href=\"" . $titleObj->getUrl( "isbn={$num}", false, true ) . "\" class=\"internal\">ISBN $isbn</a>";
+				$text .= "<a href=\"" .
+				$titleObj->getUrl( "isbn={$num}", false, true ) .
+					"\" class=\"internal\">ISBN $isbn</a>";
 				$text .= $x;
 			}
+		} else {
+			$text = "ISBN ";
 		}
 		return $text;
 	}

@@ -38,6 +38,8 @@ class Tokenizer {
 		}
 		# Closing link
 		$regex .= "|\]\]";
+		# Magic words that automatically generate links
+		$regex .= "|ISBN ";
 		# Language-specific additions
 		$regex .= $wgLang->tokenizerRegex();
 		# Finalize regex
