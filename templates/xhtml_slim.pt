@@ -1,73 +1,61 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${lang}" lang="${lang}" dir="${dir}">
   <head>
     <meta http-equiv="Content-Type" content="${mimetype}; charset=${charset}" />
     ${headlinks}
     <title tal:content="pagetitle">Exciting xhtml slimfast</title>
-    <style type="text/css" media="screen">/*<![CDATA[*/ @import url(${stylepath}/${skinname}/main.css); /*]]>*/</style>
+    <style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "${stylepath}/${skinname}/main.css"; /*]]>*/</style>
     <link rel="stylesheet" type="text/css" media="print" href="${stylepath}/commonPrint.css" />
-    <!--[if IE]><style type="text/css" media="all">@import url(${stylepath}/${skinname}/IEFixes.css);</style>
+    <!--[if IE]><style type="text/css" media="all">@import "${stylepath}/${skinname}/IEFixes.css";</style>
     <script type="text/javascript" src="${stylepath}/IEFixes.js"></script>
     <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+    <script type="text/javascript" tal:attributes="src jsvarurl"></script>
     <script type="text/javascript" src="${stylepath}/wikibits.js"></script>
-    <script type="text/javascript"> /*<![CDATA[*/ if(addcss){addcss('${stylepath}/${skinname}/');} /*]]>*/</script>
-    <style tal:condition="rtl" type="text/css">/*<![CDATA[*/@import url(${stylepath}/${skinname}/rtl.css);/*]]>*/</style>
     <style tal:condition="usercss" type="text/css">/*<![CDATA[*/ ${usercss} /*]]>*/</style>
     <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script><script 
       tal:condition="userjsprev" type="text/javascript">/*<![CDATA[*/${userjsprev}/*]]>*/</script>
   </head>
-
-  <body tal:attributes="ondblclick body-ondblclick|default">
+  <body tal:attributes="ondblclick body-ondblclick|default; class nsclass|default">
     <div id="globalWrapper">
       <div id="column-content">
 	<div id="content">
 	  <a name="top" id="contentTop"></a>
 	  <h1 class="firstHeading" tal:content="title">Leonardo da Vinci</h1>
 	  <div id="bodyContent">
-	    <div tal:condition="catlinks" id="catlinks" tal:content="structure catlinks"></div>
 	    <h3 id="siteSub" i18n:translate="string:fromwikipedia">From Wikipedia, the free encyclopedia.</h3>
 	    <div id="contentSub" tal:content="structure subtitle"></div>
-	    <!-- <esi:include src="userxy/message"/> cached per user, purged on new message-->
+	    <div id="contentSub" tal:condition="undelete" tal:content="structure undelete"></div>
+	    <div id="siteNotice" tal:condition="sitenotice" tal:content="structure sitenotice"></div>
 	    <div tal:condition="newtalk" class="usermessage" tal:content="structure newtalk"></div>
-	    <!-- the content area is cached with the remaining inexpensive skeleton, one version for all.
-	    The edit links and right-click section stuff can be attached from js -->
 	    <!-- start content -->
-
 	    ${bodytext}
-
+	    <div tal:condition="catlinks" id="catlinks" tal:content="structure catlinks"></div>
 	    <!-- end content -->
 	    <div class="visualClear"></div>
 	  </div>
 	</div>
       </div>
-      <!-- end of main content block -->
-      <!-- start of the left (by default at least) column -->
       <div id="column-one">
-	<!--<esi:include src="thisurl?esiview=contentviews&watch=0&priv=sysop"/> tricky to purge because of the many different versions,
-	might not be worth it for non-anons -->
 	<div id="p-cactions" class="portlet">
 	  <h5>Views</h5>
 	  <ul>
 	    <li tal:repeat="action content_actions" 
 	    tal:attributes="id string:ca-${repeat/action/key}; class action/class|default"><a
-	      tal:attributes="title action/ttip|default;accesskey action/akey|default;href action/href|default"
+	      tal:attributes="href action/href|default"
 	      tal:content="action/text">Linktext</a></li>
 	  </ul>
 	</div>
-	<!--<esi:include src="userxy?ptools"/> cached per user, just rendered once per session -->
 	<div class="portlet" id="p-personal">
 	  <h5 i18n:translate="string:personaltools">Personal Tools</h5>
 	  <div class="pBody">
 	    <ul>
 	      <li tal:repeat="item personal_urls" 
 	      tal:attributes="id string:pt-${repeat/item/key};"><a href="myuserpage"
-		tal:attributes="href item/href; accesskey item/akey|default; title item/ttip|default; class item/class|default"
+		tal:attributes="href item/href; class item/class|default"
 		tal:content="item/text">Log in</a></li>
 	    </ul>
 	  </div>
 	</div>
-	<!--<esi:include src="staticLogoNaviSearch"/> same for all pages, contains quite a few messages that are worth caching -->
 	<div class="portlet" id="p-logo">
 	  <a style="background-image: url(${logopath});" href="${nav_urls/mainpage/href}" i18n:attributes="title string:mainpage"></a>
 	</div>
@@ -75,26 +63,19 @@
 	  <h5 i18n:translate="string:navigation">Navigation</h5>
 	  <div class="pBody">
 	    <ul>
-	      <li><a href="${nav_urls/mainpage/href}"
-		i18n:attributes="accesskey string:accesskey-mainpage | default; title string:tooltip-mainpage"
+	      <li id="n-mainpage"><a href="${nav_urls/mainpage/href}"
 		i18n:translate="string:mainpage">Main Page</a></li>
-	      <li tal:condition="nav_urls/portal/href"><a href="${nav_urls/portal/href}"
-		i18n:attributes="accesskey string:accesskey-portal | default; title string:tooltip-portal|default"
+	      <li id="n-portal" tal:condition="nav_urls/portal/href"><a href="${nav_urls/portal/href}"
 		i18n:translate="string:portal">Community Portal</a></li>
-	      <li tal:condition="nav_urls/currentevents/href"><a href="${nav_urls/currentevents/href}"
-		i18n:attributes="title string:tooltip-currentevents|default" 
+	      <li id="n-currentevents" tal:condition="nav_urls/currentevents/href"><a href="${nav_urls/currentevents/href}"
 		i18n:translate="string:currentevents">Current Events</a></li>
-	      <li><a href="${nav_urls/recentchanges/href}"
-		i18n:attributes="accesskey string:accesskey-recentchanges|default; title string:tooltip-recentchanges|default" 
+	      <li id="n-recentchanges"><a href="${nav_urls/recentchanges/href}"
 		i18n:translate="string:recentchanges">Recent Changes</a></li>
-	      <li><a href="${nav_urls/randompage/href}"
-		i18n:attributes="accesskey string:accesskey-randompage | default; title string:tooltip-randompage" 
+	      <li id="n-randompage"><a href="${nav_urls/randompage/href}"
 		i18n:translate="string:randompage">Random Page</a></li>
-	      <li><a href="${nav_urls/help/href}"
-		i18n:attributes="title string:tooltip-help|default" 
+	      <li id="n-help"><a href="${nav_urls/help/href}"
 		i18n:translate="string:help">Help</a></li>
-	      <li tal:condition="nav_urls/sitesupport/href"><a href="${nav_urls/sitesupport/href}"
-		i18n:attributes="title string:tooltip-sitesupport|default" 
+	      <li id="n-sitesupport" tal:condition="nav_urls/sitesupport/href"><a href="${nav_urls/sitesupport/href}"
 		i18n:translate="string:sitesupport">Donations</a></li>
 	    </ul>
 	  </div>
@@ -103,50 +84,41 @@
 	  <h5 i18n:translate="string:search">Search</h5>
 	  <div class="pBody">
 	    <form name="searchform" action="${searchaction}" id="searchform">
-	      <input id="searchInput" name="search" type="text" tabindex="30001"
+	      <input id="searchInput" name="search" type="text"
 	      i18n:attributes="accesskey string:accesskey-search | default"/>
 	      <input type='submit' name="go" value="Go" class="searchButton" 
-	      i18n:attributes="value string:go"/>&nbsp;<input type='submit'
+	      i18n:attributes="value string:go"/>&nbsp;<input type='submit' name="fulltext"
 	      value="Search" class="searchButton"
 	      i18n:attributes="value string:search"/>
 	    </form>
 	  </div>
 	</div>
-	<!--<esi:include src="thisurl?esiview=toolbox&loggedin=0"/> one anon, one logged-in user version per page because of the links -->
 	<div class="portlet" id="p-tb">
 	  <h5 i18n:translate="string:toolbox">Toolbox</h5>
 	  <div class="pBody">
 	    <ul>
-	      <li><a href="${nav_urls/whatlinkshere/href}"
-		i18n:attributes="accesskey string:accesskey-whatlinkshere|default; title string:tooltip-whatlinkshere|default" 
+	      <li id="t-whatlinkshere"><a href="${nav_urls/whatlinkshere/href}"
 		i18n:translate="string:whatlinkshere">What links here</a></li>
-	      <li><a href="${nav_urls/recentchangeslinked/href}"
-		i18n:attributes="accesskey string:accesskey-recentchangeslinked|default;title string:tooltip-recentchangeslinked | default"
+	      <li id="t-recentchangeslinked"><a href="${nav_urls/recentchangeslinked/href}"
 		i18n:translate="string:recentchangeslinked">Related Changes</a></li>
 	      <li tal:condition="feeds" id="feedlinks">
 	      <span i18n:translate="string:feedlinks">Feeds:</span>
 	      <span tal:repeat="feed feeds" 
 		tal:attributes="id string:feed-${repeat/feed/key};"><a 
-		  tal:attributes="href feed/href; title feed/ttip|default"
+		  tal:attributes="href feed/href;"
 		  tal:content="feed/text">rss</a>&nbsp;</span>
 	      </li>
-	      <li tal:condition="nav_urls/contributions/href"><a href="${nav_urls/contributions/href}"
-		i18n:attributes="accesskey string:accesskey-contributions|default; title string:tooltip-contributions|default" 
+	      <li id="t-contributions" tal:condition="nav_urls/contributions/href"><a href="${nav_urls/contributions/href}"
 		i18n:translate="string:contributions">Contributions</a></li>
-	      <li tal:condition="nav_urls/emailuser/href"><a href="${nav_urls/emailuser/href}"
-		i18n:attributes="accesskey string:accesskey-emailuser|default; title string:tooltip-emailuser|default" 
+	      <li id="t-emailuser" tal:condition="nav_urls/emailuser/href"><a href="${nav_urls/emailuser/href}"
 		i18n:translate="string:emailuser">Email this user</a></li>
-	      <li tal:condition="loggedin"><a href="${nav_urls/upload/href}"
-		i18n:attributes="accesskey string:accesskey-upload|default; title string:tooltip-upload|default" 
+	      <li id="t-upload" tal:condition="loggedin"><a href="${nav_urls/upload/href}"
 		i18n:translate="string:upload">Upload a file</a></li>
-	      <li><a href="${nav_urls/specialpages/href}"
-		i18n:attributes="accesskey string:accesskey-specialpages|default;title string:tooltip-specialpages|default"
+	      <li id="t-specialpages"><a href="${nav_urls/specialpages/href}"
 		i18n:translate="string:specialpages">Special Pages</a></li>
 	    </ul>
 	  </div>
 	</div>
-	<!-- end staticLogoNaviSearch -->
-
 	<div id="p-lang" class="portlet" tal:condition="language_urls">
 	  <h5 i18n:translate="string:otherlanguages">Language</h5>
 	  <div class="pBody">
@@ -159,7 +131,6 @@
 	  </div>
 	</div>
       </div><!-- end of the left (by default at least) column -->
-      <!--<esi:include src="thisurl?esiview=toolbox&loggedin=0"/> static footer, same for all pages but contains a few messaged that are worth caching --> 
       <div class="visualClear"></div>
       <div id="footer">
 	<div id="f-poweredbyico" tal:condition="poweredbyico">${poweredbyico}</div>
@@ -167,12 +138,13 @@
 	<ul id="f-list">
 	  <li id="f-lastmod" tal:condition="lastmod">${lastmod}</li>
 	  <li id="f-viewcount" tal:condition="viewcount">${viewcount}</li>
+	  <li id="f-credits" tal:condition="credits">${credits}</li>
 	  <li id="f-copyright" tal:condition="copyright">${copyright}</li>
 	  <li id="f-about" tal:condition="about">${about}</li>
 	  <li id="f-disclaimer" tal:condition="disclaimer">${disclaimer}</li>
 	</ul>
       </div>
-      <div id="colophon"></div>
     </div>
+    ${reporttime}
   </body>
 </html>

@@ -22,7 +22,7 @@
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 # Zdědit apriorní preference: wgDefaultUserOptionsEn
 
@@ -38,7 +38,8 @@
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgUserTogglesCs = array(
@@ -72,10 +73,10 @@
 	"prosinec"
 );
 
-# Hmm
+# There are no month abbreviations in Czech language.
 /* private */ $wgMonthAbbreviationsCs = array(
-	"Led", "Úno", "Bře", "Dub", "Kvě", "Čer", "Črv", "Srp",
-	"Zář", "Říj", "Lis", "Pro"
+	"1.", "2.", "3.", "4.", "5.", "6.",
+	"7.", "8.", "9.", "10.", "11.", "12."
 );
 
 # All special pages have to be listed here: a description of ""
@@ -485,6 +486,7 @@ Věnuj pozornost následujícímu odkazu: ($2) na stránku popisu a napiš pár 
 "imghistory"	=> "Historie načtených souborů",
 "revertimg"		=> "res",
 "deleteimg"		=> "for",
+"deleteimgcompletely"		=> "for",
 "imghistlegend" => "(nun) = toto je současná verze souboru, (for) = odstranit tuto starou verzi, (res) = obnovit starou verzi.
 <br><i>Click on date to see image uploaded on that date</i>.",
 "imagelinks"	=> "Odkazy k souboru ",

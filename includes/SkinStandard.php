@@ -18,12 +18,12 @@ class SkinStandard extends Skin {
 	function getUserStyles()
 	{
 		global $wgStylePath;
-
-		$s = parent::getUserStyles();
+		$s = '';
 		if ( 3 == $this->qbSetting() ) { # Floating left
 			$s .= "<style type='text/css'>\n" .
 			  "@import '{$wgStylePath}/quickbar.css';\n</style>\n";
 		}
+		$s .= parent::getUserStyles();
 		return $s;
 	}
 

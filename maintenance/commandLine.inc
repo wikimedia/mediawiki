@@ -1,41 +1,126 @@
 <?php
 
+# Abort if called from a web server
 if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
 	print "This script must be run from the command line\n";
 	exit();
 }
 
-$wgCommandLineMode = true;
+# Process command line arguments
+# $options becomes an array with keys set to the option names
+# $optionsWithArgs is an array of GNU-style options that take an argument. The arguments are returned
+# in the values of $options.
 
+if ( !isset( $optionsWithArgs ) ) {
+	$optionsWithArgs = array();
+}
+
+$self = array_shift( $argv );
+$IP = realpath( dirname( $self ) . "/.." );
+chdir( $IP );
+
+$options = array();
+$args = array();
+
+for( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
+	if ( substr( $arg, 0, 2 ) == '--' ) {
+		# Long options
+		$option = substr( $arg, 2 );
+		if ( in_array( $option, $optionsWithArgs ) ) {
+			$param = next( $argv );
+			if ( $param === false ) {
+				die( "$arg needs an value after it\n" );
+			}
+			$options[$option] = $param;
+		} else {
+			$options[$option] = 1;
+		}
+	} elseif ( $arg{0} == '-' ) {
+		# Short options
+		for ( $p=1; $p<strlen( $arg ); $p++ ) {
+			$option = $arg{$p};
+			if ( in_array( $option, $optionsWithArgs ) ) {
+				$param = next( $argv );
+				if ( $param === false ) {
+					die( "$arg needs an value after it\n" );
+				}
+				$options[$option] = $param;
+			} else {
+				$options[$option] = 1;
+			}
+		}
+	} else {
+		$args[] = $arg;
+	}
+}
+
+# General initialisation
+
+$wgCommandLineMode = true;
+# Turn off output buffering if it's on
+@ob_end_flush();
 $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
-if ( @$argv[1] && @$argv[1] != "-" ) {
-	$lang = $argv[1];
+
+if ( $sep == ":" && strpos( `hostname -a`, "wikimedia.org" ) !== false ) {
+	$wgWikiFarm = true;
+	if ( isset( $args[0] ) ) {
+		$lang = array_shift( $args );
+	} else {
+		$lang = "aa";
+	}
+	if ( isset( $args[0] ) ) {
+		$site = array_shift( $args );
+	} else {
+		$site = "wikipedia";
+	}
+
+	# This is for the IRC scripts, which now run as the apache user
+	# The apache user doesn't have access to the wikiadmin_pass command
+	if ( $_ENV['USER'] != "apache" ) {
+		$admin = true;
+		$wgDBuser = $wgDBadminuser = "wikiadmin";
+		$wgDBpassword = $wgDBadminpassword = trim(`wikiadmin_pass`);
+	}
+
 	putenv( "wikilang=$lang");
-	$settingsFile = "/apache/htdocs/{$argv[1]}/w/LocalSettings.php";
-	$newpath = "/apache/common/php$sep";
+
+	$DP = $IP;
+	ini_set( "include_path", ".:$IP:$IP/includes:$IP/languages:$IP/maintenance" );
+
+	require_once( "/home/wikipedia/common/php-new/CommonSettings.php" );
+	if ( $admin ) {
+		$wgDBuser = $wgDBadminuser = "wikiadmin";
+		$wgDBpassword = $wgDBadminpassword = trim(`wikiadmin_pass`);
+	}
+
 } else {
-	$settingsFile = "../LocalSettings.php";
-	$newpath = "";
+	$wgWikiFarm = false;
+	$settingsFile = "$IP/LocalSettings.php";
+
+	if ( ! is_readable( $settingsFile ) ) {
+		print "A copy of your installation's LocalSettings.php\n" .
+		  "must exist in the source directory.\n";
+		exit();
+	}
+	$wgCommandLineMode = true;
+	$DP = $IP;
+	include_once( $settingsFile );
+	ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" );
+	include_once( "$IP/AdminSettings.php" );
+	$wgDBuser = $wgDBadminuser;
+	$wgDBpassword = $wgDBadminpassword;
 }
 
-if ( ! is_readable( $settingsFile ) ) {
-	print "A copy of your installation's LocalSettings.php\n" .
-	  "must exist in the source directory.\n";
-	exit();
-}
-
-
+# Turn off output buffering again, it might have been turned on in the settings files
+@ob_end_flush();
+# Same with this
 $wgCommandLineMode = true;
-$DP = "../includes";
-include_once( $settingsFile );
-ini_set( "include_path", "../includes$sep../languages$sep$newpath$IP$sep$include_path" );
 
 $wgUsePHPTal = false;
 define("MEDIAWIKI",true);
-include_once( "Setup.php" );
-include_once( "./InitialiseMessages.inc" );
-include_once( "../install-utils.inc" );
-$wgTitle = Title::newFromText( "Rebuild messages script" );
-$wgCommandLineMode = true;
+require_once( "Setup.php" );
+require_once( "install-utils.inc" );
+$wgTitle = Title::newFromText( "Command line script" );
 set_time_limit(0);
+
 ?>

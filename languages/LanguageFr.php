@@ -7,7 +7,6 @@
 // encapsulates some of the magic-ness.
 require_once( "LanguageUtf8.php" );
 
-
 /* private */ $wgNamespaceNamesFr = array(
 	NS_MEDIA		=> "Media",
 	NS_SPECIAL		=> "Special",
@@ -21,13 +20,13 @@ require_once( "LanguageUtf8.php" );
 	NS_IMAGE_TALK		=> "Discussion_Image",
 	NS_MEDIAWIKI		=> "MediaWiki",
 	NS_MEDIAWIKI_TALK	=> "Discussion_MediaWiki",
-	NS_TEMPLATE		=> "Template",
-	NS_TEMPLATE_TALK	=> "Discussion_Template",
+	NS_TEMPLATE		=> "Modèle",
+	NS_TEMPLATE_TALK	=> "Discussion_Modèle",
 	NS_HELP			=> "Aide",
 	NS_HELP_TALK		=> "Discussion_Aide",
-	NS_CATEGORY		=> "Categorie",
-	NS_CATEGORY_TALK	=> "Discussion_Categorie"
-);
+	NS_CATEGORY		=> "Catégorie",
+	NS_CATEGORY_TALK	=> "Discussion_Catégorie"
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsFr = array(
 	"Aucune", "Gauche", "Droite", "Flottante à gauche"
@@ -41,7 +40,8 @@ require_once( "LanguageUtf8.php" );
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesFr = array(
@@ -76,8 +76,8 @@ require_once( "LanguageUtf8.php" );
 /* private */ $wgBookstoreListFr = array(
 	"Amazon.fr" => "http://www.amazon.fr/exec/obidos/ISBN=$1",
 	"alapage.fr"	=> "http://www.alapage.com/mx/?tp=F&type=101&l_isbn=$1&donnee_appel=ALASQ&devise=&",
-	"fnac.com"	=> "http://www3.fnac.com/advanced/book.do?isbn=$isbn",
-	"chapitre.com"	=> "http://www.chapitre.com/frame_rec.asp?isbn=$isbn",
+	"fnac.com"	=> "http://www3.fnac.com/advanced/book.do?isbn=$1",
+	"chapitre.com"	=> "http://www.chapitre.com/frame_rec.asp?isbn=$1",
 );
 
 /* private */ $wgWeekdayNamesFr = array(
@@ -640,7 +640,7 @@ L'heure indiquée est celle du serveur (UTC).
 "filestatus"	=> "Statut du copyright",
 "filesource"	=> "Source",	
 "affirmation"	=> "Je déclare que le détenteur du copyright de ce fichier accepte de le diffuser selon les termes de la $1.",
-"copyrightpage" => "$wgNamespace:Copyright",
+"copyrightpage" => "{{ns:4}}:Copyright",
 "copyrightpagename" => "licence {{SITENAME}}",
 "uploadedfiles" => "Fichiers copiés",
 "noaffirmation" => "Vous devez confirmer que la copie de ce fichier ne viole aucun copyright.",
@@ -675,6 +675,7 @@ Suivez ce lien: ($2) pour accéder à la page de description, et donner des info
 "imghistory" => "Historique de l'image",
 "revertimg"  => "rétab",
 "deleteimg"  => "suppr",
+"deleteimgcompletely"  => "suppr",
 "imghistlegend" => "Légende: (actu) = ceci est l'image actuelle, (suppr) = supprimer
 cette ancienne version, (rétab) = rétablir cette ancienne version.
 <br /><i>Cliquez sur la date pour voir l'image copiée à cette date</i>.",
@@ -1285,12 +1286,14 @@ class LanguageFr extends LanguageUtf8
 	function getMessage( $key )
 	{
 		global $wgAllMessagesFr, $wgAllMessagesEn;
-		$m = $wgAllMessagesFr[$key];
-
-		if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
-		else return $m;
-
+		if( isset( $wgAllMessagesFr[$key] ) ) {
+			return $wgAllMessagesFr[$key];
+		} else {
+			return $wgAllMessagesEn[$key];
+		}
 	}
+	
+	function isRTL() { return false; }
 }
 
 ?>

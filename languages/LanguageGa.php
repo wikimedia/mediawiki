@@ -29,7 +29,7 @@ Sourceforge (when that gets added.)
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgDefaultUserOptionsGa = array(
     "quickbar" => 1, "underline" => 1, "hover" => 1,
@@ -53,7 +53,8 @@ Sourceforge (when that gets added.)
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesGa = array(
@@ -758,6 +759,7 @@ chruthaíodh é agus rud eile ar bith tá an fhios agat faoi.",
 "imghistory"    => "Stair an íomhá",
 "revertimg"     => "ath",
 "deleteimg"     => "scr",
+"deleteimgcompletely"     => "scr",
 "imghistlegend" => "Legend: (rea) = seo é an eagrán reatha, (scr) = scrios an
 sean-eagrán seo, (ath) = athúsáid an sean-eagrán seo.
 <br><i>Bruigh an dáta chun feach ar an íomhá mar a suaslódálaíodh é ar an dáta sin</i>.",

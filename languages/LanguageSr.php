@@ -1,6 +1,6 @@
 <?php
 
-include( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
@@ -22,7 +22,7 @@ include( "LanguageUtf8.php" );
  7 => "Разговор_о_слици",
  8 => "МедијаВики",
  9 => "Разговор_о_МедијаВикију"
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsSr = array(
  "Никаква", "Причвршћена лево", "Причвршћена десно", "Плутајућа лево"
@@ -685,6 +685,7 @@ or <b>[[media:file.ogg]]</b> за звукове.
 "imghistory" => "Историја слике",
 "revertimg"  => "врт",
 "deleteimg"  => "обр",
+"deleteimgcompletely"  => "обр",
 "imghistlegend" => "Објашњење: (трен) = ово је тренутна слика, (обр) = обриши
 ову стару верзију, (врт) = врати на ову стару верзију.
 <br><i>Кликните на датум давидите слику послату тог датума</i>.",

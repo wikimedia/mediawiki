@@ -1,38 +1,34 @@
 <?php
 
+/*
+Example command-line:
+	php rcdumper.php | irc -d -c \#channel-to-join nick-of-bot some.irc.server
+where irc is the name of the ircII executable.
+The name of the the IRC should match $ircServer below.
+*/
+
+$ircServer = "irc.freenode.net";
+
+# Set the below if this is running on a non-Wikimedia site:
+#$serverName="your.site.here";
+
+
+ini_set( "display_errors", 1 );
 $wgCommandLineMode = true;
 $fmB = chr(2);
 $fmU = chr(31);
 
-$sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
-if ( $argv[1] ) {
-	$lang = $argv[1];
-	putenv( "wikilang=$lang");
-	$settingsFile = "/apache/htdocs/{$argv[1]}/w/LocalSettings.php";
-	$newpath = "/apache/common/php$sep";
+require_once("../maintenance/commandLine.inc" );
+
+if ($wgWikiFarm) {
+	$serverName="$lang.wikipedia.org";
+	$newPageURLFirstPart="http://$serverName/wiki/";
+	$URLFirstPart="http://$serverName/w/wiki.phtml?title=";
 } else {
-	$settingsFile = "../LocalSettings.php";
-	$newpath = "";
+	$newPageURLFirstPart="http://$serverName$wgScript/";
+	$URLFirstPart="http://$serverName$wgScript?title=";
 }
 
-if ( $argv[2] ) {
-	$patterns = explode( ",", $argv[2]);
-} else {
-	$patterns = false;
-}
-
-if ( ! is_readable( $settingsFile ) ) {
-	print "A copy of your installation's LocalSettings.php\n" .
-	  "must exist in the source directory.\n";
-	exit();
-}
-
-ini_set( "include_path", "$newpath$IP$sep$include_path" );
-
-$wgCommandLineMode = true;
-$DP = "../includes";
-require_once( $settingsFile );
-require_once( "Setup.php" );
 $wgTitle = Title::newFromText( "RC dumper" );
 $wgCommandLineMode = true;
 set_time_limit(0);
@@ -42,11 +38,15 @@ sleep(30);
 $res = wfQuery( "SELECT rc_timestamp FROM recentchanges ORDER BY rc_timestamp DESC LIMIT 1", DB_READ ); 
 $row = wfFetchObject( $res );
 $oldTimestamp = $row->rc_timestamp;
+$serverCount = 0;
 
 while (1) {
 	$res = wfQuery( "SELECT * FROM recentchanges WHERE rc_timestamp>'$oldTimestamp' ORDER BY rc_timestamp", DB_READ );
 	$rowIndex = 0;
 	while ( $row = wfFetchObject( $res ) ) {
+		if ( ++$serverCount % 20 == 0 ) {
+			print "/server $ircServer\n";
+		}
 		$ns = $wgLang->getNsText( $row->rc_namespace ) ;
 		if ( $ns ) {
 			$title = "$ns:{$row->rc_title}";
@@ -66,30 +66,17 @@ while (1) {
 		$lastid = IntVal($row->rc_last_oldid);
 		$flag = ($row->rc_minor ? "M" : "") . ($row->rc_new ? "N" : "");
 		if ( $row->rc_new ) {
-			$url = "http://$lang.wikipedia.org/wiki/" . urlencode($title);
+			$url = $newPageURLFirstPart . urlencode($title);
 		} else {
-			$url = "http://$lang.wikipedia.org/w/wiki.phtml?title=" . urlencode($title) .
+			$url = $URLFirstPart . urlencode($title) .
 				"&diff=0&oldid=$lastid";
 		}
-		$boldTitle = $fmB . str_replace("_", " ", $title) . $fmB;
-
-		if ( $patterns ) {
-			foreach ( $patterns as $pattern ) {
-				if ( preg_match( $pattern, $comment ) ) {
-					print chr(7);
-					break;
-				}
-			}
-		}
-		if ( $comment !== "" ) {
-			$comment = "($comment)";
-		}
 		
-		$fullString = "$boldTitle   $flag   $url   $user $comment\n"; 
+		$title = str_replace("_", " ", $title);
+		# see http://www.irssi.org/?page=docs&doc=formats for some colour codes. prefix is \003, 
+		# no colour (\003) switches back to the term default
+		$fullString = "\00303$title\0037 $flag\00310 $url \0037*\003 $user \0037*\003 $comment\n";
 
-		if ( $fullString{0} == "/" ) {
-			$fullString = " $fullString";
-		}
 		print( $fullString );
 		$oldTimestamp = $row->rc_timestamp;
 		sleep(2);

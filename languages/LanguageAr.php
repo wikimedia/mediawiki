@@ -17,7 +17,7 @@ require_once("LanguageUtf8.php");
 	9 => "MediaWiki_talk",
 	10  => "Template",
 	11  => "Template_talk"
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgWeekdayNamesAr = array(
 	"الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس",
@@ -194,7 +194,7 @@ require_once("LanguageUtf8.php");
 	"filedeleteerror" => "Could not delete file \"$1\".",
 	"filenotfound"	=> "Could not find file \"$1\".",
 	"unexpected"	=> "Unexpected value: \"$1\"=\"$2\".",
-	"formerror"		=> "Error: could not submit form",	
+	"formerror"		=> "Error: could not submit form",
 	"badarticleerror" => "This action cannot be performed on this page.",
 	"cannotdelete"	=> "Could not delete the page or image specified. (It may have already been deleted by someone else.)",
 	"badtitle"		=> "Bad title",
@@ -249,7 +249,7 @@ require_once("LanguageUtf8.php");
 	"youremail"		=> "Your email*",
 	"yourrealname"		=> "Your real name*",
 	"yournick"		=> "Your nickname (for signatures)",
-	"emailforlost"	=> "Fields marked with a star (*) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your 
+	"emailforlost"	=> "Fields marked with a star (*) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your
 	email address to them, and it can be used to send you a new password if you forget it.<br /><br />Your real name, if you choose to provide it, will be used for giving you attribution for your work.",
 	"loginerror"	=> "Login error",
 	"nocookiesnew"	=> "The user account was created, but you are not logged in. {{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.",
@@ -329,7 +329,7 @@ require_once("LanguageUtf8.php");
 	"newarticle"	=> "(New)",
 	"newarticletext" =>
 	"You've followed a link to a page that doesn't exist yet.
-	To create the page, start typing in the box below 
+	To create the page, start typing in the box below
 	(see the [[{{ns:4}}:Help|help page]] for more info).
 	If you are here by mistake, just click your browser's '''back''' button.",
 	"talkpagetext" => "<!-- MediaWiki:talkpagetext -->",
@@ -469,7 +469,7 @@ require_once("LanguageUtf8.php");
 
 	See [[{{ns:4}}:User preferences help]] for help deciphering the options.",
 	"prefsreset"	=> "Preferences have been reset from storage.",
-	"qbsettings"	=> "Quickbar settings", 
+	"qbsettings"	=> "Quickbar settings",
 	"changepassword" => "Change password",
 	"skin"			=> "Skin",
 	"math"			=> "Rendering math",
@@ -488,7 +488,7 @@ require_once("LanguageUtf8.php");
 	"oldpassword"	=> "Old password",
 	"newpassword"	=> "New password",
 	"retypenew"		=> "Retype new password",
-	"textboxsize"	=> "Textbox dimensions",
+	"textboxsize"	=> "Editing",
 	"rows"			=> "Rows",
 	"columns"		=> "Columns",
 	"searchresultshead" => "Search result settings",
@@ -684,7 +684,7 @@ require_once("LanguageUtf8.php");
 		"randompage"	=> "Random page",
 		"shortpages"	=> "Short pages",
 		"longpages"		=> "Long pages",
-		"deadendpages"  => "Dead-end pages",				       
+		"deadendpages"  => "Dead-end pages",
 		"listusers"		=> "User list",
 		"specialpages"	=> "Special pages",
 		"spheading"		=> "Special pages for all users",
@@ -728,7 +728,7 @@ require_once("LanguageUtf8.php");
 		as the \"From\" address of the mail, so the recipient will be able
 		to reply.",
 		"usermailererror" => "Mail object returned error: ",
-		"defemailsubject"  => "{{SITENAME}} e-mail",				       
+		"defemailsubject"  => "{{SITENAME}} e-mail",
 		"noemailtitle"	=> "No e-mail address",
 		"noemailtext"	=> "This user has not specified a valid e-mail address,
 		or has chosen not to receive e-mail from other users.",
@@ -819,11 +819,11 @@ require_once("LanguageUtf8.php");
 		"rollbackfailed" => "Rollback failed",
 		"cantrollback"	=> "Cannot revert edit; last contributor is only author of this article.",
 		"alreadyrolled"	=> "Cannot rollback last edit of [[$1]]
-		by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already. 
+		by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already.
 
 		Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
 		#   only shown if there is an edit comment
-		"editcomment" => "The edit comment was: \"<i>$1</i>\".", 
+		"editcomment" => "The edit comment was: \"<i>$1</i>\".",
 		"revertpage"	=> "Reverted edit of $2, changed back to last version by $1",
 		"protectlogpage" => "Protection_log",
 		"protectlogtext" => "Below is a list of page locks/unlocks.
@@ -909,7 +909,7 @@ require_once("LanguageUtf8.php");
 		"autoblocker"	=> "Autoblocked because you share an IP address with \"$1\". Reason \"$2\".",
 		"blocklogpage"	=> "Block_log",
 		"blocklogentry"	=> 'blocked "$1" with an expiry time of $2',
-		"blocklogtext"	=> "This is a log of user blocking and unblocking actions. Automatically 
+		"blocklogtext"	=> "This is a log of user blocking and unblocking actions. Automatically
 		blocked IP addresses are not be listed. See the [[Special:Ipblocklist|IP block list]] for
 		the list of currently operational bans and blocks.",
 		"unblocklogentry"	=> 'unblocked "$1"',
@@ -960,7 +960,7 @@ require_once("LanguageUtf8.php");
 
 		# Make sysop
 		"makesysoptitle"	=> "Make a user into a sysop",
-		"makesysoptext"		=> "This form is used by bureaucrats to turn ordinary users into administrators. 
+		"makesysoptext"		=> "This form is used by bureaucrats to turn ordinary users into administrators.
 		Type the name of the user in the box and press the button to make the user an administrator",
 		"makesysopname"		=> "Name of the user:",
 		"makesysopsubmit"	=> "Make this user into a sysop",
@@ -1125,7 +1125,7 @@ require_once("LanguageUtf8.php");
 		'tooltip-upload' => 'Upload images or media files [alt-u]',
 		'tooltip-specialpage' => 'This is a special page, you can\'t edit the page itself.',
 		'tooltip-minoredit' => 'Mark this as a minor edit [alt-i]',
-		'tooltip-save' => 'Save you changes [alt-s]',
+		'tooltip-save' => 'Save your changes [alt-s]',
 		'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
 		'tooltip-contributions' => 'View the list of contributions of this user',
 		'tooltip-emailuser' => 'Send a mail to this user',
@@ -1162,7 +1162,7 @@ class LanguageAr extends LanguageUtf8 {
 		"." => "٫",
 		"," => "٬"
 	);
-	
+
 	# TODO: TRANSLATION!
 
 	# Inherit everything except...
@@ -1180,11 +1180,11 @@ class LanguageAr extends LanguageUtf8 {
 		return $wgNamespaceNamesAr[$index];
 	}
 
-	function getNsIndex( $text ) 
+	function getNsIndex( $text )
 	{
 		global $wgNamespaceNamesAr;
 
-		foreach ( $wgNamespaceNamesAr as $i => $n ) 
+		foreach ( $wgNamespaceNamesAr as $i => $n )
 		{
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
@@ -1208,7 +1208,7 @@ class LanguageAr extends LanguageUtf8 {
 		global $wgWeekdayNamesAr;
 		return $wgWeekdayNamesAr[$key-1];
 	}
-	
+
 
 	function isRTL() { return true; }
 
@@ -1220,7 +1220,7 @@ class LanguageAr extends LanguageUtf8 {
 
 		# Swap sidebar to right side by default
 		$opt['quickbar'] = 2;
-		
+
 		# Underlines seriously harm legibility. Force off:
 		$opt['underline'] = 0;
 		return $opt ;
@@ -1228,7 +1228,7 @@ class LanguageAr extends LanguageUtf8 {
 
 	function checkTitleEncoding( $s ) {
 		global $wgInputEncoding;
-		
+
 		# Check for non-UTF-8 URLs; assume they are windows-1256?
 	        $ishigh = preg_match( '/[\x80-\xff]/', $s);
 		$isutf = ($ishigh ? preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
@@ -1236,10 +1236,10 @@ class LanguageAr extends LanguageUtf8 {
 
 		if( $ishigh and !$isutf )
 			return iconv( "windows-1256", "utf-8", $s );
-		
+
 		return $s;
 	}
-	
+
 	function getMessage( $key )
 	{
                 global $wgAllMessagesAr, $wgAllMessagesEn;
@@ -1248,9 +1248,14 @@ class LanguageAr extends LanguageUtf8 {
                 if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
                 else return $m;
 	}
-	
+
 	function formatNum( $number ) {
-		return strtr( $number, $this->digitTransTable );
+		global $wgTranslateNumerals;
+		if( $wgTranslateNumerals ) {
+			return strtr( $number, $this->digitTransTable );
+		} else {
+			return $number;
+		}
 	}
 }
 

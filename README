@@ -26,11 +26,12 @@ The MediaWiki software was written by:
 * Tomasz Wegrzanowski
 * Erik Moeller
 * Tim Starling
+* Gabriel Wicke
 * Several others
 
 These developers hold the copyright to this work, and it is
-licensed the terms of the GNU General Public License, version 
-2 (see http://www.fsf.org/licenses/gpl.html). Derivative 
+licensed under the terms of the GNU General Public License,
+version 2 (see http://www.fsf.org/licenses/gpl.html). Derivative 
 works and later versions of the code will also be considered 
 free software licensed under the same terms.
 
@@ -39,10 +40,10 @@ legal rights to the software, although copyright may be
 assigned to it at a later date. Wikimedia has not funded 
 any of the development work.
 
-Sections of code written exclusively by Lee Crocker are also
-released into the public domain, wich does not impair the
-obligations of users under the GPL for use of the whole code
-or other sections thereof.
+Sections of code written exclusively by Lee Crocker or Erik
+Moeller are also released into the public domain, which does
+not impair the obligations of users under the GPL for use
+of the whole code or other sections thereof.
 
 Many thanks to the Wikipedia regulars for testing and
 suggestions.

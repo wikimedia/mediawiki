@@ -2,66 +2,76 @@
 
 class ParserCache
 {
-	function get( &$article, &$user ){
-		$hash = $user->getPageRenderingHash();
-		$pageid = intval( $id );
-		$res = wfQuery("SELECT pc_data FROM parsercache WHERE pc_pageid = {$pageid} ".
-			" AND pc_prefhash = '{$hash}' AND pc_expire > NOW()", DB_WRITE);
-		$row = wfFetchObject ( $res );
-		if( $row ){
-			$retVal = unserialize( gzuncompress($row->pc_data) );
-			wfProfileOut( $fname );
-		} else {
-			$retVal = false;
-		}
-		return $retVal;
-	}
-
-	function save( $parserOutput, &$article, &$user ){
+	function getKey( &$article, &$user ) {
+		global $wgDBname;
 		$hash = $user->getPageRenderingHash();
 		$pageid = intval( $article->getID() );
-		$title = wfStrencode( $article->mTitle->getPrefixedDBKey() );
-		$ser = addslashes( gzcompress( serialize( $parserOutput ) ) );
-		if( $parserOutput->containsOldMagic() ){
-			$expire = "1 HOUR";
-		} else {
-			$expire = "7 DAY";
-		}
-
-		wfQuery("REPLACE INTO parsercache (pc_prefhash,pc_pageid,pc_title,pc_data, pc_expire) ".
-			"VALUES('{$hash}', {$pageid}, '{$title}', '{$ser}', ".
-				"DATE_ADD(NOW(), INTERVAL {$expire}))", DB_WRITE);
-
-		if( rand() % 50 == 0 ){ // more efficient to just do it sometimes
-			$this->purge();
-		}
+		$key = "$wgDBname:pcache:idhash:$pageid-$hash";
+		return $key;
 	}
 	
-	function purge(){
-		wfQuery("DELETE FROM parsercache WHERE pc_expire < NOW() LIMIT 250", DB_WRITE);
-	}
+	function get( &$article, &$user ) {
+		global $wgMemc, $wgCacheEpoch;
+		$fname = "ParserCache::get";
+		wfProfileIn( $fname );
 
-	function clearLinksTo( $pid ){
-		$pid = intval( $pid );
-		wfQuery("DELETE parsercache FROM parsercache,links ".
-			"WHERE pc_pageid=links.l_from AND l_to={$pid}", DB_WRITE);
-		wfQuery("DELETE FROM parsercache WHERE pc_pageid='{$pid}'", DB_WRITE);
-	}
+		$hash = $user->getPageRenderingHash();
+		$pageid = intval( $article->getID() );
+		$key = $this->getKey( $article, $user );
 
-	# $title is a prefixed db title, for example like Title->getPrefixedDBkey() returns.
-	function clearBrokenLinksTo( $title ){
-		$title = wfStrencode( $title );
-		wfQuery("DELETE parsercache FROM parsercache,brokenlinks ".
-			"WHERE pc_pageid=bl_from AND bl_to='{$title}'", DB_WRITE);
-	}
+		wfDebug( "Trying parser cache $key\n" );
+		$value = $wgMemc->get( $key );
+		if ( $value ) {
+			wfDebug( "Found.\n" );
+			# Delete if article has changed since the cache was made
+			$canCache = $article->checkTouched();
+			$cacheTime = $value->getCacheTime();
+			$touched = $article->mTouched;
+			if ( !$canCache || $value->getCacheTime() <= $touched || $cacheTime < $wgCacheEpoch ) {
+				if ( !$canCache ) {
+					$this->incrStats( "pcache_miss_invalid" );
+					wfDebug( "Invalid cached redirect, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
+				} else {
+					$this->incrStats( "pcache_miss_expired" );
+					wfDebug( "Key expired, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
+				}
+				$wgMemc->delete( $key );
+				$value = false;
 
-	# $pid is a page id
-	function clearPage( $pid, $namespace ){
-		$pid = intval( $pid );
-		if( $namespace == NS_MEDIAWIKI ){
-			$this->clearLinksTo( $pid );
+			} else {
+				$this->incrStats( "pcache_hit" );
+			}
 		} else {
-			wfQuery("DELETE FROM parsercache WHERE pc_pageid='{$pid}'", DB_WRITE);
+			$this->incrStats( "pcache_miss_absent" );
+			$value = false;
+		}
+
+		wfProfileOut( $fname );
+		return $value;
+	}
+	
+	function save( $parserOutput, &$article, &$user ){
+		global $wgMemc;
+
+		$key = $this->getKey( $article, $user );
+		$now = wfTimestampNow();
+		$parserOutput->setCacheTime( $now );
+		$parserOutput->mText .= "\n<!-- Saved in parser cache with key $key and timestamp $now -->\n";
+
+		if( $parserOutput->containsOldMagic() ){
+			$expire = 3600; # 1 hour
+		} else {
+			$expire = 86400; # 1 day
+		}
+
+		$wgMemc->set( $key, $parserOutput, $expire );
+	}
+
+	function incrStats( $key ) {
+		global $wgDBname, $wgMemc;
+		$key = "$wgDBname:stats:$key";
+		if ( is_null( $wgMemc->incr( $key ) ) ) {
+			$wgMemc->set( $key, 1 );
 		}
 	}
 }

@@ -1,4 +1,5 @@
 <?php
+# $Id$
 # See deferred.doc
 
 class SearchUpdate {
@@ -24,7 +25,7 @@ class SearchUpdate {
 
 	function doUpdate()
 	{
-		global $wgDBminWordLen, $wgLang, $wgDisableSearchUpdate;
+		global $wgDBminWordLen, $wgLang, $wgDisableSearchUpdate, $wgIsMySQL;
 
 		if( $wgDisableSearchUpdate || !$this->mId ) {
 			return false;
@@ -32,7 +33,8 @@ class SearchUpdate {
 		$lc = SearchEngine::legalSearchChars() . "&#;";
 		if( $this->mText == false ) {
 			# Just update the title
-			$sql = "UPDATE LOW_PRIORITY searchindex SET si_title='" .
+			$lowpri=$wgIsMySQL?"LOW_PRIORITY":"";
+			$sql = "UPDATE $lowpri searchindex SET si_title='" .
 			  wfStrencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) .
 			  "' WHERE si_page={$this->mId}";
 			wfQuery( $sql, DB_WRITE, "SearchUpdate::doUpdate" );
@@ -75,7 +77,7 @@ class SearchUpdate {
 		# Strip wiki '' and '''
 		$text = preg_replace( "/''[']*/", " ", $text );
 		
-		$sql = "REPLACE DELAYED INTO searchindex (si_page,si_title,si_text) VALUES ({$this->mId},'" .
+		$sql = "REPLACE  INTO searchindex (si_page,si_title,si_text) VALUES ({$this->mId},'" .
 		  wfStrencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) . "','" .
 		  wfStrencode( $text ) . "')";
 		wfQuery( $sql, DB_WRITE, "SearchUpdate::doUpdate" );

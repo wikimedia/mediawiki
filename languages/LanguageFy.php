@@ -29,7 +29,7 @@ if($wgMetaNamespace === FALSE)
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsFy = array(
 	"Ut", "Lofts fêst", "Rjochts fêst", "Lofsts sweevjend"
@@ -43,7 +43,8 @@ if($wgMetaNamespace === FALSE)
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesFy = array(
@@ -661,6 +662,7 @@ en wat jo fierder mar oan ynformaasje hawwe.",
 "imghistory"	=> "Ofbyldskiednis",
 "revertimg"		=> "tebek",
 "deleteimg"		=> "wisk",
+"deleteimgcompletely"		=> "wisk",
 "imghistlegend"	=> "Utlis: (no) = dit is it hjoeddeiske ôfbyld,
 (wisk) = wiskje dizze âldere ferzje, (tebek) = set ôfbyld tebek nei dizze âldere ferzje.
 <br><i>Fia de datum kinne jo it ôfbyld dat doe oanbean besjen</i>.",

@@ -1,6 +1,12 @@
 = MediaWiki release notes =
 
-== Version 1.3.0pre-alpha ==
+== Version 1.3.0beta6, 2004-08-06 ==
+
+1.3.0 final release should come up very soon; this final beta includes
+various bug fixes and a security fix affecting some PHP configurations
+(when register_globals and are allow_url_fopen both on -- it's recommended
+that you turn both *off* for security).
+
 
 Look & layout:
 * New default layout 'MonoBook'
@@ -15,6 +21,7 @@ Wiki features:
 * Templates have been expanded with parameters, and separated from
   the MediaWiki: localization scheme.
 * Categories more or less work
+* added a special page for listing users with sysop rights.
 
 Editing:
 * Automatic merging of edit conflicts that don't directly interfere
@@ -22,7 +29,7 @@ Editing:
 
 Metadata and output:
 * Linked Creative Commons copyright metadata (optional)
-* RSS 2.0 feeds for Recent Changes, New Pages
+* RSS 2.0 & Atom 0.3 feeds for Recent Changes, New Pages
 
 Optional modules:
 * WikiHiero hieroglyphic module can be added (separate download)
@@ -48,6 +55,8 @@ Code and compatibility:
 * Most image-related code moved to Image.php
 * More fixes for PHP 4.1.2 (thanks to Asheesh Laroia)
 * URL encoding fix for anchors
+* All languages now available in UTF-8 mode
+* Various other fixes
 
 === Caveats ===
 
@@ -57,6 +66,21 @@ set $wgMimeType = "application/xhtml+xml"; to test for remaining problem
 cases, but this is not recommended on live sites. (This must be set for
 MathML to display properly in Mozilla.)
 
+The new 'MonoBook' skin is not compatible with PHP 5 due to bugs in the
+underlying PHPTAL library. It will be automatically disabled when running
+on PHP5; the older look and feel will be used instead.
+
+
+== Version 1.2.6, 2004-05-24 ==
+* Spam blocker ($wgSpamRegex - refuses to save edits that match)
+* Updated documentation about $wgWhitelistRead
+* Ensure that searchindex table is created as MyISAM
+* Interwiki cache timeout (memcached)
+* Fix uploads on Windows with magic_quotes_gpc
+* Some config fixes for Windows (slashes etc)
+* Local interwiki URL redirects
+* Fixed obscure deletion problem in squid mode on corrupt entries
+* Language files updated to remove more hard-coded "Wikipedia" strings
 
 == Version 1.2.5, 2004-05-01 ==
 * Fixed install problem with blank root password

@@ -67,10 +67,26 @@ define('PHPTAL_VERSION', '0.7.0');
 define('PHPTAL_MARK', str_replace('.', '_', PHPTAL_VERSION) . '_');
 
 if (strtoupper(substr(PHP_OS, 0, 3)) == "WIN") {
-    define('PHPTAL_DEFAULT_CACHE_DIR', getenv("TMP") . "\\");
+	$default_temp = "C:\\Windows\\Temp";
 } else {
-	define('PHPTAL_DEFAULT_CACHE_DIR', '/tmp/');
+	$default_temp = "/tmp";
 }
+if( getenv( 'TMP' ) == "" ) {
+	if( is_writable( $default_temp ) ) {
+		define('PHPTAL_DEFAULT_CACHE_DIR', $default_temp.DIRECTORY_SEPARATOR);
+	} else {
+		global $wgUploadDirectory;
+		define('PHPTAL_DEFAULT_CACHE_DIR', $wgUploadDirectory.DIRECTORY_SEPARATOR);
+	}
+} else {
+    define('PHPTAL_DEFAULT_CACHE_DIR', getenv("TMP") . DIRECTORY_SEPARATOR);
+}
+
+if( !is_writable (PHPTAL_DEFAULT_CACHE_DIR) )
+	die( htmlspecialchars(
+		'Can\'t find a writable temp directory for the XHTML template. ' .
+		'Check that the TMP environment variable points to a writable directory, ' .
+		'or that the default temp dir (' . $default_temp . ') exists and is writable.' ) );
 
 /**
  * This define is used to select the templates output format.
