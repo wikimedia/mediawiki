@@ -147,7 +147,7 @@ class IPBlockForm {
 				return;
 			}
 			
-			$expiry = wfUnix2Timestamp( $expiry );
+			$expiry = wfTimestamp( TS_MW, $expiry );
 
 		}
 		
@@ -161,15 +161,21 @@ class IPBlockForm {
 
 		$ban = new Block( $this->BlockAddress, $userId, $wgUser->getID(), 
 			wfStrencode( $this->BlockReason ), wfTimestampNow(), 0, $expiry );
-		$ban->insert();
+		
+		if (wfRunHooks('BlockIp', $ban, $wgUser)) {
+			
+			$ban->insert();
+			
+			wfRunHooks('BlockIpComplete', $ban, $wgUser);
+			
+			# Make log entry
+			$log = new LogPage( 'block' );
+			$log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ), $this->BlockReason );
 
-		# Make log entry
-		$log = new LogPage( 'block' );
-		$log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ), $this->BlockReason );
-
-		# Report to the user
-		$titleObj = Title::makeTitle( NS_SPECIAL, 'Blockip' );
-		$wgOut->redirect( $titleObj->getFullURL( 'action=success&ip='.$this->BlockAddress ) );
+			# Report to the user
+			$titleObj = Title::makeTitle( NS_SPECIAL, 'Blockip' );
+			$wgOut->redirect( $titleObj->getFullURL( 'action=success&ip='.$this->BlockAddress ) );
+		}
 	}
 
 	function showSuccess() {
