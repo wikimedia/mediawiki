@@ -2059,6 +2059,7 @@ class Language {
 
 
 		$plang = $this->getPreferredVariant();
+		$fallback = $this->getVariantFallback($plang);
 
 		$tarray = explode("-{", $text);
 		$tfirst = array_shift($tarray);
@@ -2073,20 +2074,29 @@ class Language {
 				$text .= $choice{0};
 			}
 			else {
+				$choice1=false;
+				$choice2=false;
 				foreach($choice as $c) {
 					$v = explode(":", $c);
 					if(!array_key_exists(1, $v)) {
 						//syntax error in the markup, give up
-						$text .= $marked{0};
 						break;			
 					}
 					$code = trim($v{0});
 					$content = trim($v{1});
 					if($code == $plang) {
-						$text .= $content;
+						$choice1 = $content;
 						break;
 					}
+					if($code == $fallback)
+						$choice2 = $content;
 				}
+				if ( $choice1 )
+					$text .= $choice1;
+				elseif ( $choice2 )
+					$text .= $choice2;
+				else
+					$text .= $marked{0};
 			}
 			if(array_key_exists(1, $marked))
 				$text .= $this->autoConvert($marked{1});
@@ -2109,7 +2119,15 @@ class Language {
 		return array($lang);
 	}
 	
-	
+	# in case some variant is not defined in the markup, we need
+	# to have some fallback. for example, in zh, normally people
+	# will define zh-cn and zh-tw, but less so for zh-sg or zh-hk.
+	# when zh-sg is preferred but not defined, we will pick zh-cn
+	# in this case. right now this is only used by zh.
+	function getVariantFallback($v) {
+		return false;
+	}
+
 	function getPreferredVariant() {
 		global $wgUser;
 		
