@@ -10,9 +10,9 @@ math rendering functions are written in Objective CAML,
 which is required to compile them. The test suite is
 written in Java, using several external libraries.
 
-Recommended versions are: Apache 1.3.26 or later; MySQL
-2.23.51 or later; PHP 4.2.2 or later. The installation at
-wikipedia.org also uses the APC caching software, but
+Recommended versions are: Apache 1.3.27 or later; MySQL
+4.0.13 or later; PHP 4.3.2 or later. The installation at
+wikipedia.org also uses PHP Accelerator software, but
 that's entirely optional and doesn't affect anything else.
 
 The math rendering functions are more complex, and will
@@ -62,11 +62,11 @@ the way it was done for the Wikipedia server:
 
 Downloads:
 
-  gcc-2.95.3.tar.gz
-  mysql-3.23.51.tar.gz (or 4.0.12)
+  gcc-2.95.3.tar.gz (only if you now have gcc 2.96)
+  mysql-4.0.13.tar.gz (or 3.23.57 should work)
   libiconv-1.8.tar.gz
-  apache_1.3.26.tar.gz
-  php-4.3.1.tar.gz
+  apache_1.3.27.tar.gz
+  php-4.3.2.tar.gz
   apc-cvs.tar.gz
 
 And for math support:
@@ -74,9 +74,10 @@ And for math support:
   (TeTeX, ImageMagick, and GhostScript come with most Linux distros)
 
 1. MySQL strongly recommends using gcc 2.95 to compile MySQL.
-  RedHat Linux comes with 2.96 by default, so you'll have to install
+  RedHat Linux 7.x comes with 2.96 by default, so you'll have to install
   2.95 first.  Use "../gcc*/configure --enable-shared"  If your Linux
-  installation doesn't use gcc 2.96 you can skip this step.
+  installation doesn't use gcc 2.96, or has a more recent gcc 3.x,
+  you can skip this step.
 
 2. Install MySQL source; add "mysql" user and group. Make sure the
   directory into which you installed gcc 2.95 appears before the
@@ -97,10 +98,16 @@ And for math support:
   FulltextStoplist.php from the MySQL sources if you have customized
   MySQL's stop list.
 
+  If you are running anything other than Wikipedia itself you'll want
+  to make a lot of changes to the LanguageXX.php files so it talks about
+  _your_ site and _your_ license. :)
+
 4. Optionally, install libiconv (http://www.gnu.org/software/libiconv/).
   This will be used by some language packages for converting
   native-charset URLs to and from UTF-8. If you're running an
-  English-only wiki, this won't be necessary.
+  English-only wiki, this probably won't be necessary. (Most Linux
+  distributions should come with libiconv anyway, but check for
+  a separate 'dev' package if on RedHat.)
 
 5. Unpack Apache distribution and begin configuring, but don't finish
   build yet. Configure with something like:
@@ -116,10 +123,14 @@ And for math support:
 
 7. Unpack and configure PHP. Configure with something like:
 
-  ./configure --enable-apc --enable-shmop --with-mysql=/usr/local/mysql --with-iconv=/usr/local/lib --with-apache=/home/lee/src/apache_1.3.26
+  ./configure --enable-apc --enable-shmop --with-zlib --with-zlib-dir=/usr/lib --with-mysql=/usr/local/mysql --with-iconv=/usr/local/lib --with-apache=/home/lee/src/apache_1.3.26
+
+Or for Apache 2.0 module:
+  ./configure --enable-shmop --with-zlib --with-zlib-dir=/usr/lib --with-mysql=/usr/local/mysql --with-iconv --with-apxs2filter=/usr/local/apache/bin/apxs
 
   (using your own local paths, of course). Build and install as
-  instructed. Set "register_globals" on in the config file.
+  instructed. Set "register_globals" on in the config file, and
+  "warnings" to 
 
 8. Finish building Apache. Configure with something like:
 
@@ -148,8 +159,8 @@ And for math support:
   (the "php_admin_flag engine off/on" directives above) to prevent
   the uploading and running of malicious scripts.
 
-9. Optionally, install APC, following standard instructions for
-  installing as a Zend extension.
+9. Optionally, install APC or another PHP cache plug-in, following
+  standard instructions for installing as a Zend extension.
 
 10. If using embedded TeX support, be sure TeX and ImageMagick are
   installed (they are common on most Linux distros and freely
@@ -186,5 +197,5 @@ provide enough information to work with, and preferably be aware
 of what you're doing!) and keep track of major changes to the
 software, including performance improvements and security patches.
 
-http://www.wikipedia.org/mailman/listinfo/wikitech-l
+http://mail.wikipedia.org/mailman/listinfo/wikitech-l
 
