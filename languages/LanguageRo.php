@@ -663,7 +663,7 @@ Acest număr include paginile de \"discuţii\", paginile despre Wikipedia, pagin
 În afară de acestea, există <b>$2</b> pagini care sunt probabil articole (numărate automat, în funcţie strict de mărime).<p>
 În total au fost <b>$3</b> vizite (accesări) şi <b>$4</b> editări
 de la ultima actualizare a programului (July 20, 2002).
-În medie rezultă <b>$5</b> editări la fiecare vizionare sau <b>$6</b> vizualizări la fiecare editare.",
+În medie rezultă <b>$5</b> editări la fiecare vizionare şi <b>$6</b> vizualizări la fiecare editare.",
 "userstatstext" => "Există un număr de <b>$1</b> utilizatori înregistraţi.
 Dintre aceştia <b>$2</b> sunt administratori (vezi $3).",
 
