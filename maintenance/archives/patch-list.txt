@@ -160,3 +160,6 @@ patch-linkscc.sql
 Adds an index to recentchanges to optimize Special:Newpages
 patch-rc-newindex.sql
 
+* 2004-02-14: Adds the ipb_expiry field to ipblocks
+patch-ipb_expiry.sql
+
