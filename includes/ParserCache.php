@@ -37,7 +37,10 @@ class ParserCache
 	function save( $parserOutput, &$article, &$user ){
 		global $wgMemc;
 		$key = $this->getKey( $article, $user );
-		$parserOutput->setTouched( $article->getTouched() );
+		$touched = $article->getTouched();
+		$parserOutput->setTouched( $touched );
+		$parserOutput->mText .= "\n<-- Saved in parser cache with key $key and timestamp $touched -->\n";
+
 		if( $parserOutput->containsOldMagic() ){
 			$expire = 3600; # 1 hour
 		} else {
