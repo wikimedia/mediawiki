@@ -1966,19 +1966,19 @@ class Language {
 		return $word;
 	}
 
-    
-    # convert text to different variants of a language. the automatic
-    # conversion is done in autoConvert(). here we parse the text 
-    # marked with -{}-, which specifies special conversions of the 
-    # text that can not be accomplished in autoConvert()
-    #
-    # syntax of the markup:
-    # -{code1:text1;code2:text2;...}-  or
-    # -{text}- in which case no conversion should take place for text
+	
+	# convert text to different variants of a language. the automatic
+	# conversion is done in autoConvert(). here we parse the text 
+	# marked with -{}-, which specifies special conversions of the 
+	# text that can not be accomplished in autoConvert()
+	#
+	# syntax of the markup:
+	# -{code1:text1;code2:text2;...}-  or
+	# -{text}- in which case no conversion should take place for text
 	function convert( $text ) {
 
-        if(sizeof($this->getVariants())<2) 
-            return $text;
+		if(sizeof($this->getVariants())<2) 
+			return $text;
 
 		// no conversion if redirecting
 		if(substr($text,0,9) == "#REDIRECT") {
@@ -1986,68 +1986,68 @@ class Language {
 		}
 
 
-        $plang = $this->getPreferredVariant();
+		$plang = $this->getPreferredVariant();
 
-        $tarray = explode("-{", $text);
-        $tfirst = array_shift($tarray);
-        $text = $this->autoConvert($tfirst);
-
-        foreach($tarray as $txt) {
-            $marked = explode("}-", $txt);
-
-            $choice = explode(";", $marked{0});
-            if($choice{1}==NULL) {
-                $text .= $choice{0};
-            }
-            else {
-                foreach($choice as $c) {
-                    list($code, $content) = split(":", $c);
-                    $code = trim($code);
-                    $content = trim($content);
-                    if($code == $plang) {
-                        $text .= $content;
-                        break;
-                    }
-                }
-            }
-            $text .= $this->autoConvert($marked{1});
-        }
-
-        return $text;
+		$tarray = explode("-{", $text);
+		$tfirst = array_shift($tarray);
+		$text = $this->autoConvert($tfirst);
+		
+		foreach($tarray as $txt) {
+			$marked = explode("}-", $txt);
+			
+			$choice = explode(";", $marked{0});
+			if($choice{1}==NULL) {
+				$text .= $choice{0};
+			}
+			else {
+				foreach($choice as $c) {
+					list($code, $content) = split(":", $c);
+					$code = trim($code);
+					$content = trim($content);
+					if($code == $plang) {
+						$text .= $content;
+						break;
+					}
+				}
+			}
+			$text .= $this->autoConvert($marked{1});
+		}
+		
+		return $text;
 	}
 
 	/* this does the real conversion to the preferred variant.
 	   see LanguageZh.php for example
-    */
-    function autoConvert($text) {
-        return $text;
-    }
-
-    # see if we have a list of language variants for conversion.
-    # right now mainly used in the Chinese conversion
-    function getVariants() {
-        return array();
-    }
-
-
-    function getPreferredVariant() {
-        global $wgUser;
-        
-        // if user logged in, get in from user's preference
-        if($wgUser->getID()!=0)
-            return $wgUser->getOption('variant');
-
-        // if we have multiple variants for this langauge, 
-        // pick the first one as default
-        $v=$this->getVariants() ;
-        if(!empty($v))
-            return $v{0};
-
-        // otherwise there should really be just one variant, 
-        // get it from the class name
-        $lang = strtolower(substr(get_class($this), 8));
-        return $lang;
-    }
+	*/
+	function autoConvert($text) {
+		return $text;
+	}
+	
+	# see if we have a list of language variants for conversion.
+	# right now mainly used in the Chinese conversion
+	function getVariants() {
+		return array();
+	}
+	
+	
+	function getPreferredVariant() {
+		global $wgUser;
+		
+		// if user logged in, get in from user's preference
+		if($wgUser->getID()!=0)
+			return $wgUser->getOption('variant');
+		
+		// if we have multiple variants for this langauge, 
+		// pick the first one as default
+		$v=$this->getVariants() ;
+		if(!empty($v))
+			return $v{0};
+		
+		// otherwise there should really be just one variant, 
+		// get it from the class name
+		$lang = strtolower(substr(get_class($this), 8));
+		return $lang;
+	}
 }
 
 # This should fail gracefully if there's not a localization available
