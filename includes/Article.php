@@ -871,7 +871,7 @@ class Article {
 				$targetUrl = $rt->escapeLocalURL();
 				$titleText = htmlspecialchars( $rt->getPrefixedText() );
 				$link = $sk->makeLinkObj( $rt );
-				$wgOut->addHTML( '<img valign="center" src="'.$imageUrl.'">' .
+				$wgOut->addHTML( '<img valign="center" src="'.$imageUrl.'" />' .
 				  '<span class="redirectText">'.$link.'</span>' );
 			} else if ( $pcache ) {
 				# Display content and save to parser cache
