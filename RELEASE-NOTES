@@ -409,7 +409,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1532), (bug 1544) Changed language names for
     'bn', 'bo', 'dv', 'dz', 'ht', 'ii', 'li', 'lo', 'ng', 'or', 'pa', 'si',
     'ti', 've' 
-
+* Fix editing on non-Esperanto wiki with user language pref set to Esperanto
 
 
 === Caveats ===
