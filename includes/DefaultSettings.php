@@ -463,4 +463,7 @@ $wgMaxTocLevel = 999;
 # Recognise longitude/latitude coordinates
 $wgUseGeoMode = false;
 
+# Validation for print or other production versions
+$wgUseValidation = false;
+
 ?>
