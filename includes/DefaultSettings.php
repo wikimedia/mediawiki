@@ -142,6 +142,11 @@ $wgIgnoreSQLErrors      = false;
 # all articles in the category)
 $wgUseCategoryMagic		= true;
 
+# disable experimental dmoz-like category browsing. Output things like:
+# Encyclopedia > Music > Style of Music > Jazz
+# FIXME: need fixing
+$wgUseCategoryBrowser   = false;
+
 $wgEnablePersistentLC	= false;	# Persistent link cache in linkscc table; FAILS on MySQL 3.x
 $wgCompressedPersistentLC = true; # use gzcompressed blobs
 

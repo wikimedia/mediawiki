@@ -360,7 +360,7 @@ class Skin {
 	
 	function getCategoryLinks () {
 		global $wgOut, $wgTitle, $wgUser, $wgParser;
-		global $wgUseCategoryMagic, $wgLang;
+		global $wgUseCategoryMagic, $wgUseCategoryBrowser, $wgLang;
 		if( !$wgUseCategoryMagic ) return "" ;
 		if( count( $wgOut->mCategoryLinks ) == 0 ) return "";
 		if( !$wgOut->isArticle() ) return "";
@@ -370,12 +370,14 @@ class Skin {
 			wfMsg( "categories" ), "article=" . urlencode( $wgTitle->getPrefixedDBkey() ) )
 			. ": " . $t;
 		
-		$s .= "<br/><hr/>";
-		$catstack = array();
-		$wgTitle->getAllParentCategories(&$catstack);
-		foreach ($catstack as $key => $cat)
-		{
-			$s .= $this->makeLink($wgLang->getNSText( Namespace::getCategory() ).":".$key, $key )." &gt; ".$cat."<br/>\n";
+		if($wgUseCategoryBrowser) {
+			$s .= "<br/><hr/>";
+			$catstack = array();
+			$wgTitle->getAllParentCategories(&$catstack);
+			foreach ($catstack as $key => $cat)
+			{
+				$s .= $this->makeLink($wgLang->getNSText( Namespace::getCategory() ).":".$key, $key )." &gt; ".$cat."<br/>\n";
+			}
 		}
 		
 		return $s;
