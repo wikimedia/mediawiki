@@ -267,7 +267,7 @@ class PHPTAL_Expression
     function _evaluateSequence($seq)
     {
         $temp = $this->_gen->newTemporaryVar();
-        $this->_gen->doIf('!$__ctx__->_errorRaised');
+	
         $this->_gen->doDo();
         foreach ($seq as $s) {
             // skip empty parts
@@ -287,13 +287,11 @@ class PHPTAL_Expression
         }
         $this->_gen->doEndDoWhile('0');
         // test errorRaised
-        $this->_gen->doElse();
-        
-        // $this->_gen->doAffectResult($temp, '""'); // $__ctx__->_errorRaised');
+        // error handling, disabled for performance..
+/*	$this->_gen->doIf('$__ctx__->_errorRaised');
         $this->_gen->doAffectResult($temp, '$__ctx__->_errorRaised');
         $this->_gen->execute('$__ctx__->_errorRaised = false');
-        $this->_gen->endBlock();
-        // ----------------
+        $this->_gen->endBlock(); */
 
         $err = $this->_useResult($temp);
                                     
