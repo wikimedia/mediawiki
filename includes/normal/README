@@ -1,0 +1,28 @@
+This directory contains some Unicode normalization routines.
+
+The main function to care about is UtfNormal::toNFC(); this will convert
+a given UTF-8 string to Normalization Form C if it's not already such.
+The function assumes that the input string is already valid UTF-8; if there
+are corrupt characters this may produce erroneous results.
+
+Performance is kind of stinky in absolute terms, though it should be speedy
+on pure ASCII text. ;) On text that can be determined quickly to already be
+in NFC it's not too awful but it can quickly get uncomfortably slow,
+particularly for Korean text (the hangul decomposition/composition code is
+extra slow).
+
+
+== Regenerating data tables ==
+
+UtfNormalData.inc is generated from the Unicode Character Database by
+the script UtfNormalGenerate.php. On a *nix system 'make' should fetch the
+necessary files and regenerate it if the scripts have been changed or you
+remove it.
+
+
+== Testing ==
+
+'make test' will run the conformance test (UtfNormalTest.php), fetching the
+data from from the net if necessary. If it reports failure, something is
+going wrong!
+
