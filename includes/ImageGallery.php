@@ -30,13 +30,23 @@ class ImageGallery
 	}
 
 	/**
-	 * Add an image to the gallery.
+	 * Add an image at the end of the gallery.
 	 *
 	 * @param Image  $image  Image object that is added to the gallery
 	 * @param string $html   Additional HTML text to be shown. The name and size of the image are always shown.
 	 */
 	function add( $image, $html='' ) {
 		$this->mImages[] = array( &$image, $html );
+	}
+	
+	/**
+	 * Add an image at the beginning of the gallery.
+	 *
+	 * @param Image  $image  Image object that is added to the gallery
+	 * @param string $html   Additional HTML text to be shown. The name and size of the image are always shown.
+	 */
+	function insert( $image, $html='' ) {
+		array_unshift( $this->mImages, array( &$image, $html ) );
 	}
 
 	/**

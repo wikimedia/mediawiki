@@ -44,286 +44,275 @@ class CategoryPage extends Article {
 	# off.
 
 	function closeShowCategory() {
-		global $wgOut;
-		$msg = wfMsg('usenewcategorypage');
-		if ( '0' == @$msg[0] )
-		{
-			$wgOut->addHTML( $this->oldCategoryMagic() );
-		} else {
-			$wgOut->addHTML( $this->newCategoryMagic() );
-		}
+		global $wgOut, $wgRequest;
+		$pageConditions = array();
+		$from = $wgRequest->getVal( 'from' );
+		$until = $wgRequest->getVal( 'until' );
+		$wgOut->addHTML( $this->doCategoryMagic( $from, $until ) );
 	}
 
-	# This method generates the list of subcategories and pages for a category
-	function oldCategoryMagic () {
-		global $wgContLang, $wgUser ;
-		$fname = 'CategoryPage::oldCategoryMagic';
-
-
-		$sk =& $wgUser->getSkin() ;
-
-		$articles = array() ;
-		$children = array() ;
-		$r = '';
-		$id = $this->mTitle->getArticleID() ;
-
-		# FIXME: add limits
-		$dbr =& wfGetDB( DB_SLAVE );
-		$page = $dbr->tableName( 'page' );
-		$categorylinks = $dbr->tableName( 'categorylinks' );
-
-		$t = $dbr->strencode( $this->mTitle->getDBKey() );
-		$sql = "SELECT DISTINCT page_title, page_namespace FROM $page,$categorylinks " .
-				"WHERE cl_to='$t' AND cl_from=page_id AND page_is_redirect=0 ORDER BY cl_sortkey" ;
-		$res = $dbr->query( $sql, $fname ) ;
-		# For all pages that link to this category
-		while ( $x = $dbr->fetchObject ( $res ) )
-		{
-			$t = $wgContLang->getNsText ( $x->page_namespace ) ;
-			if ( $t != '' ) $t .= ':' ;
-			$t .= $x->page_title ;
-
-			if ( $x->page_namespace == NS_CATEGORY ) {
-					array_push ( $children , $sk->makeLink ( $t ) ) ; # Subcategory
-			} else {
-					array_push ( $articles , $sk->makeLink ( $t ) ) ; # Page in this category
-			}
-		}
-		$dbr->freeResult ( $res ) ;
-
-		# Showing subcategories
-		if ( count ( $children ) > 0 ) {
-			$r .= '<h2>'.wfMsg('subcategories')."</h2>\n" ;
-			$r .= implode ( ', ' , $children ) ;
-		}
-
-		# Showing pages in this category
-		if ( count ( $articles ) > 0 ) {
-			$ti = $this->mTitle->getText() ;
-			$h =  wfMsg( 'category_header', $ti );
-			$r .= "<h2>$h</h2>\n" ;
-			$r .= implode ( ', ' , $articles ) ;
-		}
-
-		# Showing subcategories
-		if ( count ( $children ) > 0 ) {
-			$r .= '<h2>'.wfMsg('subcategories')."</h2>\n" ;
-			$r .= implode ( ', ' , $children ) ;
-		}
-
-		# Showing pages in this category
-		if ( count ( $articles ) > 0 ) {
-			$ti = $this->mTitle->getText() ;
-			$h =  wfMsg( 'category_header', $ti );
-			$r .= "<h2>$h</h2>\n" ;
-			$r .= implode ( ', ' , $articles ) ;
-		}
-
-		return $r ;
-	}
-
-	function newCategoryMagic () {
+	/**
+	 * Format the category data list.
+	 *
+	 * @param string $from -- return only sort keys from this item on
+	 * @param string $until -- don't return keys after this point.
+	 * @return string HTML output
+	 * @access private
+	 */
+	function doCategoryMagic( $from = '', $until = '' ) {
 		global $wgContLang,$wgUser, $wgCategoryMagicGallery;
+		$fname = 'CategoryPage::doCategoryMagic';
+		wfProfileIn( $fname );
 
-		$sk =& $wgUser->getSkin();
-
-		$r = "<br style=\"clear:both;\"/>\n";
-
-		$articles = array() ;
+		$articles = array();
 		$articles_start_char = array();
-		$children = array() ;
+		$children = array();
 		$children_start_char = array();
-		$data = array () ;
-		$id = $this->mTitle->getArticleID() ;
-
-		if ( $wgCategoryMagicGallery ) {
+		$data = array();
+		if( $wgCategoryMagicGallery ) {
 			$ig = new ImageGallery();
 		}
 
-		# FIXME: add limits
 		$dbr =& wfGetDB( DB_SLAVE );
-		$page = $dbr->tableName( 'page' );
-		$categorylinks = $dbr->tableName( 'categorylinks' );
-
-		$t = $dbr->strencode( $this->mTitle->getDBKey() );
-		$sql = "SELECT DISTINCT page_title,page_namespace,cl_sortkey FROM " .
-				"$page,$categorylinks WHERE cl_to='$t' AND cl_from=page_id AND page_is_redirect ORDER BY cl_sortkey" ;
-		$res = $dbr->query ( $sql ) ;
-		while ( $x = $dbr->fetchObject ( $res ) )
-		{
-			$t = $ns = $wgContLang->getNsText ( $x->page_namespace ) ;
-			if ( $t != '' ) $t .= ':' ;
-			$t .= $x->page_title ;
-			$ctitle = str_replace( '_',' ',$x->page_title );
-
-			if ( $x->page_namespace == NS_CATEGORY ) {
-				array_push ( $children, $sk->makeKnownLink ( $t, $ctitle ) ) ; # Subcategory
-
+		if( $from != '' ) {
+			$pageCondition = 'cl_sortkey >= ' . $dbr->addQuotes( $from );
+			$flip = false;
+		} elseif( $until != '' ) {
+			$pageCondition = 'cl_sortkey < ' . $dbr->addQuotes( $until );
+			$flip = true;
+		} else {
+			$pageCondition = '1';
+			$flip = false;
+		}
+		$limit = 200;
+		$res = $dbr->select(
+			array( 'page', 'categorylinks' ),
+			array( 'page_title', 'page_namespace', 'cl_sortkey' ),
+			array( $pageCondition,
+			       'cl_from          =  page_id',
+			       'cl_to'           => $this->mTitle->getDBKey(),
+			       'page_is_redirect' => 0),
+			#+ $pageCondition,
+			$fname,
+			array( 'ORDER BY' => $flip ? 'cl_sortkey DESC' : 'cl_sortkey',
+			       'LIMIT'    => $limit + 1 ) );
+		
+		$sk =& $wgUser->getSkin();
+		$r = "<br style=\"clear:both;\"/>\n";
+		$count = 0;
+		$nextPage = null;
+		while( $x = $dbr->fetchObject ( $res ) ) {
+			if( ++$count > $limit ) {
+				// We've reached the one extra which shows that there are
+				// additional pages to be had. Stop here...
+				$nextPage = $x->cl_sortkey;
+				break;
+			}
+			
+			$title = Title::makeTitle( $x->page_namespace, $x->page_title );
+			
+			if( $title->getNamespace() == NS_CATEGORY ) {
+				// Subcategory; strip the 'Category' namespace from the link text.
+				array_push( $children, $sk->makeKnownLinkObj( $title, $title->getText() ) );
+				
 				// If there's a link from Category:A to Category:B, the sortkey of the resulting
 				// entry in the categorylinks table is Category:A, not A, which it SHOULD be.
 				// Workaround: If sortkey == "Category:".$title, than use $title for sorting,
 				// else use sortkey...
-				if ( ($ns.':'.$ctitle) == $x->cl_sortkey ) {
-					array_push ( $children_start_char, $wgContLang->firstChar( $x->page_title ) );
+				if( $title->getPrefixedText() == $x->cl_sortkey ) {
+					array_push( $children_start_char, $wgContLang->firstChar( $x->page_title ) );
 				} else {
-					array_push ( $children_start_char, $wgContLang->firstChar( $x->cl_sortkey ) ) ;
+					array_push( $children_start_char, $wgContLang->firstChar( $x->cl_sortkey ) ) ;
 				}
-			} elseif ( $wgCategoryMagicGallery && $x->page_namespace == NS_IMAGE ) {
-				$ig->add( new Image( $x->page_title ) );
+			} elseif( $wgCategoryMagicGallery && $title->getNamespace() == NS_IMAGE ) {
+				// Show thumbnails of categorized images, in a separate chunk
+				if( $flip ) {
+					$ig->insert( Image::newFromTitle( $title ) );
+				} else {
+					$ig->add( Image::newFromTitle( $title ) );
+				}
 			} else {
-				array_push ( $articles , $sk->makeKnownLink ( $t ) ) ; # Page in this category
-				array_push ( $articles_start_char, $wgContLang->firstChar( $x->cl_sortkey ) ) ;
+				// Page in this category
+				array_push( $articles, $sk->makeKnownLinkObj( $title ) ) ;
+				array_push( $articles_start_char, $wgContLang->firstChar( $x->cl_sortkey ) ) ;
 			}
 		}
-		$dbr->freeResult ( $res ) ;
+		$dbr->freeResult( $res );
 
-		$ti = $this->mTitle->getText() ;
-
+		if( $flip ) {
+			$children            = array_reverse( $children );
+			$children_start_char = array_reverse( $children_start_char );
+			$articles            = array_reverse( $articles );
+			$articles_start_char = array_reverse( $articles_start_char );
+		}
+		
+		if( $until != '' ) {
+			$r .= $this->pagingLinks( $this->mTitle, $nextPage, $until, $limit );
+		} elseif( $nextPage != '' || $from != '' ) {
+			$r .= $this->pagingLinks( $this->mTitle, $from, $nextPage, $limit );
+		}
+		
 		# Don't show subcategories section if there are none.
-		if ( count ( $children ) > 0 )
-		{
+		if( count( $children ) > 0 ) {
 			# Showing subcategories
 			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n";
-
-			$numchild = count( $children );
-			if($numchild == 1) {
-				$r .= wfMsg( 'subcategorycount1', $wgContLang->formatNum( 1 ) );
-			} else {
-				$r .= wfMsg( 'subcategorycount' , $wgContLang->formatNum( $numchild ) );
-			}
-			unset($numchild);
-
-			if ( count ( $children ) > 6 ) {
-
-				// divide list into three equal chunks
-				$chunk = (int) (count ( $children ) / 3);
-
-				// get and display header
-				$r .= '<table width="100%"><tr valign="top">';
-
-				$startChunk = 0;
-				$endChunk = $chunk;
-
-				// loop through the chunks
-				for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0;
-					$chunkIndex < 3;
-					$chunkIndex++, $startChunk = $endChunk, $endChunk += $chunk + 1)
-				{
-
-					$r .= '<td><ul>';
-					// output all subcategories to category
-					for ($index = $startChunk ;
-						$index < $endChunk && $index < count($children);
-						$index++ )
-					{
-						// check for change of starting letter or begging of chunk
-						if ( ($index == $startChunk)
-							|| ($children_start_char[$index] != $children_start_char[$index - 1]) )
-						{
-							$r .= "</ul><h3>{$children_start_char[$index]}</h3>\n<ul>";
-						}
-
-						$r .= "<li>{$children[$index]}</li>";
-					}
-					$r .= '</ul></td>';
-
-
-				}
-				$r .= '</tr></table>';
-			} else {
-				// for short lists of subcategories to category.
-
-				$r .= "<h3>{$children_start_char[0]}</h3>\n";
-				$r .= '<ul><li>'.$children[0].'</li>';
-				for ($index = 1; $index < count($children); $index++ )
-				{
-					if ($children_start_char[$index] != $children_start_char[$index - 1])
-					{
-						$r .= "</ul><h3>{$children_start_char[$index]}</h3>\n<ul>";
-					}
-					$r .= "<li>{$children[$index]}</li>";
-				}
-				$r .= '</ul>';
-			}
-		} # END of if ( count($children) > 0 )
-
-		$r .= '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n";
-
-		$numart = count( $articles );
-		if($numart == 1) {
-			$r .= wfMsg( 'categoryarticlecount1', $wgContLang->formatNum( 1 ) );
-		} else {
-			$r .= wfMsg( 'categoryarticlecount' , $wgContLang->formatNum( $numart ) );
+			$r .= $this->formatCount( $children, 'subcategorycount' );
+			$r .= $this->formatList( $children, $children_start_char );
 		}
-		unset($numart);
 
 		# Showing articles in this category
-		if ( count ( $articles ) > 6) {
-			$ti = $this->mTitle->getText() ;
+		$ti = htmlspecialchars( $this->mTitle->getText() );
+		$r .= '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n";
+		$r .= $this->formatCount( $articles, 'categoryarticlecount' );
+		$r .= $this->formatList( $articles, $articles_start_char );
 
-			// divide list into three equal chunks
-			$chunk = (int) (count ( $articles ) / 3);
+		if( $wgCategoryMagicGallery && ! $ig->isEmpty() ) {
+			$r.= $ig->toHTML();
+		}
 
-			// get and display header
-			$r .= '<table width="100%"><tr valign="top">';
+		wfProfileOut( $fname );
+		return $r;
+	}
 
-			$prev_start_char = ""; 
-
-			// loop through the chunks
-			for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0;
-				$chunkIndex < 3;
-				$chunkIndex++, $startChunk = $endChunk, $endChunk += $chunk + 1)
-			{
-
-				$r .= '<td><ul>';
-
-				// output all articles in category
-				for ($index = $startChunk ;
-					$index < $endChunk && $index < count($articles);
-					$index++ )
-				{
-					// check for change of starting letter or begging of chunk
-					if ( ($index == $startChunk) ||
-					     ($articles_start_char[$index] != $articles_start_char[$index - 1]) )
-
-					{
-						$cont_msg = "";
-						if($articles_start_char[$index] == $prev_start_char)
-							$cont_msg = wfMsg('listingcontinuesabbrev');
-						$r .= "</ul><h3>{$articles_start_char[$index]}$cont_msg</h3>\n<ul>";
-						$prev_start_char = $articles_start_char[$index];
-					}
-
-					$r .= "<li>{$articles[$index]}</li>";
-				}
-				$r .= '</ul></td>';
-
-
-			}
-			$r .= '</tr></table>';
+	/**
+	 * @param array $articles
+	 * @param string $message
+	 * @return string
+	 * @access private
+	 */
+	function formatCount( $articles, $message ) {
+		global $wgContLang;
+		$numart = count( $articles );
+		if( $numart == 1 ) {
+			# Slightly different message to avoid silly plural
+			$message .= '1';
+		}
+		return wfMsg( $message, $wgContLang->formatNum( $numart ) );
+	}
+	/**
+	 * Format a list of articles chunked by letter, either as a
+	 * bullet list or a columnar format, depending on the length.
+	 *
+	 * @param array $articles
+	 * @param array $articles_start_char
+	 * @param int   $cutoff
+	 * @return string
+	 * @access private
+	 */
+	function formatList( $articles, $articles_start_char, $cutoff = 6 ) {
+		if ( count ( $articles ) > $cutoff ) {
+			return $this->columnList( $articles, $articles_start_char );
 		} elseif ( count($articles) > 0) {
 			// for short lists of articles in categories.
-			$ti = $this->mTitle->getText() ;
+			return $this->shortList( $articles, $articles_start_char );
+		}
+		return '';
+	}
+	
+	/**
+	 * Format a list of articles chunked by letter in a three-column
+	 * list, ordered vertically.
+	 *
+	 * @param array $articles
+	 * @param array $articles_start_char
+	 * @return string
+	 * @access private
+	 */
+	function columnList( $articles, $articles_start_char ) {
+		// divide list into three equal chunks
+		$chunk = (int) (count ( $articles ) / 3);
 
-			$r .= '<h3>'.$articles_start_char[0]."</h3>\n";
-			$r .= '<ul><li>'.$articles[0].'</li>';
-			for ($index = 1; $index < count($articles); $index++ )
+		// get and display header
+		$r = '<table width="100%"><tr valign="top">';
+
+		$prev_start_char = ""; 
+
+		// loop through the chunks
+		for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0;
+			$chunkIndex < 3;
+			$chunkIndex++, $startChunk = $endChunk, $endChunk += $chunk + 1)
+		{
+
+			$r .= '<td><ul>';
+
+			// output all articles in category
+			for ($index = $startChunk ;
+				$index < $endChunk && $index < count($articles);
+				$index++ )
 			{
-				if ($articles_start_char[$index] != $articles_start_char[$index - 1])
+				// check for change of starting letter or begging of chunk
+				if ( ($index == $startChunk) ||
+					 ($articles_start_char[$index] != $articles_start_char[$index - 1]) )
+
 				{
-					$r .= "</ul><h3>{$articles_start_char[$index]}</h3>\n<ul>";
+					$cont_msg = "";
+					if($articles_start_char[$index] == $prev_start_char)
+						$cont_msg = wfMsg('listingcontinuesabbrev');
+					$r .= "</ul><h3>{$articles_start_char[$index]}$cont_msg</h3>\n<ul>";
+					$prev_start_char = $articles_start_char[$index];
 				}
 
 				$r .= "<li>{$articles[$index]}</li>";
 			}
-			$r .= '</ul>';
-		}
+			$r .= '</ul></td>';
 
-		if ( $wgCategoryMagicGallery && ! $ig->isEmpty() ) {
-			$r.= $ig->toHTML();
-		}
 
-		return $r ;
+		}
+		$r .= '</tr></table>';
+		return $r;
+	}
+	
+	/**
+	 * Format a list of articles chunked by letter in a bullet list.
+	 * @param array $articles
+	 * @param array $articles_start_char
+	 * @return string
+	 * @access private
+	 */
+	function shortList( $articles, $articles_start_char ) {
+		$r = '<h3>'.$articles_start_char[0]."</h3>\n";
+		$r .= '<ul><li>'.$articles[0].'</li>';
+		for ($index = 1; $index < count($articles); $index++ )
+		{
+			if ($articles_start_char[$index] != $articles_start_char[$index - 1])
+			{
+				$r .= "</ul><h3>{$articles_start_char[$index]}</h3>\n<ul>";
+			}
+
+			$r .= "<li>{$articles[$index]}</li>";
+		}
+		$r .= '</ul>';
+		return $r;
+	}
+	
+	/**
+	 * @param Title  $title
+	 * @param string $first
+	 * @param string $last
+	 * @param int    $limit
+	 * @param array  $query - additional query options to pass
+	 * @return string
+	 * @access private
+	 */
+	function pagingLinks( $title, $first, $last, $limit, $query = array() ) {
+		global $wgUser, $wgLang;
+		$sk =& $wgUser->getSkin();
+		$limitText = $wgLang->formatNum( $limit );
+		
+		$prevLink = htmlspecialchars( wfMsg( 'prevn', $limitText ) );
+		if( $first != '' ) {
+			$prevLink = $sk->makeLinkObj( $title, $prevLink,
+				wfArrayToCGI( $query + array( 'until' => $first ) ) );
+		}
+		$nextLink = htmlspecialchars( wfMsg( 'nextn', $limitText ) );
+		if( $last != '' ) {
+			$nextLink = $sk->makeLinkObj( $title, $nextLink,
+				wfArrayToCGI( $query + array( 'from' => $last ) ) );
+		}
+		
+		return "($prevLink) ($nextLink)";
 	}
 }
+
+
 ?>
