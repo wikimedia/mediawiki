@@ -255,7 +255,7 @@ class DatabasePgsql extends Database {
 	}
 
 	function strencode( $s ) {
-		return addslashes( $s );
+		return pg_escape_string( $s );
 	}
 
 	/**
