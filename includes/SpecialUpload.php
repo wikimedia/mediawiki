@@ -112,6 +112,8 @@ class UploadForm {
 		global $wgCheckFileExtensions, $wgStrictFileExtensions;
 		global $wgFileExtensions, $wgFileBlacklist, $wgUploadSizeWarning;
 
+		/** When using detailed copyright, if user filled field, assume he
+		 * confirmed the upload */
 		if ( $wgUseCopyrightUpload ) {
 			$this->mUploadAffirm = 1;
 			if ($wgCheckCopyrightUpload && 
@@ -120,12 +122,13 @@ class UploadForm {
 			}
 		}
 
+		/** User need to confirm his upload */
 		if ( $this->mUploadAffirm != 1) {
 			$this->mainUploadForm( WfMsg( 'noaffirmation' ) );
 			return;
 		}
 
-		if ( '' != $this->mOname ) {
+		if ( $this->mOname != '' ) {
 			$basename = strrchr( $this->mOname, '/' );
 
 			if ( false === $basename ) { $basename = $this->mOname; }
@@ -151,7 +154,6 @@ class UploadForm {
 				$changed_name = true;
 				$basename = $bn;
 			}
-
 
 			$nt = Title::newFromText( $basename );
 			if( !$nt ) {
@@ -196,6 +198,9 @@ class UploadForm {
 				}
 				if($warning != '') return $this->uploadWarning($warning);
 			}
+		} else {
+			return $this->uploadError('<li>'.wfMsg( 'emptyfile' ).'</li>');
+		
 		}
 		if ( !is_null( $this->mUploadOldVersion ) ) {
 			$wgUploadOldVersion = $this->mUploadOldVersion;
