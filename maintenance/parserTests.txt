@@ -481,6 +481,33 @@ Old &amp; use: http://x&y
 !! end
 
 !! test
+External links: encoded ampersand
+!! input
+Old &amp; use: http://x&amp;y
+!! result
+<p>Old &amp; use: <a href="http://x&amp;y" class='external free' rel="nofollow">http://x&amp;y</a>
+</p>
+!! end
+
+!! test
+External links: [raw ampersand]
+!! input
+Old &amp; use: [http://x&y]
+!! result
+<p>Old &amp; use: <a href="http://x&amp;y" class='external autonumber' title="http://x&amp;y" rel="nofollow">[1]</a>
+</p>
+!! end
+
+!! test
+External links: [encoded ampersand]
+!! input
+Old &amp; use: [http://x&amp;y]
+!! result
+<p>Old &amp; use: <a href="http://x&amp;y" class='external autonumber' title="http://x&amp;y" rel="nofollow">[1]</a>
+</p>
+!! end
+
+!! test
 External links: www.jpeg.org (bug 554)
 !! input
 http://www.jpeg.org
