@@ -9,7 +9,7 @@
 # other utf-8 locales, I suppose)
 #
 #
-all: ZhConversion.php
+all: ZhConversion.php tradphrases.notsure simpphrases.notsure
 
 Unihan.txt:
 	wget ftp://ftp.unicode.org/Public/UNIDATA/Unihan.zip
@@ -26,6 +26,12 @@ phrase_lib.txt:
 	tar zxvf scim-chinese-0.4.2.tar.gz > /dev/null
 	cp scim-chinese-0.4.2/data/phrase_lib.txt .
 	rm -rf scim-chinese-0.4.2*
+
+tsi.src:
+	wget http://unc.dl.sourceforge.net/sourceforge/libtabe/libtabe-0.2.3.tgz	
+	tar zxvf libtabe-0.2.3.tgz > /dev/null
+	cp libtabe/tsi-src/tsi.src .
+	rm -rf libtabe*
 
 printutf8: printutf8.c
 	gcc -o printutf8 printutf8.c
@@ -75,11 +81,13 @@ s2t_1to1.t: simp2trad.t t2s_1tomany.t
 	sort s2t_1to1.t | uniq > t
 	mv t s2t_1to1.t
 
-ez.t: EZ.txt.in
-	colrm 1 8 < EZ.txt.in | sed 's/\t//g' | grep "^.\{2,4\}[0-9]" | sed 's/[0-9]//g' > ez.t
+tphrase.t: EZ.txt.in tsi.src
+	colrm 1 8 < EZ.txt.in | sed 's/\t//g' | grep "^.\{2,4\}[0-9]" | sed 's/[0-9]//g' > t
+	iconv -c -f big5 -t utf8 tsi.src | sed 's/ [0-9].*//g' | sed 's/[# ]//g'| grep "^.\{2,4\}"  >> t
+	sort t | uniq > tphrase.t
 
-alltradphrases.t: ez.t s2t_1tomany.t 
-	for i in `cat s2t_1tomany.t | sed 's/.*=>".//' | sed 's/"//g' |sed 's/,/\n/' | sed 's/\(.\)/\1\n/g' |sort | uniq`; do grep -s $$i ez.t ; done  > alltradphrases.t || true
+alltradphrases.t: tphrase.t s2t_1tomany.t 
+	for i in `cat s2t_1tomany.t | sed 's/.*=>".//' | sed 's/"//g' |sed 's/,/\n/' | sed 's/\(.\)/\1\n/g' |sort | uniq`; do grep -s $$i tphrase.t ; done  > alltradphrases.t || true
 
 
 tradphrases_2.t: alltradphrases.t
@@ -105,6 +113,11 @@ tradphrases.t: tradphrases.manual tradphrases_2.t tradphrases_3.t tradphrases_4.
 	cat tradphrases.manual tradphrases_2.t tradphrases_3.t tradphrases_4.t |sort | uniq > tradphrases.t
 	for i in `sed 's/"\(.\).*/\1/' t2s_1tomany.t ` ; do grep $$i tradphrases.t ; done | diff tradphrases.t - | grep '<' | sed 's/< //' > t
 	mv t tradphrases.t
+
+tradphrases.notsure: tradphrases_2.t tradphrases_3.t tradphrases_4.t t2s_1tomany.t
+	cat tradphrases_2.t tradphrases_3.t tradphrases_4.t |sort | uniq > t
+	for i in `sed 's/"\(.\).*/\1/' t2s_1tomany.t ` ; do grep $$i t; done | diff t - | grep '>' | sed 's/> //' > tradphrases.notsure
+
 
 ph.t: phrase_lib.txt
 	sed 's/[\t0-9a-zA-Z]//g' phrase_lib.txt | grep "^.\{2,4\}$$" > ph.t
@@ -138,6 +151,10 @@ simpphrases.t:simpphrases_2.t simpphrases_3.t simpphrases_4.t t2s_1tomany.t
 	for i in `sed 's/"\(.\).*/\1/' t2s_1tomany.t ` ; do grep $$i simpphrases.t ; done | diff simpphrases.t - | grep '<' | sed 's/< //' > t
 	mv t simpphrases.t
 
+
+simpphrases.notsure:simpphrases_2.t simpphrases_3.t simpphrases_4.t t2s_1tomany.t
+	cat simpphrases_2.t simpphrases_3.t simpphrases_4.t > t
+	for i in `sed 's/"\(.\).*/\1/' t2s_1tomany.t ` ; do grep $$i t ; done | diff t - | grep '>' | sed 's/> //' > simpphrases.notsure
 
 trad2simp1to1.t: t2s_1tomany.t t2s_1to1.t
 	sed  's/\(.......\).*/\1",/' t2s_1tomany.t > trad2simp1to1.t
