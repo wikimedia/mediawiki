@@ -277,11 +277,13 @@ class LanguageLatin1 {
 		return utf8_decode( $this->lang->convertTitle( utf8_encode( $text ) ) );
 	}
 
-	
 	function getVariants() {
 		return $this->lang->getVariants();
 	}
 
+	function convertForSearchResult( $termsArray ) {
+		return $termsArray;
+	}	
 }
 
 ?>

@@ -1903,6 +1903,12 @@ class Language {
 		return strtolower( $in );
 	}
 
+	function convertForSearchResult( $termsArray ) {
+		# some languages, e.g. Chinese, need to do a conversion
+		# in order for search results to be displayed correctly
+		return $termsArray;
+	}	
+
 	function firstChar( $s ) {
 		# Get the first character of a string. In ASCII, return
 		# first byte of the string. UTF8 and others have to

@@ -119,6 +119,12 @@ class LanguageZh extends LanguageZh_cn {
 		return $t;
 
 	}
-	
+
+	function convertForSearchResult( $termsArray ) {
+		$terms = implode( '|', $termsArray );
+		$terms = $this->autoConvert( $terms, 'zh-cn' );
+		$ret = array_unique( explode('|', $termsArray.'|'.$terms) );
+		return $ret;
+	}
 }
 ?>
