@@ -52,7 +52,7 @@
   "editsection"             => "Links zum Editieren einzelner Absätze anzeigen",
   "editsectiononrightclick" => "Einzelne Absätze per Rechtsklick editieren (Javascript)",
   "showtoc"                 => "Anzeigen eines Inhaltsverzeichnisses bei Artikeln mit mehr als 3 Überschriften",
-  "rememberpassword"        => "Passwort merken",
+  "rememberpassword"        => "Dauerhaftes Einloggen",
   "editwidth"               => "Text-Eingabefeld mit voller Breite",
   "editondblclick"          => "Seiten mit Doppelklick bearbeiten (JavaScript)",
   "watchdefault"            => "Neue und geänderte Seiten beobachten",
@@ -250,7 +250,7 @@
   "Intl"                => "Interlanguage Links",
   "Allpages"            => "Alle Artikel (alphabetisch)",
 
-  "Ipblocklist"         => "Blockierte IP-Addressen",
+  "Ipblocklist"         => "Blockierte IP-Adressen",
   "Maintenance"         => "Wartungsseite",
   "Specialpages"        => "",
   "Contributions"       => "",
@@ -263,7 +263,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesDe = array(
-	"Blockip"		=> "Blockiere eine IP-Addresse",
+	"Blockip"		=> "Blockiere eine IP-Adresse",
 	"Asksql"		=> "Datenbank-Abfrage",
 	"Undelete"              => "Gelöschte Seiten wiederherstellen"
 );
@@ -321,7 +321,7 @@
 "unprotectthispage" => "Schutz aufheben",
 "newpage" => "Neue Seite",
 "talkpage"		=> "Diskussion",
-"postcomment" => "Einen Kommentar verfassen",
+"postcomment" => "Kommentar hinzufügen",
 "articlepage"	=> "Artikel",
 "wikipediapage" => "Wikipedia-Text",
 "userpage" => "Benutzerseite",
@@ -412,13 +412,13 @@ Vergessen Sie nicht, Ihre Wikipedia-Einstellungen anzupassen.",
 "yourpassword"	=> "Ihr Passwort",
 "yourpasswordagain" => "Passwort wiederholen",
 "newusersonly"	=> " (nur für neue Mitglieder)",
-"remembermypassword" => "Mein Passwort merken.",
+"remembermypassword" => "Dauerhaftes einloggen",
 "loginproblem"	=> "<b>Es gab ein Problem mit Ihrer Anmeldung.</b><br>Bitte versuchen Sie es nochmal!",
 "alreadyloggedin" => "<font color=red><b>Benutzer $1, Sie sind bereits angemeldet!</b></font><br>\n",
 
 "areyounew"		=> "Wenn Sie neu bei Wikipedia sind und ein Benutzerkonto möchten,
 geben Sie bitte ihren Benutzernamen und ihr Passwort ein und wiederholen sie das Passwort.
-Ihre E-Mail-Addresse brauchen Sie nicht anzugeben, aber falls Sie Ihr Passwort vergessen sollten, können Sie sich ein neues zuschicken lassen.<br>\n",
+Ihre E-Mail-Adresse brauchen Sie nicht anzugeben, aber falls Sie Ihr Passwort vergessen sollten, können Sie sich ein neues zuschicken lassen.<br>\n",
 
 "login"			=> "Anmelden",
 "userlogin"		=> "Anmelden",
@@ -431,7 +431,7 @@ Ihre E-Mail-Addresse brauchen Sie nicht anzugeben, aber falls Sie Ihr Passwort v
 "userexists"	=> "Dieser Benutzername ist schon vergeben. Bitte wählen Sie einen anderen.",
 "youremail"		=> "Ihre E-Mail",
 "yournick"		=> "Ihr \"Spitzname\" (zum \"Unterschreiben\")",
-"emailforlost"	=> "Falls Sie Ihr Passwort vergessen, kann Ihnen ein neues an Ihre E-Mail-Addresse gesendet werden.",
+"emailforlost"	=> "Falls Sie Ihr Passwort vergessen haben, kann Ihnen ein neues an Ihre E-Mail-Adresse gesendet werden.",
 "loginerror"	=> "Fehler bei der Anmeldung",
 "noname"		=> "Sie müssen einen Benutzernamen angeben.",
 "loginsuccesstitle" => "Anmeldung erfolgreich",
@@ -441,25 +441,26 @@ Ihre E-Mail-Addresse brauchen Sie nicht anzugeben, aber falls Sie Ihr Passwort v
 "wrongpassword"	=> "Das Passwort ist falsch. Bitte versuchen Sie es erneut.",
 "mailmypassword" => "Ein neues Passwort schicken",
 "passwordremindertitle" => "Wikipedia Passwort",
-"passwordremindertext" => "Jemand (IP-Addresse $1)
+"passwordremindertext" => "Jemand (IP-Adresse $1)
 hat um ein neues Passwort für die Anmeldung bei Wikipedia gebeten.
 Das Passwort für Benutzer \"$2\" lautet nun \"$3\".
 Sie sollten sich jetzt anmelden und Ihr Passwort ändern.",
-"noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Addresse angegeben.",
-"passwordsent"	=> "Ein neues Passwort wurde an die E-Mail-Addresse von Benutzer \"$1\" gesendet.
+"noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Adresse angegeben.",
+"passwordsent"	=> "Ein neues Passwort wurde an die E-Mail-Adresse von Benutzer \"$1\" gesendet.
 Bitte melden Sie sich an, sobald Sie es erhalten.",
 
 # Edit pages
 #
 "summary"	=> "Zusammenfassung",
-"subject"       => "Betreff/Schlagzeile",
+#"subject"       => "Betreff/Schlagzeile",
+"subject"       => "Betreff",
 "minoredit"	=> "Nur Kleinigkeiten wurden verändert.",
 "watchthis"     => "Diesen Artikel beobachten",
 "savearticle"	=> "Artikel speichern",
 "preview"	=> "Vorschau",
 "showpreview"	=> "Vorschau zeigen",
 "blockedtitle"	=> "Benutzer ist blockiert",
-"blockedtext"	=> "Ihr Benutzername oder Ihre IP-Addresse wurde von $1 blockiert.
+"blockedtext"	=> "Ihr Benutzername oder Ihre IP-Adresse wurde von $1 blockiert.
 Als Grund wurde angegeben:<br>$2<p>Bitte kontaktieren Sie den Administrator, um über die Blockierung zu sprechen.",
 "whitelistedittitle" => "Zum Editieren ist es erforderlich angemeldet zu sein",
 "whitelistedittext" => "Sie müssen sich [[Spezial:Userlogin|hier anmelden]] um Artikel bearbeiten zu können.",
@@ -471,7 +472,8 @@ Als Grund wurde angegeben:<br>$2<p>Bitte kontaktieren Sie den Administrator, um 
 "accmailtext" => "Das Passwort von $1 wurde an $2 geschickt.",
 "newarticle"	=> "(Neu)",
 "newarticletext" => "Hier den Text des neuen Artikels eintragen.\nBitte nur in ganzen Sätzen schreiben und keine urheberrechtsgeschützten Texte anderer kopieren.",
-"anontalkpagetext" => "---- ''Dies ist die Diskussions-Seite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische [[IP-Adresse]] zur Identifizierung verwenden. Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, v], um zukünftige Verwirrung zu vermeiden. ''",
+"anontalkpagetext" => "---- ''Dies ist die Diskussions-Seite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische [[IP-Adresse]] zur Identifizierung verwenden. Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[Spezial:Userlogin|melden Sie sich bitte
+ an]], um zukünftige Verwirrung zu vermeiden. ''",
 "noarticletext" => "(Dieser Artikel enthält momentan keinen Text)",
 "updated"		=> "(Geändert)",
 "note"			=> "<strong>Hinweis:</strong> ",
@@ -625,8 +627,8 @@ Beachten Sie auch die letzten Änderungen auf [[m:Special:Recentchanges|Metawikip
 "rclinks"		=> "Zeige die letzten $1 Änderungen; zeige die letzten $2 Tage.",
 "diff"			=> "Unterschied",
 "hist"			=> "Versionen",
-"hide"			=> "Verbergen",
-"show"			=> "Anzeigen",
+"hide"			=> "Ausblenden",
+"show"			=> "Einblenden",
 "tableform"		=> "Tabelle",
 "listform"		=> "Liste",
 "nchanges"		=> "$1 Änderungen",
@@ -786,12 +788,12 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "mailnologin"	=> "Sie sind nicht angemeldet.",
 "mailnologintext" => "Sie müssen <a href=\"" .
   wfLocalUrl( "Spezial:Userlogin" ) . "\">angemeldet sein</a>
-und eine gültige E-Mail-Addresse haben, um anderen Benutzern E-Mail zu schicken.",
+und eine gültige E-Mail-Adresse haben, um anderen Benutzern E-Mail zu schicken.",
 "emailuser"		=> "E-Mail an diesen Benutzer",
 "emailpage"		=> "E-Mail an Benutzer",
-"emailpagetext"	=> "Wenn dieser Benutzer eine gültige E-Mail-Addresse angegeben hat, können Sie ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Addresse aus Ihren Einstellungen eingetragen, damit der Benutzer Ihnen antworten kann.",
-"noemailtitle"	=> "Keine E-Mail-Addresse",
-"noemailtext"	=> "Dieser Benutzer hat keine gültige E-Mail-Addresse angegeben, oder möchte keine E-Mail von anderen Benutzern empfangen.",
+"emailpagetext"	=> "Wenn dieser Benutzer eine gültige E-Mail-Adresse angegeben hat, können Sie ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Adresse aus Ihren Einstellungen eingetragen, damit der Benutzer Ihnen antworten kann.",
+"noemailtitle"	=> "Keine E-Mail-Adresse",
+"noemailtext"	=> "Dieser Benutzer hat keine gültige E-Mail-Adresse angegeben, oder möchte keine E-Mail von anderen Benutzern empfangen.",
 "emailfrom"		=> "Von",
 "emailto"		=> "An",
 "emailsubject"	=> "Betreff",
@@ -811,14 +813,23 @@ und eine gültige E-Mail-Addresse haben, um anderen Benutzern E-Mail zu schicken.
   wfLocalUrl( "Spezial:Userlogin" ) . "\">angemeldet</a>
 sein, um Ihre Beobachtungsliste zu bearbeiten.",
 "addedwatch"	=> "Zur Beobachtungsliste hinzugefügt",
-"addedwatchtext" => "Der Artikel \"$1\" wurde zu Ihrer Beobachtungsliste hinzugefügt.",
+"addedwatchtext" => "Der Artikel \"$1\" wurde zu Ihrer <a href=\"" .
+wfLocalUrl( "Spezial:Watchlist" ) . "\">Beobachtungsliste</a> hinzugefügt.
+Spätere Änderungen an diesem Artikel und der zugehörigen Diskussions-Seite
+werden dort gelistet und der Artikel wird in der <a href=\"" . wfLocalUrl(
+"Spezial:Recentchanges" ) . "\">Liste der letzten Änderungen</a>
+<b>fett</b> angezeigt. <p>Wenn Sie den Artikel wieder von ihrer
+Beobachtungsliste entfernen wollen, klicken Sie auf \"Nicht mehr beobachten\"
+am Ende des Artikels.",
 "removedwatch"	=> "Von der Beobachtungsliste entfernt",
 "removedwatchtext" => "Der Artikel \"$1\" wurde von Ihrer Beobachtungsliste entfernt.",
 "watchthispage"	=> "Seite beobachten",
 "unwatchthispage" => "Nicht mehr beobachten",
 "notanarticle"	=> "Kein Artikel",
-"watchnochange" => "Keine der Artikel auf Ihrer Beobachtungsliste wurde in der angezeigten Zeitspanne bearbeitet.",
-"watchdetails" => "($1 Seiten auf der Beobachtungsliste, ohne Diskussionsseiten; $2 Gesammtseiten bearbeitet ab dem Startpunkt; $3...<a href='$4'>anzeigen und bearbeiten der kompletten Liste</a>.)", 
+"watchnochange" => "Keine Ihrer beobachteten Artikel wurde während des angezeigten Zeitraums bearbeitet.",
+"watchdetails" => "($1 Artikel werden beobachtet (ohne Diskussionsseiten);
+$2 Artikel insgesamt bearbeitet in eingestelltem Zeitraum;
+$3... <a href='$4'>zeige und editiere komplette Liste</a>.)",
 "watchmethod-recent" => "überprüfen der letzten Bearbeitungen für die Beobachtungsliste",
 "watchmethod-list" => "überprüfen der Beobachtungsliste nach letzten Bearbeitungen",
 "removechecked" => "Markierte Einträge löschen",
@@ -909,28 +920,28 @@ dieses Artikels erscheinen.",
 
 # Block/unblock IP
 #
-"blockip"		=> "IP-Addresse blockieren",
-"blockiptext"	=> "Benutzen Sie das Formular, um eine IP-Addresse zu blockieren.
+"blockip"		=> "IP-Adresse blockieren",
+"blockiptext"	=> "Benutzen Sie das Formular, um eine IP-Adresse zu blockieren.
 Dies sollte nur erfolgen, um Vandalismus zu verhindern, in Übereinstimmung mit den [[Wikipedia:Leitlinien|Wikipedia-Leitlinien]].
 Bitte tragen Sie den Grund für die Blockade ein.",
-"ipaddress"		=> "IP-Addresse",
+"ipaddress"		=> "IP-Adresse",
 "ipbreason"		=> "Grund",
-"ipbsubmit"		=> "Addresse blockieren",
-"badipaddress"	=> "Die IP-Addresse hat ein falsches Format.",
+"ipbsubmit"		=> "Adresse blockieren",
+"badipaddress"	=> "Die IP-Adresse hat ein falsches Format.",
 "noblockreason" => "Sie müssen einen Grund für die Blockade angeben.",
 "blockipsuccesssub" => "Blockade erfolgreich",
-"blockipsuccesstext" => "Die IP-Addresse \"$1\" wurde blockiert.
+"blockipsuccesstext" => "Die IP-Adresse \"$1\" wurde blockiert.
 <br>Auf [[Spezial:Ipblocklist|IP block list]] ist eine Liste der Blockaden.",
-"unblockip"		=> "IP-Addresse freigeben",
-"unblockiptext"	=> "Benutzen Sie das Formular, um eine blockierte IP-Addresse freizugeben.",
-"ipusubmit"		=> "Diese Addresse freigeben",
-"ipusuccess"	=> "IP-Addresse \"$1\" wurde freigegeben",
-"ipblocklist"	=> "Liste blockierter IP-Addressen",
+"unblockip"		=> "IP-Adresse freigeben",
+"unblockiptext"	=> "Benutzen Sie das Formular, um eine blockierte IP-Adresse freizugeben.",
+"ipusubmit"		=> "Diese Adresse freigeben",
+"ipusuccess"	=> "IP-Adresse \"$1\" wurde freigegeben",
+"ipblocklist"	=> "Liste blockierter IP-Adressen",
 "blocklistline"	=> "$1, $2 blockierte $3",
 "blocklink"		=> "blockieren",
 "unblocklink"	=> "freigeben",
 "contribslink"	=> "Beiträge",
-"autoblocker" => "Automatische Blockierung, da Sie eine IP-Addresse benutzen mit \"$1\". Grund: \"$2\".",
+"autoblocker" => "Automatische Blockierung, da Sie eine IP-Adresse benutzen mit \"$1\". Grund: \"$2\".",
 
 # Developer tools
 #
