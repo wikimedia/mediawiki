@@ -121,7 +121,7 @@ class LinkCache {
 		$id = FALSE;
 		if( $wgLinkCacheMemcached )
 			$id = $wgMemc->get( $key = $this->getKey( $title ) );
-		if( $id === FALSE ) {
+		if( ! $id ) {
 			$sql = "SELECT cur_id FROM cur WHERE cur_namespace=" .
 			  "{$ns} AND cur_title='" . wfStrencode( $t ) . "'";
 			$res = wfQuery( $sql, DB_READ, "LinkCache::addLink" );

@@ -28,7 +28,7 @@ function memsess_close() {
 function memsess_read( $id ) {
 	global $wgMemc;
 	$data = $wgMemc->get( memsess_key( $id ) );
-	if( $data === FALSE ) return "";
+	if( ! $data ) return "";
 	return $data;
 }
 
