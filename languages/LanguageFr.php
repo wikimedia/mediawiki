@@ -205,9 +205,9 @@ include_once( "LanguageUtf8.php" );
 "search"        => "Rechercher",
 "history"       => "Historique",
 "printableversion" => "Version imprimable",
-'edit'		=> 'Edite',
+'edit'		=> 'éditer',
 "editthispage"  => "Modifier cette page",
-'delete'	=> 'Supprime',
+'delete'	=> 'supprimer',
 'deletethispage' => 'Supprimer cette page',
 'undelete_short' => 'Restaurer',
 'protect' => 'Protéger',
@@ -324,7 +324,8 @@ N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfér
 "loginproblem"       => "<b>Problème d'identification.</b><br />Essayez à nouveau !",
 "alreadyloggedin"    => "<font color=red><b>Utilisateur $1, vous êtes déjà identifié!</b></font><br />\n",
 
-"login"         => "Identification",
+'login'         => 'Identification',
+'loginprompt'	=> 'Vous devez activer les cookies pour vous connecter à {{SITENAME}}.',
 "userlogin"     => "Identification",
 "logout"        => "Déconnexion",
 "userlogout"    => "Déconnexion",
@@ -354,6 +355,8 @@ Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que 
 "noemail"  => "Aucune adresse électronique n'a été enregistrée pour l'utilisateur \"$1\".",
 "passwordsent" => "Un nouveau mot de passe a été envoyé à l'adresse électronique de l'utilisateur \"$1\".
 Veuillez vous identifier dès que vous l'aurez reçu.",
+'loginend'	=> '&nbsp;',
+'mailerror'	=> 'Erreur lors de l\'envoi du mail: $1',
 
 # Edit page toolbar
 "bold_sample"=>"Texte gras",
@@ -377,12 +380,12 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 "sig_tip"=>"Votre signature avec la date",
 "hr_tip"=>"Lien horizontale (ne pas en abuser)",
 "infobox"=>"Cliquez ce bouton pour avoir un exemple de texte",
-
+"infobox_alert"	=> "Veuillez entrer le texte que vous voulez formater.\\n Il sera affiché dans la boîte pour être copié et collé.\\nExemple\\n$1\\ndeviendra:\\n$2",
 
 # Edit pages
 #
 "summary"      => "Résumé",
-"subject"	=> "Sujet/titre", // Looxix "Subject/headline",
+"subject"	=> "Sujet/titre",
 "minoredit"    => "Modification mineure.",
 "watchthis"    => "Suivre cet article",
 "savearticle"  => "Sauvegarder",
@@ -390,14 +393,16 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 "showpreview"  => "Prévisualisation",
 "blockedtitle" => "Utilisateur bloqué",
 "blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br />$2<p>Vous pouvez contacter $1 ou un des autres [[{{ns:4}}:Administrateurs|administateurs]] pour en discuter.",
-"whitelistedittitle" => "Login requis pour rédiger", // Looxix "Login required to edit",
-"whitelistedittext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir rédiger", // Looxix 
-"whitelistreadtitle" => "Login requis pour lire", // Looxix "Login required to read",
-"whitelistreadtext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir lire les articles", // Looxix 
-"whitelistacctitle" => "Vous n'êtes pas autorisé à créer un compte", // Looxix 
+"whitelistedittitle" => "Login requis pour rédiger",
+"whitelistedittext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir rédiger",
+"whitelistreadtitle" => "Login requis pour lire",
+"whitelistreadtext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir lire les articles",
+"whitelistacctitle" => "Vous n'êtes pas autorisé à créer un compte",
 "whitelistacctext" => "Pour pouvoir créer un compte sur ce Wiki vous devez être [[Special:Userlogin|connecté]] et avoir les permissions appropriées", // Looxix 
-"accmailtitle" => "Mot de passe envoyé.", // Looxix "Password sent.",
-"accmailtext" => "Le mot de passe de '$1' a été envoyé à $2.", // Looxix 
+'loginreqtitle'	=> 'Nom d\'utilisateur nécessaire',
+'loginreqtext'	=> "Vous devez vous [[Special:Userlogin|connecter]] pour voir les autres pages.",
+"accmailtitle" => "Mot de passe envoyé.",
+"accmailtext" => "Le mot de passe de '$1' a été envoyé à $2.",
 
 "newarticle"   => "(Nouveau)",
 "newarticletext" => "Saisissez ici le texte de votre article.",
@@ -408,8 +413,8 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 "previewnote"  => "Attention, ce texte n'est qu'une prévisualisation et n'a pas encore été sauvegardé!",
 "previewconflict" => "La prévisualisation montre le texte de cette page tel qu'il apparaîtra une fois sauvegardé.",
 "editing"      => "modification de $1",
-"section edit"	=> " (section)",
-"comment edit"	=> " (commentaire)",
+"sectionedit"	=> " (section)",
+"commentedit"	=> " (commentaire)",
 "editconflict" => "Conflit de modification : $1",
 "explainconflict" => "<b>Cette page a été sauvegardée après que vous avez commencé à la modifier.
 La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.\n<p>",
@@ -420,7 +425,7 @@ La zone d'édition supérieure contient le texte tel qu'il est enregistré actue
 "copyrightwarning" => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la GNU Free Documentation Licence, une licence de documentation libre (Voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient édités et distribués à volonté, ne les envoyez pas. De même, merci de ne contribuer qu'en apportant vos propres écrits ou des écrits issus d'une source libre de droits. <b>N'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE!</b>",
 "longpagewarning" => "AVERTISSEMENT : cette page a une longueur de $1 ko;
 quelques navigateurs gèrent mal les pages approchant ou dépassant 32 ko lors de leur rédaction.
-Peut-être serait-il mieux que vous divisiez la page en sections plus petites.", // Panoramix
+Peut-être serait-il mieux que vous divisiez la page en sections plus petites.",
 "readonlywarning" => "AVERTISSEMENT : cette page a été bloquée pour maintenance,
 vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.",
 "protectedpagewarning" => "AVERTISSEMENT : cette page a été bloquée.
@@ -554,10 +559,10 @@ Voir [[{{ns:4}}:Aide pour les préférences]] pour les explications concernant l
 "timezonetext"      => "Si vous ne précisez pas de décalage horaire, c'est l'heure de l'Europe de l'ouest qui sera utilisée.",
 "localtime"         => "Heure locale",
 "timezoneoffset"    => "Décalage horaire",
-"servertime"	    => "Heure du serveur", //Looxix (Server time is now)
-"guesstimezone"     => "Utiliser la valeur du navigateur", //Looxix (Fill in from browser)
+"servertime"	    => "Heure du serveur",
+"guesstimezone"     => "Utiliser la valeur du navigateur",
 "emailflag"         => "Ne pas recevoir de courrier électronique<br /> des autres utilisateurs",
-"defaultns"         => "Par défaut, rechercher dans ces espaces :", //Looxix (Search in these namespaces by default)
+"defaultns"         => "Par défaut, rechercher dans ces espaces :",
 
 # Recent changes
 #
@@ -742,7 +747,8 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "debug"         => "Déboguer",
 "newpages"      => "Nouvelles pages",
 "ancientpages"	=> "Articles les plus anciens",
-"movethispage"  => "Déplacer la page",
+'move'		=> 'déplacer',
+'movethispage'  => 'Déplacer la page',
 "unusedimagestext" => "<p>N'oubliez pas que d'autres sites, comme certains Wikipédias non francophones, peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu'elle est en réalité utilisée.",
 "booksources"   => "Ouvrages de référence",
 "booksourcetext" => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. {{SITENAME}} n'étant liée à aucune de ces sociétés, elle n'a aucunement l'intention d'en faire la promotion.",
@@ -769,6 +775,8 @@ L'adresse électronique que vous avez indiquée dans vos préférences apparaît
 "emailsend"  => "Envoyer",
 "emailsent"  => "Message envoyé",
 "emailsenttext" => "Votre message a été envoyé.",
+"usermailererror" => "L'objet Mail a renvoyé une erreur: ",
+"defemailsubject" => "e-mail envoyé depuis {{SITENAME}}",
 
 # Watchlist
 #
@@ -787,6 +795,7 @@ Les prochaines modifications de cette page et de la page discussion associée se
 "removedwatchtext" => "La page \"$1\" a été supprimée de votre liste de suivi.",
 'watch'		=> 'Suivre',
 "watchthispage"	=> "Suivre cette page",
+'unwatch'	=> 'ne plus suivre',
 "unwatchthispage" => "Ne plus suivre",
 "notanarticle"	=> "Aucun article",
 "watchnochange" => "Aucune des pages que vous suivez n'a été modifiée pendant la période affichée",
@@ -833,6 +842,7 @@ L'heure indiquée est celle du serveur (UTC).
 "deletecomment" => "Motif de la suppression",
 "imagereverted" => "La version précédente a été rétablie.",
 "rollback"	=> "révoquer modifications",
+"rollback_short" => "Révoquer",
 "rollbacklink"	=> "révoquer",
 "rollbackfailed" => "La révocation a échoué",
 "cantrollback"	=> "Impossible de révoquer: dernier auteur est le seul à avoir modifié cet article",
@@ -867,13 +877,13 @@ La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //
 La corbeille peut être effacée périodiquement.",
 
 "undeletearticle" => "Restaurer les articles effacés",
-"undeleterevisions" => "$1 révisions archivées", // Looxix "$1 revisions archived",
+"undeleterevisions" => "$1 révisions archivées",
 "undeletehistory" => "Si vous restaurez la page, toutes les révisions seront restaurées dans l'historique.
 Si une nouvelle page avec le même nom a été crée depuis la suppression,
 les révisions restaurées apparaîtront dans l'historique antérieur et la version courante ne sera pas automatiquement remplacée.",
-"undeleterevision" => "Version effacée ($1)", // Looxix "Deleted revision as of $1",	
+"undeleterevision" => "Version effacée ($1)",
 "undeletebtn"	=> "Restaurer!",
-"undeletedarticle" => "restauré \"$1\"",	// FvdP "restored \"$1\""
+"undeletedarticle" => "restauré \"$1\"",
 "undeletedtext"   => "L'article [[$1]] a été restauré avec succès.
 Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.",
 # Contributions
@@ -884,7 +894,7 @@ Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des re
 "nocontribs"	=> "Aucune modification correspondant à ces critères n'a été trouvée.",
 "ucnote"	=> "Voici les <b>$1</b> dernières modifications effectuées par cet utilisateur au cours des <b>$2</b> derniers jours.",
 "uclinks"	=> "Afficher les $1 dernières modifications; afficher les $2 derniers jours.",
-"uctop"		=> " (dernière)",	// FvdP " (top)"
+"uctop"		=> " (dernière)",
 
 # What links here
 #
@@ -959,7 +969,7 @@ Veuillez confirmer que c'est bien là ce que vous voulez faire.",
 Utilisez des guillemets simples ('comme ceci') pour délimiter les chaînes de caractères.
 Cette opération peut surcharger considérablement le serveur, faites en usage
 avec modération.",
-"sqlislogged"	=> "Veillez noter que toutes les requêtes sont loguées", // Looxix "Please note that all queries are logged.",	
+"sqlislogged"	=> "Veillez noter que toutes les requêtes sont loguées",
 "sqlquery"	 => "Saisir la requête",
 
 "querybtn"	=> "Envoyer la requête",
@@ -1020,6 +1030,7 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 "talkpagenotmoved" => "La page discussion correspondante n'a <strong>pas</strong> été déplacée.",
 "1movedto2" => "$1 déplacé vers $2",
 
+# Export page
 "export"	=> "Exporter des pages",
 "exporttext"	=> "Vous pouvez exporter en XML le texte et l'historique d'une page ou d'un ensemble de pages; le résultat peut alores être importé dans un autre wiki fonctionnant avec le logiciel MediaWiki, transformé ou sauvegardé pour votre usage personnel.",
 "exportcuronly"	=> "Exporter uniquement la version courante sans l'historique",
