@@ -55,6 +55,7 @@ body {
 
 table {
     font-size: 100%;
+    background: White;
 }
 a {
     text-decoration: none;
@@ -457,7 +458,6 @@ table.rimage {
     padding-right: 18px;
 }
 .visualClear {
-    display: block;
     clear: both;
 }
 
@@ -910,12 +910,16 @@ li#contentaction-watch {
 *>html #portal-column-content {
     display: inline;
 }
-/* the full-size images are in center tags */
-* html #bodyContent center, 
+/* more IE fixes */
+* html #bodyContent span.fullImage,
 * html #bodyContent pre {
     overflow: auto;
+    margin-bottom: 1.5em;
 }
 
+* html #bodyContent {
+    display: inline;
+}
 
 /* opera 6 fixes */
 html>body #portal-column-one {

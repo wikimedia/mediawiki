@@ -118,4 +118,10 @@ table.listing td.top {
     left: -1px;
     top: -1px;
 }
+.visualClear {
+    width:100%;
+    height: 0px;
+    padding:0;
+    margin:0;
+}
 /*div{ border:1px solid Red !important;}*/
