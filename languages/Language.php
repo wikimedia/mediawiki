@@ -1352,6 +1352,24 @@ amusement.",
 #--------------------------------------------------------------------------
 
 class Language {
+	function Language(){
+		# Copies any missing values in the specified arrays from En to the current language
+		$fillin = array( "wgSysopSpecialPages", "wgValidSpecialPages", "wgDeveloperSpecialPages" );
+		$name = get_class( $this );
+		if( strpos( $name, "language" ) == 0){
+			$lang = ucfirst( substr( $name, 8 ) );
+			foreach( $fillin as $arrname ){
+				$langver = "{$arrname}{$lang}";
+				$enver = "{$arrname}En";
+				if( ! isset( $GLOBALS[$langver] ) || ! isset( $GLOBALS[$enver] ))
+					continue;
+				foreach($GLOBALS[$enver] as $spage => $text){
+					if( ! isset( $GLOBALS[$langver][$spage] ) )
+						$GLOBALS[$langver][$spage] = $text;
+				}
+			}
+		}
+	}
 
 	function getDefaultUserOptions () {
 		global $wgDefaultUserOptionsEn ;
