@@ -26,7 +26,7 @@ class Parser
 	#
 	# Returns a ParserOutput
 	#
-	function parse( $text, $clearState = true )
+	function parse( $text, $linestart = true, $clearState = true )
 	{
 		global $wgUseTeX;
 		$fname = "Parser::parse";

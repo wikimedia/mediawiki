@@ -151,7 +151,7 @@ class OutputPage {
 		}
 
 		if ( $parserOutput === false ) {
-			$parserOutput = $wgParser->parse( $text );
+			$parserOutput = $wgParser->parse( $text, $linestart );
 			if ( $cacheArticle ) {
 				$wgParserCache->save( $parserOutput, $cacheArticle, $wgUser );
 			}
