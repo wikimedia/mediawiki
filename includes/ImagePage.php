@@ -117,7 +117,7 @@ class ImagePage extends Article {
 	function delete()
 	{
 		global $wgUser, $wgOut;
-		global $wpConfirm, $wpReason, $image, $oldimage;
+		global $wpConfirm, $wpReason, $image, $oldimage, $wpForce;
 
 		# Anybody can delete old revisions of images; only sysops
 		# can delete articles and current images
@@ -134,7 +134,7 @@ class ImagePage extends Article {
 		# Better double-check that it hasn't been deleted yet!
 		$wgOut->setPagetitle( wfMsg( "confirmdelete" ) );
 		if ( $image ) {
-			if ( "" == trim( $image ) ) {
+			if ( "" == trim( $image ) && !$wpForce ) {
 				$wgOut->fatalError( wfMsg( "cannotdelete" ) );
 				return;
 			}
@@ -157,14 +157,14 @@ class ImagePage extends Article {
 	function doDelete()
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $image, $oldimage, $wpReason;
+		global $image, $oldimage, $wpReason, $wpForce;
 		global $wgUseSquid, $wgInternalServer, $wgDeferredUpdateList;
 		$fname = "Article::doDelete";
 
 		if ( $image ) {
 			$dest = wfImageDir( $image );
 			$archive = wfImageDir( $image );
-			if ( ! unlink( "{$dest}/{$image}" ) ) {
+			if ( ! unlink( "{$dest}/{$image}" ) && !$wpForce ) {
 				$wgOut->fileDeleteError( "{$dest}/{$image}" );
 				return;
 			}
@@ -243,11 +243,11 @@ class ImagePage extends Article {
 
 	function doDeleteOldImage( $oldimage )
 	{
-		global $wgOut;
+		global $wgOut, $wpForce;
 
 		$name = substr( $oldimage, 15 );
 		$archive = wfImageArchiveDir( $name );
-		if ( ! unlink( "{$archive}/{$oldimage}" ) ) {
+		if ( ! unlink( "{$archive}/{$oldimage}" ) && !$wpForce ) {
 			$wgOut->fileDeleteError( "{$archive}/{$oldimage}" );
 		}
 	}
