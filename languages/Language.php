@@ -527,6 +527,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'youremail'		=> 'Your email*',
 'yourrealname'		=> 'Your real name*',
 'yourlanguage'	=> 'Interface language',
+'yourvariant'  => 'Language variant',
 'yournick'		=> 'Your nickname (for signatures)',
 'emailforlost'	=> "Fields marked with a star (*) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.<br /><br />Your real name, if you choose to provide it, will be used for giving you attribution for your work.",
@@ -1961,6 +1962,12 @@ class Language {
 	function convert( $text ) {
 		return $text;
 	}
+
+    # see if we have a list of language variants for conversion.
+    # right now mainly used in the Chinese conversion
+    function getVariants() {
+        return array();
+    }
 }
 
 # This should fail gracefully if there's not a localization available
