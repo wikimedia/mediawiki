@@ -451,6 +451,10 @@ pages for purposes of page relevancy ranking.
 * (bug 1736) typo in SpecialValidate.php
 * (bug 73) Upload doesn't run edit updates on description page (links,
   search index and categories)
+* (bug 646) <math> fails to recognize \ll and \gg
+* (bug 926) \div element from TeX not supported in <math> element
+* (bug 1147) add \checkmark to whitelist in texutil.ml
+* (bug 937) \limits function from LaTeX not supported in <math> element
 * Support for manually converting article title to different Chinese
   variants (for zh)
 * (bug 1488, bug 1744) Fix encoding for preferences, dates in Latin-1 mode
@@ -460,6 +464,7 @@ pages for purposes of page relevancy ranking.
 * (bug 1556) login page tab order. "remember" checkbox now come after password.
 * SQL debug log fixlets
 
+>>>>>>> 1.40.2.211
 
 === Caveats ===
 
