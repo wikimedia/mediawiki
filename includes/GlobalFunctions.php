@@ -168,69 +168,75 @@ function wfMsgNoDB( $key ) {
 
 function wfMsgReal( $key, $args, $useDB ) {
 	global $wgLang, $wgReplacementKeys, $wgMemc, $wgDBname;
-	global $wgUseDatabaseMessages;
-		
-	static $l1cache = array();
+	global $wgUseDatabaseMessages, $wgUseMemCached, $wgOut;
+	global $wgAllMessagesEn;
+
 	$fname = "wfMsg";
 	wfProfileIn( $fname );
-	$message = false;
-	$l1hit = false;
 	
-	# Check for DB suppression
-	if ( !$wgUseDatabaseMessages || !$useDB ) {
+	static $messageCache = false;
+	$memcKey = "$wgDBname:messages";
+	$fname = "wfMsg";
+	$message = false;
+
+	# newFromText is too slow!
+	$title = ucfirst( $key );
+	if ( $messageCache ) {
+		$message = $messageCache[$title];
+	} elseif ( !$wgUseDatabaseMessages || !$useDB ) {
 		$message = $wgLang->getMessage( $key );
 	}
 
-	# Try L1 cache
-	if ( $message === false && array_key_exists( $key, $l1cache ) ) {
-		$message  = $l1cache[$key];
-		if ( $message === false ) {
-			$message = $wgLang->getMessage( $key );
+	if ( !$message && $wgUseMemCached ) {
+		# Try memcached
+		if ( !$messageCache ) {
+			$messageCache = $wgMemc->get( $memcKey );
 		}
-		$l1hit = true;
+		
+		# If there's nothing in memcached, load all the messages from the database
+		if ( !$messageCache ) {
+			# Other threads don't need to load the messages if another thread is doing it.
+			$wgMemc->set( $memcKey, "loading", time() + 60 );
+			
+			$sql = "SELECT cur_title,cur_text FROM cur WHERE cur_namespace=" . NS_MEDIAWIKI;
+			$res = wfQuery( $sql, DB_READ, $fname );
+			for ( $row = wfFetchObject( $res ); $row; $row = wfFetchObject( $res ) ) {
+				$messageCache[$row->cur_title] = $row->cur_text;
+			}
+			# Save in memcached
+			$wgMemc->set( $memcKey, $messageCache, time() + 3600 );
+		}
+		if ( is_array( $messageCache ) && array_key_exists( $title, $messageCache ) ) {
+			$message = $messageCache[$title];
+		} 
 	}
 
-	# Try memcached
-	if ( $message === false ) {
-		$titleObj = Title::newFromText( $key );
-		$title = $titleObj->getDBkey();
-		$mcKey = "$wgDBname:MediaWiki:title:$title";
-		$message = $wgMemc->get( $mcKey );
-	}
-
-	# Try database
-	if ( $message === false) {
+	# If there was no MemCached, load each message from the DB individually
+	if ( !$message ) {
 		if ( $useDB ) {
 			$sql = "SELECT cur_text FROM cur WHERE cur_namespace=" . NS_MEDIAWIKI . 
 				" AND cur_title='$title'";
 			$res = wfQuery( $sql, DB_READ, $fname );
 
 			if ( wfNumRows( $res ) ) {
-				# Got it from the database, now store in MemCached
 				$obj = wfFetchObject( $res );
 				$message = $obj->cur_text;
 				wfFreeResult( $res );
-				$wgMemc->set( $mcKey, $message, 0 /*time() + 1800*/ );
 			}
 		}
 	}
 
 	# Finally, try the array in $wgLang
-	if ( $message === false ) {
+	if ( !$message ) {
 		$message = $wgLang->getMessage( $key );
-		$l1cache[$key] = false;
-	} elseif ( !$l1hit && $wgUseDatabaseMessages) {
-		$l1cache[$key] = $message;
-	}
+	} 
 	
 	# Replace arguments
 	if( count( $args ) ) {
 		$message = str_replace( $wgReplacementKeys, $args, $message );
 	}
-	
 	wfProfileOut( $fname );
-
-	if ( "" == $message ) {
+	if ( !$message ) {
 		# Failed, message not translated
 		return "&lt;$key&gt;";
 	}
