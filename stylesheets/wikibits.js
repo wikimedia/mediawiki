@@ -150,6 +150,7 @@ function tabbedprefs() {
     }
     prefform.insertBefore(toc, children[0]);
     document.getElementById('prefsubmit').id = 'prefcontrol';
+    document.getElementById('guesstimezonebutton').style.display = 'inline';
 }
 function uncoversection() {
     oldsecid = this.parentNode.parentNode.selectedid;

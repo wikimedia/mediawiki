@@ -430,7 +430,7 @@ class PreferencesForm {
 		<div><b>$tzServerTime:</b> $nowserver</div>
 		<div><b>$ltz:</b> $nowlocal</div>
 		<div><label>$tzo*: <input type='text' name=\"wpHourDiff\" value=\"{$this->mHourDiff}\" size='6' /></label></div>
-		<div><input type=\"button\" value=\"$tzGuess\" onClick=\"javascript:guessTimezone()\" /></div>
+		<div><input type=\"button\" value=\"$tzGuess\" onClick=\"javascript:guessTimezone()\" id=\"guesstimezonebutton\" style=\"display:none\" /></div>
 		<div class='prefsectiontip'>* {$tzt}</div>
 	</fieldset>\n\n" );
 
