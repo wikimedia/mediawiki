@@ -24,8 +24,8 @@ function wfSpecialStatistics()
 	$text = str_replace( "$2", $good, $text );
 	$text = str_replace( "$3", $views, $text );
 	$text = str_replace( "$4", $edits, $text );
-	$text = str_replace( "$5", sprintf( "%.2f", $edits / $total ), $text );
-	$text = str_replace( "$6", sprintf( "%.2f", $views / $edits ), $text );
+	$text = str_replace( "$5", sprintf( "%.2f", $total ? $edits / $total : 0 ), $text );
+	$text = str_replace( "$6", sprintf( "%.2f", $edits ? $views / $edits : 0 ), $text );
 
 	$wgOut->addHTML( $text );
 	$wgOut->addHTML( "<h2>" . wfMsg( "userstats" ) . "</h2>\n" );
