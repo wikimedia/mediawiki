@@ -4,13 +4,13 @@
 	'ab' => 'Abkhazian',	# Abkhazian - FIXME
 	'af' => 'Afrikaans',	# Afrikaans
 	'ak' => 'Akana',		# Akan
-        'an' => 'Aragon&eacute;s',      # Aragonese
+	'an' => 'Aragon&eacute;s',      # Aragonese
 	'als' => 'Els&auml;ssisch',	# Alsatian
 	'am' => '&#4768;&#4635;&#4653;&#4763;',	# Amharic
 	'ar' => '&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;',	# Arabic
 	'arc' => '&#1813;&#1829;&#1810;&#1834;&#1848;&#1821;&#1819;',	# Aramaic
 	'as' => '&#2437;&#2488;&#2478;&#2496;&#2527;&#2494;',	# Assamese
-        'ast' => 'Asturleon&eacute;s',  # Asturian
+	'ast' => 'Asturleon&eacute;s',  # Asturian
 	'av' => '&#1040;&#1074;&#1072;&#1088;',	# Avar
 	'ay' => 'Aymar',		# Aymara
 	'az' => 'Az&#601;rbaycan',	# Azerbaijani
@@ -20,13 +20,14 @@
 	'bh' => '&#2349;&#2379;&#2332;&#2346;&#2369;&#2352;&#2368;',	# Bihara
 	'bi' => 'Bislama',		# Bislama
 	'bn' => '&#2476;&#2494;&#2434;&#2482;&#2494; - (Bangla)',	# Bengali
-        'bm' => 'Bambara',
+	'bm' => 'Bambara',
 	'bo' => 'Bod skad',		# Tibetan
 	'br' => 'Brezhoneg',	# Breton 
 	'bs' => 'Bosanski',		# Bosnian
 	'ca' => 'Catal&agrave;',	# Catalan
 	'ce' => '&#1053;&#1086;&#1093;&#1095;&#1080;&#1081;&#1085;',	# Chechen
 	'ch' => 'Chamoru',		# Chamorro
+	'cho' => 'Choctaw',
 	'chr' => '&#5091;&#5043;&#5033;', # Cherokee
 	'chy' => 'Tsets&ecirc;hest&acirc;hese',	# Cheyenne
 	'co' => 'Corsu',		# Corsican
@@ -64,9 +65,9 @@
 	'haw' => 'Hawai`i',		# Hawaiian
 	'he' => '&#1506;&#1489;&#1512;&#1497;&#1514;',	# Hebrew
 	'hi' => '&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;',	# Hindi
-        'ho' => 'Hiri Motu',
+	'ho' => 'Hiri Motu',
 	'hr' => 'Hrvatski',		# Croatian
-        'ht' => 'Haitian',	# Haitian (FIXME!)
+	'ht' => 'Haitian',	# Haitian (FIXME!)
 	'hu' => 'Magyar',		# Hungarian
 	'hy' => '&#1344;&#1377;&#1397;&#1381;&#1408;&#1381;&#1398;',	# Armenian
 	'hz' => 'Otsiherero',	# Herero
@@ -74,7 +75,7 @@
 	'id' => 'Bahasa Indonesia',	# Indonesian
 	'ie' => 'Interlingue',	# Interlingue (Occidental)
 	'ig' => 'Igbo',			# Igbo
-        'ii' => 'Yi',		# Sichuan Yi (FIXME!)
+	'ii' => 'Yi',		# Sichuan Yi (FIXME!)
 	'ik' => 'I&ntilde;upiak',	# Inupiak
 	'io' => 'Ido',			# Ido
 	'is' => '&Iacute;slenska',	# Icelandic,  according to Jeedo@irc
@@ -83,7 +84,7 @@
 	'ja' => '&#26085;&#26412;&#35486;',	# Japanese
 	'jv' => 'Bahasa Jawa',	# Javanese
 	'ka' => '&#4325;&#4304;&#4320;&#4311;&#4323;&#4314;&#4312;',	# Georgian
-        'kg' => 'Kongo',		# Kongo (FIXME!)
+	'kg' => 'Kongo',		# Kongo (FIXME!)
 	'ki' => 'Kikuyu',		# Kikuyu (FIXME!)
 	'kj' => 'Kuanyama',		# Kuanyama (FIXME!)
 	'kk' => '&#1179;&#1072;&#1079;&#1072;&#1179;&#1096;&#1072;',	# Kazakh
@@ -108,6 +109,7 @@
 	'mg' => 'Malagasy',		# Malagasy - FIXME
 	'mh' => 'Ebon',			# Marshallese
 	'mi' => 'M&#257;ori',	# Maori
+	'minnan' => '&#38313;&#21335;&#35486;', # Min-nan
 	'mk' => '&#1052;&#1072;&#1082;&#1077;&#1076;&#1086;&#1085;&#1089;&#1082;&#1080;',	# Macedonian
 	'ml' => '&#3374;&#3378;&#3375;&#3390;&#3379;&#3330;',	# Malayalam
 	'mn' => '&#1052;&#1086;&#1085;&#1075;&#1086;&#1083;',	# Mongoloian
@@ -115,6 +117,7 @@
 	'mr' => '&#2350;&#2352;&#2366;&#2336;&#2368;',	# Marathi
 	'ms' => 'Bahasa Melayu',	# Malay
 	'mt' => 'bil-Malti',	# Maltese
+	'mus' => 'Muscogee',
 	'my' => 'Myanmasa',	# Burmese
 	'na' => 'Nauru',		# Nauruan
 	'nb' => 'Bokm&aring;l',		# Norwegian (Bokmal)
@@ -123,7 +126,6 @@
 	'ne' => '&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;',	# Nepali
 	'ng' => 'Ndonga',
 	'nl' => 'Nederlands',	# Dutch
-	'nb' => 'Norsk',		# Norwegian [currently using old '''no''' code]
 	'ne' => '&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;',	# Nepali
 	'nn' => 'Nynorsk'	,	# (Norwegian) Nynorsk
 	'no' => 'Norsk',		# Norwegian
@@ -196,7 +198,7 @@
 	'yo' => 'Yor&ugrave;b&aacute;',	# Yoruba
 	'za' => '(Cuengh)',		# Zhuang
 	'zh' => '&#20013;&#25991;',	# (Zh&#333;ng Wén) - Chinese
-	'zh-cfr' => '&#38313;&#21335;&#35486;', # Min-nan
+	'zh-cfr' => '&#38313;&#21335;&#35486;', # Min-nan alias (site is at minnan)
 	'zh-cn' => '&#20013;&#25991;(&#31616;&#20307;)',	# Simplified
 	'zh-tw' => '&#20013;&#25991;(&#32321;&#20307;)',	# Traditional
 	'zu' => 'isiZulu',		# Zulu
