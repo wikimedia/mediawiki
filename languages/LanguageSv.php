@@ -189,7 +189,7 @@ $wgValidSpecialPagesSv = array(
 "redirectedfrom"        => "(Omdirigerad från $1)",
 "lastmodified"          => "Denna sida blev senast ändrad $1.",
 "viewcount"             => "Denna sida har visats $1 gånger.",
-"gnunote"               => "Denna sida är publicerad under <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>.",
+"gnunote"               => "Denna sida är publicerad under <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a>.",
 "printsubtitle"         => "(Från http://sv.wikipedia.org)",
 "protectedpage"         => "Skyddad sida",
 "administrators"        => "Wikipedia:Administratörer",
@@ -356,7 +356,7 @@ Du kanske vill överväga att dela upp artikeln i mindre delar.",
 dina ändringar just nu. För säkerhets skull kanske du vill överväga att kopiera över texten till din egen dator tills
 databasen är upplåst igen.",
 "protectedpagewarning"  => "VARNING:  Den här sidan har låsts så att bara administratörer kan redigera den. 
-Försäkra dig om att du följer rekommendationerna för <a href='/wiki/Wikipedia:Skyddade sidor'>skyddade sidor</a>",
+Försäkra dig om att du följer rekommendationerna för <a href='$wgScriptPath/$wgMetaNamespace:Skyddade sidor'>skyddade sidor</a>",
 
 // History pages
 //

@@ -178,7 +178,7 @@
 "redirectedfrom" => "(Reindirizzamento da $1)",
 "lastmodified"	=> "Ultima modifica il $1.",
 "viewcount"		=> "Questo articolo è stato letto $1 volte.",
-"gnunote" => "Questa pagina è disponibile con licenza <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>.",
+"gnunote" => "Questa pagina è disponibile con licenza <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a>.",
 "printsubtitle" => "(Articolo di http://www.wikipedia.org)",
 "protectedpage" => "Pagina protetta",
 "administrators" => "Wikipedia:Amministratori",

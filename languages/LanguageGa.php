@@ -251,7 +251,7 @@ Sourceforge (when that gets added.)
 "redirectedfrom"    => "(Athsheoladh ó $1)",
 "lastmodified"  => "Mhionathraíodh an leathanach seo ar $1.",
 "viewcount"     => "Rochtainíodh an leathanach seo $1 uair.",
-"gnunote"       => "Tá an teacs ar fad le fáil faoi na téarmaí an <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
+"gnunote"       => "Tá an teacs ar fad le fáil faoi na téarmaí an <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(Ó http://ga.wikipedia.org)",
 "protectedpage" => "Leathanach faoi ghlas",
 "administrators"    => "Vicipéid:Riarthóirí",
@@ -480,7 +480,7 @@ ní féidir leat do athruithe a shábháil díreach anois. B'fhéidir go mhaith 
 chóipeáil is a taosaigh go chomhad téacs agus é a shábháil do úsáid níos déanach.",
 "protectedpagewarning" => "AIRE:  Cuireadh ghlas ar an leathanach seo, agus is féidir amháin na úsáideoirí le 
 pribhléidí ceannasaí é a athraigh. Bí cinnte go leanann tú na 
-<a href='/wiki/Vicipéid:Treoirlínte_do_leathanaigh_cosnaithe'>treoirlínte do leathanaigh cosnaithe</a>.",
+<a href='$wgScriptPath/$wgMetaNamespace:Treoirlínte_do_leathanaigh_cosnaithe'>treoirlínte do leathanaigh cosnaithe</a>.",
 
 # History pages
 #

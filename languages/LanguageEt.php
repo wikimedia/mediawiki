@@ -181,7 +181,7 @@
 "redirectedfrom" => "(Ümber suunatud artiklist $1)",
 "lastmodified"	=> "Viimati muudetud $1.",
 "viewcount"		=> "Seda lehekülge on külastatud $1 korda.",
-"gnunote" => "Kogu tekst on kasutatav litsentsi <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a> tingimustel.",
+"gnunote" => "Kogu tekst on kasutatav litsentsi <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a> tingimustel.",
 "printsubtitle" => "(Pärineb veebisaidilt http://et.wikipedia.org)",
 "protectedpage" => "Kaitstud artikkel",
 "administrators" => "Vikipeedia:Administraatorid",
@@ -341,7 +341,7 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 "longpagewarning" => "HOIATUS: Selle lehekülje pikkus ületab $1 kilobaiti. Mõne brauseri puhul valmistab raskusi 32 kilobaidile läheneva pikkusega lehekülgede redigeerimine. Palun kaaluge selle lehekülje sisu jaotamist lühemate lehekülgede vahel.",
 "readonlywarning" => "HOIATUS: Andmebaas on lukustatud hooldustöödeks, nii et praegu ei saa parandusi salvestada. Võite teksti alal hoida tekstifailina ning salvestada hiljem.",
 "protectedpagewarning" => "HOIATUS:  See lehekülg on lukustatud, nii et seda saavad redigeerida ainult süsteemi operaatori õigustega kasutajad. Järgige juhtnööre leheküljel 
-<a href='/wiki/Vikipeedia:Juhtnöörid_kaitstud_lehekülje_kohta'>
+<a href='$wgScriptPath/$wgMetaNamespace:Juhtnöörid_kaitstud_lehekülje_kohta'>
 </a>.",
 
 # History pages

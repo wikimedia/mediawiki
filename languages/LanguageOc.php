@@ -192,7 +192,7 @@ include_once( "LanguageUtf8.php" );
 "redirectedfrom" => "(Redirigé depuis $1)",
 "lastmodified"  => "Dernière modification de cette page : $1.",
 "viewcount"     => "Cette page a été consultée $1 fois.",
-"gnunote"       => "Tous les textes sont disponibles sous les termes de la <a class=internal href='/wiki/GFDL'>Licence de documentation libre GNU</a>.",
+"gnunote"       => "Tous les textes sont disponibles sous les termes de la <a class=internal href='$wgScriptPath/GFDL'>Licence de documentation libre GNU</a>.",
 "printsubtitle" => "(de http://www.wikipedia.org)",
 "protectedpage" => "Page protégée",
 "administrators" => "Wikipédia:Administrateurs",
@@ -352,7 +352,7 @@ Peut-être serait-il mieux que vous divisiez la page en sections plus petites.",
 vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.", // Looxix 
 "protectedpagewarning" => "AVERTISSEMENT : cette page a été bloquée.
 Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier. Soyez certain que
-vous suivez les <a href='/wiki/Wikipédia:Page protégée'>directives concernant les pages protégées</a>.", // Looxix
+vous suivez les <a href='$wgScriptPath/$wgMetaNamespace:Page protégée'>directives concernant les pages protégées</a>.", // Looxix
 
 # History pages
 #

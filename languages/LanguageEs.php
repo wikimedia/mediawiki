@@ -201,7 +201,7 @@
 "redirectedfrom" => "(Redirigido desde $1)",
 "lastmodified"	=> "Esta página fue modificada por última vez el $1.",
 "viewcount"		=> "Esta página ha sido visitada $1 veces.",
-"gnunote" => "Todo el texto se hace disponible bajo los términos de la <a class=internal href='/wiki/GNU_FDL'>Licencia de Documentación Libre GNU (GNU FDL)",
+"gnunote" => "Todo el texto se hace disponible bajo los términos de la <a class=internal href='$wgScriptPath/GNU_FDL'>Licencia de Documentación Libre GNU (GNU FDL)",
 "printsubtitle" => "(De http://es.wikipedia.org)",
 "protectedpage" => "Página protegida",
 "administrators" => "Wikipedia:Administradores",
@@ -389,7 +389,7 @@ Por favor considera la posibilidad de descomponer esta página en secciones más p
 Puedes \"cortar y pegar\" a un archivo de texto en tu computador, y grabarlo para
 intentarlo después.",
 "protectedpagewarning" => "ADVERTENCIA: Esta página ha sido bloqueda de manera que s&ocute;lo usuarios con privilegios de administrador pueden editarla. Asegúrate de que estás siguiendo las 
-<a href='/wiki/Wikipedia:Guías_para_páginas_protegidas'>guías para páginas protegidas</a>.",
+<a href='$wgScriptPath/Wikipedia:Guías_para_páginas_protegidas'>guías para páginas protegidas</a>.",
 # History pages
 #
 "revhistory"	=> "Historia de revisiones",

@@ -208,7 +208,7 @@
 "redirectedfrom" => "(Omdirigeret fra $1)",
 "lastmodified"	=> "Sidst ændret den $1.",
 "viewcount"		=> "Siden er vist i alt $1 gange.",
-"gnunote" => "Denne side er udgivet under <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>.",
+"gnunote" => "Denne side er udgivet under <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a>.",
 "printsubtitle" => "(Fra http://da.wikipedia.org)",
 "protectedpage" => "Beskyttet side",
 "administrators" => "Wikipedia:Administratorer",
@@ -421,7 +421,7 @@ så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at
 kopiere din tekst til en tekstfil, så du kan gemme den til senere.",
 "protectedpagewarning" => "ADVARSEL: Denne side er låst, så kun administratorer
 kan redigere den. Sørg for at du følger 
-<a href='/wiki/Wikipedia:Politik_for_beskyttede_sider'>politiken for 
+<a href='$wgScriptPath/$wgMetaNamespace:Politik_for_beskyttede_sider'>politiken for 
 beskyttede sider</a>.",
 
 # History pages

@@ -197,7 +197,7 @@
 "redirectedfrom"        => "(Dialih dari $1)", #"(Redirected from $1)",
 "lastmodified"	        => "Halaman ini diubah kali terakhir pada $1.", #"The page was last modified $1.",
 "viewcount"		=> "Halaman ini telah diakses sebanyak $1 kali.", #"This page has been accessed $1 times.",
-"gnunote"		=> "Halaman ini tertakluk di bawah istilah <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.", #"This page is released under the terms of the $1.",
+"gnunote"		=> "Halaman ini tertakluk di bawah istilah <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a>.", #"This page is released under the terms of the $1.",
 "printsubtitle"         => "(From http://www.aposc.org)",
 "protectedpage"         => "Halaman yang dilindungi", #"Protected page",
 "administrators"        => "Istimewa:Listadministrators", #"Special:Listadministrators",
@@ -387,7 +387,7 @@ so you will not be able to save your edits right now. You may wish to cut-n-past
 the text into a text file and save it for later.",
 "protectedpagewarning" => "WARNING:  This page has been locked so that only
 users with sysop privileges can edit it. Be sure you are following the
-<a href='/wiki/Wikipedia:Protected_page_guidelines'>protected page
+<a href='$wgScriptPath/$wgMetaNamespace:Protected_page_guidelines'>protected page
 guidelines</a>.",
 
 # History pages

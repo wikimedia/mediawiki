@@ -195,7 +195,7 @@ include_once("LanguageUtf8.php");
 "redirectedfrom" => "(Ridrejtuar nga $1)",
 "lastmodified"	=> "Kjo faqe është ndryshuar për herë te fundit më $1.",
 "viewcount"		=> "Kjo faqe është parë $1 herë.",
-"gnunote" => "I gjithë teksti është publikuar sipas kushteve të <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
+"gnunote" => "I gjithë teksti është publikuar sipas kushteve të <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(Nga http://sq.wikipedia.org)",
 "protectedpage" => "Faqe e mbrojtur",
 "administrators" => "$wgMetaNamespace:Administruesit",
@@ -409,7 +409,7 @@ në një skedar për më vonë.",
 "protectedpagewarning" => "KUJDES:  Kjo faqe është bllokuar kështuqë vetëm përdorues me titullin
 
 sysop mund ta redaktojnë. Ndiq rregullat e dhëna tek
-<a href='/wiki/$wgMetaNamespace:Rregullat_për_faqe_të_bllokuara'>faqet e bllokuara</a>.",
+<a href='$wgScriptPath/$wgMetaNamespace:Rregullat_për_faqe_të_bllokuara'>faqet e bllokuara</a>.",
 
 # History pages
 #

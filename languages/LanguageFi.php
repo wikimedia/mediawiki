@@ -175,7 +175,7 @@
 "redirectedfrom" => "(Uudelleenohjattu sivulta $1)",
 "lastmodified"	=> "Sivua on viimeksi muutettu  $1.",
 "viewcount"		=> "Tämä sivu on näytetty $1 kertaa.",
-"gnunote" => "Kaikki teksti on saatavilla <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation -lisenssin</a> ehdoilla.",
+"gnunote" => "Kaikki teksti on saatavilla <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation -lisenssin</a> ehdoilla.",
 "printsubtitle" => "(Lähde: http://fi.wikipedia.org)",
 "protectedpage" => "Suojattu sivu",
 "administrators" => "Wikipedia:Ylläpitäjät",

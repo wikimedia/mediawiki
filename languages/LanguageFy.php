@@ -199,7 +199,7 @@ if($wgMetaNamespace === FALSE)
 "redirectedfrom" 	=> "(Trochwiisd fan \"$1\")",
 "lastmodified"	=> "Lêste kear bewurke op $1.",
 "viewcount"		=> "Disse side is $1 kear iepenslein.",
-"gnunote" 		=> "Alle tekst is beskiber ûnder de betingsten fan de <a class=internal href='/wiki/GNU_Vrije_Documentatie_Licentie'>GNU Iepen Dokumentaasje Lisinsje</a>.",
+"gnunote" 		=> "Alle tekst is beskiber ûnder de betingsten fan de <a class=internal href='$wgScriptPath/GNU_Vrije_Documentatie_Licentie'>GNU Iepen Dokumentaasje Lisinsje</a>.",
 "printsubtitle" 	=> "(Fan http://$wgServer)",
 "protectedpage" 	=> "Beskerme side",
 "administrators" 	=> "$wgMetaNamespace:Behear",
@@ -405,7 +405,7 @@ Besykje de side yn lytsere stikken te brekken.",
 It wie baas en nim de tekst foar letter oer yn in tekstbestân.",
 "protectedpagewarning" => "<font color=red>Waarskôging</font>: Dizze side is beskerme, dat
 gewoane brûkers dy net bewurkje kinne. Tink om de
-<a href='/wiki/$wgMetaNamespace:Beskerm-rie'>rie oer beskerme siden</a>.",
+<a href='$wgScriptPath/$wgMetaNamespace:Beskerm-rie'>rie oer beskerme siden</a>.",
 
 # History pages
 #

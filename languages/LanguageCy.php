@@ -242,7 +242,7 @@
 "redirectedfrom" => "(Ail-cyfeiriad oddiwrth $1)",
 "lastmodified" => "Pryd cafodd ei newid diwethaf $1.",
 "viewcount" => "Mae'r tudalen hyn wedi cael ei gweld $1 o weithiau.",
-"gnunote" => "Mae pob testun ar gael o dan term<a class=internal href='/wiki/GNU_FDL'>Goddefiad dogfennau rhad GNU</a>.",
+"gnunote" => "Mae pob testun ar gael o dan term<a class=internal href='$wgScriptPath/GNU_FDL'>Goddefiad dogfennau rhad GNU</a>.",
 "printsubtitle" => "(Oddiwrth http://www.wikipedia.org/)",
 "protectedpage" => "Tudalen amddiffyniol",
 "administrators" => "$wgMetaNamespace:Gweinyddwyr",
@@ -450,7 +450,7 @@ felly fyddwch chi ddim yn medru cadw eich olygiadau rwan. Efalle fyddwch chi'n e
 testun i mewn i ffeil testun, a cadw hi tan hwyrach.",
 "protectedpagewarning" => "RHYBUDD:  Mae tudalen hon wedi eu gloi -- dim ond defnyddwyr
 gyda braintiau 'sysop' sy'n medru eu olygu. Byddwch yn siwr rydych yn dilyn y
-<a href='/wiki/$wgMetaNamespace:Protected_page_guidelines'>gwifrau tywys tudalen amddiffyn</a>.",
+<a href='$wgScriptPath/$wgMetaNamespace:Protected_page_guidelines'>gwifrau tywys tudalen amddiffyn</a>.",
 
 # History pages
 #
