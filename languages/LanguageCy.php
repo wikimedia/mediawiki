@@ -10,7 +10,7 @@
 	2  => "Defnyddiwr",
 	3  => "Sgwrs_Defnyddiwr",
 	4  => $wgMetaNamespace,
-	5  => "Sgwrs".$wgMetaNamespace,
+	5  => "Sgwrs_".$wgMetaNamespace,
 	6  => "Delwedd",
 	7  => "Sgwrs_Delwedd",
 	8  => "MediaWiki",
