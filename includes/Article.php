@@ -494,21 +494,6 @@ class Article {
 			  "WHERE rc_cur_id=" . $this->getID();
 			wfQuery( $sql, DB_WRITE, $fname );
 			
-			global $wgEnablePersistentLC;
-			if ( $wgEnablePersistentLC ) {
-
-				// Purge link cache for this page 
-				$pageid=$this->getID();
-				wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pageid}'", DB_WRITE);
-
-				// This next query just makes sure stub colored links to this page 
-				// are updated correctly (I think). If performance is more important
-				// than real-time updating of stub links, we really should skip
-				// this query.
-				wfQuery("DELETE linkscc FROM linkscc,links ".
-					"WHERE lcc_title=links.l_from AND l_to={$pageid}", DB_WRITE);
-			}
-
 		}
 		if( $wgDBtransactions ) {
 			$sql = "COMMIT";
