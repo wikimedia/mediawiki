@@ -1269,10 +1269,10 @@ class Skin {
 		return $result;
 	}
 
-	function makeKnownLink( $title, $text = "", $query = "", $trail = "" ) {
+	function makeKnownLink( $title, $text = "", $query = "", $trail = "", $prefix = '',$aprops = '') {
 		$nt = Title::newFromText( $title );
 		if ($nt) {
-			return $this->makeKnownLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+			return $this->makeKnownLinkObj( Title::newFromText( $title ), $text, $query, $trail, $prefix , $aprops );
 		} else {
 			wfDebug( "Invalid title passed to Skin::makeKnownLink(): \"$title\"\n" );
 			return $text == "" ? $title : $text;
@@ -1355,7 +1355,7 @@ class Skin {
 	}
 
 	# Pass a title object, not a title string
-	function makeKnownLinkObj( &$nt, $text = "", $query = "", $trail = "", $prefix = "" )
+	function makeKnownLinkObj( &$nt, $text = "", $query = "", $trail = "", $prefix = "" , $aprops = '')
 	{
 		global $wgOut, $wgTitle;
 
@@ -1383,7 +1383,7 @@ class Skin {
 				$trail = $m[2];
 			}
 		}
-		$r = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
+		$r = "<a href=\"{$u}\"{$style}{$aprops}>{$prefix}{$text}{$inside}</a>{$trail}";
 		wfProfileOut( $fname );
 		return $r;
 	}
@@ -2029,7 +2029,7 @@ class Skin {
 				$diffLink = wfMsg( "diff" );
 			} else {
 				$diffLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( "diff" ),
-				  "{$curIdEq}&diff={$rc_this_oldid}&oldid={$rc_last_oldid}" );
+				  "{$curIdEq}&diff={$rc_this_oldid}&oldid={$rc_last_oldid}"  ,'' ,'' , ' tabindex="'.$rc->counter.'"');
 			}
 			$s .= "($diffLink) (";
 
@@ -2139,7 +2139,7 @@ class Skin {
 			$curLink = wfMsg( "cur" );
 		} else {
 			$curLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( "cur" ),
-			  "{$curIdEq}&diff=0&oldid={$rc_this_oldid}" );
+			  "{$curIdEq}&diff=0&oldid={$rc_this_oldid}" ,'' ,'' , ' tabindex="'.$baseRC->counter.'"' );
 		}
 
 		# Make "last" link
