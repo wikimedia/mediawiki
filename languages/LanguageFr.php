@@ -277,6 +277,19 @@ Voir $1.",
 "thisisdeleted" => "Afficher ou restaurer $1?",
 "restorelink"	=> "$1 modifications effacées",
 'feedlinks'	=> 'Flux:',
+'sitenotice'	=> '', # the equivalent to wgSiteNotice
+
+# Short words for each namespace, by default used in the 'article' tab in monobook
+'nstab-main' => 'Article',
+'nstab-user' => 'Page utilisateur',
+'nstab-media' => 'Média',
+'nstab-special' => 'Spécial',
+'nstab-wp' => 'A propos',
+'nstab-image' => 'Image',
+'nstab-mediawiki' => 'Message',
+'nstab-template' => 'Modèle',
+'nstab-help' => 'Aide',
+'nstab-category' => 'Catégorie',
 
 # Main script and global functions
 #
@@ -1009,6 +1022,28 @@ Tapez le nom de l'utilisateur dans la boite et pressez le bouton pour lui donner
 "set_rights_fail"	=> "<b>Les droits de l'utilisateur \"$1\" n'ont pas pu être mis en place. (Avez vous entré le nom correctement?)</b>",
 "makesysop"         => "Donner les droits d'adminitrateur à un utilisateur",
 
+# Validation
+'val_clear_old' => 'Supprimer mes données de validation pour $1',
+'val_merge_old' => 'Utiliser mes précédents choix pour les choix marqués \'Sans opinion\'',
+'val_noop' => 'Sans opinion',
+'val_percent' => '<b>$1%</b><br>($2 sur $3 points<br>par $4 utilisateurs)',
+'val_percent_single' => '<b>$1%</b><br>($2 sur $3 points<br>par un utilisateur)',
+'val_total' => 'Total',
+'val_version' => 'Version',
+'val_tab' => 'Valider',
+'val_this_is_current_version' => 'ceci est la dernière version',
+'val_version_of' => "Version de $1" ,
+'val_table_header' => "<tr><th>Class</th>$1<th colspan=4>Opinion</th>$1<th>Commentaire</th></tr>\n",
+'val_stat_link_text' => 'Statistiques de validation pour cet article',
+'val_view_version' => 'Voir cette version',
+'val_validate_version' => 'Valider cette version',
+'val_user_validations' => 'Cet utilisateur a validé $1 pages.',
+'val_no_anon_validation' => 'Vous devez être identifié pour valider un article.',
+'val_validate_article_namespace_only' => 'Seul les articles peuvent être validés. Cette page n\'est <i>pas</i> un article.',
+'val_validated' => 'Validation effectuée.',
+'val_article_lists' => 'List d\'articles validés',
+'val_page_validation_statistics' => 'Statistiques de validation pour $1',
+
 
 # Move page
 #
@@ -1073,6 +1108,7 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'accesskey-anontalk'		=> 'n',
 'accesskey-anonuserpage'	=> '.',
 'accesskey-article'			=> 'a',
+'accesskey-compareselectedversions' => 'v',
 'accesskey-contributions'	=> '',
 'accesskey-currentevents'	=> '',
 'accesskey-delete'			=> 'd',
@@ -1114,6 +1150,7 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'tooltip-anonuserpage' => 'La page d\'utilisateur pour l\'adresse ip depuis laquelle vous éditez [alt-.]',
 'tooltip-article' => 'Voir l\'article [alt-a]',
 'tooltip-atom' => 'Flux Atom pour cette page',
+'tooltip-compareselectedversions' => 'Voir les différences entre les deux version séléctionnées de cette page. [alt-v]',
 'tooltip-contributions' => 'Voir la liste des contributions de cet utilisateur',
 'tooltip-currentevents' => 'Trouver des informations sur les évenements actuels',
 'tooltip-delete' => 'Supprimer cette page [alt-d]',
