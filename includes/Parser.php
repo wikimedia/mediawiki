@@ -1167,8 +1167,8 @@ class Parser
 		# Loop for each link
 		for ($k = 0; isset( $a[$k] ); $k++) {
 			$line = $a[$k];
-			wfProfileIn( $fname.'-prefixhandling' );
 			if ( $useLinkPrefixExtension ) {
+				wfProfileIn( $fname.'-prefixhandling' );
 				if ( preg_match( $e2, $s, $m ) ) {
 					$prefix = $m[2];
 					$s = $m[1];
@@ -1180,8 +1180,8 @@ class Parser
 					$prefix = $first_prefix;
 					$first_prefix = false;
 				}
+				wfProfileOut( $fname.'-prefixhandling' );
 			}
-			wfProfileOut( $fname.'-prefixhandling' );
 
 			$might_be_img = false;
 			
@@ -1225,8 +1225,8 @@ class Parser
 
 			#check other language variants of the link
 			#if the article does not exist
-			if( $nt->getArticleID() == 0
-				&& $checkVariantLink ) {
+			if( $checkVariantLink
+			    && $nt->getArticleID() == 0 ) {
 				$wgContLang->findVariantLink($link, $nt);
 			}
 
@@ -3137,7 +3137,6 @@ class ParserOptions
 	# Get user options
 	function initialiseFromUser( &$userInput ) {
 		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
-		
 		$fname = 'ParserOptions::initialiseFromUser';
 		wfProfileIn( $fname );
 		if ( !$userInput ) {
