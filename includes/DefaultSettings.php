@@ -213,7 +213,7 @@ $wgDBschema	    = 'mediawiki';
 # The server for this database must be the same as for the main
 # database.
 # EXPERIMENTAL
-# $wgSharedDB='';
+$wgSharedDB = null;
 
 # Database load balancer
 # This is a two-dimensional array, an array of server info structures
@@ -703,6 +703,7 @@ $wgDefaultSkin = 'monobook';
 $wgAllowRealName = true;
 
 # Use XML parser?
+
 $wgUseXMLparser = false ;
 
 # Extensions
