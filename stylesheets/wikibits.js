@@ -99,10 +99,8 @@ function addInfobox(infoText) {
 
 	// if no support for changing selection, add a small copy & paste field
 	var clientPC = navigator.userAgent.toLowerCase(); // Get client info
-	var is_nav = ((clientPC.indexOf('mozilla')!=-1) && (clientPC.indexOf('spoofer')==-1)
-                && (clientPC.indexOf('compatible') == -1) && (clientPC.indexOf('opera')==-1)
-                && (clientPC.indexOf('webtv')==-1) && (clientPC.indexOf('hotjava')==-1)
-		&& (clientPC.indexOf('khtml')==-1) && (clientPC.indexOf('gecko')==-1));
+	var is_nav = ((clientPC.indexOf('gecko')!=-1) && (clientPC.indexOf('spoofer')==-1)
+                && (clientPC.indexOf('khtml') == -1));
  	if(!document.selection && !is_nav) {
  		infoText=escapeQuotesHTML(infoText);
 	 	document.write("<form name='infoform' id='infoform'>"+
@@ -146,9 +144,10 @@ function insertTags(tagOpen, tagClose, sampleText) {
 			document.selection.createRange().text = tagOpen + theSelection + tagClose;
 		}
 	// Mozilla -- disabled because it induces a scrolling bug which makes it virtually unusable
-	} else if(false && txtarea.selectionStart || txtarea.selectionStart == '0') {
+	} else if(txtarea.selectionStart || txtarea.selectionStart == '0') {
  		var startPos = txtarea.selectionStart;
 		var endPos = txtarea.selectionEnd;
+		var scrollTop=txtarea.scrollTop;
 		var myText = (txtarea.value).substring(startPos, endPos);
 		if(!myText) { myText=sampleText;}
 		if(myText.charAt(myText.length - 1) == " "){ // exclude ending space char, if any
@@ -161,6 +160,7 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		var cPos=startPos+(tagOpen.length+myText.length+tagClose.length);
 		txtarea.selectionStart=cPos;
 		txtarea.selectionEnd=cPos;
+		txtarea.scrollTop=scrollTop;
 	// All others
 	} else {
 		// Append at the end: Some people find that annoying
