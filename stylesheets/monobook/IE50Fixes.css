@@ -12,7 +12,8 @@
 #portal-column-one {
     position: absolute;
     overflow: visible;
-    top: 0px;
+    top: 0;
+    left: 0;
     z-index: 3;
 }
 
