@@ -112,18 +112,21 @@ class IPBlockForm {
 		}
 
 		if ( $wpBlockExpiry == "infinite" || $wpBlockExpiry == "indefinite" ) {
-			$expiry = 0;
+			$expiry = '';
 		} else {
 			# Convert GNU-style date, returns -1 on error
 			$expiry = strtotime( $wpBlockExpiry );
+
+			if ( $expiry < 0 ) {
+				$this->showForm( wfMsg( "ipb_expiry_invalid" ) );
+				return;
+			}
+			
+			$expiry = wfUnix2Timestamp( $expiry );
+
 		}
 
-		if ( $expiry < 0 ) {
-			$this->showForm( wfMsg( "ipb_expiry_invalid" ) );
-			return;
-		}
-		$expiry = wfUnix2Timestamp( $expiry );
-
+		
 		if ( "" == $wpBlockReason ) {
 			$this->showForm( wfMsg( "noblockreason" ) );
 			return;
