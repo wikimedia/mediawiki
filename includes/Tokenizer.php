@@ -3,14 +3,13 @@ class Tokenizer {
 	/* private */ var $mText, 		# Text to be processed by the tokenizer
 			  $mPos,		# current position of tokenizer in text
 			  $mTextLength,		# Length of $mText
-			  $mCount,		# token count, computed in preParse
-			  $mMatch,		# matches of tokenizer regex, computed in preParse
-			  $mMatchPos;		# current token position of tokenizer. Each match can
-			  			# be up to two tokens: A matched token and the text after it.
+			  $mQueuedToken;	# Tokens that were already found, but not
+			  			# returned yet.
 
 	/* private */ function Tokenizer()
 	{
 		$this->mPos=0;
+		$this->mTokenQueue=array();
 	}
 
 	# factory function
@@ -18,92 +17,133 @@ class Tokenizer {
 	{
 		$t = new Tokenizer();
 		$t->mText = $s;
-		$t->preParse();
 		$t->mTextLength = strlen( $s );
+		// echo "New tokenizer generated. <pre>{$s}</pre>\n"; 
 		return $t;
 	}
 
-	function preParse()
-	{
-		global $wgLang;
 
-		# build up the regex, step by step.
-		# Basic features: Quotes for <em>/<strong> and hyphens for <hr>
-		$regex = "\'\'\'\'\'|\'\'\'|\'\'|\n-----*";
-		# Append regex for linkPrefixExtension 
-		if (  $wgLang->linkPrefixExtension() ) {
-			$regex .= "|([a-zA-Z\x80-\xff]+)\[\[";
+	// Return the next token, but do not increase the pointer. The next call
+	// to previewToken or nextToken will return the same token again.
+	// Actually, the pointer is increased, but the token is queued. The next
+	// call to previewToken or nextToken will check the queue and return
+	// the stored token.
+	function previewToken()
+	{
+		if ( count( $this->mQueuedToken ) != 0 ) {
+			// still one token from the last round around. Return that one first.
+			$token = $this->mQueuedToken[0];
 		} else {
-			# end tag that can start with 3 [
-			$regex .= "|\[\[\[?";
-		}
-		# Closing link
-		$regex .= "|\]\]";
-		# Magic words that automatically generate links
-		$regex .= "|ISBN |RFC ";
-		# Language-specific additions
-		$regex .= $wgLang->tokenizerRegex();
-		# Finalize regex
-		$regex = "/(" . $regex . ")/";
-
-		# Apply the regex to the text
-		$this->mCount = preg_match_all( $regex, $this->mText, $this->mMatch,
-						PREG_PATTERN_ORDER|PREG_OFFSET_CAPTURE);
-		$this->mMatchPos=0;
-	}
-
-	function nextToken()
-	{
-		$token = $this->previewToken();
-		if ( $token ) {
-			$this->mMatchPos = $token["mMatchPos"];
-			$this->mPos = $token["mPos"];
+			$token = $this->nextToken();
+			array_unshift( $this->mQueuedToken, $token );
 		}
 		return $token;
 	}
 
 
-	function previewToken()
+	// get the next token
+	// proceeds character by character through the text, looking for characters needing
+	// special attention. Those are currently: I, R, ', [, ], newline
+	//
+	// TODO: prefixed links for Arabic wikipedia not implemented yet
+	//       handling of French blanks not yet implemented
+	function nextToken()
 	{
-		if ( $this->mMatchPos < $this->mCount  ) {
-			$token["pos"] = $this->mPos;
-			if ( $this->mPos < $this->mMatch[0][$this->mMatchPos][1] ) {
-				$token["type"] = "text";
-				$token["text"] = substr( $this->mText, $this->mPos,
-							 $this->mMatch[0][$this->mMatchPos][1] - $this->mPos );
-				# What the pointers would change to if this would not just be a preview
-				$token["mMatchPos"] = $this->mMatchPos; 
-				$token["mPos"] = $this->mMatch[0][$this->mMatchPos][1];
-			} else {
-				# If linkPrefixExtension is set,  $this->mMatch[2][$this->mMatchPos][0]
-				# contains the link prefix, or is null if no link prefix exist.
-				if ( isset( $this->mMatch[2] ) && $this->mMatch[2][$this->mMatchPos][0] )
-				{
-					# prefixed link open tag, [0] is "prefix[["
-					$token["type"] = "[[";
-					$token["text"] = $this->mMatch[2][$this->mMatchPos][0]; # the prefix
-				} else {
-					$token["type"] = $this->mMatch[0][$this->mMatchPos][0];
-					if ( substr($token["type"],1,4) == "----" )
-					{
-						# any number of hyphens bigger than four is a <HR>. 
-						# strip down to four.
-						$token["type"]="----";
-					}
-				}
-				# What the pointers would change to if this would not just be a preview
-				$token["mPos"] = $this->mPos + strlen( $this->mMatch[0][$this->mMatchPos][0] );
-				$token["mMatchPos"] = $this->mMatchPos + 1;
-			}
-		} elseif ( $this->mPos < $this->mTextLength ) {
-			$token["type"] = "text";
-			$token["text"] = substr( $this->mText, $this->mPos );
-			# What the pointers would change to if this would not just be a preview
-			$token["mPos"] = $this->mTextLength;
-			$token["mMatchPos"] = $this->mMatchPos;
+		if ( count( $this->mQueuedToken ) != 0 ) {
+			// still one token from the last round around. Return that one first.
+			$token = array_shift( $this->mQueuedToken );
 		} else {
-			$token = FALSE;
-		}
+
+			$token["text"]="";
+			$token["type"]="text";
+
+			// If no text is left, return "false".
+			if ( $this->mPos > $this->mTextLength )
+				return false;
+
+			while ( $this->mPos <= $this->mTextLength ) {
+				switch ( $ch = $this->mText[$this->mPos] ) {
+					case 'R': // for "RFC "
+						if ( $this->mText[$this->mPos+1] == 'F' &&
+					     	$this->mText[$this->mPos+2] == 'C' &&
+					     	$this->mText[$this->mPos+4] == ' ' ) {
+						     	$queueToken["type"] = $queueToken["text"] = "RFC ";
+							$this->mQueuedToken[] = $queueToken;
+					     		$this->mPos += 3;
+							break 2; // switch + while 
+						}
+						break;
+					case 'I': // for "ISBN "
+						if ( $this->mText[$this->mPos+1] == 'S' &&
+					     	$this->mText[$this->mPos+2] == 'B' &&
+					     	$this->mText[$this->mPos+3] == 'N' &&
+					     	$this->mText[$this->mPos+4] == ' ' ) {
+						     	$queueToken["type"] = $queueToken["text"] = "ISBN ";
+							$this->mQueuedToken[] = $queueToken;
+					     		$this->mPos += 4;
+							break 2; // switch + while
+						}
+						break;
+					case "[": // for links "[["
+						if ( $this->mText[$this->mPos+1] == "[" &&
+					     	     $this->mText[$this->mPos+2] == "[" ) {
+						     	$queueToken["type"] = "[[[";
+							$queueToken["text"] = "";
+							$this->mQueuedToken[] = $queueToken;
+					     		$this->mPos += 3;
+							break 2; // switch + while
+						} else if ( $this->mText[$this->mPos+1] == "[" ) {
+						     	$queueToken["type"] = "[[";
+							$queueToken["text"] = "";
+							$this->mQueuedToken[] = $queueToken;
+					     		$this->mPos += 2;
+							break 2; // switch + while 
+						}
+						break;
+					case "]": // for end of links "]]"
+						if ( $this->mText[$this->mPos+1] == "]" ) {
+						     	$queueToken["type"] = "]]";
+							$queueToken["text"] = "";
+							$this->mQueuedToken[] = $queueToken;
+					     		$this->mPos += 2;
+							break 2; // switch + while 
+						}
+						break;
+					case "'": // for all kind of em's and strong's
+						if ( $this->mText[$this->mPos+1] == "'" ) {
+							$queueToken["type"] = "'";
+							$queueToken["text"] = "";
+							while ( $this->mText[$this->mPos+1] == "'" ) {
+								$queueToken["type"] .= "'";
+								$this->mPos ++;
+							}
+							
+							$this->mQueuedToken[] = $queueToken;
+							$this->mPos ++;
+							break 2; // switch + while
+						}
+						break;
+					case "\n": // for block levels, actually, only "----" is handled.
+					case "\r":
+						if ( $this->mText[$this->mPos+1] == "-" &&
+						     $this->mText[$this->mPos+2] == "-" &&
+						     $this->mText[$this->mPos+3] == "-" &&
+						     $this->mText[$this->mPos+4] == "-" ) {
+						     	$queueToken["type"] = "----";
+							$queueToken["text"] = "";
+							$this->mQueuedToken[] = $queueToken;
+							$this->mPos += 5;
+							while ($this->mText[$this->mPos] == "-" ) {
+								$this->mPos ++;
+							}
+							break 2;
+						}
+				} /* switch */
+				$token["text"].=$ch;
+				$this->mPos ++;
+				// echo $this->mPos . "<br>\n"; 
+			} /* while */
+		} /* if (nothing left in queue) */
 		return $token;
 	}
 
