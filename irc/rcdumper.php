@@ -1,17 +1,19 @@
 <?php
-
-/*
-Example command-line:
-	php rcdumper.php | irc -d -c \#channel-to-join nick-of-bot some.irc.server
-where irc is the name of the ircII executable.
-The name of the IRC server should match $ircServer below.
-*/
+/**
+ * A recentchanges IRC bot
+ *
+ * Example command-line where irc is the name of the ircII executable:
+ *  php rcdumper.php | irc -d -c \#channel nick server
+ * The name of the IRC server should match $ircServer below.
+ * 
+ * @package MediaWiki
+ * @subpackage IRC
+ */
 
 $ircServer = "irc.freenode.net";
 
 # Set the below if this is running on a non-Wikimedia site:
 #$serverName="your.site.here";
-
 
 ini_set( "display_errors", 1 );
 $wgCommandLineMode = true;
