@@ -11,8 +11,8 @@
 	NS_TALK				=> 'Discussió',
 	NS_USER				=> 'Usuari',
 	NS_USER_TALK		=> 'Usuari_Discussió',
-	NS_WIKIPEDIA		=> 'Viquipèdia',
-	NS_WIKIPEDIA_TALK	=> 'Viquipèdia_Discussió',
+	NS_WIKIPEDIA		=> $wgMetaNamespace,
+	NS_WIKIPEDIA_TALK	=> $wgMetaNamespace.'_Discussió',
 	NS_IMAGE			=> 'Imatge',
 	NS_IMAGE_TALK		=> 'Imatge_Discussió',
 	NS_MEDIAWIKI		=> 'MediaWiki',
@@ -175,17 +175,17 @@
 "linktrail"     => "/^((?:[a-z]|à|è|é|í|ò|ó|ú|ç|·|ï|ü|')]+)(.*)\$/sD",
 "mainpage"		=> "Portada",
 "about"			=> "Quant a...",
-"aboutwikipedia" => "Quant a la Viquipèdia",
-"aboutpage"		=> "Viquipèdia: Quant a",
+"aboutwikipedia" => "Quant a la {{SITENAME}}",
+"aboutpage"		=> "{{ns:4}}: Quant a",
 "help"			=> "Ajuda",
-"helppage"		=> "Viquipèdia:Ajuda",
-"wikititlesuffix"		=>"Viquipèdia",
+"helppage"		=> "{{ns:4}}:Ajuda",
+"wikititlesuffix"		=> "{{SITENAME}}",
 "bugreports"	=> "Informes d'error del programari",
-"bugreportspage" => "Viquipèdia:Informes_d'error",
+"bugreportspage" => "{{ns:4}}:Informes_d'error",
 "faq"			=> "PMF",
-"faqpage"		=> "Viquipèdia:PMF",
+"faqpage"		=> "{{NS:4}}:PMF",
 "edithelp"		=> "Ajuda d'edició",
-"edithelppage"	=> "Viquipèdia:Com_s'edita_una_pàgina",
+"edithelppage"	=> "{{NS:4}}:Com_s'edita_una_pàgina",
 "cancel"		=> "Anul·la",
 "qbfind"		=> "Troba",
 "qbbrowse"		=> "Fulleja",
@@ -198,7 +198,7 @@
 "currentevents" => "Actualitat",
 "errorpagetitle" => "Error",
 "returnto"		=> "Torna a $1.",
-"fromwikipedia"	=> "De Viquipèdia, l'enciclopèdia lliure.",
+"fromwikipedia"	=> "De {{SITENAME}}",
 "whatlinkshere"	=> "Pàgines que enllacen ací",
 "help"			=> "Ajuda",
 "search"		=> "Cerca",
@@ -219,9 +219,9 @@
 "lastmodified"	=> "Aquesta pàgina ha estat modificada per última vegada el $1.",
 "viewcount"		=> "Aquesta pàgina ha estat visitada $1 vegades.",
 "gnunote" => "Aquesta pàgina es fa disponible sota la <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a>.",
-"printsubtitle" => "(De http://ca.wikipedia.org)",
+"printsubtitle" => "(De {{SERVER}})",
 "protectedpage" => "Pàgina protegida",
-"administrators" => "Viquipèdia:Administradors",
+"administrators" => "{{ns:4}}:Administradors",
 "sysoptitle"	=> "Accés requerit de Sysop",
 "sysoptext"		=> "L'acció que heu requerit només pot ser duta a terme per usuaris amb estatus de \"sysop\".
 Ver $1.",
@@ -231,16 +231,16 @@ Vegeu $1.",
 "nbytes"		=> "$1 octets",
 "go"			=> "Vés-hi",
 "ok"			=> "D'acord",
-"sitetitle"		=> "Viquipèdia",
+"sitetitle"		=> "{{SITENAME}}",
 "sitesubtitle"	=> "L'Enciclopèdia Lliure",
 "retrievedfrom" => "Obtingut de \"$1\"",
 
 # Main script and global functions
 #
 "nosuchaction"	=> "Aquesta acció no existeix",
-"nosuchactiontext" => "L'acció especificada per l'URL no és reconeguda pel programari de la Viquipèdia",
+"nosuchactiontext" => "L'acció especificada per l'URL no és reconeguda pel programari de la {{SITENAME}}",
 "nosuchspecialpage" => "No existeix aquesta pàgina especial",
-"nospecialpagetext" => "Heu requerit una pàgina especial que no és reconeguda pel programari de la Viquipèdia.",
+"nospecialpagetext" => "Heu requerit una pàgina especial que no és reconeguda pel programari de la {{SITENAME}}.",
 
 # General errors
 #
@@ -254,7 +254,7 @@ Vegeu $1.",
 "nodb"			=> "No s'ha pogut seleccionar la base de dades$1",
 "readonly"		=> "Base de dades bloquejada",
 "enterlockreason" => "Entreu una raó per bloquejar-la, incloent una estimació de quan s'efecturarà el bloqueig",
-"readonlytext"	=> "La base de dades de la Viquipèdia està temporalment bloquejada per noves entrades o altres modificacions, 
+"readonlytext"	=> "La base de dades de la {{SITENAME}} està temporalment bloquejada per noves entrades o altres modificacions, 
 
 probablement per manteniment de rutina, després del qual tornarà a la normalitat. L'administrador la bloquejada ha ofert aquesta explicació:
 <p>$1",
@@ -280,11 +280,11 @@ fent-ne arribar l'URL.",
 # Login and logout pagesítulo
 "logouttitle"	=> "Fin de sessió",
 "logouttext"	=> "Heu acabat la vostra sessió.
-Podeu continuar emprant la Viquipèdia de forma anònima, o podeu
+Podeu continuar emprant la {{SITENAME}} de forma anònima, o podeu
 iniciar sessió un altre cop amb el mateix o un altre nom d'usuari.\n",
 
 "welcomecreation" => "<h2>Benvingut, $1!</h2><p>El vostre compte ha estat creat.
-Recordeu personalitzar les vostres preferències del Viquipèdia.",
+Recordeu personalitzar les vostres preferències del {{SITENAME}}.",
 
 "loginpagetitle" => "Registre/Entrada",
 "yourname"		=> "Nom d'usuari",
@@ -295,7 +295,7 @@ Recordeu personalitzar les vostres preferències del Viquipèdia.",
 "loginproblem"	=> "<b>Hi ha hagut un problema amb l'entrada.</b><br>Proveu-ho de nou!",
 "alreadyloggedin" => "<font color=red><b>Benvingut, usuari $1!</b></font><br>\n",
 
-"areyounew"		=> "Si sou nou a la Viquipèdia en català, i
+"areyounew"		=> "Si sou nou a la {{SITENAME}} en català, i
 voleu tenir un compte d'usuari, ingresseu un nom d'usuari,
 i teclegeu i repetiu una contrasenya.
 La vostra direcció electrònica és opcional: si perdeu o oblideu la
@@ -313,14 +313,14 @@ contrasenya, podeu demanar que s'enviï a la direcció que vulgueu<br>\n",
 "loginerror"	=> "Error d'inici de sessió",
 "noname"		=> "No heu especificat un nom vàlid d'usuari.",
 "loginsuccesstitle" => "S'ha iniciat la sessió amb èxit",
-"loginsuccess"	=> "Heu iniciat la sessió a Viquipèdia com a \"$1\".",
+"loginsuccess"	=> "Heu iniciat la sessió a {{SITENAME}} com a \"$1\".",
 "nosuchuser"	=> "No hi ha cap usuari amb el nom \"$1\".
 Reviseu-ne l'ortografia, o empreu el formulari d'avall per crear un nou compte d'usuari.",
 "wrongpassword"	=> "La contrasenya que heu ingressat és incorrecta. Torneu-ho a provar.",
 "mailmypassword" => "Envia'm una nova contrasenya per correu electrònic",
-"passwordremindertitle" => "Recordatori de contrasenya de la Viquipèdia",
+"passwordremindertitle" => "Recordatori de contrasenya de la {{SITENAME}}",
 "passwordremindertext" => "Algú (amb l'IP $1)
-ha sol·licitat que li enviéssim una nova contrasenya per iniciar la sessió a la Viquipèdia.
+ha sol·licitat que li enviéssim una nova contrasenya per iniciar la sessió a la {{SITENAME}}.
 La contrasenya per l'usuari \"$2\" és ara \"$3\".
 Ara hauríeu d'iniciar la sessió i canviar la vostra contrasenya.",
 "noemail"		=> "No hi ha cap direcció electrònica registrada per l'usuari \"$1\".",
@@ -358,7 +358,7 @@ Haureu d'incorporar els vostres canvis en el text existent.
 "editingold"	=> "<strong>ATENCIÓ:Esteu editant una versió antiga d'aquesta pàgina.
 Si la graveu, els canvis fets des d'eixa revisió es perdran.</strong>\n",
 "yourdiff"		=> "Diferències",
-"copyrightwarning" => "Noteu que totes les contribucions a la Viquipèdia 
+"copyrightwarning" => "Noteu que totes les contribucions a la {{SITENAME}} 
 es consideren fetes públiques sota la llicència de documentació lliure GNU 
 (mostra detalls a $1). 
  Si no desitgeu que la gent corregeixi els vostres escrits sense pietat 
@@ -394,9 +394,9 @@ Revidseu l'URL que heu emprat per accedir-hi.\n",
 # Search results
 #
 "searchresults" => "Resultats de la recerca",
-"searchhelppage" => "Viquipèdia:Recerca",
-"searchingwikipedia" => "S'està cercant a la Viquipèdia",
-"searchresulttext" => "Per a més informació sobre les recerques de la Viquipèdia, aneu a $1.",
+"searchhelppage" => "{{ns:4}}:Recerca",
+"searchingwikipedia" => "S'està cercant a la {{SITENAME}}",
+"searchresulttext" => "Per a més informació sobre les recerques de la {{SITENAME}}, aneu a $1.",
 "searchquery"	=> "Per consulta \"$1\"",
 "badquery"		=> "Consulta de recerca formulada de manera incorrecta",
 "badquerytext"	=> "No s'ha pogut processar la recerca.
@@ -466,15 +466,15 @@ i l'hora del servidor (UTC).",
 # Recent changes
 #
 "recentchanges" => "Canvis recents",
-"recentchangestext" => "Seguiu els canvis més recentes de la Viquipèdia en aquesta pàgina.
-[[Viquipèdia:Benvingut]]!
-Mireu aquestes pàgines, si us plau: [[viquipèdia:PMF|PMF de la Viquipèdia]],
-[[Viquipèdia:Polítiques i guies|polítiques de la Viquipèdia]]
-(especialment [[viquipèdia:Convencions de noms|les convencions per anomenar articles]]i
-[[viquipèdia:Punt de vista neutral|punt de vista neutral]]).
+"recentchangestext" => "Seguiu els canvis més recentes de la {{SITENAME}} en aquesta pàgina.
+[[{{ns:4}}:Benvingut]]!
+Mireu aquestes pàgines, si us plau: [[{{ns:4}}:PMF|PMF de la {{SITENAME}}]],
+[[{{ns:4}}:Polítiques i guies|polítiques de la {{SITENAME}}]]
+(especialment [[{{ns:4}}:Convencions de noms|les convencions per anomenar articles]]i
+[[{{ns:4}}:Punt de vista neutral|punt de vista neutral]]).
 
-Si voleu que la Viquipèdia tingui èxit, és molt important que no hi afegiu
-material restringit per [[viquipèdia:Copyrights|drets d'autor]].
+Si voleu que la {{SITENAME}} tingui èxit, és molt important que no hi afegiu
+material restringit per [[{{ns:4}}:Copyrights|drets d'autor]].
 La responsabilitat legal podria realment malmetre un projecte com aquest, així que si us plau, no ho feu.
 
 Vegeu també [http://meta.wikipedia.org/wiki/Special:Recentchanges discussió recent en Meta (multilingüe)].",
@@ -532,7 +532,7 @@ Per incloure la imatge en un article, empreu un enllaç de la forma
 '''<nowiki>[[imatge:arxiu.png|alt text]]</nowiki> o
 '''<nowiki>[[media:arxiu.ogg]]</nowiki>''' per sons.
 
-Noteu que de la mateixa manera com passa amb les pàgines de la Viquipèdia, altri pot
+Noteu que de la mateixa manera com passa amb les pàgines de la {{SITENAME}}, altri pot
 editar o esborrar els arxius que heu carregat si pensen que és bo per a
 l'enciclopèdia, i se us pot bloquejar, impedint-vos carregar arxius si abuseu del sistema.",
 "uploadlog"		=> "registre de càrregues",
@@ -546,8 +546,8 @@ carregat més recentement. Totes les hores són les del servidor (UTC).
 "filedesc"		=> "Sumari",
 "affirmation"	=> "Afirmo que el propietari del copyright d'aquest arxiu
 està d'acord en llicenciar-lo sota els termes de $1.",
-"copyrightpage" => "Viquipèdia:Copyrights",
-"copyrightpagename" => "Viquipèdia copyright",
+"copyrightpage" => "{{ns:4}}:Copyrights",
+"copyrightpagename" => "{{ns:4}} copyright",
 "uploadedfiles"	=> "Arxius carregats",
 "noaffirmation" => "Heu d'afirmar que les carregues d'arxius no violen cap copyright.",
 "ignorewarning"	=> "Ignora l'advertència i desa l'arxiu de totes maneres.",
@@ -596,7 +596,7 @@ aquesta versió antiga, (rev) = reverteix a aquesta versió antiga.
 "sitestats"		=> "Estadístiques del lloc",
 "userstats"		=> "Estadístiques d'usuari",
 "sitestatstext" => "Hi ha un total de <b>$1</b> pàgines en la base de dades.
-Això inclou pàgines de discussió, pàgines sobre la Viquipèdia, pàgines mínimes,
+Això inclou pàgines de discussió, pàgines sobre la {{SITENAME}}, pàgines mínimes,
 redireccions, i altres que probablement no es poden classificar com a articles.
 Excloent-les, hi ha <b>$2</b> pàgines que probablement són articles legítims.<p>
 Hi ha hagut un total de <b>$3</b> visites a pàgines, i <b>$4</b> edicions de pàgina
@@ -614,7 +614,7 @@ dels quals <b>$2</b> són administradors (vegeu $3).",
 sobrecarregar la base de dades, així que si us plau, no torneu a carregar la pàgina després de cada element que arregleu ;-)",
 "maintenancebacklink"	=> "Torna a la pàgina de manteniment",
 "disambiguations"	=> "Pàgines de desambiguació",
-"disambiguationspage"	=> "Viquipèdia:Enllaços a pàgines de desambiguació",
+"disambiguationspage"	=> "{{ns:4}}:Enllaços a pàgines de desambiguació",
 "disambiguationstext"	=> "Els següents articles enllacen a una<i>pàgina de desambiguació</i>. Haurien d'enllaçar al tema apropiat.
 
 <br>Una pàgina és considerada una pàgina de desambiguació si és enllaçada des de $1.<br>Enllaços des d'altres espais de nom (Com Viquipè
@@ -672,7 +672,7 @@ tot i estar en ús actiu.",
 "booksourcetext" => "A continuació hi ha un llistat d'enllaços a altres llocs que venen llibres nous i de segona mà, i també poden contenir 
 
 informació addicional sobre els llibres que esteu cercant.
-La Viquipèdia no està afiliada amb cap d'aquests negocis, i aquest llistat no ha de ser considerat com propaganda.",
+La {{SITENAME}} no està afiliada amb cap d'aquests negocis, i aquest llistat no ha de ser considerat com propaganda.",
 
 # Email this user
 #
@@ -736,7 +736,7 @@ Canvis futurs a aquesta pàgina i a la vostra pàgina de discussió associada hi
 "confirmdeletetext" => "Esteu a punt d'esborrar una pàgina o imatge 
 de forma permanent, així com tota la seva història de la base de dades.
 Confirmeu que realment ho voleu fer, que enteneu les
-conseqüències, i que el esteu fent està d'acord amb [[Viquipèdia:Polítiques]].",
+conseqüències, i que el esteu fent està d'acord amb [[{{ns:4}}:Polítiques]].",
 "confirmcheck"	=> "Sí, realment ho vull esborrar.",
 "actioncomplete" => "Acció completa",
 "deletedtext"	=> "\"$1\" ha estat esborrat.
@@ -773,7 +773,7 @@ revisió actual del la pàgina \"viva\" no serà substituïda automàticament.",
 "undeletebtn" => "Restaura!",
 "undeletedarticle" => "restaurat \"$1\"",
 "undeletedtext"   => "L'article [[$1]] ha estat restaurat amb èxit.
-Vegeu [[Viquipèdia:Registre_d'esborrats]] per un llistat d'esborrats i restauracions recents.",
+Vegeu [[{{ns:4}}:Registre_d'esborrats]] per un llistat d'esborrats i restauracions recents.",
 
 # Contributions
 #
@@ -800,7 +800,7 @@ Vegeu [[Viquipèdia:Registre_d'esborrats]] per un llistat d'esborrats i restaura
 "blockiptext"	=> "Empreu el següent formulari per bloquejar l'accés
 d'escriptura des d'una direcció IP específica.
 això hauria de fer-se només per prevenir el vandalisme, i
-d'acord a la [[Viquipèdia:Política| política de la Viquipèdia]].
+d'acord a la [[{{ns:4}}:Política| política de la {{SITENAME}}]].
 Empleneu el diàleg d'avall amb una raó específica (per exemple, citant
 quines pàgines en concret estan sent vandalitzades).",
 "ipaddress"		=> "Direcció IP",
@@ -842,22 +842,22 @@ Confirmeu que això és el que voleu fer.",
 "locknoconfirm" => "No heu respost al diàleg de confirmació.",
 "lockdbsuccesssub" => "S'ha assolit el bloqueig de la base de dades",
 "unlockdbsuccesssub" => "S'ha extret el bloqueig de la base de dades",
-"lockdbsuccesstext" => "S'ha bloquejat la base de dades de la Viquipèdia.
+"lockdbsuccesstext" => "S'ha bloquejat la base de dades de la {{SITENAME}}.
 <br>Recordeu-vos-en d'extreure el bloqueig havent acabant el manteniment.",
-"unlockdbsuccesstext" => "La base de dades de la Viquipèdia ha estat desbloquejada.",
+"unlockdbsuccesstext" => "La base de dades de la {{SITENAME}} ha estat desbloquejada.",
 
 # SQL query
 #
 "asksql"		=> "Consulta SQL",
 "asksqltext"	=> "Empreu el següent formulari per fer una consulta directa
-a la base de dades de la Viquipèdia. Empreu les cometes simples ('como aquestes') per delimitar
+a la base de dades de la {{SITENAME}}. Empreu les cometes simples ('como aquestes') per delimitar
 cadenes de caràcters literals.
 això pot afegir una càrrega considerable al servidor, així que
 si us plau empreu aquesta funció el mínim possible.",
 "sqlquery"		=> "Entreu la consulta",
 "querybtn"		=> "Envia la consulta",
 "selectonly"	=> "Consultes diferents a \"SELECT\" estan restringides només
-als desenvolupadors de la Viquipèdia.",
+als desenvolupadors de la {{SITENAME}}.",
 "querysuccessful" => "Consulta amb èxit",
 
 # Move page
