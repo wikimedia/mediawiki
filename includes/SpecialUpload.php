@@ -39,7 +39,8 @@ function processUpload()
 	global $wpUploadSaveName, $wpUploadTempName, $wpUploadSize;
 	global $wgSavedFile, $wgUploadOldVersion, $wpUploadOldVersion;
 	global $wgUseCopyrightUpload , $wpUploadCopyStatus , $wpUploadSource ;
-
+        global $wgCheckFileExtensions, $wgFileExtensions;
+      
 	if ( $wgUseCopyrightUpload )
 	  {
 	    $wpUploadAffirm = 1 ;
@@ -86,10 +87,12 @@ function processUpload()
 		  ( 0 != strcmp( ucfirst( $basename ), $wpUploadSaveName ) ) ) {
 			return uploadWarning( wfMsg( "badfilename", $wpUploadSaveName ) );
 		}
-		$extensions = array( "png", "jpg", "jpeg", "ogg" ); 
-		if ( ( ! $wpIgnoreWarning ) &&
-		  ( ! in_array( strtolower( $ext ), $extensions ) ) ) {
+	    
+	        if ( $wgCheckFileExtensions ) {
+		    if ( ( ! $wpIgnoreWarning ) &&
+			 ( ! in_array( strtolower( $ext ), $wgFileExtensions ) ) ) {
 			return uploadWarning( wfMsg( "badfiletype", $ext ) );
+		    }
 		}
 		if ( ( ! $wpIgnoreWarning ) && ( $wpUploadSize > 150000 ) ) {
 			return uploadWarning( WfMsg( "largefile" ) );

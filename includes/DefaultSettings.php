@@ -152,6 +152,16 @@ $wgDisableAnonTalk = false;
 # Requires zlib support enabled in PHP.
 $wgUseGzip = false;
 
+# This is the list of preferred extensions for uploading files. Uploading
+# files with extensions not in this list will trigger a warning.
+
+$wgFileExtensions = array( "png", "jpg", "jpeg", "ogg" );
+
+# This is a flag to determine whether or not to check file extensions on
+# upload.
+
+$wgCheckFileExtensions = true;
+
 $wgPasswordSalt = true; # For compatibility with old installations set to false
 
 # Which namespaces should support subpages?
