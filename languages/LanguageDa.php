@@ -709,7 +709,7 @@ information omkring filen, såsom hvor den kom fra, hvornår den er lavet
 og af hvem, og andre ting du ved om filen.",
 "uploadwarning" => "Oplægningsadvarsel",
 "savefile"		=> "Gem fil",
-"uploadedimage" => "Lagde \"$1\" op",
+"uploadedimage" => "Lagde \"[[$1]]\" op",
 "uploaddisabled" => "Desværre er funktionen til at lægge billeder op afbrudt på denne server.",
 
 # Image list
@@ -947,8 +947,8 @@ Den seneste redigering er foretaget af [[Bruger:$3|$3]] ([[Bruger diskussion:$3|
 "protectlogpage" => "Liste_over_beskyttede_sider",
 "protectlogtext" => "Herunder er en liste over sider der er blevet beskyttet/har fået fjernet beskyttelsen.
 Se [[Wikipedia:Beskyttet side]] for mere information.",
-"protectedarticle" => "beskyttet $1",
-"unprotectedarticle" => "fjernet beskyttelse $1",
+"protectedarticle" => "beskyttet [[$1]]",
+"unprotectedarticle" => "fjernet beskyttelse [[$1]]",
 
 # Undelete
 "undelete" => "Gendan en slettet side",

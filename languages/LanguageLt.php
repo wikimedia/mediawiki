@@ -995,7 +995,7 @@ in active use.",*/
 #'uploadbtn' => "Upload file",
 #'uploaddisabled' => "Sorry, uploading is disabled.",
 #'uploadedfiles' => "Uploaded files",
-'uploadedimage' => "įdėta \"$1\"",
+'uploadedimage' => "įdėta \"[[$1]]\"",
 #'uploaderror' => "Upload error",
 #'uploadfile' => "Upload images, sounds, documents etc.",
 #'uploadlink' => "Upload images",

@@ -593,7 +593,7 @@ podatke o datoteki, na primer od kod prihaja, kdaj je bila
 izdelana in kdo jo je izdelal ali karkoli bi še vedeli o njej.",
 "uploadwarning"         => "Opozorilo nalaganja",
 "savefile"		=> "Shrani datoteko",
-"uploadedimage"         => "naloženo \"$1\"",
+"uploadedimage"         => "naloženo \"[[$1]]\"",
 
 # Image list
 #

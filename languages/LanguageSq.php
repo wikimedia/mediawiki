@@ -661,7 +661,7 @@ informacion për skedarin, si p.sh. ku e gjete, kur u bë, kush e bëri, dhe çd
 tjetër që na duhet të dimë për të.",
 "uploadwarning" => "Kujdes dhënie",
 "savefile"		=> "Ruani skedarin",
-"uploadedimage" => "dha \"$1\"",
+"uploadedimage" => "dha \"[[$1]]\"",
 "uploaddisabled" => "Ndjesë, dhëniet janë bllokuar në këtë shërbyes dhe nuk është gabimi yt.",
 
 # Image list
@@ -881,8 +881,8 @@ Redaktimi i fundit është bërë nga [[Përdoruesi:$3|$3]] ([[Përdoruesi disku
 "protectlogpage" => "Mbroj_rregj",
 "protectlogtext" => "Më poshtë është një listë e \"mbrojtjeve/lirimeve\" të faqeve.
 Shiko [[$wgMetaNamespace:Faqe e mbrojtur]] për më shumë informacion.",
-"protectedarticle" => "mbrojti $1",
-"unprotectedarticle" => "liroji $1",
+"protectedarticle" => "mbrojti [[$1]]",
+"unprotectedarticle" => "liroji [[$1]]",
 
 # Undelete
 "undelete" => "Restauro faqet e grisura",

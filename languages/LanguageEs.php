@@ -651,7 +651,7 @@ la información acerca del archivo, tal como de dónde viene, cuándo fue
 creado y por quién, y cualquier otra cosa que puedas saber al respecto.",
 "uploadwarning" => "Advertencia de subida de archivo",
 "savefile"		=> "Grabar archivo",
-"uploadedimage" => "\"$1\" subido.",
+"uploadedimage" => "\"[[$1]]\" subido.",
 "uploaddisabled" => "Lo sentimos, subir archivos ha sido desactivado en este servidor.",
 # Image list
 #
@@ -1000,8 +1000,6 @@ Por favor, elige otro nombre.",
         'mw_math_modern' => "Recomendado para navegadores modernos",
 	'mw_math_mathml' => 'MathML',
 
-);
-
 # Bits of text used by many pages:
 #
 'categories' => 'Categorías',
@@ -1179,7 +1177,7 @@ ta['ca-nstab-category'] = new Array('c','Ver la página de categoría');",
 
 'movedto' => "renombrado a",
 'moredotdotdot' => "Más...",
-
+);
 class LanguageEs extends LanguageUtf8 {
 
 	function getNamespaces() {

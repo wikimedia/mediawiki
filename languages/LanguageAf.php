@@ -549,7 +549,7 @@ Alle tye is bedienertyd (UGT).
 Volg asseblief hierdie skakel: ($2) na die beskrywingsbladsy en vul inligting in oor die die lêer, soos waar dit vandaan kom, wie het dit geskep en wanneer, en enige iets anders wat jy daarvan af weet.",
 "uploadwarning" => "Laaiwaarskuwing",
 "savefile"		=> "Stoor lêer",
-"uploadedimage" => "Het \"$1\" gelaai",
+"uploadedimage" => "Het \"[[$1]]\" gelaai",
 
 # Image list
 #

@@ -559,7 +559,7 @@ la informació necesàir sobre l'arxiu, tal com la procedència, la data de crea
 i l'autor, i qualsevol altra cosa que pugueu saber al respecte.",
 "uploadwarning" => "Advertència de càrrega d'arxiu",
 "savefile"		=> "Desa arxiu",
-"uploadedimage" => "\"$1\" carregat.",
+"uploadedimage" => "\"[[$1]]\" carregat.",
 
 # Image list
 #

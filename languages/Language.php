@@ -81,6 +81,7 @@ if(isset($wgExtraNamespaces)) {
 	'rcusemodstyle' 	=> 1,
 	'showupdated'		=> 1,
 	'fancysig' => 0,
+	'externaleditor' => 0,
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
@@ -156,7 +157,8 @@ define( 'MW_DATE_USER_FORMAT', true );
 	'shownumberswatching',
 	'rcusemodstyle',
 	'showupdated',
-	'fancysig'
+	'fancysig',
+	'externaleditor'
 );
 
 /* private */ $wgBookstoreListEn = array(
@@ -284,6 +286,7 @@ global $wgRightsText;
 'tog-rcusemodstyle' 		=> 'Show recent changes in UseMod style: only the most recent change of any page is listed.',
 'tog-showupdated'		=> 'Show update marker ',
 'tog-fancysig' => 'Raw signatures (without automatic link)',
+'tog-externaleditor' => 'Use external editor by default',
 
 # dates
 'sunday' => 'Sunday',
@@ -1014,7 +1017,7 @@ in information about the file, such as where it came from, when it was
 created and by whom, and anything else you may know about it. If this is an image, you can insert it like this: <tt><nowiki>[[Image:$1|thumb|Description]]</nowiki></tt>",
 'uploadwarning' => 'Upload warning',
 'savefile'		=> 'Save file',
-'uploadedimage' => "uploaded \"$1\"",
+'uploadedimage' => "uploaded \"[[$1]]\"",
 'uploaddisabled' => 'Sorry, uploading is disabled.',
 'uploadcorrupt' => 'The file is corrupt or has an incorrect extension. Please check the file and upload again.',
 
@@ -1312,8 +1315,8 @@ Please hit "back" and reload the page you came from, then try again.',
 'protectlogpage' => 'Protection_log',
 'protectlogtext' => "Below is a list of page locks/unlocks.
 See [[Project:Protected page]] for more information.",
-'protectedarticle' => "protected $1",
-'unprotectedarticle' => "unprotected $1",
+'protectedarticle' => "protected \"[[$1]]\"",
+'unprotectedarticle' => "unprotected \"[[$1]]\"",
 'protectsub' =>"(Protecting \"$1\")",
 'confirmprotecttext' => 'Do you really want to protect this page?',
 'confirmprotect' => 'Confirm protection',
@@ -1387,7 +1390,7 @@ pages that were vandalized).",
 'unblockiptext'	=> 'Use the form below to restore write access
 to a previously blocked IP address or username.',
 'ipusubmit'		=> 'Unblock this address',
-'ipusuccess'	=> "\"$1\" unblocked",
+'ipusuccess'	=> "\"[[$1]]\" unblocked",
 'ipblocklist'	=> 'List of blocked IP addresses and usernames',
 'blocklistline'	=> "$1, $2 blocked $3 (expires $4)",
 'blocklink'		=> 'block',
@@ -1395,7 +1398,7 @@ to a previously blocked IP address or username.',
 'contribslink'	=> 'contribs',
 'autoblocker'	=> "Autoblocked because you share an IP address with \"$1\". Reason \"$2\".",
 'blocklogpage'	=> 'Block_log',
-'blocklogentry'	=> 'blocked "$1" with an expiry time of $2',
+'blocklogentry'	=> 'blocked "[[$1]]" with an expiry time of $2',
 'blocklogtext'	=> 'This is a log of user blocking and unblocking actions. Automatically
 blocked IP addresses are not listed. See the [[Special:Ipblocklist|IP block list]] for
 the list of currently operational bans and blocks.',
@@ -1550,8 +1553,8 @@ title. Please merge them manually.',
 'movetalk'		=> 'Move "talk" page as well, if applicable.',
 'talkpagemoved' => 'The corresponding talk page was also moved.',
 'talkpagenotmoved' => 'The corresponding talk page was <strong>not</strong> moved.',
-'1movedto2'		=> "$1 moved to $2",
-'1movedto2_redir' => '$1 moved to $2 over redirect',
+'1movedto2'		=> "[[$1]] moved to [[$2]]",
+'1movedto2_redir' => '[[$1]] moved to [[$2]] over redirect',
 'movelogpage' => 'Move log',
 'movelogpagetext' => 'Below is a list of page moved.',
 
@@ -1794,6 +1797,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 
 'passwordtooshort' => 'Your password is too short. It must have at least $1 characters.',
 
+# external editor support
+'edit-externally' => 'Edit this file using an external application',
+'edit-externally-help' => 'See the [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] for more information.',
 );
 
 #--------------------------------------------------------------------------

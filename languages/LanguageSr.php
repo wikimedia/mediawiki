@@ -679,7 +679,7 @@ or '''<nowiki>[[media:file.ogg]]</nowiki>''' за звукове.
 ко га је направио, ибило шта друго што знате о њему.",
 "uploadwarning" => "Упозорење при слању",
 "savefile"  => "Сними фајл",
-"uploadedimage" => "послато \"$1\"",
+"uploadedimage" => "послато \"[[$1]]\"",
 
 # Image list
 #

@@ -657,7 +657,7 @@ in information about the file, such as where it came from, when it was
 created and by whom, and anything else you may know about it.",
 "uploadwarning" => "Upload warning",
 "savefile"		=> "Save file",
-"uploadedimage" => "uploaded \"$1\"",
+"uploadedimage" => "uploaded \"[[$1]]\"",
 
 # Image list
 #
@@ -874,8 +874,8 @@ Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
 "protectlogpage" => "Protection_log",
 "protectlogtext" => "Below is a list of page locks/unlocks.
 See [[$wgMetaNamespace:Protected page]] for more information.",
-"protectedarticle" => "protected $1",
-"unprotectedarticle" => "unprotected $1",
+"protectedarticle" => "protected [[$1]]",
+"unprotectedarticle" => "unprotected [[$1]]",
 
 # Undelete
 "undelete" => "Restore deleted page",

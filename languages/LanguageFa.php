@@ -712,7 +712,7 @@ you may be blocked from uploading if you abuse the system.",
 و هر چیز دیگری که ممکن است در مورد آن بدانید، پر کنید.",
 "uploadwarning" => "هشدار بار کردن",
 "savefile"		=> "ذخیره‌ی پرونده",
-"uploadedimage" => "«$1» بار شد",
+"uploadedimage" => "«[[$1]]» بار شد",
 "uploaddisabled" => "شرمنده، بار کردن از کار افتاده است.",
 				       
 # Image list
@@ -927,8 +927,8 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 "protectlogpage" => "سیاهه‌ی_محافظت",
 "protectlogtext" => "در زیر فهرست قفل کردن‌ها/ازقفل‌درآوردن‌های صفحات آمده است.
 برای اطلاعات بیشتر به [[ویکی‌پدیا:صفحه‌ی محافظت‌شده]] مراجعه کنید.",
-"protectedarticle" => "$1 محافظت شد",
-"unprotectedarticle" => "$1 از محافظت در آمد",
+"protectedarticle" => "[[$1]] محافظت شد",
+"unprotectedarticle" => "[[$1]] از محافظت در آمد",
 
 # Undelete
 "undelete" => "احیای صفحه‌ی حذف شده",

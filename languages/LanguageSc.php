@@ -504,7 +504,7 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).
 Segui questo link: ($2) per modificare la pagina di descrizione del file che hai appena caricato, e immetti le informazioni che ritieni opportune (cosa rappresenta, dove lo hai trovato, chi lo ha creato e quando, etc) oltre ad una nota circa la situazione di copyright sul file. Non omettere la nota sul copytright, o il file verrebbe cancellato molto presto. ",
 "uploadwarning" => "Avviso di Upload",
 "savefile"		=> "Salva file",
-"uploadedimage" => "caricato \"$1\"",
+"uploadedimage" => "caricato \"[[$1]]\"",
 
 # Image list
 #

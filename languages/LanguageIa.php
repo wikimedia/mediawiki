@@ -598,7 +598,7 @@ quando illo esseva create e per qui, e toto plus que tu sape
 a su proposito.",
 "uploadwarning" => "Advertimento de carga",
 "savefile"		=> "Salvar file",
-"uploadedimage" => "\"$1\" cargate",
+"uploadedimage" => "\"[[$1]]\" cargate",
 
 # Image list
 #

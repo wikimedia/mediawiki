@@ -640,7 +640,7 @@ verki iom da informo pri la dosiero. Ekzemple, de kie ĝi devenas;
 kiam ĝi estis kreita, kaj kiu kreis ĝin; kaj ion ajn, kion vi scias pri ĝi.",
 "uploadwarning" => "Averto",
 "savefile"		=> "Konservu dosieron",
-"uploadedimage" => "alŝutis \"$1\"",
+"uploadedimage" => "alŝutis \"[[$1]]\"",
 "uploaddisabled" => "Ni petas pardonon, sed oni malebligis alŝutadon.",
 
 # Image list

@@ -848,7 +848,7 @@ eolas faoin comhad, mar shampla cá bhfuarthas é, cathain a
 chruthaí­odh é agus rud eile ar bith tá 'fhios agat faoi.",
 "uploadwarning" => "Rabhadh suaslódála",
 "savefile"      => "Sábháil comhad",
-"uploadedimage" => "D'uaslódáladh \"$1\"",
+"uploadedimage" => "D'uaslódáladh \"[[$1]]\"",
 
 # Image list
 #
@@ -1081,8 +1081,8 @@ Ba é [[Úsáideoir:$3|$3]] ([[Plé úsáideora:$3|Plé]]) an té a rinne an ath
 "protectlogpage" => "Cuntas_cosanta",
 "protectlogtext" => "Seo é liosta de glais a cuireadh ar / baineadh de leathanaigh.
 Féach ar [[$wgMetaNamespace:Leathanach faoi ghlas]] chun a thuilleadh eolais a fháil.",
-"protectedarticle" => "faoi ghlas $1",
-"unprotectedarticle" => "gan ghlas $1",
+"protectedarticle" => "faoi ghlas [[$1]]",
+"unprotectedarticle" => "gan ghlas [[$1]]",
 'protectsub' =>"(Ag curadh \"$1\" faoi ghlas)",
 'confirmprotecttext' => 'Ar mhaith leat go fírinneach glas a chur ar an leathanach seo?',
 'confirmprotect' => 'Cinntigh an glas',

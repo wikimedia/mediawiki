@@ -630,7 +630,7 @@ Todas as datas mostradas são do servidor (UTC).
 Por favor, siga este link : ($2) para ir �  página de descrição e preencha-a com informações sobre o arquivo, como de onde veio , quando e por quem foi criada, e qualquer outra coisa a mais que você saiba.",
 "uploadwarning" => "Aviso de Upload",
 "savefile"      => "Salvar arquivo",
-"uploadedimage" => "\"$1\" carregado",
+"uploadedimage" => "\"[[$1]]\" carregado",
 
 # Image list
 #

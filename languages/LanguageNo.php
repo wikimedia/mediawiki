@@ -648,7 +648,7 @@ informasjon omkring filen, slik som hvor den kom fra, når den er laget
 og av hvem, og andre ting du vet om filen.",
 "uploadwarning" => "Opplastingsadvarsel",
 "savefile"		=> "Lagre fil",
-"uploadedimage" => "Lastet opp \"$1\"",
+"uploadedimage" => "Lastet opp \"[[$1]]\"",
 "uploaddisabled" => "Beklager, muligheten for opplasting er deaktivert på denne tjeneren.",
 
 # Image list
@@ -886,8 +886,8 @@ Den siste redigeringen er foretatt av [[Bruker:$3|$3]] ([[Brukerdiskusjon:$3|dis
 "protectlogpage" => "Beskyttelseslogg",
 "protectlogtext" => "Her er en liste over sider som er blitt beskyttet eller har fått fjernet beskyttelsen.
 Se [[Wikipedia:Beskyttet side]] for mer informasjon.",
-"protectedarticle" => "beskyttet $1",
-"unprotectedarticle" => "fjernet beskyttelse for $1",
+"protectedarticle" => "beskyttet [[$1]]",
+"unprotectedarticle" => "fjernet beskyttelse for [[$1]]",
 
 # Undelete
 "undelete" => "Gjenopprett en slettet side",

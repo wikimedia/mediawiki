@@ -531,7 +531,7 @@ in information about the file, such as where it came from, when it was
 created and by whom, and anything else you may know about it.",
 "uploadwarning" => "Upload warning",
 "savefile"		=> "Save file",
-"uploadedimage" => "uploaded \"$1\"",
+"uploadedimage" => "uploaded \"[[$1]]\"",
 
 # Image list
 #

@@ -665,7 +665,7 @@ Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).
 Dilynwch y cyswllt hon: ($2) i'r tudalen disgrifiad a llenwch gwybodaeth amdano'r ffeil (ble mae'n dod o, pwy a creu o, beth bynnag arall rydych chi'n gwybod amdano'r ffeil.",
 "uploadwarning" => "Rhybudd llwytho i fynu",
 "savefile" => "Cadw ffeil",
-"uploadedimage" => "\"$1\" wedi llwytho",
+"uploadedimage" => "\"[[$1]]\" wedi llwytho",
 "uploaddisabled" => "Mae ddrwg gennym ni, mae uwchllwytho wedi anablo.",
 
 # Image list
@@ -861,8 +861,8 @@ gan [[Defnyddwr:$2|$2]] ([[Sgwrs defnyddwr:$2|Sgwrs]]); mae rhywun arall yn baro
 "protectlogpage" => "Log_amdiffyno",
 "protectlogtext" => "Isod mae rhestr o cloion/datgloion tudalennau.
 Gwelwch [[$wgMetaNamespace:Tudalen amddiffynol]] am mwy o wybodaeth.",
-"protectedarticle" => "wedi amddiffyno $1",
-"unprotectedarticle" => "wedi di-amddiffyno $1",
+"protectedarticle" => "wedi amddiffyno [[$1]]",
+"unprotectedarticle" => "wedi di-amddiffyno [[$1]]",
 
 # Undelete   
 "undelete" => "Gwrthdroi tudalen wedi dileuo",
