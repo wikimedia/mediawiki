@@ -101,7 +101,8 @@ function wfSpecialContributions( $par = '' ) {
 	$use_index = $dbr->useIndexClause( $index );
 	$sql = "SELECT
 		page_namespace,page_title,page_is_new,page_latest,
-		rev_id,rev_timestamp,rev_comment,rev_minor_edit,rev_user_text
+		rev_id,rev_timestamp,rev_comment,rev_minor_edit,rev_user_text,
+		rev_deleted
 		FROM $page,$revision $use_index
 		WHERE page_id=rev_page AND $condition $minorQuery " .
 	  "ORDER BY rev_timestamp DESC LIMIT {$querylimit}";
@@ -129,16 +130,7 @@ function wfSpecialContributions( $par = '' ) {
 
 	$wgOut->addHTML( "<ul>\n" );
 	while( $obj = $dbr->fetchObject( $res ) ) {
-		ucListEdit( $sk,
-			$obj->page_namespace,
-			$obj->page_title,
-			$obj->rev_timestamp,
-			($obj->rev_id == $obj->page_latest),
-			$obj->rev_comment,
-			($obj->rev_minor_edit),
-			$obj->page_is_new,
-			$obj->rev_user_text,
-			$obj->rev_id );
+		$wgOut->addHTML( ucListEdit( $sk, $obj ) );
 	}
 	$wgOut->addHTML( "</ul>\n" );
 
@@ -162,7 +154,7 @@ function wfSpecialContributions( $par = '' ) {
  * 
  * @todo This would probably look a lot nicer in a table.
  */
-function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $target, $oldid ) {
+function ucListEdit( $sk, $row ) {
 	$fname = 'ucListEdit';
 	wfProfileIn( $fname );
 	
@@ -174,12 +166,12 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $t
 		}
 	}
 	
-	$page =& Title::makeTitle( $ns, $t );
+	$page =& Title::makeTitle( $row->page_namespace, $row->page_title );
 	$link = $sk->makeKnownLinkObj( $page, '' );
 	$difftext = $topmarktext = '';
-	if($topmark) {
+	if( $row->rev_id == $row->page_latest ) {
 		$topmarktext .= '<strong>' . $messages['uctop'] . '</strong>';
-		if(!$isnew) {
+		if( !$row->page_is_new ) {
 			$difftext .= $sk->makeKnownLinkObj( $page, '(' . $messages['diff'] . ')', 'diff=0' );
 		} else {
 			$difftext .= $messages['newarticle'];
@@ -188,30 +180,36 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $t
 		if( $wgUser->isAllowed('rollback') ) {
 			$extraRollback = $wgRequest->getBool( 'bot' ) ? '&bot=1' : '';
 			$extraRollback .= '&token=' . urlencode(
-				$wgUser->editToken( array( $page->getPrefixedText(), $target ) ) );
-			# $target = $wgRequest->getText( 'target' );
+				$wgUser->editToken( array( $page->getPrefixedText(), $row->rev_user_text ) ) );
 			$topmarktext .= ' ['. $sk->makeKnownLinkObj( $page,
 			  	$messages['rollbacklink'],
-			  	'action=rollback&from=' . urlencode( $target ) . $extraRollback ) .']';
+			  	'action=rollback&from=' . urlencode( $row->rev_user_text ) . $extraRollback ) .']';
 		}
 
 	}
-	if ( $oldid ) {
-		$difftext= $sk->makeKnownLinkObj( $page, '(' . $messages['diff'].')', 'diff=prev&oldid='.$oldid );
-	} 
+	if( $row->rev_deleted && !$wgUser->isAllowed( 'undelete' ) ) {
+		$difftext = '(' . $messages['diff'] . ')';
+	} else {
+		$difftext = $sk->makeKnownLinkObj( $page, '(' . $messages['diff'].')', 'diff=prev&oldid='.$row->rev_id );
+	}
 	$histlink='('.$sk->makeKnownLinkObj( $page, $messages['hist'], 'action=history' ) . ')';
 
-	$comment = $sk->commentBlock( $comment, $page );
-	$d = $wgLang->timeanddate( $ts, true );
+	$comment = $sk->commentBlock( $row->rev_comment, $page );
+	$d = $wgLang->timeanddate( $row->rev_timestamp, true );
 
-	if ($isminor) {
+	if( $row->rev_minor_edit ) {
 		$mflag = '<span class="minor">' . $messages['minoreditletter'] . '</span> ';
 	} else {
 		$mflag = '';
 	}
 
-	$wgOut->addHTML( "<li>{$d} {$histlink} {$difftext} {$mflag} {$link} {$comment} {$topmarktext}</li>\n" );
+	$ret = "{$d} {$histlink} {$difftext} {$mflag} {$link} {$comment} {$topmarktext}";
+	if( $row->rev_deleted ) {
+		$ret = '<span class="deleted">' . $ret . '</span> ' . htmlspecialchars( wfMsg( 'deletedrev' ) );
+	}
+	$ret = "<li>$ret</li>\n";
 	wfProfileOut( $fname );
+	return $ret;
 }
 
 /**

@@ -170,7 +170,8 @@ class Revision {
 			       'rev_user_text',
 			       'rev_user',
 			       'rev_minor_edit',
-			       'rev_timestamp' ),
+			       'rev_timestamp',
+			       'rev_deleted' ),
 			$conditions,
 			'Revision::fetchRow' );
 		return $db->resultObject( $res );
@@ -190,6 +191,7 @@ class Revision {
 			$this->mUser      = IntVal( $row->rev_user );
 			$this->mMinorEdit = IntVal( $row->rev_minor_edit );
 			$this->mTimestamp =         $row->rev_timestamp;
+			$this->mDeleted   = IntVal( $row->rev_deleted );
 		
 			$this->mCurrent   = ( $row->rev_id == $row->page_latest );
 			$this->mTitle     = Title::makeTitle( $row->page_namespace,
@@ -212,6 +214,7 @@ class Revision {
 			$this->mUser      = isset( $row['user']       ) ? IntVal( $row['user']       ) : $wgUser->getId();
 			$this->mMinorEdit = isset( $row['minor_edit'] ) ? IntVal( $row['minor_edit'] ) : 0;
 			$this->mTimestamp = isset( $row['timestamp']  ) ? StrVal( $row['timestamp']  ) : wfTimestamp( TS_MW );
+			$this->mDeleted   = isset( $row['deleted']    ) ? IntVal( $row['deleted']    ) : 0;
 			$this->mText      = isset( $row['text']       ) ? StrVal( $row['text']       ) : null;
 			
 			$this->mTitle     = null; # Load on demand if needed
@@ -294,6 +297,13 @@ class Revision {
 	 */
 	function isMinor() {
 		return (bool)$this->mMinorEdit;
+	}
+	
+	/**
+	 * @return bool
+	 */
+	function isDeleted() {
+		return (bool)$this->mDeleted;
 	}
 	
 	/**
@@ -469,6 +479,7 @@ class Revision {
 				'rev_user'       => $this->mUser,
 				'rev_user_text'  => $this->mUserText,
 				'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
+				'rev_deleted'    => $this->mDeleted,
 			), $fname
 		);
 		

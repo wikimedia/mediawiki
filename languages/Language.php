@@ -765,6 +765,7 @@ Please check the URL you used to access this page.\n",
 Legend: (cur) = difference with current version,
 (last) = difference with preceding version, M = minor edit.',
 'history_copyright'    => '-',
+'deletedrev' => '[deleted]',
 
 # Diffs
 #

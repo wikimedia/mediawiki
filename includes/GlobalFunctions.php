@@ -1084,4 +1084,34 @@ function wfGetSiteNotice() {
 	return $notice;
 }
 
+/**
+ * Format an XML element with given attributes and, optionally, text content.
+ * Element and attribute names are assumed to be ready for literal inclusion.
+ * Strings are assumed to not contain XML-illegal characters; special
+ * characters (<, >, &) are escaped but illegals are not touched.
+ *
+ * @param string $element
+ * @param array $attribs Name=>value pairs. Values will be escaped.
+ * @param bool $contents NULL to make an open tag only; '' for a contentless closed tag (default)
+ * @return string
+ */
+function wfElement( $element, $attribs = array(), $contents = '') {
+	$out = '<' . $element;
+	foreach( $attribs as $name => $val ) {
+		$out .= ' ' . $name . '="' . htmlspecialchars( $val ) . '"';
+	}
+	if( is_null( $contents ) ) {
+		$out .= '>';
+	} else {
+		if( $contents == '' ) {
+			$out .= ' />';
+		} else {
+			$out .= '>';
+			$out .= htmlspecialchars( $contents );
+			$out .= "</$element>";
+		}
+	}
+	return $out;
+}
+
 ?>
