@@ -8,14 +8,14 @@
 #
 /* private */ $wgNamespaceNamesCs = array(
 	NS_MEDIA			=> "Media",
-	NS_SPECIAL			=> "Speciální", # FIXME Is it safe to change this?
+	NS_SPECIAL			=> "Speciální",
 	NS_MAIN				=> "",
 	NS_TALK				=> "Diskuse", # neb diskutuj?
 	NS_USER				=> "Wikipedista",
 	NS_USER_TALK		=> "Wikipedista_diskuse",
 	NS_WIKIPEDIA		=> "Wikipedie",
 	NS_WIKIPEDIA_TALK	=> "Wikipedie_diskuse",
-	NS_IMAGE			=> "Soubor", #FIXME: Check the magic for Image: and Media:
+	NS_IMAGE			=> "Soubor",
 	NS_IMAGE_TALK		=> "Soubor_diskuse",
 	NS_MEDIAWIKI		=> "MediaWiki",
 	NS_MEDIAWIKI_TALK	=> "MediaWiki_diskuse",
