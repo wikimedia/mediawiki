@@ -23,6 +23,7 @@ Major changes from 1.3.x:
 * Error pages no more offer edit / talk / watch links (bug #502)
 * Allow user to preview article on first edit (bug #530)
 * New dark background skin named Amethyst (thanks Sorwena and Sorkhiri)
+* [[RFC 1234]] will now make an internal link (bug #479)
 * ... and more!
 
 === Caveats ===
