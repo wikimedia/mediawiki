@@ -39,14 +39,14 @@ function processUpload()
 	global $wpUploadSaveName, $wpUploadTempName, $wpUploadSize;
 	global $wgSavedFile, $wgUploadOldVersion, $wpUploadOldVersion;
 	global $wgUseCopyrightUpload , $wpUploadCopyStatus , $wpUploadSource ;
-        global $wgCheckFileExtensions, $wgFileExtensions;
-      
-	if ( $wgUseCopyrightUpload )
-	  {
-	    $wpUploadAffirm = 1 ;
-	    if ( trim ( $wpUploadCopyStatus ) == "" || trim ( $wpUploadSource ) == "" )
-		 $wpUploadAffirm = 0 ;
-	  }
+	global $wgCheckFileExtensions, $wgFileExtensions;
+
+	if ( $wgUseCopyrightUpload ) {
+		$wpUploadAffirm = 1;
+		if ( trim ( $wpUploadCopyStatus ) == "" || trim ( $wpUploadSource ) == "" ) {
+			$wpUploadAffirm = 0;
+		}
+	}
 
 	if ( 1 != $wpUploadAffirm ) {
 		mainUploadForm( WfMsg( "noaffirmation" ) );
@@ -88,11 +88,11 @@ function processUpload()
 			return uploadWarning( wfMsg( "badfilename", $wpUploadSaveName ) );
 		}
 	    
-	        if ( $wgCheckFileExtensions ) {
-		    if ( ( ! $wpIgnoreWarning ) &&
-			 ( ! in_array( strtolower( $ext ), $wgFileExtensions ) ) ) {
-			return uploadWarning( wfMsg( "badfiletype", $ext ) );
-		    }
+		if ( $wgCheckFileExtensions ) {
+			if ( ( ! $wpIgnoreWarning ) &&
+				 ( ! in_array( strtolower( $ext ), $wgFileExtensions ) ) ) {
+				return uploadWarning( wfMsg( "badfiletype", $ext ) );
+			}
 		}
 		if ( ( ! $wpIgnoreWarning ) && ( $wpUploadSize > 150000 ) ) {
 			return uploadWarning( WfMsg( "largefile" ) );
