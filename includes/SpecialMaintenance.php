@@ -160,18 +160,18 @@ function wfSpecialDisambiguations() {
 	$wgOut->addHTML( "<p>{$sl}\n" );
 }
 
-# TODO & FIXME
 # DoubleRedirects and BrokenRedirects are now using the QueryPage class.
-# Might want to automaticly redirect users to the new pages instead
-# of dieing.
 function wfSpecialDoubleRedirects() {
-	wfDebugDieBacktrace( 'SpecialMaintenance.php:wfSpecialDoubleRedirects() is obsolete use SpecialDoubleRedirects.php');
+	global $wgOut;
+	$t = Title::makeTitle( NS_SPECIAL, "DoubleRedirects" );
+	$wgOut->redirect ($t->getFullURL());
 }
 
 function wfSpecialBrokenRedirects() {
-	wfDebugDieBacktrace( 'SpecialMaintenance.php:wfSpecialBrokenRedirects() is obsolete use SpecialBrokenRedirects.php');
+	global $wgOut;
+	$t = Title::makeTitle( NS_SPECIAL, "BrokenRedirects" );
+	$wgOut->redirect ($t->getFullURL());
 }
-
 
 # This doesn't really work anymore, because self-links are now displayed as
 # unlinked bold text, and are not entered into the link table.
