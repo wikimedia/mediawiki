@@ -60,7 +60,8 @@ if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 	exit;
 }
 
-if ( $search = $wgRequest->getText( 'search' ) ) {
+if( $search = $wgRequest->getText( 'search' ) ) {
+	require_once( 'SearchEngine.php' );
 	$wgTitle = Title::makeTitle( NS_SPECIAL, "Search" );
 	$searchEngine = new SearchEngine( $search );
 	if( $wgRequest->getVal( 'fulltext' ) ||

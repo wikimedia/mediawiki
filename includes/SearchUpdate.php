@@ -30,6 +30,7 @@ class SearchUpdate {
 		if( $wgDisableSearchUpdate || !$this->mId ) {
 			return false;
 		}
+		require_once( 'SearchEngine.php' );
 		$lc = SearchEngine::legalSearchChars() . "&#;";
 		$db =& wfGetDB( DB_MASTER );
 		$searchindex = $db->tableName( 'searchindex' );

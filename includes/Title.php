@@ -207,6 +207,7 @@ class Title {
 	# Takes a namespace index and a text-form main part
 	/* static */ function indexTitle( $ns, $title ) {
 		global $wgDBminWordLen, $wgLang;
+		require_once( 'SearchEngine.php' );
 
 		$lc = SearchEngine::legalSearchChars() . '&#;';
 		$t = $wgLang->stripForSearch( $title );
