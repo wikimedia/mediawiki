@@ -16,6 +16,7 @@
 class EditPage {
 	var $mArticle;
 	var $mTitle;
+	var $mMetaData = '';
 	
 	# Form values
 	var $save = false, $preview = false;
@@ -32,6 +33,80 @@ class EditPage {
 		$this->mArticle =& $article;
 		global $wgTitle;
 		$this->mTitle =& $wgTitle;
+	}
+
+	/**
+	 * This is the function that extracts metadata from the article body on the first view.
+	 * To turn the feature on, set $wgUseMetadataEdit = true ; in LocalSettings
+	 */
+	function extractMetaDataFromArticle ()
+	{
+		global $wgUseMetadataEdit , $wgLang ;
+		$this->mMetaData = "" ;
+		if ( !$wgUseMetadataEdit ) return ;
+		$s = "" ;
+		$t = $this->mArticle->getContent ( true ) ;
+
+		# MISSING : <nowiki> filtering
+
+		# Categories and language links
+		$t = explode ( "\n" , $t ) ;
+		$catlow = strtolower ( $wgLang->getNsText ( NS_CATEGORY ) ) ;
+		$cat = $ll = array() ;
+		foreach ( $t AS $key => $x )
+		{
+			$y = trim ( strtolower ( $x ) ) ;
+			while ( substr ( $y , 0 , 2 ) == "[[" )
+			{
+				$y = explode ( "]]" , trim ( $x ) ) ;
+				$first = array_shift ( $y ) ;
+				$first = explode ( ":" , $first ) ;
+				$ns = array_shift ( $first ) ;
+				$ns = trim ( str_replace ( "[" , "" , $ns ) ) ;
+				if ( strlen ( $ns ) == 2 OR strtolower ( $ns ) == $catlow )
+				{
+					$add = "[[" . $ns . ":" . implode ( ":" , $first ) . "]]" ;
+					if ( strtolower ( $ns ) == $catlow ) $cat[] = $add ;
+					else $ll[] = $add ;
+					$x = implode ( "]]" , $y ) ;
+					$t[$key] = $x ;
+					$y = trim ( strtolower ( $x ) ) ;
+				}
+			}
+		}
+		if ( count ( $cat ) ) $s .= implode ( " " , $cat ) . "\n" ;
+		if ( count ( $ll ) ) $s .= implode ( " " , $ll ) . "\n" ;
+		$t = implode ( "\n" , $t ) ;
+
+		# Templates, but only some
+		$sat = array ( "meta-template" ) ; # stand-alone-templates; must be lowercase
+		$t = explode ( "{{" , $t ) ;
+		$tl = array () ;
+		foreach ( $t AS $key => $x )
+		{
+			$y = explode ( "}}" , $x , 2 ) ;
+			if ( count ( $y ) == 2 )
+			{
+				$z = $y[0] ;
+				$z = explode ( "|" , $z ) ;
+				$tn = array_shift ( $z ) ;
+				if ( in_array ( strtolower ( $tn ) , $sat ) )
+				{
+					$tl[] = "{{" . $y[0] . "}}" ;
+					$t[$key] = $y[1] ;
+					$y = explode ( "}}" , $y[1] , 2 ) ;
+				}
+				else $t[$key] = "{{" . $x ;
+			}
+			else if ( $key != 0 ) $t[$key] = "{{" . $x ;
+			else $t[$key] = $x ;
+		}
+		if ( count ( $tl ) ) $s .= implode ( " " , $tl ) ;
+		$t = implode ( "" , $t ) ;
+
+		$t = str_replace ( "\n\n\n" , "\n" , $t ) ;
+		$this->mArticle->mContent = $t ;
+		$this->mMetaData = $s ;
 	}
 
 	/**
@@ -77,6 +152,7 @@ class EditPage {
 			if( $wgUser->getOption('previewonfirst') ) {
 				$this->editForm( 'preview', true );
 			} else {
+				$this->extractMetaDataFromArticle () ;
 				$this->editForm( 'initial', true );
 			}
 		}
@@ -91,6 +167,7 @@ class EditPage {
 		# whitespace from the text boxes. This may be significant formatting.
 		$this->textbox1 = rtrim( $request->getText( 'wpTextbox1' ) );
 		$this->textbox2 = rtrim( $request->getText( 'wpTextbox2' ) );
+		$this->mMetaData = rtrim( $request->getText( 'metadata' ) );
 		$this->summary = trim( $request->getText( 'wpSummary' ) );
 
 		$this->edittime = $request->getVal( 'wpEdittime' );
@@ -159,6 +236,10 @@ class EditPage {
 		# in the back door with a hand-edited submission URL.
 
 		if ( 'save' == $formtype ) {
+			# Reintegrate metadata
+			if ( $this->mMetaData != "" ) $this->textbox1 .= "\n" . $this->mMetaData ;
+			$this->mMetaData = "" ;
+
 			# Check for spam
 			if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1, $matches ) ) {
 				$this->spamPage ( $matches[0] );
@@ -478,17 +559,29 @@ class EditPage {
 			$liveOnclick = '';
 		}
 		
+		global $wgUseMetadataEdit ;
+		if ( $wgUseMetadataEdit )
+		{
+			$metadata = $this->mMetaData ;
+			$metadata = htmlspecialchars( $wgContLang->recodeForEdit( $metadata ) ) ;
+			$metadata = "<textarea name='metadata' rows='3' cols='{$cols}'{$ew}>{$metadata}</textarea>" ;
+		}
+		else $metadata = "" ;
+
+
 		$wgOut->addHTML( <<<END
 {$toolbar}
 <form id="editform" name="editform" method="post" action="$action"
 enctype="multipart/form-data">
 {$commentsubject}
+{$mbegin}
 <textarea tabindex='1' accesskey="," name="wpTextbox1" rows='{$rows}'
 cols='{$cols}'{$ew}>
 END
 . htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 "
 </textarea>
+{$metadata}
 <br />{$editsummary}
 {$checkboxhtml}
 <input tabindex='5' id='wpSave' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
@@ -549,7 +642,10 @@ END
 				$this->textbox1 = $this->mArticle->getContent(true);
 			}
 
-			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $this->textbox1 ) ."\n\n",
+			$toparse = $this->textbox1 ;
+			if ( $this->mMetaData != "" ) $toparse .= "\n" . $this->mMetaData ;
+			
+			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ) ."\n\n",
 					$wgTitle, $parserOptions );		
 			
 			$previewHTML = $parserOutput->mText;
