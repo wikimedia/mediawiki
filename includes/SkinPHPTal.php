@@ -167,6 +167,8 @@ class SkinPHPTal extends Skin {
 					. ':' . $this->username,
 					wfMsg('newmessageslink') )
 				);
+				# Disable Cache
+				$wgOut->setSquidMaxage(0);
 			}
 		} else {
 			$ntl = '';
