@@ -9,7 +9,7 @@
  *
  */
 require_once( 'SpecialUpload.php' );
-
+require_once( 'MogileFS.php' );
 
 /**
  * Entry point
@@ -35,25 +35,33 @@ class UploadFormMogile extends UploadForm {
 	 */
 	function saveUploadedFile( $saveName, $tempName, $useRename = false ) {
 		global $wgUploadDirectory, $wgOut;
+		$mfs = MogileFS::NewMogileFS();
 
-		$this->mSavedFile = "archive!{$saveName}";
+		$this->mSavedFile = "image!{$saveName}";
 
-		if( $mfs->getPaths( $this->mSavedFile ) ) {
+		if( $mfs->getPaths( $this->mSavedFile )) {
 			$this->mUploadOldVersion = gmdate( 'YmdHis' ) . "!{$saveName}";
-			if( !$mfs->rename( $this->mSavedFile, "${archive}!{$this->mUploadOldVersion}" ) ) { 
+			if( !$mfs->rename( $this->mSavedFile, "archive!{$this->mUploadOldVersion}" ) ) { 
 				$wgOut->fileRenameError( $this->mSavedFile,
-				  "${archive}!{$this->mUploadOldVersion}" );
+				  "archive!{$this->mUploadOldVersion}" );
 				return false;
 			}
 		} else {
 			$this->mUploadOldVersion = '';
 		}
 		
-		if ( $mfs->saveFile($this->mSavedFile,'image',$tempName )) {
-			$wgOut->fileCopyError( $tempName, $this->mSavedFile );
-			return false;
+		if ( $this->mStashed ) {
+			if (!$mfs->rename($tempName,$this->mSavedFile)) {
+				$wgOut->fileRenameError($tempName, $this->mSavedFile );
+				return false;
+			}
+		} else {
+			if ( !$mfs->saveFile($this->mSavedFile,'normal',$tempName )) {
+				$wgOut->fileCopyError( $tempName, $this->mSavedFile );
+				return false;
+			}
+			unlink($tempName);
 		}
-		unlink($tempName);
 		return true;
 	}
 
@@ -73,8 +81,8 @@ class UploadFormMogile extends UploadForm {
 		global $wgOut;
 
 		$stash = 'stash!' . gmdate( "YmdHis" ) . '!' . $saveName;
-
-		if ( !$mfs->saveFile( $tempName, 'stash', $stash ) ) {
+		$mfs = MogileFS::NewMogileFS();
+		if ( !$mfs->saveFile( $stash, 'normal', $tempName ) ) {
 			$wgOut->fileCopyError( $tempName, $stash );
 			return false;
 		}
@@ -113,11 +121,11 @@ class UploadFormMogile extends UploadForm {
 	 * @access private
 	 */
 	function unsaveUploadedFile() {
-		if ( ! @$mfs->delete( $this->mUploadTempName ) ) {
+		global $wgOut;
+		$mfs = MogileFS::NewMogileFS();
+		if ( ! $mfs->delete( $this->mUploadTempName ) ) {
 			$wgOut->fileDeleteError( $this->mUploadTempName );
 		}
 	}
-
-	/* -------------------------------------------------------------- */
 }
 ?>
