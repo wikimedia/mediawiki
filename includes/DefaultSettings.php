@@ -182,6 +182,7 @@ $wgProxyScriptPath = "$IP/proxy_check.php";
 $wgProxyMemcExpiry = 86400;
 $wgProxyKey = 'W1svekXc5u6lZllTZOwnzEk1nbs';
 $wgProxyList = array();  # big list of banned IP addresses, in the keys not the values
+$wgAccountCreationThrottle = 0; # Number of accounts each IP address may create, 0 to disable. Requires memcached
 
 # Client-side caching:
 $wgCachePages       = true; # Allow client-side caching of pages

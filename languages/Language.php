@@ -466,6 +466,7 @@ registered for \"$1\".
 Please log in again after you receive it.",
 'loginend'		=> '&nbsp;',
 'mailerror' => "Error sending mail: $1",
+'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts. You can\'t make any more.',
 
 # Edit page toolbar
 'bold_sample'=>'Bold text',
