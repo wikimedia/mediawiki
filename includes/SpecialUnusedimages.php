@@ -5,56 +5,65 @@
  * @subpackage SpecialPage
  */
 
+/** */
+require_once("QueryPage.php");
+
 /**
  *
  */
-function wfSpecialUnusedimages() {
-	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	$fname = "wfSpecialUnusedimages";
+class UnusedimagesPage extends QueryPage {
 
-	list( $limit, $offset ) = wfCheckLimits();
-	$dbr =& wfGetDB( DB_SLAVE );
-	extract( $dbr->tableNames( 'image','imagelinks' ) );
-
-	$sql = "SELECT img_name,img_user,img_user_text,img_timestamp,img_description " .
-	  "FROM $image LEFT JOIN $imagelinks ON img_name=il_to WHERE il_to IS NULL " .
-	  "ORDER BY img_timestamp ".$dbr->limitResult($limit,$offset);
-	$res = $dbr->query( $sql, $fname );
-
-	$sk = $wgUser->getSkin();
-
-	$wgOut->addHTML( wfMsg( "unusedimagestext" ) );
-	$top = wfShowingResults( $offset, $limit );
-	$wgOut->addHTML( "<p>{$top}\n" );
-
-	$sl = wfViewPrevNext( $offset, $limit,
-	  $wgLang->specialPage( "Unusedimages" ) );
-	$wgOut->addHTML( "<br />{$sl}</p>\n" );
-
-	$ins = $wgLang->getNsText ( 6 ) ;
-	$s = "<ol start='" . ( $offset + 1 ) . "'>";
-	while ( $obj = $dbr->fetchObject( $res ) ) {
-		$name = $obj->img_name;
-		$dlink = $sk->makeKnownLink( "{$ins}:{$name}", wfMsg( "imgdesc" ) );
-		$ilink = "<a href=\"" . Image::wfImageUrl( $name ) . "\">{$name}</a>";
-
-		$d = $wgLang->timeanddate( $obj->img_timestamp, true );
-		$u = $obj->img_user;
-		$ut = $obj->img_user_text;
-		$c = $obj->img_description;
-
-		if ( 0 == $u ) { $ul = $ut; }
-		else { $ul = $sk->makeLink( $wgLang->getNsText(2).":{$ut}", $ut ); }
-
-		$s .= "<li>({$dlink}) {$ilink} . . {$d} . . {$ul}";
-
-		if ( "" != $c && "*" != $c ) { $s .= " <em>({$c})</em>"; }
-		$s .= "</li>\n";
+	function getName() {
+		return 'Unusedimages';
 	}
-	$dbr->freeResult( $res );
-	$s .= "</ol>\n\n";
-	$wgOut->addHTML( $s );
-	$wgOut->addHTML( "<p>{$sl}</p>\n" );
+	
+	function sortDescending() {
+		return false;
+	}
+
+	function getSQL() {
+		$dbr =& wfGetDB( DB_SLAVE );
+		extract( $dbr->tableNames( 'image','imagelinks' ) );
+		
+		return 'SELECT img_name as title, img_user, img_user_text, img_timestamp as value, img_description' .
+		      ' FROM '.$image.' LEFT JOIN '.$imagelinks.' ON img_name=il_to WHERE il_to IS NULL ';
+	}
+	
+	function formatResult( $skin, $result ) {
+		global $wgLang;
+		$title = Title::makeTitle( NS_IMAGE, $result->title );
+		$ins = $wgLang->getNsText(NS_IMAGE);
+		
+		$return =
+		# The 'desc' linking to the image page
+		'('.$skin->makeKnownLink( $ins.':'.$result->title, wfMsg('imgdesc') ).') '
+		# Link to the image itself
+		. '<a href="'.Image::wfImageUrl($title->getText()).'">'.$title->getText().'</a>'
+		# Last modified date
+		. ' . . '.$wgLang->timeanddate($result->value)
+		# Link to username
+		. ' . . '.$skin->makeLink($wgLang->getNsText(NS_USER).':'.$result->img_user_text,$result->img_user_text);
+		
+		# If there is a description, show it
+		if($result->img_description != '') {
+			$return .= ' <em>('.$result->img_description.')</em>';
+		}
+		return $return;
+	}
+	
+	function getPageHeader() {
+		return wfMsg( "unusedimagestext" );
+	}
+
 }
 
+/**
+ * Entry point
+ */
+function wfSpecialUnusedimages() {
+	list( $limit, $offset ) = wfCheckLimits();
+	$uip = new UnusedimagesPage();
+
+	return $uip->doQuery( $offset, $limit );
+}
 ?>
