@@ -339,6 +339,8 @@ class Article {
 		
 		$fname = "Article::insertNewArticle";
 
+		$this->mCountAdjustment = $this->isCountable( $text );
+
 		$ns = $this->mTitle->getNamespace();
 		$ttl = $this->mTitle->getDBkey();
 		$text = $this->preSaveTransform( $text );
