@@ -308,7 +308,7 @@ in the bottom-right corner of the content area */
 }
 
 /* images */
-div.floatright { 
+div.floatright table.floatright {
     clear: right;
     float: right; 
     margin: 0;
@@ -317,7 +317,7 @@ div.floatright {
     border-width: 0.5em 0 0.8em 1.4em;
 }
 div.floatright p { font-style: italic; } 
-div.floatleft { 
+div.floatleft table.floatleft {
     float: left; 
     margin: 0.3em 0.5em 0.5em 0;
     position: relative;
