@@ -319,6 +319,7 @@ pre {
     border-top:3px solid #cde2a7;
     border-style: solid;
     margin:0;
+    line-height: 1.5em;
 }
 
 /* this will be the user notification thing */
