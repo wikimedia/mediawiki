@@ -403,7 +403,7 @@ class UploadForm {
 		global $wgOut;
 		$sub = wfMsg( 'uploadwarning' );
 		$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
-		$wgOut->addHTML( "<h4 style='error'>{$error}</h4>\n" );
+		$wgOut->addHTML( "<h4 class='error'>{$error}</h4>\n" );
 	}
 
 	/**
@@ -475,7 +475,7 @@ class UploadForm {
 		if ( '' != $msg ) {
 			$sub = wfMsg( 'uploaderror' );
 			$wgOut->addHTML( "<h2>{$sub}</h2>\n" .
-			  "<h4 style='error'>{$msg}</h4>\n" );
+			  "<h4 class='error'>{$msg}</h4>\n" );
 		} else {
 			$sub = wfMsg( 'uploadfile' );
 			$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
