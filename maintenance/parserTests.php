@@ -25,7 +25,7 @@
  */
 
 /** */
-$options = array( 'quick', 'color' );
+$options = array( 'quick', 'color', 'quiet', 'help' );
 $optionsWithArgs = array( 'regex' );
 
 require_once( 'commandLine.inc' );
@@ -74,6 +74,8 @@ class ParserTest {
 		}
 		
 		$this->showDiffs = !isset( $options['quick'] );
+		
+		$this->quiet = isset( $options['quiet'] );
 
 		if (isset($options['regex'])) {
 			$this->regex = $options['regex'];
@@ -205,7 +207,9 @@ class ParserTest {
 	 * @return bool
 	 */
 	function runTest( $desc, $input, $result, $opts ) {
-		print "Running test $desc... ";
+		if( !$this->quiet ) {
+			$this->showTesting( $desc );
+		}
 
 		$this->setupGlobals($opts);
 
@@ -231,18 +235,15 @@ class ParserTest {
 
 		if (preg_match('/\\bpst\\b/i', $opts)) {
 			$out = $parser->preSaveTransform( $input, $title, $user, $options );
-		}
-		else if (preg_match('/\\bmsg\\b/i', $opts)) {
+		} elseif (preg_match('/\\bmsg\\b/i', $opts)) {
 			$out = $parser->transformMsg( $input, $options );
-		}
-		else {
+		} else {
 			$output =& $parser->parse( $input, $title, $options );
 			$out = $output->getText();
 
 			if (preg_match('/\\bill\\b/i', $opts)) {
 				$out = $this->tidy( implode( ' ', $output->getLanguageLinks() ) );
-			}	
-			else if (preg_match('/\\bcat\\b/i', $opts)) {
+			} else if (preg_match('/\\bcat\\b/i', $opts)) {
 				$out = $this->tidy ( implode( ' ', $output->getCategoryLinks() ) );
 			}
 
@@ -271,6 +272,9 @@ class ParserTest {
 		foreach( $this->listTables() as $table ) {
 			$this->oldTableNames[$table] = $db->tableName( $table );
 		}
+		if( !isset( $this->uploadDir ) ) {
+			$this->uploadDir = $this->setupUploadDir();
+		}
 		
 		$settings = array(
 			'wgServer' => 'http://localhost',
@@ -278,6 +282,8 @@ class ParserTest {
 			'wgScriptPath' => '/',
 			'wgArticlePath' => '/wiki/$1',
 			'wgUploadPath' => '/images',
+			'wgUploadDirectory' => $this->uploadDir,
+			'wgStyleSheetPath' => '/skins',
 			'wgSitename' => 'MediaWiki',
 			'wgLanguageCode' => 'en',
 			'wgUseLatin1' => false,
@@ -384,6 +390,23 @@ class ParserTest {
 	}
 	
 	/**
+	 * Create a dummy uploads directory which will contain a couple
+	 * of files in order to pass existence tests.
+	 * @return string The directory
+	 * @access private
+	 */
+	function setupUploadDir() {
+		$dir = "/tmp/mwParser-" . mt_rand() . "-images";
+		mkdir( $dir );
+		mkdir( $dir . '/3' );
+		mkdir( $dir . '/3/3a' );
+		$f = fopen( $dir . '/3/3a/Foobar.jpg', 'wb' );
+		fwrite( $f, 'Dummy file' );
+		fclose( $f );
+		return $dir;
+	}
+	
+	/**
 	 * Restore default values and perform any necessary clean-up
 	 * after each test runs.
 	 *
@@ -393,6 +416,32 @@ class ParserTest {
 		foreach( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
 		}
+		if( isset( $this->uploadDir ) ) {
+			$this->teardownUploadDir( $this->uploadDir );
+			unset( $this->uploadDir );
+		}
+	}
+	
+	/**
+	 * Remove the dummy uploads directory
+	 * @access private
+	 */
+	function teardownUploadDir( $dir ) {
+		unlink( "$dir/3/3a/Foobar.jpg" );
+		rmdir( "$dir/3/3a" );
+		rmdir( "$dir/3" );
+		@rmdir( "$dir/thumb/3/39" );
+		@rmdir( "$dir/thumb/3" );
+		@rmdir( "$dir/thumb" );
+		rmdir( "$dir" );
+	}
+	
+	/**
+	 * "Running test $desc..."
+	 * @access private
+	 */
+	function showTesting( $desc ) {
+		print "Running test $desc... ";
 	}
 	
 	/**
@@ -403,7 +452,9 @@ class ParserTest {
 	 * @access private
 	 */
 	function showSuccess( $desc ) {
-		print $this->termColor( '1;32' ) . 'PASSED' . $this->termReset() . "\n";
+		if( !$this->quiet ) {
+			print $this->termColor( '1;32' ) . 'PASSED' . $this->termReset() . "\n";
+		}
 		return true;
 	}
 	
@@ -418,6 +469,11 @@ class ParserTest {
 	 * @access private
 	 */
 	function showFailure( $desc, $result, $html ) {
+		if( $this->quiet ) {
+			# In quiet mode we didn't show the 'Testing' message before the
+			# test, in case it succeeded. Show it now:
+			$this->showTesting( $desc );
+		}
 		print $this->termColor( '1;31' ) . 'FAILED!' . $this->termReset() . "\n";
 		if( $this->showDiffs ) {
 			print $this->quickDiff( $result, $html );
@@ -547,6 +603,23 @@ class ParserTest {
 		}
 		return $text;
 	}
+}
+
+if( isset( $options['help'] ) ) {
+	echo <<<END
+MediaWiki $wgVersion parser test suite
+Usage: php parserTests.php [--quick] [--quiet] [--color[=(yes|no)]]
+                           [--regex <expression>] [--help]
+Options:
+  --quick  Suppress diff output of failed tests
+  --quiet  Suppress notification of passed tests (shows only failed tests)
+  --color  Override terminal detection and force color output on or off
+  --regex  Only run tests whose descriptions which match given regex
+  --help   Show this help message
+
+
+END;
+	exit( 0 );
 }
 
 # There is a convention that the parser should never
