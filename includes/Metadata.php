@@ -18,7 +18,7 @@
  */
 
 define("RDF_TYPE_PREFS", "application/rdf+xml,text/xml;q=0.7,application/xml;q=0.5,text/rdf;q=0.1");
-			 
+
 function wfDublinCoreRdf($article) {
 	
 	$url = dcReallyFullUrl($article->mTitle);

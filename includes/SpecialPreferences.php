@@ -321,17 +321,24 @@ class PreferencesForm {
 		$wgOut->addHTML( "<form id=\"preferences\" name=\"preferences\" action=\"$action\"
 	method=\"post\">" );
 	
-		# Quickbar setting
+		# First section: identity
+		# Email, etc.
 		#
-		$wgOut->addHtml( "<fieldset>\n<legend>$qb:</legend>\n" );
-		for ( $i = 0; $i < count( $qbs ); ++$i ) {
-			if ( $i == $this->mQuickbar ) { $checked = ' checked="checked"'; }
-			else { $checked = ""; }
-			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpQuickbar\"
-	value=\"$i\"$checked /> {$qbs[$i]}</label></div>\n" );
-		}
-		$wgOut->addHtml( "</fieldset>\n\n" );
+		$this->mUserEmail = wfEscapeHTML( $this->mUserEmail );
+		$this->mRealName = wfEscapeHTML( $this->mRealName );
+		$this->mNick = wfEscapeHTML( $this->mNick );
+		if ( $this->mEmailFlag ) { $emfc = 'checked="checked"'; }
+		else { $emfc = ""; }
 
+		$ps = $this->namespacesCheckboxes();
+
+		$wgOut->addHTML( "<fieldset>
+		<legend>Idento</legend>
+		<div><label>$yrn: <input type='text' name=\"wpRealName\" value=\"{$this->mRealName}\" size='20' /></label></div>
+		<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>
+		<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" /> $emf</label></div>
+		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>\n" );
+	
 		# Fields for changing password
 		#
 		$this->mOldpass = wfEscapeHTML( $this->mOldpass );
@@ -344,7 +351,19 @@ class PreferencesForm {
 	<div><label>$npw: <input type='password' name=\"wpNewpass\" value=\"{$this->mNewpass}\" size='20' /></label></div>
 	<div><label>$rpw: <input type='password' name=\"wpRetypePass\" value=\"{$this->mRetypePass}\" size='20' /></label></div>
 	" . $this->getToggle( "rememberpassword" ) . "
-	</fieldset>\n\n" );
+	</fieldset>\n</fieldset>\n" );
+
+	
+		# Quickbar setting
+		#
+		$wgOut->addHtml( "<fieldset>\n<legend>$qb:</legend>\n" );
+		for ( $i = 0; $i < count( $qbs ); ++$i ) {
+			if ( $i == $this->mQuickbar ) { $checked = ' checked="checked"'; }
+			else { $checked = ""; }
+			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpQuickbar\"
+	value=\"$i\"$checked /> {$qbs[$i]}</label></div>\n" );
+		}
+		$wgOut->addHtml( "</fieldset>\n\n" );
 
 		# Skin setting
 		#
@@ -414,23 +433,7 @@ class PreferencesForm {
 		<div><input type=\"button\" value=\"$tzGuess\" onClick=\"javascript:guessTimezone()\" /></div>
 	</fieldset>\n\n" );
 
-		# Email, etc.
-		#
-		$this->mUserEmail = wfEscapeHTML( $this->mUserEmail );
-		$this->mRealName = wfEscapeHTML( $this->mRealName );
-		$this->mNick = wfEscapeHTML( $this->mNick );
-		if ( $this->mEmailFlag ) { $emfc = 'checked="checked"'; }
-		else { $emfc = ""; }
-
-		$ps = $this->namespacesCheckboxes();
-
-		$wgOut->addHTML( "<fieldset>
-		<div><label>$yrn: <input type='text' name=\"wpRealName\" value=\"{$this->mRealName}\" size='20' /></label></div>
-		<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>
-		<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" /> $emf</label></div>
-		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>
-	</fieldset>
-	
+		$wgOut->addHTML( "
 	<fieldset>
 		<div><label>$rcc: <input type='text' name=\"wpRecent\" value=\"$this->mRecent\" size='6' /></label></div>
 		" . $this->getToggle( "hideminor" ) .

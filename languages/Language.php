@@ -68,12 +68,20 @@ if($wgMetaNamespace === FALSE)
 	'monobook' => "MonoBook"
 );
 
+define( "MW_MATH_PNG",    0 );
+define( "MW_MATH_SIMPLE", 1 );
+define( "MW_MATH_HTML",   2 );
+define( "MW_MATH_SOURCE", 3 );
+define( "MW_MATH_MODERN", 4 );
+define( "MW_MATH_MATHML", 5 );
+
 /* private */ $wgMathNamesEn = array(
-	"Always render PNG",
-	"HTML if very simple or else PNG",
-	"HTML if possible or else PNG",
-	"Leave it as TeX (for text browsers)",
-	"Recommended for modern browsers"
+	MW_MATH_PNG => "Always render PNG",
+	MW_MATH_SIMPLE => "HTML if very simple or else PNG",
+	MW_MATH_HTML => "HTML if possible or else PNG",
+	MW_MATH_SOURCE => "Leave it as TeX (for text browsers)",
+	MW_MATH_MODERN => "Recommended for modern browsers",
+	MW_MATH_MATHML => "MathML if possible (experimental)",
 );
 
 /* private */ $wgDateFormatsEn = array(

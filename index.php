@@ -1,4 +1,5 @@
 <?php
+
 # Main wiki script; see design.doc
 #
 $wgRequestTime = microtime();
