@@ -431,7 +431,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 <input tabindex='6' id='wpSave' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
 " title=\"".wfMsg('tooltip-preview')."\"/>
 <em>{$cancel}</em> | <em>{$edithelp}</em>
-<br /><br />{$copywarn}
+<br /><div id=\"editpage-copywarn\">{$copywarn}</div>
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
 <input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n" );
 
