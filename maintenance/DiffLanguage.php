@@ -18,23 +18,23 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+/**
+ * The goal is to get a list of messages not yet localised in a
+ * languageXX.php file using the language.php file as reference.
+ *
+ * Usage:
+ * php DiffLanguage.php
+ *
+ * Enter the language code following "Language" of the LanguageXX.php
+ * you want to check. If using linux you might need to follow case aka
+ * Zh and not zh.
+ *
+ * The script then print a list of wgAllMessagesXX keys that aren't
+ * localised, a percentage of messages correctly localised and the
+ * number of messages to be translated.
+ */
 
-# This script is an alpha version.
-#
-# The goal is to get a list of messages not yet localised in a
-# languageXX.php file using the language.php file as reference.
-#
-# Usage:
-# php DiffLanguage.php
-#
-# Enter the language code following "Language" of the LanguageXX.php
-# you want to check. If using linux you might need to follow case aka
-# Zh and not zh.
-#
-# The script then print a list of wgAllMessagesXX keys that aren't
-# localised, a percentage of messages correctly localised and the
-# number of messages to be translated.
-
+/** This script run from the commandline */
 require_once( "commandLine.inc" );
 
 $wgLanguageCode = strtoupper(substr($wgLanguageCode,0,1)).strtolower(substr($wgLanguageCode,1));
