@@ -1708,9 +1708,9 @@ class Title {
 	function getPreviousRevisionID( $revision ) {
 		$dbr =& wfGetDB( DB_SLAVE );
 		return $dbr->selectField( 'old', 'old_id',
-			"old_title='" . $this->getDBkey() . "'" .
-			' AND old_namespace=' . $this->getNamespace() .
-			" AND old_id<{$revision} ORDER BY old_id DESC" );
+			'old_title=' . $dbr->addQuotes( $this->getDBkey() ) .
+			' AND old_namespace=' . IntVal( $this->getNamespace() ) .
+			' AND old_id<' . IntVal( $revision ) . ' ORDER BY old_id DESC' );
 	}
 
 	/**
@@ -1722,9 +1722,9 @@ class Title {
 	function getNextRevisionID( $revision ) {
 		$dbr =& wfGetDB( DB_SLAVE );
 		return $dbr->selectField( 'old', 'old_id',
-			"old_title='" . $this->getDBkey() . "'" .
-			' AND old_namespace=' . $this->getNamespace() .
-			" AND old_id>{$revision} ORDER BY old_id" );
+			'old_title=' . $dbr->addQuotes( $this->getDBkey() ) .
+			' AND old_namespace=' . IntVal( $this->getNamespace() ) .
+			' AND old_id>' . IntVal( $revision ) . ' ORDER BY old_id' );
 	}
 
 }
