@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * The old installation engine.
+ * Replaced by ./config/index.php which provide an online installer instead of
+ * command line.
+ * It will die with versions >= 1.3.x 
+ * @deprecated
+ */
+ 
 die("obsolete; remove this file befor 1.3.0 release\n");
 
 # Install software and create new empty database.
