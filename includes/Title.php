@@ -762,13 +762,13 @@ class Title {
 	# Returns true on success, message name on failure
 	# auth indicates whether wgUser's permissions should be checked
 	function moveTo( &$nt, $auth = true ) {
-		$fname = "Title::move";
-		$oldid = $this->getArticleID();
-		$newid = $nt->getArticleID();
-
 		if( !$this or !$nt ) {
 			return "badtitletext";
 		}
+
+		$fname = "Title::move";
+		$oldid = $this->getArticleID();
+		$newid = $nt->getArticleID();
 
 		if ( strlen( $nt->getDBkey() ) < 1 ) {
 			return "articleexists";
