@@ -35,7 +35,9 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 	}
 	$days = (int)$days;
 	list( $limit, $offset ) = wfCheckLimits( 100, "rclimit" );
-	$cutoff = wfUnix2Timestamp( time() - ( $days * 86400 ) );
+
+	$dbr =& wfGetDB( DB_SLAVE );
+	$cutoff = $dbr->timestamp( time() - ( $days * 86400 ) );
 
 	$hideminor = ($hideminor ? 1 : 0);
 	if ( $hideminor ) {
@@ -51,7 +53,6 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 		$cmq = "AND cur_minor_edit=0";
 	} else { $cmq = ""; }
 
-	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'cur', 'links' ) );
 
 	$sql = "SELECT cur_id,cur_namespace,cur_title,cur_user,cur_comment," .
