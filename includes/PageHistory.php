@@ -182,11 +182,9 @@ class PageHistory {
 			}
 			$arbitrary .= '<input type="radio" name="diff" value="'.$oid.'" title="'.wfMsg('selectnewerversionfordiff').'"'.$checkmark.' />';
 		}
-		$M = wfMsg( "minoreditletter" );
-		if ( $isminor ) {
-			$s .= "<span class='hflag'>{$M}</span>";
-		}
-		$s .= "({$curlink}) (!OLDID!{$oid}!) $arbitrary {$link} <span class='hlinedesc'>{$ul}</span>";
+		$s .= "({$curlink}) (!OLDID!{$oid}!) $arbitrary {$link} <span class='user'>{$ul}</span>";
+		$s .= $isminor ? ' <span class="minor">'.wfMsg( "minoreditletter" ).'</span>': '' ;
+		
 
 		if ( "" != $c && "*" != $c ) {
 
