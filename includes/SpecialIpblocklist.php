@@ -6,7 +6,7 @@
  */
 
 /**
- *
+ * @todo document
  */
 function wfSpecialIpblocklist() {
 	global $wgUser, $wgOut, $wgRequest;
