@@ -30,6 +30,10 @@ function wfSpecialEmailuser( $par ) {
 		return;
 	}
 	$nt = Title::newFromURL( $target );
+	if ( is_null( $nt ) ) {
+		$wgOut->errorpage( "notargettitle", "notargettext" );
+		return;
+	}
 	$nu = User::newFromName( $nt->getText() );
 	$id = $nu->idForName();
 
@@ -96,29 +100,29 @@ class EmailUserForm {
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
-			$wgOut->addHTML( "<p><font color='red' size='+1'>{$err}</font>\n" );
+			$wgOut->addHTML( "<p><font color='red' size='+1'>{$err}</font></p>\n" );
 		}
-		$wgOut->addHTML( "<p>
+		$wgOut->addHTML( "
 <form id=\"emailuser\" method=\"post\" action=\"{$action}\">
-<table border=0><tr>
-<td align=right>{$emf}:</td>
-<td align=left><strong>{$sender}</strong></td>
+<table border='0'><tr>
+<td align='right'>{$emf}:</td>
+<td align='left'><strong>{$sender}</strong></td>
 </tr><tr>
-<td align=right>{$emt}:</td>
-<td align=left><strong>{$rcpt}</strong></td>
+<td align='right'>{$emt}:</td>
+<td align='left'><strong>{$rcpt}</strong></td>
 </tr><tr>
-<td align=right>{$emr}:</td>
-<td align=left>
-<input type=text name=\"wpSubject\" value=\"{$encSubject}\">
+<td align='right'>{$emr}:</td>
+<td align='left'>
+<input type='text' name=\"wpSubject\" value=\"{$encSubject}\" />
 </td>
 </tr><tr>
-<td align=right>{$emm}:</td>
-<td align=left>
-<textarea name=\"wpText\" rows=10 cols=60 wrap=virtual>" . htmlspecialchars( $this->text ) .
+<td align='right'>{$emm}:</td>
+<td align='left'>
+<textarea name=\"wpText\" rows='10' cols='60' wrap='virtual'>" . htmlspecialchars( $this->text ) .
 "</textarea>
 </td></tr><tr>
-<td>&nbsp;</td><td align=left>
-<input type=submit name=\"wpSend\" value=\"{$ems}\">
+<td>&nbsp;</td><td align='left'>
+<input type='submit' name=\"wpSend\" value=\"{$ems}\" />
 </td></tr></table>
 </form>\n" );
 
