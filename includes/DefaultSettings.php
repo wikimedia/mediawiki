@@ -11,7 +11,7 @@
 # This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
 if( defined( "MEDIAWIKI" ) ) {
 
-$wgVersion			= '1.3.0+';
+$wgVersion			= '1.4-prealpha';
 
 $wgSitename         = 'MediaWiki'; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename

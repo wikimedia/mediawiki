@@ -104,45 +104,13 @@ function wfLocalUrl( $a, $q = '' )
 
 function wfLocalUrlE( $a, $q = '' )
 {
-	return wfEscapeHTML( wfLocalUrl( $a, $q ) );
+	return htmlspecialchars( wfLocalUrl( $a, $q ) );
 	# die( "Call to obsolete function wfLocalUrlE()" );
 }
 
-function wfFullUrl( $a, $q = '' ) {
-	wfDebugDieBacktrace( 'Call to obsolete function wfFullUrl(); use Title::getFullURL' );
-}
-
-function wfFullUrlE( $a, $q = '' ) {
-	wfDebugDieBacktrace( 'Call to obsolete function wfFullUrlE(); use Title::getFullUrlE' );
-
-}
-
-// orphan function wfThumbUrl( $img )
-//{
-//	global $wgUploadPath;
-//
-//	$nt = Title::newFromText( $img );
-//	if( !$nt ) return "";
-//
-//	$name = $nt->getDBkey();
-//	$hash = md5( $name );
-//
-//	$url = "{$wgUploadPath}/thumb/" . $hash{0} . "/" .
-//	  substr( $hash, 0, 2 ) . "/{$name}";
-//	return wfUrlencode( $url );
-//}
-
-
-function wfImageArchiveUrl( $name )
-{
-	global $wgUploadPath;
-
-	$hash = md5( substr( $name, 15) );
-	$url = "{$wgUploadPath}/archive/" . $hash{0} . "/" .
-	  substr( $hash, 0, 2 ) . "/{$name}";
-	return wfUrlencode($url);
-}
-
+# We want / and : to be included as literal characters in our title URLs.
+# %2F in the page titles seems to fatally break for some reason.
+#
 function wfUrlencode ( $s )
 {
 	$s = urlencode( $s );
@@ -152,7 +120,10 @@ function wfUrlencode ( $s )
 	return $s;
 }
 
-function wfUtf8Sequence($codepoint) {
+# Return the UTF-8 sequence for a given Unicode code point.
+# Currently doesn't work for values outside the Basic Multilingual Plane.
+#
+function wfUtf8Sequence( $codepoint ) {
 	if($codepoint <		0x80) return chr($codepoint);
 	if($codepoint <    0x800) return chr($codepoint >>	6 & 0x3f | 0xc0) .
 									 chr($codepoint		  & 0x3f | 0x80);
@@ -168,7 +139,7 @@ function wfUtf8Sequence($codepoint) {
 }
 
 # Converts numeric character entities to UTF-8
-function wfMungeToUtf8($string) {
+function wfMungeToUtf8( $string ) {
 	global $wgInputEncoding; # This is debatable
 	#$string = iconv($wgInputEncoding, "UTF-8", $string);
 	$string = preg_replace ( '/&#([0-9]+);/e', 'wfUtf8Sequence($1)', $string );
@@ -178,6 +149,7 @@ function wfMungeToUtf8($string) {
 }
 
 # Converts a single UTF-8 character into the corresponding HTML character entity
+# (for use with preg_replace_callback)
 function wfUtf8Entity( $matches ) {
 	$char = $matches[0];
 	# Find the length
@@ -275,12 +247,14 @@ function logProfilingData()
 	}
 }
 
-
-function wfReadOnly()
-{
+# Check if the wiki read-only lock file is present. This can be used to lock off
+# editing functions, but doesn't guarantee that the database will not be modified.
+function wfReadOnly() {
 	global $wgReadOnlyFile;
 
-	if ( "" == $wgReadOnlyFile ) { return false; }
+	if ( "" == $wgReadOnlyFile ) {
+		return false;
+	}
 	return is_file( $wgReadOnlyFile );
 }
 
@@ -289,8 +263,7 @@ $wgReplacementKeys = array( "$1", "$2", "$3", "$4", "$5", "$6", "$7", "$8", "$9"
 # Get a message from anywhere
 function wfMsg( $key ) {
 	global $wgRequest;
-	if ( $wgRequest->getVal( 'debugmsg' ) )
-	{
+	if ( $wgRequest->getVal( 'debugmsg' ) ) {
 		if ( $key == 'linktrail' /* a special case where we want to return something specific */ )
 			return "/^()(.*)$/sD";
 		else
@@ -335,44 +308,6 @@ function wfMsgReal( $key, $args, $useDB ) {
 	return $message;
 }
 
-function wfCleanFormFields( $fields )
-{
-	wfDebugDieBacktrace( 'Call to obsolete wfCleanFormFields(). Use wgRequest instead...' );
-}
-
-function wfMungeQuotes( $in )
-{
-	$out = str_replace( '%', '%25', $in );
-	$out = str_replace( "'", '%27', $out );
-	$out = str_replace( '"', '%22', $out );
-	return $out;
-}
-
-function wfDemungeQuotes( $in )
-{
-	$out = str_replace( '%22', '"', $in );
-	$out = str_replace( '%27', "'", $out );
-	$out = str_replace( '%25', '%', $out );
-	return $out;
-}
-
-function wfCleanQueryVar( $var )
-{
-	wfDebugDieBacktrace( 'Call to obsolete function wfCleanQueryVar(); use wgRequest instead' );
-}
-
-function wfSearch( $s )
-{
-	$se = new SearchEngine( $s );
-	$se->showResults();
-}
-
-function wfGo( $s )
-{ # pick the nearest match
-	$se = new SearchEngine( $s );
-	$se->goResult();
-}
-
 # Just like exit() but makes a note of it.
 # Commits open transactions except if the error parameter is set
 function wfAbruptExit( $error = false ){
@@ -403,6 +338,9 @@ function wfErrorExit() {
 	wfAbruptExit( true );
 }
 
+# This is meant as a debugging aid to track down where bad data comes from.
+# Shouldn't be used in production code except maybe in "shouldn't happen" areas.
+#
 function wfDebugDieBacktrace( $msg = '' ) {
 	global $wgCommandLineMode;
 
@@ -432,214 +370,6 @@ function wfDebugDieBacktrace( $msg = '' ) {
 		}
 	 }
 	 die( $msg );
-}
-
-function wfNumberOfArticles()
-{
-	global $wgNumberOfArticles;
-
-	wfLoadSiteStats();
-	return $wgNumberOfArticles;
-}
-
-/* private */ function wfLoadSiteStats()
-{
-	global $wgNumberOfArticles, $wgTotalViews, $wgTotalEdits;
-	$fname = 'wfLoadSiteStats';
-
-	if ( -1 != $wgNumberOfArticles ) return;
-	$dbr =& wfGetDB( DB_SLAVE );
-	$s = $dbr->getArray( 'site_stats',
-		array( 'ss_total_views', 'ss_total_edits', 'ss_good_articles' ),
-		array( 'ss_row_id' => 1 ), $fname
-	);
-
-	if ( $s === false ) {
-		return;
-	} else {
-		$wgTotalViews = $s->ss_total_views;
-		$wgTotalEdits = $s->ss_total_edits;
-		$wgNumberOfArticles = $s->ss_good_articles;
-	}
-}
-
-function wfEscapeHTML( $in )
-{
-	return str_replace(
-		array( '&', '"', '>', '<' ),
-		array( '&amp;', '&quot;', '&gt;', '&lt;' ),
-		$in );
-}
-
-function wfEscapeHTMLTagsOnly( $in ) {
-	return str_replace(
-		array( '"', '>', '<' ),
-		array( '&quot;', '&gt;', '&lt;' ),
-		$in );
-}
-
-function wfUnescapeHTML( $in )
-{
-	$in = str_replace( '&lt;', '<', $in );
-	$in = str_replace( '&gt;', '>', $in );
-	$in = str_replace( '&quot;', '"', $in );
-	$in = str_replace( '&amp;', '&', $in );
-	return $in;
-}
-
-function wfImageDir( $fname )
-{
-	global $wgUploadDirectory;
-
-	$hash = md5( $fname );
-	$oldumask = umask(0);
-	$dest = $wgUploadDirectory . '/' . $hash{0};
-	if ( ! is_dir( $dest ) ) { mkdir( $dest, 0777 ); }
-	$dest .= '/' . substr( $hash, 0, 2 );
-	if ( ! is_dir( $dest ) ) { mkdir( $dest, 0777 ); }
-
-	umask( $oldumask );
-	return $dest;
-}
-
-function wfImageThumbDir( $fname , $subdir='thumb')
-{
-	return wfImageArchiveDir( $fname, $subdir );
-}
-
-function wfImageArchiveDir( $fname , $subdir='archive')
-{
-	global $wgUploadDirectory;
-
-	$hash = md5( $fname );
-	$oldumask = umask(0);
-
-	# Suppress warning messages here; if the file itself can't
-	# be written we'll worry about it then.
-	$archive = "{$wgUploadDirectory}/{$subdir}";
-	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
-	$archive .= '/' . $hash{0};
-	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
-	$archive .= '/' . substr( $hash, 0, 2 );
-	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
-
-	umask( $oldumask );
-	return $archive;
-}
-
-function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source = "" )
-{
-	global $wgUser, $wgLang, $wgTitle, $wgOut, $wgDeferredUpdateList;
-	global $wgUseCopyrightUpload;
-
-	$fname = 'wfRecordUpload';
-	$dbw =& wfGetDB( DB_MASTER );
-
-	# img_name must be unique
-	if ( !$dbw->indexUnique( 'image', 'img_name' ) ) {
-		wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/archives/patch-image_name_unique.sql' );
-	}
-
-
-	$now = wfTimestampNow();
-	$won = wfInvertTimestamp( $now );
-	$size = IntVal( $size );
-
-	if ( $wgUseCopyrightUpload )
-	  {
-		$textdesc = '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n" .
-		  '== ' . wfMsg ( 'filestatus' ) . " ==\n" . $copyStatus . "\n" .
-		  '== ' . wfMsg ( 'filesource' ) . " ==\n" . $source ;
-	  }
-	else $textdesc = $desc ;
-
-	$now = wfTimestampNow();
-	$won = wfInvertTimestamp( $now );
-
-	# Test to see if the row exists using INSERT IGNORE
-	# This avoids race conditions by locking the row until the commit, and also
-	# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
-	$dbw->insert( 'image',
-		array(
-			'img_name' => $name,
-			'img_size'=> $size,
-			'img_timestamp' => $now,
-			'img_description' => $desc,
-			'img_user' => $wgUser->getID(),
-			'img_user_text' => $wgUser->getName(),
-		), $fname, 'IGNORE'
-	);
-	$descTitle = Title::makeTitle( NS_IMAGE, $name );
-
-	if ( $dbw->affectedRows() ) {
-		# Successfully inserted, this is a new image
-		$id = $descTitle->getArticleID();
-
-		if ( $id == 0 ) {
-			$seqVal = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
-			$dbw->insertArray( 'cur',
-				array(
-					'cur_id' => $seqVal,
-					'cur_namespace' => NS_IMAGE,
-					'cur_title' => $name,
-					'cur_comment' => $desc,
-					'cur_user' => $wgUser->getID(),
-					'cur_user_text' => $wgUser->getName(),
-					'cur_timestamp' => $now,
-					'cur_is_new' => 1,
-					'cur_text' => $textdesc,
-					'inverse_timestamp' => $won,
-					'cur_touched' => $now
-				), $fname
-			);
-			$id = $dbw->insertId() or 0; # We should throw an error instead
-
-			RecentChange::notifyNew( $now, $descTitle, 0, $wgUser, $desc );
-
-			$u = new SearchUpdate( $id, $name, $desc );
-			$u->doUpdate();
-		}
-	} else {
-		# Collision, this is an update of an image
-		# Get current image row for update
-		$s = $dbw->getArray( 'image', array( 'img_name','img_size','img_timestamp','img_description',
-		  'img_user','img_user_text' ), array( 'img_name' => $name ), $fname, 'FOR UPDATE' );
-
-		# Insert it into oldimage
-		$dbw->insertArray( 'oldimage',
-			array(
-				'oi_name' => $s->img_name,
-				'oi_archive_name' => $oldver,
-				'oi_size' => $s->img_size,
-				'oi_timestamp' => $s->img_timestamp,
-				'oi_description' => $s->img_description,
-				'oi_user' => $s->img_user,
-				'oi_user_text' => $s->img_user_text
-			), $fname
-		);
-
-		# Update the current image row
-		$dbw->updateArray( 'image',
-			array( /* SET */
-				'img_size' => $size,
-				'img_timestamp' => wfTimestampNow(),
-				'img_user' => $wgUser->getID(),
-				'img_user_text' => $wgUser->getName(),
-				'img_description' => $desc,
-			), array( /* WHERE */
-				'img_name' => $name
-			), $fname
-		);
-
-		# Invalidate the cache for the description page
-		$descTitle->invalidateCache();
-	}
-
-	$log = new LogPage( wfMsg( 'uploadlogpage' ), wfMsg( 'uploadlogpagetext' ) );
-	$da = wfMsg( 'uploadedimage', '[[:' . $wgLang->getNsText(
-	  Namespace::getImage() ) . ":{$name}|{$name}]]" );
-	$ta = wfMsg( 'uploadedimage', $name );
-	$log->addEntry( $da, $desc, $ta );
 }
 
 
@@ -847,10 +577,10 @@ function wfEscapeShellArg( )
 			$first = false;
 		}
 
-		if ( wfIsWindows() ) {
-			$retVal .= '"' . str_replace( '"','\"', $arg ) . '"';
-		} else {
+		if ( function_exists( 'escapeshellarg' ) ) {
 			$retVal .= escapeshellarg( $arg );
+		} else {
+			$retVal .= '"' . str_replace( '"','\"', $arg ) . '"';
 		}
 	}
 	return $retVal;
@@ -1018,16 +748,6 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 function wfArrayLookup( $a, $b )
 {
 	return array_flip( array_intersect( array_flip( $a ), array_keys( $b ) ) );
-}
-
-# Since Windows is so different to any of the other popular OSes, it seems appropriate
-# to have a simple way to test for its presence
-function wfIsWindows() {
-	if (substr(php_uname(), 0, 7) == 'Windows') {
-		return true;
-	} else {
-		return false;
-	}
 }
 
 

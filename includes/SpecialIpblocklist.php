@@ -158,7 +158,7 @@ function wfAddRow( $block, $tag ) {
 		$wgOut->addHTML( " ({$ublink})" );
 	}
 	if ( "" != $block->mReason ) {
-		$wgOut->addHTML( " <em>(" . wfEscapeHTML( $block->mReason ) .
+		$wgOut->addHTML( " <em>(" . htmlspecialchars( $block->mReason ) .
 		  ")</em>" );
 	}
 	$wgOut->addHTML( "</li>\n" );

@@ -294,3 +294,170 @@ class Image
 
 } //class
 
+
+function wfImageDir( $fname )
+{
+	global $wgUploadDirectory;
+
+	$hash = md5( $fname );
+	$oldumask = umask(0);
+	$dest = $wgUploadDirectory . '/' . $hash{0};
+	if ( ! is_dir( $dest ) ) { mkdir( $dest, 0777 ); }
+	$dest .= '/' . substr( $hash, 0, 2 );
+	if ( ! is_dir( $dest ) ) { mkdir( $dest, 0777 ); }
+
+	umask( $oldumask );
+	return $dest;
+}
+
+function wfImageThumbDir( $fname , $subdir='thumb')
+{
+	return wfImageArchiveDir( $fname, $subdir );
+}
+
+function wfImageArchiveDir( $fname , $subdir='archive')
+{
+	global $wgUploadDirectory;
+
+	$hash = md5( $fname );
+	$oldumask = umask(0);
+
+	# Suppress warning messages here; if the file itself can't
+	# be written we'll worry about it then.
+	$archive = "{$wgUploadDirectory}/{$subdir}";
+	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
+	$archive .= '/' . $hash{0};
+	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
+	$archive .= '/' . substr( $hash, 0, 2 );
+	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
+
+	umask( $oldumask );
+	return $archive;
+}
+
+function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source = "" )
+{
+	global $wgUser, $wgLang, $wgTitle, $wgOut, $wgDeferredUpdateList;
+	global $wgUseCopyrightUpload;
+
+	$fname = 'wfRecordUpload';
+	$dbw =& wfGetDB( DB_MASTER );
+
+	# img_name must be unique
+	if ( !$dbw->indexUnique( 'image', 'img_name' ) ) {
+		wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/archives/patch-image_name_unique.sql' );
+	}
+
+
+	$now = wfTimestampNow();
+	$won = wfInvertTimestamp( $now );
+	$size = IntVal( $size );
+
+	if ( $wgUseCopyrightUpload )
+	  {
+		$textdesc = '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n" .
+		  '== ' . wfMsg ( 'filestatus' ) . " ==\n" . $copyStatus . "\n" .
+		  '== ' . wfMsg ( 'filesource' ) . " ==\n" . $source ;
+	  }
+	else $textdesc = $desc ;
+
+	$now = wfTimestampNow();
+	$won = wfInvertTimestamp( $now );
+
+	# Test to see if the row exists using INSERT IGNORE
+	# This avoids race conditions by locking the row until the commit, and also
+	# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
+	$dbw->insert( 'image',
+		array(
+			'img_name' => $name,
+			'img_size'=> $size,
+			'img_timestamp' => $now,
+			'img_description' => $desc,
+			'img_user' => $wgUser->getID(),
+			'img_user_text' => $wgUser->getName(),
+		), $fname, 'IGNORE'
+	);
+	$descTitle = Title::makeTitle( NS_IMAGE, $name );
+
+	if ( $dbw->affectedRows() ) {
+		# Successfully inserted, this is a new image
+		$id = $descTitle->getArticleID();
+
+		if ( $id == 0 ) {
+			$seqVal = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
+			$dbw->insertArray( 'cur',
+				array(
+					'cur_id' => $seqVal,
+					'cur_namespace' => NS_IMAGE,
+					'cur_title' => $name,
+					'cur_comment' => $desc,
+					'cur_user' => $wgUser->getID(),
+					'cur_user_text' => $wgUser->getName(),
+					'cur_timestamp' => $now,
+					'cur_is_new' => 1,
+					'cur_text' => $textdesc,
+					'inverse_timestamp' => $won,
+					'cur_touched' => $now
+				), $fname
+			);
+			$id = $dbw->insertId() or 0; # We should throw an error instead
+
+			RecentChange::notifyNew( $now, $descTitle, 0, $wgUser, $desc );
+
+			$u = new SearchUpdate( $id, $name, $desc );
+			$u->doUpdate();
+		}
+	} else {
+		# Collision, this is an update of an image
+		# Get current image row for update
+		$s = $dbw->getArray( 'image', array( 'img_name','img_size','img_timestamp','img_description',
+		  'img_user','img_user_text' ), array( 'img_name' => $name ), $fname, 'FOR UPDATE' );
+
+		# Insert it into oldimage
+		$dbw->insertArray( 'oldimage',
+			array(
+				'oi_name' => $s->img_name,
+				'oi_archive_name' => $oldver,
+				'oi_size' => $s->img_size,
+				'oi_timestamp' => $s->img_timestamp,
+				'oi_description' => $s->img_description,
+				'oi_user' => $s->img_user,
+				'oi_user_text' => $s->img_user_text
+			), $fname
+		);
+
+		# Update the current image row
+		$dbw->updateArray( 'image',
+			array( /* SET */
+				'img_size' => $size,
+				'img_timestamp' => wfTimestampNow(),
+				'img_user' => $wgUser->getID(),
+				'img_user_text' => $wgUser->getName(),
+				'img_description' => $desc,
+			), array( /* WHERE */
+				'img_name' => $name
+			), $fname
+		);
+
+		# Invalidate the cache for the description page
+		$descTitle->invalidateCache();
+	}
+
+	$log = new LogPage( wfMsg( 'uploadlogpage' ), wfMsg( 'uploadlogpagetext' ) );
+	$da = wfMsg( 'uploadedimage', '[[:' . $wgLang->getNsText(
+	  Namespace::getImage() ) . ":{$name}|{$name}]]" );
+	$ta = wfMsg( 'uploadedimage', $name );
+	$log->addEntry( $da, $desc, $ta );
+}
+
+function wfImageArchiveUrl( $name )
+{
+	global $wgUploadPath;
+
+	$hash = md5( substr( $name, 15) );
+	$url = "{$wgUploadPath}/archive/" . $hash{0} . "/" .
+	  substr( $hash, 0, 2 ) . "/{$name}";
+	return wfUrlencode($url);
+}
+
+?>

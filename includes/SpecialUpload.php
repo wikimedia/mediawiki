@@ -1,5 +1,7 @@
 <?php
 
+require_once( "Image.php" );
+
 function wfSpecialUpload()
 {
 	global $wgRequest;

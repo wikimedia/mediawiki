@@ -122,7 +122,7 @@ class PageHistory {
 		$this->lastdate = $this->lastline = "";
 		$s = "\n<p>" . wfMsg( "histlegend" ).'</p>'; 
 		$s .="\n<form action=\"" . $wgTitle->escapeLocalURL( '-' ) . "\" method=\"get\">";
-		$s .= "<input type=\"hidden\" name=\"title\" value=\"".wfEscapeHTML($wgTitle->getPrefixedDbKey())."\"/>\n";
+		$s .= "<input type=\"hidden\" name=\"title\" value=\"".htmlspecialchars($wgTitle->getPrefixedDbKey())."\"/>\n";
 		$s .= !empty($this->submitbuttonhtml1) ? $this->submitbuttonhtml1."\n":'';
 		$s .= "" . "\n<ul id=\"pagehistory\" >";
 		return $s;

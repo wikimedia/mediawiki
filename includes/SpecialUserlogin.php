@@ -375,11 +375,11 @@ class LoginForm {
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Userlogin" );
 		$action = $titleObj->escapeLocalUrl( $q );
 
-		$encName = wfEscapeHTML( $this->mName );
-		$encPassword = wfEscapeHTML( $this->mPassword );
-		$encRetype = wfEscapeHTML( $this->mRetype );
-		$encEmail = wfEscapeHTML( $this->mEmail );
-		$encRealName = wfEscapeHTML( $this->mRealName );
+		$encName = htmlspecialchars( $this->mName );
+		$encPassword = htmlspecialchars( $this->mPassword );
+		$encRetype = htmlspecialchars( $this->mRetype );
+		$encEmail = htmlspecialchars( $this->mEmail );
+		$encRealName = htmlspecialchars( $this->mRealName );
 
 		if ($wgUser->getID() != 0) {
 			$cambutton = "<input tabindex='6' type='submit' name=\"wpCreateaccountMail\" value=\"{$cam}\" />";
