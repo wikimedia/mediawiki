@@ -108,6 +108,7 @@ $wgAmericanDates    = false; # Enable for English module to print dates
 $wgLocalInterwiki   = "w";
 $wgShowIPinHeader	= true; # For non-logged in users
 $wgMaxNameChars     = 32; # Maximum number of bytes in username
+$wgInterwikiExpiry = 10800; # Expiry time for cache of interwiki table
 
 # Translation using MediaWiki: namespace
 # This will increase load times by 25-60% unless memcached is installed

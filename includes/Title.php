@@ -1,7 +1,7 @@
 <?php
 # See title.doc
 
-/* private static */ $title_interwiki_cache = array();
+$wgTitleInterwikiCache = array();
 
 # Title class
 # 
@@ -238,21 +238,22 @@ class Title {
 	# The URL contains $1, which is replaced by the title
 	function getInterwikiLink( $key )
 	{	
-		global $wgMemc, $wgDBname;
-		static $title_interwiki_cache = array();
+		global $wgMemc, $wgDBname, $wgInterwikiExpiry;
+		static $wgTitleInterwikiCache = array();
 
 		$k = "$wgDBname:interwiki:$key";
 
-		if( array_key_exists( $k, $title_interwiki_cache ) )
-			return $title_interwiki_cache[$k]->iw_url;
+		if( array_key_exists( $k, $wgTitleInterwikiCache ) )
+			return $wgTitleInterwikiCache[$k]->iw_url;
 
 		$s = $wgMemc->get( $k ); 
-		if( $s ) { 
-			$title_interwiki_cache[$k] = $s;
+		# Ignore old keys with no iw_local
+		if( $s && isset( $s->iw_local ) ) { 
+			$wgTitleInterwikiCache[$k] = $s;
 			return $s->iw_url;
 		}
 		$dkey = wfStrencode( $key );
-		$query = "SELECT iw_url FROM interwiki WHERE iw_prefix='$dkey'";
+		$query = "SELECT iw_url,iw_local FROM interwiki WHERE iw_prefix='$dkey'";
 		$res = wfQuery( $query, DB_READ, "Title::getInterwikiLink" );
 		if(!$res) return "";
 		
@@ -261,11 +262,24 @@ class Title {
 			$s = (object)false;
 			$s->iw_url = "";
 		}
-		$wgMemc->set( $k, $s );
-		$title_interwiki_cache[$k] = $s;
+		$wgMemc->set( $k, $s, $wgInterwikiExpiry );
+		$wgTitleInterwikiCache[$k] = $s;
 		return $s->iw_url;
 	}
-	
+
+	function isLocal() {
+		global $wgTitleInterwikiCache, $wgDBname;
+
+		if ( $this->mInterwiki != "" ) {
+			# Make sure key is loaded into cache
+			$this->getInterwikiLink( $this->mInterwiki );
+			$k = "$wgDBname:interwiki:" . $this->mInterwiki;
+			return (bool)($wgTitleInterwikiCache[$k]->iw_local);
+		} else {
+			return true;
+		}
+	}
+
 	# Update the cur_touched field for an array of title objects
 	# Inefficient unless the IDs are already loaded into the link cache
 	/* static */ function touchArray( $titles, $timestamp = "" ) {

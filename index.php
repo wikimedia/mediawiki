@@ -70,9 +70,18 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 	} else {
 		wfGo( $search );
 	}
-} else if( !$wgTitle or $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" ) {
+} else if( !$wgTitle or $wgTitle->getDBkey() == "" ) {
 	$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 	$wgOut->errorpage( "badtitle", "badtitletext" );
+} else if ( $wgTitle->getInterwiki() != "" ) {
+	$url = $wgTitle->getFullURL();
+	# Check for a redirect loop
+	if ( !preg_match( "/^" . preg_quote( $wgServer ) . "/", $url ) && $wgTitle->isLocal() ) {
+		$wgOut->redirect( $url );
+	} else {
+		$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
+		$wgOut->errorpage( "badtitle", "badtitletext" );
+	}
 } else if ( ( $action == "view" ) && $wgTitle->getPrefixedDBKey() != $title ) {
 	/* redirect to canonical url, make it a 301 to allow caching */
 	$wgOut->redirect( $wgTitle->getFullURL(), '301');
