@@ -36,6 +36,31 @@ if( !function_exists('file_get_contents') ) {
 	}
 }
 
+if( !function_exists('is_a') ) {
+	# Exists in PHP 4.2.0+
+	function is_a( $object, $class_name ) {
+		return
+			(strcasecmp( get_class( $object, $class_name ) == 0) ||
+			 is_subclass_of( $object, $class_name ) );
+	}
+}
+
+# html_entity_decode exists in PHP 4.3.0+ but is FATALLY BROKEN even then,
+# with no UTF-8 support.
+function do_html_entity_decode( $string, $quote_style=ENT_COMPAT, $charset="ISO-8859-1" ) {
+	static $trans;
+	if( !isset( $trans ) ) {
+		$trans = array_flip( get_html_translation_table( HTML_ENTITIES, $quote_style ) );
+		# Assumes $charset will always be the same through a run, and only understands
+		# utf-8 or default. Note - mixing latin1 named entities and unicode numbered
+		# ones will result in a bad link.
+		if( strcasecmp( "utf-8", $charset ) == 0 ) {
+			$trans = array_map( "utf8_encode", $trans );
+		}
+	}
+	return strtr( $string, $trans );
+}
+
 $wgRandomSeeded = false;
 
 function wfSeedRandom()

@@ -1674,6 +1674,8 @@ class Parser
 
 	/* private */ function formatHeadings( $text )
 	{
+		global $wgInputEncoding;
+		
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
 		if( !$this->mTitle->userCanEdit() ) {
@@ -1774,7 +1776,7 @@ class Parser
 			# strip out HTML
 			$canonized_headline = preg_replace( "/<.*?" . ">/","",$canonized_headline );
 			$tocline = trim( $canonized_headline );
-			$canonized_headline = preg_replace("/[ \\?&\\/<>\\(\\)\\[\\]=,+']+/", '_', html_entity_decode( $tocline));
+			$canonized_headline = preg_replace("/[ \\?&\\/<>\\(\\)\\[\\]=,+']+/", '_', urlencode( do_html_entity_decode( $tocline, ENT_COMPAT, $wgInputEncoding ) ) );
 			$refer[$headlineCount] = $canonized_headline;
 
 			# count how many in assoc. array so we can track dupes in anchors
