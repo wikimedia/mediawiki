@@ -4,9 +4,8 @@ require_once( "WatchedItem.php" );
 
 function wfSpecialWatchlist()
 {
-	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgLoadBalancer;
+	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgRequest, $wgLoadBalancer;
 	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname, $wgIsMySQL;
-	global $days, $limit, $target; # From query string
 	$fname = "wfSpecialWatchlist";
 
 	$wgOut->setPagetitle( wfMsg( "watchlist" ) );
@@ -22,7 +21,12 @@ function wfSpecialWatchlist()
 		return;
 	}
 
-	global $action,$remove,$id;
+	# Get query variables
+	$days = $wgRequest->getVal( 'days' );
+	$action = $wgRequest->getVal( 'action' );
+	$remove = $wgRequest->getVal( 'remove' );
+	$id = $wgRequest->getVal( 'id' );
+
 	if(($action == "submit") && isset($remove) && is_array($id)) {
 		$wgOut->addHTML( wfMsg( "removingchecked" ) );
 		foreach($id as $one) {
@@ -63,8 +67,7 @@ function wfSpecialWatchlist()
 	}
 	
 	$wgLoadBalancer->force(-1);
-	
-	if ( ! isset( $days ) ) {
+	if ( is_null( $days ) ) {
 		$big = 1000;
 		if($nitems > $big) {
 			# Set default cutoff shorter
@@ -101,7 +104,7 @@ function wfSpecialWatchlist()
 			"<ul>\n" );
 		$sql = "SELECT wl_namespace,wl_title FROM watchlist WHERE wl_user=$uid";
 		$res = wfQuery( $sql, DB_READ );
-		global $wgUser, $wgLang;
+
 		$sk = $wgUser->getSkin();
 		while( $s = wfFetchObject( $res ) ) {
 			$t = Title::makeTitle( $s->wl_namespace, $s->wl_title );
@@ -158,18 +161,18 @@ function wfSpecialWatchlist()
 
 
 	$res = wfQuery( $sql, DB_READ, $fname );
-
+	$numRows = wfNumRows( $res );
 	if($days >= 1)
-		$note = wfMsg( "rcnote", $wgLang->formatNum( $limit ), $wgLang->formatNum( $days ) );
+		$note = wfMsg( "rcnote", $wgLang->formatNum( $numRows ), $wgLang->formatNum( $days ) );
 	elseif($days > 0)
-		$note = wfMsg( "wlnote", $wgLang->formatNum( $limit ), $wgLang->formatNum( round($days*24) ) );
+		$note = wfMsg( "wlnote", $wgLang->formatNum( $numRows ), $wgLang->formatNum( round($days*24) ) );
 	else
 		$note = "";
 	$wgOut->addHTML( "\n<hr />\n{$note}\n<br />" );
-	$note = wlCutoffLinks( $days, $limit );
+	$note = wlCutoffLinks( $days );
 	$wgOut->addHTML( "{$note}\n" );
 
-	if ( wfNumRows( $res ) == 0 ) {
+	if ( $numRows == 0 ) {
 		$wgOut->addHTML( "<p><i>" . wfMsg( "watchnochange" ) . "</i></p>" );
 		$wgLoadBalancer->force(0);
 		return;
@@ -217,7 +220,7 @@ function wlDaysLink( $d, $page ) {
 	return $s;
 }
 
-function wlCutoffLinks( $days, $limit, $page = "Watchlist" )
+function wlCutoffLinks( $days, $page = "Watchlist" )
 {
 	$hours = array( 1, 2, 6, 12 );
 	$days = array( 1, 3, 7 );
