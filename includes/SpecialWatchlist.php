@@ -42,7 +42,7 @@ function wfSpecialWatchlist() {
 	$wgOut->addHTML( wfMsg( "email_notification_infotext" ) );
 
 	if( $wgRequest->getVal( 'reset' ) == 'all' ) {
-		$wgUser->clearAllNotifications();
+		$wgUser->clearAllNotifications( $uid );
 	}
 
 	if(($action == "submit") && isset($remove) && is_array($id)) {
