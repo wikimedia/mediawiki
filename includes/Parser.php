@@ -2852,6 +2852,8 @@ class Parser
 	 */
 	function replaceLinkHolders( &$text, $options = 0 ) {
 		global $wgUser, $wgLinkCache, $wgUseOldExistenceCheck, $wgLinkHolders;
+		global $wgInterwikiLinkHolders;
+		global $outputReplace;
 		
 		if ( $wgUseOldExistenceCheck ) {
 			return array();
@@ -2944,7 +2946,6 @@ class Parser
 			
 			# Construct search and replace arrays
 			wfProfileIn( $fname.'-construct' );
-			global $outputReplace;
 			$outputReplace = array();
 			foreach ( $wgLinkHolders['namespaces'] as $key => $ns ) {
 				$pdbk = $pdbks[$key];
@@ -2976,9 +2977,10 @@ class Parser
 				"outputReplaceMatches",
 				$text);
 			wfProfileOut( $fname.'-replace' );
+		}
 
+		if ( !empty( $wgInterwikiLinkHolders ) ) {
 			wfProfileIn( $fname.'-interwiki' );
-			global $wgInterwikiLinkHolders;
 			$outputReplace = $wgInterwikiLinkHolders;
 			$text = preg_replace_callback(
 				'/<!--IWLINK (.*?)-->/',
