@@ -777,7 +777,7 @@ $wgCheckFileExtensions = true;
 $wgStrictFileExtensions = true;
 
 /** Warn if uploaded files are larger than this */
-$wgUploadSizeWarning = 150000;
+$wgUploadSizeWarning = 150 * 1024;
 
 /** For compatibility with old installations set to false */
 $wgPasswordSalt = true; 
