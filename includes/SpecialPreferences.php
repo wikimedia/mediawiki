@@ -269,7 +269,7 @@ class PreferencesForm {
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 
 		if ( "" != $err ) {
-			$wgOut->addHTML( "<font size='+1' color='red'>$err</font>\n<p>" );
+			$wgOut->addHTML( "<p class='error'>" . htmlspecialchars( $err ) . "</p>\n" );
 		}
 		$uname = $wgUser->getName();
 		$uid = $wgUser->getID();

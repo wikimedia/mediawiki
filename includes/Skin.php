@@ -527,7 +527,7 @@ class Skin {
 	{
 		global $wgOut, $wgTitle, $wgUser;
 
-		$s = "<h1 class='pagetitle'>" . $wgOut->getPageTitle() . "</h1>";
+		$s = "<h1 class='pagetitle'>" . htmlspecialchars( $wgOut->getPageTitle() ) . "</h1>";
 		if($wgUser->getOption("editsectiononrightclick") && $wgTitle->userCanEdit()) { $s=$this->editSectionScript(0,$s);}
 		return $s;
 	}
@@ -713,8 +713,47 @@ class Skin {
 			}
 		}
 		$s .= $this->lastModified();
-		$s .= " " . wfMsg( "gnunote" );
-		return $s;
+		return $s . " " .  $this->getCopyright();
+	}
+	
+	function getCopyright() {
+		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
+		$out = "";
+		if( $wgRightsPage ) {
+			$link = $this->makeKnownLink( $wgRightsPage, $wgRightsText );
+		} elseif( $wgRightsUrl ) {
+			$link = $this->makeExternalLink( $wgRightsUrl, $wgRightsText );
+		} else {
+			# Give up now
+			return $out;
+		}
+		$out .= wfMsg( "copyright", $link );
+		return $out;
+	}
+	
+	function getCopyrightIcon() {
+		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgRightsIcon;
+		$out = "";
+		if( $wgRightsIcon ) {
+			$icon = htmlspecialchars( $wgRightsIcon );
+			if( $wgRightsUrl ) {
+				$url = htmlspecialchars( $wgRightsUrl );
+				$out .= "<a href=\"$url\">";
+			}
+			$text = htmlspecialchars( $wgRightsText );
+			$out .= "<img src=\"$icon\" alt='$text' />";
+			if( $wgRightsUrl ) {
+				$out .= "</a>";
+			}
+		}
+		return $out;
+	}
+	
+	function getPoweredBy() {
+		global $wgUploadPath;
+		$url = htmlspecialchars( "$wgUploadPath/poweredby_mediawiki_88x31.png" );
+		$img = "<a href='http://www.mediawiki.org/'><img src='$url' alt='MediaWiki' /></a>";
+		return $img;
 	}
 
 	function lastModified()
@@ -924,7 +963,7 @@ class Skin {
 		$spp = $wgLang->specialPage( "Specialpages" );
 
 		$s = "<form id=\"specialpages\" method=\"get\" class=\"inline\" " .
-		  "action=\"{$wgServer}{$wgRedirectScript}\">\n";
+		  "action=\"" . htmlspecialchars( "{$wgServer}{$wgRedirectScript}" ) . "\">\n";
 		$s .= "<select name=\"wpDropdown\">\n";
 		$s .= "<option value=\"{$spp}\">{$sp}</option>\n";
 
@@ -933,7 +972,7 @@ class Skin {
 			$s .= "<option value=\"{$p}\">{$desc}</option>\n";
 		}
 		$s .= "</select>\n";
-		$s .= "<input type=submit value=\"{$go}\" name=redirect>\n";
+		$s .= "<input type='submit' value=\"{$go}\" name='redirect' />\n";
 		$s .= "</form>\n";
 		return $s;
 	}
@@ -1384,14 +1423,18 @@ class Skin {
 
 		if ( "" == $link ) {
 			$u = "";
-			if ( "" == $text ) { $text = $nt->getFragment(); }
+			if ( "" == $text ) {
+				$text = htmlspecialchars( $nt->getFragment() );
+			}
 		} else {
 			$u = $nt->escapeLocalURL( $query );
 		}
 		if ( "" != $nt->getFragment() ) {
-			$u .= "#" . wfEscapeHTML( $nt->getFragment() );
+			$u .= "#" . htmlspecialchars( $nt->getFragment() );
 		}
-		if ( "" == $text ) { $text = $nt->getPrefixedText(); }
+		if ( "" == $text ) {
+			$text = htmlspecialchars( $nt->getPrefixedText() );
+		}
 		$style = $this->getInternalLinkAttributesObj( $nt, $text );
 
 		$inside = "";
@@ -1421,7 +1464,9 @@ class Skin {
 		}
 		$u = $nt->escapeLocalURL( $q );
 
-		if ( "" == $text ) { $text = $nt->getPrefixedText(); }
+		if ( "" == $text ) {
+			$text = htmlspecialchars( $nt->getPrefixedText() );
+		}
 		$style = $this->getInternalLinkAttributesObj( $nt, $text, "yes" );
 
 		$inside = "";
@@ -1450,7 +1495,9 @@ class Skin {
 
 		$u = $nt->escapeLocalURL( $query );
 
-		if ( "" == $text ) { $text = $nt->getPrefixedText(); }
+		if ( "" == $text ) {
+			$text = htmlspecialchars( $nt->getPrefixedText() );
+		}
 		$style = $this->getInternalLinkAttributesObj( $nt, $text, "stub" );
 
 		$inside = "";
@@ -1763,6 +1810,15 @@ class Skin {
 		$pn = $wgLang->ucfirst( $name );
 		return $this->makeKnownLink( $wgLang->specialPage( $pn ),
 		  wfMsg( $key ) );
+	}
+	
+	function makeExternalLink( $url, $text, $escape = true ) {
+		$style = $this->getExternalLinkAttributes( $url, $text );
+		$url = htmlspecialchars( $url );
+		if( $escape ) {
+			$text = htmlspecialchars( $text );
+		}
+		return "<a href=\"$url\"$style>$text</a>";
 	}
 
 	# Called by history lists and recent changes

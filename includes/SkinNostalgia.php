@@ -21,15 +21,15 @@ class SkinNostalgia extends Skin {
 		$s .= $this->logoText( "right" );
 
 		$s .= $this->pageTitle();
-		$s .= $this->pageSubtitle() . "\n<p>";
+		$s .= $this->pageSubtitle() . "\n";
 
-		$s .= $this->topLinks() . "\n<br>";
+		$s .= $this->topLinks() . "\n<br />";
 		$s .= $this->pageTitleLinks();
 
 		$ol = $this->otherLanguages();
-		if($ol) $s .= "<br>" . $ol;
+		if($ol) $s .= "<br />" . $ol;
 
-		$s .= "<br clear=all><hr>\n</div>\n";
+		$s .= "<br clear='all' /><hr />\n</div>\n";
 		$s .= "\n<div id='article'>";
 
 		return $s;
@@ -61,13 +61,13 @@ class SkinNostalgia extends Skin {
 	{
 		global $wgUser, $wgOut;
 
-		$s = "\n</div><br clear=all>\n";
+		$s = "\n</div><br clear='all' />\n";
 
-		$s .= "\n<div id='footer'><hr>";
+		$s .= "\n<div id='footer'><hr />";
 
 		$s .= $this->bottomLinks();
-		$s .= "\n<br>" . $this->pageStats();
-		$s .= "\n<br>" . $this->mainPageLink()
+		$s .= "\n<br />" . $this->pageStats();
+		$s .= "\n<br />" . $this->mainPageLink()
 		  . " | " . $this->aboutLink()
 		  . " | " . $this->searchForm();
 

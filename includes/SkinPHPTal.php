@@ -71,7 +71,6 @@
 			$this->userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
 			$this->titletxt = $wgTitle->getPrefixedText();
 			
-			
 			$this->initPage( $out );
 			$tpl = new PHPTAL($this->template . '.pt', 'templates');
 			
@@ -80,6 +79,7 @@
 			#}
 
 			$tpl->setRef( "title", &$this->titletxt ); // ?
+			$tpl->set( "pagetitle", wfMsg( "pagetitle", $this->titletxt ) );
 			$tpl->setRef( "thispage", &$this->thispage );
 			$tpl->set( "subtitle", $out->getSubtitle() );
 			$tpl->setRef( 'mimetype', &$wgMimeType );
@@ -121,6 +121,8 @@
 			$tpl->setRef( "skin", &$this);
 			$tpl->set( "logo", $this->logoText() );
 			$tpl->set( "pagestats", $this->pageStats() );
+			$tpl->set( "copyright", $this->getCopyrightIcon() );
+			$tpl->set( "poweredby", $this->getPoweredBy() );
 			$tpl->set( "disclaimer", $this->disclaimerLink() );
 			$tpl->set( "about", $this->aboutLink() );
 

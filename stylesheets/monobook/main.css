@@ -7,7 +7,7 @@
 ** Alexander Limi - http://www.plonesolutions.com
 ** additional plone work:
 ** Joe Geldart & Tom Croucher - http://www.netalleynetworks.com, Michael Zeltner - http://niij.org,
-** Geir Bækholt - http://www.plonesolutions.com
+** Geir BÃ¦kholt - http://www.plonesolutions.com
 ** All you guys rock :)
 */
 
@@ -876,6 +876,17 @@ li#contentaction-watch {
     margin-right: 2em;
 }
 
+#footer-poweredby, #footer-copyright {
+	margin: 0 8px;
+	position: relative;
+	top: -2px; /* Bump it up just a tad */
+}
+#footer-poweredby {
+	float: right;
+}
+#footer-copyright {
+	float: left;
+}
 
 /* 
 ** IE/Mac fixes, hope to find a validating way to move this

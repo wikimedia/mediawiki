@@ -35,14 +35,12 @@ $wgEditEncoding		= "x";
 );
 
 /* private */ $wgSkinNamesEo = array(
-	'standard' => "Norma",
+	'standard' => "Klasika",
 	'nostalgia' => "Nostalgio",
 	'cologneblue' => "Kolonja Bluo",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Senkolora",
-	'monobook' => "MonoBook"
+	'monobook' => "Librejo"
 );
 
 /* private */ $wgMathNamesEo = array(
@@ -225,8 +223,9 @@ Vidu $1.",
 "nbytes"		=> "$1 bitokoj",
 "go"			=> "Ek!", #FIXME
 "ok"			=> "Ek!", #FIXME
-"sitetitle"		=> "{{SITENAME}}", # Wikipedia
-"sitesubtitle"	=> "La Libera Enciklopedio",
+"sitetitle"		=> "{{SITENAME}}",
+"pagetitle"		=> "$1 - {{SITENAME}}",
+"sitesubtitle"	=> "La Libera Enciklopedio", # FIXME
 "retrievedfrom" => "Citita el \"$1\"", #FIXME: Aperas post presita paĝo
 "newmessages"	=> "Jen $1 por vi.",
 "newmessageslink" => "nova mesaĝo",
