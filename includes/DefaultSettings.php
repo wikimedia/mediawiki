@@ -245,6 +245,7 @@ $wgProfileToDatabase = false; # Log sums from profiling into "profiling" table i
 $wgProfileSampleRate = 1; # Only profile every n requests when profiling is turned on
 $wgDebugProfiling = false; # Detects non-matching wfProfileIn/wfProfileOut calls
 $wgDebugFunctionEntry = 0; # Output debug message on every wfProfileIn/wfProfileOut
+$wgDebugSquid = false; # Lots of debugging output from SquidUpdate.php
 
 $wgDisableCounters = false;
 $wgDisableTextSearch = false;
