@@ -761,42 +761,42 @@ class Parser
 				{
 					if (strlen ($r) == 2)
 					{
-						if ($state == 'em')
-						{ $output .= '</em>'; $state = ''; }
-						else if ($state == 'strongem')
-						{ $output .= '</em>'; $state = 'strong'; }
-						else if ($state == 'emstrong')
-						{ $output .= '</strong></em><strong>'; $state = 'strong'; }
+						if ($state == 'i')
+						{ $output .= '</i>'; $state = ''; }
+						else if ($state == 'bi')
+						{ $output .= '</i>'; $state = 'b'; }
+						else if ($state == 'ib')
+						{ $output .= '</b></i><b>'; $state = 'b'; }
 						else if ($state == 'both')
-						{ $output .= '<strong><em>'.$buffer.'</em>'; $state = 'strong'; }
-						else # $state can be 'strong' or ''
-						{ $output .= '<em>'; $state .= 'em'; }
+						{ $output .= '<b><i>'.$buffer.'</i>'; $state = 'b'; }
+						else # $state can be 'b' or ''
+						{ $output .= '<i>'; $state .= 'i'; }
 					}
 					else if (strlen ($r) == 3)
 					{
-						if ($state == 'strong')
-						{ $output .= '</strong>'; $state = ''; }
-						else if ($state == 'strongem')
-						{ $output .= '</em></strong><em>'; $state = 'em'; }
-						else if ($state == 'emstrong')
-						{ $output .= '</strong>'; $state = 'em'; }
+						if ($state == 'b')
+						{ $output .= '</b>'; $state = ''; }
+						else if ($state == 'bi')
+						{ $output .= '</i></b><i>'; $state = 'i'; }
+						else if ($state == 'ib')
+						{ $output .= '</b>'; $state = 'i'; }
 						else if ($state == 'both')
-						{ $output .= '<em><strong>'.$buffer.'</strong>'; $state = 'em'; }
-						else # $state can be 'em' or ''
-						{ $output .= '<strong>'; $state .= 'strong'; }
+						{ $output .= '<i><b>'.$buffer.'</b>'; $state = 'i'; }
+						else # $state can be 'i' or ''
+						{ $output .= '<b>'; $state .= 'b'; }
 					}
 					else if (strlen ($r) == 5)
 					{
-						if ($state == 'strong')
-						{ $output .= '</strong><em>'; $state = 'em'; }
-						else if ($state == 'em')
-						{ $output .= '</em><strong>'; $state = 'strong'; }
-						else if ($state == 'strongem')
-						{ $output .= '</em></strong>'; $state = ''; }
-						else if ($state == 'emstrong')
-						{ $output .= '</strong></em>'; $state = ''; }
+						if ($state == 'b')
+						{ $output .= '</b><i>'; $state = 'i'; }
+						else if ($state == 'i')
+						{ $output .= '</i><b>'; $state = 'b'; }
+						else if ($state == 'bi')
+						{ $output .= '</i></b>'; $state = ''; }
+						else if ($state == 'ib')
+						{ $output .= '</b></i>'; $state = ''; }
 						else if ($state == 'both')
-						{ $output .= '<em><strong>'.$buffer.'</strong></em>'; $state = ''; }
+						{ $output .= '<i><b>'.$buffer.'</b></i>'; $state = ''; }
 						else # ($state == '')
 						{ $buffer = ''; $state = 'both'; }
 					}
@@ -804,14 +804,14 @@ class Parser
 				$i++;
 			}
 			# Now close all remaining tags.  Notice that the order is important.
-			if ($state == 'strong' || $state == 'emstrong')
-				$output .= '</strong>';
-			if ($state == 'em' || $state == 'strongem' || $state == 'emstrong')
-				$output .= '</em>';
-			if ($state == 'strongem')
-				$output .= '</strong>';
+			if ($state == 'b' || $state == 'ib')
+				$output .= '</b>';
+			if ($state == 'i' || $state == 'bi' || $state == 'ib')
+				$output .= '</i>';
+			if ($state == 'bi')
+				$output .= '</b>';
 			if ($state == 'both')
-				$output .= '<strong><em>'.$buffer.'</em></strong>';
+				$output .= '<b><i>'.$buffer.'</i></b>';
 			return $output;
 		}
 	}
