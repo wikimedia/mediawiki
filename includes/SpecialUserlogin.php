@@ -10,8 +10,11 @@ function wfSpecialUserlogin()
 	}
 	
 	$fields = array( "wpName", "wpPassword", "wpName",
-	  "wpPassword", "wpRetype", "wpEmail" );
-	wfCleanFormFields( $fields );
+	  "wpPassword", "wpRetype" );
+	# FIXME: UGLY HACK
+	foreach( $fields as $x ) {
+		$_REQUEST[$x] = $wgRequest->getText( $x );
+	}
 
 	# When switching accounts, it sucks to get automatically logged out
 	global $wgLang;

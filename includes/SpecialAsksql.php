@@ -2,26 +2,39 @@
 
 function wfSpecialAsksql()
 {
-	global $wgUser, $wgOut, $action;
+	global $wgUser, $wgOut, $wgRequest;
 
 	if ( ! $wgUser->isSysop() ) {
 		$wgOut->sysopRequired();
 		return;
 	}
-	$fields = array( "wpSqlQuery" );
-	wfCleanFormFields( $fields );
-	$f = new SqlQueryForm();
+	
+	if( $wgRequest->wasPosted() ) {
+		$query = $wgRequest->getVal( 'wpSqlQuery' );
+		$action = $wgRequest->getVal( 'action' );
+	} else {
+		$query = "";
+		$action = "";
+	}
+	$f = new SqlQueryForm( $query);
 
-	if ( "submit" == $action ) { $f->doSubmit(); }
-	else { $f->showForm( "" ); }
+	if ( "submit" == $action ) {
+		$f->doSubmit();
+	} else {
+		$f->showForm( "" );
+	}
 }
 
 class SqlQueryForm {
-
+	var $query = "";
+	
+	function SqlQueryForm( $query ) {
+		$this->query = $query;
+	}
+		
 	function showForm( $err )
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $wpSqlQuery;
 		global $wgLogQueries;
 
 		$wgOut->setPagetitle( wfMsg( "asksql" ) );
@@ -33,7 +46,7 @@ class SqlQueryForm {
 		if ( "" != $err ) {
 			$wgOut->addHTML( "<p><font color='red' size='+1'>" . htmlspecialchars($err) . "</font>\n" );
 		}
-		if ( ! $wpSqlQuery ) { $wpSqlQuery = "SELECT ... FROM ... WHERE ..."; }
+		if ( ! $this->query ) { $this->query = "SELECT ... FROM ... WHERE ..."; }
 		$q = wfMsg( "sqlquery" );
 		$qb = wfMsg( "querybtn" );
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Asksql" );
@@ -45,7 +58,7 @@ class SqlQueryForm {
 <td align=right>{$q}:</td>
 <td align=left>
 <textarea name=\"wpSqlQuery\" cols=80 rows=4 wrap=\"virtual\">"
-. htmlspecialchars($wpSqlQuery) ."
+. htmlspecialchars($this->query) ."
 </textarea>
 </td>
 </tr><tr>
@@ -59,22 +72,21 @@ class SqlQueryForm {
 	function doSubmit()
 	{
 		global $wgOut, $wgUser, $wgServer, $wgScript, $wgArticlePath, $wgLang;
-		global $wpSqlQuery;
 		global $wgDBserver, $wgDBsqluser, $wgDBsqlpassword, $wgDBname, $wgSqlTimeout;
 
 		# Use a limit, folks!
-		$wpSqlQuery = trim( $wpSqlQuery );
-		if( preg_match( "/^SELECT/i", $wpSqlQuery )
-			and !preg_match( "/LIMIT/i", $wpSqlQuery ) ) {
-			$wpSqlQuery .= " LIMIT 100";
+		$this->query = trim( $this->query );
+		if( preg_match( "/^SELECT/i", $this->query )
+			and !preg_match( "/LIMIT/i", $this->query ) ) {
+			$this->query .= " LIMIT 100";
 		}
 		$conn = Database::newFromParams( $wgDBserver, $wgDBsqluser, $wgDBsqlpassword, $wgDBname );
 
-		$this->logQuery( $wpSqlQuery );
+		$this->logQuery( $this->query );
 
 		# Start timer, will kill the DB thread in $wgSqlTimeout seconds
 		$conn->startTimer( $wgSqlTimeout );
-		$res = $conn->query( $wpSqlQuery, "SpecialAsksql::doSubmit" );
+		$res = $conn->query( $this->query, "SpecialAsksql::doSubmit" );
 		$conn->stopTimer();
 		$this->logFinishedQuery();
 

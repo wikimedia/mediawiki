@@ -2,37 +2,40 @@
 
 function wfSpecialBlockip()
 {
-	global $wgUser, $wgOut, $action;
+	global $wgUser, $wgOut, $wgRequest;
 
 	if ( ! $wgUser->isSysop() ) {
 		$wgOut->sysopRequired();
 		return;
 	}
-	$fields = array( "wpBlockAddress", "wpBlockReason", "wpBlockExpiry" );
-	wfCleanFormFields( $fields );
 	$ipb = new IPBlockForm();
 
+	$action = $wgRequest->getVal( 'action' );
 	if ( "success" == $action ) { $ipb->showSuccess(); }
-	else if ( "submit" == $action ) { $ipb->doSubmit(); }
+	else if ( $wgRequest->wasPosted() && "submit" == $action ) { $ipb->doSubmit(); }
 	else { $ipb->showForm( "" ); }
 }
 
 class IPBlockForm {
+	var $BlockAddress, $BlockExpiry, $BlockReason;
 
+	function IPBlockForm() {
+		global $wgRequest;
+		$this->BlockAddress = $wgRequest->getVal( 'wpBlockAddress', $wgRequest->getVal( 'ip' ) );
+		$this->BlockReason = $wgRequest->getText( 'wpBlockReason' );
+		$this->BlockExpiry = $wgRequest->getVal( 'wpBlockExpiry' );
+	}
+	
 	function showForm( $err )
 	{
 		global $wgOut, $wgUser, $wgLang, $wgDefaultBlockExpiry;
-		global $ip, $wpBlockAddress, $wpBlockExpiry, $wpBlockReason;
+		global $wgRequest;
 
 		$wgOut->setPagetitle( wfMsg( "blockip" ) );
 		$wgOut->addWikiText( wfMsg( "blockiptext" ) );
 
-		if ( ! $wpBlockAddress ) { 
-			$wpBlockAddress = $ip; 
-		}
-
-		if ( is_null( $wpBlockExpiry ) || $wpBlockExpiry === "" ) {
-			$wpBlockExpiry = $wgDefaultBlockExpiry;
+		if ( is_null( $this->BlockExpiry ) || $this->BlockExpiry === "" ) {
+			$this->BlockExpiry = $wgDefaultBlockExpiry;
 		}
 
 		$mIpaddress = wfMsg( "ipaddress" );
@@ -47,9 +50,9 @@ class IPBlockForm {
 			$wgOut->addHTML( "<p><font color='red' size='+1'>{$err}</font>\n" );
 		}
 
-		$scBlockAddress = htmlspecialchars( $wpBlockAddress );
-		$scBlockExpiry = htmlspecialchars( $wpBlockExpiry );
-		$scBlockReason = htmlspecialchars( $wpBlockReason );
+		$scBlockAddress = htmlspecialchars( $this->BlockAddress );
+		$scBlockExpiry = htmlspecialchars( $this->BlockExpiry );
+		$scBlockReason = htmlspecialchars( $this->BlockReason );
 		
 		$wgOut->addHTML( "<p>
 <form id=\"blockip\" method=\"post\" action=\"{$action}\">
@@ -76,21 +79,20 @@ class IPBlockForm {
 	function doSubmit()
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $ip, $wpBlockAddress, $wpBlockReason, $wpBlockExpiry;
 		global $wgSysopUserBans, $wgSysopRangeBans;
 		
 		$userId = 0;
-		$wpBlockAddress = trim( $wpBlockAddress );
+		$this->BlockAddress = trim( $this->BlockAddress );
 		$rxIP = '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
 
 		# Check for invalid specifications
-		if ( ! preg_match( "/^$rxIP$/", $wpBlockAddress ) ) {
-		  	if ( preg_match( "/^($rxIP)\\/(\\d{1,2})$/", $wpBlockAddress, $matches ) ) {
+		if ( ! preg_match( "/^$rxIP$/", $this->BlockAddress ) ) {
+		  	if ( preg_match( "/^($rxIP)\\/(\\d{1,2})$/", $this->BlockAddress, $matches ) ) {
 				if ( $wgSysopRangeBans ) {
 					if ( $matches[2] > 31 || $matches[2] < 16 ) {
 						$this->showForm( wfMsg( "ip_range_invalid" ) );
 					}
-					$wpBlockAddress = Block::normaliseRange( $wpBlockAddress );
+					$this->BlockAddress = Block::normaliseRange( $this->BlockAddress );
 				} else {
 					# Range block illegal
 					$this->showForm( wfMsg( "range_block_disabled" ) );
@@ -99,9 +101,9 @@ class IPBlockForm {
 			} else {
 				# Username block
 				if ( $wgSysopUserBans ) {	
-					$userId = User::idFromName( $wpBlockAddress );
+					$userId = User::idFromName( $this->BlockAddress );
 					if ( $userId == 0 ) {
-						$this->showForm( wfMsg( "nosuchuser", htmlspecialchars( $wpBlockAddress ) ) );
+						$this->showForm( wfMsg( "nosuchuser", htmlspecialchars( $this->BlockAddress ) ) );
 						return;
 					}
 				} else {
@@ -111,11 +113,11 @@ class IPBlockForm {
 			}
 		}
 
-		if ( $wpBlockExpiry == "infinite" || $wpBlockExpiry == "indefinite" ) {
+		if ( $this->BlockExpiry == "infinite" || $this->BlockExpiry == "indefinite" ) {
 			$expiry = '';
 		} else {
 			# Convert GNU-style date, returns -1 on error
-			$expiry = strtotime( $wpBlockExpiry );
+			$expiry = strtotime( $this->BlockExpiry );
 
 			if ( $expiry < 0 ) {
 				$this->showForm( wfMsg( "ipb_expiry_invalid" ) );
@@ -127,7 +129,7 @@ class IPBlockForm {
 		}
 
 		
-		if ( "" == $wpBlockReason ) {
+		if ( "" == $this->BlockReason ) {
 			$this->showForm( wfMsg( "noblockreason" ) );
 			return;
 		}
@@ -135,28 +137,27 @@ class IPBlockForm {
 		# Create block
 		# Note: for a user block, ipb_address is only for display purposes
 
-		$ban = new Block( $wpBlockAddress, $userId, $wgUser->getID(), 
-			wfStrencode( $wpBlockReason ), wfTimestampNow(), 0, $expiry );
+		$ban = new Block( $this->BlockAddress, $userId, $wgUser->getID(), 
+			wfStrencode( $this->BlockReason ), wfTimestampNow(), 0, $expiry );
 		$ban->insert();
 
 		# Make log entry
 		$log = new LogPage( wfMsg( "blocklogpage" ), wfMsg( "blocklogtext" ) );
-		$action = wfMsg( "blocklogentry", $wpBlockAddress, $wpBlockExpiry );
-		$log->addEntry( $action, $wpBlockReason );
+		$action = wfMsg( "blocklogentry", $this->BlockAddress, $this->BlockExpiry );
+		$log->addEntry( $action, $this->BlockReason );
 
 		# Report to the user
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Blockip" );
-		$wgOut->redirect( $titleObj->getFullURL( "action=success&ip={$wpBlockAddress}" ) );
+		$wgOut->redirect( $titleObj->getFullURL( "action=success&ip={$this->BlockAddress}" ) );
 	}
 
 	function showSuccess()
 	{
 		global $wgOut, $wgUser;
-		global $ip;
 
 		$wgOut->setPagetitle( wfMsg( "blockip" ) );
 		$wgOut->setSubtitle( wfMsg( "blockipsuccesssub" ) );
-		$text = wfMsg( "blockipsuccesstext", $ip );
+		$text = wfMsg( "blockipsuccesstext", $this->BlockAddress );
 		$wgOut->addWikiText( $text );
 	}
 }

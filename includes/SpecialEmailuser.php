@@ -4,14 +4,15 @@ require_once('UserMailer.php');
 
 function wfSpecialEmailuser()
 {
-	global $wgUser, $wgOut, $action, $target;
+	global $wgUser, $wgOut, $wgRequest;
 
 	if ( 0 == $wgUser->getID() ||
 		( false === strpos( $wgUser->getEmail(), "@" ) ) ) {
 		$wgOut->errorpage( "mailnologin", "mailnologintext" );
 		return;
 	}
-	$target = wfCleanQueryVar( $target );
+	$action = $wgRequest->getVal( $action );
+	$target = $wgRequest->getVal( $target );
 	if ( "" == $target ) {
 		$wgOut->errorpage( "notargettitle", "notargettext" );
 		return;
@@ -32,29 +33,33 @@ function wfSpecialEmailuser()
 		$wgOut->errorpage( "noemailtitle", "noemailtext" );
 		return;
 	}
-	$fields = array( "wpSubject", "wpText" );
-	wfCleanFormFields( $fields );
 
-	$f = new EmailUserForm( $nu->getName() . " <{$address}>" );
+	$f = new EmailUserForm( $nu->getName() . " <{$address}>", $target );
 
 	if ( "success" == $action ) { $f->showSuccess(); }
-	else if ( "submit" == $action ) { $f->doSubmit(); }
+	else if ( "submit" == $action && $wgRequest->wasPosted() ) { $f->doSubmit(); }
 	else { $f->showForm( "" ); }
 }
 
 class EmailUserForm {
 
 	var $mAddress;
+	var $target;
+	var $text, $subject;
 
-	function EmailUserForm( $addr )
+	function EmailUserForm( $addr, $target )
 	{
+		global $wgRequest;
 		$this->mAddress = $addr;
+		$this->target = $target;
+		$this->text = $wgRequest->getText( 'wpText' );
+		$this->subject = $wgRequest->getText( 'wpSubject' );
 	}
 
 	function showForm( $err )
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $wpSubject, $wpText, $target;
+		global $wpSubject, $wpText;
 
 		$wgOut->setPagetitle( wfMsg( "emailpage" ) );
 		$wgOut->addWikiText( wfMsg( "emailpagetext" ) );
@@ -64,13 +69,13 @@ class EmailUserForm {
 		$emf = wfMsg( "emailfrom" );
 		$sender = $wgUser->getName();
 		$emt = wfMsg( "emailto" );
-		$rcpt = str_replace( "_", " ", urldecode( $target ) );
+		$rcpt = str_replace( "_", " ", $this->target );
 		$emr = wfMsg( "emailsubject" );
 		$emm = wfMsg( "emailmessage" );
 		$ems = wfMsg( "emailsend" );
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
-		$action = $titleObj->escapeLocalURL( "target={$target}&action=submit" );
+		$action = $titleObj->escapeLocalURL( "target={$this->target}&action=submit" );
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
@@ -106,7 +111,7 @@ class EmailUserForm {
 	function doSubmit()
 	{
 		global $wgOut, $wgUser, $wgLang, $wgOutputEncoding;
-		global $wpSubject, $wpText, $target;
+		global $wpSubject, $wpText, $this->target;
 	    
 		$from = wfQuotedPrintable( $wgUser->getName() ) . " <" . $wgUser->getEmail() . ">";
 		
@@ -115,7 +120,7 @@ class EmailUserForm {
 		if (! $mailResult)
 		{
 			$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
-			$wgOut->redirect( $titleObj->getFullURL( "target={$target}&action=success" ) );
+			$wgOut->redirect( $titleObj->getFullURL( "target={$this->target}&action=success" ) );
 		}
 		else
 			$wgOut->addHTML( wfMsg( "usermailererror" ) . $mailResult);

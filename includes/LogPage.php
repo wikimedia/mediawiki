@@ -106,8 +106,14 @@ class LogPage {
 		}
 		$d = $wgLang->timeanddate( wfTimestampNow(), false );
 
-		preg_match( "/^(.*?)<ul>(.*)$/sD", $this->mContent, $m );
-
+		if( preg_match( "/^(.*?)<ul>(.*)$/sD", $this->mContent, $m ) ) {
+			$before = $m[1];
+			$after = $m[2];
+		} else {
+			$before = "";
+			$after = "";
+		}
+		
 		if($textaction)
 			$this->mComment = $textaction;
 		else
@@ -120,7 +126,7 @@ class LogPage {
 			# comment gets escaped again, so we use the unescaped version
 			$this->mComment .= ": {$comment}";
 		}
-		$this->mContent = "{$m[1]}<ul><li>{$d} {$ul} {$action}{$inline}</li>\n{$m[2]}";
+		$this->mContent = "{$before}<ul><li>{$d} {$ul} {$action}{$inline}</li>\n{$after}";
 		
 		# TODO: automatic log rotation...
 		

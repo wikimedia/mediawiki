@@ -814,7 +814,7 @@ class Article {
 
 	function doDeleteArticle( $title )
 	{
-		global $wgUser, $wgOut, $wgLang, $wpReason;
+		global $wgUser, $wgOut, $wgLang, $wgRequest;
 		global  $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
 
 		$fname = "Article::doDeleteArticle";
@@ -931,7 +931,7 @@ class Article {
 		
 		$log = new LogPage( wfMsg( "dellogpage" ), wfMsg( "dellogpagetext" ) );
 		$art = $title->getPrefixedText();
-		$wpReason = wfCleanQueryVar( $wpReason );
+		$wpReason = $wgRequest->getText( "wpReason" );
 		$log->addEntry( wfMsg( "deletedarticle", $art ), $wpReason );
 
 		# Clear the cached article id so the interface doesn't act like we exist
@@ -941,7 +941,7 @@ class Article {
 
 	function rollback()
 	{
-		global $wgUser, $wgLang, $wgOut, $from;
+		global $wgUser, $wgLang, $wgOut, $wgRequest;
 
 		if ( ! $wgUser->isSysop() ) {
 			$wgOut->sysopRequired();
@@ -953,7 +953,7 @@ class Article {
 		}
 		
 		# Enhanced rollback, marks edits rc_bot=1
-		$bot = !!$_REQUEST['bot'];
+		$bot = $wgRequest->getBool( 'bot' );
 		
 		# Replace all this user's current edits with the next one down
 		$tt = wfStrencode( $this->mTitle->getDBKey() );
@@ -972,7 +972,7 @@ class Article {
 		$uid = $s->cur_user;
 		$pid = $s->cur_id;
 		
-		$from = str_replace( '_', ' ', wfCleanQueryVar( $from ) );
+		$from = str_replace( '_', ' ', $wgRequest->getVal( "from" ) );
 		if( $from != $s->cur_user_text ) {
 			$wgOut->setPageTitle(wfmsg("rollbackfailed"));
 			$wgOut->addWikiText( wfMsg( "alreadyrolled",

@@ -81,11 +81,11 @@ function wfLocalUrlE( $a, $q = "" )
 }
 
 function wfFullUrl( $a, $q = "" ) {
-	die( "Call to obsolete function wfFullUrl()" );
+	wfDebugDieBacktrace( "Call to obsolete function wfFullUrl(); use Title::getFullURL" );
 }
 
 function wfFullUrlE( $a, $q = "" ) {
-	die( "Call to obsolete function wfFullUrlE()" );
+	wfDebugDieBacktrace( "Call to obsolete function wfFullUrlE(); use Title::getFullUrlE" );
 
 }
 
@@ -283,37 +283,7 @@ function wfMsgReal( $key, $args, $useDB ) {
 
 function wfCleanFormFields( $fields )
 {
-	global $HTTP_POST_VARS;
-	global $wgInputEncoding, $wgOutputEncoding, $wgEditEncoding, $wgLang;
-
-	if ( get_magic_quotes_gpc() ) {
-		foreach ( $fields as $fname ) {
-			if ( isset( $HTTP_POST_VARS[$fname] ) ) {
-				$HTTP_POST_VARS[$fname] = stripslashes(
-				  $HTTP_POST_VARS[$fname] );
-			}
-			global ${$fname};
-			if ( isset( ${$fname} ) ) {
-				${$fname} = stripslashes( ${$fname} );
-			}
-		}
-	}
-	$enc = $wgOutputEncoding;
-	if( $wgEditEncoding != "") $enc = $wgEditEncoding;
-	if ( $enc != $wgInputEncoding ) {
-		foreach ( $fields as $fname ) {
-			if ( isset( $HTTP_POST_VARS[$fname] ) ) {
-				$HTTP_POST_VARS[$fname] = $wgLang->iconv(
-				  $wgOutputEncoding, $wgInputEncoding,
-				  $HTTP_POST_VARS[$fname] );
-			}
-			global ${$fname};
-			if ( isset( ${$fname} ) ) {
-				${$fname} = $wgLang->iconv(
-				  $enc, $wgInputEncoding, ${$fname} );
-			}
-		}
-	}
+	wfDebugDieBacktrace( "Call to obsolete wfCleanFormFields(). Use wgRequest instead..." );
 }
 
 function wfMungeQuotes( $in )
@@ -334,11 +304,7 @@ function wfDemungeQuotes( $in )
 
 function wfCleanQueryVar( $var )
 {
-	global $wgLang;
-	if ( get_magic_quotes_gpc() ) {
-		$var = stripslashes( $var );
-	}
-	return $wgLang->recodeInput( $var );
+	wfDebugDieBacktrace( "Call to obsolete function wfCleanQueryVar(); use wgRequest instead" );
 }
 
 function wfSpecialPage()
@@ -384,13 +350,13 @@ function wfSpecialPage()
 
 function wfSearch( $s )
 {
-	$se = new SearchEngine( wfCleanQueryVar( $s ) );
+	$se = new SearchEngine( $s );
 	$se->showResults();
 }
 
 function wfGo( $s )
 { # pick the nearest match
-	$se = new SearchEngine( wfCleanQueryVar( $s ) );
+	$se = new SearchEngine( $s );
 	$se->goResult();
 }
 
@@ -688,13 +654,9 @@ function wfClientAcceptsGzip() {
 
 # Yay, more global functions!
 function wfCheckLimits( $deflimit = 50, $optionname = "rclimit" ) {
-	global $wgUser;
+	global $wgUser, $wgRequest;
 	
-	if( isset( $_REQUEST['limit'] ) ) {
-		$limit = IntVal( $_REQUEST['limit'] );
-	} else {
-		$limit = 0;
-	}
+	$limit = $wgRequest->getInt( 'limit', 0 );
 	if( $limit < 0 ) $limit = 0;
 	if( ( $limit == 0 ) && ( $optionname != "" ) ) {
 		$limit = (int)$wgUser->getOption( $optionname );
@@ -702,11 +664,7 @@ function wfCheckLimits( $deflimit = 50, $optionname = "rclimit" ) {
 	if( $limit <= 0 ) $limit = $deflimit;
 	if( $limit > 5000 ) $limit = 5000; # We have *some* limits...
 	
-	if( isset( $_REQUEST['offset'] ) ) {
-		$offset = IntVal( $_REQUEST['offset'] );
-	} else {
-		$offset = 0;
-	}
+	$offset = $wgRequest->getInt( 'offset', 0 );
 	if( $offset < 0 ) $offset = 0;
 	if( $offset > 65000 ) $offset = 65000; # do we need a max? what?
 	

@@ -221,6 +221,7 @@ class LinksUpdate {
 	function fixBrokenLinks() {
 		/* Update any brokenlinks *to* this page */
 		/* Call for a newly created page, or just to make sure state is consistent */
+		$fname = "LinksUpdate::fixBrokenLinks";
 		
 		$sql = "SELECT bl_from FROM brokenlinks WHERE bl_to='{$this->mTitleEnc}'";
 		$res = wfQuery( $sql, DB_READ, $fname );

@@ -2,14 +2,14 @@
 
 function wfSpecialContributions( $par = "" )
 {
-	global $wgUser, $wgOut, $wgLang, $target, $hideminor;
+	global $wgUser, $wgOut, $wgLang, $wgRequest;
 	$fname = "wfSpecialContributions";
 	$sysop = $wgUser->isSysop();
 
 	if( $par )
 		$target = $par;
 	else
-		$target = wfCleanQueryVar( $target );
+		$target = $wgResult->getVal( 'target' );
 
 	if ( "" == $target ) {
 		$wgOut->errorpage( "notargettitle", "notargettext" );
@@ -20,7 +20,7 @@ function wfSpecialContributions( $par = "" )
 	list( $limit, $offset ) = wfCheckLimits( 50, "" );
 	$offlimit = $limit + $offset;
 	$querylimit = $offlimit + 1;
-	$hideminor = ($hideminor ? 1 : 0);
+	$hideminor = ($wgRequest->getVal( 'hideminor' ) ? 1 : 0);
 
 	$nt = Title::newFromURL( $target );
 	$nt->setNamespace( Namespace::getUser() );

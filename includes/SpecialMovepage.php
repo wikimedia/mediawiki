@@ -3,7 +3,7 @@ include_once( "LinksUpdate.php" );
 
 function wfSpecialMovepage()
 {
-	global $wgUser, $wgOut;
+	global $wgUser, $wgOut, $wgRequest, $action;
 
 	if ( 0 == $wgUser->getID() or $wgUser->isBlocked() ) {
 		$wgOut->errorpage( "movenologin", "movenologintext" );
@@ -13,18 +13,17 @@ function wfSpecialMovepage()
 		$wgOut->readOnlyPage();
 		return;
 	}
-	$fields = array( "wpNewTitle", "wpOldTitle" );
-	wfCleanFormFields( $fields );
 
 	$f = new MovePageForm();
 
-	if ( "success" == $_REQUEST['action'] ) { $f->showSuccess(); }
-	else if ( "submit" == $_REQUEST['action'] ) { $f->doSubmit(); }
+	if ( "success" == $action ) { $f->showSuccess(); }
+	else if ( "submit" == $action && $wgRequest->wasPosted() ) { $f->doSubmit(); }
 	else { $f->showForm( "" ); }
 }
 
 class MovePageForm {
-
+	var $oldTitle, $newTitle; # Text input
+	
 	var $ot, $nt;		# Old, new Title objects
 	var $ons, $nns;		# Namespaces
 	var $odt, $ndt;		# Pagenames (dbkey form)
@@ -33,30 +32,32 @@ class MovePageForm {
 	var $oldid, $newid;	# "cur_id" field (yes, both from "cur")
 	var $talkmoved = 0;
 	
+	function MovePageForm() {
+		global $wgRequest;
+		$this->oldTitle = $wgRequest->getText( 'wpOldTitle', $wgRequest->getVal( 'target' ) );
+		$this->newTitle = $wgRequest->getText( 'wpNewTitle' );
+	}
+	
 	function showForm( $err )
 	{
 		global $wgOut, $wgUser, $wgLang;
 
 		$wgOut->setPagetitle( wfMsg( "movepage" ) );
 
-		if ( ! $_REQUEST['wpOldTitle'] ) {
-			if ( "" == $_REQUEST['target'] ) {
-				$wgOut->errorpage( "notargettitle", "notargettext" );
-				return;
-			}
-			$oldTitle = htmlspecialchars( $_REQUEST['target'] );
-		} else {
-			$oldTitle = htmlspecialchars( $_REQUEST['wpOldTitle'] );
+		if ( empty( $this->oldTitle ) ) {
+			$wgOut->errorpage( "notargettitle", "notargettext" );
+			return;
 		}
 		
-		$encOldTitle = htmlspecialchars( $oldTitle );
-		$encNewTitle = htmlspecialchars( $_REQUEST['wpNewTitle'] );
-		$ot = Title::newFromURL( $oldTitle );
+		$encOldTitle = htmlspecialchars( $this->oldTitle );
+		$encNewTitle = htmlspecialchars( $this->newTitle );
+		$ot = Title::newFromURL( $this->oldTitle );
 		$ott = $ot->getPrefixedText();
 
 		$wgOut->addWikiText( wfMsg( "movepagetext" ) );
-		if ( ! Namespace::isTalk( $ot->getNamespace() ) )
+		if ( ! Namespace::isTalk( $ot->getNamespace() ) ) {
 			$wgOut->addWikiText( "\n\n" . wfMsg( "movepagetalktext" ) );
+		}
 
 		$ma = wfMsg( "movearticle" );
 		$newt = wfMsg( "newtitle" );
@@ -107,8 +108,8 @@ class MovePageForm {
 		global  $wgUseSquid, $wgInternalServer;
 		$fname = "MovePageForm::doSubmit";
 
-		$this->ot = Title::newFromText( $_REQUEST['wpOldTitle'] );
-		$this->nt = Title::newFromText( $_REQUEST['wpNewTitle'] );
+		$this->ot = Title::newFromText( $this->oldTitle );
+		$this->nt = Title::newFromText( $this->newTitle );
 		if( !$this->ot or !$this->nt ) {
 			$this->showForm( wfMsg( "badtitletext" ) );
 			return;
@@ -134,7 +135,7 @@ class MovePageForm {
 			 ( "" != $this->ot->getInterwiki() ) ||
 			 ( !$this->ot->userCanEdit() ) ||
 			 ( !$this->oldid ) ||
-		     ( ! Namespace::isMovable( $nns ) ) ||
+		     ( ! Namespace::isMovable( $this->nns ) ) ||
 			 ( "" == $this->ndt ) ||
 			 ( "" != $this->nt->getInterwiki() ) ||
 			 ( !$this->nt->userCanEdit() ) || 
