@@ -97,6 +97,13 @@
 				'<span class="subpages">'.$subpagestr.'</span>'.$out->getSubtitle():
 				$out->getSubtitle()  
 			);
+			$undelete = $this->getUndeleteLink();
+			$tpl->set(
+				"undelete", !empty($undelete)?
+				'<span class="subpages">'.$undelete.'</span>':
+				''
+			);
+
 			$tpl->set( 'catlinks', $this->getCategories());
 			if( $wgOut->isSyndicated() ) {
 				$feeds = array();
