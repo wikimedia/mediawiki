@@ -666,6 +666,7 @@ if( \$wgCommandLineMode ) {
 \$wgUploadPath       = \"\$wgScriptPath/images\";
 \$wgUploadDirectory	= \"\$IP/images\";
 \$wgLogo				= \"\$wgUploadPath/wiki.png\";
+\$wgStockPath        = \$wgUploadPath;
 
 \$wgEmergencyContact = \"{$conf->EmergencyContact}\";
 \$wgPasswordSender	= \"{$conf->PasswordSender}\";

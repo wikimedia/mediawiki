@@ -39,6 +39,7 @@ $wgLogo				= "{$wgUploadPath}/wiki.png";
 $wgMathPath         = "{$wgUploadPath}/math";
 $wgMathDirectory    = "{$wgUploadDirectory}/math";
 $wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
+$wgStockPath        = $wgUploadPath; # For stock images that come with MediaWiki
 $wgEmergencyContact = "wikiadmin@" . getenv( "SERVER_NAME" );
 $wgPasswordSender	= "Wikipedia Mail <apache@" . getenv( "SERVER_NAME" ) . ">";
 

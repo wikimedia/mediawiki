@@ -1643,7 +1643,7 @@ class Skin {
 	}
 
 	function makeThumbLinkObj( $nt, $label = "", $align = "right", $boxwidth = 180 ) {
-		global $wgUploadPath, $wgLang;
+		global $wgStockPath, $wgLang;
 		$name = $nt->getDBKey();
 		$image = Title::makeTitle( Namespace::getImage(), $name );
 		$link = $image->getPrefixedURL();
@@ -1680,7 +1680,7 @@ class Skin {
 		  		"<img border=\"0\" src=\"{$thumbUrl}\" alt=\"{$alt}\" " .
 				"  width=\"{$boxwidth}\" height=\"{$boxheight}\"></a>" .
 		  		"<a href=\"{$u}\" class=\"internal\" title=\"{$more}\">" .
-		    		"<img border=\"0\" src=\"{$wgUploadPath}/magnify-clip.png\" " .
+		    		"<img border=\"0\" src=\"{$wgStockPath}/magnify-clip.png\" " .
 				"  width=\"26\" height=\"24\" align=\"{$magnifyalign}\" alt=\"{$more}\"></a>";
 		}
 		$s .= "<p{$textalign}>{$label}</p></div>";
@@ -1747,7 +1747,7 @@ class Skin {
 	# Enhanced RC ungrouped line
 	function recentChangesBlockLine ( $rcObj ) 
 	{
-		global $wgUploadPath, $wgLang ;
+		global $wgStockPath, $wgLang ;
 		
 		# Get rc_xxxx variables
 		extract( $rcObj->mAttribs ) ;
@@ -1755,7 +1755,7 @@ class Skin {
 		
 		# Spacer image
 		$r = "" ;
-		$r .= "<img src='{$wgUploadPath}/Arr_.png' width='12' height='12' border='0'>" ;		$r .= "<tt>" ;
+		$r .= "<img src='{$wgStockPath}/Arr_.png' width='12' height='12' border='0'>" ;		$r .= "<tt>" ;
 		
 		if ( $rc_type == RC_MOVE ) {
 			$r .= "&nbsp;&nbsp;";
@@ -1808,7 +1808,7 @@ class Skin {
 	# Enhanced RC group
 	function recentChangesBlockGroup ( $block ) 
 	{
-		global $wgUploadPath, $wgLang ;
+		global $wgStockPath, $wgLang ;
 		
 		$r = "" ;
 		$M = wfMsg( "minoreditletter" );
@@ -1842,8 +1842,8 @@ class Skin {
 		$rcm = "RCM{$this->rcCacheIndex}" ;
 		$toggleLink = "javascript:toggleVisibility(\"{$rci}\",\"{$rcm}\",\"{$rcl}\")" ;
 		$arrowdir = $wgLang->isRTL() ? "l" : "r";
-		$tl  = "<span id='{$rcm}'><a href='$toggleLink'><img src='{$wgUploadPath}/Arr_{$arrowdir}.png' width='12' height='12' border='0' /></a></span>" ;
-		$tl .= "<span id='{$rcl}' style='display:none'><a href='$toggleLink'><img src='{$wgUploadPath}/Arr_d.png' width='12' height='12' border='0' /></a></span>" ;
+		$tl  = "<span id='{$rcm}'><a href='$toggleLink'><img src='{$wgStockPath}/Arr_{$arrowdir}.png' width='12' height='12' border='0' /></a></span>" ;
+		$tl .= "<span id='{$rcl}' style='display:none'><a href='$toggleLink'><img src='{$wgStockPath}/Arr_d.png' width='12' height='12' border='0' /></a></span>" ;
 		$r .= $tl ;
 
 		# Main line
@@ -1885,7 +1885,7 @@ class Skin {
 			# Get rc_xxxx variables
 			extract( $rcObj->mAttribs );
 			
-			$r .= "<img src='{$wgUploadPath}/Arr_.png' width=12 height=12 border=0>";
+			$r .= "<img src='{$wgStockPath}/Arr_.png' width=12 height=12 border=0>";
 			$r .= "<tt>&nbsp; &nbsp; &nbsp; &nbsp;" ;
 			if ( $rc_new ) $r .= $N ;
 			else $r .= "&nbsp;" ;
@@ -1926,7 +1926,6 @@ class Skin {
 	# RC lines, arranges them, and outputs the HTML
 	function recentChangesBlock ()
 	{
-		global $wgUploadPath ;
 		if ( count ( $this->rc_cache ) == 0 ) return "" ;
 		#$k = array_keys ( $this->rc_cache ) ;
 		foreach ( $this->rc_cache AS $secureName => $block ) {
@@ -2294,7 +2293,7 @@ class Skin {
 	// The necsesary JavaScript code can be found in style/wikibits.js.
 	function getEditToolbar() {
 
-		global $wgUploadPath,$wgLang;
+		global $wgStockPath,$wgLang;
 
 		// toolarray an array of arrays which each include the filename of
 		// the button image (without path), the opening tag, the closing tag,
@@ -2362,7 +2361,7 @@ class Skin {
 		$toolbar.="document.writeln(\"<div id='toolbar'>\");\n";
 		foreach($toolarray as $tool) {
 
-			$image=$wgUploadPath."/".$tool["image"];
+			$image=$wgStockPath."/".$tool["image"];
 			$open=$tool["open"];
 			$close=$tool["close"];
 			$sample = addslashes( $tool["sample"] );
