@@ -113,24 +113,28 @@ require_once( 'LanguageUtf8.php' );
 
 # User Toggles
 
-"tog-hover" => "Afficher des info-bulles sur les liens wiki",
-"tog-underline" => "Liens soulignés",
-"tog-highlightbroken" => "Liens vers les sujets non existants en rouge",
-"tog-justify" => "Paragraphes justifiés",
-"tog-hideminor" => "Cacher les <i>Modifications récentes</i> mineures",
-"tog-usenewrc" => "Modifications récentes améliorées<br /> (certains navigateurs seulement)",
-"tog-numberheadings" => "Numérotation automatique des titres",
-"tog-showtoolbar" => "Show edit toolbar",
-"tog-editondblclick" => "Double cliquer pour éditer une page (JavaScript)",
-"tog-editsection"	=> "Éditer une section via les liens [éditer]",
-"tog-editsectiononrightclick"	=> "Éditer une section en cliquant à droite<br /> sur le titre de la section",
-"tog-showtoc"	=> "Afficher la table des matières<br /> (pour les articles ayant plus de 3 sections)",
-"tog-rememberpassword" => "Se souvenir de mon mot de passe (cookie)",
-"tog-editwidth" => "La fenêtre d'édition s'affiche en pleine largeur",
-"tog-watchdefault" => "Suivre les articles que je crée ou modifie",
-"tog-minordefault" => "Mes modifications sont considérées<br /> comme mineures par défaut",
-"tog-previewontop" => "La prévisualisation s'affiche au<br /> dessus de la boite de rédaction",
-"tog-nocache" => "Désactiver le cache des pages",
+'tog-editwidth' => 'La fenêtre d\'édition s\'affiche en pleine largeur',
+'tog-editondblclick' => 'Double cliquer pour éditer une page (JavaScript)',
+'tog-editsection'	=> 'Éditer une section via les liens [éditer]',
+'tog-editsectiononrightclick'	=> 'Éditer une section en cliquant à droite<br /> sur le titre de la section',
+'tog-fancysig' => "Signatures brutes (sans lien automatique)",
+'tog-hover' => 'Afficher des info-bulles sur les liens wiki',
+'tog-hideminor' => 'Cacher les <i>Modifications récentes</i> mineures',
+'tog-highlightbroken' => 'Liens vers les sujets non existants en rouge',
+'tog-justify' => 'Paragraphes justifiés',
+'tog-minordefault' => 'Mes modifications sont considérées<br /> comme mineures par défaut',
+'tog-nocache' => 'Désactiver le cache des pages',
+'tog-numberheadings' => 'Numérotation automatique des titres',
+'tog-previewonfirst' => "Montrer la prévisualisation lors de la première édition",
+'tog-previewontop' => 'La prévisualisation s\'affiche au<br /> dessus de la boite de rédaction',
+'tog-rememberpassword' => 'Se souvenir de mon mot de passe (cookie)',
+'tog-showtoc'	=> 'Afficher la table des matières<br /> (pour les articles ayant plus de 3 sections)',
+'tog-showtoolbar' => "Montrer la barre de menu d'édition",
+'tog-usenewrc' => 'Modifications récentes améliorées<br /> (certains navigateurs seulement)',
+'tog-underline' => 'Liens soulignés',
+'tog-watchdefault' => 'Suivre les articles que je crée ou modifie',
+
+
 # Dates
 
 'sunday' => 'dimanche',
@@ -172,6 +176,10 @@ require_once( 'LanguageUtf8.php' );
 "category"	=> "catégorie",			// Looxix "category",
 "category_header" => "Articles dans la catégorie \"$1\"", // Looxix "Articles in category \"$1\"",
 "subcategories"	=> "Sous-catégories", // Looxix "Subcategories",
+'uncategorizedcategories' => "Catégories sans catégories",
+'uncategorizedpages' => "Pages sans catégories",
+'subcategorycount' => "Cette catégorie possède $1 sous-catégories.",
+'subcategorycount1' => "Cette catégorie possède $1 sous-catégorie.",
 
 
 "linktrail"     => "/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sD",
@@ -479,6 +487,11 @@ vous suivez les <a href='$wgScript/{{ns:4}}:Page_protégée'>directives concerna
 "orig"   => "orig",
 "histlegend" => "Légende : (actu) = différence avec la version actuelle ,
 (dern) = différence avec la version précédente, M = modification mineure",
+'selectnewerversionfordiff' => 'Choisir une version plus récente',
+'selectolderversionfordiff' => 'Choisir une version plus ancienne',
+'previousdiff' => '&larr; Différence précédente',
+'previousrevision' => '&larr; Version précédente',
+
 
 #  Diffs
 #
@@ -558,15 +571,15 @@ Voir [[{{ns:4}}:Aide pour les préférences]] pour les explications concernant l
 "prefsreset"        => "Les préférences ont été rétablies à partir de la version enregistrée.",
 "qbsettings"        => "Personnalisation de la barre outils",
 'qbsettingsnote'	=> "Cette préférence ne fonctionne que pour les skins 'Standard' et 'CologneBlue'.",
-"changepassword"    => "Modification du mot de passe",
-"skin"              => "Apparence",
-"math"				=> "Rendu des maths",	// Looxix "Rendering math",
-"dateformat"		=> "Format de date",
-"math_failure"		=> "Erreur math",	// Looxix "Failure toparse",
-"math_unknown_error"	=> "erreur indéterminée",   // FvdP+Looxix "unknown error",
-"math_unknown_function"	=> "fonction inconnue",
-"math_lexing_error"	=> "erreur lexicale",   // Looxxi "lexing error",
-"math_syntax_error"	=> "erreur de syntaxe",
+'changepassword'    => 'Modification du mot de passe',
+'skin'              => 'Apparence',
+'math'				=> 'Rendu des maths',
+'dateformat'		=> 'Format de date',
+'math_failure'		=> 'Erreur math',
+'math_unknown_error'	=> 'erreur indéterminée',
+'math_unknown_function'	=> 'fonction inconnue',
+'math_lexing_error'	=> 'erreur lexicale',
+'math_syntax_error'	=> 'erreur de syntaxe',
 "math_image_error"	=> "La conversion en PNG a échouée, vérifiez l'installation de Latex, dvips, gs et convert",
 "math_bad_tmpdir"	=> "Ne peux pas crééer ou écrire dans le répertoire temporaire",
 "math_bad_output"	=> "Ne peux pas crééer ou écrire dans le répertoire de sortie",
@@ -574,29 +587,30 @@ Voir [[{{ns:4}}:Aide pour les préférences]] pour les explications concernant l
 'prefs-personal'    => 'Informations personnelles',
 'prefs-rc'          => 'Modifications récentes et affichage des ébauches',
 'prefs-misc'        => 'Préférences diverses',
-"saveprefs"         => "Enregistrer les préférences",
-"resetprefs"        => "Rétablir les préférences",
-"oldpassword"       => "Ancien mot de passe",
-"newpassword"       => "Nouveau mot de passe",
-"retypenew"         => "Confirmer le nouveau mot de passe",
-"textboxsize"       => "Taille de la fenêtre d'édition",
-"rows"              => "Rangées",
-"columns"           => "Colonnes",
-"searchresultshead" => "Affichage des résultats de recherche",
-"resultsperpage"    => "Nombre de réponses par page",
-"contextlines"      => "Nombre de lignes par réponse",
-"contextchars"      => "Nombre de caractères de contexte par ligne",
-"stubthreshold"     => "Taille minimale des articles courts",
-"recentchangescount" => "Nombre de titres dans les modifications récentes",
-"savedprefs"        => "Les préférences ont été sauvegardées.",
+'saveprefs'         => 'Enregistrer les préférences',
+'resetprefs'        => 'Rétablir les préférences',
+'oldpassword'       => 'Ancien mot de passe',
+'newpassword'       => 'Nouveau mot de passe',
+'retypenew'         => 'Confirmer le nouveau mot de passe',
+'textboxsize'       => 'Taille de la fenêtre d\'édition',
+'rows'              => 'Rangées',
+'columns'           => 'Colonnes',
+'searchresultshead' => 'Affichage des résultats de recherche',
+'resultsperpage'    => 'Nombre de réponses par page',
+'contextlines'      => 'Nombre de lignes par réponse',
+'contextchars'      => 'Nombre de caractères de contexte par ligne',
+'stubthreshold'     => 'Taille minimale des articles courts',
+'recentchangescount' => 'Nombre de titres dans les modifications récentes',
+'savedprefs'        => 'Les préférences ont été sauvegardées.',
 'timezonelegend'    => 'Zone horaire',
-"timezonetext"      => "Si vous ne précisez pas de décalage horaire, c'est l'heure de l'Europe de l'ouest qui sera utilisée.",
-"localtime"         => "Heure locale",
-"timezoneoffset"    => "Décalage horaire",
-"servertime"	    => "Heure du serveur",
-"guesstimezone"     => "Utiliser la valeur du navigateur",
+'timezonetext'      => "Si vous ne précisez pas de décalage horaire, c'est l'heure de l'Europe de l'ouest qui sera utilisée.",
+'localtime'         => 'Heure locale',
+'timezoneoffset'    => 'Décalage horaire',
+'servertime'	    => 'Heure du serveur',
+'guesstimezone'     => 'Utiliser la valeur du navigateur',
 "emailflag"         => "Ne pas recevoir de courrier électronique<br /> des autres utilisateurs",
 "defaultns"         => "Par défaut, rechercher dans ces espaces :",
+'yourlanguage' => "Langue de l'interface&nbsp;",
 
 # Recent changes
 #
@@ -621,23 +635,23 @@ Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure 
 "rclinks"	=> "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours; $3 modifications mineures.",	// Looxix
 "rchide"  => "in $4 form; $1 modifications mineures; $2 espaces secondaires; $3 modifications multiples.", // FIXME
 "rcliu"		=> "; $1 modifications par des contributeurs connectés",
-"diff"            => "diff",
-"hist"            => "hist",
-"hide"            => "cacher",
-"show"            => "montrer",
-"tableform"       => "table",
-"listform"        => "liste",
-"nchanges"        => "$1 modification(s)",
-"minoreditletter" => "M",
-"newpageletter"   => "N",
+'diff'            => 'diff',
+'hist'            => 'hist',
+'hide'            => 'cacher',
+'show'            => 'montrer',
+'tableform'       => 'table',
+'listform'        => 'liste',
+'nchanges'        => '$1 modification(s)',
+'minoreditletter' => 'M',
+'newpageletter'   => 'N',
 
 # Upload
 #
-"upload"       => "Copier sur le serveur",
-"uploadbtn"    => "Copier un fichier",
-"uploadlink"   => "Copier des images",
-"reupload"     => "Copier à nouveau",
-"reuploaddesc" => "Retour au formulaire.",
+'upload'       => 'Copier sur le serveur',
+'uploadbtn'    => 'Copier un fichier',
+'uploadlink'   => 'Copier des images',
+'reupload'     => 'Copier à nouveau',
+'reuploaddesc' => 'Retour au formulaire.',
 
 "uploadnologin" => "Non connecté(e)",
 "uploadnologintext" => "Vous devez être <a href=\"{{localurl:Special:Userlogin}}\">connecté</a>
@@ -697,21 +711,23 @@ Suivez ce lien: ($2) pour accéder à la page de description, et donner des info
 "savefile"  => "Sauvegarder le fichier",
 "uploadedimage" => " \"$1\" copié sur le serveur",
 "uploaddisabled" => "Désolé, l'envoi de fichier est désactivé.",
+'uploadcorrupt' => "Ce fichier est corrompu, a une taille nulle ou possède une extension invalide.
+Veuillez vérifer le fichier.",
 
 # Image list
 #
-"imagelist"  => "Liste des images",
-"imagelisttext" => "Voici une liste de $1 images classées $2.",
-"getimagelist" => "Récupération de la liste des images",
-"ilshowmatch" => "Afficher toutes les images dont le nom contient ",
-"ilsubmit"  => "Chercher",
-"showlast"  => "Afficher les $1 dernières images classées $2.",
-"all"   => "toutes",
-"byname"  => "par nom",
-"bydate"  => "par date",
-"bysize"  => "par taille",
-"imgdelete"  => "suppr",
-"imgdesc"  => "descr",
+'imagelist'  => 'Liste des images',
+'imagelisttext' => 'Voici une liste de $1 images classées $2.',
+'getimagelist' => 'Récupération de la liste des images',
+'ilshowmatch' => 'Afficher toutes les images dont le nom contient ',
+'ilsubmit'  => 'Chercher',
+'showlast'  => 'Afficher les $1 dernières images classées $2.',
+'all'   => 'toutes',
+'byname'  => 'par nom',
+'bydate'  => 'par date',
+'bysize'  => 'par taille',
+'imgdelete'  => 'suppr',
+'imgdesc'  => 'descr',
 "imglegend"  => "Légende: (descr) = afficher/modifier la description de l'image.",
 "imghistory" => "Historique de l'image",
 "revertimg"  => "rétab",
@@ -796,6 +812,16 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "booksourcetext" => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. {{SITENAME}} n'étant liée à aucune de ces sociétés, elle n'a aucunement l'intention d'en faire la promotion.",
 "alphaindexline" => "$1 à $2",
 "version" => "Version",
+
+# All pages
+#
+'allpagesformtext1' => "Afficher les pages à partir de : $1",
+'allpagesformtext2' => "Choisir un <i>namespace</i> : $1 $2",
+'allpagesnamespace' => "Toutes les pages (espace $1)",
+'allpagesnext' => "Suivant",
+'allpagesprev' => "Précédent",
+'allpagessubmit' => "Valider",
+
 
 # Email this user
 #
@@ -894,13 +920,13 @@ par  [[User:$2|$2]] ([[User talk:$2|Talk]]); quelqu'un d'autre à déjà modifer
 La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //Looxix 
 #   only shown if there is an edit comment
 "editcomment" => "Le résumé de la modification était: \"<i>$1</i>\".", //Looxix 
-"revertpage"	=> "restitution de la dernière modification de $1",
-"protectlogpage" => "Log_de_protection",
-"protectlogtext" => "Voir les [[{{ns:4}}:Page protégée|directives concernant les pages protégées]].",
+"revertpage"	=> 'restitution de la dernière modification de $1',
+'protectlogpage' => 'Log_de_protection',
+'protectlogtext' => "Voir les [[{{ns:4}}:Page protégée|directives concernant les pages protégées]].",
 'protectedarticle' => 'a protégée $1',
 'unprotectedarticle' => 'a déprotégé $1',
 
-"protectsub" => '(Bloque "$1")',
+'protectsub' => '(Bloque "$1")',
 'confirmprotect' => 'Confimer le bloquage',
 'confirmprotecttext' => 'Voulez vous vraiment bloquer cette page ?',
 'protectcomment' => 'Raison du bloquage',
@@ -911,32 +937,38 @@ La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //
 'unprotectcomment' => 'Raison du débloquage',
 'protectreason' => '(indiquez une raison)',
 
-# Undelete
+# Groups
 #
-"undelete"	=> "Restaurer la page effacée",
-"undeletepage"	=> "Voir et restaurer la page effacée",
-"undeletepagetext" => "Ces pages ont été effacées et se trouvent dans la corbeille, elles sont toujours dans la base de donnée et peuvent être restaurées.
-La corbeille peut être effacée périodiquement.",
+'addgroup' => 'Ajouter un groupe',
 
-"undeletearticle" => "Restaurer les articles effacés",
-"undeleterevisions" => "$1 révisions archivées",
-"undeletehistory" => "Si vous restaurez la page, toutes les révisions seront restaurées dans l'historique.
+# Special:Undelete
+#
+'undelete'	=> 'Restaurer la page effacée',
+'undeletepage'	=> 'Voir et restaurer la page effacée',
+'undeletepagetext' => 'Ces pages ont été effacées et se trouvent dans la corbeille, elles sont toujours dans la base de donnée et peuvent être restaurées.
+La corbeille peut être effacée périodiquement.',
+
+'undeletearticle' => 'Restaurer les articles effacés',
+'undeleterevisions' => '$1 révisions archivées',
+'undeletehistory' => "Si vous restaurez la page, toutes les révisions seront restaurées dans l'historique.
 Si une nouvelle page avec le même nom a été crée depuis la suppression,
 les révisions restaurées apparaîtront dans l'historique antérieur et la version courante ne sera pas automatiquement remplacée.",
 "undeleterevision" => "Version effacée ($1)",
-"undeletebtn"	=> "Restaurer!",
-"undeletedarticle" => "restauré \"$1\"",
-"undeletedtext"   => "L'article [[$1]] a été restauré avec succès.
+'undeletebtn'	=> 'Restaurer!',
+'undeletedarticle' => "restauré \"$1\"",
+'undeletedtext'   => "L'article [[$1]] a été restauré avec succès.
 Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.",
+'undeletedrevisions' => "$1 versions ont été restaurées",
+
 # Contributions
 #
 'contributions'	=> 'Contributions',
 'mycontris'	=> 'Mes contributions',
 'contribsub'	=> 'Pour $1',
-"nocontribs"	=> "Aucune modification correspondant à ces critères n'a été trouvée.",
-"ucnote"	=> "Voici les <b>$1</b> dernières modifications effectuées par cet utilisateur au cours des <b>$2</b> derniers jours.",
-"uclinks"	=> "Afficher les $1 dernières modifications; afficher les $2 derniers jours.",
-"uctop"		=> " (dernière)",
+'nocontribs'	=> 'Aucune modification correspondant à ces critères n\'a été trouvée.',
+'ucnote'	=> "Voici les <b>$1</b> dernières modifications effectuées par cet utilisateur au cours des <b>$2</b> derniers jours.",
+'uclinks'	=> 'Afficher les $1 dernières modifications; afficher les $2 derniers jours.',
+'uctop'		=> ' (dernière)',
 
 # What links here
 #
@@ -972,24 +1004,24 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'blocklink'	=> 'bloquer',
 'unblocklink'	=> 'débloquer',
 'contribslink'	=> 'contribs',
-"autoblocker"	=> "Autobloqué parce que vous partagez une adresse IP avec \"$1\". Raison : \"$2\".",
-"blocklogpage"	=> "Log de blocage",
-"blocklogentry"	=> 'blocage de "$1"',
-"blocklogtext"	=> "Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.",
-"unblocklogentry"	=> 'déblocage de "$1"',
-"ipb_expiry_invalid" => "temps d'expiration invalide.",
-"ip_range_invalid" => "Bloc IP incorrect.\n",
-"proxyblocker" => "Bloqueur de proxy",
-"proxyblockreason" => "Votre ip a été bloquée car c'est un proxy ouvert. Merci de contacter votre fournisseur d'accès internet ou votre support technique et de l'informer de ce problème de sécurité.",
-"proxyblocksuccess" => "Terminé.\n",
+'autoblocker'	=> "Autobloqué parce que vous partagez une adresse IP avec \"$1\". Raison : \"$2\".",
+'blocklogpage'	=> 'Log de blocage',
+'blocklogentry'	=> 'blocage de "$1"',
+'blocklogtext'	=> "Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.",
+'unblocklogentry'	=> 'déblocage de "$1"',
+'ipb_expiry_invalid' => 'temps d\'expiration invalide.',
+'ip_range_invalid' => "Bloc IP incorrect.\n",
+'proxyblocker' => 'Bloqueur de proxy',
+'proxyblockreason' => "Votre ip a été bloquée car c'est un proxy ouvert. Merci de contacter votre fournisseur d'accès internet ou votre support technique et de l'informer de ce problème de sécurité.",
+'proxyblocksuccess' => "Terminé.\n",
 
 # Developer tools
 #
-"lockdb"  => "Verrouiller la base",
-"unlockdb"  => "Déverrouiller la base",
-"lockdbtext" => "Le verrouillage de la base de données empêchera tous les utilisateurs de modifier des pages, de sauvegarder leurs préférences, de modifier leur liste de suivi et d'effectuer toutes les autres opérations nécessitant des modifications dans la base de données.
+'lockdb'  => 'Verrouiller la base',
+'unlockdb'  => 'Déverrouiller la base',
+'lockdbtext' => "Le verrouillage de la base de données empêchera tous les utilisateurs de modifier des pages, de sauvegarder leurs préférences, de modifier leur liste de suivi et d'effectuer toutes les autres opérations nécessitant des modifications dans la base de données.
 Veuillez confirmer que c'est bien là ce que vous voulez faire et que vous débloquerez la base dès que votre opération de maintenance sera terminée.",
-"unlockdbtext" => "Le déverrouillage de la base de données permettra à nouveau à tous les utilisateurs de modifier des pages, de mettre à jour leurs préférences et leur liste de suivi, ainsi que d'effectuer les autres opérations nécessitant des modifications dans la base de données.
+'unlockdbtext' => "Le déverrouillage de la base de données permettra à nouveau à tous les utilisateurs de modifier des pages, de mettre à jour leurs préférences et leur liste de suivi, ainsi que d'effectuer les autres opérations nécessitant des modifications dans la base de données.
 Veuillez confirmer que c'est bien là ce que vous voulez faire.",
 "lockconfirm" => "Oui, je confirme que je souhaite verrouiller la base de données.",
 "unlockconfirm" => "Oui, je confirme que je souhaite déverrouiller la base de données.",
@@ -1004,38 +1036,38 @@ Veuillez confirmer que c'est bien là ce que vous voulez faire.",
 <br />N'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération de maintenance.",
 "unlockdbsuccesstext" => "La base de données de {{SITENAME}} est déverrouillée.",
 
-# SQL query
+# Special:AskSQL
 #
-"asksql"	=> "Requête SQL",
-"asksqltext"	=> "Utilisez le formulaire ci-dessous pour faire une requête directe sur la base de données de {{SITENAME}}.
+'asksql'	=> 'Requête SQL',
+'asksqlpheading' => 'Onglet requête SQL',
+'asksqltext'	=> "Utilisez le formulaire ci-dessous pour faire une requête directe sur la base de données de {{SITENAME}}.
 Utilisez des guillemets simples ('comme ceci') pour délimiter les chaînes de caractères.
 Cette opération peut surcharger considérablement le serveur, faites en usage
 avec modération.",
-"sqlislogged"	=> "Veillez noter que toutes les requêtes sont loguées",
-"sqlquery"	 => "Saisir la requête",
+'sqlislogged'	=> "Veillez noter que toutes les requêtes sont loguées",
+'sqlquery'	 => 'Saisir la requête',
+'querybtn'	=> 'Envoyer la requête',
+'selectonly'	=> "Les requêtes autres que \"SELECT\" sont réservées aux développeurs du wiki.",
+'querysuccessful' => 'Requête réussie',
 
-"querybtn"	=> "Envoyer la requête",
-"selectonly"	=> "Les requêtes autres que \"SELECT\" sont réservées aux développeurs du wiki.",
-"querysuccessful" => "Requête réussie",
-
-# Make sysop
-"bureaucratlog"		=> "Log_bureaucrate",
+# Special:Makesysop
+'bureaucratlog'		=> 'Log_bureaucrate',
 "bureaucratlogentry"	=> "Droits de l'utilisateur \"$1\" passés à \"$2\"",
 "makesysoptitle"	=> "Donne les droits d'adminitrateur.",
 "makesysoptext"		=> "Ce formulaire est utilisé par les bureaucrates pour donner les droits d'adminitrateur.
 Tapez le nom de l'utilisateur dans la boite et pressez le bouton pour lui donner les droits.",
-"makesysopname"		=> "Nom de l'utilisateur:",
-"makesysopsubmit"	=> "Donner les droits d'adminitrateur à cet utilisateur",
-"makesysopok"		=> "<b>L'utilisateur \"$1\" est maintenant administrateur</b>",
-"makesysopfail"		=> "<b>L'utilisateur \"$1\" n'a pas pu recevoir les droits d'adminitrateurs. (Avez vous entré le nom correctement?)</b>",
-"rights"		=> "Droits:",
-"set_user_rights"	=> "Met les droits de l'utilisateur",
-"user_rights_set"	=> "<b>Les droits de l'utilisateur \"$1\" sont mis à jour</b>",
-"setbureaucratflag"	=> "Donne les droits bureaucrate",
-"set_rights_fail"	=> "<b>Les droits de l'utilisateur \"$1\" n'ont pas pu être mis en place. (Avez vous entré le nom correctement?)</b>",
-"makesysop"         => "Donner les droits d'adminitrateur à un utilisateur",
+'makesysopname'		=> 'Nom de l\'utilisateur:',
+'makesysopsubmit'	=> 'Donner les droits d\'adminitrateur à cet utilisateur',
+'makesysopok'		=> "<b>L'utilisateur \"$1\" est maintenant administrateur</b>",
+'makesysopfail'		=> "<b>L'utilisateur \"$1\" n'a pas pu recevoir les droits d'adminitrateurs. (Avez vous entré le nom correctement?)</b>",
+'rights'			=> 'Droits:',
+'set_user_rights'	=> "Met les droits de l'utilisateur",
+'user_rights_set'	=> "<b>Les droits de l'utilisateur \"$1\" sont mis à jour</b>",
+'setbureaucratflag'	=> "Donne les droits bureaucrate",
+'set_rights_fail'	=> "<b>Les droits de l'utilisateur \"$1\" n'ont pas pu être mis en place. (Avez vous entré le nom correctement?)</b>",
+'makesysop'         => 'Donner les droits d\'adminitrateur à un utilisateur',
 
-# Validation
+# Special:Validate
 'val_clear_old' => 'Supprimer mes données de validation pour $1',
 'val_merge_old' => 'Utiliser mes précédents choix pour les choix marqués \'Sans opinion\'',
 'val_noop' => 'Sans opinion',
@@ -1057,6 +1089,18 @@ Tapez le nom de l'utilisateur dans la boite et pressez le bouton pour lui donner
 'val_article_lists' => 'List d\'articles validés',
 'val_page_validation_statistics' => 'Statistiques de validation pour $1',
 
+# Spam
+#
+'spamprotectionmatch' => "Le texte suivant a déclenché le détecteur de spam: $1",
+'spamprotectiontext' => "Page automatiquement protégée pour cause de spam",
+'spamprotectiontitle' => "Page automatiquement protégée pour cause de spam",
+
+# Patrolling
+#
+'markaspatrolleddiff' => "Marquer comme vérifiée",
+'markaspatrolledtext' => "Marquer cet article comme vérifié",
+'markedaspatrolled' => "Marqué comme vérifié",
+'markedaspatrolledtext' => "La version sélectionnée a été marquée comme vérifiée.",
 
 # Move page
 #
@@ -1087,8 +1131,8 @@ Veuillez en choisir un autre.",
 "talkexists"	=> "La page elle-même a été déplacée avec succès, mais
 la page de discussion n'a pas pu être déplacée car il en existait déjà une
 sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
-
-"movedto"  => "déplacé vers",
+'1movedto2_redir' => "$1 déplacé vers $2 (redirect)",
+'movedto'  => 'déplacé vers',
 "movetalk"  => "Déplacer aussi la page \"discussion\", s'il y a lieu.",
 "talkpagemoved" => "La page discussion correspondante a également été déplacée.",
 "talkpagenotmoved" => "La page discussion correspondante n'a <strong>pas</strong> été déplacée.",
@@ -1101,12 +1145,12 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 
 # Namespace 8 related
 
-"allmessages"	=> "Tous les messages",
-"allmessagestext"	=> "Ceci est la liste de tous les messages disponibles dans l'espace MediaWiki",
+'allmessages'	=> 'Tous les messages',
+'allmessagestext'	=> 'Ceci est la liste de tous les messages disponibles dans l\'espace MediaWiki',
 
 # Thumbnails
 
-"thumbnail-more"	=> "Agrandir",
+'thumbnail-more'	=> 'Agrandir',
 "missingimage"		=> "<b>Image manquante</b><br /><i>$1</i>\n",
 
 # Special:Import
