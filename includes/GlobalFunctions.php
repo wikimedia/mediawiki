@@ -335,7 +335,7 @@ function wfSpecialPage()
 	$sysopSP = $wgLang->getSysopSpecialPages();
 	$devSP = $wgLang->getDeveloperSpecialPages();
 
-	$wgOut->setArticleFlag( false );
+	$wgOut->setArticleRelated( false );
 	$wgOut->setRobotpolicy( "noindex,follow" );
 
 	$par = NULL;

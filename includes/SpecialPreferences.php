@@ -198,7 +198,7 @@ function wfSpecialPreferences()
 	global $wpSearchLines, $wpSearchChars, $wpStubs, $wgValidSkinNames;
 
 	$wgOut->setPageTitle( wfMsg( "preferences" ) );
-	$wgOut->setArticleFlag( false );
+	$wgOut->setArticleRelated( false );
 	$wgOut->setRobotpolicy( "noindex,nofollow" );
 
 	if ( "" != $err ) {
