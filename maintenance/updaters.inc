@@ -19,6 +19,7 @@ $wgNewTables = array(
 	array( 'categorylinks', 'patch-categorylinks.sql' ),
 	array( 'logging',       'patch-logging.sql' ),
 	array( 'user_rights',   'patch-user_rights.sql' ),
+	array( 'user_groups',   'patch-userlevels.sql' ),
 );
 
 $wgNewFields = array(
@@ -142,6 +143,22 @@ function do_image_name_unique_update() {
 	}
 }
 
+# Assumes that the group table has been added.
+function do_group_update() {
+	global $wgDatabase;
+	$res = $wgDatabase->safeQuery( 'SELECT COUNT(*) AS c FROM !',
+		$wgDatabase->tableName( 'group' ) );
+	$row = $wgDatabase->fetchObject( $res );
+	$wgDatabase->freeResult( $res );
+	if( $row->c == 0 ) {
+		echo "Adding default group definitions... ";
+		dbsource( "maintenance/archives/patch-userlevels-defaultgroups.sql", $wgDatabase );
+		echo "ok\n";
+	} else {
+		echo "...group definitions already in place.\n";
+	}
+}
+
 function do_all_updates() {
 	global $wgNewTables, $wgNewFields;
 	
@@ -156,6 +173,9 @@ function do_all_updates() {
 		add_table( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2] );
 		flush();
 	}
+	
+	# Add default group data
+	do_group_update(); flush();
 
 	# Do schema updates which require special handling
 	do_interwiki_update(); flush();
