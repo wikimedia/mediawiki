@@ -61,7 +61,7 @@ if ( "" != $search ) {
 } else if( !$wgTitle or $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" ) {
 	$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 	$wgOut->errorpage( "badtitle", "badtitletext" );
-} else if ( $wgTitle->getPrefixedDBKey() != $title ) {
+} else if ( ( $action == "view" ) && $wgTitle->getPrefixedDBKey() != $title ) {
 	/* redirect to canonical url */
 	$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
 } else if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
