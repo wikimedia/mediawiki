@@ -788,6 +788,7 @@ See [[$wgMetaNamespace:User preferences help]] for help deciphering the options.
 "math_unknown_function"	=> "unknown function ",
 "math_lexing_error"	=> "lexing error",
 "math_syntax_error"	=> "syntax error",
+"math_image_error"	=> "PNG conversion failed",
 "saveprefs"		=> "Save preferences",
 "resetprefs"	=> "Reset preferences",
 "oldpassword"	=> "Old password",
