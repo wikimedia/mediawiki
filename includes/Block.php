@@ -58,7 +58,9 @@ class Block
 		$mUser = $mBy = 0;
 	}
 
-	# Get a ban from the DB, with either the given address or the given username
+	/**
+	 * Get a ban from the DB, with either the given address or the given username
+	 */
 	function load( $address = '', $user = 0, $killExpired = true ) 
 	{
 		$fname = 'Block::load';
@@ -161,7 +163,9 @@ class Block
 		}
 	}
 	
-	# Callback with a Block object for every block
+	/**
+	 * Callback with a Block object for every block
+	 */
 	/*static*/ function enumBlocks( $callback, $tag, $flags = 0 ) 
 	{
 		$block = new Block();

@@ -13,6 +13,13 @@ class BlockCache
 {
 	var $mData = false, $mMemcKey;
 
+	/**
+	 * Constructor
+	 * Create a new BlockCache object
+	 *
+	 * @param Boolean $deferLoad   specifies whether to immediately load the data from memcached.
+	 * @param String $dbName       specifies the memcached dbName prefix to be used. Defaults to $wgDBname.
+	 */
 	function BlockCache( $deferLoad = false, $dbName = '' ) {
 		global $wgDBname;
 
@@ -27,7 +34,9 @@ class BlockCache
 		}
 	}
 
-	# Load the blocks from the database and save them to memcached
+	/**
+	 * Load the blocks from the database and save them to memcached
+	 */
 	function loadFromDB() {
 		global $wgUseMemCached, $wgMemc;
 		$this->mData = array();
@@ -41,7 +50,9 @@ class BlockCache
 		}
 	}
 		
-	# Load the cache from memcached or, if that's not possible, from the DB
+	/**
+	 * Load the cache from memcached or, if that's not possible, from the DB
+	 */
 	function load() {
 		global $wgUseMemCached, $wgMemc;
 
@@ -57,7 +68,11 @@ class BlockCache
 		}
 	}
 
-	# Add a block to the cache
+	/**
+	 * Add a block to the cache
+	 *
+	 * @param Object &$block   Reference to a "Block" object.
+	 */
 	function insert( &$block ) {
 		if ( $block->mUser == 0 ) {
 			$nb = $block->getNetworkBits();
@@ -72,7 +87,11 @@ class BlockCache
 		}
 	}
 	
-	# Find out if a given IP address is blocked
+	/**
+	 * Find out if a given IP address is blocked
+	 *
+	 * @param String $ip   IP address
+	 */
 	function get( $ip ) {
 		$this->load();
 		$ipint = ip2long( $ip );
@@ -99,13 +118,22 @@ class BlockCache
 		return $block;
 	}
 
-	# Clear the local cache
-	# There was once a clear() to clear memcached too, but I deleted it
+	/**
+	 * Clear the local cache
+	 * There was once a clear() to clear memcached too, but I deleted it
+	 */
 	function clearLocal() {
 		$this->mData = false;
 	}
 }
 
+/**
+ * Add a block to the global $wgBlockCache
+ *
+ * @package MediaWiki
+ * @param Object $block  A "Block"-object
+ * @param Any    $tag    unused
+ */
 function wfBlockCacheInsert( $block, $tag ) {
 	global $wgBlockCache;
 	$wgBlockCache->insert( $block );
