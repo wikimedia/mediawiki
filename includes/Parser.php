@@ -428,7 +428,7 @@ class Parser
 		}
 
 		$text = $this->replaceExternalLinks( $text );
-		$text = $this->replaceInternalLinks ( $text );
+		$text = $this->doTokenizedParser ( $text );
 		$text = $this->doTableStuff ( $text ) ;
 
 		$text = $this->formatHeadings( $text );
@@ -598,7 +598,7 @@ class Parser
 		return $s;
 	}
 
-	/* private */ function replaceInternalLinks( $str )
+	/* private */ function doTokenizedParser( $str )
 	{
 		global $wgLang;	# for language specific parser hook
 
@@ -753,7 +753,7 @@ class Parser
 	{
 		global $wgLang, $wgLinkCache;
 		global $wgNamespacesWithSubpages, $wgLanguageCode;
-		static $fname = "Parser::replaceInternalLinks" ;
+		static $fname = "Parser::handleInternalLink" ;
 		wfProfileIn( $fname );
 
 		wfProfileIn( "$fname-setup" );
@@ -1231,7 +1231,7 @@ class Parser
 								$text = $this->removeHTMLtags( $text );
 							}
 							$wgLinkCache->suspend();
-							$text = $this->replaceInternalLinks( $text );
+							$text = $this->doTokenizedParser( $text );
 							$wgLinkCache->resume();
 							$wgLinkCache->addLinkObj( $title );
 
