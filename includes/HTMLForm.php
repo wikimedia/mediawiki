@@ -26,7 +26,7 @@ class HTMLForm {
 			$content . "\n</fieldset>\n";
 	}
 
-	/*
+	/**
 	 * @access private
 	 * @param string $varname Name of the checkbox.
 	 * @param boolean $checked Set true to check the box (default False).
@@ -39,7 +39,7 @@ class HTMLForm {
 			"</label></div>\n";
 	}
 
-	/* 
+	/** 
 	 * @access private
 	 * @param string $varname Name of the textbox.
 	 * @param string $value Optional value (default empty)
@@ -51,7 +51,7 @@ class HTMLForm {
 			"<input type='text' name=\"{$varname}\" value=\"{$value}\" size=\"{$size}\" /></label></div>\n";
 	}
 
-	/* 
+	/** 
 	 * @access private
 	 * @param string $varname Name of the radiobox.
 	 * @param array $fields Various fields.
@@ -65,7 +65,7 @@ class HTMLForm {
 		return $this->fieldset( $this->mName.'-'.$varname, $s );
 	}
 	
-	/* 
+	/** 
 	 * @access private
 	 * @param string $varname Name of the textareabox.
 	 * @param string $value Optional value (default empty)
@@ -77,7 +77,7 @@ class HTMLForm {
 		       "<textarea name=\"{$varname}\" rows=\"5\" cols=\"{$size}\">$value</textarea></label></div>\n";
 	}
 
-	/* 
+	/** 
 	 * @access private
 	 * @param string $varname Name of the arraybox.
 	 * @param integer $size Optional size of the textarea (default 20)

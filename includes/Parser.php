@@ -1,11 +1,11 @@
 <?php
-
 /**
  * File for Parser and related classes
  *
  * @package MediaWiki
  */
 
+/** */
 require_once( 'Sanitizer.php' );
 
 /**
