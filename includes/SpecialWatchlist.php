@@ -209,9 +209,9 @@ function wlCutoffLinks( $days, $limit, $page = "Watchlist" )
 		$days[$i++] = wlDaysLink( $d, $page );
 	}
 	return
-		"Show last " .
-		implode(" | ", $hours) . " hours " .
-		implode(" | ", $days) . " days " .
+		wfMsg ("wlshowlast") .
+		implode(" | ", $hours) . wfMsg("wlhours") .
+		implode(" | ", $days) . wfMsg("wldays") .
 		wlDaysLink( 0, $page );
 #	$note = wfMsg( "rclinks", $cl, $dl, $mlink );
 }
