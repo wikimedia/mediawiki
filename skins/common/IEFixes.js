@@ -1,12 +1,14 @@
 // IE fixes javascript
 
 var isMSIE55 = (window.showModalDialog && window.clipboardData && window.createPopup);
+var doneIETransform;
 
 if (document.attachEvent)
   document.attachEvent('onreadystatechange', hookit);
 
 function hookit() {
-    if (document.getElementById && document.getElementById('bodyContent')) {
+    if (!doneIETransform && document.getElementById && document.getElementById('bodyContent')) {
+        doneIETransform = true;
         fixalpha();
         relativeforfloats();
     }
