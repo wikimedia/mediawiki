@@ -496,17 +496,27 @@ class Skin {
 				$s.=" | <strong>". wfMsg( "newmessages", $tl ) . "</strong>";
 			}
 		}
-		if( $wgUser->isSysop() &&
-				(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
-				($n = $wgTitle->isDeleted() ) ) {
-			$s .= " | " . wfMsg( "thisisdeleted",
-					$this->makeKnownLink(
-						$wgLang->SpecialPage( "Undelete/" . $wgTitle->getPrefixedDBkey() ),
-						wfMsg( "restorelink", $n ) ) );
+		
+		$undelete = $this->getUndeleteLink();
+		if( !empty( $undelete ) ) {
+			$s .= " | $undelete";
 		}
 		return $s;
 	}
 
+	function getUndeleteLink() {
+		global $wgUser, $wgTitle, $wgLang, $action;
+		if( $wgUser->isSysop() &&
+			(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
+			($n = $wgTitle->isDeleted() ) ) {
+			return wfMsg( "thisisdeleted",
+				$this->makeKnownLink(
+					$wgLang->SpecialPage( "Undelete/" . $wgTitle->getPrefixedDBkey() ),
+					wfMsg( "restorelink", $n ) ) );
+		}
+		return "";
+	}
+	
 	function printableLink()
 	{
 		global $wgOut, $wgFeedClasses, $wgRequest;
