@@ -1685,10 +1685,12 @@ class Skin {
 
 	function editSectionLink($section) {
 
-		global $wgTitle;
-		$editurl="&section={$section}";
+		global $wgTitle,$wgUser,$oldid;
+		if($wgTitle->isProtected() && !$wgUser->isSysop()) return "";
+		if($oldid) return "";
+		$editurl="&section={$section}";		
 		$url=$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg("editsection"),"action=edit".$editurl);
-		return "<p style=\"text-align:left;\"><small>[".$url."]</small></p>";
+		return "<div style=\"float:right;margin-left:5px;\"><small>[".$url."]</small></div>";
 
 	}
 }

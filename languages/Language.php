@@ -498,6 +498,7 @@ If you are here by mistake, just click your browser's '''back''' button.",
 "previewconflict" => "This preview reflects the text in the upper
 text editing area as it will appear if you choose to save.",
 "editing"		=> "Editing $1",
+"sectionedit"	=> " (section)",
 "editconflict"	=> "Edit conflict: $1",
 "explainconflict" => "Someone else has changed this page since you
 started editing it.
@@ -600,9 +601,7 @@ $2 List redirects &nbsp; Search for $3 $9",
   wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
 to set user preferences.",
 "prefslogintext" => "You are logged in as \"$1\".
-Your internal ID number is $2.
-
-See [[Wikipedia:User preferences help]] for help deciphering the options.",
+Your internal ID number is $2.",
 "prefsreset"	=> "Preferences have been reset from storage.",
 "qbsettings"	=> "Quickbar settings", 
 "changepassword" => "Change password",
@@ -1189,11 +1188,11 @@ class Language {
 		}
 		if ( 0 == $diff ) { return $ts; }
 
-		$t = gmmktime( ( (int)substr( $ts, 8, 2) ) + $diff,
+		$t = mktime( ( (int)substr( $ts, 8, 2) ) + $diff,
 		  (int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
 		  (int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
 		  (int)substr( $ts, 0, 4 ) );
-		return gmdate( "YmdHis", $t );
+		return date( "YmdHis", $t );
 	}
  
 	function date( $ts, $adj = false )
@@ -1228,7 +1227,7 @@ class Language {
 
 	function rfc1123( $ts )
 	{
-		return gmdate( "D, d M Y H:i:s T", $ts );
+		return date( "D, d M Y H:i:s T", $ts );
 	}
 
 	function getValidSpecialPages()
