@@ -9,6 +9,9 @@ Look & layout:
 
 Wiki features:
 * Image captions can now include links and other basic formatting
+* Image bounding box can be specified instead of width, e.g. as
+  100x100px, making the image not wider than 100px and not higher
+  than 100px, keeping aspect ratio.
 * Templates have been expanded with parameters, and separated from
   the MediaWiki: localization scheme.
 * Categories more or less work
@@ -23,6 +26,8 @@ Metadata and output:
 
 Optional modules:
 * WikiHiero hieroglyphic module can be added (separate download)
+* Timeline module can be added (separate download).
+  Requires ploticus.
 * TeX now has an experimental MathML output mode (incomplete)
 
 Installation and upgrading:
@@ -39,6 +44,8 @@ Code and compatibility:
 * Should now run clean with error reporting set to E_ALL.
 * register_globals hack from 1.2 has been replaced with safer code
 * Bundled PHPTAL 0.7.0 from http://phptal.sourceforge.net/
+  (with some patches)
+* Most image-related code moved to Image.php
 
 === Caveats ===
 

@@ -1721,7 +1721,7 @@ class Skin {
 			$mwFramed =& MagicWord::get( MAG_IMG_FRAMED );
 			$alt = $part[count($part)-1];
 
-			$framed=$thumb=false;
+			$height = $framed = $thumb = false;
 
 			foreach( $part as $key => $val ) {
 				if ( ! is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
@@ -1740,7 +1740,12 @@ class Skin {
 					$align = "none";
 				} elseif ( ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
 					# $match is the image width in pixels
-					$width = intval($match);
+					if ( preg_match( "/^([0-9]*)x([0-9]*)$/", $match, $m ) ) {
+						$width = intval( $m[1] );
+						$height = intval( $m[2] );
+					} else {
+						$width = intval($match);
+					}
 				} elseif ( ! is_null( $mwFramed->matchVariableStartToEnd($val) ) ) {
 					$framed=true;
 				}
@@ -1767,12 +1772,19 @@ class Skin {
 				if ( ! isset($width) ) {
 					$width = 180;
 				}
-				return $prefix.$this->makeThumbLinkObj( $img, $alt, $align, $width, $framed ).$postfix;
+				return $prefix.$this->makeThumbLinkObj( $img, $alt, $align, $width, $height, $framed ).$postfix;
 	
 			} elseif ( isset($width) ) {
 				
 				# Create a resized image, without the additional thumbnail
 				# features
+
+				if (    ( ! $height === false ) 
+				     && ( $img->getHeight() * $width / $img->getWidth() > $height ) ) {
+				     	print "height=$height<br>\nimg->getHeight() = ".$img->getHeight()."<br>\n";
+				     	print "rescaling by factor ". $height / $img->getHeight() . "<br>\n";
+					$width = $img->getWidth() * $height / $img->getHeight();
+				}
 				$url = $img->createThumb( $width );
 			}
 		} # endif $wgUseImageResize
@@ -1798,7 +1810,7 @@ class Skin {
 	}
 
 
-	function makeThumbLinkObj( $img, $label = "", $align = "right", $boxwidth = 180, $framed=false ) {
+	function makeThumbLinkObj( $img, $label = "", $align = "right", $boxwidth = 180, $boxheight=false, $framed=false ) {
 		global $wgStylePath, $wgLang;
 		# $image = Title::makeTitle( Namespace::getImage(), $name );
 		$url  = $img->getURL();
@@ -1818,17 +1830,20 @@ class Skin {
 		{
 			// Use image dimensions, don't scale
 			$boxwidth  = $width;
+			$oboxwidth = $boxwidth + 2;
 			$boxheight = $height;
 			$thumbUrl  = $url;
 		} else {
-			$boxheight  = intval( $height/($width/$boxwidth) );
-			# if ( $boxwidth > $width ) {
-			# 	$boxwidth  = $width;
-			#	$boxheight = $height;
-			#}
+			$h  = intval( $height/($width/$boxwidth) );
+			$oboxwidth = $boxwidth + 2;
+			if ( ( ! $boxheight === false ) &&  ( $h > $boxheight ) )
+			{
+				$boxwidth *= $boxheight/$h;
+			} else {
+				$boxheight = $h;
+			}
 			$thumbUrl = $img->createThumb( $boxwidth );
 		}
-		$oboxwidth = $boxwidth + 2;
 
 		$u = $img->getEscapeLocalURL();
 
