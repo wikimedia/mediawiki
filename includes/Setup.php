@@ -223,28 +223,28 @@ wfProfileOut( $fname.'-User' );
 wfProfileIn( $fname.'-language' );
 
 function setupLangObj(&$langclass, $langcode) {
-    global $wgUseLatin1;
+	global $wgUseLatin1;
 
 
-    if( ! class_exists( $langclass ) || ($langcode == 'en' && !$wgUseLatin1) ) {
+	if( ! class_exists( $langclass ) || ($langcode == 'en' && !$wgUseLatin1) ) {
 # Default to English/UTF-8
-        require_once( 'languages/LanguageUtf8.php' );
-        $langclass = 'LanguageUtf8';
-    }
+		require_once( 'languages/LanguageUtf8.php' );
+		$langclass = 'LanguageUtf8';
+	}
 
-    $lang = new $langclass();
-    if ( !is_object($lang) ) {
-        print "No language class ($wgLang)\N";
-    }
+	$lang = new $langclass();
+	if ( !is_object($lang) ) {
+		print "No language class ($wgLang)\N";
+	}
 
-    if( $wgUseLatin1 && $langcode != 'en' ) {
+	if( $wgUseLatin1 && $langcode != 'en' ) {
 # For non-UTF-8 non-English.
-        require_once( 'languages/LanguageLatin1.php' );
-        $xxx = new LanguageLatin1( $lang );
-        unset( $lang );
-        $lang = $xxx;
-    }
-    return $lang;
+		require_once( 'languages/LanguageLatin1.php' );
+		$xxx = new LanguageLatin1( $lang );
+		unset( $lang );
+		$lang = $xxx;
+	}
+	return $lang;
 }
 
 require_once( 'languages/Language.php' );
@@ -261,13 +261,13 @@ if(!$wgUser->mDataLoaded) { $wgUser->loadDefaultFromLanguage(); }
 $wgLanguageCode = $wgUser->getOption('language');
 
 $wgLangClass = 'Language'. str_replace( '-', '_', ucfirst( $wgLanguageCode ) );
- if($wgLangClass == $wgContLangClass) {
-     $wgLang = &$wgContLang;
- }
- else {
-     include_once("languages/$wgLangClass.php");
-     $wgLang = setupLangObj($wgLangClass, $wgLanguageCode);
- }
+if($wgLangClass == $wgContLangClass) {
+	$wgLang = &$wgContLang;
+}
+else {
+	include_once("languages/$wgLangClass.php");
+	$wgLang = setupLangObj($wgLangClass, $wgLanguageCode);
+}
 
 
 wfProfileOut( $fname.'-language' );
@@ -276,11 +276,11 @@ wfProfileIn( $fname.'-MessageCache' );
 $wgContMessageCache = new MessageCache;
 $wgContMessageCache->initialise( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname, $wgContLang, $wgContLanguageCode );
 if($wgLangClass == $wgContLangClass) {
-    $wgMessageCache = &$wgContMessageCache;
+	$wgMessageCache = &$wgContMessageCache;
 }
 else {
-    $wgMessageCache = new MessageCache;
-    $wgMessageCache->initialise( $messageMemc,false , $wgMsgCacheExpiry, $wgDBname.":$wgLangClass", $wgLang, $wgLanguageCode);
+	$wgMessageCache = new MessageCache;
+	$wgMessageCache->initialise( $messageMemc,false , $wgMsgCacheExpiry, $wgDBname.":$wgLangClass", $wgLang, $wgLanguageCode);
 }
 
 wfProfileOut( $fname.'-MessageCache' );
@@ -300,6 +300,13 @@ wfProfileOut( $fname.'-MessageCache' );
 # $wgLang = $wgContLang;
 # $wgMessageCache = $wgContMessageCache;
 #
+# TODO: Need to change reference to $wgLang to $wgContLang at proper 
+#       places, including namespaces, dates in signatures, magic words,
+#       and links
+#
+# TODO: Need to look at the issue of input/output encoding
+#
+
 
 wfProfileIn( $fname.'-OutputPage' );
 

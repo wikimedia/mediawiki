@@ -58,7 +58,7 @@ class DifferenceEngine {
 
 	function showDiffPage()
 	{
-		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgOnlySysopsCanPatrol, $wgUseRCPatrol;
+		global $wgUser, $wgTitle, $wgOut, $wgContLang, $wgOnlySysopsCanPatrol, $wgUseRCPatrol;
 		$fname = 'DifferenceEngine::showDiffPage';
 		wfProfileIn( $fname );
 
@@ -102,7 +102,7 @@ class DifferenceEngine {
 		}
 
 		$sk = $wgUser->getSkin();
-		$talk = $wgLang->getNsText( NS_TALK );
+		$talk = $wgContLang->getNsText( NS_TALK );
 		$contribs = wfMsg( 'contribslink' );
 
 		$this->mOldComment = $sk->formatComment($this->mOldComment);

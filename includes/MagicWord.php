@@ -116,9 +116,9 @@ class MagicWord {
 	
 	# Initialises this object with an ID
 	function load( $id ) {
-		global $wgLang;		
+		global $wgContLang;		
 		$this->mId = $id;
-		$wgLang->getMagic( $this );
+		$wgContLang->getMagic( $this );
 	}
 	
 	/**

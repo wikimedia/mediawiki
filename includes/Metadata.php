@@ -117,11 +117,11 @@ function dcEpilogue() {
  * @private
  */
 function dcBasics($article) {
-	global $wgLanguageCode, $wgSitename;
+	global $wgContLanguageCode, $wgSitename;
 	
 	dcElement('title', $article->mTitle->getText());
 	dcPageOrString('publisher', wfMsg('aboutpage'), $wgSitename);
-	dcElement('language', $wgLanguageCode);
+	dcElement('language', $wgContLanguageCode);
 	dcElement('type', 'Text');
 	dcElement('format', 'text/html');
 	dcElement('identifier', dcReallyFullUrl($article->mTitle));
@@ -271,7 +271,7 @@ function dcUrl($name, $url) {
  * @private
  */
 function dcPerson($name, $id, $user_name='', $user_real_name='') {
-	global $wgLang;
+	global $wgContLang;
 
 	if ($id == 0) {
 		dcElement($name, wfMsg('anonymous'));
@@ -282,7 +282,7 @@ function dcPerson($name, $id, $user_name='', $user_real_name='') {
 		if( empty( $user_name ) ) {
 			$user_name = User::whoIs($id);
 		}
-		dcPageOrString($name, $wgLang->getNsText(NS_USER) . ':' . $user_name, wfMsg('siteuser', $user_name));
+		dcPageOrString($name, $wgContLang->getNsText(NS_USER) . ':' . $user_name, wfMsg('siteuser', $user_name));
 	}
 }
 

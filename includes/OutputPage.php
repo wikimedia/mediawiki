@@ -407,11 +407,11 @@ class OutputPage {
 	}
 
 	function out( $ins ) {
-		global $wgInputEncoding, $wgOutputEncoding, $wgLang;
+		global $wgInputEncoding, $wgOutputEncoding, $wgContLang;
 		if ( 0 == strcmp( $wgInputEncoding, $wgOutputEncoding ) ) {
 			$outs = $ins;
 		} else {
-			$outs = $wgLang->iconv( $wgInputEncoding, $wgOutputEncoding, $ins );
+			$outs = $wgContLang->iconv( $wgInputEncoding, $wgOutputEncoding, $ins );
 			if ( false === $outs ) { $outs = $ins; }
 		}
 		print $outs;
@@ -419,12 +419,12 @@ class OutputPage {
 
 	function setEncodings() {
 		global $wgInputEncoding, $wgOutputEncoding;
-		global $wgUser, $wgLang;
+		global $wgUser, $wgContLang;
 
 		$wgInputEncoding = strtolower( $wgInputEncoding );
 
 		if( $wgUser->getOption( 'altencoding' ) ) {
-			$wgLang->setAltEncoding();
+			$wgContLang->setAltEncoding();
 			return;
 		}
 
@@ -550,7 +550,7 @@ class OutputPage {
 	}
 
 	function loginToUse() {
-		global $wgUser, $wgTitle, $wgLang;
+		global $wgUser, $wgTitle, $wgContLang;
 
 		$this->setPageTitle( wfMsg( 'loginreqtitle' ) );
 		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
@@ -562,7 +562,7 @@ class OutputPage {
 		# We put a comment in the .html file so a Sysop can diagnose the page the
 		# user can't see.
 		$this->addHTML( "\n<!--" .
-						$wgLang->getNsText( $wgTitle->getNamespace() ) .
+						$wgContLang->getNsText( $wgTitle->getNamespace() ) .
 						':' .
 						$wgTitle->getDBkey() . '-->' );
 		$this->returnToMain();		# Flip back to the main page after 10 seconds.
@@ -705,8 +705,8 @@ class OutputPage {
  	 * @private
 	 */
 	function headElement() {
-		global $wgDocType, $wgDTD, $wgLanguageCode, $wgOutputEncoding, $wgMimeType;
-		global $wgUser, $wgLang, $wgRequest;
+		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
+		global $wgUser, $wgContLang, $wgRequest;
 
 		$xml = ($wgMimeType == 'text/xml');
 		if( $xml ) {
@@ -725,8 +725,8 @@ class OutputPage {
 		} else {
 			$xmlbits = '';
 		}
-		$rtl = $wgLang->isRTL() ? " dir='RTL'" : '';
-		$ret .= "<html $xmlbits lang=\"$wgLanguageCode\" $rtl>\n";
+		$rtl = $wgContLang->isRTL() ? " dir='RTL'" : '';
+		$ret .= "<html $xmlbits lang=\"$wgContLanguageCode\" $rtl>\n";
 		$ret .= "<head>\n<title>" . htmlspecialchars( $this->mHTMLtitle ) . "</title>\n";
 		array_push( $this->mMetatags, array( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" ) );
 
