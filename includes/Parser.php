@@ -683,7 +683,7 @@ class Parser
 					# non-breakable spaces for French.
 					# U+202F NARROW NO-BREAK SPACE might be a better choice, but
 					# browser support for Unicode spacing is poor.
-					$txt = str_replace( " ", "<u>&nbsp;</u>", $token["text"] );
+					$txt = str_replace( " ", "&nbsp;", $token["text"] );
 					break;
 				case "[[[":
 					# remember the tag opened with 3 [
