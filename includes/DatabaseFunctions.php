@@ -220,12 +220,23 @@ function wfInvertTimestamp( $ts ) {
 # Removes most variables from an SQL query and replaces them with X or N for numbers.
 # It's only slightly flawed. Don't use for anything important.
 function wfGeneralizeSQL( $sql )
-{
-	# This could be done faster with some arrays and a single preg_replace,
-	# but this show more clearly what's going on. Which may be a good thing.
-	$sql = preg_replace( "/'.*?[^\\\\]'/", "'X'", $sql );
-	$sql = preg_replace ( "/-?\d+/" , "N", $sql);
+{	
+	# This does the same as the regexp below would do, but in such a way
+	# as to avoid crashing php on some large strings.
+	# $sql = preg_replace ( "/'([^\\\\']|\\\\.)*'|\"([^\\\\\"]|\\\\.)*\"/", "'X'", $sql);
+
+	$sql = str_replace ( "\\\\", "", $sql);
+	$sql = str_replace ( "\\'", "", $sql);
+	$sql = str_replace ( "\\\"", "", $sql);
+	$sql = preg_replace ("/'.*'/s", "'X'", $sql);
+	$sql = preg_replace ('/".*"/s', "'X'", $sql);
+
+	# All newlines, tabs, etc replaced by single space
 	$sql = preg_replace ( "/\s+/", " ", $sql);
+
+	# All numbers => N	
+	$sql = preg_replace ('/-?[0-9]+/s', "N", $sql);
+
 	return $sql;
 }
 
