@@ -307,7 +307,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 						$errs["RootPW"] = "Got root?";
 						print " need password.</li>\n";
 					} else {
-						$conf->Root = true;
+						$conf->Root = false;
 						$conf->RootPW = "";
 						print " ok.</li>\n";
 						# And keep going...
