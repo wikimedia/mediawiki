@@ -1547,7 +1547,12 @@ amusement.",
 "lastmodifiedby" => "This page was last modified $1 by $2.",
 "and" => "and",
 "othercontribs" => "Based on work by $1.",
-"siteusers" => "$wgSitename user(s) $1"
+"siteusers" => "$wgSitename user(s) $1",
+"spamprotectiontitle" => "Spam protection filter",
+"spamprotectiontext" => "The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site. 
+
+You might want to check the following regular expression for patterns that are currently blocked:"
+
 
 );
 
