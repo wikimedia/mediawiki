@@ -146,7 +146,7 @@ class SkinTemplate extends Skin {
 		global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgContLang, $wgOut;
 		global $wgScript, $wgStylePath, $wgLanguageCode, $wgContLanguageCode, $wgUseNewInterlanguage;
 		global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
-		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgSiteNotice;
+		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
 
@@ -344,8 +344,7 @@ class SkinTemplate extends Skin {
 
 		$tpl->setRef( 'debug', $out->mDebugtext );
 		$tpl->set( 'reporttime', $out->reportTime() );
-		$tpl->set( 'sitenotice', $wgSiteNotice );
-		$tpl->set( 'tagline', wfMsg('tagline') );
+		$tpl->set( 'sitenotice', wfGetSiteNotice() );
 
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printSource() . "</div>\n";
 		$out->mBodytext .= $printfooter ;

@@ -384,29 +384,6 @@ wfSeedRandom();
 $wgTitle = Title::makeTitle( NS_SPECIAL, 'Error' );
 $wgArticle = new Article($wgTitle);
 
-# Site notice
-# FIXME: This is an ugly hack, which wastes runtime on cache hits
-# and raw page views by forcing initialization of the message cache.
-# Try to fake around it for raw at least:
-if( !isset( $_REQUEST['action'] ) || $_REQUEST['action'] != 'raw' ) {
-	$notice = wfMsg( 'sitenotice' );
-	if($notice == '&lt;sitenotice&gt;') $notice = '';
-	# Allow individual wikis to turn it off
-	if ( $notice == '-' ) {
-		$wgSiteNotice = '';
-	} else {
-		# if($wgSiteNotice) $notice .= $wgSiteNotice;
-		if ($notice == '') {
-			$notice = $wgSiteNotice;
-		}
-		if($notice != '-' && $notice != '') {
-			$specialparser = new Parser();
-			$parserOutput = $specialparser->parse( $notice, $wgTitle, $wgOut->mParserOptions, false );
-			$wgSiteNotice = $parserOutput->getText();
-		}
-	}
-}
-
 wfProfileOut( $fname.'-misc2' );
 wfProfileIn( $fname.'-extensions' );
 

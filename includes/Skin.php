@@ -356,7 +356,7 @@ END;
 	}
 
 	function doBeforeContent() {
-		global $wgOut, $wgTitle, $wgContLang, $wgSiteNotice;
+		global $wgOut, $wgTitle, $wgContLang;
 		$fname = 'Skin::doBeforeContent';
 		wfProfileIn( $fname );
 
@@ -406,8 +406,9 @@ END;
 		$s .= "</tr>\n</table>\n</div>\n";
 		$s .= "\n<div id='article'>\n";
 
-		if( $wgSiteNotice ) {
-			$s .= "\n<div id='siteNotice'>$wgSiteNotice</div>\n";
+		$notice = wfGetSiteNotice();
+		if( $notice ) {
+			$s .= "\n<div id='siteNotice'>$notice</div>\n";
 		}
 		$s .= $this->pageTitle();
 		$s .= $this->pageSubtitle() ;

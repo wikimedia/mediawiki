@@ -1459,7 +1459,7 @@ class ResultWrapper {
  * Displays the file cache if possible
  */
 function wfEmergencyAbort( &$conn, $error ) {
-	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgSiteNotice, $wgOutputEncoding;
+	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgOutputEncoding;
 	global $wgSitename, $wgServer;
 	
 	# I give up, Brion is right. Getting the message cache to work when there is no DB is tricky.
@@ -1502,7 +1502,7 @@ border=\"0\" ALT=\"Google\"></A>
 		header( 'Cache-control: none' );
 		header( 'Pragma: nocache' );
 	}
-	$msg = $wgSiteNotice;
+	$msg = wfGetSiteNotice();
 	if($msg == '') {
 		$msg = str_replace( '$1', $error, $noconnect );
 	}
