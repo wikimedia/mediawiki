@@ -125,6 +125,7 @@ If upgrading from an older release, see the file UPGRADING.
 * Fixed Special:Allmessages when using table prefixes
 * (bug 996) Fix $wgWhitelistRead to work again
 * (bug 1028) fix page move over redirect to not fail on the unique index
+* Fix CSS classes on minor, new, unpatrolled markers in enhanced RC
 
 === Beta 3 fixes ===
 
