@@ -1324,19 +1324,19 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 
 	function rollback()
 	{
-		global $wgUser, $wgTitle, $wgLang, $wgOut;
+		global $wgUser, $wgTitle, $wgLang, $wgOut, $from;
 
 		if ( ! $wgUser->isSysop() ) {
 			$wgOut->sysopRequired();
 			return;
 		}
-		
+
 		# Replace all this user's current edits with the next one down
 		$tt = wfStrencode( $wgTitle->getDBKey() );
 		$n = $wgTitle->getNamespace();
 		
 		# Get the last editor
-		$sql = "SELECT cur_id,cur_user,cur_user_text FROM cur WHERE cur_title='{$tt}' AND cur_namespace={$n}";
+		$sql = "SELECT cur_id,cur_user,cur_user_text,cur_comment FROM cur WHERE cur_title='{$tt}' AND cur_namespace={$n}";
 		$res = wfQuery( $sql );
 		if( ($x = wfNumRows( $res )) != 1 ) {
 			# Something wrong
@@ -1347,6 +1347,15 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 		$ut = wfStrencode( $s->cur_user_text );
 		$uid = $s->cur_user;
 		$pid = $s->cur_id;
+		
+		$from = str_replace( '_', ' ', wfCleanQueryVar( $from ) );
+		if( $from != $s->cur_user_text ) {
+			$wgOut->addHTML( wfMsg( "alreadyrolled",
+				htmlspecialchars( $from ),
+				htmlspecialchars( $s->cur_user_text ),
+				htmlspecialchars( $s->cur_comment ) ) );
+			return;
+		}
 		
 		# Get the last edit not by this guy
 		$sql = "SELECT old_text,old_user,old_user_text

@@ -917,6 +917,10 @@ All times shown are server time (UTC).
 "rollback"		=> "Roll back edits",
 "rollbacklink"	=> "rollback",
 "cantrollback"	=> "Can't revert edit; last contributor is only author of this article.",
+"alreadyrolled"	=> "<b>Can't roll back last edit by $1; someone else has edited or
+rolled back the article already.</b>
+
+<p>Last edit was by $2, marked \"<i>$3</i>\".",
 "revertpage"	=> "Reverted to last edit by $1",
 
 # Undelete

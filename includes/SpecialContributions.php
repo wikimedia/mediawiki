@@ -110,14 +110,14 @@ function wfSpecialContributions()
 
 function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment )
 {
-	global $wgLang, $wgOut, $wgUser;
+	global $wgLang, $wgOut, $wgUser, $target;
 	$page = Title::makeName( $ns, $t );
 	$link = $sk->makeKnownLink( $page, "" );
 	$topmarktext = $topmark ? wfMsg ( "uctop" ) : "";
 	$sysop = $wgUser->isSysop();
 	if($sysop && $topmark ) {
 		$topmarktext .= " [". $sk->makeKnownLink( $page,
-		  wfMsg( "rollbacklink" ), "action=rollback" ) ."]";
+		  wfMsg( "rollbacklink" ), "action=rollback&from=" . urlencode( $target ) ) ."]";
 	}
 	if($comment) {
 	
