@@ -2,7 +2,7 @@
 # See language.doc
 include_once("LanguageUtf8.php");
 
-$wgNamespaceNamesAr = array(
+/* private */ $wgNamespaceNamesAr = array(
 	"-2" => "ملف",
 	"-1" => "خاص",
 	"0" => "",
@@ -15,6 +15,17 @@ $wgNamespaceNamesAr = array(
 	"7" => "نقاش_الصورة",
 	"8" => "MediaWiki",
 	"9" => "MediaWiki_talk",
+);
+
+/* private */ $wgWeekdayNamesAr = array(
+	"الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس",
+	"الجمعة", "السبت"
+);
+
+/* private */ $wgMonthNamesAr = array(
+	"يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو",
+	"يوليو", "أغسطس", "سبتمبر", "اكتوبر", "نوفمبر",
+	"ديسمبر"
 );
 
 class LanguageAr extends LanguageUtf8 {
@@ -44,6 +55,24 @@ class LanguageAr extends LanguageUtf8 {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
 		return LanguageUtf8::getNsIndex( $text );
+	}
+
+	function getMonthName( $key )
+	{
+		global $wgMonthNamesAr;
+		return $wgMonthNamesAr[$key-1];
+	}
+
+	function getMonthAbbreviation( $key )
+	{
+		/* No abbreviations in Arabic */
+		return $this->getMonthName( $key );
+	}
+
+	function getWeekdayName( $key )
+	{
+		global $wgWeekdayNamesAr;
+		return $wgWeekdayNamesAr[$key-1];
 	}
 
 	function isRTL() { return true; }
