@@ -199,7 +199,4 @@ $wgNamespacesToBeSearchedDefault = array( -1 => 0, 0 => 1, 1 => 0,
 
 # If set, a bold ugly notice will show up at the top of every page.
 $wgSiteNotice = "";
-
-# Javascript toolbar
-$wgEnableEditToolbar = true;
 ?>

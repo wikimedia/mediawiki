@@ -182,7 +182,7 @@ function do_interwiki_update() {
 function do_index_update() {
 	# Check that proper indexes are in place
 	global $wgDatabase;
-	$meta = $wgDatabase->field_info( "recentchanges", "rc_timestamp" );
+	$meta = $wgDatabase->fieldInfo( "recentchanges", "rc_timestamp" );
 	if( $meta->multiple_key == 0 ) {
 		echo "Updating indexes to 20031107: ";
 		dbsource( "maintenance/archives/patch-indexes.sql" );
