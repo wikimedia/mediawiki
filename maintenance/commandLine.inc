@@ -63,7 +63,7 @@ $wgCommandLineMode = true;
 @ob_end_flush();
 $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
 
-if ( $sep == ":" && strpos( `hostname -a`, "wikimedia.org" ) !== false ) {
+if ( $sep == ":" && strpos( `hostname`, "wikimedia.org" ) !== false ) {
 	$wgWikiFarm = true;
 	if ( isset( $args[0] ) ) {
 		$lang = array_shift( $args );
