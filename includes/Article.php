@@ -215,7 +215,6 @@ class Article {
 		# Query variables :P
 		$oldid = $wgRequest->getVal( 'oldid' );
 		if ( isset( $oldid ) ) {
-			$dbr =& $this->getDB();
 			$oldid = IntVal( $oldid );
 			if ( $wgRequest->getVal( 'direction' ) == 'next' ) {
 				$nextid = $this->mTitle->getNextRevisionID( $oldid );
@@ -246,7 +245,6 @@ class Article {
 
 		if ( $this->mContentLoaded ) return;
 		
-		$dbr =& $this->getDB();
 		# Query variables :P
 		$oldid = $this->getOldID();
 		$redirect = $wgRequest->getVal( 'redirect' );
@@ -1408,26 +1406,28 @@ class Article {
 		$dbr =& $this->getDB();
 		$ns = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getDBkey();
-		$old = $dbr->selectRow( 'old',
-			array( 'old_text', 'old_flags' ),
+		$revisions = $dbr->select( array( 'page', 'revision' ),
+			array( 'rev_id' ),
 			array(
-				'old_namespace' => $ns,
-				'old_title' => $title,
+				'page_namespace' => $ns,
+				'page_title' => $title,
+				'rev_page = page_id'
 			), $fname, $this->getSelectOptions( array( 'ORDER BY' => 'inverse_timestamp' ) )
 		);
 
-		if( $old !== false && !$confirm ) {
+		if( $dbr->numRows( $revisions ) > 1 && !$confirm ) {
 			$skin=$wgUser->getSkin();
 			$wgOut->addHTML('<b>'.wfMsg('historywarning'));
 			$wgOut->addHTML( $skin->historyLink() .'</b>');
 		}
 
 		# Fetch cur_text
-		$s = $dbr->selectRow( 'cur',
-			array( 'cur_text' ),
+		$s = $dbr->selectRow( array( 'page', 'text' ),
+			array( 'old_text' ),
 			array(
-				'cur_namespace' => $ns,
-				'cur_title' => $title,
+				'page_namespace' => $ns,
+				'page_title' => $title,
+				'page_latest = old_id'
 			), $fname, $this->getSelectOptions()
 		);
 
@@ -1436,10 +1436,10 @@ class Article {
 
 			#if this is empty, an earlier revision may contain "useful" text
 			$blanked = false;
-			if($s->cur_text != '') {
-				$text=$s->cur_text;
+			if($s->old_text != '') {
+				$text=$s->old_text;
 			} else {
-				if($old) {
+				if($old) { # TODO
 					$text = Revision::getRevisionText( $old );
 					$blanked = true;
 				}
@@ -1607,51 +1607,31 @@ class Article {
 		Title::touchArray( $linksTo );
 
 		# Move article and history to the "archive" table
-		$archiveTable = $dbw->tableName( 'archive' );
-		$oldTable = $dbw->tableName( 'old' );
-		$curTable = $dbw->tableName( 'cur' );
-		$recentchangesTable = $dbw->tableName( 'recentchanges' );
-		$linksTable = $dbw->tableName( 'links' );
-		$brokenlinksTable = $dbw->tableName( 'brokenlinks' );
 
-		$dbw->insertSelect( 'archive', 'cur',
+		$dbw->insertSelect( 'archive', array( 'page','revision', 'text' ),
 			array(
-				'ar_namespace' => 'cur_namespace',
-				'ar_title' => 'cur_title',
-				'ar_text' => 'cur_text',
-				'ar_comment' => 'cur_comment',
-				'ar_user' => 'cur_user',
-				'ar_user_text' => 'cur_user_text',
-				'ar_timestamp' => 'cur_timestamp',
-				'ar_minor_edit' => 'cur_minor_edit',
+				'ar_namespace' => 'page_namespace',
+				'ar_title' => 'page_title',
+				'ar_text' => 'old_text',
+				'ar_comment' => 'rev_comment',
+				'ar_user' => 'rev_user',
+				'ar_user_text' => 'rev_user_text',
+				'ar_timestamp' => 'rev_timestamp',
+				'ar_minor_edit' => 'rev_minor_edit',
 				'ar_flags' => 0,
 			), array(
-				'cur_namespace' => $ns,
-				'cur_title' => $t,
-			), $fname
-		);
-
-		$dbw->insertSelect( 'archive', 'old',
-			array(
-				'ar_namespace' => 'old_namespace',
-				'ar_title' => 'old_title',
-				'ar_text' => 'old_text',
-				'ar_comment' => 'old_comment',
-				'ar_user' => 'old_user',
-				'ar_user_text' => 'old_user_text',
-				'ar_timestamp' => 'old_timestamp',
-				'ar_minor_edit' => 'old_minor_edit',
-				'ar_flags' => 'old_flags'
-			), array(
-				'old_namespace' => $ns,
-				'old_title' => $t,
+				'page_namespace' => $ns,
+				'page_title' => $t,
+				'page_id = rev_page AND old_id = rev_id'
 			), $fname
 		);
 
 		# Now that it's safely backed up, delete it
 
-		$dbw->delete( 'cur', array( 'cur_namespace' => $ns, 'cur_title' => $t ), $fname );
-		$dbw->delete( 'old', array( 'old_namespace' => $ns, 'old_title' => $t ), $fname );
+		$dbw->deleteJoin( 'text', 'revision', 'old_id', 'rev_id', array( "rev_page = {$id}" ), $fname );
+		$dbw->delete( 'revision', array( 'rev_page' => $id ), $fname );
+		$dbw->delete( 'page', array( 'page_id' => $id ), $fname);
+ 
 		$dbw->delete( 'recentchanges', array( 'rc_namespace' => $ns, 'rc_title' => $t ), $fname );
 
 		# Finally, clean up the link tables
@@ -1710,9 +1690,9 @@ class Article {
 		$n = $this->mTitle->getNamespace();
 
 		# Get the last editor, lock table exclusively
-		$s = $dbw->selectRow( 'cur',
-			array( 'cur_id','cur_user','cur_user_text','cur_comment' ),
-			array( 'cur_title' => $tt, 'cur_namespace' => $n ),
+		$s = $dbw->selectRow( array( 'page', 'revision' ),
+			array( 'page_id','rev_user','rev_user_text','rev_comment' ),
+			array( 'page_title' => $tt, 'page_namespace' => $n ),
 			$fname, 'FOR UPDATE'
 		);
 		if( $s === false ) {
@@ -1721,20 +1701,20 @@ class Article {
 			return;
 		}
 		$ut = $dbw->strencode( $s->cur_user_text );
-		$uid = $s->cur_user;
-		$pid = $s->cur_id;
+		$uid = $s->rev_user;
+		$pid = $s->page_id;
 
 		$from = str_replace( '_', ' ', $wgRequest->getVal( 'from' ) );
-		if( $from != $s->cur_user_text ) {
+		if( $from != $s->rev_user_text ) {
 			$wgOut->setPageTitle(wfmsg('rollbackfailed'));
 			$wgOut->addWikiText( wfMsg( 'alreadyrolled',
 				htmlspecialchars( $this->mTitle->getPrefixedText()),
 				htmlspecialchars( $from ),
-				htmlspecialchars( $s->cur_user_text ) ) );
-			if($s->cur_comment != '') {
+				htmlspecialchars( $s->rev_user_text ) ) );
+			if($s->rev_comment != '') {
 				$wgOut->addHTML(
 					wfMsg('editcomment',
-					htmlspecialchars( $s->cur_comment ) ) );
+					htmlspecialchars( $s->rev_comment ) ) );
 			}
 			return;
 		}
@@ -1999,53 +1979,6 @@ class Article {
 			'inverse_timestamp' => wfInvertTimestamp( $timestamp ),
 			'rev_minor_edit' => intval($minor) ),
 			$fname );
-/*
-		# Save to history
-		$dbw->insertSelect( 'old', 'cur',
-			array(
-				'old_namespace' => 'cur_namespace',
-				'old_title' => 'cur_title',
-				'old_text' => 'cur_text',
-				'old_comment' => 'cur_comment',
-				'old_user' => 'cur_user',
-				'old_user_text' => 'cur_user_text',
-				'old_timestamp' => 'cur_timestamp',
-				'inverse_timestamp' => '99999999999999-cur_timestamp',
-			), array(
-				'cur_namespace' => $ns,
-				'cur_title' => $dbkey,
-			), $fname
-		);
-
-		# Use the affected row count to determine if the article is new
-		$numRows = $dbw->affectedRows();
-
-		# Make an array of fields to be inserted
-		$fields = array(
-			'cur_text' => $text,
-			'cur_timestamp' => $timestamp,
-			'cur_user' => $wgUser->getID(),
-			'cur_user_text' => $wgUser->getName(),
-			'inverse_timestamp' => wfInvertTimestamp( $timestamp ),
-			'cur_comment' => $comment,
-			'cur_is_redirect' => $this->isRedirect( $text ) ? 1 : 0,
-			'cur_minor_edit' => intval($minor),
-			'cur_touched' => $dbw->timestamp($timestamp),
-		);
-
-		if ( $numRows ) {
-			# Update article
-			$fields['cur_is_new'] = 0;
-			$dbw->update( 'cur', $fields, array( 'cur_namespace' => $ns, 'cur_title' => $dbkey ), $fname );
-		} else {
-			# Insert new article
-			$fields['cur_is_new'] = 1;
-			$fields['cur_namespace'] = $ns;
-			$fields['cur_title'] = $dbkey;
-			$fields['cur_random'] = $rand = wfRandom();
-			$dbw->insert( 'cur', $fields, $fname );
-		}
-*/
 		wfProfileOut( $fname );
 	}
 
@@ -2150,6 +2083,8 @@ class Article {
 		global $wgUser, $wgTitle, $wgOut, $wgAllowPageInfo;
 		$fname = 'Article::info';
 
+wfDebugDieBacktrace( 'This function is apparently not called by any other PHP file and might be obsolete.' );
+
 		if ( !$wgAllowPageInfo ) {
 			$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
 			return;
@@ -2227,6 +2162,8 @@ class Article {
 function wfArticleIsStub( $articleID ) {
 	global $wgUser;
 	$fname = 'wfArticleIsStub';
+
+	wfDebugDieBacktrace( 'This function seems to be unused. Pending removal.' );
 
 	$threshold = $wgUser->getOption('stubthreshold') ;
 	if ( $threshold > 0 ) {

@@ -226,11 +226,16 @@ class Linker {
 				$threshold = $wgUser->getOption('stubthreshold') ;
 				if ( $threshold > 0 ) {
 					$dbr =& wfGetDB( DB_SLAVE );
-					$s = $dbr->selectRow( 'cur', array( 'LENGTH(cur_text) AS x', 'cur_namespace',
-						'cur_is_redirect' ), array( 'cur_id' => $aid ), $fname ) ;
+					$s = $dbr->selectRow(
+						array( 'page', 'text' ),
+						array( 'LENGTH(old_text) AS x',
+							'page_namespace',
+							'page_is_redirect' ),
+						array( 'page_id' => $aid,
+							'old_id = page_latest' ), $fname ) ;
 					if ( $s !== false ) {
 						$size = $s->x;
-						if ( $s->cur_is_redirect OR $s->cur_namespace != NS_MAIN ) {
+						if ( $s->page_is_redirect OR $s->page_namespace != NS_MAIN ) {
 							$size = $threshold*2 ; # Really big
 						}
 					} else {

@@ -88,7 +88,7 @@ function wfSpecialContributions( $par = '' ) {
 		$minorQuery .= " AND page_namespace = {$namespace}";
 	}
 	
-	extract( $dbr->tableNames( 'old', 'cur' ) );
+	extract( $dbr->tableNames( 'page', 'revision' ) );
 	if ( $userCond == "" ) {
 		$condition = "rev_user_text=" . $dbr->addQuotes( $nt->getText() );
 		$index = 'usertext_timestamp';
@@ -96,8 +96,7 @@ function wfSpecialContributions( $par = '' ) {
 		$condition = "rev_user {$userCond}";
 		$index = 'user_timestamp';
 	}
-	$page = $dbr->tableName( 'page' );
-	$revision = $dbr->tableName( 'revision' );
+
 	$sql = "SELECT
 		page_namespace,page_title,page_is_new,page_latest,
 		rev_id,rev_timestamp,rev_comment,rev_minor_edit,rev_user_text
