@@ -12,6 +12,7 @@ class User {
 	/* private */ var $mTouched;
 	/* private */ var $mCookiePassword;
         /* private */ var $mRealName;
+	/* private */ var $mUserTable;
 
 	function User()
 	{
@@ -43,12 +44,14 @@ class User {
 
 	/* static */ function idFromName( $name )
 	{
+		global $wgIsPg;
 		$nt = Title::newFromText( $name );
 		if( is_null( $nt ) ) {
 			# Illegal name
 			return null;
 		}
-		$sql = "SELECT user_id FROM user WHERE user_name='" .
+		$usertable=$wgIsPg?'"user"':'user';
+		$sql = "SELECT user_id FROM $usertable WHERE user_name='" .
 		  wfStrencode( $nt->getText() ) . "'";
 		$res = wfQuery( $sql, DB_READ, "User::idFromName" );
 
@@ -82,7 +85,7 @@ class User {
 
 	function loadDefaults()
 	{
-		global $wgLang, $wgIP;
+		global $wgLang, $wgIP, $wgIsPg;
 		global $wgNamespacesToBeSearchedDefault;
 
 		$this->mId = $this->mNewtalk = 0;
@@ -102,6 +105,9 @@ class User {
 		$this->mBlockedby = -1; # Unset
 		$this->mTouched = '0'; # Allow any pages to be cached
 		$this->cookiePassword = "";
+
+		/* avoid reserved keyword usage for PostgreSQL */
+		$this->mUserTable=$wgIsPg?'"user"':'user';
 	}
 
 	/* private */ function getBlockedStatus()
@@ -260,7 +266,7 @@ class User {
 
 		$sql = "SELECT user_name,user_password,user_newpassword,user_email," .
 		  "user_real_name,user_options,user_rights,user_touched " . 
-                  " FROM user WHERE user_id=" . $this->mId;
+                  " FROM {$this->mUserTable} WHERE user_id=" . $this->mId;
 		$res = wfQuery( $sql, DB_READ, "User::loadFromDatabase" );
 
 		if ( wfNumRows( $res ) > 0 ) {
@@ -561,7 +567,6 @@ class User {
 	function saveSettings()
 	{
 		global $wgMemc, $wgDBname;
-
 		if ( ! $this->mNewtalk ) {
 			if( $this->mId ) {
 				$sql="DELETE FROM user_newtalk WHERE user_id={$this->mId}";
@@ -574,7 +579,7 @@ class User {
 		}
 		if ( 0 == $this->mId ) { return; }
 
-		$sql = "UPDATE user SET " .
+		$sql = "UPDATE {$this->mUserTable} SET " .
 		  "user_name= '" . wfStrencode( $this->mName ) . "', " .
 		  "user_password= '" . wfStrencode( $this->mPassword ) . "', " .
 		  "user_newpassword= '" . wfStrencode( $this->mNewpassword ) . "', " .
@@ -596,7 +601,7 @@ class User {
 		$s = trim( $this->mName );
 		if ( 0 == strcmp( "", $s ) ) return 0;
 
-		$sql = "SELECT user_id FROM user WHERE user_name='" .
+		$sql = "SELECT user_id FROM {$this->mUserTable} WHERE user_name='" .
 		  wfStrencode( $s ) . "'";
 		$res = wfQuery( $sql, DB_READ, "User::idForName" );
 		if ( 0 == wfNumRows( $res ) ) { return 0; }
@@ -611,7 +616,7 @@ class User {
 
 	function addToDatabase()
 	{
-		$sql = "INSERT INTO user (user_name,user_password,user_newpassword," .
+		$sql = "INSERT INTO {$this->mUserTable} (user_name,user_password,user_newpassword," .
 		  "user_email, user_real_name, user_rights, user_options) " .
 		  " VALUES ('" . wfStrencode( $this->mName ) . "', '" .
 		  wfStrencode( $this->mPassword ) . "', '" .
