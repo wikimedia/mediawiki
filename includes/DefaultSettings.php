@@ -452,6 +452,13 @@ $wgDefaultBlockExpiry	= '24 hours'; # default expiry time
 $wgAutoblockExpiry		= 86400; # Number of seconds before autoblock entries expire
 
 # Proxy scanner settings
+# If you enable this, every editor's IP address will be scanned for open
+# HTTP proxies.
+#
+# Don't enable this. Many sysops will report "hostile TCP port scans" to
+# your ISP and ask for your server to be shut down. 
+#
+# You have been warned.
 #
 $wgBlockOpenProxies = false; # Automatic open proxy test on edit
 $wgProxyPorts = array( 80, 81, 1080, 3128, 6588, 8000, 8080, 8888, 65506 );
