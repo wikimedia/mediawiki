@@ -10,22 +10,31 @@
  */
 class LinksUpdate {
 
-	/* private */ var $mId, $mTitle;
+	/**#@+
+	 * @access private
+	 */
+	var $mId, $mTitle;
+	/**#@- */
 
-	function LinksUpdate( $id, $title )
-	{
+	/**
+	 * Constructor
+	 * Initialize private variables
+	 * @param integer $id
+	 * @param string $title
+	 */
+	function LinksUpdate( $id, $title ) {
 		$this->mId = $id;
 		$this->mTitle = $title;
 	}
 
+	/**
+	 * Update link tables with outgoing links from an updated article
+	 * Relies on the 'link cache' to be filled out.
+	 */
 	
-	function doUpdate()
-	{
+	function doUpdate() {
 		global $wgUseBetterLinksUpdate, $wgLinkCache, $wgDBtransactions;
 		global $wgEnablePersistentLC, $wgUseCategoryMagic;
-
-		/* Update link tables with outgoing links from an updated article */
-		/* Relies on the 'link cache' to be filled out */
 
 		$fname = 'LinksUpdate::doUpdate';
 		wfProfileIn( $fname );
@@ -165,11 +174,14 @@ class LinksUpdate {
 
 		wfProfileOut( $fname );
 	}
-	
-	function doDumbUpdate()
-	{
-		# Old inefficient update function
-		# Used for rebuilding the link table
+
+	/**
+	 * Old inefficient update function
+	 * Used for rebuilding the link table
+	 * @todo Only used by ./maintenance/refreshLinks.inc probably need to be replaced
+	 * @deprecated
+	 */
+	function doDumbUpdate() {
 		global $wgLinkCache, $wgDBtransactions, $wgUseCategoryMagic;
 		$fname = 'LinksUpdate::doDumbUpdate';
 		wfProfileIn( $fname );
@@ -251,10 +263,12 @@ class LinksUpdate {
 		$this->fixBrokenLinks();
 		wfProfileOut( $fname );
 	}
-	
+
+	/**
+	 * Update any brokenlinks *to* this page
+	 * Call for a newly created page, or just to make sure state is consistent
+	 */
 	function fixBrokenLinks() {
-		/* Update any brokenlinks *to* this page */
-		/* Call for a newly created page, or just to make sure state is consistent */
 		$fname = 'LinksUpdate::fixBrokenLinks';
 
 		$dbw =& wfGetDB( DB_MASTER );
