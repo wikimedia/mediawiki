@@ -8,7 +8,7 @@ if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
 $wgCommandLineMode = true;
 
 $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
-if ( @$argv[1] ) {
+if ( @$argv[1] && @$argv[1] != "-" ) {
 	$lang = $argv[1];
 	putenv( "wikilang=$lang");
 	$settingsFile = "/apache/htdocs/{$argv[1]}/w/LocalSettings.php";
