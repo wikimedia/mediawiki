@@ -1662,6 +1662,10 @@ class Language {
 	# For right-to-left language support
 	function isRTL() { return false; }
 
+	# To allow "foo[[bar]]" to extend the link over the whole word "foobar"
+	function linkPrefixExtension() { return false; }
+
+
 	function getMagicWords() 
 	{
 		global $wgMagicWordsEn;

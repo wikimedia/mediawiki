@@ -77,6 +77,8 @@ class LanguageAr extends LanguageUtf8 {
 
 	function isRTL() { return true; }
 
+	function linkPrefixExtension() { return true; }
+
 	function getDefaultUserOptions () {
 		global $wgDefaultUserOptionsEn;
 		$opt = $wgDefaultUserOptionsEn;
