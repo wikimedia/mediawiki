@@ -158,6 +158,7 @@ class ImagePage extends Article {
 	{
 		global $wgOut, $wgUser, $wgLang;
 		global $image, $oldimage, $wpReason;
+		global $wgUseSquid, $wgInternalServer, $wgDeferredUpdateList;
 		$fname = "Article::doDelete";
 
 		if ( $image ) {
@@ -174,10 +175,29 @@ class ImagePage extends Article {
 			$sql = "SELECT oi_archive_name FROM oldimage WHERE oi_name='" .
 			  wfStrencode( $image ) . "'";
 			$res = wfQuery( $sql, DB_READ, $fname );
+			
+			# Squid purging
+			if ( $wgUseSquid ) {
+				$urlArr = Array(
+					$wgInternalServer.wfImageUrl( $image )
+				);
+				wfPurgeSquidServers($urlArr);
+			}
+			
 
+			$urlArr = Array();
 			while ( $s = wfFetchObject( $res ) ) {
 				$this->doDeleteOldImage( $s->oi_archive_name );
+				$urlArr[] = $wgInternalServer.wfImageArchiveUrl( $s->oi_archive_name );
 			}	
+			
+			# Squid purging, part II
+			if ( $wgUseSquid ) {
+				/* this needs to be done after LinksUpdate */
+				$u = new SquidUpdate($this->mTitle, $urlArr);
+				array_push( $wgDeferredUpdateList, $u );
+			}
+			
 			$sql = "DELETE FROM oldimage WHERE oi_name='" .
 			  wfStrencode( $image ) . "'";
 			wfQuery( $sql, DB_WRITE, $fname );
@@ -190,6 +210,13 @@ class ImagePage extends Article {
 
 			$deleted = $image;
 		} else if ( $oldimage ) {
+			# Squid purging
+			if ( $wgUseSquid ) {
+				$urlArr = Array(
+					$wgInternalServer.wfImageArchiveUrl( $oldimage )
+				);
+				wfPurgeSquidServers($urlArr);
+			}
 			$this->doDeleteOldImage( $oldimage );
 			$sql = "DELETE FROM oldimage WHERE oi_archive_name='" .
 			  wfStrencode( $oldimage ) . "'";
@@ -229,6 +256,7 @@ class ImagePage extends Article {
 	{
 		global $wgOut;
 		global $oldimage;
+		global $wgUseSquid, $wgInternalServer, $wgDeferredUpdateList;
 
 		if ( strlen( $oldimage ) < 16 ) {
 			$wgOut->unexpectedValueError( "oldimage", $oldimage );
@@ -260,6 +288,14 @@ class ImagePage extends Article {
 			$wgOut->fileCopyError( "${archive}/{$oldimage}", $curfile );
 		}
 		wfRecordUpload( $name, $oldver, $size, wfMsg( "reverted" ) );
+		# Squid purging
+		if ( $wgUseSquid ) {
+			$urlArr = Array(
+				$wgInternalServer.wfImageArchiveUrl( $name ),
+				$wgInternalServer.wfImageUrl( $name )
+			);
+			wfPurgeSquidServers($urlArr);
+		}
 
 		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
