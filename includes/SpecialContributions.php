@@ -16,6 +16,7 @@ function wfSpecialContributions( $par = "" )
 		return;
 	}
 	list( $limit, $offset ) = wfCheckLimits( 50, "" );
+	$offlimit = $limit + $offset;
 
 	$nt = Title::newFromURL( $target );
 	$nt->setNamespace( Namespace::getUser() );
@@ -48,20 +49,20 @@ function wfSpecialContributions( $par = "" )
 	if ( 0 == $id ) {
 		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment FROM cur " .
 		  "WHERE cur_user_text='" . wfStrencode( $nt->getText() ) . "' {$cmq} " .
-		  "ORDER BY inverse_timestamp LIMIT {$offset}, {$limit}";
+		  "ORDER BY inverse_timestamp LIMIT {$offlimit}";
 		$res1 = wfQuery( $sql, DB_READ, $fname );
 
 		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment FROM old " .
 		  "WHERE old_user_text='" . wfStrencode( $nt->getText() ) . "' {$omq} " .
-		  "ORDER BY inverse_timestamp LIMIT {$offset}, {$limit}";
+		  "ORDER BY inverse_timestamp LIMIT {$offlimit}";
 		$res2 = wfQuery( $sql, DB_READ, $fname );
 	} else {
 		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment FROM cur " .
-		  "WHERE cur_user={$id} {$cmq} ORDER BY inverse_timestamp LIMIT {$offset}, {$limit}";
+		  "WHERE cur_user={$id} {$cmq} ORDER BY inverse_timestamp LIMIT {$offlimit}";
 		$res1 = wfQuery( $sql, DB_READ, $fname );
 
 		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment FROM old " .
-		  "WHERE old_user={$id} {$omq} ORDER BY inverse_timestamp LIMIT {$offset}, {$limit}";
+		  "WHERE old_user={$id} {$omq} ORDER BY inverse_timestamp LIMIT {$offlimit}";
 		$res2 = wfQuery( $sql, DB_READ, $fname );
 	}
 	$nCur = wfNumRows( $res1 );
@@ -76,7 +77,7 @@ function wfSpecialContributions( $par = "" )
 	if ( 0 != $nOld ) { $obj2 = wfFetchObject( $res2 ); }
 
 	$wgOut->addHTML( "<ul>\n" );
-	while ( $limit ) {
+	for( $n = 0; $n < $offlimit; $n++ ) {
 		if ( 0 == $nCur && 0 == $nOld ) { break; }
 
 		if ( ( 0 == $nOld ) ||
@@ -100,9 +101,8 @@ function wfSpecialContributions( $par = "" )
 			$topmark = false;
 			--$nOld;
 		}
-		ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment );
-
-		--$limit;
+		if( $n >= $offset )
+			ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment );
 	}
 	$wgOut->addHTML( "</ul>\n" );
 }
