@@ -69,14 +69,14 @@ global $wgBlockCache, $wgParserCache, $wgParser;
 # Useful debug output
 if ( function_exists( "getallheaders" ) ) {
 	wfDebug( "\nStart request\n" );
-	wfDebug( "$REQUEST_METHOD $REQUEST_URI\n" );
+	wfDebug( "{$_SERVER['REQUEST_METHOD']} {$_SERVER['REQUEST_URI']}\n" );
 	$headers = getallheaders();
 	foreach ($headers as $name => $value) {
 		wfDebug( "$name: $value\n" );
 	}
 	wfDebug( "\n" );
 } else {
-	wfDebug( "$REQUEST_METHOD $REQUEST_URI\n" );
+	wfDebug( "{$_SERVER['REQUEST_METHOD']} {$_SERVER['REQUEST_URI']}\n" );
 }
 
 
