@@ -248,7 +248,8 @@
 	"Emailuser"	=> "",
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
-	"Booksources"	=> "Externe Buchhandlungen"
+	"Booksources"	=> "Externe Buchhandlungen",
+  "Categories" => "Seiten Kategorien"
 );
 
 /* private */ $wgSysopSpecialPagesDe = array(
@@ -267,6 +268,10 @@
 
 # Bits of text used by many pages:
 #
+"categories" => "Seiten Kategorien",
+"category" => "Kategorie",
+"category_header" => "Artikel in der Kategorie \"$1\"",
+"subcategories" => "Unterkategorien",
 "linktrail"		=> "/^([ä|ö|ü|ß|a-z]+)(.*)\$/sD",
 "mainpage"		=> "Hauptseite",
 "mainpagetext"          => "Die Wiki Software wurde erfolgreich installiert.",
