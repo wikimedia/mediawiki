@@ -46,11 +46,11 @@ class OutputPage {
 	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
 	function addLink( $rel, $rev, $target, $type="", $media="" ) { array_push( $this->mLinktags, array( $rel, $rev, $target, $type, $media ) ); }
 
-        function addMetadataLink( $type, $target ) {
- 	    static $haveMeta = false;
- 	    $this->addLink(($haveMeta) ? "alternate meta" : "meta", "", $target, $type);
- 	    $haveMeta = true;
- 	}
+	function addMetadataLink( $type, $target ) {
+		static $haveMeta = false;
+		$this->addLink( ($haveMeta) ? "alternate meta" : "meta", "", $target, $type );
+		$haveMeta = true;
+	}
 
 	# checkLastModified tells the client to use the client-cached page if
 	# possible. If sucessful, the OutputPage is disabled so that
