@@ -402,7 +402,7 @@ class Skin {
 		wfProfileIn( $fname );
 		wfProfileIn( "$fname-1" );
 
-		$s = "\n</div><br clear='all' />\n";
+		$s = "\n</div><br style=\"clear:both\" />\n";
 		$s .= "\n<div id='footer'>";
 		$s .= "<table border='0' cellspacing='0'><tr>";
 		
