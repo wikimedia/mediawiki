@@ -110,10 +110,9 @@ LinkCache:
 	cleared by: LinkCache::clearBadLink()
 		should be cleared on page deletion and rename
 MediaWiki namespace:
-	key: $wgDBname:MediaWiki:title:$title
-	ex: wikidb:MediaWiki:title:Blockedtext
-	stores: string
+	key: $wgDBname:messages
+	ex: wikidb:messages
+	stores: an array where the keys are DB keys and the values are messages
 	set in: wfMsg()
 	cleared by: Article::editUpdates()
-	
 ... more to come ...
