@@ -582,11 +582,12 @@ class User {
 			require_once( $IP.'/skins/'.$sn.'.php' );
 			
 			# Check if we got if not failback to default skin
-			$sn = 'Skin'.$sn;
-			if(!class_exists($sn)) {
-				# FIXME : should we print an error message instead of loading
-				# standard skin ? Let's die for now. [AV]
-				die("Class $sn doesn't exist in $IP/skins/$sn.php");
+			$className = 'Skin'.$sn;
+			if( !class_exists( $ClassName ) ) {
+				# DO NOT die if the class isn't found. This breaks maintenance
+				# scripts and can cause a user account to be unrecoverable
+				# except by SQL manipulation if a previously valid skin name
+				# is no longer valid.
 				$sn = 'SkinStandard';
 				require_once( $IP.'/skins/Standard.php' );
 			}
