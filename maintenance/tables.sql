@@ -333,6 +333,9 @@ CREATE TABLE /*$wgDBprefix*/logging (
   -- Freeform text. Interpreted as edit history comments.
   log_comment varchar(255) NOT NULL default '',
   
+  -- LF separated list of miscellaneous parameters
+  log_params blob NOT NULL default '',
+
   KEY type_time (log_type, log_timestamp),
   KEY user_time (log_user, log_timestamp),
   KEY page_time (log_namespace, log_title, log_timestamp)
