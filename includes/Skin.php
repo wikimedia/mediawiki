@@ -2490,7 +2490,7 @@ class Skin {
 			}
 		} else {
 			$url = wfEscapeHTML( wfImageArchiveUrl( $img ) );
-			if( $wgUser->getID() != 0 ) {
+			if( $wgUser->getID() != 0 && $wgTitle->userCanEdit() ) {
 				$rlink = $this->makeKnownLink( $wgTitle->getPrefixedText(),
 				           wfMsg( 'revertimg' ), 'action=revert&oldimage=' .
 				           urlencode( $img ) );
