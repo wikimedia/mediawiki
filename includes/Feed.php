@@ -113,31 +113,35 @@ class FeedItem {
 class ChannelFeed extends FeedItem {
 	/**#@+
 	 * Abstract function, override!
+	 * @abstract
 	 */
 	 
 	/**
-	 * @todo document
+	 * Generate Header of the feed
 	 */
 	function outHeader() {
 		# print "<feed>";
 	}
 	
 	/**
-	 * @todo document
+	 * Generate an item
+	 * @param $item
 	 */
 	function outItem( $item ) {
 		# print "<item>...</item>";
 	}
 	
 	/**
-	 * @todo document
+	 * Generate Footer of the feed
 	 */
 	function outFooter() {
 		# print "</feed>";
 	}
+	/**#@-*/
 	
 	/**
 	 * @todo document
+	 * @param string $mimetype (optional) type of output
 	 */
 	function outXmlHeader( $mimetype='application/xml' ) {
 		global $wgServer, $wgStylePath, $wgOut;
@@ -151,7 +155,6 @@ class ChannelFeed extends FeedItem {
 		print '<' . '?xml-stylesheet type="text/css" href="' .
 			htmlspecialchars( "$wgServer$wgStylePath/feed.css" ) . '"?' . ">\n";
 	}
-	/**#@-*/
 }
 
 /**
@@ -162,14 +165,16 @@ class ChannelFeed extends FeedItem {
 class RSSFeed extends ChannelFeed {
 
 	/**
-	 * @todo document
+	 * Format a date given a timestamp
+	 * @param integer $ts Timestamp
+	 * @return string Date string
 	 */
 	function formatTime( $ts ) {
 		return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp2Unix( $ts ) );
 	}
 	
 	/**
-	 * @todo document
+	 * Ouput an RSS 2.0 header
 	 */
 	function outHeader() {
 		global $wgVersion;
@@ -187,7 +192,8 @@ class RSSFeed extends ChannelFeed {
 	}
 	
 	/**
-	 * @todo document
+	 * Output an RSS 2.0 item
+	 * @param FeedItem item to be output
 	 */
 	function outItem( $item ) {
 	?>
@@ -203,7 +209,7 @@ class RSSFeed extends ChannelFeed {
 	}
 
 	/**
-	 * @todo document
+	 * Ouput an RSS 2.0 footer
 	 */
 	function outFooter() {
 	?>
