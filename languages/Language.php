@@ -1260,7 +1260,7 @@ Type the name of the user in the box and press the button to make the user an ad
 
 # Validation
 'val_clear_old' => 'Clear my other validation data for $1',
-'val_merge_old' => 'Merge my other validation data into this version',
+'val_merge_old' => 'Use my previous assessment where selected \'No opinion\'',
 'val_form_note' => '<b>Hint:</b> Merging your data means that for the article
 revision you select, all options where you have specified <i>no opinion</i>
 will be set to the value and comment of the most recent revision for which you
@@ -1269,8 +1269,8 @@ for a newer revision, but also keep your other settings for this article in
 this revision, just select which option you intend to <i>change</i>, and
 merging will fill in the other options with your previous settings.',
 'val_noop' => 'No opinion',
-'val_percent' => '<b>$1%</b><br>($2 of $3 points by $4 users)',
-'val_percent_single' => '<b>$1%</b><br>($2 of $3 points by one user)',
+'val_percent' => '<b>$1%</b><br>($2 of $3 points<br>by $4 users)',
+'val_percent_single' => '<b>$1%</b><br>($2 of $3 points<br>by one user)',
 'val_total' => 'Total',
 'val_version' => 'Version',
 'val_tab' => 'Validate',
@@ -1278,6 +1278,8 @@ merging will fill in the other options with your previous settings.',
 'val_version_of' => "<h2>Version of $1</h2>\n" ,
 'val_table_header' => "<tr><th>Class</th>$1<th colspan=4>Opinion</th>$1<th>Comment</th></tr>\n",
 'val_stat_link_text' => 'Validation statistics for this article',
+'val_view_version' => 'View this version',
+'val_validate_version' => 'Validate this version',
 
 # Move page
 #

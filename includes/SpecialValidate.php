@@ -226,16 +226,27 @@ class Validation
 		return $ret ;
 		}
 		
+	# Show statistics for the different versions of a single article
 	function getPageStatistics ( $article_title = "" )
 		{
 		global $wgLang, $wgUser ;
 		$validationtypes = $wgLang->getValidationTypes() ;
 		$article_title = $_GET['article_title'] ;
-		$html = "<h1>Page validation statistics</h1>\n" ;
 		$d = $this->getData ( -1 , $article_title , -1 ) ;
 		if ( count ( $d ) ) $d = array_shift ( $d ) ;
 		else $d = array () ;
 		krsort ( $d ) ;
+
+		# Getting table data (cur_id, old_id etc.) for each version
+		$table_id = array() ;
+		$table_name = array() ;
+		foreach ( $d AS $version => $data )
+			{
+			$this->find_this_version ( $article_title , $version , $table_id[$version] , $table_name[$version] ) ;
+			}
+ 
+		# Generating HTML
+		$html = "<h1>Page validation statistics</h1>\n" ;
 		$html .= "<table border=1 cellpadding=2 style='font-size:8pt;'>\n" ;
 		$html .= "<tr><th>" . wfMsg('val_version') . "</th>" ;
 		foreach ( $validationtypes AS $idx => $title )
@@ -247,12 +258,18 @@ class Validation
 		$html .= "</tr>\n" ;
 		foreach ( $d AS $version => $data )
 			{
+			# Preamble for this version
 			$title = Title::newFromDBkey ( $article_title ) ;
-			$version_link = $title->getLocalURL( "action=validate&timestamp={$version}" ) ;
-			$version_link = "<a class=intern href=\"{$version_link}\">" . gmdate("F d, Y H:i:s",wfTimestamp2Unix($version)) . "</a>" ;
+			$version_date = gmdate("F d, Y H:i:s",wfTimestamp2Unix($version)) ;
+			$version_validate_link = $title->getLocalURL( "action=validate&timestamp={$version}" ) ;
+			$version_validate_link = "<a class=intern href=\"{$version_validate_link}\">" . wfMsg('val_validate_version') . "</a>" ;
+			if ( $table_name[$version] == 'cur' ) $version_view_link = $title->getLocalURL( "" ) ;
+			else $version_view_link = $title->getLocalURL( "oldid={$table_id[$version]}" ) ;
+			$version_view_link = "<a href=\"{$version_view_link}\">" . wfMsg('val_view_version') . "</a>" ;
 			$html .= "<tr>" ;
-			$html .= "<th align=left>{$version_link}</th>" ;
+			$html .= "<td align=center valign=top nowrap><b>{$version_date}</b><br>{$version_view_link}<br>{$version_validate_link}</td>" ;
 
+			# Individual data
 			$vmax = array() ;
 			$vcur = array() ;
 			$users = array() ;
@@ -270,12 +287,10 @@ class Validation
 					}
 				}
 	
-	
 			$total_count = 0 ;
 			$total_percent = 0 ;
 			foreach ( $validationtypes AS $idx => $title )
 				{
-				$html .= "<td align=center valign=center>" ;
 				if ( isset ( $vcur[$idx] ) )
 					{
 					$average = 100 * $vcur[$idx] / $vmax[$idx] ;
@@ -283,23 +298,27 @@ class Validation
 					$total_percent += $average ;
 					if ( $users[$idx] > 1 ) $h = wfMsg ( "val_percent" ) ;
 					else $h = wfMsg ( "val_percent_single" ) ;
-					$h = str_replace ( "$1" , $average , $h ) ;
+					$h = str_replace ( "$1" , number_format ( $average , 2 ) , $h ) ;
 					$h = str_replace ( "$2" , $vcur[$idx] , $h ) ;
 					$h = str_replace ( "$3" , $vmax[$idx] , $h ) ;
 					$h = str_replace ( "$4" , $users[$idx] , $h ) ;
-					$html .= $h ;
+					$html .= "<td align=center valign=top>" . $h ;
 					}
-				else $html .= "(" . wfMsg ( "val_noop" ) . ")" ;
+				else
+					{
+					$html .= "<td align=center valign=center>" ;
+					$html .= "(" . wfMsg ( "val_noop" ) . ")" ;
+					}
 				$html .= "</td>" ;
 				}
 			
 			if ( $total_count > 0 )
 				{
 				$total = $total_percent / $total_count ;
-				$total = "{$total} %" ;
+				$total = number_format ( $total , 2 ) . " %" ;
 				}
 			else $total = "" ;
-			$html .= "<td align=center valign=center>{$total}</td>" ;
+			$html .= "<td align=center valign=top nowrap><b>{$total}</b></td>" ;
 			
 			$html .= "</tr>" ;
 			}
