@@ -1,6 +1,6 @@
 <?
 global $IP;
-include_once( "$IP/Utf8Case.php" );
+include_once( "$IP/LanguageUtf8.php" );
 
 # The names of the namespaces can be set here, but the numbers
 # are magical, so don't change or move them!  The Namespace class

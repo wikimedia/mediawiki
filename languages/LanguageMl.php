@@ -1,7 +1,7 @@
 <?
 # See language.doc
 
-include_once( "Utf8Case.php" );
+include_once( "LanguageUtf8.php" );
 
 class LanguageMl extends LanguageUtf8 {
 	# Inherit everything

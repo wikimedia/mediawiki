@@ -7,7 +7,6 @@
 
 global $IP;
 include_once( "$IP/GlobalFunctions.php" );
-include_once( "$IP/Language.php" );
 include_once( "$IP/Namespace.php" );
 include_once( "$IP/Skin.php" );
 include_once( "$IP/OutputPage.php" );
@@ -17,7 +16,7 @@ include_once( "$IP/User.php" );
 include_once( "$IP/LinkCache.php" );
 include_once( "$IP/Title.php" );
 include_once( "$IP/Article.php" );
-require( "$IP/MemCachedClient.inc.php" );
+include_once( "$IP/MemCachedClient.inc.php" );
 
 wfDebug( "\n\n" );
 
@@ -37,10 +36,12 @@ if( $wgUseMemCached ) {
 	$wgMemc->set_debug( $wgMemCachedDebug );
 }
 
+include_once( "$IP/Language.php" );
+
 $wgOut = new OutputPage();
 $wgLangClass = "Language" . ucfirst( $wgLanguageCode );
 if( ! class_exists( $wgLangClass ) ) {
-	include_once( "$IP/Utf8Case.php" );
+	include_once( "$IP/LanguageUtf8.php" );
 	$wgLangClass = "LanguageUtf8";
 }
 $wgLang = new $wgLangClass();
