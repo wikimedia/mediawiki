@@ -43,7 +43,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 
 	$namespaceselect = '<select name="namespace">';
 	$arr = $wgContLang->getNamespaces();
-	for ( $i = 0; $i < 14; $i++ ) {
+	for ( $i = 0; $i <= 17; $i++ ) {
 		$namespacename = str_replace ( '_', ' ', $arr[$i] );
 		$n = ($i == 0) ? wfMsg ( 'articlenamespace' ) : $namespacename;
 		$sel = ($i == $namespace) ? ' selected="selected"' : '';
