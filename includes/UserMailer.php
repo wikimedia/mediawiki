@@ -302,7 +302,7 @@ class EmailNotification {
 		if( $article->mNamespace != NS_MAIN ) {
 			$pagetitle = $wgLang->getNsText( $article->mNamespace ) . ':' . $pagetitle;
 		}
-		$subject = str_replace( '$PAGETITLE_QP', wfQuotedPrintable( str_replace( '_', ' ', $pagetitle ) ), $subject);
+		$subject = str_replace( '$PAGETITLE', str_replace( '_', ' ', $pagetitle ) , $subject);
 		$keys['%24PAGETITLE_RAWURL'] = wfUrlencode( $pagetitle );
 		$keys['$PAGETITLE_RAWURL']   = wfUrlencode( $pagetitle );
 		$keys['%24PAGETITLE']        = $pagetitle; # needed for the {{localurl:$PAGETITLE}} in the messagetext, "$" appears here as "%24"
@@ -316,9 +316,9 @@ class EmailNotification {
 		# Reveal the page editor's address as REPLY-TO address only if
 		# the user has not opted-out and the option is enabled at the
 		# global configuration level.
-		$pageeditor_qp = wfQuotedPrintable( $pageeditorUser->getName() );
+		$name    = $pageeditorUser->getName();
 		$adminAddress = 'WikiAdmin <' . $wgEmergencyContact . '>';
-		$editorAddress = $pageeditorUser->getName() . ' <' . $pageeditorUser->getEmail() . '>';
+		$editorAddress = $name . ' <' . $pageeditorUser->getEmail() . '>';
 		if( $wgEmailNotificationRevealPageEditorAddress
 		    && ( $pageeditorUser->getEmail() != '' )
 		    && $pageeditorUser->getOption( 'enotifrevealaddr' ) ) {
@@ -335,12 +335,11 @@ class EmailNotification {
 			$keys['$PAGEEDITORNAMEANDEMAILADDR'] = $replyto;
 		}
 	
-		if( $pageeditorUser->isIP( $pageeditorUser->getName() ) ) {
+		if( $pageeditorUser->isIP( $name ) ) {
 			#real anon (user:xxx.xxx.xxx.xxx)
-			$subject = str_replace('$PAGEEDITOR_QP', 'anonymous user ' . $pageeditorUser->getName(), $subject);
-			$name    = $pageeditorUser->getName();
 			$anon    = $name . ' (anonymous user)';
 			$anonUrl = wfUrlencode( $name ) . ' (anonymous user)';
+			$subject = str_replace('$PAGEEDITOR', 'anonymous user '. $name, $subject);
 			
 			$keys['$PAGEEDITOR_RAWURL']   = $anonUrl;
 			$keys['%24PAGEEDITOR_RAWURL'] = $anonUrl;
@@ -348,13 +347,13 @@ class EmailNotification {
 			$keys['$PAGEEDITORE']         = $anon;
 			$keys['$PAGEEDITOR']          = 'anonymous user ' . $name;
 		} else {
-			$name = $pageeditorUser->getName();
-			$subject = str_replace('$PAGEEDITOR_QP', $pageeditor_qp, $subject);
+			$subject = str_replace('$PAGEEDITOR', $name, $subject);
 			$keys['$PAGEEDITOR_RAWURL']   = wfUrlencode( $name );
 			$keys['%24PAGEEDITOR_RAWURL'] = wfUrlencode( $name );
 			$keys['%24PAGEEDITORE']       = $pageeditorUser->getTitleKey();
 			$keys['$PAGEEDITORE']         = $pageeditorUser->getTitleKey();
 			$keys['$PAGEEDITOR']          = $pageeditorUser->getName();
+			$keys['$PAGEEDITOR']          = $name;
 		}
 		$body = strtr( $body, $keys );
 	
@@ -362,7 +361,7 @@ class EmailNotification {
 		$this->to      = $to;
 		$this->from    = $from;
 		$this->replyto = $replyto;
-		$this->subject = $subject;
+		$this->subject = wfQuotedprintable($subject);
 		$this->body    = $body;
 		return $this;
 	}
