@@ -921,7 +921,7 @@ vă rugăm să vă asiguraţi că înţelegeţi toate consecinţele înainte de 
 automat odată cu aceasta '''afară de cazul că''':
 * Mutaţi pagina în altă secţiune a Wikipedia
 * Există deja o pagină de discuţii cu conţinut (care nu este goală), sau
-* Deifaţi căsuţa de mai jos.
+* Debifaţi căsuţa de mai jos.
 
 În oricare din cazurile de mai sus va trebui să mutaţi sau să unificaţi
 manual paginile de discuţii, dacă doriţi acest lucru.",
