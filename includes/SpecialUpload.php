@@ -25,10 +25,14 @@ function wfSpecialUpload() {
  * @subpackage SpecialPage
  */
 class UploadForm {
+	/**#@+
+	 * @access private
+	 */
 	var $mUploadAffirm, $mUploadFile, $mUploadDescription, $mIgnoreWarning;
 	var $mUploadSaveName, $mUploadTempName, $mUploadSize, $mUploadOldVersion;
 	var $mUploadCopyStatus, $mUploadSource, $mReUpload, $mAction, $mUpload;
 	var $mOname, $mSessionKey;
+	/**#@- */
 
 	/**
 	 * Constructor : initialise object
@@ -192,13 +196,14 @@ class UploadForm {
 				}
 				if( $nt->getArticleID() ) {
 					$sk = $wgUser->getSkin();
-					$dname = $wgLang->getNsText( Namespace::getImage() ) . ":{$this->mUploadSaveName}";
+					$dname = $wgLang->getNsText( Namespace::getImage() ) .':'.$this->mUploadSaveName;
 					$dlink = $sk->makeKnownLink( $dname, $dname );
 					$warning .= '<li>'.wfMsg( 'fileexists', $dlink ).'</li>';
 				}
 				if($warning != '') return $this->uploadWarning($warning);
 			}
-		} else {
+		} elseif(!isset($this->mUploadSaveName)) {
+			// no filename given even when reuploading
 			return $this->uploadError('<li>'.wfMsg( 'emptyfile' ).'</li>');
 		
 		}
@@ -210,12 +215,12 @@ class UploadForm {
 
 		$sk = $wgUser->getSkin();
 		$ilink = $sk->makeMediaLink( $this->mUploadSaveName, Image::wfImageUrl( $this->mUploadSaveName ) );
-		$dname = $wgLang->getNsText( Namespace::getImage() ) . ":{$this->mUploadSaveName}";
+		$dname = $wgLang->getNsText( Namespace::getImage() ) . ':'.$this->mUploadSaveName;
 		$dlink = $sk->makeKnownLink( $dname, $dname );
 
 		$wgOut->addHTML( '<h2>' . wfMsg( 'successfulupload' ) . "</h2>\n" );
 		$text = wfMsg( 'fileuploaded', $ilink, $dlink );
-		$wgOut->addHTML( "<p>{$text}\n" );
+		$wgOut->addHTML( '<p>'.$text."\n" );
 		$wgOut->returnToMain( false );
 	}
 
