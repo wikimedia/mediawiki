@@ -410,7 +410,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$link = "[[" . $wgLang->getNsText( Namespace::getUser() ) .
 		  ":{$name}|{$name}]]";
 
-		$wgOut->addWikiText( wfMsg( "blockedtext", $link, $reason, $ip ) );
+		$wgOut->addWikiText( wfMsg( "blockedtext", $link, $reason, $ip, $name ) );
 		$wgOut->returnToMain( false );
 	}
 
