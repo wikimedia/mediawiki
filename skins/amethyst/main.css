@@ -98,9 +98,9 @@ a:active { color: Orange; }
 a:hover { text-decoration: underline;}
 a.stub { color: #772233; }
 a.new,
-#p-personal a.new { color:#C033C0; }
+#p-nav a.new { color:#C033C0; }
 a.new:visited,
-#p-personal a.new:visited { color:#C033C0; }
+#p-nav a.new:visited { color:#C033C0; }
 
 img {
     border: none;
@@ -598,10 +598,9 @@ special external link styling */
 }
 .pBody {
     font-size: 95%;
-    background: #2F333B;
     border-collapse: collapse;
-    border: 1px solid #aaaaaa;
-    padding: 0 0.8em 0.3em 0.5em;
+    border: none;
+    padding: 0.3em;
 }
 .portlet h1,
 .portlet h2,
@@ -611,17 +610,24 @@ special external link styling */
     padding: 0;
 }
 .portlet ul {
-    line-height: 1.5em;
-    list-style-type: square;
-    list-style-image: url("bullet.gif");
+	margin: 0 0 0 0;
+    line-height: 2em;
+    list-style-type: none;
+    list-style-image: none;
     font-size:95%;
 }
 .portlet li {
+	background: #2F333B;
     padding:0;
-    margin: 0 0 0 0;
-    margin-bottom: 0;
+    margin: 0 0 0.5em 0;
+	border : 1px solid #aaaaaa;
 }
-
+.portlet form {
+	background: #2F333B;
+    padding:0;
+    margin: 0 0 0.5em 0;
+	border : 1px solid #aaaaaa;
+}
 /*
 ** Logo properties
 */
@@ -650,7 +656,7 @@ special external link styling */
 ** the navigation portlet
 */
 
-#p-nav {
+#p-personal {
     position:relative;
     z-index:3;
 }
@@ -687,7 +693,7 @@ input.searchButton {
 ** the personal toolbar
 */
 
-#p-personal {
+#p-nav {
     width:100%;
     white-space:nowrap;
     padding:0 0 0 0;
@@ -702,11 +708,11 @@ input.searchButton {
     line-height: 1.2em;
 }
 
-#p-personal h5 {
+#p-nav h5 {
     display:none;
 }
-#p-personal .portlet,
-#p-personal .pBody {
+#p-nav .portlet,
+#p-nav .pBody {
     padding:0;
     margin:0;
     border: none;
@@ -714,8 +720,9 @@ input.searchButton {
     overflow: visible;
     background: none;
 }
+
 /* this is the ul contained in the portlet */
-#p-personal ul {
+#p-nav ul {
     border: none;
     line-height: 1.4em;
     color: #2f6fab;
@@ -727,7 +734,7 @@ input.searchButton {
     z-index:0;
     background: none;
 }
-#p-personal li {
+#p-nav li {
     z-index:0;
     border:none;
     padding:0;
@@ -737,13 +744,13 @@ input.searchButton {
     line-height: 1.2em;
     background: none;
 }
-#p-personal li a {
+#p-nav li a {
     text-decoration: none;
     color: white;
     padding-bottom: 0.2em;
     background: none;
 }
-#p-personal li a:hover {
+#p-nav li a:hover {
     padding-bottom: 0.2em;
     text-decoration: none;
 }
@@ -765,7 +772,7 @@ li#pt-login {
 #p-cactions {
     position:absolute;
     top: 1.3em;
-    left: 11.5em;
+    left: 11.9em;
     margin: 0;
     white-space:nowrap;
     width: 76%;
@@ -818,6 +825,8 @@ li#pt-login {
     padding-left: 0.4em;
     padding-right: 0.4em;
 }
+
+
 /* offsets to distinguish the tab groups */
 li#ca-talk { margin-right: 1.6em; }
 li#ca-watch, li#ca-watch { margin-left: 1.6em; }
