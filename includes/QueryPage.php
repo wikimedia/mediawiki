@@ -37,13 +37,6 @@ class QueryPage {
 		return true;
 	}
 
-	# Don't override this unless you're darn sure.
-	function getOrderLimit( $offset, $limit ) {
-		return ' ORDER BY value ' .
-			($this->sortDescending() ? 'DESC' : '')
-			. wfLimitResult($limit,$offset);
-	}
-
 	function getOrder() {
 		return ' ORDER BY value ' .
 			($this->sortDescending() ? 'DESC' : '');
