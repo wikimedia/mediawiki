@@ -2227,13 +2227,13 @@ class Skin {
 		// The tip text is shown when the user moves the mouse over the button.
 		$toolarray=array(
 			array(	"image"=>"button_bold.gif",
-				"open"=>"\\'\\'\\'",
-				"close"=>"\\'\\'\\'",
+				"open"=>"\'\'\'",
+				"close"=>"\'\'\'",
 				"sample"=>wfMsg("bold_sample"),
 				"tip"=>wfMsg("bold_tip")),
 			array(	"image"=>"button_italic.gif",
-				"open"=>"\\'\\'",
-				"close"=>"\\'\\'",
+				"open"=>"\'\'",
+				"close"=>"\'\'",
 				"sample"=>wfMsg("italic_sample"),
 				"tip"=>wfMsg("italic_tip")),
 			array(	"image"=>"button_link.gif",
@@ -2277,11 +2277,11 @@ class Skin {
 				"sample"=>"",
 				"tip"=>wfMsg("hr_tip"))
 		);
-		$toolbar.="
-		<div id=\"toolbar\">";
+		$toolbar.="<script type='text/javascript'>\n";
+		$toolbar.="document.writeln(\"</p><div id='toolbar'>\");\n";
 		foreach($toolarray as $tool) {
 
-			$image=$tool["image"];
+			$image=$wgUploadPath."/".$tool["image"];
 			$open=$tool["open"];
 			$close=$tool["close"];
 			$sample=$tool["sample"];
@@ -2291,18 +2291,11 @@ class Skin {
 			// Ideally these should be different, realistically they
 			// probably don't need to be.
 			$tip=$tool["tip"];
-
-			$toolbar.=
-			"<a href=\"#\"".
-			"onclick=\"javascript:insertTags('$open','$close','$sample');\">".
-			"<img src=\"$wgUploadPath/$image\" border=\"0\" ALT=\"$tip\" TITLE=\"$tip\">".
-			"</a>";
-
+			$toolbar.="addButton('$image','$tip','$open','$close','$sample');\n";
 		}
 
-		$toolbar.="</div>";
+		$toolbar.="document.writeln(\"</div>\");\n</script>";
 		return $toolbar;
-
 	}
 }
 
