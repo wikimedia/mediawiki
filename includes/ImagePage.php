@@ -38,10 +38,10 @@ class ImagePage extends Article {
 			
 			if ( $type != "" ) {
 				# image
-				$s = "<span class=\"fullImage\"><img src=\"{$url}\" width=\"{$width}\" height=\"{$height}\"".
-				"alt=\"".$wgRequest->getVal( 'image' )."\" /></span>";
+				$s = "<div class=\"fullImage\"><img src=\"{$url}\" width=\"{$width}\" height=\"{$height}\"".
+				"alt=\"".$wgRequest->getVal( 'image' )."\" /></div>";
 			} else {
-				$s = "<span class=\"fullMedia\">".$sk->makeMediaLink($name,"")."</span>";
+				$s = "<div class=\"fullMedia\">".$sk->makeMediaLink($name,"")."</div>";
 			}
 			$wgOut->addHTML( $s );
 		}
