@@ -315,6 +315,7 @@ class Skin {
 	function getExternalLinkAttributes( $link, $text, $class='' ) {
 		global $wgUser, $wgOut, $wgLang;
 
+		$same = ($link == $text);
 		$link = urldecode( $link );
 		$link = $wgLang->checkTitleEncoding( $link );
 		$link = str_replace( '_', ' ', $link );
@@ -322,7 +323,7 @@ class Skin {
 
 		$r = ($class != '') ? " class='$class'" : " class='external'";
 
-		if ( 1 == $wgUser->getOption( 'hover' ) ) {
+		if ( !$same && $wgUser->getOption( 'hover' ) ) {
 			$r .= " title=\"{$link}\"";
 		}
 		return $r;
@@ -1510,8 +1511,10 @@ class Skin {
 		$fname = 'Skin::makeLinkObj';
 
 		# Fail gracefully
-		if ( ! isset($nt) )
+		if ( ! isset($nt) ) {
+			# wfDebugDieBacktrace();
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
+		}
 
 		if ( $nt->isExternal() ) {
 			$u = $nt->getFullURL();
@@ -1640,8 +1643,10 @@ class Skin {
 		global $wgOut, $wgUser;
 
 		# Fail gracefully
-		if ( ! isset($nt) )
+		if ( ! isset($nt) ) {
+			# wfDebugDieBacktrace();
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
+		}
 
 		$fname = 'Skin::makeBrokenLinkObj';
 		wfProfileIn( $fname );
