@@ -5,6 +5,8 @@
 // The names of the namespaces can be set here, but the numbers
 // are magical, so don't change or move them!  The Namespace class
 // encapsulates some of the magic-ness.
+include_once( "LanguageUtf8.php" );
+
 
 /* private */ $wgNamespaceNamesFr = array(
 	-2	=> "Media",
@@ -13,19 +15,18 @@
 	1	=> "Discuter",
 	2	=> "Utilisateur",
 	3	=> "Discussion_Utilisateur",
-	4	=> "Wikipédia",
-	5	=> "Discussion_Wikipédia",
+	4	=> "WikipÃ©dia",
+	5	=> "Discussion_WikipÃ©dia",
 	6	=> "Image",
 	7	=> "Discussion_Image",
 	8	=> "MediaWiki",
 	9	=> "Discussion_MediaWiki",
-	10  => "Template",
-	11  => "Template_talk"
-
+	10	=> "Template",
+	11	=> "Discussion_Template"
 );
 
 /* private */ $wgQuickbarSettingsFr = array(
-	"Aucune", "Gauche", "Droite", "Flottante à gauche"
+	"Aucune", "Gauche", "Droite", "Flottante Ã  gauche"
 );
 
 /* private */ $wgSkinNamesFr = array(
@@ -34,7 +35,7 @@
 
 /* private */ $wgMathNamesFr = array(
 	"Toujours produire une image PNG",  
-	"HTML si très simple, autrement PNG", 
+	"HTML si trÃ¨s simple, autrement PNG", 
 	"HTML si possible, autrement PNG", 
 	"Laisser le code TeX original",
 	"Pour les navigateurs modernes"
@@ -42,23 +43,23 @@
 
 /* private */ $wgUserTogglesFr = array(
 	"hover"  => "Afficher des info-bulles sur les liens wiki",
-	"underline" => "Liens soulignés",
+	"underline" => "Liens soulignÃ©s",
 	"highlightbroken" => "Liens vers les sujets non existants en rouge",
-	"justify" => "Paragraphes justifiés",
-	"hideminor" => "Cacher les <i>Modifications récentes</i> mineures",
-	"usenewrc" => "Modifications récentes améliorées<br> (certains navigateurs seulement)",
-	"numberheadings" => "Numérotation automatique des titres",
+	"justify" => "Paragraphes justifiÃ©s",
+	"hideminor" => "Cacher les <i>Modifications rÃ©centes</i> mineures",
+	"usenewrc" => "Modifications rÃ©centes amÃ©liorÃ©es<br> (certains navigateurs seulement)",
+	"numberheadings" => "NumÃ©rotation automatique des titres",
 	"showtoolbar" => "Show edit toolbar",
-	"editondblclick" => "Double cliquer pour éditer une page (JavaScript)",
-	"editsection"	=> "Éditer une section via les liens [éditer]",
-	"editsectiononrightclick"	=> "Éditer une section en cliquant à droite<br> sur le titre de la section",
-	"showtoc"	=> "Afficher la table des matières<br> (pour les articles ayant plus de 3 sections)",
+	"editondblclick" => "Double cliquer pour Ã©diter une page (JavaScript)",
+	"editsection"	=> "Ã‰diter une section via les liens [Ã©diter]",
+	"editsectiononrightclick"	=> "Ã‰diter une section en cliquant Ã  droite<br> sur le titre de la section",
+	"showtoc"	=> "Afficher la table des matiÃ¨res<br> (pour les articles ayant plus de 3 sections)",
 	"rememberpassword" => "Se souvenir de mon mot de passe (cookie)",
-	"editwidth" => "La fenêtre d'édition s'affiche en pleine largeur",
-	"watchdefault" => "Suivre les articles que je crée ou modifie",
-	"minordefault" => "Mes modifications sont considérées<br> comme mineures par défaut",
-	"previewontop" => "La prévisualisation s'affiche au<br> dessus de la boite de rédaction",
-	"nocache" => "Désactiver le cache des pages"
+	"editwidth" => "La fenÃªtre d'Ã©dition s'affiche en pleine largeur",
+	"watchdefault" => "Suivre les articles que je crÃ©e ou modifie",
+	"minordefault" => "Mes modifications sont considÃ©rÃ©es<br> comme mineures par dÃ©faut",
+	"previewontop" => "La prÃ©visualisation s'affiche au<br> dessus de la boite de rÃ©daction",
+	"nocache" => "DÃ©sactiver le cache des pages"
 );
 
 /* private */ $wgBookstoreListFr = array(
@@ -74,14 +75,14 @@
 );
 
 /* private */ $wgMonthNamesFr = array(
-	"janvier", "février", "mars", "avril", "mai", "juin",
-	"juillet", "août", "septembre", "octobre", "novembre",
-	"décembre"
+	"janvier", "fÃ©vrier", "mars", "avril", "mai", "juin",
+	"juillet", "aoÃ»t", "septembre", "octobre", "novembre",
+	"dÃ©cembre"
 );
 
 /* private */ $wgMonthAbbreviationsFr = array(
-	"jan", "fév", "mar", "avr", "mai", "jun", "jul", "aoû",
-	"sep", "oct", "nov", "déc"
+	"jan", "fÃ©v", "mar", "avr", "mai", "jun", "jul", "aoÃ»",
+	"sep", "oct", "nov", "dÃ©c"
 );
 
 // All special pages have to be listed here: a description of ""
@@ -91,9 +92,9 @@
 /* private */ $wgValidSpecialPagesFr = array(
 	"Userlogin"     => "",
 	"Userlogout"    => "",
-	"Preferences"   => "Préférences",
+	"Preferences"   => "PrÃ©fÃ©rences",
 	"Watchlist"     => "Liste de suivi",
-	"Recentchanges" => "Modifications récentes",
+	"Recentchanges" => "Modifications rÃ©centes",
 	"Upload"        => "Copier un fichier",
 	"Imagelist"     => "Liste des images",
 	"Listusers"     => "Liste des participants",
@@ -103,14 +104,14 @@
 	"Lonelypages"   => "Pages orphelines",
 	"Unusedimages"  => "Images orphelines",
 	"Popularpages"  => "Les plus populaires",
-	"Wantedpages"   => "Les plus demandées",
+	"Wantedpages"   => "Les plus demandÃ©es",
 	"Shortpages"    => "Articles courts",
 	"Longpages"     => "Articles longs",
 	"Newpages"      => "Nouvelles pages",
 	"Ancientpages"	=> "Anciennes pages",
 	"Allpages"      => "Toutes les pages",
 
-	"Ipblocklist"   => "Adresses IP bloquées",
+	"Ipblocklist"   => "Adresses IP bloquÃ©es",
 	"Maintenance"   => "Page de maintenance",
 	"Specialpages"  => "", // ces pages doivent rester vides !
 	"Contributions" => "",
@@ -119,102 +120,102 @@
 	"Recentchangeslinked" => "",
 	"Movepage"      => "",
 	"Booksources"   => "Librairies en ligne",
-//	"Categories"	=> "Page des catégories"	// Looxix "Page categories"
+//	"Categories"	=> "Page des catÃ©gories"	// Looxix "Page categories"
 	"Export"	=> "Exporter par XML",
 	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesFr = array(
 	"Blockip"       => "Bloquer une adresse IP",
-	"Asksql"        => "Accès SQL",
-	"Undelete"      => "Gérer les pages effacées"
+	"Asksql"        => "AccÃ¨s SQL",
+	"Undelete"      => "GÃ©rer les pages effacÃ©es"
 );
 
 /* private */ $wgDeveloperSpecialPagesFr = array(
-	"Lockdb"        => "Bloquer la base de données",
-	"Unlockdb"      => "Débloquer la base de données",
+	"Lockdb"        => "Bloquer la base de donnÃ©es",
+	"Unlockdb"      => "DÃ©bloquer la base de donnÃ©es",
 );
 
 /* private */ $wgAllMessagesFr = array(
 
 # Bits of text used by many pages:
 #
-"categories"	=> "Catégories de la page", // Looxix "Page categories",
-"category"	=> "catégorie",			// Looxix "category",
-"category_header" => "Articles dans la catégorie \"$1\"", // Looxix "Articles in category \"$1\"",
-"subcategories"	=> "Sous-catégories", // Looxix "Subcategories",
+"categories"	=> "CatÃ©gories de la page", // Looxix "Page categories",
+"category"	=> "catÃ©gorie",			// Looxix "category",
+"category_header" => "Articles dans la catÃ©gorie \"$1\"", // Looxix "Articles in category \"$1\"",
+"subcategories"	=> "Sous-catÃ©gories", // Looxix "Subcategories",
 
 
-"linktrail"     => "/^([a-zàâçéèêîôû]+)(.*)\$/sD",
+"linktrail"     => "/^([a-zÃ Ã¢Ã§Ã©Ã¨ÃªÃ®Ã´Ã»]+)(.*)\$/sD",
 "mainpage"      => "Accueil",
-"mainpagetext"	=> "Logiciel Wikipédia installé.",
-"about"         => "À propos",
-"aboutwikipedia" => "À propos de Wikipédia",
-"aboutpage"     => "Wikipédia:À propos",
+"mainpagetext"	=> "Logiciel WikipÃ©dia installÃ©.",
+"about"         => "Ã€ propos",
+"aboutwikipedia" => "Ã€ propos de WikipÃ©dia",
+"aboutpage"     => "WikipÃ©dia:Ã€ propos",
 "help"          => "Aide",
-"helppage"      => "Wikipédia:Aide",
-"wikititlesuffix" => "Wikipédia",
+"helppage"      => "WikipÃ©dia:Aide",
+"wikititlesuffix" => "WikipÃ©dia",
 "bugreports"    => "Rapport d'erreurs",
-"bugreportspage" => "Wikipédia:Rapport d'erreurs",
+"bugreportspage" => "WikipÃ©dia:Rapport d'erreurs",
 "sitesupport"	=> "Participer en faisant un don",
-"sitesupportpage"	=> "Wikipédia:Dons",
+"sitesupportpage"	=> "WikipÃ©dia:Dons",
 "faq"           => "FAQ",
-"faqpage"       => "Wikipédia:FAQ",
+"faqpage"       => "WikipÃ©dia:FAQ",
 "edithelp"      => "Aide",
-"edithelppage"  => "Wikipédia:Comment éditer une page",
+"edithelppage"  => "WikipÃ©dia:Comment Ã©diter une page",
 "cancel"        => "Annuler",
 "qbfind"        => "Rechercher",
-"qbbrowse"      => "Défiler",
-"qbedit"        => "Éditer",
+"qbbrowse"      => "DÃ©filer",
+"qbedit"        => "Ã‰diter",
 "qbpageoptions" => "Page d'option",
 "qbpageinfo"    => "Page d'information",
 "qbmyoptions"   => "Mes options",
-"qbspecialpages"	=> "Pages spéciales",
+"qbspecialpages"	=> "Pages spÃ©ciales",
 "moredotdotdot"	=> "Et plus...",
 "mypage"        => "Ma page",
 "mytalk"        => "Ma page de discussion",
-"currentevents" => "Actualités",
+"currentevents" => "ActualitÃ©s",
 "errorpagetitle" => "Erreur",
-"returnto"      => "Revenir à la page $1.",
-"fromwikipedia" => "Un article de Wikipédia, l'encyclopédie libre.",
-"whatlinkshere" => "Références à cette page",
+"returnto"      => "Revenir Ã  la page $1.",
+"fromwikipedia" => "Un article de WikipÃ©dia, l'encyclopÃ©die libre.",
+"whatlinkshere" => "RÃ©fÃ©rences Ã  cette page",
 "help"          => "Aide",
 "search"        => "Rechercher",
 "history"       => "Historique",
 "printableversion" => "Version imprimable",
 "editthispage"  => "Modifier cette page",
 "deletethispage" => "Supprimer cette page",
-"protectthispage" => "Protéger cette page",
-"unprotectthispage" => "Déprotéger cette page",
+"protectthispage" => "ProtÃ©ger cette page",
+"unprotectthispage" => "DÃ©protÃ©ger cette page",
 "newpage"       => "Nouvelle page",
 "talkpage"      => "Page de discussion",
 "postcomment"	=> "Ajouter un commentaire",
 "articlepage"	=> "Voir l'article",
 "subjectpage"   => "Page sujet",
 "userpage"      => "Page utilisateur",
-"wikipediapage" => "Page méta",
+"wikipediapage" => "Page mÃ©ta",
 "imagepage"     => "Page image",
 "viewtalkpage"  => "Page de discussion",
 "otherlanguages" => "Autres langues",
-"redirectedfrom" => "(Redirigé depuis $1)",
-"lastmodified"  => "Dernière modification de cette page : $1.",
-"viewcount"     => "Cette page a été consultée $1 fois.",
-"gnunote"       => "Tous les textes sont disponibles sous les termes de la <a class=internal href='{$wgScriptPath}/GFDL'>Licence de documentation libre GNU</a>.",
+"redirectedfrom" => "(RedirigÃ© depuis $1)",
+"lastmodified"  => "DerniÃ¨re modification de cette page : $1.",
+"viewcount"     => "Cette page a Ã©tÃ© consultÃ©e $1 fois.",
+"gnunote"       => "Tous les textes sont disponibles sous les termes de la <a class=internal href='/wiki/GFDL'>Licence de documentation libre GNU</a>.",
 "printsubtitle" => "(de http://www.wikipedia.org)",
-"protectedpage" => "Page protégée",
-"administrators" => "Wikipédia:Administrateurs",
-"sysoptitle"    => "Accès administrateur requis",
-"sysoptext"     => "L'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut d'\"administrateur\".
+"protectedpage" => "Page protÃ©gÃ©e",
+"administrators" => "WikipÃ©dia:Administrateurs",
+"sysoptitle"    => "AccÃ¨s administrateur requis",
+"sysoptext"     => "L'action que vous avez tentÃ©e ne peut Ãªtre effectuÃ©e que par un utilisateur ayant le statut d'\"administrateur\".
 Voir $1.",
-"developertitle" => "Accès développeur requis",
-"developertext" => "L'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut de \"développeur\".
+"developertitle" => "AccÃ¨s dÃ©veloppeur requis",
+"developertext" => "L'action que vous avez tentÃ©e ne peut Ãªtre effectuÃ©e que par un utilisateur ayant le statut de \"dÃ©veloppeur\".
 Voir $1.",
 "nbytes"        => "$1 octets",
 "go"            => "Consulter",
 "ok"            => "OK",
-"sitetitle"     => "Wikipédia",
-"sitesubtitle"  => "L'encyclopédie libre",
-"retrievedfrom" => "Récupérée de \"$1\"",
+"sitetitle"     => "WikipÃ©dia",
+"sitesubtitle"  => "L'encyclopÃ©die libre",
+"retrievedfrom" => "RÃ©cupÃ©rÃ©e de \"$1\"",
 "newmessages"   => "Vous avez des $1.",
 "newmessageslink" => "nouveaux messages",
 "editsection"	=> "modifier",
@@ -222,33 +223,33 @@ Voir $1.",
 "showtoc"	=> "montrer",
 "hidetoc"	=> "cacher",
 "thisisdeleted" => "Afficher ou restaurer $1?",
-"restorelink"	=> "$1 modifications effacées",
+"restorelink"	=> "$1 modifications effacÃ©es",
 
 # Main script and global functions
 #
 "nosuchaction"	=> "Action inconnue",
-"nosuchactiontext" => "L'action spécifiée dans l'Url n'est pas reconnue par le logiciel Wikipédia.",
-"nosuchspecialpage" => "Page spéciale inexistante",
-"nospecialpagetext" => "Vous avez demandé une page spéciale qui n'est pas reconnue par le logiciel Wikipédia.",
+"nosuchactiontext" => "L'action spÃ©cifiÃ©e dans l'Url n'est pas reconnue par le logiciel WikipÃ©dia.",
+"nosuchspecialpage" => "Page spÃ©ciale inexistante",
+"nospecialpagetext" => "Vous avez demandÃ© une page spÃ©ciale qui n'est pas reconnue par le logiciel WikipÃ©dia.",
 
 # General errors
 #
 "error"		=> "Erreur",
-"databaseerror" => "Erreur base de données",
-"dberrortext"	=> "Erreur de syntaxe dans la base de données. Cette erreur peut être causée par une requête de recherche incorrecte (voir $5), ou une erreur dans le logiciel. La dernière requête traitée par la base de données était :
+"databaseerror" => "Erreur base de donnÃ©es",
+"dberrortext"	=> "Erreur de syntaxe dans la base de donnÃ©es. Cette erreur peut Ãªtre causÃ©e par une requÃªte de recherche incorrecte (voir $5), ou une erreur dans le logiciel. La derniÃ¨re requÃªte traitÃ©e par la base de donnÃ©es Ã©tait :
 <blockquote><tt>$1</tt></blockquote>
 depuis la fonction \"<tt>$2</tt>\".
-MySQL a renvoyé l'erreur \"<tt>$3: $4</tt>\".",
-"noconnect"	=> "Désolé! Suite à des problèmes techniques, il est impossible de se connecter à la base de données pour le moment.", //"Connexion impossible à la base de données sur $1",
-"nodb"		=> "Sélection impossible de la base de données $1",
-"cachederror"	=> "Ceci est une copie de la page demandée et peut ne pas être à jour",
-"readonly"	=> "Mises à jour bloquées sur la base de données",
-"enterlockreason" => "Indiquez la raison du blocage, ainsi qu'une estimation de la durée de blocage ",
-"readonlytext"	=> "Les ajouts et mises à jour sur la base de données Wikipédia sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloqué la base :
+MySQL a renvoyÃ© l'erreur \"<tt>$3: $4</tt>\".",
+"noconnect"	=> "DÃ©solÃ©! Suite Ã  des problÃ¨mes techniques, il est impossible de se connecter Ã  la base de donnÃ©es pour le moment.", //"Connexion impossible Ã  la base de donnÃ©es sur $1",
+"nodb"		=> "SÃ©lection impossible de la base de donnÃ©es $1",
+"cachederror"	=> "Ceci est une copie de la page demandÃ©e et peut ne pas Ãªtre Ã  jour",
+"readonly"	=> "Mises Ã  jour bloquÃ©es sur la base de donnÃ©es",
+"enterlockreason" => "Indiquez la raison du blocage, ainsi qu'une estimation de la durÃ©e de blocage ",
+"readonlytext"	=> "Les ajouts et mises Ã  jour sur la base de donnÃ©es WikipÃ©dia sont actuellement bloquÃ©s, probablement pour permettre la maintenance de la base, aprÃ¨s quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloquÃ© la base :
 <p>$1",
-"missingarticle" => "La base de données n'a pas pu trouver le texte d'une page existante, dont le titre est \"$1\".
-Ce n'est pas une erreur de la base de données, mais plus probablement un bogue du logiciel Wikipédia.
-Veuillez rapporter cette erreur à un administrateur, en lui indiquant l'adresse de la page fautive.",
+"missingarticle" => "La base de donnÃ©es n'a pas pu trouver le texte d'une page existante, dont le titre est \"$1\".
+Ce n'est pas une erreur de la base de donnÃ©es, mais plus probablement un bogue du logiciel WikipÃ©dia.
+Veuillez rapporter cette erreur Ã  un administrateur, en lui indiquant l'adresse de la page fautive.",
 "internalerror" => "Erreur interne",
 "filecopyerror" => "Impossible de copier \"$1\" vers \"$2\".",
 "filerenameerror" => "Impossible de renommer \"$1\" en \"$2\".",
@@ -256,117 +257,117 @@ Veuillez rapporter cette erreur à un administrateur, en lui indiquant l'adresse 
 "filenotfound"	=> "Fichier \"$1\" introuvable.",
 "unexpected"	=> "Valeur inattendue : \"$1\"=\"$2\".",
 "formerror"	=> "Erreur: Impossible de soumettre le formulaire",
-"badarticleerror" => "Cette action ne peut pas être effectuée sur cette page.",
-"cannotdelete"	=> "Impossible de supprimer la page ou l'image indiquée.",
+"badarticleerror" => "Cette action ne peut pas Ãªtre effectuÃ©e sur cette page.",
+"cannotdelete"	=> "Impossible de supprimer la page ou l'image indiquÃ©e.",
 "badtitle"	=> "Mauvais titre",
-"badtitletext"	=> "Le titre de la page demandée est invalide, vide ou le lien interlangue est invalide",
-"perfdisabled" => "Désolé! Cette fonctionnalité est temporairement désactivée
-car elle ralentit la base de données à un point tel que plus personne
+"badtitletext"	=> "Le titre de la page demandÃ©e est invalide, vide ou le lien interlangue est invalide",
+"perfdisabled" => "DÃ©solÃ©! Cette fonctionnalitÃ© est temporairement dÃ©sactivÃ©e
+car elle ralentit la base de donnÃ©es Ã  un point tel que plus personne
 ne peut utiliser le wiki.",
 "perfdisabledsub" => "Ceci est une copie de sauvegarde de $1:",
 "viewsource"	=> "Voir le texte source",
-"protectedtext"	=> "Cette page a été bloquée pour empêcher sa modification. Consultez [[Wikipédia:Page protégée]] pour voir les différentes raisons possibles.",
+"protectedtext"	=> "Cette page a Ã©tÃ© bloquÃ©e pour empÃªcher sa modification. Consultez [[WikipÃ©dia:Page protÃ©gÃ©e]] pour voir les diffÃ©rentes raisons possibles.",
 
 # Login and logout pages
 #
-"logouttitle"	=> "Déconnexion",
-"logouttext"	=> "Vous êtes à présent déconnecté(e).
-Vous pouvez continuer à utiliser Wikipédia de façon anonyme, ou vous reconnecter, éventuellement sous un autre nom.\n",
+"logouttitle"	=> "DÃ©connexion",
+"logouttext"	=> "Vous Ãªtes Ã  prÃ©sent dÃ©connectÃ©(e).
+Vous pouvez continuer Ã  utiliser WikipÃ©dia de faÃ§on anonyme, ou vous reconnecter, Ã©ventuellement sous un autre nom.\n",
 
-"welcomecreation" => "<h2>Bienvenue, $1!</h2><p>Votre compte d'utilisateur a été créé.
-N'oubliez pas de personnaliser votre Wikipédia en consultant la page Préférences.",
+"welcomecreation" => "<h2>Bienvenue, $1!</h2><p>Votre compte d'utilisateur a Ã©tÃ© crÃ©Ã©.
+N'oubliez pas de personnaliser votre WikipÃ©dia en consultant la page PrÃ©fÃ©rences.",
 
 "loginpagetitle"     => "Votre identifiant",
 "yourname"           => "Votre nom d'utilisateur",
 "yourpassword"       => "Votre mot de passe",
-"yourpasswordagain"  => "Entrez à nouveau votre mot de passe",
+"yourpasswordagain"  => "Entrez Ã  nouveau votre mot de passe",
 "newusersonly"       => " (nouveaux utilisateurs uniquement)",
 "remembermypassword" => "Se souvenir de mon mot de passe (cookie)",
-"loginproblem"       => "<b>Problème d'identification.</b><br>Essayez à nouveau !",
-"alreadyloggedin"    => "<font color=red><b>Utilisateur $1, vous êtes déjà identifié!</b></font><br>\n",
+"loginproblem"       => "<b>ProblÃ¨me d'identification.</b><br>Essayez Ã  nouveau !",
+"alreadyloggedin"    => "<font color=red><b>Utilisateur $1, vous Ãªtes dÃ©jÃ  identifiÃ©!</b></font><br>\n",
 
 "login"         => "Identification",
 "userlogin"     => "Identification",
-"logout"        => "Déconnexion",
-"userlogout"    => "Déconnexion",
-"notloggedin"	=> "Non connecté",
-"createaccount" => "Créer un nouveau compte",
+"logout"        => "DÃ©connexion",
+"userlogout"    => "DÃ©connexion",
+"notloggedin"	=> "Non connectÃ©",
+"createaccount" => "CrÃ©er un nouveau compte",
 "createaccountmail"	=> "par courriel", // Looxix "by eMail",
 "badretype"     => "Les deux mots de passe que vous avez saisis ne sont pas identiques.",
-"userexists"    => "Le nom d'utilisateur que vous avez saisi est déjà utilisé. Veuillez en choisir un autre.",
-"youremail"     => "Mon adresse électronique",
+"userexists"    => "Le nom d'utilisateur que vous avez saisi est dÃ©jÃ  utilisÃ©. Veuillez en choisir un autre.",
+"youremail"     => "Mon adresse Ã©lectronique",
 "yournick"      => "Mon surnom (pour les signatures)",
-"emailforlost"  => "Si vous égarez votre mot de passe, vous pouvez demander à ce qu'un nouveau vous soit envoyé à votre adresse électronique.",
-"loginerror"    => "Problème d'identification",
+"emailforlost"  => "Si vous Ã©garez votre mot de passe, vous pouvez demander Ã  ce qu'un nouveau vous soit envoyÃ© Ã  votre adresse Ã©lectronique.",
+"loginerror"    => "ProblÃ¨me d'identification",
 "noname"        => "Vous n'avez pas saisi de nom d'utilisateur.",
-"loginsuccesstitle" => "Identification réussie.",
-"loginsuccess"  => "Vous êtes actuellement connecté(e) sur Wikipédia en tant que \"$1\".",
+"loginsuccesstitle" => "Identification rÃ©ussie.",
+"loginsuccess"  => "Vous Ãªtes actuellement connectÃ©(e) sur WikipÃ©dia en tant que \"$1\".",
 "nosuchuser"    => "L'utilisateur \"$1\" n'existe pas.
-Vérifiez que vous avez bien orthographié le nom, ou utilisez le formulaire ci-dessous pour créer un nouveau compte utilisateur.",
-"wrongpassword" => "Le mot de passe est incorrect. Essayez à nouveau.",
+VÃ©rifiez que vous avez bien orthographiÃ© le nom, ou utilisez le formulaire ci-dessous pour crÃ©er un nouveau compte utilisateur.",
+"wrongpassword" => "Le mot de passe est incorrect. Essayez Ã  nouveau.",
 "mailmypassword" => "Envoyez-moi un nouveau mot de passe",
-"passwordremindertitle" => "Votre nouveau mot de passe sur Wikipédia",
-"passwordremindertext" => "Quelqu'un (probablement vous) ayant l'adresse IP $1 a demandé à ce qu'un nouveau mot de passe vous soit envoyé pour votre accès à Wikipédia.
-Le mot de passe de l'utilisateur \"$2\" est à présent \"$3\".
-Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que possible.",
-"noemail"  => "Aucune adresse électronique n'a été enregistrée pour l'utilisateur \"$1\".",
-"passwordsent" => "Un nouveau mot de passe a été envoyé à l'adresse électronique de l'utilisateur \"$1\".
-Veuillez vous identifier dès que vous l'aurez reçu.",
+"passwordremindertitle" => "Votre nouveau mot de passe sur WikipÃ©dia",
+"passwordremindertext" => "Quelqu'un (probablement vous) ayant l'adresse IP $1 a demandÃ© Ã  ce qu'un nouveau mot de passe vous soit envoyÃ© pour votre accÃ¨s Ã  WikipÃ©dia.
+Le mot de passe de l'utilisateur \"$2\" est Ã  prÃ©sent \"$3\".
+Nous vous conseillons de vous connecter et de modifier ce mot de passe dÃ¨s que possible.",
+"noemail"  => "Aucune adresse Ã©lectronique n'a Ã©tÃ© enregistrÃ©e pour l'utilisateur \"$1\".",
+"passwordsent" => "Un nouveau mot de passe a Ã©tÃ© envoyÃ© Ã  l'adresse Ã©lectronique de l'utilisateur \"$1\".
+Veuillez vous identifier dÃ¨s que vous l'aurez reÃ§u.",
 
 # Edit pages
 #
-"summary"      => "Résumé",
+"summary"      => "RÃ©sumÃ©",
 "subject"	=> "Sujet/titre", // Looxix "Subject/headline",
 "minoredit"    => "Modification mineure.",
 "watchthis"    => "Suivre cet article",
 "savearticle"  => "Sauvegarder",
-"preview"      => "Prévisualiser",
-"showpreview"  => "Prévisualisation",
-"blockedtitle" => "Utilisateur bloqué",
-"blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br>$2<p>Vous pouvez contacter $1 ou un des autres [[Wikipédia:Administrateurs|administateurs]] pour en discuter.",
-"whitelistedittitle" => "Login requis pour rédiger", // Looxix "Login required to edit",
-"whitelistedittext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir rédiger", // Looxix 
+"preview"      => "PrÃ©visualiser",
+"showpreview"  => "PrÃ©visualisation",
+"blockedtitle" => "Utilisateur bloquÃ©",
+"blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont Ã©tÃ© bloquÃ©s par $1 pour la raison suivante :<br>$2<p>Vous pouvez contacter $1 ou un des autres [[WikipÃ©dia:Administrateurs|administateurs]] pour en discuter.",
+"whitelistedittitle" => "Login requis pour rÃ©diger", // Looxix "Login required to edit",
+"whitelistedittext" => "Vous devez Ãªtre [[Special:Userlogin|connectÃ©]] pour pouvoir rÃ©diger", // Looxix 
 "whitelistreadtitle" => "Login requis pour lire", // Looxix "Login required to read",
-"whitelistreadtext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir lire les articles", // Looxix 
-"whitelistacctitle" => "Vous n'êtes pas autorisé à créer un compte", // Looxix 
-"whitelistacctext" => "Pour pouvoir créer un compte sur ce Wiki vous devez être [[Special:Userlogin|connecté]] et avoir les permissions appropriées", // Looxix 
-"accmailtitle" => "Mot de passe envoyé.", // Looxix "Password sent.",
-"accmailtext" => "Le mot de passe de '$1' a été envoyé à $2.", // Looxix 
+"whitelistreadtext" => "Vous devez Ãªtre [[Special:Userlogin|connectÃ©]] pour pouvoir lire les articles", // Looxix 
+"whitelistacctitle" => "Vous n'Ãªtes pas autorisÃ© Ã  crÃ©er un compte", // Looxix 
+"whitelistacctext" => "Pour pouvoir crÃ©er un compte sur ce Wiki vous devez Ãªtre [[Special:Userlogin|connectÃ©]] et avoir les permissions appropriÃ©es", // Looxix 
+"accmailtitle" => "Mot de passe envoyÃ©.", // Looxix "Password sent.",
+"accmailtext" => "Le mot de passe de '$1' a Ã©tÃ© envoyÃ© Ã  $2.", // Looxix 
 
 "newarticle"   => "(Nouveau)",
 "newarticletext" => "Saisissez ici le texte de votre article.",
-"anontalkpagetext" => "---- ''Ceci est la page de discussion pour un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utiliser l'[[adresse IP]] numérique pour l'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion à l'avenir.", 
+"anontalkpagetext" => "---- ''Ceci est la page de discussion pour un utilisateur anonyme qui n'a pas encore crÃ©Ã© un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utiliser l'[[adresse IP]] numÃ©rique pour l'identifier. Une adresse de ce type peut Ãªtre partagÃ©e entre plusieurs utilisateurs. Si vous Ãªtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont Ã©tÃ© adressÃ©s, vous pouvez [[Special:Userlogin|crÃ©er un compte ou vous connecter]] afin d'Ã©viter toute future confusion Ã  l'avenir.", 
 "noarticletext" => "(Il n'y a pour l'instant aucun texte sur cette page)",
-"updated"      => "(Mis à jour)",
+"updated"      => "(Mis Ã  jour)",
 "note"         => "<strong>Note :</strong> ",
-"previewnote"  => "Attention, ce texte n'est qu'une prévisualisation et n'a pas encore été sauvegardé!",
-"previewconflict" => "La prévisualisation montre le texte de cette page tel qu'il apparaîtra une fois sauvegardé.",
+"previewnote"  => "Attention, ce texte n'est qu'une prÃ©visualisation et n'a pas encore Ã©tÃ© sauvegardÃ©!",
+"previewconflict" => "La prÃ©visualisation montre le texte de cette page tel qu'il apparaÃ®tra une fois sauvegardÃ©.",
 "editing"      => "modification de $1",
 "section edit"	=> " (section)",
 "comment edit"	=> " (commentaire)",
 "editconflict" => "Conflit de modification : $1",
-"explainconflict" => "<b>Cette page a été sauvegardée après que vous avez commencé à la modifier.
-La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.\n<p>",
+"explainconflict" => "<b>Cette page a Ã©tÃ© sauvegardÃ©e aprÃ¨s que vous avez commencÃ© Ã  la modifier.
+La zone d'Ã©dition supÃ©rieure contient le texte tel qu'il est enregistrÃ© actuellement dans la base de donnÃ©es. Vos modifications apparaissent dans la zone d'Ã©dition infÃ©rieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supÃ©rieure sera sauvegardÃ©.\n<p>",
 "yourtext"     => "Votre texte",
-"storedversion" => "Version enregistrée",
-"editingold"   => "<strong>Attention : vous êtes en train de modifier une version obsolète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>\n",
-"yourdiff"  => "Différences",
-"copyrightwarning" => "Toutes les contributions à Wikipédia sont considérées comme publiées sous les termes de la GNU Free Documentation Licence, une licence de documentation libre (Voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient édités et distribués à volonté, ne les envoyez pas. De même, merci de ne contribuer qu'en apportant vos propres écrits ou des écrits issus d'une source libre de droits. <b>N'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE!</b>",
+"storedversion" => "Version enregistrÃ©e",
+"editingold"   => "<strong>Attention : vous Ãªtes en train de modifier une version obsolÃ¨te de cette page. Si vous sauvegardez, toutes les modifications effectuÃ©es depuis cette version seront perdues.</strong>\n",
+"yourdiff"  => "DiffÃ©rences",
+"copyrightwarning" => "Toutes les contributions Ã  WikipÃ©dia sont considÃ©rÃ©es comme publiÃ©es sous les termes de la GNU Free Documentation Licence, une licence de documentation libre (Voir $1 pour plus de dÃ©tails). Si vous ne dÃ©sirez pas que vos Ã©crits soient Ã©ditÃ©s et distribuÃ©s Ã  volontÃ©, ne les envoyez pas. De mÃªme, merci de ne contribuer qu'en apportant vos propres Ã©crits ou des Ã©crits issus d'une source libre de droits. <b>N'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE!</b>",
 "longpagewarning" => "AVERTISSEMENT : cette page a une longueur de $1 ko;
-quelques navigateurs gèrent mal les pages approchant ou dépassant 32 ko lors de leur rédaction.
-Peut-être serait-il mieux que vous divisiez la page en sections plus petites.", // Panoramix
-"readonlywarning" => "AVERTISSEMENT : cette page a été bloquée pour maintenance,
+quelques navigateurs gÃ¨rent mal les pages approchant ou dÃ©passant 32 ko lors de leur rÃ©daction.
+Peut-Ãªtre serait-il mieux que vous divisiez la page en sections plus petites.", // Panoramix
+"readonlywarning" => "AVERTISSEMENT : cette page a Ã©tÃ© bloquÃ©e pour maintenance,
 vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.",
-"protectedpagewarning" => "AVERTISSEMENT : cette page a été bloquée.
+"protectedpagewarning" => "AVERTISSEMENT : cette page a Ã©tÃ© bloquÃ©e.
 Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier. Soyez certain que
-vous suivez les <a href='$wgScriptPath/Wikipédia:Page protégée'>directives concernant les pages protégées</a>.",
+vous suivez les <a href='/wiki/WikipÃ©dia:Page protÃ©gÃ©e'>directives concernant les pages protÃ©gÃ©es</a>.",
 
 # History pages
 #
-"revhistory"   => "Versions précédentes",
+"revhistory"   => "Versions prÃ©cÃ©dentes",
 "nohistory"    => "Il n'existe pas d'historique pour cette page.",
 "revnotfound"  => "Version introuvable",
-"revnotfoundtext" => "La version précédente de cette page n'a pas pu être retrouvée. Vérifiez l'URL que vous avez utilisée pour accéder à cette page.\n",
+"revnotfoundtext" => "La version prÃ©cÃ©dente de cette page n'a pas pu Ãªtre retrouvÃ©e. VÃ©rifiez l'URL que vous avez utilisÃ©e pour accÃ©der Ã  cette page.\n",
 
 "loadhist"     => "Chargement de l'historique de la page",
 "currentrev"   => "Version actuelle",
@@ -375,12 +376,12 @@ vous suivez les <a href='$wgScriptPath/Wikipédia:Page protégée'>directives conce
 "next"   => "suiv",
 "last"   => "dern",
 "orig"   => "orig",
-"histlegend" => "Légende : (actu) = différence avec la version actuelle ,
-(dern) = différence avec la version précédente, M = modification mineure",
+"histlegend" => "LÃ©gende : (actu) = diffÃ©rence avec la version actuelle ,
+(dern) = diffÃ©rence avec la version prÃ©cÃ©dente, M = modification mineure",
 
 #  Diffs
 #
-"difference" => "(Différences entre les versions)",
+"difference" => "(DiffÃ©rences entre les versions)",
 "loadingrev" => "chargement de l'ancienne version pour comparaison",
 "lineno"  => "Ligne $1:",
 "editcurrent" => "Modifier la version actuelle de cette page",
@@ -388,39 +389,39 @@ vous suivez les <a href='$wgScriptPath/Wikipédia:Page protégée'>directives conce
 
 # Search results
 #
-"searchresults" => "Résultat de la recherche",
-"searchhelppage" => "Wikipédia:Recherche",
-"searchingwikipedia" => "Chercher dans Wikipédia",
-"searchresulttext" => "Pour plus d'informations sur la recherche dans Wikipédia, voir $1.",
-"searchquery" => "Pour la requête \"$1\"",
-"badquery"  => "Requête mal formulée",
-"badquerytext" => "Nous n'avons pas pu traiter votre requête.
-Vous avez probablement recherché un mot d'une longueur inférieure
-à trois lettres, ce qui n'est pas encore possible. Vous avez
+"searchresults" => "RÃ©sultat de la recherche",
+"searchhelppage" => "WikipÃ©dia:Recherche",
+"searchingwikipedia" => "Chercher dans WikipÃ©dia",
+"searchresulttext" => "Pour plus d'informations sur la recherche dans WikipÃ©dia, voir $1.",
+"searchquery" => "Pour la requÃªte \"$1\"",
+"badquery"  => "RequÃªte mal formulÃ©e",
+"badquerytext" => "Nous n'avons pas pu traiter votre requÃªte.
+Vous avez probablement recherchÃ© un mot d'une longueur infÃ©rieure
+Ã  trois lettres, ce qui n'est pas encore possible. Vous avez
 aussi pu faire une erreur de syntaxe, telle que \"poisson et
-et écailles\".
-Veuillez essayer une autre requête.",
-"matchtotals" => "La requête \"$1\" correspond à $2 titre(s)
+et Ã©cailles\".
+Veuillez essayer une autre requÃªte.",
+"matchtotals" => "La requÃªte \"$1\" correspond Ã  $2 titre(s)
 d'article et au texte de $3 article(s).",
-"nogomatch" => "Aucune page avec ce titre n'existe, essai avec la recherche complète.",
+"nogomatch" => "Aucune page avec ce titre n'existe, essai avec la recherche complÃ¨te.",
 "titlematches" => "Correspondances dans les titres",
-"notitlematches" => "Aucun titre d'article ne contient le(s) mot(s) demandé(s)",
+"notitlematches" => "Aucun titre d'article ne contient le(s) mot(s) demandÃ©(s)",
 "textmatches" => "Correspondances dans les textes",
-"notextmatches" => "Aucun texte d'article ne contient le(s) mot(s) demandé(s)",
-"prevn"   => "$1 précédents",
+"notextmatches" => "Aucun texte d'article ne contient le(s) mot(s) demandÃ©(s)",
+"prevn"   => "$1 prÃ©cÃ©dents",
 "nextn"   => "$1 suivants",
 "viewprevnext" => "Voir ($1) ($2) ($3).",
-"showingresults" => "Affichage de <b>$1</b> résultats à partir du #<b>$2</b>.",
-"showingresultsnum" => "Affichage de <b>$3</b> résultats à partir du #<b>$2</b>.",
-"nonefound"  => "<strong>Note</strong>: l'absence de résultat est souvent due à l'emploi de termes de recherche trop courants, comme \"à\" ou \"de\",
-qui ne sont pas indexés, ou à l'emploi de plusieurs termes de recherche (seules les pages
-contenant tous les termes apparaissent dans les résultats).",
+"showingresults" => "Affichage de <b>$1</b> rÃ©sultats Ã  partir du #<b>$2</b>.",
+"showingresultsnum" => "Affichage de <b>$3</b> rÃ©sultats Ã  partir du #<b>$2</b>.",
+"nonefound"  => "<strong>Note</strong>: l'absence de rÃ©sultat est souvent due Ã  l'emploi de termes de recherche trop courants, comme \"Ã \" ou \"de\",
+qui ne sont pas indexÃ©s, ou Ã  l'emploi de plusieurs termes de recherche (seules les pages
+contenant tous les termes apparaissent dans les rÃ©sultats).",
 "powersearch" => "Recherche",
 "powersearchtext" => "
 Rechercher dans les espaces :<br>
 $1<br>
 $2 Inclure les page de redirections &nbsp; Rechercher $3 $9",
-"searchdisabled" => "<p>La fonction de recherche sur l'entièreté du texte a été temporairement désactivée à cause de la grande charge que cela impose au serveur. Nous espérons la rétablir prochainement lorsque nous disposerons d'un serveur plus puissant. En attendant, vous pouvez faire la recherche avec Google:</p>
+"searchdisabled" => "<p>La fonction de recherche sur l'entiÃ¨retÃ© du texte a Ã©tÃ© temporairement dÃ©sactivÃ©e Ã  cause de la grande charge que cela impose au serveur. Nous espÃ©rons la rÃ©tablir prochainement lorsque nous disposerons d'un serveur plus puissant. En attendant, vous pouvez faire la recherche avec Google:</p>
                                                                                                                                                         
 ",
 "googlesearch" => "<!-- SiteSearch Google -->
@@ -448,70 +449,70 @@ value=\"{$wgServer}\" checked> {$wgServer} <br>
 
 # Preferences page
 #
-"preferences"       => "Préférences",
-"prefsnologin"      => "Non connecté",
-"prefsnologintext"  => "Vous devez être <a href=\"" .
-		wfLocalUrl( "Special:Userlogin" ) . "\">connecté</a>
-pour modifier vos préférences d'utilisateur.",
-"prefslogintext" => "Je suis connecté(e) en tant que $1 avec le numéro d'utilisateur $2.
+"preferences"       => "PrÃ©fÃ©rences",
+"prefsnologin"      => "Non connectÃ©",
+"prefsnologintext"  => "Vous devez Ãªtre <a href=\"" .
+		wfLocalUrl( "Special:Userlogin" ) . "\">connectÃ©</a>
+pour modifier vos prÃ©fÃ©rences d'utilisateur.",
+"prefslogintext" => "Je suis connectÃ©(e) en tant que $1 avec le numÃ©ro d'utilisateur $2.
 
-Voir [[Wikipédia:Aide pour les préférences]] pour les explications concernant les options.",
-"prefsreset"        => "Les préférences ont été rétablies à partir de la version enregistrée.",
+Voir [[WikipÃ©dia:Aide pour les prÃ©fÃ©rences]] pour les explications concernant les options.",
+"prefsreset"        => "Les prÃ©fÃ©rences ont Ã©tÃ© rÃ©tablies Ã  partir de la version enregistrÃ©e.",
 "qbsettings"        => "Personnalisation de la barre outils",
 "changepassword"    => "Modification du mot de passe",
 "skin"              => "Apparence",
 "math"			=> "Rendu des maths",	// Looxix "Rendering math",
 "dateformat"		=> "Format de date",
 "math_failure"		=> "Erreur math",	// Looxix "Failure toparse",
-"math_unknown_error"	=> "erreur indéterminée",   // FvdP+Looxix "unknown error",
+"math_unknown_error"	=> "erreur indÃ©terminÃ©e",   // FvdP+Looxix "unknown error",
 "math_unknown_function"	=> "fonction inconnue",
 "math_lexing_error"	=> "erreur lexicale",   // Looxxi "lexing error",
 "math_syntax_error"	=> "erreur de syntaxe",
-"saveprefs"         => "Enregistrer les préférences",
-"resetprefs"        => "Rétablir les préférences",
+"saveprefs"         => "Enregistrer les prÃ©fÃ©rences",
+"resetprefs"        => "RÃ©tablir les prÃ©fÃ©rences",
 "oldpassword"       => "Ancien mot de passe",
 "newpassword"       => "Nouveau mot de passe",
 "retypenew"         => "Confirmer le nouveau mot de passe",
-"textboxsize"       => "Taille de la fenêtre d'édition",
-"rows"              => "Rangées",
+"textboxsize"       => "Taille de la fenÃªtre d'Ã©dition",
+"rows"              => "RangÃ©es",
 "columns"           => "Colonnes",
-"searchresultshead" => "Affichage des résultats de recherche",
-"resultsperpage"    => "Nombre de réponses par page",
-"contextlines"      => "Nombre de lignes par réponse",
-"contextchars"      => "Nombre de caractères de contexte par ligne",
+"searchresultshead" => "Affichage des rÃ©sultats de recherche",
+"resultsperpage"    => "Nombre de rÃ©ponses par page",
+"contextlines"      => "Nombre de lignes par rÃ©ponse",
+"contextchars"      => "Nombre de caractÃ¨res de contexte par ligne",
 "stubthreshold"     => "Taille minimale des articles courts",
-"recentchangescount" => "Nombre de titres dans les modifications récentes",
-"savedprefs"        => "Les préférences ont été sauvegardées.",
-"timezonetext"      => "Si vous ne précisez pas de décalage horaire, c'est l'heure de l'Europe de l'ouest qui sera utilisée.",
+"recentchangescount" => "Nombre de titres dans les modifications rÃ©centes",
+"savedprefs"        => "Les prÃ©fÃ©rences ont Ã©tÃ© sauvegardÃ©es.",
+"timezonetext"      => "Si vous ne prÃ©cisez pas de dÃ©calage horaire, c'est l'heure de l'Europe de l'ouest qui sera utilisÃ©e.",
 "localtime"         => "Heure locale",
-"timezoneoffset"    => "Décalage horaire",
+"timezoneoffset"    => "DÃ©calage horaire",
 "servertime"	    => "Heure du serveur", //Looxix (Server time is now)
 "guesstimezone"     => "Utiliser la valeur du navigateur", //Looxix (Fill in from browser)
-"emailflag"         => "Ne pas recevoir de courrier électronique<br> des autres utilisateurs",
-"defaultns"         => "Par défaut, rechercher dans ces espaces :", //Looxix (Search in these namespaces by default)
+"emailflag"         => "Ne pas recevoir de courrier Ã©lectronique<br> des autres utilisateurs",
+"defaultns"         => "Par dÃ©faut, rechercher dans ces espaces :", //Looxix (Search in these namespaces by default)
 
 # Recent changes
 #
 "changes"	=> "modifications",
-"recentchanges" => "Modifications récentes",
-"recentchangestext" => "Suivez sur cette page les dernières modifications de Wikipédia.
-[[Wikipédia:Bienvenue|Bienvenue]] aux nouveaux participants!
-Jetez un coup d'&oelig;il sur ces pages&nbsp;: [[Wikipédia:FAQ|foire aux questions]],
-[[Wikipédia:Recommandations et règles à suivre|recommandations et règles à suivre]]
-(notamment [[Wikipédia:Règles de nommage|conventions de nommage]],
-[[Wikipédia:La neutralité de point de vue|la neutralité de point de vue]]),
-et [[Wikipédia:Les faux-pas les plus courants|les faux-pas les plus courants]].
+"recentchanges" => "Modifications rÃ©centes",
+"recentchangestext" => "Suivez sur cette page les derniÃ¨res modifications de WikipÃ©dia.
+[[WikipÃ©dia:Bienvenue|Bienvenue]] aux nouveaux participants!
+Jetez un coup d'&oelig;il sur ces pages&nbsp;: [[WikipÃ©dia:FAQ|foire aux questions]],
+[[WikipÃ©dia:Recommandations et rÃ¨gles Ã  suivre|recommandations et rÃ¨gles Ã  suivre]]
+(notamment [[WikipÃ©dia:RÃ¨gles de nommage|conventions de nommage]],
+[[WikipÃ©dia:La neutralitÃ© de point de vue|la neutralitÃ© de point de vue]]),
+et [[WikipÃ©dia:Les faux-pas les plus courants|les faux-pas les plus courants]].
 
-Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[Wikipédia:Copyright|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet. ",
-"rcloaderr"  => "Chargement des dernières modifications",
-"rcnote"  => "Voici les <strong>$1</strong> dernières modifications effectuées au cours des <strong>$2</strong> derniers jours.",
-"rcnotefrom"	=> "Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).",
+Si vous voulez que WikipÃ©dia connaisse le succÃ¨s, merci de ne pas y inclure pas de matÃ©riaux protÃ©gÃ©s par des [[WikipÃ©dia:Copyright|copyrights]]. La responsabilitÃ© juridique pourrait en effet compromettre le projet. ",
+"rcloaderr"  => "Chargement des derniÃ¨res modifications",
+"rcnote"  => "Voici les <strong>$1</strong> derniÃ¨res modifications effectuÃ©es au cours des <strong>$2</strong> derniers jours.",
+"rcnotefrom"	=> "Voici les modifications effectuÃ©es depuis le <strong>$2</strong> (<b>$1</b> au maximum).",
 "rclistfrom"	=> "Afficher les nouvelles modifications depuis le $1.",
-# "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 dernières heures / $3 derniers jours",
-# "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours.",
-"rclinks"	=> "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours; $3 modifications mineures.",	// Looxix
+# "rclinks"  => "Afficher les $1 derniÃ¨res modifications effectuÃ©es au cours des $2 derniÃ¨res heures / $3 derniers jours",
+# "rclinks"  => "Afficher les $1 derniÃ¨res modifications effectuÃ©es au cours des $2 derniers jours.",
+"rclinks"	=> "Afficher les $1 derniÃ¨res modifications effectuÃ©es au cours des $2 derniers jours; $3 modifications mineures.",	// Looxix
 "rchide"  => "in $4 form; $1 modifications mineures; $2 espaces secondaires; $3 modifications multiples.", // FIXME
-"rcliu"		=> "; $1 modifications par des contributeurs connectés",
+"rcliu"		=> "; $1 modifications par des contributeurs connectÃ©s",
 "diff"            => "diff",
 "hist"            => "hist",
 "hide"            => "cacher",
@@ -527,37 +528,37 @@ Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pas 
 "upload"       => "Copier sur le serveur",
 "uploadbtn"    => "Copier un fichier",
 "uploadlink"   => "Copier des images",
-"reupload"     => "Copier à nouveau",
+"reupload"     => "Copier Ã  nouveau",
 "reuploaddesc" => "Retour au formulaire.",
 
-"uploadnologin" => "Non connecté(e)",
-"uploadnologintext" => "Vous devez être <a href=\"" .
-		wfLocalUrl( "Special:Userlogin" ) . "\">connecté</a>
+"uploadnologin" => "Non connectÃ©(e)",
+"uploadnologintext" => "Vous devez Ãªtre <a href=\"" .
+		wfLocalUrl( "Special:Userlogin" ) . "\">connectÃ©</a>
 pour copier des fichiers sur le serveur.",
 "uploadfile"   => "Copier un fichier",
 "uploaderror"  => "Erreur",
 "uploadtext"   => "<strong>STOP !</strong> Avant de copier votre fichier sur le serveur,
-prenez connaissance des <a href=\"" .wfLocalUrlE( "Wikipédia:règles d'utilisation des images" ) . "\">règles d'utilisation des images</a> de Wikipédia et assurez-vous que vous les respectez.<br>N'oubliez pas de remplir la <a href=\"" .wfLocalUrlE( "Wikipédia:Page de description d'une image" ). "\">page de description de l'image</a> quand celle-ci sera sur le serveur.
-<p>Pour voir les images déjà placées sur le serveur ou pour effectuer une recherche parmi celles-ci,
-allez à la <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) ."\">liste des images</a>.
-Les uploads et les suppressions sont listés dans le <a href=\"" .wfLocalUrlE( "Wikipédia:Journal_des_uploads" ) . "\">journal des uploads</a>.
-<p>Utilisez le formulaire ci-dessous pour copier sur le serveur de nouvelles images destinées à illustrer vos articles.
-Sur la plupart des navigateurs, vous verrez un bouton \"Browse...\" qui ouvre la fenêtre de dialogue standard de votre système d'exploitation pour l'ouverture des fichiers.
-Sélectionnez un fichier, son nom apparaîtra dans le champ situé à côté du bouton.
-Vous devez également confirmer, en cochant la case prévue à cet effet, que la copie de ce fichier ne viole aucun copyright.
+prenez connaissance des <a href=\"" .wfLocalUrlE( "WikipÃ©dia:rÃ¨gles d'utilisation des images" ) . "\">rÃ¨gles d'utilisation des images</a> de WikipÃ©dia et assurez-vous que vous les respectez.<br>N'oubliez pas de remplir la <a href=\"" .wfLocalUrlE( "WikipÃ©dia:Page de description d'une image" ). "\">page de description de l'image</a> quand celle-ci sera sur le serveur.
+<p>Pour voir les images dÃ©jÃ  placÃ©es sur le serveur ou pour effectuer une recherche parmi celles-ci,
+allez Ã  la <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) ."\">liste des images</a>.
+Les uploads et les suppressions sont listÃ©s dans le <a href=\"" .wfLocalUrlE( "WikipÃ©dia:Journal_des_uploads" ) . "\">journal des uploads</a>.
+<p>Utilisez le formulaire ci-dessous pour copier sur le serveur de nouvelles images destinÃ©es Ã  illustrer vos articles.
+Sur la plupart des navigateurs, vous verrez un bouton \"Browse...\" qui ouvre la fenÃªtre de dialogue standard de votre systÃ¨me d'exploitation pour l'ouverture des fichiers.
+SÃ©lectionnez un fichier, son nom apparaÃ®tra dans le champ situÃ© Ã  cÃ´tÃ© du bouton.
+Vous devez Ã©galement confirmer, en cochant la case prÃ©vue Ã  cet effet, que la copie de ce fichier ne viole aucun copyright.
 Cliquez sur le bouton \"Envoyer\" pour terminer.
-Si votre connexion est lente, l'opération peut prendre un certain temps.
-<p>Les formats recommandés sont JPEG pour les photos, PNG
+Si votre connexion est lente, l'opÃ©ration peut prendre un certain temps.
+<p>Les formats recommandÃ©s sont JPEG pour les photos, PNG
 pour les dessins et les autres images, et OGG pour les fichiers sonores.
-Donnez à vos fichiers des noms descriptifs clairs, afin d'éviter toute confusion.
-Pour incorporer l'image dans un article, placez dans celui-ci un lien rédigé comme suit:
+Donnez Ã  vos fichiers des noms descriptifs clairs, afin d'Ã©viter toute confusion.
+Pour incorporer l'image dans un article, placez dans celui-ci un lien rÃ©digÃ© comme suit:
 <b>[[image:nom_du_fichier.jpg]]</b> ou <b>[[image:nom_du_fichier.png|autre texte]]</b>
 ou <b>[[media:nom_du_fichier.ogg]]</b> pour les sons.
-<p>N'oubliez pas que, comme toutes les pages de Wikipédia, les fichiers que vous copiez peuvent être modifiés ou supprimés par les autres utilisateurs s'ils estiment que cela est dans l'intérêt de l'encyclopédie. Sachez aussi que votre accès au serveur peut être bloqué si vous faites un mauvais usage du système.",
+<p>N'oubliez pas que, comme toutes les pages de WikipÃ©dia, les fichiers que vous copiez peuvent Ãªtre modifiÃ©s ou supprimÃ©s par les autres utilisateurs s'ils estiment que cela est dans l'intÃ©rÃªt de l'encyclopÃ©die. Sachez aussi que votre accÃ¨s au serveur peut Ãªtre bloquÃ© si vous faites un mauvais usage du systÃ¨me.",
 "uploadlog"  => "log d'upload",		// FIXME
 "uploadlogpage" => "Log_d'upload",	// FIXME
-"uploadlogpagetext" => "Voici la liste des derniers fichiers copiés sur le serveur.
-L'heure indiquée est celle du serveur (UTC).
+"uploadlogpagetext" => "Voici la liste des derniers fichiers copiÃ©s sur le serveur.
+L'heure indiquÃ©e est celle du serveur (UTC).
 <ul>
 </ul>
 ",
@@ -565,44 +566,44 @@ L'heure indiquée est celle du serveur (UTC).
 "filedesc"	=> "Description",
 "filestatus"	=> "Statut du copyright",
 "filesource"	=> "Source",	
-"affirmation"	=> "Je déclare que le détenteur du copyright de ce fichier accepte de le diffuser selon les termes de la $1.",
-"copyrightpage" => "Wikipédia:Copyright",
-"copyrightpagename" => "licence Wikipédia",
-"uploadedfiles" => "Fichiers copiés",
+"affirmation"	=> "Je dÃ©clare que le dÃ©tenteur du copyright de ce fichier accepte de le diffuser selon les termes de la $1.",
+"copyrightpage" => "WikipÃ©dia:Copyright",
+"copyrightpagename" => "licence WikipÃ©dia",
+"uploadedfiles" => "Fichiers copiÃ©s",
 "noaffirmation" => "Vous devez confirmer que la copie de ce fichier ne viole aucun copyright.",
-"ignorewarning" => "Ignorer l'avertissement et copier le fichier quand même.",
+"ignorewarning" => "Ignorer l'avertissement et copier le fichier quand mÃªme.",
 "minlength"	=> "Les noms des images doivent comporter au moins trois lettres.",
-"badfilename" => "L'image a été renommée \"$1\".",
-"badfiletype" => "\".$1\" n'est pas un format recommandé pour les fichiers images.",
-"largefile"  => "La taille maximale conseillée pour les images est de 100Ko.",
-"successfulupload" => "Copie réussie",
-"fileuploaded" => "Le fichier \"$1\" a été copié sur le serveur.
-Suivez ce lien: ($2) pour accéder à la page de description, et donner des informations sur le fichier, par exemple son origine, sa date de création, son auteur, ou tout autre renseignement en votre possession.",
+"badfilename" => "L'image a Ã©tÃ© renommÃ©e \"$1\".",
+"badfiletype" => "\".$1\" n'est pas un format recommandÃ© pour les fichiers images.",
+"largefile"  => "La taille maximale conseillÃ©e pour les images est de 100Ko.",
+"successfulupload" => "Copie rÃ©ussie",
+"fileuploaded" => "Le fichier \"$1\" a Ã©tÃ© copiÃ© sur le serveur.
+Suivez ce lien: ($2) pour accÃ©der Ã  la page de description, et donner des informations sur le fichier, par exemple son origine, sa date de crÃ©ation, son auteur, ou tout autre renseignement en votre possession.",
 "uploadwarning" => "Attention !",
 "savefile"  => "Sauvegarder le fichier",
-"uploadedimage" => " \"$1\" copié sur le serveur",
+"uploadedimage" => " \"$1\" copiÃ© sur le serveur",
 
 # Image list
 #
 "imagelist"  => "Liste des images",
-"imagelisttext" => "Voici une liste de $1 images classées $2.",
-"getimagelist" => "Récupération de la liste des images",
+"imagelisttext" => "Voici une liste de $1 images classÃ©es $2.",
+"getimagelist" => "RÃ©cupÃ©ration de la liste des images",
 "ilshowmatch" => "Afficher toutes les images dont le nom contient ",
 "ilsubmit"  => "Chercher",
-"showlast"  => "Afficher les $1 dernières images classées $2.",
+"showlast"  => "Afficher les $1 derniÃ¨res images classÃ©es $2.",
 "all"   => "toutes",
 "byname"  => "par nom",
 "bydate"  => "par date",
 "bysize"  => "par taille",
 "imgdelete"  => "suppr",
 "imgdesc"  => "descr",
-"imglegend"  => "Légende: (descr) = afficher/modifier la description de l'image.",
+"imglegend"  => "LÃ©gende: (descr) = afficher/modifier la description de l'image.",
 "imghistory" => "Historique de l'image",
-"revertimg"  => "rétab",
+"revertimg"  => "rÃ©tab",
 "deleteimg"  => "suppr",
-"imghistlegend" => "Légende: (actu) = ceci est l'image actuelle, (suppr) = supprimer
-cette ancienne version, (rétab) = rétablir cette ancienne version.
-<br><i>Cliquez sur la date pour voir l'image copiée à cette date</i>.",
+"imghistlegend" => "LÃ©gende: (actu) = ceci est l'image actuelle, (suppr) = supprimer
+cette ancienne version, (rÃ©tab) = rÃ©tablir cette ancienne version.
+<br><i>Cliquez sur la date pour voir l'image copiÃ©e Ã  cette date</i>.",
 "imagelinks" => "Liens vers l'image",
 "linkstoimage" => "Les pages ci-dessous comportent un lien vers cette image:",
 "nolinkstoimage" => "Aucune page ne comporte de lien vers cette image.",
@@ -612,40 +613,40 @@ cette ancienne version, (rétab) = rétablir cette ancienne version.
 "statistics" => "Statistiques",
 "sitestats"  => "Statistiques du site",
 "userstats"  => "Statistiques utilisateur",
-"sitestatstext" => "La base de données contient actuellement <b>$1</b> pages.
+"sitestatstext" => "La base de donnÃ©es contient actuellement <b>$1</b> pages.
 
-Ce chiffre inclut les pages \"discussion\", les pages relatives à Wikipédia, les pages minimales (\"bouchons\"),  les pages de redirection, ainsi que d'autres pages qui ne peuvent sans doute pas être considérées comme des articles.
-Si l'on exclut ces pages, il reste <b>$2</b> pages qui sont probablement de véritables articles.<p>
-<b>$3</b> pages ont été consultées et <b>$4</b> pages modifiées
+Ce chiffre inclut les pages \"discussion\", les pages relatives Ã  WikipÃ©dia, les pages minimales (\"bouchons\"),  les pages de redirection, ainsi que d'autres pages qui ne peuvent sans doute pas Ãªtre considÃ©rÃ©es comme des articles.
+Si l'on exclut ces pages, il reste <b>$2</b> pages qui sont probablement de vÃ©ritables articles.<p>
+<b>$3</b> pages ont Ã©tÃ© consultÃ©es et <b>$4</b> pages modifiÃ©es
 
-depuis la mise à jour du logiciel (31 octobre 2002).
-Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b> consultations pour une modification.",
-"userstatstext" => "Il y a <b>$1</b> utilisateurs enregistrés.
+depuis la mise Ã  jour du logiciel (31 octobre 2002).
+Cela reprÃ©sente une moyenne de <b>$5</b> modifications par page et de <b>$6</b> consultations pour une modification.",
+"userstatstext" => "Il y a <b>$1</b> utilisateurs enregistrÃ©s.
 Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 
 
 # Maintenance Page
 #
 "maintenance"		=> "Page de maintenance",
-"maintnancepagetext"	=> "Cette page inclut plusieurs utilitaires pour la maintenance quotidienne. Certains de ces outils ont tendance à charger la base de données; ne rechargez pas la page a chaque modification.",
-"maintenancebacklink"	=> "Retour à la page de maintenance",
+"maintnancepagetext"	=> "Cette page inclut plusieurs utilitaires pour la maintenance quotidienne. Certains de ces outils ont tendance Ã  charger la base de donnÃ©es; ne rechargez pas la page a chaque modification.",
+"maintenancebacklink"	=> "Retour Ã  la page de maintenance",
 "disambiguations"	=> "Pages d'homonymie",
-"disambiguationspage"	=> "Wikipédia:Liens_aux_pages_d'homonymie",
-"disambiguationstext"	=> "Les articles suivants sont liés à une <i>page d'homonymie</i>. Or, ils devraient être liés au sujet.<br>Une page est considérée comme page d'homonymie si elle est liée à partir de $1.<br>Les liens à partir d'autres <i>espaces</i> ne sont pas pris en compte.",
+"disambiguationspage"	=> "WikipÃ©dia:Liens_aux_pages_d'homonymie",
+"disambiguationstext"	=> "Les articles suivants sont liÃ©s Ã  une <i>page d'homonymie</i>. Or, ils devraient Ãªtre liÃ©s au sujet.<br>Une page est considÃ©rÃ©e comme page d'homonymie si elle est liÃ©e Ã  partir de $1.<br>Les liens Ã  partir d'autres <i>espaces</i> ne sont pas pris en compte.",
 "doubleredirects"	=> "Double redirection",
-"doubleredirectstext"	=> "<b>Attention:</b> cette liste peut contenir des \"faux positifs\". Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br>Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la \"vraie\" destination. Le premier #REDIRECT devrait lier vers cette destination.",
-"brokenredirects"	=> "Redirections cassées", 
-"brokenredirectstext"	=> "Ces redirections mènent a une page qui n'existe pas.",
+"doubleredirectstext"	=> "<b>Attention:</b> cette liste peut contenir des \"faux positifs\". Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br>Chaque ligne contient les liens Ã  la 1re et 2e page de redirection, ainsi que la premiÃ¨re ligne de cette derniÃ¨re, qui donne normalement la \"vraie\" destination. Le premier #REDIRECT devrait lier vers cette destination.",
+"brokenredirects"	=> "Redirections cassÃ©es", 
+"brokenredirectstext"	=> "Ces redirections mÃ¨nent a une page qui n'existe pas.",
 "selflinks"		=> "Page avec un lien circulaire",
-"selflinkstext"		=> "Les pages suivantes contiennent un lien vers elles-mêmes, ce qui n'est pas permis.",
+"selflinkstext"		=> "Les pages suivantes contiennent un lien vers elles-mÃªmes, ce qui n'est pas permis.",
 "mispeelings"           => "Pages avec fautes d'orthographe",
-"mispeelingstext"               => "Les pages suivantes contiennent une faute d'orthographe courante (la liste de celles-ci est sur $1). L'orthographe correcte est peut-être (ceci).",
+"mispeelingstext"               => "Les pages suivantes contiennent une faute d'orthographe courante (la liste de celles-ci est sur $1). L'orthographe correcte est peut-Ãªtre (ceci).",
 "mispeelingspage"       => "Liste de fautes d'orthographe courantes",
 
-# les 3 messages suivants ne sont plus utilisés (plus de page Special:Intl)
+# les 3 messages suivants ne sont plus utilisÃ©s (plus de page Special:Intl)
 "missinglanguagelinks"  => "Liens inter-langues manquants",
-"missinglanguagelinksbutton"    => "Je n'ai pas trouvé de lien/langue pour cette page",
-"missinglanguagelinkstext"      => "Ces articles ne lient pas à leur 'contrepartie' in $1. Les redirections et les liens ne sont pas affichés.",
+"missinglanguagelinksbutton"    => "Je n'ai pas trouvÃ© de lien/langue pour cette page",
+"missinglanguagelinkstext"      => "Ces articles ne lient pas Ã  leur 'contrepartie' in $1. Les redirections et les liens ne sont pas affichÃ©s.",
 
 
 # Miscellaneous special pages
@@ -653,87 +654,87 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "orphans"       => "Pages orphelines",
 "lonelypages"   => "Pages orphelines",
 "unusedimages"  => "Images orphelines",
-"popularpages"  => "Pages les plus consultées",
+"popularpages"  => "Pages les plus consultÃ©es",
 "nviews"        => "$1 consultations",
-"wantedpages"   => "Pages les plus demandées",
-"nlinks"        => "$1 références",
+"wantedpages"   => "Pages les plus demandÃ©es",
+"nlinks"        => "$1 rÃ©fÃ©rences",
 "allpages"      => "Toutes les pages",
 "randompage"    => "Une page au hasard",
 "shortpages"    => "Articles courts",
 "longpages"     => "Articles longs",
 "listusers"     => "Liste des participants",
-"specialpages"  => "Pages spéciales",
-"spheading"     => "Pages spéciales",
-"sysopspheading" => "Pages spéciales à l'usage des administrateurs",
-"developerspheading" => "Pages spéciales à l'usage des développeurs",
-"protectpage"   => "Protéger la page",
+"specialpages"  => "Pages spÃ©ciales",
+"spheading"     => "Pages spÃ©ciales",
+"sysopspheading" => "Pages spÃ©ciales Ã  l'usage des administrateurs",
+"developerspheading" => "Pages spÃ©ciales Ã  l'usage des dÃ©veloppeurs",
+"protectpage"   => "ProtÃ©ger la page",
 "recentchangeslinked" => "Suivi des liens",
-"rclsub"        => "(des pages liées à \"$1\")",
-"debug"         => "Déboguer",
+"rclsub"        => "(des pages liÃ©es Ã  \"$1\")",
+"debug"         => "DÃ©boguer",
 "newpages"      => "Nouvelles pages",
 "ancientpages"	=> "Articles les plus anciens",
-"movethispage"  => "Déplacer la page",
-"unusedimagestext" => "<p>N'oubliez pas que d'autres sites, comme certains Wikipédias non francophones, peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu'elle est en réalité utilisée.",
-"booksources"   => "Ouvrages de référence",
-"booksourcetext" => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. Wikipédia n'étant liée à aucune de ces sociétés, elle n'a aucunement l'intention d'en faire la promotion.",
-"alphaindexline" => "$1 à $2",
+"movethispage"  => "DÃ©placer la page",
+"unusedimagestext" => "<p>N'oubliez pas que d'autres sites, comme certains WikipÃ©dias non francophones, peuvent contenir un lien direct vers cette image, et que celle-ci peut Ãªtre placÃ©e dans cette liste alors qu'elle est en rÃ©alitÃ© utilisÃ©e.",
+"booksources"   => "Ouvrages de rÃ©fÃ©rence",
+"booksourcetext" => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-Ãªtre des informations sur les ouvrages que vous cherchez. WikipÃ©dia n'Ã©tant liÃ©e Ã  aucune de ces sociÃ©tÃ©s, elle n'a aucunement l'intention d'en faire la promotion.",
+"alphaindexline" => "$1 Ã  $2",
 
 # Email this user
 #
 "mailnologin" => "Pas d'adresse",
-"mailnologintext" => "Vous devez être <a href=\"" .
-		wfLocalUrl( "Special:Userlogin" ) . "\">connecté</a>
-et avoir indiqué une adresse électronique valide dans vos <a href=\"" .
-		wfLocalUrl( "Special:Preferences" ) . "\">préférences</a>
-pour pouvoir envoyer un message à un autre utilisateur.",
-"emailuser"  => "Envoyer un message à cet utilisateur",
+"mailnologintext" => "Vous devez Ãªtre <a href=\"" .
+		wfLocalUrl( "Special:Userlogin" ) . "\">connectÃ©</a>
+et avoir indiquÃ© une adresse Ã©lectronique valide dans vos <a href=\"" .
+		wfLocalUrl( "Special:Preferences" ) . "\">prÃ©fÃ©rences</a>
+pour pouvoir envoyer un message Ã  un autre utilisateur.",
+"emailuser"  => "Envoyer un message Ã  cet utilisateur",
 "emailpage"  => "Email user",
-"emailpagetext" => "Si cet utilisateur a indiqué une adresse électronique valide dans ses préférences, le formulaire ci-dessous lui enverra un message.
-L'adresse électronique que vous avez indiquée dans vos préférences apparaîtra dans le champ \"Expéditeur\" de votre message, afin que le destinataire puisse vous répondre.",
-"noemailtitle" => "Pas d'adresse électronique",
-"noemailtext" => "Cet utilisateur n'a pas spécifié d'adresse électronique valide ou a choisi de ne pas recevoir de courrier électronique des autres utilisateurs.",
+"emailpagetext" => "Si cet utilisateur a indiquÃ© une adresse Ã©lectronique valide dans ses prÃ©fÃ©rences, le formulaire ci-dessous lui enverra un message.
+L'adresse Ã©lectronique que vous avez indiquÃ©e dans vos prÃ©fÃ©rences apparaÃ®tra dans le champ \"ExpÃ©diteur\" de votre message, afin que le destinataire puisse vous rÃ©pondre.",
+"noemailtitle" => "Pas d'adresse Ã©lectronique",
+"noemailtext" => "Cet utilisateur n'a pas spÃ©cifiÃ© d'adresse Ã©lectronique valide ou a choisi de ne pas recevoir de courrier Ã©lectronique des autres utilisateurs.",
 
-"emailfrom"  => "Expéditeur",
+"emailfrom"  => "ExpÃ©diteur",
 "emailto"  => "Destinataire",
 "emailsubject" => "Objet",
 "emailmessage" => "Message",
 "emailsend"  => "Envoyer",
-"emailsent"  => "Message envoyé",
-"emailsenttext" => "Votre message a été envoyé.",
+"emailsent"  => "Message envoyÃ©",
+"emailsenttext" => "Votre message a Ã©tÃ© envoyÃ©.",
 
 # Watchlist
 #
 "watchlist"	=> "Liste de suivi",
 "watchlistsub"	=> "(pour l'utilisateur \"$1\")",
 "nowatchlist"	=> "Votre liste de suivi ne contient aucun article.",
-"watchnologin"	=> "Non connecté",
-"watchnologintext" => "Vous devez être <a href=\"" .
-		wfLocalUrl( "Special:Userlogin" ) . "\">connecté</a>
+"watchnologin"	=> "Non connectÃ©",
+"watchnologintext" => "Vous devez Ãªtre <a href=\"" .
+		wfLocalUrl( "Special:Userlogin" ) . "\">connectÃ©</a>
 pour modifier votre liste.",
-"addedwatch"	=> "Ajouté à la liste",
-"addedwatchtext" => "La page \"$1\" a été ajoutée à votre <a href=\"" .
+"addedwatch"	=> "AjoutÃ© Ã  la liste",
+"addedwatchtext" => "La page \"$1\" a Ã©tÃ© ajoutÃ©e Ã  votre <a href=\"" .
 		wfLocalUrl( "Special:Watchlist" ) . "\">liste de suivi</a>.
-Les prochaines modifications de cette page et de la page discussion associée seront répertoriées ici, et la page apparaîtra <b>en gras</b> dans la <a href=\"" .
-		wfLocalUrl( "Special:Recentchanges" ) . "\">liste des modifications récentes</a> pour être repérée plus facilement.</p>
+Les prochaines modifications de cette page et de la page discussion associÃ©e seront rÃ©pertoriÃ©es ici, et la page apparaÃ®tra <b>en gras</b> dans la <a href=\"" .
+		wfLocalUrl( "Special:Recentchanges" ) . "\">liste des modifications rÃ©centes</a> pour Ãªtre repÃ©rÃ©e plus facilement.</p>
 
 <p>Pour supprimer cette page de votre liste de suivi, cliquez sur \"Ne plus suivre\" dans le cadre de navigation.",
-"removedwatch"	=> "Supprimée de la liste de suivi",
-"removedwatchtext" => "La page \"$1\" a été supprimée de votre liste de suivi.",
+"removedwatch"	=> "SupprimÃ©e de la liste de suivi",
+"removedwatchtext" => "La page \"$1\" a Ã©tÃ© supprimÃ©e de votre liste de suivi.",
 "watchthispage"	=> "Suivre cette page",
 "unwatchthispage" => "Ne plus suivre",
 "notanarticle"	=> "Aucun article",
-"watchnochange" => "Aucune des pages que vous suivez n'a été modifiée pendant la période affichée",
-// "watchdetails" => "($1 pages suivies, sans compter les pages de discussion; $2 pages en total modifiées depuis la limite; $3...  <a href='$4'>afficher et modifier la liste complète</a>.)", // Looxix 
-"watchdetails" => "Vous suivez $1 pages, sans compter les pages de discussion.  <a href='$4'>Afficher et modifier la liste complète</a>.", // Looxix 
-"watchmethod-recent" => "vérification des modifications récentes des pages suivies", // Looxix 
-"watchmethod-list" => "vérification des pages suivies pour des modifications récentes", // Looxix 
-"removechecked" => "Retirer de la liste de suivi les articles sélectionnés",
+"watchnochange" => "Aucune des pages que vous suivez n'a Ã©tÃ© modifiÃ©e pendant la pÃ©riode affichÃ©e",
+// "watchdetails" => "($1 pages suivies, sans compter les pages de discussion; $2 pages en total modifiÃ©es depuis la limite; $3...  <a href='$4'>afficher et modifier la liste complÃ¨te</a>.)", // Looxix 
+"watchdetails" => "Vous suivez $1 pages, sans compter les pages de discussion.  <a href='$4'>Afficher et modifier la liste complÃ¨te</a>.", // Looxix 
+"watchmethod-recent" => "vÃ©rification des modifications rÃ©centes des pages suivies", // Looxix 
+"watchmethod-list" => "vÃ©rification des pages suivies pour des modifications rÃ©centes", // Looxix 
+"removechecked" => "Retirer de la liste de suivi les articles sÃ©lectionnÃ©s",
 "watchlistcontains" => "Votre liste de suivi contient $1 pages",
-"watcheditlist" => "Ceci est votre liste de suivi par ordre alphabétique. Sélectionnez les pages que vous souhaitez retirer de la liste et cliquez le bouton \"retirer de la liste de suivi\" en bas de l'écran.",
-"removingchecked" => "Les articles sélectionnés sont retirés de votre liste de suivi...",
+"watcheditlist" => "Ceci est votre liste de suivi par ordre alphabÃ©tique. SÃ©lectionnez les pages que vous souhaitez retirer de la liste et cliquez le bouton \"retirer de la liste de suivi\" en bas de l'Ã©cran.",
+"removingchecked" => "Les articles sÃ©lectionnÃ©s sont retirÃ©s de votre liste de suivi...",
 "couldntremove" => "Impossible de retirer l'article '$1'...",
-"iteminvalidname" => "Problème avec l'article '$1': le nom est invalide...",
-"wlnote" => "Ci-dessous se trouve les $1 dernières modifications depuis les <b>$2</b> dernières heures.", // Looxix 
+"iteminvalidname" => "ProblÃ¨me avec l'article '$1': le nom est invalide...",
+"wlnote" => "Ci-dessous se trouve les $1 derniÃ¨res modifications depuis les <b>$2</b> derniÃ¨res heures.", // Looxix 
 
 
 # Delete/protect/revert
@@ -741,75 +742,75 @@ Les prochaines modifications de cette page et de la page discussion associée ser
 "deletepage"	=> "Supprimer une page",
 "confirm"	=> "Confirmer",
 "excontent"	=> "contenant",
-"exbeforeblank" => "le contenu avant effacement était :",
+"exbeforeblank" => "le contenu avant effacement Ã©tait :",
 "exblank"	=> "page vide",
 "confirmdelete" => "Confirmer la suppression",
 "deletesub"	=> "(Suppression de \"$1\")",
-"historywarning" => "Attention: La page que vous êtes sur le point de supprimer à un historique: ",
-"confirmdeletetext" => "Vous êtes sur le point de supprimer définitivement de la base de données une page
-ou une image, ainsi que toutes ses versions antérieures.
-Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[Wikipédia:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].",
+"historywarning" => "Attention: La page que vous Ãªtes sur le point de supprimer Ã  un historique: ",
+"confirmdeletetext" => "Vous Ãªtes sur le point de supprimer dÃ©finitivement de la base de donnÃ©es une page
+ou une image, ainsi que toutes ses versions antÃ©rieures.
+Veuillez confirmer que c'est bien lÃ  ce que vous voulez faire, que vous en comprenez les consÃ©quences et que vous faites cela en accord avec les [[WikipÃ©dia:Recommandations Et RÃ¨gles Ã   Suivre|recommandations et rÃ¨gles Ã  suivre]].",
 "confirmcheck"	=> "Oui, je confirme la suppression.",
-"actioncomplete" => "Suppression effectuée",
-"deletedtext"	=> "\"$1\" a été supprimé.
-Voir $2 pour une liste des suppressions récentes.",
+"actioncomplete" => "Suppression effectuÃ©e",
+"deletedtext"	=> "\"$1\" a Ã©tÃ© supprimÃ©.
+Voir $2 pour une liste des suppressions rÃ©centes.",
 "deletedarticle" => "effacement de \"$1\"",
 "dellogpage"	=> "Historique des effacements",
-"dellogpagetext" => "Voici la liste des suppressions récentes.
-L'heure indiquée est celle du serveur (UTC).
+"dellogpagetext" => "Voici la liste des suppressions rÃ©centes.
+L'heure indiquÃ©e est celle du serveur (UTC).
 <ul>
 </ul>
 ",
 "deletionlog"	=> "historique des effacements",
-"reverted"	=> "Rétablissement de la version précédente",
+"reverted"	=> "RÃ©tablissement de la version prÃ©cÃ©dente",
 "deletecomment" => "Motif de la suppression",
-"imagereverted" => "La version précédente a été rétablie.",
-"rollback"	=> "révoquer modifications",
-"rollbacklink"	=> "révoquer",
-"rollbackfailed" => "La révocation a échoué",
-"cantrollback"	=> "Impossible de révoquer: dernier auteur est le seul à avoir modifié cet article",
-"alreadyrolled"	=> "Impossible de révoquer la dernière modification de [[$1]]
-par  [[User:$2|$2]] ([[User talk:$2|Talk]]); quelqu'un d'autre à déjà modifer ou révoquer l'article. 
+"imagereverted" => "La version prÃ©cÃ©dente a Ã©tÃ© rÃ©tablie.",
+"rollback"	=> "rÃ©voquer modifications",
+"rollbacklink"	=> "rÃ©voquer",
+"rollbackfailed" => "La rÃ©vocation a Ã©chouÃ©",
+"cantrollback"	=> "Impossible de rÃ©voquer: dernier auteur est le seul Ã  avoir modifiÃ© cet article",
+"alreadyrolled"	=> "Impossible de rÃ©voquer la derniÃ¨re modification de [[$1]]
+par  [[User:$2|$2]] ([[User talk:$2|Talk]]); quelqu'un d'autre Ã  dÃ©jÃ  modifer ou rÃ©voquer l'article. 
 
-La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //Looxix 
+La derniÃ¨re modificaion Ã©tait de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //Looxix 
 #   only shown if there is an edit comment
-"editcomment" => "Le résumé de la modification était: \"<i>$1</i>\".", //Looxix 
-"revertpage"	=> "restitution de la dernière modification de $1",
+"editcomment" => "Le rÃ©sumÃ© de la modification Ã©tait: \"<i>$1</i>\".", //Looxix 
+"revertpage"	=> "restitution de la derniÃ¨re modification de $1",
 "protectlogpage" => "Log_de_protection",
-"protectlogtext" => "Voir les [[Wikipédia:Page protégée|directives concernant les pages protégées]].",
-"protectedarticle" => "a protégée [[$1]]",
-"unprotectedarticle" => "a déprotégé [[$1]]",
+"protectlogtext" => "Voir les [[WikipÃ©dia:Page protÃ©gÃ©e|directives concernant les pages protÃ©gÃ©es]].",
+"protectedarticle" => "a protÃ©gÃ©e [[$1]]",
+"unprotectedarticle" => "a dÃ©protÃ©gÃ© [[$1]]",
 
 # Undelete
 #
-"undelete"	=> "Restaurer la page effacée",
-"undeletepage"	=> "Voir et restaurer la page effacée",
-"undeletepagetext" => "Ces pages ont été effacées et se trouvent dans la corbeille, elles sont toujours dans la base de donnée et peuvent être restaurées.
-La corbeille peut être effacée périodiquement.",
+"undelete"	=> "Restaurer la page effacÃ©e",
+"undeletepage"	=> "Voir et restaurer la page effacÃ©e",
+"undeletepagetext" => "Ces pages ont Ã©tÃ© effacÃ©es et se trouvent dans la corbeille, elles sont toujours dans la base de donnÃ©e et peuvent Ãªtre restaurÃ©es.
+La corbeille peut Ãªtre effacÃ©e pÃ©riodiquement.",
 
-"undeletearticle" => "Restaurer les articles effacés",
-"undeleterevisions" => "$1 révisions archivées", // Looxix "$1 revisions archived",
-"undeletehistory" => "Si vous restaurez la page, toutes les révisions seront restaurées dans l'historique.
-Si une nouvelle page avec le même nom a été crée depuis la suppression,
-les révisions restaurées apparaîtront dans l'historique antérieur et la version courante ne sera pas automatiquement remplacée.",
-"undeleterevision" => "Version effacée ($1)", // Looxix "Deleted revision as of $1",	
+"undeletearticle" => "Restaurer les articles effacÃ©s",
+"undeleterevisions" => "$1 rÃ©visions archivÃ©es", // Looxix "$1 revisions archived",
+"undeletehistory" => "Si vous restaurez la page, toutes les rÃ©visions seront restaurÃ©es dans l'historique.
+Si une nouvelle page avec le mÃªme nom a Ã©tÃ© crÃ©e depuis la suppression,
+les rÃ©visions restaurÃ©es apparaÃ®tront dans l'historique antÃ©rieur et la version courante ne sera pas automatiquement remplacÃ©e.",
+"undeleterevision" => "Version effacÃ©e ($1)", // Looxix "Deleted revision as of $1",	
 "undeletebtn"	=> "Restaurer!",
-"undeletedarticle" => "restauré \"$1\"",	// FvdP "restored \"$1\""
-"undeletedtext"   => "L'article [[$1]] a été restauré avec succès.
-Voir [[Wikipedia:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.",
+"undeletedarticle" => "restaurÃ© \"$1\"",	// FvdP "restored \"$1\""
+"undeletedtext"   => "L'article [[$1]] a Ã©tÃ© restaurÃ© avec succÃ¨s.
+Voir [[Wikipedia:Trace des effacements]] pour la liste des suppressions et des restaurations rÃ©centes.",
 # Contributions
 #
 "contributions"	=> "Contributions",
 "mycontris"	=> "Mes contributions",
 "contribsub"	=> "Pour $1",
-"nocontribs"	=> "Aucune modification correspondant à ces critères n'a été trouvée.",
-"ucnote"	=> "Voici les <b>$1</b> dernières modifications effectuées par cet utilisateur au cours des <b>$2</b> derniers jours.",
-"uclinks"	=> "Afficher les $1 dernières modifications; afficher les $2 derniers jours.",
-"uctop"		=> " (dernière)",	// FvdP " (top)"
+"nocontribs"	=> "Aucune modification correspondant Ã  ces critÃ¨res n'a Ã©tÃ© trouvÃ©e.",
+"ucnote"	=> "Voici les <b>$1</b> derniÃ¨res modifications effectuÃ©es par cet utilisateur au cours des <b>$2</b> derniers jours.",
+"uclinks"	=> "Afficher les $1 derniÃ¨res modifications; afficher les $2 derniers jours.",
+"uctop"		=> " (derniÃ¨re)",	// FvdP " (top)"
 
 # What links here
 #
-"whatlinkshere" => "Pages liées",
+"whatlinkshere" => "Pages liÃ©es",
 "notargettitle" => "Pas de cible",
 "notargettext"	=> "Indiquez une page cible ou un utilisateur cible.",
 "linklistsub"	=> "(Liste de liens)",
@@ -820,108 +821,108 @@ Voir [[Wikipedia:Trace des effacements]] pour la liste des suppressions et des r
 # Block/unblock IP
 #
 "blockip"	=> "Bloquer une adresse IP",
-"blockiptext"	=> "Utilisez le formulaire ci-dessous pour bloquer l'accès en écriture à partir d'une adresse IP donnée.
-Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[Wikipédia:Recommandations et règles à suivre|recommandations et règles à suivre]].
-Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont été vandalisées).",
+"blockiptext"	=> "Utilisez le formulaire ci-dessous pour bloquer l'accÃ¨s en Ã©criture Ã  partir d'une adresse IP donnÃ©e.
+Une telle mesure ne doit Ãªtre prise que pour empÃªcher le vandalisme et en accord avec [[WikipÃ©dia:Recommandations et rÃ¨gles Ã  suivre|recommandations et rÃ¨gles Ã  suivre]].
+Donnez ci-dessous une raison prÃ©cise (par exemple en indiquant les pages qui ont Ã©tÃ© vandalisÃ©es).",
 "ipaddress"	=> "Adresse IP",
 "ipbreason"	=> "Motif",
 "ipbsubmit"	=> "Bloquer cette adresse",
 "badipaddress"	=> "L'adresse IP n'est pas correcte.",
 "noblockreason" => "Vous devez indiquer le motif du blocage.",
-"blockipsuccesssub" => "Blocage réussi",
-"blockipsuccesstext" => "L'adresse IP \"$1\" a été bloquée.
-<br>Vous pouvez consulter sur cette [[Special:Ipblocklist|page]] la liste des adresses IP bloquées.",
-"unblockip"	=> "Débloquer une adresse IP",
-"unblockiptext" => "Utilisez le formulaire ci-dessous pour rétablir l'accès en écriture
-à partir d'une adresse IP précédemment bloquée.",
-"ipusubmit"	=> "Débloquer cette adresse",
-"ipusuccess"	=> "Adresse IP \"$1\" débloquée",
-"ipblocklist"	=> "Liste des adresses IP bloquées",
-"blocklistline" => "$1, $2 a bloqué $3",
+"blockipsuccesssub" => "Blocage rÃ©ussi",
+"blockipsuccesstext" => "L'adresse IP \"$1\" a Ã©tÃ© bloquÃ©e.
+<br>Vous pouvez consulter sur cette [[Special:Ipblocklist|page]] la liste des adresses IP bloquÃ©es.",
+"unblockip"	=> "DÃ©bloquer une adresse IP",
+"unblockiptext" => "Utilisez le formulaire ci-dessous pour rÃ©tablir l'accÃ¨s en Ã©criture
+Ã  partir d'une adresse IP prÃ©cÃ©demment bloquÃ©e.",
+"ipusubmit"	=> "DÃ©bloquer cette adresse",
+"ipusuccess"	=> "Adresse IP \"$1\" dÃ©bloquÃ©e",
+"ipblocklist"	=> "Liste des adresses IP bloquÃ©es",
+"blocklistline" => "$1, $2 a bloquÃ© $3",
 "blocklink"	=> "bloquer",
-"unblocklink"	=> "débloquer",
+"unblocklink"	=> "dÃ©bloquer",
 "contribslink"	=> "contribs",
-"autoblocker"	=> "Autobloqué parce que vous partagez une adresse IP avec \"$1\". Raison : \"$2\".",
+"autoblocker"	=> "AutobloquÃ© parce que vous partagez une adresse IP avec \"$1\". Raison : \"$2\".",
 "blocklogpage"	=> "Log de blocage",
 "blocklogentry"	=> 'blocage de "$1"',
-"blocklogtext"	=> "Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.",
-"unblocklogentry"	=> 'déblocage de "$1"',
+"blocklogtext"	=> "Ceci est la trace des blocages et dÃ©blocages des utilisateurs. Les adresses IP automatiquement bloquÃ©es ne sont pas listÃ©es. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloquÃ©s]] pour voir qui est actuellement effectivement bloquÃ©.",
+"unblocklogentry"	=> 'dÃ©blocage de "$1"',
 
 
 # Developer tools
 #
 "lockdb"  => "Verrouiller la base",
-"unlockdb"  => "Déverrouiller la base",
-"lockdbtext" => "Le verrouillage de la base de données empêchera tous les utilisateurs de modifier des pages, de sauvegarder leurs préférences, de modifier leur liste de suivi et d'effectuer toutes les autres opérations nécessitant des modifications dans la base de données.
-Veuillez confirmer que c'est bien là ce que vous voulez faire et que vous débloquerez la base dès que votre opération de maintenance sera terminée.",
-"unlockdbtext" => "Le déverrouillage de la base de données permettra à nouveau à tous les utilisateurs de modifier des pages, de mettre à jour leurs préférences et leur liste de suivi, ainsi que d'effectuer les autres opérations nécessitant des modifications dans la base de données.
-Veuillez confirmer que c'est bien là ce que vous voulez faire.",
-"lockconfirm" => "Oui, je confirme que je souhaite verrouiller la base de données.",
-"unlockconfirm" => "Oui, je confirme que je souhaite déverrouiller la base de données.",
+"unlockdb"  => "DÃ©verrouiller la base",
+"lockdbtext" => "Le verrouillage de la base de donnÃ©es empÃªchera tous les utilisateurs de modifier des pages, de sauvegarder leurs prÃ©fÃ©rences, de modifier leur liste de suivi et d'effectuer toutes les autres opÃ©rations nÃ©cessitant des modifications dans la base de donnÃ©es.
+Veuillez confirmer que c'est bien lÃ  ce que vous voulez faire et que vous dÃ©bloquerez la base dÃ¨s que votre opÃ©ration de maintenance sera terminÃ©e.",
+"unlockdbtext" => "Le dÃ©verrouillage de la base de donnÃ©es permettra Ã  nouveau Ã  tous les utilisateurs de modifier des pages, de mettre Ã  jour leurs prÃ©fÃ©rences et leur liste de suivi, ainsi que d'effectuer les autres opÃ©rations nÃ©cessitant des modifications dans la base de donnÃ©es.
+Veuillez confirmer que c'est bien lÃ  ce que vous voulez faire.",
+"lockconfirm" => "Oui, je confirme que je souhaite verrouiller la base de donnÃ©es.",
+"unlockconfirm" => "Oui, je confirme que je souhaite dÃ©verrouiller la base de donnÃ©es.",
 
 "lockbtn"  => "Verrouiller la base",
-"unlockbtn"  => "Déverrouiller la base",
-"locknoconfirm" => "Vous n'avez pas coché la case de confirmation.",
-"lockdbsuccesssub" => "Verrouillage de la base réussi.",
-"unlockdbsuccesssub" => "Base déverrouillée.",
-"lockdbsuccesstext" => "La base de données de Wikipédia est verrouillée.
+"unlockbtn"  => "DÃ©verrouiller la base",
+"locknoconfirm" => "Vous n'avez pas cochÃ© la case de confirmation.",
+"lockdbsuccesssub" => "Verrouillage de la base rÃ©ussi.",
+"unlockdbsuccesssub" => "Base dÃ©verrouillÃ©e.",
+"lockdbsuccesstext" => "La base de donnÃ©es de WikipÃ©dia est verrouillÃ©e.
 
-<br>N'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération de maintenance.",
-"unlockdbsuccesstext" => "La base de données de Wikipédia est déverrouillée.",
+<br>N'oubliez pas de la dÃ©verrouiller lorsque vous aurez terminÃ© votre opÃ©ration de maintenance.",
+"unlockdbsuccesstext" => "La base de donnÃ©es de WikipÃ©dia est dÃ©verrouillÃ©e.",
 
 # SQL query
 #
-"asksql"	=> "Requête SQL",
-"asksqltext"	=> "Utilisez le formulaire ci-dessous pour faire une requête directe sur la base de données de Wikipédia.
-Utilisez des guillemets simples ('comme ceci') pour délimiter les chaînes de caractères.
-Cette opération peut surcharger considérablement le serveur, faites en usage
-avec modération.",
-"sqlislogged"	=> "Veillez noter que toutes les requêtes sont loguées", // Looxix "Please note that all queries are logged.",	
-"sqlquery"	 => "Saisir la requête",
+"asksql"	=> "RequÃªte SQL",
+"asksqltext"	=> "Utilisez le formulaire ci-dessous pour faire une requÃªte directe sur la base de donnÃ©es de WikipÃ©dia.
+Utilisez des guillemets simples ('comme ceci') pour dÃ©limiter les chaÃ®nes de caractÃ¨res.
+Cette opÃ©ration peut surcharger considÃ©rablement le serveur, faites en usage
+avec modÃ©ration.",
+"sqlislogged"	=> "Veillez noter que toutes les requÃªtes sont loguÃ©es", // Looxix "Please note that all queries are logged.",	
+"sqlquery"	 => "Saisir la requÃªte",
 
-"querybtn"	=> "Envoyer la requête",
-"selectonly"	=> "Les requêtes autres que \"SELECT\" sont réservées aux développeurs de
-Wikipédia.",
-"querysuccessful" => "Requête réussie",
+"querybtn"	=> "Envoyer la requÃªte",
+"selectonly"	=> "Les requÃªtes autres que \"SELECT\" sont rÃ©servÃ©es aux dÃ©veloppeurs de
+WikipÃ©dia.",
+"querysuccessful" => "RequÃªte rÃ©ussie",
 
 # Move page
 #
-"movepage"  => "Déplacer un article",
-"movepagetext" => "Utilisez le formulaire ci-dessous pour renommer un article, en déplaçant toutes ses versions antérieures vers le nouveau nom.
-Le titre précédent deviendra une page de redirection vers le nouveau titre.
-Les liens vers l'ancien titre ne seront pas modifiés et la page discussion, si elle existe, ne sera pas déplacée.<br>
+"movepage"  => "DÃ©placer un article",
+"movepagetext" => "Utilisez le formulaire ci-dessous pour renommer un article, en dÃ©plaÃ§ant toutes ses versions antÃ©rieures vers le nouveau nom.
+Le titre prÃ©cÃ©dent deviendra une page de redirection vers le nouveau titre.
+Les liens vers l'ancien titre ne seront pas modifiÃ©s et la page discussion, si elle existe, ne sera pas dÃ©placÃ©e.<br>
 <b>ATTENTION!</b>
-Il peut s'agir d'un changement radical et inattendu pour un article souvent consulté;
-assurez-vous que vous en comprenez bien les conséquences avant de procéder.",
-"movepagetalktext" => "La page de discussion associé, si présente, sera automatiquement déplacée avec '''sauf si:'''
-*Vous déplacez une page vers un autre espace,
-*Une page de discussion existe déjà avec le nouveau nom, ou
-*Vous avez désélectionné le bouton ci-dessous.
+Il peut s'agir d'un changement radical et inattendu pour un article souvent consultÃ©;
+assurez-vous que vous en comprenez bien les consÃ©quences avant de procÃ©der.",
+"movepagetalktext" => "La page de discussion associÃ©, si prÃ©sente, sera automatiquement dÃ©placÃ©e avec '''sauf si:'''
+*Vous dÃ©placez une page vers un autre espace,
+*Une page de discussion existe dÃ©jÃ  avec le nouveau nom, ou
+*Vous avez dÃ©sÃ©lectionnÃ© le bouton ci-dessous.
 
-Dans ce cas, vous devrez déplacer ou fusionner la page manuellement si vous le désirez.",
+Dans ce cas, vous devrez dÃ©placer ou fusionner la page manuellement si vous le dÃ©sirez.",
 
-"movearticle"	=> "Déplacer l'article",
-"movenologin"	=> "Non connecté",
-"movenologintext" => "Pour pouvoir déplacer un article, vous devez être <a href=\"" .
-		wfLocalUrl( "Special:Userlogin" ) . "\">connecté</a>
-en tant qu'utilisateur enregistré.",
+"movearticle"	=> "DÃ©placer l'article",
+"movenologin"	=> "Non connectÃ©",
+"movenologintext" => "Pour pouvoir dÃ©placer un article, vous devez Ãªtre <a href=\"" .
+		wfLocalUrl( "Special:Userlogin" ) . "\">connectÃ©</a>
+en tant qu'utilisateur enregistrÃ©.",
 "newtitle"	=> "Nouveau titre",
-"movepagebtn"	=> "Déplacer l'article",
-"pagemovedsub" => "Déplacement réussi",
-"pagemovedtext" => "L'article \"[[$1]]\" a été déplacé vers \"[[$2]]\".",
-"articleexists" => "Il existe déjà un article portant ce titre, ou le titre que vous avez choisi n'est pas valide.
+"movepagebtn"	=> "DÃ©placer l'article",
+"pagemovedsub" => "DÃ©placement rÃ©ussi",
+"pagemovedtext" => "L'article \"[[$1]]\" a Ã©tÃ© dÃ©placÃ© vers \"[[$2]]\".",
+"articleexists" => "Il existe dÃ©jÃ  un article portant ce titre, ou le titre que vous avez choisi n'est pas valide.
 Veuillez en choisir un autre.",
-"talkexists"	=> "La page elle-même a été déplacée avec succès, mais
-la page de discussion n'a pas pu être déplacée car il en existait déjà une
+"talkexists"	=> "La page elle-mÃªme a Ã©tÃ© dÃ©placÃ©e avec succÃ¨s, mais
+la page de discussion n'a pas pu Ãªtre dÃ©placÃ©e car il en existait dÃ©jÃ  une
 sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 
-"movedto"  => "déplacé vers",
-"movetalk"  => "Déplacer aussi la page \"discussion\", s'il y a lieu.",
-"talkpagemoved" => "La page discussion correspondante a également été déplacée.",
-"talkpagenotmoved" => "La page discussion correspondante n'a <strong>pas</strong> été déplacée.",
+"movedto"  => "dÃ©placÃ© vers",
+"movetalk"  => "DÃ©placer aussi la page \"discussion\", s'il y a lieu.",
+"talkpagemoved" => "La page discussion correspondante a Ã©galement Ã©tÃ© dÃ©placÃ©e.",
+"talkpagenotmoved" => "La page discussion correspondante n'a <strong>pas</strong> Ã©tÃ© dÃ©placÃ©e.",
 
 "export"	=> "Exporter des pages",
-"exporttext"	=> "Vous pouvez exporter en XML le texte et l'historique d'une page ou d'un ensemble de pages; le résultat peut alores être importé dans un autre wiki fonctionnant avec le logiciel MediaWiki, transformé ou sauvegardé pour votre usage personnel.",
+"exporttext"	=> "Vous pouvez exporter en XML le texte et l'historique d'une page ou d'un ensemble de pages; le rÃ©sultat peut alores Ãªtre importÃ© dans un autre wiki fonctionnant avec le logiciel MediaWiki, transformÃ© ou sauvegardÃ© pour votre usage personnel.",
 "exportcuronly"	=> "Exporter uniquement la version courante sans l'historique",
 
 # Namespace 8 related
@@ -930,7 +931,7 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 "allmessagestext"	=> "Ceci est la liste de tous les messages disponibles dans l'espace MediaWiki"
 );
 
-class LanguageFr extends Language
+class LanguageFr extends LanguageUtf8
 {
 
 	function getDefaultUserOptions()
@@ -1039,7 +1040,7 @@ class LanguageFr extends Language
 
 	function timeanddate( $ts, $adj = false )
 	{
-		return $this->date( $ts, $adj ) . " à " . $this->time( $ts, $adj );
+		return $this->date( $ts, $adj ) . " Ã  " . $this->time( $ts, $adj );
 	}
 
 	function getValidSpecialPages()
@@ -1068,32 +1069,6 @@ class LanguageFr extends Language
 		if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
 		else return $m;
 
-	}
-
-	# returns additional Regex for the tokenizer.
-	function tokenizerRegex()
-	{
-		return "| [:»!?]|« |[0-9] [0-9]";
-	}
-
-	# Process the token generated from the tokenizer by the above regex. Return
-	# NULL if the token is unknown, and the text to be added to the output otherwise
-	function processToken( &$token , &$tokenStack)
-	{
-		if ( preg_match( "/ ([:»!?])/", $token["type"], $m ) )
-		{
-			$txt = "&nbsp;" . $m[1];
-		} elseif ( "« " == $token["type"] )
-		{
-			$txt = "«&nbsp;";
-		} elseif ( preg_match( "/([0-9]) ([0-9])/", $token["type"], $m ) )
-		{
-			$txt = $m[1] . "&nbsp;" . $m[2];
-		} else
-		{
-			$txt = NULL;
-		}
-		return $txt;
 	}
 }
 
