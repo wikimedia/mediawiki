@@ -163,7 +163,7 @@ class User {
 			$passwordCorrect = $wsUserPassword == $this->mPassword;
 		} else if ( isset( $HTTP_COOKIE_VARS["wcUserPassword"] ) ) {
 			$this->mCookiePassword = $HTTP_COOKIE_VARS["wcUserPassword"];
-			$wsUserPassword = $this->addSalt($this->mCookiePassword);
+			$wsUserPassword = User::addSalt($this->mCookiePassword);
 			$passwordCorrect = $wsUserPassword == $this->mPassword;
 		} else {
 			$this->mId = 0;
@@ -284,14 +284,14 @@ class User {
 
 	function encryptPassword( $p )
 	{
-		return $this->addSalt( md5( $p ) );
+		return User::addSalt( md5( $p ) );
 	}
 
 	function setPassword( $str )
 	{
 		$this->loadFromDatabase();
 		$this->setCookiePassword( $str );
-		$this->mPassword = $this->encryptPassword( $str );
+		$this->mPassword = User::encryptPassword( $str );
 		$this->mNewpassword = "";
 	}
 
@@ -304,7 +304,7 @@ class User {
 	function setNewpassword( $str )
 	{
 		$this->loadFromDatabase();
-		$this->mNewpassword = $this->encryptPassword( $str );
+		$this->mNewpassword = User::encryptPassword( $str );
 	}
 
 	function getEmail()
