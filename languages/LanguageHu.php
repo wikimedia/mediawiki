@@ -1179,6 +1179,12 @@ class LanguageHu extends LanguageUtf8 {
 	{
 		return $this->date( $ts, $adj ) . ", " . $this->time( $ts, $adj );
 	}
+	
+	function formatNum( $number ) {
+		global $wgTranslateNumerals;
+		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	}
+
 }
 
 ?>

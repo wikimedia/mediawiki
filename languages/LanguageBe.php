@@ -457,5 +457,10 @@ class LanguageBe extends LanguageUtf8 {
 			return parent::getMessage( $key );
 		}
 	}
+	
+	function formatNum( $number ) {
+		global $wgTranslateNumerals;
+		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	}
 }
 ?>
