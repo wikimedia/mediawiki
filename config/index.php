@@ -242,7 +242,9 @@ $conf->xml = function_exists( "utf8_encode" );
 if( $conf->xml ) {
 	print "<li>Have XML / Latin1-UTF-8 conversion support.</li>\n";
 } else {
-	print "<li><b>XML / Latin1-UTF-8 conversion is missing! Wiki will probably not work.</b></li>\n";
+	dieout( "PHP's XML module is missing; the wiki requires functions in
+		this module and won't work in this configuration.
+		If you're running Mandrake, install the php-xml package." );
 }
 
 $memlimit = ini_get( "memory_limit" );
@@ -327,6 +329,9 @@ $errs = array();
 
 if( $conf->Sitename == "" || $conf->Sitename == "MediaWiki" || $conf->Sitename == "Mediawiki" ) {
 	$errs["Sitename"] = "Must not be blank or \"MediaWiki\".";
+}
+if( $conf->DBuser == "" ) {
+	$errs["DBuser"] = "Must not be blank";
 }
 if( $conf->DBpassword == "" ) {
 	$errs["DBpassword"] = "Must not be blank";
