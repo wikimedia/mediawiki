@@ -21,6 +21,7 @@ mAttributes:
 	rc_this_oldid   old_id associated with this entry (or zero)
 	rc_last_oldid   old_id associated with the entry before this one (or zero)
 	rc_bot          is bot, hidden
+	rc_ip           IP address of the user in dotted quad notation
 	rc_new          obsolete, use rc_type==RC_NEW
 
 mExtra:
@@ -82,13 +83,17 @@ class RecentChange
 	# Writes the data in this object to the database
 	function save() 
 	{
-		global $wgUseRCQueue, $wgRCQueueID, $wgLocalInterwiki;
+		global $wgUseRCQueue, $wgRCQueueID, $wgLocalInterwiki, $wgPutIPinRC;
 		$fname = "RecentChange::save";
 		
 		if ( !is_array($this->mExtra) ) {
 			$this->mExtra = array();
 		}
 		$this->mExtra['lang'] = $wgLocalInterwiki;
+		
+		if ( !$wgPutIPinRC ) {
+			$this->mAttribs['rc_ip'] = '';
+		}
 		
 		# Insert new row
 		wfInsertArray( "recentchanges", $this->mAttribs, $fname );
@@ -126,12 +131,17 @@ class RecentChange
 	
 	# Makes an entry in the database corresponding to an edit
 	/*static*/ function notifyEdit( $timestamp, &$title, $minor, &$user, $comment, 
-		$oldId, $lastTimestamp, $bot = "default" ) 
+		$oldId, $lastTimestamp, $bot = "default", $ip = '' ) 
 	{
 		if ( $bot == "default " ) {
 			$bot = $user->isBot();
 		}
 
+		if ( !$ip ) {
+			global $wgIP;
+			$ip = empty( $wgIP ) ? '' : $wgIP;
+		}
+		
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_timestamp'	=> $timestamp,
@@ -149,6 +159,7 @@ class RecentChange
 			'rc_bot'	=> $bot ? 1 : 0,
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
+			'rc_ip'	=> $ip,
 			'rc_new'	=> 0 # obsolete
 		);
 		
@@ -161,28 +172,34 @@ class RecentChange
 	
 	# Makes an entry in the database corresponding to page creation
 	# Note: the title object must be loaded with the new id using resetArticleID()
-	/*static*/ function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default" )
+	/*static*/ function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default", $ip='' )
 	{
+		if ( !$ip ) {
+			global $wgIP;
+			$ip = empty( $wgIP ) ? '' : $wgIP;
+		}
 		if ( $bot == "default" ) {
 			$bot = $user->isBot();
 		}
+
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
-			'rc_timestamp'	=> $timestamp,
-			'rc_cur_time'	=> $timestamp,
-			'rc_namespace'	=> $title->getNamespace(),
-			'rc_title'	=> $title->getDBkey(),
-			'rc_type'	=> RC_NEW,
-			'rc_minor'	=> $minor ? 1 : 0,
-			'rc_cur_id'	=> $title->getArticleID(),
-			'rc_user'	=> $user->getID(),
-			'rc_user_text'	=> $user->getName(),
-			'rc_comment'	=> $comment,
-			'rc_this_oldid'	=> 0,
-			'rc_last_oldid'	=> 0,
-			'rc_bot'	=> $bot ? 1 : 0,
-			'rc_moved_to_ns'	=> 0,
-			'rc_moved_to_title'	=> '',
+			'rc_timestamp'      => $timestamp,
+			'rc_cur_time'       => $timestamp,
+			'rc_namespace'      => $title->getNamespace(),
+			'rc_title'          => $title->getDBkey(),
+			'rc_type'           => RC_NEW,
+			'rc_minor'          => $minor ? 1 : 0,
+			'rc_cur_id'         => $title->getArticleID(),
+			'rc_user'           => $user->getID(),
+			'rc_user_text'      => $user->getName(),
+			'rc_comment'        => $comment,
+			'rc_this_oldid'     => 0,
+			'rc_last_oldid'     => 0,
+			'rc_bot'            => $bot ? 1 : 0,
+			'rc_moved_to_ns'    => 0,
+			'rc_moved_to_title' => '',
+			'rc_ip'             => $ip,
 			'rc_new'	=> 1 # obsolete
 		);
 		
@@ -194,8 +211,12 @@ class RecentChange
 	}
 	
 	# Makes an entry in the database corresponding to a rename
-	/*static*/ function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment )
+	/*static*/ function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='' )
 	{
+		if ( !$ip ) {
+			global $wgIP;
+			$ip = empty( $wgIP ) ? '' : $wgIP;
+		}
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_timestamp'	=> $timestamp,
@@ -213,6 +234,7 @@ class RecentChange
 			'rc_bot'	=> $user->isBot() ? 1 : 0,
 			'rc_moved_to_ns'	=> $newTitle->getNamespace(),
 			'rc_moved_to_title'	=> $newTitle->getDBkey(),
+			'rc_ip'		=> $ip,
 			'rc_new'	=> 0 # obsolete
 		);
 		
@@ -226,8 +248,12 @@ class RecentChange
 	
 	# A log entry is different to an edit in that previous revisions are 
 	# not kept
-	/*static*/ function notifyLog( $timestamp, &$title, &$user, $comment )
+	/*static*/ function notifyLog( $timestamp, &$title, &$user, $comment, $ip='' )
 	{
+		if ( !$ip ) {
+			global $wgIP;
+			$ip = empty( $wgIP ) ? '' : $wgIP;
+		}
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_timestamp'	=> $timestamp,
@@ -245,6 +271,7 @@ class RecentChange
 			'rc_bot'	=> 0,
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
+			'rc_ip'	=> $ip,
 			'rc_new'	=> 0 # obsolete
 		);
 		$rc->mExtra =  array(
@@ -280,6 +307,7 @@ class RecentChange
 			'rc_bot'	=> 0,
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
+			'rc_ip' => '',
 			'rc_new' => $row->cur_is_new # obsolete
 		);
 

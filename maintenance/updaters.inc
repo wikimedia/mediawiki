@@ -134,6 +134,11 @@ function do_recentchanges_update() {
 		dbsource( "maintenance/archives/patch-rc_type.sql" , $wgDatabase );
 		echo "ok\n";
 	}
+	if ( !$wgDatabase->fieldExists( "recentchanges", "rc_ip" ) ) {
+		echo "Adding rc_ip...";
+		dbsource( "maintenance/archives/patch-rc_ip.sql", $wgDatabase );
+		echo "ok\n";
+	}
 }
 
 function do_user_real_name_update() {
@@ -179,5 +184,4 @@ function do_categorylinks_update() {
 		echo "ok\n";
 	}
 }
-
 ?>
