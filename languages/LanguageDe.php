@@ -1187,6 +1187,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'Benutzer: ',
 'speciallogtitlelabel' => 'Titel: ',
+'passwordtooshort' => 'Ihr Passwort ist zu kurz. Es muss mindestens $1 Zeichen lang sein.',
 
 );
 
