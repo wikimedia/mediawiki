@@ -1024,6 +1024,7 @@ Wikipedia database.
 Use single quotes ('like this') to delimit string literals.
 This can often add considerable load to the server, so please use
 this function sparingly.",
+"sqlislogged"	=> "Please note that all queries are logged.",
 "sqlquery"		=> "Enter query",
 "querybtn"		=> "Submit query",
 "selectonly"	=> "Queries other than \"SELECT\" are restricted to
