@@ -707,6 +707,10 @@ class SkinPHPTal extends Skin {
 				$this->userjs = $this->makeUrl($this->userpage.'/'.$this->skinname.'.js', 'action=raw&ctype=text/javascript&dontcountme=s');
 			}
 		}
+		$this->usercss = '/*<![CDATA[*/ ' . $this->usercss . ' /*]]>*/';
+		if( $this->userjsprev ) {
+			$this->userjsprev = '/*<![CDATA[*/ ' . $this->userjsprev . ' /*]]>*/';
+		}
 	}
 	
 	/**
