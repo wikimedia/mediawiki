@@ -19,8 +19,9 @@ class PopularPagesPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
+		global $wgLang;
 		$link = $skin->makeKnownLink( $result->cur_title, "" );
-		$nv = wfMsg( "nviews", $result->cur_counter );
+		$nv = wfMsg( "nviews", $wgLang->formatNum( $result->cur_counter ) );
 		return "{$link} ({$nv})";
 	}
 }

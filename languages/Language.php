@@ -1560,23 +1560,15 @@ class Language {
 			$datePreference = $wgAmericanDates ? 1 : 2;
 		}
 		
-		if ( $datePreference == 1 ) {
-			# MDY
-			$d = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-			  " " . (0 + substr( $ts, 6, 2 )) . ", " .
-			  substr( $ts, 0, 4 );
-		} else if ( $datePreference == 2 ) {
-			#DMY
-			$d = (0 + substr( $ts, 6, 2 )) . " " .
-			  $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " .
-			  substr( $ts, 0, 4 );
-		} else {
-			#YMD
-			$d = substr( $ts, 0, 4 ) . " " . $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-				" " . (0 + substr( $ts, 6, 2 ));
+		$month = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) );
+		$day = $this->formatNum( 0 + substr( $ts, 6, 2 ) );
+		$year = $this->formatNum( substr( $ts, 0, 4 ) );
+		
+		switch( $datePreference ) {
+			case 1: return "$month $day, $year";
+			case 2: return "$day $month $year";
+			default: return "$year $month $day";
 		}
-
-		return $d;
 	}
 
 	function time( $ts, $adj = false )
@@ -1584,7 +1576,7 @@ class Language {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
+		return $this->formatNum( $t );
 	}
 
 	function timeanddate( $ts, $adj = false )
@@ -1747,6 +1739,13 @@ class Language {
 	function processToken( &$token , &$tokenStack)
 	{
 		return NULL;
+	}
+	
+	# Normally we use the plain ASCII digits. Some languages such as Arabic will
+	# want to output numbers using script-appropriate characters: override this
+	# function with a translator. See LanguageAr.php for an example.
+	function formatNum( $number ) {
+		return $number;
 	}
 
 }

@@ -596,19 +596,22 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 
 function wfShowingResults( $offset, $limit )
 {
-	return wfMsg( "showingresults", $limit, $offset+1 );
+	global $wgLang;
+	return wfMsg( "showingresults", $wgLang->formatNum( $limit ), $wgLang->formatNum( $offset+1 ) );
 }
 
 function wfShowingResultsNum( $offset, $limit, $num )
 {
-	return wfMsg( "showingresultsnum", $limit, $offset+1, $num );
+	global $wgLang;
+	return wfMsg( "showingresultsnum", $wgLang->formatNum( $limit ), $wgLang->formatNum( $offset+1 ), $wgLang->formatNum( $num ) );
 }
 
 function wfViewPrevNext( $offset, $limit, $link, $query = "", $atend = false )
 {
-	global $wgUser;
-	$prev = wfMsg( "prevn", $limit );
-	$next = wfMsg( "nextn", $limit );
+	global $wgUser, $wgLang;
+	$fmtLimit = $wgLang->formatNum( $limit );
+	$prev = wfMsg( "prevn", $fmtLimit );
+	$next = wfMsg( "nextn", $fmtLimit );
 	$link = wfUrlencode( $link );
 
 	$sk = $wgUser->getSkin();
@@ -640,12 +643,13 @@ function wfViewPrevNext( $offset, $limit, $link, $query = "", $atend = false )
 
 function wfNumLink( $offset, $limit, $link, $query = "" )
 {
-	global $wgUser;
+	global $wgUser, $wgLang;
 	if ( "" == $query ) { $q = ""; }
 	else { $q = "{$query}&"; }
 	$q .= "limit={$limit}&offset={$offset}";
 
-	$s = "<a href=\"" . wfLocalUrlE( $link, $q ) . "\">{$limit}</a>";
+	$fmtLimit = $wgLang->formatNum( $limit );
+	$s = "<a href=\"" . wfLocalUrlE( $link, $q ) . "\">{$fmtLimit}</a>";
 	return $s;
 }
 

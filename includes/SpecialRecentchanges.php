@@ -104,10 +104,10 @@ function wfSpecialRecentchanges( $par )
 	}
 
 	if(isset($from)) {
-		$note = wfMsg( "rcnotefrom", $limit,
+		$note = wfMsg( "rcnotefrom", $wgLang->formatNum( $limit ),
 			$wgLang->timeanddate( $from, true ) );
 	} else {
-		$note = wfMsg( "rcnote", $limit, $days );
+		$note = wfMsg( "rcnote", $wgLang->formatNum( $limit ), $wgLang->formatNum( $days ) );
 	}
 	$wgOut->addHTML( "\n<hr>\n{$note}\n<br>" );
 
@@ -142,7 +142,7 @@ function rcCountLink( $lim, $d, $page="Recentchanges", $more="" )
 	global $wgUser, $wgLang;
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink( $wgLang->specialPage( $page ),
-	  ($lim ? "{$lim}" : wfMsg( "all" ) ), "{$more}" .
+	  ($lim ? $wgLang->formatNum( "{$lim}" ) : wfMsg( "all" ) ), "{$more}" .
 	  ($d ? "days={$d}&" : "") . "limit={$lim}" );
 	return $s;
 }
@@ -152,7 +152,7 @@ function rcDaysLink( $lim, $d, $page="Recentchanges", $more="" )
 	global $wgUser, $wgLang;
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink( $wgLang->specialPage( $page ),
-	  ($d ? "{$d}" : wfMsg( "all" ) ), "{$more}days={$d}" .
+	  ($d ? $wgLang->formatNum( "{$d}" ) : wfMsg( "all" ) ), "{$more}days={$d}" .
 	  ($lim ? "&limit={$lim}" : "") );
 	return $s;
 }

@@ -2,7 +2,7 @@
 
 function wfSpecialStatistics()
 {
-	global $wgUser, $wgOut;
+	global $wgUser, $wgOut, $wgLang;
 	$fname = "wfSpecialStatistics";
 
 	$wgOut->addHTML( "<h2>" . wfMsg( "sitestats" ) . "</h2>\n" );
@@ -21,9 +21,12 @@ function wfSpecialStatistics()
 	$good = $row->ss_good_articles;
 
 	$text = wfMsg( "sitestatstext",
-		$total, $good, $views, $edits,
-		sprintf( "%.2f", $total ? $edits / $total : 0 ),
-		sprintf( "%.2f", $edits ? $views / $edits : 0 ) );
+		$wgLang->formatNum( $total ),
+		$wgLang->formatNum( $good ),
+		$wgLang->formatNum( $views ),
+		$wgLang->formatNum( $edits ),
+		$wgLang->formatNum( sprintf( "%.2f", $total ? $edits / $total : 0 ) ),
+		$wgLang->formatNum( sprintf( "%.2f", $edits ? $views / $edits : 0 ) ) );
 
 	$wgOut->addHTML( $text );
 	$wgOut->addHTML( "<h2>" . wfMsg( "userstats" ) . "</h2>\n" );
@@ -42,7 +45,9 @@ function wfSpecialStatistics()
 	$sk = $wgUser->getSkin();
 	$ap = $sk->makeKnownLink( wfMsg( "administrators" ), "" );
 
-	$text = wfMsg( "userstatstext", $total, $admins, $ap );
+	$text = wfMsg( "userstatstext",
+		$wgLang->formatNum( $total ),
+		$wgLang->formatNum( $admins ), $ap );
 	$wgOut->addHTML( $text );
 }
 
