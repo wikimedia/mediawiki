@@ -28,8 +28,12 @@ MediaWiki database, the maintenance scripts aren't available,
 and there may be all kinds of horrible bugs or security
 problems that haven't been worked out yet.
 
-ALWAYS BACK UP YOUR DATABASE BEFORE ATTEMPTING TO INSTALL
-OR UPGRADE!!!
+HOWEVER it is much easier, safer, and more reliable than
+the old install.php, and does not require root access
+if you already have a database and user access to it.
+
+REMEMBER: ALWAYS BACK UP YOUR DATABASE BEFORE ATTEMPTING
+TO INSTALL OR UPGRADE!!!
 
 ----
 In-place web install
@@ -62,9 +66,26 @@ Once the wiki is set up, you should remove the config
 directory, or at least make it not world-writable (though
 it will refuse to config again if the wiki is set up).
 
+
 ----
 "Classic" install instructions:
 ----
+
+THE INSTRUCTIONS BELOW ARE OLD AND MAY BE INACCURATE.
+THIS INSTALL METHOD IS NOT RECOMMENDED, IT MAY RUN
+OVER YOUR DOG.
+
+If you use the command-line install, you MUST NOT make the
+source directory web-accessible, as it will expose maintenance
+scripts to the public internet. You MUST NOT install to the
+same directory as your are installing from, this WILL
+overwrite and destroy files.
+
+Because install.php and update.php are unsafe, they have
+been disabled as of 1.2.4. If you wish to use them, remove
+the "die()" call at the top of the file.
+
+--
 
 The Wikipedia software was developed collaboratively by
 many people, so it's something of a hodgepodge. The

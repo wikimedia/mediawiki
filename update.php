@@ -1,5 +1,7 @@
 <?php
 
+die( "The command-line installer is not recommended, please read INSTALL.\n\n" );
+
 # Update already-installed software
 #
 

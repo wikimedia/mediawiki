@@ -1,5 +1,16 @@
 = MediaWiki release notes =
 
+== Version 1.2.4, 2004-04-13 ==
+
+* Fixed edit toolbar in Mozilla
+* Diff links in Contributions for 'top' edits
+* Fixed Nostalgia skin drop-down for register_globals off
+* Backported optional open proxy blocker
+* Backported $wgWhitelistRead
+* $wgCapitalLinks option to force full case sensitivity in titles
+* Cleaned up error handling when can't talk to database
+* Disabled unsafe command-line installer (remove the "die()" call to use)
+
 == Version 1.2.3, 2004-04-02 ==
 
 * Fixed an in-place install bug with non-root MySQL user
