@@ -121,17 +121,17 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 			}
 			$doInsert = false;
 		} else {
-			array_push($arr,array(
-				cur_namespace=>$ns,
-				cur_title=>$title,
-				cur_text=>$dbencMsg,
-				cur_user=>0,
-				cur_user_text=>$username,
-				cur_timestamp=>$dbw->timestamp($timestamp),
-				cur_restrictions=>'sysop',
-				cur_is_new=>1,
-				inverse_timestamp=>$invTimestamp,
-				cur_touched=>$dbw->timestamp($timestamp)));
+			array_push( $arr, array(
+				'cur_namespace' => $ns,
+				'cur_title' => $title,
+				'cur_text' => $dbencMsg,
+				'cur_user' => 0,
+				'cur_user_text' => $username,
+				'cur_timestamp' => $dbw->timestamp( $timestamp ),
+				'cur_restrictions' => 'sysop',
+				'cur_is_new' => 1,
+				'inverse_timestamp' => $invTimestamp,
+				'cur_touched' => $dbw->timestamp( $timestamp ) ) );
 		}
 	}
 
