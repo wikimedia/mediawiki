@@ -1,7 +1,7 @@
 -- Based more or less on the public interwiki map from MeatballWiki
 -- Default interwiki prefixes...
 
-REPLACE INTO interwiki (iw_prefix,iw_url,iw_local) VALUES
+REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('AbbeNormal','http://www.ourpla.net/cgi-bin/pikie.cgi?$1',0),
 ('AcadWiki','http://xarch.tu-graz.ac.at/autocad/wiki/$1',0),
 ('Acronym','http://www.acronymfinder.com/af-query.asp?String=exact&Acronym=$1',0),

@@ -66,6 +66,8 @@ function do_revision_updates() {
 }
 
 function update_passwords() {
+	wfDebugDieBacktrace( "This function needs to be updated or removed.\n" );
+	
 	global $wgDatabase;
 	$fname = "Update script: update_passwords()";
 	print "\nIt appears that you need to update the user passwords in your\n" .
@@ -123,7 +125,7 @@ function do_index_update() {
 function do_linkscc_1_3_update() {
 	// Update linkscc table to 1.3 schema if necessary
 	global $wgDatabase, $wgVersion;
-	if( ( strpos( "1.3", $wgVersion ) === 0 ) && $wgDatabase->tableExists( "linkscc" )
+	if( $wgDatabase->tableExists( "linkscc" )
 		&& $wgDatabase->fieldExists( "linkscc", "lcc_title" ) ) {
 		echo "Altering lcc_title field from linkscc table... ";
 		dbsource( "maintenance/archives/patch-linkscc-1.3.sql", $wgDatabase );

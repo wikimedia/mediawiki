@@ -41,6 +41,7 @@ $wgSpecialPages = array(
 	'Randompage'        => new SpecialPage( 'Randompage' ),
 	'Lonelypages'       => new SpecialPage( 'Lonelypages' ),
 	'Uncategorizedpages'=> new SpecialPage( 'Uncategorizedpages' ),
+	'Uncategorizedcategories'=> new SpecialPage( 'Uncategorizedcategories' ),
 	'Unusedimages'      => new SpecialPage( 'Unusedimages' )
 );
 
