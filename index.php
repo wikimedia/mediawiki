@@ -11,6 +11,10 @@ if(!file_exists("LocalSettings.php")) {
 }
 
 # Valid web server entry point, enable includes
+# The define must not be in ./includes/Defines.php because non valid entry
+# points can includes it.
+define( "MEDIAWIKI", true );
+
 require_once( "./includes/Defines.php" );
 require_once( "./LocalSettings.php" );
 require_once( "includes/Setup.php" );
