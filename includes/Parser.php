@@ -47,8 +47,8 @@ define( "UNIQ_PREFIX", "NaodW29");
 class Parser
 {
 	# Cleared with clearState():
-	var $mOutput, $mAutonumber, $mLastSection, $mDTopen, $mStripState = array();
-	var $mVariables, $mIncludeCount, $mArgStack;
+	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
+	var $mVariables, $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
 
 	# Temporary:
 	var $mOptions, $mTitle, $mOutputType;
@@ -937,6 +937,7 @@ class Parser
 		if ( '' != $this->mLastSection ) {
 			$result = "</" . $this->mLastSection  . ">\n";
 		}
+		$this->mInPre = false;
 		$this->mLastSection = "";
 		return $result;
 	}
@@ -1024,50 +1025,57 @@ class Parser
 		if ( ! $linestart ) { $text .= array_shift( $a ); }
 		foreach ( $a as $t ) {
 			$oLine = $t;
-			$opl = strlen( $lastPref );
-			$npl = strspn( $t, "*#:;" );
-			$pref = substr( $t, 0, $npl );
-			$pref2 = str_replace( ";", ":", $pref );
-			$t = substr( $t, $npl );
-			// list generation
-			if ( 0 != $npl && 0 == strcmp( $lastPref, $pref2 ) ) {
-				$text .= $this->nextItem( substr( $pref, -1 ) );
-				if ( $pstack ) { $pstack = false; }
+			$preCloseMatch = preg_match("/<\\/pre/i", $t );
+			$preOpenMatch = preg_match("/<pre/i", $t );
+			if (!$this->mInPre) {
+				$this->mInPre = ($preOpenMatch)? true : false;
+			}
+			if ( !$this->mInPre ) {
+				$opl = strlen( $lastPref );
+				$npl = strspn( $t, "*#:;" );
+				$pref = substr( $t, 0, $npl );
+				$pref2 = str_replace( ";", ":", $pref );
+				$t = substr( $t, $npl );
+				// list generation
+				if ( 0 != $npl && 0 == strcmp( $lastPref, $pref2 ) ) {
+					$text .= $this->nextItem( substr( $pref, -1 ) );
+					if ( $pstack ) { $pstack = false; }
 
-				if ( ";" == substr( $pref, -1 ) ) {
-					$cpos = strpos( $t, ":" );
-					if ( false !== $cpos ) {
-						$term = substr( $t, 0, $cpos );
-						$text .= $term . $this->nextItem( ":" );
-						$t = substr( $t, $cpos + 1 );
-					}
-				}
-			} else if (0 != $npl || 0 != $opl) {
-				$cpl = $this->getCommon( $pref, $lastPref );
-				if ( $pstack ) { $pstack = false; }
-
-				while ( $cpl < $opl ) {
-					$text .= $this->closeList( $lastPref{$opl-1} );
-					--$opl;
-				}
-				if ( $npl <= $cpl && $cpl > 0 ) {
-					$text .= $this->nextItem( $pref{$cpl-1} );
-				}
-				while ( $npl > $cpl ) {
-					$char = substr( $pref, $cpl, 1 );
-					$text .= $this->openList( $char );
-
-					if ( ";" == $char ) {
+					if ( ";" == substr( $pref, -1 ) ) {
 						$cpos = strpos( $t, ":" );
-						if ( ! ( false === $cpos ) ) {
+						if ( false !== $cpos ) {
 							$term = substr( $t, 0, $cpos );
 							$text .= $term . $this->nextItem( ":" );
 							$t = substr( $t, $cpos + 1 );
 						}
 					}
-					++$cpl;
+				} else if (0 != $npl || 0 != $opl) {
+					$cpl = $this->getCommon( $pref, $lastPref );
+					if ( $pstack ) { $pstack = false; }
+
+					while ( $cpl < $opl ) {
+						$text .= $this->closeList( $lastPref{$opl-1} );
+						--$opl;
+					}
+					if ( $npl <= $cpl && $cpl > 0 ) {
+						$text .= $this->nextItem( $pref{$cpl-1} );
+					}
+					while ( $npl > $cpl ) {
+						$char = substr( $pref, $cpl, 1 );
+						$text .= $this->openList( $char );
+
+						if ( ";" == $char ) {
+							$cpos = strpos( $t, ":" );
+							if ( ! ( false === $cpos ) ) {
+								$term = substr( $t, 0, $cpos );
+								$text .= $term . $this->nextItem( ":" );
+								$t = substr( $t, $cpos + 1 );
+							}
+						}
+						++$cpl;
+					}
+					$lastPref = $pref2;
 				}
-				$lastPref = $pref2;
 			}
 			if ( 0 == $npl ) { # No prefix (not in list)--go to paragraph mode
 				$uniq_prefix = UNIQ_PREFIX;
@@ -1079,6 +1087,9 @@ class Parser
 				if ( $openmatch or $closematch ) {
 					if ( $pstack ) { $pstack = false; }
 					$text .= $this->closeParagraph();
+					if($preOpenMatch and !$preCloseMatch) {
+						$this->mInPre = true;	
+					}
 					if ( $closematch  ) {
 						$inBlockElem = false;
 					} else {
