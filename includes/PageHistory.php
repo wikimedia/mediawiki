@@ -12,7 +12,7 @@ class PageHistory {
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
 	}
-	
+
 	# This shares a lot of issues (and code) with Recent Changes
 
 	function history()
@@ -20,7 +20,7 @@ class PageHistory {
 		global $wgUser, $wgOut, $wgLang;
 
 		# If page hasn't changed, client can cache this
-		
+
 		if( $wgOut->checkLastModified( $this->mArticle->getTimestamp() ) ){
 			# Client cache fresh and headers sent, nothing more to do.
 			return;
@@ -39,9 +39,9 @@ class PageHistory {
 			wfProfileOut( $fname );
 			return;
 		}
-		
+
 		list( $limit, $offset ) = wfCheckLimits();
-		
+
 		/* We have to draw the latest revision from 'cur' */
 		$rawlimit = $limit;
 		$rawoffset = $offset - 1;
@@ -51,10 +51,10 @@ class PageHistory {
 		}
 		/* Check one extra row to see whether we need to show 'next' and diff links */
 		$limitplus = $rawlimit + 1;
-		
+
 		$namespace = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getText();
-		
+
 		$db =& wfGetDB( DB_SLAVE );
 		$use_index = $db->useIndexClause( 'name_title_timestamp' );
 		$oldtable = $db->tableName( 'old' );
@@ -68,14 +68,14 @@ class PageHistory {
 		$res = $db->query( $sql, $fname );
 
 		$revs = $db->numRows( $res );
-		
+
 		if( $revs < $limitplus ) // the sql above tries to fetch one extra
 			$this->linesonpage = $revs;
 		else
 			$this->linesonpage = $revs - 1;
 
 		$atend = ($revs < $limitplus);
-		
+
 		$this->mSkin = $wgUser->getSkin();
 		$numbar = wfViewPrevNext(
 			$offset, $limit,
@@ -92,8 +92,8 @@ class PageHistory {
 		$counter = 1;
 		if( $offset == 0 ){
 			$this->linesonpage++;
-			$s .= $this->historyLine( 
-				$this->mArticle->getTimestamp(), 
+			$s .= $this->historyLine(
+				$this->mArticle->getTimestamp(),
 				$this->mArticle->getUser(),
 				$this->mArticle->getUserText(), $namespace,
 				$title, 0, $this->mArticle->getComment(),
@@ -102,7 +102,7 @@ class PageHistory {
 			);
 		}
 		while ( $line = $db->fetchObject( $res ) ) {
-			$s .= $this->historyLine( 
+			$s .= $this->historyLine(
 				$line->old_timestamp, $line->old_user,
 				$line->old_user_text, $namespace,
 				$title, $line->old_id,
@@ -122,7 +122,7 @@ class PageHistory {
 		$this->lastdate = $this->lastline = '';
 		$s = '<p>' . wfMsg( 'histlegend' ) . '</p>';
 		$s .= '<form action="' . $wgTitle->escapeLocalURL( '-' ) . '" method="get">';
-		$prefixedkey = htmlspecialchars($wgTitle->getPrefixedDbKey())
+		$prefixedkey = htmlspecialchars($wgTitle->getPrefixedDbKey());
 		$s .= "<input type='hidden' name='title' value='{$prefixedkey}' />\n";
 		$s .= !empty($this->submitbuttonhtml1) ? $this->submitbuttonhtml1."\n":'';
 		$s .= '<ul id="pagehistory">';
@@ -167,7 +167,7 @@ class PageHistory {
 		if ( 0 == $u ) {
 			$ul = $this->mSkin->makeKnownLink( $wgLang->specialPage( 'Contributions' ),
 				htmlspecialchars( $ut ), 'target=' . urlencode( $ut ) );
-		} else { 
+		} else {
 			$ul = $this->mSkin->makeLink( $wgLang->getNsText(
 				Namespace::getUser() ) . ':'.$ut , htmlspecialchars( $ut ) );
 		}
@@ -195,7 +195,7 @@ class PageHistory {
 		}
 		$s .= "({$curlink}) (!OLDID!{$oid}!) $arbitrary {$link} <span class='user'>{$ul}</span>";
 		$s .= $isminor ? ' <span class="minor">'.wfMsg( "minoreditletter" ).'</span>': '' ;
-		
+
 
 		if ( '' != $c && '*' != $c ) {
 			$c = $this->mSkin->formatcomment($c,$this->mTitle);
