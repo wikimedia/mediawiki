@@ -948,6 +948,7 @@ class Skin {
 			}
 
 		$first = true;
+		if($wgLang->isRTL()) $s .= "<span dir='LTR'>";
 		foreach( $a as $l ) {
 			if ( ! $first ) { $s .= " | "; }
 			$first = false;
@@ -960,6 +961,7 @@ class Skin {
 			$style = $this->getExternalLinkAttributes( $l, $text );
 			$s .= "<a href=\"{$url}\"{$style}>{$text}</a>";
 		}
+		if($wgLang->isRTL()) $s .= "</span>";
 		return $s;
 	}
 
