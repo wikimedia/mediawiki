@@ -209,14 +209,15 @@ class Validation
 				else $choice = -1 ;
 				if ( isset ( $stuff[$idx] ) ) $comment = $stuff[$idx]->val_comment ;
 				else $comment = "" ;
-				$html .= "<tr><th align='left'>{$x[0]}</th>{$tabsep}<td align='right'>{$x[1]}</td><td align='center'>" ;
+				$html .= "<tr><th align='left'>{$x[0]}</th>{$tabsep}<td align='right'>{$x[1]}</td>"
+				      .  "<td align='center'><span style='white-space: nowrap;'>" ;
 				for ( $cnt = 0 ; $cnt < $x[3] ; $cnt++)
 					{
 					$html .= "<input type='radio' name='rad{$idx}' value='{$cnt}'" ;
 					if ( $choice == $cnt ) $html .= " checked='checked'" ;
 					$html .= " /> " ;
 					}
-				$html .= "</td><td>{$x[2]}</td>" ;
+				$html .= "</span></td><td>{$x[2]}</td>" ;
 				$html .= "<td><input type='radio' name='rad{$idx}' value='-1'" ;
 				if ( $choice == -1 ) $html .= " checked='checked'" ;
 				$html .= " /> " . wfMsg ( "val_noop" ) . "</td>{$tabsep}" ;
