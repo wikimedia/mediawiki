@@ -8,7 +8,7 @@
 if( !isset( $wgProfiling ) )
 	$wgProfiling = false;
 
-if ( $wgProfiling ) {
+if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {        
 	include_once( "Profiling.php" );
 } else {
 	function wfProfileIn( $fn ) {}
