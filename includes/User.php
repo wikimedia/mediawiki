@@ -899,6 +899,10 @@ class User {
 		} else {
 			setcookie( $wgDBname.'Token', '', time() - 3600 );
 		}
+
+		# Clear previous logged out time, set logged in time
+		setcookie( $wgDBname.'LoggedOut', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
+		setcookie( $wgDBname.'LoggedIn', wfTimestampNow(), time() + 86400, $wgCookiePath, $wgCookieDomain );
 	}
 
 	/**
@@ -914,6 +918,9 @@ class User {
 
 		setcookie( $wgDBname.'UserID', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
 		setcookie( $wgDBname.'Token', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
+
+		# Remember when user logged out, to prevent seeing cached pages
+		setcookie( $wgDBname.'LoggedOut', wfTimestampNow(), time() + 86400, $wgCookiePath, $wgCookieDomain );
 	}
 
 	/**
@@ -1176,6 +1183,20 @@ class User {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Check if the user was logged on at a certain timestamp, but no longer is.
+	 * @param int $timestamp Timestamp to check.
+	 * @return bool True if user was logged in.
+	 */
+	function wasLoggedInAt( $timestamp ) {
+		global $wgDBname;
+
+		if ( !$this->getID() && isset( $_COOKIE[$wgDBname.'LoggedIn'] ) && isset( $_COOKIE[$wgDBname.'LoggedOut'] ) )
+			return ( $timestamp >= $_COOKIE[$wgDBname.'LoggedIn'] && $timestamp <= $_COOKIE[$wgDBname.'LoggedOut'] );
+		else
+			return false;
 	}
 }
 
