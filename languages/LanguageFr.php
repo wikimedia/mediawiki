@@ -1,5 +1,7 @@
 <?
 
+// $Id$
+
 // The names of the namespaces can be set here, but the numbers
 // are magical, so don't change or move them!  The Namespace class
 // encapsulates some of the magic-ness.
@@ -16,24 +18,28 @@
 	7 => "Discussion_Image"
 );
 
+/* using default options */
 /* private */ $wgDefaultUserOptionsFr = array(
-	"quickbar"      => 1, 
-	"underline"     => 1, 
-	"hover"         => 1,
-	"cols"          => 80, 
-	"rows"          => 25, 
-	"searchlimit"   => 20,
-	"contextlines"  => 5, 
-	"contextchars"  => 50,
-	"skin"          => 0, 
-	"math"          => 1, 
-	"rcdays"        => 7, 
-	"rclimit"       => 50,
-	"highlightbroken" => 1, 
-	"stubthreshold" => 0
+	"quickbar"			=> 1,
+	"underline"			=> 1,
+	"hover"				=> 1,
+	"cols"				=> 80,
+	"rows"				=> 25,
+	"searchlimit"			=> 20,
+	"contextlines"			=> 5,
+	"contextchars"			=> 50,
+	"skin"				=> 0,
+	"math"				=> 1,
+	"rcdays"			=> 7,
+	"rclimit"			=> 50,
+	"highlightbroken"		=> 1,
+	"stubthreshold"			=> 0,
+	"previewontop"			=> 1,
+	"editsection"			=> 1,
+	"editsectiononrightclick"	=> 0,
+	"showtoc"			=> 1,
+	"date"				=> 0
 );
-
-/* Some default options can be changed - see Language.php */
 
 /* private */ $wgQuickbarSettingsFr = array(
 	"Aucune", "Gauche", "Droite", "Flottante à gauche"
@@ -47,7 +53,8 @@
 	"Toujours produire une image PNG",  
 	"HTML si très simple, autrement PNG", 
 	"HTML si possible, autrement PNG", 
-	"Produire le TeX original, pour les navigateurs à base de texte",	"Pour les navigateurs modernes"
+	"Produire le TeX original, pour<br> les navigateurs à base de texte",
+	"Pour les navigateurs modernes"
 );
 
 /* private */ $wgUserTogglesFr = array(
@@ -56,23 +63,26 @@
 	"highlightbroken" => "Liens vers les sujets non existants en rouge",
 	"justify" => "Paragraphes justifiés",
 	"hideminor" => "Cacher les <i>Modifications récentes</i> mineures",
-    "usenewrc" => "Modifications récentes améliorées (certains navigateurs seulement)",
+	"usenewrc" => "Modifications récentes améliorées<br> (certains navigateurs seulement)",
 	"numberheadings" => "Numérotation automatique des titres",
+	"editondblclick" => "Double cliquer pour éditer une page (JavaScript)",
+	"editsection"	=> "Éditer une section via les liens [éditer]", //Looxix (Enable section editing via [edit] links)
+	"editsectiononrightclick"	=> "Éditer une section en cliquant à droite<br> sur le titre de la section", // Looxix 
+	"showtoc"	=> "Afficher la table des matières<br>(pour les articles ayant plus de 3 sections)",
 	"rememberpassword" => "Se souvenir de mon mot de passe (cookie)",
 	"editwidth" => "La fenêtre d'édition s'affiche en pleine largeur",
-	"editondblclick" => "Double cliquer pour éditer une page (JavaScript)",
 	"watchdefault" => "Suivre les articles que je crée ou modifie",
-	"minordefault" => "Mes modifications sont considérées comme mineures par défaut",
-	"previewontop" => "La prévisualisation s'affiche au dessus de la boite de rédaction"
+	"minordefault" => "Mes modifications sont considérées<br> comme mineures par défaut",
+	"previewontop" => "La prévisualisation s'affiche au<br> dessus de la boite de rédaction",
+	"nocache" => "Désactiver le cache des pages" // Looxix "Disable page caching"
 );
 
-
 /* private */ $wgLanguageNamesFr = array(
-    "aa" => "Afar",
-    "ab" => "Abkhazien",
+	"aa" => "Afar",
+	"ab" => "Abkhazien",
 	"af" => "Afrikaans",
 	"am" => "Amharique",
-	"ar" => "&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1617;&#1577; (Araby)",
+	"ar" => "&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1617;&#1577; (Arabe)",
 	"as" => "Assamais",
 	"ay" => "Aymara",
 	"az" => "Azerbaïjanais",
@@ -247,20 +257,21 @@
 	"Allpages"      => "Toutes les pages",
 
 	"Ipblocklist"   => "Adresses IP bloquées",
-	"Maintenance"   => "Page de Maintenance",
+	"Maintenance"   => "Page de maintenance",
 	"Specialpages"  => "", // ces pages doivent reste vides !
 	"Contributions" => "",
 	"Emailuser"     => "",
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"      => "",
-	"Booksources"   => "Librairies en ligne"
+	"Booksources"   => "Librairies en ligne",
+	"Categories"	=> "Page des catégories"	// Looxix "Page categories"
 );
 
 /* private */ $wgSysopSpecialPagesFr = array(
 	"Blockip"       => "Bloquer une adresse IP",
 	"Asksql"        => "Accès SQL",
-	"Undelete"      => "Gérer les pages effacées" // MQ "View and restore deleted pages"
+	"Undelete"      => "Gérer les pages effacées"
 );
 
 /* private */ $wgDeveloperSpecialPagesFr = array(
@@ -272,6 +283,11 @@
 /* private */ $wgAllMessagesFr = array(
 
 // Bits of text used by many pages:
+"categories"	=> "Catégories de la page", // Looxix "Page categories",
+"category"	=> "catégorie",			// Looxix "category",
+"category_header" => "Articles dans la catégorie \"$1\"", // Looxix "Articles in category \"$1\"",
+"subcategories"	=> "Sous-catégories", // Looxix "Subcategories",
+
 
 "linktrail"     => "/^([a-zàâçéèêîôû]+)(.*)\$/sD",
 "mainpage"      => "Accueil",
@@ -292,8 +308,8 @@
 "qbfind"        => "Rechercher",
 "qbbrowse"      => "Défiler",
 "qbedit"        => "Éditer",
-"qbpageoptions" => "Page d'option",      // AOI "Option page",
-"qbpageinfo"    => "Page d'information", // AOI "Info page",
+"qbpageoptions" => "Page d'option",
+"qbpageinfo"    => "Page d'information",
 "qbmyoptions"   => "Mes options",
 "mypage"        => "Ma page",
 "mytalk"        => "Ma page de discussion",
@@ -304,26 +320,27 @@
 "whatlinkshere" => "Références à cette page",
 "help"          => "Aide",
 "search"        => "Rechercher",
-"go"		=> "S'y rendre",
+// Looxix "go"		=> "S'y rendre",
 "history"       => "Historique",
 "printableversion" => "Version imprimable",
 "editthispage"  => "Modifier cette page",
 "deletethispage" => "Supprimer cette page",
 "protectthispage" => "Protéger cette page",
 "unprotectthispage" => "Déprotéger cette page",
-"newpage"       => "Nouvelle page", // AOI "New page"
+"newpage"       => "Nouvelle page",
 "talkpage"      => "Page de discussion",
-"articlepage"	=> "Voir l'article", // AOI "View article"
+"postcomment"	=> "Ajouter un commentaire", // Looxix "Post a comment",	
+"articlepage"	=> "Voir l'article",
 "subjectpage"   => "Page sujet",
 "userpage"      => "Page utilisateur",
 "wikipediapage" => "Page méta",
 "imagepage"     => "Page image",
-"viewtalkpage"  => "Page de discussion", // AOI "View discussion"
+"viewtalkpage"  => "Page de discussion",
 "otherlanguages" => "Autres langues",
 "redirectedfrom" => "(Redirigé depuis $1)",
 "lastmodified"  => "Dernière modification de cette page : $1.",
 "viewcount"     => "Cette page a été consultée $1 fois.",
-"gnunote"       => "Tous les textes sont disponibles sous les termes de la <a class=internal href='/wiki/GFDL'>Licence de documentation libre GNU </a>.", // AOI "All text is available under the terms of the <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>."
+"gnunote"       => "Tous les textes sont disponibles sous les termes de la <a class=internal href='/wiki/GFDL'>Licence de documentation libre GNU </a>.",
 "printsubtitle" => "(de http://www.wikipedia.org)",
 "protectedpage" => "Page protégée",
 "administrators" => "Wikipédia:Administrateurs",
@@ -334,34 +351,41 @@ Voir $1.",
 "developertext" => "L'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut de \"développeur\".
 Voir $1.",
 "nbytes"        => "$1 octets",
-"go"            => "OK",
+"go"            => "Consulter",			// Looxix "OK",
 "ok"            => "OK",
 "sitetitle"     => "Wikipédia",
 "sitesubtitle"  => "L'encyclopédie libre",
 "retrievedfrom" => "Récupérée de \"$1\"",
 "newmessages"   => "Vous avez des $1.",
 "newmessageslink" => "nouveaux messages",
+"editsection"	=> "modifier",
+"toc"		=> "Sommaire",			// Looxix "Table"
+"showtoc"	=> "montrer",			// Looxix
+"hidetoc"	=> "cacher",			// Looxix
+"thisisdeleted" => "Afficher ou restaurer $?",	// Looxix "View or restore $1?"
+"restorelink"	=> "$1 modifications effacées",		// Looxix "$1 deleted edits"
 
-// Main script and global functions
-
-"nosuchaction" => "Action inconnue",
+# Main script and global functions
+#
+"nosuchaction"	=> "Action inconnue",
 "nosuchactiontext" => "L'action spécifiée dans l'Url n'est pas reconnue par le logiciel Wikipédia.",
 "nosuchspecialpage" => "Page spéciale inexistante",
 "nospecialpagetext" => "Vous avez demandé une page spéciale qui n'est pas reconnue par le logiciel Wikipédia.",
 
-// General errors
-
-"error"   => "Erreur",
+# General errors
+#
+"error"		=> "Erreur",
 "databaseerror" => "Erreur base de données",
-"dberrortext" => "Erreur de syntaxe dans la base de données. Cette erreur peut être causée par une requête de recherche incorrecte (voir $5), ou une erreur dans le logiciel. La dernière requête traitée par la base de données était :
+"dberrortext"	=> "Erreur de syntaxe dans la base de données. Cette erreur peut être causée par une requête de recherche incorrecte (voir $5), ou une erreur dans le logiciel. La dernière requête traitée par la base de données était :
 <blockquote><tt>$1</tt></blockquote>
 depuis la fonction \"<tt>$2</tt>\".
 MySQL a renvoyé l'erreur \"<tt>$3: $4</tt>\".",
-"noconnect"  => "Connexion impossible à la base de données sur $1",
-"nodb"   => "Sélection impossible de la base de données $1",
-"readonly"  => "Mises à jour bloquées sur la base de données",
+"noconnect"	=> "Connexion impossible à la base de données sur $1",
+"nodb"		=> "Sélection impossible de la base de données $1",
+"cachederror"	=> "Ceci est une copie de la page demandée et peut ne pas être à jour", // Looxix 
+"readonly"	=> "Mises à jour bloquées sur la base de données",
 "enterlockreason" => "Indiquez la raison du blocage, ainsi qu'une estimation de la durée de blocage ",
-"readonlytext" => "Les ajouts et mises à jour sur la base de données Wikipédia sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloqué la base :
+"readonlytext"	=> "Les ajouts et mises à jour sur la base de données Wikipédia sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloqué la base :
 <p>$1",
 "missingarticle" => "La base de données n'a pas pu trouver le texte d'une page existante, dont le titre est \"$1\".
 Ce n'est pas une erreur de la base de données, mais plus probablement un bogue du logiciel Wikipédia.
@@ -370,16 +394,22 @@ Veuillez rapporter cette erreur à un administrateur, en lui indiquant l'adresse 
 "filecopyerror" => "Impossible de copier \"$1\" vers \"$2\".",
 "filerenameerror" => "Impossible de renommer \"$1\" en \"$2\".",
 "filedeleteerror" => "Impossible de supprimer \"$1\".",
-"filenotfound" => "Fichier \"$1\" introuvable.",
-"unexpected" => "Valeur inattendue : \"$1\"=\"$2\".",
-"formerror"  => "Erreur: Impossible de soumettre le formulaire",
+"filenotfound"	=> "Fichier \"$1\" introuvable.",
+"unexpected"	=> "Valeur inattendue : \"$1\"=\"$2\".",
+"formerror"	=> "Erreur: Impossible de soumettre le formulaire",
 "badarticleerror" => "Cette action ne peut pas être effectuée sur cette page.",
-"cannotdelete" => "Impossible de supprimer la page ou l'image indiquée.",
+"cannotdelete"	=> "Impossible de supprimer la page ou l'image indiquée.",
+"badtitle"	=> "Mauvais titre", // Looxix "Bad title",
+"badtitletext"	=> "Le titre de la page demandée est invalide, vide ou le lien interlangue est invalide", // Looxix 
+"perfdisabled" => "Désolé! Cette fonctionnalité est temporairement désactivée
+car elle ralentit la base de données à un point tel que plus personne
+ne peut utiliser le wiki.", // Looxix 
+"perfdisabledsub" => "Ceci est une copie de sauvegarde de $1:", // Looxix 
 
-// Login and logout pages
-
-"logouttitle" => "Déconnexion",
-"logouttext" => "Vous êtes à présent déconnecté(e).
+# Login and logout pages
+#
+"logouttitle"	=> "Déconnexion",
+"logouttext"	=> "Vous êtes à présent déconnecté(e).
 Vous pouvez continuer à utiliser Wikipédia de façon anonyme, ou vous reconnecter, éventuellement sous un autre nom.\n",
 
 "welcomecreation" => "<h2>Bienvenue, $1!</h2><p>Votre compte d'utilisateur a été créé.
@@ -394,13 +424,14 @@ N'oubliez pas de personnaliser votre Wikipédia en consultant la page Préférences
 "loginproblem"       => "<b>Problème d'identification.</b><br>Essayez à nouveau !",
 "alreadyloggedin"    => "<font color=red><b>Utilisateur $1, vous êtes déjà identifié!</b></font><br>\n",
 
-"areyounew"  => "Si vous êtes nouveau sur Wikipédia et souhaitez créer un compte utilisateur, entrez un nom d'utilisateur et tapez deux fois votre mot de passe. L'adresse électronique est optionnelle, mais si vous perdez votre mot de passe, vous pourrez en demander un nouveau que nous vous ferons parvenir par ce moyen.<br>\n",
+"areyounew"	=> "Si vous êtes nouveau sur Wikipédia et souhaitez créer un compte utilisateur, entrez un nom d'utilisateur et tapez deux fois votre mot de passe. L'adresse électronique est optionnelle, mais si vous perdez votre mot de passe, vous pourrez en demander un nouveau que nous vous ferons parvenir par ce moyen.<br>\n",
 
 "login"         => "Identification",
 "userlogin"     => "Identification",
 "logout"        => "Déconnexion",
 "userlogout"    => "Déconnexion",
 "createaccount" => "Créer un nouveau compte",
+"createaccountmail"	=> "par courriel", // Looxix "by eMail",
 "badretype"     => "Les deux mots de passe que vous avez saisis ne sont pas identiques.",
 "userexists"    => "Le nom d'utilisateur que vous avez saisi est déjà utilisé. Veuillez en choisir un autre.",
 "youremail"     => "Mon adresse électronique",
@@ -410,7 +441,6 @@ N'oubliez pas de personnaliser votre Wikipédia en consultant la page Préférences
 "noname"        => "Vous n'avez pas saisi de nom d'utilisateur.",
 "loginsuccesstitle" => "Identification réussie.",
 "loginsuccess"  => "Vous êtes actuellement connecté(e) sur Wikipédia en tant que \"$1\".",
-"prefslogintext" => "Je suis connecté(e) en tant que $1 avec le numéro d'utilisateur $2.",
 "nosuchuser"    => "L'utilisateur \"$1\" n'existe pas.
 Vérifiez que vous avez bien orthographié le nom, ou utilisez le formulaire ci-dessous pour créer un nouveau compte utilisateur.",
 "wrongpassword" => "Le mot de passe est incorrect. Essayez à nouveau.",
@@ -423,25 +453,37 @@ Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que p
 "passwordsent" => "Un nouveau mot de passe a été envoyé à l'adresse électronique de l'utilisateur \"$1\".
 Veuillez vous identifier dès que vous l'aurez reçu.",
 
-// Edit pages
-
+# Edit pages
+#
 "summary"      => "Résumé",
+"subject"	=> "Sujet/titre", // Looxix "Subject/headline",
 "minoredit"    => "Modification mineure.",
 "watchthis"    => "Suivre cet article",
 "savearticle"  => "Sauvegarder",
 "preview"      => "Prévisualiser",
-
 "showpreview"  => "Prévisualisation",
 "blockedtitle" => "Utilisateur bloqué",
 "blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br>$2<p> Vous pouvez contacter l'administrateur pour en discuter.",
+"whitelistedittitle" => "Login requis pour rédiger", // Looxix "Login required to edit",
+"whitelistedittext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir rédiger", // Looxix 
+"whitelistreadtitle" => "Login requis pour lire", // Looxix "Login required to read",
+"whitelistreadtext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir lire les articles", // Looxix 
+"whitelistacctitle" => "Vous n'êtes pas autorisé à créer un compte", // Looxix 
+"whitelistacctext" => "Pour pouvoir créer un compte sur ce Wiki vous devez être [[Special:Userlogin|connecté]] et avoir les permissions appropriées", // Looxix 
+"accmailtitle" => "Mot de passe envoyé.", // Looxix "Password sent.",
+"accmailtext" => "Le mot de passe de '$1' a été envoyé à $2.", // Looxix 
+
 "newarticle"   => "(Nouveau)",
 "newarticletext" => "Saisissez ici le texte de votre article.",
+"anontalkpagetext" => "--- ''Ceci est la page de discussion pour un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utilisez l'[[adresse IP]] numérique pour l'identifier. Une adresse comme cela peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et que vous trouvez que des commentaires qui ne vous concernent pas vous ont été adressé, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion.", // Looxix 
 "noarticletext" => "(Il n'y a pour l'instant aucun texte sur cette page)",
 "updated"      => "(Mis à jour)",
 "note"         => "<strong>Note:</strong> ",
 "previewnote"  => "Attention, ce texte n'est qu'une prévisualisation et n'a pas encore été sauvegardé!",
 "previewconflict" => "La prévisualisation montre le texte de cette page tel qu'il apparaîtra une fois sauvegardé.",
 "editing"      => "modification de $1",
+"section edit"	=> " (section)",
+"comment edit"	=> " (commentaire)", // Looxix " (comment)",
 "editconflict" => "Conflit de modification : $1",
 "explainconflict" => "<b>Cette page a été sauvegardée après que vous avez commencé à la modifier.
 La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.\n<p>",
@@ -453,9 +495,14 @@ La zone d'édition supérieure contient le texte tel qu'il est enregistré actuelle
 "longpagewarning" => "AVERTISSEMENT : Cette page a une longueur de $1 ko;
 quelques navigateurs gèrent mal les pages approchant ou dépassant 32 ko lors de leur rédaction.
 Peut-être serait-il mieux que vous divisiez la page en sections plus petites.", // Panoramix
+"readonlywarning" => "AVERTISSEMENT : Cette page a été bloquée pour maintenance,
+vous ne porrez donc pas sauvegardez vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.", // Looxix 
+"protectedpagewarning" => "AVERTISSEMENT : Cette page a été bloquée.
+Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier. Soyez certain que
+vous suivez les <a href='/wiki/Wikipédia:Page protégée'>directives concernant les pages protégées</a>.", // Looxix
 
-// History pages
-
+# History pages
+#
 "revhistory"   => "Versions précédentes",
 "nohistory"    => "Il n'existe pas d'historique pour cette page.",
 "revnotfound"  => "Version introuvable",
@@ -474,7 +521,7 @@ Peut-être serait-il mieux que vous divisiez la page en sections plus petites.", 
 // Diffs
 
 "difference" => "(Différences entre les versions)",
-"loadingrev" => "chargement de l'ancienne version pour comparaison", // AOI "loading revision for diff"
+"loadingrev" => "chargement de l'ancienne version pour comparaison",
 "lineno"  => "Ligne $1:",
 "editcurrent" => "Modifier la version actuelle de cette page",
 
@@ -486,7 +533,7 @@ Peut-être serait-il mieux que vous divisiez la page en sections plus petites.", 
 "searchingwikipedia" => "Chercher dans Wikipédia",
 "searchresulttext" => "Pour plus d'informations sur la recherche dans Wikipédia, voir $1.",
 "searchquery" => "Pour la requête \"$1\"",
-"badquery"  => "Requête mal formulée", // AOI "Requête mal formée"
+"badquery"  => "Requête mal formulée",
 "badquerytext" => "Nous n'avons pas pu traiter votre requête.
 Vous avez probablement recherché un mot d'une longueur inférieure
 à trois lettres, ce qui n'est pas encore possible. Vous avez
@@ -495,6 +542,7 @@ et écailles\".
 Veuillez essayer une autre requête.",
 "matchtotals" => "La requête \"$1\" correspond à $2 titre(s)
 d'article et au texte de $3 article(s).",
+"nogomatch" => "Aucune page avec ce titre n'existe, essai avec la recherche complète.", // Looxix
 "titlematches" => "Correspondances dans les titres",
 "notitlematches" => "Aucun titre d'article ne contient le(s) mot(s) demandé(s)",
 "textmatches" => "Correspondances dans les textes",
@@ -503,75 +551,82 @@ d'article et au texte de $3 article(s).",
 "nextn"   => "$1 suivants",
 "viewprevnext" => "Voir ($1) ($2) ($3).",
 "showingresults" => "Affichage de <b>$1</b> résultats à partir du #<b>$2</b>.",
-"nonefound"  => "<strong>Note</strong>: l'absence de résultat est souvent due à l'emploi de termes de recherche trop courants, comme \"a\" ou \"de\",
+"showingresultsnum" => "Affichage de <b>$3</b> résultats à partir du #<b>$2</b>.", // Looxix
+"nonefound"  => "<strong>Note</strong>: l'absence de résultat est souvent due à l'emploi de termes de recherche trop courants, comme \"à\" ou \"de\",
 qui ne sont pas indexés, ou à l'emploi de plusieurs termes de recherche (seules les pages
 contenant tous les termes apparaissent dans les résultats).",
-"powersearch" => "Recherche", // AOI "Search",
+"powersearch" => "Recherche",
 "powersearchtext" => "
 Rechercher dans les espaces :<br>
 $1<br>
 $2 Inclure les page de redirections &nbsp; Rechercher $3 $9",
-/* AOI
-"powersearchtext" => "
-Search in namespaces :<br>
-$1<br>
-$2 List redirects &nbsp; Search for $3 $9",
-*/
+"blanknamespace" => "(Principal)",	// FIXME FvdP: trad de "(Main)"
 
-// Preferences page
-
-"preferences" => "Préférences",
-"prefsnologin" => "Non connecté",
-"prefsnologintext" => "Vous devez être <a href=\"" .
+# Preferences page
+#
+"preferences"       => "Préférences",
+"prefsnologin"      => "Non connecté",
+"prefsnologintext"  => "Vous devez être <a href=\"" .
 		wfLocalUrl( "Special:Userlogin" ) . "\">connecté</a>
 pour modifier vos préférences d'utilisateur.",
-"prefsreset" => "Les préférences ont été rétablies à partir de la version enregistrée.",
-"qbsettings" => "Personnalisation de la barre outils",
-"changepassword" => "Modification du mot de passe",
-"skin"   => "Apparence",
-"saveprefs"  => "Enregistrer les préférences",
-"resetprefs" => "Rétablir les préférences",
-"oldpassword" => "Ancien mot de passe",
-"newpassword" => "Nouveau mot de passe",
-"retypenew"  => "Confirmation du nouveau mot de passe",
-"textboxsize" => "Taille de la fenêtre d'édition",
-"rows"   => "Rangées",
-"columns"  => "Colonnes",
+"prefslogintext" => "Je suis connecté(e) en tant que $1 avec le numéro d'utilisateur $2.
+
+Voir [[Wikipédia:Aide pour les préférences]] pour les explications concernant les options.", // Looxix
+"prefsreset"        => "Les préférences ont été rétablies à partir de la version enregistrée.",
+"qbsettings"        => "Personnalisation de la barre outils",
+"changepassword"    => "Modification du mot de passe",
+"skin"              => "Apparence",
+"math"			=> "Rendu des maths",	// Looxix "Rendering math",
+"dateformat"		=> "Format de date",    // Looxix "Date format",
+"math_failure"		=> "Erreur math",	// Looxix "Failure toparse",
+"math_unknown_error"	=> "erreur indéterminée",   // FvdP+Looxix "unknown error",
+"math_unknown_function"	=> "fonction inconnue", // Looxix "unknown function ",
+"math_lexing_error"	=> "erreur lexicale",   // Looxxi "lexing error",
+"math_syntax_error"	=> "erreur de syntaxe", // Looxix "syntax error",
+"saveprefs"         => "Enregistrer les préférences",
+"resetprefs"        => "Rétablir les préférences",
+"oldpassword"       => "Ancien mot de passe",
+"newpassword"       => "Nouveau mot de passe",
+"retypenew"         => "Confirmation du nouveau<br> mot de passe",
+"textboxsize"       => "Taille de la fenêtre d'édition",
+"rows"              => "Rangées",
+"columns"           => "Colonnes",
 "searchresultshead" => "Affichage des résultats de recherche",
-"resultsperpage" => "Nombre de réponses sur chaque page",
-"contextlines" => "Nombre de lignes pour chaque réponse",
-"contextchars" => "Nombre de caractères du contexte sur chaque ligne",
-"stubthreshold" => " Taille minimale d'affichage des articles courts.", // AOI "Threshold for stub display",
-"recentchangescount" => "Nombre de titres dans les modifications récentes",
-"savedprefs" => "Les préférences ont été sauvegardées.",
-"timezonetext" => "Si vous ne précisez pas de décalage horaire, c'est l'heure de l'Europe de l'ouest qui sera utilisée.",
-"localtime" => "Heure locale",
-"timezoneoffset" => "Décalage horaire",
+"resultsperpage"    => "Nombre de réponses sur chaque page",
+"contextlines"      => "Nombre de lignes pour chaque réponse",
+"contextchars"      => "Nombre de caractères du contexte<br> sur chaque ligne",
+"stubthreshold"     => "Taille minimale d'affichage<br> des articles courts.",
+"recentchangescount" => "Nombre de titres dans les<br> modifications récentes",
+"savedprefs"        => "Les préférences ont été sauvegardées.",
+"timezonetext"      => "Si vous ne précisez pas de décalage horaire, c'est l'heure de l'Europe de l'ouest qui sera utilisée.",
+"localtime"         => "Heure locale",
+"timezoneoffset"    => "Décalage horaire",
+"servertime"	    => "Heure du serveur", //Looxix (Server time is now)
+"guesstimezone"     => "Utiliser la valeur du navigateur", //Looxix (Fill in from browser)
+"emailflag"         => "Ne pas recevoir de courrier électronique<br> des autres utilisateurs",
+"defaultns"         => "Par défaut, rechercher dans ces espaces:", //Looxix (Search in these namespaces by default)
 
-"emailflag"  => "Ne pas recevoir de courrier électronique des autres utilisateurs",
-
-// Recent changes
-
-"changes" => "modifications",
+# Recent changes
+#
+"changes"	=> "modifications",
 "recentchanges" => "Modifications récentes",
 "recentchangestext" => "Suivez sur cette page les dernières modifications de Wikipédia.
 [[Wikipédia:Bienvenue|Bienvenue]] aux nouveaux participants!
-Jetez un coup d'&oelig;il sur ces pages: [[Wikipédia:FAQ|Foire aux questions]],
-[[Wikipédia:Recommandations Et Règles à Suivre|Recommandations et règles à suivre]]
-(notamment [[Wikipédia:Règles de nommage|Conventions de nommage]],
-[[Wikipédia:La Neutralité De Point De Vue|La neutralité de point de vue]]),
-et [[Wikipédia:Les Faux-pas Les Plus Courants|Les faux-pas les plus courants]].
+Jetez un coup d'&oelig;il sur ces pages: [[Wikipédia:FAQ|foire aux questions]],
+[[Wikipédia:Recommandations et règles à suivre|recommandations et règles à suivre]]
+(notamment [[Wikipédia:Règles de nommage|conventions de nommage]],
+[[Wikipédia:La neutralité de point de vue|la neutralité de point de vue]]),
+et [[Wikipédia:Les faux-pas les plus courants|les faux-pas les plus courants]].
 
-Si vous voulez que Wikipédia connaisse le succès, n'y ajoutez pas de matériaux protégés par des [[Wikipédia:Copyright|copyrights]].
-La responsabilité juridique pourrait compromettre le projet, alors s'il vous plaît ne le faites pas.
-Voyez aussi [http://meta.wikipedia.org/wiki/Special:Recentchanges les dernières discussions sur le site meta-wiki].",
+Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[Wikipédia:Copyrights|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet. ",
 "rcloaderr"  => "Chargement des dernières modifications",
 "rcnote"  => "Voici les <strong>$1</strong> dernières modifications effectuées au cours des <strong>$2</strong> derniers jours.",
 "rcnotefrom"	=> "Voici les modifications effectuées depuis <strong>$2</strong> (jusqu'à <b>$1</b>).",
 "rclistfrom"	=> "Afficher les nouvelles modifications depuis $1",
-// "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 dernières heures / $3 derniers jours",
-"rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours.",
-"rchide"  => "in $4 form; $1 minor edits; $2 secondary namespaces; $3 multiple edits.",
+# "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 dernières heures / $3 derniers jours",
+# "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours.",
+"rclinks"	=> "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours; $3 modifications mineures.",	// Looxix
+"rchide"  => "in $4 form; $1 modifications mineures; $2 espaces secondaires; $3 modifications multiples.", // FIXME
 "diff"            => "diff",
 "hist"            => "hist",
 "hide"            => "cacher",
@@ -582,8 +637,8 @@ Voyez aussi [http://meta.wikipedia.org/wiki/Special:Recentchanges les dernières 
 "minoreditletter" => "M",
 "newpageletter"   => "N",
 
-// Upload
-
+# Upload
+#
 "upload"       => "Copier sur le serveur",
 "uploadbtn"    => "Copier un fichier",
 "uploadlink"   => "Copier des images",
@@ -597,13 +652,10 @@ pour copier des fichiers sur le serveur.",
 "uploadfile"   => "Copier un fichier",
 "uploaderror"  => "Erreur",
 "uploadtext"   => "<strong>STOP!</strong> Avant de copier votre fichier sur le serveur,
-prenez connaissance des <a href=\"" .
-wfLocalUrlE( "Wikipédia:règles d'utilisation des images" ) . "\">règles d'utilisation des images</a> de Wikipédia et assurez-vous que vous les respectez.
+prenez connaissance des <a href=\"" .wfLocalUrlE( "Wikipédia:règles d'utilisation des images" ) . "\">règles d'utilisation des images</a> de Wikipédia et assurez-vous que vous les respectez.<br>N'oubliez pas de remplir la <a href=\"" .wfLocalUrlE( "Wikipédia:Page de description d'une image" ). "\">page de description de l'image</a> quand celle-ci sera sur le serveur.
 <p>Pour voir les images déjà placées sur le serveur ou faire une recherche parmi celles-ci,
-allez à la <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
-"\">liste des images</a>.
-Les uploads et les suppressions sont listés dans le <a href=\"" .
-wfLocalUrlE( "Wikipédia:Journal_des_uploads" ) . "\">journal des uploads</a>.
+allez à la <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) ."\">liste des images</a>.
+Les uploads et les suppressions sont listés dans le <a href=\"" .wfLocalUrlE( "Wikipédia:Journal_des_uploads" ) . "\">journal des uploads</a>.
 <p>Utilisez le formulaire ci-dessous pour copier sur le serveur de nouvelles images destinées à illustrer vos articles.
 Sur la plupart des navigateurs, vous verrez un bouton \"Browse...\" qui ouvre la fenêtre de dialogue standard de votre système d'exploitation pour l'ouverture des fichiers.
 Sélectionnez un fichier, son nom apparaîtra dans le champ situé à côté du bouton.
@@ -617,8 +669,8 @@ Pour incorporer l'image dans un article, placez dans celui-ci un lien rédigé com
 <b>[[image:nom_du_fichier.jpg]]</b> ou <b>[[image:nom_du_fichier.png|autre texte]]</b>
 ou <b>[[media:nom_du_fichier.ogg]]</b> pour les sons.
 <p>N'oubliez pas que, comme toutes les pages de Wikipédia, les fichiers que vous copiez peuvent être modifiés ou supprimés par les autres utilisateurs s'ils estiment que cela est dans l'intérêt de l'encyclopédie. Sachez aussi que votre accès au serveur peut être bloqué si vous faites un mauvais usage du système.",
-"uploadlog"  => "log d'upload",
-"uploadlogpage" => "Log_d'upload",
+"uploadlog"  => "log d'upload",		// FIXME
+"uploadlogpage" => "Log_d'upload",	// FIXME
 "uploadlogpagetext" => "Voici la liste des derniers fichiers copiés sur le serveur.
 L'heure indiquée est celle du serveur (UTC).
 <ul>
@@ -643,8 +695,8 @@ Suivez ce lien: ($2) pour accéder à la page de description, et donner des inform
 "savefile"  => "Sauvegarder le fichier",
 "uploadedimage" => " \"$1\" copié sur le serveur",
 
-// Image list
-
+# Image list
+#
 "imagelist"  => "Liste des images",
 "imagelisttext" => "Voici une liste de $1 images classées $2.",
 "getimagelist" => "Récupération de la liste des images",
@@ -668,7 +720,7 @@ cette ancienne version, (rétab) = rétablir cette ancienne version.
 "linkstoimage" => "Les pages ci-dessous comportent un lien vers cette image:",
 "nolinkstoimage" => "Aucune page ne comporte de lien vers cette image.",
 
-// Statistics
+# Statistics
 
 "statistics" => "Statistiques",
 "sitestats"  => "Statistiques du site",
@@ -679,39 +731,39 @@ Ce chiffre inclut les pages \"discussion\", les pages relatives à Wikipédia, les
 Si l'on exclut ces pages, il reste <b>$2</b> pages qui sont probablement de véritables articles.<p>
 <b>$3</b> pages ont été consultées et <b>$4</b> pages modifiées
 
-depuis la mise à jour du logiciel (?? ???? 2002).
+depuis la mise à jour du logiciel (31 octobre 2002).
 Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b> consultations pour une modification.",
 "userstatstext" => "Il y a <b>$1</b> utilisateurs enregistrés.
 Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 
 
-// Maintenance Page
-
+# Maintenance Page
+#
 "maintenance"		=> "Page de maintenance",
 "maintnancepagetext"	=> "Cette page inclut plusieurs utilitaires pour la maintenance quotidienne. Certains de ces outils ont tendance à charger la base de données; ne rechargez pas la page a chaque modification.",
-"maintenancebacklink"	=> "Retour à la page de maintenance", // "Back to Maintenance Page",
-"disambiguations"	=> "Pages d'homonymie", // Disambiguation pages",
-"disambiguationspage"	=> "Wikipédia:Liens_aux_pages_d'homonymie", // "Wikipédia:Links_to_disambiguating_pages",
-"disambiguationstext"	=> "Les articles suivants sont liés vers une <i>page d'homonymie</i>. Or, ils devraient être liés vers le sujet.<br>Une page est considérée comme page d'homonymie si elle est liée a partir de $1.<br>Les liens à partir de <i>namespace</i> ne sont pas considérés.", // "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
-"doubleredirects"	=> "Double redirection", // MQ
-"doubleredirectstext"	=> "<b>Attention:</b> cette liste peut contenir des faux positives. Dans ce cas, c'est probablement la page du premier #REDIRECT qui a du texte en plus.<br>Chaque rangée contient des liens à la 1ere et 2e page de redirection, ainsi que la première ligne de cette derniere, qui donne normalement la \"vraie\" destination. Le premier #REDIRECT devrait lier vers cette destination.", //"<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
+"maintenancebacklink"	=> "Retour à la page de maintenance",
+"disambiguations"	=> "Pages d'homonymie",
+"disambiguationspage"	=> "Wikipédia:Liens_aux_pages_d'homonymie",
+"disambiguationstext"	=> "Les articles suivants sont liés vers une <i>page d'homonymie</i>. Or, ils devraient être liés vers le sujet.<br>Une page est considérée comme page d'homonymie si elle est liée a partir de $1.<br>Les liens à partir d'autres <i>espaces</i> ne sont pas considérés.", // Looxix 
+"doubleredirects"	=> "Double redirection",
+"doubleredirectstext"	=> "<b>Attention:</b> cette liste peut contenir des \"faux positifs\". Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br>Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la \"vraie\" destination. Le premier #REDIRECT devrait lier vers cette destination.",
 "brokenredirects"	=> "Redirections cassées", 
 "brokenredirectstext"	=> "Ces redirections mènent a une page qui n'existe pas.",
-"selflinks"		=> "Page avec un lien circulaire", // MQ "Pages with Self Links",
-"selflinkstext"		=> "Les pages suivantes contiennent un lien sur elles-memes, ce qui n'est pas permis.",
+"selflinks"		=> "Page avec un lien circulaire",
+"selflinkstext"		=> "Les pages suivantes contiennent un lien vers elles-mêmes, ce qui n'est pas permis.",
 "mispeelings"           => "Pages avec fautes d'orthographe",
-"mispeelingstext"               => "Les pages suivantes contiennent une faute d'orthographe courante (la liste de celles-ci est sur $1). L'orthographe correcte est peut-être (ceci).", // The following pages contain a common misspelling, which are listed on $1. The correct spelling might be given (like this).",
+"mispeelingstext"               => "Les pages suivantes contiennent une faute d'orthographe courante (la liste de celles-ci est sur $1). L'orthographe correcte est peut-être (ceci).",
 "mispeelingspage"       => "Liste de fautes d'orthographe courantes",
-"missinglanguagelinks"  => "Liens inter-langues manquants", //"Missing Language Links",
-"missinglanguagelinksbutton"    => "Je n'ai pas trouvé de lien/langage pour cette page", // MQ "Find missing language links for",
+"missinglanguagelinks"  => "Liens inter-langues manquants",
+"missinglanguagelinksbutton"    => "Je n'ai pas trouvé de lien/langue pour cette page",
 "missinglanguagelinkstext"      => "Ces articles ne lient pas à leur 'contrepartie' in $1. Les redirections et les liens ne sont pas affichés.",
 
 
-// Miscellaneous special pages
-
+# Miscellaneous special pages
+#
 "orphans"       => "Pages orphelines",
 "lonelypages"   => "Pages orphelines",
-"unusedimages"  => "Images orphelines",
+"unusedimages"  => "Images inutilisées",
 "popularpages"  => "Pages les plus consultées",
 "nviews"        => "$1 consultations",
 "wantedpages"   => "Pages les plus demandées",
@@ -730,15 +782,16 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "rclsub"        => "(des pages liées à \"$1\")",
 "debug"         => "Déboguer",
 "newpages"      => "Nouvelles pages",
+"ancientpages"	=> "Articles les plus anciens",	// Looxix
 "intl"		    => "Liens inter-langues",
 "movethispage"  => "Déplacer la page",
 "unusedimagestext" => "<p>N'oubliez pas que d'autres sites, comme certains Wikipédias non francophones, peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu'elle est en réalité utilisée.",
 "booksources"   => "Ouvrages de référence",
 "booksourcetext" => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les livres que vous cherchez. Wikipédia n'est liée à aucune de ces sociétés, et il n'y a aucune intention à en faire les objets d'une préférence particulière.",
-"alphaindexline" => "$1 à $2", // AOI "$1 to $2"
+"alphaindexline" => "$1 à $2",
 
-// Email this user
-
+# Email this user
+#
 "mailnologin" => "Pas d'adresse",
 "mailnologintext" => "Vous devez être <a href=\"" .
 		wfLocalUrl( "Special:Userlogin" ) . "\">connecté</a>
@@ -760,133 +813,151 @@ L'adresse électronique que vous avez indiquée dans vos préférences apparaîtra da
 "emailsent"  => "Message envoyé",
 "emailsenttext" => "Votre message a été envoyé.",
 
-// Watchlist
-
-"watchlist"  => "Liste de suivi",
-"watchlistsub" => "(pour l'utilisateur \"$1\")",
-"nowatchlist" => "Votre liste de suivi ne contient aucun article.",
-"watchnologin" => "Non connecté",
+# Watchlist
+#
+"watchlist"	=> "Liste de suivi",
+"watchlistsub"	=> "(pour l'utilisateur \"$1\")",
+"nowatchlist"	=> "Votre liste de suivi ne contient aucun article.",
+"watchnologin"	=> "Non connecté",
 "watchnologintext" => "Vous devez être <a href=\"" .
 		wfLocalUrl( "Special:Userlogin" ) . "\">connecté</a>
 pour modifier votre liste.",
-"addedwatch" => "Ajouté à la liste",
+"addedwatch"	=> "Ajouté à la liste",
 "addedwatchtext" => "La page \"$1\" a été ajoutée à votre <a href=\"" .
 		wfLocalUrl( "Special:Watchlist" ) . "\">liste de suivi</a>.
 Les prochaines modifications de cette page et de la page discussion associée seront répertoriées ici, et la page apparaîtra <b>en gras</b> dans la <a href=\"" .
 		wfLocalUrl( "Special:Recentchanges" ) . "\">liste des modifications récentes</a> pour être repérée plus facilement.</p>
 
 <p>Pour supprimer cette page de votre liste de suivi, cliquez sur \"Ne plus suivre\" dans le cadre de navigation.",
-"removedwatch" => "Supprimée de la liste de suivi",
+"removedwatch"	=> "Supprimée de la liste de suivi",
 "removedwatchtext" => "La page \"$1\" a été supprimée de votre liste de suivi.",
-"watchthispage" => "Suivre cette page",
+"watchthispage"	=> "Suivre cette page",
 "unwatchthispage" => "Ne plus suivre",
-"notanarticle" => "Aucun article",
+"notanarticle"	=> "Aucun article",
+"watchnochange" => "Aucune des pages que vous suivez n'ont été modifiées pendant la période affichée", // Looxix 
+"watchdetails" => "($1 pages suivies, sans compter les pages de discussion;
+$2 pages en total modifiées depuis la limite;
+$3...
+<a href='$4'>afficher et modifier la liste complète</a>.)", // Looxix 
+"watchmethod-recent" => "vérification des modifications récentes des pages suivies", // Looxix 
+"watchmethod-list" => "vérification des pages suivies pour des modifications récentes", // Looxix 
+"removechecked" => "Retirer de la liste de suivi les articles sélectionnés", // Looxix 
+"watchlistcontains" => "Votre liste de suivi contient $1 pages", // Looxix 
+"watcheditlist" => "Ceci est votre liste de suivi par ordre alphabétique.
+Sélectionnez les pages que vous souhaitez retirer de la list
+et cliquez le bouton 'remove checked' en haut de l'écran", // Looxix 
+"removingchecked" => "Les articles sélectionnés sont retirés de votre liste de suivi...", // Looxix 
+"couldntremove" => "Impossible de retirer l'article '$1'...", // Looxix "Couldn't remove item '$1'...",
+"iteminvalidname" => "Problème avec l'article '$1': les nom est invalide...", // Looxix 
+"wlnote" => "Ci-dessous se trouve les $1 dernières modifications depuis les <b>$2</b> dernières heures", // Looxix 
 
-// Delete/protect/revert
 
-"deletepage" => "Supprimer une page",
-"confirm"  => "Confirmer",
-"excontent" => "contenant", //"content was:", //AOI
-"exbeforeblank" => "le contenu avant effacement était :", //"content before blanking was:", //AOI
-"exblank" => "page vide", //"page was empty", //AOI
+# Delete/protect/revert
+#
+"deletepage"	=> "Supprimer une page",
+"confirm"	=> "Confirmer",
+"excontent"	=> "contenant",
+"exbeforeblank" => "le contenu avant effacement était :",
+"exblank"	=> "page vide",
 "confirmdelete" => "Confirmer la suppression",
-"deletesub"  => "(Suppression de \"$1\")",
-"historywarning" => "Attention: La page que vous êtes sur le point de supprimer à un historique: ", //"Warning: The page you are about to delete has a history: ", //AOI
+"deletesub"	=> "(Suppression de \"$1\")",
+"historywarning" => "Attention: La page que vous êtes sur le point de supprimer à un historique: ",
 "confirmdeletetext" => "Vous êtes sur le point de supprimer définitivement de la base de données une page
 ou une image, ainsi que toutes ses versions antérieures.
 Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[Wikipédia:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].",
-"confirmcheck" => "Oui, je confirme la suppression.",
+"confirmcheck"	=> "Oui, je confirme la suppression.",
 "actioncomplete" => "Suppression effectuée",
-"deletedtext" => "\"$1\" a été supprimé.
+"deletedtext"	=> "\"$1\" a été supprimé.
 Voir $2 pour une liste des suppressions récentes.",
 "deletedarticle" => "effacement de \"$1\"",
-"dellogpage" => "Trace des effacements",
+"dellogpage"	=> " Trace des effacements",
 "dellogpagetext" => "Voici la liste des suppressions récentes.
 L'heure indiquée est celle du serveur (UTC).
 <ul>
 </ul>
 ",
-"deletionlog" => "trace des effacements", // MQ "deletion log",
-"reverted"  => "Rétablissement de la version précédente",
+"deletionlog"	=> "trace des effacements",
+"reverted"	=> "Rétablissement de la version précédente",
 "deletecomment" => "Motif de la suppression",
 "imagereverted" => "La version précédente a été rétablie.",
 "rollback"	=> "révoquer modifications",
 "rollbacklink"	=> "révoquer",
-"rollbackfailed" => "La révocation a échoué", //"Rollback failed",  //AOI
+"rollbackfailed" => "La révocation a échoué",
 "cantrollback"	=> "Impossible de révoquer: dernier auteur est le seul à avoir modifié cet article",
-"alreadyrolled"	=> "Cannot rollback last edit of [[$1]]
-by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already. 
+"alreadyrolled"	=> "Impossible de révoquer la dernière modification de [[$1]]
+par  [[User:$2|$2]] ([[User talk:$2|Talk]]); quelqu'un d'autre à déjà modifer ou révoquer l'article. 
 
-Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //ENG
+La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //Looxix 
 #   only shown if there is an edit comment
-"editcomment" => "The edit comment was: \"<i>$1</i>\".", //ENG
+"editcomment" => "Le résumé de la modification était: \"<i>$1</i>\".", //Looxix 
 "revertpage"	=> "restitution de la dernière modification de $1",
 
-// Undelete
-"undelete" => "Restaurer la page effacée", // MQ "Restore deleted page",
-"undeletepage" => "Voir et restaurer la page effacée", // MQ "View and restore deleted pages",
-"undeletepagetext" => "Cette page viens d'être effacée et mise dans la corbeille,  elle est toujours dans la base de donnée et peut être restaurée.
-La corbeille peut être effacée périodiquement.", // MQ
-"The following pages have been deleted but are still in the archive and can be restored. The archive may be periodically cleaned out.",
-"undeletearticle" => "Restaurer les articles effacés", // MQ "Restore deleted article",
-"undeleterevisions" => "$1 revisions archived",
-"undeletehistory" => "If you restore the page, all revisions will be restored to the history.
-If a new page with the same name has been created since the deletion, the restored
-revisions will appear in the prior history, and the current revision of the live page
-will not be automatically replaced.",
-"undeleterevision" => "Deleted revision as of $1",
-"undeletebtn" => "Restore!",
-"undeletedarticle" => "restored \"$1\"",
-"undeletedtext"   => "The article [[$1]] has been successfully restored.
-See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations.",
+# Undelete
+#
+"undelete"	=> "Restaurer la page effacée",
+"undeletepage"	=> "Voir et restaurer la page effacée",
+"undeletepagetext" => "Ces pages ont été effacées et se trouvent dans la corbeille, elles sont toujours dans la base de donnée et peuvent être restaurées.
+La corbeille peut être effacée périodiquement.",
 
-// Contributions
+"undeletearticle" => "Restaurer les articles effacés",
+"undeleterevisions" => "$1 révisions archivées", // Looxix "$1 revisions archived",
+"undeletehistory" => "Si vous restaurez la page, toutes les révisions seront restaurées dans l'historique.
+Si une nouvelle page avec le même nom a été crée depuis la suppression,
+les révisions restaurées apparaîtront dans l'historique antérieur et la version courante ne sera pas automatiquement remplacée.", // Looxix  
+"undeleterevision" => "Version effacée ($1)", // Looxix "Deleted revision as of $1",	
+"undeletebtn"	=> "Restaurer!", // Looxix "Restore!",
+"undeletedarticle" => "restauré \"$1\"",	// FvdP "restored \"$1\""
+"undeletedtext"   => "L'article [[$1]] a été restauré avec succès.
+Voir [[Wikipedia:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.", // Looxix 
+# Contributions
+#
+"contributions"	=> "Contributions",
+"mycontris"	=> "Mes contributions",
+"contribsub"	=> "Pour $1",
+"nocontribs"	=> "Aucune modification correspondant à ces critères n'a été trouvée.",
+"ucnote"	=> "Voici les <b>$1</b> dernières modifications effectuées par cet utilisateur au cours des <b>$2</b> derniers jours.",
+"uclinks"	=> "Afficher les $1 dernières modifications; afficher les $2 derniers jours.",
+"uctop"		=> " (dernière)",	// FvdP " (top)"
 
-"contributions" => "Contributions",
-"mycontris" => "Mes contributions",
-"contribsub" => "Pour $1",
-"nocontribs" => "Aucune modification correspondant à ces critères n'a été trouvée.",
-"ucnote"  => "Voici les <b>$1</b> dernières modifications effectuées par cet utilisateur au cours des <b>$2</b> derniers jours.",
-"uclinks"  => "Afficher les $1 dernières modifications; afficher les $2 derniers jours.",
-
-// What links here
-
+# What links here
+#
 "whatlinkshere" => "Pages liées",
 "notargettitle" => "Pas de cible",
-"notargettext" => "Indiquez une page cible ou un utilisateur cible.",
-"linklistsub" => "(Liste de liens)",
-"linkshere"  => "Les pages ci-dessous contiennent un lien vers celle-ci:",
-"nolinkshere" => "Aucune page ne contient de lien vers celle-ci.",
-"isredirect" => "page de redirection",
+"notargettext"	=> "Indiquez une page cible ou un utilisateur cible.",
+"linklistsub"	=> "(Liste de liens)",
+"linkshere"	=> "Les pages ci-dessous contiennent un lien vers celle-ci:",
+"nolinkshere"	=> "Aucune page ne contient de lien vers celle-ci.",
+"isredirect"	=> "page de redirection",
 
-// Block/unblock IP
-
-"blockip"  => "Bloquer une adresse IP",
-"blockiptext" => "Utilisez le formulaire ci-dessous pour bloquer l'accès en écriture à partir d'une adresse IP donnée.
-Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[Wikipédia:Recommandations Et Règles à Suivre|recommandations et règles à suivre]].
+# Block/unblock IP
+#
+"blockip"	=> "Bloquer une adresse IP",
+"blockiptext"	=> "Utilisez le formulaire ci-dessous pour bloquer l'accès en écriture à partir d'une adresse IP donnée.
+Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[Wikipédia:Recommandations et règles à suivre|recommandations et règles à suivre]].
 Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont été vandalisées).",
-"ipaddress"  => "Adresse IP",
-"ipbreason"  => "Motif",
-"ipbsubmit"  => "Bloquer cette adresse",
-"badipaddress" => "L'adresse IP n'est pas correcte.",
+"ipaddress"	=> "Adresse IP",
+"ipbreason"	=> "Motif",
+"ipbsubmit"	=> "Bloquer cette adresse",
+"badipaddress"	=> "L'adresse IP n'est pas correcte.",
 "noblockreason" => "Vous devez indiquer le motif du blocage.",
 "blockipsuccesssub" => "Blocage réussi",
 "blockipsuccesstext" => "L'adresse IP \"$1\" a été bloquée.
 <br>Vous pouvez consulter sur cette [[Special:Ipblocklist|page]] la liste des adresses IP bloquées.",
-"unblockip"  => "Débloquer une adresse IP",
+"unblockip"	=> "Débloquer une adresse IP",
 "unblockiptext" => "Utilisez le formulaire ci-dessous pour rétablir l'accès en écriture
 à partir d'une adresse IP précédemment bloquée.",
-"ipusubmit"  => "Débloquer cette adresse",
-"ipusuccess" => "Adresse IP \"$1\" débloquée",
-"ipblocklist" => "Liste des adresses IP bloquées",
+"ipusubmit"	=> "Débloquer cette adresse",
+"ipusuccess"	=> "Adresse IP \"$1\" débloquée",
+"ipblocklist"	=> "Liste des adresses IP bloquées",
 "blocklistline" => "$1, $2 a bloqué $3",
-"blocklink"  => "bloquer",
-"unblocklink" => "débloquer",
-"contribslink" => "contribs",
+"blocklink"	=> "bloquer",
+"unblocklink"	=> "débloquer",
+"contribslink"	=> "contribs",
+"autoblocker"	=> "Autobloqué parce que vous partagez un adresse IP avec \"$1\". Raison : \"$2\".", // Looxix 
 
 
-// Developer tools
-
+# Developer tools
+#
 "lockdb"  => "Verrouiller la base",
 "unlockdb"  => "Déverrouiller la base",
 "lockdbtext" => "Le verrouillage de la base de données empêchera tous les utilisateurs de modifier des pages, de sauvegarder leurs préférences, de modifier leur liste de suivi et d'effectuer toutes les autres opérations nécessitant des modifications dans la base de données.
@@ -906,22 +977,23 @@ Veuillez confirmer que c'est bien là ce que vous voulez faire.",
 <br>N'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération de maintenance.",
 "unlockdbsuccesstext" => "La base de données de Wikipédia est déverrouillée.",
 
-// SQL query
-
-"asksql"  => "Requête SQL",
-"asksqltext" => "Utilisez le formulaire ci-dessous pour faire une requête directe sur la base de données de Wikipédia.
+# SQL query
+#
+"asksql"	=> "Requête SQL",
+"asksqltext"	=> "Utilisez le formulaire ci-dessous pour faire une requête directe sur la base de données de Wikipédia.
 Utilisez des guillemets simples ('comme ceci') pour délimiter les chaînes de caractères.
 Cette opération peut surcharger considérablement le serveur, faites en usage
 avec modération.",
-"sqlquery"  => "Saisir la requête",
+"sqlislogged"	=> "Veillez noter que toutes les requêtes sont loguées", // Looxix "Please note that all queries are logged.",	
+"sqlquery"	 => "Saisir la requête",
 
-"querybtn"  => "Envoyer la requête",
-"selectonly" => "Les requêtes autres que \"SELECT\" sont réservées aux développeurs de
+"querybtn"	=> "Envoyer la requête",
+"selectonly"	=> "Les requêtes autres que \"SELECT\" sont réservées aux développeurs de
 Wikipédia.",
 "querysuccessful" => "Requête réussie",
 
-// Move page
-
+# Move page
+#
 "movepage"  => "Déplacer un article",
 "movepagetext" => "Utilisez le formulaire ci-dessous pour renommer un article, en déplaçant toutes ses versions antérieures vers le nouveau nom.
 Le titre précédent deviendra une page de redirection vers le nouveau titre.
@@ -929,17 +1001,28 @@ Les liens vers l'ancien titre ne seront pas modifiés et la page discussion, si e
 <b>ATTENTION!</b>
 Il peut s'agir d'un changement radical et inattendu pour un article souvent consulté;
 assurez-vous que vous en comprenez bien les conséquences avant de procéder.",
-"movearticle" => "Déplacer l'article",
-"movenologin" => "Non connecté",
+"movepagetalktext" => "La page de discussion associé, si présente, sera automatiquement déplacée avec '''sauf si:'''
+*Vous déplacez une page vers un autre espace,
+*Une page de discussion existe déjà avec le nouveau nom, ou
+*Vous avez désélectionné le bouton ci-dessous.
+
+Dans ce cas, vous devrez déplacer ou fusionner la page manuellement si vous le désirez.", // Looxix
+
+"movearticle"	=> "Déplacer l'article",
+"movenologin"	=> "Non connecté",
 "movenologintext" => "Pour pouvoir déplacer un article, vous devez être <a href=\"" .
 		wfLocalUrl( "Special:Userlogin" ) . "\">connecté</a>
 en tant qu'utilisateur enregistré.",
-"newtitle"  => "Nouveau titre",
-"movepagebtn" => "Déplacer l'article",
+"newtitle"	=> "Nouveau titre",
+"movepagebtn"	=> "Déplacer l'article",
 "pagemovedsub" => "Déplacement réussi",
 "pagemovedtext" => "L'article \"[[$1]]\" a été déplacé vers \"[[$2]]\".",
 "articleexists" => "Il existe déjà un article portant ce titre, ou le titre que vous avez choisi n'est pas valide.
 Veuillez en choisir un autre.",
+"talkexists"	=> "La page elle-même a été déplacée avec succès, mais
+la page de discussion n'a pas pu être déplacée car il en existait déjà une
+sous le nouveau nom. S'il vous plait, fusionnez les manuellement.", // Looxix
+
 "movedto"  => "déplacé vers",
 "movetalk"  => "Déplacer aussi la page \"discussion\", s'il y a lieu.",
 "talkpagemoved" => "La page discussion correspondante a également été déplacée.",
@@ -950,13 +1033,13 @@ Veuillez en choisir un autre.",
 class LanguageFr extends Language
 {
 
-	function getDefaultUserOptions ()
-    {
+	function getDefaultUserOptions()
+	{
 		global $wgDefaultUserOptionsFr;
 		return $wgDefaultUserOptionsFr;
-    }
+	}
 
-    function getNamespaces()
+	function getNamespaces()
 	{
 		global $wgNamespaceNamesFr;
 		return $wgNamespaceNamesFr;
@@ -1005,14 +1088,14 @@ class LanguageFr extends Language
 	}
 
 
-    function getUserToggles()
+	function getUserToggles()
 	{
 		global $wgUserTogglesFr;
 		return $wgUserTogglesFr;
 	}
 
 	function getLanguageName( $code )
-    {
+	{
 		global $wgLanguageNamesFr;
 		if ( ! array_key_exists( $code, $wgLanguageNamesFr ) ) 
 		{
