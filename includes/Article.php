@@ -1184,13 +1184,21 @@ class Article {
 	/* static */ function incViewCount( $id )
 	{
 		$id = intval( $id );
+		global $wgHitcounterUpdateFreq;
+
+		if( $wgHitcounterUpdateFreq <= 1 ){ // 
+			wfQuery("UPDATE cur SET cur_counter = cur_counter + 1 " .
+				"WHERE cur_id = $id", DB_WRITE);
+			return;
+		}
 
 		# Not important enough to warrant an error page in case of failure
 		$oldignore = wfIgnoreSQLErrors( true ); 
 
 		wfQuery("INSERT INTO hitcounter (hc_id) VALUES ({$id})", DB_WRITE);
 
-		if( (rand() % 23 != 0) or (wfLastErrno() != 0) ){
+		$checkfreq = intval( $wgHitcounterUpdateFreq/25 + 1 );
+		if( (rand() % $checkfreq != 0) or (wfLastErrno() != 0) ){
 			# Most of the time (or on SQL errors), skip row count check
 			wfIgnoreSQLErrors( $oldignore );
 			return;
@@ -1199,7 +1207,7 @@ class Article {
 		$res = wfQuery("SELECT COUNT(*) as n FROM hitcounter", DB_WRITE);
 		$row = wfFetchObject( $res );
 		$rown = intval( $row->n );
-		if( $rown > 1000 ){ // update counters after ~1000 hits
+		if( $rown >= $wgHitcounterUpdateFreq ){ 
 			wfProfileIn( "Article::incViewCount-collect" );
 			$old_user_abort = ignore_user_abort( true );
 

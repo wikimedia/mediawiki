@@ -92,6 +92,14 @@ $wgCompressedPersistentLC = true; # use gzcompressed blobs
 
 $wgEnableParserCache = false; # requires that php was compiled --with-zlib
 
+# wgHitcounterUpdateFreq sets how often page counters should be
+# updated, higher values are easier on the database. A value of 1
+# causes the counters to be updated on every hit, any higher value n
+# cause them to update *on average* every n hits. Should be set to
+# either 1 or something largish, eg 1000, for maximum efficiency.
+
+$wgHitcounterUpdateFreq = 1;
+
 # User rights 
 $wgWhitelistEdit = false;
 $wgWhitelistRead = false;
