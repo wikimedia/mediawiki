@@ -1743,8 +1743,11 @@ class Language {
 	}
 
 	function getMonthName( $key ) {
-		global $wgMonthNamesEn;
-		return wfMsg($wgMonthNamesEn[$key-1]);
+		global $wgMonthNamesEn, $wgContLang;
+		if( get_class( $wgContLang ) == get_class( $this ) )
+			return wfMsgForContent($wgMonthNamesEn[$key-1]);
+		else
+			return wfMsg($wgMonthNamesEn[$key-1]);
 	}
 
 	/* by default we just return base form */
@@ -1753,13 +1756,19 @@ class Language {
 	}
 
 	function getMonthAbbreviation( $key ) {
-		global $wgMonthAbbreviationsEn;
-		return wfMsg(@$wgMonthAbbreviationsEn[$key-1]);
+		global $wgMonthAbbreviationsEn, $wgContLang;
+		if( get_class( $wgContLang ) == get_class( $this ) )
+			return wfMsgForContent(@$wgMonthAbbreviationsEn[$key-1]);
+		else
+			return wfMsg(@$wgMonthAbbreviationsEn[$key-1]);
 	}
 
 	function getWeekdayName( $key ) {
-		global $wgWeekdayNamesEn;
-		return wfMsg($wgWeekdayNamesEn[$key-1]);
+		global $wgWeekdayNamesEn,  $wgContLang;
+		if( get_class( $wgContLang ) == get_class( $this ) )
+			return wfMsgForContent($wgWeekdayNamesEn[$key-1]);
+		else
+			return wfMsg($wgWeekdayNamesEn[$key-1]);
 	}
 
 	function userAdjust( $ts ) {
