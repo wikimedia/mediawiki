@@ -1752,7 +1752,7 @@ class Skin {
 		
 		# Spacer image
 		$r = "" ;
-		$r .= "<img src='{$wgUploadPath}/Arr_.png' width=12 height=12 border=0>" ;		$r .= "<tt>" ;
+		$r .= "<img src='{$wgUploadPath}/Arr_.png' width='12' height='12' border='0'>" ;		$r .= "<tt>" ;
 		
 		if ( $rc_type == RC_MOVE ) {
 			$r .= "&nbsp;&nbsp;";
@@ -1837,10 +1837,10 @@ class Skin {
 		$rci = "RCI{$this->rcCacheIndex}" ;
 		$rcl = "RCL{$this->rcCacheIndex}" ;
 		$rcm = "RCM{$this->rcCacheIndex}" ;
-		$tl = "<a href='javascript:toggleVisibility(\"{$rci}\",\"{$rcm}\",\"{$rcl}\")'>" ;
-		$tl .= "<span id='{$rcm}'><img src='{$wgUploadPath}/Arr_r.png' width=12 height=12 border=0></span>" ;
-		$tl .= "<span id='{$rcl}' style='display:none'><img src='{$wgUploadPath}/Arr_d.png' width=12 height=12 border=0></span>" ;
-		$tl .= "</a>" ;
+		$toggleLink = "javascript:toggleVisibility(\"{$rci}\",\"{$rcm}\",\"{$rcl}\")" ;
+		$arrowdir = $wgLang->isRTL() ? "l" : "r";
+		$tl  = "<span id='{$rcm}'><a href='$toggleLink'><img src='{$wgUploadPath}/Arr_{$arrowdir}.png' width='12' height='12' border='0' /></a></span>" ;
+		$tl .= "<span id='{$rcl}' style='display:none'><a href='$toggleLink'><img src='{$wgUploadPath}/Arr_d.png' width='12' height='12' border='0' /></a></span>" ;
 		$r .= $tl ;
 
 		# Main line
@@ -1934,7 +1934,7 @@ class Skin {
 			}
 		}
 
-		return "<div align=left>{$r}</div>" ;
+		return "<div>{$r}</div>" ;
 	}
 
 	# Called in a loop over all displayed RC entries
