@@ -18,18 +18,20 @@
 }
 
 #portlet-contentViews li {
-    display: block;
     float: left;
     padding-top: 0;
-    padding-bottom: 0;
+    padding-bottom: 0 !important;
     height: 0.9em;
 }
-#portlet-contentViews li.selected {
-    background-color: White;
-    padding-bottom: 0.2em;
+#portlet-contentViews li a {
+    display: block;
+    padding-bottom: 0.045em;
+}
+#portlet-contentViews li.selected a {
+    padding-bottom: 0.17em;
 }
 #portlet-contentViews li a:hover {
-    padding-bottom: 0.5em;
+    padding-bottom: 0.17em;
 }
 /* log in etc */
 #portal-personaltools {
