@@ -968,7 +968,8 @@ class Parser
 		# and making lists from lines starting with * # : etc.
 		#
 		$a = explode( "\n", $text );
-		$text = $lastPref = "";
+		$text = "<p>"; # ??
+		$lastPref = "";
 		$this->mDTopen = $inBlockElem = false;
 
 		if ( ! $linestart ) { $text .= array_shift( $a ); }
@@ -1029,8 +1030,9 @@ class Parser
 					if ( " " == $t{0} ) {
 						$newSection = "pre";
 						# $t = wfEscapeHTML( $t );
+					} else {
+						$newSection = "p";
 					}
-					else { $newSection = "p"; }
 
 					if ( 0 == strcmp( "", trim( $oLine ) ) ) {
 						$text .= $this->closeParagraph();
@@ -1056,9 +1058,7 @@ class Parser
 			--$npl;
 		}
 		if ( "" != $this->mLastSection ) {
-			if ( "p" != $this->mLastSection ) {
-				$text .= "</" . $this->mLastSection . ">";
-			}
+			$text .= "</" . $this->mLastSection . ">";
 			$this->mLastSection = "";
 		}
 		wfProfileOut( $fname );

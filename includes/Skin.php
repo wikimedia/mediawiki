@@ -335,7 +335,6 @@ class Skin {
 		$s .= $this->pageTitle();
 		$s .= $this->pageSubtitle() ;
 		$s .= getCategories(); // For some odd reason, zhis can't be a function of the object
-		$s .= "\n<p>";
 		wfProfileOut( $fname );
 		return $s;
 	}
@@ -2323,8 +2322,7 @@ class Skin {
 	// toolbar for common editing functions. It can be disabled in the user preferences.
 	// The necsesary JavaScript code can be found in style/wikibits.js.
 	function getEditToolbar() {
-
-		global $wgUploadPath,$wgLang;
+		global $wgUploadPath, $wgLang, $wgMimeType;
 
 		// toolarray an array of arrays which each include the filename of
 		// the button image (without path), the opening tag, the closing tag,
@@ -2389,6 +2387,12 @@ class Skin {
 				"tip"=>wfMsg("hr_tip"))
 		);
 		$toolbar ="<script type='text/javascript'>\n";
+		
+		$xml = ($wgMimeType == "text/xml");
+		if( $xml ) {
+			$toolbar .= "<![CDATA[";
+		}
+		
 		$toolbar.="document.writeln(\"<div id='toolbar'>\");\n";
 		foreach($toolarray as $tool) {
 
@@ -2406,7 +2410,12 @@ class Skin {
 		}
 
 		$toolbar.="addInfobox('" . addslashes( wfMsg( "infobox" ) ) . "','" . addslashes(wfMsg("infobox_alert")) . "');\n";
-		$toolbar.="document.writeln(\"</div>\");\n</script>";
+		$toolbar.="document.writeln(\"</div>\");\n";
+		
+		if( $xml ) {
+			$toolbar .= "]]>";
+		}
+		$toolbar.="</script>";
 		return $toolbar;
 	}
 }

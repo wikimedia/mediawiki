@@ -304,11 +304,11 @@ class EditPage {
 		$watchhtml = "";
 
 		if ( 0 != $wgUser->getID() ) {
-			$watchhtml = "<input tabindex='4' type='checkbox' name='wpWatchthis'".($this->watchthis?" checked":"")." id='wpWatchthis'>".
+			$watchhtml = "<input tabindex='4' type='checkbox' name='wpWatchthis'".($this->watchthis?" checked":"")." id='wpWatchthis' />".
 			"<label for='wpWatchthis'>{$watchthis}</label>";
 		}
 
-		$checkboxhtml = $minoredithtml . $watchhtml . "<br>";
+		$checkboxhtml = $minoredithtml . $watchhtml . "<br />";
 
 		if ( "preview" == $formtype) {
 			$previewhead="<h2>" . wfMsg( "preview" ) . "</h2>\n<p><large><center><font color=\"#cc0000\">" .
@@ -338,11 +338,11 @@ class EditPage {
 		# Otherwise, show a summary field at the bottom
 		$summarytext = htmlspecialchars( $wgLang->recodeForEdit( $this->summary ) ); # FIXME
 		if( $this->section == "new" ) {
-			$commentsubject="{$subject}: <input tabindex='1' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60'><br>";
+			$commentsubject="{$subject}: <input tabindex='1' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
 			$editsummary = "";
 		} else {
 			$commentsubject = "";
-			$editsummary="{$summary}: <input tabindex='3' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60'><br>";
+			$editsummary="{$summary}: <input tabindex='3' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
 		}
 
 		if( !$this->preview ) {
