@@ -57,10 +57,10 @@ function guessTimezone(box) {
 
 function showTocToggle(show,hide) {
 	if(document.getElementById) {
-		document.writeln('<small>[<a href="javascript:toggleToc()" class="internal">' +
+		document.writeln('<span class=\'toctoggle\'>[<a href="javascript:toggleToc()" class="internal">' +
 		'<span id="showlink" style="display:none;">' + show + '</span>' +
 		'<span id="hidelink">' + hide + '</span>'
-		+ '</a>]</small>');
+		+ '</a>]</span>');
 	}
 }
 

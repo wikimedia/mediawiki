@@ -300,7 +300,7 @@ class Article {
 	function view()
 	{
 		global $wgUser, $wgOut, $wgLang;
-		global $oldid, $diff, $printable; # From query
+		global $oldid, $diff; # From query
 		global $wgLinkCache, $IP, $wgEnableParserCache;
 		
 		$fname = "Article::view";
@@ -352,10 +352,6 @@ class Article {
 
 		$wgLinkCache->preFill( $this->mTitle );
 		
-		if ( $printable == "yes" ) {
-			$wgOut->mParserOptions->setPrintable( true );
-		}
-
 		if( $wgEnableParserCache && intval($wgUser->getOption( "stubthreshold" )) == 0 ){
 			$wgOut->addWikiText( $text, true, $this );
 		} else {
