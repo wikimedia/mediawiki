@@ -214,6 +214,7 @@ CREATE TABLE objectcache (
  */
 class SqlBagOStuff extends BagOStuff {
 	var $table;
+	var $lastexpireall = 0;
 
 	function SqlBagOStuff($tablename = 'objectcache') {
 		$this->table = $tablename;
@@ -221,7 +222,7 @@ class SqlBagOStuff extends BagOStuff {
 	
 	function get($key) {
 		/* expire old entries if any */
-		$this->expireall();
+		$this->garbageCollect();
 		
 		$res = $this->_query(
 			"SELECT value,exptime FROM $0 WHERE keyname='$1'", $key);
@@ -313,9 +314,18 @@ class SqlBagOStuff extends BagOStuff {
 		die( 'abstract function SqlBagOStuff::_fromunixtime() must be defined' );
 	}
 	
+	function garbageCollect() {
+		$nowtime = time();
+		/* Avoid repeating the delete within a few seconds */
+		if ( $nowtime > ($this->lastexpireall + 1) ) {
+			$this->lastexpireall = $nowtime;
+			$this->expireall();
+		}
+	}
+	
 	function expireall() {
 		/* Remove any items that have expired */
-		$now=$this->_fromunixtime(time());
+		$now = $this->_fromunixtime( time() );
 		$this->_query( "DELETE FROM $0 WHERE exptime<'$now'" );
 	}
 	
