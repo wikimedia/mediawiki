@@ -1,67 +1,102 @@
 <?php
+#
+# Swedish localisation for MediaWiki
+#
+# This file is encoded in UTF-8, no byte order mark.
+# For compatibility with Latin-1 installations, please
+# don't add literal characters above U+00ff.
+#
 
-// NOTE: To turn off "Current Events" in the sidebar,
-// set "currentevents" => "-"
-// 
-// The names of the namespaces can be set here, but the numbers
-// are magical, so don't change or move them!  The Namespace class
-// encapsulates some of the magic-ness.
-// 
+require_once( "LanguageUtf8.php" );
+
+// $Id$
 
 /* private */ $wgNamespaceNamesSv = array(
-	-2	=> "Media",
-        -1      => "Special",
-        0       => "",
-        1       => "Diskussion",
-        2       => "Användare",
-        3       => "Användare_diskussion",
-        4       => "Wikipedia",
-        5       => "Wikipedia_diskussion",
-        6       => "Bild",
-        7       => "Bild_diskussion",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_diskussion",
-	10  => "Template",
-	11  => "Template_talk"
-
-);
+	NS_MEDIA            => "Media",
+	NS_SPECIAL          => "Special",
+	NS_MAIN	            => "",
+	NS_TALK	            => "Diskussion",
+	NS_USER             => "AnvÃ¤ndare",
+	NS_USER_TALK        => "AnvÃ¤ndardiskussion",
+	NS_WIKIPEDIA        => $wgMetaNamespace,
+	NS_WIKIPEDIA_TALK   => $wgMetaNamespace . "diskussion",
+	NS_IMAGE            => "Bild",
+	NS_IMAGE_TALK       => "Bilddiskussion",
+	NS_MEDIAWIKI        => "MediaWiki",
+	NS_MEDIAWIKI_TALK   => "MediaWiki_diskussion",
+	NS_TEMPLATE         => "Mall",
+	NS_TEMPLATE_TALK    => "Malldiskussion",
+	NS_HELP             => "HjÃ¤lp",
+	NS_HELP_TALK        => "HjÃ¤lp_diskussion",
+	NS_CATEGORY	    => "Kategori",
+	NS_CATEGORY_TALK    => "Kategoridiskussion"
+) + $wgNamespaceNamesEn;
 
 /* inherit standard defaults */
 
 /* private */ $wgQuickbarSettingsSv = array(
-        "Ingen", "Fast vänster", "Fast höger", "Flytande vänster"
+	"Ingen",
+	"Fast vÃ¤nster",
+	"Fast hÃ¶ger",
+	"Flytande vÃ¤nster"
 );
 
 /* private */ $wgSkinNamesSv = array(
 	'standard' => "Standard",
 	'nostalgia' => "Nostalgi",
-	'cologneblue' => "Cologne Blå",
+	'cologneblue' => "Cologne BlÃ¥",
 	'smarty' => "Paddington",
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
+);
+
+define( "MW_MATH_PNG",    0 );
+define( "MW_MATH_SIMPLE", 1 );
+define( "MW_MATH_HTML",   2 );
+define( "MW_MATH_SOURCE", 3 );
+define( "MW_MATH_MODERN", 4 );
+define( "MW_MATH_MATHML", 5 );
+
+/* private */ $wgMathNamesSv = array(
+	MW_MATH_PNG    => "Rendera alltid PNG",
+	MW_MATH_SIMPLE => "HTML om den Ã¤r vÃ¤ldigt enkel, annars PNG",
+	MW_MATH_HTML   => "HTML om det Ã¤r mÃ¶jligt, annars PNG",
+	MW_MATH_SOURCE => "LÃ¤mna det som TeX (fÃ¶r textbaserade webblÃ¤ddrare)",
+	MW_MATH_MODERN => "Rekommenderas fÃ¶r moderna webblÃ¤sare",
+	MW_MATH_MATHML => "MathML om det Ã¤r mÃ¶jligt (experimentellt)",
+);
+
+/* private */ $wgDateFormatsSv = array(
+	"Ingen instÃ¤llning",
+	"Januari 15, 2001",
+	"15 Januari 2001",
+	"2001 Januari 15",
+	"2001-01-15"
 );
 
 /* private */ $wgUserTogglesSv = array(
-        "hover"            => "Svävande text över wikilänkar",
-        "underline"        => "Understrukna länkar",
-        "highlightbroken"  => "Röda länkar till tomma sidor",
+        "hover"            => "SvÃ¤vande text Ã¶ver wikilÃ¤nkar",
+        "underline"        => "Understryk lÃ¤nkar",
+        "highlightbroken"  => "Formatera trasiga lÃ¤nkar <a href=\"\" class=\"new\">sÃ¥ hÃ¤r</a>
+(alternativt: sÃ¥ hÃ¤r<a href=\"\" class=\"internal\">?</a>).",
         "justify"          => "Justera indrag",
-        "hideminor"        => "Göm små redigeringar vid senaste ändring",
-	"usenewrc"         => "Avancerad 'Senaste ändringar'",
-        "numberheadings"   => "Automatisk numrering av överskrifter",
-	"showtoolbar" => "Show edit toolbar",
-        "rememberpassword" => "Kom ihåg lösenord till nästa besök",
+        "hideminor"        => "GÃ¶m mindre redigeringar vid senaste Ã¤ndring",
+	"usenewrc"         => "Avancerad 'Senaste Ã¤ndringar'",
+        "numberheadings"   => "Automatisk numrering av Ã¶verskrifter",
+	"showtoolbar"      => "Visa redigeringverktygsrad",
+        "rememberpassword" => "Kom ihÃ¥g lÃ¶senord till nÃ¤sta besÃ¶k",
         "editwidth"        => "Redigeringsboxen har full bredd",
         "editondblclick"   => "Redigera sidor med dubbelklick (JavaScript)",
-	"editsection"      => "Visa [edit]-länkar för att redigera sektioner",
-	"editsectiononrightclick" => "Högerklick på rubriker redigerar sektioner",
-	"showtoc"          => "Visa automatisk innehållsförteckning (på sidor med mer än 3 sektioner)",
-        "watchdefault"     => "Övervaka nya och ändrade artiklar",
-        "minordefault"     => "Markera som standard alla ändringer som mindre",
-	"previewontop"     => "Visa förhandsgranskning före textfältet istället för efter",
-	"nocache"          => "Slå av cachning av sidor"
+	"editsection"      => "Visa [edit]-lÃ¤nkar fÃ¶r att redigera sektioner",
+	"editsectiononrightclick" => "HÃ¶gerklick pÃ¥ rubriker redigerar sektioner",
+	"showtoc"          => "Visa automatisk innehÃ¥llsfÃ¶rteckning (pÃ¥ sidor med mer Ã¤n 3 sektioner)",
+        "watchdefault"     => "Ã–vervaka nya och Ã¤ndrade artiklar",
+        "minordefault"     => "Markera som standard alla Ã¤ndringer som mindre",
+	"previewontop"     => "Visa fÃ¶rhandsgranskning fÃ¶re textfÃ¤ltet istÃ¤llet fÃ¶r efter",
+	"nocache"          => "SlÃ¥ av cachning av sidor"
 );
 
 /* private */ $wgBookstoreListSv = array(
@@ -76,8 +111,8 @@
    languages! */
 
 /* private */ $wgWeekdayNamesSv = array(
-        "söndag", "måndag", "tisdag", "onsdag", "torsdag",
-        "fredag", "lördag"
+        "sÃ¶ndag", "mÃ¥ndag", "tisdag", "onsdag", "torsdag",
+        "fredag", "lÃ¶rdag"
 );
 
 /* private */ $wgMonthNamesSv = array(
@@ -100,62 +135,64 @@
 $wgValidSpecialPagesSv = array(
         "Userlogin"     => "",
         "Userlogout"    => "",
-        "Preferences"   => "Mina användarinställningar",
-        "Watchlist"     => "Min övervakningslista",
-        "Recentchanges" => "Senaste ändringar",
+        "Preferences"   => "Mina anvÃ¤ndarinstÃ¤llningar",
+        "Watchlist"     => "Min Ã¶vervakningslista",
+        "Recentchanges" => "Senaste Ã¤ndringar",
 
         "Upload"        => "Ladda upp filer",
         "Imagelist"     => "Bildlista",
-        "Listusers"     => "Registrerade användare",
+        "Listusers"     => "Registrerade anvÃ¤ndare",
         "Statistics"    => "Sidstatistik",
 
-        "Randompage"    => "Slumpmässig sida",
-        "Lonelypages"   => "Föräldralösa sidor",
-        "Unusedimages"  => "Föräldralösa filer",
-        "Popularpages"  => "Populära artiklar",
-        "Wantedpages"   => "Mest önskade artiklar",
+        "Randompage"    => "SlumpmÃ¤ssig sida",
+        "Lonelypages"   => "FÃ¶rÃ¤ldralÃ¶sa sidor",
+        "Unusedimages"  => "FÃ¶rÃ¤ldralÃ¶sa filer",
+        "Popularpages"  => "PopulÃ¤ra artiklar",
+        "Wantedpages"   => "Mest Ã¶nskade artiklar",
         "Shortpages"    => "Korta artiklar",
-        "Longpages"     => "Långa artiklar",
+        "Longpages"     => "LÃ¥nga artiklar",
         "Newpages"      => "De nyaste artiklarna",
         "Ancientpages"  => "Oldest pages",
         "Allpages"      => "Alla sidor efter titel",
 
         "Ipblocklist"   => "Blockerade IP adresser",
-        "Maintenance"   => "Underhållssida",
+        "Maintenance"   => "UnderhÃ¥llssida",
         "Specialpages"  => "Specialsidor",
         "Contributions" => "",
-        "Emailuser"     => "E-postanvändare",
+        "Emailuser"     => "E-postanvÃ¤ndare",
         "Whatlinkshere" => "",
         "Recentchangeslinked" => "",
         "Movepage"      => "",
-        "Booksources"   => "Externa bokkällor",
+        "Booksources"   => "Externa bokkÃ¤llor",
         "Export"        => "XML export",
 		"Version"		=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesSv = array(
         "Blockip"       => "Blockera en IP-adress",
-        "Asksql"        => "Gör en sökning i databasen",
-        "Undelete"      => "Se och återställ raderade sidor"
+        "Asksql"        => "GÃ¶r en sÃ¶kning i databasen",
+        "Undelete"      => "Se och Ã¥terstÃ¤ll raderade sidor"
 );
 
 /* private */ $wgDeveloperSpecialPagesSv = array(
         "Lockdb"        => "Skrivskydda databasen",
-        "Unlockdb"      => "Återställ skrivning till databasen",
+        "Unlockdb"      => "Ã…terstÃ¤ll skrivning till databasen",
 );
 
 /* private */ $wgAllMessagesSv = array(
 
 // Bits of text used by many pages:
 //	
-"linktrail"             => "/^([a-zäöå]+)(.*)\$/sD",
+"linktrail"             => "/^((?:[a-z]|Ã¤|Ã¶|Ã¥)+)(.*)\$/sD",
 "mainpage"              => "Huvudsida",
+'portal'		=> 'Kollektivportal',
+'portal-url'		=> '{{ns:4}}:Kollektivportal',
 "about"                 => "Om",
-"aboutwikipedia"        => "Om Wikipedia",
-"aboutpage"             => "Wikipedia:Om",
-
-"help"                  => "Hjälp",
-"helppage"              => "Wikipedia:Hjälp",
+"aboutwikipedia"        => "Om {{SITENAME}}",
+"aboutpage"		=> "{{ns:4}}:Om",
+'article'               => 'Artikel',
+"help"                  => "HjÃ¤lp",
+"helppage"              => "Wikipedia:HjÃ¤lp",
 "wikititlesuffix"       => "Wikipedia",
 "bugreports"            => "Felrapporter",
 "bugreportspage"        => "Wikipedia:Felrapporter",
@@ -163,131 +200,159 @@ $wgValidSpecialPagesSv = array(
 "sitesupportpage"       => "", # If not set, won't appear. Can be wiki page or URL
 "faq"                   => "FAQ",
 "faqpage"               => "Wikipedia:FAQ",
-"edithelp"              => "Redigeringshjälp",
+"edithelp"              => "RedigeringshjÃ¤lp",
 "edithelppage"          => "Wikipedia:Hur_redigerar_jag_en_sida",
 "cancel"                => "Avbryt",
-"qbfind"                => "SnabbSök",
-"qbbrowse"              => "Genomsök",
+"qbfind"                => "SnabbSÃ¶k",
+"qbbrowse"              => "GenomsÃ¶k",
 "qbedit"                => "Redigera",
-"qbpageoptions"         => "Sidinställningar",
+"qbpageoptions"         => "SidinstÃ¤llningar",
 "qbpageinfo"            => "Sidinformation",
-"qbmyoptions"           => "Mina inställningar",
+"qbmyoptions"           => "Mina instÃ¤llningar",
 "mypage"                => "Min sida",
 "mytalk"                => "Min diskussion",
 "currentevents"         => "-",
 "errorpagetitle"        => "Fel",
 "returnto"              => "Tillbaka till $1.",
-"fromwikipedia"         => "Från Wikipedia, den fria encyklopedin.",
-"whatlinkshere"         => "Vilka sidor länkar hit?",
-"help"                  => "Hjälp",
-"search"                => "Sök",
+"fromwikipedia"         => "FrÃ¥n Wikipedia, den fria encyklopedin.",
+"whatlinkshere"         => "Vilka sidor lÃ¤nkar hit?",
+"help"                  => "HjÃ¤lp",
+"search"                => "SÃ¶k",
 "history"               => "Versionshistorik",
-"printableversion"      => "Skrivarvänlig version",
-"editthispage"          => "Redigera den här sidan",
-"deletethispage"        => "Radera den här sidan",
-"protectthispage"       => "Skydda den här sidan",
-"unprotectthispage"     => "Ta bort skydd av denna sida",
+"history_short"         => "Historik",
+"printableversion"      => "SkrivarvÃ¤nlig version",
+"edit"                  => "Redigera",
+"editthispage"          => "Redigera den hÃ¤r sidan",
+"delete"                => "Ta bort",
+"deletethispage"        => "Ta bort den hÃ¤r sidan",
+"protect"               => "Skydda",
+"protectthispage"       => "Skydda den hÃ¤r sidan",
+"unprotect"             => "Ta bort skydd",
+"unprotectthispage"     => "Ta bort skydd frÃ¥n den hÃ¤r sidan",
 "newpage"               => "Ny sida",
 "talkpage"              => "Diskussionssida",
-"postcomment"           => "Skriv ett inlägg",
+"personaltools"         => "Personliga verktyg",
+"postcomment"           => "Skicka en kommentar",
+"addsection"            => "+",
 "articlepage"           => "Visa artikel",
-"subjectpage"           => "Ämnessida",
-"userpage"              => "Visa användarsida",
+"subjectpage"           => "Ã„mnessida",
+"talk"                  => "Diskussion",
+"toolbox"               => "VerktygslÃ¥da",
+"userpage"              => "Visa anvÃ¤ndarsida",
 "wikipediapage"         => "Visa metasida",
 "imagepage"             => "Visa bildsida",
-"otherlanguages"        => "Andra språk",
-"redirectedfrom"        => "(Omdirigerad från $1)",
-"lastmodified"          => "Denna sida blev senast ändrad $1.",
-"viewcount"             => "Denna sida har visats $1 gånger.",
-"gnunote"               => "Denna sida är publicerad under <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a>.",
-"printsubtitle"         => "(Från http://sv.wikipedia.org)",
+"viewtalkpage"          => "Visa diskussion",
+"otherlanguages"        => "Andra sprÃ¥k",
+"redirectedfrom"        => "(Omdirigerad frÃ¥n $1)",
+"lastmodified"          => "Den hÃ¤r sidan blev senast Ã¤ndrad $1.",
+"viewcount"             => "Den hÃ¤r sidan har visats $1 gÃ¥nger.",
+"copyright"	        => "InnehÃ¥ll tillgÃ¤ngligt under $1.",
+"poweredby"	        => "{{SITENAME}} kÃ¶rs med hjÃ¤lp av [http://www.mediawiki.org/ MediaWiki], en Ã¶ppen kÃ¤llkods-wikimotor.",
+"printsubtitle"         => "(FrÃ¥n http://sv.wikipedia.org)",
 "protectedpage"         => "Skyddad sida",
-"administrators"        => "Wikipedia:Administratörer",
-"sysoptitle"            => "Sysop-behörighet krävs",
-"sysoptext"             => "Denna funktion kan bara utföras av användare med \"sysop\" status.
+"administrators"        => "Wikipedia:AdministratÃ¶rer",
+"sysoptitle"            => "Sysop-behÃ¶righet krÃ¤vs",
+"sysoptext"             => "Den hÃ¤r funktionen kan bara utfÃ¶ras av anvÃ¤ndare med \"sysop\" status.
 Se $1.",
-"developertitle"        => "Utvecklarbehörighet krävs",
-"developertext"         => "Denna funktion kan bara utföras av användare med \"developer\" status.
+"developertitle"        => "UtvecklarbehÃ¶righet krÃ¤vs",
+"developertext"         => "Den hÃ¤r funktionen kan bara utfÃ¶ras av anvÃ¤ndare med \"developer\" status.
 Se $1.",
-"nbyte"                 => " bytes",
-"go"                    => "Utför",
+"bureaucrattitle"	=> "ByrÃ¥krataccess krÃ¤vs",
+"bureaucrattext"	=> "Funktionen du har eftersÃ¶kt kan endast utfÃ¶ras av en sysop med byrÃ¥kratstatus.",
+"nbytes"		=> "$1 bytes",
+"go"                    => "UtfÃ¶r",
 "ok"                    => "OK",
-"sitetitle"             => "Wikipedia",
+"sitetitle"             => "{{SITENAME}}",
+"pagetitle"		=> "$1 - {{SITENAME}}",
 "sitesubtitle"          => "Den fria encyklopedin",
-"retrievedfrom"         => "Hämtat från \"$1\"",
+"retrievedfrom"         => "HÃ¤mtad frÃ¥n \"$1\"",
 "newmessages"           => "Du har $1.",
 "newmessageslink"       => "nya meddelanden",
 "editsection"           => "edit",
-"toc"                   => "Innehåll",
+"toc"                   => "InnehÃ¥ll",
 "showtoc"               => "visa",
-"hidetoc"               => "göm",
-"thisisdeleted"         => "Visa eller återställ $1?",
+"hidetoc"               => "gÃ¶m",
+"thisisdeleted"         => "Visa eller Ã¥terstÃ¤ll $1?",
 "restorelink"           => "$1 raderade versioner",
+"feedlinks"             => "Matning:",
+
+// Short words for each namespace, by default used in the 'article' tab in monobook
+"nstab-main"           => "Artikel",
+"nstab-user"           => "AnvÃ¤ndarsida",
+"nstab-media"          => "Media",
+"nstab-special"        => "Speciell",
+"nstab-wp"             => "Om",
+"nstab-image"          => "Bild",
+"nstab-mediawiki"      => "Meddelande",
+"nstab-template"       => "Mall",
+"nstab-help"           => "HjÃ¤lp",
+"nstab-category"       => "Kategori",
+
 
 // Main script and global functions
 //
 "nosuchaction"          => "Funktionen finns inte",
 "nosuchactiontext"      => "Den funktion som specificerats i URL:en kan inte
 hittas av Wikipediaprogramvaran",
-"nosuchspecialpage"     => "Sådan specialsida finns inte",
-"nospecialpagetext"     => "Du har önskat en specialsida som inte
+"nosuchspecialpage"     => "SÃ¥dan specialsida finns inte",
+"nospecialpagetext"     => "Du har Ã¶nskat en specialsida som inte
 hittas av Wikipediaprogramvaran.",
 
 // General errors
 //
 "error"                 => "Fel",
 "databaseerror"         => "Databasfel",
-"dberrortext"           => "Ett syntaxfel i databasfrågan har uppstått. Detta kan bero på en felaktig sökfråga (se $5) eller det kan bero på ett fel i programvaran.
-Den senste utförda databasfrågan var:
+"dberrortext"           => "Ett syntaxfel i databasfrÃ¥gan har uppstÃ¥tt. Detta kan bero pÃ¥ en felaktig sÃ¶kfrÃ¥ga (se $5) eller det kan bero pÃ¥ ett fel i programvaran.
+Den senste utfÃ¶rda databasfrÃ¥gan var:
 <blockquote><tt>$1</tt></blockquote>
-från funktionen \"<tt>$2</tt>\".
+frÃ¥n funktionen \"<tt>$2</tt>\".
 MySQL returnerade felen \"$3<tt>: $4</tt>\".",
-"noconnect"             => "Kunde inte ansluta till databasen på $1",
-"nodb"                  => "Kunde inte välja databasen $1",
-"readonly"              => "Databasen är skrivskyddad",
-"enterlockreason"       => "Skriv en grund för skrivskyddet, inklusive 
-en uppskattning på när skrivskyddet skall upphävas",
-"readonlytext"          => "Wikipediadatabasen är för ögonblicket skrivskyddad för 
-nya sidor och andra modifikationer, beroende på rutinmässigt 
-underhåll av databasen, varefter den återgår till normalstatus.
-Den administratör som skrivskyddade den har gett följande förklaring:
+"noconnect"             => "Kunde inte ansluta till databasen pÃ¥ $1",
+"nodb"                  => "Kunde inte vÃ¤lja databasen $1",
+"readonly"              => "Databasen Ã¤r skrivskyddad",
+"enterlockreason"       => "Skriv en grund fÃ¶r skrivskyddet, inklusive 
+en uppskattning pÃ¥ nÃ¤r skrivskyddet skall upphÃ¤vas",
+"readonlytext"          => "Wikipediadatabasen Ã¤r fÃ¶r Ã¶gonblicket skrivskyddad fÃ¶r 
+nya sidor och andra modifikationer, beroende pÃ¥ rutinmÃ¤ssigt 
+underhÃ¥ll av databasen, varefter den Ã¥tergÃ¥r till normalstatus.
+Den administratÃ¶r som skrivskyddade den har gett fÃ¶ljande fÃ¶rklaring:
 <p>$1",
-"missingarticle"        => "Databasen fann inte texten på en sida
+"missingarticle"        => "Databasen fann inte texten pÃ¥ en sida
 som den skulle hitta, med namnet \"$1\".
-Dette är inte ett databas fel, utan beror på ett fel i mjukvaran.
-Skicka vänligen en rapport om detta till en administratör, där du också nämner 
+Dette Ã¤r inte ett databas fel, utan beror pÃ¥ ett fel i mjukvaran.
+Skicka vÃ¤nligen en rapport om detta till en administratÃ¶r, dÃ¤r du ocksÃ¥ nÃ¤mner 
 URL:en.",
 "internalerror"         => "Internt fel",
 "filecopyerror"         => "Kunde inte kopiera filen \"$1\" til \"$2\".",
-"filerenameerror"       => "Kunde inte byta namn på filen \"$1\" til \"$2\".",
+"filerenameerror"       => "Kunde inte byta namn pÃ¥ filen \"$1\" til \"$2\".",
 "filedeleteerror"       => "Kunde inte radera filen \"$1\".",
 "filenotfound"          => "Kunde inte hitta filen \"$1\".",
-"unexpected"            => "Oväntat värde: \"$1\"=\"$2\".",
-"formerror"             => "Fel: Kunde inte sända formulär",
-"badarticleerror"       => "Denna funktion kan inte utföras på denna sida.",
+"unexpected"            => "OvÃ¤ntat vÃ¤rde: \"$1\"=\"$2\".",
+"formerror"             => "Fel: Kunde inte sÃ¤nda formulÃ¤r",
+"badarticleerror"       => "Den hÃ¤r funktionen kan inte utfÃ¶ras pÃ¥ den hÃ¤r sidan.",
 "cannotdelete"          => "Kunde inte radera sidan, eller filen som specificerades.",
 "badtitle"              => "Felaktig titel",
-"badtitletext"          => "Den önskade sidans titel var inte tillåten, tom eller sidan
-är felaktigt länkad från en Wikipedia på ett annat språk.",
+"badtitletext"          => "Den Ã¶nskade sidans titel var inte tillÃ¥ten, tom eller sidan
+Ã¤r felaktigt lÃ¤nkad frÃ¥n en Wikipedia pÃ¥ ett annat sprÃ¥k.",
 
 
 // Login and logout pages
 //
-"logouttitle"           => "Logga ut Användare",
-"logouttext"            => "Du är nu utloggad.
-Du kan fortsätta som anonym Wikipediaanvändare, eller så kan du logga in
-igen som samma eller annan användare.\n",
+"logouttitle"           => "Logga ut AnvÃ¤ndare",
+"logouttext"            => "Du Ã¤r nu utloggad.
+Du kan fortsÃ¤tta som anonym WikipediaanvÃ¤ndare, eller sÃ¥ kan du logga in
+igen som samma eller annan anvÃ¤ndare.\n",
 
-"welcomecreation"       => "<h2>Välkommen, $1!</h2><p>Ditt konto har skapats. Glöm inte att anpassa dina Wikipediainställningar.",
+"welcomecreation"       => "<h2>VÃ¤lkommen, $1!</h2><p>Ditt konto har skapats. GlÃ¶m inte att anpassa dina WikipediainstÃ¤llningar.",
 
-"loginpagetitle"        => "Logga in Användare",
-"yourname"              => "Ditt användarnamn",
-"yourpassword"          => "Ditt lösenord",
-"yourpasswordagain"     => "Upprepa lösenord",
-"newusersonly"          => " (bara för nya användare)",
-"remembermypassword"    => "Kom ihåg mitt lösenord till nästa gång.",
-"loginproblem"          => "<b>Det var svårt att logga in dig .</b><br>Pröva igen!",
-"alreadyloggedin"       => "<font color=red><b>Användare $1, du är redan inloggad !</b></font><br>\n",
+"loginpagetitle"        => "Logga in AnvÃ¤ndare",
+"yourname"              => "Ditt anvÃ¤ndarnamn",
+"yourpassword"          => "Ditt lÃ¶senord",
+"yourpasswordagain"     => "Upprepa lÃ¶senord",
+"newusersonly"          => " (bara fÃ¶r nya anvÃ¤ndare)",
+"remembermypassword"    => "Kom ihÃ¥g mitt lÃ¶senord till nÃ¤sta gÃ¥ng.",
+"loginproblem"          => "<b>Det var svÃ¥rt att logga in dig .</b><br>PrÃ¶va igen!",
+"alreadyloggedin"       => "<font color=red><b>AnvÃ¤ndare $1, du Ã¤r redan inloggad !</b></font><br>\n",
 
 "login"                 => "Logga in",
 "userlogin"             => "Logga in",
@@ -295,189 +360,189 @@ igen som samma eller annan användare.\n",
 "userlogout"            => "Logga ut",
 "notloggedin" 		=> "Ej inloggad",
 "createaccount"         => "Skapa ett konto",
-"badretype"             => "De lösenord du uppgett överenstämmer inte med varandra.",
-"userexists"            => "Detta användarnamn används redan. Ange ett annat användarnamn.",
+"badretype"             => "De lÃ¶senord du uppgett Ã¶verenstÃ¤mmer inte med varandra.",
+"userexists"            => "Detta anvÃ¤ndarnamn anvÃ¤nds redan. Ange ett annat anvÃ¤ndarnamn.",
 "youremail"             => "Din e-postadress",
 "yournick"              => "Ditt smeknamn (till signaturer)",
-"emailforlost"          => "Har du glömt ditt lösenord, så kan du få ett nytt lösenord skickat till din e-post",
+"emailforlost"          => "Har du glÃ¶mt ditt lÃ¶senord, sÃ¥ kan du fÃ¥ ett nytt lÃ¶senord skickat till din e-post",
 "loginerror"            => "Inloggningsproblem",
-"noname"                => "Det användarnamn som du angett finns inte",
+"noname"                => "Det anvÃ¤ndarnamn som du angett finns inte",
 "loginsuccesstitle"     => "Inloggningen lyckades",
-"loginsuccess"          => "Du är nu inloggad på wikipedia med användarnamnet \"$1\".",
-"nosuchuser"            => "Det finns ingen användare med namnet \"$1\".
-Kontrollera stavningen, eller använd formuläret nedan för att skapa ett nytt konto.",
-"wrongpassword"         => "Lösenordet du skrev är felaktigt. Pröva igen",
-"mailmypassword"        => "Sänd mig ett nytt lösenord",
-"passwordremindertitle" => "Nytt lösenord från Wikipedia",
-"passwordremindertext"  => "Någon (förmodligen du, med IP-numret $1)
-har bett oss sända dig ett nytt lösenord för din Wikipedia-inloggning
-Lösenordet för användare \"$2\" är nu \"$3\".
-Du ska logga in på din användare och byta lösenord.",
-"noemail"               => "Det finns ingen e-postadress registrerad för användare \"$1\".",
-"passwordsent"          => "Ett nytt lösenord har skickats till e-posten registrerad av användaren\"$1\".
-Var snäll och logga in igen när du fått meddelandet.",
+"loginsuccess"          => "Du Ã¤r nu inloggad pÃ¥ wikipedia med anvÃ¤ndarnamnet \"$1\".",
+"nosuchuser"            => "Det finns ingen anvÃ¤ndare med namnet \"$1\".
+Kontrollera stavningen, eller anvÃ¤nd formulÃ¤ret nedan fÃ¶r att skapa ett nytt konto.",
+"wrongpassword"         => "LÃ¶senordet du skrev Ã¤r felaktigt. PrÃ¶va igen",
+"mailmypassword"        => "SÃ¤nd mig ett nytt lÃ¶senord",
+"passwordremindertitle" => "Nytt lÃ¶senord frÃ¥n Wikipedia",
+"passwordremindertext"  => "NÃ¥gon (fÃ¶rmodligen du, med IP-numret $1)
+har bett oss sÃ¤nda dig ett nytt lÃ¶senord fÃ¶r din Wikipedia-inloggning
+LÃ¶senordet fÃ¶r anvÃ¤ndare \"$2\" Ã¤r nu \"$3\".
+Du ska logga in pÃ¥ din anvÃ¤ndare och byta lÃ¶senord.",
+"noemail"               => "Det finns ingen e-postadress registrerad fÃ¶r anvÃ¤ndare \"$1\".",
+"passwordsent"          => "Ett nytt lÃ¶senord har skickats till e-posten registrerad av anvÃ¤ndaren\"$1\".
+Var snÃ¤ll och logga in igen nÃ¤r du fÃ¥tt meddelandet.",
 
 
 // Edit pages
 //
 "summary"               => "Sammanfattning",
-"minoredit"             => "Detta är en mindre ändring",
-"watchthis"             => "Bevaka den här artikeln",
+"minoredit"             => "Detta Ã¤r en mindre Ã¤ndring",
+"watchthis"             => "Bevaka den hÃ¤r artikeln",
 "savearticle"           => "Spara",
-"preview"               => "Förhandsgranska",
-"showpreview"           => "Visa förhandgranskning",
-"blockedtitle"          => "Användaren är spärrad",
-"blockedtext"           => "Ditt användarnamn har blivit spärrat av $1.
-Anledning är att:<br>''$2''<p>Ta kontakt med $1 eller en av de andra
-[[Wikipedia:Administratörer|administratörerna]] för att diskutera varför du blivit spärrad", // "
+"preview"               => "FÃ¶rhandsgranska",
+"showpreview"           => "Visa fÃ¶rhandgranskning",
+"blockedtitle"          => "AnvÃ¤ndaren Ã¤r spÃ¤rrad",
+"blockedtext"           => "Ditt anvÃ¤ndarnamn har blivit spÃ¤rrat av $1.
+Anledning Ã¤r att:<br>''$2''<p>Ta kontakt med $1 eller en av de andra
+[[Wikipedia:AdministratÃ¶rer|administratÃ¶rerna]] fÃ¶r att diskutera varfÃ¶r du blivit spÃ¤rrad", // "
 "newarticle"            => "(Ny)",
-"newarticletext"        => "Du har klickat på en röd länk, en sida som inte finns ännu. Du kan hjälpa till genom att själv skriva vad du vet om ämnet i fältet nedan. Om du inte vill skriva något kan du bara trycka på \"tillbaka\" i din webbläsare.",
-"anontalkpagetext"      => "---- ''Detta är en diskussionssida för en anonym användare, en användare som inte har skapat sig ett konto, eller som inte har loggat in på det. Vi måste därför använda personens numeriska [[IP-adress]] för identifiera honom eller henne. En sådan IP-adress kan ibland användas av flera olika personer. Om du är en anonym användare och ser meddelanden på den här sidan som inte tycks vara riktade till dig, var vänlig [[Special:Userlogin|logga in]] så du undviker förväxling med andra anonyma användare i framtiden.'' ",
-"noarticletext"         => "(Det finns för tillfället ingen text på den här sidan.)",
+"newarticletext"        => "Du har klickat pÃ¥ en rÃ¶d lÃ¤nk, en sida som inte finns Ã¤nnu. Du kan hjÃ¤lpa till genom att sjÃ¤lv skriva vad du vet om Ã¤mnet i fÃ¤ltet nedan. Om du inte vill skriva nÃ¥got kan du bara trycka pÃ¥ \"tillbaka\" i din webblÃ¤sare.",
+"anontalkpagetext"      => "---- ''Detta Ã¤r en diskussionssida fÃ¶r en anonym anvÃ¤ndare, en anvÃ¤ndare som inte har skapat sig ett konto, eller som inte har loggat in pÃ¥ det. Vi mÃ¥ste dÃ¤rfÃ¶r anvÃ¤nda personens numeriska [[IP-adress]] fÃ¶r identifiera honom eller henne. En sÃ¥dan IP-adress kan ibland anvÃ¤ndas av flera olika personer. Om du Ã¤r en anonym anvÃ¤ndare och ser meddelanden pÃ¥ den hÃ¤r sidan som inte tycks vara riktade till dig, var vÃ¤nlig [[Special:Userlogin|logga in]] sÃ¥ du undviker fÃ¶rvÃ¤xling med andra anonyma anvÃ¤ndare i framtiden.'' ",
+"noarticletext"         => "(Det finns fÃ¶r tillfÃ¤llet ingen text pÃ¥ den hÃ¤r sidan.)",
 "updated"               => "(Uppdaterad)",
 "note"                  => "<strong>Notera:</strong> ",
-"previewnote"           => "Observera att detta är en förhandsvisning, och att sidan ännu inte sparats!",
-"previewconflict"       => "Denna förhandsvisning är resultatet av den 
-redigerbara texten ovanför,
-så som det kommer att se ut om du väljer att spara.",
+"previewnote"           => "Observera att detta Ã¤r en fÃ¶rhandsvisning, och att sidan Ã¤nnu inte sparats!",
+"previewconflict"       => "Den hÃ¤r fÃ¶rhandsvisningen Ã¤r resultatet av den 
+redigerbara texten ovanfÃ¶r,
+sÃ¥ som det kommer att se ut om du vÃ¤ljer att spara.",
 "editing"               => "Redigerar $1",
 "editconflict"          => "Redigeringskonflikt: $1",
-"explainconflict"       => "Någon har ändrat denna sida efter att du började att redigera den.
-Det översta text blocket innehåller den nuvarande texten.
-Dina ändringer syns i det nedersta blocket.
-Du måste infoga dina ändringar i den existerande texten.
-<b>Bara</b> texten i den översta textboxen sparas om du trycker \"Spara sida\".\n<p>",
+"explainconflict"       => "NÃ¥gon har Ã¤ndrat den hÃ¤r sidan efter att du bÃ¶rjade att redigera den.
+Det Ã¶versta text blocket innehÃ¥ller den nuvarande texten.
+Dina Ã¤ndringer syns i det nedersta blocket.
+Du mÃ¥ste infoga dina Ã¤ndringar i den existerande texten.
+<b>Bara</b> texten i den Ã¶versta textboxen sparas om du trycker \"Spara sida\".\n<p>",
 "yourtext"              => "Din text",
 "storedversion"         => "Din sparade version",
 "editingold"            => "<strong>VARNING: Du redigerar en gammal version
-av denna sida. Om du sparar den, kommer alla ändringar på denns sida föregående revison att bli överskrivna.</strong>\n",
+av den hÃ¤r sidan. Om du sparar den, kommer alla Ã¤ndringar pÃ¥ denns sida fÃ¶regÃ¥ende revison att bli Ã¶verskrivna.</strong>\n",
 "yourdiff"              => "Skillnader",
-"copyrightwarning"      => "Observera att alla bidrag till Wikipedia är
+"copyrightwarning"      => "Observera att alla bidrag till Wikipedia Ã¤r
 att betrakta som utgivna under GNU Free Documentation License
-(se $1 för detaljer).
-Om du inte vill ha din text redigerad och kopierad efter andras gottfinnade så skall du inte skriva någon text här.<br>
-Du lovar oss också att du skrev texten själv, eller kopierade från public domain eller liknande fri resurs.<BR>
-<strong>LÄGG ALDRIG UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN FÖRFATTARENS TILLÅTELSE!</strong>",
+(se $1 fÃ¶r detaljer).
+Om du inte vill ha din text redigerad och kopierad efter andras gottfinnade sÃ¥ skall du inte skriva nÃ¥gon text hÃ¤r.<br>
+Du lovar oss ocksÃ¥ att du skrev texten sjÃ¤lv, eller kopierade frÃ¥n public domain eller liknande fri resurs.<BR>
+<strong>LÃ„GG ALDRIG UT UPPHOVSRÃ„TTSSKYDDAT MATERIAL HÃ„R UTAN FÃ–RFATTARENS TILLÃ…TELSE!</strong>",
 
-"longpagewarning"       => "VARNING: Den här artikeln är $1 kilobytes lång; vissa äldre webbläsare
-kan ha problem med att redigera sidor som är omkring 32 kb eller större.
-Du kanske vill överväga att dela upp artikeln i mindre delar.",
-"readonlywarning"       => "VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara 
-dina ändringar just nu. För säkerhets skull kanske du vill överväga att kopiera över texten till din egen dator tills
-databasen är upplåst igen.",
-"protectedpagewarning"  => "VARNING:  Den här sidan har låsts så att bara administratörer kan redigera den. 
-Försäkra dig om att du följer rekommendationerna för <a href='$wgScriptPath/$wgMetaNamespace:Skyddade sidor'>skyddade sidor</a>",
+"longpagewarning"       => "VARNING: Den hÃ¤r artikeln Ã¤r $1 kilobytes lÃ¥ng; vissa Ã¤ldre webblÃ¤sare
+kan ha problem med att redigera sidor som Ã¤r omkring 32 kb eller stÃ¶rre.
+Du kanske vill Ã¶vervÃ¤ga att dela upp artikeln i mindre delar.",
+"readonlywarning"       => "VARNING: Databasen Ã¤r tillfÃ¤lligt lÃ¥st fÃ¶r underhÃ¥ll. Du kommer inte att kunna spara 
+dina Ã¤ndringar just nu. FÃ¶r sÃ¤kerhets skull kanske du vill Ã¶vervÃ¤ga att kopiera Ã¶ver texten till din egen dator tills
+databasen Ã¤r upplÃ¥st igen.",
+"protectedpagewarning"  => "VARNING:  Den hÃ¤r sidan har lÃ¥sts sÃ¥ att bara administratÃ¶rer kan redigera den. 
+FÃ¶rsÃ¤kra dig om att du fÃ¶ljer rekommendationerna fÃ¶r <a href='$wgScriptPath/$wgMetaNamespace:Skyddade sidor'>skyddade sidor</a>",
 
 // History pages
 //
 "revhistory"            => "Versionshistoria",
-"nohistory"             => "Det finns ingen versionshistoria för denna sida.",
+"nohistory"             => "Det finns ingen versionshistoria fÃ¶r den hÃ¤r sidan.",
 "revnotfound"           => "Versionen hittades inte",
-"revnotfoundtext"       => "Den gamla versionen av den sida du frågade efter kan inte hittas. Kontrollera den URL du använde för att nå denna sida.\n",
-"loadhist"              => "Läser sidans versioner",
+"revnotfoundtext"       => "Den gamla versionen av den sida du frÃ¥gade efter kan inte hittas. Kontrollera den URL du anvÃ¤nde fÃ¶r att nÃ¥ den hÃ¤r sidan.\n",
+"loadhist"              => "LÃ¤ser sidans versioner",
 "currentrev"            => "Nuvarande version",
-"revisionasof"          => "Versionen från $1",
+"revisionasof"          => "Versionen frÃ¥n $1",
 "cur"                   => "nuvarande",
-"next"                  => "nästa",
-"last"                  => "föregående",
+"next"                  => "nÃ¤sta",
+"last"                  => "fÃ¶regÃ¥ende",
 "orig"                  => "original",
-"histlegend"            => "Förklaring: (nuvarande) = skillnad mot den nuvarande versionen,
- (föregående) = skillnad mot den föregående versionen, M = mindre ändring",
+"histlegend"            => "FÃ¶rklaring: (nuvarande) = skillnad mot den nuvarande versionen,
+ (fÃ¶regÃ¥ende) = skillnad mot den fÃ¶regÃ¥ende versionen, M = mindre Ã¤ndring",
 
 
 // Diffs
 //
 "difference"            => "(Skillnad mellan versioner)",
-"loadingrev"            => "läser version för att se skillnad",
+"loadingrev"            => "lÃ¤ser version fÃ¶r att se skillnad",
 "lineno"                => "Rad $1:",
-"editcurrent"           => "Redigera den nuvarande versionen av denna sida",
+"editcurrent"           => "Redigera den nuvarande versionen av den hÃ¤r sidan",
 
 // Search results
 //
-"searchresults"         => "Sökresultat",
-"searchhelppage"        => "Wikipedia:Sökning",
-"searchingwikipedia"    => "Sökning på Wikipedia",
-"searchresulttext"      => "För mer information om sökning på Wikipedia, se $1.",
+"searchresults"         => "SÃ¶kresultat",
+"searchhelppage"        => "Wikipedia:SÃ¶kning",
+"searchingwikipedia"    => "SÃ¶kning pÃ¥ Wikipedia",
+"searchresulttext"      => "FÃ¶r mer information om sÃ¶kning pÃ¥ Wikipedia, se $1.",
 "searchquery"           => "For query \"$1\"",
-"badquery"              => "Felaktigt utformat sökbegrepp",
-"badquerytext"          => "Vi kunde inte utföra din sökning.
-Detta beror sannolikt på att du försökt söka efter ett ord med färre än tre bokstäver, något som f.n. inte stöds. Det kan också vara så att du har anget en felaktig sökning, till exempel \"fisk och och skaldjur\". Prova att formulera om sökningen.",
-"matchtotals"           => "Sökordet förekommer i \"$1\" överensstämde med $2 artiklar titlar
+"badquery"              => "Felaktigt utformat sÃ¶kbegrepp",
+"badquerytext"          => "Vi kunde inte utfÃ¶ra din sÃ¶kning.
+Detta beror sannolikt pÃ¥ att du fÃ¶rsÃ¶kt sÃ¶ka efter ett ord med fÃ¤rre Ã¤n tre bokstÃ¤ver, nÃ¥got som f.n. inte stÃ¶ds. Det kan ocksÃ¥ vara sÃ¥ att du har anget en felaktig sÃ¶kning, till exempel \"fisk och och skaldjur\". Prova att formulera om sÃ¶kningen.",
+"matchtotals"           => "SÃ¶kordet fÃ¶rekommer i \"$1\" Ã¶verensstÃ¤mde med $2 artiklar titlar
 och texter i $3 artiklar.",
-"titlematches"          => "Artikel titlar som överensstämmer med sökordet",
-"notitlematches"        => "Ingen artikel titlar överensstämmer med sökordet",
-"textmatches"           => "Artikel texter som överensstämmer med sökordet",
-"notextmatches"         => "Ingen artikel texter överensstämmer med sökordet",
-"prevn"                 => "förra $1",
-"nextn"                 => "nästa $1",
+"titlematches"          => "Artikel titlar som Ã¶verensstÃ¤mmer med sÃ¶kordet",
+"notitlematches"        => "Ingen artikel titlar Ã¶verensstÃ¤mmer med sÃ¶kordet",
+"textmatches"           => "Artikel texter som Ã¶verensstÃ¤mmer med sÃ¶kordet",
+"notextmatches"         => "Ingen artikel texter Ã¶verensstÃ¤mmer med sÃ¶kordet",
+"prevn"                 => "fÃ¶rra $1",
+"nextn"                 => "nÃ¤sta $1",
 
 "viewprevnext"          => "Om ($1) ($2) ($3).",
 "showingresults"        => "Nedan visas <b>$1</b> resultat som startar med nummer <b>$2</b>.",
-"nonefound"             => "<strong>Note</strong>: Misslyckade sökningar förorsakas ofta av
- att man söker efter vanliga ord som \"har\" och \"från\",
-vilka inte indexeras, eller att specificera flera sökord (bara 
-sidor som innehåller alla sökorden hittas).",
-"powersearch"           => "Sök",
+"nonefound"             => "<strong>Note</strong>: Misslyckade sÃ¶kningar fÃ¶rorsakas ofta av
+ att man sÃ¶ker efter vanliga ord som \"har\" och \"frÃ¥n\",
+vilka inte indexeras, eller att specificera flera sÃ¶kord (bara 
+sidor som innehÃ¥ller alla sÃ¶korden hittas).",
+"powersearch"           => "SÃ¶k",
 "powersearchtext"       => "
-Sök i namnutrymme :<br>
+SÃ¶k i namnutrymme :<br>
 $1<br>
-$2 List redirects &nbsp; Sök efter $3 $9",
+$2 List redirects &nbsp; SÃ¶k efter $3 $9",
 
 
 // Preferences page
 //
-"preferences"           => "Inställningar",
-"prefsnologin"          => "Du är inte inloggad",
-"prefsnologintext"      => "Du måste vara <a href=\"" .
+"preferences"           => "InstÃ¤llningar",
+"prefsnologin"          => "Du Ã¤r inte inloggad",
+"prefsnologintext"      => "Du mÃ¥ste vara <a href=\"" .
   wfLocalUrl( "Special:Userlogin" ) . "\">inloggad</a>
-för att kunna ändra i inställningar.",
-"prefslogintext"        => "Du är inloggad som \"$1\".
-Ditt IP-nummer är $2.",
-"prefsreset"            => "Inställningar har blivit återställda från minne.",
-"qbsettings"            => "Inställningar för snabbmeny",
-"changepassword"        => "Byt lösenord",
+fÃ¶r att kunna Ã¤ndra i instÃ¤llningar.",
+"prefslogintext"        => "Du Ã¤r inloggad som \"$1\".
+Ditt IP-nummer Ã¤r $2.",
+"prefsreset"            => "InstÃ¤llningar har blivit Ã¥terstÃ¤llda frÃ¥n minne.",
+"qbsettings"            => "InstÃ¤llningar fÃ¶r snabbmeny",
+"changepassword"        => "Byt lÃ¶senord",
 "skin"                  => "Utseende",
-"saveprefs"             => "Spara inställningar",
-"resetprefs"            => "Återställ inställningar",
-"oldpassword"           => "Gammalt lösenord",
-"newpassword"           => "Nytt lösenord",
-"retypenew"             => "Skriv om nytt lösenord",
+"saveprefs"             => "Spara instÃ¤llningar",
+"resetprefs"            => "Ã…terstÃ¤ll instÃ¤llningar",
+"oldpassword"           => "Gammalt lÃ¶senord",
+"newpassword"           => "Nytt lÃ¶senord",
+"retypenew"             => "Skriv om nytt lÃ¶senord",
 "textboxsize"           => "Textbox dimensioner",
 "rows"                  => "Rader",
 "columns"               => "Kolumner",
-"searchresultshead"     => "Inställningar för sökresultat",
+"searchresultshead"     => "InstÃ¤llningar fÃ¶r sÃ¶kresultat",
 "resultsperpage"        => "Resultat att visa per sida",
 "contextlines"          => "Linjer att visa per sida",
-"contextchars"          => "Antalet bokstäver per linje i resultatet",
-"stubthreshold"         => "Gränser för visning av stubs",
-"recentchangescount"    => "Antalet artiklar i \"senaste ändringarna\" ",
-"savedprefs"            => "Dina inställningar har blivit sparade",
-"timezonetext"          => "Skriv in antalet timmar som din lokal tid skiljer sig från
+"contextchars"          => "Antalet bokstÃ¤ver per linje i resultatet",
+"stubthreshold"         => "GrÃ¤nser fÃ¶r visning av stubs",
+"recentchangescount"    => "Antalet artiklar i \"senaste Ã¤ndringarna\" ",
+"savedprefs"            => "Dina instÃ¤llningar har blivit sparade",
+"timezonetext"          => "Skriv in antalet timmar som din lokal tid skiljer sig frÃ¥n
 serverns klocka (UTC).
-Den blir automatiskt inställd efter svensk tid eller skulle man till exempel för svensk vintertid, endast ha \"1\" (och \"2\" när vi har sommartid).",
+Den blir automatiskt instÃ¤lld efter svensk tid eller skulle man till exempel fÃ¶r svensk vintertid, endast ha \"1\" (och \"2\" nÃ¤r vi har sommartid).",
 "localtime"             => "Lokal tid",
-"timezoneoffset"        => "Utjämna",
-"emailflag"             => "Hindra andra användare från att skicka e-post till dig",
+"timezoneoffset"        => "UtjÃ¤mna",
+"emailflag"             => "Hindra andra anvÃ¤ndare frÃ¥n att skicka e-post till dig",
 
 // Recent changes
 //
-"recentchanges"         => "Senaste ändringarna",
-"recentchangestext"     => "Se de senaste redigerade sidorna i Wikipedia på denna sida.",
-"rcloaderr"             => "Läser senaste redigerade sidor",
-"rcnote"                => "Nedanför är de senaste <strong>$1</strong> ändringarna under de sista <strong>$2</strong> dagarna.",
-"rcnotefrom"            => "Nedanför är ändringarna från <b>$2</b> till <b>$1</b> visade.",
-"rclistfrom"            => "Visa nya ändringar från och med $1",
-"rclinks"               => "Visa de senaste $1 ändringarna under de senaste $2 dagarna",
-// "rclinks"             => "Visa de senaste $1 ändringarna under de senaste $2 dagarna",
-"rchide"                => "i $4 form; $1 mindre ändringar; $2 andra namnrum; $3 mer än en redigering.",
+"recentchanges"         => "Senaste Ã¤ndringarna",
+"recentchangestext"     => "Se de senaste redigerade sidorna i Wikipedia pÃ¥ den hÃ¤r sidan.",
+"rcloaderr"             => "LÃ¤ser senaste redigerade sidor",
+"rcnote"                => "NedanfÃ¶r Ã¤r de senaste <strong>$1</strong> Ã¤ndringarna under de sista <strong>$2</strong> dagarna.",
+"rcnotefrom"            => "NedanfÃ¶r Ã¤r Ã¤ndringarna frÃ¥n <b>$2</b> till <b>$1</b> visade.",
+"rclistfrom"            => "Visa nya Ã¤ndringar frÃ¥n och med $1",
+"rclinks"               => "Visa de senaste $1 Ã¤ndringarna under de senaste $2 dagarna",
+// "rclinks"             => "Visa de senaste $1 Ã¤ndringarna under de senaste $2 dagarna",
+"rchide"                => "i $4 form; $1 mindre Ã¤ndringar; $2 andra namnrum; $3 mer Ã¤n en redigering.",
 "diff"                  => "skillnad",
 "hist"                  => "historia",
-"hide"                  => "göm",
+"hide"                  => "gÃ¶m",
 "show"                  => "visa",
 
 "tableform"             => "tabell",
 "listform"              => "lista",
-"nchanges"              => "$1 ändringar",
+"nchanges"              => "$1 Ã¤ndringar",
 "minoreditletter"       => "M",
 "newpageletter"         => "N",
 
@@ -486,59 +551,59 @@ Den blir automatiskt inställd efter svensk tid eller skulle man till exempel för
 "upload"                => "Ladda upp",
 "uploadbtn"             => "Ladda upp fil",
 "uploadlink"            => "Ladda upp bild",
-"reupload"              => "återuppladdning",
-"reuploaddesc"          => "Tillbaka till uppladdningsformulär.",
+"reupload"              => "Ã¥teruppladdning",
+"reuploaddesc"          => "Tillbaka till uppladdningsformulÃ¤r.",
 "uploadnologin"         => "Inte inloggad",
-"uploadnologintext"     => "Du måste vara <a href=\"" .
+"uploadnologintext"     => "Du mÃ¥ste vara <a href=\"" .
   wfLocalUrl( "Special:Userlogin" ) . "\">inloggad</a>
-för att kunna ladda upp filer.",
+fÃ¶r att kunna ladda upp filer.",
 "uploadfile"            => "Ladda upp fil",
 "uploaderror"           => "Uppladdnings fel",
-"uploadtext"            => "<strong>STOPP!</strong> Innan du laddar upp här,
-så måste du ha läst och följa Wikipedias <a href=\"" .
+"uploadtext"            => "<strong>STOPP!</strong> Innan du laddar upp hÃ¤r,
+sÃ¥ mÃ¥ste du ha lÃ¤st och fÃ¶lja Wikipedias <a href=\"" .
 wfLocalUrlE( "Wikipedia:Policy om bruk av bilder" ) . "\">policy om hur 
-bilder får användas</a>.
-<p>För att visa eller söka tidigare uppladdade bilder gå till
+bilder fÃ¥r anvÃ¤ndas</a>.
+<p>FÃ¶r att visa eller sÃ¶ka tidigare uppladdade bilder gÃ¥ till
 <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
-"\">lista över uppladdade bilder</a>.
+"\">lista Ã¶ver uppladdade bilder</a>.
 Uppladdningar och borttagningar loggas i <a href=\"" .
 wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">uppladdnings logg</a>.
-<p>Använd formuläret nedan för att ladda upp nya filer, som 
+<p>AnvÃ¤nd formulÃ¤ret nedan fÃ¶r att ladda upp nya filer, som 
 du kan illustrera dina artiklar med.
-På de flesta webbläsare kommer du att se en \"Browse...\" knapp eller en 
-\"Öppna...\" knapp, som startar ditt operativsystems dialogruta för att öppna filer. När du valt en fil kommer namnet på den filen att visas i textfältet brevid knappen. Du måste även kryssa för rutan, för att du inte gör något som strider mot upphovsrätten av filen som laddas upp.
-Tryck på \"Upload\" knappen för att ladda upp filen.
-Detta kan dröja ett tag om du har en långsam internetförbindelse.
-<p>Formaten på filerna ska helst vara JPEG för bilder, PNG för ritningar 
-och andra ikonliknande bilder och OGG för ljud.
-Var vänlig namnge filen med ett så beskrivande namn som möjligt, för att undvika förvirring.
-För att använda en fil i en artikel, skriv följande om det är en bild: <b>[[bild:filnamn.jpg]]</b> eller <b>[[bild:filnamn.png|alternativ text]]</b>
-eller <b>[[media:filnamn.ogg]]</b> om det är en ljudfil.
-<p>Kom ihåg att det här är en wiki, vilket gör att andra kan redigera eller ta bort dina uppladdningar om de tycker de inte passar i en artikel. Om du missbrukar systemet med uppladdningar kommer filen avlägsnas och du bli spärrad från att ladda upp filer i framtiden.",
+PÃ¥ de flesta webblÃ¤sare kommer du att se en \"Browse...\" knapp eller en 
+\"Ã–ppna...\" knapp, som startar ditt operativsystems dialogruta fÃ¶r att Ã¶ppna filer. NÃ¤r du valt en fil kommer namnet pÃ¥ den filen att visas i textfÃ¤ltet brevid knappen. Du mÃ¥ste Ã¤ven kryssa fÃ¶r rutan, fÃ¶r att du inte gÃ¶r nÃ¥got som strider mot upphovsrÃ¤tten av filen som laddas upp.
+Tryck pÃ¥ \"Upload\" knappen fÃ¶r att ladda upp filen.
+Detta kan drÃ¶ja ett tag om du har en lÃ¥ngsam internetfÃ¶rbindelse.
+<p>Formaten pÃ¥ filerna ska helst vara JPEG fÃ¶r bilder, PNG fÃ¶r ritningar 
+och andra ikonliknande bilder och OGG fÃ¶r ljud.
+Var vÃ¤nlig namnge filen med ett sÃ¥ beskrivande namn som mÃ¶jligt, fÃ¶r att undvika fÃ¶rvirring.
+FÃ¶r att anvÃ¤nda en fil i en artikel, skriv fÃ¶ljande om det Ã¤r en bild: <b>[[bild:filnamn.jpg]]</b> eller <b>[[bild:filnamn.png|alternativ text]]</b>
+eller <b>[[media:filnamn.ogg]]</b> om det Ã¤r en ljudfil.
+<p>Kom ihÃ¥g att det hÃ¤r Ã¤r en wiki, vilket gÃ¶r att andra kan redigera eller ta bort dina uppladdningar om de tycker de inte passar i en artikel. Om du missbrukar systemet med uppladdningar kommer filen avlÃ¤gsnas och du bli spÃ¤rrad frÃ¥n att ladda upp filer i framtiden.",
 "uploadlog"             => "upload log",
 "uploadlogpage"         => "Upload_log",
-"uploadlogpagetext"     => "Nedan följer en lista med de senaste uppladdade filerna.
+"uploadlogpagetext"     => "Nedan fÃ¶ljer en lista med de senaste uppladdade filerna.
 Alla tider visas efter serverns tid (UTC).
 <ul>
 </ul>
 ",
 "filename"              => "Filnamn",
 "filedesc"              => "Beskrivning",
-"affirmation"           => "Jag bekräftar att ägaren till upphovsrätten accepterar att licensiera enligt följande avtal $1.",
+"affirmation"           => "Jag bekrÃ¤ftar att Ã¤garen till upphovsrÃ¤tten accepterar att licensiera enligt fÃ¶ljande avtal $1.",
 "copyrightpage"         => "Wikipedia:copyright",
 "copyrightpagename"     => "Wikipedia copyright",
 "uploadedfiles"         => "Uppladdade filer",
-"noaffirmation"         => "Du måste bekräfta att uppladdningen inte kränker någon copyright",
+"noaffirmation"         => "Du mÃ¥ste bekrÃ¤fta att uppladdningen inte krÃ¤nker nÃ¥gon copyright",
 "ignorewarning"         => "Ignorera varning och spara fil.",
-"minlength"             => "Namnet på bildfilen ska vara minst tre bokstäver",
-"badfilename"           => "Bildnamn har blivit ändrat till \"$1\".",
-"badfiletype"           => "\".$1\" är inte ett rekomenderat bildformat.",
-"largefile"             => "Bilder ska helst inte vara större än 100k.",
+"minlength"             => "Namnet pÃ¥ bildfilen ska vara minst tre bokstÃ¤ver",
+"badfilename"           => "Bildnamn har blivit Ã¤ndrat till \"$1\".",
+"badfiletype"           => "\".$1\" Ã¤r inte ett rekomenderat bildformat.",
+"largefile"             => "Bilder ska helst inte vara stÃ¶rre Ã¤n 100k.",
 "successfulupload"      => "Uppladdningen lyckades",
 "fileuploaded"          => "Filen \"$1\" laddades upp korrekt.
-Följ denna länk: ($2) till beskrivningssidan och fyll i
-information om filen, som till exempel var den kommer ifrån, 
-när den skapades och vem som gjort den och allt annat du vet om den.",
+FÃ¶lj den hÃ¤r lÃ¤nken: ($2) till beskrivningssidan och fyll i
+information om filen, som till exempel var den kommer ifrÃ¥n, 
+nÃ¤r den skapades och vem som gjort den och allt annat du vet om den.",
 "uploadwarning"         => "Uppladdnings varning",
 "savefile"              => "Spara fil",
 "uploadedimage"         => "uppladdad \"$1\"",
@@ -546,10 +611,10 @@ när den skapades och vem som gjort den och allt annat du vet om den.",
 // Image list
 //
 "imagelist"             => "Bildlista",
-"imagelisttext"         => "Nedan är en lista med $1 bilder sorterad $2",
-"getimagelist"          => "hämta bildlista",
+"imagelisttext"         => "Nedan Ã¤r en lista med $1 bilder sorterad $2",
+"getimagelist"          => "hÃ¤mta bildlista",
 "ilshowmatch"           => "Visa alla bilder med namn som matchar",
-"ilsubmit"              => "Sök",
+"ilsubmit"              => "SÃ¶k",
 "showlast"              => "Visa de senaste $1 bilderna sorterad $2.",
 "all"                   => "alla",
 "byname"                => "efter namn",
@@ -559,84 +624,85 @@ när den skapades och vem som gjort den och allt annat du vet om den.",
 "imgdesc"               => "beskrivning",
 "imglegend"             => "Legend: (beskrivning) = visa/redigera bildbeskrivning.",
 "imghistory"            => "Bildhistoria",
-"revertimg"             => "återgå",
+"revertimg"             => "Ã¥tergÃ¥",
 "deleteimg"             => "radera",
-"imghistlegend"         => "Legend: (nuvarande) = detta är den nuvarande bilden, 
-(ta bort) = ta bort den gamla version, (återgå) = återgå till en gammal version.
-<br><i>Klicka på ett datum för att se bilden som laddades upp den dagen</i>.", //"
-"imagelinks"            => "Bildlänk",
-"linkstoimage"          => "De följande sidorna länkar till denna bild:",
-"nolinkstoimage"        => "Det finns ingen sida som länkar till denna bild.",
+"deleteimgcompletely"             => "radera",
+"imghistlegend"         => "Legend: (nuvarande) = detta Ã¤r den nuvarande bilden, 
+(ta bort) = ta bort den gamla version, (Ã¥tergÃ¥) = Ã¥tergÃ¥ till en gammal version.
+<br><i>Klicka pÃ¥ ett datum fÃ¶r att se bilden som laddades upp den dagen</i>.", //"
+"imagelinks"            => "BildlÃ¤nk",
+"linkstoimage"          => "De fÃ¶ljande sidorna lÃ¤nkar till den hÃ¤r bilden:",
+"nolinkstoimage"        => "Det finns ingen sida som lÃ¤nkar till den hÃ¤r bilden.",
 
 // Statistics
 //
 "statistics"            => "Statistik",
 "sitestats"             => "Statistiksida",
-"userstats"             => "Användarstatistik",
-"sitestatstext"         => "Det är <b>$1</b> sidor i databasen.
+"userstats"             => "AnvÃ¤ndarstatistik",
+"sitestatstext"         => "Det Ã¤r <b>$1</b> sidor i databasen.
 Detta inkluderer diskussionssidorna, sidor om Wikipedia, mycket korta\"stub\"
 sidor, omdirigeringssidor, och andra sidor som kvalificerar sig som artiklar.
-Om man tar bort ovanstående så är det <b>$2</b> sidor som anses som riktiga artiklar.<p>
-Det har varit totalt <b>$3</b> sidvisningar och det har varit <b>$4</b> sidor som har ändrats
+Om man tar bort ovanstÃ¥ende sÃ¥ Ã¤r det <b>$2</b> sidor som anses som riktiga artiklar.<p>
+Det har varit totalt <b>$3</b> sidvisningar och det har varit <b>$4</b> sidor som har Ã¤ndrats
 sedan uppdateringen av mjukvaran (1 december 2002).
-Det vill säga <b>$5</b> ändringar per sida genomsnittligt, 
-och <b>$6</b> sidvisningar per ändring.",
-"userstatstext"         => "Det är <b>$1</b> registrerade användare.
-<b>$2</b> av dem är administratörer (se $3).",
+Det vill sÃ¤ga <b>$5</b> Ã¤ndringar per sida genomsnittligt, 
+och <b>$6</b> sidvisningar per Ã¤ndring.",
+"userstatstext"         => "Det Ã¤r <b>$1</b> registrerade anvÃ¤ndare.
+<b>$2</b> av dem Ã¤r administratÃ¶rer (se $3).",
 
 // Maintenance Page
 //
-"maintenance"           => "Underhållssida",
-"maintnancepagetext"    => "Den här sidan innehåller flera verktyg för att sköta sidan. Vissa av dessa funktioner tenderar att stressa databasen (allt tar lång tid), så var snäll och  tryck inte på reloadknappen varje gång du gjort en liten ändring.",
-"maintenancebacklink"   => "Tillbaka till underhållssidorna",
-"disambiguations"       => "Sidor med tvetydiga länkar",
-"disambiguationspage"   => "Wikipedia:Länkar till sidor med tvetydiga titlar",
-"disambiguationstext"   => "Följande artiklar länkar till en <i>sidor med tvetydliga titlar</i>. De ska länka till en sidor med en korrekt titel.<br>En sida behandlar som tvetydig om den länkar från $1. <br>Länkar från andra namngrupper är <i>inte</i> listade här.",
+"maintenance"           => "UnderhÃ¥llssida",
+"maintnancepagetext"    => "Den hÃ¤r sidan innehÃ¥ller flera verktyg fÃ¶r att skÃ¶ta sidan. Vissa av dessa funktioner tenderar att stressa databasen (allt tar lÃ¥ng tid), sÃ¥ var snÃ¤ll och  tryck inte pÃ¥ reloadknappen varje gÃ¥ng du gjort en liten Ã¤ndring.",
+"maintenancebacklink"   => "Tillbaka till underhÃ¥llssidorna",
+"disambiguations"       => "Sidor med tvetydiga lÃ¤nkar",
+"disambiguationspage"   => "Wikipedia:LÃ¤nkar till sidor med tvetydiga titlar",
+"disambiguationstext"   => "FÃ¶ljande artiklar lÃ¤nkar till en <i>sidor med tvetydliga titlar</i>. De ska lÃ¤nka till en sidor med en korrekt titel.<br>En sida behandlar som tvetydig om den lÃ¤nkar frÃ¥n $1. <br>LÃ¤nkar frÃ¥n andra namngrupper Ã¤r <i>inte</i> listade hÃ¤r.",
 "doubleredirects"       => "Dubbla omdirigeringar",
-"doubleredirectstext"   => "<b>OBS:</b> Denna lista kan innehålla falska resultat. Detta betyder normalt att det finns ytterligare text under den första #REDIRECT.<br>\n Varje rad innehåller en länk till den första och andra omdirigering och den första raden av den andra omdirigeringen ger oftast den \"riktiga\" artikeln, vilket egentligen den första omdirigeringen ska peka på.",
-"brokenredirects"       => "Dåliga omdirigeringar",
-"brokenredirectstext"   => "Följande länkar omdirigerar till en artikel som inte existerar.",
-"selflinks"             => "Sidor med länkar till sig själva",
-"selflinkstext"         => "Följande sidor innehåller länkar till sig själv, vilket de inte ska göra.",
+"doubleredirectstext"   => "<b>OBS:</b> Den hÃ¤r listan kan innehÃ¥lla falska resultat. Detta betyder normalt att det finns ytterligare text under den fÃ¶rsta #REDIRECT.<br>\n Varje rad innehÃ¥ller en lÃ¤nk till den fÃ¶rsta och andra omdirigering och den fÃ¶rsta raden av den andra omdirigeringen ger oftast den \"riktiga\" artikeln, vilket egentligen den fÃ¶rsta omdirigeringen ska peka pÃ¥.",
+"brokenredirects"       => "DÃ¥liga omdirigeringar",
+"brokenredirectstext"   => "FÃ¶ljande lÃ¤nkar omdirigerar till en artikel som inte existerar.",
+"selflinks"             => "Sidor med lÃ¤nkar till sig sjÃ¤lva",
+"selflinkstext"         => "FÃ¶ljande sidor innehÃ¥ller lÃ¤nkar till sig sjÃ¤lv, vilket de inte ska gÃ¶ra.",
 "mispeelings"           => "Sidor med felstavningar",
-"mispeelingstext"       => "Följande sidor innerhåller vanliga felstavningar, som visas i $1. Den korrekta stavningen kanske ska se ut såhär.",
+"mispeelingstext"       => "FÃ¶ljande sidor innerhÃ¥ller vanliga felstavningar, som visas i $1. Den korrekta stavningen kanske ska se ut sÃ¥hÃ¤r.",
 "mispeelingspage"       => "Lista med vanliga stavfel",
-"missinglanguagelinks"  => "Saknade språklänkar",
-"missinglanguagelinksbutton"    => "Sök efter saknade språklänkar för",
-"missinglanguagelinkstext"      => "De här artiklarna är <i>inte</i> länkade 
+"missinglanguagelinks"  => "Saknade sprÃ¥klÃ¤nkar",
+"missinglanguagelinksbutton"    => "SÃ¶k efter saknade sprÃ¥klÃ¤nkar fÃ¶r",
+"missinglanguagelinkstext"      => "De hÃ¤r artiklarna Ã¤r <i>inte</i> lÃ¤nkade 
 till deras i $1. Redirects och undersidor visas <i>inte</i>.",
 
 // Miscellaneous special pages
 //
-"orphans"               => "Föräldralösa sidor",
-"lonelypages"           => "Föräldralösa sidor",
-"unusedimages"          => "Oanvända bilder",
-"popularpages"          => "Populära sidor",
+"orphans"               => "FÃ¶rÃ¤ldralÃ¶sa sidor",
+"lonelypages"           => "FÃ¶rÃ¤ldralÃ¶sa sidor",
+"unusedimages"          => "OanvÃ¤nda bilder",
+"popularpages"          => "PopulÃ¤ra sidor",
 "nviews"                => "$1 visningar",
-"wantedpages"           => "Önskelista",
-"nlinks"                => "$1 länkar",
+"wantedpages"           => "Ã–nskelista",
+"nlinks"                => "$1 lÃ¤nkar",
 "allpages"              => "Alla sidor",
 "randompage"            => "Slumpartikel",
 "shortpages"            => "Korta sidor",
-"longpages"             => "Långa sidor",
-"listusers"             => "Användarlista",
+"longpages"             => "LÃ¥nga sidor",
+"listusers"             => "AnvÃ¤ndarlista",
 "specialpages"          => "Speciella sidor",
 "spheading"             => "Speciella sidor",
-"sysopspheading"        => "Speciella sidor för sysop",
-"developerspheading"    => "Speciella sidor för utvecklare",
+"sysopspheading"        => "Speciella sidor fÃ¶r sysop",
+"developerspheading"    => "Speciella sidor fÃ¶r utvecklare",
 "protectpage"           => "Skydda sida",
-"recentchangeslinked"   => "Relaterade ändringar",
-"rclsub"                => "(till sidor som är länkade från \"$1\")",
+"recentchangeslinked"   => "Relaterade Ã¤ndringar",
+"rclsub"                => "(till sidor som Ã¤r lÃ¤nkade frÃ¥n \"$1\")",
 "debug"                 => "Debug",
 "newpages"              => "Nya sidor",
-"movethispage"          => "Flytta den här sidan",
-"unusedimagestext"      => "<p>Lägg märket till att andra hemsidor
-som till exempel de internationella wikipedias kan länka till bilder 
-med en direkt URL, och kan därför bli listade här trots att de används kontinuerligt.",
-"booksources"           => "Bokkällor",
-"booksourcetext"        => "Nedan följer en lista över länkar till hemsidor som säljer
-nya och begagnade böcker, och mycket annan information om de böcker du söker.
-Wikipedia har <b>inget</b> affärssamarbete med ovanstående företag och ska inte heller tolkas som en uppmuntran.",
+"movethispage"          => "Flytta den hÃ¤r sidan",
+"unusedimagestext"      => "<p>LÃ¤gg mÃ¤rket till att andra hemsidor
+som till exempel de internationella wikipedias kan lÃ¤nka till bilder 
+med en direkt URL, och kan dÃ¤rfÃ¶r bli listade hÃ¤r trots att de anvÃ¤nds kontinuerligt.",
+"booksources"           => "BokkÃ¤llor",
+"booksourcetext"        => "Nedan fÃ¶ljer en lista Ã¶ver lÃ¤nkar till hemsidor som sÃ¤ljer
+nya och begagnade bÃ¶cker, och mycket annan information om de bÃ¶cker du sÃ¶ker.
+Wikipedia har <b>inget</b> affÃ¤rssamarbete med ovanstÃ¥ende fÃ¶retag och ska inte heller tolkas som en uppmuntran.",
 
 // Email this user
 //
@@ -644,141 +710,143 @@ Wikipedia har <b>inget</b> affärssamarbete med ovanstående företag och ska inte 
 "mailnologintext"       => "Du ska vara<a href=\"" .
   wfLocalUrl( "Special:Userlogin" ) . "\">inloggad</a>
 och ha angivit en korrekt epost-adress i dina <a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">användarinställningar</a>
-för att kunna skicka e-post till andra användare.",
-"emailuser"             => "Skicka e-post till den här användaren",
-"emailpage"             => "Skicka e-post till annan användare",
-"emailpagetext"         => "Om den här användaren har skrivit in en korrekt e-postadress, i sina
-användarinställningar, kommer formuläret nedan skicka ett meddelande.
-Den epost-adress du anget i dina användarinställningar kommer att skrivas
-i \"Från\"fältet i detta e-post, så mottagaren har möjlighet att svara.",
+  wfLocalUrl( "Special:Preferences" ) . "\">anvÃ¤ndarinstÃ¤llningar</a>
+fÃ¶r att kunna skicka e-post till andra anvÃ¤ndare.",
+"emailuser"             => "Skicka e-post till den hÃ¤r anvÃ¤ndaren",
+"emailpage"             => "Skicka e-post till annan anvÃ¤ndare",
+"emailpagetext"         => "Om den hÃ¤r anvÃ¤ndaren har skrivit in en korrekt e-postadress, i sina
+anvÃ¤ndarinstÃ¤llningar, kommer formulÃ¤ret nedan skicka ett meddelande.
+Den epost-adress du anget i dina anvÃ¤ndarinstÃ¤llningar kommer att skrivas
+i \"FrÃ¥n\"fÃ¤ltet i detta e-post, sÃ¥ mottagaren har mÃ¶jlighet att svara.",
 "noemailtitle"          => "Ingen e-postadress",
-"noemailtext"           => "Den här användaren har inte angivet en korrekt e-postadress eller
-valt att inte ta emot något mail från andra användare.",
-"emailfrom"             => "Från",
+"noemailtext"           => "Den hÃ¤r anvÃ¤ndaren har inte angivet en korrekt e-postadress eller
+valt att inte ta emot nÃ¥got mail frÃ¥n andra anvÃ¤ndare.",
+"emailfrom"             => "FrÃ¥n",
 "emailto"               => "Till",
-"emailsubject"          => "Ämne",
+"emailsubject"          => "Ã„mne",
 "emailmessage"          => "Meddelande",
 "emailsend"             => "Skickat",
-"emailsent"             => "E-post är nu skickat",
+"emailsent"             => "E-post Ã¤r nu skickat",
 "emailsenttext"         => "Din e-post har skickats.",
 
 // Watchlist
 //
-"watchlist"             => "Min övervakningslista",
-"watchlistsub"          => "(för användare \"$1\")",
-"nowatchlist"           => "Du har inga sidor upptagna på din övervakningslista.",
-"watchnologin"          => "Du är inte inloggad",
+"watchlist"             => "Min Ã¶vervakningslista",
+"watchlistsub"          => "(fÃ¶r anvÃ¤ndare \"$1\")",
+"nowatchlist"           => "Du har inga sidor upptagna pÃ¥ din Ã¶vervakningslista.",
+"watchnologin"          => "Du Ã¤r inte inloggad",
 "watchnologintext"      => "Du ska vara<a href=\"" .
   wfLocalUrl( "Special:Userlogin" ) . "\">inloggad</a>
-för att kunna göra ändringar på din övervakningslista.",
-"addedwatch"            => "Tillagd på övervakningslistan",
-"addedwatchtext"        => "Sidan \"$1\" har satts upp på din <a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\">övervakningslista</a>.
-Framtida ändringar av den här sidan och dess diskussionssida vill listas där, 
+fÃ¶r att kunna gÃ¶ra Ã¤ndringar pÃ¥ din Ã¶vervakningslista.",
+"addedwatch"            => "Tillagd pÃ¥ Ã¶vervakningslistan",
+"addedwatchtext"        => "Sidan \"$1\" har satts upp pÃ¥ din <a href=\"" .
+  wfLocalUrl( "Special:Watchlist" ) . "\">Ã¶vervakningslista</a>.
+Framtida Ã¤ndringar av den hÃ¤r sidan och dess diskussionssida vill listas dÃ¤r, 
 
 och sidan kommer att markeras med <b>fet stil</b> i <a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">listan över de senaste ändringarna
-</a> för att lättare kunna hittas</p>
+  wfLocalUrl( "Special:Recentchanges" ) . "\">listan Ã¶ver de senaste Ã¤ndringarna
+</a> fÃ¶r att lÃ¤ttare kunna hittas</p>
 
-<p>Om du vill ta bort denna sida från din övervakningslista, så klicka 
-\"Ta bort övervakning\" ute i sidan.",
-"removedwatch"          => "Borttagen från övervakningslista",
-"removedwatchtext"      => "Sidan \"$1\" har blivit borttagen från din övervakningslista",
-"watchthispage"         => "Övervaka sida",
-"unwatchthispage"       => "Stoppa övervakning",
+<p>Om du vill ta bort den hÃ¤r sidan frÃ¥n din Ã¶vervakningslista, sÃ¥ klicka 
+\"Ta bort Ã¶vervakning\" ute i sidan.",
+"removedwatch"          => "Borttagen frÃ¥n Ã¶vervakningslista",
+"removedwatchtext"      => "Sidan \"$1\" har blivit borttagen frÃ¥n din Ã¶vervakningslista",
+"watchthispage"         => "Ã–vervaka sida",
+"unwatchthispage"       => "Stoppa Ã¶vervakning",
 "notanarticle"          => "Inte en artikel",
+'watch'                 => 'Bevaka',
+'unwatch'               => 'Obevaka',
 
 // Delete/protect/revert
 //
 "deletepage"            => "Ta bort sida",
-"confirm"               => "Bekräfta",
-"excontent"             => "före radering:",
-"exbeforeblank"         => "före tömning:",
+"confirm"               => "BekrÃ¤fta",
+"excontent"             => "fÃ¶re radering:",
+"exbeforeblank"         => "fÃ¶re tÃ¶mning:",
 "exblank"               => "sidan var tom",
-"confirmdelete"         => "Bekräfta borttagning",
+"confirmdelete"         => "BekrÃ¤fta borttagning",
 "deletesub"             => "(Tar bort \"$1\")",
-"confirmdeletetext"     => "Du håller på och permanent ta bort en sida
-eller bild med all dess historia från databasen.
-Bekräfta att du förstår vad du håller på med och vilka konsekvenser
-detta leder till, och att det följer 
+"confirmdeletetext"     => "Du hÃ¥ller pÃ¥ och permanent ta bort en sida
+eller bild med all dess historia frÃ¥n databasen.
+BekrÃ¤fta att du fÃ¶rstÃ¥r vad du hÃ¥ller pÃ¥ med och vilka konsekvenser
+detta leder till, och att det fÃ¶ljer 
 [[Wikipedia:Policy]].", 
-"confirmcheck"          => "Ja, jag vill verkligen ta bort det här.", //"
-"actioncomplete"        => "Genomfört",
+"confirmcheck"          => "Ja, jag vill verkligen ta bort det hÃ¤r.", //"
+"actioncomplete"        => "GenomfÃ¶rt",
 "deletedtext"           => "\"$1\" har blivit borttagen.
-Se $2 för lista över senaste borttagningar",
+Se $2 fÃ¶r lista Ã¶ver senaste borttagningar",
 "deletedarticle"        => "borttagen \"\$1\"",
 "dellogpage"            => "Borttagningslogg",
-"dellogpagetext"        => "Nedan är en lista över de senaste borttagningarna.
-De tidsangivelser som anges följer serverns klocka (UTC).
+"dellogpagetext"        => "Nedan Ã¤r en lista Ã¶ver de senaste borttagningarna.
+De tidsangivelser som anges fÃ¶ljer serverns klocka (UTC).
 <ul>
 </ul>
 ",
 "deletionlog"           => "borttagningslogg",
-"reverted"              => "Återgått till yngre version",
+"reverted"              => "Ã…tergÃ¥tt till yngre version",
 "deletecomment"         => "Anledningen till borttagning",
-"imagereverted"         => "Återställandet av nyare artikelversion lyckades",
+"imagereverted"         => "Ã…terstÃ¤llandet av nyare artikelversion lyckades",
 
 // Undelete
 //
-"undelete"              => "Återställ borttagna sidor",
-"undeletepage"          => "Visa och återställ borttagna sidor",
-"undeletepagetext"      => "Följande sidor har blivit borttagna, men är fortfarande i arkivet och kan användas vid återställning.
-Arkivet kan ibland rensas på gamla versioner.",
-"undeletearticle"       => "Återställ borttagen artikel",
+"undelete"              => "Ã…terstÃ¤ll borttagna sidor",
+"undeletepage"          => "Visa och Ã¥terstÃ¤ll borttagna sidor",
+"undeletepagetext"      => "FÃ¶ljande sidor har blivit borttagna, men Ã¤r fortfarande i arkivet och kan anvÃ¤ndas vid Ã¥terstÃ¤llning.
+Arkivet kan ibland rensas pÃ¥ gamla versioner.",
+"undeletearticle"       => "Ã…terstÃ¤ll borttagen artikel",
 "undeleterevisions"     => "$1 versioner arkiverade",
-"undeletehistory"       => "Om du återställer sidan kommer allt tidigare versioner att sparas i versionshanteraren.
-Om en ny sida med samma namn har blivit skapad sedan borttagningen så kommer den återställda versionen att
-hamna i den äldre versionshanteraren och den senaste versionen av sidan kommer inte blir automatiskt ersatt.",
+"undeletehistory"       => "Om du Ã¥terstÃ¤ller sidan kommer allt tidigare versioner att sparas i versionshanteraren.
+Om en ny sida med samma namn har blivit skapad sedan borttagningen sÃ¥ kommer den Ã¥terstÃ¤llda versionen att
+hamna i den Ã¤ldre versionshanteraren och den senaste versionen av sidan kommer inte blir automatiskt ersatt.",
 "undeleterevision"      => "Tog bort version $1",
-"undeletebtn"           => "Återställd!",
-"undeletedarticle"      => "återställd \"$1\"",
-"undeletedtext"         => "Artikeln [[$1]] har blivit återställd
-Se [[Wikipedia:Borttagningslogg]] för en lista över nyligen gjorda borttagningar och återställningar",
+"undeletebtn"           => "Ã…terstÃ¤lld!",
+"undeletedarticle"      => "Ã¥terstÃ¤lld \"$1\"",
+"undeletedtext"         => "Artikeln [[$1]] har blivit Ã¥terstÃ¤lld
+Se [[Wikipedia:Borttagningslogg]] fÃ¶r en lista Ã¶ver nyligen gjorda borttagningar och Ã¥terstÃ¤llningar",
 
 // Contributions
 //
-"contributions"         => "Användarbidrag",
+"contributions"         => "AnvÃ¤ndarbidrag",
 "mycontris"             => "Mina bidrag",
-"contribsub"            => "För $1",
-"nocontribs"            => "Inga ändringar var funna som motsvarar dessa kriterier",
-"ucnote"                => "Nedan visas dennes användares senaste <b>$1</b> ändringar, under de senaste <b>$2</b> dagarna.",
-"uclinks"               => "Visa de senaste $1 ändringarna. Visa de senaste $2 dagarna.",
+"contribsub"            => "FÃ¶r $1",
+"nocontribs"            => "Inga Ã¤ndringar var funna som motsvarar dessa kriterier",
+"ucnote"                => "Nedan visas dennes anvÃ¤ndares senaste <b>$1</b> Ã¤ndringar, under de senaste <b>$2</b> dagarna.",
+"uclinks"               => "Visa de senaste $1 Ã¤ndringarna. Visa de senaste $2 dagarna.",
 "uctop"                 => " (top)",
 
 // What links here
 //
-"whatlinkshere"         => "Vilka sidor länkar hit",
-"notargettitle"         => "Inget mål",
-"notargettext"          => "Du har inte specificerat en sida eller användare
-för att genomföra den här funktionen.",
-"linklistsub"           => "(Länklista)",
-"linkshere"             => "Följande sidor länkas hit:",
-"nolinkshere"           => "Inga sidor länkar hit.",
-"isredirect"            => "Länka vidare sida",
+"whatlinkshere"         => "Vilka sidor lÃ¤nkar hit",
+"notargettitle"         => "Inget mÃ¥l",
+"notargettext"          => "Du har inte specificerat en sida eller anvÃ¤ndare
+fÃ¶r att genomfÃ¶ra den hÃ¤r funktionen.",
+"linklistsub"           => "(LÃ¤nklista)",
+"linkshere"             => "FÃ¶ljande sidor lÃ¤nkas hit:",
+"nolinkshere"           => "Inga sidor lÃ¤nkar hit.",
+"isredirect"            => "LÃ¤nka vidare sida",
 
 // Block/unblock IP
 //
 "blockip"               => "Blockera IP-adress",
-"blockiptext"           => "Använd formuläret nedan för att blockera skrivåtkomst 
-från en viss IP-adress
-Detta ska bara genomföras för att stoppa klotter och
-överstämma med [[Wikipedia:Politik|Wikipedia politik]].
+"blockiptext"           => "AnvÃ¤nd formulÃ¤ret nedan fÃ¶r att blockera skrivÃ¥tkomst 
+frÃ¥n en viss IP-adress
+Detta ska bara genomfÃ¶ras fÃ¶r att stoppa klotter och
+Ã¶verstÃ¤mma med [[Wikipedia:Politik|Wikipedia politik]].
 Fyll i anledningen till blockering nedan (till exempel vilka artiklar som klottrats ner).",
 "ipaddress"             => "IP-adress",
 "ipbreason"             => "Anledning",
-"ipbsubmit"             => "Blockera den här IP-adressen",
+"ipbsubmit"             => "Blockera den hÃ¤r IP-adressen",
 "badipaddress"          => "Du har inte skrivit IP-adressen korrekt.",
-"noblockreason"         => "Du måste ange en anledning till varför du blockerar.",
+"noblockreason"         => "Du mÃ¥ste ange en anledning till varfÃ¶r du blockerar.",
 "blockipsuccesssub"     => "Blockeringen lyckades",
 "blockipsuccesstext"    => "IP-adressen \"$1\" har blockerats.
-<br>Se [[Speciel:Ipblocklist|IP blockeringslistan]] för alla blockeringar.",
+<br>Se [[Speciel:Ipblocklist|IP blockeringslistan]] fÃ¶r alla blockeringar.",
 "unblockip"             => "Ta bort blockering av IP-adress",
-"unblockiptext"         => "Använd nedanstående formulär för att återställa skrivrättigheten för en tidigare blockerad IP-adress.",
-"ipusubmit"             => "Ta bort blockering för denna adress",
-"ipusuccess"            => "Blockeringen för IP-adressen \"$1\" har tagits bort",
+"unblockiptext"         => "AnvÃ¤nd nedanstÃ¥ende formulÃ¤r fÃ¶r att Ã¥terstÃ¤lla skrivrÃ¤ttigheten fÃ¶r en tidigare blockerad IP-adress.",
+"ipusubmit"             => "Ta bort blockering fÃ¶r den hÃ¤r adressen",
+"ipusuccess"            => "Blockeringen fÃ¶r IP-adressen \"$1\" har tagits bort",
 
-"ipblocklist"           => "Lista över blockerade IP-adresser",
+"ipblocklist"           => "Lista Ã¶ver blockerade IP-adresser",
 "blocklistline"         => "$1, $2 blockerade $3",
 "blocklink"             => "blockera",
 "unblocklink"           => "ta bort blockering",
@@ -786,174 +854,294 @@ Fyll i anledningen till blockering nedan (till exempel vilka artiklar som klottr
 
 // Developer tools 
 //
-"lockdb"                => "Lås databas",
-"unlockdb"              => "Lås upp databas",
-"lockdbtext"            => "En låsning av databasen hindrar alla användare från att redigera sidor, ändra inställningar och andra saker som kräver ändringar i databasen.
-Bekräfta att du verkligen vill göra detta och att du kommer att låsa upp databasen när underhållet är utfört.",
-"unlockdbtext"          => "Genom att låsa upp databasen kommer alla användare att kunna redigera sidor, ändra inställningar etc. igen.
-Bekräfta att du vill göra detta.",
-"lockconfirm"           => "Ja, jag vill verkligen låsa databasen.",
-"unlockconfirm"         => "Ja, jag vill verkligen låsa upp databasen.",
-"lockbtn"               => "Lås databasen",
-"unlockbtn"             => "Lås upp databasen",
-"locknoconfirm"         => "Du har inte bekräftat låsningen.",
-"lockdbsuccesssub"      => "Databasen har låsts",
-"unlockdbsuccesssub"    => "Databasen har låsts upp",
-"lockdbsuccesstext"     => "Wikipediadatabasen är låst.
-<br>Kom ihåg att ta bort låsningen när du är färdig med ditt underhåll.",
-"unlockdbsuccesstext"   => "Wikipediadatabasen är upplåst.",
+"lockdb"                => "LÃ¥s databas",
+"unlockdb"              => "LÃ¥s upp databas",
+"lockdbtext"            => "En lÃ¥sning av databasen hindrar alla anvÃ¤ndare frÃ¥n att redigera sidor, Ã¤ndra instÃ¤llningar och andra saker som krÃ¤ver Ã¤ndringar i databasen.
+BekrÃ¤fta att du verkligen vill gÃ¶ra detta och att du kommer att lÃ¥sa upp databasen nÃ¤r underhÃ¥llet Ã¤r utfÃ¶rt.",
+"unlockdbtext"          => "Genom att lÃ¥sa upp databasen kommer alla anvÃ¤ndare att kunna redigera sidor, Ã¤ndra instÃ¤llningar etc. igen.
+BekrÃ¤fta att du vill gÃ¶ra detta.",
+"lockconfirm"           => "Ja, jag vill verkligen lÃ¥sa databasen.",
+"unlockconfirm"         => "Ja, jag vill verkligen lÃ¥sa upp databasen.",
+"lockbtn"               => "LÃ¥s databasen",
+"unlockbtn"             => "LÃ¥s upp databasen",
+"locknoconfirm"         => "Du har inte bekrÃ¤ftat lÃ¥sningen.",
+"lockdbsuccesssub"      => "Databasen har lÃ¥sts",
+"unlockdbsuccesssub"    => "Databasen har lÃ¥sts upp",
+"lockdbsuccesstext"     => "Wikipediadatabasen Ã¤r lÃ¥st.
+<br>Kom ihÃ¥g att ta bort lÃ¥sningen nÃ¤r du Ã¤r fÃ¤rdig med ditt underhÃ¥ll.",
+"unlockdbsuccesstext"   => "Wikipediadatabasen Ã¤r upplÃ¥st.",
 
 // SQL query
 //
-"asksql"                => "SQL-fråga",
-"asksqltext"            => "Använd nedanstående formulär för att ställa frågor direkt till Wikipedias databas.
-Använd enkla citationstecken ('så här') för att markera strängar.
-Detta belastar ofta servern hårt, så använd denna funktion med omtanke.",
-"sqlquery"              => "Skriv fråga",
-"querybtn"              => "Skicka fråga",
-"selectonly"            => "Andra frågor än \"SELECT\" får endast utföras av Wikipedias utvecklare.",
-"querysuccessful"       => "Frågan genomfördes korrekt",
+"asksql"                => "SQL-frÃ¥ga",
+"asksqltext"            => "AnvÃ¤nd nedanstÃ¥ende formulÃ¤r fÃ¶r att stÃ¤lla frÃ¥gor direkt till Wikipedias databas.
+AnvÃ¤nd enkla citationstecken ('sÃ¥ hÃ¤r') fÃ¶r att markera strÃ¤ngar.
+Detta belastar ofta servern hÃ¥rt, sÃ¥ anvÃ¤nd den hÃ¤r funktionen med omtanke.",
+"sqlquery"              => "Skriv frÃ¥ga",
+"querybtn"              => "Skicka frÃ¥ga",
+"selectonly"            => "Andra frÃ¥gor Ã¤n \"SELECT\" fÃ¥r endast utfÃ¶ras av Wikipedias utvecklare.",
+"querysuccessful"       => "FrÃ¥gan genomfÃ¶rdes korrekt",
 
 // Move page
 //
 "movepage"              => "Flytta sida",
-"movepagetext"          => "Formuläret nedan byter namn på sidan och flyttar hela dess historia till det nya namnet. Den gamla sidan blir en omdirigeringssida till den nya. Länkar till den gamla sidan kommer inte att ändras. Om det finns en diskussionssida kommer den inte att flyttas. <b>OBS!</b> Detta kan innebära en drastisk ändring på en populär sida; var säker på att du inser konsekvenserna i förväg.",
+"movepagetext"          => "FormulÃ¤ret nedan byter namn pÃ¥ sidan och flyttar hela dess
+ historia till det nya namnet. Den gamla sidan blir en omdirigeringssida till den nya.
+LÃ¤nkar till den gamla sidan kommer inte att Ã¤ndras. Om det finns en diskussionssida
+kommer den inte att flyttas.
+
+<b>OBS!</b> Detta kan innebÃ¤ra en drastisk Ã¤ndring pÃ¥ en populÃ¤r sida;
+var sÃ¤ker pÃ¥ att du inser konsekvenserna i fÃ¶rvÃ¤g.",
+
 "movearticle"           => "Flytta sida",
 "movenologin"           => "Ej inloggad",
-"movenologintext"       => "Du måste vara registrerad användare och ha <a href=\"" .
+"movenologintext"       => "Du mÃ¥ste vara registrerad anvÃ¤ndare och ha <a href=\"" .
   wfLocalUrl( "Speciel:Userlogin" ) . "\">loggat in</a>
-för att kunna flytta en sida.",
+fÃ¶r att kunna flytta en sida.",
 "newtitle"              => "Till ny titel",
 "movepagebtn"           => "Flytta sida",
 "pagemovedsub"          => "Sidan har flyttats",
 "pagemovedtext"         => "Sidan \"[[$1]]\" har flyttats till \"[[$2]]\".",
-"articleexists"         => "Det finns redan en sida med detta namn eller så är namnet du angett ogiltigt. Välj ett annat namn.",
-"talkexists"            => "Sidan  flyttades korrekt, men den tilhörande diskussionssidan kunde inte flyttas, eftersom det redan existerar en sida med denna nya titel. Du måste sammanfoga dem manuellt.",
+"articleexists"         => "Det finns redan en sida med detta namn eller sÃ¥ Ã¤r namnet du angett ogiltigt. VÃ¤lj ett annat namn.",
+"talkexists"            => "Sidan  flyttades korrekt, men den tilhÃ¶rande diskussionssidan kunde inte flyttas, eftersom det redan existerar en sida med den hÃ¤r nya titeln. Du mÃ¥ste sammanfoga dem manuellt.",
 "movedto"               => "flyttat till",
-"movetalk"              => "Flytta även diskussionssidan, om den finns.",
-"talkpagemoved"         => "Sidans diskussionssida flyttades också.",
+"movetalk"              => "Flytta Ã¤ven diskussionssidan, om den finns.",
+"talkpagemoved"         => "Sidans diskussionssida flyttades ocksÃ¥.",
 "talkpagenotmoved"      => "Sidans diskussionssida flyttades <strong>inte</strong>.",
+
+# Move page
+#
+"movepage"		=> "Move page",
+"movepagetext"	=> "Using the form below will rename a page, moving all
+of its history to the new name.
+The old title will become a redirect page to the new title.
+Links to the old page title will not be changed; be sure to
+[[Special:Maintenance|check]] for double or broken redirects.
+You are responsible for making sure that links continue to
+point where they are supposed to go.
+
+Note that the page will '''not''' be moved if there is already
+a page at the new title, unless it is empty or a redirect and has no
+past edit history. This means that you can rename a page back to where
+it was just renamed from if you make a mistake, and you cannot overwrite
+an existing page.
+
+<b>WARNING!</b>
+This can be a drastic and unexpected change for a popular page;
+please be sure you understand the consequences of this before
+proceeding.",
+"movepagetalktext" => "The associated talk page, if any, will be automatically moved along with it '''unless:'''
+*You are moving the page across namespaces,
+*A non-empty talk page already exists under the new name, or
+*You uncheck the box below.
+
+In those cases, you will have to move or merge the page manually if desired.",
+"movearticle"	=> "Move page",
+"movenologin"	=> "Not logged in",
+"movenologintext" => "You must be a registered user and <a href=\"{{localurl:Special:Userlogin}}\">logged in</a>
+to move a page.",
+"newtitle"		=> "To new title",
+"movepagebtn"	=> "Move page",
+"pagemovedsub"	=> "Move succeeded",
+"pagemovedtext" => "Page \"[[$1]]\" moved to \"[[$2]]\".",
+"articleexists" => "A page of that name already exists, or the
+name you have chosen is not valid.
+Please choose another name.",
+"talkexists"	=> "The page itself was moved successfully, but the
+talk page could not be moved because one already exists at the new
+title. Please merge them manually.",
+"movedto"		=> "moved to",
+"movetalk"		=> "Move \"talk\" page as well, if applicable.",
+"talkpagemoved" => "The corresponding talk page was also moved.",
+"talkpagenotmoved" => "The corresponding talk page was <strong>not</strong> moved.",
+"1movedto2"		=> "$1 moved to $2",
+
+// Export
+
+"export"		=> "Exportera sidor",
+"exporttext"	=> "Du kan exportera texten och redigeringshistoriken av en specifik
+sida eller stÃ¤lla in sidor wrappade i lite XML; detta kan sedan importeras till en annan
+wiki som kÃ¶r MediaWiki-programvara, konverterad, eller bara sparad som syns skull.",
+"exportcuronly"	=> "Inkludera endast nuvarande revisionen, inte hela historiken",
+
+# Namespace 8 related
+
+"allmessages"	=> "Alla systemmeddelanden",
+"allmessagestext"	=> "Detta Ã¤r en lista Ã¶ver alla systemmeddelanden tillgÃ¤ngliga i Metawiki-namespacet.",
+
+# Thumbnails
+
+"thumbnail-more"	=> "FÃ¶rstora",
+"missingimage"		=> "<b>Bild saknas</b><br /><i>$1</i>\n",
+
+# tooltip help for the main actions
+'tooltip-atom'	=> 'Atom feed for this page',
+'tooltip-article' => 'Visa artikel [alt-a]',
+'tooltip-talk' => 'Diskutera artikel [alt-t]',
+'tooltip-edit' => 'Du kan Ã¤ndra den hÃ¤r sidan. Var god anvand fÃ¶rhandsgranskningsknappen innan du sparar. [alt-e]',
+'tooltip-addsection' => 'LÃ¤gg till en kommentar pÃ¥ den hÃ¤r sidan. [alt-+]',
+'tooltip-viewsource' => 'Den hÃ¤r sidan Ã¤r skyddad. Du kan inte se dess kÃ¤lla. [alt-e]',
+'tooltip-history' => 'Tidigare versioner av den hÃ¤r sidan, [alt-h]',
+'tooltip-protect' => 'Skydda den hÃ¤r sidan [alt-=]',
+'tooltip-delete' => 'Ta bort den hÃ¤r sidan [alt-d]',
+'tooltip-undelete' => 'Ã…terstÃ¤ll $1 borttagna Ã¤ndringar till den hÃ¤r sidan [alt-d]',
+'tooltip-move' => 'Flytta den hÃ¤r sidan [alt-m]',
+'tooltip-nomove' => 'Du har inte rÃ¤ttighet att flytta den hÃ¤r sidan',
+'tooltip-watch' => 'LÃ¤gg till den hÃ¤r sidan till din bevakningslista [alt-w]',
+'tooltip-unwatch' => 'Ta bort den hÃ¤r sidan frÃ¥n din bevakningslista [alt-w]',
+'tooltip-watchlist' => 'Lista Ã¶ver sidor som du bevakar [alt-l]',
+'tooltip-userpage' => 'Min anvÃ¤ndarsida [alt-.]',
+'tooltip-anonuserpage' => 'AnvÃ¤ndarsidan fÃ¶r ip:et du Ã¤ndrar [alt-.]',
+'tooltip-mytalk' => 'Min diskussionssida [alt-n]',
+'tooltip-anontalk' => 'Diskutera Ã¤ndringar frÃ¥n den hÃ¤r ip-addressen [alt-n]',
+'tooltip-preferences' => 'Mina instÃ¤llningar',
+'tooltip-mycontris' => 'Lista Ã¶ver mina bidrag [alt-y]',
+'tooltip-login' => 'Du Ã¤r uppmuntrad att logga in, men det Ã¤r inget krav. [alt-o]',
+'tooltip-logout' => 'Logga ut [alt-o]',
+'tooltip-search' => 'SÃ¶k den hÃ¤r wikin [alt-f]',
+'tooltip-mainpage' => 'BesÃ¶ka Huvudsidan [alt-z]',
+'tooltip-portal' => 'Om projektet, vad du kan gÃ¶ra och vart du hittar saker och ting',
+'tooltip-randompage' => 'Ladda en slumpmÃ¤ssig sida [alt-x]',
+'tooltip-currentevents' => 'Hitta bakgrundsinformation till nuvarande hÃ¤ndelser',
+'tooltip-sitesupport' => 'StÃ¶d {{SITENAME}}',
+'tooltip-help' => 'The place to find out.',
+'tooltip-recentchanges' => 'Lista Ã¶ver senaste Ã¤ndringar pÃ¥ wikin. [alt-r]',
+'tooltip-recentchangeslinked' => 'Senaste Ã¤ndringar till sidor som lÃ¤nkar hit [alt-c]',
+'tooltip-whatlinkshere' => 'Lista alla wikisidor som lÃ¤nkar hit [alt-b]',
+'tooltip-specialpages' => 'Lista alla specialsidor [alt-q]',
+'tooltip-upload' => 'Ladda upp bilder och media filer [alt-u]',
+'tooltip-specialpage' => 'Detta Ã¤r en specialsida, du kan inte Ã¤ndra den.',
+'tooltip-minoredit' => 'Markera som en mindre Ã¤ndring [alt-i]',
+'tooltip-save' => 'Spara dina Ã¤ndringar changes [alt-s]',
+'tooltip-preview' => 'FÃ¶rhandsgranska dina Ã¤ndringar, gÃ¶r detta innan du sparar! [alt-p]',
+'tooltip-contributions' => 'Visa lista Ã¶ver bidrag frÃ¥n den hÃ¤r Ã¤nvÃ¤ndaren',
+'tooltip-emailuser' => 'Skicka ett mail till anvÃ¤ndaren',
+'tooltip-rss' => 'RSS-matning fÃ¶r den hÃ¤r sidan',
+'tooltip-compareselectedversions' => 'Visa skillnaden mellan de tvÃ¥ markerade versionerna av den hÃ¤r sidan. [alt-v]',
+
+# Metadata
+"nodublincore" => "Dublin Core RDF metadata avstÃ¤ngt fÃ¶r pÃ¥ den hÃ¤r servern.",
+"nocreativecommons" => "Creative Commons RDF metadata avstÃ¤ngt pÃ¥ den hÃ¤r servern.",
+"notacceptable" => "Den hÃ¤r wiki-servern kan inte erbjuda data i ett format som din klient kan lÃ¤sa.",
+
+# Attribution
+
+"anonymous" => "Anonym anvÃ¤ndare av $wgSitename",
+"siteuser" => "$wgSitename anvÃ¤ndare $1",
+"lastmodifiedby" => "Den hÃ¤r sidan var senaste Ã¤ndrad $1 av $2.",
+"and" => "och",
+"othercontribs" => "Baserad pÃ¥ arbete utfÃ¶rt av $1.",
+"siteusers" => "$wgSitename anvÃ¤ndare $1"
 
 );
 
-class LanguageSv extends Language {
-
-        function getNamespaces() {
-                global $wgNamespaceNamesSv;
-                return $wgNamespaceNamesSv;
-        }
-
-        function getBookstoreList () {
-                global $wgBookstoreListSv ;
-                return $wgBookstoreListSv ;
-        }
-
-        function getNsText( $index ) {
-                global $wgNamespaceNamesSv;
-                return $wgNamespaceNamesSv[$index];
-        }
-
-        function getNsIndex( $text ) {
-                global $wgNamespaceNamesSv;
-
-                foreach ( $wgNamespaceNamesSv as $i => $n ) {
-                        if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-                }
+class LanguageSv extends LanguageUtf8 {
+	
+	function getNamespaces() {
+		global $wgNamespaceNamesSv;
+		return $wgNamespaceNamesSv;
+	}
+	
+	function getBookstoreList () {
+		global $wgBookstoreListSv ;
+		return $wgBookstoreListSv ;
+	}
+	
+	function getNsText( $index ) {
+		global $wgNamespaceNamesSv;
+		return $wgNamespaceNamesSv[$index];
+	}
+	
+	function getNsIndex( $text ) {
+		global $wgNamespaceNamesSv;
 		
-                // Consider Special: and Speciel: equal... which is preferred?
-                if ( 0 == strcasecmp( "speciel", $text ) ) { return -1; }
-                return false;
-        }
-
-        // inherit specialPage()
-
-        function getQuickbarSettings() {
-                global $wgQuickbarSettingsSv;
-                return $wgQuickbarSettingsSv;
-        }
-
-        function getSkinNames() {
-                global $wgSkinNamesSv;
-                return $wgSkinNamesSv;
-        }
-
-        function getUserToggles() {
-                global $wgUserTogglesSv;
-                return $wgUserTogglesSv;
-        }
-
-        function getMonthName( $key )
-        {
-                global $wgMonthNamesSv;
-                return $wgMonthNamesSv[$key-1];
-        }
-
-        function getMonthAbbreviation( $key )
-        {
-                global $wgMonthAbbreviationsSv;
-                return $wgMonthAbbreviationsSv[$key-1];
-        }
-
-        function getWeekdayName( $key )
-        {
-                global $wgWeekdayNamesSv;
-                return $wgWeekdayNamesSv[$key-1];
-        }
-
-        # Inherit userAdjust()
-
-        function date( $ts, $adj = false )
-        {
-                if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-                $d = (0 + substr( $ts, 6, 2 )) . " " .
-                  $this->getMonthName( substr( $ts, 4, 2 ) ) . " " .
-                  substr( $ts, 0, 4 );
-                return $d;
-        }
-
+		foreach ( $wgNamespaceNamesSv as $i => $n ) {
+			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+		}
+		
+		// Consider Special: and Speciel: equal... which is preferred?
+		if ( 0 == strcasecmp( "speciel", $text ) ) { return -1; }
+		return false;
+	}
+	
+	// inherit specialPage()
+	
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsSv;
+		return $wgQuickbarSettingsSv;
+	}
+	
+	function getSkinNames() {
+		global $wgSkinNamesSv;
+		return $wgSkinNamesSv;
+	}
+	
+	function getUserToggles() {
+		global $wgUserTogglesSv;
+		return $wgUserTogglesSv;
+	}
+	
+	function getMonthName( $key ) {
+		global $wgMonthNamesSv;
+		return $wgMonthNamesSv[$key-1];
+	}
+	
+	function getMonthAbbreviation( $key ) {
+		global $wgMonthAbbreviationsSv;
+		return $wgMonthAbbreviationsSv[$key-1];
+	}
+	
+	function getWeekdayName( $key ) {
+		global $wgWeekdayNamesSv;
+		return $wgWeekdayNamesSv[$key-1];
+	}
+	
+	# Inherit userAdjust()
+	
+	function date( $ts, $adj = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+		
+		$d = (0 + substr( $ts, 6, 2 )) . " " .
+		$this->getMonthName( substr( $ts, 4, 2 ) ) . " " .
+		substr( $ts, 0, 4 );
+		return $d;
+	}
+	
 	// "." is used as the character to separate the
 	// hours from the minutes in the date output
-        function time( $ts, $adj = false )
-        {
-                if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-                $t = substr( $ts, 8, 2 ) . "." . substr( $ts, 10, 2 );
-                return $t;
-        }
-
-        function timeanddate( $ts, $adj = false )
-        {
-                return $this->date( $ts, $adj ) . " kl." . $this->time( $ts, $adj );
-        }
-
-        function getValidSpecialPages()
-        {
-                global $wgValidSpecialPagesSv;
-                return $wgValidSpecialPagesSv;
-        }
-
-        function getSysopSpecialPages()
-        {
-                global $wgSysopSpecialPagesSv;
-                return $wgSysopSpecialPagesSv;
-        }
-
-        function getDeveloperSpecialPages()
-        {
-                global $wgDeveloperSpecialPagesSv;
-                return $wgDeveloperSpecialPagesSv;
-        }
-
-	function getMessage( $key )
-        {
-                global $wgAllMessagesSv;
-                if( array_key_exists( $key, $wgAllMessagesSv ) )
-                        return $wgAllMessagesSv[$key];
-                else
-                        return Language::getMessage($key);
-        }
-
+	function time( $ts, $adj = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+		
+		$t = substr( $ts, 8, 2 ) . "." . substr( $ts, 10, 2 );
+		return $t;
+	}
+	
+	function timeanddate( $ts, $adj = false ) {
+		return $this->date( $ts, $adj ) . " kl." . $this->time( $ts, $adj );
+	}
+	
+	function getValidSpecialPages() {
+		global $wgValidSpecialPagesSv;
+		return $wgValidSpecialPagesSv;
+	}
+	
+	function getSysopSpecialPages() {
+		global $wgSysopSpecialPagesSv;
+		return $wgSysopSpecialPagesSv;
+	}
+	
+	function getDeveloperSpecialPages() {
+		global $wgDeveloperSpecialPagesSv;
+		return $wgDeveloperSpecialPagesSv;
+	}
+	
+	function getMessage( $key ) {
+		global $wgAllMessagesSv;
+		if( array_key_exists( $key, $wgAllMessagesSv ) )
+			return $wgAllMessagesSv[$key];
+		return "";
+	}
+	
 }
 
 ?>

@@ -7,10 +7,13 @@ class SkinCologneBlue extends Skin {
 	{
 		return "cologneblue.css";
 	}
+	function getSkinName() {
+		return "cologneblue";
+	}
 
 	function doBeforeContent()
 	{
-		global $wgUser, $wgOut, $wgTitle;
+		global $wgUser, $wgOut, $wgTitle, $wgSiteNotice;
 
 		$s = "";
 		$qb = $this->qbSetting();
@@ -32,7 +35,9 @@ class SkinCologneBlue extends Skin {
 		$s .= "</td><td align='right'>" ;
 
 		$s .= "<font size='-1'><span id='langlinks'>" ;
-		$s .= str_replace ( "<br>" , "" , $this->otherLanguages() ) ;
+		$s .= str_replace ( "<br>" , "" , $this->otherLanguages() );
+		$cat = $this->getCategoryLinks();
+		if( $cat ) $s .= "<br />$cat\n";
 		$s .= "<br />" . $this->pageTitleLinks();
 		$s .= "</span></font>";
 
@@ -40,6 +45,9 @@ class SkinCologneBlue extends Skin {
 
 		$s .= "\n</div>\n<div id='article'>";
 
+		if( $wgSiteNotice ) {
+			$s .= "\n<div id='siteNotice'>$wgSiteNotice</div>\n";
+		}
 		$s .= $this->pageTitle();
 		$s .= $this->pageSubtitle() . "\n";
 		return $s;
@@ -79,8 +87,7 @@ class SkinCologneBlue extends Skin {
 	function doGetUserStyles()
 	{
 		global $wgUser, $wgOut, $wgStyleSheetPath;
-
-		$s = parent::doGetUserStyles();
+		$s = '';
 		$qb = $this->qbSetting();
 
 		if ( 2 == $qb ) { # Right
@@ -95,6 +102,7 @@ class SkinCologneBlue extends Skin {
 			  "#article { margin-left:148px; margin-right: 4px; } \n" .
 			  "body>#quickbar { position:fixed; left:4px; top:4px; overflow:auto ;bottom:4px;} \n"; # Hides from IE
 		}
+		$s .= parent::doGetUserStyles();
 		return $s;
 	}
 	function sysLinks()

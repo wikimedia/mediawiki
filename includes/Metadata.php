@@ -119,8 +119,8 @@ function wfCreativeCommonsRdf($article) {
 
 	$contributors = $article->getContributors();
 	
-	foreach ($contributors as $cid => $user_parts) {
-		dcPerson('contributor', $cid, $user_parts[0], $user_parts[1]);
+	foreach ($contributors as $user_parts) {
+		dcPerson('contributor', $user_parts[0], $user_parts[1], $user_parts[2]);
 	}
 	
 	dcRights($article);
@@ -218,9 +218,9 @@ function wfCreativeCommonsRdf($article) {
 	if ($id == 0) {
 		dcElement($name, wfMsg("anonymous"));
 	} else if ( !empty($user_real_name) ) {
-	        dcElement($name, $user_real_name);
+		dcElement($name, $user_real_name);
 	} else {
-	        # XXX: This shouldn't happen.
+		# XXX: This shouldn't happen.
 		if( empty( $user_name ) ) {
 			$user_name = User::whoIs($id);
 		}
@@ -260,19 +260,24 @@ function wfCreativeCommonsRdf($article) {
 /* private */ function getKnownLicenses() {
 	
 	$ccLicenses = array('by', 'by-nd', 'by-nd-nc', 'by-nc', 
-	                    'by-nc-sa', 'by-sa', 'nd', 'nd-nc',
-	                    'nc', 'nc-sa', 'sa');
-	
+	                     'by-nc-sa', 'by-sa');
+	$ccVersions = array('1.0', '2.0');
 	$knownLicenses = array();
 	
-	foreach ($ccLicenses as $license) {
-		$lurl = "http://creativecommons.org/licenses/{$license}/1.0/";
-		$knownLicenses[$lurl] = explode('-', $license);
-		$knownLicenses[$lurl][] = 're';
-		$knownLicenses[$lurl][] = 'di';
-		$knownLicenses[$lurl][] = 'no';
-		if (!in_array('nd', $knownLicenses[$lurl])) {
-			$knownLicenses[$lurl][] = 'de';
+	foreach ($ccVersions as $version) {
+		foreach ($ccLicenses as $license) {
+			if( $version == '2.0' && substr( $license, 0, 2) != 'by' ) {
+				# 2.0 dropped the non-attribs licenses
+				continue;
+			}
+			$lurl = "http://creativecommons.org/licenses/{$license}/{$version}/";
+			$knownLicenses[$lurl] = explode('-', $license);
+			$knownLicenses[$lurl][] = 're';
+			$knownLicenses[$lurl][] = 'di';
+			$knownLicenses[$lurl][] = 'no';
+			if (!in_array('nd', $knownLicenses[$lurl])) {
+				$knownLicenses[$lurl][] = 'de';
+			}
 		}
 	}
 	

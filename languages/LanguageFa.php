@@ -35,7 +35,7 @@ require_once("LanguageUtf8.php");
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsFa = array(
 	"نباشد", "ثابت چپ", "ثابت راست", "شناور چپ"
@@ -49,7 +49,8 @@ require_once("LanguageUtf8.php");
 	'montparnasse' => "مون‌پارناس",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesFa = array(
@@ -720,6 +721,7 @@ you may be blocked from uploading if you abuse the system.",
 "imghistory"	=> "تاریخچه‌ی تصویر",
 "revertimg"		=> "برگرد",
 "deleteimg"		=> "حذف",
+"deleteimgcompletely"		=> "حذف",
 "imghistlegend" => "شرح: (فعلی) = این تصویر فعلی است، (حذف) = این
 نسخه‌ی قدیمی حذف شود، (برگرد) = برگرداندن به این نسخه‌ی قدیمی.
 <br><i>برای دیدن تصویر بار شده در تاریخ مشخص، روی تاریخ کلیک کنید</i>.",
@@ -1089,6 +1091,21 @@ In those cases, you will have to move or merge the page manually if desired.",
 #--------------------------------------------------------------------------
 
 class LanguageFa extends LanguageUtf8 {
+	var $digitTransTable = array(
+		"0" => "۰",
+		"1" => "۱",
+		"2" => "۲",
+		"3" => "۳", 
+		"4" => "۴",
+		"5" => "۵",
+		"6" => "۶",
+		"7" => "۷",
+		"8" => "۸",
+		"9" => "۹",
+		"%" => "٪",
+		"." => "٫",
+		"," => "٬"
+	);
 
 	function getDefaultUserOptions () {
                 $opt = Language::getDefaultUserOptions();
@@ -1176,16 +1193,26 @@ class LanguageFa extends LanguageUtf8 {
 		return $wgDeveloperSpecialPagesFa;
 	}
 
-        function getMessage( $key )
-        {
-                global $wgAllMessagesFa;
-                if(array_key_exists($key, $wgAllMessagesFa))
-                        return $wgAllMessagesFa[$key];
-                else
-                        return Language::getMessage($key);
+	function getMessage( $key )
+	{
+		global $wgAllMessagesFa;
+		if(array_key_exists($key, $wgAllMessagesFa))
+			return $wgAllMessagesFa[$key];
+		else
+			return Language::getMessage($key);
 	}
-	
+
 	# For right-to-left language support
 	function isRTL() { return true; }
+
+	function formatNum( $number ) {
+		global $wgTranslateNumerals;
+		if( $wgTranslateNumerals ) {
+			return strtr( $number, $this->digitTransTable );
+		} else {
+			return $number;
+		}
+	}
+
 }
 ?>

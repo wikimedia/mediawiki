@@ -1,17 +1,36 @@
 /* IE5.5/win- only fixes */
 
-#column-content { display: inline; }
-#column-content #content { 
-    margin-top: 3em; 
-    overflow: auto;
+#column-content { 
+    float: none; 
+    margin-left: 0;
     height: 1%;
 }
+#column-content #content {
+    position: relative;
+    z-index: 5;
+    margin-left: 12.2em;
+    margin-top: 3em;
+    height: 1%;
+}
+#column-one {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    width: 100%;
+}
+#footer {
+    margin-left: 13.6em;
+    border-left: 1px solid #fabd23;
+}
+
 /*#bodyContent div,
 #bodyContent pre { overflow: auto; }*/
 
 #p-personal { padding-bottom: 0.1em; }
 
 body { font-size: xx-small; }
+
 #p-cactions {
     width: 76% !important;
     z-index: 3 !important;

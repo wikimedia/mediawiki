@@ -24,7 +24,7 @@
 	11  => "Template_talk"
 
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsIa = array(
 	"Necun", "Fixe a sinistra", "Fixe a dextera", "Flottante a sinistra"
@@ -38,7 +38,8 @@
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesIa = array(
@@ -600,6 +601,7 @@ a su proposito.",
 "imghistory"	=> "Chronologia del imagine",
 "revertimg"		=> "rev",
 "deleteimg"		=> "elim",
+"deleteimgcompletely"		=> "elim",
 "imghistlegend" => "Legend: (actu) = iste es le imagine actual, (elim) = elimina
 iste version antique, (rev) = reverte a iste version antique.
 <br><i>Clica super le data pro vider le imagine cargate in ille die.</i>",

@@ -7,15 +7,15 @@ class BlockCache
 {
 	var $mData = false, $mMemcKey;
 
-	function BlockCache( $deferLoad = false, $dbName = "" )
+	function BlockCache( $deferLoad = false, $dbName = '' )
 	{
 		global $wgDBname;
 
-		if ( $dbName == "" ) {
+		if ( $dbName == '' ) {
 			$dbName = $wgDBname;
 		}
 
-		$this->mMemcKey = "$dbName:ipblocks";
+		$this->mMemcKey = $dbName.':ipblocks';
 
 		if ( !$deferLoad ) {
 			$this->load();
@@ -36,10 +36,10 @@ class BlockCache
 				}
 			}
 
-			if ( $this->mData === false || is_null( $this->mData ) ) {
+			if ( !is_array( $this->mData ) ) {
 				# Load from DB
 				$this->mData = array();
-				Block::enumBlocks( "wfBlockCacheInsert", "" ); # Calls $this->insert()
+				Block::enumBlocks( 'wfBlockCacheInsert', '' ); # Calls $this->insert()
 			}
 			
 			if ( $saveMemc ) {
@@ -78,7 +78,7 @@ class BlockCache
 		if ( $blocked ) {
 			# Clear low order bits
 			if ( $networkBits != 32 ) {
-				$ip .= "/$networkBits";
+				$ip .= '/'.$networkBits;
 				$ip = Block::normaliseRange( $ip );
 			}
 			$block = new Block();

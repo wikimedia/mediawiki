@@ -9,20 +9,26 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	global $wgOut, $wgArticle, $wgUser;
 	global $wgMessageCache, $wgMemc, $wgDBname, $wgUseMemCached;
 
+	# Initialise $wgOut and $wgUser for a command line script
+	$wgOut->disable();
+
+	$wgUser = new User;
+	$wgUser->setLoaded( true ); # Don't load from DB
+	$wgUser->setName( 'MediaWiki default' );
+	
 	# Don't try to draw messages from the database we're initialising
 	$wgMessageCache->disable();
 
-	$fname = "initialiseMessages";
+	$fname = 'initialiseMessages';
 	$ns = NS_MEDIAWIKI;
 	# cur_user_text responsible for the modifications
 	# Don't change it unless you're prepared to update the DBs accordingly, otherwise the 
 	# default messages won't be overwritte
-	$username = "MediaWiki default";
+	$username = 'MediaWiki default';
 
 	$timestamp = wfTimestampNow();
 	$invTimestamp = wfInvertTimestamp( $timestamp );
-	$mwMsg =& MagicWord::get( MAG_MSG );
-	$navText = str_replace( "$1", "allmessagestext", $mwMsg->getSynonym( 0 ) );
+	$navText = '{{int:allmessagestext}}';
 	$navText .= "
 
 <table border=1 width=100%><tr><td>
@@ -39,7 +45,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	# Get keys from $wgAllMessagesEn, which is more complete than the local language
 	$first = true;
 	if ( $messageArray ) {
-		$sortedArray = $wgAllMessagesEn;
+		$sortedArray = $messageArray;
 	} else {
 		$sortedArray = $wgAllMessagesEn;
 	}
@@ -48,19 +54,19 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	
 	# SELECT all existing messages
 	foreach ( $sortedArray as $key => $enMsg ) {
-		if ( $key == "" ) {
+		if ( $key == '' ) {
 			continue; // Skip odd members
 		}
 		if ( $first ) {
 			$first = false;
 		} else {
-			$sql .= ",";
+			$sql .= ',';
 		}
 		$titleObj = Title::newFromText( $key );
 		$enctitle = wfStrencode($titleObj->getDBkey());
 		$sql .= "'$enctitle'";
 	}
-	$sql .= ")";
+	$sql .= ')';
 	$res = wfQuery( $sql, DB_READ );
 	$row = wfFetchObject( $res );
 
@@ -68,10 +74,10 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	# Decide whether or not each one needs to be overwritten
 	$existingTitles = array();
 	while ( $row ) {
-		if ( !$row->cur_is_new || $row->cur_user_text != $username ) {
-			$existingTitles[$row->cur_title] = "keep";
+		if ( $row->cur_user_text != $username ) {
+			$existingTitles[$row->cur_title] = 'keep';
 		} else {
-			$existingTitles[$row->cur_title] = "chuck";
+			$existingTitles[$row->cur_title] = 'chuck';
 		}
 
 		$row = wfFetchObject( $res );
@@ -83,14 +89,12 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		cur_user_text, cur_timestamp, cur_restrictions,
 		cur_is_new, inverse_timestamp, cur_touched) VALUES 	";
 	$first = true;
-	$mwObj =& MagicWord::get( MAG_MSGNW );
-	$msgnw = $mwObj->getSynonym( 0 );
 	$talk = $wgLang->getNsText( NS_TALK );
 	$mwtalk = $wgLang->getNsText( NS_MEDIAWIKI_TALK );
 	
 	# Process each message
 	foreach ( $sortedArray as $key => $enMsg ) {
-		if ( $key == "" ) {
+		if ( $key == '' ) {
 			continue; // Skip odd members
 		}
 		# Get message text
@@ -104,19 +108,12 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		$dbencMsg = wfStrencode( $message );
 
 		# Update messages which already exist
-		# Note: UPDATE is now used instead of DELETE/INSERT to avoid wiping cur_restrictions
 		if ( array_key_exists( $title, $existingTitles ) ) {
-			if ( $existingTitles[$title] == "chuck" || $overwrite) {
-				wfQuery( "UPDATE cur 
-				  SET
-				    cur_text='$dbencMsg',
-				    cur_user=0,
-				    cur_user_text='$username',
-				    cur_timestamp='$timestamp',
-					cur_touched='$timestamp',
-				    inverse_timestamp='$invTimestamp'
-				  WHERE cur_namespace=8 and cur_title='$title'", DB_WRITE
-				);
+			if ( $existingTitles[$title] == 'chuck' || $overwrite) {
+				# print "$title\n";
+				$mwTitleObj = Title::makeTitle( NS_MEDIAWIKI, $title );
+				$article = new Article( $mwTitleObj );
+				$article->quickEdit( $message );
 			}
 			$doInsert = false;
 		} else {
@@ -124,7 +121,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 			if ( $first ) {
 				$first = false;
 			} else {
-				$sql .= ",";
+				$sql .= ',';
 			}
 			$sql .=
 			  "($ns,
@@ -139,8 +136,6 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		}
 		
 		# Make table row for navigation page
-		$mw = str_replace( "$1", $key, $msgnw );
-
 		$message = wfEscapeWikiText( $message );
 		$navText .= 
 "<tr><td>
@@ -149,7 +144,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 </td><td>
 $message
 </td><td>
-$mw
+{{int:$title}}
 </td></tr>";
 	}
 
@@ -160,9 +155,9 @@ $mw
 
 	# Write the navigation page
 
-	$navText .= "</table>";
-	$title = wfMsgNoDB( "allmessages" );
-	$titleObj = Title::makeTitle( NS_MEDIAWIKI, $title );
+	$navText .= '</table>';
+	$title = wfMsgNoDB( 'allmessages' );
+	$titleObj = Title::makeTitle( NS_WIKIPEDIA, $title );
 	$wgArticle = new Article( $titleObj );
 	$wgOut->disable();
 	$wgUser = User::newFromName( 'MediaWiki default' );
@@ -173,17 +168,24 @@ $mw
 	}
 	
 	# Clear the relevant memcached key
-	if( $wgUseMemCached ) {
-		print "Clearing message cache...";
-		$wgMemc->delete( "$wgDBname:messages" );
-		print "Done.\n";
-	}
+	print 'Clearing message cache...';
+	$wgMessageCache->clear();
+	print "Done.\n";
 }
 
-function loadArrayFromFile( $filename )
+function loadLanguageFile( $filename )
 {
 	$contents = file_get_contents( $filename );
+	# Remove header line
+	$p = strpos( $contents, "\n" ) + 1;
+	$contents = substr( $contents, $p );
+	# Unserialize
 	return unserialize( $contents );
+}
+
+function doUpdates() {
+	global $wgDeferredUpdateList;
+	foreach ( $wgDeferredUpdateList as $up ) { $up->doUpdate(); }
 }
 
 ?>

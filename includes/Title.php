@@ -88,13 +88,13 @@ class Title {
 	# From a URL-encoded title
 	/* static */ function newFromURL( $url )
 	{
-		global $wgLang, $wgServer;
+		global $wgLang, $wgServer, $wgIsMySQL, $wgIsPg;
 		$t = new Title();
-		$s = urldecode( $url ); # This is technically wrong, as anything
-								# we've gotten is already decoded by PHP.
-								# Kept for backwards compatibility with
-								# buggy URLs we had for a while...
-		$s = $url;
+		
+		# For compatibility with old buggy URLs. "+" is not valid in titles,
+		# but some URLs used it as a space replacement and they still come
+		# from some external search tools.
+		$s = str_replace( "+", " ", $url );
 		
 		# For links that came from outside, check for alternate/legacy
 		# character encoding.
@@ -109,14 +109,20 @@ class Title {
 		
 		$t->mDbkeyform = str_replace( " ", "_", $s );
 		if( $t->secureAndSplit() ) {
-
 			# check that lenght of title is < cur_title size
-			$sql = "SHOW COLUMNS FROM cur LIKE \"cur_title\";";
-			$cur_title_object = wfFetchObject(wfQuery( $sql, DB_READ ));
+			if ($wgIsMySQL) {
+				$sql = "SHOW COLUMNS FROM cur LIKE \"cur_title\";";
+				$cur_title_object = wfFetchObject(wfQuery( $sql, DB_READ ));
 
-			preg_match( "/\((.*)\)/", $cur_title_object->Type, $cur_title_size);
+				preg_match( "/\((.*)\)/", $cur_title_object->Type, $cur_title_type);
+				$cur_title_size=$cur_title_type[1];
+			} else {
+				/* midom:FIXME pg_field_type does not return varchar length
+				   assume 255 */
+				$cur_title_size=255;
+			}
 
-			if (strlen($t->mDbkeyform) > $cur_title_size[1] ) {
+			if (strlen($t->mDbkeyform) > $cur_title_size ) {
 				return NULL;
 			}
 
@@ -182,11 +188,20 @@ class Title {
 		# Missing characters:
 		#  * []|# Needed for link syntax
 		#  * % and + are corrupted by Apache when they appear in the path
-		# 
+		#
+		# % seems to work though
+		#
+		# The problem with % is that URLs are double-unescaped: once by Apache's 
+		# path conversion code, and again by PHP. So %253F, for example, becomes "?".
+		# Our code does not double-escape to compensate for this, indeed double escaping
+		# would break if the double-escaped title was passed in the query string
+		# rather than the path. This is a minor security issue because articles can be
+		# created such that they are hard to view or edit. -- TS
+		#
 		# Theoretically 0x80-0x9F of ISO 8859-1 should be disallowed, but
 		# this breaks interlanguage links
 		
-		$set = " !\"$&'()*,\\-.\\/0-9:;<=>?@A-Z\\\\^_`a-z{}~\\x80-\\xFF";
+		$set = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z{}~\\x80-\\xFF";
 		return $set;
 	}
 	
@@ -228,9 +243,9 @@ class Title {
 	# The URL contains $1, which is replaced by the title
 	function getInterwikiLink( $key )
 	{	
-		global $wgMemc, $wgDBname, $wgInterwikiExpiry;
-		static $wgTitleInterwikiCache = array();
-
+		global $wgMemc, $wgDBname, $wgInterwikiExpiry, $wgTitleInterwikiCache;
+                global $wgLoadBalancer;
+                
 		$k = "$wgDBname:interwiki:$key";
 
 		if( array_key_exists( $k, $wgTitleInterwikiCache ) )
@@ -243,9 +258,11 @@ class Title {
 			return $s->iw_url;
 		}
 		$dkey = wfStrencode( $key );
-		$query = "SELECT iw_url,iw_local FROM interwiki WHERE iw_prefix='$dkey'";
+		$wgLoadBalancer->force(-1);
+                $query = "SELECT iw_url,iw_local FROM interwiki WHERE iw_prefix='$dkey'";
 		$res = wfQuery( $query, DB_READ, "Title::getInterwikiLink" );
-		if(!$res) return "";
+		$wgLoadBalancer->force(0);
+                if(!$res) return "";
 		
 		$s = wfFetchObject( $res );
 		if(!$s) {
@@ -337,6 +354,15 @@ class Title {
 		}
 		return $this->mPrefixedText;
 	}
+	
+	# As getPrefixedText(), plus fragment.
+	function getFullText() {
+		$text = $this->getPrefixedText();
+		if( '' != $this->mFragment ) {
+			$text .= '#' . $this->mFragment;
+		}
+		return $text;
+	}
 
 	# Get a URL-encoded title (not an actual URL) including interwiki
 	function getPrefixedURL()
@@ -363,16 +389,19 @@ class Title {
 		if ( "" == $this->mInterwiki ) {
 			$p = $wgArticlePath;
 			return $wgServer . $this->getLocalUrl( $query );
+		} else {
+			$baseUrl = $this->getInterwikiLink( $this->mInterwiki );
+			$namespace = $wgLang->getNsText( $this->mNamespace );
+			if ( "" != $namespace ) {
+				# Can this actually happen? Interwikis shouldn't be parsed.
+				$namepace .= ":";
+			}
+			$url = str_replace( "$1", $namespace . $this->mUrlform, $baseUrl );
+			if ( '' != $this->mFragment ) {
+				$url .= '#' . $this->mFragment;
+			}
+			return $url;
 		}
-		
-		$p = $this->getInterwikiLink( $this->mInterwiki );
-		$n = $wgLang->getNsText( $this->mNamespace );
-		if ( "" != $n ) { $n .= ":"; }
-		$u = str_replace( "$1", $n . $this->mUrlform, $p );
-		if ( "" != $this->mFragment ) {
-			$u .= "#" . wfUrlencode( $this->mFragment );
-		}
-		return $u;
 	}
 
 	# Get a URL with an optional query string, no fragment
@@ -486,15 +515,20 @@ class Title {
 	# Can $wgUser edit this page?
 	function userCanEdit()
 	{
-
+		global $wgUser;
 		if ( -1 == $this->mNamespace ) { return false; }
+		if ( NS_MEDIAWIKI == $this->mNamespace && !$wgUser->isSysop() ) { return false; }
 		# if ( 0 == $this->getArticleID() ) { return false; }
 		if ( $this->mDbkeyform == "_" ) { return false; }
+		# protect global styles and js
+		if ( NS_MEDIAWIKI == $this->mNamespace 
+	             && preg_match("/\\.(css|js)$/", $this->mTextform )
+		     && !$wgUser->isSysop() )
+		{ return false; }
 		//if ( $this->isCssJsSubpage() and !$this->userCanEditCssJsSubpage() ) { return false; }
 		# protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
 		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssJsSubpage() from working
-		global $wgUser;
 		if( Namespace::getUser() == $this->mNamespace
 			and preg_match("/\\.(css|js)$/", $this->mTextform )
 			and !$wgUser->isSysop()
@@ -520,7 +554,7 @@ class Title {
 		if( in_array( $name, $wgWhitelistRead ) ) return true;
 		
 		# Compatibility with old settings
-		if( $this->getNamespace() == NS_ARTICLE ) {
+		if( $this->getNamespace() == NS_MAIN ) {
 			if( in_array( ":" . $name, $wgWhitelistRead ) ) return true;
 		}
 		return false;
@@ -638,6 +672,7 @@ class Title {
 		# Initialisation
 		if ( $imgpre === false ) {
 			$imgpre = ":" . $wgLang->getNsText( Namespace::getImage() ) . ":";
+			# % is needed as well
 			$rxTc = "/[^" . Title::legalChars() . "]/";
 		}
 
@@ -668,7 +703,7 @@ class Title {
 			$this->mNamespace = NS_MAIN;
 		} else {
 			# Namespace or interwiki prefix
-	 		if ( preg_match( "/^((?:i|x|[a-z]{2,3})(?:-[a-z0-9]+)?|[A-Za-z0-9_\\x80-\\xff]+?)_*:_*(.*)$/", $t, $m ) ) {
+	 		if ( preg_match( "/^(.+?)_*:_*(.*)$/", $t, $m ) ) {
 				#$p = strtolower( $m[1] );
 				$p = $m[1];
 				$lowerNs = strtolower( $p );
@@ -716,14 +751,22 @@ class Title {
 			return false;
 		}
 		
-		# "." and ".." conflict with the directories of those names
-		if ( $r === "." || $r === ".." ) {
+		# "." and ".." conflict with the directories of those namesa
+		if ( strpos( $r, "." ) !== false &&
+		     ( $r === "." || $r === ".." ||
+		       strpos( $r, "./" ) === 0  ||
+		       strpos( $r, "../" ) === 0 ||
+		       strpos( $r, "/./" ) !== false ||
+		       strpos( $r, "/../" ) !== false ) )
+		{
 			return false;
 		}
 
 		# Initial capital letter
 		if( $wgCapitalLinks && $this->mInterwiki == "") {
 			$t = $wgLang->ucfirst( $r );
+		} else {
+			$t = $r;
 		}
 		
 		# Fill fields
@@ -748,17 +791,18 @@ class Title {
 
 	# Get an array of Title objects linking to this title
 	# Also stores the IDs in the link cache
-	function getLinksTo() {
+	function getLinksTo( $options = '' ) {
 		global $wgLinkCache;
 		$id = $this->getArticleID();
-		$sql = "SELECT cur_namespace,cur_title,cur_id FROM cur,links WHERE l_from=cur_id AND l_to={$id}";
+		$sql = "SELECT cur_namespace,cur_title,cur_id FROM cur,links WHERE l_from=cur_id AND l_to={$id} $options";
 		$res = wfQuery( $sql, DB_READ, "Title::getLinksTo" );
 		$retVal = array();
 		if ( wfNumRows( $res ) ) {
 			while ( $row = wfFetchObject( $res ) ) {
-				$titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title );
-				$wgLinkCache->addGoodLink( $row->cur_id, $titleObj->getPrefixedDBkey() );
-				$retVal[] = $titleObj;
+				if ( $titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title ) ) {
+					$wgLinkCache->addGoodLink( $row->cur_id, $titleObj->getPrefixedDBkey() );
+					$retVal[] = $titleObj;
+				}
 			}
 		}
 		wfFreeResult( $res );
@@ -767,17 +811,17 @@ class Title {
 
 	# Get an array of Title objects linking to this non-existent title
 	# Also stores the IDs in the link cache
-	function getBrokenLinksTo() {
+	function getBrokenLinksTo( $options = '' ) {
 		global $wgLinkCache;
 		$encTitle = wfStrencode( $this->getPrefixedDBkey() );
 		$sql = "SELECT cur_namespace,cur_title,cur_id FROM brokenlinks,cur " .
-		  "WHERE bl_from=cur_id AND bl_to='$encTitle'";
+		  "WHERE bl_from=cur_id AND bl_to='$encTitle' $options";
 		$res = wfQuery( $sql, DB_READ, "Title::getBrokenLinksTo" );
 		$retVal = array();
 		if ( wfNumRows( $res ) ) {
 			while ( $row = wfFetchObject( $res ) ) {
 				$titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title );
-				$wgLinkCache->addGoodLink( $titleObj->getPrefixedDBkey(), $row->cur_id );
+				$wgLinkCache->addGoodLink( $row->cur_id, $titleObj->getPrefixedDBkey() );
 				$retVal[] = $titleObj;
 			}
 		}
@@ -837,6 +881,14 @@ class Title {
 		} else { # Target didn't exist, do normal move.
 			$this->moveToNewTitle( $nt, $newid );
 		}
+		
+		# Fixing category links (those without piped 'alternate' names) to be sorted under the new title
+		
+		$sql = "UPDATE categorylinks SET cl_sortkey='" . wfStrencode( $nt->getPrefixedText() ) . "'" .
+			" WHERE cl_from='" . wfStrencode( $this->getArticleID() ) . "'" .
+			" AND cl_sortkey='" . wfStrencode( $this->getPrefixedText() ) . "'";
+		wfQuery( $sql, DB_WRITE, "SpecialMovepage::doSubmit" );
+
 
 		# Update watchlists
 		
@@ -845,7 +897,7 @@ class Title {
 		$oldtitle = $this->getDBkey();
 		$newtitle = $nt->getDBkey();
 
-		if( $oldnamespace != $newnamespace && $oldtitle != $newtitle ) {
+		if( $oldnamespace != $newnamespace || $oldtitle != $newtitle ) {
 			WatchedItem::duplicateEntries( $this, $nt );
 		}
 
@@ -927,34 +979,47 @@ class Title {
 			$fname
 		);
 		
-		RecentChange::notifyMove( $now, $this, $nt, $wgUser, $comment );
+		RecentChange::notifyMoveOverRedirect( $now, $this, $nt, $wgUser, $comment );
 
 		# Swap links
 		
 		# Load titles and IDs
-		$linksToOld = $this->getLinksTo();
-		$linksToNew = $nt->getLinksTo();
+		$linksToOld = $this->getLinksTo( 'FOR UPDATE' );
+		$linksToNew = $nt->getLinksTo( 'FOR UPDATE' );
 		
-		# Make function to convert Titles to IDs
-		$titleToID = create_function('$t', 'return $t->getArticleID();');
+		# Delete them all
+		$sql = "DELETE FROM links WHERE l_to=$oldid OR l_to=$newid";
+		wfQuery( $sql, DB_WRITE, $fname );
 
-		# Reassign links to old title
-		if ( count( $linksToOld ) ) {
-			$sql = "UPDATE links SET l_to=$newid WHERE l_from IN (";
-			$sql .= implode( ",", array_map( $titleToID, $linksToOld ) );
-			$sql .= ")";
+		# Reinsert
+		if ( count( $linksToOld ) || count( $linksToNew )) {
+			$sql = "INSERT INTO links (l_from,l_to) VALUES ";
+			$first = true;
+
+			# Insert links to old title
+			foreach ( $linksToOld as $linkTitle ) {
+				if ( $first ) {
+					$first = false;
+				} else {
+					$sql .= ",";
+				}
+				$id = $linkTitle->getArticleID();
+				$sql .= "($id,$newid)";
+			}
+
+			# Insert links to new title
+			foreach ( $linksToNew as $linkTitle ) {
+				if ( $first ) {
+					$first = false;
+				} else {
+					$sql .= ",";
+				}
+				$id = $linkTitle->getArticleID();
+				$sql .= "($id, $oldid)";
+			}
+
 			wfQuery( $sql, DB_WRITE, $fname );
 		}
-		
-		# Reassign links to new title
-		if ( count( $linksToNew ) ) {
-			$sql = "UPDATE links SET l_to=$oldid WHERE l_from IN (";
-			$sql .= implode( ",", array_map( $titleToID, $linksToNew ) );
-			$sql .= ")";
-			wfQuery( $sql, DB_WRITE, $fname );
-		}
-
-		# Note: the insert below must be after the updates above!
 
 		# Now, we record the link from the redirect to the new title.
 		# It should have no other outgoing links...
@@ -962,7 +1027,11 @@ class Title {
 		wfQuery( $sql, DB_WRITE, $fname );
 		$sql = "INSERT INTO links (l_from,l_to) VALUES ({$newid},{$oldid})";
 		wfQuery( $sql, DB_WRITE, $fname );
-
+		
+		# Clear linkscc
+		LinkCache::linksccClearLinksTo( $oldid );
+		LinkCache::linksccClearLinksTo( $newid );
+		
 		# Purge squid
 		if ( $wgUseSquid ) {
 			$urls = array_merge( $nt->getSquidURLs(), $this->getSquidURLs() );
@@ -1029,14 +1098,16 @@ class Title {
 			), $fname
 		);
 		
-		# Miscellaneous updates
+		# Record in RC
+		RecentChange::notifyMoveToNew( $now, $this, $nt, $wgUser, $comment );
 
-		RecentChange::notifyMove( $now, $this, $nt, $wgUser, $comment );
+		# Purge squid and linkscc as per article creation
 		Article::onArticleCreate( $nt );
 
 		# Any text links to the old title must be reassigned to the redirect
 		$sql = "UPDATE links SET l_to={$newid} WHERE l_to={$oldid}";
 		wfQuery( $sql, DB_WRITE, $fname );
+		LinkCache::linksccClearLinksTo( $oldid );
 
 		# Record the just-created redirect's linking to the page
 		$sql = "INSERT INTO links (l_from,l_to) VALUES ({$newid},{$oldid})";
@@ -1079,9 +1150,10 @@ class Title {
 		}
 
 		# Does the redirect point to the source?
-		if ( preg_match( "/\\[\\[\\s*([^\\]]*)]]/", $obj->cur_text, $m ) ) {
+		if ( preg_match( "/\\[\\[\\s*([^\\]\\|]*)]]/", $obj->cur_text, $m ) ) {
 			$redirTitle = Title::newFromText( $m[1] );
-			if ( 0 != strcmp( $redirTitle->getPrefixedDBkey(), $this->getPrefixedDBkey() ) ) {
+			if( !is_object( $redirTitle ) ||
+				$redirTitle->getPrefixedDBkey() != $this->getPrefixedDBkey() ) {
 				return false;
 			}
 		}
@@ -1139,6 +1211,85 @@ class Title {
 		Article::onArticleCreate( $this );
 		return true;
 	}
+	
+	# Get categories to wich belong this title and return an array of
+	# categories names.
+	function getParentCategories( )
+	{
+		global $wgLang,$wgUser;
+		
+		#$titlekey = wfStrencode( $this->getArticleID() );
+		$titlekey = $this->getArticleId();
+		$cns = Namespace::getCategory();
+		$sk =& $wgUser->getSkin();
+		$parents = array();
+		
+		# get the parents categories of this title from the database
+		$sql = "SELECT DISTINCT cur_id FROM cur,categorylinks
+		        WHERE cl_from='$titlekey' AND cl_to=cur_title AND cur_namespace='$cns'
+				ORDER BY cl_sortkey" ;
+		$res = wfQuery ( $sql, DB_READ ) ;
+		
+		if(wfNumRows($res) > 0) {
+			while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
+			wfFreeResult ( $res ) ;
+		} else {
+			$data = '';
+		}
+		return $data;
+	}
+	
+	# will get the parents and grand-parents
+	# TODO : not sure what's happening when a loop happen like:
+	# 	Encyclopedia > Astronomy > Encyclopedia
+	function getAllParentCategories(&$stack)
+	{
+		global $wgUser,$wgLang;
+		$result = '';
+		
+		# getting parents
+		$parents = $this->getParentCategories( );
+
+		if($parents == '')
+		{
+			# The current element has no more parent so we dump the stack
+			# and make a clean line of categories
+			$sk =& $wgUser->getSkin() ;
+
+			foreach ( array_reverse($stack) as $child => $parent )
+			{
+				# make a link of that parent
+				$result .= $sk->makeLink($wgLang->getNSText ( Namespace::getCategory() ).":".$parent,$parent);
+				$result .= ' &gt; ';
+				$lastchild = $child;
+			}
+			# append the last child.
+			# TODO : We should have a last child unless there is an error in the
+			# "categorylinks" table.
+			if(isset($lastchild)) { $result .= $lastchild; }
+			
+			$result .= "<br/>\n";
+			
+			# now we can empty the stack
+			$stack = array();
+			
+		} else {
+			# look at parents of current category
+			foreach($parents as $parent)
+			{
+				# create a title object for the parent
+				$tpar = Title::newFromID($parent->cur_id);
+				# add it to the stack
+				$stack[$this->getText()] = $tpar->getText();
+				# grab its parents
+				$result .= $tpar->getAllParentCategories($stack);
+			}
+		}
+
+		if(isset($result)) { return $result; }
+		else { return ''; };
+	}
+	
 	
 }
 ?>

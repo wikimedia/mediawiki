@@ -7,22 +7,25 @@
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesCs = array(
-	-2	=> "Media",
-	-1	=> "Speciální", # FIXME Is it safe to change this?
-	0	=> "",
-	1	=> "Diskuse", # neb diskutuj?
-	2	=> "Wikipedista",
-	3	=> "Wikipedista_diskuse",
-	4	=> "Wikipedie",
-	5	=> "Wikipedie_diskuse",
-	6	=> "Soubor", #FIXME: Check the magic for Image: and Media:
-	7	=> "Soubor_diskuse",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_diskuse",
-	10  => "Template",
-	11  => "Template_talk"
-
-);
+	NS_MEDIA			=> "Media",
+	NS_SPECIAL			=> "Speciální",
+	NS_MAIN				=> "",
+	NS_TALK				=> "Diskuse", # neb diskutuj?
+	NS_USER				=> "Wikipedista",
+	NS_USER_TALK		=> "Wikipedista_diskuse",
+	NS_WIKIPEDIA		=> "Wikipedie",
+	NS_WIKIPEDIA_TALK	=> "Wikipedie_diskuse",
+	NS_IMAGE			=> "Soubor",
+	NS_IMAGE_TALK		=> "Soubor_diskuse",
+	NS_MEDIAWIKI		=> "MediaWiki",
+	NS_MEDIAWIKI_TALK	=> "MediaWiki_diskuse",
+	NS_TEMPLATE  		=> "Šablona",
+	NS_TEMPLATE_TALK  	=> "Šablona_diskuse",
+	NS_HELP				=> "Nápověda",
+	NS_HELP_TALK		=> "Nápověda_diskuse",
+	NS_CATEGORY			=> "Kategorie",
+	NS_CATEGORY_TALK	=> "Kategorie_diskuse",
+) + $wgNamespaceNamesEn;
 
 # Zdědit apriorní preference: wgDefaultUserOptionsEn
 
@@ -38,7 +41,8 @@
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgUserTogglesCs = array(
@@ -72,10 +76,10 @@
 	"prosinec"
 );
 
-# Hmm
+# There are no month abbreviations in Czech language.
 /* private */ $wgMonthAbbreviationsCs = array(
-	"Led", "Úno", "Bře", "Dub", "Kvě", "Čer", "Črv", "Srp",
-	"Zář", "Říj", "Lis", "Pro"
+	"1.", "2.", "3.", "4.", "5.", "6.",
+	"7.", "8.", "9.", "10.", "11.", "12."
 );
 
 # All special pages have to be listed here: a description of ""
@@ -485,6 +489,7 @@ Věnuj pozornost následujícímu odkazu: ($2) na stránku popisu a napiš pár 
 "imghistory"	=> "Historie načtených souborů",
 "revertimg"		=> "res",
 "deleteimg"		=> "for",
+"deleteimgcompletely"		=> "for",
 "imghistlegend" => "(nun) = toto je současná verze souboru, (for) = odstranit tuto starou verzi, (res) = obnovit starou verzi.
 <br><i>Click on date to see image uploaded on that date</i>.",
 "imagelinks"	=> "Odkazy k souboru ",

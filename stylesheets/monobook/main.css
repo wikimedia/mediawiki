@@ -1,13 +1,11 @@
 /*
 ** Mediawiki 'monobook' style sheet for CSS2-capable browsers.
-** Copyright Gabriel Wicke - http://www.aulinx.de/
+** Copyright Gabriel Wicke - http://wikidev.net/
+** License: GPL
 **
-** Based on http://www.positioniseverything.net/ordered-floats.html by Big John
-** and the Plone 2.0 styles, see http://plone.org/.
-** Alexander Limi - http://www.plonesolutions.com
-** additional plone work:
-** Joe Geldart & Tom Croucher - http://www.netalleynetworks.com, Michael Zeltner - http://niij.org,
-** Geir Bækholt - http://www.plonesolutions.com
+** Loosely based on http://www.positioniseverything.net/ordered-floats.html by Big John
+** and the Plone 2.0 styles, see http://plone.org/ (Alexander Limi,Joe Geldart & Tom Croucher,
+** Michael Zeltner and Geir Bækholt)
 ** All you guys rock :)
 */
 
@@ -37,7 +35,7 @@
 */
 
 body {
-    font: x-small "Bitstream Vera Sans", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
+    font: x-small sans-serif;
     background: #f9f9f9 url("headbg.jpg") 0px 0px no-repeat;
     color: Black;
     margin: 0;
@@ -46,7 +44,7 @@ body {
 
 /* scale back up to a sane default */
 #globalWrapper {
-    font-size:123%;
+    font-size:127%;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -61,21 +59,24 @@ table {
 }
 a {
     text-decoration: none;
-    color: #005189;
+    color: #002bb8;
     background: none;
 }
 a:visited { color: #5a3696; }
 a:active { color: Orange; }
 a:hover { text-decoration: underline; }
-a.stub,
-a.new { color:#ba0000; }
+a.stub { color: #772233; }
+a.new,
+#p-personal a.new { color:#ba0000; }
+a.new:visited,
+#p-personal a.new:visited { color:#a55858; }
 
 img {
     border: none;
     vertical-align: middle;
 }
 p {
-    margin: 0.4em 0em 0.7em 0em;
+    margin: 0.4em 0em 0.5em 0em;
     line-height: 1.5em;
 }
 
@@ -92,7 +93,6 @@ hr {
 h1, h2, h3, h4, h5, h6 {
     color: Black;
     background: none;
-    font-family: "Bitstream Vera Sans", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
     font-weight: normal;
     margin: 0;
     padding-top: 0.5em;
@@ -121,13 +121,21 @@ ol {
     line-height: 1.5em;
     margin: 0.3em 0 0 3.2em;
     padding:0;
+    list-style-image: none;
 }
 li { margin-bottom: 0.1em; }
-dt { font-weight: bold; }
+dt { 
+    font-weight: bold; 
+    margin-bottom: 0.1em;
+}
+dl{
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
+}
 dd {
     line-height: 1.5em;
-    margin-bottom: 0.8em;
     margin-left: 2em;
+    margin-bottom: 0.1em;
 }
 
 fieldset {
@@ -157,7 +165,6 @@ textarea {
 /* hide this from ie/mac and konq2.2 */
 @media All {
     head:first-child+body input {
-        font-family: "Bitstream Vera Sans", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
         visibility: visible;
         border: 1px solid #2f6fab;  
         color: Black;
@@ -165,6 +172,13 @@ textarea {
         vertical-align: middle;
         padding: 0.2em;
     }
+}
+input.historysubmit {
+    padding: 0 0.3em 0.3em 0.3em !important;
+    font-size: 94%;
+    cursor: pointer;
+    height: 1.7em !important;
+    margin-left: 1.6em;
 }
 input[type="radio"],
 input[type="checkbox"] { border:none; }
@@ -194,6 +208,7 @@ pre {
     border: 1px dashed #2f6fab;
     color: Black;
     background-color: #f9f9f9;
+    line-height: 1.1em;
 }
 
 
@@ -210,21 +225,13 @@ pre {
     width: auto;
 }
 span.subpages { display: block; }
-#catlinks {
-    margin: 0;
-    padding: 0;
-    width: 34%;
-    text-align: right;
-    float: right;
-}
 
 /* Some space under the headers in the content area */
-#bodyContent h1,
-#bodyContent h2,
+#bodyContent h1, #bodyContent h2 { margin-bottom:0.6em; }
 #bodyContent h3,
 #bodyContent h4,
 #bodyContent h5 {
-    margin-bottom:0.8em;
+    margin-bottom: 0.3em;
 }
 .firstHeading { margin-bottom:0.1em; }
 
@@ -238,9 +245,22 @@ span.subpages { display: block; }
     padding: 0.5em 1em;
     vertical-align: middle;
 }
+#siteNotice {
+    text-align: center;
+    font-size: 95%;
+    padding: 0 0.9em 0 0.9em;
+}
+#siteNotice p { margin: none; padding: none; }
 .error {
     color: red;
     font-size: larger;
+}
+#catlinks {
+    border:1px solid #aaaaaa;
+    background-color:#f9f9f9;
+    padding:5px;
+    margin-top: 1em;
+    clear: both;
 }
 /* currently unused, intended to be used by a metadata box
 in the bottom-right corner of the content area */
@@ -268,7 +288,9 @@ in the bottom-right corner of the content area */
     margin-left: auto;
     margin-right: auto;
 }
-
+/* small for tables and similar */
+.small, .small * { font-size: 94%; }
+table.small { font-size: 100% }
 
 /*
 ** content styles
@@ -281,27 +303,29 @@ in the bottom-right corner of the content area */
     padding:5px;
     font-size: 95%;
 }
-.tocindent { margin-left: 2em; }
-.tocline { margin-bottom: 0px; }
-.toctoggle { font-size: 94%; }
-.editsection { 
+#toc .tocindent { margin-left: 2em; }
+#toc .tocline { margin-bottom: 0px; }
+#toc p { margin: 0 }
+#toc .toctoggle { font-size: 94%; }
+#toc .editsection { 
     margin-top: 0.7em; 
     font-size: 94%;
 }
 
 /* images */
-div.floatright { 
+div.floatright, table.floatright {
+    clear: right;
     float: right; 
     margin: 0;
-    position:relative;
+    position: relative;
     border: 0.5em solid White;
     border-width: 0.5em 0 0.8em 1.4em;
 }
-div.floatright p { font-style: italic;} 
-div.floatleft { 
+div.floatright p { font-style: italic; } 
+div.floatleft, table.floatleft {
     float: left; 
     margin: 0.3em 0.5em 0.5em 0;
-    position:relative;
+    position: relative;
     border: 0.5em solid White;
     border-width: 0.5em 1.4em 0.8em 0;
 }
@@ -318,6 +342,7 @@ div.thumb div {
     background-color:#f9f9f9;
     font-size: 94%;
     text-align: center;
+    overflow: hidden;
 }
 div.thumb div a img {
     border:1px solid #cccccc;
@@ -325,6 +350,7 @@ div.thumb div a img {
 div.thumb div div.thumbcaption {
     border: none;
     text-align: left;
+    line-height: 1.4;
     padding: 0.3em 0 0.1em 0;
 }
 div.magnify {
@@ -337,35 +363,45 @@ div.magnify a, div.magnify img {
     border: none !important;
     background: none !important;
 }
-
-.urlexpansion,
-.hiddenStructure {
-    display: none;
-}
-img.tex { vertical-align: middle; }
-/*
-** classes for special content elements like town boxes
-** intended to be referenced directly from the wiki src
-*/
-/* table standards */
-table.rimage {
-    float:right; 
-    width:1pt; 
-    position:relative;
-    margin-left:1em; 
-    margin-bottom:1em;
-    text-align:center;
-}
 div.tright {
+    clear: right;
     float: right;
     border-width: 0.5em 0 0.8em 1.4em;
 }
 div.tleft {
     float: left;
     margin-right:0.5em;
-    border: 0.5em 1.4em 0.8em 0;
+    border-width: 0.5em 1.4em 0.8em 0;
 }
+.urlexpansion,
+.hiddenStructure {
+    display: none;
+}
+img.tex { vertical-align: middle; }
+span.texhtml { font-family: serif; }
 
+/*
+** classes for special content elements like town boxes
+** intended to be referenced directly from the wiki src
+*/
+
+/*
+** User styles
+*/
+/* table standards */
+table.rimage {
+    float:right; 
+    position:relative;
+    margin-left:1em; 
+    margin-bottom:1em;
+    text-align:center;
+}
+.toccolours { 
+    border:1px solid #aaaaaa;
+    background-color:#f9f9f9;
+    padding:5px;
+    font-size: 95%;
+}
 div.townBox {
     position:relative;
     float:right;
@@ -394,13 +430,11 @@ div.townBox dl dd {
 /*
 ** edit views etc
 */
-
 .special li {
     line-height: 1.4em;
     margin: 0;
     padding: 0;
 }
-
 
 /* Page history styling */
 /* the auto-generated edit comments */
@@ -421,9 +455,19 @@ div.townBox dl dd {
 table.diff { background:white; }
 td.diff-otitle { background:#ffffff; }
 td.diff-ntitle { background:#ffffff; }
-td.diff-addedline { background:#ccffcc; }
-td.diff-deletedline { background:#ffffaa; }
-td.diff-context { background:#eeeeee; }
+td.diff-addedline { 
+    background:#ccffcc;
+    font-size: smaller;
+}
+td.diff-deletedline { 
+    background:#ffffaa;
+    font-size: smaller;
+}
+td.diff-context {
+    background:#eeeeee;
+    font-size: smaller;
+}
+span.diffchange { color: red; }
 
 /* 
 ** keep the whitespace in front of the ^=, hides rule from konqueror
@@ -458,7 +502,20 @@ td.diff-context { background:#eeeeee; }
     background: url("discussionitem_icon.gif")  center right no-repeat;
     padding-right: 18px;
 }
-
+/* disable interwiki styling */
+#bodyContent a.extiw,
+#bodyContent a.extiw:active {
+    color: #3366bb;
+    background: none;
+    padding: 0;
+}
+#bodyContent a.external { color: #3366bb; }
+/* this can be used in the content area to switch off
+special external link styling */
+#bodyContent .plainlinks a {
+    background: none !important;
+    padding: 0;
+}
 /*
 ** Structural Elements
 */
@@ -578,19 +635,15 @@ input.searchButton {
     background-color: White;
     border: 1px solid #2f6fab;  
 }
-
 #searchInput {
     border: 1px solid #2f6fab;  
     width:10.9em;
     margin: 0 0 0 0;
     font-size: 95%;
 }
-
-
 #p-search .pBody {
     padding: 0.5em 0.4em 0.4em 0.4em;
 }
-
 
 /* 
 ** the personal toolbar
@@ -668,12 +721,10 @@ li#pt-login {
     padding-left: 20px;
     text-transform: none;
 }
-#p-personal a.new { color:#ba0000; }
 
 /*
 ** the page-related actions- page/talk, edit etc 
 */
-
 #p-cactions {
     position:absolute;
     top: 1.3em;
@@ -708,7 +759,7 @@ li#pt-login {
 }
 #p-cactions li a {
     background-color: White;
-    color: #005189;
+    color: #002bb8;
     border: none;
     padding: 0 0.8em 0.3em 0.8em;
     text-decoration: none;
@@ -732,7 +783,7 @@ li#pt-login {
 }
 /* offsets to distinguish the tab groups */
 li#ca-talk { margin-right: 1.6em; }
-li#ca-watch { margin-left: 1.6em; }
+li#ca-watch, li#ca-watch { margin-left: 1.6em; }
 
 
 /*
@@ -776,15 +827,6 @@ head:first-child+body #footer li { white-space: nowrap; }
     height: 1%;
 }
 
-/* JeLuF's js-based preference dialog */
-#bar #p-cactions {
-    top: 8.0em;
-    left: 5em;
-}
-form #content {
-   left: -8em;
-}
-
 /* js pref toc */
 #preftoc { 
     float: left;
@@ -799,7 +841,7 @@ form #content {
 #preftoc a,
 #preftoc a:active {
     display: block;
-    color: #005189;
+    color: #0014a6;
 }
 #prefcontrol { 
     clear: both;
@@ -817,31 +859,46 @@ fieldset.operaprefsection { margin-left: 15em }
 ** to a separate stylesheet. This would work but doesn't validate: 
 ** @import("IEMacFixes.css");
 */
-
 /* tabs: border on the a, not the div */
-*>html #p-cactions li { border:none; }
-*>html #p-cactions li a {
+* > html #p-cactions li { border:none; }
+* > html #p-cactions li a {
     border: 1px solid #aaaaaa;
     border-bottom: none;
 }
-*>html #p-cactions li.selected a { border-color: #fabd23; }
+* > html #p-cactions li.selected a { border-color: #fabd23; }
 /* footer icons need a fixed width */
-*>html #f-poweredbyico,
-*>html #f-copyrightico { width: 88px; }
-
-/* more IE fixes */
-/* float/negative margin brokenness */
-* html #bodyContent {
+* > html #f-poweredbyico,
+* > html #f-copyrightico { width: 88px; }
+* > html #bodyContent,
+* > html #bodyContent pre {
     overflow-x: auto;
     width: 100%;
     padding-bottom: 25px;
 }
+
+/* more IE fixes */
+/* float/negative margin brokenness */
 * html #footer {margin-top: 0;}
 * html #column-content {
     display: inline;
     margin-bottom: 0;
 }
 * html div.editsection { font-size: smaller; }
+#pagehistory li.selected { position: relative; }
 
-/* debugging tool.. */
-/*div{ border:1px solid #000000;}*/
+/* Mac IE 5.0 fix; floated content turns invisible */
+* > html #column-content {
+    float: none;
+}
+* > html #column-one {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+* > html #footer {
+    margin-left: 13.2em;
+}
+
+.printfooter {
+	display: none;
+}

@@ -37,7 +37,7 @@ require_once( "LanguageUtf8.php" );
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsSl = array(
 	"Brez", "Levo nepomično", "Desno nepomično", "Levo leteče"
@@ -51,7 +51,8 @@ require_once( "LanguageUtf8.php" );
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesSl = array(
@@ -587,6 +588,7 @@ izdelana in kdo jo je izdelal ali karkoli bi še vedeli o njej.",
 "imghistory"	        => "Zgodovina slike",
 "revertimg"		=> "vrn",
 "deleteimg"		=> "bri",
+"deleteimgcompletely"		=> "bri",
 "imghistlegend"         => "Napotek: (tre) = trenutna slika, (bri) = briši
 zadnjo inačico, (vrn) = vrni sliko na to zadnjo inačico.
 <br><i>Klikni na datum, da vidiš katera slika je bila tedaj naložena</i>.",

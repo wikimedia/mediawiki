@@ -79,7 +79,8 @@ class UndeleteForm {
 		if(!preg_match("/[0-9]{14}/",$timestamp)) return 0;
 		
 		$sql = "SELECT ar_text,ar_flags FROM archive ". 
-		  "WHERE ar_namespace={$namespace} AND ar_title=\"{$title}\" AND ar_timestamp={$timestamp}";
+		  "WHERE ar_namespace={$namespace} AND ar_title='" .
+		  wfStrencode( $title ) . "' AND ar_timestamp='" . wfStrencode( $timestamp ) ."'";
 		$ret = wfQuery( $sql, DB_READ, $fname );
 		$row = wfFetchObject( $ret );
 		
@@ -97,8 +98,8 @@ class UndeleteForm {
 		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
 		
 		# Get text of first revision
-		$sql = "SELECT ar_text FROM archive WHERE ar_namespace={$namespace} AND ar_title=\"{$title}\"
-		  ORDER BY ar_timestamp DESC LIMIT 1";
+		$sql = "SELECT ar_text FROM archive WHERE ar_namespace={$namespace} AND ar_title='" .
+		  wfStrencode( $title ) . "' ORDER BY ar_timestamp DESC LIMIT 1";
 		$ret = wfQuery( $sql, DB_READ );
 
 		if( wfNumRows( $ret ) == 0 ) {
@@ -108,13 +109,11 @@ class UndeleteForm {
 		$row = wfFetchObject( $ret );
 		$wgOut->addWikiText( wfMsg( "undeletehistory" ) . "\n<hr>\n" . $row->ar_text );
 
-		# Get remaining revisions
+		# List all stored revisions
 		$sql = "SELECT ar_minor_edit,ar_timestamp,ar_user,ar_user_text,ar_comment
-		  FROM archive WHERE ar_namespace={$namespace} AND ar_title=\"{$title}\"
-		  ORDER BY ar_timestamp DESC";
+		  FROM archive WHERE ar_namespace={$namespace} AND ar_title='" . wfStrencode( $title ) .
+		  "' ORDER BY ar_timestamp DESC";
 		$ret = wfQuery( $sql, DB_READ );
-		# Ditch first row
-		$row = wfFetchObject( $ret );
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Undelete" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
@@ -126,7 +125,8 @@ class UndeleteForm {
 	<input type=submit name=\"restore\" value=\"".wfMsg("undeletebtn")."\">
 	</form>");
 
-		$log = wfGetSQL("cur", "cur_text", "cur_namespace=4 AND cur_title=\"".wfMsg("dellogpage")."\"" );
+		$log = wfGetSQL("cur", "cur_text", "cur_namespace=4 AND cur_title='".
+		  wfStrencode( wfMsg("dellogpage") ) . "'" );
 		if(preg_match("/^(.*".
 			preg_quote( ($namespace ? ($wgLang->getNsText($namespace) . ":") : "")
 			. str_replace("_", " ", $title), "/" ).".*)$/m", $log, $m)) {
@@ -140,7 +140,7 @@ class UndeleteForm {
 			  $sk->makeKnownLink( $wgLang->specialPage( "Undelete" ),
 			  $wgLang->timeanddate( $row->ar_timestamp, true ),
 			  "target=" . urlencode($this->mTarget) . "&timestamp={$row->ar_timestamp}" ) . " " .
-			  ". . {$row->ar_user_text}" .
+			  ". . " . htmlspecialchars( $row->ar_user_text )  .
 			  " <i>(" . htmlspecialchars($row->ar_comment) . "</i>)\n");
 
 		}
@@ -160,7 +160,7 @@ class UndeleteForm {
 			$wgOut->fatalError( wfMsg( "cannotundelete" ) );
 			return;
 		}
-		$t = addslashes($title);
+		$t = wfStrencode($title);
 
 		# Move article and history from the "archive" table
 		$sql = "SELECT COUNT(*) AS count FROM cur WHERE cur_namespace={$namespace} AND cur_title='{$t}'";

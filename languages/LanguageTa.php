@@ -29,7 +29,7 @@ require_once( "LanguageUtf8.php" );
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsTa = array(
 	"எதுவுமில்லை", "இடம் நிலைத்த", "வலம் நிலைத்த", "இடம் மிதப்பு"
@@ -43,7 +43,8 @@ require_once( "LanguageUtf8.php" );
 	'montparnasse' => "மொண்ட்பார்னாசே (Montparnasse)",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesTa = array(
@@ -623,6 +624,7 @@ border=\"0\" ALT=\"Google\"></A>
 "imghistory"	=> "படிம வரலாறு",
 "revertimg"		=> "மீள்",
 "deleteimg"		=> "நீக்கு",
+"deleteimgcompletely"		=> "நீக்கு",
 "imghistlegend" => "குறியீட்டு அட்டவணை: (நடப்பு) = இது நடப்பிலுள்ள (current) படிமம், (நீக்கு) = இந்த பழைய பதிப்பை நீக்கு, (திரும்பு) = இப் பழைய பதிப்புக்குத் திரும்பு.
 <br><i>அந்தத் திகதியில் பதிவேற்றம் செய்யப்பட்ட படிமங்களைப் பார்ப்பதற்கு, திகதி மீது சொடுக்கவும்</i>.",
 "imagelinks"	=> "படிம இணைப்புகள்",

@@ -10,22 +10,25 @@ require_once("LanguageUtf8.php");
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesHu = array(
-	-2	=> "Media",
-	-1	=> "Speciális",
-	0	=> "",
-	1	=> "Vita",
-	2	=> "User",
-	3	=> "User_vita",
-	4	=> "Wikipédia",
-	5	=> "Wikipédia_vita",
-	6	=> "Kép",
-	7	=> "Kép_vita",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_vita",
-	10  => "Template",
-	11  => "Template_talk"
-
-);
+	NS_MEDIA	=> "Média",
+	NS_SPECIAL	=> "Speciális",
+	NS_MAIN		=> "",
+	NS_TALK		=> "Vita",
+	NS_USER		=> "User",
+	NS_USER_TALK	=> "User_vita",
+	NS_WIKIPEDIA	=> "Wikipédia",
+	NS_WIKIPEDIA_TALK => "Wikipédia_vita",
+	NS_IMAGE	=> "Kép",
+	NS_IMAGE_TALK	=> "Kép_vita",
+	NS_MEDIAWIKI	=> "MediaWiki",
+	NS_MEDIAWIKI_TALK => "MediaWiki_vita",
+	NS_TEMPLATE	=> "Sablon",
+	NS_TEMPLATE_TALK => "Sablon_vita",
+	NS_HELP		=> "Segítség",
+	NS_HELP_TALK	=> "Segítség_vita",
+	NS_CATEGORY	=> "Kategória",
+	NS_CATEGORY_TALK => "Kategória_vita"
+) + $wgNamespaceNamesEn;
 
 /* Inherit default options; make specific changes via 
    custom getDefaultUserOptions() if needed. */
@@ -42,7 +45,8 @@ require_once("LanguageUtf8.php");
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesHu = array(
@@ -690,6 +694,7 @@ más információ amit meg tudsz adni.",
 "imghistory"	=> "Kép története",
 "revertimg"		=> "régi",
 "deleteimg"		=> "töröl",
+"deleteimgcompletely"		=> "töröl",
 "imghistlegend" => "Jelmagyarázat: (akt) = ez az aktuális kép,
 (töröl) = ezen régi változat törlése,
 (régi) = visszaállás erre a régi változatra.
@@ -1031,7 +1036,7 @@ szerint.",
 "movearticle"	=> "Lap mozgatás",
 "movenologin"	=> "Nincs belépve",
 "movenologintext" => "Ahhoz hogy mozgass egy lapot <a href=\"" .
-  wfLocalUrl( "Speciál:Belépés" ) . "\">be kell lépned</a>.",
+  wfLocalUrl( "Speciális:Belépés" ) . "\">be kell lépned</a>.",
 "newtitle"		=> "Az új névre",
 "movepagebtn"	=> "Lap mozgatása",
 "pagemovedsub"	=> "Átmozgatás sikeres",
@@ -1168,9 +1173,9 @@ class LanguageHu extends LanguageUtf8 {
 	{
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 		
-		$d = substr( $ts, 0, 4 ) . " " .
+		$d = substr( $ts, 0, 4 ) . ". " .
 		$this->getMonthName( substr( $ts, 4, 2 ) ) . " ".
-			(0 + substr( $ts, 6, 2 ));
+			(0 + substr( $ts, 6, 2 )) . ".";
 		return $d;
 	}
 	

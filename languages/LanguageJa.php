@@ -10,25 +10,28 @@ require_once( "LanguageUtf8.php" );
 # 隠匿します。
 #
 /* private */ $wgNamespaceNamesJa = array(
-	-2	=> "Media",
-	-1	=> "特別" /* "Special" */, 
-	0	=> "",
-	1	=> "ノート" /* "Talk" */,
-	2	=> "利用者" /* "User" */,
-	3	=> "利用者‐会話" /* "User_talk" */,
-	4	=> "Wikipedia" /* "Wikipedia" */,
-	5	=> "Wikipedia‐ノート" /* "Wikipedia_talk" */,
-	6	=> "画像" /* "Image" */,
-	7	=> "画像‐ノート" /* "Image_talk" */,
-	8	=> "MediaWiki",
-	9	=> "MediaWikiノート",
-	10  => "Template",
-	11  => "Template_talk"
-
-);
+	NS_MEDIA          => "Media", /* Media */
+	NS_SPECIAL        => "特別", /* Special */
+	NS_MAIN           => "",
+	NS_TALK           => "ノート", /* Talk */
+	NS_USER           => "利用者", /* User */
+	NS_USER_TALK      => "利用者‐会話", /* User_talk */
+	NS_WIKIPEDIA      => $wgMetaNamespace, /* Wikipedia */
+	NS_WIKIPEDIA_TALK => "{$wgMetaNamespace}‐ノート", /* Wikipedia_talk */
+	NS_IMAGE          => "画像", /* Image */
+	NS_IMAGE_TALK     => "画像‐ノート", /* Image_talk */
+	NS_MEDIAWIKI      => "MediaWiki", /* MediaWiki */
+	NS_MEDIAWIKI_TALK => "MediaWiki‐ノート", /* MediaWiki_talk */
+	NS_TEMPLATE       => "Template", /* Template */
+	NS_TEMPLATE_TALK  => "Template‐ノート", /* Template_talk */
+	NS_HELP           => "ヘルプ", /* Help */
+	NS_HELP_TALK      => "ヘルプ‐ノート", /* Help_talk */
+	NS_CATEGORY       => "Category", /* Category */
+	NS_CATEGORY_TALK  => "Category‐ノート" /* Category_talk */
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsJa = array(
-	"None", "Fixed left", "Fixed right", "Floating left"
+	"なし", "左端", "右端", "ウィンドウの左上に固定"
 );
 
 /* private */ $wgSkinNamesJa = array(
@@ -39,22 +42,37 @@ require_once( "LanguageUtf8.php" );
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+	'myskin' => "MySkin"
+);
+
+/* private */ $wgMathNamesJa = array(
+	"常にPNG",
+	"シンプルな数式はHTML、それ以外はPNG",
+	"できる限りHTML、さもなければPNG",
+	"TeXのままにする (テキストブラウザ向け)",
+        "可能ならばMathMLを使う (実験中の機能)"
 );
 
 /* private */ $wgUserTogglesJa = array(
-	"hover"		=> "Show hoverbox over wiki links",
-	"underline" => "Underline links",
-	"highlightbroken" => "Highlight links to empty topics",
-	"justify"	=> "Justify paragraphs",
-	"hideminor" => "Hide minor edits in recent changes",
-	"numberheadings" => "Auto-number headings",
-	"showtoolbar" => "Show edit toolbar",
-	"rememberpassword" => "Remember password across sessions",
-	"editwidth" => "Edit box has full width",
-	"editondblclick" => "Edit pages on double click (JavaScript)",
-	"watchdefault" => "Watch new and modified articles",
-	"minordefault" => "Mark all edits minor by default"
+	"hover" => "ウィキリンクにツールチップを表示する",
+	"underline" => "リンクにアンダーラインをつける",
+	"highlightbroken" => "未作成のページへのリンクをハイライトする",
+	"justify" => "段落を均等割り付けする",
+	"hideminor" => "最近更新したページから細部の編集を隠す",
+	"usenewrc" => "最近更新したページを拡張する (全てのブラウザで使えません)",
+	"numberheadings" => "見出しに番号を振る",
+	"showtoolbar" => "編集ボタンを表示する",
+	"editondblclick" => "ダブルクリックで編集する (JavaScript)",
+	"editsection" => "セクション編集を有効にする",
+	"editsectiononrightclick" => "セクションタイトルの右クリックでセクション編集を行えるようにする (JavaScript)",
+	"showtoc" => "目次を表示する (4つ以上の見出しがあるページ)",
+	"rememberpassword" => "セッションを越えてパスワードを記憶する",
+	"editwidth" => "テキストボックスを横幅いっぱいに表示する",
+	"watchdefault" => "編集した記事をウォッチリストに追加する",
+	"minordefault" => "細部の編集をデフォルトでチェックする",
+	"previewontop" => "プレビューをテキストボックスの前に配置する",
+	"nocache" => "ページをキャッシュしない"
 );
 
 /* private */ $wgWeekdayNamesJa = array(
@@ -62,10 +80,13 @@ require_once( "LanguageUtf8.php" );
 	"金曜日", "土曜日"
 );
 
-/* private */ $wgMonthNamesJa = array( # ???
-	"一月", "二月", "三月", "四月", "五月", "六月",
-	"七月", "八月", "九月", "十月", "十一月",
-	"十二月"
+/* private */ $wgWeekdayAbbreviationsJa = array(
+	"日", "月", "火", "水", "木", "金", "土"
+);
+
+/* private */ $wgMonthNamesJa = array(
+	"1月", "2月", "3月", "4月", "5月", "6月",
+	"7月", "8月", "9月", "10月", "11月", "12月"
 );
 
 /* private */ $wgMonthAbbreviationsJa = array(
@@ -80,7 +101,6 @@ require_once( "LanguageUtf8.php" );
 # "" (空文字列) という説明にすると「特殊頁」頁に掲載しません。
 # これは幾つか (「targeted」とか) に対しては適当なことです。
 
- 
 /* private */ $wgValidSpecialPagesJa = array(
 	"Userlogin"		=> "",
 	"Userlogout"	=> "",
@@ -133,17 +153,17 @@ require_once( "LanguageUtf8.php" );
 #
 "mainpage"		=> "メインページ",
 "about"			=> "About",
-"aboutwikipedia" => "Wikipediaについて",
-"aboutpage"		=> "Wikipedia:About",
+"aboutwikipedia" => "{{SITENAME}}について",
+"aboutpage"		=> "{{ns:4}}:About",
 "help"			=> "ヘルプ",
-"helppage"		=> "Wikipedia:Help",
-"wikititlesuffix" => "Wikipedia",
+"helppage"		=> "{{ns:4}}:Help",
+"wikititlesuffix" => "{{ns:4}}",
 "bugreports"	=> "バグの報告",
-"bugreportspage" => "Wikipedia:バグの報告",
+"bugreportspage" => "{{ns:4}}:バグの報告",
 "faq"			=> "FAQ",
-"faqpage"		=> "Wikipedia:FAQ",
+"faqpage"		=> "{{ns:4}}:FAQ",
 "edithelp"		=> "ヘルプを編集",
-"edithelppage"	=> "Wikipedia:編集の仕方",
+"edithelppage"	=> "{{ns:4}}:編集の仕方",
 "cancel"		=> "中止",
 "qbfind"		=> "検索",
 "qbbrowse"		=> "閲覧",
@@ -156,7 +176,7 @@ require_once( "LanguageUtf8.php" );
 "currentevents" => "最近の出来事",
 "errorpagetitle" => "エラー",
 "returnto"		=> "$1 に戻る。",
-"fromwikipedia"	=> "出典: フリー百科事典『ウィキペディア（Wikipedia）』",
+"fromwikipedia"	=> "出典: フリー百科事典『ウィキペディア（{{SITENAME}}）』",
 "whatlinkshere"	=> "ここにリンクしているページ",
 "help"			=> "ヘルプ",
 "search"		=> "検索",
@@ -174,7 +194,7 @@ require_once( "LanguageUtf8.php" );
 "viewcount"		=> "このページは $1 回アクセスされました。",
 "printsubtitle" => "(From http://www.wikipedia.org)",
 "protectedpage" => "保護されたページ",
-"administrators" => "Wikipedia:Administrators",
+"administrators" => "{{ns:4}}:Administrators",
 "sysoptitle"	=> "シスオペによるアクセスが必要",
 "sysoptext"		=> "あなたの要求した処理は \"sysop\" のみが実行できます。
  $1を参照してください。",
@@ -183,16 +203,16 @@ require_once( "LanguageUtf8.php" );
 "nbytes"		=> "$1 バイト",
 "go"			=> "行く",
 "ok"			=> "OK",
-"sitetitle"		=> "Wikipedia",
+"sitetitle"		=> "{{SITENAME}}",
 "sitesubtitle"	=> "フリー百科事典",
 "retrievedfrom" => "Retrieved from \"$1\"",
 
 # Main script and global functions
 #
 "nosuchaction"	=> "そのような動作はありません",
-"nosuchactiontext" => "URI で指定された動作は Wikipedia で認識できません。",
+"nosuchactiontext" => "URI で指定された動作は {{SITENAME}} で認識できません。",
 "nosuchspecialpage" => "そのような特別ページはありません。",
-"nospecialpagetext" => "その特別ページの要求は Wikipedia には理解できません。",
+"nospecialpagetext" => "その特別ページの要求は {{SITENAME}} には理解できません。",
 
 # General errors
 #
@@ -201,7 +221,7 @@ require_once( "LanguageUtf8.php" );
 "dberrortext"	=> "データベース検索の文法エラー。
 検索問合わせが間違っているか($5 を参照),
 あるいはソフトウェアのバグかもしれません。
-最後に実行を試みた問い合わせ: 
+最後に実行を試みた問い合わせ:
 <blockquote><tt>$1</tt></blockquote>
 from within function \"<tt>$2</tt>\".
 MySQL returned error \"<tt>$3: $4</tt>\".",
@@ -209,10 +229,11 @@ MySQL returned error \"<tt>$3: $4</tt>\".",
 "nodb"			=> "$1 のデータベースを選択できません。",
 "readonly"		=> "データベースはロックされています",
 "enterlockreason" => "ロックする理由を入力して下さい。ロックが解除されるのがいつになるかの見積もりについても述べて下さい。",
-"readonlytext"	=> "ウィキペディア・データベースは現在、新しい記事の追加や修正を受け付けない「ロック」状態になっています。これはおそらくは定期的なメンテナンスのためで、メンテナンス終了後は正常な状態に復帰します。
+"readonlytext"	=> "ウィキペディア・データベースは現在、新しい記事の追加や修正を受け付けない「ロック」状態になっています。
+これはおそらくは定期的なメンテナンスのためで、メンテナンス終了後は正常な状態に復帰します。
 データベースをロックした管理者は次のような説明をしています：
 <p>$1
-<p>The Wikipedia database is currently locked to new
+<p>The {{SITENAME}} database is currently locked to new
 entries and other modifications, probably for routine database maintenance,
 after which it will be back to normal.
 The administrator who locked it offered this explanation:
@@ -230,7 +251,7 @@ that it should have found, named \"$1\".
 "filedeleteerror" => "ファイル\"$1\"を削除できませんでした。Could not delete file \"$1\".",
 "filenotfound"	=> "ファイルを\"$1\"は見つかりませんでした。Could not find file \"$1\".",
 "unexpected"	=> "エラー：\"$1\" と \"$2\" が同じです。Unexpected value: \"$1\"=\"$2\".",
-"formerror"		=> "エラー: フォームを送信できませんでした。 Error: could not submit form",	
+"formerror"		=> "エラー: フォームを送信できませんでした。 Error: could not submit form",
 "badarticleerror" => "この動作はこのページではとることができません。 This action cannot be performed on this page.",
 "cannotdelete"	=> "指定されたページ、または画像を削除できませんでした。 Could not delete the page or image specified.",
 
@@ -242,7 +263,7 @@ that it should have found, named \"$1\".
 ウィキペディアを匿名で使い続うことができます。
 あるいはログインして元の、あるいは別のユーザーとして使うこともできます。
 <P>You are now logged out.
-You can continue to use Wikipedia anonymously, or you can log in
+You can continue to use {{SITENAME}} anonymously, or you can log in
 again as the same or as a different user.\n",
 
 "welcomecreation" => "<h2>$1 さん、ようこそ!</h2><p>あなたのアカウントができました。
@@ -270,13 +291,13 @@ again as the same or as a different user.\n",
 "loginerror"	=> "ログイン・エラー",
 "noname"		=> "ユーザ名を正しく指定していません。",
 "loginsuccesstitle" => "ログイン成功",
-"loginsuccess"	=> "あなたは現在 Wikipedia に \"$1\" としてログインしています。",
+"loginsuccess"	=> "あなたは現在 {{SITENAME}} に \"$1\" としてログインしています。",
 "nosuchuser"	=> " \"$1\" というユーザーは見当たりません。
 綴りが正しいか再度確認するか、下記のフォームを使ってアカウントを作成してください。",
 "wrongpassword"	=> "パスワードが間違っています。再度入力してください。",
 "mailmypassword" => "新しいパスワードを、メールで送る",
-"passwordremindertitle" => "Password reminder from Wikipedia （ウィキペディアからのパスワードのお知らせ）",
-"passwordremindertext" => "どなたか ($1 のIPアドレスの使用者)が、Wikipediaのログイン・パスワードの再発行を依頼しました。
+"passwordremindertitle" => "Password reminder from {{SITENAME}} （ウィキペディアからのパスワードのお知らせ）",
+"passwordremindertext" => "どなたか ($1 のIPアドレスの使用者)が、{{SITENAME}}のログイン・パスワードの再発行を依頼しました。
 ユーザ \"$2\" のパスワードを、 \"$3\" に変更しました。
 ログイン後、別のパスワードに変更しましょう。",
 "noemail"		=> "ユーザ \"$1\" のメール・アドレスは登録されていません。",
@@ -300,7 +321,7 @@ again as the same or as a different user.\n",
 "previewnote"	=> "これはプレビューです。まだ保存されていません!",
 "previewconflict" => "このプレビューは、上の文章編集エリアの文章を保存した場合に
 どう見えるようになるかを示すものです。
-<p>" /* "This preview reflects the text in the upper 
+<p>" /* "This preview reflects the text in the upper
 text editing area as it will appear if you choose to save." */,
 "editing"		=> "Editing $1",
 "editconflict"	=> "編集競合: $1",
@@ -327,7 +348,7 @@ press \"Save page\".\n<p>" */,
 revision of this page.
 If you save it, any changes made since this revision will be lost.</strong>\n" */
 "yourdiff"		=> "あなたの更新内容",
-"copyrightwarning" => "Wikipediaに投稿された文書は、すべて GNU Free Documentation License によって発行されたものとみなされますので、留意してください。
+"copyrightwarning" => "{{SITENAME}}に投稿された文書は、すべて GNU Free Documentation License によって発行されたものとみなされますので、留意してください。
 <p>(詳細は $1 を参照, また、参考までに非公式日本語訳は &lt;http://www.opensource.jp/fdl/fdl.ja.html&gt;　を参照)。
 <p>あなたの文章が他人によって自由に編集、配布されることを望まない場合は、投稿を控えて下さい。
 <p>また、あなたの投稿する文章はあなた自身によって書かれたものであるか、パブリック・ドメインかそれに類する自由なリソースからの複製であることを約束して下さい。
@@ -364,20 +385,23 @@ Please check the URL you used to access this page.\n",
 # 検索結果（Search results）
 #
 "searchresults" => "検索結果" /* "Search results" */,
-"searchhelppage" => "Wikipedia:Searching",
-"searchingwikipedia" => "Wikipedia を検索中" /* "Searching Wikipedia" */,
-"searchresulttext" => "Wikipedia の検索についての詳しい情報は、 $1 をご覧下さい。" /* "For more information about searching Wikipedia, see $1." */ ,
+"searchhelppage" => "{{ns:4}}:Searching",
+"searchingwikipedia" => "{{SITENAME}} を検索中" /* "Searching Wikipedia" */,
+"searchresulttext" => "{{SITENAME}} の検索についての詳しい情報は、 $1 をご覧下さい。"
+  /* "For more information about searching Wikipedia, see $1." */ ,
 "searchquery"	=> "問い合わせ \"$1\" について、" /* "For query \"$1\"" */,
 "badquery"		=> "おかしな形式の検索問い合わせ" /* "Badly formed search query" */,
 "badquerytext"	=> "問い合わせを処理できませんでした。
 これはおそらく、3文字未満の語を検索しようとしたためですが、これにはまだ対応していません。
-例えば「魚 and and 大きさ」のように、表現を誤記しているのかもしれません。"  /* "We could not process your query.
+例えば「魚 and and 大きさ」のように、表現を誤記しているのかもしれません。"
+  /* "We could not process your query.
 This is probably because you have attempted to search for a
 word fewer than three letters long, which is not yet supported.
 It could also be that you have mistyped the expression, for
 example \"fish and and scales\".
 Please try another query." */,
-"matchtotals"	=> "問い合わせ「$1」は $2 の記事の題及び $3 の記事の本文と一致しました。" /* "The query \"$1\" matched $2 article titles
+"matchtotals"	=> "問い合わせ「$1」は $2 の記事の題及び $3 の記事の本文と一致しました。"
+  /* "The query \"$1\" matched $2 article titles
 and the text of $3 articles." */,
 "titlematches"	=> "記事の題と一致" /* "Article title matches" */,
 "notitlematches" => "記事の題とは一致しませんでした" /* "No article title matches" */,
@@ -387,23 +411,24 @@ and the text of $3 articles." */,
 "nextn"			=> "次 $1" /* "next $1" */,
 "viewprevnext"	=> "($1) ($2) ($3) を見る" /* "View ($1) ($2) ($3)." */,
 "showingresults" => "$2 からの $1 個の結果を次に示します" /* "Showing below <b>$1</b> results starting with #<b>$2</b>." */,
-"nonefound"		=> "<strong>Note</strong>: 検索がうまくいかないのは、「ある」や「から」のような一般的な語で索引付けされていないとか、複数の検索語を指定している (全ての検索語を含む頁だけが結果に示されます。) とかのためかもしれません。" /* "<strong>Note</strong>: unsuccessful searches are
+"nonefound"		=> "<strong>Note</strong>: 検索がうまくいかないのは、「ある」や「から」のような一般的な語で索引付けされていないとか、
+複数の検索語を指定している (全ての検索語を含む頁だけが結果に示されます。) とかのためかもしれません。"
+  /* "<strong>Note</strong>: unsuccessful searches are
 often caused by searching for common words like \"have\" and \"from\",
 which are not indexed, or by specifying more than one search term (only pages
 containing all of the search terms will appear in the result)." */,
 
 # Preferences page ユーザーオプション設定頁
 #
-"preferences"	=> "オプション" /* "Preferences" */, 
+"preferences"	=> "オプション" /* "Preferences" */,
 "prefsnologin" => "ログインしていません" /* "Not logged in" */,
 "prefsnologintext"	=>  "ユーザーオプションを変更するためには、
-<a href=\"" .
-  wfLocalUrl( "特別:Userlogin" ) . "\">ログイン</a>している必要があります。"
+<a href=\"{{localurle:Special:Userlogin}}\">ログイン</a>している必要があります。"
 /* "You must be <a href=\"" .
   wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
 to set user preferences." */,
 "prefsreset"	=> "ユーザー設定は初期化されました。" /* "Preferences have been reset from storage." */,
-"qbsettings"	=> "クイックバー設定" /* "Quickbar settings" */, 
+"qbsettings"	=> "クイックバー設定" /* "Quickbar settings" */,
 "changepassword" => "パスワード変更" /* "Change password" */,
 "skin"			=> "外装" /* "Skin" */,
 "saveprefs"		=> "設定の保存" /* "Save preferences" */,
@@ -411,7 +436,7 @@ to set user preferences." */,
 "oldpassword"	=> "古いパスワード" /* "Old password" */,
 "newpassword"	=> "新しいパスワード" /* "New password" */,
 "retypenew"		=> "新しいパスワードを再入力して下さい" /* "Retype new password" */,
-"textboxsize"	=> "テキストボックスの大きさ" /* "Textbox dimensions" */,
+"textboxsize"	=> "テキストボックスの大きさ" /* "Editing" */,
 "rows"			=> "縦" /* "Rows" */,
 "columns"		=> "横" /* "Columns" */,
 "searchresultshead" => "検索結果の表示" /* "Search result settings" */,
@@ -430,16 +455,17 @@ from server time (UTC)." */,
 #
 "recentchanges" => "最近更新したページ",
 "recentchangestext" => "最近付け加えられた変更はこのページで確認することができます。
-[[Wikipedia:新規参加者の方、ようこそ]]！
+[[{{ns:4}}:新規参加者の方、ようこそ]]！
 以下のページも参照して下さい:
 [[wikipedia:ウィキペディア　よくある質問集]],
-[[Wikipedia:ウィキペディアの基本方針とガイドライン]]
-（特に[[Wikipedia:記事名のつけ方]],
-[[Wikipedia:中立的な観点]]）,
-[[Wikipedia:ウィキペディアで起こしがちな間違い]].
+[[{{ns:4}}:ウィキペディアの基本方針とガイドライン]]
+（特に[[{{ns:4}}:記事名のつけ方]],
+[[{{ns:4}}:中立的な観点]]）,
+[[{{ns:4}}:ウィキペディアで起こしがちな間違い]].
 
-ウィキペディアが成功するためには、あなたの投稿する内容が他人の著作権などによって束縛されていないことがとても重要です。[[Wikipedia:著作権]]
-法的責任問題は、プロジェクトに致命傷を与えることもある問題です。他人の著作物などを流用することは絶対に避けてください。また次のページも参照して下さい。[http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion]"
+ウィキペディアが成功するためには、あなたの投稿する内容が他人の著作権などによって束縛されていないことがとても重要です。[[{{ns:4}}:著作権]]
+法的責任問題は、プロジェクトに致命傷を与えることもある問題です。他人の著作物などを流用することは絶対に避けてください。
+また次のページも参照して下さい。[http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion]"
 
 /* Track the most recent changes to Wikipedia on this page.
 [[Wikipedia:Welcome,_newcomers|Welcome, newcomers]]!
@@ -454,7 +480,8 @@ material restricted by others' [[wikipedia:Copyrights|copyrights]].
 The legal liability could really hurt the project, so please don't do it.
 See also the [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion]. */,
 "rcloaderr"		=> "最近の更新情報をダウンロード中" /* "Loading recent changes" */,
-"rcnote"		=> "以下は最近<strong>$2</strong>日間の<strong>$1</strong>件の更新です。" /* "Below are the last <strong>$1</strong> changes in last <strong>$2</strong> days." */,
+"rcnote"		=> "以下は最近<strong>$2</strong>日間の<strong>$1</strong>件の更新です。"
+  /* "Below are the last <strong>$1</strong> changes in last <strong>$2</strong> days." */,
 # "rclinks"		=> "最近$2時間/$3日間の$1件分を表示する" /* "Show last $1 changes in last $2 hours / last $3 days" */,
 "rclinks"		=> "最近$2日間の$1件分を表示する" /* "Show last $1 changes in last $2 days." */,
 "rchide"		=> "in $4 form; $1 minor edits; $2 secondary namespaces; $3 multiple edits.",
@@ -475,24 +502,20 @@ See also the [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta d
 "reuploaddesc"	=> "アップロードのフォームへ戻る Return to the upload form.",
 "uploadnologin" => "ログインしていません、 Not logged in",
 "uploadnologintext"	=> "ユーザーオプションを変更するためには、
-<a href=\"" .
-  wfLocalUrl( "特別:Userlogin" ) . "\">ログイン</a>している必要があります。
+<a href=\"{{localurle:Special:Userlogin}}\">ログイン</a>している必要があります。
 
-You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+You must be <a href=\"{{localurle:Special:Userlogin}}\">logged in</a>
 to upload files.",
 "uploadfile"	=> "ファイルのアップロード  Upload file",
 "uploaderror"	=> "アップロード エラー  Upload error",
-"uploadtext"	=> "<strong>ご注意！</strong> 
-ここにファイルをアップロードする前に、ウィキペディアの<a href=\"" .
-wfLocalUrlE( "Wikipedia:画像利用の方針" ) . "\">画像利用の方針</a>を
+"uploadtext"	=> "<strong>ご注意！</strong>
+ここにファイルをアップロードする前に、ウィキペディアの<a href={{localurle:Project:画像利用の方針}}" .
+  "\">画像利用の方針</a>を
 よく読んで、方針に反することのないようにして下さい。.
 <p>
 これまでにアップロードされたイメージの一覧や検索には、
-<a href=\"" . wfLocalUrlE( "特別:Imagelist" ) .
-"\">画像リスト</a>が便利です。
-アップロードと削除の記録は<a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">にあります。</a>.
+<a href=\"{{localurle:Special:Imagelist}}\">画像リスト</a>が便利です。
+アップロードと削除の記録は<a href=\"{{localurle:Project:Upload_log}}\">にあります。</a>.
 <p>記事に必要な画像を新しくアップロードする場合には、以下のフォームを利用して下さい。
 
 ほとんどのブラウザーでは、\"Browse\"というボタンが表示されます。そのボタンを押すと、
@@ -512,7 +535,7 @@ wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">にあります。</a>.
 
 画像を記事に組み入れるためには、次のようなフォーマットでリンクを張ります。
 <b>[[画像:file.jpg]]</b>  <b>[[画像:file.png|説明文]]</b>
-また、サウンドには <b>[[media:file.ogg]]</b> を用います。
+また、サウンドには <b>[[{{ns:-2}}:file.ogg]]</b> を用います。
 <p>
 ウィキペディアの他のページと同じく、あなたがアップロードしたファイルも、より
 よい百科事典作成のために他のユーザーによって編集、削除されることがあります。
@@ -564,7 +587,7 @@ All times shown are server time (UTC). */,
 
 I affirm that the copyright holder of this file
 agrees to license it under the terms of the $1.",
-"copyrightpage" => "Wikipedia:Copyrights",
+"copyrightpage" => "{{ns:4}}:Copyrights",
 
 "copyrightpagename" => "ウィキペディアの著作権",
 "uploadedfiles"	=> "アップロードされたファイル",
@@ -575,15 +598,16 @@ any copyrights." */,
 "ignorewarning"	=> "警告を無視し、保存してしまう" /* "Ignore warning and save file anyway." */,
 "minlength"		=> "ファイル名は3文字以上である必要があります。" /* "Image names must be at least three letters." */,
 "badfilename"	=> "ファイル名は\"$1\"へ変更されました。" /* "Image name has been changed to \"$1\"." */,
-"badfiletype"	=> "\".$1\" は推奨されているファイルフォーマットではありません。" /* 
+"badfiletype"	=> "\".$1\" は推奨されているファイルフォーマットではありません。" /*
 "\".$1\" is not a recommended image file format." */,
-"largefile"		=> "ファイルサイズは100キロバイト以下に抑えることが推奨されています。" /* It is recommended that images not exceed 100k in size." */,
+"largefile"		=> "ファイルサイズは100キロバイト以下に抑えることが推奨されています。"
+  /* It is recommended that images not exceed 100k in size." */,
 "successfulupload" => "アップロード成功" /* "Successful upload" */,
 "fileuploaded"	=> "ファイル\"$1\は無事にアップロードされました。
 以下のリンク($2)をクリックし、ファイルについての情報－出典、製作者や時期、
 その他知っている情報を書き込んで下さい。
 
-" /* " "File \"$1\" uploaded successfully. 
+" /* " "File \"$1\" uploaded successfully.
 Please follow this link: ($2) to the description page and fill
 in information about the file, such as where it came from, when it was
 created and by whom, and anything else you may know about it." */,
@@ -610,6 +634,7 @@ created and by whom, and anything else you may know about it." */,
 "imghistory"	        => "画像の履歴",
 "revertimg"		=> "差戻",
 "deleteimg"		=> "削除",
+"deleteimgcompletely"		=> "削除",
 "imghistlegend"         => "凡例: (最新)=最新版の画像, (削除)=この版の画像を削除, (差戻)=この版の画像に差し戻す<br><b>アップロードされた画像を見るには日付をクリックします。</b>",
 "imagelinks"	        => "リンク",
 "linkstoimage"	        => "この画像にリンクしているページの一覧:",
@@ -620,7 +645,11 @@ created and by whom, and anything else you may know about it." */,
 "statistics"	        => "アクセス統計",
 "sitestats"		=> "サイト全体の統計",
 "userstats"		=> "ユーザー登録統計",
-"sitestatstext"         => "<p>データベース内には <b>$1</b> ページのデータがあります。この数字には「会話ページ」や「Wikipedia関連のページ」、「書きかけのページ」、「リダイレクト」など、記事とはみなせないページが含まれています。これらを除いた、記事とみなされるページ数は約 <b>$2</b> ページになります。</p><p>ページの総閲覧回数は <b>$3</b> 回です。また、ソフトウェアの更新(2002/06/20)以来、<b>$4</b> 回の編集が行われました。平均すると、１ページあたり <b>$5</b> 回の編集が行われ、１編集あたり <b>$6</b> 回閲覧されています。</p>",
+"sitestatstext"         => "<p>データベース内には <b>$1</b> ページのデータがあります。
+この数字には「会話ページ」や「{{SITENAME}}関連のページ」、「書きかけのページ」、「リダイレクト」など、記事とはみなせないページが含まれています。
+これらを除いた、記事とみなされるページ数は約 <b>$2</b> ページになります。</p>
+<p>ページの総閲覧回数は <b>$3</b> 回です。また、ソフトウェアの更新(2002/06/20)以来、<b>$4</b> 回の編集が行われました。
+平均すると、１ページあたり <b>$5</b> 回の編集が行われ、１編集あたり <b>$6</b> 回閲覧されています。</p>",
 "userstatstext"         => "登録済みの利用者は <b>$1</b> 人で、内 <b>$2</b> 人が管理者権限を持っています。($3を参照)",
 
 # Miscellaneous special pages
@@ -647,7 +676,8 @@ created and by whom, and anything else you may know about it." */,
 "debug"			=> "デバッグ (debug)",
 "newpages"		=> "新しいページ",
 "movethispage"	        => "このページを移動する",
-"unusedimagestext" => "<p>ご注意:他言語版のウィキペディアも含め、他のウェブサイトがURLを直接用いて画像にリンクしている場合もあります。以下の画像一覧には、そのような形で利用されている画像が含まれている可能性があります。",
+"unusedimagestext" => "<p>ご注意:他言語版のウィキペディアも含め、他のウェブサイトがURLを直接用いて画像にリンクしている場合もあります。
+以下の画像一覧には、そのような形で利用されている画像が含まれている可能性があります。",
 "booksources"	=> "文献資料",
 "booksourcetext" => "以下のリストは、新本、古本などを販売している外部サイトへのリンクです。
 あなたがお探しの本について、更に詳しい情報が提供されている場合もあります｡
@@ -657,11 +687,9 @@ created and by whom, and anything else you may know about it." */,
 #
 "mailnologin"	=> "送信先のアドレスがありません。" /* No send address"*/,
 "mailnologintext" => "ログインしていません。メールを送信するためには、
-あなたの電子メールアドレスを<a href=\"" .
-  wfLocalUrl( "Special:ユーザーオプション" ) . "\">ユーザーオプション</a>
+あなたの電子メールアドレスを<a href=\"{{localurle:Special:Userlogin}}\">ユーザーオプション</a>
 で指定し、
-<a href=\"" .
-  wfLocalUrl( "特別:Userlogin" ) . "\">ログイン</a>している必要があります。"
+<a href=\"{{localurle:Special:Userlogin\">ログイン</a>している必要があります。"
 /* You must be <a href=\"" .
   wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
 and have a valid e-mail address in your <a href=\"" .
@@ -698,19 +726,17 @@ or has chosen not to receive e-mail from other users." */,
 "nowatchlist"	=> "あなたのウォッチリストは空です。" /* "You have no items on your watchlist." */,
 "watchnologin"	=> "ログインしていません" /* "Not logged in" */,
 "watchnologintext"	=> "ウォッチリストを変更するためには、
-<a href=\"" .
-  wfLocalUrl( "特別:Userlogin" ) . "\">ログイン</a>している必要があります。"
+<a href=\"{{localurle:Special:Userlogin}}\">ログイン</a>している必要があります。"
 /* "You must be <a href=\"" .
   wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
 to modify your watchlist." */,
 "addedwatch"	=> "ウォッチリストに加えました" /* "Added to watchlist" */,
 "addedwatchtext" => "ページ\"$1\" をあなたの
-<a href=\"" .
-  wfLocalUrl( "特別:Watchlist" ) . "\">ウォッチリスト</a>
+<a href=\"{{localurle:Special:Watchlist}}\">ウォッチリスト</a>
 に追加しました。
 このページと、付属のノートのページに変更があった際にはそれをウォッチリストで
 知ることができます。また、
-<a href=\"" . wfLocalUrl( "特別:Recentchanges" ) . "\">最近更新したページ</a> では
+<a href=\"{{localurle:Special:Recentchanges}}\">最近更新したページ</a> では
 ウォッチリストに含まれているページは<b>ボールド体</b>で表示され、見つけやすく
 なります。</p>
 
@@ -722,7 +748,7 @@ to modify your watchlist." */,
 Future changes to this page and its associated Talk page will be listed there,
 and the page will appear <b>bolded</b> in the <a href=\"" .
   wfLocalUrl( "Special:Recentchanges" ) . "\">list of recent changes</a> to
-make it easier to pick out.</p> 
+make it easier to pick out.</p>
 
 <p>If you want to remove the page from your watchlist later, click \"Stop watching\" in the sidebar." */
 
@@ -741,13 +767,13 @@ make it easier to pick out.</p>
 "confirmdeletetext" => "指定されたページまたはイメージは、その更新履歴と共に
 データベースから永久に削除されようとしています。
 あなたが削除を望んでおり、それがもたらす帰結を理解しており、かつあなたの
-しようとしていることが[[Wikipedia:Policy|ウィキペディアの基本方針]]に即したものであることを確認して下さい。
+しようとしていることが[[{{ns:4}}:Policy|ウィキペディアの基本方針]]に即したものであることを確認して下さい。
 
 You are about to permanently delete a page
 or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
-[[Wikipedia:Policy]].",
+[[{{ns:4}}:Policy]].",
 "confirmcheck"	=> "はい。上記の通りです。　Yes, I really want to delete this.",
 "actioncomplete" => "削除を完了しました。　Action complete",
 "deletedtext"	=> "\"$1\" は削除されました。　\"$1\" has been deleted.
@@ -772,7 +798,8 @@ All times shown are server time (UTC).
 "contributions"	=> "ユーザーの投稿記録",
 "contribsub"	=> "ユーザー名：$1",
 "nocontribs"	=> "ユーザーの投稿記録は見つかりませんでした。",
-"ucnote"		=> "以下に示すのが過去<b>$2</b>日間における、最大<b>$1</b>件の投稿・編集です。" /*Below are this user's last <b>$1</b> changes in the last <b>$2</b> days."*/,
+"ucnote"		=> "以下に示すのが過去<b>$2</b>日間における、最大<b>$1</b>件の投稿・編集です。"
+  /*Below are this user's last <b>$1</b> changes in the last <b>$2</b> days."*/,
 "uclinks"		=> "$1 件の投稿・編集を見る。; $2日間分の投稿・編集を見る。
 
 View the last $1 changes; view the last $2 days.",
@@ -794,7 +821,7 @@ to perform this function on." */,
 "blockiptext"	=> "Use the form below to block write access
 from a specific IP address.
 This should be done only only to prevent valndalism, and in
-accordance with [[Wikipedia:Policy|Wikipedia policy]].
+accordance with [[{{ns:4}}:Policy|{{SITENAME}} policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 "ipaddress"		=> "IP Address",
@@ -836,22 +863,22 @@ Please confirm that this is what you intend to do.",
 "locknoconfirm" => "You did not check the confirmation box.",
 "lockdbsuccesssub" => "Database lock succeeded",
 "unlockdbsuccesssub" => "Database lock removed",
-"lockdbsuccesstext" => "The Wikipedia database has been locked.
+"lockdbsuccesstext" => "The {{SITENAME}} database has been locked.
 <br>Remember to remove the lock after your maintenance is complete.",
-"unlockdbsuccesstext" => "The Wikipedia database has been unlocked.",
+"unlockdbsuccesstext" => "The {{SITENAME}} database has been unlocked.",
 
 # SQL query     （この部分は管理者用なので当面英文を残しておきます。）
 #
 "asksql"		=> "SQL query",
 "asksqltext"	=> "Use the form below to make a direct query of the
-Wikipedia database.
+{{SITENAME}} database.
 Use single quotes ('like this') to delimit string literals.
 This can often add considerable load to the server, so please use
 this function sparingly.",
 "sqlquery"		=> "Enter query",
 "querybtn"		=> "Submit query",
 "selectonly"	=> "Queries other than \"SELECT\" are restricted to
-Wikipedia developers.",
+{{SITENAME}} developers.",
 "querysuccessful" => "Query successful",
 
 # Move page ページの移動
@@ -878,8 +905,7 @@ proceeding." */,
 "movearticle"	=> "ページの移動",
 "movenologin"	=> "ログインしていません",
 "movenologintext" => "この機能を利用するためには、ユーザー登録をして、
-<a href=\"" .
-  wfLocalUrl( "特別:Userlogin" ) . "\">ログイン</a>している必要が
+<a href=\"{{localurle:Special:Userlogin}}\">ログイン</a>している必要が
 あります。",
 "newtitle"		=> "新しいページへ" /* "To new title" */,
 "movepagebtn"	=> "ページを移動" /* "Move page" */,
@@ -926,6 +952,10 @@ class LanguageJa extends LanguageUtf8 {
 		return $wgSkinNamesJa;
 	}
 
+	function getMathNames() {
+		global $wgMathNamesJa;
+		return $wgMathNamesJa;
+	}
 
 	function getUserToggles() {
 		global $wgUserTogglesJa;
@@ -951,14 +981,20 @@ class LanguageJa extends LanguageUtf8 {
 	}
 
 	# Inherit default userAdjust()
-	 
+
 	function date( $ts, $adj = false )
 	{
+		global $wgWeekdayAbbreviationsJa;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
+		$x = getdate(mktime(( (int)substr( $ts, 8, 2) ) + $diff,
+			(int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
+			(int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
+			(int)substr( $ts, 0, 4 )));
 		$d = substr( $ts, 0, 4 ) . "年" .
-		  $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-		  (0 + substr( $ts, 6, 2 )) . "日";
+			$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
+			(0 + substr( $ts, 6, 2 )) . "日 (" .
+			$wgWeekdayAbbreviationsJa[$x["wday"]] . ")";
 		return $d;
 	}
 
@@ -972,7 +1008,7 @@ class LanguageJa extends LanguageUtf8 {
 
 	function timeanddate( $ts, $adj = false )
 	{
-		return $this->time( $ts, $adj ) . " " . $this->date( $ts, $adj );
+		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
 	}
 
 	# Inherit default rfc1123()
@@ -998,7 +1034,7 @@ class LanguageJa extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesJa;
-        if(array_key_exists($key, $wgAllMessagesJa))
+		if(array_key_exists($key, $wgAllMessagesJa))
 			return $wgAllMessagesJa[$key];
 		else
 			return Language::getMessage($key);

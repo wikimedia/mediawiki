@@ -1,10 +1,12 @@
 <?php
-require_once( "../includes/DefaultSettings.php" );
-require_once( "../LocalSettings.php" );
-require_once( "../includes/MemCachedClient.inc.php" );
 
-$mcc = new MemCachedClient();
+# memcached diagnostic tool
+
+require_once( "commandLine.inc" );
+
+$mcc = new memcached( array('persistant' => true) );
 $mcc->set_servers( $wgMemCachedServers );
+$mcc->set_debug( true );
 
 do {
 	$bad = false;
@@ -20,7 +22,8 @@ do {
 				$res = $res[$args[1]];
 			}
 			if ( $res === false ) {
-				print 'Error: ' . $mcc->error_string() . "\n";
+				#print 'Error: ' . $mcc->error_string() . "\n";
+				print "MemCached error\n";
 			} elseif ( is_string( $res ) ) {
 				print "$res\n";
 			} else {
@@ -35,13 +38,15 @@ do {
 				$value = implode( " ", $args );
 			}
 			if ( !$mcc->set( $key, $value, 0 ) ) {
-				print 'Error: ' . $mcc->error_string() . "\n";
+				#print 'Error: ' . $mcc->error_string() . "\n";
+				print "MemCached error\n";
 			}
 			break;
 		case "delete":
 			$key = implode( " ", $args );
 			if ( !$mcc->delete( $key ) ) {
-				print 'Error: ' . $mcc->error_string() . "\n";
+				#print 'Error: ' . $mcc->error_string() . "\n";
+				print "MemCached error\n";
 			}
 			break;				       
 		case "quit":
@@ -61,19 +66,4 @@ do {
 	}
 } while ( !$quit );
 
-function readconsole( $prompt = "" ) {
-	if ( function_exists( "readline" ) ) {
-		return readline( $prompt );
-	} else {
-		print $prompt;
-		$fp = fopen( "php://stdin", "r" );
-		$resp = trim( fgets( $fp, 1024 ) );
-		fclose( $fp );
-		return $resp;
-	}
-}
-
-
-
 ?>
-

@@ -189,7 +189,8 @@ CREATE TABLE recentchanges (
   rc_last_oldid int(10) unsigned NOT NULL default '0',
   rc_type tinyint(3) unsigned NOT NULL default '0',
   rc_moved_to_ns tinyint(3) unsigned NOT NULL default '0',
-  rc_moved_to_title varchar(255) binary NOT NULL default ''
+  rc_moved_to_title varchar(255) binary NOT NULL default '',
+  rc_ip char(15) NOT NULL default ''
 ) PACK_KEYS=1;
 
 CREATE TABLE watchlist (
@@ -241,4 +242,11 @@ CREATE TABLE objectcache (
   exptime datetime,
   unique key (keyname),
   key (exptime)
+);
+
+-- For storing revision text
+CREATE TABLE blobs (
+  blob_index char(255) binary NOT NULL default '',
+  blob_data longblob NOT NULL default '',
+  UNIQUE key blob_index (blob_index)
 );

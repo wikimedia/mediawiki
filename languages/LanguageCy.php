@@ -9,42 +9,30 @@
 	1  => "Sgwrs",
 	2  => "Defnyddiwr",
 	3  => "Sgwrs_Defnyddiwr",
-	4  => $wgMetaNamespace,
+	4  =>  $wgMetaNamespace,
 	5  => "Sgwrs_" . $wgMetaNamespace,
 	6  => "Delwedd",
 	7  => "Sgwrs_Delwedd",
 	8  => "MediaWiki",
 	9  => "Sgwrs_MediaWiki",
-	10  => "Template",
-	11  => "Template_talk"
-
-);
-
-/* private */ $wgDefaultUserOptionsCy = array(
-	"quickbar" => 1, "underline" => 1, "hover" => 1,
-	"cols" => 80, "rows" => 25, "searchlimit" => 20,
-	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0,
-	"previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, 
-	"showtoc"=>1,
-	"showtoolbar" =>1,
-	"date" => 0
-);
+       10  => "Nodyn",
+       11  => "Sgwrs_Nodyn"
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsCy = array(
 	"Dim", "Sefydlog chwith", "Sefydlog de", "Arnawf de"
 );
 
 /* private */ $wgSkinNamesCy = array(
-	'standard' => "Safonol",
-	'nostalgia' => "Hiraeth",
-	'cologneblue' => "Glas Cwlen",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook"
+        'standard' => "Safonol",
+        'nostalgia' => "Hiraeth",
+        'cologneblue' => "Glas Cwlen",
+        'smarty' => "Paddington",
+        'montparnasse' => "Montparnasse",
+        'davinci' => "DaVinci",
+        'mono' => "Mono",
+        'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesCy = array(
@@ -100,7 +88,7 @@
 
 /* private */ $wgMonthNamesCy = array(
 	"Ionawr", "Chwefror", "Mawrth", "Ebrill", "Mai", "Mehefin",
-	"Gorffenaf", "Awst", "Medi", "Hydref", "Tachwedd",
+	"Gorffennaf", "Awst", "Medi", "Hydref", "Tachwedd",
 	"Rhagfyr"
 );
 
@@ -109,34 +97,33 @@
 	"Med", "Hyd", "Tach", "Rhag"
 );
 
-/* private */ $wgMagicWordsCy = array(
-#   ID                                 CASE  SYNONYMS
-    MAG_REDIRECT             => array( 0,    "#redirect", "#ail-cyfeirio"                 ),
-    MAG_NOTOC                => array( 0,    "__NOTOC__", "__DIMTAFLENCYNNWYS__"          ),
-    MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__", "__DIMADRANGOLYGU__"    ),
-    MAG_START                => array( 0,    "__START__", "__DECHRAU__"                   ),
-    MAG_CURRENTMONTH         => array( 1,    " CURRENTMONTH", "MISCYFOES"                 ),
-    MAG_CURRENTMONTHNAME     => array( 1,    "CURRENTMONTHNAME", "ENWMISCYFOES"           ),
-    MAG_CURRENTDAY           => array( 1,    "CURRENTDAY", "DYDDIADCYFOES"                ),   
-    MAG_CURRENTDAYNAME       => array( 1,    "CURRENTDAYNAME", "ENWDYDDCYFOES"            ),
-    MAG_CURRENTYEAR          => array( 1,    "CURRENTYEAR", "FLWYDDYNCYFOES"              ),
-    MAG_CURRENTTIME          => array( 1,    "CURRENTTIME", "AMSERCYFOES"                 ),
-    MAG_NUMBEROFARTICLES     => array( 1,    "NUMBEROFARTICLES", "NIFEROERTHYGLAU"        ),
-    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN", "GENENWMISCYFOES"     ),
-    MAG_MSG                  => array( 1,    "MSG:"                                       ),
-    MAG_SUBST                => array( 1,    "SUBST:"                                     ),
-    MAG_MSGNW                => array( 0,    "MSGNW:"                                     ),
-    MAG_END                  => array( 0,    "DIWEDD_"                                    ),
-    MAG_IMG_THUMBNAIL        => array( 1,    "ewin bawd", "bawd", "thumbnail", "thumb"    ),
-    MAG_IMG_RIGHT            => array( 1,    "de", "right"                                ),
-    MAG_IMG_LEFT             => array( 1,    "chwith", "left"                             ),
-    MAG_IMG_NONE             => array( 1,    "dim", "none"                                ),
-    MAG_IMG_WIDTH            => array( 1,    "$1px"                                       ),
-    MAG_IMG_CENTER           => array( 1,    "canol", "center", "centre"                  ),
-    MAG_INT                  => array( 0,    "INT:"                                       )
+ /* private */ $wgMagicWordsCy = array(
+ #   ID                          CASE  SYNONYMS
+    MAG_REDIRECT            => array( 0, "#redirect", "#ail-cyfeirio"               ),
+    MAG_NOTOC               => array( 0, "__NOTOC__", "__DIMTAFLENCYNNWYS__"        ),
+    MAG_NOEDITSECTION       => array( 0, "__NOEDITSECTION__", "__DIMADRANGOLYGU__"  ),
+    MAG_START               => array( 0, "__START__", "__DECHRAU__"                 ),
+    MAG_CURRENTMONTH        => array( 1, "CURRENTMONTH", "MISCYFOES"                ),
+    MAG_CURRENTMONTHNAME    => array( 1, "CURRENTMONTHNAME", "ENWMISCYFOES"         ),
+    MAG_CURRENTDAY          => array( 1, "CURRENTDAY", "DYDDIADCYFOES"              ),   
+    MAG_CURRENTDAYNAME      => array( 1, "CURRENTDAYNAME", "ENWDYDDCYFOES"          ),
+    MAG_CURRENTYEAR         => array( 1, "CURRENTYEAR", "FLWYDDYNCYFOES"            ),
+    MAG_CURRENTTIME         => array( 1, "CURRENTTIME", "AMSERCYFOES"               ),
+    MAG_NUMBEROFARTICLES    => array( 1, "NUMBEROFARTICLES","NIFEROERTHYGLAU"       ),
+    MAG_CURRENTMONTHNAMEGEN => array( 1, "CURRENTMONTHNAMEGEN", "GENENWMISCYFOES"   ),
+    MAG_MSG                 => array( 1, "MSG:"                                     ),
+    MAG_SUBST               => array( 1, "SUBST:"                                   ),
+    MAG_MSGNW               => array( 0, "MSGNW:"                                   ),
+    MAG_END                 => array( 0, "DIWEDD"                                   ),
+    MAG_IMG_THUMBNAIL       => array( 1, "ewin bawd", "bawd", "thumb", "thumbnail"  ),
+    MAG_IMG_RIGHT           => array( 1, "de", "right"                              ),
+    MAG_IMG_LEFT            => array( 1, "chwith", "left"                           ),
+    MAG_IMG_NONE            => array( 1, "dim", "none"                              ),
+    MAG_IMG_WIDTH           => array( 1, "$1px"                                     ),
+    MAG_IMG_CENTER          => array( 1, "canol", "centre", "center"                ),
+    MAG_INT                 => array( 0, "INT:"                                     )
+);	
 
-);
-	
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).
@@ -197,14 +184,14 @@
 "category" => "categori",
 "category_header" => "Erthyglau mewn categori \"$1\"",
 "subcategories" => "Is-categorïau",
-"linktrail" => "/^((?:à|á|â|è|é|ê|ì|í|î|ï|ò|ó|ô|û|[a-z])+)(.*)\$/sD",
+"linktrail" => "/^((?:à|á|â|è|é|ê|ì|í|î|ï|ò|ó|ô|û|ŵ|ŷ|[a-z])+)(.*)\$/sD",
 "mainpage" => "Prif tudalen",
 "mainpagetext" => "Meddalwedd Wicipedia wedi sefydlu'n llwyddiannus",
 "about"	=> "Amdano",
 "aboutwikipedia" => "Amdano Wicipedia",
 "aboutpage" => "$wgMetaNamespace:Amdano",
 "help" => "Help",
-"helppage" => "$wgMetaNamespace:Help",
+"helppage" =>  "$wgMetaNamespace:Help",
 "wikititlesuffix" => "$wgSitename",
 "bugreports" => "Adroddiadau diffygion",
 "bugreportspage" => "$wgMetaNamespace:Adroddiadau_diffygion",
@@ -229,7 +216,7 @@
 "disclaimerpage" => "$wgMetaNamespace:Gwadiad_cyffredin",
 "currentevents" => "Digwyddiadau presennol",
 "errorpagetitle" => "Gwall",
-"returnto" => "Ewch yn ôl i $1.",
+"returnto" =>  "Ewch yn ôl i $1.",
 "fromwikipedia"	=> "Oddiwrth Wicipedia, y gwyddoniadur rhad.",
 "whatlinkshere"	=> "Tudalennau sydd yn cysyllti fan hyn",
 "help" => "Help",
@@ -651,7 +638,7 @@ Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).
 "filestatus" => "Statws hawlfraint",
 "filesource" => "Ffynhonnell",
 "affirmation" => "Rwy'n addo mae'r hawlfraintiwr y ffeil hon wedi cytuno trwyddo'r ffeil o dan termau'r $1.",
-"copyrightpage" => "$wgMetaNamespace:Hawlfraint",
+"copyrightpage" =>  "$wgMetaNamespace:Hawlfraint",
 "copyrightpagename" => "Hawlfraint $wgSitename",
 "uploadedfiles"	=> "Ffeiliau wedi llwytho i fynu",
 "noaffirmation" => "Rhaid i chi addo dydy'r llwyth i fynu ddim y torri unrhyw hawlfraint.",
@@ -686,6 +673,7 @@ Dilynwch y cyswllt hon: ($2) i'r tudalen disgrifiad a llenwch gwybodaeth amdano'
 "imghistory" => "Hanes y delwedd",
 "revertimg" => "dych",
 "deleteimg" => "dil",
+"deleteimgcompletely" => "dil",
 "imghistlegend" => "Eglurhad: (cyf) = hon yw'r delwedd cyfoes, (dil) = dilewch yr hen fersiwn hon, (dych) = dychwelio i hen fersiwn hon.
 <br><i>Cliciwch ar dyddiad i weld y delwedd ag oedd llwythiad ar y dyddiad hon</i>.",
 "imagelinks" => "Cysylltiadau delwedd",
@@ -1033,19 +1021,21 @@ amusement.",
 
 # Thumbnails
 
-"thumbnail-more" => "Helaethwch"
+"thumbnail-more" => "Helaethwch",
 
-);
-
+#Math 
+           'mw_math_png' => "Rendrwch PNG o hyd", 
+           'mw_math_simple' => "HTML os yn syml iawn, PNG fel arall", 
+           'mw_math_html' => "HTML os bosibl, PNG fel arall", 
+           'mw_math_source' => "Gadewch fel TeX (am porwyr testun)", 
+           'mw_math_modern' => "Cymeradwedig am porwyr modern", 
+           'mw_math_mathml' => 'MathML', 
+    
+);  
 
 require_once( "LanguageUtf8.php" );
 
 class LanguageCy extends LanguageUtf8 {
-
-	function getDefaultUserOptions () {
-		global $wgDefaultUserOptionsCy;
-		return $wgDefaultUserOptionsCy;
-	}
 
 	function getBookstoreList () {
 		global $wgBookstoreListCy;
@@ -1082,11 +1072,11 @@ class LanguageCy extends LanguageUtf8 {
 		return $wgSkinNamesCy;
 	}
 
-	function getMathNames() {
-		global $wgMathNamesCy;
-		return $wgMathNamesCy;
-	}
-	
+        function getMathNames() {
+                global $wgMathNamesCy;
+                return $wgMathNamesCy;
+        }
+
 	function getDateFormats() {
 		global $wgDateFormatsCy;
 		return $wgDateFormatsCy;
@@ -1136,7 +1126,7 @@ class LanguageCy extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesCy;
-		return $wgAllMessagesCy[$key];
+		return @$wgAllMessagesCy[$key];
 	}
 	
 	function getAllMessages()
@@ -1147,10 +1137,9 @@ class LanguageCy extends LanguageUtf8 {
 
 	function getMagicWords() 
 	{
-		global $wgMagicWordsCy;
-		return $wgMagicWordsCy;
+		global $wgMagicWordsCy, $wgMagicWordsEn;
+		return $wgMagicWordsCy + $wgMagicWordsEn;
 	}
-
 }
 
 ?>

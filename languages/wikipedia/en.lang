@@ -1,0 +1,372 @@
+MediaWiki 1.3.0beta3 language file
+a:699:{s:10:"categories";s:10:"Categories";s:8:"category";s:8:"category";s:15:"category_header";s:25:"Articles in category "$1"";s:13:"subcategories";s:13:"Subcategories";s:9:"linktrail";s:18:"/^([a-z]+)(.*)$/sD";s:8:"mainpage";s:9:"Main Page";s:12:"mainpagetext";s:37:"Wiki software successfully installed.";s:17:"mainpagedocfooter";s:214:"Please see [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface]
+and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] for usage and configuration help.";s:6:"portal";s:16:"Community portal";s:10:"portal-url";s:26:"Wikipedia:Community Portal";s:5:"about";s:5:"About";s:14:"aboutwikipedia";s:18:"About {{SITENAME}}";s:9:"aboutpage";s:14:"{{ns:4}}:About";s:7:"article";s:12:"Content page";s:4:"help";s:4:"Help";s:8:"helppage";s:13:"Help:Contents";s:15:"wikititlesuffix";s:32:"Wikipedia, the free encyclopedia";s:10:"bugreports";s:10:"Contact us";s:14:"bugreportspage";s:20:"Wikipedia:Contact_us";s:11:"sitesupport";s:9:"Donations";s:3:"faq";s:3:"FAQ";s:7:"faqpage";s:18:"{{ns:project}}:FAQ";s:8:"edithelp";s:12:"Editing help";s:9:"newwindow";s:21:"(opens in new window)";s:12:"edithelppage";s:33:"{{ns:project}}:How_to_edit_a_page";s:6:"cancel";s:6:"Cancel";s:6:"qbfind";s:4:"Find";s:8:"qbbrowse";s:6:"Browse";s:6:"qbedit";s:4:"Edit";s:13:"qbpageoptions";s:9:"This page";s:10:"qbpageinfo";s:7:"Context";s:11:"qbmyoptions";s:8:"My pages";s:14:"qbspecialpages";s:13:"Special pages";s:13:"moredotdotdot";s:7:"More...";s:6:"mypage";s:7:"My page";s:6:"mytalk";s:7:"My talk";s:8:"anontalk";s:16:"Talk for this IP";s:10:"navigation";s:10:"Navigation";s:13:"currentevents";s:14:"Current events";s:11:"disclaimers";s:11:"Disclaimers";s:14:"disclaimerpage";s:28:"Wikipedia:General_disclaimer";s:14:"errorpagetitle";s:5:"Error";s:8:"returnto";s:13:"Return to $1.";s:13:"fromwikipedia";s:56:"<small>From {{SITENAME}}, the free encyclopedia.</small>";s:13:"whatlinkshere";s:15:"What links here";s:6:"search";s:6:"Search";s:2:"go";s:2:"Go";s:7:"history";s:12:"Page history";s:13:"history_short";s:7:"History";s:16:"printableversion";s:17:"Printable version";s:4:"edit";s:4:"Edit";s:12:"editthispage";s:14:"Edit this page";s:6:"delete";s:6:"Delete";s:14:"deletethispage";s:16:"Delete this page";s:14:"undelete_short";s:8:"Undelete";s:7:"protect";s:7:"Protect";s:15:"protectthispage";s:17:"Protect this page";s:9:"unprotect";s:9:"Unprotect";s:17:"unprotectthispage";s:17:"Remove protection";s:7:"newpage";s:8:"New page";s:8:"talkpage";s:17:"Discuss this page";s:11:"specialpage";s:12:"Special Page";s:13:"personaltools";s:14:"Personal tools";s:11:"postcomment";s:14:"Post a comment";s:10:"addsection";s:1:"+";s:11:"articlepage";s:12:"View article";s:11:"subjectpage";s:12:"View subject";s:4:"talk";s:10:"Discussion";s:7:"toolbox";s:7:"Toolbox";s:8:"userpage";s:14:"View user page";s:13:"wikipediapage";s:17:"View project page";s:9:"imagepage";s:15:"View image page";s:12:"viewtalkpage";s:15:"&lt; Discussion";s:14:"otherlanguages";s:15:"Other languages";s:14:"redirectedfrom";s:20:"(Redirected from $1)";s:12:"lastmodified";s:31:"This page was last modified $1.";s:9:"viewcount";s:37:"This page has been accessed $1 times.";s:9:"copyright";s:282:"All text is available under the terms of the <a class='internal' href="{{localurle:Wikipedia:Text_of_the_GNU_Free_Documentation_License}}">GNU Free Documentation License</a> (see <b><a class='internal' href="{{localurle:Wikipedia:Copyrights}}">Copyrights</a></b> for details).<br />";s:9:"poweredby";s:90:"Wikipedia is powered by [http://www.mediawiki.org/ MediaWiki], an open source wiki engine.";s:13:"printsubtitle";s:17:"(From {{SERVER}})";s:13:"protectedpage";s:73:"<a href='{{localurle:Project:This_page_is_protected}}'>Protected page</a>";s:14:"administrators";s:23:"{{ns:4}}:Administrators";s:10:"sysoptitle";s:21:"Sysop access required";s:9:"sysoptext";s:95:"The action you have requested can only be
+performed by users with "sysop" capability.
+See $1.";s:14:"developertitle";s:25:"Developer access required";s:13:"developertext";s:99:"The action you have requested can only be
+performed by users with "developer" capability.
+See $1.";s:15:"bureaucrattitle";s:26:"Bureaucrat access required";s:14:"bureaucrattext";s:88:"The action you have requested can only be
+performed by sysops with  "bureaucrat" status.";s:6:"nbytes";s:8:"$1 bytes";s:2:"ok";s:2:"OK";s:9:"sitetitle";s:9:"Wikipedia";s:9:"pagetitle";s:14:"$1 - Wikipedia";s:12:"sitesubtitle";s:21:"The Free Encyclopedia";s:13:"retrievedfrom";s:19:"Retrieved from "$1"";s:11:"newmessages";s:12:"You have $1.";s:15:"newmessageslink";s:12:"new messages";s:11:"editsection";s:4:"edit";s:3:"toc";s:17:"Table of contents";s:7:"showtoc";s:4:"show";s:7:"hidetoc";s:4:"hide";s:13:"thisisdeleted";s:19:"View or restore $1?";s:11:"restorelink";s:16:"$1 deleted edits";s:9:"feedlinks";s:5:"Feed:";s:10:"nstab-main";s:7:"Article";s:10:"nstab-user";s:9:"User page";s:11:"nstab-media";s:10:"Media page";s:13:"nstab-special";s:12:"Special page";s:8:"nstab-wp";s:12:"Project page";s:11:"nstab-image";s:5:"Image";s:15:"nstab-mediawiki";s:14:"MediaWiki page";s:14:"nstab-template";s:8:"Template";s:10:"nstab-help";s:4:"Help";s:14:"nstab-category";s:8:"Category";s:12:"nosuchaction";s:14:"No such action";s:16:"nosuchactiontext";s:61:"The action specified by the URL is not
+recognized by the wiki";s:17:"nosuchspecialpage";s:20:"No such special page";s:17:"nospecialpagetext";s:69:"You have requested a special page that is not
+recognized by the wiki.";s:5:"error";s:5:"Error";s:13:"databaseerror";s:14:"Database error";s:11:"dberrortext";s:296:"A database query syntax error has occurred.
+This could be because of an illegal search query (see $5),
+or it may indicate a bug in the software.
+The last attempted database query was:
+<blockquote><tt>$1</tt></blockquote>
+from within function "<tt>$2</tt>".
+MySQL returned error "<tt>$3: $4</tt>".";s:13:"dberrortextcl";s:146:"A database query syntax error has occurred.
+The last attempted database query was:
+"$1"
+from within function "$2".
+MySQL returned error "$3: $4".
+";s:9:"noconnect";s:455:"Wikipedia is currently experiencing technical difficulties, and is unable to contact the database server. Please try again later. We apologise for the inconvenience.<br><br>Editors may use <a href="http://openfacts.berlios.de/index-en.phtml?title=Wikipedia_Status"><b>OpenFacts</b></a> as a backup wiki. There is also an active <a href="http://en.wikipedia.org/wiki/Internet_Relay_Chat">IRC</a> channel on <b>irc.freenode.net</b> called <b>#wikipedia</b>.";s:4:"nodb";s:28:"Could not select database $1";s:11:"cachederror";s:80:"The following is a cached copy of the requested page, and may not be up to date.";s:8:"readonly";s:15:"Database locked";s:15:"enterlockreason";s:84:"Enter a reason for the lock, including an estimate
+of when the lock will be released";s:12:"readonlytext";s:218:"The database is currently locked to new
+entries and other modifications, probably for routine database maintenance,
+after which it will be back to normal.
+The administrator who locked it offered this explanation:
+<p>$1";s:14:"missingarticle";s:324:"The database did not find the text of a page
+that it should have found, named "$1".
+
+<p>This is usually caused by following an outdated diff or history link to a
+page that has been deleted.
+
+<p>If this is not the case, you may have found a bug in the software.
+Please report this to an administrator, making note of the URL.";s:13:"internalerror";s:14:"Internal error";s:13:"filecopyerror";s:33:"Could not copy file "$1" to "$2".";s:15:"filerenameerror";s:35:"Could not rename file "$1" to "$2".";s:15:"filedeleteerror";s:27:"Could not delete file "$1".";s:12:"filenotfound";s:25:"Could not find file "$1".";s:10:"unexpected";s:28:"Unexpected value: "$1"="$2".";s:9:"formerror";s:28:"Error: could not submit form";s:15:"badarticleerror";s:45:"This action cannot be performed on this page.";s:12:"cannotdelete";s:97:"Could not delete the page or image specified. (It may have already been deleted by someone else.)";s:8:"badtitle";s:9:"Bad title";s:12:"badtitletext";s:105:"The requested page title was invalid, empty, or
+an incorrectly linked inter-language or inter-wiki title.";s:12:"perfdisabled";s:127:"Sorry! This feature has been temporarily disabled
+because it slows the database down to the point that no one can use
+the wiki.";s:15:"perfdisabledsub";s:28:"Here's a saved copy from $1:";s:10:"perfcached";s:66:"The following data is cached and may not be completely up to date:";s:20:"wrong_wfQuery_params";s:69:"Incorrect parameters to wfQuery()<br />
+Function: $1<br />
+Query: $2
+";s:10:"viewsource";s:11:"View source";s:13:"protectedtext";s:196:"This page has been locked to prevent editing. There are
+a number of reasons why this may be so; please see
+[[Wikipedia:This page is protected]].
+
+You can view and copy the source of this page:";s:18:"seriousxhtmlerrors";s:56:"There were serious xhtml markup errors detected by tidy.";s:11:"logouttitle";s:11:"User logout";s:10:"logouttext";s:251:"You are now logged out.
+This computer may be used to browse and edit Wikipedia without a user name, or for another user to log on. Note that some pages may
+continue to be displayed as if you were still logged in, until you clear
+your browser cache.";s:15:"welcomecreation";s:105:"<h2>Welcome, $1!</h2><p>Your account has been created.
+Don't forget to change your Wikipedia preferences.";s:14:"loginpagetitle";s:10:"User login";s:8:"yourname";s:13:"Your username";s:12:"yourpassword";s:13:"Your password";s:17:"yourpasswordagain";s:15:"Retype password";s:12:"newusersonly";s:17:" (new users only)";s:18:"remembermypassword";s:37:"Remember my password across sessions.";s:12:"loginproblem";s:71:"<b>There has been a problem with your login.</b><br />Please try again.";s:15:"alreadyloggedin";s:72:"<font color=red><b>User $1, you are already logged in! </b></font><br />";s:5:"login";s:6:"Log in";s:11:"loginprompt";s:182:"<b>Not a registered user yet?</b> A free account gives you many <a href="{{localurle:Wikipedia:Why_create_an_account?}}">benefits</a>, and registering below takes only a few seconds.";s:9:"userlogin";s:6:"Log in";s:6:"logout";s:7:"Log out";s:10:"userlogout";s:7:"Log out";s:11:"notloggedin";s:13:"Not logged in";s:13:"createaccount";s:18:"Create new account";s:17:"createaccountmail";s:8:"by email";s:9:"badretype";s:39:"The passwords you entered do not match.";s:10:"userexists";s:76:"The user name you entered is already in use. Please choose a different name.";s:9:"youremail";s:23:"Your e-mail (optional)*";s:12:"yourrealname";s:15:"Your real name*";s:8:"yournick";s:30:"Your nickname (for signatures)";s:12:"emailforlost";s:6:"&nbsp;";s:19:"prefs-help-userdata";s:208:"* <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your 
+email address to them, and it can be used to send you a new password if you forget it.";s:10:"loginerror";s:11:"Login error";s:12:"nocookiesnew";s:192:"The user account was created, but you are not logged in. Wikipedia uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.";s:14:"nocookieslogin";s:100:"Wikipedia uses cookies to log in users. You have cookies disabled. Please enable them and try again.";s:6:"noname";s:41:"You have not specified a valid user name.";s:17:"loginsuccesstitle";s:16:"Login successful";s:12:"loginsuccess";s:43:"You are now logged in to Wikipedia as "$1".";s:10:"nosuchuser";s:107:"There is no user by the name "$1".
+Check your spelling, or use the form below to create a new user account.";s:13:"wrongpassword";s:56:"The password you entered is incorrect. Please try again.";s:14:"mailmypassword";s:22:"Mail me a new password";s:21:"passwordremindertitle";s:32:"Password reminder from Wikipedia";s:20:"passwordremindertext";s:189:"Someone (probably you, from IP address $1)
+requested that we send you a new Wikipedia login password.
+The password for user "$2" is now "$3".
+You should log in and change your password now.";s:7:"noemail";s:50:"There is no e-mail address recorded for user "$1".";s:12:"passwordsent";s:113:"A new password has been sent to the e-mail address
+registered for "$1".
+Please log in again after you receive it.";s:8:"loginend";s:991:"To register, just select a <a href="{{localurle:Wikipedia:Username}}">username</a> and password and click "Create new account". Avoid choosing a username that is the name of a politician, military or religious figure or event. Avoid usernames that are offensive, inflammatory or confusing. Please pick a readable name, not just a number. Usernames on the English Wikipedia must start with an initial capital letter.
+
+
+If you need more information about logging in, see the <a href="{{localurle:Wikipedia:How_to_log_in}}">How to log in</a> article.<br /><br /> 
+
+Returning users only need to fill in their username and password.<br /><br />
+
+You must have <a href="{{localurle:HTTP_cookie}}">cookies</a> enabled to log in to Wikipedia.<br /><br />
+
+*Entering an email address is optional, and no email confirmation is required. But it enables people to contact you through the website without you having to reveal your email address to them, and it also helps you if you forget your password.";s:9:"mailerror";s:22:"Error sending mail: $1";s:11:"bold_sample";s:9:"Bold text";s:8:"bold_tip";s:9:"Bold text";s:13:"italic_sample";s:11:"Italic text";s:10:"italic_tip";s:11:"Italic text";s:11:"link_sample";s:10:"Link title";s:8:"link_tip";s:13:"Internal link";s:14:"extlink_sample";s:33:"http://www.example.com link title";s:11:"extlink_tip";s:39:"External link (remember http:// prefix)";s:15:"headline_sample";s:13:"Headline text";s:12:"headline_tip";s:16:"Level 2 headline";s:11:"math_sample";s:19:"Insert formula here";s:8:"math_tip";s:28:"Mathematical formula (LaTeX)";s:13:"nowiki_sample";s:30:"Insert non-formatted text here";s:10:"nowiki_tip";s:22:"Ignore wiki formatting";s:12:"image_sample";s:11:"Example.jpg";s:9:"image_tip";s:14:"Embedded image";s:12:"media_sample";s:11:"Example.ogg";s:9:"media_tip";s:15:"Media file link";s:7:"sig_tip";s:29:"Your signature with timestamp";s:6:"hr_tip";s:31:"Horizontal line (use sparingly)";s:7:"infobox";s:37:"Click a button to get an example text";s:13:"infobox_alert";s:135:"Please enter the text you want to be formatted.\n It will be shown in the infobox for copy and pasting.\nExample:\n$1\nwill become:\n$2";s:7:"summary";s:135:"<a href="{{localurle:project:Edit_summary}}"  class='internal' title="Briefly describe the changes you have made here">Edit summary</a>";s:7:"subject";s:16:"Subject/headline";s:9:"minoredit";s:20:"This is a minor edit";s:9:"watchthis";s:15:"Watch this page";s:11:"savearticle";s:9:"Save page";s:7:"preview";s:7:"Preview";s:11:"showpreview";s:12:"Show preview";s:12:"blockedtitle";s:15:"User is blocked";s:11:"blockedtext";s:2380:"You have attempted to edit a page, either by clicking the "Edit" tab or by following a red link.
+
+Your user name or IP address has been [[{{ns:Project}}:Blocking policy|blocked]] by $1.
+The reason given is this:<br/>''$2''<p>You can [[{{ns:special}}:emailuser/$4|email $4]] or one of the other
+[[{{ns:Project}}:list of administrators|administrators]] to discuss the block. If you believe that our [[{{ns:Project}}:Blocking policy|blocking policy]] was violated, you may discuss the block publicly on the [http://mail.wikipedia.org/mailman/listinfo/wikien-l WikiEN-L mailing list].
+
+Note that you may not use the "email this user" feature unless you have a Wikipedia account and a valid email address registered in your [[{{ns:Special}}:Preferences|user preferences]]. 
+
+Your IP address is $3. Please include this address in any queries you make.
+
+If you need to see the wiki text of an article, you may wish to use the [[{{ns:Special}}:Export|Export pages]] feature.
+
+==Innocent?==
+
+Sometimes IP ranges or shared proxies are blocked from editing Wikipedia. This means that lots of innocent people can't edit. If this is the case, it should be explained in the reason given above.
+
+Also, some individual dynamic IP addresses may be blocked, usually for a 24 hour period.  Occasionally, users with dynamic IPs will be blocked accidentally, due to that fact that their present IP was previously used by a blocked user.
+
+We apologise for any inconvenience this may cause. If this problem affects you repeatedly, and you would like to help us resolve this issue, you will need to contact a [[{{ns:project}}:administrator|Wikipedia administrator]] and your [[internet service provider]] (ISP). The administrator should be able to obtain the time, date, and IP address used for the inappropriate behaviour in question, and describe what the problem was. You can then pass this information on to your ISP, explaining that you are unable to edit Wikipedia due to the inappropriate actions of another person using this ISP, and ask them to remedy the problem.
+
+==Just reading?==
+You are not blocked from reading pages, only from editing them. If you were only intending to read a page and are seeing this message, you probably followed a red link. These are links to pages that do not exist, so they take users to an editing screen. You should have no problem if you follow only blue links.";s:18:"whitelistedittitle";s:22:"Login required to edit";s:17:"whitelistedittext";s:61:"You have to [[{{ns:Special}}:Userlogin|login]] to edit pages.";s:18:"whitelistreadtitle";s:22:"Login required to read";s:17:"whitelistreadtext";s:61:"You have to [[{{ns:Special}}:Userlogin|login]] to read pages.";s:17:"whitelistacctitle";s:40:"You are not allowed to create an account";s:16:"whitelistacctext";s:124:"To be allowed to create accounts in this Wiki you have to [[Special:Userlogin|log]] in and have the appropriate permissions.";s:13:"loginreqtitle";s:14:"Login Required";s:12:"loginreqtext";s:64:"You must [[{{ns:special}}:Userlogin|login]] to view other pages.";s:12:"accmailtitle";s:14:"Password sent.";s:11:"accmailtext";s:42:"The Password for '$1' has been sent to $2.";s:10:"newarticle";s:5:"(New)";s:14:"newarticletext";s:693:"<div style="font-size:small;color:#003333;border-width:1px;border-style:solid;border-color:#aaaaaa;padding:3px">
+You are at a page that does not exist yet. To create an article on this topic, type in the box below (see the '''[[Wikipedia:Help|help page]]''' and '''[[Wikipedia:Your first article|your first article guide]]''' for more info). '''Please do not''' create an article about yourself, or an article to promote a product or business, as it would be in '''serious violation''' of [[Wikipedia:Policy|Wikipedia's policies]] and removed without notice. Your addition to the encyclopedia will be visible immediately, so please '''only test in the [[wikipedia:sandbox|sandbox]]'''. 
+</div>";s:12:"talkpagetext";s:31:"<!-- MediaWiki:talkpagetext -->";s:16:"anontalkpagetext";s:450:"----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[{{ns:Special}}:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.''";s:13:"noarticletext";s:106:"(Wikipedia does not have an article on this topic yet. To start the article, click <b>Edit this page</b>.)";s:14:"clearyourcache";s:214:"'''Note:''' After saving, you have to clear your browser cache to see the changes: '''Mozilla:''' click ''reload''(or ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.";s:22:"usercssjsyoucanpreview";s:90:"<strong>Tip:</strong> Use the 'Show preview' button to test your new css/js before saving.";s:14:"usercsspreview";s:85:"'''Remember that you are only previewing your user CSS, it has not yet been saved!'''";s:13:"userjspreview";s:100:"'''Remember that you are only testing/previewing your user javascript, it has not yet been saved!'''";s:7:"updated";s:9:"(Updated)";s:4:"note";s:23:"<strong>Note:</strong> ";s:11:"previewnote";s:65:"Remember that this is only a preview, and has not yet been saved!";s:15:"previewconflict";s:102:"This preview reflects the text in the upper
+text editing area as it will appear if you choose to save.";s:7:"editing";s:10:"Editing $1";s:11:"sectionedit";s:10:" (section)";s:11:"commentedit";s:10:" (comment)";s:12:"editconflict";s:17:"Edit conflict: $1";s:15:"explainconflict";s:328:"Someone else has changed this page since you
+started editing it.
+The upper text area contains the page text as it currently exists.
+Your changes are shown in the lower text area.
+You will have to merge your changes into the existing text.
+<b>Only</b> the text in the upper text area will be saved when you
+press "Save page".
+<p>";s:8:"yourtext";s:9:"Your text";s:13:"storedversion";s:14:"Stored version";s:10:"editingold";s:147:"<strong>WARNING: You are editing an out-of-date
+revision of this page.
+If you save it, any changes made since this revision will be lost.</strong>
+";s:8:"yourdiff";s:11:"Differences";s:16:"copyrightwarning";s:495:"All contributions to Wikipedia are released under the GNU Free Documentation License (see $1 for details). If you do not want your writing to be edited mercilessly and redistributed at will, then do not submit it. <br />
+By submitting your work you promise you wrote it yourself, or copied it from <a href="{{localurle:Public_domain}}">public domain</a> resources  &#8212; this does <strong>not</strong> include most web pages. <strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>";s:15:"longpagewarning";s:361:"<div style="border-width:1px;border-style:solid;border-color:#aaaaaa;padding:3px">
+WARNING: <a href="{{localurle:Wikipedia:Page_size}}">This page is $1 kilobytes long</a>; some
+browsers may have problems editing pages approaching or longer than 32 kB.
+Please consider breaking the page into smaller <a href="{{localurle:Wikipedia:Section}}">sections</a>.
+</div>";s:15:"readonlywarning";s:185:"WARNING: The database has been locked for maintenance,
+so you will not be able to save your edits right now. You may wish to cut-n-paste
+the text into a text file and save it for later.";s:20:"protectedpagewarning";s:200:"WARNING:  This page has been locked so that only
+users with sysop privileges can edit it. Be sure you are following the
+<a href="{{localurle:Project:Protection_policy}}">protected page
+guidelines</a>.";s:10:"revhistory";s:16:"Revision history";s:9:"nohistory";s:39:"There is no edit history for this page.";s:11:"revnotfound";s:18:"Revision not found";s:15:"revnotfoundtext";s:114:"The old revision of the page you asked for could not be found.
+Please check the URL you used to access this page.
+";s:8:"loadhist";s:20:"Loading page history";s:10:"currentrev";s:16:"Current revision";s:12:"revisionasof";s:17:"Revision as of $1";s:3:"cur";s:3:"cur";s:4:"next";s:4:"next";s:4:"last";s:4:"last";s:4:"orig";s:4:"orig";s:10:"histlegend";s:115:"Legend: (cur) = difference with current version,
+(last) = difference with preceding version, <b>m</b> = minor edit";s:10:"difference";s:30:"(Difference between revisions)";s:10:"loadingrev";s:25:"loading revision for diff";s:6:"lineno";s:8:"Line $1:";s:11:"editcurrent";s:37:"Edit the current version of this page";s:25:"selectnewerversionfordiff";s:37:"Select a newer version for comparison";s:25:"selectolderversionfordiff";s:38:"Select an older version for comparison";s:23:"compareselectedversions";s:25:"Compare selected versions";s:13:"searchresults";s:14:"Search results";s:14:"searchhelppage";s:19:"Wikipedia:Searching";s:18:"searchingwikipedia";s:19:"Searching Wikipedia";s:16:"searchresulttext";s:58:"For more information about searching {{SITENAME}}, see $1.";s:11:"searchquery";s:14:"For query "$1"";s:8:"badquery";s:25:"Badly formed search query";s:12:"badquerytext";s:273:"We could not process your query.
+This is probably because you have attempted to search for a
+word fewer than three letters long, which is not yet supported.
+It could also be that you have mistyped the expression, for
+example "fish and and scales".
+Please try another query.";s:11:"matchtotals";s:63:"The query "$1" matched $2 page titles
+and the text of $3 pages.";s:9:"nogomatch";s:68:"No page with this exact title exists; trying to find similar titles.";s:12:"titlematches";s:21:"Article title matches";s:14:"notitlematches";s:156:"No article title matches. Try the Google or Yahoo! searches below for a full-text search. Note that their caches of Wikipedia content may not be up-to-date.";s:11:"textmatches";s:17:"Page text matches";s:13:"notextmatches";s:20:"No page text matches";s:5:"prevn";s:11:"previous $1";s:5:"nextn";s:7:"next $1";s:12:"viewprevnext";s:20:"View ($1) ($2) ($3).";s:14:"showingresults";s:57:"Showing below <b>$1</b> results starting with #<b>$2</b>.";s:17:"showingresultsnum";s:57:"Showing below <b>$3</b> results starting with #<b>$2</b>.";s:9:"nonefound";s:256:"<strong>Note</strong>: unsuccessful searches are
+often caused by searching for common words like "have" and "from",
+which are not indexed, or by specifying more than one search term (only pages
+containing all of the search terms will appear in the result).";s:11:"powersearch";s:6:"Search";s:15:"powersearchtext";s:80:"
+Search in namespaces :<br />
+$1<br />
+$2 List redirects &nbsp; Search for $3 $9";s:14:"searchdisabled";s:205:"<p>Sorry! Full text search has been disabled for performance reasons. In the meantime, you can use the Google or Yahoo! searches below. Note that their   copies of Wikipedia content may be out of date.</p>";s:12:"googlesearch";s:2050:"<p>
+<table border="0" class="plainlinks">
+
+<!-- SiteSearch Google -->
+<tr><td valign="top" align="center">
+<a href="http://www.google.com/">
+<img src="http://www.google.com/logos/Logo_40wht.gif" border="0" alt="Google" title="Google">
+</a>
+</td>
+<td width="100%">
+<form method=get action="http://www.google.com/search">
+<input type="text" name="q" size=31 maxlength=255 value="$1">
+<input type="submit" name="btnG" value="Google Search">
+<input type="hidden" name="domains" value="http://en.wikipedia.org">
+<input type="hidden" name="ie" value="$2">
+<input type="hidden" name="oe" value="$2">
+<br>
+<font size=-1>
+<input type="radio" name="sitesearch" id="gWWW" value=""><label for="gWWW">WWW</label>
+<input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked><label for="gwiki">{{SERVER}}</label>
+</font>
+</form>
+</td></tr>
+<!-- SiteSearch Google -->
+
+<!-- Spacing -->
+<tr><td colspan=2>&nbsp;</td></tr>
+<!-- Spacing -->
+
+<!-- Yahoo! search -->
+<tr><td valign="top" align="center">
+<a href="http://search.yahoo.com/">
+<img src="http://us.i1.yimg.com/us.yimg.com/i/us/search/ysan/ysanlogo.gif" border="0" alt="Yahoo!" title="Yahoo!" vspace="5">
+</a>
+</td>
+<td width="100%">
+<form method=get action="http://search.yahoo.com/search">
+<input type="hidden" name="x" value="op">
+<input type="hidden" name="va_vt" value="any">
+<input type="text" name="va" size="31" value="$1">
+<input type="submit" value="Yahoo! Search">
+<br>
+<font size=-1>
+<input type="radio" name="vs" id="yWWW" value=""><label for="yWWW">WWW</label>
+<input type="radio" name="vs" id="ywiki" value="{{SERVER}}" checked><label for="ywiki">{{SERVER}}</label>
+</font>
+</form>
+</td></tr>
+<!-- Yahoo! search -->
+
+</table>
+
+You may use the following link to create an article of this title if it doesn't exist or edit it if it exists: <a class="new" href="/w/wiki.phtml?title=$1&action=edit">$1</a>
+<br><br>
+<b>Note</b>: We recommend that you search Wikipedia before creating a new article to avoid duplicating an existing one, which may be under a different name or spelling.";s:14:"blanknamespace";s:6:"(Main)";s:11:"preferences";s:11:"Preferences";s:12:"prefsnologin";s:13:"Not logged in";s:16:"prefsnologintext";s:92:"You must be <a href="{{localurle:Special:Userlogin}}">logged in</a>
+to set user preferences.";s:14:"prefslogintext";s:193:"You are logged in as "$1".
+Your internal ID number is $2.
+
+See [[m:MediaWiki User's Guide: Setting preferences|MediaWiki User's Guide: Setting preferences]] for help deciphering the options.";s:10:"prefsreset";s:41:"Preferences have been reset from storage.";s:10:"qbsettings";s:17:"Quickbar settings";s:14:"qbsettingsnote";s:72:"This preference only works in the 'Standard' and the 'CologneBlue' skin.";s:14:"changepassword";s:15:"Change password";s:4:"skin";s:4:"Skin";s:4:"math";s:14:"Rendering math";s:10:"dateformat";s:11:"Date format";s:12:"math_failure";s:15:"Failed to parse";s:18:"math_unknown_error";s:13:"unknown error";s:21:"math_unknown_function";s:17:"unknown function ";s:17:"math_lexing_error";s:12:"lexing error";s:17:"math_syntax_error";s:12:"syntax error";s:16:"math_image_error";s:86:"PNG conversion failed; check for correct installation of latex, dvips, gs, and convert";s:15:"math_bad_tmpdir";s:44:"Can't write to or create math temp directory";s:15:"math_bad_output";s:46:"Can't write to or create math output directory";s:12:"math_notexvc";s:62:"Missing texvc executable; please see math/README to configure.";s:14:"prefs-personal";s:9:"User data";s:8:"prefs-rc";s:31:"Recent changes and stub display";s:10:"prefs-misc";s:13:"Misc settings";s:9:"saveprefs";s:16:"Save preferences";s:10:"resetprefs";s:17:"Reset preferences";s:11:"oldpassword";s:12:"Old password";s:11:"newpassword";s:12:"New password";s:9:"retypenew";s:19:"Retype new password";s:11:"textboxsize";s:7:"Editing";s:4:"rows";s:24:"Editbox dimensions: Rows";s:7:"columns";s:7:"Columns";s:17:"searchresultshead";s:22:"Search result settings";s:14:"resultsperpage";s:21:"Hits to show per page";s:12:"contextlines";s:21:"Lines to show per hit";s:12:"contextchars";s:30:"Characters of context per line";s:13:"stubthreshold";s:26:"Threshold for stub display";s:18:"recentchangescount";s:34:"Number of titles in recent changes";s:10:"savedprefs";s:33:"Your preferences have been saved.";s:14:"timezonelegend";s:9:"Time zone";s:12:"timezonetext";s:69:"Enter number of hours your local time differs
+from server time (UTC).";s:9:"localtime";s:18:"Local time display";s:14:"timezoneoffset";s:6:"Offset";s:10:"servertime";s:18:"Server time is now";s:13:"guesstimezone";s:20:"Fill in from browser";s:9:"emailflag";s:31:"Disable e-mail from other users";s:9:"defaultns";s:38:"Search in these namespaces by default:";s:7:"changes";s:7:"changes";s:13:"recentchanges";s:14:"Recent changes";s:17:"recentchangestext";s:55:"Track the most recent changes to the wiki on this page.";s:9:"rcloaderr";s:22:"Loading recent changes";s:6:"rcnote";s:84:"Below are the last <strong>$1</strong> changes in the last <strong>$2</strong> days.";s:10:"rcnotefrom";s:62:"Below are the changes since <b>$2</b> (up to <b>$1</b> shown).";s:10:"rclistfrom";s:33:"Show new changes starting from $1";s:13:"showhideminor";s:45:"$1 minor edits | $2 bots | $3 logged in users";s:7:"rclinks";s:44:"Show last $1 changes in last $2 days<br />$3";s:6:"rchide";s:71:"in $4 form; $1 minor edits; $2 secondary namespaces; $3 multiple edits.";s:5:"rcliu";s:31:"; $1 edits from logged in users";s:4:"diff";s:4:"diff";s:4:"hist";s:4:"hist";s:4:"hide";s:4:"hide";s:4:"show";s:4:"show";s:9:"tableform";s:5:"table";s:8:"listform";s:4:"list";s:8:"nchanges";s:10:"$1 changes";s:15:"minoreditletter";s:1:"m";s:13:"newpageletter";s:1:"N";s:6:"upload";s:11:"Upload file";s:9:"uploadbtn";s:11:"Upload file";s:10:"uploadlink";s:13:"Upload images";s:8:"reupload";s:9:"Re-upload";s:12:"reuploaddesc";s:26:"Return to the upload form.";s:13:"uploadnologin";s:13:"Not logged in";s:17:"uploadnologintext";s:84:"You must be <a href="{{localurle:Special:Userlogin}}">logged in</a>
+to upload files.";s:10:"uploadfile";s:37:"Upload images, sounds, documents etc.";s:11:"uploaderror";s:12:"Upload error";s:10:"uploadtext";s:2366:"Use this page to upload files from your local hard disk.
+
+<div style="border: 1px solid grey; background: #ddf; padding: 7px; margin: 0 auto;"><strong>Notice:</strong> Your file is likely to get deleted if you do not follow the following guidelines:
+
+<ul><li>Provide <em>detailed</em> information on the source of the file. If you made it yourself, say so. If you got it from the Internet, provide a link to the page.<br>&nbsp;</li>
+
+<li>Specify the <em>licence</em> of the file. Add <tt>&#123;{GFDL}}</tt> if the file is licenced under the <a href="{{localurle:project:Text_of_the_GNU_Free_Documentation_License}}">GNU FDL</a>, <tt>&#123;{PD}}</tt> if it is in the <a href="{{localurle:Public_domain}}">public domain</a>, etc. See <a href="{{localurle:Project:Image_copyright_tags}}">Image copyright tags</a> for more of these.<br>&nbsp;</li>
+
+<li>Place a link to the file (or an image tag, if it is an image) in a relevant article, or use the description page to describe what the file contains (preferably both). In the case of an image, describe what the image depicts. In the case of sound files, describe what it is.<br>&nbsp;</li>
+
+<li>To include the image in an article, use a link in the form <tt>[[Image:File.jpg]]</tt> or <tt>[[Image:File.png|alt text]]</tt> or <tt>[[Media:File.ogg]]</tt> for sounds. To include an image as a 
+thumbnail, use <tt>[[Image:File.jpg|thumb|Caption]]</tt><br>&nbsp;</li>
+
+<li><strong>Use a sensible filename!</strong> Please name your file, say, "Eiffel Tower, Paris, at night.jpg" in preference to "etpan1024c.jpg" or somesuch. This will prevent your upload from replacing an already-existing file without warning. (You can check for existing images in the <a class='internal' href="{{localurle:Special:Imagelist}}">list of uploaded images</a>.)<br>&nbsp;</li>
+
+See <a href="{{localurle:Project:Uploading_images}}">{{ns:project}}:Uploading images</a> for information on how this upload form works, how to use images in articles, and what file formats are preferred for what types of images.
+</div>
+
+<p>To upload a file, type the path and filename to the file on your hard disk in the box below (or use the <i>Browse</i> button to display a dialog box). Enter <strong>all</strong> the necessary information in the <i>Summary</i> field, click the checkbox to acknowledge the copyright, and finally click <i>Upload file</i>.</p>";s:9:"uploadlog";s:10:"upload log";s:13:"uploadlogpage";s:10:"Upload_log";s:17:"uploadlogpagetext";s:99:"Below is a list of the most recent file uploads.
+All times shown are server time (UTC).
+<ul>
+</ul>
+";s:8:"filename";s:8:"Filename";s:8:"filedesc";s:7:"Summary";s:10:"filestatus";s:16:"Copyright status";s:10:"filesource";s:6:"Source";s:11:"affirmation";s:95:"I affirm that the copyright holder of this file
+agrees to license it under the terms of the $1.";s:13:"copyrightpage";s:20:"Wikipedia:Copyrights";s:17:"copyrightpagename";s:22:"{{SITENAME}} copyright";s:13:"uploadedfiles";s:14:"Uploaded files";s:13:"noaffirmation";s:65:"You must affirm that your upload does not violate
+any copyrights.";s:13:"ignorewarning";s:36:"Ignore warning and save file anyway.";s:9:"minlength";s:43:"Image names must be at least three letters.";s:11:"badfilename";s:36:"Image name has been changed to "$1".";s:11:"badfiletype";s:45:"".$1" is not a recommended image file format.";s:9:"largefile";s:54:"It is recommended that images not exceed 100k in size.";s:16:"successfulupload";s:17:"Successful upload";s:12:"fileuploaded";s:226:"File "$1" uploaded successfully.
+Please follow this link: $2 to the description page and fill
+in information about the file, such as where it came from, when it was
+created and by whom, and anything else you may know about it.";s:13:"uploadwarning";s:14:"Upload warning";s:8:"savefile";s:9:"Save file";s:13:"uploadedimage";s:13:"uploaded "$1"";s:14:"uploaddisabled";s:183:"Uploading is temporarily disabled while we're on temporary, overstressed servers.
+
+Once the regular setup is back online (sorry, no time estimate), upload should be available again.";s:9:"imagelist";s:10:"Image list";s:13:"imagelisttext";s:39:"Below is a list of $1 images sorted $2.";s:12:"getimagelist";s:19:"fetching image list";s:11:"ilshowmatch";s:35:"Show all images with names matching";s:8:"ilsubmit";s:6:"Search";s:8:"showlast";s:30:"Show last $1 images sorted $2.";s:3:"all";s:3:"all";s:6:"byname";s:7:"by name";s:6:"bydate";s:7:"by date";s:6:"bysize";s:7:"by size";s:9:"imgdelete";s:3:"del";s:7:"imgdesc";s:4:"desc";s:9:"imglegend";s:45:"Legend: (desc) = show/edit image description.";s:10:"imghistory";s:13:"Image history";s:9:"revertimg";s:3:"rev";s:9:"deleteimg";s:3:"del";s:13:"imghistlegend";s:174:"Legend: (cur) = this is the current image, (del) = delete
+this old version, (rev) = revert to this old version.
+<br /><i>Click on date to see image uploaded on that date</i>.";s:10:"imagelinks";s:11:"Image links";s:12:"linkstoimage";s:39:"The following pages link to this image:";s:14:"nolinkstoimage";s:43:"There are no pages that link to this image.";s:10:"statistics";s:10:"Statistics";s:9:"sitestats";s:15:"Site statistics";s:9:"userstats";s:15:"User statistics";s:13:"sitestatstext";s:758:"There are '''$1''' total pages in the database. This includes "talk" pages, pages about Wikipedia, minimal "stub" pages, redirects, and others that probably don't qualify as articles. Excluding those, there are '''$2''' pages that are probably legitimate articles.
+There have been a total of '''$4''' page edits since the software was upgraded (July 20, 2002). That comes to '''$5''' average edits per page.
+
+For more detailed statistics see:
+*[http://www.wikipedia.org/wikistats/EN/Sitemap.htm Wikistats]
+<!--[http://en.wikipedia.org/stats Usage statistics]-->
+*[http://wikimedia.org/stats/en.wikipedia.org Usage statistics]
+*[http://wikimedia.org/stats/live Live server traffic charts]
+*[http://en.wikipedia.org/wiki/Wikipedia:Statistics Growth statistics]";s:13:"userstatstext";s:83:"There are '''$1''' registered users.
+'''$2''' of these are administrators (see $3).";s:11:"maintenance";s:16:"Maintenance page";s:18:"maintnancepagetext";s:176:"This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)";s:19:"maintenancebacklink";s:24:"Back to Maintenance Page";s:15:"disambiguations";s:20:"Disambiguation pages";s:19:"disambiguationspage";s:39:"Wikipedia:Links_to_disambiguating_pages";s:19:"disambiguationstext";s:234:"The following pages link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.";s:15:"doubleredirects";s:16:"Double Redirects";s:19:"doubleredirectstext";s:338:"<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />
+Each row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the "real" target page, which the first redirect should point to.";s:15:"brokenredirects";s:16:"Broken Redirects";s:19:"brokenredirectstext";s:53:"The following redirects link to a non-existing pages.";s:9:"selflinks";s:21:"Pages with Self Links";s:13:"selflinkstext";s:72:"The following pages contain a link to themselves, which they should not.";s:11:"mispeelings";s:23:"Pages with misspellings";s:15:"mispeelingstext";s:122:"The following pages contain a common misspelling, which are listed on $1. The correct spelling might be given (like this).";s:15:"mispeelingspage";s:27:"List of common misspellings";s:20:"missinglanguagelinks";s:22:"Missing Language Links";s:26:"missinglanguagelinksbutton";s:31:"Find missing language links for";s:24:"missinglanguagelinkstext";s:103:"These pages do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.";s:7:"orphans";s:14:"Orphaned pages";s:11:"lonelypages";s:14:"Orphaned pages";s:12:"unusedimages";s:13:"Unused images";s:12:"popularpages";s:13:"Popular pages";s:6:"nviews";s:8:"$1 views";s:11:"wantedpages";s:12:"Wanted pages";s:6:"nlinks";s:8:"$1 links";s:8:"allpages";s:9:"All pages";s:10:"randompage";s:11:"Random page";s:10:"shortpages";s:11:"Short pages";s:9:"longpages";s:10:"Long pages";s:12:"deadendpages";s:14:"Dead-end pages";s:9:"listusers";s:9:"User list";s:10:"listadmins";s:11:"Admins list";s:12:"specialpages";s:13:"Special pages";s:9:"spheading";s:27:"Special pages for all users";s:14:"sysopspheading";s:18:"For sysop use only";s:18:"developerspheading";s:22:"For developer use only";s:11:"protectpage";s:12:"Protect page";s:19:"recentchangeslinked";s:15:"Related changes";s:6:"rclsub";s:27:"(to pages linked from "$1")";s:5:"debug";s:5:"Debug";s:8:"newpages";s:9:"New pages";s:12:"ancientpages";s:12:"Oldest pages";s:4:"intl";s:19:"Interlanguage links";s:4:"move";s:4:"Move";s:12:"movethispage";s:14:"Move this page";s:16:"unusedimagestext";s:136:"<p>Please note that other web sites may link to an image with
+a direct URL, and so may still be listed here despite being
+in active use.";s:11:"booksources";s:12:"Book sources";s:14:"booksourcetext";s:258:"Below is a list of links to other sites that
+sell new and used books, and may also have further information
+about books you are looking for. {{SITENAME}} is not affiliated with any of these businesses, and
+this list should not be construed as an endorsement.";s:4:"isbn";s:4:"ISBN";s:6:"rfcurl";s:35:"http://www.faqs.org/rfcs/rfc$1.html";s:14:"alphaindexline";s:8:"$1 to $2";s:7:"version";s:7:"Version";s:11:"mailnologin";s:15:"No send address";s:15:"mailnologintext";s:197:"You must be <a href="{{localurl:Special:Userlogin}}">logged in</a>
+and have a valid e-mail address in your <a href="{{localurle:Special:Preferences}}">preferences</a>
+to send e-mail to other users.";s:9:"emailuser";s:16:"E-mail this user";s:9:"emailpage";s:11:"E-mail user";s:13:"emailpagetext";s:265:"If this user has entered a valid e-mail address in
+his or her user preferences, the form below will send a single message.
+The e-mail address you entered in your user preferences will appear
+as the "From" address of the mail, so the recipient will be able
+to reply.";s:15:"usermailererror";s:28:"Mail object returned error: ";s:15:"defemailsubject";s:19:"{{SITENAME}} e-mail";s:12:"noemailtitle";s:17:"No e-mail address";s:11:"noemailtext";s:105:"This user has not specified a valid e-mail address,
+or has chosen not to receive e-mail from other users.";s:9:"emailfrom";s:4:"From";s:7:"emailto";s:2:"To";s:12:"emailsubject";s:7:"Subject";s:12:"emailmessage";s:7:"Message";s:9:"emailsend";s:4:"Send";s:9:"emailsent";s:11:"E-mail sent";s:13:"emailsenttext";s:34:"Your e-mail message has been sent.";s:9:"watchlist";s:12:"My watchlist";s:12:"watchlistsub";s:15:"(for user "$1")";s:11:"nowatchlist";s:36:"You have no items on your watchlist.";s:12:"watchnologin";s:13:"Not logged in";s:16:"watchnologintext";s:85:"You must be <a href="/wiki/Special:Userlogin">logged in</a>
+to modify your watchlist.";s:10:"addedwatch";s:18:"Added to watchlist";s:14:"addedwatchtext";s:390:"The page "[[$1]]" has been added to your [[{{ns:-1}}:Watchlist|Watchlist]].
+Future changes to this page and its associated Talk or article page will be listed there,
+and the page will appear '''bolded''' in the [[{{ns:-1}}:Recentchanges|list of recent changes]] to
+make it easier to pick out.
+
+If you want to remove the page from your watchlist later, click the "unwatch" tab in the header.";s:12:"removedwatch";s:22:"Removed from watchlist";s:16:"removedwatchtext";s:51:"The page "$1" has been removed from your watchlist.";s:5:"watch";s:5:"Watch";s:13:"watchthispage";s:15:"Watch this page";s:7:"unwatch";s:7:"Unwatch";s:15:"unwatchthispage";s:13:"Stop watching";s:12:"notanarticle";s:18:"Not a content page";s:13:"watchnochange";s:68:"None of your watched items were edited in the time period displayed.";s:12:"watchdetails";s:238:"You have $1 pages on your watchlist (not counting talk pages); you can <a href='$4'>display and edit the complete list</a>. In the time period selected below, users have made $2 edits to articles in the English version of Wikipedia. $3...";s:18:"watchmethod-recent";s:39:"Checking recent edits for watched pages";s:16:"watchmethod-list";s:39:"Checking watched pages for recent edits";s:13:"removechecked";s:35:"Remove checked items from watchlist";s:17:"watchlistcontains";s:33:"Your watchlist contains $1 pages.";s:13:"watcheditlist";s:181:"Here's an alphabetical list of your
+watched pages. Check the boxes of pages you want to remove
+from your watchlist and click the 'remove checked' button
+at the bottom of the screen.";s:15:"removingchecked";s:42:"Removing requested items from watchlist...";s:13:"couldntremove";s:28:"Couldn't remove item '$1'...";s:15:"iteminvalidname";s:39:"Problem with item '$1', invalid name...";s:6:"wlnote";s:58:"Below are the last $1 changes in the last <b>$2</b> hours.";s:10:"wlshowlast";s:29:"Show last $1 hours $2 days $3";s:7:"wlsaved";s:42:"This is a saved version of your watchlist.";s:10:"deletepage";s:11:"Delete page";s:7:"confirm";s:7:"Confirm";s:9:"excontent";s:12:"content was:";s:13:"exbeforeblank";s:28:"content before blanking was:";s:7:"exblank";s:14:"page was empty";s:13:"confirmdelete";s:14:"Confirm delete";s:9:"deletesub";s:15:"(Deleting "$1")";s:14:"historywarning";s:57:"Warning: The page you are about to delete has a history: ";s:17:"confirmdeletetext";s:255:"You are about to permanently delete a page
+or image along with all of its history from the database.
+Please confirm that you intend to do this, that you understand the
+consequences, and that you are doing this in accordance with
+[[{{ns:Project}}:Policy]].";s:12:"confirmcheck";s:34:"Yes, I really want to delete this.";s:14:"actioncomplete";s:15:"Action complete";s:11:"deletedtext";s:63:""$1" has been deleted.
+See $2 for a record of recent deletions.";s:14:"deletedarticle";s:12:"deleted "$1"";s:10:"dellogpage";s:12:"Deletion_log";s:14:"dellogpagetext";s:96:"Below is a list of the most recent deletions.
+All times shown are server time (UTC).
+<ul>
+</ul>
+";s:11:"deletionlog";s:12:"deletion log";s:8:"reverted";s:28:"Reverted to earlier revision";s:13:"deletecomment";s:19:"Reason for deletion";s:13:"imagereverted";s:41:"Revert to earlier version was successful.";s:8:"rollback";s:15:"Roll back edits";s:14:"rollback_short";s:8:"Rollback";s:12:"rollbacklink";s:8:"rollback";s:14:"rollbackfailed";s:15:"Rollback failed";s:12:"cantrollback";s:81:"Could not revert the edit as the last contributor is the only author of this page";s:13:"alreadyrolled";s:222:"Cannot rollback last edit of [[$1]]
+by [[{{ns:user}}:$2|$2]] ([[{{ns:User_talk}}:$2|Talk]]); someone else has edited or rolled back the page already. 
+
+Last edit was by [[{{ns:User}}:$3|$3]] ([[{{ns:User_talk}}:$3|Talk]]).";s:11:"editcomment";s:34:"The edit comment was: "<i>$1</i>".";s:10:"revertpage";s:42:"Reverted edits by $2 to last version by $1";s:14:"protectlogpage";s:14:"Protection_log";s:14:"protectlogtext";s:139:"Below is a list of page locks/unlocks.
+See [[{{ns:project}}:Protected page]] and [[{{ns:project}}:Protection policy]] for more information.";s:16:"protectedarticle";s:16:"protected [[$1]]";s:18:"unprotectedarticle";s:18:"unprotected [[$1]]";s:10:"protectsub";s:17:"(Protecting "$1")";s:18:"confirmprotecttext";s:40:"Do you really want to protect this page?";s:14:"confirmprotect";s:18:"Confirm protection";s:14:"protectcomment";s:21:"Reason for protecting";s:12:"unprotectsub";s:19:"(Unprotecting "$1")";s:20:"confirmunprotecttext";s:42:"Do you really want to unprotect this page?";s:16:"confirmunprotect";s:20:"Confirm unprotection";s:16:"unprotectcomment";s:23:"Reason for unprotecting";s:13:"protectreason";s:28:"(replace this with a reason)";s:8:"undelete";s:20:"Restore deleted page";s:12:"undeletepage";s:30:"View and restore deleted pages";s:16:"undeletepagetext";s:132:"The following pages have been deleted but are still in the archive and
+can be restored. The archive may be periodically cleaned out.";s:15:"undeletearticle";s:20:"Restore deleted page";s:17:"undeleterevisions";s:21:"$1 revisions archived";s:15:"undeletehistory";s:276:"If you restore the page, all revisions will be restored to the history.
+If a new page with the same name has been created since the deletion, the restored
+revisions will appear in the prior history, and the current revision of the live page
+will not be automatically replaced.";s:16:"undeleterevision";s:25:"Deleted revision as of $1";s:11:"undeletebtn";s:8:"Restore!";s:16:"undeletedarticle";s:13:"restored "$1"";s:13:"undeletedtext";s:134:"The page [[$1]] has been successfully restored.
+See [[{{ns:project}}:Deletion_log]] for a record of recent deletions and restorations.";s:13:"contributions";s:18:"User contributions";s:9:"mycontris";s:16:"My contributions";s:10:"contribsub";s:6:"For $1";s:10:"nocontribs";s:46:"No changes were found matching these criteria.";s:6:"ucnote";s:72:"Below are this user's last <b>$1</b> changes in the last <b>$2</b> days.";s:7:"uclinks";s:48:"View the last $1 changes; view the last $2 days.";s:5:"uctop";s:6:" (top)";s:13:"notargettitle";s:9:"No target";s:12:"notargettext";s:73:"You have not specified a target page or user
+to perform this function on.";s:11:"linklistsub";s:15:"(List of links)";s:9:"linkshere";s:33:"The following pages link to here:";s:11:"nolinkshere";s:22:"No pages link to here.";s:10:"isredirect";s:13:"redirect page";s:7:"blockip";s:10:"Block user";s:11:"blockiptext";s:732:"Use the form below to block write access from a specific IP address or username. This should be done only in accordance with [[{{ns:project}}:blocking policy|policy]]. Fill in a specific reason below (for example, citing particular pages that were vandalized).
+
+Expiry times are entered in the GNU standard format, which is described in the [http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html tar manual], e.g. "1 hour", "2 days", "next Wednesday", "1 January 2017". Alternatively, a block may be "indefinite" or "infinite". 
+
+For information about blocking ranges of addresses, see [[meta:Range blocks|Range blocks]]. To unblock someone see the [[{{ns:Special}}:Ipblocklist|list of blocked IP addresses and usernames]].";s:9:"ipaddress";s:19:"IP Address/username";s:9:"ipbexpiry";s:6:"Expiry";s:9:"ipbreason";s:6:"Reason";s:9:"ipbsubmit";s:15:"Block this user";s:12:"badipaddress";s:18:"Invalid IP address";s:13:"noblockreason";s:39:"You must supply a reason for the block.";s:17:"blockipsuccesssub";s:15:"Block succeeded";s:18:"blockipsuccesstext";s:95:""$1" has been blocked.
+<br />See [[{{ns:Special:Ipblocklist}}|IP block list]] to review blocks.";s:9:"unblockip";s:12:"Unblock user";s:13:"unblockiptext";s:90:"Use the form below to restore write access
+to a previously blocked IP address or username.";s:9:"ipusubmit";s:20:"Unblock this address";s:10:"ipusuccess";s:14:""$1" unblocked";s:11:"ipblocklist";s:42:"List of blocked IP addresses and usernames";s:13:"blocklistline";s:30:"$1, $2 blocked $3 (expires $4)";s:9:"blocklink";s:5:"block";s:11:"unblocklink";s:7:"unblock";s:12:"contribslink";s:8:"contribs";s:11:"autoblocker";s:132:"Autoblocked because your IP address has been recently used by "'''$1'''". The reason given for $1's block is as follows: "'''$2'''".";s:12:"blocklogpage";s:9:"Block_log";s:13:"blocklogentry";s:38:"blocked "$1" with an expiry time of $2";s:12:"blocklogtext";s:214:"This is a log of user blocking and unblocking actions. Automatically 
+blocked IP addresses are not listed. See the [[{{ns:Special}}:Ipblocklist|IP block list]] for
+the list of currently operational bans and blocks.";s:15:"unblocklogentry";s:14:"unblocked "$1"";s:20:"range_block_disabled";s:53:"The sysop ability to create range blocks is disabled.";s:18:"ipb_expiry_invalid";s:20:"Expiry time invalid.";s:16:"ip_range_invalid";s:18:"Invalid IP range.
+";s:12:"proxyblocker";s:13:"Proxy blocker";s:16:"proxyblockreason";s:173:"Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.";s:17:"proxyblocksuccess";s:6:"Done.
+";s:6:"lockdb";s:13:"Lock database";s:8:"unlockdb";s:15:"Unlock database";s:10:"lockdbtext";s:294:"Locking the database will suspend the ability of all
+users to edit pages, change their preferences, edit their watchlists, and
+other things requiring changes in the database.
+Please confirm that this is what you intend to do, and that you will
+unlock the database when your maintenance is done.";s:12:"unlockdbtext";s:227:"Unlocking the database will restore the ability of all
+users to edit pages, change their preferences, edit their watchlists, and
+other things requiring changes in the database.
+Please confirm that this is what you intend to do.";s:11:"lockconfirm";s:40:"Yes, I really want to lock the database.";s:13:"unlockconfirm";s:42:"Yes, I really want to unlock the database.";s:7:"lockbtn";s:13:"Lock database";s:9:"unlockbtn";s:15:"Unlock database";s:13:"locknoconfirm";s:39:"You did not check the confirmation box.";s:16:"lockdbsuccesssub";s:23:"Database lock succeeded";s:18:"unlockdbsuccesssub";s:21:"Database lock removed";s:17:"lockdbsuccesstext";s:99:"The database has been locked.
+<br />Remember to remove the lock after your maintenance is complete.";s:19:"unlockdbsuccesstext";s:31:"The database has been unlocked.";s:6:"asksql";s:9:"SQL query";s:10:"asksqltext";s:209:"Use the form below to make a direct query of the
+database.
+Use single quotes ('like this') to delimit string literals.
+This can often add considerable load to the server, so please use
+this function sparingly.";s:11:"sqlislogged";s:86:"Please note that all queries are logged: http://en.wikipedia.org/upload/sqllog_mFhyRe6";s:8:"sqlquery";s:11:"Enter query";s:8:"querybtn";s:12:"Submit query";s:10:"selectonly";s:35:"Only read-only queries are allowed.";s:15:"querysuccessful";s:16:"Query successful";s:14:"makesysoptitle";s:24:"Make a user into a sysop";s:13:"makesysoptext";s:169:"This form is used by bureaucrats to turn ordinary users into administrators. 
+Type the name of the user in the box and press the button to make the user an administrator";s:13:"makesysopname";s:17:"Name of the user:";s:15:"makesysopsubmit";s:27:"Make this user into a sysop";s:11:"makesysopok";s:31:"<b>User "$1" is now a sysop</b>";s:13:"makesysopfail";s:84:"<b>User "$1" could not be made into a sysop. (Did you enter the name correctly?)</b>";s:17:"setbureaucratflag";s:19:"Set bureaucrat flag";s:13:"bureaucratlog";s:14:"Bureaucrat_log";s:18:"bureaucratlogentry";s:29:"Rights for user "$1" set "$2"";s:6:"rights";s:7:"Rights:";s:15:"set_user_rights";s:15:"Set user rights";s:15:"user_rights_set";s:35:"<b>User rights for "$1" updated</b>";s:15:"set_rights_fail";s:81:"<b>User rights for "$1" could not be set. (Did you enter the name correctly?)</b>";s:9:"makesysop";s:24:"Make a user into a sysop";s:8:"movepage";s:9:"Move page";s:12:"movepagetext";s:840:"Using the form below will rename a page, moving all
+of its history to the new name.
+The old title will become a redirect page to the new title.
+'''Links to the old page title will not be changed; be sure to check for double-redirects (using "What links here")''' after the move.
+You are responsible for making sure that links continue to
+point where they are supposed to go.
+
+Note that the page will '''not''' be moved if there is already
+a page at the new title, unless it is empty or a redirect and has no
+past edit history. This means that you can rename a page back to where
+it was just renamed from if you make a mistake, and you cannot overwrite
+an existing page.
+
+<b>WARNING!</b>
+This can be a drastic and unexpected change for a popular page;
+please be sure you understand the consequences of this before
+proceeding.";s:16:"movepagetalktext";s:438:"The associated talk page, if any, will be automatically moved along with it '''unless:'''
+*You are moving the page across namespaces,
+*A non-empty talk page already exists under the new name, or
+*You uncheck the box below.
+
+In those cases, you will have to move or merge the page manually if desired. Please contact an [[{{ns:Project}}:Administrators|Administrator]] if you cannot do so, but '''do not''' just copy and paste the contents.";s:11:"movearticle";s:9:"Move page";s:11:"movenologin";s:13:"Not logged in";s:15:"movenologintext";s:105:"You must be a registered user and <a href="{{localurle:Special:Userlogin}}">logged in</a>
+to move a page.";s:8:"newtitle";s:12:"To new title";s:11:"movepagebtn";s:9:"Move page";s:12:"pagemovedsub";s:14:"Move succeeded";s:13:"pagemovedtext";s:173:"Page "[[$1]]" moved to "[[$2]]".
+
+<strong>Please [[{{ns:Special}}:Whatlinkshere/$2|check]] if this move has created any double-redirects, and fix them if necessary.</strong>";s:13:"articleexists";s:213:"A page of that name already exists, or the name you have chosen is not valid. Please choose another name, or contact an <a href="{{localurle:Wikipedia:Administrators}}">Administrator</a> to help you with the move.";s:10:"talkexists";s:285:"The page itself was moved successfully, but the talk page could not be moved because one already exists at the new title. Please merge them manually. Contact an <a href="/wiki/Wikipedia:Administrators">Administrator</a> if you cannot do so, but DO NOT just copy and paste the contents.";s:7:"movedto";s:8:"moved to";s:8:"movetalk";s:40:"Move "talk" page as well, if applicable.";s:13:"talkpagemoved";s:43:"The corresponding talk page was also moved.";s:16:"talkpagenotmoved";s:59:"The corresponding talk page was <strong>not</strong> moved.";s:9:"1movedto2";s:14:"$1 moved to $2";s:6:"export";s:12:"Export pages";s:10:"exporttext";s:622:"You can export the text and editing history of a particular page or set of pages wrapped in some XML. In the future, this may then be imported into another wiki running MediaWiki software, although there is no support for this feature in the current version.
+
+To export article pages, enter the titles in the text box below, one title per line, and select whether you want the current version as well as all old versions, with the page history lines, or just the current version with the info about the last edit.
+
+In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/Train]] for the article [[Train]].";s:13:"exportcuronly";s:55:"Include only the current revision, not the full history";s:11:"allmessages";s:19:"All system messages";s:15:"allmessagestext";s:76:"This is a list of all system messages available in the MediaWiki: namespace.";s:14:"thumbnail-more";s:7:"Enlarge";s:12:"missingimage";s:36:"<b>Missing image</b><br /><i>$1</i>
+";s:6:"import";s:12:"Import pages";s:10:"importtext";s:118:"Please export the file from the source wiki using the Special:Export utility, save it to your disk and upload it here.";s:12:"importfailed";s:17:"Import failed: $1";s:12:"importnotext";s:16:"Empty or no text";s:13:"importsuccess";s:17:"Import succeeded!";s:21:"importhistoryconflict";s:72:"Conflicting history revision exists (may have imported this page before)";s:16:"accesskey-search";s:1:"f";s:19:"accesskey-minoredit";s:1:"i";s:14:"accesskey-save";s:1:"s";s:17:"accesskey-preview";s:1:"p";s:33:"accesskey-compareselectedversions";s:1:"v";s:14:"tooltip-search";s:24:"Search this wiki [alt-f]";s:17:"tooltip-minoredit";s:33:"Mark this as a minor edit [alt-i]";s:12:"tooltip-save";s:25:"Save your changes [alt-s]";s:15:"tooltip-preview";s:60:"Preview your changes, please use this before saving! [alt-p]";s:31:"tooltip-compareselectedversions";s:75:"See the differences between the two selected versions of this page. [alt-v]";s:12:"Monobook.css";s:67:"a { text-decoration: underline }
+#siteNotice { padding-left: 4px; }";s:12:"nodublincore";s:50:"Dublin Core RDF metadata disabled for this server.";s:17:"nocreativecommons";s:55:"Creative Commons RDF metadata disabled for this server.";s:13:"notacceptable";s:68:"The wiki server can't provide data in a format your client can read.";s:9:"anonymous";s:33:"Anonymous user(s) of {{SITENAME}}";s:8:"siteuser";s:17:"Wikipedia user $1";s:14:"lastmodifiedby";s:37:"This page was last modified $1 by $2.";s:3:"and";s:3:"and";s:13:"othercontribs";s:20:"Based on work by $1.";s:9:"siteusers";s:20:"Wikipedia user(s) $1";s:19:"spamprotectiontitle";s:22:"Spam protection filter";s:18:"spamprotectiontext";s:214:"The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site. 
+
+You might want to check the following regular expression for patterns that are currently blocked:";s:16:"subcategorycount";s:44:"There are $1 subcategories to this category.";s:20:"categoryarticlecount";s:39:"There are $1 articles in this category.";s:18:"usenewcategorypage";s:70:"1
+
+Set first character to "0" to disable the new category page layout.";s:11:"Monobook.js";s:3547:"/* tooltips and access keys */
+ta = new Object();
+ta['pt-userpage'] = new Array('.','My user page'); 
+ta['pt-anonuserpage'] = new Array('.','The user page for the ip you\'re editing as'); 
+ta['pt-mytalk'] = new Array('n','My talk page'); 
+ta['pt-anontalk'] = new Array('n','Discussion about edits from this ip address'); 
+ta['pt-preferences'] = new Array('','My preferences'); 
+ta['pt-watchlist'] = new Array('l','The list of pages you\'re monitoring for changes.'); 
+ta['pt-mycontris'] = new Array('y','List of my contributions'); 
+ta['pt-login'] = new Array('o','You are encouraged to log in, it is not mandatory however.'); 
+ta['pt-anonlogin'] = new Array('o','You are encouraged to log in, it is not mandatory however.'); 
+ta['pt-logout'] = new Array('o','Log out'); 
+ta['ca-article'] = new Array('a','View the content page'); 
+ta['ca-talk'] = new Array('t','Discussion about the content page'); 
+ta['ca-edit'] = new Array('e','You can edit this page. Please use the preview button before saving.'); 
+ta['ca-addsection'] = new Array('+','Add a comment to this discussion.'); 
+ta['ca-viewsource'] = new Array('e','This page is protected. You can view its source.'); 
+ta['ca-history'] = new Array('h','Past versions of this page.'); 
+ta['ca-protect'] = new Array('=','Protect this page'); 
+ta['ca-delete'] = new Array('d','Delete this page'); 
+ta['ca-undelete'] = new Array('d','Restore the edits done to this page before it was deleted'); 
+ta['ca-move'] = new Array('m','Move this page'); 
+ta['ca-nomove'] = new Array('','You don\'t have the permissions to move this page'); 
+ta['ca-watch'] = new Array('w','Add this page to your watchlist'); 
+ta['ca-unwatch'] = new Array('w','Remove this page from your watchlist'); 
+ta['search'] = new Array('f','Search this wiki'); 
+ta['p-logo'] = new Array('','Main Page'); 
+ta['n-mainpage'] = new Array('z','Visit the Main Page'); 
+ta['n-portal'] = new Array('','About the project, what you can do, where to find things'); 
+ta['n-currentevents'] = new Array('','Find background information on current events'); 
+ta['n-recentchanges'] = new Array('r','The list of recent changes in the wiki.'); 
+ta['n-randompage'] = new Array('x','Load a random page'); 
+ta['n-help'] = new Array('','The place to find out.'); 
+ta['n-sitesupport'] = new Array('','Support us'); 
+ta['t-whatlinkshere'] = new Array('j','List of all wiki pages that link here'); 
+ta['t-recentchangeslinked'] = new Array('k','Recent changes in pages linking to this page'); 
+ta['feed-rss'] = new Array('','RSS feed for this page'); 
+ta['feed-atom'] = new Array('','Atom feed for this page'); 
+ta['t-contributions'] = new Array('','View the list of contributions of this user'); 
+ta['t-emailuser'] = new Array('','Send a mail to this user'); 
+ta['t-upload'] = new Array('u','Upload images or media files'); 
+ta['t-specialpages'] = new Array('q','List of all special pages'); 
+ta['ca-nstab-main'] = new Array('c','View the content page'); 
+ta['ca-nstab-user'] = new Array('c','View the user page'); 
+ta['ca-nstab-media'] = new Array('c','View the media page'); 
+ta['ca-nstab-special'] = new Array('','This is a special page, you can\'t edit the page itself.'); 
+ta['ca-nstab-wp'] = new Array('a','View the project page'); 
+ta['ca-nstab-image'] = new Array('c','View the image page'); 
+ta['ca-nstab-mediawiki'] = new Array('c','View the system message'); 
+ta['ca-nstab-template'] = new Array('c','View the template'); 
+ta['ca-nstab-help'] = new Array('c','View the help page'); 
+ta['ca-nstab-category'] = new Array('c','View the category page'); 
+";}

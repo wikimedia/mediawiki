@@ -14,20 +14,23 @@ function wfSpecialImagelist()
 	$bydate = wfMsg( "bydate" );
 	$bysize = wfMsg( "bysize" );
 
-	if ( "bysize" == $sort ) {
-		$sql .= " ORDER BY img_size DESC";
-		$st = $bysize;
-	} else if ( "byname" == $sort ) {
-		if ( $wpIlMatch ) {
-			$nt = Title::newFromUrl( $wpIlMatch );
+	if ( !empty( $wpIlMatch ) ) {
+		$nt = Title::newFromUrl( $wpIlMatch );
+		if($nt ) {
 			$m = wfStrencode( strtolower( $nt->getDBkey() ) );
 			$m = str_replace( "%", "\\%", $m );
 			$m = str_replace( "_", "\\_", $m );
 			$sql .= " WHERE LCASE(img_name) LIKE '%{$m}%'";
 		}
+	}
+	if ( "bysize" == $sort ) {
+		$sql .= " ORDER BY img_size DESC";
+		$st = $bysize;
+	} else if ( "byname" == $sort ) {
 		$sql .= " ORDER BY img_name";
 		$st = $byname;
 	} else {
+		$sort = "bydate";
 		$sql .= " ORDER BY img_timestamp DESC";
 		$st = $bydate;
 	}
@@ -48,11 +51,12 @@ function wfSpecialImagelist()
 	$cap = wfMsg( "ilshowmatch" );
 	$sub = wfMsg( "ilsubmit" );
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Imagelist" );
-	$action = $titleObj->escapeLocalURL(  "sort=byname&limit={$limit}" );
+	$action = $titleObj->escapeLocalURL(  "sort={$sort}&limit={$limit}" );
 
 	$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
 	  "{$action}\">" .
-	  "{$cap}: <input type='text' size='8' name=\"wpIlMatch\" value=\"\" /> " .
+	  "{$cap}: <input type='text' size='8' name=\"wpIlMatch\" value=\"" .
+	  htmlspecialchars( $wpIlMatch ) . "\" /> " .
 	  "<input type='submit' name=\"wpIlSubmit\" value=\"{$sub}\" /></form>" );
 	$nums = array( 50, 100, 250, 500 );
 	$here = $wgLang->specialPage( "Imagelist" );
@@ -64,9 +68,9 @@ function wfSpecialImagelist()
 		$first = false;
 
 		$fill .= $sk->makeKnownLink( $here, $wgLang->formatNum( $num ),
-		  "sort=bysize&limit={$num}" );
+		  "sort=byname&limit={$num}&wpIlMatch=" . urlencode( $wpIlMatch ) );
 	}
-	$text = wfMsg( "showlast", $fill, $bysize );
+	$text = wfMsg( "showlast", $fill, $byname );
 	$wgOut->addHTML( "<p>{$text}<br />\n" );
 
 	$fill = "";
@@ -76,7 +80,19 @@ function wfSpecialImagelist()
 		$first = false;
 
 		$fill .= $sk->makeKnownLink( $here, $wgLang->formatNum( $num ),
-		  "sort=bydate&limit={$num}" );
+		  "sort=bysize&limit={$num}&wpIlMatch=" . urlencode( $wpIlMatch ) );
+	}
+	$text = wfMsg( "showlast", $fill, $bysize );
+	$wgOut->addHTML( "{$text}<br />\n" );
+
+	$fill = "";
+	$first = true;
+	foreach ( $nums as $num ) {
+		if ( ! $first ) { $fill .= " | "; }
+		$first = false;
+
+		$fill .= $sk->makeKnownLink( $here, $wgLang->formatNum( $num ),
+		  "sort=bydate&limit={$num}&wpIlMatch=" . urlencode( $wpIlMatch ) );
 	}
 	$text = wfMsg( "showlast", $fill, $bydate );
 	$wgOut->addHTML( "{$text}</p>\n<p>" );
