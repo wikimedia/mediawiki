@@ -9,6 +9,15 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	global $wgOut, $wgArticle, $wgUser;
 	global $wgMessageCache, $wgMemc, $wgDBname, $wgUseMemCached;
 
+	# Initialise $wgOut and $wgUser for a command line script
+	$wgOut->disable();
+
+	$wgUser = new User;
+	$wgUser->setLoaded( true ); # Don't load from DB
+	$wgUser->setName( "Template namespace initialisation script" );
+	$wgUser->addRight( "bot" );
+	$wgUser = User::newFromName( 'MediaWiki default' );
+	
 	# Don't try to draw messages from the database we're initialising
 	$wgMessageCache->disable();
 
@@ -21,8 +30,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 
 	$timestamp = wfTimestampNow();
 	$invTimestamp = wfInvertTimestamp( $timestamp );
-	$mwMsg =& MagicWord::get( MAG_MSG );
-	$navText = str_replace( "$1", "allmessagestext", $mwMsg->getSynonym( 0 ) );
+	$navText = '{{int:allmessagestext}}';
 	$navText .= "
 
 <table border=1 width=100%><tr><td>
@@ -68,7 +76,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	# Decide whether or not each one needs to be overwritten
 	$existingTitles = array();
 	while ( $row ) {
-		if ( !$row->cur_is_new || $row->cur_user_text != $username ) {
+		if ( $row->cur_user_text != $username ) {
 			$existingTitles[$row->cur_title] = "keep";
 		} else {
 			$existingTitles[$row->cur_title] = "chuck";
@@ -83,8 +91,6 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		cur_user_text, cur_timestamp, cur_restrictions,
 		cur_is_new, inverse_timestamp, cur_touched) VALUES 	";
 	$first = true;
-	$mwObj =& MagicWord::get( MAG_MSGNW );
-	$msgnw = $mwObj->getSynonym( 0 );
 	$talk = $wgLang->getNsText( NS_TALK );
 	$mwtalk = $wgLang->getNsText( NS_MEDIAWIKI_TALK );
 	
@@ -104,19 +110,20 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		$dbencMsg = wfStrencode( $message );
 
 		# Update messages which already exist
-		# Note: UPDATE is now used instead of DELETE/INSERT to avoid wiping cur_restrictions
 		if ( array_key_exists( $title, $existingTitles ) ) {
 			if ( $existingTitles[$title] == "chuck" || $overwrite) {
-				wfQuery( "UPDATE cur 
-				  SET
-				    cur_text='$dbencMsg',
-				    cur_user=0,
-				    cur_user_text='$username',
-				    cur_timestamp='$timestamp',
-					cur_touched='$timestamp',
-				    inverse_timestamp='$invTimestamp'
-				  WHERE cur_namespace=8 and cur_title='$title'", DB_WRITE
-				);
+				print "$title\n";
+				# Save old current version
+				$sql = "insert into old (old_namespace,old_title,old_text,old_comment,old_user,old_user_text,old_timestamp)
+				  select cur_namespace,cur_title,cur_text,cur_comment,cur_user,cur_user_text,cur_timestamp 
+				  from cur where cur_namespace=8 and cur_title='$title'";
+				wfQuery( $sql, DB_WRITE );
+				# Update text
+				$sql = "update cur set cur_text='$dbencMsg',cur_timestamp='$timestamp',cur_user=0,
+				  cur_user_text='$username', inverse_timestamp=$invTimestamp, cur_comment='',
+				  cur_is_new=0,cur_is_redirect=0,cur_minor_edit=0, cur_touched='$timestamp' 
+				  WHERE cur_namespace=8 and cur_title='$title'";
+				wfQuery( $sql, DB_WRITE );
 			}
 			$doInsert = false;
 		} else {
@@ -139,8 +146,6 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		}
 		
 		# Make table row for navigation page
-		$mw = str_replace( "$1", $key, $msgnw );
-
 		$message = wfEscapeWikiText( $message );
 		$navText .= 
 "<tr><td>
@@ -149,7 +154,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 </td><td>
 $message
 </td><td>
-$mw
+{{int:$title}}
 </td></tr>";
 	}
 
@@ -184,6 +189,11 @@ function loadArrayFromFile( $filename )
 {
 	$contents = file_get_contents( $filename );
 	return unserialize( $contents );
+}
+
+function doUpdates() {
+	global $wgDeferredUpdateList;
+	foreach ( $wgDeferredUpdateList as $up ) { $up->doUpdate(); }
 }
 
 ?>
