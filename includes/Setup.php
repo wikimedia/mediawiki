@@ -66,6 +66,7 @@ require_once( 'ParserCache.php' );
 require_once( 'WebRequest.php' );
 require_once( 'LoadBalancer.php' );
 require_once( 'HistoryBlob.php' );
+require_once( 'ProxyTools.php' );
 
 wfProfileOut( $fname.'-includes' );
 wfProfileIn( $fname.'-misc1' );
@@ -82,7 +83,7 @@ global $wgUseOldExistenceCheck, $wgEnablePersistentLC, $wgMasterWaitTimeout;
 
 global $wgFullyInitialised;
 
-if ( is_callable ( "wfGetIP" ) ) $wgIP = wfGetIP();
+$wgIP = wfGetIP();
 $wgRequest = new WebRequest();
 
 # Useful debug output
