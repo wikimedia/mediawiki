@@ -16,11 +16,12 @@ class QueryPage {
 
 	# Subclasses return an SQL query here.
 	#
-	# Note that the query itself should return the following three columns:
-	# 'type' (your special page's name), 'namespace, 'title', and 'value'
-	# (numeric) *in that order*. These may be stored in the querycache table
-	# for expensive queries, and that cached data will be returned sometimes,
-	# so the presence of extra fields can't be relied on.
+	# Note that the query itself should return the following four columns:
+	# 'type' (your special page's name), 'namespace', 'title', and 'value'
+	# *in that order*. 'value' is used for sorting. These may be stored in
+	# the querycache table for expensive queries, and that cached data will
+	# be returned sometimes, so the presence of extra fields can't be
+	# relied upon.
 	#
 	# Don't include an ORDER or LIMIT clause, this will be added.
 
