@@ -73,10 +73,10 @@
 	"prosinec"
 );
 
-# Hmm
+# There are no month abbreviations in Czech language.
 /* private */ $wgMonthAbbreviationsCs = array(
-	"Led", "Úno", "Bře", "Dub", "Kvě", "Čer", "Črv", "Srp",
-	"Zář", "Říj", "Lis", "Pro"
+	"1.", "2.", "3.", "4.", "5.", "6.",
+	"7.", "8.", "9.", "10.", "11.", "12."
 );
 
 # All special pages have to be listed here: a description of ""
