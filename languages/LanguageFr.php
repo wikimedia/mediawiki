@@ -174,7 +174,7 @@ require_once( "LanguageUtf8.php" );
 "subcategories"	=> "Sous-catégories", // Looxix "Subcategories",
 
 
-"linktrail"     => "/^([a-zàâçéèêîôû]+)(.*)\$/sD",
+"linktrail"     => "^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sD",
 "mainpage"      => "Accueil",
 "mainpagetext"	=> "Logiciel {{SITENAME}} installé.",
 "portal"	=> "Accueil communauté",
