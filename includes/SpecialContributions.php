@@ -6,12 +6,15 @@
  */
 
 /**
+ * Special page "user contributions".
+ * Shows a list of the contributions of a user.
  *
+ * @return	none
+ * @param	string	$par	(optional) user name of the user for which to show the contributions
  */
 function wfSpecialContributions( $par = '' ) {
 	global $wgUser, $wgOut, $wgLang, $wgRequest;
 	$fname = "wfSpecialContributions";
-	$sysop = $wgUser->isSysop();
 
 	if( $par )
 		$target = $par;
@@ -41,6 +44,11 @@ function wfSpecialContributions( $par = '' ) {
 
 	$id = User::idFromName( $nt->getText() );
 
+	# These links are not in the body, so we can't use the delayed link colouring.
+	# Disable it and enable it again later.
+	$pPLC=$sk->postParseLinkColour();
+	$sk->postParseLinkColour( false );
+
 	if ( 0 == $id ) {
 		$ul = $nt->getText();
 	} else {
@@ -51,6 +59,9 @@ function wfSpecialContributions( $par = '' ) {
 	if( $talk ) {
 		$ul .= " (" . $sk->makeLinkObj( $talk, $wgLang->getNsText(Namespace::getTalk(0)) ) . ")";
 	}
+
+	# Enable delayed link colouring again.
+	$sk->postParseLinkColour( $pPLC );
 
 	if ( $target == 'newbies' ) {
 		# View the contributions of all recently created accounts
