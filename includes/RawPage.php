@@ -9,10 +9,16 @@ class RawPage {
 
 	function RawPage( $article ) {
 		global $wgRequest, $wgInputEncoding;
+		$allowedCTypes = array('text/plain', 'text/javascript', 'text/css');
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
 		$ctype = $wgRequest->getText( 'ctype' );
-		$this->mContentType = !empty($ctype)?$ctype:'text/plain';
+		if(empty($ctype) or !in_array($ctype, $allowedCTypes)) {
+			$this->mContentType = 'text/plain';
+		} else {
+			$this->mContentType = $ctype;
+		}
+			
 		$charset = $wgRequest->getText( 'charset' );
 		$this->mCharset = !empty($charset) ? $charset : $wgInputEncoding;
 		$this->mOldId = $wgRequest->getInt( 'oldid' );
