@@ -28,7 +28,11 @@
 );
 
 /* private */ $wgSkinNamesDe = array(
-	"Standard", "Nostalgia", "Cologne Blue", "Paddington", "Montparnasse"
+	"Standard",
+	"Nostalgia",
+	"Cologne Blue",
+/*	"Paddington",
+	"Montparnasse" */
 );
 
 /* private */ $wgMathNamesDe = array(
@@ -247,7 +251,7 @@
   "Longpages"           => "Lange Artikel",
   "Newpages"            => "Neue Artikel",
   "Ancientpages"        => "Älteste Artikel",
-  "Intl"                => "Interlanguage Links",
+/*  "Intl"                => "Interlanguage Links", */
   "Allpages"            => "Alle Artikel (alphabetisch)",
 
   "Ipblocklist"         => "Blockierte IP-Adressen",
@@ -259,7 +263,7 @@
   "Whatlinkshere"       => "",
   "Recentchangeslinked" => "",
   "Booksources"         => "Externe Buchhandlungen",
-  "Categories"          => "Seiten Kategorien",
+/*  "Categories"          => "Seiten Kategorien", */
   "Export"              => ""
 );
 
@@ -586,8 +590,7 @@ border=\"0\" ALT=\"Google\"></A>
 </font>
 </td></tr></TABLE>
 </FORM>
-<!-- SiteSearch Google -->
-",
+<!-- SiteSearch Google -->",
 "blanknamespace" => "(Haupt-)",
 
 # Preferences page
@@ -852,7 +855,7 @@ am Ende des Artikels.",
 "notanarticle"	=> "Kein Artikel",
 "watchnochange" => "Keine Ihrer beobachteten Artikel wurde während des angezeigten Zeitraums bearbeitet.",
 "watchdetails" => "($1 Artikel werden beobachtet (ohne Diskussionsseiten);
-$2 Artikel insgesamt bearbeitet in eingestelltem Zeitraum;
+$2 Artikel im eingestellten Zeitraum bearbeitet;
 $3... <a href='$4'>komplette Liste zeigen und bearbeiten</a>.)",
 "watchmethod-recent" => "überprüfen der letzten Bearbeitungen für die Beobachtungsliste",
 "watchmethod-list" => "überprüfen der Beobachtungsliste nach letzten Bearbeitungen",
@@ -863,6 +866,9 @@ $3... <a href='$4'>komplette Liste zeigen und bearbeiten</a>.)",
 "couldntremove" => "Der Eintrag '$1' kann nicht gelöscht werden...",
 "iteminvalidname" => "Ploblem mit dem Eintrag '$1', ungültiger Name...",
 "wlnote" => "Es folgen die letzten $1 Änderungen der letzten <b>$2</b> Stunden.",
+"wlshowlast" => "Zeige die letzen ",
+"wlhours"    => " Stunden",
+"wldays"     => " Tage",
 
 # Delete/protect/revert
 #
