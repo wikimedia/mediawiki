@@ -77,7 +77,7 @@
         'ii' => 'Yi',		# Sichuan Yi (FIXME!)
 	'ik' => 'I&ntilde;upiak',	# Inupiak
 	'io' => 'Ido',			# Ido
-	'is' => '&Iacute;slensk',	# Icelandic
+	'is' => '&Iacute;slenska',	# Icelandic,  according to Jeedo@irc
 	'it' => 'Italiano',		# Italian
 	'iu' => '&#5123;&#5316;&#5251;&#5198;&#5200;&#5222;',	# Inuktitut
 	'ja' => '&#26085;&#26412;&#35486;',	# Japanese
