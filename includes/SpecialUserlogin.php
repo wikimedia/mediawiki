@@ -126,6 +126,19 @@ class LoginForm {
 	{
 		global $wgUser, $wgOut;
 		global $wgMaxNameChars;
+		global $wgMemc, $wgAccountCreationThrottle, $wgDBname, $wgIP;
+
+		if ( $wgAccountCreationThrottle ) {
+			$key = "$wgDBname:acctcreate:ip:$wgIP";
+			$value = $wgMemc->incr( $key );
+			if ( !$value ) {
+				$wgMemc->set( $key, 0, 86400 );
+			}
+			if ( $value > $wgAccountCreationThrottle ) ) {
+				$this->throttleHit();
+				return;
+			}
+		}
 
 		if (!$wgUser->isAllowedToCreateAccount()) {
 			$this->userNotPrivilegedMessage();
@@ -467,6 +480,12 @@ class LoginForm {
 		} else {
 			return $this->successfulLogin( wfMsg( "loginsuccess", $wgUser->getName() ) );
 		}
+	}
+
+	/* private */ function throttleHit( $limit ) {
+		global $wgOut;
+
+		$wgOut->addWikiText( wfMsg( 'acct_creation_throttle_hit', $limit ) );
 	}
 }
 ?>
