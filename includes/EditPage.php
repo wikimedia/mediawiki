@@ -83,7 +83,7 @@ class EditPage {
 		global $wpSave, $wpPreview;
 		global $wpMinoredit, $wpEdittime, $wpTextbox2, $wpSection;
 		global $oldid, $redirect, $section;
-		global $wgLang, $wgEnableEditToolbar;
+		global $wgLang;
 
 		if(isset($wpSection)) { $section=$wpSection; } else { $wpSection=$section; }
 
@@ -243,7 +243,7 @@ class EditPage {
 		$wpSummary = wfEscapeHTML( $wpSummary );
 
 
-		if($wgUser->getOption("showtoolbar") && $wgEnableEditToolbar) {
+		if($wgUser->getOption("showtoolbar")) {
 			// prepare toolbar for edit buttons
 			$toolbar=$sk->getEditToolbar();
 		}
