@@ -45,9 +45,6 @@ class SearchEngine {
 	 * @access private
 	 */
 	function getNearMatch( $term ) {
-		# Eliminate Blanks at start
-		$term = ereg_replace('[[:blank:]]*', '', $term);
-
 		# Exact match? No need to look further.
 		$title = Title::newFromText( $term );
 		if (is_null($title))
@@ -79,17 +76,9 @@ class SearchEngine {
 		}
 
 		# Entering an IP address goes to the contributions page
-		if ( preg_match( '/^(user:)?\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', strtolower($term) ) ) {
+		if ( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', $term ) ) {
 			$title = Title::makeTitle( NS_SPECIAL, "Contributions/" . $term );
 			return $title;
-		}
-
-		# Entering a user goes to the user page whether it's there or not
-		if ( preg_match( '/^user:/', strtolower($term) ) ) {
-                        if (User::idFromName($term)) {
-			  $title = Title::newFromURL( $term );
-			  return $title;
-                        }
 		}
 		
 		return NULL;
