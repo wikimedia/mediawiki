@@ -132,7 +132,13 @@ $wgDisableCookieCheck = false;
 
 $wgAllowExternalImages = true;
 $wgMiserMode = false; # Disable database-intensive features
+
+# To use inline TeX, you need to compile 'texvc' (in the 'math' subdirectory
+# of the MediaWiki package and have latex, dvips, gs (ghostscript), and
+# convert (ImageMagick) installed and available in the PATH.
+# Please see math/README for more information.
 $wgUseTeX = false;
+$wgTexvc = "./math/texvc"; # Location of the texvc binary
 
 # Profiling / debugging
 $wgProfiling = false; # Enable for more detailed by-function times in debug log

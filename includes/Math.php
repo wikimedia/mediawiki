@@ -8,42 +8,52 @@ function linkToMathImage ( $tex, $outputhash )
 
 function renderMath( $tex )
 {
-    global $wgUser, $wgMathDirectory, $wgTmpDirectory, $wgInputEncoding;
-    $mf   = wfMsg( "math_failure" );
-    $munk = wfMsg( "math_unknown_error" );
+	global $wgUser, $wgMathDirectory, $wgTmpDirectory, $wgInputEncoding;
+	global $wgTexvc;
+	$mf   = wfMsg( "math_failure" );
+	$munk = wfMsg( "math_unknown_error" );
 
-    $fname = "renderMath";
+	$fname = "renderMath";
 
-    $math = $wgUser->getOption("math");
-    if ($math == 3)
-	return ('$ '.wfEscapeHTML($tex).' $');
+	$math = $wgUser->getOption("math");
+	if( $math == 3 ) {
+		return ('$ '.wfEscapeHTML($tex).' $');
+	}
 
-    $md5 = md5($tex);
-    $md5_sql = mysql_escape_string(pack("H32", $md5));
-    if ($math == 0)
-	$sql = "SELECT math_outputhash FROM math WHERE math_inputhash = '".$md5_sql."'";
-    else
-	$sql = "SELECT math_outputhash,math_html_conservativeness,math_html FROM math WHERE math_inputhash = '".$md5_sql."'";
+	$md5 = md5($tex);
+	$md5_sql = mysql_escape_string(pack("H32", $md5));
+	if ($math == 0) {
+		$sql = "SELECT math_outputhash FROM math WHERE math_inputhash = '$md5_sql'";
+	} else {
+		$sql = "SELECT math_outputhash,math_html_conservativeness,math_html FROM math WHERE math_inputhash = '$md5_sql'";
+	}
 
-    $res = wfQuery( $sql, DB_READ, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 	if( $rpage = wfFetchObject ( $res ) ) {
 		$outputhash = unpack( "H32md5", $rpage->math_outputhash . "                " );
 		$outputhash = $outputhash ['md5'];
 		if( file_exists( "$wgMathDirectory/$outputhash.png" ) ) {
-			if (($math == 0) || ($rpage->math_html == '') || (($math == 1) && ($rpage->math_html_conservativeness != 2)) || (($math == 4) && ($rpage->math_html_conservativeness == 0)))
-			    return linkToMathImage ( $tex, $outputhash );
-			else
-		    	return $rpage->math_html;
+			if (($math == 0) || ($rpage->math_html == '') || (($math == 1) && ($rpage->math_html_conservativeness != 2)) || (($math == 4) && ($rpage->math_html_conservativeness == 0))) {
+				return linkToMathImage ( $tex, $outputhash );
+			} else {
+				return $rpage->math_html;
+			}
 		}
 	}
 	
-	$cmd = "./math/texvc ".escapeshellarg($wgTmpDirectory)." ".
-		      escapeshellarg($wgMathDirectory)." ".escapeshellarg($tex)." ".escapeshellarg($wgInputEncoding);
+	$cmd = $wgTexvc." ".
+		escapeshellarg($wgTmpDirectory)." ".
+		escapeshellarg($wgMathDirectory)." ".
+		escapeshellarg($tex)." ".
+		escapeshellarg($wgInputEncoding);
+	wfDebug( "TeX: $cmd" );
 	$contents = `$cmd`;
 
-	if (strlen($contents) == 0)
-	    return "<b>".$mf." (".$munk."): ".wfEscapeHTML($tex)."</b>";
+	if (strlen($contents) == 0) {
+		return "<b>".$mf." (".$munk."): ".wfEscapeHTML($tex)."</b>";
+	}
+	
 	$retval = substr ($contents, 0, 1);
 	if (($retval == "C") || ($retval == "M") || ($retval == "L")) {
 	    if ($retval == "C")
@@ -97,8 +107,14 @@ function renderMath( $tex )
 	}
 
 	$outmd5 = substr ($contents, 1, 32);
-	if (!preg_match("/^[a-f0-9]{32}$/", $outmd5))
-	    return "<b>".$mf." (".$munk."): ".wfEscapeHTML($tex)."</b>";
+	if (!preg_match("/^[a-f0-9]{32}$/", $outmd5)) {
+		return "<b>".$mf." (".$munk."): ".wfEscapeHTML($tex)."</b>";
+	}
+
+	if( !file_exists( "$wgMathDirectory/$outmd5.png" ) ) {
+		$errmsg = wfMsg( "math_image_error" );
+		return "<h3>$mf ($errmsg): " . wfEscapeHTML($tex) . "</h3>";
+	}
 
 	$outmd5_sql = mysql_escape_string(pack("H32", $outmd5));
 
