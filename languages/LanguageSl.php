@@ -115,6 +115,15 @@ require_once( "LanguageUtf8.php" );
 	"Unlockdb"		=> "Obnovi zapisovalni dostop podatkovne baze",
 );
 
+/* private */ $wgDateFormatsSl = array(
+        'No preference',
+        'januar 15, 2001',
+        '15 januar 2001',
+        '2001 januar 15',
+        '2001-01-15'
+);
+
+
 /* private */ $wgAllMessagesSl = array(
 'special_version_prefix' => '',
 'special_version_postfix' => '',
