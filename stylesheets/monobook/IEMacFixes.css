@@ -4,7 +4,6 @@
     float: none;
 }
 #portal-column-content #content {
-    height: 100%;
     z-index: 0;
 }
 #portal-column-one {
@@ -16,17 +15,22 @@
 #portal-footer {
     margin-left: 12em; 
 }
-
+/*
 #portlet-contentViews {
     top: 0.6em !important;
     left: 14.5em !important;
 }
-
-#portlet-contentViews li  {
+*/
+#portlet-contentViews li,
+#portlet-contentViews .selected {
     border: none !important;
 }
 #portlet-contentViews li a   {
     border: 1px solid #aaaaaa;
+    border-bottom: none;
+}
+#portlet-contentViews li.selected a {
+    border: 1px solid #fabd23;
     border-bottom: none;
 }
 /* no background images */
@@ -34,4 +38,7 @@ li#personaltools-userpage,
 li#personaltools-login/* */ {
     background: none;
     padding-left: none;
+}
+#mactest {
+color: Green;
 }

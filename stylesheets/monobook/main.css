@@ -19,9 +19,10 @@
     width: 100%;
     float: right;
     margin: 0 0 0 -12.2em;
+    padding:0;
 }
 #portal-column-content #content {
-    margin: 2.6em 0 0 12.2em;
+    margin: 2.7em 0 0 12.2em;
 }
 #portal-column-one {
     padding-top: 160px;
@@ -46,6 +47,8 @@ body {
 #visual-portal-wrapper {
     font-size:123%;
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* general styles */
@@ -84,7 +87,7 @@ p img {
 }
 
 hr {
-    height: 1px !important;
+    height: 1px;
     color: #aaaaaa;
     background-color: #aaaaaa;
     border: 0;
@@ -199,15 +202,17 @@ textarea {
     width: 98%;
     padding: 0.1em;
 }
-
-input {
-    font-family: "Bitstream Vera Sans", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
-    visibility: visible;
-    border: 1px solid #2f6fab;  
-    color: Black;
-    background-color: white;
-    vertical-align: middle;
-    padding: 0.2em;
+/* hide this from ie/mac and konq2.2 */
+@media all {
+    input {
+        font-family: "Bitstream Vera Sans", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
+        visibility: visible;
+        border: 1px solid #2f6fab;  
+        color: Black;
+        background-color: white;
+        vertical-align: middle;
+        padding: 0.2em;
+    }
 }
 input[type=radio],
 input[type=checkbox] {
@@ -285,7 +290,7 @@ pre {
 
 
 .documentContent {
-    padding: 0em 1em 1.5em 1em !important;
+    padding: 0em 1em 1.5em 1em;
     background: White;
     border: 1px solid #aaaaaa;
     border-right: none;
@@ -329,10 +334,158 @@ pre {
 }
 
 /*
+** mediawiki-specific styles
+*/
+
+a.stub,
+a.new{ color:#ba0000; text-decoration:none; }
+
+#toc { 
+    /*border:1px solid #2f6fab;*/
+    border:1px solid #aaaaaa;
+    background-color:#f9f9f9;
+    padding:5px;
+    font-size: 95%;
+}
+.tocindent {
+	margin-left: 2em;
+}
+.tocline {
+	margin-bottom: 0px;
+}
+.toctoggle, .editsection {
+	font-size: smaller;
+}
+/* images */
+div.floatright { float: right; 
+    margin: 0 0 1em 1em;
+    position:relative;
+
+}
+div.floatright p { font-style: italic;} 
+div.floatleft { float: left; margin: 0.3em 0.5em 0.5em 0;
+    position:relative;
+}
+div.floatleft p { font-style: italic; } 
+/* thumbnails */
+div.thumbnail-none,
+div.thumbnail-right,
+div.thumbnail-left {
+ /*   border:1px solid #2f6fab;*/
+      border:1px solid #cccccc;
+    
+    background-color:#f9f9f9;
+    padding: 2px;
+    position:relative;
+    margin: 0.3em 0 0.5em;
+    font-size: 95%;
+    text-align: center;
+}
+div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
+    margin-top:3px; margin-bottom:3px;
+    position:relative;
+    text-align: left;
+}
+div.thumbnail-right {
+    float: right;
+    position:relative;
+    margin-left:0.5em;
+}
+div.thumbnail-left {
+    float: left;
+    position:relative;
+    margin-right:0.5em;
+}
+/* table standards */
+table.rimage {
+    float:right; 
+    width:1pt; 
+    position:relative;
+    margin-left:1em; 
+    margin-bottom:1em;
+    text-align:center;
+}
+
+/*
+** Link rendering 
+*/
+
+.urlexpansion,
+.hiddenStructure {
+    display: none;
+}
+
+/* 
+** keep the whitespace in front of the ^=, hides rule from konqueror
+** this is css3, the validator doesn't like it when validating as css2 
+*/
+#bodyContent a[href ^="http://"],
+#bodyContent a[href ^="gopher://"] {
+    background: url(external.png) center right no-repeat;
+    padding-right: 13px;
+}
+#bodyContent a[href ^="https://"],
+.link-https {
+    background: transparent url("lock_icon.gif") center right no-repeat;
+    padding-right: 16px;
+}
+#bodyContent a[href ^="mailto:"],
+.link-mailto {
+    background: transparent url("mail_icon.gif") center right no-repeat;
+    padding-right: 18px;
+}
+#bodyContent a[href ^="news://"] {
+    background: transparent url("news_icon.png") center right no-repeat;
+    padding-right: 18px;
+}
+#bodyContent a[href ^="ftp://"],
+.link-ftp {
+    background: transparent url("file_icon.gif") center right no-repeat;
+    padding-right: 18px;
+}
+#bodyContent a[href ^="irc://"],
+.link-irc {
+    background: transparent url("discussionitem_icon.gif")  center right no-repeat;
+    padding-right: 18px;
+}
+.visualClear {
+    display: block;
+    clear: both;
+}
+
+/*
+** classes for special content elements like town boxes
+*/
+div.townBox {
+    position:relative;
+    float:right;
+    background:White;
+    margin-left:1em;
+    border: 1px solid Grey;
+    padding:0.3em;
+    line-height: 1.0em;
+    width: 200px;
+    overflow: hidden;
+}
+div.townBox dl {
+    padding: 0;
+    margin: 0 0 0.3em 0; 
+    font-size: 96%;
+}
+div.townBox dl dt {
+    background-color: transparent;
+    margin: 0.4em 0 0 0;
+}
+div.townBox dl dd {
+    margin: 0.1em 0 0 1.1em;
+    background-color: #f3f3f3;
+}
+
+/*
 ** Special content area views
 */
 .special li {
-    line-height: 1.4em !important;
+    line-height: 1.4em;
     margin: 0;
     padding: 0;
 }
@@ -343,11 +496,6 @@ pre {
 /*
 ** Structural Elements
 */
-#visual-portal-wrapper {
-    position: relative;
-    margin: 0;
-    padding: 0;
-}
 
 /*
 ** the portlets (elements in the quickbar)
@@ -492,6 +640,9 @@ pre {
     position:relative;
     z-index:2;
 }    
+#portlet-search .portletBody {
+    text-align: center;
+}
 input.searchButton {
     margin-top:1px;
     padding: 0 0.4em;
@@ -506,7 +657,7 @@ input.searchButton {
 }
 
 #searchGadget {
-    width:11.1em;
+    width:11.0em;
     margin: 0 0 0 0;
     font-size: 95%;
 }
@@ -522,8 +673,8 @@ input.searchButton {
 */
 
 #portlet-personal {
-    width:100% !important;
-    white-space:nowrap !important;
+    width:100%;
+    white-space:nowrap;
     padding:0 0 0 0;
     margin:0;
     position:absolute;
@@ -545,7 +696,7 @@ input.searchButton {
 #portlet-personal .odd{
     padding:0;
     margin:0;
-    border: none !important;
+    border: none;
     z-index:0;
     overflow: visible;
     background-color: transparent;
@@ -603,10 +754,11 @@ input.searchButton {
     padding-bottom: 0.2em;
 }
 
-/* the icon in front of the user name */
+/* the icon in front of the user name, single quotes
+in bg url to hide it from iemac */
 li#personaltools-userpage,
 li#personaltools-login {
-    background: transparent url(user.gif) center left no-repeat;
+    background: transparent url('user.gif') center left no-repeat;
     background-repeat: no-repeat;
     padding-left: 20px;
     text-transform: none;
@@ -621,7 +773,7 @@ li#personaltools-login {
     top: 1.2em;
     left: 11.5em;
     margin: 0;
-    white-space:nowrap !important;
+    white-space:nowrap;
     /*width:auto;*/
     width: 76%;
     line-height: 1.1em;
@@ -644,10 +796,11 @@ li#personaltools-login {
     display: inline;
     border: 1px solid #aaaaaa;
     border-bottom: none;
-    padding: 0;
+    padding: 0 0 0.1em 0;
     margin: 0 0.3em 0 0;
     overflow: visible;
 }
+
 #portlet-contentViews li.selected {
     border-color: #fabd23;
     padding: 0 0 0.2em 0;
@@ -664,6 +817,7 @@ li#personaltools-login {
     z-index: 0;
     margin: 0;
 }
+
 #portlet-contentViews .selected a {
     z-index: 3;
 }
@@ -697,7 +851,6 @@ li#contentaction-watch {
     background-color: White;
     border-top: 1px solid #fabd23;
     border-bottom: 1px solid #fabd23;
-    float: none;
     margin: 0.3em 0em 1em 0em;
     padding: 0.4em 0em 1em 0em;
     text-align: center;
@@ -707,187 +860,34 @@ li#contentaction-watch {
     display: inline;
     margin-right: 2em;
 }
-#portal-colophon {
-    float: none;
-    text-align: center;
-}
-#portal-colophon ul,
-#portal-colophon ul li,
-#portal-colophon ul li a {
-    list-style: none;
-    display: inline;
-    text-decoration: none;
-}
 
-/*
-** mediawiki-specific styles
+
+/* 
+** IE/Mac fixes, hope to find a validating way to move this
+** to a separate stylesheet. This would work but doesn't validate: 
+** @import("IEMacFixes.css");
 */
 
-a.stub,
-a.new{ color:#ba0000; text-decoration:none; }
-
-#toc { 
-    /*border:1px solid #2f6fab;*/
-    border:1px solid #aaaaaa;
-    background-color:#f9f9f9;
-    padding:5px;
+/* tabs: border on the a, not the div */
+*>html #portlet-contentViews li {
+    border:none;
 }
-/* images */
-div.floatright { float: right; 
-    margin: 0 0 1em 1em;
-    position:relative;
-
+*>html #portlet-contentViews li a {
+    border: 1px solid #aaaaaa;
+    border-bottom: none;
 }
-div.floatright p { font-style: italic;} 
-div.floatleft { float: left; margin: 0.3em 0.5em 0.5em 0;
-    position:relative;
-}
-div.floatleft p { font-style: italic; } 
-/* thumbnails */
-div.thumbnail-none,
-div.thumbnail-right,
-div.thumbnail-left {
- /*   border:1px solid #2f6fab;*/
-      border:1px solid #cccccc;
-    
-    background-color:#f9f9f9;
-    padding: 2px;
-    position:relative;
-    margin: 0.3em 0 0.5em;
-    font-size: 95%;
-    text-align: center;
-}
-div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
-    margin-top:3px; margin-bottom:3px;
-    position:relative;
-    text-align: left;
-}
-div.thumbnail-right {
-    float: right;
-    position:relative;
-    margin-left:0.5em;
-}
-div.thumbnail-left {
-    float: left;
-    position:relative;
-    margin-right:0.5em;
-}
-/* table standards */
-table.rimage {
-    float:right; 
-    width:1pt; 
-    position:relative;
-    margin-left:1em; 
-    margin-bottom:1em;
-    text-align:center;
+*>html #portlet-contentViews li.selected a {
+    border-color: #fabd23;
 }
 
-/*
-** Accessibility and visual enhancement elements 
-*/
-
-.link-plain {
-    background-image: none;
-    padding: 0;
-}
-.link-parent {
-    display: block;
-    background: transparent url("arrowUp.gif") 4px 5px no-repeat;
-    padding: 1px 0px 1px 16px;
-    font-size: 80%;
-}
-.link-user {
-    background: transparent url("user.gif") 0 1px no-repeat;
-    padding: 1px 0px 1px 16px;
-}
-#bodyContent a[href^="http://"] {
-    background: url(external.png) center right no-repeat;
-    padding-right: 13px;
-}
-.urlexpansion {
-    display: none;
-}
-#bodyContent a[href^="https://"],
-.link-https {
-    background: transparent url("lock_icon.gif") center right no-repeat;
-    padding-right: 16px;
-}
-#bodyContent a[href^="mailto:"],
-#bodyContent a[href^="news://"],
-.link-mailto {
-    background: transparent url("mail_icon.gif") center right no-repeat;
-    padding-right: 18px;
-}
-#bodyContent a[href^="ftp://"],
-.link-ftp {
-    background: transparent url("file_icon.gif") center right no-repeat;
-    padding-right: 18px;
-}
-#bodyContent a[href^="irc://"],
-.link-irc {
-    background: transparent url("discussionitem_icon.gif")  center right no-repeat;
-    padding-right: 18px;
-}
-/* dummy rule for konq 2.2 */
-#bodyContent a[href^="konqueror://"] {
-    background: none;
-    padding: none;
-}
-.hiddenStructure {
-    display: none;
-  }
-
-.contentActions .hiddenStructure {
-    position: absolute;
-    top: -200px;
-    left: -200px;
-}
-
-.visualClear {
-    display: block;
-    clear: both;
-}
-.hiddenLabel {
-    display: block;
-    background: transparent;
-    background-image: none; /* safari bug */
-    border: none;
-    height: 1px;
-    overflow: hidden;
-    padding: 0;
-    margin: -1px 0 0 -1px;
-    width: 1px;
-}
-.label {
-    font-weight: bold;
+/* fixes for broken IE float handling */
+*>html #portal-column-content {
     display: inline;
-    padding-right: 0.5em;
 }
-
-.visualOverflow {
+/* the full-size images are in center tags */
+*>html #bodyContent center, 
+*>html #bodyContent pre {
     overflow: auto;
-    margin: 0 0 1em 0;
 }
-
-.visualOverflow pre,
-.visualOverflow table,
-.visualOverflow img {
-    margin: 0;
-}
-
-/* for highlighting of search terms */
-
-.highlightedSearchTerm {
-   background-color: #feff82;
-}
-
 /* debugging tool.. */
-/*div{ border:1px solid #000000 !important;}*/
-
-/*
-** IE/Mac
-*/
-
-\/*
-@import("IEMacFixes.css");
-*/
+/*div{ border:1px solid #000000;}*/

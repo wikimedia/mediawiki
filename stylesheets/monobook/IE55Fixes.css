@@ -1,11 +1,23 @@
 /* IE5.5/win- only fixes */
 
+#portal-column-content {
+    display: inline;
+}
 #portal-column-content #content {
     margin-top: 2.8em;
+    overflow: auto;
+}
+#bodyContent center,
+#bodyContent pre {
+    width: 100%;
+    overflow: auto;
 }
 
 #portal-personaltools {
     padding-bottom: 0.1em;
+}
+img {
+    position: relative;
 }
 
 body {
@@ -20,6 +32,7 @@ body {
 #portlet-contentViews li {
     display: block;
     float: left;
+    padding: 0;
 }
 #portlet-contentViews li.selected {
     background-color: White;
