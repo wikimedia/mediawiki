@@ -606,7 +606,7 @@ de ĉi tiu dosiero konsentas eldoni ĝin laŭ la $1.",
 "minlength"		=> "Dosiernomo devas havi pli ol du literojn.",
 "badfilename"	=> "Dosiernomo estis ŝanĝita al \"$1\".",
 "badfiletype"	=> "\".$1\" estas dosiertipo malrekomendata.",
-"largefile"		=> "Oni rekomendas, ke dosieroj ne superu grandon de 100 megabitoj.",
+"largefile"		=> "Oni rekomendas, ke dosieroj ne superu grandon de 100 kilobitoj.",
 "successfulupload" => "Alŝuto sukcesis!",
 "fileuploaded"	=> "Vi sukcese alŝutis dosieron \"$1\".
 Bonvolu sekvi la jenan ligilo: ($2) al la priskrib-paĝo kaj
@@ -777,6 +777,7 @@ Elektu forigotajn paĝojn kaj alklaku 'forprenu elektitajn' sube.",
 "couldntremove" => "Neeblas forigi titolon '$1'...",
 "iteminvalidname" => "Ia eraro pri '$1', nevalida titolo...",
 "wlnote" => "Jen la lastaj $1 redaktoj de la lastaj <b>$2</b> horoj.",
+"wlshowlast" => "Montru el lastaj $1 horoj $2 tagoj $3",
 
 
 # Delete/protect/revert

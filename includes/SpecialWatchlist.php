@@ -205,12 +205,10 @@ function wlCutoffLinks( $days, $limit, $page = "Watchlist" )
 	foreach( $days as $d ) {
 		$days[$i++] = wlDaysLink( $d, $page );
 	}
-	return
-		wfMsg ("wlshowlast") .
-		implode(" | ", $hours) . wfMsg("wlhours") .
-		implode(" | ", $days) . wfMsg("wldays") .
-		wlDaysLink( 0, $page );
-#	$note = wfMsg( "rclinks", $cl, $dl, $mlink );
+	return wfMsg ("wlshowlast",
+		implode(" | ", $hours),
+		implode(" | ", $days),
+		wlDaysLink( 0, $page ) );
 }
 
 ?>

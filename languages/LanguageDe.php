@@ -729,9 +729,7 @@ $3... <a href='$4'>komplette Liste zeigen und bearbeiten</a>.)",
 "couldntremove" => "Der Eintrag '$1' kann nicht gelöscht werden...",
 "iteminvalidname" => "Ploblem mit dem Eintrag '$1', ungültiger Name...",
 "wlnote" => "Es folgen die letzten $1 Änderungen der letzten <b>$2</b> Stunden.",
-"wlshowlast" => "Zeige die letzen ",
-"wlhours"    => " Stunden",
-"wldays"     => " Tage",
+"wlshowlast" => "Zeige die letzen $1 Stunden $2 Tage $3",
 
 # Delete/protect/revert
 #
