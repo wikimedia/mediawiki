@@ -47,14 +47,14 @@ class DateFormatter
 	 * @todo document
 	 */
 	function DateFormatter() {
-		global $wgMonthNamesEn, $wgMonthAbbreviationsEn, $wgInputEncoding;
+		global $wgContLang, $wgInputEncoding;
 		
 		$this->monthNames = $this->getMonthRegex();
 		for ( $i=1; $i<=12; $i++ ) {
-			$this->xMonths[strtolower( $wgMonthNamesEn[$i-1] )] = $i;
+			$this->xMonths[strtolower( $wgContLang->getMonthName( $i ) )] = $i;
 		}
 		for ( $i=1; $i<=12; $i++ ) {
-			$this->xMonths[strtolower( $wgMonthAbbreviationsEn[$i-1] )] = $i;
+			$this->xMonths[strtolower( $wgContLang->getMonthAbbreviation( $i ) )] = $i;
 		}
 		
 		# Attempt at UTF-8 support, untested at the moment
@@ -140,7 +140,6 @@ class DateFormatter
 	 * @param $matches
 	 */
 	function replace( $matches ) {
-		global $wgMonthNamesEn;
 		# Extract information from $matches
 		$bits = array();
 		$key = $this->keys[$this->mSource];
@@ -160,14 +159,14 @@ class DateFormatter
 			$char = $format{$p};
 			switch ( $char ) {
 				case 'd': # ISO day of month
-					if ( is_null($bits['d']) ) {
+					if ( !isset($bits['d']) ) {
 						$text .= sprintf( '%02d', $bits['j'] );
 					} else {
 						$text .= $bits['d'];
 					}
 					break;
 				case 'm': # ISO month
-					if ( is_null($bits['m']) ) {
+					if ( !isset($bits['m']) ) {
 						$m = $this->makeIsoMonth( $bits['F'] );
 						if ( !$m || $m == '00' ) {
 							$fail = true;
@@ -179,33 +178,34 @@ class DateFormatter
 					}
 					break;
 				case 'y': # ISO year
-					if ( is_null( $bits['y'] ) ) {
+					if ( !isset( $bits['y'] ) ) {
 						$text .= $this->makeIsoYear( $bits['Y'] );
 					} else {
 						$text .= $bits['y'];
 					}
 					break;
 				case 'j': # ordinary day of month
-					if ( is_null($bits['j']) ) {
+					if ( !isset($bits['j']) ) {
 						$text .= IntVal( $bits['d'] );
 					} else {
 						$text .= $bits['j'];
 					}
 					break;
 				case 'F': # long month
-					if ( is_null( $bits['F'] ) ) {
+					if ( !isset( $bits['F'] ) ) {
 						$m = IntVal($bits['m']);
 						if ( $m > 12 || $m < 1 ) {
 							$fail = true;
 						} else {
-							$text .= $wgMonthNamesEn[$m-1];
+							global $wgContLang;
+							$text .= $wgContLang->getMonthName( $m );
 						}
 					} else {
 						$text .= ucfirst( $bits['F'] );
 					}
 					break;
 				case 'Y': # ordinary (optional BC) year
-					if ( is_null( $bits['Y'] ) ) {
+					if ( !isset( $bits['Y'] ) ) {
 						$text .= $this->makeNormalYear( $bits['y'] );
 					} else {
 						$text .= $bits['Y'];
@@ -225,8 +225,13 @@ class DateFormatter
 	 * @todo document
 	 */
 	function getMonthRegex() {
-		global $wgMonthNamesEn, $wgMonthAbbreviationsEn;
-		return implode( '|', array_merge($wgMonthNamesEn, $wgMonthAbbreviationsEn));
+		global $wgContLang;
+		$names = array();
+		for( $i = 1; $i <= 12; $i++ ) {
+			$names[] = $wgContLang->getMonthName( $i );
+			$names[] = $wgContLang->getMonthAbbreviation( $i );
+		}
+		return implode( '|', $names );
 	}
 
 	/**

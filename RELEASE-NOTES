@@ -182,6 +182,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1013) Fix jbo, minnan in language names list
 * Added magic word MAG_NOTITLECONVERT to indicate that the title of the page
   do not need to be converted. Useful in zh:
+* (bug 1224) Use proper date messages for date reformatter
 
 === Caveats ===
 
