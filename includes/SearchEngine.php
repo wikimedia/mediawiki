@@ -145,11 +145,11 @@ class SearchEngine {
 	# Perform the search and construct the results page
 	function showResults()
 	{
-		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgDisableTextSearch;
-		global $wgInputEncoding;
+		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgRequest;
+		global $wgDisableTextSearch, $wgInputEncoding;
 		$fname = "SearchEngine::showResults";
 
-		$search = $_REQUEST['search'];
+		$search = $wgRequest->getText( 'search' );
 
 		$powersearch = $this->powersearch(); /* Need side-effects here? */
 
@@ -418,10 +418,11 @@ class SearchEngine {
 
 	function goResult()
 	{
-		global $wgOut, $wgDisableTextSearch;
+		global $wgOut, $wgRequest;
+		global $wgDisableTextSearch;
 		$fname = "SearchEngine::goResult";
 		
-		$search		= $_REQUEST['search'];
+		$search = $wgRequest->getText( "search" );
 
 		# First try to go to page as entered.
 		#
@@ -433,7 +434,8 @@ class SearchEngine {
 			return;
 		}
 
-		if ( 0 != $t->getArticleID() ) {
+		# Exact match? No need to look further.
+		if ( $t->getNamespace() == NS_SPECIAL || 0 != $t->getArticleID() ) {
 			$wgOut->redirect( $t->getFullURL() );
 			return;
 		}
