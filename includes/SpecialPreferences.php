@@ -1,7 +1,7 @@
 <?
 function wfSpecialPreferences()
 {
-	global $wgUser, $wgOut, $action;
+	global $wgUser, $wgOut, $wgUseDynamicDates, $action;
 	global $wpSaveprefs, $wpReset;
 
 	$fields = array( "wpOldpass", "wpNewpass", "wpRetype",
@@ -196,7 +196,7 @@ function wfSpecialPreferences()
 
 /* private */ function mainPrefsForm( $err )
 {
-	global $wgUser, $wgOut, $wgLang;
+	global $wgUser, $wgOut, $wgLang, $wgUseDynamicDates;
 	global $wpQuickbar, $wpOldpass, $wpNewpass, $wpRetype;
 	global $wpSkin, $wpMath, $wpDate, $wpEmail, $wpEmailFlag, $wpNick, $wpSearch, $wpRecent;
 	global $wpRows, $wpCols, $wpSaveprefs, $wpReset, $wpHourDiff;
@@ -243,7 +243,7 @@ function wfSpecialPreferences()
 	$yem = wfMsg( "youremail" );
 	$emf = wfMsg( "emailflag" );
 	$ynn = wfMsg( "yournick" );
-        $stt = wfMsg ( "stubthreshold" ) ;
+	$stt = wfMsg ( "stubthreshold" ) ;
 	$srh = wfMsg( "searchresultshead" );
 	$rpp = wfMsg( "resultsperpage" );
 	$scl = wfMsg( "contextlines" );
@@ -287,7 +287,11 @@ value=\"$i\"$checked> {$skins[$i]}</label><br>\n" );
 
 	# Various checkbox options
 	#
-	$wgOut->addHTML( "</td><td rowspan=3 valign=top nowrap>\n" );
+	if ( $wgUseDynamicDates ) {
+		$wgOut->addHTML( "</td><td rowspan=3 valign=top nowrap>\n" );
+	} else {
+		$wgOut->addHTML( "</td><td rowspan=2 valign=top nowrap>\n" );
+	}
 	foreach ( $togs as $tname => $ttext ) {
 		if ( 1 == $wgUser->getOption( $tname ) ) {
 			$checked = " checked";
@@ -312,16 +316,19 @@ value=\"$i\"$checked> {$mathopts[$i]}</label><br>\n" );
 	
 	# Date format
 	#
-	$wgOut->addHTML( "<tr><td valign=top nowrap><b>$dateFormat:</b><br>" );
-	for ( $i = 0; $i < count( $dateopts ); ++$i) {
-		if ( $i == $wpDate ) {
-			$checked = " checked";
-		} else {
-			$checked = "";
+	if ( $wgUseDynamicDates ) {
+		$wgOut->addHTML( "<tr><td valign=top nowrap><b>$dateFormat:</b><br>" );
+		for ( $i = 0; $i < count( $dateopts ); ++$i) {
+			if ( $i == $wpDate ) {
+				$checked = " checked";
+			} else {
+				$checked = "";
+			}
+			$wgOut->addHTML( "<label><input type=radio name=\"wpDate\" ".
+				"value=\"$i\"$checked> {$dateopts[$i]}</label><br>\n" );
 		}
-		$wgOut->addHTML( "<label><input type=radio name=\"wpDate\" value=\"$i\"$checked> {$dateopts[$i]}</label><br>\n" );
+		$wgOut->addHTML( "</td></tr>");
 	}
-	$wgOut->addHTML( "</td></tr>");
 	# Textbox rows, cols
 	#
 	$nowlocal = $wgLang->time( $now = wfTimestampNow(), true );
