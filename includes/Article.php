@@ -58,13 +58,16 @@ class Article {
 	  * @private
 	  */
 	function clear() {
+		$this->mDataLoaded    = false;
 		$this->mContentLoaded = false;
+		
 		$this->mCurID = $this->mUser = $this->mCounter = -1; # Not loaded
 		$this->mRedirectedFrom = $this->mUserText =
 		$this->mTimestamp = $this->mComment = $this->mFileCache = '';
 		$this->mCountAdjustment = 0;
 		$this->mTouched = '19700101000000';
 		$this->mForUpdate = false;
+		$this->mIsRedirect = false;
 	}
 
 	/**
@@ -299,6 +302,25 @@ class Article {
 	}
 	
 	/**
+	 * Set the general counter, title etc data loaded from
+	 * some source.
+	 *
+	 * @param object $data
+	 * @access private
+	 */
+	function loadPageData( $data ) {
+		$this->mTitle->mRestrictions = explode( ',', trim( $data->page_restrictions ) );
+		$this->mTitle->mRestrictionsLoaded = true;
+		
+		$this->mCounter    = $data->page_counter;
+		$this->mTouched    = wfTimestamp( TS_MW, $data->page_touched );
+		$this->mIsRedirect = $data->page_is_redirect;
+		$this->mLatest     = $data->page_latest;
+		
+		$this->mDataLoaded = true;
+	}
+	
+	/**
 	 * Get text of an article from database
 	 * @param int $oldid 0 for whatever the latest revision is
 	 * @param bool $noredir Set to true to avoid following redirects
@@ -336,13 +358,17 @@ class Article {
 				return false;
 			}
 			$this->mTitle = Title::makeTitle( $data->page_namespace, $data->page_title );
+			$this->loadPageData( $data );
 		} else {
-			$data = $this->pageDataFromTitle( $dbr, $this->mTitle );
-			if( !$data ) {
-				wfDebug( "$fname failed to find page data for title " . $this->mTitle->getPrefixedText() . "\n" );
-				return false;
+			if( !$this->mDataLoaded ) {
+				$data = $this->pageDataFromTitle( $dbr, $this->mTitle );
+				if( !$data ) {
+					wfDebug( "$fname failed to find page data for title " . $this->mTitle->getPrefixedText() . "\n" );
+					return false;
+				}
+				$this->loadPageData( $data );
 			}
-			$revision = Revision::newFromId( $data->page_latest );
+			$revision = Revision::newFromId( $this->mLatest );
 			if( is_null( $revision ) ) {
 				wfDebug( "$fname failed to retrieve current page, rev_id $data->page_latest\n" );
 				return false;
@@ -377,6 +403,7 @@ class Article {
 						$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
 						$this->mTitle = $rt;
 						$data = $redirData;
+						$this->loadPageData( $data );
 						$revision = $redirRev;
 					}
 				}
@@ -392,11 +419,6 @@ class Article {
 		}
 		
 		# Back to the business at hand...
-		$this->mCounter   = $data->page_counter;
-		$this->mTitle->mRestrictions = explode( ',', trim( $data->page_restrictions ) );
-		$this->mTitle->mRestrictionsLoaded = true;
-		$this->mTouched   = wfTimestamp( TS_MW, $data->page_touched );
-
 		$this->mContent   = $revision->getText();
 		
 		$this->mUser      = $revision->getUser();
@@ -2005,16 +2027,14 @@ class Article {
 	 */
 	function checkTouched() {
 		$fname = 'Article::checkTouched';
-		$id = $this->getID();
-		$dbr =& $this->getDB();
-		$s = $dbr->selectRow( 'page', array( 'page_touched', 'page_is_redirect' ),
-			array( 'page_id' => $id ), $fname, $this->getSelectOptions() );
-		if( $s !== false ) {
-			$this->mTouched = wfTimestamp( TS_MW, $s->page_touched );
-			return !$s->page_is_redirect;
-		} else {
-			return false;
+		if( !$this->mDataLoaded ) {
+			$dbr =& $this->getDB();
+			$data = $this->pageDataFromId( $dbr, $this->getId() );
+			if( $data ) {
+				$this->loadPageData( $data );
+			}
 		}
+		return !$this->mIsRedirect;
 	}
 
 	/**
