@@ -13,6 +13,7 @@
  *
  * @package MediaWiki
  */
+
 class EditPage {
 	var $mArticle;
 	var $mTitle;
@@ -126,6 +127,7 @@ class EditPage {
 		global $wgAllowAnonymousMinor;
 		global $wgWhitelistEdit;
 		global $wgSpamRegex, $wgFilterCallback;
+		global $wgUseLatin1;
 
 		$sk = $wgUser->getSkin();
 		$isConflict = false;
@@ -291,6 +293,10 @@ class EditPage {
 				}
 			}
 			$wgOut->setPageTitle( $s );
+			if ( !$wgUseLatin1 && !$this->checkUnicodeCompliantBrowser() ) {
+				$this->mArticle->setOldSubtitle();
+				$wgOut->addWikiText( wfMsg( 'nonunicodebrowser') );
+			}
 			if ( $this->oldid ) {
 				$this->mArticle->setOldSubtitle();
 				$wgOut->addHTML( wfMsg( 'editingold' ) );
@@ -633,6 +639,19 @@ htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 			return false;
 		}
 	}
+
+
+	function checkUnicodeCompliantBrowser() {
+		global $wgBrowserBlackList;
+		$currentbrowser = $_SERVER["HTTP_USER_AGENT"];
+		foreach ( $wgBrowserBlackList as $browser ) {
+			if ( preg_match($browser, $currentbrowser) ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }
 
 ?>
