@@ -871,11 +871,7 @@ you may be blocked from uploading if you abuse the system.",
 
 'uploadlog'		=> 'upload log',
 'uploadlogpage' => 'Upload_log',
-'uploadlogpagetext' => 'Below is a list of the most recent file uploads.
-All times shown are server time (UTC).
-<ul>
-</ul>
-',
+'uploadlogpagetext' => 'Below is a list of the most recent file uploads.',
 'filename'		=> 'Filename',
 'filedesc'		=> 'Summary',
 'filestatus' => 'Copyright status',
@@ -1119,11 +1115,7 @@ consequences, and that you are doing this in accordance with
 See $2 for a record of recent deletions.",
 'deletedarticle' => "deleted \"$1\"",
 'dellogpage'	=> 'Deletion_log',
-'dellogpagetext' => 'Below is a list of the most recent deletions.
-All times shown are server time (UTC).
-<ul>
-</ul>
-',
+'dellogpagetext' => 'Below is a list of the most recent deletions.',
 'deletionlog'	=> 'deletion log',
 'reverted'		=> 'Reverted to earlier revision',
 'deletecomment'	=> 'Reason for deletion',
