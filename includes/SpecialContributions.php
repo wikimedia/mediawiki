@@ -134,7 +134,7 @@ function wfSpecialContributions( $par = '' ) {
 	  ($nCur + $nOld) <= $offlimit);
 
         $shm = wfMsg( 'showhideminor', $mlink );
-	$wgOut->addHTML( "<br />{$sl} ($shm)</p>\n");
+	$wgOut->addHTML( "<p>{$sl} ($shm)</p>\n");
 
 
 	if ( 0 == $nCur && 0 == $nOld ) {
@@ -303,7 +303,7 @@ function ucDaysLink( $lim, $d ) {
 function namespaceForm ( $target, $hideminor, $namespace ) {
 	global $wgContLang, $wgScript;
 
-	$namespaceselect = '<form><select name="namespace">';
+	$namespaceselect = '<select name="namespace">';
 	$namespaceselect .= '<option value="" '.(is_null($namespace) ? ' selected="selected"' : '').'>'.wfMsg( 'all' ).'</option>';
 	$arr = $wgContLang->getNamespaces();
 	foreach( array_keys( $arr ) as $i ) {
