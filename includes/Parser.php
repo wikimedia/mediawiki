@@ -2183,6 +2183,7 @@ cl_sortkey" ;
 		$valid = '0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 		foreach ( $a as $x ) {
+			if ( $x == '' ) continue;
 			$isbn = $blank = '' ;
 			while ( ' ' == $x{0} ) {
 				$blank .= ' ';
