@@ -44,9 +44,9 @@ class WantedPagesPage extends QueryPage {
 			($this->sortDescending() ? 'DESC' : '');
 	}
 
-        function getOrder() {
-                return '';
-        }
+	function getOrder() {
+		return '';
+	}
 
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
