@@ -419,7 +419,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		
 		# Get MemCached key
 		$skip = false;
-		if ( !$wgUseMemCached ) {
+		if ( $wgUseMemCached ) {
 			$mcKey = "$wgDBname:proxy:ip:$wgIP";
 			$mcValue = $wgMemc->get( $mcKey );
 			if ( $mcValue ) {
