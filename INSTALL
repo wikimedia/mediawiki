@@ -7,20 +7,26 @@ and configure the wiki "in-place", as long as you have
 the necessary prerequesites available.
 
 In 1.3.0 the old command-line installer has been removed.
-A new command-line installer/upgrader may come soon...
+There is a command-line upgrade tool; see the file UPGRADE.
 
 Required software:
-* Web server with PHP 4.1.2 or higher (4.3.x is preferred)
+* Web server with PHP 4.1.2 or higher (4.3.x or 5.0.x is preferred)
 * A MySQL server. 4.0.x is preferred, but 3.2.x should
   work as well.
+
+*********************************************************
+       Read the file RELEASE-NOTES for notes on
+             MySQL 4.1 and other issues!
+*********************************************************
 
 MediaWiki is developed and tested mainly on Unix/Linux
 platforms, but should work on Windows as well.
 
 If your PHP is configured as a CGI plug-in rather than
 an Apache module you may experience problems, as this
-configuration is not well tested. safe_mode is also not
-tested and unlikely to work. 
+configuration is not well tested. safe_mode and other
+non-standard PHP configurations may sometimes cause
+problems as well.
 
 Don't forget to check the RELEASE-NOTES file...
 
@@ -72,6 +78,8 @@ MediaWiki developers' mailing list; you can ask for help (please
 provide enough information to work with, and preferably be aware
 of what you're doing!) and keep track of major changes to the
 software, including performance improvements and security patches.
+
+http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce
 
 http://mail.wikipedia.org/mailman/listinfo/mediawiki-l (site admin support)
 
