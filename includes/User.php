@@ -36,6 +36,11 @@ class User {
 		return wfGetSQL( "user", "user_name", "user_id=$id" );
 	}
 
+	/* static */ function whoIsReal( $id )
+	{
+		return wfGetSQL( "user", "user_real_name", "user_id=$id" );
+	}
+
 	/* static */ function idFromName( $name )
 	{
 		$nt = Title::newFromText( $name );

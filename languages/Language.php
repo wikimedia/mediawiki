@@ -1559,7 +1559,8 @@ amusement.",
 
 # Attribution
 
-"anonymous" => "Anonymous user(s) of $wgSitename"
+"anonymous" => "Anonymous user(s) of $wgSitename",
+"siteuser" => "$wgSitename user $1"				       
 );
 
 #--------------------------------------------------------------------------
