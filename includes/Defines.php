@@ -5,7 +5,7 @@
  */
 
 /**#@+
- * Database related global
+ * Database related constants
  */
 define( 'DBO_DEBUG', 1 );
 define( 'DBO_NOBUFFER', 2 );
@@ -15,14 +15,14 @@ define( 'DBO_DEFAULT', 16 );
 /**#@-*/
 
 /**#@+
- * Virtual namespace; it doesn't appear in the page database
+ * Virtual namespaces; don't appear in the page database
  */
 define('NS_MEDIA', -2);
 define('NS_SPECIAL', -1);
 /**#@-*/
 
 /**#@+
- * Real namespace
+ * Real namespaces
  */
 define('NS_MAIN', 0);
 define('NS_TALK', 1);
@@ -44,7 +44,7 @@ define('NS_CATEGORY_TALK', 15);
 
 /**#@+
  * Fix the code and remove these...
- * @todo Global that need to be removed after code cleaning
+ * @todo Constants that need to be removed after code cleaning
  * @deprecated
  */
 define('NS_WP', NS_PROJECT);
@@ -62,4 +62,13 @@ $wgFeedClasses = array(
 	'rss' => 'RSSFeed',
 	'atom' => 'AtomFeed',
 	);
+
+
+define( 'MW_MATH_PNG',    0 );
+define( 'MW_MATH_SIMPLE', 1 );
+define( 'MW_MATH_HTML',   2 );
+define( 'MW_MATH_SOURCE', 3 );
+define( 'MW_MATH_MODERN', 4 );
+define( 'MW_MATH_MATHML', 5 );
+
 ?>

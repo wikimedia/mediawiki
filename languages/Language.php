@@ -76,13 +76,6 @@ if(isset($wgExtraNamespaces)) {
 	'chick' => 'Chick'
 );
 
-define( 'MW_MATH_PNG',    0 );
-define( 'MW_MATH_SIMPLE', 1 );
-define( 'MW_MATH_HTML',   2 );
-define( 'MW_MATH_SOURCE', 3 );
-define( 'MW_MATH_MODERN', 4 );
-define( 'MW_MATH_MATHML', 5 );
-
 # Validation types
 $wgValidationTypesEn = array (
 	'0' => "Style|Awful|Awesome|5",
@@ -1717,7 +1710,6 @@ class Language {
 	}
 
 	function getUserToggle( $tog ) {
-		$togs =& $this->getUserToggles();
 		return wfMsg("tog-".$tog);
 	}
 
