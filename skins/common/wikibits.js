@@ -112,13 +112,13 @@ function diffcheck() {
 function tabbedprefs() {
     prefform = document.getElementById('preferences');
     if(!prefform || !document.createElement) return;
-    if(prefform.nodeName == 'a') return; // Occasional IE problem
+    if(prefform.nodeName.toLowerCase() == 'a') return; // Occasional IE problem
     prefform.className = prefform.className + 'jsprefs';
     var sections = new Array();
     children = prefform.childNodes;
     var seci = 0;
     for(i=0;i<children.length;i++) {
-        if(children[i].nodeName.indexOf('fieldset') != -1) {
+        if(children[i].nodeName.toLowerCase().indexOf('fieldset') != -1) {
             children[i].id = 'prefsection-' + seci;
             children[i].className = 'prefsection';
             if(is_opera || is_khtml) children[i].className = 'prefsection operaprefsection';
