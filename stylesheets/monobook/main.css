@@ -204,7 +204,7 @@ textarea {
     padding: 0.1em;
 }
 /* hide this from ie/mac and konq2.2 */
-@media all {
+@media All {
     input {
         font-family: "Bitstream Vera Sans", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
         visibility: visible;
@@ -215,8 +215,8 @@ textarea {
         padding: 0.2em;
     }
 }
-input[type=radio],
-input[type=checkbox] {
+input[type="radio"],
+input[type="checkbox"] {
     border:none;
 }
 select {
@@ -290,7 +290,7 @@ pre {
 }
 
 
-.documentContent {
+#documentContent {
     padding: 0em 1em 1.5em 1em;
     background: White;
     border: 1px solid #aaaaaa;
@@ -358,14 +358,20 @@ a.new{ color:#ba0000; text-decoration:none; }
 	font-size: smaller;
 }
 /* images */
-div.floatright { float: right; 
-    margin: 0 0 1em 1em;
+div.floatright { 
+    float: right; 
+    margin: 0;
     position:relative;
-
+    border: 0.5em solid White;
+    border-width: 0.5em 0 0.8em 1.4em;
 }
 div.floatright p { font-style: italic;} 
-div.floatleft { float: left; margin: 0.3em 0.5em 0.5em 0;
+div.floatleft { 
+    float: left; 
+    margin: 0.3em 0.5em 0.5em 0;
     position:relative;
+    border: 0.5em solid White;
+    border-width: 0.5em 1.4em 0.8em 0;
 }
 div.floatleft p { font-style: italic; } 
 /* thumbnails */
@@ -373,14 +379,17 @@ div.thumbnail-none,
 div.thumbnail-right,
 div.thumbnail-left {
  /*   border:1px solid #2f6fab;*/
-      border:1px solid #cccccc;
-    
     background-color:#f9f9f9;
     padding: 2px;
     position:relative;
     margin: 0.3em 0 0.5em;
     font-size: 95%;
     text-align: center;
+}
+div.thumbnail-none div,
+div.thumbnail-right div,
+div.thumbnail-left div{
+    border:1px solid #cccccc;
 }
 div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
     margin-top:3px; margin-bottom:3px;
@@ -390,12 +399,15 @@ div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
 div.thumbnail-right {
     float: right;
     position:relative;
-    margin-left:0.5em;
+    border: 0.5em solid White;
+    border-width: 0.5em 0 0.8em 1.4em;
 }
 div.thumbnail-left {
     float: left;
     position:relative;
     margin-right:0.5em;
+    border: 0.5em solid White;
+    border: 0.5em 1.4em 0.8em 0;
 }
 /* table standards */
 table.rimage {
@@ -613,6 +625,7 @@ div.townBox dl dd {
     width: 135px;
     overflow: visible;
 }
+#portlet-logo h5 { display: none; }
 #portlet-logo a {
     display: block;
     height: 155px;
@@ -626,11 +639,11 @@ div.townBox dl dd {
 */
 
 
-#portlet-navigation-tree {
+#portlet-navigation {
     position:relative;
-    z-index:2;
+    z-index:3;
 }
-#portlet-navigation-tree .plain {
+#portlet-navigation .plain {
     white-space: nowrap;
 }
 
@@ -639,7 +652,7 @@ div.townBox dl dd {
 */
 #portlet-search {
     position:relative;
-    z-index:2;
+    z-index:3;
 }    
 #portlet-search .portletBody {
     text-align: center;
@@ -688,7 +701,7 @@ input.searchButton {
     line-height: 1.2em;
 }
 
-#portlet-personal .hiddenStructure {
+#portlet-personal h5 {
     display:none;
 }
 #portlet-personal .portlet,
@@ -825,6 +838,7 @@ li#personaltools-login {
 #portlet-contentViews li a:hover {
     z-index: 3;
 }
+#portlet-contentViews h5 { display: none; }
 
 /* offsets to distinguish the tab groups */
 li#contentaction-talk {
@@ -889,6 +903,27 @@ li#contentaction-watch {
 *>html #bodyContent center, 
 *>html #bodyContent pre {
     overflow: auto;
+}
+
+
+/* opera 6 fixes */
+html>body #portal-column-one {
+    position: relative;
+    max-width: 11.7em;
+}
+head:first-child+body #portal-column-one {
+    position: static; 
+    width: auto;
+}
+
+html>body #portlet-personal {
+    width: 45em;
+    margin-left: 8.6em;
+    right: 0;
+}
+head:first-child+body #portlet-personal {
+    margin-left: 0;
+    width: 100%;
 }
 /* debugging tool.. */
 /*div{ border:1px solid #000000;}*/
