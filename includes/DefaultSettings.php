@@ -142,6 +142,8 @@ $wgCookieExpiration = 2592000;
 #
 # Enable/disable Squid
  $wgUseSquid = false;
+# If you run Squid3 with ESI support, enable this (default:false):
+ $wgUseESI = false;
 # Internal server name as known to Squid, if different
 # $wgInternalServer = 'http://yourinternal.tld:8000';
  $wgInternalServer = $wgServer;

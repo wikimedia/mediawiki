@@ -133,6 +133,8 @@ $wgOutputEncoding	= "ISO-8859-1";
 #
 # Enable/disable Squid
 # $wgUseSquid = true;
+# If you run Squid3 with ESI support, enable this (default:false):
+# $wgUseESI = true;
 # Internal server name as known to Squid, if different
 # $wgInternalServer = 'http://yourinternal.tld:8000';
 # A list of proxy servers (ips if possible) to purge on changes
