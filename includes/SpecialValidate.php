@@ -29,6 +29,22 @@
  * @subpackage SpecialPage
  */
 class Validation {
+	var $topicList ;
+	var $voteCache ;
+	var $rev2date ;
+	var $date2ref ;
+
+	# Reads all revision information of the specified article
+	function prepareRevisions ( $id ) {
+		$this->rev2date = array () ;
+		$this->date2rev = array () ;
+		$sql = "SELECT * FROM revision WHERE rev_page='{$id}'" ;
+		$res = wfQuery( $sql, DB_READ );
+		while( $x = wfFetchObject( $res ) ) {
+			$this->rev2date[$x->rev_id] = $x ;
+			$this->date2rev[$x->rev_timestamp] = $x ;
+		}
+		}
 
 	# Returns a HTML link to the specified article revision
 	function getVersionLink( &$article , $revision , $text = "" ) {
@@ -50,16 +66,195 @@ class Validation {
 		return $ret ;
 	}
 	
+	# Merges one dataset into another
+	function mergeInto ( &$source , &$dest ) {
+		$ret = false ;
+		foreach ( $source AS $x => $y ) {
+			$doit = false ;
+			if ( !isset ( $dest[$x] ) ) $doit = true ;
+			else if ( $dest[$x]->value == 0 ) $doit = true ;
+			if ( $doit ) {
+				$dest[$x] = $y ;
+				$ret = true ;
+			}
+		}
+		if ( $ret ) ksort ( $dest ) ;
+		return $ret ;
+	}
+
+	# Merges all votes prior to the given revision into it
+	function mergeOldRevisions ( &$article , $revision ) {
+		$tmp = $this->voteCache ;
+		krsort ( $tmp ) ;
+		$update = false ;
+		$ts = $this->getTimestamp($revision) ;
+		$data = $this->voteCache[$ts] ;
+		foreach ( $tmp AS $x => $y ) {
+			if ( $x < $ts ) {
+				if ( $this->mergeInto ( $y , $data ) ) $update = true ;
+			}
+		}
+		if ( $update ) $this->setRevision ( $article , $revision , $data ) ;
+	}
+	
+	# Clears all votes prior to the given revision
+	function clearOldRevisions ( &$article , $revision ) {
+		$tmp = $this->voteCache ;
+		$ts = $this->getTimestamp($revision);
+		foreach ( $tmp AS $x => $y ) {
+			if ( $x < $ts ) $this->deleteRevision ( $article , $this->getRevisionNumber($x) ) ;
+		}
+	}
+	
+	# Updates the votes for the given revision from the FORM data
+	function updateRevision ( &$article , $revision ) {
+		global $wgUser, $wgRequest ;
+		
+		if ( isset ( $this->voteCache[$this->getTimestamp($revision)] ) ) $data = $this->voteCache[$this->getTimestamp($revision)] ;
+		else $data = array () ;
+		$nv = $wgRequest->getArray ( "re_v_{$revision}" , array() ) ;
+		$nc = $wgRequest->getArray ( "re_c_{$revision}" , array() ) ;
+		
+		foreach ( $nv AS $x => $y ) {
+			$data[$x]->value = $y ;
+			$data[$x]->comment = $nc[$x] ;
+		}
+		krsort ( $data ) ;
+		
+		$this->setRevision ( $article , $revision , $data ) ;
+	}
+	
+	# Sets a specific revision to both cache and database
+	function setRevision ( &$article , $revision , &$data ) {
+		global $wgUser ;
+		$this->deleteRevision ( $article , $revision ) ;
+		$this->voteCache[$this->getTimestamp($revision)] = $data ;
+		foreach ( $data AS $x => $y ) {
+			if ( $y->value > 0 ) {
+				$sql = "INSERT INTO validate (val_user,val_page,val_revision,val_type,val_value,val_comment) VALUES ('" ;
+				$sql .= $wgUser->getID() . "','" ;
+				$sql .= $article->getID() . "','" ;
+				$sql .= $revision . "','" ;
+				$sql .= $x . "','" ;
+				$sql .= $y->value . "','" ;
+				$sql .= Database::strencode ( $y->comment ) . "')" ;
+				$res = wfQuery( $sql, DB_WRITE );
+			}
+		}
+	}
+	
+	# Deletes a specific vote set in both cache and database
+	function deleteRevision ( &$article , $revision ) {
+		global $wgUser ;
+		$ts = $this->getTimestamp ( $revision ) ;
+		if ( !isset ( $this->voteCache[$ts] ) ) return ; # Nothing to do
+		$sql = "DELETE FROM validate WHERE val_user='" . $wgUser->GetID() . "' AND " ;
+		$sql .= " val_page='" . $article->getID() . "' AND val_revision='{$revision}'" ;
+		$res = wfQuery( $sql, DB_WRITE );
+		unset ( $this->voteCache[$ts] ) ;
+	}
+	
+	# Reads the entire vote list for this user for the given article
+	function getVoteList ( $id ) {
+		global $wgUser ;
+		$r = array () ; # Revisions
+		$sql = "SELECT * FROM validate WHERE val_page=" . $id . " AND val_user=" . $wgUser->getID() ;
+		$res = wfQuery( $sql, DB_READ );
+		while( $x = wfFetchObject( $res ) ) {
+			#$y = $x->val_revision ;
+			$y = $this->rev2date[$x->val_revision] ;
+			$y = $y->rev_timestamp ;
+			if ( !isset($r[$y]) ) $r[$y] = array () ;
+			$r[$y][$x->val_type]->value = $x->val_value ;
+			$r[$y][$x->val_type]->comment = $x->val_comment ;
+		}		
+		return $r ;
+	}
+	
+	# This functions adds a topic to the database
+	function addTopic ( $topic , $limit ) {
+		$a = 1 ;
+		while ( isset ( $this->topicList[$a] ) ) $a++ ;
+		$sql = "INSERT INTO validate (val_user,val_page,val_revision,val_type,val_value,val_comment) VALUES (" ;
+		$sql .= "'0','0','0','{$a}','{$limit}','" ;
+		$sql .= Database::strencode ( $topic ) . "')" ;
+		$res = wfQuery( $sql, DB_WRITE );
+		$x->val_user = $x->val_page = $x->val_revision = 0 ;
+		$x->val_type = $a ;
+		$x->val_value = $limit ;
+		$x->val_comment = $topic ;
+		$this->topicList[$a] = $x ;
+		ksort ( $this->topicList ) ;
+	}
+
+	# This functions adds a topic to the database
+	function deleteTopic ( $id ) {
+		$sql = "DELETE FROM validate WHERE val_type='{$id}'" ;
+		$res = wfQuery( $sql, DB_WRITE );
+		unset ( $this->topicList[$id] ) ;
+	}
+	
+	# This function returns a link text to the page validation statistics
+	function link2statistics ( &$article ) {
+		$ret = wfMsg ( 'val_rev_stats_link' ) ;
+		$nt = $article->getTitle() ;
+		$ret = str_replace ( "$1" , $nt->getPrefixedText() , $ret ) ;
+
+		$url = $nt->getLocalURL ( "action=validate&mode=list" ) ;
+		$ret = str_replace ( "$2" , $url , $ret ) ;
+
+		return $ret ;
+	}
+
+	# Returns the timestamp of a revision based on the revision number
+	function getTimestamp ( $revision ) {
+		$ts = $this->rev2date[$revision] ;
+		$ts = $ts->rev_timestamp ;
+		return $ts ;
+	}
+
+	# Returns the revision number of a revision based on the timestamp
+	function getRevisionNumber ( $ts ) {
+		$revision = $this->date2rev[$ts] ;
+		$revision = $revision->rev_id ;
+		return $revision ;
+	}
+
+
+	# HTML generation functions from this point on
+	
+	# Returns the metadata string for a revision
+	function getMetadata ( $idx ) {
+		$metadata = "" ;
+		$x = $this->rev2date[$idx] ;
+		$metadata .= wfTimestamp ( TS_DB , $x->rev_timestamp ) ;
+		$metadata .= " by " ;
+		if ( $x->rev_user == 0 ) {
+			$metadata .= $x->rev_user_text ;
+		} else {
+			$u = new User ;
+			$u->setId ( $x->rev_user ) ;
+			$u->setName ( $x->rev_user_text ) ;
+			$nt = $u->getUserPage() ;
+			$url = "<a href='" . $nt->getLocalUrl () . "'>" . $nt->getText() . "</a>" ;
+			$metadata .= $url ;
+		}
+		$metadata .= " : <small>\"" . htmlspecialchars ( $x->rev_comment ) . "\"</small>" ;
+		return $metadata ;
+	}
+
 	# Generates a form for a single revision
-	function getRevisionForm ( &$article , $revision , &$data , $focus = false ) {
+	function getRevisionForm ( &$article , $idx , &$data , $focus = false ) {
 		# Fill data with blank values
+		$ts = $idx ;
+		$revision = $this->getRevisionNumber ( $ts ) ;
 		foreach ( $this->topicList AS $x => $y ) {
 			if ( !isset ( $data[$x] ) ) {
 				$data[$x]->value = 0 ;
 				$data[$x]->comment = "" ;
 			}
 		}
-		ksort ( $data ) ;
+		ksort ( $data ) ;		
 	
 		# Generate form
 		$ret = "<form method='post'>" ;
@@ -67,9 +262,9 @@ class Validation {
 		if ( $focus ) $ret .= " style='background-color:#00BBFF'" ;
 		$ret .= ">\n" ;
 		$head = "Revision #" . $revision ;
-#		if ( $focus ) $head = "<font color='red'>{$head}</font>" ;
 		$link = " " . $this->getVersionLink ( $article , $revision ) ;
-		$ret .= "<tr><th align='left' colspan='3'>" . $head . " ({$link})</th></tr>\n" ;
+		$metadata = $this->getMetadata ( $revision ) ;
+		$ret .= "<tr><th align='left' colspan='3'>" . $head . " ({$link}) {$metadata}</th></tr>\n" ;
 		$line = 0 ;
 		foreach ( $data AS $x => $y ) {
 			$line = 1 - $line ;
@@ -109,153 +304,12 @@ class Validation {
 		return $ret ;
 	}
 	
-	# Merges one dataset into another
-	function mergeInto ( &$source , &$dest ) {
-		$ret = false ;
-		foreach ( $source AS $x => $y ) {
-			$doit = false ;
-			if ( !isset ( $dest[$x] ) ) $doit = true ;
-			else if ( $dest[$x]->value == 0 ) $doit = true ;
-			if ( $doit ) {
-				$dest[$x] = $y ;
-				$ret = true ;
-			}
-		}
-		if ( $ret ) ksort ( $dest ) ;
-		return $ret ;
-	}
-
-	# Merges all votes prior to the given revision into it
-	function mergeOldRevisions ( &$article , $revision ) {
-		$tmp = $this->voteCache ;
-		krsort ( $tmp ) ;
-		$update = false ;
-		$data = $this->voteCache[$revision] ;
-		foreach ( $tmp AS $x => $y ) {
-			if ( $x < $revision ) {
-				if ( $this->mergeInto ( $y , $data ) ) $update = true ;
-			}
-		}
-		if ( $update ) $this->setRevision ( $article , $revision , $data ) ;
-	}
-	
-	# Clears all votes prior to the given revision
-	function clearOldRevisions ( &$article , $revision ) {
-		$tmp = $this->voteCache ;
-		foreach ( $tmp AS $x => $y ) {
-			if ( $x < $revision ) $this->deleteRevision ( $article , $x ) ;
-		}
-	}
-	
-	# Updates the votes for the given revision from the FORM data
-	function updateRevision ( &$article , $revision ) {
-		global $wgUser, $wgRequest ;
-		
-		if ( isset ( $this->voteCache[$revision] ) ) $data = $this->voteCache[$revision] ;
-		else $data = array () ;
-		$nv = $wgRequest->getArray ( "re_v_{$revision}" , array() ) ;
-		$nc = $wgRequest->getArray ( "re_c_{$revision}" , array() ) ;
-		
-		foreach ( $nv AS $x => $y ) {
-#			if ( $y > 0 ) {
-				$data[$x]->value = $y ;
-				$data[$x]->comment = $nc[$x] ;
-#			}
-		}
-		krsort ( $data ) ;
-		
-		$this->setRevision ( $article , $revision , $data ) ;
-	}
-	
-	# Sets a specific revision to both cache and database
-	function setRevision ( &$article , $revision , &$data ) {
-		global $wgUser ;
-		$this->deleteRevision ( $article , $revision ) ;
-		$this->voteCache[$revision] = $data ;
-		foreach ( $data AS $x => $y ) {
-			if ( $y->value > 0 ) {
-				$sql = "INSERT INTO validate (val_user,val_page,val_revision,val_type,val_value,val_comment) VALUES ('" ;
-				$sql .= $wgUser->getID() . "','" ;
-				$sql .= $article->getID() . "','" ;
-				$sql .= $revision . "','" ;
-				$sql .= $x . "','" ;
-				$sql .= $y->value . "','" ;
-				$sql .= Database::strencode ( $y->comment ) . "')" ;
-				$res = wfQuery( $sql, DB_WRITE );
-			}
-		}
-	}
-	
-	# Deletes a specific vote set in both cache and database
-	function deleteRevision ( &$article , $revision ) {
-		global $wgUser ;
-		if ( !isset ( $this->voteCache[$revision] ) ) return ; # Nothing to do
-		$sql = "DELETE FROM validate WHERE val_user='" . $wgUser->GetID() . "' AND " ;
-		$sql .= " val_page='" . $article->getID() . "' AND val_revision='{$revision}'" ;
-		$res = wfQuery( $sql, DB_WRITE );
-		unset ( $this->voteCache[$revision] ) ;
-	}
-	
-	# Reads the entire vote list for this user for the given article
-	function getVoteList ( $id ) {
-		global $wgUser ;
-		$r = array () ; # Revisions
-		$sql = "SELECT * FROM validate WHERE val_page=" . $id . " AND val_user=" . $wgUser->getID() ;
-		$res = wfQuery( $sql, DB_READ );
-		while( $x = wfFetchObject( $res ) ) {
-			if ( !isset($r[$x->val_revision]) ) $r[$x->val_revision] = array () ;
-			$r[$x->val_revision][$x->val_type]->value = $x->val_value ;
-			$r[$x->val_revision][$x->val_type]->comment = $x->val_comment ;
-		}		
-		return $r ;
-	}
-	
-	# This functions adds a topic to the database
-	function addTopic ( $topic , $limit ) {
-		$a = 1 ;
-		while ( isset ( $this->topicList[$a] ) ) $a++ ;
-		$sql = "INSERT INTO validate (val_user,val_page,val_revision,val_type,val_value,val_comment) VALUES (" ;
-		$sql .= "'0','0','0','{$a}','{$limit}','" ;
-		$sql .= Database::strencode ( $topic ) . "')" ;
-		$res = wfQuery( $sql, DB_WRITE );
-		$x->val_user = $x->val_page = $x->val_revision = 0 ;
-		$x->val_type = $a ;
-		$x->val_value = $limit ;
-		$x->val_comment = $topic ;
-		$this->topicList[$a] = $x ;
-		ksort ( $this->topicList ) ;
-	}
-
-	# This functions adds a topic to the database
-	function deleteTopic ( $id ) {
-		$sql = "DELETE FROM validate WHERE val_type='{$id}'" ;
-		$res = wfQuery( $sql, DB_WRITE );
-		unset ( $this->topicList[$id] ) ;
-	}
-	
-	# This function returns a link text to the page validation statistics
-	function link2statistics ( &$article ) {
-		$ret = wfMsg ( 'val_rev_stats_link' ) ;
-		$nt = $article->getTitle() ;
-		$ret = str_replace ( "$1" , $nt->getPrefixedText() , $ret ) ;
-
-#		$t = Title::newFromText ( "Special:Validate" ) ;
-#		$url = $t->getLocalURL ( "mode=list&id=" . $article->getID() ) ;
-		$url = $nt->getLocalURL ( "action=validate&mode=list" ) ;
-		$ret = str_replace ( "$2" , $url , $ret ) ;
-
-		return $ret ;
-	}
-	
-
-
-	# HTML generation functions from this point on
-
 
 	# Generates the page from the validation tab
 	function validatePageForm ( &$article , $revision ) {
 		global $wgOut, $wgRequest ;
 		
+		$this->prepareRevisions ( $article->getID() ) ;
 		$this->topicList = $this->getTopicList() ;
 		$this->voteCache = $this->getVoteList ( $article->getID() ) ;
 		
@@ -273,7 +327,8 @@ class Validation {
 			}
 		
 		# Make sure the requested revision exists
-		if ( !isset ( $this->voteCache[$revision] ) ) $this->voteCache[$revision] = array () ;
+		$ts = $this->rev2date[$revision]->rev_timestamp ;
+		if ( !isset ( $this->voteCache[$ts] ) ) $this->voteCache[$ts] = array () ;
 		
 		# Sort revisions list, newest first
 		krsort ( $this->voteCache ) ;
@@ -285,7 +340,7 @@ class Validation {
 		$wgOut->setPageTitle ( wfMsg ( 'val_rev_for' ) . $title ) ;
 		foreach ( $this->voteCache AS $x => $y )
 			{
-			$ret .= $this->getRevisionForm ( $article , $x , $y , $x == $revision ) ;
+			$ret .= $this->getRevisionForm ( $article , $x , $y , $x == $ts ) ;
 			$ret .= "<br/>\n" ;
 			}
 		$ret .= $this->link2statistics ( $article ) ;
@@ -338,6 +393,7 @@ class Validation {
 	}
 	
 	function showList ( &$article ) {
+		$this->prepareRevisions ( $article->getID() ) ;
 		$this->topicList = $this->getTopicList() ;
 		
 		# Collecting statistic data
@@ -346,25 +402,33 @@ class Validation {
 		$res = wfQuery( $sql, DB_READ );
 		$data = array () ;
 		while( $x = wfFetchObject( $res ) ) {
-			if ( !isset ( $data[$x->val_revision] ) )
-				$data[$x->val_revision] = array () ;
-			if ( !isset ( $data[$x->val_revision][$x->val_type] ) ) {
-				$data[$x->val_revision][$x->val_type]->count = 0 ;
-				$data[$x->val_revision][$x->val_type]->sum = 0 ;
+			#$idx = $x->val_revision ;
+			$idx = $this->getTimestamp ( $x->val_revision ) ;
+			if ( !isset ( $data[$idx] ) )
+				$data[$idx] = array () ;
+			if ( !isset ( $data[$idx][$x->val_type] ) ) {
+				$data[$idx][$x->val_type]->count = 0 ;
+				$data[$idx][$x->val_type]->sum = 0 ;
 			}
-			$data[$x->val_revision][$x->val_type]->count++ ;
-			$data[$x->val_revision][$x->val_type]->sum += $x->val_value ;
+			$data[$idx][$x->val_type]->count++ ;
+			$data[$idx][$x->val_type]->sum += $x->val_value ;
 		}
+		
+		krsort ( $data ) ;
 		
 		$ret = "" ;
 		$ret .= "<table border='1' cellspacing='0' cellpadding='2'>\n" ;
-		$ret .= "<tr><th>Revision</th>" ;
+		$ret .= "<tr><th>" . wfMsg("val_revision") . "</th>" ;
+#		$ret .= "<th>" . wfMsg("val_time") . "</th>" ;
 		foreach ( $this->topicList AS $x => $y )
 			$ret .= "<th>{$y->val_comment}</th>" ;
 		$ret .= "</tr>\n" ;
-		foreach ( $data AS $revision => $y ) {
-			$url = $this->getVersionLink ( $article , $revision , $revision ) ;
+		foreach ( $data AS $ts => $y ) {
+			$revision = $this->getRevisionNumber ( $ts ) ;
+#			$url = $this->getVersionLink ( $article , $revision , $revision ) ;
+			$url = $this->getVersionLink ( $article , $revision , wfTimestamp ( TS_DB , $ts ) ) ;
 			$ret .= "<tr><th>{$url}</th>" ;
+#			$ret .= "<td nowrap>" . wfTimestamp ( TS_DB , $ts ) . "</td>" ;
 			foreach ( $this->topicList AS $topicID => $dummy ) {
 				if ( isset ( $y[$topicID] ) ) {
 					$z = $y[$topicID] ;

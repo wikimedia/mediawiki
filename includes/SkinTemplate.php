@@ -615,7 +615,7 @@ class SkinTemplate extends Skin {
 				}
 
 				# Validate tab. TODO: add validation to logged-in user rights 
-				if($wgUseValidation){ # && $wgUser->isAllowed('validate')){
+				if($wgUseValidation && $action=='view'){ # && $wgUser->isAllowed('validate')){
 					if ( $oldid ) $oid = IntVal( $oldid ) ; # Use the oldid
 					else
 						{# Trying to get the current article revision through this weird stunt
