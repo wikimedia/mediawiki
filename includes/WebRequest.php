@@ -40,14 +40,8 @@ class WebRequest {
 		global $wgUsePathInfo;
 		if( isset( $_SERVER['PATH_INFO'] ) && $wgUsePathInfo ) {
 			# Stuff it!
-			$_REQUEST['title'] = substr( $_SERVER['PATH_INFO'], 1 );
-		}
-		global $wgUseLatin1;
-		if( !$wgUseLatin1 ) {
-			require_once( 'normal/UtfNormal.php' );
-			wfProfileIn( 'WebRequest:normalizeUnicode-fix' );
-			$this->normalizeUnicode( $_REQUEST );
-			wfProfileOut( 'WebRequest:normalizeUnicode-fix' );
+			$_GET['title'] = $_REQUEST['title'] =
+				substr( $_SERVER['PATH_INFO'], 1 );
 		}
 	}
 
@@ -89,17 +83,19 @@ class WebRequest {
 	
 	/**
 	 * Recursively normalizes UTF-8 strings in the given array.
-	 * @param array &$arr will be modified
+	 * @param array $data string or array
+	 * @return cleaned-up version of the given
 	 * @private
 	 */
-	function normalizeUnicode( &$arr ) {
-		foreach( $arr as $key => $val ) {
-			if( is_array( $val ) ) {
-				$this->normalizeUnicode( $arr[$key ] );
-			} else {
-				$arr[$key] = UtfNormal::cleanUp( $val );
+	function normalizeUnicode( $data ) {
+		if( is_array( $data ) ) {
+			foreach( $data as $key => $val ) {
+				$data[$key] = $this->normalizeUnicode( $val );
 			}
+		} else {
+			$data = UtfNormal::cleanUp( $data );
 		}
+		return $data;
 	}
 	
 	/**
@@ -112,7 +108,20 @@ class WebRequest {
 	 */
 	function getGPCVal( &$arr, $name, $default ) {
 		if( isset( $arr[$name] ) ) {
-			return $arr[$name];
+			global $wgUseLatin1, $wgServer, $wgLang;
+			$data = $arr[$name];
+			if( isset( $_GET[$name] ) &&
+				( empty( $_SERVER['HTTP_REFERER'] ) ||
+				strncmp($wgServer, $_SERVER['HTTP_REFERER'], strlen( $wgServer ) ) ) ) {
+				# For links that came from outside, check for alternate/legacy
+				# character encoding.
+				$data = $wgLang->checkTitleEncoding( $data );
+			}
+			if( !$wgUseLatin1 ) {
+				require_once( 'normal/UtfNormal.php' );
+				$data = $this->normalizeUnicode( $data );
+			}
+			return $data;
 		} else {
 			return $default;
 		}
