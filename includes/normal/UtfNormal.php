@@ -424,6 +424,7 @@ class UtfNormal {
 					$head = '';
 				} elseif( $c < "\x80" ) {
 					# ASCII byte.
+					$head = '';
 				} elseif( $c < "\xc0" ) {
 					# Illegal tail bytes
 					if( $head == '' ) {
@@ -438,6 +439,7 @@ class UtfNormal {
 				} else {
 					# Miscellaneous freaks.
 					$replace[] = array( UTF8_REPLACEMENT, $base + $i, 1 );
+					$head = '';
 				}
 			}
 			$base += $chunk;

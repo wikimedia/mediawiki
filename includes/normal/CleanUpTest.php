@@ -197,7 +197,11 @@ class CleanUpTest extends PHPUnit_TestCase {
 							bin2hex( $head . UTF8_REPLACEMENT . UtfNormal::NFC( chr( $second ) . chr( $third ) . $tail ) ),
 							bin2hex( $clean ),
 							"Broken head + valid 2-byte $x" );
-					} elseif( $first > 0xfd && ( ( $second > 0xbf && $third > 0xbf ) || ($second < 0xc0 && $third < 0xc0 ) || ($second > 0xfd ) || ($third > 0xfd) ) ) {
+					} elseif( ( $first > 0xfd || $second > 0xfd ) &&
+					            ( ( $second > 0xbf && $third > 0xbf ) ||
+					              ( $second < 0xc0 && $third < 0xc0 ) ||
+					              ( $second > 0xfd ) ||
+					              ( $third > 0xfd ) ) ) {
 						# fe and ff are not legal head bytes -- expect three replacement chars
 						$this->assertEquals(
 							bin2hex( $head . UTF8_REPLACEMENT . UTF8_REPLACEMENT . UTF8_REPLACEMENT . $tail ),
@@ -241,6 +245,39 @@ class CleanUpTest extends PHPUnit_TestCase {
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 
+	function testInterposeRegression() {
+		$text   = "\x4e\x30" .
+		          "\xb1" .		# bad tail
+		          "\x3a" .
+		          "\x92" .		# bad tail
+		          "\x62\x3a" .
+		          "\x84" .		# bad tail
+		          "\x43" .
+		          "\xc6" .		# bad head
+		          "\x3f" .
+		          "\x92" .		# bad tail
+		          "\xad" .		# bad tail
+		          "\x7d" .
+		          "\xd9\x95";
+	
+		$expect = "\x4e\x30" .
+		          "\xef\xbf\xbd" .
+		          "\x3a" .
+		          "\xef\xbf\xbd" .
+		          "\x62\x3a" .
+		          "\xef\xbf\xbd" .
+		          "\x43" .
+		          "\xef\xbf\xbd" .
+		          "\x3f" .
+		          "\xef\xbf\xbd" .
+		          "\xef\xbf\xbd" .
+		          "\x7d" .
+		          "\xd9\x95";
+		
+		$this->assertEquals(
+			bin2hex( $expect ),
+			bin2hex( UtfNormal::cleanUp( $text ) ) );
+	}
 }
 
 
