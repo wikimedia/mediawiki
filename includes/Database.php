@@ -334,6 +334,7 @@ class Database {
 	function tableExists( $table )
 	{
 		$old = $this->mIgnoreErrors;
+		$this->mIgnoreErrors = true;
 		$res = $this->query( "SELECT 1 FROM $table LIMIT 1" );
 		$this->mIgnoreErrors = $old;
 		if( $res ) {
