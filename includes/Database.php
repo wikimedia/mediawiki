@@ -17,6 +17,8 @@ define( 'LIST_COMMA', 0 );
 define( 'LIST_AND', 1 );
 /** @todo document */
 define( 'LIST_SET', 2 );
+/** @todo document */
+define( 'LIST_NAMES', 3);
 
 /** Number of times to re-try an operation in case of deadlock */
 define( 'DEADLOCK_TRIES', 4 );
@@ -780,6 +782,7 @@ class Database {
 	 * $mode: LIST_COMMA         - comma separated, no field names
 	 *        LIST_AND           - ANDed WHERE clause (without the WHERE)
 	 *        LIST_SET           - comma separated with field names, like a SET clause
+	 *	  LIST_NAMES	     - comma separated field names
 	 */
 	function makeList( $a, $mode = LIST_COMMA ) {
 		if ( !is_array( $a ) ) {
@@ -804,7 +807,7 @@ class Database {
 				if ( $mode == LIST_AND || $mode == LIST_SET ) {
 					$list .= $field.'=';
 				}
-				$list .= $this->addQuotes( $value );
+				$list .= ($mode==LIST_NAMES?$value:$this->addQuotes( $value ));
 			}
 		}
 		return $list;
