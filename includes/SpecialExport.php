@@ -82,7 +82,7 @@ function page2xml( $page, $curonly, $full = false ) {
 		'cur_user_text as user_text', 'cur_restrictions as restrictions','cur_comment as comment',
 		'cur_text as text' ), $title->curCond(), $fname );
 	if( $s !== false ) {
-		$tl = htmlspecialchars( $title->getPrefixedText() );
+		$tl = xmlsafe( $title->getPrefixedText() );
 		$xml = "  <page>\n";
 		$xml .= "    <title>$tl</title>\n";
 		if( $full ) {
@@ -117,21 +117,21 @@ function revision2xml( $s, $full, $cur ) {
 		$xml .= "    <id>$s->id</id>\n";
 	$xml .= "      <timestamp>$ts</timestamp>\n";
 	if($s->user) {
-		$u = "<username>" . htmlspecialchars( $s->user_text ) . "</username>";
+		$u = "<username>" . xmlsafe( $s->user_text ) . "</username>";
 		if($full)
 			$u .= "<id>$s->user</id>";
 	} else {
-		$u = "<ip>" . htmlspecialchars( $s->user_text ) . "</ip>";
+		$u = "<ip>" . xmlsafe( $s->user_text ) . "</ip>";
 	}
 	$xml .= "      <contributor>$u</contributor>\n";
 	if( !empty( $s->minor ) ) {
 		$xml .= "      <minor/>\n";
 	}
 	if($s->comment != "") {
-		$c = htmlspecialchars( $s->comment );
+		$c = xmlsafe( $s->comment );
 		$xml .= "      <comment>$c</comment>\n";
 	}
-	$t = htmlspecialchars( Article::getRevisionText( $s, "" ) );
+	$t = xmlsafe( Article::getRevisionText( $s, "" ) );
 	$xml .= "      <text>$t</text>\n";
 	$xml .= "    </revision>\n";
 	return $xml;
@@ -140,6 +140,17 @@ function revision2xml( $s, $full, $cur ) {
 function wfTimestamp2ISO8601( $ts ) {
 	#2003-08-05T18:30:02Z
 	return preg_replace( '/^(....)(..)(..)(..)(..)(..)$/', '$1-$2-$3T$4:$5:$6Z', $ts );
+}
+
+function xmlsafe( $string ) {
+	# May contain old data which has not been properly normalized.
+	global $wgUseLatin1;
+	if( $wgUseLatin1 ) {
+		$string = preg_replace( '/[\x00-\x08\x0b-\x1f]/', '', $string );
+	} else {
+		$string = UtfNormal::cleanUp( $string );
+	}
+	return htmlspecialchars( $string );
 }
 
 ?>
