@@ -35,7 +35,7 @@ require_once("LanguageUtf8.php");
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsFa = array(
 	"نباشد", "ثابت چپ", "ثابت راست", "شناور چپ"

@@ -23,7 +23,7 @@ require_once( "LanguageUtf8.php" );
 	7	=> "Зображення_обговорення",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_обговорення"
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsUk = array(
 	"Не показувати панель", "Фіксована зліва", "Фіксована справа", "Плаваюча зліва"
@@ -37,8 +37,7 @@ require_once( "LanguageUtf8.php" );
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
-,
+	'monobook' => "MonoBook",
  "myskin" => "MySkin" 
 );
 

@@ -27,7 +27,7 @@
     NS_CATEGORY         => "Categoria",
     NS_CATEGORY_TALK    => "Discussioni_categoria"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsIt = array(
 	"Nessuno", "Fisso a sinistra", "Fisso a destra", "Fluttuante a sinistra"

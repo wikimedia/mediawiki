@@ -22,7 +22,7 @@
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsBn = array(
   "None", "Fixed left", "Fixed right", "Floating left"

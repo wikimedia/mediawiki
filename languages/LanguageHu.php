@@ -28,7 +28,7 @@ require_once("LanguageUtf8.php");
 	NS_HELP_TALK	=> "Segítség_vita",
 	NS_CATEGORY	=> "Kategória",
 	NS_CATEGORY_TALK => "Kategória_vita"
-);
+) + $wgNamespaceNamesEn;
 
 /* Inherit default options; make specific changes via 
    custom getDefaultUserOptions() if needed. */

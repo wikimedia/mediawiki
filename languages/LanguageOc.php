@@ -21,7 +21,7 @@ require_once( "LanguageUtf8.php" );
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsOc = array(
 	"Cap", "Esquèr", "Drech", "Flotejant a esquèr"

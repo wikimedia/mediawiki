@@ -30,7 +30,7 @@ $wgEditEncoding		= "x";
 	NS_CATEGORY       => "Kategorio",
 	NS_CATEGORY_TALK  => "Kategoria_diskuto",
 
-);
+) + $wgNamespaceNamesEn;
 
 # Heredu apriorajn preferojn: wgDefaultUserOptionsEn
 

@@ -22,7 +22,7 @@
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsAf = array(
 	"Geen.", "Links vas.", "Regs vas.", "Dryf links."

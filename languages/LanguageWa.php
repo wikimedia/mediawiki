@@ -31,7 +31,7 @@ require_once( "LanguageUtf8.php" );
 	NS_HELP_TALK      => "Aidance_copene",
 	NS_CATEGORY       => "Categoreye",
 	NS_CATEGORY_TALK  => "Categoreye_copene",
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsWa = array(
 	"Nole bår", "Aclawêye a hintche", "Aclawêye a droete", "Flotante a hintche"

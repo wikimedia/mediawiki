@@ -22,7 +22,7 @@ require_once( "LanguageUtf8.php" );
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 # I always compare this file with japanese file, when I'm confused.
 # And DefaultUserOption isn't there in japanese one. What's

@@ -27,7 +27,7 @@ if ( $wgMetaNamespace == "Wikipedia" ) {
         NS_HELP_TALK        => "QaH_ja'chuq",
         NS_CATEGORY         => "Segh",
         NS_CATEGORY_TALK    => "Segh_ja'chuq"
-);
+) + $wgNamespaceNamesEn;
 
 class LanguageTlh extends LanguageUtf8
 {
