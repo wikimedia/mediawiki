@@ -893,7 +893,28 @@ class OutputPage {
 			wfProfileOut( "$fname-construct" );
 			# Do the thing
 			wfProfileIn( "$fname-replace" );
-			$this->mBodytext = str_replace( $search, $replace, $this->mBodytext );
+			
+			# Dirrrty hack
+			$arr = explode ( "<!--LINK" , $this->mBodytext ) ;
+			$tarr = array() ;
+			foreach ( $arr AS $k => $v )
+				{
+				$t = explode ( "-->" , $v , 2 ) ;
+				$tarr[$k] = $t[0]  ;
+				}
+			while ( count ( $search ) > 0 )
+				{
+				$s = array_pop ( $search ) ;
+				$r = array_pop ( $replace ) ;
+				$s = substr ( $s , 8 , strlen ( $s ) - 11 ) ;
+				$k = array_search ( $s , $tarr ) ;
+				if ( $k === false ) continue ;
+				$arr[$k] = substr_replace ( $arr[$k] , $r , 0 , strlen ( $s ) + 3 ) ;
+				unset ( $tarr[$k] ) ;
+				}
+			$this->mBodytext = implode ( "" , $arr ) ;
+			
+#			$this->mBodytext = str_replace( $search, $replace, $this->mBodytext );
 			wfProfileOut( "$fname-replace" );
 		}
 		wfProfileOut( $fname );
