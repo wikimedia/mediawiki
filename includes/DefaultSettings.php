@@ -103,6 +103,16 @@ $wgUploadBaseUrl    = "";
 /**#@-*/
 
 /**
+ * To set 'pretty' URL paths for actions other than
+ * plain page views, add to this array. For instance:
+ *   'edit' => "$wgScriptPath/edit/$1"
+ *
+ * There must be an appropriate script or rewrite rule
+ * in place to handle these URLs.
+ */
+$wgActionPaths = array();
+
+/**
  * If you operate multiple wikis, you can define a shared upload path here.
  * Uploads to this wiki will NOT be put there - they will be put into
  * $wgUploadDirectory.
