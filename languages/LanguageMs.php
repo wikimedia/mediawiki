@@ -20,6 +20,8 @@
 	5	=> "Perbualan_Wikipedia",#Wikipedia_talk
 	6	=> "Imej",#Image
 	7	=> "Imej_Perbualan",#Image_talk
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_Perbualan",
 );
 
 /* private */ $wgQuickbarSettingsMs = array(
