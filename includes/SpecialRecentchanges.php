@@ -2,7 +2,7 @@
 
 function wfSpecialRecentchanges( $par )
 {
-	global $wgUser, $wgOut, $wgLang, $wgTitle;
+	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgDBname;
 	global $days, $hideminor, $from, $hidebots, $hideliu; # From query string
 	$fname = "wfSpecialRecentchanges";
 
@@ -91,7 +91,18 @@ function wfSpecialRecentchanges( $par )
 	  ($uid ? "LEFT OUTER JOIN watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace & 65534 " : "") .
 	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
 	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
-	$res = wfQuery( $sql2, DB_READ, $fname );
+
+	$memckey = "$wgDBname:recentchanges:" . md5( $sql2 );
+
+	$rows = $wgMemc->get( $memckey );
+	if( ! is_array($rows) ){
+		$rows = array();
+		$res = wfQuery( $sql2, DB_READ, $fname );
+		while( $row = wfFetchObject( $res ) ){ 
+			$rows[] = $row; 
+		}
+		$wgMemc->set($memckey, $rows, 60);
+	}
 
 	if(isset($from)) {
 		$note = wfMsg( "rcnotefrom", $limit,
@@ -109,21 +120,17 @@ function wfSpecialRecentchanges( $par )
 
 	$wgOut->addHTML( "{$note}\n" );
 
-	$count1 = wfNumRows( $res );
-	$obj1 = wfFetchObject( $res );
-
 	$s = $sk->beginRecentChangesList();
-	while ( $limit ) {
-		if ( ( 0 == $count1 ) ) { 
+	foreach( $rows as $obj ){
+		if( $limit == 0) {
 			break; 
 		}
-		if ( ! ( $hideminor && $obj1->rc_minor ) ) {
-			$rc = RecentChange::newFromRow( $obj1 );
-			$s .= $sk->recentChangesLine( $rc, $obj1->wl_user );
+
+		if ( ! ( $hideminor && $obj->rc_minor ) ) {
+			$rc = RecentChange::newFromRow( $obj );
+			$s .= $sk->recentChangesLine( $rc, $obj->wl_user );
 			--$limit;
 		}
-		$obj1 = wfFetchObject( $res );
-		--$count1;
 	}
 	$s .= $sk->endRecentChangesList();
 
