@@ -20,9 +20,9 @@
 //  Authors: Laurent Bedubourg <laurent.bedubourg@free.fr>
 //  
 
-require_once "Types.php";
-require_once "Types/Errors.php";
-require_once "Types/Ref.php";
+require_once PT_IP . "/Types.php";
+require_once PT_IP . "/Types/Errors.php";
+require_once PT_IP . "/Types/Ref.php";
 
 /**
  * Wrapper for oriented object associative arrays.
