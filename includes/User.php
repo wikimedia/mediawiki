@@ -428,6 +428,14 @@ class User {
 		return in_array( "developer", $this->mRights );
 	}
 
+	function isBureaucrat()
+	{
+		$this->loadFromDatabase();
+		if ( 0 == $this->mId ) { return false; }
+
+		return in_array( "bureaucrat", $this->mRights );
+	}
+
 	function isBot()
 	{
 		$this->loadFromDatabase();

@@ -362,7 +362,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 /* private */ $wgSysopSpecialPagesEn = array(
 	"Blockip"		=> "Block a user/IP address",
 	"Asksql"		=> "Query the database",
-	"Undelete"		=> "Restore deleted pages"
+	"Undelete"		=> "Restore deleted pages",
+	"Makesysop"		=> "Turn a user into a sysop"
 );
 
 /* private */ $wgDeveloperSpecialPagesEn = array(
@@ -455,6 +456,9 @@ See $1.",
 "developertext"	=> "The action you have requested can only be
 performed by users with \"developer\" status.
 See $1.",
+"bureaucrattitle"	=> "Bureaucrat access required",
+"bureaucrattext"	=> "The action you have requested can only be
+performed by sysops with  \"bureaucrat\" status.",
 "nbytes"		=> "$1 bytes",
 "go"			=> "Go",
 "ok"			=> "OK",
@@ -1265,6 +1269,14 @@ this function sparingly.",
 "querybtn"		=> "Submit query",
 "selectonly"	=> "Only read-only queries are allowed.",
 "querysuccessful" => "Query successful",
+
+# Make sysop
+"makesysoptitle"	=> "Make a user into a sysop",
+"makesysoptext"		=> "This form is used by bureaucrats to turn ordinary users into administrators. 
+Type the name of the user in the box and press the button to make the user an administrator",
+"makesysopsubmit"	=> "Make this user into a sysop",
+"makesysopok"		=> "<b>User '$1' is now a sysop</b>",
+"makesysopfail"		=> "<b>User '$1' could not be made into a sysop. (Did you enter the name correctly?)</b>",
 
 # Move page
 #
