@@ -110,6 +110,7 @@ header( "Content-type: text/html; charset=utf-8" );
 $IP = ".."; # Just to suppress notices, not for anything useful
 define( "MEDIAWIKI", true );
 define( "MEDIAWIKI_INSTALL", true );
+require_once( "../includes/Defines.php" );
 require_once( "../includes/DefaultSettings.php" );
 require_once( "../includes/MagicWord.php" );
 require_once( "../includes/Namespace.php" );
