@@ -318,8 +318,16 @@ $wgUseImageResize		= false;
 $wgUseImageMagick		= false;
 $wgImageMagickConvertCommand    = "/usr/bin/convert";
 
-# Make sure include_path is set correctly
+# PHPTal needs a PEAR directory in the include_path. If we can't change the
+# include_path (such as on free.fr and other hosts) we may have to disable it.
 $wgUsePHPTal = true;
+$pathchange = @ini_set( "include_path", "PHPTAL-NP-0.7.0/libs:" . ini_get("include_path") );
+if( empty( $pathchange ) ) {
+	# Can't fix path! User can manually enable it again if they put the files
+	# in an appropriate place.
+	$wgUsePHPTal = false;
+}
+
 
 if( !isset( $wgCommandLineMode ) ) {
 	$wgCommandLineMode = false;

@@ -3,7 +3,7 @@
 require_once('Tokenizer.php');
 
 if( $GLOBALS['wgUseWikiHiero'] ){
-	require_once('wikihiero.php');
+	require_once('extensions/wikihiero/wikihiero.php');
 }
 if( $GLOBALS['wgUseTimeline'] ){
 	require_once('extensions/timeline/Timeline.php');

@@ -73,7 +73,7 @@ header( "Content-type: text/html; charset=utf-8" );
 <div id="credit">
  <center>
   <a href="http://www.mediawiki.org/"><img
-    src="../images/wiki.png" width="135" height="135" alt="" border="0" /></a>
+    src="../stylesheets/images/wiki.png" width="135" height="135" alt="" border="0" /></a>
  </center>
  
  <b><a href="http://www.mediawiki.org/">MediaWiki</a></b> is
@@ -106,7 +106,9 @@ header( "Content-type: text/html; charset=utf-8" );
 <?php
 
 $IP = ".."; # Just to suppress notices, not for anything useful
-include( "../includes/DefaultSettings.php" );
+define( "MEDIAWIKI", true );
+define( "MEDIAWIKI_INSTALL", true );
+require( "../includes/DefaultSettings.php" );
 ?>
 
 <h1>MediaWiki <?php print $wgVersion ?> installation</h1>
@@ -149,8 +151,8 @@ if( !is_writable( "." ) ) {
 }
 
 
-include( "../install-utils.inc" );
-include( "../maintenance/updaters.inc" );
+require( "../install-utils.inc" );
+require( "../maintenance/updaters.inc" );
 class ConfigData {
 	function getEncoded( $data ) {
 		# Hackish
@@ -235,6 +237,11 @@ $conf->IP = preg_replace( "/\\\\/","\\\\\\\\",$conf->IP );  // For Windows, \ ->
 chdir( "config" );
 print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt></li>\n";
 
+@$oldpath = ini_set( "include_path", ini_get( "include_path" ) );
+if( empty( $oldpath ) ) {
+	print "<li>Can't set <tt>include_path</tt>; new template layout will be disabled.</li>\n";
+}
+
 # $conf->ScriptPath = "/~brion/inplace";
 $conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $_SERVER["REQUEST_URI"] );
 print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</tt></li>\n";
@@ -296,13 +303,15 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		/* Load up the settings and get installin' */
 		$local = writeLocalSettings( $conf );
 		$wgCommandLineMode = false;
+		chdir( ".." );
 		eval($local);
-
 		$wgDBadminuser = $wgDBuser;
 		$wgDBadminpassword = $wgDBpassword;
 		$wgCommandLineMode = true;
 		$wgUseDatabaseMessages = false;	/* FIXME: For database failure */
-		require_once( "Setup.php" );
+		require_once( "includes/Setup.php" );
+		chdir( "config" );
+
 		require_once( "../maintenance/InitialiseMessages.inc" );
 
 		$wgTitle = Title::newFromText( "Installation script" );
@@ -691,8 +700,7 @@ function writeLocalSettings( $conf ) {
 # recreate them later.
 
 \$IP = \"{$conf->IP}\";
-ini_set( \"include_path\", \"\$IP/includes$sep\$IP/languages$sep\" . ini_get(\"include_path\") );
-require_once( \"DefaultSettings.php\" );
+require_once( \"includes/DefaultSettings.php\" );
 
 if ( \$wgCommandLineMode ) {
 	if ( isset( \$_SERVER ) && array_key_exists( 'REQUEST_METHOD', \$_SERVER ) ) {
@@ -753,11 +761,6 @@ if ( \$wgCommandLineMode ) {
 \$wgMathPath         = \"{\$wgUploadPath}/math\";
 \$wgMathDirectory    = \"{\$wgUploadDirectory}/math\";
 \$wgTmpDirectory     = \"{\$wgUploadDirectory}/tmp\";
-
-\$wgUsePHPTal = true;
-if ( \$wgUsePHPTal ) {
-      ini_set( \"include_path\", \"\$IP/PHPTAL-NP-0.7.0/libs$sep\" . ini_get(\"include_path\") );
-}
 
 \$wgLocalInterwiki   = \$wgSitename;
 
@@ -836,7 +839,7 @@ function getLanguageList() {
 		$wgLanguageCode = "xxx";
 		function wfLocalUrl( $x ) { return $x; }
 		function wfLocalUrlE( $x ) { return $x; }
-		include( "../languages/Language.php" );
+		require( "../languages/Language.php" );
 	}
 	
 	$codes = array();

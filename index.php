@@ -5,21 +5,14 @@
 $wgRequestTime = microtime();
 
 unset( $IP );
-ini_set( "allow_url_fopen", 0 ); # For security...
+@ini_set( "allow_url_fopen", 0 ); # For security...
 if(!file_exists("LocalSettings.php")) {
 	die( "You'll have to <a href='config/index.php'>set the wiki up</a> first!" );
 }
+
+define( "MEDIAWIKI", true );
 require_once( "./LocalSettings.php" );
-
-if( $wgSitename == "MediaWiki" ) {
-	die( "You must set the site name in \$wgSitename before installation.\n\n" );
-}
-
-# PATH_SEPARATOR avaialble only from 4.3.0
-$sep = (DIRECTORY_SEPARATOR == "\\") ? ";" : ":";
-ini_set( "include_path", $IP . $sep . ini_get( "include_path" ) );
-
-require_once( "Setup.php" );
+require_once( "includes/Setup.php" );
 
 wfProfileIn( "main-misc-setup" );
 OutputPage::setEncodings(); # Not really used yet
@@ -94,7 +87,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 
 	switch( $wgTitle->getNamespace() ) {
 	case NS_IMAGE:
-		require_once( "ImagePage.php" );
+		require_once( "includes/ImagePage.php" );
 		$wgArticle = new ImagePage( $wgTitle );
 		break;
 	default:
@@ -123,7 +116,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 			if( !$wgEnableDublinCoreRdf ) {
 				wfHttpError( 403, "Forbidden", wfMsg( "nodublincore" ) );
 			} else {
-				require_once( "Metadata.php" );
+				require_once( "includes/Metadata.php" );
 				wfDublinCoreRdf( $wgArticle );
 			}
 			break;
@@ -131,7 +124,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 			if( !$wgEnableCreativeCommonsRdf ) {
 				wfHttpError( 403, "Forbidden", wfMsg("nocreativecommons") );
 			} else {
-				require_once( "Metadata.php" );
+				require_once( "includes/Metadata.php" );
 				wfCreativeCommonsRdf( $wgArticle );
 			}
 			break;
@@ -140,7 +133,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 			if( !$wgCommandLineMode && !$wgRequest->checkSessionCookie() ) {
 				User::SetupSession();
 			}
-			require_once( "EditPage.php" );
+			require_once( "includes/EditPage.php" );
 			$editor = new EditPage( $wgArticle );
 			$editor->$action();
 			break;
@@ -148,12 +141,12 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 			if ($_SERVER["REQUEST_URI"] == $wgTitle->getInternalURL('action=history')) {
 				$wgOut->setSquidMaxage( $wgSquidMaxage );
 			}
-			require_once( "PageHistory.php" );
+			require_once( "includes/PageHistory.php" );
 			$history = new PageHistory( $wgArticle );
 			$history->history();
 			break;
 		case "raw":
-			require_once( "RawPage.php" );
+			require_once( "includes/RawPage.php" );
 			$raw = new RawPage( $wgArticle );
 			$raw->view();
 			break;
