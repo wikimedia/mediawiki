@@ -8,9 +8,9 @@ if( defined( "MEDIAWIKI" ) ) {
 require_once( 'Feed.php' );  // should not be called if the actual page isn't feed enabled
 require_once( 'Image.php' );
 
-# These are the INTERNAL names, which get mapped
-# directly to class names.  For display purposes, the
-# Language class has internationalized names
+# These are the INTERNAL names, which get mapped directly to class names and
+# file names in ./skins/. For display purposes, the Language class has
+# internationalized names
 #
 /* private */ $wgValidSkinNames = array(
 	'standard'      => 'Standard',
@@ -21,9 +21,9 @@ if( $wgUsePHPTal ) {
 	#$wgValidSkinNames[] = 'PHPTal';
 	#$wgValidSkinNames['davinci'] = 'DaVinci';
 	#$wgValidSkinNames['mono'] = 'Mono';
+	#$wgValidSkinNames['monobookminimal'] = 'MonoBookMinimal';
 	$wgValidSkinNames['monobook'] = 'MonoBook';
 	$wgValidSkinNames['myskin'] = 'MySkin';
-	#$wgValidSkinNames['monobookminimal'] = 'MonoBookMinimal';
 	$wgValidSkinNames['chick'] = 'Chick';
 }
 
