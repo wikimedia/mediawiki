@@ -80,7 +80,7 @@ class LinksUpdate {
 			# Delete where necessary
 			if ( count( $del ) ) {
 				$sql = "DELETE FROM brokenlinks WHERE bl_from={$this->mId} AND bl_to IN('" . 	
-					implode( "','", $del ) . "')";
+					implode( "','", array_map( "wfStrencode", $del ) ) . "')";
 				wfQuery( $sql, DB_WRITE, $fname );
 			}
 		} else {
