@@ -2,7 +2,7 @@
 
 function wfSpecialRandompage()
 {
-	global $wgOut, $wgTitle, $wgArticle, $force;
+	global $wgOut, $wgTitle, $wgArticle;
 	$fname = "wfSpecialRandompage";
 
 	wfSeedRandom();

@@ -2,12 +2,13 @@
 
 function wfSpecialUnlockdb()
 {
-	global $wgUser, $wgOut, $action;
+	global $wgUser, $wgOut, $wgRequest;
 
 	if ( ! $wgUser->isDeveloper() ) {
 		$wgOut->developerRequired();
 		return;
 	}
+	$action = $wgRequest->getText( 'action' );
 	$f = new DBUnlockForm();
 
 	if ( "success" == $action ) { $f->showSuccess(); }
@@ -16,11 +17,9 @@ function wfSpecialUnlockdb()
 }
 
 class DBUnlockForm {
-
 	function showForm( $err )
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $wpLockConfirm;
 
 		$wgOut->setPagetitle( wfMsg( "unlockdb" ) );
 		$wgOut->addWikiText( wfMsg( "unlockdbtext" ) );
@@ -52,8 +51,9 @@ class DBUnlockForm {
 	function doSubmit()
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $wpLockConfirm, $wgReadOnlyFile;
+		global $wgRequest, $wgReadOnlyFile;
 
+		$wpLockConfirm = $wgRequest->getCheck( 'wpLockConfirm' );
 		if ( ! $wpLockConfirm ) {
 			$this->showForm( wfMsg( "locknoconfirm" ) );
 			return;

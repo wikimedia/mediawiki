@@ -3,7 +3,6 @@
 function wfSpecialUnusedimages()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	global $limit, $offset; # From query string
 	$fname = "wfSpecialUnusedimages";
 
 	list( $limit, $offset ) = wfCheckLimits();

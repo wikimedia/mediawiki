@@ -2,13 +2,13 @@
 
 function wfSpecialLockdb()
 {
-	global $wgUser, $wgOut, $wgRequest, $action;
+	global $wgUser, $wgOut, $wgRequest;
 
 	if ( ! $wgUser->isDeveloper() ) {
 		$wgOut->developerRequired();
 		return;
 	}
-
+	$action = $wgRequest->getText( 'action' );
 	$f = new DBLockForm();
 
 	if ( "success" == $action ) { $f->showSuccess(); }
@@ -27,7 +27,6 @@ class DBLockForm {
 	function showForm( $err )
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $wpLockConfirm;
 
 		$wgOut->setPagetitle( wfMsg( "lockdb" ) );
 		$wgOut->addWikiText( wfMsg( "lockdbtext" ) );

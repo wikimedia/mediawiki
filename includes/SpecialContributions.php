@@ -149,7 +149,7 @@ TODO: This would probably look a lot nicer in a table.
 */
 function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew )
 {
-	global $wgLang, $wgOut, $wgUser, $wgRequest, $target;
+	global $wgLang, $wgOut, $wgUser, $wgRequest;
 	$page = Title::makeName( $ns, $t );
 	$link = $sk->makeKnownLink( $page, "" );
 	$topmarktext="";
@@ -162,6 +162,7 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew )
 		$sysop = $wgUser->isSysop();
 		if($sysop ) {
 			$extraRollback = $wgRequest->getBool( "bot" ) ? '&bot=1' : '';
+			$target = $wgRequest->getText( 'target' );
 			$topmarktext .= " [". $sk->makeKnownLink( $page,
 		  	wfMsg( "rollbacklink" ),
 		  	"action=rollback&from=" . urlencode( $target ) . $extraRollback ) ."]";
@@ -188,8 +189,9 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew )
 
 function ucCountLink( $lim, $d )
 {
-	global $wgUser, $wgLang, $target;
+	global $wgUser, $wgLang, $wgRequest;
 
+	$target = $wgRequest->getText( 'target' );
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink( $wgLang->specialPage( "Contributions" ),
 	  "{$lim}", "target={$target}&days={$d}&limit={$lim}" );
@@ -198,8 +200,9 @@ function ucCountLink( $lim, $d )
 
 function ucDaysLink( $lim, $d )
 {
-	global $wgUser, $wgLang, $target;
+	global $wgUser, $wgLang, $wgRequest;
 
+	$target = $wgRequest->getText( 'target' );
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink( $wgLang->specialPage( "Contributions" ),
 	  "{$d}", "target={$target}&days={$d}&limit={$lim}" );

@@ -11,8 +11,8 @@ function wfSpecialEmailuser()
 		$wgOut->errorpage( "mailnologin", "mailnologintext" );
 		return;
 	}
-	$action = $wgRequest->getVal( $action );
-	$target = $wgRequest->getVal( $target );
+	$action = $wgRequest->getVal( 'action' );
+	$target = $wgRequest->getVal( 'target' );
 	if ( "" == $target ) {
 		$wgOut->errorpage( "notargettitle", "notargettext" );
 		return;
@@ -59,12 +59,13 @@ class EmailUserForm {
 	function showForm( $err )
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $wpSubject, $wpText;
 
 		$wgOut->setPagetitle( wfMsg( "emailpage" ) );
 		$wgOut->addWikiText( wfMsg( "emailpagetext" ) );
 
-		if ( ! $wpSubject ) { $wpSubject = wfMsg( "defemailsubject" ); }
+		if ( $this->subject === "" ) { 
+			$this->subject = wfMsg( "defemailsubject" ); 
+		}
 
 		$emf = wfMsg( "emailfrom" );
 		$sender = $wgUser->getName();
@@ -73,7 +74,8 @@ class EmailUserForm {
 		$emr = wfMsg( "emailsubject" );
 		$emm = wfMsg( "emailmessage" );
 		$ems = wfMsg( "emailsend" );
-
+		$encSubject = htmlspecialchars( $this->subject );
+		
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
 		$action = $titleObj->escapeLocalURL( "target={$this->target}&action=submit" );
 
@@ -92,13 +94,13 @@ class EmailUserForm {
 </tr><tr>
 <td align=right>{$emr}:</td>
 <td align=left>
-<input type=text name=\"wpSubject\" value=\"{$wpSubject}\">
+<input type=text name=\"wpSubject\" value=\"{$encSubject}\">
 </td>
 </tr><tr>
 <td align=right>{$emm}:</td>
 <td align=left>
 <textarea name=\"wpText\" rows=10 cols=60 wrap=virtual>
-{$wpText}
+{$this->text}
 </textarea>
 </td></tr><tr>
 <td>&nbsp;</td><td align=left>
@@ -111,16 +113,16 @@ class EmailUserForm {
 	function doSubmit()
 	{
 		global $wgOut, $wgUser, $wgLang, $wgOutputEncoding;
-		global $wpSubject, $wpText, $this->target;
 	    
 		$from = wfQuotedPrintable( $wgUser->getName() ) . " <" . $wgUser->getEmail() . ">";
 		
-		$mailResult = userMailer( $this->mAddress, $from, wfQuotedPrintable( $wpSubject ), $wpText );
+		$mailResult = userMailer( $this->mAddress, $from, wfQuotedPrintable( $this->subject ), $this->text );
 
 		if (! $mailResult)
 		{
 			$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
-			$wgOut->redirect( $titleObj->getFullURL( "target={$this->target}&action=success" ) );
+			$encTarget = wfUrlencode( $this->target );
+			$wgOut->redirect( $titleObj->getFullURL( "target={$encTarget}&action=success" ) );
 		}
 		else
 			$wgOut->addHTML( wfMsg( "usermailererror" ) . $mailResult);
