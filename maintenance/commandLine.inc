@@ -86,6 +86,7 @@ if ( $sep == ":" && strpos( `hostname`, "wikimedia.org" ) !== false ) {
 	$DP = $IP;
 	ini_set( "include_path", ".:$IP:$IP/includes:$IP/languages:$IP/maintenance" );
 
+	require_once( "$IP/includes/Defines.php" );
 	require_once( "/home/wikipedia/common/php-new/CommonSettings.php" );
 } else {
 	$wgWikiFarm = false;
@@ -98,6 +99,7 @@ if ( $sep == ":" && strpos( `hostname`, "wikimedia.org" ) !== false ) {
 	}
 	$wgCommandLineMode = true;
 	$DP = $IP;
+	require_once( "$IP/includes/Defines.php" );
 	include_once( $settingsFile );
 	ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" );
 	include_once( "$IP/AdminSettings.php" );
