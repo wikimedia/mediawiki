@@ -507,6 +507,7 @@ class Article {
 			$this->mTitle->getNamespace() == Namespace::getUser() && 
 			preg_match("/\\/[\\w]+\\.(css|js)$/", $this->mTitle->getDBkey())
 		) {
+			$wgOut->addWikiText( wfMsg('usercssjs'));
 			$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
 		} else if( $wgEnableParserCache && intval($wgUser->getOption( "stubthreshold" )) == 0 ){
 			$wgOut->addWikiText( $text, true, $this );
