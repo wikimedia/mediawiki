@@ -88,7 +88,7 @@ function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
 	tagOpen=escapeQuotes(tagOpen);
 	tagClose=escapeQuotes(tagClose);
 	sampleText=escapeQuotes(sampleText);
-	document.write("<a href=\"#\" onclick=\"javascript:insertTags");
+	document.write("<a href=\"javascript:insertTags");
 	document.write("('"+tagOpen+"','"+tagClose+"','"+sampleText+"');\">");
 	document.write("<img width=\"23\" height=\"22\" src=\""+imageFile+"\" border=\"0\" ALT=\""+speedTip+"\" TITLE=\""+speedTip+"\">");
 	document.write("</a>");
