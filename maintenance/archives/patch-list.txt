@@ -137,3 +137,7 @@ plain interwiki.sql to load up the default set of mappings.
 
 * 2003-09: Ipblocks auto-expiry update
 patch-ipblocks.sql
+
+* 2003-11: linkscc table creation
+patch-linkscc.sql
+
