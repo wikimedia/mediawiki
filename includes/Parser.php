@@ -1046,6 +1046,8 @@ class Parser
 		if ( !$tc ) { $tc = Title::legalChars() . '#%'; }
 		$sk =& $this->mOptions->getSkin();
 
+		$isRedirect = false ;
+		if ( trim ( substr ( $s , 0 , 10 ) ) == '#REDIRECT' ) $isRedirect = true ;
 		$a = explode( '[[', ' ' . $s );
 		$s = array_shift( $a );
 		$s = substr( $s, 1 );
@@ -1161,7 +1163,7 @@ class Parser
 					$wgLinkCache->addImageLinkObj( $nt );
 					continue;
 				}
-				if ( $ns == $category ) {
+				if ( $ns == $category && !$isRedirect ) {
 					$t = $nt->getText() ;
 					$nnt = Title::newFromText ( Namespace::getCanonicalName($category).":".$t ) ;
 
