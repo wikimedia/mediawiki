@@ -1841,19 +1841,42 @@ class Language {
 		return $number;
 	}
 
-        function listToText( $l ) {
-	        $s = '';
-	        $m = count($l) - 1;
-	        for ($i = $m; $i >= 0; $i--) {
-		    if ($i == $m) {
-			$s = $l[$i];
-		    } else if ($i == $m - 1) {
-			$s = $l[$i] . ' ' . $this->getMessage('and') . ' ' . $s;
-		    } else {
-			$s = $l[$i] . ', ' . $s;
-		    }
+	function listToText( $l ) {
+		$s = '';
+		$m = count($l) - 1;
+		for ($i = $m; $i >= 0; $i--) {
+			if ($i == $m) {
+				$s = $l[$i];
+			} else if ($i == $m - 1) {
+				$s = $l[$i] . ' ' . $this->getMessage('and') . ' ' . $s;
+			} else {
+				$s = $l[$i] . ', ' . $s;
+			}
 		}
-	        return $s;
+		return $s;
+	}
+	
+	# Crop a string from the beginning or end to a certain number of bytes.
+	# (Bytes are used because our storage has limited byte lengths for some
+	# columns in the database.) Multibyte charsets will need to make sure that
+	# only whole characters are included!
+	#
+	# $length does not include the optional ellipsis.
+	# If $length is negative, snip from the beginning
+	function truncate( $string, $length, $ellipsis = "" ) {
+		if( $length == 0 ) {
+			return $ellipsis;
+		}
+		if ( strlen( $string ) <= abs( $length ) ) {
+			return $string;
+		}
+		if( $length > 0 ) {
+			$string = substr( $string, 0, $length );
+			return $string . $ellipsis;
+		} else {
+			$string = substr( $string, $length );
+			return $ellipsis . $string;
+		}
 	}
 }
 
