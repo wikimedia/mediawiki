@@ -779,7 +779,7 @@ class Title {
 		if ( wfNumRows( $res ) ) {
 			while ( $row = wfFetchObject( $res ) ) {
 				$titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title );
-				$wgLinkCache->addGoodLink( $titleObj->getPrefixedDBkey(), $row->cur_id );
+				$wgLinkCache->addGoodLink( $row->cur_id, $titleObj->getPrefixedDBkey() );
 				$retVal[] = $titleObj;
 			}
 		}
