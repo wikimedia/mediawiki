@@ -29,7 +29,7 @@
 
 #p-personal { padding-bottom: 0.1em; }
 
-body { font-size: xx-small; }
+body { font: xx-small Verdana, Arial, sans-serif; }
 #p-cactions {
     width: 76% !important;
     z-index: 3 !important;
