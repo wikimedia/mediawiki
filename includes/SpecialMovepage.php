@@ -162,13 +162,16 @@ class MovePageForm {
 
 	function showSuccess()
 	{
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgRawHtml;
 
 		$wgOut->setPagetitle( wfMsg( "movepage" ) );
 		$wgOut->setSubtitle( wfMsg( "pagemovedsub" ) );
 	
 		$text = wfMsg( "pagemovedtext", $_REQUEST['oldtitle'], $_REQUEST['newtitle'] );
+		$marchingantofdoom = $wgRawHtml;
+		$wgRawHtml = false;
 		$wgOut->addWikiText( $text );
+		$wgRawHtml = $marchingantofdoom;
 
 		$talkmoved = $_REQUEST['talkmoved'];
 		if ( 1 == $talkmoved ) {
