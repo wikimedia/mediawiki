@@ -1,0 +1,218 @@
+/*
+** Mediawiki Print style sheet for CSS2-capable browsers.
+** Copyright Gabriel Wicke, http://www.aulinx.de/
+**
+** Derived from the plone (http://plone.org/) styles
+** Copyright Alexander Limi
+*/
+
+/* Thanks to A List Apart (http://alistapart.com/) for useful extras */
+a.stub,
+a.new{ color:#ba0000; text-decoration:none; }
+
+#toc { 
+    /*border:1px solid #2f6fab;*/
+    border:1px solid #aaaaaa;
+    background-color:#f9f9f9;
+    padding:5px;
+}
+.tocindent {
+	margin-left: 2em;
+}
+.tocline {
+	margin-bottom: 0px;
+}
+.toctoggle, .editsection {
+	font-size: smaller;
+}
+
+/* images */
+div.floatright { float: right; 
+    margin: 0 0 1em 1em;
+    position:relative;
+
+}
+div.floatright p { font-style: italic;} 
+div.floatleft { float: left; margin: 0.3em 0.5em 0.5em 0;
+    position:relative;
+}
+div.floatleft p { font-style: italic; } 
+
+/* thumbnails */
+div.thumbnail-none,
+div.thumbnail-right,
+div.thumbnail-left {
+ /*   border:1px solid #2f6fab;*/
+      border:1px solid #cccccc;
+    
+    background-color:#f9f9f9;
+    padding: 2px;
+    position:relative;
+    margin: 0.3em 0 0.5em;
+    font-size: 95%;
+    text-align: center;
+}
+
+div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
+    margin-top:3px; margin-bottom:3px;
+    position:relative;
+    text-align: left;
+}
+
+div.thumbnail-right {
+    float: right;
+    position:relative;
+    margin-left:0.5em;
+}
+
+div.thumbnail-left {
+    float: left;
+    position:relative;
+    margin-right:0.5em;
+}
+
+/* table standards */
+table.rimage {
+    float:right; 
+    width:1pt; 
+    position:relative;
+    margin-left:1em; 
+    margin-bottom:1em;
+    text-align:center;
+}
+
+
+body {
+    background: White;
+    font-family: "Bitstream Vera Sans",Verdana, sans;
+    font-size: 11pt !important;
+    color: Black;
+    margin: 0;
+    padding: 0;
+}
+
+div.top,
+#portal-logo,
+.hiddenStructure,
+#portal-searchbox,
+#portal-globalnav,
+#portal-personaltools,
+#portal-breadcrumbs,
+div#portal-column-one,
+.contentViews,
+.contentActions,
+.help,
+.legend,
+div.portalMessage,
+div.documentActions,
+.documentByLine,
+.netscape4,
+#portal-colophon,
+input
+.skipnav,
+#quickbar,
+#topbar,
+.editsection,
+.toctoggle {
+    /* Hides all the elements irrelevant for presentations */
+    display: none;
+}
+
+ul { 
+    list-style-type: square;
+}
+
+#content {
+    background: transparent;
+    border: none ! important;
+    font-size: 11pt;
+    padding: 0 ! important;
+    margin: 0 ! important;
+    text-align: left;
+}
+
+
+h1, h2, h3, h4, h5, h6
+{
+    font-weight: bold;
+}
+
+p, .documentDescription {
+    margin: 1em 0 ! important;
+    line-height: 1.2em;    
+}
+
+pre {
+    border: 1pt dashed black;
+    white-space: pre;
+    font-size: 8pt;
+    overflow: auto;
+    padding: 1em 0;
+}
+
+table.listing,
+table.listing td {
+    border: 1pt solid black;
+    border-collapse: collapse;
+}
+
+a {
+    color: Black !important;
+    padding: 0 !important
+}
+
+a:link, a:visited {
+    color: #520;
+    background: transparent;
+    text-decoration: underline;
+}
+/*
+#content a:link:after, 
+#content a:visited:after {
+   content: " ( " attr(href) " ) ";
+}*/
+
+#visual-portal-wrapper {
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+#portal-column-content {
+    margin: 0 !important;
+}
+
+#portal-column-content #content {
+    padding: 1em;
+    margin: 0 !important;
+}
+/* MSIE/Win doesn't understand 'inherit' */
+a, a.external, a.new, a.stub {
+	color: black ! important;
+	text-decoration: none ! important;
+}
+#article {
+	margin: 0 ! important;
+}
+
+/* Continue ... */
+a, a.external, a.new, a.stub {
+	color: inherit ! important;
+	text-decoration: inherit ! important;
+}
+
+/* */
+#article {
+	position: relative;
+	margin: inherit ! important;
+}
+
+/* Show some stuff */
+.urlexpansion {
+	display: inline ! important;
+}
+
+.printfooter {
+	border-top: solid 1px black;
+	display: block ! important;
+}
+
