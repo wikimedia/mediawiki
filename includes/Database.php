@@ -949,10 +949,49 @@ class Database {
 	function timestamp( $ts=0 ) {
 		return wfTimestamp(TS_MW,$ts);
 	}
+	
+	function &resultObject( &$result ) {
+		if( empty( $result ) ) {
+			return NULL;
+		} else {
+			return new ResultWrapper( $this, $result );
+		}
+	}
 } 
 
 class DatabaseMysql extends Database {
 	# Inherit all
+}
+
+#------------------------------------------------------------------------------
+# Result wrapper for grabbing data queried by someone else
+#------------------------------------------------------------------------------
+
+class ResultWrapper {
+	var $db, $result;
+	
+	function ResultWrapper( $database, $result ) {
+		$this->db =& $database;
+		$this->result =& $result;
+	}
+	
+	function numRows() {
+		return $this->db->numRows( $this->result );
+	}
+	
+	function &fetchObject() {
+		return $this->db->fetchObject( $this->result );
+	}
+	
+	function &fetchRow() {
+		return $this->db->fetchRow( $this->result );
+	}
+	
+	function free() {
+		$this->db->freeResult( $this->result );
+		unset( $this->result );
+		unset( $this->db );
+	}
 }
 
 #------------------------------------------------------------------------------
