@@ -147,6 +147,24 @@ class MagicWord {
 	function getWasModified(){
 		return $this->mModified;
 	}
+
+	# $magicarr is an associative array of (magic word ID => replacement)
+	# This method uses the php feature to do several replacements at the same time,
+	# thereby gaining some efficiency. The result is placed in the out variable
+	# $result. The return value is true if something was replaced.
+
+	/* static */ function replaceMultiple( $magicarr, $subject, &$result ){
+		$search = array();
+		$replace = array();
+		foreach( $magicarr as $id => $replacement ){
+			$mw = MagicWord::get( $id );
+			$search[] = $mw->getRegex();
+			$replace[] = $replacement;
+		}
+
+		$result = preg_replace( $search, $replace, $subject );
+		return !($result === $subject);
+	}
 }
 
 # Used in matchAndRemove()

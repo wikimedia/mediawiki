@@ -1232,46 +1232,22 @@ $t[] = "</table>" ;
 		$fname = "OutputPage::replaceVariables";
 		wfProfileIn( $fname );
 
-		
+		$magic = array();
+
 		# Basic variables
 		# See Language.php for the definition of each magic word
-
 		# As with sigs, this uses the server's local time -- ensure 
 		# this is appropriate for your audience!
-		$v = date( "m" );
-		$mw =& MagicWord::get( MAG_CURRENTMONTH );
-		$text = $mw->replace( $v, $text );
-		if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
 
-		$v = $wgLang->getMonthName( date( "n" ) );
-		$mw =& MagicWord::get( MAG_CURRENTMONTHNAME );
-		$text = $mw->replace( $v, $text );
-		if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
+		$magic[MAG_CURRENTMONTH] = date( "m" );
+		$magic[MAG_CURRENTMONTHNAME] = $wgLang->getMonthName( date("n") );
+		$magic[MAG_CURRENTMONTHNAMEGEN] = $wgLang->getMonthNameGen( date("n") );
+		$magic[MAG_CURRENTDAY] = date("j");
+		$magic[MAG_CURRENTDAYNAME] = $wgLang->getWeekdayName( date("w")+1 );
+		$magic[MAG_CURRENTYEAR] = date( "Y" );
+		$magic[MAG_CURRENTTIME] = $wgLang->time( wfTimestampNow(), false );
 		
-		$v = $wgLang->getMonthNameGen( date( "n" ) );
-		$mw =& MagicWord::get( MAG_CURRENTMONTHNAMEGEN );
-		$text = $mw->replace( $v, $text );
-		if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
-		
-		$v = date( "j" );
-		$mw = MagicWord::get( MAG_CURRENTDAY );
-		$text = $mw->replace( $v, $text );
-		if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
-		
-		$v = $wgLang->getWeekdayName( date( "w" )+1 );
-		$mw =& MagicWord::get( MAG_CURRENTDAYNAME );
-		$text = $mw->replace( $v, $text );
-		if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
-		
-		$v = date( "Y" );
-		$mw =& MagicWord::get( MAG_CURRENTYEAR );
-		$text = $mw->replace( $v, $text );
-		if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
-	
-		$v = $wgLang->time( wfTimestampNow(), false );
-		$mw =& MagicWord::get( MAG_CURRENTTIME );
-		$text = $mw->replace( $v, $text );
-		if( $mw->getWasModified() ) { $this->mContainsOldMagic++; }
+		$this->mContainsOldMagic += MagicWord::replaceMultiple($magic, $text, $text);
 
 		$mw =& MagicWord::get( MAG_NUMBEROFARTICLES );
 		if ( $mw->match( $text ) ) {
