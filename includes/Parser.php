@@ -52,8 +52,6 @@ define( 'EXT_IMAGE_REGEX',
 	'('.EXT_IMAGE_FNAME_CLASS.'+)\\.((?i)'.EXT_IMAGE_EXTENSIONS.')$/S' # Filename
 );
 
-$wgCurrentSectionNumber = 0; # XXX
-
 /**
  * PHP Parser
  * 
@@ -1849,15 +1847,27 @@ class Parser
 			# replace ==section headers==
 			# XXX this needs to go away once we have a better parser.
 			if ( $this->mOutputType != OT_WIKI ) {
-				$encodedname = base64_encode($title->getPrefixedDBkey());
-				$wfCurrentSectionNumber = 0;
-				for ( $i = 1; $i <= 6; ++$i ) {
-					$h = substr( '======', 0, $i );
-					$text = preg_replace_callback( "/^({$h})([^=].*){$h}\\s?$/m",
-					create_function('$matches',
-'return "${matches[1]}$matches[2] __MWTEMPLATESECTION='.$encodedname.
-'&" . wfGetSectionNumber() . "__${matches[1]}";'
-					), $text);
+				if( !is_null( $title ) )
+					$encodedname = base64_encode($title->getPrefixedDBkey());
+				else
+					$encodedname = base64_encode("");
+				$matches = preg_split('/(^={1,6}.*?={1,6}\s*?$)/m', $text, -1,
+					PREG_SPLIT_DELIM_CAPTURE);
+				$text = '';
+				$nsec = 0;
+				for( $i = 0; $i < count($matches); $i += 2 ) {
+					if ($matches[$i] == "" && $matches[$i + 1] == "") break;
+					$text .= $matches[$i];
+					$hl = $matches[$i + 1];
+					if( strstr($hl, "__MWTEMPLATESECTION") ) {
+						$text .= $hl;
+						continue;
+					}
+					preg_match('/^(={1,6})(.*?)(={1,6})\s*?$/m', $hl, $m2);
+					$text .= $m2[1] . $m2[2] . "__MWTEMPLATESECTION="
+						. $encodedname . "&" . base64_encode("$nsec") . "__" . $m2[3];
+					
+					$nsec++;
 				}
 			}
 			return $text;
@@ -2239,7 +2249,7 @@ class Parser
 			if( $doShowToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
 				$toc .= $sk->tocLine($anchor,$tocline,$toclevel);
 			}
-			if( $showEditLink ) {
+			if( $showEditLink && ( !$istemplate || $templatetitle !== "" ) ) {
 				if ( empty( $head[$headlineCount] ) ) {
 					$head[$headlineCount] = '';
 				}
@@ -2800,10 +2810,4 @@ function wfEscapeHTMLTagsOnly( $in ) {
 		$in );
 }
 
-function wfGetSectionNumber() {
-	global $wgCurrentSectionNumber;
-	$str = base64_encode("$wgCurrentSectionNumber");
-	$wgCurrentSectionNumber++;
-	return $str;
-}
 ?>
