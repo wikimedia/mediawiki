@@ -266,6 +266,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1217) Image within an image caption broke rendering
 * (bug 1384) Make patrol signs have the same width for page moves as for edits
 * (bug 1364) fix "clean up whitespace" in Title:SecureAndSplit
+* (bug 1389) i18n for proxyblocker message
 
 === Caveats ===
 
