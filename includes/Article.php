@@ -1633,6 +1633,13 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 				exit;
 			} else {
 				wfDebug( " tryFileCache() - starting buffer\n" );			
+				if($cache->useGzip()) {
+					/* For some reason, adding this header line over in
+					   CacheManager::saveToFileCache() fails on my test
+					   setup at home, though it works on the live install.
+					   Make double-sure...  --brion */
+					header( "Content-Encoding: gzip" );
+				}
 				ob_start( array(&$cache, 'saveToFileCache' ) );
 			}
 		} else {
