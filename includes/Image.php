@@ -114,10 +114,10 @@ class Image
 
 	function wfImageUrl( $name )
 	{
-		global $wgUploadPath;
+		global $wgUploadPath,$wgUploadBaseUrl;
 		$hash = md5( $name );
 
-        	$url = "{$wgUploadPath}/" . $hash{0} . "/" .
+        	$url = "{$wgUploadBaseUrl}{$wgUploadPath}/" . $hash{0} . "/" .
               	substr( $hash, 0, 2 ) . "/{$name}";
         	return wfUrlencode( $url );
 	}

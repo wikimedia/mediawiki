@@ -107,6 +107,7 @@ $wgLogo				= "{$wgUploadPath}/wiki.png";
 $wgMathPath         = "{$wgUploadPath}/math";
 $wgMathDirectory    = "{$wgUploadDirectory}/math";
 $wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
+$wgUploadBaseUrl    = "";
 /**#@-*/
 
 
@@ -161,6 +162,11 @@ $wgDBuser           = 'wikiuser';
  * "mysql" for working code and "PostgreSQL" for development/broken code
  */
 $wgDBtype           = "mysql";
+/** Search type
+ * "MyISAM" for MySQL native full text search, "Tsearch2" for PostgreSQL
+ * based search engine
+ */
+$wgSearchType	    = "MyISAM";
 /** Table name prefix */
 $wgDBprefix         = ''; 
 /** Database schema
