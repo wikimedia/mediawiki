@@ -970,7 +970,7 @@ class User {
 	}
 
 	function getPageRenderingHash() {
-        global $wgContLang;
+		global $wgContLang;
 		if( $this->mHash ){
 			return $this->mHash;
 		}
@@ -987,10 +987,10 @@ class User {
 		$confstr .= '!' . $this->getOption( 'date' );
 		$confstr .= '!' . $this->getOption( 'numberheadings' );
 		$confstr .= '!' . $this->getOption( 'language' );
-		// add in language variant option if there are multiple variants
-		// supported by the language object
-		if(sizeof($wgContLang->getVariants())>1) {
-			$confstr .= '!' . $this->getOption( 'variant' );
+		// add in language specific options, if any
+		$extra = $wgContLang->getExtraHashOptions();
+		foreach( $extra as $e ) {
+			$confstr .= '!' . $this->getOption( $e );
 		}
 
 		$this->mHash = $confstr;
