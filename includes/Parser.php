@@ -1118,7 +1118,7 @@ class Parser
 							} else {
 								$t = '';
 							}
-						} else if ($this->mLastSection != $newSection or $newSection != 'p') {
+						} else if ($this->mLastSection != $newSection) {
 							$text .= $this->closeParagraph();
 							$text .= "<" . $newSection . ">";
 							$this->mLastSection = $newSection;
