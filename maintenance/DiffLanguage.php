@@ -19,69 +19,64 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
- * The goal is to get a list of messages not yet localised in a
- * languageXX.php file using the language.php file as reference.
+ * Usage: php DiffLanguage.php [lang [file]]
  *
- * Usage:
- * php DiffLanguage.php
+ * lang: Enter the language code following "Language" of the LanguageXX.php you
+ * want to check. If using linux you might need to follow case aka Zh and not
+ * zh.
  *
- * Enter the language code following "Language" of the LanguageXX.php
- * you want to check. If using linux you might need to follow case aka
- * Zh and not zh.
+ * file: A php language file you want to include to compare mediawiki
+ * Language{Lang}.php against (for example Special:Allmessages PHP output).
  *
- * The script then print a list of wgAllMessagesXX keys that aren't
- * localised, a percentage of messages correctly localised and the
- * number of messages to be translated.
+ * The goal is to get a list of messages not yet localised in a languageXX.php
+ * file using the language.php file as reference.
+ * 
+ * The script then print a list of wgAllMessagesXX keys that aren't localised, a
+ * percentage of messages correctly localised and the number of messages to be
+ * translated.
+ * 
  * @package MediaWiki
  * @subpackage Maintenance
  */
 
 /** This script run from the commandline */
-require_once( "commandLine.inc" );
+require_once( 'commandLine.inc' );
 
-$wgLanguageCode = strtoupper(substr($wgLanguageCode,0,1)).strtolower(substr($wgLanguageCode,1));
+$wgLanguageCode = ucfirstlcrest($wgLanguageCode);
 
-# read command line argument
-if ( isset($args[0]) ) {
-	$lang = strtoupper(substr($args[0],0,1)).strtolower(substr($args[0],1));
-
-# or prompt a simple menu
-} else {
-	$loop = true;
-	do {
-		@ob_end_flush();
-		print "Enter the language you want to check [$wgLanguageCode]:";
-		$input = readconsole();
-
-		# set the input to current language
-		if($input == "") {
-			$input = $wgLanguageCode;
-		}
-
-		# convert to 1st char upper, rest lower case
-		$input = strtoupper(substr($input,0,1)).strtolower(substr($input,1));
-
-		# try to get the file
-		if( file_exists("$IP/languages/Language$input.php") ) {
-			$loop = false;
-			$lang = $input;
-		} else {
-			print "ERROR: The file Language$input.php doesn't exist !\n";
-		}
-
-	} while ($loop);
-
+# FUNCTIONS
+/** Return a given string with first letter upper case, the rest lowercase */
+function ucfirstlcrest($string) {
+	return strtoupper(substr($string,0,1)).strtolower(substr($string,1));
 }
 
-/* TODO
-	Need to check case of the $lang : 1st char upper 2nd char lower
-*/
+/** Ask user a language code */
+function askLanguageCode() {
+	global $wgLanguageCode;
+
+	print "Enter the language you want to check [$wgLanguageCode]:";
+	$input = ucfirstlcrest( readconsole() );
+	if($input == '') $input = $wgLanguageCode;
+	return $input;	
+}
 
 
-# include the language if it's not the already loaded one
+# MAIN ENTRY
+if ( isset($args[0]) ) {
+	$lang = ucfirstlcrest($args[0],1);
+	// eventually against another language file
+	if( isset($args[1])) include($args[1]) or die("File {$args[1]} not found.\n");
+} else {
+	// no lang given, prompt
+	$lang = askLanguageCode();
+}
+
 if($lang != $wgLanguageCode) {
-	print "Including language file for $lang.\n";
-	include_once("Language{$lang}.php");
+	$langFile = "$IP/languages/Language$lang.php";
+	if (file_exists( $langFile ) ) {
+		print "Including $langFile\n";
+		include($langFile);
+	} else die("ERROR: The file $langFile does not exist !\n");
 }
 
 /* ugly hack to load the correct array, if you have a better way
@@ -90,7 +85,6 @@ $foo = "wgAllMessages$lang";
 $testme = &$$foo;
 /* end of ugly hack */
 
-
 # Get all references messages and check if they exist in the tested language
 $i = 0;
 print "\nChecking $lang localisation file against reference (en):\n----\n";
@@ -98,10 +92,11 @@ foreach($wgAllMessagesEn as $index => $localized)
 {
 	if(!(isset($testme[$index]))) {
 		$i++;
-
-		echo "$index\n";
+		print "$lang: $index\n";
 	}
 }
+
 echo "----\n";
 echo "$lang language is complete at ".number_format((100 - $i/count($wgAllMessagesEn) * 100),2)."%\n";
 echo "$i unlocalised messages of the ".count($wgAllMessagesEn)." messages available.\n";
+print_r($time);
