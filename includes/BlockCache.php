@@ -7,8 +7,7 @@ class BlockCache
 {
 	var $mData = false, $mMemcKey;
 
-	function BlockCache( $deferLoad = false, $dbName = '' )
-	{
+	function BlockCache( $deferLoad = false, $dbName = '' ) {
 		global $wgDBname;
 
 		if ( $dbName == '' ) {
@@ -22,34 +21,38 @@ class BlockCache
 		}
 	}
 
-	function load()
-	{
+	# Load the blocks from the database and save them to memcached
+	function loadFromDB() {
+		global $wgUseMemCached, $wgMemc;
+		$this->mData = array();
+		# Selecting FOR UPDATE is a convenient way to serialise the memcached and DB operations,
+		# which is necessary even though we don't update the DB
+		if ( $wgUseMemCached ) {
+			Block::enumBlocks( 'wfBlockCacheInsert', '', EB_FOR_UPDATE );
+			$wgMemc->set( $this->mMemcKey, $this->mData, 0 );
+		} else {
+			Block::enumBlocks( 'wfBlockCacheInsert', '' );
+		}
+	}
+		
+	# Load the cache from memcached or, if that's not possible, from the DB
+	function load() {
 		global $wgUseMemCached, $wgMemc;
 
 		if ( $this->mData === false) {
-			$saveMemc = false;
 			# Try memcached
 			if ( $wgUseMemCached ) {
 				$this->mData = $wgMemc->get( $this->mMemcKey );
-				if ( !$this->mData ) {
-					$saveMemc = true;
-				}
 			}
 
 			if ( !is_array( $this->mData ) ) {
-				# Load from DB
-				$this->mData = array();
-				Block::enumBlocks( 'wfBlockCacheInsert', '' ); # Calls $this->insert()
-			}
-			
-			if ( $saveMemc ) {
-				$wgMemc->set( $this->mMemcKey, $this->mData, 0 );
+				$this->loadFromDB();
 			}
 		}
 	}
 
-	function insert( &$block )
-	{
+	# Add a block to the cache
+	function insert( &$block ) {
 		if ( $block->mUser == 0 ) {
 			$nb = $block->getNetworkBits();
 			$ipint = $block->getIntegerAddr();
@@ -62,9 +65,9 @@ class BlockCache
 			$this->mData[$nb][$index] = 1;
 		}
 	}
-		
-	function get( $ip )
-	{
+	
+	# Find out if a given IP address is blocked
+	function get( $ip ) {
 		$this->load();
 		$ipint = ip2long( $ip );
 		$blocked = false;
@@ -90,24 +93,14 @@ class BlockCache
 		return $block;
 	}
 
-	function clear()
-	{
-		global $wgUseMemCached, $wgMemc;
-
-		$this->mData = false;
-		if ( $wgUseMemCached ) {
-			$wgMemc->delete( $this->mMemcKey );
-		}
-	}
-
-	function clearLocal()
-	{
+	# Clear the local cache
+	# There was once a clear() to clear memcached too, but I deleted it
+	function clearLocal() {
 		$this->mData = false;
 	}
 }
 
-function wfBlockCacheInsert( $block, $tag )
-{
+function wfBlockCacheInsert( $block, $tag ) {
 	global $wgBlockCache;
 	$wgBlockCache->insert( $block );
 }
