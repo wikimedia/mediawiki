@@ -53,7 +53,7 @@ function wfSpecialRecentchanges( $par ) {
 	$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, $fname );
 	# 10 seconds server-side caching max
 	$wgOut->setSquidMaxage( 10 );
-	if( $wgOut->checkLastModified( $lastmod ) ){
+	if( $lastmod && $wgOut->checkLastModified( $lastmod ) ){
 		# Client cache fresh and headers sent, nothing more to do.
 		return;
 	}
