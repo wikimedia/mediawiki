@@ -379,10 +379,10 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 # set "disclaimers" => "-"
 
 'disclaimers' => 'Disclaimers',
-"disclaimerpage" => "Project:General_disclaimer",
-"errorpagetitle" => "Error",
-"returnto"		=> "Return to $1.",
-"tagline"      	=> "From {{SITENAME}}",
+'disclaimerpage' => "Project:General_disclaimer",
+'errorpagetitle' => "Error",
+'returnto'		=> "Return to $1.",
+'tagline'      	=> "From {{SITENAME}}",
 'whatlinkshere'	=> 'Pages that link here',
 'help'			=> 'Help',
 'search'		=> 'Search',
@@ -428,7 +428,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 performed by users with \"sysop\" status.
 See $1.",
 'developertitle' => 'Developer access required',
-"developertext"	=> "The action you have requested can only be
+'developertext'	=> "The action you have requested can only be
 performed by users with \"developer\" status.
 See $1.",
 'bureaucrattitle'	=> 'Bureaucrat access required',
@@ -540,8 +540,8 @@ You can view and copy the source of this page:",
 
 # Login and logout pages
 #
-"logouttitle"	=> 'User logout',
-"logouttext" 		=> "You are now logged out.<br />
+'logouttitle'	=> 'User logout',
+'logouttext' 		=> "You are now logged out.<br />
 You can continue to use {{SITENAME}} anonymously, or you can log in
 again as the same or as a different user. Note that some pages may
 continue to be displayed as if you were still logged in, until you clear
@@ -586,7 +586,7 @@ email address. It also allows the wiki to sent you a temporary password in case 
 email address to them, and it can be used to send you a new password if you forget it.',
 'loginerror'	=> 'Login error',
 'nocookiesnew'	=> "The user account was created, but you are not logged in. {{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.",
-"nocookieslogin"	=> "{{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them and try again.",
+'nocookieslogin'	=> "{{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them and try again.",
 'noname'		=> 'You have not specified a valid user name.',
 'loginsuccesstitle' => 'Login successful',
 'loginsuccess'	=> "You are now logged in to {{SITENAME}} as \"$1\".",
