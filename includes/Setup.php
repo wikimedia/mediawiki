@@ -140,7 +140,7 @@ include_once( "Language.php" );
 $wgMessageCache = new MessageCache; 
 
 $wgLangClass = "Language" . ucfirst( $wgLanguageCode );
-if( ! class_exists( $wgLangClass ) ) {
+if( ! class_exists( $wgLangClass ) || ($wgLanguageCode == "en" && strcasecmp( $wgInputEncoding, "utf-8" ) == 0 ) ) {
 	include_once( "LanguageUtf8.php" );
 	$wgLangClass = "LanguageUtf8";
 }
