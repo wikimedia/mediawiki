@@ -1042,7 +1042,7 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 	case TS_DB:
 		return gmdate( 'Y-m-d H:i:s', $uts );
 	case TS_RFC2822:
-		return gmdate( "D, j M Y H:i:s", $uts ) . ' GMT';
+		return gmdate( "D, d M Y H:i:s", $uts ) . ' GMT';
 	default:
 		wfDebugDieBacktrace( 'wfTimestamp() called with illegal output type.');
 	}
