@@ -85,10 +85,10 @@ function do_update_files() {
 			print "Could not create log file \"{$wgDebugLogFile}\".\n";
 			exit();
 		}
+		$d = date( "Y-m-d H:i:s" );
+		fwrite( $fp, "Wiki debug log file created {$d}\n\n" );
+		fclose( $fp );
 	}
-	$d = date( "Y-m-d H:i:s" );
-	fwrite( $fp, "Wiki debug log file created {$d}\n\n" );
-	fclose( $fp );
 	
 	if ( $wgUseTeX ) {
 		copyfile( "./math", "texvc", "{$IP}/math", 0775 );
