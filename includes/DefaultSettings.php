@@ -418,6 +418,12 @@ $wgGoToEdit = false;
 # constructs.
 $wgUserHtml = true;
 
+# Allow raw, unchecked HTML in <html>...</html> sections.
+# THIS IS VERY DANGEROUS on a publically editable site.
+# Don't enable it unless you've restricted editing to trusted
+# users only.
+$wgRawHtml = false;
+
 # $wgUseTidy: use tidy to make sure HTML output is sane.
 # This should only be enabled if $wgUserHtml is true.
 # tidy is a free tool that fixes broken HTML. 
