@@ -390,7 +390,7 @@ class memcached
          foreach ($val as $k => $v)
             $this->_debugprint(@sprintf("MemCache: sock %s got %s => %s\r\n", serialize($sock), $k, $v));
 
-      return $val[$key];
+      return @$val[$key];
    }
 
    // }}}
