@@ -127,24 +127,48 @@ function wfSpecialContributions( $par = "" )
 	$wgOut->addHTML( "</ul>\n" );
 }
 
+
+/*
+
+Generates each row in the contributions list.
+
+Contributions which are marked "top" are currently on top of the history.
+For these contributions, a [rollback] link is shown for users with sysop
+privileges. The rollback link restores the most recent version that was not
+written by the target user.
+
+If the contributions page is called with the parameter &bot=1, all rollback
+links also get that parameter. It causes the edit itself and the rollback
+to be marked as "bot" edits. Bot edits are hidden by default from recent
+changes, so this allows sysops to combat a busy vandal without bothering
+other users.
+
+TODO: This would probably look a lot nicer in a table.
+
+*/
 function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor )
 {
 	global $wgLang, $wgOut, $wgUser, $wgRequest, $target;
 	$page = Title::makeName( $ns, $t );
 	$link = $sk->makeKnownLink( $page, "" );
-	$topmarktext = $topmark ? wfMsg ( "uctop" ) : "";
-	$sysop = $wgUser->isSysop();
+	$topmarktext="";
+	if($topmark) {
+		$topmarktext .= $sk->makeKnownLink( $page, wfMsg("uctop"), "diff=0" );
+		$sysop = $wgUser->isSysop();
+		if($sysop ) {
+			$extraRollback = $wgRequest->getBool( "bot" ) ? '&bot=1' : '';
+			$topmarktext .= " [". $sk->makeKnownLink( $page,
+		  	wfMsg( "rollbacklink" ),
+		  	"action=rollback&from=" . urlencode( $target ) . $extraRollback ) ."]";
+		}
 
-	$extraRollback = $wgRequest->getBool( "bot" ) ? '&bot=1' : '';	
-	if($sysop && $topmark ) {
-		$topmarktext .= " [". $sk->makeKnownLink( $page,
-		  wfMsg( "rollbacklink" ), 
-		  "action=rollback&from=" . urlencode( $target ) . $extraRollback ) ."]";
 	}
+	$histlink="(".$sk->makeKnownLink($page,wfMsg("hist"),"action=history").")";
+
 	if($comment) {
-	
+
 		$comment="<em>(". htmlspecialchars( $comment ) .")</em> ";
-	
+
 	}
 	$d = $wgLang->timeanddate( $ts, true );
 
@@ -154,7 +178,7 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor )
 		$mflag = "";
 	}
 
-	$wgOut->addHTML( "<li>{$d} {$mflag}{$link} {$comment}{$topmarktext}</li>\n" );
+	$wgOut->addHTML( "<li>{$d} {$histlink} {$mflag} {$link} {$comment}{$topmarktext}</li>\n" );
 }
 
 function ucCountLink( $lim, $d )
