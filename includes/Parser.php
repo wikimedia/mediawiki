@@ -2411,7 +2411,7 @@ class Parser
 
 		# Get all headlines for numbering them and adding funky stuff like [edit]
 		# links - this is for later, but we need the number of headlines right now
-		$numMatches = preg_match_all( '/<H([1-6])(.*?' . '>)(.*?)<\/H[1-6]>/i', $text, $matches );
+		$numMatches = preg_match_all( '/<H([1-6])(.*?'.'>)(.*?)<\/H[1-6] *>/i', $text, $matches );
 
 		# if there are fewer than 4 headlines in the article, do not show TOC
 		if( $numMatches < 4 ) {
