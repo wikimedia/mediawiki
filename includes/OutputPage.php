@@ -30,11 +30,12 @@ class OutputPage {
 		$this->mCategoryLinks = array() ;
 		$this->mDoNothing = false;
 		$this->mContainsOldMagic = $this->mContainsNewMagic = 0;
+		$this->mSquidMaxage = 0;
 	}
 
 	function addHeader( $name, $val ) { array_push( $this->mHeaders, "$name: $val" ) ; }
 	function addCookie( $name, $val ) { array_push( $this->mCookies, array( $name, $val ) ); }
-	function redirect( $url ) { $this->mRedirect = $url; }
+	function redirect( $url, $responsecode = '302' ) { $this->mRedirect = $url; $this->mRedirectCode = $responsecode; }
 
 	# To add an http-equiv meta tag, precede the name with "http:"
 	function addMeta( $name, $val ) { array_push( $this->mMetatags, array( $name, $val ) ); }
@@ -166,12 +167,11 @@ class OutputPage {
 
 	# Set the maximum cache time on the Squid in seconds
 	function setSquidMaxage( $maxage ) {
-		global $wgSquidMaxage;
-		$wgSquidMaxage = $maxage;
+		$this->mSquidMaxage = $maxage;
 	}
 	
 	function sendCacheControl() {
-		global $wgUseSquid, $wgUseESI, $wgSquidMaxage;
+		global $wgUseSquid, $wgUseESI;
 		# FIXME: This header may cause trouble with some versions of Internet Explorer
 		header( "Vary: Accept-Encoding, Cookie" );
 		if( $this->mLastModified != "" ) {
@@ -185,7 +185,7 @@ class OutputPage {
 					wfDebug( "** proxy caching with ESI; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
-					header( 'Surrogate-Control: max-age='.$wgSquidMaxage.'+'.$wgSquidMaxage.', content="ESI/1.0"');
+					header( 'Surrogate-Control: max-age='.$wgSquidMaxage.'+'.$this->mSquidMaxage.', content="ESI/1.0"');
 					header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
 				} else {
 					# We'll purge the proxy cache for anons explicitly, but require end user agents
@@ -195,7 +195,7 @@ class OutputPage {
 					wfDebug( "** local proxy caching; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
-					header( 'Cache-Control: s-maxage='.$wgSquidMaxage.', must-revalidate, max-age=0' );
+					header( 'Cache-Control: s-maxage='.$this->mSquidMaxage.', must-revalidate, max-age=0' );
 				}
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
@@ -229,10 +229,6 @@ class OutputPage {
 		
 		$sk = $wgUser->getSkin();
 
-		$this->sendCacheControl();
-
-		header( "Content-type: text/html; charset={$wgOutputEncoding}" );
-		header( "Content-language: {$wgLanguageCode}" );
 		
 		if ( "" != $this->mRedirect ) {
 			if( substr( $this->mRedirect, 0, 4 ) != "http" ) {
@@ -240,9 +236,22 @@ class OutputPage {
 				global $wgServer;
 				$this->mRedirect = $wgServer . $this->mRedirect;
 			}
+			if( $this->mRedirectCode == '301') {
+				header("HTTP/1.1 {$this->mRedirectCode} Moved Permanently");
+				
+				$this->mLastModified = gmdate( "D, j M Y H:i:s" ) . " GMT";
+			}
+                        
+			$this->sendCacheControl();
+			
 			header( "Location: {$this->mRedirect}" );
 			return;
 		}
+		
+		$this->sendCacheControl();
+		
+		header( "Content-type: text/html; charset={$wgOutputEncoding}" );
+		header( "Content-language: {$wgLanguageCode}" );
 
 		$exp = time() + $wgCookieExpiration;
 		foreach( $this->mCookies as $name => $val ) {
