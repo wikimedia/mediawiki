@@ -44,12 +44,12 @@ class UploadForm {
 		$this->mSessionKey = $request->getVal( 'wpSessionKey' );
 
 		if ( ! $this->mUploadTempName ) {
-			$this->mUploadTempName = @$_FILES['wpUploadFile']['tmp_name'];
+			$this->mUploadTempName = $request->getFileTempName( 'wpUploadFile' );
 		}
 		if ( ! $this->mUploadSize ) {
-			$this->mUploadSize = @$_FILES['wpUploadFile']['size'];
+			$this->mUploadSize = $request->getFileSize( 'wpUploadFile' );
 		}
-		$this->mOname = $request->getGPCVal( $_FILES['wpUploadFile'], 'name', "" );
+		$this->mOname = $request->getFileName( 'wpUploadFile' );
 
 	}
 

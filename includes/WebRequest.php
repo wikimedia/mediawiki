@@ -186,6 +186,44 @@ class WebRequest {
 	
 		return array( $limit, $offset );
 	}
+	
+	/**
+	 * Get information on uploaded files
+	 */
+	function getFileTempname( $key ) {
+		if( !isset( $_FILES[$key] ) ) {
+			return NULL;
+		}
+		return $_FILES[$key]['tmp_name'];
+	}
+	
+	function getFileSize( $key ) {
+		if( !isset( $_FILES[$key] ) ) {
+			return 0;
+		}
+		return $_FILES[$key]['size'];
+	}
+	
+	function getFileName( $key ) {
+		if( !isset( $_FILES[$key] ) ) {
+			return NULL;
+		}
+		$name = $_FILES[$key]['name'];
+		
+		# Safari sends filenames in HTML-encoded Unicode form D...
+		# Horrid and evil! Let's try to make some kind of sense of it.
+		global $wgUseLatin1;
+		if( $wgUseLatin1 ) {
+			$name = utf8_encode( $name );
+		}
+		$name = wfMungeToUtf8( $name );
+		$name = UtfNormal::cleanUp( $name );
+		if( $wgUseLatin1 ) {
+			$name = utf8_decode( $name );
+		}
+		wfDebug( "WebRequest::getFileName() '" . $_FILES[$key]['name'] . "' normalized to '$name'\n" );
+		return $name;
+	}
 }
 
 /**
