@@ -5,7 +5,7 @@ require_once( "LanguageUtf8.php" );
 
 
 /* private */ $wgQuickbarSettingsLt = array(
-        "Nerodyti", "Fiksuoti kair&#279;je", "Fiksuoti de&#353;in&#279je", "Plaukiojantis kair&#279je"
+        "Nerodyti", "Fiksuoti kair&#279;je", "Fiksuoti de&#353;in&#279;je", "Plaukiojantis kair&#279;je"
 );
 
 /* private */ $wgSkinNamesLt = array(
