@@ -147,7 +147,7 @@ class AtomFeed extends ChannelFeed {
 		$wgOut->sendCacheControl();
 		
 		print '<' . '?xml version="1.0" encoding="utf-8"?' . ">\n";
-		?><feed version="0.3" xml:lang="<?php print $this->getLanguage()."-".$this->getLanguage() ?>">	
+		?><feed version="0.3" xml:lang="<?php print $this->getLanguage() ?>">	
 		<title><?php print $this->getTitle() ?></title>
 		<link rel="alternate" type="text/html" href="<?php print $this->getUrl() ?>"/>
 		<modified><?php print $this->formatTime( wfTimestampNow() ) ?>Z</modified>
@@ -158,17 +158,18 @@ class AtomFeed extends ChannelFeed {
 	}
 	
 	function outItem( $item ) {
+		global $wgMimeType;
 	?>
 	<entry>
 		<title><?php print $item->getTitle() ?></title>
-		<link rel="alternate" type="text/html" href="<?php print $item->getUrl() ?>"/>
+		<link rel="alternate" type="<?php print $wgMimeType ?>" href="<?php print $item->getUrl() ?>"/>
 		<?php if( $item->getDate() ) { ?>
 		<modified><?php print $this->formatTime( $item->getDate() ) ?>Z</modified>
 		<issued><?php print $this->formatTime( $item->getDate() ) ?></issued>
 		<created><?php print $this->formatTime( $item->getDate() ) ?>Z</created><?php } ?>
 	
 		<summary type="text/plain"><?php print $item->getDescription() ?></summary>
-		<?php if( $item->getAuthor() ) { ?><author><name><?php print $item->getAuthor() ?></name><url></url><email></email></author><?php }?>
+		<?php if( $item->getAuthor() ) { ?><author><name><?php print $item->getAuthor() ?></name><!-- <url></url><email></email> --></author><?php }?>
 		<comment>foobar</comment>
 	</entry>
 
