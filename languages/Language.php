@@ -1757,7 +1757,7 @@ class Language {
 		# Some languages have special punctuation to strip out
 		# or characters which need to be converted for MySQL's
 		# indexing to grok it correctly. Make such changes here.
-		return $in;
+		return strtolower( $in );
 	}
 
 	function firstChar( $s ) {

@@ -305,7 +305,7 @@ class SearchEngine {
 		$lc = SearchEngine::legalSearchChars() . "()";
 		$q = preg_replace( "/([()])/", " \\1 ", $this->mUsertext );
 		$q = preg_replace( "/\\s+/", " ", $q );
-		$w = explode( " ", strtolower( trim( $q ) ) );
+		$w = explode( " ", trim( $q ) );
 
 		$last = $cond = "";
 		foreach ( $w as $word ) {
