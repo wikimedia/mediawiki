@@ -1442,9 +1442,6 @@ class Article {
 			<td align='left'>
 				<input type='text' size='60' name='wpReasonProtect' id='wpReasonProtect' value=\"" . htmlspecialchars( $reason ) . "\" />
 			</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
 		</tr>" );
 		if($moveonly != '') {
 			$wgOut->AddHTML( "
@@ -1452,7 +1449,7 @@ class Article {
 			<td align='right'>
 				<input type='checkbox' name='wpMoveOnly' value='1' id='wpMoveOnly' />
 			</td>
-			<td>
+			<td align='left'>
 				<label for='wpMoveOnly'>{$moveonly}</label>
 			</td>
 		</tr> " );
@@ -1466,7 +1463,7 @@ class Article {
 		</tr>
 	</table>
 	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
-</form>\n" );
+</form>" );
 
 		$wgOut->returnToMain( false );
 	}
@@ -1619,9 +1616,6 @@ class Article {
 			<td align='left'>
 				<input type='text' size='60' name='wpReason' id='wpReason' value=\"" . htmlspecialchars( $reason ) . "\" />
 			</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
