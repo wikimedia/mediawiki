@@ -500,8 +500,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$now = wfTimestampNow();
 			$won = wfInvertTimestamp( $now );
 			foreach( $logs as $page => $text ) {
-				$logTitle = wfStrencode( $wgLang->ucfirst( str_replace( " ", "_", wfMsgNoDB( $page ) ) ) );
-				$logText = wfStrencode( wfMsgNoDB( $text ) );
+				$logTitle = $wgDatabase->strencode( $wgLang->ucfirst( str_replace( " ", "_", wfMsgNoDB( $page ) ) ) );
+				$logText = $wgDatabase->strencode( wfMsgNoDB( $text ) );
 				$wgDatabase->query( "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
 				  "cur_restrictions,cur_timestamp,inverse_timestamp,cur_touched) " .
 				  "VALUES ($metaNamespace,'$logTitle','$logText','sysop','$now','$won','$now')" );
