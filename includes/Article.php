@@ -1667,9 +1667,11 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 				} else {
 					wfDebug("  failed to write gzip, still sending\n" );
 				}
-				header( "Content-Encoding: gzip" );
-				header( "Vary: Accept-Encoding" );
-				return $gzout;
+				if(wfClientAcceptsGzip()) {
+					header( "Content-Encoding: gzip" );
+					header( "Vary: Accept-Encoding" );
+					return $gzout;
+				}
 			}
 		}
 		return $text;
