@@ -154,7 +154,7 @@ If upgrading from an older release, see the file UPGRADING.
 * Avoid PHP warning messages when thumbnail not generated
 * (bug 1157) List unblocks correctly in Special:Log
 * Fix fatal errors in LanguageLi.php
-
+* Undo overly bright, difficult to read colors in Cologne Blue
 
 === Caveats ===
 
