@@ -101,6 +101,9 @@ class LanguageAr extends LanguageUtf8 {
 
 		# Swap sidebar to right side by default
 		$opt['quickbar'] = 2;
+		
+		# Underlines seriously harm legibility. Force off:
+		$opt['underline'] = 0;
 		return $opt ;
 	}
 
