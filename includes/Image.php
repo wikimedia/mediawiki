@@ -54,6 +54,9 @@ class Image
 		}
 
 		$this->url       = $this->wfImageUrl( $name );
+		
+		$n = strrpos( $name, '.' );
+		$this->extension = strtolower( $n ? substr( $name, $n + 1 ) : '' );
 
 		if ( $this->fileExists = file_exists( $this->imagePath ) ) // Sic!, "=" is intended
 		{
@@ -68,6 +71,10 @@ class Image
 				} else {
 					$this->bits = 0;
 				}
+			} elseif( $this->extension == 'svg' ) {
+				$this->width = 512;
+				$this->height = 512;
+				$this->type = 'svg';
 			}
 		}
 		$this->historyLine = 0;
@@ -234,7 +241,12 @@ class Image
 	 * @access private
 	 */
 	function thumbName( $width ) {
-		return $width."px-".$this->name;
+		$thumb = $width."px-".$this->name;
+		if( $this->extension == 'svg' ) {
+			# Rasterize SVG vector images to PNG
+			$thumb .= '.png';
+		}
+		return $thumb;
 	}
 
 	/**
