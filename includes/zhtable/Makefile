@@ -2,9 +2,8 @@
 # Creating the file ZhConversion.php used for Simplified/Traditional
 # Chinese conversion. It gets the basic conversion table from the Unihan 
 # database, and construct the phrase tables using phrase libraries in
-# the SCIM packages. There are also special tables used to for adjustment.
-# Some data in the file simp2trad.manual was taken from the following
-# paper:
+# the SCIM packages and the libtabe package. There are also special
+# tables used to for adjustment. 
 #
 
 GREP = LANG=zh_CN.UTF8 grep
