@@ -182,8 +182,13 @@ function indexShowChunk( $from, $namespace = 0 )
 	$out = "";
 	$dbr =& wfGetDB( DB_SLAVE );
 	$cur = $dbr->tableName( 'cur' );
-	$sql = "SELECT cur_title FROM $cur WHERE cur_namespace=$namespacee AND cur_title >= '"
-		. $dbr->strencode( $from ) . "' ORDER BY cur_title LIMIT " . $maxPlusOne;
+	
+	$fromTitle = Title::newFromURL( $from );
+	$fromKey = is_null( $fromTitle ) ? '' : $fromTitle->getDBkey();
+	
+	$sql = "SELECT cur_title FROM $cur WHERE cur_namespace=$namespacee" .
+		" AND cur_title >= ".  $dbr->addQuotes( $fromKey ) .
+		" ORDER BY cur_title LIMIT " . $maxPlusOne;
 	$res = $dbr->query( $sql, "indexShowChunk" );
 
 	### FIXME: side link to previous
