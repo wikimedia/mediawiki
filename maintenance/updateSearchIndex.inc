@@ -2,8 +2,12 @@
 
 function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 	global $wgQuiet;
-	$wgQuiet = $quiet;
+	global $wgDisableSearchUpdate;
+
 	$fname = "updateSearchIndex";
+
+	$wgQuiet = $quiet;
+	$wgDisableSearchUpdate = false;
 
 	output( "Updating searchindex between $start and $end\n" );
 
@@ -11,13 +15,13 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 	$start = wfStrencode( $start );
 	$end = wfStrencode( $end );
 
-	$sql = "SELECT rc_cur_id FROM recentchanges
+	$sql = "SELECT rc_cur_id,rc_type,rc_moved_to_ns,rc_moved_to_title FROM recentchanges
 	  WHERE rc_this_oldid=0 AND rc_timestamp BETWEEN '$start' AND '$end'";
 	$res = wfQuery( $sql, DB_READ, $fname );
 
 	# Lock searchindex
 	if ( $maxLockTime ) {
-		output( "Waiting for lock..." );
+		output( "   --- Waiting for lock ---" );
 		lockSearchindex();
 		$lockTime = time();
 		output( "done\n" );
@@ -27,21 +31,32 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 	while ( $row = wfFetchObject( $res ) ) {
 		# Allow reads to be processed
 		if ( $maxLockTime && time() > $lockTime + $maxLockTime ) {
-			output( "Relocking..." );
+			output( "    --- Relocking ---" );
 			relockSearchindex();
 			$lockTime = time();
 			output( "\n" );
 		}
-		# Get cur row
-		$curRow = wfGetArray( 'cur', array( 'cur_namespace', 'cur_title', 'cur_text' ), array( 'cur_id' => $row->rc_cur_id ) );
-		if ( $curRow ) {
-			$titleObj = Title::makeTitle( $curRow->cur_namespace, $curRow->cur_title );
+		if ( $row->rc_type == RC_LOG ) {
+			continue;
+		} elseif ( $row->rc_type == RC_MOVE || $row->rc_type == RC_MOVE_OVER_REDIRECT ) {
+			# Rename searchindex entry
+			$titleObj = Title::makeTitle( $row->rc_moved_to_ns, $row->rc_moved_to_title );
 			$title = $titleObj->getPrefixedDBkey();
-			output( "$title ..." );
-			# Update searchindex
-			$u = new SearchUpdate( $row->rc_cur_id, $curRow->cur_title, $curRow->cur_text );
-			$u->doUpdate();
+			output( "$title..." );
+			$u = new SearchUpdate( $row->rc_cur_id, $title, false );
 			output( "\n" );
+		} else {
+			# Get cur row
+			$curRow = wfGetArray( 'cur', array( 'cur_namespace', 'cur_title', 'cur_text' ), array( 'cur_id' => $row->rc_cur_id ) );
+			if ( $curRow ) {
+				$titleObj = Title::makeTitle( $curRow->cur_namespace, $curRow->cur_title );
+				$title = $titleObj->getPrefixedDBkey();
+				output( $title );
+				# Update searchindex
+				$u = new SearchUpdate( $row->rc_cur_id, $curRow->cur_title, $curRow->cur_text );
+				$u->doUpdate();
+				output( "\n" );
+			}
 		}
 	}
 	
