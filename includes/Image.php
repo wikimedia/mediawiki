@@ -660,7 +660,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 	# Test to see if the row exists using INSERT IGNORE
 	# This avoids race conditions by locking the row until the commit, and also
 	# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
-	$dbw->insertArray( 'image',
+	$dbw->insert( 'image',
 		array(
 			'img_name' => $name,
 			'img_size'=> $size,
@@ -678,7 +678,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 
 		if ( $id == 0 ) {
 			$seqVal = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
-			$dbw->insertArray( 'cur',
+			$dbw->insert( 'cur',
 				array(
 					'cur_id' => $seqVal,
 					'cur_namespace' => NS_IMAGE,
@@ -703,11 +703,11 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 	} else {
 		# Collision, this is an update of an image
 		# Get current image row for update
-		$s = $dbw->getArray( 'image', array( 'img_name','img_size','img_timestamp','img_description',
+		$s = $dbw->selectRow( 'image', array( 'img_name','img_size','img_timestamp','img_description',
 		  'img_user','img_user_text' ), array( 'img_name' => $name ), $fname, 'FOR UPDATE' );
 
 		# Insert it into oldimage
-		$dbw->insertArray( 'oldimage',
+		$dbw->insert( 'oldimage',
 			array(
 				'oi_name' => $s->img_name,
 				'oi_archive_name' => $oldver,
@@ -720,7 +720,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 		);
 
 		# Update the current image row
-		$dbw->updateArray( 'image',
+		$dbw->update( 'image',
 			array( /* SET */
 				'img_size' => $size,
 				'img_timestamp' => $dbw->timestamp(),

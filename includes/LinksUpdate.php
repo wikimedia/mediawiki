@@ -76,7 +76,7 @@ class LinksUpdate {
 			# The link cache was constructed without FOR UPDATE, so there may be collisions
 			# Ignoring for now, I'm not sure if that causes problems or not, but I'm fairly
 			# sure it's better than without IGNORE
-			$dbw->insertArray('links', $arr, $fname, array('IGNORE'));
+			$dbw->insert('links', $arr, $fname, array('IGNORE'));
 		}
 
 		#------------------------------------------------------------------------------
@@ -116,7 +116,7 @@ class LinksUpdate {
 					'bl_from'=>$this->mId,
 					'bl_to'=>$blt));
 			}
-			$dbw->insertArray( 'brokenlinks',$arr,$fname,array('IGNORE'));
+			$dbw->insert( 'brokenlinks',$arr,$fname,array('IGNORE'));
 		}
 
 		#------------------------------------------------------------------------------
@@ -141,7 +141,7 @@ class LinksUpdate {
 					'il_from'=>$this->mId,
 					'il_to'=>$iname));
 			}
-			$dbw->insertArray($imagelinks, $arr, $fname, array('IGNORE'));
+			$dbw->insert('imagelinks', $arr, $fname, array('IGNORE'));
 		}
 
 		#------------------------------------------------------------------------------
@@ -166,7 +166,7 @@ class LinksUpdate {
 						'cl_to'=>$dbw->strencode( $cname ),
 						'cl_sortkey'=>$dbw->strencode( $sortkey )));
 				}
-				$dbw->insertArray($categorylinks,$arr,$fname,array('IGNORE'));
+				$dbw->insert('categorylinks',$arr,$fname,array('IGNORE'));
 			}
 		}
 		
@@ -204,7 +204,7 @@ class LinksUpdate {
 					'l_from'=>$this->mId,
 					'l_to'=>$lid));
 			}
-			$dbw->insertArray($links,$arr,$fname,array('IGNORE'));
+			$dbw->insert('links',$arr,$fname,array('IGNORE'));
 		}
 
 		$sql = "DELETE FROM $brokenlinks WHERE bl_from={$this->mId}";
@@ -219,7 +219,7 @@ class LinksUpdate {
 					'bl_from'=>$this->mId,
 					'bl_to'=>$blt));
 			}
-			$dbw->insertArray($brokenlinks,$arr,$fname,array('IGNORE'));
+			$dbw->insert('brokenlinks',$arr,$fname,array('IGNORE'));
 		}
 		
 		$sql = "DELETE FROM $imagelinks WHERE il_from={$this->mId}";
@@ -233,7 +233,7 @@ class LinksUpdate {
 				array_push($arr,array(
 					'il_from'=>$this->mId,
 					'il_to'=>$dbw->strencode( $iname )));
-			$dbw->insertArray($imagelinks,$arr,$fname,array('IGNORE'));
+			$dbw->insert('imagelinks',$arr,$fname,array('IGNORE'));
 		}
 
 		if( $wgUseCategoryMagic ) {
@@ -257,7 +257,7 @@ class LinksUpdate {
 						'cl_to'=>$dbw->strencode( $cname ),
 						'cl_sortkey'=>$dbw->strencode( $sortkey )));
 				}
-				$dbw->insertArray($categorylinks,$arr,$fname,array('IGNORE'));
+				$dbw->insert('categorylinks',$arr,$fname,array('IGNORE'));
 			}
 		}
 		$this->fixBrokenLinks();
@@ -279,8 +279,6 @@ class LinksUpdate {
 		  $fname, 'FOR UPDATE' );
 		if ( 0 == $dbw->numRows( $res ) ) { return; }
 
-		# Ignore errors. If a link existed in both the brokenlinks table and the links 
-		# table, that's an error which can be fixed at this stage by simply ignoring collisions
 		$arr=array();
 		$now = $dbw->timestamp();
 		$sql2 = "UPDATE $cur SET cur_touched='{$now}' WHERE cur_id IN (";
@@ -292,7 +290,10 @@ class LinksUpdate {
 			$sql2 .= $row->bl_from;
 		}
 		$sql2 .= ')';
-		$dbw->insertArray($links,$arr,$fname,array('IGNORE'));
+		
+		# Ignore errors. If a link existed in both the brokenlinks table and the links 
+		# table, that's an error which can be fixed at this stage by simply ignoring collisions
+		$dbw->insert('links',$arr,$fname,array('IGNORE'));
 		$dbw->query( $sql2, $fname );
 		$dbw->delete( 'brokenlinks', array( 'bl_to' => $this->mTitle ), $fname );
 	}

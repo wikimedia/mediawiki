@@ -157,7 +157,7 @@ class Title {
 	/* static */ function newFromID( $id ) {
 		$fname = 'Title::newFromID';
 		$dbr =& wfGetDB( DB_SLAVE );
-		$row = $dbr->getArray( 'cur', array( 'cur_namespace', 'cur_title' ), 
+		$row = $dbr->selectRow( 'cur', array( 'cur_namespace', 'cur_title' ), 
 			array( 'cur_id' => $id ), $fname );
 		if ( $row !== false ) {
 			$title = Title::makeTitle( $row->cur_namespace, $row->cur_title );
@@ -265,7 +265,7 @@ class Title {
 		$fname = 'Title::nameOf';
 		$dbr =& wfGetDB( DB_SLAVE );
 		
-		$s = $dbr->getArray( 'cur', array( 'cur_namespace','cur_title' ),  array( 'cur_id' => $id ), $fname );
+		$s = $dbr->selectRow( 'cur', array( 'cur_namespace','cur_title' ),  array( 'cur_id' => $id ), $fname );
 		if ( $s === false ) { return NULL; }
 
 		$n = Title::makeName( $s->cur_namespace, $s->cur_title );
@@ -851,7 +851,7 @@ class Title {
 
 		if ( ! $this->mRestrictionsLoaded ) {
 			$dbr =& wfGetDB( DB_SLAVE );
-			$res = $dbr->getField( 'cur', 'cur_restrictions', 'cur_id='.$id );
+			$res = $dbr->selectField( 'cur', 'cur_restrictions', 'cur_id='.$id );
 			$this->mRestrictions = explode( ',', trim( $res ) );
 			$this->mRestrictionsLoaded = true;
 		}
@@ -866,7 +866,7 @@ class Title {
 	function isDeleted() {
 		$fname = 'Title::isDeleted';
 		$dbr =& wfGetDB( DB_SLAVE );
-		$n = $dbr->getField( 'archive', 'COUNT(*)', array( 'ar_namespace' => $this->getNamespace(), 
+		$n = $dbr->selectField( 'archive', 'COUNT(*)', array( 'ar_namespace' => $this->getNamespace(), 
 			'ar_title' => $this->getDBkey() ), $fname );
 		return (int)$n;
 	}
@@ -923,7 +923,7 @@ class Title {
 	function invalidateCache() {
 		$now = wfTimestampNow();
 		$dbw =& wfGetDB( DB_MASTER );
-		$success = $dbw->updateArray( 'cur', 
+		$success = $dbw->update( 'cur', 
 			array( /* SET */ 
 				'cur_touched' => $dbw->timestamp()
 			), array( /* WHERE */ 
@@ -1312,7 +1312,7 @@ class Title {
 		$links = $dbw->tableName( 'links' );
 
 		# Change the name of the target page:
-		$dbw->updateArray( 'cur',
+		$dbw->update( 'cur',
 			/* SET */ array( 
 				'cur_touched' => $dbw->timestamp($now), 
 				'cur_namespace' => $nt->getNamespace(),
@@ -1327,7 +1327,7 @@ class Title {
 		# by definition if we've got here it's rather uninteresting.
 		
 		$redirectText = $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
-		$dbw->updateArray( 'cur',
+		$dbw->update( 'cur',
 			/* SET */ array(
 				'cur_touched' => $dbw->timestamp($now),
 				'cur_timestamp' => $dbw->timestamp($now),
@@ -1352,7 +1352,7 @@ class Title {
 
 		# Fix the redundant names for the past revisions of the target page.
 		# The redirect should have no old revisions.
-		$dbw->updateArray(
+		$dbw->update(
 			/* table */ 'old',
 			/* SET */ array( 
 				'old_namespace' => $nt->getNamespace(),
@@ -1410,7 +1410,7 @@ class Title {
 		# Now, we record the link from the redirect to the new title.
 		# It should have no other outgoing links...
 		$dbw->delete( 'links', array( 'l_from' => $newid ) );
-		$dbw->insertArray( 'links', array( 'l_from' => $newid, 'l_to' => $oldid ) );
+		$dbw->insert( 'links', array( 'l_from' => $newid, 'l_to' => $oldid ) );
 		
 		# Clear linkscc
 		LinkCache::linksccClearLinksTo( $oldid );
@@ -1444,7 +1444,7 @@ class Title {
 		$rand = wfRandom();
 
 		# Rename cur entry
-		$dbw->updateArray( 'cur',
+		$dbw->update( 'cur',
 			/* SET */ array(
 				'cur_touched' => $now,
 				'cur_namespace' => $nt->getNamespace(),
@@ -1457,7 +1457,7 @@ class Title {
 		$wgLinkCache->clearLink( $nt->getPrefixedDBkey() );
 
 		# Insert redirect
-		$dbw->insertArray( 'cur', array(
+		$dbw->insert( 'cur', array(
 			'cur_id' => $dbw->nextSequenceValue('cur_cur_id_seq'),
 			'cur_namespace' => $this->getNamespace(),
 			'cur_title' => $this->getDBkey(),
@@ -1476,7 +1476,7 @@ class Title {
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
 
 		# Rename old entries
-		$dbw->updateArray( 
+		$dbw->update( 
 			/* table */ 'old',
 			/* SET */ array(
 				'old_namespace' => $nt->getNamespace(),
@@ -1495,11 +1495,11 @@ class Title {
 		Article::onArticleCreate( $nt );
 
 		# Any text links to the old title must be reassigned to the redirect
-		$dbw->updateArray( 'links', array( 'l_to' => $newid ), array( 'l_to' => $oldid ), $fname );
+		$dbw->update( 'links', array( 'l_to' => $newid ), array( 'l_to' => $oldid ), $fname );
 		LinkCache::linksccClearLinksTo( $oldid );
 
 		# Record the just-created redirect's linking to the page
-		$dbw->insertArray( 'links', array( 'l_from' => $newid, 'l_to' => $oldid ), $fname );
+		$dbw->insert( 'links', array( 'l_from' => $newid, 'l_to' => $oldid ), $fname );
 
 		# Non-existent target may have had broken links to it; these must
 		# now be removed and made into good links.
@@ -1532,7 +1532,7 @@ class Title {
 
 		# Is it a redirect?
 		$id  = $nt->getArticleID();
-		$obj = $dbw->getArray( 'cur', array( 'cur_is_redirect','cur_text' ), 
+		$obj = $dbw->selectRow( 'cur', array( 'cur_is_redirect','cur_text' ), 
 			array( 'cur_id' => $id ), $fname, 'FOR UPDATE' );
 
 		if ( !$obj || 0 == $obj->cur_is_redirect ) { 
@@ -1550,7 +1550,7 @@ class Title {
 		}
 
 		# Does the article have a history?
-		$row = $dbw->getArray( 'old', array( 'old_id' ), 
+		$row = $dbw->selectRow( 'old', array( 'old_id' ), 
 			array( 
 				'old_namespace' => $nt->getNamespace(),
 				'old_title' => $nt->getDBkey() 
@@ -1582,7 +1582,7 @@ class Title {
 		$won = wfInvertTimestamp( $now );
 		$seqVal = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
 
-		$dbw->insertArray( 'cur', array(
+		$dbw->insert( 'cur', array(
 			'cur_id' => $seqVal,
 			'cur_namespace' => $this->getNamespace(),
 			'cur_title' => $this->getDBkey(),
@@ -1601,14 +1601,14 @@ class Title {
 		
 		# Link table
 		if ( $dest->getArticleID() ) {
-			$dbw->insertArray( 'links', 
+			$dbw->insert( 'links', 
 				array(
 					'l_to' => $dest->getArticleID(),
 					'l_from' => $newid
 				), $fname 
 			);
 		} else {
-			$dbw->insertArray( 'brokenlinks', 
+			$dbw->insert( 'brokenlinks', 
 				array( 
 					'bl_to' => $dest->getPrefixedDBkey(),
 					'bl_from' => $newid

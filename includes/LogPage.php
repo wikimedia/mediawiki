@@ -51,7 +51,7 @@ class LogPage {
 		$uid = $wgUser->getID();
 
 		$this->timestamp = $now = wfTimestampNow();
-		$dbw->insertArray( 'logging',
+		$dbw->insert( 'logging',
 			array(
 				'log_type' => $this->type,
 				'log_action' => $this->action,

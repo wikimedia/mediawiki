@@ -189,7 +189,7 @@ class Profiler
 
 		$rc = $dbw->affectedRows();	
 		if( $rc == 0) {
-			$dbw->insertArray($profiling,array(
+			$dbw->insert('profiling',array(
 				'pf_name'=>$name,
 				'pf_count'=>$eventCount,
 				'pf_time'=>$timeSum),

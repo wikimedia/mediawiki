@@ -80,7 +80,7 @@ function getRebuildInterwikiSQL() {
 
 	# Extract the intermap from meta
 	$dbr =& wfGetDB( DB_WRITE );
-	$row = $dbr->getArray( "metawiki.cur", array( "cur_text" ), 
+	$row = $dbr->selectRow( "metawiki.cur", array( "cur_text" ), 
 		array( "cur_namespace" => 0, "cur_title" => "Interwiki_map" ) );
 
 	if ( !$row ) {

@@ -114,7 +114,7 @@ class RecentChange
 		$this->mAttribs['rc_cur_time']=$dbw->timestamp($this->mAttribs['rc_cur_time']);
 
 		# Insert new row
-		$dbw->insertArray( 'recentchanges', $this->mAttribs, $fname );
+		$dbw->insert( 'recentchanges', $this->mAttribs, $fname );
 
 		# Update old rows, if necessary
 		if ( $this->mAttribs['rc_type'] == RC_EDIT ) {
@@ -126,7 +126,7 @@ class RecentChange
 			$curId = $this->mAttribs['rc_cur_id'];
 
 			# Update rc_this_oldid for the entries which were current
-			$dbw->updateArray( 'recentchanges',
+			$dbw->update( 'recentchanges',
 				array( /* SET */
 					'rc_this_oldid' => $oldid
 				), array( /* WHERE */
@@ -137,7 +137,7 @@ class RecentChange
 			);
 
 			# Update rc_cur_time
-			$dbw->updateArray( 'recentchanges', array( 'rc_cur_time' => $now ),
+			$dbw->update( 'recentchanges', array( 'rc_cur_time' => $now ),
 				array( 'rc_cur_id' => $curId ), $fname );
 		}
 
@@ -159,7 +159,7 @@ class RecentChange
 
 		$dbw =& wfGetDB( DB_MASTER );
 
-		$dbw->updateArray( 'recentchanges',
+		$dbw->update( 'recentchanges',
 			array( /* SET */
 				'rc_patrolled' => 1
 			), array( /* WHERE */

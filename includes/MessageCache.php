@@ -244,7 +244,7 @@ class MessageCache
 			# If it wasn't in the cache, load each message from the DB individually
 			if ( !$message ) {
 				$dbr =& wfGetDB( DB_SLAVE );
-				$result = $dbr->getArray( 'cur', array('cur_text'),
+				$result = $dbr->selectRow( 'cur', array('cur_text'),
 				  array( 'cur_namespace' => NS_MEDIAWIKI, 'cur_title' => $title ),
 				  'MessageCache::get' );
 				if ( $result ) {
