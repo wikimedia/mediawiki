@@ -133,6 +133,12 @@ class SpecialSearch {
 		
 		global $wgDisableTextSearch;
 		if ( $wgDisableTextSearch ) {
+			global $wgForwardSearchUrl;
+			if( $wgForwardSearchUrl ) {
+				$url = str_replace( '$1', urlencode( $term ), $wgForwardSearchUrl );
+				$wgOut->redirect( $url );
+				return;
+			}
 			global $wgInputEncoding;
 			$wgOut->addHTML( wfMsg( 'searchdisabled' ) );
 			$wgOut->addHTML( wfMsg( 'googlesearch',
