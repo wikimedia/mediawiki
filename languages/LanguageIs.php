@@ -39,12 +39,6 @@ if($wgMetaNamespace === FALSE)
   NS_CATEGORY_TALK    => 'Flokkaspjall'
 ) + $wgNamespaceNamesEn;
 
-/* private */ $wgDefaultUserOptionsIs = array(
-	'date' => 2,
-	# The Icelandic Wikipedia wishes to use PNG rendering by default.
-  	'math' => 0,
-) + $wgDefaultUserOptionsEn;
-
 /* private */ $wgQuickbarSettingsIs = array(
 	"Sleppa", "Fast vinstra megin", "Fast hægra megin", "Fljótandi til vinstri"
 );
@@ -62,11 +56,12 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgDateFormatsIs = array(
-	"Alveg sama",
-	"Janúar 15, 2001",
-	"15 janúar 2001",
-	"2001 janúar 15",
-	"2001-01-15"
+	'Sjálfgefið',
+	'15. janúar 2001 kl. 16:12',
+	'15. jan. 2001 kl. 16:12',
+	'16:12, 15. janúar 2001',
+	'16:12, 15. jan. 2001',
+	'2001-01-15 16:12:34'
 );
 
 /* private */ $wgSysopSpecialPagesIs = array(
@@ -800,11 +795,6 @@ Query: $2",
 
 class LanguageIs extends LanguageUtf8 {
 
-	function getDefaultUserOptions () {
-		global $wgDefaultUserOptionsIs;
-		return $wgDefaultUserOptionsIs;
-	}
-
 	function getNamespaces() {
 		global $wgNamespaceNamesIs;
 		return $wgNamespaceNamesIs;
@@ -874,11 +864,48 @@ class LanguageIs extends LanguageUtf8 {
 	}
 	
 	function date( $ts, $adj = false ) {
+		global $wgUser;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
-		$date = (0 + substr( $ts, 6, 2 )) . '. ' .
-			$this->getMonthName( substr( $ts, 4, 2 ) ) . ' ' .
-			substr($ts, 0, 4); 
-		return $date;
+		
+		switch( $wgUser->getOption( 'date' )  ) {
+			# 15. jan. 2001 kl. 16:12 || 16:12, 15. jan. 2001
+			case 2: case 4: return (0 + substr( $ts, 6, 2 )) . '. ' .
+				$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . '. ' .
+				substr($ts, 0, 4);
+			# 2001-01-15 16:12:34
+			case 5: return substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .substr($ts, 6, 2);
+
+			# 15. janúar 2001 kl. 16:12 || 16:12, 15. janúar 2001
+			default: return (0 + substr( $ts, 6, 2 )) . '. ' .
+				$this->getMonthName( substr( $ts, 4, 2 ) ) . ' ' .
+				substr($ts, 0, 4);
+		}
+		
+	}
+
+	function time($ts, $adj = false) {
+		global $wgUser;
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
+		
+		switch( $wgUser->getOption( 'date' )  ) {
+			case 5: return substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 ) . ':' . substr( $ts, 12, 2 );
+			default: return substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
+		}
+
+	}
+
+	function timeanddate( $ts, $adj = false ) {
+		global $wgUser;
+		
+		switch ( $wgUser->getOption( 'date' ) ) {
+			# 16:12, 15. janúar 2001 || 16:12, 15. jan. 2001
+			case 3: case 4: return $this->time( $ts, $adj ) . ', ' . $this->date( $ts, $adj );
+			# 2001-01-15 16:12:34
+			case 5: return $this->date( $ts, $adj ) . ' ' . $this->time( $ts, $adj );
+			default: return $this->date( $ts, $adj ) . ' kl. ' . $this->time( $ts, $adj );
+			
+		}
+
 	}
 }
 
