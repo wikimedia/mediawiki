@@ -673,6 +673,7 @@ class OutputPage {
 		if ( $returnto == NULL ) {
 			$returnto = $wgRequest->getText( 'returnto' );
 		}
+		$returnto = htmlspecialchars( $returnto );
 
 		$sk = $wgUser->getSkin();
 		if ( '' == $returnto ) {
