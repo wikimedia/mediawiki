@@ -1,6 +1,6 @@
 = MediaWiki release notes =
 
-== Version 1.2.0rc1, 2004-02-28 ==
+== Version 1.2.0rc2, 2004-03-01 ==
 
 This is a RELEASE CANDIDATE for the new production release. It is more or
 less in sync with what is running on Wikipedia right now. There may be
@@ -29,6 +29,8 @@ Fixes and tweaks:
 * Should work out of the box on MySQL 3.2.x again. On 4.x set
   $wgEnablePersistentLC = true; to turn on the link cache table
   for a slight rendering speed boost.
+* rebuildMessages.php can now selectively update new messages, or
+  overwrite everything.
 * Works with short tags disabled.
 * Various bug fixes.
 * Other stuff we forgot.
