@@ -1417,6 +1417,12 @@ class LanguageId extends LanguageUtf8 {
 			return Language::getMessage( $key );
 		}
 	}
+	
+	function formatNum( $number ) {
+		global $wgTranslateNumerals;
+		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	}
+
 }
 
 ?>

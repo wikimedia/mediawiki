@@ -1126,6 +1126,11 @@ class LanguageLt extends LanguageUtf8  {
                 global $wgAllMessagesLt;
                 return $wgAllMessagesLt;
         }
+	
+	function formatNum( $number ) {
+		global $wgTranslateNumerals;
+		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	}
 
 }
 ?>

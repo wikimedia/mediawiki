@@ -1098,6 +1098,12 @@ class LanguageNo extends LanguageUtf8 {
 		return $this->date( $ts, $adj ) . " kl." . $this->time( $ts, $adj );
 	}
 
+	function formatNum( $number ) {
+		global $wgTranslateNumerals;
+		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	}
+	
+
 	# Inherit rfc1123()
 
 	function getValidSpecialPages()
