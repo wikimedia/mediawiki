@@ -260,7 +260,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'portal'		=> 'Lárionad chomhphobail',
 'portal-url'		=> '{{ns:4}}:Lárionad chomhphobail',
 "about"     => "Faoi",
-"aboutwikipedia"    => "Faoin Vicipéid",
+"aboutsite"         => "Faoin Vicipéid",
 'article'       => "Clár ábhair",
 "aboutpage"     => "Vicipéid:Faoi",
 "help"      => "Cabhair",
@@ -291,7 +291,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 "disclaimerpage" => "{{ns:4}}:Séanadh_ginearálta",-
 "errorpagetitle" => "Earráid",
 "returnto"      => "Dul ar ais go $1.",
-"fromwikipedia" => "Ón Vicipéid, an chiclipéid shaor.",
+"tagline"       => "Ón Vicipéid, an chiclipéid shaor.",
 "whatlinkshere" => "Leathanaigh a nascaí­onn chuig an leathanach seo",
 "help"      => "Cabhair",
 "search"        => "Cuardaigh",

@@ -146,7 +146,7 @@ ta['ca-nstab-help'] = new Array('c','Rodyti pagalbos puslapį');
 ta['ca-nstab-category'] = new Array('c','Rodyti kategorijos puslapį');",
 'about' => "Apie",
 'aboutpage' => "Wikipedia:About",
-'aboutwikipedia' => "Apie Wikipediją",
+'aboutsite'      => "Apie Wikipediją",
 #'accesskey-compareselectedversions' => "v",
 #'accesskey-minoredit' => "i",
 #'accesskey-preview' => "p",
@@ -405,7 +405,7 @@ Please follow this link: $2 to the description page and fill
 in information about the file, such as where it came from, when it was
 created and by whom, and anything else you may know about it.",
 #'formerror' => "Error: could not submit form",
-'fromwikipedia' => "<small>Straipsnis iš Wikipedijos, laisvosios enciklopedijos.</small>",
+'tagline'       => "<small>Straipsnis iš Wikipedijos, laisvosios enciklopedijos.</small>",
 #'getimagelist' => "fetching image list",
 'go' => "Rodyk",
 'googlesearch' => "

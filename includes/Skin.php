@@ -671,7 +671,7 @@ class Skin {
 		$sub = $wgOut->getSubtitle();
 		if ( '' == $sub ) {
 			global $wgExtraSubtitle;
-			$sub = wfMsg( 'fromwikipedia' ) . $wgExtraSubtitle;
+			$sub = wfMsg( 'tagline' ) . $wgExtraSubtitle;
 		}
 		$subpages = $this->subPageSubtitle();
 		$sub .= !empty($subpages)?"</p><p class='subpages'>$subpages":'';
@@ -1144,7 +1144,7 @@ class Skin {
 
 	function aboutLink() {
 		$s = $this->makeKnownLink( wfMsg( 'aboutpage' ),
-		  wfMsg( 'aboutwikipedia' ) );
+		  wfMsg( 'aboutsite' ) );
 		return $s;
 	}
 

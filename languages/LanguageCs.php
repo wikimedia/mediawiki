@@ -162,7 +162,7 @@
 "linktrail"     => "/^([a-z]+)(.*)$/sD",
 "mainpage"		=> "Hlavní strana",
 "about"			=> "Úvod",
-"aboutwikipedia" => "O Wikipedii", #FIXME
+"aboutsite"      => "O Wikipedii", #FIXME
 "aboutpage"		=> "Wikipedie:Úvod",
 "help"			=> "Nápověda",
 "helppage"		=> "Wikipedie:Nápověda",
@@ -185,7 +185,7 @@
 "currentevents" => "Aktuality", #FIXME - Novinky? Aktuální novinky? Aktuální události?
 "errorpagetitle" => "Chyba", #FIXME - Arero? ;)
 "returnto"		=> "Vrať se na $1.",
-"fromwikipedia"	=> "Z Wikipedie, otevřené encyklopedie.",
+"tagline"      	=> "Z Wikipedie, otevřené encyklopedie.",
 "whatlinkshere"	=> "Sem odkazy", #FIXME: cu ligantaj?
 "help"			=> "Nápověda",
 "search"		=> "Hledej",

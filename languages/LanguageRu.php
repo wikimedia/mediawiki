@@ -175,7 +175,7 @@ if($wgMetaNamespace === FALSE)
 "mainpage"		=> "Заглавная Страница",
 "mainpagetext"	=> "Программное обеспечение вики установлено.",
 "about"			=> "Описание",
-"aboutwikipedia" => "Описание Википедии",
+"aboutsite"      => "Описание Википедии",
 "aboutpage"		=> "$wgMetaNamespace:Описание",
 "help"			=> "Справка",
 "helppage"		=> "$wgMetaNamespace:Справка",
@@ -198,7 +198,7 @@ if($wgMetaNamespace === FALSE)
 "currentevents" => "Текущие события",
 "errorpagetitle" => "Ошибка",
 "returnto"		=> "Возврат к $1.",
-"fromwikipedia"	=> "Материал из Википедии - свободной энциклопедии.", #FIXME
+"tagline"      	=> "Материал из Википедии - свободной энциклопедии.", #FIXME
 "whatlinkshere"	=> "Страницы, которые ссылаются сюда",
 "help"			=> "Справка",
 "search"		=> "Искать",

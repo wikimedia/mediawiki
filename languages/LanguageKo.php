@@ -189,7 +189,7 @@ require_once( "LanguageUtf8.php" );
 #
 "mainpage"		=> "대문",
 "about"			=> "소개",
-"aboutwikipedia" => "{{SITENAME}}란",
+"aboutsite"      => "{{SITENAME}}란",
 "aboutpage"		=> "{{ns:4}}:소개",
 "help"			=> "도움말",
 "helppage"		=> "{{ns:4}}:도움말",
@@ -219,7 +219,7 @@ require_once( "LanguageUtf8.php" );
 "currentevents" => "요즘의 화제",
 "errorpagetitle" => "오류",
 "returnto"		=> "$1(으)로 돌아가기.",
-"fromwikipedia"	=> "{{SITENAME}}, 우리 모두의 백과사전.",
+"tagline"      	=> "{{SITENAME}}, 우리 모두의 백과사전.",
 "whatlinkshere"	=> "여길 가리키는 문서",
 "help"			=> "도움말",
 "search"		=> "찾기",

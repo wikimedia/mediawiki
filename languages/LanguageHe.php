@@ -172,7 +172,7 @@ require_once("LanguageUtf8.php");
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "עמוד ראשי",
 "about"			=> "אודות",
-"aboutwikipedia" => "אודות ויקיפדיה",
+"aboutsite"      => "אודות ויקיפדיה",
 "aboutpage"		=> "ויקיפדיה:אודות",
 'article' => 'מאמר', #????
 "help"			=> "עזרה",
@@ -196,7 +196,7 @@ require_once("LanguageUtf8.php");
 "currentevents" => "-",
 "errorpagetitle" => "שגיאה",
 "returnto"		=> "חזור ל-$1",
-"fromwikipedia"	=> "מתוך ויקיפדיה, האנציקלופדיה החופשית.",
+"tagline"      	=> "מתוך ויקיפדיה, האנציקלופדיה החופשית.",
 "whatlinkshere"	=> "דפים המקושרים לכאן",
 "help"			=> "עזרה",
 "search"		=> "חפש",

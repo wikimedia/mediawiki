@@ -176,7 +176,7 @@
 "mainpage"		=> "Laman Utama Pangkalan Pengetahuan", #"Knowledgebase Home",
 "mainpagetext"	        => "Aturcara Wiki berjaya dipasang.",
 "about"			=> "Maklumat",
-"aboutwikipedia"        => "Maklumat Wikipedia",
+"aboutsite"             => "Maklumat Wikipedia",
 "aboutpage"		=> "Wikipedia:Perihal", #"Wikipedia:About",
 "help"			=> "Bantuan",
 "helppage"		=> "Wikipedia:Bantuan",
@@ -199,7 +199,7 @@
 "currentevents"         => "Status Terkini",
 "errorpagetitle"        => "Ralat",
 "returnto"		=> "Kembali ke $1.", #"Return to $1.",
-"fromwikipedia"	        => "Dari Wikipedia, ensaiklopedia bebas", # "From Wikipedia, the free encylcopedia
+"tagline"      	        => "Dari Wikipedia, ensaiklopedia bebas", # "From Wikipedia, the free encylcopedia
 "whatlinkshere"	        => "Halaman yang dihubungkan ke sini", #"Pages that link here",
 "help"			=> "Bantuan",
 "search"		=> "Cari",
