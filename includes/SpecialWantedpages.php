@@ -31,6 +31,7 @@ class WantedPagesPage extends QueryPage {
 
 		# We cheat and return the full-text from bl_to in the title.
 		# In the future, a pre-parsed name will be available.
+		$agrvalue=$dbr->aggregateValue('COUNT(DISTINCT bl_from)');
 		return
 			"SELECT 'Wantedpages' as type,
 			        0 as namespace,
@@ -38,8 +39,14 @@ class WantedPagesPage extends QueryPage {
 			        COUNT(DISTINCT bl_from) as value
 			FROM $brokenlinks
 			GROUP BY bl_to
-			HAVING value > 1";
+			HAVING $agrvalue > 1
+			ORDER BY $agrvalue ".
+			($this->sortDescending() ? 'DESC' : '');
 	}
+
+        function getOrder() {
+                return '';
+        }
 
 	function formatResult( $skin, $result ) {
 		global $wgLang;
