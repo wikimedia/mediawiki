@@ -13,17 +13,18 @@ require_once( 'Image.php' );
 # Language class has internationalized names
 #
 /* private */ $wgValidSkinNames = array(
-	'standard'		=> 'Standard',
-	'nostalgia'		=> 'Nostalgia',
-	'cologneblue'	=> 'CologneBlue'
+	'standard'      => 'Standard',
+	'nostalgia'     => 'Nostalgia',
+	'cologneblue'   => 'CologneBlue'
 );
 if( $wgUsePHPTal ) {
-    #$wgValidSkinNames[] = 'PHPTal';
-    #$wgValidSkinNames['davinci'] = 'DaVinci';
-    #$wgValidSkinNames['mono'] = 'Mono';
-    $wgValidSkinNames['monobook'] = 'MonoBook';
-    $wgValidSkinNames['myskin'] = 'MySkin';
-    #$wgValidSkinNames['monobookminimal'] = 'MonoBookMinimal';
+	#$wgValidSkinNames[] = 'PHPTal';
+	#$wgValidSkinNames['davinci'] = 'DaVinci';
+	#$wgValidSkinNames['mono'] = 'Mono';
+	$wgValidSkinNames['monobook'] = 'MonoBook';
+	$wgValidSkinNames['myskin'] = 'MySkin';
+	#$wgValidSkinNames['monobookminimal'] = 'MonoBookMinimal';
+	$wgValidSkinNames['chick'] = 'Chick';
 }
 
 require_once( 'RecentChange.php' );
@@ -2790,6 +2791,9 @@ class Skin {
 		return $toolbar;
 	}
 
+	/* public */ function suppressUrlExpansion() {
+		return false;
+	}
 }
 
 }

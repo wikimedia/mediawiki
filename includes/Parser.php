@@ -59,8 +59,8 @@ define( 'INVERSE_EXT_LINK_URL_CLASS', '[\]\\x00-\\x20\\x7F]' );
 define( 'EXT_LINK_TEXT_CLASS', '[^\]\\x00-\\x1F\\x7F]' );
 define( 'EXT_IMAGE_FNAME_CLASS', '[A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]' );
 define( 'EXT_IMAGE_EXTENSIONS', 'gif|png|jpg|jpeg' );
-define( 'EXT_LINK_BRACKETED',  '/\[(('.URL_PROTOCOLS.'):'.EXT_LINK_URL_CLASS.'+) *('.EXT_LINK_TEXT_CLASS.'*?)\]/S' ); 
-define( 'EXT_IMAGE_REGEX', 
+define( 'EXT_LINK_BRACKETED',  '/\[(('.URL_PROTOCOLS.'):'.EXT_LINK_URL_CLASS.'+) *('.EXT_LINK_TEXT_CLASS.'*?)\]/S' );
+define( 'EXT_IMAGE_REGEX',
 	'/^('.HTTP_PROTOCOLS.':)'.  # Protocol
 	'('.EXT_LINK_URL_CLASS.'+)\\/'.  # Hostname and path
 	'('.EXT_IMAGE_FNAME_CLASS.'+)\\.((?i)'.EXT_IMAGE_EXTENSIONS.')$/S' # Filename
@@ -514,7 +514,7 @@ class Parser
 		{
 			# Showing subcategories
 			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n";
-			
+
 			$numchild = count( $children );
 			if($numchild == 1) {
 				$r .= wfMsg( 'subcategorycount1', 1 );
@@ -522,7 +522,7 @@ class Parser
 				$r .= wfMsg( 'subcategorycount' , $numchild );
 			}
 			unset($numchild);
-						
+
 			if ( count ( $children ) > 6 ) {
 
 				// divide list into three equal chunks
@@ -577,7 +577,7 @@ class Parser
 				$r .= '</ul>';
 			}
 		} # END of if ( count($children) > 0 )
-		
+
 		$r .= '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n";
 
 		$numart = count( $articles );
@@ -869,7 +869,7 @@ class Parser
 		$text = $this->doMagicLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
 		$text = $this->replaceInternalLinks ( $text );
-				
+
 		$text = $this->unstrip( $text, $this->mStripState );
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
 
@@ -882,7 +882,7 @@ class Parser
 			$text .= $this->categoryMagic () ;
 			$this->categoryMagicDone = true ;
 		}
-		
+
 		wfProfileOut( $fname );
 		return $text;
 	}
@@ -1111,7 +1111,7 @@ class Parser
 			$protocol = $bits[$i++];
 			$text = $bits[$i++];
 			$trail = $bits[$i++];
-			
+
 			# If the link text is an image URL, replace it with an <img> tag
 			# This happened by accident in the original parser, but some people used it extensively
 			$img = $this->maybeMakeImageLink( $text );
@@ -1124,11 +1124,11 @@ class Parser
 			# No link text, e.g. [http://domain.tld/some.link]
 			if ( $text == '' ) {
 				# Autonumber if allowed
-				if ( strpos( HTTP_PROTOCOLS, $protocol ) !== false ) { 
+				if ( strpos( HTTP_PROTOCOLS, $protocol ) !== false ) {
 					$text = "[" . ++$this->mAutonumber . "]";
-				} else { 
+				} else {
 					# Otherwise just use the URL
-					$text = htmlspecialchars( $url ); 
+					$text = htmlspecialchars( $url );
 				}
 			} else {
 				# Have link text, e.g. [http://domain.tld/some.link text]s
@@ -1138,14 +1138,18 @@ class Parser
 					$trail = $m2[2];
 				}
 			}
-			
+
 			$encUrl = htmlspecialchars( $url );
 			# Bit in parentheses showing the URL for the printable version
 			if( $url == $text || preg_match( "!$protocol://" . preg_quote( $text, "/" ) . "/?$!", $url ) ) {
 				$paren = '';
 			} else {
 				# Expand the URL for printable version
-				$paren = "<span class='urlexpansion'> (<i>" . htmlspecialchars ( $encUrl ) . "</i>)</span>";
+				if ( ! $sk->suppressUrlExpansion() ) {
+				    $paren = "<span class='urlexpansion'> (<i>" . htmlspecialchars ( $encUrl ) . "</i>)</span>";
+			    } else {
+					$paren = '';
+			    }
 			}
 
 			# Process the trail (i.e. everything after this link up until start of the next link),
@@ -1153,7 +1157,7 @@ class Parser
 			$trail = $this->replaceFreeExternalLinks( $trail );
 
 			$la = $sk->getExternalLinkAttributes( $url, $text );
-			
+
 			# Use the encoded URL
 			# This means that users can paste URLs directly into the text
 			# Funny characters like &ouml; aren't valid in URLs anyway
@@ -1181,7 +1185,7 @@ class Parser
 				# Found some characters after the protocol that look promising
 				$url = $protocol . $m[1];
 				$trail = $m[2];
-				
+
 				# Move trailing punctuation to $trail
 				$sep = ',;\.:!?';
 				# If there is no left bracket, then consider right brackets fair game too
@@ -1211,7 +1215,7 @@ class Parser
 		}
 		return $s;
 	}
-				
+
 	function maybeMakeImageLink( $url ) {
 		$sk =& $this->mOptions->getSkin();
 		$text = false;
