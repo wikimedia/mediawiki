@@ -112,7 +112,7 @@ class OutputPage {
 			$ismodsince = wfTimestamp( TS_MW, strtotime( $modsince ) );
 			wfDebug( "-- client send If-Modified-Since: " . $modsince . "\n", false );
 			wfDebug( "--  we might send Last-Modified : $lastmod\n", false );
-			if( ($ismodsince >= $timestamp ) && $wgUser->validateCache( $ismodsince ) && !$wgUser->wasLoggedInAt( $ismodsince )) {
+			if( ($ismodsince >= $timestamp ) && $wgUser->validateCache( $ismodsince ) ) {
 				# Make sure you're in a place you can leave when you call us!
 				header( "HTTP/1.0 304 Not Modified" );
 				$this->mLastModified = $lastmod;
