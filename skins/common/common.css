@@ -258,3 +258,10 @@ div.gallerytext {
         font-size: 94%;
         padding: 2px 4px;
 }       
+
+#fundraising {
+ text-align: center;
+ border: 1px solid gray;
+ padding: 5px;
+ margin-top: 5px;
+}	
