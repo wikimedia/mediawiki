@@ -21,6 +21,9 @@ New features in 1.2:
 * Editing toolbar to demonstrate wiki syntax to newbies
   (off by default in user preferences)
 * Support for authenticated SMTP outgoing e-mail (experimental)
+* It's now possible to assign sysop accounts from within the wiki.
+  An account with this ability must be labeled with the "bureaucrat"
+  privilege, such as the 'Developer' account created by the install.
 
 Fixes and tweaks:
 * Should work out of the box on MySQL 3.2.x again. On 4.x set
