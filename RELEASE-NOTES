@@ -245,6 +245,7 @@ If upgrading from an older release, see the file UPGRADE;
 === Beta 6 fixes ===
 
 * (bug 1335) implement 'tooltip-watch' in Language.php
+* Fix linktrail for nn: language
 
 === Caveats ===
 
