@@ -8,7 +8,7 @@ unset( $IP );
 @ini_set( 'allow_url_fopen', 0 ); # For security...
 if( !file_exists( 'LocalSettings.php' ) ) {
 	define( 'MEDIAWIKI', true );
-	$IP = "127.0.0.1" ;
+	$IP = "." ;
 	require_once( './includes/Defines.php' );
 	require_once( 'includes/DefaultSettings.php' ); # used for printing the version
 ?>
