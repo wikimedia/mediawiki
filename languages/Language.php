@@ -457,6 +457,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 "mainpage"		=> "Main Page",
 "mainpagetext"	=> "Wiki software successfully installed.",
 'portal'		=> 'Community portal',
+'portal-url'		=> '{{ns:4}}:Community Portal',
 "about"			=> "About",
 "aboutwikipedia" => "About {{SITENAME}}",
 "aboutpage"		=> "{{ns:4}}:About",
