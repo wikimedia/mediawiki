@@ -84,6 +84,13 @@ class Skin {
 
 	function Skin() {
 		$this->linktrail = wfMsgForContent('linktrail');
+		
+		# Cache option lookups done very frequently
+		$options = array( 'highlightbroken', 'hover' );
+		foreach( $options as $opt ) {
+			global $wgUser;
+			$this->mOptions[$opt] = $wgUser->getOption( $opt );
+		}
 	}
 
 	function getSkinNames() {
@@ -255,7 +262,7 @@ class Skin {
 			# Force no underline
 			$s .= "a { text-decoration: none; }\n";
 		}
-		if ( 1 == $wgUser->getOption( 'highlightbroken' ) ) {
+		if ( 1 == $this->mOptions['highlightbroken'] ) {
 			$s .= "a.new, #quickbar a.new { color: #CC2200; }\n";
 		}
 		if ( 1 == $wgUser->getOption( 'justify' ) ) {
@@ -293,7 +300,7 @@ class Skin {
 	}
 
 	function getExternalLinkAttributes( $link, $text, $class='' ) {
-		global $wgUser, $wgOut, $wgContLang;
+		global $wgContLang;
 
 		$same = ($link == $text);
 		$link = urldecode( $link );
@@ -303,20 +310,18 @@ class Skin {
 
 		$r = ($class != '') ? " class='$class'" : " class='external'";
 
-		if ( !$same && $wgUser->getOption( 'hover' ) ) {
+		if( !$same && $this->mOptions['hover'] ) {
 			$r .= " title=\"{$link}\"";
 		}
 		return $r;
 	}
 
 	function getInternalLinkAttributes( $link, $text, $broken = false ) {
-		global $wgUser, $wgOut;
-
 		$link = urldecode( $link );
 		$link = str_replace( '_', ' ', $link );
 		$link = htmlspecialchars( $link );
 
-		if ( $broken == 'stub' ) {
+		if( $broken == 'stub' ) {
 			$r = ' class="stub"';
 		} else if ( $broken == 'yes' ) {
 			$r = ' class="new"';
@@ -324,7 +329,7 @@ class Skin {
 			$r = '';
 		}
 
-		if ( 1 == $wgUser->getOption( 'hover' ) ) {
+		if( $this->mOptions['hover'] ) {
 			$r .= " title=\"{$link}\"";
 		}
 		return $r;
@@ -334,9 +339,7 @@ class Skin {
 	 * @param bool $broken
 	 */
 	function getInternalLinkAttributesObj( &$nt, $text, $broken = false ) {
-		global $wgUser, $wgOut;
-
-		if ( $broken == 'stub' ) {
+		if( $broken == 'stub' ) {
 			$r = ' class="stub"';
 		} else if ( $broken == 'yes' ) {
 			$r = ' class="new"';
@@ -344,7 +347,7 @@ class Skin {
 			$r = '';
 		}
 
-		if ( 1 == $wgUser->getOption( 'hover' ) ) {
+		if( $this->mOptions['hover'] ) {
 			$r .= ' title="' . $nt->getEscapedText() . '"';
 		}
 		return $r;
@@ -1468,8 +1471,6 @@ class Skin {
 	 * Pass a title object, not a title string
 	 */
 	function makeBrokenLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		global $wgOut, $wgUser;
-
 		# Fail gracefully
 		if ( ! isset($nt) ) {
 			# wfDebugDieBacktrace();
@@ -1498,7 +1499,7 @@ class Skin {
 				$trail = $m[2];
 			}
 		}
-		if ( $wgUser->getOption( 'highlightbroken' ) ) {
+		if ( $this->mOptions['highlightbroken'] ) {
 			$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 		} else {
 			$s = "{$prefix}{$text}{$inside}<a href=\"{$u}\"{$style}>?</a>{$trail}";
@@ -1512,8 +1513,6 @@ class Skin {
  	 * Pass a title object, not a title string
 	 */
 	function makeStubLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		global $wgOut, $wgUser;
-
 		$link = $nt->getPrefixedURL();
 
 		$u = $nt->escapeLocalURL( $query );
@@ -1530,7 +1529,7 @@ class Skin {
 				$trail = $m[2];
 			}
 		}
-		if ( $wgUser->getOption( 'highlightbroken' ) ) {
+		if ( $this->mOptions['highlightbroken'] ) {
 			$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 		} else {
 			$s = "{$prefix}{$text}{$inside}<a href=\"{$u}\"{$style}>!</a>{$trail}";
