@@ -8,6 +8,13 @@
  */
 
 /**
+ * Update this version number when the ParserOutput format
+ * changes in an incompatible way, so the parser cache
+ * can automatically discard old data.
+ */
+define( 'MW_PARSER_VERSION', '1.4.0' );
+
+/**
  * Variable substitution O(N^2) attack
  *
  * Without countermeasures, it would be possible to attack the parser by saving
@@ -1323,7 +1330,7 @@ class Parser
 						$sortkey = $text;
 					}
 					$wgLinkCache->addCategoryLinkObj( $nt, $sortkey );
-					$this->mOutput->mCategoryLinks[] = $t ;
+					$this->mOutput->addCategoryLink( $t );
 					$s .= $prefix . $trail ;
 					
 					wfProfileOut( "$fname-category" );
@@ -3063,6 +3070,7 @@ class ParserOutput
 {
 	var $mText, $mLanguageLinks, $mCategoryLinks, $mContainsOldMagic;
 	var $mCacheTime; # Used in ParserCache
+	var $mVersion;   # Compatibility check
 
 	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false )
@@ -3072,11 +3080,12 @@ class ParserOutput
 		$this->mCategoryLinks = $categoryLinks;
 		$this->mContainsOldMagic = $containsOldMagic;
 		$this->mCacheTime = '';
+		$this->mVersion = MW_PARSER_VERSION;
 	}
 
 	function getText()                   { return $this->mText; }
 	function getLanguageLinks()          { return $this->mLanguageLinks; }
-	function getCategoryLinks()          { return $this->mCategoryLinks; }
+	function getCategoryLinks()          { return array_keys( $this->mCategoryLinks ); }
 	function getCacheTime()              { return $this->mCacheTime; }
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
@@ -3084,6 +3093,7 @@ class ParserOutput
 	function setCategoryLinks( $cl )     { return wfSetVar( $this->mCategoryLinks, $cl ); }
 	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
 	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
+	function addCategoryLink( $c )       { $this->mCategoryLinks[$c] = 1; }
 
 	function merge( $other ) {
 		$this->mLanguageLinks = array_merge( $this->mLanguageLinks, $other->mLanguageLinks );
@@ -3091,6 +3101,22 @@ class ParserOutput
 		$this->mContainsOldMagic = $this->mContainsOldMagic || $other->mContainsOldMagic;
 	}
 
+	/**
+	 * Return true if this cached output object predates the global or
+	 * per-article cache invalidation timestamps, or if it comes from
+	 * an incompatible older version.
+	 *
+	 * @param string $touched the affected article's last touched timestamp
+	 * @return bool
+	 * @access public
+	 */
+	function expired( $touched ) {
+		global $wgCacheEpoch;
+		return $this->getCacheTime() <= $touched ||
+		       $this->getCacheTime() <= $wgCacheEpoch ||
+		       !isset( $this->mVersion ) ||
+		       version_compare( $this->mVersion, MW_PARSER_VERSION, "lt" );
+	}
 }
 
 /**
