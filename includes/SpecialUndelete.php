@@ -3,6 +3,8 @@
 function wfSpecialUndelete( $par )
 {
     global $wgLang, $wgUser, $wgOut, $action, $target, $timestamp, $restore;
+    $restore   = $_REQUEST["restore"];
+    $timestamp = $_REQUEST["timestamp"];
     
 	if( $par != "" ) $target = $par;
     if( isset($target ) ) {

@@ -5,6 +5,10 @@ function wfSpecialUserlogin()
 	global $wpCreateaccount, $wpCreateaccountMail;
 	global $wpLoginattempt, $wpMailmypassword;
 	global $action;
+	$wpCreateaccount     = $_REQUEST["wpCreateaccount"];
+	$wpCreateaccountMail = $_REQUEST["wpCreateaccountMail"];
+	$wpLoginattempt      = $_REQUEST["wpLoginattempt"];
+	$wpMailmypassword    = $_REQUEST["wpMailmypassword"];
 
 	$fields = array( "wpName", "wpPassword", "wpName",
 	  "wpPassword", "wpRetype", "wpEmail" );
@@ -27,6 +31,8 @@ function wfSpecialUserlogin()
 /* private */ function addNewAccountMailPassword()
 {
 	global $wgOut, $wpEmail, $wpName;
+	$wpEmail = $_REQUEST["wpEmail"];
+	$wpName  = $_REQUEST["wpName"];
 	
 	if ("" == $wpEmail) {
 		mainLoginForm( wfMsg( "noemail", $wpName ) );
@@ -60,6 +66,11 @@ function wfSpecialUserlogin()
 {
 	global $wgUser, $wgOut, $wpPassword, $wpRetype, $wpName, $wpRemember;
 	global $wpEmail, $wgDeferredUpdateList;
+	$wpPassword = $_REQUEST["wpPassword"];
+	$wpRetype   = $_REQUEST["wpRetype"];
+	$wpName     = $_REQUEST["wpName"];
+	$wpRemember = $_REQUEST["wpRemember"];
+	$wpEmail    = $_REQUEST["wpEmail"];
 
 	$u = addNewAccountInternal();
 
@@ -80,6 +91,7 @@ function wfSpecialUserlogin()
         if (!cookieCheck()) {
                 return;
         }
+
 
 	if (!$wgUser->isAllowedToCreateAccount()) {
 		userNotPrivilegedMessage();
@@ -125,6 +137,9 @@ function wfSpecialUserlogin()
 {
 	global $wgUser, $wpName, $wpPassword, $wpRemember;
 	global $returnto;
+	$wpPassword = $_REQUEST["wpPassword"];
+	$wpName     = $_REQUEST["wpName"];
+	$wpRemember = $_REQUEST["wpRemember"];
 
         if (!cookieCheck()) {
                 return;
