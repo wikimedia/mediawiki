@@ -30,7 +30,7 @@ class ListUsersPage extends QueryPage {
 		$user_rights = $dbr->tableName( 'user_rights' );
 		$userspace = Namespace::getUser();
 		return "SELECT ur_rights as type, $userspace as namespace, user_name as title, " .
-			"user_name as value FROM $user LEFT JOIN $user_rights ON user_id = ur_uid";
+			"user_name as value FROM $user LEFT JOIN $user_rights ON user_id = ur_user";
 	}
 	
 	function sortDescending() {
