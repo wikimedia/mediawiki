@@ -924,6 +924,11 @@ div.patrollink {
 span.newpage, span.minor, span.searchmatch {
 	font-weight: bold;
 }
+span.unpatrolled {
+	font-weight:bold;
+	color:red;
+}
+
 span.searchmatch {
 	color: red;
 }

@@ -1977,7 +1977,7 @@ class Skin {
 		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&nbsp;&nbsp;';
 		} else {
-			# M & N (minor & new)
+			# M, N and !
 			$M = wfMsg( 'minoreditletter' );
 			$N = wfMsg( 'newpageletter' );
 
@@ -1990,6 +1990,11 @@ class Skin {
 				$r .= $M ;
 			} else {
 				$r .= '&nbsp;' ;
+			}
+			if ( $rcObj->unpatrolled ) {
+				$r .= '!';
+			} else {
+				$r .= '&nbsp;';
 			}
 		}
 
@@ -2036,12 +2041,20 @@ class Skin {
 
 		# Collate list of users
 		$isnew = false ;
+		$unpatrolled = false;
 		$userlinks = array () ;
 		foreach ( $block AS $rcObj ) {
 			$oldid = $rcObj->mAttribs['rc_last_oldid'];
-			if ( $rcObj->mAttribs['rc_new'] ) $isnew = true ;
+			if ( $rcObj->mAttribs['rc_new'] ) {
+				$isnew = true ;
+			}
 			$u = $rcObj->userlink ;
-			if ( !isset ( $userlinks[$u] ) ) $userlinks[$u] = 0 ;
+			if ( !isset ( $userlinks[$u] ) ) {
+				$userlinks[$u] = 0 ;
+			}
+			if ( $rcObj->unpatrolled ) {
+				$unpatrolled = true;
+			}
 			$userlinks[$u]++ ;
 		}
 
@@ -2072,6 +2085,11 @@ class Skin {
 		if ( $isnew ) $r .= $N ;
 		else $r .= '&nbsp;' ;
 		$r .= '&nbsp;' ; # Minor
+		if ( $unpatrolled ) {
+			$r .= "!";
+		} else {
+			$r .= "&nbsp;";
+		}
 
 		# Timestamp
 		$r .= ' '.$block[0]->timestamp.' ' ;
@@ -2107,11 +2125,25 @@ class Skin {
 
 			$r .= '<img src="'.$wgStylePath.'/common/images/Arr_.png" width="12" height="12" />';
 			$r .= '<tt>&nbsp; &nbsp; &nbsp; &nbsp;' ;
-			if ( $rc_new ) $r .= $N ;
-			else $r .= '&nbsp;' ;
-			if ( $rc_minor ) $r .= $M ;
-			else $r .= '&nbsp;' ;
-			$r .= '</tt>' ;
+			if ( $rc_new ) {
+				$r .= $N ;
+			} else {
+				$r .= '&nbsp;' ;
+			}
+
+			if ( $rc_minor ) {
+				$r .= $M ;
+			} else {
+				$r .= '&nbsp;' ;
+			}
+
+			if ( $rcObj->unpatrolled ) {
+				$r .= "!";
+			} else {
+				$r .= "&nbsp;";
+			}
+
+			$r .= '&nbsp;</tt>' ;
 
 			$o = '' ;
 			if ( $rc_last_oldid != 0 ) {
@@ -2183,6 +2215,10 @@ class Skin {
 		extract( $rc->mAttribs );
 		$curIdEq = 'curid=' . $rc_cur_id;
 
+		# Should patrol-related stuff be shown?
+		$unpatrolled = $wgUseRCPatrol && $wgUser->getID() != 0 && 
+		  ( !$wgOnlySysopsCanPatrol || $wgUser->isAllowed('patrol') ) && $rc_patrolled == 0;
+		
 		# Make date header if necessary
 		$date = $wgContLang->date( $rc_timestamp, true);
 		$uidate = $wgLang->date( $rc_timestamp, true);
@@ -2194,12 +2230,7 @@ class Skin {
 			$this->rclistOpen = true;
 		}
 
-		# If this edit has not yet been patrolled, make it stick out
-		if ( !$wgUseRCPatrol || $rc_patrolled ) {
-			$s .= '<table border="0"><tr><td><li>';
-		} else {
-			$s .= '<table border="0" width="96%"><tr><td class="not_patrolled"><li>';
-		}
+		$s .= '<li>';
 
 		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			# Diff
@@ -2222,8 +2253,7 @@ class Skin {
 			if ( $rc_type == RC_NEW || $rc_type == RC_LOG ) {
 				$diffLink = wfMsg( 'diff' );
 			} else {
-				if ( $wgUseRCPatrol && $rc_patrolled == 0 && $wgUser->getID() != 0 &&
-				     ( $wgUser->isAllowed('protect') || !$wgOnlySysopsCanPatrol ) )
+				if ( $unpatrolled )
 					$rcidparam = "&rcid={$rc_id}";
 				else
 					$rcidparam = "";
@@ -2237,15 +2267,15 @@ class Skin {
 			$s .= $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'hist' ), $curIdEq.'&action=history' );
 			$s .= ') . . ';
 
-			# M and N (minor and new)
+			# M, N and ! (minor, new and unpatrolled)
 			if ( $rc_minor ) { $s .= ' <span class="minor">'.wfMsg( "minoreditletter" ).'</span>'; }
 			if ( $rc_type == RC_NEW ) { $s .= '<span class="newpage">'.wfMsg( "newpageletter" ).'</span>'; }
+			if ( !$rc_patrolled ) { $s .= ' <span class="unpatrolled">!</span>'; }
 
 			# Article link
 			# If it's a new article, there is no diff link, but if it hasn't been
 			# patrolled yet, we need to give users a way to do so
-			if ( $wgUseRCPatrol && $rc_type == RC_NEW && $rc_patrolled == 0 &&
-			     $wgUser->getID() != 0 && ( $wgUser->isAllowed('patrol') || !$wgOnlySysopsCanPatrol ) )
+			if ( $unpatrolled && $rc_type == RC_NEW )
 				$articleLink = $this->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
 			else
 				$articleLink = $this->makeKnownLinkObj( $rc->getTitle(), '' );
@@ -2296,14 +2326,15 @@ class Skin {
 			$rc_comment=$this->formatComment($rc_comment,$rc->getTitle());
 			$s .= $wgContLang->emphasize(' (' . $rc_comment . ')');
 		}
-		$s .= "</li></td></tr></table>\n";
+		$s .= "</li>\n";
 
 		return $s;
 	}
 
 	function recentChangesLineNew( &$baseRC, $watched = false ) {
 		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgRCSeconds;
-
+		global $wgUseRCPatrol, $wgOnlySysopsCanPatrol;
+		
 		# Create a specialised object
 		$rc = RCCacheEntry::newFromParent( $baseRC ) ;
 
@@ -2322,7 +2353,15 @@ class Skin {
 			$ret .= "<h4>{$uidate}</h4>\n";
 			$this->lastdate = $date;
 		}
-
+		
+		# Should patrol-related stuff be shown?
+		if ( $wgUseRCPatrol && $wgUser->getID() != 0 && 
+		  ( !$wgOnlySysopsCanPatrol || $wgUser->isAllowed('patrol') )) {
+		  	$rc->unpatrolled = !$rc_patrolled;
+		} else {
+			$rc->unpatrolled = false;
+		}
+		
 		# Make article link
 		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$msg = ( $rc_type == RC_MOVE ) ? "1movedto2" : "1movedto2_redir";
@@ -2333,6 +2372,9 @@ class Skin {
 			$logtype = $matches[1];
 			$logname = LogPage::logName( $logtype );
 			$clink = '(' . $this->makeKnownLinkObj( $rc->getTitle(), $logname ) . ')';
+		} elseif ( $rc->unpatrolled && $rc_type == RC_NEW ) {
+			# Unpatrolled new page, give rc_id in query
+			$clink = $this->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
 		} else {
 			$clink = $this->makeKnownLinkObj( $rc->getTitle(), '' ) ;
 		}
@@ -2355,11 +2397,16 @@ class Skin {
 
 		# Make "last" link
 		$titleObj = $rc->getTitle();
+		if ( $rc->unpatrolled ) {
+			$rcIdQuery = "&rcid={$rc_id}";
+		} else {
+			$rcIdQuery = '';
+		}
 		if ( $rc_last_oldid == 0 || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$lastLink = wfMsg( 'last' );
 		} else {
 			$lastLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'last' ),
-			  $curIdEq.'&diff='.$rc_this_oldid.'&oldid='.$rc_last_oldid );
+			  $curIdEq.'&diff='.$rc_this_oldid.'&oldid='.$rc_last_oldid . $rcIdQuery );
 		}
 
 		# Make user link (or user contributions for unregistered users)

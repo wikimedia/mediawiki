@@ -16,7 +16,7 @@ require_once( 'Feed.php' );
 function wfSpecialRecentchanges( $par ) {
 	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgTitle, $wgMemc, $wgDBname;
 	global $wgRequest, $wgSitename, $wgLanguageCode, $wgContLanguageCode;
-	global $wgFeedClasses;
+	global $wgFeedClasses, $wgUseRCPatrol;
 	$fname = 'wfSpecialRecentchanges';
 
 	# Get query parameters
@@ -50,12 +50,18 @@ function wfSpecialRecentchanges( $par ) {
 	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'recentchanges', 'watchlist' ) );
 
-	$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, $fname );
+	
 	# 10 seconds server-side caching max
 	$wgOut->setSquidMaxage( 10 );
-	if( $lastmod && $wgOut->checkLastModified( $lastmod ) ){
-		# Client cache fresh and headers sent, nothing more to do.
-		return;
+
+	# Get last modified date, for client caching
+	# Don't use this if we are using the patrol feature, patrol changes don't update the timestamp
+	if ( !$wgUseRCPatrol ) {
+		$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, $fname );
+		if( $lastmod && $wgOut->checkLastModified( $lastmod ) ){
+			# Client cache fresh and headers sent, nothing more to do.
+			return;
+		}
 	}
 
 	# Output header
