@@ -393,7 +393,7 @@ class element {
 				break;
 			
 			# Something else entirely
-			case default:
+			default:
 				$ret .= '&lt;'.$n.'&gt;';
 				$ret .= $this->sub_makeXHTML($parser);
 				$ret .= '&lt;/'.$n.'&gt; ';
