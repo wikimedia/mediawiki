@@ -3,11 +3,15 @@
 require_once( "QueryPage.php" );
 
 class LonelyPagesPage extends PageQueryPage {
-	
+
 	function getName() {
 		return "Lonelypages";
 	}
-	
+
+	function sortDescending() {
+		return false;
+	}
+
 	function isExpensive() {
 		return true;
 	}
@@ -24,9 +28,9 @@ class LonelyPagesPage extends PageQueryPage {
 
 function wfSpecialLonelypages() {
 	list( $limit, $offset ) = wfCheckLimits();
-	
+
 	$lpp = new LonelyPagesPage();
-	
+
 	return $lpp->doQuery( $offset, $limit );
 }
 
