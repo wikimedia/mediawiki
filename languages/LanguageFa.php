@@ -54,27 +54,6 @@ require_once("LanguageUtf8.php");
 );
 
 
-/* private */ $wgUserTogglesFa = array(
-	"hover"		=> "نمایش جعبه‌ی hover روی پیوندهای ویکی",
-	"underline" => "زیر پیوندها خط کشیده شود",
-	"highlightbroken" => "قالب‌بندی پیوندهای ناقص
-<a href=\"\" class=\"new\">به این شکل</a> (امکان دیگر: به این شکل<a href=\"\" class=\"internal\">؟</a>).",
-	"justify"	=> "تنظیم بندها",
-	"hideminor" => "نشان ندادن تغییرات جزئی در فهرست تغییرات اخیر",
-	"usenewrc" => "تغییرات اخیر گسترش‌یافته (برای هر مرورگری نیست)",
-	"numberheadings" => "شماره‌گذاری خودکار عناوین",
-	"showtoolbar"=>"نمایش نوار ابزار جعبه‌ی ویرایش",
-	"editondblclick" => "ویرایش صفحه‌ها با دوکلیک (جاوااسکریپت)",
-	"editsection"=>"به کار انداختن ویرایش قسمت‌ها از طریق پیوندهای [ویرایش]",
-	"editsectiononrightclick"=>"به کار انداختن ویرایش قسمت‌ها با کلیک راست<br>روی عناوین قسمت‌ها (جاوااسکریپت)",
-	"showtoc"=>"نمایش فهرست مندرجات<br>(برای مقالات با بیش از ۳ سرفصل)",
-	"rememberpassword" => "کلمه‌ی عبور برای نشست‌های بعدی بماند",
-	"editwidth" => "عرض جعبه‌ی ویرایش کامل باشد",
-	"watchdefault" => "افزودن صفحاتی که ویرایش می‌کند به فهرست تعقیبات",
-	"minordefault" => "پیش‌فرض همه‌ی ویرایش‌ها «جزئی» باشد",
-	"previewontop" => "نمایش پیش‌نمایش قبل از جعبه‌ی ویرایش و نه قبل از آن",
-	"nocache" => "از کار انداختن حافظه‌ی نهانی صفحات"
-);
 
 
 # All special pages have to be listed here: a description of ""
@@ -136,6 +115,26 @@ require_once("LanguageUtf8.php");
 #-------------------------------------------------------------------
 
 /* private */ $wgAllMessagesFa = array(
+# User toggles
+
+"tog-hover"		=> "نمایش جعبه‌ی hover روی پیوندهای ویکی",
+"tog-underline" => "زیر پیوندها خط کشیده شود",
+"tog-highlightbroken" => "قالب‌بندی پیوندهای ناقص <a href=\"\" class=\"new\">به این شکل</a> (امکان دیگر: به این شکل<a href=\"\" class=\"internal\">؟</a>).",
+"tog-justify"	=> "تنظیم بندها",
+"tog-hideminor" => "نشان ندادن تغییرات جزئی در فهرست تغییرات اخیر",
+"tog-usenewrc" => "تغییرات اخیر گسترش‌یافته (برای هر مرورگری نیست)",
+"tog-numberheadings" => "شماره‌گذاری خودکار عناوین",
+"tog-showtoolbar"=>"نمایش نوار ابزار جعبه‌ی ویرایش",
+"tog-editondblclick" => "ویرایش صفحه‌ها با دوکلیک (جاوااسکریپت)",
+"tog-editsection"=>"به کار انداختن ویرایش قسمت‌ها از طریق پیوندهای [ویرایش]",
+"tog-editsectiononrightclick"=>"به کار انداختن ویرایش قسمت‌ها با کلیک راست<br>روی عناوین قسمت‌ها (جاوااسکریپت)",
+"tog-showtoc"=>"نمایش فهرست مندرجات<br>(برای مقالات با بیش از ۳ سرفصل)",
+"tog-rememberpassword" => "کلمه‌ی عبور برای نشست‌های بعدی بماند",
+"tog-editwidth" => "عرض جعبه‌ی ویرایش کامل باشد",
+"tog-watchdefault" => "افزودن صفحاتی که ویرایش می‌کند به فهرست تعقیبات",
+"tog-minordefault" => "پیش‌فرض همه‌ی ویرایش‌ها «جزئی» باشد",
+"tog-previewontop" => "نمایش پیش‌نمایش قبل از جعبه‌ی ویرایش و نه قبل از آن",
+"tog-nocache" => "از کار انداختن حافظه‌ی نهانی صفحات",
 # Dates
 
 'sunday' => "یک‌شنبه",
@@ -1153,11 +1152,6 @@ class LanguageFa extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesFa;
 		return $wgSkinNamesFa;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesFa;
-		return $wgUserTogglesFa;
 	}
 
 	function getValidSpecialPages()

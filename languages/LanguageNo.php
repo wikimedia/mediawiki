@@ -44,26 +44,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgUserTogglesNo = array(
-	"hover"		=> "Vis svevetekst over wiki-lenker",
-	"underline" => "Strek under lenker",
-	"highlightbroken" => "Røde lenker til tomme sider",
-	"justify"	=> "Blokkjusterte avsnitt",
-	"hideminor" => "Skjul mindre redigeringer i siste endringer",
-	"usenewrc" => "Forbedret siste endringer (ikke for alle nettlesere)",
-	"numberheadings" => "Nummerer overskrifter",
-	"showtoolbar" => "Show edit toolbar",
-	"editondblclick" => "Rediger sider med dobbeltklikk (JavaScript)",
-	"editsection"=>"Rediger avsnitt ved hjelp av [rediger]-lenke",
-	"editsectiononrightclick"=>"Rediger avsnitt ved å høyreklikke<br> på avsnittsoverskrift (JavaScript)",
- 	"showtoc"=>"Vis innholdsfortegnelse<br>(for artikler med mer enn tre avsnitt)",
-	"rememberpassword" => "Husk passordet til neste gang",
-	"editwidth" => "Redigeringsboksen har full bredde",
-	"watchdefault" => "Overvåk nye og endrede artikler",
-	"minordefault" => "Marker i utgangspunktet alle redigeringer som mindre",
-	"previewontop" => "Vis forhåndsvisningen foran redigeringsboksen, og ikke etter den",
-	"nocache" => "Ikke husk sidene ved neste besøk"
-);
 
 /* private */ $wgBookstoreListNo = array(
 	"Antikvariat.net" => "http://www.antikvariat.net/",
@@ -126,6 +106,27 @@
 );
 
 /* private */ $wgAllMessagesNo = array(
+
+# User Toggles
+
+"tog-hover"		=> "Vis svevetekst over wiki-lenker",
+"tog-underline" => "Strek under lenker",
+"tog-highlightbroken" => "Røde lenker til tomme sider",
+"tog-justify"	=> "Blokkjusterte avsnitt",
+"tog-hideminor" => "Skjul mindre redigeringer i siste endringer",
+"tog-usenewrc" => "Forbedret siste endringer (ikke for alle nettlesere)",
+"tog-numberheadings" => "Nummerer overskrifter",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editondblclick" => "Rediger sider med dobbeltklikk (JavaScript)",
+"tog-editsection"=>"Rediger avsnitt ved hjelp av [rediger]-lenke",
+"tog-editsectiononrightclick"=>"Rediger avsnitt ved å høyreklikke<br> på avsnittsoverskrift (JavaScript)",
+"tog-showtoc"=>"Vis innholdsfortegnelse<br>(for artikler med mer enn tre avsnitt)",
+"tog-rememberpassword" => "Husk passordet til neste gang",
+"tog-editwidth" => "Redigeringsboksen har full bredde",
+"tog-watchdefault" => "Overvåk nye og endrede artikler",
+"tog-minordefault" => "Marker i utgangspunktet alle redigeringer som mindre",
+"tog-previewontop" => "Vis forhåndsvisningen foran redigeringsboksen, og ikke etter den",
+"nocache" => "Ikke husk sidene ved neste besøk",
 
 # Dates
 #
@@ -1092,11 +1093,6 @@ class LanguageNo extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsNo;
 		return $wgDateFormatsNo;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesNo;
-		return $wgUserTogglesNo;
 	}
 
 	# Inherit userAdjust()

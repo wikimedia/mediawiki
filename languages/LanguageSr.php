@@ -39,27 +39,6 @@ require_once( "LanguageUtf8.php" );
  "2001 Јануар 15"
 );
 
-/* private */ $wgUserTogglesSr = array(
- "hover"  => "Прикажи лебдећи текст изнад вики веза",
- "underline" => "Подвуци везе",
- "highlightbroken" => "Форматирај покварене везе <a href=\"\" class=\"new\">овако
-</a> (алтернатива: овако<a href=\"\" class=\"internal\">?</a>).",
- "justify" => "Поравнај пасусе",
- "hideminor" => "Сакриј мале измене у списку скорашњих променама",
- "usenewrc" => "Побољшана списку скорашњих промена (не за све бровсере)",
- "numberheadings" => "Аутоматски нумериши поднаслове",
-	"showtoolbar" => "Show edit toolbar",
- "editondblclick" => "Мењај странице двоструким кликом (захтева JavaScript)",
- "editsection"=>"Омогући измену делова [мењај] везама",
- "editsectiononrightclick"=>"Омогући измену делова десним кликом<br> на њихове наслове (захтева JavaScript)",
- "showtoc"=>"Прикажи садржај<br>(у свим чланцима са више од три поднаслова)",
- "rememberpassword" => "Памти шифру кроз више сеанси",
- "editwidth" => "Поље за измене има пуну ширину",
- "watchdefault" => "Додај странице које мењам у мој списак гледања",
- "minordefault" => "Означи све измене малим испрва",
- "previewontop" => "Покажи предпреглед пре поља за измену а не после њега",
- "nocache" => "Онемогући кеширање страница"
-);
 
 
 /* NOT USED IN STABLE VERSION */
@@ -134,6 +113,27 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesSr = array(
+
+# User Toggles
+#
+"tog-hover"  => "Прикажи лебдећи текст изнад вики веза",
+"tog-underline" => "Подвуци везе",
+"tog-highlightbroken" => "Форматирај покварене везе <a href=\"\" class=\"new\">овако</a> (алтернатива: овако<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify" => "Поравнај пасусе",
+"tog-hideminor" => "Сакриј мале измене у списку скорашњих променама",
+"tog-usenewrc" => "Побољшана списку скорашњих промена (не за све бровсере)",
+"tog-numberheadings" => "Аутоматски нумериши поднаслове",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editondblclick" => "Мењај странице двоструким кликом (захтева JavaScript)",
+"tog-editsection"=>"Омогући измену делова [мењај] везама",
+"tog-editsectiononrightclick"=>"Омогући измену делова десним кликом<br> на њихове наслове (захтева JavaScript)",
+"tog-showtoc"=>"Прикажи садржај<br>(у свим чланцима са више од три поднаслова)",
+"tog-rememberpassword" => "Памти шифру кроз више сеанси",
+"tog-editwidth" => "Поље за измене има пуну ширину",
+"tog-watchdefault" => "Додај странице које мењам у мој списак гледања",
+"tog-minordefault" => "Означи све измене малим испрва",
+"tog-previewontop" => "Покажи предпреглед пре поља за измену а не после њега",
+"tog-nocache" => "Онемогући кеширање страница",
 
 # Dates
 #
@@ -1110,11 +1110,6 @@ class LanguageSr extends LanguageUtf8 {
  function getDateFormats() {
   global $wgDateFormatsSr;
   return $wgDateFormatsSr;
- }
-
- function getUserToggles() {
-  global $wgUserTogglesSr;
-  return $wgUserTogglesSr;
  }
 
  function getValidSpecialPages()

@@ -44,26 +44,7 @@ require_once( "LanguageUtf8.php" );
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgUserTogglesFr = array(
-	"hover"  => "Afficher des info-bulles sur les liens wiki",
-	"underline" => "Liens soulignés",
-	"highlightbroken" => "Liens vers les sujets non existants en rouge",
-	"justify" => "Paragraphes justifiés",
-	"hideminor" => "Cacher les <i>Modifications récentes</i> mineures",
-	"usenewrc" => "Modifications récentes améliorées<br /> (certains navigateurs seulement)",
-	"numberheadings" => "Numérotation automatique des titres",
-	"showtoolbar" => "Show edit toolbar",
-	"editondblclick" => "Double cliquer pour éditer une page (JavaScript)",
-	"editsection"	=> "Éditer une section via les liens [éditer]",
-	"editsectiononrightclick"	=> "Éditer une section en cliquant à droite<br /> sur le titre de la section",
-	"showtoc"	=> "Afficher la table des matières<br /> (pour les articles ayant plus de 3 sections)",
-	"rememberpassword" => "Se souvenir de mon mot de passe (cookie)",
-	"editwidth" => "La fenêtre d'édition s'affiche en pleine largeur",
-	"watchdefault" => "Suivre les articles que je crée ou modifie",
-	"minordefault" => "Mes modifications sont considérées<br /> comme mineures par défaut",
-	"previewontop" => "La prévisualisation s'affiche au<br /> dessus de la boite de rédaction",
-	"nocache" => "Désactiver le cache des pages"
-);
+
 
 /* private */ $wgBookstoreListFr = array(
 	"Amazon.fr" => "http://www.amazon.fr/exec/obidos/ISBN=$1",
@@ -129,6 +110,27 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesFr = array(
+
+# User Toggles
+
+"tog-hover"  => "Afficher des info-bulles sur les liens wiki",
+"tog-underline" => "Liens soulignés",
+"tog-highlightbroken" => "Liens vers les sujets non existants en rouge",
+"tog-justify" => "Paragraphes justifiés",
+"tog-hideminor" => "Cacher les <i>Modifications récentes</i> mineures",
+"tog-usenewrc" => "Modifications récentes améliorées<br /> (certains navigateurs seulement)",
+"tog-numberheadings" => "Numérotation automatique des titres",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editondblclick" => "Double cliquer pour éditer une page (JavaScript)",
+"tog-editsection"	=> "Éditer une section via les liens [éditer]",
+"tog-editsectiononrightclick"	=> "Éditer une section en cliquant à droite<br /> sur le titre de la section",
+"tog-showtoc"	=> "Afficher la table des matières<br /> (pour les articles ayant plus de 3 sections)",
+"tog-rememberpassword" => "Se souvenir de mon mot de passe (cookie)",
+"tog-editwidth" => "La fenêtre d'édition s'affiche en pleine largeur",
+"tog-watchdefault" => "Suivre les articles que je crée ou modifie",
+"tog-minordefault" => "Mes modifications sont considérées<br /> comme mineures par défaut",
+"tog-previewontop" => "La prévisualisation s'affiche au<br /> dessus de la boite de rédaction",
+"tog-nocache" => "Désactiver le cache des pages",
 # Dates
 
 'sunday' => "dimanche",
@@ -1227,12 +1229,6 @@ class LanguageFr extends LanguageUtf8
 		return $wgSkinNamesFr;
 	}
 
-
-	function getUserToggles()
-	{
-		global $wgUserTogglesFr;
-		return $wgUserTogglesFr;
-	}
 
 	// Inherit userAdjust()
 

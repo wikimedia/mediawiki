@@ -65,26 +65,6 @@
     "2001 Janeiro 15"
 );
 
-/* private */ $wgUserTogglesPt = array(
-    "hover"     => "Mostra caixa flutante sobre os links wiki",
-    "underline" => "Sublinha links",
-    "highlightbroken" => "Formata links quebrados <a href=\"\" class=\"new\"> como isto </a> (alternative: como isto<a href=\"\" class=\"internal\">?</a>).",
-    "justify"   => "Justifica parágrafos",
-    "hideminor" => "Esconder edições secundárias em mudanças recentes",
-    "usenewrc" => "Mudanças recentes melhoradas(nem todos os navegadores)",
-    "numberheadings" => "Auto-numerar cabeçalhos",
-        "showtoolbar" => "Mostrar barra de edição",
-    "editondblclick" => "Editar páginas quando houver clique duplo(JavaScript)",
-    "editsection"=>"Habilitar seção de edição via links [edit]",
-    "editsectiononrightclick"=>"Habilitar seção de edição por clique <br> com o botão direito no título da seção (JavaScript)",
-    "showtoc"=>"Mostrar Tabela de Conteúdos<br>(para artigos com mais de 3 cabeçalhos)",
-    "rememberpassword" => "Lembra senha entre sessões",
-    "editwidth" => "Caixa de edição com largura completa",
-    "watchdefault" => "Observa artigos novos e modificados",
-    "minordefault" => "Marca todas as edições como secundárias, por padrão",
-    "previewontop" => "Mostrar Previsão antes da caixa de edição ao invés de ser após",
-    "nocache" => "Desabilitar caching de página"
-);
 
 /* private */ $wgBookstoreListPt = array(
     "AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -147,6 +127,25 @@
 );
 
 /* private */ $wgAllMessagesPt = array(
+# User Toggles
+"tog-hover"     => "Mostra caixa flutante sobre os links wiki",
+"tog-underline" => "Sublinha links",
+"tog-highlightbroken" => "Formata links quebrados <a href=\"\" class=\"new\"> como isto </a> (alternative: como isto<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"   => "Justifica parágrafos",
+"tog-hideminor" => "Esconder edições secundárias em mudanças recentes",
+"tog-usenewrc" => "Mudanças recentes melhoradas(nem todos os navegadores)",
+"tog-numberheadings" => "Auto-numerar cabeçalhos",
+"tog-showtoolbar" => "Mostrar barra de edição",
+"tog-editondblclick" => "Editar páginas quando houver clique duplo(JavaScript)",
+"tog-editsection"=>"Habilitar seção de edição via links [edit]",
+"tog-editsectiononrightclick"=>"Habilitar seção de edição por clique <br> com o botão direito no título da seção (JavaScript)",
+"tog-showtoc"=>"Mostrar Tabela de Conteúdos<br>(para artigos com mais de 3 cabeçalhos)",
+"tog-rememberpassword" => "Lembra senha entre sessões",
+"tog-editwidth" => "Caixa de edição com largura completa",
+"tog-watchdefault" => "Observa artigos novos e modificados",
+"tog-minordefault" => "Marca todas as edições como secundárias, por padrão",
+"tog-previewontop" => "Mostrar Previsão antes da caixa de edição ao invés de ser após",
+"tog-nocache" => "Desabilitar caching de página",
 # Dates
 'sunday' => 'Domingo',
 'monday' => 'Segunda',
@@ -989,11 +988,6 @@ class LanguagePt extends LanguageUtf8 {
     function getDateFormats() {
         global $wgDateFormatsPt;
         return $wgDateFormatsPt;
-    }
-
-    function getUserToggles() {
-        global $wgUserTogglesPt;
-        return $wgUserTogglesPt;
     }
 
     function timeanddate( $ts, $adj = false )

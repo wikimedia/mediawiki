@@ -44,7 +44,7 @@ class PreferencesForm {
 		$this->mToggles = array();
 		if ( $this->mPosted ) {
 			$togs = $wgLang->getUserToggles();
-			foreach ( $togs as $tname => $ttext ) {
+			foreach ( $togs as $tname ) {
 				$this->mToggles[$tname] = $request->getCheck( "wpOp$tname" ) ? 1 : 0;
 			}
 		}
@@ -203,7 +203,8 @@ class PreferencesForm {
 		$this->mRecent = $wgUser->getOption( "rclimit" );
 
 		$togs = $wgLang->getUserToggles();
-		foreach ( $togs as $tname => $ttext ) {
+		foreach ( $togs as $tname ) {
+			$ttext = wfMsg("tog-".$tname);
 			$this->mToggles[$tname] = $wgUser->getOption( $tname );
 		}
 
@@ -465,7 +466,7 @@ class PreferencesForm {
 		# Various checkbox options
 		#
 		$wgOut->addHTML("<fieldset><legend>".wfMsg('prefs-misc')."</legend>");
-		foreach ( $togs as $tname => $ttext ) {
+		foreach ( $togs as $tname ) {
 			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
 				$wgOut->addHTML( $this->getToggle( $tname ) );
 			}

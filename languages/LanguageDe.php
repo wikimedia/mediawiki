@@ -50,27 +50,6 @@ if($wgMetaNamespace === FALSE)
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgUserTogglesDe = array(
-  "hover"	            => "Hinweis über interne Verweise",
-  "underline"               => "Verweise unterstreichen",
-  "highlightbroken"         => "Verweise auf leere Themen hervorheben",
-  "justify"                 => "Text als Blocksatz",
-  "hideminor"               => "Keine kleinen Änderungen in Letzte Änderungen anzeigen",
-  "usenewrc"                => "Erweiterte letzte Änderungen (nicht für alle Browser geeignet)",
-  "numberheadings"          => "Überschriften automatisch numerieren",
-  "showtoolbar" 	    => "Editier-Werkzeugleiste anzeigen",
-  "editondblclick"          => "Seiten mit Doppelklick bearbeiten (JavaScript)",
-  "editsection"             => "Links zum Bearbeiten einzelner Absätze anzeigen",
-  "editsectiononrightclick" => "Einzelne Absätze per Rechtsklick bearbeiten (Javascript)",
-  "showtoc"                 => "Anzeigen eines Inhaltsverzeichnisses bei Artikeln mit mehr als 3 Überschriften",
-  "rememberpassword"        => "Dauerhaftes Einloggen",
-  "editwidth"               => "Text-Eingabefeld mit voller Breite",
-  "editondblclick"          => "Seiten mit Doppelklick bearbeiten (JavaScript)",
-  "watchdefault"            => "Neue und geänderte Seiten beobachten",
-  "minordefault"            => "Alle Änderungen als geringfügig markieren",
-  "previewontop"            => "Vorschau vor dem Editierfenster anzeigen",
-  "nocache"                 => "Seitencache deaktivieren"
-);
 
 /* private */ $wgBookstoreListDe = array(
 	"Verzeichnis lieferbarer B&uuml;cher" => "http://www.buchhandel.de/sixcms/list.php?page=buchhandel_profisuche_frameset&suchfeld=isbn&suchwert=$1&x=0&y=0",
@@ -129,6 +108,25 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgAllMessagesDe = array(
+# User toggles
+"tog-hover"	            => "Hinweis über interne Verweise",
+"tog-underline"               => "Verweise unterstreichen",
+"tog-highlightbroken"         => "Verweise auf leere Themen hervorheben",
+"tog-justify"                 => "Text als Blocksatz",
+"tog-hideminor"               => "Keine kleinen Änderungen in Letzte Änderungen anzeigen",
+"tog-usenewrc"                => "Erweiterte letzte Änderungen (nicht für alle Browser geeignet)",
+"tog-numberheadings"          => "Überschriften automatisch numerieren",
+"tog-showtoolbar" 	    => "Editier-Werkzeugleiste anzeigen",
+"tog-editondblclick"          => "Seiten mit Doppelklick bearbeiten (JavaScript)",
+"tog-editsection"             => "Links zum Bearbeiten einzelner Absätze anzeigen",
+"tog-editsectiononrightclick" => "Einzelne Absätze per Rechtsklick bearbeiten (Javascript)",
+"tog-showtoc"                 => "Anzeigen eines Inhaltsverzeichnisses bei Artikeln mit mehr als 3 Überschriften",
+"tog-rememberpassword"        => "Dauerhaftes Einloggen",
+"tog-editwidth"               => "Text-Eingabefeld mit voller Breite",
+"tog-watchdefault"            => "Neue und geänderte Seiten beobachten",
+"tog-minordefault"            => "Alle Änderungen als geringfügig markieren",
+"tog-previewontop"            => "Vorschau vor dem Editierfenster anzeigen",
+"tog-nocache"                 => "Seitencache deaktivieren",
 # Dates
 'sunday' => "Sonntag",
 'monday' => "Montag",
@@ -1221,11 +1219,6 @@ class LanguageDe extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesDe;
 		return $wgSkinNamesDe;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesDe;
-		return $wgUserTogglesDe;
 	}
 
 	# Inherit userAdjust()

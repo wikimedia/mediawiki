@@ -55,28 +55,6 @@ if($wgMetaNamespace === FALSE)
 	"2001 январь 15"
 );
 
-/* private */ $wgUserTogglesRu = array(
-	"hover"		=> "Показывать всплывающие подсказки над ссылками вики",
-	"underline" => "Подчёркивать ссылки",
-	"highlightbroken" => "Форматировать несуществующие ссылки <a href=\"\" class=\"new\">вот
-так</a> (Альтернатива: вот так<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "Выравнивать параграфы",
-	"hideminor" => "Скрывать малозначимые изменения в списке свежих изменений",
-	"usenewrc" => "Улучшенный список свежих изменений (поддерживается не всеми браузерами)",
-	"numberheadings" => "Автоматическая нумерация заголовков",
-	"showtoolbar" => "Show edit toolbar",
-	"editondblclick" => "Редактировать страницу по двойному щелчку (JavaScript)",
-	"editsection"=>"Редактирование секций с помощи ссыки [редактировать]",
-	"editsectiononrightclick"=>"Редактирование секций по правой кнопке мышки<br> на названии секции (JavaScript)",
-	"showtoc"=>"Показывать оглавление<br>(для страниц более чем с 3 заголовками)",
-	"rememberpassword" => "Запоминать пароль между сеансами",
-	"editwidth" => "Окно для редактирования в полную ширину",
-	"watchdefault" => "Следить за новыми и изменёнными статьями",
-	"minordefault" => "Сначала считать все изменения малозначимыми",
-	"previewontop" => "Показывать предварительный текст до окна редактирования, а не после",
-	"nocache" => "Запретить кеширование страниц"
-);
-
 
 /* Add a $wgBookstoreListRu to override default list of book links for ISBN links */
 
@@ -133,6 +111,26 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgAllMessagesRu = array(
+# User Toggles
+
+"tog-hover"		=> "Показывать всплывающие подсказки над ссылками вики",
+"tog-underline" => "Подчёркивать ссылки",
+"tog-highlightbroken" => "Форматировать несуществующие ссылки <a href=\"\" class=\"new\">вот так</a> (Альтернатива: вот так<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	=> "Выравнивать параграфы",
+"tog-hideminor" => "Скрывать малозначимые изменения в списке свежих изменений",
+"tog-usenewrc" => "Улучшенный список свежих изменений (поддерживается не всеми браузерами)",
+"tog-numberheadings" => "Автоматическая нумерация заголовков",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editondblclick" => "Редактировать страницу по двойному щелчку (JavaScript)",
+"tog-editsection"=>"Редактирование секций с помощи ссыки [редактировать]",
+"tog-editsectiononrightclick"=>"Редактирование секций по правой кнопке мышки<br> на названии секции (JavaScript)",
+"tog-showtoc"=>"Показывать оглавление<br>(для страниц более чем с 3 заголовками)",
+"tog-rememberpassword" => "Запоминать пароль между сеансами",
+"tog-editwidth" => "Окно для редактирования в полную ширину",
+"tog-watchdefault" => "Следить за новыми и изменёнными статьями",
+"tog-minordefault" => "Сначала считать все изменения малозначимыми",
+"tog-previewontop" => "Показывать предварительный текст до окна редактирования, а не после",
+"tog-nocache" => "Запретить кеширование страниц",
 
 # Dates
 #
@@ -978,11 +976,6 @@ class LanguageRu extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsRu;
 		return $wgDateFormatsRu;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesRu;
-		return $wgUserTogglesRu;
 	}
 
 	function getValidSpecialPages()

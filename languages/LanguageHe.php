@@ -48,27 +48,6 @@ require_once("LanguageUtf8.php");
 );
 
 
-/* private */ $wgUserTogglesHe = array(
-	"hover"		=> "הצג טיפ כאשר מצביעים על קישור",
-	"underline" => "סמן קישורים בקו תחתי",
-	"highlightbroken" => "סמן קישורים לדפים שלא נכתבו באדום (או: סימן שאלה)",
-	"justify"	=> "ישר פסקאות",
-	"hideminor" => "הסתר שינויים משניים ברשימת השינויים האחרונים",
-	"usenewrc" => "רשימת שינויים אחרונים משופרת (לא מתאים לכל דפדפן)",
-	"numberheadings" => "מספר ראשי-פרקים אוטומטית",
-	"showtoolbar" => "Show edit toolbar",
-	"editondblclick" => "ערוך דפים בלחיצה כפולה (דורש ג'אווה סקריפט)",
-	"editsection"=>"Enable section editing via [edit] links",
-	"editsectiononrightclick"=>"Enable section editing by right clicking<br> on section titles (JavaScript)",
-	"showtoc"=>"Show table of contents<br>(for articles with more than 3 headings",
-	"rememberpassword" => "זכור את הסיסמא שלי בפעמים הבאות",
-	"editwidth" => "תיבת העריכה ברוחב מלא",
-	"watchdefault" => "עקוב אחרי מאמרים שערכתי או יצרתי",
-	"minordefault" => "הגדר כל פעולת עריכה כמשנית אם לא צויין אחרת",
-	"previewontop" => "הצג תצוגה מקדימה לפני קופסת העריכה (או: אחריה)",
-	"nocache" => "נטרל משיכת דפים מזכרון המטמון שבשרת"
-
-);
 
 /* private */ $wgBookstoreListHe = array(
 	"מיתוס" => "http://www.mitos.co.il/ ",
@@ -129,6 +108,28 @@ require_once("LanguageUtf8.php");
 );
 
 /* private */ $wgAllMessagesHe = array(
+
+# User Toggles
+#
+
+"tog-hover"		=> "הצג טיפ כאשר מצביעים על קישור",
+"tog-underline" => "סמן קישורים בקו תחתי",
+"tog-highlightbroken" => "סמן קישורים לדפים שלא נכתבו באדום (או: סימן שאלה)",
+"tog-justify"	=> "ישר פסקאות",
+"tog-hideminor" => "הסתר שינויים משניים ברשימת השינויים האחרונים",
+"tog-usenewrc" => "רשימת שינויים אחרונים משופרת (לא מתאים לכל דפדפן)",
+"tog-numberheadings" => "מספר ראשי-פרקים אוטומטית",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editondblclick" => "ערוך דפים בלחיצה כפולה (דורש ג'אווה סקריפט)",
+"tog-editsection"=>"Enable section editing via [edit] links",
+"tog-editsectiononrightclick"=>"Enable section editing by right clicking<br> on section titles (JavaScript)",
+"tog-showtoc"=>"Show table of contents<br>(for articles with more than 3 headings",
+"tog-rememberpassword" => "זכור את הסיסמא שלי בפעמים הבאות",
+"tog-editwidth" => "תיבת העריכה ברוחב מלא",
+"tog-watchdefault" => "עקוב אחרי מאמרים שערכתי או יצרתי",
+"tog-minordefault" => "הגדר כל פעולת עריכה כמשנית אם לא צויין אחרת",
+"tog-previewontop" => "הצג תצוגה מקדימה לפני קופסת העריכה (או: אחריה)",
+"tog-nocache" => "נטרל משיכת דפים מזכרון המטמון שבשרת",
 
 # Dates
 #
@@ -847,11 +848,6 @@ class LanguageHe extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesHe;
 		return $wgSkinNamesHe;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesHe;
-		return $wgUserTogglesHe;
 	}
 
 	function getValidSpecialPages()

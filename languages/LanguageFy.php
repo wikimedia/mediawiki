@@ -55,28 +55,6 @@ if($wgMetaNamespace === FALSE)
 	"2001 jannewaris 8"
 );
 
-/* private */ $wgUserTogglesFy = array(
-	"hover"		=> "Wiki-keppelings yn sweeffak sjen litte",
-	"underline"		=> "Keppelings ûnderstreekje",
-	"highlightbroken"	=> "Keppelings nei lege siden ta <a href=\"\" class=\"new\">read</a>
-					(oars mei in fraachteken<a href=\"\" class=\"internal\">?</a>).",
-	"justify"		=> "Paragrafen útfolje",
-	"hideminor"		=> "Tekstwizigings wei litte út 'Koarts feroare'",
-	"usenewrc"		=> "Utwreide ferzje fan 'Koarts feroare' brûke (net mei alle blêdzjers mooglik)",
-	"numberheadings"	=> "Koppen fansels nûmerje",
-	"showtoolbar" => "Show edit toolbar",
-	"editondblclick"	=> "Dûbelklik jout bewurkingsside (freget JavaScript)",
-	"editsection"	=> "Jou [bewurk]-keppelings foar seksjebewurking",
-	"editsectiononrightclick" => "Rjochtsklik op sekjsetitels jout seksjebewurking (freget JavaScript)",
- 	"showtoc"		=> "Ynhâldsopjefte, foar siden mei mear as twa koppen",
-	"rememberpassword" => "Oare kear fansels oanmelde",
-	"editwidth"		=> "Bewurkingsfjild sa breed as de side",
-	"watchdefault"	=> "Sides dy't jo feroare hawwe folgje",
-	"minordefault"	=> "Feroarings yn it earst oanjaan as tekstwizigings.",
-	"previewontop"	=> "By it neisjen, bewurkingsfjild ûnderoan sette",
-	"nocache"		=> "Gjin oerslag brûke"
-);
-
 /* private */ $wgBookstoreListFy = array(
 );
 
@@ -132,6 +110,26 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgAllMessagesFy = array(
+# User Toggles
+
+"tog-hover"		=> "Wiki-keppelings yn sweeffak sjen litte",
+"tog-underline"		=> "Keppelings ûnderstreekje",
+"tog-highlightbroken"	=> "Keppelings nei lege siden ta <a href=\"\" class=\"new\">read</a> (oars mei in fraachteken<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"		=> "Paragrafen útfolje",
+"tog-hideminor"		=> "Tekstwizigings wei litte út 'Koarts feroare'",
+"tog-usenewrc"		=> "Utwreide ferzje fan 'Koarts feroare' brûke (net mei alle blêdzjers mooglik)",
+"tog-numberheadings"	=> "Koppen fansels nûmerje",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editondblclick"	=> "Dûbelklik jout bewurkingsside (freget JavaScript)",
+"tog-editsection"	=> "Jou [bewurk]-keppelings foar seksjebewurking",
+"tog-editsectiononrightclick" => "Rjochtsklik op sekjsetitels jout seksjebewurking (freget JavaScript)",
+"tog-showtoc"		=> "Ynhâldsopjefte, foar siden mei mear as twa koppen",
+"tog-rememberpassword" => "Oare kear fansels oanmelde",
+"tog-editwidth"		=> "Bewurkingsfjild sa breed as de side",
+"tog-watchdefault"	=> "Sides dy't jo feroare hawwe folgje",
+"tog-minordefault"	=> "Feroarings yn it earst oanjaan as tekstwizigings.",
+"tog-previewontop"	=> "By it neisjen, bewurkingsfjild ûnderoan sette",
+"tog-nocache"		=> "Gjin oerslag brûke",
 # Dates
 'sunday' => 'snein',
 'monday' => 'moandei',
@@ -1072,11 +1070,6 @@ class LanguageFy extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsFy;
 		return $wgDateFormatsFy;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesFy;
-		return $wgUserTogglesFy;
 	}
 
  # Inherit userAdjust()

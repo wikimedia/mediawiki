@@ -54,26 +54,6 @@
   '2001-01-15'
 );
 
-/* private */ $wgUserTogglesBg = array(
-  'hover'          => 'Изпъкване на препратките, когато мишката е върху тях',
-  'underline'      => 'Подчертаване на препратките',
-  'highlightbroken' => 'Показване на невалидните препратки <a href="" class="new">така</a> (алтернативно: така<a href="" class="internal">?</a>)',
-  'justify'        => 'Двустранно подравняване на абзаците',
-  'hideminor'      => 'Скриване на малки редакции в последните промени',
-  'usenewrc'       => 'Подобряване на последните промени (не за всички браузъри)',
-  'numberheadings' => 'Номериране на заглавията',
-  'showtoolbar'    => 'Показване на лента за редактиране',
-  'editondblclick' => 'Редактиране при двойно щракване (Javascript)',
-  'editsection'    =>'Възможност за редактиране на раздел чрез препратка [редактиране]',
-  'editsectiononrightclick' => 'Възможност за редактиране на раздел при щракване с десния бутон върху заглавие на раздел (Javascript)',
-  'showtoc'        =>'Показване на съдържание (за статии с повече от три раздела)',
-  'rememberpassword' => 'Запомняне на паролата между сесиите',
-  'editwidth'      => 'Максимална ширина на кутията за редактиране',
-  'watchdefault'   => 'Добавяне на редактираните страници към списъка за наблюдение',
-  'minordefault'   => 'Отбелязване на всички промени като малки по подразбиране',
-  'previewontop'   => 'Показване на предварителния преглед преди текстовата кутия, а не след нея',
-  'nocache'        => 'Без складиране на страниците'
-);
 
 /* private */ $wgBookstoreListBg = array(
   'books.bg'       => "http://www.books.bg/ISBN/$1",
@@ -203,6 +183,25 @@
 # въведете 'portal' => ''
 
 /* private */ $wgAllMessagesBg = array(
+# User toggles
+'tog-hover'          => 'Изпъкване на препратките, когато мишката е върху тях',
+'tog-underline'      => 'Подчертаване на препратките',
+'tog-highlightbroken' => 'Показване на невалидните препратки <a href="" class="new">така</a> (алтернативно: така<a href="" class="internal">?</a>)',
+'tog-justify'        => 'Двустранно подравняване на абзаците',
+'tog-hideminor'      => 'Скриване на малки редакции в последните промени',
+'tog-usenewrc'       => 'Подобряване на последните промени (не за всички браузъри)',
+'tog-numberheadings' => 'Номериране на заглавията',
+'tog-showtoolbar'    => 'Показване на лента за редактиране',
+'tog-editondblclick' => 'Редактиране при двойно щракване (Javascript)',
+'tog-editsection'    =>'Възможност за редактиране на раздел чрез препратка [редактиране]',
+'tog-editsectiononrightclick' => 'Възможност за редактиране на раздел при щракване с десния бутон върху заглавие на раздел (Javascript)',
+'tog-showtoc'        =>'Показване на съдържание (за статии с повече от три раздела)',
+'tog-rememberpassword' => 'Запомняне на паролата между сесиите',
+'tog-editwidth'      => 'Максимална ширина на кутията за редактиране',
+'tog-watchdefault'   => 'Добавяне на редактираните страници към списъка за наблюдение',
+'tog-minordefault'   => 'Отбелязване на всички промени като малки по подразбиране',
+'tog-previewontop'   => 'Показване на предварителния преглед преди текстовата кутия, а не след нея',
+'tog-nocache'        => 'Без складиране на страниците',
 # Dates
 'sunday' => 'неделя',
 'monday' => 'понеделник',
@@ -1433,11 +1432,6 @@ class LanguageBg extends LanguageUtf8 {
   function getDateFormats() {
     global $wgDateFormatsBg;
     return $wgDateFormatsBg;
-  }
-
-  function getUserToggles() {
-    global $wgUserTogglesBg;
-    return $wgUserTogglesBg;
   }
 
   function getValidSpecialPages()

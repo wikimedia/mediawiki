@@ -61,26 +61,6 @@ require_once( "LanguageUtf8.php" );
         "2001-01-15"
 );
 
-/* private */ $wgUserTogglesTt = array(
-        "hover"                       => "Show hoverbox over wiki links",
-        "underline"           => "Underline links",
-        "highlightbroken"     => "Format broken links <a href=\"\" class=\"new\">like this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
-        "justify"             => "Justify paragraphs",
-        "hideminor"           => "Hide minor edits in recent changes",
-        "usenewrc"            => "Enhanced recent changes (not for all browsers)",
-        "numberheadings"      => "Auto-number headings",
-        "showtoolbar"         =>"Show edit toolbar",
-        "editondblclick"      => "Edit pages on double click (JavaScript)",
-        "editsection"         =>"Enable section editing via [edit] links",
-        "editsectiononrightclick"=>"Enable section editing by right clicking<br> on section titles (JavaScript)",
-        "showtoc"             =>"Show table of contents<br>(for articles with more than 3 headings)",
-        "rememberpassword"    => "Remember password across sessions",
-        "editwidth"           => "Edit box has full width",
-        "watchdefault"                => "Add pages you edit to your watchlist",
-        "minordefault"                => "Mark all edits minor by default",
-        "previewontop"                => "Show preview before edit box and not after it",
-        "nocache"             => "Disable page caching"
-);
 
 /* private */ $wgBookstoreListTt = array(
         "AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -152,7 +132,28 @@ $wgLanguageNamesTt =& $wgLanguageNames;
 # NOTE: To turn off "Community portal" in the title links,
 # set "portal" => ""
 
-/* private */ $wgAllMessagesTt = array();
+/* private */ $wgAllMessagesTt = array(
+# User Toggles
+"tog-hover"                       => "Show hoverbox over wiki links",
+"tog-underline"           => "Underline links",
+"tog-highlightbroken"     => "Format broken links <a href=\"\" class=\"new\">like this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"             => "Justify paragraphs",
+"tog-hideminor"           => "Hide minor edits in recent changes",
+"tog-usenewrc"            => "Enhanced recent changes (not for all browsers)",
+"tog-numberheadings"      => "Auto-number headings",
+"tog-showtoolbar"         =>"Show edit toolbar",
+"tog-editondblclick"      => "Edit pages on double click (JavaScript)",
+"tog-editsection"         =>"Enable section editing via [edit] links",
+"tog-editsectiononrightclick"=>"Enable section editing by right clicking<br> on section titles (JavaScript)",
+"tog-showtoc"             =>"Show table of contents<br>(for articles with more than 3 headings)",
+"tog-rememberpassword"    => "Remember password across sessions",
+"tog-editwidth"           => "Edit box has full width",
+"tog-watchdefault"                => "Add pages you edit to your watchlist",
+"tog-minordefault"                => "Mark all edits minor by default",
+"tog-previewontop"                => "Show preview before edit box and not after it",
+"tog-nocache"             => "Disable page caching",
+
+);
 
 class LanguageTt extends LanguageUtf8 {
 
@@ -202,11 +203,6 @@ class LanguageTt extends LanguageUtf8 {
         function getDateFormats() {
                 global $wgDateFormatsTt;
                 return $wgDateFormatsTt;
-        }
-
-        function getUserToggles() {
-                global $wgUserTogglesTt;
-                return $wgUserTogglesTt;
         }
 
         # Inherit userAdjust()

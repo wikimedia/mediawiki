@@ -57,26 +57,6 @@ require_once("LanguageUtf8.php");
 	"2003 Július 8"
 );
 
-/* private */ $wgUserTogglesHu = array(
-	"hover"	=> "Mutassa a címdobozt a linkek fölött",
-	"underline" => "Linkek aláhúzása",
-	"highlightbroken" => "Törött linkek <a href=\"\" class=\"new\">így</a> (alternatíva: így<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "Bekezdések teljes szélességű tördelése",
-	"hideminor" => "Apró változtatások elrejtése a recent changes-ben",
-	"usenewrc" => "Modern változások listája (nem minden böngészőre)",
-	"numberheadings" => "Címsorok automatikus számozása",
-	"showtoolbar" => "Show edit toolbar",
-	"editsection"=>"Linkek az egyes szakaszok szerkesztéséhez",
-	"editsectiononrightclick"=>"Egyes szakaszok szerkesztése a szakaszcímre klikkeléssel (Javascript)",
-	"showtoc"=>"Három fejezetnél többel rendelkező cikkeknél mutasson tartalomjegyzéket",
-	"rememberpassword" => "Jelszó megjegyzése a használatok között",
-	"editwidth" => "Teljes szélességű szerkesztőterület",
-	"editondblclick" => "Lapon duplakattintásra szerkesztés (JavaScript)",
-	"watchdefault" => "Figyelje az új és a megváltoztatott cikkeket",
-	"minordefault" => "Alapból minden szerkesztést jelöljön aprónak",
-	"previewontop" => "Előnézet a szerkesztőterület előtt és nem utána",
-	"nocache" => "Lapok gyorstárazásának letiltása"
-);
 
 /* Change bookstore list through the wiki page [[hu:Wikipédia:Külső könyvinformációk]] */
 
@@ -136,6 +116,29 @@ require_once("LanguageUtf8.php");
 );
 
 /* private */ $wgAllMessagesHu = array(
+
+# User Toggles
+#
+
+"tog-hover"	=> "Mutassa a címdobozt a linkek fölött",
+"tog-underline" => "Linkek aláhúzása",
+"tog-highlightbroken" => "Törött linkek <a href=\"\" class=\"new\">így</a> (alternatíva: így<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	=> "Bekezdések teljes szélességű tördelése",
+"tog-hideminor" => "Apró változtatások elrejtése a recent changes-ben",
+"tog-usenewrc" => "Modern változások listája (nem minden böngészőre)",
+"tog-numberheadings" => "Címsorok automatikus számozása",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editsection"=>"Linkek az egyes szakaszok szerkesztéséhez",
+"tog-editsectiononrightclick"=>"Egyes szakaszok szerkesztése a szakaszcímre klikkeléssel (Javascript)",
+"tog-showtoc"=>"Három fejezetnél többel rendelkező cikkeknél mutasson tartalomjegyzéket",
+"tog-rememberpassword" => "Jelszó megjegyzése a használatok között",
+"tog-editwidth" => "Teljes szélességű szerkesztőterület",
+"tog-editondblclick" => "Lapon duplakattintásra szerkesztés (JavaScript)",
+"tog-watchdefault" => "Figyelje az új és a megváltoztatott cikkeket",
+"tog-minordefault" => "Alapból minden szerkesztést jelöljön aprónak",
+"tog-previewontop" => "Előnézet a szerkesztőterület előtt és nem utána",
+"tog-nocache" => "Lapok gyorstárazásának letiltása",
+
 
 # Dates
 #
@@ -1126,11 +1129,6 @@ class LanguageHu extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsHu;
 		return $wgDateFormatsHu;
-	}
-	
-	function getUserToggles() {
-		global $wgUserTogglesHu;
-		return $wgUserTogglesHu;
 	}
 	
 	function getValidSpecialPages()

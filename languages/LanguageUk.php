@@ -50,26 +50,6 @@ require_once( "LanguageUtf8.php" );
 	"2001 січень 15"
 );
 
-/* private */ $wgUserTogglesUk = array(
-	"hover"		=> "Показувати випливаючу підказку над зв'язками вікі",
-	"underline" => "Підкреслювати зв'язки",
-	"highlightbroken" => "Форматувати неіснуючі зв'язки <a href=\"\" class=\"new\">ось так</a> (Альтернатива: ось так<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "Вирівнювати параграфи",
-	"hideminor" => "Ховати незначні зміни в списку недавніх змін",
-	"usenewrc" => "Покращений список недавніх змін (підтримується не всіма браузерами)",
-	"numberheadings" => "Автоматично нумерувати заголовки",
-	"editondblclick" => "Редагувати статті при подвійному натисканні кнопки миші (JavaScript)",
-	"editsection"=>"Редагувати секції по зв'язку [прав.]",
-	"editsectiononrightclick"=>"Редагувати секції по правій кнопці миші на назві секції (JavaScript)",
-	"showtoc"=>"Показувати зміст (для статей з більше ніж 3-ма заголовками)",
-	"rememberpassword" => "Запам'ятовувати пароль між сеансами",
-	"editwidth" => "Розширяти вікно для редагування до меж вікна браузера ",
-	"watchdefault" => "Слідкувати за новими та зміненими статтями",
-	"minordefault" => "Спочатку вважати всі зміни незначними",
-	"previewontop" => "Показувати попередній текст до вікна редагування, а не післе",
-	"nocache" => "Заборонити кешування статей"
-);
-
 
 /* Add a $wgBookstoreListUk to override default list of book links for ISBN links */
 
@@ -125,6 +105,25 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesUk = array(
+# User Toggles
+
+"tog-hover"		=> "Показувати випливаючу підказку над зв'язками вікі",
+"tog-underline" => "Підкреслювати зв'язки",
+"tog-highlightbroken" => "Форматувати неіснуючі зв'язки <a href=\"\" class=\"new\">ось так</a> (Альтернатива: ось так<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	=> "Вирівнювати параграфи",
+"tog-hideminor" => "Ховати незначні зміни в списку недавніх змін",
+"tog-usenewrc" => "Покращений список недавніх змін (підтримується не всіма браузерами)",
+"tog-numberheadings" => "Автоматично нумерувати заголовки",
+"tog-editondblclick" => "Редагувати статті при подвійному натисканні кнопки миші (JavaScript)",
+"tog-editsection"=>"Редагувати секції по зв'язку [прав.]",
+"tog-editsectiononrightclick"=>"Редагувати секції по правій кнопці миші на назві секції (JavaScript)",
+"tog-showtoc"=>"Показувати зміст (для статей з більше ніж 3-ма заголовками)",
+"tog-rememberpassword" => "Запам'ятовувати пароль між сеансами",
+"tog-editwidth" => "Розширяти вікно для редагування до меж вікна браузера ",
+"tog-watchdefault" => "Слідкувати за новими та зміненими статтями",
+"tog-minordefault" => "Спочатку вважати всі зміни незначними",
+"tog-previewontop" => "Показувати попередній текст до вікна редагування, а не післе",
+"tog-nocache" => "Заборонити кешування статей",
 # Dates
 'sunday' => "Неділя",
 'monday' => "Понеділок",
@@ -1013,11 +1012,6 @@ class LanguageUk extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsUk;
 		return $wgDateFormatsUk;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesUk;
-		return $wgUserTogglesUk;
 	}
 
 	#function getMonthRegex()

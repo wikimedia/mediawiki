@@ -60,27 +60,6 @@ require_once( "LanguageUtf8.php" );
 	"15 de enero de 2001",
 	"2001 enero 15"
 );
-/* private */ $wgUserTogglesEs = array(
-	"hover"		=> "Mostrar caja flotante sobre los enlaces wiki",
-	"underline" => "Subrayar enlaces",
-	"highlightbroken" => "Destacar enlaces a artículos vacíos <a href=\"\" class=\"new\">como este</a> (alternativa: como éste<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "Ajustar párrafos",
-	"hideminor" => "Esconder ediciones menores en Cambios Recientes",
-	"usenewrc" => "Cambios Recientes realzados (no para todos los navegadores)",
-	"numberheadings" => "Auto-numerar encabezados",        
-	"showtoolbar" => "Show edit toolbar",
-	"rememberpassword" => "Recordar la contraseña entre sesiones",
-	"editwidth" => "La caja de edición tiene el ancho máximo",
-	"editondblclick" => "Editar páginas con doble click (JavaScript)",
-        "editsection"=>"Habilitar la edicion de secciones usando el enlace [editar]",
-"editsectiononrightclick"=>"Habilitar la edición de secciones presionando el boton de la derecha<br> en los titulos de secciones (JavaScript)",
-"showtoc"=>"Mostrar la tabla de contenidos<br>(para paginas con mas de 3 encabezados)",
-
-	"watchdefault" => "Vigilar artículos nuevos y modificados",
-	"minordefault" => "Marcar todas las ediciones como menores por defecto",
-	"previewontop" => "Mostrar la previsualización antes de la caja de edición en lugar de después",
-"nocache"=> "Inhabilitar el ''cache'' de paginas"
-);
 
 /* Please customize this with some Spanish-language bookshops
    and/or reference sites that can look up by ISBN number */
@@ -97,38 +76,6 @@ require_once( "LanguageUtf8.php" );
 # is the right thing for some of them (such as the "targeted" ones).
 #
 /* private */ $wgValidSpecialPagesEs = array(
-	# Dates
-	'sunday' => 'Domingo',
-	'monday' => 'Lunes',
-	'tuesday' => 'Martes',
-	'wednesday' => 'Miércoles',
-	'thursday' => 'Jueves',
-	'friday' => 'Viernes',
-	'saturday' => 'Sábado',
-	'january' => 'enero',
-	'february' => 'febrero',
-	'march' => 'marzo',
-	'april' => 'abril',
-	'may_long' => 'mayo',
-	'june' => 'junio',
-	'july' => 'julio',
-	'august' => 'agosto',
-	'september' => 'septiembre',
-	'october' => 'octubre',
-	'november' => 'noviembre',
-	'december' => 'diciembre',
-	'jan' => 'ene',
-	'feb' => 'feb',
-	'mar' => 'mar',
-	'apr' => 'abr',
-	'may' => 'may',
-	'jun' => 'jun',
-	'jul' => 'jul',
-	'aug' => 'ago',
-	'sep' => 'sep',
-	'oct' => 'oct',
-	'nov' => 'nov',
-	'dec' => 'dic',
 
 	"Userlogin"		=> "",
 	"Userlogout"	=> "",
@@ -179,7 +126,59 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesEs = array(
+# User Toggles
 
+"tog-hover"		=> "Mostrar caja flotante sobre los enlaces wiki",
+"tog-underline" => "Subrayar enlaces",
+"tog-highlightbroken" => "Destacar enlaces a artículos vacíos <a href=\"\" class=\"new\">como este</a> (alternativa: como éste<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	=> "Ajustar párrafos",
+"tog-hideminor" => "Esconder ediciones menores en Cambios Recientes",
+"tog-usenewrc" => "Cambios Recientes realzados (no para todos los navegadores)",
+"tog-numberheadings" => "Auto-numerar encabezados",        
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-rememberpassword" => "Recordar la contraseña entre sesiones",
+"tog-editwidth" => "La caja de edición tiene el ancho máximo",
+"tog-editondblclick" => "Editar páginas con doble click (JavaScript)",
+"tog-editsection"=>"Habilitar la edicion de secciones usando el enlace [editar]",
+"tog-editsectiononrightclick"=>"Habilitar la edición de secciones presionando el boton de la derecha<br> en los titulos de secciones (JavaScript)",
+"tog-showtoc"=>"Mostrar la tabla de contenidos<br>(para paginas con mas de 3 encabezados)",
+"tog-watchdefault" => "Vigilar artículos nuevos y modificados",
+"tog-minordefault" => "Marcar todas las ediciones como menores por defecto",
+"tog-previewontop" => "Mostrar la previsualización antes de la caja de edición en lugar de después",
+"tog-nocache"=> "Inhabilitar el ''cache'' de paginas",
+
+# Dates
+'sunday' => 'Domingo',
+'monday' => 'Lunes',
+'tuesday' => 'Martes',
+'wednesday' => 'Miércoles',
+'thursday' => 'Jueves',
+'friday' => 'Viernes',
+'saturday' => 'Sábado',
+'january' => 'enero',
+'february' => 'febrero',
+'march' => 'marzo',
+'april' => 'abril',
+'may_long' => 'mayo',
+'june' => 'junio',
+'july' => 'julio',
+'august' => 'agosto',
+'september' => 'septiembre',
+'october' => 'octubre',
+'november' => 'noviembre',
+'december' => 'diciembre',
+'jan' => 'ene',
+'feb' => 'feb',
+'mar' => 'mar',
+'apr' => 'abr',
+'may' => 'may',
+'jun' => 'jun',
+'jul' => 'jul',
+'aug' => 'ago',
+'sep' => 'sep',
+'oct' => 'oct',
+'nov' => 'nov',
+'dec' => 'dic',
 # Bits of text used by many pages:
 #
 "linktrail"     => "/^((?:[a-z]|á|é|í|ó|ú|ñ)+)(.*)\$/sD",
@@ -1035,11 +1034,6 @@ class LanguageEs extends LanguageUtf8 {
 		return $wgSkinNamesEs;
 	}
 
-
-	function getUserToggles() {
-		global $wgUserTogglesEs;
-		return $wgUserTogglesEs;
-	}
 
 
 	# Inherit userAdjust()

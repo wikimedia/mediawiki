@@ -52,27 +52,6 @@ require_once("LanguageUtf8.php");
 	"2001 Janar 15"
 );
 
-/* private */ $wgUserTogglesSq = array(
-	"hover"		=> "Trego kutine fluturuse sipër lidhjeve wiki",
-	"underline" => "Nënvizo lidhjet",
-	"highlightbroken" => "Trego lidhjet e faqeve bosh <a href=\"\" class=\"new\">kështu
-	</a> (ndryshe: kështu<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "Rregullim i kryeradhës",
-	"hideminor" => "Fshih redaktimet e vogla në ndryshimet e fundit",
-	"usenewrc" => "Ndryshimet e fundit me formatin e ri (jo për të gjithë shfletuesit)",
-	"numberheadings" => "Numëro automatikish mbishkrimet",
-	"showtoolbar" => "Show edit toolbar",
-	"editondblclick" => "Redakto faqet me dopjo-shtypje (JavaScript)",
-	"editsection"=>"Lejo redaktimin e seksioneve me [redakto] lidhje",
-	"editsectiononrightclick"=>"Lejo redaktimin e seksioneve me djathtas-shtypje<br> mbi emrin e seksionit (JavaScript)",
-	"showtoc"=>"Trego tabelën e përmbajtjeve<br>(për faqet me më shume se 3 tituj)",
-	"rememberpassword" => "Mbaj mënd fjalëkalimin për vizitën e ardhshme",
-	"editwidth" => "Kutija e redaktimit ka gjerësi te plotë",
-	"watchdefault" => "Shto faqet që redakton tek lista mbikqyrëse",
-	"minordefault" => "Shëno të gjitha redaktimet si të vogla automatikisht",
-	"previewontop" => "Trego parashikimin përpara kutisë redaktuese, jo mbas saj",
-	"nocache" => "Mos ruaj kopje te faqeve"
-);
 
 /* Please customize this list... */
 
@@ -128,6 +107,27 @@ require_once("LanguageUtf8.php");
 );
 
 /* private */ $wgAllMessagesSq = array(
+
+# User Toggles
+
+"tog-hover"		=> "Trego kutine fluturuse sipër lidhjeve wiki",
+"tog-underline" => "Nënvizo lidhjet",
+"tog-highlightbroken" => "Trego lidhjet e faqeve bosh <a href=\"\" class=\"new\">kështu </a> (ndryshe: kështu<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	=> "Rregullim i kryeradhës",
+"tog-hideminor" => "Fshih redaktimet e vogla në ndryshimet e fundit",
+"tog-usenewrc" => "Ndryshimet e fundit me formatin e ri (jo për të gjithë shfletuesit)",
+"tog-numberheadings" => "Numëro automatikish mbishkrimet",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editondblclick" => "Redakto faqet me dopjo-shtypje (JavaScript)",
+"tog-editsection"=>"Lejo redaktimin e seksioneve me [redakto] lidhje",
+"tog-editsectiononrightclick"=>"Lejo redaktimin e seksioneve me djathtas-shtypje<br> mbi emrin e seksionit (JavaScript)",
+"tog-showtoc"=>"Trego tabelën e përmbajtjeve<br>(për faqet me më shume se 3 tituj)",
+"tog-rememberpassword" => "Mbaj mënd fjalëkalimin për vizitën e ardhshme",
+"tog-editwidth" => "Kutija e redaktimit ka gjerësi te plotë",
+"tog-watchdefault" => "Shto faqet që redakton tek lista mbikqyrëse",
+"tog-minordefault" => "Shëno të gjitha redaktimet si të vogla automatikisht",
+"tog-previewontop" => "Trego parashikimin përpara kutisë redaktuese, jo mbas saj",
+"tog-nocache" => "Mos ruaj kopje te faqeve",
 
 # Dates
 #
@@ -1079,11 +1079,6 @@ class LanguageSq extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsSq;
 		return $wgDateFormatsSq;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesSq;
-		return $wgUserTogglesSq;
 	}
 
 	# localised date and time

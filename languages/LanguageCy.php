@@ -43,28 +43,6 @@
 	"2001-01-15"
 );
 
-/* private */ $wgUserTogglesCy = array(
-	"hover"	 => "Dangos bocs hofren uwchben cysylltiadau wici",
-	"underline" => "Tanllinellu cysylltiadau",
-	"highlightbroken" => "Fformatio cysylltiadau wedi'i dorri <a href=\"\" class=\"new\">fel hyn</a> (dewis arall: fel hyn<a href=\"\" class=\"internal\">?</a>).",
-	"justify" => "Unioni paragraffau",
-	"hideminor" => "Cuddiwch golygiadau bach mewn newidiadau diweddar",
-	"usenewrc" => "Newidiadau diweddar mwyhad (nid am pob porwr)",
-	"numberheadings" => "Rhifwch teiltau yn awtomatig",
-	"showtoolbar"=> "Dangos bar erfynbocs golygu",
-	"editondblclick" => "Golygu tudalennau gyda clic dwbwl (JavaScript)",
-	"editwidth" => "Mae gan bocs golygu lled llon",
-        "editsection"  => "Galluogwch golygu adrannau trwy cysylltiadau [golygu]",
-        "editsectiononrightclick" => "Galluogwch golygu adrannau trwy dde-clicio ar teitlau adran (JavaScript)",
-        "showtoc" => "Dangoswch Taflen Cynnwys (am erthyglau gyda mwy na 3 pennawdau",
-        "rememberpassword" => "Cofiwch allweddair dros sesiwnau",
-	"watchdefault" => "Gwiliwch erthyglau newydd ac wedi adnewid",
-	"minordefault" => "Marciwch pob golygiad fel un bach",
-	"previewontop" => "Dangos blaenwelediad cyn y bocs golygu, nid ar ol e",
-        "nocache" => "Anablwch casio tudanlen"
-	
-);
-
 /* private */ $wgBookstoreListCy = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
 	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
@@ -155,6 +133,27 @@
 );
 
 /* private */ $wgAllMessagesCy = array(
+# User Toggles
+
+"tog-hover"	 => "Dangos bocs hofren uwchben cysylltiadau wici",
+"tog-underline" => "Tanllinellu cysylltiadau",
+"tog-highlightbroken" => "Fformatio cysylltiadau wedi'i dorri <a href=\"\" class=\"new\">fel hyn</a> (dewis arall: fel hyn<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify" => "Unioni paragraffau",
+"tog-hideminor" => "Cuddiwch golygiadau bach mewn newidiadau diweddar",
+"tog-usenewrc" => "Newidiadau diweddar mwyhad (nid am pob porwr)",
+"tog-numberheadings" => "Rhifwch teiltau yn awtomatig",
+"tog-showtoolbar"=> "Dangos bar erfynbocs golygu",
+"tog-editondblclick" => "Golygu tudalennau gyda clic dwbwl (JavaScript)",
+"tog-editwidth" => "Mae gan bocs golygu lled llon",
+"tog-editsection"  => "Galluogwch golygu adrannau trwy cysylltiadau [golygu]",
+"tog-editsectiononrightclick" => "Galluogwch golygu adrannau trwy dde-clicio ar teitlau adran (JavaScript)",
+"tog-showtoc" => "Dangoswch Taflen Cynnwys (am erthyglau gyda mwy na 3 pennawdau",
+"tog-rememberpassword" => "Cofiwch allweddair dros sesiwnau",
+"tog-watchdefault" => "Gwiliwch erthyglau newydd ac wedi adnewid",
+"tog-minordefault" => "Marciwch pob golygiad fel un bach",
+"tog-previewontop" => "Dangos blaenwelediad cyn y bocs golygu, nid ar ol e",
+"tog-nocache" => "Anablwch casio tudanlen",
+
 # Dates
 'sunday' => 'Dydd Sul',
 'monday' => 'Dydd Llun',
@@ -1086,11 +1085,6 @@ class LanguageCy extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsCy;
 		return $wgDateFormatsCy;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesCy;
-		return $wgUserTogglesCy;
 	}
 
 	function getValidSpecialPages()

@@ -51,19 +51,6 @@ require_once( "LanguageUtf8.php" );
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgUserTogglesKo = array(
-	"hover"		=> "위키고리 풍선상자로 보이기",
-	"underline" => "고리에 밑줄치기",
-	"highlightbroken" => "없는 문서로의 고리 돋보이기",
-	"justify"	=> "문단 정렬",
-	"hideminor" => "사소한 편집 최근 바뀜에서 숨기기",
-	"numberheadings" => "머릿글 번호 매기기",
-	"showtoolbar" => "Show edit toolbar",
-	"rememberpassword" => "세션동안 암호 기억",
-	"editwidth" => "편집상자 너비 최대",
-	"editondblclick" => "Edit pages on double click (JavaScript)",
-	"watchdefault" => "Watch new and modified articles"
-);
 
 /* private */ $wgBookstoreListKo = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -150,6 +137,19 @@ require_once( "LanguageUtf8.php" );
 
 /* private */ $wgAllMessagesKo = array(
 
+# User Toggles
+
+"tog-hover"		=> "위키고리 풍선상자로 보이기",
+"tog-underline" => "고리에 밑줄치기",
+"tog-highlightbroken" => "없는 문서로의 고리 돋보이기",
+"tog-justify"	=> "문단 정렬",
+"tog-hideminor" => "사소한 편집 최근 바뀜에서 숨기기",
+"tog-numberheadings" => "머릿글 번호 매기기",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-rememberpassword" => "세션동안 암호 기억",
+"tog-editwidth" => "편집상자 너비 최대",
+"tog-editondblclick" => "Edit pages on double click (JavaScript)",
+"tog-watchdefault" => "Watch new and modified articles",
 # Dates
 
 'sunday' => "일요일",
@@ -929,11 +929,6 @@ class LanguageKo extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesKo;
 		return $wgSkinNamesKo;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesKo;
-		return $wgUserTogglesKo;
 	}
 
 	# Inherit default userAdjust()

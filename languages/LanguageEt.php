@@ -41,22 +41,6 @@
 );
 
 
-/* private */ $wgUserTogglesEt = array(
-	"hover"		=> "Näita tekstimulli siselinkide peale",
-	"underline" => "Lingid alla kriipsutada",
-	"highlightbroken" => "Vorminda lingirikked<a href=\"\" class=\"new\">nii</a> (alternatiiv: nii<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "Lõikude rööpjoondus",
-	"hideminor" => "Peida pisiparandused viimastes muudatustes",
-	"usenewrc" => "Laiendatud viimased muudatused (mitte kõikide brauserite puhul)",
-	"numberheadings" => "Pealkirjade automaatnummerdus",
-	"showtoolbar" => "Show edit toolbar",
-	"rememberpassword" => "Parooli meeldejätmine tulevasteks seanssideks",
-	"editwidth" => "Redaktoriboksil on täislaius",
-	"editondblclick" => "Artiklite redigeerimine topeltklõpsu peale (JavaScript)",
-	"watchdefault" => "Jälgi uusi ja muudetud artikleid",
-	"minordefault" => "Märgi kõik parandused vaikimisi pisiparandusteks",
-	"previewontop" => "Näita eelvaadet redaktoriboksi ees, mitte järel"
-);
 
 /* private */ $wgBookstoreListEt = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -117,6 +101,23 @@
 );
 
 /* private */ $wgAllMessagesEt = array(
+
+# User Toggles
+
+"tog-hover"		=> "Näita tekstimulli siselinkide peale",
+"tog-underline" => "Lingid alla kriipsutada",
+"tog-highlightbroken" => "Vorminda lingirikked<a href=\"\" class=\"new\">nii</a> (alternatiiv: nii<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	=> "Lõikude rööpjoondus",
+"tog-hideminor" => "Peida pisiparandused viimastes muudatustes",
+"tog-usenewrc" => "Laiendatud viimased muudatused (mitte kõikide brauserite puhul)",
+"tog-numberheadings" => "Pealkirjade automaatnummerdus",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-rememberpassword" => "Parooli meeldejätmine tulevasteks seanssideks",
+"tog-editwidth" => "Redaktoriboksil on täislaius",
+"tog-editondblclick" => "Artiklite redigeerimine topeltklõpsu peale (JavaScript)",
+"tog-watchdefault" => "Jälgi uusi ja muudetud artikleid",
+"tog-minordefault" => "Märgi kõik parandused vaikimisi pisiparandusteks",
+"tog-previewontop" => "Näita eelvaadet redaktoriboksi ees, mitte järel",
 # Dates
 
 'sunday' => 'pühapäev',
@@ -933,11 +934,6 @@ class LanguageEt extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesEt;
 		return $wgSkinNamesEt;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesEt;
-		return $wgUserTogglesEt;
 	}
 
 	function getValidSpecialPages()

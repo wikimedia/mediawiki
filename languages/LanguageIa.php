@@ -43,23 +43,6 @@
 );
 
 
-/* private */ $wgUserTogglesIa = array(
-	"hover"		=> "Evidentiar wikiligamines sub le ratto",
-	"underline" => "Sublinear ligamines",
-	"highlightbroken" => "Formatar ligamines rupte <a href=\"\" class=\"new\">assi</a> (alternativemente: assi<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "Justificar paragraphos",
-	"hideminor" => "Occultar modificationes recente minor",
-	"usenewrc" => "Modificationes recente meliorate (non functiona in tote le navigatores)",
-	"numberheadings" => "Numerar titulos automaticamente",
-	"showtoolbar" => "Show edit toolbar",
-	"rememberpassword" => "Recordar contrasigno inter sessiones (usa cookies)",
-	"editwidth" => "Cassa de redaction occupa tote le largor del fenestra",
-	"editondblclick" => "Duple clic pro modificar un pagina (usa JavaScript)",
-	"watchdefault" => "Poner articulos nove e modificate sub observation",
-	"minordefault" => "Marcar modificationes initialmente como minor",
-	"previewontop" => "Monstrar previsualisation ante le cassa de edition e non post illo"
-	
-);
 
 /* private */ $wgBookstoreListIa = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -121,6 +104,24 @@
 );
 
 /* private */ $wgAllMessagesIa = array(
+
+# User Toggles
+#
+
+"tog-hover"		=> "Evidentiar wikiligamines sub le ratto",
+"tog-underline" => "Sublinear ligamines",
+"tog-highlightbroken" => "Formatar ligamines rupte <a href=\"\" class=\"new\">assi</a> (alternativemente: assi<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	=> "Justificar paragraphos",
+"tog-hideminor" => "Occultar modificationes recente minor",
+"tog-usenewrc" => "Modificationes recente meliorate (non functiona in tote le navigatores)",
+"tog-numberheadings" => "Numerar titulos automaticamente",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-rememberpassword" => "Recordar contrasigno inter sessiones (usa cookies)",
+"tog-editwidth" => "Cassa de redaction occupa tote le largor del fenestra",
+"tog-editondblclick" => "Duple clic pro modificar un pagina (usa JavaScript)",
+"tog-watchdefault" => "Poner articulos nove e modificate sub observation",
+"tog-minordefault" => "Marcar modificationes initialmente como minor",
+"tog-previewontop" => "Monstrar previsualisation ante le cassa de edition e non post illo",
 
 # dates
 #
@@ -980,11 +981,6 @@ class LanguageIa extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesIa;
 		return $wgSkinNamesIa;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesIa;
-		return $wgUserTogglesIa;
 	}
 
 	function date( $ts, $adj = false )

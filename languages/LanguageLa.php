@@ -42,22 +42,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgUserTogglesLa = array(
-	"hover"		=> "Monstrare capsam impensam super wikinexos",
-	"underline" => "Subscribere nexi",
-	"highlightbroken" => "Formare nexos fractos <a href=\"\" class=\"new\">sici</a> (alioqui: sic<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "Saepire capites",
-	"hideminor" => "Celare mutationes recentes minores",
-	"usenewrc" => "Mutationes recentes amplificatae (non efficit in tota navigatra)",
-	"numberheadings" => "Numerare indices necessario",
-	"rememberpassword" => "Recordari tesserae inter conventa (uti cookies)",
-	"editwidth" => "Capsa recensitorum totam latitudinem habet",
-	"editondblclick" => "Premere bis ut paginam recensere (uti JavaScript)",
-	"watchdefault" => "Custodire res novas et mutatas",
-	"minordefault" => "Notare totas mutations ut minor",
-	"previewontop" => "Monstrare praevisus ante capsam recensiti, non post ipsam"
-	
-);
 
 /* private */ $wgBookstoreListLa = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -120,6 +104,23 @@
 );
 
 $wgAllMessagesLa = array(
+
+# User Toggles
+
+"tog-hover"		=> "Monstrare capsam impensam super wikinexos",
+"tog-underline" => "Subscribere nexi",
+"tog-highlightbroken" => "Formare nexos fractos <a href=\"\" class=\"new\">sici</a> (alioqui: sic<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	=> "Saepire capites",
+"tog-hideminor" => "Celare mutationes recentes minores",
+"tog-usenewrc" => "Mutationes recentes amplificatae (non efficit in tota navigatra)",
+"tog-numberheadings" => "Numerare indices necessario",
+"tog-rememberpassword" => "Recordari tesserae inter conventa (uti cookies)",
+"tog-editwidth" => "Capsa recensitorum totam latitudinem habet",
+"tog-editondblclick" => "Premere bis ut paginam recensere (uti JavaScript)",
+"tog-watchdefault" => "Custodire res novas et mutatas",
+"tog-minordefault" => "Notare totas mutations ut minor",
+"tog-previewontop" => "Monstrare praevisus ante capsam recensiti, non post ipsam",
+
 # Dates
 
 'sunday' => 'dies Solis',
@@ -194,11 +195,6 @@ class LanguageLa extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesLa;
 		return $wgSkinNamesLa;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesLa;
-		return $wgUserTogglesLa;
 	}
 
 	function date( $ts, $adj = false )

@@ -52,26 +52,6 @@
 	"2001-01-15"
 );
 
-/* private */ $wgUserTogglesCa = array(
-	"hover"		=> "Mostra caixa surant sobre els enllaços wiki",
-	"underline" => "Subratlla enllaços",
-	"highlightbroken" => "Destaca enllaços a temes buits",
-	"justify"	=> "Ajusta paràgrafs",
-	"hideminor" => "Amaga edicions menors en canvis recents",
-	"usenewrc" => "Canvis recents remarcats (no per tots els navegadors)",
-	"numberheadings" => "Autoenumera encapçalaments",
-	"showtoolbar" => "Show edit toolbar",
-	"rememberpassword" => "Recorda la contrasenya entre sessions",
-	"editwidth" => "La caixa d'edició té l'ample màxim",
-	"editondblclick" => "Edita pàgines amb un doble clic (JavaScript)",
-	"editsection"=>"Enable section editing via [edit] links",
-	"editsectiononrightclick"=>"Enable section editing by right clicking<br> on section titles (JavaScript)",
-	"showtoc"=>"Show table of contents<br>(for articles with more than 3 headings)",
-	"watchdefault" => "Vigila articles nous i modificats",
-	"minordefault" => "Marca totes les edicions com menors per defecte",
-	"previewontop" => "Show preview before edit box and not after it",
-	"nocache" => "Disable page caching"
-);
 
 /* Please customize this with some Catalan-language bookshops
    and/or reference sites that can look up by ISBN number */
@@ -133,6 +113,26 @@
 );
 
 /* private */ $wgAllMessagesCa = array(
+# User Toggles
+
+"tog-hover"		=> "Mostra caixa surant sobre els enllaços wiki",
+"tog-underline" => "Subratlla enllaços",
+"tog-highlightbroken" => "Destaca enllaços a temes buits",
+"tog-justify"	=> "Ajusta paràgrafs",
+"tog-hideminor" => "Amaga edicions menors en canvis recents",
+"tog-usenewrc" => "Canvis recents remarcats (no per tots els navegadors)",
+"tog-numberheadings" => "Autoenumera encapçalaments",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-rememberpassword" => "Recorda la contrasenya entre sessions",
+"tog-editwidth" => "La caixa d'edició té l'ample màxim",
+"tog-editondblclick" => "Edita pàgines amb un doble clic (JavaScript)",
+"tog-editsection"=>"Enable section editing via [edit] links",
+"tog-editsectiononrightclick"=>"Enable section editing by right clicking<br> on section titles (JavaScript)",
+"tog-showtoc"=>"Show table of contents<br>(for articles with more than 3 headings)",
+"tog-watchdefault" => "Vigila articles nous i modificats",
+"tog-minordefault" => "Marca totes les edicions com menors per defecte",
+"tog-previewontop" => "Show preview before edit box and not after it",
+"tog-nocache" => "Disable page caching",
 #Dates
 
 'sunday' => 'Diumenge',
@@ -947,11 +947,6 @@ class LanguageCa extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesCa;
 		return $wgSkinNamesCa;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesCa;
-		return $wgUserTogglesCa;
 	}
 
 	# Inherit userAdjust()

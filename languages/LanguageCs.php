@@ -42,20 +42,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgUserTogglesCs = array(
-	"hover"		=> "Ukázat odkazovou adresu (hoverbox) nad wikiovými odkazy",
-	"underline" => "Podtrhnout odkazy",
-	"highlightbroken" => "Začervenit odkazy na neexistující stránky",
-	"justify"	=> "Zarámovat řádky",
-	"hideminor" => "Ukrýt malé redakční úpravy <i>Poslední změny</i>",
-	"numberheadings" => "Automaticky spočítat sekce",
-	"showtoolbar" => "Show edit toolbar",
-	"rememberpassword" => "Pamatovat si mé heslo od návštěvy k návětěvě",
-	"editwidth" => "Redakční okno roztáhnout na celou šíři.",
-	"editondblclick" => "Redigovat dvojím kliknutím (JavaScript)",
-	"watchdefault" => "Náhled na nové a modifikované články",
-	"minordefault" => "Mark all edits minor by default" #TRADUKU MIN
-);
 
 # Se eble, trovu Chehxajn libroservojn traserceblaj lau ISBN
 # $wgBookstoreListCs = ..
@@ -67,38 +53,6 @@
 #
 # *Neměnit jména v levém sloupci, jsou to interní jména programových funkcí. Pravý sloupec  obsahuje několik mezer, které mají tak zůstat, aby se tyto funkce nezařadily do seznamu speciálních stránek.
 /* private */ $wgValidSpecialPagesCs = array(
-	# Dates
-	'sunday' => "neděle",
-	'monday' => "pondělí",
-	'tuesday' => "úterý",
-	'wednesday' => "středa",
-	'thursday' => "čtvrtek",
-	'friday' => "pátek",
-	'saturday' => "sobota",
-	'january' => "leden",
-	'february' => "únor",
-	'march' => "březen",
-	'april' => "duben",
-	'may_long' => "květen",
-	'june' => "červen",
-	'july' => "červenec",
-	'august' => "srpen",
-	'september' => "září",
-	'october' => "říjen",
-	'november' => "listopad",
-	'december' => "prosinec",
-	'jan' => "Led",
-	'feb' => "Úno",
-	'mar' => "Bře",
-	'apr' => "Dub",
-	'may' => "Kvě",
-	'jun' => "Čer",
-	'jul' => "Črv",
-	'aug' => "Srp",
-	'sep' => "Zář",
-	'oct' => "Říj",
-	'nov' => "Lis",
-	'dec' => "Pro",
 
 	"Userlogin"		=> "",
 	"Userlogout"	=> "",
@@ -148,6 +102,52 @@
 );
 
 /* private */ $wgAllMessagesCs = array(
+# User Toggles
+"tog-hover"		=> "Ukázat odkazovou adresu (hoverbox) nad wikiovými odkazy",
+"tog-underline" => "Podtrhnout odkazy",
+"tog-highlightbroken" => "Začervenit odkazy na neexistující stránky",
+"tog-justify"	=> "Zarámovat řádky",
+"tog-hideminor" => "Ukrýt malé redakční úpravy <i>Poslední změny</i>",
+"tog-numberheadings" => "Automaticky spočítat sekce",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-rememberpassword" => "Pamatovat si mé heslo od návštěvy k návětěvě",
+"tog-editwidth" => "Redakční okno roztáhnout na celou šíři.",
+"tog-editondblclick" => "Redigovat dvojím kliknutím (JavaScript)",
+"tog-watchdefault" => "Náhled na nové a modifikované články",
+"tog-minordefault" => "Mark all edits minor by default",  #TRADUKU MIN
+
+# Dates
+'sunday' => "neděle",
+'monday' => "pondělí",
+'tuesday' => "úterý",
+'wednesday' => "středa",
+'thursday' => "čtvrtek",
+'friday' => "pátek",
+'saturday' => "sobota",
+'january' => "leden",
+'february' => "únor",
+'march' => "březen",
+'april' => "duben",
+'may_long' => "květen",
+'june' => "červen",
+'july' => "červenec",
+'august' => "srpen",
+'september' => "září",
+'october' => "říjen",
+'november' => "listopad",
+'december' => "prosinec",
+'jan' => "Led",
+'feb' => "Úno",
+'mar' => "Bře",
+'apr' => "Dub",
+'may' => "Kvě",
+'jun' => "Čer",
+'jul' => "Črv",
+'aug' => "Srp",
+'sep' => "Zář",
+'oct' => "Říj",
+'nov' => "Lis",
+'dec' => "Pro",
 
 # Části textu používané různými stránkami:
 #
@@ -783,11 +783,6 @@ class LanguageCs extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesCs;
 		return $wgSkinNamesCs;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesCs;
-		return $wgUserTogglesCs;
 	}
 
 	# Zdědit userAdjust()

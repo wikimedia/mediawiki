@@ -66,26 +66,6 @@ Sourceforge (when that gets added.)
     "2001-01-15"
 );
 
-/* private */ $wgUserTogglesGa = array(
-    "hover"     => "Taispeáin airebhoscaí os cionn na vicilúibíní",
-    "underline" => "Cuir línte faoi na lúibíní",
-    "highlightbroken" => "Cuir dath dearg ar lúibíní briste, <a href=\"\" class=\"new\">mar sin</a> (rogha eile: mar sin<a href=\"\" class=\"internal\">?</a>).",
-    "justify"   => "Comhfhadaigh na paragraif",
-    "hideminor" => "Ná taispeáin fo-eagair sna athruithe deireanacha",
-    "usenewrc" => "Stíl nua do na athruithe deireanacha (le JavaScript)",
-    "numberheadings" => "Uimhrigh ceannteidil go huathoibríoch",
-    "editondblclick" => "Cuir leathanaigh in eagar le roghna dúbailte (JavaScript)",
-    "editsection"=>"Cumasaigh eagarthóireacht mír le lúibíní [athraithe]",
-    "editsectiononrightclick"=>"Cumasaigh eagarthóireacht mír le deas-roghna<br> ar ceannteidil (JavaScript)",
-    "showtoc"=>"Déan liosta na ceannteideal<br>(do ailt le níos mó ná 3 ceannteidil)",
-    "rememberpassword" => "Cuimhnigh mo focal faire",
-    "editwidth" => "Cuir uasméid ar an athrúbhosca",
-    "watchdefault" => "Breathnaigh ar leathanaigh a d'athraigh tú",
-    "minordefault" => "Cuir marc mionathraithe ar gach athrú, mar réamhshocrú",
-    "previewontop" => "Cuir an réamhthaispeántas os cionn an athrúbhosca, agus ná taobh thíos de",
-    "nocache" => "Ciorraigh an taisce leathanaigh"
-);
-
 # If possible, find Irish language book services on the Internet, searchable by ISBN
 # $wgBookstoreListGa = ..
 
@@ -190,6 +170,27 @@ Sourceforge (when that gets added.)
 # the regex in MagicWord::initRegex
 
 /* private */ $wgAllMessagesGa = array(
+# User Toggles
+#
+
+"tog-hover"     => "Taispeáin airebhoscaí os cionn na vicilúibíní",
+"tog-underline" => "Cuir línte faoi na lúibíní",
+"tog-highlightbroken" => "Cuir dath dearg ar lúibíní briste, <a href=\"\" class=\"new\">mar sin</a> (rogha eile: mar sin<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"   => "Comhfhadaigh na paragraif",
+"tog-hideminor" => "Ná taispeáin fo-eagair sna athruithe deireanacha",
+"tog-usenewrc" => "Stíl nua do na athruithe deireanacha (le JavaScript)",
+"tog-numberheadings" => "Uimhrigh ceannteidil go huathoibríoch",
+"tog-editondblclick" => "Cuir leathanaigh in eagar le roghna dúbailte (JavaScript)",
+"tog-editsection"=>"Cumasaigh eagarthóireacht mír le lúibíní [athraithe]",
+"tog-editsectiononrightclick"=>"Cumasaigh eagarthóireacht mír le deas-roghna<br> ar ceannteidil (JavaScript)",
+"tog-showtoc"=>"Déan liosta na ceannteideal<br>(do ailt le níos mó ná 3 ceannteidil)",
+"tog-rememberpassword" => "Cuimhnigh mo focal faire",
+"tog-editwidth" => "Cuir uasméid ar an athrúbhosca",
+"tog-watchdefault" => "Breathnaigh ar leathanaigh a d'athraigh tú",
+"tog-minordefault" => "Cuir marc mionathraithe ar gach athrú, mar réamhshocrú",
+"tog-previewontop" => "Cuir an réamhthaispeántas os cionn an athrúbhosca, agus ná taobh thíos de",
+"tog-nocache" => "Ciorraigh an taisce leathanaigh",
+
 # Dates
 #
 'sunday' => 'Domhnach',
@@ -1194,11 +1195,6 @@ class LanguageGa extends LanguageUtf8 {
     function getDateFormats() {
         global $wgDateFormatsGa;
         return $wgDateFormatsGa;
-    }
-
-    function getUserToggles() {
-        global $wgUserTogglesGa;
-        return $wgUserTogglesGa;
     }
 
     function getValidSpecialPages()
