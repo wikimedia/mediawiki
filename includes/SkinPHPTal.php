@@ -148,7 +148,7 @@
 			$tpl->setRef( "userjs", $this->userjs);
 			$tpl->setRef( "userjsprev", $this->userjsprev);
 			if($this->loggedin) {
-				$tpl->set( "jsvarurl", $this->makeUrl('-','action=raw&gen=js&smaxage=0') );
+				$tpl->set( "jsvarurl", $this->makeUrl('-','action=raw&smaxage=0&gen=js') );
 			} else {
 				$tpl->set( "jsvarurl", $this->makeUrl('-','action=raw&gen=js') );
 			}
@@ -538,12 +538,12 @@
 			if( $this->loggedin ) {
 				if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
 					# generated css
-					$this->usercss = '@import "'.$this->makeUrl('-','action=raw&gen=css&smaxage=0&maxage=0').'";'."\n";
+					$this->usercss = '@import "'.$this->makeUrl('-','action=raw&smaxage=0&maxage=0&gen=css').'";'."\n";
 					// css preview
 					$this->usercss .= $wgRequest->getText('wpTextbox1');
 				} else {
 					# generated css
-					$this->usercss .= '@import "'.$this->makeUrl('-','action=raw&gen=css&smaxage=0').'";'."\n";
+					$this->usercss .= '@import "'.$this->makeUrl('-','action=raw&smaxage=0&gen=css').'";'."\n";
 					# import user stylesheet
 					$this->usercss .= '@import "'.
 					$this->makeUrl($this->userpage.'/'.$this->skinname.'.css', 'action=raw&ctype=text/css').'";'."\n";
@@ -552,7 +552,7 @@
 					# XXX: additional security check/prompt?
 					$this->userjsprev = $wgRequest->getText('wpTextbox1');
 				} else {
-					$this->userjs = $this->makeUrl($this->userpage.'/'.$this->skinname.'.js', 'action=raw&ctype=text/javascript');
+					$this->userjs = $this->makeUrl($this->userpage.'/'.$this->skinname.'.js', 'action=raw&ctype=text/javascript&dontcountme=s');
 				}
 			}
 		}
