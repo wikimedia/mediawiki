@@ -1093,6 +1093,7 @@ his or her user preferences, the form below will send a single message.
 The e-mail address you entered in your user preferences will appear
 as the \"From\" address of the mail, so the recipient will be able
 to reply.",
+"usermailererror" => "Mail object returned error: ",
 "defemailsubject"  => "$wgSitename e-mail",				       
 "noemailtitle"	=> "No e-mail address",
 "noemailtext"	=> "This user has not specified a valid e-mail address,
