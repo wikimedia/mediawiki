@@ -538,7 +538,7 @@ class SearchEngine {
 			$t = str_replace('_', ' ', $res[1]);
 			$tfull = $wgLang->getNsText( $namespace ) . ":$t|$t";
 			if( $namespace == NS_MAIN )
-				$tfull = "$t";
+				$tfull = $t;
 			$distance = $res[0];
 			$closeness = (strlen( $search ) - $distance) / strlen( $search );
 			$percent = intval( $closeness * 100 ) . '%';
