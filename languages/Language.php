@@ -58,7 +58,8 @@ if(isset($wgExtraNamespaces)) {
 	'highlightbroken' => 1, 'stubthreshold' => 0,
 	'previewontop' => 1, 'editsection'=>1,'editsectiononrightclick'=>0, 'showtoc'=>1,
 	'showtoolbar' =>1,
-	'date' => 0, 'imagesize' => 2
+	'date' => 0, 'imagesize' => 2,
+	'fancysig' => 0,
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
@@ -127,6 +128,7 @@ define( 'MW_DATE_USER_FORMAT', true );
 	'previewontop',
 	'previewonfirst',
 	'nocache',
+	'fancysig'
 );
 
 /* private */ $wgBookstoreListEn = array(
@@ -241,6 +243,7 @@ global $wgRightsText;
 'tog-previewontop' => 'Show preview before edit box and not after it',
 'tog-previewonfirst' => 'Show preview on first edit',
 'tog-nocache' => 'Disable page caching',
+'tog-fancysig' => 'Raw signatures (without automatic link)',
 
 # dates
 'sunday' => 'Sunday',

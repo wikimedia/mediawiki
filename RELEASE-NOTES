@@ -156,6 +156,8 @@ If upgrading from an older release, see the file UPGRADING.
 * Fix fatal errors in LanguageLi.php
 * Undo overly bright, difficult to read colors in Cologne Blue
 * (bug 1162) fix five-tilde date inserter
+* Add raw signatures option for those who simply must have cute sigs
+
 
 === Caveats ===
 
