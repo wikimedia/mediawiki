@@ -1284,7 +1284,7 @@ to a previously blocked IP address or username.',
 'blocklogpage'	=> 'Block_log',
 'blocklogentry'	=> 'blocked "$1" with an expiry time of $2',
 'blocklogtext'	=> 'This is a log of user blocking and unblocking actions. Automatically
-blocked IP addresses are not be listed. See the [[Special:Ipblocklist|IP block list]] for
+blocked IP addresses are not listed. See the [[Special:Ipblocklist|IP block list]] for
 the list of currently operational bans and blocks.',
 'unblocklogentry'	=> 'unblocked "$1"',
 'range_block_disabled'	=> 'The sysop ability to create range blocks is disabled.',
