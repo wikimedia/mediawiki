@@ -861,6 +861,19 @@ class Parser
 					# empty token
 					$txt="";
 					break;
+				case "h": 
+					#heading- used to close all unbalanced bold or em tags in this section
+					$txt = '';
+					if( $state['em'] !== false and 
+					( $state['strong'] === false or $state['em'] > $state['strong'] ) )
+					{ 
+						$s .= '</em>';
+						$state['em'] = false;
+					}
+					if ( $state['strong'] !== false ) $txt .= '</strong>';
+					if ( $state['em'] !== false ) $txt .= '</em>';
+					$state['strong'] = $state['em'] = false;
+					break;
 				case "RFC ":
 					if ( $tagIsOpen ) {
 						$txt = "RFC ";
@@ -904,6 +917,19 @@ class Parser
 				$s .= $txt;
 			}
 		} #end while
+
+		# make 100% sure all strong and em tags are closed
+		# doBlockLevels often messes the last bit up though, but invalid nesting is better than unclosed tags
+		# tidy solves this though
+		if( $state['em'] !== false and 
+		( $state['strong'] === false or $state['em'] > $state['strong'] ) )
+		{ 
+			$s .= '</em>';
+			$state['em'] = false;
+		}
+		if ( $state['strong'] !== false ) $s .= '</strong>';
+		if ( $state['em'] !== false ) $s .= '</em>';
+
 		if ( count( $tokenStack ) != 0 )
 		{
 			# still objects on stack. opened [[ tag without closing ]] tag.

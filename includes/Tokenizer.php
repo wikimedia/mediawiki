@@ -147,7 +147,7 @@ class Tokenizer {
 						}
 						break;
 					case "\n": // for block levels, actually, only "----" is handled.
-					case "\r":
+					case "\r": // headings are detected to close any unbalanced em or strong tags in a section
 						if ( $this->continues( "----" ) )
 						{
 						     	$queueToken["type"] = "----";
@@ -160,6 +160,21 @@ class Tokenizer {
 								$this->mPos ++;
 							}
 							break 2;
+						} else if ( 
+							$this->continues( "<h" ) and (
+								$this->continues( "<h1" ) or
+								$this->continues( "<h2" ) or 
+								$this->continues( "<h3" ) or 
+								$this->continues( "<h4" ) or 
+								$this->continues( "<h5" ) or
+								$this->continues( "<h6" ) 
+							)
+						) { // heading
+							$queueToken["type"] = "h";
+							$queueToken["text"] = "";
+							$this->mQueuedToken[] = $queueToken;
+							$this->mPos ++;
+							break 2; // switch + while
 						}
 						break;
 					case "!": // French spacing rules have a space before exclamation
