@@ -98,7 +98,7 @@ class Article {
 			$sql = "SELECT " .
 			  "cur_text,cur_timestamp,cur_user,cur_counter,cur_restrictions,cur_touched " .
 			  "FROM cur WHERE cur_id={$id}";
-			$res = wfQuery( $sql, $fname );
+			$res = wfQuery( $sql, DB_READ, $fname );
 			if ( 0 == wfNumRows( $res ) ) { return; }
 
 			$s = wfFetchObject( $res );
@@ -128,7 +128,7 @@ class Article {
 					if ( 0 != $rid ) {
 						$sql = "SELECT cur_text,cur_timestamp,cur_user," .
 						  "cur_counter,cur_touched FROM cur WHERE cur_id={$rid}";
-						$res = wfQuery( $sql, $fname );
+						$res = wfQuery( $sql, DB_READ, $fname );
 
 						if ( 0 != wfNumRows( $res ) ) {
 							$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
@@ -149,7 +149,7 @@ class Article {
 		} else { # oldid set, retrieve historical version
 			$sql = "SELECT old_text,old_timestamp,old_user FROM old " .
 			  "WHERE old_id={$oldid}";
-			$res = wfQuery( $sql, $fname );
+			$res = wfQuery( $sql, DB_READ, $fname );
 			if ( 0 == wfNumRows( $res ) ) { return; }
 
 			$s = wfFetchObject( $res );
@@ -198,7 +198,7 @@ class Article {
 		$sql = "SELECT cur_user,cur_user_text,cur_timestamp," .
 		  "cur_comment,cur_minor_edit FROM cur WHERE " .
 		  "cur_id=" . $this->getID();
-		$res = wfQuery( $sql, "Article::loadLastEdit" );
+		$res = wfQuery( $sql, DB_READ, "Article::loadLastEdit" );
 
 		if ( wfNumRows( $res ) > 0 ) {
 			$s = wfFetchObject( $res );
@@ -319,7 +319,7 @@ class Article {
 		  $wgUser->getID() . "', '{$now}', " .
 		  ( $isminor ? 1 : 0 ) . ", 0, '', '" .
 		  wfStrencode( $wgUser->getName() ) . "', $redir, 1, $rand, '{$now}', '{$won}')";
-		$res = wfQuery( $sql, $fname );
+		$res = wfQuery( $sql, DB_WRITE, $fname );
 
 		$newid = wfInsertId();
 		$this->mTitle->resetArticleID( $newid );
@@ -332,7 +332,7 @@ class Article {
 		  wfStrencode( $wgUser->getName() ) . "','" .
 		  wfStrencode( $summary ) . "',0,0," .
 		  ( $wgUser->isBot() ? 1 : 0 ) . ")";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 		if ($watchthis) { 		
 			if(!$this->mTitle->userIsWatching()) $this->watch(); 
 		} else {
@@ -381,7 +381,7 @@ class Article {
 
 		if( $wgDBtransactions ) {
 			$sql = "BEGIN";
-			wfQuery( $sql );
+			wfQuery( $sql, DB_WRITE );
 		}
 		$oldtext = $this->getContent( true );
 
@@ -399,7 +399,7 @@ class Article {
 			  "',cur_is_redirect={$redir}, cur_is_new=0, cur_touched='{$now}', inverse_timestamp='{$won}' " .
 			  "WHERE cur_id=" . $this->getID() .
 			  " AND cur_timestamp='" . $this->getTimestamp() . "'";
-			$res = wfQuery( $sql, $fname );
+			$res = wfQuery( $sql, DB_WRITE, $fname );
 			
 			if( wfAffectedRows() == 0 ) {
 				/* Belated edit conflict! Run away!! */
@@ -417,7 +417,7 @@ class Article {
 			  wfStrencode( $this->getUserText() ) . "', '" .
 			  $this->getTimestamp() . "', " . $me1 . ", '" .
 			  wfInvertTimestamp( $this->getTimestamp() ) . "')";
-			$res = wfQuery( $sql, $fname );
+			$res = wfQuery( $sql, DB_WRITE, $fname );
 			$oldid = wfInsertID( $res );
 
 			$sql = "INSERT INTO recentchanges (rc_timestamp,rc_cur_time," .
@@ -429,21 +429,21 @@ class Article {
 			  $this->getID() . "," . $wgUser->getID() . ",'" .
 			  wfStrencode( $wgUser->getName() ) . "','" .
 			  wfStrencode( $summary ) . "',0,{$oldid})";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 
 			$sql = "UPDATE recentchanges SET rc_this_oldid={$oldid} " .
 			  "WHERE rc_namespace=" . $this->mTitle->getNamespace() . " AND " .
 			  "rc_title='" . wfStrencode( $this->mTitle->getDBkey() ) . "' AND " .
 			  "rc_timestamp='" . $this->getTimestamp() . "'";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 
 			$sql = "UPDATE recentchanges SET rc_cur_time='{$now}' " .
 			  "WHERE rc_cur_id=" . $this->getID();
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 		}
 		if( $wgDBtransactions ) {
 			$sql = "COMMIT";
-			wfQuery( $sql );
+			wfQuery( $sql, DB_WRITE );
 		}
 		
 		if ($watchthis) { 
@@ -562,7 +562,7 @@ class Article {
 		  "WHERE old_namespace={$namespace} AND " .
 		  "old_title='" . wfStrencode( $this->mTitle->getDBkey() ) . "' " .
 		  "ORDER BY inverse_timestamp LIMIT $offset, $limit";
-		$res = wfQuery( $sql, "Article::history" );
+		$res = wfQuery( $sql, DB_READ, "Article::history" );
 
 		$revs = wfNumRows( $res );
 		if( $this->mTitle->getArticleID() == 0 ) {
@@ -617,7 +617,7 @@ class Article {
 		}
         $sql = "UPDATE cur SET cur_touched='" . wfTimestampNow() . "'," .
 			"cur_restrictions='{$limit}' WHERE cur_id={$id}";
-		wfQuery( $sql, "Article::protect" );
+		wfQuery( $sql, DB_WRITE, "Article::protect" );
 
 		$wgOut->redirect( wfLocalUrl( $this->mTitle->getPrefixedURL() ) );
 	}
@@ -656,7 +656,7 @@ class Article {
 		# and insert a warning if it does
 		# we select the text because it might be useful below
 		$sql="SELECT old_text FROM old WHERE old_namespace=0 and old_title='" . wfStrencode($this->mTitle->getPrefixedDBkey())."' ORDER BY inverse_timestamp LIMIT 1";
-		$res=wfQuery($sql,$fname);
+		$res=wfQuery($sql, DB_READ, $fname);
 		if( ($old=wfFetchObject($res)) && !$wpConfirm ) {
 			$skin=$wgUser->getSkin();
 			$wgOut->addHTML("<B>".wfMsg("historywarning"));
@@ -664,7 +664,7 @@ class Article {
 		}
 
 		$sql="SELECT cur_text FROM cur WHERE cur_namespace=0 and cur_title='" . wfStrencode($this->mTitle->getPrefixedDBkey())."'";
-		$res=wfQuery($sql,$fname);
+		$res=wfQuery($sql, DB_READ, $fname);
 		if( ($s=wfFetchObject($res))) {
 
 			# if this is a mini-text, we can paste part of it into the deletion reason
@@ -789,35 +789,35 @@ class Article {
 		  "ar_flags) SELECT cur_namespace,cur_title,cur_text,cur_comment," .
 		  "cur_user,cur_user_text,cur_timestamp,cur_minor_edit,0 FROM cur " .
 		  "WHERE cur_namespace={$ns} AND cur_title='{$t}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "INSERT INTO archive (ar_namespace,ar_title,ar_text," .
 		  "ar_comment,ar_user,ar_user_text,ar_timestamp,ar_minor_edit," .
 		  "ar_flags) SELECT old_namespace,old_title,old_text,old_comment," .
 		  "old_user,old_user_text,old_timestamp,old_minor_edit,old_flags " .
 		  "FROM old WHERE old_namespace={$ns} AND old_title='{$t}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		# Now that it's safely backed up, delete it
 
 		$sql = "DELETE FROM cur WHERE cur_namespace={$ns} AND " .
 		  "cur_title='{$t}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "DELETE FROM old WHERE old_namespace={$ns} AND " .
 		  "old_title='{$t}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 		
 		$sql = "DELETE FROM recentchanges WHERE rc_namespace={$ns} AND " .
 		  "rc_title='{$t}'";
-        wfQuery( $sql, $fname );
+        wfQuery( $sql, DB_WRITE, $fname );
 
 		# Finally, clean up the link tables
 
 		if ( 0 != $id ) {
 			$t = wfStrencode( $title->getPrefixedDBkey() );
 			$sql = "SELECT l_from FROM links WHERE l_to={$id}";
-			$res = wfQuery( $sql, $fname );
+			$res = wfQuery( $sql, DB_WRITE, $fname );
 
 			$sql = "INSERT INTO brokenlinks (bl_from,bl_to) VALUES ";
             $now = wfTimestampNow();
@@ -835,22 +835,22 @@ class Article {
 			}
 			$sql2 .= ")";
 			if ( ! $first ) {
-				wfQuery( $sql, $fname );
-				wfQuery( $sql2, $fname );
+				wfQuery( $sql, DB_WRITE, $fname );
+				wfQuery( $sql2, DB_WRITE, $fname );
 			}
 			wfFreeResult( $res );
 
 			$sql = "DELETE FROM links WHERE l_to={$id}";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 
 			$sql = "DELETE FROM links WHERE l_from='{$t}'";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 
 			$sql = "DELETE FROM imagelinks WHERE il_from='{$t}'";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 
 			$sql = "DELETE FROM brokenlinks WHERE bl_from={$id}";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 		}
 		
 		$log = new LogPage( wfMsg( "dellogpage" ), wfMsg( "dellogpagetext" ) );
@@ -878,7 +878,7 @@ class Article {
 		
 		# Get the last editor
 		$sql = "SELECT cur_id,cur_user,cur_user_text,cur_comment FROM cur WHERE cur_title='{$tt}' AND cur_namespace={$n}";
-		$res = wfQuery( $sql );
+		$res = wfQuery( $sql, DB_READ );
 		if( ($x = wfNumRows( $res )) != 1 ) {
 			# Something wrong
 			$wgOut->addHTML( wfMsg( "notanarticle" ) );
@@ -910,7 +910,7 @@ class Article {
 		WHERE old_namespace={$n} AND old_title='{$tt}'
 		AND (old_user <> {$uid} OR old_user_text <> '{$ut}')
 		ORDER BY inverse_timestamp LIMIT 1";
-		$res = wfQuery( $sql );
+		$res = wfQuery( $sql, DB_READ );
 		if( wfNumRows( $res ) != 1 ) {
 			# Something wrong
 			$wgOut->setPageTitle(wfMsg("rollbackfailed"));
@@ -959,7 +959,7 @@ class Article {
 		if ( 0 == mt_rand( 0, 999 ) ) {
 			$cutoff = wfUnix2Timestamp( time() - ( 7 * 86400 ) );
 			$sql = "DELETE FROM recentchanges WHERE rc_timestamp < '{$cutoff}'";
-			wfQuery( $sql );
+			wfQuery( $sql, DB_WRITE );
 		}
 		$id = $this->getID();
 		$title = $this->mTitle->getPrefixedDBkey();

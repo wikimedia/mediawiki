@@ -141,7 +141,7 @@ function update_passwords() {
     if ( ! ( "Y" == $resp{0} || "y" == $resp{0} ) ) { return; }
 
 	$sql = "SELECT user_id,user_password FROM user";
-	$source = wfQuery( $sql, fname );
+	$source = wfQuery( $sql, DB_READ, fname );
 
 	while ( $row = mysql_fetch_object( $source ) ) {
 		$id = $row->user_id;
@@ -150,7 +150,7 @@ function update_passwords() {
 
 		$sql = "UPDATE user SET user_password='{$newpass}' " .
 		  "WHERE user_id={$id}";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 	}
 }
 
@@ -173,7 +173,7 @@ function alter_ipblocks() {
 
 function field_exists( $table, $field ) {
 	$fname = "Update script: field_exists";
-	$res = wfQuery( "DESCRIBE $table", $fname );
+	$res = wfQuery( "DESCRIBE $table", DB_READ, $fname );
 	$found = false;
 	
 	while ( $row = wfFetchObject( $res ) ) {

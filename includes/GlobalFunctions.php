@@ -185,7 +185,7 @@ function wfMsg( $key )
 		$dbKey = $title->getDBkey();
 		$ns = $title->getNamespace();
 		$sql = "SELECT cur_text FROM cur WHERE cur_namespace=$ns AND cur_title='$dbKey'";
-		$res = wfQuery( $sql, $fname );
+		$res = wfQuery( $sql, DB_READ, $fname );
 		if( ( $s = wfFetchObject( $res ) ) and ( $s->cur_text != "" ) ) {
 			$message = $s->cur_text;
 			# filter out a comment at the top if there is one
@@ -336,7 +336,7 @@ function wfNumberOfArticles()
 
 	$sql = "SELECT ss_total_views, ss_total_edits, ss_good_articles " .
 	  "FROM site_stats WHERE ss_row_id=1";
-	$res = wfQuery( $sql, "wfLoadSiteStats" );
+	$res = wfQuery( $sql, DB_READ, "wfLoadSiteStats" );
 
 	if ( 0 == wfNumRows( $res ) ) { return; }
 	else {
@@ -412,7 +412,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 
 	$sql = "SELECT img_name,img_size,img_timestamp,img_description,img_user," .
 	  "img_user_text FROM image WHERE img_name='" . wfStrencode( $name ) . "'";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 	$now = wfTimestampNow();
 	$won = wfInvertTimestamp( $now );
@@ -431,12 +431,12 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 		  wfStrencode( $name ) . "',{$size},'{$now}','" .
 		  wfStrencode( $desc ) . "', '" . $wgUser->getID() .
 		  "', '" . wfStrencode( $wgUser->getName() ) . "')";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "SELECT cur_id,cur_text FROM cur WHERE cur_namespace=" .
 		  Namespace::getImage() . " AND cur_title='" .
 		  wfStrencode( $name ) . "'";
-		$res = wfQuery( $sql, $fname );
+		$res = wfQuery( $sql, DB_READ, $fname );
 		if ( 0 == wfNumRows( $res ) ) {
             $common =
 			  Namespace::getImage() . ",'" .
@@ -449,12 +449,12 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 			  "cur_text,inverse_timestamp,cur_touched) VALUES (" .
 			  $common .
 			  ",'" . wfStrencode( $textdesc ) . "','{$won}','{$now}')";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 			$id = wfInsertId() or 0; # We should throw an error instead
 			$sql = "INSERT INTO recentchanges (rc_namespace,rc_title,
 				rc_comment,rc_user,rc_user_text,rc_timestamp,rc_new,
 				rc_cur_id,rc_cur_time) VALUES ({$common},{$id},'{$now}')";
-            wfQuery( $sql, $fname );
+            wfQuery( $sql, DB_WRITE, $fname );
 			$u = new SearchUpdate( $id, $name, $desc );
 			$u->doUpdate();
 		}
@@ -469,7 +469,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 		  wfStrencode( $s->img_description ) . "','" .
 		  wfStrencode( $s->img_user ) . "','" .
 		  wfStrencode( $s->img_user_text) . "')";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "UPDATE image SET img_size={$size}," .
 		  "img_timestamp='" . wfTimestampNow() . "',img_user='" .
@@ -477,12 +477,12 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 		  wfStrencode( $wgUser->getName() ) . "', img_description='" .
 		  wfStrencode( $desc ) . "' WHERE img_name='" .
 		  wfStrencode( $name ) . "'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 		
 		$sql = "UPDATE cur SET cur_touched='{$now}' WHERE cur_namespace=" .
 		  Namespace::getImage() . " AND cur_title='" .
 		  wfStrencode( $name ) . "'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 	}
 
 	$log = new LogPage( wfMsg( "uploadlogpage" ), wfMsg( "uploadlogpagetext" ) );
