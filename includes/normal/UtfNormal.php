@@ -217,10 +217,12 @@ class UtfNormal {
 			}
 			if( $n < 0x09 ) {
 				$out .= UTF8_REPLACEMENT;
-			} elseif( $n < 0x0b ) {
+			} elseif( $n == 0x0a ) {
 				$out .= $c;
-			} elseif( $n == 0x0c ) {
-				# Strip \r
+			} elseif( $n < 0x0d ) {
+				$out .= UTF8_REPLACEMENT;
+			} elseif( $n == 0x0d ) {
+				# Strip \r silently
 			} elseif( $n < 0x20 ) {
 				$out .= UTF8_REPLACEMENT;
 			} elseif( $n < 0x80 ) {
