@@ -2045,7 +2045,7 @@ class Language {
 	}
 	
 	function time( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false ) {
-		global $wgUser;
+		global $wgUser, $wgAmericanDates;
 		$ts=wfTimestamp(TS_MW,$ts);
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
@@ -2065,7 +2065,7 @@ class Language {
 	}
 	
 	function timeanddate( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false, $dateandtime = false) {
-		global $wgUser;
+		global $wgUser, $wgAmericanDates;
 		$ts=wfTimestamp(TS_MW,$ts);
 
 		if ( $format ) {
