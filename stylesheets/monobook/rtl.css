@@ -167,3 +167,10 @@ li#pt-login {
 #footer {
     clear: both;
 }
+/* js pref toc */
+#preftoc { float: right; }
+#prefcontrol { float: right; }
+fieldset.operaprefsection { 
+    margin-right: 15em;
+    margin-left: 0;
+}
