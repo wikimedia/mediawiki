@@ -126,7 +126,6 @@ class LinkCache {
 			$this->addBadLink( $s->bl_to );
 		}
 		
-		wfDebug("preFill dbkeyfrom=$dbkeyfrom\n");
 		$this->mOldBadLinks = $this->mBadLinks;
 		$this->mOldGoodLinks = $this->mGoodLinks;
 		$this->mPreFilled = true;
@@ -190,17 +189,8 @@ class LinkCache {
 			default: # LINKCACHE_IMAGE
 				return false;		
 		}
-		wfDebug( "which = $which\n" );
-		wfDebug( '$old = ' . implode(", ", $old) . "\n" );
-		wfDebug( '$cur = ' . implode(", ", $cur) . "\n" );
-		wfDebug( '$del = ' . implode(", ", $del) . "\n" );
-		wfDebug( '$add = ' . implode(", ", $add) . "\n" );
-
-		# Coefficients here (1,1,3,1) could probably be put in a global object
-		$timeDumb = count( $old ) + count( $cur );
-		$timeIncr = count( $del ) * 3 + count( $new );
 		
-		return $timeIncr < $timeDumb;
+		return true;
 	}
 
 	# Clears cache but leaves old preFill copies alone

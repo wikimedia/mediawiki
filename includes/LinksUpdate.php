@@ -40,15 +40,13 @@ class LinksUpdate {
 
 		if ( $wgLinkCache->incrementalSetup( LINKCACHE_GOOD, $del, $add ) ) {
 			# Delete where necessary
-			$baseSql = "DELETE FROM links WHERE l_from='{$this->mTitleEnc}'";
-			foreach ($del as $title => $id ) {
-				wfDebug( "Incremental deletion  from {$this->mTitleEnc} to $title\n" );
-				$sql = $baseSql . " AND l_to={$id}";
+			if ( count( $del ) ) {
+				$sql = "DELETE FROM links WHERE l_from='{$this->mTitleEnc}' AND l_to IN(".
+					implode( ",", $del ) . ")";
 				wfQuery( $sql, $fname );
 			}
 		} else {
 			# Delete everything
-			wfDebug( "Complete deletion from {$this->mTitleEnc}\n" );
 			$sql = "DELETE FROM links WHERE l_from='{$this->mTitleEnc}'";
 			wfQuery( $sql, $fname );
 			
@@ -62,7 +60,6 @@ class LinksUpdate {
 			$sql = "INSERT INTO links (l_from,l_to) VALUES ";
 			$first = true;
 			foreach( $add as $lt => $lid ) {
-				wfDebug( "Inserting from {$this->mTitleEnc} to $lt\n" );
 				
 				if ( ! $first ) { $sql .= ","; }
 				$first = false;
@@ -70,16 +67,18 @@ class LinksUpdate {
 				$sql .= "('{$this->mTitleEnc}',{$lid})";
 			}
 		}
-		if ( "" != $sql ) { wfQuery( $sql, $fname ); }
+		if ( "" != $sql ) { 
+			wfQuery( $sql, $fname ); 
+		}
 
 		#------------------------------------------------------------------------------
 		# Bad links
 
 		if ( $wgLinkCache->incrementalSetup( LINKCACHE_BAD, $del, $add ) ) {
 			# Delete where necessary
-			$baseSql = "DELETE FROM brokenlinks WHERE bl_from={$this->mId}";
-			foreach ( $del as $title ) {
-				$sql = $baseSql . " AND bl_to={$title}";
+			if ( count( $del ) ) {
+				$sql = "DELETE FROM brokenlinks WHERE bl_from={$this->mId} AND bl_to IN('" . 	
+					implode( "','", $del ) . "')";
 				wfQuery( $sql, $fname );
 			}
 		} else {
@@ -104,25 +103,17 @@ class LinksUpdate {
 				$sql .= "({$this->mId},'{$blt}')";
 			}
 		}
-		if ( "" != $sql ) { wfQuery( $sql, $fname ); }
+		if ( "" != $sql ) { 
+			wfQuery( $sql, $fname );
+		}
 
 		#------------------------------------------------------------------------------
 		# Image links
-		if ( $wgLinkCache->incrementalSetup( LINKCACHE_IMAGE, $del, $add ) ) {
-			# Delete where necessary
-			$sql = "DELETE FROM imagelinks WHERE il_from='{$this->mTitleEnc}'";
-			foreach ($del as $title ) {
-				$sql = $baseSql . " AND il_to={$title}";
-				wfQuery( $sql, $fname );
-			}
-		} else {
-			# Delete all
-			$sql = "DELETE FROM imagelinks WHERE il_from='{$this->mTitleEnc}'";
-			wfQuery( $sql, $fname );
-			
-			# Get addition list
-			$add = $wgLinkCache->getImageLinks();
-		}
+		$sql = "DELETE FROM imagelinks WHERE il_from='{$this->mTitleEnc}'";
+		wfQuery( $sql, $fname );
+		
+		# Get addition list
+		$add = $wgLinkCache->getImageLinks();
 		
 		# Do the insertion
 		$sql = "";
