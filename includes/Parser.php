@@ -128,7 +128,7 @@ class Parser
 	function clearState() {
 		$this->mOutput = new ParserOutput;
 		$this->mAutonumber = 0;
-		$this->mLastSection = "";
+		$this->mLastSection = '';
 		$this->mDTopen = false;
 		$this->mVariables = false;
 		$this->mIncludeCount = array();
@@ -142,6 +142,11 @@ class Parser
 	 * to internalParse() which does all the real work.
 	 *
 	 * @access private
+	 * @param string $text Text we want to parse
+	 * @param Title &$title A title object
+	 * @param array $options
+	 * @param boolean $linestart
+	 * @param boolean $clearState
 	 * @return ParserOutput a ParserOutput
 	 */
 	function parse( $text, &$title, $options, $linestart = true, $clearState = true ) {
@@ -173,7 +178,7 @@ class Parser
 				# only if there is something before the space
 				'/(.) (?=\\?|:|;|!|\\302\\273)/i' => '\\1&nbsp;\\2',
 				# french spaces, Guillemet-right
-				"/(\\302\\253) /i"=>"\\1&nbsp;",
+				'/(\\302\\253) /i' => '\\1&nbsp;',
 				'/<hr *>/i' => '<hr />',
 				'/<br *>/i' => '<br />',
 				'/<center *>/i' => '<div class="center">',
@@ -1120,7 +1125,6 @@ class Parser
 	 *
 	 * @access private
 	 */
-
 	function replaceInternalLinks( $s ) {
 		global $wgLang, $wgContLang, $wgLinkCache;
 		global $wgDisableLangConversion;
@@ -2378,9 +2382,12 @@ class Parser
 	 *	
 	 * It loops through all headlines, collects the necessary data, then splits up the
 	 * string and re-inserts the newly formatted headlines.
+	 * 
+	 * @param string $text
+	 * @param boolean $isMain
 	 * @access private
 	 */
-	/* private */ function formatHeadings( $text, $isMain=true ) {
+	function formatHeadings( $text, $isMain=true ) {
 		global $wgInputEncoding, $wgMaxTocLevel, $wgContLang, $wgLinkHolders, $wgInterwikiLinkHolders;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
@@ -3270,14 +3277,17 @@ class ParserOptions
 
 	function setSkin( &$x ) { $this->mSkin =& $x; }
 
-	# Get parser options
-	/* static */ function newFromUser( &$user ) {
+	/**
+	 * Get parser options
+	 * @static
+	 */
+	function newFromUser( &$user ) {
 		$popts = new ParserOptions;
 		$popts->initialiseFromUser( $user );
 		return $popts;
 	}
 
-	# Get user options
+	/** Get user options */
 	function initialiseFromUser( &$userInput ) {
 		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
 		$fname = 'ParserOptions::initialiseFromUser';
@@ -3303,8 +3313,6 @@ class ParserOptions
 		$this->mShowToc = $user->getOption( 'showtoc' );
 		wfProfileOut( $fname );
 	}
-
-
 }
 
 /**
@@ -3350,6 +3358,13 @@ function wfLoadSiteStats() {
 	}
 }
 
+/**
+ * Escape html tags
+ * Basicly replacing " > and < with HTML entities ( &quot;, &gt;, &lt;)
+ *  
+ * @param string $in Text that might contain HTML tags
+ * @return string Escaped string
+ */
 function wfEscapeHTMLTagsOnly( $in ) {
 	return str_replace(
 		array( '"', '>', '<' ),
