@@ -2295,7 +2295,7 @@ class Article {
 			if ($exists > 0) {
 				$cur_author = $dbr->selectField( 'cur', 'cur_user_text', $cur_clause, $fname,
 					$this->getSelectOptions() );
-				$authors = $dbr->selectField( 'cur', 'COUNT(DISTINCT old_user_text)',
+				$authors = $dbr->selectField( 'old', 'COUNT(DISTINCT old_user_text)',
 					$old_clause + array( 'old_user_text<>' . $dbr->addQuotes( $cur_author ) ),
 					$fname, $this->getSelectOptions() );
 
