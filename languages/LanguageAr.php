@@ -874,8 +874,8 @@ require_once("LanguageUtf8.php");
 		"protectlogpage" => "Protection_log",
 		"protectlogtext" => "Below is a list of page locks/unlocks.
 		See [[{{ns:4}}:Protected page]] for more information.",
-		"protectedarticle" => "protected [[$1]]",
-		"unprotectedarticle" => "unprotected [[$1]]",
+		"protectedarticle" => "protected [[:$1]]",
+		"unprotectedarticle" => "unprotected [[:$1]]",
 		"protectsub" =>"(Protecting \"$1\")",
 		"confirmprotecttext" => "Do you really want to protect this page?",
 		"confirmprotect" => "Confirm protection",

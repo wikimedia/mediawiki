@@ -916,8 +916,8 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 "protectlogpage" => "سیاهه‌ی_محافظت",
 "protectlogtext" => "در زیر فهرست قفل کردن‌ها/ازقفل‌درآوردن‌های صفحات آمده است.
 برای اطلاعات بیشتر به [[ویکی‌پدیا:صفحه‌ی محافظت‌شده]] مراجعه کنید.",
-"protectedarticle" => "[[$1]] محافظت شد",
-"unprotectedarticle" => "[[$1]] از محافظت در آمد",
+"protectedarticle" => "[[:$1]] محافظت شد",
+"unprotectedarticle" => "[[:$1]] از محافظت در آمد",
 
 # Undelete
 "undelete" => "احیای صفحه‌ی حذف شده",

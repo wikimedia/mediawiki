@@ -863,8 +863,8 @@ Ultima editare a fost făcută de către [[Utilizator:$3|$3]] ([[Discuţie utili
 "protectlogtext" => "Dedesubt găsiţi lista de blocări/deblocări ale paginilor.
 Vezi [[$wgMetaNamespace:Pagină protejată]] pentru mai multe informaţii.",
 "historywarning" => "Atenţie! Pagina pe care o ştergeţi are istorie: ",
-"protectedarticle" => "protejat [[$1]]",
-"unprotectedarticle" => "deprotejat [[$1]]",
+"protectedarticle" => "protejat [[:$1]]",
+"unprotectedarticle" => "deprotejat [[:$1]]",
 
 # Undelete
 "undelete" => "Recuperează pagina ştearsă",

@@ -941,8 +941,8 @@ Den seneste redigering er foretaget af [[Bruger:$3|$3]] ([[Bruger diskussion:$3|
 "protectlogpage" => "Liste_over_beskyttede_sider",
 "protectlogtext" => "Herunder er en liste over sider der er blevet beskyttet/har fået fjernet beskyttelsen.
 Se [[Wikipedia:Beskyttet side]] for mere information.",
-"protectedarticle" => "beskyttet [[$1]]",
-"unprotectedarticle" => "fjernet beskyttelse [[$1]]",
+"protectedarticle" => "beskyttet [[:$1]]",
+"unprotectedarticle" => "fjernet beskyttelse [[:$1]]",
 
 # Undelete
 "undelete" => "Gendan en slettet side",
