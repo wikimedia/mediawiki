@@ -401,7 +401,7 @@ class Title {
 	#
 	/* private */ function secureAndSplit()
 	{
-		global $wgLang, $wgLocalInterwiki;
+		global $wgLang, $wgLocalInterwiki, $wgCapitalLinks;
 		$fname = "Title::secureAndSplit";
  		wfProfileIn( $fname );
 		
@@ -486,7 +486,9 @@ class Title {
 			return false;
 		}
 
-		if( $this->mInterwiki == "") $t = $wgLang->ucfirst( $r );
+		if( $wgCapitalLinks && $this->mInterwiki == "") {
+			$t = $wgLang->ucfirst( $r );
+		}
 		$this->mDbkeyform = $t;
 		$this->mUrlform = wfUrlencode( $t );
 		$this->mTextform = str_replace( "_", " ", $t );

@@ -1,5 +1,8 @@
 // Wikipedia JavaScript support functions
 
+// Un-trap us from framesets
+if( window.top != window ) window.top.location = window.location;
+
 // for enhanced RecentChanges
 function toggleVisibility( _levelId, _otherId, _linkId) {
 	var thisLevel = document.getElementById( _levelId );
@@ -85,7 +88,7 @@ function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
 	tagOpen=escapeQuotes(tagOpen);
 	tagClose=escapeQuotes(tagClose);
 	sampleText=escapeQuotes(sampleText);
-	document.write("<a href=\"#\" onclick=\"javascript:insertTags");
+	document.write("<a href=\"javascript:insertTags");
 	document.write("('"+tagOpen+"','"+tagClose+"','"+sampleText+"');\">");
 	document.write("<img width=\"23\" height=\"22\" src=\""+imageFile+"\" border=\"0\" ALT=\""+speedTip+"\" TITLE=\""+speedTip+"\">");
 	document.write("</a>");
@@ -96,22 +99,30 @@ function addInfobox(infoText) {
 
 	// if no support for changing selection, add a small copy & paste field
 	var clientPC = navigator.userAgent.toLowerCase(); // Get client info
-	var is_nav = ((clientPC.indexOf('mozilla')!=-1) && (clientPC.indexOf('spoofer')==-1)
-                && (clientPC.indexOf('compatible') == -1) && (clientPC.indexOf('opera')==-1)
-                && (clientPC.indexOf('webtv')==-1) && (clientPC.indexOf('hotjava')==-1)
-		&& (clientPC.indexOf('khtml')==-1));
+	var is_nav = ((clientPC.indexOf('gecko')!=-1) && (clientPC.indexOf('spoofer')==-1)
+                && (clientPC.indexOf('khtml') == -1));
  	if(!document.selection && !is_nav) {
+ 		infoText=escapeQuotesHTML(infoText);
 	 	document.write("<form name='infoform' id='infoform'>"+
-			"<input size=80 id='infobox' name='infobox' value='"+
-			infoText+"' READONLY></form>");
+			"<input size=80 id='infobox' name='infobox' value=\""+
+			infoText+"\" READONLY></form>");
  	}
 
 }
 
 function escapeQuotes(text) {
+	var re=new RegExp("'","g");
+	text=text.replace(re,"\\'");
+	re=new RegExp('"',"g");
+	text=text.replace(re,'&quot;');
+	re=new RegExp("\\n","g");
+	text=text.replace(re,"\\n");
+	return text;
+}
 
-	text=text.replace(/'/g,"\\'");
-	text=text.replace(/\n/g,"\\n");
+function escapeQuotesHTML(text) {
+	var re=new RegExp('"',"g");
+	text=text.replace(re,"&quot;");
 	return text;
 }
 
@@ -132,10 +143,11 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		} else {
 			document.selection.createRange().text = tagOpen + theSelection + tagClose;
 		}
-	// Mozilla
+	// Mozilla -- disabled because it induces a scrolling bug which makes it virtually unusable
 	} else if(txtarea.selectionStart || txtarea.selectionStart == '0') {
  		var startPos = txtarea.selectionStart;
 		var endPos = txtarea.selectionEnd;
+		var scrollTop=txtarea.scrollTop;
 		var myText = (txtarea.value).substring(startPos, endPos);
 		if(!myText) { myText=sampleText;}
 		if(myText.charAt(myText.length - 1) == " "){ // exclude ending space char, if any
@@ -148,13 +160,15 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		var cPos=startPos+(tagOpen.length+myText.length+tagClose.length);
 		txtarea.selectionStart=cPos;
 		txtarea.selectionEnd=cPos;
+		txtarea.scrollTop=scrollTop;
 	// All others
 	} else {
 		// Append at the end: Some people find that annoying
 		//txtarea.value += tagOpen + sampleText + tagClose;
 		//txtarea.focus();
-		tagOpen=tagOpen.replace(/\n/g,"");
-		tagClose=tagClose.replace(/\n/g,"");
+		var re=new RegExp("\\n","g");
+		tagOpen=tagOpen.replace(re,"");
+		tagClose=tagClose.replace(re,"");
 		document.infoform.infobox.value=tagOpen+sampleText+tagClose;
 		txtarea.focus();
 	}

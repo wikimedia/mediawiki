@@ -20,12 +20,17 @@ if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
 
 
 /* collect the originating ips */
-$wgIP = getenv("REMOTE_ADDR");
 if( $wgUseSquid && isset( $_SERVER["HTTP_X_FORWARDED_FOR"] ) ) {
 	# If the web server is behind a reverse proxy, we need to find
 	# out where our requests are really coming from.
-	$wgIP = trim( preg_replace( "/^(.*, )?([^,]+)$/", "$2",
-		$_SERVER['HTTP_X_FORWARDED_FOR'] ) );
+	$hopips = split(', ', $_SERVER['HTTP_X_FORWARDED_FOR'] );
+
+	while(in_array(trim(end($hopips)), $wgSquidServers)){
+		array_pop($hopips);
+	}
+	$wgIP = trim(end($hopips));
+} else {
+	$wgIP = getenv("REMOTE_ADDR");
 }
 
 $fname = "Setup.php";
@@ -64,14 +69,14 @@ global $wgBlockCache, $wgParserCache, $wgParser;
 # Useful debug output
 if ( function_exists( "getallheaders" ) ) {
 	wfDebug( "\nStart request\n" );
-	wfDebug( "$REQUEST_METHOD $REQUEST_URI\n" );
+	wfDebug( "{$_SERVER['REQUEST_METHOD']} {$_SERVER['REQUEST_URI']}\n" );
 	$headers = getallheaders();
 	foreach ($headers as $name => $value) {
 		wfDebug( "$name: $value\n" );
 	}
 	wfDebug( "\n" );
 } else {
-	wfDebug( "$REQUEST_METHOD $REQUEST_URI\n" );
+	wfDebug( "{$_SERVER['REQUEST_METHOD']} {$_SERVER['REQUEST_URI']}\n" );
 }
 
 
@@ -148,7 +153,7 @@ if ( $wgUseDynamicDates ) {
 	$wgDateFormatter = new DateFormatter;
 }
 
-if( !$wgCommandLineMode && isset( $_COOKIE[ini_get("session.name")] )  ) {
+if( !$wgCommandLineMode && ( isset( $_COOKIE[ini_get("session.name")] ) || isset( $_COOKIE["{$wgDBname}Password"] ) ) ) {
 	User::SetupSession();
 }
 
@@ -160,6 +165,9 @@ $wgMagicWords = array();
 $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
 $wgParserCache = new ParserCache();
 $wgParser = new Parser();
+
+# Disable known broken features
+$wgUseCategoryMagic = false;
 
 wfProfileOut( "$fname-misc" );
 wfProfileOut( $fname );

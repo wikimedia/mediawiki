@@ -15,7 +15,7 @@ lastY=10;YOffset=0;staticYOffset=10;refreshMS=25;
 	function setup(eID){
 		bw=new checkBrowser;
 		if(bw.ns4||bw.opera){MM_reloadPage(true);}
-		var noFix=bw.ie4||bw.ns4||(bw.ns6&&bw.mac)||(bw.macie50)?true:false;
+		var noFix=bw.ie4||bw.ns4||(bw.macie50)?true:false;
 		if (window.attachEvent){fix_bind()}
 		else if(noFix){	
 			if(bw.ns6){document.getElementById(eID).style.position="absolute";}

@@ -118,6 +118,7 @@ class EditPage {
 				$wgOut->readOnlyPage();
 				return;
 			}
+			$wpSummary=trim($wpSummary);
 			# If article is new, insert it.
 
 			$aid = $this->mTitle->getArticleID();
@@ -168,6 +169,7 @@ class EditPage {
 			$wpEdittime = $this->mArticle->getTimestamp();
 			$wpTextbox1 = $this->mArticle->getContent(true);
 			$wpSummary = "";
+			$this->proxyCheck();
 		}
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		
@@ -191,6 +193,14 @@ class EditPage {
 				} else {
 					$s.=wfMsg("sectionedit");
 				}
+				if(!$wpPreview) {
+
+					$sectitle=preg_match("/^=+(.*?)=+/mi",
+				  	$wpTextbox1,
+				  	$matches);
+					if($matches[1]) { $wpSummary =
+                                         "=". trim($matches[1])."= "; }
+				}				
 			}
 			$wgOut->setPageTitle( $s );
 			if ( $oldid ) {
@@ -381,7 +391,48 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		$wgOut->returnToMain( false );
 	}
 
+	# Forks processes to scan the originating IP for an open proxy server
+	# MemCached can be used to skip IPs that have already been scanned
+	function proxyCheck()
+	{
+		global $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath;
+		global $wgIP, $wgUseMemCached, $wgMemc, $wgDBname, $wgProxyMemcExpiry;
+		global $wgServer, $wgOut;
 
+		if ( !$wgBlockOpenProxies ) {
+			return;
+		}
+		
+		# Get MemCached key
+		$skip = false;
+		if ( $wgUseMemCached ) {
+			$mcKey = "$wgDBname:proxy:ip:$wgIP";
+			$mcValue = $wgMemc->get( $mcKey );
+			if ( $mcValue ) {
+				$skip = true;
+			}
+		}
+
+		# Fork the processes
+		if ( !$skip ) {
+			$title = Title::makeTitle( NS_SPECIAL, "Blockme" );
+			$url = wfFullUrl( $title->getPrefixedURL(), "ip=$wgIP" );
+			foreach ( $wgProxyPorts as $port ) {
+				$params = implode( " ", array(
+				  escapeshellarg( $wgProxyScriptPath ),
+				  escapeshellarg( $wgIP ),
+				  escapeshellarg( $port ),
+				  escapeshellarg( $url )
+			  ));
+			exec( "php $params &>/dev/null &" );
+
+			}
+			# Set MemCached key
+			if ( $wgUseMemCached ) {
+				$wgMemc->set( $mcKey, 1, $wgProxyMemcExpiry );
+			}
+		}
+	}
 }
 
 ?>
