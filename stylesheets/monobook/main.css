@@ -202,6 +202,7 @@ textarea {
     background-color: white;
     width: 98%;
     padding: 0.1em;
+    overflow: auto;
 }
 /* hide this from ie/mac and konq2.2 */
 @media All {
@@ -388,7 +389,6 @@ div.thumbnail-left div{
 }
 div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
     margin-top:3px; margin-bottom:3px;
-    position:relative;
     text-align: left;
 }
 div.thumbnail-right {
