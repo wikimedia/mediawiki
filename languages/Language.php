@@ -2050,10 +2050,15 @@ class Language {
 	# syntax of the markup:
 	# -{code1:text1;code2:text2;...}-  or
 	# -{text}- in which case no conversion should take place for text
-	function convert( $text ) {
-
+	function convert( $text , $isTitle=false) {
+		global $wgDisableLangConversion;
+		if($wgDisableLangConversion)
+			return $text; 
 		if(sizeof($this->getVariants())<2) 
 			return $text;
+		
+		if($isTitle)
+			return $this->convertTitle($text);
 
 		// no conversion if redirecting
 		if(substr($text,0,9) == "#REDIRECT") {
@@ -2114,7 +2119,13 @@ class Language {
 	function autoConvert($text, $toVariant=false) {
 		return $text;
 	}
-	
+
+	/* hook for converting the title, which may needs special treatment
+	*/
+	function convertTitle($text) {
+		return $text;
+	}
+
 	# returns a list of language variants for conversion.
 	# right now mainly used in the Chinese conversion
 	function getVariants() {
