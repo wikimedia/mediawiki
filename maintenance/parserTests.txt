@@ -12,8 +12,7 @@
 #	ill		add inter-language links
 #	subpage		enable subpages (disabled by default)
 #	title=[[XXX]]	run test using article title XXX
-#
-# Tests can be disabled with the '!!disabled' flag.
+#	disabled	do not run test
 #
 # For testing purposes, temporary articles can created:
 # !!article / NAMESPACE:TITLE / !!text / ARTICLE TEXT / !!endarticle
@@ -413,6 +412,15 @@ http://www.jpeg.org
 </p>
 !! end
 
+!! test
+External links: URL within URL (original bug 2)
+!! input
+[http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp]
+!! result
+<p><a href="http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp" class='external' title="http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp">[1]</a><span class='urlexpansion'> (<i>http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp</i>)</span>
+</p>
+!! end
+
 ###
 ### Quotes
 ###
@@ -690,6 +698,16 @@ Piped link to namespace
 !! end
 
 !! test
+Link containing }
+!! input
+[[Usually caused by a typo (oops}]]
+!! result
+<p>[[Usually caused by a typo (oops}]]
+</p>
+!! end
+
+
+!! test
 Plain link to URL
 !! input
 [[http://www.example.org]]
@@ -869,8 +887,9 @@ ISBN 0-306-40615-2
 !! end
 
 ###
-### Nonexistant template
-###
+### Templates
+####
+
 !! test
 Nonexistant template
 !! input
@@ -880,9 +899,6 @@ Nonexistant template
 </p>
 !! end
 
-###
-### Templates
-####
 !! article
 Template:test
 !! text
@@ -1000,6 +1016,60 @@ Template infinite loop
 </p>
 !! end
 
+
+!! article
+Template:table
+!! text
+{| 
+| 1 || 2
+|- 
+| 3 || 4
+|}
+!! endarticle
+
+!! test
+BUG 529: Template with table, not included at beginning of line
+!! input
+foo {{table}}
+!! result
+<p>foo 
+</p>
+<table >
+<tr >
+<td> 1 </td><td> 2
+</td></tr>
+<tr >
+<td> 3 </td><td> 4
+</td></tr></table>
+
+!! end
+
+!! test
+BUG 523: Template shouldn't eat newline (or add an extra one before table)
+!! input
+foo
+{{table}}
+!! result
+<p>foo
+</p>
+<table >
+<tr >
+<td> 1 </td><td> 2
+</td></tr>
+<tr >
+<td> 3 </td><td> 4
+</td></tr></table>
+
+!! end
+
+!! test
+BUG 41: Template parameters shown as broken links
+!! input
+{{{parameter}}}
+!! result
+<p>{{{parameter}}}
+</p>
+!! end
 
 ###
 ### Pre-save transform tests
@@ -1168,6 +1238,17 @@ Disabled subpages
 </p>
 !! end
 
+!! test
+BUG 561: {{/Subpage}}
+!! options
+title=[[Page]]
+!! input
+{{/Subpage}}
+!! result
+<p><a href="/index.php?title=Page/Subpage&amp;action=edit" class="new" title="Page/Subpage">Page/Subpage</a>
+</p>
+!! end
+
 ###
 ### Categories
 ###
@@ -1211,6 +1292,87 @@ ill
 es:Alimento fr:Nourriture zh:食品
 !! end
 
+###
+### Sections
+###
+!! test
+Basic section headings
+!! input
+== Headline 1 ==
+Some text
+
+==Headline 2==
+More
+===Smaller headline===
+Blah blah
+!! result
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Parser test script">edit</a>]</div><a name="Headline_1"></a><h2> Headline 1 </h2>
+<p>Some text
+</p>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Parser test script">edit</a>]</div><a name="Headline_2"></a><h2>Headline 2</h2>
+<p>More
+</p>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=3" title="Parser test script">edit</a>]</div><a name="Smaller_headline"></a><h3>Smaller headline</h3>
+<p>Blah blah
+</p>
+!! end
+
+!! test
+Section headings with TOC
+!! input
+== Headline 1 ==
+=== Subheadline 1 ===
+===== Skipping a level =====
+====== Skipping a level ======
+
+== Headline 2 ==
+Some text
+===Another headline===
+!! result
+<table border="0" id="toc"><tr id="toctitle"><td align="center">
+<b>Table of contents</b> <script type="text/javascript">showTocToggle("show","hide")</script></td></tr><tr id="tocinside"><td>
+<div class="tocline"><a href="#Headline_1">1 Headline 1</a><br /></div>
+<div class="tocindent">
+<p><a href="#Subheadline_1">1.1 Subheadline 1</a><br />
+</p>
+<div class="tocindent">
+<div class="tocindent">
+<p><a href="#Skipping_a_level">1.1.1 Skipping a level</a><br />
+</p>
+<div class="tocindent">
+<p><a href="#Skipping_a_level_2">1.1.1.1 Skipping a level</a><br />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="tocline"><a href="#Headline_2">2 Headline 2</a><br /></div>
+<div class="tocindent">
+<p><a href="#Another_headline">2.1 Another headline</a><br />
+</p>
+</div>
+</td></tr></table>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Parser test script">edit</a>]</div><a name="Headline_1"></a><h2> Headline 1 </h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Parser test script">edit</a>]</div><a name="Subheadline_1"></a><h3> Subheadline 1 </h3>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=3" title="Parser test script">edit</a>]</div><a name="Skipping_a_level"></a><h5> Skipping a level </h5>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=4" title="Parser test script">edit</a>]</div><a name="Skipping_a_level_2"></a><h6> Skipping a level </h6>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=5" title="Parser test script">edit</a>]</div><a name="Headline_2"></a><h2> Headline 2 </h2>
+<p>Some text
+</p>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=6" title="Parser test script">edit</a>]</div><a name="Another_headline"></a><h3>Another headline</h3>
+
+!! end
+
+!! test
+Resolving duplicate section names
+!! input
+== Foo bar ==
+==Foo bar==
+!! result
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Parser test script">edit</a>]</div><a name="Foo_bar"></a><h2> Foo bar </h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Parser test script">edit</a>]</div><a name="Foo_bar_2"></a><h2>Foo bar</h2>
+
+!! end
 
 TODO:
 more images
