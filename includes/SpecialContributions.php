@@ -149,7 +149,7 @@ function wfSpecialContributions( $par = '' ) {
 		$wgOut->addHTML( wfMsg ( 'val_user_validations', $val ) );
 	}
 
-	$wgOut->addHTML( "<br />{$sl} ($shm)</p>\n");
+	$wgOut->addHTML( "<br />{$sl} ($shm)\n");
 }
 
 
@@ -259,7 +259,7 @@ function ucDaysLink( $lim, $d ) {
 function namespaceForm ( $target, $hideminor, $namespace ) {
 	global $wgContLang, $wgScript;
 
-	$namespaceselect = '<form><select name="namespace">';
+	$namespaceselect = '<select name="namespace">';
 	$namespaceselect .= '<option value="" '.(is_null($namespace) ? ' selected="selected"' : '').'>'.wfMsg( 'all' ).'</option>';
 	$arr = $wgContLang->getNamespaces();
 	foreach( array_keys( $arr ) as $i ) {
