@@ -1,16 +1,18 @@
 <?php
+# $Id$
 
 function wfSpecialRandompage()
 {
-	global $wgOut, $wgTitle, $wgArticle;
+	global $wgOut, $wgTitle, $wgArticle, $wgIsMySQL;
 	$fname = "wfSpecialRandompage";
 
 	wfSeedRandom();
 	$rand = mt_rand() / mt_getrandmax();
 	# interpolation and sprintf() can muck up with locale-specific decimal separator
 	$randstr = number_format( $rand, 12, ".", "" );
+	$use_index=$wgIsMySQL?"USE INDEX (cur_random)":"";
 	$sqlget = "SELECT cur_id,cur_title
-		FROM cur USE INDEX (cur_random)
+		FROM cur $use_index
 		WHERE cur_namespace=0 AND cur_is_redirect=0
 		AND cur_random>$randstr
 		ORDER BY cur_random
