@@ -16,6 +16,7 @@ Major changes from 1.3.x:
 * 'Recentchanges Patrol' to mark new edits that haven't yet been viewed
 * Support for faster C++ diff module (WikiDiff extension)
 * More scary link caching modes
+* Old manually maintained log pages replaced with searchable Special:Log
 * ... and more!
 
 === Caveats ===

@@ -153,9 +153,8 @@ class IPBlockForm {
 		$ban->insert();
 
 		# Make log entry
-		$log = new LogPage( wfMsg( "blocklogpage" ), wfMsg( "blocklogtext" ) );
-		$action = wfMsg( "blocklogentry", $this->BlockAddress, $this->BlockExpiry );
-		$log->addEntry( $action, $this->BlockReason );
+		$log = new LogPage( 'block' );
+		$log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ), $this->BlockReason );
 
 		# Report to the user
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Blockip" );

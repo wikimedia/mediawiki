@@ -205,4 +205,16 @@ function do_image_name_unique_update() {
 		echo "ok\n";
 	}
 }
+
+function do_logging_update() {
+	global $wgDatabase;
+	if ( $wgDatabase->tableExists( 'logging' ) ) {
+		echo "...logging table already unique.\n";
+	} else {
+		echo "Creating logging table and adjusting recentchanges... ";
+		dbsource( "maintenance/archives/patch-logging.sql", $wgDatabase );
+		echo "ok\n";
+	}
+}
+
 ?>

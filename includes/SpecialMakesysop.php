@@ -194,11 +194,9 @@ class MakesysopForm {
 			$dbw->query($sql);
 			$wgMemc->delete( "$dbName:user:id:$id" );
 			
-			$bureaucratLog = wfMsg( "bureaucratlog" );
-			$action = wfMsg( "bureaucratlogentry", $this->mUser, implode( " ", $rightsNotation ) );
-			
-			$log = new LogPage( $bureaucratLog );
-			$log->addEntry( $action, "" );
+			$log = new LogPage( 'rights' );
+			$log->addEntry( 'rights', Title::makeTitle( NS_USER, $this->mUser ),
+				implode( " ", $rightsNotation ) );
 			
 			$this->showSuccess();
 		}

@@ -1,58 +1,38 @@
 <?php
 #$Id$
 #
-# Class to simplify the use of log pages
+# Copyright (C) 2002, 2004 Brion Vibber <brion@pobox.com>
+# http://www.mediawiki.org/
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or 
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+# http://www.gnu.org/copyleft/gpl.html
+
+# Class to simplify the use of log pages.
+# The logs are now kept in a table which is easier to manage and trim
+# than ever-growing wiki pages.
 
 class LogPage {
-	/* private */ var $mTitle, $mContent, $mContentLoaded, $mId, $mComment;
-	var $mUpdateRecentChanges ;
+	/* private */ var $type, $action, $comment;
+	var $updateRecentChanges = true;
 
-	function LogPage( $title, $defaulttext = "<ul>\n</ul>"  )
-	{
-		# For now, assume title is correct dbkey
-		# and log pages always go in Wikipedia namespace
-		$this->mTitle = str_replace( ' ', '_', $title );
-		$this->mId = 0;
-		$this->mUpdateRecentChanges = true ;
-		$this->mContentLoaded = false;
-		$this->getContent( $defaulttext );
+	function LogPage( $type ) {
+		# Type is one of 'block', 'protect', 'rights', 'delete', 'upload'
+		$this->type = $type;
 	}
 
-	function getContent( $defaulttext = "<ul>\n</ul>" )
-	{
-		$fname = 'LogPage::getContent';
-
-		$dbw =& wfGetDB( DB_MASTER );
-		$s = $dbw->getArray( 'cur', 
-			array( 'cur_id','cur_text','cur_timestamp' ),
-			array( 'cur_namespace' => Namespace::getWikipedia(), 'cur_title' => $this->mTitle ), 
-			$fname, 'FOR UPDATE' 
-		);
-
-		if( $s !== false ) {
-			$this->mId = $s->cur_id;
-			$this->mContent = $s->cur_text;
-			$this->mTimestamp = wfTimestamp(TS_MW,$s->cur_timestamp);
-		} else {
-			$this->mId = 0;
-			$this->mContent = $defaulttext;
-			$this->mTimestamp = wfTimestamp(TS_MW);
-		}
-		$this->mContentLoaded = true; # Well, sort of
-		
-		return $this->mContent;
-	}
-	
-	function getTimestamp()
-	{
-		if( !$this->mContentLoaded ) {
-			$this->getContent();
-		}
-		return $this->mTimestamp;
-	}
-
-	function saveContent()
-	{
+	function saveContent() {
 		if( wfReadOnly() ) return;
 
 		global $wgUser;
@@ -61,127 +41,62 @@ class LogPage {
 		$dbw =& wfGetDB( DB_MASTER );
 		$uid = $wgUser->getID();
 
-		if( !$this->mContentLoaded ) return false;
-		$this->mTimestamp = $now = wfTimestampNow();
-		$won = wfInvertTimestamp( $now );
-		if($this->mId == 0) {
-			$seqVal = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
-
-			# Note: this query will deadlock if another thread has called getContent(), 
-			# at least in MySQL 4.0.17 InnoDB
-			$dbw->insertArray( 'cur',
-				array(
-					'cur_id' => $seqVal,
-					'cur_timestamp' => $dbw->timestamp($now),
-					'cur_user' => $uid,
-					'cur_user_text' => $wgUser->getName(),
-					'cur_namespace' => NS_WIKIPEDIA,
-					'cur_title' => $this->mTitle, 
-					'cur_text' => $this->mContent,
-					'cur_comment' => $this->mComment,
-					'cur_restrictions' => 'sysop',
-					'inverse_timestamp' => $won,
-					'cur_touched' => $dbw->timestamp($now),
-				), $fname
-			);
-			$this->mId = $dbw->insertId();
-		} else {
-			$dbw->updateArray( 'cur',
-				array( /* SET */ 
-					'cur_timestamp' => $dbw->timestamp($now),
-					'cur_user' => $uid, 
-					'cur_user_text' => $wgUser->getName(),
-					'cur_text' => $this->mContent,
-					'cur_comment' => $this->mComment,
-					'cur_restrictions' => 'sysop', 
-					'inverse_timestamp' => $won,
-					'cur_touched' => $dbw->timestamp($now),
-				), array( /* WHERE */
-					'cur_id' => $this->mId
-				), $fname
-			);
-		}
+		$this->timestamp = $now = wfTimestampNow();
+		$dbw->insertArray( 'logging',
+			array(
+				'log_type' => $this->type,
+				'log_action' => $this->action,
+				'log_timestamp' => $dbw->timestamp( $now ),
+				'log_user' => $uid,
+				'log_namespace' => $this->target->getNamespace(),
+				'log_title' => $this->target->getDBkey(),
+				'log_comment' => $this->comment
+			), $fname
+		);
 		
 		# And update recentchanges
-		if ( $this->mUpdateRecentChanges ) {
-			$titleObj = Title::makeTitle( Namespace::getWikipedia(), $this->mTitle );
-			RecentChange::notifyLog( $now, $titleObj, $wgUser, $this->mComment );
+		if ( $this->updateRecentChanges ) {
+			$rcComment = $this->actionText;
+			if( '' != $this->comment ) {
+				$rcComment .= ': ' . $this->comment;
+			}
+			$titleObj = Title::makeTitle( NS_SPECIAL, 'Log/' . $this->type );
+			RecentChange::notifyLog( $now, $titleObj, $wgUser, $rcComment );
 		}
 		return true;
 	}
 
-	function addEntry( $action, $comment, $textaction = '' )
-	{
-		global $wgLang, $wgUser;
-
-		$comment_esc = wfEscapeWikiText( $comment );
-
-		$this->getContent();
-
-		$ut = $wgUser->getName();
-		$uid = $wgUser->getID();
-		if( $uid ) {
-			$ul = '[[' .
-			  $wgLang->getNsText( Namespace::getUser() ) .
-			  ":{$ut}|{$ut}]]";
+	/* static */ function actionText( $type, $action, $titleLink ) {
+		static $actions = array(
+			'block/block' => 'blocklogentry',
+			'block/unblock' => 'blocklogentry',
+			'protect/protect' => 'protectedarticle',
+			'protect/unprotect' => 'unprotectedarticle',
+			'rights/rights' => 'bureaucratlogentry',
+			'delete/delete' => 'deletedarticle',
+			'delete/restore' => 'undeletedarticle',
+			'upload/upload' => 'uploadedimage',
+			'upload/revert' => 'uploadedimage',
+		);
+		$key = "$type/$action";
+		if( isset( $actions[$key] ) ) {
+			return wfMsg( $actions[$key], $titleLink );
 		} else {
-			$ul = $ut;
+			wfDebug( "LogPage::actionText - unknown action $key\n" );
+			return "$action $titleLink";
 		}
-		
-		# Use the wiki-wide default date format instead of the user's setting
-		$d = $wgLang->timeanddate( wfTimestampNow(), false, MW_DATE_DEFAULT );
-
-		if( preg_match( "/^(.*?)<ul>(.*)$/sD", $this->mContent, $m ) ) {
-			$before = $m[1];
-			$after = $m[2];
-		} else {
-			$before = '';
-			$after = '';
-		}
-		
-		if($textaction)
-			$this->mComment = $textaction;
-		else
-			$this->mComment = $action;
-		
-		if ( '' == $comment ) {
-			$inline = '';
-		} else {
-			$inline = " <em>({$comment_esc})</em>";
-			# comment gets escaped again, so we use the unescaped version
-			$this->mComment .= ': '.$comment;
-		}
-		$this->mContent = "{$before}<ul><li>{$d} {$ul} {$action}{$inline}</li>\n{$after}";
-		
-		# TODO: automatic log rotation...
-		
-		return $this->saveContent();
 	}
 	
-	function replaceContent( $text, $comment = '' )
-	{
-		$this->mContent = $text;
-		$this->mComment = $comment;
-		$this->mTimestamp = wfTimestampNow();
-		return $this->saveContent();
-	}
-
-	function showAsDisabledPage( $rawhtml = true )
-	{
-		global $wgLang, $wgOut;
-		if( $wgOut->checkLastModified( $this->getTimestamp() ) ){
-			# Client cache fresh and headers sent, nothing more to do.
-			return;
-		}
-		$func = ( $rawhtml ? 'addHTML' : 'addWikiText' );
-		$wgOut->$func(
-			"<p>" . wfMsg( 'perfdisabled' ) . "</p>\n\n" .
-			"<p>" . wfMsg( 'perfdisabledsub', $wgLang->timeanddate( $this->getTimestamp() ) ) . "</p>\n\n" .
-			"<hr />\n\n" .
-			$this->getContent()
-			);
-		return;
+	function addEntry( $action, &$target, $comment ) {
+		global $wgLang, $wgUser;
 		
+		$this->action = $action;
+		$this->target =& $target;
+		$this->comment = $comment;
+		$this->actionText = LogPage::actionText( $this->type, $action,
+			$target->getPrefixedText() );
+				
+		return $this->saveContent();
 	}
 }
 

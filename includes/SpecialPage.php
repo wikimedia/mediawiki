@@ -62,6 +62,7 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 	"Version"		=> new SpecialPage( "Version" ),
 	"Allmessages"	=> new SpecialPage( "Allmessages" ),
 	"Search"		=> new UnlistedSpecialPage( "Search" ),
+	"Log"           => new SpecialPage( "Log" ),
 	"Blockip"		=> new SpecialPage( "Blockip", "sysop" ),
 	"Asksql"		=> new SpecialPage( "Asksql", "sysop" ),
 	"Undelete"		=> new SpecialPage( "Undelete", "sysop" ),
