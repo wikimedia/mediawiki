@@ -3,7 +3,7 @@
 #footer { padding: 4px; }
 #pagestats { font-size: 9pt; }
 #powersearch {
-  background: #DDEEFF; border-style: solid; border-width: 1; padding: 2;
+  background: #DDEEFF; border-style: solid; border-width: 1px; padding: 2px;
 }
 #quickbar { width: 140px; padding: 4px; visibility: visible; z-index: 99; }
 #topbar { padding: 4px; }
