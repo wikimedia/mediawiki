@@ -5,16 +5,20 @@ function wfSpecialUserlogin()
 	global $wpCreateaccount, $wpCreateaccountMail;
 	global $wpLoginattempt, $wpMailmypassword;
 	global $action, $_REQUEST;
-
+	
 	$fields = array( "wpName", "wpPassword", "wpName",
 	  "wpPassword", "wpRetype", "wpEmail" );
 	wfCleanFormFields( $fields );
 
-        $wpCookieCheck = $_REQUEST[ "wpCookieCheck" ];
+	# When switching accounts, it sucks to get automatically logged out
+	global $returnto, $wgLang;
+	if( $returnto == $wgLang->specialPage( "Userlogout" ) ) $returnto = "";
+
+	$wpCookieCheck = $_REQUEST[ "wpCookieCheck" ];
 
 	if ( isset( $wpCookieCheck ) ) {
-                onCookieRedirectCheck( $wpCookieCheck );
-        } else if ( isset( $wpCreateaccount ) ) {
+		onCookieRedirectCheck( $wpCookieCheck );
+	} else if ( isset( $wpCreateaccount ) ) {
 		addNewAccount();
 	} else if ( isset( $wpCreateaccountMail ) ) {
 		addNewAccountMailPassword();
@@ -44,8 +48,7 @@ function wfSpecialUserlogin()
 	}
 
 	$u->saveSettings();
-	if (mailPasswordInternal($u) == NULL)
-	{
+	if (mailPasswordInternal($u) == NULL) {
 		return;  
 	}
 
@@ -72,16 +75,16 @@ function wfSpecialUserlogin()
 	}
 
 	$wgUser = $u;
-        $wgUser->setCookies();
+	$wgUser->setCookies();
 
-        $up = new UserUpdate();
-        array_push( $wgDeferredUpdateList, $up );
-  
-        if (hasSessionCookie()) {
-            return successfulLogin( wfMsg( "welcomecreation", $wgUser->getName() ) );
-        } else {
-            return cookieRedirectCheck("new");
-        }
+	$up = new UserUpdate();
+	array_push( $wgDeferredUpdateList, $up );
+
+	if( hasSessionCookie() ) {
+		return successfulLogin( wfMsg( "welcomecreation", $wgUser->getName() ) );
+	} else {
+		return cookieRedirectCheck( "new" );
+	}
 }
 
 
@@ -133,7 +136,7 @@ function wfSpecialUserlogin()
 /* private */ function processLogin()
 {
 	global $wgUser, $wpName, $wpPassword, $wpRemember;
-        global $wgDeferredUpdateList;
+	global $wgDeferredUpdateList;
 	global $returnto;
 
 	if ( "" == $wpName ) {
@@ -167,16 +170,16 @@ function wfSpecialUserlogin()
 	$u->setOption( "rememberpassword", $r );
 
 	$wgUser = $u;
-        $wgUser->setCookies();
+	$wgUser->setCookies();
 
-        $up = new UserUpdate();
-        array_push( $wgDeferredUpdateList, $up );
-  
-        if (hasSessionCookie()) {
-	    return successfulLogin( wfMsg( "loginsuccess", $wgUser->getName() ) );
-        } else {
-            return cookieRedirectCheck( "login" );
-        }
+	$up = new UserUpdate();
+	array_push( $wgDeferredUpdateList, $up );
+
+	if( hasSessionCookie() ) {
+		return successfulLogin( wfMsg( "loginsuccess", $wgUser->getName() ) );
+	} else {
+		return cookieRedirectCheck( "login" );
+	}
 }
 
 /* private */ function mailPassword()
@@ -208,7 +211,7 @@ function wfSpecialUserlogin()
 /* private */ function mailPasswordInternal( $u )
 {
 	global $wpName, $wgDeferredUpdateList, $wgOutputEncoding;
-	global $wgPasswordSender;
+	global $wgPasswordSender, $wgDBname;
 
 	if ( "" == $u->getEmail() ) {
 		mainLoginForm( wfMsg( "noemail", $u->getName() ) );
@@ -240,26 +243,27 @@ function wfSpecialUserlogin()
 
 /* private */ function successfulLogin( $msg )
 {
-  global $wgUser;
-  global $wgDeferredUpdateList;
-  global $wgOut, $returnto;
+	global $wgUser;
+	global $wgDeferredUpdateList;
+	global $wgOut;
 
-  $wgOut->setPageTitle( wfMsg( "loginsuccesstitle" ) );
-  $wgOut->setRobotpolicy( "noindex,nofollow" );
-  $wgOut->setArticleFlag( false );
-  $wgOut->addHTML( $msg . "\n<p>" );
-  $wgOut->returnToMain();
+	$wgOut->setPageTitle( wfMsg( "loginsuccesstitle" ) );
+	$wgOut->setRobotpolicy( "noindex,nofollow" );
+	$wgOut->setArticleFlag( false );
+	$wgOut->addHTML( $msg . "\n<p>" );
+	$wgOut->returnToMain();
 }
 
 function userNotPrivilegedMessage()
 {
 	global $wgOut, $wgUser, $wgLang;
-
+	
 	$wgOut->setPageTitle( wfMsg( "whitelistacctitle" ) );
 	$wgOut->setRobotpolicy( "noindex,nofollow" );
 	$wgOut->setArticleFlag( false );
 
 	$wgOut->addWikiText( wfMsg( "whitelistacctext" ) );
+	
 	$wgOut->returnToMain( false );
 }
 
@@ -375,38 +379,35 @@ $cambutton
 
 /* private */ function hasSessionCookie()
 {
-    global $HTTP_COOKIE_VARS;
-    global $wgDisableCookieCheck;
-  
-    return ( $wgDisableCookieCheck ) ? true : ( "" != $HTTP_COOKIE_VARS[session_name()]);
+	global $wgDisableCookieCheck;
+	return ( $wgDisableCookieCheck ) ? true : ( "" != $_COOKIE[session_name()] );
 }
   
 /* private */ function cookieRedirectCheck( $type )
 {
-    global $wgOut, $wgLang;
+	global $wgOut, $wgLang;
 
-    $check = wfLocalUrl( $wgLang->specialPage( "Userlogin" ),
+	$check = wfLocalUrl( $wgLang->specialPage( "Userlogin" ),
 			 "wpCookieCheck=$type" );
 
-    return $wgOut->redirect( $check );
+	return $wgOut->redirect( $check );
 }
 
 /* private */ function onCookieRedirectCheck( $type ) {
+	global $wgUser;
 
-    global $wgUser;
-
-    if (!hasSessionCookie()) {
-	if ( $type == "new" ) {
-	    return mainLoginForm( wfMsg( "nocookiesnew" ) );
-	} else if ( $type == "login" ) {
-	    return mainLoginForm( wfMsg( "nocookieslogin" ) );
+	if ( !hasSessionCookie() ) {
+		if ( $type == "new" ) {
+			return mainLoginForm( wfMsg( "nocookiesnew" ) );
+		} else if ( $type == "login" ) {
+			return mainLoginForm( wfMsg( "nocookieslogin" ) );
+		} else {
+			# shouldn't happen
+			return mainLoginForm( wfMsg( "error" ) );
+		}
 	} else {
-# shouldn't happen
-	    return mainLoginForm( wfMsg( "error" ) );
+		return successfulLogin( wfMsg( "loginsuccess", $wgUser->getName() ) );
 	}
-    } else {
-	return successfulLogin( wfMsg( "loginsuccess", $wgUser->getName() ) );
-    }
 }
 
 ?>
