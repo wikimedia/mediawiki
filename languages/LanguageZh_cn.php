@@ -31,7 +31,7 @@ require_once( "LanguageUtf8.php" );
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsZh_cn = array(
-        "无", /* "None" */ 
+	"无", /* "None" */ 
 	"左侧固定", /* "Fixed left" */ 
 	"右侧固定", /* "Fixed right" */ 
 	"左侧漂移" /* "Floating left" */ 	
@@ -46,7 +46,7 @@ require_once( "LanguageUtf8.php" );
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
 	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
+	'myskin' => "MySkin"
 );
 
 
@@ -952,11 +952,6 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 );
 
 class LanguageZh_cn extends LanguageUtf8 {
-
-        function getDefaultUserOptions () {
-                $opt = Language::getDefaultUserOptions();
-                return $opt;
-        }
 
 	function getBookstoreList () {
 		global $wgBookstoreListZh_cn ;

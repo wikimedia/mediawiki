@@ -24,15 +24,6 @@ require_once( "LanguageUtf8.php" );
 
 ) + $wgNamespaceNamesEn;
 
-# I always compare this file with japanese file, when I'm confused.
-# And DefaultUserOption isn't there in japanese one. What's
-# this? I don't have to translate this. Am I right?
-
-# The Japanese file is a bit obsolete, so don't trust it too much!
-# Don't translate the text strings here, but you can customize any
-# option values if you like. These will be the defaults for any user
-# who isn't logged in, or a newly created user account.
-
 /* private */ $wgQuickbarSettingsKo = array(
 #	"None", "Fixed left", "Fixed right", "Floating left"
 	"없음", "왼쪽 붙박이", "오른쪽 붙박이", "왼쪽 떠다님"
@@ -884,11 +875,11 @@ Wikipedia developers.",
 
 class LanguageKo extends LanguageUtf8 {
 
-        function getDefaultUserOptions () {
-                $opt = Language::getDefaultUserOptions();
-		$opt["rcdays"]=14;
-                return $opt;
-        }
+	function getDefaultUserOptions () {
+		$opt = Language::getDefaultUserOptions();
+		$opt["rcdays"] = 14;
+		return $opt;
+	}
 
 	function getBookstoreList () {
 		global $wgBookstoreListKo ;
@@ -926,8 +917,7 @@ class LanguageKo extends LanguageUtf8 {
 
 	# Inherit default userAdjust()
  
-	function date( $ts, $adj = false )
-	{
+	function date( $ts, $adj = false ) {
 		global $wgWeekdayAbbreviationsKo;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
@@ -944,41 +934,28 @@ class LanguageKo extends LanguageUtf8 {
 		return $d;
 	}
 
-	function time( $ts, $adj = false )
-	{
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
-	}
-
-	function timeanddate( $ts, $adj = false )
-	{
+	function timeanddate( $ts, $adj = false ) {
 		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
 	}
 
 	# inherit function rfc1123( $ts )
 
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesKo;
 		return $wgValidSpecialPagesKo;
 	}
 
-	function getSysopSpecialPages()
-	{
+	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesKo;
 		return $wgSysopSpecialPagesKo;
 	}
 
-	function getDeveloperSpecialPages()
-	{
+	function getDeveloperSpecialPages() {
 		global $wgDeveloperSpecialPagesKo;
 		return $wgDeveloperSpecialPagesKo;
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesKo, $wgAllMessagesEn;
 		$m = $wgAllMessagesKo[$key];
 

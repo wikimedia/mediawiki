@@ -1046,8 +1046,7 @@ class LanguageEo extends LanguageUtf8 {
 	# Heredu userAdjust()
  
 	# La dato- kaj tempo-funkciojn oni povas precizigi laŭ lingvo
-	function date( $ts, $adj = false )
-	{
+	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = (0 + substr( $ts, 6, 2 )) . ". " .
@@ -1057,26 +1056,22 @@ class LanguageEo extends LanguageUtf8 {
 		return $d;
 	}
 
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesEo;
 		return $wgValidSpecialPagesEo;
 	}
 
-	function getSysopSpecialPages()
-	{
+	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesEo;
 		return $wgSysopSpecialPagesEo;
 	}
 
-	function getDeveloperSpecialPages()
-	{
+	function getDeveloperSpecialPages() {
 		global $wgDeveloperSpecialPagesEo;
 		return $wgDeveloperSpecialPagesEo;
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesEo;
 		if(array_key_exists($key, $wgAllMessagesEo))
 			return $wgAllMessagesEo[$key];
@@ -1127,7 +1122,7 @@ class LanguageEo extends LanguageUtf8 {
 	function checkTitleEncoding( $s ) {
 		global $wgInputEncoding;
 		
-        	# Check for X-system backwards-compatibility URLs
+		# Check for X-system backwards-compatibility URLs
 		$ishigh = preg_match( '/[\x80-\xff]/', $s);
 		$isutf = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
 			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );

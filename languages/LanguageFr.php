@@ -1219,39 +1219,27 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'mw_math_mathml' => 'MathML',
 );
 
-class LanguageFr extends LanguageUtf8
-{
+class LanguageFr extends LanguageUtf8 {
 
-	function getDefaultUserOptions()
-	{
-	        $opt = Language::getDefaultUserOptions();
-                return $opt;
+	function getBookstoreList () {
+		global $wgBookstoreListFr ;
+		return $wgBookstoreListFr ;
 	}
 
-        function getBookstoreList () {
-                global $wgBookstoreListFr ;
-                return $wgBookstoreListFr ;
-        }
-
-	function getNamespaces()
-	{
+	function getNamespaces() {
 		global $wgNamespaceNamesFr;
 		return $wgNamespaceNamesFr;
 	}
 
-
-	function getNsText( $index )
-	{
+	function getNsText( $index ) {
 		global $wgNamespaceNamesFr;
 		return $wgNamespaceNamesFr[$index];
 	}
 
-	function getNsIndex( $text ) 
-	{
+	function getNsIndex( $text ) {
 		global $wgNamespaceNamesFr, $wgSitename;
 
-		foreach ( $wgNamespaceNamesFr as $i => $n ) 
-		{
+		foreach ( $wgNamespaceNamesFr as $i => $n ) {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
 		if( $wgSitename == "Wikipédia" ) {
@@ -1261,19 +1249,12 @@ class LanguageFr extends LanguageUtf8
 		return false;
 	}
 
-	function specialPage( $name ) 
-	{
-		return $this->getNsText( Namespace::getSpecial() ) . ":" . $name;
-	}
-
-	function getQuickbarSettings() 
-	{
+	function getQuickbarSettings() {
 		global $wgQuickbarSettingsFr;
 		return $wgQuickbarSettingsFr;
 	}
 
-	function getSkinNames()
-	{
+	function getSkinNames() {
 		global $wgSkinNamesFr;
 		return $wgSkinNamesFr;
 	}
@@ -1281,8 +1262,7 @@ class LanguageFr extends LanguageUtf8
 
 	// Inherit userAdjust()
 
-	function date( $ts, $adj = false )
-	{
+	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = (0 + substr( $ts, 6, 2 )) . " " .
@@ -1291,39 +1271,26 @@ class LanguageFr extends LanguageUtf8
 		return $d;
 	}
 
-	function time( $ts, $adj = false )
-	{
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
-	}
-
-	function timeanddate( $ts, $adj = false )
-	{
+	function timeanddate( $ts, $adj = false ) {
 		return $this->date( $ts, $adj ) . " à " . $this->time( $ts, $adj );
 	}
 
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesFr;
 		return $wgValidSpecialPagesFr;
 	}
 
-	function getSysopSpecialPages()
-	{
+	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesFr;
 		return $wgSysopSpecialPagesFr;
 	}
 
-	function getDeveloperSpecialPages()
-	{
+	function getDeveloperSpecialPages() {
 		global $wgDeveloperSpecialPagesFr;
 		return $wgDeveloperSpecialPagesFr;
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesFr, $wgAllMessagesEn;
 		if( isset( $wgAllMessagesFr[$key] ) ) {
 			return $wgAllMessagesFr[$key];
@@ -1332,7 +1299,6 @@ class LanguageFr extends LanguageUtf8
 		}
 	}
 	
-	function isRTL() { return false; }
 }
 
 ?>

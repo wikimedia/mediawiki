@@ -1184,14 +1184,10 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 
 
 );
+
 class LanguageDe extends LanguageUtf8 {
 
-	function getDefaultUserOptions () {
-		$opt = Language::getDefaultUserOptions();
-		return $opt;
-	}
-
-	function getBookstoreList () {
+	function getBookstoreList() {
 		global $wgBookstoreListDe ;
 		return $wgBookstoreListDe ;
 	}
@@ -1215,10 +1211,6 @@ class LanguageDe extends LanguageUtf8 {
 		return false;
 	}
 
-	function specialPage( $name ) {
-		return $this->getNsText( Namespace::getSpecial() ) . ":" . $name;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsDe;
 		return $wgQuickbarSettingsDe;
@@ -1229,10 +1221,7 @@ class LanguageDe extends LanguageUtf8 {
 		return $wgSkinNamesDe;
 	}
 
-	# Inherit userAdjust()
-
-	function date( $ts, $adj = false )
-	{
+	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = (0 + substr( $ts, 6, 2 )) . ". " .
@@ -1242,39 +1231,22 @@ class LanguageDe extends LanguageUtf8 {
 		return $d;
 	}
 
-	function time( $ts, $adj = false )
-	{
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
-	}
-
-	function timeanddate( $ts, $adj = false )
-	{
-		return $this->time( $ts, $adj ) . ", " . $this->date( $ts, $adj );
-	}
-
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesDe;
 		return $wgValidSpecialPagesDe;
 	}
 
-	function getSysopSpecialPages()
-	{
+	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesDe;
 		return $wgSysopSpecialPagesDe;
 	}
 
-	function getDeveloperSpecialPages()
-	{
+	function getDeveloperSpecialPages() {
 		global $wgDeveloperSpecialPagesDe;
 		return $wgDeveloperSpecialPagesDe;
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesDe;
 		if( isset( $wgAllMessagesDe[$key] ) ) {
 			return $wgAllMessagesDe[$key];
@@ -1282,7 +1254,6 @@ class LanguageDe extends LanguageUtf8 {
 			return Language::getMessage( $key );
 		}
 	}
-
 
 }
 

@@ -1122,11 +1122,6 @@ med den nye titel. Du er nødt til at flette dem sammen manuelt.",
 
 class LanguageDa extends LanguageUtf8 {
 
-        function getDefaultUserOptions () {
-                $opt = Language::getDefaultUserOptions();
-                return $opt;
-                }
-
 	function getBookstoreList () {
 		global $wgBookstoreListDa ;
 		return $wgBookstoreListDa ;
@@ -1151,10 +1146,6 @@ class LanguageDa extends LanguageUtf8 {
 		return false;
 	}
 
-	function specialPage( $name ) {
-		return $this->getNsText( Namespace::getSpecial() ) . ":" . $name;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsDa;
 		return $wgQuickbarSettingsDa;
@@ -1170,8 +1161,6 @@ class LanguageDa extends LanguageUtf8 {
 		return $wgDateFormatsDa;
 	}
 
-	# Inherit userAdjust()
-
 	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
@@ -1181,18 +1170,9 @@ class LanguageDa extends LanguageUtf8 {
 		return $d;
 	}
 
-	function time( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
-	}
-
 	function timeanddate( $ts, $adj = false ) {
 		return $this->date( $ts, $adj ) . " kl. " . $this->time( $ts, $adj );
 	}
-
-	# Inherit rfc1123()
 
 	function getValidSpecialPages() {
 		global $wgValidSpecialPagesDa;
@@ -1217,26 +1197,6 @@ class LanguageDa extends LanguageUtf8 {
 			return Language::getMessage( $key );
 		}
 	}
-
-	# Inherit iconv()
-
-	# Inherit ucfirst()
-
-	# Inherit lcfirst()
-	
-	# Inherit checkTitleEncoding()
-	
-	# Inherit stripForSearch()
-	
-	# Inherit setAltEncoding()
-	
-	# Inherit recodeForEdit()
-	
-	# Inherit recodeInput()
-
-	# Inherit isRTL()
-	
-	# Inherit getMagicWords()
 
 }
 

@@ -44,16 +44,6 @@ DISCUSSION!
 	NS_CATEGORY_TALK    => 'Plé_ranga'
 ) + $wgNamespaceNamesEn;
 
-/* private */ $wgDefaultUserOptionsGa = array(
-    "quickbar" => 1, "underline" => 1, "hover" => 1,
-    "cols" => 80, "rows" => 25, "searchlimit" => 20,
-    "contextlines" => 5, "contextchars" => 50,
-    "skin" => $wgDefaultSkin, "math" => 1, "rcdays" => 7, "rclimit" => 50,
-    "highlightbroken" => 1, "stubthreshold" => 0,
-    "previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, "showtoc"=>1,
-    "date" => 0
-);
-
 /* private */ $wgQuickbarSettingsGa = array(
     "Faic", "Greamaithe ar chlé", "Greamaithe ar an taobh deas", "Ag faoileáil ar chlé"
 );
@@ -1460,87 +1450,76 @@ require_once( "LanguageUtf8.php" );
 
 class LanguageGa extends LanguageUtf8 {
 
-    function getDefaultUserOptions () {
-        global $wgDefaultUserOptionsGa ;
-        return $wgDefaultUserOptionsGa ;
-        }
+	function getBookstoreList () {
+		global $wgBookstoreListGa;
+		return $wgBookstoreListGa;
+	}
 
-    function getBookstoreList () {
-        global $wgBookstoreListGa ;
-        return $wgBookstoreListGa ;
-    }
+	function getNamespaces() {
+		global $wgNamespaceNamesGa;
+		return $wgNamespaceNamesGa;
+	}
 
-    function getNamespaces() {
-        global $wgNamespaceNamesGa;
-        return $wgNamespaceNamesGa;
-    }
+	function getNsText( $index ) {
+		global $wgNamespaceNamesGa;
+		return $wgNamespaceNamesGa[$index];
+	}
 
-    function getNsText( $index ) {
-        global $wgNamespaceNamesGa;
-        return $wgNamespaceNamesGa[$index];
-    }
+	function getNsIndex( $text ) {
+		global $wgNamespaceNamesGa;
 
-    function getNsIndex( $text ) {
-        global $wgNamespaceNamesGa;
+		foreach ( $wgNamespaceNamesGa as $i => $n ) {
+			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+		}
+		/* Fallback to English names for compatibility */
+		return Language::getNsIndex( $text );
+	}
 
-        foreach ( $wgNamespaceNamesGa as $i => $n ) {
-            if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-        }
-        /* Fallback to English names for compatibility */
-        return Language::getNsIndex( $text );
-    }
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsGa;
+		return $wgQuickbarSettingsGa;
+	}
 
-    function getQuickbarSettings() {
-        global $wgQuickbarSettingsGa;
-        return $wgQuickbarSettingsGa;
-    }
+	function getSkinNames() {
+		global $wgSkinNamesGa;
+		return $wgSkinNamesGa;
+	}
 
-    function getSkinNames() {
-        global $wgSkinNamesGa;
-        return $wgSkinNamesGa;
-    }
+	function getDateFormats() {
+		global $wgDateFormatsGa;
+		return $wgDateFormatsGa;
+	}
 
-    function getDateFormats() {
-        global $wgDateFormatsGa;
-        return $wgDateFormatsGa;
-    }
+	function getValidSpecialPages() {
+		global $wgValidSpecialPagesGa;
+		return $wgValidSpecialPagesGa;
+	}
 
-    function getValidSpecialPages()
-    {
-        global $wgValidSpecialPagesGa;
-        return $wgValidSpecialPagesGa;
-    }
+	function getSysopSpecialPages() {
+		global $wgSysopSpecialPagesGa;
+		return $wgSysopSpecialPagesGa;
+	}
 
-    function getSysopSpecialPages()
-    {
-        global $wgSysopSpecialPagesGa;
-        return $wgSysopSpecialPagesGa;
-    }
+	function getDeveloperSpecialPages() {
+		global $wgDeveloperSpecialPagesGa;
+		return $wgDeveloperSpecialPagesGa;
+	}
 
-    function getDeveloperSpecialPages()
-    {
-        global $wgDeveloperSpecialPagesGa;
-        return $wgDeveloperSpecialPagesGa;
-    }
-
-    function getMessage( $key )
-    {
-        global $wgAllMessagesGa;
+	function getMessage( $key ) {
+		global $wgAllMessagesGa;
 		if( isset( $wgAllMessagesGa[$key] ) ) {
 			return $wgAllMessagesGa[$key];
 		} else {
 			return Language::getMessage( $key );
 		}
-    }
+	}
 
-    function getAllMessages()
-    {
-        global $wgAllMessagesGa;
-        return $wgAllMessagesGa;
-    }
+	function getAllMessages() {
+		global $wgAllMessagesGa;
+		return $wgAllMessagesGa;
+	}
 
-	function getMagicWords()
-	{
+	function getMagicWords() {
 		global $wgMagicWordsGa;
 		return $wgMagicWordsGa;
 	}

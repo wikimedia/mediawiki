@@ -1160,26 +1160,22 @@ class LanguageHu extends LanguageUtf8 {
 		return $wgDateFormatsHu;
 	}
 	
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesHu;
 		return $wgValidSpecialPagesHu;
 	}
 	
-	function getSysopSpecialPages()
-	{
+	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesHu;
 		return $wgSysopSpecialPagesHu;
 	}
 	
-	function getDeveloperSpecialPages()
-	{
+	function getDeveloperSpecialPages() {
 		global $wgDeveloperSpecialPagesHu;
 		return $wgDeveloperSpecialPagesHu;
 	}
 	
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesHu;
 		if(array_key_exists($key, $wgAllMessagesHu))
 			return $wgAllMessagesHu[$key];
@@ -1192,22 +1188,13 @@ class LanguageHu extends LanguageUtf8 {
 	}
 
 	# localised date and time
-	function date( $ts, $adj = false )
-	{
+	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 		
 		$d = substr( $ts, 0, 4 ) . ". " .
 		$this->getMonthName( substr( $ts, 4, 2 ) ) . " ".
 			(0 + substr( $ts, 6, 2 )) . ".";
 		return $d;
-	}
-	
-	function time( $ts, $adj = false )
-	{
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-		
-		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
 	}
 	
 	function timeanddate( $ts, $adj = false )

@@ -193,92 +193,83 @@ $wgLanguageNamesTt =& $wgLanguageNames;
 
 class LanguageTt extends LanguageUtf8 {
 
-        function getDefaultUserOptions () {
-                $opt = Language::getDefaultUserOptions();
-                return $opt;
-                }
+	function getBookstoreList () {
+		global $wgBookstoreListTt;
+		return $wgBookstoreListTt;
+	}
 
-        function getBookstoreList () {
-                global $wgBookstoreListTt;
-                return $wgBookstoreListTt;
-        }
+	function getNamespaces() {
+		global $wgNamespaceNamesTt;
+		return $wgNamespaceNamesTt;
+	}
 
-        function getNamespaces() {
-                global $wgNamespaceNamesTt;
-                return $wgNamespaceNamesTt;
-        }
+	function getNsText( $index ) {
+		global $wgNamespaceNamesTt;
+		return $wgNamespaceNamesTt[$index];
+	}
 
-        function getNsText( $index ) {
-                global $wgNamespaceNamesTt;
-                return $wgNamespaceNamesTt[$index];
-        }
+	function getNsIndex( $text ) {
+		global $wgNamespaceNamesTt;
 
-        function getNsIndex( $text ) {
-                global $wgNamespaceNamesTt;
+		foreach ( $wgNamespaceNamesTt as $i => $n ) {
+			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+		}
+		return false;
+	}
 
-                foreach ( $wgNamespaceNamesTt as $i => $n ) {
-                        if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-                }
-                return false;
-        }
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsTt;
+		return $wgQuickbarSettingsTt;
+	}
 
-        function specialPage( $name ) {
-                return $this->getNsText( Namespace::getSpecial() ) . ":" . $name;
-        }
+	function getSkinNames() {
+		global $wgSkinNamesTt;
+		return $wgSkinNamesTt;
+	}
 
-        function getQuickbarSettings() {
-                global $wgQuickbarSettingsTt;
-                return $wgQuickbarSettingsTt;
-        }
+	function getDateFormats() {
+		global $wgDateFormatsTt;
+		return $wgDateFormatsTt;
+	}
 
-        function getSkinNames() {
-                global $wgSkinNamesTt;
-                return $wgSkinNamesTt;
-        }
+	# Inherit userAdjust()
 
-        function getDateFormats() {
-                global $wgDateFormatsTt;
-                return $wgDateFormatsTt;
-        }
+	function date( $ts, $adj = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-        # Inherit userAdjust()
+		$d = (0 + substr( $ts, 6, 2 )) . ". " .
+		  $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " .
+		  substr( $ts, 0, 4 );
+		return $d;
+	}
 
-        function date( $ts, $adj = false ) {
-                if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+	function time( $ts, $adj = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-                $d = (0 + substr( $ts, 6, 2 )) . ". " .
-                  $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " .
-                  substr( $ts, 0, 4 );
-                return $d;
-        }
+		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
+		return $t;
+	}
 
-        function time( $ts, $adj = false ) {
-                if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+	function timeanddate( $ts, $adj = false ) {
+		return $this->date( $ts, $adj ) . ", " . $this->time( $ts, $adj );
+	}
 
-                $t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-                return $t;
-        }
+	# Inherit rfc1123()
 
-        function timeanddate( $ts, $adj = false ) {
-                return $this->date( $ts, $adj ) . ", " . $this->time( $ts, $adj );
-        }
+	function getValidSpecialPages() {
+		global $wgValidSpecialPagesTt;
+		return $wgValidSpecialPagesTt;
+	}
 
-        # Inherit rfc1123()
+	function getSysopSpecialPages() {
+		global $wgSysopSpecialPagesTt;
+		return $wgSysopSpecialPagesTt;
+	}
 
-        function getValidSpecialPages() {
-                global $wgValidSpecialPagesTt;
-                return $wgValidSpecialPagesTt;
-        }
-
-        function getSysopSpecialPages() {
-                global $wgSysopSpecialPagesTt;
-                return $wgSysopSpecialPagesTt;
-        }
-
-        function getDeveloperSpecialPages() {
-                global $wgDeveloperSpecialPagesTt;
-                return $wgDeveloperSpecialPagesTt;
-        }
+	function getDeveloperSpecialPages() {
+		global $wgDeveloperSpecialPagesTt;
+		return $wgDeveloperSpecialPagesTt;
+	}
 
 	function getMessage( $key ) {
 		global $wgAllMessagesTt;
@@ -289,32 +280,32 @@ class LanguageTt extends LanguageUtf8 {
 		}
 	}
 
-        # Inherit iconv()
+	# Inherit iconv()
 
-        # Inherit ucfirst()
+	# Inherit ucfirst()
 
-        # Inherit lcfirst()
+	# Inherit lcfirst()
 
-        # Inherit checkTitleEncoding()
+	# Inherit checkTitleEncoding()
 
-        # Inherit stripForSearch()
+	# Inherit stripForSearch()
 
-        # Inherit setAltEncoding()
+	# Inherit setAltEncoding()
 
-        # Inherit recodeForEdit()
+	# Inherit recodeForEdit()
 
-        # Inherit recodeInput()
+	# Inherit recodeInput()
 
-        # Inherit isRTL()
+	# Inherit isRTL()
 
-        # Inherit getMagicWords()
+	# Inherit getMagicWords()
 
-        function fallback8bitEncoding() {
-                # Windows codepage 1252 is a superset of iso 8859-1
-                # override this to use difference source encoding to
-                # translate incoming 8-bit URLs.
-                return "windows-1254";
-        }
+	function fallback8bitEncoding() {
+		# Windows codepage 1252 is a superset of iso 8859-1
+		# override this to use difference source encoding to
+		# translate incoming 8-bit URLs.
+		return "windows-1254";
+	}
 }
 
 ?>

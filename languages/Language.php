@@ -1737,32 +1737,27 @@ class Language {
 		return $wgLanguageNamesEn[$code];
 	}
 
-	function getMonthName( $key )
-	{
+	function getMonthName( $key ) {
 		global $wgMonthNamesEn;
 		return wfMsg($wgMonthNamesEn[$key-1]);
 	}
 
 	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
+	function getMonthNameGen( $key ) {
 		return $this->getMonthName( $key );
 	}
 
-	function getMonthAbbreviation( $key )
-	{
+	function getMonthAbbreviation( $key ) {
 		global $wgMonthAbbreviationsEn;
 		return wfMsg(@$wgMonthAbbreviationsEn[$key-1]);
 	}
 
-	function getWeekdayName( $key )
-	{
+	function getWeekdayName( $key ) {
 		global $wgWeekdayNamesEn;
 		return wfMsg($wgWeekdayNamesEn[$key-1]);
 	}
 
-	function userAdjust( $ts )
-	{
+	function userAdjust( $ts ) {
 		global $wgUser, $wgLocalTZoffset;
 
 		$tz = $wgUser->getOption( 'timecorrection' );
@@ -1788,8 +1783,7 @@ class Language {
 		return date( 'YmdHis', $t );
 	}
 
-	function date( $ts, $adj = false, $format = MW_DATE_USER_FORMAT )
-	{
+	function date( $ts, $adj = false, $format = MW_DATE_USER_FORMAT ) {
 		global $wgAmericanDates, $wgUser, $wgUseDynamicDates;
 
 		$ts=wfTimestamp(TS_MW,$ts);
@@ -1819,8 +1813,7 @@ class Language {
 		}
 	}
 
-	function time( $ts, $adj = false, $seconds = false )
-	{
+	function time( $ts, $adj = false, $seconds = false ) {
 		$ts=wfTimestamp(TS_MW,$ts);
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
@@ -1832,44 +1825,37 @@ class Language {
 		return $this->formatNum( $t );
 	}
 
-	function timeanddate( $ts, $adj = false, $format = MW_DATE_USER_FORMAT )
-	{
+	function timeanddate( $ts, $adj = false, $format = MW_DATE_USER_FORMAT ) {
 		$ts=wfTimestamp(TS_MW,$ts);
 
 		return $this->time( $ts, $adj ) . ', ' . $this->date( $ts, $adj, $format );
 	}
 
-	function rfc1123( $ts )
-	{
+	function rfc1123( $ts ) {
 		return date( 'D, d M Y H:i:s T', $ts );
 	}
 
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesEn;
 		return $wgValidSpecialPagesEn;
 	}
 
-	function getSysopSpecialPages()
-	{
+	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesEn;
 		return $wgSysopSpecialPagesEn;
 	}
 
-	function getDeveloperSpecialPages()
-	{
+	function getDeveloperSpecialPages() {
 		global $wgDeveloperSpecialPagesEn;
 		return $wgDeveloperSpecialPagesEn;
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesEn;
 		return @$wgAllMessagesEn[$key];
 	}
 
-	function getAllMessages()
-	{
+	function getAllMessages() {
 		global $wgAllMessagesEn;
 		return $wgAllMessagesEn;
 	}
@@ -1968,15 +1954,13 @@ class Language {
 	function linkPrefixExtension() { return false; }
 
 
-	function &getMagicWords()
-	{
+	function &getMagicWords() {
 		global $wgMagicWordsEn;
 		return $wgMagicWordsEn;
 	}
 
 	# Fill a MagicWord object with data from here
-	function getMagic( &$mw )
-	{
+	function getMagic( &$mw ) {
 		$raw =& $this->getMagicWords();
 		if( !isset( $raw[$mw->mId] ) ) {
 			# Fall back to English if local list is incomplete
@@ -1988,8 +1972,7 @@ class Language {
 	}
 
 	# Italic is unsuitable for some languages
-	function emphasize( $text )
-	{
+	function emphasize( $text ) {
 		return '<em>'.$text.'</em>';
 	}
 
@@ -2084,8 +2067,7 @@ class Language {
 			if(!array_key_exists(1, $choice)) {
 				/* a single choice */
 				$text .= $choice{0};
-			}
-			else {
+			} else {
 				$choice1=false;
 				$choice2=false;
 				foreach($choice as $c) {
@@ -2120,21 +2102,21 @@ class Language {
 	/* this does the real conversion to the preferred variant.
 	   see LanguageZh.php for example
 	*/
-	function autoConvert($text, $toVariant=false) {
+	function autoConvert( $text, $toVariant=false ) {
 		return $text;
 	}
 
 	/* hook for converting the title, which may needs special treatment
 	*/
-	function convertTitle($text) {
+	function convertTitle( $text ) {
 		return $text;
 	}
 
 	# returns a list of language variants for conversion.
 	# right now mainly used in the Chinese conversion
 	function getVariants() {
-		$lang = strtolower(substr(get_class($this), 8));
-		return array($lang);
+		$lang = strtolower( substr( get_class( $this ), 8 ) );
+		return array( $lang );
 	}
 	
 	# in case some variant is not defined in the markup, we need
@@ -2142,7 +2124,7 @@ class Language {
 	# will define zh-cn and zh-tw, but less so for zh-sg or zh-hk.
 	# when zh-sg is preferred but not defined, we will pick zh-cn
 	# in this case. right now this is only used by zh.
-	function getVariantFallback($v) {
+	function getVariantFallback( $v ) {
 		return false;
 	}
 
@@ -2150,18 +2132,18 @@ class Language {
 		global $wgUser;
 		
 		// if user logged in, get in from user's preference
-		if($wgUser->getID()!=0)
-			return $wgUser->getOption('variant');
+		if( $wgUser->getID() != 0 )
+			return $wgUser->getOption( 'variant' );
 		
 		// if we have multiple variants for this langauge, 
 		// pick the first one as default
-		$v=$this->getVariants() ;
-		if(!empty($v))
+		$v = $this->getVariants();
+		if( !empty( $v ) )
 			return $v{0};
 		
 		// otherwise there should really be just one variant, 
 		// get it from the class name
-		$lang = strtolower(substr(get_class($this), 8));
+		$lang = strtolower( substr( get_class( $this ), 8 ) );
 		return $lang;
 	}
 
@@ -2171,20 +2153,20 @@ class Language {
 		tries to find it.
 
 	*/
-	function findVariantLink(&$link, &$nt) {
+	function findVariantLink( &$link, &$nt ) {
 		static $count=0; //used to limit this operation
 		global $wgDisableLangConversion, $wgContLang;
-		if($wgDisableLangConversion)
+		if( $wgDisableLangConversion )
 			return;
 		$variants = $wgContLang->getVariants();
-		if(sizeof($variants) > 1 && $count++<200) {
-			if($nt->getArticleID() == 0) {
-				foreach ( $variants as $v ) {
-					if($v == $wgContLang->getPreferredVariant())
+		if( sizeof( $variants ) > 1 && $count++ < 200 ) {
+			if( $nt->getArticleID() == 0 ) {
+				foreach( $variants as $v ) {
+					if( $v == $wgContLang->getPreferredVariant() )
 						continue;
-					$varlink = $wgContLang->autoConvert($link, $v);
-					$varnt = Title::newFromText($varlink);
-					if($varnt && $varnt->getArticleID()>0) {
+					$varlink = $wgContLang->autoConvert( $link, $v );
+					$varnt = Title::newFromText( $varlink );
+					if( $varnt && $varnt->getArticleID() > 0 ) {
 						$nt = $varnt;
 						$link = $varlink;
 						break;

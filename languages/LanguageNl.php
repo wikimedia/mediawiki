@@ -905,13 +905,6 @@ class LanguageNl extends LanguageUtf8 {
 		return $d;
 	}
 	
-	function time( $ts, $adj = false ) {
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-		
-		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
-	}
-	
 	function timeanddate( $ts, $adj = false ) {
 		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
 	}
@@ -919,8 +912,7 @@ class LanguageNl extends LanguageUtf8 {
 	function getValidSpecialPages() {
 		global $wgValidSpecialPagesNl;
 		return $wgValidSpecialPagesNl;
-	}
-	
+	}	
 	
 	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesNl;
@@ -940,8 +932,6 @@ class LanguageNl extends LanguageUtf8 {
 			return Language::getMessage( $key );
 		}
 	}
-	
-	function isRTL() { return false; }
 	
 	# Inherit iconv(), ucfirst(), stripForSearch(), recodeForEdit(), recodeInput()
 	# since they are same as English/Latin1

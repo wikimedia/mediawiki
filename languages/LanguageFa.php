@@ -1127,11 +1127,11 @@ class LanguageFa extends LanguageUtf8 {
 		"," => "٬"
 	);
 
-	function getDefaultUserOptions () {
-                $opt = Language::getDefaultUserOptions();
-		$opt["quickbar"]=2;
-		$opt["underline"]=0;
-                return $opt;
+	function getDefaultUserOptions() {
+		$opt = Language::getDefaultUserOptions();
+		$opt["quickbar"] = 2;
+		$opt["underline"] = 0;
+		return $opt;
 	}
 
 	function getNamespaces() {
@@ -1153,10 +1153,6 @@ class LanguageFa extends LanguageUtf8 {
 		return false;
 	}
 
-	function specialPage( $name ) {
-		return $this->getNsText( Namespace::getSpecial() ) . ":" . $name;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsFa;
 		return $wgQuickbarSettingsFa;
@@ -1167,26 +1163,22 @@ class LanguageFa extends LanguageUtf8 {
 		return $wgSkinNamesFa;
 	}
 
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesFa;
 		return $wgValidSpecialPagesFa;
 	}
 
-	function getSysopSpecialPages()
-	{
+	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesFa;
 		return $wgSysopSpecialPagesFa;
 	}
 
-	function getDeveloperSpecialPages()
-	{
+	function getDeveloperSpecialPages() {
 		global $wgDeveloperSpecialPagesFa;
 		return $wgDeveloperSpecialPagesFa;
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesFa;
 		if(array_key_exists($key, $wgAllMessagesFa))
 			return $wgAllMessagesFa[$key];

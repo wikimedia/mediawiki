@@ -29,17 +29,6 @@ if($wgMetaNamespace === FALSE)
 	NS_CATEGORY_TALK    => 'T\'ááłáhági_át\'éego_baa_yinísht\'į́'
 );
 
-/* private */ $wgDefaultUserOptionsNv = array(
-	'quickbar' => 1, 'underline' => 1, 'hover' => 1,
-	'cols' => 80, 'rows' => 25, 'searchlimit' => 20,
-	'contextlines' => 5, 'contextchars' => 50,
-	'skin' => $wgDefaultSkin, 'math' => 1, 'rcdays' => 7, 'rclimit' => 50,
-	'highlightbroken' => 1, 'stubthreshold' => 0,
-	'previewontop' => 1, 'editsection'=>1,'editsectiononrightclick'=>0, 'showtoc'=>1,
-	'showtoolbar' =>1,
-	'date' => 0
-);
-
 /* private */ $wgQuickbarSettingsNv = array(
 	'None', 'Fixed left', 'Fixed right', 'Floating left'
 );
@@ -179,11 +168,6 @@ this</a> (alternative: like this<a href="" class="internal">?</a>).',
 
 class LanguageNv extends LanguageUtf8 {
 
-	function getDefaultUserOptions () {
-		global $wgDefaultUserOptionsNv ;
-		return $wgDefaultUserOptionsNv ;
-	}
-
 	function getBookstoreList () {
 		global $wgBookstoreListNv ;
 		return $wgBookstoreListNv ;
@@ -245,25 +229,21 @@ class LanguageNv extends LanguageUtf8 {
 	}
 
 	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
+	function getMonthNameGen( $key ) {
 		return $this->getMonthName( $key );
 	}
 
-	function getMonthAbbreviation( $key )
-	{
+	function getMonthAbbreviation( $key ) {
 		global $wgMonthAbbreviationsNv;
 		return @$wgMonthAbbreviationsNv[$key-1];
 	}
 
-	function getWeekdayName( $key )
-	{
+	function getWeekdayName( $key ) {
 		global $wgWeekdayNamesNv;
 		return $wgWeekdayNamesNv[$key-1];
 	}
 
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesNv;
 		return $wgValidSpecialPagesNv;
 	}

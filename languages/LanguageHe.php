@@ -814,13 +814,13 @@ $3 $9",
 
 class LanguageHe extends LanguageUtf8 {
 
-        function getDefaultUserOptions () {
-                $opt = Language::getDefaultUserOptions();
+	function getDefaultUserOptions () {
+		$opt = Language::getDefaultUserOptions();
 		$opt["quickbar"]=2;
-                return $opt;
-        }
+		return $opt;
+	}
 
-	function getBookstoreList () {
+	function getBookstoreList() {
 		global $wgBookstoreListHe ;
 		return $wgBookstoreListHe ;
 	}
@@ -854,36 +854,32 @@ class LanguageHe extends LanguageUtf8 {
 		return $wgSkinNamesHe;
 	}
 
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesHe;
 		return $wgValidSpecialPagesHe;
 	}
 
-	function getSysopSpecialPages()
-	{
+	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesHe;
 		return $wgSysopSpecialPagesHe;
 	}
 
-	function getDeveloperSpecialPages()
-	{
+	function getDeveloperSpecialPages() {
 		global $wgDeveloperSpecialPagesHe;
 		return $wgDeveloperSpecialPagesHe;
 	}
 
-        function getMessage( $key )
-        {
-                global $wgAllMessagesHe;
-                if(array_key_exists($key, $wgAllMessagesHe))
-                        return $wgAllMessagesHe[$key];
-                else
-                        return Language::getMessage($key);
-        }
+	function getMessage( $key ) {
+		global $wgAllMessagesHe;
+		if(array_key_exists($key, $wgAllMessagesHe))
+			return $wgAllMessagesHe[$key];
+		else
+			return Language::getMessage($key);
+	}
 
-        function isRTL() { return true; }
+	function isRTL() { return true; }
 
-        function fallback8bitEncoding() { return "iso8859-8"; }                
+	function fallback8bitEncoding() { return "iso8859-8"; }                
 
 }
 

@@ -1,4 +1,4 @@
-<?
+<?php
 
 require_once( 'LanguageUtf8.php');
 
@@ -226,11 +226,6 @@ require_once( 'LanguageUtf8.php');
 );
 class LanguageFo extends LanguageUtf8 {
 
-	function getDefaultUserOptions () {
-		$opt = Language::getDefaultUserOptions();
-		return $opt;
-		}
-
 	function getBookstoreList () {
 		global $wgBookstoreListFo ;
 		return $wgBookstoreListFo ;
@@ -255,10 +250,6 @@ class LanguageFo extends LanguageUtf8 {
 		return false;
 	}
 
-	function specialPage( $name ) {
-		return $this->getNsText( Namespace::getSpecial() ) . ":" . $name;
-	}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsFo;
 		return $wgQuickbarSettingsFo;
@@ -276,8 +267,7 @@ class LanguageFo extends LanguageUtf8 {
 
 	# Inherit userAdjust()
 
-	function date( $ts, $adj = false )
-	{
+	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = (0 + substr( $ts, 6, 2 )) . ". " .
@@ -286,67 +276,32 @@ class LanguageFo extends LanguageUtf8 {
 		return $d;
 	}
 
-	function time( $ts, $adj = false )
-	{
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
-	}
-
-	function timeanddate( $ts, $adj = false )
-	{
+	function timeanddate( $ts, $adj = false ) {
 		return $this->date( $ts, $adj ) . " kl. " . $this->time( $ts, $adj );
 	}
 
-	# Inherit rfc1123()
-
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesFo;
 		return $wgValidSpecialPagesFo;
 	}
 
-	function getSysopSpecialPages()
-	{
+	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesFo;
 		return $wgSysopSpecialPagesFo;
 	}
 
-	function getDeveloperSpecialPages()
-	{
+	function getDeveloperSpecialPages() {
 		global $wgDeveloperSpecialPagesFo;
 		return $wgDeveloperSpecialPagesFo;
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 	    global $wgAllMessagesFo, $wgAllMessagesEn;
 	    $m = $wgAllMessagesFo[$key];
 
 	    if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
 	    else return $m;
 	}
-
-	# Inherit iconv()
-
-	# Inherit ucfirst()
-
-	# Inherit lcfirst()
-	
-	# Inherit checkTitleEncoding()
-	
-	# Inherit stripForSearch()
-	
-	# Inherit setAltEncoding()
-	
-	# Inherit recodeForEdit()
-	
-	# Inherit recodeInput()
-
-	# Inherit isRTL()
-	
-	# Inherit getMagicWords()
 
 }
 
