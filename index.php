@@ -80,7 +80,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 	if ( Namespace::getMedia() == $wgTitle->getNamespace() ) {
 		$wgTitle = Title::makeTitle( Namespace::getImage(), $wgTitle->getDBkey() );
 	}
-	
+
 	switch( $wgTitle->getNamespace() ) {
 	case NS_IMAGE:
 		include_once( "ImagePage.php" );
@@ -94,7 +94,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 	switch( $action ) {
 		case "view":
 			$wgOut->setSquidMaxage( $wgSquidMaxage );
-			$wgArticle->$action();
+			$wgArticle->view();
 			break;
 		case "watch":
 		case "unwatch":
@@ -103,7 +103,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		case "rollback":
 		case "protect":
 		case "unprotect":
-			$wgArticle->$action();
+			$wgArticle->unprotect();
 			break;
 		case "print":
 			$wgArticle->view();
@@ -131,7 +131,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 			}
 			include_once( "EditPage.php" );
 			$editor = new EditPage( $wgArticle );
-			$editor->$action();
+			$editor->submit();
 			break;
 		case "history":
 			if ($_SERVER["REQUEST_URI"] == $wgTitle->getInternalURL('action=history')) {
