@@ -43,11 +43,12 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 
 	$namespaceselect = '<select name="namespace">';
 	$arr = $wgContLang->getNamespaces();
-	for ( $i = 0; $i <= 17; $i++ ) {
-		$namespacename = str_replace ( '_', ' ', $arr[$i] );
-		$n = ($i == 0) ? wfMsg ( 'articlenamespace' ) : $namespacename;
-		$sel = ($i == $namespace) ? ' selected="selected"' : '';
-		$namespaceselect .= "<option value='{$i}'{$sel}>{$n}</option>";
+	foreach ( $arr as $ns => $name ) {
+		if ( $ns < NS_MAIN ) continue;
+		$namespacename = str_replace ( '_', ' ', $name);
+		$n = ($ns == 0) ? wfMsg ( 'articlenamespace' ) : $namespacename;
+		$sel = ($ns == $namespace) ? ' selected="selected"' : '';
+		$namespaceselect .= "<option value='{$ns}'{$sel}>{$n}</option>";		
 	}
 	$namespaceselect .= '</select>';
 
