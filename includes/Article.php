@@ -1,7 +1,6 @@
 <?php
 /**
  * File for articles
- * @version $Id$
  * @package MediaWiki
  */
 
@@ -20,7 +19,6 @@ $wgArticleOldContentFields = false;
  * Note: edit user interface and cache support functions have been
  * moved to separate EditPage and CacheManager classes.
  *
- * @version $Id$
  * @package MediaWiki
  */
 class Article {

@@ -1,5 +1,4 @@
 <?php
-# $Id$
 
 /**
  * DO NOT USE !!!  Unless you want to help developping it.

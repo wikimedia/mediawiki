@@ -4,7 +4,6 @@
  * 
  * Note: $wgDatabase has ceased to exist. Destroy all references.
  *
- * @version # $Id$
  * @package MediaWiki
  */
 

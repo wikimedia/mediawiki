@@ -4,7 +4,6 @@
  * File for Parser and related classes
  *
  * @package MediaWiki
- * @version $Id$
  */
 
 /**

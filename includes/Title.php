@@ -1,6 +1,5 @@
 <?php
 /**
- * $Id$
  * See title.doc
  * 
  * @package MediaWiki

@@ -1,6 +1,5 @@
 <?php
-# $Id$
-#
+
 require_once( "LanguageUtf8.php" );
 
 

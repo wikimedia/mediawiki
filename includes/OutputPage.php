@@ -1,6 +1,5 @@
 <?php
 /**
- * @version $Id$
  * @package MediaWiki
  */
 

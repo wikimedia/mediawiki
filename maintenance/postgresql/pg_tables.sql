@@ -1,4 +1,3 @@
--- $Id$
 --
 -- Database schema for MediaWiki PostgreSQL support
 --

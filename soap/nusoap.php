@@ -1,7 +1,6 @@
 <?php
 
 /*
-$Id$
 
 NuSOAP - Web Services Toolkit for PHP
 
@@ -55,14 +54,13 @@ require_once('class.soap_server.php');*/
 * nusoap_base
 *
 * @author   Dietrich Ayala <dietrich@ganx4.com>
-* @version  $Id$
 * @access   public
 */
 class nusoap_base {
 
 	var $title = 'NuSOAP';
 	var $version = '0.6.7';
-	var $revision = '$Revision$';
+	var $revision = '1.1';
 	var $error_str = false;
     var $debug_str = '';
 	// toggles automatic encoding of special characters as entities
@@ -663,7 +661,6 @@ function usleepWindows($usec)
 * mainly used for returning faults from deployed functions
 * in a server instance.
 * @author   Dietrich Ayala <dietrich@ganx4.com>
-* @version  $Id$
 * @access public
 */
 class soap_fault extends nusoap_base {
@@ -728,7 +725,6 @@ class soap_fault extends nusoap_base {
 * tutorials I refer to :)
 *
 * @author   Dietrich Ayala <dietrich@ganx4.com>
-* @version  $Id$
 * @access   public
 */
 class XMLSchema extends nusoap_base  {
@@ -1489,7 +1485,6 @@ class XMLSchema extends nusoap_base  {
 * NOTE: this is only really used when WSDL is not available.
 *
 * @author   Dietrich Ayala <dietrich@ganx4.com>
-* @version  $Id$
 * @access   public
 */
 class soapval extends nusoap_base {
@@ -1546,7 +1541,6 @@ class soapval extends nusoap_base {
 * NOTE: PHP must be compiled with the CURL extension for HTTPS support
 *
 * @author   Dietrich Ayala <dietrich@ganx4.com>
-* @version  $Id$
 * @access public
 */
 class soap_transport_http extends nusoap_base {
@@ -2308,7 +2302,6 @@ class soap_transport_http extends nusoap_base {
 * NOTE: WSDL functionality is experimental
 *
 * @author   Dietrich Ayala <dietrich@ganx4.com>
-* @version  $Id$
 * @access   public
 */
 class soap_server extends nusoap_base {
@@ -3129,7 +3122,6 @@ class soap_server extends nusoap_base {
 * parses a WSDL file, allows access to it's data, other utility methods
 * 
 * @author   Dietrich Ayala <dietrich@ganx4.com>
-* @version  $Id$
 * @access public 
 */
 class wsdl extends nusoap_base {
@@ -4428,7 +4420,6 @@ class wsdl extends nusoap_base {
 * soap_parser class parses SOAP XML messages into native PHP values
 *
 * @author   Dietrich Ayala <dietrich@ganx4.com>
-* @version  $Id$
 * @access   public
 */
 class soap_parser extends nusoap_base {
@@ -4966,7 +4957,6 @@ class soap_parser extends nusoap_base {
 * unset($soapclient);
 *
 * @author   Dietrich Ayala <dietrich@ganx4.com>
-* @version  $Id$
 * @access   public
 */
 class soapclient extends nusoap_base  {

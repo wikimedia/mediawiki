@@ -1,4 +1,3 @@
--- $Id$
 -- access rights for wiki database users
 CREATE USER {$wgDBuser}
 	PASSWORD '{$wgDBpassword}';

@@ -9,7 +9,6 @@
  * like $wgScriptPath, you must also localize everything that
  * depends on it.
  *
- * @version $Id$
  * @package MediaWiki
  */
 

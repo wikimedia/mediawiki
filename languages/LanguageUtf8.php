@@ -1,5 +1,5 @@
 <?php
-#$Id$
+
 if( defined( "MEDIAWIKI" ) ) {
 
 # This file and LanguageLatin1.php may be included from within functions, so
