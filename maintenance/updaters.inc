@@ -94,12 +94,19 @@ function do_linkscc_update() {
 	// Create linkscc if necessary
 	global $wgDatabase;
 	if( $wgDatabase->tableExists( "linkscc" ) ) {
-		echo "...have linkscc table.\n";
-	} else {
-		echo "Adding linkscc table... ";
-		dbsource( "maintenance/archives/patch-linkscc.sql", $wgDatabase );
-		echo "ok\n";
+		$res = $wgDatabase->query( "SELECT lcc_title FROM linkscc WHERE 0 LIMIT 1" );
+		$flags = mysql_field_flags( $res, 0 );
+		if( strpos( $flags, "binary" ) !== false ) {
+			echo "...have linkscc table.\n";
+			return;
+		} else {
+			echo "...linkscc table possibly corrupt, redefining... ";
+			# fall through
+		}
 	}
+	echo "Adding linkscc table... ";
+	dbsource( "maintenance/archives/patch-linkscc.sql", $wgDatabase );
+	echo "ok\n";
 }
 
 function do_hitcounter_update() {

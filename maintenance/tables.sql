@@ -20,13 +20,13 @@ CREATE TABLE user (
   user_options blob NOT NULL default '',  
   user_touched char(14) binary NOT NULL default '',
   UNIQUE KEY user_id (user_id)
-) TYPE=MyISAM PACK_KEYS=1;
+) PACK_KEYS=1;
 	
 DROP TABLE IF EXISTS user_newtalk;
 CREATE TABLE user_newtalk (
   user_id int(5) NOT NULL default '0',
   user_ip varchar(40) NOT NULL default ''
-) TYPE=MyISAM;
+);
 
 DROP TABLE IF EXISTS cur;
 CREATE TABLE cur (
@@ -47,7 +47,7 @@ CREATE TABLE cur (
   cur_touched char(14) binary NOT NULL default '',
   inverse_timestamp char(14) binary NOT NULL default '',
   UNIQUE KEY cur_id (cur_id)
-) TYPE=MyISAM PACK_KEYS=1;
+) PACK_KEYS=1;
 
 DROP TABLE IF EXISTS old;
 CREATE TABLE old (
@@ -63,7 +63,7 @@ CREATE TABLE old (
   old_flags tinyblob NOT NULL default '',
   inverse_timestamp char(14) binary NOT NULL default '',
   UNIQUE KEY old_id (old_id)
-) TYPE=MyISAM PACK_KEYS=1;
+) PACK_KEYS=1;
 
 DROP TABLE IF EXISTS archive;
 CREATE TABLE archive (
@@ -76,32 +76,36 @@ CREATE TABLE archive (
   ar_timestamp char(14) binary NOT NULL default '',
   ar_minor_edit tinyint(1) NOT NULL default '0',
   ar_flags tinyblob NOT NULL default ''
-) TYPE=MyISAM PACK_KEYS=1;
+) PACK_KEYS=1;
 
 DROP TABLE IF EXISTS links;
 CREATE TABLE links (
   l_from varchar(255) binary NOT NULL default '',
-  l_to int(8) unsigned NOT NULL default '0'
-) TYPE=MyISAM;
+  l_to int(8) unsigned NOT NULL default '0',
+  unique key l_from(l_from,l_to),
+  key (l_to)
+);
 
 DROP TABLE IF EXISTS brokenlinks;
 CREATE TABLE brokenlinks (
   bl_from int(8) unsigned NOT NULL default '0',
-  bl_to varchar(255) binary NOT NULL default ''
-) TYPE=MyISAM;
+  bl_to varchar(255) binary NOT NULL default '',
+  unique key bl_from(bl_from,bl_to),
+  key (bl_to)
+);
 
 DROP TABLE IF EXISTS linkscc;
 CREATE TABLE linkscc (
   lcc_pageid INT UNSIGNED NOT NULL UNIQUE KEY,
-  lcc_title VARCHAR(255) NOT NULL UNIQUE KEY,
+  lcc_title VARCHAR(255) binary NOT NULL UNIQUE KEY,
   lcc_cacheobj MEDIUMBLOB NOT NULL
-) TYPE=MyISAM;
+);
 
 DROP TABLE IF EXISTS imagelinks;
 CREATE TABLE imagelinks (
   il_from varchar(255) binary NOT NULL default '',
   il_to varchar(255) binary NOT NULL default ''
-) TYPE=MyISAM;
+);
 
 DROP TABLE IF EXISTS site_stats;
 CREATE TABLE site_stats (
@@ -110,7 +114,7 @@ CREATE TABLE site_stats (
   ss_total_edits bigint(20) unsigned default '0',
   ss_good_articles bigint(20) unsigned default '0',
   UNIQUE KEY ss_row_id (ss_row_id)
-) TYPE=MyISAM;
+);
 
 DROP TABLE IF EXISTS hitcounter;
 CREATE TABLE hitcounter (
@@ -128,7 +132,7 @@ CREATE TABLE ipblocks (
   ipb_auto tinyint(1) NOT NULL default '0',
   ipb_expiry char(14) binary NOT NULL default '',
   UNIQUE KEY ipb_id (ipb_id)
-) TYPE=MyISAM PACK_KEYS=1;
+) PACK_KEYS=1;
 
 DROP TABLE IF EXISTS image;
 CREATE TABLE image (
@@ -138,7 +142,7 @@ CREATE TABLE image (
   img_user int(5) unsigned NOT NULL default '0',
   img_user_text varchar(255) binary NOT NULL default '',
   img_timestamp char(14) binary NOT NULL default ''
-) TYPE=MyISAM PACK_KEYS=1;
+) PACK_KEYS=1;
 
 DROP TABLE IF EXISTS oldimage;
 CREATE TABLE oldimage (
@@ -149,7 +153,7 @@ CREATE TABLE oldimage (
   oi_user int(5) unsigned NOT NULL default '0',
   oi_user_text varchar(255) binary NOT NULL default '',
   oi_timestamp char(14) binary NOT NULL default ''
-) TYPE=MyISAM PACK_KEYS=1;
+) PACK_KEYS=1;
 
 DROP TABLE IF EXISTS recentchanges;
 CREATE TABLE recentchanges (
@@ -169,7 +173,7 @@ CREATE TABLE recentchanges (
   rc_type tinyint(3) unsigned NOT NULL default '0',
   rc_moved_to_ns tinyint(3) unsigned NOT NULL default '0',
   rc_moved_to_title varchar(255) binary NOT NULL default ''
-) TYPE=MyISAM PACK_KEYS=1;
+) PACK_KEYS=1;
 
 DROP TABLE IF EXISTS watchlist;
 CREATE TABLE watchlist (
@@ -177,7 +181,7 @@ CREATE TABLE watchlist (
   wl_namespace tinyint(2) unsigned NOT NULL default '0',
   wl_title varchar(255) binary NOT NULL default '',
   UNIQUE KEY (wl_user, wl_namespace, wl_title)
-) TYPE=MyISAM PACK_KEYS=1;
+) PACK_KEYS=1;
 
 DROP TABLE IF EXISTS math;
 CREATE TABLE math (
@@ -187,7 +191,7 @@ CREATE TABLE math (
   math_html text,
   math_mathml text,
   UNIQUE KEY math_inputhash (math_inputhash)
-) TYPE=MyISAM;
+);
 
 
 -- Table searchindex must be MyISAM for fulltext support
@@ -198,7 +202,7 @@ CREATE TABLE searchindex (
   si_title varchar(255) NOT NULL default '',
   si_text mediumtext NOT NULL default '',
   UNIQUE KEY (si_page)
-) TYPE=MyISAM PACK_KEYS=1;
+) PACK_KEYS=1;
 
 DROP TABLE IF EXISTS interwiki;
 CREATE TABLE interwiki (
