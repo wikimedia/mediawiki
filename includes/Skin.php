@@ -267,17 +267,36 @@ class Skin extends Linker {
 		$csspage = $wgContLang->getNsText( NS_MEDIAWIKI ) . ':' . $this->getSkinName() . '.css';
 		$s = '@import "'.$this->makeUrl($csspage, 'action=raw&ctype=text/css')."\";\n";
 
-		if ( 1 == $wgUser->getOption( 'underline' ) ) {
-			# Don't override browser settings
-		} else {
-			# CHECK MERGE @@@
-			# Force no underline
-			$s .= "a { text-decoration: none; }\n";
-		}
-		if ( 1 == $this->mOptions['highlightbroken'] ) {
+		return $s . $this->reallyDoGetUserStyles();
+	}
+	
+	function reallyDoGetUserStyles() {
+		global $wgUser;
+		$s = '';
+		$underline = $wgUser->getOption( "underline" ) ? 'underline' : 'none';
+		$s .= "a { text-decoration: $underline; }\n";
+		if( $wgUser->getOption( 'highlightbroken' ) ) {
 			$s .= "a.new, #quickbar a.new { color: #CC2200; }\n";
+		} else {
+			$s .= <<<END
+a.new, #quickbar a.new,
+a.stub, #quickbar a.stub {
+	color: inherit;
+	text-decoration: inherit;
+}
+a.new:after, #quickbar a.new:after {
+	content: "?";
+	color: #CC2200;
+	text-decoration: $underline;
+}
+a.stub:after, #quickbar a.stub:after {
+	content: "!";
+	color: #772233;
+	text-decoration: $underline;
+}
+END;
 		}
-		if ( 1 == $wgUser->getOption( 'justify' ) ) {
+		if( $wgUser->getOption( 'justify' ) ) {
 			$s .= "#article { text-align: justify; }\n";
 		}
 		return $s;

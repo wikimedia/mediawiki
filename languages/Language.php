@@ -53,7 +53,6 @@ if(isset($wgExtraNamespaces)) {
 /* private */ $wgDefaultUserOptionsEn = array(
 	'quickbar' 		=> 1,
 	'underline' 		=> 1,
-	'hover' 		=> 1,
 	'cols'			=> 80,
 	'rows' 			=> 25,
 	'searchlimit' 		=> 20,
@@ -131,7 +130,6 @@ define( 'MW_DATE_USER_FORMAT', true );
 );
 
 /* private */ $wgUserTogglesEn = array(
-	'hover',
 	'underline',
 	'highlightbroken',
 	'justify',
@@ -259,7 +257,6 @@ global $wgRightsText;
 'special_version_prefix' => '&nbsp;',
 'special_version_postfix' => '&nbsp;',
 # User preference toggles
-'tog-hover'		=> 'Show hoverbox over wiki links',
 'tog-underline' => 'Underline links',
 'tog-highlightbroken' => 'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
 'tog-justify'	=> 'Justify paragraphs',

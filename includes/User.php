@@ -1117,7 +1117,6 @@ class User {
 		// it will always be 0 when this function is called by parsercache.
 
 		$confstr =        $this->getOption( 'math' );
-		$confstr .= '!' . $this->getOption( 'highlightbroken' );
 		$confstr .= '!' . $this->getOption( 'stubthreshold' );
 		$confstr .= '!' . $this->getOption( 'editsection' );
 		$confstr .= '!' . $this->getOption( 'editsectiononrightclick' );
