@@ -23,12 +23,12 @@ class MessageCache
 	var $mMemcKey, $mKeys, $mParserOptions, $mParser;
 	var $mExtensionMessages;
 	var $mInitialised = false;
-    var $mLang, $mLangCode;
+	var $mLang, $mLangCode;
 	function initialise( &$memCached, $useDB, $expiry, $memcPrefix, $langobj, $langcode) {
 		$fname = 'MessageCache::initialise';
 		wfProfileIn( $fname );
-        $this->mLang = $langobj;
-        $this->mLangCode = $langcode;
+		$this->mLang = $langobj;
+		$this->mLangCode = $langcode;
 		$this->mUseCache = !is_null( $memCached );
 		$this->mMemc = &$memCached;
 		$this->mDisable = !$useDB;
@@ -37,14 +37,14 @@ class MessageCache
 		$this->mMemcKey = $memcPrefix.':messages';
 		$this->mKeys = false; # initialised on demand
 		$this->mInitialised = true;
-        if ( isset ( $forContent ) ) $this->mIsForContent = $forContent;
+
 		wfProfileIn( $fname.'-parseropt' );
 		$this->mParserOptions = ParserOptions::newFromUser( $u=NULL );
 		wfProfileOut( $fname.'-parseropt' );
 		wfProfileIn( $fname.'-parser' );
 		$this->mParser = new Parser;
 		wfProfileOut( $fname.'-parser' );
-        
+
 		$this->load();
 		wfProfileOut( $fname );
 	}
