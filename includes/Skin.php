@@ -1285,7 +1285,7 @@ class Skin {
 			} else {
 				$threshold = $wgUser->getOption("stubthreshold") ;
 				if ( $threshold > 0 ) {
-					$res = wfQuery ( "SELECT HIGH_PRIORITY length(cur_text) AS x, cur_namespace, cur_is_redirect FROM cur WHERE cur_id='{$aid}'", DB_READ ) ;
+					$res = wfQuery ( "SELECT LENGTH(cur_text) AS x, cur_namespace, cur_is_redirect FROM cur WHERE cur_id='{$aid}'", DB_READ ) ;
 
 					if ( wfNumRows( $res ) > 0 ) {
 						$s = wfFetchObject( $res );
