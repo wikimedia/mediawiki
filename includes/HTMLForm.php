@@ -1,5 +1,10 @@
 <?php
 /**
+ * This file contain a class to easily build HTML forms as well as custom
+ * functions used by SpecialUserlevels.php and SpecialGrouplevels.php
+ */
+
+/**
  * Class to build various forms
  *
  * @package MediaWiki
@@ -86,5 +91,63 @@ class HTMLForm {
 		return "<div><label>".wfMsg( $this->mName.'-'.$varname ).
 			"<textarea name=\"{$varname}\" rows=\"5\" cols=\"{$size}\">{$s}</textarea>\n";
 	}
+} // end class
+
+
+// functions used by SpecialUserlevels & SpecialGrouplevels
+
+/** Build a select with all existent groups
+ * @param string $selectname Name of this element. Name of form is automaticly prefixed.
+ * @param array $selected Array of element selected when posted. Multiples will only show them.
+ * @param boolean $multiple A multiple elements select.
+ * @param integer $size Number of element to be shown ignored for non multiple (default 6).
+ * @param boolean $reverse If true, multiple select will hide selected elements (default false).
+*/
+function HTMLSelectGroups($selectname, $selected=array(), $multiple=false, $size=6, $reverse=false) {
+	$dbr =& wfGetDB( DB_SLAVE );
+	$group = $dbr->tableName( 'group' );
+	$sql = "SELECT group_id, group_name FROM $group";
+	$res = $dbr->query($sql,'wfSpecialAdmin');
+	
+	$out = wfMsg($selectname);
+	$out .= '<select name="'.$selectname;
+	if($multiple) {	$out.='[]" multiple="multiple" size="'.$size; }
+	$out.= "\">\n";
+	
+	while($g = $dbr->fetchObject( $res ) ) {
+		if($multiple) {
+			// for multiple will only show the things we want
+			if(in_array($g->group_id, $selected) xor $reverse) { 
+				$out .= '<option value="'.$g->group_id.'">'.$g->group_name."</option>\n";
+			}
+		} else {
+			$out .= '<option ';
+			if(in_array($g->group_id, $selected)) { $out .= 'selected="selected" '; }
+			$out .= 'value="'.$g->group_id.'">'.$g->group_name."</option>\n";
+		}
+	}
+	$out .= "</select>\n";
+	return $out;
+}
+
+/** Build a select with all existent rights
+ * @param array $selected Names(?) of user rights that should be selected.
+ * @return string HTML select.
+ */
+function HTMLSelectRights($selected='') {
+	global $wgAvailableRights;
+	$out = '<select name="editgroup-getrights[]" multiple="multiple">';
+	$groupRights = explode(',',$selected);
+	
+	foreach($wgAvailableRights as $right) {
+	
+		// check box when right exist
+		if(in_array($right, $groupRights)) { $selected = 'selected="selected" '; }
+		else { $selected = ''; }
+					
+		$out .= '<option value="'.$right.'" '.$selected.'>'.$right."</option>\n";
+	}
+	$out .= "</select>\n";
+	return $out;
 }
 ?>

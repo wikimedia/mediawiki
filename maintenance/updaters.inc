@@ -239,7 +239,7 @@ function do_group_update() {
 		$row = $wgDatabase->fetchObject( $res );
 		$wgDatabase->freeResult( $res );
 		if( $row->n ) {
-			echo "Fixing sysops group permissions... ";
+			echo "Fixing sysops group permissions and add group editing right... ";
 			dbsource( "maintenance/archives/patch-group-sysopfix.sql", $wgDatabase );
 			echo "ok\n";
 		} else {

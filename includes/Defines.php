@@ -84,7 +84,7 @@ define( 'MW_MATH_MATHML', 5 );
  * database.
  */
 $wgAvailableRights = array('read', 'edit', 'move', 'delete', 'undelete',
-'protect', 'block', 'userrights', 'createaccount', 'upload', 'asksql',
-'rollback', 'patrol', 'editinterface', 'siteadmin', 'bot');
+'protect', 'block', 'userrights', 'grouprights', 'createaccount', 'upload',
+'asksql', 'rollback', 'patrol', 'editinterface', 'siteadmin', 'bot');
 
 ?>
