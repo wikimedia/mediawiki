@@ -540,10 +540,9 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 	}
 
 	$log = new LogPage( wfMsg( "uploadlogpage" ), wfMsg( "uploadlogpagetext" ) );
-	$da = str_replace( "$1", "[[:" . $wgLang->getNsText(
-	  Namespace::getImage() ) . ":{$name}|{$name}]]",
-	  wfMsg( "uploadedimage" ) );
-	$ta = str_replace( "$1", $name, wfMsg( "uploadedimage" ) );
+	$da = wfMsg( "uploadedimage", "[[:" . $wgLang->getNsText(
+	  Namespace::getImage() ) . ":{$name}|{$name}]]" );
+	$ta = wfMsg( "uploadedimage", $name );
 	$log->addEntry( $da, $desc, $ta );
 }
 
@@ -552,24 +551,19 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 
 function wfShowingResults( $offset, $limit )
 {
-	$top = str_replace( "$1", $limit, wfMsg( "showingresults" ) );
-	$top = str_replace( "$2", $offset+1, $top );
-	return $top;
+	return wfMsg( "showingresults", $limit, $offset+1 );
 }
 
 function wfShowingResultsNum( $offset, $limit, $num )
 {
-	$top = str_replace( "$1", $limit, wfMsg( "showingresultsnum" ) );
-	$top = str_replace( "$2", $offset+1, $top );
-	$top = str_replace( "$3", $num, $top );
-	return $top;
+	return wfMsg( "showingresultsnum", $limit, $offset+1, $num );
 }
 
 function wfViewPrevNext( $offset, $limit, $link, $query = "" )
 {
 	global $wgUser;
-	$prev = str_replace( "$1", $limit, wfMsg( "prevn" ) );
-	$next = str_replace( "$1", $limit, wfMsg( "nextn" ) );
+	$prev = wfMsg( "prevn", $limit );
+	$next = wfMsg( "nextn", $limit );
 
 	$sk = $wgUser->getSkin();
 	if ( 0 != $offset ) {
@@ -591,10 +585,7 @@ function wfViewPrevNext( $offset, $limit, $link, $query = "" )
 	  wfNumLink( $offset, 250, $link, $query ) . " | " .
 	  wfNumLink( $offset, 500, $link, $query );
 
-	$sl = str_replace( "$1", $plink, wfMsg( "viewprevnext" ) );
-	$sl = str_replace( "$2", $nlink, $sl );
-	$sl = str_replace( "$3", $nums, $sl );
-	return $sl;
+	return wfMsg( "viewprevnext", $plink, $nlink, $nums );
 }
 
 function wfNumLink( $offset, $limit, $link, $query = "" )
