@@ -35,9 +35,7 @@ class LanguageZh extends LanguageZh_cn {
 	}
 	
 	/* 
-		get preferred language variants. eventually this will check the
-		user's preference setting as well, once the language option in
-		the setting pages is finalized.
+		get preferred language variants.
 	*/
 	function getPreferredVariant() {
 		global $wgUser, $wgRequest;
@@ -52,10 +50,11 @@ class LanguageZh extends LanguageZh_cn {
 			return $zhreq;
 		}
 
-		// get language variant preference for logged in users 
+		// get language variant preference from logged in users 
 		if($wgUser->getID()!=0) {
 			$this->mZhLanguageCode = $wgUser->getOption('variant');
 		}
+
 		if( !$this->mZhLanguageCode ) {
 			// see if some zh- variant is set in the http header,
 			$this->mZhLanguageCode="zh-cn";
@@ -96,7 +95,7 @@ class LanguageZh extends LanguageZh_cn {
 		wfProfileIn( $fname );
 		$ret = $this->mZhClient->convertToAllVariants($text);
 		if($ret == false) {//fall back...
-			$ret = Language::autoConvertToAllVariants($text);
+			$ret = ZhClientFake::autoConvertToAllVariants($text);
 		}
 		wfProfileOut( $fname );
 		return $ret;
@@ -114,17 +113,20 @@ class LanguageZh extends LanguageZh_cn {
 		global $wgDisableLangConversion;
 		if($wgDisableLangConversion)
 			return $text; 
-		if(sizeof($this->getVariants())<2) 
-			return $text;
 		
-		if($isTitle)
-			return $this->convertTitle($text);
-
 		// no conversion if redirecting
-		if(substr($text,0,9) == "#REDIRECT") {
+		if(strtolower( substr( $text,0,9 ) ) == "#redirect") {
 			return $text;
 		}
 
+		if( $isTitle ) {
+			global $wgRequest;
+			$isredir = $wgRequest->getText( 'redirect', 'yes' );
+			if ( $isredir == 'no')
+				return $text;
+			else
+				return $this->convertTitle($text);
+		}
 
 		$plang = $this->getPreferredVariant();
 		$fallback = $this->getVariantFallback($plang);
