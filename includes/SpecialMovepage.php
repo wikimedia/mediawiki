@@ -132,7 +132,6 @@ class MovePageForm {
 		# Variables beginning with 'o' for old article 'n' for new article
 
 		# Attempt to move the article
-		
 		$ot = Title::newFromText( $this->oldTitle );
 		$nt = Title::newFromText( $this->newTitle );
 
@@ -147,7 +146,7 @@ class MovePageForm {
 			$this->showForm( wfMsg( $error ) );
 			return;
 		}
-		
+
 		# Update counters if the article got moved into or out of NS_MAIN namespace
 		$ons = $ot->getNamespace();
 		$nns = $nt->getNamespace();
@@ -172,7 +171,6 @@ class MovePageForm {
 		# (1) the checkbox says to,
 		# (2) the namespaces are not themselves talk namespaces, and of course
 		# (3) it exists.
-		
 		if ( ( $wgRequest->getVal('wpMovetalk') == 1 ) &&
 		     ( ! Namespace::isTalk( $ons ) ) &&
 		     ( ! Namespace::isTalk( $nns ) ) ) {
@@ -196,7 +194,6 @@ class MovePageForm {
 		}
 		
 		# Give back result to user.
-		
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Movepage' );
 		$success = $titleObj->getFullURL( 
 		  'action=success&oldtitle=' . wfUrlencode( $ot->getPrefixedText() ) .

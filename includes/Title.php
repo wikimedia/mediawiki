@@ -1482,9 +1482,15 @@ class Title {
 		);
 		$newid = $dbw->insertId();
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
-		
-		RecentChange::notifyMoveOverRedirect( $now, $this, $nt, $wgUser, $comment );
 
+		# Record in RC
+		// Replaced by a log entry
+		// RecentChange::notifyMoveOverRedirect( $now, $this, $nt, $wgUser, $comment );
+
+		# Log the move
+		$log = new LogPage( 'move' );
+		$log->addEntry( 'move_redir', $this, '', array(1 => $nt->getText()) );
+		
 		# Swap links
 		
 		# Load titles and IDs
@@ -1606,7 +1612,12 @@ class Title {
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
 
 		# Record in RC
-		RecentChange::notifyMoveToNew( $now, $this, $nt, $wgUser, $comment );
+		// Replaced by a log entry
+		// RecentChange::notifyMoveToNew( $now, $this, $nt, $wgUser, $comment );
+
+		# Log the move
+		$log = new LogPage( 'move' );
+		$log->addEntry( 'move', $this, '', array(1 => $nt->getText()) );
 
 		# Purge squid and linkscc as per article creation
 		Article::onArticleCreate( $nt );
