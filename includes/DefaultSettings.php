@@ -134,7 +134,7 @@ $wgDebugDumpSql         = false;
 # but there has been a database error" pages.
 $wgIgnoreSQLErrors      = false;
 
-$wgUseCategoryMagic		= false;
+$wgUseCategoryMagic		= true;
 $wgEnablePersistentLC	= false;	# Persistent link cache in linkscc table; FAILS on MySQL 3.x
 $wgCompressedPersistentLC = true; # use gzcompressed blobs
 
