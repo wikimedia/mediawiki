@@ -1957,7 +1957,7 @@ class Skin {
 	{
 		if ( ! isset( $nt ) )
 		{
-			### HOTFIX. Instead of breaking, return empry string.
+			### HOTFIX. Instead of breaking, return empty string.
 			$s = $alt;
 		} else {
 			$name = $nt->getDBKey();
@@ -2489,27 +2489,25 @@ class Skin {
 
 		# format regular and media links - all other wiki formatting
 		# is ignored
+		$medians = $wgLang->getNsText(Namespace::getMedia()).':';
 		while(preg_match('/\[\[(.*?)(\|(.*?))*\]\]/',$comment,$match)) {
-
-			$medians = $wgLang->getNsText(Namespace::getMedia()).':';
-			$func='makeLink';
-			if(preg_match('/^'.$medians.'/i',$match[1])) {
-				$func='makeMediaLink';
-			}
 			# Handle link renaming [[foo|text]] will show link as "text"
 			if(isset($match[3]) ) {
-				$comment=
-				preg_replace('/\[\[(.*?)\]\]/',
-				$this->$func($match[1],$match[3]),$comment,1);
+				$text = $match[3];
 			} else {
-				$comment=
-				preg_replace('/\[\[(.*?)\]\]/',
-				$this->$func($match[1],$match[1]),$comment,1);
+				$text = $match[1];
+			}
+			if ( preg_match( '/^' . $medians . '(.*)$/i', $match[1], $submatch ) ) {
+				# Media link
+				$comment = preg_replace( '/\[\[(.*?)\]\]/', $this->makeMediaLink( $submatch[1], "", $text ), 
+				  $comment, 1 );
+			} else {
+				# Other kind of link
+				$comment = preg_replace('/\[\[(.*?)\]\]/', $this->$func( $match[1], $match[1] ), 
+				  $comment , 1);
 			}
 		}
-
 		return $comment;
-
 	}
 
 	function imageHistoryLine( $iscur, $timestamp, $img, $user, $usertext, $size, $description )
