@@ -592,22 +592,24 @@ guidelines</a>.",
 
 # History pages
 #
-'revhistory'	=> 'Revision history',
-'nohistory'		=> 'There is no edit history for this page.',
-'revnotfound'	=> 'Revision not found',
-'revnotfoundtext' => "The old revision of the page you asked for could not be found.
+'revhistory'            => 'Revision history',
+'nohistory'             => 'There is no edit history for this page.',
+'revnotfound'           => 'Revision not found',
+'revnotfoundtext'       => "The old revision of the page you asked for could not be found.
 Please check the URL you used to access this page.\n",
-'loadhist'		=> 'Loading page history',
-'currentrev'	=> 'Current revision',
-'revisionasof'	=> "Revision as of $1",
-'cur'			=> 'cur',
-'next'			=> 'next',
-'last'			=> 'last',
-'orig'			=> 'orig',
-'histlegend'	=> 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br/>
+'loadhist'              => 'Loading page history',
+'currentrev'            => 'Current revision',
+'revisionasof'          => "Revision as of $1",
+'revisionasofwithlink'  => '(Revision as of $1; $2)',
+'currentrevisionlink'   => 'view current revision',
+'cur'                   => 'cur',
+'next'                  => 'next',
+'last'                  => 'last',
+'orig'                  => 'orig',
+'histlegend'            => 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br/>
 Legend: (cur) = difference with current version,
 (last) = difference with preceding version, M = minor edit.',
-'history_copyright'    => '-',
+'history_copyright'     => '-',
 
 # Diffs
 #
@@ -1763,7 +1765,7 @@ class Language {
 		}
 		return $s;
 	}
-	
+
 	# Crop a string from the beginning or end to a certain number of bytes.
 	# (Bytes are used because our storage has limited byte lengths for some
 	# columns in the database.) Multibyte charsets will need to make sure that
@@ -1786,7 +1788,7 @@ class Language {
 			return $ellipsis . $string;
 		}
 	}
-	
+
 	# Get a regex fragment for a single whitespace character
 	function getWhiteCharRegex() {
 		return '[\\s\\xa0_]';

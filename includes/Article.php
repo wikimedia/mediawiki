@@ -1623,8 +1623,10 @@ class Article {
 		global $wgLang, $wgOut;
 
 		$td = $wgLang->timeanddate( $this->mTimestamp, true );
-		$r = wfMsg( 'revisionasof', $td );
-		$wgOut->setSubtitle( "({$r})" );
+		$sk = $wgUser->getSkin();
+		$lnk = $sk->makeKnownLinkObj ( $this->mTitle, wfMsg( 'currentrevisionlink' ) );
+		$r = wfMsg( 'revisionasofwithlink', $td, $lnk );
+		$wgOut->setSubtitle( $r );
 	}
 
 	# This function is called right before saving the wikitext,
