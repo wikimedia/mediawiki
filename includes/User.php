@@ -296,8 +296,8 @@ class User {
 		# DNSBL
 		if ( !$this->mBlockedby && $wgEnableSorbs ) {
 			if ( $this->inSorbsBlacklist( $wgIP ) ) {
-				$this->mBlockedBy = wfMsg( 'sorbs' );
-				$this->mBlockereason = wfMsg( 'sorbsreason' );
+				$this->mBlockedby = wfMsg( 'sorbs' );
+				$this->mBlockreason = wfMsg( 'sorbsreason' );
 			}
 		}
 			
