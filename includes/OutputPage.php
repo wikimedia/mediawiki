@@ -729,8 +729,7 @@ class OutputPage {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
 		global $wgUser, $wgContLang, $wgRequest;
 
-		$xml = ($wgMimeType == 'text/xml' || $wgMimeType == 'application/xhtml+xml' || $wgMimeType == 'application/xml');
-		if( $xml ) {
+		if( $wgMimeType == 'text/xml' || $wgMimeType == 'application/xhtml+xml' || $wgMimeType == 'application/xml' ) {
 			$ret = "<" . "?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?" . ">\n";
 		} else {
 			$ret = '';
@@ -741,13 +740,9 @@ class OutputPage {
 		if ( "" == $this->mHTMLtitle ) {
 			$this->mHTMLtitle = wfMsg( "pagetitle", $this->mPagetitle );
 		}
-		if( $xml ) {
-			$xmlbits = "xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"$wgContLanguageCode\"";
-		} else {
-			$xmlbits = '';
-		}
+
 		$rtl = $wgContLang->isRTL() ? " dir='RTL'" : '';
-		$ret .= "<html $xmlbits lang=\"$wgContLanguageCode\" $rtl>\n";
+		$ret .= "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" $rtl>\n";
 		$ret .= "<head>\n<title>" . htmlspecialchars( $this->mHTMLtitle ) . "</title>\n";
 		array_push( $this->mMetatags, array( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" ) );
 
