@@ -1540,6 +1540,10 @@ class Language {
 		return ucfirst( $string );
 	}
 	
+	function lcfirst( $s ) {
+		return strtolower( $s{0}  ). substr( $s, 1 );
+	}
+
 	function checkTitleEncoding( $s ) {
         global $wgInputEncoding;
 		
