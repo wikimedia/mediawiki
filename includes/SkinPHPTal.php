@@ -480,29 +480,6 @@
 			return $nav_urls;
 		}
 
-		function getPageTitleActionText () {
-			global $action;
-			switch($action) {
-				case 'edit':
-					return 	wfMsg('edit');
-				case 'history':
-					return wfMsg('history_short');
-				case 'protect':
-					return wfMsg('unprotect');
-				case 'unprotect':
-					return wfMsg('unprotect');
-				case 'delete':
-					return wfMsg('delete');
-				case 'watch':
-					return wfMsg('watch');
-				case 'unwatch':
-					return wfMsg('unwatch');
-				case 'submit':
-					return wfMsg('preview');
-				default:
-					return '';
-			}
-		}
 		/*static*/ function makeSpecialUrl( $name, $urlaction='' ) {
 			$title = Title::makeTitle( NS_SPECIAL, $name );
 			$this->checkTitle(&$title, &$name);	

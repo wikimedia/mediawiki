@@ -759,7 +759,7 @@ class Article {
 		}
 		$id = $this->mTitle->getArticleID();
 		if ( 0 == $id ) {
-			$wgOut->fatalEror( wfMsg( "badarticleerror" ) );
+			$wgOut->fatalError( wfMsg( "badarticleerror" ) );
 			return;
 		}
 

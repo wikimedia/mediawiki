@@ -95,3 +95,7 @@ img { border: none; }
         font-size: 95%;
 }
 
+.error {
+	color: red;
+	font-size: larger;
+}
