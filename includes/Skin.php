@@ -1421,9 +1421,77 @@ class Skin {
 	}
 
 	function makeImageLinkObj( $nt, $alt = "" ) {
-		$link = $nt->getPrefixedURL();
-		$name = $nt->getDBKey();
-		$url = wfImageUrl( $name );
+		global $wgLang, $wgUseImageResize;
+		$link  = $nt->getPrefixedURL();
+		$name  = $nt->getDBKey();
+		$url   = wfImageUrl( $name );
+		$align = "";
+
+		if ( $wgUseImageResize ) {
+			# Check if the alt text is of the form "options|alt text"
+			# Options are:
+			#  * thumbnail       	make a thumbnail with enlarge-icon and caption, alignment depends on lang
+			#  * left		no resizing, just left align. label is used for alt= only
+			#  * right		same, but right aligned
+			#  * none		same, but not aligned
+			#  * ___px		scale to ___ pixels width, no aligning. e.g. use in taxobox
+	
+			$part = explode( "|", $alt);
+	
+			if ( count($part) > 1 ) {
+				$mwThumb =& MagicWord::get( MAG_IMG_THUMBNAIL );
+				$mwLeft  =& MagicWord::get( MAG_IMG_LEFT );
+				$mwRight =& MagicWord::get( MAG_IMG_RIGHT );
+				$mwNone  =& MagicWord::get( MAG_IMG_NONE );
+				$mwWidth =& MagicWord::get( MAG_IMG_WIDTH );
+				$alt = $part[count($part)-1];
+	
+				$thumb=false;
+	
+				foreach( $part as $key => $val ) {
+					if ( ! is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
+						$thumb=true;
+					} elseif ( ! is_null( $mwRight->matchVariableStartToEnd($val) ) ) {
+						# remember to set an alignment, don't render immediately
+						$align = "right";
+					} elseif ( ! is_null( $mwLeft->matchVariableStartToEnd($val) ) ) {
+						# remember to set an alignment, don't render immediately
+						$align = "left";
+					} elseif ( ! is_null( $mwNone->matchVariableStartToEnd($val) ) ) {
+						# remember to set an alignment, don't render immediately
+						$align = "none";
+					} elseif ( ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
+						# $match is the image width in pixels
+						$width = intval($match);
+					}
+				}
+			}
+	
+			if ( $thumb ) {
+	
+				# Create a thumbnail. Alignment depends on language
+				# writing direction, # right aligned for left-to-right-
+				# languages ("Western languages"), left-aligned
+				# for right-to-left-languages ("Semitic languages")
+				#
+				# If  thumbnail width has not been provided, it is set
+				# here to 180 pixels
+				if ( $align == "" ) {
+					$align = $wgLang->isRTL() ? "left" : "right";
+				}
+				if ( ! isset($width) ) {
+					$width = 180;
+				}
+				return $this->makeThumbLinkObj( $nt, $alt, $align, $width );
+	
+			} elseif ( isset($width) ) {
+				
+				# Create a resized image, without the additional thumbnail
+				# features
+				$url = $this->createThumb( $name, $width );
+			}
+		} # endif $wgUseImageResize
+			
 		if ( empty( $alt ) ) {
 			$alt = preg_replace( '/\.(.+?)^/', '', $name );
 		}
@@ -1432,6 +1500,63 @@ class Skin {
 		$u = wfLocalUrlE( $link );
 		$s = "<a href=\"{$u}\" class='image' title=\"{$alt}\">" .
 		  "<img border=\"0\" src=\"{$url}\" alt=\"{$alt}\"></a>";
+		if ( "" != $align ) {
+			$s = "<div class=\"float{$align}\">{$s}</div>";
+		}
+		return $s;
+	}
+
+	function createThumb( $name, $width ) {
+		global $wgUploadDirectory;
+		global $wgImageMagickConvertCommand;
+		$imgPath   = wfImagePath( $name );
+		$thumbName = $width."px-".$icon.$name;
+		$thumbPath = wfImageArchiveDir( $thumbName, "thumb" )."/".$thumbName;
+		$thumbUrl  = wfImageArchiveUrl( $thumbName, "thumb" );
+
+		if (     (! file_exists( $thumbPath )) 
+		     ||  ( filemtime($thumbPath) < filemtime($imgPath) ) ) {
+			$cmd  =  $wgImageMagickConvertCommand .
+					" -quality 95 -geometry {$width}x ".
+					escapeshellarg($imgPath) . " " .
+					escapeshellarg($thumbPath);
+			$conv = shell_exec( $cmd );
+		}
+		return $thumbUrl;
+	}
+
+	function makeThumbLinkObj( $nt, $label = "", $align = "right", $boxwidth = 180 ) {
+		global $wgUploadPath;
+		$name = $nt->getDBKey();
+		$image = Title::makeTitle( Namespace::getImage(), $name );
+		$link = $image->getPrefixedURL();
+		$url  = wfImageUrl( $name );
+		$path = wfImagePath( $name );
+
+		list($width, $height, $type, $attr) = getimagesize( $path );
+		$cwidth   = $boxwidth;
+		$cheight  = intval( $height/($width/$cwidth) );
+		if ($cheight > $boxwidth*1.5) {
+			$cheight = $boxwidth*1.3;
+			$cwidth  = intval( $width/($height/$cheight) );
+		}
+		if ( $cwidth > $width ) {
+			$cwidth  = $width;
+			$cheight = $height;
+		}
+		
+		$thumbUrl = $this->createThumb( $name, $cwidth );
+
+		$u = wfLocalUrlE( $link );
+
+		$more = wfMsg( "thumbnail-more" );
+		
+		$s = "<div class=\"thumbnail-{$align}\" style=\"width:{$boxwidth}px;\">" .
+		  "<a href=\"{$u}\" class=\"internal\" title=\"{$label}\">" .
+		  "<img border=\"0\" src=\"{$thumbUrl}\" alt=\"{$label}\" width=\"{$cwidth}\" height=\"{$cheight}\"></a>" .
+		  "<a href=\"{$u}\" class=\"internal\" title=\"{$more}\">" .
+		    "<img border=\"0\" src=\"{$wgUploadPath}/magnify-clip.png\" width=\"26\" height=\"24\" align=\"right\" alt=\"{$more}\"></a>" .
+		  "<p>{$label}</div></p>";
 		return $s;
 	}
 

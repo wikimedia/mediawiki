@@ -94,3 +94,43 @@ a.stub { color:#772233; text-decoration:none; }
 small { font-size: 75%; }
 #toc { border:1px solid #8888aa; background-color:#f7f8ff;padding:5px;font-size:95%; }
 
+
+/* Images */
+div.floatright { float: right; margin: 0 0 1em 1em; }
+div.floatright p { font-style: italic; }
+div.floatleft { float: left; margin: 0.3em 0.5em 0.5em 0; }
+div.floatleft p { font-style: italic; }
+
+
+/* thumbnails */
+div.thumbnail-none, div.thumbnail-right, div.thumbnail-left {
+	padding: 2px;
+	border:1px solid #8888aa;
+	background:#CCCCCC;
+	margin: 0.3em 0 0.5em;
+	font-size: 85%;
+}
+
+div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
+	margin-top:3px; margin-bottom:3px;
+}
+
+div.thumbnail-right {
+	float: right;
+	margin-left:0.5em;
+}
+
+div.thumbnail-left {
+	float: left;
+	margin-right:0.5em;
+}
+
+/* table standards */
+table.rimage {
+        float:right;
+        width:1pt;
+        margin-left:1em;
+        margin-bottom:1em;
+        text-align:center;
+        font-size:smaller;
+        }

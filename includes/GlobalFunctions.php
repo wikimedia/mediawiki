@@ -99,12 +99,43 @@ function wfImageUrl( $img )
 	return wfUrlencode( $url );
 }
 
-function wfImageArchiveUrl( $name )
+function wfImagePath( $img )
+{
+	global $wgUploadDirectory;
+
+	$nt = Title::newFromText( $img );
+	if( !$nt ) return "";
+
+	$name = $nt->getDBkey();
+	$hash = md5( $name );
+
+	$url = "{$wgUploadDirectory}/" . $hash{0} . "/" .
+	  substr( $hash, 0, 2 ) . "/{$name}";
+	return wfUrlencode( $url );
+}
+
+function wfThumbUrl( $img )
 {
 	global $wgUploadPath;
 
-	$hash = md5( substr( $name, 15) );
-	$url = "{$wgUploadPath}/archive/" . $hash{0} . "/" .
+	$nt = Title::newFromText( $img );
+	if( !$nt ) return "";
+
+	$name = $nt->getDBkey();
+	$hash = md5( $name );
+
+	$url = "{$wgUploadPath}/thumb/" . $hash{0} . "/" .
+	  substr( $hash, 0, 2 ) . "/{$name}";
+	return wfUrlencode( $url );
+}
+
+
+function wfImageArchiveUrl( $name, $subdir="archive" )
+{
+	global $wgUploadPath;
+
+	$hash = md5( $name );
+	$url = "{$wgUploadPath}/{$subdir}/" . $hash{0} . "/" .
 	  substr( $hash, 0, 2 ) . "/{$name}";
 	return $url;
 }
@@ -429,13 +460,13 @@ function wfImageDir( $fname )
 	return $dest;
 }
 
-function wfImageArchiveDir( $fname )
+function wfImageArchiveDir( $fname , $subdir="archive")
 {
 	global $wgUploadDirectory;
 
 	$hash = md5( $fname );
 	$oldumask = umask(0);
-	$archive = "{$wgUploadDirectory}/archive";
+	$archive = "{$wgUploadDirectory}/{$subdir}";
 	if ( ! is_dir( $archive ) ) { mkdir( $archive, 0777 ); }
 	$archive .= "/" . $hash{0};
 	if ( ! is_dir( $archive ) ) { mkdir( $archive, 0777 ); }

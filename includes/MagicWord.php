@@ -26,6 +26,7 @@ class MagicWord {
 		$this->mRegex = "";
 		$this->mRegexStart = "";
 		$this->mVariableRegex = "";
+		$this->mVariableStartToEndRegex = "";
 		$this->mModified = false;
 	}
 
@@ -59,6 +60,7 @@ class MagicWord {
 		$this->mRegex = "/{$this->mBaseRegex}/{$case}";
 		$this->mRegexStart = "/^{$this->mBaseRegex}/{$case}";
 		$this->mVariableRegex = str_replace( "\\$1", "([A-Za-z0-9_\-]*)", $this->mRegex );
+		$this->mVariableStartToEndRegex = str_replace( "\\$1", "([A-Za-z0-9_\-]*)", "/^{$this->mBaseRegex}$/{$case}" );
 	}
 	
 	# Gets a regex representing matching the word
@@ -79,7 +81,7 @@ class MagicWord {
 		}
 		return $this->mRegexStart;
 	}
-	
+
 	# regex without the slashes and what not
 	function getBaseRegex()
 	{
@@ -99,6 +101,22 @@ class MagicWord {
 	{
 		return preg_match( $this->getRegexStart(), $text );
 	}
+
+	# Returns NULL if there's no match, the value of $1 otherwise
+	# The return code is the matched string, if there's no variable
+	# part in the regex and the matched variable part ($1) if there
+	# is one.
+	function matchVariableStartToEnd( $text ) {
+		$matchcount = preg_match( $this->getVariableStartToEndRegex(), $text, $matches );
+		if ( $matchcount == 0 ) {
+			return NULL;
+		} elseif ( count($matches) == 1 ) {
+			return $matches[0];
+		} else {
+			return $matches[1];
+		}
+	}
+
 
 	# Returns true if the text matches the word, and alters the
 	# input string, removing all instances of the word
@@ -135,6 +153,15 @@ class MagicWord {
 			$this->initRegex();
 		} 
 		return $this->mVariableRegex;
+	}
+
+	# Matches the entire string, where $1 is a wildcard
+	function getVariableStartToEndRegex()
+	{
+		if ( $this->mVariableStartToEndRegex == "" ) {
+			$this->initRegex();
+		} 
+		return $this->mVariableStartToEndRegex;
 	}
 
 	# Accesses the synonym list directly
