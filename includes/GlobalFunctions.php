@@ -65,7 +65,7 @@ function wfLocalUrl( $a, $q = "" )
 	} else if ( "" == $q ) {
 		$a = str_replace( "$1", $a, $wgArticlePath );
 	} else {
-		$a = "{$wgScript}?title={$a}&{$q}";	
+		$a = "/{$a}&{$q}";	
 	}
 	return $a;
 }
