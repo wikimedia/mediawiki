@@ -19,6 +19,7 @@ class RawPage {
 	}
 	function view() {
 		header( "Content-type: ".$this->mContentType.'; charset='.$this->mCharset );
+		header( 'Cache-Control: s-maxage=0, max-age=2678400' );
 		echo $this->getrawtext();
 		wfAbruptExit();
 	}
