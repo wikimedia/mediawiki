@@ -718,8 +718,8 @@ class Title {
 			return false;
 		}
 		
-		# "." and ".." conflict with the directories of those names
-		if ( $r === "." || $r === ".." ) {
+		# "." and ".." conflict with the directories of those namesa
+		if ( $r === "." || $r === ".." || strpos( $r, "./" ) !== false ) {
 			return false;
 		}
 
