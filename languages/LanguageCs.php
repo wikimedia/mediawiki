@@ -159,7 +159,7 @@
 # Části textu používané různými stránkami:
 #
 # Písmena, která se mají objevit jako část odkazu ve formě "[[jazyk]]y" atd:
-"linktrail"     => "/^([a-z]+)(.*)$/sD",
+"linktrail"     => "/^((?:[a-z]|á|č|ď|é|ě|í|ň|ó|ř|š|ť|ú|ů|ý|ž)+)(.*)$/sD",
 "mainpage"		=> "Hlavní strana",
 "about"			=> "Úvod",
 "aboutsite"      => "O Wikipedii", #FIXME
