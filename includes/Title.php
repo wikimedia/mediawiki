@@ -68,6 +68,19 @@ class Title {
 		return $t;
 	}
 
+	function nameOf( $id )
+	{
+		$sql = "SELECT cur_namespace,cur_title FROM cur WHERE " .
+		  "cur_id={$id}";
+		$res = wfQuery( $sql, "Article::nameOf" );
+		if ( 0 == wfNumRows( $res ) ) { return NULL; }
+
+		$s = wfFetchObject( $res );
+		$n = Title::makeName( $s->cur_namespace, $s->cur_title );
+		return $n;
+	}
+
+
 	function legalChars()
 	{
 		global $wgInputEncoding;

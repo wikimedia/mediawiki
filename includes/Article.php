@@ -14,7 +14,10 @@ class Article {
 	/* private */ var $mMinorEdit, $mRedirectedFrom;
 	/* private */ var $mTouched, $mFileCache;
 
-	function Article() { $this->clear(); }
+	function Article( &$title ) {
+		$this->mTitle =& $title;
+		$this->clear();
+	}
 
 	/* private */ function clear()
 	{
@@ -26,45 +29,17 @@ class Article {
 		$this->mTouched = "19700101000000";
 	}
 
-	/* static */ function newFromID( $newid )
-	{
-		global $wgOut, $wgTitle, $wgArticle;
-		$a = new Article();
-		$n = Article::nameOf( $newid );
-
-		$wgTitle = Title::newFromDBkey( $n );
-		$wgTitle->resetArticleID( $newid );
-
-		return $a;
-	}
-
-	/* static */ function nameOf( $id )
-	{
-		$sql = "SELECT cur_namespace,cur_title FROM cur WHERE " .
-		  "cur_id={$id}";
-		$res = wfQuery( $sql, "Article::nameOf" );
-		if ( 0 == wfNumRows( $res ) ) { return NULL; }
-
-		$s = wfFetchObject( $res );
-		$n = Title::makeName( $s->cur_namespace, $s->cur_title );
-		return $n;
-	}
-
 	# Note that getContent/loadContent may follow redirects if
 	# not told otherwise, and so may cause a change to wgTitle.
 
 	function getContent( $noredir = false )
 	{
-		global $action,$section,$count,$wgTitle; # From query string
+		global $action,$section,$count; # From query string
 		wfProfileIn( "Article::getContent" );
 
 		if ( 0 == $this->getID() ) {
 			if ( "edit" == $action ) {
-			
-				global $wgTitle;
 				return ""; # was "newarticletext", now moved above the box)
-				
-				
 			}
 			wfProfileOut();
 			return wfMsg( "noarticletext" );
@@ -74,8 +49,8 @@ class Article {
 						
 			if(
 				# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
-				( $wgTitle->getNamespace() == Namespace::getTalk( Namespace::getUser()) ) &&
-				  preg_match("/^\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}$/",$wgTitle->getText()) &&
+				( $this->mTitle->getNamespace() == Namespace::getTalk( Namespace::getUser()) ) &&
+				  preg_match("/^\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}$/",$this->mTitle->getText()) &&
 				  $action=="view"
 				) 
 				{
@@ -102,7 +77,7 @@ class Article {
 
 	function loadContent( $noredir = false )
 	{
-		global $wgOut, $wgTitle, $wgMwRedir;
+		global $wgOut, $wgMwRedir;
 		global $oldid, $redirect; # From query
 
 		if ( $this->mContentLoaded ) return;
@@ -111,7 +86,7 @@ class Article {
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
 
-		$t = $wgTitle->getPrefixedText();
+		$t = $this->mTitle->getPrefixedText();
 		if ( $oldid ) { $t .= ",oldid={$oldid}"; }
 		if ( $redirect ) { $t .= ",redirect={$redirect}"; }
 		$this->mContent = str_replace( "$1", $t, wfMsg( "missingarticle" ) );
@@ -156,8 +131,8 @@ class Article {
 						$res = wfQuery( $sql, $fname );
 
 						if ( 0 != wfNumRows( $res ) ) {
-							$this->mRedirectedFrom = $wgTitle->getPrefixedText();
-							$wgTitle = $rt;
+							$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
+							$this->mTitle = $rt;
 							$s = wfFetchObject( $res );
 						}
 					}
@@ -168,8 +143,8 @@ class Article {
 			$this->mCounter = $s->cur_counter;
 			$this->mTimestamp = $s->cur_timestamp;
 			$this->mTouched = $s->cur_touched;
-			$wgTitle->mRestrictions = explode( ",", trim( $s->cur_restrictions ) );
-			$wgTitle->mRestrictionsLoaded = true;
+			$this->mTitle->mRestrictions = explode( ",", trim( $s->cur_restrictions ) );
+			$this->mTitle->mRestrictionsLoaded = true;
 			wfFreeResult( $res );
 		} else { # oldid set, retrieve historical version
 			$sql = "SELECT old_text,old_timestamp,old_user FROM old " .
@@ -187,7 +162,7 @@ class Article {
 		$this->mContentLoaded = true;
 	}
 
-	function getID() { global $wgTitle; return $wgTitle->getArticleID(); }
+	function getID() { return $this->mTitle->getArticleID(); }
 
 	function getCount()
 	{
@@ -203,9 +178,9 @@ class Article {
 
 	function isCountable( $text )
 	{
-		global $wgTitle, $wgUseCommaCount, $wgMwRedir;
+		global $wgUseCommaCount, $wgMwRedir;
 		
-		if ( 0 != $wgTitle->getNamespace() ) { return 0; }
+		if ( 0 != $this->mTitle->getNamespace() ) { return 0; }
 		if ( $wgMwRedir->matchStart( $text ) ) { return 0; }
 		$token = ($wgUseCommaCount ? "," : "[[" );
 		if ( false === strstr( $text, $token ) ) { return 0; }
@@ -270,7 +245,7 @@ class Article {
 
 	function view()
 	{
-		global $wgUser, $wgOut, $wgTitle, $wgLang;
+		global $wgUser, $wgOut, $wgLang;
 		global $oldid, $diff; # From query
 		global $wgLinkCache;
 		wfProfileIn( "Article::view" );
@@ -282,15 +257,15 @@ class Article {
 		# diff page instead of the article.
 
 		if ( isset( $diff ) ) {
-			$wgOut->setPageTitle( $wgTitle->getPrefixedText() );
+			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 			$de = new DifferenceEngine( $oldid, $diff );
 			$de->showDiffPage();
 			wfProfileOut();
 			return;
 		}
 		$text = $this->getContent(); # May change wgTitle!
-		$wgOut->setPageTitle( $wgTitle->getPrefixedText() );
-		$wgOut->setHTMLTitle( $wgTitle->getPrefixedText() .
+		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+		$wgOut->setHTMLTitle( $this->mTitle->getPrefixedText() .
 		  " - " . wfMsg( "wikititlesuffix" ) );
 
 		# We're looking at an old revision
@@ -308,14 +283,14 @@ class Article {
 		}
 		$wgOut->checkLastModified( $this->mTouched );
 		$this->tryFileCache();
-		$wgLinkCache->preFill( $wgTitle );
+		$wgLinkCache->preFill( $this->mTitle );
 		$wgOut->addWikiText( $text );
 
 		# If the article we've just shown is in the "Image" namespace,
 		# follow it with the history list and link list for the image
 		# it describes.
 
-		if ( Namespace::getImage() == $wgTitle->getNamespace() ) {
+		if ( Namespace::getImage() == $this->mTitle->getNamespace() ) {
 			$this->imageHistory();
 			$this->imageLinks();
 		}
@@ -330,11 +305,11 @@ class Article {
 
 	/* private */ function insertNewArticle( $text, $summary, $isminor, $watchthis )
 	{
-		global $wgOut, $wgUser, $wgTitle, $wgLinkCache, $wgMwRedir;
+		global $wgOut, $wgUser, $wgLinkCache, $wgMwRedir;
 		$fname = "Article::insertNewArticle";
 
-		$ns = $wgTitle->getNamespace();
-		$ttl = $wgTitle->getDBkey();
+		$ns = $this->mTitle->getNamespace();
+		$ttl = $this->mTitle->getDBkey();
 		$text = $this->preSaveTransform( $text );
 		if ( $wgMwRedir->matchStart( $text ) ) { $redir = 1; }
 		else { $redir = 0; }
@@ -355,7 +330,7 @@ class Article {
 		$res = wfQuery( $sql, $fname );
 
 		$newid = wfInsertId();
-		$wgTitle->resetArticleID( $newid );
+		$this->mTitle->resetArticleID( $newid );
 
 		$sql = "INSERT INTO recentchanges (rc_timestamp,rc_cur_time," .
 		  "rc_namespace,rc_title,rc_new,rc_minor,rc_cur_id,rc_user," .
@@ -367,9 +342,9 @@ class Article {
 		  ( $wgUser->isBot() ? 1 : 0 ) . ")";
 		wfQuery( $sql, $fname );
 		if ($watchthis) { 		
-			if(!$wgTitle->userIsWatching()) $this->watch(); 
+			if(!$this->mTitle->userIsWatching()) $this->watch(); 
 		} else {
-			if ( $wgTitle->userIsWatching() ) {
+			if ( $this->mTitle->userIsWatching() ) {
 				$this->unwatch();
 			}
 		}
@@ -379,7 +354,7 @@ class Article {
 
 	function updateArticle( $text, $summary, $minor, $watchthis, $section="" )
 	{
-		global $wgOut, $wgUser, $wgTitle, $wgLinkCache;
+		global $wgOut, $wgUser, $wgLinkCache;
 		global $wgDBtransactions, $wgMwRedir;
 		$fname = "Article::updateArticle";
 
@@ -442,8 +417,8 @@ class Article {
 			$sql = "INSERT INTO old (old_namespace,old_title,old_text," .
 			  "old_comment,old_user,old_user_text,old_timestamp," .
 			  "old_minor_edit,inverse_timestamp) VALUES (" .
-			  $wgTitle->getNamespace() . ", '" .
-			  wfStrencode( $wgTitle->getDBkey() ) . "', '" .
+			  $this->mTitle->getNamespace() . ", '" .
+			  wfStrencode( $this->mTitle->getDBkey() ) . "', '" .
 			  wfStrencode( $oldtext ) . "', '" .
 			  wfStrencode( $this->getComment() ) . "', " .
 			  $this->getUser() . ", '" .
@@ -456,8 +431,8 @@ class Article {
 			$sql = "INSERT INTO recentchanges (rc_timestamp,rc_cur_time," .
 			  "rc_namespace,rc_title,rc_new,rc_minor,rc_bot,rc_cur_id,rc_user," .
 			  "rc_user_text,rc_comment,rc_this_oldid,rc_last_oldid) VALUES (" .
-			  "'{$now}','{$now}'," . $wgTitle->getNamespace() . ",'" .
-			  wfStrencode( $wgTitle->getDBkey() ) . "',0,{$me2}," .
+			  "'{$now}','{$now}'," . $this->mTitle->getNamespace() . ",'" .
+			  wfStrencode( $this->mTitle->getDBkey() ) . "',0,{$me2}," .
 			  ( $wgUser->isBot() ? 1 : 0 ) . "," .
 			  $this->getID() . "," . $wgUser->getID() . ",'" .
 			  wfStrencode( $wgUser->getName() ) . "','" .
@@ -465,8 +440,8 @@ class Article {
 			wfQuery( $sql, $fname );
 
 			$sql = "UPDATE recentchanges SET rc_this_oldid={$oldid} " .
-			  "WHERE rc_namespace=" . $wgTitle->getNamespace() . " AND " .
-			  "rc_title='" . wfStrencode( $wgTitle->getDBkey() ) . "' AND " .
+			  "WHERE rc_namespace=" . $this->mTitle->getNamespace() . " AND " .
+			  "rc_title='" . wfStrencode( $this->mTitle->getDBkey() ) . "' AND " .
 			  "rc_timestamp='" . $this->getTimestamp() . "'";
 			wfQuery( $sql, $fname );
 
@@ -480,9 +455,9 @@ class Article {
 		}
 		
 		if ($watchthis) { 
-			if (!$wgTitle->userIsWatching()) $this->watch();			
+			if (!$this->mTitle->userIsWatching()) $this->watch();			
 		} else {
-			if ( $wgTitle->userIsWatching() ) {
+			if ( $this->mTitle->userIsWatching() ) {
 				$this->unwatch();
 			}
 		}
@@ -496,14 +471,14 @@ class Article {
 
 	function showArticle( $text, $subtitle )
 	{
-		global $wgOut, $wgTitle, $wgUser, $wgLinkCache, $wgUseBetterLinksUpdate;
+		global $wgOut, $wgUser, $wgLinkCache, $wgUseBetterLinksUpdate;
 		global $wgMwRedir;
 
 		$wgLinkCache = new LinkCache();
 
 		# Get old version of link table to allow incremental link updates
 		if ( $wgUseBetterLinksUpdate ) {
-			$wgLinkCache->preFill( $wgTitle );
+			$wgLinkCache->preFill( $this->mTitle );
 			$wgLinkCache->clear();
 		}
 
@@ -516,7 +491,7 @@ class Article {
 			$r = "redirect=no";
 		else
 			$r = "";
-		$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL(), $r ) );
+		$wgOut->redirect( wfLocalUrl( $this->mTitle->getPrefixedURL(), $r ) );
 	}
 
 	# If the page we've just displayed is in the "Image" namespace,
@@ -524,12 +499,12 @@ class Article {
 
 	function imageHistory()
 	{
-		global $wgUser, $wgOut, $wgLang, $wgTitle;
+		global $wgUser, $wgOut, $wgLang;
 		$fname = "Article::imageHistory";
 
 		$sql = "SELECT img_size,img_description,img_user," .
 		  "img_user_text,img_timestamp FROM image WHERE " .
-		  "img_name='" . wfStrencode( $wgTitle->getDBkey() ) . "'";
+		  "img_name='" . wfStrencode( $this->mTitle->getDBkey() ) . "'";
 		$res = wfQuery( $sql, $fname );
 
 		if ( 0 == wfNumRows( $res ) ) { return; }
@@ -539,12 +514,12 @@ class Article {
 
 		$line = wfFetchObject( $res );
 		$s .= $sk->imageHistoryLine( true, $line->img_timestamp,
-		  $wgTitle->getText(),  $line->img_user,
+		  $this->mTitle->getText(),  $line->img_user,
 		  $line->img_user_text, $line->img_size, $line->img_description );
 
 		$sql = "SELECT oi_size,oi_description,oi_user," .
 		  "oi_user_text,oi_timestamp,oi_archive_name FROM oldimage WHERE " .
-		  "oi_name='" . wfStrencode( $wgTitle->getDBkey() ) . "' " .
+		  "oi_name='" . wfStrencode( $this->mTitle->getDBkey() ) . "' " .
 		  "ORDER BY oi_timestamp DESC";
 		$res = wfQuery( $sql, $fname );
 
@@ -559,12 +534,12 @@ class Article {
 
 	function imageLinks()
 	{
-		global $wgUser, $wgOut, $wgTitle;
+		global $wgUser, $wgOut;
 
 		$wgOut->addHTML( "<h2>" . wfMsg( "imagelinks" ) . "</h2>\n" );
 
 		$sql = "SELECT il_from FROM imagelinks WHERE il_to='" .
-		  wfStrencode( $wgTitle->getDBkey() ) . "'";
+		  wfStrencode( $this->mTitle->getDBkey() ) . "'";
 		$res = wfQuery( $sql, "Article::imageLinks" );
 
 		if ( 0 == wfNumRows( $res ) ) {
@@ -586,7 +561,7 @@ class Article {
 
 	function watch()
 	{
-		global $wgUser, $wgTitle, $wgOut, $wgLang;
+		global $wgUser, $wgOut, $wgLang;
 		global $wgDeferredUpdateList;
 
 		if ( 0 == $wgUser->getID() ) {
@@ -597,13 +572,13 @@ class Article {
 			$wgOut->readOnlyPage();
 			return;
 		}
-		$wgUser->addWatch( $wgTitle );
+		$wgUser->addWatch( $this->mTitle );
 
 		$wgOut->setPagetitle( wfMsg( "addedwatch" ) );
 		$wgOut->setRobotpolicy( "noindex,follow" );
 
 		$sk = $wgUser->getSkin() ;
-		$link = $sk->makeKnownLink ( $wgTitle->getPrefixedText() ) ;
+		$link = $sk->makeKnownLink ( $this->mTitle->getPrefixedText() ) ;
 
 		$text = str_replace( "$1", $link ,
 		  wfMsg( "addedwatchtext" ) );
@@ -617,7 +592,7 @@ class Article {
 
 	function unwatch()
 	{
-		global $wgUser, $wgTitle, $wgOut, $wgLang;
+		global $wgUser, $wgOut, $wgLang;
 		global $wgDeferredUpdateList;
 
 		if ( 0 == $wgUser->getID() ) {
@@ -628,13 +603,13 @@ class Article {
 			$wgOut->readOnlyPage();
 			return;
 		}
-		$wgUser->removeWatch( $wgTitle );
+		$wgUser->removeWatch( $this->mTitle );
 
 		$wgOut->setPagetitle( wfMsg( "removedwatch" ) );
 		$wgOut->setRobotpolicy( "noindex,follow" );
 
 		$sk = $wgUser->getSkin() ;
-		$link = $sk->makeKnownLink ( $wgTitle->getPrefixedText() ) ;
+		$link = $sk->makeKnownLink ( $this->mTitle->getPrefixedText() ) ;
 
 		$text = str_replace( "$1", $link ,
 		  wfMsg( "removedwatchtext" ) );
@@ -650,19 +625,19 @@ class Article {
 
 	function history()
 	{
-		global $wgUser, $wgOut, $wgLang, $wgTitle, $offset, $limit;
+		global $wgUser, $wgOut, $wgLang, $offset, $limit;
 
 		# If page hasn't changed, client can cache this
 		
 		$wgOut->checkLastModified( $this->getTimestamp() );
 		wfProfileIn( "Article::history" );
 
-		$wgOut->setPageTitle( $wgTitle->getPRefixedText() );
+		$wgOut->setPageTitle( $this->mTitle->getPRefixedText() );
 		$wgOut->setSubtitle( wfMsg( "revhistory" ) );
 		$wgOut->setArticleFlag( false );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 
-		if( $wgTitle->getArticleID() == 0 ) {
+		if( $this->mTitle->getArticleID() == 0 ) {
 			$wgOut->addHTML( wfMsg( "nohistory" ) );
 			wfProfileOut();
 			return;
@@ -671,18 +646,18 @@ class Article {
 		$offset = (int)$offset;
 		$limit = (int)$limit;
 		if( $limit == 0 ) $limit = 50;
-		$namespace = $wgTitle->getNamespace();
-		$title = $wgTitle->getText();
+		$namespace = $this->mTitle->getNamespace();
+		$title = $this->mTitle->getText();
 		$sql = "SELECT old_id,old_user," .
 		  "old_comment,old_user_text,old_timestamp,old_minor_edit ".
 		  "FROM old USE INDEX (name_title_timestamp) " .
 		  "WHERE old_namespace={$namespace} AND " .
-		  "old_title='" . wfStrencode( $wgTitle->getDBkey() ) . "' " .
+		  "old_title='" . wfStrencode( $this->mTitle->getDBkey() ) . "' " .
 		  "ORDER BY inverse_timestamp LIMIT $offset, $limit";
 		$res = wfQuery( $sql, "Article::history" );
 
 		$revs = wfNumRows( $res );
-		if( $wgTitle->getArticleID() == 0 ) {
+		if( $this->mTitle->getArticleID() == 0 ) {
 			$wgOut->addHTML( wfMsg( "nohistory" ) );
 			wfProfileOut();
 			return;
@@ -691,7 +666,7 @@ class Article {
 		$sk = $wgUser->getSkin();
 		$numbar = wfViewPrevNext(
 			$offset, $limit,
-			$wgTitle->getPrefixedText(),
+			$this->mTitle->getPrefixedText(),
 			"action=history" );
 		$s = $numbar;
 		$s .= $sk->beginHistoryList();
@@ -717,7 +692,7 @@ class Article {
 
 	function protect()
 	{
-		global $wgUser, $wgOut, $wgTitle;
+		global $wgUser, $wgOut;
 
 		if ( ! $wgUser->isSysop() ) {
 			$wgOut->sysopRequired();
@@ -727,7 +702,7 @@ class Article {
 			$wgOut->readOnlyPage();
 			return;
 		}
-		$id = $wgTitle->getArticleID();
+		$id = $this->mTitle->getArticleID();
 		if ( 0 == $id ) {
 			$wgOut->fatalEror( wfMsg( "badarticleerror" ) );
 			return;
@@ -736,12 +711,12 @@ class Article {
 		  "cur_restrictions='sysop' WHERE cur_id={$id}";
 		wfQuery( $sql, "Article::protect" );
 
-		$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
+		$wgOut->redirect( wfLocalUrl( $this->mTitle->getPrefixedURL() ) );
 	}
 
 	function unprotect()
 	{
-		global $wgUser, $wgOut, $wgTitle;
+		global $wgUser, $wgOut;
 
 		if ( ! $wgUser->isSysop() ) {
 			$wgOut->sysopRequired();
@@ -751,7 +726,7 @@ class Article {
 			$wgOut->readOnlyPage();
 			return;
 		}
-		$id = $wgTitle->getArticleID();
+		$id = $this->mTitle->getArticleID();
 		if ( 0 == $id ) {
 			$wgOut->fatalEror( wfMsg( "badarticleerror" ) );
 			return;
@@ -760,12 +735,12 @@ class Article {
 		  "cur_restrictions='' WHERE cur_id={$id}";
 		wfQuery( $sql, "Article::unprotect" );
 
-		$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
+		$wgOut->redirect( wfLocalUrl( $this->mTitle->getPrefixedURL() ) );
 	}
 
 	function delete()
 	{
-		global $wgUser, $wgOut, $wgTitle;
+		global $wgUser, $wgOut;
 		global $wpConfirm, $wpReason, $image, $oldimage;
 
 		# Anybody can delete old revisions of images; only sysops
@@ -790,18 +765,18 @@ class Article {
 			$sub = str_replace( "$1", $image, wfMsg( "deletesub" ) );			
 		} else {
 
-			if ( ( "" == trim( $wgTitle->getText() ) )
-			  or ( $wgTitle->getArticleId() == 0 ) ) {
+			if ( ( "" == trim( $this->mTitle->getText() ) )
+			  or ( $this->mTitle->getArticleId() == 0 ) ) {
 				$wgOut->fatalError( wfMsg( "cannotdelete" ) );
 				return;
 			}
-			$sub = str_replace( "$1", $wgTitle->getPrefixedText(),
+			$sub = str_replace( "$1", $this->mTitle->getPrefixedText(),
 			  wfMsg( "deletesub" ) );			
 
 			# determine whether this page has earlier revisions
 			# and insert a warning if it does
 			# we select the text because it might be useful below
-			$sql="SELECT old_text FROM old WHERE old_namespace=0 and old_title='" . wfStrencode($wgTitle->getPrefixedDBkey())."' ORDER BY inverse_timestamp LIMIT 1";
+			$sql="SELECT old_text FROM old WHERE old_namespace=0 and old_title='" . wfStrencode($this->mTitle->getPrefixedDBkey())."' ORDER BY inverse_timestamp LIMIT 1";
 			$res=wfQuery($sql,$fname);
 			if( ($old=wfFetchObject($res)) && !$wpConfirm ) {
 				$skin=$wgUser->getSkin();
@@ -809,7 +784,7 @@ class Article {
 				$wgOut->addHTML( $skin->historyLink() ."</B><P>");
 			}
 
-			$sql="SELECT cur_text FROM cur WHERE cur_namespace=0 and cur_title='" . wfStrencode($wgTitle->getPrefixedDBkey())."'";
+			$sql="SELECT cur_text FROM cur WHERE cur_namespace=0 and cur_title='" . wfStrencode($this->mTitle->getPrefixedDBkey())."'";
 			$res=wfQuery($sql,$fname);
 			if( ($s=wfFetchObject($res))) {
 
@@ -865,7 +840,7 @@ class Article {
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->addWikiText( wfMsg( "confirmdeletetext" ) );
 
-		$t = $wgTitle->getPrefixedURL();
+		$t = $this->mTitle->getPrefixedURL();
 		$q = "action=delete";
 
 		if ( $image ) {
@@ -898,7 +873,7 @@ class Article {
 
 	function doDelete()
 	{
-		global $wgOut, $wgTitle, $wgUser, $wgLang;
+		global $wgOut, $wgUser, $wgLang;
 		global $image, $oldimage, $wpReason;
 		$fname = "Article::doDelete";
 
@@ -939,8 +914,8 @@ class Article {
 
 			$deleted = $oldimage;
 		} else {
-			$this->doDeleteArticle( $wgTitle );
-			$deleted = $wgTitle->getPrefixedText();
+			$this->doDeleteArticle( $this->mTitle );
+			$deleted = $this->mTitle->getPrefixedText();
 		}
 		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
@@ -970,7 +945,7 @@ class Article {
 
 	function doDeleteArticle( $title )
 	{
-		global $wgUser, $wgOut, $wgLang, $wpReason, $wgTitle, $wgDeferredUpdateList;
+		global $wgUser, $wgOut, $wgLang, $wpReason, $wgDeferredUpdateList;
 
 		$fname = "Article::doDeleteArticle";
 		$ns = $title->getNamespace();
@@ -1061,8 +1036,8 @@ class Article {
 		$log->addEntry( str_replace( "$1", $art, wfMsg( "deletedarticle" ) ), $wpReason );
 
 		# Clear the cached article id so the interface doesn't act like we exist
-		$wgTitle->resetArticleID( 0 );
-		$wgTitle->mArticleID = 0;
+		$this->mTitle->resetArticleID( 0 );
+		$this->mTitle->mArticleID = 0;
 	}
 
 	function revert()
@@ -1109,7 +1084,7 @@ class Article {
 
 	function rollback()
 	{
-		global $wgUser, $wgTitle, $wgLang, $wgOut, $from;
+		global $wgUser, $wgLang, $wgOut, $from;
 
 		if ( ! $wgUser->isSysop() ) {
 			$wgOut->sysopRequired();
@@ -1117,8 +1092,8 @@ class Article {
 		}
 
 		# Replace all this user's current edits with the next one down
-		$tt = wfStrencode( $wgTitle->getDBKey() );
-		$n = $wgTitle->getNamespace();
+		$tt = wfStrencode( $this->mTitle->getDBKey() );
+		$n = $this->mTitle->getNamespace();
 		
 		# Get the last editor
 		$sql = "SELECT cur_id,cur_user,cur_user_text,cur_comment FROM cur WHERE cur_title='{$tt}' AND cur_namespace={$n}";
@@ -1137,7 +1112,7 @@ class Article {
 		if( $from != $s->cur_user_text ) {
 			$wgOut->setPageTitle(wfmsg("rollbackfailed"));
 			$wgOut->addWikiText( wfMsg( "alreadyrolled",
-				htmlspecialchars( $wgTitle->getPrefixedText()),
+				htmlspecialchars( $this->mTitle->getPrefixedText()),
 				htmlspecialchars( $from ),
 				htmlspecialchars( $s->cur_user_text ) ) );
 			if($s->cur_comment != "") {
@@ -1168,7 +1143,7 @@ class Article {
 		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->addHTML( "<h2>" . $newcomment . "</h2>\n<hr>\n" );
-		$this->updateArticle( $s->old_text, $newcomment, 1, $wgTitle->userIsWatching() );
+		$this->updateArticle( $s->old_text, $newcomment, 1, $this->mTitle->userIsWatching() );
 
 		$wgOut->returnToMain( false );
 	}
@@ -1178,7 +1153,7 @@ class Article {
 
 	/* private */ function viewUpdates()
 	{
-		global $wgDeferredUpdateList, $wgTitle;
+		global $wgDeferredUpdateList;
 
 		if ( 0 != $this->getID() ) {
 			$u = new ViewCountUpdate( $this->getID() );
@@ -1186,8 +1161,8 @@ class Article {
 			$u = new SiteStatsUpdate( 1, 0, 0 );
 			array_push( $wgDeferredUpdateList, $u );
 
-			$u = new UserTalkUpdate( 0, $wgTitle->getNamespace(),
-			  $wgTitle->getDBkey() );
+			$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(),
+			  $this->mTitle->getDBkey() );
 			array_push( $wgDeferredUpdateList, $u );
 		}
 	}
@@ -1197,7 +1172,7 @@ class Article {
 
 	/* private */ function editUpdates( $text )
 	{
-		global $wgDeferredUpdateList, $wgTitle;
+		global $wgDeferredUpdateList;
 
 		wfSeedRandom();
 		if ( 0 == mt_rand( 0, 999 ) ) {
@@ -1206,7 +1181,7 @@ class Article {
 			wfQuery( $sql );
 		}
 		$id = $this->getID();
-		$title = $wgTitle->getPrefixedDBkey();
+		$title = $this->mTitle->getPrefixedDBkey();
 		$adj = $this->mCountAdjustment;
 
 		if ( 0 != $id ) {
@@ -1217,8 +1192,8 @@ class Article {
 			$u = new SearchUpdate( $id, $title, $text );
 			array_push( $wgDeferredUpdateList, $u );
 
-			$u = new UserTalkUpdate( 1, $wgTitle->getNamespace(),
-			  $wgTitle->getDBkey() );
+			$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(),
+			  $this->mTitle->getDBkey() );
 			array_push( $wgDeferredUpdateList, $u );
 		}
 	}
@@ -1254,7 +1229,7 @@ class Article {
 
 	/* private */ function pstPass2( $text )
 	{
-		global $wgUser, $wgLang, $wgTitle, $wgLocaltimezone;
+		global $wgUser, $wgLang, $wgLocaltimezone;
 
 		# Signatures
 		#
@@ -1286,7 +1261,7 @@ class Article {
 		$p4 = "/\[\[([A-Aa-z _]+):({$np}+) \\(({$np}+)\\)\\|]]/";
 														# [[ns:page (cont)|]]
 		$context = "";
-		$t = $wgTitle->getText();
+		$t = $this->mTitle->getText();
 		if ( preg_match( $conpat, $t, $m ) ) {
 			$context = $m[2];
 		}
@@ -1316,10 +1291,8 @@ class Article {
 	/* Caching functions */
 	
 	function tryFileCache() {
-		global $wgTitle;
-		
 		if($this->isFileCacheable()) {
-			$cache = new CacheManager( $wgTitle );
+			$cache = new CacheManager( $this->mTitle );
 			if($cache->isFileCacheGood( $this->mTouched )) {
 				wfDebug( " tryFileCache() - about to load\n" );
 				$cache->loadFromFileCache();
@@ -1341,13 +1314,13 @@ class Article {
 	}
 
 	function isFileCacheable() {
-		global $wgUser, $wgTitle, $wgUseFileCache, $wgShowIPinHeader;
+		global $wgUser, $wgUseFileCache, $wgShowIPinHeader;
 		global $action, $oldid, $diff, $redirect, $printable;
 		return $wgUseFileCache
 			and (!$wgShowIPinHeader)
 			and ($wgUser->getId() == 0)
 			and (!$wgUser->getNewtalk())
-			and ($wgTitle->getNamespace != Namespace::getSpecial())
+			and ($this->mTitle->getNamespace != Namespace::getSpecial())
 			and ($action == "view")
 			and (!isset($oldid))
 			and (!isset($diff))
