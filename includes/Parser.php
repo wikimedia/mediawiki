@@ -2531,7 +2531,7 @@ class Parser
 			# The canonized header is a version of the header text safe to use for links
 			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
 			$canonized_headline = $this->unstrip( $headline, $this->mStripState );
-			$canonized_headline = $this->unstripNoWiki( $headline, $this->mStripState );
+			$canonized_headline = $this->unstripNoWiki( $canonized_headline, $this->mStripState );
 
 			# Remove link placeholders by the link text.
 			#     <!--LINK number-->
