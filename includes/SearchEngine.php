@@ -23,7 +23,11 @@ class SearchEngine {
 
 	function queryNamespaces()
 	{
-		return "cur_namespace IN (" . implode( ",", $this->namespacesToSearch ) . ")";
+		$namespaces = implode( ",", $this->namespacesToSearch );
+		if ($namespaces == "") {
+			$namespaces = "0";
+		}
+		return "AND cur_namespace IN (" . $namespaces . ")";
 		#return "1";
 	}
 
@@ -33,6 +37,25 @@ class SearchEngine {
 		return "AND cur_is_redirect=0 ";
 	}
 
+
+
+	/* private */ function initNamespaceCheckbox( $i )
+	{
+		global $wgUser, $wgNamespacesToBeSearchedDefault;
+		
+
+		if ($wgUser->getRights()) {
+			// User is logged in so we retrieve his default namespaces
+			return $wgUser->getOption( "searchNs".$i );
+		}
+		else {	
+			// User is not logged in so we give him the global default namespaces
+			return $wgNamespacesToBeSearchedDefault[ $i ];
+		}
+	}
+
+
+
 	function powersearch()
 	{
 		global $wgUser, $wgOut, $wgLang, $wgTitle;
@@ -41,18 +64,25 @@ class SearchEngine {
 		$search			= $_REQUEST['search'];
 		$searchx		= $_REQUEST['searchx'];
 		$listredirs		= $_REQUEST['redirs'];
-		$nscb[0]		= $_REQUEST['ns0'];
-		$nscb[1]		= $_REQUEST['ns1'];
-		$nscb[2]		= $_REQUEST['ns2'];
-		$nscb[3]		= $_REQUEST['ns3'];
-		$nscb[4]		= $_REQUEST['ns4'];
-		$nscb[5]		= $_REQUEST['ns5'];
-		$nscb[6]		= $_REQUEST['ns6'];
-		$nscb[7]		= $_REQUEST['ns7'];
+
 
 		if ( ! isset ( $searchx ) ) {	/* First time here */
-			$nscb[0] = $listredirs = 1;	/* All others should be unset */
+			$listredirs = 1;
+			for ($i = 0; ($i <= 7); $i++)
+			{
+				$nscb[$i] = $this->initNamespaceCheckbox($i);
+			}
+		} else {
+			$nscb[0]		= $_REQUEST['ns0'];
+			$nscb[1]		= $_REQUEST['ns1'];
+			$nscb[2]		= $_REQUEST['ns2'];
+			$nscb[3]		= $_REQUEST['ns3'];
+			$nscb[4]		= $_REQUEST['ns4'];
+			$nscb[5]		= $_REQUEST['ns5'];
+			$nscb[6]		= $_REQUEST['ns6'];
+			$nscb[7]		= $_REQUEST['ns7'];
 		}
+
 		$this->checkboxes["searchx"] = 1;
 		$ret = wfMsg("powersearchtext");
 
@@ -143,7 +173,7 @@ class SearchEngine {
 		$sql = "SELECT cur_id,cur_namespace,cur_title," .
 		  "cur_text FROM cur,searchindex " .
 		  "WHERE cur_id=si_page AND {$this->mTitlecond} " .
-		  "AND {$searchnamespaces} {$redircond}" .
+		  "{$searchnamespaces} {$redircond}" .
 		  "LIMIT {$offset}, {$limit}";
 		$res1 = wfQuery( $sql, $fname );
 		$num = wfNumRows($res1);
@@ -154,7 +184,7 @@ class SearchEngine {
 			$sql = "SELECT cur_id,cur_namespace,cur_title," .
 			  "cur_text FROM cur,searchindex " .
 			  "WHERE cur_id=si_page AND {$this->mTextcond} " .
-			  "AND {$searchnamespaces} {$redircond} " .
+			  "{$searchnamespaces} {$redircond} " .
 			  "LIMIT {$offset}, {$limit}";
 			$res2 = wfQuery( $sql, $fname );
 			$num = $num + wfNumRows($res2);

@@ -92,4 +92,7 @@ $wgCompressByDefault = true;
 $wgNamespacesWithSubpages = array( -1 => 0, 0 => 0, 1 => 1,
   2 => 1, 3 => 1, 4 => 0, 5 => 1, 6 => 0, 7 => 1 );
 
+$wgNamespacesToBeSearchedDefault = array( -1 => 0, 0 => 1, 1 => 0,
+  2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0 );
+
 ?>

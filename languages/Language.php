@@ -634,6 +634,7 @@ from server time (UTC).",
 "servertime"	=> "Server time is now",
 "guesstimezone" => "Fill in from browser",
 "emailflag"		=> "Disable e-mail from other users",
+"defaultns"		=> "Search in these namespaces by default:",
 
 # Recent changes
 #

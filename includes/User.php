@@ -69,6 +69,7 @@ class User {
 	function loadDefaults()
 	{
 		global $wgLang ;
+		global $wgNamespacesToBeSearchedDefault;
 
 		$this->mId = $this->mNewtalk = 0;
 		$this->mName = getenv( "REMOTE_ADDR" );
@@ -78,6 +79,9 @@ class User {
 		$defOpt = $wgLang->getDefaultUserOptions() ;
 		foreach ( $defOpt as $oname => $val ) {
 			$this->mOptions[$oname] = $val;
+		}
+		foreach ($wgNamespacesToBeSearchedDefault as $nsnum => $val) {
+			$this->mOptions["searchNs".$nsnum] = $val;
 		}
 		unset( $this->mSkin );
 		$this->mDataLoaded = false;

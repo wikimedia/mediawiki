@@ -568,6 +568,7 @@ Ihre interne ID-Nummer ist $2.",
 "servertime" => "Aktuelle Zeit auf dem Server",
 "guesstimezone" => "Einfügen aus dem Browser",
 "emailflag"		=> "Keine E-Mail von anderen Benutzern erhalten",
+"defaultns"		=> "In diesen Namensräumen soll standardmäßig gesucht werden:",
 
 # Recent changes
 #

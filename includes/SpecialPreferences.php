@@ -43,6 +43,21 @@ function wfSpecialPreferences()
 	}
 }
 
+
+/* private */ function validateCheckbox( $cb )
+{
+	if ( $cb )
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+
+
 /* private */ function savePreferences()
 {
 	global $wgUser, $wgLang, $wgDeferredUpdateList;
@@ -50,6 +65,7 @@ function wfSpecialPreferences()
 	global $wpSkin, $wpMath, $wpEmail, $wpEmailFlag, $wpNick, $wpSearch, $wpRecent;
 	global $wpSearchLines, $wpSearchChars, $wpStubs;
 	global $wpRows, $wpCols, $wpHourDiff, $HTTP_POST_VARS;
+	global $wpNs0, $wpNs1, $wpNs2, $wpNs3, $wpNs4, $wpNs5, $wpNs6, $wpNs7;
 
 	if ( "" != $wpNewpass ) {
 		if ( $wpNewpass != $wpRetype ) {
@@ -79,8 +95,17 @@ function wfSpecialPreferences()
 	$wgUser->setOption( "stubthreshold", validateIntOrNull( $wpStubs ) );
 	$wgUser->setOption( "timecorrection", validateIntOrNull( $wpHourDiff, -12, 14 ) );
 
-	if ( $wpEmailFlag ) { $wgUser->setOption( "disablemail", 1 ); }
-	else { $wgUser->setOption( "disablemail", 0 ); }
+	$wgUser->setOption( "searchNs0", validateCheckbox( $wpNs0 ) );
+	$wgUser->setOption( "searchNs1", validateCheckbox( $wpNs1 ) );
+	$wgUser->setOption( "searchNs2", validateCheckbox( $wpNs2 ) );
+	$wgUser->setOption( "searchNs3", validateCheckbox( $wpNs3 ) );
+	$wgUser->setOption( "searchNs4", validateCheckbox( $wpNs4 ) );
+	$wgUser->setOption( "searchNs5", validateCheckbox( $wpNs5 ) );
+	$wgUser->setOption( "searchNs6", validateCheckbox( $wpNs6 ) );
+	$wgUser->setOption( "searchNs7", validateCheckbox( $wpNs7 ) );
+
+
+	$wgUser->setOption( "disablemail", validateCheckbox( $wpEmailFlag ) );
 
 	$togs = $wgLang->getUserToggles();
 	foreach ( $togs as $tname => $ttext ) {
@@ -127,6 +152,45 @@ function wfSpecialPreferences()
 		$HTTP_POST_VARS["wpOp$tname"] = $wgUser->getOption( $tname );
 	}
 }
+
+
+
+
+/* private */ function namespacesCheckboxes()
+{
+	global $wgLang, $wgUser;
+	$nscb = array();
+
+	
+	for ($i = 0; ($i < 8); $i++)
+	{
+		$nscb[$i] = $wgUser->getOption( "searchNs".$i );
+	}
+
+	# Determine namespace checkboxes
+
+	$ns = $wgLang->getNamespaces();
+	array_shift( $ns ); /* Skip "Special" */
+
+	$r1 = "";
+	for ( $i = 0; $i < count( $ns ); ++$i ) {
+		$checked = "";
+		if ( $nscb[$i] == 1 ) {
+			$checked = " checked";
+		}
+		$name = str_replace( "_", " ", $ns[$i] );
+		if ( "" == $name ) { $name = "(Main)"; }
+
+		if ( 0 != $i ) { $r1 .= " "; }
+		$r1 .= "<input type=checkbox value=\"1\" name=\"" .
+		  "wpNs{$i}\"{$checked}>{$name}\n";
+	}
+	
+	return $r1;
+}
+
+
+
 
 /* private */ function mainPrefsForm( $err )
 {
@@ -181,6 +245,7 @@ function wfSpecialPreferences()
 	$scl = wfMsg( "contextlines" );
 	$scc = wfMsg( "contextchars" );
 	$rcc = wfMsg( "recentchangescount" );
+	$dsn = wfMsg( "defaultns" );
 
 	$wgOut->addHTML( "<form id=\"preferences\" name=\"preferences\" action=\"$action\"
 method=\"post\"><table border=\"1\"><tr><td valign=top nowrap><b>$qb:</b><br>\n" );
@@ -262,6 +327,8 @@ value=\"$i\"$checked> {$mathopts[$i]}</label><br>\n" );
 	if ( $wpEmailFlag ) { $emfc = "checked"; }
 	else { $emfc = ""; }
 
+	$ps = namespacesCheckboxes();
+
 	$wgOut->addHTML( "<td valign=top nowrap>
 <label>$yem: <input type=text name=\"wpEmail\" value=\"{$wpEmail}\" size=20></label><br>
 <label><input type=checkbox $emfc value=\"1\" name=\"wpEmailFlag\"> $emf</label><br>
@@ -272,6 +339,11 @@ value=\"$i\"$checked> {$mathopts[$i]}</label><br>\n" );
 <label>$rpp: <input type=text name=\"wpSearch\" value=\"$wpSearch\" size=6></label><br>
 <label>$scl: <input type=text name=\"wpSearchLines\" value=\"$wpSearchLines\" size=6></label><br>
 <label>$scc: <input type=text name=\"wpSearchChars\" value=\"$wpSearchChars\" size=6></label></td>
+</tr><tr>
+<td colspan=2>
+<b>$dsn</b><br>
+$ps
+</td>
 </tr><tr>
 <td align=center><input type=submit name=\"wpSaveprefs\" value=\"$svp\"></td>
 <td align=center><input type=submit name=\"wpReset\" value=\"$rsp\"></td>
