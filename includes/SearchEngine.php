@@ -354,7 +354,7 @@ class SearchEngine {
 					$terms[1] = "+";
 				}
 				$searchon .= $terms[1] . $wgLang->stripForSearch( $terms[2] );
-				if( $terms[3] ) {
+				if( !empty( $terms[3] ) ) {
 					$regexp = preg_quote( $terms[3] );
 					if( $terms[4] ) $regexp .= "[0-9A-Za-z_]+";
 				} else {
