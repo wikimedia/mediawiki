@@ -30,7 +30,7 @@ function wfSpecialAsksql() {
 		$action = $wgRequest->getVal( 'action' );
 	} else {
 		$query = '';
-		$action = ;
+		$action = '';
 	}
 	$f = new SqlQueryForm( $query);
 
