@@ -67,7 +67,7 @@ if($wgMetaNamespace === FALSE)
 	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
 	"highlightbroken" => 1, "stubthreshold" => 0,
 	"previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, "showtoc"=>1,
-	"showtoolbar"=>1,
+	"showtoolbar" =>1,
 	"date" => 0
 );
 
@@ -136,6 +136,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"az"	=> "&#1040;&#1079;&#1241;&#1088;&#1073;&#1072;&#1112;&#1209;&#1072;&#1085; (Azerbajan)",
 	"ba"	=> "&#1041;&#1072;&#1096;&#1082;&#1086;&#1088;&#1090; (Bashkort)",
 	"be" => "&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1080;",
+	"bg"	=> "Bulgarian",
 	"bh"	=> "Bihara",
 	"bi"	=> "Bislama",
 	"bn"	=> "Bengali",
@@ -190,6 +191,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"kn"	=> "&#3221;&#3240;&#3277;&#3240;&#3233; (Kannada)",
 	"ko" => "&#54620;&#44397;&#50612; (Hangukeo)",
 	"ks"	=> "Kashmiri",
+	"ku"	=> "Kurd&icirc;",
 	"kw" => "Kernewek",
 	"ky"	=> "Kirghiz",
 	"la" => "Latina",
@@ -354,6 +356,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"Booksources"	=> "External book sources",
 #	"Categories"	=> "Page categories",
 	"Export"		=> "XML page export",
+	"Version"		=> "Show MediaWiki version",
 );
 
 /* private */ $wgSysopSpecialPagesEn = array(
@@ -364,8 +367,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 
 /* private */ $wgDeveloperSpecialPagesEn = array(
 	"Lockdb"		=> "Make database read-only",
-	"Unlockdb"		=> "Restore DB write access",
-	"Debug"			=> "Debugging information"
+	"Unlockdb"		=> "Restore DB write access"
 );
 
 #-------------------------------------------------------------------
@@ -1034,6 +1036,7 @@ about books you are looking for.
 $wgSitename is not affiliated with any of these businesses, and
 this list should not be construed as an endorsement.",
 "alphaindexline" => "$1 to $2",
+"version"		=> "Version",
 
 # Email this user
 #
