@@ -19,7 +19,6 @@
 # You can get some useful informations online at:
 # http://meta.wikipedia.org/wiki/LocalSettings.php
 
-
 # The most important setting is here: $IP is the installation
 # path for the software. In the example below, the htdocs
 # dir should be set as the DocumentRoot in the httpd.conf
@@ -29,11 +28,14 @@
 #
 $IP = "/usr/local/apache/htdocs/wiki";
 
-
 ## Don't change this bit; install.php needs it.
 #
 if ( ! isset( $DP ) ) { $DP = $IP; }
 include_once( "$DP/DefaultSettings.php" );
+
+# If you wish to enable third-party extensions, you do that
+# using an include_once statement here. Make sure, however,
+# that DefaultSettings.php (above) is included first.
 
 ## Please customize!
 #
