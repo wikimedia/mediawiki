@@ -783,7 +783,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	  wfEscapeShellArg( $yourtextName );
 	$handle = popen( $cmd, 'r' );
 
-	if( fgets( $handle ) ){
+	if( fgets( $handle, 1024 ) ){
 		$conflict = true;
 	} else {
 		$conflict = false;
