@@ -106,9 +106,9 @@ class Parser
 		if(!$wgUseTidy) {
 			$fixtags = array(
 				# french spaces, last one Guillemet-left
-				"/ (\\?|:|!|\\302\\273)/i"=>'&nbsp;\\1', 
+				"/ (\\?|:|!|\\302\\273)/i"=>"&nbsp;\\1", 
 				# french spaces, Guillemet-right
-				"/\\302\\253 /i"=>'\\302\\253&nbsp;', 
+				"/(\\302\\253) /i"=>"\\1&nbsp;", 
 				"/<hr *>/i" => '<hr/>',
 				"/<br *>/i" => '<br/>',
 				"/<center *>/i"=>'<div class="center">',
@@ -121,9 +121,9 @@ class Parser
 		} else {
 			$fixtags = array(
 				# french spaces, last one Guillemet-left
-				"/ (\\?|:|!|\\302\\273)/i"=>'&nbsp;\\1', 
+				"/ (\\?|:|!|\\302\\273)/i"=>"&nbsp;\\1", 
 				# french spaces, Guillemet-right
-				"/\\302\\253 /i"=>'\\302\\253&nbsp;', 
+				"/(\\302\\253) /i"=>"\\1&nbsp;", 
 				"/<center *>/i"=>'<div class="center">',
 				"/<\\/center *>/i" => '</div>'
 			);
