@@ -1769,6 +1769,10 @@ class Parser
 				return $varCache[$index] = $wgContLang->formatNum( date( 'Y' ) );
 			case MAG_CURRENTTIME:
 				return $varCache[$index] = $wgContLang->time( wfTimestampNow(), false );
+			case MAG_CURRENTWEEK:
+				return $varCache[$index] = $wgContLang->formatNum( date('W') );
+			case MAG_CURRENTDOW:
+				return $varCache[$index] = $wgContLang->formatNum( date('w') );
 			case MAG_NUMBEROFARTICLES:
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfArticles() );
 			case MAG_SITENAME:
