@@ -902,7 +902,9 @@ class Title {
 		# Fixing category links (those without piped 'alternate' names) to be sorted under the new title
 		
 		$dbw =& wfGetDB( DB_MASTER );
-		$sql = "UPDATE categorylinks SET cl_sortkey=\"" . $nt->getPrefixedText() . "\" WHERE cl_from=\"" .$this->getArticleID() . "\" AND cl_sortkey=\"" . $this->getPrefixedText() . "\"" ;
+		$sql = "UPDATE categorylinks SET cl_sortkey=" . $dbw->addQuotes( $nt->getPrefixedText() ) .
+			" WHERE cl_from=" . $dbw->addQuotes( $this->getArticleID() ) .
+			" AND cl_sortkey=" . $dbw->addQuotes( $this->getPrefixedText() );
 		$dbw->query( $sql, "SpecialMovepage::doSubmit" );
 		
 
