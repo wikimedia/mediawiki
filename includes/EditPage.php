@@ -21,16 +21,20 @@ class EditPage {
 	var $edittime = '', $section = '';
 	var $oldid = 0;
 	
+	/**
+	 * @todo document
+	 * @param $article
+	 */
 	function EditPage( $article ) {
 		$this->mArticle =& $article;
 		global $wgTitle;
 		$this->mTitle =& $wgTitle;
 	}
 
-	# This is the function that gets called for "action=edit".
-
-	function edit()
-	{
+	/**
+	 * This is the function that gets called for "action=edit".
+	 */
+	function edit() {
 		global $wgOut, $wgUser, $wgWhitelistEdit, $wgRequest;
 		// this is not an article
 		$wgOut->setArticleFlag(false);
@@ -66,6 +70,9 @@ class EditPage {
 		}
 	}
 
+	/**
+	 * @todo document
+	 */
 	function importFormData( &$request ) {
 		# These fields need to be checked for encoding.
 		# Also remove trailing whitespace, but don't remove _initial_
@@ -88,27 +95,29 @@ class EditPage {
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
 	}
 
-	# Since there is only one text field on the edit form,
-	# pressing <enter> will cause the form to be submitted, but
-	# the submit button value won't appear in the query, so we
-	# Fake it here before going back to edit().  This is kind of
-	# ugly, but it helps some old URLs to still work.
-
-	function submit()
-	{
+	/**
+	 * Since there is only one text field on the edit form,
+	 * pressing <enter> will cause the form to be submitted, but
+	 * the submit button value won't appear in the query, so we
+	 * Fake it here before going back to edit().  This is kind of
+	 * ugly, but it helps some old URLs to still work.
+	 */
+	function submit() {
 		if( !$this->preview ) $this->save = true;
 
 		$this->edit();
 	}
 
-	# The edit form is self-submitting, so that when things like
-	# preview and edit conflicts occur, we get the same form back
-	# with the extra stuff added.  Only when the final submission
-	# is made and all is well do we actually save and redirect to
-	# the newly-edited page.
-
-	function editForm( $formtype )
-	{
+	/**
+	 * The edit form is self-submitting, so that when things like
+	 * preview and edit conflicts occur, we get the same form back
+	 * with the extra stuff added.  Only when the final submission
+	 * is made and all is well do we actually save and redirect to
+	 * the newly-edited page.
+	 *
+	 * @param string $formtype Type of form either : save, initial or preview
+	 */
+	function editForm( $formtype ) {
 		global $wgOut, $wgUser;
 		global $wgLang, $wgParser, $wgTitle;
 		global $wgAllowAnonymousMinor;
@@ -480,8 +489,10 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		}
 	}
 
-	function blockedIPpage()
-	{
+	/**
+	 * @todo document
+	 */
+	function blockedIPpage() {
 		global $wgOut, $wgUser, $wgLang, $wgIP;
 
 		$wgOut->setPageTitle( wfMsg( 'blockedtitle' ) );
@@ -504,10 +515,10 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$wgOut->returnToMain( false );
 	}
 
-
-
-	function userNotLoggedInPage()
-	{
+	/**
+	 * @todo document
+	 */
+	function userNotLoggedInPage() {
 		global $wgOut, $wgUser, $wgLang;
 
 		$wgOut->setPageTitle( wfMsg( 'whitelistedittitle' ) );
@@ -518,6 +529,9 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$wgOut->returnToMain( false );
 	}
 
+	/**
+	 * @todo document
+	 */
 	function spamPage ( $matches = array() )
 	{
 		global $wgOut;
@@ -532,10 +546,11 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$wgOut->returnToMain( false );
 	}
 
-	# Forks processes to scan the originating IP for an open proxy server
-	# MemCached can be used to skip IPs that have already been scanned
-	function proxyCheck()
-	{
+	/**
+	 * Forks processes to scan the originating IP for an open proxy server
+	 * MemCached can be used to skip IPs that have already been scanned
+	 */
+	function proxyCheck() {
 		global $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath;
 		global $wgIP, $wgUseMemCached, $wgMemc, $wgDBname, $wgProxyMemcExpiry;
 		
@@ -575,7 +590,11 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		}
 	}
 
-	/* private */ function mergeChangesInto( &$text ){
+	/**
+	 * @access private
+	 * @todo document
+	 */
+	function mergeChangesInto( &$text ){
 		$fname = 'EditPage::mergeChangesInto';
 		$oldDate = $this->edittime;
 		$dbw =& wfGetDB( DB_MASTER );
