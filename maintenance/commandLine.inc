@@ -1,8 +1,14 @@
 <?php
+
+if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
+	print "This script must be run from the command line\n";
+	exit();
+}
+
 $wgCommandLineMode = true;
 
 $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
-if ( $argv[1] ) {
+if ( @$argv[1] ) {
 	$lang = $argv[1];
 	putenv( "wikilang=$lang");
 	$settingsFile = "/apache/htdocs/{$argv[1]}/w/LocalSettings.php";
@@ -18,11 +24,11 @@ if ( ! is_readable( $settingsFile ) ) {
 	exit();
 }
 
-ini_set( "include_path", "../includes$sep../languages$sep$newpath$IP$sep$include_path" );
 
 $wgCommandLineMode = true;
 $DP = "../includes";
 include_once( $settingsFile );
+ini_set( "include_path", "../includes$sep../languages$sep$newpath$IP$sep$include_path" );
 
 include_once( "Setup.php" );
 include_once( "./InitialiseMessages.inc" );
