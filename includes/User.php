@@ -42,6 +42,10 @@ class User {
 	 * @param string $name Username, validated by Title:newFromText()
 	 */
 	function newFromName( $name ) {
+		global $wgUseLatin1;
+		if ( $wgUseLatin1 && ! ( strpos( $name, chr( 0xAD ) ) === false ) ) {
+			return NULL;
+		}
 		$u = new User();
 
 		# Clean up name according to title rules
@@ -264,7 +268,7 @@ class User {
 			}
 
 			# DNSBL
-			if ( !$this->mBlockedby && $wgEnableSorbs ) {
+			if ( !$this->mBlockedby && $wgEnableSorbs && $this->isNewbie() ) {
 				if ( $this->inSorbsBlacklist( $wgIP ) ) {
 					$this->mBlockedby = wfMsg( 'sorbs' );
 					$this->mBlockreason = wfMsg( 'sorbsreason' );
@@ -876,6 +880,7 @@ class User {
 	function saveSettings() {
 		global $wgMemc, $wgDBname;
 		$fname = 'User::saveSettings';
+		if ( wfReadOnly() ) { return ; }
 
 		$this->saveNewtalk();
 
@@ -909,6 +914,8 @@ class User {
 		global $wgDBname, $wgMemc;
 		
 		$fname = 'User::saveNewtalk';
+
+		if ( wfReadOnly() ) { return ; }
 
 		if ($this->getID() != 0) {
 			$field = 'user_id';
