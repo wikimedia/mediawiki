@@ -1017,6 +1017,35 @@ Template parameter
 </p>
 !! end
 
+!! article
+Template:paramtestnum
+!! text
+[[{{{1}}}|{{{2}}}]]
+!! endarticle
+
+!! test
+Template unnamed parameter
+!! input
+{{paramtestnum|Main Page|the main page}}
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">the main page</a>
+</p>
+!! end
+
+!! test
+BUG 553: link with two variables in a piped link
+!! input
+{| 
+|[[{{{1}}}|{{{2}}}]]
+|}
+!! result
+<table >
+<tr >
+<td>[[{{{1}}}|{{{2}}}]]
+</td></tr></table>
+
+!! end
+
 !! test
 Magic variable as template parameter
 !! input
@@ -1314,6 +1343,32 @@ Link to image page
 [[:Image:test]]
 !! result
 <p><a href="/wiki/Image:Test" title="Image:Test">Image:test</a>
+</p>
+!! end
+
+!! test
+Image caption with a free URL
+!! input
+[[Image:foo|http://example.com]]
+!! result
+<p><a href="/wiki/Image:Foo" class="image" title="http://example.com"><img src="/images/1/13/Foo" alt="http://example.com" />http://example.com</a>
+</p>
+!! end
+
+!! test
+Thumbnail image caption with a free URL
+!! input
+[[Image:foo|thumb|http://example.com]]
+!! result
+<div class="thumb tright"><div style="width:182px;"><b>Missing image</b><br /><i>Foo</i>   <div class="thumbcaption" ><a href="http://example.com" class='external'>http://example.com</a></div></div></div>
+!! end
+
+!! test
+Image caption with a link
+!! input
+[[Image:foo|text with a [[link]] in it]]
+!! result
+<p><a href="/wiki/Image:Foo" class="image" title="text with a link in it"><img src="/images/1/13/Foo" alt="text with a link in it" /></a>
 </p>
 !! end
 
