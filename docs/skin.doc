@@ -1,10 +1,9 @@
 
 SKIN.DOC
 
-This document describes the overall architecture of Wikipedia's
+This document describes the overall architecture of MediaWiki's
 HTML rendering code. It is placed here rather than in comments
 in the code itself to help reduce the code size.
-
 
 Unfortunately there isn't any documentation, and the code's in
 a bit of a mess right now during the transition from the old skin
@@ -12,20 +11,20 @@ code to the new template-based skin code in 1.3.
 
 The following might help a bit though.
 
-The first file called is Skin.php, it will check various settings and create
-a standard class.
+Firstly, there's Skin.php; this file will check various settings, and it 
+contains a base class from which new skins can be derived.
 
-Before version 1.3, each skin had its own php file to generate the output. The
-files are:
+Before version 1.3, each skin had its own PHP file (with a sub-class to Skin) 
+to generate the output. The files are:
  * SkinCologneBlue.php
  * SkinNostalgia.php
  * SkinStandard.php
  * SkinWikimediaWiki.php
-If you want to changes thoses skin you have to edit the php files
+If you want to change those skins, you have to edit these PHP files.
  
-Since 1.3 a new special skin file is available : SkinPHPTal.php. It makes use
-of the PHPTal template engine and allow to easily split code and layout of the
-pages. The default 1.3 skin is MonoBook and using the SkinPHPTAL class.
+Since 1.3 a new special skin file is available: SkinPHPTal.php. It makes use of
+the PHPTal template engine and allows you to separate code and layout of the
+pages. The default 1.3 skin is MonoBook and it uses the SkinPHPTAL class.
 
-To change the layout just edit the phptal template : ./templates/xhtml_slim.pt 
-as well as the stylesheets in ./stylesheets/monobook/ .
+To change the layout, just edit the PHPTal template (templates/xhtml_slim.pt) 
+as well as the stylesheets (stylesheets/monobook/*).
