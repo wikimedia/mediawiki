@@ -264,6 +264,7 @@ class Article {
 	}
 	
 	/**
+	 * Get text of an article from database
 	 * @param int $oldid 0 for whatever the latest revision is
 	 * @param bool $noredir Set to true to avoid following redirects
 	 * @param bool $globalTitle Set to true to change the global $wgTitle object when following redirects or other unexpected title changes
