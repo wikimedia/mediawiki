@@ -38,7 +38,7 @@
 		function outputPage( &$out ) {
 			global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgOut;
 			global $wgScriptPath, $wgStyleSheetPath, $wgLanguageCode, $wgUseNewInterlanguage;
-			global $wgUseDatabaseMessages, $action;
+			global $wgOutputEncoding, $wgUseDatabaseMessages, $action;
 
 			$this->initPage();
 			$tpl = new PHPTAL($this->skinname . '.pt', 'templates');
@@ -52,6 +52,7 @@
 			$thispage = $wgTitle->getPrefixedDbKey();
 			$tpl->setRef( "thispage", &$thispage );
 			$tpl->set( "subtitle", $out->getSubtitle() );
+			$tpl->setRef( 'charset', $wgOutputEncoding);
 
 			$loggedin = $wgUser->getID() != 0;
 			$tpl->setRef( "loggedin", &$loggedin );
@@ -253,9 +254,9 @@
 				/* show special page actions */
 
 				$content_actions['article'] = array('class' => 'selected',
-				'text' => 'Special Page',
+				'text' => wfMsg('specialpage'),
 				'href' => 'javascript:void()',
-				'ttip' => wfMsg('tooltip-special'),
+				'ttip' => wfMsg('tooltip-specialpage'),
 				'akey' => '');
 				
 				/*if ($wgTitle->getDbKey() == 'Movepage') {
