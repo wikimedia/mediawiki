@@ -10,7 +10,7 @@
 	'ar' => '&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;',	# Arabic
 	'arc' => '&#1813;&#1829;&#1810;&#1834;&#1848;&#1821;&#1819;',	# Aramaic
 	'as' => '&#2437;&#2488;&#2478;&#2496;&#2527;&#2494;',	# Assamese
-	'ast' => 'Asturleon&eacute;s',  # Asturian
+	'ast' => 'Asturianu',  # Asturian, See BUG [1004836]
 	'av' => '&#1040;&#1074;&#1072;&#1088;',	# Avar
 	'ay' => 'Aymar',		# Aymara
 	'az' => 'Az&#601;rbaycan',	# Azerbaijani
