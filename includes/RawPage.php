@@ -9,12 +9,12 @@ class RawPage {
 
 	function RawPage( $article ) {
 		global $wgRequest, $wgInputEncoding;
-		$allowedCTypes = array('text/plain', 'text/javascript', 'text/css');
+		$allowedCTypes = array('text/x-wiki', 'text/javascript', 'text/css', 'application/x-zope-edit');
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
 		$ctype = $wgRequest->getText( 'ctype' );
 		if(empty($ctype) or !in_array($ctype, $allowedCTypes)) {
-			$this->mContentType = 'text/plain';
+			$this->mContentType = 'text/x-wiki';
 		} else {
 			$this->mContentType = $ctype;
 		}
@@ -27,9 +27,7 @@ class RawPage {
 		header( "Content-type: ".$this->mContentType.'; charset='.$this->mCharset );
 		# allow the client to cache this for 24 hours
 		header( 'Cache-Control: s-maxage=0, max-age=86400' );
-		$parser=new Parser();
-		$raw = $this->getrawtext();
-		echo $parser->removeHTMLtags( $raw );
+		echo $this->getrawtext();
 		wfAbruptExit();
 	}
 
