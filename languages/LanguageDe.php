@@ -175,7 +175,7 @@ if($wgMetaNamespace === FALSE)
 "mainpagetext"          => "Die Wiki Software wurde erfolgreich installiert.",
 "mainpagedocfooter" => "Siehe die [http://meta.wikipedia.org/wiki/MediaWiki_i18n Dokumentation zur Anpassung der Benutzeroberfläche]
 und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuch] für Hilfe zur Benutzung und Konfiguration.",
-"portal"		=> "Wikipedia-Portal",
+'portal'		=> "{$wgSiteName}-Portal",
 "portal-url"		=> "{{ns:4}}:Portal",
 "about"			=> "Über",
 "aboutsite"      => "Über {$wgSitename}",
