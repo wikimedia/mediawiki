@@ -28,6 +28,9 @@ define("MAG_END", 15);
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
 
+# NOTE: To turn off "Disclaimers" in the title links,
+# set "disclaimers" => "-"
+
 # The names of the namespaces can be set here, but the numbers
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
@@ -396,6 +399,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 "mypage"		=> "My page",
 "mytalk"		=> "My talk",
 "currentevents" => "Current events",
+"disclaimers" => "Disclaimers",
+"disclaimerpage"		=> "$wgMetaNamespace:General_disclaimer",
 "errorpagetitle" => "Error",
 "returnto"		=> "Return to $1.",
 "fromwikipedia"	=> "From $wgSitename, the free encyclopedia.",
