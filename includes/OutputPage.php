@@ -1267,9 +1267,9 @@ class OutputPage {
 
 	/* private */ function headElement()
 	{
-		global $wgDocType, $wgUser, $wgLanguageCode, $wgOutputEncoding;
+		global $wgDocType, $wgDTD, $wgUser, $wgLanguageCode, $wgOutputEncoding;
 
-		$ret = "<!DOCTYPE HTML PUBLIC \"$wgDocType\">\n";
+		$ret = "<!DOCTYPE HTML PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
 
 		if ( "" == $this->mHTMLtitle ) {
 			$this->mHTMLtitle = $this->mPagetitle;
