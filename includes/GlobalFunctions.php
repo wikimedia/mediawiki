@@ -176,19 +176,41 @@ $wgReplacementKeys = array( "$1", "$2", "$3", "$4", "$5", "$6", "$7", "$8", "$9"
 function wfMsg( $key )
 {
 	global $wgLang, $wgReplacementKeys;
-	$ret = $wgLang->getMessage( $key );
+	$message = $wgLang->getMessage( $key );
 	
+	if ( $message{0} == ":" ) {
+		# Get message from the database
+		$message = substr( $message, 1 );
+		$title = Title::newFromText( $message );
+		$dbKey = $title->getDBkey();
+		$ns = $title->getNamespace();
+		$sql = "SELECT cur_text FROM cur WHERE cur_namespace=$ns AND cur_title='$dbKey'";
+		$res = wfQuery( $sql, $fname );
+		if( ( $s = wfFetchObject( $res ) ) and ( $s->cur_text != "" ) ) {
+			$message = $s->cur_text;
+			# filter out a comment at the top if there is one
+			$commentPos = strpos( $message, "__START__" );
+			if ( $commentPos !== false ) {
+				$message = substr( $message, $commentPos + strlen( "__START__" ) );
+				wfDebug( "Comment filtered at pos $commentPos, \"$message\"\n" );
+			}
+		} else {
+			# if the page doesn't exist, just make a link to where it should be
+			$message = "[[$message]]";
+		}	
+		wfFreeResult( $res );
+	}
 	if( func_num_args() > 1 ) {
 		$reps = func_get_args();
 		array_shift( $reps );
-		$ret = str_replace( $wgReplacementKeys, $reps, $ret );
+		$message = str_replace( $wgReplacementKeys, $reps, $message );
 	}
 
-	if ( "" == $ret ) {
+	if ( "" == $message ) {
 		# Let's at least _try_ to be graceful about this.
 		return "&lt;$key&gt;";
 	}
-	return $ret;
+	return $message;
 }
 
 function wfCleanFormFields( $fields )

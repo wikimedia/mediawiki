@@ -677,7 +677,8 @@ from server time (UTC).",
 #
 "changes" => "changes",
 "recentchanges" => "Recent changes",
-"recentchangestext" => "Track the most recent changes to Wikipedia on this page.
+"recentchangestext" => 
+"Track the most recent changes to Wikipedia on this page.
 [[Wikipedia:Welcome,_newcomers|Welcome, newcomers]]!
 Please have a look at these pages: [[wikipedia:FAQ|Wikipedia FAQ]],
 [[Wikipedia:Policies and guidelines|Wikipedia policy]]
@@ -1337,24 +1338,7 @@ class Language {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesEn;
-		$message = $wgAllMessagesEn[$key];
-		if ( $message{0} == ":" ) {
-			# Get message from the database
-			$message = substr( $message, 1 );
-			$title = Title::newFromText( $message );
-			$dbKey = $title->getDBkey();
-			$ns = $title->getNamespace();
-			$sql = "SELECT cur_text FROM cur WHERE cur_namespace=$ns AND cur_title='$dbKey'";
-			$res = wfQuery( $sql, $fname );
-			if( ( $s = wfFetchObject( $res ) ) and ( $s->cur_text != "" ) ) {
-				$message = $s->cur_text;
-			} else {
-				# Similar behaviour on fail to ordinary missing messages
-				$message = "<$message>";
-			}
-			wfFreeResult( $res );
-		}
-		return $message;
+		return $wgAllMessagesEn[$key];
 	}
 	
 	function iconv( $in, $out, $string ) {

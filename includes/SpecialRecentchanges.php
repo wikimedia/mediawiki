@@ -20,11 +20,14 @@ function wfSpecialRecentchanges( $par )
 	$wgOut->checkLastModified( $s->lastmod );
 
 	$rctext = wfMsg( "recentchangestext" );
+	
+	# The next few lines can probably be commented out now that wfMsg can get text from the DB
 	$sql = "SELECT cur_text FROM cur WHERE cur_namespace=4 AND cur_title='Recentchanges'";
 	$res = wfQuery( $sql, $fname );
 	if( ( $s = wfFetchObject( $res ) ) and ( $s->cur_text != "" ) ) {
 		$rctext = $s->cur_text;
 	}
+	
 	$wgOut->addWikiText( $rctext );
 
 	if ( ! $days ) {
