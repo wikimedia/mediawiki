@@ -41,7 +41,7 @@ class BookSourceList {
 		
 		# First, see if we have a custom list setup in
 		# [[Wikipedia:Book sources]] or equivalent.
-		$bstitle = Title::makeTitleSafe( NS_WIKIPEDIA, wfMsg( "booksources" ) );
+		$bstitle = Title::makeTitleSafe( NS_PROJECT, wfMsg( "booksources" ) );
 		$dbr =& wfGetDB( DB_SLAVE );
 		$bstext = $dbr->selectField( 'cur', 'cur_text', $bstitle->curCond(), $fname );
 		if( $bstext ) {	

@@ -490,7 +490,7 @@ class SearchEngine {
 		$anyhit = false;
 		global $wgDisableFuzzySearch;
 		if(! $wgDisableFuzzySearch ){
-			foreach( array(NS_MAIN, NS_WP, NS_USER, NS_IMAGE, NS_MEDIAWIKI) as $namespace){
+			foreach( array(NS_MAIN, NS_PROJECT, NS_USER, NS_IMAGE, NS_MEDIAWIKI) as $namespace){
 				$anyhit |= SearchEngine::doFuzzyTitleSearch( $this->rawText, $namespace );
 			}
 		}
