@@ -153,8 +153,7 @@ function wfSpecialContributions( $par = "" )
 		require_once( 'SpecialValidate.php' );
 		$val = new Validation ;
 		$val = $val->countUserValidations ( $id ) ;
-		$val = wfMsg ( 'val_user_validations', $val ) ;
-		$wgOut->addHTML( $val );
+		$wgOut->addHTML( wfMsg ( 'val_user_validations', $val ) );
 	}
 }
 
