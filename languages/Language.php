@@ -283,6 +283,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 #   ID                                 CASE  SYNONYMS
     MAG_REDIRECT             => array( 0,    "#redirect"              ),
     MAG_NOTOC                => array( 0,    "__NOTOC__"              ),
+    MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__"      ),
     MAG_START                => array( 0,    "__START__"              ),
     MAG_CURRENTMONTH         => array( 1,    "{{CURRENTMONTH}}"       ),
     MAG_CURRENTMONTHNAME     => array( 1,    "{{CURRENTMONTHNAME}}"   ),
