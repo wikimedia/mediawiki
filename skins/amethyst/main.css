@@ -331,11 +331,12 @@ table.small { font-size: 100% }
 
 #toc {
     /* border:1px solid #2f6fab;*/
-    /*border:1px solid #aaaaaa;*/
-    background-color: Black;
+	padding:0.5em;
+    border:1px solid #aaaaaa;
+    background-color: #2F333B;
     font-size: 95%;
 }
-#toc .toctitle { background: #2A3C61; }
+#toc .toctitle { background: #2A3C61;}
 #toc .tocindent { margin-left: 2em; }
 #toc .tocline { margin-bottom: 0px; }
 #toc p { margin: 0 }
