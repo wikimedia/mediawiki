@@ -809,7 +809,6 @@ function wfMerge( $old, $mine, $yours, &$result ){
       wfEscapeShellArg( $mytextName ) . " " .
       wfEscapeShellArg( $oldtextName ) . " " .
       wfEscapeShellArg( $yourtextName );
-	  print "$cmd\n";
     $handle = popen( $cmd, "r" );
 
 	if( fgets( $handle ) ){
@@ -823,7 +822,6 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	#$cmd = "{$wgDiff3} -a -e --merge $mytextName $oldtextName $yourtextName";
 	$cmd = wfEscapeShellArg( $wgDiff3 ) . " -a -e --merge " . 
 	  wfEscapeShellArg( $mytextName, $oldtextName, $yourtextName );
-	print "$cmd\n";
 	$handle = popen( $cmd, "r" );
 	$result = "";
 	do {
