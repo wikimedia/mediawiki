@@ -73,7 +73,7 @@ require_once( 'Block.php' );
 require_once( 'MessageCache.php' );
 require_once( 'BlockCache.php' );
 require_once( 'Parser.php' );
-require_once( 'ParserXML.php' );
+require_once( 'Parser.php' );
 require_once( 'ParserCache.php' );
 require_once( 'WebRequest.php' );
 require_once( 'LoadBalancer.php' );
@@ -355,8 +355,12 @@ $wgMagicWords = array();
 $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
 $wgParserCache = new ParserCache( $messageMemc );
 
-if ( $wgUseXMLparser ) $wgParser = new ParserXML();
-else $wgParser = new Parser();
+if ( $wgUseXMLparser ) {
+	require_once( 'ParserXML.php' );
+	$wgParser = new ParserXML();
+} else {
+	$wgParser = new Parser();
+}
 $wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
 $wgMsgParserOptions = ParserOptions::newFromUser($wgUser);
 wfSeedRandom();
