@@ -539,7 +539,8 @@ class Image
 			# or else the old version might be stored into the squid again
 			if ( $wgUseSquid ) {
 				$urlArr = Array(
-					$wgInternalServer.$thumbUrl
+					# don't prefix with internal server if we share one (-> Commons)
+					(preg_match("/^http:\/\//",$thumbUrl) ? $thumbUrl : $wgInternalServer.$thumbUrl)
 				);
 				wfPurgeSquidServers($urlArr);
 			}

@@ -238,8 +238,10 @@ class ImagePage extends Article {
 		if ( !is_null( $oldimage ) ) {
 			# Squid purging
 			if ( $wgUseSquid ) {
+				$archUrl = wfImageArchiveUrl( $oldimage );
 				$urlArr = Array(
-					$wgInternalServer.wfImageArchiveUrl( $oldimage )
+					# don't prefix with internal server if we share one (-> Commons)
+					(preg_match("/^http:\/\//",$archUrl) ? $archUrl : $wgInternalServer.$archUrl)
 				);
 				wfPurgeSquidServers($urlArr);
 			}
@@ -266,8 +268,10 @@ class ImagePage extends Article {
 						
 			# Squid purging
 			if ( $wgUseSquid ) {
+				$curUrl = Image::wfImageUrl( $image )
 				$urlArr = Array(
-					$wgInternalServer . Image::wfImageUrl( $image )
+					# don't prefix with internal server if we share one (-> Commons)
+					(preg_match("/^http:\/\//",$curUrl) ? $curUrl : $wgInternalServer.$curUrl)
 				);
 				wfPurgeSquidServers($urlArr);
 			}
@@ -388,9 +392,11 @@ class ImagePage extends Article {
 		wfRecordUpload( $name, $oldver, $size, wfMsg( "reverted" ) );
 		# Squid purging
 		if ( $wgUseSquid ) {
+			$archUrl = wfImageArchiveUrl( $name );
+			$curUrl = Image::wfImageUrl( $name );
 			$urlArr = Array(
-				$wgInternalServer.wfImageArchiveUrl( $name ),
-				$wgInternalServer . Image::wfImageUrl( $name )
+			        (preg_match("/^http:\/\//",$archUrl) ? $archUrl : $wgInternalServer.$archUrl),
+			        (preg_match("/^http:\/\//",$curUrl) ? $curUrl : $wgInternalServer.$curUrl)
 			);
 			wfPurgeSquidServers($urlArr);
 		}
