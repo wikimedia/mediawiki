@@ -1,6 +1,7 @@
 # MediaWiki Parser test cases
 # Some taken from http://meta.wikimedia.org/wiki/Parser_testing
 # All (C) their respective authors and released under the GPL
+# $Id$
 #
 # The syntax should be fairly self-explanatory.
 #
@@ -1378,7 +1379,7 @@ Simple image
 !! input
 [[Image: test]]
 !! result
-<p><a href="/wiki/Image:Test" class="image" title="Image: test"><img src="/images/0/0c/Test" alt="Image: test" /></a>
+<p><a href="/wiki/Image:Test" class="image" title="Image: test"><img src="/images/0/0c/Test" alt="Image: test" longdesc="http://localhost/wiki/Image:Test" /></a>
 </p>
 !! end
 
@@ -1387,7 +1388,7 @@ Right-aligned image
 !! input
 [[Image:test|right]]
 !! result
-<div class="floatright"><span><a href="/wiki/Image:Test" class="image" title="right"><img src="/images/0/0c/Test" alt="right" /></a></span></div>
+<div class="floatright"><span><a href="/wiki/Image:Test" class="image" title=""><img src="/images/0/0c/Test" alt="" longdesc="http://localhost/wiki/Image:Test" /></a></span></div>
 
 !! end
 
@@ -1396,7 +1397,7 @@ Image with caption
 !! input
 [[Image:test|right|Caption text]]
 !! result
-<div class="floatright"><span><a href="/wiki/Image:Test" class="image" title="Caption text"><img src="/images/0/0c/Test" alt="Caption text" /></a></span></div>
+<div class="floatright"><span><a href="/wiki/Image:Test" class="image" title="Caption text"><img src="/images/0/0c/Test" alt="Caption text" longdesc="http://localhost/wiki/Image:Test" /></a></span></div>
 
 !! end
 
@@ -1405,7 +1406,7 @@ Image with frame and link
 !! input
 [[Image:Foobar.jpg|frame|left|This is a test image [[Main Page]]]]
 !! result
-<div class="thumb tleft"><div style="width:202px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="This is a test image "><img src="/images/3/3a/Foobar.jpg" alt="This is a test image " width="200" height="200" /></a>  <div class="thumbcaption" >This is a test image <a href="/wiki/Main_Page" title="Main Page">Main Page</a></div></div></div>
+<div class="thumb tleft"><div style="width:202px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="This is a test image "><img src="/images/3/3a/Foobar.jpg" alt="This is a test image " width="200" height="200" longdesc="http://localhost/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" >This is a test image <a href="/wiki/Main_Page" title="Main Page">Main Page</a></div></div></div>
 
 !! end
 
@@ -1423,7 +1424,7 @@ Frameless image caption with a free URL
 !! input
 [[Image:foo|http://example.com]]
 !! result
-<p><a href="/wiki/Image:Foo" class="image" title="http://example.com"><img src="/images/1/13/Foo" alt="http://example.com" /></a>
+<p><a href="/wiki/Image:Foo" class="image" title="http://example.com"><img src="/images/1/13/Foo" alt="http://example.com" longdesc="http://localhost/wiki/Image:Foo" /></a>
 </p>
 !! end
 
@@ -1442,7 +1443,7 @@ BUG 648: Frameless image caption with a link
 !! input
 [[Image:foo|text with a [[link]] in it]]
 !! result
-<p><a href="/wiki/Image:Foo" class="image" title="text with a link in it"><img src="/images/1/13/Foo" alt="text with a link in it" /></a>
+<p><a href="/wiki/Image:Foo" class="image" title="text with a link in it"><img src="/images/1/13/Foo" alt="text with a link in it" longdesc="http://localhost/wiki/Image:Foo" /></a>
 </p>
 !! end
 
@@ -1451,7 +1452,7 @@ Escape HTML special chars in image alt text
 !! input
 [[Image:example.jpg|& < > "]]
 !! result
-<p><a href="/wiki/Image:Example.jpg" class="image" title="&amp; &lt; &gt; &quot;"><img src="/images/a/a9/Example.jpg" alt="&amp; &lt; &gt; &quot;" /></a>
+<p><a href="/wiki/Image:Example.jpg" class="image" title="&amp; &lt; &gt; &quot;"><img src="/images/a/a9/Example.jpg" alt="&amp; &lt; &gt; &quot;" longdesc="http://localhost/wiki/Image:Example.jpg" /></a>
 </p>
 !! end
 
@@ -1460,7 +1461,7 @@ BUG 499: Alt text should have &#1234;, not &amp;1234;
 !! input
 [[Image:image.jpg|&#9792;]]
 !! result
-<p><a href="/wiki/Image:Image.jpg" class="image" title="&#9792;"><img src="/images/7/78/Image.jpg" alt="&#9792;" /></a>
+<p><a href="/wiki/Image:Image.jpg" class="image" title="&#9792;"><img src="/images/7/78/Image.jpg" alt="&#9792;" longdesc="http://localhost/wiki/Image:Image.jpg" /></a>
 </p>
 !! end
 
@@ -1478,7 +1479,7 @@ Image caption containing another image
 !! input
 [[Image:Bar.jpeg|thumb|This is a caption with another [[Image:icon.png|image]] inside it!]]
 !! result
-<div class="thumb tright"><div style="width:182px;"><b>Missing image</b><br /><i>Bar.jpeg</i>   <div class="thumbcaption" >This is a caption with another <a href="/wiki/Image:Icon.png" class="image" title="image"><img src="/images/9/96/Icon.png" alt="image" /></a> inside it!</div></div></div>
+<div class="thumb tright"><div style="width:182px;"><b>Missing image</b><br /><i>Bar.jpeg</i>   <div class="thumbcaption" >This is a caption with another <a href="/wiki/Image:Icon.png" class="image" title="image"><img src="/images/9/96/Icon.png" alt="image" longdesc="http://localhost/wiki/Image:Icon.png" /></a> inside it!</div></div></div>
 
 !! end
 
