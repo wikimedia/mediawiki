@@ -20,6 +20,7 @@ if( $wgUseSmarty ) {
 if( $wgUsePHPTal ) {
     #$wgValidSkinNames[] = "PHPTal";
     $wgValidSkinNames['davinci'] = "DaVinci";
+    $wgValidSkinNames['mono'] = "Mono";
 }
 
 include_once( "RecentChange.php" );
