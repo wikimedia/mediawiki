@@ -14,24 +14,24 @@ if($wgMetaNamespace === FALSE)
         $wgMetaNamespace = str_replace( " ", "_", $wgSitename );
 
 /* private */ $wgNamespaceNamesDe = array(
-        NS_MEDIA            => "Media",
-        NS_SPECIAL          => "Spezial",
-        NS_MAIN             => "",
-        NS_TALK             => "Diskussion",
-        NS_USER             => "Benutzer",
-        NS_USER_TALK        => "Benutzer_Diskussion",
-        NS_WIKIPEDIA        => $wgMetaNamespace,
-        NS_WIKIPEDIA_TALK   => $wgMetaNamespace . "_Diskussion",
-        NS_IMAGE            => "Bild",
-        NS_IMAGE_TALK       => "Bild_Diskussion",
-        NS_MEDIAWIKI        => "MediaWiki",
-        NS_MEDIAWIKI_TALK   => "MediaWiki_Diskussion",
-        NS_TEMPLATE         => "Vorlage",
-        NS_TEMPLATE_TALK    => "Vorlage_Diskussion",
-        NS_HELP             => "Hilfe",
-        NS_HELP_TALK        => "Hilfe_Diskussion",
-        NS_CATEGORY         => "Kategorie",
-        NS_CATEGORY_TALK    => "Kategorie_Diskussion"
+	NS_MEDIA            => "Media",
+	NS_SPECIAL          => "Spezial",
+	NS_MAIN             => "",
+	NS_TALK             => "Diskussion",
+	NS_USER             => "Benutzer",
+	NS_USER_TALK        => "Benutzer_Diskussion",
+	NS_WIKIPEDIA        => $wgMetaNamespace,
+	NS_WIKIPEDIA_TALK   => $wgMetaNamespace . "_Diskussion",
+	NS_IMAGE            => "Bild",
+	NS_IMAGE_TALK       => "Bild_Diskussion",
+	NS_MEDIAWIKI        => "MediaWiki",
+	NS_MEDIAWIKI_TALK   => "MediaWiki_Diskussion",
+	NS_TEMPLATE         => "Vorlage",
+	NS_TEMPLATE_TALK    => "Vorlage_Diskussion",
+	NS_HELP             => "Hilfe",
+	NS_HELP_TALK        => "Hilfe_Diskussion",
+	NS_CATEGORY         => "Kategorie",
+	NS_CATEGORY_TALK    => "Kategorie_Diskussion"
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsDe = array(
@@ -39,15 +39,16 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgSkinNamesDe = array(
-	'standard' => "Standard",
-	'nostalgia' => "Nostalgia",
-	'cologneblue' => "Cologne Blue",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
+	'standard'      => "Klassik",
+	'nostalgia'     => "Nostalgie",
+	'cologneblue'   => "Kölnisch Blau",
+	'smarty'        => "Paddington",
+	'montparnasse'  => "Montparnasse",
+	'davinci'       => "DaVinci",
+	'mono'          => "Mono",
+	'monobook'      => "MonoBook",
+	'myskin'        => "MySkin",
+	'chick'         => "Küken"
 );
 
 
@@ -317,8 +318,8 @@ oder ein Softwarefehler. Die letzte Datenbankabfrage lautete:
 <blockquote><tt>$1</tt></blockquote>
 aus der Funktion \"<tt>$2</tt>\".
 MySQL meldete den Fehler \"<tt>$3: $4</tt>\".",
-"dberrortextcl" => "Es gab einen Syntaxfehler in der Datenbankabfrage. 
-Die letzte Datenbankabfrage lautete: \"$1\" aus der Funktion \"<tt>$2</tt>\". 
+"dberrortextcl" => "Es gab einen Syntaxfehler in der Datenbankabfrage.
+Die letzte Datenbankabfrage lautete: \"$1\" aus der Funktion \"<tt>$2</tt>\".
 MySQL meldete den Fehler: \"<tt>$3: $4</tt>\".\n",
 "noconnect"		=> "Konnte keine Verbindung zur Datenbank auf $1 herstellen",
 "nodb"			=> "Konnte Datenbank $1 nicht auswählen",
@@ -334,7 +335,7 @@ gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
 "filedeleteerror" => "Konnte Datei \"$1\" nicht löschen.",
 "filenotfound"	=> "Konnte Datei \"$1\" nicht finden.",
 "unexpected"	=> "Unerwarteter Wert: \"$1\"=\"$2\".",
-"formerror"		=> "Fehler: Konnte Formular nicht verarbeiten",	
+"formerror"		=> "Fehler: Konnte Formular nicht verarbeiten",
 "badarticleerror" => "Diese Aktion kann auf diesen Artikel nicht angewendet werden.",
 "cannotdelete"	=> "Kann spezifizierte Seite oder Artikel nicht löschen. (Wurde möglicherweise schon von jemand anderem gelöscht.)",
 "badtitle"		=> "Ungültiger Titel",
@@ -467,7 +468,7 @@ Seite für Wartungsarbeiten gesperrt, so dass Sie die Seite im Moment nicht
 speichern können. Sichern Sie sich den Text und versuchen Sie die Änderungen
 später einzuspielen.",
 "protectedpagewarning" => "WARNUNG: Diese Seite wurde gesperrt, so dass sie nur
-Benutzer mit Sysop-Rechten bearbeitet werden kann. Beachten Sie bitte die 
+Benutzer mit Sysop-Rechten bearbeitet werden kann. Beachten Sie bitte die
 <a href='$wgScriptPath/{$wgMetaNamespace}:Geschützte Seiten'>Regeln für geschützte Seiten</a>.",
 
 # History pages
@@ -483,7 +484,7 @@ Benutzer mit Sysop-Rechten bearbeitet werden kann. Beachten Sie bitte die
 "next"			=> "Nächste",
 "last"			=> "Letzte",
 "orig"			=> "Original",
-"histlegend"	=> "Diff Auswahl: Die Boxen der gewünschten 
+"histlegend"	=> "Diff Auswahl: Die Boxen der gewünschten
 Versionen markieren und 'Enter' drücken oder den Button unten klicken/alt-v.<br/>
 Legende:
 (Aktuell) = Unterschied zur aktuellen Version,
@@ -569,7 +570,7 @@ sein, um Ihre Einstellungen zu ändern.",
 "prefslogintext" => "Sie sind angemeldet als \"$1\".
 Ihre interne ID-Nummer ist $2.",
 "prefsreset"	=> "Einstellungen wuden auf Standard zurückgesetzt.",
-"qbsettings"	=> "Seitenleiste", 
+"qbsettings"	=> "Seitenleiste",
 "changepassword" => "Passwort ändern",
 "skin"			=> "Skin",
 "math"			=> "TeX",
@@ -683,9 +684,9 @@ Alle Zeiten sind UTC.
 "largefile"		=> "Bitte keine Bilder über 100 KByte hochladen.",
 'emptyfile'		=> "Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.",
 "successfulupload" => "Erfolgreich hochgeladen",
-"fileuploaded"	=> "Die Datei \"$1\" wurde erfolgreich hochgeladen. Bitte 
-verwenden Sie diesen ($2) Link zur Beschreibungsseite und füllen Sie die 
-Informationen über die Datei aus, insbesondere seine Herkunft, von wem und wann es 
+"fileuploaded"	=> "Die Datei \"$1\" wurde erfolgreich hochgeladen. Bitte
+verwenden Sie diesen ($2) Link zur Beschreibungsseite und füllen Sie die
+Informationen über die Datei aus, insbesondere seine Herkunft, von wem und wann es
 gemacht wurde und besondere Angaben zum Copyright, falls notwendig.",
 "uploadwarning" => "Warnung",
 "savefile"		=> "Datei speichern",
@@ -875,11 +876,11 @@ Im $2 finden Sie eine Liste der letzten Löschungen.",
 "rollbackfailed" => "Zurücknahme gescheitert",
 "cantrollback" => "Die Änderung kann nicht zurückgenommen werden; der
 letzte Autor ist der einzige.",
-"alreadyrolled" => "Die Zurücknahme des Artikels [[$1]] von [[Benutzer:$2|$2]] 
+"alreadyrolled" => "Die Zurücknahme des Artikels [[$1]] von [[Benutzer:$2|$2]]
 ([[Benutzer Diskussion:$2|Diskussion]]) ist nicht möglich, da eine andere
 Änderung oder Rücknahme erfolgt ist.
 
-Die letzte Änderung ist von [[Benutzer:$3|$3]] 
+Die letzte Änderung ist von [[Benutzer:$3|$3]]
 ([[Benutzer Diskussion:$3|Diskussion]])",
 #   only shown if there is an edit comment
 "editcomment" => "Der Änderungskommentar war: \"<i>$1</i>\".",
@@ -989,7 +990,7 @@ werden.",
 In diesen Fällen müssen Sie die Seite, falls gewünscht, von Hand verschieben.",
 "movearticle"	=> "Artikel verschieben",
 "movenologin"   => "Sie sind nicht angemeldet",
-"movenologintext" => "Sie müssen ein registrierter Benutzer und 
+"movenologintext" => "Sie müssen ein registrierter Benutzer und
 <a href=\"" . wfLocalUrl( "Special:Userlogin" ) . "\">angemeldet</a> sein,
 um eine Seite zu verschieben.",
 "newtitle"		=> "Zu neuem Titel",
@@ -1229,14 +1230,14 @@ class LanguageDe extends LanguageUtf8 {
 	}
 
 	# Inherit userAdjust()
- 
+
 	function date( $ts, $adj = false )
 	{
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = (0 + substr( $ts, 6, 2 )) . ". " .
 		$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-		  " " . 
+		  " " .
 		  substr( $ts, 0, 4 );
 		return $d;
 	}
