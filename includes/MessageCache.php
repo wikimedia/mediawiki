@@ -77,8 +77,8 @@ class MessageCache
 
 			# If there's nothing in memcached, load all the messages from the database
 			if ( !$this->mCache ) {
+				wfProfileIn( $fname.'-fromdb');
 				wfDebug( "MessageCache::load(): loading all messages\n" );
-				$this->lock();
 				# Other threads don't need to load the messages if another thread is doing it.
 				$success = $this->mMemc->add( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT );
 				if ( $success ) {
@@ -97,11 +97,12 @@ class MessageCache
 						wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
 					}
 				}
-				$this->unlock();
+				wfProfileOut( $fname.'-fromdb' );
 			}
 
 			if ( !is_array( $this->mCache ) ) {
-				wfMsg( "MessageCache::load(): individual message mode\n" );
+				wfProfileIn( $fname.'-error' );
+				wfDebug( "MessageCache::load(): individual message mode\n" );
 				# If it is 'loading' or 'error', switch to individual message mode, otherwise disable
 				# Causing too much DB load, disabling -- TS
 				$this->mDisable = true;
@@ -116,6 +117,7 @@ class MessageCache
 					$success = false;
 				}*/
 				$this->mCache = false;
+				wfProfileOut( $fname.'-error' );
 			}
 		}
 		wfProfileOut( $fname );
@@ -197,11 +199,15 @@ class MessageCache
 			return true;
 		}
 
+		$fname = 'MessageCache::lock';
+		wfProfileIn( $fname );
+		
 		$lockKey = $this->mMemcKey . 'lock';
 		for ($i=0; $i < MSG_WAIT_TIMEOUT && !$this->mMemc->add( $lockKey, 1, MSG_LOCK_TIMEOUT ); $i++ ) {
 			sleep(1);
 		}
 
+		wfProfileOut( $fname );
 		return $i >= MSG_WAIT_TIMEOUT;
 	}
 
