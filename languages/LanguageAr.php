@@ -1,6 +1,6 @@
 <?
 # See language.doc
-include_once("Utf8Case.php");
+include_once("LanguageUtf8.php");
 
 class LanguageAr extends LanguageUtf8 {
 	# TODO: TRANSLATION!

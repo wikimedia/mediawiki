@@ -276,7 +276,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "External book sources",
-"Categories" => "Page categories",
+"Categories" => "Page categories"
 );
 
 /* private */ $wgSysopSpecialPagesEn = array(
