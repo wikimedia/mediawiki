@@ -1107,6 +1107,12 @@ class LanguageRo extends LanguageUtf8 {
 	function fallback8bitEncoding() {
 		return "iso8859-2";
 	}
+
+	function getMagicWords() 
+	{
+		global $wgMagicWordsRo;
+		return $wgMagicWordsRo;
+	}
 }
 
 ?>
