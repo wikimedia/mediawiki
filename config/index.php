@@ -424,7 +424,14 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		/* Write out the config file now that all is well */
 		print "<p>Creating LocalSettings.php...</p>\n\n";
 		$localSettings =  "<" . "?php\n$local\n?" . ">";
-		$f = fopen( "LocalSettings.php", "xt" );
+		
+		if( version_compare( phpversion(), "4.3.2" ) >= 0 ) {
+			$xt = "xt"; # Refuse to overwrite an existing file
+		} else {
+			$xt = "wt"; # 'x' is not available prior to PHP 4.3.2. We did check above, but race conditions blah blah
+		}
+		$f = fopen( "LocalSettings.php", $xt );
+		
 		if( $f == false ) {
 			dieout( "Couldn't write out LocalSettings.php. Check that the directory permissions are correct and that there isn't already a file of that name here...</p>\n" .
 			"<p>Here's the file that would have been written, try to paste it into place manually:</p>\n" .
