@@ -2,7 +2,7 @@
 ** Mediawiki 'monobook' style sheet for CSS2-capable browsers.
 ** Copyright Gabriel Wicke - http://www.aulinx.de/
 **
-** Based on http://www.positioniseverything.net/ordered-floats.html by Big John
+** Loosely based on http://www.positioniseverything.net/ordered-floats.html by Big John
 ** and the Plone 2.0 styles, see http://plone.org/.
 ** Alexander Limi - http://www.plonesolutions.com
 ** additional plone work:
@@ -369,7 +369,6 @@ div.tleft {
     margin-right:0.5em;
     border-width: 0.5em 1.4em 0.8em 0;
 }
-
 .urlexpansion,
 .hiddenStructure {
     display: none;
