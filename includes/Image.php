@@ -58,9 +58,10 @@ class Image
 			$this->fileExists = file_exists( $this->imagePath);
 			$this->fromSharedDirectory = true;
 			#wfDebug ("File from shared directory: ".$this->imagePath."\n");
+			$name=$sharedname;
 		}		
 		if($this->fileExists) {
-			$this->url       = $this->wfImageUrl( $sharedname, $this->fromSharedDirectory );
+			$this->url       = $this->wfImageUrl( $name, $this->fromSharedDirectory );
 		} else {
 			$this->url='';
 		}
