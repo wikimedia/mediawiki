@@ -16,10 +16,9 @@
     <script type="text/javascript"> /*<![CDATA[*/ if(addcss){addcss('${stylepath}/${skinname}/');} /*]]>*/</script>
     <style tal:condition="rtl" type="text/css">/*<![CDATA[*/@import url(${stylepath}/${skinname}/rtl.css);/*]]>*/</style>
     <!-- user styles and js if logged in -->
-    <style tal:condition="loggedin" type="text/css">/*<![CDATA[*/
-      @import url(${userpageurle}/${skinname}.css?action=raw&ctype=text/css); /*]]>*/</style>
-    <script tal:condition="loggedin" type="text/javascript" 
-      tal:attributes="src string:${userpageurle}/${skinname}.js?action=raw&ctype=text/javascript"></script>
+    <style tal:condition="usercsse" type="text/css">/*<![CDATA[*/
+      @import url(${usercsse}); /*]]>*/</style>
+    <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script>
   </head>
 
   <body tal:attributes="ondblclick body-ondblclick|default">
