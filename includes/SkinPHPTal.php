@@ -263,6 +263,8 @@ class SkinPHPTal extends Skin {
 				$viewcount = $wgLang->formatNum( $wgArticle->getCount() );
 				if ( $viewcount ) {
 					$tpl->set('viewcount', wfMsg( "viewcount", $viewcount ));
+				} else {
+					$tpl->set('viewcount', false);
 				}
 			}
 			$tpl->set('lastmod', $this->lastModified());
