@@ -1322,13 +1322,17 @@ class Skin {
 	function makeLinkObj( &$nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgOut, $wgUser, $wgLinkHolders;
 		$fname = 'Skin::makeLinkObj';
+		wfProfileIn( $fname );
 
 		# Fail gracefully
 		if ( ! isset($nt) ) {
 			# wfDebugDieBacktrace();
+			wfProfileOut( $fname );
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
 
+		$ns = $nt->getNamespace();
+		$dbkey = $nt->getDBkey();
 		if ( $nt->isExternal() ) {
 			$u = $nt->getFullURL();
 			$link = $nt->getPrefixedURL();
@@ -1348,60 +1352,69 @@ class Skin {
 			$t = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>";
 			$nr = array_push($wgInterwikiLinkHolders, $t);
 			$retVal = '<!--IWLINK '. ($nr-1) ."-->{$trail}";
-		} elseif ( 0 == $nt->getNamespace() && "" == $nt->getText() ) {
+		} elseif ( 0 == $ns && "" == $dbkey ) {
+			# A self-link with a fragment; skip existence check.
 			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
-		} elseif ( ( -1 == $nt->getNamespace() ) ||
-				( NS_IMAGE == $nt->getNamespace() ) ) {
+		} elseif ( ( NS_SPECIAL == $ns ) || ( NS_IMAGE == $ns ) ) {
+			# These are always shown as existing, currently.
+			# Special pages don't exist in the database; images may
+			# occasionally be present when there is no description
+			# page per se, so we always shown them.
 			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
-		} else {
-			if ( $this->postParseLinkColour() ) {
-				$inside = '';
-				if ( '' != $trail ) {
-					if ( preg_match( $this->linktrail, $trail, $m ) ) {
-						$inside = $m[1];
-						$trail = $m[2];
-					}
-				}
-
-				# Allows wiki to bypass using linkcache, see OutputPage::parseLinkHolders()
-				$nr = array_push( $wgLinkHolders['namespaces'], $nt->getNamespace() );
-				$wgLinkHolders['dbkeys'][] = $nt->getDBkey();
-				$wgLinkHolders['queries'][] = $query;
-				$wgLinkHolders['texts'][] = $prefix.$text.$inside;
-				$wgLinkHolders['titles'][] = $nt;
-
-				$retVal = '<!--LINK '. ($nr-1) ."-->{$trail}";
-			} else {
-				# Work out link colour immediately
-				$aid = $nt->getArticleID() ;
-				if ( 0 == $aid ) {
-					$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail, $prefix );
-				} else {
-					$threshold = $wgUser->getOption('stubthreshold') ;
-					if ( $threshold > 0 ) {
-						$dbr =& wfGetDB( DB_SLAVE );
-						$s = $dbr->selectRow( 'cur', array( 'LENGTH(cur_text) AS x', 'cur_namespace',
-							'cur_is_redirect' ), array( 'cur_id' => $aid ), $fname ) ;
-						if ( $s !== false ) {
-							$size = $s->x;
-							if ( $s->cur_is_redirect OR $s->cur_namespace != 0 ) {
-								$size = $threshold*2 ; # Really big
-							}
-							$dbr->freeResult( $res );
-						} else {
-							$size = $threshold*2 ; # Really big
-						}
-					} else {
-						$size = 1 ;
-					}
-					if ( $size < $threshold ) {
-						$retVal = $this->makeStubLinkObj( $nt, $text, $query, $trail, $prefix );
-					} else {
-						$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
-					}
+		} elseif ( $this->postParseLinkColour ) {
+			wfProfileIn( $fname.'-postparse' );
+			# Insert a placeholder, and we'll work out the existence checks
+			# in a big lump later.
+			$inside = '';
+			if ( '' != $trail ) {
+				if ( preg_match( $this->linktrail, $trail, $m ) ) {
+					$inside = $m[1];
+					$trail = $m[2];
 				}
 			}
+
+			# These get picked up by Parser::replaceLinkHolders()
+			$nr = array_push( $wgLinkHolders['namespaces'], $nt->getNamespace() );
+			$wgLinkHolders['dbkeys'][] = $dbkey;
+			$wgLinkHolders['queries'][] = $query;
+			$wgLinkHolders['texts'][] = $prefix.$text.$inside;
+			$wgLinkHolders['titles'][] =& $nt;
+
+			$retVal = '<!--LINK '. ($nr-1) ."-->{$trail}";
+			wfProfileOut( $fname.'-postparse' );
+		} else {
+			wfProfileIn( $fname.'-immediate' );
+			# Work out link colour immediately
+			$aid = $nt->getArticleID() ;
+			if ( 0 == $aid ) {
+				$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail, $prefix );
+			} else {
+				$threshold = $wgUser->getOption('stubthreshold') ;
+				if ( $threshold > 0 ) {
+					$dbr =& wfGetDB( DB_SLAVE );
+					$s = $dbr->selectRow( 'cur', array( 'LENGTH(cur_text) AS x', 'cur_namespace',
+						'cur_is_redirect' ), array( 'cur_id' => $aid ), $fname ) ;
+					if ( $s !== false ) {
+						$size = $s->x;
+						if ( $s->cur_is_redirect OR $s->cur_namespace != 0 ) {
+							$size = $threshold*2 ; # Really big
+						}
+						$dbr->freeResult( $res );
+					} else {
+						$size = $threshold*2 ; # Really big
+					}
+				} else {
+					$size = 1 ;
+				}
+				if ( $size < $threshold ) {
+					$retVal = $this->makeStubLinkObj( $nt, $text, $query, $trail, $prefix );
+				} else {
+					$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
+				}
+			}
+			wfProfileOut( $fname.'-immediate' );
 		}
+		wfProfileOut( $fname );
 		return $retVal;
 	}
 
