@@ -120,6 +120,7 @@ mysql_select_db( $wgDBname, $rconn );
 dbsource( $rconn, "./maintenance/tables.sql" );
 dbsource( $rconn, "./maintenance/users.sql" );
 dbsource( $rconn, "./maintenance/initialdata.sql" );
+dbsource( $rconn, "./maintenance/interwiki.sql" );
 
 populatedata(); # Needs internationalized messages
 
