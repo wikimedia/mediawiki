@@ -541,6 +541,10 @@ $wgUseExternalDiffEngine = false;
 # Use RC Patrolling to check for vandalism
 $wgUseRCPatrol = true;
 
+# set wgUserTablePrefix to the name of the DB where your users
+# table is for single login. Disabled by default.
+#$wgUserTablePrefix='';
+
 } else {
 	die();
 }
