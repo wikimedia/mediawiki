@@ -177,7 +177,7 @@ class Skin {
 				$s .= $wgRequest->getText('wpTextbox1');
 			} else {
 				$userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
-				$s.= '@import "'.$this->makeUrl($userpage.'/'.$this->getSkinName(), 'action=raw&ctype=text/css').'";'."\n";
+				$s.= '@import "'.$this->makeUrl($userpage.'/'.$this->getSkinName().'.css', 'action=raw&ctype=text/css').'";'."\n";
 			}
 		}
 		$s .= $this->doGetUserStyles();
