@@ -31,11 +31,11 @@ class CacheManager {
 	}
 	
 	function fileCacheName() {
-		global $wgFileCacheDirectory, $wgLang;
+		global $wgFileCacheDirectory, $wgContLang;
 		if( !$this->mFileCache ) {
 			$hash = md5( $key = $this->mTitle->getDbkey() );
 			if( $this->mTitle->getNamespace() )
-				$key = $wgLang->getNsText( $this->mTitle->getNamespace() ) . ":" . $key;
+				$key = $wgContLang->getNsText( $this->mTitle->getNamespace() ) . ":" . $key;
 			$key = str_replace( '.', '%2E', urlencode( $key ) );
 			
 			$hash1 = substr( $hash, 0, 1 );

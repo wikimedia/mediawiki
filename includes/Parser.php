@@ -1060,7 +1060,7 @@ class Parser
 	 * @access private
 	 */
 	function replaceInternalLinks( $s ) {
-		global $wgLang, $wgLinkCache;
+		global $wgLang, $wgContLang, $wgLinkCache;
 		global $wgNamespacesWithSubpages;
 		static $fname = 'Parser::replaceInternalLinks' ;
 		wfProfileIn( $fname );
@@ -1084,7 +1084,7 @@ class Parser
 		# e.g. in the case of 'The Arab al[[Razi]]', 'al' will be matched
 		static $e2 = '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD';
 
-		$useLinkPrefixExtension = $wgLang->linkPrefixExtension();
+		$useLinkPrefixExtension = $wgContLang->linkPrefixExtension();
 		# Special and Media are pseudo-namespaces; no pages actually exist in them
 
 		$nottalk = !Namespace::isTalk( $this->mTitle->getNamespace() );
@@ -1185,7 +1185,7 @@ class Parser
 			if( $noforce ) {
 
 				# Interwikis
-				if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgLang->getLanguageName( $iw ) ) {
+				if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgContLang->getLanguageName( $iw ) ) {
 					array_push( $this->mOutput->mLanguageLinks, $nt->getFullText() );
 					$tmp = $prefix . $trail ;
 					$s .= (trim($tmp) == '')? '': $tmp;
@@ -1492,32 +1492,32 @@ class Parser
 	 * @access private
 	 */
 	function getVariableValue( $index ) {
-		global $wgLang, $wgSitename, $wgServer;
+		global $wgContLang, $wgSitename, $wgServer;
 
 		switch ( $index ) {
 			case MAG_CURRENTMONTH:
-				return $wgLang->formatNum( date( 'm' ) );
+				return $wgContLang->formatNum( date( 'm' ) );
 			case MAG_CURRENTMONTHNAME:
-				return $wgLang->getMonthName( date('n') );
+				return $wgContLang->getMonthName( date('n') );
 			case MAG_CURRENTMONTHNAMEGEN:
-				return $wgLang->getMonthNameGen( date('n') );
+				return $wgContLang->getMonthNameGen( date('n') );
 			case MAG_CURRENTDAY:
-				return $wgLang->formatNum( date('j') );
+				return $wgContLang->formatNum( date('j') );
 			case MAG_PAGENAME:
 				return $this->mTitle->getText();
 			case MAG_PAGENAMEE:
 				return $this->mTitle->getPartialURL();
 			case MAG_NAMESPACE:
 				# return Namespace::getCanonicalName($this->mTitle->getNamespace());
-				return $wgLang->getNsText($this->mTitle->getNamespace()); # Patch by Dori
+				return $wgContLang->getNsText($this->mTitle->getNamespace()); # Patch by Dori
 			case MAG_CURRENTDAYNAME:
-				return $wgLang->getWeekdayName( date('w')+1 );
+				return $wgContLang->getWeekdayName( date('w')+1 );
 			case MAG_CURRENTYEAR:
-				return $wgLang->formatNum( date( 'Y' ) );
+				return $wgContLang->formatNum( date( 'Y' ) );
 			case MAG_CURRENTTIME:
-				return $wgLang->time( wfTimestampNow(), false );
+				return $wgContLang->time( wfTimestampNow(), false );
 			case MAG_NUMBEROFARTICLES:
-				return $wgLang->formatNum( wfNumberOfArticles() );
+				return $wgContLang->formatNum( wfNumberOfArticles() );
 			case MAG_SITENAME:
 				return $wgSitename;
 			case MAG_SERVER:
@@ -1653,7 +1653,7 @@ class Parser
 	 * @access private
 	 */
 	function braceSubstitution( $matches ) {
-		global $wgLinkCache, $wgLang;
+		global $wgLinkCache, $wgContLang;
 		$fname = 'Parser::braceSubstitution';
 		$found = false;
 		$nowiki = false;
@@ -1720,12 +1720,12 @@ class Parser
 			$mwNs = MagicWord::get( MAG_NS );
 			if ( $mwNs->matchStartAndRemove( $part1 ) ) {
 				if ( intval( $part1 ) ) {
-					$text = $wgLang->getNsText( intval( $part1 ) );
+					$text = $wgContLang->getNsText( intval( $part1 ) );
 					$found = true;
 				} else {
 					$index = Namespace::getCanonicalIndex( strtolower( $part1 ) );
 					if ( !is_null( $index ) ) {
-						$text = $wgLang->getNsText( $index );
+						$text = $wgContLang->getNsText( $index );
 						$found = true;
 					}
 				}
@@ -1762,7 +1762,7 @@ class Parser
 		if ( !$found && $argc == 1 ) {
 			$mwGrammar =& MagicWord::get( MAG_GRAMMAR );
 			if ( $mwGrammar->matchStartAndRemove( $part1 ) ) {
-				$text = $wgLang->convertGrammar( $args[0], $part1 );
+				$text = $wgContLang->convertGrammar( $args[0], $part1 );
 				$found = true;
 			}
 		}
@@ -2090,7 +2090,7 @@ class Parser
 	 * @access private
 	 */
 	/* private */ function formatHeadings( $text, $isMain=true ) {
-		global $wgInputEncoding, $wgMaxTocLevel, $wgLang, $wgLinkHolders;
+		global $wgInputEncoding, $wgMaxTocLevel, $wgContLang, $wgLinkHolders;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
@@ -2201,7 +2201,7 @@ class Parser
 						if( $dot ) {
 							$numbering .= '.';
 						}
-						$numbering .= $wgLang->formatNum( $sublevelCount[$i] );
+						$numbering .= $wgContLang->formatNum( $sublevelCount[$i] );
 						$dot = 1;
 					}
 				}
@@ -2528,7 +2528,7 @@ class Parser
 	 * @access private
 	 */
 	function pstPass2( $text, &$user ) {
-		global $wgLang, $wgLocaltimezone, $wgCurParser;
+		global $wgLang, $wgContLang, $wgLocaltimezone, $wgCurParser;
 
 		# Variable replacement
 		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags
@@ -2543,13 +2543,13 @@ class Parser
 			$oldtz = getenv('TZ'); putenv('TZ='.$wgLocaltimezone);
 		}
 		/* Note: this is an ugly timezone hack for the European wikis */
-		$d = $wgLang->timeanddate( date( 'YmdHis' ), false ) .
+		$d = $wgContLang->timeanddate( date( 'YmdHis' ), false ) .
 		  ' (' . date( 'T' ) . ')';
 		if(isset($wgLocaltimezone)) putenv('TZ='.$oldtzs);
 
 		$text = preg_replace( '/~~~~~/', $d, $text );
-		$text = preg_replace( '/~~~~/', '[[' . $wgLang->getNsText( NS_USER ) . ":$n|$k]] $d", $text );
-		$text = preg_replace( '/~~~/', '[[' . $wgLang->getNsText( NS_USER ) . ":$n|$k]]", $text );
+		$text = preg_replace( '/~~~~/', '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]] $d", $text );
+		$text = preg_replace( '/~~~/', '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]]", $text );
 
 		# Context links: [[|name]] and [[name (context)|]]
 		#

@@ -60,10 +60,10 @@ class FeedItem {
 	 * @todo document
 	 */
 	function xmlEncode( $string ) {
-		global $wgInputEncoding, $wgLang;
+		global $wgInputEncoding, $wgContLang;
 		$string = str_replace( "\r\n", "\n", $string );
 		if( strcasecmp( $wgInputEncoding, 'utf-8' ) != 0 ) {
-			$string = $wgLang->iconv( $wgInputEncoding, 'utf-8', $string );
+			$string = $wgContLang->iconv( $wgInputEncoding, 'utf-8', $string );
 		}
 		return htmlspecialchars( $string );
 	}
@@ -84,8 +84,8 @@ class FeedItem {
 	 * @todo document
 	 */
 	function getLanguage() {
-		global $wgLanguageCode;
-		return $wgLanguageCode;
+		global $wgContLanguageCode;
+		return $wgContLanguageCode;
 	}
 	/**
 	 * @todo document

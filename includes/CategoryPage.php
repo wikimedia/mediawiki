@@ -50,7 +50,7 @@ class CategoryPage extends Article {
 
         # This method generates the list of subcategories and pages for a category
         function oldCategoryMagic () {
-                global $wgLang, $wgUser ;
+                global $wgContLang, $wgUser ;
                 $fname = 'CategoryPage::oldCategoryMagic';
 
 
@@ -73,7 +73,7 @@ class CategoryPage extends Article {
                 # For all pages that link to this category
                 while ( $x = $dbr->fetchObject ( $res ) )
                 {
-                        $t = $wgLang->getNsText ( $x->cur_namespace ) ;
+                        $t = $wgContLang->getNsText ( $x->cur_namespace ) ;
                         if ( $t != '' ) $t .= ':' ;
                         $t .= $x->cur_title ;
 
@@ -103,7 +103,7 @@ class CategoryPage extends Article {
 	}
 
         function newCategoryMagic () {
-                global $wgLang,$wgUser;
+                global $wgContLang,$wgUser;
 
 		$sk =& $wgUser->getSkin();
 
@@ -127,7 +127,7 @@ class CategoryPage extends Article {
                 $res = $dbr->query ( $sql ) ;
                 while ( $x = $dbr->fetchObject ( $res ) )
                 {
-                        $t = $ns = $wgLang->getNsText ( $x->cur_namespace ) ;
+                        $t = $ns = $wgContLang->getNsText ( $x->cur_namespace ) ;
                         if ( $t != '' ) $t .= ':' ;
                         $t .= $x->cur_title ;
 
@@ -140,13 +140,13 @@ class CategoryPage extends Article {
                                 // Workaround: If sortkey == "Category:".$title, than use $title for sorting,
                                 // else use sortkey...
                                 if ( ($ns.':'.$ctitle) == $x->cl_sortkey ) {
-                                        array_push ( $children_start_char, $wgLang->firstChar( $x->cur_title ) );
+                                        array_push ( $children_start_char, $wgContLang->firstChar( $x->cur_title ) );
                                 } else {
-                                        array_push ( $children_start_char, $wgLang->firstChar( $x->cl_sortkey ) ) ;
+                                        array_push ( $children_start_char, $wgContLang->firstChar( $x->cl_sortkey ) ) ;
                                 }
                         } else {
                                 array_push ( $articles , $sk->makeKnownLink ( $t ) ) ; # Page in this category
-                                array_push ( $articles_start_char, $wgLang->firstChar( $x->cl_sortkey ) ) ;
+                                array_push ( $articles_start_char, $wgContLang->firstChar( $x->cl_sortkey ) ) ;
                         }
                 }
                 $dbr->freeResult ( $res ) ;

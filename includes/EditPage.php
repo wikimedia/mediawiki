@@ -122,7 +122,7 @@ class EditPage {
 	 */
 	function editForm( $formtype ) {
 		global $wgOut, $wgUser;
-		global $wgLang, $wgParser, $wgTitle;
+		global $wgLang, $wgContLang, $wgParser, $wgTitle;
 		global $wgAllowAnonymousMinor;
 		global $wgWhitelistEdit;
 		global $wgSpamRegex, $wgFilterCallback;
@@ -430,7 +430,7 @@ class EditPage {
 
 		# if this is a comment, show a subject line at the top, which is also the edit summary.
 		# Otherwise, show a summary field at the bottom
-		$summarytext = htmlspecialchars( $wgLang->recodeForEdit( $this->summary ) ); # FIXME
+		$summarytext = htmlspecialchars( $wgContLang->recodeForEdit( $this->summary ) ); # FIXME
 			if( $this->section == 'new' ) {
 				$commentsubject="{$subject}: <input tabindex='1' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
 				$editsummary = '';
@@ -470,7 +470,7 @@ enctype=\"application/x-www-form-urlencoded\">
 {$commentsubject}
 <textarea tabindex='1' accesskey=\",\" name=\"wpTextbox1\" rows='{$rows}'
 cols='{$cols}'{$ew}>" .
-htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
+htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 "
 </textarea>
 <br />{$editsummary}
@@ -493,7 +493,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourtext" ) . "</h2>
 <textarea tabindex=6 id='wpTextbox2' name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
-. htmlspecialchars( $wgLang->recodeForEdit( $this->textbox2 ) ) .
+. htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox2 ) ) .
 "
 </textarea>" );
 		}
@@ -508,7 +508,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 	 * @todo document
 	 */
 	function blockedIPpage() {
-		global $wgOut, $wgUser, $wgLang, $wgIP;
+		global $wgOut, $wgUser, $wgContLang, $wgIP;
 
 		$wgOut->setPageTitle( wfMsg( 'blockedtitle' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
@@ -523,7 +523,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		} else {
 			$name = $id;
 		}
-		$link = '[[' . $wgLang->getNsText( Namespace::getUser() ) .
+		$link = '[[' . $wgContLang->getNsText( Namespace::getUser() ) .
 		  ":{$name}|{$name}]]";
 
 		$wgOut->addWikiText( wfMsg( 'blockedtext', $link, $reason, $ip, $name ) );
@@ -534,7 +534,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 	 * @todo document
 	 */
 	function userNotLoggedInPage() {
-		global $wgOut, $wgUser, $wgLang;
+		global $wgOut, $wgUser;
 
 		$wgOut->setPageTitle( wfMsg( 'whitelistedittitle' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );

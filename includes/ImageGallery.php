@@ -27,7 +27,7 @@ class ImageGallery
 	}
 
 	function toHTML() {
-		global $wgLang, $wgUser;
+		global $wgLang, $wgContLang, $wgUser;
 
 		$sk = $wgUser->getSkin();
 
@@ -41,7 +41,7 @@ class ImageGallery
 			$nt = $img->getTitle();
 
 			//TODO
-			//$ul = $sk->makeLink( $wgLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
+			//$ul = $sk->makeLink( $wgContLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
 
 			$ilink = '<a href="' . $img->getURL() .  '">' . $nt->getText() . '</a>';
 			$nb = wfMsg( "nbytes", $wgLang->formatNum( $img->getSize() ) );

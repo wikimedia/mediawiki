@@ -738,7 +738,7 @@ class Article {
 	 * the given title.
 	*/
 	function view()	{
-		global $wgUser, $wgOut, $wgLang, $wgRequest, $wgOnlySysopsCanPatrol;
+		global $wgUser, $wgOut, $wgRequest, $wgOnlySysopsCanPatrol;
 		global $wgLinkCache, $IP, $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol;
 		$sk = $wgUser->getSkin();
 
@@ -1268,7 +1268,7 @@ class Article {
 	 * Add or remove this page to my watchlist based on value of $add
 	 */
 	function watch( $add = true ) {
-		global $wgUser, $wgOut, $wgLang;
+		global $wgUser, $wgOut;
 		global $wgDeferredUpdateList;
 
 		if ( 0 == $wgUser->getID() ) {
@@ -1597,7 +1597,7 @@ class Article {
 	 * Perform a deletion and output success or failure messages
 	 */
 	function doDelete( $reason ) {
-		global $wgOut, $wgUser, $wgLang;
+		global $wgOut, $wgUser, $wgContLang;
 		$fname = 'Article::doDelete';
 		wfDebug( $fname."\n" );
 
@@ -1608,8 +1608,8 @@ class Article {
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 			$sk = $wgUser->getSkin();
-			$loglink = $sk->makeKnownLink( $wgLang->getNsText( NS_PROJECT ) .
-			  ':' . wfMsg( 'dellogpage' ), wfMsg( 'deletionlog' ) );
+			$loglink = $sk->makeKnownLink( $wgContLang->getNsText( NS_PROJECT ) .
+			  ':' . wfMsgForContent( 'dellogpage' ), wfMsg( 'deletionlog' ) );
 
 			$text = wfMsg( 'deletedtext', $deleted, $loglink );
 
@@ -1626,7 +1626,7 @@ class Article {
 	 * Returns success
 	 */
 	function doDeleteArticle( $reason ) {
-		global $wgUser, $wgLang;
+		global $wgUser;
 		global  $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
 
 		$fname = 'Article::doDeleteArticle';
@@ -1747,7 +1747,7 @@ class Article {
 	 * Revert a modification
 	 */
 	function rollback() {
-		global $wgUser, $wgLang, $wgOut, $wgRequest;
+		global $wgUser, $wgOut, $wgRequest;
 		$fname = 'Article::rollback';
 
 		if ( ! $wgUser->isSysop() ) {
@@ -2160,7 +2160,7 @@ class Article {
 	 * Info about this page
 	 */
 	function info() {
-		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgAllowPageInfo;
+		global $wgUser, $wgTitle, $wgOut, $wgAllowPageInfo;
 		$fname = 'Article::info';
 
 		if ( !$wgAllowPageInfo ) {

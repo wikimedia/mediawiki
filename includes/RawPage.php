@@ -70,7 +70,7 @@ class RawPage {
 	}
 	
 	function getrawtext () {
-		global $wgInputEncoding, $wgLang;
+		global $wgInputEncoding, $wgContLang;
 		$fname = 'RawPage::getrawtext';
 		
 		if( !$this->mTitle ) return '';
@@ -83,7 +83,7 @@ class RawPage {
 		if($ns == NS_MEDIAWIKI) {
 			$rawtext = wfMsg($t);
 			if($wgInputEncoding != $this->mCharset)
-			$rawtext = $wgLang->iconv( $wgInputEncoding, $this->mCharset, $rawtext );
+			$rawtext = $wgContLang->iconv( $wgInputEncoding, $this->mCharset, $rawtext );
 			return $rawtext;
 		}
 		# else get it from the DB
@@ -100,7 +100,7 @@ class RawPage {
 		if( $s = $dbr->fetchObject( $res ) ) {
 			$rawtext = Article::getRevisionText( $s, "" );
 			if($wgInputEncoding != $this->mCharset)
-			$rawtext = $wgLang->iconv( $wgInputEncoding, $this->mCharset, $rawtext );
+			$rawtext = $wgContLang->iconv( $wgInputEncoding, $this->mCharset, $rawtext );
 			header( 'Last-modified: '.gmdate( "D, j M Y H:i:s", wfTimestamp2Unix( $s->timestamp )).' GMT' );
 			return $rawtext;
 		} else {

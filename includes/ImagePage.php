@@ -192,7 +192,7 @@ class ImagePage extends Article {
 
 	function doDelete()
 	{
-		global $wgOut, $wgUser, $wgLang, $wgRequest;
+		global $wgOut, $wgUser, $wgContLang, $wgRequest;
 		global $wgUseSquid, $wgInternalServer, $wgDeferredUpdateList;
 		$fname = 'ImagePage::doDelete';
 
@@ -253,7 +253,7 @@ class ImagePage extends Article {
 			# Image itself is now gone, and database is cleaned.
 			# Now we remove the image description page.
 
-			$nt = Title::newFromText( $wgLang->getNsText( Namespace::getImage() ) . ":" . $image );
+			$nt = Title::newFromText( $wgContLang->getNsText( Namespace::getImage() ) . ":" . $image );
 			$article = new Article( $nt );
 			$article->doDeleteArticle( $reason ); # ignore errors
 
@@ -264,7 +264,7 @@ class ImagePage extends Article {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		$sk = $wgUser->getSkin();
-		$loglink = $sk->makeKnownLink( $wgLang->getNsText(
+		$loglink = $sk->makeKnownLink( $wgContLang->getNsText(
 		  Namespace::getWikipedia() ) .
 		  ':' . wfMsg( 'dellogpage' ), wfMsg( 'deletionlog' ) );
 

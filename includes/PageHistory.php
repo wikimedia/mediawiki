@@ -144,7 +144,7 @@ class PageHistory {
 	}
 
 	function historyLine( $ts, $u, $ut, $ns, $ttl, $oid, $c, $isminor, $counter = '' ) {
-		global $wgLang;
+		global $wgLang, $wgContLang;
 
 		$artname = Title::makeName( $ns, $ttl );
 		$last = wfMsg( 'last' );
@@ -167,10 +167,10 @@ class PageHistory {
 		$link = $this->mSkin->makeKnownLink( $artname, $dt, $q );
 
 		if ( 0 == $u ) {
-			$ul = $this->mSkin->makeKnownLink( $wgLang->specialPage( 'Contributions' ),
+			$ul = $this->mSkin->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
 				htmlspecialchars( $ut ), 'target=' . urlencode( $ut ) );
 		} else {
-			$ul = $this->mSkin->makeLink( $wgLang->getNsText(
+			$ul = $this->mSkin->makeLink( $wgContLang->getNsText(
 				Namespace::getUser() ) . ':'.$ut , htmlspecialchars( $ut ) );
 		}
 
