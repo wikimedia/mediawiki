@@ -132,7 +132,8 @@ class Group {
 		$fname = 'Group::nameFromId';
 		$dbr =& wfGetDB( DB_SLAVE );
 		$r = $dbr->selectRow( 'group', array( 'group_name' ), array( 'group_id' => $id ), $fname );
-		
+		if ($dbr == null)
+			return;		
 		if($r === false) {
 			return '';
 		} else {
