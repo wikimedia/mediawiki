@@ -30,8 +30,20 @@ $optionsWithArgs = array('regex');
 require_once( 'commandLine.inc' );
 require_once( 'languages/LanguageUtf8.php' );
 
+/** */
 class ParserTest {
-	
+	/**
+	 * boolean $color whereas output should be colorized
+	 * @access private
+	 */
+	var $color;
+
+	/**
+	 * boolean $lightcolor whereas output should use light colors
+	 * @access private
+	 */
+	var $lightcolor;
+
 	/**
 	 * Sets terminal colorization and diff/quick modes depending on OS and
 	 * command-line options (--color and --quick).
@@ -40,10 +52,14 @@ class ParserTest {
 	 */
 	function ParserTest() {
 		global $options;
+		$this->lightcolor = false;
 		if( isset( $_SERVER['argv'] ) && in_array( '--color', $_SERVER['argv'] ) ) {
 			$this->color = true;
 		} elseif( isset( $_SERVER['argv'] ) && in_array( '--color=yes', $_SERVER['argv'] ) ) {
 			$this->color = true;
+		} elseif( isset( $_SERVER['argv'] ) && in_array( '--color=light', $_SERVER['argv'] ) ) {
+			$this->color = true;
+			$this->lightcolor = true;
 		} elseif( isset( $_SERVER['argv'] ) && in_array( '--color=no', $_SERVER['argv'] ) ) {
 			$this->color = false;
 		} elseif( wfIsWindows() ) {
@@ -458,7 +474,11 @@ class ParserTest {
 	 * @access private
 	 */
 	function termColor( $color ) {
-		return $this->color ? "\x1b[{$color}m" : '';
+		if($this->lightcolor) {
+			return $this->color ? "\x1b[1;{$color}m" : '';
+		} else {
+			return $this->color ? "\x1b[{$color}m" : '';
+		}
 	}
 	
 	/**
