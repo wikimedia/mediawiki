@@ -896,6 +896,13 @@ $wgAuth = null;
 	
 $wgHooks = array();
 	
+
+/**
+ * Disable internal search so that extensions can implement it.
+ */
+
+$wgDisableInternalSearch = false;
+
 } else {
 	die();
 }

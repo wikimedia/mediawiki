@@ -55,6 +55,11 @@ if ( $wgUseData ) {
 	$wgSpecialPages['Data'] = new SpecialPage( 'Data' );
 }
 
+global $wgDisableInternalSearch;
+if ( !$wgDisableInternalSearch ) {
+	$wgSpecialPages['Search'] = new UnlistedSpecialPage( 'Search' );
+}
+
 $wgSpecialPages = array_merge($wgSpecialPages, array (
 	'Wantedpages'	=> new SpecialPage( 'Wantedpages' ),
 	'Shortpages'	=> new SpecialPage( 'Shortpages' ),
@@ -79,7 +84,6 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 	'Export'		=> new SpecialPage( 'Export' ),
 	'Version'		=> new SpecialPage( 'Version' ),
 	'Allmessages'	=> new SpecialPage( 'Allmessages' ),
-	'Search'		=> new UnlistedSpecialPage( 'Search' ),
 	'Log'           => new SpecialPage( 'Log' ),
 	'Blockip'		=> new SpecialPage( 'Blockip', 'block' ),
 	'Asksql'		=> new SpecialPage( 'Asksql', 'asksql' ),
