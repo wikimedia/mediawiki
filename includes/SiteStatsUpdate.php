@@ -14,9 +14,6 @@ class SiteStatsUpdate {
 
 	function doUpdate()
 	{
-		global $wgDisableCounters;
-		if ( $wgDisableCounters ) { return; }
-
 		$a = array();
 
 		if ( $this->mViews < 0 ) { $m = "-1"; }
