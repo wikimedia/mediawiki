@@ -169,6 +169,7 @@ class Database {
 			wfDebug( "SQL: $sqlx\n" );
 		}
 		if( $this->mBufferResults ) {
+			print $sql."<br/>\n";
 			$ret = pg_query( $this->mConn , $sql);
 		} else {
 			// TODO FIXME : php doesnt get a postgre unbuffered query
@@ -218,7 +219,7 @@ class Database {
 	function numRows( $res ) {
 		@$n = pg_num_rows( $res ); 
 		if( pg_result_error($this->mConn) ) {
-			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( pg_result_error($this->mConn) );
+			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( pg_result_error($this->mConn) ) );
 		}
 		return $n;
 	}
@@ -239,7 +240,7 @@ class Database {
 	# If errors are explicitly ignored, returns success
 	function set( $table, $var, $value, $cond, $fname = "Database::set" )
 	{
-		$sql = "UPDATE '$table' SET '$var' = '" .
+		$sql = "UPDATE \"$table\" SET \"$var\" = '" .
 		  wfStrencode( $value ) . "' WHERE ($cond)";
 		return !!$this->query( $sql, DB_WRITE, $fname );
 	}
@@ -249,7 +250,7 @@ class Database {
 	# If errors are explicitly ignored, returns FALSE on failure
 	function get( $table, $var, $cond, $fname = "Database::get" )
 	{
-		$sql = "SELECT '$var' FROM '$table' WHERE ($cond)";
+		$sql = "SELECT \"$var\" FROM \"$table\" WHERE ($cond)";
 		$result = $this->query( $sql, DB_READ, $fname );
 	
 		$ret = "";
@@ -270,7 +271,7 @@ class Database {
 	{
 		$vars = implode( ",", $vars );
 		$where = Database::makeList( $conds, LIST_AND );
-		$sql = "SELECT '$vars' FROM '$table' WHERE $where LIMIT 1";
+		$sql = "SELECT \"$vars\" FROM \"$table\" WHERE $where LIMIT 1";
 		$res = $this->query( $sql, $fname );
 		if ( $res === false || !$this->numRows( $res ) ) {
 			return false;
