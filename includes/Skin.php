@@ -24,22 +24,6 @@ if( $wgUsePHPTal ) {
 
 include_once( "RecentChange.php" );
 
-# For some odd PHP bug, this function can't be part of a class
-function getCategories ()
-{
-  global $wgOut , $wgTitle , $wgUseCategoryMagic , $wgUser , $wgParser ;
-  if ( !isset ( $wgUseCategoryMagic ) || !$wgUseCategoryMagic ) return "" ;
-  if ( count ( $wgOut->mCategoryLinks ) == 0 ) return "" ;
-  if ( !$wgOut->isArticle() ) return "" ;
-  $sk = $wgUser->getSkin() ;
-  $s = "" ;
-  $s .= $sk->makeKnownLink ( "Special:Categories" , "Categories" , "article=".$wgTitle->getDBkey() ) ;
-  $t = implode ( " | " , $wgOut->mCategoryLinks ) ;
-  if ( $t != "" ) $s .= ": " ;
-  $s .= $t ;
-  return "<p class='catlinks'>$s</p>";
-}
-
 class RCCacheEntry extends RecentChange
 {
 	var $secureName, $link;
@@ -368,9 +352,23 @@ class Skin {
 
 		$s .= $this->pageTitle();
 		$s .= $this->pageSubtitle() ;
-		$s .= getCategories(); // For some odd reason, zhis can't be a function of the object
+		$s .= $this->getCategories();
 		wfProfileOut( $fname );
 		return $s;
+	}
+	
+	function getCategories () {
+		global $wgOut, $wgTitle, $wgUser, $wgParser;
+		global $wgUseCategoryMagic;
+		if( !$wgUseCategoryMagic ) return "" ;
+		if( count( $wgOut->mCategoryLinks ) == 0 ) return "";
+		if( !$wgOut->isArticle() ) return "";
+		
+		$t = implode ( " | " , $wgOut->mCategoryLinks ) ;
+		$s = $this->makeKnownLink( "Special:Categories",
+			wfMsg( "categories" ), "article=" . urlencode( $wgTitle->getPrefixedDBkey() ) )
+			. ": " . $t;
+		return "<p class='catlinks'>$s</p>";
 	}
 
 	function getQuickbarCompensator( $rows = 1 )
