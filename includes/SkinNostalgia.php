@@ -24,9 +24,9 @@ class SkinNostalgia extends Skin {
 		$s .= $this->topLinks() . "\n<br>";
 		$s .= $this->pageTitleLinks();
 
-		if ( $wgOut->isArticle() ) {
-			$s .= "<br>" . $this->otherLanguages();
-		}
+		$ol = $this->otherLanguages();
+		if($ol) $s .= "<br>" . $ol;
+
 		$s .= "<br clear=all><hr>\n</div>\n";
 		$s .= "\n<div id='article'>";
 
