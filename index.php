@@ -56,7 +56,7 @@ if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 
 if ( $search = $wgRequest->getText( 'search' ) ) {
 	$wgTitle = Title::makeTitle( NS_SPECIAL, "Search" );
-	if( $wgRequest->getVal( 'fulltext' ) ) {
+	if( $wgRequest->getVal( 'fulltext' ) || !is_null( $wgRequest->getVal( 'offset' ) ) ) {
 		wfSearch( $search );
 	} else {
 		wfGo( $search );
