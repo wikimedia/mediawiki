@@ -46,19 +46,18 @@ class ImagePage extends Article {
 		$full_url  = $this->img->getViewURL();
 		$anchoropen = '';
 		$anchorclose = '';
-		if ( $wgUseImageResize ) {
-			if( $wgUser->getOption( 'imagesize' ) == '' ) {
-				$sizeSel = User::getDefaultOption( 'imagesize' );
-			} else {
-				$sizeSel = IntVal( $wgUser->getOption( 'imagesize' ) );
-			}
-			if( !isset( $wgImageLimits[$sizeSel] ) ) {
-				$sizeSel = User::getDefaultOption( 'imagesize' );
-			}
-			$max = $wgImageLimits[$sizeSel];
-			$maxWidth = $max[0];
-			$maxHeight = $max[1];
+
+		if( $wgUser->getOption( 'imagesize' ) == '' ) {
+			$sizeSel = User::getDefaultOption( 'imagesize' );
+		} else {
+			$sizeSel = IntVal( $wgUser->getOption( 'imagesize' ) );
 		}
+		if( !isset( $wgImageLimits[$sizeSel] ) ) {
+			$sizeSel = User::getDefaultOption( 'imagesize' );
+		}
+		$max = $wgImageLimits[$sizeSel];
+		$maxWidth = $max[0];
+		$maxHeight = $max[1];
 
 
 		if ( $this->img->exists() ) {
@@ -70,18 +69,24 @@ class ImagePage extends Article {
 				$width = $this->img->getWidth();
 				$height = $this->img->getHeight();
 				$msg = wfMsg('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
-				if ( $width > $maxWidth && $wgUseImageResize ) {
+				if ( $width > $maxWidth ) {
 					$height = floor( $height * $maxWidth / $width );
 					$width  = $maxWidth;
 				} 
-				if ( $height > $maxHeight && $wgUseImageResize ) {
+				if ( $height > $maxHeight ) {
 					$width = floor( $width * $maxHeight / $height );
 					$height = $maxHeight;
 				}
 				if ( $width != $this->img->getWidth() || $height != $this->img->getHeight() ) {
-					$url = $this->img->createThumb( $width );
+					if( $wgUseImageResize ) {
+						$url = $this->img->createThumb( $width );
+					} else {
+						# No resize ability? Show the full image, but scale
+						# it down in the browser so it fits on the page.
+						$url = $full_url;
+					}
 					$anchoropen  = "<a href=\"{$full_url}\">";
-					$anchorclose = "<br>{$msg}</a>";
+					$anchorclose = "<br />{$msg}</a>";
 				} else {
 					$url = $full_url;
 				}
