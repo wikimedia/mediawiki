@@ -1349,9 +1349,13 @@ return $r ;
 		global $wgUser,$wgArticle,$wgTitle,$wpPreview;
 		$nh=$wgUser->getOption( "numberheadings" );
 		$st=$wgUser->getOption( "showtoc" );
-		$es=$wgUser->getID() && $wgUser->getOption( "editsection" );
-		$esr=$wgUser->getID() && $wgUser->getOption( "editsectiononrightclick" );
-
+		if(!$wgTitle->userCanEdit()) {
+			$es=0;
+			$esr=0;
+		} else {
+			$es=$wgUser->getID() && $wgUser->getOption( "editsection" );
+			$esr=$wgUser->getID() && $wgUser->getOption( "editsectiononrightclick" );
+		}
 		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML, do not 
 		# add TOC
 		if($st && preg_match("/__NOTOC__/i",$text)) { 
@@ -1451,7 +1455,7 @@ return $r ;
 
 
 		foreach($blocks as $block) {
-			if(($es || $esr) && !isset($wpPreview) && $c>0 && $i==0) {
+			if(($es) && !isset($wpPreview) && $c>0 && $i==0) {
 			    # This is the [edit] link that appears for the top block of text when 
 				# section editing is enabled
 				$full.=$sk->editSectionLink(0);				
