@@ -14,6 +14,12 @@ Required software:
 MediaWiki is developed and tested mainly on Unix/Linux
 platforms, but should work on Windows as well.
 
+If your PHP is configured as a CGI plug-in rather than
+an Apache module you may experience problems, as this
+configuration is not well tested.
+
+Don't forget to check the RELEASE-NOTES file...
+
 ********************** WARNING **************************
 
 The web-based install is still somewhat experimental. It
@@ -21,6 +27,9 @@ doesn't yet support updating the format of an existing
 MediaWiki database, the maintenance scripts aren't available,
 and there may be all kinds of horrible bugs or security
 problems that haven't been worked out yet.
+
+ALWAYS BACK UP YOUR DATABASE BEFORE ATTEMPTING TO INSTALL
+OR UPGRADE!!!
 
 ----
 In-place web install

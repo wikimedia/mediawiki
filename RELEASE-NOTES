@@ -1,11 +1,11 @@
 = MediaWiki release notes =
 
-== Version 1.2.0rc4, 2004-03-15 ==
+== Version 1.2.0, 2004-03-24 ==
 
-This is a RELEASE CANDIDATE for the new production release. It is more or
-less in sync with what is running on Wikipedia right now. There may be
-some interesting bugs, it may eat all your data, and documentation may
-not be up to date. If you use this on a production site, BE CAREFUL.
+This is the new production release; it is more or less in sync with what
+is running on Wikipedia right now. However this software is provided with
+NO WARRANTY of fitness for any purpose; there may be some interesting bugs,
+it may eat all your data, and documentation may not be up to date.
 
 New features in 1.2:
 * In-place web-based installation [experimental!]
@@ -40,8 +40,6 @@ Fixes and tweaks:
 * Some layout fixes for RTL languages.
 * Now includes arrow icons for enhanced recent changes.
 * Various bug fixes.
-* Other stuff we forgot.
-* Documentation more out of date than ever before!
 
 === Behavior changes ===
 
@@ -65,6 +63,31 @@ Expiration date field has been added to ipblocks table
 The links tables have slightly stricter indexes. ('links' and
 'brokenlinks' are not changed on existing installations.)
 
+=== Known problems ===
+
+The version 1.1.0 LocalSettings.sample file included the setting
+$wgCategoryMagic = true; this setting is for an experimental
+feature that _does not work correctly_. If you have it left over,
+turn it off or you'll see mysterious problems with vanishing links.
+
+There may be problems with session handling on some systems. Checking
+the "remember my password" box may help as a temporary workaround.
+
+If you receive "Cannot load input file" errors when trying to get
+at the wiki after installation, make the following changes:
+
+  in LocalSettings.php change the line something like this:
+    $wgArticlePath = "/wiki/index.php/$1";
+  to:
+    $wgArticlePath = "/wiki/index.php?title=$1";
+
+  in index.php, remove these lines:
+    if( isset( $_SERVER['PATH_INFO'] ) ) {
+    	$title = substr( $_SERVER['PATH_INFO'], 1 );
+    } else {
+    	$title = $_REQUEST['title'];
+    }
+  
 == Version 1.1.0, 2003-12-08 ==
 
 This is the new production release. Any following 1.1.x releases are expected
