@@ -43,7 +43,7 @@ $wgLanguageCode = strtoupper(substr($wgLanguageCode,0,1)).strtolower(substr($wgL
 
 # read command line argument
 if ( isset($args[0]) ) {
-	$lang = $args[0];
+	$lang = strtoupper(substr($args[0],0,1)).strtolower(substr($args[0],1));
 
 # or prompt a simple menu
 } else {
