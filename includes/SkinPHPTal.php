@@ -26,6 +26,7 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+if( defined( "MEDIAWIKI" ) ) {
 	require_once "GlobalFunctions.php";
 	global $IP;
 	require_once $IP."/PHPTAL-NP-0.7.0/libs/PHPTAL.php";
@@ -616,5 +617,5 @@
 			$this->skinname = "myskin";
 		}
 	}
-	
+}	
 ?>
