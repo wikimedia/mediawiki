@@ -865,6 +865,24 @@ $wgLoggedInGroupId = 2;
 
 $wgWhitelistRead = array ( ':Accueil', ':Main_Page');
 
+/*
+When translating messages with wfMsg(), it is not always clear what should
+be considered UI messages and what shoud be content messages. 
+
+For example, for regular wikipedia site like en, there should be only one 
+'mainpage', therefore when getting the link of 'mainpage', we should 
+treate it as content of the site and call wfMsgForContent(), while for 
+rendering the text of the link, we call wfMsg(). The code in default
+behaves this way. However, sites like common do offer different versions 
+of 'mainpage' and the like for different languages. This array provides a
+way to override the default behavior. For example, to allow language specific
+mainpage and community portal, set
+
+$wgForceUIMsgAsContentMsg = array( 'mainpage', 'portal-url' );
+
+*/
+$wgForceUIMsgAsContentMsg = array();
+
 /**
  * Authentication plugin.
  */
