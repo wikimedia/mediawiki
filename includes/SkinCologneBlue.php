@@ -232,7 +232,12 @@ class SkinCologneBlue extends Skin {
 		if ( 0 != $wgUser->getID() && !$wgDisableUploads ) {
 			$s .= $sep . $this->specialLink( "upload" );
 		}
-
+		global $wgSiteSupportPage;
+		if( $wgSiteSupportPage) {
+			$s .= $sep."<a href=\"".htmlspecialchars($wgSiteSupportPage)."\" class =\"internal\">"
+			      .wfMsg( "sitesupport" )."</a>";
+		}
+		
 		$s .= $sep . $this->makeKnownLink( $wgLang->specialPage( "Specialpages" ), wfMsg("moredotdotdot") );
 
 		$s .= $sep . "\n</div>\n";
