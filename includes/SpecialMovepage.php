@@ -132,11 +132,14 @@ class MovePageForm {
 		# moved into article namespace?
 		elseif ( $ons != NS_MAIN and $nns == NS_MAIN ) {
 			$u = new SiteStatsUpdate( 0, 1, +1 ); # not viewed, edited, adding
+		} else {
+			$u = false;
 		}
-		
-		# save it for later update
-		array_push( $wgDeferredUpdateList, $u );
-		unset($u);
+		if ( $u !== false ) {
+			# save it for later update
+			array_push( $wgDeferredUpdateList, $u );
+			unset($u);
+		}
 		
 		# Move talk page if
 		# (1) the checkbox says to,
