@@ -6,6 +6,7 @@ var alertText;
 var clientPC = navigator.userAgent.toLowerCase(); // Get client info
 var is_gecko = ((clientPC.indexOf('gecko')!=-1) && (clientPC.indexOf('spoofer')==-1)
                 && (clientPC.indexOf('khtml') == -1));
+var is_safari = ((clientPC.indexOf('AppleWebKit')!=-1) && (clientPC.indexOf('spoofer')==-1));
 
 // Un-trap us from framesets
 if( window.top != window ) window.top.location = window.location;
@@ -204,7 +205,10 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		if(!text) { text=sampleText;}
 		text=tagOpen+text+tagClose;
 		document.infoform.infobox.value=text;
-		txtarea.focus();
+		// in Safari this causes scrolling
+		if(!is_safari) {
+			txtarea.focus();
+		}
 		noOverwrite=true;
 	}
 	// reposition cursor if possible
