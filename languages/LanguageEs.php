@@ -66,75 +66,76 @@
 	"aa"	=> "Afar",
 	"ab"	=> "Abkhaziano",
 	"af"	=> "Afrikaans",
-	"sq"	=> "Shqip (Albanés)",
+	"sq"	=> "Shqip",  #(albanés)
 	"am"	=> "Amhárico",
-	"ar"	=> "&#8238;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;&#8236; (Araby,Árabe)",
+	"ar"	=> "&#8238;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;&#8236;",  #('áraby, árabe)
 	"hy"	=> "Armenio",
 	"as"	=> "Assamese",
 	"ay"	=> "Aymara",
 	"az"	=> "Azerbaijani",
 	"ba"	=> "Bashkir",
-	"eu"	=> "Euskara (Vasco)",
+	"eu"	=> "Euskara",  #(vasco)
 	"be"	=> "Bielorruso",
 	"bn"	=> "Bengalí",
-        "bs"    => "Bosnio (Bosanski)",
+        "bs"    => "Bosanski", #(bosnio)
 	"dz"	=> "Bhutaní",
 	"bh"	=> "Bihara",
 	"bi"	=> "Bislama",
 	"my"	=> "Birmano",
 	"km"	=> "Camboyano",
-	"ca"	=> "Català(Catalán)",
+	"ca"	=> "Català",  #(catalán)
 	"co"	=> "Corso",
-	"hr"	=> "Croata",
-	"cs"	=> "&#268;eská(Checo)",
-	"da"	=> "Dansk(Danés)", # Note two different subdomains. 
-	"dk"	=> "Dansk(Danés)", # 'da' is correct for the language.
-	"nl"	=> "Nederlands (Holandés)",
-	"en"	=> "English (Inglés)",
-	"simple" => "Inglés Simple",
+	"hr"	=> "Hrvatski",  #(croata)
+	"cs"	=> "&#268;eská", #(checo)
+	"da"	=> "Dansk", # Note two different subdomains. (danés)
+	"dk"	=> "Dansk", # 'da' is correct for the language. (danés)
+	"nl"	=> "Nederlands",  #(Holandés)
+	"en"	=> "English", #(inglés) 
+	"simple" => "Simple English",  #(inglés simplificado)
 	"eo"	=> "Esperanto",
-	"et"	=> "Eesti (Estoniano)",
+	"et"	=> "Eesti", #(estonio o estoniano)
 	"fo"	=> "Feroés",
 	"fj"	=> "Fijiés",
-	"fi"	=> "Suomi (Finlandés)",
-	"fr"	=> "Fran&#231;ais (Francés)",
+	"fi"	=> "Suomi",  #(finlandés o finés)
+	"fr"	=> "Fran&#231;ais",  #(francés)
 	"fy"	=> "Frisio",
 	"gl"	=> "Gallego",
 	"ka"	=> "Georgiano",
-	"de"	=> "Deutsch(Alemán)",
-	"el"	=> "&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940; (Ellenika,Griego)",
-        "cy"    => "Cymraeg (Galés)",
+	"de"	=> "Deutsch",  #(alemán)
+	"el"	=> "&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;",  #(eliniká, griego)
+        "cy"    => "Cymraeg",  #(galés)
 	"kl"	=> "Groenlandés",
 	"gn"	=> "Guaraní",
-	"gu"	=> "Gujaratí",
+	"gu"	=> "&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752;", #(gujaratí)
 	"ha"	=> "Hausa",
-	"he"	=> "????? (Ivrit, Hebreo)",
-	"hi"	=> "Hindi",
-	"hu"	=> "Magyar (Húngaro)",
+	"he"	=> "&#1506;&#1489;&#1512;&#1497;&#1514;",  #(ivrit, hebreo)
+	"hi"	=> "&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;",  #(hindi)
+	"hu"	=> "Magyar",  #(húngaro)
 	"is"	=> "Islandés",
-	"id"	=> "Bahasa Indonesia (Indonesio)",
+	"id"	=> "Bahasa Indonesia",  #(indonesio)
 	"ia"	=> "Interlingua",
-	"iu"	=> "Inuktitut (Esquimal)",
+	"iu"	=> "Inuktitut",  #(esquimal)
 	"ik"	=> "Inupiak",
 	"ga"	=> "Irlandés",
 	"it"	=> "Italiano",
-	"ja"	=> "&#26085;&#26412;&#35486; (Nihongo,Japonés)",
+	"ja"	=> "&#26085;&#26412;&#35486;",  #(japonés)
 	"jv"	=> "Javanés",
+        "ka"    => "&#4325;&#4304;&#4320;&#4311;&#4309;&#4308;&#4314;&#4312;", #(Kartuli)",
 	"kn"	=> "Kannada",
 	"ks"	=> "Kashmir (Cachemiro)",
 	"kk"	=> "Kazakh (Cazaco)",
 	"rw"	=> "Kinyarwanda",
 	"ky"	=> "Kirghiz",
 	"rn"	=> "Kirundi",
-	"ko"	=> "&#54620;&#44397;&#50612; (Hangukeo,Coreano)",
+	"ko"	=> "&#54620;&#44397;&#50612;",  #(Hangukeo, coreano)
 	"lo"	=> "Laotiano",
-	"la"	=> "Latina",
+	"la"	=> "Latina",  #(latín)
 	"lv"	=> "Letón",
 	"ln"	=> "Lingala",
 	"lt"	=> "Lituano",
 	"mk"	=> "Macedonio",
 	"mg"	=> "Malagasy (Malgache)",
-	"ms"	=> "Bahasa Melayu (Malayo)",
+	"ms"	=> "Bahasa Melayu",  #(malayo)
 	"ml"	=> "Malayalam",
 	"mi"	=> "Maorí",
 	"mr"	=> "Marathi",
@@ -148,17 +149,17 @@
 	"om"	=> "Oromo",
 	"ps"	=> "Pashto",
 	"fa"	=> "Persa",
-	"pl"	=> "Polski (Polaco)",
-	"pt"	=> "Portugu&#234;s (Portugués)",
+	"pl"	=> "Polski",  #(polaco)
+	"pt"	=> "Portugu&#234;s",  #(portugués)
 	"pa"	=> "Punjabí",
 	"qu"	=> "Quechua",
 	"rm"	=> "Rhaeto-Romance (Retorrománico)",
 	"ro"	=> "Rumano",
-	"ru"	=> "??????? (Russkiy, Ruso)",
+	"ru"	=> "&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;", #(Russkiy, Ruso)
 	"sm"	=> "Samoano",
 	"sg"	=> "Sangro",
 	"sa"	=> "Sánscrito",
-	"sr"	=> "?????? (Srpski, Serbio)",
+	"sr"	=> "&#1057;&#1088;&#1087;&#1089;&#1082;&#1080;", #(Srpski, Serbio)
 	"sh"	=> "Serbocroata",
 	"st"	=> "Sesotho",
 	"tn"	=> "Setswana",
@@ -183,11 +184,11 @@
 	"ti"	=> "Tigrinya",
 	"to"	=> "Tonga",
 	"ts"	=> "Tsonga",
-	"tr"	=> "Turco",
+	"tr"	=> "T&#252;rk&#231;e",  #(turco)
 	"tk"	=> "Turcomano",
 	"tw"	=> "Twi",
 	"ug"	=> "Uighur",
-	"uk"	=> "Ucraniano",
+	"uk"	=> "&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;", #(ucraniano)
 	"ur"	=> "Urdu",
 	"uz"	=> "Uzbek (Uzbeco)",
 	"vi"	=> "Vietnamita",
@@ -397,7 +398,7 @@ notando el URL.",
 "badtitle"		=> "T&iacute;tulo incorrecto",
 "badtitletext"	=> "El t&iacute;tulo de la página requerida era inválido, vac&iacute;o, o un enlace interleguaje o interwiki incorrecto.",
 
-"perfdisabled" => "Lo siento, esta función está temporalmente desactivada porque ralentiza la base de datos a tal punto que nadie puede usar el wiki. Será reescrita para mayor eficiencia en el futuro) probablemente por ti!=",
+"perfdisabled" => "Lo siento, esta función está temporalmente desactivada porque enlentece la base de datos a tal punto que nadie puede usar el wiki. Será reescrita para mayor eficiencia en el futuro) probablemente por ti!=",
 
 # Login and logout pages&iacute;tulo
 "logouttitle"	=> "Fin de sesión",
@@ -485,7 +486,7 @@ Vas a tener que incorporar tus cambios en el texto existente.
  de esta página.
 Si la grabas, los cambios hechos desde esa revisión se perderán.</strong>\n",
 "yourdiff"		=> "Diferencias",
-"copyrightwarning" => "Nota por favor que todas las contribuciones a Wikipedia 
+"copyrightwarning" => "Ayuda de edición, caracteres especiales: á é í ó ú Á É Í Ó Ú ü Ü ñ Ñ ¡ ¿ <br><br>Nota por favor que todas las contribuciones a Wikipedia 
 se consideran hechas públicas bajo la Licencia de Documentación Libre GNU 
 (ver detalles en $1). 
  Si no deseas que la gente corrija tus escritos sin piedad 
@@ -532,6 +533,7 @@ Por favor revisa el URL que usaste para acceder a esta página.\n",
 "searchingwikipedia" => "Buscando en Wikipedia",
 "searchresulttext" => "Para más información acerca de búsquedas en Wikipedia, ve a $1.",
 "searchquery"	=> "Para consulta \"$1\"",
+
 "badquery"		=> "Consulta de búsqueda formateada en forma incorrecta",
 "badquerytext"	=> "No pudimos procesar tu búsqueda.
 Esto es probablemente porque intentaste buscar una palabra de menos de tres letras, lo que todavía no es posible.
