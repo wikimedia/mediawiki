@@ -220,6 +220,9 @@ class SpecialSearch {
 				$class = 'SearchMysql3';
 				require_once( 'SearchMySQL3.php' );
 			}
+		} else if ( $wgDBtype == 'PostgreSQL' ) {
+			$class = 'SearchTsearch2';
+			require_once( 'SearchTsearch2.php' );
 		} else {
 			$class = 'SearchEngineDummy';
 		}
