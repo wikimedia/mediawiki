@@ -42,7 +42,7 @@ header( "Content-type: text/html; charset=utf-8" );
 	dl.setup dd {
 		margin-left: 0;
 	}
-	dl.setup dd label {
+	dl.setup dd label.column {
 		clear: left;
 		font-weight: bold;
 		width: 12em;
@@ -59,6 +59,11 @@ header( "Content-type: text/html; charset=utf-8" );
 	}
 	.error {
 		color: red;
+	}
+	ul.plain {
+		list-style: none;
+		clear: both;
+		margin-left: 12em;
 	}
 	</style>
 </head>
@@ -266,6 +271,21 @@ if( $conf->SysopPass != $conf->SysopPass2 ) {
 	$errs["SysopPass2"] = "Passwords don't match!";
 }
 
+$conf->License = importPost( "License", "none" );
+if( $conf->License == "gfdl" ) {
+	$conf->RightsUrl = "http://www.gnu.org/copyleft/fdl.html";
+	$conf->RightsText = "GNU Free Documentation License 1.2";
+	$conf->RightsCode = "gfdl";
+	$conf->RightsIcon = "{$conf->ScriptPath}/images/gnu-fdl.png";
+} elseif( $conf->License == "none" ) {
+	$conf->RightsUrl = $conf->RightsText = $conf->RightsCode = $conf->RightsIcon = "";
+} else {
+	$conf->RightsUrl = importPost( "RightsUrl", "" );
+	$conf->RightsText = importPost( "RightsText", "" );
+	$conf->RightsCode = importPost( "RightsCode", "" );
+	$conf->RightsIcon = importPost( "RightsIcon", "" );
+}
+
 if( $conf->posted && ( 0 == count( $errs ) ) ) {
 	do { /* So we can 'continue' to end prematurely */
 		$conf->Root = ($conf->RootPW != "");
@@ -451,7 +471,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$f = fopen( "LocalSettings.php", $xt );
 		
 		if( $f == false ) {
-			dieout( "Couldn't write out LocalSettings.php. Check that the directory permissions are correct and that there isn't already a file of that name here...</p>\n" .
+			dieout( "<p>Couldn't write out LocalSettings.php. Check that the directory permissions are correct and that there isn't already a file of that name here...</p>\n" .
 			"<p>Here's the file that would have been written, try to paste it into place manually:</p>\n" .
 			"<pre>\n" . htmlspecialchars( $localSettings ) . "</pre>\n" );
 		}
@@ -508,7 +528,7 @@ if( count( $errs ) ) {
 	</dt>
 
 	<dd>
-		<label for="LanguageCode">Language</label>
+		<label class='column' for="LanguageCode">Language</label>
 		<select id="LanguageCode" name="LanguageCode">
 		<?php
 			$list = getLanguageList();
@@ -526,6 +546,35 @@ if( count( $errs ) ) {
 		more compatible with older browsers for some languages. Unicode will
 		be used where not specified otherwise.
 	</dt>
+	
+	<dd>
+		<label class='column'>Copyright/license metadata</label>
+		<div>Select one:</div>
+
+		<ul class="plain">
+		<li><?php aField( $conf, "License", "no license metadata", "radio", "none" ); ?></li>
+		<li><?php aField( $conf, "License", "GNU Free Documentation License 1.2 (Wikipedia-compatible)", "radio", "gfdl" ); ?></li>
+		<li><?php
+			aField( $conf, "License", "a Creative Commons license...", "radio", "cc" ); 
+			$partner = "MediaWiki";
+			$exit = urlencode( "$wgServer{$conf->ScriptPath}/config/index.php?License=cc&RightsUrl=[license_url]&RightsText=[license_name]&RightsCode=[license_code]&RightsIcon=[license_button]" );
+			$icon = urlencode( "$wgServer$wgUploadPath/wiki.png" );
+			$ccApp = htmlspecialchars( "http://creativecommons.org/license/?partner=$partner&exit_url=$exit&partner_icon_url=$icon" );
+			print "<a href=\"$ccApp\">choose</a>";
+			?></li>
+		<li><?php aField( $conf, "RightsUrl", $conf->RightsUrl, "hidden" ); ?></li>
+		<li><?php aField( $conf, "RightsText", $conf->RightsText, "hidden" ); ?></li>
+		<li><?php aField( $conf, "RightsCode", $conf->RightsCode, "hidden" ); ?></li>
+		<li><?php aField( $conf, "RightsIcon", $conf->RightsIcon, "hidden" ); ?></li>
+		</ul>
+	</dd>
+	<dt>
+		MediaWiki can include a basic license notice, icon, and machine-reable
+		copyright metadata if your wiki's content is to be licensed under
+		the GNU FDL or a Creative Commons license. If you're not sure, leave
+		it at "none".
+	</dt>
+	
 	
 	<dd>
 		<?php aField( $conf, "SysopName", "Sysop account name:", "" ) ?>
@@ -588,7 +637,7 @@ if( count( $errs ) ) {
 	</dt>
 
 	<dd>
-		<label>&nbsp;</label>
+		<label class='column'>&nbsp;</label>
 		<input type="submit" value="Install!" />
 	</dd>
 </dl>
@@ -621,7 +670,9 @@ function writeLocalSettings( $conf ) {
 	$convert = ($conf->ImageMagick ? $conf->ImageMagick : "/usr/bin/convert" );
 	$pretty = ($conf->prettyURLs ? "" : "# ");
 	$ugly = ($conf->prettyURLs ? "# " : "");
-	$proxyKey = Parser::getRandomString() . Parser::getRandomString();
+	$rights = ($conf->RightsUrl) ? "" : "# ";
+
+#	$proxyKey = Parser::getRandomString() . Parser::getRandomString();
 	
 	$sep = (DIRECTORY_SEPARATOR == "\\") ? ";" : ":";
 	return "
@@ -693,22 +744,27 @@ if ( \$wgCommandLineMode ) {
 \$wgMathDirectory    = \"{\$wgUploadDirectory}/math\";
 \$wgTmpDirectory     = \"{\$wgUploadDirectory}/tmp\";
 
-## Experimental layout template subsystems
-\$wgUsePHPTal = false;
-\$wgUseSmarty = false;
+\$wgUsePHPTal = true;
 if ( \$wgUsePHPTal ) {
       ini_set( \"include_path\", \"\$IP/PHPTAL-NP-0.7.0/libs$sep\" . ini_get(\"include_path\") );
-}
-if ( \$wgUseSmarty ) {
-      ini_set( \"include_path\", \"\$IP/Smarty-2.6.2/libs$sep\" . ini_get(\"include_path\") );
 }
 
 \$wgLocalInterwiki   = \$wgSitename;
 
 \$wgLanguageCode = \"{$conf->LanguageCode}\";
 " . ($conf->Encoding ? "\$wgInputEncoding = \$wgOutputEncoding = \"{$conf->Encoding}\";" : "" ) . "
-\$wgProxyKey = $proxyKey;
 
+#\$wgProxyKey = $proxyKey;
+
+## For attaching licensing metadata to pages, and displaying an
+## appropriate copyright notice / icon. GNU Free Documentation
+## License and Creative Commons licenses are supported so far.
+{$rights}\$wgEnableCreativeCommonsRdf = true;
+\$wgRightsPage = \"\"; # Set to the title of a wiki page that describes your license/copyright
+\$wgRightsUrl = \"{$conf->RightsUrl}\";
+\$wgRightsText = \"{$conf->RightsText}\";
+\$wgRightsIcon = \"{$conf->RightsIcon}\";
+# \$wgRightsCode = \"{$conf->RightsCode}\"; # Not yet used
 ";
 }
 
@@ -717,19 +773,43 @@ function dieout( $text ) {
 }
 
 function importPost( $name, $default = "" ) {
-	if( isset( $_POST[$name] ) ) {
-		return $_POST[$name];
+	if( isset( $_REQUEST[$name] ) ) {
+		return $_REQUEST[$name];
 	} else {
 		return $default;
 	}
 }
 
-function aField( &$conf, $field, $text, $type = "" ) {
-	if( $type != "" ) $type = "type=\"$type\"";
-	echo "\t\t<label for=\"$field\">$text</label>\n";
-	echo "\t\t<input $type name=\"$field\" id=\"$field\" value=\"";
-	echo htmlspecialchars( $conf->$field );
+function aField( &$conf, $field, $text, $type = "", $value = "" ) {
+	if( $type != "" ) {
+		$xtype = "type=\"$type\"";
+	} else {
+		$xtype = "";
+	}
+	
+	if( $id == "" ) $id = $field;
+	$nolabel = ($type == "radio") || ($type == "hidden");
+	if( $nolabel ) {
+		echo "\t\t<label>";
+	} else {
+		echo "\t\t<label class='column' for=\"$id\">$text</label>\n";
+	}
+	
+	if( $type == "radio" && $value == $conf->$field ) {
+		$checked = "checked='checked'";
+	} else {
+		$checked = "";
+	}
+	echo "\t\t<input $xtype name=\"$field\" id=\"$id\" $checked value=\"";
+	if( $type == "radio" ) {
+		echo htmlspecialchars( $value );
+	} else {
+		echo htmlspecialchars( $conf->$field );
+	}
 	echo "\" />\n";
+	if( $nolabel ) {
+		echo " $text</label>\n";
+	}
 	
 	global $errs;
 	if(isset($errs[$field])) echo "<span class='error'>" . $errs[$field] . "</span>\n";
