@@ -91,12 +91,6 @@ class OutputPage {
 			wfDebug( "CACHE DISABLED\n", false );
 			return;
 		}
-		if( isset( $_SERVER["HTTP_USER_AGENT"] ) &&
-		    preg_match( '/MSIE ([1-4]|5\.0)/', $_SERVER["HTTP_USER_AGENT"] ) ) {
-			# IE 5.0 has probs with our caching
-			wfDebug( "-- bad client, not caching\n", false );
-			return;
-		}
 		if( $wgUser->getOption( 'nocache' ) ) {
 			wfDebug( "USER DISABLED CACHE\n", false );
 			return;
