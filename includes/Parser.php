@@ -1393,33 +1393,56 @@ class Parser
 		# :Foobar -- override special treatment of prefix (images, language links)
 		# /Foobar -- convert to CurrentPage/Foobar
 		# /Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
+		# ../ -- convert to CurrentPage, from CurrentPage/CurrentSubPage
+		# ../Foobar -- convert to CurrentPage/Foobar, from CurrentPage/CurrentSubPage
 
 		$fname = 'Parser::maybeDoSubpageLink';
 		wfProfileIn( $fname );
-		# Look at the first character
-		if( $target != '' && $target{0} == '/' ) {
-			# / at end means we don't want the slash to be shown
-			if(substr($target,-1,1)=='/') {
-				$target=substr($target,1,-1);
-				$noslash=$target;
-			} else {
-				$noslash=substr($target,1);
-			}
+		$ret = $target; # default return value is no change
+			
+		# Some namespaces don't allow subpages, 
+		# so only perform processing if subpages are allowed
+		if( $this->areSubpagesAllowed() ) {		
+			# Look at the first character
+			if( $target != '' && $target{0} == '/' ) {
+				# / at end means we don't want the slash to be shown
+				if( substr( $target, -1, 1 ) == '/' ) {
+					$target = substr( $target, 1, -1 );
+					$noslash = $target;
+				} else {
+					$noslash = substr( $target, 1 );
+				}
 				
-			# Some namespaces don't allow subpages
-			if( $this->areSubpagesAllowed() ) {
-				# subpages allowed here
 				$ret = $this->mTitle->getPrefixedText(). '/' . trim($noslash);
 				if( '' === $text ) {
 					$text = $target;
 				} # this might be changed for ugliness reasons
 			} else {
-				# no subpage allowed, use standard link
-				$ret = $target;
+				# check for .. subpage backlinks
+				$dotdotcount = 0;
+				$nodotdot = $target;
+				while( strncmp( $nodotdot, "../", 3 ) == 0 ) {
+					++$dotdotcount;
+					$nodotdot = substr( $nodotdot, 3 );
+				}
+				if($dotdotcount > 0) {
+					$exploded = explode( '/', $this->mTitle->GetPrefixedText() );
+					if( count( $exploded ) > $dotdotcount ) { # not allowed to go below top level page
+						$ret = implode( '/', array_slice( $exploded, 0, -$dotdotcount ) );
+						# / at the end means don't show full path
+						if( substr( $nodotdot, -1, 1 ) == '/' ) {
+							$nodotdot = substr( $nodotdot, 0, -1 );
+							if( '' === $text ) {
+								$text = $nodotdot;
+							}
+						}
+						$nodotdot = trim( $nodotdot );
+						if( $nodotdot != '' ) {
+							$ret .= '/' . $nodotdot;
+						}
+					}
+				}
 			}
-		} else {
-			# no subpage
-			$ret = $target;
 		}
 
 		wfProfileOut( $fname );
