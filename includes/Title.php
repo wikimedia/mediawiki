@@ -1182,6 +1182,7 @@ class Title {
 		# We shouldn't need to query the DB for the size.
 		#$maxSize = $dbr->textFieldSize( 'page', 'page_title' );
 		if ( strlen( $r ) > 255 ) {
+			wfProfileOut( $fname );
 			return false;
 		}
 
@@ -1197,6 +1198,18 @@ class Title {
 			$t = $wgContLang->ucfirst( $r );
 		} else {
 			$t = $r;
+		}
+		
+		/**
+		 * Can't make a link to a namespace alone...
+		 * "empty" local links can only be self-links
+		 * with a fragment identifier.
+		 */
+		if( $t == '' &&
+			$this->mInterwiki == '' &&
+			$this->mNamespace != NS_MAIN ) {
+			wfProfileOut( $fname );
+			return false;
 		}
 		
 		# Fill fields

@@ -1796,6 +1796,24 @@ http://en.wikinews.org/wiki/Wikinews:Workplace
 !!end
 
 
+!! test
+Namespaced link must have a title
+!! input
+[[Project:]]
+!! result
+<p>[[Project:]]
+</p>
+!!end
+
+!! test
+Namespaced link must have a title (bad fragment version)
+!! input
+[[Project:#fragment]]
+!! result
+<p>[[Project:#fragment]]
+</p>
+!!end
+
 TODO:
 more images
 more tables
