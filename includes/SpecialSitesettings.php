@@ -109,7 +109,7 @@ class SiteSettingsForm extends HTMLForm {
 		$wgOut->addHTML( $this->fieldset( "sitesettings-images" ,
 			$this->checkbox( 'wgAllowExternalImages' ) .
 			$this->fieldset( 'sitesettings-images-upload' ,
-				$this->checkbox( 'wgDisableUploads' ) .
+				$this->checkbox( 'wgEnableUploads' ) .
 				$this->checkbox( 'wgRemoteUploads' ) .
 				$this->arraybox( 'wgFileExtensions' ) .
 				$this->arraybox( 'wgFileBlacklist' ) .

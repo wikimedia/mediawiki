@@ -88,10 +88,10 @@ class UploadForm {
 	 */
 	function execute() {
 		global $wgUser, $wgOut;
-		global $wgDisableUploads;
+		global $wgEnableUploads;
 
 		/** Show an error message if file upload is disabled */ 
-		if( $wgDisableUploads ) {
+		if( ! $wgEnableUploads ) {
 			$wgOut->addWikiText( wfMsg( 'uploaddisabled' ) );
 			return;
 		}
