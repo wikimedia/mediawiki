@@ -390,6 +390,10 @@ $wgTidyOpts = '';
 # See list of skins and their symbolic names in language/Language.php
 $wgDefaultSkin = "monobook";
 
+# Whether or not to allow real name fields. Defaults to true.
+
+$wgAllowRealName = true;
+
 # Extensions
 $wgExtensionFunctions = array();
 ?>
