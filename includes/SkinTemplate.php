@@ -473,7 +473,7 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::buildContentActionUrls';
 		wfProfileIn( $fname );
 		
-		global $wgTitle, $wgUser, $wgRequest, $wgUseValidation;
+		global $wgTitle, $wgUser, $wgRequest;
 		$action = $wgRequest->getText( 'action' );
 		$section = $wgRequest->getText( 'section' );
 		$oldid = $wgRequest->getVal( 'oldid' );
@@ -484,7 +484,6 @@ class SkinTemplate extends Skin {
 
 			$nskey = $this->getNameSpaceKey();
 			$is_active = !Namespace::isTalk( $wgTitle->getNamespace()) ;
-			if ( $action == 'validate' ) $is_active = false ; # Show article tab deselected when validating
 
 			$subjectTitle = $wgTitle->getSubjectPage();
 			if( $subjectTitle->getArticleId() != 0 ) {
@@ -622,17 +621,6 @@ class SkinTemplate extends Skin {
 						'href' => $wgTitle->getLocalUrl( 'action=unwatch' )
 					);
 				}
-			}
-
-			# Show validate tab
-			if ( $wgUseValidation && $wgTitle->getArticleId() && $wgTitle->getNamespace() == 0 ) {
-				global $wgArticle ;
-				$article_time = "&timestamp=" . $wgArticle->mTimestamp ;
-				$content_actions['validate'] = array(
-					'class' => ($action == 'validate') ? 'selected' : false ,
-					'text' => wfMsg('val_tab'),
-					'href' => $wgTitle->getLocalUrl( 'action=validate'.$article_time)
-				);
 			}
 
 		} else {
