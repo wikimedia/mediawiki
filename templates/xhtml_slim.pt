@@ -18,7 +18,7 @@
       tal:condition="userjsprev" type="text/javascript">/*<![CDATA[*/${userjsprev}/*]]>*/</script>
   </head>
 
-  <body tal:attributes="ondblclick body-ondblclick|default">
+  <body tal:attributes="ondblclick body-ondblclick|default; class nsclass|default">
     <div id="globalWrapper">
       <div id="column-content">
 	<div id="content">
