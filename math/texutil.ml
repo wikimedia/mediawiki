@@ -13,7 +13,7 @@ let tex_part = function
 let rec render_tex = function
     TEX_FQ (a,b,c) -> (render_tex a) ^ "_{" ^ (render_tex  b) ^ "}^{" ^ (render_tex  c) ^ "}"
   | TEX_DQ (a,b) -> (render_tex a) ^ "_{" ^ (render_tex  b) ^ "}"
-  | TEX_UQ (a,b) -> (render_tex a) ^ "^{" ^ (render_tex  b) ^ "}" 
+  | TEX_UQ (a,b) -> (render_tex a) ^ "^{" ^ (render_tex  b) ^ "}"
   | TEX_LITERAL s -> tex_part s
   | TEX_FUN1 (f,a) -> "{" ^ f ^ " " ^ (render_tex a) ^ "}"
   | TEX_FUN1hl (f,_,a) -> "{" ^ f ^ " " ^ (render_tex a) ^ "}"
@@ -175,8 +175,8 @@ let find = function
     | "\\bigotimes"        -> LITERAL (TEX_ONLY "\\bigotimes ")
     | "\\coprod"           -> LITERAL (TEX_ONLY "\\coprod ")
     | "\\bigsqcup"         -> LITERAL (TEX_ONLY "\\bigsqcup ")
-    | "\\bigoplus"         -> LITERAL (TEX_ONLY "\\bigoplus ") 
-    | "\\bigvee"           -> LITERAL (TEX_ONLY "\\bigvee ") 
+    | "\\bigoplus"         -> LITERAL (TEX_ONLY "\\bigoplus ")
+    | "\\bigvee"           -> LITERAL (TEX_ONLY "\\bigvee ")
     | "\\biguplus"         -> LITERAL (TEX_ONLY "\\biguplus ")
     | "\\oint"	           -> LITERAL (TEX_ONLY "\\oint ")
     | "\\bigwedge"         -> LITERAL (TEX_ONLY "\\bigwedge ")
@@ -264,6 +264,10 @@ let find = function
     | "\\subset"           -> LITERAL (HTMLABLE (FONT_UF,  "\\subset ", "&sub;"))
     | "\\supseteq"         -> LITERAL (HTMLABLE (FONT_UF,  "\\supseteq ", "&supe;"))
     | "\\subseteq"         -> LITERAL (HTMLABLE (FONT_UF,  "\\subseteq ", "&sube;"))
+    | "\\sqsupset"         -> (tex_use_ams (); LITERAL (TEX_ONLY "\\sqsupset "))
+    | "\\sqsubset"         -> (tex_use_ams (); LITERAL (TEX_ONLY "\\sqsubset "))
+    | "\\sqsupseteq"       -> (tex_use_ams (); LITERAL (TEX_ONLY "\\sqsupseteq "))
+    | "\\sqsubseteq"       -> (tex_use_ams (); LITERAL (TEX_ONLY "\\sqsubseteq "))
     | "\\perp"             -> LITERAL (HTMLABLE (FONT_UF,  "\\perp ", "&perp;"))
     | "\\bot"              -> LITERAL (HTMLABLE (FONT_UF,  "\\bot ", "&perp;"))
     | "\\lfloor"           -> DELIMITER (HTMLABLE (FONT_UF,  "\\lfloor ", "&lfloor;"))
