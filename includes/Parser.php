@@ -67,7 +67,7 @@ define( 'EXT_IMAGE_REGEX',
  *   performs brace substitution on MediaWiki messages
  *
  * Globals used:
- *    objects:   $wgLang, $wgDateFormatter, $wgLinkCache, $wgCurParser
+ *    objects:   $wgLang, $wgDateFormatter, $wgLinkCache
  *
  * NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
  *
@@ -1739,19 +1739,16 @@ class Parser
 		# This function is called recursively. To keep track of arguments we need a stack:
 		array_push( $this->mArgStack, $args );
 
-		# PHP global rebinding syntax is a bit weird, need to use the GLOBALS array
-		$GLOBALS['wgCurParser'] =& $this;
-
 		# Variable substitution
-		$text = preg_replace_callback( "/{{([$titleChars]*?)}}/", 'wfVariableSubstitution', $text );
+		$text = preg_replace_callback( "/{{([$titleChars]*?)}}/", array( &$this, 'variableSubstitution' ), $text );
 		
 		if ( $this->mOutputType == OT_HTML || $this->mOutputType == OT_WIKI ) {
 			# Argument substitution
-			$text = preg_replace_callback( "/{{{([$titleChars]*?)}}}/", 'wfArgSubstitution', $text );
+			$text = preg_replace_callback( "/{{{([$titleChars]*?)}}}/", array( &$this, 'argSubstitution' ), $text );
 		}
 		# Template substitution
 		$regex = '/(\\n|{)?{{(['.$titleChars.']*)(\\|.*?|)}}/s';
-		$text = preg_replace_callback( $regex, 'wfBraceSubstitution', $text );
+		$text = preg_replace_callback( $regex, array( &$this, 'braceSubstitution' ), $text );
 
 		array_pop( $this->mArgStack );
 
@@ -2722,7 +2719,7 @@ class Parser
 	 * @access private
 	 */
 	function pstPass2( $text, &$user ) {
-		global $wgLang, $wgContLang, $wgLocaltimezone, $wgCurParser;
+		global $wgLang, $wgContLang, $wgLocaltimezone;
 
 		# Variable replacement
 		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags
@@ -3111,23 +3108,6 @@ class ParserOptions
 function &outputReplaceMatches($matches) {
 	global $outputReplace;
 	return $outputReplace[$matches[1]];
-}
-
-
-# Regex callbacks, used in Parser::replaceVariables
-function wfBraceSubstitution( $matches ) {
-	global $wgCurParser;
-	return $wgCurParser->braceSubstitution( $matches );
-}
-
-function wfArgSubstitution( $matches ) {
-	global $wgCurParser;
-	return $wgCurParser->argSubstitution( $matches );
-}
-
-function wfVariableSubstitution( $matches ) {
-	global $wgCurParser;
-	return $wgCurParser->variableSubstitution( $matches );
 }
 
 /**
