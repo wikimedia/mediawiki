@@ -389,6 +389,9 @@ $wgPartialMessageCache = false;
 # code, so that if it breaks, only zh will be affected
 $wgDisableLangConversion = false;
 
+# Use article validation feature; turned off by default
+$wgUseValidation = false;
+
 # Whether to use zhdaemon to perform Chinese text processing
 # zhdaemon is under developement, so normally you don't want to
 # use it unless for testing
