@@ -22,7 +22,7 @@ include_once( "$IP/Block.php" );
 
 global $wgUser, $wgLang, $wgOut, $wgTitle;
 global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
-global $wgMemc, $wgMagicWords, $wgMwRedir;
+global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
 
 class MemCachedClientforWiki extends MemCachedClient {
 	function _debug( $text ) {
@@ -34,6 +34,11 @@ $wgMemc = new MemCachedClientforWiki();
 if( $wgUseMemCached ) {
 	$wgMemc->set_servers( $wgMemCachedServers );
 	$wgMemc->set_debug( $wgMemCachedDebug );
+
+	# Test it to see if it's working
+	if ( $wgDebugLogFile && !$wgMemc->set( "test", "", 0 ) ) {
+		wfDebug( "Memcached error: " . $wgMemc->error_string() . "\n" );
+	}
 }
 
 include_once( "$IP/Language.php" );

@@ -66,111 +66,61 @@ class Profiler
 		}
 	}
 
-
 	function getOutput( $scriptStart, $scriptElapsed )
 	{
-		set_time_limit( 0 );
-		$width = 80;
-		$format = "%-39s %6.2f / %6.2f = %6.2f %6.2f%%\n";
-		$prof = "";
 		if( !count( $this->mStack ) ) {
 			return "No profiling output\n";
 		}
-		$this->mCollated = array();
-
-		$top = $this->doLevel( 0, true );
-		$this->merge( "WIKI.PHTML", $top, $scriptElapsed );
-		$this->mCollated = array_reverse( $this->mCollated, true );
-/*
-		# Calculate totals
-		foreach ( $this->mCollated as $f1 => $f1data ) {
-			$total = 0;
-			foreach ( $f1data as $f2 => $t ) {
-				$total += $t;
-			}
-			$this->mCollated[$f1][0] = $total;
-		}
-*/
-		# Output
-		foreach ( $this->mCollated as $f1 => $f1data ) {
-			$prof .= "\n" . str_repeat( "-", $width ) . "\n";
-			$t = $this->mTotals[$f1] * 1000;
-			$calls = $this->mCalls[$f1];
-			if ( $calls == 0 ) {
-				$calls = 1;
-			}
-			$each = $t / $calls;
-			$percent = $this->mTotals[$f1] / $scriptElapsed * 100;
-			$prof .= sprintf( $format, "| $f1", $t, $calls, $each, $percent );
-			$prof .= str_repeat( "-", $width ) . "\n";
-			foreach ( $f1data as $f2 => $t ) {
-				$percent = $t / $this->mTotals[$f1] * 100;
-				$t *= 1000;
-				$calls = $this->mCalls[$f1];
-				if ( $calls == 0 ) {
-					$calls = 1;
-				}
-				$each = $t / $calls;
-				$percent = $this->mTotals[$f1] / $scriptElapsed * 100;
-				$prof .= sprintf( $format, $f2, $t, $calls, $each, $percent );
-			}
-		}
-		$prof .= str_repeat( "-", $width ) . "\n";
-		return $prof;
-	}
 		
-
-	function doLevel( $p, $fTop ) 
-	{
-		$level = false;
-		$getOut = false;
-		$hotArray = false;
-		$tempArray = array();
-		do {
-			$fname = $this->mStack[$p][0];
-			$thislevel = $this->mStack[$p][1];
-			$start = (float)$this->mStack[$p][2] + (float)$this->mStack[$p][3];
-			$end = (float)$this->mStack[$p][4] + (float)$this->mStack[$p][5];
-			$elapsed = $end - $start;
-			if ( $hotArray !== false ) {
-				# Just dropped down a level
-				# Therefore this entry is the parent of $hotArray
-				$this->merge( $fname, $hotArray, $elapsed );
-				$hotArray = false;
-			}
-
-			if ( $level === false ) {
-				$level = $thislevel;
-			}
-
-			if ( $thislevel == $level ) {
-				$tempArray[$fname] += $elapsed;
-				#$this->mTotals[$fname] += elapsed;
-				$this->mCalls[$fname] ++;
-			} elseif ($thislevel > $level ) {
-				$hotArray = $this->doLevel( $p, false );
-			} else {
-				$getOut = true;
-			}
-
-			# Special case: top of hierarchy
-			# File starts with lvl 1 entry, then drops back to lvl 0
-			if ( $fTop && $getOut ) {
-				$hotArray = $tempArray;
-				$getOut = false;
-			}
-
-			$p++;
-		} while ( !$getOut && $p < count( $this->mStack ) );
-		return $tempArray;
-	}
-
-	function merge( $f1, $a, $parentTime ) 
-	{
-		foreach ( $a as $f2 => $elapsed ) {
-			$this->mCollated[$f1][$f2] += $elapsed;
+		$format = "%-49s %6d %6.3f %6.3f %6.3f%%\n";
+		$titleFormat = "%-49s %9s %9s %9s %9s\n";
+		$prof = "\nProfiling data\n";
+		$prof .= sprintf( $titleFormat, "Name", "Calls", "Total", "Each", "%" );
+		$this->mCollated = array();
+		$this->mCalls = array();
+		$total = 0;
+		
+		# Estimate profiling overhead
+		$profileCount = count( $this->mStack );
+		for ($i=0; $i<$profileCount ; $i++) {
+			wfProfileIn( "--profiling overhead--" );
+			wfProfileOut( "--profiling overhead--" );
 		}
-		$this->mTotals[$f1] += $parentTime;
+		
+		# Collate
+		foreach ( $this->mStack as $entry ) {
+			$fname = $entry[0];
+			$thislevel = $entry[1];
+			$start = explode( " ", $entry[2]);
+			$start = (float)$start[0] + (float)$start[1];
+			$end = explode( " ", $entry[3]);
+			$end = (float)$end[0] + (float)$end[1];
+			$elapsed = $end - $start;
+			$this->mCollated[$fname] += $elapsed;
+			$this->mCalls[$fname] ++;
+			
+			if ( $fname != "--profiling overhead--" ) {
+				$total += $elapsed;
+			}
+		}
+		
+		$overhead = $this->mCollated["--profiling overhead--"] / $this->mCalls["--profiling overhead--"];
+		
+		# Output
+		foreach ( $this->mCollated as $fname => $elapsed ) {
+			$calls = $this->mCalls[$fname];
+			# Adjust for overhead
+			if ( $fname != "--profiling overhead--" ) {
+				$elapsed -= $overhead * $calls;
+			}
+			
+			$percent = $total ? 100. * $elapsed / $total : 0;
+			$prof .= sprintf( $format, $fname, $calls, (float)($elapsed * 1000), 
+				(float)($elapsed * 1000) / $calls, $percent );
+		}
+		$prof .= "\nTotal: $total\n\n";
+
+		return $prof;
 	}
 }
 

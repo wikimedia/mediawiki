@@ -172,6 +172,7 @@ function wfMsgReal( $key, $args, $useDB ) {
 		
 	static $l1cache = array();
 	$fname = "wfMsg";
+	wfProfileIn( $fname );
 	$message = false;
 	$l1hit = false;
 	
@@ -209,7 +210,7 @@ function wfMsgReal( $key, $args, $useDB ) {
 				$obj = wfFetchObject( $res );
 				$message = $obj->cur_text;
 				wfFreeResult( $res );
-				$wgMemc->set( $key, $message, time() + 1800 );
+				$wgMemc->set( $mcKey, $message, 0 /*time() + 1800*/ );
 			}
 		}
 	}
@@ -226,9 +227,11 @@ function wfMsgReal( $key, $args, $useDB ) {
 	if( count( $args ) ) {
 		$message = str_replace( $wgReplacementKeys, $args, $message );
 	}
+	
+	wfProfileOut( $fname );
 
 	if ( "" == $message ) {
-		# Let's at least _try_ to be graceful about this.
+		# Failed, message not translated
 		return "&lt;$key&gt;";
 	}
 	return $message;
