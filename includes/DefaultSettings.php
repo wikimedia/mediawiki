@@ -11,8 +11,12 @@ $wgVersion			= "1.3.0pre-alpha";
 $wgSitename         = "MediaWiki"; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
 
-$wgServer           = "http://" . $_SERVER["SERVER_NAME"];
-if( $_SERVER["SERVER_PORT"] != 80 ) $wgServer .= ":" . $_SERVER["SERVER_PORT"];
+if ( @$wgCommandLineMode ) {
+	$wgServer = "http://localhost";
+} else {
+	$wgServer           = "http://" . $_SERVER["SERVER_NAME"];
+	if( $_SERVER["SERVER_PORT"] != 80 ) $wgServer .= ":" . $_SERVER["SERVER_PORT"];
+}
 
 $wgScriptPath	    = "/wiki";
 
@@ -109,6 +113,8 @@ $wgDebugComments        = false;
 $wgReadOnly             = false;
 $wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
 $wgLogQueries           = false;
+$wgDebugDumpSql         = false;
+
 $wgUseCategoryMagic		= false;
 $wgEnablePersistentLC	= false;	# Persistent link cache in linkscc table; FAILS on MySQL 3.x
 $wgCompressedPersistentLC = true; # use gzcompressed blobs
@@ -251,10 +257,10 @@ $wgPasswordSalt = true; # For compatibility with old installations set to false
 # See Language.php for a list of namespaces.
 #
 $wgNamespacesWithSubpages = array( -1 => 0, 0 => 0, 1 => 1,
-  2 => 1, 3 => 1, 4 => 0, 5 => 1, 6 => 0, 7 => 1 );
+  2 => 1, 3 => 1, 4 => 0, 5 => 1, 6 => 0, 7 => 1, 8 => 0, 9 => 1, 10 => 0, 11 => 1);
 
 $wgNamespacesToBeSearchedDefault = array( -1 => 0, 0 => 1, 1 => 0,
-  2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0 );
+  2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0, 8 => 0, 9 => 1, 10 => 0, 11 => 1 );
 
 # If set, a bold ugly notice will show up at the top of every page.
 $wgSiteNotice = "";
@@ -265,6 +271,7 @@ $wgAllowAnonymousMinor = false;
 
 # Enable experimental smarty skins (put Smarty/libs in your include_path!)
 $wgUseSmarty = false;
+$wgUsePHPTal = false;
 
 if( !isset( $wgCommandLineMode ) ) {
 	$wgCommandLineMode = false;
