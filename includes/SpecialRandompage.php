@@ -15,7 +15,7 @@ function wfSpecialRandompage()
 		AND cur_random>$randstr
 		ORDER BY cur_random
 		LIMIT 1";
-	$res = wfQuery( $sqlget, $fname );
+	$res = wfQuery( $sqlget, DB_READ, $fname );
 	if( $s = wfFetchObject( $res ) ) {
 		$rt = wfUrlEncode( $s->cur_title );
 	} else {

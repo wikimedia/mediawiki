@@ -16,7 +16,7 @@ function wfSpecialPopularpages()
 	$sql = "SELECT DISTINCT cur_title, cur_counter FROM cur " .
 	  "WHERE cur_namespace=0 AND cur_is_redirect=0 ORDER BY " .
 	  "cur_counter DESC LIMIT {$offset}, {$limit}";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 	$sk = $wgUser->getSkin();
 

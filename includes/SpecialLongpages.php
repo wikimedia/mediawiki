@@ -21,7 +21,7 @@ function wfSpecialLongpages()
 	$sql = "SELECT cur_title, LENGTH(cur_text) AS len FROM cur " .
 	  "WHERE cur_namespace=0 AND cur_is_redirect=0 ORDER BY " .
 	  "LENGTH(cur_text) DESC LIMIT {$offset}, {$limit}";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 	$sk = $wgUser->getSkin();
 

@@ -236,7 +236,7 @@ class MovePageForm {
 
 		$sql = "SELECT cur_is_redirect,cur_text FROM cur " .
 		  "WHERE cur_id={$this->newid}";
-		$res = wfQuery( $sql, $fname );
+		$res = wfQuery( $sql, DB_READ, $fname );
 		$obj = wfFetchObject( $res );
 
 		if ( 0 == $obj->cur_is_redirect ) { return false; }
@@ -250,7 +250,7 @@ class MovePageForm {
 		}
 		$sql = "SELECT old_id FROM old WHERE old_namespace={$this->nns} " .
 		  "AND old_title='{$this->ndt}'";
-		$res = wfQuery( $sql, $fname );
+		$res = wfQuery( $sql, DB_READ, $fname );
 		if ( 0 != wfNumRows( $res ) ) { return false; }
 
 		return true;
@@ -269,7 +269,7 @@ class MovePageForm {
 		$sql = "UPDATE cur SET cur_touched='{$now}'," .
 		  "cur_namespace={$this->nns},cur_title='{$this->ndt}' " .
 		  "WHERE cur_id={$this->oldid}";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "UPDATE cur SET cur_touched='{$now}'," .
 		  "cur_namespace={$this->ons},cur_title='{$this->odt}'," .
@@ -278,17 +278,17 @@ class MovePageForm {
 		  "',cur_minor_edit=0,cur_counter=0,cur_restrictions=''," .
 		  "cur_user_text='" . wfStrencode( $wgUser->getName() ) . "'," .
 		  "cur_is_redirect=1,cur_is_new=0 WHERE cur_id={$this->newid}";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "UPDATE old SET " .
 		  "old_namespace={$this->nns},old_title='{$this->ndt}' WHERE " .
 		  "old_namespace={$this->ons} AND old_title='{$this->odt}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 		
 		$sql = "UPDATE recentchanges SET ".
 			"rc_namespace={$this->nns}, rc_title='{$this->ndt}' WHERE ".
 			"rc_cur_id={$this->oldid}";
-        wfQuery( $sql, $fname );
+        wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "INSERT INTO recentchanges (rc_namespace,rc_title,
 			rc_comment,rc_user,rc_user_text,rc_timestamp,
@@ -297,35 +297,35 @@ class MovePageForm {
 		  "'{$mt} \\\"{$this->nft}\\\"','" .
 		  $wgUser->getID() . "','" . wfStrencode( $wgUser->getName() ) .
           "','{$now}','{$now}',{$this->newid},1)";
-        wfQuery( $sql, $fname );
+        wfQuery( $sql, DB_WRITE, $fname );
 
 		# The only link from here should be the old redirect
 
 		$sql = "DELETE FROM links WHERE l_from='{$this->nft}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "UPDATE links SET l_from='{$this->nft}' WHERE l_from='{$this->oft}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		# Swap links.  Using MAXINT as a temp; if there's ever an article
 		# with id 4294967295, this will fail, but I think that's pretty safe
 
 		$sql = "UPDATE links SET l_to=4294967295 WHERE l_to={$this->oldid}";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "UPDATE links SET l_to={$this->oldid} WHERE l_to={$this->newid}";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "UPDATE links SET l_to={$this->newid} WHERE l_to=4294967295";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		# Note: the insert below must be after the updates above!
 
 		$sql = "INSERT INTO links (l_from,l_to) VALUES ('{$this->oft}',{$this->oldid})";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "UPDATE imagelinks SET il_from='{$this->nft}' WHERE il_from='{$this->oft}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 	}
 
 	# Move page to non-existing title.
@@ -341,7 +341,7 @@ class MovePageForm {
 		$sql = "UPDATE cur SET cur_touched='{$now}'," .
 		  "cur_namespace={$this->nns},cur_title='{$this->ndt}' " .
 		  "WHERE cur_id={$this->oldid}";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$common = "{$this->ons},'{$this->odt}'," .
 		  "'{$mt} \\\"{$this->nft}\\\"','" .
@@ -351,33 +351,33 @@ class MovePageForm {
 		  "cur_comment,cur_user,cur_user_text,cur_timestamp,inverse_timestamp," .
 		  "cur_touched,cur_text,cur_is_redirect,cur_is_new) " .
 		  "VALUES ({$common},'{$won}','{$now}','#REDIRECT [[{$this->nft}]]\n',1,1)";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 		$this->newid = wfInsertId();
 
 		$sql = "UPDATE old SET " .
 		  "old_namespace={$this->nns},old_title='{$this->ndt}' WHERE " .
 		  "old_namespace={$this->ons} AND old_title='{$this->odt}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
         $sql = "UPDATE recentchanges SET ".
 			"rc_namespace={$this->nns}, rc_title='{$this->ndt}' WHERE ".
 			"rc_namespace={$this->ons} AND rc_title='{$this->odt}'";
-        wfQuery( $sql, $fname );
+        wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "INSERT INTO recentchanges (rc_namespace,rc_title,
 			rc_comment,rc_user,rc_user_text,rc_timestamp,
 			rc_cur_time,rc_cur_id,rc_new)
 			VALUES ({$common},'{$now}',{$this->newid},1)";
-        wfQuery( $sql, $fname );
+        wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "UPDATE links SET l_from='{$this->nft}' WHERE l_from='{$this->oft}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "UPDATE links SET l_to={$this->newid} WHERE l_to={$this->oldid}";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "INSERT INTO links (l_from,l_to) VALUES ('{$this->oft}',{$this->oldid})";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		# Non-existent target may have had broken links to it; these must
 		# now be removed and made into good links.
@@ -385,7 +385,7 @@ class MovePageForm {
 		$update->fixBrokenLinks();
 
 		$sql = "UPDATE imagelinks SET il_from='{$this->nft}' WHERE il_from='{$this->oft}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 	}
 
 	function updateWatchlists()
@@ -400,14 +400,14 @@ class MovePageForm {
 
 		$sql = "SELECT wl_user FROM watchlist
 			WHERE wl_namespace={$oldnamespace} AND wl_title='{$oldtitle}'";
-		$res = wfQuery( $sql, $fname );
+		$res = wfQuery( $sql, DB_READ, $fname );
 		if( $s = wfFetchObject( $res ) ) {
 			$sql = "REPLACE INTO watchlist (wl_user,wl_namespace,wl_title)
 				VALUES ({$s->wl_user},{$newnamespace},'{$newtitle}')";
 			while( $s = wfFetchObject( $res ) ) {
 				$sql .= ",({$s->wl_user},{$newnamespace},'{$newtitle}')";
 			}
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 		}
 	}
 

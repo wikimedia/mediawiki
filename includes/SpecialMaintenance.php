@@ -109,7 +109,7 @@ function wfSpecialDisambiguations()
 		. " AND d.cur_namespace=0"
 		. " LIMIT {$offset}, {$limit}";
 
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 	$sk = $wgUser->getSkin();
 
@@ -145,7 +145,7 @@ function wfSpecialDoubleRedirects()
 
 	$sql = "SELECT l_from,l_to,cb.cur_text AS rt,cb.cur_title AS ti FROM links,cur AS ca, cur AS cb WHERE ca.cur_is_redirect=1 AND cb.cur_is_redirect=1 AND l_to=cb.cur_id AND l_from=ca.cur_title AND ca.cur_namespace=0 LIMIT {$offset}, {$limit}" ;
 
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 	$top = getMaintenancePageBacklink();
 	$top .= "<p>".wfMsg("doubleredirectstext")."</p><br>\n";
@@ -181,7 +181,7 @@ function wfSpecialBrokenRedirects()
 
 	$sql = "SELECT bl_to,cur_title FROM brokenlinks,cur WHERE cur_is_redirect=1 AND cur_namespace=0 AND bl_from=cur_id LIMIT {$offset}, {$limit}" ;
 
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 	$top = getMaintenancePageBacklink();
 	$top .= "<p>".wfMsg("brokenredirectstext")."</p><br>\n";
@@ -215,7 +215,7 @@ function wfSpecialSelfLinks()
 
 	$sql = "SELECT cur_title FROM cur,links WHERE cur_is_redirect=0 AND cur_namespace=0 AND l_from=cur_title AND l_to=cur_id LIMIT {$offset}, {$limit}";
 
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 	$top = getMaintenancePageBacklink();
 	$top .= "<p>".wfMsg("selflinkstext")."</p><br>\n";
@@ -252,7 +252,7 @@ function wfSpecialMispeelings ()
 
         # Load list from database
         $sql = "SELECT cur_text FROM cur WHERE cur_title='{$mss}' AND cur_namespace=4" ;
-        $res = wfQuery( $sql, $fname );
+        $res = wfQuery( $sql, DB_READ, $fname );
         $obj = wfFetchObject ( $res ) ;
         $l = $obj->cur_text ;
         $l = explode ( "\n" , $l ) ;
@@ -270,7 +270,7 @@ function wfSpecialMispeelings ()
                         $x = preg_replace( '/^(\S+).*$/', '$1', $x );
 			#$sql = "SELECT DISTINCT cur_title FROM cur WHERE cur_namespace=0 AND cur_is_redirect=0 AND (MATCH(cur_ind_text) AGAINST ('" . wfStrencode( $wgLang->stripForSearch( $x ) ) . "'))" ;
 			$sql = "SELECT DISTINCT cur_title FROM cur,searchindex WHERE cur_id=si_page AND cur_namespace=0 AND cur_is_redirect=0 AND (MATCH(si_text) AGAINST ('" . wfStrencode( $wgLang->stripForSearch( $x ) ) . "'))" ;
-                        $res = wfQuery( $sql, $fname );
+                        $res = wfQuery( $sql, DB_READ, $fname );
                         while ( $obj = wfFetchObject ( $res ) ) {
                                 if ( $cnt >= $offset AND $cnt < $offset+$limit ) {
                                         if ( $y != "" ) {
@@ -315,7 +315,7 @@ function wfSpecialMissingLanguageLinks()
 
 	$sql = "SELECT cur_title FROM cur WHERE cur_namespace=0 AND cur_is_redirect=0 AND cur_title NOT LIKE '%/%' AND cur_text NOT LIKE '%[[{$thelang}:%' LIMIT {$offset}, {$limit}";
 
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 
 	$mll = wfMsg("missinglanguagelinkstext");

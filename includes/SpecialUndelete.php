@@ -20,7 +20,7 @@ function wfSpecialUndelete( $par )
     
     # List undeletable articles    
     $sql = "SELECT ar_namespace,ar_title, COUNT(*) AS count FROM archive GROUP BY ar_namespace,ar_title ORDER BY ar_title";
-    $res = wfQuery( $sql );
+    $res = wfQuery( $sql, DB_READ );
     
 	$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
 	$wgOut->addWikiText( wfMsg( "undeletepagetext" ) );
@@ -49,7 +49,7 @@ function wfSpecialUndelete( $par )
     if(!preg_match("/[0-9]{14}/",$timestamp)) return 0;
     
     $sql = "SELECT ar_text FROM archive WHERE ar_namespace={$namespace} AND ar_title=\"{$title}\" AND ar_timestamp={$timestamp}";
-    $ret = wfQuery( $sql );
+    $ret = wfQuery( $sql, DB_READ );
     $row = wfFetchObject( $ret );
     
     $wgOut->setPagetitle( wfMsg( "undeletepage" ) );
@@ -84,7 +84,7 @@ function wfSpecialUndelete( $par )
     $sql = "SELECT ar_minor_edit,ar_timestamp,ar_user,ar_user_text,ar_comment
       FROM archive WHERE ar_namespace={$namespace} AND ar_title=\"{$title}\"
       ORDER BY ar_timestamp DESC";
-    $ret = wfQuery( $sql );
+    $ret = wfQuery( $sql, DB_READ );
     
     $special = $wgLang->getNsText( Namespace::getSpecial() );
     $wgOut->addHTML("<ul>");
@@ -116,7 +116,7 @@ function wfSpecialUndelete( $par )
 
 		# Move article and history from the "archive" table
 		$sql = "SELECT COUNT(*) AS count FROM cur WHERE cur_namespace={$namespace} AND cur_title='{$t}'";
-		$res = wfQuery( $sql );
+		$res = wfQuery( $sql, DB_READ );
 		$row = wfFetchObject( $res );
 		if( $row->count == 0) {
 			# Have to create new article...
@@ -127,7 +127,7 @@ function wfSpecialUndelete( $par )
 			  "SELECT ar_namespace,ar_title,ar_text,ar_comment," .
 			  "ar_user,ar_user_text,ar_timestamp,99999999999999-ar_timestamp,ar_minor_edit,RAND(),'{$now}' FROM archive " .
 			  "WHERE ar_namespace={$namespace} AND ar_title='{$t}' AND ar_timestamp={$max}";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
         	$newid = wfInsertId();
 			$oldones = "AND ar_timestamp<{$max}";
 		} else {
@@ -141,7 +141,7 @@ function wfSpecialUndelete( $par )
 		  "old_flags) SELECT ar_namespace,ar_title,ar_text,ar_comment," .
 		  "ar_user,ar_user_text,ar_timestamp,99999999999999-ar_timestamp,ar_minor_edit,ar_flags " .
 		  "FROM archive WHERE ar_namespace={$namespace} AND ar_title='{$t}' {$oldones}";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
         # Finally, clean up the link tables 
 		if( $newid ) {
@@ -151,7 +151,7 @@ function wfSpecialUndelete( $par )
 			$dummyOut = new OutputPage();
 			$to = Title::newFromDBKey( $target );
 			$res = wfQuery( "SELECT cur_text FROM cur WHERE cur_id={$newid} " .
-			  "AND cur_namespace={$namespace}", $fname );
+			  "AND cur_namespace={$namespace}", DB_READ, $fname );
 			$row = wfFetchObject( $res );
 			$text = $row->cur_text;
 			$dummyOut->addWikiText( $text );
@@ -166,7 +166,7 @@ function wfSpecialUndelete( $par )
 		# Now that it's safely stored, take it out of the archive
 		$sql = "DELETE FROM archive WHERE ar_namespace={$namespace} AND " .
 		  "ar_title='{$t}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		
         # Touch the log?
