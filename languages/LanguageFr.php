@@ -169,6 +169,7 @@ include_once( "LanguageUtf8.php" );
 "about"         => "À propos",
 "aboutwikipedia" => "À propos de $wgSitename",
 "aboutpage"     => "$wgMetaNamespace:À propos",
+"article"	=> "Article",
 "help"          => "Aide",
 "helppage"      => "$wgMetaNamespace:Aide",
 "wikititlesuffix" => "$wgSitename",
@@ -192,6 +193,7 @@ include_once( "LanguageUtf8.php" );
 "mypage"        => "Ma page",
 "mytalk"        => "Ma page de discussion",
 "anontalk"	=> "Discussion avec cette adresse ip",
+"navigation"	=> "Navigation",
 "currentevents" => "Actualités",
 "errorpagetitle" => "Erreur",
 "returnto"      => "Revenir à la page $1.",
@@ -236,6 +238,8 @@ Voir $1.",
 "nbytes"        => "$1 octets",
 "go"            => "Consulter",
 "ok"            => "OK",
+"history"	=> "Historique de la page",
+"history_short" => "Historique",
 "sitetitle"     => "$wgSitename",
 "sitesubtitle"  => "L'encyclopédie libre",
 "retrievedfrom" => "Récupérée de \"$1\"",
@@ -323,6 +327,8 @@ N'oubliez pas de personnaliser votre $wgSitename en consultant la page Préfére
 "yourrealname"	=> "Votre nom réél*",
 "emailforlost"  => "Si vous égarez votre mot de passe, vous pouvez demander à ce qu'un nouveau vous soit envoyé à votre adresse électronique.",
 "loginerror"    => "Problème d'identification",
+"nocookiesnew"	=> "Le compte utilisateur a été créé, mais vous n'êtes pas connecté. {{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.",
+"nocookieslogin" => "{{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.",
 "noname"        => "Vous n'avez pas saisi de nom d'utilisateur.",
 "loginsuccesstitle" => "Identification réussie.",
 "loginsuccess"  => "Vous êtes actuellement connecté sur $wgSitename en tant que \"$1\".",
@@ -516,6 +522,10 @@ Voir [[$wgMetaNamespace:Aide pour les préférences]] pour les explications conc
 "math_unknown_function"	=> "fonction inconnue",
 "math_lexing_error"	=> "erreur lexicale",   // Looxxi "lexing error",
 "math_syntax_error"	=> "erreur de syntaxe",
+"math_image_error"	=> "La conversion en PNG a échouée, vérifiez l'installation de Latex, dvips, gs et convert",
+"math_bad_tmpdir"	=> "Ne peux pas crééer ou écrire dans le répertoire temporaire",
+"math_bad_output"	=> "Ne peux pas crééer ou écrire dans le répertoire de sortie",
+"math_notexvc"		=> "L'éxécutable 'texvc' est in trouvable. Lisez math/README pour le configurer.",
 "saveprefs"         => "Enregistrer les préférences",
 "resetprefs"        => "Rétablir les préférences",
 "oldpassword"       => "Ancien mot de passe",
@@ -833,6 +843,17 @@ La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //
 "protectedarticle" => "a protégée [[$1]]",
 "unprotectedarticle" => "a déprotégé [[$1]]",
 
+"protectsub" => "(Bloque \"$1\")",
+"confirmprotect" => "Confimer le bloquage",
+"confirmprotecttext" => "Voulez vous vraiment bloquer cette page ?",
+"protectcomment" => "Raison du bloquage",
+
+"unprotectsub" => "(Débloque \"$1\")",
+"confirmunprotecttext" => "Vous les vous vraiment débloquer cette page ?",
+"confirmunprotect" => "Raison du débloquage",
+"unprotectcomment" => "Raison du débloquage",
+"protectreason" => "(indiquez une raison)",
+
 # Undelete
 #
 "undelete"	=> "Restaurer la page effacée",
@@ -899,8 +920,10 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 "blocklogentry"	=> 'blocage de "$1"',
 "blocklogtext"	=> "Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.",
 "unblocklogentry"	=> 'déblocage de "$1"',
+"ipb_expiry_invalid" => "temps d'expiration invalide.",
+"ip_range_invalid" => "Bloc IP incorrect.\n",
 "proxyblocker" => "Bloqueur de proxy",
-"proxyblockerreason" => "Votre ip a été bloquée car c'est un proxy ouvert. Merci de contacter votre fournisseur d'accès internet ou votre support technique et de l'informer de ce problème de sécurité.",
+"proxyblockreason" => "Votre ip a été bloquée car c'est un proxy ouvert. Merci de contacter votre fournisseur d'accès internet ou votre support technique et de l'informer de ce problème de sécurité.",
 "proxyblocksuccess" => "Terminé.\n",
 
 # Developer tools
@@ -939,6 +962,8 @@ avec modération.",
 "querysuccessful" => "Requête réussie",
 
 # Make sysop
+"bureaucratlog"		=> "Log_bureaucrate",
+"bureaucratlogentry"	=> "Droits de l'utilisateur \"$1\" passés à \"$2\"",
 "makesysoptitle"	=> "Donne les droits d'adminitrateur.",
 "makesysoptext"		=> "Ce formulaire est utilisé par les bureaucrates pour donner les droits d'adminitrateur.
 Tapez le nom de l'utilisateur dans la boite et pressez le bouton pour lui donner les droits.",
@@ -1080,6 +1105,7 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'tooltip-randompage' => 'Aller à une page au hasard [alt-x]',
 'tooltip-recentchanges' => 'La liste des modifications récentes dans le wiki. [alt-r]',
 'tooltip-recentchangeslinked' => 'Modifications récentes des pages liant à cette page [alt-c]',
+'tooltip-rss' => 'Flux RSS pour cette page',
 'tooltip-save' => 'Sauvegarder vos modifications [alt-s]',
 'tooltip-search' => 'Rechercher dans ce wiki',
 'tooltip-sitesupport' => 'Aider {{SITENAME}}',
@@ -1090,6 +1116,7 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'tooltip-unwatch' => 'Retirer cette page de votre liste de suivi',
 'tooltip-upload' => 'Copier sur le serveur des fichiers [alt-u]',
 'tooltip-userpage' => 'Ma page personelle',
+'tooltip-viewsource' => 'Cette page est protégée. Vous pouvez voir la source. [alt-e]',
 'tooltip-watch' => 'Ajouter cette page à votre liste de suivi',
 'tooltip-watchlist' => 'La liste de suivi est la liste des pages que vous monitorez. [alt-l]',
 'tooltip-whatlinkshere' => 'Liste de toutes les pages qui lient à ici [alt-b]',
@@ -1100,7 +1127,12 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 "notacceptable" => "Ce serveur wiki ne peut pas fournir les données dans un format que votre client est capable de lire.",
 
 # Attribution
-"anonymous"	=> "Utilisateur(s) anonyme(s) de $wgSitename"
+"anonymous"	=> "Utilisateur(s) anonyme(s) de $wgSitename",
+"siteuser"	=> "Utilisateur $1 de $wgSitename",
+"lastmodifiedby" => "Cette page a été modifiée pour la dernière fois le $1 par $2",
+"and"	=> "et",
+"contributions" => "Basé sur le travail de $1.",
+"siteusers"	=> "Utilisateur(s) $1 de $wgSitename"
 );
 
 class LanguageFr extends LanguageUtf8
