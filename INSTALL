@@ -63,10 +63,10 @@ the way it was done for the Wikipedia server:
 Downloads:
 
   gcc-2.95.3.tar.gz
-  mysql-3.23.51.tar.gz
+  mysql-3.23.51.tar.gz (or 4.0.12)
   libiconv-1.8.tar.gz
   apache_1.3.26.tar.gz
-  php-4.2.1.tar.gz
+  php-4.3.1.tar.gz
   apc-cvs.tar.gz
 
 And for math support:
@@ -82,7 +82,7 @@ And for math support:
   directory into which you installed gcc 2.95 appears before the
   directory of gcc 2.96 in your path.  Configure with:
 
-  FLAGS="-O3 -mpentiumpro" CXX=gcc CXXFLAGS="-O3 -mpentiumpro -felide-constructors -fno-exceptions -fno-rtti" ./configure --prefix=/usr/local/mysql --enable-assembler --with-mysqld-ldflags=-all-static --disable-shared --with-extra-charset=complex
+  FLAGS="-O3 -mcpu=i686" CXX=gcc CXXFLAGS="-O3 -mcpu=i686 -felide-constructors -fno-exceptions -fno-rtti" ./configure --prefix=/usr/local/mysql --enable-assembler --with-mysqld-ldflags=-all-static --disable-shared --with-extra-charset=complex
 
   Edit the file myisam/ftdefs.h, changing the define for minimum word
   length for fulltext indexing: #define MIN_WORD_LEN 2.  Update
@@ -105,7 +105,7 @@ And for math support:
 5. Unpack Apache distribution and begin configuring, but don't finish
   build yet. Configure with something like:
 
-   OPTIM='-O2 -mpentiumpro' ./configure --with-layout=Apache
+   OPTIM='-O2 -mcpu=i686' ./configure --with-layout=Apache
 
 6. If you'll want to use Apache's mod_rewrite to make page-viewing URLs
   look like static links (as wikipedia.org does), install the included
@@ -116,14 +116,14 @@ And for math support:
 
 7. Unpack and configure PHP. Configure with something like:
 
-  ./configure --enable-apc --with-mysql=/usr/local/mysql --with-iconv=/usr/local/lib --with-apache=/home/lee/src/apache_1.3.26
+  ./configure --enable-apc --enable-shmop --with-mysql=/usr/local/mysql --with-iconv=/usr/local/lib --with-apache=/home/lee/src/apache_1.3.26
 
   (using your own local paths, of course). Build and install as
   instructed. Set "register_globals" on in the config file.
 
 8. Finish building Apache. Configure with something like:
 
-  OPTIM='-O2 -mpentiumpro' ./configure --with-layout=Apache --enable-module=rewrite --activate-module=src/modules/php4/libphp4.a
+  OPTIM='-O2 -mcpu=i686' ./configure --with-layout=Apache --enable-module=rewrite --enable-module=mmap-static --enable-module=headers --enable-module=expires --activate-module=src/modules/php4/libphp4.a
 
   Update httpd.conf as needed for your site.  For example:
 
