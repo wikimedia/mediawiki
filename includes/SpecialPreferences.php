@@ -172,11 +172,17 @@ class PreferencesForm {
 	function savePreferences() {
 		global $wgUser, $wgLang, $wgOut;
 		global $wgEnableUserEmail, $wgEnableEmail;
-		global $wgEmailAuthentication;
+		global $wgEmailAuthentication, $wgMinimalPasswordLength;
+;
 
 		if ( '' != $this->mNewpass ) {
 			if ( $this->mNewpass != $this->mRetypePass ) {
 				$this->mainPrefsForm( wfMsg( 'badretype' ) );			
+				return;
+			}
+
+			if ( strlen( $this->mNewpass ) < $wgMinimalPasswordLength ) {
+				$this->mainPrefsForm( wfMsg( 'passwordtooshort', $wgMinimalPasswordLength ) );
 				return;
 			}
 

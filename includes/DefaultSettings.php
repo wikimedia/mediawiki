@@ -261,7 +261,7 @@ $wgMasterWaitTimeout = 10;
 
 # Sysop SQL queries
 #   The sql user shouldn't have too many rights other the database, restrict
-#   it to SELECT only on 'cur' table for example
+#   it to SELECT only on 'page', 'revision' and 'text' tables for example
 #
 /** Dangerous if not configured properly. */
 $wgAllowSysopQueries = false;
@@ -1122,6 +1122,12 @@ $wgSearchForwardUrl = null;
  * are user-supplied and thus subject to spamming.
  */
 $wgNoFollowLinks = true;
+
+/**
+ * Specifies the minimal length of a user password. If set to
+ * 0, empty passwords are allowed.
+ */
+$wgMinimalPasswordLength = 0;
 
 } else {
 	die();

@@ -1769,6 +1769,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'specialloguserlabel' => 'User: ',
 'speciallogtitlelabel' => 'Title: ',
 
+'passwordtooshort' => 'Your password is too short. It must have at least $1 characters.',
+
 );
 
 #--------------------------------------------------------------------------

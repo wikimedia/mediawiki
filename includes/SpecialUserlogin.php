@@ -189,15 +189,16 @@ class LoginForm {
 		global $wgUser, $wgOut;
 		global $wgMaxNameChars;
 		global $wgMemc, $wgAccountCreationThrottle, $wgDBname, $wgIP;
+		global $wgMinimalPasswordLength;
 
 		if (!$wgUser->isAllowedToCreateAccount()) {
 			$this->userNotPrivilegedMessage();
-			return;
+			return false;
 		}
 
 		if ( 0 != strcmp( $this->mPassword, $this->mRetype ) ) {
 			$this->mainLoginForm( wfMsg( 'badretype' ) );
-			return;
+			return false;
 		}
 		
 		$name = trim( $this->mName );
@@ -210,16 +211,21 @@ class LoginForm {
 		  ucFirst($name) != $u->getName() ) 
 		{
 			$this->mainLoginForm( wfMsg( 'noname' ) );
-			return;
+			return false;
 		}
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
-			return;
+			return false;
 		}
 		
 		if ( 0 != $u->idForName() ) {
 			$this->mainLoginForm( wfMsg( 'userexists' ) );
-			return;
+			return false;
+		}
+
+		if ( strlen( $this->mPassword ) < $wgMinimalPasswordLength ) {
+			$this->mainLoginForm( wfMsg( 'passwordtooshort', $wgMinimalPasswordLength ) );
+			return false;
 		}
 
 		if ( $wgAccountCreationThrottle ) {
@@ -230,7 +236,7 @@ class LoginForm {
 			}
 			if ( $value > $wgAccountCreationThrottle ) {
 				$this->throttleHit( $wgAccountCreationThrottle );
-				return;
+				return false;
 			}
 		}
 
