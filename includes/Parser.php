@@ -879,7 +879,7 @@ class Parser
 		if ( !$image ) { $image = Namespace::getImage(); }
 		if ( !$special ) { $special = Namespace::getSpecial(); }
 		if ( !$media ) { $media = Namespace::getMedia(); }
-		if ( !$category ) { $category = Namespace::getCategory(); ; }
+		if ( !$category ) { $category = Namespace::getCategory(); }
 
 		$nottalk = !Namespace::isTalk( $this->mTitle->getNamespace() );
 
@@ -935,6 +935,7 @@ class Parser
 		if( $noforce ) {
 			if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgLang->getLanguageName( $iw ) ) {
 				array_push( $this->mOutput->mLanguageLinks, $nt->getPrefixedText() );
+				$s .= $prefix . $trail ;
 				return (trim($s) == '')? '': $s;
 			}
 			if( $ns == $image ) {
@@ -1514,7 +1515,7 @@ class Parser
 		$htmlattrs = $this->getHTMLattrs () ;
 
 		# Remove HTML comments
-		$text = preg_replace( "/<!--.*-->/sU", "", $text );
+		$text = preg_replace( "/\n?<!--.*-->\n?/sU", "", $text );
 
 		$bits = explode( "<", $text );
 		$text = array_shift( $bits );
