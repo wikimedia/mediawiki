@@ -143,6 +143,11 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 			$history = new PageHistory( $wgArticle );
 			$history->history();
 			break;
+		case "raw":
+			include_once( "RawPage.php" );
+			$raw = new RawPage( $wgArticle );
+			$raw->view();
+			break;
 		case "purge":
 			wfPurgeSquidServers(array($wgTitle->getInternalURL()));
 			$wgOut->setSquidMaxage( $wgSquidMaxage );
