@@ -2071,7 +2071,7 @@ class Article {
 		$ns = $this->mTitle->getNamespace();
 		$dbkey = $this->mTitle->getDBkey();
 		$encDbKey = $dbw->strencode( $dbkey );
-		$timestamp = wfTimestampNow();
+		$timestamp = $dbw->timestamp();
 
 		# Save to history
 		$dbw->insertSelect( 'old', 'cur',
@@ -2096,7 +2096,7 @@ class Article {
 		# Make an array of fields to be inserted
 		$fields = array(
 			'cur_text' => $text,
-			'cur_timestamp' => $timestamp,
+			'cur_timestamp' => $dbw->timestamp($timestamp),
 			'cur_user' => $wgUser->getID(),
 			'cur_user_text' => $wgUser->getName(),
 			'inverse_timestamp' => wfInvertTimestamp( $timestamp ),
