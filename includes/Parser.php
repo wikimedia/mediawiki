@@ -1024,7 +1024,7 @@ class Parser
 			$lastPrefixLength = strlen( $lastPrefix );
 			$preOpenMatch = preg_match("/<pre/i", $oLine );
 			$preCloseMatch = preg_match("/<\\/pre/i", $oLine );
-			$nowikiOpenMatch = preg_match("/( *)<span class=\"nowiki\"/", $oLine, $nowikiOpenMatches );
+			$nowikiOpenMatch = preg_match("/( *)(.*?)<span class=\"nowiki\"/", $oLine, $nowikiOpenMatches );
 			$nowikiCloseMatch = preg_match("/<\\/span  >/", $oLine );
 			if (!$this->mInPre) {
 				$this->mInPre = !empty($preOpenMatch);
@@ -1032,7 +1032,11 @@ class Parser
 			if (!$this->mInNowiki) {
 				$this->mInNowiki = !empty($nowikiOpenMatch);
 			}
-			if ( !$this->mInPre && !$this->mInNowiki ) {
+			if ( 
+				!$this->mInPre && (!$this->mInNowiki || 
+				$nowikiOpenMatch && !empty($nowikiOpenMatches[2]) && strlen($nowikiOpenMatches[2]) > 0 ) 
+			) 
+			{
 				# Multiple prefixes may abut each other for nested lists.
 				$prefixLength = strspn( $oLine, "*#:;" );
 				$pref = substr( $oLine, 0, $prefixLength );
