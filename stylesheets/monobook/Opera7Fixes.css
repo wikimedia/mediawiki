@@ -1,0 +1,8 @@
+/* small tweaks for opera seven */
+#portlet-contentViews {
+    margin-top: 0.1em;
+}
+#portlet-contentViews li a {
+    top: 2px;
+}
+
