@@ -373,39 +373,38 @@ $cambutton
 
 /* private */ function hasSessionCookie()
 {
-  global $HTTP_COOKIE_VARS;
-  global $wgDisableCookieCheck;
+    global $HTTP_COOKIE_VARS;
+    global $wgDisableCookieCheck;
   
-  return ( $wgDisableCookieCheck ) ? true : ( "" != $HTTP_COOKIE_VARS[session_name()]);
+    return ( $wgDisableCookieCheck ) ? true : ( "" != $HTTP_COOKIE_VARS[session_name()]);
 }
   
 /* private */ function cookieRedirectCheck( $type )
 {
-  global $wgOut, $wgLang;
+    global $wgOut, $wgLang;
 
-  $check = wfLocalUrl( $wgLang->specialPage( "Userlogin" ),
-                       "wpCookieCheck=$type" );
+    $check = wfLocalUrl( $wgLang->specialPage( "Userlogin" ),
+			 "wpCookieCheck=$type" );
 
-  return $wgOut->redirect( $check );
+    return $wgOut->redirect( $check );
 }
 
 /* private */ function onCookieRedirectCheck( $type ) {
 
-  global $wgUser;
+    global $wgUser;
 
-  if (!hasSessionCookie()) {
-    if ( $type == "new" ) {
-      return mainLoginForm( wfMsg( "nocookiesnew" ) );
-    } else if ( $type == "login" ) {
-      return mainLoginForm( wfMsg( "nocookieslogin" ) );
-    } else {
+    if (!hasSessionCookie()) {
+	if ( $type == "new" ) {
+	    return mainLoginForm( wfMsg( "nocookiesnew" ) );
+	} else if ( $type == "login" ) {
+	    return mainLoginForm( wfMsg( "nocookieslogin" ) );
+	} else {
 # shouldn't happen
-      return mainLoginForm( wfMsg( "error" ) );
+	    return mainLoginForm( wfMsg( "error" ) );
+	}
+    } else {
+	return successfulLogin( wfMsg( "loginsuccess", $wgUser->getName() ) );
     }
-  } else {
-    return successfulLogin( wfMsg( "loginsuccess", $wgUser->getName() ) );
-  }
 }
-
 
 ?>
