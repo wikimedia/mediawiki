@@ -50,7 +50,7 @@ testdata/washington.txt :
 	mkdir -p testdata && wget -U MediaWiki/test -O testdata/washington.txt "http://en.wikipedia.org/w/wiki.phtml?title=Washington%2C_DC&oldid=6370218&action=raw"
 
 testdata/tokyo.txt :
-	mkdir -p testdata && wget -U MediaWiki/test -O testdata/tokyo.txt "http://ja.wikipedia.org/w/wiki.phtml?title=%E6%9D%B1%E4%BA%AC&oldid=823926&action=raw"
+	mkdir -p testdata && wget -U MediaWiki/test -O testdata/tokyo.txt "http://ja.wikipedia.org/w/wiki.phtml?title=%E6%9D%B1%E4%BA%AC%E9%83%BD&oldid=940880&action=raw"
 
 testdata/sociology.txt :
 	mkdir -p testdata && wget -U MediaWiki/test -O testdata/sociology.txt "http://ko.wikipedia.org/w/wiki.phtml?title=%EC%82%AC%ED%9A%8C%ED%95%99&oldid=16409&action=raw"
