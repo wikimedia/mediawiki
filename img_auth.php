@@ -156,8 +156,9 @@ video/quicktime qt mov
 video/vnd.mpegurl mxu
 video/x-msvideo avi
 video/x-sgi-movie movie
-x-conference/x-cooltalk ice";
+x-conference/x-cooltalk ice
 END_STRING;
+	// Needed for windows servers who use \r\n not \n
 	$endl = "
 ";
 	$types = explode( $endl, $types );
