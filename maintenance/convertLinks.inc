@@ -43,7 +43,7 @@ function convertLinks() {
 		$res = wfQuery( "SELECT l_from FROM links LIMIT 1", DB_READ );
 		if ( mysql_field_type( $res, 0 ) == "int" ) {
 			print "Schema already converted\n";
-			exit;
+			return;
 		} 		
 		if ( $logPerformance ) { $fh = fopen ( $perfLogFilename, "w" ); }
 		$baseTime = $startTime = getMicroTime();
@@ -132,7 +132,7 @@ function convertLinks() {
 		$dbConn = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
 		if (!($dbConn->isOpen())) {
 			print "Opening connection to database failed.\n";
-			exit;
+			return;
 		}
 		# Check for existing links_backup, and delete it if it exists.
 		print "Dropping backup links table if it exists...";
@@ -162,7 +162,7 @@ function createTempTable() {
 	
 	if (!($dbConn->isOpen())) {
 		print "Opening connection to database failed.\n";
-		exit;
+		return;
 	}
 	
 	print "Dropping temporary links table if it exists...";
