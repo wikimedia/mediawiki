@@ -55,6 +55,11 @@ function refreshLinks( $start ) {
 		}
 
 		$linksUpdate = new LinksUpdate( $id, $wgTitle->getPrefixedDBkey() );
+		/** FIXME 
+		 * In ./includes/LinksUpdate.php doDumbUpdate is commented with:
+		 * "Old inefficient update function"
+		 * Probably need to call doUpdate instead.
+		*/
 		$linksUpdate->doDumbUpdate();
 		$linksUpdate->fixBrokenLinks();
 		$dbw->query("COMMIT");
