@@ -1916,9 +1916,10 @@ class Skin {
 				") . . ";
 			
 			# "[[x]] moved to [[y]]"
-			$s .= $this->makeKnownLinkObj( $rc->getTitle(), "", "redirect=no" );
-			$s .= " " . wfMsg( "movedto" ). " ";
-			$s .= $this->makeKnownLinkObj( $rc->getMovedToTitle(), "" );
+
+			$s .= wfMsg( "1movedto2", $this->makeKnownLinkObj( $rc->getTitle(), "", "redirect=no" ),
+				$this->makeKnownLinkObj( $rc->getMovedToTitle(), "" ) );
+
 		} else {
 			# Diff link
 			if ( $rc_type == RC_NEW || $rc_type == RC_LOG ) {

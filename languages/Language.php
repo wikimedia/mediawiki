@@ -1062,15 +1062,15 @@ or has chosen not to receive e-mail from other users.",
 
 # Watchlist
 #
-"watchlist"		=> "My watchlist",
-"watchlistsub"	=> "(for user \"$1\")",
-"nowatchlist"	=> "You have no items on your watchlist.",
-"watchnologin"	=> "Not logged in",
+"watchlist"			=> "My watchlist",
+"watchlistsub"		=> "(for user \"$1\")",
+"nowatchlist"		=> "You have no items on your watchlist.",
+"watchnologin"		=> "Not logged in",
 "watchnologintext"	=> "You must be <a href=\"" .
   wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
 to modify your watchlist.",
-"addedwatch"	=> "Added to watchlist",
-"addedwatchtext" => "The page \"$1\" has been added to your <a href=\"" .
+"addedwatch"		=> "Added to watchlist",
+"addedwatchtext"	=> "The page \"$1\" has been added to your <a href=\"" .
   wfLocalUrl( "Special:Watchlist" ) . "\">watchlist</a>.
 Future changes to this page and its associated Talk page will be listed there,
 and the page will appear <b>bolded</b> in the <a href=\"" .
@@ -1078,29 +1078,31 @@ and the page will appear <b>bolded</b> in the <a href=\"" .
 make it easier to pick out.</p>
 
 <p>If you want to remove the page from your watchlist later, click \"Stop watching\" in the sidebar.",
-"removedwatch"	=> "Removed from watchlist",
-"removedwatchtext" => "The page \"$1\" has been removed from your watchlist.",
-"watchthispage"	=> "Watch this page",
-"unwatchthispage" => "Stop watching",
-"notanarticle"	=> "Not an article",
-"watchnochange" => "None of your watched items were edited in the time period displayed.",
-"watchdetails" => "($1 pages watched not counting talk pages;
+"removedwatch"		=> "Removed from watchlist",
+"removedwatchtext" 	=> "The page \"$1\" has been removed from your watchlist.",
+"watchthispage"		=> "Watch this page",
+"unwatchthispage" 	=> "Stop watching",
+"notanarticle"		=> "Not an article",
+"watchnochange" 	=> "None of your watched items were edited in the time period displayed.",
+"watchdetails"		=> "($1 pages watched not counting talk pages;
 $2 total pages edited since cutoff;
 $3...
 <a href='$4'>show and edit complete list</a>.)",
-"watchmethod-recent" => "checking recent edits for watched pages",
-"watchmethod-list" => "checking watched pages for recent edits",
-"removechecked" => "Remove checked items from watchlist",
+"watchmethod-recent"=> "checking recent edits for watched pages",
+"watchmethod-list"	=> "checking watched pages for recent edits",
+"removechecked" 	=> "Remove checked items from watchlist",
 "watchlistcontains" => "Your watchlist contains $1 pages.",
-"watcheditlist" => "Here's an alphabetical list of your
+"watcheditlist"		=> "Here's an alphabetical list of your
 watched pages. Check the boxes of pages you want to remove
 from your watchlist and click the 'remove checked' button
 at the bottom of the screen.",
-"removingchecked" => "Removing requested items from watchlist...",
-"couldntremove" => "Couldn't remove item '$1'...",
-"iteminvalidname" => "Problem with item '$1', invalid name...",
-"wlnote" => "Below are the last $1 changes in the last <b>$2</b> hours.",
-"wlshowlast" => "Show last $1 hours $2 days $3",
+"removingchecked" 	=> "Removing requested items from watchlist...",
+"couldntremove" 	=> "Couldn't remove item '$1'...",
+"iteminvalidname" 	=> "Problem with item '$1', invalid name...",
+"wlnote" 			=> "Below are the last $1 changes in the last <b>$2</b> hours.",
+"wlshowlast" 		=> "Show last $1 hours $2 days $3",
+"wlsaved"			=> "This is a saved version of your watchlist.",
+
 
 # Delete/protect/revert
 #
@@ -1306,6 +1308,9 @@ title. Please merge them manually.",
 "movetalk"		=> "Move \"talk\" page as well, if applicable.",
 "talkpagemoved" => "The corresponding talk page was also moved.",
 "talkpagenotmoved" => "The corresponding talk page was <strong>not</strong> moved.",
+"1movedto2"		=> "$1 moved to $2",
+
+# Export
 
 "export"		=> "Export pages",
 "exporttext"	=> "You can export the text and editing history of a particular
