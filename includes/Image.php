@@ -20,11 +20,16 @@ class Image
 
 	function Image( $name )
 	{
+		global $wgUploadDirectory;
+
 		$this->name      = $name;
 		$this->title     = Title::makeTitle( Namespace::getImage(), $this->name );
-		$this->imagePath = wfImagePath( $name );
+		//$this->imagePath = wfImagePath( $name );
+		$hash 		 = md5( $this->title->getDBkey() );
+		$this->imagePath = $wgUploadDirectory . "/" . $hash{0} . "/" .substr( $hash, 0, 2 ) . "/{$name}";
+
 		$this->url       = $this->wfImageUrl( $name );
-		
+
 		if ( $this->fileExists = file_exists( $this->imagePath ) ) // Sic!, "=" is intended
 		{
 			list($this->width, $this->height, $this->type, $this->attr) = getimagesize( $this->imagePath );
@@ -216,19 +221,3 @@ class Image
 
 } //class
 
-// return path name of an image
-// canonicalize name.
-function wfImagePath( $imgname )
-{
-	global $wgUploadDirectory;
-
-	$nt = Title::newFromText( $imgname );
-	if( !$nt ) return "";
-
-	$name = $nt->getDBkey();
-	$hash = md5( $name );
-
-	$path = "{$wgUploadDirectory}/" . $hash{0} . "/" .
-	  substr( $hash, 0, 2 ) . "/{$name}";
-	return $path;
-}
