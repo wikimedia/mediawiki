@@ -183,10 +183,11 @@ q {
     font-family: Times, "Times New Roman", serif;
     font-style: italic;
 }
+/* disabled for now
 blockquote {
     font-family: Times, "Times New Roman", serif;
     font-style: italic;
-}
+}*/
 code { background-color: #f9f9f9; }
 pre {
     padding: 1em;
@@ -774,18 +775,17 @@ head:first-child+body #footer li { white-space: nowrap; }
 *>html #f-copyrightico { width: 88px; }
 
 /* more IE fixes */
-/* fixes for broken IE float handling */
-* html #column-content { display: inline; }
-
 /* float/negative margin brokenness */
-/* more float brokenness */
 * html #bodyContent {
     overflow-x: auto;
     width: 100%;
     padding-bottom: 25px;
 }
 * html #footer {margin-top: 0;}
-* html #column-content {margin-bottom: 0;}
+* html #column-content {
+    display: inline;
+    margin-bottom: 0;
+}
 * html div.editsection { font-size: smaller; }
 
 /* debugging tool.. */
