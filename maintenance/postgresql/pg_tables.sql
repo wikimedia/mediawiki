@@ -143,8 +143,8 @@ CREATE TABLE math (
     math_inputhash varchar(16) PRIMARY KEY,
     math_outputhash varchar(16) NOT NULL,
     math_html_conservativeness smallint NOT NULL,
-    math_html text NOT NULL,
-    math_mathml text NOT NULL
+    math_html text,
+    math_mathml text
 );
 
 CREATE TABLE objectcache (
