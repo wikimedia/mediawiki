@@ -19,6 +19,19 @@ $a = array (
 "germany.nrw/hesse" => "!data:500628,082534 500902,082636 501317,082738 502006,083555 501732,084208 502148,084514 503252,084718 503343,085127 503434,085943 504214,085841 504538,085943 504538,085229 504811,085024 505409,085637 505551,090902 510148,090800 510422,091719 505733,091923 510057,092740 511110,093353",
 "germany.nrw/ns" => "!data:511343,093353 511941,093251 512812,093801 512903,093047 513551,092434 514604,092230 514656,091413 515344,091719 515526,091107 520033,091617 520448,091923 521228,091821 520630,090902 520357,090148 521319,085739 521319,085331 520904,083901 520306,084310 515344,084514 514929,084616 514422,083555 514240,082228 514149,081819 514422,081615 514838,082125 515111,081615 515800,082023 520357,081717 520306,080900 520955,080145 520448,080145 520124,075431 515617,074308 515526,073144",
 
+"germany.mv/brandenburg" => "!data:531619,134729 531710,134219 531345,134014 531254,133056 532125,133708 532307,133606 532358,133056 532358,132239 533138,131524 532632,131218 532358,130911 532034,130259 531437,130401 531203,125748 530839,124931 530606,123706 530424,122441 530839,120909 531528,114827 531021,114623 530606,113255 530606,112438 530059,112336 525644,112336 525917,111724 525644,110907",
+"germany.mv/ns" => "!data:525644,110907 525826,110356 531203,105029 530839,104723 531203,103559",
+"germany.mv/sh" => "!data:531203,103559 531943,103804 532632,104518 532905,105131 533502,105131 533736,104518 534424,104110 534840,104314 535255,104825",
+"germany.mv/north-east" => "!data:535346,104825 535619,105437 535710,110152 535619,110601 535255,111417 535802,111724 540906,112438 540906,113153 542101,115542 543256,120705 543529,122849 544400,123604 545048,124727 544218,125135 544400,130054 543944,130259 543205,125952 542658,130911 542152,130605 542607,125646 542101,124931 541503,124727 541048,125544 541412,130707 541230,131830 540632,132953 535853,133300 535204,131932 534606,133606 532125,134627",
+
+"germany.mv" => "
+!type[political]:state
+!name[de]:Mecklenburg-Vorpommern
+!name[en]:Mecklenburg-Western Pomerania
+!region[political]:
+polygon(germany.mv/brandenburg,germany.mv/ns,germany.mv/sh,germany.mv/north-east)
+",
+
 "germany.nrw" => "
 !type[political]:state
 !name[de]:Nordrhein-Westphalen
@@ -48,7 +61,7 @@ polygon(germany.bavaria/bw,germany.bw/south,germany.bw/west,germany.bw/rp,german
 !name[de]:Deutschland
 !name[en]:Germany
 !region[political]:
-addregs(germany.bavaria,germany.bw,germany.nrw)
+addregs(germany.bavaria,germany.bw,germany.nrw,germany.mv)
 ",
 
 "danube" => "
@@ -82,8 +95,8 @@ function data_to_real ( &$x , &$y )
 	$z = $x ; $x = $y ; $y = $z ;
 	$y = 90 * 3600 - $y ;
 
-	$x /= 100 ;
-	$y /= 100 ;
+//	$x /= 100 ;
+//	$y /= 100 ;
 
 	# Recording min and max
 	global $min_x , $min_y , $max_x , $max_y ;
@@ -93,6 +106,43 @@ function data_to_real ( &$x , &$y )
 	$max_y = max ( $max_y , $y ) ;
 	}
 
+
+# geo paramaters
+class geo_params
+	{
+	var $labels = array () ;
+	
+	function add_label ( $text_array )
+		{
+		$this->labels[] = $text_array ;
+		}
+
+	function get_svg_labels ()
+		{
+		$ret = "" ;
+		foreach ( $this->labels AS $l )
+			{
+			$text = $l['text'] ;
+			$x = $l['x'] ;
+			$y = $l['y'] ;
+			$s = "<text style='" ;
+			$fs = $l['font-size'] ;
+			if ( $fs == "medium" ) $fs = "1000" ;
+			if ( $fs == "" ) $fs = "800" ;
+
+			$p = array() ;
+			$p[] = "text-anchor:middle" ;
+			$p[] = "fill-opacity:0.7" ;
+			$p[] = "font-size:{$fs}pt" ;
+			$s .= implode ( ";" , $p ) ;
+			
+			$s .= "' x='{$x}' y='{$y}'>{$text}</text>\n" ;
+			$ret .= $s ;
+#		$ret = "<text style='font-size:1000pt;text-anchor:middle;fill-opacity:0.7' x='{$x}' y='{$y}'>{$text}</text>\n" ;
+			}
+		return $ret ;
+		}
+	}
 
 # "geo" class
 class geo
@@ -179,14 +229,14 @@ class geo
 		return "" ;
 		}
 		
-	function get_current_type ( $params ) # params may override native type
+	function get_current_type ( &$params ) # params may override native type
 		{
 		$t = $this->get_specs ( "type" , array ( "political" ) ) ;
 		if ( $t != "" ) $t = $this->data[$t][0] ;
 		return $t ;
 		}
 
-	function get_current_style ( $params )
+	function get_current_style ( &$params )
 		{
 		$t = trim ( strtolower ( $this->get_current_type ( $params ) ) ) ;
 		if ( $t == "river" ) $s = "fill:none; stroke:blue; stroke-width:2" ;
@@ -194,7 +244,7 @@ class geo
 		return "style=\"{$s}\"" ;
 		}
 
-	function draw_line ( $line , $params )
+	function draw_line ( $line , &$params )
 		{
 		$ret = "" ;
 		$a = explode ( "(" , $line , 2 ) ;
@@ -245,18 +295,19 @@ class geo
 		return $ret ;
 		}
 
-	function add_label ( $x , $y )
+	function add_label ( $x , $y , &$params )
 		{
 		$text = $this->get_specs ( "name" , array ( "de" ) ) ;
 		if ( $text == "" ) return "" ;
 		$text = utf8_decode ( $this->data[$text][0] ) ;
 		$x = floor ( $x ) ;
 		$y = floor ( $y ) ;
-		$ret = "<text style='text-anchor:middle;fill-opacity:0.7' x='{$x}' y='{$y}'>{$text}</text>\n" ;
-		return $ret ;
+		
+		$a = array ( "text" => $text , "x" => $x , "y" => $y , "font-size" => "medium" ) ;
+		$params->add_label ( $a ) ;
 		}
 	
-	function draw ( $params = array() )
+	function draw ( &$params )
 		{
 		$ret = "" ;
 		$this->xsum = $this->ysum = $this->count = 0 ;
@@ -271,7 +322,7 @@ class geo
 			{
 			$x = $this->xsum / $this->count ;
 			$y = $this->ysum / $this->count ;
-			$ret .= $this->add_label ( $x , $y ) ;
+			$this->add_label ( $x , $y , $params ) ;
 			}
 		return $ret ;
 		}
@@ -281,8 +332,9 @@ class geo
 $g = new geo ;
 $g->set_from_id ( "germany" ) ;
 
-$p = array () ;
+$p = new geo_params ;
 $svg = $g->draw ( $p ) ;
+$svg .= $p->get_svg_labels () ;
 
 $styles = "" ;
 /*
