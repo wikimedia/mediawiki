@@ -5,8 +5,11 @@
  *
  * @package MediaWiki
  */
+ 
+if( !defined( 'MEDIAWIKI' ) )
+	die();
 
-if ( $wgCategoryMagicGallery ) 
+if( $wgCategoryMagicGallery ) 
 	require_once('ImageGallery.php');
 
 /**

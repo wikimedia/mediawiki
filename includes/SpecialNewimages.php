@@ -51,7 +51,7 @@ function wfSpecialNewimages() {
 	$sk = $wgUser->getSkin();
 	$cap = wfMsg( 'ilshowmatch' );
 	$sub = wfMsg( 'ilsubmit' );
-	$titleObj = Title::makeTitle( NS_SPECIAL, 'Imagelist' );
+	$titleObj = Title::makeTitle( NS_SPECIAL, 'Newimages' );
 	$action = $titleObj->escapeLocalURL(  "sort={$sort}&limit={$limit}" );
 
 	$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
@@ -72,7 +72,7 @@ function wfSpecialNewimages() {
 		  "sort=bydate&limit={$num}&wpIlMatch=" . urlencode( $wpIlMatch ) );
 	}
 	$text = wfMsg( 'showlast', $fill, $bydate );
-	$wgOut->addHTML( $text."</p>\n" );
+	$wgOut->addHTML( $text."\n" );
 
 	$i=0;
 	$res = $dbr->query( $sql, 'wfSpecialImagelist' );

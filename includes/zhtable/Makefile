@@ -42,7 +42,7 @@ wordlist: phrase_lib.txt EZ.txt.in tsi.src
 	iconv -c -f big5 -t utf8 tsi.src | $(SED) 's/# //g' | $(SED) 's/[ ][0-9].*//' > wordlist
 	$(SED) 's/\(.*\)\t[0-9][0-9]*.*/\1/' phrase_lib.txt | $(SED) '1,5d' >>wordlist
 	$(SED) '1,/BEGIN_TABLE/d' EZ.txt.in | colrm 1 8 | $(SED) 's/\t.*//' | $(GREP) "^...*" >> wordlist
-	sort wordlist | uniq | $(SED) 's/ //g' > t
+	cat wordlist | $(SED) '/[a-zA-Z]/d' | sort | uniq | $(SED) 's/ //g' > t
 	mv t wordlist
 
 printutf8: printutf8.c

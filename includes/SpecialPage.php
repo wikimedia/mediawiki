@@ -41,6 +41,7 @@ $wgSpecialPages = array(
 	'Randompage'        => new SpecialPage( 'Randompage' ),
 	'Lonelypages'       => new SpecialPage( 'Lonelypages' ),
 	'Uncategorizedpages'=> new SpecialPage( 'Uncategorizedpages' ),
+	'Uncategorizedcategories'=> new SpecialPage( 'Uncategorizedcategories' ),
 	'Unusedimages'      => new SpecialPage( 'Unusedimages' )
 );
 
@@ -83,15 +84,13 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 	'Blockip'		=> new SpecialPage( 'Blockip', 'block' ),
 	'Asksql'		=> new SpecialPage( 'Asksql', 'asksql' ),
 	'Undelete'		=> new SpecialPage( 'Undelete', 'delete' ),
-	// Makesysop is obsolete, replaced by Special:Userlevels [av]
-	# 'Makesysop'		=> new SpecialPage( 'Makesysop', 'userrights' ),
+	'Makesysop'		=> new SpecialPage( 'Makesysop', 'userrights' ),
 
 # Special:Import is half-written
 #	"Import"		=> new SpecialPage( "Import", "sysop" ),
 	'Lockdb'		=> new SpecialPage( 'Lockdb', 'siteadmin' ),
 	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'siteadmin' ),
-	'Sitesettings'  => new SpecialPage( 'Sitesettings', 'siteadmin' ),
-	'Userlevels'	=> new SpecialPage( 'Userlevels', 'userrights' ),
+#	'Sitesettings'  => new SpecialPage( 'Sitesettings', 'siteadmin' ),
 ));
 
 /**
@@ -263,11 +262,7 @@ class SpecialPage
 		if ( $this->mRestriction == "" ) {
 			return true;
 		} else {
-			if ( in_array( $this->mRestriction, $user->getRights() ) ) {
-				return true;
-			} else {
-				return false;
-			}
+			return $user->isAllowed( $this->mRestriction );
 		}
 	}
 

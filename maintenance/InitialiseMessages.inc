@@ -180,7 +180,7 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 		}
 	}
 
-	$dbw->insert( $cur, $arr, $fname );
+	$dbw->insert( 'cur', $arr, $fname );
 
 	# Clear the relevant memcached key
 	print 'Clearing message cache...';
