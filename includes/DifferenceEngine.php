@@ -1023,7 +1023,7 @@ class _HWLDF_WordAccumulator {
 	function _flushGroup ($new_tag) {
 		if ($this->_group !== '') {
 	  if ($this->_tag == 'mark') 
-			$this->_line .= "<font color=\"red\">$this->_group</font>";
+			$this->_line .= '<span class="diffchange">'.$this->_group.'</span>';
 	  else
 		$this->_line .= $this->_group;
 	}
@@ -1124,8 +1124,8 @@ class TableDiffFormatter extends DiffFormatter
 		$l1 = wfMsg( "lineno", $xbeg );
 		$l2 = wfMsg( "lineno", $ybeg );
 
-		$r = "<tr><td colspan='2' align='left'><strong>{$l1}</strong></td>\n" .
-		  "<td colspan='2' align='left'><strong>{$l2}</strong></td></tr>\n";
+		$r = '<tr><td colspan="2" align="left"><strong>'.$l1."</strong></td>\n" .
+		  '<td colspan="2" align="left"><strong>'.$l2."</strong></td></tr>\n";
 		return $r;
 	}
 
@@ -1141,27 +1141,27 @@ class TableDiffFormatter extends DiffFormatter
 	}
 
 	function addedLine( $line ) {
-		return "<td>+</td><td class='diff-addedline'>" .
-		  "<small>{$line}</small></td>";
+		return '<td>+</td><td class="diff-addedline">' .
+		  $line.'</td>';
 	}
 
 	function deletedLine( $line ) {
-		return "<td>-</td><td class='diff-deletedline'>" .
-		  "<small>{$line}</small></td>";
+		return '<td>-</td><td class="diff-deletedline">' .
+		  $line.'</td>';
 	}
 
 	function emptyLine() {
-		return "<td colspan='2'>&nbsp;</td>";
+		return '<td colspan="2">&nbsp;</td>';
 	}
 
 	function contextLine( $line ) {
-		return "<td> </td><td class='diff-context'><small>{$line}</small></td>";
+		return '<td> </td><td class="diff-context">'.$line.'</td>';
 	}
 	
 	function _added($lines) {
 		global $wgOut;
 		foreach ($lines as $line) {
-			$wgOut->addHTML( "<tr>" . $this->emptyLine() .
+			$wgOut->addHTML( '<tr>' . $this->emptyLine() .
 			  $this->addedLine( $line ) . "</tr>\n" );
 		}
 	}
@@ -1169,7 +1169,7 @@ class TableDiffFormatter extends DiffFormatter
 	function _deleted($lines) {
 		global $wgOut;
 		foreach ($lines as $line) {
-			$wgOut->addHTML( "<tr>" . $this->deletedLine( $line ) .
+			$wgOut->addHTML( '<tr>' . $this->deletedLine( $line ) .
 			  $this->emptyLine() . "</tr>\n" );
 		}
 	}
@@ -1177,7 +1177,7 @@ class TableDiffFormatter extends DiffFormatter
 	function _context( $lines ) {
 		global $wgOut;
 		foreach ($lines as $line) {
-			$wgOut->addHTML( "<tr>" . $this->contextLine( $line ) .
+			$wgOut->addHTML( '<tr>' . $this->contextLine( $line ) .
 			  $this->contextLine( $line ) . "</tr>\n" );
 		}
 	}
@@ -1190,7 +1190,7 @@ class TableDiffFormatter extends DiffFormatter
 
 		while ( $line = array_shift( $del ) ) {
 			$aline = array_shift( $add );
-			$wgOut->addHTML( "<tr>" . $this->deletedLine( $line ) .
+			$wgOut->addHTML( '<tr>' . $this->deletedLine( $line ) .
 			  $this->addedLine( $aline ) . "</tr>\n" );
 		}
 		$this->_added( $add ); # If any leftovers
