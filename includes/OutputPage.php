@@ -387,6 +387,7 @@ class OutputPage {
 		$this->sendCacheControl();
 		# Perform link colouring
 		$this->transformBuffer();
+		$this->replaceLinkHolders( $this->mSubtitle );
 		
 		# Disable temporary placeholders, so that the skin produces HTML
 		$sk->postParseLinkColour( false );
