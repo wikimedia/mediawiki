@@ -142,12 +142,9 @@ class QueryPage {
 			}
 			
 			$comments = "";
-			if( isset( $row->cur_comment ) ) {
-				$comments = $row->cur_comment;
-			} elseif( isset( $row->old_comment ) ) {
-				$comments = $row->old_comment;
-			} elseif( isset( $row->rc_cur_comment ) ) {
-				$comments = $row->rc_cur_comment;
+			if( $title ) {
+				$talkpage = $title->getTalkPage();
+				$comments = $talkpage->getFullURL();
 			}
 			
 			return new FeedItem(
