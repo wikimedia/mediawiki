@@ -274,7 +274,7 @@ class QueryPage {
 			}
 
 			return new FeedItem(
-				$title->getText(),
+				$title->getPrefixedText(),
 				$this->feedItemDesc( $row ),
 				$title->getFullURL(),
 				$date,
@@ -286,18 +286,9 @@ class QueryPage {
 	}
 
 	function feedItemDesc( $row ) {
-		$text = '';
-		if( isset( $row->comment ) ) {
-			$text = htmlspecialchars( $row->comment );
-		} else {
-			$text = '';
-		}
-
-		if( isset( $row->text ) ) {
-			$text = '<p>' . htmlspecialchars( wfMsg( 'summary' ) ) . ': ' . $text . "</p>\n<hr />\n<div>" .
-				nl2br( htmlspecialchars( $row->text ) ) . "</div>";;
-		}
-		return $text;
+		return isset( $row->comment )
+			? htmlspecialchars( $row->comment )
+			: '';
 	}
 
 	function feedItemAuthor( $row ) {
