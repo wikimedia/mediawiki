@@ -26,7 +26,7 @@
 require_once( 'SearchEngine.php' );
 
 class SearchMySQL3 extends SearchEngine {
-	function SearchEngineMySQL3( $db ) {
+	function SearchMySQL3( &$db ) {
 		$this->db =& $db;
 	}
 	
