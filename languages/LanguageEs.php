@@ -497,7 +497,7 @@ u otra fuente libre.
 "longpagewarning" => "ADVERTENCIA: Esta página tiene un tama&ntilde;o de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32kb o más.
 Por favor considera la posibilidad de descomponer esta página en secciones más peque&ntilde;as.",
 "readonlywarning" => "ADVERTENCIA: La base de datos ha sido bloqueada para mantenimiento, así que no podrás grabar tus modificaciones en este momento. 
-Puedes "cortar y pegar" a un archivo de texto en tu computador, y grabarlo para
+Puedes \"cortar y pegar\" a un archivo de texto en tu computador, y grabarlo para
 intentarlo despu&eacute;s.",
 "protectedpagewarning" => "ADVERTENCIA: Esta página ha sido bloqueda de manera que s&ocute;lo usuarios con privilegios de administrador pueden editarla. Asegúrate de que estás siguiendo las 
 <a href='/wiki/Wikipedia:Guías_para_páginas_protegidas'>guías para páginas protegidas</a>.",
