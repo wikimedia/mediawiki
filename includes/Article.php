@@ -523,7 +523,7 @@ class Article {
 	function isRedirect( $text = false ) {
 		if ( $text === false ) {
 			$this->loadContent();
-			$titleObj = Title::newFromRedirect( $this->mText );
+			$titleObj = Title::newFromRedirect( $this->fetchRevisionText() );
 		} else {
 			$titleObj = Title::newFromRedirect( $text );
 		}
