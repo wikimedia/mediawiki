@@ -616,10 +616,9 @@ class Title {
 	 * @access public
 	 */
 	function getFullURL( $query = '' ) {
-		global $wgContLang, $wgArticlePath, $wgServer, $wgScript;
+		global $wgContLang, $wgServer, $wgScript;
 
 		if ( '' == $this->mInterwiki ) {
-			$p = $wgArticlePath;
 			return $wgServer . $this->getLocalUrl( $query );
 		} else {
 			$baseUrl = $this->getInterwikiLink( $this->mInterwiki );
@@ -644,6 +643,35 @@ class Title {
 		}
 	}
 
+	/** 
+	 * Get a relative directory for putting an HTML version of this article into
+	 */
+	function getHashedDirectory() {
+		$dbkey = $this->getPrefixedDBkey();
+		if ( strlen( $dbkey ) < 2 ) {
+			$dbkey = sprintf( "%2s", $dbkey );
+		}
+		$dir = '';
+		for ( $i=0; $i<=1; $i++ ) {
+			if ( $i ) {
+				$dir .= '/';
+			}
+			if ( ord( $dbkey{$i} ) < 128 && ord( $dbkey{$i} ) > 32 ) {
+				$dir .= strtolower( $dbkey{$i} );
+			} else {
+				$dir .= sprintf( "%02X", ord( $dbkey{$i} ) );
+			}
+		}
+		return $dir;
+	}
+	
+	function getHashedFilename() {
+		$dbkey = $this->getPrefixedDBkey();
+		$dir = $this->getHashedDirectory();
+		$friendlyName = strtr( $dbkey, '/\\:*?"<>|', '_________' );
+		return "$dir/$friendlyName.html";	
+	}
+	
 	/**
 	 * Get a URL with no fragment or server name
 	 * @param string $query an optional query string; if not specified,
@@ -652,14 +680,16 @@ class Title {
 	 * @access public
 	 */
 	function getLocalURL( $query = '' ) {
-		global $wgLang, $wgArticlePath, $wgScript;
+		global $wgLang, $wgArticlePath, $wgScript, $wgMakeDumpLinks;
 		
 		if ( $this->isExternal() ) {
 			return $this->getFullURL();
 		}
-
+		
 		$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
-		if ( $query == '' ) {
+		if ( $wgMakeDumpLinks ) {
+			$url = str_replace( '$1', wfUrlencode( $this->getHashedFilename() ), $wgArticlePath );
+		} elseif ( $query == '' ) {
 			$url = str_replace( '$1', $dbkey, $wgArticlePath );
 		} else {
 			if( preg_match( '/^(.*&|)action=([^&]*)(&(.*)|)$/', $query, $matches ) ) {
