@@ -95,15 +95,30 @@ class Skin {
 
 	function initPage( &$out )
 	{
-		global $wgStyleSheetPath;
 		$fname = "Skin::initPage";
 		wfProfileIn( $fname );
 		
 		$out->addLink( "shortcut icon", "", "/favicon.ico" );
-		
+
+	        $this->addMetadataLinks($out);
+	    
 		wfProfileOut( $fname );
 	}
 	
+        function addMetadataLinks( &$out ) {
+	    global $wgTitle, $wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf, $wgRdfMimeType, $action;
+
+	    if ($action == 'view') {
+		# note: buggy CC software only reads first "meta" link
+		if ($wgEnableCreativeCommonsRdf) {
+		    $out->addMetadataLink('application/rdf+xml', wfLocalUrl($wgTitle->getPrefixedURL(), "action=creativecommons"));
+		}
+		if ($wgEnableDublinCoreRdf) {
+		    $out->addMetadataLink('application/rdf+xml', wfLocalUrl($wgTitle->getPrefixedURL(), "action=dublincore"));
+		}
+	    }
+	}
+    
 	function outputPage( &$out ) {
 		global $wgDebugComments;
 		

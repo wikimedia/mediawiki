@@ -845,4 +845,101 @@ function wfVarDump( $var )
 	}
 }
 
+/* Provide a simple HTTP error. */
+
+function wfHttpError($code, $label, $desc) {
+    
+    global $wgOut;
+    $wgOut->disable();
+    header("HTTP/1.0 $code $label");
+    header("Status: $code $label");
+    $wgOut->sendCacheControl();
+
+    /* Don't send content if it's a HEAD request. */
+    
+    if (strcmp($HTTP_SERVER_VARS['REQUEST_METHOD'],'HEAD') != 0) {
+	header("Content-type: text/plain");
+	print "$desc\n";
+    }
+}
+
+# Converts an Accept-* header into an array mapping string values to quality factors
+
+function wfAcceptToPrefs($accept, $def = "*/*") {
+    # No arg means accept anything (per HTTP spec)
+    if (!$accept) {
+	return array($def => 1);
+    }
+
+    $prefs = array();
+    
+    $parts = explode(",", $accept);
+    
+    foreach ($parts as $part) {
+	#FIXME: doesn't deal with params like 'text/html; level=1'
+	list($value, $qpart) = explode(";", $part);
+	if (!isset($qpart)) {
+	    $prefs[$value] = 1;
+	} else if (preg_match('/q\s*=\s*(\d*\.\d+)/', $qpart, $match)) {
+	    $prefs[$value] = $match[1];
+	}
+    }
+    
+    return $prefs;
+}
+
+/* private */ function mimeTypeMatch($type, $avail) {
+    if (array_key_exists($type, $avail)) {
+	return $type;
+    } else {
+	$parts = explode('/', $type);
+	if (array_key_exists($parts[0] . '/*', $avail)) {
+	    return $parts[0] . '/*';
+	} else if (array_key_exists('*/*', $avail)) {
+	    return '*/*';
+	} else {
+	    return NULL;
+	}
+    }
+}
+
+#FIXME: doesn't handle params like 'text/plain; charset=UTF-8'
+#XXX: generalize to negotiate other stuff
+
+function wfNegotiateType($cprefs, $sprefs) {
+    $combine = array();
+    
+    foreach (array_keys($sprefs) as $type) {
+	$parts = explode('/', $type);
+	if ($parts[1] != '*') {
+	    $ckey = mimeTypeMatch($type, $cprefs);
+	    if ($ckey) {
+		$combine[$type] = $sprefs[$type] * $cprefs[$ckey];
+	    }
+	}
+    }
+
+    foreach (array_keys($cprefs) as $type) {
+	$parts = explode('/', $type);
+	if ($parts[1] != '*' && !array_key_exists($type, $sprefs)) {
+	    $skey = mimeTypeMatch($type, $sprefs);
+	    if ($skey) {
+		$combine[$type] = $sprefs[$skey] * $cprefs[$type];
+	    }
+	}
+    }
+    
+    $bestq = 0;
+    $besttype = NULL;
+    
+    foreach (array_keys($combine) as $type) {
+	if ($combine[$type] > $bestq) {
+	    $besttype = $type;
+	    $bestq = $combine[$type];
+	}
+    }
+    
+    return $besttype;
+}
+
 ?>
