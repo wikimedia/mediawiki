@@ -215,7 +215,7 @@ class DifferenceEngine {
 	}
 	
 	function getDiff( $otext, $ntext, $otitle, $ntitle ) {
-		global $wgUseExternalDiffEngine;
+		global $wgUseExternalDiffEngine, $wgContLang;
 		$out = "
 			<table border='0' width='98%' cellpadding='0' cellspacing='4' class='diff'>
 			<tr>
@@ -223,7 +223,9 @@ class DifferenceEngine {
 				<td colspan='2' width='50%' align='center' class='diff-ntitle'>{$ntitle}</td>
 			</tr>
 		";
-
+		$otext = $wgContLang->segmentForDiff($otext);
+		$ntext = $wgContLang->segmentForDiff($ntext);
+		$difftext='';
 		if ( $wgUseExternalDiffEngine ) {
 			# For historical reasons, external diff engine expects
 			# input text to be HTML-escaped already
@@ -232,15 +234,16 @@ class DifferenceEngine {
 			if( !function_exists( 'wikidiff_do_diff' ) ) {
 				dl('php_wikidiff.so');
 			}
-			$out .= wikidiff_do_diff( $otext, $ntext, 2 );
+			$difftext = wikidiff_do_diff( $otext, $ntext, 2 );
 		} else {
 			$ota = explode( "\n", str_replace( "\r\n", "\n", $otext ) );
 			$nta = explode( "\n", str_replace( "\r\n", "\n", $ntext ) );
 			$diffs =& new Diff( $ota, $nta );
 			$formatter =& new TableDiffFormatter();
-			$out .= $formatter->format( $diffs );
+			$difftext = $formatter->format( $diffs );
 		}
-		$out .= "</table>\n";
+		$difftext = $wgContLang->unsegmentForDiff($difftext);
+		$out .= $difftext."</table>\n";
 		return $out;
 	}
 

@@ -263,6 +263,14 @@ class LanguageLatin1 {
 		return $this->lang->getPreferredVariant();
 	}
 
+	function segmentForDiff( $text ) {
+		return $text;
+	}
+
+	function unsegmentForDiff( $text ) {
+		return $text;
+	}
+
 	function convert( $text, $isTitle=false ) {
 		return utf8_decode( $this->lang->convert( utf8_encode( $text ), $isTitle ) );
 	}

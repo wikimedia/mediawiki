@@ -2038,7 +2038,16 @@ class Language {
 		return $word;
 	}
 
-	
+	# languages like Chinese need to be segmented in order for the diff
+	# to be of any use
+	function segmentForDiff( $text ) {
+		return $text;
+	}
+	# and unsegment to show the result
+	function unsegmentForDiff( $text ) {
+		return $text;
+	}
+
 	# convert text to different variants of a language. the automatic
 	# conversion is done in autoConvert(). here we parse the text 
 	# marked with -{}-, which specifies special conversions of the 
