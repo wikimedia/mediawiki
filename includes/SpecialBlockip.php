@@ -126,7 +126,7 @@ class IPBlockForm {
 				if ( $wgSysopUserBans ) {	
 					$userId = User::idFromName( $this->BlockAddress );
 					if ( $userId == 0 ) {
-						$this->showForm( wfMsg( 'nosuchuser', htmlspecialchars( $this->BlockAddress ) ) );
+						$this->showForm( wfMsg( 'nosuchusershort', htmlspecialchars( $this->BlockAddress ) ) );
 						return;
 					}
 				} else {
