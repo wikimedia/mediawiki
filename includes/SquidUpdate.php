@@ -83,7 +83,7 @@ class SquidUpdate {
 			while ($so < $sockspersq && !$failed) {
 				if ($so == 0) {
 					/* first socket for this server, do the tests */
-					list($server, $port) = explode(':', $wgSquidServers[$ss]);
+					@list($server, $port) = explode(':', $wgSquidServers[$ss]);
 					if(!isset($port)) $port = 80;
 					$socket = @fsockopen($server, $port, $error, $errstr, 3);
 					if (!$socket) {
