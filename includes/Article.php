@@ -703,6 +703,70 @@ class Article {
 	}
 
 	/**
+	 * Insert a new empty page record for this article.
+	 * This *must* be followed up by creating a revision
+	 * and running $this->updateToLatest( $rev_id );
+	 * or else the record will be left in a funky state.
+	 * Best if all done inside a transaction.
+	 *
+	 * @param Database $dbw
+	 * @return int The newly created page_id key
+	 * @access private
+	 */
+	function insertOn( &$dbw ) {
+		$fname = 'Article::insertOn';
+		wfProfileIn( $fname );
+		
+		$page_id = $dbw->nextSequenceValue( 'page_page_id_seq' );
+		$dbw->insert( 'page', array(
+			'page_id'           => $page_id,
+			'page_namespace'    => $this->mTitle->getNamespace(),
+			'page_title'        => $this->mTitle->getDBkey(),
+			'page_counter'      => 0,
+			'page_restrictions' => '',
+			'page_is_redirect'  => 0, # Will set this shortly...
+			'page_is_new'       => 1,
+			'page_random'       => wfRandom(),
+			'page_touched'      => $dbw->timestamp(),
+			'page_latest'       => 0, # Fill this in shortly...
+		), $fname );
+		$newid = $dbw->insertId();
+		
+		wfProfileOut( $fname );
+		return $newid;
+	}
+	
+	/**
+	 * Update the page record to point to a newly saved revision.
+	 *
+	 * @param Database $dbw
+	 * @param int $revId
+	 * @param int $lastRevision
+	 * @param bool $isRedirect
+	 * @return bool true on success, false on failure
+	 * @access private
+	 */
+	function updateRevisionOn( &$dbw, $revId, $lastRevision, $isRedirect = false ) {
+		$fname = 'Article::updateToRevision';
+		wfProfileIn( $fname );
+		
+		$dbw->update( 'page',
+			array( /* SET */
+				'page_latest'      => $revId,
+				'page_touched'     => $dbw->timestamp(),
+				'page_is_new'      => ($lastRevision == 0),
+				'page_is_redirect' => $isRedirect,
+			), array( /* WHERE */
+				'page_id'          => $this->getId(),
+				'page_latest'      => $lastRevision, # Paranoia
+			), $fname
+		);
+		
+		wfProfileOut( $fname );
+		return ( $dbw->affectedRows() != 0 );
+	}
+	
+	/**
 	 * Theoretically we could defer these whole insert and update
 	 * functions for after display, but that's taking a big leap
 	 * of faith, and we want to be able to report database
@@ -720,53 +784,26 @@ class Article {
 		$ns = $this->mTitle->getNamespace();
 		$ttl = $this->mTitle->getDBkey();
 		$text = $this->preSaveTransform( $text );
-		if ( $this->isRedirect( $text ) ) { $redir = 1; }
-		else { $redir = 0; }
-
-		$now = wfTimestampNow();
-		wfSeedRandom();
-		$rand = wfRandom();
 		$isminor = ( $isminor && $wgUser->isLoggedIn() ) ? 1 : 0;
-		
-		$mungedText = $text;
-		$flags = Revision::compressRevisionText( $mungedText );
 
 		$dbw =& wfGetDB( DB_MASTER );
 
-		$old_id = $dbw->nextSequenceValue( 'text_old_id_seq' );
-		$dbw->insert( 'text', array(
-			'old_id' => $old_id,
-			'old_text' => $mungedText,
-			'old_flags' => $flags,
-		), $fname );
-		$revisionId = $dbw->insertId();
+		# Add the page record; stake our claim on this title!
+		$newid = $this->insertOn( $dbw );
 		
-		$page_id = $dbw->nextSequenceValue( 'page_page_id_seq' );
-		$dbw->insert( 'page', array(
-			'page_id' => $page_id,
-			'page_namespace' => $ns,
-			'page_title' => $ttl,
-			'page_counter' => 0,
-			'page_restrictions' => '',
-			'page_is_redirect' => $redir,
-			'page_is_new' => 1,
-			'page_random' => $rand,
-			'page_touched' => $dbw->timestamp($now),
-			'page_latest' => $revisionId,
-		), $fname );
-		$newid = $dbw->insertId();
-
-		$dbw->insert( 'revision', array(
-			'rev_page' => $newid,
-			'rev_id' => $revisionId,
-			'rev_comment' => $summary,
-			'rev_user' => $wgUser->getID(),
-			'rev_timestamp' => $dbw->timestamp($now),
-			'rev_minor_edit' => $isminor,
-			'rev_user_text' => $wgUser->getName(),
-		), $fname );
+		# Save the revision text...
+		$revision = new Revision( array(
+			'page'       => $newid,
+			'comment'    => $summary,
+			'minor_edit' => $isminor,
+			'text'       => $text
+			) );
+		$revisionId = $revision->insertOn( $dbw );
 
 		$this->mTitle->resetArticleID( $newid );
+		
+		# Update the page record with revision data
+		$this->updateRevisionOn( $dbw, $revisionId, 0, $this->isRedirect( $text ) );
 
 		Article::onArticleCreate( $this->mTitle );
 		RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary );
@@ -918,8 +955,7 @@ class Article {
 		$fname = 'Article::updateArticle';
 		$good = true;
 
-		if ( $this->mMinorEdit ) { $me1 = 1; } else { $me1 = 0; }
-		if ( $minor && $wgUser->isLoggedIn() ) { $me2 = 1; } else { $me2 = 0; }
+		$isminor = ( $minor && $wgUser->isLoggedIn() );
 		if ( $this->isRedirect( $text ) ) {
 			# Remove all content but redirect
 			# This could be done by reconstructing the redirect from a title given by 
@@ -959,25 +995,15 @@ class Article {
 			$revision = new Revision( array(
 				'page'       => $this->getId(),
 				'comment'    => $summary,
-				'minor_edit' => $me2,
+				'minor_edit' => $isminor,
 				'text'       => $text
 				) );
 			$revisionId = $revision->insertOn( $dbw );
 			
 			# Update page
-			$dbw->update( 'page',
-				array( /* SET */
-					'page_latest' => $revisionId,
-					'page_touched' => $dbw->timestamp( $now ),
-					'page_is_new' => 0,
-					'page_is_redirect' => $redir,
-				), array( /* WHERE */
-					'page_id' => $this->getID(),
-					'page_latest' => $lastRevision, # Paranoia
-				), $fname
-			);
+			$ok = $this->updateRevisionOn( $dbw, $revisionId, $lastRevision, $redir );
 
-			if( $dbw->affectedRows() == 0 ) {
+			if( !$ok ) {
 				/* Belated edit conflict! Run away!! */
 				$good = false;
 			} else {
@@ -996,38 +1022,38 @@ class Article {
 		}
 
 		if ( $good ) {
-		if ($watchthis) {
-			if (!$this->mTitle->userIsWatching()) $this->watch();
-		} else {
-			if ( $this->mTitle->userIsWatching() ) {
-				$this->unwatch();
+			if ($watchthis) {
+				if (!$this->mTitle->userIsWatching()) $this->watch();
+			} else {
+				if ( $this->mTitle->userIsWatching() ) {
+					$this->unwatch();
+				}
 			}
-		}
-		# standard deferred updates
-		$this->editUpdates( $text, $summary, $minor, $now );
-
-
-		$urls = array();
-		# Template namespace
-		# Purge all articles linking here
-		if ( $this->mTitle->getNamespace() == NS_TEMPLATE) {
-			$titles = $this->mTitle->getLinksTo();
-			Title::touchArray( $titles );
+			# standard deferred updates
+			$this->editUpdates( $text, $summary, $minor, $now );
+	
+	
+			$urls = array();
+			# Template namespace
+			# Purge all articles linking here
+			if ( $this->mTitle->getNamespace() == NS_TEMPLATE) {
+				$titles = $this->mTitle->getLinksTo();
+				Title::touchArray( $titles );
+				if ( $wgUseSquid ) {
+						foreach ( $titles as $title ) {
+							$urls[] = $title->getInternalURL();
+						}
+				}
+			}
+	
+			# Squid updates
 			if ( $wgUseSquid ) {
-					foreach ( $titles as $title ) {
-						$urls[] = $title->getInternalURL();
-					}
+				$urls = array_merge( $urls, $this->mTitle->getSquidURLs() );
+				$u = new SquidUpdate( $urls );
+				array_push( $wgPostCommitUpdateList, $u );
 			}
-		}
-
-		# Squid updates
-		if ( $wgUseSquid ) {
-			$urls = array_merge( $urls, $this->mTitle->getSquidURLs() );
-			$u = new SquidUpdate( $urls );
-			array_push( $wgPostCommitUpdateList, $u );
-		}
-
-		$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $me2, $now, $summary, $lastRevision );
+	
+			$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $me2, $now, $summary, $lastRevision );
 		}
 		return $good;
 	}
