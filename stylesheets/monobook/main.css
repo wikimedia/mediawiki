@@ -816,6 +816,7 @@ input.searchButton {
 /* the icon in front of the user name, single quotes
 in bg url to hide it from iemac */
 li#personaltools-userpage,
+li#personaltools-anonuserpage,
 li#personaltools-login {
     background: transparent url('user.gif') center left no-repeat;
     background-repeat: no-repeat;

@@ -292,7 +292,7 @@ class memcached
       
       $key = is_array($key) ? $key[1] : $key;
       
-      $this->stats['delete']++;
+      @$this->stats['delete']++;
       $cmd = "delete $key $time\r\n";
       if(!fwrite($sock, $cmd, strlen($cmd)))
       {
