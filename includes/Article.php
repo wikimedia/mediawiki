@@ -457,8 +457,6 @@ class Article {
 
 		$text = $this->getContent(); # May change mTitle
 		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-		$wgOut->setHTMLTitle( $this->mTitle->getPrefixedText() .
-		  " - " . wfMsg( "wikititlesuffix" ) );
 
 		# We're looking at an old revision
 

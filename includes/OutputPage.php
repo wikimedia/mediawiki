@@ -109,9 +109,43 @@ class OutputPage {
 		}
 	}
 
+	function getPageTitleActionText () {
+		global $action;
+		switch($action) {
+			case 'edit':
+				return 	wfMsg('edit');
+			case 'history':
+				return wfMsg('history_short');
+			case 'protect':
+				return wfMsg('unprotect');
+			case 'unprotect':
+				return wfMsg('unprotect');
+			case 'delete':
+				return wfMsg('delete');
+			case 'watch':
+				return wfMsg('watch');
+			case 'unwatch':
+				return wfMsg('unwatch');
+			case 'submit':
+				return wfMsg('preview');
+			default:
+				return '';
+		}
+	}
 	function setRobotpolicy( $str ) { $this->mRobotpolicy = $str; }
-	function setHTMLtitle( $name ) { $this->mHTMLtitle = $name; }
-	function setPageTitle( $name ) { $this->mPagetitle = $name; }
+	function setHTMLTitle( $name ) {$this->mHTMLtitle = $name; }
+	function setPageTitle( $name ) {
+		global $action;
+		$this->mPagetitle = $name;
+		if(!empty($action)) {
+			$taction =  $this->getPageTitleActionText();
+			if( !empty( $taction ) ) {
+				$name .= " - $taction";
+			}
+		}
+		$this->setHTMLTitle( $name . " - " . wfMsg( "wikititlesuffix" ) );
+	}
+	function getHTMLTitle() { return $this->mHTMLtitle; }
 	function getPageTitle() { return $this->mPagetitle; }
 	function setSubtitle( $str ) { $this->mSubtitle = $str; }
 	function getSubtitle() { return $this->mSubtitle; }
@@ -384,8 +418,8 @@ class OutputPage {
 
 		$this->mDebugtext .= "Original title: " .
 		  $wgTitle->getPrefixedText() . "\n";
-		$this->setHTMLTitle( wfMsg( "errorpagetitle" ) );
 		$this->setPageTitle( wfMsg( $title ) );
+		$this->setHTMLTitle( wfMsg( "errorpagetitle" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
@@ -402,8 +436,8 @@ class OutputPage {
 	{
 		global $wgUser;
 
-		$this->setHTMLTitle( wfMsg( "errorpagetitle" ) );
 		$this->setPageTitle( wfMsg( "sysoptitle" ) );
+		$this->setHTMLTitle( wfMsg( "errorpagetitle" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleRelated( false );
 		$this->mBodytext = "";
@@ -418,8 +452,8 @@ class OutputPage {
 	{
 		global $wgUser;
 
-		$this->setHTMLTitle( wfMsg( "errorpagetitle" ) );
 		$this->setPageTitle( wfMsg( "developertitle" ) );
+		$this->setHTMLTitle( wfMsg( "errorpagetitle" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleRelated( false );
 		$this->mBodytext = "";
@@ -434,8 +468,8 @@ class OutputPage {
 	{
 		global $wgUser, $wgTitle, $wgLang;
 
-		$this->setHTMLTitle( wfMsg( "errorpagetitle" ) );
 		$this->setPageTitle( wfMsg( "loginreqtitle" ) );
+		$this->setHTMLTitle( wfMsg( "errorpagetitle" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleFlag( false );
 		$this->mBodytext = "";
