@@ -661,11 +661,11 @@ class Parser
 			$text = $wgDateFormatter->reformat( $this->mOptions->getDateFormat(), $text );
 		}
 		$text = $this->doAllQuotes( $text );
-		$text = $this->replaceExternalLinks( $text );
 		$text = $this->doMagicLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
 		# Another call to replace links and images inside captions of images
 		$text = $this->replaceInternalLinks ( $text );
+		$text = $this->replaceExternalLinks( $text );
 
 		$text = $this->doTableStuff( $text );
 		$text = $this->formatHeadings( $text, $isMain );
