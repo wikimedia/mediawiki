@@ -676,18 +676,12 @@ div.townBox dl dd {
     text-align: center;
 }
 input.searchButton {
-    background-color: white;
-    border: 1px solid #2f6fab;  
     margin-top:1px;
-    padding: 0 0.4em;
+    padding: 0 0.4em; !important
     font-size: 95%;
-    /*    font-size: 100%;
-    margin-bottom: 1px ! important;
-    background: White url(search_icon.gif) 2px 1px no-repeat;
     cursor: pointer;
-    padding: 1px 1px 1px 15px;
-    text-transform: lowercase;*/
-
+    background-color: White;
+    border: 1px solid #2f6fab;  
 }
 
 #searchGadget {
@@ -898,18 +892,21 @@ li#contentaction-watch {
 #portal-footer li {
     display: inline;
     margin-right: 2em;
+}
+#footer-about,
+#footer-disclaimer {
     white-space: nowrap;
 }
 
-#footer-poweredby, #footer-copyright {
+#footer-poweredbyico, #footer-copyrightico {
 	margin: 0 8px;
 	position: relative;
 	top: -2px; /* Bump it up just a tad */
 }
-#footer-poweredby {
+#footer-poweredbyico {
 	float: right;
 }
-#footer-copyright {
+#footer-copyrightico {
 	float: left;
 }
 
@@ -931,17 +928,21 @@ li#contentaction-watch {
     border-color: #fabd23;
 }
 
+/* more IE fixes */
 /* fixes for broken IE float handling */
-*>html #portal-column-content {
+* html #portal-column-content {
     display: inline;
 }
-/* more IE fixes */
-* html #bodyContent span.fullImage,
-* html #bodyContent pre {
+/* float/negative margin brokenness */
+* html #bodyContent, 
+* html #bodyContent pre,
+* html #bodyContent div.fullImage {
     overflow: auto;
-    margin-bottom: 1.5em;
+    overflow-y: hidden;
+    width: 100%;
+    margin-bottom: 25px;
 }
-
+/* more float brokenness */
 * html #bodyContent {
     display: inline;
     overflow: auto;

@@ -10,15 +10,6 @@
 #portal-column-content {
     display: inline;
 }
-/* the full-size images are in center tags */
-#bodyContent, 
-#bodyContent pre,
-#bodyContent img,
-#bodyContent div,
-#bodyContent p {
-    overflow: auto;
-}
-
 
 /* the tabs */
 
@@ -83,6 +74,3 @@ textarea {
     overflow-x: hidden;
 }
 /*{ border:1px solid Red !important;}*/
-textarea {
-    padding-bottom: 25px;
-}
