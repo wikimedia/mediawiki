@@ -165,11 +165,11 @@ require_once( "LanguageUtf8.php" );
 
 # Bits of text used by many pages:
 # Diverse stukjes tekst
-"categories" => "Categorieën",
+"categories" => "Rubrieken",
 "category" => "rubriek",
-"category_header" => "Artikelen in categorie \"$1\"",
+"category_header" => "Artikelen in rubriek \"$1\"",
 "subcategories" => "Onderrubrieken",
-"linktrail" => "/^([äöüïëéèéàça-z]+)(.*)$/sD"
+"linktrail" => "/^((?:[a-z]|Ã¤|Ã¶|Ã¼|Ã¯|Ã«|Ã©|Ã¨|Ã )+)(.*)\$/sD",
 "mainpage"  => "Hoofdpagina",
 "mainpagetext" => "Installatie van de Wiki software geslaagd.",
 "about"   => "Info",
@@ -202,7 +202,7 @@ require_once( "LanguageUtf8.php" );
 "help"   => "Help",
 "search"  => "Zoeken",
 "go" => "Ga naar pagina",
-"history"  => "Geschiedenis",
+"history"  => "Voorgeschiedenis",
 "printableversion" => "Printer-vriendelijke versie",
 "editthispage" => "Pagina bewerken",
 "deletethispage" => "Verwijderen",
@@ -224,7 +224,7 @@ require_once( "LanguageUtf8.php" );
 "gnunote" => "Alle tekst op deze pagina valt onder de  <a class=internal href='/wiki/Gnu_Vrije_Documentatie_Licentie'>GNU FDL</a>.",
 "printsubtitle" => "(Uit http://nl.wikipedia.org)",
 "protectedpage" => "Beveiligde pagina",
-"administrators" => "{{ns:4}}:Moderator",
+"administrators" => "{{ns:4}}:Systeembeheerders",
 "sysoptitle" => "Toegang alleen voor systeembeheerders",
 "sysoptext"  => "De gevraagde handeling kan enkel uitgevoerd worden door systeembeheerders. Zie $1.",
 "developertitle" => "Toegang alleen voor systeemontwikkelaars",
@@ -255,7 +255,7 @@ require_once( "LanguageUtf8.php" );
 # Algemene foutmeldingen
 "error"   => "Fout",
 "databaseerror" => "Database fout",
-"dberrortext" => "Bij het zoeken is een syntaxfout in de database opgetreden. Dit kan zijn veroorzaakt door een illegale zoekactie (zie $5), of het duidt op een fout in de software.
+"dberrortext" => "Bij het zoeken is een syntaxfout in de database opgetreden.
 De laatste zoekpoging in de database was:
 <blockquote><tt>$1</tt></blockquote>
 vanuit de functie \"<tt>$2</tt>\".
@@ -304,7 +304,7 @@ U kunt {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder deze
 "loginproblem" => "<b>Er is een probleem met het aanmelden.</b><br />Probeer het opnieuw a.u.b.",
 "alreadyloggedin" => "<font color=red><b>Gebruiker $1, u bent al aangemeld.</b></font><br />\n",
 
-"login"   => "Aanmelden",
+"login"   => "Aanmelden & Inschrijven",
 "userlogin"  => "Aanmelden",
 "logout"  => "Afmelden",
 "userlogout" => "Afmelden",
@@ -315,7 +315,7 @@ U kunt {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder deze
 "userexists" => "De gebruikersnaam die u heeft ingevoerd is al in gebruik. Gelieve een andere naam te kiezen.",
 "youremail"  => "Uw e-mailadres",
 "yournick"  => "Uw bijnaam (voor handtekeningen)",
-"emailforlost" => "Het opgeven van een e-mailadres is niet verplicht.<br>Enkel als er een e-mailadres beschikbaar is kunt u een nieuw wachtwoord aanvragen indien u het oude vergeten bent.<br>Een e-mailadres geeft andere gebruikers de mogelijkheid u een e-mail te sturen via een formulier. U kunt die functie eventueel uitzetten via de voorkeuren.",
+"emailforlost" => "Het opgeven van een e-mailadres is niet verplicht.<br />Enkel als er een email-adres beschikbaar is, kunt u een nieuw wachtwoord aanvragen indien u het oude vergeten bent.<br />Een emailadres geeft andere gebruikers de mogelijkheid u een email te sturen via een formulier. U kunt die functie eventueel uitzetten via de voorkeuren.",
 "loginerror" => "Inlogfout",
 "noname"  => "U dient een gebruikersnaam op te geven.",
 "loginsuccesstitle" => "Aanmelden gelukt.",
@@ -339,7 +339,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "preview"  => "Nakijken",
 "showpreview" => "Toon bewerking ter controle",
 "blockedtitle" => "Gebruiker is geblokkeerd",
-"blockedtext" => "Over het door u geselecteerde onderwerp is in {{SITENAME}} nog geen artikel aanwezig, of u heeft zelf gevraagd om een bestaand artikel te mogen aanpassen. Normaal gesproken zou u onder deze omstandigheden de gelegenheid worden gegeven een tekst te schrijven, maar u heeft op dit moment geen schrijftoegang tot het systeem. Uw gebruikersnaam of IP-adres is door $1 geblokkeerd waardoor u geen artikels kunt bewerken. <br />De opgegeven reden luidt:<br /> '''$2.'''<p> '''U kunt nog steeds alle pagina's raadplegen.'''<br /> U kunt echter geen pagina's bewerken of aanmaken.<br /> <font color=\"red\">Rode links</font> gaan naar niet-bestaande artikels. Als u daar op klikt kan u dat artikel niet aanmaken omdat u geblokkeerd bent, en krijgt u dit bericht te zien. Een gebruiker die niet geblokkeerd is krijgt een invulveld te zien waar hij het artikel kan aanmaken.<br /> <font color=\"blue\">Blauwe links</font> gaan naar bestaande artikels die u zonder problemen kunt raadplegen.<p> Als u alleen ''op zoek'' bent naar informatie ''mist u niets''.<p> Elke computer die verbonden is met het internet krijgt een [[IP-adres]] toegewezen van zijn [[internetprovider]]. In veel gevallen krijgt een gebruiker regelmatig een ander ip-adres toegewezen. Het door u gebruikte ip-adres is recent gebruikt door u of iemand anders voor bewerkingen die een overtreding zijn van de [[{{ns:4}}:Toch een paar regels|regels]] van Wikipedia.",
+"blockedtext" => "Uw gebruikersnaam of IP-adres is door $1 geblokkeerd. De opgegeven reden:<br />$2<p>. Elke computer die verbonden is met het internet krijgt een [[ip-adres]] toegewezen van zijn [[internetprovider]]. In veel gevallen krijgt een gebruiker regelmatig een ander ip-adres toegewezen. Het het door u gebruikte ip-adres is recent gebruikt door u of iemand anders voor bewerkingen die in overtreding zijn van de [[{{ns:4}}:Toch een paar regels|regels]] van {{SITENAME}}.<p>U kunt voor overleg contact opnemen met de [[{{ns:4}}:Systeembeheerders|systeembeheerders]] via [http://wikinl.sol3.info/wikinl_info.html#email wikinl-l-owner@wikipedia.org een formulier].",
 "whitelistedittitle" => "Aanmelden verplicht",
 "whitelistedittext" => "Om dit artikel te kunnen wijzigen, moet u [[Speciaal:Userlogin|ingelogd]] zijn.",
 "whitelistreadtitle" => "Aanmelden verplicht",
@@ -365,7 +365,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "storedversion" => "Opgeslagen versie",
 "editingold" => "<strong>WAARSCHUWING: U bent bezig een oude versie van deze pagina te bewerken. Wanneer u uw bewerking opslaat, gaan alle wijzigingen die na deze versie gedaan zijn verloren.\n.</strong>\n",
 "yourdiff"  => "Wijzigingen",
-"copyrightwarning" => "<div class=\"plainlinks\" style=\"margin-top:15px;border-width:1px;border-style:solid;border-color:#aaaaaa;padding:2px;\"> <small>Speciale karakters: <charinsert>Á á É é Í í Ó ó Ú ú Ý ý</charinsert> · <charinsert>À à È è Ì ì Ò ò Ù ù </charinsert> · <charinsert>Â â Ê ê Î î Ô ô Û û </charinsert> · <charinsert>Ä ä Ë ë Ï ï Ö ö Ü ü Ÿ ÿ</charinsert> · <charinsert>&#256; &#257; &#274; &#275; &#298; &#299; &#332; &#333; &#362; &#363; </charinsert> · <charinsert>Å å </charinsert> · <charinsert>Ç ç </charinsert> · <charinsert>Ñ ñ </charinsert> · <charinsert>Ø ø </charinsert> · <charinsert>ß </charinsert> · <charinsert>Ð ð Þ þ </charinsert> · <charinsert>Æ æ Œ œ </charinsert> · <charinsert>&ndash; &mdash; </charinsert> · <charinsert>~ | ° ² ³ ¼ ½ ¾ € †</charinsert> </small></div> Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u niet wilt dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor 'Pagina Opslaan'.<br /> Hierbij belooft u ons tevens dat u deze tekst zelf heeft geschreven, of overgenomen uit een vrije, openbare bron.<br /> <strong>Gebruik geen materiaal dat beschermd wordt door auteursrecht, tenzij u daarvoor toestemming hebt!</strong>",
+"copyrightwarning" => "Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u niet wil dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor 'Pagina Opslaan'.<br /> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br /> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>",
 "longpagewarning" => "Waarschuwing! Deze pagina is $1 kilobyte lang. Pagina's langer dan 32 kb zorgen voor problemen op sommige browsers. Het is daarom waarschijnlijk een goed idee deze pagina in meerdere pagina's te splitsen.",
 "readonlywarning" => "Waarschuwing! De database is op dit moment in onderhoud; het is daarom niet mogelijk op dit moment pagina's te wijzigen. Wij adviseren u de tekst op uw eigen computer op te slaan en later opnieuw te proberen deze pagina te bewerken.",
 "protectedpagewarning" => "Waarschuwing! U staat op het punt een beveiligde pagina te wijzigen. Gewone gebruikers kunnen deze pagina niet bewerken.",
@@ -483,7 +483,7 @@ Een beschrijving van de verschillende opties staat op [[{{ns:4}}:Voorkeuren]].",
 "timezoneoffset" => "Tijdsverschil",
 "servertime" => "De locale tijd van de {{SITENAME}}-server:",
 "guesstimezone" => "Vanuit de browser toe te voegen",
-"emailflag" => "Gebruikers mogen mij niet e-mailen",
+"emailflag" => "E-mail ontvangen van andere gebruikers uitschakelen",
 "defaultns" => "Naamruimten om direct in te zoeken:",
 
 # Recent changes
@@ -545,7 +545,7 @@ Vergeet niet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploa
 </ul>
 ",
 "filename"  => "Bestandsnaam",
-"filedesc"  => "Vul in: beschrijving en uitleg auteursrechtensituatie (<b>bronvermelding is niet genoeg</b>)",
+"filedesc"  => "Beschrijving",
 "filestatus" => "Auteursrechtensituatie",
 "filesource" => "Auteur/bron",
 "affirmation" => "Ik verklaar dat de eigenaar van de rechten op dit bestand toestemt om het onder de voorwaarden van $1 te verspreiden.",
@@ -556,7 +556,7 @@ Vergeet niet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploa
 "ignorewarning" => "Negeer de waarschuwing en sla het bestand op.",
 "minlength"  => "De naam van het bestand moet uit ten minste drie tekens bestaan.",
 "badfilename" => "De naam van het bestand is gewijzigd in \"$1\".",
-"badfiletype" => "\".$1\" is geen aanbevolen bestandsformaat.",
+"badfiletype" => "\".$1\" is geen aanbevolen afbeeldings bestandsformaat.",
 "largefile"  => "Aanbeveling: maak afbeeldingen niet groter dan 100k",
 "successfulupload" => "De upload was succesvol",
 "fileuploaded" => "<b>Het uploaden van bestand \"$1\" is geslaagd.</b> Gelieve deze link naar de omschrijvingspagina te volgen: ($2). Vul daar informatie in over dit bestand, bijvoorbeeld de oorsprong, wanneer en door wie het gemaakt is en wat u verder er nog over te vertellen heeft.",
@@ -659,7 +659,7 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 en een geldig e-mailadres in uw <a href=\"" .
   "{{localurle:Speciaal:Preferences}}\">voorkeuren</a>
 te vermelden om deze functie te kunnen gebruiken.",
-"emailuser"  => "E-mail gebruiker",
+"emailuser"  => "E-mail deze gebruiker",
 "emailpage"  => "E-mail gebruiker",
 "emailpagetext" => "Indien deze gebruiker een geldig e-mailadres heeft opgegeven dan kunt u via dit formulier een bericht verzenden. Het e-mailadres dat u heeft opgegeven bij uw voorkeuren zal als afzender gebruikt worden.",
 "noemailtitle" => "Geen e-mailadres gekend voor deze gebruiker",
@@ -682,7 +682,13 @@ te vermelden om deze functie te kunnen gebruiken.",
   "{{localurle:Speciaal:Userlogin}}\">aangemeld</a>
 te zijn.",
 "addedwatch" => "Toegevoegd aan volglijst",
-"addedwatchtext" => "De pagina \"$1\" is aan uw [[Speciaal:Watchlist|volglijst]] toegevoegd. <p>Toekomstige wijzigingen aan deze pagina en overlegpagina zullen op [[Speciaal:Watchlist|uw volglijst]] vermeld worden.<br/> Ook zullen deze pagina's in het <b>vet</b> verschijnen in de [[Speciaal:Recentchanges|lijst van recente wijzigingen]] zodat u ze eenvoudiger kunt opmerken.</p> <p>Indien u een pagina wenst te verwijderen van uw volglijst ga dan naar de pagina en klik op "Niet meer volgen" in de menubalk.<br/> Er is ook op uw [[Speciaal:Watchlist|volglijst]] een pagina waar u ook kunt aanvinken welke pagina's u niet meer op uw volglijst wilt.",
+"addedwatchtext" => "De pagina \"$1\" is aan uw <a href=\"" .
+  "{{localurle:Speciaal:Watchlist}}\">volglijst</a> toegevoegd.
+Toekomstige wijzigingen aan deze pagina en overlegpagina zullen hier vermeld worden. 
+Ook zullen deze pagina's in het <b>vet</b> verschijnen in de <a href=\"" .
+  "{{localurle:Speciaal:Recentchanges}}\">lijst van recente wijzigingen</a> zodat u ze eenvoudiger kunt opmerken.</p>
+
+<p>Indien u een pagina wenst te verwijderen van uw volglijst klik dan op \"Van volglijst verwijderen\" in de menubalk.",
 "removedwatch" => "Van volglijst verwijderen",
 "removedwatchtext" => "De pagina \"$1\" is van uw volglijst verwijderd.",
 "watchthispage" => "Volg deze pagina",
@@ -710,12 +716,12 @@ op 'Verwijderen' onderaan deze pagina.",
 "deletepage" => "Pagina verwijderen",
 "confirm"  => "Bevestig",
 "excontent" => "De inhoud was:",
-"exbeforeblank" => "Voordat de pagina werd leeggemaakt, was de inhoud:",
+"exbeforeblank" => "Voor leegmaking was de inhoud:",
 "exblank" => "Dit was een lege pagina.",
 "confirmdelete" => "Bevestig verwijdering",
 "deletesub"  => "(Verwijderen \"$1\")",
 "historywarning" => "Waarschuwing: Deze pagina heeft een voorgeschiedenis. Overtuig uzelf ervan dat geen van de oudere versies een te behouden pagina is.",
-"confirmdeletetext" => "U staat op het punt een pagina of afbeelding te verwijderen. Speciaal voor afbeeldingen opgepast; die kunt u '''*niet*''' terugzetten zoals dit wel kan met een pagina. Deze actie verwijdert alle inhoud en geschiedenis uit de database. Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt en dat uw verwijdering in overeenstemming is met de [[{{ns4}}:Richtlijnen voor moderators|Richtlijnen voor moderators]] en de gebruiken op Wikipedia NL.",
+"confirmdeletetext" => "U bent staat op het punt een pagina of afbeelding voorgoed te verwijderen. Dit verwijdert alle inhoud en geschiedenis van de database. Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt, en dat uw verwijdering overeenkomt met de [[{{ns:4}}:Instructies]].",
 "confirmcheck" => "Ja, ik wil dit voorgoed verwijderen.",
 "actioncomplete" => "Actie voltooid",
 "deletedtext" => "\"$1\" is verwijderd. Zie $2 voor een overzicht van recente verwijderingen.",
@@ -748,7 +754,7 @@ op 'Verwijderen' onderaan deze pagina.",
 
 # Contributions
 # Bijdragen
-"contributions" => "Bijdragen gebruiker",
+"contributions" => "Bijdragen per gebruiker",
 "mycontris" => "Mijn bijdragen",
 "contribsub" => "Voor $1",
 "nocontribs" => "Geen wijzigingen gevonden die aan de gestelde criteria voldoen.",
@@ -769,34 +775,21 @@ op 'Verwijderen' onderaan deze pagina.",
 # Block/unblock IP
 #
 "blockip"  => "Gebruiker blokkeren",
-"blockiptext" => "Gebruik het onderstaande formulier om een bepaald IP-adres of een bepaalde gebruikersnaam de schrijftoegang te ontnemen. Via de website http://www.domainwhitepages.com kan u opzoeken wie achter een ip-adres zit. Zet de hostnaam ook in het veld met de reden. Dat maak het eenvoudiger de diverse gebruikers met hetzelfde ip-adres te onderscheiden. Gebruik deze optie spaarzaam en volgens de [[Wikipedia:Richtlijnen voor moderators|richtlijnen voor moderators]]. Het is bedoeld om vandalisme te voorkomen. Misbruik van deze mogelijkheid kan tot gevolg hebben dat uw moderatorschap wordt weggenomen. Velden:
-* IP-adres of gebruikersnaam: welke gebruiker u wilt blokkeren
-* Verloop: hoe lang de blokkering geldig blijft. Deze is in het GNU standard format, zoals beschreven in de [http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html tar manual].
-**Voor een x-aantal minuten (bijvb. 15 minuten): '''15 min'''.
-**Voor een x-aantal uren (bijvb. 5 uur): '''5 hours'''.
-**Voor een x-aantal dagen (bijvb. 5 dagen): '''5 days'''.
-**Voor een x-aantal weken (bijvb. 5 weken): '''5 weeks'''.
-**Voor een x-aantal maanden (bijvb. 5 maanden): '''5 months'''.
-**Voor een x-aantal jaren (bijvb. 5 jaren): '''5 years'''.
-**Tot een bepaald tijdstip in [[Greenwich Mean Time|GMT]] (bijvoorbeeld tot 17u): '''17:00'''.
-**Tot een bepaalde datum (bijvb. 15 mei 2006): '''2006-05-15'''.
-**Ook kan er '''indefinite''' (onbepaald) of '''infinite''' (tot in der eeuwigheid) gebruikt worden. 
-***Gelieve dit '''*niet*''' te gebruiken. Blokkeer liever voor meerdere maanden dan onbepaald of tot in der eeuwigheid
-* Reden: vul hier een duidelijke, zinvolle reden in. De geblokkeerde gebruikers zien deze tekst. Voor informatie over het blokkeren van een bereik van IP-adressen, zie [[meta:Range blocks|Range blocks]]. Om een blokkering op te heffen zie [[Speciaal:Ipblocklist|Lijst van geblokkeerde gebruikers en IP-adressen]]. Het log van de blokkeringen kan men vinden op [[Wikipedia:Blokkeerlogboek]] ----",
+"blockiptext" => "Gebruik het onderstaande formulier om een bepaald IP-adres of een bepaalde gebruikersnaam de schrijftoegang te ontnemen. Gebruik deze optie spaarzaam! Het is bedoeld om vandalisme te voorkomen. Misbruik van deze mogelijkheid kan tot gevolg hebben dat uw systeembeheerderschap wordt weggenomen. Vul hieronder een specifieke reden in.",
 "ipaddress"  => "IP-adres of gebruikersnaam",
 "ipbreason"  => "Reden",
 "ipbsubmit"  => "Blokkeer deze gebruiker",
-"badipaddress" => "ongeldig IP-adres of onbestaande gebruikersnaam",
+"badipaddress" => "Geen bestaande gebruikersnaam of geldig IP-adres",
 "noblockreason" => "U dient een reden op te geven voor het blokkeren van een gebruiker.",
 "blockipsuccesssub" => "Blokkering gelukt",
 "blockipsuccesstext" => "\"$1\" is geblokkeerd.<br />
 Zie de [[speciaal:Ipblocklist|Lijst van geblokkeerde IP-adressen]].",
 "unblockip"  => "De-blokkeer gebruiker",
 "unblockiptext" => "Gebruik het onderstaande formulier om terug schrijftoegang te geven aan een geblokkeerde gebruiker of IP-adres.",
-"ipusubmit"  => "Blokkering van deze gebruiker opheffen.",
-"ipusuccess" => "Blokkering gebruiker \"$1\" is opgeheven.",
+"ipusubmit"  => "De-blokkeer deze gebruiker.",
+"ipusuccess" => "\"$1\" is gedeblokkeerd.",
 "ipblocklist" => "Lijst van geblokkeerde gebruikers en IP-adressen.",
-"blocklistline" => "Op $1 (vervalt op $4) blokkeerde $2:<br /> $3",
+"blocklistline" => "Op $1 blokkeerde $2: $3",
 "blocklink"  => "blokkeer",
 "unblocklink" => "de-blokkeer",
 "contribslink" => "bijdragen",
@@ -822,7 +815,7 @@ Vergeet niet de database opnieuw te de-blokkeren zodra u klaar bent met uw onder
 # SQL query
 # SQL raadplegen
 "asksql"  => "SQL raadplegen",
-"asksqltext" => "Gebruik het onderstaande formulier om een direct verzoek naar de database van {{SITENAME}} te zenden. Gebruik enkelvoudige aanhalingstekens ('zoals hier') voor letterlijke teksten. Een ingewikkelde aanvraag kan de server vaak extra belasten. Gelieve deze mogelijkheid daarom spaarzaam te gebruiken. Zie ook: [[{{ns:4}}:SQL opdrachten]].",
+"asksqltext" => "Gebruik het onderstaande formulier om een direct verzoek naar de database van {{SITENAME}} NL te zenden. Gebruik enkelvoudige aanhalingstekens ('zoals hier') voor letterlijke teksten. Een ingewikkelde aanvraag kan de sever vaak extra belasten. Gelieve deze mogelijkheid daarom spaarzaam te gebruiken. Zie ook: [[{{ns:4}}:SQL opdrachten]].",
 "sqlislogged" => "Alle SQL Queries worden gelogd.",
 "sqlquery"  => "Voer opdracht in",
 "querybtn"  => "Verstuur opdracht",
@@ -852,104 +845,6 @@ te zijn om een pagina te verplaatsen.",
 "movetalk"  => "Verplaats \"Overleg\" pagina ook indien aanwezig.",
 "talkpagemoved" => "De bijhorende overlegpagina is ook verplaatst.",
 "talkpagenotmoved" => "De bijhorende overlegpagina is <strong>niet</strong> verplaatst.",
-
-# Everything else
-"1movedto2" => "titel '$1' gewijzigd in '$2'",
-"1movedto2_redir" => "de titel van $1 is gewijzigd over de oudere redirect $2",
-"acct_creation_throttle_hit" => "Sorry, u heeft al $1 accounts aangemaakt. U kan niet nog meer accounts aanmaken.",
-"allarticles" => "Alle artikelen",
-"allmessages" => "Standaardteksten",
-"allmessagestext" => "Hier vindt u alle berichten in de MediaWiki-naamruimte:",
-"allpagesformtext1" => "Kies naamruimte: $1 $2",
-"allpagesformtext2" => "Alle pagina's ('$1'-naamruimte)",
-"allpagesnext" => "Volgende",
-"allpagesprev" => "Vorige",
-"allpagessubmit" => "OK",
-"alreadyrolled" => "Het is niet mogelijk om de wijziging van de pagina [[$1]] door [[Gebruiker:$2|$2]] ([[Overleg gebruiker:$2|Overleg]]) ongedaan te maken. Iemand anders heeft deze reeds hersteld tot een vorige versie van deze pagina of een andere bewerking gedaan. De meest recente bewerking is gedaan door [[Gebruiker:$3|$3]] ([[Overleg gebruiker:$3|Overleg]]).",
-"and" => "en",
-"anontalk" => "Overleg voor dit IP-adres",
-"anonymous" => "Anonieme gebruiker(s) van Wikipedia",
-"article" => "artikel",
-"articlenamespace" => "(artikelen)",
-"blocklogentry" => "\"$1\" is geblokkeerd voor een periode van $2. Reden",
-"blocklogpage" => "Blokkeerlogboek",
-"blocklogtext" => "Hier ziet u een lijst van de recente blokkeringen en deblokkeringen. Automatische blokkeringen en deblokkeringen komen niet in het logboek. Zie de [[Speciaal:Ipblocklist|{{MSG:ipblocklist}}]] voor de lijst van op dit moment geblokkeerde adressen.",
-"bold_sample" => "vetgedrukte tekst",
-"bold_tip" => "vet",
-"booksourcetext" => "Hieronder is een lijst van externe websites die boeken verkopen en ook verdere informatie hierover kunnen verstekken. Via een ISBN-nummer in een artikel kunt u via deze pagina een werk opzoeken. <p>Deze dienst is enkel ter uwer informatie. {{SITENAME}} heeft <em>geen enkele</em> relatie met deze websites.",
-"bureaucratlogentry" => "Rechten van gebruiker \"$1\" aangepast naar \"$2\"",
-"bureaucrattext" => "Deze functie is enkel beschikbaar voor moderators met de \"bureaucraat\" status. Voor de voorwaarden om deze status te verkrijgen raadpleeg hiervoor de [[Wikipedia:Richtlijnen voor moderators|Richtlijnen voor moderators]].",
-"bureaucrattitle" => "Alleen voor bureaucraten",
-"categoriespagestext" => "De volgende categorieën bestaan er in de wiki.",
-"categoryarticlecount" => "Er zijn $1 artikelen in deze categorie.",
-"categoryarticlecount1" => "Er is $1 artikel in deze categorie.",
-"clearyourcache" => "'''Let op!''' Nadat u de veranderingen heeft opgeslagen, moet u de cache van uw browser nog legen om ze daadwerkelijk te zien. {| table border=\"1\" | Mozilla || reload (of \''ctrl-r\'') |- | IE/Opera || ctrl-f5 |- | Safari || cmd-r |- | Konqueror || ctrl-r |}",
-"compareselectedversions" => "Vergelijk de aangevinkte versies",
-"confirmprotect" => "Bevestig bescherming",
-"confirmprotecttext" => "Wilt u deze pagina daadwerkelijk beschermen?",
-"confirmunprotect" => "Bevestig het opheffen van de bescherming",
-"confirmunprotecttext" => "Wilt u de bescherming van deze pagina daadwerkelijk opheffen?",
-"copyright" => "<br/>De inhoud van {{SITENAME}} is zonder enige vorm van garantie beschikbaar onder de $1.<br/>",
-"creditspage" => "Auteurs pagina",
-"currentevents-url" => "In het nieuws",
-"currentrevisionlink" => "toon huidige versie",
-"dateformat" => "datumopmaak",
-"deadendpages" => "Pagina's zonder links",
-"delete" => "verwijder",
-"disclaimerpage" => "Project:Algemene afwijzing aansprakelijkheid",
-"disclaimers" => "Voorbehoud",
-"edit" => "bewerk",
-"emptyfile" => "Het bestand dat u heeft geupload lijkt leeg te zijn. Dit zou kunnen komen door een typefout in de bestandsnaam. Ga a.u.b. na of u dit bestand werkelijk bedoelde.",
-"export" => "exporteren",
-"exportcuronly" => "Alleen de actuele versie, niet de voorgeschiedenis",
-"exporttext" => "De tekst en geschiedenis van een bepaalde pagina of groep pagina's kunnen in XML-formaat geëxporteerd worden. Dit kan daarna naar een andere MediaWiki-wiki geïmporteerd worden, verwerkt worden of simpelweg opgeslagen.",
-"extlink_sample" => "	http://nl.wikipedia.org WikipediaNL",
-"extlink_tip" => "Externe link",
-"fileexists" => "Er bestaat reeds een bestand met deze naam, zie $1. Als u dit bestand opslaat, zal het bestaande bestand overschreven worden. Bij afbeeldingen is het in dat geval raadzaam om de cache van uw browser te legen om de nieuwe afbeelding te kunnen zien.",
-"headline_sample" => "Deelonderwerp",
-"headline_tip" => "Tussenkopje (hoogste niveau)",
-"hist" => "gesch",
-"histlegend" => "Verklaring afkortingen: (huidig) = verschil met huidige versie, (vorige) = verschil met voorgaande versie, K = kleine wijziging",
-"history_short" => "geschiedenis",
-"hr_tip" => "Horizontale lijn",
-"image_sample" => "plaatje.png",
-"image_tip" => "Afbeelding",
-"imagemaxsize" => "Maximale grootte van afbeeldingen op de beschrijvingspagina:",
-"import" => "Pagina's importeren",
-"importfailed" => "Import is mislukt: $1",
-"importhistoryconflict" => "Er zijn conflicten in de geschiedenis van de pagina (is misschien eerder geimporteerd)",
-"importnotext" => "Leeg of geen tekst",
-"importsuccess" => "Importeren is geslaagd!",
-"importtext" => "Gebruik de Speciaal:Export optie in de wiki waar de informatie vandaan komt, sla het op uw eigen systeem op, en stuur het daarna hier op.",
-"info_short" => "Informatie",
-"infobox" => "	Druk op een knop voor een voorbeeldtekst.",
-"infobox_alert" => "Type de tekst hier die u gelayout wilt zien.\n Het zal in het informatievak worden getoond voor copy en paste.\\nVoorbeeld:\\n$1\\n zal worden weergegeven als:\\n$2",
-"infosubtitle" => "Informatie voor pagina",
-"intl" => "Taallinks",
-"ip_range_invalid" => "Ongeldige IP-reeks",
-"ipb_expiry_invalid" => "Ongeldige verlooptijd.",
-"ipbexpiry" => "verloop",
-"italic_sample" => "cursieve tekst",
-"italic_tip" => "Cursief",
-"lastmodifiedby" => "Deze pagina is het laatst bewerkt op $1 door $2.",
-"link_sample" => "Onderwerp",
-"link_tip" => "Interne link",
-"listadmins" => "Lijst van moderators",
-"listingcontinuesabbrev" => "<font size=-1><i>vervolg</i></font>",
-"log" => "Logboeken",
-"loginprompt" => "Uw webbrowser moet cookies aanvaarden om dit te kunnen gebruiken.",
-"loginreqtext" => "U moet u [[speciaal:Userlogin|aanmelden]] om andere pagina's te kunnen bekijken.",
-"loginreqtitle" => "Aanmelden verplicht",
-"mailerror" => "Fout bij het verzenden van mail: $1",
-"makesysop" => "Maak van een gebruiker een moderator of een bureaucraat",
-"makesysopfail" => "<b>Het is niet gelukt om van gebruiker '$1' een moderator te maken. Kijk de schrijfwijze van de gebruikersnaam na. Geef enkel de naam in zonder 'gebruiker:' ervoor.</b>",
-"makesysopname" => "Gebruikersnaam:",
-"makesysopok" => "<b>Gebruiker '$1' is nu een moderator</b>",
-"makesysopsubmit" => "Wijzig de gebruikersrechten",
-"makesysoptext" => "Met dit formulier kan u als bureaucraat de gebruikersrechten van gebruikers wijzigen. Het gebruik van deze functie is beperkt door de [[Project:Richtlijnen voor moderators|Richtlijnen voor moderators]] U kan:\n*van een gebruiker een moderator maken\n*van een moderator een bureaucraat maken\n#Vul de gebruikersnaam in van de gebruiker\n#Als die bureaucraat moet worden vink het vakje dan aan\n#En druk op de knop",
-"makesysoptitle" => "Verander een gebruiker in een moderator of een bureaucraat",
-"mar" => "maa"
-######
 
 # Math
            'mw_math_png' => "Altijd als PNG weergeven",
@@ -1044,5 +939,3 @@ class LanguageNl extends LanguageUtf8 {
 }
 
 ?>
-
-
