@@ -25,16 +25,6 @@ Don't forget to check the RELEASE-NOTES file...
 
 ********************** WARNING **************************
 
-The web-based install is still somewhat experimental. It
-doesn't yet support updating the format of an existing
-MediaWiki database, the maintenance scripts aren't available,
-and there may be all kinds of horrible bugs or security
-problems that haven't been worked out yet.
-
-HOWEVER it is much easier, safer, and more reliable than
-the old install.php, and does not require root access
-if you already have a database and user access to it.
-
 REMEMBER: ALWAYS BACK UP YOUR DATABASE BEFORE ATTEMPTING
 TO INSTALL OR UPGRADE!!!
 
@@ -68,6 +58,21 @@ should now be working.
 Once the wiki is set up, you should remove the config
 directory, or at least make it not world-writable (though
 it will refuse to config again if the wiki is set up).
+
+
+----
+Upgrading
+----
+
+Install as with a fresh copy of MediaWiki, but give it the
+database information for the existing database. It will try
+to upgrade the database schema as necessary automatically.
+
+Upgrades are not always foolproof; be sure to back everything
+up! You will have to make any LocalSettings.php customizations
+on the newly generated LocalSettings.php.
+
+Be sure to backup all your files before you start.
 
 
 ----
