@@ -1,6 +1,7 @@
 = MediaWiki release notes =
 
-== Version 1.2.5, ?? ==
+== Version 1.2.5, 2004-05-01 ==
+* Fixed install problem with blank root password
 * Fixed Special:Emailuser/Username links
 * Fixed main-page edit links on fuzzy search results
 * Fixed wikipedia-interwiki.sql
