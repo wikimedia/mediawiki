@@ -979,7 +979,7 @@ class Title {
 		if ( $imgpre === false ) {
 			$imgpre = ':' . $wgContLang->getNsText( Namespace::getImage() ) . ':';
 			# % is needed as well
-			$rxTc = '/[^' . Title::legalChars() . ']/';
+			$rxTc = '/[^' . Title::legalChars() . ']|%[0-9A-Fa-f]{2}/';
 		}
 
 		$this->mInterwiki = $this->mFragment = '';
