@@ -28,9 +28,6 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 	list( $limit, $offset ) = wfCheckLimits( 100, "rclimit" );
 	$cutoff = wfUnix2Timestamp( time() - ( $days * 86400 ) );
 
-	if ( ! isset( $hideminor ) ) {
-		$hideminor = $wgUser->getOption( "hideminor" );
-	}
 	if ( $hideminor ) {
 		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchangeslinked" ),
 	  	  WfMsg( "show" ), "target=" . wfEscapeHTML( $nt->getPrefixedURL() ) .
@@ -54,8 +51,10 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 	$note = wfMsg( "rcnote", $limit, $days );
 	$wgOut->addHTML( "<hr>\n{$note}\n<br>" );
 
-	$tu = "target=" . $nt->getPrefixedURL();
-	$note = rcDayLimitlinks( $days, $limit, "Recentchangeslinked", $tu );
+	$note = rcDayLimitlinks( $days, $limit, "Recentchangeslinked",
+                                 "target=" . $nt->getPrefixedURL() . "&hideminor={$hideminor}",
+                                 false, $mlink );
+
 	$wgOut->addHTML( "{$note}\n" );
 
 	$s = $sk->beginRecentChangesList();

@@ -36,37 +36,44 @@ function wfSpecialContributions( $par = "" )
 		$ul .= "brrrp";
 	$wgOut->setSubtitle( wfMsg( "contribsub", $ul ) );
 
-	if ( ! isset( $hideminor ) ) {
-		$hideminor = $wgUser->getOption( "hideminor" );
-	}
 	if ( $hideminor ) {
 		$cmq = "AND cur_minor_edit=0";
 		$omq = "AND old_minor_edit=0";
-	} else { $cmq = $omq = ""; }
+		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Contributions" ),
+	  	  WfMsg( "show" ), "target=" . wfEscapeHTML( $nt->getPrefixedURL() ) .
+		  "&offset={$offset}&limit={$limit}&hideminor=0" );
+	} else {
+                $cmq = $omq = "";
+		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Contributions" ),
+	  	  WfMsg( "hide" ), "target=" . wfEscapeHTML( $nt->getPrefixedURL() ) .
+		  "&offset={$offset}&limit={$limit}&hideminor=1" );
+        }
 
 	$top = wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
 
 	$sl = wfViewPrevNext( $offset, $limit,
-	  $wgLang->specialpage( "Contributions" ), "target=" . wfUrlEncode( $target ) );
-	$wgOut->addHTML( "<br>{$sl}\n" );
+	  $wgLang->specialpage( "Contributions" ), "hideminor={$hideminor}&target=" . wfUrlEncode( $target ) );
+
+        $shm = wfMsg( "showhideminor", $mlink );
+	$wgOut->addHTML( "<br>{$sl} ($shm) \n");
 	
 	if ( 0 == $id ) {
-		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment FROM cur " .
+		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit FROM cur " .
 		  "WHERE cur_user_text='" . wfStrencode( $nt->getText() ) . "' {$cmq} " .
 		  "ORDER BY inverse_timestamp LIMIT {$offlimit}";
 		$res1 = wfQuery( $sql, DB_READ, $fname );
 
-		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment FROM old " .
+		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit FROM old " .
 		  "WHERE old_user_text='" . wfStrencode( $nt->getText() ) . "' {$omq} " .
 		  "ORDER BY inverse_timestamp LIMIT {$offlimit}";
 		$res2 = wfQuery( $sql, DB_READ, $fname );
 	} else {
-		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment FROM cur " .
+		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit FROM cur " .
 		  "WHERE cur_user={$id} {$cmq} ORDER BY inverse_timestamp LIMIT {$offlimit}";
 		$res1 = wfQuery( $sql, DB_READ, $fname );
 
-		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment FROM old " .
+		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit FROM old " .
 		  "WHERE old_user={$id} {$omq} ORDER BY inverse_timestamp LIMIT {$offlimit}";
 		$res2 = wfQuery( $sql, DB_READ, $fname );
 	}
@@ -92,6 +99,7 @@ function wfSpecialContributions( $par = "" )
 			$t = $obj1->cur_title;
 			$ts = $obj1->cur_timestamp;
 			$comment =$obj1->cur_comment;
+                        $me = $obj1->cur_minor_edit;
 
 			$obj1 = wfFetchObject( $res1 );
 			$topmark = true;			
@@ -101,18 +109,19 @@ function wfSpecialContributions( $par = "" )
 			$t = $obj2->old_title;
 			$ts = $obj2->old_timestamp;
 			$comment =$obj2->old_comment;
+                        $me = $obj1->old_minor_edit;
 
 			$obj2 = wfFetchObject( $res2 );
 			$topmark = false;
 			--$nOld;
 		}
 		if( $n >= $offset )
-			ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment );
+			ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, ( $me > 0) );
 	}
 	$wgOut->addHTML( "</ul>\n" );
 }
 
-function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment )
+function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor )
 {
 	global $wgLang, $wgOut, $wgUser, $target;
 	$page = Title::makeName( $ns, $t );
@@ -130,7 +139,11 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment )
 	}
 	$d = $wgLang->timeanddate( $ts, true );
 
-	$wgOut->addHTML( "<li>{$d} {$link} {$comment}{$topmarktext}</li>\n" );
+        if ($isminor) {
+          $mflag = "<strong>" . wfMsg( "minoreditletter" ) . "</strong> ";
+        }
+
+	$wgOut->addHTML( "<li>{$d} {$mflag}{$link} {$comment}{$topmarktext}</li>\n" );
 }
 
 function ucCountLink( $lim, $d )
