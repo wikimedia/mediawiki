@@ -82,6 +82,7 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	!count( array_diff( array_keys( $_GET ), array( 'action', 'title' ) ) ) )
 {
 	/* redirect to canonical url, make it a 301 to allow caching */
+	$wgOut->setSquidMaxage( 1200 );
 	$wgOut->redirect( $wgTitle->getFullURL(), '301');
 } else if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
 	# actions that need to be made when we have a special pages
