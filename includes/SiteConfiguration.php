@@ -31,7 +31,7 @@ class SiteConfiguration {
 	}
 
 	function &getLocalDatabases() {
-		return $this->localDatabases();
+		return $this->localDatabases;
 	}
 	
 	function initialise() {
