@@ -4,6 +4,7 @@
 #--------------------------------------------------------------------------
 
 # Namespaces
+define("NS_MEDIA", -2);
 define("NS_SPECIAL", -1);
 define("NS_MAIN", 0);
 define("NS_TALK", 1);
@@ -44,6 +45,7 @@ define("MAG_MSGNW", 13);
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesEn = array(
+	-2	=> "Media",
 	-1	=> "Special",
 	0	=> "",
 	1	=> "Talk",
