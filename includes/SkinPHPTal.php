@@ -28,6 +28,7 @@
  * $wgUsePHPTal = true;
  *
  * @package MediaWiki
+ * @subpackage Skins
  */
 
 /**

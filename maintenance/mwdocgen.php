@@ -39,9 +39,8 @@ $here = dirname( dirname( __FILE__ ) ) . $sep;
 $pdOutput = "{$here}{$sep}docs{$sep}html";
 
 /** Some more Phpdoc settings */
-$pdOthers = '';
-//$pdOthers = ' -dn \'MediaWiki\' ';
-$pdOthers .= ' --title \'MediaWiki generated documentation\' -o \'HTML:frames:DOM/earthli\' --ignore AdminSettings.php,LocalSettings.php --parseprivate on ';
+$pdOthers = ' -dn \'MediaWiki\' ';
+$pdOthers .= ' --title \'MediaWiki generated documentation\' -o \'HTML:frames:DOM/earthli\' --ignore AdminSettings.php,LocalSettings.php,tests/LocalTestSettings.php --parseprivate on ';
 
 /** MediaWiki location */
 #$mwPath = '/var/www/mediawiki/';
