@@ -498,25 +498,29 @@ class EditPage {
 			$wgOut->setOnloadHandler( 'document.editform.wpTextbox1.focus()' );
 		}
 		# Prepare a list of templates used by this page
-		$db =& wfGetDB( DB_SLAVE );
-		$cur = $db->tableName( 'cur' );
-		$links = $db->tableName( 'links' );
+		$templates = '';
 		$id = $this->mTitle->getArticleID();
-		$sql = "SELECT cur_namespace,cur_title,cur_id ".
-			"FROM $cur,$links WHERE l_to=cur_id AND l_from={$id} and cur_namespace=".NS_TEMPLATE;
-		$res = $db->query( $sql, "EditPage::editform" );
-
-		if ( $db->numRows( $res ) ) {
-			$templates = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
-			while ( $row = $db->fetchObject( $res ) ) {
-				if ( $titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title ) ) {
-					$templates .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
+		if ( 0 !== $id ) {
+			$db =& wfGetDB( DB_SLAVE );
+			$cur = $db->tableName( 'cur' );
+			$links = $db->tableName( 'links' );
+			$sql = "SELECT cur_namespace,cur_title,cur_id ".
+				"FROM $cur,$links WHERE l_to=cur_id AND l_from={$id} and cur_namespace=".NS_TEMPLATE;
+			$res = $db->query( $sql, "EditPage::editform" );
+			if ( false !== $res ) {
+				if ( $db->numRows( $res ) ) {
+					$templates = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
+					while ( $row = $db->fetchObject( $res ) ) {
+						if ( $titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title ) ) {
+							$templates .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
+						}
+					}
+					$templates .= '</ul>';
 				}
+				$db->freeResult( $res );
 			}
-			$templates .= '</ul>';
-		} else {	
-			$templates = '';
 		}
+
 		$wgOut->addHTML( "
 {$toolbar}
 <form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"

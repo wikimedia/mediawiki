@@ -311,7 +311,6 @@ class Article {
 
 		$oldid = $wgRequest->getVal( 'oldid' );
 		if ( isset( $oldid ) ) {
-			$dbr =& $this->getDB();
 			$oldid = IntVal( $oldid );
 			if ( $wgRequest->getVal( 'direction' ) == 'next' ) {
 				$nextid = $this->mTitle->getNextRevisionID( $oldid );
@@ -601,12 +600,16 @@ class Article {
 		global $wgOut;
 		if ( -1 != $this->mUser ) return;
 
+		# New or non-existent articles have no user information
+		$id = $this->getID();
+		if ( 0 == $id ) return;
+
 		$fname = 'Article::loadLastEdit';
 
 		$dbr =& $this->getDB();
 		$s = $dbr->selectRow( 'cur',
 		  array( 'cur_user','cur_user_text','cur_timestamp', 'cur_comment','cur_minor_edit' ),
-		  array( 'cur_id' => $this->getID() ), $fname, $this->getSelectOptions() );
+		  array( 'cur_id' => $id ), $fname, $this->getSelectOptions() );
 
 		if ( $s !== false ) {
 			$this->mUser = $s->cur_user;
