@@ -148,6 +148,7 @@
 	'rw' => 'Kinyarwanda',
 	'sa' => '&#2360;&#2306;&#2360;&#2381;&#2325;&#2371;&#2340;',	# Sanskrit
 	'sc' => 'Sardu',	# Sardinian
+	'scn' => 'Sicilianu', # Sicilian
 	'sd' => '&#2360;&#2367;&#2344;&#2343;&#2367;',	# Sindhi
 	'se' => 'S&aacute;megiella',	# (Northern) Sami
 	'sg'	=> 'Sangro',
