@@ -4,24 +4,52 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 
-== MediaWiki 1.4 BETA 6 ==
+== MediaWiki 1.4 RELEASE CANDIDATE 1 ==
 
-MediaWiki 1.4beta6 is a security and bug fix release for the 1.4 beta
+MediaWiki 1.4rc1 is a security and bug fix release for the 1.4 beta
 series.
 
-An attacker could craft a URL which, when visited by a particular
-logged-in user, would execute arbitrary JavaScript code on the user's
-browser in the wiki's site context. This attack has been blocked, and as
-an extra precaution the user CSS and JavaScript subpage support is now
-disabled by default. Sites which want this ability may set $wgAllowUserCss
-and $wgAllowUserJs in LocalSettings.php.
+=== Important security updates ===
 
-Additional protections have been added against off-site form submissions
-hijacking user credentials. Authors of bot tools may need to update their
-code to include additional fields.
+A security audit found and fixed a number of problems. Users of MediaWiki
+1.3.10 and earlier should upgrade to 1.3.11; users of 1.4 beta releases
+should upgrade to 1.4rc1.
 
-These problems affects the 1.3.x releases as well; 1.3 users should
-upgrade to 1.3.10.
+
+==== Cross-site scripting vulnerability ====
+
+XSS injection points can be used to hijack session and authentication
+cookies as well as more serious attacks.
+
+* Media: links output raw text into an attribute value, potentially
+  abusable for JavaScript injection. This has been corrected.
+* Additional checks added to file upload to protect against MSIE and
+  Safari MIME-type autodetection bugs.
+
+As of 1.3.10/1.4beta6, per-user customized CSS and JavaScript is disabled
+by default as a general precaution. Sites which want this ability may set
+$wgAllowUserCss and $wgAllowUserJs in LocalSettings.php.
+
+
+==== Cross-site request forgery ====
+
+An attacker could use JavaScript-submitted forms to perform various
+restricted actions by tricking an authenticated user into visiting
+a malicious web page. A fix for page editing in 1.3.10/1.4beta6 has
+been expanded in this release to other forms and functions.
+
+Authors of bot tools may need to update their code to include the
+additional fields.
+
+
+==== Directory traversal ====
+
+An unchecked parameter in image deletion could allow an authenticated
+administrator to delete arbitary files in directories writable by the
+web server, and confirm existence of files not deletable.
+
+
+==== Older issues ====
 
 Note that 1.4 beta releases prior to beta 5 include an input validation
 error which could lead to execution of arbitrary PHP code on the server.
@@ -110,17 +138,15 @@ If upgrading from an older release, see the file UPGRADE;
 
 * A new user/groups permissions scheme has been held back to 1.5.
 * An experimental SOAP interface will be made available as an extension
-* PostgreSQL support is largely working, but search and installer
-  support are not complete. These are being actively worked on
-  and should come in later betas.
+* PostgreSQL support is largely working, minus search and the installer.
+  You can perform a manual installation.
 * E-mail notification of watched page changes and verification of
-  user-submitted e-mail addresses is not yet included. If updates
-  are available, this may make it into later betas.
+  user-submitted e-mail addresses is not yet included.
 * Log pages are not automatically imported into the new log table
   at upgrade time. A script to import old text log entries is
   incomplete, but may be available by the time 1.4 finishes.
-* UI messages may be broken in Latin-1 mode in this release due to some
-  minor breakage in the language selection module.
+* Some UI messages may be broken in Latin-1 mode in this release due
+  to some minor breakage in the language selection module.
 
 === Misc bugs fixed in beta 1 ===
 
@@ -346,6 +372,11 @@ If upgrading from an older release, see the file UPGRADE;
 * Allow Special:Makesysop to work for usernames containing SQL special
   characters.
 * Fix annoying blue line in Safari on scaled-down images on description page
+* Increase upload sanity checks
+* Fix XSS bug in Media: links
+* Add cross-site form submission protection to various actions
+* Fix fatal error on some dubious page titles
+* Stub threshold displays correctly again
 
 
 === Caveats ===
