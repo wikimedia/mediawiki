@@ -1,7 +1,4 @@
 <?php
-require_once( "CardSet.php" );
-require_once( "TabbedCardSet.php" );
-
 function wfSpecialPreferences()
 {
 	global $wgRequest;
@@ -265,13 +262,9 @@ class PreferencesForm {
 		  . "id=\"$tname\" name=\"wpOp$tname\"$checked /><label for=\"$tname\">$ttext</label></div>\n";
 	}
 
-
 	/* private */ function mainPrefsForm( $err )
 	{
 		global $wgUser, $wgOut, $wgLang, $wgUseDynamicDates, $wgValidSkinNames;
-		
-		$skin = $wgUser->getSkin();
-		$cardset = $skin->newCardSet( wfMsg( "preferences" ) );
 
 		$wgOut->setPageTitle( wfMsg( "preferences" ) );
 		$wgOut->setArticleRelated( false );
@@ -294,12 +287,17 @@ class PreferencesForm {
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Preferences" );
 		$action = $titleObj->escapeLocalURL();
 
+		$qb = wfMsg( "qbsettings" );
 		$cp = wfMsg( "changepassword" );
+		$sk = wfMsg( "skin" );
+		$math = wfMsg( "math" );
+		$dateFormat = wfMsg("dateformat");
 		$opw = wfMsg( "oldpassword" );
 		$npw = wfMsg( "newpassword" );
 		$rpw = wfMsg( "retypenew" );
 		$svp = wfMsg( "saveprefs" );
 		$rsp = wfMsg( "resetprefs" );
+		$tbs = wfMsg( "textboxsize" );
 		$tbr = wfMsg( "rows" );
 		$tbc = wfMsg( "columns" );
 		$ltz = wfMsg( "localtime" );
@@ -312,15 +310,16 @@ class PreferencesForm {
 		$emf = wfMsg( "emailflag" );
 		$ynn = wfMsg( "yournick" );
 		$stt = wfMsg ( "stubthreshold" ) ;
+		$srh = wfMsg( "searchresultshead" );
 		$rpp = wfMsg( "resultsperpage" );
 		$scl = wfMsg( "contextlines" );
 		$scc = wfMsg( "contextchars" );
 		$rcc = wfMsg( "recentchangescount" );
+		$dsn = wfMsg( "defaultns" );
 
 		$wgOut->addHTML( "<form id=\"preferences\" name=\"preferences\" action=\"$action\"
 	method=\"post\">" );
 	
-		######################################################################
 		# First section: identity
 		# Email, etc.
 		#
@@ -330,127 +329,142 @@ class PreferencesForm {
 		if ( $this->mEmailFlag ) { $emfc = 'checked="checked"'; }
 		else { $emfc = ""; }
 
+		$ps = $this->namespacesCheckboxes();
+
+		$wgOut->addHTML( "<fieldset>
+		<legend>".wfMsg('prefs-personal')."</legend>
+		<div><label>$yrn: <input type='text' name=\"wpRealName\" value=\"{$this->mRealName}\" size='20' /></label></div>
+		<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>
+		<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" /> $emf</label></div>
+		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>\n" );
+	
 		# Fields for changing password
 		#
 		$this->mOldpass = wfEscapeHTML( $this->mOldpass );
 		$this->mNewpass = wfEscapeHTML( $this->mNewpass );
 		$this->mRetypePass = wfEscapeHTML( $this->mRetypePass );
 
-		$cardset->addCard( "Idento", "<div><label>$yrn: <input type='text' name=\"wpRealName\" value=\"{$this->mRealName}\" size='20' /></label></div>
-		<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>
-		<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" /> $emf</label></div>
-		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div> 
-	<fieldset>
-	<legend>$cp:</legend>
+		$wgOut->addHTML( "<fieldset>
+	<legend>$cp</legend>
 	<div><label>$opw: <input type='password' name=\"wpOldpass\" value=\"{$this->mOldpass}\" size='20' /></label></div>
 	<div><label>$npw: <input type='password' name=\"wpNewpass\" value=\"{$this->mNewpass}\" size='20' /></label></div>
 	<div><label>$rpw: <input type='password' name=\"wpRetypePass\" value=\"{$this->mRetypePass}\" size='20' /></label></div>
 	" . $this->getToggle( "rememberpassword" ) . "
-	</fieldset>");
+	</fieldset>\n</fieldset>\n" );
 
 	
-		######################################################################
 		# Quickbar setting
 		#
-		$s="";
+		$wgOut->addHtml( "<fieldset>\n<legend>$qb</legend>\n" );
 		for ( $i = 0; $i < count( $qbs ); ++$i ) {
 			if ( $i == $this->mQuickbar ) { $checked = ' checked="checked"'; }
 			else { $checked = ""; }
-			$s .= "<div><label><input type='radio' name=\"wpQuickbar\" value=\"$i\"$checked /> {$qbs[$i]}</label></div>\n";
+			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpQuickbar\"
+	value=\"$i\"$checked /> {$qbs[$i]}</label></div>\n" );
 		}
-		$cardset->addCard( wfMsg( "qbsettings" ), $s );
+		$wgOut->addHtml( "</fieldset>\n\n" );
 
-
-		######################################################################
 		# Skin setting
 		#
+		$wgOut->addHTML( "<fieldset>\n<legend>$sk</legend>\n" );
 		# Only show members of $wgValidSkinNames rather than
 		# $skinNames (skins is all skin names from Language.php)
-		$s="";
 		foreach ($wgValidSkinNames as $skinkey => $skinname ) {
 			if ( $skinkey == $this->mSkin ) { 
 				$checked = ' checked="checked"'; 
 			} else { 
 				$checked = ""; 
 			}
-			$s .= "<div><label><input type='radio' name=\"wpSkin\" value=\"$skinkey\"$checked /> {$skinNames[$skinkey]}</label></div>\n";
+			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpSkin\"
+	value=\"$skinkey\"$checked /> {$skinNames[$skinkey]}</label></div>\n" );
 		}
-		$cardset->addCard( wfMsg( "skin" ), $s );
+		$wgOut->addHTML( "</fieldset>\n\n" );
 
-		######################################################################
 		# Math setting
 		#
-		$s="";
+		$wgOut->addHTML( "<fieldset>\n<legend>$math</legend>\n" );
 		for ( $i = 0; $i < count( $mathopts ); ++$i ) {
 			if ( $i == $this->mMath ) { $checked = ' checked="checked"'; }
 			else { $checked = ""; }
-			$s .= "<div><label><input type='radio' name=\"wpMath\" value=\"$i\"$checked /> {$mathopts[$i]}</label></div>\n";
+			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpMath\"
+	value=\"$i\"$checked /> {$mathopts[$i]}</label></div>\n" );
 		}
-		$cardset->addCard( wfMsg( "math" ), $s );
+		$wgOut->addHTML( "</fieldset>\n\n" );
 		
-		######################################################################
 		# Date format
 		#
 		if ( $wgUseDynamicDates ) {
-			$s="";
+			$wgOut->addHTML( "<fieldset>\n<legend>$dateFormat</legend>\n" );
 			for ( $i = 0; $i < count( $dateopts ); ++$i) {
 				if ( $i == $this->mDate ) {
 					$checked = ' checked="checked"';
 				} else {
 					$checked = "";
 				}
-				$s .= "<div><label><input type='radio' name=\"wpDate\" value=\"$i\"$checked /> {$dateopts[$i]}</label></div>\n" ;
+				$wgOut->addHTML( "<div><label><input type='radio' name=\"wpDate\" ".
+					"value=\"$i\"$checked /> {$dateopts[$i]}</label></div>\n" );
 			}
-			$cardset->addCard( wfMsg("dateformat"), $s );
+			$wgOut->addHTML( "</fieldset>\n\n");
 		}
 		
-		######################################################################
 		# Textbox rows, cols
 		#
 		$nowlocal = $wgLang->time( $now = wfTimestampNow(), true );
 		$nowserver = $wgLang->time( $now, false );
-		$cardset->addCard( wfMsg( "textboxsize" ), "<div>
+		$wgOut->addHTML( "<fieldset>
+	<legend>$tbs</legend>\n
+		<div>
 			<label>$tbr: <input type='text' name=\"wpRows\" value=\"{$this->mRows}\" size='6' /></label>
 			<label>$tbc: <input type='text' name=\"wpCols\" value=\"{$this->mCols}\" size='6' /></label>
-			</div> " .
-			$this->getToggle( "editwidth" ) .
-			$this->getToggle( "showtoolbar" ) .
-			$this->getToggle( "previewontop" ) .
-			$this->getToggle( "watchdefault" ) .
-			$this->getToggle( "minordefault" ) );
-
-		$cardset->addCard( wfMsg( "dateformat" ), "<div><b>$tzServerTime:</b> $nowserver</div>
-			<div><b>$ltz:</b> $nowlocal</div>
-			<div><label>$tzo*: <input type='text' name=\"wpHourDiff\" value=\"{$this->mHourDiff}\" size='6' /></label></div>
-			<div><input type=\"button\" value=\"$tzGuess\" onClick=\"javascript:guessTimezone()\" /></div>" );
-
-		$cardset->addCard( wfMsg( "recentchangescount" ),
-			"<div><label>$rcc: <input type='text' name=\"wpRecent\" value=\"$this->mRecent\" size='6' /></label></div>
-			" . $this->getToggle( "hideminor" ) .
-			$this->getToggle( "usenewrc" ) . "
-			<div><label>$stt: <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>" );
-
-		$cardset->addCard( wfMsg( "searchresultshead" ), "
-			<div><label>$rpp: <input type='text' name=\"wpSearch\" value=\"$this->mSearch\" size='6' /></label></div>
-			<div><label>$scl: <input type='text' name=\"wpSearchLines\" value=\"$this->mSearchLines\" size='6' /></label></div>
-			<div><label>$scc: <input type='text' name=\"wpSearchChars\" value=\"$this->mSearchChars\" size='6' /></label></div>
-			<div><fieldset><legend>" . wfMsg( "defaultns" ) . "</legend>\n" . $this->namespacesCheckboxes() . "</fieldset></div>" );
-
+		</div> " .
+		$this->getToggle( "editwidth" ) .
+		$this->getToggle( "showtoolbar" ) .
+		$this->getToggle( "previewontop" ) .
+		$this->getToggle( "watchdefault" ) .
+		$this->getToggle( "minordefault" ) . "
+	</fieldset>
 	
-		######################################################################
-		# Various checkbox options
-		#
-		$s="";
-		foreach ( $togs as $tname => $ttext ) {
-			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
-				$s .= $this->getToggle( $tname ) ;
-			}
-		}
-		$cardset->addCard( wfMsg("misc"), $s );
-
-		$cardset->renderToOutpage( $wgOut );
+	<fieldset>
+		<legend>$dateFormat</legend>
+		<div><b>$tzServerTime:</b> $nowserver</div>
+		<div><b>$ltz:</b> $nowlocal</div>
+		<div><label>$tzo*: <input type='text' name=\"wpHourDiff\" value=\"{$this->mHourDiff}\" size='6' /></label></div>
+		<div><input type=\"button\" value=\"$tzGuess\" onClick=\"javascript:guessTimezone()\" /></div>
+	</fieldset>\n\n" );
 
 		$wgOut->addHTML( "
+	<fieldset><legend>".wfMsg('prefs-rc')."</legend>
+		<div><label>$rcc: <input type='text' name=\"wpRecent\" value=\"$this->mRecent\" size='6' /></label></div>
+		" . $this->getToggle( "hideminor" ) .
+		$this->getToggle( "usenewrc" ) . "
+		<div><label>$stt: <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>$srh</legend>
+		<div><label>$rpp: <input type='text' name=\"wpSearch\" value=\"$this->mSearch\" size='6' /></label></div>
+		<div><label>$scl: <input type='text' name=\"wpSearchLines\" value=\"$this->mSearchLines\" size='6' /></label></div>
+		<div><label>$scc: <input type='text' name=\"wpSearchChars\" value=\"$this->mSearchChars\" size='6' /></label></div>
+
+		<fieldset>
+			<legend>$dsn</legend>
+			$ps
+		</fieldset>
+	</fieldset>
+		" );
+	
+		# Various checkbox options
+		#
+		$wgOut->addHTML("<fieldset><legend>".wfMsg('prefs-misc')."</legend>");
+		foreach ( $togs as $tname => $ttext ) {
+			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
+				$wgOut->addHTML( $this->getToggle( $tname ) );
+			}
+		}
+		$wgOut->addHTML( "</fieldset>\n\n" );
+
+		$wgOut->addHTML( "
+	<div id='prefsubmit'>
 	<div>
 		<input type='submit' name=\"wpSaveprefs\" value=\"$svp\" accesskey=\"".
 		wfMsg('accesskey-save')."\" title=\"[alt-".wfMsg('accesskey-save')."]\" />
@@ -458,6 +472,7 @@ class PreferencesForm {
 	</div>
 	
 	<div>* {$tzt}</div>
+	</div>
 	
 	</form>\n" );
 	}
