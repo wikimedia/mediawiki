@@ -446,6 +446,7 @@ pages for purposes of page relevancy ranking.
 === 1.4.1 fixes ===
 
 * (bug 1720) fix genitive month names for uk
+* (bug 1704) fixed untranslateable string in Special:Log
 
 
 === Caveats ===
