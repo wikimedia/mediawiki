@@ -34,7 +34,7 @@ class HTMLForm {
 		return $this->fieldset( $this->mName.'-'.$varname, $s );
 	}
 
-	/* private */ function arraybox( $varname , $size=20 ) {
+	/* private */ function arraybox( $varname , $value='', $size=20 ) {
 		$s = '';
 		if ( isset( $GLOBALS[$varname] ) && is_array( $GLOBALS[$varname] ) ) {
 			foreach ( $GLOBALS[$varname] as $index=>$element ) {
