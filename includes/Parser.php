@@ -1858,10 +1858,9 @@ class Parser
 				$nsec = 0;
 				for( $i = 0; $i < count($matches); $i += 2 ) {
 					wfDebug("text=[".$matches[$i]."] heading=[".$matches[$i+1]."]\n");
-					if ($matches[$i] == "" && $matches[$i + 1] == "") break;
 					$text .= $matches[$i];
+					if (!isset($matches[$i + 1]) || $matches[$i + 1] == "") continue;
 					$hl = $matches[$i + 1];
-					if ($hl == "") continue;
 					if( strstr($hl, "<!--MWTEMPLATESECTION") ) {
 						$text .= $hl;
 						continue;
