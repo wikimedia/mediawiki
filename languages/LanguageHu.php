@@ -295,6 +295,7 @@ Ne felejtsd el átnézni a személyes Wikipédia beállításaidat.",
 
 "areyounew"		=> "Ha új látogató vagy és szeretnél magadnak felhasználói nevet,
 akkor adj meg egyet, és adj meg egy jelszót (kétszer).
+
 Az email cím megadása nem kötelező; ha elveszíted a jelszavad, akkor
 újat a megadott email címre tudsz kérni.<br>\n",
 
@@ -351,10 +352,11 @@ információkat).
 Ha tévedésből jöttél ide, csak nyomd meg a böngésző '''Vissza/Back'''
 gombját.",
 "anontalkpagetext" => "
----- ''Ez egy olyan anonim felhasználó vitalapja, aki még nem készített magának nevet vagy azt nem használta. Ezért az [[IP szám]]át használjuk az azonosítására. Az IP számokon számos felhasználó osztozhat az idők folyamán. Ha anonim felhasználó vagy és úgy érzed, hogy értelmetlen megjegyzéseket írnak neked akkor [[Special:Userlogin|készíts magadnak egy nevet vagy lépj be]] hogy megakadályozd más anonim felhasználókkal való keveredést.'' ",
+---- ''Ez egy olyan anonim felhasználó vitalapja, aki még nem készített magának nevet vagy azt nem használta. Ezért az [[IP szám]]át használjuk az azonosítására. Az IP számokon számos felhasználó osztozhat az idők folyamán. Ha anonim felhasználó vagy és úgy érzed, hogy értelmetlen megjegyzéseket írnak neked akkor [[Speciális:Belépés|készíts magadnak egy nevet vagy lépj be]] hogy megakadályozd más anonim felhasználókkal való keveredést.'' ",
 "noarticletext" => "(Ez a lap jelenleg nem tartalmaz szöveget)",
 "updated"		=> "(Frissítve)",
 "note"			=> "<strong>Megjegyzés:</strong> ",
+
 "previewnote"	=> "Ne felejtsd el, hogy ez csak egy előnézet, és nincs elmentve!",
 "previewconflict" => "Ez az előnézet a felső szerkesztőablakban levő
 szövegnek megfelelő képet mutatja, ahogy az elmentés után kinézne.",
@@ -425,7 +427,7 @@ A = Apró változtatás",
 # Search results
 #
 "searchresults" => "A keresés eredménye",
-"searchhelppage" => "Wikipédia:Keresés",
+"searchhelppage" => "Wikipedia:Keresés",
 "searchingwikipedia" => "Keresés a Wikipédiában",
 "searchresulttext" => "További információkkal a keresésről $1 szolgál.",
 "searchquery"	=> "A \"$1\" kereséshez",
@@ -466,7 +468,7 @@ $2 Átirányítások listája &nbsp; Keresés:$3 $9",
 "prefsnologin" => "Nem vagy belépve",
 "prefsnologintext"	=> "Ahhoz hogy a 
 beállításaidat rögzíthesd <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">be kell lépned</a>.",
+  wfLocalUrl( "Speciális:Belépés" ) . "\">be kell lépned</a>.",
 "prefslogintext" => "Be vagy lépve \"$1\" néven.
 A belső azonosítód $2.",
 "prefsreset"	=> "A beállítások törlődtek a tárolóból vett értékekre.",
@@ -508,16 +510,16 @@ idő a GMT-től eltér (Magyarországon nyáron 2, télen 1).",
 
 # Recent changes  'legutóbbi változtatások', 'friss v.'
 #
-"changes" => "változtatások",
+"changes" => "változtatás",
 "recentchanges" => "Friss változtatások",
 "recentchangestext" => "Ezen a lapon követheted a Wikipédián történt legutóbbi 
-változtatásokat. [[Wikipédia:Üdvözlünk,_látogató|Üdvözlünk, látogató]]!
-Légy szíves ismerkedj meg az alábbi lapokkal: [[Wikipédia:GyIK|Wikipédia GyIK]],
-[[Wikipédia:Irányelvek]] (különösen az [[Wikipédia:Elnevezési szokások|elnevezési szokásokat]],
-a [[wikipédia:Semleges nézőpont|semleges nézőpontot]]), és a
-[[wikipédia:Legelterjedtebb baklövések|legelterjedtebb baklövéseket]].
-Ha azt szeretnéd hogy a Wikipédia sikeres legyen akkor nagyon fontos, hogy 
-soha ne add hozzá mások [[wikipedia:Copyrights|jogvédett és nem felhasználható]]
+változtatásokat. [[Wikipedia:Üdvözlünk,_látogató|Üdvözlünk, látogató]]!
+Légy szíves ismerkedj meg az alábbi lapokkal: [[Wikipedia:GyIK|Wikipédia GyIK]],
+[[Wikipedia:Irányelvek]] (különösen az [[Wikipedia:Elnevezési szokások|elnevezési szokásokat]],
+a [[wikipedia:Semleges nézőpont|semleges nézőpontot]]), és a
+[[wikipedia:Legelterjedtebb baklövések|legelterjedtebb baklövéseket]].
+Ha azt szeretnéd hogy a Wikipedia sikeres legyen akkor nagyon fontos, hogy 
+soha ne add hozzá mások [[wikipedia:Copyright|jogvédett és nem felhasználható]]
 anyagait.
 A jogi problémák komolyan árthatnak a projektnek ezért kérünk arra, hogy ne tegyél
 ilyet.
@@ -528,7 +530,8 @@ Lásd még [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta dis
 "rclistfrom"	=> "Az új változtatások kijelzése $1 után",
 # "rclinks"		=> "Show last $1 changes in last $2 hours / last $3 days",
 # "rclinks"		=> "Show last $1 changes in last $2 days.",
-"rclinks"		=> "Az utolsó $1 változtatás látszik az elmúlt $2 napon; $3 apró módosítással",
+# azért kell a 'db' mert ha nincs egy sem, akkor üres $3, és hülyén néz ki.
+"rclinks"		=> "Az utolsó $1 változtatás látszik az elmúlt $2 napon; $3 db apró módosítással",
 "rchide"		=> "$4 formában; $1 apró módosítás; $2 másodlagos névtér; $3 többszörös módosítás.",
 "rcliu"			=> "; $1 módosítás ismert userektől",
 "diff"			=> "eltér",
@@ -543,74 +546,76 @@ Lásd még [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta dis
 
 # Upload
 #
-"upload"		=> "Upload file",
-"uploadbtn"		=> "Upload file",
-"uploadlink"	=> "Upload images",
-"reupload"		=> "Re-upload",
-"reuploaddesc"	=> "Return to the upload form.",
-"uploadnologin" => "Not logged in",
-"uploadnologintext"	=> "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+"upload"		=> "File felküldése",
+"uploadbtn"		=> "File felküldés",
+"uploadlink"	=> "Kép felküldése",
+"reupload"		=> "Újraküldés",
+"reuploaddesc"	=> "Visszatérés a felküldési űrlaphoz.",
+"uploadnologin" => "Nincs belépve",
+"uploadnologintext"	=> "Ahhoz hogy file-okat tudj
+felküldeni <a href=\"" .
+  wfLocalUrl( "Speciális:Belépés" ) . "\">logged in</a>
 to upload files.",
-"uploadfile"	=> "Upload file",
-"uploaderror"	=> "Upload error",
-"uploadtext"	=> "<strong>STOP!</strong> Before you upload here,
-make sure to read and follow Wikipedia's <a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">image use policy</a>.
-<p>To view or search previously uploaded images,
-go to the <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
-"\">list of uploaded images</a>.
-Uploads and deletions are logged on the <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">upload log</a>.
-<p>Use the form below to upload new image files for use in
-illustrating your articles.
-On most browsers, you will see a \"Browse...\" button, which will
-bring up your operating system's standard file open dialog.
+"uploadfile"	=> "File felküldés",
+"uploaderror"	=> "Felküldési hiba",
+"uploadtext"	=> "<strong>ÁLLJ!</strong> Mielőtt bármit felküldesz ide
+győződj meg róla hogy elolvastad és követed a <a href=\"" .
+wfLocalUrlE( "Wikipedia:Képhasználati_irányelvek" ) . "\">képhasználati irányelveket</a>.
+<p>A régebben felküldött képek megnézéséhez vagy kereséséhez
+nézd meg a <a href=\"" . wfLocalUrlE( "Speciális:Képlista" ) .
+"\">felküldött képek listáját</a>.
+A felküldések és törlések naplója a <a href=\"" .
+wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">felküldési naplóban</a>
+található.
+<p>Az alábbi űrlapot használd a cikkeidet illusztráló új kép felküldéséhez.
+A legtöbb büngészőben látsz egy \"Böngészés...\" (Browse) gombot
+aminek segítségével a rendszered file-jai között keresgélhetsz.
 
-Choosing a file will fill the name of that file into the text
-field next to the button.
-You must also check the box affirming that you are not
-violating any copyrights by uploading the file.
-Press the \"Upload\" button to finish the upload.
-This may take some time if you have a slow internet connection.
-<p>The preferred formats are JPEG for photographic images, PNG
-for drawings and other iconic images, and OGG for sounds.
-Please name your files descriptively to avoid confusion.
-To include the image in an article, use a link in the form
-<b>[[image:file.jpg]]</b> or <b>[[image:file.png|alt text]]</b>
-or <b>[[media:file.ogg]]</b> for sounds.
-<p>Please note that as with Wikipedia pages, others may edit or
-delete your uploads if they think it serves the encyclopedia, and
-you may be blocked from uploading if you abuse the system.",
-"uploadlog"		=> "upload log",
-"uploadlogpage" => "Upload_log",
-"uploadlogpagetext" => "Below is a list of the most recent file uploads.
-All times shown are server time (UTC).
+A file-t kiválasztva az bekerül a gomb melletti mezőbe.
+Ezután be kell jelölnöd a kis pipát amivel igazolod hogy a felküldéssel
+nem sértesz meg semmilyen szerzői jogot.
+A \"Felküldés\" gombbal fejezheted be a küldést.
+Ez lassú internet kapcsolat esetén eltarthat egy kis ideig.
+<p>A javasolt formátumok JPG a fotókhoz, PNG a rajzokhoz és 
+ikon jellegű képekhez és OGG a hanganyagokhoz.
+Kérünk arra, hogy a file-jaidnak jellemző, beszélő nevet adj hogy
+elkerüld a félreértéseket. A képet a cikkbe a 
+<b>[[kép:file.jpg]]</b> vagy <b>[[kép:file.png|leírás]]</b>
+formában használhatod és <b>[[media:file.ogg]]</b> formában 
+a hanganyagokat.
+<p>Kérünk hogy vedd figyelembe azt, hogy mint minden Wikipédia 
+lap esetében bárki szerkesztheti vagy törölheti a felküldésedet
+ha úgy ítéli meg, hogy az hasznos a lexikonnak, vagy letiltásra
+kerülhetsz a felküldési lehetőségről ha visszaélsz a rendszerrel.",
+"uploadlog"		=> "felküldési napló",
+"uploadlogpage" => "Felküldési_napló",
+"uploadlogpagetext" => "Lentebb látható a legutóbbi felküldések listája.
+Minden időpont a server idejében (UTC) van megadva.
 <ul>
 </ul>
 ",
-"filename"		=> "Filename",
-"filedesc"		=> "Summary",
-"affirmation"	=> "I affirm that the copyright holder of this file
-agrees to license it under the terms of the $1.",
-"copyrightpage" => "Wikipedia:Copyrights",
+"filename"		=> "Filenév",
+"filedesc"		=> "Összefoglaló",
+"affirmation"	=> "Igazolom hogy ezen file szerzői jogainak tulajdonosa
+elfogadja azt, hogy az anyag a $1 licenc alapján publikálásra kerül.",
+"copyrightpage" => "Wikipedia:Copyright",
 "copyrightpagename" => "Wikipedia copyright",
-"uploadedfiles"	=> "Uploaded files",
-"noaffirmation" => "You must affirm that your upload does not violate
-any copyrights.",
-"ignorewarning"	=> "Ignore warning and save file anyway.",
-"minlength"		=> "Image names must be at least three letters.",
-"badfilename"	=> "Image name has been changed to \"$1\".",
-"badfiletype"	=> "\".$1\" is not a recommended image file format.",
-"largefile"		=> "It is recommended that images not exceed 100k in size.",
-"successfulupload" => "Successful upload",
-"fileuploaded"	=> "File \"$1\" uploaded successfully.
-Please follow this link: ($2) to the description page and fill
-in information about the file, such as where it came from, when it was
-created and by whom, and anything else you may know about it.",
-"uploadwarning" => "Upload warning",
-"savefile"		=> "Save file",
-"uploadedimage" => "uploaded \"$1\"",
+"uploadedfiles"	=> "Felküldött file-ok",
+"noaffirmation" => "Igazolnod kell azt, hogy a felküldött file-ok 
+nem sértenek szerzői jogokat!",
+"ignorewarning"	=> "Mentés a figyelmeztetés figyelmen kívül hagyásával.",
+"minlength"		=> "A kép nevének legalább három betűből kell állnia.",
+"badfilename"	=> "A kép új neve \"$1\".",
+"badfiletype"	=> "\".$1\" nem javasolt képformátumnak.",
+"largefile"		=> "Javasolt hogy a képek mérete ne haladja meg a 100 kilobyte-ot.",
+"successfulupload" => "Sikeresen felküldve",
+"fileuploaded"	=> "A \"$1\" file felküldése sikeres volt.
+kérlek a ($2) linken add meg a file leírását és az információkat a
+file-ról, mint például hogy honnan való, mikor és ki készítette, vagy bármi
+más információ amit meg tudsz adni.",
+"uploadwarning" => "Felküldési figyelmeztetés",
+"savefile"		=> "File mentése",
+"uploadedimage" => "\"$1\" felküldve",
 
 # Image list
 #
@@ -640,7 +645,7 @@ created and by whom, and anything else you may know about it.",
 
 # Statistics
 #
-"statistics"	=> "Statistics",
+"statistics"	=> "Statisztika",
 "sitestats"		=> "Site statistics",
 "userstats"		=> "User statistics",
 "sitestatstext" => "There are <b>$1</b> total pages in the database.
@@ -656,7 +661,7 @@ That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.",
 
 # Maintenance Page
 #
-"maintenance"		=> "Maintenance page",
+"maintenance"		=> "Karbantartás",
 "maintnancepagetext"	=> "This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)",
 "maintenancebacklink"	=> "Back to Maintenance Page",
 "disambiguations"	=> "Disambiguation pages",
@@ -678,91 +683,93 @@ That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.",
 
 # Miscellaneous special pages
 #
-"orphans"		=> "Orphaned pages",
-"lonelypages"	=> "Orphaned pages",
-"unusedimages"	=> "Unused images",
-"popularpages"	=> "Popular pages",
-"nviews"		=> "$1 views",
+"orphans"		=> "Árva lapok",
+"lonelypages"	=> "Árva lapok",
+"unusedimages"	=> "Nem használt képek",
+"popularpages"	=> "Népszerű lapok",
+"nviews"		=> "$1 megnézés",
+# FIXME
 "wantedpages"	=> "Wanted pages",
-"nlinks"		=> "$1 links",
-"allpages"		=> "All pages",
-"randompage"	=> "Random page",
-"shortpages"	=> "Short pages",
-"longpages"		=> "Long pages",
-"listusers"		=> "User list",
-"specialpages"	=> "Special pages",
-"spheading"		=> "Special pages",
+"nlinks"		=> "$1 link",
+"allpages"		=> "Minden lap",
+"randompage"	=> "Lap találomra",
+"shortpages"	=> "Rövid lapok",
+"longpages"		=> "Hosszú lapok",
+"listusers"		=> "Felhasználók",
+"specialpages"	=> "Speciális lapok",
+"spheading"		=> "Speciális lapok",
 "sysopspheading" => "Special pages for sysop use",
 "developerspheading" => "Special pages for developer use",
 "protectpage"	=> "Protect page",
-"recentchangeslinked" => "Related changes",
-"rclsub"		=> "(to pages linked from \"$1\")",
+"recentchangeslinked" => "Kapcsolódó változtatások",
+# FIXME: possible context?
+"rclsub"		=> "(a \"$1\" lapról hivatkozott lapok)",
 "debug"			=> "Debug",
-"newpages"		=> "New pages",
-"ancientpages"		=> "Oldest articles",
-"intl"		=> "Interlanguage links",
-"movethispage"	=> "Move this page",
-"unusedimagestext" => "<p>Please note that other web sites
-such as the international Wikipedias may link to an image with
-a direct URL, and so may still be listed here despite being
-in active use.",
-"booksources"	=> "Book sources",
-"booksourcetext" => "Below is a list of links to other sites that
-sell new and used books, and may also have further information
-about books you are looking for.
-Wikipedia is not affiliated with any of these businesses, and
-this list should not be construed as an endorsement.",
-"alphaindexline" => "$1 to $2",
+"newpages"		=> "Új lapok",
+"ancientpages"		=> "Ősi szócikkek",
+"intl"		=> "Nyelvek közötti linkek",
+"movethispage"	=> "Mozgasd ezt a lapot",
+"unusedimagestext" => "<p>Vedd figyelembe azt hogy más
+lapok - mint például a nemzetközi Wikipédiák - közvetlenül
+hivatkozhatnak egy file URL-jére, ezért szerepelhet itt annak
+ellenére hogy aktívan használják.",
+"booksources"	=> "Könyvforrások",
+"booksourcetext" => "Lentebb néhány hivatkozás található olyan lapokra,
+ahol új vagy használt könyveket árusítanak, vagy további információkkal
+szolgálhatnak az általad vizsgált könyvről.
+A Wikipédia semmilyen módon nem áll kapcsolatba ezen cégekkel és
+ezt a listát semmiképpen ne tekintsd bármiféle ajánlásnak.",
+# FIXME: huh?
+"alphaindexline" => "$1 -> $2",
 
 # Email this user
 #
-"mailnologin"	=> "No send address",
-"mailnologintext" => "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
-and have a valid e-mail address in your <a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">preferences</a>
-to send e-mail to other users.",
-"emailuser"		=> "E-mail this user",
-"emailpage"		=> "E-mail user",
-"emailpagetext"	=> "If this user has entered a valid e-mail address in
-his or her user preferences, the form below will send a single message.
-The e-mail address you entered in your user preferences will appear
-as the \"From\" address of the mail, so the recipient will be able
-to reply.",
-"noemailtitle"	=> "No e-mail address",
-"noemailtext"	=> "This user has not specified a valid e-mail address,
-or has chosen not to receive e-mail from other users.",
-"emailfrom"		=> "From",
-"emailto"		=> "To",
-"emailsubject"	=> "Subject",
-"emailmessage"	=> "Message",
-"emailsend"		=> "Send",
-"emailsent"		=> "E-mail sent",
-"emailsenttext" => "Your e-mail message has been sent.",
+"mailnologin"	=> "Nincs feladó",
+"mailnologintext" => "Ahhoz hogy másoknak emailt küldhess
+<a href=\"" .
+  wfLocalUrl( "Speciális:Belépés" ) . "\">be kell jelentkezned</a>
+és meg kell adnod egy érvényes email címet a <a href=\"" .
+  wfLocalUrl( "Speciális:Beállítások" ) . "\">beállításaidban</a>.",
+"emailuser"		=> "E-mail küldése ezen felhasználónak",
+"emailpage"		=> "E-mail küldése",
+"emailpagetext"	=> "Ha ez a felhasználó megadott egy érvényes email
+címet, akokr ezen űrlap segítségével tudsz neki emailt küldeni.
+Az általad a beállításaid között megadott email címed fog feladóként
+szerepelni, hogy a címzett válaszolni tudjon.",
+"noemailtitle"	=> "Nincs email cím",
+"noemailtext"	=> "Ez a felhasználó nem adott meg email címet, vagy
+nem kíván másoktól leveleket kapni.",
+"emailfrom"		=> "Feladó",
+"emailto"		=> "Cím",
+"emailsubject"	=> "Téma",
+"emailmessage"	=> "Üzenet",
+"emailsend"		=> "Küldés",
+"emailsent"		=> "E-mail elküldve",
+"emailsenttext" => "Az email üzenetedet elküldtem.",
 
 # Watchlist
 #
-"watchlist"		=> "My watchlist",
-"watchlistsub"	=> "(for user \"$1\")",
-"nowatchlist"	=> "You have no items on your watchlist.",
-"watchnologin"	=> "Not logged in",
-"watchnologintext"	=> "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
-to modify your watchlist.",
-"addedwatch"	=> "Added to watchlist",
-"addedwatchtext" => "The page \"$1\" has been added to your <a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\">watchlist</a>.
-Future changes to this page and its associated Talk page will be listed there,
-and the page will appear <b>bolded</b> in the <a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">list of recent changes</a> to
-make it easier to pick out.</p>
+"watchlist"		=> "Figyelőlistám",
+"watchlistsub"	=> "(\"$1\" user)",
+"nowatchlist"	=> "Nincs lap a figyelőlistádon.",
+"watchnologin"	=> "Nincs belépve",
+"watchnologintext"	=> "Ahhoz hogy figyelőlistád lehessen <a href=\"" .
+  wfLocalUrl( "Speciál:Belépés" ) . "\">be kell lépned</a>.",
+"addedwatch"	=> "Figyelőlistához hozzáfűzve",
+"addedwatchtext" => "A \"$1\" lapot hozzáadtam a <a href=\"" .
+  wfLocalUrl( "Speciális:Figyelőlista" ) . "\">figyelőlistádhoz</a>.
+Ezután minden a lapon vagy annak vitalapján történő változást ott fogsz
+látni, és a lap <b>vastagon</b> fog szerepelni a<a href=\"" .
+  wfLocalUrl( "Speciális:Friss_változtatások" ) . "\">friss változtatások</a> 
+lapon, hogy könnyen észrevehető legyen.</p>
 
-<p>If you want to remove the page from your watchlist later, click \"Stop watching\" in the sidebar.",
-"removedwatch"	=> "Removed from watchlist",
-"removedwatchtext" => "The page \"$1\" has been removed from your watchlist.",
-"watchthispage"	=> "Watch this page",
-"unwatchthispage" => "Stop watching",
-"notanarticle"	=> "Not an article",
+<p>Ha később el akarod távolítani a lapot a figyelőlistádról, akkor ezt az
+oldalmenü \"Figyelés vége\" pontjával teheted meg.",
+"removedwatch"	=> "Figyelőlistáról eltávolítva",
+"removedwatchtext" => "A \"$1\" lapot eltávolítottam a figyelőlistáról.",
+"watchthispage"	=> "Lap figyelése",
+"unwatchthispage" => "Figyelés vége",
+"notanarticle"	=> "Nem szócikk",
 
 # Delete/protect/revert
 #
