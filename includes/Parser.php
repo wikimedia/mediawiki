@@ -46,10 +46,11 @@ define( "STRIP_COMMENTS", "HTMLCommentStrip" );
 # prefix for escaping, used in two functions at least
 define( "UNIQ_PREFIX", "NaodW29");
 
-/* private */ $wgParserHooks = array();
-
 class Parser
 {
+	# Persistent:
+	var $mTagHooks;
+	
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
 	var $mVariables, $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
@@ -57,13 +58,12 @@ class Parser
 	# Temporary:
 	var $mOptions, $mTitle, $mOutputType;
 
-	function Parser()
-	{
+	function Parser() {
+		$this->mTagHooks = array();
 		$this->clearState();
 	}
 
-	function clearState()
-	{
+	function clearState() {
 		$this->mOutput = new ParserOutput;
 		$this->mAutonumber = 0;
 		$this->mLastSection = "";
@@ -80,8 +80,7 @@ class Parser
 	#
 	# Returns a ParserOutput
 	#
-	function parse( $text, &$title, $options, $linestart = true, $clearState = true )
-	{
+	function parse( $text, &$title, $options, $linestart = true, $clearState = true ) {
 		global $wgUseTidy;
 		$fname = "Parser::parse";
 		wfProfileIn( $fname );
@@ -137,8 +136,7 @@ class Parser
 		return $this->mOutput;
 	}
 
-	/* static */ function getRandomString()
-	{
+	/* static */ function getRandomString() {
 		return dechex(mt_rand(0, 0x7fffffff)) . dechex(mt_rand(0, 0x7fffffff));
 	}
 
@@ -193,10 +191,7 @@ class Parser
 	# will be stripped in addition to other tags. This is important
 	# for section editing, where these comments cause confusion when
 	# counting the sections in the wikisource
-	function strip( $text, &$state, $stripcomments = false )
-	{
-		global $wgParserHooks;
-
+	function strip( $text, &$state, $stripcomments = false ) {
 		$render = ($this->mOutputType == OT_HTML);
 		$nowiki_content = array();
 		$math_content = array();
@@ -252,7 +247,7 @@ class Parser
 		}
 
 		# Extensions
-		foreach ( $wgParserHooks as $tag => $callback ) {
+		foreach ( $this->mTagHooks as $tag => $callback ) {
 			$ext_contents[$tag] = array();
 			$text = Parser::extractTags( $tag, $text, $ext_content[$tag], $uniq_prefix );
 			foreach( $ext_content[$tag] as $marker => $content ) {
@@ -288,8 +283,7 @@ class Parser
 	}
 
 	# always call unstripNoWiki() after this one
-	function unstrip( $text, &$state )
-	{
+	function unstrip( $text, &$state ) {
 		# Must expand in reverse order, otherwise nested tags will be corrupted
 		$contentDict = end( $state );
 		for ( $contentDict = end( $state ); $contentDict !== false; $contentDict = prev( $state ) ) {
@@ -303,8 +297,7 @@ class Parser
 		return $text;
 	}
 	# always call this after unstrip() to preserve the order 
-	function unstripNoWiki( $text, &$state )
-	{
+	function unstripNoWiki( $text, &$state ) {
 		# Must expand in reverse order, otherwise nested tags will be corrupted
 		for ( $content = end($state['nowiki']); $content !== false; $content = prev( $state['nowiki'] ) ) {
 			$text = str_replace( key( $state['nowiki'] ), $content, $text );
@@ -317,8 +310,7 @@ class Parser
 	# Returns the unique tag which must be inserted into the stripped text
 	# The tag will be replaced with the original text in unstrip()
 
-	function insertStripItem( $text, &$state )
-	{
+	function insertStripItem( $text, &$state ) {
 		$rnd = UNIQ_PREFIX . '-item' . Parser::getRandomString();
 		if ( !$state ) {
 			$state = array(
@@ -337,8 +329,7 @@ class Parser
 	# or the old code. The new code will not work properly for some
 	# languages due to sorting issues, so they might want to turn it
 	# off.
-	function categoryMagic()
-	{
+	function categoryMagic() {
 		$msg = wfMsg('usenewcategorypage');
 		if ( '0' == @$msg[0] )
 		{
@@ -349,8 +340,7 @@ class Parser
 	}
 
 	# This method generates the list of subcategories and pages for a category
-	function oldCategoryMagic ()
-	{
+	function oldCategoryMagic () {
 		global $wgLang , $wgUser ;
 		if ( !$this->mOptions->getUseCategoryMagic() ) return ; # Doesn't use categories at all
 
@@ -408,8 +398,7 @@ class Parser
 
 
 
-	function newCategoryMagic ()
-	{
+	function newCategoryMagic () {
 		global $wgLang , $wgUser ;
 		if ( !$this->mOptions->getUseCategoryMagic() ) return ; # Doesn't use categories at all
 
@@ -586,8 +575,7 @@ cl_sortkey" ;
 	}
 
 	# Return allowed HTML attributes
-	function getHTMLattrs ()
-	{
+	function getHTMLattrs () {
 		$htmlattrs = array( # Allowed attributes--no scripting, etc.
 				'title', 'align', 'lang', 'dir', 'width', 'height',
 				'bgcolor', 'clear', /* BR */ 'noshade', /* HR */
@@ -604,8 +592,7 @@ cl_sortkey" ;
 	}
 
 	# Remove non approved attributes and javascript in css
-	function fixTagAttributes ( $t )
-	{
+	function fixTagAttributes ( $t ) {
 		if ( trim ( $t ) == '' ) return '' ; # Saves runtime ;-)
 		$htmlattrs = $this->getHTMLattrs() ;
 
@@ -676,8 +663,7 @@ cl_sortkey" ;
 	}
 
 	# parse the wiki syntax used to render tables
-	function doTableStuff ( $t )
-	{
+	function doTableStuff ( $t ) {
 		$t = explode ( "\n" , $t ) ;
 		$td = array () ; # Is currently a td tag open?
 			$ltd = array () ; # Was it TD or TH?
@@ -785,8 +771,7 @@ cl_sortkey" ;
 		return $newline.$this->insertStripItem( $text, $this->mStripState );
 	}
 	
-	function internalParse( $text, $linestart, $args = array(), $isMain=true )
-	{
+	function internalParse( $text, $linestart, $args = array(), $isMain=true ) {
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
 
@@ -822,8 +807,7 @@ cl_sortkey" ;
 	}
 
     # Parse headers and return html
-	/* private */ function doHeadings( $text )
-	{
+	/* private */ function doHeadings( $text ) {
 		$fname = 'Parser::doHeadings';
 		wfProfileIn( $fname );
 		for ( $i = 6; $i >= 1; --$i ) {
@@ -835,8 +819,7 @@ cl_sortkey" ;
 		return $text;
 	}
 
-	/* private */ function doAllQuotes( $text )
-	{
+	/* private */ function doAllQuotes( $text ) {
 		$fname = 'Parser::doAllQuotes';
 		wfProfileIn( $fname );
 		$outtext = '';
@@ -849,8 +832,7 @@ cl_sortkey" ;
 		return $outtext;
 	}
 
-	/* private */ function doQuotes( $pre, $text, $mode )
-	{
+	/* private */ function doQuotes( $pre, $text, $mode ) {
 		if ( preg_match( "/^(.*)''(.*)$/sU", $text, $m ) ) {
 			$m1_strong = ($m[1] == "") ? "" : "<strong>{$m[1]}</strong>";
 			$m1_em = ($m[1] == "") ? "" : "<em>{$m[1]}</em>";
@@ -901,8 +883,7 @@ cl_sortkey" ;
 	# and otherwise take great care in the order of things here, so
 	# that we don't end up interpreting some URLs twice.
 
-	/* private */ function replaceExternalLinks( $text )
-	{
+	/* private */ function replaceExternalLinks( $text ) {
 		$fname = 'Parser::replaceExternalLinks';
 		wfProfileIn( $fname );
 		$text = $this->subReplaceExternalLinks( $text, 'http', true );
@@ -916,8 +897,7 @@ cl_sortkey" ;
 		return $text;
 	}
 
-	/* private */ function subReplaceExternalLinks( $s, $protocol, $autonumber )
-	{
+	/* private */ function subReplaceExternalLinks( $s, $protocol, $autonumber ) {
 		$unique = '4jzAfzB8hNvf4sqyO9Edd8pSmk9rE2in0Tgw3';
 		$uc = "A-Za-z0-9_\\/~%\\-+&*#?!=()@\\x80-\\xFF";
 
@@ -984,8 +964,7 @@ cl_sortkey" ;
 	}
 
 
-	/* private */ function replaceInternalLinks( $s )
-	{
+	/* private */ function replaceInternalLinks( $s ) {
 		global $wgLang, $wgLinkCache;
 		global $wgNamespacesWithSubpages, $wgLanguageCode;
 		static $fname = 'Parser::replaceInternalLinks' ;
@@ -1150,8 +1129,7 @@ cl_sortkey" ;
 
 	# Some functions here used by doBlockLevels()
 	#
-	/* private */ function closeParagraph()
-	{
+	/* private */ function closeParagraph() {
 		$result = '';
 		if ( '' != $this->mLastSection ) {
 			$result = '</' . $this->mLastSection  . ">\n";
@@ -1163,8 +1141,7 @@ cl_sortkey" ;
 	# getCommon() returns the length of the longest common substring
 	# of both arguments, starting at the beginning of both.
 	#
-	/* private */ function getCommon( $st1, $st2 )
-	{
+	/* private */ function getCommon( $st1, $st2 ) {
 		$fl = strlen( $st1 );
 		$shorter = strlen( $st2 );
 		if ( $fl < $shorter ) { $shorter = $fl; }
@@ -1193,8 +1170,7 @@ cl_sortkey" ;
 		return $result;
 	}
 
-	/* private */ function nextItem( $char )
-	{
+	/* private */ function nextItem( $char ) {
 		if ( '*' == $char || '#' == $char ) { return '</li><li>'; }
 		else if ( ':' == $char || ';' == $char ) {
 			$close = "</dd>";
@@ -1210,8 +1186,7 @@ cl_sortkey" ;
 		return '<!-- ERR 2 -->';
 	}
 
-	/* private */function closeList( $char )
-	{
+	/* private */function closeList( $char ) {
 		if ( '*' == $char ) { $text = '</li></ul>'; }
 		else if ( '#' == $char ) { $text = '</li></ol>'; }
 		else if ( ':' == $char ) {
@@ -1421,8 +1396,7 @@ cl_sortkey" ;
 	}
 
 	# initialise the magic variables (like CURRENTMONTHNAME)
-	function initialiseVariables()
-	{
+	function initialiseVariables() {
 		global $wgVariableIDs;
 		$this->mVariables = array();
 		foreach ( $wgVariableIDs as $id ) {
@@ -1431,8 +1405,13 @@ cl_sortkey" ;
 		}
 	}
 
-	/* private */ function replaceVariables( $text, $args = array() )
-	{
+	/* private */ function handleBraces( $text, $args = array() ) {
+		
+
+
+
+
+	/* private */ function replaceVariables( $text, $args = array() ) {
 		global $wgLang, $wgScript, $wgArticlePath;
 
 		$fname = 'Parser::replaceVariables';
@@ -1469,8 +1448,7 @@ cl_sortkey" ;
 		return $text;
 	}
 
-	function variableSubstitution( $matches )
-	{
+	function variableSubstitution( $matches ) {
 		if ( array_key_exists( $matches[1], $this->mVariables ) ) {
 			$text = $this->mVariables[$matches[1]];
 			$this->mOutput->mContainsOldMagic = true;
@@ -1480,8 +1458,7 @@ cl_sortkey" ;
 		return $text;
 	}
 
-	function braceSubstitution( $matches )
-	{
+	function braceSubstitution( $matches ) {
 		global $wgLinkCache, $wgLang;
 		$fname = 'Parser::braceSubstitution';
 		$found = false;
@@ -1680,8 +1657,7 @@ cl_sortkey" ;
 	}
 
 	# Triple brace replacement -- used for template arguments
-	function argSubstitution( $matches )
-	{
+	function argSubstitution( $matches ) {
 		$newline = $matches[1];
 		$arg = trim( $matches[2] );
 		$text = $matches[0];
@@ -1695,8 +1671,7 @@ cl_sortkey" ;
 	}
 
 	# Returns true if the function is allowed to include this entity
-	function incrementIncludeCount( $dbk )
-	{
+	function incrementIncludeCount( $dbk ) {
 		if ( !array_key_exists( $dbk, $this->mIncludeCount ) ) {
 			$this->mIncludeCount[$dbk] = 0;
 		}
@@ -1709,8 +1684,7 @@ cl_sortkey" ;
 
 
 	# Cleans up HTML, removes dangerous tags and attributes
-	/* private */ function removeHTMLtags( $text )
-	{
+	/* private */ function removeHTMLtags( $text ) {
 		global $wgUseTidy, $wgUserHtml;
 		$fname = 'Parser::removeHTMLtags';
 		wfProfileIn( $fname );
@@ -1839,8 +1813,7 @@ cl_sortkey" ;
  *
  */
 
-	/* private */ function formatHeadings( $text, $isMain=true )
-	{
+	/* private */ function formatHeadings( $text, $isMain=true ) {
 		global $wgInputEncoding;
 		
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
@@ -2030,8 +2003,7 @@ cl_sortkey" ;
 	}
 
 	# Return an HTML link for the "ISBN 123456" text
-	/* private */ function magicISBN( $text )
-	{
+	/* private */ function magicISBN( $text ) {
 		global $wgLang;
 
 		$a = split( 'ISBN ', " $text" );
@@ -2066,8 +2038,7 @@ cl_sortkey" ;
 	}
 	
 	# Return an HTML link for the "RFC 1234" text
-	/* private */ function magicRFC( $text )
-	{
+	/* private */ function magicRFC( $text ) {
 		global $wgLang;
 
 		$a = split( 'RFC ', ' '.$text );
@@ -2099,8 +2070,7 @@ cl_sortkey" ;
 		return $text;
 	}
 
-	function preSaveTransform( $text, &$title, &$user, $options, $clearState = true )
-	{
+	function preSaveTransform( $text, &$title, &$user, $options, $clearState = true ) {
 		$this->mOptions = $options;
 		$this->mTitle =& $title;
 		$this->mOutputType = OT_WIKI;
@@ -2129,8 +2099,7 @@ cl_sortkey" ;
 		return $text;
 	}
 
-	/* private */ function pstPass2( $text, &$user )
-	{
+	/* private */ function pstPass2( $text, &$user ) {
 		global $wgLang, $wgLocaltimezone, $wgCurParser;
 
 		# Variable replacement
@@ -2202,8 +2171,7 @@ cl_sortkey" ;
 
 	# Set up some variables which are usually set up in parse()
 	# so that an external function can call some class members with confidence
-	function startExternalParse( &$title, $options, $outputType, $clearState = true )
-	{
+	function startExternalParse( &$title, $options, $outputType, $clearState = true ) {
 		$this->mTitle =& $title;
 		$this->mOptions = $options;
 		$this->mOutputType = $outputType;
@@ -2235,10 +2203,9 @@ cl_sortkey" ;
 	# Create an HTML-style tag, e.g. <yourtag>special text</yourtag>
 	# Callback will be called with the text within
 	# Transform and return the text within
-	/* static */ function setHook( $tag, $callback ) {
-		global $wgParserHooks;
-		$oldVal = @$wgParserHooks[$tag];
-		$wgParserHooks[$tag] = $callback;
+	function setHook( $tag, $callback ) {
+		$oldVal = @$this->mTagHooks[$tag];
+		$this->mTagHooks[$tag] = $callback;
 		return $oldVal;
 	}
 }
@@ -2292,39 +2259,38 @@ class ParserOptions
 	var $mNumberHeadings;            # Automatically number headings
 	var $mShowToc;                   # Show table of contents
 
-	function getUseTeX() { return $this->mUseTeX; }
-	function getUseCategoryMagic() { return $this->mUseCategoryMagic; }
-	function getUseDynamicDates() { return $this->mUseDynamicDates; }
-	function getInterwikiMagic() { return $this->mInterwikiMagic; }
-	function getAllowExternalImages() { return $this->mAllowExternalImages; }
-	function getSkin() { return $this->mSkin; }
-	function getDateFormat() { return $this->mDateFormat; }
-	function getEditSection() { return $this->mEditSection; }
-	function getEditSectionOnRightClick() { return $this->mEditSectionOnRightClick; }
-	function getNumberHeadings() { return $this->mNumberHeadings; }
-	function getShowToc() { return $this->mShowToc; }
+	function getUseTeX()                        { return $this->mUseTeX; }
+	function getUseCategoryMagic()              { return $this->mUseCategoryMagic; }
+	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
+	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
+	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
+	function getSkin()                          { return $this->mSkin; }
+	function getDateFormat()                    { return $this->mDateFormat; }
+	function getEditSection()                   { return $this->mEditSection; }
+	function getEditSectionOnRightClick()       { return $this->mEditSectionOnRightClick; }
+	function getNumberHeadings()                { return $this->mNumberHeadings; }
+	function getShowToc()                       { return $this->mShowToc; }
 
-	function setUseTeX( $x ) { return wfSetVar( $this->mUseTeX, $x ); }
-	function setUseCategoryMagic( $x ) { return wfSetVar( $this->mUseCategoryMagic, $x ); }
-	function setUseDynamicDates( $x ) { return wfSetVar( $this->mUseDynamicDates, $x ); }
-	function setInterwikiMagic( $x ) { return wfSetVar( $this->mInterwikiMagic, $x ); }
-	function setAllowExternalImages( $x ) { return wfSetVar( $this->mAllowExternalImages, $x ); }
-	function setSkin( $x ) { return wfSetRef( $this->mSkin, $x ); }
-	function setDateFormat( $x ) { return wfSetVar( $this->mDateFormat, $x ); }
-	function setEditSection( $x ) { return wfSetVar( $this->mEditSection, $x ); }
-	function setEditSectionOnRightClick( $x ) { return wfSetVar( $this->mEditSectionOnRightClick, $x ); }
-	function setNumberHeadings( $x ) { return wfSetVar( $this->mNumberHeadings, $x ); }
-	function setShowToc( $x ) { return wfSetVar( $this->mShowToc, $x ); }
+	function setUseTeX( $x )                    { return wfSetVar( $this->mUseTeX, $x ); }
+	function setUseCategoryMagic( $x )          { return wfSetVar( $this->mUseCategoryMagic, $x ); }
+	function setUseDynamicDates( $x )           { return wfSetVar( $this->mUseDynamicDates, $x ); }
+	function setInterwikiMagic( $x )            { return wfSetVar( $this->mInterwikiMagic, $x ); }
+	function setAllowExternalImages( $x )       { return wfSetVar( $this->mAllowExternalImages, $x ); }
+	function setDateFormat( $x )                { return wfSetVar( $this->mDateFormat, $x ); }
+	function setEditSection( $x )               { return wfSetVar( $this->mEditSection, $x ); }
+	function setEditSectionOnRightClick( $x )   { return wfSetVar( $this->mEditSectionOnRightClick, $x ); }
+	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
+	function setShowToc( $x )                   { return wfSetVar( $this->mShowToc, $x ); }
 
-	/* static */ function newFromUser( &$user )
-	{
+    function setSkin( &$x ) { $this->mSkin =& $x; }
+
+	/* static */ function newFromUser( &$user ) {
 		$popts = new ParserOptions;
 		$popts->initialiseFromUser( $user );
 		return $popts;
 	}
 
-	function initialiseFromUser( &$userInput )
-	{
+	function initialiseFromUser( &$userInput ) {
 		global $wgUseTeX, $wgUseCategoryMagic, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
 
 		if ( !$userInput ) {
