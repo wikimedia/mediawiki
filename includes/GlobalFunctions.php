@@ -703,7 +703,7 @@ function wfArrayToCGI( $array1, $array2 = NULL )
 			if ( '' != $cgi ) {
 				$cgi .= '&';
 			}
-			$cgi .= $key.'='.$value;
+			$cgi .= urlencode( $key ) . '=' . urlencode( $value );
 		}
 	}
 	return $cgi;
