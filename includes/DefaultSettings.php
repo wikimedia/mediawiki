@@ -301,8 +301,7 @@ $wgTranslateNumerals = true; # For Hindi and Arabic use local numerals instead
 # Interface messages will be get from the database.
 $wgUseDatabaseMessages = true;
 $wgMsgCacheExpiry	= 86400;
-
-
+$wgPartialMessageCache = false;
 # Miscellaneous configuration settings
 #
 
