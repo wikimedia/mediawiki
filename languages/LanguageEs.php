@@ -81,7 +81,7 @@ require_once( "LanguageUtf8.php" );
 	"Userlogout"	=> "",
 	"Preferences"	=> "Preferencias de usuario",
 	"Watchlist"		=> "Mi lista de seguimiento",
-	"Recentchanges" => "Cambios Recientes",
+	"Recentchanges" => "Cambios recientes",
 	"Upload"		=> "Subir una imagen",
 	"Imagelist"		=> "Lista de imágenes",
 	"Listusers"		=> "Usuarios registrados",
@@ -96,7 +96,7 @@ require_once( "LanguageUtf8.php" );
 
 	"Longpages"		=> "Artículos largos",
 	"Newpages"		=> "Artículos nuevos",
-	"Ancientpages" => "Articulos mas antiguos",
+	"Ancientpages" => "Artículos más antiguos",
 #	"Intl"		=> "Enlaces Interlenguaje",
 	"Allpages"		=> "Todas las páginas (alfabético)",
 
@@ -135,19 +135,19 @@ require_once( "LanguageUtf8.php" );
 "tog-highlightbroken" => "Destacar enlaces a artículos vacíos <a href=\"\" class=\"new\">como este</a> (alternativa: como éste<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Ajustar párrafos",
 "tog-hideminor" => "Esconder ediciones menores en Cambios Recientes",
-"tog-usenewrc" => "Cambios Recientes realzados (no para todos los navegadores)",
+"tog-usenewrc" => "Cambios recientes realzados (no para todos los navegadores)",
 "tog-numberheadings" => "Auto-numerar encabezados",        
-"tog-showtoolbar" => "Show edit toolbar",
+"tog-showtoolbar" => "Mostrar barra de edición",
 "tog-rememberpassword" => "Recordar la contraseña entre sesiones",
 "tog-editwidth" => "La caja de edición tiene el ancho máximo",
-"tog-editondblclick" => "Editar páginas con doble click (JavaScript)",
-"tog-editsection"=>"Habilitar la edicion de secciones usando el enlace [editar]",
-"tog-editsectiononrightclick"=>"Habilitar la edición de secciones presionando el boton de la derecha<br /> en los titulos de secciones (JavaScript)",
-"tog-showtoc"=>"Mostrar la tabla de contenidos<br />(para paginas con mas de 3 encabezados)",
+"tog-editondblclick" => "Editar páginas con doble clic (JavaScript)",
+"tog-editsection"=>"Habilitar la edición de secciones usando el enlace [editar]",
+"tog-editsectiononrightclick"=>"Habilitar la edición de secciones presionando el botón de la derecha<br /> en los títulos de secciones (JavaScript)",
+"tog-showtoc"=>"Mostrar la tabla de contenidos<br />(para paginas con más de 3 encabezados)",
 "tog-watchdefault" => "Vigilar artículos nuevos y modificados",
 "tog-minordefault" => "Marcar todas las ediciones como menores por defecto",
 "tog-previewontop" => "Mostrar la previsualización antes de la caja de edición en lugar de después",
-"tog-nocache"=> "Inhabilitar el ''cache'' de paginas",
+"tog-nocache"=> "Inhabilitar el ''cache'' de páginas",
 
 # Dates
 'sunday' => 'Domingo',
@@ -216,16 +216,16 @@ require_once( "LanguageUtf8.php" );
 "help"			=> "Ayuda",
 "search"		=> "Buscar",
 "go"		=> "Ir",
-"history"		=> "Historia",
+"history"		=> "Historial",
 "printableversion" => "Versión para imprimir",
-"editthispage"	=> "Edita esta página",
-"deletethispage" => "Borra esta página",
-"protectthispage" => "Protege esta página",
-"unprotectthispage" => "Desprotege esta página",
+"editthispage"	=> "Editar esta página",
+"deletethispage" => "Borrar esta página",
+"protectthispage" => "Proteger esta página",
+"unprotectthispage" => "Desproteger esta página",
 
 "newpage" => "Página nueva",
-"talkpage"		=> "Discute esta página",
-"postcomment" => "Pon un comentario",
+"talkpage"		=> "Discutir esta página",
+"postcomment" => "Poner un comentario",
 "articlepage"   => "Ver artículo",
 "subjectpage"	=> "Artículo",
 "userpage" => "Ver página de usuario",
@@ -260,7 +260,7 @@ Ver $1.",
 "toc" => "Tabla de contenidos",
 "showtoc" => "mostrar",
 "hidetoc" => "esconder",
-"thisisdeleted" => "Ver o restaurar $1?",
+"thisisdeleted" => "¿Ver o restaurar $1?",
 "restorelink" => "$1 ediciones borradas",
 
 
@@ -301,10 +301,10 @@ El administrador que la bloqueó ofreció esta explicación:
 "missingarticle" => "La base de datos no encontró el texto de una
 página que debería haber encontrado, llamada \"$1\".
 
-<p>Esto es causado usualmente por seguir un enlace a una diferencia de páginas o historia obsoleta a una página que ha sido borrada.
+<p>Esto es causado usualmente por seguir un enlace a una diferencia de páginas o historial obsoleto a una página que ha sido borrada.
 
-<p>Si esta no es la causa, puedes haber encontrado un error en el software. Por favor, informa esto a un administrador,
-notando el URL.",
+<p>Si esta no es la causa, puedes haber encontrado un error en el software. Por favor, informa de esto a un administrador,
+incluyendo el URL.",
 "internalerror" => "Error interno",
 "filecopyerror" => "No se pudo copiar el archivo \"$1\" a \"$2\".",
 "filerenameerror" => "No se pudo renombrar el archivo \"$1\" a \"$2\".",
@@ -312,14 +312,14 @@ notando el URL.",
 "filedeleteerror" => "No se pudo borrar el archivo \"$1\".",
 "filenotfound"	=> "No se pudo encontrar el archivo \"$1\".",
 "unexpected"	=> "Valor no esperado: \"$1\"=\"$2\".",
-"formerror"		=> "Error: no se pudo submitir la forma",	
+"formerror"		=> "Error: no se pudo enviar el formulario",	
 "badarticleerror" => "Esta acción no se puede llevar a cabo en esta página.",
 "cannotdelete"	=> "No se pudo borrar la página o imagen especificada. (Puede haber sido borrada por alguien antes)",
 "badtitle"		=> "Título incorrecto",
 "badtitletext"	=> "El título de la página requerida era incorrecto, vacío, o un enlace interleguaje o interwiki incorrecto.",
 
 "perfdisabled" => "Lo siento, esta función está temporalmente desactivada porque enlentece la base de datos a tal punto que nadie puede usar el wiki. Será reescrita para mayor eficiencia en el futuro) probablemente por ti!",
-"perfdisabledsub" => "Aqui hay una copia grabada de $1:",
+"perfdisabledsub" => "Aquí hay una copia grabada de $1:",
 
 # Login and logout pagesítulo
 "logouttitle"	=> "Fin de sesión",
@@ -328,7 +328,7 @@ Puedes continuar usando $wgSitename en forma anónima, o puedes
 iniciar sesión otra vez como el mismo u otro usuario.\n",
 
 "welcomecreation" => "<h2>Bienvenido(a), $1!</h2><p>Tu cuenta ha sido creada. 
-No olvides perzonalizar tus preferencia de $wgSitename.",
+No olvides personalizar tus preferencia de $wgSitename.",
 
 "loginpagetitle" => "Registrarse/Entrar",
 "yourname"		=> "Tu nombre de usuario",
@@ -349,20 +349,20 @@ No olvides perzonalizar tus preferencia de $wgSitename.",
 "userexists"	=> "El nombre que entraste ya está en uso. Por favor, elije un nombre diferente.",
 "youremail"		=> "Tu dirección electrónica (e-mail)",
 "yournick"		=> "Tu apodo (para firmas)",
-"emailforlost"	=> "Ingresar una dirección electrónica es opcional, pero permite a los demás usuarios contactarse contigo a través del sitio web sin tener que revelarles tu dirección electrónica. Además, si pierdes u olvidas tu contraseña, puedes pedir que se envíe una nueva a tu dirección electrónica.", 
+"emailforlost"	=> "Ingresar una dirección electrónica es opcional, pero permite a los demás usuarios contactarse contigo a través del sitio web sin tener que revelarles tu dirección electrónica. Además, si pierdes u olvidas tu contraseña, puedes pedir que se te envíe una nueva.", 
 "loginerror"	=> "Error de inicio de sesión",
 "noname"		=> "No has especificado un nombre de usuario válido.",
 "loginsuccesstitle" => "Inicio de sesión exitoso",
 "loginsuccess"	=> "Has iniciado tu sesión en $wgSitename como \"$1\".",
 "nosuchuser"	=> "No existe usuario alguno llamado \"$1\".
-Revisa tu deletreo, o usa la forma abajo para crear una nueva cuenta de usuario.",
+Revisa tu escritura, o usa el formulario de abajo para crear una nueva cuenta de usuario.",
 "wrongpassword"	=> "La contraseña que ingresaste es incorrecta. Por favor inténtalo de nuevo.",
 "mailmypassword" => "Envíame una nueva contraseña por correo electrónico",
 "passwordremindertitle" => "Recordatorio de contraseña de $wgSitename",
-"passwordremindertext" => "Alguien (probablemente tú, desde la direccion IP $1)
-solicitó que te enviaramos una nueva contraseña para iniciar sesión en $wgSitename.
+"passwordremindertext" => "Alguien (probablemente tú, desde la dirección IP $1)
+solicitó que te enviáramos una nueva contraseña para iniciar sesión en $wgSitename.
 La contraseña para el usuario \"$2\" es ahora \"$3\".
-Ahora deberías iniciar sesion y cambiar tu contraseña.",
+Ahora deberías iniciar sesión y cambiar tu contraseña.",
 "noemail"		=> "No hay dirección electrónica (e-mail) registrada para el(la) usuario(a) \"$1\".",
 "passwordsent"	=> "Una nueva contraseña ha sido enviada a la dirección electrónica registrada para \"$1\".
 Por favor entra otra vez después de que la recibas.",
@@ -371,8 +371,8 @@ Por favor entra otra vez después de que la recibas.",
 #
 "summary"		=> "Resumen",
 "subject" => "Tema/título",
-"minoredit"		=> "Esta es una edición menor.",
-"watchthis"		=> "Vigila este artículo.",
+"minoredit"		=> "Esta es una edición menor",
+"watchthis"		=> "Vigilar este artículo",
 "savearticle"	=> "Grabar la página",
 "preview"		=> "Previsualizar",
 "showpreview"	=> "Mostrar previsualización",
@@ -382,7 +382,7 @@ La razón dada es la que sigue:<br />$2<p> Puedes contactar a $1 o a otro de los
 discutir el bloqueo.",
 "newarticle"	=> "(Nuevo)",
 "newarticletext" => "$wgSitename es una enciclopedia en desarrollo, y esta página aún no existe. Puedes pedir información en [[$wgMetaNamespace:Consultas]], pero no esperes una respuesta pronta. Si lo que quieres es crear esta página, empieza a escribir en la caja que sigue. Si llegaste aquí por error, presiona la tecla para volver a la página anterior de tu navegador.",
-"anontalkpagetext" => "---- ''Esta es la página de discusión para un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su [[dirección IP]] numérica para adentificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y sientes que comentarios irreleventes han sido dirigidos a ti, por favor [[Especial:Userlogin|crea una cuenta o entra]] para evitar confusiones futuras con otros usuarios anónimos.'' ",
+"anontalkpagetext" => "---- ''Esta es la página de discusión para un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su [[dirección IP]] numérica para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y sientes que comentarios irrelevantes han sido dirigidos a ti, por favor [[Especial:Userlogin|crea una cuenta o entra]] para evitar confusiones futuras con otros usuarios anónimos.'' ",
 "noarticletext" => "(En este momento no hay texto en esta página)",
 
 "updated"		=> "(Actualizado)",
@@ -421,16 +421,16 @@ Por favor considera la posibilidad de descomponer esta página en secciones más
 "readonlywarning" => "ADVERTENCIA: La base de datos ha sido bloqueada para mantenimiento, así que no podrás grabar tus modificaciones en este momento. 
 Puedes \"cortar y pegar\" a un archivo de texto en tu computador, y grabarlo para
 intentarlo después.",
-"protectedpagewarning" => "ADVERTENCIA: Esta página ha sido bloqueda de manera que s&ocute;lo usuarios con privilegios de administrador pueden editarla. Asegúrate de que estás siguiendo las 
+"protectedpagewarning" => "ADVERTENCIA: Esta página ha sido bloqueada de manera que s&ocute;lo usuarios con privilegios de administrador pueden editarla. Asegúrate de que estás siguiendo las 
 <a href='/wiki/$wgMetaNamespace:Guías_para_páginas_protegidas'>guías para páginas protegidas</a>.",
 # History pages
 #
-"revhistory"	=> "Historia de revisiones",
-"nohistory"		=> "No hay una historia de ediciones para esta página.",
+"revhistory"	=> "Historial de revisiones",
+"nohistory"		=> "No hay un historial de ediciones para esta página.",
 "revnotfound"	=> "Revisión no encontrada",
 "revnotfoundtext" => "La revisión antigua de la página por la que preguntaste no se pudo encontrar.
 Por favor revisa el URL que usaste para acceder a esta página.\n",
-"loadhist"		=> "Recuperando la historia de la página",
+"loadhist"		=> "Recuperando el historial de la página",
 "currentrev"	=> "Revisión actual",
 "revisionasof"	=> "Revisión de $1",
 "cur"			=> "act",
@@ -480,10 +480,10 @@ Buscar en espacios de nombre :<br />
 $1<br />
 $2 Listar redirecciones   Buscar $3 $9",
 "searchdisabled" => "<p>Búsqueda en todo el texto ha sido desactivada temporalmente
-debido a carga alta del servidor; esperamos tenerla otra vez en linea despues de algunas actualizaciones de 
-soporte físico próximas. Mientras tanto, puedes hacer una busqueda vía google:</p>
+debido a carga alta del servidor; esperamos tenerla otra vez en linea después de algunas actualizaciones de 
+soporte físico próximas. Mientras tanto, puedes hacer una búsqueda vía google:</p>
 
-<!--Busqueda de Sitio Google -->
+<!--Búsqueda de Sitio Google -->
 <FORM method=GET action=\"http://www.google.es/search\">
 <TABLE bgcolor=\"#FFFFFF\"><tr><td>
 <A HREF=\"http://www.google.es/\">
@@ -515,9 +515,9 @@ value=\"{$wgServer}\" checked> {$wgServer} <br />
 para seleccionar preferencias de usuario.",
 "prefslogintext" => "Has entrado con el nombre \"$1\".
 Tu número de identificación interno es $2.",
-"prefsreset"	=> "Las preferencias han sido repuestas desde almacenaje.",
+"prefsreset"	=> "Las preferencias han sido repuestas a sus valores almacenados.",
 "qbsettings"	=> "Preferencias de \"Quickbar\"", 
-"changepassword" => "Cambia contraseña",
+"changepassword" => "Cambiar contraseña",
 "skin"			=> "Piel",
 "math"			=> "Cómo se muestran las fórmulas",
 "dateformat"	=> "Formato de fecha",
@@ -541,6 +541,7 @@ Tu número de identificación interno es $2.",
 "stubthreshold" => "Umbral de artículo mínimo" ,
 "recentchangescount" => "Número de títulos en cambios recientes",
 "savedprefs"	=> "Tus preferencias han sido grabadas.",
+'timezonelegend' => "Huso horario",
 "timezonetext"	=> "Entra el número de horas de diferencia entre tu hora local
 y la hora del servidor (UTC).",
 "localtime"	=> "Hora local",
@@ -553,18 +554,16 @@ y la hora del servidor (UTC).",
 # Recent changes
 #
 "changes" => "cambios",
-"recentchanges" => "Cambios Recientes",
+"recentchanges" => "Cambios recientes",
 "recentchangestext" => "Sigue los cambios más recientes a $wgSitename en esta página.
-[[$wgMetaNamespace:Bienvenidos|Bienvenidos]]!
-Por favor, mira estas páginas: [[$wgMetaNamespace:FAQ|$wgSitename FAQ]],
+¡[[$wgMetaNamespace:Bienvenidos|Bienvenidos]]!
+Por favor, lee estas páginas: [[$wgMetaNamespace:FAQ|$wgSitename FAQ]],
 [[$wgMetaNamespace:Políticas y guías|políticas de $wgSitename]]
 (especialmente [[$wgMetaNamespace:Convenciones de nombres|las convenciones para nombrar artículos]] y
 [[$wgMetaNamespace:Punto de vista neutral|punto de vista neutral]]).
 
 Si quieres que $wgSitename tenga éxito, es muy importante que no agregues
-material restringido por [[$wgMetaNamespace:Copyrights|derechos de autor]].
-
-La responsabilidad legal realmente podría dañar el proyecto, así que por favor no lo hagas.
+material restringido por [[$wgMetaNamespace:Copyrights|derechos de autor]]. La responsabilidad legal realmente podría dañar el proyecto, así que por favor no lo hagas.
 
 Ve también [http://meta.wikipedia.org/wiki/Special:Recentchanges discusión reciente en Meta (multilingüe)].",
 "rcloaderr"		=> "cargando cambios recientes",
@@ -573,7 +572,7 @@ Ve también [http://meta.wikipedia.org/wiki/Special:Recentchanges discusión rec
 "rcnotefrom"	=> "Abajo están los cambios desde <b>$2</b> (se muestran hasta <b>$1</b>).",
 "rclinks"		=> "Ver los últimos $1 cambios en los últimos $2 días.",
 "rchide"		=> "en forma $4 ; $1 ediciones menores; $2 espacios de nombre secundarios; $3 ediciones múltiples.",
-"rcliu"			=> "; $1 ediciones de usuarios en sesion",
+"rcliu"			=> "; $1 ediciones de usuarios en sesión",
 "diff"			=> "dif",
 "hist"			=> "hist",
 "hide"			=> "esconder",
@@ -611,8 +610,8 @@ Cuando hayas elegido un archivo, su nombre aparecerá en el campo de texto
 al lado del botón \"Examinar...\".
 También debes marcar la caja afirmando que no estás
 violando ningún copyright al subir el archivo.
-Presiona el boton \"Subir\" para completar la subida.
-Esto puede tomar algún tiempo si tienes una conexión a internet lenta.
+Presiona el botón \"Subir\" para completar la subida.
+Esto puede tomar algún tiempo si tienes una conexión a Internet lenta.
 
 Los formatos preferidos son JPEG para imágenes fotográficas, PNG
 para dibujos y diagramas, y OGG para sonidos.
@@ -670,13 +669,13 @@ creado y por quién, y cualquier otra cosa que puedas saber al respecto.",
 "imgdelete"		=> "borr",
 "imgdesc"		=> "desc",
 "imglegend"		=> "Simbología: (desc) = mostrar/editar la descripción de la imagen.",
-"imghistory"	=> "Historia de la imagen",
+"imghistory"	=> "Historial de la imagen",
 "revertimg"		=> "rev",
 "deleteimg"		=> "borr",
 "deleteimgcompletely"		=> "borr",
 "imghistlegend" => "Simbología: (act) = esta es la imagen actual, (borr) = borrar
 esta versión antigua, (rev) = revertir a esta versión antigua.
-<br /><i>Click en la fecha para ver imagen subida en esa fecha</i>.",
+<br /><i>Clic en la fecha para ver imagen subida en esa fecha</i>.",
 "imagelinks"	=> "Enlaces a la imagen",
 "linkstoimage"	=> "Las siguientes páginas enlazan a esta imagen:",
 "nolinkstoimage" => "No hay páginas que enlacen a esta imagen.",
@@ -700,16 +699,16 @@ de los cuales <b>$2</b> son administradores (ver $3).",
 # Maintenance Page
 #
 "maintenance"		=> "Página de mantenimiento",
-"maintnancepagetext"	=> "Esta página incluye varias herramientas útiles para el mantenimiento diario de la enciclopedia. Algunas de estas funciones tienden a sobrecargar la base de datos, asi que, por favor, no vuelvas a cargar la página después de cada ítem que arregles ;-)",
+"maintnancepagetext"	=> "Esta página incluye varias herramientas útiles para el mantenimiento diario de la enciclopedia. Algunas de estas funciones tienden a sobrecargar la base de datos, así que, por favor, no vuelvas a cargar la página después de cada ítem que arregles ;-)",
 "maintenancebacklink"	=> "Volver a la Página de Mantenimiento",
 "disambiguations"	=> "Páginas de desambiguación",
 "disambiguationspage"	=> "$wgMetaNamespace:Enlaces a páginas de desambiguación",
 "disambiguationstext"	=> "Los siguientes artículos enlazan a una <i>página de desambiguación</i>. Deberían enlazar al artículo apropiado.<br />Una página es considerada de desambiguación si está enlazada desde $1.<br />Enlaces desde otros espacios de nombre (Como $wgMetaNamespace: o usuario:) <b>no</b> son listados aquí.",
-"doubleredirects"	=> "Redirecciones Dobles",
+"doubleredirects"	=> "Redirecciones dobles",
 "doubleredirectstext"	=> "<b>Atención:</b> Esta lista puede contener falsos positivos. Eso significa usualmente que hay texto adicional con enlaces bajo el primer #REDIRECT.<br />\nCada fila contiene enlaces al segundo y tercer redirect, así como la primera línea del segundo redirect, en la que usualmente se encontrará el artículo \"real\" al que el primer redirect debería apuntar.",
 "brokenredirects"	=> "Redirecciones incorrectas",
 "brokenredirectstext"	=> "Las redirecciones siguientes enlazan a un artículo que no existe.",
-"selflinks"		=> "Páginas con autoenlaces",
+"selflinks"		=> "Páginas con enlaces a sí mismas",
 "selflinkstext"		=> "Las siguientes páginas contienen un enlace a sí mismas, lo que no se recomienda.",
 "mispeelings"       => "Páginas con faltas de ortografía",
 "mispeelingstext"               => "Las siguientes páginas contienen una falta de ortografía común de las listadas en $1. La escritura correcta se indica entre paréntesis.",
@@ -759,11 +758,11 @@ $wgSitename no está relacionada con ninguno de estos negocios, y esta lista no 
 #
 "mailnologin"	=> "No enviar dirección",
 "mailnologintext" => "Debes <a href=\"" .
-  "{{localurle:Especial:Userlogin}}\">inciar sesión</a>
+  "{{localurle:Especial:Userlogin}}\">iniciar sesión</a>
 y tener una dirección electrónica válida en tus <a href=\"" .
   "{{localurle:Especial:Preferences}}\">preferencias</a>
 para enviar un correo electrónico a otros usuarios.",
-"emailuser"		=> "Envía correo electrónico a este usuario",
+"emailuser"		=> "Enviar correo electrónico a este usuario",
 "emailpage"		=> "Correo electrónico a usuario",
 "emailpagetext"	=> "Si este usuario ha registrado una dirección electrónica válida en sus preferencias de usuario, el siguiente formulario sirve para enviarle un mensaje.
 La dirección electrónica que indicaste en tus preferencias de usuario aparecerá en el remitente para que el destinatario te pueda responder.",
@@ -798,14 +797,14 @@ Cambios futuros en esta página y su página de discusión asociada se indicará
 "watchthispage"	=> "Vigilar esta página",
 "unwatchthispage" => "Dejar de vigilar",
 "notanarticle"	=> "No es un artículo",
-"watchnochange" => "Ninguno de los articulos en tu lista de seguimiento fue editado en el periodo de tiempo mostrado.",
+"watchnochange" => "Ninguno de los artículos en tu lista de seguimiento fue editado en el periodo de tiempo mostrado.",
 "watchdetails" => "($1 páginas en tu lista de seguimiento, sin contar las de discusión;
 $2 páginas editadas en total desde el cutoff;
 $3...
 <a href='$4'>mostrar y editar la lista completa</a>.)",
-"watchmethod-recent" => "chequeando ediciones recentes en la lista de seguimiento",
+"watchmethod-recent" => "chequeando ediciones recientes en la lista de seguimiento",
 
-"watchmethod-list" => "buscando ediciones recentes en la lista de seguimiento",
+"watchmethod-list" => "buscando ediciones recientes en la lista de seguimiento",
 "removechecked" => "Borrar artículos seleccionados de la lista de seguimiento",
 "watchlistcontains" => "Tu lista de seguimiento posee $1 páginas.",
 "watcheditlist" => "Aquí está un listado alfabético de tu lista de seguimiento.
@@ -814,7 +813,7 @@ click el botón 'remover seleccionados' en el fin de la pantalla.",
 "removingchecked" => "Removiendo los artículos solicitados de la lista de seguimiento...",
 "couldntremove" => "No se pudo remover el artículo '$1'...",
 "iteminvalidname" => "Problema con el artículo '$1', nombre inválido...",
-"wlnote" => "Abajo estan los últimos $1 cambios en las últimas <b>$2</b> horas.",
+"wlnote" => "Abajo están los últimos $1 cambios en las últimas <b>$2</b> horas.",
 # Delete/protect/revert
 #
 "deletepage"	=> "Borrar esta página",
@@ -824,10 +823,10 @@ click el botón 'remover seleccionados' en el fin de la pantalla.",
 "exblank" => "página estaba vacía",
 "confirmdelete" => "Confirma el borrado",
 "deletesub"		=> "(Borrando \"$1\")",
-"historywarning" => "Atención: La página que estás por borrar tiene una historia: ",
+"historywarning" => "Atención: La página que estás por borrar tiene un historial: ",
 "confirmdeletetext" => "Estás a punto de borrar una página o imagen 
 en forma permanente,
-así como toda su historia, de la base de datos.
+así como todo su historial, de la base de datos.
 Por favor, confirma que realmente quieres hacer eso, que entiendes las
 consecuencias, y que lo estás haciendo de acuerdo con [[$wgMetaNamespace:Políticas]].",
 "confirmcheck"	=> "Sí, realmente quiero borrar esto.",
@@ -852,24 +851,24 @@ Todos los tiempos se muestran en hora del servidor (UTC).
 "alreadyrolled"	=> "No se puede revertir la última edición de [[$1]]
 por [[Colaborador:$2|$2]] ([[Colaborador Discusión:$2|Discusión]]); alguien más ya ha editado o revertido esa página.
 
-La última edición fue hecha por [[Colaborador:$3|$3]] ([[Colaborador Discusión:$3|DiscusiónTalk]]). ",
+La última edición fue hecha por [[Colaborador:$3|$3]] ([[Colaborador Discusión:$3|Discusión]]). ",
 #   only shown if there is an edit comment
 "editcomment" => "El resumen de la edición fue: \"<i>$1</i>\".", 
 "revertpage"	=> "Revertida a la última edición por $1",
 
 # Undelete
-"undelete" => "Restaura una página borrada",
-"undeletepage" => "Ve y restaura páginas borradas",
+"undelete" => "Restaurar una página borrada",
+"undeletepage" => "Ver y restaurar páginas borradas",
 "undeletepagetext" => "Las siguientes páginas han sido borradas pero aún están en el archivo y pueden ser restauradas. El archivo puede ser limpiado periódicamente.",
 "undeletearticle" => "Restaurar artículo borrado",
 "undeleterevisions" => "$1 revisiones archivadas",
-"undeletehistory" => "Si tú restauras una página, todas las revisiones serán restauradas a la historia.
-Si una nueva página con el mismo nombre ha sido creada desde el borrado, las versiones restauradas aparecerán como historia anterior, y la revisión actual de la página \"viva\" no será automáticamente reemplazada.",
+"undeletehistory" => "Si tú restauras una página, todas las revisiones serán restauradas al historial.
+Si una nueva página con el mismo nombre ha sido creada desde el borrado, las versiones restauradas aparecerán como historial anterior, y la revisión actual de la página \"viva\" no será automáticamente reemplazada.",
 "undeleterevision" => "Revisión borrada al $1",
 "undeletebtn" => "Restaurar!",
 "undeletedarticle" => "restaurado \"$1\"",
 "undeletedtext"   => "El artículo [[$1]] ha sido restaurado con éxito.
-Ve [[$wgMetaNamespace:Registro_de_borrados]] para una lista de borrados y restauraciones recientes.",
+Véase [[$wgMetaNamespace:Registro_de_borrados]] para una lista de borrados y restauraciones recientes.",
 
 # Contributions
 #
@@ -884,7 +883,7 @@ Ve [[$wgMetaNamespace:Registro_de_borrados]] para una lista de borrados y restau
 # What links here
 #
 "whatlinkshere"	=> "Lo que enlaza aquí",
-"notargettitle" => "No hay página blanco",
+"notargettitle" => "No hay página objetivo",
 "notargettext"	=> "No has especificado en qué página
 llevar a cabo esta función.",
 "linklistsub"	=> "(Lista de enlaces)",
@@ -908,7 +907,7 @@ ls páginas en particular que han sido objeto de vandalismo desde la dirección 
 
 "noblockreason" => "Debes dar una razón para el bloqueo.",
 "blockipsuccesssub" => "Bloqueo exitoso",
-"blockipsuccesstext" => "La direccion IP  \"$1\" ha sido bloqueada.
+"blockipsuccesstext" => "La dirección IP  \"$1\" ha sido bloqueada.
 <br />Ver [[Especial:Ipblocklist|lista de IP bloqueadas]] para revisar bloqueos.",
 "unblockip"		=> "Desbloquear dirección IP",
 "unblockiptext"	=> "Usa el formulario que sigue para restaurar el 
@@ -920,7 +919,7 @@ acceso de escritura a una dirección IP previamente bloqueada.",
 "blocklink"		=> "bloquear",
 "unblocklink"	=> "desbloquear",
 "contribslink"	=> "contribuciones",
-"autoblocker"	=> "Autobloqueado porque compartes una direccion IP con \"$1\". Motivo \"$2\".",
+"autoblocker"	=> "Bloqueado automáticamente porque compartes una dirección IP con \"$1\". Motivo \"$2\".",
 
 # Developer tools
 #
@@ -947,7 +946,7 @@ acceso de escritura a una dirección IP previamente bloqueada.",
 a la base de datos de $wgSitename. Usa comillas simples ('como estas') para delimitar
 cadenas de caracteres literales.
 Esto puede añadir una carga considerable al servidor, así que
-por favor usa esta función lo menos possible.",
+por favor usa esta función lo menos posible.",
 "sqlislogged"	=> "Por favor nota que todas las consultas son grabadas.",
 "sqlquery"		=> "Entra la consulta",
 "querybtn"		=> "Envía la consulta",
@@ -959,17 +958,17 @@ a $wgSitename developers.",
 #
 "movepage"		=> "Renombrar página",
 "movepagetext"	=> "Usando el formulario que sigue renombrará una página,
-moviendo toda su historia al nombre nuevo.
+moviendo todo su historial al nombre nuevo.
 El título anterior se convertirá en un redireccionamiento al nuevo título.
 Enlaces al antiguo título de la página no se cambiarán. Asegúrate de [[Especial:Maintenance|verificar]] no dejar redirecciones dobles o rotas.
 Tú eres responsable de hacer que los enlaces sigan apuntando adonde se supone que lo deberían hacer. 
 
-Recuerda que la página '''no''' será renombrada si ya existe una página con el nuevo título, a no ser que sea una página vacía o un ''redirect'' sin historia. 
+Recuerda que la página '''no''' será renombrada si ya existe una página con el nuevo título, a no ser que sea una página vacía o un ''redirect'' sin historial. 
 Esto significa que podrás renombrar una página a su título original si cometes un error de escritura en el nuevo título, pero que no podrás sobreescribir una página existente.
 
 <b>ADVERTENCIA!</b>
 Este puede ser un cambio drástico e inesperado para una página popular;
-por favor, asegurate de entender las consecuencias que acarreará
+por favor, asegúrate de entender las consecuencias que acarreará
 antes de seguir adelante.",
 "movepagetalktext" => "La página de discusión asociada, si existe, será renombrada automáticamente '''a menos que:'''
 *Estés moviendo la página entre espacios de nombre diferentes,
@@ -978,17 +977,17 @@ antes de seguir adelante.",
 
 En estos casos, deberás trasladar manualmente el contenido de la página de discusión.",
 "movearticle"	=> "Renombrar página",
-"movenologin"	=> "No has iniciado sesion",
+"movenologin"	=> "No has iniciado sesión",
 "movenologintext" => "Es necesario ser usuario registrado y <a href=\"" .
   "{{localurle:Especial:Userlogin}}\">haber iniciado sesión</a>
 para renombrar una página.",
 "newtitle"		=> "A título nuevo",
 "movepagebtn"	=> "Renombrar página",
-"pagemovedsub"	=> "Renombramiento exitoso",
+"pagemovedsub"	=> "Renombrado realizado",
 "pagemovedtext" => "Página \"[[$1]]\" renombrada a \"[[$2]]\".",
 "articleexists" => "Ya existe una página con ese nombre, o el nombre que has
 escogido no es válido.
-Por favor, elije otro nombre.",
+Por favor, elige otro nombre.",
 "talkexists"	=> "La página fue renombrada con éxito, pero la página de discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpora su contenido manualmente.",
 "movedto"		=> "renombrado a",
 "movetalk"	=> "Renombrar la página de discusión también, si es aplicable.",
@@ -1003,6 +1002,184 @@ Por favor, elije otro nombre.",
 	'mw_math_mathml' => 'MathML',
 
 );
+
+# Bits of text used by many pages:
+#
+'categories' => 'Categorías',
+'category' => 'categoría',
+'category_header' => 'Artículos en la categoría "$1"',
+'subcategories' => 'Subcategorías',
+
+# Short words for each namespace, by default used in the 'article' tab in monobook
+'nstab-main' => 'Artículo',
+'nstab-user' => 'Usuario',
+'nstab-media' => 'Media',
+'nstab-special' => 'Especial',
+'nstab-wp' => 'Acerca de',
+'nstab-image' => 'Imagen',
+'nstab-mediawiki' => 'Mensaje',
+'nstab-template' => 'Plantilla',
+'nstab-help' => 'Ayuda',
+'nstab-category' => 'Categoría',
+
+
+# Edit page toolbar
+'bold_sample' => "Texto en negrita",
+'bold_tip' => "Texto en negrita",
+'italic_sample' => "Texto en cursiva",
+'italic_tip' => "Texto en cursiva",
+'link_sample' => "Título del enlace",
+'link_tip' => "Enlace interno",
+'extlink_sample' => "http://www.ejemplo.com Título del enlace",
+'extlink_tip' => "Enlace externo (recuerda añadir el prefijo http://)",
+'headline_sample' => "Texto de titular",
+'headline_tip' => "Titular de nivel 2",
+'math_sample' => "Escribe aquí una fórmula",
+'math_tip' => "Fórmula matemática (LaTeX)",
+'nowiki_sample' => "Aquí inserta texto sin formato",
+'nowiki_tip' => "Pasar por alto el formato wiki",
+'image_sample' => "Ejemplo.jpg",
+'image_tip' => "Imagen incorporada",
+'media_sample' => "Ejemplo.mp3",
+'media_tip'=> 'Enlace a archivo multimedia',
+'sig_tip' => "Firma, fecha y hora",
+'hr_tip' => "Línea horizontal (utilízala con moderación)",
+'infobox' => "Pulsa un botón para ver un texto de ejemplo",
+# alert box shown in browsers where text selection does not work, test e.g. with mozilla or konqueror
+'infobox_alert' => "Escribe el texto al que quieres dar formato.\n Se mostrará en la caja de información para poder copiar y pegar.\nEjemplo:\n$1\nse convertirá en:\n$2",
+
+# Special:Allpages
+'nextpage'          => 'Next page ($1)',
+'articlenamespace'  => '(artículos)',
+'allpagesformtext1' => 'Mostrar páginas que comiencen por: $1',
+'allpagesformtext2' => 'Elige espacio de nombres: $1 $2',
+'allarticles'       => 'Todos los artículos',
+'allpagesprev'      => 'Anterior',
+'allpagesnext'      => 'Siguiente',
+'allpagesnamespace' => 'Todas las páginas (espacio $1)',
+'allpagessubmit'    => 'Mostrar',
+
+# Patrolling
+'markaspatrolleddiff'   => "Marcar como revisado",
+'markaspatrolledlink'   => "<div class='patrollink'>[$1]</div>",
+'markaspatrolledtext'   => "Marcar este artículo como revisado",
+'markedaspatrolled'     => "Marcar como revisado",
+'markedaspatrolledtext' => "La versión seleccionada ha sido marcada como revisada.",
+'rcpatroldisabled'      => "Revisión de los Cambios Recientes deshabilitada",
+'rcpatroldisabledtext'  => "La capacidad de revisar los Cambios Recientes está deshabilitada en este momento.",
+
+'showhideminor' => "$1 ediciones menores | $2 bots | $3 usuarios registrados | $4 ediciones revisadas ",
+
+# labels for User: and Title: on Special:Log pages
+'specialloguserlabel' => 'Usuario: ',
+'speciallogtitlelabel' => 'Título: ',
+
+'subcategorycount' => "Hay $1 subcategorías en esta categoría.",
+'subcategorycount1' => "Hay $1 subcategoría en esta categoría.",
+'categoryarticlecount' => "Hay $1 artículos en esta categoría.",
+'categoryarticlecount1' => "Hay $1 artículo en esta categoría.",
+'categoriespagetext' => "Existen las siguientes categorías en este wiki.",
+
+'toolbox' => "Herramientas",
+
+
+'tooltip-compareselectedversions' => "Ver las diferencias entre las dos versiones seleccionadas de esta página. [alt-v]",
+'tooltip-minoredit' => "Marcar este cambio como menor [alt-i]",
+'tooltip-preview' => "Previsualiza tus cambios, ¡por favor, usa esto antes de grabar! [alt-p]",
+'tooltip-save' => "Guardar tus cambios [alt-s]",
+'tooltip-search' => "Buscar en este wiki [alt-f]",
+
+'clearyourcache' => "'''Nota:''' Tras salvar el fichero, debes refrescar la caché de tu navegador para ver los cambios:
+*'''Mozilla:'''  Pulsa el botón ''Recargar'' (o ''ctrl-r''), 
+*'''Internet Explorer / Opera:''' ''ctrl-f5'', 
+*'''Safari:''' ''cmd-r'', 
+*'''Konqueror''' ''ctrl-r''.",
+'compareselectedversions' => "Comparar versiones seleccionadas",
+
+'feedlinks' => "Sindicación:",
+
+'import' => "Importar páginas",
+'importfailed' => "La importación ha fallado: $1",
+'importhistoryconflict' => "Existe un historial de revisiones en conflicto (puede haberse importado esta página con anterioridad)",
+'importnotext' => "Vacío o sin texto",
+'importsuccess' => "¡La importación tuvo éxito!",
+'importtext' => "Por favor, exporta el archivo desde el wiki de origen usando la utilidad Special:Export, guardalo en tu disco y súbelo aquí.",
+
+'thumbnail-more' => "Aumentar",
+
+'imagemaxsize' => 'Limitar imágenes en las páginas descripción a: ',
+'showbigimage' => 'Descargar versión de alta resolución ($1x$2, $3 KB)',
+
+'newimages' => 'Galería de imágenes nuevas',
+'noimages'  => 'No hay nada que ver.',
+
+'previousdiff' => "&larr; Ir a diferencia anterior",
+'nextdiff' => "Ir a siguiente diferencia &rarr;",
+
+'deletedrevision' => "Borrada revisión antigua $1.",
+
+'Monobook.js' => "/* tooltips and access keys */
+ta = new Object();
+ta['pt-userpage'] = new Array('.','Mi página de usuario'); 
+ta['pt-anonuserpage'] = new Array('.','La página de usuario de la IP desde la que editas'); 
+ta['pt-mytalk'] = new Array('n','Mi página de discusión'); 
+ta['pt-anontalk'] = new Array('n','Discusión sobre ediciones hechas desde esta dirección IP'); 
+ta['pt-preferences'] = new Array('','Mis preferencias'); 
+ta['pt-watchlist'] = new Array('l','La lista de páginas para las que estás vigilando los cambios'); 
+ta['pt-mycontris'] = new Array('y','Lista de mis contribuciones'); 
+ta['pt-login'] = new Array('o','Te animamos a registrarte, aunque no es obligatorio'); 
+ta['pt-anonlogin'] = new Array('o','Te animamos a registrarte, aunque no es obligatorio'); 
+ta['pt-logout'] = new Array('o','Salir de la sesión'); 
+ta['ca-talk'] = new Array('t','Discusión acerca del artículo'); 
+ta['ca-edit'] = new Array('e','Puedes editar esta página. Por favor, usa el botón de previsualización antes de grabar.'); 
+ta['ca-addsection'] = new Array('+','Añade un comentario a esta discusión'); 
+ta['ca-viewsource'] = new Array('e','Esta página está protegida, sólo puedes ver su código fuente'); 
+ta['ca-history'] = new Array('h','Versiones anteriores de esta página'); 
+ta['ca-protect'] = new Array('=','Proteger esta página'); 
+ta['ca-delete'] = new Array('d','Borrar esta página'); 
+ta['ca-undelete'] = new Array('d','Restaurar las ediciones hechas a esta página antes de que fuese borrada'); 
+ta['ca-move'] = new Array('m','Trasladar (renombrar) esta página'); 
+ta['ca-nomove'] = new Array('','No tienes los permisos necesarios para trasladar esta página'); 
+ta['ca-watch'] = new Array('w','Añadir esta página a tu lista de seguimiento'); 
+ta['ca-unwatch'] = new Array('w','Borrar esta página de tu lista de seguimiento'); 
+ta['search'] = new Array('f','Buscar en este wiki'); 
+ta['p-logo'] = new Array('','Portada'); 
+ta['n-mainpage'] = new Array('z','Visitar la Portada'); 
+ta['n-portal'] = new Array('','Acerca del proyecto, qué puedes hacer, dónde encontrar información'); 
+ta['n-currentevents'] = new Array('','Información de contexto sobre acontecimientos actuales'); 
+ta['n-recentchanges'] = new Array('r','La lista de cambios recientes en el wiki'); 
+ta['n-randompage'] = new Array('x','Cargar una página aleatoriamente'); 
+ta['n-help'] = new Array('','El lugar para aprender'); 
+ta['n-sitesupport'] = new Array('','Respáldanos'); 
+ta['t-whatlinkshere'] = new Array('j','Lista de todas las páginas del wiki que enlazan con ésta'); 
+ta['t-recentchangeslinked'] = new Array('k','Cambios recientes en las páginas que enlazan con esta otra'); 
+ta['feed-rss'] = new Array('','Sindicación RSS de esta página'); 
+ta['feed-atom'] = new Array('','Sindicación Atom de esta página'); 
+ta['t-contributions'] = new Array('','Ver la lista de contribuciones de este usuario'); 
+ta['t-emailuser'] = new Array('','Enviar un mensaje de correo a este usuario'); 
+ta['t-upload'] = new Array('u','Subir imágenes o archivos multimedia'); 
+ta['t-specialpages'] = new Array('q','Lista de todas las páginas especiales'); 
+ta['ca-nstab-main'] = new Array('c','Ver el artículo'); 
+ta['ca-nstab-user'] = new Array('c','Ver la página de usuario'); 
+ta['ca-nstab-media'] = new Array('c','Ver la página de multimedia'); 
+ta['ca-nstab-special'] = new Array('','Esta es una página especial, no se puede editar la página en sí'); 
+ta['ca-nstab-wp'] = new Array('a','Ver la página de proyecto'); 
+ta['ca-nstab-image'] = new Array('c','Ver la página de la imagen'); 
+ta['ca-nstab-mediawiki'] = new Array('c','Ver el mensaje de sistema'); 
+ta['ca-nstab-template'] = new Array('c','Ver la plantilla'); 
+ta['ca-nstab-help'] = new Array('c','Ver la página de ayuda'); 
+ta['ca-nstab-category'] = new Array('c','Ver la página de categoría');",
+'navigation' => "Navegación",
+
+'portal'		=> 'Portal de la comunidad',
+'portal-url'		=> 'Project:Portal de la comunidad',
+
+'validate'		=> 'Validar página',
+'uncategorizedpages'	=> 'Páginas sin categorizar',
+'uncategorizedcategories'	=> 'Categorías sin categorizar',
+
+'movedto' => "renombrado a",
+'moredotdotdot' => "Más...",
 
 class LanguageEs extends LanguageUtf8 {
 
