@@ -763,6 +763,7 @@ $wgCategoryMagicGallery = true;
 # Browser Blacklist for unicode non compliant browsers
 # Contains a list of regexps : "/regexp/"  matching problematic browsers
 $wgBrowserBlackList = array(
+	"/Mozilla\/4\.78 \[en\] \(X11; U; Linux/"
 	// FIXME: Add some accurate, true things here
 	);
 
