@@ -909,7 +909,9 @@ nove titulo. Per favor fusiona los manualmente.",
 
 );
 
-class LanguageIa extends Language {
+include( "LanguageUtf8.php" );
+
+class LanguageIa extends LanguageUtf8 {
 
 	function getBookstoreList () {
 		global $wgBookstoreListIa ;
