@@ -1439,6 +1439,8 @@ You might want to check the following regular expression for patterns that are c
 'markaspatrolledtext'   => "Mark this article as patrolled",
 'markedaspatrolled'     => "Marked as patrolled",
 'markedaspatrolledtext' => "The selected revision has been marked as patrolled.",
+'rcpatroldisabled'      => "Recent Changes Patrol disabled",
+'rcpatroldisabledtext'  => "The Recent Changes Patrol feature is currently disabled.",
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* tooltips and access keys */

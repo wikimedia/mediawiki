@@ -625,7 +625,7 @@ class Article {
 	function view()
 	{
 		global $wgUser, $wgOut, $wgLang, $wgRequest, $wgMwRedir, $wgOnlySysopsCanPatrol;
-		global $wgLinkCache, $IP, $wgEnableParserCache, $wgStylePath;
+		global $wgLinkCache, $IP, $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol;
 		$sk = $wgUser->getSkin();
 
 		$fname = 'Article::view';
@@ -735,7 +735,7 @@ class Article {
 
 		# If we have been passed an &rcid= parameter, we want to give the user a
 		# chance to mark this new article as patrolled.
-		if ( !is_null ( $rcid ) && $rcid != 0 && $wgUser->getID() != 0 &&
+		if ( $wgUseRCPatrol && !is_null ( $rcid ) && $rcid != 0 && $wgUser->getID() != 0 &&
 		     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
 		{
 			$wgOut->addHTML( wfMsg ( 'markaspatrolledlink',
@@ -1086,9 +1086,20 @@ class Article {
 	# Mark this particular edit as patrolled
 	function markpatrolled()
 	{
-		global $wgOut, $wgRequest, $wgOnlySysopsCanPatrol;
+		global $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgUseRCPatrol;
 		$wgOut->setRobotpolicy( 'noindex,follow' );
-		if( $wgOnlySysopsCanPatrol && !$wgUser->isSysop() )
+
+		if ( !$wgUseRCPatrol )
+		{
+			$wgOut->errorpage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
+			return;
+		}
+		if ( $wgUser->getID() == 0 )
+		{
+			$wgOut->loginToUse();
+			return;
+		}
+		if ( $wgOnlySysopsCanPatrol && !$wgUser->isSysop() )
 		{
 			$wgOut->sysopRequired();
 			return;
