@@ -292,8 +292,10 @@ class DatabasePgsql extends Database {
 						} else {
 							$sql .= " AND ";
 						}
-						$sql .= "$col = " $this->strencode
-						
+						//midom: atleast unbreak the class (remove syntax errors)
+						//$sql .= "$col = " $this->strencode;
+					}
+				}
 				if ( $first ) {
 					$first = false;
 				} else {
@@ -352,10 +354,14 @@ class DatabasePgsql extends Database {
 	function lowPriorityOption() {
 		return '';
 	}
+
+	function limitResult($limit,$offset) {
+        	return " LIMIT $limit ".(is_numeric($offset)?" OFFSET {$offset} ":"");
+	}
 }
 
-function wfLimitResult( $limit, $offset ) {
-        return " LIMIT $limit ".(is_numeric($offset)?" OFFSET {$offset} ":"");
+# Just an alias.
+class DatabasePostgreSQL extends DatabasePgsql {
 }
 
 ?>
