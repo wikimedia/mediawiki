@@ -209,15 +209,19 @@ class DifferenceEngine {
 
 	function showDiff( $otext, $ntext, $otitle, $ntitle )
 	{
-		global $wgOut, $wgUseExternalDiffEngine;
-
-		$wgOut->addHTML( "
+		global $wgOut;
+		$wgOut->addHTML( DifferenceEngine::getDiff( $otext, $ntext, $otitle, $ntitle ) );
+	}
+	
+	function getDiff( $otext, $ntext, $otitle, $ntitle ) {
+		global $wgUseExternalDiffEngine;
+		$out = "
 			<table border='0' width='98%' cellpadding='0' cellspacing='4' class='diff'>
 			<tr>
 				<td colspan='2' width='50%' align='center' class='diff-otitle'>{$otitle}</td>
 				<td colspan='2' width='50%' align='center' class='diff-ntitle'>{$ntitle}</td>
 			</tr>
-		" );
+		";
 
 		if ( $wgUseExternalDiffEngine ) {
 			# For historical reasons, external diff engine expects
@@ -225,15 +229,16 @@ class DifferenceEngine {
 			$otext = str_replace( "\r\n", "\n", htmlspecialchars ( $otext ) );
 			$ntext = str_replace( "\r\n", "\n", htmlspecialchars ( $ntext ) );
 			dl('php_wikidiff.so');
-			$wgOut->addHTML( wikidiff_do_diff( $otext, $ntext, 2) );
+			$out .= wikidiff_do_diff( $otext, $ntext, 2 );
 		} else {
 			$ota = explode( "\n", str_replace( "\r\n", "\n", $otext ) );
 			$nta = explode( "\n", str_replace( "\r\n", "\n", $ntext ) );
-			$diffs = new Diff( $ota, $nta );
-			$formatter = new TableDiffFormatter();
-			$formatter->format( $diffs );
+			$diffs =& new Diff( $ota, $nta );
+			$formatter =& new TableDiffFormatter();
+			$out .= $formatter->format( $diffs );
 		}
-		$wgOut->addHTML( "</table>\n" );
+		$out .= "</table>\n";
+		return $out;
 	}
 
 	# Load the text of the articles to compare.  If newid is 0, then compare
@@ -293,7 +298,7 @@ class DifferenceEngine {
 				), $fname, array( 'ORDER BY' => 'inverse_timestamp', 'USE INDEX' => 'name_title_timestamp' )
 			);
 			if ( $s === false ) {
-				wfDebug( 'Unable to load ' . $this->mNewPage->getPrefixedDBkey . " from old\n" );
+				wfDebug( 'Unable to load ' . $this->mNewPage->getPrefixedDBkey() . " from old\n" );
 				return false;
 			}
 		} else {
@@ -1307,7 +1312,7 @@ class TableDiffFormatter extends DiffFormatter
 
 	function _start_block( $header ) {
 		global $wgOut;
-		$wgOut->addHTML( $header );
+		echo $header;
 	}
 
 	function _end_block() {
@@ -1336,32 +1341,28 @@ class TableDiffFormatter extends DiffFormatter
 	}
 
 	function _added( $lines ) {
-		global $wgOut;
 		foreach ($lines as $line) {
-			$wgOut->addHTML( '<tr>' . $this->emptyLine() .
-				$this->addedLine( htmlspecialchars ( $line ) ) . "</tr>\n" );
+			echo '<tr>' . $this->emptyLine() .
+				$this->addedLine( htmlspecialchars ( $line ) ) . "</tr>\n";
 		}
 	}
 
 	function _deleted($lines) {
-		global $wgOut;
 		foreach ($lines as $line) {
-			$wgOut->addHTML( '<tr>' . $this->deletedLine( htmlspecialchars ( $line ) ) .
-			  $this->emptyLine() . "</tr>\n" );
+			echo '<tr>' . $this->deletedLine( htmlspecialchars ( $line ) ) .
+			  $this->emptyLine() . "</tr>\n";
 		}
 	}
 
 	function _context( $lines ) {
-		global $wgOut;
 		foreach ($lines as $line) {
-			$wgOut->addHTML( '<tr>' .
+			echo '<tr>' .
 				$this->contextLine( htmlspecialchars ( $line ) ) .
-				$this->contextLine( htmlspecialchars ( $line ) ) . "</tr>\n" );
+				$this->contextLine( htmlspecialchars ( $line ) ) . "</tr>\n";
 		}
 	}
 
 	function _changed( $orig, $closing ) {
-		global $wgOut;
 		$diff = new WordLevelDiff( $orig, $closing );
 		$del = $diff->orig();
 		$add = $diff->closing();
@@ -1371,12 +1372,12 @@ class TableDiffFormatter extends DiffFormatter
 
 		while ( $line = array_shift( $del ) ) {
 			$aline = array_shift( $add );
-			$wgOut->addHTML( '<tr>' . $this->deletedLine( $line ) .
-				$this->addedLine( $aline ) . "</tr>\n" );
+			echo '<tr>' . $this->deletedLine( $line ) .
+				$this->addedLine( $aline ) . "</tr>\n";
 		}
 		foreach ($add as $line) {	# If any leftovers
-			$wgOut->addHTML( '<tr>' . $this->emptyLine() .
-				$this->addedLine( $line ) . "</tr>\n" );
+			echo '<tr>' . $this->emptyLine() .
+				$this->addedLine( $line ) . "</tr>\n";
 		}
 	}
 }
