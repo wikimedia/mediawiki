@@ -141,6 +141,7 @@ function wfSpecialRecentchanges( $par )
 	} else {
 		$wgOut->setSyndicated( true );
 		$s = $sk->beginRecentChangesList();
+		$counter = 1;
 		foreach( $rows as $obj ){
 			if( $limit == 0) {
 				break; 
@@ -148,6 +149,7 @@ function wfSpecialRecentchanges( $par )
 			
 			if ( ! ( $hideminor && $obj->rc_minor ) ) {
 				$rc = RecentChange::newFromRow( $obj );
+				$rc->counter = $counter++;
 				$s .= $sk->recentChangesLine( $rc, !empty( $obj->wl_user ) );
 				--$limit;
 			}
