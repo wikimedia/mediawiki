@@ -115,6 +115,8 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1039) Avoid error message in certain message cache failure modes
 * Fix string escaping with PostgreSQL
 * (bug 1015) [partial] -- use comment formatter on image gallery text
+* Allow customization of all UI languages
+* use $wgForceUIMsgAsContentMsg to make regular UI messages act as content
 
 === Caveats ===
 
