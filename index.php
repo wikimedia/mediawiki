@@ -46,6 +46,16 @@ if ( "" == $title && "delete" != $action ) {
 }
 wfProfileOut( "main-misc-setup" );
 
+# If the user is not logged in, the Namespace:title of the article must be in the Read array in
+#  order for the user to see it.
+if ( !$wgUser->getID() && is_array( $wgWhitelistRead ) && $wgTitle) {
+	if ( !in_array( $wgLang->getNsText( $wgTitle->getNamespace() ) . ":" . $wgTitle->getDBkey(), $wgWhitelistRead ) ) {
+		$wgOut->loginToUse();
+		$wgOut->output();
+		exit;
+	}
+}
+
 if ( "" != $search ) {
 	if( isset($_REQUEST['fulltext']) ) {
 		wfSearch( $search );

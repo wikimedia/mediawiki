@@ -407,6 +407,26 @@ class OutputPage {
 		$this->returnToMain();
 	}
 
+	function loginToUse()
+	{
+		global $wgUser, $wgTitle, $wgLang;
+
+		$this->setHTMLTitle( wfMsg( "errorpagetitle" ) );
+		$this->setPageTitle( wfMsg( "loginreqtitle" ) );
+		$this->setRobotpolicy( "noindex,nofollow" );
+		$this->setArticleFlag( false );
+		$this->mBodytext = "";
+		$this->addWikiText( wfMsg( "loginreqtext" ) );
+
+		# We put a comment in the .html file so a Sysop can diagnose the page the
+		# user can't see.
+		$this->addHTML( "\n<!--" . 
+						$wgLang->getNsText( $wgTitle->getNamespace() ) . 
+						":" . 
+						$wgTitle->getDBkey() . "-->" );
+		$this->returnToMain();		# Flip back to the main page after 10 seconds.
+	}
+
 	function databaseError( $fname, &$conn )
 	{
 		global $wgUser, $wgCommandLineMode;
