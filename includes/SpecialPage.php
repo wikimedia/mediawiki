@@ -89,7 +89,8 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 #	"Import"		=> new SpecialPage( "Import", "sysop" ),
 	'Lockdb'		=> new SpecialPage( 'Lockdb', 'developer' ),
 	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'developer' ),
-	"Sitesettings"		=> new SpecialPage( "Sitesettings" )
+	'Sitesettings'  => new SpecialPage( 'Sitesettings', 'sysop' ),
+	'Userlevels'	=> new SpecialPage( 'Userlevels', 'sysop' ),
 ));
 
 /**
