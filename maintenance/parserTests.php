@@ -31,6 +31,20 @@ include_once( 'InitialiseMessages.inc' );
 $wgTitle = Title::newFromText( 'Parser test script' );
 
 class ParserTest {
+	function ParserTest() {
+		if( isset( $_SERVER['argv'] ) && in_array( '--color', $_SERVER['argv'] ) ) {
+			$this->color = true;
+		} elseif( isset( $_SERVER['argv'] ) && in_array( '--color=yes', $_SERVER['argv'] ) ) {
+			$this->color = true;
+		} elseif( isset( $_SERVER['argv'] ) && in_array( '--color=no', $_SERVER['argv'] ) ) {
+			$this->color = false;
+		} elseif( wfIsWindows() ) {
+			$this->color = false;
+		} else {
+			$this->color = true;
+		}
+	}
+	
 	function runTestsFromFile( $filename ) {
 		$infile = fopen( $filename, 'rt' );
 		if( !$infile ) {
@@ -95,7 +109,7 @@ class ParserTest {
 	 * @return bool
 	 */
 	function runTest( $desc, $input, $result ) {
-		print "Running test $desc...";
+		print "Running test $desc... ";
 
 		$this->setupGlobals();
 		
@@ -152,12 +166,12 @@ class ParserTest {
 	}
 	
 	function showSuccess( $desc ) {
-		print "ok\n";
+		print $this->termColor( '1;32' ) . 'PASSED' . $this->termReset() . "\n";
 		return true;
 	}
 	
 	function showFailure( $desc, $result, $html ) {
-		print "FAILED\n";
+		print $this->termColor( '1;31' ) . 'FAILED!' . $this->termReset() . "\n";
 		#print "!! Expected:\n$result\n";
 		#print "!! Received:\n$html\n!!\n";
 		print $this->quickDiff( $result, $html );
@@ -177,13 +191,29 @@ class ParserTest {
 		unlink( $infile );
 		unlink( $outfile );
 		
-		return $diff;
+		return $this->colorDiff( $diff );
 	}
 	
 	function dumpToFile( $data, $filename ) {
 		$file = fopen( $filename, "wt" );
 		fwrite( $file, rtrim( $data ) . "\n" );
 		fclose( $file );
+	}
+	
+	function termColor( $color ) {
+		return $this->color ? "\x1b[{$color}m" : '';
+	}
+	
+	function termReset() {
+		return $this->color ? "\x1b[0m" : '';
+	}
+	
+	function colorDiff( $text ) {
+		return preg_replace(
+			array( '/^(-.*)$/m', '/^(\+.*)$/m' ),
+			array( $this->termColor( 34 ) . '$1' . $this->termReset(),
+			       $this->termColor( 31 ) . '$1' . $this->termReset() ),
+			$text );
 	}
 }
 
