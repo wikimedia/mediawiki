@@ -335,13 +335,13 @@ class MovePageForm {
 		$fname = "MovePageForm::moveToNewTitle";
 		$mt = wfMsg( "movedto" );
 
+		$now = wfTimestampNow();
+		$won = wfInvertTimestamp( $now );
 		$sql = "UPDATE cur SET cur_touched='{$now}'," .
 		  "cur_namespace={$this->nns},cur_title='{$this->ndt}' " .
 		  "WHERE cur_id={$this->oldid}";
 		wfQuery( $sql, $fname );
 
-		$now = wfTimestampNow();
-		$won = wfInvertTimestamp( $now );
 		$common = "{$this->ons},'{$this->odt}'," .
 		  "'{$mt} \\\"{$this->nft}\\\"','" .
 		  $wgUser->getID() . "','" . wfStrencode( $wgUser->getName() ) .
