@@ -245,14 +245,19 @@ class Skin {
 	#
 	function beforeContent()
 	{
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgSiteNotice;
 
 		if ( $wgOut->isPrintable() ) {
 			$s = $this->pageTitle() . $this->pageSubtitle() . "\n";
 			$s .= "\n<div class='bodytext'>";
 			return $s;
 		}
-		return $this->doBeforeContent();
+		if( $wgSiteNotice ) {
+			$note = "\n<div id='notice' style='font-weight: bold; color: red; text-align: center'>$wgSiteNotice</div>\n";
+		} else {
+			$note = "";
+		}
+		return $this->doBeforeContent() . $note;
 	}
 
 	function doBeforeContent()
