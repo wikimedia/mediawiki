@@ -92,16 +92,9 @@ function wfSpecialRecentchanges( $par )
 	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
 	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
 
-	$memckey = "$wgDBname:recentchanges:" . md5( $sql2 );
-
-	$rows = $wgMemc->get( $memckey );
-	if( ! is_array($rows) ){
-		$rows = array();
-		$res = wfQuery( $sql2, DB_READ, $fname );
-		while( $row = wfFetchObject( $res ) ){ 
-			$rows[] = $row; 
-		}
-		$wgMemc->set($memckey, $rows, 60);
+	$res = wfQuery( $sql2, DB_READ, $fname );
+	while( $row = wfFetchObject( $res ) ){ 
+		$rows[] = $row; 
 	}
 
 	if(isset($from)) {
