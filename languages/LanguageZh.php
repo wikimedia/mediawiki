@@ -347,23 +347,29 @@ class LanguageZh extends LanguageZh_cn {
 		$text = $this->autoConvert($tfirst);
 		foreach($tarray as $txt) {
 			$marked = explode("}-", $txt);
-			$choice = explode(";", $marked{0});
+		
+			//strip &nbsp; since it interferes with the parsing, plus,
+			//all spaces should be stripped in this tag anyway.
+			$marked[0] = str_replace('&nbsp;', '', $marked[0]);
+
+			$choice = explode(";", $marked[0]);
 			/* see if this conversion is specifically for the
-			  article title
+			  article title. the format is
+				-{T|zh-cn:foo;zh-tw:bar}-
 			*/
 			$fortitle = false;
-			$tt = explode("T|", $marked{0}, 2);
-			if(sizeof($tt) == 2) {
+			$tt = explode("|", $marked[0], 2);
+			if(sizeof($tt) == 2 && trim($tt[0]) == 'T') {
 				$choice = explode(";", $tt[1]);
 				$fortitle = true;
 			}
 			else {
-				$choice = explode(";", $marked{0});
+				$choice = explode(";", $marked[0]);
 			}
 			$disp = '';
 			if(!array_key_exists(1, $choice)) {
 				/* a single choice */
-				$disp = $choice{0};
+				$disp = $choice[0];
 			} else {
 				$choice1=false;
 				$choice2=false;
@@ -373,8 +379,8 @@ class LanguageZh extends LanguageZh_cn {
 						//syntax error in the markup, give up
 						break;			
 					}
-					$code = trim($v{0});
-					$content = trim($v{1});
+					$code = trim($v[0]);
+					$content = trim($v[1]);
 					if($code == $plang) {
 						$choice1 = $content;
 						break;
@@ -387,7 +393,7 @@ class LanguageZh extends LanguageZh_cn {
 				elseif ( $choice2 )
 					$disp = $choice2;
 				else
-					$disp = $marked{0};
+					$disp = $marked[0];
 			}
 
 			if($fortitle)
@@ -395,7 +401,7 @@ class LanguageZh extends LanguageZh_cn {
 			else
 				$text .= $disp;
 			if(array_key_exists(1, $marked))
-				$text .= $this->autoConvert($marked{1});
+				$text .= $this->autoConvert($marked[1]);
 		}
 		
 		return $text;
