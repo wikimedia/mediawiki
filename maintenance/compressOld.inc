@@ -7,17 +7,19 @@ function compressOldPages( $start = 0 ) {
 	print "Starting from old_id $start...\n";
 	do {
 		$end = $start + $chunksize;
-		$sql = "SELECT old_id,old_flags,old_namespace,old_title,old_text FROM old WHERE old_id>=$start AND old_id<$end ORDER BY old_id LIMIT $chunksize";
+		$sql = "SELECT old_id,old_flags,old_namespace,old_title,old_text FROM old WHERE old_id>=$start ORDER BY old_id LIMIT $chunksize";
 		$res = wfQuery( $sql, DB_READ, "compressOldPages" );
 		if( wfNumRows( $res ) == 0 ) {
 			break;
 		}
+		$last = $start;
 		while( $row = wfFetchObject( $res ) ) {
 			# print "  {$row->old_id} - {$row->old_namespace}:{$row->old_title}\n";
 			compressPage( $row );
+			$last = $row->old_id;
 		}
 		wfFreeResult( $res );
-		$start += $chunksize;
+		$start = $last + 1; # Deletion may leave long empty stretches
 		print "$start...\n";
 	} while( true );
 }
