@@ -3,27 +3,27 @@
 // The names of the namespaces can be set here, but the numbers
 // are magical, so don't change or move them!  The Namespace class
 // encapsulates some of the magic-ness.
-require_once( "LanguageUtf8.php" );
+require_once( 'LanguageUtf8.php' );
 
 /* private */ $wgNamespaceNamesFr = array(
-	NS_MEDIA			=> "Media",
-	NS_SPECIAL			=> "Special",
-	NS_MAIN				=> "",
-	NS_TALK				=> "Discuter",
-	NS_USER				=> "Utilisateur",
-	NS_USER_TALK		=> "Discussion_Utilisateur",
+	NS_MEDIA			=> 'Media',
+	NS_SPECIAL			=> 'Special',
+	NS_MAIN				=> '',
+	NS_TALK				=> 'Discuter',
+	NS_USER				=> 'Utilisateur',
+	NS_USER_TALK		=> 'Discussion_Utilisateur',
 	NS_PROJECT			=> $wgMetaNamespace,
-	NS_PROJECT_TALK		=> "Discussion_".$wgMetaNamespace,
-	NS_IMAGE			=> "Image",
-	NS_IMAGE_TALK		=> "Discussion_Image",
-	NS_MEDIAWIKI		=> "MediaWiki",
-	NS_MEDIAWIKI_TALK	=> "Discussion_MediaWiki",
-	NS_TEMPLATE			=> "Modèle",
-	NS_TEMPLATE_TALK	=> "Discussion_Modèle",
-	NS_HELP				=> "Aide",
-	NS_HELP_TALK		=> "Discussion_Aide",
-	NS_CATEGORY			=> "Catégorie",
-	NS_CATEGORY_TALK	=> "Discussion_Catégorie"
+	NS_PROJECT_TALK		=> 'Discussion_'.$wgMetaNamespace,
+	NS_IMAGE			=> 'Image',
+	NS_IMAGE_TALK		=> 'Discussion_Image',
+	NS_MEDIAWIKI		=> 'MediaWiki',
+	NS_MEDIAWIKI_TALK	=> 'Discussion_MediaWiki',
+	NS_TEMPLATE			=> 'Modèle',
+	NS_TEMPLATE_TALK	=> 'Discussion_Modèle',
+	NS_HELP				=> 'Aide',
+	NS_HELP_TALK		=> 'Discussion_Aide',
+	NS_CATEGORY			=> 'Catégorie',
+	NS_CATEGORY_TALK	=> 'Discussion_Catégorie'
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsFr = array(
@@ -78,33 +78,33 @@ require_once( "LanguageUtf8.php" );
 	'Ancientpages'	=> 'Anciennes pages',
 	'Allpages'      => 'Toutes les pages',
 
-	"Ipblocklist"   => "Adresses IP bloquées",
-	"Maintenance"   => "Page de maintenance",
-	"Specialpages"  => "", // ces pages doivent rester vides !
-	"Contributions" => "",
-	"Emailuser"     => "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage"      => "",
-	"Booksources"   => "Librairies en ligne",
-	"Categories"	=> "Page des catégories",
-	"Export"	=> "Exporter par XML",
-	"Version"	=> "Version",
-	"Allmessages"	=> "Messages système"
+	'Ipblocklist'   => 'Adresses IP bloquées',
+	'Maintenance'   => 'Page de maintenance',
+	'Specialpages'  => '', // ces pages doivent rester vides !
+	'Contributions' => '',
+	'Emailuser'     => '',
+	'Whatlinkshere' => '',
+	'Recentchangeslinked' => '',
+	'Movepage'      => '',
+	'Booksources'   => 'Librairies en ligne',
+	'Categories'	=> 'Page des catégories',
+	'Export'	=> 'Exporter par XML',
+	'Version'	=> 'Version',
+	'Allmessages'	=> 'Messages système'
 );
 
 /* private */ $wgSysopSpecialPagesFr = array(
-	"Blockip"       => "Bloquer une adresse IP",
-	"Asksql"        => "Accès SQL",
-	"Makesysop"		=> "Donner les droits d'administrateur",
+	'Blockip'       => 'Bloquer une adresse IP',
+	'Asksql'        => 'Accès SQL',
+	'Makesysop'		=> 'Donner les droits d\'administrateur',
 
-	"Undelete"      => "Gérer les pages effacées",
-	"Import"		=> "Importer une page avec l'historique"
+	'Undelete'      => 'Gérer les pages effacées',
+	'Import'		=> 'Importer une page avec l'historique'
 );
 
 /* private */ $wgDeveloperSpecialPagesFr = array(
-	"Lockdb"        => "Bloquer la base de données",
-	"Unlockdb"      => "Débloquer la base de données",
+	'Lockdb'        => 'Bloquer la base de données',
+	'Unlockdb'      => 'Débloquer la base de données',
 );
 
 /* private */ $wgAllMessagesFr = array(
@@ -133,37 +133,37 @@ require_once( "LanguageUtf8.php" );
 "tog-nocache" => "Désactiver le cache des pages",
 # Dates
 
-'sunday' => "dimanche",
-'monday' => "lundi",
-'tuesday' => "mardi",
-'wednesday' => "mercredi",
-'thursday' => "jeudi",
-'friday' => "vendredi",
-'saturday' => "samedi",
-'january' => "janvier",
-'february' => "février",
-'march' => "mars",
-'april' => "avril",
-'may_long' => "mai",
-'june' => "juin",
-'july' => "juillet",
-'august' => "août",
-'september' => "septembre",
-'october' => "octobre",
-'november' => "novembre",
-'december' => "décembre",
-'jan' => "jan",
-'feb' => "fév",
-'mar' => "mar",
-'apr' => "avr",
-'may' => "mai",
-'jun' => "jun",
-'jul' => "jul",
-'aug' => "aoû",
-'sep' => "sep",
-'oct' => "oct",
-'nov' => "nov",
-'dec' => "déc",
+'sunday' => 'dimanche',
+'monday' => 'lundi',
+'tuesday' => 'mardi',
+'wednesday' => 'mercredi',
+'thursday' => 'jeudi',
+'friday' => 'vendredi',
+'saturday' => 'samedi',
+'january' => 'janvier',
+'february' => 'février',
+'march' => 'mars',
+'april' => 'avril',
+'may_long' => 'mai',
+'june' => 'juin',
+'july' => 'juillet',
+'august' => 'août',
+'september' => 'septembre',
+'october' => 'octobre',
+'november' => 'novembre',
+'december' => 'décembre',
+'jan' => 'jan',
+'feb' => 'fév',
+'mar' => 'mar',
+'apr' => 'avr',
+'may' => 'mai',
+'jun' => 'jun',
+'jul' => 'jul',
+'aug' => 'aoû',
+'sep' => 'sep',
+'oct' => 'oct',
+'nov' => 'nov',
+'dec' => 'déc',
 
 
 # Bits of text used by many pages:
@@ -897,19 +897,19 @@ La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //
 "revertpage"	=> "restitution de la dernière modification de $1",
 "protectlogpage" => "Log_de_protection",
 "protectlogtext" => "Voir les [[{{ns:4}}:Page protégée|directives concernant les pages protégées]].",
-"protectedarticle" => "a protégée $1",
-"unprotectedarticle" => "a déprotégé $1",
+'protectedarticle' => 'a protégée $1',
+'unprotectedarticle' => 'a déprotégé $1',
 
-"protectsub" => "(Bloque \"$1\")",
-"confirmprotect" => "Confimer le bloquage",
-"confirmprotecttext" => "Voulez vous vraiment bloquer cette page ?",
-"protectcomment" => "Raison du bloquage",
+"protectsub" => '(Bloque "$1")',
+'confirmprotect' => 'Confimer le bloquage',
+'confirmprotecttext' => 'Voulez vous vraiment bloquer cette page ?',
+'protectcomment' => 'Raison du bloquage',
 
-"unprotectsub" => "(Débloque \"$1\")",
-"confirmunprotecttext" => "Vous les vous vraiment débloquer cette page ?",
-"confirmunprotect" => "Raison du débloquage",
-"unprotectcomment" => "Raison du débloquage",
-"protectreason" => "(indiquez une raison)",
+'unprotectsub' => '(Débloque "$1")',
+'confirmunprotecttext' => 'Vous les vous vraiment débloquer cette page ?',
+'confirmunprotect' => 'Raison du débloquage',
+'unprotectcomment' => 'Raison du débloquage',
+'protectreason' => '(indiquez une raison)',
 
 # Undelete
 #
@@ -930,9 +930,9 @@ les révisions restaurées apparaîtront dans l'historique antérieur et la vers
 Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.",
 # Contributions
 #
-"contributions"	=> "Contributions",
-"mycontris"	=> "Mes contributions",
-"contribsub"	=> "Pour $1",
+'contributions'	=> 'Contributions',
+'mycontris'	=> 'Mes contributions',
+'contribsub'	=> 'Pour $1',
 "nocontribs"	=> "Aucune modification correspondant à ces critères n'a été trouvée.",
 "ucnote"	=> "Voici les <b>$1</b> dernières modifications effectuées par cet utilisateur au cours des <b>$2</b> derniers jours.",
 "uclinks"	=> "Afficher les $1 dernières modifications; afficher les $2 derniers jours.",
@@ -940,13 +940,13 @@ Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des re
 
 # What links here
 #
-"whatlinkshere" => "Pages liées",
-"notargettitle" => "Pas de cible",
-"notargettext"	=> "Indiquez une page cible ou un utilisateur cible.",
-"linklistsub"	=> "(Liste de liens)",
-"linkshere"	=> "Les pages ci-dessous contiennent un lien vers celle-ci:",
-"nolinkshere"	=> "Aucune page ne contient de lien vers celle-ci.",
-"isredirect"	=> "page de redirection",
+'whatlinkshere' => 'Pages liées',
+'notargettitle' => 'Pas de cible',
+'notargettext'	=> 'Indiquez une page cible ou un utilisateur cible.',
+'linklistsub'	=> '(Liste de liens)',
+'linkshere'	=> 'Les pages ci-dessous contiennent un lien vers celle-ci:',
+'nolinkshere'	=> 'Aucune page ne contient de lien vers celle-ci.',
+'isredirect'	=> 'page de redirection',
 
 # Block/unblock IP
 #
@@ -954,9 +954,9 @@ Voir [[{{ns:4}}:Trace des effacements]] pour la liste des suppressions et des re
 "blockiptext"	=> "Utilisez le formulaire ci-dessous pour bloquer l'accès en écriture à partir d'une adresse IP donnée.
 Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[{{ns:4}}:Recommandations et règles à suivre|recommandations et règles à suivre]].
 Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont été vandalisées).",
-"ipaddress"	=> "Adresse IP",
-"ipbreason"	=> "Motif",
-"ipbsubmit"	=> "Bloquer cette adresse",
+'ipaddress'	=> 'Adresse IP',
+'ipbreason'	=> 'Motif',
+'ipbsubmit'	=> 'Bloquer cette adresse',
 "badipaddress"	=> "L'adresse IP n'est pas correcte.",
 "noblockreason" => "Vous devez indiquer le motif du blocage.",
 "blockipsuccesssub" => "Blocage réussi",
@@ -969,9 +969,9 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 "ipusuccess"	=> "Adresse IP \"$1\" débloquée",
 "ipblocklist"	=> "Liste des adresses IP bloquées",
 "blocklistline" => "$1, $2 a bloqué $3",
-"blocklink"	=> "bloquer",
-"unblocklink"	=> "débloquer",
-"contribslink"	=> "contribs",
+'blocklink'	=> 'bloquer',
+'unblocklink'	=> 'débloquer',
+'contribslink'	=> 'contribs',
 "autoblocker"	=> "Autobloqué parce que vous partagez une adresse IP avec \"$1\". Raison : \"$2\".",
 "blocklogpage"	=> "Log de blocage",
 "blocklogentry"	=> 'blocage de "$1"',
