@@ -1,5 +1,15 @@
 <?
 
+if( !function_exists( "version_compare" ) ) {
+	# version_compare was introduced in 4.1.0
+	die( "Your PHP version is much too old; 4.0.x will _not_ work. 4.3.2 or higher is recommended. ABORTING.\n" );
+}
+if( version_compare( phpversion(), "4.3.2" ) < 0 ) {
+	echo "WARNING: PHP 4.3.2 or higher is recommended. Older versions from 4.1.x up may work but are not actively supported.\n\n";
+}
+if( !ini_get( "register_globals" ) ) {
+	echo "WARNING: register_globals is not on; MediaWiki currently relies on this option.\n\n";
+}
 
 /*
 
@@ -134,7 +144,7 @@ function copydirectory( $source, $dest ) {
 
 function readconsole() {
 	$fp = fopen( "php://stdin", "r" );
-	$resp = trim( fgets( $fp ) );
+	$resp = trim( fgets( $fp, 1024 ) );
 	fclose( $fp );
 	return $resp;
 }
