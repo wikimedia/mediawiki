@@ -1867,7 +1867,7 @@ class Article {
 		$newcomment = wfMsg( 'revertpage', $s->old_user_text, $from );
 		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
-		$wgOut->addHTML( '<h2>' . $newcomment . "</h2>\n<hr />\n" );
+		$wgOut->addHTML( '<h2>' . htmlspecialchars( $newcomment ) . "</h2>\n<hr />\n" );
 		$this->updateArticle( Article::getRevisionText( $s ), $newcomment, 1, $this->mTitle->userIsWatching(), $bot );
 		Article::onArticleEdit( $this->mTitle );
 		$wgOut->returnToMain( false );
