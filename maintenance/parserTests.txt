@@ -511,6 +511,21 @@ BUG 2: [[page|http://url/]] should link to page, not http://url/
 </p>
 !! end
 
+
+###
+### Interwiki links
+###
+
+!! test
+Inline interwiki link
+!! input
+[[MeatBall:SoftSecurity]]
+!! result
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity" class='extiw'>MeatBall:SoftSecurity</a>
+</p>
+!! end
+
+
 ##
 ## XHTML tidiness
 ###
