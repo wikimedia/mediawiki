@@ -193,10 +193,10 @@ class MagicWord {
 		$matchcount = preg_match( $this->getVariableStartToEndRegex(), $text, $matches );
 		if ( $matchcount == 0 ) {
 			return NULL;
-		} elseif ( count($matches) == 1 ) {
+		} elseif ( count($matches) == 2 ) {
 			return $matches[0];
 		} else {
-			return $matches[1];
+			return $matches[2];
 		}
 	}
 

@@ -1767,8 +1767,6 @@ class Skin {
 
 				if (    ( ! $height === false )
 				     && ( $img->getHeight() * $width / $img->getWidth() > $height ) ) {
-				     	print "height=$height<br>\nimg->getHeight() = ".$img->getHeight()."<br>\n";
-				     	print 'rescaling by factor '. $height / $img->getHeight() . "<br>\n";
 					$width = $img->getWidth() * $height / $img->getHeight();
 				}
 				if ( '' == $manual_thumb ) $url = $img->createThumb( $width );
