@@ -96,7 +96,7 @@ class Parser
 		$fixtags = array(
 			"/<hr *>/i" => '<hr/>',
 			"/<br *>/i" => '<br/>',
-			"/<center *>/i"=>'<div style="text-align:center;">',
+			"/<center *>/i"=>'<div class="center">',
 			"/<\\/center *>/i" => '</div>',
 			# Clean up spare ampersands; note that we probably ought to be
 			# more careful about named entities.
