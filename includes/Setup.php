@@ -72,7 +72,7 @@ global $wgBlockCache, $wgParserCache, $wgParser;
 
 # Useful debug output
 if ( $wgCommandLineMode ) {
-	wfDebug( '"' . implode( '"  "', $argv ) . '"' );
+	# wfDebug( '"' . implode( '"  "', $argv ) . '"' );
 } elseif ( function_exists( "getallheaders" ) ) {
 	wfDebug( "\nStart request\n" );
 	wfDebug( $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . "\n" );
