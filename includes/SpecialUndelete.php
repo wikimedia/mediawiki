@@ -133,15 +133,20 @@ class UndeleteForm {
 	<input type=submit name=\"restore\" value=\"".wfMsg("undeletebtn")."\">
 	</form>");
 
-		$log = $dbr->selectField( "cur", "cur_text", 
-			array( 'cur_namespace' => NS_PROJECT, 'cur_title' => wfMsg("dellogpage") ) );
-		if(preg_match("/^(.*".
-			preg_quote( ($namespace ? ($wgLang->getNsText($namespace) . ":") : "")
-			. str_replace("_", " ", $title), "/" ).".*)$/m", $log, $m)) {
-			$wgOut->addWikiText( $m[1] );
-		}
+		# Show relevant lines from the deletion log:
+		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
+		require_once( 'SpecialLog.php' );
+		$t = Title::MakeTitle( $namespace, $title );
+		# TODO: make a pure, faux request for this.
+		global $wgRequest;
+		$logReader = new LogReader( $wgRequest );
+		$logReader->limitTitle( $t->getPrefixedText() );
+		$logViewer =& new LogViewer( $logReader );
+		$logViewer->showList( $wgOut );
 		
+		# The page's stored (deleted) history:
 		$special = $wgLang->getNsText( Namespace::getSpecial() );
+		$wgOut->addHTML( "<h2>" . htmlspecialchars( wfMsg( "history" ) ) . "</h2>\n" );
 		$wgOut->addHTML("<ul>");
 		while( $row = $dbr->fetchObject( $ret ) ) {
 			$wgOut->addHTML( "<li>" .
