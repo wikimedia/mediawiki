@@ -369,6 +369,15 @@ class Skin {
 		$s = $this->makeKnownLink( "Special:Categories",
 			wfMsg( "categories" ), "article=" . urlencode( $wgTitle->getPrefixedDBkey() ) )
 			. ": " . $t;
+		
+		$s .= "<br/><hr/>";
+		$catstack = array();
+		$wgTitle->getAllParentCategories(&$catstack);
+		foreach ($catstack as $key => $cat)
+		{
+			$s .= $key." &gt; ".$cat."<br/>\n";
+		}
+		
 		return $s;
 	}
 	
