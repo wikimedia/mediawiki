@@ -36,7 +36,8 @@ include_once( "LanguageUtf8.php" );
 	'smarty' => "Paddington",
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
-	'mono' => "Mono"
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesFr = array(
@@ -53,18 +54,18 @@ include_once( "LanguageUtf8.php" );
 	"highlightbroken" => "Liens vers les sujets non existants en rouge",
 	"justify" => "Paragraphes justifiés",
 	"hideminor" => "Cacher les <i>Modifications récentes</i> mineures",
-	"usenewrc" => "Modifications récentes améliorées<br> (certains navigateurs seulement)",
+	"usenewrc" => "Modifications récentes améliorées<br /> (certains navigateurs seulement)",
 	"numberheadings" => "Numérotation automatique des titres",
 	"showtoolbar" => "Show edit toolbar",
 	"editondblclick" => "Double cliquer pour éditer une page (JavaScript)",
 	"editsection"	=> "Éditer une section via les liens [éditer]",
-	"editsectiononrightclick"	=> "Éditer une section en cliquant à droite<br> sur le titre de la section",
-	"showtoc"	=> "Afficher la table des matières<br> (pour les articles ayant plus de 3 sections)",
+	"editsectiononrightclick"	=> "Éditer une section en cliquant à droite<br /> sur le titre de la section",
+	"showtoc"	=> "Afficher la table des matières<br /> (pour les articles ayant plus de 3 sections)",
 	"rememberpassword" => "Se souvenir de mon mot de passe (cookie)",
 	"editwidth" => "La fenêtre d'édition s'affiche en pleine largeur",
 	"watchdefault" => "Suivre les articles que je crée ou modifie",
-	"minordefault" => "Mes modifications sont considérées<br> comme mineures par défaut",
-	"previewontop" => "La prévisualisation s'affiche au<br> dessus de la boite de rédaction",
+	"minordefault" => "Mes modifications sont considérées<br /> comme mineures par défaut",
+	"previewontop" => "La prévisualisation s'affiche au<br /> dessus de la boite de rédaction",
 	"nocache" => "Désactiver le cache des pages"
 );
 
@@ -289,8 +290,8 @@ N'oubliez pas de personnaliser votre $wgSitename en consultant la page Préfére
 "yourpasswordagain"  => "Entrez à nouveau votre mot de passe",
 "newusersonly"       => " (nouveaux utilisateurs uniquement)",
 "remembermypassword" => "Se souvenir de mon mot de passe (cookie)",
-"loginproblem"       => "<b>Problème d'identification.</b><br>Essayez à nouveau !",
-"alreadyloggedin"    => "<font color=red><b>Utilisateur $1, vous êtes déjà identifié!</b></font><br>\n",
+"loginproblem"       => "<b>Problème d'identification.</b><br />Essayez à nouveau !",
+"alreadyloggedin"    => "<font color=red><b>Utilisateur $1, vous êtes déjà identifié!</b></font><br />\n",
 
 "login"         => "Identification",
 "userlogin"     => "Identification",
@@ -330,7 +331,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 "preview"      => "Prévisualiser",
 "showpreview"  => "Prévisualisation",
 "blockedtitle" => "Utilisateur bloqué",
-"blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br>$2<p>Vous pouvez contacter $1 ou un des autres [[$wgMetaNamespace:Administrateurs|administateurs]] pour en discuter.",
+"blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br />$2<p>Vous pouvez contacter $1 ou un des autres [[$wgMetaNamespace:Administrateurs|administateurs]] pour en discuter.",
 "whitelistedittitle" => "Login requis pour rédiger", // Looxix "Login required to edit",
 "whitelistedittext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir rédiger", // Looxix 
 "whitelistreadtitle" => "Login requis pour lire", // Looxix "Login required to read",
@@ -424,8 +425,8 @@ qui ne sont pas indexés, ou à l'emploi de plusieurs termes de recherche (seule
 contenant tous les termes apparaissent dans les résultats).",
 "powersearch" => "Recherche",
 "powersearchtext" => "
-Rechercher dans les espaces :<br>
-$1<br>
+Rechercher dans les espaces :<br />
+$1<br />
 $2 Inclure les page de redirections &nbsp; Rechercher $3 $9",
 "searchdisabled" => "<p>La fonction de recherche sur l'entièreté du texte a été temporairement désactivée à cause de la grande charge que cela impose au serveur. Nous espérons la rétablir prochainement lorsque nous disposerons d'un serveur plus puissant. En attendant, vous pouvez faire la recherche avec Google:</p>
                                                                                                                                                         
@@ -441,9 +442,9 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Google Search\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio
 name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> {$wgServer} <br>
+value=\"{$wgServer}\" checked> {$wgServer} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -494,7 +495,7 @@ Voir [[$wgMetaNamespace:Aide pour les préférences]] pour les explications conc
 "timezoneoffset"    => "Décalage horaire",
 "servertime"	    => "Heure du serveur", //Looxix (Server time is now)
 "guesstimezone"     => "Utiliser la valeur du navigateur", //Looxix (Fill in from browser)
-"emailflag"         => "Ne pas recevoir de courrier électronique<br> des autres utilisateurs",
+"emailflag"         => "Ne pas recevoir de courrier électronique<br /> des autres utilisateurs",
 "defaultns"         => "Par défaut, rechercher dans ces espaces :", //Looxix (Search in these namespaces by default)
 
 # Recent changes
@@ -544,7 +545,7 @@ pour copier des fichiers sur le serveur.",
 "uploadfile"   => "Copier un fichier",
 "uploaderror"  => "Erreur",
 "uploadtext"   => "<strong>STOP !</strong> Avant de copier votre fichier sur le serveur,
-prenez connaissance des <a href=\"" .wfLocalUrlE( "$wgMetaNamespace:règles d'utilisation des images" ) . "\">règles d'utilisation des images</a> de $wgSitename et assurez-vous que vous les respectez.<br>N'oubliez pas de remplir la <a href=\"" .wfLocalUrlE( "$wgMetaNamespace:Page de description d'une image" ). "\">page de description de l'image</a> quand celle-ci sera sur le serveur.
+prenez connaissance des <a href=\"" .wfLocalUrlE( "$wgMetaNamespace:règles d'utilisation des images" ) . "\">règles d'utilisation des images</a> de $wgSitename et assurez-vous que vous les respectez.<br />N'oubliez pas de remplir la <a href=\"" .wfLocalUrlE( "$wgMetaNamespace:Page de description d'une image" ). "\">page de description de l'image</a> quand celle-ci sera sur le serveur.
 <p>Pour voir les images déjà placées sur le serveur ou pour effectuer une recherche parmi celles-ci,
 allez à la <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) ."\">liste des images</a>.
 Les uploads et les suppressions sont listés dans le <a href=\"" .wfLocalUrlE( "$wgMetaNamespace:Journal_des_uploads" ) . "\">journal des uploads</a>.
@@ -609,7 +610,7 @@ Suivez ce lien: ($2) pour accéder à la page de description, et donner des info
 "deleteimg"  => "suppr",
 "imghistlegend" => "Légende: (actu) = ceci est l'image actuelle, (suppr) = supprimer
 cette ancienne version, (rétab) = rétablir cette ancienne version.
-<br><i>Cliquez sur la date pour voir l'image copiée à cette date</i>.",
+<br /><i>Cliquez sur la date pour voir l'image copiée à cette date</i>.",
 "imagelinks" => "Liens vers l'image",
 "linkstoimage" => "Les pages ci-dessous comportent un lien vers cette image:",
 "nolinkstoimage" => "Aucune page ne comporte de lien vers cette image.",
@@ -638,9 +639,9 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "maintenancebacklink"	=> "Retour à la page de maintenance",
 "disambiguations"	=> "Pages d'homonymie",
 "disambiguationspage"	=> "$wgMetaNamespace:Liens_aux_pages_d'homonymie",
-"disambiguationstext"	=> "Les articles suivants sont liés à une <i>page d'homonymie</i>. Or, ils devraient être liés au sujet.<br>Une page est considérée comme page d'homonymie si elle est liée à partir de $1.<br>Les liens à partir d'autres <i>espaces</i> ne sont pas pris en compte.",
+"disambiguationstext"	=> "Les articles suivants sont liés à une <i>page d'homonymie</i>. Or, ils devraient être liés au sujet.<br />Une page est considérée comme page d'homonymie si elle est liée à partir de $1.<br />Les liens à partir d'autres <i>espaces</i> ne sont pas pris en compte.",
 "doubleredirects"	=> "Double redirection",
-"doubleredirectstext"	=> "<b>Attention:</b> cette liste peut contenir des \"faux positifs\". Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br>Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la \"vraie\" destination. Le premier #REDIRECT devrait lier vers cette destination.",
+"doubleredirectstext"	=> "<b>Attention:</b> cette liste peut contenir des \"faux positifs\". Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br />Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la \"vraie\" destination. Le premier #REDIRECT devrait lier vers cette destination.",
 "brokenredirects"	=> "Redirections cassées", 
 "brokenredirectstext"	=> "Ces redirections mènent a une page qui n'existe pas.",
 "selflinks"		=> "Page avec un lien circulaire",
@@ -837,7 +838,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 "noblockreason" => "Vous devez indiquer le motif du blocage.",
 "blockipsuccesssub" => "Blocage réussi",
 "blockipsuccesstext" => "L'adresse IP \"$1\" a été bloquée.
-<br>Vous pouvez consulter sur cette [[Special:Ipblocklist|page]] la liste des adresses IP bloquées.",
+<br />Vous pouvez consulter sur cette [[Special:Ipblocklist|page]] la liste des adresses IP bloquées.",
 "unblockip"	=> "Débloquer une adresse IP",
 "unblockiptext" => "Utilisez le formulaire ci-dessous pour rétablir l'accès en écriture
 à partir d'une adresse IP précédemment bloquée.",
@@ -873,7 +874,7 @@ Veuillez confirmer que c'est bien là ce que vous voulez faire.",
 "unlockdbsuccesssub" => "Base déverrouillée.",
 "lockdbsuccesstext" => "La base de données de $wgSitename est verrouillée.
 
-<br>N'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération de maintenance.",
+<br />N'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération de maintenance.",
 "unlockdbsuccesstext" => "La base de données de $wgSitename est déverrouillée.",
 
 # SQL query
