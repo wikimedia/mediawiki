@@ -45,12 +45,12 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgDefaultUserOptionsEn = array(
-	'quickbar' => 1, 'underline' => 1, 'hover' => 1,
+	'quickbar' => 1, 'underline' => 0, 'hover' => 1,
 	'cols' => 80, 'rows' => 25, 'searchlimit' => 20,
 	'contextlines' => 5, 'contextchars' => 50,
 	'skin' => $wgDefaultSkin, 'math' => 1, 'rcdays' => 7, 'rclimit' => 50,
 	'highlightbroken' => 1, 'stubthreshold' => 0,
-	'previewontop' => 1, 'editsection'=>1,'editsectiononrightclick'=>0, 'showtoc'=>1,
+	'previewontop' => 1, 'editsection'=>1,'editsectiononrightclick'=>1, 'showtoc'=>1,
 	'showtoolbar' =>1,
 	'date' => 0
 );
@@ -388,6 +388,7 @@ performed by sysops with  \"bureaucrat\" status.",
 'thisisdeleted' => "View or restore $1?",
 'restorelink' => "$1 deleted edits",
 'feedlinks' => 'Feed:',
+'sitenotice'	=> '', # the equivalent to wgSiteNotice
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'Article',
