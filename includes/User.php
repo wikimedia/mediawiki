@@ -990,9 +990,7 @@ class User {
 		$confstr .= '!' . $this->getOption( 'language' );
 		// add in language specific options, if any
 		$extra = $wgContLang->getExtraHashOptions();
-		foreach( $extra as $e ) {
-			$confstr .= '!' . $this->getOption( $e );
-		}
+		$confstr .= $extra;
 
 		$this->mHash = $confstr;
 		return $confstr ;

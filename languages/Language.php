@@ -2227,7 +2227,7 @@ class Language {
 		returns an array of extra options used by User::getPageRenderHash()
 	*/
 	function getExtraHashOptions() {
-		return array();
+		return '';
 	}
 	
 	/**

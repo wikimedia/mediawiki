@@ -294,7 +294,7 @@ class LanguageLatin1 {
 	}	
 
 	function getExtraHashOptions() {
-		return array();
+		return '';
 	}
 }
 

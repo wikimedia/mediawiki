@@ -24,7 +24,6 @@ class LanguageZh extends LanguageZh_cn {
 				$wgDisableLangConversion = true;
 		}		
 
-		$this->mZhLanguageCode = $this->getPreferredVariant();
 		if($wgUseZhdaemon) {
 			$this->mZhClient=new ZhClient($wgZhdaemonHost, $wgZhdaemonPort);
 			if(!$this->mZhClient->isconnected())
@@ -45,7 +44,7 @@ class LanguageZh extends LanguageZh_cn {
 		
 		if($this->mZhLanguageCode)
 			return $this->mZhLanguageCode;
-		
+
 		// get language variant preference for logged in users 
 		if($wgUser->getID()!=0) {
 			$this->mZhLanguageCode = $wgUser->getOption('variant');
@@ -146,7 +145,10 @@ class LanguageZh extends LanguageZh_cn {
 	}
 
 	function getExtraHashOptions() {
-		return array('variant', 'nolangconversion');
+		global $wgUser;
+		$variant = $this->getPreferredVariant();
+		$noconvert = $wgUser->getOption( 'nolangconversion' );
+		return '!' . $variant . '!' . $noconvert;
 	}
 }
 ?>
