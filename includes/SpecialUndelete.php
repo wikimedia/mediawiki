@@ -120,11 +120,12 @@ function wfSpecialUndelete( $par )
 		$row = wfFetchObject( $res );
 		if( $row->count == 0) {
 			# Have to create new article...
+			$now = wfTimestampNow();
 			$max = wfGetSQL( "archive", "MAX(ar_timestamp)", "ar_namespace={$namespace} AND ar_title='{$t}'" );
         	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
-			  "cur_comment,cur_user,cur_user_text,cur_timestamp,inverse_timestamp,cur_minor_edit,cur_random)" .
+			  "cur_comment,cur_user,cur_user_text,cur_timestamp,inverse_timestamp,cur_minor_edit,cur_random,cur_touched)" .
 			  "SELECT ar_namespace,ar_title,ar_text,ar_comment," .
-			  "ar_user,ar_user_text,ar_timestamp,99999999999999-ar_timestamp,ar_minor_edit,RAND() FROM archive " .
+			  "ar_user,ar_user_text,ar_timestamp,99999999999999-ar_timestamp,ar_minor_edit,RAND(),'{$now}' FROM archive " .
 			  "WHERE ar_namespace={$namespace} AND ar_title='{$t}' AND ar_timestamp={$max}";
 			wfQuery( $sql, $fname );
         	$newid = wfInsertId();
