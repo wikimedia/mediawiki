@@ -44,11 +44,17 @@ class OutputPage {
 	# To add an http-equiv meta tag, precede the name with "http:"
 	function addMeta( $name, $val ) { array_push( $this->mMetatags, array( $name, $val ) ); }
 	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
-	function addLink( $rel, $rev, $target, $type="", $media="" ) { array_push( $this->mLinktags, array( $rel, $rev, $target, $type, $media ) ); }
+	
+	function addLink( $linkarr ) {
+		# $linkarr should be an associative array of attributes. We'll escape on output.
+		array_push( $this->mLinktags, $linkarr );
+	}
 
-	function addMetadataLink( $type, $target ) {
+	function addMetadataLink( $linkarr ) {
+		# note: buggy CC software only reads first "meta" link
 		static $haveMeta = false;
-		$this->addLink( ($haveMeta) ? "alternate meta" : "meta", "", $target, $type );
+		$linkarr["rel"] = ($haveMeta) ? "alternate meta" : "meta";
+		$this->addLink( $linkarr );
 		$haveMeta = true;
 	}
 
@@ -621,7 +627,7 @@ class OutputPage {
 	}
 	
 	function getHeadLinks() {
-		global $wgRequest;
+		global $wgRequest, $wgStyleSheetPath;
 		$ret = "";
 		foreach ( $this->mMetatags as $tag ) {
 			if ( 0 == strcasecmp( "http:", substr( $tag[0], 0, 5 ) ) ) {
@@ -641,17 +647,19 @@ class OutputPage {
 			  implode( ",", $this->mKeywords ) . "\" />\n";
 		}
 		foreach ( $this->mLinktags as $tag ) {
-			$ret .= "<link ";
-			if ( "" != $tag[0] ) { $ret .= "rel=\"{$tag[0]}\" "; }
-			if ( "" != $tag[1] ) { $ret .= "rev=\"{$tag[1]}\" "; }
-			if ( !empty( $tag[3] ) ) { $ret .= "type=\"{$tag[3]}\" "; }
-			if ( !empty( $tag[4] ) ) { $ret .= "media=\"{$tag[4]}\" "; }
-			$ret .= "href=\"{$tag[2]}\" />\n";
+			$ret .= "<link";
+			foreach( $tag as $attr => $val ) {
+				$ret .= " $attr=\"" . htmlspecialchars( $val ) . "\"";
+			}
+			$ret .= " />\n";
 		}
 		if( $this->isSyndicated() ) {
 			$link = $wgRequest->escapeAppendQuery( "feed=rss" );
 			$ret .= "<link rel='alternate' type='application/rss+xml' title='RSS' href='$link' />\n";
 		}
+		# FIXME: get these working
+		# $fix = htmlspecialchars( $wgStyleSheetPath . "/ie-png-fix.js" );
+		# $ret .= "<!--[if gte IE 5.5000]><script type='text/javascript' src='$fix'></script><![endif]-->";
 		return $ret;
 	}
 }
