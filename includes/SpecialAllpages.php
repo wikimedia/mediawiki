@@ -101,7 +101,6 @@ function indexShowToplevel ( $namespace = 0 )
 			$from = $i * $indexMaxperpage;
 		$limit = ( $i == $offset || $i == $stopat ) ? 1 : 2;
 		$sql = "SELECT cur_title $fromwhere $order_str " . $dbr->limitResult ( $limit, $from );
-		echo "($offset/$stopat) $sql<br>\n";
 		$res = $dbr->query( $sql, $fname );
 		$s = $dbr->fetchObject( $res );
 		array_push ( $lines, $s->cur_title );
