@@ -377,7 +377,7 @@ deci vă nu veţi putea salva editările în acest moment. Puteţi copia textul
 într-un fişier text local pentru a modifica conţinutul în Wikipedia când va fi posibil.",
 "protectedpagewarning" => "ATENŢIE! Această pagină a fost blocată şi numai utilizatorii
 cu privilegii de administrator o pot edita. Vă rugăm urmaţi sugestiile
-<a href='Wikipedia:Despre_pagini_protejate'>despre pagini protejate</a> când editaţi.",
+<a href='/wiki/Wikipedia:Despre_pagini_protejate'>despre pagini protejate</a> când editaţi.",
 
 # History pages
 #
