@@ -404,6 +404,8 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1653) Removing hardcoded messages in Special:Allmessages
 * (bug 1594) Render a hyphen in a formula as &minus; in HTML
 * (bug 1495) Fall back to default language MediaWiki: for custom messages
+* (bug 1617) Show different error messages for "user does not
+    exist" and "wrong password" when using AuthPlugin
 
 
 === Caveats ===
