@@ -61,6 +61,7 @@ rule token = parse
   | "\\_" 			{ LITERAL (HTMLABLEC(FONT_UFH,"\\_","_")) }
   | "\\#" 			{ LITERAL (HTMLABLE (FONT_UFH,"\\#","#")) }
   | "\\%"			{ LITERAL (HTMLABLE (FONT_UFH,"\\%","%")) }
+  | "\\$"			{ LITERAL (HTMLABLE (FONT_UFH,"\\$","$")) }
   | "&"				{ NEXT_CELL }
   | "\\\\"			{ NEXT_ROW }
   | "\\begin{matrix}"		{ Texutil.tex_use_ams(); BEGIN__MATRIX }
@@ -80,6 +81,7 @@ rule token = parse
   | '>'				{ LITERAL (HTMLABLEC(FONT_UFH,">"," &gt; ")) }
   | '<'				{ LITERAL (HTMLABLEC(FONT_UFH,"<"," &lt; ")) }
   | '%'				{ LITERAL (HTMLABLEC(FONT_UFH,"\\%","%")) }
+  | '$'				{ LITERAL (HTMLABLEC(FONT_UFH,"\\$","$")) }
   | '~'				{ LITERAL (HTMLABLE (FONT_UF, "~","&nbsp;")) }
   | '['				{ DELIMITER (HTMLABLEC(FONT_UFH,"[","[")) }
   | ']'				{ SQ_CLOSE }
