@@ -22,14 +22,6 @@
 	9	=> "Discussione_MediaWiki",
 );
 
-/* private */ $wgDefaultUserOptionsIt = array(
-	"quickbar" => 1, "underline" => 1, "hover" => 1,
-	"cols" => 80, "rows" => 25, "searchlimit" => 20,
-	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0
-);
-
 /* private */ $wgQuickbarSettingsIt = array(
 	"Nessuno", "Fisso a sinistra", "Fisso a destra", "Fluttuante a sinistra"
 );
@@ -44,13 +36,18 @@
 	"highlightbroken" => "Evidenzia i links che puntano ad<br>articoli ancora da scrivere",
 	"justify"	=> "Paragrafo: giustificato",
 	"hideminor" => "Nascondi le modifiche minori<br>nella pagina \"Modifiche recenti\"",
+	"usenewrc" => "Enhanced recent changes (not for all browsers)",
 	"numberheadings" => "Auto-numerazione dei<br>titoli di paragrafo",
+	"editondblclick" => "Doppio click per modificare l'articolo<br>(richiede JavaScript)",
+	"editsection"=>"Enable section editing via [edit] links",
+	"editsectiononrightclick"=>"Enable section editing by right clicking<br> on section titles (JavaScript)",
+	"showtoc"=>"Show table of contents<br>(for articles with more than 3 headings)",
 	"rememberpassword" => "Ricorda la password<br>(non limitare a una sessione<br>- richiede uso di cookies)",
 	"editwidth" => "Casella di edizione ampliata<br>alla massima larghezza",
-	"editondblclick" => "Doppio click per modificare l'articolo<br>(richiede JavaScript)",
 	"watchdefault" => "Notifica articoli nuovi e modificati",
-	"minordefault" => "Indica ogni modifica come minore<br>(solo come predefinito)"
-	
+	"minordefault" => "Indica ogni modifica come minore<br>(solo come predefinito)",
+	"previewontop" => "Show preview before edit box and not after it",
+	"nocache" => "Disable page caching"
 );
 
 /* These should be localized... any Italian online bookstores take ISBN searches? */
@@ -777,11 +774,6 @@ Scegli, per cortesia, un titolo diverso per l'articolo.",
 include_once( "LanguageUtf8.php" );
 
 class LanguageIt extends LanguageUtf8 {
-
-	function getDefaultUserOptions () {
-		global $wgDefaultUserOptionsIt;
-		return $wgDefaultUserOptionsIt;
-		}
 
 	function getBookstoreList () {
 		global $wgBookstoreListIt;
