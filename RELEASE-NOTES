@@ -326,6 +326,8 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1477) hide details of SQL error messages by default
   Set $wgShowSQLErrors = true for debugging.
 * (bug 1430) Don't check for template data when editing page that doesn't exist
+* Recentchanges table purging fixed when using table prefix
+
 
 === Caveats ===
 
