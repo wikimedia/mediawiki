@@ -15,11 +15,19 @@ $ircServer = "irc.freenode.net";
 
 ini_set( "display_errors", 1 );
 $wgCommandLineMode = true;
-
+$optionsWithArgs = array( 'm' );
 require_once("../maintenance/commandLine.inc" );
 
+if ( !empty( $options['m'] ) ) {
+	$channel = $options['m'];
+} else {
+	$channel = false;
+}
+
+if ($lang == "commons") $site = "wikimedia";
+
 if ($wgWikiFarm) {
-	$serverName="$lang.wikipedia.org";
+	$serverName="$lang.$site.org";
 	$newPageURLFirstPart="http://$serverName/wiki/";
 	$URLFirstPart="http://$serverName/w/wiki.phtml?title=";
 } else {
@@ -31,9 +39,19 @@ $wgTitle = Title::newFromText( "RC dumper" );
 $wgCommandLineMode = true;
 set_time_limit(0);
 
-sleep(30);
-$dbr =& wfGetDB( DB_SLAVE );
-$recentchanges = $dbr->tableName( 'recentchanges' );
+if ( empty($options['b']) ) {
+	$bots = "AND NOT(rc_bot)";
+} else {
+	$bots = "";
+}
+
+if (isset($args[0]) && isset($args[1])) {
+	$lowest = $args[0];
+	$highest = $args[1];
+	#$what = $args[0][0];
+	#$highest = $args[0][1];
+}
+#sleep(30);
 
 $res = $dbr->query( "SELECT rc_timestamp FROM $recentchanges ORDER BY rc_timestamp DESC LIMIT 1" ); 
 $row = $dbr->fetchObject( $res );
@@ -62,19 +80,33 @@ while (1) {
 		$empty = array("", "");
 		$comment = str_replace($bad, $empty, $comment);
 		$title = str_replace($bad, $empty, $title);
+		$a = $title[0];
+		if ($a < 'A' || $a > 'Z')
+			$a = 'Z';
+			#if ((isset($highest)) && (($what == "<" && $a > "$highest") || ($what == ">" && $a <= "$highest")))
+		if ((isset($highest) && ($a > $highest)) || (isset($lowest) && $a <= $lowest))
+			continue;
 		$user = str_replace($bad, $empty, $row->rc_user_text);
 		$lastid = IntVal($row->rc_last_oldid);
 		$flag = ($row->rc_minor ? "M" : "") . ($row->rc_new ? "N" : "");
+		$stupid_urlencode = array("%2F", "%3A");
+		$haha_take_that = array("/", ":");
 		if ( $row->rc_new ) {
 			$url = $newPageURLFirstPart . urlencode($title);
 		} else {
 			$url = $URLFirstPart . urlencode($title) .
 				"&diff=0&oldid=$lastid";
 		}
+		$url = str_replace($stupid_urlencode, $haha_take_that, $url);
 		$title = str_replace("_", " ", $title);
                 # see http://www.irssi.org/?page=docs&doc=formats for some colour codes. prefix is \003, 
 		# no colour (\003) switches back to the term default
-		$fullString = "\00303$title\0037 $flag\00310 $url \0037*\003 $user \0037*\003 $comment\n";
+		$comment = preg_replace("/\/\* (.*) \*\/(.*)/", "\00315\$1\003 - \00310\$2\003", $comment);
+		$fullString = "\00314[[\00307$title\00314]]\0034 $flag\00310 " .
+		              "\00302$url\003 \0035*\003 \00303$user\003 \0035*\003 \00310$comment\003\n";
+	        if ( $channel ) {
+			$fullString = "$channel\t$fullString";
+		}
 
 		print( $fullString );
 		$oldTimestamp = $row->rc_timestamp;
