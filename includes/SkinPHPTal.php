@@ -84,7 +84,7 @@
 			#}
 
 			$tpl->setRef( "title", &$this->titletxt ); // ?
-			if(!empty($action) {
+			if(!empty($action)) {
 				$taction =  $this->getPageTitleActionText();
 			        $taction = !empty($taction)?' - '.$taction:'';
 			} else { $taction = '';	}
