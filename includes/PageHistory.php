@@ -109,38 +109,10 @@ class PageHistory {
 	{
 		global $wgTitle;
 		$this->lastdate = $this->lastline = "";
-		$url = $wgTitle->getFullURL("-");
-		$s = "\n<script type='text/javascript'>
-			/*<![CDATA[*/
-			var sel = -1;
-			function anysel(oid){ 
-				row = document.getElementById(\"ver\" + oid);
-				if( row.selected ){
-					row.style.backgroundColor=row.oldbg; 
-					row.selected = 0;
-					sel = -1;
-				} else {
-					row.oldbg = row.style.backgroundColor;
-					row.style.backgroundColor=\"lightgrey\"; 
-					row.selected = 1;
-					if( sel == -1){
-						sel = oid;
-					} else {
-						dodiff(sel, oid);
-					}
-				}
-				return false; 
-			} 
-			function dodiff(oldid, diff){
-				if( (diff < oldid && diff != 0) || oldid == 0 ){ 
-					tmp = oldid; oldid = diff; diff = tmp; 
-				}
-				u = \"{$url}diff=\" + diff + \"&oldid=\" + oldid;
-				location.href=u;
-			}
-			/*]]>*/
-		</script>";
-		$s .= "\n<p>" . wfMsg( "histlegend" ) . "</p>\n<ul class='special'>";
+		$s = "\n<p>" . wfMsg( "histlegend" ).'</p>'; 
+		$s .="\n<form id=\"pagehistory\" name=\"pagehistory\" action=\"" . $wgTitle->getFullURL("-") . "\" method=\"get\">";
+		$s .= "<input type=\"hidden\" name=\"title\" value=\"".urlencode($wgTitle->getPrefixedDbKey())."\"/>\n";
+		$s .= "" . "\n<ul>";
 		return $s;
 	}
 
@@ -150,6 +122,10 @@ class PageHistory {
 
 		$s = $skip ? "" : preg_replace( "/!OLDID![0-9]+!/", $last, $this->lastline );
 		$s .= "</ul>\n";
+		if( $this->linesonpage > 1) {
+			$s .= '<button type="submit">'.wfMsg('compareselectedversions')."</button><br/><br/>\n";
+		}
+		$s .= "</form>\n";
 		return $s;
 	}
 
@@ -193,14 +169,24 @@ class PageHistory {
 			$curlink = $cur;
 		}
 		$arbitrary = "";
-		if( $this->linesonpage > 1)
-			$arbitrary = "<input type='checkbox' onclick='anysel($oid)' title='Select any two versions to diff them' />";
-		$s .= "({$curlink}) (!OLDID!{$oid}!) $arbitrary . .";
+		if( $this->linesonpage > 1) {
+			# XXX: move title texts to javascript
+			$checkmark = "";
+			if ( !$oid ) {
+				$arbitrary = '<input type="radio" style="visibility:hidden" name="oldid" value="'.$oid.'" title="'.wfMsg('selectolderversionfordiff').'" />';
+				$checkmark = ' checked="checked"';
+			} else {
+				if( $counter == 2 ) $checkmark = ' checked="checked"';
+				$arbitrary = '<input type="radio" name="oldid" value="'.$oid.'" title="'.wfMsg('selectolderversionfordiff').'"'.$checkmark.' />';
+				$checkmark = '';
+			}
+			$arbitrary .= '<input type="radio" name="diff" value="'.$oid.'" title="'.wfMsg('selectnewerversionfordiff').'"'.$checkmark.' />';
+		}
 		$M = wfMsg( "minoreditletter" );
 		if ( $isminor ) {
-			$s .= " <strong>{$M}</strong>";
+			$s .= "<span class='hflag'>{$M}</span>";
 		}
-		$s .= " <span id='ver$oid'>{$link} . . {$ul}</span>";
+		$s .= "({$curlink}) (!OLDID!{$oid}!) $arbitrary {$link} <span class='hlinedesc'>{$ul}</span>";
 
 		if ( "" != $c && "*" != $c ) {
 

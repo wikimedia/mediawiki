@@ -64,6 +64,23 @@ div.tleft {
     margin-right:0.5em;
 }
 
+/* Page history styling */
+/* automatically generated edit summaries */
+.autocomment { color: gray; }
+#pagehistory span.hlinedesc { margin-left: 1.4em }
+#pagehistory span.hflag { 
+    margin-left: -1em;
+    font-weight: bold;
+}
+#pagehistory li { 
+    border: 1px solid White;
+    padding-left: 1em;
+}
+#pagehistory li.selected { 
+    background-color:#f9f9f9;
+    border:1px dashed #aaaaaa;
+}
+
 table.diff {
         background:white;
 }
@@ -86,8 +103,6 @@ td.diff-context {
 img { border: none; }
 img.tex { vertical-align: middle; }
 
-/* automatically generated edit summaries */
-.autocomment { color: gray; }
 
 #toc {
         border: 1px solid #8888aa;
