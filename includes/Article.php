@@ -1225,10 +1225,10 @@ class Article {
 			$u = new SearchUpdate( $id, $title, $text );
 			array_push( $wgDeferredUpdateList, $u );
 
-			$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(), $shortTitle );
+			$u = new UserTalkUpdate( 1, $title_obj->getNamespace(), $shortTitle );
 			array_push( $wgDeferredUpdateList, $u );
 
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+			if ( $title_obj->getNamespace() == NS_MEDIAWIKI ) {
 				$wgMessageCache->replace( $shortTitle, $text );
 			}
 		}
@@ -1304,10 +1304,10 @@ class Article {
 			$u = new SearchUpdate( $id, $title, $text );
 			array_push( $wgDeferredUpdateList, $u );
 
-			$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(), $shortTitle );
+			$u = new UserTalkUpdate( 1, $title_obj->getNamespace(), $shortTitle );
 			array_push( $wgDeferredUpdateList, $u );
 
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+			if ( $title_obj->getNamespace() == NS_MEDIAWIKI ) {
 				$wgMessageCache->replace( $shortTitle, $text );
 			}
 		}
