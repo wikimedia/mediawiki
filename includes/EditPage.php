@@ -153,8 +153,10 @@ class EditPage {
 			}
 			if ( ! $isConflict ) {
 				# All's well: update the article here
-				$this->mArticle->updateArticle( $wpTextbox1, $wpSummary, $wpMinoredit, $wpWatchthis, $wpSection );
-				return;
+				if($this->mArticle->updateArticle( $wpTextbox1, $wpSummary, $wpMinoredit, $wpWatchthis, $wpSection ))
+					return;
+				else
+					$isConflict = true;
 			}
 		}
 		# First time through: get contents, set time for conflict
