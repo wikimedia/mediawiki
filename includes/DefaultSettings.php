@@ -74,6 +74,13 @@ $wgDBuser           = 'wikiuser';
 $wgDBtype           = "mysql"; # "mysql" for working code and "PostgreSQL" for development/broken code
 $wgDBprefix         = ''; # Table name prefix
 
+# Shared database for multiple wikis.
+# Presently used for storing a user table for single sign-on
+# The server for this database must be the same as for the main
+# database.
+# EXPERIMENTAL
+# $wgSharedDB='';
+
 # Database load balancer
 # This is a two-dimensional array, an array of server info structures
 # Fields are: 
@@ -541,10 +548,6 @@ $wgUseExternalDiffEngine = false;
 
 # Use RC Patrolling to check for vandalism
 $wgUseRCPatrol = true;
-
-# set wgUserTablePrefix to the name of the DB where your users
-# table is for single login. Disabled by default.
-#$wgUserTablePrefix='';
 
 } else {
 	die();
