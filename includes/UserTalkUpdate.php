@@ -48,7 +48,7 @@ class UserTalkUpdate {
 				}
 				
 				if($sql && !$user->getNewtalk()) { # only insert if real user and it's not already there
-					wfQuery( $sql, $fname );
+					wfQuery( $sql, DB_WRITE, $fname );
 				}
 			}
 		}
