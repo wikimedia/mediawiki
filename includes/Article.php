@@ -1640,7 +1640,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 	}
 
 	function loadFromFileCache() {
-		global $wgUseGzip;
+		global $wgUseGzip, $wgOut;
 		wfDebug(" loadFromFileCache()\n");
 		$filename=$this->fileCacheName();
 		$filenamegz = "{$filename}.gz";
@@ -1653,6 +1653,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 			header( "Vary: Accept-Encoding" );
 			$filename = $filenamegz;
 		}
+		$wgOut->sendCacheControl();
 		readfile( $filename );
 	}
 	

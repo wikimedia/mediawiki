@@ -303,6 +303,18 @@ class OutputPage {
 		wfProfileOut();
 	}
 
+	function sendCacheControl() {
+		if( $this->mLastModified != "" ) {
+			header( "Cache-Control: private, must-revalidate, max-age=0" );
+			header( "Last-modified: {$this->mLastModified}" );
+		} else {
+			header( "Cache-Control: no-cache" ); # Experimental - see below
+			header( "Pragma: no-cache" );
+			header( "Last-modified: " . gmdate( "D, j M Y H:i:s" ) . " GMT" );
+		}
+		header( "Expires: Mon, 15 Jan 2001 00:00:00 GMT" ); # Cachers always validate the page!
+	}
+	
 	# Finally, all the text has been munged and accumulated into
 	# the object, let's actually output it:
 	#
@@ -314,15 +326,7 @@ class OutputPage {
 		$sk = $wgUser->getSkin();
 
 		wfProfileIn( "OutputPage::output-headers" );
-		if( $this->mLastModified != "" ) {
-			header( "Cache-Control: private, must-revalidate, max-age=0" );
-			header( "Last-modified: {$this->mLastModified}" );
-		} else {
-			header( "Cache-Control: no-cache" ); # Experimental - see below
-			header( "Pragma: no-cache" );
-			header( "Last-modified: " . gmdate( "D, j M Y H:i:s" ) . " GMT" );
-		}
-		header( "Expires: Mon, 15 Jan 2001 00:00:00 GMT" ); # Cachers always validate the page!
+		$this->sendCacheControl();
 
 		header( "Content-type: text/html; charset={$wgOutputEncoding}" );
 		header( "Content-language: {$wgLanguageCode}" );
@@ -649,7 +653,7 @@ class OutputPage {
 	#
 	function doWikiPass2( $text, $linestart )
 	{
-		global $wgUser, $wgLang;
+		global $wgUser, $wgLang, $wgMungeDates;
 		wfProfileIn( "OutputPage::doWikiPass2" );
 		
 		$text = $this->removeHTMLtags( $text );
@@ -662,7 +666,8 @@ class OutputPage {
 		$text = $this->doHeadings( $text );
 		$text = $this->doBlockLevels( $text, $linestart );
 		
-		$text = $wgLang->replaceDates( $text );
+		if($wgMungeDates)
+			$text = $wgLang->replaceDates( $text );
 		$text = $this->replaceExternalLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
 
