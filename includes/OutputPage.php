@@ -1255,8 +1255,8 @@ class OutputPage {
 
 			
 			$canonized_headline=preg_replace("/<.*?>/","",$headline); // strip out HTML
-			$canonized_headline=htmlspecialchars($canonized_headline);
 			$tocline=$canonized_headline;
+			$canonized_headline=str_replace('"',"",$canonized_headline);
 			$canonized_headline=str_replace(" ","_",trim($canonized_headline));			
 			$refer[$c]=$canonized_headline;
 			$refers[$canonized_headline]++;  // count how many in assoc. array so we can track dupes in anchors
