@@ -185,6 +185,8 @@ class Database {
 			if( $this->mIgnoreErrors ) {
 				wfDebug("SQL ERROR (ignored): " . $error . "\n");
 			} else {
+				$sql1line = str_replace( "\n", "\\n", $sql );
+				wfLogDBError("$errno\t$error\t$sql1line\n");
 				wfDebug("SQL ERROR: " . $error . "\n");
 				if ( $wgCommandLineMode ) {
 					wfDebugDieBacktrace( "A database error has occurred\n" .

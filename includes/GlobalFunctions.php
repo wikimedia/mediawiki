@@ -227,6 +227,15 @@ function wfDebug( $text, $logonly = false )
 	}
 }
 
+# Log for database errors
+function wfLogDBError( $text ) {
+	global $wgDBerrorLog;
+	if ( $wgDBerrorLog ) {
+		$text = date("D M j G:i:s T Y") . "\t$text";
+		error_log( $text, 3, $wgDBerrorLog );
+	}
+}
+
 function logProfilingData()
 {
 	global $wgRequestTime, $wgDebugLogFile;
