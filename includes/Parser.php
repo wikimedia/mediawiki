@@ -91,10 +91,8 @@ class Parser
 		$stripState = NULL;
 		$text = $this->strip( $text, $this->mStripState );
 		$text = $this->internalParse( $text, $linestart );
-		# only once and next-to-last
 		$text = $this->unstrip( $text, $this->mStripState );
-		$text = $this->doBlockLevels( $text, $linestart );
-		# Clean up special characters, only run once and last
+		# Clean up special characters, only run once, next-to-last before doBlockLevels
 		$fixtags = array(
 			"/<hr *>/i" => '<hr/>',
 			"/<br *>/i" => '<br/>',
@@ -104,6 +102,8 @@ class Parser
 			# more careful about named entities.
 			'/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/' => '&amp;'
 		);
+		# only once and last
+		$text = $this->doBlockLevels( $text, $linestart );
 		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
 
 		$this->mOutput->setText( $text );
