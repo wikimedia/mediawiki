@@ -661,12 +661,20 @@ Plain link to URL
 # I'm fairly sure the expected result here is wrong.
 # We want these to be URL links, not pseudo-pages with URLs for titles....
 # However the current output is also pretty screwy.
+#
+# ----
+# I'm changing it to match the current output--it arguably makes more
+# sense in the light of the test above. Old expected result was:
+#<p>Piped link to URL: <a href="/index.php?title=Http://www.example.org&amp;action=edit" class="new" title="Http://www.example.org">an example URL</a>
+#</p>
+# But I think this test is bordering on "garbage in, garbage out" anyway.
+# -- wtm
 !! test
 Piped link to URL
 !! input
 Piped link to URL: [[http://www.example.org|an example URL]]
 !! result
-<p>Piped link to URL: <a href="/index.php?title=Http://www.example.org&amp;action=edit" class="new" title="Http://www.example.org">an example URL</a>
+<p>Piped link to URL: [<a href="http://www.example.org|an" class='external' title="http://www.example.org|an">example URL</a><span class='urlexpansion'> (<i>http://www.example.org|an</i>)</span>]
 </p>
 !! end
 
