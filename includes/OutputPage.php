@@ -7,13 +7,15 @@ if( defined( "MEDIAWIKI" ) ) {
 
 if($wgUseTeX) require_once( "Math.php" );
 
+define( 'RLH_FOR_UPDATE', 1 );
+
 class OutputPage {
 	var $mHeaders, $mCookies, $mMetatags, $mKeywords;
 	var $mLinktags, $mPagetitle, $mBodytext, $mDebugtext;
 	var $mHTMLtitle, $mRobotpolicy, $mIsarticle, $mPrintable;
 	var $mSubtitle, $mRedirect;
 	var $mLastModified, $mCategoryLinks;
-	var $mScripts;
+	var $mScripts, $mLinkColours;
 	
 	var $mSuppressQuickbar;
 	var $mOnloadHandler;
@@ -350,7 +352,7 @@ class OutputPage {
 
 		$this->sendCacheControl();
 		# Perform link colouring
-		$this->mBodytext = $this->parseLinkHolders();
+		$this->replaceLinkHolders();
 		
 		# Disable temporary placeholders, so that the skin produces HTML
 		$sk->postParseLinkColour( false );
@@ -764,14 +766,27 @@ class OutputPage {
 		return $ret;
 	}
 	
-	# Parse <!--LINK--> link placeholders to avoid using linkcache
+	# Replace <!--LINK--> link placeholders with actual links, in the buffer
 	# Placeholders created in Skin::makeLinkObj()
-	function parseLinkHolders()
+	# Returns an array of links found, indexed by PDBK:
+	#   0 - broken
+	#   1 - normal link
+	#   2 - stub
+	# $options is a bit field, RLH_FOR_UPDATE to select for update
+	function replaceLinkHolders( $options = 0 )
 	{
-		global $wgUser;
+		global $wgUser, $wgLinkCache, $wgUseOldExistenceCheck;
 		
-		$fname = 'OutputPage::parseLinkHolders';
+		if ( $wgUseOldExistenceCheck ) {
+			return array();
+		}
+
+		$fname = 'OutputPage::replaceLinkHolders';
 		wfProfileIn( $fname );
+
+		$titles = array();
+		$pdbks = array();
+		$colours = array();
 		
 		# Get placeholders from body
 		preg_match_all( "/<!--LINK (.*?) (.*?) (.*?) (.*?)-->/", $this->mBodytext, $tmpLinks );
@@ -791,71 +806,88 @@ class OutputPage {
 			asort( $namespaces );
 	
 			# Generate query
+			$query = false;
 			foreach ( $namespaces as $key => $val ) {
-				if ( !isset( $current ) ) {
-					$current = $val;
-					$query =  "SELECT cur_namespace, cur_title";
-					if ( $threshold > 0 ) {
-						$query .= ", LENGTH(cur_text) AS cur_len, cur_is_redirect";
-					} 
-					$query .= " FROM $cur WHERE (cur_namespace=$val AND cur_title IN(";
-				} elseif ( $current != $val ) {
-					$current = $val;
-					$query .= ")) OR (cur_namespace=$val AND cur_title IN(";
-				} else {
-					$query .= ", ";
-				}
-				
-				$query .= $dbr->addQuotes( $dbkeys[$key] );
-			}
+				# Make title object
+				$dbk = $dbkeys[$key];
+				$title = $titles[$key] = Title::makeTitle( $val, $dbk );
+				$pdbk = $pdbks[$key] = $title->getPrefixedDBkey();
 
-			$query .= "))";
-			
-			$res = $dbr->query( $query, $fname );
-			
-			# Fetch data and form into an associative array
-			# non-existent = broken
-			# 1 = known
-			# 2 = stub
-			$colours = array();
-			while ( $s = $dbr->fetchObject($res) ) {
-				$key = $s->cur_namespace . ' ' . $s->cur_title;
-				if ( $threshold >  0 ) {
-					$size = $s->cur_len;
-					if ( $s->cur_is_redirect || $s->cur_namespace != 0 || $length < $threshold ) {
-						$colours[$key] = 1;
-					} else {
-						$colours[$key] = 2;
-					}
-					$colours[$key] = array( $s->cur_len, $s->cur_is_redirect );
+				# Check if it's in the link cache already
+				if ( $wgLinkCache->getGoodLinkID( $pdbk ) ) {
+					$colours[$pdbk] = 1;
+				} elseif ( $wgLinkCache->isBadLink( $pdbk ) ) {
+					$colours[$pdbk] = 0;
 				} else {
-					$colours[$key] = 1;
+					# Not in the link cache, add it to the query
+					if ( !isset( $current ) ) {
+						$current = $val;
+						$query =  "SELECT cur_id, cur_namespace, cur_title";
+						if ( $threshold > 0 ) {
+							$query .= ", LENGTH(cur_text) AS cur_len, cur_is_redirect";
+						} 
+						$query .= " FROM $cur WHERE (cur_namespace=$val AND cur_title IN(";
+					} elseif ( $current != $val ) {
+						$current = $val;
+						$query .= ")) OR (cur_namespace=$val AND cur_title IN(";
+					} else {
+						$query .= ", ";
+					}
+				
+					$query .= $dbr->addQuotes( $dbkeys[$key] );
+				}
+			}
+			if ( $query ) {
+				$query .= "))";
+				if ( $options & RLH_FOR_UPDATE ) {
+					$query .= " FOR UPDATE";
+				}
+			
+				$res = $dbr->query( $query, $fname );
+				
+				# Fetch data and form into an associative array
+				# non-existent = broken
+				# 1 = known
+				# 2 = stub
+				while ( $s = $dbr->fetchObject($res) ) {
+					$title = Title::makeTitle( $s->cur_namespace, $s->cur_title );
+					$pdbk = $title->getPrefixedDBkey();
+					$wgLinkCache->addGoodLink( $s->cur_id, $pdbk );
+					
+					if ( $threshold >  0 ) {
+						$size = $s->cur_len;
+						if ( $s->cur_is_redirect || $s->cur_namespace != 0 || $length < $threshold ) {
+							$colours[$pdbk] = 1;
+						} else {
+							$colours[$pdbk] = 2;
+						}
+					} else {
+						$colours[$pdbk] = 1;
+					}
 				}
 			}
 			
 			# Construct search and replace arrays
 			$search = $replace = array();
 			foreach ( $namespaces as $key => $ns ) {
-				$cKey = $ns . ' ' . $dbkeys[$key];
+				$pdbk = $pdbks[$key];
 				$search[] = $tmpLinks[0][$key];
-				$title = Title::makeTitle( $ns, $dbkeys[$key] );
-				if ( empty( $colours[$cKey] ) ) {
+				$title = $titles[$key];
+				if ( empty( $colours[$pdbk] ) ) {
+					$wgLinkCache->addBadLink( $pdbk );
+					$colours[$pdbk] = 0;
 					$replace[] = $sk->makeBrokenLinkObj( $title, $texts[$key], $queries[$key] );
-				} elseif ( $colours[$cKey] == 1 ) {
+				} elseif ( $colours[$pdbk] == 1 ) {
 					$replace[] = $sk->makeKnownLinkObj( $title, $texts[$key], $queries[$key] );
-				} elseif ( $colours[$cKey] == 2 ) {
+				} elseif ( $colours[$pdbk] == 2 ) {
 					$replace[] = $sk->makeStubLinkObj( $title, $texts[$key], $queries[$key] );
 				}
 			}
-
 			# Do the thing
-			$out = str_replace( $search, $replace, $this->mBodytext );
-		} else {
-			$out = $this->mBodytext;
+			$this->mBodytext = str_replace( $search, $replace, $this->mBodytext );
 		}
-		
 		wfProfileOut( $fname );
-		return ( $out );
+		return $colours;
 	}
 }
 

@@ -54,6 +54,8 @@ class Skin {
 
 	function Skin()
 	{
+		global $wgUseOldExistenceCheck;
+		$postParseLinkColour = !$wgUseOldExistenceCheck;
 		$this->linktrail = wfMsg('linktrail');
 	}
 
