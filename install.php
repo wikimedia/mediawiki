@@ -57,6 +57,7 @@ copydirectory( "./stylesheets", $wgStyleSheetDirectory );
 
 copyfile( "./images", "wiki.png", $wgUploadDirectory );
 copyfile( "./languages", "Language.php", $IP );
+copyfile( "./languages", "LanguageUtf8.php", $IP );
 copyfile( "./languages", "Language" . ucfirst( $wgLanguageCode ) . ".php", $IP );
 
 if ( $wgDebugLogFile ) {
