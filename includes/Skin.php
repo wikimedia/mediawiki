@@ -541,7 +541,7 @@ class Skin {
 			global $wgExtraSubtitle;
 			$sub = wfMsg( "fromwikipedia" ) . $wgExtraSubtitle;
 		}
-		if($wgOut->isArticle() && $wgNamespacesWithSubpages[$wgTitle->getNamespace()]) {
+		if($wgOut->isArticle() && !empty($wgNamespacesWithSubpages[$wgTitle->getNamespace()])) {
 			$ptext=$wgTitle->getPrefixedText();
 			if(preg_match("/\//",$ptext)) {
 				$sub.="</p><p class='subpages'>";
