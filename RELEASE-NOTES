@@ -158,6 +158,8 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1162) fix five-tilde date inserter
 * Add raw signatures option for those who simply must have cute sigs
 * (bug 1164) Let wikitext be used in Loginprompt and Loginend messages
+* Add the dreaded <span> to the HTML whitelist
+
 
 === Caveats ===
 
