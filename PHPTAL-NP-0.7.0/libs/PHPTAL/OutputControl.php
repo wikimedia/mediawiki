@@ -65,7 +65,9 @@ class PHPTAL_OutputControl
         } else {
             // $this->_buffer .= htmlentities($str);
             // support for cyrillic strings thanks to Igor E. Poteryaev
-            $this->_buffer .= htmlentities($str, $this->_quoteStyle, $this->_encoding);
+            // **** hacked to htmlspecialchars() to avoid messing with text.
+            // **** PHP prior to 4.3.7 contains bugs that mess up Greek.
+            $this->_buffer .= htmlspecialchars($str, $this->_quoteStyle, $this->_encoding);
         }
     }
 
