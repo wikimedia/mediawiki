@@ -1,6 +1,6 @@
 = MediaWiki release notes =
 
-== Version 1.2.5, 2004-05-01 ==
+== Version 1.2.5, 2004-05-03 ==
 * Fixed install problem with blank root password
 * Fixed Special:Emailuser/Username links
 * Fixed main-page edit links on fuzzy search results
@@ -8,6 +8,8 @@
 * Fixed install with apache2filter (ugly URLs)
 * IP in 'go' search brings up contributions
 * Switch from broken & to ? on top-level wiki URL hack
+* Fix for moved pages in enhanced Recentchanges
+* Initial main page on new installs links to the online documentation
 
 == Version 1.2.4, 2004-04-13 ==
 
