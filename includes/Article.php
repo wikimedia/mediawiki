@@ -487,7 +487,6 @@ class Article {
 
 			$now = wfTimestampNow();
 			$won = wfInvertTimestamp( $now );
-			global $wpEdittime;
 			$sql = "UPDATE cur SET cur_text='" . wfStrencode( $text ) .
 			  "',cur_comment='" .  wfStrencode( $summary ) .
 			  "',cur_minor_edit={$me2}, cur_user=" . $wgUser->getID() .
@@ -495,7 +494,7 @@ class Article {
 			  wfStrencode( $wgUser->getName() ) .
 			  "',cur_is_redirect={$redir}, cur_is_new=0, cur_touched='{$now}', inverse_timestamp='{$won}' " .
 			  "WHERE cur_id=" . $this->getID() .
-			  " AND cur_timestamp='" . wfStrencode( $wpEdittime ) . "'";
+			  " AND cur_timestamp='" . $this->getTimestamp() . "'";
 			$res = wfQuery( $sql, DB_WRITE, $fname );
 			
 			if( wfAffectedRows() == 0 ) {
