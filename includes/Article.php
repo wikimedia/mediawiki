@@ -384,7 +384,7 @@ class Article {
 		global $oldid, $redirect, $section;
 		global $wgLang;
 
-		if($wpSection) { $section=$wpSection; }
+		if(isset($wpSection)) { $section=$wpSection; }
 
 		$sk = $wgUser->getSkin();
 		$isConflict = false;
