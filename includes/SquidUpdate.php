@@ -2,9 +2,18 @@
 # See deferred.doc
 
 class SquidUpdate {
-	var $urlArr;
+	var $urlArr, $mMaxTitles;
 
-	function SquidUpdate( $urlArr = Array() ) {
+	function SquidUpdate( $urlArr = Array(), $maxTitles = false ) {
+		global $wgMaxSquidPurgeTitles;
+		if ( $maxTitles === false ) {
+			$this->mMaxTitles = $wgMaxSquidPurgeTitles;
+		} else {
+			$this->mMaxTitles = $maxTitles;
+		}
+		if ( count( $urlArr ) > $this->mMaxTitles ) {
+			$urlArr = array_slice( $urlArr, 0, $this->mMaxTitles );
+		}
 		$this->urlArr = $urlArr;
 	}
 
@@ -14,10 +23,12 @@ class SquidUpdate {
 		$sql = "SELECT cur_namespace,cur_title FROM links,cur WHERE l_to={$id} and l_from=cur_id" ;
 		$res = wfQuery ( $sql, DB_READ ) ;
 		$blurlArr = $title->getSquidURLs();
-		while ( $BL = wfFetchObject ( $res ) )
-		{
-			$tobj = Title::makeTitle( $BL->cur_namespace, $BL->cur_title ) ; 
-			$blurlArr[] = $tobj->getInternalURL();
+		if ( wfNumRows( $res ) <= $this->mMaxTitles ) {
+			while ( $BL = wfFetchObject ( $res ) )
+			{
+				$tobj = Title::makeTitle( $BL->cur_namespace, $BL->cur_title ) ; 
+				$blurlArr[] = $tobj->getInternalURL();
+			}
 		}
 		wfFreeResult ( $res ) ;
 		return new SquidUpdate( $blurlArr );
@@ -29,10 +40,12 @@ class SquidUpdate {
 		$sql = "SELECT cur_namespace,cur_title FROM brokenlinks,cur WHERE bl_to={$encTitle} AND bl_from=cur_id";
 		$res = wfQuery( $sql, DB_READ );
 		$blurlArr = array();
-		while ( $BL = wfFetchObject( $res ) )
-		{
-			$tobj = Title::makeTitle( $BL->cur_namespace, $BL->cur_title );
-			$blurlArr[] = $tobj->getInternalURL();
+		if ( wfNumRows( $res ) <= $this->mMaxTitles ) {
+			while ( $BL = wfFetchObject( $res ) )
+			{
+				$tobj = Title::makeTitle( $BL->cur_namespace, $BL->cur_title );
+				$blurlArr[] = $tobj->getInternalURL();
+			}
 		}
 		wfFreeResult( $res );
 		return new SquidUpdate( $blurlArr );

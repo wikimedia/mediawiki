@@ -218,6 +218,10 @@ $wgCookieExpiration = 2592000;
 # don't specify ports here (80 is default)
 # $wgSquidServers = array('127.0.0.1');
 
+# Maximum number of titles to purge in any one client operation
+$wgMaxSquidPurgeTitles = 400;
+
+
 # Set to set an explicit domain on the login cookies
 # eg, "justthis.domain.org" or ".any.subdomain.net"
 $wgCookieDomain = '';
