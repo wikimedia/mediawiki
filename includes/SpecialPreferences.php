@@ -450,6 +450,7 @@ class PreferencesForm {
 					$sel = ($code==$this->mUserVariant)? 'selected="selected"' : '';
 					$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
 				}
+			$wgOut->addHtml("</select></label></div>\n");
 			}
 		}
 		# Fields for changing password
