@@ -8,20 +8,20 @@
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesLa = array(
-	-2	=> "Media",
-	-1	=> "Specialis",
-	0	=> "",
-	1	=> "Disputatio",
-	2	=> "Usor",
-	3	=> "Disputatio_Usoris",
-	4	=> "Wikipedia",
-	5	=> "Disputatio_Wikipedia",
-	6	=> "Imago",
-	7	=> "Disputatio_Imaginis",
-	8	=> "MediaWiki",
-	9	=> "Disputatio_MediaWiki",
-	10  => "Template",
-	11  => "Template_talk"
+	NS_MEDIA			=> 'Media',
+	NS_SPECIAL			=> 'Specialis',
+	NS_MAIN				=> '',
+	NS_TALK				=> 'Disputatio',
+	NS_USER				=> 'Usor',
+	NS_USER_TALK		=> 'Disputatio_Usoris',
+	NS_PROJECT			=> 'Wikipedia',
+	NS_PROJECT_TALK		=> 'Disputatio_Wikipedia',
+	NS_IMAGE			=> 'Imago',
+	NS_IMAGE_TALK		=> 'Disputatio_Imaginis',
+	NS_MEDIAWIKI		=> 'MediaWiki',
+	NS_MEDIAWIKI_TALK	=> 'Disputatio_MediaWiki',
+	NS_TEMPLATE			=> 'Template',
+	NS_TEMPLATE_TALK	=> 'Template_talk'
 
 
 ) + $wgNamespaceNamesEn;
@@ -31,23 +31,23 @@
 );
 
 /* private */ $wgSkinNamesLa = array(
-	'standard' => "Norma",
-	'nostalgia' => "Nostalgia",
-	'cologneblue' => "Caerulus Colonia",
-	'smarty' => "Paddington",
-	'montparnasse' => "Montparnasse",
-	'davinci' => "DaVinci",
-	'mono' => "Mono",
-	'monobook' => "MonoBook",
- "myskin" => "MySkin" 
+	'standard' => 'Norma',
+	'nostalgia' => 'Nostalgia',
+	'cologneblue' => 'Caerulus Colonia',
+	'smarty' => 'Paddington',
+	'montparnasse' => 'Montparnasse',
+	'davinci' => 'DaVinci',
+	'mono' => 'Mono',
+	'monobook' => 'MonoBook',
+	'myskin' => 'MySkin' 
 );
 
 
 /* private */ $wgBookstoreListLa = array(
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
+	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
+	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
+	'Barnes & Noble' => 'http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
+	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
 );
 
 
@@ -56,24 +56,24 @@
 # is the right thing for some of them (such as the "targeted" ones).
 #
 /* private */ $wgValidSpecialPagesLa = array(
-	"Userlogin"		=> "",
-	"Userlogout"	=> "",
-	"Preferences"	=> "Praeferentiae usoris",
-	"Watchlist"		=> "Paginae custoditae",
-	"Recentchanges" => "Mutationes recentes",
-	"Upload"		=> "Onerare fascicula",
-	"Imagelist"		=> "Index imaginum",
-	"Listusers"		=> "Usores perscripti",
-	"Statistics"	=> "Statisticas",
-	"Randompage"	=> "Pagina fortuita",
+	'Userlogin'		=> '',
+	'Userlogout'	=> '',
+	'Preferences'	=> 'Praeferentiae usoris',
+	'Watchlist'		=> 'Paginae custoditae',
+	'Recentchanges' => 'Mutationes recentes',
+	'Upload'		=> 'Onerare fascicula',
+	'Imagelist'		=> 'Index imaginum',
+	'Listusers'		=> 'Usores perscripti',
+	'Statistics'	=> 'Statisticas',
+	'Randompage'	=> 'Pagina fortuita',
 
-	"Lonelypages"	=> "Paginae orbatae",
-	"Unusedimages"	=> "Imagines orbatae",
-	"Popularpages"	=> "Res populares",
-	"Wantedpages"	=> "Res desideratissimae",
-	"Shortpages"	=> "Res breves",
-	"Longpages"		=> "Res longae",
-	"Newpages"		=> "Res novae",
+	'Lonelypages'	=> 'Paginae orbatae',
+	'Unusedimages'	=> 'Imagines orbatae',
+	'Popularpages'	=> 'Res populares',
+	'Wantedpages'	=> 'Res desideratissimae',
+	'Shortpages'	=> 'Res breves',
+	'Longpages'		=> 'Res longae',
+	'Newpages'		=> 'Res novae',
 #	"Intl"                => "Interlanguage Links",
 	"Allpages"		=> "Totae paginae (ex indice)",
 
@@ -92,15 +92,15 @@
 );
 
 /* private */ $wgSysopSpecialPagesLa = array(
-	"Blockip"		=> "Obstruere locum IP",
-	"Asksql"		=> "Quaerere basem dati",
-	"Undelete"		=> "Videre et restituere paginas deletas"
+	'Blockip'		=> 'Obstruere locum IP',
+	'Asksql'		=> 'Quaerere basem dati',
+	'Undelete'		=> 'Videre et restituere paginas deletas'
 );
 
 /* private */ $wgDeveloperSpecialPagesLa = array(
-	"Lockdb"		=> "Suspendere mutationes",
-	"Unlockdb"		=> "Permittere mutationes",
-	"Debug"			=> "Nuntii de refectis"
+	'Lockdb'		=> 'Suspendere mutationes',
+	'Unlockdb'		=> 'Permittere mutationes',
+	'Debug'			=> 'Nuntii de refectis'
 );
 
 $wgAllMessagesLa = array(
