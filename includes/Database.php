@@ -326,14 +326,14 @@ class Database {
 		return !!$this->query( $sql, DB_MASTER, $fname );
 	}
 	
-	function getField( $table, $var, $cond, $fname = "Database::get", $options = array() ) {
+	function getField( $table, $var, $cond="", $fname = "Database::get", $options = array() ) {
 		return $this->selectField( $table, $var, $cond, $fname = "Database::get", $options = array() );
 	}
 
 	# Simple SELECT wrapper, returns a single field, input must be encoded
 	# Usually aborts on failure
 	# If errors are explicitly ignored, returns FALSE on failure
-	function selectField( $table, $var, $cond, $fname = "Database::selectField", $options = array() )
+	function selectField( $table, $var, $cond="", $fname = "Database::selectField", $options = array() )
 	{
 		if ( !is_array( $options ) ) {
 			$options = array( $options );
@@ -385,21 +385,25 @@ class Database {
 	}
 
 	# SELECT wrapper
-	function select( $table, $vars, $conds, $fname = "Database::select", $options = array() )
+	function select( $table, $vars, $conds="", $fname = "Database::select", $options = array() )
 	{
 		if ( is_array( $vars ) ) {
 			$vars = implode( ",", $vars );
 		}
-		$table = $this->tableName( $table );
+		if ($table!="")
+			$from = " FROM " .$this->tableName( $table );
+		else
+			$from = "";
+
 		list( $useIndex, $tailOpts ) = $this->makeSelectOptions( $options );
 		
-		if ( $conds !== false ) {
+		if ( $conds !== false && $conds != "" ) {
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, LIST_AND );
 			}
-			$sql = "SELECT $vars FROM $table $useIndex WHERE $conds $tailOpts";
+			$sql = "SELECT $vars $from $useIndex WHERE $conds $tailOpts";
 		} else {
-			$sql = "SELECT $vars FROM $table $useIndex $tailOpts";
+			$sql = "SELECT $vars $from $useIndex $tailOpts";
 		}
 		return $this->query( $sql, $fname );
 	}
