@@ -81,19 +81,18 @@ class Skin extends Linker {
 	var $rcMoveIndex;
 	/**#@-*/
 
-	function Skin() {
-		parent::Linker();
-	}
+	/** Constructor, call parent constructor */
+	function Skin() { parent::Linker(); }
 
 	function getSkinNames() {
 		global $wgValidSkinNames;
 		return $wgValidSkinNames;
 	}
 
-	function getStylesheet() {
-		return 'common/wikistandard.css';
-	}
+	/** @return string path to the skin stylesheet */
+	function getStylesheet() { return 'common/wikistandard.css'; }
 
+	/** @return string skin name */
 	function getSkinName() {
 		return 'standard';
 	}
@@ -452,17 +451,20 @@ class Skin extends Linker {
 		return "<td width='152' rowspan='{$rows}'>&nbsp;</td>";
 	}
 
-	# This gets called immediately before the </body> tag.
-	#
+	/**
+	 * This gets called immediately before the </body> tag.
+	 * @return string HTML to be put after </body> ???
+	 */
 	function afterContent() {
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printFooter() . "</div>\n";
 		return $printfooter . $this->doAfterContent();
 	}
 
+	/** @return string Retrievied from HTML text */
 	function printSource() {
 		global $wgTitle;
 		$url = htmlspecialchars( $wgTitle->getFullURL() );
-		return wfMsg( "retrievedfrom", "<a href=\"$url\">$url</a>" );
+		return wfMsg( 'retrievedfrom', '<a href="'.$url.'">'.$url.'</a>' );
 	}
 
 	function printFooter() {
@@ -470,9 +472,8 @@ class Skin extends Linker {
 			"</p>\n\n<p>" . $this->pageStats() . "</p>\n";
 	}
 
-	function doAfterContent() {
-	# overloaded by derived classes
-	}
+	/** overloaded by derived classes */
+	function doAfterContent() { }
 
 	function pageTitleLinks() {
 		global $wgOut, $wgTitle, $wgUser, $wgContLang, $wgUseApproval, $wgRequest;
@@ -715,8 +716,6 @@ class Skin extends Linker {
 			}
 		}
 
-
-
 		return $s;
 	}
 
@@ -778,7 +777,7 @@ class Skin extends Linker {
 		}
 
 	        if (isset($wgMaxCredits) && $wgMaxCredits != 0) {
-		    require_once("Credits.php");
+		    require_once('Credits.php');
 		    $s .= ' ' . getCredits($wgArticle, $wgMaxCredits, $wgShowCreditsIfMax);
 		} else {
 		    $s .= $this->lastModified();
@@ -955,7 +954,7 @@ class Skin extends Linker {
 	function disclaimerLink() {
 		$disclaimers = wfMsg( 'disclaimers' );
 		if ($disclaimers == '-') {
-			return "";
+			return '';
 		} else {
 			return $this->makeKnownLink( wfMsgForContent( 'disclaimerpage' ),
 			                             $disclaimers );
