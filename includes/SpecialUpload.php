@@ -33,6 +33,14 @@ function processUpload()
 	global $HTTP_POST_FILES, $wgUploadDirectory;
 	global $wpUploadSaveName, $wpUploadTempName, $wpUploadSize;
 	global $wgSavedFile, $wgUploadOldVersion, $wpUploadOldVersion;
+	global $wgUseCopyrightUpload , $wpUploadCopyStatus , $wpUploadSource ;
+
+	if ( $wgUseCopyrightUpload )
+	  {
+	    $wpUploadAffirm = 1 ;
+	    if ( trim ( $wpUploadCopyStatus ) == "" || trim ( $wpUploadSource ) == "" )
+		 $wpUploadAffirm = 0 ;
+	  }
 
 	if ( 1 != $wpUploadAffirm ) {
 		mainUploadForm( WfMsg( "noaffirmation" ) );
@@ -201,6 +209,7 @@ function mainUploadForm( $msg )
 	global $wgOut, $wgUser, $wgLang, $wgUploadDirectory;
 	global $wpUpload, $wpUploadAffirm, $wpUploadFile;
 	global $wpUploadDescription, $wpIgnoreWarning;
+	global $wgUseCopyrightUpload , $wpUploadSource , $wpUploadCopyStatus ;
 
 	if ( "" != $msg ) {
 		$sub = wfMsg( "uploaderror" );
@@ -223,6 +232,25 @@ function mainUploadForm( $msg )
 	$iw = wfMsg( "ignorewarning" );
 
 	$action = wfLocalUrl( $wgLang->specialPage( "Upload" ) );
+
+	$source = "
+<td align=right>
+<input tabindex=3 type=checkbox name=\"wpUploadAffirm\" value=\"1\" id=\"wpUploadAffirm\">
+</td><td align=left><label for=\"wpUploadAffirm\">{$ca}</label></td>
+" ;
+	if ( $wgUseCopyrightUpload )
+	  {
+	    $source = "
+<td align=right nowrap>" . wfMsg ( "filestatus" ) . ":</td>
+<td><input tabindex=3 type=text name=\"wpUploadCopyStatus\" value=\"" .
+htmlspecialchars($wpUploadCopyStatus). "\" size=40></td>
+</tr><tr>
+<td align=right>". wfMsg ( "filesource" ) . ":</td>
+<td><input tabindex=4 type=text name=\"wpUploadSource\" value=\"" .
+htmlspecialchars($wpUploadSource). "\" size=40></td>
+" ;
+	  }
+
 	$wgOut->addHTML( "
 <form id=\"upload\" method=\"post\" enctype=\"multipart/form-data\"
 action=\"{$action}\">
@@ -235,9 +263,8 @@ action=\"{$action}\">
 <input tabindex=2 type=text name=\"wpUploadDescription\" value=\""
   . htmlspecialchars( $wpUploadDescription ) . "\" size=40>
 </td></tr><tr>
-<td align=right>
-<input tabindex=3 type=checkbox name=\"wpUploadAffirm\" value=\"1\" id=\"wpUploadAffirm\">
-</td><td align=left><label for=\"wpUploadAffirm\">{$ca}</label></td></tr>
+{$source}
+</tr>
 <tr><td>&nbsp;</td><td align=left>
 <input tabindex=5 type=submit name=\"wpUpload\" value=\"{$ulb}\">
 </td></tr></table></form>\n" );

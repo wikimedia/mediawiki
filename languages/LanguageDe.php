@@ -697,6 +697,8 @@ Alle Zeiten sind UTC.
 "uploadlogtext" => "Hochgeladene und gelöschte Dateien werden im $1 verzeichnet.",
 "filename"		=> "Dateiname",
 "filedesc"		=> "Beschreibung",
+"filestatus" => "Copyright-Status",
+"filesource" => "Quelle",
 "affirmation"	=> "Hiermit bestätige ich, dass ich das Copyright dieser Datei habe, und diese hiermit unter $1 veröffentliche, bzw. dass die Datei 'Public Domain' ist.",
 "copyrightpage" => "Wikipedia:Copyright",
 "copyrightpagename" => "Wikipedia copyright",
