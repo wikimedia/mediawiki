@@ -39,11 +39,12 @@ require_once( 'LanguageUtf8.php');
 );
 
 /* private */ $wgMathNamesFo = array(
-	"Vís altíð sum PNG",
-	"HTML um sera einfalt annars PNG",
-	"HTML um møguligt annars PNG",
-	"Lat verða sum TeX (til tekstkagara)",
-	"Tilmælt nýtíðarkagara"
+	MW_MATH_PNG => 'mw_math_png',
+	MW_MATH_SIMPLE => 'mw_math_simple',
+	MW_MATH_HTML => 'mw_math_html',
+	MW_MATH_SOURCE => 'mw_math_source',
+	MW_MATH_MODERN => 'mw_math_modern',
+	MW_MATH_MATHML => 'mw_math_mathml'
 );
 
 /* private */ $wgDateFormatsFo = array(
@@ -54,49 +55,12 @@ require_once( 'LanguageUtf8.php');
 	"2001-01-15"
 );
 
-/* private */ $wgUserTogglesFo = array(
-	"hover"		      => "Vís sveimandi tekst yvur wikiávísingar",
-	"underline"	   => "Undurstrika ávísingar",
-	"highlightbroken" => "Brúka reyða ávísing til tómar síður",
-	"justify"	   => "Stilla greinpart",
-	"hideminor"	   => "Goym minni broytingar í seinast broytt listanum",		  # Skjul mindre ændringer i seneste ændringer listen
-	"usenewrc"	   => "víðka seinastu broytingar lista<br>(ikki til alla kagarar)",
-	"numberheadings"   => "Sjálvtalmerking av yvirskrift",
-	"showtoolbar"	   => "Vís amboðslinju í rætting",
-	"editondblclick"   => "Rætta síðu við at tvíklikkja (JavaScript)",
-	"editsection"	   =>"Rætta greinpart við hjálp av [rætta]-ávísing",
-	"editsectiononrightclick"=>"Rætta greinpart við at høgraklikkja<br> á yvirskrift av greinparti (JavaScript)",
-	"showtoc"=>"Vís innihaldsyvurlit<br>(Til greinir við meira enn trimun greinpartum)",
-	"rememberpassword" => "Minst til loyniorð næstu ferð",
-	"editwidth" => "Rættingarkassin hevur fulla breid",
-	"watchdefault" => "Vaka yvur nýggjum og broyttum greinum",
-	"minordefault" => "Merk sum standard allar broytingar sum smærri",
-	"previewontop" => "Vís forhondsvísning áðren rættingarkassan",
-	"nocache" => "Minst ikki til síðurnar til næstu ferð"
-);
-
 /* private */ $wgBookstoreListFo = array(
 	"Bokasolan.fo" => "http://www.bokasolan.fo/vleitari.asp?haattur=bok.alfa&Heiti=&Hovindur=&Forlag=&innbinding=Oell&bolkur=Allir&prisur=Allir&Aarstal=Oell&mal=Oell&status=Oell&ISBN=$1",
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
 	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
 	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
-
-/* private */ $wgWeekdayNamesFo = array(
-	"sunnudagur", "mánadagur", "týsdagur", "mikudagur", "hósdagur",
-	"fríggjadagur", "leygardagur"
-);
-
-/* private */ $wgMonthNamesFo = array(
-	"januar", "februar", "mars", "apríl", "mai", "juni",
-	"juli", "august", "september", "oktober", "november",
-	"desember"
-);
-
-/* private */ $wgMonthAbbreviationsFo = array(
-	"jan", "feb", "mar", "apr", "mai", "jun", "jul", "aug",
-	"sep", "okt", "nov", "des"
 );
 
 # Note to translators:
@@ -196,6 +160,70 @@ require_once( 'LanguageUtf8.php');
 	"Unlockdb"	      => "Endurstovna skriviatgongd til dátagrunnin",
 );
 
+/* private */ $wgAllMessagesFo = array(
+
+# User toggles
+"tog-hover"		      => "Vís sveimandi tekst yvur wikiávísingar",
+"tog-underline"	   => "Undurstrika ávísingar",
+"tog-highlightbroken" => "Brúka reyða ávísing til tómar síður",
+"tog-justify"	   => "Stilla greinpart",
+"tog-hideminor"	   => "Goym minni broytingar í seinast broytt listanum",		  # Skjul mindre ændringer i seneste ændringer listen
+"tog-usenewrc"	   => "víðka seinastu broytingar lista<br>(ikki til alla kagarar)",
+"tog-numberheadings"   => "Sjálvtalmerking av yvirskrift",
+"tog-showtoolbar"	   => "Vís amboðslinju í rætting",
+"tog-editondblclick"   => "Rætta síðu við at tvíklikkja (JavaScript)",
+"tog-editsection"	   =>"Rætta greinpart við hjálp av [rætta]-ávísing",
+"tog-editsectiononrightclick"=>"Rætta greinpart við at høgraklikkja<br> á yvirskrift av greinparti (JavaScript)",
+"tog-showtoc"=>"Vís innihaldsyvurlit<br>(Til greinir við meira enn trimun greinpartum)",
+"tog-rememberpassword" => "Minst til loyniorð næstu ferð",
+"tog-editwidth" => "Rættingarkassin hevur fulla breid",
+"tog-watchdefault" => "Vaka yvur nýggjum og broyttum greinum",
+"tog-minordefault" => "Merk sum standard allar broytingar sum smærri",
+"tog-previewontop" => "Vís forhondsvísning áðren rættingarkassan",
+"tog-nocache" => "Minst ikki til síðurnar til næstu ferð",
+
+# Dates
+'sunday' => 'sunnudagur', 
+'monday' => 'mánadagur', 
+'tuesday' => 'týsdagur', 
+'wednesday' => 'mikudagur', 
+'thursday' => 'hósdagur',
+'friday' => 'fríggjadagur', 
+'saturday' => 'leygardagur',
+'january' => 'januar',
+'february' => 'februar',
+'march' => 'mars',
+'april' => 'apríl',
+'may_long' => 'mai',
+'june' => 'juni',
+'july' => 'juli',
+'august' => 'august',
+'september' => 'september',
+'october' => 'oktober',
+'november' => 'november',
+'december' => 'desember',
+'jan' => 'jan',
+'feb' => 'feb',
+'mar' => 'mar',
+'apr' => 'apr',
+'may' => 'mai',
+'jun' => 'jun',
+'jul' => 'jul',
+'aug' => 'aug',
+'sep' => 'sep',
+'oct' => 'okt',
+'nov' => 'nov',
+'dec' => 'des',
+
+# Math options
+'mw_math_png' => "Vís altíð sum PNG",
+'mw_math_simple' => "HTML um sera einfalt annars PNG",
+'mw_math_html' => "HTML um møguligt annars PNG",
+'mw_math_source' => "Lat verða sum TeX (til tekstkagara)",
+'mw_math_modern' => "Tilmælt nýtíðarkagara",
+'mw_math_mathml' => 'MathML if possible (experimental)',
+
+);
 class LanguageFo extends LanguageUtf8 {
 
 	function getDefaultUserOptions () {
@@ -241,44 +269,9 @@ class LanguageFo extends LanguageUtf8 {
 		return $wgSkinNamesFo;
 	}
 
-	function getMathNames() {
-		global $wgMathNamesFo;
-		return $wgMathNamesFo;
-	}
-
 	function getDateFormats() {
 		global $wgDateFormatsFo;
 		return $wgDateFormatsFo;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesFo;
-		return $wgUserTogglesFo;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesFo;
-		return $wgMonthNamesFo[$key-1];
-	}
-
-	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
-		global $wgMonthNamesFo;
-		return $wgMonthNamesFo[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsFo;
-		return $wgMonthAbbreviationsFo[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesFo;
-		return $wgWeekdayNamesFo[$key-1];
 	}
 
 	# Inherit userAdjust()
