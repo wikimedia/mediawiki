@@ -47,11 +47,14 @@ class DateFormatter
 	 * @todo document
 	 */
 	function DateFormatter() {
-		global $wgMonthNamesEn, $wgInputEncoding;
+		global $wgMonthNamesEn, $wgMonthAbbreviationsEn, $wgInputEncoding;
 		
 		$this->monthNames = $this->getMonthRegex();
 		for ( $i=1; $i<=12; $i++ ) {
 			$this->xMonths[strtolower( $wgMonthNamesEn[$i-1] )] = $i;
+		}
+		for ( $i=1; $i<=12; $i++ ) {
+			$this->xMonths[strtolower( $wgMonthAbbreviationsEn[$i-1] )] = $i;
 		}
 		
 		# Attempt at UTF-8 support, untested at the moment
@@ -222,8 +225,8 @@ class DateFormatter
 	 * @todo document
 	 */
 	function getMonthRegex() {
-		global $wgMonthNamesEn;
-		return implode( '|', $wgMonthNamesEn );
+		global $wgMonthNamesEn, $wgMonthAbbreviationsEn;
+		return implode( '|', array_merge($wgMonthNamesEn, $wgMonthAbbreviationsEn));
 	}
 
 	/**
