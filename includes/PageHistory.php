@@ -109,6 +109,7 @@ class PageHistory {
 	{
 		global $wgTitle;
 		$this->lastdate = $this->lastline = "";
+		$url = $wgTitle->getFullURL("-");
 		$s = "\n<script type='text/javascript'>
 			/*<![CDATA[*/
 			var sel = -1;
@@ -140,7 +141,6 @@ class PageHistory {
 			/*]]>*/
 		</script>";
 		$s .= "\n<p>" . wfMsg( "histlegend" ) . "</p>\n<ul class='special'>";
-		$url = $wgTitle->getFullURL("-");
 		return $s;
 	}
 
