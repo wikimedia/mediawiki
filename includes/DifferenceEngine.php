@@ -75,7 +75,7 @@ cellpadding=0 cellspacing='4px'><tr>
 			$id = $wgTitle->getArticleID();
 
 			$sql = "SELECT cur_text FROM cur WHERE cur_id={$id}";
-			$res = wfQuery( $sql, $fname );
+			$res = wfQuery( $sql, DB_READ, $fname );
 			if ( 0 == wfNumRows( $res ) ) { return false; }
 
 			$s = wfFetchObject( $res );
@@ -84,7 +84,7 @@ cellpadding=0 cellspacing='4px'><tr>
 			$sql = "SELECT old_timestamp,old_text FROM old WHERE " .
 			  "old_id={$this->mNewid}";
 
-			$res = wfQuery( $sql, $fname );
+			$res = wfQuery( $sql, DB_READ, $fname );
 			if ( 0 == wfNumRows( $res ) ) { return false; }
 
 			$s = wfFetchObject( $res );
@@ -99,11 +99,11 @@ cellpadding=0 cellspacing='4px'><tr>
 			  "old_namespace=" . $wgTitle->getNamespace() . " AND " .
 			  "old_title='" . wfStrencode( $wgTitle->getDBkey() ) .
 			  "' ORDER BY inverse_timestamp LIMIT 1";
-			$res = wfQuery( $sql, $fname );
+			$res = wfQuery( $sql, DB_READ, $fname );
 		} else {
 			$sql = "SELECT old_timestamp,old_text FROM old WHERE " .
 			  "old_id={$this->mOldid}";
-			$res = wfQuery( $sql, $fname );
+			$res = wfQuery( $sql, DB_READ, $fname );
 		}
 		if ( 0 == wfNumRows( $res ) ) { return false; }
 

@@ -28,7 +28,7 @@ function wfSpecialWatchlist()
 				$sql = "DELETE FROM watchlist WHERE wl_user=$uid AND " .
 					"wl_namespace=" . $t->getNamespace() . " AND " .
 					"wl_title='" . wfStrencode( $t->getDBkey() ) . "'";
-				$res = wfQuery( $sql );
+				$res = wfQuery( $sql, DB_WRITE );
 				if($res === FALSE) {
 					$wgOut->addHTML( "<br />\n" . wfMsg( "couldntremove", htmlspecialchars($one) ) );
 				} else {
@@ -42,7 +42,7 @@ function wfSpecialWatchlist()
 	}
 
 	$sql = "SELECT COUNT(*) AS n FROM watchlist WHERE wl_user=$uid";
-	$res = wfQuery( $sql );
+	$res = wfQuery( $sql, DB_READ );
 	$s = wfFetchObject( $res );
 	$nitems = $s->n;
 	
@@ -72,7 +72,7 @@ function wfSpecialWatchlist()
 		  ( $cutoff = wfUnix2Timestamp( time() - intval( $days * 86400 ) ) )
 		  . "'";
 		$sql = "SELECT COUNT(*) AS n FROM cur WHERE cur_timestamp>'$cutoff'";
-		$res = wfQuery( $sql );
+		$res = wfQuery( $sql, DB_READ );
 		$s = wfFetchObject( $res );
 		$npages = $s->n;
 	}
@@ -86,7 +86,7 @@ function wfSpecialWatchlist()
 			"' method='post'>\n" .
 			"<ul>\n" );
 		$sql = "SELECT wl_namespace,wl_title FROM watchlist WHERE wl_user=$uid";
-		$res = wfQuery( $sql );
+		$res = wfQuery( $sql, DB_READ );
 		global $wgUser, $wgLang;
 		$sk = $wgUser->getSkin();
 		while( $s = wfFetchObject( $res ) ) {
@@ -136,7 +136,7 @@ function wfSpecialWatchlist()
   ORDER BY cur_timestamp DESC";
 
 
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 
 	if($days >= 1)
 		$note = wfMsg( "rcnote", $limit, $days );

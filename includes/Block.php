@@ -47,7 +47,7 @@ class Block
 				"' OR ipb_user={$user})";
 		}
 
-		$res = wfQuery( $sql, $fname );
+		$res = wfQuery( $sql, DB_READ, $fname );
 		if ( 0 == wfNumRows( $res ) ) {
 			# User is not blocked
 			$this->clear();
@@ -96,7 +96,7 @@ class Block
 	# Callback with a Block object for every block
 	/*static*/ function enumBlocks( $callback, $tag, $killExpired = true ) {
 		$sql = "SELECT * FROM ipblocks ORDER BY ipb_timestamp";
-		$res = wfQuery( $sql, "Block::enumBans" );
+		$res = wfQuery( $sql, DB_READ, "Block::enumBans" );
 		$block = new Block();
 
 		while ( $row = wfFetchObject( $res ) ) {
@@ -120,7 +120,7 @@ class Block
 			$sql = "DELETE FROM ipblocks WHERE ipb_address='" .
 				wfStrencode( $this->mAddress ) . "'";
 		}
-		wfQuery( $sql, "Block::delete" );
+		wfQuery( $sql, DB_WRITE, "Block::delete" );
 	}
 
 	function insert() {
@@ -128,7 +128,7 @@ class Block
 		  (ipb_address, ipb_user, ipb_by, ipb_reason, ipb_timestamp, ipb_auto ) 
 		  VALUES ('" . wfStrencode( $this->mAddress ) . "', {$this->mUser}, {$this->mBy}, '" . 
 		  wfStrencode( $this->mReason ) . "','{$this->mTimestamp}', {$this->mAuto})";
-		wfQuery( $sql, "Block::insert" );
+		wfQuery( $sql, DB_WRITE, "Block::insert" );
 	}
 
 	function deleteIfExpired() {
@@ -164,7 +164,7 @@ class Block
 	
 	function updateTimestamp() {
 		wfQuery( "UPDATE ipblocks SET ipb_timestamp='" . wfTimestampNow() . 
-			"' WHERE ipb_address='" . wfStrencode( $this->mAddress ) . "'", "Block::updateTimestamp" );
+			"' WHERE ipb_address='" . wfStrencode( $this->mAddress ) . "'", DB_WRITE, "Block::updateTimestamp" );
 	}
 
 }

@@ -3,6 +3,9 @@ global $IP;
 include_once( "$IP/FulltextStoplist.php" );
 include_once( "$IP/CacheManager.php" );
 
+define( "DB_READ", -1 );
+define( "DB_WRITE", -2 );
+
 $wgLastDatabaseQuery = "";
 
 function wfGetDB( $altuser = "", $altpassword = "", $altserver = "", $altdb = "" )
@@ -85,7 +88,11 @@ function wfEmergencyAbort( $msg = "" ) {
 	exit;
 }
 
-function wfQuery( $sql, $fname = "" )
+# $db: DB_READ  = -1    read from slave (or only server)
+#      DB_WRITE = -2    write to master (or only server)
+#      0,1,2,...        query a database with a specific index
+# Replication is not actually implemented just yet
+function wfQuery( $sql, $db, $fname = "" )
 {
 	global $wgLastDatabaseQuery, $wgOut;
 ##	wfProfileIn( "wfQuery" );
@@ -128,13 +135,13 @@ function wfSetSQL( $table, $var, $value, $cond )
 {
 	$sql = "UPDATE $table SET $var = '" .
 	  wfStrencode( $value ) . "' WHERE ($cond)";
-	wfQuery( $sql, "wfSetSQL" );
+	wfQuery( $sql, DB_WRITE, "wfSetSQL" );
 }
 
 function wfGetSQL( $table, $var, $cond )
 {
 	$sql = "SELECT $var FROM $table WHERE ($cond)";
-	$result = wfQuery( $sql, "wfGetSQL" );
+	$result = wfQuery( $sql, DB_WRITE, "wfGetSQL" );
 
 	$ret = "";
 	if ( mysql_num_rows( $result ) > 0 ) {
