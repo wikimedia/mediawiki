@@ -2250,7 +2250,7 @@ class Skin {
 
 	function recentChangesLineOld( &$rc, $watched = false )
 	{
-		global $wgTitle, $wgLang, $wgUser, $wgRCSeconds, $wgUseRCPatrol;
+		global $wgTitle, $wgLang, $wgUser, $wgRCSeconds, $wgUseRCPatrol, $wgOnlySysopsCanPatrol;
 
 		# Extract DB fields into local scope
 		extract( $rc->mAttribs );
@@ -2285,7 +2285,7 @@ class Skin {
 			if ( $rc_type == RC_NEW || $rc_type == RC_LOG ) {
 				$diffLink = wfMsg( 'diff' );
 			} else {
-				if ( $rc_patrolled == 0 && $wgUser->getID() != 0 &&
+				if ( $wgUseRCPatrol && $rc_patrolled == 0 && $wgUser->getID() != 0 &&
 				     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
 					$rcidparam = "&rcid={$rc_id}";
 				else
@@ -2309,8 +2309,8 @@ class Skin {
 			# Article link
 			# If it's a new article, there is no diff link, but if it hasn't been
 			# patrolled yet, we need to give users a way to do so
-			if ( $rc_type == RC_NEW && $rc_patrolled == 0 && $wgUser->getID() != 0 &&
-			     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
+			if ( $wgUseRCPatrol && $rc_type == RC_NEW && $rc_patrolled == 0 &&
+			     $wgUser->getID() != 0 && ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
 				$articleLink = $this->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
 			else
 				$articleLink = $this->makeKnownLinkObj( $rc->getTitle(), '' );

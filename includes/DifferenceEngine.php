@@ -74,9 +74,8 @@ class DifferenceEngine {
 		} else {
 			$rollback = "";
 		}
-		if ( $wgUseRCPatrol && 
-		       ($this->mRcidMarkPatrolled != 0 && $wgUser->getID() != 0 &&
-		       ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) ) )
+		if ( $wgUseRCPatrol && $this->mRcidMarkPatrolled != 0 && $wgUser->getID() != 0 &&
+		     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
 		{
 			$patrol = " [" . $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'markaspatrolleddiff' ),
 				"action=markpatrolled&rcid={$this->mRcidMarkPatrolled}" ) . "]";
