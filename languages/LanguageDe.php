@@ -571,7 +571,7 @@ Erfolglose Suchanfragen werden häufig verursacht durch den Versuch, nach 'gewöhn
 Suche in Namensräumen :<br>
 $1<br>
 $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
-"searchdisabled" => "<p>Entschuldigung! Die Volltextsuche wurde wegen der Performanz temporär deaktiviert. Derweil können Sie die folgende Google Suche verwenden, die allerdings nicht den aktuellen Stand wiederspiegelt.<p>
+"searchdisabled" => "<p>Entschuldigung! Die Volltextsuche wurde wegen Überlastung temporär deaktiviert. Derweil können Sie die folgende Google Suche verwenden, die allerdings nicht den aktuellen Stand wiederspiegelt.<p>
 
 <!-- SiteSearch Google -->
 <FORM method=GET action=\"http://www.google.com/search\">
