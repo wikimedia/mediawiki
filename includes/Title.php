@@ -595,13 +595,6 @@ class Title {
 	}
 
 	/**
-	 * @deprecated
-	 */
-	function getURL() {
-		die( 'Call to obsolete obsolete function Title::getURL()' );
-	}
-	
-	/**
 	 * Get a URL with no fragment or server name
 	 * @param string $query an optional query string; if not specified,
 	 * 	$wgArticlePath will be used.
