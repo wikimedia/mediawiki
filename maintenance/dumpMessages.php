@@ -1,6 +1,6 @@
 <?php
 require_once( "commandLine.inc" );
-
+$wgMessageCache->disableTransform();
 $messages = array();
 foreach ( $wgAllMessagesEn as $key => $englishValue )
 {
