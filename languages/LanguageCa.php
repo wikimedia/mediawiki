@@ -113,6 +113,8 @@
 );
 
 /* private */ $wgAllMessagesCa = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User Toggles
 
 "tog-hover"		=> "Mostra caixa surant sobre els enllaços wiki",

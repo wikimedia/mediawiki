@@ -106,6 +106,8 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesNl = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User Toggles
 
 "tog-hover"  => "Wikilinks in zwevend tekstvak tonen",

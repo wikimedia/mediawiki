@@ -111,6 +111,8 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgAllMessagesRu = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User Toggles
 
 "tog-hover"		=> "Показывать всплывающие подсказки над ссылками вики",

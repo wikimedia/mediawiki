@@ -132,6 +132,8 @@ require_once( "LanguageUtf8.php" );
 # the regex in MagicWord::initRegex
 
 /* private */ $wgAllMessagesTa = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 
 # User Toggles
 #

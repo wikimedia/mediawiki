@@ -110,6 +110,8 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgAllMessagesFy = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User Toggles
 
 "tog-hover"		=> "Wiki-keppelings yn sweeffak sjen litte",

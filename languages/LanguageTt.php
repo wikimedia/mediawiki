@@ -133,6 +133,8 @@ $wgLanguageNamesTt =& $wgLanguageNames;
 # set "portal" => ""
 
 /* private */ $wgAllMessagesTt = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User Toggles
 "tog-hover"                       => "Show hoverbox over wiki links",
 "tog-underline"           => "Underline links",

@@ -124,6 +124,8 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesZh = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User Toggles
 
 "tog-hover"		=> "滑过Wiki链接时显示注释", /* "Show hoverbox over wiki links",*/

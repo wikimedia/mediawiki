@@ -115,6 +115,8 @@ require_once("LanguageUtf8.php");
 #-------------------------------------------------------------------
 
 /* private */ $wgAllMessagesFa = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User toggles
 
 "tog-hover"		=> "نمایش جعبه‌ی hover روی پیوندهای ویکی",

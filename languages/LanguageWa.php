@@ -117,6 +117,8 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesWa = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User Toggles
 
 "tog-hover"		=> "Racsegnes cwand on passe so les loyéns",

@@ -183,6 +183,8 @@
 # въведете 'portal' => ''
 
 /* private */ $wgAllMessagesBg = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User toggles
 'tog-hover'          => 'Изпъкване на препратките, когато мишката е върху тях',
 'tog-underline'      => 'Подчертаване на препратките',

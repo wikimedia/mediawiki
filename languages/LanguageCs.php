@@ -107,6 +107,8 @@
 );
 
 /* private */ $wgAllMessagesCs = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User Toggles
 "tog-hover"		=> "Ukázat odkazovou adresu (hoverbox) nad wikiovými odkazy",
 "tog-underline" => "Podtrhnout odkazy",

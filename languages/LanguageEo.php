@@ -111,6 +111,8 @@ $wgEditEncoding		= "x";
 );
 
 /* private */ $wgAllMessagesEo = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User toggles
 "tog-hover"		=> "Montru helpilon super viki-ligiloj",
 "tog-underline" => "Substreku ligilojn",

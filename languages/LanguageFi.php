@@ -95,6 +95,8 @@
 
 
 /* private */ $wgAllMessagesFi = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User Toggles
 
 "tog-hover"		=> "Näytä vinkki wiki-linkkien päällä",
