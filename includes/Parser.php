@@ -53,6 +53,7 @@ define( 'STRIP_COMMENTS', 'HTMLCommentStrip' );
 
 # prefix for escaping, used in two functions at least
 define( 'UNIQ_PREFIX', 'NaodW29');
+#define( 'UNIQ_PREFIX', "\x07NaodW29");
 
 # Constants needed for external link processing
 define( 'URL_PROTOCOLS', 'http|https|ftp|irc|gopher|news|mailto' );
@@ -240,8 +241,8 @@ class Parser
 		#$text = str_replace( $uniq_prefix, wfHtmlEscapeFirst( $uniq_prefix ), $text );
 
 		# html
-		global $wgRawHtml;
-		if( $wgRawHtml ) {
+		global $wgRawHtml, $wgWhitelistEdit;
+		if( $wgRawHtml && $wgWhitelistEdit ) {
 			$text = Parser::extractTags('html', $text, $html_content, $uniq_prefix);
 			foreach( $html_content as $marker => $content ) {
 				if ($render ) {
