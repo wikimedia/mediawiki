@@ -174,7 +174,7 @@ ul {
     list-style-type: square;
     margin: 0.2em 0 0 1.5em;
     padding:0;
-    list-style-image: url("http://www.aulinx.de/bullet.gif");
+    list-style-image: url("bullet.gif");
 }
 
 ol {
@@ -377,38 +377,123 @@ pre {
     padding: 0;
 }
 
+/*
+** the portlets (elements in the quickbar)
+*/
+
+.portlet {
+    border: none;
+    position:relative;
+    z-index:1;
+    margin: 0 0 1em 0em;
+    float: none;
+    padding: 0;
+    width: 13.3em !important;
+    overflow: hidden;
+}
+.portlet h4 {
+    font-size: 100%;
+    font-weight: normal;
+    white-space: nowrap;
+}
+.portlet h5 { 
+    background: #ffae2e;
+    border: 1px solid #2f6fab;
+    border-style: solid solid none solid;
+    padding: 0em 1em 0em 1em;
+    text-transform: lowercase;
+    display: inline;
+    font-size: 1em;
+    height: 1em;
+    font-weight: normal;
+    white-space: nowrap;
+}
+.portlet h6 { 
+    background: #ffae2e;
+    border: 1px solid #2f6fab;
+    border-style: solid solid none solid;
+    padding: 0em 1em 0em 1em;
+    text-transform: lowercase;
+    display: block;
+    font-size: 1em;
+    height: 1.2em;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+.portletBody {
+    background: transparent;
+    border-collapse: collapse;
+    border: 1px solid #2f6fab;
+}
+.portletDetails {
+    text-align: right;
+}
+
+.portletMore {
+    display: block;
+    text-align: right;
+}
+
+.portletContent {
+    padding: 0.1em 0.8em 0.7em 0.5em;
+}
+.portletClose {
+    float: right;
+    text-transform: none;
+    border-left: 1px solid #2f6fab;
+    padding: 0em 0.2em;
+}
+.portlet h1, 
+.portlet h2, 
+.portlet h3, 
+.portlet h4 {
+    margin: 0;
+    padding: 0;
+}
+.portlet .even {
+    background-color: #f7f9fa;
+}
+.portlet .odd {
+    background-color: transparent;
+}
+.portlet input {
+    font-size: 100%;
+}
+
+.portlet ul {
+    list-style-type: square
+    list-style-image: url("bullet.gif");
+    font-size:105%;
+}
+.portlet li {
+    line-height: 1.3em;
+    font-size:107%;
+    margin: 0 0 0.3em 0.2em;
+    padding:0;
+    line-height: 1em;
+}
+
+.even {
+    background-color: #f7f9fa;
+}
+.odd {
+    background-color: transparent;
+}
+.visualHighlight {
+    background-color: #f7f9fa;
+}
+
+.discreet {
+    color: #76797c;
+    font-size: 80%;
+    font-weight: normal;
+}
 
 /* 
 ** Logo properties 
 */
  
-#portal-logo {
-    background: url(http://en2.wikipedia.org/upload/wiki.png) no-repeat;
-    background-repeat: no-repeat;
-    border: 0;
-    margin: 0 0em 0.75em 1.5em;
-    padding: 0;
-}
-#portal-logo a {
-    display: block;
-    text-decoration: none;
-    overflow: hidden;
-    border: 0;
-    margin: 0;
-    padding: 0;
-    padding-top: 155px;
-    height: 0px !important;
-    height /**/: 0px;
-    width: 135px;
-    cursor: pointer;
-}
-
-#portal-top {
-    /* Top section */
-    margin: 0;
-    padding: 0;
-}
-
 #portlet-logo {
     z-index: 3;
     position:absolute; /*needed to use z-index */
@@ -422,7 +507,7 @@ pre {
     display: block;
     height: 155px;
     width: 135px;
-    background: url(http://en.wikipedia.org/upload/wiki.png) no-repeat;
+    background: url(wiki.png) no-repeat;
     background-repeat: no-repeat;
 }
 
@@ -474,23 +559,23 @@ input.searchButton {
     position:absolute;
     right:0px;
     top:0px;
-    border:none;
+    border: none;
+   /* border-bottom: 1px solid #2f6fab;*/
+    border-bottom: 1px solid #2f6fab;
     overflow: visible;
-    line-height: 1.4em;
+    line-height: 1.2em;
 }
 
 #portlet-personal .hiddenStructure {
     display:none;
 }
-#portlet-personal .portlet
+#portlet-personal .portlet,
 #portlet-personal .portletBody,
 #portlet-personal .portletContent,
 #portlet-personal .odd{
-    display:inline;
-    width:100%;
     padding:0;
     margin:0;
-    border: 0px 0px 0px 0px solid #ffb506 !important;
+    border: none !important;
     z-index:0;
     overflow: visible;
 }
@@ -505,10 +590,8 @@ input.searchButton {
 #portal-personaltools {
     background-color: #ffae2e;
 /*    border-bottom-color: #2f6fab;*/
-    border-bottom-color: #ffb506;
-    border-bottom-style: solid;
-    border-bottom-width: 0px;
-    line-height: 1.3em;
+    border: 0px solid #ffb506;
+    line-height: 1.4em;
     color: Black;
     padding: 0em 3em 0 3em;
     margin: 0;
@@ -516,14 +599,6 @@ input.searchButton {
     text-transform: lowercase;
     list-style: none;
     z-index:0;
-}
-#portal-personaltools li {
-    display: inline;
-}
-#portal-personaltools .portalUser {
-    background: transparent url(http://www.aulinx.de/user.gif) center left no-repeat;
-    background-repeat: no-repeat;
-    padding-left: 15px;
 }
 
 #portal-personaltools .portalNotLoggedIn {
@@ -534,27 +609,33 @@ input.searchButton {
 } /* Used on all descriptions relevant to those not logged in */
  
 #portal-personaltools li {
-    /*background: transparent url(http://www.aulinx.de/linkOpaque.gif) center left no-repeat;*/
     padding:0;
-/*    color: #436976;*/
+    display: inline;
     color: Black;
     margin-left: 1em;
+    line-height: 1.2em;
 }
 #portal-personaltools li a {
     text-decoration: none;
 /*    color: #436976;*/
     color: Black;
-    padding-bottom: 0.1em;
+    padding-bottom: 0.2em;
 }
 #portal-personaltools li a:hover {
     text-decoration: none;
 /*    color: #436976;*/
     background-color: White;
     color: Black;
-    padding-bottom: 0.1em;
+    padding-bottom: 0.2em;
 }
 
-
+/* the icon in front of the user name */
+li#personaltools-userpage,
+li#personaltools-login{
+    background: transparent url(user.gif) center left no-repeat;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+}
 
 /*
 ** the page-related actions- page/talk, edit etc 
@@ -730,162 +811,8 @@ table.rimage {
 
 
 
-/* The new form elements */
-
-.field {
-    top: 0;
-    left: 0;
-    margin: 0 1em 1em 0;    
-}
-
-.field .field {
-    margin: 1em 0 0 0;
-}
-
-.field label {
-    font-size: 100%;
-    font-weight: bold;
-}
-
-.fieldRequired {
-    background: url("http://www.aulinx.de/required.gif") center left no-repeat;
-    padding: 0 0 0 8px;
-    color: White;
-} 
-
-.formHelp {
-    font-size: 90%;
-    color: #76797c;
-    margin: 0 0 0.2em 0;
-}
-
-.formHelp a {
-    text-decoration: none;
-}
-
-.formHelp:hover {
-    color: Black;
-    cursor: default;
-}
-
-.formControls {
-   margin: 1em 0 0 0; 
-}
 
 
-
-/*
-** the portlets (elements in the quickbar)
-*/
-
-.portlet {
-    border: none;
-    position:relative;
-    z-index:1;
-    margin: 0 0 1em 0em;
-    float: none;
-    padding: 0;
-    width: 13.3em !important;
-    overflow: hidden;
-}
-.portlet h4 {
-    font-size: 100%;
-    font-weight: normal;
-    white-space: nowrap;
-}
-.portlet h5 { 
-    background: #ffae2e;
-    border: 1px solid #2f6fab;
-    border-style: solid solid none solid;
-    padding: 0em 1em 0em 1em;
-    text-transform: lowercase;
-    display: inline;
-    font-size: 1em;
-    height: 1em;
-    font-weight: normal;
-    white-space: nowrap;
-}
-.portlet h6 { 
-    background: #ffae2e;
-    border: 1px solid #2f6fab;
-    border-style: solid solid none solid;
-    padding: 0em 1em 0em 1em;
-    text-transform: lowercase;
-    display: block;
-    font-size: 1em;
-    height: 1.2em;
-    font-weight: normal;
-    white-space: nowrap;
-}
-
-.portletBody {
-    background: transparent;
-    border-collapse: collapse;
-    border: 1px solid #2f6fab;
-}
-.portletDetails {
-    text-align: right;
-}
-
-.portletMore {
-    display: block;
-    text-align: right;
-}
-
-.portletContent {
-    padding: 0.1em 0.8em 0.7em 0.5em;
-}
-.portletClose {
-    float: right;
-    text-transform: none;
-    border-left: 1px solid #2f6fab;
-    padding: 0em 0.2em;
-}
-.portlet h1, 
-.portlet h2, 
-.portlet h3, 
-.portlet h4 {
-    margin: 0;
-    padding: 0;
-}
-.portlet .even {
-    background-color: #f7f9fa;
-}
-.portlet .odd {
-    background-color: transparent;
-}
-.portlet input {
-    font-size: 100%;
-}
-
-.portlet ul {
-    list-style-type: square
-    list-style-image: url("/wpupload/bullet.gif");
-    font-size:105%;
-}
-.portlet li {
-    line-height: 1.3em;
-    font-size:107%;
-    margin: 0 0 0.3em 0.2em;
-    padding:0;
-    line-height: 1em;
-}
-
-.even {
-    background-color: #f7f9fa;
-}
-.odd {
-    background-color: transparent;
-}
-.visualHighlight {
-    background-color: #f7f9fa;
-}
-
-.discreet {
-    color: #76797c;
-    font-size: 80%;
-    font-weight: normal;
-}
 
 /*
 ** Accessibility and visual enhancement elements 
@@ -898,50 +825,51 @@ table.rimage {
 
 .link-parent {
     display: block;
-    background: transparent url("http://www.aulinx.de/arrowUp.gif") 4px 5px no-repeat;
+    background: transparent url("arrowUp.gif") 4px 5px no-repeat;
     padding: 1px 0px 1px 16px;
     font-size: 80%;
 }
 
 .link-user {
-    background: transparent url("http://www.aulinx.de/user.gif") 0 1px no-repeat;
+    background: transparent url("user.gif") 0 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
 
+/* the div* hides it from older browsers that choke on css3 */
+/*
 .link-external,
-.external {
-    background: transparent url("http://www.aulinx.de/link_icon.gif") 0px 1px no-repeat;
+html*.external{
+    background: transparent url("link_icon.gif") 0px 1px no-repeat;
     background-repeat: no-repeat;
     padding: 1px 0px 1px 16px;
+}*/
+.urlexpansion {
+    display: none;
 }
 
 .link-https {
-    background: transparent url("http://www.aulinx.de/lock_icon.gif") 0px 1px no-repeat;
+    background: transparent url("lock_icon.gif") 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
 
 .link-mailto {
-    background: transparent url("http://www.aulinx.de/mail_icon.gif") 0px 1px no-repeat;
+    background: transparent url("mail_icon.gif") 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
 
 .link-ftp {
-    background: transparent url("http://www.aulinx.de/file_icon.gif") 0px 1px no-repeat;
+    background: transparent url("file_icon.gif") 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
 
 .link-irc {
-    background: transparent url("http://www.aulinx.de/discussionitem_icon.gif") 0px 1px no-repeat;
+    background: transparent url("discussionitem_icon.gif") 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
 
-.link-callto {
-    background: transparent url("http://www.aulinx.de/phone_icon.gif") 0px 1px no-repeat;
-    padding: 1px 0px 1px 16px;
-}
 
 .link-comment {
-    background: transparent url("http://www.aulinx.de/discussionitem_icon.gif") center left no-repeat;
+    background: transparent url("discussionitem_icon.gif") center left no-repeat;
     padding: 1px 0px 1px 16px !important;
 }
 
