@@ -5,6 +5,9 @@
  * @subpackage SpecialPage
  */
 
+/* to get a list of languages in setting user's language preference */
+require_once("Names.php");
+
 /**
  * Entry point that create the "Preferences" object
  */
@@ -303,10 +306,13 @@ class PreferencesForm {
 	/**
 	 * @access private
 	 */
+
 	function mainPrefsForm( $err ) {
 		global $wgUser, $wgOut, $wgLang, $wgUseDynamicDates, $wgValidSkinNames;
 	        global $wgAllowRealName, $wgImageLimits;
-	    
+        
+	    global $wgLanguageNames;
+
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
@@ -384,7 +390,13 @@ class PreferencesForm {
 		<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>
 		<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" /> $emf</label></div>
 		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>
-		<div><label>$yl: <input type='text' name=\"wpUserLanguage\" value=\"{$this->mUserLanguage}\" size='8' /></label></div>\n" );
+		<div><label>$yl: <select name=\"wpUserLanguage\" />\n");
+
+        foreach($wgLanguageNames as $code => $name) {
+            $sel = ($code == $this->mUserLanguage)? "selected" : "";
+            $wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
+        }
+        $wgOut->addHtml("</label></div>\n" );
 
 		# Fields for changing password
 		#
