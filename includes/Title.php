@@ -66,6 +66,9 @@ class Title {
 			}
 		}
 
+		if( is_object( $text ) ) {
+			wfDebugDieBacktrace( "Called with object instead of string." );
+		}
 		$text = strtr( $text, $trans );
 		
 		$text = wfMungeToUtf8( $text );
