@@ -53,7 +53,7 @@ $pdOthers = '';
 //$pdOthers = ' -dn \'MediaWiki\' ';
 $pdOthers .= ' --title \'MediaWiki generated documentation\' -o \'HTML:frames:DOM/earthli\' ';
 
-/** Mediawiki location */
+/** MediaWiki location */
 #$mwPath = '/var/www/mediawiki/';
 $mwPath = "{$here}{$sep}";
 
@@ -97,7 +97,7 @@ Several documentation possibilities:
  3 : only skins
  4 : only a given file
 END;
-	
+
 	while ( !is_numeric($input) )
 	{
 		$input = readaline( "\nEnter your choice [0]:" );
