@@ -262,6 +262,9 @@ $wgSharedDB = null;
 # Leave at false to use the single-server variables above
 $wgDBservers		= false; 
 
+# How long to wait for a slave to catch up to the master 
+$wgMasterWaitTimeout = 10;
+
 # Sysop SQL queries
 #   The sql user shouldn't have too many rights other the database, restrict
 #   it to SELECT only on 'cur' table for example
