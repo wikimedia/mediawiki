@@ -83,7 +83,8 @@ class Skin {
 	/**#@-*/
 
 	function Skin() {
-		$this->linktrail = wfMsgForContent('linktrail');
+		global $wgContLang;
+		$this->linktrail = $wgContLang->linkTrail();
 		
 		# Cache option lookups done very frequently
 		$options = array( 'highlightbroken', 'hover' );

@@ -23,6 +23,7 @@ class MessageCache
 	var $mMemcKey, $mKeys, $mParserOptions, $mParser;
 	var $mExtensionMessages;
 	var $mInitialised = false;
+	var $mDeferred = true;
 
 	function initialise( &$memCached, $useDB, $expiry, $memcPrefix) {
 		$fname = 'MessageCache::initialise';
@@ -44,7 +45,12 @@ class MessageCache
 		$this->mParser = new Parser;
 		wfProfileOut( $fname.'-parser' );
 
-		$this->load();
+		# When we first get asked for a message,
+		# then we'll fill up the cache. If we
+		# can return a cache hit, this saves
+		# some extra milliseconds
+		$this->mDeferred = true;
+		
 		wfProfileOut( $fname );
 	}
 
@@ -113,6 +119,7 @@ class MessageCache
 			}
 		}
 		wfProfileOut( $fname );
+		$this->mDeferred = false;
 		return $success;
 	}
 
@@ -220,6 +227,10 @@ class MessageCache
 		# If uninitialised, someone is trying to call this halfway through Setup.php
 		if( !$this->mInitialised ) {
 			return "&lt;$key&gt;";
+		}
+		# If cache initialization was deferred, start it now.
+		if( $this->mDeferred ) {
+			$this->load();
 		}
 
 		$message = false;

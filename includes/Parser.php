@@ -959,7 +959,9 @@ class Parser
 		wfProfileIn( $fname );
 
 		$sk =& $this->mOptions->getSkin();
-		$linktrail = wfMsgForContent('linktrail');
+		global $wgContLang;
+		$linktrail = $wgContLang->linkTrail();
+		
 		$bits = preg_split( EXT_LINK_BRACKETED, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 
 		$s = $this->replaceFreeExternalLinks( array_shift( $bits ) );
