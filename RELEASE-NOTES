@@ -1,5 +1,12 @@
 = MediaWiki release notes =
 
+== Version 1.2.3, 2004-04-02 ==
+
+* Fixed an in-place install bug with non-root MySQL user
+* Fixed history diff checkboxes bug on titles with ampersands
+* Fixed printable link bug on special pages with parameters
+* Fixed bug that broke IP blocking w/o memcached
+
 == Version 1.2.2, 2004-03-28 ==
 
 * Fixed an upgrade bug introduced in 1.2.1.
