@@ -179,6 +179,8 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1218) Show the original image on image pages if the thumbnail would be
   bigger than the original image
 * (bug 1213) i18n of Special:Log labels
+* (bug 1013) Fix jbo, minnan in language names list
+
 
 === Caveats ===
 
