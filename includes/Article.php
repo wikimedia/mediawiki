@@ -139,7 +139,7 @@ class Article {
 			$rv=$secs[0];
 		} else {
 			$headline=$secs[$section*2-1];
-			preg_match( "/^(=+).*?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>/mi",$headline,$matches);
+			preg_match( "/^(=+).*?=+|^<h([1-6]).*?" . ">.*?<\/h[1-6].*?" . ">/mi",$headline,$matches);
 			$hlevel=$matches[1];
 			
 			# translate wiki heading into level
@@ -154,7 +154,7 @@ class Article {
 			while(!empty($secs[$count*2-1]) && !$break) {
 			
 				$subheadline=$secs[$count*2-1];
-				preg_match( "/^(=+).*?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>/mi",$subheadline,$matches);
+				preg_match( "/^(=+).*?=+|^<h([1-6]).*?" . ">.*?<\/h[1-6].*?" . ">/mi",$subheadline,$matches);
 				$subhlevel=$matches[1];
 				if(strpos($subhlevel,"=")!==false) {
 					$subhlevel=strlen($subhlevel);						
@@ -208,7 +208,7 @@ class Article {
 			if ( 0 == $id ) return;
 
 			$sql = "SELECT " .
-			  "cur_text,cur_timestamp,cur_user,cur_counter,cur_restrictions,cur_touched " .
+			  "cur_text,cur_timestamp,cur_user,cur_user_text,cur_comment,cur_counter,cur_restrictions,cur_touched " .
 			  "FROM cur WHERE cur_id={$id}";
 			wfDebug( "$sql\n" );
 			$res = wfQuery( $sql, DB_READ, $fname );
@@ -239,7 +239,7 @@ class Article {
 						}
 						$rid = $rt->getArticleID();
 						if ( 0 != $rid ) {
-							$sql = "SELECT cur_text,cur_timestamp,cur_user," .
+							$sql = "SELECT cur_text,cur_timestamp,cur_user,cur_user_text,cur_comment," .
 							  "cur_counter,cur_restrictions,cur_touched FROM cur WHERE cur_id={$rid}";
 							$res = wfQuery( $sql, DB_READ, $fname );
 	
@@ -255,6 +255,8 @@ class Article {
 
 			$this->mContent = $s->cur_text;
 			$this->mUser = $s->cur_user;
+			$this->mUserText = $s->cur_user_text;
+			$this->mComment = $s->cur_comment;
 			$this->mCounter = $s->cur_counter;
 			$this->mTimestamp = $s->cur_timestamp;
 			$this->mTouched = $s->cur_touched;
@@ -262,7 +264,7 @@ class Article {
 			$this->mTitle->mRestrictionsLoaded = true;
 			wfFreeResult( $res );
 		} else { # oldid set, retrieve historical version
-			$sql = "SELECT old_namespace,old_title,old_text,old_timestamp,old_user,old_flags FROM old " .
+			$sql = "SELECT old_namespace,old_title,old_text,old_timestamp,old_user,old_user_text,old_comment,old_flags FROM old " .
 			  "WHERE old_id={$oldid}";
 			$res = wfQuery( $sql, DB_READ, $fname );
 			if ( 0 == wfNumRows( $res ) ) {
@@ -278,6 +280,8 @@ class Article {
 			}
 			$this->mContent = Article::getRevisionText( $s );
 			$this->mUser = $s->old_user;
+			$this->mUserText = $s->old_user_text;
+			$this->mComment = $s->old_comment;
 			$this->mCounter = 0;
 			$this->mTimestamp = $s->old_timestamp;
 			wfFreeResult( $res );
@@ -677,7 +681,7 @@ class Article {
 					# be erased, as the mother section has been replaced with
 					# the text of all subsections.
 					$headline=$secs[$section*2-1];
-					preg_match( "/^(=+).*?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>/mi",$headline,$matches);
+					preg_match( "/^(=+).*?=+|^<h([1-6]).*?" . ">.*?<\/h[1-6].*?" . ">/mi",$headline,$matches);
 					$hlevel=$matches[1];
 					
 					# determine headline level for wikimarkup headings
@@ -692,7 +696,7 @@ class Article {
 			
 						$subheadline=$secs[$count*2-1];
 						preg_match(
-						 "/^(=+).*?=+|^<h([1-6]).*?>.*?<\/h[1-6].*?>/mi",$subheadline,$matches);
+						 "/^(=+).*?=+|^<h([1-6]).*?" . ">.*?<\/h[1-6].*?" . ">/mi",$subheadline,$matches);
 						$subhlevel=$matches[1];
 						if(strpos($subhlevel,"=")!==false) {
 							$subhlevel=strlen($subhlevel);		
