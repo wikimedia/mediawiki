@@ -236,6 +236,14 @@ $wgBlockCache = new BlockCache( true );
 wfProfileOut( $fname.'-BlockCache' );
 wfProfileIn( $fname.'-User' );
 
+# Extension setup functions
+# Entries should be added to this variable during the inclusion 
+# of the extension file. This allows the extension to perform 
+# any necessary initialisation in the fully initialised environment
+foreach ( $wgSkinExtensionFunctions as $func ) {
+	$func();
+}
+
 if( $wgCommandLineMode ) {
 	# Used for some maintenance scripts; user session cookies can screw things up
 	# when the database is in an in-between state.
