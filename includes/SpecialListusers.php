@@ -108,13 +108,13 @@ class ListUsersPage extends QueryPage {
 			"LEFT JOIN $group ON ug_group = group_id ";
 		
 		if($this->requestedGroup != '') {
-			$sql .=  "WHERE group_id= '$this->requestedGroup' ";
+			$sql .=  "WHERE group_id= '" . IntVal( $this->requestedGroup ) . "' ";
 			if($this->requestedUser != '') {
-				$sql .= "AND user_name = '$this->requestedUser' ";
+				$sql .= "AND user_name = " . $dbr->addQuotes( $this->requestedUser ) . " ";
 			}
 		} else {
 			if($this->requestedUser !='') {
-				$sql .= "WHERE user_name = '$this->requestedUser' ";
+				$sql .= "WHERE user_name = " . $dbr->addQuotes( $this->requestedUser ) . " ";
 			}	
 		}				
 		
