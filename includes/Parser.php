@@ -249,7 +249,7 @@ class Parser
 
 		while ( '' != $text ) {
 			if($tag==STRIP_COMMENTS) {
-				$p = preg_split( '/<!--/i', $text, 2 );
+				$p = preg_split( '/<!--/', $text, 2 );
 			} else {
 				$p = preg_split( "/<\\s*$tag\\s*>/i", $text, 2 );
 			}
