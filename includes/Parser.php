@@ -667,9 +667,6 @@ class Parser
 		# Another call to replace links and images inside captions of images
 		$text = $this->replaceInternalLinks ( $text );
 
-		$text = $this->unstrip( $text, $this->mStripState );
-		$text = $this->unstripNoWiki( $text, $this->mStripState );
-
 		$text = $this->doTableStuff( $text );
 		$text = $this->formatHeadings( $text, $isMain );
 		$sk =& $this->mOptions->getSkin();
