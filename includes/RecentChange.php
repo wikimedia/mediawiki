@@ -126,8 +126,12 @@ class RecentChange
 	
 	# Makes an entry in the database corresponding to an edit
 	/*static*/ function notifyEdit( $timestamp, &$title, $minor, &$user, $comment, 
-		$oldId, $lastTimestamp ) 
+		$oldId, $lastTimestamp, $bot = "default" ) 
 	{
+		if ( $bot == "default " ) {
+			$bot = $user->isBot();
+		}
+
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_timestamp'	=> $timestamp,
@@ -142,7 +146,7 @@ class RecentChange
 			'rc_comment'	=> $comment,
 			'rc_this_oldid'	=> 0,
 			'rc_last_oldid'	=> $oldId,
-			'rc_bot'	=> $user->isBot() ? 1 : 0,
+			'rc_bot'	=> $bot ? 1 : 0,
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
 			'rc_new'	=> 0 # obsolete
@@ -157,8 +161,11 @@ class RecentChange
 	
 	# Makes an entry in the database corresponding to page creation
 	# Note: the title object must be loaded with the new id using resetArticleID()
-	/*static*/ function notifyNew( $timestamp, &$title, $minor, &$user, $comment )
+	/*static*/ function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default" )
 	{
+		if ( $bot == "default " ) {
+			$bot = $user->isBot();
+		}
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_timestamp'	=> $timestamp,
@@ -173,7 +180,7 @@ class RecentChange
 			'rc_comment'	=> $comment,
 			'rc_this_oldid'	=> 0,
 			'rc_last_oldid'	=> 0,
-			'rc_bot'	=> $user->isBot() ? 1 : 0,
+			'rc_bot'	=> $bot ? 1 : 0,
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
 			'rc_new'	=> 1 # obsolete

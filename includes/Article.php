@@ -505,7 +505,7 @@ class Article {
 
 			$bot = (int)($wgUser->isBot() || $forceBot);
 			RecentChange::notifyEdit( $now, $this->mTitle, $me2, $wgUser, $summary, 
-				$oldid, $this->getTimestamp() );
+				$oldid, $this->getTimestamp(), $bot );
 			Article::onArticleEdit( $this->mTitle );
 		}
 
