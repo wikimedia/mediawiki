@@ -1,23 +1,6 @@
 /*
-** Stylesheet filter for some b0rked browser
-** Don't touch!
+** Deprecated: now in davinci/
+** remove me later, only here to keep the cvs history around.
 */
-/* IE6.0 */
-@import "null?\"\{"; 
-@import "DaVinciIE60Fixes.css";
 
-voice-family: "\"}\"";
-voice-family:inherit; 
-
-/* IE5.0 */
-@media tty { 
-    i{content:"\";/*" "*/}}; @import 'DaVinciIE50Fixes.css'; {;}/*";} 
-}
-
-/* IE5.5 */
-@media tty {
-    i{content:"\";/*" "*/}}@m; @import 'DaVinciIE55Fixes.css'; /*";}
-}
-
-
-
+@import "davinci/IEFixes.css";
