@@ -707,7 +707,7 @@ class Skin {
 	function pageStats()
 	{
 		global $wgOut, $wgLang, $wgArticle, $wgRequest;
-		global $wgDisableCounters;
+		global $wgDisableCounters, $wgMaxCredits;
 		
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 		if ( ! $wgOut->isArticle() ) { return ""; }
@@ -721,10 +721,85 @@ class Skin {
 				$s = wfMsg( "viewcount", $count );
 			}
 		}
-		$s .= $this->lastModified();
+	        if (!isset($wgMaxCredits) || $wgMaxCredits <= 0) {
+		    $s .= $this->lastModified();
+		} else {
+		    $s .= " " . $this->getCredits();
+		}
+	    
 		return $s . " " .  $this->getCopyright();
 	}
-	
+
+        function getCredits() {
+	        $s = $this->getAuthorCredits();
+	        $s .= "<br />\n " . $this->getContributorCredits();
+	        return $s;
+	}
+
+        function getAuthorCredits() {
+		global $wgLang, $wgArticle;
+
+	        $last_author = $wgArticle->getUser();
+	    
+	        if ($last_author == 0) {
+		    $author_credit = wfMsg("anonymous");
+		} else {
+		    $real_name = User::whoIsReal($last_author);
+		    if (!empty($real_name)) {
+			$author_credit = $real_name;
+		    } else {
+			$author_credit = wfMsg("siteuser", User::whoIs($last_author));
+		    }
+		}
+	    
+		$timestamp = $wgArticle->getTimestamp();
+		if ( $timestamp ) {
+			$d = $wgLang->timeanddate( $wgArticle->getTimestamp(), true );
+		} else {
+			$d = "";
+		}
+		return wfMsg("lastmodifiedby", $d, $author_credit);
+	}
+
+        function getContributorCredits() {
+	    
+		global $wgArticle, $wgMaxCredits, $wgLang;
+	    
+	        $contributors = $wgArticle->getContributors($wgMaxCredits);
+	    
+	        $real_names = array();
+	        $user_names = array();
+
+	        # Sift for real versus user names
+		
+	        foreach ($contributors as $user_id => $user_parts) {
+		    if ($user_id != 0) {
+			if (!empty($user_parts[1])) {
+			    $real_names[$user_id] = $user_parts[1];
+			} else {
+			    $user_names[$user_id] = $user_parts[0];
+			}
+		    }
+		}
+	    
+                $real = $wgLang->listToText(array_values($real_names));
+	        $user = $wgLang->listToText(array_values($user_names));
+
+	        if (!empty($user)) {
+		    $user = wfMsg("siteusers", $user);
+		}
+	    
+	        if ($contributors[0] && $contributors[0][0] > 0) {
+		    $anon = wfMsg("anonymous");
+		} else {
+		    $anon = '';
+		}
+	    
+	        $creds = $wgLang->listToText(array($real, $user, $anon));
+	    
+	        return wfMsg("contributions", $creds);
+	}
+    
 	function getCopyright() {
 		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
 		$out = "";
