@@ -21,7 +21,7 @@ class SkinCologneBlue extends Skin {
 		$s .= "\n<div id='content'>\n<div id='topbar'>" .
 		  "<table width='98%' border=0 cellspacing=0 cellpadding=8><tr>";
 
-		$s .= "<td class='top' align=left valign=center nowrap>";
+		$s .= "<td class='top' align=left valign=middle nowrap>";
 		$s .= "<a href=\"" . wfLocalUrlE( wfMsg( "mainpage" ) ) . "\">";
 		$s .= "<span id='sitetitle'>" . wfMsg( "sitetitle" ) . "</span></a>";
 
