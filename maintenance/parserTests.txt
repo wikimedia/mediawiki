@@ -594,3 +594,27 @@ Mixed list
 </li></ul>
 !! end
 
+###
+### Magic variables
+###
+!! test
+Magic variables
+!! input
+{{SITENAME}}
+!! result
+<p>MediaWiki
+</p>
+!! end
+
+###
+### Nonexistant template
+###
+!! test
+Nonexistant template
+!! input
+{{thistemplatedoesnotexist}}
+!! result
+<p><a href="/index.php?title=Template:Thistemplatedoesnotexist&amp;action=edit" class="new" title="Template:Thistemplatedoesnotexist">Template:Thistemplatedoesnotexist</a>
+</p>
+!! end
+
