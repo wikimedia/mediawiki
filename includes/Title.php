@@ -897,7 +897,7 @@ class Title {
 		$oldtitle = $this->getDBkey();
 		$newtitle = $nt->getDBkey();
 
-		if( $oldnamespace != $newnamespace && $oldtitle != $newtitle ) {
+		if( $oldnamespace != $newnamespace || $oldtitle != $newtitle ) {
 			WatchedItem::duplicateEntries( $this, $nt );
 		}
 

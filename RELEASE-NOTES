@@ -10,7 +10,9 @@ Changes from 1.3.0:
 * Watchlist parameters now work with register_globals off
 * Fixed parsing of ''italics'' and '''bold''' mark-up (again)
 * Special:Allpages display is more sensible on smaller wikis
-* Fixed XHTML error in classic skins
+* Fixed XHTML parsing error in classic skins
+* Moved pages update watchlist correctly
+
 
 == Version 1.3.0, 2004-08-11 ==
 
