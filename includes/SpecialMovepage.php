@@ -118,11 +118,7 @@ class MovePageForm {
 			$wgOut->addHTML( '<p class="error">' . wfMsg($err) . "</p>\n" );
 		}
 
-		if ( $this->moveTalk ) {
-			$moveTalkChecked = " checked='checked'";
-		} else {
-			$moveTalkChecked = '';
-		}
+		$moveTalkChecked = $this->moveTalk ? ' checked="checked"' : '';
 		
 		$wgOut->addHTML( "
 <form id=\"movepage\" method=\"post\" action=\"{$action}\">
