@@ -752,7 +752,7 @@ class Article {
 	{
 		global $wgUser, $wgOut, $wgMessageCache, $wgRequest;
 		$fname = "Article::delete";
-		$confirm = $wgRequest->getBool( 'wpConfirm' ) && $wgRequest->isPosted();
+		$confirm = $wgRequest->getBool( 'wpConfirm' ) && $wgRequest->wasPosted();
 		$reason = $wgRequest->getText( 'wpReason' );
 		
 		# This code desperately needs to be totally rewritten
@@ -884,7 +884,7 @@ class Article {
 		$fname = "Article::doDelete";
 		wfDebug( "$fname\n" );
 
-		if ( $this->doDeleteArticle() ) {	
+		if ( $this->doDeleteArticle( $reason ) ) {	
 			$deleted = $this->mTitle->getPrefixedText();
 
 			$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
