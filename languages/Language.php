@@ -42,7 +42,7 @@ if($wgMetaNamespace === FALSE)
 	NS_TEMPLATE_TALK    => 'Template_talk',
 	NS_HELP             => 'Help',
 	NS_HELP_TALK        => 'Help_talk',
-	NS_CATEGORY	    => 'Category',
+	NS_CATEGORY         => 'Category',
 	NS_CATEGORY_TALK    => 'Category_talk'
 );
 
@@ -80,14 +80,13 @@ define( "MW_MATH_MATHML", 5 );
 
 # Validation types
 $wgValidationTypesEn = array (
-		"0" => "Style|Awful|Awesome|5",
-		"1" => "Legal|Illegal|Legal|5",
-		"2" => "Completeness|Stub|Extensive|5",
-		"3" => "Facts|Wild guesses|Solid as a rock|5",
-		"4" => "Suitable for 1.0 (paper)|No|Yes|2",
-		"5" => "Suitable for 1.0 (CD)|No|Yes|2"
-		) ;
-
+	"0" => "Style|Awful|Awesome|5",
+	"1" => "Legal|Illegal|Legal|5",
+	"2" => "Completeness|Stub|Extensive|5",
+	"3" => "Facts|Wild guesses|Solid as a rock|5",
+	"4" => "Suitable for 1.0 (paper)|No|Yes|2",
+	"5" => "Suitable for 1.0 (CD)|No|Yes|2"
+);
 
 /* private */ $wgMathNamesEn = array(
 	MW_MATH_PNG => 'mw_math_png',
@@ -173,37 +172,37 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 #
 /* private */ $wgMagicWordsEn = array(
 #   ID                                 CASE  SYNONYMS
-    MAG_REDIRECT             => array( 0,    '#redirect'              ),
-    MAG_NOTOC                => array( 0,    '__NOTOC__'              ),
-    MAG_FORCETOC             => array( 0,    '__FORCETOC__'           ),
-    MAG_TOC                  => array( 0,    '__TOC__'                ),
-    MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__'      ),
-    MAG_START                => array( 0,    '__START__'              ),
-    MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH'           ),
-    MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME'       ),
-    MAG_CURRENTDAY           => array( 1,    'CURRENTDAY'             ),
-    MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME'         ),
-    MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR'            ),
-    MAG_CURRENTTIME          => array( 1,    'CURRENTTIME'            ),
-    MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES'       ),
-    MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN'    ),
+	MAG_REDIRECT             => array( 0,    '#redirect'              ),
+	MAG_NOTOC                => array( 0,    '__NOTOC__'              ),
+	MAG_FORCETOC             => array( 0,    '__FORCETOC__'           ),
+	MAG_TOC                  => array( 0,    '__TOC__'                ),
+	MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__'      ),
+	MAG_START                => array( 0,    '__START__'              ),
+	MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH'           ),
+	MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME'       ),
+	MAG_CURRENTDAY           => array( 1,    'CURRENTDAY'             ),
+	MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME'         ),
+	MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR'            ),
+	MAG_CURRENTTIME          => array( 1,    'CURRENTTIME'            ),
+	MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES'       ),
+	MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN'    ),
 	MAG_PAGENAME             => array( 1,    'PAGENAME'               ),
 	MAG_PAGENAMEE            => array( 1,    'PAGENAMEE'              ),
 	MAG_NAMESPACE            => array( 1,    'NAMESPACE'              ),
 	MAG_MSG                  => array( 0,    'MSG:'                   ),
 	MAG_SUBST                => array( 0,    'SUBST:'                 ),
-    MAG_MSGNW                => array( 0,    'MSGNW:'                 ),
+	MAG_MSGNW                => array( 0,    'MSGNW:'                 ),
 	MAG_END                  => array( 0,    '__END__'                ),
-    MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb'     ),
-    MAG_IMG_RIGHT            => array( 1,    'right'                  ),
-    MAG_IMG_LEFT             => array( 1,    'left'                   ),
-    MAG_IMG_NONE             => array( 1,    'none'                   ),
-    MAG_IMG_WIDTH            => array( 1,    '$1px'                   ),
-    MAG_IMG_CENTER           => array( 1,    'center', 'centre'       ),
-    MAG_IMG_FRAMED	     => array( 1,    'framed', 'enframed', 'frame' ),
-    MAG_INT                  => array( 0,    'INT:'                   ),
-    MAG_SITENAME             => array( 1,    'SITENAME'               ),
-    MAG_NS                   => array( 0,    'NS:'                    ),
+	MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb'     ),
+	MAG_IMG_RIGHT            => array( 1,    'right'                  ),
+	MAG_IMG_LEFT             => array( 1,    'left'                   ),
+	MAG_IMG_NONE             => array( 1,    'none'                   ),
+	MAG_IMG_WIDTH            => array( 1,    '$1px'                   ),
+	MAG_IMG_CENTER           => array( 1,    'center', 'centre'       ),
+	MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame' ),
+	MAG_INT                  => array( 0,    'INT:'                   ),
+	MAG_SITENAME             => array( 1,    'SITENAME'               ),
+	MAG_NS                   => array( 0,    'NS:'                    ),
 	MAG_LOCALURL             => array( 0,    'LOCALURL:'              ),
 	MAG_LOCALURLE            => array( 0,    'LOCALURLE:'             ),
 	MAG_SERVER               => array( 0,    'SERVER'                 )
