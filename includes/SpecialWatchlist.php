@@ -39,7 +39,18 @@ function wfSpecialWatchlist() {
 	$remove = $wgRequest->getVal( 'remove' );
 	$id = $wgRequest->getArray( 'id' );
 
-	$wgOut->addWikiText( wfMsg( 'email_notification_infotext' ) );
+	if( $wgUser->getOption( 'enotifwatchlistpages' ) ) {
+		$wgOut->addHTML( "<div class='enotifinfo'>\n" );
+		
+		$wgOut->addWikiText( wfMsg( 'email_notification_infotext' ) );
+
+		$wgOut->addHTML( '<form action="' .
+			$specialTitle->escapeLocalUrl( 'action=submit&magic=yes' ) .
+			'" method="post"><input type="submit" name="dummy" value="' .
+			htmlspecialchars( wfMsg( 'email_notification_reset' ) ) .
+			'" /><input type="hidden" name="reset" value="all" /></form>' .
+			"</div>\n\n" );
+	}
 
 	if( $wgRequest->getVal( 'reset' ) == 'all' ) {
 		$wgUser->clearAllNotifications( $uid );

@@ -1234,18 +1234,9 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 'updatedmarker'		=> '<span class=\'updatedmarker\'>&nbsp;updated (since my last visit)&nbsp;</span>',
 
 'email_notification_mailer' 		=> '{{SITENAME}} Notification Mailer',
-'email_notification_infotext' 		=> '
-<strong>Email Notification</strong><p>
-<form action=\'{{localurl:Special:Watchlist|action=submit&magic=yes}}\' method=\'post\'>
-<ul>
-<li>You will be notified by email when someone changes a page which is listed in your watchlist.</li>
-<li>A flag is set so that you receive only one email on the first change.</li>
-<li>Your own edits do <b>not</b> trigger the sending of notifications.</li>
-<li>{{MediaWiki:updatedmarker}} means that the <b><i>page has changed since your last visit and that a notification mail has been sent to you.</i></b>.</li>
-<li>The flag is automatically cleared when you visit such pages.</li>
-<li> Alternatively, you can reset all flags at once by clicking on&nbsp; <input type="submit" name="dummy" value=\'Reset all notification flags (set their status to "visited")\'><input type="hidden" name="reset" value="all"></form></li>
-</ul>
-<hr>',
+'email_notification_infotext' 		=> "'''Email notification is on.'''
+You will be notified by email when someone changes a page which is listed in your watchlist.",
+'email_notification_reset'			=> 'Reset all notification flags (set their status to "visited")',
 'email_notification_newpagetext'=> 'This is a new page.',
 'email_notification_to' 	=> '$WATCHINGUSERNAME_QP <$WATCHINGUSEREMAILADDR>',
 'email_notification_subject' 	=> '{{SITENAME}} page $PAGETITLE_QP has been changed by $PAGEEDITOR_QP',
