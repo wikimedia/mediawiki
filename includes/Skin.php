@@ -869,26 +869,29 @@ class Skin extends Linker {
 	 * @TODO crash bug913. Need to be rewrote completly.
 	 */
 	function specialPagesList() {
-		global $wgUser, $wgOut, $wgContLang, $wgServer, $wgRedirectScript;
+		global $wgUser, $wgOut, $wgContLang, $wgServer, $wgRedirectScript, $wgAvailableRights;
 		require_once('SpecialPage.php');
 		$a = array();
 		$pages = SpecialPage::getPages();
 
+		// special pages without access restriction
 		foreach ( $pages[''] as $name => $page ) {
 			$a[$name] = $page->getDescription();
 		}
-		if ( $wgUser->isSysop() )
-		{
-			foreach ( $pages['sysop'] as $name => $page ) {
-				$a[$name] = $page->getDescription();
+
+		// Other special pages that are restricted.
+		// Copied from SpecialSpecialpages.php
+		foreach($wgAvailableRights as $right) {
+			if( $wgUser->isAllowed($right) ) {
+				/** Add all pages for this right */
+				if(isset($pages[$right])) {
+					foreach($pages[$right] as $name => $page) {
+					$a[$name] = $page->getDescription();
+					}
+				}
 			}
 		}
-		if ( $wgUser->isDeveloper() )
-		{
-			foreach ( $pages['developer'] as $name => $page ) {
-				$a[$name] = $page->getDescription() ;
-			}
-		}
+		
 		$go = wfMsg( 'go' );
 		$sp = wfMsg( 'specialpages' );
 		$spp = $wgContLang->specialPage( 'Specialpages' );
@@ -898,6 +901,7 @@ class Skin extends Linker {
 		$s .= "<select name=\"wpDropdown\">\n";
 		$s .= "<option value=\"{$spp}\">{$sp}</option>\n";
 
+		
 		foreach ( $a as $name => $desc ) {
 			$p = $wgContLang->specialPage( $name );
 			$s .= "<option value=\"{$p}\">{$desc}</option>\n";
