@@ -191,7 +191,7 @@ class MessageCache
 		}
 		
 		$message = false;
-		if ( !$this->mDisable ) {
+		if ( !$this->mDisable && $useDB ) {
 			$title = $wgLang->ucfirst( $key );
 			
 
@@ -201,7 +201,7 @@ class MessageCache
 			}
 			
 			# If it wasn't in the cache, load each message from the DB individually
-			if ( !$message && $useDB) {
+			if ( !$message ) {
 				$result = wfGetArray( "cur", array("cur_text"), 
 				  array( "cur_namespace" => NS_MEDIAWIKI, "cur_title" => $title ),
 				  "MessageCache::get" );
