@@ -477,7 +477,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 
 "newarticle"   => "(Nouveau)",
 "newarticletext" => "Saisissez ici le texte de votre article.",
-"anontalkpagetext" => "--- ''Ceci est la page de discussion pour un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utilisez l'[[adresse IP]] numérique pour l'identifier. Une adresse comme cela peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et que vous trouvez que des commentaires qui ne vous concernent pas vous ont été adressé, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion.", // Looxix 
+"anontalkpagetext" => "---- ''Ceci est la page de discussion pour un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utilisez l'[[adresse IP]] numérique pour l'identifier. Une adresse comme cela peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et que vous trouvez que des commentaires qui ne vous concernent pas vous ont été adressé, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion.", // Looxix 
 "noarticletext" => "(Il n'y a pour l'instant aucun texte sur cette page)",
 "updated"      => "(Mis à jour)",
 "note"         => "<strong>Note:</strong> ",
