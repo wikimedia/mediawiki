@@ -27,62 +27,61 @@ $wgSpecialPages = array(
 	'BrokenRedirects'	=> new UnlistedSpecialPage ( 'BrokenRedirects' ),
 	'Disambiguations'	=> new UnlistedSpecialPage ( 'Disambiguations' ),
 	
-	"Userlogin"         => new SpecialPage( "Userlogin" ),
-	"Userlogout"        => new UnlistedSpecialPage( "Userlogout" ),
-	"Preferences"       => new SpecialPage( "Preferences" ),
-	"Watchlist"         => new SpecialPage( "Watchlist" ),
-	"Recentchanges"     => new SpecialPage( "Recentchanges" ),
-	"Upload"            => new SpecialPage( "Upload" ),
-	"Imagelist"         => new SpecialPage( "Imagelist" ),
-	"Newimages"         => new SpecialPage( "Newimages" ),
-	"Listusers"         => new SpecialPage( "Listusers" ),
-	"Listadmins"        => new SpecialPage( "Listadmins" ),
-	"Statistics"        => new SpecialPage( "Statistics" ),
-	"Randompage"        => new SpecialPage( "Randompage" ),
-	"Lonelypages"       => new SpecialPage( "Lonelypages" ),
-	"Uncategorizedpages"=> new SpecialPage( "Uncategorizedpages" ),
-	"Unusedimages"      => new SpecialPage( "Unusedimages" )
+	'Userlogin'         => new SpecialPage( 'Userlogin' ),
+	'Userlogout'        => new UnlistedSpecialPage( 'Userlogout' ),
+	'Preferences'       => new SpecialPage( 'Preferences' ),
+	'Watchlist'         => new SpecialPage( 'Watchlist' ),
+	'Recentchanges'     => new SpecialPage( 'Recentchanges' ),
+	'Upload'            => new SpecialPage( 'Upload' ),
+	'Imagelist'         => new SpecialPage( 'Imagelist' ),
+	'Newimages'         => new SpecialPage( 'Newimages' ),
+	'Listusers'         => new SpecialPage( 'Listusers' ),
+	'Listadmins'        => new SpecialPage( 'Listadmins' ),
+	'Statistics'        => new SpecialPage( 'Statistics' ),
+	'Randompage'        => new SpecialPage( 'Randompage' ),
+	'Lonelypages'       => new SpecialPage( 'Lonelypages' ),
+	'Uncategorizedpages'=> new SpecialPage( 'Uncategorizedpages' ),
+	'Unusedimages'      => new SpecialPage( 'Unusedimages' )
 );
 global $wgDisableCounters;
 if( !$wgDisableCounters ) {
-	$wgSpecialPages["Popularpages"] = new SpecialPage( "Popularpages" );
+	$wgSpecialPages['Popularpages'] = new SpecialPage( 'Popularpages' );
 }
 $wgSpecialPages = array_merge($wgSpecialPages, array (
-	"Wantedpages"	=> new SpecialPage( "Wantedpages" ),
-	"Shortpages"	=> new SpecialPage( "Shortpages" ),
-	"Longpages"		=> new SpecialPage( "Longpages" ),
-	"Newpages"		=> new SpecialPage( "Newpages" ),
-	"Ancientpages"	=> new SpecialPage( "Ancientpages" ),
-	"Deadendpages"  => new SpecialPage( "Deadendpages" ),
-	"Allpages"		=> new SpecialPage( "Allpages" ),
-	"Ipblocklist"	=> new SpecialPage( "Ipblocklist" ),
-	"Maintenance"	=> new SpecialPage( "Maintenance" ),
-	"Specialpages"  => new UnlistedSpecialPage( "Specialpages" ),
-	"Contributions" => new UnlistedSpecialPage( "Contributions" ),
-	"Emailuser"		=> new UnlistedSpecialPage( "Emailuser" ),
-	"Whatlinkshere" => new UnlistedSpecialPage( "Whatlinkshere" ),
-	"Recentchangeslinked" => new UnlistedSpecialPage( "Recentchangeslinked" ),
-	"Movepage"		=> new UnlistedSpecialPage( "Movepage" ),
-	"Blockme"       => new UnlistedSpecialPage( "Blockme" ),
-	"Geo"	=> 	new UnlistedSpecialPage( "Geo" ),
-	"Validate"	=>	new UnlistedSpecialPage( "Validate" ),
-	"Booksources"	=> new SpecialPage( "Booksources" ),
-	"Categories"	=> new SpecialPage( "Categories" ),
-	"Export"		=> new SpecialPage( "Export" ),
-	"Version"		=> new SpecialPage( "Version" ),
-	"Allmessages"	=> new SpecialPage( "Allmessages" ),
-	"Search"		=> new UnlistedSpecialPage( "Search" ),
-	"Log"           => new SpecialPage( "Log" ),
-	"Blockip"		=> new SpecialPage( "Blockip", "sysop" ),
-	"Asksql"		=> new SpecialPage( "Asksql", "sysop" ),
-	"Undelete"		=> new SpecialPage( "Undelete", "sysop" ),
-	"Makesysop"		=> new SpecialPage( "Makesysop", "sysop" ),
+	'Wantedpages'	=> new SpecialPage( 'Wantedpages' ),
+	'Shortpages'	=> new SpecialPage( 'Shortpages' ),
+	'Longpages'		=> new SpecialPage( 'Longpages' ),
+	'Newpages'		=> new SpecialPage( 'Newpages' ),
+	'Ancientpages'	=> new SpecialPage( 'Ancientpages' ),
+	'Deadendpages'  => new SpecialPage( 'Deadendpages' ),
+	'Allpages'		=> new SpecialPage( 'Allpages' ),
+	'Ipblocklist'	=> new SpecialPage( 'Ipblocklist' ),
+	'Maintenance'	=> new SpecialPage( 'Maintenance' ),
+	'Specialpages'  => new UnlistedSpecialPage( 'Specialpages' ),
+	'Contributions' => new UnlistedSpecialPage( 'Contributions' ),
+	'Emailuser'		=> new UnlistedSpecialPage( 'Emailuser' ),
+	'Whatlinkshere' => new UnlistedSpecialPage( 'Whatlinkshere' ),
+	'Recentchangeslinked' => new UnlistedSpecialPage( 'Recentchangeslinked' ),
+	'Movepage'		=> new UnlistedSpecialPage( 'Movepage' ),
+	'Blockme'       => new UnlistedSpecialPage( 'Blockme' ),
+	'Geo'           => new UnlistedSpecialPage( 'Geo' ),
+	'Validate'      => new UnlistedSpecialPage( 'Validate' ),
+	'Booksources'	=> new SpecialPage( 'Booksources' ),
+	'Categories'	=> new SpecialPage( 'Categories' ),
+	'Export'		=> new SpecialPage( 'Export' ),
+	'Version'		=> new SpecialPage( 'Version' ),
+	'Allmessages'	=> new SpecialPage( 'Allmessages' ),
+	'Search'		=> new UnlistedSpecialPage( 'Search' ),
+	'Log'           => new SpecialPage( 'Log' ),
+	'Blockip'		=> new SpecialPage( 'Blockip', 'sysop' ),
+	'Asksql'		=> new SpecialPage( 'Asksql', 'sysop' ),
+	'Undelete'		=> new SpecialPage( 'Undelete', 'sysop' ),
+	'Makesysop'		=> new SpecialPage( 'Makesysop', 'sysop' ),
 
 # Special:Import is half-written
 #	"Import"		=> new SpecialPage( "Import", "sysop" ),
-
-	"Lockdb"		=> new SpecialPage( "Lockdb", "developer" ),
-	"Unlockdb"		=> new SpecialPage( "Unlockdb", "developer" ),
+	'Lockdb'		=> new SpecialPage( 'Lockdb', 'developer' ),
+	'Unlockdb'		=> new SpecialPage( 'Unlockdb', 'developer' ),
 //	"Sitesettings"		=> new SpecialPage( "Sitesettings" )
 ));
 
@@ -93,32 +92,60 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
  */
 class SpecialPage
 {
-	/* private */ var $mName; # The name of the class, used in the URL. Also used for the default
-	                          # <h1> heading, see getDescription()
-	/* private */ var $mRestriction; # Minimum user level required to access this page, or ""
-	                                 # for anyone. Also used to categorise the pages in
-									 # Special:Specialpages
-	/* private */ var $mListed; # Listed in Special:Specialpages?
-	/* private */ var $mFunction; # Function name called by the default execute()
-	/* private */ var $mFile; # File which needs to be included before the function above can be called
+	/**#@+
+	 * @access private
+	 */
+	/**
+	 * The name of the class, used in the URL.
+	 * Also used for the default <h1> heading, @see getDescription()
+	 */
+	var $mName;
+	/**
+	 * Minimum user level required to access this page, or "" for anyone.
+	 * Also used to categorise the pages in Special:Specialpages
+	 */
+	var $mRestriction;
+	/**
+	 * Listed in Special:Specialpages?
+	 */
+	var $mListed;
+	/**
+	 * Function name called by the default execute()
+	 */
+	var $mFunction;
+	/**
+	 * File which needs to be included before the function above can be called
+	 */
+	var $mFile;
+	/**#@- */
 
-	# Add a page to the list of valid special pages
-	# $obj->execute() must send HTML to $wgOut then return
-	# Use this for a special page extension
-	/* static */ function addPage( &$obj ) {
+	/**
+	 * Add a page to the list of valid special pages
+	 * $obj->execute() must send HTML to $wgOut then return
+	 * Use this for a special page extension
+	 * @static
+	 */
+	function addPage( &$obj ) {
 		global $wgSpecialPages;
 		$wgSpecialPages[$obj->mName] = $obj;
 	}
 
-	# Remove a special page from the list
-	# Occasionally used to disable expensive or dangerous special pages
-	/* static */ function removePage( $name ) {
+	/**
+	 * Remove a special page from the list
+	 * Occasionally used to disable expensive or dangerous special pages
+	 * @static
+	 */
+	function removePage( $name ) {
 		global $wgSpecialPages;
 		unset( $wgSpecialPages[$name] );
 	}
 
-	# Find the object with a given name and return it (or NULL)
-	/* static */ function &getPage( $name ) {
+	/**
+	 * Find the object with a given name and return it (or NULL)
+	 * @static
+	 * @param string $name
+	 */
+	function &getPage( $name ) {
 		global $wgSpecialPages;
 		if ( array_key_exists( $name, $wgSpecialPages ) ) {
 			return $wgSpecialPages[$name];
@@ -127,14 +154,17 @@ class SpecialPage
 		}
 	}
 
-	# Return categorised listable special pages
-	# Returns a 2d array where the first index is the restriction name
-	/* static */ function getPages() {
+	/**
+	 * Return categorised listable special pages
+	 * Returns a 2d array where the first index is the restriction name
+	 * @static
+	 */
+	function getPages() {
 		global $wgSpecialPages;
 		$pages = array(
-		  "" => array(),
-		  "sysop" => array(),
-		  "developer" => array()
+		  '' => array(),
+		  'sysop' => array(),
+		  'developer' => array()
 		);
 
 		foreach ( $wgSpecialPages as $name => $page ) {
@@ -145,10 +175,14 @@ class SpecialPage
 		return $pages;
 	}
 
-	# Execute a special page path, which may contain parameters, e.g. Special:Name/Params
-	# $title should be a title object
-	# Extracts the special page name and call the execute method, passing the parameters
-	/* static */ function executePath( &$title ) {
+	/**
+	 * Execute a special page path.
+	 * The path	may contain parameters, e.g. Special:Name/Params
+	 * Extracts the special page name and call the execute method, passing the parameters
+	 *
+	 * @param $title should be a title object
+	 */
+	function executePath( &$title ) {
 		global $wgSpecialPages, $wgOut, $wgTitle;
 
 		$bits = split( "/", $title->getDBkey(), 2 );
@@ -175,32 +209,32 @@ class SpecialPage
 		}
 	}
 
-	# Default constructor for special pages
-	# Derivative classes should call this from their constructor
-	#   $name - the name of the special page, as seen in links and URLs
-	#   $restriction - the minimum user level required, e.g. "sysop" or "developer".
-	#
-	#       Note that if the user does not have the required level, an error message will
-	#       be displayed by the default execute() method, without the global function ever
-	#       being called.
-	#
-	#       If you override execute(), you can recover the default behaviour with userCanExecute()
-	#       and displayRestrictionError()
-	#
-	#   $listed - whether the page is listed in Special:Specialpages
-	#   $function - the function called by execute(). By default it is constructed from $name
-	#   $file - the file which is included by execute(). It is also constructed from $name by default
-	#
-	function SpecialPage( $name = "", $restriction = "", $listed = true, $function = false, $file = "default" ) {
+	/**
+	 * Default constructor for special pages
+	 * Derivative classes should call this from their constructor
+	 *     Note that if the user does not have the required level, an error message will
+	 *     be displayed by the default execute() method, without the global function ever
+	 *     being called.
+	 *
+	 *     If you override execute(), you can recover the default behaviour with userCanExecute()
+	 *     and displayRestrictionError()
+	 *
+	 * @param string $name Name of the special page, as seen in links and URLs
+	 * @param string $restriction Minimum user level required, e.g. "sysop" or "developer".
+	 * @param boolean $listed Whether the page is listed in Special:Specialpages
+	 * @param string $function Function called by execute(). By default it is constructed from $name
+	 * @param string $file File which is included by execute(). It is also constructed from $name by default
+	 */
+	function SpecialPage( $name = '', $restriction = '', $listed = true, $function = false, $file = 'default' ) {
 		$this->mName = $name;
 		$this->mRestriction = $restriction;
 		$this->mListed = $listed;
 		if ( $function == false ) {
-			$this->mFunction = "wfSpecial{$name}";
+			$this->mFunction = 'wfSpecial'.$name;
 		} else {
 			$this->mFunction = $function;
 		}
-		if ( $file === "default" ) {
+		if ( $file === 'default' ) {
 			$this->mFile = "Special{$name}.php";
 		} else {
 			$this->mFile = $file;
@@ -212,8 +246,10 @@ class SpecialPage
 	function getRestriction() { return $this->mRestriction; }
 	function isListed() { return $this->mListed; }
 
-	# Checks if the given user (identified by an object) can execute this special page (as
-	# defined by $mRestriction)
+	/**
+	 * Checks if the given user (identified by an object) can execute this
+	 * special page (as defined by $mRestriction)
+	 */
 	function userCanExecute( &$user ) {
 		if ( $this->mRestriction == "" ) {
 			return true;
@@ -226,7 +262,9 @@ class SpecialPage
 		}
 	}
 
-	# Output an error message telling the user what access level they have to have
+	/**
+	 * Output an error message telling the user what access level they have to have
+	 */
 	function displayRestrictionError() {
 		global $wgOut;
 		if ( $this->mRestriction == "developer" ) {
@@ -236,7 +274,9 @@ class SpecialPage
 		}
 	}
 
-	# Sets headers - this should be called from the execute() method of all derived classes!
+	/**
+	 * Sets headers - this should be called from the execute() method of all derived classes!
+	 */
 	function setHeaders() {
 		global $wgOut;
 		$wgOut->setArticleRelated( false );
@@ -244,8 +284,10 @@ class SpecialPage
 		$wgOut->setPageTitle( $this->getDescription() );
 	}
 
-	# Default execute method
-	# Checks user permissions, calls the function given in mFunction
+	/**
+	 * Default execute method
+	 * Checks user permissions, calls the function given in mFunction
+	 */
 	function execute( $par ) {
 		global $wgUser, $wgOut, $wgTitle;
 
@@ -271,12 +313,16 @@ class SpecialPage
 		return wfMsg( strtolower( $this->mName ) );
 	}
 
-	# Get a self-referential title object
+	/**
+	 * Get a self-referential title object
+	 */
 	function getTitle() {
 		return Title::makeTitle( NS_SPECIAL, $this->mName );
 	}
 
-	# Set whether this page is listed in Special:Specialpages, at run-time
+	/**
+	 * Set whether this page is listed in Special:Specialpages, at run-time
+	 */
 	function setListed( $listed ) {
 		return wfSetVar( $this->mListed, $listed );
 	}
@@ -288,7 +334,7 @@ class SpecialPage
  */
 class UnlistedSpecialPage extends SpecialPage
 {
-	function UnlistedSpecialPage( $name, $restriction = "", $function = false, $file = "default" ) {
+	function UnlistedSpecialPage( $name, $restriction = '', $function = false, $file = 'default' ) {
 		SpecialPage::SpecialPage( $name, $restriction, false, $function, $file );
 	}
 }
