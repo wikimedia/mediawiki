@@ -6,6 +6,8 @@
 * Fixed history diff checkboxes bug on titles with ampersands
 * Fixed printable link bug on special pages with parameters
 * Fixed bug that broke IP blocking w/o memcached
+* Turns off E_NOTICE warnings if PHP settings have them on
+  (you can grope in and turn this off if you like to debug)
 
 == Version 1.2.2, 2004-03-28 ==
 
