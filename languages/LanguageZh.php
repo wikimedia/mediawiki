@@ -108,11 +108,17 @@ class LanguageZh extends LanguageZh_cn {
 	function stripForSearch( $string ) {
 		$fname="zhsegment";
 		wfProfileIn( $fname );
+        //always convert to zh-cn before indexing. it should be
+		//better to use zh-cn for search, since conversion from 
+		//Traditional to Simplified is less ambiguous than the
+		//other way around
+        $string = $this->autoConvert($string, 'zh-cn');
 		$t = $this->mZhClient->segment($string);
 		$t = LanguageUtf8::stripForSearch( $t );
 		wfProfileOut( $fname );
 		return $t;
 
 	}
+	
 }
 ?>
