@@ -337,7 +337,8 @@ class Skin {
 		if ( $wgOut->isPrintable() ) {
 			$s = "\n</div>\n";
 
-			$u = $wgServer . $wgTitle->getFullURL();
+			$u = htmlspecialchars( $wgServer . $wgTitle->getFullURL() );
+			$u = "<a href=\"$u\">$u</a>";
 			$rf = wfMsg( "retrievedfrom", $u );
 
 			if ( $wgOut->isArticle() ) {
@@ -455,9 +456,13 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 	{
 		global $wgOut, $wgTitle, $oldid, $action;
 
-		if ( "history" == $action ) { $q = "action=history&"; }
-		else { $q = ""; }
-
+		$q = "";
+		foreach( $_GET as $var => $val ) {
+			if( $var != "title" && $var != "printable" )
+				$q .= urlencode( $var ) . "=" . urlencode( $val );
+		}
+		if( !empty( $q ) ) $q .= "&";
+		
 		$s = $this->makeKnownLink( $wgTitle->getPrefixedText(),
 		  WfMsg( "printableversion" ), "{$q}printable=yes" );
 		return $s;
