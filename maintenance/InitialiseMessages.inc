@@ -74,8 +74,7 @@ function initialiseMessages( $overwrite = false) {
 
 		$doInsert = true;
 		if ( $overwrite ) {
-			$sql = "DELETE FROM cur WHERE cur_namespace=$ns AND cur_title='$title'";
-			wfQuery( $sql, DB_WRITE, $fname );
+			wfQuery( "DELETE FROM cur WHERE cur_namespace=$ns AND cur_title='$title'", DB_WRITE, $fname );
 		} else {	
 			if (array_key_exists($title, $exists)) {
 				$doInsert = false;
@@ -112,7 +111,11 @@ function initialiseMessages( $overwrite = false) {
 	}
 	print "Done\n";
 	print "Writing...";
-	wfQuery( $sql, DB_WRITE, $fname );
+
+	if ( !$first ) {
+		wfQuery( $sql, DB_WRITE, $fname );
+	}
+
 	print "Done\n";
 
 	$navText .= "</table>";

@@ -117,9 +117,15 @@ function wfAddRow( $block, $tag ) {
 
 	$name = User::whoIs( $block->mBy );
 	$ulink = $sk->makeKnownLink( $wgLang->getNsText( Namespace::getUser() ). ":{$name}", $name );
-	$d = $wgLang->timeanddate( $block->mTimestamp, true );
-
-	$line = wfMsg( "blocklistline", $d, $ulink, $addr );
+	$formattedTime = $wgLang->timeanddate( $block->mTimestamp, true );
+	
+	if ( $block->mExpiry === "" ) {
+		$formattedExpiry = "indefinite";
+	} else {
+		$formattedExpiry = $wgLang->timeanddate( $block->mExpiry, true );
+	}
+	
+	$line = wfMsg( "blocklistline", $formattedTime, $ulink, $addr, $formattedExpiry );
 	
 	$wgOut->addHTML( "<li>{$line}" );
 	

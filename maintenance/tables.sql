@@ -126,6 +126,7 @@ CREATE TABLE ipblocks (
   ipb_reason tinyblob NOT NULL default '',
   ipb_timestamp char(14) binary NOT NULL default '',
   ipb_auto tinyint(1) NOT NULL default '0',
+  ipb_expiry char(14) binary NOT NULL default '',
   UNIQUE KEY ipb_id (ipb_id)
 ) TYPE=MyISAM PACK_KEYS=1;
 

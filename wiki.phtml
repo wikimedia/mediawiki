@@ -16,19 +16,6 @@ include_once( "Setup.php" );
 wfProfileIn( "main-misc-setup" );
 OutputPage::setEncodings(); # Not really used yet
 
-# Useful debug output
-if ( function_exists( "getallheaders" ) ) {
-	wfDebug( "\nStart request\n" );
-	wfDebug( "$REQUEST_METHOD $REQUEST_URI\n" );
-	$headers = getallheaders();
-	foreach ($headers as $name => $value) {
-		wfDebug( "$name: $value\n" );
-	}
-	wfDebug( "\n" );
-} else {
-	wfDebug( "$REQUEST_METHOD $REQUEST_URI\n" );
-}
-
 # Query string fields
 #
 global $action, $title, $search, $go, $target, $printable;

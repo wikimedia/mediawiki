@@ -94,45 +94,29 @@ class User {
 
 	/* private */ function getBlockedStatus()
 	{
-		global $wgBadRanges, $wgBadUserAgents, $wgRangeBlockUser, $wgRangeBlockReason, $wgIP;
+		global $wgIP, $wgBlockCache;
 
 		if ( -1 != $this->mBlockedby ) { return; }
+	
+		$this->mBlockedby = 0;
 		
-		# Range/user-agent blocking
-		
-		$fBlock = false; # Mmmm, Hungarian
-		if ( ( !is_array( $wgBadUserAgents ) ||
-					array_key_exists( getenv( "HTTP_USER_AGENT" ), $wgBadUserAgents ) ) &&
-				is_array( $wgBadRanges ) )
-		{
-			$iIp = ip2long( $wgIP );
-			foreach ( $wgBadRanges as $range ) {
-				$start = ip2long( $range[0] );
-				$end = ip2long( $range[1] );
-				if ( $iIp >= $start && $iIp <= $end ) {
-					$fBlock = true;
-					break;
-				}
+		# User blocking
+		if ( $this->mId ) {	
+			$block = new Block();
+			if ( $block->load( $wgIP , $this->mId ) ) {
+				$this->mBlockedby = $block->mBy;
+				$this->mBlockreason = $block->mReason;
 			}
 		}
 
-		if ( $fBlock ) {
-			$this->mBlockedby = $wgRangeBlockUser;
-			$this->mBlockreason = $wgRangeBlockReason;
-			return;
+		# IP/range blocking
+		if ( !$this->mBlockedby ) {
+			$block = $wgBlockCache->get( $wgIP );
+			if ( $block !== false ) {
+				$this->mBlockedby = $block->mBy;
+				$this->mBlockreason = $block->mReason;
+			}
 		}
-
-		# User/IP blocking
-
-		$block = new Block();
-		if ( !$block->load( $wgIP , $this->mId ) ) {
-			wfDebug( $wgIP ." is not blocked\n" );
-			$this->mBlockedby = 0;
-			return;
-		}
-
-		$this->mBlockedby = $block->mBy;
-		$this->mBlockreason = $block->mReason;
 	}
 
 	function isBlocked()
@@ -626,6 +610,7 @@ class User {
 		$ipblock->mReason = wfMsg( "autoblocker", $this->getName(), $userblock->mReason );
 		$ipblock->mTimestamp = wfTimestampNow();
 		$ipblock->mAuto = 1;
+		$ipblock->mExpiry = Block::getAutoblockExpiry( $ipblock->mTimestamp );
 
 		# Insert it
 		$ipblock->insert();

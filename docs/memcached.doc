@@ -122,4 +122,11 @@ Watchlist:
 	stores: HTML string
 	cleared by: nothing, expiry time $wgWLCacheTimeout (1 hour)
 	note: emergency optimisation only
+
+IP blocks:
+	key: $wgDBname:ipblocks
+	ex: wikidb:ipblocks
+	stores: array of arrays, for the BlockCache class
+	cleared by: BlockCache:clear()
+	
 ... more to come ...
