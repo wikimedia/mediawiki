@@ -1,6 +1,9 @@
 <?
 # See Language.php for notes.
 
+if($wgMetaNamespace === FALSE)
+        $wgMetaNamespace = str_replace( " ", "_", $wgSitename );
+
 /* private */ $wgNamespaceNamesDe = array(
 	-2	=> "Media",
 	-1	=> "Spezial",
@@ -8,8 +11,8 @@
 	1	=> "Diskussion",
 	2	=> "Benutzer",
 	3	=> "Benutzer_Diskussion",
-	4	=> "Wikipedia",
-	5	=> "Wikipedia_Diskussion",
+	4	=> $wgMetaNamespace,
+	5	=> $wgMetaNamespace. "_Diskussion",
 	6	=> "Bild",
 	7	=> "Bild_Diskussion",
 	8	=> "MediaWiki",
@@ -142,17 +145,17 @@
 "mainpage"		=> "Hauptseite",
 "mainpagetext"          => "Die Wiki Software wurde erfolgreich installiert.",
 "about"			=> "Über",
-"aboutwikipedia" => "Über Wikipedia",
-"aboutpage"		=> "Wikipedia:Über_Wikipedia",
+"aboutwikipedia" => "Über {$wgSitename}",
+"aboutpage"		=> "{$wgMetaNamespace}:Über_{$wgSitename}",
 "help"			=> "Hilfe",
-"helppage"		=> "Wikipedia:Hilfe",
-"wikititlesuffix"       => "Wikipedia",
-"bugreports"	=> "Fehlerliste",
-"bugreportspage" => "Wikipedia:Beobachtete_Fehler",
+"helppage"		=> "{$wgMetaNamespace}:Hilfe",
+"wikititlesuffix"       => "{$wgSitename}",
+"bugreports"	=> "Kontakt",
+"bugreportspage" => "{$wgMetaNamespace}:Kontakt",
 "faq"			=> "FAQ",
-"faqpage"		=> "Wikipedia:Häufig_gestellte_Fragen",
+"faqpage"		=> "{$wgSitename}:Häufig_gestellte_Fragen",
 "edithelp"		=> "Bearbeitungshilfe",
-"edithelppage"	=> "Wikipedia:Wie_man_eine_Seite_bearbeitet",
+"edithelppage"	=> "{$wgSitename}:Editierhilfe",
 "cancel"		=> "Abbruch",
 "qbfind"		=> "Finden",
 "qbbrowse"		=> "Blättern",
@@ -167,7 +170,7 @@
 "currentevents" => "-",
 "errorpagetitle" => "Fehler",
 "returnto"		=> "Zurück zu $1.",
-"fromwikipedia"	=> "aus Wikipedia, der freien Enzyklopädie",
+"fromwikipedia"	=> "aus {$wgSitename}, der freien Wissensdatenbank",
 "whatlinkshere"	=> "Was zeigt hierhin",
 "help"			=> "Hilfe",
 "search"		=> "Suche",
@@ -181,7 +184,7 @@
 "talkpage"		=> "Diskussion",
 "postcomment" => "Kommentar hinzufügen",
 "articlepage"	=> "Artikel",
-"wikipediapage" => "Wikipedia-Text",
+"wikipediapage" => "Meta-Text",
 "userpage" => "Benutzerseite",
 "imagepage" => "Bildseite",
 "viewtalkpage" => "Diskussion",
@@ -190,9 +193,8 @@
 "lastmodified"	=> "Diese Seite wurde zuletzt geändert um $1.",
 "viewcount"		=> "Diese Seite wurde bisher $1 mal abgerufen.",
 "gnunote" => "Diese Seite ist unter der <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a> verfügbar.",
-"printsubtitle" => "(Von http://de.wikipedia.com)",
 "protectedpage" => "Geschützte Seite",
-"administrators" => "Wikipedia:Administratoren",
+"administrators" => "{$wgMetaNamespace}:Administratoren",
 "sysoptitle"	=> "Sysop-Zugang notwendig",
 "sysoptext"		=> "Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit \"Sysop\"-Status durchgeführt werden. Siehe auch $1.",
 "developertitle" => "Entwickler-Zugang notwendig",
@@ -200,7 +202,7 @@
 "nbytes"		=> "$1 Byte",
 "go"			=> "Los",
 "ok"			=> "OK",
-"sitetitle"		=> "Wikipedia",
+"sitetitle"		=> "{$wgSitename}",
 "sitesubtitle"	=> "Die freie Enzyklopädie",
 "retrievedfrom" => "Von \"$1\"",
 "newmessages" => "Sie haben $1.",
@@ -237,9 +239,9 @@
 # Main script and global functions
 #
 "nosuchaction"	=> "Diese Aktion gibt es nicht",
-"nosuchactiontext" => "Diese Aktion wird von der Wikipedia-Software nicht unterstützt",
+"nosuchactiontext" => "Diese Aktion wird von der MediaWiki-Software nicht unterstützt",
 "nosuchspecialpage" => "Diese Spezialseite gibt es nicht",
-"nospecialpagetext" => "Diese Spezialseite wird von der Wikipedia-Software nicht unterstützt",
+"nospecialpagetext" => "Diese Spezialseite wird von der MediaWiki-Software nicht unterstützt",
 
 # General errors
 #
@@ -260,7 +262,7 @@ MySQL meldete den Fehler: \"<tt>$3: $4</tt>\".\n",
 "readonly"		=> "Datenbank ist gesperrt",
 "enterlockreason" => "Bitte geben Sie einen Grund ein, warum die Datenbank
 gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
-"readonlytext"	=> "Die Datenbank der Wikipedia ist vorübergehend gesperrt, z.B. für Wartungsarbeiten. Bitte versuchen Sie es später noch einmal.\n",
+"readonlytext"	=> "Die {$wgSitename}-Datenbank ist vorübergehend gesperrt, z.B. für Wartungsarbeiten. Bitte versuchen Sie es später noch einmal.\n",
 "missingarticle" => "Der Text für den Artikel \"$1\" wurde nicht in der Datenbank gefunden. Das ist wahrscheinlich ein Fehler in der Software. Bitte melden Sie dies einem Administrator, und geben sie den Artikelnamen an.",
 "internalerror" => "Interner Fehler",
 "filecopyerror" => "Konnte Datei \"$1\" nicht nach \"$2\" kopieren.",
@@ -272,7 +274,7 @@ gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
 "badarticleerror" => "Diese Aktion kann auf diesen Artikel nicht angewendet werden.",
 "cannotdelete"	=> "Kann spezifizierte Seite oder Artikel nicht löschen. (Wurde möglicherweise schon von jemand anderem gelöscht.)",
 "badtitle"		=> "Ungültiger Titel",
-"badtitletext"	=> "Der Titel der angeforderten Seite war ungültig, leer, oder ein ungültiger Sprachlink von einer anderen Wikipedia.",
+"badtitletext"	=> "Der Titel der angeforderten Seite war ungültig, leer, oder ein ungültiger Sprachlink von einem anderen Wiki.",
 "perfdisabled" => "Diese Funktion wurde wegen Überlastung des Servers vorübergehend deaktiviert. Versuchen Sie es bitte zwischen 02:00 und 14:00 UTC noch einmal<br>(Aktuelle Serverzeit : ".date("H:i:s")." UTC).",
 "perfdisabledsub" => "Hier ist eine gespeicherte Kopie von $1:",
 
@@ -281,10 +283,10 @@ gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
 #
 "logouttitle"	=> "Benutzer-Abmeldung",
 "logouttext"	=> "Sie sind nun abgemeldet.
-Sie können Wikipedia jetzt anonym weiterbenutzen, oder sich unter dem selben oder einem anderen Benutzernamen wieder anmelden.\n",
+Sie können {$wgSitename} jetzt anonym weiterbenutzen, oder sich unter dem selben oder einem anderen Benutzernamen wieder anmelden.\n",
 
 "welcomecreation" => "<h2>Willkommen, $1!</h2><p>Ihr Benutzerkonto wurde eingerichtet.
-Vergessen Sie nicht, Ihre Wikipedia-Einstellungen anzupassen. Schauen Sie doch auf unserer [[Wikipedia:Willkommen|Willkommensseite]] vorbei!",
+Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 
 "loginpagetitle" => "Benutzer-Anmeldung",
 "yourname"		=> "Ihr Benutzername",
@@ -310,14 +312,14 @@ Vergessen Sie nicht, Ihre Wikipedia-Einstellungen anzupassen. Schauen Sie doch a
 "loginerror"	=> "Fehler bei der Anmeldung",
 "noname"		=> "Sie müssen einen Benutzernamen angeben.",
 "loginsuccesstitle" => "Anmeldung erfolgreich",
-"loginsuccess"	=> "Sie sind jetzt als \"$1\" bei Wikipedia angemeldet.",
+"loginsuccess"	=> "Sie sind jetzt als \"$1\" bei {$wgSitename} angemeldet.",
 "nosuchuser"	=> "Der Benutzername \"$1\" existiert nicht.
 Überprüfen Sie die Schreibweise, oder melden Sie sich als neuer Benutzer an.",
 "wrongpassword"	=> "Das Passwort ist falsch. Bitte versuchen Sie es erneut.",
 "mailmypassword" => "Ein neues Passwort schicken",
-"passwordremindertitle" => "Wikipedia Passwort",
+"passwordremindertitle" => "{$wgSitename} Passwort",
 "passwordremindertext" => "Jemand (IP-Adresse $1)
-hat um ein neues Passwort für die Anmeldung bei Wikipedia gebeten.
+hat um ein neues Passwort für die Anmeldung bei {$wgSitename} gebeten.
 Das Passwort für Benutzer \"$2\" lautet nun \"$3\".
 Sie sollten sich jetzt anmelden und Ihr Passwort ändern.",
 "noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Adresse angegeben.",
@@ -371,7 +373,7 @@ Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>\n",
 "copyrightwarning" => "
 <b>Bitte <font size='+1'>kopieren Sie keine Webseiten</font>, die nicht Ihre eigenen sind, benutzen Sie <fonz size='+1'>keine urheberrechtlich geschützten Werke</font> ohne Erlaubnis des Copyright-Inhabers!</b>
 <p>Sie geben uns hiermit ihre Zusage, dass Sie den Text <strong>selbst verfasst</strong> haben, dass der Text Allgemeingut (<strong>public domain</strong>) ist, oder dass der <strong>Copyright-Inhaber</strong> seine <strong>Zustimmung</strong> gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der 'Diskussion:'-Seite darauf hin.
-<p><i>Bitte beachten Sie, dass alle Beiträge zur Wikipedia automatisch unter der \"GNU Freie Dokumentationslizenz\" stehen. Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
+<p><i>Bitte beachten Sie, dass alle {$wgSitename}-Beiträge automatisch unter der \"GNU Freie Dokumentationslizenz\" stehen. Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
 "longpagewarning" => "WARNUNG: Diese Seite ist $1KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32KB sind.
 Überlegen Sie bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.",
 "readonlywarning" => "WARNUNG: Die Datenbank wurde während dem Ändern der
@@ -380,7 +382,7 @@ speichern können. Sichern Sie sich den Text und versuchen Sie die Änderungen
 später einzuspielen.",
 "protectedpagewarning" => "WARNUNG: Diese Seite wurde gesperrt, so dass sie nur
 Benutzer mit Sysop-Rechten bearbeitet werden kann. Beachten Sie bitte die 
-<a href='/wiki/Wikipedia:Geschützte Seiten'>Regeln für geschützte Seiten</a>.",
+<a href='/wiki/{$wgMetaNamespace}:Geschützte Seiten'>Regeln für geschützte Seiten</a>.",
 
 # History pages
 #
@@ -410,9 +412,9 @@ M = Kleine Änderung",
 # Search results
 #
 "searchresults" => "Suchergebnisse",
-"searchhelppage" => "Wikipedia:Suche",
-"searchingwikipedia" => "Wikipedia durchsuchen",
-"searchresulttext" => "Für mehr Information über Wikipedia, siehe $1.",
+"searchhelppage" => "{$wgMetaNamespace}:Suche",
+"searchingwikipedia" => "{$wgSitename} durchsuchen",
+"searchresulttext" => "Für mehr Information über {$wgSitename}, siehe $1.",
 "searchquery"	=> "Für die Suchanfrage \"$1\"",
 "badquery"		=> "Falsche Suchanfrage",
 "badquerytext"	=> "Wir konnten Ihre Suchanfrage nicht verarbeiten.
@@ -514,9 +516,8 @@ Ihre interne ID-Nummer ist $2.",
 "recentchanges" => "Letzte Änderungen",
 "recentchangestext" => "
 Diese Seite wird beim Laden automatisch aktualisiert. Angezeigt werden Seiten, die zuletzt bearbeitet wurden, sowie die Zeit und der Name des Autors.<br>
-Falls Sie neu bei Wikipedia sind, lesen Sie bitte die [[Wikipedia:Willkommen|Willkommensseite der Wikipedia]] und [[Wikipedia:Erste Schritte|Erste Schritte]].<br>
-Wenn Sie möchten, dass Wikipedia zu einem Erfolg wird, dann fügen Sie bitte keine Texte hinzu, die dem [[Wikipedia:Urheberrechte beachten|Urheberrecht]] anderer unterliegen. Dies könnte dem Projekt sonst schweren Schaden zufügen.
-Beachten Sie auch die letzten Änderungen auf [[m:Special:Recentchanges|Metawikipedia]].",
+Falls Sie neu bei {$wgSitename} sind, lesen Sie bitte die [[{$wgMetaNamespace}:Willkommen|Willkommensseite]] und [[{$wgMetaNamespace}:Erste Schritte|Erste Schritte]].<br>
+Wenn Sie möchten, dass {$wgSitename} zu einem Erfolg wird, dann fügen Sie bitte keine Texte hinzu, die dem [[{$wgMetaNamespace}:Urheberrechte beachten|Urheberrecht]] anderer unterliegen. Dies könnte dem Projekt sonst schweren Schaden zufügen.",
 "rcloaderr"		=> "Lade Letzte Änderungen",
 "rcnote"		=> "Hier sind die letzten <b>$1</b> Änderungen der letzten <b>$2</b> Tage. (<b>N</b> - Neuer Artikel; <b>M</b> - kleine Änderung)",
 "rcnotefrom"	=> "Dies sind die Änderungen seit <b>$2</b> (bis zu <b>$1</b> gezeigt).",
@@ -575,8 +576,8 @@ Alle Zeiten sind UTC.
 "filestatus" => "Copyright-Status",
 "filesource" => "Quelle",
 "affirmation"	=> "Hiermit bestätige ich, dass ich das Copyright dieser Datei habe, und diese hiermit unter $1 veröffentliche, bzw. dass die Datei 'Public Domain' ist.",
-"copyrightpage" => "Wikipedia:Copyright",
-"copyrightpagename" => "Wikipedia copyright",
+"copyrightpage" => "{$wgMetaNamespace}:Copyright",
+"copyrightpagename" => "{$wgSitename} copyright",
 "uploadedfiles"	=> "Hochgeladene Dateien",
 "noaffirmation" => "Sie müssen bestätigen, dass das Hochladen der Datei keine Copyright-Verletzung darstellt.",
 "ignorewarning"	=> "Warnung ignorieren und Datei trotzdem speichern.",
@@ -623,7 +624,7 @@ diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.",
 "sitestats"		=> "Seitenstatistik",
 "userstats"		=> "Benutzerstatistik",
 "sitestatstext" => "Es gibt insgesamt <b>$1</b> Seiten in der Datenbank.
-Das schliesst \"Diskussion\"-Seiten, Seiten über Wikipedia, extrem kurze Artikel, Weiterleitungen und andere Seiten ein, die nicht als Artikel gelten können.
+Das schliesst \"Diskussion\"-Seiten, Seiten über {$wgSitename}, extrem kurze Artikel, Weiterleitungen und andere Seiten ein, die nicht als Artikel gelten können.
 Diese ausgenommen, gibt es <b>$2</b> Seiten, die als Artikel gelten können.<p>
 Es wurden insgesamt <b>$3</b>&times; Seiten aufgerufen, und <b>$4</b>&times; Seiten bearbeitet.
 Daraus ergeben sich <b>$5</b> Bearbeitungen pro Seite, und <b>$6</b> Betrachtungen pro Bearbeitung.",
@@ -633,10 +634,10 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 # Maintenance Page
 #
 "maintenance"		=> "Wartungsseite",
-"maintnancepagetext"	=> "Diese Seite enthält mehrere praktische Funktionen zur täglichen Wartung von Wikipedia. Einige dieser Funktionen können die Datenbank stark beanspruchen, also bitte nicht nach jeder Änderung neu laden ;-)",
+"maintnancepagetext"	=> "Diese Seite enthält mehrere praktische Funktionen zur täglichen Wartung von {$wgSitename}. Einige dieser Funktionen können die Datenbank stark beanspruchen, also bitte nicht nach jeder Änderung neu laden ;-)",
 "maintenancebacklink"	=> "Zurück zur Wartungsseite",
 "disambiguations"	=> "Begriffsklärungsseiten",
-"disambiguationspage"	=> "Wikipedia:Begriffsklärung",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Begriffsklärung",
 "disambiguationstext"	=> "Die folgenden Artikel verweisen auf eine <i>Seite zur Begriffsklärung</i>. Sie sollten statt dessen auf die eigentlich gemeinte Seite verweisen.<br>Eine Seite wird als Begriffsklärungsseite behandelt, wenn $1 auf sie verweist.<br>Verweise aus Namensräumen werden hier <i>nicht</i> aufgelistet.",
 "doubleredirects"	=> "Doppelte Redirects",
 "doubleredirectstext"	=> "<b>Achtung:</b> Diese Liste kann \"falsche Positive\" enthalten. Das ist dann der Fall, wenn ein Redirect außer dem Redirect-Verweis noch weiteren Text mit anderen Verweisen enthält. Letztere sollten dann entfernt werden.",
@@ -677,9 +678,9 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "newpages"		=> "Neue Artikel",
 "ancientpages" => "Älteste Artikel",
 "movethispage"	=> "Artikel verschieben",
-"unusedimagestext" => "<p>Bitte beachten Sie, dass andere Wikipedias, die noch die alte Software verwenden, möglicherweise einige dieser Bilder benutzen.",
+"unusedimagestext" => "<p>Bitte beachten Sie, dass andere Wikis möglicherweise einige dieser Bilder benutzen.",
 "booksources"	=> "Buchhandlungen",
-"booksourcetext" => "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben, die Sie interessieren. Wikipedia ist mit keinem dieser Anbieter geschäftlich verbunden.",
+"booksourcetext" => "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben, die Sie interessieren. {$wgSitename} ist mit keinem dieser Anbieter geschäftlich verbunden.",
 "alphaindexline" => "$1 bis $2",
 
 # Email this user
@@ -752,7 +753,7 @@ $3... <a href='$4'>komplette Liste zeigen und bearbeiten</a>.)",
 "historywarning" => "WARNUNG: Die Seite die Sie zu löschen gedenken hat
 eine Versionsgeschichte: ",
 "confirmdeletetext" => "Sie sind dabei, einen Artikel oder ein Bild und alle älteren Versionen permanent aus der Datenbank zu löschen.
-Bitte bestätigen Sie Ihre Absicht, dies zu tun, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit [[Wikipedia:Leitlinien|den Wikipedia Leitlinien]] handeln.",
+Bitte bestätigen Sie Ihre Absicht, dies zu tun, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit unseren [[{$wgMetaNamespace}:Leitlinien|Leitlinien]] handeln.",
 "confirmcheck"	=> "Ja, ich möchte den Löschvorgang fortsetzen.",
 "actioncomplete" => "Aktion beendet",
 "deletedtext"	=> "\"$1\" wurde gelöscht.
@@ -822,7 +823,7 @@ dieses Artikels erscheinen.",
 #
 "blockip"		=> "IP-Adresse blockieren",
 "blockiptext"	=> "Benutzen Sie das Formular, um eine IP-Adresse zu blockieren.
-Dies sollte nur erfolgen, um Vandalismus zu verhindern, in Übereinstimmung mit den [[Wikipedia:Leitlinien|Wikipedia-Leitlinien]].
+Dies sollte nur erfolgen, um Vandalismus zu verhindern, in Übereinstimmung mit unseren [[{$wgMetaNamespace}:Leitlinien|Leitlinien]].
 Bitte tragen Sie den Grund für die Blockade ein.",
 "ipaddress"		=> "IP-Adresse",
 "ipbreason"		=> "Grund",
@@ -856,9 +857,9 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 "locknoconfirm" => "Sie haben das Bestätigungsfeld nicht markiert.",
 "lockdbsuccesssub" => "Datenbank wurde erfolgreich gesperrt",
 "unlockdbsuccesssub" => "Datenbank wurde erfolgreich freigegeben",
-"lockdbsuccesstext" => "Die Wikipedia-Datenbank wurde gesperrt.
+"lockdbsuccesstext" => "Die {$wgSitename}-Datenbank wurde gesperrt.
 <br>Bitte geben Sie die Datenbank wieder frei, sobald die Wartung abgeschlossen ist.",
-"unlockdbsuccesstext" => "Die Wikipedia-Datenbank wurde freigegeben.",
+"unlockdbsuccesstext" => "Die {$wgSitename}-Datenbank wurde freigegeben.",
 
 # SQL query
 #
@@ -906,7 +907,6 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "exporttext"    => "Sie können den Text und die Bearbeitungshistorie einer bestimmten oder einer Auswahl von Seiten nach XML exportieren. Das Ergebnis kann in ein anderes Wiki mit WikiMedia Software eingespielt werden, bearbeitet oder archiviert werden.",
 "exportcuronly" => "Nur die aktuelle Version der Seite exportieren",
 );
-
 class LanguageDe extends Language {
 
 	function getDefaultUserOptions () {
@@ -1032,6 +1032,8 @@ class LanguageDe extends Language {
                 if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
                 else return $m;
 	}
+
+
 }
 
 ?>
