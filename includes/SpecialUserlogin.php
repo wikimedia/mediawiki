@@ -298,7 +298,7 @@ class LoginForm {
 		$wgOut->setPageTitle( wfMsg( "loginsuccesstitle" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->setArticleRelated( false );
-		$wgOut->addHTML( $msg );
+		$wgOut->addWikiText( $msg );
 		$wgOut->returnToMain();
 	}
 
