@@ -1447,32 +1447,30 @@ class Skin {
 	
 			$part = explode( "|", $alt);
 	
-			if ( count($part) > 1 ) {
-				$mwThumb =& MagicWord::get( MAG_IMG_THUMBNAIL );
-				$mwLeft  =& MagicWord::get( MAG_IMG_LEFT );
-				$mwRight =& MagicWord::get( MAG_IMG_RIGHT );
-				$mwNone  =& MagicWord::get( MAG_IMG_NONE );
-				$mwWidth =& MagicWord::get( MAG_IMG_WIDTH );
-				$alt = $part[count($part)-1];
-	
-				$thumb=false;
-	
-				foreach( $part as $key => $val ) {
-					if ( ! is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
-						$thumb=true;
-					} elseif ( ! is_null( $mwRight->matchVariableStartToEnd($val) ) ) {
-						# remember to set an alignment, don't render immediately
-						$align = "right";
-					} elseif ( ! is_null( $mwLeft->matchVariableStartToEnd($val) ) ) {
-						# remember to set an alignment, don't render immediately
-						$align = "left";
-					} elseif ( ! is_null( $mwNone->matchVariableStartToEnd($val) ) ) {
-						# remember to set an alignment, don't render immediately
-						$align = "none";
-					} elseif ( ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
-						# $match is the image width in pixels
-						$width = intval($match);
-					}
+			$mwThumb =& MagicWord::get( MAG_IMG_THUMBNAIL );
+			$mwLeft  =& MagicWord::get( MAG_IMG_LEFT );
+			$mwRight =& MagicWord::get( MAG_IMG_RIGHT );
+			$mwNone  =& MagicWord::get( MAG_IMG_NONE );
+			$mwWidth =& MagicWord::get( MAG_IMG_WIDTH );
+			$alt = $part[count($part)-1];
+
+			$thumb=false;
+
+			foreach( $part as $key => $val ) {
+				if ( ! is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
+					$thumb=true;
+				} elseif ( ! is_null( $mwRight->matchVariableStartToEnd($val) ) ) {
+					# remember to set an alignment, don't render immediately
+					$align = "right";
+				} elseif ( ! is_null( $mwLeft->matchVariableStartToEnd($val) ) ) {
+					# remember to set an alignment, don't render immediately
+					$align = "left";
+				} elseif ( ! is_null( $mwNone->matchVariableStartToEnd($val) ) ) {
+					# remember to set an alignment, don't render immediately
+					$align = "none";
+				} elseif ( ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
+					# $match is the image width in pixels
+					$width = intval($match);
 				}
 			}
 	
