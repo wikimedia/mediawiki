@@ -169,7 +169,10 @@ class User {
 	 */	
 	function loadDefaultFromLanguage(){
 		global $wgContLang;
-		$defOpt = $wgContLang->getDefaultUserOptions() ;
+		global $wgDefaultUserOptions;
+		
+		# Site defaults will override the global/language defaults
+		$defOpt = $wgDefaultUserOptions + $wgContLang->getDefaultUserOptions();
 		foreach ( $defOpt as $oname => $val ) {
 			$this->mOptions[$oname] = $val;
 		}		

@@ -694,8 +694,17 @@ $wgTidyBin = 'tidy';
 $wgTidyConf = $IP.'/extensions/tidy/tidy.conf'; 
 $wgTidyOpts = '';
 
-# See list of skins and their symbolic names in language/Language.php
+# See list of skins and their symbolic names in languagel/Language.php
 $wgDefaultSkin = 'monobook';
+
+# Settings added to this array will override the language globals for
+# the user preferences used by anonymous visitors and newly created
+# accounts. (See names and sample values in languages/Language.php)
+#
+# For instance, to disable section editing links:
+#   $wgDefaultUserOptions['editsection'] = 0;
+#
+$wgDefaultUserOptions = array();
 
 # Whether or not to allow real name fields. Defaults to true.
 $wgAllowRealName = true;
