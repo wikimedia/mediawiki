@@ -64,7 +64,7 @@ class Tokenizer {
 
 	function previewToken()
 	{
-		if ( $this->mMatchPos <= $this->mCount  ) {
+		if ( $this->mMatchPos < $this->mCount  ) {
 			$token["pos"] = $this->mPos;
 			if ( $this->mPos < $this->mMatch[0][$this->mMatchPos][1] ) {
 				$token["type"] = "text";
@@ -76,7 +76,7 @@ class Tokenizer {
 			} else {
 				# If linkPrefixExtension is set,  $this->mMatch[2][$this->mMatchPos][0]
 				# contains the link prefix, or is null if no link prefix exist.
-				if ( $this->mMatch[2][$this->mMatchPos][0] )
+				if ( isset( $this->mMatch[2] ) && $this->mMatch[2][$this->mMatchPos][0] )
 				{
 					# prefixed link open tag, [0] is "prefix[["
 					$token["type"] = "[[";
