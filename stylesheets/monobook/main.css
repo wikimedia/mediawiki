@@ -305,6 +305,7 @@ table.small { font-size: 100% }
 #toc .toctoggle { font-size: 94%; }
 #toc .editsection { 
     margin-top: 0.7em; 
+    margin-bottom: -0.4;
     font-size: 94%;
 }
 
