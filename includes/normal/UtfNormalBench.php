@@ -36,7 +36,7 @@ $testfiles = array(
 	'testdata/washington.txt' => 'English text',
 	'testdata/berlin.txt' => 'German text',
 	'testdata/tokyo.txt' => 'Japanese text',
-	'testdata/byzantium.txt' => 'Korean text'
+	'testdata/sociology.txt' => 'Korean text'
 );
 $normalizer = new UtfNormal;
 foreach( $testfiles as $file => $desc ) {
