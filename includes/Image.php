@@ -43,12 +43,12 @@ class Image
 	{
 		global $wgUploadDirectory,$wgHashedUploadDirectory,
 		       $wgUseSharedUploads, $wgSharedUploadDirectory, 
-		       $wgHashedSharedUploadDirectory;
+		       $wgHashedSharedUploadDirectory,$wgUseLatin1,
+		       $wgSharedLatin1;
 
 		$this->name      = $name;
 		$this->title     = Title::makeTitleSafe( NS_IMAGE, $this->name );
-		$this->fromSharedDirectory = false;		
-		
+		$this->fromSharedDirectory = false;				
 		if ($wgHashedUploadDirectory) {
 			$hash 		 = md5( $this->title->getDBkey() );
 			$this->imagePath = $wgUploadDirectory . '/' . $hash{0} . '/' .
@@ -63,9 +63,14 @@ class Image
 		if (!$this->fileExists && $wgUseSharedUploads) {
 			# in case we're running a capitallinks=false wiki			
 			$sharedname=ucfirst($name);
+			$sharedtitle=$this->title->getDBkey();
+			if($wgUseLatin1 && !$wgSharedLatin1) {
+				$sharedname=utf8_encode($sharedname);
+				$sharedtitle=utf8_encode($sharedtitle);
+			}
 			
 			if($wgHashedSharedUploadDirectory) {				
-				$hash = md5( $this->title->getDBkey() );
+				$hash = md5( $sharedtitle );
 				$this->imagePath = $wgSharedUploadDirectory . '/' . $hash{0} . '/' .
 					substr( $hash, 0, 2 ) . "/".$sharedname;
 			} else {
@@ -73,7 +78,7 @@ class Image
 			}
 			$this->fileExists = file_exists( $this->imagePath);
 			$this->fromSharedDirectory = true;
-			#wfDebug ("File from shared directory: ".$this->imagePath."\n");
+			#wfDebug ("File from shared directory: ".$this->imagePath."\n");			
 		}		
 		if($this->fileExists) {
 			$this->url       = $this->wfImageUrl( $name, $this->fromSharedDirectory );
@@ -241,11 +246,15 @@ class Image
 	function wfImageUrl( $name, $fromSharedDirectory = false )
 	{
 		global $wgUploadPath,$wgUploadBaseUrl,$wgHashedUploadDirectory,
-		       $wgHashedSharedUploadDirectory,$wgSharedUploadPath;
+		       $wgHashedSharedUploadDirectory,$wgSharedUploadPath,
+		       $wgUseLatin1, $wgSharedLatin1;		
 		if($fromSharedDirectory) {
 			$hash = $wgHashedSharedUploadDirectory;
 			$base = '';
 			$path = $wgSharedUploadPath;
+			if($wgUseLatin1 && !$wgSharedLatin1) {
+				$name=utf8_encode($name);
+			}
 		} else {
 			$hash = $wgHashedUploadDirectory;
 			$base = $wgUploadBaseUrl;
@@ -278,12 +287,15 @@ class Image
 	function thumbUrl( $width, $subdir='thumb') {
 		global $wgUploadPath,$wgHashedUploadDirectory, $wgUploadBaseUrl,
 		       $wgSharedUploadPath,$wgSharedUploadDirectory,
-		       $wgHashedSharedUploadDirectory;
-		$name = $this->thumbName( $width );
+		       $wgHashedSharedUploadDirectory,$wgUseLatin1,$wgSharedLatin1;
+		$name = $this->thumbName( $width );		
 		if($this->fromSharedDirectory) {
 			$hashdir = $wgHashedSharedUploadDirectory;
 			$base = '';
 			$path = $wgSharedUploadPath;
+			if($wgUseLatin1 && !$wgSharedLatin1) {
+				$name=utf8_encode($name);
+			}			
 		} else {
 			$hashdir = $wgHashedUploadDirectory;
 			$base = $wgUploadBaseUrl;
@@ -304,14 +316,19 @@ class Image
 	 * Return the file name of a thumbnail of the specified width
 	 *
 	 * @param integer $width	Width of the thumbnail image
+	 * @param boolean $shared	Does the thumbnail come from the shared repository?
 	 * @access private
 	 */
-	function thumbName( $width ) {
+	function thumbName( $width, $shared=false ) {
+		global $wgUseLatin1,$wgSharedLatin1;
 		$thumb = $width."px-".$this->name;
 		if( $this->extension == 'svg' ) {
 			# Rasterize SVG vector images to PNG
 			$thumb .= '.png';
 		}
+		if( $shared && $wgUseLatin1 && !$wgSharedLatin1) { 
+			$thumb=utf8_encode($thumb); 
+		} 
 		return $thumb;
 	}
 
@@ -366,7 +383,7 @@ class Image
 
 		$width = IntVal( $width );
 
-		$thumbName = $this->thumbName( $width );
+		$thumbName = $this->thumbName( $width, $this->fromSharedDirectory );
 		$thumbPath = wfImageThumbDir( $thumbName, 'thumb', $this->fromSharedDirectory ).'/'.$thumbName;
 		$thumbUrl  = $this->thumbUrl( $width );
 		#wfDebug ( "Render name: $thumbName path: $thumbPath url: $thumbUrl\n");
@@ -608,9 +625,8 @@ function wfImageArchiveDir( $fname , $subdir='archive', $shared=false )
 	global $wgUploadDirectory, $wgHashedUploadDirectory,
 	       $wgSharedUploadDirectory, $wgHashedSharedUploadDirectory;
 	$dir = $shared ? $wgSharedUploadDirectory : $wgUploadDirectory;
-	$hashdir = $shared ? $wgHashedSharedUploadDirectory : $wgHashedUploadDirectory;
+	$hashdir = $shared ? $wgHashedSharedUploadDirectory : $wgHashedUploadDirectory;	
 	if (!$hashdir) { return $dir.'/'.$subdir; }
-
 	$hash = md5( $fname );
 	$oldumask = umask(0);
 	# Suppress warning messages here; if the file itself can't

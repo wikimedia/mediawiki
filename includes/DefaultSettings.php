@@ -138,6 +138,8 @@ $wgSharedUploadDirectory = "/var/www/wiki3/images";
 # accessible by all wikis, and you do not want to use the hash (path/a/aa/)
 # directory layout.
 $wgHashedSharedUploadDirectory = true;
+# set true if the repository uses latin1 filenames
+$wgSharedLatin1=false;
 
 # Email settings
 #
