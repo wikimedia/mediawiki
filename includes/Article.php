@@ -771,7 +771,7 @@ class Article {
 			'cur_text' => $text,
 			'cur_comment' => $summary,
 			'cur_user' => $wgUser->getID(),
-			'cur_timestamp' => $now,
+			'cur_timestamp' => $dbw->timestamp($now),
 			'cur_minor_edit' => $isminor,
 			'cur_counter' => 0,
 			'cur_restrictions' => '',
@@ -779,7 +779,7 @@ class Article {
 			'cur_is_redirect' => $redir,
 			'cur_is_new' => 1,
 			'cur_random' => $rand,
-			'cur_touched' => $now,
+			'cur_touched' => $dbw->timestamp($now),
 			'inverse_timestamp' => $won,
 		), $fname );
 
@@ -799,7 +799,8 @@ class Article {
 
 		# The talk page isn't in the regular link tables, so we need to update manually:
 		$talkns = $ns ^ 1; # talk -> normal; normal -> talk
-		$dbw->updateArray( 'cur', array( 'cur_touched' => $now ), array( 'cur_namespace' => $talkns, 'cur_title' => $ttl ), $fname );
+		$dbw->updateArray( 'cur', array('cur_touched' => $dbw->timestamp($now) ), 
+			array(  'cur_namespace' => $talkns, 'cur_title' => $ttl ), $fname );
 
 		# standard deferred updates
 		$this->editUpdates( $text );

@@ -100,6 +100,10 @@ class RecentChange
 			$this->mAttribs['rc_ip'] = '';
 		}
 
+		# Fixup database timestamps
+		$this->mAttribs['rc_timestamp']=$dbw->timestamp($this->mAttribs['rc_timestamp']);
+		$this->mAttribs['rc_cur_time']=$dbw->timestamp($this->mAttribs['rc_cur_time']);
+
 		# Insert new row
 		$dbw->insertArray( "recentchanges", $this->mAttribs, $fname );
 
@@ -119,7 +123,7 @@ class RecentChange
 				), array( /* WHERE */
 					'rc_namespace' => $ns,
 					'rc_title' => $title,
-					'rc_timestamp' => $lastTime
+					'rc_timestamp' => $dbw->timestamp($lastTime)
 				), $fname
 			);
 
