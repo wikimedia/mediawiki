@@ -942,7 +942,7 @@ class Parser
 			# removeHTMLtags()) should not be included in
 			# URLs, per RFC 2396.
 			if (preg_match('/&(lt|gt);/', $url, $m2, PREG_OFFSET_CAPTURE)) {
-				$trail = substr($url, $m2[0][1]) . $trail;
+				$text = substr($url, $m2[0][1]) . ' ' . $text;
 				$url = substr($url, 0, $m2[0][1]);
 			}
 
