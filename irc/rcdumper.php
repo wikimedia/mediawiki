@@ -4,7 +4,7 @@
 Example command-line:
 	php rcdumper.php | irc -d -c \#channel-to-join nick-of-bot some.irc.server
 where irc is the name of the ircII executable.
-The name of the the IRC should match $ircServer below.
+The name of the IRC server should match $ircServer below.
 */
 
 $ircServer = "irc.freenode.net";
