@@ -15,10 +15,14 @@ class Tokenizer {
 	# factory function
 	function newFromString( $s )
 	{
+		$fname = "Tokenizer::newFromString";
+		wfProfileIn( $fname );
+
 		$t = new Tokenizer();
 		$t->mText = $s;
 		$t->mTextLength = strlen( $s );
-		// echo "New tokenizer generated. <pre>{$s}</pre>\n"; 
+
+		wfProfileOut( $fname );
 		return $t;
 	}
 
@@ -30,6 +34,9 @@ class Tokenizer {
 	// the stored token.
 	function previewToken()
 	{
+		$fname = "Tokenizer::previewToken";
+		wfProfileIn( $fname );
+
 		if ( count( $this->mQueuedToken ) != 0 ) {
 			// still one token from the last round around. Return that one first.
 			$token = $this->mQueuedToken[0];
@@ -37,6 +44,8 @@ class Tokenizer {
 			$token = $this->nextToken();
 			array_unshift( $this->mQueuedToken, $token );
 		}
+
+		wfProfileOut( $fname );
 		return $token;
 	}
 
@@ -49,25 +58,24 @@ class Tokenizer {
 	//       handling of French blanks not yet implemented
 	function nextToken()
 	{
+		$fname = "Tokenizer::nextToken";
+		wfProfileIn( $fname );
+
 		if ( count( $this->mQueuedToken ) != 0 ) {
 			// still one token from the last round around. Return that one first.
 			$token = array_shift( $this->mQueuedToken );
+		} else if ( $this->mPos > $this->mTextLength )
+		{	// If no text is left, return "false".
+			$token = false;
 		} else {
 
 			$token["text"]="";
 			$token["type"]="text";
 
-			// If no text is left, return "false".
-			if ( $this->mPos > $this->mTextLength )
-				return false;
-
 			while ( $this->mPos <= $this->mTextLength ) {
 				switch ( @$ch = $this->mText[$this->mPos] ) {
 					case 'R': // for "RFC "
-						if ( isset($this->mText[$this->mPos+4]) &&
-						     $this->mText[$this->mPos+1] == 'F' &&
-                                                     $this->mText[$this->mPos+2] == 'C' &&
-                                                     $this->mText[$this->mPos+4] == ' ' ) {
+						if ( $this->continues("FC ") ) {
 						     	$queueToken["type"] = $queueToken["text"] = "RFC ";
 							$this->mQueuedToken[] = $queueToken;
 					     		$this->mPos += 3;
@@ -75,11 +83,7 @@ class Tokenizer {
 						}
 						break;
 					case 'I': // for "ISBN "
-						if ( isset($this->mText[$this->mPos+4]) &&
-						     $this->mText[$this->mPos+1] == 'S' &&
-					     	     $this->mText[$this->mPos+2] == 'B' &&
-					     	     $this->mText[$this->mPos+3] == 'N' &&
-					     	     $this->mText[$this->mPos+4] == ' ' ) {
+						if ( $this->continues("SBN ") ) {
 						     	$queueToken["type"] = $queueToken["text"] = "ISBN ";
 							$this->mQueuedToken[] = $queueToken;
 					     		$this->mPos += 4;
@@ -87,16 +91,13 @@ class Tokenizer {
 						}
 						break;
 					case "[": // for links "[["
-						if ( isset($this->mText[$this->mPos+2]) &&
-						     $this->mText[$this->mPos+1] == "[" &&
-					     	     $this->mText[$this->mPos+2] == "[" ) {
+						if ( $this->continues("[[") ) {
 						     	$queueToken["type"] = "[[[";
 							$queueToken["text"] = "";
 							$this->mQueuedToken[] = $queueToken;
 					     		$this->mPos += 3;
 							break 2; // switch + while
-						} else if ( isset($this->mText[$this->mPos+1]) &&
-						            $this->mText[$this->mPos+1] == "[" ) {
+						} else if ( $this->continues("[") ) {
 						     	$queueToken["type"] = "[[";
 							$queueToken["text"] = "";
 							$this->mQueuedToken[] = $queueToken;
@@ -105,8 +106,7 @@ class Tokenizer {
 						}
 						break;
 					case "]": // for end of links "]]"
-						if ( isset($this->mText[$this->mPos+1]) &&
-						     $this->mText[$this->mPos+1] == "]" ) {
+						if ( $this->continues("]") ) {
 						     	$queueToken["type"] = "]]";
 							$queueToken["text"] = "";
 							$this->mQueuedToken[] = $queueToken;
@@ -115,11 +115,12 @@ class Tokenizer {
 						}
 						break;
 					case "'": // for all kind of em's and strong's
-						if ( isset($this->mText[$this->mPos+1]) &&
-						     $this->mText[$this->mPos+1] == "'" ) {
+						if ( $this->continues("'") ) {
 							$queueToken["type"] = "'";
 							$queueToken["text"] = "";
-							while(isset($this->mText[$this->mPos+1]) && $this->mText[$this->mPos+1] == "'" ) {
+							while(   ($this->mPos+1 < $this->mTextLength) 
+							       && $this->mText[$this->mPos+1] == "'" )
+							{
 								$queueToken["type"] .= "'";
 								$this->mPos ++;
 							}
@@ -131,16 +132,15 @@ class Tokenizer {
 						break;
 					case "\n": // for block levels, actually, only "----" is handled.
 					case "\r":
-						if ( @isset( $this->mText[$this->mPos+4] ) &&
-						     @$this->mText[$this->mPos+1] == "-" &&
-						     @$this->mText[$this->mPos+2] == "-" &&
-						     @$this->mText[$this->mPos+3] == "-" &&
-						     @$this->mText[$this->mPos+4] == "-" ) {
+						if ( $this->continues( "----" ) )
+						{
 						     	$queueToken["type"] = "----";
 							$queueToken["text"] = "";
 							$this->mQueuedToken[] = $queueToken;
 							$this->mPos += 5;
-							while (@isset($this->mText[$this->mPos]) and $this->mText[$this->mPos] == "-" ) {
+							while (     $this->mPos<$this->mTextLength 
+								and $this->mText[$this->mPos] == "-" )
+							{
 								$this->mPos ++;
 							}
 							break 2;
@@ -151,9 +151,25 @@ class Tokenizer {
 				// echo $this->mPos . "<br>\n"; 
 			} /* while */
 		} /* if (nothing left in queue) */
+	
+		wfProfileOut( $fname );
 		return $token;
 	}
 
+	// function continues
+	// checks whether the mText continues with $cont from mPos+1
+	function continues( $cont )
+	{
+		// If string is not long enough to contain $cont, return false
+		if ( $this->mTextLength < $this->mPos + strlen( $cont ) )
+			return false;
+		for ( $i=0; $i < strlen( $cont ); $i++ )
+		{
+			if ( $this->mText[$this->mPos+1+$i] != $cont[$i] )
+				return false;
+		}
+		return true;
+	}
 		
 }
 		
