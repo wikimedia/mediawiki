@@ -101,7 +101,7 @@ class MovePageForm {
 	{
 		global $wgOut, $wgUser, $wgLang;
 		global $wpNewTitle, $wpOldTitle, $wpMovetalk, $target;
-		global $wgDeferredUpdateList;
+		global $wgDeferredUpdateList, $wgMessageCache;
 		$fname = "MovePageForm::doSubmit";
 
 		$this->ot = Title::newFromText( $wpOldTitle );
@@ -134,7 +134,8 @@ class MovePageForm {
 		     ( ! Namespace::isMovable( $nns ) ) ||
 			 ( "" == $this->ndt ) ||
 			 ( "" != $this->nt->getInterwiki() ) ||
-			 ( !$this->nt->userCanEdit() ) ) {
+			 ( !$this->nt->userCanEdit() ) || 
+			 ( $this->ons == NS_MEDIAWIKI && $wgMessageCache->isCacheable( $this->odt ) ) ) {
 			$this->showForm( wfMsg( "badarticleerror" ) );
 			return;
 		}

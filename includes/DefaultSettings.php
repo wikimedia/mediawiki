@@ -68,6 +68,7 @@ $wgShowIPinHeader	= true; # For non-logged in users
 # Translation using MediaWiki: namespace
 # Not recommended unless memcached is installed
 $wgUseDatabaseMessages = false;
+$wgMsgCacheExpiry	= 86400;
 
 $wgExtraSubtitle	= "";
 $wgSiteSupportPage	= "";

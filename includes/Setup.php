@@ -22,8 +22,6 @@ wfProfileIn( $fname );
 global $wgUseDynamicDates;
 wfProfileIn( "$fname-includes" );
 
-# Only files which are used on every invocation should be included here
-# Otherwise, include them conditionally [TS]
 include_once( "GlobalFunctions.php" );
 include_once( "Namespace.php" );
 include_once( "Skin.php" );
@@ -37,12 +35,15 @@ include_once( "MemCachedClient.inc.php" );
 include_once( "Block.php" );
 include_once( "SearchEngine.php" );
 include_once( "DifferenceEngine.php" );
+include_once( "MessageCache.php" );
 
 wfProfileOut( "$fname-includes" );
 wfProfileIn( "$fname-memcached" );
 global $wgUser, $wgLang, $wgOut, $wgTitle;
 global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
 global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
+global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
+global $wgMsgCacheExpiry, $wgDBname;
 
 class MemCachedClientforWiki extends MemCachedClient {
 	function _debug( $text ) {
@@ -67,6 +68,8 @@ wfProfileOut( "$fname-memcached" );
 wfProfileIn( "$fname-misc" );
 
 include_once( "Language.php" );
+
+$wgMessageCache = new MessageCache( $wgUseMemCached, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname );
 
 $wgOut = new OutputPage();
 wfDebug( "\n\n" );
