@@ -112,7 +112,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1024) Fix link to high-res image version on Image: pages
 * (bug 1016) Fix handling of lines omitting Image: in a <gallery> tag
 * security fix for image galleries
-
+* (bug 1039) Avoid error message in certain message cache failure modes
 
 === Caveats ===
 

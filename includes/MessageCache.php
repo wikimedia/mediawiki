@@ -230,7 +230,7 @@ class MessageCache
 			}
 
 			# Try the cache
-			if( $this->mUseCache && $this->mCache && array_key_exists( $title, $this->mCache ) ) {
+			if( $this->mUseCache && is_array( $this->mCache ) && array_key_exists( $title, $this->mCache ) ) {
 				$message = $this->mCache[$title];
 			}
 
