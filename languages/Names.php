@@ -21,8 +21,8 @@
 	'bh' => '&#2349;&#2379;&#2332;&#2346;&#2369;&#2352;&#2368;',	# Bihara
 	'bi' => 'Bislama',		# Bislama
 	'bm' => 'Bamanankan',	# Bambara
-	'bn' => '&#2476;&#2494;&#2434;&#2482;&#2494; - (Bangla)',	# Bengali
-	'bo' => 'Bod skad',		# Tibetan
+	'bn' => '&#2476;&#2494;&#2434;&#2482;&#2494;',	# Bengali
+	'bo' => '&#3926;&#3964;&#3921;&#3851;&#3937;&#3954;&#3906;',	# Tibetan
 	'br' => 'Brezhoneg',	# Breton
 	'bs' => 'Bosanski',		# Bosnian
 	'ca' => 'Catal&agrave;',	# Catalan
@@ -40,8 +40,8 @@
 	'da' => 'Dansk',		# Danish
 	'de' => 'Deutsch',		# German
 	'dk' => 'Dansk', 		# Unused code currently redirecting to Danish, 'da' is correct for the language
-	'dv' => 'Dhivehi',		# Dhivehi
-	'dz' => 'Dzongkha',		# Bhutani
+	'dv' => '&#1920;&#1960;&#1924;&#1958;&#1936;&#1968;',		# Dhivehi
+	'dz' => '&#3911;&#3964;&#3908;&#3851;&#3905;',		# Bhutani
 	'ee' => '&#400;&#651;&#603;',	# Ewe
 	'el' => '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;',	# Greek
 	'en' => 'English',		# English
@@ -70,7 +70,7 @@
 	'hi' => '&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;',	# Hindi
 	'ho' => 'Hiri Motu',	# Hiri Motu
 	'hr' => 'Hrvatski',		# Croatian
-	'ht' => 'Ayisyen',		# Haitian, common/popular form is Krey&#242;l
+	'ht' => 'Kr&#232;yol ayisyen',		# Haitian, common/popular form is Krey&#242;l
 	'hu' => 'Magyar',		# Hungarian
 	'hy' => '&#1344;&#1377;&#1397;&#1381;&#1408;&#1381;&#1398;',	# Armenian
 	'hz' => 'Otsiherero',	# Herero
@@ -78,7 +78,7 @@
 	'id' => 'Bahasa Indonesia',	# Indonesian
 	'ie' => 'Interlingue',	# Interlingue (Occidental)
 	'ig' => 'Igbo',			# Igbo
-	'ii' => 'Yi',			# Sichuan Yi (FIXME!)
+	'ii' => '&#41351;&#41561;',	# Sichuan Yi
 	'ik' => 'I&ntilde;upiak',	# Inupiak
 	'io' => 'Ido',			# Ido
 	'is' => '&Iacute;slenska',	# Icelandic
@@ -105,9 +105,9 @@
 	'la' => 'Latina',		# Latin
 	'lb' => 'L&euml;tzebuergesch',	# Luxemburguish
 	'lg' => 'Luganda',		# Ganda
-	'li' => 'Limburgs',		# Limburgian
+	'li' => 'L&#232;mburgs',	# Limburgian
 	'ln' => 'Lingala',		# Lingala
-	'lo' => 'Pha xa lao',	# Laotian
+	'lo' => '&#3749;&#3762;&#3751;',# Laotian
 	'lt' => 'Lietuvi&#371;',	# Lithuanian
 	'lv' => 'Latvie&scaron;u',	# Latvian
 	'mg' => 'Malagasy',		# Malagasy
@@ -128,7 +128,7 @@
 	'nb' => 'Norsk (bokm&aring;l)',		# Norwegian (Bokmal)
 	'nds' => 'Plattd&uuml;&uuml;tsch',	# Low German ''or'' Low Saxon
 	'ne' => '&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;',	# Nepali
-	'ng' => 'Ndonga',		# Ndonga, (FIXME!)
+	'ng' => 'Oshiwambo',		# Ndonga
 	'nl' => 'Nederlands',	# Dutch
 	'nn' => 'Norsk (nynorsk)'	,	# Norwegian (Nynorsk)
 	'no' => 'Norsk',		# Norwegian
@@ -137,9 +137,9 @@
 	'ny' => 'Chi-Chewa',	# Chichewa
 	'oc' => 'Occitan',		# Occitan
 	'om' => 'Oromoo', 		# Oromo
-	'or' => 'Oriya',		# Oriya, (FIXME!)
+	'or' => '&#2835;&#2908;&#2879;&#2822;',		# Oriya
 	'os' => '&#1048;&#1088;&#1086;&#1085;&#1072;&#1091;', # Ossetic
-	'pa' => '&#2602;&#2588;&#2622;&#2604;&#2624;',	# Punjabi
+	'pa' => '&#2602;&#2672;&#2588;&#2622;&#2604;&#2624;', # Punjabi
 	'pi' => '&#2346;&#2366;&#2367;&#2356;',	# Pali
 	'pl' => 'Polski',		# Polish
 	'ps' => '&#1662;&#1690;&#1578;&#1608;',	# Pashto
@@ -158,7 +158,7 @@
 	'se' => 'S&aacute;megiella',	# Northern Sami
 	'sg' => 'S&#228;ng&#246;',		# Sango, possible alternative is Sangho
 #	'sh'	=> '&#1057;&#1088;&#1087;&#1089;&#1082;&#1086;&#1093;&#1088;&#1074;&#1072;&#1090;&#1089;&#1082;&#1080; (Srbskohrvatski)', ## Serbocroatian -- Obsolete
-	'si' => 'Simhala',	# Sinhalese
+	'si' => '&#3523;&#3538;&#3458;&#3524;&#3517;',	# Sinhalese
 	'simple' => 'Simple English',	# Simple English
 	'sk' => 'Sloven&#269;ina',	# Slovak
 	'sl' => 'Sloven&scaron;&#269;ina',	# Slovenian
@@ -176,7 +176,7 @@
 	'te' => '&#3108;&#3142;&#3122;&#3137;&#3095;&#3137;',	# Telugu
 	'tg' => '&#1058;&#1086;&#1207;&#1080;&#1082;&#1251;',	# Tajik
 	'th' => '&#3652;&#3607;&#3618;',	# Thai
-	'ti' => 'Tigrinya',		# Tigrinya, (FIXME!)
+	'ti' => '&#4725;&#4877;&#4653;&#4763;',		# Tigrinya
 	'tk' => '&#1578;&#1585;&#1603;&#1605;&#1606; / &#1058;&#1091;&#1088;&#1082;&#1084;&#1077;&#1085;',	# Turkmen
 	'tl' => 'Tagalog',		# Tagalog (Filipino)
 	#'tlh' => 'tlhIngan-Hol',	# Klingon - no interlanguage links allowed
@@ -195,7 +195,7 @@
 	'uk' => '&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;',	# Ukrainian
 	'ur' => '&#1575;&#1585;&#1583;&#1608;',	# Urdu
 	'uz' => '&#1038;&#1079;&#1073;&#1077;&#1082;',	# Uzbek
-	've' => 'Venda',		# Venda
+	've' => 'Tshivenda',		# Venda
 	'vi' => 'Ti&#7871;ng Vi&#7879;t',	# Vietnamese
 	'vo' => 'Volap&uuml;k',	# Volapük
 	'wa' => 'Walon',		# Walloon
