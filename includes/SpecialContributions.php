@@ -42,8 +42,9 @@ function wfSpecialContributions( $par = "" )
 		$userCond = "=" . $id;
 	}
 	$talk = $nt->getTalkPage();
-	if( $talk )
+	if( $talk ) {
 		$ul .= " (" . $sk->makeLinkObj( $talk, $wgLang->getNsText(Namespace::getTalk(0)) ) . ")";
+	}
 
 	if ( $target == 'newbies' ) {
 		# View the contributions of all recently created accounts
@@ -147,10 +148,14 @@ function wfSpecialContributions( $par = "" )
 	$wgOut->addHTML( "</ul>\n" );
 
 	# Validations
-	$val = new Validation ;
-	$val = $val->countUserValidations ( $id ) ;
-	$val = wfMsg ( 'val_user_validations', $val ) ;
-	$wgOut->addHTML( $val );
+	global $wgUseValidation;
+	if( $wgUseValidation ) {
+		require_once( 'SpecialValidate.php' );
+		$val = new Validation ;
+		$val = $val->countUserValidations ( $id ) ;
+		$val = wfMsg ( 'val_user_validations', $val ) ;
+		$wgOut->addHTML( $val );
+	}
 }
 
 
