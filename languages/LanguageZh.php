@@ -1,9 +1,31 @@
 <?php
-require_once( "includes/ZhClient.php" );
 require_once( "LanguageZh_cn.php");
 require_once( "LanguageZh_tw.php");
 require_once( "LanguageZh_sg.php");
 require_once( "LanguageZh_hk.php");
+
+/*
+   hook to refresh the cache of conversion tables when 
+   MediaWiki:zhconversiontable* is updated
+*/
+function zhOnArticleSaveComplete($article, $user, $text, $summary, $isminor, $iswatch, $section) {
+	$titleobj = $article->getTitle();
+	if($titleobj->getNamespace() == NS_MEDIAWIKI) { 
+		global $wgContLang; // should be an LanguageZh.
+		if(get_class($wgContLang) != 'languagezh')	
+			return true;
+
+		$title = $titleobj->getDBkey();
+		$t = explode('/', $title, 2);
+		if( $t[0] == 'Zhconversiontable' ) {
+			if(!in_array($t[1], array('zh-cn', 'zh-tw', 'zh-sg', 'zh-hk')))
+				return true;
+			$wgContLang->reloadTables();			
+		}
+	}
+}
+
+$wgHooks['ArticleSaveComplete'][] = 'zhOnArticleSaveComplete';
 
 /* class that handles both Traditional and Simplified Chinese
    right now it only distinguish zh_cn and zh_tw (actuall, zh_cn and
@@ -12,21 +34,84 @@ require_once( "LanguageZh_hk.php");
 class LanguageZh extends LanguageZh_cn {
 	
 	var $mZhLanguageCode=false;
-	var $mZhClient=false;	
+	var $mTables=false; //the mapping tables
+	var $mTablesLoaded = false;
+	var $mCacheKey;
 	function LanguageZh() {
-		global $wgUseZhdaemon, $wgZhdaemonHost, $wgZhdaemonPort;
-		global $wgDisableLangConversion, $wgUser;
+		global $wgDBname;
+		$this->mCacheKey = $wgDBname . ":zhtables";
+	}
 
-		if($wgUseZhdaemon) {
-			$this->mZhClient=new ZhClient($wgZhdaemonHost, $wgZhdaemonPort);
-			if(!$this->mZhClient->isconnected())
-				$this->mZhClient = false;
+	function reloadTables() {
+		global $wgMemc;
+		$wgMemc->delete($this->mCacheKey);
+		$this->mTablesLoaded=false;
+		$this->loadTables();
+	}
+
+	// load conversion tables either from the cache or the disk
+	function loadTables() {
+		global $wgMemc;
+		if( $this->mTablesLoaded )
+			return;
+		$this->mTablesLoaded = true;
+		$this->mTables = $wgMemc->get( $this->mCacheKey );
+		if( empty( $this->mTables ) ) {
+			global $wgMessageCache;
+			require( "includes/ZhConversion.php" );
+			$this->mTables = array();
+			$this->mTables['zh-cn'] = $zh2CN;
+			$this->mTables['zh-tw'] = $zh2TW;
+			$this->mTables['zh-sg'] = $zh2SG;
+			$this->mTables['zh-hk'] = $zh2HK;
+			if( is_object( $wgMessageCache ) ){
+				$cached = $this->parseCachedTable( $wgMessageCache->get( 'zhconversiontable/zh-cn', true, true, true ) );
+				$this->mTables['zh-cn'] = array_merge($this->mTables['zh-cn'], $cached);
+
+				$cached = $this->parseCachedTable( $wgMessageCache->get( 'zhconversiontable/zh-tw', true, true, true ) );
+				$this->mTables['zh-tw'] = array_merge($this->mTables['zh-tw'], $cached);
+
+				$cached = $this->parseCachedTable( $wgMessageCache->get( 'zhconversiontable/zh-sg', true, true, true ) );
+				$this->mTables['zh-sg'] = array_merge($this->mTables['zh-sg'], $cached);
+
+				$cached = $this->parseCachedTable( $wgMessageCache->get( 'zhconversiontable/zh-hk', true, true, true ) );
+				$this->mTables['zh-hk'] = array_merge($this->mTables['zh-hk'], $cached);
+			}
+			$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
 		}
-		// fallback to fake client
-		if($this->mZhClient == false)
-			$this->mZhClient=new ZhClientFake();
 	}
 	
+	/*
+		parse the conversion table stored in the cache 
+
+		the table should be in the following format:
+
+			-{
+				word => word ;
+				word => word ;
+				...
+			-}
+	*/
+	function parseCachedTable($txt) {
+		/* $txt should be enclosed by -{ and }- */
+		$a = explode( '-{', $txt);
+		if( count($a) < 2)
+			return array();
+		array_shift($a);
+		$b = explode( '}-', $a[0]);
+
+		$stripped = str_replace(array('*','#'), '', $b[0]);
+		$table = explode( ';', $stripped );
+		$ret = array();
+		foreach( $table as $t ) {
+			$m = explode( '=>', $t );
+			if( count( $m ) != 2)
+				continue;
+			$ret[trim($m[0])] = trim($m[1]);
+		}
+		return $ret;
+	}
+
 	/* 
 		get preferred language variants.
 	*/
@@ -74,24 +159,37 @@ class LanguageZh extends LanguageZh_cn {
 	}
 
 	function autoConvert($text, $toVariant=false) {
+		$fname="LanguageZh::autoConvert";
+		wfProfileIn( $fname );
+
+		if(!$this->mTablesLoaded)
+			$this->loadTables();
+
 		if(!$toVariant) 
 			$toVariant = $this->getPreferredVariant();
-		if($toVariant == 'zh')
-			return $text;
-		$fname="zhautoConvert";
-		wfProfileIn( $fname );
-		$t = $this->mZhClient->convert($text, $toVariant);
+		$ret = '';
+		switch( $toVariant ) {
+			case 'zh-cn': $ret = strtr($text, $this->mTables['zh-cn']);break;
+			case 'zh-tw': $ret = strtr($text, $this->mTables['zh-tw']);break;
+			case 'zh-sg': $ret = strtr(strtr($text, $this->mTables['zh-cn']), $this->mTables['zh-sg']);break;
+			case 'zh-hk': $ret = strtr(strtr($text, $this->mTables['zh-tw']), $this->mTables['zh-hk']);break;
+			default: $ret = $text;
+		}
 		wfProfileOut( $fname );
-		return $t;
+		return $ret;
 	}
     
 	function autoConvertToAllVariants($text) {
-		$fname="zhautoConvertToAll";
+		$fname="LanguageZh::autoConvertToAllVariants";
 		wfProfileIn( $fname );
-		$ret = $this->mZhClient->convertToAllVariants($text);
-		if($ret == false) {//fall back...
-			$ret = ZhClientFake::autoConvertToAllVariants($text);
-		}
+		if( !$this->mTablesLoaded )
+			$this->loadTables();
+
+		$ret = array();
+		$ret['zh-cn'] = strtr($text, $this->mTables['zh-cn']);
+		$ret['zh-tw'] = strtr($text, $this->mTables['zh-tw']);
+		$ret['zh-sg'] = strtr(strtr($text, $this->mTables['zh-cn']), $this->mTables['zh-sg']);
+		$ret['zh-hk'] = strtr(strtr($text, $this->mTables['zh-tw']), $this->mTables['zh-hk']);
 		wfProfileOut( $fname );
 		return $ret;
 	}
@@ -201,16 +299,23 @@ class LanguageZh extends LanguageZh_cn {
 		return false;
 	}
 
-	// word segmentation through ZhClient
+	// word segmentation
 	function stripForSearch( $string ) {
-		$fname="zhsegment";
+		$fname="LanguageZh::stripForSearch";
 		wfProfileIn( $fname );
+
+		// eventually this should be a word segmentation
+		// for now just treat each character as a word
+		$t = preg_replace(
+				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
+				"' ' .\"$1\"", $string);
+
         //always convert to zh-cn before indexing. it should be
 		//better to use zh-cn for search, since conversion from 
 		//Traditional to Simplified is less ambiguous than the
 		//other way around
-		$t = $this->mZhClient->segment($string);
-        $t = $this->autoConvert($t, 'zh-cn');
+
+		$t = $this->autoConvert($t, 'zh-cn');
 		$t = LanguageUtf8::stripForSearch( $t );
 		wfProfileOut( $fname );
 		return $t;

@@ -215,7 +215,7 @@ class MessageCache
 		$this->mMemc->delete( $lockKey );
 	}
 
-	function get( $key, $useDB, $forcontent=true ) {
+	function get( $key, $useDB, $forcontent=true, $isfullkey = false ) {
 		global $wgContLanguageCode;
 		if( $forcontent ) {
 			global $wgContLang;
@@ -238,7 +238,7 @@ class MessageCache
 		$message = false;
 		if( !$this->mDisable && $useDB ) {
 			$title = $lang->ucfirst( $key );
-			if( $langcode != $wgContLanguageCode ) {
+			if(!$isfullkey && ($langcode != $wgContLanguageCode) ) {
 				$title .= '/' . $langcode;
 			}
 
