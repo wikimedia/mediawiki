@@ -36,7 +36,7 @@ class MovePageForm {
 
 		$wgOut->setPagetitle( wfMsg( "movepage" ) );
 
-		if ( empty( $this->oldTitle ) ) {
+		if ( $this->oldTitle == "" ) {
 			$wgOut->errorpage( "notargettitle", "notargettext" );
 			return;
 		}

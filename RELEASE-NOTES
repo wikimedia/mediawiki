@@ -16,6 +16,7 @@ Changes from 1.3.7:
 * Correct template include path which broke some but not all Windows installs
 * Fix edit form submission problem with some PHP versions
 * Disallow unreachable titles with %XX hex codes
+* Allow page [[0]] to be renamed
 
 == Version 1.3.7, 2004-10-18 ==
 Changes from 1.3.6:
