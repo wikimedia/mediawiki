@@ -1,6 +1,9 @@
 <?php
 /**
- * See skin.doc
+ * MonoBook nouveau
+ *
+ * Translated from gwicke's previous TAL template version to remove
+ * dependency on PHPTAL.
  *
  * @todo document
  * @package MediaWiki
@@ -11,8 +14,7 @@
 require_once('includes/SkinTemplate.php');
 
 /**
- * Inherit everything from SkinPHPTal
- * This is a dummy skin as MonoBook is the default PHPTal skin.
+ * Inherit main code from SkinTemplate, set the CSS and template filter.
  * @todo document
  * @package MediaWiki
  * @subpackage Skins
@@ -27,6 +29,16 @@ class SkinMonoBook extends SkinTemplate {
 	}
 }
 
+/**
+ * Template filter callback for MonoBook skin.
+ * Takes an associative array of data set from a SkinTemplate-based
+ * class, and a wrapper for MediaWiki's localization database, and
+ * outputs a formatted page.
+ *
+ * @param array $data
+ * @param MediaWiki_I18N $translator
+ * @access private
+ */
 function MonoBookTemplate( &$data, &$translator ) {
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo htmlspecialchars($data['lang']) ?>" lang="<?php echo htmlspecialchars($data['lang']) ?>" dir="<?php echo htmlspecialchars($data['dir']) ?>">

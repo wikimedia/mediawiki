@@ -15,7 +15,8 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
- * Generic PHPTal (http://phptal.sourceforge.net/) skin
+ * Template-filler skin base class
+ * Formerly generic PHPTal (http://phptal.sourceforge.net/) skin
  * Based on Brion's smarty skin
  * Copyright (C) Gabriel Wicke -- http://www.aulinx.de/
  *
@@ -23,6 +24,7 @@
  * to the computations individual esi snippets need. Most importantly no body
  * parsing for most of those of course.
  * 
+ * PHPTAL support has been moved to a subclass in SkinPHPTal.php
  * Set this in LocalSettings to enable phptal:
  * set_include_path(get_include_path() . ":" . $IP.'/PHPTAL-NP-0.7.0/libs');
  * $wgUsePHPTal = true;
@@ -40,11 +42,12 @@ if( defined( 'MEDIAWIKI' ) ) {
 require_once 'GlobalFunctions.php';
 
 /**
- * @todo document
+ * Wrapper object for MediaWiki's localization functions,
+ * to be passed to the template engine.
+ *
+ * @access private
  * @package MediaWiki
  */
-// PHPTAL 1.0 no longer has the PHPTAL_I18N stub class.
-//class MediaWiki_I18N extends PHPTAL_I18N {
 class MediaWiki_I18N {
 	var $_context = array();
 
@@ -68,6 +71,7 @@ class MediaWiki_I18N {
 		return $value;
 	}
 }
+
 /**
  *
  * @package MediaWiki
@@ -90,14 +94,23 @@ class SkinTemplate extends Skin {
 	var $stylename;
 
 	/**
-	 * PHPTal template to be used.
+	 * For QuickTemplate, name or reference to callback function which
+	 * will actually fill the template.
+	 *
+	 * In PHPTal mode, name of PHPTal template to be used.
 	 * '.pt' will be automaticly added to it on PHPTAL object creation
 	 */
 	var $template;
 
 	/**#@-*/
 
-	/** */
+	/**
+	 * Setup the base parameters...
+	 * Child classes should override this to set the name,
+	 * style subdirectory, and template filler callback.
+	 *
+	 * @param OutputPage $out
+	 */
 	function initPage( &$out ) {
 		parent::initPage( $out );
 		$this->skinname  = 'monobook';
@@ -106,17 +119,25 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * If using PHPTAL 0.7 on PHP 4.x, return a PHPTAL template object.
-	 * If using PHPTAL 1.0 on PHP 5.x, return a bridge object.
+	 * Create the template engine object; we feed it a bunch of data
+	 * and eventually it spits out some HTML. Should have interface
+	 * roughly equivalent to PHPTAL 0.7.
+	 *
+	 * @param string $callback (or file)
+	 * @param string $repository subdirectory where we keep template files
+	 * @param string $cache_dir
 	 * @return object
 	 * @access private
 	 */
-	function &setupTemplate( $file, $repository=false, $cache_dir=false ) {
-		return new QuickTemplate( $file );
+	function &setupTemplate( $callback, $repository=false, $cache_dir=false ) {
+		return new QuickTemplate( $callback );
 	}
 	
 	/**
 	 * initialize various variables and generate the template
+	 *
+	 * @param OutputPage $out
+	 * @access public
 	 */
 	function outputPage( &$out ) {
 		global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgContLang, $wgOut;
@@ -324,6 +345,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * Output the string, or print error message if it's
 	 * an error object of the appropriate type.
+	 * For the base class, assume strings all around.
 	 *
 	 * @param mixed $str
 	 * @access private
@@ -334,6 +356,8 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * build array of urls for personal toolbar
+	 * @return array
+	 * @access private
 	 */
 	function buildPersonalUrls() {
 		/* set up the default links for the personal toolbar */
@@ -398,6 +422,8 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * an array of edit links by default used for the tabs
+	 * @return array
+	 * @access private
 	 */
 	function buildContentActionUrls () {
 		global $wgTitle, $wgUser, $wgOut, $wgRequest, $wgUseValidation;
@@ -553,6 +579,8 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * build array of global navigation links
+	 * @return array
+	 * @access private
 	 */ 
 	function buildNavigationUrls () {
 		global $wgNavigationLinks;
@@ -571,6 +599,8 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * build array of common navigation links
+	 * @return array
+	 * @access private
 	 */
 	function buildNavUrls () {
 		global $wgTitle, $wgUser, $wgRequest;
@@ -631,6 +661,8 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * Generate strings used for xml 'id' names
+	 * @return string
+	 * @private
 	 */
 	function getNameSpaceKey () {
 		global $wgTitle;
@@ -671,9 +703,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * @access private
 	 */
-	
-	function setupUserCss () {
-		
+	function setupUserCss() {
 		global $wgRequest, $wgTitle, $wgAllowUserCss, $wgUseSiteCss;
 
 		$sitecss = "";
@@ -713,7 +743,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * @access private
 	 */
-	function setupUserJs () {
+	function setupUserJs() {
 		global $wgRequest, $wgTitle, $wgAllowUserJs;
 		$action = $wgRequest->getText('action');
 
@@ -729,6 +759,7 @@ class SkinTemplate extends Skin {
 	
 	/**
 	 * returns css with user-specific options
+	 * @access public
 	 */
 	function getUserStylesheet() {
 		global $wgUser, $wgRequest, $wgTitle, $wgContLang, $wgSquidMaxage, $wgStylePath;
@@ -755,7 +786,7 @@ class SkinTemplate extends Skin {
 	}
 	
 	/**
-	 *
+	 * @access public
 	 */
 	function getUserJs() {
 		global $wgUser, $wgStylePath;
@@ -767,9 +798,13 @@ class SkinTemplate extends Skin {
 	}
 }
 
+/**
+ * Generic wrapper for template functions, with interface
+ * compatible with what we use of PHPTAL 0.7.
+ */
 class QuickTemplate {
-	function QuickTemplate( $file, $repository=false, $cache_dir=false ) {
-		$this->outputCallback = $file;
+	function QuickTemplate( $callback, $repository=false, $cache_dir=false ) {
+		$this->outputCallback = $callback;
 		$this->data = array();
 		$this->translator = null;
 	}
