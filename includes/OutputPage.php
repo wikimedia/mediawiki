@@ -149,20 +149,27 @@ class OutputPage {
 	function checkLastModified ( $timestamp )
 	{
 		global $wgLang, $wgCachePages, $wgUser;
-		if( !$wgCachePages ) return;
-		if( preg_match( '/MSIE ([1-4]|5\.0)/', $_SERVER["HTTP_USER_AGENT"] ) ) {
-			# IE 5.0 has probs with our caching
-			#wfDebug( "-- bad client, not caching\n", false );
+		if( !$wgCachePages ) {
+			wfDebug( "CACHE DISABLED\n", false );
 			return;
 		}
-		if( $wgUser->getOption( "nocache" ) ) return;
+		if( preg_match( '/MSIE ([1-4]|5\.0)/', $_SERVER["HTTP_USER_AGENT"] ) ) {
+			# IE 5.0 has probs with our caching
+			wfDebug( "-- bad client, not caching\n", false );
+			return;
+		}
+		if( $wgUser->getOption( "nocache" ) ) {
+			wfDebug( "USER DISABLED CACHE\n", false );
+			return;
+		}
 
+		$lastmod = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix(
+			max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
+		
 		if( $_SERVER["HTTP_IF_MODIFIED_SINCE"] != "" ) {
 			$ismodsince = wfUnix2Timestamp( strtotime( $_SERVER["HTTP_IF_MODIFIED_SINCE"] ) );
-			#wfDebug( "-- client send If-Modified-Since: " . $_SERVER["HTTP_IF_MODIFIED_SINCE"] . "\n", false );
-			$lastmod = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix(
-				max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
-			#wfDebug( "--  we might send Last-Modified : $lastmod\n", false ); 
+			wfDebug( "-- client send If-Modified-Since: " . $_SERVER["HTTP_IF_MODIFIED_SINCE"] . "\n", false );
+			wfDebug( "--  we might send Last-Modified : $lastmod\n", false ); 
 		
 			if( ($ismodsince >= $timestamp ) and $wgUser->validateCache( $ismodsince ) ) {
 				# Make sure you're in a place you can leave when you call us!
@@ -170,12 +177,15 @@ class OutputPage {
 				header( "Expires: Mon, 15 Jan 2001 00:00:00 GMT" ); # Cachers always validate the page!
 				header( "Cache-Control: private, must-revalidate, max-age=0" );
 				header( "Last-Modified: {$lastmod}" );			
-				#wfDebug( "CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
+				wfDebug( "CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
 				exit;
 			} else {
-				#wfDebug( "READY  client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
+				wfDebug( "READY  client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
 				$this->mLastModified = $lastmod;
 			}
+		} else {
+			wfDebug( "We're confused.\n", false );
+			$this->mLastModified = $lastmod;
 		}
 	}
 
@@ -310,9 +320,11 @@ class OutputPage {
 
 	function sendCacheControl() {
 		if( $this->mLastModified != "" ) {
+			wfDebug( "** private caching; {$this->mLastModified} **\n", false );
 			header( "Cache-Control: private, must-revalidate, max-age=0" );
 			header( "Last-modified: {$this->mLastModified}" );
 		} else {
+			wfDebug( "** no caching **\n", false );
 			header( "Cache-Control: no-cache" ); # Experimental - see below
 			header( "Pragma: no-cache" );
 			header( "Last-modified: " . gmdate( "D, j M Y H:i:s" ) . " GMT" );
