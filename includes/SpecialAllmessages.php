@@ -10,7 +10,6 @@
  */
 function wfSpecialAllmessages() {
 	global $wgOut, $wgAllMessagesEn, $wgRequest, $wgMessageCache, $wgTitle;
-	global $wgDoZhMessageConversion, $wgLanguageCode;
 
 	$fname = "wfSpecialAllMessages";
 	wfProfileIn( $fname );
@@ -26,17 +25,11 @@ function wfSpecialAllmessages() {
 	$messages = array();
 	$wgMessageCache->disableTransform();
 
-    if(strtolower($wgLanguageCode) == "zh")
-        $wgDoZhMessageConversion = false;
-
 	foreach ( $sortedArray as $key => $enMsg ) {
 		$messages[$key]['enmsg'] = $enMsg;
-		$messages[$key]['statmsg'] = wfMsgNoDb( $key );
-		$messages[$key]['msg'] = wfMsg ( $key );
+		$messages[$key]['statmsg'] = wfMsgNoDb( $key, false );
+		$messages[$key]['msg'] = wfMsg ( $key, false );
 	}
-
-    if(strtolower($wgLanguageCode) == "zh")
-        $wgDoZhMessageConversion = true;
 
 	$wgMessageCache->enableTransform();
 	wfProfileOut( "$fname-setup" );
