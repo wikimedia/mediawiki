@@ -63,8 +63,8 @@ class Profiler
 	}
 
 	function profileOut( $functionname ) {
-		$time = microtime();
 		$memory = memory_get_usage();
+		$time = microtime();
 		global $wgDebugProfiling, $wgDebugFunctionEntry;
 
 		if ( $wgDebugFunctionEntry && function_exists( 'wfDebug' ) ) {
@@ -130,13 +130,17 @@ class Profiler
 			$end = explode( ' ', $entry[4]);
 			$end = (float)$end[0] + (float)$end[1];
 			$elapsed = $end - $start;
+			$memory = $entry[5] - $entry[3];
+			
 			if( $fname == '-overhead-total' ) {
 				$overheadTotal[] = $elapsed;
+				$overheadMemory[] = $memory;
 			} elseif( $fname == '-overhead-internal' ) {
 				$overheadInternal[] = $elapsed;
 			}
 		}
 		$overheadTotal = array_sum( $overheadTotal ) / count( $overheadInternal );
+		$overheadMemory = array_sum( $overheadMemory ) / count( $overheadInternal );
 		$overheadInternal = array_sum( $overheadInternal ) / count( $overheadInternal );
 		
 		# Collate
@@ -156,6 +160,7 @@ class Profiler
 				# Adjust for profiling overhead
 				$elapsed -= $overheadInternal;
 				$elapsed -= ($subcalls * $overheadTotal);
+				$memory -= ($subcalls * $overheadMemory);
 			}
 			
 			if ( !array_key_exists( $fname, $this->mCollated ) ) {
@@ -164,7 +169,7 @@ class Profiler
 				$this->mMemory[$fname] = 0;
 				$this->mMin[$fname] = 1 << 24;
 				$this->mMax[$fname] = 0;
-				$this->mOverhead[$fname] = $subcalls;
+				$this->mOverhead[$fname] = 0;
 			}
 
 			$this->mCollated[$fname] += $elapsed;
