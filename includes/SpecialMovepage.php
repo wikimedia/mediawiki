@@ -271,6 +271,7 @@ class MovePageForm {
 		$fname = "MovePageForm::moveOverExistingRedirect";
 		$mt = wfMsg( "movedto" );
 
+		# Change the name of the target page:
         $now = wfTimestampNow();
 		$sql = "UPDATE cur SET cur_touched='{$now}'," .
 		  "cur_namespace={$this->nns},cur_title='{$this->ndt}' " .
@@ -278,7 +279,9 @@ class MovePageForm {
 		wfQuery( $sql, DB_WRITE, $fname );
 		$wgLinkCache->clearLink( $this->nft );
 
-		$sql = "UPDATE cur SET cur_touched='{$now}'," .
+		# Repurpose the old redirect. We don't save it to history since
+		# by definition if we've got here it's rather uninteresting.
+		$sql = "UPDATE cur SET cur_touched='{$now}',cur_timestamp='{$now}'," .
 		  "cur_namespace={$this->ons},cur_title='{$this->odt}'," .
 		  "cur_text='#REDIRECT [[{$this->nft}]]\n',cur_comment='" .
 		  "{$mt} \\\"{$this->nft}\\\"',cur_user='" .  $wgUser->getID() .
@@ -288,6 +291,8 @@ class MovePageForm {
 		wfQuery( $sql, DB_WRITE, $fname );
 		$wgLinkCache->clearLink( $this->oft );
 
+		# Fix the redundant names for the past revisions of the target page.
+		# The redirect should have no old revisions.
 		$sql = "UPDATE old SET " .
 		  "old_namespace={$this->nns},old_title='{$this->ndt}' WHERE " .
 		  "old_namespace={$this->ons} AND old_title='{$this->odt}'";
@@ -298,6 +303,8 @@ class MovePageForm {
 			"rc_cur_id={$this->oldid}";
         wfQuery( $sql, DB_WRITE, $fname );
 
+		# FIXME: Here we mark the redirect as 'new' in recentchanges,
+		# but as old in cur. Is there a reason for this?
 		$sql = "INSERT INTO recentchanges (rc_namespace,rc_title,
 			rc_comment,rc_user,rc_user_text,rc_timestamp,
 			rc_cur_time,rc_cur_id,rc_new)
