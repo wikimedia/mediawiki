@@ -500,6 +500,8 @@
 					return wfMsg('watch');
 				case 'unwatch':
 					return wfMsg('unwatch');
+				case 'submit':
+					return wfMsg('preview');
 				default:
 					return '';
 			}
