@@ -109,7 +109,6 @@ $wgAllMessagesLa = array(
 
 # User Toggles
 
-"tog-hover"		=> "Monstrare capsam impensam super wikinexos",
 "tog-underline" => "Subscribere nexi",
 "tog-highlightbroken" => "Formare nexos fractos <a href=\"\" class=\"new\">sici</a> (alioqui: sic<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Saepire capites",

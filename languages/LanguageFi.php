@@ -70,7 +70,6 @@
 'special_version_prefix'    => ' ',
 'special_version_postfix'   => ' ',
 # User preference toggles
-'tog-hover'                 => 'Näytä vinkki wikilinkkien päällä',
 'tog-underline'             => 'Alleviivaa linkit',
 'tog-highlightbroken'       => 'Näytä linkit puuttuville sivuille <a href="" class="new">näin </a> (vaihtoehtoisesti näin: <a href="" class="internal">?</a>).',
 'tog-justify'               => 'Tasaa kappaleet',

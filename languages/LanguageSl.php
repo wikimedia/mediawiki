@@ -129,7 +129,6 @@ require_once( "LanguageUtf8.php" );
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"		   => "Prikaži lebdečo škatlo nad wikijevimi povezavami",
 "tog-underline"        => "Podčrtane povezave",
 "tog-highlightbroken"  => "Oblikuj prekinjene povezave <a href=\"\" class=\"new\">kot</a> (druga možnost: kot<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	   => "Poravnaj odstavke",

@@ -132,7 +132,6 @@ require_once( "LanguageUtf8.php" );
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"		=> "滑过Wiki链接时显示注释", /* "Show hoverbox over wiki links",*/
 "tog-underline" => "下划链接", /* "Underline links", */
 /* "Format broken links <a href=\"\" class=\"new\">like this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 "tog-highlightbroken" => "毁坏链接格式<a href=\"\" class=\"new\">像这样</a> (或者像这个<a href=\"\" class=\"internal\">?</a>)",

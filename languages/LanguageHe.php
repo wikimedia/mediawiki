@@ -118,7 +118,6 @@ $wgExtraNamespaces = array(
 # User Toggles
 #
 
-"tog-hover"		=> "הצג טיפ כאשר מצביעים על קישור",
 "tog-underline" => "סמן קישורים בקו תחתי",
 "tog-highlightbroken" => "סמן קישורים לדפים שלא נכתבו באדום (או: סימן שאלה)",
 "tog-justify"	=> "ישר פסקאות",

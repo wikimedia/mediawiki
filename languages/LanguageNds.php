@@ -154,7 +154,6 @@ if($wgMetaNamespace === FALSE)
 'special_version_prefix'      => '',
 'special_version_postfix'     => '',
 # Schalter för de Brukers
-'tog-hover'                    => 'Henwies över interne Verwies',
 'tog-underline'               => 'Verwies ünnerstrieken',
 'tog-highlightbroken'         => 'Verwies op leddige Sieten hervörheven',
 'tog-justify'                 => 'Text as Blocksatz',

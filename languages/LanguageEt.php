@@ -219,7 +219,6 @@ $wgNamespaceNamesEt = array(
 ====Linkimisseaded====
  <nowiki>
 */
-"tog-hover"   => "Näita tekstimulli siselinkide peale",
 "tog-underline" => "Lingid alla kriipsutada",
 "tog-highlightbroken" => "Vorminda lingirikked<a href=\"\" class=\"new\">nii</a> (alternatiiv: nii<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify" => "Lõikude rööpjoondus",

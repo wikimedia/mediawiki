@@ -109,7 +109,6 @@
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"		=> "Wys drywende inligting oor wiki skakels.",
 "tog-underline" => "Onderstreep skakels.",
 "tog-highlightbroken" => "Wys gebroke skakels <a href=\"\" class=\"new\">so</a> of so<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Justeer paragrawe.",

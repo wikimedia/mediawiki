@@ -66,7 +66,6 @@ require_once( "LanguageUtf8.php" );
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"		=> "Показувати випливаючу підказку над зв'язками вікі",
 "tog-underline" => "Підкреслювати зв'язки",
 "tog-highlightbroken" => "Форматувати неіснуючі зв'язки <a href=\"\" class=\"new\">ось так</a> (Альтернатива: ось так<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Вирівнювати параграфи",

@@ -113,7 +113,6 @@ require_once("LanguageUtf8.php");
 
 # User Toggles
 
-"tog-hover"		=> "Trego kutine fluturuse sipër lidhjeve wiki",
 "tog-underline" => "Nënvizo lidhjet",
 "tog-highlightbroken" => "Trego lidhjet e faqeve bosh <a href=\"\" class=\"new\">kështu </a> (ndryshe: kështu<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Rregullim i kryeradhës",

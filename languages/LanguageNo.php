@@ -111,7 +111,6 @@
 
 # User Toggles
 
-"tog-hover"		=> "Vis svevetekst over wiki-lenker",
 "tog-underline" => "Strek under lenker",
 "tog-highlightbroken" => "Røde lenker til tomme sider",
 "tog-justify"	=> "Blokkjusterte avsnitt",

@@ -95,7 +95,6 @@ require_once( "LanguageUtf8.php" );
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"		=> "Mostra etichetta sui wiki-links",
 "tog-underline" => "Sottolinea links",
 "tog-highlightbroken" => "Evidenzia i links che puntano ad articoli ancora da scrivere",
 "tog-justify"	=> "Paragrafo: giustificato",

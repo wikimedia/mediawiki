@@ -47,7 +47,6 @@ $wgNamespaceNamesLi = array(
 );
 
 /* private */ $wgUserTogglesLi = array(
- "hover"  => "Wikilinks in zwevend tekstvak toene",
  "underline" => "Links ongerstjreipe",
  "highlightbroken" => "Links noa lege pagina's loate oplichte",
  "justify" => "Paragrafen oetvullen",

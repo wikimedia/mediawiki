@@ -126,7 +126,6 @@ default:
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover" => "Pokazuj okienko podpowiedzi ponad linkami",
 "tog-underline" => "Podkreślenie linków",
 "tog-highlightbroken" => "<a href=\"\" class=\"new\">Podświetl</a> linki pustych stron (alternatywa: znak zapytania<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify" => "Wyrównuj tekst artykułu w kolumnie",

@@ -103,7 +103,6 @@ require_once( "LanguageUtf8.php" );
 
 # User Toggles
 
-"tog-hover"  => "Mostrar info-botiòlas sus ligams wiki",
 "tog-underline" => "Ligams solinhats",
 "tog-highlightbroken" => "Ligams sus los subjèctes non creats aparéisson en rog",
 "tog-justify" => "Paragrafes justificats",

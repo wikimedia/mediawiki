@@ -121,7 +121,6 @@ require_once( "LanguageUtf8.php" );
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"		=> "Racsegnes cwand on passe so les loyéns",
 "tog-underline" => "Sorlignî les loyéns",
 "tog-highlightbroken" => "Håyner les vudes loyéns <a href=\"\" class=\"new\">come çouchal</a><br /> &nbsp;&nbsp;&nbsp; (oudonbén: come çouchal<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Djustifyî les hagnons",

@@ -687,7 +687,6 @@ síðan vefurinn var settur up. Það reiknast sem '''$5''' breytingar
 'tog-editwidth' => "Innsláttarsvæði hefur fulla breidd",
 'tog-hideminor' => "Fela minniháttar breytingar",
 'tog-highlightbroken' => "Sýna brotna hlekki <a href=\"\" class=\"new\">svona</a> (annars: svona<a href=\"\" class=\"internal\">?</a>).",
-'tog-hover' => "Sýna hjálpartexta á wiki hlekkjum",
 'tog-justify' => "Jafna málsgreinar",
 'tog-minordefault' => "Láta breytingar vera sjálfgefnar sem minniháttar",
 'tog-nocache' => "Slökkva á flýtivistun síðna",

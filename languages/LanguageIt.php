@@ -113,7 +113,6 @@
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"		=> "Mostra etichetta sui wiki-links",
 "tog-underline" => "Sottolinea links",
 "tog-highlightbroken" => "Evidenzia i links che puntano ad<br />articoli ancora da scrivere",
 "tog-justify"	=> "Paragrafo: giustificato",

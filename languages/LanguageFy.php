@@ -118,7 +118,6 @@ if($wgMetaNamespace === FALSE)
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"		=> "Wiki-keppelings yn sweeffak sjen litte",
 "tog-underline"		=> "Keppelings ûnderstreekje",
 "tog-highlightbroken"	=> "Keppelings nei lege siden ta <a href=\"\" class=\"new\">read</a> (oars mei in fraachteken<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"		=> "Paragrafen útfolje",

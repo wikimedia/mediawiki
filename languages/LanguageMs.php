@@ -116,7 +116,6 @@
 
 # User Toggles
 
-"tog-hover"		=> "Papar hoverbox atas pautan", #"Show hoverbox over links",
 "tog-underline" => "Pautan bergaris", #"Underline links",
 "tog-highlightbroken" => "Pautan bertanda ke topik kosong",
 #TODO: <a href=\"\" class=\"new\">like this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>)

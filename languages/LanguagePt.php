@@ -33,7 +33,7 @@
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgDefaultUserOptionsPt = array(
-    "quickbar" => 1, "underline" => 1, "hover" => 1,
+    "quickbar" => 1, "underline" => 1,
     "cols" => 80, "rows" => 25, "searchlimit" => 20,
     "contextlines" => 5, "contextchars" => 50,
     "skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
@@ -130,7 +130,6 @@
 'special_version_prefix' => '',
 'special_version_postfix' => '',
 # User Toggles
-"tog-hover"     => "Mostra caixa flutante sobre os links wiki",
 "tog-underline" => "Sublinha links",
 "tog-highlightbroken" => "Formata links quebrados <a href=\"\" class=\"new\"> como isto </a> (alternative: como isto<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"   => "Justifica parágrafos",
