@@ -12,8 +12,19 @@ class DifferenceEngine {
 
 	function DifferenceEngine( $old, $new, $rcid = 0 )
 	{
-		$this->mOldid = $old;
-		$this->mNewid = $new;
+		global $wgTitle;
+		if ( 'prev' == $new ) {
+			$this->mNewid = intval($old);
+			$dbr =& wfGetDB( DB_SLAVE );
+			$this->mOldid = $dbr->selectField( 'old', 'old_id',  
+				"old_title='" . $wgTitle->getDBkey() . "'" .
+				' AND old_namespace=' . $wgTitle->getNamespace() .
+				" AND old_id<{$this->mNewid} order by old_id desc" );
+
+		} else {
+			$this->mOldid = intval($old);
+			$this->mNewid = intval($new);
+		}
 		$this->mRcidMarkPatrolled = intval($rcid);  # force it to be an integer
 	}
 
