@@ -439,11 +439,11 @@ class Database {
 			if ( $mode == LIST_AND || $mode == LIST_SET ) {
 				$list .= "$field=";
 			}
-			if ( !is_numeric( $value ) ) {
-				$list .= "'" . wfStrencode( $value ) . "'";
-			} else {
-				$list .= $value;
-			}
+			# This will also quote numeric values. This should be harmless,
+			# and protects against weird problems that occur when they really
+			# _are_ strings such as article titles and string->number->string
+			# conversion is not 1:1.
+			$list .= "'" . wfStrencode( $value ) . "'";
 		}
 		return $list;
 	}
