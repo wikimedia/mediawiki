@@ -589,7 +589,7 @@ class Article {
 				$this->mTitle->getNamespace() == Namespace::getUser() && 
 				preg_match('/\\/[\\w]+\\.(css|js)$/', $this->mTitle->getDBkey())
 			) {
-				$wgOut->addWikiText( wfMsg('usercssjs'));
+				$wgOut->addWikiText( wfMsg('clearyourcache'));
 				$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
 			} else if ( $pcache ) {
 				$wgOut->addWikiText( $text, true, $this );

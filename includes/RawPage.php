@@ -8,28 +8,54 @@
 class RawPage {
 
 	function RawPage( $article ) {
-		global $wgRequest, $wgInputEncoding;
+		global $wgRequest, $wgInputEncoding, $wgSquidMaxage;
 		$allowedCTypes = array('text/x-wiki', 'text/javascript', 'text/css', 'application/x-zope-edit');
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
+			
 		$ctype = $wgRequest->getText( 'ctype' );
+		$charset = $wgRequest->getText( 'charset' );
+		$smaxage = $wgRequest->getText( 'smaxage' );
+		$maxage = $wgRequest->getText( 'maxage' );
+		$this->mOldId = $wgRequest->getInt( 'oldid' );
+		# special case for 'generated' raw things: user css/js
+		$gen = $wgRequest->getText( 'gen' );
+		if($gen == 'css') {
+			$this->mGen = $gen;
+			if($smaxage == '') $smaxage = $wgSquidMaxage;
+			if(empty($ctype)) $ctype = 'text/css';
+		} else if ($gen == 'js') {
+			$this->mGen = $gen;
+			if($smaxage == '') $smaxage = $wgSquidMaxage;
+			if(empty($ctype)) $ctype = 'text/javascript';
+		} else {
+			$this->mGen = false;
+		}
+		$this->mCharset = !empty($charset) ? $charset : $wgInputEncoding;
+		$this->mSmaxage = ($smaxage != '') ? $smaxage : 0;
+		$this->mMaxage = ($maxage != '') ? $maxage : 86400;
 		if(empty($ctype) or !in_array($ctype, $allowedCTypes)) {
 			$this->mContentType = 'text/x-wiki';
 		} else {
 			$this->mContentType = $ctype;
 		}
-			
-		$charset = $wgRequest->getText( 'charset' );
-		$this->mCharset = !empty($charset) ? $charset : $wgInputEncoding;
-		$smaxage = $wgRequest->getText( 'smaxage' );
-		$this->mSmaxage = !empty($smaxage) ? $smaxage : 0;
-		$this->mOldId = $wgRequest->getInt( 'oldid' );
 	}
 	function view() {
+		global $wgUser, $wgOut;
 		header( "Content-type: ".$this->mContentType.'; charset='.$this->mCharset );
 		# allow the client to cache this for 24 hours
-		header( 'Cache-Control: s-maxage='.$this->mSmaxage.', max-age=86400' );
-		echo $this->getrawtext();
+		header( 'Cache-Control: s-maxage='.$this->mSmaxage.', max-age='.$this->mMaxage );
+		if($this->mGen) {
+			$sk = $wgUser->getSkin();
+			$sk->initPage($wgOut);
+			if($this->mGen == 'css') {
+				echo $sk->getUserStylesheet();
+			} else if($this->mGen == 'js') {
+				echo $sk->getUserJs();
+			}
+		} else {
+			echo $this->getrawtext();
+		}
 		wfAbruptExit();
 	}
 	

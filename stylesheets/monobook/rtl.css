@@ -102,7 +102,7 @@ li#ca-talk {
     margin-right: auto;
     margin-left: 1.6em;
 }
-li#ca-watch {
+li#ca-watch,li#ca-unwatch {
     margin-right: 1.6em !important;
 }
 

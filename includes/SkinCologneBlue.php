@@ -7,6 +7,9 @@ class SkinCologneBlue extends Skin {
 	{
 		return "cologneblue.css";
 	}
+	function getSkinName() {
+		return "cologneblue";
+	}
 
 	function doBeforeContent()
 	{
@@ -81,8 +84,7 @@ class SkinCologneBlue extends Skin {
 	function doGetUserStyles()
 	{
 		global $wgUser, $wgOut, $wgStyleSheetPath;
-
-		$s = parent::doGetUserStyles();
+		$s = '';
 		$qb = $this->qbSetting();
 
 		if ( 2 == $qb ) { # Right
@@ -97,6 +99,7 @@ class SkinCologneBlue extends Skin {
 			  "#article { margin-left:148px; margin-right: 4px; } \n" .
 			  "body>#quickbar { position:fixed; left:4px; top:4px; overflow:auto ;bottom:4px;} \n"; # Hides from IE
 		}
+		$s .= parent::doGetUserStyles();
 		return $s;
 	}
 	function sysLinks()
