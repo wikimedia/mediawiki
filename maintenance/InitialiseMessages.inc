@@ -157,7 +157,7 @@ $message
 
 	$navText .= "</table>";
 	$title = wfMsgNoDB( "allmessages" );
-	$titleObj = Title::makeTitle( NS_MEDIAWIKI, $title );
+	$titleObj = Title::makeTitle( NS_WIKIPEDIA, $title );
 	$wgArticle = new Article( $titleObj );
 	$wgOut->disable();
 	$wgUser = User::newFromName( 'MediaWiki default' );
