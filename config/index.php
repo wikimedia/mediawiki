@@ -387,11 +387,14 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 		/* Write out the config file now that all is well */
 		print "<p>Creating LocalSettings.php...</p>\n\n";
+		$localSettings =  "<" . "?php\n$local\n?" . ">";
 		$f = fopen( "LocalSettings.php", "xt" );
 		if( $f == false ) {
-			dieout( "Couldn't write out LocalSettings.php. Check that the directory permissions are correct and that there isn't already a fiel of that name here." );
+			dieout( "Couldn't write out LocalSettings.php. Check that the directory permissions are correct and that there isn't already a file of that name here...</p>\n" .
+			"<p>Here's the file that would have been written, try to paste it into place manually:</p>\n" .
+			"<pre>\n" . htmlspecialchars( $localSettings ) . "</pre>\n" );
 		}
-		fwrite( $f, "<" . "?php\n$local\n?" . ">" );
+		fwrite( $f, $localSettings );
 		fclose( $f );
 		
 		print "<p>Success! Move the LocalSettings.php file into the parent directory, then follow
