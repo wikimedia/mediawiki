@@ -283,6 +283,7 @@ class DifferenceEngine {
 			$this->oldRev =& Revision::newFromId( $this->mOldid );
 		} else {
 			$this->oldRev =& $this->newRev->getPrevious();
+			$this->mOldid = $this->oldRev->getId();
 		}
 			
 		$this->mOldPage = $this->oldRev->getTitle();
