@@ -30,10 +30,9 @@ class Title {
 #   Construction
 #----------------------------------------------------------------------------
 
-	/* private */ function Title()
-	{
+	/* private */ function Title() {
 		$this->mInterwiki = $this->mUrlform =
-		$this->mTextform = $this->mDbkeyform = "";
+		$this->mTextform = $this->mDbkeyform = '';
 		$this->mArticleID = -1;
 		$this->mNamespace = 0;
 		$this->mRestrictionsLoaded = false;
@@ -42,8 +41,7 @@ class Title {
 	}
 
 	# From a prefixed DB key
-	/* static */ function newFromDBkey( $key )
-	{
+	/* static */ function newFromDBkey( $key ) {
 		$t = new Title();
 		$t->mDbkeyform = $key;
 		if( $t->secureAndSplit() )
@@ -53,13 +51,12 @@ class Title {
 	}
 	
 	# From text, such as what you would find in a link
-	/* static */ function newFromText( $text, $defaultNamespace = 0 )
-	{	
-		$fname = "Title::newFromText";
+	/* static */ function newFromText( $text, $defaultNamespace = 0 ) {	
+		$fname = 'Title::newFromText';
 		wfProfileIn( $fname );
 
 		if( is_object( $text ) ) {
-			wfDebugDieBacktrace( "Called with object instead of string." );
+			wfDebugDieBacktrace( 'Called with object instead of string.' );
 		}
 		global $wgInputEncoding;
 		$text = do_html_entity_decode( $text, ENT_COMPAT, $wgInputEncoding );
@@ -71,7 +68,7 @@ class Title {
 		# $text = urldecode( $text );
 
 		$t = new Title();
-		$t->mDbkeyform = str_replace( " ", "_", $text );
+		$t->mDbkeyform = str_replace( ' ', '_', $text );
 		$t->mDefaultNamespace = $defaultNamespace;
 
 		wfProfileOut( $fname );
@@ -86,28 +83,27 @@ class Title {
 	}
 
 	# From a URL-encoded title
-	/* static */ function newFromURL( $url )
-	{
+	/* static */ function newFromURL( $url ) {
 		global $wgLang, $wgServer;
 		$t = new Title();
 		
 		# For compatibility with old buggy URLs. "+" is not valid in titles,
 		# but some URLs used it as a space replacement and they still come
 		# from some external search tools.
-		$s = str_replace( "+", " ", $url );
+		$s = str_replace( '+', ' ', $url );
 		
 		# For links that came from outside, check for alternate/legacy
 		# character encoding.
 		wfDebug( "Servr: $wgServer\n" );
-		if( empty( $_SERVER["HTTP_REFERER"] ) ||
-			strncmp($wgServer, $_SERVER["HTTP_REFERER"], strlen( $wgServer ) ) ) 
+		if( empty( $_SERVER['HTTP_REFERER'] ) ||
+			strncmp($wgServer, $_SERVER['HTTP_REFERER'], strlen( $wgServer ) ) ) 
 		{
 			$s = $wgLang->checkTitleEncoding( $s );
 		} else {
 			wfDebug( "Refer: {$_SERVER['HTTP_REFERER']}\n" );
 		}
 		
-		$t->mDbkeyform = str_replace( " ", "_", $s );
+		$t->mDbkeyform = str_replace( ' ', '_', $s );
 		if( $t->secureAndSplit() ) {
 			# check that length of title is < cur_title size
 			$dbr =& wfGetDB( DB_SLAVE );
@@ -125,12 +121,11 @@ class Title {
 	# From a cur_id
 	# This is inefficiently implemented, the cur row is requested but not 
 	# used for anything else
-	/* static */ function newFromID( $id ) 
-	{
-		$fname = "Title::newFromID";
+	/* static */ function newFromID( $id ) {
+		$fname = 'Title::newFromID';
 		$dbr =& wfGetDB( DB_SLAVE );
-		$row = $dbr->getArray( "cur", array( "cur_namespace", "cur_title" ), 
-			array( "cur_id" => $id ), $fname );
+		$row = $dbr->getArray( 'cur', array( 'cur_namespace', 'cur_title' ), 
+			array( 'cur_id' => $id ), $fname );
 		if ( $row !== false ) {
 			$title = Title::makeTitle( $row->cur_namespace, $row->cur_title );
 		} else {
@@ -140,8 +135,7 @@ class Title {
 	}
 	
 	# From a namespace index and a DB key
-	/* static */ function makeTitle( $ns, $title )
-	{
+	/* static */ function makeTitle( $ns, $title ) {
 		$t = new Title();
 		$t->mDbkeyform = Title::makeName( $ns, $title );
 		if( $t->secureAndSplit() ) {
@@ -151,9 +145,8 @@ class Title {
 		}
 	}
 
-	/* static */ function newMainPage()
-	{
-		return Title::newFromText( wfMsg( "mainpage" ) );
+	/* static */ function newMainPage() {
+		return Title::newFromText( wfMsg( 'mainpage' ) );
 	}
 
 	# Get the title object for a redirect
@@ -174,8 +167,7 @@ class Title {
 #----------------------------------------------------------------------------
 
 	# Get the prefixed DB key associated with an ID
-	/* static */ function nameOf( $id )
-	{
+	/* static */ function nameOf( $id ) {
 		$fname = 'Title::nameOf';
 		$dbr =& wfGetDB( DB_SLAVE );
 		
@@ -187,8 +179,7 @@ class Title {
 	}
 
 	# Get a regex character class describing the legal characters in a link
-	/* static */ function legalChars()
-	{
+	/* static */ function legalChars() {
 		# Missing characters:
 		#  * []|# Needed for link syntax
 		#  * % and + are corrupted by Apache when they appear in the path
@@ -211,20 +202,19 @@ class Title {
 	
 	# Returns a stripped-down a title string ready for the search index
 	# Takes a namespace index and a text-form main part
-	/* static */ function indexTitle( $ns, $title )
-	{
+	/* static */ function indexTitle( $ns, $title ) {
 		global $wgDBminWordLen, $wgLang;
 
-		$lc = SearchEngine::legalSearchChars() . "&#;";
+		$lc = SearchEngine::legalSearchChars() . '&#;';
 		$t = $wgLang->stripForSearch( $title );
-		$t = preg_replace( "/[^{$lc}]+/", " ", $t );
+		$t = preg_replace( "/[^{$lc}]+/", ' ', $t );
 		$t = strtolower( $t );
 
 		# Handle 's, s'
 		$t = preg_replace( "/([{$lc}]+)'s( |$)/", "\\1 \\1's ", $t );
 		$t = preg_replace( "/([{$lc}]+)s'( |$)/", "\\1s ", $t );
 
-		$t = preg_replace( "/\\s+/", " ", $t );
+		$t = preg_replace( "/\\s+/", ' ', $t );
 
 		if ( $ns == Namespace::getImage() ) {
 			$t = preg_replace( "/ (png|gif|jpg|jpeg|ogg)$/", "", $t );
@@ -233,8 +223,7 @@ class Title {
 	}
 	
 	# Make a prefixed DB key from a DB key and a namespace index
-	/* static */ function makeName( $ns, $title )
-	{
+	/* static */ function makeName( $ns, $title ) {
 		global $wgLang;
 
 		$n = $wgLang->getNsText( $ns );
@@ -245,11 +234,10 @@ class Title {
 	# Arguably static
 	# Returns the URL associated with an interwiki prefix
 	# The URL contains $1, which is replaced by the title
-	function getInterwikiLink( $key )
-	{	
+	function getInterwikiLink( $key ) {	
 		global $wgMemc, $wgDBname, $wgInterwikiExpiry, $wgTitleInterwikiCache;
 		$fname = 'Title::getInterwikiLink';
-		$k = "$wgDBname:interwiki:$key";
+		$k = $wgDBname.':interwiki:'.$key;
 
 		if( array_key_exists( $k, $wgTitleInterwikiCache ) )
 			return $wgTitleInterwikiCache[$k]->iw_url;
@@ -279,10 +267,10 @@ class Title {
 	function isLocal() {
 		global $wgTitleInterwikiCache, $wgDBname;
 
-		if ( $this->mInterwiki != "" ) {
+		if ( $this->mInterwiki != '' ) {
 			# Make sure key is loaded into cache
 			$this->getInterwikiLink( $this->mInterwiki );
-			$k = "$wgDBname:interwiki:" . $this->mInterwiki;
+			$k = $wgDBname.':interwiki:' . $this->mInterwiki;
 			return (bool)($wgTitleInterwikiCache[$k]->iw_local);
 		} else {
 			return true;
@@ -291,11 +279,11 @@ class Title {
 
 	# Update the cur_touched field for an array of title objects
 	# Inefficient unless the IDs are already loaded into the link cache
-	/* static */ function touchArray( $titles, $timestamp = "" ) {
+	/* static */ function touchArray( $titles, $timestamp = '' ) {
 		if ( count( $titles ) == 0 ) {
 			return;
 		}
-		if ( $timestamp == "" ) {
+		if ( $timestamp == '' ) {
 			$timestamp = wfTimestampNow();
 		}
 		$dbw =& wfGetDB( DB_MASTER );
@@ -305,14 +293,14 @@ class Title {
 
 		foreach ( $titles as $title ) {
 			if ( ! $first ) { 
-				$sql .= ","; 
+				$sql .= ','; 
 			}
 			$first = false;
 			$sql .= $title->getArticleID();
 		}
-		$sql .= ")";
+		$sql .= ')';
 		if ( ! $first ) {
-			$dbw->query( $sql, "Title::touchArray" );
+			$dbw->query( $sql, 'Title::touchArray' );
 		}
 	}
 
@@ -333,26 +321,23 @@ class Title {
 	function getDefaultNamespace() { return $this->mDefaultNamespace; }
 
 	# Get title for search index
-	function getIndexTitle()
-	{
+	function getIndexTitle() {
 		return Title::indexTitle( $this->mNamespace, $this->mTextform );
 	}
 
 	# Get prefixed title with underscores
-	function getPrefixedDBkey()
-	{
+	function getPrefixedDBkey() {
 		$s = $this->prefix( $this->mDbkeyform );
-		$s = str_replace( " ", "_", $s );
+		$s = str_replace( ' ', '_', $s );
 		return $s;
 	}
 
 	# Get prefixed title with spaces
 	# This is the form usually used for display
-	function getPrefixedText()
-	{
+	function getPrefixedText() {
 		if ( empty( $this->mPrefixedText ) ) {
 			$s = $this->prefix( $this->mTextform );
-			$s = str_replace( "_", " ", $s );
+			$s = str_replace( '_', ' ', $s );
 			$this->mPrefixedText = $s;
 		}
 		return $this->mPrefixedText;
@@ -368,38 +353,36 @@ class Title {
 	}
 
 	# Get a URL-encoded title (not an actual URL) including interwiki
-	function getPrefixedURL()
-	{
+	function getPrefixedURL() {
 		$s = $this->prefix( $this->mDbkeyform );
-		$s = str_replace( " ", "_", $s );
+		$s = str_replace( ' ', '_', $s );
 
 		$s = wfUrlencode ( $s ) ;
 		
 		# Cleaning up URL to make it look nice -- is this safe?
-		$s = preg_replace( "/%3[Aa]/", ":", $s );
-		$s = preg_replace( "/%2[Ff]/", "/", $s );
-		$s = str_replace( "%28", "(", $s );
-		$s = str_replace( "%29", ")", $s );
+		$s = preg_replace( '/%3[Aa]/', ':', $s );
+		$s = preg_replace( '/%2[Ff]/', '/', $s );
+		$s = str_replace( '%28', '(', $s );
+		$s = str_replace( '%29', ')', $s );
 
 		return $s;
 	}
 
 	# Get a real URL referring to this title, with interwiki link and fragment
-	function getFullURL( $query = "" )
-	{
+	function getFullURL( $query = '' ) {
 		global $wgLang, $wgArticlePath, $wgServer, $wgScript;
 
-		if ( "" == $this->mInterwiki ) {
+		if ( '' == $this->mInterwiki ) {
 			$p = $wgArticlePath;
 			return $wgServer . $this->getLocalUrl( $query );
 		} else {
 			$baseUrl = $this->getInterwikiLink( $this->mInterwiki );
 			$namespace = $wgLang->getNsText( $this->mNamespace );
-			if ( "" != $namespace ) {
+			if ( '' != $namespace ) {
 				# Can this actually happen? Interwikis shouldn't be parsed.
-				$namepace .= ":";
+				$namepace .= ':';
 			}
-			$url = str_replace( "$1", $namespace . $this->mUrlform, $baseUrl );
+			$url = str_replace( '$1', $namespace . $this->mUrlform, $baseUrl );
 			if ( '' != $this->mFragment ) {
 				$url .= '#' . $this->mFragment;
 			}
@@ -415,11 +398,10 @@ class Title {
 	#   query except a title
 	
 	function getURL() {
-		die( "Call to obsolete obsolete function Title::getURL()" );
+		die( 'Call to obsolete obsolete function Title::getURL()' );
 	}
 	
-	function getLocalURL( $query = "" )
-	{
+	function getLocalURL( $query = '' ) {
 		global $wgLang, $wgArticlePath, $wgScript;
 		
 		if ( $this->isExternal() ) {
@@ -427,13 +409,13 @@ class Title {
 		}
 
 		$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
-		if ( $query == "" ) {
-			$url = str_replace( "$1", $dbkey, $wgArticlePath );
+		if ( $query == '' ) {
+			$url = str_replace( '$1', $dbkey, $wgArticlePath );
 		} else {
-			if ( $query == "-" ) {
-				$query = "";
+			if ( $query == '-' ) {
+				$query = '';
 			}
-			if ( $wgScript != "" ) {
+			if ( $wgScript != '' ) {
 				$url = "{$wgScript}?title={$dbkey}&{$query}";
 			} else {
 				# Top level wiki
@@ -443,15 +425,15 @@ class Title {
 		return $url;
 	}
 	
-	function escapeLocalURL( $query = "" ) {
+	function escapeLocalURL( $query = '' ) {
 		return htmlspecialchars( $this->getLocalURL( $query ) );
 	}
 	
-	function escapeFullURL( $query = "" ) {
+	function escapeFullURL( $query = '' ) {
 		return htmlspecialchars( $this->getFullURL( $query ) );
 	}
 	
-	function getInternalURL( $query = "" ) {
+	function getInternalURL( $query = '' ) {
 		# Used in various Squid-related code, in case we have a different
 		# internal hostname for the server than the exposed one.
 		global $wgInternalServer;
@@ -459,32 +441,29 @@ class Title {
 	}
 
 	# Get the edit URL, or a null string if it is an interwiki link
-	function getEditURL()
-	{
+	function getEditURL() {
 		global $wgServer, $wgScript;
 
-		if ( "" != $this->mInterwiki ) { return ""; }
-		$s = $this->getLocalURL( "action=edit" );
+		if ( '' != $this->mInterwiki ) { return ''; }
+		$s = $this->getLocalURL( 'action=edit' );
 
 		return $s;
 	}
 	
 	# Get HTML-escaped displayable text
 	# For the title field in <a> tags
-	function getEscapedText()
-	{
+	function getEscapedText() {
 		return htmlspecialchars( $this->getPrefixedText() );
 	}
 	
 	# Is the title interwiki?
-	function isExternal() { return ( "" != $this->mInterwiki ); }
+	function isExternal() { return ( '' != $this->mInterwiki ); }
 
 	# Does the title correspond to a protected article?
-	function isProtected()
-	{
+	function isProtected() {
 		if ( -1 == $this->mNamespace ) { return true; }
 		$a = $this->getRestrictions();
-		if ( in_array( "sysop", $a ) ) { return true; }
+		if ( in_array( 'sysop', $a ) ) { return true; }
 		return false;
 	}
 
@@ -492,21 +471,19 @@ class Title {
 	# LogPage.php? This used to be used for suppressing diff links in recent 
 	# changes, but now that's done by setting a flag in the recentchanges 
 	# table. Hence, this probably is no longer used.
-	function isLog()
-	{
+	function isLog() {
 		if ( $this->mNamespace != Namespace::getWikipedia() ) {
 			return false;
 		}
-		if ( ( 0 == strcmp( wfMsg( "uploadlogpage" ), $this->mDbkeyform ) ) ||
-		  ( 0 == strcmp( wfMsg( "dellogpage" ), $this->mDbkeyform ) ) ) {
+		if ( ( 0 == strcmp( wfMsg( 'uploadlogpage' ), $this->mDbkeyform ) ) ||
+		  ( 0 == strcmp( wfMsg( 'dellogpage' ), $this->mDbkeyform ) ) ) {
 			return true;
 		}
 		return false;
 	}
 
 	# Is $wgUser is watching this page?
-	function userIsWatching()
-	{
+	function userIsWatching() {
 		global $wgUser;
 
 		if ( -1 == $this->mNamespace ) { return false; }
@@ -516,13 +493,12 @@ class Title {
 	}
 
 	# Can $wgUser edit this page?
-	function userCanEdit()
-	{
+	function userCanEdit() {
 		global $wgUser;
 		if ( -1 == $this->mNamespace ) { return false; }
 		if ( NS_MEDIAWIKI == $this->mNamespace && !$wgUser->isSysop() ) { return false; }
 		# if ( 0 == $this->getArticleID() ) { return false; }
-		if ( $this->mDbkeyform == "_" ) { return false; }
+		if ( $this->mDbkeyform == '_' ) { return false; }
 		# protect global styles and js
 		if ( NS_MEDIAWIKI == $this->mNamespace 
 	             && preg_match("/\\.(css|js)$/", $this->mTextform )
@@ -535,11 +511,11 @@ class Title {
 		if( Namespace::getUser() == $this->mNamespace
 			and preg_match("/\\.(css|js)$/", $this->mTextform )
 			and !$wgUser->isSysop()
-			and !preg_match("/^".preg_quote($wgUser->getName(), '/')."/", $this->mTextform) )
+			and !preg_match('/^'.preg_quote($wgUser->getName(), '/').'/', $this->mTextform) )
 		{ return false; }
 		$ur = $wgUser->getRights();
 		foreach ( $this->getRestrictions() as $r ) {
-			if ( "" != $r && ( ! in_array( $r, $ur ) ) ) {
+			if ( '' != $r && ( ! in_array( $r, $ur ) ) ) {
 				return false;
 			}
 		}
@@ -576,19 +552,18 @@ class Title {
 		# protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
 		global $wgUser;
-		return ( $wgUser->isSysop() or preg_match("/^".preg_quote($wgUser->getName())."/", $this->mTextform) );
+		return ( $wgUser->isSysop() or preg_match('/^'.preg_quote($wgUser->getName()).'/', $this->mTextform) );
 	}
 
 	# Accessor/initialisation for mRestrictions
-	function getRestrictions()
-	{
+	function getRestrictions() {
 		$id = $this->getArticleID();
 		if ( 0 == $id ) { return array(); }
 
 		if ( ! $this->mRestrictionsLoaded ) {
 			$dbr =& wfGetDB( DB_SLAVE );
-			$res = $dbr->getField( "cur", "cur_restrictions", "cur_id=$id" );
-			$this->mRestrictions = explode( ",", trim( $res ) );
+			$res = $dbr->getField( 'cur', 'cur_restrictions', 'cur_id='.$id );
+			$this->mRestrictions = explode( ',', trim( $res ) );
 			$this->mRestrictionsLoaded = true;
 		}
 		return $this->mRestrictions;
@@ -606,8 +581,7 @@ class Title {
 
 	# Get the article ID from the link cache
 	# Used very heavily, e.g. in Parser::replaceInternalLinks()
-	function getArticleID()
-	{
+	function getArticleID() {
 		global $wgLinkCache;
 
 		if ( -1 != $this->mArticleID ) { return $this->mArticleID; }
@@ -618,8 +592,7 @@ class Title {
 	# This clears some fields in this object, and clears any associated keys in the
 	# "bad links" section of $wgLinkCache. This is called from Article::insertNewArticle()
 	# to allow loading of the new cur_id. It's also called from Article::doDeleteArticle()
-	function resetArticleID( $newid )
-	{
+	function resetArticleID( $newid ) {
 		global $wgLinkCache;
 		$wgLinkCache->clearBadLink( $this->getPrefixedDBkey() );
 
@@ -646,16 +619,15 @@ class Title {
 	}
 
 	# Prefixes some arbitrary text with the namespace or interwiki prefix of this object
-	/* private */ function prefix( $name )
-	{
+	/* private */ function prefix( $name ) {
 		global $wgLang;
 
-		$p = "";
-		if ( "" != $this->mInterwiki ) {
-			$p = $this->mInterwiki . ":";
+		$p = '';
+		if ( '' != $this->mInterwiki ) {
+			$p = $this->mInterwiki . ':';
 		}
 		if ( 0 != $this->mNamespace ) {
-			$p .= $wgLang->getNsText( $this->mNamespace ) . ":";
+			$p .= $wgLang->getNsText( $this->mNamespace ) . ':';
 		}
 		return $p . $name;
 	}
@@ -671,7 +643,7 @@ class Title {
 	/* private */ function secureAndSplit()
 	{
 		global $wgLang, $wgLocalInterwiki, $wgCapitalLinks;
-		$fname = "Title::secureAndSplit";
+		$fname = 'Title::secureAndSplit';
  		wfProfileIn( $fname );
 		
 		static $imgpre = false;
@@ -679,20 +651,20 @@ class Title {
 
 		# Initialisation
 		if ( $imgpre === false ) {
-			$imgpre = ":" . $wgLang->getNsText( Namespace::getImage() ) . ":";
+			$imgpre = ':' . $wgLang->getNsText( Namespace::getImage() ) . ":";
 			# % is needed as well
-			$rxTc = "/[^" . Title::legalChars() . "]/";
+			$rxTc = '/[^' . Title::legalChars() . ']/';
 		}
 
-		$this->mInterwiki = $this->mFragment = "";
+		$this->mInterwiki = $this->mFragment = '';
 		$this->mNamespace = $this->mDefaultNamespace; # Usually NS_MAIN
 
 		# Clean up whitespace
 		#
-		$t = preg_replace( "/[\\s_]+/", "_", $this->mDbkeyform );
+		$t = preg_replace( "/[\\s_]+/", '_', $this->mDbkeyform );
 		$t = preg_replace( '/^_*(.*?)_*$/', '$1', $t );
 
-		if ( "" == $t ) {
+		if ( '' == $t ) {
 			wfProfileOut( $fname );
 			return false;
 		}
@@ -706,7 +678,7 @@ class Title {
 		}
 
 		# Initial colon indicating main namespace
-		if ( ":" == $t{0} ) {
+		if ( ':' == $t{0} ) {
 			$r = substr( $t, 1 );
 			$this->mNamespace = NS_MAIN;
 		} else {
@@ -740,14 +712,14 @@ class Title {
 
 		# Redundant interwiki prefix to the local wiki
 		if ( 0 == strcmp( $this->mInterwiki, $wgLocalInterwiki ) ) {
-			$this->mInterwiki = "";
+			$this->mInterwiki = '';
 		}
 		# We already know that some pages won't be in the database!
 		#
-		if ( "" != $this->mInterwiki || -1 == $this->mNamespace ) {
+		if ( '' != $this->mInterwiki || -1 == $this->mNamespace ) {
 			$this->mArticleID = 0;
 		}
-		$f = strstr( $r, "#" );
+		$f = strstr( $r, '#' );
 		if ( false !== $f ) {
 			$this->mFragment = substr( $f, 1 );
 			$r = substr( $r, 0, strlen( $r ) - strlen( $f ) );
@@ -761,19 +733,19 @@ class Title {
 		}
 		
 		# "." and ".." conflict with the directories of those namesa
-		if ( strpos( $r, "." ) !== false &&
-		     ( $r === "." || $r === ".." ||
-		       strpos( $r, "./" ) === 0  ||
-		       strpos( $r, "../" ) === 0 ||
-		       strpos( $r, "/./" ) !== false ||
-		       strpos( $r, "/../" ) !== false ) )
+		if ( strpos( $r, '.' ) !== false &&
+		     ( $r === '.' || $r === '..' ||
+		       strpos( $r, './' ) === 0  ||
+		       strpos( $r, '../' ) === 0 ||
+		       strpos( $r, '/./' ) !== false ||
+		       strpos( $r, '/../' ) !== false ) )
 		{
 			wfProfileOut( $fname );
 			return false;
 		}
 
 		# Initial capital letter
-		if( $wgCapitalLinks && $this->mInterwiki == "") {
+		if( $wgCapitalLinks && $this->mInterwiki == '') {
 			$t = $wgLang->ucfirst( $r );
 		} else {
 			$t = $r;
@@ -783,7 +755,7 @@ class Title {
 		$this->mDbkeyform = $t;
 		$this->mUrlform = wfUrlencode( $t );
 		
-		$this->mTextform = str_replace( "_", " ", $t );
+		$this->mTextform = str_replace( '_', ' ', $t );
 		
 		wfProfileOut( $fname );
 		return true;
@@ -861,7 +833,7 @@ class Title {
 	function getSquidURLs() {
 		return array(
 			$this->getInternalURL(),
-			$this->getInternalURL( "action=history" )
+			$this->getInternalURL( 'action=history' )
 		);
 	}
 
@@ -874,28 +846,28 @@ class Title {
 	# auth indicates whether wgUser's permissions should be checked
 	function moveTo( &$nt, $auth = true ) {
 		if( !$this or !$nt ) {
-			return "badtitletext";
+			return 'badtitletext';
 		}
 
-		$fname = "Title::move";
+		$fname = 'Title::move';
 		$oldid = $this->getArticleID();
 		$newid = $nt->getArticleID();
 
 		if ( strlen( $nt->getDBkey() ) < 1 ) {
-			return "articleexists";
+			return 'articleexists';
 		}
 		if ( ( ! Namespace::isMovable( $this->getNamespace() ) ) ||
-			 ( "" == $this->getDBkey() ) ||
-			 ( "" != $this->getInterwiki() ) ||
+			 ( '' == $this->getDBkey() ) ||
+			 ( '' != $this->getInterwiki() ) ||
 			 ( !$oldid ) ||
 		     ( ! Namespace::isMovable( $nt->getNamespace() ) ) ||
-			 ( "" == $nt->getDBkey() ) ||
-			 ( "" != $nt->getInterwiki() ) ) {
-			return "badarticleerror";
+			 ( '' == $nt->getDBkey() ) ||
+			 ( '' != $nt->getInterwiki() ) ) {
+			return 'badarticleerror';
 		}
 
 		if ( $auth && ( !$this->userCanEdit() || !$nt->userCanEdit() ) ) {
-			return "protectedpage";
+			return 'protectedpage';
 		}
 		
 		# The move is allowed only if (1) the target doesn't exist, or
@@ -904,7 +876,7 @@ class Title {
 
 		if ( 0 != $newid ) { # Target exists; check for validity
 			if ( ! $this->isValidMoveTarget( $nt ) ) {
-				return "articleexists";
+				return 'articleexists';
 			}
 			$this->moveOverExistingRedirect( $nt );
 		} else { # Target didn't exist, do normal move.
@@ -941,10 +913,9 @@ class Title {
 	
 	# Move page to title which is presently a redirect to the source page
 	
-	/* private */ function moveOverExistingRedirect( &$nt )
-	{
+	/* private */ function moveOverExistingRedirect( &$nt ) {
 		global $wgUser, $wgLinkCache, $wgUseSquid, $wgMwRedir;
-		$fname = "Title::moveOverExistingRedirect";
+		$fname = 'Title::moveOverExistingRedirect';
 		$comment = wfMsg( "1movedto2", $this->getPrefixedText(), $nt->getPrefixedText() );
 		
         $now = wfTimestampNow();
@@ -969,7 +940,7 @@ class Title {
 		# Repurpose the old redirect. We don't save it to history since
 		# by definition if we've got here it's rather uninteresting.
 		
-		$redirectText = $wgMwRedir->getSynonym( 0 ) . " [[" . $nt->getPrefixedText() . "]]\n";
+		$redirectText = $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
 		$dbw->updateArray( 'cur',
 			/* SET */ array(
 				'cur_touched' => $now,
@@ -1030,7 +1001,7 @@ class Title {
 				if ( $first ) {
 					$first = false;
 				} else {
-					$sql .= ",";
+					$sql .= ',';
 				}
 				$id = $linkTitle->getArticleID();
 				$sql .= "($id,$newid)";
@@ -1041,7 +1012,7 @@ class Title {
 				if ( $first ) {
 					$first = false;
 				} else {
-					$sql .= ",";
+					$sql .= ',';
 				}
 				$id = $linkTitle->getArticleID();
 				$sql .= "($id, $oldid)";
@@ -1070,11 +1041,10 @@ class Title {
 	# Move page to non-existing title.
 	# Sets $newid to be the new article ID
 
-	/* private */ function moveToNewTitle( &$nt, &$newid )
-	{
+	/* private */ function moveToNewTitle( &$nt, &$newid ) {
 		global $wgUser, $wgLinkCache, $wgUseSquid;
-		$fname = "MovePageForm::moveToNewTitle";
-		$comment = wfMsg( "1movedto2", $this->getPrefixedText(), $nt->getPrefixedText() );
+		$fname = 'MovePageForm::moveToNewTitle';
+		$comment = wfMsg( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 
 		$now = wfTimestampNow();
 		$won = wfInvertTimestamp( $now );
@@ -1158,9 +1128,8 @@ class Title {
 
 	# Checks if $this can be moved to $nt
 	# Selects for update, so don't call it unless you mean business
-	function isValidMoveTarget( $nt )
-	{
-		$fname = "Title::isValidMoveTarget";
+	function isValidMoveTarget( $nt ) {
+		$fname = 'Title::isValidMoveTarget';
 		$dbw =& wfGetDB( DB_MASTER );
 
 		# Is it a redirect?
@@ -1248,8 +1217,7 @@ class Title {
 	
 	# Get categories to wich belong this title and return an array of
 	# categories names.
-	function getParentCategories( )
-	{
+	function getParentCategories( ) {
 		global $wgLang,$wgUser;
 		
 		$titlekey = $this->getArticleId();
@@ -1278,8 +1246,7 @@ class Title {
 	# will get the parents and grand-parents
 	# TODO : not sure what's happening when a loop happen like:
 	# 	Encyclopedia > Astronomy > Encyclopedia
-	function getAllParentCategories(&$stack)
-	{
+	function getAllParentCategories(&$stack) {
 		global $wgUser,$wgLang;
 		$result = '';
 		
