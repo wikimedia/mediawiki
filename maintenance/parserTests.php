@@ -157,6 +157,7 @@ class ParserTest {
 			'wgScript' => '/index.php',
 			'wgScriptPath' => '/',
 			'wgArticlePath' => '/wiki/$1',
+			'wgSitename' => 'MediaWiki',
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
