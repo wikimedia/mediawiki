@@ -252,23 +252,24 @@ require_once( 'languages/Language.php' );
 
 $wgContLangClass = 'Language' . str_replace( '-', '_', ucfirst( $wgContLanguageCode ) );
 
-$wgContLang = setupLangObj($wgContLangClass, $wgContLangClass);
- $n = get_class($wgContLang);
+$wgContLang = setupLangObj( $wgContLangClass, $wgContLangClass );
+$n = get_class($wgContLang);
 
 // set default user option from content language
-if(!$wgUser->mDataLoaded) { $wgUser->loadDefaultFromLanguage(); }
+if( !$wgUser->mDataLoaded ) {
+	$wgUser->loadDefaultFromLanguage();
+}
 
 // wgLanguageCode now specifically means the UI language
 $wgLanguageCode = $wgUser->getOption('language');
 
 $wgLangClass = 'Language'. str_replace( '-', '_', ucfirst( $wgLanguageCode ) );
 
-if($wgLangClass == $wgContLangClass ) {
+if( $wgLangClass == $wgContLangClass ) {
 	$wgLang = &$wgContLang;
-}
-else {
-	include_once("languages/$wgLangClass.php");
-	$wgLang = setupLangObj($wgLangClass, $wgLanguageCode);
+} else {
+	require_once("languages/$wgLangClass.php");
+	$wgLang = setupLangObj( $wgLangClass, $wgLanguageCode );
 }
 
 
