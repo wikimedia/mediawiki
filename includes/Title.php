@@ -134,7 +134,6 @@ class Title {
 			wfProfileOut( $fname );
 			return $t;
 		} else {
-			$titleCache[$text] = null;
 			wfProfileOut( $fname );
 			return NULL;
 		}
@@ -1050,12 +1049,9 @@ class Title {
 		$fname = 'Title::secureAndSplit';
  		wfProfileIn( $fname );
 		
-		static $imgpre = false;
-		static $rxTc = false;
-
 		# Initialisation
-		if ( $imgpre === false ) {
-			$imgpre = ':' . $wgContLang->getNsText( NS_IMAGE ) . ':';
+		static $rxTc = false;
+		if( !$rxTc ) {
 			# % is needed as well
 			$rxTc = '/[^' . Title::legalChars() . ']|%[0-9A-Fa-f]{2}/S';
 		}
@@ -1065,8 +1061,8 @@ class Title {
 
 		# Clean up whitespace
 		#
-		$t = preg_replace( "/[\\s_]+/", '_', $this->mDbkeyform );
-		$t = preg_replace( '/^_*(.*?)_*$/', '$1', $t );
+		$t = preg_replace( '/[\\s_]+/', '_', $this->mDbkeyform );
+		$t = trim( $t, '_' );
 
 		if ( '' == $t ) {
 			wfProfileOut( $fname );
@@ -1074,19 +1070,13 @@ class Title {
 		}
 		
 		global $wgUseLatin1;
-		if( !$wgUseLatin1 &&  false !== strpos( $t, UTF8_REPLACEMENT ) ) {
+		if( !$wgUseLatin1 && false !== strpos( $t, UTF8_REPLACEMENT ) ) {
 			# Contained illegal UTF-8 sequences or forbidden Unicode chars.
 			wfProfileOut( $fname );
 			return false;
 		}
 
 		$this->mDbkeyform = $t;
-		$done = false;
-
-		# :Image: namespace
-		if ( 0 == strncasecmp( $imgpre, $t, strlen( $imgpre ) ) ) {
-			$t = substr( $t, 1 );
-		}
 
 		# Initial colon indicating main namespace
 		if ( ':' == $t{0} ) {
@@ -1094,37 +1084,47 @@ class Title {
 			$this->mNamespace = NS_MAIN;
 		} else {
 			# Namespace or interwiki prefix
-	 		if ( preg_match( "/^(.+?)_*:_*(.*)$/S", $t, $m ) ) {
-				#$p = strtolower( $m[1] );
-				$p = $m[1];
-				$lowerNs = strtolower( $p );
-				if ( $ns = Namespace::getCanonicalIndex( $lowerNs ) ) {
-					# Canonical namespace
-					$t = $m[2];
-					$this->mNamespace = $ns;
-				} elseif ( $ns = $wgContLang->getNsIndex( $lowerNs )) {
-					# Ordinary namespace
-					$t = $m[2];
-					$this->mNamespace = $ns;
-				} elseif ( $this->getInterwikiLink( $p ) ) {
-					# Interwiki link
-					$t = $m[2];
-					$this->mInterwiki = $p;
-
-					if ( !preg_match( "/^([A-Za-z0-9_\\x80-\\xff]+):(.*)$/", $t, $m ) ) {
-						$done = true;
-					} elseif($this->mInterwiki != $wgLocalInterwiki) {
-						$done = true;
+			$firstPass = true;
+			do {
+				if ( preg_match( "/^(.+?)_*:_*(.*)$/S", $t, $m ) ) {
+					$p = $m[1];
+					$lowerNs = strtolower( $p );
+					if ( $ns = Namespace::getCanonicalIndex( $lowerNs ) ) {
+						# Canonical namespace
+						$t = $m[2];
+						$this->mNamespace = $ns;
+					} elseif ( $ns = $wgContLang->getNsIndex( $lowerNs )) {
+						# Ordinary namespace
+						$t = $m[2];
+						$this->mNamespace = $ns;
+					} elseif( $this->getInterwikiLink( $p ) ) {
+						if( !$firstPass ) {
+							# Can't make a local interwiki link to an interwiki link.
+							# That's just crazy!
+							wfProfileOut( $fname );
+							return false;
+						}
+						
+						# Interwiki link
+						$t = $m[2];
+						$this->mInterwiki = $p;
+	
+						# Redundant interwiki prefix to the local wiki
+						if ( 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki ) ) {
+							$this->mInterwiki = '';
+							$firstPass = false;
+							# Do another namespace split...
+							continue;
+						}
 					}
+					# If there's no recognized interwiki or namespace,
+					# then let the colon expression be part of the title.
 				}
-			}
+				break;
+			} while( true );
 			$r = $t;
 		}
 
-		# Redundant interwiki prefix to the local wiki
-		if ( 0 == strcmp( $this->mInterwiki, $wgLocalInterwiki ) ) {
-			$this->mInterwiki = '';
-		}
 		# We already know that some pages won't be in the database!
 		#
 		if ( '' != $this->mInterwiki || -1 == $this->mNamespace ) {
