@@ -712,7 +712,7 @@ Im $2 finden Sie eine Liste der letzten Löschungen.",
 "rollbacklink" => "Rollback",
 "rollbackfailed" => "Zurücknahme gescheitert",
 "cantrollback" => "Die Änderung kann nicht zurückgenommen werden; der
-letzte Beitragende ist der Einzige.",
+letzte Autor ist der einzige.",
 "alreadyrolled" => "Die Zurücknahme des Artikels [[$1]] von [[Benutzer:$2|$2]] 
 ([[Benutzer Diskussion:$2|Diskussion]]) ist nicht möglich, da eine andere
 Änderung oder Rücknahme erfolgt ist.
