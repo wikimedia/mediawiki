@@ -47,7 +47,7 @@ class Profiler
 
 	function profileOut( $functionname) 
 	{
-		global $wgDebugProfiling, $wgDebugFunctionEntry, $wgProfileToDatabase;
+		global $wgDebugProfiling, $wgDebugFunctionEntry;
 
 		if ( $wgDebugFunctionEntry && function_exists( "wfDebug" ) ) {
 			wfDebug( "Exiting $functionname\n" );
@@ -128,6 +128,7 @@ class Profiler
 			$prof .= sprintf( $format, $fname, $calls, (float)($elapsed * 1000), 
 					(float)($elapsed * 1000) / $calls, $percent );
 
+			global $wgProfileToDatabase;
 			if( $wgProfileToDatabase ) {
 				Profiler::logToDB( $fname, (float)($elapsed * 1000), $calls );
 			}
