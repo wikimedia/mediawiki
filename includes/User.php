@@ -622,7 +622,13 @@ class User {
 		$ipblock->mReason = wfMsg( "autoblocker", $this->getName(), $userblock->mReason );
 		$ipblock->mTimestamp = wfTimestampNow();
 		$ipblock->mAuto = 1;
-		$ipblock->mExpiry = Block::getAutoblockExpiry( $ipblock->mTimestamp );
+		# If the user is already blocked with an expiry date, we don't 
+		# want to pile on top of that!
+		if($userblock->mExpiry) {
+			$ipblock->mExpiry = $userblock->mExpiry;
+		} else {
+			$ipblock->mExpiry = Block::getAutoblockExpiry( $ipblock->mTimestamp );
+		}
 
 		# Insert it
 		$ipblock->insert();
