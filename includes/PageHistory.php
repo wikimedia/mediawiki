@@ -116,11 +116,11 @@ class PageHistory {
 			$lowts = $pages[count($pages) - 1]->rev_timestamp;
 
 
-		$prevurl = $wgTitle->getLocalURL("action=history&dir=prev&offset={$offset}&limit={$limit}");
-		$nexturl = $wgTitle->getLocalURL("action=history&offset={$lowts}&limit={$limit}");
+		$prevurl = $wgTitle->escapeLocalURL("action=history&dir=prev&offset={$offset}&limit={$limit}");
+		$nexturl = $wgTitle->escapeLocalURL("action=history&offset={$lowts}&limit={$limit}");
 		$urls = array();
 		foreach (array(20, 50, 100, 250, 500) as $num) {
-			$urls[] = "<a href=\"".$wgTitle->getLocalURL(
+			$urls[] = "<a href=\"".$wgTitle->escapeLocalURL(
 				"action=history&offset={$offset}&limit={$num}")."\">".$wgLang->formatNum($num)."</a>";
 		}
 		$bits = implode($urls, ' | ');
