@@ -1,5 +1,10 @@
 <?php
+/**
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
+/** */
 function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 	global $wgQuiet;
 	global $wgDisableSearchUpdate;

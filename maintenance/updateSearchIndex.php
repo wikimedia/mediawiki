@@ -1,14 +1,19 @@
 <?php
+/**
+ * Script for periodic off-peak updating of the search index
+ *
+ * Usage: php updateSearchIndex.php [-s START] [-e END] [-p POSFILE] [-l LOCKTIME] [-q]
+ * Where START is the starting timestamp
+ * END is the ending timestamp
+ * POSFILE is a file to load timestamps from and save them to, searchUpdate.pos by default
+ * LOCKTIME is how long the searchindex and cur tables will be locked for
+ * -q means quiet
+ *
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
-# Script for periodic off-peak updating of the search index
-
-# Usage: php updateSearchIndex.php [-s START] [-e END] [-p POSFILE] [-l LOCKTIME] [-q]
-# Where START is the starting timestamp
-# END is the ending timestamp
-# POSFILE is a file to load timestamps from and save them to, searchUpdate.pos by default
-# LOCKTIME is how long the searchindex and cur tables will be locked for
-# -q means quiet
-
+/** */
 $optionsWithArgs = array( 's', 'e', 'p' );
 
 require_once( 'commandLine.inc' );

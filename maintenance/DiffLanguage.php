@@ -32,6 +32,8 @@
  * The script then print a list of wgAllMessagesXX keys that aren't
  * localised, a percentage of messages correctly localised and the
  * number of messages to be translated.
+ * @package MediaWiki
+ * @subpackage Maintenance
  */
 
 /** This script run from the commandline */

@@ -1,20 +1,23 @@
 <?php
 
-/*
-	Import data from a UseModWiki into a PediaWiki wiki
-	2003-02-09 Brion VIBBER <brion@pobox.com>
-	Based loosely on Magnus's code from 2001-2002
+/**
+ * Import data from a UseModWiki into a PediaWiki wiki
+ * 2003-02-09 Brion VIBBER <brion@pobox.com>
+ * Based loosely on Magnus's code from 2001-2002
+ *
+ * Updated limited version to get something working temporarily
+ * 2003-10-09
+ * Be sure to run the link & index rebuilding scripts!
+ *
+ * Some more munging for charsets etc
+ * 2003-11-28
+ *
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
-	  Updated limited version to get something working temporarily
-	  2003-10-09
-	  Be sure to run the link & index rebuilding scripts!
-	  
-	  Some more munging for charsets etc
-	  2003-11-28
-
-  */
-
-/* Set these correctly! */
+/** Set these correctly! */
 $wgImportEncoding = "CP1252"; /* We convert all to UTF-8 */
 $wgRootDirectory = "/home/usemod/wiki-ia/lib-http/db/wiki";
 

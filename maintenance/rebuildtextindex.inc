@@ -1,11 +1,17 @@
 <?php
+/**
+ * Rebuild the fulltext search indexes. This may take a while
+ * depending on the database size and server configuration.
+ *
+ * Rebuilding is faster if you drop the index and recreate it,
+ * but that will prevent searches from working while it runs.
+ *
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
-# Rebuild the fulltext search indexes. This may take a while
-# depending on the database size and server configuration.
-
-# Rebuilding is faster if you drop the index and recreate it,
-# but that will prevent searches from working while it runs.
-
+/** */
 define( "RTI_CHUNK_SIZE", 500 );
 
 function dropTextIndex( &$database )

@@ -1,5 +1,11 @@
 <?php
+/**
+ * @deprecated
+ * @package MediaWiki
+ * @subpackage MaintenanceArchive
+ */
 
+/** */
 print "This script is obsolete!";
 print "It is retained in the source here in case some of its
 code might be useful for ad-hoc conversion tasks, but it is
@@ -53,7 +59,13 @@ $usercache = array();
 $titlecache = array();
 $linkcache = array();
 
-# Some oversimplified test types
+/**
+ * Some oversimplified test types
+ *
+ * @deprecated
+ * @package MediaWiki
+ * @subpackage MaintenanceArchive
+ */
 class Title {
 	var $title, $namespace;
 	function fromData( $namespace, $title ) {

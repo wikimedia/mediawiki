@@ -1,7 +1,13 @@
 <?php
+/**
+ * memcached diagnostic tool
+ *
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
-# memcached diagnostic tool
-
+/** */
 require_once( "commandLine.inc" );
 
 $mcc = new memcached( array('persistant' => true) );

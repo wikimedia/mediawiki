@@ -1,5 +1,11 @@
 <?php
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
+/** */
 define( "REPORTING_INTERVAL", 50 );
 define( "PAUSE_INTERVAL", 50 );
 

@@ -1,5 +1,11 @@
 <?php
+/**
+ * @deprecated
+ * @package MediaWiki
+ * @subpackage MaintenanceArchive
+ */
 
+/** */
 function isTemplateInitialised() {
 	$fname = 'isTemplateInitialised';
 

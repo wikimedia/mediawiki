@@ -1,5 +1,11 @@
 <?php
+/**
+ * @deprecated
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
+/** */
 die("This script is not being maintained.");
 
 # Checks translation of all language files
@@ -104,4 +110,3 @@ foreach ( $filenames as $filename ) {
 
 print "\n" . str_repeat( "-", $width ) . "\n";
 print "{$count} messages of {$total} not translated.\n";
-

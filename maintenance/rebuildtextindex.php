@@ -1,7 +1,14 @@
 <?php
-# Rebuild search index table from scratch.  This takes several
-# hours, depending on the database size and server configuration.
+/**
+ * Rebuild search index table from scratch.  This takes several
+ * hours, depending on the database size and server configuration.
+ *
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */ 
 
+/** */
 require_once( "commandLine.inc" );
 require_once( "rebuildtextindex.inc" );
 $wgTitle = Title::newFromText( "Rebuild text index script" );

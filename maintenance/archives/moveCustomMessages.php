@@ -1,4 +1,12 @@
 <?php
+/**
+ * @deprecated
+ * @package MediaWiki
+ * @subpackage MaintenanceArchive
+ */
+
+/** */
+
 # Move "custom messages" from the MediaWiki namespace to the Template namespace
 # Usage: php moveCustomMessages.php [<lang>] [phase]
 

@@ -1,7 +1,13 @@
 <?php
+/**
+ * Rebuild recent changes table
+ *
+ * @deprecated
+ * @package MediaWiki
+ * @subpackage MaintenanceArchive
+ */
 
-# Rebuild recent changes table.
-
+/** */
 function rebuildRecentChangesTable()
 {
 	$sql = "DROP TABLE IF EXISTS recentchanges";

@@ -1,5 +1,11 @@
 <?php
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
+/** */
 function convertLinks() {
 	print "Converting links table to ID-ID...\n";
 	

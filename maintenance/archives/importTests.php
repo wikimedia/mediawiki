@@ -1,5 +1,11 @@
 <?php
+/**
+ * @deprecated
+ * @package MediaWiki
+ * @subpackage MaintenanceArchive
+ */
 
+/** */
 print "This script is obsolete!";
 print "It is retained in the source here in case some of its
 code might be useful for ad-hoc conversion tasks, but it is

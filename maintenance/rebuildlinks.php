@@ -1,8 +1,13 @@
 <?php
-
-# Rebuild link tracking tables from scratch.  This takes several
-# hours, depending on the database size and server configuration.
-
+/**
+ * Rebuild link tracking tables from scratch.  This takes several
+ * hours, depending on the database size and server configuration.
+ *
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
+/** */
 require_once( "commandLine.inc" );
 require_once( "./rebuildlinks.inc" );
 

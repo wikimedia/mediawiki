@@ -1,5 +1,12 @@
 <?php
-# Script for re-attributing edits
+/**
+ * Script for re-attributing edits
+ *
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
+
+/** */
 require_once( "commandLine.inc" );
 
 # Parameters

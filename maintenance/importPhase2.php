@@ -21,6 +21,14 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+/**
+ * @todo document
+ * @deprecated
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
+
+/** */
 die( "This import script is not currently maintained.
 If you need it you'll have to modify it as necessary.\n");
 
@@ -51,6 +59,11 @@ require_once( "rebuildlinks.inc" );
 require_once( "rebuildrecentchanges.inc" );
 require_once( "rebuildtextindex.inc" );
 
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 class Phase2Importer {
 	var $olddb, $titleCache;
 	
@@ -309,6 +322,11 @@ class Phase2Importer {
 	
 }
 
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 class TitleCache {
 	var $hash = array();
 	

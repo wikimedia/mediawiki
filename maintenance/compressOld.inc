@@ -1,5 +1,10 @@
 <?php
+/**
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
+/** */
 function compressOldPages( $start = 0 ) {
 	$fname = 'compressOldPages';
 

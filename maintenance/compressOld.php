@@ -1,7 +1,12 @@
 <?php
+/**
+ * Compress the old table, old_flags=gzip
+ *
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
-# Compress the old table, old_flags=gzip
-
+/** */
 require_once( "commandLine.inc" );
 require_once( "compressOld.inc" );
 

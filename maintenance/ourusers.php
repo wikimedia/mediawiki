@@ -1,4 +1,11 @@
 <?php
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
+
+/** */
 $wikiuser_pass = `wikiuser_pass`;
 $wikiadmin_pass = `wikiadmin_pass`;
 $wikisql_pass = `wikisql_pass`;
@@ -67,5 +74,3 @@ EOS;
 	}
 	print "\n";
 }
-
-

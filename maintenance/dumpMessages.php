@@ -1,4 +1,11 @@
 <?php
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
+
+/** */
 require_once( "commandLine.inc" );
 $wgMessageCache->disableTransform();
 $messages = array();

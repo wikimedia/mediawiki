@@ -1,6 +1,11 @@
 <?php
+/**
+ * Remove spurious brokenlinks
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
-# Remove spurious brokenlinks
+/** */
 require_once( "commandLine.inc" );
 require_once( "./rebuildrecentchanges.inc" );
 $wgTitle = Title::newFromText( "Rebuild brokenlinks script" );

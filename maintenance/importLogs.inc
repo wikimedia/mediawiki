@@ -17,16 +17,28 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-# Attempt to import existing log pages into the log tables.
+/**
+ * Attempt to import existing log pages into the log tables.
+ *
+ * Not yet complete.
+ *
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
-# Not yet complete.
-
+/** */
 require_once( 'GlobalFunctions.php' );
 require_once( 'Database.php' );
 require_once( 'Article.php' );
 require_once( 'LogPage.php' );
 
-# Log importer
+/**
+ * Log importer
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 class LogImporter {
 	var $dummy = false;
 	

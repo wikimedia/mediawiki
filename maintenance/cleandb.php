@@ -1,8 +1,13 @@
 <?php
+/**
+ * Creating a new empty database; either this or the conversion
+ * script from the old format needs to be run, but not both.
+ *
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
-# Creating a new empty database; either this or the conversion
-# script from the old format needs to be run, but not both.
-
+/** */
 $wgCommandLineMode = true;
 require_once( "../LocalSettings.php" );
 

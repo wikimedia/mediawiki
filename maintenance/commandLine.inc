@@ -1,5 +1,11 @@
 <?php
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
+/** */
 # Abort if called from a web server
 if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
 	print "This script must be run from the command line\n";
