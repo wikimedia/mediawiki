@@ -8,7 +8,10 @@
 #	(default)	generate HTML output
 # 	pst 		apply pre-save transform
 #	msg 		apply message transform
+#	cat		add category links
+#	ill		add inter-language links
 #	subpage		enable subpages (disabled by default)
+#	title=[[XXX]]	run test using article title XXX
 #
 # Tests can be disabled with the '!!disabled' flag.
 #
@@ -686,30 +689,6 @@ Piped link to namespace
 </p>
 !! end
 
-!! article
-Category:MediaWiki User's Guide
-!! text
-blah
-!! endarticle
-
-!! test
-Link to category
-!! input
-[[:Category:MediaWiki User's Guide]]
-!! result
-<p><a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">Category:MediaWiki User's Guide</a>
-</p>
-!! end
-
-!! test
-Link to image page
-!! input
-[[:Image:Ncwikicol.png]]
-!! result
-<p><a href="/wiki/Image:Ncwikicol.png" title="Image:Ncwikicol.png">Image:Ncwikicol.png</a>
-</p>
-!! end
-
 !! test
 Plain link to URL
 !! input
@@ -1152,7 +1131,7 @@ Link to image page
 ### Subpages
 ###
 !! article
-Parser test/subpage
+Subpage test/subpage
 !! text
 foo
 !! endarticle
@@ -1160,22 +1139,22 @@ foo
 !! test
 Subpage link
 !! options
-subpage
+subpage title=[[Subpage test]]
 !! input
 [[/subpage]]
 !! result
-<p><a href="/wiki/Parser_test/subpage" title="Parser test/subpage">/subpage</a>
+<p><a href="/wiki/Subpage_test/subpage" title="Subpage test/subpage">/subpage</a>
 </p>
 !! end
 
 !! test
 Subpage noslash link
 !! options
-subpage
+subpage title=[[Subpage test]]
 !!input
 [[/subpage/]]
 !! result
-<p><a href="/wiki/Parser_test/subpage" title="Parser test/subpage">subpage</a>
+<p><a href="/wiki/Subpage_test/subpage" title="Subpage test/subpage">subpage</a>
 </p>
 !! end
 
@@ -1188,6 +1167,50 @@ Disabled subpages
 <p><a href="/index.php?title=Subpage&amp;action=edit" class="new" title="Subpage">subpage</a>
 </p>
 !! end
+
+###
+### Categories
+###
+!! article
+Category:MediaWiki User's Guide
+!! text
+blah
+!! endarticle
+
+!! test
+Link to category
+!! input
+[[:Category:MediaWiki User's Guide]]
+!! result
+<p><a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">Category:MediaWiki User's Guide</a>
+</p>
+!! end
+
+!! test
+Simple category
+!! options
+cat
+!! input
+[[Category: MediaWiki User's Guide]]
+!! result
+<a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
+!! end
+
+###
+### Inter-language links
+###
+!! test
+Inter-language links
+!! options
+ill
+!! input
+[[es:Alimento]]
+[[fr:Nourriture]]
+[[zh:&#39135;&#21697;]]
+!! result
+es:Alimento fr:Nourriture zh:食品
+!! end
+
 
 TODO:
 more images
