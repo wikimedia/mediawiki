@@ -13,6 +13,7 @@ CREATE TABLE user (
   user_email tinytext NOT NULL default '',
   user_options blob NOT NULL default '',
   user_touched char(14) binary NOT NULL default '',
+  user_token char(32) binary NOT NULL default '',
   PRIMARY KEY user_id (user_id),
   INDEX user_name (user_name(10))
 );
