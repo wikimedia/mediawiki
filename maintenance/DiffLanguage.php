@@ -38,7 +38,6 @@
 #
 # Known bugs:
 # - File paths are hardcoded
-# - Can't check your configured language.(says nothing is localised)
 #
 
 
@@ -50,6 +49,8 @@ include_once("../LocalSettings.php");
 include_once( "../includes/Setup.php" );
 include_once( "../install-utils.inc" );
 
+$wgLanguageCode = strtoupper(substr($wgLanguageCode,0,1)).strtolower(substr($wgLanguageCode,1));
+
 # read command line argument
 if ( isset($argv[1]) ) {
 	$lang = $argv[1];
@@ -57,9 +58,9 @@ if ( isset($argv[1]) ) {
 # or prompt a simple menu
 } else {
 	$loop = true;
-	print "Enter the language you want to check [$wgLanguageCode]:";
 	do {
 		@ob_end_flush();
+		print "Enter the language you want to check [$wgLanguageCode]:";
 		$input = readconsole();
 		
 		# set the input to current language
@@ -67,11 +68,17 @@ if ( isset($argv[1]) ) {
 			$input = $wgLanguageCode;
 		}
 		
+		# convert to 1st char upper, rest lower case
+		$input = strtoupper(substr($input,0,1)).strtolower(substr($input,1));
+		
 		# try to get the file		
 		if( file_exists("../Languages/Language$input.php") ) {
 			$loop = false;
 			$lang = $input;
+		} else {
+			print "ERROR: The file Language$input.php doesn't exist !\n";
 		}
+		
 	} while ($loop);
 	
 }
@@ -84,7 +91,6 @@ if ( isset($argv[1]) ) {
 # include the language if it's not the already loaded one
 if($lang != $wgLanguageCode) {
 	print "Including language file for $lang.\n";
-
 	include("Language{$lang}.php");
 }
 
@@ -97,7 +103,7 @@ $testme = &$$foo;
 
 # Get all references messages and check if they exist in the tested language
 $i = 0;
-print "Checking $lang localisation file against reference (en):\n----\n";
+print "\nChecking $lang localisation file against reference (en):\n----\n";
 foreach($wgAllMessagesEn as $index => $localized)
 {
 	if(!(isset($testme[$index]))) {
@@ -107,5 +113,5 @@ foreach($wgAllMessagesEn as $index => $localized)
 	}
 }
 echo "----\n";
-echo (100 - $i/count($wgAllMessagesEn) * 100)."% completed\n";
-echo "$i unlocalised of the ".count($wgAllMessagesEn)." messages available.\n";
+echo "$lang language is complete at ".(100 - $i/count($wgAllMessagesEn) * 100)."%\n";
+echo "$i unlocalised message of the ".count($wgAllMessagesEn)." messages available.\n";
