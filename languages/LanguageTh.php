@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 #--------------------------------------------------------------------------
 # Translated from English by Varakorn Ungvichian
 # แปลงจากภาษาอังกฤษโดย นาย วรากร อึ้งวิเชียร

@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 # Ossetic stub localization; default to Russian instead of English.
 # See language.doc
 

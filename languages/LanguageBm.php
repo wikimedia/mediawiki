@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
 # Stub for Bambara; import French (official language of Mali)
 

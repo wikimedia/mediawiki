@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 #
 # Russian localization for MediaWiki.
 # (based on Language.php 1.424)

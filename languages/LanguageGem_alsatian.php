@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
 /*
 <Melancholie> for the moment it would be the best if LanguageAls.php would be 

@@ -1,4 +1,8 @@
 <?php
+/**
+  * @package MediaWiki
+  * @subpackage Language
+  */
 
 # Om "Current Events" af te skakel in die kantkolom,
 # stel "currentevents" => "-"
