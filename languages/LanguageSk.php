@@ -276,8 +276,8 @@ Nezabudnite si nastaviť užívateľské nastavenia.",
 "yourpasswordagain" => "Zopakujte heslo",
 "newusersonly"	=> " (iba noví užívatelia)",
 "remembermypassword" => "Pamätať si heslo aj po vypnutí počítača.",
-"loginproblem"	=> "<b>Nastal problém pri prihlasovaní.</b><br>Skúste znova!",
-"alreadyloggedin" => "<font color=red><b>Užívateľ $1, vy už ste prihlásený!</b></font><br>\n",
+"loginproblem"	=> "<b>Nastal problém pri prihlasovaní.</b><br />Skúste znova!",
+"alreadyloggedin" => "<font color=red><b>Užívateľ $1, vy už ste prihlásený!</b></font><br />\n",
 
 "login"			=> "Log in",
 "userlogin"		=> "Log in",
@@ -317,7 +317,7 @@ Please log in again after you receive it.",
 "showpreview"	=> "Show preview",
 "blockedtitle"	=> "User is blocked",
 "blockedtext"	=> "Your user name or IP address has been blocked by $1.
-The reason given is this:<br>''$2''<p>You may contact $1 or one of the other
+The reason given is this:<br />''$2''<p>You may contact $1 or one of the other
 [[Wikipedia:administrators|administrators]] to discuss the block.",
 "newarticle"	=> "(New)",
 "newarticletext" =>
@@ -351,7 +351,7 @@ If you save it, any changes made since this revision will be lost.</strong>\n",
 considered to be released under the GNU Free Documentation License
 (see $1 for details).
 If you don't want your writing to be edited mercilessly and redistributed
-at will, then don't submit it here.<br>
+at will, then don't submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a
 public domain or similar free resource.
 <strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
@@ -412,8 +412,8 @@ which are not indexed, or by specifying more than one search term (only pages
 containing all of the search terms will appear in the result).",
 "powersearch" => "Search",
 "powersearchtext" => "
-Search in namespaces :<br>
-$1<br>
+Search in namespaces :<br />
+$1<br />
 $2 List redirects &nbsp; Search for $3 $9",
 
 
@@ -554,7 +554,7 @@ created and by whom, and anything else you may know about it.",
 "deleteimgcompletely"		=> "del",
 "imghistlegend" => "Legend: (cur) = this is the current image, (del) = delete
 this old version, (rev) = revert to this old version.
-<br><i>Click on date to see image uploaded on that date</i>.",
+<br /><i>Click on date to see image uploaded on that date</i>.",
 "imagelinks"	=> "Image links",
 "linkstoimage"	=> "The following pages link to this image:",
 "nolinkstoimage" => "There are no pages that link to this image.",
@@ -582,9 +582,9 @@ That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.",
 "maintenancebacklink"	=> "Back to Maintenance Page",
 "disambiguations"	=> "Disambiguation pages",
 "disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
-"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
+"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
-"doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
+"doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
 "brokenredirects"	=> "Broken Redirects",
 "brokenredirectstext"	=> "The following redirects link to a non-existing article.",
 "selflinks"		=> "Pages with Self Links",
@@ -767,7 +767,7 @@ pages that were vandalized).",
 "noblockreason" => "You must supply a reason for the block.",
 "blockipsuccesssub" => "Block succeeded",
 "blockipsuccesstext" => "The IP address \"$1\" has been blocked.
-<br>See [[Special:Ipblocklist|IP block list]] to review blocks.",
+<br />See [[Special:Ipblocklist|IP block list]] to review blocks.",
 "unblockip"		=> "Unblock IP address",
 "unblockiptext"	=> "Use the form below to restore write access
 to a previously blocked IP address.",
@@ -800,7 +800,7 @@ Please confirm that this is what you intend to do.",
 "lockdbsuccesssub" => "Database lock succeeded",
 "unlockdbsuccesssub" => "Database lock removed",
 "lockdbsuccesstext" => "The Wikipedia database has been locked.
-<br>Remember to remove the lock after your maintenance is complete.",
+<br />Remember to remove the lock after your maintenance is complete.",
 "unlockdbsuccesstext" => "The Wikipedia database has been unlocked.",
 
 # SQL query

@@ -26,7 +26,7 @@
 require_once( 'SearchEngine.php' );
 
 class SearchMySQL4 extends SearchEngine {
-	var $strictMatching = false;
+	var $strictMatching = true;
 	
 	function SearchMySQL4( &$db ) {
 		$this->db =& $db;

@@ -255,11 +255,11 @@ U kan Wikipedia anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde
 "yourpasswordagain" => "Wachtwoord opnieuw ingeven",
 "newusersonly" => " (alleen nieuwe gebroekers)",
 "remembermypassword" => "mien wachtwoord onthouden voor latere sessies.",
-"loginproblem" => "<b>Er is een probleem met het aanmelden.</b><br>Probeer het opnieuw a.u.b.",
-"alreadyloggedin" => "<font color=red><b>gebroeker $1, u bent al aangemeld.</b></font><br>\n",
+"loginproblem" => "<b>Er is een probleem met het aanmelden.</b><br />Probeer het opnieuw a.u.b.",
+"alreadyloggedin" => "<font color=red><b>gebroeker $1, u bent al aangemeld.</b></font><br />\n",
 
 "areyounew"  => "Bent u nieuw op Wikipedia en wilt u een gebroekersprofiel aanmaken, voer dan een gebroekersnaam in en voer tweemaal hetzelfde wachtwoord in.
-Invoeren van uw e-mailadres is neet verplicht; het is handig als u uw wachtwoord bent vergeten; dat kan dan per e-mail worden opgestuurd.<br>\n",
+Invoeren van uw e-mailadres is neet verplicht; het is handig als u uw wachtwoord bent vergeten; dat kan dan per e-mail worden opgestuurd.<br />\n",
 
 "login"   => "Aanmelden",
 "userlogin"  => "Aanmelden",
@@ -293,7 +293,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "preview"  => "Noakieke",
 "showpreview" => "Toon bewerking ter controle",
 "blockedtitle" => "gebroeker is geBlokkierd",
-"blockedtext" => "Uw gebroekersnaam of IP-adres is door $1 geBlokkierd. De opgegeven reden:<br>$2<p>. U kunt voor euverlik contact opnemen met de [[Wikipedia:Systeembeheerders|systeembeheerders]].",
+"blockedtext" => "Uw gebroekersnaam of IP-adres is door $1 geBlokkierd. De opgegeven reden:<br />$2<p>. U kunt voor euverlik contact opnemen met de [[Wikipedia:Systeembeheerders|systeembeheerders]].",
 "newarticle" => "(Nieuw)",
 "newarticletext" => "Verwijder dit en beschrijf hier de nieuwe pagina.",
 "noarticletext" => "(Deze pagina bevat momenteel geen tekst)",
@@ -308,7 +308,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "storedversion" => "Opgesjlage versie",
 "editingold" => "<strong>WAARSCHUWING: U bent bezig een oude versie van deze pagina te bewerken. Wanneer u uw bewerking opslaat, gaan alle wijzigingen die na deze versie gedaan zijn verloren.\n.</strong>\n",
 "yourdiff"  => "Wijzigingen",
-"copyrightwarning" => "Opgelet: Alle bijdragen aan Wikipedia worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u neet wil dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan neet voor 'Pagina Opslaan'.<br> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>",
+"copyrightwarning" => "Opgelet: Alle bijdragen aan Wikipedia worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u neet wil dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan neet voor 'Pagina Opslaan'.<br /> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br /> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>",
 
 
 # History pages
@@ -354,16 +354,15 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "nonefound"  => "<strong>Merk op:</strong> wanneer een zoekopdracht mislukt komt dat vaak door gebruik van (in het Engels) veel voorkomende woorden zoals \"of\" en \"be\", die neet geïndexeerd zijn, of door verschillende zoektermen tegelijk op te geven (u krijgt dan alleen in pagina's waaarin alle opgegeven termen voorkomen).",
 "powersearch" => "Zoeken",
 "powersearchtext" => "   
- Zoek in naamruimten :<br>
-$1<br>
+ Zoek in naamruimten :<br />
+$1<br />
 $2 Toon redirects   Zoek: $3 $9",   
 
 # Preferences page
 # Voorkeuren
 "preferences" => "Voorkeuren",
 "prefsnologin" => "Niet aangemeld",
-"prefsnologintext" => "U dient <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">aangemeld</a> te zijn om voorkeuren te kunnen instellen.",
+"prefsnologintext" => "U dient <a href=\"{{localurl:Special:Userlogin}}\">aangemeld</a> te zijn om voorkeuren te kunnen instellen.",
 "prefslogintext" => "U bent aangemeld als \"$1\". Uw interne identificatienummer is $2.",
 "prefsreset" => "Standaardvoorkeuren hersteld.",
 "qbsettings" => "Menubalkinstellingen", 
@@ -395,7 +394,7 @@ $2 Toon redirects   Zoek: $3 $9",
 "recentchangestext" => "Deze pagina toont de meest recente wijzigingen aan Wikipedia.
 Mocht u hier nieuw zijn, dan welkom bij Wikipedia! Bekijk AUB de volgende pagina's eens: [[Wikipedia:Veel gestelde vragen|Veel gestelde vragen]], [[Wikipedia:Instructies|Instructies]], [[Wikipedia:Objectiviteit|Objectiviteit]] en [[Wikipedia:Wat je neet moet doen|Wat je NIET moet doen]].
 Als u pagina's wilt verwijderen, ga naar [[Wikipedia:Te verwijderen pagina's|Te verwijderen pagina's]], als u iets wilt bediscussiëren, ga naar [[Wikipedia:euverlik gewenst|euverlik gewenst]]. Er is ook een email-liest voor WikipediaNL: [http://www.wikipedia.org/mailman/listinfo/wikinl-l WikiNL-l].
-<br>Om Wikipedia te laten slagen is het erg belangrijk '''geen''' materiaal toe te voegen waarop iemand anders auteursrechten heeft, tenzij u daartoe toestemming heeft. De wettelijke gevolgen van inbreuk op de rechten van anderen zouden de hele onderneming zwaar kunnen schaden.",
+<br />Om Wikipedia te laten slagen is het erg belangrijk '''geen''' materiaal toe te voegen waarop iemand anders auteursrechten heeft, tenzij u daartoe toestemming heeft. De wettelijke gevolgen van inbreuk op de rechten van anderen zouden de hele onderneming zwaar kunnen schaden.",
 "rcloaderr"  => "Meest recente wijzigingen laden",
 "rcnote"  => "Hieronder zijn de <strong>$1</strong> laatste wijzigingen gedaan in de laatste <strong>$2</strong> dagen.",
 "rcnotefrom"  => "Veranderingen sinds <b>$2</b> (met een maximum van <b>$1</b> veranderingen).",
@@ -421,22 +420,24 @@ Als u pagina's wilt verwijderen, ga naar [[Wikipedia:Te verwijderen pagina's|Te 
 "reupload"  => "Opnieuw uploaden",
 "reuploaddesc" => "Terug naar het uploadformulier.",
 "uploadnologin" => "Niet aangemeld",
-"uploadnologintext" => "U dient <a href=\"" .
-  wfLocalUrl( "Speciaal:Userlogin" ) . "\">aangemeld te zijn</a>
+"uploadnologintext" => "U dient <a href=\"{{localurl:Special:Userlogin}}\">aangemeld te zijn</a>
 om bestanden te uploaden.",
 "uploadfile" => "upload bestand",
 "uploaderror" => "upload fout",
 "uploadtext" => "<strong>STOP!</strong> Voor u iets hier upload,
-wees zeker dat het in overeenkomst is met het Wikipedia <a href=\"" .
-wfLocalUrlE( "Wikipedia:Beleid_voor_gebruik_van_afbeeldingen" ) . "\">afbeeldingsbeleid</a>.
-<p>Om de reeds ge-uploade bestanden te bekijken of te zoeken ga naar de <a href=\"" . wfLocalUrlE( "Speciaal:Imagelist" ) .
-"\">liest van ge-uploade bestanden</a>.
-Uploads en verwijderingen worden bijgehouden in het <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_logboek" ) . "\">upload logboek</a>.
-<p>Gebroek het onderstaande formulier om bestanden zoals afbeeldingen en geluidsbestanden die relevant zijn voor uw artikel te u-loaden. Bij de meeste browers zoals 'Internet Explorer' en 'Mozilla' zult u een \"Bladeren...\" of \"Browse..\" knop zien die een standaard dialoogscherm van uw bestuuringssysteem oproept. Kiest u een bestand, dan zal het ingevuld worden in het veld naast de \"Bladeren...\" knop. U dient ook het vakje aan te vinken waarmee u bevestigt dat er geen schending van auteursrechten plaatsvindt door het gebruik van dat bestand. Vul het veld \"Omschrijving\" in. Druk op de \"Upload\" knop om het uploaden te voltooien. Dit kan even duren als u een langzame internetverbinding gebruikt.
-<p>Gebroek bij voorkeur JPEG voor foto's, PNG voor tekeningen en dergelijke en OGG voor geluid. 
-Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. Om het bestand in een pagina te laten verschijnen, kunt u het volgende doen;  <b>[[afbeelding:uw_foto.jpg]]</b> of <b>[[afbeelding:uw_logo.png|alt text]]</b> of <b>[[media:uw_geluid.ogg]]</b> voor audio.
-<p>Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot Wikipedia ontzegd worden.",
+wees zeker dat het in overeenkomst is met het Wikipedia
+[[Wikipedia:Beleid_voor_gebruik_van_afbeeldingen|afbeeldingsbeleid]].
+
+Om de reeds ge-uploade bestanden te bekijken of te zoeken ga naar de . [[Special:Imagelist|liest van ge-uploade bestanden]].
+Uploads en verwijderingen worden bijgehouden in het
+[[Special:Log/upload|upload logboek]].
+
+Gebroek het onderstaande formulier om bestanden zoals afbeeldingen en geluidsbestanden die relevant zijn voor uw artikel te u-loaden. Bij de meeste browers zoals 'Internet Explorer' en 'Mozilla' zult u een \"Bladeren...\" of \"Browse..\" knop zien die een standaard dialoogscherm van uw bestuuringssysteem oproept. Kiest u een bestand, dan zal het ingevuld worden in het veld naast de \"Bladeren...\" knop. U dient ook het vakje aan te vinken waarmee u bevestigt dat er geen schending van auteursrechten plaatsvindt door het gebruik van dat bestand. Vul het veld \"Omschrijving\" in. Druk op de \"Upload\" knop om het uploaden te voltooien. Dit kan even duren als u een langzame internetverbinding gebruikt.
+
+Gebroek bij voorkeur JPEG voor foto's, PNG voor tekeningen en dergelijke en OGG voor geluid. 
+Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. Om het bestand in een pagina te laten verschijnen, kunt u het volgende doen;  <b><nowiki>[[afbeelding:uw_foto.jpg]]</nowiki></b> of <b><nowiki>[[afbeelding:uw_logo.png|alt text]]</nowiki></b> of <b><nowiki>[[media:uw_geluid.ogg]]</nowiki></b> voor audio.
+
+Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot Wikipedia ontzegd worden.",
 "uploadlog"  => "upload logboek",
 "uploadlogpage" => "Upload_logboek",
 "uploadlogpagetext" => "Hieronder de liest met de meest recent ge-uploade bestanden. Alle tieden zijn servertied (UTC).
@@ -479,7 +480,7 @@ Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. O
 "imghistory" => "Geschiedenis van de afbeelding",
 "revertimg"  => "rev",
 "deleteimg"  => "verw",
-"imghistlegend" => "Verklaring: (cur)= huidige afbeelding, (verw) = verwijder de oude versie, (rev) = breng oude versie terug.<br>
+"imghistlegend" => "Verklaring: (cur)= huidige afbeelding, (verw) = verwijder de oude versie, (rev) = breng oude versie terug.<br />
 <i>Klik op de datum om de afbeeldingen die ge-upload zijn op die datum te zien</i>.",
 "imagelinks" => "Afbeeldingsverwijzingen",
 "linkstoimage" => "Deze afbeelding wordt gebruikt op de volgende pagina's:",
@@ -501,9 +502,9 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 "maintenancebacklink"   => "Terug naar de Onderhoudspagina",
 "disambiguations"       => "Doorverwijspagina's",
 "disambiguationspage"   => "Wikipedia:Doorverwijspagina",
-"disambiguationstext"   => "De onderstaande artikelen verwijzen naar een [[Wikipedia:Doorverwijspagina|doorverwijspagina]]. Deze zouden waarschijnlijk direct naar de onderwerpspagina moeten verwijzen. <br>Als doorverwijspagina's worden die pagina's beschouwd waar vanaf $1 naar verwezen wordt.<br>Opmerking: Deze liest toont alleen pagina's vanuit de hoofdnaamruimte, en dus neet euverlikpagina's, Wikipedia:pagina's en dergelijke.",
+"disambiguationstext"   => "De onderstaande artikelen verwijzen naar een [[Wikipedia:Doorverwijspagina|doorverwijspagina]]. Deze zouden waarschijnlijk direct naar de onderwerpspagina moeten verwijzen. <br />Als doorverwijspagina's worden die pagina's beschouwd waar vanaf $1 naar verwezen wordt.<br />Opmerking: Deze liest toont alleen pagina's vanuit de hoofdnaamruimte, en dus neet euverlikpagina's, Wikipedia:pagina's en dergelijke.",
 "doubleredirects"       => "Dubbele redirects",
-"doubleredirectstext"   => "<b>Let op:</b> Er kunnen in deze liest redirects staan die er neet in thuishoren. Dat komt over het algemeen doordat er na de #REDIRECT nog andere links op de pagina staan.<br>\nOp elke regel vindt u de eerste redirectpagina, de tweede redirectpagina en de eerste regel van de tweede redirectpagina. Normaal gesproken bevat deze laatste de pagina waar de eerste redirect naartoe zou moeten verwijzen.",
+"doubleredirectstext"   => "<b>Let op:</b> Er kunnen in deze liest redirects staan die er neet in thuishoren. Dat komt over het algemeen doordat er na de #REDIRECT nog andere links op de pagina staan.<br />\nOp elke regel vindt u de eerste redirectpagina, de tweede redirectpagina en de eerste regel van de tweede redirectpagina. Normaal gesproken bevat deze laatste de pagina waar de eerste redirect naartoe zou moeten verwijzen.",
 "brokenredirects"       => "Gebroken redirects",
 "brokenredirectstext"   => "De onderstaande redirectpagina's bevatten een redirect naar een neet-bestaande pagina.",
 "selflinks"             => "Pagina's die naar zichzelf verwijzen",
@@ -546,10 +547,8 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 # Email this user
 # E-mail deze gebroeker
 "mailnologin" => "Geen e-mailadres gekend voor deze gebroeker",
-"mailnologintext" => "U dient <a href=\"" .
-  wfLocalUrl( "Speciaal:Userlogin" ) . "\">aangemeld te zijn </a>
-en een geldig e-mailadres in uw <a href=\"" .
-  wfLocalUrl( "Speciaal:Preferences" ) . "\">voorkeuren</a>
+"mailnologintext" => "U dient <a href=\"{{localurl:Special:Userlogin}}\">aangemeld te zijn </a>
+en een geldig e-mailadres in uw <a href=\"{{localurl:Special:Preferences}}\">voorkeuren</a>
 to send e-mail to other users.",
 "emailuser"  => "E-mail deze gebroeker",
 "emailpage"  => "E-mail gebroeker",
@@ -570,17 +569,14 @@ to send e-mail to other users.",
 "watchlistsub" => "(van gebroeker \"$1\")",
 "nowatchlist" => "Er staat neets op uw volgliest.",
 "watchnologin" => "U bent neet aangemeld",
-"watchnologintext" => "Om uw volgliest te veranderen dient u eerst <a href=\"" .
-  wfLocalUrl( "Speciaal:Userlogin" ) . "\">aangemeld</a>
+"watchnologintext" => "Om uw volgliest te veranderen dient u eerst <a href=\"{{localurl:Special:Userlogin}}\">aangemeld</a>
 te zijn.",
 "addedwatch" => "Toegevoegd aan volgliest",
-"addedwatchtext" => "De pagina \"$1\" is aan uw <a href=\"" .
-  wfLocalUrl( "Speciaal:Watchlist" ) . "\">volgliest</a> toegevoegd.
+"addedwatchtext" => "De pagina \"$1\" is aan uw [[Special:Watchlist|volgliest]] toegevoegd.
 Toekomstige wijzigingen aan deze pagina en euverlikpagina zullen hier vermeld worden. 
-Ook zullen deze pagina's in het <b>vet</b> verschijnen in de <a href=\"" .
-  wfLocalUrl( "Speciaal:Recentchanges" ) . "\">liest van recente wijzigingen</a> zodat u ze eenvoudiger kan opmerken.</p>
+Ook zullen deze pagina's in het <b>vet</b> verschijnen in de [[Special:Recentchanges|liest van recente wijzigingen]] zodat u ze eenvoudiger kan opmerken.
 
-<p>Indien u een pagina wenst te verwijderen van uw volgliest klik dan op \"Van volgliest verwijderen\" in de menubalk.",
+Indien u een pagina wenst te verwijderen van uw volgliest klik dan op \"Van volgliest verwijderen\" in de menubalk.",
 "removedwatch" => "Van volgliest verwijderen",
 "removedwatchtext" => "De pagina \"$1\" is van uw volgliest verwijderd.",
 "watchthispage" => "Volg deze pagina",
@@ -652,8 +648,8 @@ Ook zullen deze pagina's in het <b>vet</b> verschijnen in de <a href=\"" .
 "badipaddress" => "Het IP-adres heeft een ongeldige opmaak.",
 "noblockreason" => "U dient een reden op te geven voor het blokkeren van een IP-adres.",
 "blockipsuccesssub" => "Blokkering gelukt",
-"blockipsuccesstext" => "Het IP-adres \"$1\" is geBlokkierd.<br>
-Zie de [[speciaal:Ipblocklist|liest van geBlokkierde IP-adressen]].",
+"blockipsuccesstext" => "Het IP-adres \"$1\" is geBlokkierd.<br />
+Zie de [[Special:Ipblocklist|liest van geBlokkierde IP-adressen]].",
 "unblockip"  => "De-Blokkier IP-adres",
 "unblockiptext" => "Gebroek het onderstaande formulier om terug schrijftoegang te geven aan een geBlokkierd IP-adres.",
 "ipusubmit"  => "De-Blokkier dit IP-adres.",
@@ -700,14 +696,13 @@ Vergeet neet de database opnieuw te de-blokkeren zodra u klaar bent met uw onder
 * Als u de onderstaande radiobox neet aangevinkt laat",
 "movearticle" => "Verplaatsj pagina",
 "movenologin" => "Neet aangemeld",
-"movenologintext" => "U dient <a href=\"" .
-  wfLocalUrl( "Speciaal:Userlogin" ) . "\">aangemeld</a>
+"movenologintext" => "U dient <a href=\"{{localurl:Special:Userlogin}}\">aangemeld</a>
 te zijn om een pagina te verplaatsen.",
 "newtitle"  => "Noa de nuuje titel",
 "movepagebtn" => "Verplaatsj pagina",
 "pagemovedsub" => "De verplaatsjing is gelukt",
 "pagemovedtext" => "Pagina \"[[$1]]\" verplaatst naar \"[[$2]]\".",
-"articleexists" => "D'r is al un pagina mit deze titel of de titel is ongeldig. <br>Gelieve een andere titel te kiezen.",
+"articleexists" => "D'r is al un pagina mit deze titel of de titel is ongeldig. <br />Gelieve een andere titel te kiezen.",
 "talkexists" => "De pagina zelf is verplaatst, maar de euverlikpagina kon neet worden verplaatst, omdat de doeltitel al een neet-lege euverlikpagina had. Combineer de euverlikpagina's a.u.b. handmatig.",
 "movedto"  => "verplaatsjt noa",
 "movetalk"  => "Verplaatsj \"euverlik\" pagina auch indien aanwezig.",

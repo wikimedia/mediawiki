@@ -827,10 +827,10 @@ class memcached
                return false;
             }
             
-            $ret[$rkey] = rtrim($ret[$rkey]);
-
             if ($this->_have_zlib && $flags & MEMCACHE_COMPRESSED)
                $ret[$rkey] = gzuncompress($ret[$rkey]);
+
+            $ret[$rkey] = rtrim($ret[$rkey]);
 
             if ($flags & MEMCACHE_SERIALIZED)
                $ret[$rkey] = unserialize($ret[$rkey]);
@@ -886,7 +886,7 @@ class memcached
          $c_val = gzcompress($val, 9);
          $c_len = strlen($c_val);
          
-         if ($c_len < $len*(1 - COMPRESS_SAVINGS))
+         if ($c_len < $len*(1 - COMPRESSION_SAVINGS))
          {
             if ($this->_debug)
                $this->_debugprint(sprintf("client: compressing data; was %d bytes is now %d bytes\n", $len, $c_len));

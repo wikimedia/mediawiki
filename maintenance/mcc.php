@@ -41,6 +41,9 @@ do {
 			$sock = $mcc->get_sock( $args[0] );
 			var_dump( $sock );
 			break;
+                case "getserver":
+                       var_dump($wgMemCachedServers[(hexdec(substr(md5($args[0]),0,8)) & 0x7fffffff)%count($wgMemCachedServers)]);
+                        break;
 		case "set":
 			$key = array_shift( $args );
 			if ( $args[0] == "#" && is_numeric( $args[1] ) ) {

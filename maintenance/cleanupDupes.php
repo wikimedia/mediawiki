@@ -25,19 +25,20 @@
  * @subpackage Maintenance
  */
 
+$options = array( 'fix' );
+
 require_once( "commandLine.inc" );
-require_once( "rebuildtextindex.inc" );
-$wgTitle = Title::newFromText( "Rebuild text index script" );
+$wgTitle = Title::newFromText( "Dupe cur entry cleanup script" );
 
-checkDupes();
+checkDupes( isset( $options['fix'] ) );
 
-function fixDupes() {
+function fixDupes( $fixthem = false) {
 	$dbw =& wfGetDB( DB_MASTER );
 	$cur = $dbw->tableName( 'cur' );
 	$dbw->query( "LOCK TABLES $cur WRITE" );
 	echo "Checking for duplicate cur table entries... (this may take a while on a large wiki)\n";
 	$res = $dbw->query( <<<END
-SELECT cur_namespace,cur_title,count(*) as c,max(cur_id) as id
+SELECT cur_namespace,cur_title,count(*) as c,min(cur_id) as id
   FROM $cur
  GROUP BY cur_namespace,cur_title
 HAVING c > 1
@@ -46,33 +47,44 @@ END
 	$n = $dbw->numRows( $res );
 	echo "Found $n titles with duplicate entries.\n";
 	if( $n > 0 ) {
-		echo "Correcting...\n";
+		if( $fixthem ) {
+			echo "Correcting...\n";
+		} else {
+			echo "Just a demo...\n";
+		}
 		while( $row = $dbw->fetchObject( $res ) ) {
 			$ns = IntVal( $row->cur_namespace );
 			$title = $dbw->addQuotes( $row->cur_title );
 			$id = IntVal( $row->id );
-			$dbw->query( <<<END
+			echo "$ns:$row->cur_title (canonical ID $id)\n";
+			if( $fixthem ) {
+				$dbw->query( <<<END
 DELETE
   FROM $cur
  WHERE cur_namespace=$ns
    AND cur_title=$title
-   AND cur_id<$id
+   AND cur_id>$id
 END
-			);
+				);
+			}
 		}
 	}
 	$dbw->query( 'UNLOCK TABLES' );
-	echo "Done.\n";
+	if( $fixthem ) {
+		echo "Done.\n";
+	} else {
+		echo "Run again with --fix option to delete the duplicates.\n";
+	}
 }
 
-function checkDupes() {
+function checkDupes( $fixthem = false ) {
 	$dbw =& wfGetDB( DB_MASTER );
 	if( $dbw->indexExists( 'cur', 'name_title' ) &&
 	    $dbw->indexUnique( 'cur', 'name_title' ) ) {
 		echo "Your cur table has the current unique index; no duplicate entries.\n";
 	} else {
 		echo "Your cur table has the old non-unique index and may have duplicate entries.\n";
-		fixDupes();
+		fixDupes( $fixthem );
 	}
 }
 

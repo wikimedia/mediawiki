@@ -51,7 +51,7 @@ define( 'EXT_LINK_URL_CLASS', '[^]<>"\\x00-\\x20\\x7F]' );
 define( 'EXT_LINK_TEXT_CLASS', '[^\]\\x00-\\x1F\\x7F]' );
 define( 'EXT_IMAGE_FNAME_CLASS', '[A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]' );
 define( 'EXT_IMAGE_EXTENSIONS', 'gif|png|jpg|jpeg' );
-define( 'EXT_LINK_BRACKETED',  '/\[(('.URL_PROTOCOLS.'):'.EXT_LINK_URL_CLASS.'+) *('.EXT_LINK_TEXT_CLASS.'*?)\]/S' );
+define( 'EXT_LINK_BRACKETED',  '/\[(\b('.URL_PROTOCOLS.'):'.EXT_LINK_URL_CLASS.'+) *('.EXT_LINK_TEXT_CLASS.'*?)\]/S' );
 define( 'EXT_IMAGE_REGEX',
 	'/^('.HTTP_PROTOCOLS.':)'.  # Protocol
 	'('.EXT_LINK_URL_CLASS.'+)\\/'.  # Hostname and path
@@ -959,7 +959,9 @@ class Parser
 		wfProfileIn( $fname );
 
 		$sk =& $this->mOptions->getSkin();
-		$linktrail = wfMsgForContent('linktrail');
+		global $wgContLang;
+		$linktrail = $wgContLang->linkTrail();
+		
 		$bits = preg_split( EXT_LINK_BRACKETED, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 
 		$s = $this->replaceFreeExternalLinks( array_shift( $bits ) );
@@ -1013,7 +1015,7 @@ class Parser
 			} else {
 				# Expand the URL for printable version
 				if ( ! $sk->suppressUrlExpansion() ) {
-					$paren = "<span class='urlexpansion'> (<i>" . htmlspecialchars ( $encUrl ) . "</i>)</span>";
+					$paren = "<span class='urlexpansion'>&nbsp;(<i>" . htmlspecialchars ( $encUrl ) . "</i>)</span>";
 				} else {
 					$paren = '';
 				}
@@ -1042,7 +1044,7 @@ class Parser
 		$fname = 'Parser::replaceFreeExternalLinks';
 		wfProfileIn( $fname );
 		
-		$bits = preg_split( '/((?:'.URL_PROTOCOLS.'):)/S', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+		$bits = preg_split( '/(\b(?:'.URL_PROTOCOLS.'):)/S', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		$s = array_shift( $bits );
 		$i = 0;
 
@@ -1148,7 +1150,7 @@ class Parser
 
 		# Match a link having the form [[namespace:link|alternate]]trail
 		static $e1 = FALSE;
-		if ( !$e1 ) { $e1 = "/^([{$tc}]+)(?:\\|([^]]+))?]](.*)\$/sD"; }
+		if ( !$e1 ) { $e1 = "/^([{$tc}]+)(?:\\|(.+?))?]](.*)\$/sD"; }
 		# Match cases where there is no "]]", which might still be images
 		static $e1_img = FALSE;
 		if ( !$e1_img ) { $e1_img = "/^([{$tc}]+)\\|(.*)\$/sD"; }
@@ -1216,7 +1218,7 @@ class Parser
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
-			if (preg_match('/^((?:'.URL_PROTOCOLS.'):)/', $m[1])) {
+			if (preg_match('/^(\b(?:'.URL_PROTOCOLS.'):)/', $m[1])) {
 				$s .= $prefix . '[[' . $line ;
 				continue;
 			}
@@ -1742,6 +1744,10 @@ class Parser
 				return $varCache[$index] = $wgContLang->formatNum( date( 'Y' ) );
 			case MAG_CURRENTTIME:
 				return $varCache[$index] = $wgContLang->time( wfTimestampNow(), false );
+			case MAG_CURRENTWEEK:
+				return $varCache[$index] = $wgContLang->formatNum( date('W') );
+			case MAG_CURRENTDOW:
+				return $varCache[$index] = $wgContLang->formatNum( date('w') );
 			case MAG_NUMBEROFARTICLES:
 				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfArticles() );
 			case MAG_SITENAME:
@@ -2191,14 +2197,14 @@ class Parser
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
-				'ruby', 'rt' , 'rb' , 'rp', 'p'
+				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span'
 			);
 			$htmlsingle = array(
 				'br', 'hr', 'li', 'dt', 'dd'
 			);
 			$htmlnest = array( # Tags that can be nested--??
 				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
-				'dl', 'font', 'big', 'small', 'sub', 'sup'
+				'dl', 'font', 'big', 'small', 'sub', 'sup', 'span'
 			);
 			$tabletags = array( # Can only appear inside table
 				'td', 'th', 'tr'
@@ -2807,9 +2813,14 @@ class Parser
 			putenv( 'TZ='.$oldtzs );
 		}
 
-		$text = preg_replace( '/~~~~~~/', $d, $text );
-		$text = preg_replace( '/~~~~/', '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]] $d", $text );
-		$text = preg_replace( '/~~~/', '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]]", $text );
+		if( $user->getOption( 'fancysig' ) ) {
+			$sigText = $k;
+		} else {
+			$sigText = '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]]";
+		}
+		$text = preg_replace( '/~~~~~/', $d, $text );
+		$text = preg_replace( '/~~~~/', "$sigText $d", $text );
+		$text = preg_replace( '/~~~/', $sigText, $text );
 
 		# Context links: [[|name]] and [[name (context)|]]
 		#
@@ -3078,12 +3089,21 @@ class Parser
 				continue;
 			}
 			$nt = Title::newFromURL( $matches[1] );
+			if( is_null( $nt ) ) {
+				# Bogus title. Ignore these so we don't bomb out later.
+				continue;
+			}
 			if ( isset( $matches[3] ) ) {
 				$label = $matches[3];
 			} else {
 				$label = '';
 			}
-			$ig->add( Image::newFromTitle( $nt ), $label );
+			
+			# FIXME: Use the full wiki parser and add its links
+			# to the page's links.
+			$html = $this->mOptions->mSkin->formatComment( $label );
+			
+			$ig->add( Image::newFromTitle( $nt ), $html );
 			$wgLinkCache->addImageLinkObj( $nt );
 		}
 		return $ig->toHTML();

@@ -228,6 +228,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( "helppage", wfMsg('helppage'));
 		*/
 		$tpl->set( 'searchaction', $this->escapeSearchLink() );
+		$tpl->set( 'search', trim( $wgRequest->getVal( 'search' ) ) );
 		$tpl->setRef( 'stylepath', $wgStylePath );
 		$tpl->setRef( 'logopath', $wgLogo );
 		$tpl->setRef( "lang", $wgContLanguageCode );
@@ -243,7 +244,7 @@ class SkinTemplate extends Skin {
 		global $wgUseSiteJs;
 		if ($wgUseSiteJs) {
 			if($this->loggedin) {
-				$tpl->set( 'jsvarurl', $this->makeUrl('-','action=raw&smaxage=0&gen=js') );
+				$tpl->set( 'jsvarurl', $this->makeUrl($this->userpage.'/-','action=raw&smaxage=1&gen=js') );
 			} else {
 				$tpl->set( 'jsvarurl', $this->makeUrl('-','action=raw&gen=js') );
 			}
@@ -448,17 +449,18 @@ class SkinTemplate extends Skin {
 	 * @access private
 	 */
 	function buildContentActionUrls () {
+		global $wgContLang;
 		$fname = 'SkinTemplate::buildContentActionUrls';
 		wfProfileIn( $fname );
 		
-		global $wgTitle, $wgUser, $wgOut, $wgRequest, $wgUseValidation;
+		global $wgTitle, $wgUser, $wgRequest, $wgUseValidation;
 		$action = $wgRequest->getText( 'action' );
 		$section = $wgRequest->getText( 'section' );
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$diff = $wgRequest->getVal( 'diff' );
 		$content_actions = array();
 
-		if( $this->iscontent and !$wgOut->isQuickbarSuppressed() ) {
+		if( $this->iscontent ) {
 
 			$nskey = $this->getNameSpaceKey();
 			$is_active = !Namespace::isTalk( $wgTitle->getNamespace()) ;
@@ -578,7 +580,7 @@ class SkinTemplate extends Skin {
 				}
 			}
 			wfProfileOut( "$fname-live" );
-			
+
 			if ( $wgUser->getID() != 0 and $action != 'submit' ) {
 				if( !$wgTitle->userIsWatching()) {
 					$content_actions['watch'] = array(
@@ -605,6 +607,7 @@ class SkinTemplate extends Skin {
 					'href' => $wgTitle->getLocalUrl( 'action=validate'.$article_time)
 				);
 			}
+
 		} else {
 			/* show special page tab */
 
@@ -614,6 +617,34 @@ class SkinTemplate extends Skin {
 				'href' => false
 			);
 		}
+
+		/* show links to different language variants */
+		global $wgDisableLangConversion;
+		$variants = $wgContLang->getVariants();
+		if( !$wgDisableLangConversion && sizeof( $variants ) > 1 ) {
+			$highlight = $wgContLang->getPreferredVariant();
+			if( $wgContLang->getVariantname($highlight) == 'disable' ) {
+				$highlight = $wgContLang->getVariantFallback($highlight);
+				if( $highlight && $wgContLang->getVariantname($highlight) == 'false' )
+					$highlight = false;
+			}
+			$actstr = '';
+			if( $action )
+				$actstr = 'action=' . $action . '&';
+			$vcount=0;
+			foreach( $variants as $code ) {
+				$varname = $wgContLang->getVariantname( $code );
+				if( $varname == 'disable' )
+					continue;
+				$selected = ( $code == $highlight )? 'selected' : false;
+				$content_actions['varlang-' . $vcount] = array(
+						'class' => $selected,
+						'text' => $varname,
+						'href' => $wgTitle->getLocalUrl( $actstr . 'variant=' . $code )
+					);
+				$vcount ++;
+			}
+		} 		
 
 		wfProfileOut( $fname );
 		return $content_actions;
@@ -760,11 +791,17 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::setupUserCss';
 		wfProfileIn( $fname );
 		
-		global $wgRequest, $wgTitle, $wgAllowUserCss, $wgUseSiteCss;
+		global $wgRequest, $wgTitle, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath;
 
-		$sitecss = "";
-		$usercss = "";
-		$siteargs = "";
+		$sitecss = '';
+		$usercss = '';
+		$siteargs = '';
+		
+		if ($wgContLang->isRTL()) $sitecss .= '@import "' . $wgStylePath . '/' . $this->stylename . '/rtl.css";' . "\n";
+		
+		if ( $wgUseSiteCss ) {
+			$sitecss .= '@import "' . $this->makeNSUrl(ucfirst($this->skinname) . '.css', 'action=raw&ctype=text/css&smaxage=' . $wgSquidMaxage, NS_MEDIAWIKI) . '";' . "\n";
+		}
 
 		# Add user-specific code if this is a user and we allow that kind of thing
 		
@@ -773,26 +810,30 @@ class SkinTemplate extends Skin {
 			
 			# if we're previewing the CSS page, use it
 			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
-				$siteargs .= "&smaxage=0&maxage=0";
+				# we are previewing
+				$siteargs .= "&maxage=0";
+				# use the raw css just posted directly in the header of the page
 				$usercss = $wgRequest->getText('wpTextbox1');
 			} else {
-				$siteargs .= "&maxage=0";
 				$usercss = '@import "' .
 				  $this->makeUrl($this->userpage . '/'.$this->skinname.'.css',
 								 'action=raw&ctype=text/css') . '";' ."\n";
 			}
-		}
-
-		# If we use the site's dynamic CSS, throw that in, too
-		
-		if ( $wgUseSiteCss ) {
-			$sitecss = '@import "'.$this->makeUrl('-','action=raw&gen=css' . $siteargs).'";'."\n";
+			if ( $wgUseSiteCss ) {
+				# no point in server-side caching for user-generated stylesheets, hence smaxage=0. Client caches.
+				$sitecss .= '@import "' . $this->makeUrl($this->userpage . '/-', 'action=raw&smaxage=1&gen=css' . $siteargs ) . '";' . "\n";
+			}
+			
+		} else if ( $wgUseSiteCss ) {
+			# If we use the site's dynamic CSS, throw that in, too
+			# Full caching, both server-side and client-side
+			$sitecss .= '@import "' . $this->makeUrl('-','action=raw&gen=css' ) . '";' . "\n";
 		}
 		
 		# If we use any dynamic CSS, make a little CDATA block out of it.
 		
 		if ( !empty($sitecss) || !empty($usercss) ) {
-			$this->usercss = '/*<![CDATA[*/ ' . $sitecss . ' ' . $usercss . ' /*]]>*/';
+			$this->usercss = "/*<![CDATA[*/\n" . $sitecss . $usercss . '/*]]>*/';
 		}
 		wfProfileOut( $fname );
 	}
@@ -826,13 +867,9 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::getUserStylesheet';
 		wfProfileIn( $fname );
 		
-		global $wgUser, $wgRequest, $wgTitle, $wgContLang, $wgSquidMaxage, $wgStylePath;
-		$action = $wgRequest->getText('action');
-		$maxage = $wgRequest->getText('maxage');
+		global $wgUser;
 		$s = "/* generated user stylesheet */\n";
-		if($wgContLang->isRTL()) $s .= '@import "'.$wgStylePath.'/'.$this->stylename.'/rtl.css";'."\n";
-		$s .= '@import "'.
-		$this->makeNSUrl(ucfirst($this->skinname).'.css', 'action=raw&ctype=text/css&smaxage='.$wgSquidMaxage, NS_MEDIAWIKI)."\";\n";
+
 		if($wgUser->getID() != 0) {
 			if ( 1 == $wgUser->getOption( "underline" ) ) {
 				$s .= "a { text-decoration: underline; }\n";
@@ -936,6 +973,19 @@ class QuickTemplate {
 	 */
 	function msgHtml( $str ) {
 		echo $this->translator->translate( $str );
+	}
+	
+	/**
+	 * An ugly, ugly hack.
+	 * @access private
+	 */
+	function msgWiki( $str ) {
+		global $wgParser, $wgTitle, $wgOut, $wgUseTidy;
+
+		$text = $this->translator->translate( $str );
+		$parserOutput = $wgParser->parse( $text, $wgTitle,
+			$wgOut->mParserOptions, true );
+		echo $parserOutput->getText();
 	}
 	
 	/**

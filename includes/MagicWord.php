@@ -45,6 +45,10 @@ define('MAG_PAGENAMEE', 31);
 define('MAG_NAMESPACE', 32);
 define('MAG_TOC', 33);
 define('MAG_GRAMMAR', 34);
+define('MAG_NOTITLECONVERT', 35);
+define('MAG_NOCONTENTCONVERT', 36);
+define('MAG_CURRENTWEEK', 37);
+define('MAG_CURRENTDOW', 38);
 
 $wgVariableIDs = array(
 	MAG_CURRENTMONTH,
@@ -59,7 +63,9 @@ $wgVariableIDs = array(
 	MAG_SERVER,
 	MAG_PAGENAME,
 	MAG_PAGENAMEE,
-	MAG_NAMESPACE
+	MAG_NAMESPACE,
+	MAG_CURRENTWEEK,
+	MAG_CURRENTDOW
 );
 
 /**

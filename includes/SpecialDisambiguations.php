@@ -29,7 +29,7 @@ class DisambiguationsPage extends PageQueryPage {
 		$sk = $wgUser->getSkin();
 		
 		#FIXME : probably need to add a backlink to the maintenance page.
-		return '<p>'.wfMsg("disambiguationstext", $sk->makeKnownLink(wfMsgForContent('disambiguationspage')) )."</p><br>\n";
+		return '<p>'.wfMsg("disambiguationstext", $sk->makeKnownLink(wfMsgForContent('disambiguationspage')) )."</p><br />\n";
 	}
 
 	function getSQL() {

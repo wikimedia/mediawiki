@@ -94,7 +94,7 @@ class SquidUpdate {
 		global  $wgSquidServers;
 
 		if ( $wgSquidServers == 'echo' ) {
-			echo implode("<br>\n", $urlArr);
+			echo implode("<br />\n", $urlArr);
 			return;
 		}
 

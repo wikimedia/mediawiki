@@ -141,7 +141,7 @@ class SqlQueryForm {
 					}
 					$skin = $wgUser->getSkin();
 					$link = $skin->makeLink( $link );
-					$r .= "* [[$link]]<br>\n";	
+					$r .= "* [[$link]]<br />\n";	
 				}
 			} else {
 

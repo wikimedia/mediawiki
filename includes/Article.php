@@ -43,6 +43,9 @@ class Article {
 		$this->clear();
 	}
 
+	function getTitle() {
+		return $this->mTitle;	
+	}
 	/**
 	  * Clear the object
 	  * @private
@@ -529,7 +532,7 @@ class Article {
 	 */
 	function getSelectOptions( $options = '' ) {
 		if ( $this->mForUpdate ) {
-			if ( $options ) {
+			if ( is_array( $options ) ) {
 				$options[] = 'FOR UPDATE';
 			} else {
 				$options = 'FOR UPDATE';
@@ -1200,7 +1203,9 @@ class Article {
 			RecentChange::markPatrolled( $rcid );
 			$wgOut->setPagetitle( wfMsg( 'markedaspatrolled' ) );
 			$wgOut->addWikiText( wfMsg( 'markedaspatrolledtext' ) );
-			$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
+
+			$rcTitle = Title::makeTitle( NS_SPECIAL, 'Recentchanges' );
+			$wgOut->returnToMain( false, $rcTitle->getPrefixedText() );
 		}
 		else
 		{
@@ -1454,6 +1459,25 @@ class Article {
 			return;
 		}
 
+		$dbr =& $this->getDB();
+		$ns = $this->mTitle->getNamespace();
+		$title = $this->mTitle->getDBkey();
+
+		# Temporary hack:
+		# Fail if any of the old rows have old_flags=object
+		$row = $dbr->selectRow( 'old', 
+			array( 'old_flags' ),
+			array(
+				'old_namespace' => $ns,
+				'old_title' => $title,
+				"old_flags LIKE '%object%'",
+			), $fname, $this->getSelectOptions()
+		);
+		if ( $row ) {
+			$wgOut->fatalError( wfMsg( 'block_compress_delete' ) );
+			return;
+		}
+
 		if ( $confirm ) {
 			$this->doDelete( $reason );
 			return;
@@ -1462,9 +1486,6 @@ class Article {
 		# determine whether this page has earlier revisions
 		# and insert a warning if it does
 		# we select the text because it might be useful below
-		$dbr =& $this->getDB();
-		$ns = $this->mTitle->getNamespace();
-		$title = $this->mTitle->getDBkey();
 		$old = $dbr->selectRow( 'old',
 			array( 'old_text', 'old_flags' ),
 			array(
@@ -1604,8 +1625,8 @@ class Article {
 				$wgOut->setRobotpolicy( 'noindex,nofollow' );
 				
 				$sk = $wgUser->getSkin();
-				$loglink = $sk->makeKnownLink( $wgContLang->getNsText( NS_PROJECT ) .
-											   ':' . wfMsgForContent( 'dellogpage' ),
+				$loglink = $sk->makeKnownLink( $wgContLang->getNsText( NS_SPECIAL ) .
+											   ':log/delete',
 											   wfMsg( 'deletionlog' ) );
 				
 				$text = wfMsg( 'deletedtext', $deleted, $loglink );
@@ -1956,11 +1977,6 @@ class Article {
 		$called = true;
 		if($this->isFileCacheable()) {
 			$touched = $this->mTouched;
-			if( $this->mTitle->getPrefixedDBkey() == wfMsg( 'mainpage' ) ) {
-				# Expire the main page quicker
-				$expire = wfUnix2Timestamp( time() - 3600 );
-				$touched = max( $expire, $touched );
-			}
 			$cache = new CacheManager( $this->mTitle );
 			if($cache->isFileCacheGood( $touched )) {
 				global $wgOut;

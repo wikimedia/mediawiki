@@ -301,8 +301,8 @@ Non oblida personalisar Wikipedia secundo tu preferentias.",
 "yourpasswordagain" => "Confirmar contrasigno",
 "newusersonly"	=> " (solmente pro nove usatores)",
 "remembermypassword" => "Recordar contrasigno inter sessiones.",
-"loginproblem"	=> "<b>Occurreva problemas pro initiar tu session.</b><br>Tenta de nove!",
-"alreadyloggedin" => "<font color=red><b>Usator $1, tu session ja es aperte!</b></font><br>\n",
+"loginproblem"	=> "<b>Occurreva problemas pro initiar tu session.</b><br />Tenta de nove!",
+"alreadyloggedin" => "<font color=red><b>Usator $1, tu session ja es aperte!</b></font><br />\n",
 
 "login"			=> "Aperir session",
 "userlogin"		=> "Aperir session",
@@ -343,7 +343,7 @@ Per favor initia un session post reciper lo.",
 "showpreview"	=> "Monstrar previsualisation",
 "blockedtitle"	=> "Le usator es blocate",
 "blockedtext"	=> "Tu nomine de usator o adresse de IP ha essite blocate per $1.
-Le motivo presentate es iste:<br>''$2''<p>Tu pote contactar $1 o un del altere
+Le motivo presentate es iste:<br />''$2''<p>Tu pote contactar $1 o un del altere
 [[Wikipedia:administratores|administratores]] pro discuter le bloco.",
 "newarticle"	=> "(Nove)",
 "newarticletext" =>
@@ -377,7 +377,7 @@ Si tu lo salvara, tote le modificationes facite post iste revision essera perdit
 considerate public secundo le terminos del Licentia de Documentation Libere GNU
 (vide plus detalios in $1).
 Si tu non vole que tu scripto sia modificate impietosemente e redistribuite
-a voluntate, alora non lo edita hic.<br>
+a voluntate, alora non lo edita hic.<br />
 Additionalmente, tu nos garanti que tu es le autor de tu contributiones,
 o que tu los ha copiate de un ressource libere de derectos.
 <strong>NON USA MATERIAL COPERITE PER DERECTOS DE AUTOR (COPYRIGHT) SIN AUTORISATION EXPRESSE!</strong>",
@@ -441,8 +441,8 @@ terminos de recerca (solmente le paginas que contine tote le terminos
 de recerca apparera in le resultato).",
 "powersearch" => "Recercar",
 "powersearchtext" => "
-Recerca in contextos :<br>
-$1<br>
+Recerca in contextos :<br />
+$1<br />
 $2 Listar redireciones &nbsp; Recercar pro $3 $9",
 
 
@@ -621,7 +621,7 @@ a su proposito.",
 "deleteimgcompletely"		=> "elim",
 "imghistlegend" => "Legend: (actu) = iste es le imagine actual, (elim) = elimina
 iste version antique, (rev) = reverte a iste version antique.
-<br><i>Clica super le data pro vider le imagine cargate in ille die.</i>",
+<br /><i>Clica super le data pro vider le imagine cargate in ille die.</i>",
 "imagelinks"	=> "Ligamines al imagine",
 "linkstoimage"	=> "Le paginas sequente se liga a iste imagine:",
 "nolinkstoimage" => "Necun pagina se liga a iste imagine.",
@@ -652,12 +652,12 @@ non preme \"Reload\" post cata item reparate. ;-)",
 "disambiguations"	=> "Paginas de disambiguation",
 "disambiguationspage"	=> "Wikipedia:Ligamines_a_paginas_de_disambiguation",
 "disambiguationstext"	=> "Le articulos sequente se liga a un <i>pagina de disambiguation</i>.
-Illos deberea ligar se directemente al topico appropriate.<br>
+Illos deberea ligar se directemente al topico appropriate.<br />
 Un pagina es tractate como un pagina de disambiguation si existe un ligamine
 a illo in $1. Ligamines de altere contextos <i>non</i> es listate hic.",
 "doubleredirects"	=> "Redirectiones duple",
 "doubleredirectstext"	=> "<b>Attention:</b> Iste lista pote continer items false.
-Illo generalmente significa que il ha texto additional con ligamines sub le prime #REDIRECT.<br>
+Illo generalmente significa que il ha texto additional con ligamines sub le prime #REDIRECT.<br />
 Cata linea contine ligamines al prime e secunde redirection, assi como le prime linea del
 secunde texto de redirection, generalmente exhibiente le articulo scopo \"real\",
 al qual le prime redirection deberea referer se.",
@@ -842,7 +842,7 @@ specific que ha essite vandalisate).",
 "noblockreason" => "Tu debe fornir un motivo pro le blocage.",
 "blockipsuccesssub" => "Blocage con successo",
 "blockipsuccesstext" => "Le adresse IP \"$1\" ha essite blocate.
-<br>Vide [[Special:Ipblocklist|Lista de IPs blocate]] pro revider le blocages.",
+<br />Vide [[Special:Ipblocklist|Lista de IPs blocate]] pro revider le blocages.",
 "unblockip"		=> "Disblocar adresse IP",
 "unblockiptext"	=> "Usa le formulario infra pro restaurar le accesso de scriptura
 a un adresse de IP blocate previemente.",
@@ -875,7 +875,7 @@ Per favor confirma que iste es tu intention.",
 "lockdbsuccesssub" => "Base de datos blocate con successo",
 "unlockdbsuccesssub" => "Base de datos disblocate con successo",
 "lockdbsuccesstext" => "Le base de datos de Wikipedia ha essite blocate.
-<br>Rememora te de disblocar lo post completar tu mantenentia.",
+<br />Rememora te de disblocar lo post completar tu mantenentia.",
 "unlockdbsuccesstext" => "Le base de datos de Wikipedia ha essite disblocate.",
 
 # SQL query

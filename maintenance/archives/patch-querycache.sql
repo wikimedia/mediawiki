@@ -1,6 +1,6 @@
 -- Used for caching expensive grouped queries
 
-CREATE TABLE querycache (
+CREATE TABLE /*$wgDBprefix*/querycache (
   qc_type char(32) NOT NULL,
   qc_value int(5) unsigned NOT NULL default '0',
   qc_namespace tinyint(2) unsigned NOT NULL default '0',

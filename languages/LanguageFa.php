@@ -129,8 +129,8 @@ require_once("LanguageUtf8.php");
 "tog-showtoolbar"=>"نمایش نوار ابزار جعبه‌ی ویرایش",
 "tog-editondblclick" => "ویرایش صفحه‌ها با دوکلیک (جاوااسکریپت)",
 "tog-editsection"=>"به کار انداختن ویرایش قسمت‌ها از طریق پیوندهای [ویرایش]",
-"tog-editsectiononrightclick"=>"به کار انداختن ویرایش قسمت‌ها با کلیک راست<br>روی عناوین قسمت‌ها (جاوااسکریپت)",
-"tog-showtoc"=>"نمایش فهرست مندرجات<br>(برای مقالات با بیش از ۳ سرفصل)",
+"tog-editsectiononrightclick"=>"به کار انداختن ویرایش قسمت‌ها با کلیک راست<br />روی عناوین قسمت‌ها (جاوااسکریپت)",
+"tog-showtoc"=>"نمایش فهرست مندرجات<br />(برای مقالات با بیش از ۳ سرفصل)",
 "tog-rememberpassword" => "کلمه‌ی عبور برای نشست‌های بعدی بماند",
 "tog-editwidth" => "عرض جعبه‌ی ویرایش کامل باشد",
 "tog-watchdefault" => "افزودن صفحاتی که ویرایش می‌کند به فهرست تعقیبات",
@@ -306,8 +306,8 @@ The administrator who locked it offered this explanation:
 "perfdisabled" => "شرمنده! این امکان موفقتاً برداشته شده چون پایگاه داده را چنان کند می‌کند
 که هیچ کس نمی‌تواند از ویکی استفاده کند.",
 "perfdisabledsub" => "این نسخه‌ی ذخیره‌شده‌ای از $1 است: ",
-"wrong_wfQuery_params" => "پارامترهای wfQuery() نادرست است<br>
-تابع: $1<br>
+"wrong_wfQuery_params" => "پارامترهای wfQuery() نادرست است<br />
+تابع: $1<br />
 پرس‌وجو: $2
 ",
 "viewsource" => "نمایش مبدأ",
@@ -333,8 +333,8 @@ The administrator who locked it offered this explanation:
 "yourpasswordagain" => "کلمه‌ی عبور را دوباره وارد کنید",
 "newusersonly"	=> " (فقط کاربران جدید)",
 "remembermypassword" => "کلمه‌ی عبور بین نشست‌ها به خاطر سپرده شود.",
-"loginproblem"	=> "<b>ورود شما به سیستم با مشکلی مواجه شد.</b><br>دوباره تلاش کنید!",
-"alreadyloggedin" => "<font color=red><b>کاربر $1, شما از قبل وارد سیستم شده‌اید!</b></font><br>\n",
+"loginproblem"	=> "<b>ورود شما به سیستم با مشکلی مواجه شد.</b><br />دوباره تلاش کنید!",
+"alreadyloggedin" => "<font color=red><b>کاربر $1, شما از قبل وارد سیستم شده‌اید!</b></font><br />\n",
 
 "login"			=> "ورود به سیستم",
 "loginprompt"           => "برای ورود به ویکی‌پدیا باید cookieها را فعال کنید.",
@@ -409,7 +409,7 @@ You should log in and change your password now.",
 "showpreview"	=> "پیش‌نمایش نمایش یابد",
 "blockedtitle"	=> "کاربر بسته شده است",
 "blockedtext"	=> "نام کاربری یا نشانی IP شما توسط $1 بسته شده است.
-دلیل داده‌شده این است:<br>''$2''<p>شما می‌توانید با $1 یا یکی از 
+دلیل داده‌شده این است:<br />''$2''<p>شما می‌توانید با $1 یا یکی از 
 [[ویکی‌پدیا:مدیران|مدیران]] تماس بگیرید و در این باره صحبت کنید.
 
 توجه کنید که شما نمی‌توانید از امکان «فرستادن پست الکترونیکی به این کاربر» استفاده کنید مگر اینکه نشانی پست الکترونیکی
@@ -472,7 +472,7 @@ You should log in and change your password now.",
 تحت اجازه‌نامه‌ی مستندات آزاد گنو منتشر می‌شوند
 (برای جزئیات بیشتر به $1 مراجعه کنید).
 اگر نمی‌خواهد نوشته‌هایتان بیرحمانه ویرایش شده و به دلخواه توزیع شود،
-اینجا نفرستیدشان.<br>
+اینجا نفرستیدشان.<br />
 همینطور شما دارید به ما قول می‌دهید که خودتان این را نوشته‌اید، یا آن را از یک منبع آزاد با
 مالکیت عمومی یا مشابه آن برداشته‌اید.
 <strong>کارهای دارای حق انحصاری تکثیر (کپی‌رایت) را بی اجازه نفرستید!</strong>",
@@ -539,8 +539,8 @@ which are not indexed, or by specifying more than one search term (only pages
 containing all of the search terms will appear in the result).",
 "powersearch" => "جستجو",
 "powersearchtext" => "
-جستجو در فضاهای نام :<br>
-$1<br>
+جستجو در فضاهای نام :<br />
+$1<br />
 $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9",
 "searchdisabled" => "<p>شرمنده! جستجوی کل متن موقتاً از کار انداخته شده, for performance reasons. In the meantime, you can use the Google search below, which may be out of date.</p>
 
@@ -555,7 +555,7 @@ border=\"0\" ALT=\"گوگل\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"جستجوی گوگل\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br>
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -736,7 +736,7 @@ you may be blocked from uploading if you abuse the system.",
 "deleteimgcompletely"		=> "حذف",
 "imghistlegend" => "شرح: (فعلی) = این تصویر فعلی است، (حذف) = این
 نسخه‌ی قدیمی حذف شود، (برگرد) = برگرداندن به این نسخه‌ی قدیمی.
-<br><i>برای دیدن تصویر بار شده در تاریخ مشخص، روی تاریخ کلیک کنید</i>.",
+<br /><i>برای دیدن تصویر بار شده در تاریخ مشخص، روی تاریخ کلیک کنید</i>.",
 "imagelinks"	=> "پیوند‌های تصاویر",
 "linkstoimage"	=> "این صفحات به این تصویر پیوند دارند:",
 "nolinkstoimage" => "هیچ صفحه‌ای به این تصویر پیوند ندارد.",
@@ -764,9 +764,9 @@ you may be blocked from uploading if you abuse the system.",
 "disambiguations"	=> "صفحات رفع ابهام",
 "disambiguationspage"	=> "ویکی‌پدیا:پیوند به صفحات رفع ابهام",
 "disambiguationstext"	=> "مقاله‌های زیر به یک <i>صفحه‌ی رفع ابهام</i> پیوند دارند. به جای این، این صفحات باید به
-They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
+They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "تغییرمسیرهای دوتایی",
-"doubleredirectstext"	=> "<b>توجه:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
+"doubleredirectstext"	=> "<b>توجه:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
 "brokenredirects"	=> "تغییرمسیرهای خراب",
 "brokenredirectstext"	=> "تغییرمسیرهای زیر به یک صفحه‌ی ناموجود پیوند دارند.",
 "selflinks"		=> "صفحات با پیوند به خود",
@@ -982,7 +982,7 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 "noblockreason" => "شما باید دلیلی برای بستن مشخص کنید.",
 "blockipsuccesssub" => "بستن با موفقیت انجام شد",
 "blockipsuccesstext" => "«$1» بسته شده است.
-<br>برای بررسی بسته‌شدن‌ها، به [[ویژه:فهرستIPهای‌بسته|فهرست IPهای بسته]] مراجعه کنید.",
+<br />برای بررسی بسته‌شدن‌ها، به [[ویژه:فهرستIPهای‌بسته|فهرست IPهای بسته]] مراجعه کنید.",
 "unblockip"		=> "باز کردن کاربر",
 "unblockiptext"	=> "برای باز گرداندن دسترسی نوشتن به یک نشانی IP یا نام کاربری بسته‌شده
 از فرم زیر استفاده کنید.",
@@ -1022,7 +1022,7 @@ Please confirm that this is what you intend to do.",
 "lockdbsuccesssub" => "قفل کردن پایگاه داده با موفقیت انجام شد",
 "unlockdbsuccesssub" => "قفل پایگاه داده برداشته شد",
 "lockdbsuccesstext" => "پایگاه داده قفل شد.
-<br>فراموش نکنید که پس از اتمام نگهداری قفل را بردارید.",
+<br />فراموش نکنید که پس از اتمام نگهداری قفل را بردارید.",
 "unlockdbsuccesstext" => "پایگاه داده از قفل در آمد.",
 
 # SQL query

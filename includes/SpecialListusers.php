@@ -38,87 +38,20 @@ require_once("QueryPage.php");
  * @subpackage SpecialPage
  */
 class ListUsersPage extends QueryPage {
-	var $requestedGroup = '';
 	var $requestedUser = '';
 		
 	function getName() {
 		return "Listusers";
 	}
 	function isSyndicated() { return false; }
-
-	/**
-	 * Show a drop down list to select a group as well as a user name
-	 * search box.
-	 * @TODO: localize
-	 */
-	function getPageHeader( ) {
-		global $wgScript;
-		
-		// Various variables used for the form
-		$action = htmlspecialchars( $wgScript );
-		$title = Title::makeTitle( NS_SPECIAL, 'Listusers' );
-		$special = htmlspecialchars( $title->getPrefixedDBkey() );
-
-		// form header
-		$out = '<form method="get" action="'.$action.'">' .
-				'<input type="hidden" name="title" value="'.$special.'" />' .
-				'Group: <select name="group">' .
-
-		// get all group names and id
-		$dbr = & wfGetDB( DB_SLAVE );
-		$group = $dbr->tableName( 'group' );
-		$sql = "SELECT group_id, group_name FROM $group;";
-		$result = $dbr->query($sql);
-		
-		// we want a default empty group
-		$out.= '<option value=""></option>';
-		
-		// build the dropdown list menu using datas from the database
-		while($agroup = $dbr->fetchObject( $result )) {
-			$selected = ($agroup->group_id == $this->requestedGroup) ? " selected " : "" ;
-			$out.= '<option value="'.$agroup->group_id.'" '.$selected.'>'.$agroup->group_name.'</option>';
-		}
-		$out .= '</select> ';
-
-		$out .= 'User: <input type="text" name="username" /> ';
-
-		// OK button, end of form.
-		$out .= '<input type="submit" /></form>';
-		// congratulations the form is now build
-		return $out;	
-	}
 	
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-	/* system showing possible actions for users
 		$user = $dbr->tableName( 'user' );
 		$user_rights = $dbr->tableName( 'user_rights' );
 		$userspace = Namespace::getUser();
 		return "SELECT ur_rights as type, $userspace as namespace, user_name as title, " .
 			"user_name as value FROM $user LEFT JOIN $user_rights ON user_id = ur_user";
-	*/
-	/** Show groups instead */
-		$user = $dbr->tableName( 'user' );
-		$group = $dbr->tableName( 'group' );
-		$user_groups = $dbr->tableName( 'user_groups' );
-		
-		$userspace = Namespace::getUser();
-		$sql = "SELECT group_name as type, $userspace AS namespace, user_name AS title, user_name as value " .
-			"FROM $user LEFT JOIN $user_groups ON user_id =ug_user " .
-			"LEFT JOIN $group ON ug_group = group_id ";
-		
-		if($this->requestedGroup != '') {
-			$sql .=  "WHERE group_id= '$this->requestedGroup' ";
-			if($this->requestedUser != '') {
-				$sql .= "AND user_name = '$this->requestedUser' ";
-			}
-		} else {
-			if($this->requestedUser !='') {
-				$sql .= "WHERE user_name = '$this->requestedUser' ";
-			}	
-		}				
-		
-		return $sql;
 	}
 	
 	function sortDescending() {

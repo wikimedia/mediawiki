@@ -10,6 +10,9 @@
  * @subpackage Skins
  */
 
+if( !defined( 'MEDIAWIKI' ) )
+	die();
+
 /** */
 require_once('includes/SkinTemplate.php');
 
@@ -47,8 +50,9 @@ class MonoBookTemplate extends QuickTemplate {
     <title><?php $this->text('pagetitle') ?></title>
     <style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/main.css"; /*]]>*/</style>
     <link rel="stylesheet" type="text/css" media="print" href="<?php $this->text('stylepath') ?>/common/commonPrint.css" />
-    <!--[if IE]><style type="text/css" media="all">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IEFixes.css";</style>
-    <script type="text/javascript" src="<?php $this->text('stylepath') ?>/common/IEFixes.js"></script>
+    <!--[if IE 5]><style type="text/css" media="all">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IEFixes.css";</style><![endif]-->
+    <!--[if IE 6]><style type="text/css" media="all">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE60Fixes.css";</style><![endif]-->
+    <!--[if IE]><script type="text/javascript" src="<?php $this->text('stylepath') ?>/common/IEFixes.js"></script>
     <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
     <?php if($this->data['jsvarurl'  ]) { ?><script type="text/javascript" src="<?php $this->text('jsvarurl'  ) ?>"></script><?php } ?>
     <script type="text/javascript" src="<?php                                   $this->text('stylepath' ) ?>/common/wikibits.js"></script>
@@ -108,6 +112,7 @@ class MonoBookTemplate extends QuickTemplate {
 	    href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href'])?>"
 	    title="<?php $this->msg('mainpage') ?>"></a>
 	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
 	<div class="portlet" id="p-nav">
 	  <h5><?php $this->msg('navigation') ?></h5>
 	  <div class="pBody">
@@ -125,8 +130,10 @@ class MonoBookTemplate extends QuickTemplate {
 	    <form name="searchform" action="<?php $this->text('searchaction') ?>" id="searchform">
 	      <input id="searchInput" name="search" type="text"
 	        <?php if($this->haveMsg('accesskey-search')) {
-	          ?>accesskey="<?php $this->msg('accesskey-search') ?>"<?php } ?> />
-	      <input type='submit' name="go" class="searchButton"
+	          ?>accesskey="<?php $this->msg('accesskey-search') ?>"<?php }
+	        if( isset( $this->data['search'] ) ) {
+	          ?> value="<?php $this->text('search') ?>"<?php } ?> />
+	      <input type='submit' name="go" class="searchButton" id="searchGoButton"
 	        value="<?php $this->msg('go') ?>"
 	        />&nbsp;<input type='submit' name="fulltext"
 	        class="searchButton"
@@ -145,7 +152,7 @@ class MonoBookTemplate extends QuickTemplate {
 		  <?php } } ?>
 	      <?php if($this->data['feeds']) { ?><li id="feedlinks"><?php foreach($this->data['feeds'] as $key => $feed) {
 	        ?><span id="feed-<?php echo htmlspecialchars($key) ?>"><a href="<?php
-	        echo htmlspecialchars($feed['href']) ?>"><?php echo htmlspecialchars($feed['text'])?>&nbsp;</span>
+	        echo htmlspecialchars($feed['href']) ?>"><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;</span>
 	        <?php } ?></li><?php } ?>
 	      <?php foreach( array('contributions', 'emailuser', 'upload', 'specialpages') as $special ) { ?>
 	      <?php if($this->data['nav_urls'][$special]) {?><li id="t-<?php echo $special ?>"><a href="<?php

@@ -136,7 +136,7 @@ default:
 "tog-showtoolbar" => "Show edit toolbar",
 "tog-editondblclick" => "Podwójne kliknięcie rozpoczyna edycję (JavaScript)",
 "tog-editsection" => "Możliwość edycji poszczególnych sekcji strony",
-"tog-editsectiononrightclick" => "Kliknięcie prawym klawiszem na tytule sekcji<br>rozpoczyna jej edycję (JavaScript)",
+"tog-editsectiononrightclick" => "Kliknięcie prawym klawiszem na tytule sekcji<br />rozpoczyna jej edycję (JavaScript)",
 "tog-showtoc" =>  "Spis treści (na stronach zawierających więcej niż 3 nagłówki)",
 "tog-rememberpassword" => "Pamiętaj hasło między sesjami",
 "tog-editwidth" => "Obszar edycji o pełnej szerokości",
@@ -356,8 +356,8 @@ Nie zapomnij dostosować <i>preferencji</i>.",
 "yourpasswordagain" => "Powtórz hasło",
 "newusersonly" => " (tylko nowi użytkownicy)",
 "remembermypassword" => "Pamiętaj moje hasło między sesjami.",
-"loginproblem" => "<b>Są problemy z Twoim logowaniem.</b><br>Spróbuj ponownie!",
-"alreadyloggedin" => "<font color=red><b>$1, jesteś już zalogowany!</b></font><br>\n",
+"loginproblem" => "<b>Są problemy z Twoim logowaniem.</b><br />Spróbuj ponownie!",
+"alreadyloggedin" => "<font color=red><b>$1, jesteś już zalogowany!</b></font><br />\n",
 
 "login" => "Zaloguj mnie",
 "userlogin" => "Logowanie",
@@ -398,7 +398,7 @@ Po otrzymaniu go zaloguj się ponownie.",
 "showpreview" => "Podgląd",
 "blockedtitle" => "Użytkownik jest zablokowany",
 "blockedtext" => "Twoje konto lub adres IP zostały zablokowane przez $1.
-Podany powód to:<br>$2.<p>W celu wyjaśnienia sprawy zablokowania możesz się skontaktować z $1 lub innym
+Podany powód to:<br />$2.<p>W celu wyjaśnienia sprawy zablokowania możesz się skontaktować z $1 lub innym
 [[{{ns:4}}:Administratorzy|administratorem]].",
 "newarticle" => "(Nowy)",
 "newarticletext" => "Nie ma jeszcze artykułu o tym tytule. W poniższym polu można wpisać pierwszy jego fragment. Jeśli nie to było Twoim zamiarem, wciśnij po prostu ''Wstecz''.",
@@ -432,9 +432,9 @@ Jeśli zapiszesz ją wszystkie późniejsze zmiany zostaną skasowane.</strong><
 "yourdiff" => "Różnice",
 "copyrightwarning" => "Proszę pamiętać o tym, że przyjmuje się, iż wszelki
 wkład do Wikipedii jest udostępniany na zasadach <i>GNU Free Documentation License</i>
-(szczegóły w $1).  <br>Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go w Wikipedii.  Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach <i>public domain</i> albo
+(szczegóły w $1).  <br />Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go w Wikipedii.  Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach <i>public domain</i> albo
 licencji <i>GNU Free Documentation License</i> lub kompatybilnej.
-<br><strong>PROSZĘ NIE UŻYWAĆ BEZ POZWOLENIA MATERIAŁÓW OBJĘTYCH PRAWEM
+<br /><strong>PROSZĘ NIE UŻYWAĆ BEZ POZWOLENIA MATERIAŁÓW OBJĘTYCH PRAWEM
 AUTORSKIM!</strong>",
 "longpagewarning" => "UWAGA: Ta strona ma $1 kilobajt-y/-ów; w przypadku niektórych
 przeglądarek mogą wystąpić problemy w edycji stron mających więcej niż 32 kilobajty.
@@ -503,8 +503,8 @@ zapytaniu więcej niż jednego słowa (na liście odnalezionych stron znajdą si
 tylko te, które zawierają wszystkie podane słowa).",
 "powersearch" => "Szukaj", 
 "powersearchtext" => "
-Szukaj w przestrzeniach nazw :<br>
-$1<br>
+Szukaj w przestrzeniach nazw :<br />
+$1<br />
 $2 Pokaż przekierowania   Szukany tekst $3 $9",
 "searchdisabled" => "<p>Ze względu na duże obciążenie serwera wyszukiwanie
 w treści artykułów zostało czasowo wyłączone; mamy nadzieję, że 
@@ -523,9 +523,9 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Google Search\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio
 name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> {$wgServer} <br>
+value=\"{$wgServer}\" checked> {$wgServer} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -705,7 +705,7 @@ i cokolwiek co wiesz o pliku, a wydaje Ci się ważne.",
 "deleteimgcompletely" => "usuń",
 "imghistlegend" => "Legenda: (bież) = to jest obecny plik, (usuń) = usuń
 tę starszą wersję, (przywróć) = przywróć tę starszą wersję.
-<br><i>Kliknij na datę aby zobaczyć jakie pliki przesłano tego dnia</i>.",
+<br /><i>Kliknij na datę aby zobaczyć jakie pliki przesłano tego dnia</i>.",
 "imagelinks" => "Linki do pliku",
 "linkstoimage" => "Oto strony odwołujące się do tego pliku:",
 "nolinkstoimage" => "Żadna strona nie odwołuje się do tego pliku.",
@@ -737,13 +737,13 @@ więc, by ich nie nadużywać.",
 "disambiguationspage" => "{{ns:4}}:Strony_ujednoznaczniające",
 "disambiguationstext" => "Poniższe artykuły odwołują się do <i>stron
 ujednoznaczniających</i>, a powinny odwoływać się bezpośrednio do hasła
-związanego z treścią artykułu.<br>Strona uznawana jest za ujednoznaczniającą
-jeśli odwołuje się do niej $1.<br>Linki z innych przestrzeni nazw <i>nie</i>
+związanego z treścią artykułu.<br />Strona uznawana jest za ujednoznaczniającą
+jeśli odwołuje się do niej $1.<br />Linki z innych przestrzeni nazw <i>nie</i>
 zostały tu uwzględnione.",
 "doubleredirects" => "Podwójne przekierowania",
 "doubleredirectstext" => "<b>Uwaga:</b> Na tej liście mogą znajdować się
 przekierowania pozorne. Oznacza to, że poniżej pierwszej linii artykułu,
-zawierającej \"#REDIRECT ...\", może znajdować się dodatkowy tekst.<br>Każdy
+zawierającej \"#REDIRECT ...\", może znajdować się dodatkowy tekst.<br />Każdy
 wiersz listy zawiera odwołania do pierwszego i drugiego przekierowania oraz
 pierwszą linię tekstu drugiego przekierowania. Umożliwia to w większości
 przypadków odnalezienie właściwego artykułu, do którego powinno się
@@ -919,7 +919,7 @@ Autorem ostatniej zmiany jest teraz [[Wikipedysta:$3|$3]] ([[Dyskusja_wikipedyst
 "undelete" => "Odtwórz skasowaną stronę",
 "undeletepage" => "Odtwarzanie skasowanych stron",
 "undeletepagetext" => "Poniższe strony zostały skasowane, ale ich kopia wciąż
-znajduje się w archiwum.<br><b>Uwaga:</b> archiwum co jakiś czas także jest kasowane!",
+znajduje się w archiwum.<br /><b>Uwaga:</b> archiwum co jakiś czas także jest kasowane!",
 "undeletearticle" => "Odtwórz skasowaną stronę",
 "undeleterevisions" => "Liczba zarchiwizowanych wersji: $1",
 "undeletehistory" => "Odtworzenie strony spowoduje przywrócenie także jej
@@ -972,7 +972,7 @@ się wandalizmu).",
 "noblockreason" => "Musisz podać powód blokady.",
 "blockipsuccesssub" => "Zablokowanie powiodło się",
 "blockipsuccesstext" => "Adres IP \"$1\" został zablokowany.
-<br>Przejdź do [[Specjalna:Ipblocklist|Listy zablokowanych adresów IP]] by przejrzeć blokady.",
+<br />Przejdź do [[Specjalna:Ipblocklist|Listy zablokowanych adresów IP]] by przejrzeć blokady.",
 "unblockip" => "Odblokuj adres IP",
 "unblockiptext" => "Użyj poniższego formularza by przywrócić prawa zapisu
 dla poprzednio zablokowanego adresu IP.",
@@ -1005,7 +1005,7 @@ Potwierdź, proszę, że to jest zgodne z Twoimi zamiarami.",
 "lockdbsuccesssub" => "Baza danych została pomyślnie zablokowana",
 "unlockdbsuccesssub" => "Blokada bazy danych usunięta",
 "lockdbsuccesstext" => "Baza danych Wikipedii została zablokowana.
-<br>Pamiętaj usunąć blokadę po zakończeniu spraw administracyjnych.",
+<br />Pamiętaj usunąć blokadę po zakończeniu spraw administracyjnych.",
 "unlockdbsuccesstext" => "Baza danych Wikipedii została odblokowana.",
 
 # SQL query

@@ -140,8 +140,8 @@
 "tog-showtoolbar" => "Mostrar barra de edição",
 "tog-editondblclick" => "Editar páginas quando houver clique duplo(JavaScript)",
 "tog-editsection"=>"Habilitar seção de edição via links [edit]",
-"tog-editsectiononrightclick"=>"Habilitar seção de edição por clique <br> com o botão direito no título da seção (JavaScript)",
-"tog-showtoc"=>"Mostrar Tabela de Conteúdos<br>(para artigos com mais de 3 cabeçalhos)",
+"tog-editsectiononrightclick"=>"Habilitar seção de edição por clique <br /> com o botão direito no título da seção (JavaScript)",
+"tog-showtoc"=>"Mostrar Tabela de Conteúdos<br />(para artigos com mais de 3 cabeçalhos)",
 "tog-rememberpassword" => "Lembra senha entre sessões",
 "tog-editwidth" => "Caixa de edição com largura completa",
 "tog-watchdefault" => "Observa artigos novos e modificados",
@@ -342,10 +342,10 @@ Não se esqueça de personalizar suas preferências na {{SITENAME}}.",
 "yourpasswordagain" => "Redigite sua senha",
 "newusersonly"  => " (somente novos usuários)",
 "remembermypassword" => "Lembrar de minha senha em outras sessões.",
-"loginproblem"  => "<b>Houve um problema com a sua autenticação.</b><br>Tente novamente!",
-"alreadyloggedin" => "<font color=red><b>Utilizador $1, você já está autenticado!</b></font><br>\n",
+"loginproblem"  => "<b>Houve um problema com a sua autenticação.</b><br />Tente novamente!",
+"alreadyloggedin" => "<font color=red><b>Utilizador $1, você já está autenticado!</b></font><br />\n",
 
-"areyounew"     => "Se você é novo(a) na {{SITENAME}} e quer fazer uma conta de utilizador, entre com um nome de utilizador e depois digite e re-digite uma senha. Seu e-mail é opcional - se você perder a sua senha, você pode requisitar para que ela seja enviada para o endereço que você informou.<br>\n",
+"areyounew"     => "Se você é novo(a) na {{SITENAME}} e quer fazer uma conta de utilizador, entre com um nome de utilizador e depois digite e re-digite uma senha. Seu e-mail é opcional - se você perder a sua senha, você pode requisitar para que ela seja enviada para o endereço que você informou.<br />\n",
 
 "login"         => "Entrar",
 "userlogin"     => "Entrar",
@@ -388,7 +388,7 @@ Por favor, reconecte-se ao recebê-lo.",
 "showpreview"   => "Mostrar Pré-Visualização",
 "blockedtitle"  => "Usuário está bloqueado",
 "blockedtext"   => "Seu nome de usuário ou numero de IP foi bloqueado por $1.
-O motivo é:<br>''$2''<p>Você pode contactar $1 ou outro
+O motivo é:<br />''$2''<p>Você pode contactar $1 ou outro
 [[{{ns:4}}:administradores|administrador]] para discutir sobre o bloqueio.",
 "whitelistedittitle" => "Login necessário para edição",
 "whitelistedittext" => "Você precisa se [[Especial:Userlogin|logar]] para editar artigos.",
@@ -427,7 +427,7 @@ Se você salvá-lo, todas as mudanças feitas a partir desta revisão serão per
 "yourdiff"      => "Diferenças",
 "copyrightwarning" => "Por favor note que todas as contribuições �  {{SITENAME}} são consideradas lançadas sobre a GNU Free Documentation License
 (veja $1 para detalhes).
-Se você não quer que seu texto esteja sobre estes termos, então não os envie.<br>
+Se você não quer que seu texto esteja sobre estes termos, então não os envie.<br />
 Você também promete que está nos enviando um artigo escrito por você mesmo, ou extraindo de uma fonte de domínio público similar.
 <strong>NÃO ENVIE TRABALHO SOB COPYRIGHT SEM PERMISSÃO!</strong>",
 "longpagewarning" => "CUIDADO: Esta página tem $1 kilobytes ; alguns browsers podem ter problemas ao editar páginas maiores que 32kb.
@@ -486,8 +486,8 @@ e $3 artigos com o texto procurado.",
 que não são indexadas, ou pela especificação de mais de um termo (somente as páginas contendo todos os termos aparecerão nos resultados).",
 "powersearch" => "Pesquisa",
 "powersearchtext" => "
-Procurar nos namespaces :<br>
-$1<br>
+Procurar nos namespaces :<br />
+$1<br />
 $2 Lista redireciona &nbsp; Procura por $3 $9",
 "blanknamespace" => "(Principal)",
 
@@ -653,7 +653,7 @@ Por favor, siga este link : ($2) para ir �  página de descrição e preencha-
 "deleteimgcompletely"     => "del",
 "imghistlegend" => "Legenda: (cur) = esta é a imagem atual, (del) = deletar
 esta versão antiga, (rev) = reverter para esta versão antiga.
-<br><i>Clique em data para ver das imagens carregadas nesta data</i>.",
+<br /><i>Clique em data para ver das imagens carregadas nesta data</i>.",
 "imagelinks"    => "Links das imagens",
 "linkstoimage"  => "As páginas seguintes apontam para esta imagem:",
 "nolinkstoimage" => "Nenhuma página aponta para esta imagem.",
@@ -679,9 +679,9 @@ Destes, <b>$2</b> são administradores (veja $3).",
 "maintenancebacklink"   => "Voltar para a página de Manutenção",
 "disambiguations"   => "Páginas de desambiguamento",
 "disambiguationspage"   => "{{ns:4}}:Links_para_desambiguar_páginas",
-"disambiguationstext"   => "Os artigos a seguir apontam para uma <i>página de desambiguamento</i>. Ao invés disso, eles deveriam apontar para um tópico apropriado.<br> Uma página é tratada como disambiguamento se ela é por $1.<br>Links de outros namespaces <i>não</i> estão listados aqui.",
+"disambiguationstext"   => "Os artigos a seguir apontam para uma <i>página de desambiguamento</i>. Ao invés disso, eles deveriam apontar para um tópico apropriado.<br /> Uma página é tratada como disambiguamento se ela é por $1.<br />Links de outros namespaces <i>não</i> estão listados aqui.",
 "doubleredirects"   => "Double Redirects",
-"doubleredirectstext"   => "<b>Atenção:</b> Esta lista pode conter positivos falsos. O que usualmente significa que há texto adicional com links depois do primeiro #REDIRECT.<br>\nCada linha contem links para o primeiro e segundo redirecionamento, bem como a primeira linha do segundo texto redirecionado , geralmente dando o artigo alvo \"real\" , para onde o primeiro redirecionamento deveria apontar.",
+"doubleredirectstext"   => "<b>Atenção:</b> Esta lista pode conter positivos falsos. O que usualmente significa que há texto adicional com links depois do primeiro #REDIRECT.<br />\nCada linha contem links para o primeiro e segundo redirecionamento, bem como a primeira linha do segundo texto redirecionado , geralmente dando o artigo alvo \"real\" , para onde o primeiro redirecionamento deveria apontar.",
 "brokenredirects"   => "Redirecionamentos Quebrados",
 "brokenredirectstext"   => "Os seguintes redirecionamentos apontam para um artigo inexistente.",
 "selflinks"     => "Páginas com links próprios",
@@ -869,7 +869,7 @@ Preencha com um motivo específico (por exemplo, citando páginas que sofreram v
 "noblockreason" => "Você deve colocar um motivo.",
 "blockipsuccesssub" => "Bloqueio bem sucedido",
 "blockipsuccesstext" => "O endereço de IP \"$1\" Foi bloqueado.
-<br>Veja [[Special:Ipblocklist|Lista de IP's bloqueados]] para rever os bloqueios.",
+<br />Veja [[Special:Ipblocklist|Lista de IP's bloqueados]] para rever os bloqueios.",
 "unblockip"     => "Desbloquear endereço de IP",
 "unblockiptext" => "Utilize o formulário a seguir para restaurar o acesso a escrita para um endereço de IP previamente bloqueado.",
 "ipusubmit"     => "Desbloquear este endereço",
@@ -895,7 +895,7 @@ Por favor confirme que você realmente pretende fazer isto, e que você vai desb
 "lockdbsuccesssub" => "Tranca bem sucedida",
 "unlockdbsuccesssub" => "Destranca bem sucedida",
 "lockdbsuccesstext" => "O banco de dados da {{SITENAME}} foi trancado.
-<br>Lembre-se de remover a tranca após a manutenção.",
+<br />Lembre-se de remover a tranca após a manutenção.",
 "unlockdbsuccesstext" => "O bando de dados da {{SITENAME}} foi destrancado.",
 
 # SQL query

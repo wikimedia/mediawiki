@@ -19,7 +19,7 @@ if( defined( 'MEDIAWIKI' ) ) {
  * MediaWiki version number
  * @global string $wgVersion
  */
-$wgVersion			= '1.4-beta0';
+$wgVersion			= '1.4beta5';
 
 /** 
  * Name of the site.
@@ -247,6 +247,9 @@ $wgSharedDB = null;
 # Leave at false to use the single-server variables above
 $wgDBservers		= false; 
 
+# How long to wait for a slave to catch up to the master 
+$wgMasterWaitTimeout = 10;
+
 # Sysop SQL queries
 #   The sql user shouldn't have too many rights other the database, restrict
 #   it to SELECT only on 'cur' table for example
@@ -352,9 +355,11 @@ $wgPartialMessageCache = false;
 # supports this function, to convert between Traditional and Simplified
 # Chinese. This flag is meant to isolate the (untested) conversion 
 # code, so that if it breaks, only zh will be affected
-$wgDisableLangConversion = true;
+$wgDisableLangConversion = false;
 
 # Whether to use zhdaemon to perform Chinese text processing
+# zhdaemon is under developement, so normally you don't want to
+# use it unless for testing
 $wgUseZhdaemon = false;
 $wgZhdaemonHost="localhost";
 $wgZhdaemonPort=2004;
@@ -506,6 +511,7 @@ $wgCookieExpiration = 2592000;
 # A list of proxy servers (ips if possible) to purge on changes
 # don't specify ports here (80 is default)
 # $wgSquidServers = array('127.0.0.1');
+$wgSquidServersNoPurge = array();
 
 # Maximum number of titles to purge in any one client operation
 $wgMaxSquidPurgeTitles = 400;
@@ -651,6 +657,9 @@ $wgRightsUrl = NULL;
 $wgRightsText = NULL;
 $wgRightsIcon = NULL;
 
+# Set this to some HTML to override the rights icon with an arbitrary logo
+$wgCopyrightIcon = NULL;
+
 # Set this to true if you want detailed copyright information forms on Upload.
 $wgUseCopyrightUpload = false;
 
@@ -773,6 +782,20 @@ $wgUseExternalDiffEngine = false;
 # Use RC Patrolling to check for vandalism
 $wgUseRCPatrol = true;
 
+# Set maximum number of results to return in syndication feeds
+# (RSS, Atom) for eg Recentchanges, Newpages.
+$wgFeedLimit = 50;
+
+# _Minimum_ timeout for cached Recentchanges feed, in seconds.
+# A cached version will continue to be served out even if changes
+# are made, until this many seconds runs out since the last render.
+$wgFeedCacheTimeout = 60;
+
+# When generating Recentchanges RSS/Atom feed, diffs will not be
+# generated for pages larger than this size.
+$wgFeedDiffCutoff = 32768;
+
+
 # Additional namespaces. If the namespaces defined in Language.php and Namespace.php are insufficient,
 # you can create new ones here, for example, to import Help files in other languages.
 # PLEASE NOTE: Once you delete a namespace, the pages in that namespace will no longer be accessible.
@@ -842,14 +865,26 @@ $wgBrowserBlackList = array(
 # $wgLocaltimezone = 'PST8PDT';
 # $wgLocaltimezone = 'Europe/Sweden';
 # $wgLocaltimezone = 'CET';
+$wgLocaltimezone = null;
 
-# User level management
-# The number is the database id of a group you want users to be attached by
-# default. A better interface should be coded [av]
-$wgAnonGroupId = 1;
-$wgLoggedInGroupId = 2;
+/*
+When translating messages with wfMsg(), it is not always clear what should
+be considered UI messages and what shoud be content messages. 
 
-$wgWhitelistRead = array ( ':Accueil', ':Main_Page');
+For example, for regular wikipedia site like en, there should be only one 
+'mainpage', therefore when getting the link of 'mainpage', we should 
+treate it as content of the site and call wfMsgForContent(), while for 
+rendering the text of the link, we call wfMsg(). The code in default
+behaves this way. However, sites like common do offer different versions 
+of 'mainpage' and the like for different languages. This array provides a
+way to override the default behavior. For example, to allow language specific
+mainpage and community portal, set
+
+$wgForceUIMsgAsContentMsg = array( 'mainpage', 'portal-url' );
+
+*/
+$wgForceUIMsgAsContentMsg = array();
+
 
 /**
  * Authentication plugin.
@@ -868,6 +903,26 @@ $wgAuth = null;
 	
 $wgHooks = array();
 	
+
+/**
+ * Disable internal search so that extensions can implement it.
+ */
+
+$wgDisableInternalSearch = false;
+
+/**
+ * Set this to a URL to forward search requests to some external location.
+ * If the URL includes '$1', this will be replaced with the URL-encoded
+ * search term.
+ * 
+ * For example, to forward to Google you'd have something like:
+ * $wgSearchForwardUrl = 'http://www.google.com/search?q=$1' .
+ *                       '&domains=http://example.com' .
+ *                       '&sitesearch=http://example.com' .
+ *                       '&ie=utf-8&oe=utf-8';
+ */
+$wgSearchForwardUrl = null;
+
 } else {
 	die();
 }

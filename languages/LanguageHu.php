@@ -364,8 +364,8 @@ Ne felejtsd el átnézni a személyes $wgSitename beállításaidat.",
 "yourpasswordagain" => "Jelszavad ismét",
 "newusersonly"	=> " (csak új felhasználóknak)",
 "remembermypassword" => "Jelszó megjegyzése a használatok között.",
-"loginproblem"	=> "<b>Valami probléma van a belépéseddel.</b><br>Kérlek próbáld ismét!",
-"alreadyloggedin" => "<font color=red><b>Kedves $1, már be vagy lépve!</b></font><br>\n",
+"loginproblem"	=> "<b>Valami probléma van a belépéseddel.</b><br />Kérlek próbáld ismét!",
+"alreadyloggedin" => "<font color=red><b>Kedves $1, már be vagy lépve!</b></font><br />\n",
 
 "login"			=> "Belépés",
 "userlogin"		=> "Belépés",
@@ -410,7 +410,7 @@ Lépj be a levélben található adatokkal.",
 "showpreview"	=> "Előnézet megtekintése",
 "blockedtitle"	=> "A felhasználó le van tiltva",
 "blockedtext"	=> "A felhasználói neved vagy IP számod $1 letiltotta.
-Az indoklás:<br>''$2''
+Az indoklás:<br />''$2''
 <p>Felveheted a kapcsolatot $1 adminnal vagy bármely más
 [[{$wgMetaNamespace}:adminisztrátorok|adminisztrátorral]] hogy megvitasd a letiltást.",
 "whitelistedittitle" => "A szerkesztéshez be kell lépned",
@@ -459,7 +459,7 @@ módosítás elvész.</strong>\n",
 $wgSitenameBA küldött anyag a GNU Szabad Dokumentum Licenc alatti
 publikálásnak számít (lásd $1 a részletekért).
 Ha nem akarod, hogy az írásod könyörtelenül módosíthassák vagy
-tetszés szerint terjesszék, akkor ne küldd be ide.<br>
+tetszés szerint terjesszék, akkor ne küldd be ide.<br />
 A beküldéssel együtt azt is garantálod hogy mindezt saját
 magad írtad, vagy másoltad be egy szabadon elérhető vagy 
 közkincs (public domain) forrásból.
@@ -533,8 +533,8 @@ rendszer nem indexel fel, vagy több független keresési szó szerepeltetése
 végeredményben).",
 "powersearch" => "Keresés",
 "powersearchtext" => "
-Keresés a névterekben:<br>
-$1<br>
+Keresés a névterekben:<br />
+$1<br />
 $2 Átirányítások listája &nbsp; Keresés:$3 $9",
 "searchdisabled" => "<p>Elnézésed kérjük, de a teljes szöveges keresés terhelési okok miatt átmenetileg nem használható. Ezidő alatt használhatod a lenti Google keresést, mely viszont lehetséges, hogy nem teljesen friss adatokkal dolgozik.</p>
 
@@ -550,7 +550,7 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"\">
 <INPUT type=submit name=btnG VALUE=\"Google Search\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br>
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -742,7 +742,7 @@ más információ amit meg tudsz adni.",
 "imghistlegend" => "Jelmagyarázat: (akt) = ez az aktuális kép,
 (töröl) = ezen régi változat törlése,
 (régi) = visszaállás erre a régi változatra.
-<br><i>Klikkelj a dátumra hogy megnézhesd az akkor felküldött képet</i>.",
+<br /><i>Klikkelj a dátumra hogy megnézhesd az akkor felküldött képet</i>.",
 "imagelinks"	=> "Kép hivatkozások",
 "linkstoimage"	=> "Az alábbi lapok hivatkoznak erre a képre:",
 "nolinkstoimage" => "Erre a képre nem hivatkozik lap.",
@@ -772,9 +772,9 @@ Ebből <b>$2</b> darab adminisztrátor (lásd $3).",
 "maintenancebacklink" => "Vissza a karbantartás lapra",
 "disambiguations" => "Egyértelműsítő lapok",
 "disambiguationspage" => "{$wgMetaNamespace}:Egyértelműsítő lapok",
-"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
+"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
-"doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
+"doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
 "brokenredirects"	=> "Broken Redirects",
 "brokenredirectstext"	=> "The following redirects link to a non-existing article.",
 "selflinks"	=> "Pages with Self Links",
@@ -990,7 +990,7 @@ pages that were vandalized).",
 "noblockreason" => "You must supply a reason for the block.",
 "blockipsuccesssub" => "Block succeeded",
 "blockipsuccesstext" => "The IP address \"$1\" has been blocked.
-<br>See [[Speciális:Ipblocklist|IP block list]] to review blocks.",
+<br />See [[Speciális:Ipblocklist|IP block list]] to review blocks.",
 "unblockip"		=> "Unblock IP address",
 "unblockiptext"	=> "Use the form below to restore write access
 to a previously blocked IP address.",
@@ -1031,7 +1031,7 @@ Please confirm that this is what you intend to do.",
 
 "unlockdbsuccesssub" => "Database lock removed",
 "lockdbsuccesstext" => "The Wikipedia database has been locked.
-<br>Remember to remove the lock after your maintenance is complete.",
+<br />Remember to remove the lock after your maintenance is complete.",
 "unlockdbsuccesstext" => "The Wikipedia database has been unlocked.",
 
 # SQL query

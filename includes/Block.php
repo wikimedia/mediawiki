@@ -35,7 +35,11 @@ class Block
 		$this->mReason = $reason;
 		$this->mTimestamp = wfTimestamp(TS_MW,$timestamp);
 		$this->mAuto = $auto;
-		$this->mExpiry = wfTimestamp(TS_MW,$expiry);
+		if( empty( $expiry ) ) {
+			$this->mExpiry = $expiry;
+		} else {
+			$this->mExpiry = wfTimestamp( TS_MW, $expiry );
+		}
 		
 		$this->mForUpdate = false;
 		$this->initialiseRange();
@@ -58,6 +62,7 @@ class Block
 	function load( $address = '', $user = 0, $killExpired = true ) 
 	{
 		$fname = 'Block::load';
+		wfDebug( "Block::load: '$address', '$user', $killExpired\n" );
 
 		$ret = false;
 		$killed = false;
@@ -126,7 +131,9 @@ class Block
 		$this->mBy = $row->ipb_by;
 		$this->mAuto = $row->ipb_auto;
 		$this->mId = $row->ipb_id;
-		$this->mExpiry = wfTimestamp(TS_MW,$row->ipb_expiry);
+		$this->mExpiry = $row->ipb_expiry ?
+			wfTimestamp(TS_MW,$row->ipb_expiry) :
+			$row->ipb_expiry;
 
 		$this->initialiseRange();
 	}	
@@ -193,6 +200,7 @@ class Block
 
 	function insert() 
 	{
+		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
 		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->insert( 'ipblocks',
 			array(
@@ -202,7 +210,9 @@ class Block
 				'ipb_reason' => $this->mReason,
 				'ipb_timestamp' => $dbw->timestamp($this->mTimestamp),
 				'ipb_auto' => $this->mAuto,
-				'ipb_expiry' => $dbw->timestamp($this->mExpiry),
+				'ipb_expiry' => $this->mExpiry ?
+					$dbw->timestamp($this->mExpiry) :
+					$this->mExpiry,
 			), 'Block::insert' 
 		);
 
@@ -212,19 +222,22 @@ class Block
 	function deleteIfExpired() 
 	{
 		if ( $this->isExpired() ) {
+			wfDebug( "Block::deleteIfExpired() -- deleting\n" );
 			$this->delete();
 			return true;
 		} else {
+			wfDebug( "Block::deleteIfExpired() -- not expired\n" );
 			return false;
 		}
 	}
 
 	function isExpired() 
 	{	
+		wfDebug( "Block::isExpired() checking current " . wfTimestampNow() . " vs $this->mExpiry\n" );
 		if ( !$this->mExpiry ) {
 			return false;
 		} else {
-			return wfTimestamp() > $this->mExpiry;
+			return wfTimestampNow() > $this->mExpiry;
 		}
 	}
 
