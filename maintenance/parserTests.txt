@@ -8,12 +8,21 @@
 #	(default)	generate HTML output
 # 	pst 		apply pre-save transform
 #	msg 		apply message transform
+#	subpage		enable subpages (disabled by default)
 #
 # Tests can be disabled with the '!!disabled' flag.
 #
 # For testing purposes, temporary articles can created:
 # !!article / NAMESPACE:TITLE / !!text / ARTICLE TEXT / !!endarticle
 # where '/' denotes a newline.
+
+# This is the standard article assumed to exist.
+!! article
+Main Page
+!! text
+blah blah
+!! endarticle
+
 
 ###
 ### Basic tests
@@ -143,7 +152,7 @@ nowiki 3
 ### comment test cases
 ###
 !! test
-comment test 1
+Comment test 1
 !! input
 <!-- comment 1 --> asdf
 <!-- comment 2 -->
@@ -154,7 +163,7 @@ comment test 1
 !! end
 
 !! test
-comment test 2
+Comment test 2
 !! input
 asdf
 <!-- comment 1 -->
@@ -166,7 +175,7 @@ jkl
 !! end
 
 !! test
-comment test 3
+Comment test 3
 !! input
 asdf
 <!-- comment 1 -->
@@ -179,12 +188,70 @@ jkl
 !! end
 
 !! test
-comment test 4
+Comment test 4
 !! input
 asdf<!-- comment 1 -->jkl
 !! result
 <p>asdfjkl
 </p>
+!! end
+
+!! test
+Comment spacing
+!! input
+a
+ <!-- foo --> b <!-- bar -->
+c
+!! result
+<p>a
+</p>
+<pre> b 
+</pre>
+<p>c
+</p>
+!! end
+
+###
+### Preformatted text
+###
+!! test
+Preformatted text
+!! input
+ This is some
+ Preformatted text
+ With ''italic''
+ And '''bold'''
+ And a [[Main Page|link]]
+!! result
+<pre>This is some
+Preformatted text
+With <i>italic</i>
+And <b>bold</b>
+And a <a href="/wiki/Main_Page" title="Main Page">link</a>
+</pre>
+!! end
+
+###
+### Definition list
+###
+!! test
+Simple definition
+!! input
+; name : Definition
+!! result
+<dl><dt> name&nbsp;</dt><dd> Definition
+</dd></dl>
+
+!! end
+
+!! test
+Simple definition
+!! input
+: Indented text
+!! result
+<dl><dd> Indented text
+</dd></dl>
+
 !! end
 
 ###
@@ -529,12 +596,6 @@ Nested table
 ###
 ### Internal links
 ###
-!! article
-Main Page
-!! text
-blah blah
-!! endarticle
-
 !! test
 Plain link, capitalized
 !! input
@@ -908,6 +969,21 @@ Template parameter as link source
 !! end
 
 
+!!article
+Template:paramtest2
+!! text
+including another template, {{paramtest|param={{{arg}}}}}
+!! endarticle
+
+!! test
+Template passing argument to another template
+!! input
+{{paramtest2|arg='hmm'}}
+!! result
+<p>including another template, This is a test template with parameter 'hmm'
+</p>
+!! end
+
 !! article
 Template:Linktest2
 !! text
@@ -922,6 +998,7 @@ Template as link source
 <p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 </p>
 !! end
+
 
 !! article
 Template:loop1
@@ -978,6 +1055,7 @@ PST
 {{thistemplatedoesnotexist}}
 !! end
 
+
 !! test
 pre-save transform: subst magic variables
 !! options
@@ -986,6 +1064,17 @@ PST
 {{subst:SITENAME}}
 !! result
 MediaWiki
+!! end
+
+# This is bug 89, which I fixed. -- wtm
+!! test
+pre-save transform: subst: templates with parameters
+!! options
+pst
+!! input
+{{subst:paramtest|param="something else"}}
+!! result
+This is a test template with parameter "something else"
 !! end
 
 ###
@@ -1011,11 +1100,99 @@ msg
 ''test''
 !! end
 
+###
+### Images
+###
+!! test
+Simple image
+!! input
+[[Image: test]]
+!! result
+<p><a href="/wiki/Image:Test" class="image" title="Image: test"><img src="/%7Ewmahan/phase3/images/0/0c/Test" alt="Image: test" /></a>
+</p>
+!! end
+
+!! test
+Right-aligned image
+!! input
+[[Image:test|right]]
+!! result
+<div class="floatright"><span><a href="/wiki/Image:Test" class="image" title="right"><img src="/%7Ewmahan/phase3/images/0/0c/Test" alt="right" /></a></span></div>
+
+!! end
+
+!! test
+Image with caption
+!! input
+[[Image:test|right|Caption text]]
+!! result
+<div class="floatright"><span><a href="/wiki/Image:Test" class="image" title="Caption text"><img src="/%7Ewmahan/phase3/images/0/0c/Test" alt="Caption text" /></a></span></div>
+
+!! end
+
+!! test
+Image with frame and link
+!! input
+[[Image:Foobar.jpg|frame|left|This is a test image [[Main Page]]]]
+!! result
+<div class="thumb tleft"><div style="width:202px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="This is a test image "><img src="/%7Ewmahan/phase3/images/3/3a/Foobar.jpg" alt="This is a test image " width="200" height="200" /></a>  <div class="thumbcaption" >This is a test image <a href="/wiki/Main_Page" title="Main Page">Main Page</a></div></div></div>
+
+!! end
+
+!! test
+Link to image page
+!! input
+[[:Image:test]]
+!! result
+<p><a href="/wiki/Image:Test" title="Image:Test">Image:test</a>
+</p>
+!! end
+
+###
+### Subpages
+###
+!! article
+Parser test/subpage
+!! text
+foo
+!! endarticle
+
+!! test
+Subpage link
+!! options
+subpage
+!! input
+[[/subpage]]
+!! result
+<p><a href="/wiki/Parser_test/subpage" title="Parser test/subpage">/subpage</a>
+</p>
+!! end
+
+!! test
+Subpage noslash link
+!! options
+subpage
+!!input
+[[/subpage/]]
+!! result
+<p><a href="/wiki/Parser_test/subpage" title="Parser test/subpage">subpage</a>
+</p>
+!! end
+
+# bug 561: it would be nice if this linked to /subpage -- wtm
+!! test
+Disabled subpages
+!! input
+[[/subpage]]
+!! result
+<p><a href="/index.php?title=Subpage&amp;action=edit" class="new" title="Subpage">subpage</a>
+</p>
+!! end
+
 TODO:
-more templates
-tables
-images
-subpages
+more images
+more tables
+math
 character entities
 and much more
 

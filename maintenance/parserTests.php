@@ -177,10 +177,18 @@ class ParserTest {
 	function runTest( $desc, $input, $result, $opts ) {
 		print "Running test $desc... ";
 
-		$this->setupGlobals();
+		$this->setupGlobals($opts);
 
 		$user =& new User();
 		$options =& ParserOptions::newFromUser( $user );
+
+		if (preg_match('/math/i', $opts)) {
+			# XXX this should probably be done by the ParserOptions
+			require_once('Math.php');
+
+			$options->setUseTex(true);
+		}
+
 		$parser =& new Parser();
 		$title =& Title::makeTitle( NS_MAIN, 'Parser_test' );
 
@@ -224,7 +232,7 @@ class ParserTest {
 	 *
 	 * @access private
 	 */
-	function setupGlobals() {
+	function setupGlobals($opts = '') {
 		$settings = array(
 			'wgServer' => 'http://localhost',
 			'wgScript' => '/index.php',
@@ -237,6 +245,7 @@ class ParserTest {
 			
 			'wgLoadBalancer' => LoadBalancer::newFromParams( $GLOBALS['wgDBservers'] ),
 			'wgLang' => new LanguageUtf8(),
+			'wgNamespacesWithSubpages' => array( 0 => preg_match('/subpage/i', $opts)),
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
