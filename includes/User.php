@@ -139,7 +139,7 @@ class User {
 		$fname = 'User::loadDefaults' . $n;
 		wfProfileIn( $fname );
 		
-		global $wgContLang, $wgIP;
+		global $wgContLang, $wgIP, $wgDBname;
 		global $wgNamespacesToBeSearchedDefault;
 
 		$this->mId = 0;
@@ -160,9 +160,16 @@ class User {
 		unset( $this->mSkin );
 		$this->mDataLoaded = false;
 		$this->mBlockedby = -1; # Unset
-		$this->mTouched = '0'; # Allow any pages to be cached
 		$this->setToken(); # Random
 		$this->mHash = false;
+
+		if ( isset( $_COOKIE[$wgDBname.'LoggedOut'] ) ) {
+			$this->mTouched = wfTimestamp( TS_MW, $_COOKIE[$wgDBname.'LoggedOut'] );
+		}
+		else {
+			$this->mTouched = '0'; # Allow any pages to be cached
+		}
+
 		wfProfileOut( $fname );
 	}
 
@@ -812,6 +819,9 @@ class User {
 
 		setcookie( $wgDBname.'UserID', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
 		setcookie( $wgDBname.'Token', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
+
+		# Remember when user logged out, to prevent seeing cached pages
+		setcookie( $wgDBname.'LoggedOut', wfTimestampNow(), time() + 86400, $wgCookiePath, $wgCookieDomain );
 	}
 
 	/**
