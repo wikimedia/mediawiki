@@ -617,12 +617,13 @@ class ParserTest {
 if( isset( $options['help'] ) ) {
 	echo <<<END
 MediaWiki $wgVersion parser test suite
-Usage: php parserTests.php [--quick] [--quiet] [--color[=(yes|no)]]
+Usage: php parserTests.php [--quick] [--quiet] [--color[=(yes|no|light)]]
                            [--regex <expression>] [--help]
 Options:
   --quick  Suppress diff output of failed tests
   --quiet  Suppress notification of passed tests (shows only failed tests)
   --color  Override terminal detection and force color output on or off
+           'light' option is similar to 'yes' but with color for dark backgrounds
   --regex  Only run tests whose descriptions which match given regex
   --help   Show this help message
 
