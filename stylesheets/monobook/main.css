@@ -968,8 +968,7 @@ head:first-child+body #portal-footer li {
     width: 100%;
 }
 * html #bodyContent table,
-* html #bodyContent div,
-* html #bodyContent span {
+* html #bodyContent div {
     position: relative;
 }
 
