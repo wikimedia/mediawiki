@@ -120,6 +120,7 @@
 	"Movepage"		=> "",
 	"Booksources"	=> "Bokkilder",
 	"Export"		=> "XML export",
+	"Version"		=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesNo = array(
@@ -131,7 +132,6 @@
 /* private */ $wgDeveloperSpecialPagesNo = array(
 	"Lockdb"		=> "Skrivebeskytt databasen",
 	"Unlockdb"		=> "Gjenopprett tilgang til databasen",
-	"Debug"			=> "Feilsøkingsinformasjon"
 );
 
 /* private */ $wgAllMessagesNo = array(

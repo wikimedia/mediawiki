@@ -108,6 +108,7 @@
 	"Movepage"	=> "Siirrä sivu",
 	"Booksources"	=> "Ulkoiset kirjaviitteet",
 	"Export"	=> "XML export",
+	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesFi = array(
@@ -119,7 +120,6 @@
 /* private */ $wgDeveloperSpecialPagesFi = array(
 	"Lockdb"	=> "Lukitse tietokanta lukutilaan",
 	"Unlockdb"	=> "Vapauta tietokannan lukitus",
-	"Debug"		=> "Virheenjäljitystietoa"
 );
 
 

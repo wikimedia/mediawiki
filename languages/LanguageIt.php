@@ -114,6 +114,7 @@
 	"Movepage"		=> "",
 	"Booksources"	=> "",
 	"Export"	=> "XML export",
+	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesIt = array(
@@ -125,7 +126,6 @@
 /* private */ $wgDeveloperSpecialPagesIt = array(
 	"Lockdb"		=> "Rendi il database read-only (di sola lettura, blocca le modifiche)",
 	"Unlockdb"		=> "Ripristina scrittura su database (lettura\/scrittura)",
-	"Debug"			=> "Informazioni per il Debugging"
 );
 
 /* private */ $wgAllMessagesIt = array(

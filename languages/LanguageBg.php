@@ -137,6 +137,7 @@
   "Booksources"  => "Външни източници на книги",
   "Categories"    => "Категории страници",
   "Export"     => "XML export",
+  "Version"		=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesBg = array(
@@ -148,7 +149,6 @@
 /* private */ $wgDeveloperSpecialPagesBg = array(
   "Lockdb"    => "Само достъп за четене към базата данни",
   "Unlockdb"    => "Разрешение на достъп за писане към базата данни",
-  "Debug"      => "Информация за откриване на грешки"
 );
 
 #-------------------------------------------------------------------

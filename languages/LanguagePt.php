@@ -131,6 +131,7 @@
 	"Booksources"	=> "Fontes bibliográficas externas",
 	#"Categories" => "Categorias de Páginas",
 	"Export"	=> "XML export",
+	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesPt = array(
@@ -142,7 +143,6 @@
 /* private */ $wgDeveloperSpecialPagesPt = array(
 	"Lockdb"		=> "Torna o banco de dados como apenas leitura",
 	"Unlockdb"		=> "Restaura o acesso à escrita no banco de dados",
-	"Debug"			=> "\'Debugar\' informações"
 );
 
 /* private */ $wgAllMessagesPt = array(

@@ -118,6 +118,7 @@
 	"Booksources"   => "Librairies en ligne",
 //	"Categories"	=> "Page des catégories"	// Looxix "Page categories"
 	"Export"	=> "Exporter par XML",
+	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesFr = array(
@@ -129,7 +130,6 @@
 /* private */ $wgDeveloperSpecialPagesFr = array(
 	"Lockdb"        => "Bloquer la base de données",
 	"Unlockdb"      => "Débloquer la base de données",
-	"Debug"         => "Informations de déboguage"
 );
 
 /* private */ $wgAllMessagesFr = array(

@@ -113,6 +113,7 @@
 	"Movepage"		=> "",
 	"Booksources"	=> "Raamatud",
 	"Export"		=> "XML export",
+	"Version"		=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesEt = array(
@@ -124,7 +125,6 @@
 /* private */ $wgDeveloperSpecialPagesEt = array(
 	"Lockdb"		=> "Võta andmebaas kirjutuskaitse alla",
 	"Unlockdb"		=> "Taasta andmebaasi kirjutuspääs",
-	"Debug"			=> "Silu"
 );
 
 /* private */ $wgAllMessagesEt = array(

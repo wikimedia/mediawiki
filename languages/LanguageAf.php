@@ -114,6 +114,7 @@
 	"Movepage"		=> "",
 	"Booksources"	=> "Eksterne boekbronne.",
 	"Export"		=> "XML export",
+	"Version"		=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesAf = array(
@@ -125,7 +126,6 @@
 /* private */ $wgDeveloperSpecialPagesAf = array(
 	"Lockdb"		=> "Laat toe dat die databasis slegs gelees word.",
 	"Unlockdb"		=> "Herstel databasis skryfregte.",
-	"Debug"			=> "Ontfoutingsinligting."
 );
 
 /* private */ $wgAllMessagesAf = array(

@@ -151,6 +151,7 @@ include_once("LanguageUtf8.php");
 	"Booksources"	=> "Surse externe de cărţi",
 	"Categories"	=> "Categorii de pagini",
 	"Export"	=> "XML export",
+	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesRo = array(
@@ -162,7 +163,6 @@ include_once("LanguageUtf8.php");
 /* private */ $wgDeveloperSpecialPagesRo = array(
 	"Lockdb"		=> "Blochează baza de date la scriere",
 	"Unlockdb"		=> "Deblochează baza de date",
-	"Debug"			=> "Informaţie pentru debugging"
 );
 
 /* private */ $wgAllMessagesRo = array(

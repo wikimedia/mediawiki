@@ -126,6 +126,7 @@
 	"Movepage"		=> "",
 	"Booksources"   => "Fonts externes de llibres",
 	"Export"		=> "XML export",
+	"Version"		=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesCa = array(
@@ -137,7 +138,6 @@
 /* private */ $wgDeveloperSpecialPagesCa = array(
 	"Lockdb"		=> "Tanca l'accés d'escriptura a la base de dades",
 	"Unlockdb"		=> "Restaura accés d'escriptura a la base de dades",
-	"Debug"			=> "Informació d'errors"
 );
 
 /* private */ $wgAllMessagesCa = array(

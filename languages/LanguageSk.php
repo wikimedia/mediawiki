@@ -107,6 +107,7 @@ include_once("LanguageUtf8.php");
 	"Booksources"	=> "Eksterné stránky s knihami",
 #	"Categories"	=> "Page categories",
 	"Export"		=> "Export XML",
+	"Version"		=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesSk = array(
@@ -118,7 +119,6 @@ include_once("LanguageUtf8.php");
 /* private */ $wgDeveloperSpecialPagesSk = array(
 	"Lockdb"		=> "Zamkni databázu na zápis",
 	"Unlockdb"		=> "Odomkni databázu na zápis",
-	"Debug"			=> "Informácie na odlaďovanie"
 );
 
 /* private */ $wgAllMessagesSk = array(

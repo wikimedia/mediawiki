@@ -63,69 +63,6 @@ include_once( "LanguageUtf8.php" );
 	"Aladdin.co.kr" => "http://www.aladdin.co.kr/catalog/book.asp?ISBN=$1"
 );
 
-/* These should preferably be the native names of the languages; the
-   point is for people who speak them to be able to navigate to them
-   from any language section of the Wikipedia. */
-/* 아래 언어명은 그 언어 사용자들을 위한 것이므로, 한국어로 고치지 마세요. */
-/* private */ $wgLanguageNamesKo = array(
-    "af" => "Afrikaans",
-	"ar" => "&#8238;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;&#8236; (Araby)",
-	"be" => "&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1080;",
-	"br" => "Brezhoneg",
-	"ca" => "Catal&#224;",
-	"ch" => "Chamoru",
-	"cs" => "&#268;esk&#225;",
-	"cy" => "Cymraeg",
-	"da" => "Dansk", # Note two different subdomains. 
-	"dk" => "Dansk", # 'da' is correct for the language.
-	"de" => "Deutsch",
-	"el" => "&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940; (Ellenika)",
-	"en" => "English",
-	"simple" => "Simple English",
-	"eo" => "Esperanto",
-	"es" => "Espa&#241;ol",
-	"et" => "Eesti",
-	"eu" => "Euskara",
-	"fa" => "&#8238;&#1601;&#1585;&#1587;&#1609;&#8236;(Farsi)",
-	"fi" => "Suomi",
-	"fr" => "Fran&#231;ais",
-	"gu" => "&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752; (Gujarati)",
-	"he" => "&#1506;&#1489;&#1512;&#1497;&#1514; (Ivrit)",
-	"hi" => "&#2361;&#2367;&#2344;&#2381;&#2342;&#2368; (Hindi)",
-	"hr" => "Hrvatski",
-	"hu" => "Magyar",
-	"ia" => "Interlingua",
-	"id" => "Indonesia",
-	"is" => "&#205;slenska",
-	"it" => "Italiano",
-	"ja" => "&#26085;&#26412;&#35486; (Nihongo)",
-	"ka" => "&#4325;&#4304;&#4320;&#4311;&#4309;&#4308;&#4314;&#4312; (Kartuli)",
-	"ko" => "한국어",
-	"kw" => "Kernewek",
-	"la" => "Latina",
-	"lt" => "Lietuvi&#371;",
-	"mg" => "Malagasy",
-	"ms" => "Bahasa Melayu",
-	"ne" => "&#2344;&#2375;&#2346;&#2366;&#2354;&#2368; (Nepali)",
-	"nl" => "Nederlands",
-	"no" => "Norsk",
-	"pl" => "Polski",
-	"pt" => "Portugu&#234;s",
-	"ro" => "Rom&#226;n&#259;",
-	"ru" => "&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081; (Russkij)",
-	"sa" => "&#2360;&#2306;&#2360;&#2381;&#2325;&#2371;&#2340; (Samskrta)",
-	"so" => "Soomaali",
-	"sq" => "Shqiptare",
-	"sr" => "Srpski",
-	"sv" => "Svenska",
-	"sw" => "Kiswahili",
-	"tr" => "T&#252;rk&#231;e",
-	"uk" => "&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072; (Ukrayins`ka)",
-	"vo" => "Volap&#252;k",
-	"xh" => "isiXhosa",
-	"zh" => "&#20013;&#25991; (Zhongwen)"
-);
-
 /* private */ $wgWeekdayNamesKo = array(
 	"일요일", "월요일", "화요일", "수요일", "목요일",
 	"금요일", "토요일"
@@ -196,6 +133,7 @@ include_once( "LanguageUtf8.php" );
 	"Movepage"		=> "",
 	"Booksources"	=> "외부 책방",
 	"Export"	=> "XML export",
+	"Version"	=> "Version",
 );
 
 # I'll leave this part in english, for it's more likely that
@@ -212,7 +150,6 @@ include_once( "LanguageUtf8.php" );
 /* private */ $wgDeveloperSpecialPagesKo = array(
 	"Lockdb"		=> "Make database read-only",
 	"Unlockdb"		=> "Restore database write access",
-	"Debug"			=> "Debugging information"
 );
 
 /* private */ $wgAllMessagesKo = array(
@@ -979,19 +916,6 @@ class LanguageKo extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesKo;
 		return $wgUserTogglesKo;
-	}
-
-	function getLanguageNames() {
-		global $wgLanguageNamesKo;
-		return $wgLanguageNamesKo;
-	}
-
-	function getLanguageName( $code ) {
-		global $wgLanguageNamesKo;
-		if ( ! array_key_exists( $code, $wgLanguageNamesKo ) ) {
-			return "";
-		}
-		return $wgLanguageNamesKo[$code];
 	}
 
 	function getMonthName( $key )

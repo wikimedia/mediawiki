@@ -136,7 +136,8 @@ include_once( "LanguageUtf8.php" );
 	"Movepage"		=> "",
 	"Booksources"	=> "புறநிலை நூல் மூலங்கள்",
 	"Categories" => "பக்க வகைகள்",
-	"Export"	=> ""
+	"Export"	=> "XML export",
+	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesTa = array(
@@ -148,7 +149,6 @@ include_once( "LanguageUtf8.php" );
 /* private */ $wgDeveloperSpecialPagesTa = array(
 	"Lockdb"		=> "தரவுத் தளத்தைப் படிக்க மட்டும் (Read only) ஆக்கு",
 	"Unlockdb"		=> "தரவுத்தள எழுத்து அணுக்கத்தை மீட்டெடு (Restore)",
-	"Debug"			=> "வழு நீக்கத் தகவல்"
 );
 
 #-------------------------------------------------------------------

@@ -120,6 +120,7 @@ $wgValidSpecialPagesSv = array(
         "Movepage"      => "",
         "Booksources"   => "Externa bokkällor",
         "Export"        => "XML export",
+		"Version"		=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesSv = array(
@@ -131,7 +132,6 @@ $wgValidSpecialPagesSv = array(
 /* private */ $wgDeveloperSpecialPagesSv = array(
         "Lockdb"        => "Skrivskydda databasen",
         "Unlockdb"      => "Återställ skrivning till databasen",
-        "Debug"         => "Debuginformation"
 );
 
 /* private */ $wgAllMessagesSv = array(

@@ -128,6 +128,8 @@
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "Sumber buku luaran", #"External book sources"
+	"Export"	=> "XML export",
+	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesMs = array(
@@ -139,7 +141,6 @@
 /* private */ $wgDeveloperSpecialPagesEn = array(
 	"Lockdb"		=> "Membuat pangkalan data hanya untuk dibaca", #"Make database read-only",
 	"Unlockdb"		=> "Memperbaharui cara kemasukan pangkalan data", #"Restore database write access",
-	"Nyahbug",# "Debug"			=> "Nyahbug maklumat", # "Debugging information"
 );
 
 /* private */ $wgAllMessagesMs = array(

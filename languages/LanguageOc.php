@@ -62,145 +62,6 @@ include_once( "LanguageUtf8.php" );
 	"Amazon.fr" => "http://www.amazon.fr/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgLanguageNamesOc = array(
-	"aa" => "Afar",
-	"ab" => "Abkhazien",
-	"af" => "Africans",
-	"am" => "Amharic",
-	"ar" => "Arab",
-	"as" => "Assamais",
-	"ay" => "Aymara",
-	"az" => "Aserbaijani",
-	"ba" => "Bashkir",
-	"be" => "Biélorusse",
-	"bh" => "Bihari",
-	"bi" => "Bislama",
-	"bn" => "Bengali",
-	"bo" => "Tibétain",
-	"bs" => "Bosanski",
-	"ca" => "Catalan",
-	"co" => "Corse",
-	"cs" => "Chèc",
-	"cy" => "Galès",
-	"da" => "Danès", # Note two different subdomains.
-	"dk" => "Danès", # 'da' is correct for the language.
-	"de" => "Aleman",
-	"dz" => "Bhoutani",
-	"el" => "Grec",
-	"en" => "Anglès",
-    "simple" => "Anglès simplifié",
-	"eo" => "Esperanto",
-	"es" => "Castelhan",
-	"et" => "Estonian",
-	"eu" => "Basc",
-	"fa" => "Persec",
-	"fi" => "Finès",
-	"fj" => "Fidjien",
-	"fo" => "Feroés",
-	"fr" => "Francès",
-	"fy" => "Frison",
-	"ga" => "Gaelic d'Irlanda",
-	"gl" => "Gaelic d'Escòcia",
-	"gn" => "Guarani",
-	"gu" => "Gujarati",
-	"ha" => "Haoussa",
-	"he" => "Ebreu",
-	"hi" => "Indi",
-	"hr" => "Croat",
-	"hu" => "Hongarès",
-	"hy" => "Arménien",
-	"ia" => "Interlingua",
-	"id" => "Indonesian",
-	"ik" => "Inupiak",
-	"is" => "Islandès",
-	"it" => "Italian",
-	"iu" => "Inuktitut",
-	"ja" => "Japonès",
-	"jv" => "Javanès",
-	"ka" => "Georgian",
-	"kk" => "Kazakh",
-	"kl" => "Groenlandais",
-	"km" => "Cambodgien",
-	"kn" => "Cannada",
-	"ko" => "Corean",
-	"ks" => "Kashmiri",
-	"ky" => "Kirghize",
-	"la" => "Latin",
-	"ln" => "Lingala",
-	"lo" => "Laotien",
-	"lt" => "Lituan;",
-	"lv" => "Leton",
-	"mg" => "Malgache",
-	"mi" => "Maori",
-	"mk" => "Macedonian",
-	"ml" => "Malaialam",
-	"mn" => "Mongol",
-	"mo" => "Moldave",
-	"mr" => "Marathe",
-	"ms" => "Malai",
-	"my" => "Birman",
-	"na" => "Nauri",
-	"ne" => "Nepalès",
-	"nl" => "Neerlandès",
-	"no" => "Noruec",
-	"oc" => "Occitan",
-	"om" => "Oromo",
-	"or" => "Oriya",
-	"pa" => "Punjabi",
-	"pl" => "Polonès",
-	"ps" => "Pashto",
-	"pt" => "Português",
-	"qu" => "Quechua",
-	"rm" => "Rhéto-Roman",
-	"rn" => "Kirundi",
-	"ro" => "Romanès;",
-	"ru" => "Rus",
-	"rw" => "Kinyarwanda",
-	"sa" => "Sanscrit",
-	"sd" => "Sindhi",
-	"sg" => "Sango",
-	"sh" => "Serbo-croat",
-	"si" => "Singhalais",
-	"sk" => "Eslovac",
-	"sl" => "Esloven",
-	"sm" => "Samoan",
-	"sn" => "Shona",
-	"so" => "Somali",
-	"sq" => "Albanès",
-	"sr" => "Serbi",
-	"ss" => "Siswati",
-	"st" => "Sésotho",
-	"su" => "Soudanais",
-	"sv" => "Svenska",
-	"sw" => "Kiswahili",
-	"ta" => "Tamoul",
-	"te" => "Télougou",
-	"tg" => "Tadjik",
-	"th" => "Thaï",
-	"ti" => "Tigrinya",
-	"tk" => "Turkmène",
-	"tl" => "Tagalog",
-	"tn" => "Setchwana",
-	"to" => "Tonga",
-	"tr" => "Türkçe",
-	"ts" => "Tsonga",
-	"tt" => "Tatar",
-	"tw" => "Tchi",
-	"ug" => "Ouïgour",
-	"uk" => "&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072; (Ukrayins`ka)",
-	"ur" => "Ourdou",
-	"uz" => "Ouzbek",
-	"vi" => "Vietnamien",
-	"vo" => "Volapük",
-	"wo" => "Ouolof",
-	"xh" => "isiXhosa",
-	"yi" => "Yiddish",
-	"yo" => "Yorouba",
-	"za" => "Zhuang",
-	"zh" => "&#20013;&#25991; (Zhongwen)",
-	"zu" => "Zoulou"
-);
-
 /* private */ $wgWeekdayNamesOc = array(
 	"dimenge", "diluns", "dimarts", "dimèrcres", "dijòus",
 	"divendres", "dissabte"
@@ -254,6 +115,7 @@ include_once( "LanguageUtf8.php" );
 	"Booksources"   => "Librairies en ligne",
 //	"Categories"	=> "Page des catégories"	// Looxix "Page categories"
 	"Export"	=> "XML export",
+	"Version"	=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesOc = array(
@@ -265,7 +127,6 @@ include_once( "LanguageUtf8.php" );
 /* private */ $wgDeveloperSpecialPagesOc = array(
 	"Lockdb"        => "Bloquer la base de données",
 	"Unlockdb"      => "Débloquer la base de données",
-	"Debug"         => "Informations de déboguage"
 );
 
 /* private */ $wgAllMessagesOc = array(
@@ -1087,16 +948,6 @@ class LanguageOc extends LanguageUtf8
 	{
 		global $wgUserTogglesOc;
 		return $wgUserTogglesOc;
-	}
-
-	function getLanguageName( $code )
-	{
-		global $wgLanguageNamesOc;
-		if ( ! array_key_exists( $code, $wgLanguageNamesOc ) ) 
-		{
-			return "";
-		}
-		return $wgLanguageNamesOc[$code];
 	}
 
 	function getMonthName( $key )

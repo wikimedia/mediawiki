@@ -127,6 +127,7 @@ $wgEditEncoding		= "x";
 	"Movepage"		=> "",
 	"Booksources"	=> "Eksteraj libroservoj",
 	"Export"	=> "Elkopii per XML",
+	"Version"	=> "Versionoj de la programaro",
 );
 
 /* private */ $wgSysopSpecialPagesEo = array(
@@ -139,7 +140,6 @@ $wgEditEncoding		= "x";
 /* private */ $wgDeveloperSpecialPagesEo = array(
 	"Lockdb"		=> "Forŝlosi datumaron",
 	"Unlockdb"		=> "Repermesu ŝanĝon al datumaro",
-	"Debug"			=> "Montru servilinformon"
 );
 
 /* private */ $wgAllMessagesEo = array(
