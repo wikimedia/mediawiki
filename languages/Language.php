@@ -406,8 +406,8 @@ Please report this to an administrator, making note of the URL.",
 an incorrectly linked inter-language or inter-wiki title.",
 "perfdisabled" => "Sorry! This feature has been temporarily disabled
 because it slows the database down to the point that no one can use
-the wiki. Which is bad. It will be rewritten for efficiency in the near
-future (possibly by you! we're open source after all)",
+the wiki.",
+"perfdisabledsub" => "Here's a saved copy from $1:",
 
 # Login and logout pages
 #
@@ -437,6 +437,7 @@ that it be to the address you give.<br>\n",
 "userlogin"		=> "Log in",
 "logout"		=> "Log out",
 "userlogout"	=> "Log out",
+"notloggedin"	=> "Not logged in",
 "createaccount"	=> "Create new account",
 "badretype"		=> "The passwords you entered do not match.",
 "userexists"	=> "The user name you entered is already in use. Please choose a different name.",
