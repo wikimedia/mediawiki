@@ -434,6 +434,13 @@
 						'href' => $this->makeUrl($this->thispage, 'action=unwatch'));
 					}
 				}
+
+				if ( $wgUser->getID() != 0 && $wgTitle->getArticleId() ) {
+					$content_actions['validate'] = array('class' => ($action == 'validate') ? 'selected' : false ,
+						'text' => wfMsg('val_tab'),
+						'href' => $this->makeUrl($this->thispage, 'action=validate'));
+					}
+
 			} else {
 				/* show special page tab */
 

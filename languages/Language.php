@@ -1232,6 +1232,7 @@ Type the name of the user in the box and press the button to make the user an ad
 'val_clear_old' => 'Clear my other validation data for the <a href="$1">$2</a> article',
 'val_noop' => 'No opinion',
 'val_percent' => '<b>$1%</b> ($2 of $3 points)',
+'val_tab' => 'Validate',
 
 # Move page
 #

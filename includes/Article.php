@@ -7,7 +7,8 @@
 # Note: edit user interface and cache support functions have been
 # moved to separate EditPage and CacheManager classes.
 
-require_once( 'CacheManager.php' );
+require_once ( 'CacheManager.php' );
+include_once ( 'SpecialValidate.php' ) ;
 
 $wgArticleCurContentFields = false;
 $wgArticleOldContentFields = false;
@@ -1045,6 +1046,18 @@ class Article {
 		else
 			$r = '';
 		$wgOut->redirect( $this->mTitle->getFullURL( $r ).$sectionanchor );
+	}
+
+	# Validate article
+	
+	function validate ()
+	{
+		global $wgOut ;
+		$v = new Validation ;
+		$html = $v->validate_form ( $this->mTitle->getDBkey() ) ;		
+		$wgOut->setPagetitle( wfMsg( 'validate' ) . " : " . $this->mTitle->getText()  );
+		$wgOut->setRobotpolicy( 'noindex,follow' );
+		$wgOut->addHTML( $html ) ;
 	}
 
 	# Add this page to my watchlist

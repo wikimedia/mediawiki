@@ -68,7 +68,12 @@ class Validation
 		{
 		global $wgOut, $wgLang, $wgUser;
 		if ( $wgUser->getID() == 0 ) return ; # Anon
-		if ( $article_title == "" ) $article_title = $_GET['article'] ;
+		if ( $article_title == "" )
+			{
+			$article_title = $_GET['article'] ;
+			$heading = "<h1>" . $article->getPrefixedText() . "</h1>\n" ;
+			}
+		else $heading = "" ;
 		$article_time = "" ;
 		if ( isset ( $_GET['timestamp'] ) ) $article_time = $_GET['timestamp'] ;	
 		$article = Title::newFromText ( $article_title ) ;
@@ -115,7 +120,7 @@ class Validation
 			}
 		
 		# Generating HTML
-		$html = "<h1>" . $article->getPrefixedText() . "</h1>\n" ;
+		$html = $heading ;
 		foreach ( $val AS $time => $stuff )
 			{
 			if ( $time == $article_time ) $html .= "<h2>This version</h2>\n" ;
