@@ -61,6 +61,7 @@ require_once( "WebRequest.php" );
 $wgRequest = new WebRequest();
 
 
+
 wfProfileOut( "$fname-includes" );
 wfProfileIn( "$fname-memcached" );
 global $wgUser, $wgLang, $wgOut, $wgTitle;
@@ -141,13 +142,13 @@ if( $wgUseMemCached ) {
 wfProfileOut( "$fname-memcached" );
 wfProfileIn( "$fname-misc" );
 
-require_once( "Language.php" );
+require_once( "languages/Language.php" );
 
 $wgMessageCache = new MessageCache; 
 
 $wgLangClass = "Language" . ucfirst( $wgLanguageCode );
 if( ! class_exists( $wgLangClass ) || ($wgLanguageCode == "en" && strcasecmp( $wgInputEncoding, "utf-8" ) == 0 ) ) {
-	require_once( "LanguageUtf8.php" );
+	require_once( "languages/LanguageUtf8.php" );
 	$wgLangClass = "LanguageUtf8";
 }
 
@@ -188,5 +189,6 @@ $wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
 
 wfProfileOut( "$fname-misc" );
 wfProfileOut( $fname );
+
 
 ?>
