@@ -30,11 +30,11 @@ include_once("Utf8Case.php");
 );
 
 /* private */ $wgQuickbarSettingsHe = array(
-	"ללא", "מוצמד לשמאל", "מוצמד לימין", "צף לשמאל"
+	"ללא", "קבוע משמאל", "קבוע מימין", "צף משמאל"
 );
 
 /* private */ $wgSkinNamesHe = array(
-	"רגיל", "נוסטלגי", "מי גילוח כחולים"
+	"רגיל", "נוסטלגי", "מים כחולים"
 );
 
 /* private */ $wgMathNamesHe = array(
@@ -50,13 +50,13 @@ include_once("Utf8Case.php");
 	"highlightbroken" => "הדגש קישורים לנושאים שטרם נכתבו",
 	"justify"	=> "ישר פסקאות",
 	"hideminor" => "הסתר שינויים קטנים ברשימת השינויים האחרונים",
-	"usenewrc" => "(רשימת שינויים אחרונים משודרגת (לא מתאים לכל דפדפן",
+	"usenewrc" => "(רשימת שינויים אחרונים משופרת (לא מתאים לכל דפדפן",
 	"numberheadings" => "מספר ראשי-פרקים אוטומטית",
-	"rememberpassword" => "Remember password across sessions",
+	"rememberpassword" => "זכור את הסיסמא שלי בפעמים הבאות",
 	"editwidth" => "תיבת העריכה ברוחב מלא",
-	"editondblclick" => "(ערוך דפים בלחיצה כפולה (ג'אווהסקריפט",
-	"watchdefault" => "Watch new and modified articles",
-	"minordefault" => "הגדר כל פעולת עריכה כקטנה אם לא צויין אחרת"
+	"editondblclick" => "(ערוך דפים בלחיצה כפולה (ג'אווה סקריפט",
+	"watchdefault" => "עקוב אחרי מאמרים שערכתי או יצרתי",
+	"minordefault" => "הגדר כל פעולת עריכה כמשנית אם לא צויין אחרת"
 	
 );
 
@@ -239,7 +239,7 @@ include_once("Utf8Case.php");
 	"Imagelist"		=> "רשימת תמונות",
 	"Listusers"		=> "משתמשים רשומים",
 	"Statistics"	=> "סטטיסטיקות אתר",
-	"Randompage"	=> "מאמר מקרי",
+	"Randompage"	=> "מאמר אקראי",
 
 	"Lonelypages"	=> "מאמרים יתומים",
 	"Unusedimages"	=> "תמונות יתומות",
@@ -250,7 +250,7 @@ include_once("Utf8Case.php");
 	"Newpages"		=> "מאמרים חדשים",
 	"Allpages"		=> "כל הדפים לפי כותרת",
 
-	"Ipblocklist"	=> " חסומותIPכתובות ",
+	"Ipblocklist"	=> "חסומות IP כתובות",
 	"Maintenance" => "דף תחזוקה",
 	"Specialpages"  => "",
 	"Contributions" => "",
@@ -263,14 +263,14 @@ include_once("Utf8Case.php");
 
 /* private */ $wgSysopSpecialPagesHe = array(
 	"Blockip"		=> "IP חסום כתובת",
-	"Asksql"		=> "שאילתא לבסיס הנתונים",
+	"Asksql"		=> "שאילתא למסד-הנתונים",
 	"Undelete"		=> "צפה ושחזר דפים מחוקים"
 );
 
 /* private */ $wgDeveloperSpecialPagesHe = array(
 	"Lockdb"		=> "הפוך את בסיס הנתונים לקריא-בלבד",
 	"Unlockdb"		=> "החזר יכולת לכתוב לבסיס הנתונים",
-	"Debug"			=> "Debugging information"
+	"Debug"			=> "נתוני ניפוי שגיאות"
 );
 
 /* private */ $wgAllMessagesHe = array(
@@ -313,18 +313,18 @@ include_once("Utf8Case.php");
 "deletethispage" => "מחק דף זה",
 "protectthispage" => "הפוך דף זה למוגן",
 "unprotectthispage" => "הסר הגנה מדף זה",
-"talkpage"		=> "דבר על דף זה",
+"talkpage"		=> "שוחח על דף זה",
 "articlepage"	=> "צפה במאמר",
 "subjectpage"	=> "צפה בנושא", # For compatibility
 "userpage" => "צפה בדף המשתמש",
 "wikipediapage" => "צפה בדף המטא",
 "imagepage" => 	"צפה בדף התמונה",
 "otherlanguages" => "שפות אחרות",
-"redirectedfrom" => "(הפנייה מ  -$1)",
+"redirectedfrom" => "(הפנייה מ - $1)",
 "lastmodified"	=> ".$1 דף זה שונה לאחרונה ב",
 "viewcount"		=> "פעמים. $1 דף זה נצפה",
 "gnunote" => "<a class=internal href='/wiki/GNU_FDL'>GNU FDL</a> - GNU דף זה מוגש תחת הרשיון לשימוש חופשי במסמכים של",
-"printsubtitle" => "(http://www.wikipedia.orgמ- )",
+"printsubtitle" => "(http://he.wikipedia.org - מ)",
 "protectedpage" => "דף מוגן",
 "administrators" => "ויקיפדיה:אחראי_מערכת",
 "sysoptitle"	=> "דרושה הרשאת מפעיל מערכת",
@@ -336,7 +336,7 @@ include_once("Utf8Case.php");
 
 "nbytes"		=> "בתים $1",
 "go"			=> "לך",
-"ok"			=> "OK",
+"ok"			=> "אישור",
 "sitetitle"		=> "ויקיפדיה",
 "sitesubtitle"	=> "האנציקלופדיה החופשית",
 "retrievedfrom" => "\"$1\" נשלף מ",
@@ -352,7 +352,7 @@ include_once("Utf8Case.php");
 #
 "error"			=> "שגיאה",
 "databaseerror" => "שגיאת מסד-נתונים",
-"dberrortext"	=> "ארעה שגיאת תחביר בשאילתא למסד הנתונים. שגיאה זו יכולה להיות כתוצאה משאילתת חיפוש לא-חוקית (ראה 5$), או שהיא עלולה להעיד על באג בתוכנה.
+"dberrortext"	=> "ארעה שגיאת תחביר בשאילתא למסד-הנתונים. שגיאה זו יכולה להיות כתוצאה משאילתת חיפוש לא-חוקית (ראה 5$), או שהיא עלולה להעיד על באג בתוכנה.
 השאילתה האחרונה שבוצעה למסד-הנתונים היתה: 
 <blockquote><tt>$1</tt></blockquote>
 \"<tt>$2</tt>\מהפונקציה ".
@@ -399,10 +399,10 @@ include_once("Utf8Case.php");
 "areyounew"		=> "אם הנך משתמש/ת חדש/ה בויקיפדיה וברצונך לפתוח חשבון, מלא/י שם משתמש, ואז הקלד/י את הסיסמא המבוקשת בשני המקומות המתאימים.
 הזנת כתובת דואר-אלקטרוני הינה אופציונלית; אם תאבד/י את סיסמתך תוכל/י לבקש שהיא תשלח לכתובת שהזנת..<br>\n",
 
-"login"			=> "הכנס לאתר",
-"userlogin"		=> "כניסה לאתר",
-"logout"		=> "צא מהאתר",
-"userlogout"	=> "יציאה מהאתר",
+"login"			=> "כניסה לחשבון",
+"userlogin"		=> "כניסה לחשבון",
+"logout"		=> "יציאה מהחשבון",
+"userlogout"	=> "יציאה מהחשבון",
 "createaccount"	=> "צור משתמש חדש",
 "badretype"		=> "הסיסמאות שהזנת אינן מתאימות.",
 "userexists"	=> "שם המשתמש שבחרת נמצא בשימוש. אנא בחר/י שם אחר. ",
@@ -428,8 +428,8 @@ include_once("Utf8Case.php");
 # Edit pages
 #
 "summary"		=> "תקציר",
-"minoredit"		=> "זהו שינוי קטן",
-"watchthis"		=> "עקוב אחרי מאמר זה",
+"minoredit"		=> "זהו שינוי משני",
+"watchthis"		=> "עקוב אחרי דף זה",
 "savearticle"	=> "שמור דף",
 "preview"		=> "תצוגה מקדימה",
 "showpreview"	=> "הראה תצוגה מקדימה",
@@ -556,16 +556,7 @@ Your internal ID number is $2.",
 #
 "changes" => "שינויים",
 "recentchanges" => "השינויים האחרונים",
-"recentchangestext" => "עקוב אחר השינויים האחרונים בויקיפדיה בדף זה. 
-[[Wikipedia:Welcome,_newcomers|Welcome, newcomers]]!
-Please have a look at these pages: [[wikipedia:FAQ|Wikipedia FAQ]],
-[[Wikipedia:Policies and guidelines|Wikipedia policy]]
-(especially [[wikipedia:Naming conventions|naming conventions]],
-[[wikipedia:Neutral point of view|neutral point of view]]),
-and [[wikipedia:Most common Wikipedia faux pas|most common Wikipedia faux pas]].
-אם אתם רוצים לראות את ויקיפדיה מצליחה, חשוב מאוד שלא תוסיפו חומר שהוגבל ע\"י אחרים [[wikipedia:Copyrights|copyrights]].
-החשיפה לתביעה משפטית יכולה להזיק מאוד לפרוייקט, אז אנא אל תעשו זאת.
-See also the [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
+"recentchangestext" => "עקוב אחר השינויים האחרונים בויקיפדיה בדף זה.",
 "rcloaderr"		=> "טוען שינויים אחרונים",
 "rcnote"		=> "הימים האחרונים. <strong>$2</strong> השינויים האחרונים שבוצעו ב- <strong>$1</strong> להלן.",
 "rcnotefrom"	=> "להלן השינויים שבוצעו החל מתאריך <b>$2</b> (ועד לתאריך <b>$1</b>).",
@@ -573,7 +564,7 @@ See also the [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta d
 # "rclinks"		=> "הצג $1 שינויים אחרונים ב-$2 השעות האחרונות / $3 הימים האחרונים",
 "rclinks"		=> "הצג $1 שינויים אחרונים ב-$2 הימים האחרונים.",
 "rchide"		=> "ב-$4 טפסים; $1 שינויים קטנים; $2 מרחבי שמות משניים; $3 multiple edits.",
-"diff"			=> "הפרש",
+"diff"			=> "שינוי",
 "hist"			=> "היסטוריה",
 "hide"			=> "הסתר",
 "show"			=> "הצג",
