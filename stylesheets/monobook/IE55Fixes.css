@@ -60,3 +60,9 @@ body {
 #portlet-logo a:hover {
     cursor: pointer;
 }
+.visualClear {
+    width:90%;
+    height: 1px;
+    padding:0;
+    margin:0;
+}
