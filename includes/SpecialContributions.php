@@ -17,6 +17,7 @@ function wfSpecialContributions( $par = "" )
 	}
 	list( $limit, $offset ) = wfCheckLimits( 50, "" );
 	$offlimit = $limit + $offset;
+	$hideminor = ($hideminor ? 1 : 0);
 
 	$nt = Title::newFromURL( $target );
 	$nt->setNamespace( Namespace::getUser() );
@@ -43,11 +44,11 @@ function wfSpecialContributions( $par = "" )
 	  	  WfMsg( "show" ), "target=" . wfEscapeHTML( $nt->getPrefixedURL() ) .
 		  "&offset={$offset}&limit={$limit}&hideminor=0" );
 	} else {
-                $cmq = $omq = "";
+		$cmq = $omq = "";
 		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Contributions" ),
 	  	  WfMsg( "hide" ), "target=" . wfEscapeHTML( $nt->getPrefixedURL() ) .
 		  "&offset={$offset}&limit={$limit}&hideminor=1" );
-        }
+	}
 
 	$top = wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
