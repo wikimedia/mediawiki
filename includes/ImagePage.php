@@ -38,7 +38,7 @@ class ImagePage extends Article {
 			
 			if ( $type != "" ) {
 				# image
-				$s = "<span style=\"text-align: center\"><img src=\"{$url}\" width=\"{$width}\" height=\"{$height}\"".
+				$s = "<span class=\"fullImage\"><img src=\"{$url}\" width=\"{$width}\" height=\"{$height}\"".
 				"alt=\"".$wgRequest->getVal( 'image' )."\" /></span>";
 			} else {
 				$s = "<span style=\"text-align: center\">".$sk->makeMediaLink($name,"")."</span>";
