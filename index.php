@@ -60,6 +60,7 @@ if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 	exit;
 }
 
+wfProfileIn( "main-action" );
 if( $search = $wgRequest->getText( 'search' ) ) {
 	require_once( 'SearchEngine.php' );
 	$wgTitle = Title::makeTitle( NS_SPECIAL, "Search" );
@@ -179,20 +180,25 @@ if( $search = $wgRequest->getText( 'search' ) ) {
 			$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
 	}
 }
+wfProfileOut( "main-action" );
 
 # Deferred updates aren't really deferred anymore. It's important to report errors to the
 # user, and that means doing this before OutputPage::output(). Note that for page saves,
 # the client will wait until the script exits anyway before following the redirect.
+wfProfileIn( "main-updates" );
 foreach ( $wgDeferredUpdateList as $up ) {
 	$up->doUpdate();
 }
+wfProfileOut( "main-updates" );
 
+wfProfileIn( "main-cleanup" );
 $wgLoadBalancer->saveMasterPos();
 
 # Now commit any transactions, so that unreported errors after output() don't roll back the whole thing
 $wgLoadBalancer->commitAll();
 
 $wgOut->output();
+wfProfileOut( "main-cleanup" );
 
 logProfilingData();
 $wgLoadBalancer->closeAll();

@@ -61,18 +61,22 @@ class LanguageUtf8 extends Language {
 		# all strtolower on stripped output or argument
 		# should be removed and all stripForSearch
 		# methods adjusted to that.
+		
+		wfProfileIn( "LanguageUtf8::stripForSearch" );
 		if( function_exists( 'mb_strtolower' ) ) {
-			return preg_replace(
+			$out = preg_replace(
 				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
 				"'U8' . bin2hex( \"$1\" )",
 				mb_strtolower( $string ) );
 		} else {
 			global $wikiLowerChars;
-			return preg_replace(
+			$out = preg_replace(
 				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
 				"'U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
 				$string );
 		}
+		wfProfileOut( "LanguageUtf8::stripForSearch" );
+		return $out;
 	}
 
 	function fallback8bitEncoding() {
