@@ -18,11 +18,15 @@ class ParserCache
 		$hash = $user->getPageRenderingHash();
 		$pageid = intval( $article->getID() );
 		$key = $this->getKey( $article, $user );
+		wfDebug( "Trying parser cache $key\n" );
 		$value = $wgMemc->get( $key );
 		if ( $value ) {
+			wfDebug( "Found.\n" );
 			# Delete if article has changed since the cache was made
 			$touched = $article->getTouched();
-			if ( $value->getCacheTime() <= $touched || $value->getCacheTime < $wgCacheEpoch ) {
+			$cacheTime = $value->getCacheTime();
+			if ( $value->getCacheTime() <= $touched || $cacheTime < $wgCacheEpoch ) {
+				wfDebug( "Key expired, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
 				$wgMemc->delete( $key );
 				$value = false;
 			}
