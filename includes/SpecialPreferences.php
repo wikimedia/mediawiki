@@ -634,7 +634,9 @@ class PreferencesForm {
 		$this->getToggle( "previewonfirst" ) .
 		$this->getToggle( "previewontop" ) .
 		$this->getToggle( "watchdefault" ) .
-		$this->getToggle( "minordefault" ) . "
+		$this->getToggle( "minordefault" ) . 
+		$this->getToggle( "externaleditor" ) .
+		"
 	</fieldset>
 	
 	<fieldset>

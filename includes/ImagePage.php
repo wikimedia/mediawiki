@@ -21,11 +21,15 @@ class ImagePage extends Article {
 				 // available in doDelete etc.
 
 	function view() {
+		global $wgUseExternalEditor;
 		if( $this->mTitle->getNamespace() == NS_IMAGE ) {
 			$this->openShowImage();
 		}
 
 		Article::view();
+		if($wgUseExternalEditor) {
+			$this->externalEditorLink();
+		}
 		
 		# If the article we've just shown is in the "Image" namespace,
 		# follow it with the history list and link list for the image
@@ -41,7 +45,8 @@ class ImagePage extends Article {
 	function openShowImage()
 	{
 		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, 
-		       $wgUseImageResize, $wgRepositoryBaseUrl;
+		       $wgUseImageResize, $wgRepositoryBaseUrl, 
+		       $wgUseExternalEditor;
 		$this->img  = Image::newFromTitle( $this->mTitle );
 		$full_url  = $this->img->getViewURL();
 		$anchoropen = '';
@@ -116,12 +121,25 @@ class ImagePage extends Article {
 				$sharedtext.="</div>";
 				$wgOut->addWikiText($sharedtext);
 			}
+			
 		}
 	}
 	
+	function externalEditorLink()
+	{
+		global $wgUser,$wgOut;
+		$sk = $wgUser->getSkin();
+		$wgOut->addHTML("<div class=\"editExternally\">");
+		$wgOut->addHTML($sk->makeKnownLink($this->mTitle->getPrefixedDBkey(),wfMsg("edit-externally"),
+		"action=edit&externaledit=true&mode=file"));
+		$wgOut->addWikiText("<div class=\"editExternallyHelp\">".wfMsg("edit-externally-help"));
+		$wgOut->addHTML("</div><br clear=\"all\">");
+			
+	}
 	function closeShowImage()
 	{
 		# For overloading
+			
 	}
 
 	/**

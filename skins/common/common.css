@@ -303,3 +303,18 @@ span.changedby {
 	text-align: center;
 	color: #cc0000;
 }
+.editExternally {
+        border-style:solid;
+        border-width:1px;
+        border-color:gray;
+        background: #ffffff;
+        padding:3px;
+        margin-top:0.5em;
+        float:left;
+        font-size:small;
+        text-align:center;
+}
+.editExternallyHelp {
+        font-style:italic;
+        color:gray;
+} 
