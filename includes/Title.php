@@ -100,12 +100,13 @@ class Title {
 		
 		# For links that came from outside, check for alternate/legacy
 		# character encoding.
-		wfDebug( "Refer: {$_SERVER['HTTP_REFERER']}\n" );
 		wfDebug( "Servr: $wgServer\n" );
 		if( empty( $_SERVER["HTTP_REFERER"] ) ||
 			strncmp($wgServer, $_SERVER["HTTP_REFERER"], strlen( $wgServer ) ) ) 
 		{
 			$s = $wgLang->checkTitleEncoding( $s );
+		} else {
+			wfDebug( "Refer: {$_SERVER['HTTP_REFERER']}\n" );
 		}
 		
 		$t->mDbkeyform = str_replace( " ", "_", $s );

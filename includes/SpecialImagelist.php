@@ -2,11 +2,10 @@
 
 function wfSpecialImagelist()
 {
-	global $wgUser, $wgOut, $wgLang, $sort;
-	global $wpIlMatch, $wpIlSubmit;
-
-	$fields = array( 'wpIlMatch' );
-	wfCleanFormFields( $fields );
+	global $wgUser, $wgOut, $wgLang, $wgRequest;
+	
+	$sort = $wgRequest->getVal( 'sort' );
+	$wpIlMatch = $wgRequest->getText( 'wpIlMatch' );
 
 	$sql = "SELECT img_size,img_name,img_user,img_user_text," .
 	  "img_description,img_timestamp FROM image";

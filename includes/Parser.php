@@ -1423,7 +1423,7 @@ class Parser
 		$this->mOptions = $options;
 		$this->mTitle = $title;
 		if ( $clearState ) {
-			$this->clearState;
+			$this->clearState();
 		}
 		
 		$stripState = false;

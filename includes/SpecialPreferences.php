@@ -3,11 +3,15 @@
 function wfSpecialPreferences()
 {
 	global $wgUser, $wgOut, $wgUseDynamicDates, $action;
-	global $wpSaveprefs, $wpReset;
+	global $wpSaveprefs, $wpReset, $wgRequest;
 
-	$fields = array( "wpOldpass", "wpNewpass", "wpRetypePass",
-	  "wpUserEmail", "wpNick" );
-	wfCleanFormFields( $fields );
+	# EWWWWWW temp hack
+	global $wpOldpass, $wpNewpass, $wpRetypePass, $wpNick, $wpUserEmail;
+	$wpOldpass = $wgRequest->getText( 'wpOldpass' );
+	$wpNewpass = $wgRequest->getText( 'wpNewpass' );
+	$wpRetypePass = $wgRequest->getText( 'wpRetypePass' );
+	$wpNick = $wgRequest->getText( 'wpNick' );
+	$wpUserEmail = $wgRequest->getVal( 'wpUserEmail' );
 
 	if ( 0 == $wgUser->getID() ) {
 		$wgOut->errorpage( "prefsnologin", "prefsnologintext" );

@@ -4,9 +4,6 @@ function wfSpecialUpload()
 {
 	global $wgUser, $wgOut, $wpUpload, $wpReUpload, $action;
 	global $wgDisableUploads;
-	
-	$fields = array( "wpUploadFile", "wpUploadDescription" );
-	wfCleanFormFields( $fields );
 
     if ( $wgDisableUploads ) {
     	$wgOut->addWikiText( wfMsg( "uploaddisabled" ) );
@@ -60,8 +57,7 @@ function processUpload()
 		$wpUploadSize = $HTTP_POST_FILES['wpUploadFile']['size'];
 	}
 	$prev = error_reporting( E_ALL & ~( E_NOTICE | E_WARNING ) );
-	$oname = wfCleanQueryVar( $HTTP_POST_FILES['wpUploadFile']['name'] );
-	if ( $wpUploadSaveName != "" ) $wpUploadSaveName = wfCleanQueryVar( $wpUploadSaveName );
+	$oname = $wgRequest->getVal( $HTTP_POST_FILES['wpUploadFile'], 'name' );
 	error_reporting( $prev );
 
 	if ( "" != $oname ) {

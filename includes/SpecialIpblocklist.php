@@ -2,16 +2,17 @@
 
 function wfSpecialIpblocklist()
 {
-	global $wgUser, $wgOut, $action, $ip;
-
-	$fields = array( "wpUnblockAddress" );
-	wfCleanFormFields( $fields );
-	$ipu = new IPUnblockForm();
+	global $wgUser, $wgOut, $wgRequest, $action;
+	
+	$ip = $wgRequest->getVal( 'wpUnblockAddress', $wgRequest->getVal( 'ip' ) );
+	$reason = $wgRequest->getText( 'wpUnblockReason' );
+	
+	$ipu = new IPUnblockForm( $ip, $reason );
 
 	if ( "success" == $action ) {
 		$msg = wfMsg( "ipusuccess", $ip );
 		$ipu->showList( $msg );
-	} else if ( "submit" == $action ) {
+	} else if ( "submit" == $action && $wgRequest->wasPosted() ) {
 		if ( ! $wgUser->isSysop() ) {
 			$wgOut->sysopRequired();
 			return;
@@ -25,19 +26,23 @@ function wfSpecialIpblocklist()
 }
 
 class IPUnblockForm {
-
+	var $ip, $reason;
+	
+	function IPUnblockForm( $ip, $reason ) {
+		$this->ip = $ip;
+		$this->reason = $reason;
+	}
+	
 	function showForm( $err )
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $ip, $wpUnblockAddress;
 
 		$wgOut->setPagetitle( wfMsg( "unblockip" ) );
 		$wgOut->addWikiText( wfMsg( "unblockiptext" ) );
 
-		if ( ! $wpUnblockAddress ) { $wpUnblockAddress = $ip; }
 		$ipa = wfMsg( "ipaddress" );
 		$ipr = wfMsg( "ipbreason" );
-		$ipus = wfMsg( "ipusubmit" );
+		$ipus = htmlspecialchars( wfMsg( "ipusubmit" ) );
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Ipblocklist" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 
@@ -45,16 +50,17 @@ class IPUnblockForm {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
 			$wgOut->addHTML( "<p><font color='red' size='+1'>{$err}</font>\n" );
 		}
+		
 		$wgOut->addHTML( "<p>
 <form id=\"unblockip\" method=\"post\" action=\"{$action}\">
 <table border=0><tr>
 <td align=right>{$ipa}:</td>
 <td align=left>
-<input tabindex=1 type=text size=20 name=\"wpUnblockAddress\" value=\"{$wpUnblockAddress}\">
+<input tabindex=1 type=text size=20 name=\"wpUnblockAddress\" value=\"" . htmlspecialchars( $this->ip ) . "\">
 </td></tr><tr>
 <td align=right>{$ipr}:</td>
 <td align=left>
-<input tabindex=1 type=text size=40 name=\"wpUnblockReason\" value=\"{$wpUnblockReason}\">
+<input tabindex=1 type=text size=40 name=\"wpUnblockReason\" value=\"" . htmlspecialchars( $this->reason ) . "\">
 </td></tr><tr>
 <td>&nbsp;</td><td align=left>
 <input tabindex=2 type=submit name=\"wpBlock\" value=\"{$ipus}\">
@@ -66,15 +72,14 @@ class IPUnblockForm {
 	function doSubmit()
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $wpUnblockAddress, $wpUnblockReason;
 
 		$block = new Block();
-		$wpUnblockAddress = trim( $wpUnblockAddress );
+		$this->ip = trim( $this->ip );
 
-		if ( $wpUnblockAddress{0} == "#" ) {
-			$block->mId = substr( $wpUnblockAddress, 1 );
+		if ( $this->ip{0} == "#" ) {
+			$block->mId = substr( $this->ip, 1 );
 		} else {
-			$block->mAddress = $wpUnblockAddress;
+			$block->mAddress = $this->ip;
 		}
 		
 		# Delete block (if it exists)
@@ -83,12 +88,12 @@ class IPUnblockForm {
 
 		# Make log entry
 		$log = new LogPage( wfMsg( "blocklogpage" ), wfMsg( "blocklogtext" ) );
-		$action = wfMsg( "unblocklogentry", $wpUnblockAddress );
-		$log->addEntry( $action, $wpUnblockReason );
+		$action = wfMsg( "unblocklogentry", $this->ip );
+		$log->addEntry( $action, $this->reason );
 
 		# Report to the user
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Ipblocklist" );
-		$success = $titleObj->getFullURL( "action=success&ip=" . urlencode($wpUnblockAddress) );
+		$success = $titleObj->getFullURL( "action=success&ip=" . urlencode( $this->ip ) );
 		$wgOut->redirect( $success );
 	}
 
@@ -108,7 +113,7 @@ class IPUnblockForm {
 
 # Callback function to output a block
 function wfAddRow( $block, $tag ) {
-	global $wgOut, $wgUser, $wgLang, $ip;
+	global $wgOut, $wgUser, $wgLang;
 
 	$sk = $wgUser->getSkin();
 

@@ -51,6 +51,9 @@ include_once( "MessageCache.php" );
 include_once( "BlockCache.php" );
 include_once( "Parser.php" );
 include_once( "ParserCache.php" );
+include_once( "WebRequest.php" );
+$wgRequest = new WebRequest();
+
 
 wfProfileOut( "$fname-includes" );
 wfProfileIn( "$fname-memcached" );

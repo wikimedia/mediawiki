@@ -171,7 +171,8 @@ class QueryPage {
 	
 	function feedUrl() {
 		global $wgLang;
-		return wfFullUrl( $wgLang->SpecialPage( $this->getName() ) );
+		$title = Title::MakeTitle( NS_SPECIAL, $this->getName() );
+		return $title->getFullURL();
 	}
 }
 

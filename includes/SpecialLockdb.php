@@ -2,24 +2,28 @@
 
 function wfSpecialLockdb()
 {
-	global $wgUser, $wgOut, $action;
+	global $wgUser, $wgOut, $wgRequest, $action;
 
 	if ( ! $wgUser->isDeveloper() ) {
 		$wgOut->developerRequired();
 		return;
 	}
-	$fields = array( "wpLockReason" );
-	wfCleanFormFields( $fields );
 
 	$f = new DBLockForm();
 
 	if ( "success" == $action ) { $f->showSuccess(); }
-	else if ( "submit" == $action ) { $f->doSubmit(); }
+	else if ( "submit" == $action && $wgRequest->wasPosted() ) { $f->doSubmit(); }
 	else { $f->showForm( "" ); }
 }
 
 class DBLockForm {
-
+	var $reason = "";
+	
+	function DBLockForm() {
+		global $wgRequest;
+		$this->reason = $wgRequest->getText( 'wpLockReason' );
+	}
+	
 	function showForm( $err )
 	{
 		global $wgOut, $wgUser, $wgLang;
@@ -58,10 +62,10 @@ class DBLockForm {
 
 	function doSubmit()
 	{
-		global $wgOut, $wgUser, $wgLang;
-		global $wpLockConfirm, $wpLockReason, $wgReadOnlyFile;
+		global $wgOut, $wgUser, $wgLang, $wgRequest;
+		global $wgReadOnlyFile;
 
-		if ( ! $wpLockConfirm ) {
+		if ( ! $wgRequest->getCheck( 'wpLockConfirm' ) ) {
 			$this->showForm( wfMsg( "locknoconfirm" ) );
 			return;
 		}
@@ -71,7 +75,7 @@ class DBLockForm {
 			$wgOut->fileNotFoundError( $wgReadOnlyFile );
 			return;
 		}
-		fwrite( $fp, $wpLockReason );
+		fwrite( $fp, $this->reason );
 		fwrite( $fp, "\n<p>(by " . $wgUser->getName() . " at " .
 		  $wgLang->timeanddate( wfTimestampNow() ) . ")\n" );
 		fclose( $fp );
@@ -83,11 +87,10 @@ class DBLockForm {
 	function showSuccess()
 	{
 		global $wgOut, $wgUser;
-		global $ip;
 
 		$wgOut->setPagetitle( wfMsg( "lockdb" ) );
 		$wgOut->setSubtitle( wfMsg( "lockdbsuccesssub" ) );
-		$wgOut->addWikiText( wfMsg( "lockdbsuccesstext", $ip ) );
+		$wgOut->addWikiText( wfMsg( "lockdbsuccesstext" ) );
 	}
 }
 

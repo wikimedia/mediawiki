@@ -9,6 +9,13 @@ class EditPage {
 	var $mArticle;
 	var $mTitle;
 	
+	# Form values
+	var $save = false, $preview = false;
+	var $minoredit = false, $watchthis = false;
+	var $textbox1 = "", $textbox2 = "", $summary = "";
+	var $edittime = "", $section = "";
+	var $oldid = 0;
+	
 	function EditPage( $article ) {
 		$this->mArticle =& $article;
 		global $wgTitle;
@@ -19,14 +26,11 @@ class EditPage {
 
 	function edit()
 	{
-		global $wgOut, $wgUser, $wgWhitelistEdit;
-		global $wpTextbox1, $wpSummary, $wpSave, $wpPreview;
-		global $wpMinoredit, $wpEdittime, $wpTextbox2;
+		global $wgOut, $wgUser, $wgWhitelistEdit, $wgRequest;
 		// this is not an article
 		$wgOut->setArticleFlag(false);
 
-		$fields = array( "wpTextbox1", "wpSummary", "wpTextbox2" );
-		wfCleanFormFields( $fields );
+		$this->importFormData( $wgRequest );
 
 		if ( ! $this->mTitle->userCanEdit() ) {
 			$wgOut->readOnlyPage( $this->mArticle->getContent(), true );
@@ -41,23 +45,45 @@ class EditPage {
 			return;
 		}
 		if ( wfReadOnly() ) {
-			if( isset( $wpSave ) or isset( $wpPreview ) ) {
+			if( $this->save || $this->preview ) {
 				$this->editForm( "preview" );
 			} else {
 				$wgOut->readOnlyPage( $this->mArticle->getContent() );
 			}
 			return;
 		}
-		if ( $_SERVER['REQUEST_METHOD'] != "POST" ) unset( $wpSave );
-		if ( isset( $wpSave ) ) {
+		if( !$wgRequest->wasPosted() ) $this->save = false;
+		if ( $this->save ) {
 			$this->editForm( "save" );
-		} else if ( isset( $wpPreview ) ) {
+		} else if ( $this->preview ) {
 			$this->editForm( "preview" );
 		} else { # First time through
 			$this->editForm( "initial" );
 		}
 	}
 
+	function importFormData( &$request ) {
+		# These fields need to be checked for encoding.
+		# Also remove trailing whitespace, but don't remove _initial_
+		# whitespace from the text boxes. This may be significant formatting.
+		$this->textbox1 = rtrim( $request->getText( "wpTextbox1" ) );
+		$this->textbox2 = rtrim( $request->getText( "wpTextbox2" ) );
+		$this->summary = trim( $request->getText( "wpSummary" ) );
+		
+		$this->edittime = $request->getVal( 'wpEdittime' );
+		if( !preg_match( '/^\d{14}$/', $this->edittime ) ) $this->edittime = "";
+		
+		$this->save = $request->getCheck( 'wpSave' );
+		$this->preview = $request->getCheck( 'wpPreview' );
+		$this->minoredit = $request->getCheck( 'wpMinoredit' );
+		$this->watchthis = $request->getCheck( 'wpWatchthis' );
+		
+		$this->oldid = $request->getInt( 'oldid' );
+		
+		# Section edit can come from either the form or a link
+		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
+	}
+	
 	# Since there is only one text field on the edit form,
 	# pressing <enter> will cause the form to be submitted, but
 	# the submit button value won't appear in the query, so we
@@ -66,8 +92,7 @@ class EditPage {
 
 	function submit()
 	{
-		global $wpSave, $wpPreview;
-		if ( ! isset( $wpPreview ) ) { $wpSave = 1; }
+		if( !$this->preview ) $this->save = true;
 
 		$this->edit();
 	}
@@ -81,18 +106,11 @@ class EditPage {
 	function editForm( $formtype )
 	{
 		global $wgOut, $wgUser;
-		global $wpTextbox1, $wpSummary, $wpWatchthis;
-		global $wpSave, $wpPreview;
-		global $wpMinoredit, $wpEdittime, $wpTextbox2, $wpSection;
-		global $oldid, $redirect, $section;
 		global $wgLang, $wgParser, $wgTitle;
 	    global $wgAllowAnonymousMinor;
 
-		if(isset($wpSection)) { $section=$wpSection; } else { $wpSection=$section; }
-
 		$sk = $wgUser->getSkin();
 		$isConflict = false;
-		$wpTextbox1 = rtrim ( $wpTextbox1 ) ; # To avoid text getting longer on each preview
 
 		if(!$this->mTitle->getArticleID()) { # new article
 			$wgOut->addWikiText(wfmsg("newarticletext"));
@@ -125,39 +143,40 @@ class EditPage {
 
 			$aid = $this->mTitle->getArticleID();
 			if ( 0 == $aid ) {
-				# we need to strip Windoze linebreaks because some browsers
-				# append them and the string comparison fails
-				if ( ( "" == $wpTextbox1 ) ||
-				  ( wfMsg( "newarticletext" ) == rtrim( preg_replace("/\r/","",$wpTextbox1) ) ) ) {
+				# Don't save a new article if it's blank.
+				if ( ( "" == $this->textbox1 ) ||
+				  ( wfMsg( "newarticletext" ) == $this->textbox1 ) ) {
 					$wgOut->redirect( $this->mTitle->getFullURL() );
 					return;
 				}
-				$this->mArticle->insertNewArticle( $wpTextbox1, $wpSummary, $wpMinoredit, $wpWatchthis );
+				$this->mArticle->insertNewArticle( $this->textbox1, $this->summary, $this->minoredit, $this->watchthis );
 				return;
 			}
 			# Article exists. Check for edit conflict.
 			# Don't check for conflict when appending a comment - this should always work
 
 			$this->mArticle->clear(); # Force reload of dates, etc.
-			if ( $section!="new" && ( $this->mArticle->getTimestamp() != $wpEdittime ) ) {
+			if( ( $this->section != "new" ) &&
+				( $this->mArticle->getTimestamp() != $this->edittime ) ) {
 				$isConflict = true;
 			}
-			$u = $wgUser->getID();
+			$userid = $wgUser->getID();
 
 			# Suppress edit conflict with self
 
-			if ( ( 0 != $u ) && ( $this->mArticle->getUser() == $u ) ) {
+			if ( ( 0 != $userid ) && ( $this->mArticle->getUser() == $userid ) ) {
 				$isConflict = false;
 			} else {
 				# switch from section editing to normal editing in edit conflict
+				# FIXME: This is confusing. In theory we should attempt to merge, finding
+				# the equivalent section if it's unchanged and avoid the conflict.
 				if($isConflict) {
-					$section="";$wpSection="";
+					$this->section = "";
 				}
-
 			}
 			if ( ! $isConflict ) {
 				# All's well: update the article here
-				if($this->mArticle->updateArticle( $wpTextbox1, $wpSummary, $wpMinoredit, $wpWatchthis, $wpSection ))
+				if($this->mArticle->updateArticle( $this->textbox1, $this->summary, $this->minoredit, $this->watchthis, $this->section ))
 					return;
 				else
 					$isConflict = true;
@@ -167,9 +186,9 @@ class EditPage {
 		# checking, etc.
 
 		if ( "initial" == $formtype ) {
-			$wpEdittime = $this->mArticle->getTimestamp();
-			$wpTextbox1 = $this->mArticle->getContent(true);
-			$wpSummary = "";
+			$this->edittime = $this->mArticle->getTimestamp();
+			$this->textbox1 = $this->mArticle->getContent(true);
+			$this->summary = "";
 		}
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		
@@ -181,21 +200,21 @@ class EditPage {
 			$wgOut->setPageTitle( $s );
 			$wgOut->addHTML( wfMsg( "explainconflict" ) );
 
-			$wpTextbox2 = $wpTextbox1;
-			$wpTextbox1 = $this->mArticle->getContent(true);
-			$wpEdittime = $this->mArticle->getTimestamp();
+			$this->textbox2 = $this->textbox1;
+			$this->textbox1 = $this->mArticle->getContent(true);
+			$this->edittime = $this->mArticle->getTimestamp();
 		} else {
 			$s = wfMsg( "editing", $this->mTitle->getPrefixedText() );
 
-			if($section!="") {
-				if($section=="new") {
+			if( $this->section != "" ) {
+				if( $this->section == "new" ) {
 					$s.=wfMsg("commentedit");
 				} else {
 					$s.=wfMsg("sectionedit");
 				}
 			}
 			$wgOut->setPageTitle( $s );
-			if ( $oldid ) {
+			if ( $this->oldid ) {
 				$this->mArticle->setOldSubtitle();
 				$wgOut->addHTML( wfMsg( "editingold" ) );
 			}
@@ -211,7 +230,7 @@ class EditPage {
 			  "</strong><br />\n" );
 		}
 
-		$kblength = (int)(strlen( $wpTextbox1 ) / 1024);
+		$kblength = (int)(strlen( $this->textbox1 ) / 1024);
 		if( $kblength > 29 ) {
 			$wgOut->addHTML( "<strong>" .
 				wfMsg( "longpagewarning", $kblength )
@@ -226,7 +245,7 @@ class EditPage {
 		else $ew = "" ;
 
 		$q = "action=submit";
-		if ( "no" == $redirect ) { $q .= "&redirect=no"; }
+		#if ( "no" == $redirect ) { $q .= "&redirect=no"; }
 		$action = $this->mTitle->escapeLocalURL( $q );
 
 		$summary = wfMsg( "summary" );
@@ -243,52 +262,47 @@ class EditPage {
 		$copywarn = wfMsg( "copyrightwarning", $sk->makeKnownLink(
 		  wfMsg( "copyrightpage" ) ) );
 
-		$wpTextbox1 = wfEscapeHTML( $wpTextbox1 );
-		$wpTextbox2 = wfEscapeHTML( $wpTextbox2 );
-		$wpSummary = wfEscapeHTML( $wpSummary );
-
-
 		if($wgUser->getOption("showtoolbar")) {
 			// prepare toolbar for edit buttons
 			$toolbar=$sk->getEditToolbar();
 		}
 
 		// activate checkboxes if user wants them to be always active
-		if (!$wpPreview && $wgUser->getOption("watchdefault")) $wpWatchthis=1;
-		if (!$wpPreview && $wgUser->getOption("minordefault")) $wpMinoredit=1;
-
-		// activate checkbox also if user is already watching the page,
-		// require wpWatchthis to be unset so that second condition is not
-		// checked unnecessarily
-		if (!$wpWatchthis && !$wpPreview && $this->mTitle->userIsWatching()) $wpWatchthis=1;
-
-                $minoredithtml = "";
+		if( !$this->preview ) {
+			if( $wgUser->getOption( "watchdefault" ) ) $this->watchthis = true;
+			if( $wgUser->getOption( "minordefault" ) ) $this->minoredit = true;
+		
+			// activate checkbox also if user is already watching the page,
+			// require wpWatchthis to be unset so that second condition is not
+			// checked unnecessarily
+			if( !$this->watchthis && $this->mTitle->userIsWatching() ) $this->watchthis = true;
+		}
+		
+		$minoredithtml = "";
 
 		if ( 0 != $wgUser->getID() || $wgAllowAnonymousMinor ) {
 			$minoredithtml =
-			"<input tabindex=3 type=checkbox value=1 name='wpMinoredit'".($wpMinoredit?" checked":"")." id='wpMinoredit'>".
+			"<input tabindex='3' type='checkbox' value='1' name='wpMinoredit'".($this->minoredit?" checked":"")." id='wpMinoredit'>".
 			"<label for='wpMinoredit'>{$minor}</label>";
 		}
-	    
-	        $watchhtml = "";
-	    
+		
+		$watchhtml = "";
+		
 		if ( 0 != $wgUser->getID() ) {
-		        $watchhtml = "<input tabindex=4 type=checkbox name='wpWatchthis'".($wpWatchthis?" checked":"")." id='wpWatchthis'>".
+			$watchhtml = "<input tabindex='4' type='checkbox' name='wpWatchthis'".($this->watchthis?" checked":"")." id='wpWatchthis'>".
 			"<label for='wpWatchthis'>{$watchthis}</label>";
-
 		}
-	    
-	        $checkboxhtml= $minoredithtml . $watchhtml . "<br>";
+		
+		$checkboxhtml = $minoredithtml . $watchhtml . "<br>";
 
 		if ( "preview" == $formtype) {
-
 			$previewhead="<h2>" . wfMsg( "preview" ) . "</h2>\n<p><large><center><font color=\"#cc0000\">" .
-			wfMsg( "note" ) . wfMsg( "previewnote" ) . "</font></center></large><P>\n";
+			wfMsg( "note" ) . wfMsg( "previewnote" ) . "</font></center></large><p>\n";
 			if ( $isConflict ) {
 				$previewhead.="<h2>" . wfMsg( "previewconflict" ) .
 				  "</h2>\n";
 			}
-			$previewtext = wfUnescapeHTML( $wpTextbox1 );
+			$previewtext = wfUnescapeHTML( $this->textbox1 );
 
 			$parserOptions = ParserOptions::newFromUser( $wgUser );
 			$parserOptions->setUseCategoryMagic( false );
@@ -307,15 +321,16 @@ class EditPage {
 
 		# if this is a comment, show a subject line at the top, which is also the edit summary.
 		# Otherwise, show a summary field at the bottom
-		if($section=="new") {
-			$commentsubject="{$subject}: <input tabindex=1 type=text value=\"{$wpSummary}\" name=\"wpSummary\" maxlength=200 size=60><br>";
+		$summarytext = htmlspecialchars( $wgLang->recodeForEdit( $this->summary ) ); # FIXME
+		if( $this->section == "new" ) {
+			$commentsubject="{$subject}: <input tabindex='1' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60'><br>";
 			$editsummary = "";
 		} else {
 			$commentsubject = "";
-			$editsummary="{$summary}: <input tabindex=3 type=text value=\"{$wpSummary}\" name=\"wpSummary\" maxlength=200 size=60><br>";
+			$editsummary="{$summary}: <input tabindex='3' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60'><br>";
 		}
 
-		if( $_GET["action"] == "edit" ) {
+		if( !$this->preview ) {
 			# Don't select the edit box on preview; this interferes with seeing what's going on.
 			$wgOut->setOnloadHandler( "document.editform.wpTextbox1.focus()" );
 		}
@@ -324,19 +339,19 @@ class EditPage {
 <form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
 enctype=\"application/x-www-form-urlencoded\">
 {$commentsubject}
-<textarea tabindex=2 name=\"wpTextbox1\" rows={$rows}
-cols={$cols}{$ew} wrap=\"virtual\">" .
-$wgLang->recodeForEdit( $wpTextbox1 ) .
+<textarea tabindex='2' name=\"wpTextbox1\" rows='{$rows}'
+cols='{$cols}'{$ew} wrap=\"virtual\">" .
+htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 "
 </textarea>
 <br>{$editsummary}
 {$checkboxhtml}
-<input tabindex=5 type=submit value=\"{$save}\" name=\"wpSave\" accesskey=\"s\">
-<input tabindex=6 type=submit value=\"{$prev}\" name=\"wpPreview\" accesskey=\"p\">
+<input tabindex='5' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"s\">
+<input tabindex='6' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"p\">
 <em>{$cancel}</em> | <em>{$edithelp}</em>
 <br><br>{$copywarn}
-<input type=hidden value=\"{$section}\" name=\"wpSection\">
-<input type=hidden value=\"{$wpEdittime}\" name=\"wpEdittime\">\n" );
+<input type=hidden value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\">
+<input type=hidden value=\"{$this->edittime}\" name=\"wpEdittime\">\n" );
 
 		if ( $isConflict ) {
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourdiff" ) . "</h2>\n" );
@@ -344,8 +359,8 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 			  wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
 
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourtext" ) . "</h2>
-<textarea tabindex=6 name=\"wpTextbox2\" rows={$rows} cols={$cols} wrap=virtual>"
-. $wgLang->recodeForEdit( $wpTextbox2 ) .
+<textarea tabindex=6 name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
+. htmlspecialchars( $wgLang->recodeForEdit( $wpTextbox2 ) ) .
 "
 </textarea>" );
 		}
