@@ -50,6 +50,7 @@ class LoginForm {
 	function execute() {
 		if ( !is_null( $this->mCookieCheck ) ) {
 			$this->onCookieRedirectCheck( $this->mCookieCheck );
+			return;
 		} else if( $this->mPosted ) {
 			if( $this->mCreateaccount ) {
 				return $this->addNewAccount();
