@@ -150,16 +150,16 @@ function wfUrlencode ( $s )
 }
 
 function wfUtf8Sequence($codepoint) {
-	if($codepoint <     0x80) return chr($codepoint);
-	if($codepoint <    0x800) return chr($codepoint >>  6 & 0x3f | 0xc0) .
-                                     chr($codepoint       & 0x3f | 0x80);
-    if($codepoint <  0x10000) return chr($codepoint >> 12 & 0x0f | 0xe0) .
-                                     chr($codepoint >>  6 & 0x3f | 0x80) .
-                                     chr($codepoint       & 0x3f | 0x80);
+	if($codepoint <		0x80) return chr($codepoint);
+	if($codepoint <    0x800) return chr($codepoint >>	6 & 0x3f | 0xc0) .
+									 chr($codepoint		  & 0x3f | 0x80);
+	if($codepoint <  0x10000) return chr($codepoint >> 12 & 0x0f | 0xe0) .
+									 chr($codepoint >>	6 & 0x3f | 0x80) .
+									 chr($codepoint		  & 0x3f | 0x80);
 	if($codepoint < 0x100000) return chr($codepoint >> 18 & 0x07 | 0xf0) . # Double-check this
-	                                 chr($codepoint >> 12 & 0x3f | 0x80) .
-                                     chr($codepoint >>  6 & 0x3f | 0x80) .
-                                     chr($codepoint       & 0x3f | 0x80);
+									 chr($codepoint >> 12 & 0x3f | 0x80) .
+									 chr($codepoint >>	6 & 0x3f | 0x80) .
+									 chr($codepoint		  & 0x3f | 0x80);
 	# Doesn't yet handle outside the BMP
 	return "&#$codepoint;";
 }
@@ -370,16 +370,18 @@ function wfAbruptExit(){
 }
 
 function wfDebugDieBacktrace( $msg = '' ) {
-	$msg .= "\n<p>Backtrace:</p>\n<ul>\n";
-	$backtrace = debug_backtrace();
-	foreach( $backtrace as $call ) {
-		$f = explode( DIRECTORY_SEPARATOR, $call['file'] );
-		$file = $f[count($f)-1];
-		$msg .= '<li>' . $file . " line " . $call['line'] . ', in ';
-		if( !empty( $call['class'] ) ) $msg .= $call['class'] . '::';
-		$msg .= $call['function'] . "()</li>\n";
-	}
-	die( $msg );
+	if ( function_exists( 'debug_backtrace' ) ) {
+		$msg .= "\n<p>Backtrace:</p>\n<ul>\n";
+		$backtrace = debug_backtrace();
+		foreach( $backtrace as $call ) {
+			$f = explode( DIRECTORY_SEPARATOR, $call['file'] );
+			$file = $f[count($f)-1];
+			$msg .= '<li>' . $file . " line " . $call['line'] . ', in ';
+			if( !empty( $call['class'] ) ) $msg .= $call['class'] . '::';
+			$msg .= $call['function'] . "()</li>\n";
+		}
+	 }
+	 die( $msg );
 }
 
 function wfNumberOfArticles()
@@ -489,9 +491,9 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 	
 	if ( $wgUseCopyrightUpload )
 	  {
-	    $textdesc = '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n" .
-	      '== ' . wfMsg ( 'filestatus' ) . " ==\n" . $copyStatus . "\n" .
-	      '== ' . wfMsg ( 'filesource' ) . " ==\n" . $source ;
+		$textdesc = '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n" .
+		  '== ' . wfMsg ( 'filestatus' ) . " ==\n" . $copyStatus . "\n" .
+		  '== ' . wfMsg ( 'filesource' ) . " ==\n" . $source ;
 	  }
 	else $textdesc = $desc ;
 
@@ -511,7 +513,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 		  wfStrencode( $name ) . "'";
 		$res = wfQuery( $sql, DB_READ, $fname );
 		if ( 0 == wfNumRows( $res ) ) {
-            $common =
+			$common =
 			  Namespace::getImage() . ",'" .
 			  wfStrencode( $name ) . "','" .
 			  wfStrencode( $desc ) . "','" . $wgUser->getID() . "','" .
@@ -671,7 +673,7 @@ function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
 function wfEscapeWikiText( $text )
 {
 	$text = str_replace( 
-		array( '[',     '|',      "'",     'ISBN '    , '://'     , "\n=" ),
+		array( '[',		'|',	  "'",	   'ISBN '	  , '://'	  , "\n=" ),
 		array( '&#91;', '&#124;', '&#39;', 'ISBN&#32;', '&#58;//' , "\n&#61;" ),
 		htmlspecialchars($text) );
 	return $text;
@@ -794,11 +796,11 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	fwrite( $yourtextFile, $yours ); fclose( $yourtextFile );
 
 	# Check for a conflict
-    $cmd = wfEscapeShellArg( $wgDiff3 ) . ' -a --overlap-only ' .
-      wfEscapeShellArg( $mytextName ) . ' ' .
-      wfEscapeShellArg( $oldtextName ) . ' ' .
-      wfEscapeShellArg( $yourtextName );
-    $handle = popen( $cmd, 'r' );
+	$cmd = wfEscapeShellArg( $wgDiff3 ) . ' -a --overlap-only ' .
+	  wfEscapeShellArg( $mytextName ) . ' ' .
+	  wfEscapeShellArg( $oldtextName ) . ' ' .
+	  wfEscapeShellArg( $yourtextName );
+	$handle = popen( $cmd, 'r' );
 
 	if( fgets( $handle ) ){
 		$conflict = true;
