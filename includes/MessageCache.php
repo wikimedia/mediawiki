@@ -263,6 +263,7 @@ class MessageCache
 	function disable() { $this->mDisable = true; }
 	function enable() { $this->mDisable = false; }
 	function disableTransform() { $this->mDisableTransform = true; }
+	function enableTransform() { $this->mDisableTransform = false; }
 
 	function addMessage( $key, $value ) {
 		$this->mExtensionMessages[$key] = $value;
