@@ -1858,11 +1858,15 @@ class Parser
 		return $text;
 	}
 
-	# Remove '<!--', '-->', and everything between.
-	# To avoid leaving blank lines, when a comment is both preceded
-	# and followed by a newline (ignoring spaces), trim leading and
-	# trailing spaces and one of the newlines.
-	/* private */ function removeHTMLcomments( $text ) {
+	/**
+	 * Remove '<!--', '-->', and everything between.
+	 * To avoid leaving blank lines, when a comment is both preceded
+	 * and followed by a newline (ignoring spaces), trim leading and
+	 * trailing spaces and one of the newlines.
+	 * 
+	 * @access private
+	 */
+	function removeHTMLcomments( $text ) {
 		$fname='Parser::removeHTMLcomments';
 		wfProfileIn( $fname );
 		while (($start = strpos($text, '<!--')) !== false) {
@@ -1876,9 +1880,9 @@ class Parser
 
 			# Trim space and newline if the comment is both
 			# preceded and followed by a newline
-			$spaceStart = $start - 1;
+			$spaceStart = max($start - 1, 0);
 			$spaceLen = $end - $spaceStart;
-			while (substr($text, $spaceStart, 1) === ' ') {
+			while (substr($text, $spaceStart, 1) === ' ' && $spaceStart > 0) {
 				$spaceStart--;
 				$spaceLen++;
 			}
