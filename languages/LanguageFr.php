@@ -99,7 +99,7 @@ require_once( 'LanguageUtf8.php' );
 	'Makesysop'		=> 'Donner les droits d\'administrateur',
 
 	'Undelete'      => 'Gérer les pages effacées',
-	'Import'		=> 'Importer une page avec l'historique'
+	'Import'		=> 'Importer une page avec l\'historique'
 );
 
 /* private */ $wgDeveloperSpecialPagesFr = array(
