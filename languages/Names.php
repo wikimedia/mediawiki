@@ -179,7 +179,7 @@
 	'tpi' => 'Tok Pisin',	# Tok Pisin 
 	'tr' => 'T&uuml;rk&ccedil;e',	# Turkish
 	'ts' => 'Xitsonga',		# Tsonga
-	'tt' => 'Tatarça',		# Tatar
+	'tt' => 'Tatar&ccedil;a',	# Tatar
 	'tw' => 'Twi',			# Twi -- FIXME
 	'ty' => 'Reo M&#257;`ohi',	# Tahitian
 	'ug' => 'Oyghurque',	# Uyghur
@@ -202,4 +202,3 @@
 	'zu' => 'isiZulu',		# Zulu
 );
 ?>
-
