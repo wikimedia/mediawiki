@@ -106,6 +106,10 @@ class MovePageForm {
 
 		$this->ot = Title::newFromText( $wpOldTitle );
 		$this->nt = Title::newFromText( $wpNewTitle );
+		if( !$this->ot or !$this->nt ) {
+			$this->showForm( wfMsg( "badtitletext" ) );
+			return;
+		}
 		$this->ons = $this->ot->getNamespace();
 		$this->nns = $this->nt->getNamespace();
 		$this->odt = wfStrencode( $this->ot->getDBkey() );
@@ -125,9 +129,11 @@ class MovePageForm {
 		if ( ( ! Namespace::isMovable( $this->ons ) ) ||
 			 ( "" == $this->odt ) ||
 			 ( "" != $this->ot->getInterwiki() ) ||
+			 ( !$this->ot->userCanEdit() ) ||
 		     ( ! Namespace::isMovable( $nns ) ) ||
 			 ( "" == $this->ndt ) ||
-			 ( "" != $this->nt->getInterwiki() ) ) {
+			 ( "" != $this->nt->getInterwiki() ) ||
+			 ( !$this->nt->userCanEdit() ) ) {
 			$this->showForm( wfMsg( "badarticleerror" ) );
 			return;
 		}
@@ -402,16 +408,7 @@ class MovePageForm {
 		if( $oldnamespace == $newnamespace and $oldtitle == $newtitle )
 			return;
 
-		$sql = "SELECT wl_user FROM watchlist
-			WHERE wl_namespace={$oldnamespace} AND wl_title='{$oldtitle}'";
-		$res = wfQuery( $sql, DB_READ, $fname );
-		if( $s = wfFetchObject( $res ) ) {
-			$sql = "REPLACE INTO watchlist (wl_user,wl_namespace,wl_title)
-				VALUES ({$s->wl_user},{$newnamespace},'{$newtitle}')";
-			while( $s = wfFetchObject( $res ) ) {
-				$sql .= ",({$s->wl_user},{$newnamespace},'{$newtitle}')";
-			}
-			wfQuery( $sql, DB_WRITE, $fname );
+		WatchedItem::duplicateEntries( $this->ot, $this->nt );
 		}
 	}
 

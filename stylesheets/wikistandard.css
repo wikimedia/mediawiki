@@ -15,6 +15,13 @@ a.stub { color:#772233; text-decoration:none; }
 a.stub { color:#772233; text-decoration:none; }
 body { margin: 0px; padding: 4px; }
 form.inline { display: inline; }
+
+/* CHECK MERGE @@@
+ * h1.pagetitle { padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0;
+ * font-size:130%; }
+ * h2 { font-size: 112.5%; }
+ */
+
 h1.pagetitle { padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0;
 font-size:150%; }
 h2 { font-size: 120%; }

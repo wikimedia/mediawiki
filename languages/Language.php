@@ -503,7 +503,16 @@ an incorrectly linked inter-language or inter-wiki title.",
 because it slows the database down to the point that no one can use
 the wiki.",
 "perfdisabledsub" => "Here's a saved copy from $1:",
-"wrong_wfQuery_params" => "Incorrect parameters to wfQuery",
+"wrong_wfQuery_params" => "Incorrect parameters to wfQuery()<br>
+Function: $1<br>
+Query: $2
+",
+"viewsource" => "View source",
+"protectedtext" => "This page has been locked to prevent editing; there are
+a number of reasons why this may be so, please see
+[[$wgMetaNamespace:Protected page]].
+
+You can view and copy the source of this page:",
 
 # Login and logout pages
 #
@@ -576,7 +585,17 @@ Please log in again after you receive it.",
 "blockedtitle"	=> "User is blocked",
 "blockedtext"	=> "Your user name or IP address has been blocked by $1.
 The reason given is this:<br>''$2''<p>You may contact $1 or one of the other
-[[Wikipedia:administrators|administrators]] to discuss the block.",
+[[$wgMetaNamespace:Administrators|administrators]] to discuss the block. 
+
+Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]]. 
+
+Your IP address is $3. Please include this address in any queries you make.
+
+==Note to AOL users==
+Due to continuing acts of vandalism by one particular AOL user, Wikipedia often blocks AOL proxies. Unfortunately, a single proxy server may be used by a large number of AOL users, and hence innocent AOL users are often inadvertently blocked. We apologise for any inconvenience caused. 
+
+If this happens to you, please email an administrator, using an AOL email address. Be sure to include the IP address given above.
+",
 "whitelistedittitle" => "Login required to edit",
 "whitelistedittext" => "You have to [[Special:Userlogin|login]] to edit articles.",
 "whitelistreadtitle" => "Login required to read",
@@ -841,6 +860,7 @@ or <b>[[media:file.ogg]]</b> for sounds.
 <p>Please note that as with Wikipedia pages, others may edit or
 delete your uploads if they think it serves the encyclopedia, and
 you may be blocked from uploading if you abuse the system.",
+
 "uploadlog"		=> "upload log",
 "uploadlogpage" => "Upload_log",
 "uploadlogpagetext" => "Below is a list of the most recent file uploads.

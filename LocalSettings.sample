@@ -37,6 +37,10 @@ $wgDBsqlpassword	= "sqlpass";
 $wgDBminWordLen		= 3;	 # Match this to your MySQL fulltext
 $wgDBtransactions   = false; # Set to true if using InnoDB tables
 
+# This code is still slightly experimental. Turn it off if "What links here"
+# and similar stuff does not work.
+$wgUseBetterLinksUpdate=true;
+
 # Turn this on during database maintenance
 # $wgReadOnly = true;
 
@@ -61,4 +65,31 @@ $wgOutputEncoding	= "ISO-8859-1";
 # $wgDisableCounters = true;
 # $wgMiserMode		= true;
 
+# The following three config variables are used to define
+# the rights of users in your system. 
+#
+# If wgWhitelistEdit is set to true, only logged in users
+# are allowed to edit articles.
+# If wgWhitelistRead is set to true, only logged in users
+# are allowed to read articles.
+#
+# wgWhitelistAccount lists user types that can add user accounts:
+# "key" => 1 defines permission if user has right "key".
+#
+# Typical setups are:
+#
+# Everything goes (this is the default behaviour):
+# $wgWhitelistEdit = false;
+# $wgWhitelistRead = false;
+# $wgWhitelistAccount = array ( "user" => 1, "sysop" => 1, "developer" => 1 );
+#
+# Invitation-only closed shop type of system
+# $wgWhitelistEdit = true;
+# $wgWhitelistRead = true;
+# $wgWhitelistAccount = array ( "user" => 0, "sysop" => 1, "developer" => 1 );
+#
+# Public website, closed editorial team
+# $wgWhitelistEdit = true;
+# $wgWhitelistRead = false;
+# $wgWhitelistAccount = array ( "user" => 0, "sysop" => 1, "developer" => 1 );
 ?>

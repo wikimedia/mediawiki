@@ -5,6 +5,13 @@
 # Note: edit user interface and cache support functions have been
 # moved to separate EditPage and CacheManager classes.
 
+/* CHECK MERGE @@@
+   TEST THIS @@@
+
+   * s/\$wgTitle/\$this->mTitle/ performed, many replacements
+   * mTitle variable added to class
+*/
+
 include_once( "CacheManager.php" );
 
 class Article {
@@ -12,7 +19,7 @@ class Article {
 	/* private */ var $mUser, $mTimestamp, $mUserText;
 	/* private */ var $mCounter, $mComment, $mCountAdjustment;
 	/* private */ var $mMinorEdit, $mRedirectedFrom;
-	/* private */ var $mTouched, $mFileCache;
+	/* private */ var $mTouched, $mFileCache, $mTitle;
 
 	function Article( &$title ) {
 		$this->mTitle =& $title;
@@ -30,7 +37,7 @@ class Article {
 	}
 
 	# Note that getContent/loadContent may follow redirects if
-	# not told otherwise, and so may cause a change to wgTitle.
+	# not told otherwise, and so may cause a change to mTitle.
 
 	function getContent( $noredir = false )
 	{
@@ -95,10 +102,15 @@ class Article {
 		# fails we'll have something telling us what we intended.
 
 		$t = $this->mTitle->getPrefixedText();
-		if ( $oldid ) { $t .= ",oldid={$oldid}"; }
-		if ( $redirect ) { $t .= ",redirect={$redirect}"; }
-
-		$this->mContent = str_replace( "$1", $t, wfMsg( "missingarticle" ) );
+		if ( isset( $oldid ) ) {
+			$oldid = IntVal( $oldid );
+			$t .= ",oldid={$oldid}";
+		}
+		if ( isset( $redirect ) ) {
+			$redirect = ($redirect == "no") ? "no" : "yes";
+			$t .= ",redirect={$redirect}";
+		}
+		$this->mContent = wfMsg( "missingarticle", $t );
 
 		if ( ! $oldid ) {	# Retrieve current version
 			$id = $this->getID();
@@ -277,7 +289,15 @@ class Article {
 			wfProfileOut( $fname );
 			return;
 		}
-		$text = $this->getContent(); # May change wgTitle!
+
+		if ( !isset( $oldid ) ) {
+			if( $this->checkTouched() ) {
+				$wgOut->checkLastModified( $this->mTouched );
+				$this->tryFileCache();
+			}
+		}
+
+		$text = $this->getContent(); # May change mTitle
 		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 		$wgOut->setHTMLTitle( $this->mTitle->getPrefixedText() .
 		  " - " . wfMsg( "wikititlesuffix" ) );
@@ -304,6 +324,308 @@ class Article {
 		wfProfileOut( $fname );
 	}
 
+	# This is the function that gets called for "action=edit".
+
+	function edit()
+	{
+		global $wgOut, $wgUser;
+		global $wpTextbox1, $wpSummary, $wpSave, $wpPreview;
+		global $wpMinoredit, $wpEdittime, $wpTextbox2;
+
+		$fields = array( "wpTextbox1", "wpSummary", "wpTextbox2" );
+		wfCleanFormFields( $fields );
+
+		if ( ! $this->mTitle->userCanEdit() ) {
+			$wgOut->readOnlyPage( $this->getContent(), true );
+			return;
+		}
+		if ( $wgUser->isBlocked() ) {
+			$this->blockedIPpage();
+			return;
+		}
+		if ( wfReadOnly() ) {
+			if( isset( $wpSave ) or isset( $wpPreview ) ) {
+				$this->editForm( "preview" );
+			} else {
+				$wgOut->readOnlyPage( $this->getContent() );
+			}
+			return;
+		}
+		if ( $_SERVER['REQUEST_METHOD'] != "POST" ) unset( $wpSave );
+		if ( isset( $wpSave ) ) {
+			$this->editForm( "save" );
+		} else if ( isset( $wpPreview ) ) {
+			$this->editForm( "preview" );
+		} else { # First time through
+			$this->editForm( "initial" );
+		}
+	}
+
+	# Since there is only one text field on the edit form,
+	# pressing <enter> will cause the form to be submitted, but
+	# the submit button value won't appear in the query, so we
+	# Fake it here before going back to edit().  This is kind of
+	# ugly, but it helps some old URLs to still work.
+
+	function submit()
+	{
+		global $wpSave, $wpPreview;
+		if ( ! isset( $wpPreview ) ) { $wpSave = 1; }
+
+		$this->edit();
+	}
+
+	# The edit form is self-submitting, so that when things like
+	# preview and edit conflicts occur, we get the same form back
+	# with the extra stuff added.  Only when the final submission
+	# is made and all is well do we actually save and redirect to
+	# the newly-edited page.
+
+	function editForm( $formtype )
+	{
+		global $wgOut, $wgUser;
+		global $wpTextbox1, $wpSummary, $wpWatchthis;
+		global $wpSave, $wpPreview;
+		global $wpMinoredit, $wpEdittime, $wpTextbox2, $wpSection;
+		global $oldid, $redirect, $section;
+		global $wgLang;
+
+		if(isset($wpSection)) { $section=$wpSection; } else { $wpSection=$section; }
+
+		$sk = $wgUser->getSkin();
+		$isConflict = false;
+		$wpTextbox1 = rtrim ( $wpTextbox1 ) ; # To avoid text getting longer on each preview
+
+		if(!$this->mTitle->getArticleID()) { # new article
+
+			$wgOut->addWikiText(wfmsg("newarticletext"));
+
+		}
+
+		# Attempt submission here.  This will check for edit conflicts,
+		# and redundantly check for locked database, blocked IPs, etc.
+		# that edit() already checked just in case someone tries to sneak
+		# in the back door with a hand-edited submission URL.
+
+		if ( "save" == $formtype ) {
+			if ( $wgUser->isBlocked() ) {
+				$this->blockedIPpage();
+				return;
+			}
+			if ( wfReadOnly() ) {
+				$wgOut->readOnlyPage();
+				return;
+			}
+			# If article is new, insert it.
+			
+			$aid = $this->mTitle->getArticleID();			
+			if ( 0 == $aid ) {
+				# we need to strip Windoze linebreaks because some browsers 
+				# append them and the string comparison fails
+				if ( ( "" == $wpTextbox1 ) ||
+				  ( wfMsg( "newarticletext" ) == rtrim( preg_replace("/\r/","",$wpTextbox1) ) ) ) {
+					$wgOut->redirect(  wfLocalUrl(
+					  $this->mTitle->getPrefixedURL() ) );
+					return;
+				}
+				$this->mCountAdjustment = $this->isCountable( $wpTextbox1 );
+				$this->insertNewArticle( $wpTextbox1, $wpSummary, $wpMinoredit, $wpWatchthis );
+				return;
+			}
+			# Article exists. Check for edit conflict.
+			# Don't check for conflict when appending a comment - this should always work
+
+			$this->clear(); # Force reload of dates, etc.
+			if ( $section!="new" && ( $this->getTimestamp() != $wpEdittime ) ) { 
+				$isConflict = true;		
+			}
+			$u = $wgUser->getID();
+
+			# Supress edit conflict with self
+
+			if ( ( 0 != $u ) && ( $this->getUser() == $u ) ) {
+				$isConflict = false;
+			} else {
+				# switch from section editing to normal editing in edit conflict
+				if($isConflict) {
+					$section="";$wpSection="";
+				}
+
+			}
+			if ( ! $isConflict ) {
+				# All's well: update the article here
+				if($this->updateArticle( $wpTextbox1, $wpSummary, $wpMinoredit, $wpWatchthis, $wpSection ))
+					return;
+				else
+					$isConflict = true;
+			}
+		}
+		# First time through: get contents, set time for conflict
+		# checking, etc.
+
+		if ( "initial" == $formtype ) {
+			$wpEdittime = $this->getTimestamp();
+			$wpTextbox1 = $this->getContent(true);
+			$wpSummary = "";
+		}
+		$wgOut->setRobotpolicy( "noindex,nofollow" );
+		$wgOut->setArticleFlag( false );
+
+		if ( $isConflict ) {
+			$s = str_replace( "$1", $this->mTitle->getPrefixedText(),
+			  wfMsg( "editconflict" ) );
+			$wgOut->setPageTitle( $s );
+			$wgOut->addHTML( wfMsg( "explainconflict" ) );
+
+			$wpTextbox2 = $wpTextbox1;
+			$wpTextbox1 = $this->getContent(true);
+			$wpEdittime = $this->getTimestamp();
+		} else {
+			$s = str_replace( "$1", $this->mTitle->getPrefixedText(),
+			  wfMsg( "editing" ) );
+
+			if($section!="") { 
+				if($section=="new") {
+					$s.=wfMsg("commentedit");
+				} else {
+					$s.=wfMsg("sectionedit");
+				}
+			}
+			$wgOut->setPageTitle( $s );
+			if ( $oldid ) {
+				$this->setOldSubtitle();
+				$wgOut->addHTML( wfMsg( "editingold" ) );
+			}
+		}
+
+		if( wfReadOnly() ) {
+			$wgOut->addHTML( "<strong>" .
+				wfMsg( "readonlywarning" ) .
+				"</strong>" );
+		}
+		if( $this->mTitle->isProtected() ) {
+			$wgOut->addHTML( "<strong>" . wfMsg( "protectedpagewarning" ) .
+			  "</strong><br />\n" );
+		}
+
+		$kblength = (int)(strlen( $wpTextbox1 ) / 1024);
+		if( $kblength > 29 ) {
+			$wgOut->addHTML( "<strong>" . 
+				str_replace( '$1', $kblength , wfMsg( "longpagewarning" ) )
+				. "</strong>" );
+		}
+		
+		$rows = $wgUser->getOption( "rows" );
+		$cols = $wgUser->getOption( "cols" );
+
+		$ew = $wgUser->getOption( "editwidth" );
+		if ( $ew ) $ew = " style=\"width:100%\"";
+		else $ew = "" ;
+
+		$q = "action=submit";
+		if ( "no" == $redirect ) { $q .= "&redirect=no"; }
+		$action = wfEscapeHTML( wfLocalUrl( $this->mTitle->getPrefixedURL(), $q ) );
+
+		$summary = wfMsg( "summary" );		
+		$subject = wfMsg("subject");
+		$minor = wfMsg( "minoredit" );
+		$watchthis = wfMsg ("watchthis");
+		$save = wfMsg( "savearticle" );
+		$prev = wfMsg( "showpreview" );
+
+		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedURL(),
+		  wfMsg( "cancel" ) );
+		$edithelp = $sk->makeKnownLink( wfMsg( "edithelppage" ),
+		  wfMsg( "edithelp" ) );
+		$copywarn = str_replace( "$1", $sk->makeKnownLink(
+		  wfMsg( "copyrightpage" ) ), wfMsg( "copyrightwarning" ) );
+
+		$wpTextbox1 = wfEscapeHTML( $wpTextbox1 );
+		$wpTextbox2 = wfEscapeHTML( $wpTextbox2 );
+		$wpSummary = wfEscapeHTML( $wpSummary );
+		
+		// activate checkboxes if user wants them to be always active
+		if (!$wpPreview && $wgUser->getOption("watchdefault")) $wpWatchthis=1;
+		if (!$wpPreview && $wgUser->getOption("minordefault")) $wpMinoredit=1;		
+		
+		// activate checkbox also if user is already watching the page,
+		// require wpWatchthis to be unset so that second condition is not
+		// checked unnecessarily
+		if (!$wpWatchthis && !$wpPreview && $this->mTitle->userIsWatching()) $wpWatchthis=1;
+		
+		if ( 0 != $wgUser->getID() ) {
+			$checkboxhtml=
+			"<input tabindex=3 type=checkbox value=1 name='wpMinoredit'".($wpMinoredit?" checked":"").">{$minor}".
+			"<input tabindex=4 type=checkbox name='wpWatchthis'".($wpWatchthis?" checked":"").">{$watchthis}<br>";
+			
+		} else {
+			$checkboxhtml="";
+		}
+
+
+		if ( "preview" == $formtype) {
+		
+			$previewhead="<h2>" . wfMsg( "preview" ) . "</h2>\n<p><large><center><font color=\"#cc0000\">" . 
+			wfMsg( "note" ) . wfMsg( "previewnote" ) . "</font></center></large><P>\n";
+			if ( $isConflict ) {
+				$previewhead.="<h2>" . wfMsg( "previewconflict" ) .
+				  "</h2>\n";
+			}
+			$previewtext = wfUnescapeHTML( $wpTextbox1 );
+			
+			if($wgUser->getOption("previewontop")) {
+				$wgOut->addHTML($previewhead);
+				$wgOut->addWikiText( $this->preSaveTransform( $previewtext ) ."\n\n");
+			}
+			$wgOut->addHTML( "<br clear=\"all\" />\n" );
+		}
+
+		# if this is a comment, show a subject line at the top, which is also the edit summary.
+		# Otherwise, show a summary field at the bottom
+		if($section=="new") {
+
+			$commentsubject="{$subject}: <input tabindex=1 type=text value=\"{$wpSummary}\" name=\"wpSummary\" maxlength=200 size=60><br>";
+		} else {
+
+			$editsummary="{$summary}: <input tabindex=3 type=text value=\"{$wpSummary}\" name=\"wpSummary\" maxlength=200 size=60><br>";
+		}
+
+		$wgOut->addHTML( "
+<form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
+enctype=\"application/x-www-form-urlencoded\">
+{$commentsubject}
+<textarea tabindex=2 name=\"wpTextbox1\" rows={$rows}
+cols={$cols}{$ew} wrap=\"virtual\">" .
+$wgLang->recodeForEdit( $wpTextbox1 ) .
+"
+</textarea>
+<br>{$editsummary}
+{$checkboxhtml}
+<input tabindex=5 type=submit value=\"{$save}\" name=\"wpSave\">
+<input tabindex=6 type=submit value=\"{$prev}\" name=\"wpPreview\">
+<em>{$cancel}</em> | <em>{$edithelp}</em>
+<br><br>{$copywarn}
+<input type=hidden value=\"{$section}\" name=\"wpSection\">
+<input type=hidden value=\"{$wpEdittime}\" name=\"wpEdittime\">\n" );
+
+		if ( $isConflict ) {
+			$wgOut->addHTML( "<h2>" . wfMsg( "yourdiff" ) . "</h2>\n" );
+			DifferenceEngine::showDiff( $wpTextbox2, $wpTextbox1,
+			  wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
+
+			$wgOut->addHTML( "<h2>" . wfMsg( "yourtext" ) . "</h2>
+<textarea tabindex=6 name=\"wpTextbox2\" rows={$rows} cols={$cols} wrap=virtual>"
+. $wgLang->recodeForEdit( $wpTextbox2 ) .
+"
+</textarea>" );
+		}
+		$wgOut->addHTML( "</form>\n" );
+		if($formtype =="preview" && !$wgUser->getOption("previewontop")) {
+			$wgOut->addHTML($previewhead);
+			$wgOut->addWikiText( $this->preSaveTransform( $previewtext ) );
+		}
+	}
+
 	# Theoretically we could defer these whole insert and update
 	# functions for after display, but that's taking a big leap
 	# of faith, and we want to be able to report database
@@ -312,6 +634,8 @@ class Article {
 	/* private */ function insertNewArticle( $text, $summary, $isminor, $watchthis )
 	{
 		global $wgOut, $wgUser, $wgLinkCache, $wgMwRedir;
+		global $wgEnablePersistentLC;
+		
 		$fname = "Article::insertNewArticle";
 
 		$ns = $this->mTitle->getNamespace();
@@ -338,10 +662,12 @@ class Article {
 		$newid = wfInsertId();
 		$this->mTitle->resetArticleID( $newid );
 
-		// Purge related entries in links cache on new page, to heal broken links
-		$ptitle = wfStrencode( $ttl );
-		wfQuery("DELETE linkscc FROM linkscc,brokenlinks ".
-			"WHERE lcc_pageid=bl_from AND bl_to='{$ptitle}'", DB_WRITE);
+		if ( $wgEnablePersistentLC ) {
+			// Purge related entries in links cache on new page, to heal broken links
+			$ptitle = wfStrencode( $ttl );
+			wfQuery("DELETE linkscc FROM linkscc,brokenlinks ".
+				"WHERE lcc_pageid=bl_from AND bl_to='{$ptitle}'", DB_WRITE);
+		}
 		
 		$sql = "INSERT INTO recentchanges (rc_timestamp,rc_cur_time," .
 		  "rc_namespace,rc_title,rc_new,rc_minor,rc_cur_id,rc_user," .
@@ -363,7 +689,7 @@ class Article {
 		$this->showArticle( $text, wfMsg( "newarticle" ) );
 	}
 
-	function updateArticle( $text, $summary, $minor, $watchthis, $section="" )
+	function updateArticle( $text, $summary, $minor, $watchthis, $section = "")
 	{
 		global $wgOut, $wgUser, $wgLinkCache;
 		global $wgDBtransactions, $wgMwRedir;
@@ -659,10 +985,9 @@ class Article {
 		global $wgUser, $wgOut;
 		global $wpConfirm, $wpReason, $image, $oldimage;
 
-		# Anybody can delete old revisions of images; only sysops
-		# can delete articles and current images
-
-		if ( ( ! $oldimage ) && ( ! $wgUser->isSysop() ) ) {
+		# This code desperately needs to be totally rewritten
+		
+		if ( ( ! $wgUser->isSysop() ) ) {
 			$wgOut->sysopRequired();
 			return;
 		}
@@ -968,13 +1293,15 @@ class Article {
 	/* private */ function viewUpdates()
 	{
 		global $wgDeferredUpdateList;
-
+		
 		if ( 0 != $this->getID() ) {
-			$u = new ViewCountUpdate( $this->getID() );
-			array_push( $wgDeferredUpdateList, $u );
-			$u = new SiteStatsUpdate( 1, 0, 0 );
-			array_push( $wgDeferredUpdateList, $u );
-
+			global $wgDisableCounters;
+			if( !$wgDisableCounters ) {
+				$u = new ViewCountUpdate( $this->getID() );
+				array_push( $wgDeferredUpdateList, $u );
+				$u = new SiteStatsUpdate( 1, 0, 0 );
+				array_push( $wgDeferredUpdateList, $u );
+			}
 			$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(),
 			  $this->mTitle->getDBkey() );
 			array_push( $wgDeferredUpdateList, $u );
@@ -1028,6 +1355,28 @@ class Article {
 		$td = $wgLang->timeanddate( $this->mTimestamp, true );
 		$r = str_replace( "$1", "{$td}", wfMsg( "revisionasof" ) );
 		$wgOut->setSubtitle( "({$r})" );
+	}
+
+	function blockedIPpage()
+	{
+		global $wgOut, $wgUser, $wgLang;
+
+		$wgOut->setPageTitle( wfMsg( "blockedtitle" ) );
+		$wgOut->setRobotpolicy( "noindex,nofollow" );
+		$wgOut->setArticleFlag( false );
+
+		$id = $wgUser->blockedBy();
+		$reason = $wgUser->blockedFor();
+
+		$name = User::whoIs( $id );
+		$link = "[[" . $wgLang->getNsText( Namespace::getUser() ) .
+		  ":{$name}|{$name}]]";
+
+		$text = str_replace( "$1", $link, wfMsg( "blockedtext" ) );
+		$text = str_replace( "$2", $reason, $text );
+		$text = str_replace( "$3", getenv( "REMOTE_ADDR" ), $text );
+		$wgOut->addWikiText( $text );
+		$wgOut->returnToMain( false );
 	}
 
 	# This function is called right before saving the wikitext,
@@ -1118,8 +1467,10 @@ class Article {
 			}
 			$cache = new CacheManager( $this->mTitle );
 			if($cache->isFileCacheGood( $touched )) {
+				global $wgOut;
 				wfDebug( " tryFileCache() - about to load\n" );
 				$cache->loadFromFileCache();
+				$wgOut->reportTime(); # For profiling
 				exit;
 			} else {
 				wfDebug( " tryFileCache() - starting buffer\n" );			
@@ -1152,10 +1503,19 @@ class Article {
 			and (!isset($redirect))
 			and (!isset($printable))
 			and (!$this->mRedirectedFrom);
-			
 	}
 	
-
+	function checkTouched() {
+		$id = $this->getID();
+		$sql = "SELECT cur_touched,cur_is_redirect FROM cur WHERE cur_id=$id";
+		$res = wfQuery( $sql, DB_READ, "Article::checkTouched" );
+		if( $s = wfFetchObject( $res ) ) {
+			$this->mTouched = $s->cur_touched;
+			return !$s->cur_is_redirect;
+		} else {
+			return false;
+		}
+	}
 }
 
 function wfReplaceSubstVar( $matches ) {

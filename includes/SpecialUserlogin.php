@@ -92,7 +92,7 @@ function wfSpecialUserlogin()
 	}
 	$wpName = trim( $wpName );
 	if ( ( "" == $wpName ) ||
-	  preg_match( "/^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$/", $wpName ) ||
+	  preg_match( "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/", $wpName ) ||
 	  (strpos( $wpName, "/" ) !== false) ) 
 	{
 		mainLoginForm( wfMsg( "noname" ) );

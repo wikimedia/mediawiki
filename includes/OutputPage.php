@@ -57,7 +57,7 @@ class OutputPage {
 			max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
 		
 		if( $_SERVER["HTTP_IF_MODIFIED_SINCE"] != "" ) {
-			# IE sends sizes after the date for compressed pages:
+			# IE sends sizes after the date like this:
 			# Wed, 20 Aug 2003 06:51:19 GMT; length=5202
 			# this breaks strtotime().
 			$modsince = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
@@ -72,6 +72,7 @@ class OutputPage {
 				header( "Cache-Control: private, must-revalidate, max-age=0" );
 				header( "Last-Modified: {$lastmod}" );			
 				wfDebug( "CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
+				$this->reportTime(); # For profiling
 				exit;
 			} else {
 				wfDebug( "READY  client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
@@ -95,30 +96,10 @@ class OutputPage {
 	function isPrintable() { return $this->mPrintable; }
 
 	function getLanguageLinks() {
-		global $wgUseNewInterlanguage, $wgTitle, $wgLanguageCode;
-		global $wgDBconnection, $wgDBname, $wgDBintlname;
-
-		if ( ! $wgUseNewInterlanguage )
-			return $this->mLanguageLinks; 
-		
-		mysql_select_db( $wgDBintlname, $wgDBconnection ) or die(
-			  htmlspecialchars(mysql_error()) );
-
-		$list = array();
-		$sql = "SELECT * FROM ilinks WHERE lang_from=\"" .
-		  "{$wgLanguageCode}\" AND title_from=\"" . $wgTitle->getDBkey() . "\"";
-		$res = mysql_query( $sql, $wgDBconnection );
-
-		while ( $q = mysql_fetch_object ( $res ) ) {
-			$list[] = $q->lang_to . ":" . $q->title_to;
-		}
-		mysql_free_result( $res );
-		mysql_select_db( $wgDBname, $wgDBconnection ) or die(
-		  htmlspecialchars(mysql_error()) );
-
-		return $list;
+		global $wgTitle, $wgLanguageCode;
+		global $wgDBconnection, $wgDBname;
+		return $this->mLanguageLinks;
 	}
-
 	function supressQuickbar() { $this->mSupressQuickbar = true; }
 	function isQuickbarSupressed() { return $this->mSupressQuickbar; }
 
@@ -323,7 +304,7 @@ class OutputPage {
 	function reportTime()
 	{
 		global $wgRequestTime, $wgDebugLogFile, $HTTP_SERVER_VARS;
-		global $wgProfiling, $wgProfileStack, $wgUser;
+		global $wgProfiling, $wgProfileStack, $wgProfileLimit, $wgUser;
 
 		list( $usec, $sec ) = explode( " ", microtime() );
 		$now = (float)$sec + (float)$usec;
@@ -334,7 +315,6 @@ class OutputPage {
 
 		if ( "" != $wgDebugLogFile ) {
 			$prof = wfGetProfilingOutput( $start, $elapsed );
-		
 			if( $forward = $HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR'] )
 				$forward = " forwarded for $forward";
 			if( $client = $HTTP_SERVER_VARS['HTTP_CLIENT_IP'] )
@@ -443,25 +423,30 @@ class OutputPage {
 		exit();
 	}
 
-	function readOnlyPage( $source = "" )
+	function readOnlyPage( $source = "", $protected = false )
 	{
 		global $wgUser, $wgReadOnlyFile;
 
-		$this->setPageTitle( wfMsg( "readonly" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleFlag( false );
 
-		$reason = implode( "", file( $wgReadOnlyFile ) );
-		$text = str_replace( "$1", $reason, wfMsg( "readonlytext" ) );
+		if( $protected ) {
+			$this->setPageTitle( wfMsg( "viewsource" ) );
+			$this->addWikiText( wfMsg( "protectedtext" ) );
+		} else {
+			$this->setPageTitle( wfMsg( "readonly" ) );
+			$reason = file_get_contents( $wgReadOnlyFile );
+			$this->addHTML( wfMsg( "readonlytext", $reason ) );
+		}
 		
 		if($source) {
 			$rows = $wgUser->getOption( "rows" );
 			$cols = $wgUser->getOption( "cols" );
 			$text .= "</p>\n<textarea cols='$cols' rows='$rows' readonly>" .
 				htmlspecialchars( $source ) . "\n</textarea>";
+			$this->addHTML( $text );
 		}
 		
-		$this->addHTML( $text );
 		$this->returnToMain( false );
 	}
 
@@ -920,61 +905,67 @@ $t[] = "</table>" ;
 		$s = array_shift( $a );
 		$s = substr( $s, 1 );
 
-		$e1 = "/^([{$tc}]+)\\|([^]]+)]](.*)\$/sD";
-		$e2 = "/^([{$tc}]+)]](.*)\$/sD";
+		$e1 = "/^([{$tc}]+)(?:\\|([^]]+))?]](.*)\$/sD";
+
+		# Special and Media are pseudo-namespaces; no pages actually exist in them
+		$image = Namespace::getImage();
+		$special = Namespace::getSpecial();
+		$media = Namespace::getMedia();
+		$nottalk = !Namespace::isTalk( $wgTitle->getNamespace() );
 		wfProfileOut( "$fname-setup" );
 
 		foreach ( $a as $line ) {
-			if ( preg_match( $e1, $line, $m ) ) { # page with alternate text
-				
+			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 				$text = $m[2];
 				$trail = $m[3];				
-			
-			} else if ( preg_match( $e2, $line, $m ) ) { # page with normal text
-			
-				$text = "";
-				$trail = $m[2];			
-			}
-			
-			else { # Invalid form; output directly
+			} else { # Invalid form; output directly
 				$s .= "[[" . $line ;
 				continue;
 			}
-			if(substr($m[1],0,1)=="/") { # subpage
+			
+			/* Valid link forms:
+			Foobar -- normal
+			:Foobar -- override special treatment of prefix (images, language links)
+			/Foobar -- convert to CurrentPage/Foobar
+			/Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
+			*/
+			$c = substr($m[1],0,1);
+			$noforce = ($c != ":");
+			if( $c == "/" ) { # subpage
 				if(substr($m[1],-1,1)=="/") {                 # / at end means we don't want the slash to be shown
 					$m[1]=substr($m[1],1,strlen($m[1])-2); 
 					$noslash=$m[1];
-					
 				} else {
 					$noslash=substr($m[1],1);
 				}
 				if($wgNamespacesWithSubpages[$wgTitle->getNamespace()]) { # subpages allowed here
 					$link = $wgTitle->getPrefixedText(). "/" . trim($noslash);
-					if(!$text) { 						
+					if(!$text) {
 						$text= $m[1]; 
 					} # this might be changed for ugliness reasons
 				} else {
 					$link = $noslash; # no subpage allowed, use standard link
 				}
-			} else { # no subpage
-				$link = $m[1]; 
+			} elseif( $noforce ) { # no subpage
+				$link = $m[1];
+			} else {
+				$link = substr( $m[1], 1 );
 			}
-			
-			if ( preg_match( "/^((?:i|x|[a-z]{2,3})(?:-[a-z0-9]+)?|[A-Za-z\\x80-\\xff]+):(.*)\$/", $link,  $m ) ) {
-				$pre = strtolower( $m[1] );
-				$suf = trim($m[2]);
-				if( empty( $suf ) ) {
-					$s .= $trail;
-				} else if ( $wgLang->getNsIndex( $pre ) ==
-				  Namespace::getImage() ) {
-					$nt = Title::newFromText( $suf );
-					$name = $nt->getDBkey();
-					if ( "" == $text ) { $text = $nt->GetText(); }
+			if( empty( $text ) )
+				$text = $link;
 
-					$wgLinkCache->addImageLink( $name );
-					$s .= $sk->makeImageLink( $name,
-					  wfImageUrl( $name ), $text );
+			$nt = Title::newFromText( $link );
+			if( !$nt ) {
+				$s .= "[[" . $line;
+				continue;
+			}
+			$ns = $nt->getNamespace();
+			$iw = $nt->getInterWiki();
+			if( $noforce ) {
+				if( $iw && $wgInterwikiMagic && $nottalk && $wgLang->getLanguageName( $iw ) ) {
+					array_push( $this->mLanguageLinks, $nt->getPrefixedText() );
 					$s .= $trail;
+/* CHECK MERGE @@@
 				} else if ( "media" == $pre ) {
 					$nt = Title::newFromText( $suf );
 					$name = $nt->getDBkey();
@@ -999,7 +990,15 @@ $t[] = "</table>" ;
 						array_push( $this->mLanguageLinks, "$pre:$suf" );
 						$s .= $trail;
 					}
+*/
+					continue;
 				}
+				if( $ns == $image ) {
+					$s .= $sk->makeImageLinkObj( $nt, $text ) . $trail;
+					$wgLinkCache->addImageLinkObj( $nt );
+					continue;
+				}
+/* CHECK MERGE @@@
 #			} else if ( 0 == strcmp( "##", substr( $link, 0, 2 ) ) ) {
 #				$link = substr( $link, 2 );
 #				$s .= "<a name=\"{$link}\">{$text}</a>{$trail}";
@@ -1007,7 +1006,17 @@ $t[] = "</table>" ;
 				if ( "" == $text ) { $text = $link; }
 				# Hotspot: 
 				$s .= $sk->makeLink( $link, $text, "", $trail );
+*/
 			}
+			if( $ns == $media ) {
+				$s .= $sk->makeMediaLinkObj( $nt, $text ) . $trail;
+				$wgLinkCache->addImageLinkObj( $nt );
+				continue;
+			} elseif( $ns == $special ) {
+				$s .= $sk->makeKnownLinkObj( $nt, $text, "", $trail );
+				continue;
+			}
+			$s .= $sk->makeLinkObj( $nt, $text, "", $trail );
 		}
 		wfProfileOut( $fname );
 		return $s;
@@ -1433,7 +1442,7 @@ $t[] = "</table>" ;
 					}
 				}
 			}
-			
+
 			// The canonized header is a version of the header text safe to use for links
 			
 			$canonized_headline=preg_replace("/<.*?>/","",$headline); // strip out HTML
@@ -1443,8 +1452,8 @@ $t[] = "</table>" ;
 			$refer[$c]=$canonized_headline;
 			$refers[$canonized_headline]++;  // count how many in assoc. array so we can track dupes in anchors
 			$refcount[$c]=$refers[$canonized_headline];
-			
-			// Prepend the number to the heading text
+
+            // Prepend the number to the heading text
 			
 			if($nh||$st) {
 				$tocline=$numbering ." ". $tocline;

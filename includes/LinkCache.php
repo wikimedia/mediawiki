@@ -137,24 +137,27 @@ class LinkCache {
 
 	function preFill( &$fromtitle )
 	{
+		global $wgEnablePersistentLC;
+
 		$fname = "LinkCache::preFill";
 		wfProfileIn( $fname );
 		# Note -- $fromtitle is a Title *object*
 		$dbkeyfrom = wfStrencode( $fromtitle->getPrefixedDBKey() );
 
-
-		$res = wfQuery("SELECT lcc_cacheobj FROM linkscc WHERE lcc_title = '{$dbkeyfrom}'", 
-		       	       DB_READ);
-		$row = wfFetchObject( $res );
-		if( $row != FALSE){
-		  $cacheobj = gzuncompress( $row->lcc_cacheobj );
-		  $cc = unserialize( $cacheobj );
-		  $this->mGoodLinks = $cc->mGoodLinks;
-		  $this->mBadLinks = $cc->mBadLinks;
-		  $this->mPreFilled = true;
-		  wfProfileOut( $fname );
-		  return;
-		} 
+		if ( $wgEnablePersistentLC ) {
+			$res = wfQuery("SELECT lcc_cacheobj FROM linkscc WHERE lcc_title = '{$dbkeyfrom}'", 
+				DB_READ);
+			$row = wfFetchObject( $res );
+			if( $row != FALSE){
+				$cacheobj = gzuncompress( $row->lcc_cacheobj );
+				$cc = unserialize( $cacheobj );
+				$this->mGoodLinks = $cc->mGoodLinks;
+				$this->mBadLinks = $cc->mBadLinks;
+				$this->mPreFilled = true;
+				wfProfileOut( $fname );
+				return;
+			} 
+		}
 
 
 		$sql = "SELECT cur_id,cur_namespace,cur_title
@@ -183,10 +186,12 @@ class LinkCache {
 		$this->mOldGoodLinks = $this->mGoodLinks;
 		$this->mPreFilled = true;
 
-		// put fetched link data into cache
-		$serCachegz = wfStrencode( gzcompress( serialize( $this ), 3) );
-		wfQuery("REPLACE INTO linkscc VALUES({$id}, '{$dbkeyfrom}', '{$serCachegz}')", 
-			DB_WRITE);
+		if ( $wgEnablePersistentLC ) {
+			// put fetched link data into cache
+			$serCachegz = wfStrencode( gzcompress( serialize( $this ), 3) );
+			wfQuery("REPLACE INTO linkscc VALUES({$id}, '{$dbkeyfrom}', '{$serCachegz}')", 
+				DB_WRITE);
+		}
 
 		wfProfileOut( $fname );
 	}

@@ -111,6 +111,16 @@ to be reasonably fast. (patch-oldestindex.sql)
 
 OutputPage.php User.php maintenance/buildTables.inc maintenance/patch-cache.sql maintenance/patch-list.txt
 
+* 2003-09: Ipblocks auto-expiry update
+patch-ipblocks.sql
+
+* Interwiki URL table
+Moves the interwiki prefix<->url mapping table from a static array
+into the database. If you've got a custom table, be sure to make
+your changes!
+ 
+Run patch-interwiki.sql to create the interwiki table, then the
+plain interwiki.sql to load up the default set of mappings.
 
 * 2003-05-30: File upload license fields
 Adds fields to 'image' table.

@@ -77,42 +77,68 @@ class SqlQueryForm {
 
 		$n = 0;
 		@$n = wfNumFields( $res );
+		$titleList = false;
+
 		if ( $n ) {
 			$k = array();
 			for ( $x = 0; $x < $n; ++$x ) {
 				array_push( $k, wfFieldName( $res, $x ) );
 			}
+
+			if ( $n == 2 && in_array( "cur_title", $k ) && in_array( "cur_namespace", $k ) ) {
+				$titleList = true;
+			}
+
 			$a = array();
 			while ( $s = wfFetchObject( $res ) ) {
 				array_push( $a, $s );
 			}
 			wfFreeResult( $res );
 
-			$r = "<table border=1 bordercolor=black cellspacing=0 " .
-			  "cellpadding=2><tr>\n";
-			foreach ( $k as $x ) $r .= "<th>" . htmlspecialchars( $x ) . "</th>";
-			$r .= "</tr>\n";
-
-			foreach ( $a as $y ) {
-				$r .= "<tr>";
-				foreach ( $k as $x ) {
-					$o = $y->$x ;
-					if ( $x == "cur_title" or $x == "old_title" or $x == "rc_title") {
-						$namespace = 0;
-						if( $x == "cur_title" ) $namespace = $y->cur_namespace;
-						if( $x == "old_title" ) $namespace = $y->old_namespace;
-						if( $x == "rc_title" ) $namespace = $y->rc_namespace;
-						if( $namespace ) $o = $wgLang->getNsText( $namespace ) . ":" . $o;
-						$o = "<a href=\"" . wfLocalUrlE($o) . "\" class='internal'>" .
-						  htmlspecialchars( $y->$x ) . "</a>" ;
-						} else {
-						$o = htmlspecialchars( $o );
-						}
-					$r .= "<td>" . $o . "</td>\n";
+			if ( $titleList ) {
+				$r = "";
+				foreach ( $a as $y ) {
+					$o = "<a href=\"" . wfLocalUrlE($o) . "\" class='internal'>" .
+					  htmlspecialchars( $y->$x ) . "</a>" ;
+					$sTitle = htmlspecialchars( $y->cur_title );
+					if ( $y->cur_namespace ) {
+						$sNamespace = $wgLang->getNsText( $y->cur_namespace );
+						$link = "$sNamespace:$sTitle";
+					} else {
+						$link = "$sTitle";
+					}
+					$skin = $wgUser->getSkin();
+					$link = $skin->makeLink( $link );
+					$r .= "* [[$link]]<br>\n";	
 				}
+			} else {
+
+				$r = "<table border=1 bordercolor=black cellspacing=0 " .
+				  "cellpadding=2><tr>\n";
+				foreach ( $k as $x ) $r .= "<th>" . htmlspecialchars( $x ) . "</th>";
 				$r .= "</tr>\n";
+
+				foreach ( $a as $y ) {
+					$r .= "<tr>";
+					foreach ( $k as $x ) {
+						$o = $y->$x ;
+						if ( $x == "cur_title" or $x == "old_title" or $x == "rc_title") {
+							$namespace = 0;
+							if( $x == "cur_title" ) $namespace = $y->cur_namespace;
+							if( $x == "old_title" ) $namespace = $y->old_namespace;
+							if( $x == "rc_title" ) $namespace = $y->rc_namespace;
+							if( $namespace ) $o = $wgLang->getNsText( $namespace ) . ":" . $o;
+							$o = "<a href=\"" . wfLocalUrlE($o) . "\" class='internal'>" .
+							  htmlspecialchars( $y->$x ) . "</a>" ;
+							} else {
+							$o = htmlspecialchars( $o );
+							}
+						$r .= "<td>" . $o . "</td>\n";
+					}
+					$r .= "</tr>\n";
+				}
+				$r .= "</table>\n";
 			}
-			$r .= "</table>\n";
 		}
 		$this->showForm( wfMsg( "querysuccessful" ) );
 		$wgOut->addHTML( "<hr>{$r}\n" );

@@ -55,3 +55,14 @@ ALTER TABLE searchindex
   ADD FULLTEXT si_title (si_title),
   ADD FULLTEXT si_text (si_text);
 
+ALTER TABLE recentchanges
+  ADD INDEX rc_timestamp (rc_timestamp),
+  ADD INDEX rc_namespace_title (rc_namespace, rc_title),
+  ADD INDEX rc_cur_id (rc_cur_id);
+
+ALTER TABLE archive
+  ADD KEY `name_title_timestamp` (`ar_namespace`,`ar_title`,`ar_timestamp`);
+
+ALTER TABLE watchlist
+  ADD KEY namespace_title (wl_namespace,wl_title);
+

@@ -1,7 +1,7 @@
 
 body { margin: 0px; padding: 0px; }
 #specialform { display: inline; }
-#content { position: absolute; top: 0; margin: 0; padding: 0; }
+#content { top: 0; margin: 0; padding: 0; }
 #topbar { padding: 0px; }
 #powersearch {
   background: #DDEEFF; border-style: solid; border-width: 1; padding: 2;
@@ -86,6 +86,7 @@ h1.pagetitle { padding-bottom: 0; margin-bottom: 0; }
 }
 a { color: #223366; }
 a.external { color: #336644; }
+a:visited { color: #8D0749; }
 a.printable { text-decoration: underline; }
 a.stub { color:#772233; text-decoration:none; }
 h2, h3, h4, h5, h6 { margin-bottom: 0; }

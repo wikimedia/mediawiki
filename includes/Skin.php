@@ -129,6 +129,7 @@ class Skin {
 		if ( 1 == $wgUser->getOption( "underline" ) ) {
 			# Don't override browser settings
 		} else {
+			# CHECK MERGE @@@
 			# Force no underline
 			$s .= "a.stub, a.new, a.internal, a.external { " .
 			  "text-decoration: none; }\n";
@@ -211,7 +212,7 @@ class Skin {
 		} else if ( $broken == "yes" ) { 
 			$r = " class='new'"; 
 		} else { 
-			$r = " class='internal'"; 
+			$r = ""; 
 		}
 
 		if ( 1 == $wgUser->getOption( "hover" ) ) {
@@ -223,7 +224,6 @@ class Skin {
 	function getInternalLinkAttributesObj( &$nt, $text, $broken = false )
 	{
 		global $wgUser, $wgOut;
-		$link = $nt->getEscapedText();
 
 		if ( $wgOut->isPrintable() ) { 
 			$r = " class='printable'"; 
@@ -232,7 +232,7 @@ class Skin {
 		} else if ( $broken == "yes" ) { 
 			$r = " class='new'"; 
 		} else { 
-			$r = " class='internal'"; 
+			$r = ""; 
 		}
 
 		if ( 1 == $wgUser->getOption( "hover" ) ) {
@@ -477,7 +477,10 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		global $wgOut,$wgTitle,$wgNamespacesWithSubpages;
 
 		$sub = $wgOut->getSubtitle();
-		if ( "" == $sub ) { $sub = wfMsg( "fromwikipedia" ); }
+		if ( "" == $sub ) {
+			global $wgExtraSubtitle;
+			$sub = wfMsg( "fromwikipedia" ) . $wgExtraSubtitle;
+		}
 		if($wgOut->isArticle() && $wgNamespacesWithSubpages[$wgTitle->getNamespace()]) {
 			$ptext=$wgTitle->getPrefixedText();			
 			if(preg_match("/\//",$ptext)) {				
@@ -798,7 +801,13 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		}
 		$s .= $this->specialLink( "specialpages" )
 		  . $sep . $this->bugReportsLink();
-
+		
+		global $wgSiteSupportPage;
+		if( $wgSiteSupportPage ) {
+			$s .= "\n<br><a href=\"" . htmlspecialchars( $wgSiteSupportPage ) .
+			  "\">" . wfMsg( "sitesupport" ) . "</a>";
+		}
+	
 		$s .= "\n<br></div>\n";
 		wfProfileOut( $fname );
 		return $s;
@@ -1015,9 +1024,10 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 
 	function otherLanguages()
 	{
-		global $wgOut, $wgLang, $wgTitle , $wgUseNewInterlanguage ;
+		global $wgOut, $wgLang, $wgTitle;
 
 		$a = $wgOut->getLanguageLinks();
+		# TEST THIS @@@
 		if ( 0 == count( $a ) ) {
 			if ( !$wgUseNewInterlanguage ) return "";
 			$ns = $wgLang->getNsIndex ( $wgTitle->getNamespace () ) ;
@@ -1038,6 +1048,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 				  wfMsg( "otherlanguages" ) , $x ) . ": " ;
 			}
 
+		$s = wfMsg( "otherlanguages" ) . ": ";
 		$first = true;
 		if($wgLang->isRTL()) $s .= "<span dir='LTR'>";
 		foreach( $a as $l ) {
@@ -1332,28 +1343,41 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		$s = "<img src=\"{$url}\" alt=\"{$alt}\">";
 		return $s;
 	}
+	
+	function makeImageLink( $name, $url, $alt = "" ) {
+		$nt = Title::makeTitle( Namespace::getImage(), $name );
+		return $this->makeImageLinkObj( $nt, $alt );
+	}
 
-	function makeImageLink( $name, $url, $alt = "" )
-	{
-		global $wgOut, $wgTitle, $wgLang;
-
-		$nt = Title::newFromText( $wgLang->getNsText(
-		  Namespace::getImage() ) . ":{$name}" );
+	function makeImageLinkObj( $nt, $alt = "" ) {
 		$link = $nt->getPrefixedURL();
-		if ( "" == $alt ) { $alt = $name; }
+		$name = $nt->getDBKey();
+		$url = wfImageUrl( $name );
+		if ( empty( $alt ) ) {
+			$alt = preg_replace( '/\.(.+?)^/', '', $name );
+		}
+		$alt = htmlspecialchars( $alt );
 
 		$u = wfLocalUrlE( $link );
 		$s = "<a href=\"{$u}\" class='image' title=\"{$alt}\">" .
-		  "<img border=0 src=\"{$url}\" alt=\"{$alt}\"></a>";
+		  "<img border=\"0\" src=\"{$url}\" alt=\"{$alt}\"></a>";
 		return $s;
 	}
 
-	function makeMediaLink( $name, $url, $alt = "" )
-	{
-		global $wgOut, $wgTitle;
+	function makeMediaLink( $name, $url, $alt = "" ) {
+		$nt = Title::makeTitle( Namespace::getMedia(), $name );
+		return $this->makeMediaLinkObj( $nt, $alt );
+	}
 
-		if ( "" == $alt ) { $alt = $name; }
-		$u = wfEscapeHTML( $url );
+	function makeMediaLinkObj( $nt, $alt = "" )
+	{
+		$name = $nt->getDBKey();
+		$url = wfImageUrl( $name );
+		if ( empty( $alt ) ) {
+			$alt = preg_replace( '/\.(.+?)^/', '', $name );
+		}
+
+		$u = htmlspecialchars( $url );
 		$s = "<a href=\"{$u}\" class='internal' title=\"{$alt}\">{$alt}</a>";
 		return $s;
 	}
@@ -1656,9 +1680,14 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 			$ul = $this->makeLink( $wgLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut ); 
 		}
 		  
-		$utns=$wgLang->getNsText(Namespace::getTalk(Namespace::getUser()));
 		$talkname=$wgLang->getNsText(Namespace::getTalk(0)); # use the shorter name
-		$utl= $this->makeLink($utns . ":{$ut}", $talkname );
+		global $wgDisableAnonTalk;
+		if( 0 == $u && $wgDisableAnonTalk ) {
+			$utl = "";
+		} else {
+			$utns=$wgLang->getNsText(Namespace::getTalk(Namespace::getUser()));
+			$utl= $this->makeLink($utns . ":{$ut}", $talkname );
+		}
 		$cr = wfMsg( "currentrev" );
 
 		$s .= "<li> ({$dlink}) ({$hlink}) . .";
@@ -1674,12 +1703,11 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 			  "Blockip" ), wfMsg( "blocklink" ), "ip={$ut}" );
 			
 		}
-		if(!$blink) { 
-			$utl = "({$utl})";
-		} else {
-			$utl = "({$utl} | {$blink})";
+		if($blink) { 
+			if($utl) $utl .= " | ";
+			$utl .= $blink;
 		}
-		$s.=" {$utl}";
+		if($utl) $s.=" ({$utl})";
 
 		if ( "" != $c && "*" != $c ) {
 			$s .= " <em>(" . wfEscapeHTML( $c ) . ")</em>";
@@ -1751,12 +1779,19 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		$talkname=$wgLang->getNsText(Namespace::getTalk(0)); # use the shorter name
 		$utl= $this->makeLink($utns . ":{$ut}", $talkname );						
 
+		global $wgDisableAnonTalk;
 		if ( ( 0 == $u ) && $wgUser->isSysop() ) {
 			$blink = $this->makeKnownLink( $wgLang->specialPage(
 			  "Blockip" ), wfMsg( "blocklink" ), "ip={$ut}" );
-			$rc->usertalklink= " ({$utl} | {$blink})";
+			if( $wgDisableAnonTalk )
+				$rc->usertalklink = " ({$blink})";
+			else
+				$rc->usertalklink = " ({$utl} | {$blink})";
 		} else {
-			$rc->usertalklink=" ({$utl})";
+			if( $wgDisableAnonTalk && ($u == 0) )
+				$rc->usertalklink = "";
+			else
+				$rc->usertalklink = " ({$utl})";
 		}
 
 		if ( !isset ( $this->rc_cache[$t] ) ) $this->rc_cache[$t] = array() ;

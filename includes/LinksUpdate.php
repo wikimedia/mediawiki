@@ -16,12 +16,15 @@ class LinksUpdate {
 	function doUpdate()
 	{
 		global $wgUseBetterLinksUpdate, $wgLinkCache, $wgDBtransactions;
-		
+		global $wgEnablePersistentLC;
+
 		/* Update link tables with outgoing links from an updated article */
 		/* Relies on the 'link cache' to be filled out */
 
-		// Make sure links cache is regenerated on next load
-		wfQuery("DELETE FROM linkscc WHERE lcc_title = '{$safeTitle}'", DB_WRITE);
+		if ( $wgEnablePersistentLC ) {
+			// Make sure links cache is regenerated on next load
+			wfQuery("DELETE FROM linkscc WHERE lcc_title = '{$safeTitle}'", DB_WRITE);
+		}
 
 		if ( !$wgUseBetterLinksUpdate ) {
 			$this->doDumbUpdate();
@@ -121,10 +124,15 @@ class LinksUpdate {
 		
 		# Do the insertion
 		$sql = "";
+		$image = Namespace::getImage();
 		if ( 0 != count ( $add ) ) {
 			$sql = "INSERT INTO imagelinks (il_from,il_to) VALUES ";
 			$first = true;
 			foreach( $add as $iname => $val ) {
+				# FIXME: Change all this to avoid unnecessary duplication
+				$nt = Title::makeTitle( $image, $iname );
+				$nt->invalidateCache();
+
 				$iname = wfStrencode( $iname );
 				if ( ! $first ) { $sql .= ","; }
 				$first = false;

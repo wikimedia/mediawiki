@@ -20,9 +20,12 @@ class SearchUpdate {
 
 	function doUpdate()
 	{
-		global $wgDBminWordLen, $wgLang;
+		global $wgDBminWordLen, $wgLang, $wgDisableSearchUpdate;
+
+		if( $wgDisableSearchUpdate ) {
+			return false;
+		}
 		$lc = SearchEngine::legalSearchChars() . "&#;";
-		
 		if( $this->mText == false ) {
 			# Just update the title
 			$sql = "UPDATE LOW_PRIORITY searchindex SET si_title='" .
@@ -31,7 +34,7 @@ class SearchUpdate {
 			wfQuery( $sql, DB_WRITE, "SearchUpdate::doUpdate" );
 			return;
 		}
-		
+
 		# Language-specific strip/conversion
 		$text = $wgLang->stripForSearch( $this->mText );
 
@@ -67,7 +70,7 @@ class SearchUpdate {
 
 		# Strip wiki '' and '''
 		$text = preg_replace( "/''[']*/", " ", $text );
-
+		
 		$sql = "REPLACE DELAYED INTO searchindex (si_page,si_title,si_text) VALUES ({$this->mId},'" .
 		  wfStrencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) . "','" .
 		  wfStrencode( $text ) . "')";
