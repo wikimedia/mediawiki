@@ -3,26 +3,30 @@
 
 class SearchUpdate {
 
-	/* private */ var $mId, $mNamespace, $mTitle, $mText;
+	/* private */ var $mId = 0, $mNamespace, $mTitle, $mText;
 	/* private */ var $mTitleWords;
 
 	function SearchUpdate( $id, $title, $text = false )
 	{
-		$this->mId = $id;
-		$this->mText = $text;
-
 		$nt = Title::newFromText( $title );
-		$this->mNamespace = $nt->getNamespace();
-		$this->mTitle = $nt->getText(); # Discard namespace
+		if( $nt ) {
+			$this->mId = $id;
+			$this->mText = $text;
 
-		$this->mTitleWords = $this->mTextWords = array();
+			$this->mNamespace = $nt->getNamespace();
+			$this->mTitle = $nt->getText(); # Discard namespace
+
+			$this->mTitleWords = $this->mTextWords = array();
+		} else {
+			wfDebug( "SearchUpdate object created with invalid title '$title'\n" );
+		}
 	}
 
 	function doUpdate()
 	{
 		global $wgDBminWordLen, $wgLang, $wgDisableSearchUpdate;
 
-		if( $wgDisableSearchUpdate ) {
+		if( $wgDisableSearchUpdate || !$this->mId ) {
 			return false;
 		}
 		$lc = SearchEngine::legalSearchChars() . "&#;";
