@@ -126,6 +126,8 @@ $wgUseSharedUploads = false;
 $wgSharedUploadPath = "http://commons.wikimedia.org/shared/images";
 /** Path on the file system where shared uploads can be found */
 $wgSharedUploadDirectory = "/var/www/wiki3/images";
+/** Path on the file system where shared uploads can be found */
+$wgSharedUploadDBname = "commons";
 
 /**
  * Set the following to false especially if you have a set of files that need to
