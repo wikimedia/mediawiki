@@ -427,7 +427,8 @@ class Article {
 		# Squid purging
 		if ( $wgUseSquid ) {
 			$urlArr = Array( 
-				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL())
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL()),
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL(), 'action=history')
 			);			
 			wfPurgeSquidServers($urlArr);
 			/* this needs to be done after LinksUpdate */
@@ -543,7 +544,8 @@ class Article {
 		
 		if ( $wgUseSquid ) {
 			$urlArr = Array( 
-				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL())
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL()),
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL(), 'action=history')
 			);			
 			wfPurgeSquidServers($urlArr);
 		}
@@ -833,7 +835,8 @@ class Article {
 		# Squid purging
 		if ( $wgUseSquid ) {
 			$urlArr = Array(
-				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL())
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL()),
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL(), 'action=history')
 			);
 			wfPurgeSquidServers($urlArr);
 
