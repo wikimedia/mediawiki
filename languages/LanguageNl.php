@@ -32,7 +32,7 @@
 );
 
 /* private */ $wgSkinNamesNl = array(
- "Standaard", "Nostalgie", "Keuls blauw"
+ "Standaard", "Nostalgie", "Keuls blauw", "Paddington", "Montparnasse"
 );
 
 /* private */ $wgMathNamesNl = array(
@@ -167,6 +167,7 @@
  "mo" => "Moldoveana",
  "mn" => "Mongol",
  "my" => "Myanmasa",
+ "nah" => "Nahuatl",
  "na" => "Nauru",
  "nd" => "isiNdebele (noordelijk)",
  "nr" => "isiNdebele (zuidelijk)",
@@ -287,11 +288,12 @@
  "Whatlinkshere" => "",
  "Recentchangeslinked" => "",
  "Movepage"  => "",
- "Booksources" => "Boekhandels"
+ "Booksources" => "Boekhandels",
+ "Categories" => "Categorieën",
 );
 
 /* private */ $wgSysopSpecialPagesNl = array(
- "Blockip"  => "Blokkeer een IP-adres",
+ "Blockip"  => "Blokkeer een IP-adres of gebruiker",
  "Asksql"  => "Raadpleeg de database",
  "Undelete" => "Verwijderde pagina's herstellen"
 );
@@ -306,6 +308,10 @@
 
 # Bits of text used by many pages:
 # Diverse stukjes tekst
+"categories" => "Categorieën",
+"category" => "categorie",
+"category_header" => "Artikelen in categorie \"$1\"",
+"subcategories" => "Ondercategorieën",
 "linktrail" => "/^([äöüïëéèàa-z]+)(.*)\$/sD",
 "mainpage"  => "Hoofdpagina",
 "mainpagetext" => "Installatie van de Wiki software geslaagd.",
@@ -371,12 +377,14 @@
 "sitetitle"  => "<span style=\"text-transform: none\">Wikipedia NL</span>", # Okay, HERE's an ugly hack. There should be a cleaner way to do this.
 "sitesubtitle" => "De vrije encyclopedie",
 "retrievedfrom" => "Afkomstig van Wikipedia NL, de Vrije Encyclopedie. \"$1\"",
-"newmessages" => "Er zijn $1.",
-"newmessageslink" => "nieuwe berichten voor u",
+"newmessages" => "U heeft $1.",
+"newmessageslink" => "een nieuw bericht",
 "editsection" => "bewerken",
 "toc" => "Inhoud",
 "showtoc" => "Tonen",
 "hidetoc" => "Niet tonen",
+"thisisdeleted" => "$1 bekijken of terugbrengen?",
+"restorelink" => "$1 verwijderde versies",
 
 # Main script and global functions
 # Algemene functies
@@ -448,7 +456,8 @@ Invoeren van uw e-mailadres is niet verplicht; het is handig als u uw wachtwoord
 "logout"  => "Afmelden",
 "userlogout" => "Afmelden",
 "notloggedin" => "Niet aangemeld",
-"createaccount" => "Nieuw gebruikersprofiel aanmaken.",
+"createaccount" => "Nieuw gebruikersprofiel aanmaken",
+"createaccountmail" => "per email",
 "badretype"  => "De ingevoerde wachtwoorden verschillen van elkaar.",
 "userexists" => "De gebruikersnaam die u heeft ingevoerd is al in gebruik. Gelieve een andere naam te kiezen.",
 "youremail"  => "Uw e-mailadres",
@@ -477,9 +486,17 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "preview"  => "Nakijken",
 "showpreview" => "Toon bewerking ter controle",
 "blockedtitle" => "Gebruiker is geblokkeerd",
-"blockedtext" => "Uw gebruikersnaam of IP-adres is door $1 geblokkeerd. De opgegeven reden:<br>$2<p>. U kunt voor overleg contact opnemen met de [[Wikipedia:Systeembeheerders|systeembeheerders]].",
+"blockedtext" => "Uw gebruikersnaam of IP-adres is door $1 geblokkeerd. De opgegeven reden:<br>$2<p>. Elke computer die verbonden is met het internet krijgt een [[ip-adres]] toegewezen van zijn [[internetprovider]]. In veel gevallen krijgt een gebruiker regelmatig een ander ip-adres toegewezen. Het het door u gebruikte ip-adres is recent gebruikt door u of iemand anders voor bewerkingen die in overtreding zijn van de [[Wikipedia:Toch een paar regels|regels]] van Wikipedia.<p>U kunt voor overleg contact opnemen met de [[Wikipedia:Systeembeheerders|systeembeheerders]] via [http://nl.wikipedia.org/upload/f/f6/Wikinl_info.html#email wikinl-l-admin@wikipedia.org een formulier].",
+"whitelistedittitle" => "Aanmelden verplicht",
+"whitelistedittext" => "Om dit artikel te kunnen wijzigen, moet u [[Speciaal:Userlogin|ingelogd]] zijn.",
+"whitelistreadtitle" => "Aanmelden verplicht",
+"whitelistreadtext" => "Om dit artikel te kunnen lezen, moet u [[Speciaal:Userlogin|ingelogd]] zijn.",
+"whitelistacctitle" => "Creatie account niet toegestaan",
+"whitelistacctext" => "Nieuwe accounts kunnen slechts worden aangemaakt door bepaalde geregistreerde gebruikers",
+"accmailtitle" => "Wachtwoord verzonden.",
+"accmailtext" => "Het wachtwoord voor '$1' is verzonden naar $2.",
 "newarticle" => "(Nieuw)",
-"newarticletext" => "Er bestaat nog geen artikel over dit onderwerp.<br>Als u wilt, kunt u hieronder een nieuw artikel schrijven.<br>Was dit niet de bedoeling, gebruik dan de 'Terug' knop van uw browser.<p>WAARSCHUWING: Let er goed op dat uw tekst vrij van copyright is, bijvoorbeeld omdat u het zelf geschreven heeft. Neem geen teksten over uit boeken, tijdschriften of andere websites tenzij uzeker weet dat deze vrij van auteursrechten zijn.",
+"newarticletext" => "Er bestaat nog geen artikel over dit onderwerp.<br>Als u wilt, kunt u hieronder een nieuw artikel schrijven.<br>Was dit niet de bedoeling, gebruik dan de 'Terug' knop van uw browser.<p>WAARSCHUWING: Let er goed op dat uw tekst vrij van copyright is, bijvoorbeeld omdat u het zelf geschreven heeft. Neem geen teksten over uit boeken, tijdschriften of andere websites tenzij u zeker weet dat deze vrij van auteursrechten zijn.",
 "anontalkpagetext" => "<hr>Deze overlegpagina hoort bij een anonieme gebruiker die hetzij geen loginnaam heeft, hetzij deze niet gebruikt. We gebruiken daarom het IP-adres ter identificatie. Het kan echter zijn dat meerdere personen hetzelfde IP-adres gebruiken. Het kan daarom zijn dat u hier berichten ontvangt die niet voor u bedoeld zijn. Mocht u dat willen voorkomen, dan kunt u [[Speciaal:Userlogin|een gebruikersnaam aanvragen of u aanmelden]].",
 "noarticletext" => "(Deze pagina bevat momenteel geen tekst)",
 "updated"  => "(Bijgewerkt)",
@@ -551,7 +568,29 @@ Het kan natuurlijk dat er gewoon nog geen artikel aanwezig op Wikipedia NL over 
  Zoek in naamruimten :<br>
 $1<br>
 $2 Toon redirects &nbsp; Zoek: $3 $9",   
-"searchdisabled" => "Om overbelasting van het systeem te voorkomen, is de zoekfunctie momenteel buiten gebruik gesteld.",
+"searchdisabled" => "Wegens een overbelasting van de server zijn sommige functies die het systeem extra belasten tijdelijk niet beschikbaar.
+ Hierdoor is in de interne zoekfunctie van Wikipedia (vermoedelijk) niet beschikbaar voor onbepaalde duur.<p>
+Via google kan u zoeken op Wikipedia. <br>
+<!-- SiteSearch Google -->
+<form method=\"get\" action=\"http://www.google.com/search\">
+<table bgcolor=\"#ffffff\" style=\"width: 752px; height: 76px;\"><tbody><tr><td>
+<a href=\"http://www.google.com/\">
+<img src=\"http://www.google.com/logos/Logo_40wht.gif\" border=\"0\" alt=\"Google\"></a>
+</td>
+<td>
+<input type=\"text\" name=\"q\" size=\"31\" maxlength=\"255\" value=\"\">
+<input type=\"submit\" name=\"btnG\" value=\"Met Google zoeken in Wikipedia\">
+<font size=\"-1\">
+<input type=\"hidden\" name=\"domains\" value=\"http://nl.wikipedia.org\"><br><input type=\"radio\" name=\"sitesearch\" value=\"\">Het volledige internet<input type=\"radio\" name=\"sitesearch\" value=\"http://nl.wikipedia.org\" checked=\"checked\">Wikipedia NL<br>
+</font>
+</td></tr></tbody></table>
+</form>
+<!-- SiteSearch Google -->
+<p> U zal niet alle artikels kunnen vinden maar het zal niet veel schelen. 
+Als u zoekt via google op Wikipedia zal u ook treffers vinden op Wikipedia die geen artikels zijn. 
+Wikipedia heeft bij de meeste artikels ook een \"overlegpagina\" en diverse soorten dienstpagina's. 
+Enkel de pagina's die geen prefix hebben zijn artikels.
+",
 "blanknamespace" => "(encyclopedie)",
 
 # Preferences page
@@ -669,6 +708,7 @@ Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. O
 "uploadwarning" => "Upload waarschuwing ",
 "savefile"  => "Bestand opslaan",
 "uploadedimage" => "heeft ge-upload: \"$1\"",
+"uploaddisabled" => "Uploads zijn op deze server niet mogelijk.",
 
 # Image list
 # Afbeeldingslijst
@@ -748,6 +788,7 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 "debug"   => "Bugreparatie",
 "newpages"  => "Nieuwe artikels",
 "ancientpages" => "Oudste artikels",
+"intl" => "Taallinks",
 "movethispage" => "Verplaats deze pagina",
 "unusedimagestext" => "<p>Let op! Het zou kunnen dat er via een directe link verwezen wordt naar een afbeelding, bijvoorbeeld vanuit een anderstalige Wikipedia. Het is daarom mogelijk dat een afbeelding hier vermeld staat terwijl het wel degelijk gebruikt wordt.",
 "booksources" => "Boekhandels",
@@ -876,25 +917,26 @@ op 'Verwijderen' onderaan deze pagina.",
 
 # Block/unblock IP
 #
-"blockip"  => "Blokkeer IP-adres",
-"blockiptext" => "Gebruik het onderstaande formulier om schrijftoegang van een bepaald IP-adres te verbieden. Dit mag enkel gedaan worden om vandalisme te voorkomen en moet in overeenstemming zijn met de [[Wikipedia:spelregels|spelregels]] van Wikipedia NL. Vul een specifieke reden in.",
-"ipaddress"  => "IP-adres",
+"blockip"  => "Gebruiker blokkeren",
+"blockiptext" => "Gebruik het onderstaande formulier om een bepaald IP-adres of een bepaalde gebruikersnaam de schrijftoegang te ontnemen. Gebruik deze optie spaarzaam! Het is bedoeld om vandalisme te voorkomen. Misbruik van deze mogelijkheid kan tot gevolg hebben dat uw systeembeheerderschap wordt weggenomen. Vul hieronder een specifieke reden in.",
+"ipaddress"  => "IP-adres of gebruikersnaam",
 "ipbreason"  => "Reden",
-"ipbsubmit"  => "Blokkeer dit IP-adres",
-"badipaddress" => "Het IP-adres heeft een ongeldige opmaak.",
-"noblockreason" => "U dient een reden op te geven voor het blokkeren van een IP-adres.",
+"ipbsubmit"  => "Blokkeer deze gebruiker",
+"badipaddress" => "Geen bestaande gebruikersnaam of geldig IP-adres",
+"noblockreason" => "U dient een reden op te geven voor het blokkeren van een gebruiker.",
 "blockipsuccesssub" => "Blokkering gelukt",
-"blockipsuccesstext" => "Het IP-adres \"$1\" is geblokkeerd.<br>
+"blockipsuccesstext" => "\"$1\" is geblokkeerd.<br>
 Zie de [[speciaal:Ipblocklist|Lijst van geblokkeerde IP-adressen]].",
-"unblockip"  => "De-blokkeer IP-adres",
-"unblockiptext" => "Gebruik het onderstaande formulier om terug schrijftoegang te geven aan een geblokkeerd IP-adres.",
-"ipusubmit"  => "De-blokkeer dit IP-adres.",
-"ipusuccess" => "Het IP-adres \"$1\" is gedeblokkeerd.",
-"ipblocklist" => "Lijst van geblokkeerde IP-adressen.",
-"blocklistline" => "Op $1 blokkeerde $2 het adres $3",
+"unblockip"  => "De-blokkeer gebruiker",
+"unblockiptext" => "Gebruik het onderstaande formulier om terug schrijftoegang te geven aan een geblokkeerde gebruiker of IP-adres.",
+"ipusubmit"  => "De-blokkeer deze gebruiker.",
+"ipusuccess" => "\"$1\" is gedeblokkeerd.",
+"ipblocklist" => "Lijst van geblokkeerde gebruikers en IP-adressen.",
+"blocklistline" => "Op $1 blokkeerde $2: $3",
 "blocklink"  => "blokkeer",
 "unblocklink" => "de-blokkeer",
 "contribslink" => "bijdragen",
+"autoblocker" => "U werd geblokkeerd omdat uw IP-adres overeenkomt met dat van \"$1\". Deze gebruiker werd geblokkeerd met als reden: \"$2\".",
 
 # Developer tools
 # Ontwikkelingsgereedsschap
@@ -1107,6 +1149,43 @@ class LanguageNl extends Language {
                 if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
                 else return $m;
  }
+
+ function isRTL() { return false; }
+
+/* private */ $wgMagicWordsEn = array(
+#   ID                                 CASE  SYNONYMS
+    MAG_REDIRECT             => array( 0,    "#redirect"              ),
+    MAG_NOTOC                => array( 0,    "__NOTOC__"              ),
+    MAG_START                => array( 0,    "__START__"              ),
+    MAG_CURRENTMONTH         => array( 1,    "{{CURRENTMONTH}}"       ),
+    MAG_CURRENTMONTHNAME     => array( 1,    "{{CURRENTMONTHNAME}}"   ),
+    MAG_CURRENTDAY           => array( 1,    "{{CURRENTDAY}}"         ),   
+    MAG_CURRENTDAYNAME       => array( 1,    "{{CURRENTDAYNAME}}"     ),
+    MAG_CURRENTYEAR          => array( 1,    "{{CURRENTYEAR}}"        ),
+    MAG_CURRENTTIME          => array( 1,    "{{CURRENTTIME}}"        ),
+    MAG_NUMBEROFARTICLES     => array( 1,    "{{NUMBEROFARTICLES}}"   ),
+    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "{{CURRENTMONTHNAMEGEN}}"),
+    MAG_MSG                  => array( 1,    "{{MSG:$1}}"             ),
+    MAG_SUBST                => array( 1,    "{{SUBST:$1}}"           ),
+    MAG_MSGNW                => array( 1,    "{{MSGNW:$1}}"           )
+);
+
+ function getMagicWords() 
+ {
+  global $wgMagicWordsNl;
+  return $wgMagicWordsNl;
+ }
+
+ # Fill a MagicWord object with data from here
+ function getMagic( &$mw )
+ {
+	$raw = $this->getMagicWords(); # don't worry, it's reference counted not deep copy
+	$rawEntry = $raw[$mw->mId];
+	$mw->mCaseSensitive = $rawEntry[0];
+	$mw->mSynonyms = array_slice( $rawEntry, 1 );
+ }
+
+ 
 
  # Inherit iconv(), ucfirst(), stripForSearch(), recodeForEdit(), recodeInput()
  # since they are same as English/Latin1
