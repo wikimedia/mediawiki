@@ -1172,6 +1172,10 @@ class Parser
 			case MAG_CURRENTDAY:
 				return date("j");
 			case MAG_CURRENTDAYNAME:
+			case MAG_PAGENAME:
+				return $this->mTitle->getText();
+			case MAG_NAMESPACE:
+				return Namespace::getCanonicalName($this->mTitle->getNamespace());
 				return $wgLang->getWeekdayName( date("w")+1 );
 			case MAG_CURRENTYEAR:
 				return date( "Y" );

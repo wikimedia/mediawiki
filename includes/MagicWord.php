@@ -42,6 +42,8 @@ define("MAG_NS", 25);
 define("MAG_LOCALURL", 26);
 define("MAG_LOCALURLE", 27);
 define("MAG_SERVER", 28);
+define("MAG_PAGENAME", 29);
+define("MAG_NAMESPACE", 30);
 define("MAG_IMG_FRAMED", 29);
 
 $wgVariableIDs = array(
@@ -54,7 +56,9 @@ $wgVariableIDs = array(
 	MAG_NUMBEROFARTICLES,
 	MAG_CURRENTMONTHNAMEGEN,
     MAG_SITENAME,
-	MAG_SERVER
+	MAG_SERVER,
+	MAG_PAGENAME,
+	MAG_NAMESPACE
 );
 
 class MagicWord {
