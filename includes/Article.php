@@ -375,6 +375,7 @@ class Article {
 	/* private */ function insertNewArticle( $text, $summary, $isminor, $watchthis )
 	{
 		global $wgOut, $wgUser, $wgLinkCache, $wgMwRedir;
+		global $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
 		
 		$fname = "Article::insertNewArticle";
 
@@ -421,6 +422,20 @@ class Article {
 		$sql = "UPDATE cur set cur_touched='$now' WHERE cur_namespace=$talkns AND cur_title='" . wfStrencode( $ttl ) . "'";
 		wfQuery( $sql, DB_WRITE );
 		
+		# standard deferred updates
+		$this->editUpdates( $text );
+		
+		# Squid purging
+		if ( $wgUseSquid ) {
+			$urlArr = Array( 
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL())
+			);			
+			wfPurgeSquidServers($urlArr);
+			/* this needs to be done after LinksUpdate */
+			$u = new SquidUpdate($this->mTitle);
+			array_push( $wgDeferredUpdateList, $u );
+		}
+		
 		$this->showArticle( $text, wfMsg( "newarticle" ) );
 	}
 
@@ -428,6 +443,7 @@ class Article {
 	{
 		global $wgOut, $wgUser, $wgLinkCache;
 		global $wgDBtransactions, $wgMwRedir;
+		global $wgUseSquid, $wgInternalServer;
 		$fname = "Article::updateArticle";
 
 		$this->loadLastEdit();
@@ -521,6 +537,17 @@ class Article {
 				$this->unwatch();
 			}
 		}
+		# standard deferred updates
+		$this->editUpdates( $text );
+		
+		# Squid updates
+		
+		if ( $wgUseSquid ) {
+			$urlArr = Array( 
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL())
+			);			
+			wfPurgeSquidServers($urlArr);
+		}
 
 		$this->showArticle( $text, wfMsg( "updated" ) );
 		return true;
@@ -544,7 +571,6 @@ class Article {
 		$wgOut = new OutputPage();
 		$wgOut->addWikiText( $text );
 
-		$this->editUpdates( $text );
 		if( $wgMwRedir->matchStart( $text ) )
 			$r = "redirect=no";
 		else
@@ -787,7 +813,8 @@ class Article {
 
 	function doDeleteArticle( $title )
 	{
-		global $wgUser, $wgOut, $wgLang, $wpReason, $wgDeferredUpdateList;
+		global $wgUser, $wgOut, $wgLang, $wpReason;
+		global  $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
 
 		$fname = "Article::doDeleteArticle";
 		wfDebug( "$fname\n" );
@@ -803,6 +830,29 @@ class Article {
 
 		$u = new SiteStatsUpdate( 0, 1, -$this->isCountable( $this->getContent( true ) ) );
 		array_push( $wgDeferredUpdateList, $u );
+		
+		# Squid purging
+		if ( $wgUseSquid ) {
+			$urlArr = Array(
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL())
+			);
+			wfPurgeSquidServers($urlArr);
+
+			/* prepare the list of urls to purge */
+			$sql = "SELECT l_from FROM links WHERE l_to={$id}" ;
+			$res = wfQuery ( $sql, DB_READ ) ;
+			while ( $BL = wfFetchObject ( $res ) )
+			{
+				$t = Title::newFromDBkey( $BL->l_from) ; 
+				$blurlArr[] = $wgInternalServer.wfLocalUrl( $t->getPrefixedURL() );
+			}
+			wfFreeResult ( $res ) ;
+			$u = new SquidUpdate( $this->mTitle, $blurlArr );
+			array_push( $wgDeferredUpdateList, $u );
+
+		}
+
+		
 
 		# Move article and history to the "archive" table
 		$sql = "INSERT INTO archive (ar_namespace,ar_title,ar_text," .
