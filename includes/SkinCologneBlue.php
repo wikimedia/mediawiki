@@ -215,6 +215,8 @@ class SkinCologneBlue extends Skin {
 			  Namespace::getUser() ) . ":{$name}", wfMsg( "mypage" ) )
 			  . $sep . $tl
 			  . $sep . $this->specialLink( "watchlist" )
+			  . $sep . $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
+			  	wfMsg( "mycontris" ), "target=" . wfUrlencode($wgUser->getName() ) )		
 		  	  . $sep . $this->specialLink( "preferences" )
 		  	  . $sep . $this->specialLink( "userlogout" );
 		} else {
