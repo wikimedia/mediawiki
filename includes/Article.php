@@ -380,6 +380,41 @@ class Article {
 		return $this->mMinorEdit;
 	}
 
+        function getContributors($limit = 0, $offset = 0)
+        {
+	        # XXX: this is expensive; cache this info somewhere.
+		
+	        $title = $this->mTitle;
+
+	        $contribs = array();
+	
+	        $res = wfQuery("SELECT DISTINCT old.old_user, old.old_user_text, user.user_real_name " .
+	                       " FROM old, user " .
+	                       " WHERE old.old_user = user.user_id " .
+			       " AND old.old_namespace = " . $title->getNamespace() .
+	                       " AND old.old_title = '" . $title->getDBkey() . "'" .
+                               " AND old.old_user != 0 " .
+                               " AND old.old_user != " . $this->getUser(), DB_READ);
+	
+        	while ( $line = wfFetchObject( $res ) ) {
+	 	        $contribs[$line->old_user] = array($line->old_user_text, $line->user_real_name);
+  	        }    
+
+                # Count anonymous users
+
+        	$res = wfQuery("SELECT COUNT(*) AS cnt " .
+  	                       " FROM old " .
+	                       " WHERE old_namespace = " . $title->getNamespace() .
+	                       " AND old_title = '" . $title->getDBkey() . "'" .
+                               " AND old_user = 0 ", DB_READ);
+
+   	        while ( $line = wfFetchObject( $res ) ) {
+                        $contribs[0] = array($line->cnt, 'Anonymous');
+	        }    
+
+	        return $contribs;
+	}
+    
 	# This is the default action of the script: just view the page of
 	# the given title.
 
