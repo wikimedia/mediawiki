@@ -4,6 +4,8 @@
 	Special handling for image description pages
 */
 
+require_once( "Image.php" );
+
 class ImagePage extends Article {
 
 	/* private */ var $img;  // Image object this page is shown for. Initilaized in openShowImage, not
@@ -304,5 +306,6 @@ class ImagePage extends Article {
 		$wgOut->returnToMain( false );
 	}
 }
+
 
 ?>

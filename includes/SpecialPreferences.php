@@ -325,9 +325,9 @@ class PreferencesForm {
 		# First section: identity
 		# Email, etc.
 		#
-		$this->mUserEmail = wfEscapeHTML( $this->mUserEmail );
-		$this->mRealName = wfEscapeHTML( $this->mRealName );
-		$this->mNick = wfEscapeHTML( $this->mNick );
+		$this->mUserEmail = htmlspecialchars( $this->mUserEmail );
+		$this->mRealName = htmlspecialchars( $this->mRealName );
+		$this->mNick = htmlspecialchars( $this->mNick );
 		if ( $this->mEmailFlag ) { $emfc = 'checked="checked"'; }
 		else { $emfc = ""; }
 
@@ -345,9 +345,9 @@ class PreferencesForm {
 
 		# Fields for changing password
 		#
-		$this->mOldpass = wfEscapeHTML( $this->mOldpass );
-		$this->mNewpass = wfEscapeHTML( $this->mNewpass );
-		$this->mRetypePass = wfEscapeHTML( $this->mRetypePass );
+		$this->mOldpass = htmlspecialchars( $this->mOldpass );
+		$this->mNewpass = htmlspecialchars( $this->mNewpass );
+		$this->mRetypePass = htmlspecialchars( $this->mRetypePass );
 
 		$wgOut->addHTML( "<fieldset>
 	<legend>$cp</legend>

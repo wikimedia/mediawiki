@@ -58,12 +58,12 @@ function wfSpecialContributions( $par = "" )
 		$cmq = "AND cur_minor_edit=0";
 		$omq = "AND old_minor_edit=0";
 		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Contributions" ),
-	  	  WfMsg( "show" ), "target=" . wfEscapeHTML( $nt->getPrefixedURL() ) .
+	  	  WfMsg( "show" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&offset={$offset}&limit={$limit}&hideminor=0" );
 	} else {
 		$cmq = $omq = "";
 		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Contributions" ),
-	  	  WfMsg( "hide" ), "target=" . wfEscapeHTML( $nt->getPrefixedURL() ) .
+	  	  WfMsg( "hide" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&offset={$offset}&limit={$limit}&hideminor=1" );
 	}
 

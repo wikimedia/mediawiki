@@ -1125,7 +1125,7 @@ class Parser
 					$text = "[" . ++$this->mAutonumber . "]";
 				} else { 
 					# Otherwise just use the URL
-					$text = wfEscapeHTML( $url ); 
+					$text = htmlspecialchars( $url ); 
 				}
 			} else {
 				# Have link text, e.g. [http://domain.tld/some.link text]s
@@ -2694,5 +2694,42 @@ function wfVariableSubstitution( $matches )
 	global $wgCurParser;
 	return $wgCurParser->variableSubstitution( $matches );
 }
+
+function wfNumberOfArticles()
+{
+	global $wgNumberOfArticles;
+
+	wfLoadSiteStats();
+	return $wgNumberOfArticles;
+}
+
+/* private */ function wfLoadSiteStats()
+{
+	global $wgNumberOfArticles, $wgTotalViews, $wgTotalEdits;
+	$fname = 'wfLoadSiteStats';
+
+	if ( -1 != $wgNumberOfArticles ) return;
+	$dbr =& wfGetDB( DB_SLAVE );
+	$s = $dbr->getArray( 'site_stats',
+		array( 'ss_total_views', 'ss_total_edits', 'ss_good_articles' ),
+		array( 'ss_row_id' => 1 ), $fname
+	);
+
+	if ( $s === false ) {
+		return;
+	} else {
+		$wgTotalViews = $s->ss_total_views;
+		$wgTotalEdits = $s->ss_total_edits;
+		$wgNumberOfArticles = $s->ss_good_articles;
+	}
+}
+
+function wfEscapeHTMLTagsOnly( $in ) {
+	return str_replace(
+		array( '"', '>', '<' ),
+		array( '&quot;', '&gt;', '&lt;' ),
+		$in );
+}
+
 
 ?>

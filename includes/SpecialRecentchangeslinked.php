@@ -42,11 +42,11 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 	$hideminor = ($hideminor ? 1 : 0);
 	if ( $hideminor ) {
 		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchangeslinked" ),
-	  	  WfMsg( "show" ), "target=" . wfEscapeHTML( $nt->getPrefixedURL() ) .
+	  	  WfMsg( "show" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&days={$days}&limit={$limit}&hideminor=0" );
 	} else {
 		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchangeslinked" ),
-	  	  WfMsg( "hide" ), "target=" . wfEscapeHTML( $nt->getPrefixedURL() ) .
+	  	  WfMsg( "hide" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&days={$days}&limit={$limit}&hideminor=1" );
 	}
 	if ( $hideminor ) {

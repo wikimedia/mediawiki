@@ -59,12 +59,13 @@ if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 
 if ( $search = $wgRequest->getText( 'search' ) ) {
 	$wgTitle = Title::makeTitle( NS_SPECIAL, "Search" );
+	$searchEngine = new SearchEngine( $search );
 	if( $wgRequest->getVal( 'fulltext' ) ||
 		!is_null( $wgRequest->getVal( 'offset' ) ) ||
 		!is_null ($wgRequest->getVal( 'searchx' ) ) ) {
-		wfSearch( $search );
+		$searchEngine->showResults();
 	} else {
-		wfGo( $search );
+		$searchEngine->goResult();
 	}
 } else if( !$wgTitle or $wgTitle->getDBkey() == "" ) {
 	$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );

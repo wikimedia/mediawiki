@@ -21,7 +21,8 @@
 
 function wfSpecialSearch( $par ) {
 	global $wgOutput;
-	wfSearch( $par );
+	$searchEngine = new SearchEngine( $par );
+	$searchEngine->showResults();
 }
 
 # Hey, it could be worse. It could be /bin/true on Solaris!

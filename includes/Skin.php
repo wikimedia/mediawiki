@@ -267,7 +267,7 @@ class Skin {
 		$link = urldecode( $link );
 		$link = $wgLang->checkTitleEncoding( $link );
 		$link = str_replace( '_', ' ', $link );
-		$link = wfEscapeHTML( $link );
+		$link = htmlspecialchars( $link );
 
 		$r = ($class != '') ? " class='$class'" : " class='external'";
 
@@ -283,7 +283,7 @@ class Skin {
 
 		$link = urldecode( $link );
 		$link = str_replace( '_', ' ', $link );
-		$link = wfEscapeHTML( $link );
+		$link = htmlspecialchars( $link );
 
 		if ( $broken == 'stub' ) {
 			$r = ' class="stub"';
@@ -514,7 +514,7 @@ class Skin {
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->getNamespace() == Namespace::getImage() ) {
 				$name = $wgTitle->getDBkey();
-				$link = wfEscapeHTML( Image::wfImageUrl( $name ) );
+				$link = htmlspecialchars( Image::wfImageUrl( $name ) );
 				$style = $this->getInternalLinkAttributes( $link, $name );
 				$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
 			}
@@ -524,7 +524,7 @@ class Skin {
 				$t = $wgTitle->getDBkey();
 				$name = 'Approve this article' ;
 				$link = "http://test.wikipedia.org/w/magnus/wiki.phtml?title={$t}&action=submit&doit=1" ;
-				#wfEscapeHTML( wfImageUrl( $name ) );
+				#htmlspecialchars( wfImageUrl( $name ) );
 				$style = $this->getExternalLinkAttributes( $link, $name );
 				$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>" ;
 			}
@@ -1738,16 +1738,21 @@ class Skin {
 	function fnamePart( $url )
 	{
 		$basename = strrchr( $url, '/' );
-		if ( false === $basename ) { $basename = $url; }
-		else { $basename = substr( $basename, 1 ); }
-		return wfEscapeHTML( $basename );
+		if ( false === $basename ) {
+			$basename = $url;
+		} else {
+			$basename = substr( $basename, 1 );
+		}
+		return htmlspecialchars( $basename );
 	}
 
 	function makeImage( $url, $alt = '' )
 	{
 		global $wgOut;
 
-		if ( '' == $alt ) { $alt = $this->fnamePart( $url ); }
+		if ( '' == $alt ) {
+			$alt = $this->fnamePart( $url );
+		}
 		$s = '<img src="'.$url.'" alt="'.$alt.'" />';
 		return $s;
 	}
@@ -2492,7 +2497,7 @@ class Skin {
 	function formatComment($comment)
 	{
 		global $wgLang;
-		$comment=wfEscapeHTML($comment);
+		$comment = htmlspecialchars( $comment );
 
 		# The pattern for autogen comments is / * foo * /, which makes for
 		# some nasty regex.
@@ -2560,7 +2565,7 @@ class Skin {
 				$dlink = $del;
 			}
 		} else {
-			$url = wfEscapeHTML( wfImageArchiveUrl( $img ) );
+			$url = htmlspecialchars( wfImageArchiveUrl( $img ) );
 			if( $wgUser->getID() != 0 && $wgTitle->userCanEdit() ) {
 				$rlink = $this->makeKnownLink( $wgTitle->getPrefixedText(),
 				           wfMsg( 'revertimg' ), 'action=revert&oldimage=' .
