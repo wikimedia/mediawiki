@@ -38,10 +38,6 @@ $wgDBsqlpassword	= "sqlpass";
 $wgDBminWordLen		= 3;	 # Match this to your MySQL fulltext
 $wgDBtransactions   = false; # Set to true if using InnoDB tables
 
-# This code is still slightly experimental. Turn it off if "What links here"
-# and similar stuff does not work.
-$wgUseBetterLinksUpdate=true;
-
 # Turn this on during database maintenance
 # $wgReadOnly = true;
 

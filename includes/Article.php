@@ -531,16 +531,14 @@ class Article {
 
 	function showArticle( $text, $subtitle )
 	{
-		global $wgOut, $wgUser, $wgLinkCache, $wgUseBetterLinksUpdate;
+		global $wgOut, $wgUser, $wgLinkCache;
 		global $wgMwRedir;
 
 		$wgLinkCache = new LinkCache();
 
 		# Get old version of link table to allow incremental link updates
-		if ( $wgUseBetterLinksUpdate ) {
-			$wgLinkCache->preFill( $this->mTitle );
-			$wgLinkCache->clear();
-		}
+		$wgLinkCache->preFill( $this->mTitle );
+		$wgLinkCache->clear();
 
 		# Now update the link cache by parsing the text	
 		$wgOut = new OutputPage();

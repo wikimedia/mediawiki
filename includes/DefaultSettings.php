@@ -85,7 +85,6 @@ $wgDebugComments        = false;
 $wgReadOnly             = false;
 $wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
 $wgLogQueries           = false;
-$wgUseBetterLinksUpdate = true;
 $wgUseCategoryMagic		= false;
 $wgEnablePersistentLC	= true;	# Persistent link cache, needs the linkscc table
 $wgCompressedPersistentLC = true; # use gzcompressed blobs
