@@ -1,4 +1,4 @@
-<?
+<?php
 /* Syslog.php -- an extension to log events to the system logger
  * Copyright 2004 Evan Prodromou <evan@wikitravel.org>
  *
@@ -71,10 +71,10 @@ if (defined('MEDIAWIKI')) {
 		
 		openlog($wgSyslogIdentity, LOG_ODELAY | LOG_PID, $wgSyslogFacility);
 		
-		$wgHooks['UserLoginComplete'][] = syslogUserLogin;
-		$wgHooks['UserLogout'][] = syslogUserLogout;
-		$wgHooks['BlockIpComplete'][] = syslogBlockIp;
-		$wgHooks['ArticleProtectComplete'][] = syslogArticleProtect;
+		$wgHooks['UserLoginComplete'][] = 'syslogUserLogin';
+		$wgHooks['UserLogout'][] = 'syslogUserLogout';
+		$wgHooks['BlockIpComplete'][] = 'syslogBlockIp';
+		$wgHooks['ArticleProtectComplete'][] = 'syslogArticleProtect';
 		
 		return true;
 	}

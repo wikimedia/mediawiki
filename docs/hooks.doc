@@ -107,9 +107,9 @@ functions to the appropriate events:
     setupTitleReversingExtension() {
         global $wgHooks;
 	
-	$wgHooks['ArticleShow'][] = reverseArticleTitle;
-	$wgHooks['ArticleDelete'][] = reverseArticleTitle;
-	$wgHooks['ArticleExport'][] = reverseForExport;
+	$wgHooks['ArticleShow'][] = 'reverseArticleTitle';
+	$wgHooks['ArticleDelete'][] = 'reverseArticleTitle';
+	$wgHooks['ArticleExport'][] = 'reverseForExport';
     }
 
 Having all this code related to the title-reversion option in one
@@ -139,9 +139,9 @@ A hook is a chunk of code run at some particular event. It consists of:
 Hooks are registered by adding them to the global $wgHooks array for a
 given event. All the following are valid ways to define hooks:
 
-      $wgHooks['EventName'][] = someFunction; # function, no data
-      $wgHooks['EventName'][] = array(someFunction, $someData);
-      $wgHooks['EventName'][] = array(someFunction); # weird, but OK
+      $wgHooks['EventName'][] = 'someFunction'; # function, no data
+      $wgHooks['EventName'][] = array('someFunction', $someData);
+      $wgHooks['EventName'][] = array('someFunction'); # weird, but OK
       
       $wgHooks['EventName'][] = $object; # object only
       $wgHooks['EventName'][] = array($object, 'someMethod');
@@ -172,8 +172,8 @@ would be different: 'onArticleSave', 'onUserLogin', etc.
 The extra data is useful if we want to use the same function or object
 for different purposes. For example:
 
-      $wgHooks['ArticleSaveComplete'][] = array(ircNotify, 'TimStarling');
-      $wgHooks['ArticleSaveComplete'][] = array(ircNotify, 'brion');
+      $wgHooks['ArticleSaveComplete'][] = array('ircNotify', 'TimStarling');
+      $wgHooks['ArticleSaveComplete'][] = array('ircNotify', 'brion');
 
 This code would result in ircNotify being run twice when an article is
 saved: once for 'TimStarling', and once for 'brion'.
@@ -190,7 +190,7 @@ the main functionality. For example, if you wanted to authenticate
 users to a custom system (LDAP, another PHP program, whatever), you
 could do:
 
-    $wgHooks['UserLogin'][] = array(ldapLogin, $ldapServer);
+    $wgHooks['UserLogin'][] = array('ldapLogin', $ldapServer);
 			        
     function ldapLogin($username, $password) {
         # log user into LDAP
