@@ -18,12 +18,13 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 function wfSpecialExport( $page = "" ) {
-	global $wgOut, $wgLang;
+	global $wgOut, $wgLang, $wgRequest;
 	
-	if( $_REQUEST['action'] == 'submit') {
-		$page = $_REQUEST['pages'];
-		$curonly = isset($_REQUEST['curonly']) ? true : false;
+	if( $wgRequest->getVal( 'action' ) == 'submit') {
+		$page = $wgRequest->getText( 'pages' );
+		$curonly = $wgRequest->getCheck( 'curonly' );
 	} else {
+		# Pre-check the 'current version only' box in the UI
 		$curonly = true;
 	}
 	
@@ -114,7 +115,7 @@ function revision2xml( $s, $full, $cur ) {
 		$u = "<ip>" . htmlspecialchars( $s->user_text ) . "</ip>";
 	}
 	$xml .= "      <contributor>$u</contributor>\n";
-	if($s->minor) {
+	if( !empty( $s->minor ) ) {
 		$xml .= "      <minor/>\n";
 	}
 	if($s->comment != "") {
