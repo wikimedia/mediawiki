@@ -18,7 +18,9 @@ class DifferenceEngine {
 	function showDiffPage()
 	{
 		global $wgUser, $wgTitle, $wgOut, $wgLang;
-
+		$fname = "DifferenceEngine::showDiffPage";
+		wfProfileIn( $fname );
+		
 		$t = $wgTitle->getPrefixedText() . " (Diff: {$this->mOldid}, " .
 		  "{$this->mNewid})";
 		$mtext = wfMsg( "missingarticle", $t );
@@ -27,6 +29,7 @@ class DifferenceEngine {
 		if ( ! $this->loadText() ) {
 			$wgOut->setPagetitle( wfMsg( "errorpagetitle" ) );
 			$wgOut->addHTML( $mtext );
+			wfProfileOut( $fname );
 			return;
 		}
 		$wgOut->suppressQuickbar();
@@ -44,6 +47,7 @@ class DifferenceEngine {
 		if ( !( $this->mOldPage->userCanRead() && $this->mNewPage->userCanRead() ) ) {
 			$wgOut->loginToUse();
 			$wgOut->output();
+			wfProfileOut( $fname );
 			exit;
 		}
 
@@ -80,6 +84,8 @@ class DifferenceEngine {
 		  $oldHeader, $newHeader );
 		$wgOut->addHTML( "<hr /><h2>{$this->mNewtitle}</h2>\n" );
 		$wgOut->addWikiText( $this->mNewtext );
+		
+		wfProfileOut( $fname );
 	}
 
 	function showDiff( $otext, $ntext, $otitle, $ntitle )
