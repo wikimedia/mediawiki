@@ -2455,23 +2455,29 @@ class Skin {
 
 		# format regular and media links - all other wiki formatting
 		# is ignored
-		while(preg_match('/\[\[(.*?)(\|(.*?))*\]\]/',$comment,$match)) {
-
-			$medians = $wgLang->getNsText(Namespace::getMedia()).':';
-			$func='makeLink';
-			if(preg_match('/^'.$medians.'/i',$match[1])) {
-				$func='makeMediaLink';
-			}
+		$medians = $wgLang->getNsText(Namespace::getMedia()).':';
+		while(preg_match('/\[\[(.*?)(\|(.*?))*\]\](.*)$/',$comment,$match)) {
 			# Handle link renaming [[foo|text]] will show link as "text"
-			if(isset($match[3]) ) {
-				$comment=
-				preg_replace('/\[\[(.*?)\]\]/',
-				$this->$func($match[1],$match[3]),$comment,1);
+			if( "" != $match[3] ) {
+				$text = $match[3];
 			} else {
-				$comment=
-				preg_replace('/\[\[(.*?)\]\]/',
-				$this->$func($match[1],$match[1]),$comment,1);
+				$text = $match[1];
 			}
+			if( preg_match( '/^' . $medians . '(.*)$/i', $match[1], $submatch ) ) {
+				# Media link; trail not supported.
+				$linkRegexp = '/\[\[(.*?)\]\]/';
+				$thelink = $this->makeMediaLink( $submatch[1], "", $text );
+			} else {
+				# Other kind of link
+				if( preg_match( wfMsg( "linktrail" ), $match[4], $submatch ) ) {
+					$trail = $submatch[1];
+				} else {
+					$trail = "";
+				}
+				$linkRegexp = '/\[\[(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
+				$thelink = $this->makeLink( $match[1], $text, "", $trail );
+			}
+			$comment = preg_replace( $linkRegexp, $thelink, $comment, 1 );
 		}
 
 		return $comment;
