@@ -28,9 +28,14 @@
 require_once( 'commandLine.inc' );
 require_once( 'languages/LanguageUtf8.php' );
 
-$wgTitle = Title::newFromText( 'Parser test script' );
-
 class ParserTest {
+	
+	/**
+	 * Sets terminal colorization and diff/quick modes depending on OS and
+	 * command-line options (--color and --quick).
+	 *
+	 * @access public
+	 */
 	function ParserTest() {
 		if( isset( $_SERVER['argv'] ) && in_array( '--color', $_SERVER['argv'] ) ) {
 			$this->color = true;
@@ -51,6 +56,19 @@ class ParserTest {
 		}
 	}
 	
+	
+	/**
+	 * Run a series of tests listed in the given text file.
+	 * Each test consists of a brief description, wikitext input,
+	 * and the expected HTML output.
+	 *
+	 * Prints status updates on stdout and counts up the total
+	 * number and percentage of passed tests.
+	 *
+	 * @param string $filename
+	 * @return bool True if passed all tests, false if any tests failed.
+	 * @access public
+	 */
 	function runTestsFromFile( $filename ) {
 		$infile = fopen( $filename, 'rt' );
 		if( !$infile ) {
@@ -110,6 +128,10 @@ class ParserTest {
 	}
 
 	/**
+	 * Run a given wikitext input through a freshly-constructed wiki parser,
+	 * and compare the output against the expected results.
+	 * Prints status and explanatory messages to stdout.
+	 *
 	 * @param string $input Wikitext to try rendering
 	 * @param string $result Result to output
 	 * @return bool
@@ -151,6 +173,12 @@ class ParserTest {
 		}
 	}
 	
+	/**
+	 * Set up the global variables for a consistent environment for each test.
+	 * Ideally this should replace the global configuration entirely.
+	 *
+	 * @access private
+	 */
 	function setupGlobals() {
 		$settings = array(
 			'wgServer' => 'http://localhost',
@@ -169,17 +197,40 @@ class ParserTest {
 		}
 	}
 	
+	/**
+	 * Restore default values and perform any necessary clean-up
+	 * after each test runs.
+	 *
+	 * @access private
+	 */
 	function teardownGlobals() {
 		foreach( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
 		}
 	}
 	
+	/**
+	 * Print a happy success message.
+	 *
+	 * @param string $desc The test name
+	 * @return bool
+	 * @access private
+	 */
 	function showSuccess( $desc ) {
 		print $this->termColor( '1;32' ) . 'PASSED' . $this->termReset() . "\n";
 		return true;
 	}
 	
+	/**
+	 * Print a failure message and provide some explanatory output
+	 * about what went wrong if so configured.
+	 *
+	 * @param string $desc The test name
+	 * @param string $result Expected HTML output
+	 * @param string $html Actual HTML output
+	 * @return bool
+	 * @access private
+	 */
 	function showFailure( $desc, $result, $html ) {
 		print $this->termColor( '1;31' ) . 'FAILED!' . $this->termReset() . "\n";
 		if( $this->showDiffs ) {
@@ -188,6 +239,15 @@ class ParserTest {
 		return false;
 	}
 	
+	/**
+	 * Run given strings through a diff and return the (colorized) output.
+	 * Requires writable /tmp directory and a 'diff' command in the PATH.
+	 *
+	 * @param string $input
+	 * @param string $output
+	 * @return string
+	 * @access private
+	 */
 	function quickDiff( $input, $output ) {
 		$prefix = "/tmp/mwParser-" . mt_rand();
 		
@@ -204,20 +264,50 @@ class ParserTest {
 		return $this->colorDiff( $diff );
 	}
 	
+	/**
+	 * Write the given string to a file, adding a final newline.
+	 *
+	 * @param string $data
+	 * @param string $filename
+	 * @access private
+	 */
 	function dumpToFile( $data, $filename ) {
 		$file = fopen( $filename, "wt" );
 		fwrite( $file, rtrim( $data ) . "\n" );
 		fclose( $file );
 	}
 	
+	/**
+	 * Return ANSI terminal escape code for changing text attribs/color,
+	 * or empty string if color output is disabled.
+	 *
+	 * @param string $color Semicolon-separated list of attribute/color codes
+	 * @return string
+	 * @access private
+	 */
 	function termColor( $color ) {
 		return $this->color ? "\x1b[{$color}m" : '';
 	}
 	
+	/**
+	 * Return ANSI terminal escape code for restoring default text attributes,
+	 * or empty string if color output is disabled.
+	 *
+	 * @return string
+	 * @access private
+	 */
 	function termReset() {
 		return $this->color ? "\x1b[0m" : '';
 	}
 	
+	/**
+	 * Colorize unified diff output if set for ANSI color output.
+	 * Subtractions are colored blue, additions red.
+	 *
+	 * @param string $text
+	 * @return string
+	 * @access private
+	 */
 	function colorDiff( $text ) {
 		return preg_replace(
 			array( '/^(-.*)$/m', '/^(\+.*)$/m' ),
@@ -227,6 +317,7 @@ class ParserTest {
 	}
 }
 
+$wgTitle = Title::newFromText( 'Parser test script' );
 $tester =& new ParserTest();
 
 # Note: the command line setup changes the current working directory
