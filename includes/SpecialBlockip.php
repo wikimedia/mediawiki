@@ -31,47 +31,57 @@ class IPBlockForm {
 		global $wgOut, $wgUser, $wgLang, $wgDefaultBlockExpiry;
 		global $wgRequest;
 
-		$wgOut->setPagetitle( wfMsg( "blockip" ) );
-		$wgOut->addWikiText( wfMsg( "blockiptext" ) );
+		$wgOut->setPagetitle( htmlspecialchars( wfMsg( "blockip" ) ) );
+		$wgOut->addWikiText( htmlspecialchars( wfMsg( "blockiptext" ) ) );
 
 		if ( is_null( $this->BlockExpiry ) || $this->BlockExpiry === "" ) {
 			$this->BlockExpiry = $wgDefaultBlockExpiry;
 		}
 
-		$mIpaddress = wfMsg( "ipaddress" );
-		$mIpbexpiry = wfMsg( "ipbexpiry" );
-		$mIpbreason = wfMsg( "ipbreason" );
-		$mIpbsubmit = wfMsg( "ipbsubmit" );
+		$mIpaddress = htmlspecialchars( wfMsg( "ipaddress" ) );
+		$mIpbexpiry = htmlspecialchars( wfMsg( "ipbexpiry" ) );
+		$mIpbreason = htmlspecialchars( wfMsg( "ipbreason" ) );
+		$mIpbsubmit = htmlspecialchars( wfMsg( "ipbsubmit" ) );
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Blockip" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 
 		if ( "" != $err ) {
-			$wgOut->setSubtitle( wfMsg( "formerror" ) );
-			$wgOut->addHTML( "<p><font color='red' size='+1'>{$err}</font>\n" );
+			$wgOut->setSubtitle( htmlspecialchars( wfMsg( "formerror" ) ) );
+			$wgOut->addHTML( "<p class='error'>{$err}</p>\n" );
 		}
 
 		$scBlockAddress = htmlspecialchars( $this->BlockAddress );
 		$scBlockExpiry = htmlspecialchars( $this->BlockExpiry );
 		$scBlockReason = htmlspecialchars( $this->BlockReason );
 		
-		$wgOut->addHTML( "<p>
+		$wgOut->addHTML( "
 <form id=\"blockip\" method=\"post\" action=\"{$action}\">
-<table border=0><tr>
-<td align=\"right\">{$mIpaddress}:</td>
-<td align=\"left\">
-<input tabindex=1 type=text size=20 name=\"wpBlockAddress\" value=\"{$scBlockAddress}\">
-</td></tr><tr>
-<td align=\"right\">{$mIpbexpiry}:</td>
-<td align=\"left\">
-<input tabindex=2 type=text size=20 name=\"wpBlockExpiry\" value=\"{$scBlockExpiry}\">
-</td></tr><tr>
-<td align=\"right\">{$mIpbreason}:</td>
-<td align=\"left\">
-<input tabindex=3 type=text size=40 name=\"wpBlockReason\" value=\"{$scBlockReason}\">
-</td></tr><tr>
-<td>&nbsp;</td><td align=\"left\">
-<input tabindex=4 type=submit name=\"wpBlock\" value=\"{$mIpbsubmit}\">
-</td></tr></table>
+	<table border='0'>
+		<tr>
+			<td align=\"right\">{$mIpaddress}:</td>
+			<td align=\"left\">
+				<input tabindex='1' type='text' size='20' name=\"wpBlockAddress\" value=\"{$scBlockAddress}\" />
+			</td>
+		</tr>
+		<tr>
+			<td align=\"right\">{$mIpbexpiry}:</td>
+			<td align=\"left\">
+				<input tabindex='2' type='text' size='20' name=\"wpBlockExpiry\" value=\"{$scBlockExpiry}\" />
+			</td>
+		</tr>
+		<tr>
+			<td align=\"right\">{$mIpbreason}:</td>
+			<td align=\"left\">
+				<input tabindex='3' type='text' size='40' name=\"wpBlockReason\" value=\"{$scBlockReason}\" />
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td align=\"left\">
+				<input tabindex='4' type='submit' name=\"wpBlock\" value=\"{$mIpbsubmit}\" />
+			</td>
+		</tr>
+	</table>
 </form>\n" );
 
 	}
