@@ -137,6 +137,11 @@ class User {
 	 * if we have an available language object.
 	 */
 	function loadDefaults() {
+		static $n=0;
+		$n++;
+		$fname = 'User::loadDefaults' . $n;
+		wfProfileIn( $fname );
+		
 		global $wgContLang, $wgIP;
 		global $wgNamespacesToBeSearchedDefault;
 
@@ -149,9 +154,11 @@ class User {
 		$this->mGroups = array();
 		
 		// Getting user defaults only if we have an available language
-		if(isset($wgContLang)) { $this->loadDefaultFromLanguage(); }
+		if( isset( $wgContLang ) ) {
+			$this->loadDefaultFromLanguage();
+		}
 		
-		foreach ($wgNamespacesToBeSearchedDefault as $nsnum => $val) {
+		foreach( $wgNamespacesToBeSearchedDefault as $nsnum => $val ) {
 			$this->mOptions['searchNs'.$nsnum] = $val;
 		}
 		unset( $this->mSkin );
@@ -160,6 +167,7 @@ class User {
 		$this->mTouched = '0'; # Allow any pages to be cached
 		$this->setToken(); # Random
 		$this->mHash = false;
+		wfProfileOut( $fname );
 	}
 
 	/**
@@ -168,19 +176,25 @@ class User {
 	 * a language object.
 	 */	
 	function loadDefaultFromLanguage(){
-		global $wgContLang;
-		global $wgDefaultUserOptions;
+		$fname = 'User::loadDefaultFromLanguage';
+		wfProfileIn( $fname );
 		
-		# Site defaults will override the global/language defaults
+		/**
+		 * Site defaults will override the global/language defaults
+		 */
+		global $wgContLang, $wgDefaultUserOptions;
 		$defOpt = $wgDefaultUserOptions + $wgContLang->getDefaultUserOptions();
-		foreach ( $defOpt as $oname => $val ) {
-			$this->mOptions[$oname] = $val;
-		}		
-		/* 
-		  default language setting
-		*/
-		$this->setOption('variant', $wgContLang->getPreferredVariant());
-		$this->setOption('language', $wgContLang->getPreferredVariant());
+		
+		/**
+		 * default language setting
+		 */
+		$variant = $wgContLang->getPreferredVariant();
+		$defOpt['variant'] = $variant;
+		$defOpt['language'] = $variant;
+		
+		$this->mOptions = $defOpt;
+		
+		wfProfileOut();
 	}
 
 	/**
@@ -649,8 +663,12 @@ class User {
 	function &getSkin() {
 		global $IP;
 		if ( ! isset( $this->mSkin ) ) {
+			$fname = 'User::getSkin';
+			wfProfileIn( $fname );
+			
 			# get all skin names available
 			$skinNames = Skin::getSkinNames();
+			
 			# get the user skin
 			$userSkin = $this->getOption( 'skin' );
 			if ( $userSkin == '' ) { $userSkin = 'standard'; }
@@ -691,7 +709,8 @@ class User {
 				$className = 'SkinStandard';
 				require_once( $IP.'/skins/Standard.php' );
 			}
-			$this->mSkin = new $className;
+			$this->mSkin =& new $className;
+			wfProfileOut( $fname );
 		}
 		return $this->mSkin;
 	}
