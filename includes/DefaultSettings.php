@@ -283,7 +283,7 @@ $wgLinkCacheMemcached = false; # Not fully tested
  *
  * @global bool $wgUseTurckShm Enable or disabled Turck MMCache
  */
-$wgUseTurckShm      = function_exists( 'mmcache_get' );
+$wgUseTurckShm      = function_exists( 'mmcache_get' ) && php_sapi_name() == 'apache';
 
 
 # Language settings
