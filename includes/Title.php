@@ -189,7 +189,7 @@ class Title {
 
 	function getPrefixedText()
 	{
-		if ( !$this->mPrefixedText ) {
+		if ( $this->mPrefixedText === false ) {
 			$s = $this->prefix( $this->mTextform );
 			$s = str_replace( "_", " ", $s );
 			$this->mPrefixedText = $s;
