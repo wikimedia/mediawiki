@@ -1885,7 +1885,7 @@ class Parser
 		$numMatches = preg_match_all( "/^(=+)(.*?)=+|^<h([1-6]).*?>(.*?)<\/h[1-6].*?>/mi",$text,$matches);
 		
 		# no headings: text cannot be collapsed
-		if( $numMatches = 0 ) {
+		if( $numMatches == 0 ) {
 			return "";
 		}
 		
