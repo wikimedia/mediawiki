@@ -27,16 +27,20 @@ function install_version_checks() {
 }
 
 function copyfile( $sdir, $name, $ddir, $perms = 0664 ) {
+	copyfileto( $sdir, $name, $ddir, $name, $perms );
+}
+
+function copyfileto( $sdir, $sname, $ddir, $dname, $perms = 0664 ) {
 	global $wgInstallOwner, $wgInstallGroup;
 
-	$d = "{$ddir}/{$name}";
-	if ( copy( "{$sdir}/{$name}", $d ) ) {
+	$d = "{$ddir}/{$dname}";
+	if ( copy( "{$sdir}/{$sname}", $d ) ) {
 		if ( isset( $wgInstallOwner ) ) { chown( $d, $wgInstallOwner ); }
 		if ( isset( $wgInstallGroup ) ) { chgrp( $d, $wgInstallGroup ); }
 		chmod( $d, $perms );
-		# print "Copied \"{$name}\" to \"{$ddir}\".\n";
+		# print "Copied \"{$sname}\" to \"{$d}\".\n";
 	} else {
-		print "Failed to copy file \"{$name}\" to \"{$ddir}\".\n";
+		print "Failed to copy file \"{$sname}\" to \"{$ddir}/{$dname}\".\n";
 		exit();
 	}
 }

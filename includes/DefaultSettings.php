@@ -8,13 +8,17 @@
 
 $wgVersion			= "1.2.0beta";
 
-$wgSitename         = "Wikipedia";
+$wgSitename         = "MediaWiki"; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
 
 $wgServer           = "http://" . getenv( "SERVER_NAME" );
 $wgScriptPath	    = "/wiki";
-$wgScript           = "{$wgScriptPath}/wiki.phtml";
-$wgRedirectScript   = "{$wgScriptPath}/redirect.phtml";
+
+# Change this and the next two to use "phtml" for compatibility with old installations
+$wgScriptExtension	= "php";
+$wgScript           = "{$wgScriptPath}/wiki.{$wgScriptExtension}";
+$wgRedirectScript   = "{$wgScriptPath}/redirect.{$wgScriptExtension}";
+
 $wgStyleSheetPath   = "{$wgScriptPath}/style";
 $wgStyleSheetDirectory = "{$IP}/style";
 $wgArticlePath      = "{$wgScript}?title=$1";
@@ -25,8 +29,7 @@ $wgMathPath         = "{$wgUploadPath}/math";
 $wgMathDirectory    = "{$wgUploadDirectory}/math";
 $wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
 $wgEmergencyContact = "wikiadmin@" . getenv( "SERVER_NAME" );
-#$wgPasswordSender	= "Wikipedia Mail <apache@www.wikipedia.org>";
-$wgPasswordSender	= "Wikipedia Mail <apache@www.wikipedia.org>\r\nReply-To: webmaster@www.wikipedia.org";
+$wgPasswordSender	= "Wikipedia Mail <apache@" . getenv( "SERVER_NAME" ) . ">";
 
 # MySQL settings
 #

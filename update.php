@@ -72,11 +72,11 @@ exit();
 
 function do_update_files() {
 	global $IP, $wgStyleSheetDirectory, $wgUploadDirectory, $wgLanguageCode, $wgDebugLogFile;
+	global $wgScriptExtension;
 	print "Copying files... ";
 	
-	copyfile( ".", "wiki.phtml", $IP );
-	copyfile( ".", "redirect.phtml", $IP );
-	copyfile( ".", "texvc.phtml", $IP );
+	copyfileto( ".", "wiki.phtml", $IP, "wiki.$wgScriptExtension" );
+	copyfileto( ".", "redirect.phtml", $IP, "redirect.$wgScriptExtension" );
 	
 	copydirectory( "./includes", $IP );
 	copydirectory( "./stylesheets", $wgStyleSheetDirectory );
