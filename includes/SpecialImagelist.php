@@ -1,7 +1,12 @@
 <?php
+/**
+ *
+ */
 
-function wfSpecialImagelist()
-{
+/**
+ *
+ */
+function wfSpecialImagelist() {
 	global $wgUser, $wgOut, $wgLang, $wgRequest;
 	
 	$sort = $wgRequest->getVal( 'sort' );

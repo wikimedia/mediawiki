@@ -1,10 +1,16 @@
 <?php
 # $Id$
 
-function wfSpecialRandompage()
-{
+/**
+ *
+ */
+
+/**
+ * Constructor
+ */
+function wfSpecialRandompage() {
 	global $wgOut, $wgTitle, $wgArticle, $wgExtraRandompageSQL;
-	$fname = "wfSpecialRandompage";
+	$fname = 'wfSpecialRandompage';
 
 	$rand = mt_rand() / mt_getrandmax();
 	# interpolation and sprintf() can muck up with locale-specific decimal separator

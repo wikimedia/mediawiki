@@ -1,5 +1,11 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 class WatchedItem {
 	var $mTitle, $mUser;
 
@@ -14,13 +20,17 @@ class WatchedItem {
 		return $wl;
 	}
 
-	# Returns the memcached key for this item
+	/**
+	 * Returns the memcached key for this item
+	 */
 	function watchKey() {
 		global $wgDBname;
 		return "$wgDBname:watchlist:user:$this->id:page:$this->ns:$this->ti";
 	}
 	
-	# Is mTitle being watched by mUser?
+	/**
+	 * Is mTitle being watched by mUser?
+	 */
 	function isWatched()
 	{
 		# Pages and their talk pages are considered equivalent for watching;
@@ -40,8 +50,7 @@ class WatchedItem {
 		return $iswatched;
 	}
 
-	function addWatch()
-	{
+	function addWatch() {
 		$fname = "WatchedItem::addWatch";
 		# REPLACE instead of INSERT because occasionally someone
 		# accidentally reloads a watch-add operation.
@@ -58,8 +67,7 @@ class WatchedItem {
 		return true;
 	}
 
-	function removeWatch()
-	{
+	function removeWatch() {
 		$fname = 'WatchedItem::removeWatch';
 
 		$dbw =& wfGetDB( DB_MASTER );
@@ -80,7 +88,10 @@ class WatchedItem {
 		}
 	}
 
-	/* static */ function duplicateEntries( $ot, $nt ) {
+	/**
+	 * @static
+	 */
+	function duplicateEntries( $ot, $nt ) {
 		$fname = "WatchedItem::duplicateEntries";
 		global $wgMemc, $wgDBname;
 		$oldnamespace = $ot->getNamespace() & ~1;

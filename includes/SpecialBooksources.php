@@ -1,10 +1,15 @@
 <?php
+/**
+ * ISBNs in wiki pages will create links to this page, with the ISBN passed
+ * in via the query string.
+ *
+ *
+ */
 
-# ISBNs in wiki pages will create links to this page, with
-# the ISBN passed in via the query string.
-
-function wfSpecialBooksources( $par )
-{
+/**
+ * Constructor
+ */
+function wfSpecialBooksources( $par ) {
 	global $wgRequest;
 	
 	$isbn = $par;
@@ -17,6 +22,9 @@ function wfSpecialBooksources( $par )
 	$bsl->show();
 }
 
+/**
+ *
+ */
 class BookSourceList {
 	var $mIsbn;
 

@@ -1,12 +1,19 @@
 <?php
+/**
+ *
+ */
 
-# Message cache
-# Performs various useful MediaWiki namespace-related functions
-
+/**
+ *
+ */
 define( 'MSG_LOAD_TIMEOUT', 60);
 define( 'MSG_LOCK_TIMEOUT', 10);
 define( 'MSG_WAIT_TIMEOUT', 10);
 
+/**
+ * Message cache
+ * Performs various useful MediaWiki namespace-related functions
+ */
 class MessageCache
 {
 	var $mCache, $mUseCache, $mDisable, $mExpiry;
@@ -37,9 +44,11 @@ class MessageCache
 		wfProfileOut( $fname );
 	}
 
-	# Loads messages either from memcached or the database, if not disabled
-	# On error, quietly switches to a fallback mode
-	# Returns false for a reportable error, true otherwise
+	/**
+	 * Loads messages either from memcached or the database, if not disabled
+	 * On error, quietly switches to a fallback mode
+	 * Returns false for a reportable error, true otherwise
+	 */
 	function load() {
 		global $wgAllMessagesEn;
 		
@@ -103,9 +112,10 @@ class MessageCache
 		return $success;
 	}
 
-	# Loads all cacheable messages from the database
-	function loadFromDB()
-	{
+	/**
+	 * Loads all cacheable messages from the database
+	 */
+	function loadFromDB() {
 	        $fname = 'MessageCache::loadFromDB';
 		$dbr =& wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cur', 
@@ -122,7 +132,9 @@ class MessageCache
 		$dbr->freeResult( $res );
 	}
 	
-	# Not really needed anymore
+	/**
+	 * Not really needed anymore
+	 */
 	function getKeys() {
 		global $wgAllMessagesEn, $wgLang;
 		if ( !$this->mKeys ) {
@@ -134,7 +146,9 @@ class MessageCache
 		return $this->mKeys;
 	}
 	
-	# Obsolete
+	/**
+	 * Obsolete
+	 */
 	function isCacheable( $key ) {
 		return true;
 		/*
@@ -154,8 +168,10 @@ class MessageCache
 		$this->unlock();
 	}
 
-	# Returns success
-	# Represents a write lock on the messages key
+	/**
+	 * Returns success
+	 * Represents a write lock on the messages key
+	 */
 	function lock() {
 		if ( !$this->mUseCache ) {
 			return true;
@@ -255,7 +271,9 @@ class MessageCache
 		}
 	}
 	
-	# Clear all stored messages. Mainly used after a mass rebuild.
+	/**
+	 * Clear all stored messages. Mainly used after a mass rebuild.
+	 */
 	function clear() {
 		if( $this->mUseCache ) {
 			$this->mMemc->delete( $this->mMemcKey );

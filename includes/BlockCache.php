@@ -1,8 +1,12 @@
 <?php
+/**
+ * Contain the blockcache class
+ */
 
-# Object for fast lookup of IP blocks
-# Represents a memcached value, and in some sense, the entire ipblocks table
-
+/**
+ * Object for fast lookup of IP blocks
+ * Represents a memcached value, and in some sense, the entire ipblocks table
+ */
 class BlockCache
 {
 	var $mData = false, $mMemcKey;

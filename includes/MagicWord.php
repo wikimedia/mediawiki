@@ -1,17 +1,13 @@
 <?php
+/**
+ * File for magic words
+ */
 
-# This class encapsulates "magic words" such as #redirect, __NOTOC__, etc.
-# Usage:
-#     if (MagicWord::get( MAG_REDIRECT )->match( $text ) )
-# 
-# Possible future improvements: 
-#   * Simultaneous searching for a number of magic words
-#   * $wgMagicWords in shared memory
-#
-# Please avoid reading the data out of one of these objects and then writing 
-# special case code. If possible, add another match()-like function here.
+/**
+ * private
+ */
+$wgMagicFound = false;
 
-/*private*/ $wgMagicFound = false;
 
 define('MAG_REDIRECT', 0);
 define('MAG_NOTOC', 1);
@@ -65,6 +61,18 @@ $wgVariableIDs = array(
 	MAG_NAMESPACE
 );
 
+/**
+ * This class encapsulates "magic words" such as #redirect, __NOTOC__, etc.
+ * Usage:
+ *     if (MagicWord::get( MAG_REDIRECT )->match( $text ) )
+ * 
+ * Possible future improvements: 
+ *   * Simultaneous searching for a number of magic words
+ *   * $wgMagicWords in shared memory
+ *
+ * Please avoid reading the data out of one of these objects and then writing 
+ * special case code. If possible, add another match()-like function here.
+ */
 class MagicWord {
 	/*private*/ var $mId, $mSynonyms, $mCaseSensitive, $mRegex;
 	/*private*/ var $mRegexStart, $mBaseRegex, $mVariableRegex;
@@ -81,8 +89,11 @@ class MagicWord {
 		$this->mModified = false;
 	}
 
-	# Factory: creates an object representing an ID
-	/*static*/ function &get( $id ) {
+	/**
+	 * Factory: creates an object representing an ID
+	 * @static
+	 */
+	function &get( $id ) {
 		global $wgMagicWords;
 		
 		if ( !is_array( $wgMagicWords ) ) {
@@ -103,8 +114,11 @@ class MagicWord {
 		$wgLang->getMagic( $this );
 	}
 	
-	# Preliminary initialisation
-	/* private */ function initRegex() {
+	/**
+	 * Preliminary initialisation
+	 * @private
+	 */
+	function initRegex() {
 		$variableClass = Title::legalChars();
 		$escSyn = array_map( 'preg_quote', $this->mSynonyms );
 		$this->mBaseRegex = implode( '|', $escSyn );
@@ -116,7 +130,9 @@ class MagicWord {
 			"/^({$this->mBaseRegex})$/{$case}" );
 	}
 	
-	# Gets a regex representing matching the word
+	/**
+	 * Gets a regex representing matching the word
+	 */
 	function getRegex() {
 		if ($this->mRegex == '' ) {
 			$this->initRegex();
@@ -124,8 +140,9 @@ class MagicWord {
 		return $this->mRegex;
 	}
 
-	# Gets a regex matching the word, if it is at the 
-	# string start
+	/**
+	 * Gets a regex matching the word, if it is at the string start
+	 */
 	function getRegexStart() {
 		if ($this->mRegex == '' ) {
 			$this->initRegex();
@@ -133,7 +150,9 @@ class MagicWord {
 		return $this->mRegexStart;
 	}
 
-	# regex without the slashes and what not
+	/**
+	 * regex without the slashes and what not
+	 */
 	function getBaseRegex() {
 		if ($this->mRegex == '') {
 			$this->initRegex();
@@ -141,20 +160,28 @@ class MagicWord {
 		return $this->mBaseRegex;
 	}
 		
-	# Returns true if the text contains the word
+	/**
+	 * Returns true if the text contains the word
+	 * @return bool
+	 */
 	function match( $text ) {
 		return preg_match( $this->getRegex(), $text );
 	}
 
-	# Returns true if the text starts with the word
+	/**
+	 * Returns true if the text starts with the word
+	 * @return bool
+	 */
 	function matchStart( $text ) {
 		return preg_match( $this->getRegexStart(), $text );
 	}
 
-	# Returns NULL if there's no match, the value of $1 otherwise
-	# The return code is the matched string, if there's no variable
-	# part in the regex and the matched variable part ($1) if there
-	# is one.
+	/**
+	 * Returns NULL if there's no match, the value of $1 otherwise
+	 * The return code is the matched string, if there's no variable
+	 * part in the regex and the matched variable part ($1) if there
+	 * is one.
+	 */
 	function matchVariableStartToEnd( $text ) {
 		$matchcount = preg_match( $this->getVariableStartToEndRegex(), $text, $matches );
 		if ( $matchcount == 0 ) {
@@ -167,8 +194,10 @@ class MagicWord {
 	}
 
 
-	# Returns true if the text matches the word, and alters the
-	# input string, removing all instances of the word
+	/**
+	 * Returns true if the text matches the word, and alters the
+	 * input string, removing all instances of the word
+	 */
 	function matchAndRemove( &$text ) {
 		global $wgMagicFound;
 		$wgMagicFound = false;
@@ -184,16 +213,20 @@ class MagicWord {
 	}		
 
 
-	# Replaces the word with something else
+	/**
+	 * Replaces the word with something else
+	 */
 	function replace( $replacement, $subject ) {
 		$res = preg_replace( $this->getRegex(), $replacement, $subject );
 		$this->mModified = !($res === $subject);
 		return $res;
 	}
 
-	# Variable handling: {{SUBST:xxx}} style words
-	# Calls back a function to determine what to replace xxx with
-	# Input word must contain $1
+	/**
+	 * Variable handling: {{SUBST:xxx}} style words
+	 * Calls back a function to determine what to replace xxx with
+	 * Input word must contain $1
+	 */
 	function substituteCallback( $text, $callback ) {
 		$regex = $this->getVariableRegex();
 		$res = preg_replace_callback( $this->getVariableRegex(), $callback, $text );
@@ -201,7 +234,9 @@ class MagicWord {
 		return $res;
 	}
 
-	# Matches the word, where $1 is a wildcard
+	/**
+	 * Matches the word, where $1 is a wildcard
+	 */
 	function getVariableRegex()	{
 		if ( $this->mVariableRegex == '' ) {
 			$this->initRegex();
@@ -209,7 +244,9 @@ class MagicWord {
 		return $this->mVariableRegex;
 	}
 
-	# Matches the entire string, where $1 is a wildcard
+	/**
+	 * Matches the entire string, where $1 is a wildcard
+	 */
 	function getVariableStartToEndRegex() {
 		if ( $this->mVariableStartToEndRegex == '' ) {
 			$this->initRegex();
@@ -217,23 +254,29 @@ class MagicWord {
 		return $this->mVariableStartToEndRegex;
 	}
 
-	# Accesses the synonym list directly
+	/**
+	 * Accesses the synonym list directly
+	 */
 	function getSynonym( $i ) {
 		return $this->mSynonyms[$i];
 	}
 
-	# Returns true if the last call to replace() or substituteCallback() 
-	# returned a modified text, otherwise false.
+	/**
+	 * Returns true if the last call to replace() or substituteCallback() 
+	 * returned a modified text, otherwise false.
+	 */
 	function getWasModified(){
 		return $this->mModified;
 	}
 
-	# $magicarr is an associative array of (magic word ID => replacement)
-	# This method uses the php feature to do several replacements at the same time,
-	# thereby gaining some efficiency. The result is placed in the out variable
-	# $result. The return value is true if something was replaced.
-
-	/* static */ function replaceMultiple( $magicarr, $subject, &$result ){
+	/**
+	 * $magicarr is an associative array of (magic word ID => replacement)
+	 * This method uses the php feature to do several replacements at the same time,
+	 * thereby gaining some efficiency. The result is placed in the out variable
+	 * $result. The return value is true if something was replaced.
+	 * @static 
+	 **/
+	function replaceMultiple( $magicarr, $subject, &$result ){
 		$search = array();
 		$replace = array();
 		foreach( $magicarr as $id => $replacement ){
@@ -246,7 +289,10 @@ class MagicWord {
 		return !($result === $subject);
 	}
 
-	# Adds all the synonyms of this MagicWord to an array, to allow quick lookup in a list of magic words
+	/**
+	 * Adds all the synonyms of this MagicWord to an array, to allow quick
+	 * lookup in a list of magic words
+	 */
 	function addToArray( &$array, $value ) {
 		foreach ( $this->mSynonyms as $syn ) {
 			$array[$syn] = $value;
@@ -254,8 +300,11 @@ class MagicWord {
 	}
 }
 
-# Used in matchAndRemove()
-/*private*/ function pregRemoveAndRecord( $match ) {
+/**
+ * Used in matchAndRemove()
+ * @private
+ **/
+function pregRemoveAndRecord( $match ) {
 	global $wgMagicFound;
 	$wgMagicFound = true;
 	return '';

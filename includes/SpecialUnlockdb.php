@@ -1,7 +1,12 @@
 <?php
+/**
+ *
+ */
 
-function wfSpecialUnlockdb()
-{
+/**
+ *
+ */
+function wfSpecialUnlockdb() {
 	global $wgUser, $wgOut, $wgRequest;
 
 	if ( ! $wgUser->isDeveloper() ) {
@@ -16,6 +21,9 @@ function wfSpecialUnlockdb()
 	else { $f->showForm( "" ); }
 }
 
+/**
+ *
+ */
 class DBUnlockForm {
 	function showForm( $err )
 	{
@@ -48,8 +56,7 @@ class DBUnlockForm {
 
 	}
 
-	function doSubmit()
-	{
+	function doSubmit() {
 		global $wgOut, $wgUser, $wgLang;
 		global $wgRequest, $wgReadOnlyFile;
 
@@ -67,8 +74,7 @@ class DBUnlockForm {
 		$wgOut->redirect( $success );
 	}
 
-	function showSuccess()
-	{
+	function showSuccess() {
 		global $wgOut, $wgUser;
 		global $ip;
 

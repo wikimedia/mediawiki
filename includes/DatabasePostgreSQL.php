@@ -1,21 +1,30 @@
 <?php
 # $Id$
-#
-# DO NOT USE !!!  Unless you want to help developping it.
-#
-# This file is an attempt to port the mysql database layer to postgreSQL. The
-# only thing done so far is s/mysql/pg/ and dieing if function haven't been
-# ported.
-# 
-# As said brion 07/06/2004 :
-# "table definitions need to be changed. fulltext index needs to work differently
-#  things that use the last insert id need to be changed. Probably other things
-#  need to be changed. various semantics may be different."
-#
-# Hashar
 
+/**
+ * DO NOT USE !!!  Unless you want to help developping it.
+ *
+ * This file is an attempt to port the mysql database layer to postgreSQL. The
+ * only thing done so far is s/mysql/pg/ and dieing if function haven't been
+ * ported.
+ *
+ * As said brion 07/06/2004 :
+ * "table definitions need to be changed. fulltext index needs to work differently
+ * things that use the last insert id need to be changed. Probably other things
+ * need to be changed. various semantics may be different."
+ *
+ * Hashar
+ *
+ */
+
+/**
+ * Depends on database
+ */
 require_once( 'Database.php' );
 
+/**
+ *
+ */
 class DatabasePgsql extends Database {
 	var $mInsertId = NULL;
 	var $mLastResult = NULL;
@@ -32,10 +41,11 @@ class DatabasePgsql extends Database {
 		return new DatabasePgsql( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
 	}
 
-	# Usually aborts on failure
-	# If the failFunction is set to a non-zero integer, returns success
-	function open( $server, $user, $password, $dbName )
-	{
+	/**
+	 * Usually aborts on failure
+	 * If the failFunction is set to a non-zero integer, returns success
+	 */
+	function open( $server, $user, $password, $dbName ) {
 		# Test for PostgreSQL support, to avoid suppressed fatal error
 		if ( !function_exists( 'pg_connect' ) ) {
 			die( "PostgreSQL functions missing, have you compiled PHP with the --with-pgsql option?\n" );
@@ -63,10 +73,11 @@ class DatabasePgsql extends Database {
 		return $this->mConn;
 	}
 	
-	# Closes a database connection, if it is open
-	# Returns success, true if already closed
-	function close()
-	{
+	/**
+	 * Closes a database connection, if it is open
+	 * Returns success, true if already closed
+	 */
+	function close() {
 		$this->mOpened = false;
 		if ( $this->mConn ) {
 			return pg_close( $this->mConn );
@@ -88,6 +99,7 @@ class DatabasePgsql extends Database {
 			wfDebugDieBacktrace( "Unable to free PostgreSQL result\n" );
 		}
 	}
+	
 	function fetchObject( $res ) {
 		@$row = pg_fetch_object( $res );
 		# FIXME: HACK HACK HACK HACK debug
@@ -119,7 +131,9 @@ class DatabasePgsql extends Database {
 	function numFields( $res ) { return pg_num_fields( $res ); }
 	function fieldName( $res, $n ) { return pg_field_name( $res, $n ); }
 	
-	# This must be called after nextSequenceVal
+	/**
+	 * This must be called after nextSequenceVal
+	 */
 	function insertId() { 
 		return $this->mInsertId;
 	}
@@ -132,10 +146,11 @@ class DatabasePgsql extends Database {
 		return pg_affected_rows( $this->mLastResult ); 
 	}
 	
-	# Returns information about an index
-	# If errors are explicitly ignored, returns NULL on failure
-	function indexInfo( $table, $index, $fname = 'Database::indexExists' ) 
-	{
+	/**
+	 * Returns information about an index
+	 * If errors are explicitly ignored, returns NULL on failure
+	 */
+	function indexInfo( $table, $index, $fname = 'Database::indexExists' ) {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='$table'";
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
@@ -150,8 +165,7 @@ class DatabasePgsql extends Database {
 		return false;
 	}
 
-	function fieldInfo( $table, $field )
-	{
+	function fieldInfo( $table, $field ) {
 		wfDebugDieBacktrace( 'Database::fieldInfo() error : mysql_fetch_field() not implemented for postgre' );
 		/*
 		$res = $this->query( "SELECT * FROM '$table' LIMIT 1" );
@@ -223,15 +237,19 @@ class DatabasePgsql extends Database {
 		return pg_escape_string( $s );
 	}
 
-	# Return the next in a sequence, save the value for retrieval via insertId()
+	/**
+	 * Return the next in a sequence, save the value for retrieval via insertId()
+	 */
 	function nextSequenceValue( $seqName ) {
 		$value = $this->getField(''," nextval('" . $seqName . "')");
 		$this->mInsertId = $value;
 		return $value;
 	}
 
-	# USE INDEX clause
-	# PostgreSQL doesn't have them and returns ""
+	/**
+	 * USE INDEX clause
+	 * PostgreSQL doesn't have them and returns ""
+	 */
 	function useIndexClause( $index ) {
 		return '';
 	}
@@ -343,7 +361,9 @@ class DatabasePgsql extends Database {
 	}
 }
 
-# Just an alias.
+/**
+ * Just an alias.
+ */
 class DatabasePostgreSQL extends DatabasePgsql {
 }
 

@@ -1,20 +1,23 @@
 <?php
 # $Id$
-# See deferred.doc
+/**
+ * See deferred.doc
+ */
 
+/**
+ *
+ */
 class SiteStatsUpdate {
 
 	var $mViews, $mEdits, $mGood;
 
-	function SiteStatsUpdate( $views, $edits, $good )
-	{
+	function SiteStatsUpdate( $views, $edits, $good ) {
 		$this->mViews = $views;
 		$this->mEdits = $edits;
 		$this->mGood = $good;
 	}
 
-	function doUpdate()
-	{
+	function doUpdate() {
 		$a = array();
 
 		if ( $this->mViews < 0 ) { $m = '-1'; }

@@ -1,5 +1,11 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 function wfSpecialUnusedimages() {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
 	$fname = "wfSpecialUnusedimages";

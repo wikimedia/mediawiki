@@ -1,6 +1,11 @@
 <?php
-# Database load balancing object
+/**
+ *
+ */
 
+/**
+ * Depends on the database object
+ */
 require_once( 'Database.php' );
 
 # Valid database indexes
@@ -26,6 +31,10 @@ define( 'DB_TASK_LAST', 1004) ;   # Last in list
 
 define( 'MASTER_WAIT_TIMEOUT', 15 ); # Time to wait for a slave to synchronise
 
+/**
+ * Database load balancing object
+ * @todo document
+ */
 class LoadBalancer {
 	/* private */ var $mServers, $mConnections, $mLoads;
 	/* private */ var $mFailFunction;
@@ -67,8 +76,10 @@ class LoadBalancer {
 		}
 	}
 	
-	# Given an array of non-normalised probabilities, this function will select
-	# an element and return the appropriate key
+	/**
+	 * Given an array of non-normalised probabilities, this function will select
+	 * an element and return the appropriate key
+	 */
 	function pickRandom( $weights )
 	{
 		if ( !is_array( $weights ) || count( $weights ) == 0 ) {
@@ -131,9 +142,11 @@ class LoadBalancer {
 		return $i;
 	}
 
-	# Set the master wait position
-	# If a DB_SLAVE connection has been opened already, waits
-	# Otherwise sets a variable telling it to wait if such a connection is opened
+	/**
+	 * Set the master wait position
+	 * If a DB_SLAVE connection has been opened already, waits
+	 * Otherwise sets a variable telling it to wait if such a connection is opened
+	 */
 	function waitFor( $file, $pos ) {
 		$fname = 'LoadBalancer::waitFor';
 		wfProfileIn( $fname );
@@ -156,7 +169,9 @@ class LoadBalancer {
 		wfProfileOut( $fname );
 	}
 
-	# Wait for a given slave to catch up to the master pos stored in $this
+	/**
+	 * Wait for a given slave to catch up to the master pos stored in $this
+	 */
 	function doWait( $index ) {
 		global $wgMemc;
 		
@@ -189,7 +204,9 @@ class LoadBalancer {
 		return $retVal;
 	}		
 
-	# Get a connection by index
+	/**
+	 * Get a connection by index
+	 */
 	function &getConnection( $i, $fail = true )
 	{
 		$fname = 'LoadBalancer::getConnection';
@@ -226,9 +243,12 @@ class LoadBalancer {
 		return $this->mConnections[$i];
 	}
 
-	# Open a connection to the server given by the specified index
-	# Index must be an actual index into the array
-	/* private */ function openConnection( $i, $fail = false ) {
+	/**
+	 * Open a connection to the server given by the specified index
+	 * Index must be an actual index into the array
+	 * @private
+	 */
+	function openConnection( $i, $fail = false ) {
 		$fname = 'LoadBalancer::openConnection';
 		wfProfileIn( $fname );
 
@@ -258,8 +278,11 @@ class LoadBalancer {
 		wfProfileOut( $fname );
 	}
 
-	# Test if the specified index represents an open connection
-	/* private */ function isOpen( $index ) {
+	/**
+	 * Test if the specified index represents an open connection
+	 * @private
+	 */
+	function isOpen( $index ) {
 		if( !is_integer( $index ) ) {
 			return false;
 		}
@@ -272,8 +295,11 @@ class LoadBalancer {
 		}
 	}
 	
-	# Really opens a connection
-	/* private */ function reallyOpenConnection( &$server ) {
+	/**
+	 * Really opens a connection
+	 * @private
+	 */
+	function reallyOpenConnection( &$server ) {
 			extract( $server );
 			# Get class for this database type
 			$class = 'Database' . ucfirst( $type );
@@ -323,12 +349,16 @@ class LoadBalancer {
 		return array_key_exists( $i, $this->mServers );
 	}
 
-	# Get the number of defined servers (not the number of open connections)
+	/**
+	 * Get the number of defined servers (not the number of open connections)
+	 */
 	function getServerCount() {
 		return count( $this->mServers );
 	}
 
-	# Save master pos to the session and to memcached, if the session exists
+	/**
+	 * Save master pos to the session and to memcached, if the session exists
+	 */
 	function saveMasterPos() {
 		global $wgSessionStarted;
 		if ( $wgSessionStarted && count( $this->mServers ) > 1 ) {
@@ -350,14 +380,18 @@ class LoadBalancer {
 		}
 	}
 
-	# Loads the master pos from the session, waits for it if necessary
+	/**
+	 * Loads the master pos from the session, waits for it if necessary
+	 */
 	function loadMasterPos() {
 		if ( isset( $_SESSION['master_log_file'] ) && isset( $_SESSION['master_pos'] ) ) {
 			$this->waitFor( $_SESSION['master_log_file'], $_SESSION['master_pos'] );
 		}
 	}
 
-	# Close all open connections
+	/**
+	 * Close all open connections
+	 */
 	function closeAll() {
 		foreach( $this->mConnections as $i => $conn ) {
 			if ( $this->isOpen( $i ) ) {

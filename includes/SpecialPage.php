@@ -1,18 +1,26 @@
 <?php
-# SpecialPage: handling special pages and lists thereof
+/**
+ * SpecialPage: handling special pages and lists thereof
+ * $wgSpecialPages is a list of all SpecialPage objects. These objects are
+ * either instances of SpecialPage or a sub-class thereof. They have an
+ * execute() method, which sends the HTML for the special page to $wgOut.
+ * The parent class has an execute() method which distributes the call to
+ * the historical global functions. Additionally, execute() also checks if the
+ * user has the necessary access privileges and bails out if not.
+ *
+ * To add a special page at run-time, use SpecialPage::addPage().
+ * DO NOT manipulate this array at run-time.
+ */
 
-# $wgSpecialPages is a list of all SpecialPage objects. These objects are either instances of
-# SpecialPage or a sub-class thereof. They have an execute() method, which sends the HTML for the
-# special page to $wgOut. The parent class has an execute() method which distributes the call to
-# the historical global functions. Additionally, execute() also checks if the user has the
-# necessary access privileges and bails out if not.
-
-# To add a special page at run-time, use SpecialPage::addPage().
-# DO NOT manipulate this array at run-time.
-
+/**
+ *
+ */
 global $wgSpecialPages;
 
-/* private */ $wgSpecialPages = array(
+/**
+ * @access private
+ */
+$wgSpecialPages = array(
 	'DoubleRedirects'	=> new UnlistedSpecialPage ( 'DoubleRedirects' ),
 	'BrokenRedirects'	=> new UnlistedSpecialPage ( 'BrokenRedirects' ),
 	'Disambiguations'	=> new UnlistedSpecialPage ( 'Disambiguations' ),
@@ -33,8 +41,7 @@ global $wgSpecialPages;
 	"Unusedimages"      => new SpecialPage( "Unusedimages" )
 );
 global $wgDisableCounters;
-if( !$wgDisableCounters )
-{
+if( !$wgDisableCounters ) {
 	$wgSpecialPages["Popularpages"] = new SpecialPage( "Popularpages" );
 }
 $wgSpecialPages = array_merge($wgSpecialPages, array (
@@ -75,7 +82,10 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 	"Unlockdb"		=> new SpecialPage( "Unlockdb", "developer" )
 ));
 
-# Parent special page class, also static functions for handling the special page list
+/**
+ * Parent special page class, also static functions for handling the special
+ * page list
+ */
 class SpecialPage
 {
 	/* private */ var $mName; # The name of the class, used in the URL. Also used for the default
@@ -267,7 +277,9 @@ class SpecialPage
 	}
 }
 
-# Shortcut to construct a special page which is unlisted by default
+/**
+ * Shortcut to construct a special page which is unlisted by default
+ */
 class UnlistedSpecialPage extends SpecialPage
 {
 	function UnlistedSpecialPage( $name, $restriction = "", $function = false, $file = "default" ) {

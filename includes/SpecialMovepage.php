@@ -1,8 +1,17 @@
 <?php
+/**
+ *
+ */
+
+/**
+ *
+ */
 require_once( "LinksUpdate.php" );
 
-function wfSpecialMovepage()
-{
+/**
+ * Constructor
+ */
+function wfSpecialMovepage() {
 	global $wgUser, $wgOut, $wgRequest, $action, $wgOnlySysopMayMove;
 
 	# check rights. We don't want newbies to move pages to prevents possible attack
@@ -23,6 +32,9 @@ function wfSpecialMovepage()
 	else { $f->showForm( '' ); }
 }
 
+/**
+ *
+ */
 class MovePageForm {
 	var $oldTitle, $newTitle; # Text input
 		
@@ -32,8 +44,7 @@ class MovePageForm {
 		$this->newTitle = $wgRequest->getText( 'wpNewTitle' );
 	}
 	
-	function showForm( $err )
-	{
+	function showForm( $err ) {
 		global $wgOut, $wgUser, $wgLang;
 
 		$wgOut->setPagetitle( wfMsg( 'movepage' ) );
@@ -101,8 +112,7 @@ class MovePageForm {
 
 	}
 
-	function doSubmit()
-	{
+	function doSubmit() {
 		global $wgOut, $wgUser, $wgLang;
 		global $wgDeferredUpdateList, $wgMessageCache;
 		global  $wgUseSquid, $wgRequest;
@@ -179,8 +189,7 @@ class MovePageForm {
 		$wgOut->redirect( $success );
 	}
 
-	function showSuccess()
-	{
+	function showSuccess() {
 		global $wgOut, $wgUser, $wgRequest;
 
 		$wgOut->setPagetitle( wfMsg( 'movepage' ) );

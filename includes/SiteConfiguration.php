@@ -1,9 +1,13 @@
 <?php
+/**
+ *This file is used to configure the live Wikimedia wikis. The file that
+ * includes it contains passwords and other sensitive data, and there's
+ * currently no public equivalent.
+ */
 
-# This file is used to configure the live Wikimedia wikis. The file that includes
-# it contains passwords and other sensitive data, and there's currently no public
-# equivalent. 
-
+/**
+ *
+ */
 class SiteConfiguration {
 	var $suffixes, $wikis, $settings;
 	var $localDatabases;
@@ -60,7 +64,10 @@ class SiteConfiguration {
 		}
 	}
 
-	# Work out the site and language name from a database name
+	/**
+	 * Work out the site and language name from a database name
+	 * @param $db
+	 */
 	function siteFromDB( $db ) {
 		$site = NULL;
 		$lang = NULL;

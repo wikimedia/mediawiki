@@ -1,13 +1,17 @@
 <?php
-#
-# If enabled through $wgAllowSysopQueries = true, this class
-# let users with sysop right the possibility to make sql queries
-# against the cur table.
-# Heavy queries could slow down the database specially for the
-# biggest wikis.
+/**
+ * If enabled through $wgAllowSysopQueries = true, this class
+ * let users with sysop right the possibility to make sql queries
+ * against the cur table.
+ * Heavy queries could slow down the database specially for the
+ * biggest wikis.
+ *
+ */
 
-function wfSpecialAsksql()
-{
+/**
+ *
+ */
+function wfSpecialAsksql() {
 	global $wgUser, $wgOut, $wgRequest, $wgAllowSysopQueries;
 
 	if( !$wgAllowSysopQueries ) {
@@ -31,19 +35,21 @@ function wfSpecialAsksql()
 	if ( "submit" == $action ) {
 		$f->doSubmit();
 	} else {
-		$f->showForm( "" );
+		$f->showForm( '' );
 	}
 }
 
+/**
+ * @access private
+ */
 class SqlQueryForm {
-	var $query = "";
+	var $query = '';
 	
 	function SqlQueryForm( $query ) {
 		$this->query = $query;
 	}
 		
-	function showForm( $err )
-	{
+	function showForm( $err ) {
 		global $wgOut, $wgUser, $wgLang;
 		global $wgLogQueries;
 
@@ -79,8 +85,7 @@ class SqlQueryForm {
 
 	}
 
-	function doSubmit()
-	{
+	function doSubmit() {
 		global $wgOut, $wgUser, $wgServer, $wgScript, $wgArticlePath, $wgLang;
 		global $wgDBserver, $wgDBsqluser, $wgDBsqlpassword, $wgDBname, $wgSqlTimeout;
 

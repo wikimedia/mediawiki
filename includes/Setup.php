@@ -1,6 +1,12 @@
 <?php
+/**
+ * Include most things that's need to customize the site
+ */
 
-# This file is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
+/**
+ * This file is not a valid entry point, perform no further processing unless
+ * MEDIAWIKI is defined
+ */
 if( defined( 'MEDIAWIKI' ) ) {
 
 # The main wiki script and things like database
@@ -111,6 +117,10 @@ if( $wgUseMemCached ) {
 	# Set up Memcached
 	#
 	require_once( 'memcached-client.php' );
+	
+	/**
+	 *
+	 */
 	class MemCachedClientforWiki extends memcached {
 		function _debugprint( $text ) {
 			wfDebug( "memcached: $text\n" );
@@ -129,8 +139,9 @@ if( $wgUseMemCached ) {
 	$wgMemc = new TurckBagOStuff;
 	$messageMemc = &$wgMemc;
 } else {
-	# No shared memory
-	#
+	/**
+	 * No shared memory
+	 */
 	class FakeMemCachedClient {
 		function add ($key, $val, $exp = 0) { return true; }
 		function decr ($key, $amt=1) { return null; }

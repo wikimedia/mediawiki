@@ -1,11 +1,16 @@
 <?php
+/**
+ *
+ */
 
-/*
-	Special handling for image description pages
-*/
-
+/**
+ *
+ */
 require_once( 'Image.php' );
 
+/**
+ * Special handling for image description pages
+ */
 class ImagePage extends Article {
 
 	/* private */ var $img;  // Image object this page is shown for. Initilaized in openShowImage, not
@@ -68,9 +73,10 @@ class ImagePage extends Article {
 		# For overloading
 	}
 
-	# If the page we've just displayed is in the "Image" namespace,
-	# we follow it with an upload history of the image and its usage.
-
+	/**
+	 * If the page we've just displayed is in the "Image" namespace,
+	 * we follow it with an upload history of the image and its usage.
+	 */
 	function imageHistory()
 	{
 		global $wgUser, $wgOut;

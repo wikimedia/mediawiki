@@ -1,10 +1,17 @@
 <?php
-#
-# This class is used to get a list of users flagged with "sysop"
-# right.
+/**
+ *
+ */
 
+/**
+ *
+ */
 require_once("QueryPage.php");
 
+/**
+ * This class is used to get a list of users flagged with "sysop" right.
+ *
+ */
 class ListAdminsPage extends PageQueryPage {
 
 	function getName() {
@@ -26,6 +33,9 @@ class ListAdminsPage extends PageQueryPage {
 	}
 }
 
+/**
+ * constructor
+ */
 function wfSpecialListadmins() {
 	list( $limit, $offset ) = wfCheckLimits();
 

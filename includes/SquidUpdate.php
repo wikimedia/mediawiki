@@ -1,6 +1,11 @@
 <?php
-# See deferred.doc
+/**
+ * See deferred.doc
+ */
 
+/**
+ *
+ */
 class SquidUpdate {
 	var $urlArr, $mMaxTitles;
 

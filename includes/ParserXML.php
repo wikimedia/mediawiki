@@ -1,8 +1,12 @@
 <?
-# This should one day become the XML->(X)HTML parser
-# Based on work by Jan Hidders and Magnus Manske
+/**
+ * This should one day become the XML->(X)HTML parser
+ * Based on work by Jan Hidders and Magnus Manske
+ */
 
-//  the base class for an element
+/**
+ * the base class for an element
+ */
 class element {
   var $name = '';
   var $attrs = array();
@@ -68,7 +72,10 @@ function wgXMLcharacterData($parser, $data) {
 }
 
 
-# Here's the class that generates a nice tree
+/**
+ * Here's the class that generates a nice tree
+ * package parserxml
+ */
 class xml2php {
 
    function &scanFile( $filename ) {

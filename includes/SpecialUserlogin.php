@@ -1,9 +1,17 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 require_once('UserMailer.php');
 
-function wfSpecialUserlogin()
-{
+/**
+ * consutrctor
+ */
+function wfSpecialUserlogin() {
 	global $wgCommandLineMode;
 	global $wgRequest;
 	if( !$wgCommandLineMode && !isset( $_COOKIE[ini_get("session.name")] )  ) {
@@ -14,6 +22,9 @@ function wfSpecialUserlogin()
 	$form->execute();
 }
 
+/**
+ *
+ */
 class LoginForm {
 	var $mName, $mPassword, $mRetype, $mReturnto, $mCookieCheck, $mPosted;
 	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
@@ -65,8 +76,10 @@ class LoginForm {
 		$this->mainLoginForm( "" );
 	}
 
-	/* private */ function addNewAccountMailPassword()
-	{
+	/**
+	 * @access private
+	 */
+	function addNewAccountMailPassword() {
 		global $wgOut;
 		
 		if ("" == $this->mEmail) {
@@ -98,8 +111,10 @@ class LoginForm {
 	}
 
 
-	/* private */ function addNewAccount()
-	{
+	/**
+	 * @access private
+	 */
+	function addNewAccount() {
 		global $wgUser, $wgOut;
 		global $wgDeferredUpdateList;
 
@@ -123,8 +138,10 @@ class LoginForm {
 	}
 
 
-	/* private */ function addNewAccountInternal()
-	{
+	/**
+	 * @access private
+	 */
+	function addNewAccountInternal() {
 		global $wgUser, $wgOut;
 		global $wgMaxNameChars;
 		global $wgMemc, $wgAccountCreationThrottle, $wgDBname, $wgIP;
@@ -184,10 +201,10 @@ class LoginForm {
 		return $u;
 	}
 
-
-
-	/* private */ function processLogin()
-	{
+	/**
+	 * @access private
+	 */
+	function processLogin() {
 		global $wgUser;
 		global $wgDeferredUpdateList;
 
@@ -231,8 +248,10 @@ class LoginForm {
 		}
 	}
 
-	/* private */ function mailPassword()
-	{
+	/**
+	 * @access private
+	 */
+	function mailPassword() {
 		global $wgUser, $wgDeferredUpdateList, $wgOutputEncoding;
 		global $wgCookiePath, $wgCookieDomain, $wgDBname;
 
@@ -259,8 +278,10 @@ class LoginForm {
 	}
 
 
-	/* private */ function mailPasswordInternal( $u )
-	{
+	/**
+	 * @access private
+	 */
+	function mailPasswordInternal( $u ) {
 		global $wgDeferredUpdateList, $wgOutputEncoding;
 		global $wgPasswordSender, $wgDBname, $wgIP;
 		global $wgCookiePath, $wgCookieDomain;
@@ -286,11 +307,10 @@ class LoginForm {
 	}
 
 
-
-
-
-	/* private */ function successfulLogin( $msg )
-	{
+	/**
+	 * @access private
+	 */
+	function successfulLogin( $msg ) {
 		global $wgUser;
 		global $wgDeferredUpdateList;
 		global $wgOut;
@@ -302,8 +322,7 @@ class LoginForm {
 		$wgOut->returnToMain();
 	}
 
-	function userNotPrivilegedMessage()
-	{
+	function userNotPrivilegedMessage() {
 		global $wgOut, $wgUser, $wgLang;
 		
 		$wgOut->setPageTitle( wfMsg( "whitelistacctitle" ) );
@@ -315,8 +334,10 @@ class LoginForm {
 		$wgOut->returnToMain( false );
 	}
 
-	/* private */ function mainLoginForm( $err )
-	{
+	/**
+	 * @access private
+	 */
+	function mainLoginForm( $err ) {
 		global $wgUser, $wgOut, $wgLang;
 		global $wgDBname, $wgAllowRealName;
 
@@ -449,14 +470,18 @@ class LoginForm {
 		$wgOut->addHTML( $endText );
 	}
 
-	/* private */ function hasSessionCookie()
-	{
+	/**
+	 * @access private
+	 */
+	function hasSessionCookie() {
 		global $wgDisableCookieCheck;
 		return ( $wgDisableCookieCheck ) ? true : ( "" != $_COOKIE[session_name()] );
 	}
 	  
-	/* private */ function cookieRedirectCheck( $type )
-	{
+	/**
+	 * @access private
+	 */
+	function cookieRedirectCheck( $type ) {
 		global $wgOut, $wgLang;
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Userlogin" );
@@ -465,7 +490,10 @@ class LoginForm {
 		return $wgOut->redirect( $check );
 	}
 
-	/* private */ function onCookieRedirectCheck( $type ) {
+	/**
+	 * @access private
+	 */
+	function onCookieRedirectCheck( $type ) {
 		global $wgUser;
 
 		if ( !$this->hasSessionCookie() ) {
@@ -482,7 +510,10 @@ class LoginForm {
 		}
 	}
 
-	/* private */ function throttleHit( $limit ) {
+	/**
+	 * @access private
+	 */
+	function throttleHit( $limit ) {
 		global $wgOut;
 
 		$wgOut->addWikiText( wfMsg( 'acct_creation_throttle_hit', $limit ) );

@@ -1,17 +1,27 @@
 <?php
 # $Id$
-# See deferred.doc
+/**
+ * See deferred.doc
+ */
+
+/**
+ *
+ */
 class ViewCountUpdate {
 
 	var $mPageID;
 
-	function ViewCountUpdate( $pageid )
-	{
+	/**
+	 *
+	 */
+	function ViewCountUpdate( $pageid ) {
 		$this->mPageID = $pageid;
 	}
 
-	function doUpdate()
-	{
+	/**
+	 *
+	 */
+	function doUpdate() {
 		global $wgDisableCounters;
 		if ( $wgDisableCounters ) { return; }
 		$db =& wfGetDB( DB_MASTER );

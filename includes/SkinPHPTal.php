@@ -1,16 +1,4 @@
 <?php
-# Generic PHPTal (http://phptal.sourceforge.net/) skin
-# Based on Brion's smarty skin
-# Copyright (C) Gabriel Wicke -- http://www.aulinx.de/
-#
-# Todo: Needs some serious refactoring into functions that correspond
-# to the computations individual esi snippets need. Most importantly no body
-# parsing for most of those of course.
-#
-# Set this in LocalSettings to enable phptal:
-# set_include_path(get_include_path() . ":" . $IP.'/PHPTAL-NP-0.7.0/libs');
-# $wgUsePHPTal = true;
-#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -26,14 +14,34 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+/**
+ * Generic PHPTal (http://phptal.sourceforge.net/) skin
+ * Based on Brion's smarty skin
+ * Copyright (C) Gabriel Wicke -- http://www.aulinx.de/
+ *
+ * Todo: Needs some serious refactoring into functions that correspond
+ * to the computations individual esi snippets need. Most importantly no body
+ * parsing for most of those of course.
+ * 
+ * Set this in LocalSettings to enable phptal:
+ * set_include_path(get_include_path() . ":" . $IP.'/PHPTAL-NP-0.7.0/libs');
+ * $wgUsePHPTal = true;
+ *
+ */
 
-# This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
+/**
+ * This is not a valid entry point, perform no further processing unless
+ * MEDIAWIKI is defined
+ */
 if( defined( 'MEDIAWIKI' ) ) {
 
 require_once 'GlobalFunctions.php';
 global $IP;
 require_once $IP.'/PHPTAL-NP-0.7.0/libs/PHPTAL.php';
 
+/**
+ *
+ */
 class MediaWiki_I18N extends PHPTAL_I18N {
 	var $_context = array();
 
@@ -55,6 +63,9 @@ class MediaWiki_I18N extends PHPTAL_I18N {
 	}
 }
 
+/**
+ *
+ */
 class SkinPHPTal extends Skin {
 	var $template;
 
@@ -64,7 +75,9 @@ class SkinPHPTal extends Skin {
 		$this->template = 'MonoBook';
 	}
 
-	# initialize various variables and generate the template
+	/**
+	 * initialize various variables and generate the template
+	 */
 	function outputPage( &$out ) {
 		global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgOut;
 		global $wgScript, $wgStylePath, $wgLanguageCode, $wgUseNewInterlanguage;
@@ -248,7 +261,9 @@ class SkinPHPTal extends Skin {
 
 	}
 
-	# build array of urls for personal toolbar
+	/**
+	 * build array of urls for personal toolbar
+	 */
 	function buildPersonalUrls() {
 		/* set up the default links for the personal toolbar */
 		global $wgShowIPinHeader;
@@ -310,7 +325,9 @@ class SkinPHPTal extends Skin {
 		return $personal_urls;
 	}
 
-	# an array of edit links by default used for the tabs
+	/**
+	 * an array of edit links by default used for the tabs
+	 */
 	function buildContentActionUrls () {
 		global $wgTitle, $wgUser, $wgRequest, $wgUseValidation;
 		$action = $wgRequest->getText( 'action' );
@@ -465,7 +482,9 @@ class SkinPHPTal extends Skin {
 		return $content_actions;
 	}
 
-	# build array of common navigation links
+	/**
+	 * build array of common navigation links
+	 */
 	function buildNavUrls () {
 		global $wgTitle, $wgUser, $wgRequest;
 		global $wgSiteSupportPage, $wgDisableUploads;
@@ -516,7 +535,9 @@ class SkinPHPTal extends Skin {
 		return $nav_urls;
 	}
 
-	# Generate strings used for xml 'id' names
+	/**
+	 * Generate strings used for xml 'id' names
+	 */
 	function getNameSpaceKey () {
 		global $wgTitle;
 		switch ($wgTitle->getNamespace()) {
@@ -554,7 +575,10 @@ class SkinPHPTal extends Skin {
 	}
 	
 
-	/* private */ function setupUserCssJs () {
+	/**
+	 * @access private
+	 */
+	function setupUserCssJs () {
 		global $wgRequest, $wgTitle;
 		$action = $wgRequest->getText('action');
 		# generated css
@@ -582,7 +606,9 @@ class SkinPHPTal extends Skin {
 		}
 	}
 	
-	# returns css with user-specific options
+	/**
+	 * returns css with user-specific options
+	 */
 	function getUserStylesheet() {
 		global $wgUser, $wgRequest, $wgTitle, $wgLang, $wgSquidMaxage, $wgStylePath;
 		$action = $wgRequest->getText('action');
@@ -607,6 +633,9 @@ class SkinPHPTal extends Skin {
 		return $s;
 	}
 	
+	/**
+	 *
+	 */
 	function getUserJs() {
 		global $wgUser, $wgStylePath;
 		$s = '/* generated javascript */';

@@ -1,12 +1,22 @@
 <?php
-# See deferred.doc
+/**
+ * See deferred.doc
+ *
+ */
 
+/**
+ *
+ */
 class UserUpdate {
-
+	/**
+	 *
+	 */
 	function UserUpdate() { }
 
-	function doUpdate()
-	{
+	/**
+	 *
+	 */
+	function doUpdate() {
 		global $wgUser;
 		$wgUser->saveSettings();
 	}

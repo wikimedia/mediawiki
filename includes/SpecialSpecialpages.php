@@ -1,7 +1,12 @@
 <?php
+/**
+ *
+ */
 
-function wfSpecialSpecialpages()
-{
+/**
+ *
+ */
+function wfSpecialSpecialpages() {
 	global $wgLang, $wgOut, $wgUser;
 	
 	$wgOut->setRobotpolicy( "index,nofollow" );
@@ -25,13 +30,13 @@ function wfSpecialSpecialpages()
 	}
 }
 
-# sub function generating the list of pages
-#   $pages   : the list of pages
-#   $heading : header to be used
-#   $sk      : skin object ???
-
-function wfSpecialSpecialpages_gen($pages,$heading,$sk)
-{
+/**
+ * sub function generating the list of pages
+ * @param $pages the list of pages
+ * @param $heading header to be used
+ * @param $sk skin object ???
+ */
+function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 	global $wgLang, $wgOut, $wgAllowSysopQueries;
 
 	$wgOut->addHTML( "<h2>" . wfMsg( $heading ) . "</h2>\n<ul>" );

@@ -1,4 +1,11 @@
 <?php
+/**
+ *
+ */
+
+/**
+ *
+ */
 function wfSpecialBlockme()
 {
 	global $wgIP, $wgBlockOpenProxies, $wgOut, $wgProxyKey;

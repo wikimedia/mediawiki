@@ -1,7 +1,16 @@
 <?php
+/**
+ *
+ */
 
+/**
+ * 
+ */
 require_once('QueryPage.php');
 
+/**
+ *
+ */
 class DoubleRedirectsPage extends PageQueryPage {
 
 	function getName() {
@@ -44,6 +53,9 @@ class DoubleRedirectsPage extends PageQueryPage {
 	}
 }
 
+/**
+ * constructor
+ */
 function wfSpecialDoubleRedirects() {
 	list( $limit, $offset ) = wfCheckLimits();
 	

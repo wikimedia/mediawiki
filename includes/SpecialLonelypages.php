@@ -1,7 +1,16 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 require_once( "QueryPage.php" );
 
+/**
+ *
+ */
 class LonelyPagesPage extends PageQueryPage {
 
 	function getName() {
@@ -26,6 +35,9 @@ class LonelyPagesPage extends PageQueryPage {
 	}
 }
 
+/**
+ * Constructor
+ */
 function wfSpecialLonelypages() {
 	list( $limit, $offset ) = wfCheckLimits();
 

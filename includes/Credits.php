@@ -1,6 +1,7 @@
 <?php
 
-/* Credits.php -- formats credits for articles
+/**
+ * Credits.php -- formats credits for articles
  * Copyright 2004, Evan Prodromou <evan@wikitravel.org>.
  * 
  *  This program is free software; you can redistribute it and/or modify
@@ -16,12 +17,14 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * @author <evan@wikitravel.org>
  */
 
-/* This is largely cadged from PageHistory::history */
-
-function showCreditsPage($article)
-{
+/**
+ * This is largely cadged from PageHistory::history
+ */
+function showCreditsPage($article) {
     global $wgOut;
 
     $fname = 'showCreditsPage';
@@ -59,8 +62,10 @@ function getCredits($article, $cnt, $showIfMax=true) {
     return $s;
 }
 
-function getAuthorCredits($article) {
-    
+/**
+ *
+ */
+function getAuthorCredits($article) {    
     global $wgLang;
     
     $last_author = $article->getUser();
@@ -88,6 +93,9 @@ function getAuthorCredits($article) {
     return wfMsg('lastmodifiedby', $d, $author_credit);
 }
 
+/**
+ *
+ */
 function getContributorCredits($article, $cnt, $showIfMax) {
 	    
     global $wgLang, $wgAllowRealName;
@@ -156,6 +164,9 @@ function getContributorCredits($article, $cnt, $showIfMax) {
     return (empty($creds)) ? '' : wfMsg('othercontribs', $creds);
 }
 
+/**
+ *
+ */
 function creditLink($user_name, $link_text = '') {
     global $wgUser, $wgLang;
     $skin = $wgUser->getSkin();
@@ -163,6 +174,9 @@ function creditLink($user_name, $link_text = '') {
 			   (empty($link_text)) ? $user_name : $link_text);
 }
 
+/**
+ *
+ */
 function creditOthersLink($article) {
     global $wgUser, $wgLang;
     $skin = $wgUser->getSkin();

@@ -1,7 +1,12 @@
 <?php
+/**
+ *
+ */
 
-function wfSpecialWhatlinkshere($par = NULL)
-{
+/**
+ *
+ */
+function wfSpecialWhatlinkshere($par = NULL) {
 	global $wgUser, $wgOut, $wgRequest;
 	$fname = "wfSpecialWhatlinkshere";
 
@@ -64,8 +69,10 @@ function wfSpecialWhatlinkshere($par = NULL)
 	}
 }
 
-function wfShowIndirectLinks( $level, $lid, $limit )
-{
+/**
+ *
+ */
+function wfShowIndirectLinks( $level, $lid, $limit ) {
 	global $wgOut, $wgUser;
 	$fname = "wfShowIndirectLinks";
 

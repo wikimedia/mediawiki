@@ -1,13 +1,20 @@
 <?php
-# This file is only included if profiling is enabled
-function wfProfileIn( $functionname )
-{
+/**
+ * This file is only included if profiling is enabled
+ */
+
+/**
+ * @param $functioname name of the function we will profile
+ */
+function wfProfileIn( $functionname ) {
 	global $wgProfiler;
 	$wgProfiler->profileIn( $functionname );
 }
 
-function wfProfileOut( $functionname = 'missing' ) 
-{
+/**
+ * @param $functioname name of the function we have profiled
+ */
+function wfProfileOut( $functionname = 'missing' ) {
 	global $wgProfiler;
 	$wgProfiler->profileOut( $functionname );
 }
@@ -17,8 +24,7 @@ function wfGetProfilingOutput( $start, $elapsed ) {
 	return $wgProfiler->getOutput( $start, $elapsed );
 }
 
-function wfProfileClose()
-{
+function wfProfileClose() {
 	global $wgProfiler;
 	$wgProfiler->close();
 }
@@ -30,6 +36,9 @@ if( !function_exists( 'memory_get_usage' ) ) {
 	}
 }
 
+/**
+ * @todo document
+ */
 class Profiler
 {
 	var $mStack = array(), $mWorkStack = array(), $mCollated = array();
@@ -43,8 +52,7 @@ class Profiler
 	}
 	*/
 	
-	function profileIn( $functionname )
-	{
+	function profileIn( $functionname ) {
 		global $wgDebugFunctionEntry;
 		if ( $wgDebugFunctionEntry && function_exists( 'wfDebug' ) ) {
 			wfDebug( str_repeat( ' ', count( $this->mWorkStack ) ) . 'Entering '.$functionname."\n" );
@@ -52,8 +60,7 @@ class Profiler
 		array_push( $this->mWorkStack, array($functionname, count( $this->mWorkStack ), microtime(), memory_get_usage() ) );
 	}
 
-	function profileOut( $functionname )
-	{
+	function profileOut( $functionname ) {
 		$memory = memory_get_usage();
 		global $wgDebugProfiling, $wgDebugFunctionEntry;
 
@@ -79,15 +86,13 @@ class Profiler
 		}
 	}
 	
-	function close() 
-	{
+	function close() {
 		while ( count( $this->mWorkStack ) ) {
 			$this->profileOut( 'close' );
 		}
 	}
 
-	function getOutput()
-	{
+	function getOutput() {
 		global $wgDebugFunctionEntry;
 		$wgDebugFunctionEntry = false;
 
@@ -165,8 +170,10 @@ class Profiler
 	}
 
 
-	/* static */ function logToDB($name, $timeSum, $eventCount) 
-	{
+	/**
+	 * @static
+	 */
+	function logToDB($name, $timeSum, $eventCount) {
 		$dbw =& wfGetDB( DB_MASTER );
 		$profiling = $dbw->tableName( 'profiling' );
 

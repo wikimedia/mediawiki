@@ -1,7 +1,16 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 require_once("QueryPage.php");
 
+/**
+ *
+ */
 class CategoriesPage extends QueryPage {
 
 	function getName() {
@@ -34,8 +43,10 @@ class CategoriesPage extends QueryPage {
 	}
 }
 
-function wfSpecialCategories()
-{
+/**
+ *
+ */
+function wfSpecialCategories() {
 	list( $limit, $offset ) = wfCheckLimits();
 
 	$cap = new CategoriesPage();

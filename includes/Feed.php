@@ -19,11 +19,21 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+/**
+ * Contain class to build rss / atom ... feeds
+ */
+
+/**
+ * Available feeds objects
+ */
 $wgFeedClasses = array(
 	'rss' => 'RSSFeed',
 	'atom' => 'AtomFeed',
 	);
 
+/**
+ * @todo document
+ */
 class FeedItem {
 	var $Title = 'Wiki';
 	var $Description = '';
@@ -73,6 +83,9 @@ class FeedItem {
 	}
 }
 
+/**
+ * @todo document
+ */
 class ChannelFeed extends FeedItem {
 	/* Abstract functions, override! */
 	function outHeader() {
@@ -99,6 +112,10 @@ class ChannelFeed extends FeedItem {
 	}
 }
 
+/**
+ * Generate a RSS feed
+ * @todo document
+ */
 class RSSFeed extends ChannelFeed {
 
 	function formatTime( $ts ) {
@@ -140,6 +157,10 @@ class RSSFeed extends ChannelFeed {
 	}
 }
 
+/**
+ * Generate an Atom feed
+ * @todo document
+ */
 class AtomFeed extends ChannelFeed {
 	function formatTime( $ts ) {
 		// need to use RFC 822 time format at least for rss2.0

@@ -1,16 +1,22 @@
 <?php
-# See title.doc
+/**
+ * See title.doc
+ *
+ */
 
+/**
+ *
+ */
 $wgTitleInterwikiCache = array();
-
-# Title class
-# 
-# * Represents a title, which may contain an interwiki designation or namespace
-# * Can fetch various kinds of data from the database, albeit inefficiently. 
-#
-
 define ( 'GAID_FOR_UPDATE', 1 );
 
+/**
+ * Title class
+ * - Represents a title, which may contain an interwiki designation or namespace
+ * - Can fetch various kinds of data from the database, albeit inefficiently. 
+ *
+ * @todo migrate comments to phpdoc format
+*/
 class Title {
 	# All member variables should be considered private
 	# Please use the accessor functions

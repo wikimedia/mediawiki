@@ -1,6 +1,11 @@
 <?php
+/**
+ *
+ */
 
-# shortcut to get the current language "special" namespace name
+/**
+ * shortcut to get the current language "special" namespace name
+ */
 function sns() {
 	global $wgLang ;
 	$ns = $wgLang->getNamespaces() ;
@@ -8,7 +13,9 @@ function sns() {
 }
 
 
-# Entry point
+/**
+ * Entry point
+ */
 function wfSpecialMaintenance( $par=NULL ) {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest, $wgLanguageCode;
 	global $wgMiserMode;
@@ -84,7 +91,9 @@ function wfSpecialMaintenance( $par=NULL ) {
 	$wgOut->addHTML ( $r ) ;
 }
 
-# Generate a maintenance page link
+/**
+ * Generate a maintenance page link
+ */
 function getMPL ( $x ) {
 	global $wgUser , $wgLang;
 	$sk = $wgUser->getSkin() ;
@@ -108,8 +117,12 @@ function getMaintenancePageBacklink( $subfunction ) {
 }
 
 
-# Disambiguations, DoubleRedirects and BrokenRedirects are now using the
-# QueryPage class. Code is in a Special*.php file.
+/**#@+
+ * Disambiguations, DoubleRedirects and BrokenRedirects are now using the
+ * QueryPage class. Code is in a Special*.php file.
+ *
+ * @deprecated
+ */
 function wfSpecialDoubleRedirects() {
 	global $wgOut;
 	$t = Title::makeTitle( NS_SPECIAL, "DoubleRedirects" );
@@ -127,10 +140,15 @@ function wfSpecialDisambiguations() {
 	$t = Title::makeTitle( NS_SPECIAL, "Disambiguations" );
 	$wgOut->redirect ($t->getFullURL());
 }
+/**#@-*/
 
 
-# This doesn't really work anymore, because self-links are now displayed as
-# unlinked bold text, and are not entered into the link table.
+/**
+ * This doesn't really work anymore, because self-links are now displayed as
+ * unlinked bold text, and are not entered into the link table.
+ *
+ * @deprecated
+ */
 function wfSpecialSelfLinks() {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
 	$fname = 'wfSpecialSelfLinks';
@@ -164,7 +182,9 @@ function wfSpecialSelfLinks() {
 	$wgOut->addHTML( "<p>{$sl}\n" );
 }
 
-
+/**
+ * 
+ */
 function wfSpecialMispeelings () {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
 	$sk = $wgUser->getSkin();
@@ -231,7 +251,9 @@ function wfSpecialMispeelings () {
 	$wgOut->addHTML( "<p>{$sl}\n" );
 }
 
-
+/**
+ *
+ */
 function wfSpecialMissingLanguageLinks() {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest;
 	

@@ -1,9 +1,18 @@
 <?php
+/**
+ *
+ */
+
+/**
+ *
+ */
 require_once( "SpecialRecentchanges.php" );
 require_once( "WatchedItem.php" );
 
-function wfSpecialWatchlist()
-{
+/**
+ * constructor
+ */
+function wfSpecialWatchlist() {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgRequest;
 	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname;
 	$fname = "wfSpecialWatchlist";

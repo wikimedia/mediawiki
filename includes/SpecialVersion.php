@@ -1,7 +1,12 @@
 <?php
+/**
+ *
+ */
 
-function wfSpecialVersion()
-{
+/**
+ * constructor
+ */
+function wfSpecialVersion() {
 	global $wgUser, $wgOut, $wgVersion;
 	$fname = "wfSpecialVersion";
 
@@ -39,7 +44,7 @@ function wfSpecialVersion()
 		"[http://www.mysql.com/ MySQL]" => mysql_get_server_info()
  	);
 	
-	$out = "";
+	$out = '';
 	foreach( $versions as $module => $ver ) {
 		$out .= ":$module: $ver\n";
 	}

@@ -1,8 +1,13 @@
 <?php
 # $Id$
-# This file deals with MySQL interface functions 
-# and query specifics/optimisations
-#
+/**
+ * This file deals with MySQL interface functions 
+ * and query specifics/optimisations
+ */
+
+/**
+ * Depends on the CacheManager
+ */
 require_once( 'CacheManager.php' );
 
 define( 'LIST_COMMA', 0 );
@@ -16,6 +21,10 @@ define( 'DEADLOCK_DELAY_MIN', 500000 );
 # Maximum time to wait before retry
 define( 'DEADLOCK_DELAY_MAX', 1500000 );
 
+/**
+ * Database abstraction object
+ * @category database
+ */
 class Database {
 
 #------------------------------------------------------------------------------
@@ -959,14 +968,19 @@ class Database {
 	}
 } 
 
+/**
+ * Database abstraction object for mySQL
+ * @category database
+ */
 class DatabaseMysql extends Database {
 	# Inherit all
 }
 
-#------------------------------------------------------------------------------
-# Result wrapper for grabbing data queried by someone else
-#------------------------------------------------------------------------------
 
+/**
+ * Result wrapper for grabbing data queried by someone else
+ * @category database
+ */
 class ResultWrapper {
 	var $db, $result;
 	
@@ -998,8 +1012,11 @@ class ResultWrapper {
 # Global functions
 #------------------------------------------------------------------------------
 
-/* Standard fail function, called by default when a connection cannot be established
-   Displays the file cache if possible */
+/**
+ * Standard fail function, called by default when a connection cannot be
+ * established.
+ * Displays the file cache if possible
+ */
 function wfEmergencyAbort( &$conn, $error ) {
 	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgSiteNotice, $wgOutputEncoding;
 	

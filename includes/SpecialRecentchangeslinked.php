@@ -1,8 +1,17 @@
 <?php
+/**
+ *
+ */
+
+/**
+ *
+ */
 require_once( "SpecialRecentchanges.php" );
 
-function wfSpecialRecentchangeslinked( $par = NULL )
-{
+/**
+ * constructor
+ */
+function wfSpecialRecentchangeslinked( $par = NULL ) {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest;
 	$fname = "wfSpecialRecentchangeslinked";
 

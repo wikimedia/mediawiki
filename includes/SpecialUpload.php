@@ -1,14 +1,25 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 require_once( "Image.php" );
 
-function wfSpecialUpload()
-{
+/**
+ * Constructor
+ */
+function wfSpecialUpload() {
 	global $wgRequest;
 	$form = new UploadForm( $wgRequest );
 	$form->execute();
 }
 
+/**
+ *
+ */
 class UploadForm {
 	var $mUploadAffirm, $mUploadFile, $mUploadDescription, $mIgnoreWarning;
 	var $mUploadSaveName, $mUploadTempName, $mUploadSize, $mUploadOldVersion;
@@ -70,8 +81,7 @@ class UploadForm {
 	}
 
 
-	function processUpload()
-	{
+	function processUpload() {
 		global $wgUser, $wgOut, $wgLang;
 		global $wgUploadDirectory;
 		global $wgSavedFile, $wgUploadOldVersion;
@@ -185,8 +195,7 @@ class UploadForm {
 		return in_array( strtolower( $ext ), $list );
 	}
 
-	function saveUploadedFile( $saveName, $tempName )
-	{
+	function saveUploadedFile( $saveName, $tempName ) {
 		global $wgSavedFile, $wgUploadOldVersion;
 		global $wgUploadDirectory, $wgOut;
 
@@ -211,8 +220,7 @@ class UploadForm {
 		chmod( $wgSavedFile, 0644 );
 	}
 
-	function unsaveUploadedFile()
-	{
+	function unsaveUploadedFile() {
 		global $wgUploadDirectory, $wgOut, $wgRequest;
 		
 		$wgSavedFile = $_SESSION['wsUploadFiles'][$this->mSessionKey];
@@ -234,16 +242,14 @@ class UploadForm {
 		}
 	}
 
-	function uploadError( $error )
-	{
+	function uploadError( $error ) {
 		global $wgOut;
 		$sub = wfMsg( "uploadwarning" );
 		$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
 		$wgOut->addHTML( "<h4 style='error'>{$error}</h4>\n" );
 	}
 
-	function uploadWarning( $warning )
-	{
+	function uploadWarning( $warning ) {
 		global $wgOut, $wgUser, $wgLang, $wgUploadDirectory, $wgRequest;
 		global $wgSavedFile, $wgUploadOldVersion;
 		global $wgUseCopyrightUpload;
@@ -294,8 +300,7 @@ class UploadForm {
 	</td><td align='left'>{$reup}</td></tr></table></form>\n" );
 	}
 
-	function mainUploadForm( $msg )
-	{
+	function mainUploadForm( $msg ) {
 		global $wgOut, $wgUser, $wgLang, $wgUploadDirectory, $wgRequest;
 		global $wgUseCopyrightUpload;
 

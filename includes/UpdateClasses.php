@@ -1,5 +1,12 @@
 <?php
-# See deferred.doc
+/**
+ * See deferred.doc
+ *
+ */
+
+/**
+ *
+ */
 require_once( 'UserUpdate.php' );
 require_once( 'ViewCountUpdate.php' );
 require_once( 'SiteStatsUpdate.php' );

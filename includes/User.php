@@ -1,8 +1,17 @@
 <?php
-# See user.doc
+/**
+ * See user.doc
+ *
+ */
 
+/**
+ *
+ */
 require_once( 'WatchedItem.php' );
 
+/**
+ *
+ */
 class User {
 	/* private */ var $mId, $mName, $mPassword, $mEmail, $mNewtalk;
 	/* private */ var $mRights, $mOptions;
@@ -18,8 +27,10 @@ class User {
 		$this->loadDefaults();
 	}
 
-	# Static factory method
-	#
+	/**
+	 * Static factory method
+	 * @static
+	 */
 	function newFromName( $name ) {
 		$u = new User();
 
@@ -30,17 +41,26 @@ class User {
 		return $u;
 	}
 
-	/* static */ function whoIs( $id )	{
+	/**
+	 * @static
+	 */
+	function whoIs( $id )	{
 		$dbr =& wfGetDB( DB_SLAVE );
 		return $dbr->getField( 'user', 'user_name', array( 'user_id' => $id ) );
 	}
 
-	/* static */ function whoIsReal( $id )	{
+	/**
+	 * @static
+	 */
+	function whoIsReal( $id )	{
 		$dbr =& wfGetDB( DB_SLAVE );
 		return $dbr->getField( 'user', 'user_real_name', array( 'user_id' => $id ) );
 	}
 
-	/* static */ function idFromName( $name ) {
+	/**
+	 * @static
+	 */
+	function idFromName( $name ) {
 		$fname = "User::idFromName";
 
 		$nt = Title::newFromText( $name );
@@ -58,13 +78,18 @@ class User {
 		}
 	}
 
-	# does the string match an anonymous user IP address?
-	/* static */ function isIP( $name ) {
+	/**
+	 * does the string match an anonymous user IP address?
+	 * @static
+	 */
+	function isIP( $name ) {
 		return preg_match("/^\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}$/",$name);
-
 	}
 
-	/* static */ function randomPassword() {
+	/**
+	 * static
+	 */
+	function randomPassword() {
 		$pwchars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz';
 		$l = strlen( $pwchars ) - 1;
 
@@ -75,6 +100,9 @@ class User {
 		return $np;
 	}
 
+	/**
+	 *
+	 */
 	function loadDefaults() {
 		global $wgLang, $wgIP;
 		global $wgNamespacesToBeSearchedDefault;
@@ -99,8 +127,10 @@ class User {
 		$this->mHash = false;
 	}
 
-	/* private */ function getBlockedStatus()
-	{
+	/**
+	 * @access private
+	 */
+	function getBlockedStatus() {
 		global $wgIP, $wgBlockCache, $wgProxyList;
 
 		if ( -1 != $this->mBlockedby ) { return; }
@@ -134,8 +164,7 @@ class User {
 		}
 	}
 
-	function isBlocked()
-	{
+	function isBlocked() {
 		$this->getBlockedStatus();
 		if ( 0 === $this->mBlockedby ) { return false; }
 		return true;
@@ -165,8 +194,10 @@ class User {
 		@session_start();
 	}
 
-	/* static */ function loadFromSession()
-	{
+	/**
+	 * @static
+	 */
+	function loadFromSession() {
 		global $wgMemc, $wgDBname;
 
 		if ( isset( $_SESSION['wsUserID'] ) ) {
@@ -224,8 +255,10 @@ class User {
 		return new User(); # Can't log in from session
 	}
 
-	function loadFromDatabase()
-	{
+	/**
+	 *
+	 */
+	function loadFromDatabase() {
 		global $wgCommandLineMode;
 		$fname = "User::loadFromDatabase";
 		if ( $this->mDataLoaded || $wgCommandLineMode ) {
@@ -434,8 +467,10 @@ class User {
 		return in_array( 'bot', $this->mRights );
 	}
 
-	# Load a skin if it doesn't exist or return it
-	# FIXME : need to check the old failback system [AV]
+	/**
+	 * Load a skin if it doesn't exist or return it
+	 * @todo FIXME : need to check the old failback system [AV]
+	 */
 	function &getSkin() {
 		global $IP, $wgUsePHPTal;
 		if ( ! isset( $this->mSkin ) ) {
@@ -502,7 +537,10 @@ class User {
 	}
 
 
-	/* private */ function encodeOptions() {
+	/**
+	 * @access private
+	 */
+	function encodeOptions() {
 		$a = array();
 		foreach ( $this->mOptions as $oname => $oval ) {
 			array_push( $a, $oname.'='.$oval );
@@ -511,7 +549,10 @@ class User {
 		return $s;
 	}
 
-	/* private */ function decodeOptions( $str ) {
+	/**
+	 * @access private
+	 */
+	function decodeOptions( $str ) {
 		$a = explode( "\n", $str );
 		foreach ( $a as $s ) {
 			if ( preg_match( "/^(.[^=]*)=(.*)$/", $s, $m ) ) {
@@ -584,8 +625,9 @@ class User {
 		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
 	}
 
-	# Checks if a user with the given name exists, returns the ID
-	#
+	/**
+	 * Checks if a user with the given name exists, returns the ID
+	 */
 	function idForName() {
 		$fname = 'User::idForName';
 
@@ -626,8 +668,7 @@ class User {
 				
 	}
 
-	function spreadBlock()
-	{
+	function spreadBlock() {
 		global $wgIP;
 		# If the (non-anonymous) user is blocked, this function will block any IP address
 		# that they successfully log on from.
@@ -672,7 +713,7 @@ class User {
 
 	}
 
-	function getPageRenderingHash(){
+	function getPageRenderingHash() {
 		if( $this->mHash ){
 			return $this->mHash;
 		}
@@ -705,10 +746,11 @@ class User {
 		return $allowed;
 	}
 
-	# Set mDataLoaded, return previous value
-	# Use this to prevent DB access in command-line scripts or similar situations
-	function setLoaded( $loaded )
-	{
+	/**
+	 * Set mDataLoaded, return previous value
+	 * Use this to prevent DB access in command-line scripts or similar situations
+	 */
+	function setLoaded( $loaded ) {
 		return wfSetVar( $this->mDataLoaded, $loaded );
 	}
 
@@ -716,7 +758,10 @@ class User {
 		return Title::makeTitle( NS_USER, $this->mName );
 	}
 
-	/* static */ function getMaxID() {
+	/**
+	 * @static
+	 */
+	function getMaxID() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		return $dbr->selectField( 'user', 'max(user_id)', false );
 	}
@@ -725,7 +770,9 @@ class User {
 		return $this->mId > User::getMaxID() * 0.99 && !$this->isSysop() && !$this->isBot() || $this->getID() == 0;
 	}
 
-	# Check to see if the given clear-text password is one of the accepted passwords
+	/**
+	 * Check to see if the given clear-text password is one of the accepted passwords
+	 */
 	function checkPassword( $password ) {
 		$this->loadFromDatabase();
 		$ep = $this->encryptPassword( $password );

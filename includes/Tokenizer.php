@@ -1,4 +1,11 @@
 <?php
+/**
+ *
+ */
+
+/**
+ *
+ */
 class Tokenizer {
 	/* private */ var $mText, 		# Text to be processed by the tokenizer
 			  $mPos,		# current position of tokenizer in text
@@ -6,8 +13,11 @@ class Tokenizer {
 			  $mQueuedToken;	# Tokens that were already found, but not
 			  			# returned yet.
 
-	/* private */ function Tokenizer()
-	{
+	/**
+	 * Constructor
+	 * @access private
+	 */
+	function Tokenizer() {
 		global $wgLang;
 
 		$this->mPos=0;
@@ -15,9 +25,10 @@ class Tokenizer {
 		$this->linkPrefixExtension = $wgLang->linkPrefixExtension();
 	}
 
-	# factory function
-	function newFromString( $s )
-	{
+	/**
+	 * factory function
+	 */
+	function newFromString( $s ) {
 		$fname = 'Tokenizer::newFromString';
 		wfProfileIn( $fname );
 
@@ -30,13 +41,14 @@ class Tokenizer {
 	}
 
 
-	// Return the next token, but do not increase the pointer. The next call
-	// to previewToken or nextToken will return the same token again.
-	// Actually, the pointer is increased, but the token is queued. The next
-	// call to previewToken or nextToken will check the queue and return
-	// the stored token.
-	function previewToken()
-	{
+	/**
+	 * Return the next token, but do not increase the pointer. The next call
+	 * to previewToken or nextToken will return the same token again.
+	 * Actually, the pointer is increased, but the token is queued. The next
+	 * call to previewToken or nextToken will check the queue and return
+	 * the stored token.
+	 */
+	function previewToken() {
 		$fname = 'Tokenizer::previewToken';
 		wfProfileIn( $fname );
 
@@ -53,13 +65,15 @@ class Tokenizer {
 	}
 
 
-	// get the next token
-	// proceeds character by character through the text, looking for characters needing
-	// special attention. Those are currently: I, R, ', [, ], newline
-	//
-	// TODO:  handling of French blanks not yet implemented
-	function nextToken()
-	{
+	/**
+	 * Get the next token.
+	 *
+	 * proceeds character by character through the text, looking for characters needing
+	 * special attention. Those are currently: I, R, ', [, ], newline
+	 *
+	 * @todo handling of French blanks not yet implemented
+	 */
+	function nextToken() {
 		$fname = 'Tokenizer::nextToken';
 		wfProfileIn( $fname );
 
@@ -256,10 +270,14 @@ class Tokenizer {
 		return $token;
 	}
 
-	// function continues
-	// checks whether the mText continues with $cont from mPos+1
-	/* private */ function continues( $cont )
-	{
+	/**
+	 * function continues
+	 *
+	 * checks whether the mText continues with $cont from mPos+1
+	 *
+	 * @access private
+	 */
+	function continues( $cont ) {
 		// If string is not long enough to contain $cont, return false
 		if ( $this->mTextLength < $this->mPos + strlen( $cont ) )
 			return false;
@@ -271,10 +289,14 @@ class Tokenizer {
 		return true;
 	}
 
-	// function preceeded
-	// checks whether the mText is preceeded by $prec at position mPos
-	/* private */ function preceeded( $prec )
-	{
+	/**
+	 * function preceeded
+	 *
+	 * checks whether the mText is preceeded by $prec at position mPos
+	 *
+	 * @access private
+	 */
+	function preceeded( $prec ) {
 		$len = strlen( $prec );
 		// if $prec is longer than the text up to mPos, return false
 		if ( $this->mPos < $len )
@@ -282,8 +304,10 @@ class Tokenizer {
 		return ( 0 == strcmp( $prec, substr($this->mText, $this->mPos-$len, $len) ) );
 	}
 
-	function readAllUntil( $border )
-	{
+	/**
+	 *
+	 */
+	function readAllUntil( $border ) {
 		$n = strpos( $this->mText, $border, $this->mPos );
 		if ( $n === false )
 			return '';

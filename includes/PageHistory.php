@@ -1,9 +1,13 @@
 <?php
+/**
+ * Page history
+ * 
+ * Split off from Article.php and Skin.php, 2003-12-22
+ */
 
-/* Page history
-   Split off from Article.php and Skin.php, 2003-12-22
-*/
-
+/**
+ * @todo document
+ */
 class PageHistory {
 	var $mArticle, $mTitle, $mSkin;
 	var $lastline, $lastdate;
@@ -15,8 +19,7 @@ class PageHistory {
 
 	# This shares a lot of issues (and code) with Recent Changes
 
-	function history()
-	{
+	function history() {
 		global $wgUser, $wgOut, $wgLang;
 
 		# If page hasn't changed, client can cache this
@@ -116,8 +119,7 @@ class PageHistory {
 		wfProfileOut( $fname );
 	}
 
-	function beginHistoryList()
-	{
+	function beginHistoryList() {
 		global $wgTitle;
 		$this->lastdate = $this->lastline = '';
 		$s = '<p>' . wfMsg( 'histlegend' ) . '</p>';
@@ -129,8 +131,7 @@ class PageHistory {
 		return $s;
 	}
 
-	function endHistoryList( $skip = false )
-	{
+	function endHistoryList( $skip = false ) {
 		$last = wfMsg( 'last' );
 
 		$s = $skip ? '' : preg_replace( "/!OLDID![0-9]+!/", $last, $this->lastline );
@@ -140,8 +141,7 @@ class PageHistory {
 		return $s;
 	}
 
-	function historyLine( $ts, $u, $ut, $ns, $ttl, $oid, $c, $isminor, $counter = '' )
-	{
+	function historyLine( $ts, $u, $ut, $ns, $ttl, $oid, $c, $isminor, $counter = '' ) {
 		global $wgLang;
 
 		$artname = Title::makeName( $ns, $ttl );

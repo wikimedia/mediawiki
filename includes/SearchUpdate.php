@@ -1,14 +1,18 @@
 <?php
 # $Id$
-# See deferred.doc
+/**
+ * See deferred.doc
+ */
 
+/**
+ *
+ */
 class SearchUpdate {
 
 	/* private */ var $mId = 0, $mNamespace, $mTitle, $mText;
 	/* private */ var $mTitleWords;
 
-	function SearchUpdate( $id, $title, $text = false )
-	{
+	function SearchUpdate( $id, $title, $text = false ) {
 		$nt = Title::newFromText( $title );
 		if( $nt ) {
 			$this->mId = $id;
@@ -23,8 +27,7 @@ class SearchUpdate {
 		}
 	}
 
-	function doUpdate()
-	{
+	function doUpdate() {
 		global $wgDBminWordLen, $wgLang, $wgDisableSearchUpdate;
 
 		if( $wgDisableSearchUpdate || !$this->mId ) {

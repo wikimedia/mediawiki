@@ -1,7 +1,16 @@
 <?php
+/**
+ *
+ */
 
-require_once( "QueryPage.php" );
+/**
+ *
+ */
+require_once( 'QueryPage.php' );
 
+/**
+ *
+ */
 class AncientPagesPage extends QueryPage {
 
 	function getName() {
@@ -38,8 +47,7 @@ class AncientPagesPage extends QueryPage {
 	}
 }
 
-function wfSpecialAncientpages()
-{
+function wfSpecialAncientpages() {
 	list( $limit, $offset ) = wfCheckLimits();
 
 	$app = new AncientPagesPage();

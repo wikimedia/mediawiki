@@ -19,10 +19,15 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-# Class to simplify the use of log pages.
-# The logs are now kept in a table which is easier to manage and trim
-# than ever-growing wiki pages.
+/**
+ * Contain log classes
+ */
 
+/**
+ * Class to simplify the use of log pages.
+ * The logs are now kept in a table which is easier to manage and trim
+ * than ever-growing wiki pages.
+ */
 class LogPage {
 	/* private */ var $type, $action, $comment;
 	var $updateRecentChanges = true;
@@ -66,12 +71,18 @@ class LogPage {
 		return true;
 	}
 
-	/* static */ function validTypes() {
+	/**
+	 * @static
+	 */
+	function validTypes() {
 		static $types = array( '', 'block', 'protect', 'rights', 'delete', 'upload' );
 		return $types;
 	}
 	
-	/* static */ function validActions( $type ) {
+	/**
+	 * @static
+	 */
+	function validActions( $type ) {
 		static $actions = array(
 			'' => NULL,
 			'block' => array( 'block', 'unblock' ),
@@ -83,11 +94,17 @@ class LogPage {
 		return $actions[$type];
 	}
 	
-	/* static */ function isLogType( $type ) {
+	/**
+	 * @static
+	 */
+	function isLogType( $type ) {
 		return in_array( $type, LogPage::validTypes() );
 	}
 	
-	/* static */ function logName( $type ) {
+	/**
+	 * @static
+	 */
+	function logName( $type ) {
 		static $typeText = array(
 			''        => 'log',
 			'block'   => 'blocklogpage',
@@ -99,7 +116,10 @@ class LogPage {
 		return str_replace( '_', ' ', wfMsg( $typeText[$type] ) );
 	}
 	
-	/* static */ function logHeader( $type ) {
+	/**
+	 * @static
+	 */
+	function logHeader( $type ) {
 		static $headerText = array(
 			''        => 'alllogstext',
 			'block'   => 'blocklogtext',
@@ -111,7 +131,10 @@ class LogPage {
 		return wfMsg( $headerText[$type] );
 	}
 	
-	/* static */ function actionText( $type, $action, $titleLink = NULL ) {
+	/**
+	 * @static
+	 */
+	function actionText( $type, $action, $titleLink = NULL ) {
 		static $actions = array(
 			'block/block' => 'blocklogentry',
 			'block/unblock' => 'blocklogentry',

@@ -1,6 +1,4 @@
 <?php
-# Token special page for marking search requests properly in the skin.
-# 
 # Copyright (C) 2004 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
 # 
@@ -19,6 +17,13 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+/**
+ * Token special page for marking search requests properly in the skin.
+ */
+
+/**
+ * constructor
+ */
 function wfSpecialSearch( $par ) {
 	global $wgOutput;
 	require_once( 'SearchEngine.php' );

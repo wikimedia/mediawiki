@@ -1,11 +1,19 @@
 <?php
-# Cache for article titles (prefixed DB keys) and ids linked from one source
+/**
+ * Cache for article titles (prefixed DB keys) and ids linked from one source
+ */
 
+/**
+ *
+ */
 # These are used in incrementalSetup()
 define ('LINKCACHE_GOOD', 0);
 define ('LINKCACHE_BAD', 1);
 define ('LINKCACHE_IMAGE', 2);
 
+/**
+ *
+ */
 class LinkCache {	
 	// Increment $mClassVer whenever old serialized versions of this class
 	// becomes incompatible with the new version.
@@ -21,8 +29,7 @@ class LinkCache {
 		return $wgDBname.':lc:title:'.$title;
 	}
 	
-	function LinkCache()
-	{
+	function LinkCache() {
 		$this->mActive = true;
 		$this->mPreFilled = false;
 		$this->mForUpdate = false;
@@ -34,13 +41,14 @@ class LinkCache {
 		$this->mOldBadLinks = array();
 	}
 
-	# General accessor to get/set whether SELECT FOR UPDATE should be used
+	/**
+	 * General accessor to get/set whether SELECT FOR UPDATE should be used
+	 */
 	function forUpdate( $update = NULL ) { 
 		return wfSetVar( $this->mForUpdate, $update );
 	}
 	
-	function getGoodLinkID( $title )
-	{
+	function getGoodLinkID( $title ) {
 		if ( array_key_exists( $title, $this->mGoodLinks ) ) {
 			return $this->mGoodLinks[$title];
 		} else {
@@ -48,32 +56,27 @@ class LinkCache {
 		}
 	}
 
-	function isBadLink( $title )
-	{
+	function isBadLink( $title ) {
 		return array_key_exists( $title, $this->mBadLinks ); 
 	}
 
-	function addGoodLink( $id, $title )
-	{
+	function addGoodLink( $id, $title ) {
 		if ( $this->mActive ) {
 			$this->mGoodLinks[$title] = $id;
 		}
 	}
 
-	function addBadLink( $title )
-	{
+	function addBadLink( $title ) {
 		if ( $this->mActive && ( ! $this->isBadLink( $title ) ) ) {
 			$this->mBadLinks[$title] = 1;
 		}
 	}
 
-	function addImageLink( $title )
-	{
+	function addImageLink( $title ) {
 		if ( $this->mActive ) { $this->mImageLinks[$title] = 1; }
 	}
 
-	function addImageLinkObj( $nt )
-	{
+	function addImageLinkObj( $nt ) {
 		if ( $this->mActive ) { $this->mImageLinks[$nt->getDBkey()] = 1; }
 	}
 	
@@ -85,14 +88,12 @@ class LinkCache {
 		$this->addCategoryLink( $nt->getDBkey(), $sortkey );
 	}
 
-	function clearBadLink( $title )
-	{
+	function clearBadLink( $title ) {
 		unset( $this->mBadLinks[$title] );
 		$this->clearLink( $title );
 	}
 	
-	function clearLink( $title ) 
-	{
+	function clearLink( $title ) {
 		global $wgMemc, $wgLinkCacheMemcached;
 		if( $wgLinkCacheMemcached )
 			$wgMemc->delete( $this->getKey( $title ) );
@@ -105,8 +106,7 @@ class LinkCache {
 	function getImageLinks() { return $this->mImageLinks; }
 	function getCategoryLinks() { return $this->mCategoryLinks; }
 
-	function addLink( $title )
-	{
+	function addLink( $title ) {
 		$nt = Title::newFromDBkey( $title );
 		if( $nt ) {
 			return $this->addLinkObj( $nt );
@@ -115,8 +115,7 @@ class LinkCache {
 		}
 	}
 	
-	function addLinkObj( &$nt )
-	{
+	function addLinkObj( &$nt ) {
 		global $wgMemc, $wgLinkCacheMemcached;
 		$title = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $title ) ) { return 0; }		
@@ -160,8 +159,7 @@ class LinkCache {
 		return $id;
 	}
 
-	function preFill( &$fromtitle )
-	{
+	function preFill( &$fromtitle ) {
 		global $wgEnablePersistentLC;
 
 		$fname = 'LinkCache::preFill';
@@ -220,44 +218,43 @@ class LinkCache {
 		wfProfileOut( $fname );
 	}
 
-	function getGoodAdditions() 
-	{
+	function getGoodAdditions() {
 		return array_diff( $this->mGoodLinks, $this->mOldGoodLinks );
 	}
 
-	function getBadAdditions() 
-	{
+	function getBadAdditions() {
 		#wfDebug( "mOldBadLinks: " . implode( ', ', array_keys( $this->mOldBadLinks ) ) . "\n" );
 		#wfDebug( "mBadLinks: " . implode( ', ', array_keys( $this->mBadLinks ) ) . "\n" );
 		return array_values( array_diff( array_keys( $this->mBadLinks ), array_keys( $this->mOldBadLinks ) ) );
 	}
 
-	function getImageAdditions()
-	{
+	function getImageAdditions() {
 		return array_diff_assoc( $this->mImageLinks, $this->mOldImageLinks );
 	}
 
-	function getGoodDeletions() 
-	{
+	function getGoodDeletions() {
 		return array_diff( $this->mOldGoodLinks, $this->mGoodLinks );
 	}
 
-	function getBadDeletions()
-	{
+	function getBadDeletions() {
 		return array_values( array_diff( array_keys( $this->mOldBadLinks ), array_keys( $this->mBadLinks ) ));
 	}
 
-	function getImageDeletions()
-	{
+	function getImageDeletions() {
 		return array_diff_assoc( $this->mOldImageLinks, $this->mImageLinks );
 	}
 
-	#     Parameters: $which is one of the LINKCACHE_xxx constants, $del and $add are 
-	# the incremental update arrays which will be filled. Returns whether or not it's
-	# worth doing the incremental version. For example, if [[List of mathematical topics]]
-	# was blanked, it would take a long, long time to do incrementally.
-	function incrementalSetup( $which, &$del, &$add )
-	{
+	/**
+	 * Parameters:
+	 * @param $which is one of the LINKCACHE_xxx constants
+	 * @param $del,$add are the incremental update arrays which will be filled.
+	 *
+	 * @return Returns whether or not it's worth doing the incremental version.
+	 *
+	 * For example, if [[List of mathematical topics]] was blanked,
+	 * it would take a long, long time to do incrementally.
+	 */
+	function incrementalSetup( $which, &$del, &$add ) {
 		if ( ! $this->mPreFilled ) {
 			return false;
 		}
@@ -282,15 +279,19 @@ class LinkCache {
 		return true;
 	}
 
-	# Clears cache but leaves old preFill copies alone
-	function clear() 
-	{
+	/**
+	 * Clears cache but leaves old preFill copies alone
+	 */
+	function clear() {
 		$this->mGoodLinks = array();
 		$this->mBadLinks = array();
 		$this->mImageLinks = array();
 	}
 
-	/* private */ function fillFromLinkscc( $id ){ 
+	/**
+	 * @access private
+	 */
+	function fillFromLinkscc( $id ){ 
 		$fname = 'LinkCache::fillFromLinkscc';
 
 		$id = IntVal( $id );
@@ -325,7 +326,10 @@ class LinkCache {
 
 	}
 
-	/* private */ function saveToLinkscc( $pid ){
+	/**
+	 * @access private
+	 */
+	function saveToLinkscc( $pid ){
 		global $wgCompressedPersistentLC;
 		if( $wgCompressedPersistentLC and function_exists( 'gzcompress' ) ) {
 			$ser = gzcompress( serialize( $this ), 3 );
@@ -336,9 +340,12 @@ class LinkCache {
 		$db->replace( 'linkscc', array( 'lcc_pageid' ), array( 'lcc_pageid' => $pid, 'lcc_cacheobj' => $ser ) );
 	}
 
-	# Delete linkscc rows which link to here
-	# $pid is a page id
-	/* static */ function linksccClearLinksTo( $pid ){
+	/**
+	 * Delete linkscc rows which link to here
+	 * @param $pid is a page id
+	 * @static
+	 */
+	function linksccClearLinksTo( $pid ){
 		global $wgEnablePersistentLC;
 		if ( $wgEnablePersistentLC ) {
 			$fname = 'LinkCache::linksccClearLinksTo';
@@ -352,9 +359,12 @@ class LinkCache {
 
 	}
 
-	# Delete linkscc rows with broken links to here
-	# $title is a prefixed db title, for example like Title->getPrefixedDBkey() returns.
-	/* static */ function linksccClearBrokenLinksTo( $title ){
+	/**
+	 * Delete linkscc rows with broken links to here
+	 * @param $title is a prefixed db title for example like Title->getPrefixedDBkey() returns.
+	 * @static
+	 */
+	function linksccClearBrokenLinksTo( $title ){
 		global $wgEnablePersistentLC;
 		$fname = 'LinkCache::linksccClearBrokenLinksTo';
 
@@ -364,8 +374,11 @@ class LinkCache {
 		}
 	}
 
-	# $pid is a page id
-	/* static */ function linksccClearPage( $pid ){
+	/**
+	 * @param $pid is a page id
+	 * @static
+	 */
+	function linksccClearPage( $pid ){
 		global $wgEnablePersistentLC;
 		if ( $wgEnablePersistentLC ) {
 			$pid = intval( $pid );

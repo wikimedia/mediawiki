@@ -1,15 +1,16 @@
 <?php
-
-/*
-	Special handling for category description pages
-	Modelled after ImagePage.php
+/**
+ * Special handling for category description pages
+ * Modelled after ImagePage.php
+ *
 */
 
+/**
+ *
+ */
 class CategoryPage extends Article {
 
-
 	function view() {
-
 		if ( NS_CATEGORY == $this->mTitle->getNamespace() ) {
 			$this->openShowCategory();
 		}
@@ -25,8 +26,7 @@ class CategoryPage extends Article {
 		}
 	}
 
-	function openShowCategory()
-	{
+	function openShowCategory() {
 		# For overloading
 	}
 	
@@ -36,8 +36,7 @@ class CategoryPage extends Article {
         # languages due to sorting issues, so they might want to turn it
         # off.
 
-	function closeShowCategory()
-	{
+	function closeShowCategory() {
 		global $wgOut;
 		$msg = wfMsg('usenewcategorypage');
 		if ( '0' == @$msg[0] )
