@@ -41,7 +41,7 @@ if( $wgUseSquid && isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
 	}
 	$wgIP = trim(end($hopips));
 } else {
-	$wgIP = getenv('REMOTE_ADDR');
+	$wgIP = $_SERVER['REMOTE_ADDR'];
 }
 
 

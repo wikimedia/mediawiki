@@ -117,14 +117,15 @@ $wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
  * Default to wikiadmin@SERVER_NAME
  * @global string $wgEmergencyContact
  */
-$wgEmergencyContact = 'wikiadmin@' . getenv( 'SERVER_NAME' );
+$wgEmergencyContact = 'wikiadmin@' . $_SERVER['SERVER_NAME'];
+
 /**
  * Password reminder email address
  * The address we should use as sender when a user is requesting his password
  * Default to apache@SERVER_NAME
  * @global string $wgPasswordSender
  */
-$wgPasswordSender	= 'Wikipedia Mail <apache@' . getenv( 'SERVER_NAME' ) . '>';
+$wgPasswordSender	= 'Wikipedia Mail <apache@' . $_SERVER['SERVER_NAME'] . '>';
 
 
 /**
