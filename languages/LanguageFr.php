@@ -718,12 +718,12 @@ L'adresse électronique que vous avez indiquée dans vos préférences apparaît
 		wfLocalUrl( "Special:Userlogin" ) . "\">connecté</a>
 pour modifier votre liste.",
 "addedwatch"	=> "Ajouté à la liste",
-"addedwatchtext" => "La page \"$1\" a été ajoutée à votre <a href=\"" .
+"addedwatchtext" => "<p>La page \"$1\" a été ajoutée à votre <a href=\"" .
 		wfLocalUrl( "Special:Watchlist" ) . "\">liste de suivi</a>.
 Les prochaines modifications de cette page et de la page discussion associée seront répertoriées ici, et la page apparaîtra <b>en gras</b> dans la <a href=\"" .
 		wfLocalUrl( "Special:Recentchanges" ) . "\">liste des modifications récentes</a> pour être repérée plus facilement.</p>
 
-<p>Pour supprimer cette page de votre liste de suivi, cliquez sur \"Ne plus suivre\" dans le cadre de navigation.",
+<p>Pour supprimer cette page de votre liste de suivi, cliquez sur \"Ne plus suivre\" dans le cadre de navigation.</p>",
 "removedwatch"	=> "Supprimée de la liste de suivi",
 "removedwatchtext" => "La page \"$1\" a été supprimée de votre liste de suivi.",
 "watchthispage"	=> "Suivre cette page",
@@ -895,8 +895,9 @@ avec modération.",
 "movepage"  => "Déplacer un article",
 "movepagetext" => "Utilisez le formulaire ci-dessous pour renommer un article, en déplaçant toutes ses versions antérieures vers le nouveau nom.
 Le titre précédent deviendra une page de redirection vers le nouveau titre.
-Les liens vers l'ancien titre ne seront pas modifiés et la page discussion, si elle existe, ne sera pas déplacée.<br>
-<b>ATTENTION!</b>
+Les liens vers l'ancien titre ne seront pas modifiés et la page discussion, si elle existe, ne sera pas déplacée.
+
+'''ATTENTION!'''
 Il peut s'agir d'un changement radical et inattendu pour un article souvent consulté;
 assurez-vous que vous en comprenez bien les conséquences avant de procéder.",
 "movepagetalktext" => "La page de discussion associé, si présente, sera automatiquement déplacée avec '''sauf si:'''

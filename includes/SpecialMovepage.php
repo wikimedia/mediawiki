@@ -48,7 +48,7 @@ class MovePageForm {
 
 		$wgOut->addWikiText( wfMsg( "movepagetext" ) );
 		if ( ! Namespace::isTalk( $ot->getNamespace() ) ) {
-			$wgOut->addWikiText( "\n\n" . wfMsg( "movepagetalktext" ) );
+			$wgOut->addWikiText( wfMsg( "movepagetalktext" ) );
 		}
 
 		$ma = wfMsg( "movearticle" );
@@ -63,32 +63,38 @@ class MovePageForm {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
 			$wgOut->addHTML( "<p><font color='red' size='+1'>{$err}</font>\n" );
 		}
-		$wgOut->addHTML( "<p>
+		$wgOut->addHTML( "
 <form id=\"movepage\" method=\"post\" action=\"{$action}\">
-<table border=0><tr>
-<td align=right>{$ma}:</td>
-<td align=left><strong>{$ott}</strong></td>
-</tr><tr>
-<td align=right>{$newt}:</td>
-<td align=left>
-<input type=text size=40 name=\"wpNewTitle\" value=\"{$encNewTitle}\">
-<input type=hidden name=\"wpOldTitle\" value=\"{$encOldTitle}\">
-</td>
-</tr>" );
+	<table border='0'>
+		<tr>
+			<td align='right'>{$ma}:</td>
+			<td align='left'><strong>{$ott}</strong></td>
+		</tr>
+		<tr>
+			<td align='right'>{$newt}:</td>
+			<td align='left'>
+				<input type='text' size='40' name=\"wpNewTitle\" value=\"{$encNewTitle}\" />
+				<input type='hidden' name=\"wpOldTitle\" value=\"{$encOldTitle}\" />
+			</td>
+		</tr>" );
 
 		if ( ! Namespace::isTalk( $ot->getNamespace() ) ) {
-			$wgOut->addHTML(
-"<tr>
-<td align=right>
-<input type=checkbox name=\"wpMovetalk\" checked value=\"1\">
-</td><td>{$movetalk}</td>
-</tr>" );
+			$wgOut->addHTML( "
+		<tr>
+			<td align='right'>
+				<input type='checkbox' name=\"wpMovetalk\" checked='checked' value=\"1\" />
+			</td>
+			<td>{$movetalk}</td>
+		</tr>" );
 		}
-		$wgOut->addHTML(
-"<tr>
-<td>&nbsp;</td><td align=left>
-<input type=submit name=\"wpMove\" value=\"{$mpb}\">
-</td></tr></table>
+		$wgOut->addHTML( "
+		<tr>
+			<td>&nbsp;</td>
+			<td align='left'>
+				<input type='submit' name=\"wpMove\" value=\"{$mpb}\" />
+			</td>
+		</tr>
+	</table>
 </form>\n" );
 
 	}
@@ -160,13 +166,13 @@ class MovePageForm {
 
 		$talkmoved = $_REQUEST['talkmoved'];
 		if ( 1 == $talkmoved ) {
-			$wgOut->addHTML( "\n<p>" . wfMsg( "talkpagemoved" ) );
+			$wgOut->addHTML( "\n<p>" . wfMsg( "talkpagemoved" ) . "</p>\n" );
 		} elseif( 'articleexists' == $talkmoved ) {
-			$wgOut->addHTML( "\n<p><strong>" . wfMsg( "talkexists" ) . "</strong>" );
+			$wgOut->addHTML( "\n<p><strong>" . wfMsg( "talkexists" ) . "</strong></p>\n" );
 		} else {
 			$ot = Title::newFromURL( $_REQUEST['oldtitle'] );
 			if ( ! Namespace::isTalk( $ot->getNamespace() ) ) {
-				$wgOut->addHTML( "\n<p>" . wfMsg( "talkpagenotmoved", wfMsg( $talkmoved ) ) );
+				$wgOut->addHTML( "\n<p>" . wfMsg( "talkpagenotmoved", wfMsg( $talkmoved ) ) . "</p>\n" );
 			}
 		}
 	}
