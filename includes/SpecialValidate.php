@@ -24,7 +24,7 @@ class Validation
 		{
 		$id = "" ;
 		$tab = "" ;
-		$sql = "SELECT cur_id,cur_timestamp FROM cur WHERE cur_namespace=0 AND cur_title='{$article_title}'" ;
+		$sql = "SELECT cur_id,cur_timestamp FROM cur WHERE cur_namespace=0 AND cur_title='" . wfStrencode( $article_title ) . "'" ;
 		$res = wfQuery( $sql, DB_READ );
 		if( $s = wfFetchObject( $res ) )
 			{
@@ -38,7 +38,8 @@ class Validation
 			
 		if ( $id == "" )
 			{
-			$sql = "SELECT old_id FROM old WHERE old_namespace=0 AND old_title='{$article_title}' AND old_timestamp='{$article_time}'" ;
+			$sql = "SELECT old_id FROM old WHERE old_namespace=0 AND old_title='" . wfStrencode( $article_title ) .
+				"' AND old_timestamp='" . wfStrencode( $article_time ) . "'" ;
 			$res = wfQuery( $sql, DB_READ );
 			if( $s = wfFetchObject( $res ) )
 				{
@@ -51,8 +52,9 @@ class Validation
 	function get_prev_data ( $user_id , $article_title , $article_timestamp = "" )
 		{
 		$ret = array () ;
-		$sql = "SELECT * FROM validate WHERE val_user='{$user_id}' AND val_title='{$article_title}'" ;
-		if ( $article_timestamp != "" ) $sql .= " AND val_timestamp='{$article_timestamp}'" ;
+		$sql = "SELECT * FROM validate WHERE val_user='" . wfStrencode( $user_id ) .
+			"' AND val_title='" . wfStrencode( $article_title ) . "'" ;
+		if ( $article_timestamp != "" ) $sql .= " AND val_timestamp='" . wfStrencode( $article_timestamp ) . "'" ;
 		$res = wfQuery( $sql, DB_READ );
 		while( $s = wfFetchObject( $res ) ) $ret[$s->val_timestamp][$s->val_type] = $s ;
 		return $ret ;
@@ -88,7 +90,8 @@ class Validation
 			{
 			if ( $article_time == "" )
 				{
-				$res = wfQuery( "select cur_timestamp FROM cur WHERE cur_title=\"{$article_title}\" AND cur_namespace=0", DB_READ );
+				$res = wfQuery( "select cur_timestamp FROM cur WHERE cur_title='" .
+					wfStrencode( $article_title ) . "' AND cur_namespace=0", DB_READ );
 				if ( $s = wfFetchObject( $res ) ) $article_time = $s->cur_timestamp ;
 				}
 			$val[$article_time] = array () ;
@@ -134,8 +137,9 @@ class Validation
 			# Clear all others
 			if ( isset ( $_POST['clear_other'] ) && $_POST['clear_other'] == 1 )
 				{
-				$sql = "DELETE FROM validate WHERE val_title='{$article_title}' AND val_timestamp<>'{$oldtime}' AND val_user='" ;
-				$sql .= $wgUser->getID() . "'" ;
+				$sql = "DELETE FROM validate WHERE val_title='" . wfStrencode( $article_title ) .
+					"' AND val_timestamp<>'" . wfStrencode( $oldtime ) . "' AND val_user='" ;
+				$sql .= wfStrencode( $wgUser->getID() ) . "'" ;
 				wfQuery( $sql, DB_WRITE );
 				$val2 = $val["{$oldtime}"] ; # Only version left
 				$val = array () ; # So clear others
@@ -143,15 +147,15 @@ class Validation
 				}
 
 			# Delete old "votes" for this version
-			$sql = "DELETE FROM validate WHERE val_title='{$article_title}' AND val_timestamp='{$oldtime}' AND val_user='" ;
-			$sql .= $wgUser->getID() . "'" ;
+			$sql = "DELETE FROM validate WHERE val_title='" . wfStrencode( $article_title ) .
+				"' AND val_timestamp='" . wfStrencode( $oldtime ) . "' AND val_user='" ;
+			$sql .= wfStrencode( $wgUser->getID() ) . "'" ;
 			wfQuery( $sql, DB_WRITE );
 	
 			# Incorporate changes
 			for ( $idx = 0 ; $idx < count ( $validationtypes) ; $idx++ ) # Changes
 				{
 				$comment = $postcomment[$idx] ;
-				$comment_sql = str_replace ( "'" , "\'" , $comment ) ;
 				$rad = $postrad[$idx] ;
 				if ( !isset ( $val["{$oldtime}"][$idx] ) ) $val["{$oldtime}"][$idx] = "" ;
 				$val["{$oldtime}"][$idx]->val_value = $rad ;
@@ -160,7 +164,12 @@ class Validation
 					{
 					# Store it in the database
 					$sql = "INSERT INTO validate (val_user,val_title,val_timestamp,val_type,val_value,val_comment) " . 
-						 "VALUES ( '" . $wgUser->getID() . "','{$article_title}','{$oldtime}','{$idx}','{$rad}','{$comment_sql}')" ;
+						 "VALUES ( '" . wfStrencode( $wgUser->getID() ) . "','" .
+						 wfStrencode( $article_title ) . "','" .
+						 wfStrencode( $oldtime ) . "','" . 
+						 wfStrencode( $idx ) . "','" . 
+						 wfStrencode( $rad ) . "','" .
+						 wfStrencode( $comment ) . "')" ;
 					if ( $rad != -1 ) wfQuery( $sql, DB_WRITE );
 					}
 				}
@@ -172,25 +181,25 @@ class Validation
 		$html = "" ;
 		
 		$skin = $wgUser->getSkin() ;
-		$staturl = $skin->makeSpecialURL ( "validate" , "mode=stat_page&article_title={$article_title}" ) ;
+		$staturl = $skin->makeSpecialURL ( "validate" , "mode=stat_page&article_title=" . urlencode( $article_title ) ) ;
 		$listurl = $skin->makeSpecialURL ( "validate" , "mode=list_page" ) ;
-		$html .= "<a href=\"{$staturl}\">" . wfMsg('val_stat_link_text') . "</a> \n" ;
-		$html .= "<a href=\"{$listurl}\">" . wfMsg('val_article_lists') . "</a><br>\n" ;
-		$html .= "<small>" . wfMsg('val_form_note') . "</small><br>\n" ;
+		$html .= "<a href=\"" . htmlspecialchars( $staturl ) . "\">" . wfMsg('val_stat_link_text') . "</a> \n" ;
+		$html .= "<a href=\"" . htmlspecialchars( $listurl ) . "\">" . wfMsg('val_article_lists') . "</a><br />\n" ;
+		$html .= "<small>" . wfMsg('val_form_note') . "</small><br />\n" ;
 		
 		# Generating data tables
-		$tabsep = "<td width=0px style='border-left:2px solid black;'></td>" ;
+		$tabsep = "<td width='0' style='border-left:2px solid black;'></td>" ;
 		$topstyle = "style='border-top:2px solid black'" ;
 		foreach ( $val AS $time => $stuff )
 			{
-			$tablestyle = "cellspacing=0 cellpadding=2" ;
+			$tablestyle = "cellspacing='0' cellpadding='2'" ;
 			if ( $article_time == $time ) $tablestyle .=" style='border: 2px solid red'" ;
 			$html .= "<h2>" . wfMsg( 'val_version_of', gmdate( "F d, Y H:i:s", wfTimestamp2Unix( $time ) ) ) ;
 			$this->find_this_version ( $article_title , $time , $table_id , $table_name ) ;
 			if ( $table_name == "cur" ) $html .= " (" . wfMsg ( 'val_this_is_current_version' ) . ")" ;
 			$html .= "</h2>\n" ;
-			$html .= "<form method=post>\n" ;
-			$html .= "<input type=hidden name=oldtime value='{$time}'>" ;
+			$html .= "<form method='post'>\n" ;
+			$html .= "<input type='hidden' name='oldtime' value=\"" . htmlspecialchars( $time ) . "\" />" ;
 			$html .= "<table {$tablestyle}>\n" ;
 			$html .= wfMsg( 'val_table_header', $tabsep ) ;
 			for ( $idx = 0 ; $idx < count ( $validationtypes) ; $idx++ )
@@ -200,34 +209,34 @@ class Validation
 				else $choice = -1 ;
 				if ( isset ( $stuff[$idx] ) ) $comment = $stuff[$idx]->val_comment ;
 				else $comment = "" ;
-				$html .= "<tr><th align=left>{$x[0]}</th>{$tabsep}<td align=right>{$x[1]}</td><td align=center>" ;			
+				$html .= "<tr><th align='left'>{$x[0]}</th>{$tabsep}<td align='right'>{$x[1]}</td><td align='center'>" ;
 				for ( $cnt = 0 ; $cnt < $x[3] ; $cnt++)
 					{
-					$html .= "<input type=radio name='rad{$idx}' value='{$cnt}'" ;
-					if ( $choice == $cnt ) $html .= " checked" ;
-					$html .= "> " ;
+					$html .= "<input type='radio' name='rad{$idx}' value='{$cnt}'" ;
+					if ( $choice == $cnt ) $html .= " checked='checked'" ;
+					$html .= " /> " ;
 					}
 				$html .= "</td><td>{$x[2]}</td>" ;
-				$html .= "<td><input type=radio name='rad{$idx}' value='-1'" ;
-				if ( $choice == -1 ) $html .= " checked" ;
-				$html .= "> " . wfMsg ( "val_noop" ) . "</td>{$tabsep}" ;
-				$html .= "<td><input type=text name='comment{$idx}' value='{$comment}'></td>" ;
+				$html .= "<td><input type='radio' name='rad{$idx}' value='-1'" ;
+				if ( $choice == -1 ) $html .= " checked='checked'" ;
+				$html .= " /> " . wfMsg ( "val_noop" ) . "</td>{$tabsep}" ;
+				$html .= "<td><input type='text' name='comment{$idx}' value=\"" . htmlspecialchars( $comment ) . "\" /></td>" ;
 				$html .= "</tr>\n" ;
 				}
-			$html .= "<tr><td {$topstyle} colspan=2>" ;
+			$html .= "<tr><td {$topstyle} colspan='2'>" ;
 			
 			# link to version
 			$title = Title::newFromDBkey ( $article_title ) ;
 			if ( $table_name == "cur" ) $link_version = $title->getLocalURL( "" ) ;
 			else $link_version = $title->getLocalURL( "oldid={$table_id}" ) ;
-			$link_version = "<a href=\"{$link_version}\">" . wfMsg ( 'val_view_version' ) . "</a>" ;
+			$link_version = "<a href=\"" . htmlspecialchars( $link_version ) . "\">" . wfMsg ( 'val_view_version' ) . "</a>" ;
 			$html .= $link_version ;
-			$html .= "</td><td {$topstyle} colspan=5>" ;
-			$html .= "<input type=checkbox name=merge_other value=1 checked>" ;
+			$html .= "</td><td {$topstyle} colspan='5'>" ;
+			$html .= "<input type='checkbox' name='merge_other' value='1' checked='checked' />" ;
 			$html .= wfMsg ( 'val_merge_old' );
-			$html .= "<br><input type=checkbox name=clear_other value=1 checked>" ;
+			$html .= "<br /><input type='checkbox' name='clear_other' value='1' checked='checked' />" ;
 			$html .= wfMsg ( 'val_clear_old', $skin->makeKnownLinkObj( $article ) );
-			$html .= "</td><td {$topstyle} align=right valign=center><input type=submit name=doit value='" . wfMsg("ok") . "'></td>" ;
+			$html .= "</td><td {$topstyle} align='right' valign='center'><input type='submit' name='doit' value=\"" . htmlspecialchars( wfMsg("ok") ) . "\" /></td>" ;
 			$html .= "</tr></table></form>\n" ;
 			}
 		
@@ -240,9 +249,9 @@ class Validation
 		{
 		$ret = array () ;
 		$sql = array () ;
-		if ( $user != -1 ) $sql[] = "val_user='{$user}'" ;
-		if ( $type != -1 ) $sql[] = "val_type='{$type}'" ;
-		if ( $title != "" ) $sql[] = "val_title='{$title}'" ;
+		if ( $user != -1 ) $sql[] = "val_user='" . wfStrencode( $user ) . "'" ;
+		if ( $type != -1 ) $sql[] = "val_type='" . wfStrencode( $type ) . "'" ;
+		if ( $title != "" ) $sql[] = "val_title='" . wfStrencode( $title ) . "'" ;
 		$sql = implode ( " AND " , $sql ) ;
 		if ( $sql != "" ) $sql = " WHERE " . $sql ;
 		$sql = "SELECT * FROM validate" . $sql ;
@@ -277,9 +286,9 @@ class Validation
 		$html = "" ;
 		$skin = $wgUser->getSkin() ;
 		$listurl = $skin->makeSpecialURL ( "validate" , "mode=list_page" ) ;
-		$html .= "<a href=\"{$listurl}\">" . wfMsg('val_article_lists') . "</a><br><br>\n" ;
+		$html .= "<a href=\"" . htmlspecialchars( $listurl ) . "\">" . wfMsg('val_article_lists') . "</a><br /><br />\n" ;
 
-		$html .= "<table border=1 cellpadding=2 style='font-size:8pt;'>\n" ;
+		$html .= "<table border='1' cellpadding='2' style='font-size:8pt;'>\n" ;
 		$html .= "<tr><th>" . wfMsg('val_version') . "</th>" ;
 		foreach ( $validationtypes AS $idx => $title )
 			{
@@ -294,12 +303,12 @@ class Validation
 			$title = Title::newFromDBkey ( $article_title ) ;
 			$version_date = gmdate("F d, Y H:i:s",wfTimestamp2Unix($version)) ;
 			$version_validate_link = $title->getLocalURL( "action=validate&timestamp={$version}" ) ;
-			$version_validate_link = "<a class=intern href=\"{$version_validate_link}\">" . wfMsg('val_validate_version') . "</a>" ;
+			$version_validate_link = "<a class='intern' href=\"" . htmlspecialchars( $version_validate_link ) . "\">" . wfMsg('val_validate_version') . "</a>" ;
 			if ( $table_name[$version] == 'cur' ) $version_view_link = $title->getLocalURL( "" ) ;
 			else $version_view_link = $title->getLocalURL( "oldid={$table_id[$version]}" ) ;
 			$version_view_link = "<a href=\"{$version_view_link}\">" . wfMsg('val_view_version') . "</a>" ;
 			$html .= "<tr>" ;
-			$html .= "<td align=center valign=top nowrap><b>{$version_date}</b><br>{$version_view_link}<br>{$version_validate_link}</td>" ;
+			$html .= "<td align='center' valign='top' nowrap='nowrap'><b>{$version_date}</b><br />{$version_view_link}<br />{$version_validate_link}</td>" ;
 
 			# Individual data
 			$vmax = array() ;
@@ -330,13 +339,13 @@ class Validation
 					$total_percent += $average ;
 					if ( $users[$idx] > 1 ) $msgid = "val_percent" ;
 					else $msgid = "val_percent_single" ;
-					$html .= "<td align=center valign=top>" .
+					$html .= "<td align='center' valign='top'>" .
 							wfMsg ( $msgid, number_format ( $average , 2 ) ,
 									$vcur[$idx] , $vmax[$idx] , $users[$idx] ) ;
 					}
 				else
 					{
-					$html .= "<td align=center valign=center>" ;
+					$html .= "<td align='center' valign='center'>" ;
 					$html .= "(" . wfMsg ( "val_noop" ) . ")" ;
 					}
 				$html .= "</td>" ;
@@ -348,7 +357,7 @@ class Validation
 				$total = number_format ( $total , 2 ) . " %" ;
 				}
 			else $total = "" ;
-			$html .= "<td align=center valign=top nowrap><b>{$total}</b></td>" ;
+			$html .= "<td align='center' valign='top' nowrap='nowrap'><b>{$total}</b></td>" ;
 			
 			$html .= "</tr>" ;
 			}
@@ -358,7 +367,7 @@ class Validation
 
 	function countUserValidations ( $userid )
 		{
-		$sql = "SELECT count(DISTINCT val_title) AS num FROM validate WHERE val_user={$userid}" ;
+		$sql = "SELECT count(DISTINCT val_title) AS num FROM validate WHERE val_user=" . IntVal( $userid );
 		$res = wfQuery( $sql, DB_READ );
 		if ( $s = wfFetchObject( $res ) ) $num = $s->num ;
 		else $num = 0 ;
@@ -394,33 +403,33 @@ class Validation
 
 		
 		# The form
-		$html .= "<form method=post>\n" ;
-		$html .= "<table border=1 cellspacing=0 cellpadding=2>" ;
+		$html .= "<form method='post'>\n" ;
+		$html .= "<table border='1' cellspacing='0' cellpadding='2'>" ;
 		foreach ( $validationtypes AS $idx => $data )
 			{
 			$x = explode ( "|" , $data , 4 ) ;
 			
 			$html .= "<tr>" ;
-			$html .= "<th nowrap>{$x[0]}</th>" ;
-			$html .= "<td align=right nowrap>{$x[1]}</td>" ;
+			$html .= "<th nowrap='nowrap'>{$x[0]}</th>" ;
+			$html .= "<td align='right' nowrap='nowrap'>{$x[1]}</td>" ;
 
 			for ( $a = 0 ; $a < $maxw ; $a++ )
 				{
 				if ( $a < $x[3] )
 					{
-					$td = "<input type=checkbox name='cb_{$idx}_{$a}' value=1" ;
-					if ( $choice[$idx][$a] == 1 ) $td .= " checked" ;
-					$td .= ">" ;
+					$td = "<input type='checkbox' name='cb_{$idx}_{$a}' value='1'" ;
+					if ( $choice[$idx][$a] == 1 ) $td .= " checked='checked'" ;
+					$td .= " />" ;
 					}
 				else $td = '' ;
 				$html .= "<td>{$td}</td>" ;
 				}
 
-			$html .= "<td nowrap>{$x[2]}</td>" ;
+			$html .= "<td nowrap='nowrap'>{$x[2]}</td>" ;
 			$html .= "</tr>\n" ;
 			}
-		$html .= "<tr><td colspan=" . ( $maxw + 2 ) . "></td>\n" ;
-		$html .= "<td align=right valign=center><input type=submit name=doit value='" . wfMsg ( 'ok' ) . "'></td></tr>" ;
+		$html .= "<tr><td colspan='" . ( $maxw + 2 ) . "'></td>\n" ;
+		$html .= "<td align='right' valign='center'><input type='submit' name='doit' value=\"" . htmlspecialchars( wfMsg ( 'ok' ) ) . "\" /></td></tr>" ;
 		$html .= "</table>\n" ;
 		$html .= "</form>\n" ;
 
@@ -455,7 +464,7 @@ class Validation
 			if ( count ( $out ) > 0 )
 				{
 				$html .= "<li>\n" ;
-				$html .= $title->getText() . "\n" ;
+				$html .= htmlspecialchars( $title->getText() ) . "\n" ;
 				$html .= "<ul>\n" ;			
 				$html .= implode ( "\n" , $out ) ;
 				$html .= "</ul>\n</li>\n" ;
@@ -472,11 +481,11 @@ class Validation
 		if ( $table_name == 'cur' ) $link = $title->getLocalURL( "" ) ;
 		else $link = $title->getLocalURL( "action=validate&timestamp={$table_id}" ) ;
 		$linktitle = wfMsg( 'val_version_of', gmdate( "F d, Y H:i:s", wfTimestamp2Unix( $timestamp ) ) ) ;
-		$link = "<a href=\"{$link}\">" . $linktitle . "</a>" ;
+		$link = "<a href=\"" . htmlspecialchars( $link ) . "\">" . $linktitle . "</a>" ;
 		if ( $table_name == 'cur' ) $link .= " (" . wfMsg ( 'val_this_is_current_version' ) . ")" ;
 		
 		$vlink = wfMsg ( 'val_tab' ) ;
-		$vlink = "[<a href=\"" . $title->getLocalURL( "action=validate&timestamp={$timestamp}" ) . "\">{$vlink}</a>] " . $link ;
+		$vlink = "[<a href=\"" . $title->escapeLocalURL( "action=validate&timestamp={$timestamp}" ) . "\">{$vlink}</a>] " . $link ;
 		return $vlink ;
 		}
 
