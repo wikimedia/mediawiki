@@ -10,6 +10,9 @@
  * @todo document
  * @package MediaWiki
  */
+
+include_once ( "SpecialValidate.php" ) ;
+ 
 class PageHistory {
 	var $mArticle, $mTitle, $mSkin;
 	var $lastline, $lastdate;
@@ -23,7 +26,7 @@ class PageHistory {
 
 	function history() {
 		global $wgUser, $wgOut, $wgLang, $wgShowUpdatedMarker, $wgRequest,
-			$wgTitle;
+			$wgTitle, $wgUseValidation ;
 
 		# If page hasn't changed, client can cache this
 
@@ -152,6 +155,12 @@ class PageHistory {
 		}
 		$s .= $this->endHistoryList( !$atend );
 		$s .= $numbar;
+		
+		# Validation line
+		if ( isset ( $wgUseValidation ) && $wgUseValidation ) {
+			$s .= "<p>" . Validation::link2statistics ( $this->mArticle ) . "</p>" ;
+			}
+		
 		$wgOut->addHTML( $s );
 		wfProfileOut( $fname );
 	}
