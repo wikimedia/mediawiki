@@ -27,10 +27,17 @@ function rebuildLinkTables()
 	print "Setting AUTOCOMMIT=1\n";
 	wfQuery("SET SESSION AUTOCOMMIT=1", DB_WRITE);
 
+	print "Extracting often used data from cur (may take a few minutes)\n";
+	$sql = "CREATE TEMPORARY TABLE cur_fast SELECT cur_namespace, cur_title, cur_id FROM cur";
+	wfQuery( $sql, DB_WRITE );
+	$sql = "ALTER TABLE cur_fast ADD INDEX(cur_namespace, cur_title)";
+	wfQuery( $sql, DB_WRITE );
+
 	print "Locking tables\n";
-	$sql = "LOCK TABLES cur READ, interwiki READ, user_newtalk READ, " .
+	$sql = "LOCK TABLES cur READ, cur_fast READ, interwiki READ, user_newtalk READ, " .
 		"links WRITE, brokenlinks WRITE, imagelinks WRITE";
 	wfQuery( $sql, DB_WRITE );
+
 
 	print "Deleting old data in links table.\n";
 	$sql = "DELETE FROM links";
@@ -158,7 +165,8 @@ function rebuildLinkTables()
 				$parts[] = " (cur_namespace = " . $nt->getNamespace() . " AND " .
 					"cur_title='" . wfStrencode( $nt->getDBkey() ) . "')";
 			}
-			$sql = "SELECT cur_namespace, cur_title, cur_id FROM cur WHERE " . implode(" OR ", $parts);
+			$sql = "SELECT cur_namespace, cur_title, cur_id FROM cur_fast WHERE " . 
+				implode(" OR ", $parts);
 			$res = wfQuery( $sql, DB_WRITE );
 			while($row = wfFetchObject( $res ) ){
 				$pos = $titles_needing_curdata_pos[$row->cur_title . $row->cur_namespace];
