@@ -54,6 +54,8 @@ class WebRequest {
 	/**
 	 * Recursively strips slashes from the given array;
 	 * used for undoing the evil that is magic_quotes_gpc.
+	 * @param array &$arr will be modified
+	 * @return array the original array
 	 * @private
 	 */
 	function &fix_magic_quotes( &$arr ) {
@@ -87,6 +89,7 @@ class WebRequest {
 	
 	/**
 	 * Recursively normalizes UTF-8 strings in the given array.
+	 * @param array &$arr will be modified
 	 * @private
 	 */
 	function normalizeUnicode( &$arr ) {
@@ -101,6 +104,10 @@ class WebRequest {
 	
 	/**
 	 * Fetch a value from the given array or return $default if it's not set.
+	 * @param array &$arr
+	 * @param string $name
+	 * @param mixed $default
+	 * @return mixed
 	 * @private
 	 */
 	function getGPCVal( &$arr, $name, $default ) {
@@ -115,6 +122,10 @@ class WebRequest {
 	 * Fetch a value from the given array or return $default if it's not set.
 	 * \r is stripped from the text, and with some language modules there is
 	 * an input transliteration applied.
+	 * @param array &$arr
+	 * @param string $name
+	 * @param string $default
+	 * @return string
 	 * @private
 	 */
 	function getGPCText( &$arr, $name, $default ) {
@@ -130,7 +141,10 @@ class WebRequest {
 	
 	/**
 	 * Fetch a value from the input or return $default if it's not set.
-	 * Value may be of any type -- even an array -- and is not altered.
+	 * Value may be of a string or array, and is not altered.
+	 * @param string $name
+	 * @param mixed $default optional default (or NULL)
+	 * @return mixed
 	 */
 	function getVal( $name, $default = NULL ) {
 		return $this->getGPCVal( $_REQUEST, $name, $default );
@@ -138,8 +152,11 @@ class WebRequest {
 	
 	/**
 	 * Fetch an integer value from the input or return $default if not set.
-	 * Guaranteed to return an integer; non-integer input will typically
+	 * Guaranteed to return an integer; non-numeric input will typically
 	 * return 0.
+	 * @param string $name
+	 * @param int $default
+	 * @return int
 	 */
 	function getInt( $name, $default = 0 ) {
 		return IntVal( $this->getVal( $name, $default ) );
@@ -149,6 +166,9 @@ class WebRequest {
 	 * Fetch a boolean value from the input or return $default if not set.
 	 * Guaranteed to return true or false, with normal PHP semantics for
 	 * boolean interpretation of strings.
+	 * @param string $name
+	 * @param bool $default
+	 * @return bool
 	 */
 	function getBool( $name, $default = false ) {
 		return $this->getVal( $name, $default ) ? true : false;
@@ -158,6 +178,8 @@ class WebRequest {
 	 * Return true if the named value is set in the input, whatever that
 	 * value is (even "0"). Return false if the named value is not set.
 	 * Example use is checking for the presence of check boxes in forms.
+	 * @param string $name
+	 * @return bool
 	 */
 	function getCheck( $name ) {
 		# Checkboxes and buttons are only present when clicked
@@ -171,6 +193,10 @@ class WebRequest {
 	 * set. \r is stripped from the text, and with some language modules there 
 	 * is an input transliteration applied. This should generally be used for
 	 * form <textarea> and <input> fields.
+	 *
+	 * @param string $name
+	 * @param string $default optional
+	 * @return string
 	 */
 	function getText( $name, $default = '' ) {
 		return $this->getGPCText( $_REQUEST, $name, $default );
@@ -203,6 +229,8 @@ class WebRequest {
 	 *
 	 * Note that values retrieved by the object may come from the
 	 * GET URL etc even on a POST request.
+	 *
+	 * @return bool
 	 */
 	function wasPosted() {
 		return $_SERVER['REQUEST_METHOD'] == 'POST';
@@ -211,6 +239,8 @@ class WebRequest {
 	/**
 	 * Returns true if there is a session cookie set.
 	 * This does not necessarily mean that the user is logged in!
+	 *
+	 * @return bool
 	 */
 	function checkSessionCookie() {
 		return isset( $_COOKIE[ini_get('session.name')] );
@@ -218,6 +248,7 @@ class WebRequest {
 	
 	/**
 	 * Return the path portion of the request URI.
+	 * @return string
 	 */
 	function getRequestURL() {
 		return $_SERVER['REQUEST_URI'];
@@ -225,6 +256,7 @@ class WebRequest {
 	
 	/**
 	 * Return the request URI with the canonical service and hostname.
+	 * @return string
 	 */
 	function getFullRequestURL() {
 		global $wgServer;
@@ -233,6 +265,8 @@ class WebRequest {
 	
 	/**
 	 * Take an arbitrary query and rewrite the present URL to include it
+	 * @param string $query Query string fragment; do not include initial '?'
+	 * @return string
 	 */
 	function appendQuery( $query ) {
 		global $wgTitle;
@@ -250,11 +284,22 @@ class WebRequest {
 	
 	/**
 	 * HTML-safe version of appendQuery().
+	 * @param string $query Query string fragment; do not include initial '?'
+	 * @return string
 	 */
 	function escapeAppendQuery( $query ) {
 		return htmlspecialchars( $this->appendQuery( $query ) );
 	}
 	
+	/**
+	 * Check for limit and offset parameters on the input, and return sensible
+	 * defaults if not given. The limit must be positive and is capped at 5000.
+	 * Offset must be positive but is not capped.
+	 *
+	 * @param int $deflimit Limit to use if no input and the user hasn't set the option.
+	 * @param string $optionname To specify an option other than rclimit to pull from.
+	 * @return array first element is limit, second is offset
+	 */
 	function getLimitOffset( $deflimit = 50, $optionname = 'rclimit' ) {
 		global $wgUser;
 	
@@ -274,7 +319,8 @@ class WebRequest {
 	
 	/**
 	 * Return the path to the temporary file where PHP has stored the upload.
-	 * Returns NULL if no such thing.
+	 * @param string $key
+	 * @return string or NULL if no such file.
 	 */
 	function getFileTempname( $key ) {
 		if( !isset( $_FILES[$key] ) ) {
@@ -285,6 +331,8 @@ class WebRequest {
 	
 	/**
 	 * Return the size of the upload, or 0.
+	 * @param string $key
+	 * @return integer
 	 */
 	function getFileSize( $key ) {
 		if( !isset( $_FILES[$key] ) ) {
@@ -300,6 +348,9 @@ class WebRequest {
 	 * to deal with weird input from Safari with non-ASCII filenames.
 	 *
 	 * Other than this the name is not verified for being a safe filename.
+	 *
+	 * @param string $key
+	 * @return string or NULL if no such file.
 	 */
 	function getFileName( $key ) {
 		if( !isset( $_FILES[$key] ) ) {
