@@ -64,6 +64,7 @@ if ( !$wgUser->getID() && is_array( $wgWhitelistRead ) && $wgTitle) {
 }
 
 if ( $search = $wgRequest->getText( 'search' ) ) {
+	$wgTitle = Title::makeTitle( NS_SPECIAL, "Search" );
 	if( $wgRequest->getVal( 'fulltext' ) ) {
 		wfSearch( $search );
 	} else {
