@@ -278,6 +278,7 @@ class PreferencesForm {
 		$uid = $wgUser->getID();
 
 		$wgOut->addWikiText( wfMsg( "prefslogintext", $uname, $uid ) );
+		$wgOut->addWikiText( wfMsg('clearyourcache'));
 
 		$qbs = $wgLang->getQuickbarSettings();
 		$skinNames = $wgLang->getSkinNames();
@@ -368,6 +369,7 @@ class PreferencesForm {
 			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpQuickbar\"
 	value=\"$i\"$checked /> {$qbs[$i]}</label></div>\n" );
 		}
+		$wgOut->addHtml('<div class="prefsectiontip">'.wfMsg('qbsettingsnote').'</div>');
 		$wgOut->addHtml( "</fieldset>\n\n" );
 
 		# Skin setting

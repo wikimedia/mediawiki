@@ -63,6 +63,9 @@ class Skin {
 	{
 		return 'wikistandard.css';
 	}
+	function getSkinName() {
+		return "standard";
+	}
 
 	function qbSetting()
 	{
@@ -152,20 +155,47 @@ class Skin {
 	}
 
 	function getHeadScripts() {
-		global $wgStylePath;
+		global $wgStylePath, $wgUser, $wgLang;
 		$r = "<script type=\"text/javascript\" src=\"{$wgStylePath}/wikibits.js\"></script>\n";
+		if( $wgUser->getID() != 0 ) { # logged in	
+			$userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
+			$userjs = htmlspecialchars($this->makeUrl($userpage.'/'.$this->getSkinName().'.js', 'action=raw&ctype=text/javascript'));
+			$r .= '<script type="text/javascript" src="'.$userjs."\"></script>\n";
+		}
 		return $r;
 	}
 
+	# get the user/site-specific stylesheet, SkinPHPTal called from RawPage.php (settings are cached that way)
+	function getUserStylesheet() {
+		global $wgOut, $wgStylePath, $wgLang, $wgUser, $wgRequest, $wgTitle;
+		$sheet = $this->getStylesheet();
+		$action = $wgRequest->getText('action');
+		$s = "@import url(\"$wgStylePath/$sheet\");\n";
+		if($wgLang->isRTL()) $s .= "@import url(\"$wgStylePath/common_rtl.css\");\n";
+		if( $wgUser->getID() != 0 ) { # logged in	
+			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
+				$s .= '@import url('.$this->makeUrl('-','action=raw&gen=css&smaxage=0&maxage=0').');'."\n";
+				$s .= $wgRequest->getText('wpTextbox1');
+			} else {
+				$s .= '@import url('.$this->makeUrl('-','action=raw&gen=css&smaxage=0&maxage=0').');'."\n";
+				$userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
+				$s.= '@import url("'.$this->makeUrl($userpage.'/'.$this->getSkinName(), 'action=raw&ctype=text/css').'");'."\n";
+			}
+		}
+		$s .= $this->doGetUserStyles();
+		return $s."\n";	
+	}
+	# placeholder, returns generated js in monobook
+	function getUserJs() {
+		return;
+	}
+	
 	function getUserStyles()
 	{
 		global $wgOut, $wgStylePath, $wgLang;
-		$sheet = $this->getStylesheet();
 		$s = "<style type='text/css'>\n";
 		$s .= "/*/*/\n"; # <-- Hide the styles from Netscape 4 without hiding them from IE/Mac
-		$s .= "@import url(\"$wgStylePath/$sheet\");\n";
-		if($wgLang->isRTL()) $s .= "@import url(\"$wgStylePath/common_rtl.css\");\n";
-		$s .= $this->doGetUserStyles();
+		$s .= $this->getUserStylesheet();
 		$s .= "/* */\n";
 		$s .= "</style>\n";
 		return $s;

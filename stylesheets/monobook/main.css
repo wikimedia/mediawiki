@@ -762,7 +762,7 @@ li#pt-login {
 }
 /* offsets to distinguish the tab groups */
 li#ca-talk { margin-right: 1.6em; }
-li#ca-watch { margin-left: 1.6em; }
+li#ca-watch, li#ca-watch { margin-left: 1.6em; }
 
 
 /*

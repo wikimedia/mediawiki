@@ -729,7 +729,7 @@ If you are here by mistake, just click your browser's '''back''' button.",
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
 'anontalkpagetext' => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.'' ",
 'noarticletext' => '(There is currently no text in this page)',
-'usercssjs' => "'''Note:''' After saving, you have to tell your bowser to get the new version: '''Mozilla:''' click ''reload''(or ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
+'clearyourcache' => "'''Note:''' After saving, you have to clear your browser cache to see the changes: '''Mozilla:''' click ''reload''(or ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
 'usercssjsyoucanpreview' => "<strong>Tip:</strong> Use the 'Show preview' button to test your new css/js before saving.",
 'usercsspreview' => "'''Remember that you are only previewing your user css, it has not yet been saved!'''",
 'userjspreview' => "'''Remember that you are only testing/previewing your user javascript, it has not yet been saved!'''",
@@ -872,6 +872,7 @@ Your internal ID number is $2.
 See [[{{ns:4}}:User preferences help]] for help deciphering the options.",
 'prefsreset'	=> 'Preferences have been reset from storage.',
 'qbsettings'	=> 'Quickbar settings', 
+'qbsettingsnote'	=> 'This preference only works in the \'Standard\' and the \'CologneBlue\' skin.', 
 'changepassword' => 'Change password',
 'skin'			=> 'Skin',
 'math'			=> 'Rendering math',
@@ -1455,90 +1456,15 @@ amusement.',
 'importhistoryconflict' => 'Conflicting history revision exists (may have imported this page before)',
 
 # Keyboard access keys for power users
-'accesskey-article' => 'a',
-'accesskey-talk' => 't',
-'accesskey-edit' => 'e',
-'accesskey-addsection' => '+',
-'accesskey-viewsource' => 'e',
-'accesskey-history' => 'h',
-'accesskey-protect' => '=',
-'accesskey-delete' => 'd',
-'accesskey-undelete' => 'd',
-'accesskey-move' => 'm',
-'accesskey-watch' => 'w',
-'accesskey-unwatch' => 'w',
-'accesskey-watchlist' => 'l',
-'accesskey-userpage' => '.',
-'accesskey-anonuserpage' => '.',
-'accesskey-mytalk' => 'n',
-'accesskey-anontalk' => 'n',
-'accesskey-preferences' => '',
-'accesskey-mycontris' => 'y',
-'accesskey-login' => 'o',
-'accesskey-logout' => 'o',
-'accesskey-search' => 'f',
-'accesskey-mainpage' => 'z',
-'accesskey-portal' => '',
-'accesskey-randompage' => 'x',
-'accesskey-currentevents' => '',
-'accesskey-sitesupport' => '',
-'accesskey-help' => '',
-'accesskey-recentchanges' => 'r',
-'accesskey-recentchangeslinked' => 'c',
-'accesskey-whatlinkshere' => 'b',
-'accesskey-specialpages' => 'q',
-'accesskey-specialpage' => '',
-'accesskey-upload' => 'u',
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
-'accesskey-contributions' => '',
-'accesskey-emailuser' => '',
 'accesskey-compareselectedversions' => 'v',
 
-# tooltip help for the main actions
-'tooltip-atom'	=> 'Atom feed for this page',
-'tooltip-article' => 'View the content page [alt-a]',
-'tooltip-talk' => 'Discussion about the content page [alt-t]',
-'tooltip-edit' => 'You can edit this page. Please use the preview button before saving. [alt-e]',
-'tooltip-addsection' => 'Add a comment to this page. [alt-+]',
-'tooltip-viewsource' => 'This page is protected. You can view its source. [alt-e]',
-'tooltip-history' => 'Past versions of this page, [alt-h]',
-'tooltip-protect' => 'Protect this page [alt-=]',
-'tooltip-delete' => 'Delete this page [alt-d]',
-'tooltip-undelete' => "Restore the $1 edits done to this page before it was deleted [alt-d]",
-'tooltip-move' => 'Move this page [alt-m]',
-'tooltip-nomove' => 'You don\'t have the permissions to move this page',
-'tooltip-watch' => 'Add this page to your watchlist [alt-w]',
-'tooltip-unwatch' => 'Remove this page from your watchlist [alt-w]',
-'tooltip-watchlist' => 'The list of pages you\'re monitoring for changes. [alt-l]',
-'tooltip-userpage' => 'My user page [alt-.]',
-'tooltip-anonuserpage' => 'The user page for the ip you\'re editing as [alt-.]',
-'tooltip-mytalk' => 'My talk page [alt-n]',
-'tooltip-anontalk' => 'Discussion about edits from this ip address [alt-n]',
-'tooltip-preferences' => 'My preferences',
-'tooltip-mycontris' => 'List of my contributions [alt-y]',
-'tooltip-login' => 'You are encouraged to log in, it is not mandatory however. [alt-o]',
-'tooltip-logout' => 'Log out [alt-o]',
-'tooltip-search' => 'Search this wiki [alt-f]',
-'tooltip-mainpage' => 'Visit the Main Page [alt-z]',
-'tooltip-portal' => 'About the project, what you can do, where to find things',
-'tooltip-randompage' => 'Load a random page [alt-x]',
-'tooltip-currentevents' => 'Find background information on current events',
-'tooltip-sitesupport' => 'Support {{SITENAME}}',
-'tooltip-help' => 'The place to find out.',
-'tooltip-recentchanges' => 'The list of recent changes in the wiki. [alt-r]',
-'tooltip-recentchangeslinked' => 'Recent changes in pages linking to this page [alt-c]',
-'tooltip-whatlinkshere' => 'List of all wiki pages that link here [alt-b]',
-'tooltip-specialpages' => 'List of all special pages [alt-q]',
-'tooltip-upload' => 'Upload images or media files [alt-u]',
-'tooltip-specialpage' => 'This is a special page, you can\'t edit the page itself.',
+# tooltip help for some actions, most are in Monobook.js
 'tooltip-minoredit' => 'Mark this as a minor edit [alt-i]',
 'tooltip-save' => 'Save your changes [alt-s]',
 'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
-'tooltip-contributions' => 'View the list of contributions of this user',
-'tooltip-emailuser' => 'Send a mail to this user',
-'tooltip-rss' => 'RSS feed for this page',
 'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page. [alt-v]',
 
 # stylesheets
@@ -1565,7 +1491,62 @@ amusement.',
 You might want to check the following regular expression for patterns that are currently blocked:',
 'subcategorycount' => "There are $1 subcategories to this category.",
 'categoryarticlecount' => "There are $1 articles in this category.",
-'usenewcategorypage' => "1\n\nSet first character to \"0\" to disable the new category page layout."
+'usenewcategorypage' => "1\n\nSet first character to \"0\" to disable the new category page layout.",
+
+# Monobook.js: tooltips and access keys for monobook
+'Monobook.js' => '/* tooltips and access keys */
+ta = new Object();
+ta[\'pt-userpage\'] = new Array(\'.\',\'My user page\'); 
+ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\\\'re editing as\'); 
+ta[\'pt-mytalk\'] = new Array(\'n\',\'My talk page\'); 
+ta[\'pt-anontalk\'] = new Array(\'n\',\'Discussion about edits from this ip address\'); 
+ta[\'pt-preferences\'] = new Array(\'\',\'My preferences\'); 
+ta[\'pt-watchlist\'] = new Array(\'l\',\'The list of pages you\\\'re monitoring for changes.\'); 
+ta[\'pt-mycontris\'] = new Array(\'y\',\'List of my contributions\'); 
+ta[\'pt-login\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\'); 
+ta[\'pt-anonlogin\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\'); 
+ta[\'pt-logout\'] = new Array(\'o\',\'Log out\'); 
+ta[\'ca-article\'] = new Array(\'a\',\'View the content page\'); 
+ta[\'ca-talk\'] = new Array(\'t\',\'Discussion about the content page\'); 
+ta[\'ca-edit\'] = new Array(\'e\',\'You can edit this page. Please use the preview button before saving.\'); 
+ta[\'ca-addsection\'] = new Array(\'+\',\'Add a comment to this discussion.\'); 
+ta[\'ca-viewsource\'] = new Array(\'e\',\'This page is protected. You can view its source.\'); 
+ta[\'ca-history\'] = new Array(\'h\',\'Past versions of this page.\'); 
+ta[\'ca-protect\'] = new Array(\'=\',\'Protect this page\'); 
+ta[\'ca-delete\'] = new Array(\'d\',\'Delete this page\'); 
+ta[\'ca-undelete\'] = new Array(\'d\',\'Restore the edits done to this page before it was deleted\'); 
+ta[\'ca-move\'] = new Array(\'m\',\'Move this page\'); 
+ta[\'ca-nomove\'] = new Array(\'\',\'You don\\\'t have the permissions to move this page\'); 
+ta[\'ca-watch\'] = new Array(\'w\',\'Add this page to your watchlist\'); 
+ta[\'ca-unwatch\'] = new Array(\'w\',\'Remove this page from your watchlist\'); 
+ta[\'search\'] = new Array(\'f\',\'Search this wiki\'); 
+ta[\'p-logo\'] = new Array(\'\',\'Main Page\'); 
+ta[\'n-mainpage\'] = new Array(\'z\',\'Visit the Main Page\'); 
+ta[\'n-portal\'] = new Array(\'\',\'About the project, what you can do, where to find things\'); 
+ta[\'n-currentevents\'] = new Array(\'\',\'Find background information on current events\'); 
+ta[\'n-recentchanges\'] = new Array(\'r\',\'The list of recent changes in the wiki.\'); 
+ta[\'n-randompage\'] = new Array(\'x\',\'Load a random page\'); 
+ta[\'n-help\'] = new Array(\'\',\'The place to find out.\'); 
+ta[\'n-sitesupport\'] = new Array(\'\',\'Support us\'); 
+ta[\'t-whatlinkshere\'] = new Array(\'b\',\'List of all wiki pages that link here\'); 
+ta[\'t-recentchangeslinked\'] = new Array(\'c\',\'Recent changes in pages linking to this page\'); 
+ta[\'feed-rss\'] = new Array(\'\',\'RSS feed for this page\'); 
+ta[\'feed-atom\'] = new Array(\'\',\'Atom feed for this page\'); 
+ta[\'t-contributions\'] = new Array(\'\',\'View the list of contributions of this user\'); 
+ta[\'t-emailuser\'] = new Array(\'\',\'Send a mail to this user\'); 
+ta[\'t-upload\'] = new Array(\'u\',\'Upload images or media files\'); 
+ta[\'t-specialpages\'] = new Array(\'q\',\'List of all special pages\'); 
+ta[\'ca-nstab-main\'] = new Array(\'a\',\'View the content page\'); 
+ta[\'ca-nstab-user\'] = new Array(\'a\',\'View the user page\'); 
+ta[\'ca-nstab-media\'] = new Array(\'a\',\'View the media page\'); 
+ta[\'ca-nstab-special\'] = new Array(\'\',\'This is a special page, you can\\\'t edit the page itself.\'); 
+ta[\'ca-nstab-wp\'] = new Array(\'a\',\'View the project page\'); 
+ta[\'ca-nstab-image\'] = new Array(\'a\',\'View the image page\'); 
+ta[\'ca-nstab-mediawiki\'] = new Array(\'a\',\'View the system message\'); 
+ta[\'ca-nstab-template\'] = new Array(\'a\',\'View the template\'); 
+ta[\'ca-nstab-help\'] = new Array(\'a\',\'View the help page\'); 
+ta[\'ca-nstab-category\'] = new Array(\'a\',\'View the category page\'); 
+'
 
 
 );

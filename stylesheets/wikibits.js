@@ -1,5 +1,4 @@
 // Wikipedia JavaScript support functions
-
 // if this is true, the toolbar will no longer overwrite the infobox when you move the mouse over individual items
 var noOverwrite=false;
 var alertText;
@@ -21,21 +20,19 @@ function onloadhook () {
     histrowinit();
     unhidetzbutton();
     tabbedprefs();
+    akeytt();
 }
 if (window.addEventListener) window.addEventListener("load",onloadhook,false);
 else if (window.attachEvent) window.attachEvent("onload",onloadhook);
 
 
 // document.write special stylesheet links
-function addcss ( stylepath ) {
-    if (is_opera_preseven) {
-        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'Opera6Fixes.css">');
-    } else if (is_opera_seven) {
-        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'Opera7Fixes.css">');
-    } else if (is_khtml) {
-        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'KHTMLFixes.css">');
-    }
-    return;
+if (is_opera_preseven) {
+    document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/Opera6Fixes.css">');
+} else if (is_opera_seven) {
+    document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/Opera7Fixes.css">');
+} else if (is_khtml) {
+    document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/KHTMLFixes.css">');
 }
 
 // Un-trap us from framesets
@@ -360,4 +357,26 @@ function insertTags(tagOpen, tagClose, sampleText) {
 	}
 	// reposition cursor if possible
 	if (txtarea.createTextRange) txtarea.caretPos = document.selection.createRange().duplicate();
+}
+
+function akeytt() {
+    if(!ta) return;
+    pref = 'alt-';
+    if(is_safari || navigator.userAgent.toLowerCase().indexOf( 'mac' ) + 1 ) pref = 'cmd-';
+    if(is_opera) pref = 'shift-esc-';
+    for(id in ta) {
+        n = document.getElementById(id);
+        if(n){
+            a = n.childNodes[0];
+            if(a){
+                if(ta[id][0].length > 0) {
+                    a.accesskey = ta[id][0];
+                    ak = ' ['+pref+ta[id][0]+']';
+                } else {
+                    ak = '';
+                }
+                a.title = ta[id][1]+ak;
+            }
+        }
+    }
 }
