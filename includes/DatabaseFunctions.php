@@ -53,24 +53,6 @@ function &wfGetDB( $db = DB_LAST ) {
 }
 	
 /**
- * Turns buffering of SQL result
- * Sets on (true) or off (false). Default is "on" and it should not be changed
- * without good reasons.
- *
- * @param $newstate
- * @param $dbi
- * @return mixed|NULL Returns the previous state.
-*/
-function wfBufferSQLResults( $newstate, $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
-	if ( $db !== false ) {
-		return $db->setBufferResults( $newstate );
-	} else {
-		return NULL;
-	}
-}
-
-/**
  * Turns on (false) or off (true) the automatic generation and sending
  * of a "we're sorry, but there has been a database error" page on
  * database errors. Default is on (false). When turned off, the
