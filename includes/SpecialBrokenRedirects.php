@@ -25,7 +25,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 
 	function getPageHeader( ) {
 		#FIXME : probably need to add a backlink to the maintenance page.
-		return '<p>'.wfMsg('brokenredirectstext')."</p><br>\n";
+		return '<p>'.wfMsg('brokenredirectstext')."</p><br />\n";
 	}
 
 	function getSQL() {
