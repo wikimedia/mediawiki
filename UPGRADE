@@ -59,16 +59,17 @@ http://mail.wikipedia.org/pipermail/wikitech-l/2004-November/026359.html
 
 == Caveats ==
 
-=== Upgrading from 1.4beta4 or earlier ===
+=== Upgrading from 1.4rc1 or earlier betas ===
 
-The logging table has been altered from 1.4beta4 to 1.4beta5.
-Copy in the new files and use the web installer to upgrade, or
-the command-line maintenance/update.php.
+The logging table has been altered from 1.4beta4 to 1.4beta5
+and again in 1.4.0 final. Copy in the new files and use the web
+installer to upgrade, or the command-line maintenance/update.php.
 
 If you cannot use the automated installers/updaters, you may
-update the table by manually running the SQL command in this
-file:
+update the table by manually running the SQL commands in these
+files:
    maintenance/archives/patch-log_params.sql
+   maintenance/archives/patch-logging-title.sql
 
 
 === Upgrading from 1.3.x ===
@@ -120,9 +121,11 @@ note that things are a little different. The Template: namespace has been
 added which is more powerful -- templates can include parameters for
 instance.
 
-Any MediaWiki: entries that are not used by the software will be automatically
-moved to Template: entries at upgrade time. Be sure to go through and check
-that everything is working properly.
+If you were using custom MediaWiki: entries for text inclusions, they
+will *not* automatically be moved to Template: entries at upgrade time.
+Be sure to go through and check that everything is working properly;
+you can move them manually or you can try using moveCustomMessages.php
+in maintenance/archives to do it automatically, but this might break things.
 
 Also, be sure to pick the correct character encoding -- some languages were
 only available in Latin-1 on 1.2.x and are now available for Unicode as well.
