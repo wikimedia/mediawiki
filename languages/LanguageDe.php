@@ -1184,7 +1184,9 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 	'mw_math_source' =>"Als TeX belassen (für Textbrowser)",
 	'mw_math_modern' => "Empfehlenswert für moderne Browser",
 	'mw_math_mathml' => 'MathML (experimentell)',
-
+# labels for User: and Title: on Special:Log pages
+'specialloguserlabel' => 'Benutzer: ',
+'speciallogtitlelabel' => 'Titel: ',
 
 );
 
