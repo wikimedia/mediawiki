@@ -4,6 +4,6 @@
 -- December 2003
 --
 
-CREATE TABLE hitcounter (
+CREATE TABLE /*$wgDBprefix*/hitcounter (
   hc_id INTEGER UNSIGNED NOT NULL
 ) TYPE=HEAP MAX_ROWS=25000;

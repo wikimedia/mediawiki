@@ -4,7 +4,7 @@
 -- This is under development to provide a showcase in HEAD :o)
 
 -- Hold group name and description
-CREATE TABLE `group` (
+CREATE TABLE /*$wgDBprefix*/`group` (
   group_id int(5) unsigned NOT NULL auto_increment,
   group_name varchar(50) NOT NULL default '',
   group_description varchar(255) NOT NULL default '',
@@ -13,7 +13,7 @@ CREATE TABLE `group` (
 );
 
 -- Relation table between user and groups
-CREATE TABLE user_groups (
+CREATE TABLE /*$wgDBprefix*/user_groups (
 	ug_user int(5) unsigned NOT NULL default '0',
 	ug_group int(5) unsigned NOT NULL default '0',
 	PRIMARY KEY  (ug_user,ug_group)

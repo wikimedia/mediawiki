@@ -14,14 +14,14 @@
 -- timestamps of cached pages to ensure consistency; if
 -- cur_touched is later, the page must be regenerated.
 
-ALTER TABLE cur
+ALTER TABLE /*$wgDBprefix*/cur
   ADD COLUMN cur_touched char(14) binary NOT NULL default '';
 
 -- Existing pages should be initialized to the current
 -- time so they don't needlessly rerender until they are
 -- changed for the first time:
 
-UPDATE cur
+UPDATE /*$wgDBprefix*/cur
   SET cur_touched=NOW()+0;
 
 -- user_touched should be set to the current time whenever:
@@ -35,7 +35,7 @@ UPDATE cur
 -- time, the page should be rerendered with new options and
 -- sent again.
 
-ALTER TABLE user
+ALTER TABLE /*$wgDBprefix*/user
   ADD COLUMN user_touched char(14) binary NOT NULL default '';
-UPDATE user
+UPDATE /*$wgDBprefix*/user
   SET user_touched=NOW()+0;

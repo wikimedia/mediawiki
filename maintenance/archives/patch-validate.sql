@@ -1,6 +1,6 @@
 -- For article validation
 
-CREATE TABLE `validate` (
+CREATE TABLE /*$wgDBprefix*/validate (
   `val_user` int(11) NOT NULL default '0',
   `val_title` varchar(255) binary NOT NULL default '',
   `val_timestamp` varchar(14) binary NOT NULL default '',
