@@ -376,6 +376,7 @@ div.tleft {
 }
 img.tex { vertical-align: middle; }
 span.texhtml { font-family: serif; }
+
 /*
 ** classes for special content elements like town boxes
 ** intended to be referenced directly from the wiki src
@@ -384,7 +385,6 @@ span.texhtml { font-family: serif; }
 /*
 ** User styles
 */
-
 /* table standards */
 table.rimage {
     float:right; 
@@ -427,13 +427,11 @@ div.townBox dl dd {
 /*
 ** edit views etc
 */
-
 .special li {
     line-height: 1.4em;
     margin: 0;
     padding: 0;
 }
-
 
 /* Page history styling */
 /* the auto-generated edit comments */
@@ -634,7 +632,6 @@ input.searchButton {
     background-color: White;
     border: 1px solid #2f6fab;  
 }
-
 #searchInput {
     border: 1px solid #2f6fab;  
     width:10.9em;
