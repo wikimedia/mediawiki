@@ -25,13 +25,13 @@
 		wfProfileOut( "$fname-setup" );
 		
 		wfProfileIn( "$fname-output" );
-		if ($ot == 'html') {
+		if ($ot == 'php') {
+			$navText .= makePhp($messages);
+			$wgOut->addHTML('PHP | <a href="'.$wgTitle->escapeLocalUrl('ot=html').'">HTML</a><pre>'.htmlspecialchars($navText).'</pre>');
+		} else {
 			$wgOut->addHTML( '<a href="'.$wgTitle->escapeLocalUrl('ot=php').'">PHP</a> | HTML' );
 			$wgOut->addWikiText( $navText );
 			$wgOut->addHTML( makeHTMLText( $messages ) );
-		} else {
-			$navText .= makePhp($messages);
-			$wgOut->addHTML('PHP | <a href="'.$wgTitle->escapeLocalUrl('ot=html').'">HTML</a><pre>'.htmlspecialchars($navText).'</pre>');
 		}
 		wfProfileOut( "$fname-output" );
 		
