@@ -1306,8 +1306,8 @@ class Parser
 					$text = $this->replaceExternalLinks($text);
 					$text = $this->replaceInternalLinks($text);
 					
-					# replace the image with a link-holder so that replaceExternalLinks() can't mess with it
-					$s .= $prefix . $this->insertStripItem( $sk->makeImageLinkObj( $nt, $text ), $this->mStripState ) . $trail;
+					# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
+					$s .= $prefix . str_replace('http://', 'http-noparse://', $sk->makeImageLinkObj( $nt, $text ) ) . $trail;
 					$wgLinkCache->addImageLinkObj( $nt );
 					
 					wfProfileOut( "$fname-image" );
