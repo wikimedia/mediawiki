@@ -252,7 +252,7 @@ class User {
 	 * And it's cheaper to check slave first, then master if needed, than master always.
 	 */
 	function getBlockedStatus() {
-		global $wgIP, $wgBlockCache, $wgProxyList, $wgEnableSorbs;
+		global $wgIP, $wgBlockCache, $wgProxyList, $wgEnableSorbs, $bFromSlave;
 
 		if ( -1 != $this->mBlockedby ) { return; }
 
