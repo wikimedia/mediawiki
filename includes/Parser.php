@@ -172,15 +172,25 @@ class Parser
 		$text = $this->strip( $text, $x );
 
 		$text = $this->internalParse( $text, $linestart );
+
+		$dashReplace = array(
+						 '/ - /' => "&nbsp;&ndash; ", # N dash
+						 '/(?<=[0-9])-(?=[0-9])/' => "&ndash;", # N dash between numbers
+						 '/ -- /' => "&nbsp;&mdash; " # M dash
+						 );
+		$text = preg_replace( array_keys($dashReplace), array_values($dashReplace), $text );
+		
+		
 		$text = $this->unstrip( $text, $this->mStripState );
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
+		global $wgUseTidy;
 		if(!$wgUseTidy) {
 			$fixtags = array(
 				# french spaces, last one Guillemet-left
 				# only if there is something before the space
-				'/(.) (?=\\?|:|;|!|\\302\\273)/i' => '\\1&nbsp;\\2',
+				'/(.) (?=\\?|:|;|!|\\302\\273)/' => '\\1&nbsp;\\2',
 				# french spaces, Guillemet-right
-				'/(\\302\\253) /i' => '\\1&nbsp;',
+				'/(\\302\\253) /' => '\\1&nbsp;',
 				'/<hr *>/i' => '<hr />',
 				'/<br *>/i' => '<br />',
 				'/<center *>/i' => '<div class="center">',
@@ -191,9 +201,9 @@ class Parser
 		} else {
 			$fixtags = array(
 				# french spaces, last one Guillemet-left
-				'/ (\\?|:|;|!|\\302\\273)/i' => '&nbsp;\\1',
+				'/ (\\?|:|;|!|\\302\\273)/' => '&nbsp;\\1',
 				# french spaces, Guillemet-right
-				'/(\\302\\253) /i' => '\\1&nbsp;',
+				'/(\\302\\253) /' => '\\1&nbsp;',
 				'/<center *>/i' => '<div class="center">',
 				'/<\\/center *>/i' => '</div>'
 			);
@@ -206,7 +216,6 @@ class Parser
 		$text = $wgContLang->convert($text);
 
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
-		global $wgUseTidy;
 		if ($wgUseTidy) {
 			$text = Parser::tidy($text);
 		}
