@@ -387,6 +387,14 @@ class DatabasePgsql extends Database {
 		return wfTimestamp(TS_DB,$ts);
 	}
 
+        /**
+         * Return aggregated value function call
+         */
+        function aggregateValue ($valuedata,$valuename='value') {
+                return $valuedata;
+        }
+
+
 	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
 		$message = "A database error has occurred\n" .
 			"Query: $sql\n" .

@@ -1209,6 +1209,13 @@ class Database {
 			return new ResultWrapper( $this, $result );
 		}
 	}
+
+	/**
+	 * Return aggregated value alias
+	 */
+	function aggregateValue ($valuedata,$valuename='value') {
+		return $valuename;
+	}
 	
 	/**
 	 * @return string wikitext of a link to the server software's web site
