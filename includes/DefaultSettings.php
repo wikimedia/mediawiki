@@ -47,8 +47,8 @@ $wgLogo				= "{$wgUploadPath}/wiki.png";
 $wgMathPath         = "{$wgUploadPath}/math";
 $wgMathDirectory    = "{$wgUploadDirectory}/math";
 $wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
-$wgEmergencyContact = 'wikiadmin@' . getenv( 'SERVER_NAME' );
-$wgPasswordSender	= 'Wikipedia Mail <apache@' . getenv( 'SERVER_NAME' ) . '>';
+$wgEmergencyContact = 'wikiadmin@' . $_SERVER['SERVER_NAME'];
+$wgPasswordSender	= 'Wikipedia Mail <apache@' . $_SERVER['SERVER_NAME'] . '>';
 
 # For using a direct (authenticated) SMTP server connection.
 # "host" => 'SMTP domain', "IDHost" => 'domain for MessageID', "port" => "25", "auth" => true/false, "username" => user, "password" => password

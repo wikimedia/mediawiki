@@ -3,6 +3,10 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== Version 1.3.8, 2004-10-?? ==
+Changes from 1.3.7:
+* (bug 506) fix array_key_exists() warning for IIS servers using
+  ISAPI mode
 
 == Version 1.3.7, 2004-10-18 ==
 Changes from 1.3.6:
