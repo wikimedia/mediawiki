@@ -357,7 +357,7 @@ class ParserTest {
 
 			# Hack: insert a few Wikipedia in-project interwiki prefixes,
 			# for testing inter-language links
-			$db->insertArray( 'interwiki', array(
+			$db->insert( 'interwiki', array(
 				array( 'iw_prefix' => 'Wikipedia',
 				       'iw_url'    => 'http://en.wikipedia.org/wiki/$1',
 				       'iw_local'  => 0 ),

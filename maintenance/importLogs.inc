@@ -125,7 +125,7 @@ class LogImporter {
 					var_dump( $insert );
 				} else {
 					# FIXME: avoid duplicates!
-					$this->db->insertArray( 'logging', $insert );
+					$this->db->insert( 'logging', $insert );
 				}
 				break;
 			}
