@@ -436,9 +436,13 @@
 				}
 
 				if ( $wgUser->getID() != 0 && $wgTitle->getArticleId() && $wgTitle->getNamespace() == 0 ) {
+					global $wgArticle ;
+					extract( $wgRequest->getValues( 'oldid' ) );
+					if ( isset ( $oldid ) ) $article_time = "&timestamp=" . $wgArticle->mTimestamp ;
+					else $article_time = "";
 					$content_actions['validate'] = array('class' => ($action == 'validate') ? 'selected' : false ,
 						'text' => wfMsg('val_tab'),
-						'href' => $this->makeUrl($this->thispage, 'action=validate'));
+						'href' => $this->makeUrl($this->thispage, "action=validate{$article_time}"));
 					}
 
 			} else {

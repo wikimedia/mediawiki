@@ -70,11 +70,23 @@ class Validation
 			}
 		else $heading = "" ;
 		$article_time = "" ;
-		if ( isset ( $_GET['timestamp'] ) ) $article_time = $_GET['timestamp'] ;	
+		if ( isset ( $_GET['timestamp'] ) ) $article_time = $_GET['timestamp'] ;
+		else $article_time = "" ;
 		$article = Title::newFromText ( $article_title ) ;
 			
 		# Now we get all the "votes" for the different versions of this article for this user
-		$val = $this->get_prev_data ( $wgUser->getID() , $article_title ) ;
+		$val = $this->get_prev_data ( $wgUser->getID() , $article_title , $article_time ) ;
+		
+		# No votes for this version, initial data
+		if ( count ( $val ) == 0 )
+			{
+			if ( $article_time == "" )
+				{
+				$res = wfQuery( "select cur_timestamp FROM cur WHERE cur_title=\"{$article_title}\" AND cur_namespace=0", DB_READ );
+				if ( $s = wfFetchObject( $res ) ) $article_time = $s->cur_timestamp ;
+				}
+			$val[$article_time] = array () ;
+			}
 		
 		# User has clicked "Doit" before, so evaluate form
 		if ( isset ( $_POST['doit'] ) )
@@ -120,7 +132,7 @@ class Validation
 		$topstyle = "style='border-top:2px solid black'" ;
 		foreach ( $val AS $time => $stuff )
 			{
-			if ( $time == $article_time ) $html .= wfMsg("val_this_version") ;
+			if ( $time != $article_time ) $html .= wfMsg("val_this_version") ;
 			else $html .= str_replace ( "$1" , gmdate("F d, Y H:i:s",wfTimestamp2Unix($time)) , wfMsg("val_version_of") ) ;
 			$html .= "<form method=post>\n" ;
 			$html .= "<input type=hidden name=oldtime value='{$time}'>" ;
