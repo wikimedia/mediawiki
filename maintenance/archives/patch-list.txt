@@ -173,5 +173,7 @@ patch-linktables.sql
 * 2004-04: Add user_real_name field
 patch-user-realname.sql
 
-* 2004-05-08: Add querycache table for caching special pages
+* 2004-05-08: Add querycache table for caching special pages and generic
+	object cache to cover some slow operations w/o memcached.
 patch-querycache.sql
+patch-objectcache.sql

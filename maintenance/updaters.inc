@@ -145,4 +145,15 @@ function do_querycache_update() {
 	}
 }
 
+function do_objectcache_update() {
+	global $wgDatabase;
+	if( $wgDatabase->tableExists( "objectcache" ) ) {
+		echo "...have objectcache table.\n";
+	} else {
+		echo "Adding objectcache table for message caching... ";
+		dbsource( "maintenance/archives/patch-objectcache.sql", $wgDatabase );
+		echo "ok\n";
+	}
+}
+
 ?>

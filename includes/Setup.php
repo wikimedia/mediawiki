@@ -128,8 +128,14 @@ if( $wgUseMemCached ) {
 		$wgUseMemCached = false;
 		$wgMemc = new FakeMemCachedClient();
 	}
+	$messageMemc = &$wgMemc;
 } else {
 	$wgMemc = new FakeMemCachedClient();
+	
+	# Give the message cache a separate cache in the DB.
+	# This is a speedup over separately querying every message used
+	require_once( "ObjectCache.php" );
+	$messageMemc = new MediaWikiBagOStuff("objectcache");
 }
 
 wfProfileOut( "$fname-memcached" );
@@ -149,7 +155,7 @@ $wgLang = new $wgLangClass();
 if ( !is_object($wgLang) ) {
 	print "No language class ($wgLang)\N";
 }
-$wgMessageCache->initialise( $wgUseMemCached, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname );
+$wgMessageCache->initialise( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname );
 
 $wgOut = new OutputPage();
 wfDebug( "\n\n" );
