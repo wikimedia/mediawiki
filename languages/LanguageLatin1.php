@@ -26,7 +26,10 @@
 # This will replace anything that can't be described in Latin-1 with
 # an ugly question mark (?) so don't use this mode on languages that
 # aren't suited to it!
-#
+
+# This file and LanguageUtf8.php may be included from within functions, so
+# we need to have global statements
+global $wgInputEncoding, $wgOutputEncoding, 
 
 $wgInputEncoding = "ISO-8859-1";
 $wgOutputEncoding = "ISO-8859-1";

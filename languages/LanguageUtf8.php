@@ -2,6 +2,12 @@
 #$Id$
 if( defined( "MEDIAWIKI" ) ) {
 
+# This file and LanguageLatin1.php may be included from within functions, so
+# we need to have global statements
+
+global $wgInputEncoding, $wgOutputEncoding, $wikiUpperChars, $wikiLowerChars;
+global $wgDBname, $wgMemc;
+
 $wgInputEncoding    = "UTF-8";
 $wgOutputEncoding	= "UTF-8";
 
