@@ -77,6 +77,21 @@ class SkinPHPTal extends SkinTemplate {
 			return new PHPTAL( $file . '.pt', $repository, $cache_dir );
 		}
 	}
+	
+	/**
+	 * Output the string, or print error message if it's
+	 * an error object of the appropriate type.
+	 *
+	 * @param mixed $str
+	 * @access private
+	 */
+	function printOrError( &$str ) {
+		if( PEAR::isError( $str ) ) {
+			echo $str->toString(), "\n";
+		} else {
+			echo $str;
+		}
+	}
 }
 
 class PHPTAL_version_bridge {

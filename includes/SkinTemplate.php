@@ -317,12 +317,19 @@ class SkinTemplate extends Skin {
 		$res = $tpl->execute();
 		
 		// result may be an error
-		#if (PEAR::isError($res)) {
-		#	echo $res->toString(), "\n";
-		#} else {
-			echo $res;
-		#}
+		$this->printOrError( $res );
 
+	}
+	
+	/**
+	 * Output the string, or print error message if it's
+	 * an error object of the appropriate type.
+	 *
+	 * @param mixed $str
+	 * @access private
+	 */
+	function printOrError( &$str ) {
+		echo $str;
 	}
 
 	/**
