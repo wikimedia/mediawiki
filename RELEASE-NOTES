@@ -23,6 +23,7 @@ Changes from 1.3.7:
 * User option localization fix for some extensions
 * (bug 809) now try to load the mysql php extension if it isn't loaded
 * (bug 848) fix error message in Special:Newpages RSS and Atom feeds
+* (bug 26) fix cache headers on anon talk page notification
 
 
 == Version 1.3.7, 2004-10-18 ==

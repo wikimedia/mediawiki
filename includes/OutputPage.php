@@ -345,8 +345,8 @@ class OutputPage {
 			return;
 		}
 
-
-		$this->sendCacheControl();
+		# Buffer output; final headers may depend on later processing
+		ob_start();
 
 		header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
 		header( "Content-language: {$wgLanguageCode}" );
@@ -357,7 +357,9 @@ class OutputPage {
 		}
 
 		$sk->outputPage( $this );
-		# flush();
+
+		$this->sendCacheControl();
+		ob_end_flush();
 	}
 
 	function out( $ins )
