@@ -1494,7 +1494,7 @@ class Parser
 				            . "<a name=\"$anchor\" " . $headlinematches[2];
 			} else {
 				# else create an anchor link for the headline
-				$headline = "<a name=\"$anchor.\">$headline</a>";
+				$headline = "<a name=\"$anchor\">$headline</a>";
 			}
 				
 			# give headline the correct <h#> tag
