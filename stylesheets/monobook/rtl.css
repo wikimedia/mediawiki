@@ -35,6 +35,10 @@ body * {
     direction: rtl;
 /*    unicode-bidi: bidi-override;*/
     unicode-bidi: embed;
+    moz-box-direction: rtl;
+}
+*:root {
+    width: 100%;
 }
 #portal-column-content {
 	margin: 0 -12.2em 0 0;
@@ -43,12 +47,19 @@ body * {
 
 #portal-column-content #content{
 	margin-left: 0;
-	margin-right: 12.2em;
+	margin-right: 12.5em;
 }
-
 #documentContent {
     border-right: 1px solid #aaaaaa;
     border-left: none;
+}
+head:first-child+body .portlet {
+    float: right;
+    clear: right;
+}
+.portletContent {
+    padding-right: 0.8em;
+    padding-left: 0.5em;
 }
 
 /* Fix alignment */
@@ -64,7 +75,6 @@ div div.thumbcaption {
 	text-align: right;
 }
 
-#portal-column-content,
 #catlinks,
 div.magnify,
 #div.townBox,
@@ -84,10 +94,12 @@ div.magnify,
 #portlet-contentViews {
 	left: auto;
 	right: 11.5em;
-        padding-left: 0em;
+        padding-left: auto;
+        padding-right: 1em;
 }
 #portlet-contentViews li {
     margin: 0 0 0 0.3em;
+    float: right;
 }
 /* offsets to distinguish the tab groups */
 li#contentaction-talk {
@@ -118,6 +130,9 @@ dd {
 	margin-right: 1em;
 	margin-left: 0;
 }
+#documentContent {
+    padding-right 1.8em;
+}
 .tocindent {
 	margin-left: 0;
 	margin-right: 2em;
@@ -141,37 +156,20 @@ li#contentaction-watch {
 	margin-left: 1.6em;
 }
 
-
+#portal-personaltools li {
+    float: left;
+}
 /* Fix link icons */
 li#personaltools-userpage,
 li#personaltools-anonuserpage,
 li#personaltools-login {
-	background-position: right;
+	background: none;
 	padding-left: 0;
-	padding-right: 20px;
 }
-
-#bodyContent a[href ^="http://"],
-#bodyContent a[href ^="gopher://"] {
-    background-position: left;
-    padding-right: 0;
-    padding-left: 13px;
+.external {
+    padding: 0 !important;
+    background: none !important;
 }
-#bodyContent a[href ^="https://"],
-.link-https {
-    background-position: left;
-    padding-right: 0;
-    padding-left: 16px;
+#portal-footer {
+    clear: both;
 }
-#bodyContent a[href ^="mailto:"],
-.link-mailto,
-#bodyContent a[href ^="news://"],
-#bodyContent a[href ^="ftp://"],
-.link-ftp,
-#bodyContent a[href ^="irc://"],
-.link-irc {
-    background-position: left;
-    padding-left: 18px;
-    padding-right: 0;
-}
-
