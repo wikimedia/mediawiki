@@ -22,16 +22,6 @@ class EditPage {
 		global $wgOut, $wgUser, $wgWhitelistEdit;
 		global $wpTextbox1, $wpSummary, $wpSave, $wpPreview;
 		global $wpMinoredit, $wpEdittime, $wpTextbox2;
-		global $wpSection , $wpWatchthis;
-		$wpTextbox1 = $_REQUEST["wpTextbox1"];
-		$wpSummary  = $_REQUEST["wpSummary"];
-		$wpSave     = $_REQUEST["wpSave"];
-		$wpPreview  = $_REQUEST["wpPreview"];
-		$wpMinoredit= $_REQUEST["wpMinoredit"];
-		$wpEdittime = $_REQUEST["wpEdittime"];
-		$wpTextbox2 = $_REQUEST["wpTextbox2"];
-		$wpWatchthis = $_REQUEST["wpWatchthis"];
-		$wpSection = $_REQUEST["wpSection"];
 
 		$fields = array( "wpTextbox1", "wpSummary", "wpTextbox2" );
 		wfCleanFormFields( $fields );

@@ -4,9 +4,6 @@ function wfSpecialImagelist()
 {
 	global $wgUser, $wgOut, $wgLang, $sort;
 	global $wpIlMatch, $wpIlSubmit;
-	$sort        = $_REQUEST['sort'];
-	$wpIlMatch   = $_REQUEST["wpIlMatch"];
-	$wpIlSubmit  = $_REQUEST["wpIlSubmit"];
 
 	$fields = array( 'wpIlMatch' );
 	wfCleanFormFields( $fields );

@@ -23,7 +23,6 @@ class SqlQueryForm {
 		global $wgOut, $wgUser, $wgLang;
 		global $wpSqlQuery;
 		global $wgLogQueries;
-		$wpSqlQuery = $_REQUEST["wpSqlQuery"];
 
 		$wgOut->setPagetitle( wfMsg( "asksql" ) );
 		$note = wfMsg( "asksqltext" );
@@ -62,7 +61,6 @@ class SqlQueryForm {
 		global $wgOut, $wgUser, $wgServer, $wgScript, $wgArticlePath, $wgLang;
 		global $wpSqlQuery;
 		global $wgDBsqluser, $wgDBsqlpassword;
-		$wpSqlQuery = $_REQUEST["wpSqlQuery"];
 
 		# Use a limit, folks!
 		$wpSqlQuery = trim( $wpSqlQuery );

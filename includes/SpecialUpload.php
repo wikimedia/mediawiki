@@ -4,8 +4,6 @@ function wfSpecialUpload()
 {
 	global $wgUser, $wgOut, $wpUpload, $wpReUpload, $action;
 	global $wgDisableUploads;
-	$wpUpload   = $_REQUEST["wpUpload"];
-	$wpReUpload = $_REQUEST["wpReUpload"];
 	
 	$fields = array( "wpUploadFile", "wpUploadDescription" );
 	wfCleanFormFields( $fields );
@@ -41,16 +39,6 @@ function processUpload()
 	global $wpUploadSaveName, $wpUploadTempName, $wpUploadSize;
 	global $wgSavedFile, $wgUploadOldVersion, $wpUploadOldVersion;
 	global $wgUseCopyrightUpload , $wpUploadCopyStatus , $wpUploadSource ;
-	$wpUploadAffirm       = $_REQUEST["wpUploadAffirm"];
-	$wpUploadFile         = $_REQUEST["wpUploadFile"];
-	$wpUploadDescription  = $_REQUEST["wpUploadDescription"];
-	$wpIgnoreWarning      = $_REQUEST["wpIgnoreWarning"];
-	$wpUploadSaveName     = $_REQUEST["wpUploadSaveName"];
-	$wpUploadTempName     = $_REQUEST["wpUploadTempName"];
-	$wpUploadSize         = $_REQUEST["wpUploadSize"];
-	$wpUploadOldVersion   = $_REQUEST["wpUploadOldVersion"];
-	$wpUploadCopyStatus   = $_REQUEST["wpUploadCopyStatus"];
-	$wpUploadSource       = $_REQUEST["wpUploadSource"];
 
 	if ( $wgUseCopyrightUpload )
 	  {
@@ -156,7 +144,6 @@ function unsaveUploadedFile()
 {
 	global $wpSessionKey, $wpUploadOldVersion;
 	global $wgUploadDirectory, $wgOut, $wsUploadFiles;
-	$wpSessionKey       = $_REQUEST["wpSessionKey"];
 	
 	$wgSavedFile = $wsUploadFiles[$wpSessionKey];
 	$wgUploadOldVersion = $wpUploadOldVersion;
@@ -186,7 +173,6 @@ function uploadWarning( $warning )
 	global $wgSavedFile, $wgUploadOldVersion;
 	global $wpSessionKey, $wpUploadOldVersion, $wsUploadFiles;
 	global $wgUseCopyrightUpload , $wpUploadCopyStatus , $wpUploadSource ;
-	$wpSessionKey       = $_REQUEST["wpSessionKey"];
 
 	# wgSavedFile is stored in the session not the form, for security
 	$wpSessionKey = mt_rand( 0, 0x7fffffff );
@@ -238,14 +224,6 @@ function mainUploadForm( $msg )
 	global $wpUpload, $wpUploadAffirm, $wpUploadFile;
 	global $wpUploadDescription, $wpIgnoreWarning;
 	global $wgUseCopyrightUpload , $wpUploadSource , $wpUploadCopyStatus ;
-
-	$wpUpload            = $_REQUEST["wpUpload"];
-	$wpUploadAffirm      = $_REQUEST["wpUploadAffirm"];
-	$wpUploadFile        = $_REQUEST["wpUploadFile"];
-	$wpUploadDescription = $_REQUEST["wpUploadDescription"];
-	$wpIgnoreWarning     = $_REQUEST["wpIgnoreWarning"];
-	$wpUploadSource      = $_REQUEST["wpUploadSource"];
-	$wpUploadCopyStatus  = $_REQUEST["wpUploadCopyStatus"];
 
 	if ( "" != $msg ) {
 		$sub = wfMsg( "uploaderror" );

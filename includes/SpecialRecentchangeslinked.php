@@ -5,10 +5,6 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
 	global $days, $target, $hideminor; # From query string
-	$days      = $_REQUEST["days"];
-	$hideminor = $_REQUEST["hideminor"];
-	$from      = $_REQUEST["from"];
-
 	$fname = "wfSpecialRecentchangeslinked";
 
 	$wgOut->setPagetitle( wfMsg( "recentchanges" ) );
