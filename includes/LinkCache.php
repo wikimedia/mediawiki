@@ -405,6 +405,9 @@ class LinkBatch {
 	}
 
 	function add( $ns, $dbkey ) {
+		if ( $ns < 0 ) {
+			return;
+		}
 		if ( !array_key_exists( $ns, $this->data ) ) {
 			$this->data[$ns] = array();
 		}
@@ -458,16 +461,18 @@ class LinkBatch {
 		$res = $dbr->query( $sql, $fname );
 
 		// Process results
-		// For each returned entry, add it to the list of good links, and remove it from $data
+		// For each returned entry, add it to the list of good links, and remove it from $remaining
+
+		$remaining = $this->data;
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$cache->addGoodLink( $row->page_id, $title->getPrefixedDBkey() );
-			unset( $this->data[$row->page_namespace][$row->page_title] );
+			unset( $remaining[$row->page_namespace][$row->page_title] );
 		}
 		$dbr->freeResult( $res );
 
 		// The remaining links in $data are bad links, register them as such
-		foreach ( $this->data as $ns => $dbkeys ) {
+		foreach ( $remaining as $ns => $dbkeys ) {
 			foreach ( $dbkeys as $dbkey => $nothing ) {
 				$title = Title::makeTitle( $ns, $dbkey );
 				$cache->addBadLink( $title->getPrefixedText() );
