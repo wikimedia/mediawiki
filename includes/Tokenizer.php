@@ -18,7 +18,7 @@ class Tokenizer {
 	# factory function
 	function newFromString( $s )
 	{
-		$fname = "Tokenizer::newFromString";
+		$fname = 'Tokenizer::newFromString';
 		wfProfileIn( $fname );
 
 		$t = new Tokenizer();
@@ -37,7 +37,7 @@ class Tokenizer {
 	// the stored token.
 	function previewToken()
 	{
-		$fname = "Tokenizer::previewToken";
+		$fname = 'Tokenizer::previewToken';
 		wfProfileIn( $fname );
 
 		if ( count( $this->mQueuedToken ) != 0 ) {
@@ -60,7 +60,7 @@ class Tokenizer {
 	// TODO:  handling of French blanks not yet implemented
 	function nextToken()
 	{
-		$fname = "Tokenizer::nextToken";
+		$fname = 'Tokenizer::nextToken';
 		wfProfileIn( $fname );
 
 		if ( count( $this->mQueuedToken ) != 0 ) {
@@ -71,48 +71,48 @@ class Tokenizer {
 			$token = false;
 		} else {
 
-			$token["text"]="";
-			$token["type"]="text";
+			$token['text']='';
+			$token['type']='text';
 
 			while ( $this->mPos <= $this->mTextLength ) {
 				switch ( @$ch = $this->mText[$this->mPos] ) {
 					case 'R': // for "RFC "
-						if ( $this->continues("FC ") ) {
-						     	$queueToken["type"] = $queueToken["text"] = "RFC ";
+						if ( $this->continues('FC ') ) {
+						     	$queueToken['type'] = $queueToken['text'] = 'RFC ';
 							$this->mQueuedToken[] = $queueToken;
 					     		$this->mPos += 3;
 							break 2; // switch + while 
 						}
 						break;
 					case 'I': // for "ISBN "
-						if ( $this->continues("SBN ") ) {
-						     	$queueToken["type"] = $queueToken["text"] = "ISBN ";
+						if ( $this->continues('SBN ') ) {
+						     	$queueToken['type'] = $queueToken['text'] = 'ISBN ';
 							$this->mQueuedToken[] = $queueToken;
 					     		$this->mPos += 4;
 							break 2; // switch + while
 						}
 						break;
-					case "[": // for links "[["
-						if ( $this->continues("[[") ) {
-						     	$queueToken["type"] = "[[[";
-							$queueToken["text"] = "";
+					case '[': // for links "[["
+						if ( $this->continues('[[') ) {
+						     	$queueToken['type'] = '[[[';
+							$queueToken['text'] = '';
 							$this->mQueuedToken[] = $queueToken;
 					     		$this->mPos += 3;
 							break 2; // switch + while
-						} else if ( $this->continues("[") ) {
-							$queueToken["type"] = "[[";
-							$queueToken["text"] = "";
+						} else if ( $this->continues('[') ) {
+							$queueToken['type'] = '[[';
+							$queueToken['text'] = '';
 							// Check for a "prefixed link", e.g. Al[[Khazar]]
 							// Mostly for arabic wikipedia
 							if ( $this->linkPrefixExtension ) {
 								while (    $this->linkPrefixExtension
-									&& ($len = strlen( $token["text"] ) ) > 0 
-									&& !ctype_space( $token["text"][$len-1] ) )
+									&& ($len = strlen( $token['text'] ) ) > 0 
+									&& !ctype_space( $token['text'][$len-1] ) )
 								{
 									//prepend the character to the link's open tag
-									$queueToken["text"] = $token["text"][$len-1] . $queueToken["text"];
+									$queueToken['text'] = $token['text'][$len-1] . $queueToken['text'];
 									//remove character from the end of the text token
-									$token["text"] = substr( $token["text"], 0, -1);
+									$token['text'] = substr( $token['text'], 0, -1);
 								}
 							}
 							$this->mQueuedToken[] = $queueToken;
@@ -120,10 +120,10 @@ class Tokenizer {
 							break 2; // switch + while 
 						}
 						break;
-					case "]": // for end of links "]]"
-						if ( $this->continues("]") ) {
-						     	$queueToken["type"] = "]]";
-							$queueToken["text"] = "";
+					case ']': // for end of links "]]"
+						if ( $this->continues(']') ) {
+						     	$queueToken['type'] = ']]';
+							$queueToken['text'] = '';
 							$this->mQueuedToken[] = $queueToken;
 					     		$this->mPos += 2;
 							break 2; // switch + while 
@@ -131,13 +131,13 @@ class Tokenizer {
 						break;
 					case "'": // for all kind of em's and strong's
 						if ( $this->continues("'") ) {
-							$queueToken["type"] = "'";
-							$queueToken["text"] = "";
+							$queueToken['type'] = "'";
+							$queueToken['text'] = '';
 							while(   ($this->mPos+1 < $this->mTextLength) 
 							       && $this->mText[$this->mPos+1] == "'" )
 							{
-								$queueToken["type"] .= "'";
-								$queueToken["pos"] = $this->mPos;
+								$queueToken['type'] .= "'";
+								$queueToken['pos'] = $this->mPos;
 								$this->mPos ++;
 							}
 							
@@ -148,65 +148,65 @@ class Tokenizer {
 						break;
 					case "\n": // for block levels, actually, only "----" is handled.
 					case "\r": // headings are detected to close any unbalanced em or strong tags in a section
-						if ( $this->continues( "----" ) )
+						if ( $this->continues( '----' ) )
 						{
-						     	$queueToken["type"] = "----";
-							$queueToken["text"] = "";
+						     	$queueToken['type'] = '----';
+							$queueToken['text'] = '';
 							$this->mQueuedToken[] = $queueToken;
 							$this->mPos += 5;
 							while (     $this->mPos<$this->mTextLength 
-								and $this->mText[$this->mPos] == "-" )
+								and $this->mText[$this->mPos] == '-' )
 							{
 								$this->mPos ++;
 							}
 							break 2;
 						} else if ( 
-							$this->continues( "<h" ) and (
-								$this->continues( "<h1" ) or
-								$this->continues( "<h2" ) or 
-								$this->continues( "<h3" ) or 
-								$this->continues( "<h4" ) or 
-								$this->continues( "<h5" ) or
-								$this->continues( "<h6" ) 
+							$this->continues( '<h' ) and (
+								$this->continues( '<h1' ) or
+								$this->continues( '<h2' ) or 
+								$this->continues( '<h3' ) or 
+								$this->continues( '<h4' ) or 
+								$this->continues( '<h5' ) or
+								$this->continues( '<h6' ) 
 							)
 						) { // heading
-							$queueToken["type"] = "h";
-							$queueToken["text"] = "";
+							$queueToken['type'] = 'h';
+							$queueToken['text'] = '';
 							$this->mQueuedToken[] = $queueToken;
 							$this->mPos ++;
 							break 2; // switch + while
 						}
 						break;
-					case "!": // French spacing rules have a space before exclamation
-					case "?": // and question marks. Those have to become &nbsp;
-					case ":": // And colons, Hashar says ...
-						if ( $this->preceeded( " " ) )
+					case '!': // French spacing rules have a space before exclamation
+					case '?': // and question marks. Those have to become &nbsp;
+					case ':': // And colons, Hashar says ...
+						if ( $this->preceeded( ' ' ) )
 						{
 							// strip blank from Token
-							$token["text"] = substr( $token["text"], 0, -1 );
-							$queueToken["type"] = "blank";
-							$queueToken["text"] = " {$ch}";
+							$token['text'] = substr( $token['text'], 0, -1 );
+							$queueToken['type'] = 'blank';
+							$queueToken['text'] = " {$ch}";
 							$this->mQueuedToken[] = $queueToken;
 							$this->mPos ++;
 							break 2; // switch + while
 						}
 						break;
-					case "0": // A space between two numbers is used to ease reading
-					case "1": // of big numbers, e.g. 1 000 000. Those spaces need
-					case "2": // to be unbreakable
-					case "3":
-					case "4":
-					case "5":
-					case "6":
-					case "7":
-					case "8":
-					case "9":
+					case '0': // A space between two numbers is used to ease reading
+					case '1': // of big numbers, e.g. 1 000 000. Those spaces need
+					case '2': // to be unbreakable
+					case '3':
+					case '4':
+					case '5':
+					case '6':
+					case '7':
+					case '8':
+					case '9':
 						if (    ($this->mTextLength >= $this->mPos +2)
 						     && ($this->mText[$this->mPos+1] == " ")
 						     && ctype_digit( $this->mText[$this->mPos+2] ) )
 						{
-							$queueToken["type"] = "blank";
-							$queueToken["text"] = $ch . " ";
+							$queueToken['type'] = 'blank';
+							$queueToken['text'] = $ch . ' ';
 							$this->mQueuedToken[] = $queueToken;
 							$this->mPos += 2;
 							break 2; // switch + while
@@ -215,8 +215,8 @@ class Tokenizer {
 					case "\302": // first byte of UTF-8 Character Guillemet-left
 						if ( $this->continues( "\253 ") ) // second byte and a blank
 						{
-							$queueToken["type"] = "blank";
-							$queueToken["text"] = "\302\253 ";
+							$queueToken['type'] = 'blank';
+							$queueToken['text'] = "\302\253 ";
 							$this->mQueuedToken[] = $queueToken;
 							$this->mPos += 3;
 							break 2; // switch + while
@@ -225,20 +225,20 @@ class Tokenizer {
 					case "\273": //last byte of UTF-8 Character Guillemet-right
 						if ( $this->preceeded( " \302" ) )
 						{
-							$queueToken["type"] = "blank";
-							$queueToken["text"] = " \302\273";
-							$token["text"] = substr( $token["text"], 0, -2 );
+							$queueToken['type'] = 'blank';
+							$queueToken['text'] = " \302\273";
+							$token['text'] = substr( $token['text'], 0, -2 );
 							$this->mQueuedToken[] = $queueToken;
 							$this->mPos ++;
 							break 2; // switch + while
 						}
 						break;
-					case "&": //extensions like <timeline>, since HTML stripping has already been done, 
+					case '&': //extensions like <timeline>, since HTML stripping has already been done, 
 					 	  //those look like &lt;timeline&gt;
 						if ( $this->continues( "lt;timeline&gt;" ) )
 						{
-							$queueToken["type"] = "<timeline>";
-							$queueToken["text"] = "&lt;timeline&gt;";
+							$queueToken['type'] = "<timeline>";
+							$queueToken['text'] = "&lt;timeline&gt;";
 							$this->mQueuedToken[] = $queueToken;
 							$this->mPos += 16;
 							break 2; // switch + while
@@ -246,7 +246,7 @@ class Tokenizer {
 						break;
 
 				} /* switch */
-				$token["text"].=$ch;
+				$token['text'].=$ch;
 				$this->mPos ++;
 				// echo $this->mPos . "<br>\n"; 
 			} /* while */
@@ -286,11 +286,10 @@ class Tokenizer {
 	{
 		$n = strpos( $this->mText, $border, $this->mPos );
 		if ( $n === false )
-			return "";
+			return '';
 		$ret = substr( $this->mText, $this->mPos, $n - $this->mPos );
 		$this->mPos = $n + strlen( $border ) + 1;
 		return $ret;
 	}
 
 }
-		

@@ -1,19 +1,44 @@
 <?php
+global $wgSpecialPages, $wgWhitelistAccount;
+
+# Special:Userlogin is a peculiar case: If the site options tell us to allow only sysops to
+# create new accounts, we want it displayed under "For sysop use only". If it's for developers
+# only, display it there. If anyone can create an account, we don't want it listed at all,
+# because there would already be a "create account or login" link in the top-right corner of
+# the page. If nobody can create an account, we don't want it listed either.
+
+$userlogin_listed = true;
+$userlogin_restr = '';
+if ( $wgWhitelistAccount && $wgWhitelistAccount['sysop'] && !$wgWhitelistAccount['user'] )
+	$userlogin_restr = 'sysop';
+else if ( $wgWhitelistAccount && $wgWhitelistAccount['developer'] &&
+          !$wgWhitelistAccount['sysop'] && !$wgWhitelistAccount['user'] )
+	$userlogin_restr = 'developer';
+else
+	$userlogin_listed = false;
 
 $wgSpecialPages = array(
-	"Userlogin"		=> new UnlistedSpecialPage( "Userlogin" ),
-	"Userlogout"	=> new UnlistedSpecialPage( "Userlogout" ),
-	"Preferences"	=> new SpecialPage( "Preferences" ),
-	"Watchlist"		=> new SpecialPage( "Watchlist" ),
-	"Recentchanges" => new SpecialPage( "Recentchanges" ),
-	"Upload"		=> new SpecialPage( "Upload" ),
-	"Imagelist"		=> new SpecialPage( "Imagelist" ),
-	"Listusers"		=> new SpecialPage( "Listusers" ),
-	"Statistics"	=> new SpecialPage( "Statistics" ),
-	"Randompage"	=> new SpecialPage( "Randompage" ),
-	"Lonelypages"	=> new SpecialPage( "Lonelypages" ),
-	"Unusedimages"	=> new SpecialPage( "Unusedimages" ),
-	"Popularpages"	=> new SpecialPage( "Popularpages" ),
+	"Userlogin"         => new SpecialPage( "Userlogin", $userlogin_restr, $userlogin_listed ),
+	"Userlogout"        => new UnlistedSpecialPage( "Userlogout" ),
+	"Preferences"       => new SpecialPage( "Preferences" ),
+	"Watchlist"         => new SpecialPage( "Watchlist" ),
+	"Recentchanges"     => new SpecialPage( "Recentchanges" ),
+	"Upload"            => new SpecialPage( "Upload" ),
+	"Imagelist"         => new SpecialPage( "Imagelist" ),
+	"Listusers"         => new SpecialPage( "Listusers" ),
+	"Listadmins"        => new SpecialPage( "Listadmins" ),
+	"Statistics"        => new SpecialPage( "Statistics" ),
+	"Randompage"        => new SpecialPage( "Randompage" ),
+	"Lonelypages"       => new SpecialPage( "Lonelypages" ),
+	"Uncategorizedpages"=> new SpecialPage( "Uncategorizedpages" ),
+	"Unusedimages"      => new SpecialPage( "Unusedimages" )
+);
+global $wgDisableCounters;
+if( !$wgDisableCounters )
+{
+	$wgSpecialPages["Popularpages"] = new SpecialPage( "Popularpages" );
+}
+$wgSpecialPages = array_merge($wgSpecialPages, array (
 	"Wantedpages"	=> new SpecialPage( "Wantedpages" ),
 	"Shortpages"	=> new SpecialPage( "Shortpages" ),
 	"Longpages"		=> new SpecialPage( "Longpages" ),
@@ -43,7 +68,7 @@ $wgSpecialPages = array(
 	"Import"		=> new SpecialPage( "Import", "sysop" ),
 	"Lockdb"		=> new SpecialPage( "Lockdb", "developer" ),
 	"Unlockdb"		=> new SpecialPage( "Unlockdb", "developer" )
-);
+));
 
 class SpecialPage
 {

@@ -25,7 +25,7 @@ require_once( "LanguageUtf8.php" );
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgWeekdayNamesHi = array(
 	"रविवार", "सोमवार", "मंगलवार", "बुधवार", "गुरुवार",
@@ -130,6 +130,19 @@ Don't forget to personalize your wikipedia preferences.",
 );
 
 class LanguageHi extends LanguageUtf8 {
+	var $digitTransTable = array(
+		"0" => "०",
+		"1" => "१",
+		"2" => "२",
+		"3" => "३",
+		"4" => "४",
+		"5" => "५",
+		"6" => "६",
+		"7" => "७",
+		"8" => "८",
+		"9" => "९"
+	);
+
 	function getNamespaces() {
 		global $wgNamespaceNamesHi;
 		return $wgNamespaceNamesHi;
@@ -168,6 +181,14 @@ class LanguageHi extends LanguageUtf8 {
 			return Language::getMessage($key);
 	}
 
+	function formatNum( $number ) {
+		global $wgTranslateNumerals;
+		if( $wgTranslateNumerals ) {
+			return strtr( $number, $this->digitTransTable );
+		} else {
+			return $number;
+		}
+	}
 }
 
 ?>

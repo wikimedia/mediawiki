@@ -4,8 +4,8 @@ require_once( "WatchedItem.php" );
 
 function wfSpecialWatchlist()
 {
-	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc;
-	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname;
+	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgLoadBalancer;
+	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname, $wgIsMySQL;
 	global $days, $limit, $target; # From query string
 	$fname = "wfSpecialWatchlist";
 
@@ -50,18 +50,20 @@ function wfSpecialWatchlist()
 			return;
 		}
 	}
-
-
+	
+	$wgLoadBalancer->force(-1);
 	$sql = "SELECT COUNT(*) AS n FROM watchlist WHERE wl_user=$uid";
 	$res = wfQuery( $sql, DB_READ );
 	$s = wfFetchObject( $res );
 	$nitems = $s->n;
-	
+	$wgLoadBalancer->force(0);
 	if($nitems == 0) {
         $wgOut->addHTML( wfMsg( "nowatchlist" ) );
         return;
 	}
-
+	
+	$wgLoadBalancer->force(-1);
+	
 	if ( ! isset( $days ) ) {
 		$big = 1000;
 		if($nitems > $big) {
@@ -79,13 +81,14 @@ function wfSpecialWatchlist()
 		$cutoff = false;
 		$npages = wfMsg( "all" );
 	} else {
-		$docutoff = "AND cur_timestamp > '" .
+	        $docutoff = "AND cur_timestamp > '" .
 		  ( $cutoff = wfUnix2Timestamp( time() - intval( $days * 86400 ) ) )
 		  . "'";
-		$sql = "SELECT COUNT(*) AS n FROM cur WHERE cur_timestamp>'$cutoff'";
+	        $sql = "SELECT COUNT(*) AS n FROM cur WHERE cur_timestamp>'$cutoff'";
 		$res = wfQuery( $sql, DB_READ );
 		$s = wfFetchObject( $res );
 		$npages = $s->n;
+		
 	}
 	
 	if(isset($_REQUEST['magic'])) {
@@ -102,16 +105,21 @@ function wfSpecialWatchlist()
 		$sk = $wgUser->getSkin();
 		while( $s = wfFetchObject( $res ) ) {
 			$t = Title::makeTitle( $s->wl_namespace, $s->wl_title );
-			$t = $t->getPrefixedText();
-			$wgOut->addHTML( "<li><input type='checkbox' name='id[]' value=\"" . htmlspecialchars($t) . "\" />" .
-				$sk->makeKnownLink( $t, $t ) .
-				"</li>\n" );
+			if( is_null( $t ) ) {
+				$wgOut->addHTML( '<!-- bad title "' . htmlspecialchars( $s->wl_title ) . '" in namespace ' . IntVal( $s->wl_namespace ) . " -->\n" );
+			} else {
+				$t = $t->getPrefixedText();
+				$wgOut->addHTML( "<li><input type='checkbox' name='id[]' value=\"" . htmlspecialchars($t) . "\" />" .
+					$sk->makeLink( $t, $t ) .
+					"</li>\n" );
+			}
 		}
 		$wgOut->addHTML( "</ul>\n" .
 			"<input type='submit' name='remove' value='" .
 			wfMsg( "removechecked" ) . "' />\n" .
 			"</form>\n" );
 		
+		$wgLoadBalancer->force(0);
 		return;
 	}
 	
@@ -137,11 +145,11 @@ function wfSpecialWatchlist()
 		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), $y,
 		$specialTitle->escapeLocalUrl( "magic=yes" ) ) . "</i><br />\n" );
 	 
-
+	$use_index=$wgIsMySQL?"USE INDEX ($x)":"";
 	$sql = "SELECT
   cur_namespace,cur_title,cur_comment, cur_id,
   cur_user,cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new
-  FROM watchlist,cur USE INDEX ($x)
+  FROM watchlist,cur $use_index
   WHERE wl_user=$uid
   AND $z
   AND wl_title=cur_title
@@ -163,6 +171,7 @@ function wfSpecialWatchlist()
 
 	if ( wfNumRows( $res ) == 0 ) {
 		$wgOut->addHTML( "<p><i>" . wfMsg( "watchnochange" ) . "</i></p>" );
+		$wgLoadBalancer->force(0);
 		return;
 	}
 
@@ -183,6 +192,8 @@ function wfSpecialWatchlist()
 	if ( $wgUseWatchlistCache ) {
 		$wgMemc->set( $memckey, $s, $wgWLCacheTimeout);
 	}
+	
+	$wgLoadBalancer->force(0);
 }
 
 

@@ -29,7 +29,7 @@ require_once("LanguageUtf8.php");
 	14	=> "Category",
 	15	=> "Category_talk",
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsHe = array(
 	"ללא", "קבוע משמאל", "קבוע מימין", "צף משמאל"
@@ -43,7 +43,8 @@ require_once("LanguageUtf8.php");
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesHe = array(
@@ -526,6 +527,7 @@ $3 $9",
 "imghistory"	=> "היסטורית קובץ תמונה",
 "revertimg"		=> "חזור",
 "deleteimg"		=> "מחק",
+"deleteimgcompletely"		=> "מחק",
 "imghistlegend" => "מקרא (נוכ) = זו התמונה הנוכחית, (מחק) = מחק גירסה ישנה זו, (חזור) חזור לגירסה ישנה זו.
 <br><i>הקש על תאריך לראות את התמונה שהועלתה בתאריך זה</i>.",
 "imagelinks"	=> "קישורי תמונות",

@@ -8,22 +8,25 @@
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesNo = array(
-	-2	=> "Medium",
-	-1	=> "Spesial",
-	0	=> "",
-	1	=> "Diskusjon",
-	2	=> "Bruker",
-	3	=> "Brukerdiskusjon",
-	4	=> "Wikipedia",
-	5	=> "Wikipedia-diskusjon",
-	6	=> "Bilde",
-	7	=> "Bildediskusjon",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki-diskusjon",
-	10  => "Template",
-	11  => "Template_talk"
-
-);
+	NS_MEDIA          => "Medium",
+	NS_SPECIAL        => "Spesial",
+	NS_MAIN           => "",
+	NS_TALK           => "Diskusjon",
+	NS_USER           => "Bruker",
+	NS_USER_TALK      => "Brukerdiskusjon",
+	NS_WIKIPEDIA      => "Wikipedia",
+	NS_WIKIPEDIA_TALK => "Wikipedia-diskusjon",
+	NS_IMAGE          => "Bilde",
+	NS_IMAGE_TALK     => "Bildediskusjon",
+	NS_MEDIAWIKI      => "MediaWiki",
+	NS_MEDIAWIKI_TALK => "MediaWiki-diskusjon",
+	NS_TEMPLATE       => "Mal",
+	NS_TEMPLATE_TALK  => "Maldiskusjon",
+	NS_HELP           => "Hjelp",
+	NS_HELP_TALK      => "Hjelpdiskusjon",
+	NS_CATEGORY       => "Kategori",
+	NS_CATEGORY_TALK  => "Kategoridiskusjon",
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsNo = array(
 	"Ingen", "Fast venstre", "Fast høyre", "Flytende venstre"
@@ -37,7 +40,8 @@
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesNo = array(
@@ -649,6 +653,7 @@ og av hvem, og andre ting du vet om filen.",
 "imghistory"	=> "Billedhistorikk",
 "revertimg"		=> "gjenopprett",
 "deleteimg"		=> "slett",
+"deleteimgcompletely"		=> "slett",
 "imghistlegend" => "Forklaring: (nå) = dette er det nåværende bilde, 
 (slett) = slett denne gamle versjonen, (gjenopprett) = gjenopprett en gammel versjon.
 <br><i>Klikk på en dato for å se bildet som ble lastet opp da</i>.",
@@ -1159,8 +1164,12 @@ class LanguageNo extends LanguageUtf8 {
 
 	function getMessage( $key )
 	{
-            global $wgAllMessagesNo;
-            return $wgAllMessagesNo[$key];
+		global $wgAllMessagesNo;
+		if( isset( $wgAllMessagesNo[$key] ) ) {
+			return $wgAllMessagesNo[$key];
+		} else {
+			return ""; # ??
+		}
 	}
 
 	# Inherit ucfirst()

@@ -8,22 +8,26 @@
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesIt = array(
-	-2	=> "Media",
-	-1	=> "Speciale",
-	0	=> "",
-	1	=> "Discussione",
-	2	=> "Utente",
-	3	=> "Discussioni_utente",
-	4	=> "Wikipedia",
-	5	=> "Discussioni_Wikipedia",
-	6	=> "Immagine",
-	7	=> "Discussioni_immagine",
-	8	=> "MediaWiki",
-	9	=> "Discussione_MediaWiki",
-	10  => "Template",
-	11  => "Template_talk"
+    NS_MEDIA            => "Media",
+    NS_SPECIAL          => "Speciale",
+    NS_MAIN             => "",
+    NS_TALK             => "Discussione",
+    NS_USER             => "Utente",
+    NS_USER_TALK        => "Discussioni_utente",
+    NS_WIKIPEDIA        => "Wikipedia",
+    NS_WIKIPEDIA_TALK   => "Discussioni_Wikipedia",
+    NS_IMAGE            => "Immagine",
+    NS_IMAGE_TALK       => "Discussioni_immagine",
+    NS_MEDIAWIKI        => "MediaWiki",
+    NS_MEDIAWIKI_TALK   => "Discussioni_MediaWiki",
+    NS_TEMPLATE         => "Template",
+    NS_TEMPLATE_TALK    => "Discussioni_template",
+    NS_HELP             => "Aiuto",
+    NS_HELP_TALK        => "Discussioni_aiuto",
+    NS_CATEGORY         => "Categoria",
+    NS_CATEGORY_TALK    => "Discussioni_categoria"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsIt = array(
 	"Nessuno", "Fisso a sinistra", "Fisso a destra", "Fluttuante a sinistra"
@@ -37,7 +41,8 @@
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgUserTogglesIt = array(
@@ -515,6 +520,7 @@ Segui questo link: ($2) per modificare la pagina di descrizione del file che hai
 "imghistory"	=> "Storia di questa immagine",
 "revertimg"		=> "ripr",
 "deleteimg"		=> "canc",
+"deleteimgcompletely"		=> "canc",
 "imghistlegend" => "Legenda: (cur) = immagine corrente, (canc) = cancella questa vecchia versione, (ripr) = ripristina questa vecchia versione come versione attuale.
 <br><i>Clicca su una data per vedere tutte le immagini che sono state caricate in quella data </i>.",
 "imagelinks"	=> "Link alle immagini",

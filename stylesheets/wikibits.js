@@ -1,11 +1,10 @@
 // Wikipedia JavaScript support functions
-
 // if this is true, the toolbar will no longer overwrite the infobox when you move the mouse over individual items
 var noOverwrite=false;
 var alertText;
 var clientPC = navigator.userAgent.toLowerCase(); // Get client info
 var is_gecko = ((clientPC.indexOf('gecko')!=-1) && (clientPC.indexOf('spoofer')==-1)
-                && (clientPC.indexOf('khtml') == -1));
+                && (clientPC.indexOf('khtml') == -1) && (clientPC.indexOf('netscape/7.0')==-1));
 var is_safari = ((clientPC.indexOf('AppleWebKit')!=-1) && (clientPC.indexOf('spoofer')==-1));
 var is_khtml = (navigator.vendor == 'KDE' || ( document.childNodes && !document.all && !navigator.taintEnabled ));
 if (clientPC.indexOf('opera')!=-1) {
@@ -21,23 +20,22 @@ function onloadhook () {
     histrowinit();
     unhidetzbutton();
     tabbedprefs();
+    akeytt();
 }
 if (window.addEventListener) window.addEventListener("load",onloadhook,false);
 else if (window.attachEvent) window.attachEvent("onload",onloadhook);
 
 
 // document.write special stylesheet links
-function addcss ( stylepath ) {
+if(typeof stylepath != 'undefined' && typeof skin != 'undefined') {
     if (is_opera_preseven) {
-        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'Opera6Fixes.css">');
+        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/Opera6Fixes.css">');
     } else if (is_opera_seven) {
-        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'Opera7Fixes.css">');
+        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/Opera7Fixes.css">');
     } else if (is_khtml) {
-        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'KHTMLFixes.css">');
+        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'/'+skin+'/KHTMLFixes.css">');
     }
-    return;
 }
-
 // Un-trap us from framesets
 if( window.top != window ) window.top.location = window.location;
 
@@ -62,7 +60,7 @@ function toggleVisibility( _levelId, _otherId, _linkId) {
 function histrowinit () {
     hf = document.getElementById('pagehistory');
     if(!hf) return;
-    lis = hf.getElementsByTagName('li');
+    lis = hf.getElementsByTagName('LI');
     for (i=0;i<lis.length;i++) {
         inputs=lis[i].getElementsByTagName('INPUT');
         if(inputs[0] && inputs[1]) {
@@ -78,7 +76,7 @@ function diffcheck() {
     var oli = false; // the li where the oldid radio is checked
     hf = document.getElementById('pagehistory');
     if(!hf) return;
-    lis = hf.getElementsByTagName('li');
+    lis = hf.getElementsByTagName('LI');
     for (i=0;i<lis.length;i++) {
         inputs=lis[i].getElementsByTagName('INPUT');
         if(inputs[1] && inputs[0]) {
@@ -114,6 +112,7 @@ function diffcheck() {
 function tabbedprefs() {
     prefform = document.getElementById('preferences');
     if(!prefform || !document.createElement) return;
+    if(prefform.nodeName == 'A') return; // Occasional IE problem
     prefform.className = prefform.className + 'jsprefs';
     var sections = new Array();
     children = prefform.childNodes;
@@ -360,4 +359,34 @@ function insertTags(tagOpen, tagClose, sampleText) {
 	}
 	// reposition cursor if possible
 	if (txtarea.createTextRange) txtarea.caretPos = document.selection.createRange().duplicate();
+}
+
+function akeytt() {
+    if(typeof ta == "undefined" || !ta) return;
+    pref = 'alt-';
+    if(is_safari || navigator.userAgent.toLowerCase().indexOf( 'mac' ) + 1 ) pref = 'control-';
+    if(is_opera) pref = 'shift-esc-';
+    for(id in ta) {
+        n = document.getElementById(id);
+        if(n){
+            a = n.childNodes[0];
+            if(a){
+                if(ta[id][0].length > 0) {
+                    a.accessKey = ta[id][0];
+                    ak = ' ['+pref+ta[id][0]+']';
+                } else {
+                    ak = '';
+                }
+                a.title = ta[id][1]+ak;
+            } else {
+                if(ta[id][0].length > 0) {
+                    n.accessKey = ta[id][0];
+                    ak = ' ['+pref+ta[id][0]+']';
+                } else {
+                    ak = '';
+                }
+                n.title = ta[id][1]+ak;
+            }
+        }
+    }
 }

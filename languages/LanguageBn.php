@@ -22,7 +22,7 @@
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsBn = array(
   "None", "Fixed left", "Fixed right", "Floating left"
@@ -36,7 +36,8 @@
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin"
 );
 
 /* private */ $wgMathNamesBn = array(
@@ -83,13 +84,13 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 
 /* private */ $wgWeekdayNamesBn = array(
   "রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার",
-  "শুক্রবার", "শনিবার"       
+  "শুক্রবার", "শনিবার"
 );
 
 /* private */ $wgMonthNamesBn = array(
   "জানুয়ারী", "ফেব্রুয়ারী", "মার্চ", "এপ্রিল", "মে", "জুন",
   "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর",
-  "ডিসেম্বর"          
+  "ডিসেম্বর"
 );
 
 /* private */ $wgMonthAbbreviationsBn = array(
@@ -153,7 +154,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 /* private */ $wgAllMessagesBn = array(
 
 # Bits of text used by many pages:
-# 
+#
 
 "linktrail"   => "/^([a-z]+)(.*)\$/sD",
 "mainpage"    => "প্রধান পাতা",
@@ -275,7 +276,7 @@ Please report this to an administrator, making note of the URL.",
 "filedeleteerror" => "Could not delete file \"$1\".",
 "filenotfound"  => "Could not find file \"$1\".",
 "unexpected"  => "Unexpected value: \"$1\"=\"$2\".",
-"formerror"   => "Error: could not submit form",  
+"formerror"   => "Error: could not submit form",
 "badarticleerror" => "This action cannot be performed on this page.",
 "cannotdelete"  => "Could not delete the page or image specified. (It may have already been deleted by someone else.)",
 "badtitle"    => "Bad title",
@@ -321,8 +322,8 @@ that it be to the address you give.<br>\n",
 "youremail"   => "Your e-mail*",
 "yournick"    => "Your nickname (for signatures)",
 "emailforlost"  => "* Entering an email address is optional.  But it enables people to
-contact you through the website without you having to reveal your 
-email address to them, and it also helps you if you forget your   
+contact you through the website without you having to reveal your
+email address to them, and it also helps you if you forget your
 password.",
 "loginerror"  => "Login error",
 "noname"    => "You have not specified a valid user name.",
@@ -357,7 +358,7 @@ The reason given is this:<br>''$2''<p>You may contact $1 or one of the other
 "newarticle"  => "(New)",
 "newarticletext" =>
 "You've followed a link to a page that doesn't exist yet.
-To create the page, start typing in the box below 
+To create the page, start typing in the box below
 (see the [[Wikipedia:Help|help page]] for more info).
 If you are here by mistake, just click your browser's '''back''' button.",
 "anontalkpagetext" => "---- ''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.'' ",
@@ -475,7 +476,7 @@ Your internal ID number is $2.
 
 See [[Wikipedia:User preferences help]] for help deciphering the options.",
 "prefsreset"  => "Preferences have been reset from storage.",
-"qbsettings"  => "Quickbar settings", 
+"qbsettings"  => "Quickbar settings",
 "changepassword" => "Change password",
 "skin"      => "Skin",
 "math"      => "Rendering math",
@@ -490,7 +491,7 @@ See [[Wikipedia:User preferences help]] for help deciphering the options.",
 "oldpassword" => "Old password",
 "newpassword" => "New password",
 "retypenew"   => "Retype new password",
-"textboxsize" => "Textbox dimensions",
+"textboxsize" => "Editing",
 "rows"      => "Rows",
 "columns"   => "Columns",
 "searchresultshead" => "Search result settings",
@@ -632,6 +633,7 @@ created and by whom, and anything else you may know about it.",
 "imghistory"  => "Image history",
 "revertimg"   => "rev",
 "deleteimg"   => "del",
+"deleteimgcompletely"   => "del",
 "imghistlegend" => "Legend: (cur) = this is the current image, (del) = delete
 this old version, (rev) = revert to this old version.
 <br><i>Click on date to see image uploaded on that date</i>.",
@@ -800,11 +802,11 @@ All times shown are server time (UTC).
 "rollbackfailed" => "Rollback failed",
 "cantrollback"  => "Cannot revert edit; last contributor is only author of this article.",
 "alreadyrolled" => "Cannot rollback last edit of [[$1]]
-by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already. 
+by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already.
 
 Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
 #   only shown if there is an edit comment
-"editcomment" => "The edit comment was: \"<i>$1</i>\".", 
+"editcomment" => "The edit comment was: \"<i>$1</i>\".",
 "revertpage"  => "Reverted to last edit by $1",
 
 # Undelete
@@ -989,7 +991,7 @@ class LanguageBn extends LanguageUtf8 {
 		global $wgMonthNamesBn;
 		return $wgMonthNamesBn[$key-1];
 	}
-	
+
 	function getMessage( $key )
 	{
 		global $wgAllMessagesBn;

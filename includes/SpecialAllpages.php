@@ -2,9 +2,11 @@
 
 function wfSpecialAllpages( $par=NULL )
 {
-	global $indexMaxperpage, $wgRequest;
+	global $indexMaxperpage, $wgRequest, $wgLoadBalancer;
 	$indexMaxperpage = 480;
 	$from = $wgRequest->getVal( 'from' );
+	
+	$wgLoadBalancer->force(-1);
 
 	if( $par ) {
 		indexShowChunk( $par );
@@ -13,6 +15,8 @@ function wfSpecialAllpages( $par=NULL )
 	} else {
 		indexShowToplevel();
 	}
+
+	$wgLoadBalancer->force(0);
 }
 
 function indexShowToplevel()
@@ -31,42 +35,40 @@ function indexShowToplevel()
 		return;
 	}
 
-
-#	$fromwhere = "FROM cur WHERE cur_namespace=0 AND cur_is_redirect=0";
 	$fromwhere = "FROM cur WHERE cur_namespace=0";
 	$order = "ORDER BY cur_title";
 	$out = "";
-	
+
 	$sql = "SELECT COUNT(*) AS count $fromwhere";
 	$res = wfQuery( $sql, DB_READ, $fname );
 	$s = wfFetchObject( $res );
 	$count = $s->count;
 	$sections = ceil( $count / $indexMaxperpage );
-	
+
 	$sql = "SELECT cur_title $fromwhere $order LIMIT 1";
 	$res = wfQuery( $sql, DB_READ, $fname );
 	$s = wfFetchObject( $res );
 	$inpoint = $s->cur_title;
-	
+
 	$out .= "<table>\n";
 	# There's got to be a cleaner way to do this!
 	for( $i = 1; $i < $sections; $i++ ) {
 		$from = $i * $indexMaxperpage;
-		$sql = "SELECT cur_title $fromwhere $order LIMIT $from,2";
+		$sql = "SELECT cur_title $fromwhere $order ".wfLimitResult(2,$from);
 		$res = wfQuery( $sql, DB_READ, $fname );
-	
+
 		$s = wfFetchObject( $res );
 		$outpoint = $s->cur_title;
 		$out .= indexShowline( $inpoint, $outpoint );
-	
+
 		$s = wfFetchObject( $res );
 		$inpoint = $s->cur_title;
-		
+
 		wfFreeResult( $res );
 	}
-	
+
 	$from = $i * $indexMaxperpage;
-	$sql = "SELECT cur_title $fromwhere $order LIMIT " . ($count-1) . ",1";
+	$sql = "SELECT cur_title $fromwhere $order ".wfLimitResult(1,$count-1);
 	$res = wfQuery( $sql, DB_READ, $fname );
 	$s = wfFetchObject( $res );
 	$outpoint = $s->cur_title;
@@ -75,7 +77,7 @@ function indexShowToplevel()
 
 	# Saving cache
 	$log->replaceContent( $out );
-	
+
 	$wgOut->addHtml( $out );
 }
 
@@ -98,43 +100,52 @@ function indexShowline( $inpoint, $outpoint )
 
 function indexShowChunk( $from )
 {
-	global $wgOut, $wgUser, $indexMaxperpage;
+	global $wgOut, $wgUser, $indexMaxperpage, $wgLang;
 	$sk = $wgUser->getSkin();
-	
+	$maxPlusOne = $indexMaxperpage + 1;
+
 	$out = "";
-	$sql = "SELECT cur_title
-FROM cur
-WHERE cur_namespace=0 AND cur_title >= '" . wfStrencode( $from ) . "'
-ORDER BY cur_title
-LIMIT {$indexMaxperpage}";
+	$sql = "SELECT cur_title FROM cur WHERE cur_namespace=0 AND cur_title >= '"
+		. wfStrencode( $from ) . "' ORDER BY cur_title LIMIT " . $maxPlusOne;
 	$res = wfQuery( $sql, DB_READ, "indexShowChunk" );
 
-# FIXME: Dynamic column widths, backlink to main list,
-# side links to next and previous
+	### FIXME: side link to previous
+
 	$n = 0;
-	$out = "<table border=\"0\">\n";
-	while( $s = wfFetchObject( $res ) ) {
+	$out = "<table border=\"0\" width=\"100%\">\n";
+	while( ($n < $indexMaxperpage) && ($s = wfFetchObject( $res )) ) {
 		$t = Title::makeTitle( 0, $s->cur_title );
 		if( $t ) {
 			$link = $sk->makeKnownLinkObj( $t );
 		} else {
 			$link = "[[" . htmlspecialchars( $s->cur_title ) . "]]";
 		}
-		if( $n == 0 ) {
+		if( $n % 3 == 0 ) {
 			$out .= "<tr>\n";
 		}
-		$out .= "<td width=\"33%\">$link</td>";
-		$n = ++$n % 3;
-		if( $n == 0 ) {
+		$out .= "<td>$link</td>";
+		$n++;
+		if( $n % 3 == 0 ) {
 			$out .= "</tr>\n";
 		}
 	}
-	if( $n != 0 ) {
+	if( ($n % 3) != 0 ) {
 		$out .= "</tr>\n";
 	}
 	$out .= "</table>";
-#return $out;
-	$wgOut->addHtml( $out );
+
+	$out2 = "<div style='text-align: right; font-size: smaller; margin-bottom: 1em;'>" .
+			$sk->makeKnownLink( $wgLang->specialPage( "Allpages" ),
+				wfMsg ( 'allpages' ) );
+	if ( ($n == $indexMaxperpage) && ($s = wfFetchObject( $res )) ) {
+		$out2 .= " | " . $sk->makeKnownLink(
+			$wgLang->specialPage( "Allpages" ),
+			wfMsg ( 'nextpage', $s->cur_title ),
+			"from=" . wfStrencode( $s->cur_title ) );
+	}
+	$out2 .= "</div>";
+
+	$wgOut->addHtml( $out2 . $out );
 }
 
 ?>

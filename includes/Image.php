@@ -35,16 +35,17 @@ class Image
 
 		if ( $this->fileExists = file_exists( $this->imagePath ) ) // Sic!, "=" is intended
 		{
-			$gis = getimagesize( $this->imagePath );
-			$this->width = $gis[0];
-			$this->height = $gis[1];
-			$this->type = $gis[2];
-			$this->attr = $gis[3];
-			if ( isset( $gis["bits"] ) ) 
-			{
-				$this->bits = $gis["bits"];
-			} else {
-				$this->bits = 0;
+			@$gis = getimagesize( $this->imagePath );
+			if( $gis !== false ) {
+				$this->width = $gis[0];
+				$this->height = $gis[1];
+				$this->type = $gis[2];
+				$this->attr = $gis[3];
+				if ( isset( $gis["bits"] ) )  {
+					$this->bits = $gis["bits"];
+				} else {
+					$this->bits = 0;
+				}
 			}
 		}
 		$this->historyLine = 0;
@@ -169,8 +170,10 @@ class Image
 
 			if ( $wgUseImageMagick ) {
 				# use ImageMagick
+				# Specify white background color, will be used for transparent images
+				# in Internet Explorer/Windows instead of default black.
 				$cmd  =  $wgImageMagickConvertCommand .
-					" -quality 85 -geometry {$width} ".
+					" -quality 85 -background white -geometry {$width} ".
 					escapeshellarg($this->imagePath) . " " .
 					escapeshellarg($thumbPath);
 				$conv = shell_exec( $cmd );

@@ -23,7 +23,7 @@ require_once( "LanguageUtf8.php" );
 	7	=> "Зображення_обговорення",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_обговорення"
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsUk = array(
 	"Не показувати панель", "Фіксована зліва", "Фіксована справа", "Плаваюча зліва"
@@ -37,7 +37,8 @@ require_once( "LanguageUtf8.php" );
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesUk = array(
@@ -630,6 +631,7 @@ wfLocalUrlE( "$wgMetaNamespace:Журнал завантажень" ) . "\">жу
 "imghistory"	=> "Журнал зображення",
 "revertimg"		=> "відкот.",
 "deleteimg"		=> "вилуч.",
+"deleteimgcompletely"		=> "вилуч.",
 "imghistlegend" => "Пояснення: (поточ.) = це - поточне зображення, (вилуч.) = вилучити цю стару версію, (відкот.) = відкотитися до цієї старої версії.
 <br><i>Виберіть дату, щоб переглянути список зображень, звантажених на цю дату</i>.",
 "imagelinks"	=> "Посилання зображення",

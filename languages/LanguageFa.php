@@ -35,7 +35,7 @@ require_once("LanguageUtf8.php");
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsFa = array(
 	"نباشد", "ثابت چپ", "ثابت راست", "شناور چپ"
@@ -49,7 +49,8 @@ require_once("LanguageUtf8.php");
 	'montparnasse' => "مون‌پارناس",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesFa = array(
@@ -720,6 +721,7 @@ you may be blocked from uploading if you abuse the system.",
 "imghistory"	=> "تاریخچه‌ی تصویر",
 "revertimg"		=> "برگرد",
 "deleteimg"		=> "حذف",
+"deleteimgcompletely"		=> "حذف",
 "imghistlegend" => "شرح: (فعلی) = این تصویر فعلی است، (حذف) = این
 نسخه‌ی قدیمی حذف شود، (برگرد) = برگرداندن به این نسخه‌ی قدیمی.
 <br><i>برای دیدن تصویر بار شده در تاریخ مشخص، روی تاریخ کلیک کنید</i>.",

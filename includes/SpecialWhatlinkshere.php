@@ -27,7 +27,7 @@ function wfSpecialWhatlinkshere($par = NULL)
 	$sk = $wgUser->getSkin();
 	$isredir = " (" . wfMsg( "isredirect" ) . ")\n";
 
-	$wgOut->addHTML("&lt; ".$sk->makeKnownLinkObj($nt, "", "redirect=no" )."<br/>\n");
+	$wgOut->addHTML("&lt; ".$sk->makeKnownLinkObj($nt, "", "redirect=no" )."<br />\n");
 	
 	if ( 0 == $id ) {
 		$sql = "SELECT cur_id,cur_namespace,cur_title,cur_is_redirect FROM brokenlinks,cur WHERE bl_to='" .

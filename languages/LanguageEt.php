@@ -22,7 +22,7 @@
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsEt = array(
 	"Ei_ole", "Püsivalt_vasakul", "Püsivalt paremal", "Ujuvalt vasakul"
@@ -36,7 +36,8 @@
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesEt = array(
@@ -567,6 +568,7 @@ created and by whom, and anything else you may know about it.",
 "imghistory"	=> "Pildi ajalugu",
 "revertimg"		=> "taas",
 "deleteimg"		=> "del",
+"deleteimgcompletely"		=> "del",
 "imghistlegend" => "Legend: (viim) = see on pildi viimane versioon, (del) = kustuta
 see vana versioon, (taas) = taasta see vana versioon.
 <br><i>Click on date to see image uploaded on that date</i>.",

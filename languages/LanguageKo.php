@@ -13,8 +13,8 @@ require_once( "LanguageUtf8.php" );
 	1	=> "토론",	# Talk
 	2	=> "사용자",	# User
 	3	=> "사용자토론",	# User_talk
-	4	=> "위키백과",	# Wikipedia
-	5	=> "위키백과토론",# Wikipedia_talk
+	4	=> $wgMetaNamespace,	# Wikipedia
+	5	=> "{$wgMetaNamespace}토론",# Wikipedia_talk
 	6	=> "그림",	# Image
 	7	=> "그림토론"	,# Image_talk
 	8	=> "MediaWiki",
@@ -22,7 +22,7 @@ require_once( "LanguageUtf8.php" );
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 # I always compare this file with japanese file, when I'm confused.
 # And DefaultUserOption isn't there in japanese one. What's
@@ -47,7 +47,8 @@ require_once( "LanguageUtf8.php" );
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgUserTogglesKo = array(
@@ -167,17 +168,17 @@ require_once( "LanguageUtf8.php" );
 #
 "mainpage"		=> "대문",
 "about"			=> "소개",
-"aboutwikipedia" => "위키백과란",
-"aboutpage"		=> "위키백과:소개",
+"aboutwikipedia" => "{{SITENAME}}란",
+"aboutpage"		=> "{{ns:4}}:소개",
 "help"			=> "도움말",
-"helppage"		=> "위키백과:도움말",
-"wikititlesuffix" => "위키백과",
+"helppage"		=> "{{ns:4}}:도움말",
+"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "벌레 발견",
-"bugreportspage" => "위키백과:벌레_발견",
+"bugreportspage" => "{{ns:4}}:벌레_발견",
 "faq"			=> "잦은질문(FAQ)",
-"faqpage"		=> "위키백과:잦은질문(FAQ)",
+"faqpage"		=> "{{ns:4}}:잦은질문(FAQ)",
 "edithelp"		=> "편집 도움말",
-"edithelppage"	=> "위키백과:문서_편집_방법",
+"edithelppage"	=> "{{ns:4}}:문서_편집_방법",
 "cancel"		=> "취소",
 "qbfind"		=> "찾기",
 
@@ -197,7 +198,7 @@ require_once( "LanguageUtf8.php" );
 "currentevents" => "요즘의 화제",
 "errorpagetitle" => "오류",
 "returnto"		=> "$1(으)로 돌아가기.",
-"fromwikipedia"	=> "위키백과, 우리 모두의 백과사전.",
+"fromwikipedia"	=> "{{SITENAME}}, 우리 모두의 백과사전.",
 "whatlinkshere"	=> "여길 가리키는 문서",
 "help"			=> "도움말",
 "search"		=> "찾기",
@@ -216,7 +217,7 @@ require_once( "LanguageUtf8.php" );
 "viewcount"		=> "이 문서는 총 $1번 읽혔습니다.",
 "printsubtitle" => "(http://www.wikipedia.org에서)",
 "protectedpage" => "보호되는 문서",
-"administrators" => "위키백과:관리자",
+"administrators" => "{{ns:4}}:관리자",
 "sysoptitle"	=> "Sysop 권한 필요",
 "sysoptext"		=> "해당 action은 \"Sysop\"만 실행할 수 있습니다.
 참조 $1.",
@@ -226,17 +227,17 @@ require_once( "LanguageUtf8.php" );
 "nbytes"		=> "$1 바이트",
 "go"			=> "가기",
 "ok"			=> "확인",
-"sitetitle"		=> "위키백과",
+"sitetitle"		=> "{{SITENAME}}",
 "sitesubtitle"	=> "우리 모두의 백과사전",
 "retrievedfrom" => "\"$1\"에서",
 
 # Main script and global functions
 #
 "nosuchaction"	=> "그런 action은 없습니다.",
-"nosuchactiontext" => "위키백과 무른모는 URL로 주어진 action을
+"nosuchactiontext" => "{{SITENAME}} 무른모는 URL로 주어진 action을
 모릅니다.",
 "nosuchspecialpage" => "틀린 특수기능",
-"nospecialpagetext" => "위키백과는 요청한 특수기능을
+"nospecialpagetext" => "{{SITENAME}}는 요청한 특수기능을
 모릅니다.",
 
 # General errors
@@ -278,8 +279,8 @@ Please report this to an administrator, making note of the URL.",
 # Login and logout pages
 #
 "logouttitle"	=> "나옴",
-"logouttext"	=> "위키백과에서 나왔습니다.
-이대로 이름없이 위키백과를 이용하거나, 방금 사용했던 또이름, 혹은 다른 또이름으로 들어가서 이용하세요.\n",
+"logouttext"	=> "{{SITENAME}}에서 나왔습니다.
+이대로 이름없이 {{SITENAME}}를 이용하거나, 방금 사용했던 또이름, 혹은 다른 또이름으로 들어가서 이용하세요.\n",
 
 "welcomecreation" => "<h2>$1 님, 환영합니다!</h2><p>또이름이 만들어 졌습니다.
 개인 맞춤에서 자잘한 환경들을 바꾸어 보세요.",
@@ -306,16 +307,16 @@ Please report this to an administrator, making note of the URL.",
 "loginerror"	=> "들어가기 오류",
 "noname"		=> "또이름이 틀립니다.",
 "loginsuccesstitle" => "들어가기 성공",
-"loginsuccess"	=> "\"$1\" 위키백과에 들어왔습니다.",
+"loginsuccess"	=> "\"$1\" {{SITENAME}}에 들어왔습니다.",
 "nosuchuser"	=> "\"$1\"란 또이름은 없습니다.".
 "철자가 맞는지 확인하고, 아직 또이름이 없다면, 아래를 채워 또이름을 새로이 만드세요.",
 "wrongpassword"	=> "암호가 틀립니다. 다시 시도하세요.",
 "mailmypassword" => "새 암호를 누리편지로 보냅니다.",
-"passwordremindertitle" => "위키백과에서 보내는 새 암호",
+"passwordremindertitle" => "{{SITENAME}}에서 보내는 새 암호",
 "passwordremindertext" => "누군가가 (IP $1 을 사용했던, 아마도 당신이)
-새 위키백과 암호를 보내달라고 부탁했습니다.
+새 {{SITENAME}} 암호를 보내달라고 부탁했습니다.
 또이름 \"$2\"의 암호는 이제 \"$3\"입니다.
-새 암호로 위키백과에 들어와서, 암호를 바꾸세요.",
+새 암호로 {{SITENAME}}에 들어와서, 암호를 바꾸세요.",
 "noemail"		=> "또이름 \"$1\"에 딸린 누리편지주소정보가 없습니다.",
 "passwordsent"	=> "\"$1\"의 새 암호를 누리편지로 보냈습니다.
 암호를 받고 다시 들어오세요.",
@@ -356,7 +357,7 @@ text editing area as it will appear if you choose to save.",
 "editingold"	=> "<strong>경고: 지금 옛날 버젼의 문서를 고치고 있습니다.
 만약, 지금 여기서 저장을 하면, 그 때 이후의 모든 버젼을 잃게 됩니다.</strong>\n",
 "yourdiff"		=> "차이",
-"copyrightwarning" => "위키백과에 당신이 기여한 것은 모두 GNU 자유 문서 사용허가서(GFDL)
+"copyrightwarning" => "{{SITENAME}}에 당신이 기여한 것은 모두 GNU 자유 문서 사용허가서(GFDL)
 ($1참조)에 따라 배포됩니다.
 당신이 써 넣은 내용이 제한없이 고쳐지고, 재배포되는 것이 싫다면, 저장하지 마십시오.에 반대할 때에는, 여기에 쓰지 마시길 바랍니다.<br>
 또한, 여기 써 넣은 내용을 스스로 썼음을, 혹은 모두에게 공개된 자료에서 빌어왔음을
@@ -391,9 +392,9 @@ text editing area as it will appear if you choose to save.",
 # Search results
 #
 "searchresults" => "찾아본 결과",
-"searchhelppage" => "위키백과:찾기",
-"searchingwikipedia" => "위키백과 찾기",
-"searchresulttext" => "위키백과 찾기에 대해 자세한 정보는 $1 를 보세요.",
+"searchhelppage" => "{{ns:4}}:찾기",
+"searchingwikipedia" => "{{SITENAME}} 찾기",
+"searchresulttext" => "{{SITENAME}} 찾기에 대해 자세한 정보는 $1 를 보세요.",
 "searchquery"	=> "열쇠말 \"$1\"",
 "badquery"		=> "좋지 않은 열쇠말",
 
@@ -442,8 +443,7 @@ $2 List redirects &nbsp; Search for $3 $9",
 #
 "preferences"	=> "개인 맞춤",
 "prefsnologin" => "나와 있습니다.",
-"prefsnologintext"	=> "<a href=\"" .
-  wfLocalUrl( "특수기능:Userlogin" ) . "\">들어와</a> 있을 때에만,
+"prefsnologintext"	=> "<a href=\"{{localurle:Special:Userlogin}}\">들어와</a> 있을 때에만,
 # Special:Userlogin => 특수기능:들어가기 개인 환경을 맞출 수 있습니다.",
 "prefslogintext" => "당신은 \"$1\", 맞죠?
 당신의 내부 ID 번호는 $2입니다.",
@@ -476,15 +476,15 @@ $2 List redirects &nbsp; Search for $3 $9",
 "recentchanges" => "최근 바뀜",
 "recentchangestext" => "아래 나열된 문서들이 최근에 바뀌었습니다.
 
-[[위키백과:새내기_환영|새내기, 환영합니다]]!
-새내기들은 다음 문서를 읽어 보세요.: [[위키백과:잦은질문(FAQ)|위키백과 잦은질문(FAQ)]],
-[[위키백과:정책과 지침|위키백과 정책]]
-(특별히 [[위키백과:제목달기 규칙|제목달기 규칙]],
-[[위키백과:중립적인 시각|중립적인 시각]]),
-그리고 [[위키백과:범하기_쉬운_실수|범하기 쉬운 실수]].
+[[{{ns:4}}:새내기_환영|새내기, 환영합니다]]!
+새내기들은 다음 문서를 읽어 보세요.: [[{{ns:4}}:잦은질문(FAQ)|{{SITENAME}} 잦은질문(FAQ)]],
+[[{{ns:4}}:정책과 지침|{{SITENAME}} 정책]]
+(특별히 [[{{ns:4}}:제목달기 규칙|제목달기 규칙]],
+[[{{ns:4}}:중립적인 시각|중립적인 시각]]),
+그리고 [[{{ns:4}}:범하기_쉬운_실수|범하기 쉬운 실수]].
 
-위키백과가 성공하려면, 여러분이 저작권에 저촉되는 내용을 이곳에 써 넣지 않는 것이
-매우 중요합니다.' [[위키백과:저작권|저작권]].
+{{SITENAME}}가 성공하려면, 여러분이 저작권에 저촉되는 내용을 이곳에 써 넣지 않는 것이
+매우 중요합니다.' [[{{ns:4}}:저작권|저작권]].
 법적 문제가 프로젝트를 망칠 수 있습니다. 저작권에 유의해 주세요.
 또, [http://meta.wikipedia.org/wiki/Special:Recentchanges 최근 메타 토론]도 
 읽어 보세요.",
@@ -514,22 +514,18 @@ $2 List redirects &nbsp; Search for $3 $9",
 "reupload"		=> "다시 올리기",
 "reuploaddesc"	=> "올리기 틀로 돌아감",
 "uploadnologin" => "나와있습니다.",
-"uploadnologintext"	=> "위키백과에 <a href=\"" .
-  wfLocalUrl( "특수기능:Userlogin" ) . "\">들어와</a> 있을 때에만
+"uploadnologintext"	=> "{{SITENAME}}에 <a href=\"{{localurle:Special:Userlogin}}\">들어와</a> 있을 때에만
 # special:userlogin 특수기능:들어가기
 파일을 올릴 수 있습니다.",
 "uploadfile"	=> "파일 올리기",
 "uploaderror"	=> "올리기 오류",
 "uploadtext"	=> "<strong>잠깐!</strong> 여기 그림을 올리기 전에,
-위키백과의 <a href=\"" .
-wfLocalUrlE( "위키백과:Image_use_policy" ) . "\">그림 사용 정책</a>읽고 따라 주세요.
+{{SITENAME}}의 <a href=\"{{localurle:Project:Image_use_policy}}\">그림 사용 정책</a>읽고 따라 주세요.
 <p>
-이미 올라온 그림을 찾아 보려면, <a href=\"" . wfLocalUrlE( "특수기능:Imagelist" ) .
-"\">올라온 그림 목록</a>으로 가세요.
+이미 올라온 그림을 찾아 보려면, <a href=\"{{localurle:Special:Imagelist}}\">올라온 그림 목록</a>으로 가세요.
 # Special:Image list  특수기능:그림_목록
-그림을 올리거나 지우면 <a href=\"" .
-wfLocalUrlE( "위키백과:올리기_기록" ) . "\">올리기 기록</a>에 그 사실이 남습니다.
-# 위키백과:올리기_기록 위키백과:올리기_기록
+그림을 올리거나 지우면 <a href=\"{{localurle:Project:올리기_기록}}\">올리기 기록</a>에 그 사실이 남습니다.
+# {{ns:4}}:올리기_기록 {{ns:4}}:올리기_기록
 
 <p>
 밑에 있는 틀을 이용해서 문서에 담을 파일을 올리세요.
@@ -541,7 +537,7 @@ wfLocalUrlE( "위키백과:올리기_기록" ) . "\">올리기 기록</a>에 그
 마지막으로, \"올리기\" 단추를 누르면 올라갑니다. 누리그물 연결이 느리면, 
 시간이 걸릴 수 있습니다.
 <p>
-위키백과는 사진은 JPEG형식을, 보통 그림, 아이콘은 PNG형식을, 소리는
+{{SITENAME}}는 사진은 JPEG형식을, 보통 그림, 아이콘은 PNG형식을, 소리는
 OGG형식을 더 좋아합니다.
 이름은 햇갈리지 않고, 내용을 잘 나타내는 것으로 지어주세요. 그림을 문서에
 담을 때에는 <b>[[image:file.jpg]]</b> 또는 <b>[[image:file.png|alt text]]</b>
@@ -562,8 +558,8 @@ OGG형식을 더 좋아합니다.
 "filedesc"		=> "짧은설명",
 "affirmation"	=> "파일의 저작권자가
 $1의 조건으로 사용을 허가했음을 확인합니다.",
-"copyrightpage" => "위키백과:저작권",
-"copyrightpagename" => "위키백과 저작권",
+"copyrightpage" => "{{ns:4}}:저작권",
+"copyrightpagename" => "{{SITENAME}} 저작권",
 "uploadedfiles"	=> "파일 올리기",
 "noaffirmation" => "올리는 파일이 어떤 저작권에도 저촉되지 않음을
 확인해야 합니다.",
@@ -602,6 +598,7 @@ $1의 조건으로 사용을 허가했음을 확인합니다.",
 "imghistory"	=> "그림역사",
 "revertimg"		=> "돌림",
 "deleteimg"		=> "지우기",
+"deleteimgcompletely"		=> "지우기",
 "imghistlegend" => "상세설명: (현재) = 현재의 그림입니다, (지움) = 옛 버젼을 지웁니다, (돌림) = 옛 버젼으로 되돌려 놓습니다.
 <br><i>특정 날짜에 올라온 그림을 보려면, 날짜를 찍어 주세요</i>.",
 "imagelinks"	=> "그림고리",
@@ -614,7 +611,7 @@ $1의 조건으로 사용을 허가했음을 확인합니다.",
 "sitestats"		=> "누리터 통계",
 "userstats"		=> "사용자 통계",
 "sitestatstext" => "이곳 정보창고(DB)에는 총 <b>$1</b>개의 문서가 있습니다.
-이 숫자는 \"토론\" 문서, 위키백과 자체에 관한 문서, 자라기를 기다리는 \"씨앗\" 문서, 
+이 숫자는 \"토론\" 문서, {{SITENAME}} 자체에 관한 문서, 자라기를 기다리는 \"씨앗\" 문서, 
 넘겨주기 문서, 그리고 아직 사전항목으로 부족한 문서들을 모두 포함한 것입니다.
 이들을 제외하면, <b>$2</b>개의 문서가 있습니다.<p>
 또, 무른모 업그레이드가 있었던 2002년 7월 20일 이래, 여러분은 총 <b>$3</b>번 문서를 
@@ -631,7 +628,7 @@ $1의 조건으로 사용을 허가했음을 확인합니다.",
 "maintnancepagetext"	=> "This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)",
 "maintenancebacklink"	=> "Back to Maintenance Page",
 "disambiguations"	=> "Disambiguation pages",
-"disambiguationspage"	=> "위키백과:Links_to_disambiguating_pages",
+"disambiguationspage"	=> "{{ns:4}}:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
 "doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
@@ -666,21 +663,19 @@ $1의 조건으로 사용을 허가했음을 확인합니다.",
 "debug"			=> "Debug",
 "newpages"		=> "새 문서",
 "movethispage"	=> "문서 옮기기",
-"unusedimagestext" => "<p>다음 그림중 어떤 것은, 다른 언어의 위키백과등 다른 
+"unusedimagestext" => "<p>다음 그림중 어떤 것은, 다른 언어의 {{SITENAME}}등 다른 
 누리터에서 URL바로걸기로 사용하고 있을 지도 모릅니다.",
 "booksources"	=> "외부 책방",
 "booksourcetext" => "새책이나 헌책을 파는 몇몇 누리터입니다. 찾고 있는 책의
 정보를 담고 있을 수 있습니다.
-위키백과는 다음 중 어떤 기업과도 관련이 없으며,
+{{SITENAME}}는 다음 중 어떤 기업과도 관련이 없으며,
 아래 목록이 상업적 광고로 오해되지 않기를 바랍니다.",
 
 # Email this user
 #
 "mailnologin"	=> "누리편지주소 없음",
-"mailnologintext" => "위키백과에 <a href=\"" .
-  wfLocalUrl( "특수기능:Userlogin" ) . "\">들어와</a> 있을 때, 또,
-<a href=\"" .
-  wfLocalUrl( "특수기능:Preferences" ) . "\">개인 맞춤</a>에 
+"mailnologintext" => "{{SITENAME}}에 <a href=\"{{localurle:Special:Userlogin}}\">들어와</a> 있을 때, 또,
+<a href=\"{{localurle:Special:Preferences}}\">개인 맞춤</a>에 
 자기의 누리편지주소를 기억시켰을 때에만,
 다른 사용자에게 편지를 보낼 수 있습니다.",
 "emailuser"		=> "사용자에게 편지쓰기",
@@ -706,15 +701,12 @@ $1의 조건으로 사용을 허가했음을 확인합니다.",
 "watchlistsub"	=> "(\"$1\"의)",
 "nowatchlist"	=> "눈여겨보는 문서가 아직 없습니다.",
 "watchnologin"	=> "나와있습니다.",
-"watchnologintext"	=> "<a href=\"" .
-  wfLocalUrl( "특수기능:Userlogin" ) . "\">들어와</a>
+"watchnologintext"	=> "<a href=\"{{localurle:Special:Userlogin}}\">들어와</a>
 있을 때에만 눈여겨보기 목록을 볼 수 있습니다.",
 "addedwatch"	=> "눈여겨 봅니다.",
 "addedwatchtext" => "앞으로 \"$1\"문서와 딸린 토론를
-<a href=\"" .
-  wfLocalUrl( "특수기능:Watchlist" ) . "\">눈여겨보기 목록</a>에서
-관찰할 수 있으며,<a href=\"" .
-  wfLocalUrl( "특수기능:Recentchanges" ) . "\">최근 바뀜</a>에는 금방 눈에 
+<a href=\"{{localurle:Special:Watchlist}}\">눈여겨보기 목록</a>에서
+관찰할 수 있으며,<a href=\"{{localurle:Special:Recentchanges}}\">최근 바뀜</a>에는 금방 눈에 
 띄도록 <b>두터운 글씨체</b>로 나타납니다.</p>
 
 <p>더 이상 눈여겨 보지 않아도 될 때에는, 옆의 \"눈여겨 보지 않음\"을 누르면 됩니다.",
@@ -734,7 +726,7 @@ $1의 조건으로 사용을 허가했음을 확인합니다.",
 or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
-[[위키백과:Policy]].",
+[[{{ns:4}}:Policy]].",
 "confirmcheck"	=> "Yes, I really want to delete this.",
 "actioncomplete" => "Action complete",
 "deletedtext"	=> "\"$1\" has been deleted.
@@ -764,7 +756,7 @@ will not be automatically replaced.",
 "undeletebtn" => "Restore!",
 "undeletedarticle" => "restored \"$1\"",
 "undeletedtext"   => "The article [[$1]] has been successfully restored.
-See [[위키백과:Deletion_log]] for a record of recent deletions and restorations.",
+See [[{{ns:4}}:Deletion_log]] for a record of recent deletions and restorations.",
 
 # Contributions
 #
@@ -791,7 +783,7 @@ See [[위키백과:Deletion_log]] for a record of recent deletions and restorati
 "blockiptext"	=> "Use the form below to block write access
 from a specific IP address.
 This should be done only only to prevent valndalism, and in
-accordance with [[위키백과:Policy|Wikipedia policy]].
+accordance with [[{{ns:4}}:Policy|Wikipedia policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 "ipaddress"		=> "IP Address",
@@ -864,8 +856,7 @@ Wikipedia developers.",
 옮기는 것이 옳다는 확신이 들 때에만 진행하세요.",
 "movearticle"	=> "문서 옮기기",
 "movenologin"	=> "나와 있습니다.",
-"movenologintext" => "위키백과에 <a href=\"" .
-  wfLocalUrl( "특수기능:Userlogin" ) . "\">들어와</a> 있을 때에만
+"movenologintext" => "{{SITENAME}}에 <a href=\"{{localurle:Special:Userlogin}}\">들어와</a> 있을 때에만
 문서를 옮길 수 있습니다.",
 "newtitle"		=> "새 이름",
 "movepagebtn"	=> "옮기기",

@@ -6,6 +6,8 @@ Starting with MediaWiki 1.2.0, it's possible to install
 and configure the wiki "in-place", as long as you have
 the necessary prerequesites available.
 
+In 1.3.0 the old command-line installer has been removed.
+
 Required software:
 * Web server with PHP 4.1.2 or higher (4.3.x is preferred)
 * A MySQL server. 4.0.x is preferred, but 3.2.x should
@@ -21,16 +23,6 @@ configuration is not well tested.
 Don't forget to check the RELEASE-NOTES file...
 
 ********************** WARNING **************************
-
-The web-based install is still somewhat experimental. It
-doesn't yet support updating the format of an existing
-MediaWiki database, the maintenance scripts aren't available,
-and there may be all kinds of horrible bugs or security
-problems that haven't been worked out yet.
-
-HOWEVER it is much easier, safer, and more reliable than
-the old install.php, and does not require root access
-if you already have a database and user access to it.
 
 REMEMBER: ALWAYS BACK UP YOUR DATABASE BEFORE ATTEMPTING
 TO INSTALL OR UPGRADE!!!
@@ -68,222 +60,33 @@ it will refuse to config again if the wiki is set up).
 
 
 ----
-"Classic" install instructions:
+Upgrading
 ----
 
-THE INSTRUCTIONS BELOW ARE OLD AND MAY BE INACCURATE.
-THIS INSTALL METHOD IS NOT RECOMMENDED, IT MAY RUN
-OVER YOUR DOG.
+Install as with a fresh copy of MediaWiki, but give it the
+database information for the existing database. It will try
+to upgrade the database schema as necessary automatically.
 
-If you use the command-line install, you MUST NOT make the
-source directory web-accessible, as it will expose maintenance
-scripts to the public internet. You MUST NOT install to the
-same directory as your are installing from, this WILL
-overwrite and destroy files.
+Upgrades are not always foolproof; be sure to back everything
+up! You will have to make any LocalSettings.php customizations
+on the newly generated LocalSettings.php.
 
-Because install.php and update.php are unsafe, they have
-been disabled as of 1.2.4. If you wish to use them, remove
-the "die()" call at the top of the file.
+Be sure to backup all your files before you start.
 
---
+See the file UPGRADE for additional notes.
 
-The Wikipedia software was developed collaboratively by
-many people, so it's something of a hodgepodge. The
-main wiki software itself is written in PHP, and requires
-the Apache web server and MySQL database. The optional
-math rendering functions are written in Objective CAML,
-which is required to compile them.
-
-Recommended versions are: Apache 1.3.27 or later; MySQL
-4.0.13 or later; PHP 4.3.2 or later. The installation at
-wikipedia.org also uses PHP Accelerator software, but
-that's entirely optional and doesn't affect anything else.
-
-The math rendering functions are more complex, and will
-probably only work on Linux. Objective CAML (probably
-3.06 or later) is required to compile texvc, but produces
-static binaries. TeTeX and ImageMagick are required at
-runtime, and ImageMagick requires GhostScript. These are
-present in most Linux distributions.
-
-----
-Scripts install.php and update.php
-----
-
-Before installing the software, you must copy the file
-"LocalSettings.sample" to "LocalSettings.php", and
-"AdminSettings.sample" to "AdminSettings.php", and
-customize both of the php files to your local setup
-(things like installation path, passwords, etc.) The
-script install.php can then be run to install the
-software. It must be run from the command line with
-PHP: that is, type "php install.php" (you may need to
-specify the path the php executable). You will probably
-need to run as root.
-
- Hint: If you are using Debian, the PHP interpreter is 
- not part of the "php4" package; you need to install
- php4-cgi separately (the interpreter will be called 
- php4).
-
-This script will copy all the necessary software over to
-the directories you have specified in the settings files.
-It will then warn you that it is about to create the
-database and give you the chance to exit. If you are
-installing the software to an existing database, you can
-answer "no" here and it will be left alone. The software
-installation will be otherwise complete. If you do choose
-to create a new database, you will need te root password
-to your MySQL installation.
-
-If you are merely updating an existing installation, run
-"php update.php" instead of install.  This will copy all
-the software, and also run any database updates that may
-be necessary. These should give appropriate warnings if
-there are any dangerous ones.
-
-----
-Building from scratch
-----
-
-Here are some more notes on building a system from scratch
-the way it was done for the Wikipedia server:
-
-Downloads:
-
-  gcc-2.95.3.tar.gz (only if you now have gcc 2.96)
-  mysql-4.0.13.tar.gz (or 3.23.57 should work)
-  libiconv-1.8.tar.gz
-  apache_1.3.27.tar.gz
-  php-4.3.2.tar.gz
-  apc-cvs.tar.gz
-
-And for math support:
-  ocaml-3.06.tar.gz (3.04 doesn't work)
-  (TeTeX, ImageMagick, and GhostScript come with most Linux distros)
-
-1. MySQL strongly recommends using gcc 2.95 to compile MySQL.
-  RedHat Linux 7.x comes with 2.96 by default, so you'll have to install
-  2.95 first.  Use "../gcc*/configure --enable-shared"  If your Linux
-  installation doesn't use gcc 2.96, or has a more recent gcc 3.x,
-  you can skip this step.
-
-2. Install MySQL source; add "mysql" user and group. Make sure the
-  directory into which you installed gcc 2.95 appears before the
-  directory of gcc 2.96 in your path.  Configure with:
-
-  FLAGS="-O3 -mcpu=i686" CXX=gcc CXXFLAGS="-O3 -mcpu=i686 -felide-constructors -fno-exceptions -fno-rtti" ./configure --prefix=/usr/local/mysql --enable-assembler --with-mysqld-ldflags=-all-static --disable-shared --with-extra-charset=complex
-
-  Edit the file myisam/ftdefs.h, changing the define for minimum word
-  length for fulltext indexing: #define MIN_WORD_LEN 2.  Update
-  $wgDBminWordLen in LocalSettings.php to reflect this.  Build and
-  install according to instructions.  Make root user as recommended;
-  the root password will be required for the wiki installation script.
-
-3. Unpack the phase3.zip source distribution, or check out the "phase3"
-  module from CVS. Copy LocalSettings.sample to LocalSettings.php,
-  AdminSettings.sample to AdminSettings.php, and customize them for
-  things like local paths and passwords.  If desired, update
-  FulltextStoplist.php from the MySQL sources if you have customized
-  MySQL's stop list.
-
-  If you are running anything other than Wikipedia itself you'll want
-  to make a lot of changes to the LanguageXX.php files so it talks about
-  _your_ site and _your_ license. :)
-
-4. Optionally, install libiconv (http://www.gnu.org/software/libiconv/).
-  This will be used by some language packages for converting
-  native-charset URLs to and from UTF-8. If you're running an
-  English-only wiki, this probably won't be necessary. (Most Linux
-  distributions should come with libiconv anyway, but check for
-  a separate 'dev' package if on RedHat.)
-
-5. Unpack Apache distribution and begin configuring, but don't finish
-  build yet. Configure with something like:
-
-   OPTIM='-O2 -mcpu=i686' ./configure --with-layout=Apache
-
-6. If you'll want to use Apache's mod_rewrite to make page-viewing URLs
-  look like static links (as wikipedia.org does), install the included
-  patch "apache-ampersand.diff" which is needed to support page titles
-  with ampersands in them:
-
-   patch -p0 < /path/to/maintenance/apache-ampersand.diff
-
-7. Unpack and configure PHP. Configure with something like:
-
-  ./configure --enable-shmop --with-zlib --with-zlib-dir=/usr/lib --with-mysql=/usr/local/mysql --with-iconv --with-apache=/home/lee/src/apache_1.3.26 --with-readline --enable-sockets
-
-Or for Apache 2.0 module:
-  ./configure --enable-shmop --with-zlib --with-zlib-dir=/usr/lib --with-mysql=/usr/local/mysql --with-iconv --with-apxs2filter=/usr/local/apache/bin/apxs --with-readline --enable-sockets
-
-  (using your own local paths, of course). Build and install as
-  instructed.
-
-8. Finish building Apache. Configure with something like:
-
-  OPTIM='-O2 -mcpu=i686' ./configure --with-layout=Apache --enable-module=rewrite --enable-module=mmap-static --enable-module=headers --enable-module=expires --activate-module=src/modules/php4/libphp4.a
-
-  Update httpd.conf as needed for your site.  For example:
-
-  <IfModule mod_php4.c>
-    AddType application/x-httpd-php .php .php4
-    AddType application/x-httpd-php-source .phps
-  </IfModule>
-  <IfModule mod_php4.c>
-    php_admin_flag engine off
-  </IfModule>
-  <Directory "DIRECTORY_OF_WIKI_SCRIPTS">
-    <IfModule mod_php4.c>
-      php_admin_flag engine on
-    </IfModule>
-  </Directory>
-  RewriteEngine On
-  RewriteMap ampescape int:ampescape
-  RewriteRule ^/wiki/(.*)$ /index.php?title=${ampescape:$1} [L]
-
-  It is *seriously* recommended that you configure the webserver
-  to disable running of PHP scripts except in the script directories
-  (the "php_admin_flag engine off/on" directives above) to prevent
-  the uploading and running of malicious scripts.
-
-9. Optionally, install APC or another PHP cache plug-in, following
-  standard instructions for installing as a Zend extension.
-
-10. If using embedded TeX support, be sure TeX and ImageMagick are
-  installed (they are common on most Linux distros and freely
-  downloadable). Also get and install OCaml according to its
-  instructions.
-
-  You'll need to compile the texvc helper script; enter the math
-  subdirectory of the source tree and run "make".
-
-  If you want embedded TeX support, enable it by setting
-
-   $wgUseTex = true;
-
-  in LocalSettings.php
-
-11. You should now be able to run the install.php script. Use PHP in
-  command-line mode, i.e., type "php install.php". Should be run as
-  root, or as a user or group able to create files and directories
-  in the installation tree.
-
-12. If you have Java installed and running, install the "ant" package
-  from Apache (http://ant.apache.org/) and run ant in the testsuite
-  directory to build the tests. Copy wikitest.prefs.sample to
-  wikitest.prefs, and edit to reflect your local settings.  Then
-  "./run WikiSuite -o -b" will run the whole test suite and report.
 
 ----
 
-Don't forget that this is pre-release software under development!
+Don't forget that this is free software under development!
 Chances are good there's a crucial step that hasn't made it
 into the documentation. You should probably sign up for the
-Wikipedia developers' mailing list; you can ask for help (please
+MediaWiki developers' mailing list; you can ask for help (please
 provide enough information to work with, and preferably be aware
 of what you're doing!) and keep track of major changes to the
 software, including performance improvements and security patches.
 
-http://mail.wikipedia.org/mailman/listinfo/wikitech-l
+http://mail.wikipedia.org/mailman/listinfo/mediawiki-l (site admin support)
+
+http://mail.wikipedia.org/mailman/listinfo/wikitech-l (development)
 

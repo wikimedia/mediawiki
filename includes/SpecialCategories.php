@@ -1,45 +1,44 @@
 <?php
 
+require_once("QueryPage.php");
+
+class CategoriesPage extends QueryPage {
+
+	function getName() {
+		return "Categories";
+	}
+
+	function isExpensive() {
+		return false;
+	}
+
+	function getSQL() {
+		$NScat = NS_CATEGORY;
+		return "SELECT DISTINCT 'Categories' as type, 
+				{$NScat} as namespace,
+				cl_to as title,
+				1 as value
+			   FROM categorylinks";
+	}
+	
+	function sortDescending() {
+		return false;
+	}
+
+	function formatResult( $skin, $result ) {
+		global $wgLang;
+		$title = Title::makeTitle( NS_CATEGORY, $result->title );
+		return $skin->makeLinkObj( $title, $title->getText() );
+	}
+}
+
 function wfSpecialCategories()
 {
-	global $wgUser, $wgOut , $wgLang;
+	list( $limit, $offset ) = wfCheckLimits();
 
-	$sk = $wgUser->getSkin() ;
-	$sc = "Special:Categories" ;
+	$cap = new CategoriesPage();
 
-	# List all existant categories.
-	# Note: this list could become *very large*
-	$r = "<ol>\n" ;
-	$sql = "SELECT cur_title FROM cur WHERE cur_namespace=".Namespace::getCategory() ;
-	$res = wfQuery ( $sql, DB_READ ) ;
-	while ( $x = wfFetchObject ( $res ) ) {
-		$title =& Title::makeTitle( NS_CATEGORY, $x->cur_title );
-	    $r .= "<li>" ;
-	    $r .= $sk->makeKnownLinkObj ( $title, $title->getText() ) ;
-	    $r .= "</li>\n" ;
-	  }
-	wfFreeResult ( $res ) ;
-	$r .= "</ol>\n" ;
-
-	$r .= "<hr />\n" ;
-	
-	# Links to category pages that haven't been created.
-	# FIXME: This could be slow if there are a lot, but the title index should
-	# make it reasonably snappy since we're using an index.
-	$cat = wfStrencode( $wgLang->getNsText( NS_CATEGORY ) );
-	$sql = "SELECT DISTINCT bl_to FROM brokenlinks WHERE bl_to LIKE \"{$cat}:%\"" ;
-	$res = wfQuery ( $sql, DB_READ ) ;
-	$r .= "<ol>\n" ;
-	while ( $x = wfFetchObject ( $res ) ) {
-		$title = Title::newFromDBkey( $x->bl_to );
-	    $r .= "<li>" ;
-	    $r .= $sk->makeBrokenLinkObj( $title, $title->getText() ) ;
-	    $r .= "</li>\n" ;
-	  }
-	wfFreeResult ( $res ) ;
-	$r .= "</ol>\n" ;
-
-	$wgOut->addHTML ( $r ) ;
+	return $cap->doQuery( $offset, $limit );
 }
 
 ?>

@@ -26,10 +26,10 @@
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsMs = array(
-	"Tiada", "Tetap sebelah kiri", "Tetap sebelah kanan", "Berubah-ubah sebelah kiri" 
+	"Tiada", "Tetap sebelah kiri", "Tetap sebelah kanan", "Berubah-ubah sebelah kiri"
 );
 
 /* private */ $wgSkinNamesMs = array(
@@ -40,7 +40,8 @@
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin"
 );
 
 /* private */ $wgMathNamesMs = array(
@@ -158,7 +159,7 @@
 # Bits of text used by many pages:
 #
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
-"mainpage"		=> "Laman Utama Pangkalan Pengetahuan", #"Knowledgebase Home", 
+"mainpage"		=> "Laman Utama Pangkalan Pengetahuan", #"Knowledgebase Home",
 "mainpagetext"	        => "Aturcara Wiki berjaya dipasang.",
 "about"			=> "Maklumat",
 "aboutwikipedia"        => "Maklumat Wikipedia",
@@ -184,7 +185,7 @@
 "currentevents"         => "Status Terkini",
 "errorpagetitle"        => "Ralat",
 "returnto"		=> "Kembali ke $1.", #"Return to $1.",
-"fromwikipedia"	        => "Dari Wikipedia, ensaiklopedia bebas", # "From Wikipedia, the free encylcopedia 
+"fromwikipedia"	        => "Dari Wikipedia, ensaiklopedia bebas", # "From Wikipedia, the free encylcopedia
 "whatlinkshere"	        => "Halaman yang dihubungkan ke sini", #"Pages that link here",
 "help"			=> "Bantuan",
 "search"		=> "Cari",
@@ -195,7 +196,7 @@
 "deletethispage"        => "Buang halaman ini", #"Delete this page",
 "protectthispage"       => "Lindungi halaman ini", #"Protect this page",
 "unprotectthispage"     => "Nyah lindung halaman ini", #"Unprotect this page",
-"newpage"               => "(cipta) Halaman baru", # (create) "New page" 
+"newpage"               => "(cipta) Halaman baru", # (create) "New page"
 "talkpage"		=> "Bincang halaman ini",
 "articlepage"	        => "Lihat rencana",# "View article",
 "subjectpage"	        => "Halaman subjek",
@@ -216,7 +217,7 @@
   wfLocalUrl( "Istimewa:Listadministrators" ) . "\">Sistem Pentadbir</a>
 yang boleh melakukannya.", #"Only the <a href=\"" .wfLocalUrl( "Special:Listadministrators" ) . "\">administrators</a>can do that.",
 "developertitle"        => "Kemasukan pembangun diperlukan", # "Developer access required",
-"developertext"	        => "Tindakan/arahan yg di minta/diperlukanhanya boleh di tunjukan oleh pengguna dengan status \"developer\". 
+"developertext"	        => "Tindakan/arahan yg di minta/diperlukanhanya boleh di tunjukan oleh pengguna dengan status \"developer\".
 Lihat $1.", # "The action you have requested can only be performed by users with \"developer\" status.See $1.",
 "nbytes"		=> "$1 bait",
 "go"			=> "Pergi",
@@ -238,12 +239,12 @@ Lihat $1.", # "The action you have requested can only be performed by users with
 "nosuchspecialpage"     => "Tiada halaman istimewa tersebut", #"No such special page",
 "nospecialpagetext"     => "Anda telah meminta halaman istimewa yang tidak dikenalpasti oleh perisian Wikipedia.", #"You have requested a special page that is not recognized by the Wikipedia software.",
 
-# General errors        =>Ralat umum 
+# General errors        =>Ralat umum
 #
 "error"			=> "Ralat",
 "databaseerror"         => "Ralat pangkalan data", #"Database error",
 "dberrortext"	        => "Berlaku ralat sintaksis pada permintaan pangkalan data.
-Ini kerana berlaku permintaan carian yang tidak dibenarkan (lihat $5), 
+Ini kerana berlaku permintaan carian yang tidak dibenarkan (lihat $5),
 atau mungkin menunjukkan ralat di dalam perisian.
 Percubaan terakhir permintaan pangkalan data ialah :
 <blockquote><tt>$1</tt></blockquote>
@@ -257,11 +258,11 @@ MySQL returned error \"$3: $4\".\n",
 "noconnect"		=> "Tidak dapat menghubungkan ke DB oleh $1", #"Could not connect to DB on $1",
 "nodb"			=> "Tidak dapat memilih pangkalan data $1", #"Could not select database $1",
 "readonly"		=> "Pangkalan data dikunci", #"Database locked",
-"enterlockreason"       => "Masukan sebab/alasan untuk dikunci, 
+"enterlockreason"       => "Masukan sebab/alasan untuk dikunci,
 termasuk anggaran apabila kunci telah di buka",
-"readonlytext"	        => "Pangkalan data Wikipedia sedang di kunci kepada 
+"readonlytext"	        => "Pangkalan data Wikipedia sedang di kunci kepada
 kemasukan baru.
-Pentadbir yang menutup 
+Pentadbir yang menutup
 memberikan penjelasan berikut:
 <p>$1",
 "rencana hilang"=>"Pengkalan data tidak menjumpai teks bagi laman yang patut dijumpai, bernama\"$1\".
@@ -279,7 +280,7 @@ memberikan penjelasan berikut:
 "unexpected"	=> "Nilai di luar jangkaan: \"$1\"=\"$2\".", # Unexpected value: \"$1\"=\"$2\".",
 "formerror"		=> "Ralat: Tidak dapat  menghantar borang", #Error: could not submit form",
 "badarticleerror" => "Arahan ini tidak boleh dilaksanakan di halaman ini.", #This action cannot be performed on this page.",
-"cannotdelete"	=> "Tidak dapat menghilangkan halaman atau imej yang telah ditetapkan.", 
+"cannotdelete"	=> "Tidak dapat menghilangkan halaman atau imej yang telah ditetapkan.",
 "badtitle"		=> "Tajuk tidak sesuai", #Bad title",
 "badtitletext"	        => "Tajuk halaman yang diminta tidak sah, kosong atau salah sambungan dengan antara-bahasa atau tajuk antara-wiki.", #The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.",
 "perfdisabled" => "Maaf! keupayaan ini dilumpuhkan seketika kerana ia melambatkan pengkalan data sehingga tidak dapat digunakan.", # "Sorry! This feature has been temporarily disabled because it slows the database down to the point that no one can use the wiki.",
@@ -288,7 +289,7 @@ memberikan penjelasan berikut:
 # Login and logout pages
 #
 "logouttitle"	=> "Pengguna Keluar", #User logout
-"logouttext"	=> "Anda telah keluar dari sistem. 
+"logouttext"	=> "Anda telah keluar dari sistem.
 Anda boleh terus membaca maklumat, tetapi tidak boleh mengemaskininya atau anda boleh masuk semula sebagai pengguna yang sama atau pengguna berbeza.\n",
 
 "welcomecreation" => "<h2>Selamat datang, $1!</h2><p>Akaun anda telah dibuka.
@@ -303,10 +304,10 @@ Sila kemaskini konfigurasi butir-butir diri anda.", #"<h2>Welcome, $1!</h2><p>Yo
 "loginproblem"	=> "<b>Terdapat masalah dengan data kemasukan.</b><br>Cuba semula!", # There has been a problem with your login.</b><br>Try again!",
 "alreadyloggedin" => "<font color=red><b>Pengguna $1, anda telah berjaya masuk!</b></font><br>\n",
 
-"areyounew"		=>"Sekiranya anda baru dalam Wikipedia dan ingin mendapatkan akaun pengguna, 
+"areyounew"		=>"Sekiranya anda baru dalam Wikipedia dan ingin mendapatkan akaun pengguna,
 masukan nama pengguna, kemudia taip kata laluan dan ulang semula kata laluan.
-Alamat email anda adalah tidak diwajibkan;sekiranya kehilangan kata laluan 
-boleh diminta melalui email yg diberikan.<br>\n", 
+Alamat email anda adalah tidak diwajibkan;sekiranya kehilangan kata laluan
+boleh diminta melalui email yg diberikan.<br>\n",
 
 "login"			=> "Masuk", #Log in
 "userlogin"		=> "Laluan masuk", #Log in
@@ -315,20 +316,20 @@ boleh diminta melalui email yg diberikan.<br>\n",
 "notloggedin"	=> "Not logged in",
 "createaccount"	=> "Buka akaun baru", #Create new account",
 "badretype"		=> "Kata laluan yang dimasukkan adalah salah.", #The passwords you entered do not match.",
-"userexists"	=> "Nama pengguna yang dimasukkan telah digunakan.Sila gunakan nama lain.", 
+"userexists"	=> "Nama pengguna yang dimasukkan telah digunakan.Sila gunakan nama lain.",
 "youremail"		=> "Email anda", #Your e-mail",
 "yournick"		=> "Nama samaran (untuk pengenalan)", #Your nickname (for signatures)",
-"emailforlost"	=> "Sekiranya terlupa kata laluan, anda boleh dapatkan 
-yang baru yang akan 
-diemail ke email 
-anda.", 
+"emailforlost"	=> "Sekiranya terlupa kata laluan, anda boleh dapatkan
+yang baru yang akan
+diemail ke email
+anda.",
 "loginerror"	=> "Salah masuk", #Login error",
 "noname"		=> "Nama pengguna tidak sah.", #You have not specified a valid user name.",
 "loginsuccesstitle" => "Berjaya masuk",  #Login successful",
 "loginsuccess"	=> "Berjaya masuk dalam Wikipedia sebagai \"$1\".",  #You are now logged in to Wikipedia as \"$1\".",
 "nosuchuser"	=> "Tiada pengguna seperti nama \"$1\". #There is no user by the name \"$1\".
-Periksa ejaan, atau guna borang di bawah untuk membuka akaun baru.", 
-"wrongpassword"	=> "Kata laluan yang dimasukan adalah salah.Sila cuba semula.", 
+Periksa ejaan, atau guna borang di bawah untuk membuka akaun baru.",
+"wrongpassword"	=> "Kata laluan yang dimasukan adalah salah.Sila cuba semula.",
 "mailmypassword" => "Emailkan kata laluan baru", #Mail me a new password",
 "passwordremindertitle" => "Peringatan kata laluan dari Wikipedia", #Password reminder from Wikipedia",
 "passwordremindertext" => "Seseorang (mungkin anda, dari alamat IP $1) #IP  Someone (probably you, from IP address $1)
@@ -336,7 +337,7 @@ meminta di hantar kata laluan Wikipedia yang baru.#requested that we send you a 
 Kata laluan untuk pengguna \"$2\" ialah \"$3\". #The password for user \"$2\" is now \"$3\".
 Anda perlu masuk semula dan tukar kata laluan dengan segera.",  #You should log in and change your password now.",
 "noemail"		=> "Tiada alamat email yang direkodkan untuk pengguna \"$1\".",
-"passwordsent"	=> "Kata laluan baru telah di emailkan kepada email yang 
+"passwordsent"	=> "Kata laluan baru telah di emailkan kepada email yang
 didaftarkan untuk \"$1\".
 Sila masuk setelah menerima email tersebut.", #Please log in again after you receive it.",
 
@@ -353,42 +354,42 @@ Sila masuk setelah menerima email tersebut.", #Please log in again after you rec
 Alasannya kerana :<br>$2<p>Anda boleh menghubungi sistem admin untuk
 membincangkan sebab-sebabnya.",
 "newarticle"	=> "(Baru)", #"(New)",
-"newarticletext" => 
-"Letakkan teks anda 
-di sini 
-untuk 
+"newarticletext" =>
+"Letakkan teks anda
+di sini
+untuk
 halaman baru.",
 "anontalkpagetext" => "---- ''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.'' ",
 "noarticletext" => "(Tidak ada teks dalam halaman ini)",
 "updated"		=> "(Dikemaskini)", #"(Updated)",
 "note"			=> "<strong>Nota:</strong> ",
 "previewnote"	=> "Ingatan bahawa ini hanyalah paparan, belum disimpan lagi!", #"Remember that this is only a preview, and has not yet been saved!",
-"previewconflict" => "Paparan ini ada kaitan dengan teks pada bahagian atas dan 
-akan terpapar apabila anda memilih untuk menyimpannya.",  
+"previewconflict" => "Paparan ini ada kaitan dengan teks pada bahagian atas dan
+akan terpapar apabila anda memilih untuk menyimpannya.",
 "editing"		=> "Menyunting $1", #"Editing $1",
 "sectionedit"	=> " (section)",
 "editconflict"	=> "Sunting konflik", #"Edit conflict: $1",
-"explainconflict" => "Orang lain telah mengemaskini halaman ini sejak anda 
+"explainconflict" => "Orang lain telah mengemaskini halaman ini sejak anda
 mula mengemaskininya.
 Bahagian atas teks mengandungi halaman teks yang terkini.
 Perubahan yang anda lakukan akan ditunjukkan pada bahagian bawah teks.
 Anda hanya perlu mencantumkan perubahan-perubahan dalam teks.
 <b>Hanya</b> teks pada bahagian atas akan hanya disimpan apabila anda
-menekan \"Simpan halaman\".\n<p>", 
+menekan \"Simpan halaman\".\n<p>",
 "yourtext"		=> "Teks anda", #"Your text",
 "storedversion" => "Simpan versi", #"Stored version",
 "editingold"	=> "<strong>AMARAN: Anda mengemaskini halaman revisi yang ketinggalan tarikh.
-Jika anda menyimpannya, 
+Jika anda menyimpannya,
 sebarang perubahan yang dibuat sejak revisi ini akan hilang.</strong>\n",
 "yourdiff"		=> "Perbezaan", #"Differences",
-"copyrightwarning" => "Semua sumbangan terhadap Wikipedia adalah 
-tertakluk di bawah GNU Free Documentation License 
-(lihat $1 untuk maklumat lebih lanjut). 
-Jika anda tidak mahu tulisan anda disunting dan/atau disebarkan ke halaman 
-web percuma yang lain, jangan hantarnya ke sini. 
-Anda juga perlu akui bahawa ini adalah hasil tulisan anda sendiri, atau anda 
-menyalinnya daripada domain awam atau mana-mana sumber percuma yang sama. 
-<p><strong><font color=\"red\">JANGAN HANTAR SEBARANG KARYA HAK CIPTA ORANG LAIN TANPA KEBENARAN.</font></strong></p> <p><strong><font color=\"red\">JANGAN SALIN DARIPADA HALAMAN WEB YANG LAIN.</font></strong></p> ", 
+"copyrightwarning" => "Semua sumbangan terhadap Wikipedia adalah
+tertakluk di bawah GNU Free Documentation License
+(lihat $1 untuk maklumat lebih lanjut).
+Jika anda tidak mahu tulisan anda disunting dan/atau disebarkan ke halaman
+web percuma yang lain, jangan hantarnya ke sini.
+Anda juga perlu akui bahawa ini adalah hasil tulisan anda sendiri, atau anda
+menyalinnya daripada domain awam atau mana-mana sumber percuma yang sama.
+<p><strong><font color=\"red\">JANGAN HANTAR SEBARANG KARYA HAK CIPTA ORANG LAIN TANPA KEBENARAN.</font></strong></p> <p><strong><font color=\"red\">JANGAN SALIN DARIPADA HALAMAN WEB YANG LAIN.</font></strong></p> ",
 "longpagewarning" => "WARNING: This page is $1 kilobytes long; some
 browsers may have problems editing pages approaching or longer than 32kb.
 Please consider breaking the page into smaller sections.",
@@ -405,7 +406,7 @@ guidelines</a>.",
 "revhistory"	=> "Sejarah revisi", #"Revision history",
 "nohistory"		=> "Tidak ada sejarah kemaskini untuk halaman ini", #"There is no edit history for this page.",
 "revnotfound"	=> "Revisi tidak dijumpai", #"Revision not found",
-"revnotfoundtext" => "Revisi lama untuk halaman ini yang anda minta tidak dapat dijumpai. 
+"revnotfoundtext" => "Revisi lama untuk halaman ini yang anda minta tidak dapat dijumpai.
 Sila semak URL yang digunakan untuk mengakses halaman ini.\n", #"The old revision of the page you asked for could not be found. Please check the URL you used to access this page.\n",
 "loadhist"		=> "Muatturun halaman sejarah", #"Loading page history",
 "currentrev"	=> "Revisi terkini", #"Current revision",
@@ -414,7 +415,7 @@ Sila semak URL yang digunakan untuk mengakses halaman ini.\n", #"The old revisio
 "next"			=> "next",
 "last"			=> "last",
 "orig"			=> "orig",
-"histlegend"	=> "Lagenda: (cur) = perbezaan dengan versi terkini, 
+"histlegend"	=> "Lagenda: (cur) = perbezaan dengan versi terkini,
 (last) = perbezaan dengan versi terdahulu", #"Legend: (cur) = difference with current version,(last) = difference with preceding version",
 
 # Diffs
@@ -432,13 +433,13 @@ Sila semak URL yang digunakan untuk mengakses halaman ini.\n", #"The old revisio
 "searchresulttext" => "Untuk maklumat lanjut tentang carian dalam Wikipedia, lihat $1.", #"For more information about searching Wikipedia, see $1.",
 "searchquery"	=> "Untuk kueri \"$1\"", #"For query \"$1\"",
 "badquery"		=> "Format kueri carian salah", #"Badly formed search query",
-"badquerytext"	=> "Kami tidak dapat memproses kueri anda. 
-Ini mungkin disebabkan anda cuba mencari perkataan yang kurang 
-daripada tiga huruf, yang mana masih belum disokong oleh sistem ini. 
-Ataupun anda tersalah taip ekspresi untuk kueri, 
-contohnya \"fish and and scales\". 
-Sila cuba kueri yang lain.", 
-"matchtotals"	=> "Kueri \"$1\" sepadan dengan tajuk halaman $2 dan teks 
+"badquerytext"	=> "Kami tidak dapat memproses kueri anda.
+Ini mungkin disebabkan anda cuba mencari perkataan yang kurang
+daripada tiga huruf, yang mana masih belum disokong oleh sistem ini.
+Ataupun anda tersalah taip ekspresi untuk kueri,
+contohnya \"fish and and scales\".
+Sila cuba kueri yang lain.",
+"matchtotals"	=> "Kueri \"$1\" sepadan dengan tajuk halaman $2 dan teks
 halaman $3.", #"The query \"$1\" matched $2 page titles and the text of $3 pages.",
 "nogomatch" => "No page with this exact title exists, trying full text search.",
 "titlematches"	=> "Tajuk artikel yang sepadan", #"Article title matches",
@@ -450,9 +451,9 @@ halaman $3.", #"The query \"$1\" matched $2 page titles and the text of $3 pages
 "viewprevnext"	=> "Papar ($1) ($2) ($3).", #"View ($1) ($2) ($3).",
 "showingresults" => "Di bawah menunjukkan <b>$1</b> hasil carian bermula dengan #<b>$2</b>.", #"Showing below <b>$1</b> results starting with #<b>$2</b>.",
 "showingresultsnum" => "Di bawah menunjukkan <b>$3</b> hasil carian bermula dengan #<b>$2</b>.", #"Showing below <b>$3</b> results starting with #<b>$2</b>.",
-"nonefound"		=> "<strong>Nota</strong>:Kegagalan enjin carian 
-biasanya disebabkan pencarian perkataan seperti \"have\" and \"from\", 
-yang mana bukan dalam senarai indeks atau dengan dikhususkan lebih dari 
+"nonefound"		=> "<strong>Nota</strong>:Kegagalan enjin carian
+biasanya disebabkan pencarian perkataan seperti \"have\" and \"from\",
+yang mana bukan dalam senarai indeks atau dengan dikhususkan lebih dari
 satu istilah carian(hanya halaman).", # "<strong>Note</strong>: unsuccessful searches are often caused by searching for common words like \"have\" and \"from\",which are not indexed, or by specifying more than one search term (only pages containing all of the search terms will appear in the result).",
 "powersearch" => "Cari", #"Search",
 "powersearchtext" => "
@@ -469,11 +470,11 @@ $2 List redirects &nbsp; Search for $3 $9",
   wfLocalUrl( "Istimewa:Userlogin" ) . "\">mendaftar masuk</a>
 untuk tetapkan butir-butir diri anda.", #"You must be <a href=\"" .
 "prefslogintext" => "Anda telah masuk sebagai \"$1\".
-Nombor ID anda ialah $2.", 
+Nombor ID anda ialah $2.",
 
 
 "prefsreset"	=> "Konfigurasi telah diubah ke asal dari storan", #"Preferences have been reset from storage.",
-"qbsettings"	=> "Konfigurasi quickbar", #"Quickbar settings", 
+"qbsettings"	=> "Konfigurasi quickbar", #"Quickbar settings",
 "changepassword" => "Tukar kata laluan", #"Change password",
 "skin"			=> "Skin",
 "math"			=> "Rendering math",
@@ -488,7 +489,7 @@ Nombor ID anda ialah $2.",
 "oldpassword"	=> "Kata laluan lama", #"Old password",
 "newpassword"	=> "Kata laluan baru", #"New password",
 "retypenew"		=> "Taip semula kata laluan baru", #"Retype new password",
-"textboxsize"	=> "Dimensi kotak teks", #"Textbox dimensions",
+"textboxsize"	=> "Dimensi kotak teks", #"Editing",
 "rows"			=> "Baris", #"Rows",
 "columns"		=> "Lajur", #"Columns",
 "searchresultshead" => "Konfigurasi hasil carian", #"Search result settings",
@@ -498,7 +499,7 @@ Nombor ID anda ialah $2.",
 "stubthreshold" => "Threshold for stub display",
 "recentchangescount" => "Bilangan tajuk dalam perubahan terkini", #"Number of titles in recent changes",
 "savedprefs"	=> "Konfigurasi butir-butir diri anda telah disimpan", #"Your preferences have been saved.",
-"timezonetext"	=> "Masukkan perbezaan jam antara waktu 
+"timezonetext"	=> "Masukkan perbezaan jam antara waktu
 tempatan anda dengan waktu pelayan (UTC).", #"Enter number of hours your local time differs from server time (Kuala Lumpur, which is GMT+8).",
 "localtime"	=> "Waktu tempatan", #"Local time",
 "timezoneoffset" => "Imbang", #"Offset",
@@ -519,9 +520,9 @@ Sila lihat halaman-halaman ini: [[Wikipedia:FAQ|Wikipedia FAQ]],
 [[Wikipedia:Pandangan semulajadi|pandangan semulajadi]]),
 dan [[Wikipedia: Kesalahan biasa Wikipedia|kesalahan biasa Wikipedia]].
 
-Jika anda mahu melihat Wikipedia berjaya, adalah sangat penting anda 
+Jika anda mahu melihat Wikipedia berjaya, adalah sangat penting anda
 tidak memasukkan material [[Wikipedia:Hak cipta|hak cipta]] orang lain.
-Perkara ini boleh memusnahkan laman web ini, 
+Perkara ini boleh memusnahkan laman web ini,
 jadi sila patuhi amaran ini.",
 "rcloaderr"		=> "Muatturun perubahan terkini", #"Loading recent changes",
 "rcnote"		=> "Di bawah adalah <strong>$1</strong> kemaskini terakhir dalam <strong>$2</strong> hari lepas.", #"Below are the last <strong>$1</strong> changes in last <strong>$2</strong> days.",
@@ -552,7 +553,7 @@ jadi sila patuhi amaran ini.",
 "uploadnologin" => "Tidak mendaftar masuk", #"Not logged in",
 "uploadnologintext"	=> "Anda mesti <a href=\"" .
   wfLocalUrl( "Istimewa:Userlogin" ) . "\">pengguna</a>
-untuk muatnaik fail.", 
+untuk muatnaik fail.",
 "uploadfile"	=> "Muatnaik fail", #"Upload file",
 "uploaderror"	=> "Muatnaik ralat", #"Upload error",
 "uploadtext"	=> "<strong>STOP!</strong> Before you upload here,
@@ -584,30 +585,30 @@ delete your uploads if they think it serves the encyclopedia, and
 you may be blocked from uploading if you abuse the system.",
 "uploadlog"		=> "muatnaik log", #"upload log",
 "uploadlogpage" => "Muatnaik_log", #"Upload_log",
-"uploadlogpagetext" => "Di bawah ini adalah senarai terkini fail yang dimuatnaik. 
+"uploadlogpagetext" => "Di bawah ini adalah senarai terkini fail yang dimuatnaik.
 Semua waktu yang ditunjukkan adalah waktu pelayan (UTC).
 <ul>
 </ul>
 ",
 "filename"		=> "Filename",
 "filedesc"		=> "Ringkasan", #"Summary",
-"affirmation"	=> "Saya berikrar bahawa pemilik hak cipta fail ini 
+"affirmation"	=> "Saya berikrar bahawa pemilik hak cipta fail ini
 telah bersetuju untuk melesenkannya di bawah terma $1.", #"I affirm that the copyright holder of this file agrees to license it under the terms of the $1.",
 "copyrightpage" => "Wikipedia:Hak cipta",
 "copyrightpagename" => "Hak cipta Wikipedia",
 "uploadedfiles"	=> "Fail yang telah dimuatnaik", #"Uploaded files",
-"noaffirmation" => "Anda mesti berikrar bahawa fail yang dimuatnaik tidak 
+"noaffirmation" => "Anda mesti berikrar bahawa fail yang dimuatnaik tidak
 tertakluk di bawah sebarang hak cipta.", #"You must affirm that your upload does not violate any copyrights.",
 "ignorewarning"	=> "Abaikan amaran dan simpan fail sahaja", #"Ignore warning and save file anyway.",
 "minlength"		=> "Nama imej mesti sekurang-kurangnya tiga huruf.", #"Image names must be at least three letters.",
 "badfilename"	=> "Nama imej telah ditukar kepada \"$1\".", #"Image name has been changed to \"$1\".",
-"badfiletype"	=> "\".$1\" ialah fail format imej yg tidak di sarankan.", 
-"largefile"		=> "Disarankan agar saiz imej tidak melebihi 100k.", 
+"badfiletype"	=> "\".$1\" ialah fail format imej yg tidak di sarankan.",
+"largefile"		=> "Disarankan agar saiz imej tidak melebihi 100k.",
 "successfulupload" => "Berjaya dimuaturun",    #"Successful upload",
-"fileuploaded"	=> "Fail \"$1\" berjaya dimuaturun.    
-Sila patuhi pautan : ($2) pada halaman deskripsi dan isikan maklumat 
-tentang fail tersebut, seperti fail itu dari mana, bila ia dibuat dan 
-oleh siapa, dan lain-lain yang anda ketahui.", 
+"fileuploaded"	=> "Fail \"$1\" berjaya dimuaturun.
+Sila patuhi pautan : ($2) pada halaman deskripsi dan isikan maklumat
+tentang fail tersebut, seperti fail itu dari mana, bila ia dibuat dan
+oleh siapa, dan lain-lain yang anda ketahui.",
 "uploadwarning" => "Amaran muaturun", # Upload warning",
 "savefile"		=> "Simpan fail", #"Save file",
 "uploadedimage" => "Telah dimuaturun \"$1\"",     #"uploaded \"$1\"",
@@ -630,6 +631,7 @@ oleh siapa, dan lain-lain yang anda ketahui.",
 "imghistory"	=> "Sejarah imej",  #"Image history",
 "revertimg"		=> "rev",
 "deleteimg"		=> "del",
+"deleteimgcompletely"		=> "del",
 "imghistlegend" => "Legend: (cur) = this is the current image, (del) = delete
 this old version, (rev) = revert to this old version.
 <br><i>Click on date to see image uploaded on that date</i>.",
@@ -642,25 +644,25 @@ this old version, (rev) = revert to this old version.
 "statistics"	=> "Statistik", #"Statistics",
 "sitestats"		=> "Laman statistik",    #"Site statistics",
 "userstats"		=> "Statistik pengguna",  #"User statistics",
-"sitestatstext" => "Terdapat <b>$1</b> jumlah halaman dalam pangkalan data. 
-Ini termasuk halaman \"talk\", halaman tentang Wikipedia, halaman minimum \"stub\", 
-alih semula dan lain-lain yang mungkin tidak termasuk dalam 
+"sitestatstext" => "Terdapat <b>$1</b> jumlah halaman dalam pangkalan data.
+Ini termasuk halaman \"talk\", halaman tentang Wikipedia, halaman minimum \"stub\",
+alih semula dan lain-lain yang mungkin tidak termasuk dalam
 halaman penuh.
 Selain itu, terdapat halaman <b>$2</b> yang mungkin halaman penuh. <p>
-Terdapat sejumlah <b>$3</b> halaman yang disiarkan, dan sejumlah <b>$4</b> 
+Terdapat sejumlah <b>$3</b> halaman yang disiarkan, dan sejumlah <b>$4</b>
 halaman yang telah diedit sejak ia dihasilkan.
-Ini menjadikan <b>$5</b> purata halaman yang disunting, dan <b>$6</b> paparan yang disunting.", 
-"userstatstext" => "Terdapat <b>$1<b/> pengguna berdaftar. 
-<b>$2<b/> daripadanya adalah pentadbir (lihat $3).",  
+Ini menjadikan <b>$5</b> purata halaman yang disunting, dan <b>$6</b> paparan yang disunting.",
+"userstatstext" => "Terdapat <b>$1<b/> pengguna berdaftar.
+<b>$2<b/> daripadanya adalah pentadbir (lihat $3).",
 
 # Maintenance Page
 #
 "maintenance"		=> "Halaman penyelenggaraan",  #"Maintenance page",
-"maintnancepagetext"	=> "Halaman ini termasuk beberapa peralatan untuk penyelenggaraan setiap hari.  Terdapat sesetengah fungsi yang berkecenderungan untuk mengganggu pangkalan data, jadi tolong jangan tekan kekunci 'reload' selepas membuat pembetulan;-)", 
+"maintnancepagetext"	=> "Halaman ini termasuk beberapa peralatan untuk penyelenggaraan setiap hari.  Terdapat sesetengah fungsi yang berkecenderungan untuk mengganggu pangkalan data, jadi tolong jangan tekan kekunci 'reload' selepas membuat pembetulan;-)",
 "maintenancebacklink"	=> "Kembali ke halaman penyelenggaran", #"Back to Maintenance Page",
 "disambiguations"	=> "Halaman yang tidak samar", #"Disambiguation pages",
 "disambiguationspage"	=> "Wikipedia:Pautan_ke_halaman_yang_tidak_samar",    #"Wikipedia:Links_to_disambiguating_pages",
-"disambiguationstext"	=> "Halaman-halaman yang berikutnya bersambung ke satu <i>halaman yang tidak samar</i>. Halaman-halaman tersebut sepatutnya bersambung ke topik-topik yang berkenaan.<br>Satu halaman dianggap sebagai tidak samar jika ia disambung dari $1.<br>Pautan dari ruang nama yang lain <i>tidak</i> tersenarai di sini.", 
+"disambiguationstext"	=> "Halaman-halaman yang berikutnya bersambung ke satu <i>halaman yang tidak samar</i>. Halaman-halaman tersebut sepatutnya bersambung ke topik-topik yang berkenaan.<br>Satu halaman dianggap sebagai tidak samar jika ia disambung dari $1.<br>Pautan dari ruang nama yang lain <i>tidak</i> tersenarai di sini.",
 "doubleredirects"	=> "Peralihan Halaman Berganda", #"Double Redirects",
 "doubleredirectstext"	=> "<b>Perhatian:</b> Senarai ini mungkin tidak tepat. Ini biasanya bermaksud terdapat tambahan teks dengan pautan di bawah #REDIRECT yang pertama.<br>\nSetiap baris mengandungi pautan kepada peralihan halaman yang pertama dan kedua, sebagaimana baris pertama bagi teks peralihan halaman kedua, biasanya memberikan halaman sasaran \"sebenar\" yang sepatutnya peralihan pertama disambungkan.",
 "brokenredirects"	=> "Peralihan Halaman Rosak", #"Broken Redirects",
@@ -672,7 +674,7 @@ Ini menjadikan <b>$5</b> purata halaman yang disunting, dan <b>$6</b> paparan ya
 "mispeelingspage"       => "Senarai kesilapan ejaan", #"List of common misspellings",
 "missinglanguagelinks"  => "Pautan bahasa yang hilang", #"Missing Language Links",
 "missinglanguagelinksbutton"    => "Cari pautan bahasa yang hilang untuk", #"Find missing language links for",
-"missinglanguagelinkstext"      => "Halaman ini <i>tidak boleh</i> berpaut pada bahagian pusingan dalam $1. Mengarah semula dan sub halaman <i>tidak</i>akan  ditunjukkan.", 
+"missinglanguagelinkstext"      => "Halaman ini <i>tidak boleh</i> berpaut pada bahagian pusingan dalam $1. Mengarah semula dan sub halaman <i>tidak</i>akan  ditunjukkan.",
 
 
 # Miscellaneous special pages
@@ -701,34 +703,34 @@ Ini menjadikan <b>$5</b> purata halaman yang disunting, dan <b>$6</b> paparan ya
 "ancientpages"		=> "Oldest articles",
 "intl"		=> "Interlanguage links",
 "movethispage"	=> "Pindah halaman ini",
-"unusedimagestext" => "<p>Sila ambil perhatian laman web 
-yang lain mungkin boleh berpaut secara 
-terus dengan URL, dan mungkin masih di 
-senaraikan selain masih aktif digunakan.", 
+"unusedimagestext" => "<p>Sila ambil perhatian laman web
+yang lain mungkin boleh berpaut secara
+terus dengan URL, dan mungkin masih di
+senaraikan selain masih aktif digunakan.",
 "booksources"	=> "Sumber buku",
-"booksourcetext" => "Di bawah ini merupakan senarai untuk ke 
-pautan lain yang menjual buku baru dan yang telah digunakan, 
-dan mungkin mempunyai maklumat lanjut tentang buku yang anda sedang cari. 
-Wikipedia tidak bergabung dengan mana-mana perniagaan di atas, 
-dan senarai ini sepatutnya tidak ditafsirkan sebagai sokongan.", 
+"booksourcetext" => "Di bawah ini merupakan senarai untuk ke
+pautan lain yang menjual buku baru dan yang telah digunakan,
+dan mungkin mempunyai maklumat lanjut tentang buku yang anda sedang cari.
+Wikipedia tidak bergabung dengan mana-mana perniagaan di atas,
+dan senarai ini sepatutnya tidak ditafsirkan sebagai sokongan.",
 "alphaindexline" => "$1 to $2",
 
 # Email this user
 #
 "mailnologin"	=> "Tidak dibenarkan hantar alamat", #"No send address",
-"mailnologintext" => "Anda mesti <a href=\"" . wfLocalUrl( "Istimewa:Userlogin"). "\logged in</a> dan mempunyai alamat email yang sah di <a href=\"". wfLocalUrl( "Istimewa:Preferences") . "\"preferences</a> untuk menghantar email kepada pengguna lain.", 
+"mailnologintext" => "Anda mesti <a href=\"" . wfLocalUrl( "Istimewa:Userlogin"). "\logged in</a> dan mempunyai alamat email yang sah di <a href=\"". wfLocalUrl( "Istimewa:Preferences") . "\"preferences</a> untuk menghantar email kepada pengguna lain.",
 #"You must be <a href=\"" .   wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a> and have a valid e-mail address in your <#a href=\"" .   wfLocalUrl( "Special:Preferences" ) . "\">preferences</a> to send e-mail to other users.",
 
 "emailuser"		=> "E-mail pengguna ini", #"E-mail this user",
 "emailpage"		=> "E-mail pengguna", #"E-mail user",
-"emailpagetext"	=> "Sekiranya pengguna ini memasuki alamat email yang sah dalam kecenderungan pengguna, borang dibawah akan menghantar satu pesanan. Alamat email yg diisi pada kecenderungan pengguna akan muncul seperti \"From\"alamat email, jadi penerima boleh membalas email tersebut.", 
+"emailpagetext"	=> "Sekiranya pengguna ini memasuki alamat email yang sah dalam kecenderungan pengguna, borang dibawah akan menghantar satu pesanan. Alamat email yg diisi pada kecenderungan pengguna akan muncul seperti \"From\"alamat email, jadi penerima boleh membalas email tersebut.",
 
 #"If this user has entered a valid e-mail address in is user preferences, the form below will send a single message.
 #The e-mail address you entered in your user preferences will appear as the \"From\" address of the mail, so the recipient wi#ll be able to reply.",
 
 "noemailtitle"	=> "Tiada alamat email", #"No e-mail address",
 
-"noemailtext"	=> "Pengguna ini tidak mengkhususkan alamat email yang sah, atau telah memilih untuk tidak mendapat email dari pengguna yang lain.", 
+"noemailtext"	=> "Pengguna ini tidak mengkhususkan alamat email yang sah, atau telah memilih untuk tidak mendapat email dari pengguna yang lain.",
 #"This user has not specified a valid e-mail address, or has chosen not to receive e-mail from other users.",
 
 "emailfrom"		=> "Daripada", #"From",
@@ -745,20 +747,20 @@ dan senarai ini sepatutnya tidak ditafsirkan sebagai sokongan.",
 "watchlistsub"	=> "( untuk pengguna \"$1\")",   #"(for user \"$1\")",
 "nowatchlist"	=> "Tiada apa-apa dalam senarai pilihan.",    #"You have no items on your watchlist.",
 "watchnologin"	=> "Tidak memasuki sistem", #"Not logged in",
-"watchnologintext"	=> "Anda mesti < a href=\"". 
-  wfLocalUrl( "Istimewa:Userlogin" ) ."\">mendaftar masuk<a/> 
-untuk mengubah senarai pilihan.", 
+"watchnologintext"	=> "Anda mesti < a href=\"".
+  wfLocalUrl( "Istimewa:Userlogin" ) ."\">mendaftar masuk<a/>
+untuk mengubah senarai pilihan.",
 "addedwatch"	=> "Tambah ke senarai pilihan",
-"addedwatchtext" => "Halaman \"$1\" telah ditambah pada <a href=\"". 
-  wfLocalUrl( "Istimewa:Watchlist") . "\">senarai pilihan</a>. 
-Perubahan halaman dan gabungan halaman Perbualan pada masa akan datang 
+"addedwatchtext" => "Halaman \"$1\" telah ditambah pada <a href=\"".
+  wfLocalUrl( "Istimewa:Watchlist") . "\">senarai pilihan</a>.
+Perubahan halaman dan gabungan halaman Perbualan pada masa akan datang
 akan disenaraikan di sini, dan halaman itu akan muncul <b>bolded</b> dalam <a href=\"".
- wfLocalUrl( "Istimewa:Recentchanges" ) . "\">senarai perubahan terkini</a> 
- supaya lebih mudah dibawa keluar.</p> 
+ wfLocalUrl( "Istimewa:Recentchanges" ) . "\">senarai perubahan terkini</a>
+ supaya lebih mudah dibawa keluar.</p>
 
-<p>Sekiranya anda ingin menghapuskan halaman dalam senarai pilihan kemudian, klik \"Berhenti dari senarai pilihan\" pada bar disebelah.",  
+<p>Sekiranya anda ingin menghapuskan halaman dalam senarai pilihan kemudian, klik \"Berhenti dari senarai pilihan\" pada bar disebelah.",
 "removedwatch"	=> "Keluarkan dari senarai pilihan",   #"Removed from watchlist",
-"removedwatchtext" => "Halaman \"$1\"telah dikeluarkan dari senarai pilihan.", 
+"removedwatchtext" => "Halaman \"$1\"telah dikeluarkan dari senarai pilihan.",
 "watchthispage"	=> "Tambah ke senarai pilihan",
 "unwatchthispage" => "Berhenti dari senarai pilihan", #"Stop watching",
 "notanarticle"	=> "Not a page",
@@ -773,10 +775,10 @@ akan disenaraikan di sini, dan halaman itu akan muncul <b>bolded</b> dalam <a hr
 "confirmdelete" => "Sah keluarkan", #"Confirm delete",
 "deletesub"		=> "(Keluarkan \"$1\")", #"(Deleting \"$1\")",
 "historywarning" => "Amaran: Laman yang anda ingin padamkan mempunyai sejarah:",
-"confirmdeletetext" => "Anda akan mengeluarkan terus halaman atau 
-imej ini dengan semua sejarahnya dari pangkalan data.  Sila pastikan 
-yang anda memang mahu berbuat demikian, bahawa anda faham segala 
-akibatnya, dan apa yang anda lakukan ini adalah mengikut 
+"confirmdeletetext" => "Anda akan mengeluarkan terus halaman atau
+imej ini dengan semua sejarahnya dari pangkalan data.  Sila pastikan
+yang anda memang mahu berbuat demikian, bahawa anda faham segala
+akibatnya, dan apa yang anda lakukan ini adalah mengikut
 [[Wikipedia:Polisi]].",
 "confirmcheck"	=> "Ya, saya mahu keluarkan halaman ini", #"Yes, I really want to delete this.",
 "actioncomplete" => "Proses selesai", #"Action complete",
@@ -798,11 +800,11 @@ Semua waktu yang ditunjukkan adalah waktu pelayan (UTC).
 "rollbackfailed" => "gagal kembali asal",
 "cantrollback"	=> "Cannot revert edit; last contributor is only author of this article.",
 "alreadyrolled"	=> "Cannot rollback last edit of [[$1]]
-by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already. 
+by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already.
 
 Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
 #   only shown if there is an edit comment
-"editcomment" => "The edit comment was: \"<i>$1</i>\".", 
+"editcomment" => "The edit comment was: \"<i>$1</i>\".",
 "revertpage"	=> "Kembali kesuntingan akhir oleh $1",
 
 # Undelete
@@ -811,10 +813,10 @@ Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
 "undeletepagetext" => "Halaman-halaman berikutnya telah dikeluarkan tapi masih ada di dalam capaian dan boleh dimasukkan semula. Capaian tersebut mungkin akan dikemaskini secara berkala", #"The following pages have been deleted but are still in the archive and can be restored. The archive may be periodically cleaned out.",
 "undeletearticle" => "Masukkan semula halaman yang telah dikeluarkan", #"Restore deleted article",
 "undeleterevisions" => "$1 revisi dicapai", #"$1 revisions archived",
-"undeletehistory" => "Jika anda masukkan semula halaman tersebut, 
+"undeletehistory" => "Jika anda masukkan semula halaman tersebut,
 semua revisi akan dimasukkan semula ke dalam sejarah.
 Jika satu halaman telah dibuat dengan nama yang sama setelah penghapusan,
-revisi yang telah dimasukkan semula akan kelihatan dalam sejarah dahulu, 
+revisi yang telah dimasukkan semula akan kelihatan dalam sejarah dahulu,
 dan revisi terkini bagi halaman baru tidak akan digantikan secara automatik.", #"If you restore the page, all revisions will be restored to the history.If a new page with the same name has been created since the deletion, the restored revisions will appear in the prior history, and the current revision of the live page will not be automatically replaced.",
 "undeleterevision" => "Revisi yang telah dikeluarkan seperti $1", #"Deleted revision as of $1",
 "undeletebtn" => "Masukkan semula!", #"Restore!",
@@ -836,22 +838,22 @@ Lihat [[Wikipedia:Log_penghapusan]] untuk rekod terkini penghapusan dan kemasuka
 #
 "whatlinkshere"	=> "Pautan ke halaman ini",
 "notargettitle" => "Tiada sasaran", #"No target",
-"notargettext"	=> "Anda tidak menspesifikasikan halaman 
-atau pengguna sasaran untuk melaksanakan fungsi ini.", 
+"notargettext"	=> "Anda tidak menspesifikasikan halaman
+atau pengguna sasaran untuk melaksanakan fungsi ini.",
 "linklistsub"	=> "(Senarai pautan)", #"(List of links)",
 "linkshere"		=> "Halaman-halaman berikut mempunyai pautan ke sini:", #"The following pages link to here:",
 "nolinkshere"	=> "Tiada halaman mempunyai pautan ke sini.", #"No pages link to here.",
 "isredirect"	=> "alih semula halaman", #"redirect page",
 
-# Block/unblock IP 
+# Block/unblock IP
 #
 "blockip"		=> "Blok IP", #"Block IP",
-"blockiptext"	=> "Gunakan borang di bawah untuk blok 
-capaian kemaskini daripada alamat IP atau pengguna tertentu. 
-Ini perlu dilakukan untuk mencegah vandalisme, 
-dan mengikut [[Wikipedia:Polisi|Polisi Wikipedia]]. 
-Masukkan alasan anda di bawah (contohnya mengambil 
-halaman tertentu yang telah dirosakkan).", 
+"blockiptext"	=> "Gunakan borang di bawah untuk blok
+capaian kemaskini daripada alamat IP atau pengguna tertentu.
+Ini perlu dilakukan untuk mencegah vandalisme,
+dan mengikut [[Wikipedia:Polisi|Polisi Wikipedia]].
+Masukkan alasan anda di bawah (contohnya mengambil
+halaman tertentu yang telah dirosakkan).",
 "ipaddress"		=> "Alamat IP atau pengguna", #"IP Address or Username",
 "ipbreason"		=> "Alasan", #"Reason",
 "ipbsubmit"		=> "Hantar", #"Submit",
@@ -861,8 +863,8 @@ halaman tertentu yang telah dirosakkan).",
 "blockipsuccesstext" => "Alamat IP atau pengguna \"$1\" telah diblok.
 <br>Lihat [[Istimewa:Ipblocklist|IP and user block list]] untuk semak pemblokan.", #"The IP address or username \"$1\" has been blocked.
 "unblockip"		=> "Lepaskan semula alamat IP atau pengguna dari diblok", #"Unblock IP address or user",
-"unblockiptext"	=> "Gunakan borang di bawah untuk masukkan semula 
-capaian kemaskini ke alamat IP atau pengguna yang telah diblok sebelumnya.", 
+"unblockiptext"	=> "Gunakan borang di bawah untuk masukkan semula
+capaian kemaskini ke alamat IP atau pengguna yang telah diblok sebelumnya.",
 "ipusubmit"		=> "Lepaskan semula alamat ini dari diblok", #"Unblock this address",
 "ipusuccess"	=> "Alamat IP atau pengguna \"$1\" dilepaskan dari diblok", #"IP address or user \"$1\" unblocked",
 "ipblocklist"	=> "Senarai alamat IP dan pengguna yang diblok", #"List of blocked IP addresses and users",
@@ -875,14 +877,14 @@ capaian kemaskini ke alamat IP atau pengguna yang telah diblok sebelumnya.",
 #
 "lockdb"		=> "Kunci pangkalan data", #"Lock database",
 "unlockdb"		=> "Buka semula pangkalan data dari dikunci", #"Unlock database",
-"lockdbtext"	=> "Mengunci pangkalan data akan menghalang pengguna dari 
-menyunting halaman, menukar konfigurasi pengguna, sunting senarai pilihan mereka, 
+"lockdbtext"	=> "Mengunci pangkalan data akan menghalang pengguna dari
+menyunting halaman, menukar konfigurasi pengguna, sunting senarai pilihan mereka,
 dan lain-lain perkara yang melibatkan kemaskini terhadap pangkalan data.
-Sila pastikan anda mahu berbuat demikian, dan anda akan buka semula pangkalan 
+Sila pastikan anda mahu berbuat demikian, dan anda akan buka semula pangkalan
 data apabila penyelenggaraan telah selesai.",
-"unlockdbtext"	=> "Membuka semula pangkalan data dari dikunci akan 
-membolehkan pengguna mengedit halaman, menukar konfigurasi pengguna, 
-menyunting senarai pilihan mereka dan lain-lain perkara yang melibatkan 
+"unlockdbtext"	=> "Membuka semula pangkalan data dari dikunci akan
+membolehkan pengguna mengedit halaman, menukar konfigurasi pengguna,
+menyunting senarai pilihan mereka dan lain-lain perkara yang melibatkan
 kemaskini terhadap pangkalan data.  Sila pastikan anda mahu berbuat demikian.",
 "lockconfirm"	=> "Ya, saya memang mahu mengunci pangkalan data ini.", #"Yes, I really want to lock the database.",
 "unlockconfirm"	=> "Ya, saya memang mahu membuka semula pangkalan data ini dari dikunci.", #"Yes, I really want to unlock the database.",
@@ -898,26 +900,26 @@ kemaskini terhadap pangkalan data.  Sila pastikan anda mahu berbuat demikian.",
 # SQL query
 #
 "asksql"		=> "Kueri SQL", #"SQL query",
-"asksqltext"	=> "Gunakan borang di bawah untuk membuat kueri langsung 
+"asksqltext"	=> "Gunakan borang di bawah untuk membuat kueri langsung
 bagi pangkalan data Wikipedia.
-Gunakan pembuka kata tunggal ('seperti ini') untuk menghadkan rangkaian 
-string.  Ini selalunya menambah beban terhadap pelayan, jadi sila gunakan 
-fungsi ini dengan cermat.", 
+Gunakan pembuka kata tunggal ('seperti ini') untuk menghadkan rangkaian
+string.  Ini selalunya menambah beban terhadap pelayan, jadi sila gunakan
+fungsi ini dengan cermat.",
 "sqlislogged"	=> "Harap maklum semua pertanyaan dilogkan.",
 "sqlquery"		=> "Masukkan kueri", #"Enter query",
 "querybtn"		=> "Hantar kueri", #"Submit query",
-"selectonly"	=> "Kueri selain dari \"SELECT\" adalah tidak dibenarkan 
+"selectonly"	=> "Kueri selain dari \"SELECT\" adalah tidak dibenarkan
 kepada pembangun Wikipedia.", #"Queries other than \"SELECT\" are restricted to
 "querysuccessful" => "Kueri berjaya", #"Query successful",
 
 # Move page
 #
 "movepage"	=> "Alih Halaman",  #"Move page",
-"movepagetext"	=> "Borang di bawah digunakan untuk menukar halaman, 
-mengalihkan semua data kepada nama baru. 
+"movepagetext"	=> "Borang di bawah digunakan untuk menukar halaman,
+mengalihkan semua data kepada nama baru.
 Tajuk yang lama akan terus dialih kepada tajuk yang baru.
-Pautan kepada tajuk yang lama tidak akan berubah, dan halaman 
-perbualan tidak akan dikeluarkan sekiranya perlu. 
+Pautan kepada tajuk yang lama tidak akan berubah, dan halaman
+perbualan tidak akan dikeluarkan sekiranya perlu.
 
 
 
@@ -927,10 +929,10 @@ perbualan tidak akan dikeluarkan sekiranya perlu.
 
 
 
-<b>AMARAN!</b> 
-Ini menjadikan perubahan yang tidak dijangka dan drastik  
-bagi halaman popular.  Sila pastikan anda faham selok 
-belok borang ini sebelum anda teruskan.",   
+<b>AMARAN!</b>
+Ini menjadikan perubahan yang tidak dijangka dan drastik
+bagi halaman popular.  Sila pastikan anda faham selok
+belok borang ini sebelum anda teruskan.",
 "movepagetalktext" => "The associated talk page, if any, will be automatically moved along with it '''unless:'''
 *You are moving the page across namespaces,
 *A non-empty talk page already exists under the new name, or
@@ -939,16 +941,16 @@ belok borang ini sebelum anda teruskan.",
 In those cases, you will have to move or merge the page manually if desired.",
 "movearticle"	=> "Alih halaman", #"Move page",
 "movenologin"	=> "Tidak masuk sistem", #"Not logged in",
-"movenologintext" => "Anda mesti menjadi pengguna berdaftar dan <a href=\"" .  
-  wfLocalUrl( "Istimewa:Userlogin") . "\">logged in</a> 
-untuk mengalihkan halaman.", 
+"movenologintext" => "Anda mesti menjadi pengguna berdaftar dan <a href=\"" .
+  wfLocalUrl( "Istimewa:Userlogin") . "\">logged in</a>
+untuk mengalihkan halaman.",
 "newtitle"	=> "Tajuk baru",   #"To new title",
 "movepagebtn"	=> "Alih halaman", #"Move page",
 "pagemovedsub"	=> "Pengalihan berjaya",  #"Move succeeded",
 "pagemovedtext" => "Halaman \"[[$1]]\" ditukar kepada \"[[$2]]\".",   #"Page \"[[$1]]\" moved to \"[[$2]]\".",
-"articleexists" => "Halaman dengan nama tersebut telah wujud, 
-atau nama yang dipilih tidak sah. 
-Sila pilih nama lain.", 
+"articleexists" => "Halaman dengan nama tersebut telah wujud,
+atau nama yang dipilih tidak sah.
+Sila pilih nama lain.",
 "talkexists"	=> "The page itself was moved successfully, but the
 talk page could not be moved because one already exists at the new
 title. Please merge them manually.",
@@ -1006,7 +1008,7 @@ class LanguageMs extends LanguageUtf8 {
 		global $wgMathNamesMs;
 		return $wgMathNamesMs;
 	}
-	
+
 	function getDateFormats() {
 		global $wgDateFormatsMs;
 		return $wgDateFormatsMs;
@@ -1029,7 +1031,7 @@ class LanguageMs extends LanguageUtf8 {
 		global $wgMonthNamesMs;
 		return $wgMonthNamesMs[$key-1];
 	}
-	
+
 	function getMonthRegex()
 	{
 		global $wgMonthNamesMs;
