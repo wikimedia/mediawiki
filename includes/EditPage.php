@@ -191,8 +191,27 @@ class EditPage {
 				}
 			}
 			if ( ! $isConflict ) {
-				# All's well: update the article here
-				if($this->mArticle->updateArticle( $text, $this->summary, $this->minoredit, $this->watchthis ))
+				# All's well
+				$sectionanchor = '';
+				if( $this->section != '' ) {
+					# Try to get a section anchor from the section source, redirect to edited section if header found
+					# XXX: might be better to integrate this into Article::getTextOfLastEditWithSectionReplacedOrAdded
+					# for duplicate heading checking and maybe parsing
+					$hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $this->textbox1, $matches );
+					# we can't deal with anchors, includes, html etc in the header for now, 
+					# headline would need to be parsed to improve this
+					if($hasmatch and strlen($matches[2]) > 0 and !preg_match( "/[\\['{<>]/", $matches[2])) {
+						global $wgInputEncoding;
+						$headline = do_html_entity_decode( $matches[2], ENT_COMPAT, $wgInputEncoding );
+						# strip out HTML, will be useful when 
+						# $headline = preg_replace( "/<.*?" . ">/","",$headline );
+						$headline = trim( $headline );
+						$sectionanchor = '#'.preg_replace("/[ \\?&\\/<>\\(\\)\\[\\]=,+']+/", '_', urlencode( $headline ) );
+					}
+				}
+	
+				# update the article here
+				if($this->mArticle->updateArticle( $text, $this->summary, $this->minoredit, $this->watchthis, '', $sectionanchor ))
 					return;
 				else
 					$isConflict = true;
