@@ -32,15 +32,13 @@ body * {
 /*    unicode-bidi: bidi-override;*/
     unicode-bidi: embed;
 }
-#portal-column-content {
+#column-content {
 	margin: 0 -12.2em 0 0;
         float: left;
 }
-#portal-column-content #content{
+#column-content #content{
 	margin-left: 0;
 	margin-right: 12.2em;
-}
-#documentContent {
     border-right: 1px solid #aaaaaa;
     border-left: none;
 }
@@ -53,7 +51,7 @@ html>body .portlet {
     float: none;
     clear: none;
 }
-.portletContent {
+.pBody {
     padding-right: 0.8em;
     padding-left: 0.5em;
 }
@@ -63,7 +61,7 @@ html>body .portlet {
 .documentByLine,
 .portletDetails,
 .portletMore,
-#portal-personaltools {
+#p-personal {
 	text-align: left;
 }
 
@@ -74,10 +72,6 @@ div div.thumbcaption {
 #catlinks,
 div.magnify,
 #div.townBox,
-.portletClose {
-	float: left;
-}
-
 #p-logo {
 	left: auto;
 	right: 0;
