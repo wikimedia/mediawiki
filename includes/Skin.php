@@ -1930,7 +1930,7 @@ class Skin {
 	}
 
 	function makeMediaLink( $name, $url, $alt = "" ) {
-		$nt = Title::makeTitle( NS_IMAGE, $name );
+		$nt = Title::makeTitle( Namespace::getMedia(), $name );
 		return $this->makeMediaLinkObj( $nt, $alt );
 	}
 
@@ -1942,8 +1942,7 @@ class Skin {
 			$s = $alt;
 		} else {
 			$name = $nt->getDBKey();
-			$img = Image::newFromTitle($nt);
-			$url = $img->getUrl();
+			$url = Image::wfImageUrl( $name );
 			if ( empty( $alt ) ) {
 				$alt = preg_replace( '/\.(.+?)^/', '', $name );
 			}

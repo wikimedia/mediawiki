@@ -492,24 +492,21 @@ function wfImageDir( $fname )
 	return $dest;
 }
 
-function wfImageThumbDir( $fname , $subdir='thumb', $shared=false)
+function wfImageThumbDir( $fname , $subdir='thumb')
 {
-	return wfImageArchiveDir( $fname, $subdir, $shared );
+	return wfImageArchiveDir( $fname, $subdir );
 }
 
-function wfImageArchiveDir( $fname , $subdir='archive', $shared=false)
+function wfImageArchiveDir( $fname , $subdir='archive')
 {
-	global $wgUploadDirectory, $wgHashedUploadDirectory,
-	       $wgSharedUploadDirectory, $wgHashedSharedUploadDirectory;
-	$dir = $shared ? $wgSharedUploadDirectory : $wgUploadDirectory;
-	$hashdir = $shared ? $wgHashedSharedUploadDirectory : $wgHashedUploadDirectory;
-	if (!$hashdir) { return $dir.'/'.$subdir; }
+	global $wgUploadDirectory;
 
 	$hash = md5( $fname );
 	$oldumask = umask(0);
+	
 	# Suppress warning messages here; if the file itself can't
 	# be written we'll worry about it then.
-	$archive = $dir.'/'.$subdir;
+	$archive = "{$wgUploadDirectory}/{$subdir}";
 	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
 	$archive .= '/' . $hash{0};
 	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
