@@ -107,12 +107,20 @@ function wfCreativeCommonsRdf($article) {
 	dcElement('format', 'text/html');
 	dcElement('identifier', dcReallyFullUrl($article->mTitle));
 	dcElement('date', dcDate($article->getTimestamp()));
-	dcPerson('creator', $article->getUser());
+
+        $last_editor = $article->getUser();
+        
+        if ($last_editor == 0) {
+	    dcPerson('creator', 0);
+	} else {
+	    dcPerson('creator', $last_editor, $article->getUserText(),
+		     User::whoIsReal($last_editor));
+	}
 
 	$contributors = $article->getContributors();
 	
 	foreach ($contributors as $cid => $user_parts) {
-		dcPerson('contributor', $cid, $user_parts[0]);
+		dcPerson('contributor', $cid, $user_parts[0], $user_parts[1]);
 	}
 	
 	dcRights($article);
@@ -204,16 +212,19 @@ function wfCreativeCommonsRdf($article) {
 	print "    <dc:{$name} rdf:resource=\"{$url}\" />\n";
 }
 
-/* private */ function dcPerson($name, $id, $user_name="") {
+/* private */ function dcPerson($name, $id, $user_name="", $user_real_name="") {
 	global $wgLang;
 
 	if ($id == 0) {
 		dcElement($name, wfMsg("anonymous"));
+	} else if ( !empty($user_real_name) ) {
+	        dcElement($name, $user_real_name);
 	} else {
+	        # XXX: This shouldn't happen.
 		if( empty( $user_name ) ) {
 			$user_name = User::whoIs($id);
 		}
-		dcPageOrString($name, $wgLang->getNsText(NS_USER) . ":" . $user_name, $user_name);
+		dcPageOrString($name, $wgLang->getNsText(NS_USER) . ":" . $user_name, wfMsg("siteuser", $user_name));
 	}
 }
 
