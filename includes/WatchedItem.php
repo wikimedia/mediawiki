@@ -25,11 +25,11 @@ class WatchedItem {
 		global $wgMemc;
 		$key = $this->watchKey();
 		$iswatched = $wgMemc->get( $key );
-		if( $iswatched !== false ) return $iswatched;
+		if( is_integer( $iswatched ) ) return $iswatched;
 		
 		$sql = "SELECT 1 FROM watchlist WHERE wl_user=$this->id AND wl_namespace=$this->ns AND wl_title='$this->eti'";
 		$res = wfQuery( $sql, DB_READ );
-		$iswatched = (wfNumRows( $res ) > 0);
+		$iswatched = (wfNumRows( $res ) > 0) ? 1 : 0;
 		$wgMemc->set( $key, $iswatched );
 		return $iswatched;
 	}
