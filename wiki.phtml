@@ -17,13 +17,17 @@ wfProfileIn( "main-misc-setup" );
 OutputPage::setEncodings(); # Not really used yet
 
 # Useful debug output
-wfDebug( "\nStart request\n" );
-wfDebug( "$REQUEST_METHOD $REQUEST_URI\n" );
-$headers = getallheaders();
-foreach ($headers as $name => $value) {
-	wfDebug( "$name: $value\n" );
+if ( function_exists( "getallheaders" ) ) {
+	wfDebug( "\nStart request\n" );
+	wfDebug( "$REQUEST_METHOD $REQUEST_URI\n" );
+	$headers = getallheaders();
+	foreach ($headers as $name => $value) {
+		wfDebug( "$name: $value\n" );
+	}
+	wfDebug( "\n" );
+} else {
+	wfDebug( "$REQUEST_METHOD $REQUEST_URI\n" );
 }
-wfDebug( "\n" );
 
 # Query string fields
 #
