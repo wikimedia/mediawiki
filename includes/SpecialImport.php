@@ -474,7 +474,7 @@ class WikiImporter {
 		}
 		
 		# Insert the row
-		$oldIgnore = $dbw->setIgnoreErrors( true );
+		$oldIgnore = $dbw->ignoreErrors( true );
 		$success = $dbw->insert( 'old', 
 			array( 
 				'old_namespace' => intval( $this->title->getNamespace() ),

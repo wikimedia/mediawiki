@@ -19,7 +19,7 @@ function moveCustomMessages( $phase ) {
 
 	$dbw =& wfGetDB( DB_MASTER );
 
-	$dbw->setIgnoreErrors( true );
+	$dbw->ignoreErrors( true );
 
 	# Compose DB key array
 	$dbkeys = array();
