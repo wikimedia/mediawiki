@@ -109,6 +109,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1014) Missing image size option on old accounts handled gracefully
 * (bug 1027) Fix page moves with table prefix
 * (bug 1018) Some pages fail with stub threshold enabled
+* (bug 1024) Fix link to high-res image version on Image: pages
 
 
 === Caveats ===
