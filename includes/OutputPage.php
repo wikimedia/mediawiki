@@ -599,6 +599,51 @@ class OutputPage {
 	}
 
 
+function fixTableTags ( $t )
+{
+if ( trim ( $t ) == "" ) return "" ; # Saves runtime ;-)
+
+$r = array () ;
+
+$t = explode ( " " , $t ) ;
+$quote = false ;
+$collect = "" ;
+
+foreach ( $t AS $x )
+{
+  $cnt = substr_count($x,"\"") + substr_count($x,"'") ;
+  if ( $cnt&1 ) $quote = !$quote ;
+  $collect .= " " . $x ;
+  if ( !$quote )
+    {
+      if ( trim ( $collect ) != "" ) $r[] = trim ( $collect ) ;
+      $collect = "" ;
+    }
+}
+if ( trim ( $collect ) != "" ) $r[] = trim ( $collect ) ;
+
+$t = $r ;
+$r = array () ;
+
+foreach ( $t AS $x )
+{
+  $y = explode ( "=" , $x , 2 ) ;
+  if ( count ( $y ) == 1 ) $y[] = "" ;
+  $k = trim ( $y[0] ) ;
+  $v = trim ( $y[1] ) ;
+
+  # Filtering
+  if ( "on" == strtolower ( substr ( $k , 0 , 2 ) ) ) $k = "" ;
+  if ( $v == "" && "nowrap" != strtolower ( $k ) ) $k = "" ;
+
+  if ( $k == "" ) $v = "" ;
+  if ( $v != "" ) $k .= "={$v}" ;
+  if ( $k != "" ) $r[] = $k ;
+}
+ $t = implode ( " " , $r ) ;
+return $t ;
+}
+
 function doTableStuff ( $t )
 {
   $t = explode ( "\n" , $t ) ;
@@ -611,7 +656,7 @@ function doTableStuff ( $t )
       $fc = substr ( $x , 0 , 1 ) ;
       if ( "{|" == substr ( $x , 0 , 2 ) )
 	{
-	  $t[$k] = "<table " . substr ( $x , 3 ) . ">" ;
+	  $t[$k] = "<table " . $this->fixTableTags ( substr ( $x , 3 ) ) . ">" ;
 	  array_push ( $td , false ) ;
 	  array_push ( $ltd , "" ) ;
 	  array_push ( $tr , false ) ;
@@ -661,13 +706,12 @@ function doTableStuff ( $t )
           array_push ( $ltd , $l ) ;
 	  $y = explode ( "|" , $theline , 2 ) ;
           if ( count ( $y ) == 1 ) $y = "{$z}<{$l}>{$y[0]}" ;
-          else $y = $y = "{$z}<{$l} {$y[0]}>{$y[1]}" ;
+          else $y = $y = "{$z}<{$l} ".$this->fixTableTags($y[0]).">{$y[1]}" ;
           $t[$k] .= $y ;
 	  array_push ( $td , true ) ;
              }
 	}
     }
-
 
 # Closing open td, tr && table
 while ( count ( $td ) > 0 )
@@ -680,6 +724,7 @@ $t[] = "</table>" ;
   $t = implode ( "\n" , $t ) ;
   return $t ;
 }
+
 
 	# Well, OK, it's actually about 14 passes.  But since all the
 	# hard lifting is done inside PHP's regex code, it probably
