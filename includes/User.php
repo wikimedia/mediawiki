@@ -9,7 +9,6 @@
  *
  */
 require_once( 'WatchedItem.php' );
-require_once( 'Group.php' );
 
 # Number of characters in user_token field
 define( 'USER_TOKEN_LENGTH', 32 );
@@ -31,9 +30,6 @@ class User {
 	var $mToken;
 	var $mRealName;
 	var $mHash;
-	/** Array of group id the user belong to */
-	var $mGroups;
-	/**#@-*/
 
 	/** Construct using User:loadDefaults() */
 	function User()	{
@@ -152,7 +148,6 @@ class User {
 		$this->mRealName = $this->mEmail = '';
 		$this->mPassword = $this->mNewpassword = '';
 		$this->mRights = array();
-		$this->mGroups = array();
 		
 		// Getting user defaults only if we have an available language
 		if( isset( $wgContLang ) ) {
@@ -345,7 +340,7 @@ class User {
 	 * Load a user from the database
 	 */
 	function loadFromDatabase() {
-		global $wgCommandLineMode, $wgAnonGroupId, $wgLoggedInGroupId;
+		global $wgCommandLineMode;
 		$fname = "User::loadFromDatabase";
 		if ( $this->mDataLoaded || $wgCommandLineMode ) {
 			return;
@@ -356,14 +351,7 @@ class User {
 
 		/** Anonymous user */
 		if(!$this->mId) {
-			/** Get rights */
-			$anong = Group::newFromId($wgAnonGroupId);
-			if (!$anong) 
-				wfDebugDieBacktrace("Please update your database schema "
-					."and populate initial group data from "
-					."maintenance/archives patches");
-			$anong->loadFromDatabase();
-			$this->mRights = explode(',', $anong->getRights());
+			$this->mRights = array();
 			$this->mDataLoaded = true;
 			return;
 		} # the following stuff is for non-anonymous users only
@@ -382,29 +370,18 @@ class User {
 			$this->decodeOptions( $s->user_options );
 			$this->mTouched = wfTimestamp(TS_MW,$s->user_touched);
 			$this->mToken = $s->user_token;
-
-			// Get groups id
-			$res = $dbr->select( 'user_groups', array( 'ug_group' ), array( 'ug_user' => $this->mId ) );
-
-			while($group = $dbr->fetchRow($res)) {
-				$this->mGroups[] = $group[0];
-			}
-
-			// add the default group for logged in user
-			$this->mGroups[] = $wgLoggedInGroupId;
-
-			$this->mRights = array();
-			// now we merge groups rights to get this user rights
-			foreach($this->mGroups as $aGroupId) {
-				$g = Group::newFromId($aGroupId);
-				$g->loadFromDatabase();
-				$this->mRights = array_merge($this->mRights, explode(',', $g->getRights()));
-			}
 			
-			// array merge duplicate rights which are part of several groups
-			$this->mRights = array_unique($this->mRights);
-			
-			$dbr->freeResult($res);
+			/* FIXME */
+			$res = $dbr->select('user_rights',
+				array( 'ur_rights' ),
+				array( 'ur_user' => $this->mId ) );
+			$s = $dbr->fetchObject( $res );
+			if( $s ) {
+				$this->mRights = explode( ',', $s->ur_rights );
+			} else {
+				$this->mRights = array();
+			}
+			$dbr->freeResult( $res );
 		}
 
 		$this->mDataLoaded = true;
@@ -586,52 +563,28 @@ class User {
 		$this->invalidateCache();
 	}
 
-	function getGroups() {
-		$this->loadFromDatabase();
-		return $this->mGroups;
-	}
-
-	function setGroups($groups) {
-		$this->loadFromDatabase();
-		$this->mGroups = $groups;
-		$this->invalidateCache();
-	}
-
 	/**
 	 * Check if a user is sysop
-	 * Die with backtrace. Use User:isAllowed() instead.
-	 * @deprecated
 	 */
 	function isSysop() {
-	/**
 		$this->loadFromDatabase();
 		if ( 0 == $this->mId ) { return false; }
 
 		return in_array( 'sysop', $this->mRights );
-	*/
-	wfDebugDieBacktrace("User::isSysop() is deprecated. Use User::isAllowed() instead");
 	}
 
-	/** @deprecated */
 	function isDeveloper() {
-	/**
 		$this->loadFromDatabase();
 		if ( 0 == $this->mId ) { return false; }
 
 		return in_array( 'developer', $this->mRights );
-	*/
-	wfDebugDieBacktrace("User::isDeveloper() is deprecated. Use User::isAllowed() instead");
 	}
 
-	/** @deprecated */
 	function isBureaucrat() {
-	/**
 		$this->loadFromDatabase();
 		if ( 0 == $this->mId ) { return false; }
 
 		return in_array( 'bureaucrat', $this->mRights );
-	*/
-	wfDebugDieBacktrace("User::isBureaucrat() is deprecated. Use User::isAllowed() instead");
 	}
 
 	/**
@@ -654,7 +607,35 @@ class User {
 	 */
 	function isAllowed($action='') {
 		$this->loadFromDatabase();
-		return in_array( $action , $this->mRights );
+		if( in_array( $action , $this->mRights ) ) {
+			return true;
+		}
+		
+		static $groupRights = array(
+			'asksql'        => 'nobody',
+			'siteadmin'     => 'developer',
+			'userrights'    => 'bureaucrat',
+			'patrol'        => 'sysop',
+			'protect'       => 'sysop',
+			'delete'        => 'sysop',
+			'rollback'      => 'sysop',
+			'block'         => 'sysop',
+			'editinterface' => 'sysop',
+			'move'          => 'user',
+			'read'          => '*',
+			'createaccount' => '*' );
+		
+		if( array_key_exists( $action, $groupRights ) ) {
+			$group = $groupRights[$action];
+			if( $group == 'user' ) {
+				return ($this->getId() != 0 );
+			} elseif( $group == '*' ) {
+				return true;
+			} else {
+				return in_array( $group, $this->mRights );
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -838,20 +819,6 @@ class User {
 		$dbw->set( 'user_rights', 'ur_rights', implode( ',', $this->mRights ),
 			'ur_user='. $this->mId, $fname ); 
 		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
-		
-		// delete old groups
-		$dbw->delete( 'user_groups', array( 'ug_user' => $this->mId), $fname);
-		
-		// save new ones
-		foreach ($this->mGroups as $group) {
-			$dbw->replace( 'user_groups',
-				array(array('ug_user','ug_group')),
-				array(
-					'ug_user' => $this->mId,
-					'ug_group' => $group
-				), $fname
-			);
-		}
 	}
 
 	/**
@@ -931,15 +898,6 @@ class User {
 				'ur_rights' => implode( ',', $this->mRights )
 			), $fname
 		);
-		
-		foreach ($this->mGroups as $group) {
-			$dbw->insert( 'user_groups',
-				array(
-					'ug_user' => $this->mId,
-					'ug_group' => $group
-				), $fname
-			);
-		}
 	}
 
 	function spreadBlock() {
