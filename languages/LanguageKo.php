@@ -30,14 +30,6 @@ include_once( "LanguageUtf8.php" );
 # option values if you like. These will be the defaults for any user
 # who isn't logged in, or a newly created user account.
 
-/* private */ $wgDefaultUserOptionsKo = array(
-	"quickbar" => 1, "underline" => 1, "hover" => 1,
-	"cols" => 80, "rows" => 25, "searchlimit" => 20,
-	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 0, "math" => 1, "rcdays" => 14, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0
-);
-
 /* private */ $wgQuickbarSettingsKo = array(
 #	"None", "Fixed left", "Fixed right", "Floating left"
 	"없음", "왼쪽 붙박이", "오른쪽 붙박이", "왼쪽 떠다님"
@@ -944,10 +936,11 @@ Wikipedia developers.",
 
 class LanguageKo extends LanguageUtf8 {
 
-	function getDefaultUserOptions () {
-		global $wgDefaultUserOptionsKo ;
-		return $wgDefaultUserOptionsKo ;
-		}
+        function getDefaultUserOptions () {
+                $opt = Language::getDefaultUserOptions();
+		$opt["rcdays"]=14;
+                return $opt;
+        }
 
 	function getBookstoreList () {
 		global $wgBookstoreListKo ;

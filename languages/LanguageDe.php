@@ -891,7 +891,7 @@ class LanguageDe extends Language {
 	function getDefaultUserOptions () {
 		$opt = Language::getDefaultUserOptions();
 		return $opt;
-		}
+	}
 
 	function getBookstoreList () {
 		global $wgBookstoreListDe ;

@@ -25,15 +25,6 @@ include_once("LanguageUtf8.php");
 	11	=> "Dyskusja źródeł"
 );
 
-/* private */ $wgDefaultUserOptionsPl = array(
-        "quickbar" => 1, "underline" => 1, "hover" => 1,
-        "cols" => 80, "rows" => 25, "searchlimit" => 20,
-        "contextlines" => 5, "contextchars" => 50,
-        "skin" => 0, "math" => 1, "rcdays" => 3, "rclimit" => 50,
-        "highlightbroken" => 1, "stubthreshold" => 0,
-                "previewontop" => 1, "editsection" => 1, "editsectiononrightclick" => 0, "showtoc" => 1
-);
-
 /* private */ $wgQuickbarSettingsPl = array(
         "Brak", "Stały, z lewej", "Stały, z prawej", "Unoszący się, z lewej"
 );
@@ -1178,6 +1169,11 @@ Wybierz, proszę, nową nazwę.",
 
 class LanguagePl extends LanguageUtf8 {
 
+        function getDefaultUserOptions () {
+                $opt = Language::getDefaultUserOptions();
+                return $opt;
+        }
+	
         function getNamespaces() {
                 global $wgNamespaceNamesPl;
                 return $wgNamespaceNamesPl;
