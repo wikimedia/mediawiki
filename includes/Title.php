@@ -752,7 +752,7 @@ class Title {
 			$r = substr( $r, 0, strlen( $r ) - strlen( $f ) );
 			# remove whitespace again: prevents "Foo_bar_#"
 			# becoming "Foo_bar_"
-			$r = preg_replace( '/^_*(.*?)_*$/', '$1', $r );
+			$r = preg_replace( '/_*$/', '', $r );
 		}
 
 		# Reject illegal characters
