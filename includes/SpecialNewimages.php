@@ -51,7 +51,7 @@ function wfSpecialNewimages() {
 	$sk = $wgUser->getSkin();
 	$cap = wfMsg( 'ilshowmatch' );
 	$sub = wfMsg( 'ilsubmit' );
-	$titleObj = Title::makeTitle( NS_SPECIAL, 'Imagelist' );
+	$titleObj = Title::makeTitle( NS_SPECIAL, 'Newimages' );
 	$action = $titleObj->escapeLocalURL(  "sort={$sort}&limit={$limit}" );
 
 	$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
