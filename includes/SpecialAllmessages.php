@@ -13,12 +13,6 @@ function wfSpecialAllmessages() {
 	global $wgLanguageCode, $wgContLanguageCode, $wgContLang;
 	global $wgUseDatabaseMessages;
 
-	if($wgLanguageCode != $wgContLanguageCode &&
-		!in_array($wgLanguageCode, $wgContLang->getVariants())) {
-		$err = wfMsg('allmessagesnotsupportedUI', $wgLanguageCode);
-		$wgOut->addHTML( $err );
-		return;
-	}
 	if(!$wgUseDatabaseMessages) {
 		$wgOut->addHTML(wfMsg('allmessagesnotsupportedDB'));
 		return;
@@ -94,7 +88,7 @@ function makePhp($messages) {
  *
  */
 function makeHTMLText( $messages ) {
-	global $wgLang, $wgUser, $wgLanguageCode, $wgContLanguageCode;
+	global $wgLang, $wgUser, $wgLanguageCode, $wgContLanguageCode, $wgContLang;
 	$fname = "makeHTMLText";
 	wfProfileIn( $fname );
 	
@@ -128,11 +122,13 @@ function makeHTMLText( $messages ) {
 	wfProfileOut( "$fname-check" );
 
 	wfProfileIn( "$fname-output" );
+
 	foreach( $messages as $key => $m ) {
 
 		$title = $wgLang->ucfirst( $key );
 		if($wgLanguageCode != $wgContLanguageCode)
 			$title.="/$wgLanguageCode";
+
 		$titleObj =& Title::makeTitle( NS_MEDIAWIKI, $title );
 		$talkPage =& Title::makeTitle( NS_MEDIAWIKI_TALK, $title );
 
