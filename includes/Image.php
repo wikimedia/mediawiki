@@ -103,6 +103,17 @@ class Image
 			# If there is no image, there will be no thumbnail
 			return "";
 		}
+		
+		# Sanity check $width
+		$width = IntVal( $width );
+		if( $width <= 0 ) {
+			# BZZZT
+			return "";
+		}
+		if( $width > $this->width ) {
+			# Don't make an image bigger than the source
+			return $this->getURL();
+		}
 
 		if (    (! file_exists( $thumbPath ) )
 		     || ( filemtime($thumbPath) < filemtime($this->imagePath) ) ) {
