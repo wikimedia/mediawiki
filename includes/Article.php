@@ -383,6 +383,9 @@ class Article {
 		global $wgOut, $wgUser, $wgTitle, $wgLinkCache;
 		global $wgDBtransactions;
 		$fname = "Article::updateArticle";
+
+		$this->loadLastEdit();
+
 		// insert updated section into old text if we have only edited part 
 		// of the article		
 		if ($section != "") {			
@@ -405,7 +408,6 @@ class Article {
 			$text = $m[1] . "\n"; # Remove all content but redirect
 		}
 		else { $redir = 0; }
-		$this->loadLastEdit();
 
 		$text = $this->preSaveTransform( $text );
 		
