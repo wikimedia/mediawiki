@@ -15,6 +15,10 @@ function wfSpecialWhatlinkshere($par = NULL)
 		return;
 	}
 	$nt = Title::newFromURL( $target );
+	if( !$nt ) {
+		$wgOut->errorpage( "notargettitle", "notargettext" );
+		return;
+	}
 	$wgOut->setPagetitle( $nt->getPrefixedText() );
 	$wgOut->setSubtitle( wfMsg( "linklistsub" ) );
 
@@ -81,6 +85,9 @@ function wfShowIndirectLinks( $level, $lid )
 	$wgOut->addHTML( "<ul>" );
 	while ( $row = wfFetchObject( $res ) ) {
 		$nt = Title::newFromDBkey( $row->l_from );
+		if( !$nt ) {
+			$wgOut->addHTML( "<!-- bad backlink: " . htmlspecialchars( $row->l_from ) . " -->\n" );
+		}
 		$ns = $nt->getNamespace();
 		$t = wfStrencode( $nt->getDBkey() );
 
@@ -98,7 +105,7 @@ function wfShowIndirectLinks( $level, $lid )
 				wfShowIndirectLinks( $level + 1, $s->cur_id );
 			}
 		}
-		$wgOut->addHTML( "</il>\n" );
+		$wgOut->addHTML( "</li>\n" );
 	}
 	$wgOut->addHTML( "</ul>\n" );
 }
