@@ -1,6 +1,6 @@
-<?
+<?php
 
-include_once( "Utf8Case.php" );
+include_once( "LanguageUtf8.php" );
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
@@ -9,9 +9,6 @@ include_once( "Utf8Case.php" );
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
 #
-
-if($wgMetaNamespace === FALSE)
-	$wgMetaNamespace = str_replace( " ", "_", $wgSitename );
 
 /* private */ $wgNamespaceNamesUk = array(
 	-2	=> "Медіа",
@@ -473,7 +470,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br>
 "preferences"	=> "Настройки",
 "prefsnologin" => "Ви не ввійшли в систему",
 "prefsnologintext"	=> "Ви повинні <a href=\"" .
-  wfLocalUrl( "Спеціальні:Вхід_в_систему" ) "\">ввійти в систему</a>
+  wfLocalUrl( "Спеціальні:Вхід_в_систему" ) . "\">ввійти в систему</a>
 щоб змінити настройки користувача.",
 "prefslogintext" => "Ви ввійшли в систему як \"$1\".
 Ваш внутрішній ідентифікаційний номер - $2.
