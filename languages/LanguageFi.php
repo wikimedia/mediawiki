@@ -128,7 +128,7 @@
 'category'              => 'Luokka',
 'category_header'       => 'Luokkaan "$1" kuuluvat artikkelit',
 'subcategories'         => 'Alaluokat',
-'linktrail'             => '/^((ä|ö|[a-z])+)(.*)\$/sD',
+'linktrail'             => '/^((?:[a-z]|ä|ö|å)+)(.*)$/sD',
 'mainpage'              => 'Etusivu',
 'mainpagetext'          => 'Wiki-ohjelmisto on onnistuneesti asennettu.',
 'mainpagedocfooter'     => 'Lisätietoja käyttö ja asetusten tekoa varten on sivuilla [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface]
