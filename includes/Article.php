@@ -46,6 +46,14 @@ class Article {
 	}
 
 	/**
+	 * get the title object of the article
+	 * @public
+	 */
+	function getTitle() {
+		return $this->mTitle;	
+	}
+
+	/**
 	  * Clear the object
 	  * @private
 	  */

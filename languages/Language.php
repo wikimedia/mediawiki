@@ -1751,6 +1751,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'variantname-zh-sg' => 'sg',
 'variantname-zh' => 'zh',
 
+# Chinese conversion table
+'zhconversiontable' => '-{}-',
+
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'User: ',
 'speciallogtitlelabel' => 'Title: ',
