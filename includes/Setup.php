@@ -239,28 +239,29 @@ if( $wgCommandLineMode ) {
 wfProfileOut( $fname.'-User' );
 wfProfileIn( $fname.'-language2' );
 
-function setupLangObj(&$langclass, $langcode) {
+function setupLangObj(&$langclass) {
 	global $wgUseLatin1, $IP;
 
-
 	if( ! class_exists( $langclass ) ) {
-		# Default to English/UTF-8
-		require_once( "$IP/languages/LanguageUtf8.php" );
-		$langclass = 'LanguageUtf8';
+		# Default to English/UTF-8, or for non-UTF-8, to latin-1
+		$baseclass = 'LanguageUtf8';
+		if( $wgUseLatin1 )
+			$baseclass = 'LanguageLatin1';
+		require_once( "$IP/languages/$baseclass.php" );
+		$lc = strtolower(substr($langclass, 8));
+		$snip = "
+			class $langclass extends $baseclass {
+				function getVariants() {
+					return array(\"$lc\");
+				}
+
+			}";
+
+		eval($snip);
 	}
 
 	$lang = new $langclass();
-	if ( !is_object($lang) ) {
-		print "No language class ($wgLang)\N";
-	}
 
-	if( $wgUseLatin1 ) {
-		# For non-UTF-8 latin-1 downconversion
-		require_once( "$IP/languages/LanguageLatin1.php" );
-		$xxx = new LanguageLatin1( $lang );
-		unset( $lang );
-		$lang = $xxx;
-	}
 	return $lang;
 }
 
@@ -270,8 +271,7 @@ function setupLangObj(&$langclass, $langcode) {
 $wgContLanguageCode = $wgLanguageCode;
 $wgContLangClass = 'Language' . str_replace( '-', '_', ucfirst( $wgContLanguageCode ) );
 
-$wgContLang = setupLangObj( $wgContLangClass, $wgContLangClass );
-$n = get_class($wgContLang);
+$wgContLang = setupLangObj( $wgContLangClass );
 
 // set default user option from content language
 if( !$wgUser->mDataLoaded ) {
@@ -286,10 +286,12 @@ $wgLangClass = 'Language'. str_replace( '-', '_', ucfirst( $wgLanguageCode ) );
 if( $wgLangClass == $wgContLangClass ) {
 	$wgLang = &$wgContLang;
 } else {
-	require_once("$IP/languages/$wgLangClass.php");
-	$wgLang = setupLangObj( $wgLangClass, $wgLanguageCode );
-}
+	wfSuppressWarnings();
+	include_once("$IP/languages/$wgLangClass.php");
+	wfRestoreWarnings();
 
+	$wgLang = setupLangObj( $wgLangClass );
+}
 
 wfProfileOut( $fname.'-language' );
 wfProfileIn( $fname.'-MessageCache' );
