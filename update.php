@@ -196,7 +196,7 @@ function do_index_update() {
 function do_linkscc_update() {
 	// Create linkscc if necessary
 	global $wgDatabase;
-	if( table_exists( "linkscc" ) ) {
+	if( $wgDatabase->tableExists( "linkscc" ) ) {
 		echo "...have linkscc table.\n";
 	} else {
 		echo "Adding linkscc table... ";
