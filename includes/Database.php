@@ -932,7 +932,7 @@ class Database {
 			$rows = array( $rows );
 		}
 
-		$sql = "REPLACE INTO $table (" . implode( ',', array_flip( $rows[0] ) ) .') VALUES ';
+		$sql = "REPLACE INTO $table (" . implode( ',', array_keys( $rows[0] ) ) .') VALUES ';
 		$first = true;
 		foreach ( $rows as $row ) {
 			if ( $first ) {
