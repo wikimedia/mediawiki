@@ -154,6 +154,7 @@ class OutputPage {
 			# IE 5.0 has probs with our caching
 			return;
 		}
+		if( $wgUser->getOption( "nocache" ) ) return;
 
 		if( $_SERVER["HTTP_IF_MODIFIED_SINCE"] != "" ) {
 			$ismodsince = wfUnix2Timestamp( strtotime( $_SERVER["HTTP_IF_MODIFIED_SINCE"] ) );
@@ -424,7 +425,7 @@ class OutputPage {
 	function reportTime()
 	{
 		global $wgRequestTime, $wgDebugLogFile, $HTTP_SERVER_VARS;
-		global $wgProfiling, $wgProfileStack;
+		global $wgProfiling, $wgProfileStack, $wgUser;
 
 		list( $usec, $sec ) = explode( " ", microtime() );
 		$now = (float)$sec + (float)$usec;
@@ -464,6 +465,8 @@ class OutputPage {
 				$forward .= " from $from";
 			if( $forward )
 				$forward = "\t(proxied via {$HTTP_SERVER_VARS['REMOTE_ADDR']}{$forward})";
+			if($wgUser->getId() == 0)
+				$forward .= " anon";
 			$log = sprintf( "%s\t%04.3f\t%s\n",
 			  date( "YmdHis" ), $elapsed,
 			  urldecode( $HTTP_SERVER_VARS['REQUEST_URI'] . $forward ) );
@@ -776,8 +779,9 @@ class OutputPage {
 		global $wgTitle, $wgUser, $wgLang;
 		global $wgLinkCache, $wgInterwikiMagic;
 		global $wgNamespacesWithSubpages;
-		wfProfileIn( "OutputPage::replaceInternalLinks" );
+		wfProfileIn( $fname = "OutputPage::replaceInternalLinks" );
 
+		wfProfileIn( "$fname-setup" );
 		$tc = Title::legalChars() . "#";
 		$sk = $wgUser->getSkin();
 
@@ -787,7 +791,9 @@ class OutputPage {
 
 		$e1 = "/^([{$tc}]+)\\|([^]]+)]](.*)\$/sD";
 		$e2 = "/^([{$tc}]+)]](.*)\$/sD";
+		wfProfileOut();
 
+		wfProfileIn( "$fname-loop" );
 		foreach ( $a as $line ) {
 			if ( preg_match( $e1, $line, $m ) ) { # page with alternate text
 				
@@ -865,6 +871,7 @@ class OutputPage {
 				$s .= $sk->makeLink( $link, $text, "", $trail );
 			}
 		}
+		wfProfileOut();
 		wfProfileOut();
 		return $s;
 	}
