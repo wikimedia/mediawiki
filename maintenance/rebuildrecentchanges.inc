@@ -85,13 +85,14 @@ function rebuildRecentChangesTablePass2()
 
 			$id = $obj2->cur_id;
 			$ct = $obj2->cur_timestamp;
-		}
-		$sql = "SELECT old_id FROM old WHERE old_namespace={$ns} " .
-		  "AND old_title='{$title}' AND old_timestamp < '" .
-		  "{$obj->rc_timestamp}' ORDER BY old_timestamp DESC LIMIT 1";
-		$res2 = wfQuery( $sql, DB_WRITE );
 
-		if ( 0 != wfNumRows( $res2 ) ) {
+			$sql = "SELECT old_id FROM old WHERE old_namespace={$ns} " .
+			  "AND old_title='{$title}' ORDER BY old_timestamp DESC";
+			$res2 = wfQuery( $sql, DB_WRITE );
+			$numRows = wfNumRows( $res2 );
+		}
+
+		if ( 0 != $numRows-- ) {
 			$obj2 = wfFetchObject( $res2 );
 
 			$sql = "UPDATE recentchanges SET rc_cur_id={$id},rc_cur_time=" .
