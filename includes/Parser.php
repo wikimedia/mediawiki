@@ -675,6 +675,21 @@ class Parser
 		return $s;
 	}
 
+	/* private */ function handle4Quotes( &$state, $token )
+	{
+		/* This one makes some assumptions. 
+		 * '''Caesar''''s army  => <strong>Caesar</strong>'s army
+		 * ''''Caesar'''' was a roman emperor => '<strong>Caesar</strong>' was a roman emperor
+		 * These assumptions might be wrong, but any other assumption might be wrong, too.
+		 * So here we go */
+		if ( $state["strong"] !== false ) {
+			return $this->handle3Quotes( $state, $token ) . "'";
+		} else {
+			return "'" . $this->handle3Quotes( $state, $token );
+		}
+	}
+
+
 	/* private */ function handle3Quotes( &$state, $token )
 	{
 		if ( $state["strong"] !== false ) {
@@ -830,7 +845,7 @@ class Parser
 					$txt = "\n<hr />\n";
 					break;
 				case "'''":
-					# This and the three next ones handle quotes
+					# This and the four next ones handle quotes
 					$txt = $this->handle3Quotes( $state, $token );
 					break;
 				case "''":
@@ -838,6 +853,9 @@ class Parser
 					break;
 				case "'''''":
 					$txt = $this->handle5Quotes( $state, $token );
+					break;
+				case "''''":
+					$txt = $this->handle4Quotes( $state, $token );
 					break;
 				case "":
 					# empty token
