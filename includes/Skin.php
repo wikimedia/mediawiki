@@ -1896,7 +1896,7 @@ class Skin {
 			if ( $rc_type == RC_LOG ) {
 				$link = $rcObj->timestamp ;
 			} else {
-				$link = $this->makeKnownLink( $rcObj->getTitle(), $rcObj->timestamp , "{$curIdEq}&$o" ) ;
+				$link = $this->makeKnownLinkObj( $rcObj->getTitle(), $rcObj->timestamp , "{$curIdEq}&$o" ) ;
 			}
 			$link = "<tt>{$link}</tt>" ;
 
@@ -1924,16 +1924,16 @@ class Skin {
 	{
 		global $wgUploadPath ;
 		if ( count ( $this->rc_cache ) == 0 ) return "" ;
-		#$k = array_keys ( $this->rc_cache ) ;
+		$blockOut = "";
 		foreach ( $this->rc_cache AS $secureName => $block ) {
 			if ( count ( $block ) < 2 ) {
-				$r .= $this->recentChangesBlockLine ( array_shift ( $block ) ) ;
+				$blockOut .= $this->recentChangesBlockLine ( array_shift ( $block ) ) ;
 			} else {
-				$r .= $this->recentChangesBlockGroup ( $block ) ;
+				$blockOut .= $this->recentChangesBlockGroup ( $block ) ;
 			}
 		}
 
-		return "<div align=left>{$r}</div>" ;
+		return "<div align=left>{$blockOut}</div>" ;
 	}
 
 	# Called in a loop over all displayed RC entries
@@ -2145,7 +2145,7 @@ class Skin {
 		$secureName = $title->getPrefixedDBkey();
 		if ( $rc_type == RC_MOVE ) {
 			# Use an @ character to prevent collision with page names
-			$this->rc_cache["@@" . ($rcMoveIndex++)] = array($rc);
+			$this->rc_cache["@@" . ($this->rcMoveIndex++)] = array($rc);
 		} else {
 			if ( !isset ( $this->rc_cache[$secureName] ) ) $this->rc_cache[$secureName] = array() ;
 			array_push ( $this->rc_cache[$secureName] , $rc ) ;

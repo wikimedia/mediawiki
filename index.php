@@ -42,7 +42,7 @@ if( defined('DEBUG_GLOBALS') ) {
 unset( $IP );
 ini_set( "allow_url_fopen", 0 ); # For security...
 if(!file_exists("LocalSettings.php")) {
-	die( "You'll have to <a href='$wgScriptPath/config/index.php'>set the wiki up</a> first!" );
+	die( "You'll have to <a href='config/index.php'>set the wiki up</a> first!" );
 }
 include_once( "./LocalSettings.php" );
 
@@ -60,15 +60,18 @@ wfProfileIn( "main-misc-setup" );
 OutputPage::setEncodings(); # Not really used yet
 
 # Query string fields
-#
-#global $action, $title, $search, $go, $target, $printable;
-#global $returnto, $diff, $oldid, $curid;
+if( empty( $_REQUEST['action'] ) ) {
+	$action = "view";
+} else {
+	$action = $_REQUEST['action'];
+}
 
-$action = $_REQUEST['action'];
 if( isset( $_SERVER['PATH_INFO'] ) ) {
 	$title = substr( $_SERVER['PATH_INFO'], 1 );
-} else {
+} elseif( !empty( $_REQUEST['title'] ) ) {
 	$title = $_REQUEST['title'];
+} else {
+	$title = "";
 }
 
 # Placeholders in case of DB error

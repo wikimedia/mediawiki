@@ -21,6 +21,7 @@ class Parser
 {
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mLastSection, $mDTopen, $mStripState;
+	var $mContainsOldMagic = 0;
 
 	# Temporary:
 	var $mOptions, $mTitle;
@@ -621,11 +622,17 @@ class Parser
 						$lastToken = array_pop( $tokenStack );
 						while ( $lastToken["type"] != "[[" )
 						{
-							$linkText = $lastToken["text"] . $linkText;
+							if( !empty( $lastToken["text"] ) ) {
+								$linkText = $lastToken["text"] . $linkText;
+							}
 							$lastToken = array_pop( $tokenStack );
 						}
 						$txt = $linkText ."]]";
-						$prefix = $lastToken["text"];
+						if( isset( $lastToken["text"] ) ) {
+							$prefix = $lastToken["text"];
+						} else {
+							$prefix = "";
+						}
 						$nextToken = $tokenizer->previewToken();
 						if ( $nextToken["type"] == "text" ) 
 						{
@@ -741,7 +748,8 @@ class Parser
 		$nottalk = !Namespace::isTalk( $this->mTitle->getNamespace() );
 
 		wfProfileOut( "$fname-setup" );
-
+		$s = "";
+		
 		if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 			$text = $m[2];
 			$trail = $m[3];				
@@ -1206,6 +1214,10 @@ class Parser
 
 		# Ugh .. the TOC should have neat indentation levels which can be
 		# passed to the skin functions. These are determined here
+		$toclevel = 0;
+		$toc = "";
+		$full = "";
+		$head = array();
 		foreach($matches[3] as $headline) {
 			if($level) { $prevlevel=$level;}
 			$level=$matches[1][$c];
@@ -1257,7 +1269,6 @@ class Parser
 			}
 			
 			// Create the anchor for linking from the TOC to the section
-			
 			$anchor=$canonized_headline;
 			if($refcount[$c]>1) {$anchor.="_".$refcount[$c];}
 			if($st) {
@@ -1309,7 +1320,9 @@ class Parser
 				$full="<a name=\"top\"></a>".$full.$toc;
 			}
 
-			$full.=$head[$i];
+			if( !empty( $head[$i] ) ) {
+				$full .= $head[$i];
+			}
 			$i++;
 		}
 		
@@ -1348,10 +1361,10 @@ class Parser
 			$num = str_replace( " ", "", $num );
 		
 			if ( "" == $num ) {
-				$text .= "ISBN $blank$x";
+				$text = "ISBN $blank$x";
 			} else {
 				$titleObj = Title::makeTitle( NS_SPECIAL, "Booksources" );
-				$text .= "<a href=\"" .
+				$text = "<a href=\"" .
 				$titleObj->escapeLocalUrl( "isbn={$num}" ) .
 					"\" class=\"internal\">ISBN $isbn</a>";
 				$text .= $x;

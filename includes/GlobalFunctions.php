@@ -353,8 +353,13 @@ function wfSpecialPage()
 	$wgOut->setArticleRelated( false );
 	$wgOut->setRobotpolicy( "noindex,follow" );
 
-	$par = NULL;
-	list($t, $par) = split( "/", $wgTitle->getDBkey(), 2 );
+	$bits = split( "/", $wgTitle->getDBkey(), 2 );
+	$t = $bits[0];
+	if( empty( $bits[1] ) ) {
+		$par = NULL;
+	} else {
+		$par = $bits[1];
+	}
 
 	if ( array_key_exists( $t, $validSP ) ||
 	  ( $wgUser->isSysop() && array_key_exists( $t, $sysopSP ) ) ||
@@ -408,6 +413,19 @@ function wfAbruptExit(){
 		wfDebug("WARNING: Abrupt exit\n");
 	}
 	exit();
+}
+
+function wfDebugDieBacktrace( $msg = "" ) {
+	$msg .= "\n<p>Backtrace:</p>\n<ul>\n";
+	$backtrace = debug_backtrace();
+	foreach( $backtrace as $call ) {
+		$f = split( DIRECTORY_SEPARATOR, $call['file'] );
+		$file = $f[count($f)-1];
+		$msg .= "<li>" . $file . " line " . $call['line'] . ", in ";
+		if( !empty( $call['class'] ) ) $msg .= $call['class'] . "::";
+		$msg .= $call['function'] . "()</li>\n";
+	}
+	die( $msg );
 }
 
 function wfNumberOfArticles()
@@ -672,7 +690,11 @@ function wfClientAcceptsGzip() {
 function wfCheckLimits( $deflimit = 50, $optionname = "rclimit" ) {
 	global $wgUser;
 	
-	$limit = (int)$_REQUEST['limit'];
+	if( isset( $_REQUEST['limit'] ) ) {
+		$limit = IntVal( $_REQUEST['limit'] );
+	} else {
+		$limit = 0;
+	}
 	if( $limit < 0 ) $limit = 0;
 	if( ( $limit == 0 ) && ( $optionname != "" ) ) {
 		$limit = (int)$wgUser->getOption( $optionname );
@@ -680,8 +702,11 @@ function wfCheckLimits( $deflimit = 50, $optionname = "rclimit" ) {
 	if( $limit <= 0 ) $limit = $deflimit;
 	if( $limit > 5000 ) $limit = 5000; # We have *some* limits...
 	
-	$offset = (int)$_REQUEST['offset'];
-	$offset = (int)$offset;
+	if( isset( $_REQUEST['offset'] ) ) {
+		$offset = IntVal( $_REQUEST['offset'] );
+	} else {
+		$offset = 0;
+	}
 	if( $offset < 0 ) $offset = 0;
 	if( $offset > 65000 ) $offset = 65000; # do we need a max? what?
 	
