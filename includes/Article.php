@@ -1529,10 +1529,9 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 		global $wgUser, $wgCacheEpoch;
 		if(!file_exists( $fn = $this->fileCacheName() ) ) return false;
 		$cachetime = wfUnix2Timestamp( filemtime( $fn ) );
-		$good = ( $this->mTouched <= $cachetime ) and
-			$wgUser->validateCache( $cachetime ) and
+		$good = ( $this->mTouched <= $cachetime ) &&
 			($wgCacheEpoch <= $cachetime );
-        wfDebug(" isFileCacheGood() - cachetime $cachetime, good $good\n");
+        wfDebug(" isFileCacheGood() - cachetime $cachetime, touched {$this->mTouched} epoch {$wgCacheEpoch}, good $good\n");
 		return $good;
 	}
 
