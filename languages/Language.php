@@ -1013,6 +1013,7 @@ this list should not be construed as an endorsement.",
 'allpagesprev'      => 'Previous',
 'allpagesnext'      => 'Next',
 'allpagesnamespace' => 'All pages ($1 namespace)',
+'allpagessubmit'    => 'Go',
 
 # Email this user
 #
