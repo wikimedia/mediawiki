@@ -19,7 +19,7 @@ ini_set( 'include_path', "$IP$sep$include_path" );
 
 require_once( 'Setup.php' );
 
-$wgTitle = Title::newFromText( wfMsg( 'badtitle' ) );
+$wgTitle = Title::newFromText( wfMsgForContent( 'badtitle' ) );
 $wgArticle = new Article($wgTitle);
 
 if ( !$argv[1] || !$argv[2] ) {
