@@ -156,7 +156,7 @@ class User {
 		}
 
 		$passwordCorrect = FALSE;
-		$user = $wgMemc->get( $key = "$wgDBname:user:user_id:$sId" );
+		$user = $wgMemc->get( $key = "$wgDBname:user:id:$sId" );
 		if($makenew = !$user) {
 			wfDebug( "User::loadFromSession() unable to load from memcached\n" );
 			$user = new User();
@@ -202,13 +202,20 @@ class User {
 			}
 			wfFreeResult( $res );
 		} else {
-			$sql = "SELECT 1 FROM user_newtalk WHERE user_ip='{$this->mName}'";
-			$res = wfQuery ($sql,  "User::loadFromDatabase" );
+			global $wgDBname, $wgMemc;
+			$key = "$wgDBname:newtalk:ip:{$this->mName}";
+			$newtalk = $wgMemc->get( $key );
+			if($newtalk === false) {
+				$sql = "SELECT 1 FROM user_newtalk WHERE user_ip='{$this->mName}'";
+				$res = wfQuery ($sql,  "User::loadFromDatabase" );
 
-			if (wfNumRows($res)>0) {
-				$this->mNewtalk= 1;
+				$this->mNewtalk = (wfNumRows($res)>0) ? 1 : 0;
+				wfFreeResult( $res );
+
+				$wgMemc->set( $key, $this->mNewtalk, time() ); // + 1800 );
+			} else {
+				$this->mNewtalk = $newtalk ? 1 : 0;
 			}
-			wfFreeResult( $res );
 		}
 		if(!$this->mId) {
 			$this->mDataLoaded = true;
@@ -509,6 +516,7 @@ class User {
 			} else {
 				$sql="DELETE FROM user_newtalk WHERE user_ip='{$this->mName}'";
 				wfQuery ($sql,"User::saveSettings");
+				$wgMemc->delete( "$wgDBname:newtalk:ip:{$this->mName}" );
 			}
 		}
 		if ( 0 == $this->mId ) { return; }
@@ -524,8 +532,8 @@ class User {
 		  "user_touched= '" . wfStrencode( $this->mTouched ) .
 		  "' WHERE user_id={$this->mId}";
 		wfQuery( $sql, "User::saveSettings" );
-		#$wgMemc->replace( "$wgDBname:user:user_id:$this->mId", $this );
-		$wgMemc->delete( "$wgDBname:user:user_id:$this->mId" );
+		#$wgMemc->replace( "$wgDBname:user:id:$this->mId", $this );
+		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
 	}
 
 	# Checks if a user with the given name exists
