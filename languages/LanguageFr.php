@@ -1291,6 +1291,8 @@ class LanguageFr extends LanguageUtf8
 			return $wgAllMessagesEn[$key];
 		}
 	}
+	
+	function isRTL() { return false; }
 }
 
 ?>
