@@ -473,6 +473,10 @@ $wgUseGeoMode = false;
 # Validation for print or other production versions
 $wgUseValidation = false;
 
+# Use external C++ diff engine (module wikidiff from the
+# extensions package)
+$wgUseExternalDiffEngine = false;
+
 } else {
 	die();
 }

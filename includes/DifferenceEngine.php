@@ -90,24 +90,29 @@ class DifferenceEngine {
 
 	function showDiff( $otext, $ntext, $otitle, $ntitle )
 	{
-		global $wgOut;
+		global $wgOut, $wgUseExternalDiffEngine;
 
-		$ota = explode( "\n", str_replace( "\r\n", "\n",
-		  htmlspecialchars( $otext ) ) );
-		$nta = explode( "\n", str_replace( "\r\n", "\n",
-		  htmlspecialchars( $ntext ) ) );
+		$otext = str_replace( "\r\n", "\n", htmlspecialchars( $otext ) );
+		$ntext = str_replace( "\r\n", "\n", htmlspecialchars( $ntext ) );
 
-		$wgOut->addHTML( "<table border='0' width='98%'
+
+			$wgOut->addHTML( "<table border='0' width='98%'
 cellpadding='0' cellspacing='4px' class='diff'><tr>
 <td colspan='2' width='50%' align='center' class='diff-otitle'>
 {$otitle}</td>
 <td colspan='2' width='50%' align='center' class='diff-ntitle'>
 {$ntitle}</td>
 </tr>\n" );
-
-		$diffs = new Diff( $ota, $nta );
-		$formatter = new TableDiffFormatter();
-		$formatter->format( $diffs );
+		if ( $wgUseExternalDiffEngine ) {
+			dl("php_wikidiff.so");
+			$wgOut->addHTML( wikidiff_do_diff( $otext, $ntext, 2) );
+		} else {
+			$ota = explode( "\n", $otext);
+			$nta = explode( "\n", $ntext);
+			$diffs = new Diff( $ota, $nta );
+			$formatter = new TableDiffFormatter();
+			$formatter->format( $diffs );
+		}
 		$wgOut->addHTML( "</table>\n" );
 	}
 
