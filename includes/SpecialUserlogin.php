@@ -326,16 +326,22 @@ color='red'>$err</font>\n" );
 <form name=\"userlogin\" id=\"userlogin\" method=\"post\" action=\"{$action}\">
 <table border=0><tr>
 <td align=right>$yn:</td>
-<td colspan=2 align=left>
+<td align=left>
 <input tabindex=1 type=text name=\"wpName\" value=\"{$name}\" size=20>
-</td></tr><tr>
+</td>
+<td align=left>
+<input tabindex=3 type=submit name=\"wpLoginattempt\" value=\"{$li}\">
+</td>
+</tr>
+<tr>
 <td align=right>$yp:</td>
 <td align=left>
 <input tabindex=2 type=password name=\"wpPassword\" value=\"{$pwd}\" size=20>
 </td>
 <td align=left>
-<input tabindex=3 type=submit name=\"wpLoginattempt\" value=\"{$li}\">
-</td></tr>");
+<input tabindex=7 type=checkbox name=\"wpRemember\" value=\"1\" id=\"wpRemember\"$checked><label for=\"wpRemember\">$rmp</label>
+</td>			   
+</tr>");
 
 	if ($wgUser->isAllowedToCreateAccount()) {
 
@@ -356,10 +362,6 @@ $cambutton
 	}
 
 	$wgOut->addHTML("
-<tr>
-<td colspan=3 align=left>
-<input tabindex=7 type=checkbox name=\"wpRemember\" value=\"1\" id=\"wpRemember\"$checked><label for=\"wpRemember\">$rmp</label>
-</td></tr>
 <tr><td colspan=3>&nbsp;</td></tr><tr>
 <td colspan=3 align=left>
 <p>$efl<br>
