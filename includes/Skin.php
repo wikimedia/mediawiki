@@ -2232,7 +2232,7 @@ class Skin {
 	// The necsesary JavaScript code can be found in style/wikibits.js.
 	function getEditToolbar() {
 
-		global $wgUploadPath;
+		global $wgUploadPath,$wgLang;
 
 		// toolarray an array of arrays which each include the filename of
 		// the button image (without path), the opening tag, the closing tag,
@@ -2266,12 +2266,12 @@ class Skin {
 				"sample"=>wfMsg("headline_sample"),
 				"tip"=>wfMsg("headline_tip")),
 			array(	"image"=>"button_image.gif",
-				"open"=>"[[Image:",
+				"open"=>"[[".$wgLang->getNsText(NS_IMAGE).":",
 				"close"=>"]]",
 				"sample"=>wfMsg("image_sample"),
 				"tip"=>wfMsg("image_tip")),
 			array(	"image"=>"button_media.gif",
-				"open"=>"[[Media:",
+				"open"=>"[[".$wgLang->getNsText(NS_MEDIA).":",
 				"close"=>"]]",
 				"sample"=>wfMsg("media_sample"),
 				"tip"=>wfMsg("media_tip")),
