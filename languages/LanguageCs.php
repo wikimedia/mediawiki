@@ -13,8 +13,8 @@
 	NS_TALK				=> "Diskuse", # neb diskutuj?
 	NS_USER				=> "Wikipedista",
 	NS_USER_TALK		=> "Wikipedista_diskuse",
-	NS_WIKIPEDIA		=> "Wikipedie",
-	NS_WIKIPEDIA_TALK	=> "Wikipedie_diskuse",
+	NS_PROJECT			=> "Wikipedie",
+	NS_PROJECT_TALK		=> "Wikipedie_diskuse",
 	NS_IMAGE			=> "Soubor",
 	NS_IMAGE_TALK		=> "Soubor_diskuse",
 	NS_MEDIAWIKI		=> "MediaWiki",

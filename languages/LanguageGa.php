@@ -28,8 +28,8 @@ DISCUSSION!
 	NS_TALK	            => 'Plé',
 	NS_USER             => 'Úsáideoir',
 	NS_USER_TALK        => 'Plé_úsáideora',
-	NS_WIKIPEDIA        => 'Vicipéid',
-	NS_WIKIPEDIA_TALK   => 'Plé_Vicipéide', # NOTE TO DEVELOPERS: A different genitive spelling is needed for
+	NS_PROJECT          => 'Vicipéid',
+	NS_PROJECT_TALK     => 'Plé_Vicipéide', # NOTE TO DEVELOPERS: A different genitive spelling is needed for
 	                            # each Wiki name, as can be seen. So the $wgMetaNamespace tag has not been used
 	                            # here for the moment in some cases, and in other places with a FIXME flag.
 	NS_IMAGE            => 'Íomhá',

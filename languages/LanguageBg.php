@@ -15,8 +15,8 @@
   NS_TALK             => 'Беседа', # 1
   NS_USER             => 'Потребител', # 2
   NS_USER_TALK        => 'Потребител_беседа', # 3
-  NS_WIKIPEDIA        => $wgMetaNamespace, # 4
-  NS_WIKIPEDIA_TALK   => $wgMetaNamespace . '_беседа', # 5
+  NS_PROJECT          => $wgMetaNamespace, # 4
+  NS_PROJECT_TALK     => $wgMetaNamespace . '_беседа', # 5
   NS_IMAGE            => 'Картинка', # 6
   NS_IMAGE_TALK       => 'Картинка_беседа', # 7
   NS_MEDIAWIKI        => 'МедияУики', # 8
@@ -786,7 +786,7 @@ border='0' alt='Google'/></a>
 'uploadnologintext'  => "Необходимо е да [[{{ns:-1}}:Userlogin|влезете]], за да качвате файлове.",
 'uploadfile'  => 'Качване на картинки, музикални файлове, документи и др.',
 'uploaderror'  => 'Грешка при качване',
-# TODO $wgMetaNamespace - Project or NS_WIKIPEDIA
+# TODO $wgMetaNamespace - Project or NS_PROJECT
 'uploadtext'  => "'''ВНИМАНИЕ!''' Преди да качите нещо,
 прочетете и се придържайте към [[Project:Политика_за_използване_на_картинки|политиката за използване на картинки]].
 

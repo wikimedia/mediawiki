@@ -16,8 +16,8 @@ require_once( "LanguageUtf8.php" );
 	NS_TALK           => "ノート", /* Talk */
 	NS_USER           => "利用者", /* User */
 	NS_USER_TALK      => "利用者‐会話", /* User_talk */
-	NS_WIKIPEDIA      => $wgMetaNamespace, /* Wikipedia */
-	NS_WIKIPEDIA_TALK => "{$wgMetaNamespace}‐ノート", /* Wikipedia_talk */
+	NS_PROJECT        => $wgMetaNamespace, /* Wikipedia */
+	NS_PROJECT_TALK   => "{$wgMetaNamespace}‐ノート", /* Wikipedia_talk */
 	NS_IMAGE          => "画像", /* Image */
 	NS_IMAGE_TALK     => "画像‐ノート", /* Image_talk */
 	NS_MEDIAWIKI      => "MediaWiki", /* MediaWiki */

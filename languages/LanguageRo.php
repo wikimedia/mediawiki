@@ -10,23 +10,23 @@ require_once("LanguageUtf8.php");
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesRo = array(
-	NS_MESIA		=> 'Media',
-	NS_SPECIAL		=> 'Special',
-	NS_MAIN			=> '',
-	NS_TALK			=> 'Discuţie',
-	NS_USER			=> 'Utilizator',
+	NS_MESIA			=> 'Media',
+	NS_SPECIAL			=> 'Special',
+	NS_MAIN				=> '',
+	NS_TALK				=> 'Discuţie',
+	NS_USER				=> 'Utilizator',
 	NS_USER_TALK		=> 'Discuţie_Utilizator',
-	NS_WIKIPEDIA		=> 'Wikipedia',
-	NS_WIKIPEDIA_TALK	=> 'Discuţie_Wikipedia',
-	NS_IMAGE		=> 'Imagine',
+	NS_PROJECT			=> 'Wikipedia',
+	NS_PROJECT_TALK		=> 'Discuţie_Wikipedia',
+	NS_IMAGE			=> 'Imagine',
 	NS_IMAGE_TALK		=> 'Discuţie_Imagine',
 	NS_MEDIAWIKI		=> 'MediaWiki',
 	NS_MEDIAWIKI_TALK	=> 'Discuţie_MediaWiki',
-	NS_TEMPLATE		=> 'Format',
+	NS_TEMPLATE			=> 'Format',
 	NS_TEMPLATE_TALK	=> 'Discuţie_Format',
-	NS_HELP			=> 'Ajutor',
+	NS_HELP				=> 'Ajutor',
 	NS_HELP_TALK		=> 'Discuţie_Ajutor',
-	NS_CATEGORY		=> 'Categorie',
+	NS_CATEGORY			=> 'Categorie',
 	NS_CATEGORY_TALK	=> 'Discuţie_Categorie'
 				
 ) + $wgNamespaceNamesEn;
