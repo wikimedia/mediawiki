@@ -572,6 +572,18 @@ performed by sysops with  \"bureaucrat\" status.",
 "restorelink" => "$1 deleted edits",
 'feedlinks' => 'Feed:',
 
+# Short words for each namespace, by default used in the 'article' tab in monobook
+'nstab-main' => 'Article',
+'nstab-user' => 'User page',
+'nstab-media' => 'Media',
+'nstab-special' => 'Special',
+'nstab-wp' => 'About',
+'nstab-image' => 'Image',
+'nstab-mediawiki' => 'Message',
+'nstab-template' => 'Template',
+'nstab-help' => 'Help',
+'nstab-category' => 'Category',
+
 # Main script and global functions
 #
 "nosuchaction"	=> "No such action",

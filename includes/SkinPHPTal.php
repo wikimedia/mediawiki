@@ -300,7 +300,7 @@
 			if( $this->iscontent ) {
 
 				$content_actions['article'] = array('class' => (!Namespace::isTalk( $wgTitle->getNamespace())) ? 'selected' : false,
-				'text' => wfMsg('article'),
+				'text' => $this->getNameSpaceWord(),
 				'href' => $this->makeArticleUrl($this->thispage),
 				'ttip' => wfMsg('tooltip-article'),
 				'akey' => wfMsg('accesskey-article'));
@@ -506,6 +506,43 @@
 
 			return $nav_urls;
 		}
+
+		function getNameSpaceWord () {
+			global $wgTitle;
+			switch ($wgTitle->getNamespace()) { 
+				case NS_MAIN:
+				case NS_TALK:
+					return wfMsg('nstab-main');
+				case NS_USER:
+				case NS_USER_TALK:
+					return wfMsg('nstab-user');
+				case NS_MEDIA:
+					return wfMsg('nstab-media');
+				case NS_SPECIAL:
+					return wfMsg('nstab-special');
+				case NS_WP:
+				case NS_WP_TALK:
+					return wfMsg('nstab-wp');
+				case NS_IMAGE:
+				case NS_IMAGE_TALK:
+					return wfMsg('nstab-image');
+				case NS_MEDIAWIKI:
+				case NS_MEDIAWIKI_TALK:
+					return wfMsg('nstab-mediawiki');
+				case NS_TEMPLATE:
+				case NS_TEMPLATE_TALK:
+					return wfMsg('nstab-template');
+				case NS_HELP:
+				case NS_HELP_TALK:
+					return wfMsg('nstab-help');
+				case NS_CATEGORY:
+				case NS_CATEGORY_TALK:
+					return wfMsg('nstab-category');
+				default:
+					return wfMsg('nstab-main');
+			}
+		}
+
 
 		/*static*/ function makeSpecialUrl( $name, $urlaction='' ) {
 			$title = Title::makeTitle( NS_SPECIAL, $name );
