@@ -146,14 +146,16 @@ class PageHistory {
 	function historyLine( $ts, $u, $ut, $ns, $ttl, $oid, $c, $isminor, $counter = '' ) {
 		global $wgLang, $wgContLang;
 
-		$artname = Title::makeName( $ns, $ttl );
-		$last = wfMsg( 'last' );
-		$cur = wfMsg( 'cur' );
-		$cr = wfMsg( 'currentrev' );
-
+		static $message;
+		if( !isset( $message ) ) {
+			foreach( explode( ' ', 'cur last selectolderversionfordiff selectnewerversionfordiff minoreditletter' ) as $msg ) {
+				$message[$msg] = wfMsg( $msg );
+			}
+		}
+		
 		if ( $oid && $this->lastline ) {
-			$ret = preg_replace( "/!OLDID!([0-9]+)!/", $this->mSkin->makeKnownLink(
-			  $artname, $last, "diff=\\1&oldid={$oid}",'' ,'' ,' tabindex="'.$counter.'"' ), $this->lastline );
+			$ret = preg_replace( "/!OLDID!([0-9]+)!/", $this->mSkin->makeKnownLinkObj(
+			  $this->mTitle, $message['last'], "diff=\\1&oldid={$oid}",'' ,'' ,' tabindex="'.$counter.'"' ), $this->lastline );
 		} else {
 			$ret = '';
 		}
@@ -164,43 +166,44 @@ class PageHistory {
 		} else {
 			$q = '';
 		}
-		$link = $this->mSkin->makeKnownLink( $artname, $dt, $q );
+		$link = $this->mSkin->makeKnownLinkObj( $this->mTitle, $dt, $q );
 
 		if ( 0 == $u ) {
-			$ul = $this->mSkin->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
+			$contribsPage =& Title::makeTitle( NS_SPECIAL, 'Contributions' );
+			$ul = $this->mSkin->makeKnownLinkObj( $contribsPage,
 				htmlspecialchars( $ut ), 'target=' . urlencode( $ut ) );
 		} else {
-			$ul = $this->mSkin->makeLink( $wgContLang->getNsText(
-				Namespace::getUser() ) . ':'.$ut , htmlspecialchars( $ut ) );
+			$userPage =& Title::makeTitle( NS_USER, $ut );
+			$ul = $this->mSkin->makeLink( $userPage , htmlspecialchars( $ut ) );
 		}
 
 		$s = '<li>';
 		if ( $oid ) {
-			$curlink = $this->mSkin->makeKnownLink( $artname, $cur,
+			$curlink = $this->mSkin->makeKnownLinkObj( $this->mTitle, $message['cur'],
 			  'diff=0&oldid='.$oid );
 		} else {
-			$curlink = $cur;
+			$curlink = $message['cur'];
 		}
 		$arbitrary = '';
 		if( $this->linesonpage > 1) {
 			# XXX: move title texts to javascript
 			$checkmark = '';
 			if ( !$oid ) {
-				$arbitrary = '<input type="radio" style="visibility:hidden" name="oldid" value="'.$oid.'" title="'.wfMsg('selectolderversionfordiff').'" />';
+				$arbitrary = '<input type="radio" style="visibility:hidden" name="oldid" value="'.$oid.'" title="'.$message['selectolderversionfordiff'].'" />';
 				$checkmark = ' checked="checked"';
 			} else {
 				if( $counter == 2 ) $checkmark = ' checked="checked"';
-				$arbitrary = '<input type="radio" name="oldid" value="'.$oid.'" title="'.wfMsg('selectolderversionfordiff').'"'.$checkmark.' />';
+				$arbitrary = '<input type="radio" name="oldid" value="'.$oid.'" title="'.$message['selectolderversionfordiff'].'"'.$checkmark.' />';
 				$checkmark = '';
 			}
-			$arbitrary .= '<input type="radio" name="diff" value="'.$oid.'" title="'.wfMsg('selectnewerversionfordiff').'"'.$checkmark.' />';
+			$arbitrary .= '<input type="radio" name="diff" value="'.$oid.'" title="'.$message['selectnewerversionfordiff'].'"'.$checkmark.' />';
 		}
 		$s .= "({$curlink}) (!OLDID!{$oid}!) $arbitrary {$link} <span class='user'>{$ul}</span>";
-		$s .= $isminor ? ' <span class="minor">'.wfMsg( "minoreditletter" ).'</span>': '' ;
+		$s .= $isminor ? ' <span class="minor">'.$message['minoreditletter'].'</span>': '' ;
 
 
 		if ( '' != $c && '*' != $c ) {
-			$c = $this->mSkin->formatcomment($c,$this->mTitle);
+			$c = $this->mSkin->formatcomment( $c, $this->mTitle );
 			$s .= " <em>($c)</em>";
 		}
 		$s .= '</li>';
