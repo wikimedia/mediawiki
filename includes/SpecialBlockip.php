@@ -59,18 +59,23 @@ class IPBlockForm {
 	function doSubmit()
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $ip, $wpBlockAddress, $wpBlockReason;
+		global $ip, $wpBlockAddress, $wpBlockReason, $wgSysopUserBlocks;
 		$fname = "IPBlockForm::doSubmit";
 		
 		$userId = 0;
 		if ( ! preg_match( "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/",
 		  $wpBlockAddress ) ) 
 		{
-		  	$userId = User::idFromName( $wpBlockAddress );
-			if ( $userId == 0 ) {
+		  	if ( $wgSysopUserBlocks ) {	
+				$userId = User::idFromName( $wpBlockAddress );
+				if ( $userId == 0 ) {
+					$this->showForm( wfMsg( "badipaddress" ) );
+					return;
+				}
+			} else {
 				$this->showForm( wfMsg( "badipaddress" ) );
 				return;
-			}
+			}		
 		}
 		if ( "" == $wpBlockReason ) {
 			$this->showForm( wfMsg( "noblockreason" ) );

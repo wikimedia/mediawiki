@@ -74,50 +74,50 @@ class IPUnblockForm {
 
 	function showList( $msg )
 	{
-		global $wgOut, $wgUser, $wgLang;
-		global $ip;
-
+		global $wgOut;
+		
 		$wgOut->setPagetitle( wfMsg( "ipblocklist" ) );
 		if ( "" != $msg ) {
 			$wgOut->setSubtitle( $msg );
 		}
-		$sql = "SELECT ipb_timestamp,ipb_address,ipb_user,ipb_by,ipb_reason " .
-		  "FROM ipblocks ORDER BY ipb_timestamp";
-		$res = wfQuery( $sql, "IPUnblockForm::showList" );
-
 		$wgOut->addHTML( "<ul>" );
-		$sk = $wgUser->getSkin();
-		while ( $row = wfFetchObject( $res ) ) {
-			$addr = $row->ipb_address;
-			$name = User::whoIs( $row->ipb_by );
-			$ulink = $sk->makeKnownLink( $wgLang->getNsText( Namespace::getUser() ). ":{$name}", $name );
-			$d = $wgLang->timeanddate( $row->ipb_timestamp, true );
-
-			$line = str_replace( "$1", $d, wfMsg( "blocklistline" ) );
-			$line = str_replace( "$2", $ulink, $line );
-			$line = str_replace( "$3", $row->ipb_address, $line );
-
-			$wgOut->addHTML( "<li>{$line}" );
-			$clink = "<a href=\"" . wfLocalUrlE( $wgLang->specialPage(
-			  "Contributions" ), "target={$addr}" ) . "\">" .
-			  wfMsg( "contribslink" ) . "</a>";
-			$wgOut->addHTML( " ({$clink})" );
-
-			if ( $wgUser->isSysop() ) {
-				$ublink = "<a href=\"" . wfLocalUrlE( $wgLang->specialPage(
-				  "Ipblocklist" ), "action=unblock&ip={$addr}" ) . "\">" .
-				  wfMsg( "unblocklink" ) . "</a>";
-				$wgOut->addHTML( " ({$ublink})" );
-			}
-			if ( "" != $row->ipb_reason ) {
-				$wgOut->addHTML( " <em>(" . wfEscapeHTML( $row->ipb_reason ) .
-				  ")</em>" );
-			}
-			$wgOut->addHTML( "</li>\n" );
-		}
-		wfFreeResult( $res );
+		Block::enumBlocks( "wfAddRow", 0 );
 		$wgOut->addHTML( "</ul>\n" );
 	}
 }
+
+# Callback function
+function wfAddRow( $block, $tag ) {
+	global $wgOut, $wgUser, $wgLang, $ip;
+
+	$sk = $wgUser->getSkin();
+	$addr = $block->mAddress;
+	$name = User::whoIs( $block->mBy );
+	$ulink = $sk->makeKnownLink( $wgLang->getNsText( Namespace::getUser() ). ":{$name}", $name );
+	$d = $wgLang->timeanddate( $block->mTimestamp, true );
+
+	$line = str_replace( "$1", $d, wfMsg( "blocklistline" ) );
+	$line = str_replace( "$2", $ulink, $line );
+	$line = str_replace( "$3", $block->mAddress, $line );
+
+	$wgOut->addHTML( "<li>{$line}" );
+	$clink = "<a href=\"" . wfLocalUrlE( $wgLang->specialPage(
+	  "Contributions" ), "target={$addr}" ) . "\">" .
+	  wfMsg( "contribslink" ) . "</a>";
+	$wgOut->addHTML( " ({$clink})" );
+
+	if ( $wgUser->isSysop() ) {
+		$ublink = "<a href=\"" . wfLocalUrlE( $wgLang->specialPage(
+		  "Ipblocklist" ), "action=unblock&ip={$addr}" ) . "\">" .
+		  wfMsg( "unblocklink" ) . "</a>";
+		$wgOut->addHTML( " ({$ublink})" );
+	}
+	if ( "" != $block->mReason ) {
+		$wgOut->addHTML( " <em>(" . wfEscapeHTML( $block->mReason ) .
+		  ")</em>" );
+	}
+	$wgOut->addHTML( "</li>\n" );
+}
+
 
 ?>

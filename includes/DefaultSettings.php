@@ -64,14 +64,16 @@ $wgUseDynamicDates	= true; # Allows the user to pick their preferred date format
 
 # Miscellaneous configuration settings
 #
-$wgReadOnlyFile		= "{$wgUploadDirectory}/lock_yBgMBwiR";
-$wgDebugLogFile     = "{$wgUploadDirectory}/log_dlJbnMZb";
-$wgDebugComments	= false;
-$wgReadOnly			= false;
-$wgSqlLogFile		= "{$wgUploadDirectory}/sqllog_mFhyRe6";
-$wgLogQueries		= false;
+$wgReadOnlyFile         = "{$wgUploadDirectory}/lock_yBgMBwiR";
+$wgDebugLogFile         = "{$wgUploadDirectory}/log_dlJbnMZb";
+$wgDebugComments        = false;
+$wgReadOnly             = false;
+$wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
+$wgLogQueries           = false;
 $wgUseBetterLinksUpdate = true;
-
+$wgSysopUserBans        = true; # Allow sysops to ban logged-in users
+$wgIPBlockExpiration    = 86400; # IP blocks expire after this many seconds, 0=infinite
+$wgUserBlockExpiration  = 0; # As above, but for logged-in users
 
 # The following three config variables are used to define
 # the rights of users in your system. 
