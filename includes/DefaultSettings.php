@@ -581,6 +581,7 @@ $wgCookieExpiration = 2592000;
 # A list of proxy servers (ips if possible) to purge on changes
 # don't specify ports here (80 is default)
 # $wgSquidServers = array('127.0.0.1');
+$wgSquidServersNoPurge = array();
 
 # Maximum number of titles to purge in any one client operation
 $wgMaxSquidPurgeTitles = 400;
