@@ -247,6 +247,10 @@ class LanguageLatin1 {
 		# include any non-ASCII chars. (?)
 		return $this->lang->listToText( $l );
 	}
+
+	function truncate( $string, $length, $ellipsis = "" ) {
+		return Language::truncate( $string, $length, $ellipsis );
+	}
 }
 
 ?>
