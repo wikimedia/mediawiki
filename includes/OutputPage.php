@@ -622,6 +622,65 @@ class OutputPage {
 	}
 
 
+function doTableStuff ( $t )
+{
+  $t = explode ( "\n" , $t ) ;
+  $td = array () ; # Is currently a td tag open?
+  $tr = array () ; # Is currently a tr tag open?
+  foreach ( $t AS $k => $x )
+    {
+      $x = rtrim ( $x ) ;
+      if ( "{|" == substr ( $x , 0 , 2 ) )
+	{
+	  $t[$k] = "<table " . substr ( $x , 3 ) . ">" ;
+	  array_push ( $td , false ) ;
+	  array_push ( $tr , false ) ;
+	}
+      else if ( count ( $td ) == 0 ) { } # Don't do any of the following
+      else if ( "|}" == substr ( $x , 0 , 2 ) )
+	{
+	  $z = "</table>\n" ;
+          if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
+	  if ( array_pop ( $td ) ) $z = "</td>" . $z ;
+	  $t[$k] = $z ;
+	}
+      else if ( "|_" == substr ( $x , 0 , 2 ) ) # Caption
+{
+$z = trim ( substr ( $x , 2 ) ) ;
+$t[$k] = "<caption>{$z}</caption\n" ;
+}
+      else if ( "|-" == substr ( $x , 0 , 2 ) ) # Allows for |---------------
+	{
+          $z = "" ;
+          if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
+	  if ( array_pop ( $td ) ) $z = "</td>" . $z ;
+	  $t[$k] = $z ;
+          array_push ( $tr , false ) ;
+	  array_push ( $td , false ) ;
+	}
+      else if ( "|" == substr ( $x , 0 , 1 ) )
+	{
+          $after = substr ( $x , 1 ) ;
+          $after = explode ( "||" , $after ) ;
+          $t[$k] = "" ;
+          foreach ( $after AS $theline )
+             {
+	  $z = "" ;
+          if ( !array_pop ( $tr ) ) $z = "<tr>\n" ;
+          array_push ( $tr , true ) ;
+	  if ( array_pop ( $td ) ) $z = "</td>" . $z ;
+	  $y = explode ( "|" , $theline , 2 ) ;
+          if ( count ( $y ) == 1 ) $y = "{$z}<td>{$y[0]}" ;
+          else $y = $y = "{$z}<td {$y[0]}>{$y[1]}" ;
+          $t[$k] .= $y ;
+	  array_push ( $td , true ) ;
+             }
+	}
+    }
+  $t = implode ( "\n" , $t ) ;
+  return $t ;
+}
+
 	# Well, OK, it's actually about 14 passes.  But since all the
 	# hard lifting is done inside PHP's regex code, it probably
 	# wouldn't speed things up much to add a real parser.
@@ -647,6 +706,7 @@ class OutputPage {
 
 		$text = $this->replaceExternalLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
+		$text = $this->doTableStuff ( $text ) ;
 
 		$text = $this->magicISBN( $text );
 		$text = $this->magicRFC( $text );
