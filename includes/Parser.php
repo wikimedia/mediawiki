@@ -1515,7 +1515,7 @@ class Parser
 		$htmlattrs = $this->getHTMLattrs () ;
 
 		# Remove HTML comments
-		$text = preg_replace( "/(\n *<!--.*--> *(?=\n)|<!--.*-->)/sU", "$2", $text );
+		$text = preg_replace( "/(\\n *<!--.*--> *(?=\\n)|<!--.*-->)/sU", "$2", $text );
 
 		$bits = explode( "<", $text );
 		$text = array_shift( $bits );
