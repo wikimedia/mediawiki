@@ -34,7 +34,6 @@
 #portlet-contentViews li a:hover {
     padding-bottom: 0.17em;
 }
-/* log in etc */
 #portal-personaltools {
     padding-bottom: 0.1em;
 }
@@ -43,7 +42,7 @@
     padding-right: 13px;
 }
 #bodyContent {
-    width: 98%;
+    height: 1%;
 }
 
 /* show the hand */
@@ -57,15 +56,7 @@ div.visualClear {
 }
 textarea {
     overflow: auto;
-    width: 99%;
-    /* same negative margin as on #portal-column-content
-    don't ask why..*/
-    margin-left: -12.2em;
-}
-div.tawrapper {
-    width: 100%;
-    text-align: left;
-    overflow: hidden;
+    width: 97%;
 }
 .special li {
     overflow: auto;
