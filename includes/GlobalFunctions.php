@@ -64,7 +64,9 @@ function wfLocalUrl( $a, $q = "" )
 		}	
 	} else if ( "" == $q ) {
 		$a = str_replace( "$1", $a, $wgArticlePath );
-	} else {
+	} else if ($wgScript != '' ) {
+		$a = "{$wgScript}?title={$a}&{$q}";	
+	} else { //XXX ugly hack for toplevel wikis
 		$a = "/{$a}&{$q}";	
 	}
 	return $a;
