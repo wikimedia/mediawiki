@@ -9,7 +9,7 @@
 # LOCKTIME is how long the searchindex and cur tables will be locked for
 # -q means quiet
 
-$optionsWithArgs = array( 's', 'e', 'p' );
+$optionsWithArgs = array( 's', 'e', 'p', 'n' );
 
 require_once( 'commandLine.inc' );
 require_once( 'updateSearchIndex.inc' );
@@ -35,15 +35,15 @@ if ( isset( $options['s'] ) ) {
 	} 
 }
 
-if ( isset( $options['l'] ) ) {
-	$lockTime = $options['l'];
+if ( isset( $options['n'] ) ) {
+	$batchSize = $options['n'];
 } else {
-	$lockTime = 20;
+	$batchSize = 10;
 }
 
 $quiet = (bool)(@$options['q']);
 
-updateSearchIndex( $start, $end, $lockTime, $quiet );
+updateSearchIndex( $start, $end, $batchSize, $quiet );
 
 $file = fopen( $posFile, 'w' );
 fwrite( $file, $end );
