@@ -30,8 +30,6 @@ define( 'DB_ASKSQL_R', 1002 );    # Special:Asksql read
 define( 'DB_WATCHLIST_R', 1004 ); # Watchlist read
 define( 'DB_TASK_LAST', 1004) ;   # Last in list
 
-define( 'MASTER_WAIT_TIMEOUT', 15 ); # Time to wait for a slave to synchronise
-
 /**
  * Database load balancing object
  *
@@ -42,7 +40,8 @@ class LoadBalancer {
 	/* private */ var $mServers, $mConnections, $mLoads;
 	/* private */ var $mFailFunction;
 	/* private */ var $mForce, $mReadIndex, $mLastIndex;
-	/* private */ var $mWaitForFile, $mWaitForPos;
+	/* private */ var $mWaitForFile, $mWaitForPos, $mWaitTimeout;
+	/* private */ var $mLaggedSlaveMode;
 
 	function LoadBalancer()
 	{
@@ -54,14 +53,14 @@ class LoadBalancer {
 		$this->mLastIndex = -1;
 	}
 
-	function newFromParams( $servers, $failFunction = false )
+	function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
 	{
 		$lb = new LoadBalancer;
 		$lb->initialise( $servers, $failFunction = false );
 		return $lb;
 	}
 
-	function initialise( $servers, $failFunction = false )
+	function initialise( $servers, $failFunction = false, $waitTimeout = 10 )
 	{
 		$this->mServers = $servers;
 		$this->mFailFunction = $failFunction;
@@ -73,6 +72,8 @@ class LoadBalancer {
 		$this->mLoads = array();
 		$this->mWaitForFile = false;
 		$this->mWaitForPos = false;
+		$this->mWaitTimeout = $waitTimeout;
+		$this->mLaggedSlaveMode = false;
 
 		foreach( $servers as $i => $server ) {
 			$this->mLoads[$i] = $server['load'];
@@ -164,8 +165,7 @@ class LoadBalancer {
 
 			if ( $this->mReadIndex > 0 ) {
 				if ( !$this->doWait( $this->mReadIndex ) ) {
-					# Use master instead
-					$this->mReadIndex = 0;
+					$this->mLaggedSlaveMode = true;
 				}
 			} 
 		}
@@ -193,7 +193,7 @@ class LoadBalancer {
 		if ( !$retVal && $this->isOpen( $index ) ) {
 			$conn =& $this->mConnections[$index];
 			wfDebug( "Waiting for slave #$index to catch up...\n" );
-			$result = $conn->masterPosWait( $this->mWaitForFile, $this->mWaitForPos, MASTER_WAIT_TIMEOUT );
+			$result = $conn->masterPosWait( $this->mWaitForFile, $this->mWaitForPos, $this->mWaitTimeout );
 
 			if ( $result == -1 || is_null( $result ) ) {
 				# Timed out waiting for slave, use master instead
@@ -413,5 +413,13 @@ class LoadBalancer {
 				$conn->immediateCommit();
 			}
 		}
+	}
+
+	function waitTimeout( $value = NULL ) {
+		return wfSetVar( $this->mWaitTimeout, $value );
+	}
+
+	function getLaggedSlaveMode() {
+		return $this->mLaggedSlaveMode;
 	}
 }
