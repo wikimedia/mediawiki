@@ -89,25 +89,31 @@ function wfSpecialContributions( $par = '' ) {
 		$cmq .= " AND cur_namespace = {$namespace}";
 		$omq .= " AND old_namespace = {$namespace}";
 	}
-
+	
+	# We may have to force the index, as some options will cause
+	# MySQL to incorrectly pick eg the namespace index.
+	list( $useIndex, $tailOpts ) = $dbr->makeSelectOptions( array(
+		'USE INDEX' => 'usertext_timestamp',
+		'LIMIT' => $querylimit ) );
+	
 	extract( $dbr->tableNames( 'old', 'cur' ) );
 	if ( $userCond == '' ) {
-		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM $cur " .
+		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM $cur $useIndex " .
 		  "WHERE cur_user_text='" . $dbr->strencode( $nt->getText() ) . "' {$cmq} " .
-		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
+		  "ORDER BY inverse_timestamp $tailOpts";
 		$res1 = $dbr->query( $sql, $fname );
 
-		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit,old_user_text,old_id FROM $old " .
+		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit,old_user_text,old_id FROM $old $useIndex " .
 		  "WHERE old_user_text='" . $dbr->strencode( $nt->getText() ) . "' {$omq} " .
-		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
+		  "ORDER BY inverse_timestamp $tailOpts";
 		$res2 = $dbr->query( $sql, $fname );
 	} else {
-		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM $cur " .
-		  "WHERE cur_user {$userCond} {$cmq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
+		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM $cur $useIndex " .
+		  "WHERE cur_user {$userCond} {$cmq} ORDER BY inverse_timestamp $tailOpts";
 		$res1 = $dbr->query( $sql, $fname );
 
-		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit,old_user_text,old_id FROM $old " .
-		  "WHERE old_user {$userCond} {$omq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
+		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit,old_user_text,old_id FROM $old $useIndex " .
+		  "WHERE old_user {$userCond} {$omq} ORDER BY inverse_timestamp $tailOpts";
 		$res2 = $dbr->query( $sql, $fname );
 	}
 	$nCur = $dbr->numRows( $res1 );
@@ -305,7 +311,7 @@ function namespaceForm ( $target, $hideminor, $namespace ) {
 	$out .= '<input type="hidden" name="target" value="'.htmlspecialchars( $target ).'" />';
 	$out .= '<input type="hidden" name="hideminor" value="'.$hideminor.'" />';	
 	$out .= wfMsg ( 'allpagesformtext2', $namespaceselect, $submitbutton );
-	$out .= '</form>';
+	$out .= '</form></div>';
 	return $out;
 }
 ?>
