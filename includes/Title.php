@@ -1086,7 +1086,7 @@ class Title {
 
 		# We shouldn't need to query the DB for the size.
 		#$maxSize = $dbr->textFieldSize( 'cur', 'cur_title' );
-		if ( strlen( $t ) > 255 ) {
+		if ( strlen( $r ) > 255 ) {
 			return false;
 		}
 
