@@ -117,7 +117,7 @@ class MovePageForm {
 		$this->oldid = $this->ot->getArticleID();
 		$this->newid = $this->nt->getArticleID();
 
-		if ( strlen( trim( $this->ndt ) ) < 2 ) {
+		if ( strlen( trim( $this->ndt ) ) < 1 ) {
 			$this->showForm( wfMsg( "articleexists" ) );
 			return;
 		}
