@@ -1508,6 +1508,7 @@ class Parser
 			# Run full parser on the included text
 			$text = $this->strip( $text, $this->mStripState );
 			$text = $this->internalParse( $text, (bool)$newline, $assocArgs );
+			if(!empty($newline)) $text = "\n".$text;
 
 			# Add the result to the strip state for re-inclusion after
 			# the rest of the processing
