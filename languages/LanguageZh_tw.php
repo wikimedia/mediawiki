@@ -8,19 +8,25 @@ include_once( "LanguageUtf8.php" );
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
 #
-/* private */ $wgNamespaceNamesZh-tw = array(
-	-2	=> "媒體",
-	-1	=> "特殊",
-	0	=> "",
-	1	=> "討論",
-	2	=> "用戶",
-	3	=> "用戶討論",
-	4	=> "維基百科",
-	5	=> "維基討論",
-	6	=> "圖像",
-	7	=> "圖像討論",
-	8	=> "媒體維基",
-	9	=> "媒體維基討論",
+/* private */ $wgNamespaceNamesZh_tw = array(
+    NS_MEDIA            => "媒體",
+    NS_SPECIAL          => "特殊",
+    NS_MAIN             => "",
+    NS_TALK             => "討論",
+    NS_USER             => "用戶",
+    NS_USER_TALK        => "用戶討論",
+    NS_PROJECT          => "維基百科",
+    NS_PROJECT_TALK     => "維基討論",
+    NS_IMAGE            => "圖像",
+    NS_IMAGE_TALK       => "圖像討論",
+    NS_MEDIAWIKI        => "媒體維基",
+    NS_MEDIAWIKI_TALK   => "媒體維基討論",
+    NS_TEMPLATE         => "樣板",
+    NS_TEMPLATE_TALK    => "樣板討論",
+    NS_HELP             => "幫助",
+    NS_HELP_TALK        => "幫助討論",
+    NS_CATEGORY         => "分類",
+    NS_CATEGORY_TALK    => "分類討論"
 );
 
 /* private */ $wgQuickbarSettingsZh-tw = array(
@@ -160,7 +166,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 	"Booksources"	=> "站外書源",
 #           "Categories" => "頁面分類"
 	"Export" => "導出為XML",
-	"Version" => "MediaWiki版本",
+	"Version" => "媒體維基版本",
 );
 
 /* private */ $wgSysopSpecialPagesZh-tw = array(
@@ -363,7 +369,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
  	 "whitelistreadtitle" => "登錄後才可閱讀",
  	 "whitelistreadtext" => "您必須先[[特殊:登錄]]才可閱讀頁面。",
  	 "whitelistacctitle" => "您被禁止建立帳號",
- 	 "whitelistacctext" => "在本Wiki中建立帳號您必須先[[特殊:登錄]]並擁有相關權限。",
+ 	 "whitelistacctext" => "在本維基中建立帳號您必須先[[特殊:登錄]]並擁有相關權限。",
  	 "accmailtitle" => "密碼寄出",
  	 "accmailtext" => "'$1'的密碼已經寄到$2。",
 "newarticle"	=> "（新）",
@@ -398,7 +404,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 您同時也向我們保證你所提交的內容是你自己所作，或得自一個不受版權保護或相似自由的來源。
 <strong>不要在未獲授權的情況下發表！</strong>",
 
-"longpagewarning" => "警告：本頁長度達$1千位；一些瀏覽器將無法編輯長過32千位的文章。請考慮將本文切割成幾個小段落。",
+"longpagewarning" => "警告：本頁長度達$1千位；一些瀏覽器將無法編輯長過三十二千位的文章。請考慮將本文切割成幾個小段落。",
 
 "readonlywarning" => "警告：數據庫被鎖以進行維護，所以您目前將無法保存您的修改。您或許希望先將本斷文字複製並保存到文本文件，然後等一會兒再修改。",
 "protectedpagewarning" => "警告：本頁已經被保護，只有擁有管理員權限的用戶才可修改。請確認您遵守
@@ -601,7 +607,7 @@ wfLocalUrlE( "Wikipedia:Upload image" ) . "\">上載紀錄</a>內。
 "minlength"		=> "圖像名字必須至少有三個字母。",
 "badfilename"	=> "圖像名已被改為\"$1\"。",
 "badfiletype"	=> "\".$1\"不是所推薦的圖像文件格式。",
-"largefile"		=> "我們建議圖像大小不超過100千位。",
+"largefile"		=> "我們建議圖像大小不超過百千位。",
 "successfulupload" => "上載成功",
 "fileuploaded"	=> "文件\"$1\"上載成功。
 請根據連接($2)到圖像描述頁添加有關文件信息，例如它的來源，在何時由誰創造，
