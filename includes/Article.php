@@ -1216,8 +1216,7 @@ class Article {
 			return;
 		}
 
-		$confirm = $wgRequest->getBool( 'wpConfirmProtect' ) &&
-			$wgRequest->wasPosted() &&
+		$confirm = $wgRequest->wasPosted() &&
 			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
 		$moveonly = $wgRequest->getBool( 'wpMoveOnly' );
 		$reason = $wgRequest->getText( 'wpReasonProtect' );
@@ -1285,14 +1284,12 @@ class Article {
 			$wgOut->setPageTitle( wfMsg( 'confirmunprotect' ) );
 			$wgOut->setSubtitle( wfMsg( 'unprotectsub', $sub ) );
 			$wgOut->addWikiText( wfMsg( 'confirmunprotecttext' ) );
-			$check = htmlspecialchars( wfMsg( 'confirmunprotect' ) );
 			$protcom = htmlspecialchars( wfMsg( 'unprotectcomment' ) );
 			$formaction = $this->mTitle->escapeLocalURL( 'action=unprotect' . $par );
 		} else {
 			$wgOut->setPageTitle( wfMsg( 'confirmprotect' ) );
 			$wgOut->setSubtitle( wfMsg( 'protectsub', $sub ) );
 			$wgOut->addWikiText( wfMsg( 'confirmprotecttext' ) );
-			$check = htmlspecialchars( wfMsg( 'confirmprotect' ) );
 			$moveonly = htmlspecialchars( wfMsg( 'protectmoveonly' ) );
 			$protcom = htmlspecialchars( wfMsg( 'protectcomment' ) );
 			$formaction = $this->mTitle->escapeLocalURL( 'action=protect' . $par );
@@ -1314,15 +1311,7 @@ class Article {
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td align='right'>
-				<input type='checkbox' name='wpConfirmProtect' value='1' id='wpConfirmProtect' />
-			</td>
-			<td>
-				<label for='wpConfirmProtect'>{$check}</label>
-			</td>
-		</tr> " );
+		</tr>" );
 		if($moveonly != '') {
 			$wgOut->AddHTML( "
 		<tr>
@@ -1361,8 +1350,7 @@ class Article {
 	function delete() {
 		global $wgUser, $wgOut, $wgMessageCache, $wgRequest;
 		$fname = 'Article::delete';
-		$confirm = $wgRequest->getBool( 'wpConfirm' ) &&
-			$wgRequest->wasPosted() &&
+		$confirm = $wgRequest->wasPosted() &&
 			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
 		$reason = $wgRequest->getText( 'wpReason' );
 
@@ -1484,7 +1472,6 @@ class Article {
 		$formaction = $this->mTitle->escapeLocalURL( 'action=delete' . $par );
 
 		$confirm = htmlspecialchars( wfMsg( 'confirm' ) );
-		$check = htmlspecialchars( wfMsg( 'confirmcheck' ) );
 		$delcom = htmlspecialchars( wfMsg( 'deletecomment' ) );
 		$token = htmlspecialchars( $wgUser->editToken() );
 
@@ -1501,14 +1488,6 @@ class Article {
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td align='right'>
-				<input type='checkbox' name='wpConfirm' value='1' id='wpConfirm' />
-			</td>
-			<td>
-				<label for='wpConfirm'>{$check}</label>
-			</td>
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
