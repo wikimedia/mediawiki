@@ -211,7 +211,7 @@ $wgFileBlacklist = array(
 	# Other types that may be interpreted by some servers
 	"shtml", "jhtml", "pl", "py",
 	# May contain harmful executables for Windows victims
-	"exe", "scr", "dll", "msi", "vbs", "bat", "com", "pif" );
+	"exe", "scr", "dll", "msi", "vbs", "bat", "com", "pif", "cmd", "vxd", "cpl" );
 
 # This is a flag to determine whether or not to check file extensions on
 # upload.
