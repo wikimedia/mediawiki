@@ -493,8 +493,8 @@ Alamat IP Anda adalah $3. Sertakan alamat IP ini pada setiap pertanyaan yang And
 "previewconflict" => "Pratilik ini mencerminkan teks pada bagian atas sebagaimana Ia 
 akan terlihat bila Anda memilih untuk menyimpannya.",  
 "editing"	      => "Menyunting $1", #"Editing $1",
-"sectionedit" => " (bagian)",
-"commentedit" => " (komentar)",
+"editingsection"      => "Menyunting $1 (bagian)",
+"editingcomment"      => "Menyunting $1 (komentar)",
 "editconflict"	      => "Konflik penyuntingan: $1", #"Edit conflict: $1",
 "explainconflict" => "Orang lain telah menyunting halaman ini sejak Anda 
 mulai menyuntingnya. 

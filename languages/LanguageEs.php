@@ -391,8 +391,8 @@ discutir el bloqueo.",
 "previewconflict" => "Esta previsualización refleja el texto en el área
 de edición superior como aparecerá si eliges grabar.",
 "editing"		=> "Editando $1",
-"sectionedit"	=> " (sección)",
-"commentedit"	=> " (comentario)",
+"editingsection"	=> "Editando $1 (sección)",
+"editingcomment"	=> "Editando $1 (comentario)",
 "editconflict"	=> "Conflicto de edición: $1",
 "explainconflict" => "Alguien más ha cambiado esta página desde que empezaste
 a editarla. 

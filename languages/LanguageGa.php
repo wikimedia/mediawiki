@@ -584,8 +584,8 @@ gan ainmneacha a héalaigh amach anseo.'' ",
 "previewconflict" => "San reamhspléachadh seo, feachann tú an téacs dé réir an eagarbhosca
 thuas mar a taispeáinfear é má sábháilfear é.",
 "editing"       => "Ag athrú $1",
-"sectionedit"   => " (roinnt)",
-"commentedit"   => " (trácht)",
+"editingsection"       => "Ag athrú $1 (roinnt)",
+"editingcomment"       => "Ag athrú $1 (trácht)",
 "editconflict"  => "Coimhlint athraithe: $1",
 "explainconflict" => "D'athraigh duine eile an leathanach seo ó shin a thosaigh tú ag cur é in eagar.
 San bhosca seo thuas feiceann tú téacs an leathanaigh mar a bhfuil sé faoi láthair.

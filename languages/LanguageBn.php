@@ -373,7 +373,8 @@ If you are here by mistake, just click your browser's '''back''' button.",
 "previewconflict" => "This preview reflects the text in the upper
 text editing area as it will appear if you choose to save.",
 "editing"   => "Editing $1",
-"sectionedit" => " (section)",
+"editingsection"   => "Editing $1 (section)",
+"editingcomment"   => "Editing $1 (comment)",
 "editconflict"  => "Edit conflict: $1",
 "explainconflict" => "Someone else has changed this page since you
 started editing it.

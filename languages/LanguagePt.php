@@ -411,9 +411,9 @@ Se você chegou aqui por engano, apenas clique no botão  '''volta''' do seu nav
 "note"          => "<strong>Nota:</strong> ",
 "previewnote"   => "Lembre-se que isto é apenas uma previsão, e não foi ainda salvo!",
 "previewconflict" => "Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.",
-"editing"       => "Editando $1",
-"sectionedit"   => " (seção)",
-"commentedit"   => " (comentário)",
+"editing"         => "Editando $1",
+"editingsection"  => "Editando $1 (seção)",
+"editingcomment"  => "Editando $1 (comentário)",
 "editconflict"  => "Conflito de edição: $1",
 "explainconflict" => "Alguém mudou a página enquanto você a estava editando.
 A área de texto acima mostra o texto original.

@@ -393,8 +393,8 @@ bonvolu [[Special:Userlogin|kreu konton aŭ ensalutu]].",
 "previewconflict" => "La jena antaŭrigardo montras la tekston el la supra tekstujo,
 kiel ĝi aperos se vi elektos konservi la paĝon.", #FIXME
 "editing"		=> "Redaktante $1",
-"sectionedit"	=> " (sekcion)",
-"commentedit"	=> " (komenton)",
+"editingsection"	=> "Redaktante $1 (sekcion)",
+"editingcomment"	=> "Redaktante $1 (komenton)",
 "editconflict"	=> "Redakta konflikto: $1",
 "explainconflict" => "Iu alia ŝanĝis la paĝon post kiam vi ekredaktis.
 La supra tekstujo enhavas la aktualan tekston de la artikolo.

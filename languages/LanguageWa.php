@@ -451,8 +451,8 @@ prévoeyaedje, li pådje n'&nbsp;est nén co schapêye!",
 "previewconflict" => "Ci prévoeyaedje ci mostere kimint kel tecse del
 boesse di tecse do dzeu sereut håyné si vos decidez di clitchî so «schaper».",
 "editing"		=> "Candjant $1",
-"sectionedit"	=> " (seccion)",
-"commentedit"	=> " (comintaire)",
+"editingsection"	=> "Candjant $1 (seccion)",
+"editingcomment"	=> "Candjant $1 (comintaire)",
 "editconflict"	=> "Conflit inte deus candjmints: $1",
 "explainconflict" => "Ene sakî a candjî l'&nbsp;pådje do tins ki vos
 estîz a scrire.
