@@ -301,8 +301,9 @@ class QueryPage {
 class PageQueryPage extends QueryPage {
 
 	function formatResult( $skin, $result ) {
+		global $wgContLang;
 		$nt = Title::makeTitle( $result->namespace, $result->title );
-		return $skin->makeKnownLinkObj( $nt, '' );
+		return $skin->makeKnownLinkObj( $nt, $wgContLang->convert( $result->title ) );
 	}
 }
 
