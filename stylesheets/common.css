@@ -29,13 +29,14 @@ div.thumb {
     margin: 10px;
     text-align: center;
     width: auto;
-    overflow: hidden;
 }
 div.thumb div {
     border: 1px solid #8888aa;
     background-color: #f7f8ff;
     padding: 2px;
     font-size: 94%;
+    text-align: center;
+    overflow: hidden;
 }
 div.thumb div * { 
     border: none;
