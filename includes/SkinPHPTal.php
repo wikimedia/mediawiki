@@ -304,7 +304,7 @@
 
 		# an array of edit links by default used for the tabs
 		function buildContentActionUrls () {
-			global $wgTitle, $wgUser, $wgRequest;
+			global $wgTitle, $wgUser, $wgRequest, $wgUseValidation;
 			$action = $wgRequest->getText( 'action' );
 			$section = $wgRequest->getText( 'section' );
 			$oldid = $wgRequest->getVal( 'oldid' );
@@ -435,11 +435,9 @@
 					}
 				}
 
-				if ( $wgUser->getID() != 0 && $wgTitle->getArticleId() && $wgTitle->getNamespace() == 0 ) {
+				if ( $wgUseValidation && $wgUser->getID() != 0 && $wgTitle->getArticleId() && $wgTitle->getNamespace() == 0 ) {
 					global $wgArticle ;
-					extract( $wgRequest->getValues( 'oldid' ) );
-					if ( isset ( $oldid ) ) $article_time = "&timestamp=" . $wgArticle->mTimestamp ;
-					else $article_time = "";
+					$article_time = "&timestamp=" . $wgArticle->mTimestamp ;
 					$content_actions['validate'] = array('class' => ($action == 'validate') ? 'selected' : false ,
 						'text' => wfMsg('val_tab'),
 						'href' => $this->makeUrl($this->thispage, "action=validate{$article_time}"));

@@ -65,7 +65,6 @@ class Validation
 		if ( $article_title == "" )
 			{
 			$article_title = $_GET['article'] ;
-#			$heading = "<h1>" . $article->getPrefixedText() . "</h1>\n" ;
 			$heading = "<h1>" . $article_title . "</h1>\n" ;
 			}
 		else $heading = "" ;
@@ -75,7 +74,10 @@ class Validation
 		$article = Title::newFromText ( $article_title ) ;
 			
 		# Now we get all the "votes" for the different versions of this article for this user
-		$val = $this->get_prev_data ( $wgUser->getID() , $article_title , $article_time ) ;
+		$val = $this->get_prev_data ( $wgUser->getID() , $article_title ) ;
+		krsort ( $val ) ; # Newest versions first
+		
+		#print "!" . count ( $val ) ;
 		
 		# No votes for this version, initial data
 		if ( count ( $val ) == 0 )
@@ -127,16 +129,17 @@ class Validation
 			}
 		
 		# Generating HTML
-		$html = $heading ;
+		$html = "" ;
 		$tabsep = "<td width=0px style='border-left:2px solid black;'></td>" ;
 		$topstyle = "style='border-top:2px solid black'" ;
 		foreach ( $val AS $time => $stuff )
 			{
-			if ( $time != $article_time ) $html .= wfMsg("val_this_version") ;
-			else $html .= str_replace ( "$1" , gmdate("F d, Y H:i:s",wfTimestamp2Unix($time)) , wfMsg("val_version_of") ) ;
+			$tablestyle = "cellspacing=0 cellpadding=2" ;
+			if ( $article_time == $time ) $tablestyle .=" style='border: 2px solid red'" ;
+			$html .= str_replace ( "$1" , gmdate("F d, Y H:i:s",wfTimestamp2Unix($time)) , wfMsg("val_version_of") ) ;
 			$html .= "<form method=post>\n" ;
 			$html .= "<input type=hidden name=oldtime value='{$time}'>" ;
-			$html .= "<table cellspacing=0 cellpadding=2>\n" ;
+			$html .= "<table {$tablestyle}>\n" ;
 			$html .= str_replace ( "$1" , $tabsep , wfMsg("val_table_header") ) ;
 			for ( $idx = 0 ; $idx < count ( $validationtypes) ; $idx++ )
 				{
