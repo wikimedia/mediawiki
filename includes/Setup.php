@@ -40,8 +40,11 @@ if( $wgUseSquid && isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
 		array_pop($hopips);
 	}
 	$wgIP = trim(end($hopips));
-} else {
+} elseif( isset( $_SERVER['REMOTE_ADDR'] ) ) {
 	$wgIP = $_SERVER['REMOTE_ADDR'];
+} else {
+	# Running on CLI?
+	$wgIP = '127.0.0.1';
 }
 
 
