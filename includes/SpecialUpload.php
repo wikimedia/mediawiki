@@ -75,7 +75,7 @@ class UploadForm {
 		global $wgSavedFile, $wgUploadOldVersion;
 		global $wgUseCopyrightUpload;
 		global $wgCheckFileExtensions, $wgStrictFileExtensions;
-		global $wgFileExtensions, $wgFileBlacklist;
+		global $wgFileExtensions, $wgFileBlacklist, $wgUploadSizeWarning;
 
 		if ( $wgUseCopyrightUpload ) {
 			$this->mUploadAffirm = 1;
@@ -126,7 +126,8 @@ class UploadForm {
 					return $this->uploadWarning( wfMsg( "badfiletype", $ext ) );
 				}
 			}
-			if ( ( ! $this->mIgnoreWarning ) && ( $this->mUploadSize > 150000 ) ) {
+			if ( $wgUploadSizeWarning && ( ! $this->mIgnoreWarning ) && 
+			  ( $this->mUploadSize > $wgUploadSizeWarning ) ) {
 				return $this->uploadWarning( wfMsg( "largefile" ) );
 			}
 		}
