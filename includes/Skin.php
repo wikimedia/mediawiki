@@ -9,6 +9,24 @@
 	"Standard", "Nostalgia", "CologneBlue"
 );
 
+# For some odd PHP bug, this function can't be part of a class
+function getCategories ()
+{
+  global $wgOut , $wgTitle , $wgUseCategoryMagic , $wgUser ;
+  if ( !isset ( $wgUseCategoryMagic ) || !$wgUseCategoryMagic ) return "" ;
+  if ( count ( $wgOut->mCategoryLinks ) == 0 ) return "" ;
+  if ( !$wgOut->isArticle() ) return "" ;
+  $sk = $wgUser->getSkin() ;
+  $s = "" ;
+  $s .=  "\n<br>\n";
+  $s .= $sk->makeKnownLink ( "Special:Categories" , "Categories" , "article=".$wgTitle->getDBkey() ) ;
+  $t = implode ( " | " , $wgOut->mCategoryLinks ) ;
+  if ( $t != "" ) $s .= " : " ;
+  $s .= $t ;
+  return $s ;
+}
+
+
 class RecentChangesClass {
 	var $secureName , $displayName , $link , $namespace ;
 	var $oldid , $diffid , $timestamp , $curlink , $lastlink , $usertalklink , $versionlink ;
@@ -237,7 +255,9 @@ class Skin {
 		$s .= "\n<div id='article'>";
 
 		$s .= $this->pageTitle();
-		$s .= $this->pageSubtitle() . "\n<p>";
+		$s .= $this->pageSubtitle() ;
+                $s .= getCategories(); // For some odd reason, zhis can't be a function of the object
+		$s .= "\n<p>";
 		wfProfileOut();
 		return $s;
 	}

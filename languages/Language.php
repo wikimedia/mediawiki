@@ -274,7 +274,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
-	"Booksources"	=> "External book sources"
+	"Booksources"	=> "External book sources",
+"Categories" => "Page categories",
 );
 
 /* private */ $wgSysopSpecialPagesEn = array(
@@ -293,6 +294,11 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 
 # Bits of text used by many pages:
 #
+"categories" => "Page categories",
+"category" => "category",
+"category_header" => "Articles in category \"$1\"",
+"subcategories" => "Subcategories",
+
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Main Page",
 "mainpagetext"	=> "Wiki software successfully installed.",
