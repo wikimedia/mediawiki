@@ -600,8 +600,7 @@ class User {
 		$ipblock->mAddress = $addr;
 		$ipblock->mUser = 0;
 		$ipblock->mBy = $userblock->mBy;
-		$ipblock->mReason = str_replace( "$1", $this->getName(), wfMsg( "autoblocker" ) );
-		$ipblock->mReason = str_replace( "$2", $userblock->mReason, $ipblock->mReason );
+		$ipblock->mReason = wfMsg( "autoblocker", $this->getName(), $userblock->mReason );
 		$ipblock->mTimestamp = wfTimestampNow();
 		$ipblock->mAuto = 1;
 

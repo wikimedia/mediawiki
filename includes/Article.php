@@ -311,7 +311,7 @@ class Article {
 			$sk = $wgUser->getSkin();
 			$redir = $sk->makeKnownLink( $this->mRedirectedFrom, "",
 			  "redirect=no" );
-			$s = str_replace( "$1", $redir, wfMsg( "redirectedfrom" ) );
+			$s = wfMsg( "redirectedfrom", $redir );
 			$wgOut->setSubtitle( $s );
 		}
 		$wgOut->checkLastModified( $this->mTouched );
@@ -471,8 +471,7 @@ class Article {
 		$wgOut->setArticleFlag( false );
 
 		if ( $isConflict ) {
-			$s = str_replace( "$1", $this->mTitle->getPrefixedText(),
-			  wfMsg( "editconflict" ) );
+			$s = wfMsg( "editconflict", $this->mTitle->getPrefixedText() );
 			$wgOut->setPageTitle( $s );
 			$wgOut->addHTML( wfMsg( "explainconflict" ) );
 
@@ -480,8 +479,7 @@ class Article {
 			$wpTextbox1 = $this->getContent(true);
 			$wpEdittime = $this->getTimestamp();
 		} else {
-			$s = str_replace( "$1", $this->mTitle->getPrefixedText(),
-			  wfMsg( "editing" ) );
+			$s = wfMsg( "editing", $this->mTitle->getPrefixedText() );
 
 			if($section!="") { 
 				if($section=="new") {
@@ -510,7 +508,7 @@ class Article {
 		$kblength = (int)(strlen( $wpTextbox1 ) / 1024);
 		if( $kblength > 29 ) {
 			$wgOut->addHTML( "<strong>" . 
-				str_replace( '$1', $kblength , wfMsg( "longpagewarning" ) )
+				wfMsg( "longpagewarning", $kblength )
 				. "</strong>" );
 		}
 		
@@ -536,8 +534,8 @@ class Article {
 		  wfMsg( "cancel" ) );
 		$edithelp = $sk->makeKnownLink( wfMsg( "edithelppage" ),
 		  wfMsg( "edithelp" ) );
-		$copywarn = str_replace( "$1", $sk->makeKnownLink(
-		  wfMsg( "copyrightpage" ) ), wfMsg( "copyrightwarning" ) );
+		$copywarn = wfMsg( "copyrightwarning", $sk->makeKnownLink(
+		  wfMsg( "copyrightpage" ) ) );
 
 		$wpTextbox1 = wfEscapeHTML( $wpTextbox1 );
 		$wpTextbox2 = wfEscapeHTML( $wpTextbox2 );
@@ -1137,8 +1135,7 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		  Namespace::getWikipedia() ) .
 		  ":" . wfMsg( "dellogpage" ), wfMsg( "deletionlog" ) );
 
-		$text = str_replace( "$1" , $deleted, wfMsg( "deletedtext" ) );
-		$text = str_replace( "$2", $loglink, $text );
+		$text = wfMsg( "deletedtext", $deleted, $loglink );
 
 		$wgOut->addHTML( "<p>" . $text );
 		$wgOut->returnToMain( false );
@@ -1245,7 +1242,7 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		$log = new LogPage( wfMsg( "dellogpage" ), wfMsg( "dellogpagetext" ) );
 		$art = $title->getPrefixedText();
 		$wpReason = wfCleanQueryVar( $wpReason );
-		$log->addEntry( str_replace( "$1", $art, wfMsg( "deletedarticle" ) ), $wpReason );
+		$log->addEntry( wfMsg( "deletedarticle", $art ), $wpReason );
 
 		# Clear the cached article id so the interface doesn't act like we exist
 		$this->mTitle->resetArticleID( 0 );
@@ -1309,7 +1306,7 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		$s = wfFetchObject( $res );
 	
 		# Save it!
-		$newcomment = str_replace( "$1", $s->old_user_text, wfMsg( "revertpage" ) );
+		$newcomment = wfMsg( "revertpage", $s->old_user_text );
 		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->addHTML( "<h2>" . $newcomment . "</h2>\n<hr>\n" );
@@ -1384,7 +1381,7 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		global $wgLang, $wgOut;
 
 		$td = $wgLang->timeanddate( $this->mTimestamp, true );
-		$r = str_replace( "$1", "{$td}", wfMsg( "revisionasof" ) );
+		$r = wfMsg( "revisionasof", $td );
 		$wgOut->setSubtitle( "({$r})" );
 	}
 
@@ -1403,9 +1400,7 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		$link = "[[" . $wgLang->getNsText( Namespace::getUser() ) .
 		  ":{$name}|{$name}]]";
 
-		$text = str_replace( "$1", $link, wfMsg( "blockedtext" ) );
-		$text = str_replace( "$2", $reason, $text );
-		$text = str_replace( "$3", getenv( "REMOTE_ADDR" ), $text );
+		$text = wfMsg( "blockedtext", $link, $reason, getenv( "REMOTE_ADDR" ) );
 		$wgOut->addWikiText( $text );
 		$wgOut->returnToMain( false );
 	}
