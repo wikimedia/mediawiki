@@ -1779,7 +1779,7 @@ class Parser
 		$htmlattrs = $this->getHTMLattrs () ;
 
 		# Remove HTML comments
-		$text = preg_replace( '/(\\n *<!--.*--> *|<!--.*-->)/sU', '', $text );
+		$text = $this->removeHTMLcomments( $text );
 
 		$bits = explode( '<', $text );
 		$text = array_shift( $bits );
@@ -1858,6 +1858,45 @@ class Parser
 		return $text;
 	}
 
+	# Remove '<!--', '-->', and everything between.
+	# To avoid leaving blank lines, when a comment is both preceded
+	# and followed by a newline (ignoring spaces), trim leading and
+	# trailing spaces and one of the newlines.
+	/* private */ function removeHTMLcomments( $text ) {
+		$fname='Parser::removeHTMLcomments';
+		wfProfileIn( $fname );
+		while (($start = strpos($text, '<!--')) !== false) {
+			$end = strpos($text, '-->', $start + 4);
+			if ($end === false) {
+				# Unterminated comment; bail out
+				break;
+			}
+
+			$end += 3;
+
+			# Trim space and newline if the comment is both
+			# preceded and followed by a newline
+			$spaceStart = $start - 1;
+			$spaceLen = $end - $spaceStart;
+			while (substr($text, $spaceStart, 1) === ' ') {
+				$spaceStart--;
+				$spaceLen++;
+			}
+			while (substr($text, $spaceStart + $spaceLen, 1) === ' ')
+				$spaceLen++;
+			if (substr($text, $spaceStart, 1) === "\n" and substr($text, $spaceStart + $spaceLen, 1) === "\n") {
+				# Remove the comment, leading and trailing
+				# spaces, and leave only one newline.
+				$text = substr_replace($text, "\n", $spaceStart, $spaceLen + 1);
+			}
+			else {
+				# Remove just the comment.
+				$text = substr_replace($text, '', $start, $end - $start);
+			}
+		}
+		wfProfileOut( $fname );
+		return $text;
+	}
 
 	# This function accomplishes several tasks:
 	# 1) Auto-number headings if that option is enabled
