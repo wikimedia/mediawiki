@@ -42,9 +42,12 @@ function wfSpecialVersion() {
 	}
 	$versions = array(
 		"[http://wikipedia.sf.net/ MediaWiki]" => $wgVersion,
-		"[http://www.php.net/ PHP]" => phpversion() . " (" . php_sapi_name() . ")",
-		"[http://www.mysql.com/ MySQL]" => mysql_get_server_info()
+		"[http://www.php.net/ PHP]" => phpversion() . " (" . php_sapi_name() . ")"
  	);
+ 	
+ 	$dbr =& wfGetDB( DB_SLAVE );
+ 	$dblink = $dbr->getSoftwareLink();
+ 	$versions[$dblink] = $dbr->getServerVersion();
 	
 	$out = '';
 	foreach( $versions as $module => $ver ) {

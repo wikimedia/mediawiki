@@ -1196,6 +1196,20 @@ class Database {
 			return new ResultWrapper( $this, $result );
 		}
 	}
+	
+	/**
+	 * @return string wikitext of a link to the server software's web site
+	 */
+	function getSoftwareLink() {
+		return "[http://www.mysql.com/ MySQL]";
+	}
+	
+	/**
+	 * @return string Version information from the database
+	 */
+	function getServerVersion() {
+		return mysql_get_server_info();
+	}
 } 
 
 /**

@@ -357,17 +357,35 @@ class DatabasePgsql extends Database {
 		return false;
 	}
 
-        # Return DB-style timestamp used for MySQL schema
-        function timestamp( $ts=0 ) {
-                return wfTimestamp(TS_DB,$ts);
-        }
+	# Return DB-style timestamp used for MySQL schema
+	function timestamp( $ts=0 ) {
+		return wfTimestamp(TS_DB,$ts);
+	}
 
-        function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
-               $message = "A database error has occurred\n" .
-                                  "Query: $sql\n" .
-                                  "Function: $fname\n" .
-                                  "Error: $errno $error\n";
+	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
+		$message = "A database error has occurred\n" .
+			"Query: $sql\n" .
+			"Function: $fname\n" .
+			"Error: $errno $error\n";
 		wfDebugDieBacktrace($message);
+	}
+
+	/**
+	 * @return string wikitext of a link to the server software's web site
+	 */
+	function getSoftwareLink() {
+		return "[http://www.postgresql.org/ PostgreSQL]";
+	}
+	
+	/**
+	 * @return string Version information from the database
+	 */
+	function getServerVersion() {
+		$res = $this->query( "SELECT version()" );
+		$row = $this->fetchRow( $res );
+		$version = $row[0];
+		$this->freeResult( $res );
+		return $version;
 	}
 }
 
