@@ -235,7 +235,7 @@ if( count( $wgUserLanguages ) &&
 wfProfileOut( $fname.'-User' );
 wfProfileIn( $fname.'-language' );
 
-function setupLangObj($langclass, $langcode) {
+function setupLangObj(&$langclass, $langcode) {
     global $wgUseLatin1;
 
 
@@ -260,13 +260,12 @@ function setupLangObj($langclass, $langcode) {
     return $lang;
 }
 
-/* TODO: change the installation script so that 
-   wgContLanguageCode is set there instead of here
-*/
 require_once( 'languages/Language.php' );
-$wgContLanguageCode = $wgLanguageCode;
+
 $wgContLangClass = 'Language' . str_replace( '-', '_', ucfirst( $wgContLanguageCode ) );
+
 $wgContLang = setupLangObj($wgContLangClass, $wgContLangClass);
+ $n = get_class($wgContLang);
 
 // set default user option from content language
 if(!$wgUser->mDataLoaded) { $wgUser->loadDefaultFromLanguage(); }
