@@ -308,11 +308,25 @@ $wgLinkCacheMemcached = false; # Not fully tested
  * Turck MMCache shared memory
  * You can use this for persistent caching where your wiki runs on a single 
  * server. Enabled by default if Turck is installed. Mutually exclusive with
- * memcached, memcached is used if both are specified.
+ * memcached and eAccelerator, the preference order priorities being memcached first, 
+ * Turck MMCache second, and eAccelerator third.
  *
  * @global bool $wgUseTurckShm Enable or disabled Turck MMCache
  */
 $wgUseTurckShm      = false;
+
+/**
+ * eAccelerator shared memory
+ * You can use this for persistent caching where your wiki runs on a single 
+ * server. Enabled by default if eAccelerator is installed. Mutually exclusive with
+ * memcached and Turck MMCache, the preference order being memcached first, 
+ * Turck MMCache second, and eAccelerator third.
+ *
+ * Most of the code to support this is directly copied from the Turck code.
+ *
+ * @global bool $wgUseEAccelShm Enable or disabled eAccelerator
+ */
+$wgUseEAccelShm     = false;
 
 
 # Language settings
