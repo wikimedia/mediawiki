@@ -129,13 +129,14 @@ function wfSpecialRecentchanges( $par )
 		$feed->outHeader();
 		foreach( $rows as $obj ) {
 			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
+			$talkpage = $title->getTalkPage();
 			$item = new FeedItem(
 				$title->getPrefixedText(),
 				htmlspecialchars( $obj->rc_comment ),
 				$title->getFullURL(),
 				$obj->rc_timestamp,
 				$obj->rc_user_text,
-				htmlspecialchars( $obj->rc_comment )
+				$talkpage->getFullURL()
 				);
 			$feed->outItem( $item );
 		}
