@@ -134,12 +134,10 @@ class PreferencesForm {
 				$this->mainPrefsForm( wfMsg( "badretype" ) );			
 				return;
 			}
-			$ep = $wgUser->encryptPassword( $this->mOldpass );
-			if ( $ep != $wgUser->getPassword() ) {
-				if ( $ep != $wgUser->getNewpassword() ) {
-					$this->mainPrefsForm( wfMsg( "wrongpassword" ) );
-					return;
-				}
+
+			if (!$wgUser->checkPassword( $this->mOldpass )) {
+				$this->mainPrefsForm( wfMsg( "wrongpassword" ) );
+				return;
 			}
 			$wgUser->setPassword( $this->mNewpass );
 		}

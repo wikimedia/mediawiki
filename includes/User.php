@@ -319,16 +319,6 @@ class User {
 		return ($timestamp >= $this->mTouched);
 	}
 
-	function getPassword() {
-		$this->loadFromDatabase();
-		return $this->mPassword;
-	}
-
-	function getNewpassword() {
-		$this->loadFromDatabase();
-		return $this->mNewpassword;
-	}
-
 	function addSalt( $p ) {
 		global $wgPasswordSalt;
 		if($wgPasswordSalt)
@@ -720,6 +710,26 @@ class User {
 
 	function isNewbie() {
 		return $this->mId > User::getMaxID() * 0.99 && !$this->isSysop() && !$this->isBot() || $this->getID() == 0;
+	}
+	
+	# Check to see if the given clear-text password is one of the accepted passwords
+	function checkPassword( $password ) {
+		print "hello\n";
+		$this->loadFromDatabase();
+		$ep = $this->encryptPassword( $password );
+		if ( 0 == strcmp( $ep, $this->mPassword ) ) {
+			return true;
+		} elseif ( 0 == strcmp( $ep, $this->mNewpassword ) ) {
+			return true;
+		} elseif ( function_exists( 'iconv' ) ) {
+			# Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
+			# Check for this with iconv
+/*			$cp1252hash = $this->encryptPassword( iconv( 'UTF-8', 'WINDOWS-1252', $password ) );
+			if ( 0 == strcmp( $cp1252hash, $this->mPassword ) ) {
+				return true;
+			}*/
+		}
+		return false;
 	}
 }
 
