@@ -319,7 +319,7 @@ class ParserTest {
 			'recentchanges',
 			'watchlist', 'math', 'searchindex',
 			'interwiki', 'querycache',
-			'objectcache'
+			'objectcache', 'group'
 		);
 	}
 	
@@ -396,7 +396,13 @@ class ParserTest {
 				       'iw_local'  => 1 ),
 				) );
 
-
+			# Hack: initialize a group
+			$db->insert( 'group', array(
+				'group_id' => 1,
+				'group_name' => 'Anonymous',
+				'group_description' => 'Anonymous users',
+				'group_rights' => 'read' ) );
+			
 			$setupDB = true;
 		}
 	}
