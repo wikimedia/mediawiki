@@ -75,6 +75,7 @@ class MessageCache
 	# Loads all cacheable messages from the database
 	function loadFromDB()
 	{
+		$fname = "MessageCache::loadFromDB";
 		$sql = "SELECT cur_title,cur_text FROM cur WHERE cur_namespace=" . NS_MEDIAWIKI;
 		$sql .= " AND cur_title IN ('";
 		$sql .= implode( "','", $this->getKeys() ) . "')";
@@ -97,7 +98,7 @@ class MessageCache
 		if ( !$this->mKeys ) {
 			$this->mKeys = array();
 			foreach ( $wgAllMessagesEn as $key => $value ) {
-				array_push( $wgLang->ucfirst( $key ), $this->mKeys );
+				array_push( $this->mKeys, $wgLang->ucfirst( $key ) );
 			}
 		}
 		return $this->mKeys;
