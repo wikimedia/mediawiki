@@ -94,6 +94,9 @@ class LoadBalancer {
 
 	function getReaderIndex()
 	{
+		$fname = 'LoadBalancer::getReaderIndex';
+		wfProfileIn( $fname );
+
 		$i = false;
 		if ( $this->mForce >= 0 ) {
 			$i = $this->mForce;
@@ -109,7 +112,7 @@ class LoadBalancer {
 					if ( $i !== false ) {
 						wfDebug( "Using reader #$i: {$this->mServers[$i]['host']}\n" );
 
-						$this->getConnection( $i );
+						$this->openConnection( $i );
 
 						if ( !$this->isOpen( $i ) ) {
 							unset( $loads[$i] );
@@ -124,6 +127,7 @@ class LoadBalancer {
 				}
 			}
 		}
+		wfProfileOut( $fname );
 		return $i;
 	}
 
@@ -131,50 +135,56 @@ class LoadBalancer {
 	# If a DB_SLAVE connection has been opened already, waits
 	# Otherwise sets a variable telling it to wait if such a connection is opened
 	function waitFor( $file, $pos ) {
+		$fname = "LoadBalancer::waitFor";
+		wfProfileIn( $fname );
+
 		wfDebug( "User master pos: $file $pos\n" );
 		$this->mWaitForFile = false;
 		$this->mWaitForPos = false;
 
-		if ( count( $this->mServers ) == 1 ) {
-			return;
-		}
-		
-		$this->mWaitForFile = $file;
-		$this->mWaitForPos = $pos;
+		if ( count( $this->mServers ) > 1 ) {
+			$this->mWaitForFile = $file;
+			$this->mWaitForPos = $pos;
 
-		if ( $this->mReadIndex > 0 ) {
-			if ( !$this->doWait( $this->mReadIndex ) ) {
-				# Use master instead
-				$this->mReadIndex = 0;
-			}
-		} 
+			if ( $this->mReadIndex > 0 ) {
+				if ( !$this->doWait( $this->mReadIndex ) ) {
+					# Use master instead
+					$this->mReadIndex = 0;
+				}
+			} 
+		}
+		wfProfileOut( $fname );
 	}
 
 	# Wait for a given slave to catch up to the master pos stored in $this
 	function doWait( $index ) {
 		global $wgMemc;
 		
+		$retVal = false;
+
 		$key = "masterpos:" . $index;
 		$memcPos = $wgMemc->get( $key );
 		if ( $memcPos ) {
 			list( $file, $pos ) = explode( ' ', $memcPos );
 			# If the saved position is later than the requested position, return now
 			if ( $file == $this->mWaitForFile && $this->mWaitForPos <= $pos ) {
-				return true;
+				$retVal = true;
 			}
 		}
 
-		$conn =& $this->getConnection( $index );
-		wfDebug( "Waiting for slave #$index to catch up...\n" );
-		$result = $conn->masterPosWait( $this->mWaitForFile, $this->mWaitForPos, MASTER_WAIT_TIMEOUT );
+		if ( !$retVal && $this->isOpen( $index ) ) {
+			$conn =& $this->mConnections( $index );
+			wfDebug( "Waiting for slave #$index to catch up...\n" );
+			$result = $conn->masterPosWait( $this->mWaitForFile, $this->mWaitForPos, MASTER_WAIT_TIMEOUT );
 
-		if ( $result == -1 || is_null( $result ) ) {
-			# Timed out waiting for slave, use master instead
-			wfDebug( "Timed out waiting for slave #$index pos {$this->mWaitForFile} {$this->mWaitForPos}\n" );
-			$retVal = false;
-		} else {
-			$retVal = true;
-			wfDebug( "Done\n" );
+			if ( $result == -1 || is_null( $result ) ) {
+				# Timed out waiting for slave, use master instead
+				wfDebug( "Timed out waiting for slave #$index pos {$this->mWaitForFile} {$this->mWaitForPos}\n" );
+				$retVal = false;
+			} else {
+				$retVal = true;
+				wfDebug( "Done\n" );
+			}
 		}
 		return $retVal;
 	}		
@@ -182,6 +192,8 @@ class LoadBalancer {
 	# Get a connection by index
 	function &getConnection( $i, $fail = false )
 	{
+		$fname = "LoadBalancer::getConnection";
+		wfProfileIn( $fname );
 		/*
 		# Task-based index
 		if ( $i >= DB_TASK_FIRST && $i < DB_TASK_LAST ) {
@@ -196,7 +208,6 @@ class LoadBalancer {
 
 		# Operation-based index
 		if ( $i == DB_SLAVE ) {	
-			# Note: re-entrant
 			$i = $this->getReaderIndex();
 		} elseif ( $i == DB_MASTER ) {
 			$i = $this->getWriterIndex();
@@ -205,12 +216,24 @@ class LoadBalancer {
 			$i = $this->mLastIndex;
 			if ( $i === -1 ) {
 				# Oh dear, not set, best to use the writer for safety
+				wfDebug( "Warning: DB_LAST used when there was no previous index\n" );
 				$i = $this->getWriterIndex();
 			}
-		} 
+		}
 		# Now we have an explicit index into the servers array
+		$this->openConnection( $i, $fail );
+		wfProfileOut( $fname );
+		return $this->mConnections[$i];
+	}
+
+	# Open a connection to the server given by the specified index
+	# Index must be an actual index into the array
+	/* private */ function openConnection( $i, $fail = false ) {
+		$fname = 'LoadBalancer::openConnection';
+		wfProfileIn( $fname );
+
 		if ( !$this->isOpen( $i ) ) {
-			$this->mConnections[$i] = $this->makeConnection( $this->mServers[$i] );
+			$this->mConnections[$i] = $this->reallyOpenConnection( $this->mServers[$i] );
 			
 			if ( $i != 0 && $this->mWaitForFile ) {
 				if ( !$this->doWait( $i ) ) {
@@ -218,7 +241,7 @@ class LoadBalancer {
 					$this->mReadIndex = 0;
 					$i = 0;
 					if ( !$this->isOpen( 0 ) ) {
-						$this->mConnections[0] = $this->makeConnection( $this->mServers[0] );
+						$this->mConnections[0] = $this->reallyOpenConnection( $this->mServers[0] );
 					}
 					wfDebug( "Failed over to {$this->mConnections[0]->mServer}\n" );
 				}
@@ -232,10 +255,10 @@ class LoadBalancer {
 			$this->mConnections[$i] = false;
 		}
 		$this->mLastIndex = $i;
-
-		return $this->mConnections[$i];
+		wfProfileOut( $fname );
 	}
 
+	# Test if the specified index represents an open connection
 	/* private */ function isOpen( $index ) {
 		if ( array_key_exists( $index, $this->mConnections ) && is_object( $this->mConnections[$index] ) && 
 		  $this->mConnections[$index]->isOpen() ) 
@@ -246,7 +269,8 @@ class LoadBalancer {
 		}
 	}
 	
-	/* private */ function makeConnection( &$server ) {
+	# Really opens a connection
+	/* private */ function reallyOpenConnection( &$server ) {
 			extract( $server );
 			# Get class for this database type
 			$class = 'Database' . ucfirst( $type );
@@ -260,15 +284,25 @@ class LoadBalancer {
 	
 	function reportConnectionError( &$conn )
 	{
-		if ( !is_object( $conn ) ) {
-			$conn = new Database;
+		$fname = 'LoadBalancer::reportConnectionError';
+		wfProfileIn( $fname );
+		# Prevent infinite recursion
+		
+		static $reporting = false;
+		if ( !$reporting ) {
+			$reporting = true;
+			if ( !is_object( $conn ) ) {
+				$conn = new Database;
+			}
+			if ( $this->mFailFunction ) {
+				$conn->setFailFunction( $this->mFailFunction );
+			} else {
+				$conn->setFailFunction( "wfEmergencyAbort" );
+			}
+			$conn->reportConnectionError();
+			$reporting = false;
 		}
-		if ( $this->mFailFunction ) {
-			$conn->setFailFunction( $this->mFailFunction );
-		} else {
-			$conn->setFailFunction( "wfEmergencyAbort" );
-		}
-		$conn->reportConnectionError();
+		wfProfileOut( $fname );
 	}
 	
 	function getWriterIndex()
