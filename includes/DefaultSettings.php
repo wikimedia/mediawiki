@@ -562,6 +562,9 @@ $wgUseRCPatrol = true;
 #	      103 =>"Discussion_Aide"
 #	      );
 
+# Enable SOAP interface. Off by default
+$wgEnableSOAP = false;
+
 } else {
 	die();
 }
