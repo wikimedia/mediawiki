@@ -62,12 +62,15 @@ class WebRequest {
 			if( defined( "DEBUG_GLOBALS" ) ) {
 				die( "DEBUG_GLOBALS: Turn register_globals off!" );
 			}
-		} else {
+		}
+		/*
+		else {
 			if( !defined( "DEBUG_GLOBALS" ) ) {
 				# Insecure, but at least it'll run
 				import_request_variables( "GPC" );
 			}
 		}
+		*/
 	}
 	
 	function getGPCVal( &$arr, $name, $default ) {
