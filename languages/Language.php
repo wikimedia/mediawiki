@@ -1984,6 +1984,13 @@ class Language {
 			return wfMsg($wgWeekdayNamesEn[$key-1]);
 	}
 
+	/**
+	 * Used by date() and time() to adjust the time output.
+	 * @access public
+	 * @param int   $ts the time in date('YmdHis') format
+	 * @param mixed $tz adjust the time by this amount (default false)
+	 * @return int
+	 */
 	function userAdjust( $ts, $tz = false )	{
 		global $wgUser, $wgLocalTZoffset;
 
@@ -2013,6 +2020,18 @@ class Language {
 		return date( 'YmdHis', $t );
 	}
 
+	/**
+	 * @access public
+	 * @param mixed  $ts the time format which needs to be turned into a
+	 *               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 * @param bool   $adj whether to adjust the time output according to the
+	 *               user configured offset ($timecorrection)
+	 * @param mixed  $format what format to return, if it's false output the
+	 *               default one.
+	 * @param string $timecorrection the time offset as returned by
+	 *               validateTimeZone() in Special:Preferences
+	 * @return string
+	 */
 	function date( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false ) {
 		global $wgAmericanDates, $wgUser;
 		
@@ -2043,7 +2062,19 @@ class Language {
 			default: return "$month $day, $year";
 		}
 	}
-	
+
+	/**
+	* @access public
+	* @param mixed  $ts the time format which needs to be turned into a
+	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	* @param bool   $adj whether to adjust the time output according to the
+	*               user configured offset ($timecorrection)
+	* @param mixed  $format what format to return, if it's false output the
+	*               default one.
+	* @param string $timecorrection the time offset as returned by
+	*               validateTimeZone() in Special:Preferences
+	* @return string
+	*/
 	function time( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false ) {
 		global $wgUser, $wgAmericanDates;
 		$ts=wfTimestamp(TS_MW,$ts);
@@ -2058,12 +2089,26 @@ class Language {
 		} if ($datePreference == '0') {$datePreference = $wgAmericanDates ? 1 : 2;}
 
 		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
+		
 		if ( $format == 'ISO 8601' ) {
 			$t .= ':' . substr( $ts, 12, 2 );
 		}
 		return $this->formatNum( $t );
 	}
 	
+	/**
+	* @access public
+	* @param mixed  $ts the time format which needs to be turned into a
+	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	* @param bool   $adj whether to adjust the time output according to the
+	*               user configured offset ($timecorrection)
+	* @param mixed  $format what format to return, if it's false output the
+	*               default one.
+	* @param string $timecorrection the time offset as returned by
+	*               validateTimeZone() in Special:Preferences
+	* @param ???    $dateandtime ??? (default false)
+	* @return string
+	*/
 	function timeanddate( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false, $dateandtime = false) {
 		global $wgUser, $wgAmericanDates;
 		$ts=wfTimestamp(TS_MW,$ts);
