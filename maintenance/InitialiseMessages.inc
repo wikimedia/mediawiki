@@ -2,6 +2,8 @@
 /**
  * Script to initialise the MediaWiki namespace
  *
+ * $Id$
+ *
  * This script is included from update.php and install.php. Do not run it 
  * by itself.
  *
@@ -123,6 +125,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 				cur_namespace=>$ns,
 				cur_title=>$title,
 				cur_text=>$dbencMsg,
+				cur_user=>0,
 				cur_user_text=>$username,
 				cur_timestamp=>$dbw->timestamp($timestamp),
 				cur_restrictions=>'sysop',
