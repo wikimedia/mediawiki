@@ -1264,7 +1264,7 @@ class Article {
 
 		# Now that it's safely backed up, delete it
 
-		$sql = 'DELETE FROM cur WHERE cur_namespace={$ns} AND ' .
+		$sql = "DELETE FROM cur WHERE cur_namespace={$ns} AND " .
 		  "cur_title='{$t}'";
 		wfQuery( $sql, DB_WRITE, $fname );
 
