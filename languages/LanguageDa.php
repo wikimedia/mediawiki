@@ -25,7 +25,8 @@
 	"contextlines" => 5, "contextchars" => 50,
 	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
 	"highlightbroken" => 1, "stubthreshold" => 0,
-	"previewontop" => 1
+	"previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, "showtoc"=>1,
+	"date" => 0
 );
 
 /* private */ $wgQuickbarSettingsDa = array(
@@ -44,6 +45,13 @@
     "Anbefalet til moderne browsere"
 );
 
+/* private */ $wgDateFormatsDa = array(
+	"Ingen foretrukken",
+	"januar 15, 2001",
+	"15. januar 2001",
+	"2001 januar 15"
+);
+
 /* private */ $wgUserTogglesDa = array(
 	"hover"		=> "Vis svævende tekst over wiki links",
 	"underline" => "Understreg links",
@@ -52,9 +60,12 @@
 	"hideminor" => "Gem små redigeringer i sidste ændringer",
 	"usenewrc" => "Udvidet seneste ændringer (ikke for alle browsere)",
 	"numberheadings" => "Automatisk nummerering af overskrifter",
+	"editondblclick" => "Rediger sider med dobbeltklik (JavaScript)",
+	"editsection"=>"Rediger sektioner ved hjælp af [rediger] link",
+	"editsectiononrightclick"=>"Rediger sektioner ved at højreklikke<br> på sektionens titel (JavaScript)",
+ 	"showtoc"=>"Vis indholdsfortegnelese<br>(for artikler med mere end 3 sektioner)",
 	"rememberpassword" => "Husk password til næste besøg",
 	"editwidth" => "Redigeringsboksen har fuld bredde",
-	"editondblclick" => "Rediger sider med dobbeltklik (JavaScript)",
 	"watchdefault" => "Overvåg nye og ændrede artikler",
 	"minordefault" => "Marker som standard alle ændringer som mindre",
 	"previewontop" => "Vis forhåndsvisning før redigeringsboksen",
@@ -266,7 +277,8 @@
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
-	"Booksources"	=> "Eksterne bogkilder"
+	"Booksources"	=> "Eksterne bogkilder",
+	"Categories"	=> "Sidekategorier",
 );
 
 /* private */ $wgSysopSpecialPagesDa = array(
@@ -285,6 +297,11 @@
 
 # Bits of text used by many pages:
 #
+"categories" => "Sidekategorier",
+"category" => "kategori",
+"category_header" => "Artikler i kategorien \"$1\"",
+"subcategories" => "Underkategorier",
+
 "linktrail"		=> "/^([a-z|æ|ø|å]+)(.*)\$/sD",
 "mainpage"		=> "Forside",
 "mainpagetext"	=> "Wiki software er nu installeret.",
@@ -325,6 +342,7 @@
 "unprotectthispage" => "Fjern beskyttelse af side",
 "newpage" => "Ny side",
 "talkpage"		=> "Diskussionssiden",
+"postcomment"   => "Tilføj en kommentar",
 "articlepage"	=> "Se artiklen",
 "subjectpage"	=> "Se emnesiden",
 "userpage" => "Se brugersiden",
@@ -353,6 +371,10 @@ udføres af brugere med \"developer\" status. Se $1.",
 "retrievedfrom" => "Hentet fra \"$1\"",
 "newmessages" => "Du har $1.",
 "newmessageslink" => "nye beskeder",
+"editsection"=>"rediger",
+"toc" => "Indholdsfortegnelse",
+"showtoc" => "vis",
+"hidetoc" => "gem",
 
 # Main script and global functions
 #
@@ -445,6 +467,7 @@ at få det sendt til den adresse du har oplyst.<br>\n",
 "userlogin"		=> "Log på",
 "logout"		=> "Log af",
 "userlogout"	=> "Log af",
+"notloggedin"	=> "Ikke logget på",
 "createaccount"	=> "Opret en ny konto",
 "badretype"		=> "De passwords du indtastede er ikke ens.",
 "userexists"	=> "Det brugernavn du har valgt er allerede i brug. Vælg 
@@ -477,6 +500,7 @@ Du bør logge på og ændre dit password straks efter du har modtaget det.",
 # Edit pages
 #
 "summary"		=> "Beskrivelse",
+"subject"		=> "Emne/overskrift",
 "minoredit"		=> "Dette er en mindre ændring.",
 "watchthis"		=> "Overvåg denne artikel",
 "savearticle"	=> "Gem side",
@@ -508,6 +532,8 @@ gemt endnu!",
 redigerbare tekst ovenfor,
 sådan vil det komme til at se ud hvis du vælger at gemme teksten.",
 "editing"		=> "Redigerer $1",
+"sectionedit"	=> " (sektion)",
+"commentedit"	=> " (kommentar)",
 "editconflict"	=> "Redigeringskonflikt: $1",
 "explainconflict" => "Nogen har ændret denne side efter du
 startede på at redigerer den.
@@ -595,6 +621,7 @@ fuldtekstsøgning istedet for. ",
 "viewprevnext"	=> "Vis ($1) ($2) ($3).",
 "showingresults" => "Nedenfor vises <b>$1</b> resultater startende med 
 nummer <b>$2</b>.",
+"showingresultsnum" => "Herunder vises <b>$3</b> resultater startende med nummer <b>$2</b>.",
 "nonefound"		=> "<strong>Note</strong>: søgning uden success er tit
 forårsaget af at man søger efter almindelige ord som \"har\" og \"fra\",
 som ikke er indekseret, eller ved at specificere mere end et søgeord (kun 
@@ -604,7 +631,7 @@ sider der indeholder alle søgeordene vil blive fundet).",
 Søg i navnerum :<br>
 $1<br>
 $2 List omdirigeringer &nbsp; Søg efter $3 $9",
-
+"blanknamespace" => "(Hoved)",
 
 # Preferences page
 #
@@ -614,12 +641,15 @@ $2 List omdirigeringer &nbsp; Søg efter $3 $9",
   wfLocalUrl( "Speciel:Userlogin" ) . "\">logget på</a>
 for at ændre bruger indstillinger.",
 "prefslogintext" => "Du logget på som \"$1\".
-Dit interne ID nummer er $2.",
+Dit interne ID nummer er $2.
+
+Se [[Wikipedia:Hvordan sætter jeg mine indstillinger]] for en forklaring på de forskellige indstillinger.",
 "prefsreset"	=> "Indstillingerne er blevet gendannet fra lageret.",
 "qbsettings"	=> "Indstillinger for hurtigmenu",
 "changepassword" => "Skift password",
 "skin"			=> "Udseende",
 "math"			=> "Vise matematik",
+"dateformat"	=> "Dato format",
 "math_failure"		=> "Fejl i matematikken",
 "math_unknown_error"	=> "ukendt fejl",
 "math_unknown_function"	=> "ukendt funktion ",
@@ -647,7 +677,10 @@ ellers skulle man for eksempel for Dansk vintertid, indtaste \"1\"
 (og \"2\" når vi er på sommertid).",
 "localtime"	=> "Lokal tid",
 "timezoneoffset" => "Forskel",
+"servertime"	=> "Server tiden er nu",
+"guesstimezone" => "Udfyld fra browseren",
 "emailflag"	=> "Fravælg muligheden for at få e-mail fra andre brugere",
+"defaultns"		=> "Søg som standard i disse navnerum:",
 
 # Recent changes
 #
@@ -670,9 +703,9 @@ for projektet, så lad venligst være med det.",
 sidste <strong>$2</strong> dage.",
 "rcnotefrom"	=> "Nedenfor er ændringerne fra <b>$2</b> indtil <b>$1</b> vist.",
 "rclistfrom"	=> "Vis nye ændringer startende fra $1",
-# "rclinks"		=> "Vis seneste $1 ændringer i de sidste $2 timer / sidste $3 dage",
-"rclinks"		=> "Vis seneste $1 ændringer i de sidste $2 dage.",
+"rclinks"		=> "Vis seneste $1 ændringer i de sidste $2 dage; $3 mindre ændringer.",
 "rchide"		=> "i $4 form; $1 mindre ændringer; $2 andre navnerum; $3 mere end en redigering.",
+"rcliu"			=> "; $1 redigeringer fra brugere der er logget på",
 "diff"			=> "forskel",
 "hist"			=> "historie",
 "hide"			=> "gem",
@@ -685,7 +718,7 @@ sidste <strong>$2</strong> dage.",
 
 # Upload
 #
-"upload"		=> "Upload",
+"upload"		=> "Upload fil",
 "uploadbtn"		=> "Upload fil",
 "uploadlink"	=> "Upload fil",
 "reupload"		=> "Gen-upload",
@@ -854,14 +887,14 @@ link til den samme artikel i $1. Omdirigeringer og underartikler er
 "longpages"		=> "Lange artikler",
 "listusers"		=> "Brugerliste",
 "specialpages"	=> "Specielle sider",
-"spheading"		=> "Specielle sider",
+"spheading"		=> "Specielle sider for alle brugere",
 "sysopspheading" => "Specielle sider til sysop brug",
 "developerspheading" => "Specielle sider til developer brug",
 "protectpage"	=> "Beskyt side",
 "recentchangeslinked" => "Relaterede ændringer",
 "rclsub"		=> "(til sider linket fra \"$1\")",
 "debug"			=> "Debug",
-"newpages"		=> "Nye artikler",
+"newpages"		=> "Nyeste artikler",
 "ancientpages"		=> "Ældste artikler",
 "intl"		=> "Sproglinks",
 "movethispage"	=> "Flyt side",
@@ -879,7 +912,7 @@ og denne liste skal ikke ses som en anbefaling af disse.",
 
 # Email this user
 #
-"mailnologin"	=> "Ingen sende adresse",
+"mailnologin"	=> "Ingen afsender adresse",
 "mailnologintext" => "Du skal være <a href=\"" .
   wfLocalUrl( "Speciel:Userlogin" ) . "\">logget på</a>
 og have en gyldig e-mail adresse sat i dine <a href=\"" .
@@ -1075,6 +1108,7 @@ i Wikipedia databasen.
 Brug enkelte anførselstegn ('sådan her') for at adskille strenge.
 Dette kan ofte belaste serveren kraftigt, så brug venligst denne funktion
 med omtanke.",
+"sqlislogged"	=> "Vær opmærksom på at alle SQL forespørgsler gemmes i en log fil.",
 "sqlquery"		=> "Indtast forespørgsel",
 "querybtn"		=> "Afsend forespørgsel",
 "selectonly"	=> "Forespørgsler andre end \"SELECT\" er forbeholdt 
@@ -1180,6 +1214,11 @@ class LanguageDa extends Language {
 		return $wgMathNamesDa;
 	}
 
+	function getDateFormats() {
+		global $wgDateFormatsDa;
+		return $wgDateFormatsDa;
+	}
+
 	function getUserToggles() {
 		global $wgUserTogglesDa;
 		return $wgUserTogglesDa;
@@ -1209,6 +1248,12 @@ class LanguageDa extends Language {
 	{
 		global $wgMonthNamesDa;
 		return $wgMonthNamesDa[$key-1];
+	}
+
+	function getMonthRegex()
+	{
+		global $wgMonthNamesDa;
+		return implode( "|", $wgMonthNamesDa );
 	}
 
 	function getMonthAbbreviation( $key )
@@ -1248,6 +1293,8 @@ class LanguageDa extends Language {
 		return $this->date( $ts, $adj ) . " kl." . $this->time( $ts, $adj );
 	}
 
+	# Inherit rfc1123()
+
 	function getValidSpecialPages()
 	{
 		global $wgValidSpecialPagesDa;
@@ -1274,6 +1321,23 @@ class LanguageDa extends Language {
             if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
             else return $m;
 	}
+
+	# Inherit ucfirst()
+	
+	# Inherit checkTitleEncoding()
+	
+	# Inherit stripForSearch()
+	
+	# Inherit setAltEncoding()
+	
+	# Inherit recodeForEdit()
+	
+	# Inherit recodeInput()
+	
+	# Inherit replaceDates()
+	
+	# Inherit isRTL()
+
 }
 
 ?>
