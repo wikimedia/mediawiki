@@ -808,10 +808,10 @@ agrees to license it under the terms of the $1.",
 'largefile'		=> 'It is recommended that images not exceed 100k in size.',
 'fileexists'		=> 'A file with this name exists already, please check $1 if you are not sure if you want to change it.',
 'successfulupload' => 'Successful upload',
-'fileuploaded'	=> "File \"$1\" uploaded successfully.
+'fileuploaded'	=> "File uploaded successfully.
 Please follow this link: $2 to the description page and fill
 in information about the file, such as where it came from, when it was
-created and by whom, and anything else you may know about it.",
+created and by whom, and anything else you may know about it. If this is an image, you can insert it like this: <tt><nowiki>[[Image:$1|thumb|Description]]</nowiki></tt>",
 'uploadwarning' => 'Upload warning',
 'savefile'		=> 'Save file',
 'uploadedimage' => "uploaded \"$1\"",
