@@ -16,7 +16,7 @@
 #
 
 # Use UTF-8
-require_once( "LanguageUtf8.php" );
+require_once( 'LanguageUtf8.php' );
 
 if($wgMetaNamespace === FALSE)
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
@@ -1374,7 +1374,7 @@ class LanguageNn extends LanguageUtf8 {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = (0 + substr( $ts, 6, 2 )) . ". " .
-		  $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " .
+		  $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . ' ' .
 		  substr( $ts, 0, 4 );
 		return $d;
 	}
@@ -1383,13 +1383,13 @@ class LanguageNn extends LanguageUtf8 {
 	{
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-		$t = substr( $ts, 8, 2 ) . "" . substr( $ts, 10, 2 );
+		$t = substr( $ts, 8, 4 );
 		return $t;
 	}
 
 	function timeanddate( $ts, $adj = false )
 	{
-		return $this->date( $ts, $adj ) . " kl. " . $this->time( $ts, $adj );
+		return $this->date( $ts, $adj ) . ' kl. ' . $this->time( $ts, $adj );
 	}
 
 	# Inherit rfc1123()
