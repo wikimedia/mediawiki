@@ -620,7 +620,7 @@ class Database {
 	 */
 	function select( $table, $vars, $conds='', $fname = 'Database::select', $options = array() )
 	{
-		if ( is_array( $vars ) ) {
+		if( is_array( $vars ) ) {
 			$vars = implode( ',', $vars );
 		}
 		if( is_array( $table ) ) {
@@ -633,7 +633,7 @@ class Database {
 
 		list( $useIndex, $tailOpts ) = $this->makeSelectOptions( $options );
 		
-		if ( $conds !== false && $conds != '' ) {
+		if( !empty( $conds ) ) {
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, LIST_AND );
 			}
