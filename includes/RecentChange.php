@@ -131,16 +131,22 @@ class RecentChange
 			$now = $this->mAttribs['rc_timestamp'];
 			$curId = $this->mAttribs['rc_cur_id'];
 
-			# Update rc_this_oldid for the entries which were current
-			$dbw->update( 'recentchanges',
-				array( /* SET */
-					'rc_this_oldid' => $oldid
-				), array( /* WHERE */
-					'rc_namespace' => $ns,
-					'rc_title' => $title,
-					'rc_timestamp' => $dbw->timestamp($lastTime)
-				), $fname
-			);
+			# Don't bother looking for entries that have probably
+			# been purged, it just locks up the indexes needlessly.
+			global $wgRCMaxAge;
+			$age = time() - wfTimestamp( TS_UNIX, $lastTime );
+			if( $age < $wgRCMaxAge ) {
+				# Update rc_this_oldid for the entries which were current
+				$dbw->update( 'recentchanges',
+					array( /* SET */
+						'rc_this_oldid' => $oldid
+					), array( /* WHERE */
+						'rc_namespace' => $ns,
+						'rc_title' => $title,
+						'rc_timestamp' => $dbw->timestamp( $lastTime )
+					), $fname
+				);
+			}
 
 			# Update rc_cur_time
 			$dbw->update( 'recentchanges', array( 'rc_cur_time' => $now ),

@@ -1815,8 +1815,10 @@ class Article {
 
 		wfSeedRandom();
 		if ( 0 == mt_rand( 0, 999 ) ) {
+			# Periodically flush old entries from the recentchanges table.
+			global $wgRCMaxAge;
 			$dbw =& wfGetDB( DB_MASTER );
-			$cutoff = $dbw->timestamp( time() - ( 7 * 86400 ) );
+			$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
 			$sql = "DELETE FROM recentchanges WHERE rc_timestamp < '{$cutoff}'";
 			$dbw->query( $sql );
 		}
