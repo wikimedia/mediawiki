@@ -213,7 +213,7 @@ class Parser
 		$ti = $this->mTitle->getText() ;
 		$ti = explode ( ":" , $ti , 2 ) ;
 		if ( $cat != $ti[0] ) return "" ;
-		$r = "<br break=all>\n" ;
+		$r = "<br break='all'/>\n" ;
 
 		$articles = array() ;
 		$parents = array () ;
@@ -423,7 +423,7 @@ class Parser
 		$text = $this->replaceVariables( $text );
 
 		# $text = preg_replace( "/(^|\n)-----*/", "\\1<hr>", $text );
-		$text = str_replace ( "<HR>", "<hr>", $text );
+		$text = str_replace ( "<HR>", "<hr/>", $text );
 
 		$text = $this->doHeadings( $text );
 		$text = $this->doBlockLevels( $text, $linestart );
@@ -687,7 +687,7 @@ class Parser
 					$tagIsOpen = (count( $tokenStack ) != 0);
 					break;
 				case "----":
-					$txt = "\n<hr>\n";
+					$txt = "\n<hr/>\n";
 					break;
 				case "'''":
 					# This and the three next ones handle quotes
@@ -891,8 +891,7 @@ class Parser
 	/* private */ function closeParagraph()
 	{
 		$result = "";
-		if ( 0 != strcmp( "p", $this->mLastSection ) &&
-		  0 != strcmp( "", $this->mLastSection ) ) {
+		if ( 0 != strcmp( "", $this->mLastSection ) ) {
 			$result = "</" . $this->mLastSection  . ">";
 		}
 		$this->mLastSection = "";
@@ -1026,7 +1025,7 @@ class Parser
 			}
 			if ( 0 == $npl ) { # No prefix--go to paragraph mode
 				if ( preg_match(
-				  "/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6)/i", $t ) ) {
+				  "/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<p)/i", $t ) ) {
 					$text .= $this->closeParagraph();
 					$inBlockElem = true;
 				}
@@ -1050,7 +1049,7 @@ class Parser
 					$this->mLastSection = $newSection;
 				}
 				if ( $inBlockElem &&
-				  preg_match( "/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6)/i", $t ) ) {
+				  preg_match( "/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|<\\/p)/i", $t ) ) {
 					$inBlockElem = false;
 				}
 			}
@@ -1273,10 +1272,10 @@ class Parser
 			"h2", "h3", "h4", "h5", "h6", "cite", "code", "em", "s",
 			"strike", "strong", "tt", "var", "div", "center",
 			"blockquote", "ol", "ul", "dl", "table", "caption", "pre",
-			"ruby", "rt" , "rb" , "rp"
+			"ruby", "rt" , "rb" , "rp", "p"
 		);
 		$htmlsingle = array(
-			"br", "p", "hr", "li", "dt", "dd"
+			"br", "hr", "li", "dt", "dd", "hr/"
 		);
 		$htmlnest = array( # Tags that can be nested--??
 			"table", "tr", "td", "th", "div", "blockquote", "ol", "ul",
