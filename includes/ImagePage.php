@@ -139,9 +139,9 @@ class ImagePage extends Article {
 		}
 		
 		if ( !is_null( $image ) ) {
-			$q = "&image={$image}";
+			$q = "&image=" . urlencode( $image );
 		} else if ( !is_null( $oldimage ) ) {
-			$q = "&oldimage={$oldimage}";
+			$q = "&oldimage=" . urlencode( $oldimage );
 		} else {
 			$q = "";
 		}
