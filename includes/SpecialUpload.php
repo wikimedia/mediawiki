@@ -92,8 +92,10 @@ class UploadForm {
 
 		if ( "" != $this->mOname ) {
 			$basename = strrchr( $this->mOname, "/" );
+
 			if ( false === $basename ) { $basename = $this->mOname; }
 			else ( $basename = substr( $basename, 1 ) );
+
 
 			$ext = strrchr( $basename, "." );
 			if ( false === $ext ) { $ext = ""; }
@@ -106,6 +108,16 @@ class UploadForm {
 				$this->mainUploadForm( WfMsg( "minlength" ) );
 				return;
 			}
+
+			$changed_name = false;
+			$bn = preg_replace ( "/[^".Title::legalChars()."]/", '-', $basename );
+			if ( 0 != strcmp( $bn, $basename ) )
+			{
+				$changed_name = true;
+				$basename = $bn;
+			}
+
+
 			$nt = Title::newFromText( $basename );
 			if( !$nt ) {
 				return $this->uploadError( wfMsg( "illegalfilename", htmlspecialchars( $basename ) ) );
@@ -126,7 +138,7 @@ class UploadForm {
 			
 			if ( ! $this->mIgnoreWarning ) {
 				$warning = '';
-				if( 0 != strcmp( ucfirst( $basename ), $this->mUploadSaveName ) ) {
+				if( $changed_name || 0 != strcmp( ucfirst( $basename ), $this->mUploadSaveName ) ) {
 					$warning .=  '<li>'.wfMsg( "badfilename", htmlspecialchars( $this->mUploadSaveName ) ).'</li>';
 				}
 
