@@ -115,7 +115,7 @@ class ParserTest {
 					if( !isset( $data['article'] ) ) {
 						die( "'endarticle' without 'article' at line $n\n" );
 					}
-					$this->addArticle($this->chomp($data['article']), $this->chomp($data['text']));
+					$this->addArticle($this->chomp($data['article']), $this->chomp($data['text']), $n);
 					$data = array();
 					$section = null;
 					continue;
@@ -154,6 +154,9 @@ class ParserTest {
 					$data = array();
 					$section = null;
 					continue;
+				}
+				if ( isset ($data[$section] ) ) {
+					die ( "duplicate section '$section' at line $n\n" );
 				}
 				$data[$section] = '';
 				continue;
@@ -282,28 +285,69 @@ class ParserTest {
 	 * Currently this will only be done once per run, and any changes to
 	 * the db will be visible to later tests in the run.
 	 *
-	 * This is ugly, but we need a way to modify the database
-	 * without breaking anything. Currently it isn't possible
-	 * to roll back transactions, which might help with this.
-	 * -- wtm
-	 *
 	 * @access private
 	 */
 	function setupDatabase() {
 		static $setupDB = false;
-		if (!$setupDB && $GLOBALS['wgDBprefix'] === 'parsertest') {
+		global $wgDBprefix;
+
+		# Make sure we don't mess with the live DB
+		if (!$setupDB && $wgDBprefix === 'parsertest') {
 			$db =& wfGetDB( DB_MASTER );
-			if (0) {
-				# XXX CREATE TABLE ... LIKE requires MySQL 4.1
-				$tables = array('cur', 'interwiki', 'brokenlinks', 'recentchanges');
+
+			# List of temporary tables to create, without prefix
+			# Some of these probably aren't necessary
+			$tables = array('user', 'cur', 'old', 'links',
+				'brokenlinks', 'imagelinks', 'categorylinks',
+				'linkscc', 'site_stats', 'hitcounter',
+				'ipblocks', 'image', 'oldimage',
+				'recentchanges',
+				'watchlist', 'math', 'searchindex',
+				'interwiki', 'querycache',
+				'objectcache', 'blobs', 'validate'
+			);
+			
+			# List of tables whose contents we need to copy
+			$copy_tables = array('interwiki');
+
+			if (!(strcmp($db->getServerVersion(), '4.1') < 0 and stristr($db->getSoftwareLink(), 'MySQL'))) {
+				# Database that supports CREATE TABLE ... LIKE
 				foreach ($tables as $tbl) {
-					$db->query('CREATE TEMPORARY TABLE ' . $GLOBALS['wgDBprefix'] . "$tbl LIKE $tbl");
+					$db->query("CREATE TEMPORARY TABLE $wgDBprefix$tbl LIKE $tbl");
 				}
 			}
 			else {
-				# HACK, sorry
-				dbsource( 'maintenance/parserTests.sql', $db );
+				# Hack for MySQL versions < 4.1, which don't support
+				# "CREATE TABLE ... LIKE". Note that
+				# "CREATE TEMPORARY TABLE ... SELECT * FROM ... LIMIT 0"
+				# would not create the indexes we need....
+				foreach ($tables as $tbl) {
+					$res = $db->query("SHOW CREATE TABLE $tbl");
+					$row = $db->fetchRow($res);
+					$create = $row[1];
+					$create_tmp = preg_replace('/CREATE TABLE `(.*?)`/', 'CREATE TEMPORARY TABLE `'
+						. $wgDBprefix . '\\1`', $create);
+					if ($create === $create_tmp) {
+						# Couldn't do replacement
+						die("could not create temporary table $tbl");
+					}
+					$db->query($create_tmp);
+				}
+
 			}
+
+			foreach ($copy_tables as $tbl) {
+				$db->query("INSERT INTO $wgDBprefix$tbl SELECT * FROM $tbl");
+			}
+
+			# Hack: insert a few Wikipedia in-project interwiki prefixes,
+			# for testing inter-language links
+			$db->query("INSERT INTO ${wgDBprefix}interwiki
+				(iw_prefix,iw_url,iw_local) VALUES
+				('zh','http://zh.wikipedia.org/wiki/$1',1),
+				('es','http://es.wikipedia.org/wiki/$1',1),
+				('fr','http://fr.wikipedia.org/wiki/$1',1)");
+
 			$setupDB = true;
 		}
 	}
@@ -431,14 +475,22 @@ class ParserTest {
 	 * Insert a temporary test article
 	 * @param $name string the title, including any prefix
 	 * @param $text string the article text
+	 * @param $line int the input line number, for reporting errors
 	 * @static
 	 * @access private
 	 */
-	function addArticle($name, $text) {
-		# TODO: check if article exists and die gracefully
-		# if we are trying to insert a duplicate
+	function addArticle($name, $text, $line) {
 		$this->setupGlobals();
 		$title = Title::newFromText( $name );
+		if ( is_null($title) ) {
+			die( "invalid title at line $line\n" );
+		}
+
+		$aid = $title->getArticleID( GAID_FOR_UPDATE );
+		if ($aid != 0) {
+			die( "duplicate article at line $line\n" );
+		}
+
 		$art = new Article($title);
 		$art->insertNewArticle($text, '', false, false );
 		$this->teardownGlobals();

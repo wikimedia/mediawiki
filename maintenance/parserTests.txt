@@ -30,7 +30,6 @@ Main Page
 blah blah
 !! endarticle
 
-
 ###
 ### Basic tests
 ###
@@ -39,6 +38,7 @@ Blank input
 !! input
 !! result
 !! end
+
 
 !! test
 Simple paragraph
@@ -296,7 +296,7 @@ Definition list with wikilink containing colon
 !! input
 ; [[Wikipedia:FAQ]]: The least-read page on Wikipedia
 !! result
-<dl><dt> <a href="/index.php?title=Wikipedia:FAQ&amp;action=edit" class="new" title="Wikipedia:FAQ">Wikipedia:FAQ</a></dt><dd> The least-read page on Wikipedia
+<dl><dt> <a href="http://en.wikipedia.org/wiki/FAQ" class='extiw'>Wikipedia:FAQ</a></dt><dd> The least-read page on Wikipedia
 </dd></dl>
 
 !! end
@@ -319,6 +319,16 @@ Malformed definition list with colon
 !! result
 <dl><dt>  <a href="news:alt.wikipedia.rox" class='external'>news:alt.wikipedia.rox</a> -- don't crash or enter an infinite loop
 </dt></dl>
+
+!! end
+
+!! test
+Definition lists: colon in external link text
+!! input
+; [http://www.wikipedia2.org/ Wikipedia : The Next Generation]: OK, I made that up
+!! result
+<dl><dt> <a href="http://www.wikipedia2.org/" class='external' title="http://www.wikipedia2.org/">Wikipedia&nbsp;: The Next Generation</a><span class='urlexpansion'> (<i>http://www.wikipedia2.org/</i>)</span></dt><dd> OK, I made that up
+</dd></dl>
 
 !! end
 
@@ -825,14 +835,6 @@ Inline interwiki link
 <p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity" class='extiw'>MeatBall:SoftSecurity</a>
 </p>
 !! end
-
-###
-### Images
-###
-
-!! test
-[[
-
 
 ##
 ## XHTML tidiness
