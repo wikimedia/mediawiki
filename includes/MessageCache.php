@@ -117,16 +117,24 @@ class MessageCache
 	}
 
 	/**
-	 * Loads all cacheable messages from the database
+	 * Loads all or main part of cacheable messages from the database
 	 */
 	function loadFromDB() {
-			$fname = 'MessageCache::loadFromDB';
+		global $wgPartialMessageCache;
+		$fname = 'MessageCache::loadFromDB';
 		$dbr =& wfGetDB( DB_SLAVE );
+		$conditions = array( 'cur_is_redirect' => 0, 
+					'cur_namespace' => NS_MEDIAWIKI);
+		if ($wgPartialMessageCache) {
+			if (is_array($wgPartialMessageCache)) {
+				$conditions['cur_title']=$wgPartialMessageCache;
+			} else {
+				require_once("MessageCacheHints.php");
+				$conditions['cur_title']=MessageCacheHints::get();
+			}
+		}
 		$res = $dbr->select( 'cur',
-			array( 'cur_title', 'cur_text' ),
-			array( 'cur_is_redirect' => 0, 'cur_namespace' => NS_MEDIAWIKI ),
-			$fname
-		);
+			array( 'cur_title', 'cur_text' ), $conditions, $fname);
 
 		$this->mCache = array();
 		for ( $row = $dbr->fetchObject( $res ); $row; $row = $dbr->fetchObject( $res ) ) {
