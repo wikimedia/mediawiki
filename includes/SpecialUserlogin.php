@@ -132,10 +132,10 @@ class LoginForm {
 			$key = "$wgDBname:acctcreate:ip:$wgIP";
 			$value = $wgMemc->incr( $key );
 			if ( !$value ) {
-				$wgMemc->set( $key, 0, 86400 );
+				$wgMemc->set( $key, 1, 86400 );
 			}
-			if ( $value > $wgAccountCreationThrottle ) ) {
-				$this->throttleHit();
+			if ( $value > $wgAccountCreationThrottle ) {
+				$this->throttleHit( $wgAccountCreationThrottle );
 				return;
 			}
 		}
