@@ -343,6 +343,8 @@ If upgrading from an older release, see the file UPGRADE;
 * Disallow ISO 8859-1 C1 characters and "no-break space" in user names
   on Latin-1 wikis.
 * Correct the name of the main page it LanguageIt
+* Allow Special:Makesysop to work for usernames containing SQL special
+  characters.
 
 === Caveats ===
 
