@@ -721,6 +721,10 @@ $wgRCSeconds = false;
 # Log IP addresses in the recentchanges table
 $wgPutIPinRC = false;
 
+# Recentchanges items are periodically purged;
+# entries older than this many seconds will go.
+$wgRCMaxAge = 7 * 24 * 3600; # our one week cutoff
+
 # RDF metadata toggles
 $wgEnableDublinCoreRdf = false;
 $wgEnableCreativeCommonsRdf = false;
