@@ -1,19 +1,20 @@
 <?php
 global $wgSpecialPages;
 $wgSpecialPages = array(
-	"Userlogin"		=> new UnlistedSpecialPage( "Userlogin" ),
-	"Userlogout"	=> new UnlistedSpecialPage( "Userlogout" ),
-	"Preferences"	=> new SpecialPage( "Preferences" ),
-	"Watchlist"		=> new SpecialPage( "Watchlist" ),
-	"Recentchanges" => new SpecialPage( "Recentchanges" ),
-	"Upload"		=> new SpecialPage( "Upload" ),
-	"Imagelist"		=> new SpecialPage( "Imagelist" ),
-	"Listusers"		=> new SpecialPage( "Listusers" ),
-	"Listadmins"	=> new SpecialPage( "Listadmins" ),
-	"Statistics"	=> new SpecialPage( "Statistics" ),
-	"Randompage"	=> new SpecialPage( "Randompage" ),
-	"Lonelypages"	=> new SpecialPage( "Lonelypages" ),
-	"Unusedimages"	=> new SpecialPage( "Unusedimages" )
+	"Userlogin"         => new UnlistedSpecialPage( "Userlogin" ),
+	"Userlogout"        => new UnlistedSpecialPage( "Userlogout" ),
+	"Preferences"       => new SpecialPage( "Preferences" ),
+	"Watchlist"         => new SpecialPage( "Watchlist" ),
+	"Recentchanges"     => new SpecialPage( "Recentchanges" ),
+	"Upload"            => new SpecialPage( "Upload" ),
+	"Imagelist"         => new SpecialPage( "Imagelist" ),
+	"Listusers"         => new SpecialPage( "Listusers" ),
+	"Listadmins"        => new SpecialPage( "Listadmins" ),
+	"Statistics"        => new SpecialPage( "Statistics" ),
+	"Randompage"        => new SpecialPage( "Randompage" ),
+	"Lonelypages"       => new SpecialPage( "Lonelypages" ),
+	"Uncategorizedpages"=> new SpecialPage( "Uncategorizedpages" ),
+	"Unusedimages"      => new SpecialPage( "Unusedimages" )
 );
 global $wgDisableCounters;
 if( !$wgDisableCounters )
