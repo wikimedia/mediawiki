@@ -50,7 +50,7 @@ class Parser
 {
 	# Persistent:
 	var $mTagHooks;
-	
+
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
 	var $mVariables, $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
@@ -102,9 +102,9 @@ class Parser
 			$fixtags = array(
 				# french spaces, last one Guillemet-left
 				# only if there is something before the space
-				'/(.) (\\?|:|;|!|\\302\\273)/i' => '\\1&nbsp;\\2', 
+				'/(.) (\\?|:|;|!|\\302\\273)/i' => '\\1&nbsp;\\2',
 				# french spaces, Guillemet-right
-				"/(\\302\\253) /i"=>"\\1&nbsp;", 
+				"/(\\302\\253) /i"=>"\\1&nbsp;",
 				'/<hr *>/i' => '<hr />',
 				'/<br *>/i' => '<br />',
 				'/<center *>/i' => '<div class="center">',
@@ -117,10 +117,10 @@ class Parser
 		} else {
 			$fixtags = array(
 				# french spaces, last one Guillemet-left
-				'/ (\\?|:|!|\\302\\273)/i' => '&nbsp;\\1', 
+				'/ (\\?|:|!|\\302\\273)/i' => '&nbsp;\\1',
 				# french spaces, Guillemet-right
-				'/(\\302\\253) /i' => '\\1&nbsp;', 
-				'/([^> ]+(&#x30(1|3|9);)[^< ]*)/i' => '<span class="diacrit">\\1</span>', 
+				'/(\\302\\253) /i' => '\\1&nbsp;',
+				'/([^> ]+(&#x30(1|3|9);)[^< ]*)/i' => '<span class="diacrit">\\1</span>',
 				'/<center *>/i' => '<div class="center">',
 				'/<\\/center *>/i' => '</div>'
 			);
@@ -199,7 +199,7 @@ class Parser
 		$pre_content = array();
 		$comment_content = array();
 		$ext_content = array();
-		
+
 		# Replace any instances of the placeholders
 		$uniq_prefix = UNIQ_PREFIX;
 		#$text = str_replace( $uniq_prefix, wfHtmlEscapeFirst( $uniq_prefix ), $text );
@@ -266,7 +266,7 @@ class Parser
 			$state['math'] = $state['math'] + $math_content;
 			$state['pre'] = $state['pre'] + $pre_content;
 			$state['comment'] = $state['comment'] + $comment_content;
-			
+
 			foreach( $ext_content as $tag => $array ) {
 				if ( array_key_exists( $tag, $state ) ) {
 					$state[$tag] = $state[$tag] + $array;
@@ -297,7 +297,7 @@ class Parser
 
 		return $text;
 	}
-	# always call this after unstrip() to preserve the order 
+	# always call this after unstrip() to preserve the order
 	function unstripNoWiki( $text, &$state ) {
 		# Must expand in reverse order, otherwise nested tags will be corrupted
 		for ( $content = end($state['nowiki']); $content !== false; $content = prev( $state['nowiki'] ) ) {
@@ -423,8 +423,8 @@ class Parser
 
 		# FIXME: add limits
 		$t = wfStrencode( $this->mTitle->getDBKey() );
-		$sql = "SELECT DISTINCT cur_title,cur_namespace,cl_sortkey FROM 
-cur,categorylinks WHERE cl_to='$t' AND cl_from=cur_id ORDER BY 
+		$sql = "SELECT DISTINCT cur_title,cur_namespace,cl_sortkey FROM
+cur,categorylinks WHERE cl_to='$t' AND cl_from=cur_id ORDER BY
 cl_sortkey" ;
 		$res = wfQuery ( $sql, DB_READ ) ;
 		while ( $x = wfFetchObject ( $res ) )
@@ -432,7 +432,7 @@ cl_sortkey" ;
 			$t = $ns = $wgLang->getNsText ( $x->cur_namespace ) ;
 			if ( $t != '' ) $t .= ':' ;
 			$t .= $x->cur_title ;
-			
+
 			if ( $x->cur_namespace == $cns ) {
 				$ctitle = str_replace( '_',' ',$x->cur_title );
 				array_push ( $children, $sk->makeKnownLink ( $t, $ctitle ) ) ; # Subcategory
@@ -462,22 +462,22 @@ cl_sortkey" ;
 			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n"
 				. wfMsg( 'subcategorycount', count( $children ) );
 			if ( count ( $children ) > 6 ) {
-			
+
 				// divide list into three equal chunks
 				$chunk = (int) (count ( $children ) / 3);
 
 				// get and display header
 				$r .= '<table width="100%"><tr valign="top">';
-			
+
 				$startChunk = 0;
 				$endChunk = $chunk;
-			
+
 				// loop through the chunks
-				for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0; 
+				for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0;
 					$chunkIndex < 3;
 					$chunkIndex++, $startChunk = $endChunk, $endChunk += $chunk + 1)
 				{
-				
+
 					$r .= '<td><ul>';
 					// output all subcategories to category
 					for ($index = $startChunk ;
@@ -490,17 +490,17 @@ cl_sortkey" ;
 						{
 							$r .= "</ul><h3>{$children_start_char[$index]}</h3>\n<ul>";
 						}
-				
+
 						$r .= "<li>{$children[$index]}</li>";
 					}
 					$r .= '</ul></td>';
-				
-							
+
+
 				}
 				$r .= '</tr></table>';
 			} else {
 				// for short lists of subcategories to category.
-	
+
 				$r .= "<h3>{$children_start_char[0]}</h3>\n";
 				$r .= '<ul><li>'.$children[0].'</li>';
 				for ($index = 1; $index < count($children); $index++ )
@@ -509,7 +509,7 @@ cl_sortkey" ;
 					{
 						$r .= "</ul><h3>{$children_start_char[$index]}</h3>\n<ul>";
 					}
-				
+
 					$r .= "<li>{$children[$index]}</li>";
 				}
 				$r .= '</ul>';
@@ -522,21 +522,21 @@ cl_sortkey" ;
 		# Showing articles in this category
 		if ( count ( $articles ) > 6) {
 			$ti = $this->mTitle->getText() ;
-			
+
 			// divide list into three equal chunks
 			$chunk = (int) (count ( $articles ) / 3);
-			
+
 			// get and display header
 			$r .= '<table width="100%"><tr valign="top">';
-			
+
 			// loop through the chunks
-			for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0; 
+			for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0;
 				$chunkIndex < 3;
 				$chunkIndex++, $startChunk = $endChunk, $endChunk += $chunk + 1)
 			{
-				
+
 				$r .= '<td><ul>';
-				
+
 				// output all articles in category
 				for ($index = $startChunk ;
 					$index < $endChunk && $index < count($articles);
@@ -548,18 +548,18 @@ cl_sortkey" ;
 					{
 						$r .= "</ul><h3>{$articles_start_char[$index]}</h3>\n<ul>";
 					}
-				
+
 					$r .= "<li>{$articles[$index]}</li>";
 				}
 				$r .= '</ul></td>';
-				
-	
+
+
 			}
 			$r .= '</tr></table>';
 		} elseif ( count ( $articles )  > 0) {
 			// for short lists of articles in categories.
 			$ti = $this->mTitle->getText() ;
-			
+
 			$r .= '<h3>'.$articles_start_char[0]."</h3>\n";
 			$r .= '<ul><li>'.$articles[0].'</li>';
 			for ($index = 1; $index < count($articles); $index++ )
@@ -568,7 +568,7 @@ cl_sortkey" ;
 				{
 					$r .= "</ul><h3>{$articles_start_char[$index]}</h3>\n<ul>";
 				}
-				
+
 				$r .= "<li>{$articles[$index]}</li>";
 			}
 			$r .= '</ul>';
@@ -624,7 +624,7 @@ cl_sortkey" ;
 		global $wgInputEncoding, $wgOutputEncoding;
 		$fname = 'Parser::tidy';
 		wfProfileIn( $fname );
-		
+
 		$cleansource = '';
 		switch(strtoupper($wgOutputEncoding)) {
 			case 'ISO-8859-1':
@@ -657,7 +657,7 @@ cl_sortkey" ;
 		}
 
 		wfProfileOut( $fname );
-		
+
 		if( $cleansource == '' && $text != '') {
 			wfDebug( "Tidy error detected!\n" );
 			return $text . "\n<!-- Tidy found serious XHTML errors -->\n";
@@ -768,13 +768,13 @@ cl_sortkey" ;
 
 	# Parses the text and adds the result to the strip state
 	# Returns the strip tag
-	function stripParse( $text, $newline, $args ) 
+	function stripParse( $text, $newline, $args )
 	{
 		$text = $this->strip( $text, $this->mStripState );
 		$text = $this->internalParse( $text, (bool)$newline, $args, false );
 		return $newline.$this->insertStripItem( $text, $this->mStripState );
 	}
-	
+
 	function internalParse( $text, $linestart, $args = array(), $isMain=true ) {
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
@@ -809,7 +809,7 @@ cl_sortkey" ;
 		wfProfileOut( $fname );
 		return $text;
 	}
-	
+
 	# Parse ^^ tokens and return html
 	/* private */ function doExponent ( $text )
 	{
@@ -845,7 +845,7 @@ cl_sortkey" ;
 		wfProfileOut( $fname );
 		return $outtext;
 	}
-	
+
 	/* private */ function &doMagicLinks( &$text ) {
 		$text = $this->magicISBN( $text );
 		$text = $this->magicRFC( $text );
@@ -884,8 +884,9 @@ cl_sortkey" ;
 					}
 					# Count the number of occurrences of bold and italics mark-ups.
 					# We are not counting sequences of five apostrophes.
-					if (strlen ($arr[$i]) == 2) $numitalics++; else
-					if (strlen ($arr[$i]) == 3) $numbold++;
+					if (strlen ($arr[$i]) == 2) $numitalics++;  else
+					if (strlen ($arr[$i]) == 3) $numbold++;     else
+					if (strlen ($arr[$i]) == 5) { $numitalics++; $numbold++; }
 				}
 				$i++;
 			}
@@ -910,7 +911,7 @@ cl_sortkey" ;
 							if ($firstspace == -1) $firstspace = $i;
 						} else if ($x2 == " ") {
 							if ($firstsingleletterword == -1) $firstsingleletterword = $i;
-		} else {
+						} else {
 							if ($firstmultiletterword == -1) $firstmultiletterword = $i;
 						}
 					}
@@ -922,7 +923,7 @@ cl_sortkey" ;
 				{
 					$arr [ $firstsingleletterword ] = "''";
 					$arr [ $firstsingleletterword-1 ] .= "'";
-			}
+				}
 				# If not, but there's a multi-letter word, use that one.
 				else if ($firstmultiletterword > -1)
 				{
@@ -930,7 +931,9 @@ cl_sortkey" ;
 					$arr [ $firstmultiletterword-1 ] .= "'";
 				}
 				# ... otherwise use the first one that has neither.
-				else
+				# (notice that it is possible for all three to be -1 if, for example,
+				# there is only one pentuple-apostrophe in the line)
+				else if ($firstspace > -1)
 				{
 					$arr [ $firstspace ] = "''";
 					$arr [ $firstspace-1 ] .= "'";
@@ -1160,7 +1163,7 @@ cl_sortkey" ;
 				}
 			}
 			wfProfileOut( $fname.'-prefixhandling' );
-			
+
 			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 				$text = $m[2];
 				# fix up urlencoded title texts
@@ -1428,7 +1431,7 @@ cl_sortkey" ;
 					$paragraphStack = false;
 					$output .= $this->closeParagraph();
 					if($preOpenMatch and !$preCloseMatch) {
-						$this->mInPre = true;	
+						$this->mInPre = true;
 					}
 					if ( $closematch  ) {
 						$inBlockElem = false;
@@ -1552,12 +1555,12 @@ cl_sortkey" ;
 
 		# PHP global rebinding syntax is a bit weird, need to use the GLOBALS array
 		$GLOBALS['wgCurParser'] =& $this;
-		
+
 
 		if ( $this->mOutputType == OT_HTML ) {
 			# Variable substitution
 			$text = preg_replace_callback( "/{{([$nonBraceChars]*?)}}/", 'wfVariableSubstitution', $text );
-			
+
 			# Argument substitution
 			$text = preg_replace_callback( "/(\\n?){{{([$titleChars]*?)}}}/", 'wfArgSubstitution', $text );
 		}
@@ -1612,7 +1615,7 @@ cl_sortkey" ;
 		$found = false;
 		$nowiki = false;
 		$noparse = false;
-		
+
 		$title = NULL;
 
 		# $newline is an optional newline character before the braces
@@ -1625,7 +1628,7 @@ cl_sortkey" ;
 
 		$args = $this->getTemplateArgs($matches[3]);
 		$argc = count( $args );
-	
+
 		# {{{}}}
 		if ( strpos( $matches[0], '{{{' ) !== false ) {
 			$text = $matches[0];
@@ -1811,7 +1814,7 @@ cl_sortkey" ;
 		if ( array_key_exists( $arg, $inputArgs ) ) {
 			$text = $this->stripParse( $inputArgs[$arg], $newline, array() );
 		}
-		
+
 		return $text;
 	}
 
@@ -1833,7 +1836,7 @@ cl_sortkey" ;
 		global $wgUseTidy, $wgUserHtml;
 		$fname = 'Parser::removeHTMLtags';
 		wfProfileIn( $fname );
-		
+
 		if( $wgUserHtml ) {
 			$htmlpairs = array( # Tags that must be closed
 				'b', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
@@ -1938,7 +1941,7 @@ cl_sortkey" ;
 				} else {
 					$text .= '&lt;' . str_replace( '>', '&gt;', $x);
 				}
-			}	
+			}
 		}
 		wfProfileOut( $fname );
 		return $text;
@@ -1960,7 +1963,7 @@ cl_sortkey" ;
 
 	/* private */ function formatHeadings( $text, $isMain=true ) {
 		global $wgInputEncoding, $wgMaxTocLevel;
-		
+
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
 		$forceTocHere = false;
@@ -2013,7 +2016,7 @@ cl_sortkey" ;
 				$doShowToc = 1;
 			}
 		}
-		
+
 
 
 		# We need this to perform operations on the HTML
@@ -2195,7 +2198,7 @@ cl_sortkey" ;
 		}
 		return $text;
 	}
-	
+
 	# Return an HTML link for the "RFC 1234" text
 	/* private */ function magicRFC( $text ) {
 		global $wgLang;
