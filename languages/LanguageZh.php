@@ -104,5 +104,15 @@ class LanguageZh extends LanguageZh_cn {
 	function getVariants() {
 		return array("zh-cn", "zh-tw", "zh-sg", "zh-hk");
 	}
+
+	function getVariantFallback($v) {
+		switch ($v) {
+		case 'zh-cn': return 'zh-sg'; break;
+		case 'zh-sg': return 'zh-cn'; break;
+		case 'zh-tw': return 'zh-hk'; break;
+		case 'zh-hk': return 'zh-tw'; break;
+		}
+		return false;
+	}
 }
 ?>
