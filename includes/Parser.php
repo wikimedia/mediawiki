@@ -700,7 +700,7 @@ class Parser
 			$text = $wgDateFormatter->reformat( $this->mOptions->getDateFormat(), $text );
 		}
 		$text = $this->doAllQuotes( $text );
-		$text = $this->replaceInternalLinks ( $text );
+		$text = $this->replaceInternalLinks( $text );
 		$text = $this->replaceExternalLinks( $text );		
 		
 		# replaceInternalLinks may sometimes leave behind
@@ -1176,6 +1176,8 @@ class Parser
 		wfProfileOut( $fname.'-setup' );
 
 		$checkVariantLink = sizeof($wgContLang->getVariants())>1;
+		$useSubpages = $this->areSubpagesAllowed();
+		
 		# Loop for each link
 		for ($k = 0; isset( $a[$k] ); $k++) {
 			$line = $a[$k];
@@ -1221,7 +1223,11 @@ class Parser
 			}
 
 			# Make subpage if necessary
-			$link = $this->maybeDoSubpageLink( $m[1], $text );
+			if( $useSubpages ) {
+				$link = $this->maybeDoSubpageLink( $m[1], $text );
+			} else {
+				$link = $m[1];
+			}
 
 			$noforce = (substr($m[1], 0, 1) != ':');
 			if (!$noforce) {
@@ -1366,6 +1372,16 @@ class Parser
 	}
 
 	/**
+	 * Return true if subpage links should be expanded on this page.
+	 * @return bool
+	 */
+	function areSubpagesAllowed() {
+		# Some namespaces don't allow subpages
+		global $wgNamespacesWithSubpages;
+		return !empty($wgNamespacesWithSubpages[$this->mTitle->getNamespace()]);
+	}
+	
+	/**
 	 * Handle link to subpage if necessary
 	 * @param string $target the source of the link
 	 * @param string &$text the link text, modified as necessary
@@ -1378,7 +1394,6 @@ class Parser
 		# :Foobar -- override special treatment of prefix (images, language links)
 		# /Foobar -- convert to CurrentPage/Foobar
 		# /Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
-		global $wgNamespacesWithSubpages;
 
 		$fname = 'Parser::maybeDoSubpageLink';
 		wfProfileIn( $fname );
@@ -1393,7 +1408,7 @@ class Parser
 			}
 				
 			# Some namespaces don't allow subpages
-			if(!empty($wgNamespacesWithSubpages[$this->mTitle->getNamespace()])) {
+			if( $this->areSubpagesAllowed() ) {
 				# subpages allowed here
 				$ret = $this->mTitle->getPrefixedText(). '/' . trim($noslash);
 				if( '' === $text ) {
