@@ -246,8 +246,14 @@ class OutputPage {
 		wfProfileOut( $fname );
 	}
 
+	# Set the maximum cache time on the Squid in seconds
+	function setSquidMaxage( $maxage ) {
+		global $wgSquidMaxage;
+		$wgSquidMaxage = $maxage;
+	}
+	
 	function sendCacheControl() {
-		global $wgUseSquid, $wgUseESI, $wgSquidMaxage;
+		global $wgUseSquid, $wgUseESI, $wgSquidMaxage, $wgOut;
 		# FIXME: This header may cause trouble with some versions of Internet Explorer
 		header( "Vary: Accept-Encoding, Cookie" );
 		if( $this->mLastModified != "" ) {
