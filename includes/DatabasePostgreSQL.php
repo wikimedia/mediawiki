@@ -271,6 +271,10 @@ class DatabasePgsql extends Database {
 	# occurred in MySQL
 	function replace( $table, $uniqueIndexes, $rows, $fname = 'Database::replace' ) {
 		$table = $this->tableName( $table );
+	
+		if (count($rows)==0) {
+			return;
+		}
 
 		# Single row case
 		if ( !is_array( reset( $rows ) ) ) {
