@@ -675,6 +675,7 @@ class User {
 		$confstr .= '!' . $this->getOption( 'editsectiononrightclick' );
 		$confstr .= '!' . $this->getOption( 'showtoc' );
 		$confstr .= '!' . $this->getOption( 'date' );
+		$confstr .= '!' . $this->getOption( 'numberheadings' );
 
 		$this->mHash = $confstr;
 		return $confstr ;
