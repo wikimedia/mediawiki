@@ -18,13 +18,12 @@
 			$messages[$key]['statmsg'] = wfMsgNoDb( $key );
 			$messages[$key]['msg'] = wfMsg ( $key );
 		}
-		if ($ot == 'php') {
-			$navText .= makePhp($messages);
-			$wgOut->addHTML('<pre>'.htmlspecialchars($navText).'</pre>');
-		} else {
+		if ($ot == 'html') {
 			$navText .= makeWikiText($messages);
 			$wgOut->addWikiText( $navText );
-		}
+		} else {
+			$navText .= makePhp($messages);
+			$wgOut->addHTML('<pre>'.htmlspecialchars($navText).'</pre>');
 		return;
 	}
 	function makePhp($messages) {
