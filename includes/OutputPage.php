@@ -382,7 +382,9 @@ class OutputPage {
 		}
 
 
-		$this->sendCacheControl();
+		# Buffer output; final headers may depend on later processing
+		ob_start();
+
 		$this->transformBuffer();
 		
 		# Disable temporary placeholders, so that the skin produces HTML
@@ -397,7 +399,9 @@ class OutputPage {
 		}
 
 		$sk->outputPage( $this );
-		# flush();
+		
+		$this->sendCacheControl();
+		ob_end_flush();
 	}
 
 	function out( $ins ) {
