@@ -467,9 +467,11 @@ td.diff-context { background:#eeeeee; }
 }
 /* disable interwiki styling */
 #bodyContent a.interwiki {
+    color: #3366bb;
     background: none;
     padding: 0;
 }
+#bodyContent a.external { color: #3366bb; }
 /* this can be used in the content area to switch off
 special external link styling */
 #bodyContent .plainlinks a {
