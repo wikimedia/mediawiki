@@ -486,6 +486,7 @@ class OutputPage {
 	/**
 	 * Returns a HTML comment with the elapsed time since request.
 	 * This method has no side effects.
+	 * @return string
 	 */
 	function reportTime() {
 		global $wgRequestTime;
@@ -729,6 +730,7 @@ class OutputPage {
 
 	/**
  	 * @private
+	 * @return string
 	 */
 	function headElement() {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
