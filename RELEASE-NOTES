@@ -13,6 +13,9 @@ Changes from 1.3.1:
 * When session.handler is set incorrectly, try automatic override to 'files'
 * Watch/Unwatch links back to the affected page instead of Main Page
 * Upload link no longer displayed on Monobook if uploading is disabled
+* Special:Undelete shows log extract and history list more distinct
+* Speed up Special:Allmessages and fix error in safe mode
+
 
 == Version 1.3.1, 2004-08-14 ==
 
