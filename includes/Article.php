@@ -429,9 +429,10 @@ class Article {
 			}
 			# Article exists. Check for edit conflict.
 			# Don't check for conflict when appending a comment - this should always work
+			# switch from section editing to normal editing in edit conflict
 
 			$this->clear(); # Force reload of dates, etc.
-			if ( $section!="new" && ( $this->getTimestamp() != $wpEdittime ) ) { $isConflict = true; }
+			if ( $section!="new" && ( $this->getTimestamp() != $wpEdittime ) ) { $isConflict = true;$section="";$wpSection=""; }
 			$u = $wgUser->getID();
 
 			# Supress edit conflict with self
