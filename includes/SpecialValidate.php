@@ -199,13 +199,14 @@ class Validation
 		if ( count ( $d ) ) $d = array_shift ( $d ) ;
 		else $d = array () ;
 		krsort ( $d ) ;
-		$html .= "<table border=1 cellpadding=2>\n" ;
-		$html .= "<tr><th>Version</th>" ;
+		$html .= "<table border=1 cellpadding=2 style='font-size:8pt;'>\n" ;
+		$html .= "<tr><th>" . wfMsg('val_version') . "</th>" ;
 		foreach ( $validationtypes AS $idx => $title )
 			{
 			$title = explode ( "|" , $title ) ;
 			$html .= "<th>{$title[0]}</th>" ;
 			}
+		$html .= "<th>" . wfMsg('val_total') . "</th>" ;
 		$html .= "</tr>\n" ;
 		foreach ( $d AS $version => $data )
 			{
@@ -217,34 +218,51 @@ class Validation
 
 			$vmax = array() ;
 			$vcur = array() ;
+			$users = array() ;
 			foreach ( $data AS $type => $x2 )
 				{
 				if ( !isset ( $vcur[$type] ) ) $vcur[$type] = 0 ;
 				if ( !isset ( $vmax[$type] ) ) $vmax[$type] = 0 ;
+				if ( !isset ( $users[$type] ) ) $users[$type] = 0 ;
 				foreach ( $x2 AS $user => $x )
 					{
 					$vcur[$type] += $x->val_value ;
 					$temp = explode ( "|" , $validationtypes[$type]) ;
 					$vmax[$type] += $temp[3] - 1 ;
+					$users[$type] += 1 ;
 					}
 				}
 	
 	
+			$total_count = 0 ;
+			$total_percent = 0 ;
 			foreach ( $validationtypes AS $idx => $title )
 				{
-				$html .= "<td>" ;
+				$html .= "<td align=center valign=center>" ;
 				if ( isset ( $vcur[$idx] ) )
 					{
 					$average = 100 * $vcur[$idx] / $vmax[$idx] ;
-					$h = wfMsg ( "val_percent" ) ;
+					$total_count += 1 ;
+					$total_percent += $average ;
+					if ( $users[$idx] > 1 ) $h = wfMsg ( "val_percent" ) ;
+					else $h = wfMsg ( "val_percent_single" ) ;
 					$h = str_replace ( "$1" , $average , $h ) ;
 					$h = str_replace ( "$2" , $vcur[$idx] , $h ) ;
 					$h = str_replace ( "$3" , $vmax[$idx] , $h ) ;
+					$h = str_replace ( "$4" , $users[$idx] , $h ) ;
 					$html .= $h ;
 					}
 				else $html .= "(" . wfMsg ( "val_noop" ) . ")" ;
 				$html .= "</td>" ;
 				}
+			
+			if ( $total_count > 0 )
+				{
+				$total = $total_percent / $total_count ;
+				$total = "{$total} %" ;
+				}
+			else $total = "" ;
+			$html .= "<td align=center valign=center>{$total}</td>" ;
 			
 			$html .= "</tr>" ;
 			}
