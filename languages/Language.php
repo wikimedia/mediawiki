@@ -24,7 +24,8 @@
 	"cols" => 80, "rows" => 25, "searchlimit" => 20,
 	"contextlines" => 5, "contextchars" => 50,
 	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0
+	"highlightbroken" => 1, "stubthreshold" => 0,
+	"previewontop" => 1
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
@@ -57,7 +58,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"editondblclick" => "Edit pages on double click (JavaScript)",
 	"watchdefault" => "Watch new and modified articles",
 	"minordefault" => "Mark all edits minor by default",
-	"previewontop" => "Show preview before edit box and not after it"
+	"previewontop" => "Show preview before edit box and not after it",
+	"nocache" => "Disable page caching"
 );
 
 /* private */ $wgBookstoreListEn = array(
@@ -620,8 +622,10 @@ Your internal ID number is $2.",
 "savedprefs"	=> "Your preferences have been saved.",
 "timezonetext"	=> "Enter number of hours your local time differs
 from server time (UTC).",
-"localtime"	=> "Local time",
+"localtime"	=> "Local time display",
 "timezoneoffset" => "Offset",
+"servertime"	=> "Server time is now",
+"guesstimezone" => "Fill in from browser",
 "emailflag"		=> "Disable e-mail from other users",
 
 # Recent changes

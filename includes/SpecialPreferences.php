@@ -155,6 +155,8 @@ function wfSpecialPreferences()
 	$ltz = wfMsg( "localtime" );
 	$tzt = wfMsg( "timezonetext" );
 	$tzo = wfMsg( "timezoneoffset" );
+	$tzGuess = wfMsg( "guesstimezone" );
+	$tzServerTime = wfMsg( "servertime" );
 	$yem = wfMsg( "youremail" );
 	$emf = wfMsg( "emailflag" );
 	$ynn = wfMsg( "yournick" );
@@ -165,7 +167,7 @@ function wfSpecialPreferences()
 	$scc = wfMsg( "contextchars" );
 	$rcc = wfMsg( "recentchangescount" );
 
-	$wgOut->addHTML( "<form id=\"preferences\" action=\"$action\"
+	$wgOut->addHTML( "<form id=\"preferences\" name=\"preferences\" action=\"$action\"
 method=\"post\"><table border=\"1\"><tr><td valign=top nowrap><b>$qb:</b><br>\n" );
 
 	# Quickbar setting
@@ -227,11 +229,15 @@ value=\"$i\"$checked> {$mathopts[$i]}<br>\n" );
 
 	# Textbox rows, cols
 	#
+	$nowlocal = $wgLang->time( $now = wfTimestampNow(), true );
+	$nowserver = $wgLang->time( $now, false );
 	$wgOut->addHTML( "<td valign=top nowrap><b>$tbs:</b><br>
 $tbr: <input type=text name=\"wpRows\" value=\"{$wpRows}\" size=6><br>
 $tbc: <input type=text name=\"wpCols\" value=\"{$wpCols}\" size=6><br><br>
-<b>$ltz</b><br>
-$tzo*: <input type=text name=\"wpHourDiff\" value=\"{$wpHourDiff}\" size=6>
+<b>$tzServerTime:</b> $nowserver<br />
+<b>$ltz:</b> $nowlocal<br />
+$tzo*: <input type=text name=\"wpHourDiff\" value=\"{$wpHourDiff}\" size=6><br />
+<input type=\"button\" value=\"$tzGuess\" onClick=\"javascript:guessTimezone()\" />
 </td>" );
 
 	# Email, etc.
