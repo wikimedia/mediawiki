@@ -51,7 +51,14 @@ if ( -1 == $wgTitle->getNamespace() ) {
 	}
 		
 } else {
-	$wgArticle = new Article();
+	switch( $wgTitle->getNamespace() ) {
+	case 6:
+		include_once( "$IP/ImagePage.php" );
+		$wgArticle = new ImagePage( $wgTitle );
+		break;
+	default:
+		$wgArticle = new Article( $wgTitle );
+	}
 
 	switch( $action ) {
 		case "view":
