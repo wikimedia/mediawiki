@@ -221,7 +221,7 @@ class Skin {
 		return $a;
 	}
 
-	function getExternalLinkAttributes( $link, $text )
+	function getExternalLinkAttributes( $link, $text, $class='' )
 	{
 		global $wgUser, $wgOut, $wgLang;
 
@@ -230,7 +230,7 @@ class Skin {
 		$link = str_replace( "_", " ", $link );
 		$link = wfEscapeHTML( $link );
 
-		$r = " class='external'";
+		$r = ($class != '') ? " class='$class'" : " class='external'";
 
 		if ( 1 == $wgUser->getOption( "hover" ) ) {
 			$r .= " title=\"{$link}\"";
@@ -1473,7 +1473,7 @@ class Skin {
 			$u = $nt->getFullURL();
 			$link = $nt->getPrefixedURL();
 			if ( "" == $text ) { $text = $nt->getPrefixedText(); }
-			$style = $this->getExternalLinkAttributes( $link, $text );
+			$style = $this->getExternalLinkAttributes( $link, $text, 'extiw' );
 
 			$inside = "";
 			if ( "" != $trail ) {
