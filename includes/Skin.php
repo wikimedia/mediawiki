@@ -1562,11 +1562,11 @@ class Skin {
 		{
 			$s = str_replace( "$1", $name, wfMsg("missingimage") );
 		} else {
-			$s = "\n  <a href=\"{$u}\" class='image' title=\"{$alt}\">\n" .
-				"  <img src=\"{$url}\" alt=\"{$alt}\" />\n  </a>";
+			$s = "<a href=\"{$u}\" class='image' title=\"{$alt}\">" .
+				"<img src=\"{$url}\" alt=\"{$alt}\" /></a>";
 		}
 		if ( "" != $align ) {
-			$s = "<div class=\"float{$align}\"><span>{$s}\n</span></div>";
+			$s = "<div class=\"float{$align}\"><span>{$s}</span>\n</div>";
 		}
 		return $prefix.$s.$postfix;
 	}
@@ -1708,14 +1708,14 @@ class Skin {
 		if ( $thumbUrl == "" ) {
 			$s .= str_replace( "$1", $name, wfMsg("missingimage") );
 		} else {
-		  	$s .= "\n".'  <a href="'.$u.'" class="internal" title="'.$alt.'">'."\n".
-		  		'  <img src="'.$thumbUrl.'" alt="'.$alt.'" ' .
-				'  width="'.$boxwidth.'" height="'.$boxheight.'" /></a>' ."\n".
-		  		'  <a href="'.$u.'" class="internal" title="'.$more.'"> ' ."\n".
-		    		'  <img src="'.$wgUploadPath.'/magnify-clip.png" ' .
-				'width="26" height="24" align="'.$magnifyalign.'" alt="'.$more.'" /> </a>'."\n";
+		  	$s .= '<a href="'.$u.'" class="internal" title="'.$alt.'">'.
+		  		'<img src="'.$thumbUrl.'" alt="'.$alt.'" ' .
+				'width="'.$boxwidth.'" height="'.$boxheight.'" /></a>'.
+		  		'<a href="'.$u.'" class="internal" title="'.$more.'"> '.
+		    		'<img src="'.$wgUploadPath.'/magnify-clip.png" ' .
+				'width="26" height="24" align="'.$magnifyalign.'" alt="'.$more.'" /> </a>';
 		}
-		$s .= '  <p'.$textalign.'>'.$label."</p>\n</div></div>";
+		$s .= '  <p'.$textalign.'>'.$label."</p></div>\n</div>";
 		return $s;
 	}
 
