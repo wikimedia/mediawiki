@@ -238,8 +238,8 @@ class OutputPage {
 			}
 			if( $this->mRedirectCode == '301') {
 				header("HTTP/1.1 {$this->mRedirectCode} Moved Permanently");
-				$this->mLastModified = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix(
-					max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
+				
+				$this->mLastModified = gmdate( "D, j M Y H:i:s" ) . " GMT";
 			}
                         
 			$this->sendCacheControl();
