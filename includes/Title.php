@@ -1043,5 +1043,49 @@ class Title {
 		# Return true if there was no history
 		return $row === false;
 	}
+	
+	# Create a redirect, fails if the title already exists, does not notify RC
+	# Returns success
+	function createRedirect( $dest, $comment ) {
+		global $wgUser;
+		if ( $this->getArticleID() ) {
+			return false;
+		}
+		
+		$now = wfTimestampNow();
+		$won = wfInvertTimestamp( $now );
+
+		wfInsertArray( 'cur', array(
+			'cur_namespace' => $this->getNamespace(),
+			'cur_title' => $this->getDBkey(),
+			'cur_comment' => $comment,
+			'cur_user' => $wgUser->getID(),
+			'cur_user_text' => $wgUser->getName(),
+			'cur_timestamp' => $now,
+			'inverse_timestamp' => $won,
+			'cur_touched' => $now,
+			'cur_is_redirect' => 1,
+			'cur_is_new' => 1,
+			'cur_text' => "#REDIRECT [[" . $dest->getPrefixedText() . "]]\n" 
+		));
+		$newid = wfInsertId();
+		$this->resetArticleID( $newid );
+		
+		# Link table
+		if ( $dest->getArticleID() ) {
+			wfInsertArray( 'links', array(
+				'l_to' => $dest->getArticleID(),
+				'l_from' => $newid
+			));
+		} else {
+			wfInsertArray( 'brokenlinks', array( 
+				'bl_to' => $dest->getPrefixedDBkey(),
+				'bl_from' => $newid
+			));
+		}
+
+		Article::onArticleCreate( $this );
+		return true;
+	}
 }
 ?>
