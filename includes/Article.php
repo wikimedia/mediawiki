@@ -1588,9 +1588,9 @@ class Article {
 		
 		# Save to history
                 $oldtable=$wgIsPg?'"old"':'old';
-		$sql = "INSERT INTO $oldtable (old_namespace,old_title,old_text,old_comment,old_user,old_user_text,old_timestamp,inverse_timestamp)" .
-		  'SELECT cur_namespace,cur_title,cur_text,cur_comment,cur_user,cur_user_text,cur_timestamp,99999999999999-cur_timestamp' .
-		  "FROM cur WHERE cur_namespace=$ns AND cur_title='$encDbKey'";
+		$sql = "INSERT INTO $oldtable (old_namespace,old_title,old_text,old_comment,old_user,old_user_text,old_timestamp,inverse_timestamp)
+		  SELECT cur_namespace,cur_title,cur_text,cur_comment,cur_user,cur_user_text,cur_timestamp,99999999999999-cur_timestamp
+		  FROM cur WHERE cur_namespace=$ns AND cur_title='$encDbKey'";
 		wfQuery( $sql, DB_WRITE );
 		
 		# Use the affected row count to determine if the article is new
