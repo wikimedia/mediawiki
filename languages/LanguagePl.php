@@ -11,13 +11,16 @@ require_once("LanguageUtf8.php");
 # encapsulates some of the magic-ness.
 #
 
-# Yucky hardcoding hack:
-if( $wgMetaNamespace == "Wikipedia" ) {
-	$wgMetaTalkNamespace = "Dyskusja_Wikipedii";
-} elseif( $wgMetaNamespace == "Wikisłownik" ) {
-	$wgMetaTalkNamespace = "Wikidyskusja";
-} else {
-	$wgMetaTalkNamespace = "Dyskusja_$wgMetaNamespace";
+# Yucky hardcoding hack as polish grammar need tweaking :o)
+switch( $wgMetaNamespace ) {
+case 'Wikipedia':
+	$wgMetaTalkNamespace = 'Dyskusja_Wikipedii'; break;
+case 'Wikisłownik':
+	$wgMetaTalkNamespace = 'Wikidyskusja'; break;
+case 'Wikicytaty':
+	$wgMetaTalkNamespace = 'Dyskusja_Wikicytatów'; break;
+default:
+	$wgMetaTalkNamespace = 'Dyskusja_'.$wgMetaNamespace;
 }
 
 /* private */ $wgNamespaceNamesPl = array(
@@ -28,7 +31,7 @@ if( $wgMetaNamespace == "Wikipedia" ) {
     NS_USER             => "Wikipedysta",
     NS_USER_TALK        => "Dyskusja_Wikipedysty",
     NS_WIKIPEDIA        => $wgMetaNamespace,
-    NS_WIKIPEDIA_TALK   => $wgMetaTalkNamespace,
+    NS_WIKIPEDIA_TALK   => $wgMetaTalkNamespace,  // see above
     NS_IMAGE            => "Grafika",
     NS_IMAGE_TALK       => "Dyskusja_grafiki",
     NS_MEDIAWIKI        => "MediaWiki",
