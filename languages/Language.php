@@ -94,7 +94,7 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgSkinNamesEn = array(
-	"Standard", "Nostalgia", "Cologne Blue", "Paddington", "Montparnasse"
+	"Standard", "Nostalgia", "Cologne Blue", "Paddington", "Montparnasse", "DaVinci"
 );
 
 /* private */ $wgMathNamesEn = array(
