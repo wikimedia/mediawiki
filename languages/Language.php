@@ -1812,7 +1812,7 @@ class Language {
                 '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s ) : true );
 
 		if( ($wgInputEncoding != "utf-8") and $ishigh and $isutf )
-			return iconv( "UTF-8", $wgInputEncoding, $s );
+			return @iconv( "UTF-8", $wgInputEncoding, $s );
 		
 		if( ($wgInputEncoding == "utf-8") and $ishigh and !$isutf )
 			return utf8_encode( $s );
