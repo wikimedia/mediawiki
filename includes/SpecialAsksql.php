@@ -54,7 +54,7 @@ class SqlQueryForm {
 
 	function doSubmit()
 	{
-		global $wgOut, $wgUser, $wgServer, $wgScript, $wgArticlePath;
+		global $wgOut, $wgUser, $wgServer, $wgScript, $wgArticlePath, $wgLang;
 		global $wpSqlQuery;
 		global $wgDBsqluser, $wgDBsqlpassword;
 
@@ -91,9 +91,13 @@ class SqlQueryForm {
 				$r .= "<tr>";
 				foreach ( $k as $x ) {
 					$o = $y->$x ;
-					if ( $x == "cur_title" or $x == "old_title" ) {
-						$o = str_replace ( "$1" , rawurlencode( $o ) , $wgArticlePath ) ;
-						$o = "<a href=\"{$o}\" class='internal'>" .
+					if ( $x == "cur_title" or $x == "old_title" or $x == "rc_title") {
+						$namespace = 0;
+						if( $x == "cur_title" ) $namespace = $y->cur_namespace;
+						if( $x == "old_title" ) $namespace = $y->old_namespace;
+						if( $x == "rc_title" ) $namespace = $y->rc_namespace;
+						if( $namespace ) $o = $wgLang->getNsText( $namespace ) . ":" . $o;
+						$o = "<a href=\"" . wfLocalUrlE($o) . "\" class='internal'>" .
 						  htmlspecialchars( $y->$x ) . "</a>" ;
 						} else {
 						$o = htmlspecialchars( $o );
