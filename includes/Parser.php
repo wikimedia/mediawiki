@@ -536,6 +536,18 @@ class Parser
 		return $t ;
 	}
 
+	# Parses the text and adds the result to the strip state
+	# Returns the strip tag
+	function stripParse( $text, $linestart, $args ) 
+	{
+		$text = $this->strip( $text, $this->mStripState );
+		$text = $this->internalParse( $text, $linestart, $args, false );
+		if( $linestart ) {
+			$text = "\n" . $text;
+		}
+		return $this->insertStripItem( $text, $this->mStripState );
+	}
+	
 	function internalParse( $text, $linestart, $args = array(), $isMain=true )
 	{
 		$fname = "Parser::internalParse";
@@ -1361,13 +1373,20 @@ class Parser
 			$this->initialiseVariables();
 		}
 		$titleChars = Title::legalChars();
-		$regex = "/(\\n?){{([$titleChars]*?)(\\|.*?|)}}/s";
 
 		# This function is called recursively. To keep track of arguments we need a stack:
 		array_push( $this->mArgStack, $args );
 
 		# PHP global rebinding syntax is a bit weird, need to use the GLOBALS array
 		$GLOBALS['wgCurParser'] =& $this;
+
+		# Argument substitution
+		if ( $this->mOutputType == OT_HTML ) {
+			$text = preg_replace_callback( "/(\\n?){{{([$titleChars]*?)}}}/", "wfArgSubstitution", $text );
+		}
+
+		# Double brace substitution
+		$regex = "/(\\n?){{([$titleChars]*?)(\\|.*?|)}}/s";
 		$text = preg_replace_callback( $regex, "wfBraceSubstitution", $text );
 
 		array_pop( $this->mArgStack );
@@ -1381,6 +1400,8 @@ class Parser
 		$fname = "Parser::braceSubstitution";
 		$found = false;
 		$nowiki = false;
+		$noparse = false;
+		
 		$title = NULL;
 
 		# $newline is an optional newline character before the braces
@@ -1396,20 +1417,30 @@ class Parser
 			$args = array();
 		}
 		$argc = count( $args );
+	
+		# {{{}}}
+		if ( strpos( $matches[0], "{{{" ) !== false ) {
+			$text = $matches[0];
+			$found = true;
+			$noparse = true;
+		}
 
 		# SUBST
-		$mwSubst =& MagicWord::get( MAG_SUBST );
-		if ( $mwSubst->matchStartAndRemove( $part1 ) ) {
-			if ( $this->mOutputType != OT_WIKI ) {
-				# Invalid SUBST not replaced at PST time
-				# Return without further processing
+		if ( !$found ) {
+			$mwSubst =& MagicWord::get( MAG_SUBST );
+			if ( $mwSubst->matchStartAndRemove( $part1 ) ) {
+				if ( $this->mOutputType != OT_WIKI ) {
+					# Invalid SUBST not replaced at PST time
+					# Return without further processing
+					$text = $matches[0];
+					$found = true;
+					$noparse= true;
+				}
+			} elseif ( $this->mOutputType == OT_WIKI ) {
+				# SUBST not found in PST pass, do nothing
 				$text = $matches[0];
 				$found = true;
 			}
-		} elseif ( $this->mOutputType == OT_WIKI ) {
-			# SUBST not found in PST pass, do nothing
-			$text = $matches[0];
-			$found = true;
 		}
 
 		# MSG, MSGNW and INT
@@ -1484,14 +1515,14 @@ class Parser
 			$found = true;
 			$this->mOutput->mContainsOldMagic = true;
 		}
-
+/*
 		# Arguments input from the caller
 		$inputArgs = end( $this->mArgStack );
 		if ( !$found && array_key_exists( $part1, $inputArgs ) ) {
 			$text = $inputArgs[$part1];
 			$found = true;
 		}
-
+*/
 		# Load from database
 		if ( !$found ) {
 			$title = Title::newFromText( $part1, NS_TEMPLATE );
@@ -1520,7 +1551,7 @@ class Parser
 		# Only for HTML output
 		if ( $nowiki && $found && $this->mOutputType == OT_HTML ) {
 			$text = wfEscapeWikiText( $text );
-		} elseif ( $this->mOutputType == OT_HTML && $found ) {
+		} elseif ( $this->mOutputType == OT_HTML && $found && !$noparse) {
 			# Clean up argument array
 			$assocArgs = array();
 			$index = 1;
@@ -1546,13 +1577,7 @@ class Parser
 			}
 
 			# Run full parser on the included text
-			$text = $this->strip( $text, $this->mStripState );
-			$text = $this->internalParse( $text, (bool)$newline, $assocArgs, false );
-			if(!empty($newline)) $text = "\n".$text;
-
-			# Add the result to the strip state for re-inclusion after
-			# the rest of the processing
-			$text = $this->insertStripItem( $text, $this->mStripState );
+			$text = $this->stripParse( $text, (bool)$newline, $assocArgs );
 
 			# Resume the link cache and register the inclusion as a link
 			if ( !is_null( $title ) ) {
@@ -1566,6 +1591,21 @@ class Parser
 		} else {
 			return $text;
 		}
+	}
+
+	# Triple brace replacement -- used for template arguments
+	function argSubstitution( $matches )
+	{
+		$newline = $matches[1];
+		$arg = trim( $matches[2] );
+		$text = $matches[0];
+		$inputArgs = end( $this->mArgStack );
+
+		if ( array_key_exists( $arg, $inputArgs ) ) {
+			$text = $this->stripParse( $inputArgs[$arg], (bool)$newline, array() );
+		}
+		
+		return $text;
 	}
 
 	# Returns true if the function is allowed to include this entity
@@ -2227,6 +2267,12 @@ function wfBraceSubstitution( $matches )
 {
 	global $wgCurParser;
 	return $wgCurParser->braceSubstitution( $matches );
+}
+
+function wfArgSubstitution( $matches )
+{
+	global $wgCurParser;
+	return $wgCurParser->argSubstitution( $matches );
 }
 
 ?>
