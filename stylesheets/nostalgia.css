@@ -35,7 +35,7 @@ div.thumbnail-none, div.thumbnail-right, div.thumbnail-left {
 	font-size: 85%;
 }
 
-div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
+div.thumbcaption {
 	margin-top:3px; margin-bottom:3px;
 }
 

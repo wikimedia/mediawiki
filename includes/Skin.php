@@ -1760,27 +1760,30 @@ class Skin {
 			$boxwidth  = $width;
 			$boxheight = $height;
 		}
-		
+		$oboxwidth = $boxwidth + 2;
 		$thumbUrl = $this->createThumb( $name, $boxwidth );
 
 		$u = $nt->escapeLocalURL();
 
 		$more = htmlspecialchars( wfMsg( "thumbnail-more" ) );
 		$magnifyalign = $wgLang->isRTL() ? "left" : "right";
-		$textalign = $wgLang->isRTL() ? " style=\"text-align:right\"" : "";
+		$textalign = $wgLang->isRTL() ? ' style="text-align:right"' : "";
 
-		$s = "<div class=\"thumbnail-{$align}\" style=\"width:{$boxwidth}px;\"><div>";
+		$s = "<div class=\"thumbnail-{$align}\" style=\"width:{$oboxwidth}px;\"><div style=\"width:{$boxwidth}px;\">";
 		if ( $thumbUrl == "" ) {
 			$s .= str_replace( "$1", $name, wfMsg("missingimage") );
+			$zoom = '';
 		} else {
-		  	$s .= '<a href="'.$u.'" class="internal" title="'.$alt.'">'.
-		  		'<img src="'.$thumbUrl.'" alt="'.$alt.'" ' .
-				'width="'.$boxwidth.'" height="'.$boxheight.'" /></a>'.
-		  		'<a href="'.$u.'" class="internal" title="'.$more.'"> '.
-		    		'<img src="'.$wgUploadPath.'/magnify-clip.png" ' .
-				'width="26" height="24" align="'.$magnifyalign.'" alt="'.$more.'" /> </a>';
+			$s .= '<a href="'.$u.'" class="internal" title="'.$alt.'">'.
+				'<img src="'.$thumbUrl.'" alt="'.$alt.'" ' .
+				'width="'.$boxwidth.'" height="'.$boxheight.'" /></a>';
+			$zoomicon =  '<div class="magnify" style="float:'.$magnifyalign.'">'.
+				'<a href="'.$u.'" class="internal" title="'.$more.'">'.
+				'<img src="'.$wgUploadPath.'/magnify-clip.png" ' .
+				'width="15" height="11" alt="'.$more.'" /></a></div>';
+
 		}
-		$s .= '  <div'.$textalign.'>'.$label."</div></div>\n</div>";
+		$s .= '  <div class="thumbcaption" '.$textalign.'>'.$zoomicon.$label."</div></div>\n</div>";
 		return $s;
 	}
 
