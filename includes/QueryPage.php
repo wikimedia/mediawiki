@@ -209,6 +209,8 @@ class QueryPage {
 				$obj = null;
 				$format = $this->formatResult( $sk, $obj );
 				if( $format ) {
+					$attr = ( isset ( $obj->usepatrol ) && $obj->usepatrol &&
+										$obj->patrolled == 0 ) ? ' class="not-patrolled"' : '';
 					$s .= "<li{$attr}>{$format}</li>\n";
 				}
 			}
