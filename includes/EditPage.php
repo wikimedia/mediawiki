@@ -357,8 +357,8 @@ class EditPage {
 		$checkboxhtml = $minoredithtml . $watchhtml . "<br />";
 
 		if ( "preview" == $formtype) {
-			$previewhead="<h2>" . wfMsg( "preview" ) . "</h2>\n<p><large><center><font color=\"#cc0000\">" .
-			wfMsg( "note" ) . wfMsg( "previewnote" ) . "</font></center></large></p>\n";
+			$previewhead="<h2>" . wfMsg( "preview" ) . "</h2>\n<p><center><font color=\"#cc0000\">" .
+			wfMsg( "note" ) . wfMsg( "previewnote" ) . "</font></center></p>\n";
 			if ( $isConflict ) {
 				$previewhead.="<h2>" . wfMsg( "previewconflict" ) .
 				  "</h2>\n";
