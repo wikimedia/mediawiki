@@ -269,14 +269,16 @@ class UtfNormal {
 		static $checkit = null, $tailBytes = null;
 		if( !isset( $checkit ) ) {
 			# Head bytes for sequences which we should do further validity checks
-			$checkit = array_flip(
+			$checkit = array_flip( array_map( 'chr',
 					array( 0xc0, 0xc1, 0xe0, 0xed, 0xef,
 						   0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7,
-						   0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff ) );
+						   0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff ) ) );
 			
 			$tailBytes = array();
-			for( $n = 0xc0; $n < 0xfe; $n++ ) {
-				if( $n < 0xe0 ) {
+			for( $n = 0; $n < 256; $n++ ) {
+				if( $n < 0xc0 ) {
+					$remaining = 0;
+				} elseif( $n < 0xe0 ) {
 					$remaining = 1;
 				} elseif( $n < 0xf0 ) {
 					$remaining = 2;
@@ -286,8 +288,10 @@ class UtfNormal {
 					$remaining = 4;
 				} elseif( $n < 0xfe ) {
 					$remaining = 5;
+				} else {
+					$remaining = 0;
 				}
-				$tailBytes[$n] = $remaining;
+				$tailBytes[chr($n)] = $remaining;
 			}
 		}
 		
@@ -306,13 +310,12 @@ class UtfNormal {
 			}
 			$len = strlen( $str );
 			$tail = false;
-			$head = 0;
+			$head = '';
 			
 			for( $i = 0; $i < $len; $i++ ) {
 				$c = $str{$i};
-				$n = ord( $c );
 				if( $tail ) {
-					if( $n >= 0x80 && $n < 0xc0 ) {
+					if( $c >= "\x80" && $c < "\xc0" ) {
 						$sequence .= $c;
 						if( --$remaining ) {
 							# Keep adding bytes...
@@ -322,6 +325,7 @@ class UtfNormal {
 						if( isset( $checkit[$head] ) ) {
 							# Do some more detailed validity checks, for
 							# invalid characters and illegal sequences.
+							$head = ord( $head );
 							if( ( $head == 0xed && $sequence >= UTF8_SURROGATE_FIRST
 									&& $sequence <= UTF8_SURROGATE_LAST)
 								|| ($head  < 0xc2 && $sequence <= UTF8_OVERLONG_A)
@@ -347,7 +351,7 @@ class UtfNormal {
 						# The sequence is legal!
 						$out .= $sequence;
 						$tail = false;
-						$head = 0;
+						$head = '';
 						continue;
 					}
 					# Not a valid tail byte! DIscard the char we've been building.
@@ -355,19 +359,18 @@ class UtfNormal {
 					$tail = false;
 					$out .= UTF8_REPLACEMENT;
 				}
-				if( $n < 0x80 ) {
+				if( $remaining = $tailBytes[$c] ) {
+					$tail = true;
+					$sequence = $c;
+					$head = $c;
+				} elseif( $c < "\x80" ) {
 					$out .= $c;
-				} elseif( $n < 0xc0 ) {
+				} elseif( $c < "\xc0" ) {
 					# illegal tail bytes or head byte of overlong sequence
-					if( $head == 0 ) {
+					if( $head == '' ) {
 						# Don't add if we're continuing a too-long sequence
 						$out .= UTF8_REPLACEMENT;
 					}
-				} elseif( $n < 0xfe ) {
-					$tail = true;
-					$remaining = $tailBytes[$n];
-					$sequence = $c;
-					$head = $n;
 				} else {
 					$out .= UTF8_REPLACEMENT;
 				}
