@@ -8,6 +8,9 @@
 #quickbar { width: 140px; padding: 4px; visibility: visible; z-index:99;font-size:95%;}
 #topbar { padding: 4px;font-size:95%; }
 
+/* automatically generated edit summaries */
+#autocomment { color: gray; }
+
 /* Table of contents */
 #toc {
 	border: 1px solid #8888aa;

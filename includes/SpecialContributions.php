@@ -172,7 +172,7 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew )
 
 	if($comment) {
 
-		$comment="<em>(". htmlspecialchars( $comment ) .")</em> ";
+		$comment="<em>(". $sk->formatComment($comment ) .")</em> ";
 
 	}
 	$d = $wgLang->timeanddate( $ts, true );

@@ -630,7 +630,7 @@ class Skin {
 			if ( $wgTitle->getNamespace() == Namespace::getUser()
 			    || $wgTitle->getNamespace() == Namespace::getTalk(Namespace::getUser()) )
 			    
-			{	
+			{
 				$id=User::idFromName($wgTitle->getText());
 				$ip=User::isIP($wgTitle->getText());
 				
@@ -780,13 +780,13 @@ class Skin {
 			if user edits article, then loads "watch this article" in background and then saves
 			article with "Watch this article" checkbox disabled, the article is transparently
 			unwatched. Therefore we do not show the "Watch this page" link in edit mode
-			*/			
+			*/
 			if ( 0 != $wgUser->getID() && $articleExists) {
-				if($action!="edit" && $action != "submit" ) 
+				if($action!="edit" && $action != "submit" )
 				{
-					$s .= $sep . $this->watchThisPage(); 
+					$s .= $sep . $this->watchThisPage();
 				}
-				if ( $wgTitle->userCanEdit() ) 
+				if ( $wgTitle->userCanEdit() )
 					$s .= $sep . $this->moveThisPage();
 			}
 			if ( $wgUser->isSysop() and $articleExists ) {
@@ -794,7 +794,7 @@ class Skin {
 				$sep . $this->protectThisPage();
 			}
 			$s .= $sep . $this->talkLink();
-			if ($articleExists && $action !="history") { 
+			if ($articleExists && $action !="history") {
 				$s .= $sep . $this->historyLink();
 			}
 			$s.=$sep . $this->whatLinksHere();
@@ -1168,7 +1168,7 @@ class Skin {
 				$text= wfMsg("articlepage");
 			}
 		} else {
-			
+
 			$lns = Namespace::getTalk( $tns );
 			$text=$tp;			
 		}
@@ -1738,25 +1738,26 @@ class Skin {
 	}
 
 	# Enhanced RC ungrouped line
-	function recentChangesBlockLine ( $rcObj ) 
+	function recentChangesBlockLine ( $rcObj )
 	{
 		global $wgUploadPath, $wgLang ;
-		
+
 		# Get rc_xxxx variables
 		extract( $rcObj->mAttribs ) ;
 		$curIdEq = "curid=$rc_cur_id";
-		
+
 		# Spacer image
 		$r = "" ;
+
 		$r .= "<img src='{$wgUploadPath}/Arr_.png' width='12' height='12' border='0' />" ;		$r .= "<tt>" ;
-		
+
 		if ( $rc_type == RC_MOVE ) {
 			$r .= "&nbsp;&nbsp;";
 		} else {
 			# M & N (minor & new)
 			$M = wfMsg( "minoreditletter" );
 			$N = wfMsg( "newpageletter" );
-		
+
 			if ( $rc_type == RC_NEW ) {
 				$r .= $N ;
 			} else {
@@ -1768,7 +1769,7 @@ class Skin {
 				$r .= "&nbsp;" ;
 			}
 		}
-		
+
 		# Timestamp
 		$r .= " ".$rcObj->timestamp." " ;
 		$r .= "</tt>" ;
@@ -1782,31 +1783,33 @@ class Skin {
 		$r .= " (" ;
 		$r .= $rcObj->curlink ;
 		$r .= "; " ;
-		
+
 		# Hist
 		$r .= $this->makeKnownLinkObj( $rcObj->getTitle(), wfMsg( "hist" ), "{$curIdEq}&action=history" );
 
 		# User/talk
 		$r .= ") . . ".$rcObj->userlink ;
 		$r .= $rcObj->usertalklink ;
-		
+
 		# Comment
 		if ( $rc_comment != "" && $rc_type != RC_MOVE ) {
-			$r .= $wgLang->emphasize( " (".wfEscapeHTML($rc_comment).")" );
+			$rc_comment=$this->formatComment($rc_comment);
+			$r .= $wgLang->emphasize( " (".$rc_comment.")" );
 		}
+
 		$r .= "<br>\n" ;
 		return $r ;
 	}
 
 	# Enhanced RC group
-	function recentChangesBlockGroup ( $block ) 
+	function recentChangesBlockGroup ( $block )
 	{
 		global $wgUploadPath, $wgLang ;
-		
+
 		$r = "" ;
 		$M = wfMsg( "minoreditletter" );
 		$N = wfMsg( "newpageletter" );
-		
+
 		# Collate list of users
 		$isnew = false ;
 		$userlinks = array () ;
@@ -1849,7 +1852,7 @@ class Skin {
 		# Timestamp
 		$r .= " ".$block[0]->timestamp." " ;
 		$r .= "</tt>" ;
-		
+
 		# Article link
 		$link = $block[0]->link ;
 		if ( $block[0]->watched ) $link = "<strong>{$link}</strong>" ;
@@ -1905,7 +1908,8 @@ class Skin {
 			$r .= ") . . ".$rcObj->userlink ;
 			$r .= $rcObj->usertalklink ;
 			if ( $rc_comment != "" ) {
-				$r .= $wgLang->emphasize( " (".wfEscapeHTML($rc_comment).")" ) ;
+				$rc_comment=$this->formatComment($rc_comment);
+				$r .= $wgLang->emphasize( " (".$rc_comment.")" ) ;
 			}
 			$r .= "<br>\n" ;
 		}
@@ -1945,15 +1949,15 @@ class Skin {
 			$line = $this->recentChangesLineOld ( $rc, $watched ) ;
 		return $line ;
 	}
-	
+
 	function recentChangesLineOld( &$rc, $watched = false )
 	{
 		global $wgTitle, $wgLang, $wgUser;
-		
+
 		# Extract DB fields into local scope
 		extract( $rc->mAttribs );
 		$curIdEq = "curid=" . $rc_cur_id;
-		
+
 		# Make date header if necessary
 		$date = $wgLang->date( $rc_timestamp, true);
 		$s = "";
@@ -1963,7 +1967,7 @@ class Skin {
 			$this->lastdate = $date;
 		}
 		$s .= "<li> ";
-		
+
 		if ( $rc_type == RC_MOVE ) {
 			# Diff
 			$s .= "(" . wfMsg( "diff" ) . ") (";
@@ -1985,9 +1989,9 @@ class Skin {
 				  "{$curIdEq}&diff={$rc_this_oldid}&oldid={$rc_last_oldid}" );
 			}
 			$s .= "($diffLink) (";
-			
+
 			# History link
-			$s .= $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( "hist" ), "{$curIdEq}&action=history" ); 
+			$s .= $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( "hist" ), "{$curIdEq}&action=history" );
 			$s .= ") . . ";
 
 			# M and N (minor and new)
@@ -2005,19 +2009,19 @@ class Skin {
 			$s .= " $articleLink";
 
 		}
-		
+
 		# Timestamp
 		$s .= "; " . $wgLang->time( $rc_timestamp, true ) . " . . ";
-		
+
 		# User link (or contributions for unregistered users)
 		if ( 0 == $rc_user ) {
 			$userLink = $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
-			$rc_user_text, "target=" . $rc_user_text );					
-		} else { 
-			$userLink = $this->makeLink( $wgLang->getNsText( NS_USER ) . ":{$rc_user_text}", $rc_user_text ); 
+			$rc_user_text, "target=" . $rc_user_text );
+		} else {
+			$userLink = $this->makeLink( $wgLang->getNsText( NS_USER ) . ":{$rc_user_text}", $rc_user_text );
 		}
 		$s .= $userLink;
-		
+
 		# User talk link
 		$talkname=$wgLang->getNsText(NS_TALK); # use the shorter name
 		global $wgDisableAnonTalk;
@@ -2032,9 +2036,9 @@ class Skin {
 		if ( ( 0 == $rc_user ) && $wgUser->isSysop() ) {
 			$blockLink = $this->makeKnownLink( $wgLang->specialPage(
 			  "Blockip" ), wfMsg( "blocklink" ), "ip={$rc_user_text}" );
-			
+
 		}
-		if($blockLink) { 
+		if($blockLink) {
 			if($userTalkLink) $userTalkLink .= " | ";
 			$userTalkLink .= $blockLink;
 		}
@@ -2042,13 +2046,14 @@ class Skin {
 
 		# Add comment
 		if ( "" != $rc_comment && "*" != $rc_comment && $rc_type != RC_MOVE ) {
-			$s .= $wgLang->emphasize(" (" . wfEscapeHTML( $rc_comment ) . ")");
+			$rc_comment=$this->formatComment($rc_comment);
+			$s .= $wgLang->emphasize(" (" . $rc_comment . ")");
 		}
 		$s .= "</li>\n";
 
 		return $s;
 	}
-	
+
 #	function recentChangesLineNew( $ts, $u, $ut, $ns, $ttl, $c, $isminor, $isnew, $watched = false, $oldid = 0 , $diffid = 0 )
 	function recentChangesLineNew( &$baseRC, $watched = false )
 	{
@@ -2156,6 +2161,21 @@ class Skin {
 		return $s;
 	}
 
+	/* This function is called by all recent changes variants, by the page history,
+	   and by the user contributions list. It is responsible for formatting edit
+	   comments. It escapes any HTML in the comment, but adds some CSS to format
+	   auto-generated comments (from section editing).
+	*/
+	function formatComment($comment)
+	{
+		$comment=wfEscapeHTML($comment);
+		
+		# format text between /* .. */ with autocomment CSS class
+		$comment=preg_replace("/\/\*\s*(.*?)\s*\*\//i",
+		"<span id=\"autocomment\">$1</span>",$comment);
+		return $comment;
+	}
+
 	function imageHistoryLine( $iscur, $ts, $img, $u, $ut, $size, $c )
 	{
 		global $wgUser, $wgLang, $wgTitle;
@@ -2168,7 +2188,7 @@ class Skin {
 			$url = wfImageUrl( $img );
 			$rlink = $cur;
 			if ( $wgUser->isSysop() ) {
-				$link = $wgTitle->escapeLocalURL( "image=" . $wgTitle->getPartialURL() . 
+				$link = $wgTitle->escapeLocalURL( "image=" . $wgTitle->getPartialURL() .
 				  "&action=delete" );
 				$style = $this->getInternalLinkAttributes( $link, $del );
 
