@@ -18,6 +18,9 @@
 img {
     position: relative;
 }
+div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
+    position:relative;
+}
 
 body {
     font-size: xx-small;
