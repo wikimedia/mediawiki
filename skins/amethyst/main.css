@@ -478,27 +478,30 @@ div.townBox dl dd {
     margin-right: 0.4em;
 }
 #pagehistory span.minor { font-weight: bold; }
-#pagehistory li { border: 1px solid White; }
+#pagehistory li { border: 1px solid #2F333B; }
 #pagehistory li.selected {
-    background-color:#f9f9f9;
-    border:1px dashed #aaaaaa;
+    background-color:#2A3C61;
+    border:1px dashed #2f6fab;
 }
 /*
 ** Diff rendering
 */
-table.diff { background:white; }
-td.diff-otitle { background:#ffffff; }
-td.diff-ntitle { background:#ffffff; }
+table.diff { background:#2F333B; }
+td.diff-otitle { background:#2F333B; }
+td.diff-ntitle { background:#2F333B; }
 td.diff-addedline {
+	color: black;
     background:#ccffcc;
     font-size: smaller;
 }
 td.diff-deletedline {
+	color: black;
     background:#ffffaa;
     font-size: smaller;
 }
 td.diff-context {
-    background:#eeeeee;
+	color: black;
+    background:#aaaaaa;
     font-size: smaller;
 }
 span.diffchange { color: red; }
