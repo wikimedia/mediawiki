@@ -1607,7 +1607,7 @@ class Language {
 	}
 
 	function specialPage( $name ) {
-		return $this->getNsText( Namespace::getSpecial() ) . ':' . $name;
+		return $this->getNsText(NS_SPECIAL) . ':' . $name;
 	}
 
 	function getQuickbarSettings() {
@@ -2016,6 +2016,9 @@ class Language {
         return $text;
 	}
 
+	/* this does the real conversion to the preferred variant.
+	   see LanguageZh.php for example
+    */
     function autoConvert($text) {
         return $text;
     }
