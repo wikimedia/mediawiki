@@ -12,15 +12,7 @@
 
 
 /* Table of contents */
-.tocindent {
-	margin-left: 2em;
-}
-.tocline {
-	margin-bottom: 0px;
-}
-.toctoggle, .editsection {
-	font-size: smaller;
-}
+.toctoggle, .editsection { font-size: smaller; }
 
 /* ... */
 #toolbar { padding:0px; }

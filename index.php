@@ -48,7 +48,7 @@ wfProfileOut( "main-misc-setup" );
 # If the user is not logged in, the Namespace:title of the article must be in
 # the Read array in order for the user to see it. (We have to check here to
 # catch special pages etc. We check again in Article::view())
-if ( !$wgTitle->userCanRead() ) {
+if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 	$wgOut->loginToUse();
 	$wgOut->output();
 	exit;
@@ -56,7 +56,7 @@ if ( !$wgTitle->userCanRead() ) {
 
 if ( $search = $wgRequest->getText( 'search' ) ) {
 	$wgTitle = Title::makeTitle( NS_SPECIAL, "Search" );
-	if( $wgRequest->getVal( 'fulltext' ) ) {
+	if( $wgRequest->getVal( 'fulltext' ) || !is_null( $wgRequest->getVal( 'offset' ) ) ) {
 		wfSearch( $search );
 	} else {
 		wfGo( $search );
@@ -67,7 +67,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 } else if ( $wgTitle->getInterwiki() != "" ) {
 	$url = $wgTitle->getFullURL();
 	# Check for a redirect loop
-	if ( !preg_match( "/^" . preg_quote( $wgServer ) . "/", $url ) && $wgTitle->isLocal() ) {
+	if ( !preg_match( "/^" . preg_quote( $wgServer, "/" ) . "/", $url ) && $wgTitle->isLocal() ) {
 		$wgOut->redirect( $url );
 	} else {
 		$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
@@ -77,6 +77,9 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 	/* redirect to canonical url, make it a 301 to allow caching */
 	$wgOut->redirect( $wgTitle->getFullURL(), '301');
 } else if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
+	# actions that need to be made when we have a special pages
+	require_once( 'includes/SpecialPage.php' );
+	if ( !$wgAllowSysopQueries ) {SpecialPage::removePage( 'Asksql' ); }
 	SpecialPage::executePath( $wgTitle );
 } else {
 	if ( Namespace::getMedia() == $wgTitle->getNamespace() ) {
@@ -105,6 +108,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		case "rollback":
 		case "protect":
 		case "unprotect":
+		case "info":
 			$wgArticle->$action();
 			break;
 		case "print":
@@ -126,6 +130,10 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 				wfCreativeCommonsRdf( $wgArticle );
 			}
 			break;
+  	        case "credits":
+	                require_once( "includes/Credits.php" );
+			showCreditsPage( $wgArticle );
+	                break;
 		case "edit":
 		case "submit":
 			if( !$wgCommandLineMode && !$wgRequest->checkSessionCookie() ) {
@@ -151,6 +159,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		case "purge":
 			wfPurgeSquidServers(array($wgTitle->getInternalURL()));
 			$wgOut->setSquidMaxage( $wgSquidMaxage );
+			$wgTitle->invalidateCache();
 			$wgArticle->view();
 			break;
 		default:
@@ -161,7 +170,11 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 
 $wgOut->output();
 
-foreach ( $wgDeferredUpdateList as $up ) { $up->doUpdate(); }
+foreach ( $wgDeferredUpdateList as $up ) {
+	wfQuery("BEGIN", DB_WRITE);
+	$up->doUpdate();
+	wfQuery("COMMIT", DB_WRITE);
+}
 logProfilingData();
 wfDebug( "Request ended normally\n" );
 ?>

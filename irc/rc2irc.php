@@ -2,7 +2,7 @@
 
 $ircNick = "wikipedia_rc";
 $rooms = array("en" => 1, "fr" => 1, "de" => 1);
-$ircServer = "irc.freenode.net"
+$ircServer = "irc.freenode.net";
 $ircSockName = "tcp://$ircServer";
 $ircPort = 6667;
 $minDelay = 0.5;

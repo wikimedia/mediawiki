@@ -157,7 +157,11 @@ class SearchEngine {
 	{
 		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgRequest;
 		global $wgDisableTextSearch, $wgInputEncoding;
-		$fname = "SearchEngine::showResults";
+		global $wgLoadBalancer;
+				
+                $wgLoadBalancer->force(-1);
+
+                $fname = "SearchEngine::showResults";
 
 		$search = $wgRequest->getText( 'search' );
 
@@ -280,7 +284,8 @@ class SearchEngine {
 			$wgOut->addHTML( "<p>{$sl}</p>\n" );
 			$wgOut->addHTML( $powersearch );
 		}
-	}
+	        $wgLoadBalancer->force(0);
+        }
 
 	function legalSearchChars()
 	{
@@ -296,6 +301,8 @@ class SearchEngine {
 			# Use cleaner boolean search if available
 			return $this->parseQuery4();
 		}
+		# on non mysql4 database: get list of words we don't want to search for
+		require_once( "FulltextStoplist.php" );
 
 		$lc = SearchEngine::legalSearchChars() . "()";
 		$q = preg_replace( "/([()])/", " \\1 ", $this->mUsertext );
@@ -485,8 +492,13 @@ class SearchEngine {
 			$wgOut->redirect( $t->getFullURL( "action=edit" ) );
 			return;
 		}
-
-		$wgOut->addHTML( "<p>" . wfMsg("nogomatch", $t->escapeLocalURL( "action=edit" ) ) . "</p>\n" );
+		
+		if( $t ) {
+			$editurl = $t->escapeLocalURL( "action=edit" );
+		} else {
+			$editurl = ""; # ?? 
+		}
+		$wgOut->addHTML( "<p>" . wfMsg("nogomatch", $editurl ) . "</p>\n" );
 
 		# Try a fuzzy title search
 		$anyhit = false;

@@ -25,7 +25,7 @@ require_once("LanguageUtf8.php");
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsRo = array(
 	"Fără", "Fixă, în stânga", "Fixă, în dreapta", "Liberă"
@@ -39,7 +39,8 @@ require_once("LanguageUtf8.php");
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesRo = array(

@@ -2,12 +2,11 @@
 
 	function wfSpecialAllmessages()
 	{
-		global $wgOut, $wgAllMessagesEn, $wgRequest, $wgMessageCache;
+		global $wgOut, $wgAllMessagesEn, $wgRequest, $wgMessageCache, $wgTitle;
 		$ot = $wgRequest->getText('ot');
 		$mwMsg =& MagicWord::get( MAG_MSG );
 		set_time_limit(0);
 		$navText = str_replace( "$1", $mwMsg->getSynonym( 0 ), wfMsg("allmessagestext" ) );
-
 		$first = true;
 		$sortedArray = $wgAllMessagesEn;
 		ksort( $sortedArray );
@@ -18,12 +17,13 @@
 			$messages[$key]['statmsg'] = wfMsgNoDb( $key );
 			$messages[$key]['msg'] = wfMsg ( $key );
 		}
-		if ($ot == 'php') {
-			$navText .= makePhp($messages);
-			$wgOut->addHTML('<pre>'.htmlspecialchars($navText).'</pre>');
-		} else {
+		if ($ot == 'html') {
 			$navText .= makeWikiText($messages);
-			$wgOut->addWikiText( $navText );
+			$wgOut->addHTML('<a href="'.$wgTitle->getLocalUrl('ot=php').'">PHP</a> | HTML');
+			$wgOut->addWikiText($navText);
+		} else {
+			$navText .= makePhp($messages);
+			$wgOut->addHTML('PHP | <a href="'.$wgTitle->getLocalUrl('ot=html').'">HTML</a><pre>'.htmlspecialchars($navText).'</pre>');
 		}
 		return;
 	}

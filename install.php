@@ -5,7 +5,7 @@ die("obsolete; remove this file befor 1.3.0 release\n");
 # Install software and create new empty database.
 #
 
-include( "./install-utils.inc" );
+include_once( "./install-utils.inc" );
 install_version_checks();
 
 if ( ! ( is_readable( "./LocalSettings.php" )

@@ -76,7 +76,7 @@ class MakesysopForm {
 				</td>
 			</tr>" 
 		);
-		/*
+		
 		$makeburo = wfMsg( "setbureaucratflag" );
 		$wgOut->addHTML(
 			"<tr>
@@ -84,7 +84,7 @@ class MakesysopForm {
 					<input type=checkbox name=\"wpSetBureaucrat\" value=1>$makeburo
 				</td>
 			</tr>"
-		);*/
+		);
 
 		if ( $wgUser->isDeveloper() ) {
 			$rights = wfMsg( "rights" );

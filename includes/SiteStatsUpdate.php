@@ -1,4 +1,5 @@
 <?php
+# $Id$
 # See deferred.doc
 
 class SiteStatsUpdate {
@@ -14,6 +15,7 @@ class SiteStatsUpdate {
 
 	function doUpdate()
 	{
+		global $wgIsMySQL;
 		$a = array();
 
 		if ( $this->mViews < 0 ) { $m = "-1"; }
@@ -30,8 +32,8 @@ class SiteStatsUpdate {
 		else if ( $this->mGood > 0 ) { $m = "+1"; }
 		else $m = "";
 		array_push( $a, "ss_good_articles=(ss_good_articles$m)" );
-
-		$sql = "UPDATE LOW_PRIORITY site_stats SET " . implode ( ",", $a ) .
+		$lowpri=$wgIsMySQL?"LOW_PRIORITY":"";
+		$sql = "UPDATE $lowpri site_stats SET " . implode ( ",", $a ) .
 		  " WHERE ss_row_id=1";
 		wfQuery( $sql, DB_WRITE, "SiteStatsUpdate::doUpdate" );
 	}

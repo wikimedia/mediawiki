@@ -11,14 +11,14 @@
 # $wgFileCacheDirectory
 # $wgUseGzip
 
-require_once( "Title.php" );
+require_once( 'Title.php' );
 
 class CacheManager {
 	var $mTitle, $mFileCache;
 	
 	function CacheManager( &$title ) {
 		$this->mTitle =& $title;
-		$this->mFileCache = "";
+		$this->mFileCache = '';
 	}
 	
 	function fileCacheName() {
@@ -27,14 +27,14 @@ class CacheManager {
 			$hash = md5( $key = $this->mTitle->getDbkey() );
 			if( $this->mTitle->getNamespace() )
 				$key = $wgLang->getNsText( $this->mTitle->getNamespace() ) . ":" . $key;
-			$key = str_replace( ".", "%2E", urlencode( $key ) );
+			$key = str_replace( '.', '%2E', urlencode( $key ) );
 			
 			$hash1 = substr( $hash, 0, 1 );
 			$hash2 = substr( $hash, 0, 2 );
 			$this->mFileCache = "{$wgFileCacheDirectory}/{$hash1}/{$hash2}/{$key}.html";
 			
 			if($this->useGzip())
-				$this->mFileCache .= ".gz";
+				$this->mFileCache .= '.gz';
 			
 			wfDebug( " fileCacheName() - {$this->mFileCache}\n" );
 		}
@@ -75,7 +75,7 @@ class CacheManager {
 	function fetchPageText() {
 		if( $this->useGzip() ) {
 			/* Why is there no gzfile_get_contents() or gzdecode()? */
-			return implode( "", gzfile( $this->fileCacheName() ) );
+			return implode( '', gzfile( $this->fileCacheName() ) );
 		} else {
 			return $this->fetchRawText();
 		}
@@ -91,7 +91,7 @@ class CacheManager {
 		
 		if( $this->useGzip() ) {
 			if( wfClientAcceptsGzip() ) {
-				header( "Content-Encoding: gzip" );
+				header( 'Content-Encoding: gzip' );
 			} else {
 				/* Send uncompressed */
 				readgzfile( $filename );
@@ -103,38 +103,38 @@ class CacheManager {
 	
 	function checkCacheDirs() {
 		$filename = $this->fileCacheName();
-		$mydir2=substr($filename,0,strrpos($filename,"/")); # subdirectory level 2
-		$mydir1=substr($mydir2,0,strrpos($mydir2,"/")); # subdirectory level 1
+		$mydir2=substr($filename,0,strrpos($filename,'/')); # subdirectory level 2
+		$mydir1=substr($mydir2,0,strrpos($mydir2,'/')); # subdirectory level 1
 		
 		if(!file_exists($mydir1)) { mkdir($mydir1,0775); } # create if necessary
 		if(!file_exists($mydir2)) { mkdir($mydir2,0775); }
 	}
 	
 	function saveToFileCache( $text ) {
-		if(strcmp($text,"") == 0) return "";
+		if(strcmp($text,'') == 0) return '';
 		
 		wfDebug(" saveToFileCache()\n", false);
 		
 		$this->checkCacheDirs();
 		
-		$f = fopen( $this->fileCacheName(), "w" );
+		$f = fopen( $this->fileCacheName(), 'w' );
 		if($f) {
 			$now = wfTimestampNow();
 			if( $this->useGzip() ) {
-				$rawtext = str_replace( "</html>",
-					"<!-- Cached/compressed $now -->\n</html>",
+				$rawtext = str_replace( '</html>',
+					'<!-- Cached/compressed '.$now." -->\n</html>",
 					$text );
 				$text = gzencode( $rawtext );
 			} else {
-				$text = str_replace( "</html>",
-					"<!-- Cached $now -->\n</html>",
+				$text = str_replace( '</html>',
+					'<!-- Cached '.$now." -->\n</html>",
 					$text );
 			}
 			fwrite( $f, $text );
 			fclose( $f );
 			if( $this->useGzip() ) {
 				if( wfClientAcceptsGzip() ) {
-					header( "Content-Encoding: gzip" );
+					header( 'Content-Encoding: gzip' );
 					return $text;
 				} else {
 					return $rawtext;

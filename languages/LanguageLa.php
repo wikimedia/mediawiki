@@ -24,7 +24,7 @@
 	11  => "Template_talk"
 
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsLa = array(
 	"Nullus", "Constituere a sinistra", "Constituere a dextra", "Innens a sinistra"
@@ -38,7 +38,8 @@
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesLa = array(

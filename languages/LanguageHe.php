@@ -29,7 +29,7 @@ require_once("LanguageUtf8.php");
 	14	=> "Category",
 	15	=> "Category_talk",
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsHe = array(
 	"ללא", "קבוע משמאל", "קבוע מימין", "צף משמאל"
@@ -43,7 +43,8 @@ require_once("LanguageUtf8.php");
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesHe = array(

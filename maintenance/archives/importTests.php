@@ -26,7 +26,7 @@ $testingonly = true;
 
 setlocale( LC_ALL, "C" );
 
-include( "importUseModWiki.php" );
+include_once( "importUseModWiki.php" );
 
 $wgRootDirectory = "./testconvert";
 runTests();

@@ -29,7 +29,7 @@ Sourceforge (when that gets added.)
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgDefaultUserOptionsGa = array(
     "quickbar" => 1, "underline" => 1, "hover" => 1,
@@ -53,7 +53,8 @@ Sourceforge (when that gets added.)
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesGa = array(

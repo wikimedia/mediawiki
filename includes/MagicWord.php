@@ -45,6 +45,7 @@ define("MAG_SERVER", 28);
 define("MAG_IMG_FRAMED", 29);
 define("MAG_PAGENAME", 30);
 define("MAG_NAMESPACE", 31);
+define("MAG_TOC", 32);
 
 $wgVariableIDs = array(
 	MAG_CURRENTMONTH,
@@ -110,7 +111,7 @@ class MagicWord {
 		$this->mRegexStart = "/^{$this->mBaseRegex}/{$case}";
 		$this->mVariableRegex = str_replace( "\\$1", "([$variableClass]*?)", $this->mRegex );
 		$this->mVariableStartToEndRegex = str_replace( "\\$1", "([$variableClass]*?)", 
-			"/^{$this->mBaseRegex}$/{$case}" );
+			"/^({$this->mBaseRegex})$/{$case}" );
 	}
 	
 	# Gets a regex representing matching the word

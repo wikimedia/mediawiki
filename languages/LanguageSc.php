@@ -19,7 +19,7 @@ require_once( "LanguageUtf8.php" );
 	5	=> "Wikipedia_discussioni",
 	6	=> "Immàgini",
 	7	=> "Immàgini_contièndha"
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsSc = array(
 	"Nessuno", "Fisso a sinistra", "Fisso a destra", "Fluttuante a sinistra"

@@ -1,4 +1,6 @@
 <?php
+# $Id$
+#
 # Copyright (C) 2003-2004 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
 # 
@@ -69,8 +71,10 @@ class /* abstract */ BagOStuff {
 	}
 	
 	function add($key, $value, $exptime=0) {
-		if( $this->get($key) === false )
+		if( $this->get($key) == false ) {
 			$this->set($key, $value, $exptime);
+			return true;
+		}
 	}
 	
 	function add_multi($hash, $exptime=0) {
@@ -114,7 +118,7 @@ class /* abstract */ BagOStuff {
 	
 	function _debug($text) {
 		if($this->debugmode)
-			echo "\ndebug: $text\n";
+			wfDebug("BagOStuff debug: $text\n");
 	}
 }
 
@@ -187,9 +191,9 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 			$this->_debug("get: ** error: " . $this->_dberror($res) . " **");
 			return false;
 		}
-		if($arr = $this->_fetchrow($res)) {
-			$this->_debug("get: retrieved data; exp time is " . $arr['exptime']);
-			return unserialize($arr['value']);
+		if($row=$this->_fetchobject($res)) {
+			$this->_debug("get: retrieved data; exp time is " . $row->exptime);
+			return unserialize($row->value);
 		} else {
 			$this->_debug("get: no matching rows");
 		}
@@ -208,8 +212,8 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 		}
 		$this->delete( $key );
 		$this->_query(
-			"INSERT INTO $0 (keyname,value,exptime) VALUES('$1','$2',$exp)",
-			$key, serialize(&$value));
+			"INSERT INTO $0 (keyname,value,exptime) VALUES('$1','$2','$exp')",
+			$key, serialize($value));
 		return true; /* ? */
 	}
 	
@@ -230,7 +234,7 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 				$sql);
 		}
 		$res = $this->_doquery($sql);
-		if($res === false) {
+		if($res == false) {
 			$this->_debug("query failed: " . $this->_dberror($res));
 		}
 		return $res;
@@ -269,7 +273,8 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 	
 	function expireall() {
 		/* Remove any items that have expired */
-		$this->_query( "DELETE FROM $0 WHERE exptime<=NOW()" );
+		$now=$this->_fromunixtime(time());
+		$this->_query( "DELETE FROM $0 WHERE exptime<'$now'" );
 	}
 	
 	function deleteall() {
@@ -278,42 +283,27 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 	}
 }
 
-class MysqlBagOStuff extends SqlBagOStuff {
-	function _doquery($sql) {
-		return mysql_query($sql);
-	}
-	function _fetchrow($result) {
-		return mysql_fetch_array($result);
-	}
-	function _freeresult($result) {
-		return mysql_free_result($result);
-	}
-	function _dberror($result) {
-		if($result)
-			return mysql_error($result);
-		else
-			return mysql_error();
-	}
-	
-	function _maxdatetime() {
-		return "'9999-12-31 12:59:59'";
-	}
-	
-	function _fromunixtime($ts) {
-		return "FROM_UNIXTIME($ts)";
-	}
-	
-	function _strencode($s) {
-		return mysql_escape_string($s);
-	}
-}
-
-class MediaWikiBagOStuff extends MysqlBagOStuff {
+class MediaWikiBagOStuff extends SqlBagOStuff {
 	function _doquery($sql) {
 		return wfQuery($sql, DB_READ, "MediaWikiBagOStuff:_doquery");
 	}
+	function _fetchobject($result) {
+		return wfFetchObject($result);
+	}
 	function _freeresult($result) {
 		return wfFreeResult($result);
+	}
+	function _dberror($result) {
+		return wfLastError();
+	}
+	function _maxdatetime() {
+		return "9999-12-31 12:59:59";
+	}
+	function _fromunixtime($ts) {
+		return gmdate( "Y-m-d H:i:s", $ts );
+	}
+	function _strencode($s) {
+		return wfStrEncode($s);
 	}
 }
 

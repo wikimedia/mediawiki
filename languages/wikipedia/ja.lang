@@ -1,0 +1,311 @@
+MediaWiki 1.3.0beta3 language file
+a:699:{s:10:"categories";s:12:"カテゴリ";s:8:"category";s:12:"カテゴリ";s:15:"category_header";s:22:"カテゴリ: '''$1'''";s:13:"subcategories";s:13:"Subcategories";s:9:"linktrail";s:18:"/^([a-z]+)(.*)$/sD";s:8:"mainpage";s:18:"メインページ";s:12:"mainpagetext";s:37:"Wiki software successfully installed.";s:17:"mainpagedocfooter";s:214:"Please see [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface]
+and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] for usage and configuration help.";s:6:"portal";s:33:"コミュニティ・ポータル";s:10:"portal-url";s:43:"Wikipedia:コミュニティ・ポータル";s:5:"about";s:6:"解説";s:14:"aboutwikipedia";s:33:"ウィキペディアについて";s:9:"aboutpage";s:43:"Wikipedia:ウィキペディアについて";s:7:"article";s:6:"本文";s:4:"help";s:9:"ヘルプ";s:8:"helppage";s:19:"Wikipedia:ヘルプ";s:15:"wikititlesuffix";s:9:"Wikipedia";s:10:"bugreports";s:15:"バグの報告";s:14:"bugreportspage";s:25:"Wikipedia:バグの報告";s:11:"sitesupport";s:6:"寄付";s:3:"faq";s:3:"FAQ";s:7:"faqpage";s:13:"Wikipedia:FAQ";s:8:"edithelp";s:15:"編集の仕方";s:9:"newwindow";s:21:"(opens in new window)";s:12:"edithelppage";s:25:"Wikipedia:編集の仕方";s:6:"cancel";s:6:"中止";s:6:"qbfind";s:6:"検索";s:8:"qbbrowse";s:6:"閲覧";s:6:"qbedit";s:6:"編集";s:13:"qbpageoptions";s:27:"ページ・オプション";s:10:"qbpageinfo";s:15:"ページ情報";s:11:"qbmyoptions";s:15:"オプション";s:14:"qbspecialpages";s:15:"特別ページ";s:13:"moredotdotdot";s:21:"すべて表示する";s:6:"mypage";s:18:"マイ・ページ";s:6:"mytalk";s:18:"マイ・トーク";s:8:"anontalk";s:16:"Talk for this IP";s:10:"navigation";s:21:"ナビゲーション";s:13:"currentevents";s:18:"最近の出来事";s:11:"disclaimers";s:12:"利用規約";s:14:"disclaimerpage";s:22:"Wikipedia:利用規約";s:14:"errorpagetitle";s:9:"エラー";s:8:"returnto";s:15:"$1 に戻る。";s:13:"fromwikipedia";s:69:"出典: フリー百科事典『ウィキペディア (Wikipedia) 』";s:13:"whatlinkshere";s:33:"このページへのリンク元";s:6:"search";s:6:"検索";s:2:"go";s:6:"表示";s:7:"history";s:6:"履歴";s:13:"history_short";s:6:"履歴";s:16:"printableversion";s:24:"印刷用バージョン";s:4:"edit";s:6:"編集";s:12:"editthispage";s:24:"このページを編集";s:6:"delete";s:6:"削除";s:14:"deletethispage";s:24:"このページを削除";s:14:"undelete_short";s:8:"Undelete";s:7:"protect";s:6:"保護";s:15:"protectthispage";s:24:"このページを保護";s:9:"unprotect";s:12:"保護解除";s:17:"unprotectthispage";s:21:"ページ保護解除";s:7:"newpage";s:15:"新規ページ";s:8:"talkpage";s:27:"このページのノート";s:11:"specialpage";s:15:"特別ページ";s:13:"personaltools";s:14:"Personal tools";s:11:"postcomment";s:30:"新規にコメントを投稿";s:10:"addsection";s:1:"+";s:11:"articlepage";s:15:"記事を表示";s:11:"subjectpage";s:30:"サブジェクト・ページ";s:4:"talk";s:9:"ノート";s:7:"toolbox";s:21:"ツールボックス";s:8:"userpage";s:27:"利用者ページを表示";s:13:"wikipediapage";s:27:"Wikipediaページを表示";s:9:"imagepage";s:27:"画像のページを表示";s:12:"viewtalkpage";s:18:"ノートを表示";s:14:"otherlanguages";s:12:"他の言語";s:14:"redirectedfrom";s:21:"（$1 から転送）";s:12:"lastmodified";s:18:"最終更新 $1。";s:9:"viewcount";s:55:"このページは $1 回アクセスされました。";s:9:"copyright";s:30:"Content is available under $1.";s:9:"poweredby";s:90:"Wikipedia is powered by [http://www.mediawiki.org/ MediaWiki], an open source wiki engine.";s:13:"printsubtitle";s:31:"(From http://www.wikipedia.org)";s:13:"protectedpage";s:24:"保護されたページ";s:14:"administrators";s:19:"Wikipedia:管理者";s:10:"sysoptitle";s:39:"管理者によるアクセスが必要";s:9:"sysoptext";s:105:"あなたの要求した処理は管理者のみが実行できます。
+$1を参照してください。";s:14:"developertitle";s:39:"開発者によるアクセスが必要";s:13:"developertext";s:106:"あなたの要求した処理は開発者のみが実行できます。
+$1 を参照してください。";s:15:"bureaucrattitle";s:26:"Bureaucrat access required";s:14:"bureaucrattext";s:88:"The action you have requested can only be
+performed by sysops with  "bureaucrat" status.";s:6:"nbytes";s:12:"$1 バイト";s:2:"ok";s:2:"OK";s:9:"sitetitle";s:9:"Wikipedia";s:9:"pagetitle";s:14:"$1 - Wikipedia";s:12:"sitesubtitle";s:21:"フリー百科事典";s:13:"retrievedfrom";s:18:" "$1" より作成";s:11:"newmessages";s:26:"$1が届いています。";s:15:"newmessageslink";s:24:"新しいメッセージ";s:11:"editsection";s:6:"編集";s:3:"toc";s:6:"目次";s:7:"showtoc";s:6:"表示";s:7:"hidetoc";s:9:"非表示";s:13:"thisisdeleted";s:19:"View or restore $1?";s:11:"restorelink";s:16:"$1 deleted edits";s:9:"feedlinks";s:5:"Feed:";s:10:"nstab-main";s:6:"本文";s:10:"nstab-user";s:24:"利用者個人ページ";s:11:"nstab-media";s:5:"Media";s:13:"nstab-special";s:7:"Special";s:8:"nstab-wp";s:6:"解説";s:11:"nstab-image";s:5:"Image";s:15:"nstab-mediawiki";s:9:"定型文";s:14:"nstab-template";s:8:"Template";s:10:"nstab-help";s:4:"Help";s:14:"nstab-category";s:8:"Category";s:12:"nosuchaction";s:39:"そのような動作はありません";s:16:"nosuchactiontext";s:69:"URI で指定された動作は Wikipedia で認識できません。";s:17:"nosuchspecialpage";s:51:"そのような特別ページはありません。";s:17:"nospecialpagetext";s:74:"その特別ページの要求は Wikipedia には理解できません。";s:5:"error";s:9:"エラー";s:13:"databaseerror";s:30:"データベース・エラー";s:11:"dberrortext";s:325:"データベース検索の文法エラー。
+検索問合わせが間違っているか($5 を参照),
+あるいはソフトウェアのバグかもしれません。
+最後に実行を試みた問い合わせ: 
+<blockquote><tt>$1</tt></blockquote>
+from within function "<tt>$2</tt>".
+MySQL returned error "<tt>$3: $4</tt>".";s:13:"dberrortextcl";s:146:"A database query syntax error has occurred.
+The last attempted database query was:
+"$1"
+from within function "$2".
+MySQL returned error "$3: $4".
+";s:9:"noconnect";s:306:"<!-- $1000 の -->データベースに接続できません。現在、何らかの問題によりウィキペディアのデータベースに接続できない状態にあります。ご迷惑をおかけいたしますが、しばらく待ってからもう一度アクセスしてみてください。";s:4:"nodb";s:51:"$1 のデータベースを選択できません。";s:11:"cachederror";s:144:"あなたがアクセスしたページのコピーを保存したものを表示しています。また、コピーは更新されません。";s:8:"readonly";s:48:"データベースはロックされています";s:15:"enterlockreason";s:150:"ロックする理由を入力して下さい。ロックが解除されるのがいつになるかの見積もりについても述べて下さい。";s:12:"readonlytext";s:624:"ウィキペディア・データベースは現在、新しい記事の追加や編集を受け付けない「ロック」状態になっています。これはおそらくは定期的なメンテナンスのためで、メンテナンス終了後は正常な状態に復帰します。
+データベースをロックした管理者は次のような説明をしています：
+<p>$1
+<p>The Wikipedia database is currently locked to new
+entries and other modifications, probably for routine database maintenance,
+after which it will be back to normal.
+The administrator who locked it offered this explanation:
+<p>$1";s:14:"missingarticle";s:552:"データベースは、"$1"という題のページの、存在するはずの文章を見つけることができませんでした。
+<p>これはデータベースのエラーではなく、ソフトウェアのバグだろうと思われます。
+<p>URI と共に管理者に報告して下さるようにお願いします。
+<p>The database did not find the text of a page
+that it should have found, named "$1".
+<p>This is not a database error, but likely a bug in the software.
+<p>Please report this to an administrator, making note of the URI.";s:13:"internalerror";s:21:"内部処理エラー";s:13:"filecopyerror";s:65:"ファイルを"$1"から"$2"のコピーに失敗しました。";s:15:"filerenameerror";s:68:"ファイル名を"$1"から"$2"へ変更できませんでした。";s:15:"filedeleteerror";s:49:"ファイル"$1"の削除に失敗しました。";s:12:"filenotfound";s:55:"ファイルを"$1"は見つかりませんでした。";s:10:"unexpected";s:62:"異常値によるエラー："$1" と "$2" が同じです。";s:9:"formerror";s:56:"エラー: フォームの送信に失敗しました。";s:15:"badarticleerror";s:69:"このページではこの動作をすることはできません。";s:12:"cannotdelete";s:75:"指定されたページ、または画像の削除に失敗しました。";s:8:"badtitle";s:33:"ページタイトルの間違い";s:12:"badtitletext";s:133:"要求されたページは無効か、何もないか、正しくない inter-language または inter-wiki のタイトルです。";s:12:"perfdisabled";s:105:"この機能はデータベースの負荷を軽くするために現在使えなくなっています。";s:15:"perfdisabledsub";s:55:"ここには $1 のコピーを表示しています。";s:10:"perfcached";s:66:"The following data is cached and may not be completely up to date:";s:20:"wrong_wfQuery_params";s:69:"Incorrect parameters to wfQuery()<br />
+Function: $1<br />
+Query: $2
+";s:10:"viewsource";s:18:"ソースを表示";s:13:"protectedtext";s:243:"このページは編集できないようにロックされています。これにはいくつか理由があります。詳しくは[[Wikipedia:保護されたページ]]をご覧ください。
+
+下にソースを表示しています。";s:18:"seriousxhtmlerrors";s:56:"There were serious xhtml markup errors detected by tidy.";s:11:"logouttitle";s:28:"ユーザー ログアウト";s:10:"logouttext";s:226:"ログアウトしました。
+このままウィキペディアを匿名で使い続けることができます。
+もう一度ログインして元の、あるいは別のユーザーとして使うこともできます。";s:15:"welcomecreation";s:179:"<h2>$1 さん、ようこそ!</h2><p>あなたのアカウントができました。
+お好みに合わせてユーザーオプションを変更することをお忘れなく。";s:14:"loginpagetitle";s:25:"ユーザー ログイン";s:8:"yourname";s:27:"あなたのユーザー名";s:12:"yourpassword";s:27:"あなたのパスワード";s:17:"yourpasswordagain";s:24:"パスワード再入力";s:12:"newusersonly";s:30:"（新規ユーザーのみ）";s:18:"remembermypassword";s:66:"セッションをまたがってパスワードを保持する。";s:12:"loginproblem";s:92:"<b>ログインでエラーが発生しました。</b><br>再度実行してください。";s:15:"alreadyloggedin";s:92:"<font color=red><b>ユーザー $1 は、すでにログイン済みです。</b></font><br>";s:5:"login";s:12:"ログイン";s:11:"loginprompt";s:102:"ウィキペディアにログインするにはクッキーを有効にする必要があります。";s:9:"userlogin";s:12:"ログイン";s:6:"logout";s:15:"ログアウト";s:10:"userlogout";s:15:"ログアウト";s:11:"notloggedin";s:30:"ログインしていません";s:13:"createaccount";s:27:"新規アカウント作成";s:17:"createaccountmail";s:8:"by email";s:9:"badretype";s:48:"両方のパスワードが一致しません。";s:10:"userexists";s:99:"そのユーザー名はすでに使われています。ほかの名前をお選びください。";s:9:"youremail";s:15:"電子メール";s:12:"yourrealname";s:19:"あなたの本名*";s:8:"yournick";s:33:"ニックネーム（署名用）";s:12:"emailforlost";s:210:"すでにユーザー登録されていてパスワードをお忘れの方は、この下のボタンをクリックすればご登録のメールアドレスに新しいパスワードが送信されます。";s:19:"prefs-help-userdata";s:374:"* <strong>本名</strong> （オプション）: あなたの投稿に自分の名前を残したいときなどに使うことが出来ます。<br/>
+* <strong>Email</strong>（オプション）: あなたのEmailアドレスを隠してウェブサイトから人々がメールを送れるようにします。また、パスワード再発行の際にも使います。";s:10:"loginerror";s:18:"ログイン失敗";s:12:"nocookiesnew";s:384:"ユーザーのアカウントは作成されましたが、ログインしていません。ウィキペディアにログインするにはクッキーを有効にする必要があります。あなたはクッキーを無効な設定にしているようです。クッキーを有効にしてから作成したユーザー名とパスワードでログインしてください。";s:14:"nocookieslogin";s:240:"ウィキペディアではログインにクッキーを使います。しかし、ご使用のブラウザ等がクッキーを無効にしているようです。クッキーを有効にして、もう一度試してみてください。";s:6:"noname";s:51:"ユーザ名を正しく指定していません。";s:17:"loginsuccesstitle";s:18:"ログイン成功";s:12:"loginsuccess";s:77:"あなたは現在 Wikipedia に "$1" としてログインしています。";s:10:"nosuchuser";s:178:" "$1" というユーザーは見当たりません。
+綴りが正しいか再度確認するか、下記のフォームを使ってアカウントを作成してください。";s:13:"wrongpassword";s:75:"パスワードが間違っています。再度入力してください。";s:14:"mailmypassword";s:48:"新しいパスワードを、メールで送る";s:21:"passwordremindertitle";s:110:"Password reminder from ja.Wikipedia =?iso-2022-jp?B?GyRCIUolJiUjJS0lWiVHJSMlIiROPzc1LCVRJTklbyE8JUkhSxsoQg==?=";s:20:"passwordremindertext";s:287:"どなたか（$1 のIPアドレスの使用者）がウィキペディアのログイン用パスワードの再発行を依頼しました。
+
+ユーザー "$2" のパスワードを "$3" に変更しました。
+ログインして別のパスワードに変更してください。";s:7:"noemail";s:75:"ユーザー "$1" のメールアドレスは登録されていません。";s:12:"passwordsent";s:174:"新しいパスワードを "$1" さんの登録済みメールアドレスにお送りしました。メールを受け取ったら、再度ログインしてください。";s:8:"loginend";s:1041:"ユーザー登録をなさる方は、自分で使いたいユーザー名とパスワードを決めて入力し、<b>新規アカウント作成</b>をクリックしてください。ユーザー名の決めたかについて詳しくは<a href="/wiki/wikipedia:ユーザー名">ユーザー名</a>をどうぞ。ユーザー名には日本語も使えます。<br />
+また、ログインすることについて詳しくは<a href="/wiki/wikipedia:ログインの仕方">ログインの仕方</a>をお読みください。
+
+二度目以降の方は、ユーザー名とパスワードを入力して<b>ログイン</b>をクリックすれば再度ログインが可能です。また、ブラウザのクッキーが有効になっていなければログインは正常に機能しません。
+
+ユーザー登録の際に電子メールアドレスも登録する必要ありませんが、登録しておくと、パスワードを忘れたときに新しいパスワードを電子メールで受け取ることが出来ます。";s:9:"mailerror";s:22:"Error sending mail: $1";s:11:"bold_sample";s:24:"強い強調（太字）";s:8:"bold_tip";s:24:"強い強調（太字）";s:13:"italic_sample";s:24:"弱い強調（斜体）";s:10:"italic_tip";s:24:"弱い強調（斜体）";s:11:"link_sample";s:9:"記事名";s:8:"link_tip";s:15:"内部リンク";s:14:"extlink_sample";s:47:"http://www.example.com リンクのタイトル";s:11:"extlink_tip";s:65:"外部リンク（http:// を忘れずにつけてください）";s:15:"headline_sample";s:9:"見出し";s:12:"headline_tip";s:18:"標準の見出し";s:11:"math_sample";s:11:"\int f(x)dx";s:8:"math_tip";s:14:"数式 (LaTeX)";s:13:"nowiki_sample";s:45:"そのまま表示させたい文字を入力";s:10:"nowiki_tip";s:33:"入力文字をそのまま表示";s:12:"image_sample";s:11:"Example.jpg";s:9:"image_tip";s:62:"埋め込み画像（[[画像:～]]に直してください）";s:12:"media_sample";s:11:"Example.mp3";s:9:"media_tip";s:51:"メディアファイル（音声）へのリンク";s:7:"sig_tip";s:21:"時刻つきの署名";s:6:"hr_tip";s:36:"水平線（利用は控えめに）";s:7:"infobox";s:78:"ボタンをクリックするとマークアップの例を表示します。";s:13:"infobox_alert";s:135:"Please enter the text you want to be formatted.\n It will be shown in the infobox for copy and pasting.\nExample:\n$1\nwill become:\n$2";s:7:"summary";s:333:"<strong><a href="/wiki/Wikipedia:%E8%91%97%E4%BD%9C%E6%A8%A9" class='internal' title ="Wikipedia:著作権">著作権</a>のある作品を許諾なしに投稿するのは違法です。<br>他のウェブサイトや書籍にある文書の転載、歌詞などの投稿はおやめください。</strong><br>編集内容の要約";s:7:"subject";s:18:"題名・見出し";s:9:"minoredit";s:42:"これは細部の編集です&nbsp;&nbsp;";s:9:"watchthis";s:30:"ウォッチリストに追加";s:11:"savearticle";s:66:"以下の記述を完全に理解し同意した上で投稿する";s:7:"preview";s:15:"プレビュー";s:11:"showpreview";s:24:"プレビューを実行";s:12:"blockedtitle";s:36:"投稿ブロックされています";s:11:"blockedtext";s:1621:"ご使用のユーザー名またはIPアドレスは $1 によって投稿をブロックされています。その理由は次の通りです。
+:$2
+
+より詳しい情報については[[Wikipedia:投稿ブロック依頼]]や自分ユーザー名の利用者-会話ページなどに記載されていることがありますので確認してください。
+
+$1 または他の[[Wikipedia:管理者|管理者]]にこの件についてメールで問い合わせることができます。ただし、[[特別:Preferences|オプション]]に正しい電子メールアドレスが登録されていない場合、「このユーザーにメールを送信」機能が使えないことに注意してください。あなたのIPアドレスは「$3」です。問い合わせを行う際には、このIPアドレスを必ず書いてください。
+
+== 問題のある行動をしていないのにブロックされている場合 ==
+迷惑をおかけして申し訳ありません。ひどい荒らしが行われた場合、広範囲にわたってウィキペディアの投稿をブロックされていることがあります。この場合には多数の無関係なユーザーが投稿出来なくなります。
+<!-- 適切な訳が思いつかないのでコメント
+At the moment this includes: 
+* Most Bell Canada addresses from Halifax, Nova Scotia 
+* Some addresses from tpnet.pl 
+-->
+また、個々の動的IPアドレスがブロックされた場合、通常24時間で解除されます。恐縮ですが、それまで、お待ちいただくようお願いいたします。";s:18:"whitelistedittitle";s:33:"編集にはログインが必要";s:17:"whitelistedittext";s:99:"このページを編集するには[[特別:Userlogin|ログイン]]する必要があります。";s:18:"whitelistreadtitle";s:33:"閲覧にはログインが必要";s:17:"whitelistreadtext";s:87:"このページを閲覧するには[[特別:Userlogin|ログイン]]が必要です。";s:17:"whitelistacctitle";s:40:"You are not allowed to create an account";s:16:"whitelistacctext";s:124:"To be allowed to create accounts in this Wiki you have to [[Special:Userlogin|log]] in and have the appropriate permissions.";s:13:"loginreqtitle";s:14:"Login Required";s:12:"loginreqtext";s:57:"You must [[special:Userlogin|login]] to view other pages.";s:12:"accmailtitle";s:14:"Password sent.";s:11:"accmailtext";s:42:"The Password for '$1' has been sent to $2.";s:10:"newarticle";s:12:"（新規）";s:14:"newarticletext";s:48:"新しい記事を書き込んでください。";s:12:"talkpagetext";s:31:"<!-- MediaWiki:talkpagetext -->";s:16:"anontalkpagetext";s:622:"----
+''これはアカウントをまだ作成していないか、あるいは使っていない匿名ユーザーのための会話ページです。ウィキペディアでは匿名ユーザーの識別は利用者名の代わりに[[IPアドレス]]を用います。IPアドレスは何人かで共有されることがあります。もしも、あなたが匿名ユーザーで無関係なコメントがここに寄せられる場合は、[[特別:Userlogin|アカウントを作成するかログインして]]他の匿名ユーザーと間違えられないようにしてくださるようお願いします。";s:13:"noarticletext";s:57:"（このページには現在記事がありません）";s:14:"clearyourcache";s:214:"'''Note:''' After saving, you have to clear your browser cache to see the changes: '''Mozilla:''' click ''reload''(or ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.";s:22:"usercssjsyoucanpreview";s:160:"<strong>Tip:</strong> 「プレビューを実行」ボタンを使うと保存前に新しいスタイルシート・スクリプトをテストできます。";s:14:"usercsspreview";s:147:"'''あなたはユーザスタイルシートをプレビューしています。まだ保存されていないので注意してください。'''";s:13:"userjspreview";s:153:"'''あなたはユーザスクリプトをテスト・プレビューしています。まだ保存されていないので注意してください。'''";s:7:"updated";s:12:"（更新）";s:4:"note";s:25:"<strong>注釈:</strong> ";s:11:"previewnote";s:67:"これはプレビューです。まだ保存されていません!";s:15:"previewconflict";s:149:"このプレビューは、上の文章編集エリアの文章を保存した場合に
+どう見えるようになるかを示すものです。
+<p>";s:7:"editing";s:15:"$1 を編集中";s:11:"sectionedit";s:12:"（部分）";s:11:"commentedit";s:19:" （コメント）";s:12:"editconflict";s:16:"編集競合: $1";s:15:"explainconflict";s:514:"あなたがこのページを編集し始めた後に、他の誰かがこのページを変更しました。
+上側のテキストエリアは現在の最新の状態です。
+あなたの編集していた文章は下側のテキストエリアに示されています。
+編集していた文章を、上側のテキストエリアの文章に組み込んで下さい。
+<b>上側のテキストエリアの内容だけ</b>が、"保存する"をクリックした時に実際に保存されます。
+<p>";s:8:"yourtext";s:18:"あなたの文章";s:13:"storedversion";s:18:"保存された版";s:10:"editingold";s:217:"<strong>警告: あなたはこのページの古い版を編集しています。もしこの文章を保存すると、この版以降に追加された全ての変更が無効になってしまいます。</strong>";s:8:"yourdiff";s:24:"あなたの更新内容";s:16:"copyrightwarning";s:2190:"■<strong>投稿する前に以下を確認して下さい</strong>■
+<ol>
+<li><strong>著作権のある作品を許諾なしに投稿してはいけません! 特に、他のウェブサイトに掲載されている文書の転載は避けてください。</strong>
+それらの著作権は、もし明示されていなくても、ほとんどの場合は元の文書を書いた作者に帰属します。<br>あなたの投稿する文章はあなた自身によって書かれたものであるか、パブリック・ドメインかそれに類する自由なリソースからの複製であることを約束して下さい。
+<li>Wikipedia（ウィキペディア）に投稿された文書は、<strong>すべて <a href="http://ja.wikipedia.org/wiki/Wikipedia:Text_of_GNU_Free_Documentation_License">GNU Free Documentation License (GFDL)</a>（内容はリンク先を参照してください）によって発行し、かつ、GFDLをウィキペディアにおいて適用した場合の解釈については $1 の通りであることを宣言したものとみなされます。GFDLは、英語で書かれたものが法的な拘束力をもつ唯一の正文ですが、<a href="http://www.opensource.jp/fdl/fdl.ja.html.euc-jp">GFDLの非公式な日本語訳</a>は、正文の理解をきわめて容易にするでしょう。但し、この翻訳はウィキペディアによるものではなく、訳の正確さ等についてウィキペディアは何らの保証を行うものでもありません。</strong>
+<li>「謝辞」「献辞」その他これに類するセクション名は、GFDL上の問題を必要以上に複雑にしますので、控えてください。
+<li><strong>あなたの文章が他人によって自由に編集、配布されることを望まない場合は、投稿を控えて下さい。</strong><br>また、<strong>あなたは、あなたの関与したページなどがウィキペディアにおいて不適当と判断された場合（不適当と判断される理由があなたの関与によるものではない場合を含む）には削除されることに、予め同意を与えます。</strong>
+</ol>";s:15:"longpagewarning";s:316:"警告: このページのサイズは $1 キロバイトです。ブラウザの中には 32 キロバイト以上のページを編集すると問題が起きるものがあります。詳しくは、<a href="/wiki/Wikipedia:ページサイズ"><strong>ページサイズ</strong></a>を参照してください。";s:15:"readonlywarning";s:290:"警告: データベースがメンテナンスのためロックされています。ですので、今は編集結果を正しく保存できません。文章をカットアンドペーストしてローカルファイルとして保存し、後ほど保存をやり直して下さい。";s:20:"protectedpagewarning";s:172:"警告:　このページは保護されています。管理者しか編集できません。詳しくはページ保護の方針（未作成）を参照して下さい。";s:10:"revhistory";s:12:"改訂履歴";s:9:"nohistory";s:54:"このページには改訂履歴がありません。";s:11:"revnotfound";s:45:"要求された版が見つかりません。";s:15:"revnotfoundtext";s:279:"要求されたこのページの旧版は見つかりませんでした。
+URLをもう一度確認して、このページにアクセスしてみて下さい。
+
+The old revision of the page you asked for could not be found.
+Please check the URL you used to access this page.
+";s:8:"loadhist";s:30:"改訂履歴の読み込み中";s:10:"currentrev";s:9:"最新版";s:12:"revisionasof";s:8:"$1の版";s:3:"cur";s:9:"最新版";s:4:"next";s:9:"次の版";s:4:"last";s:9:"前の版";s:4:"orig";s:9:"最古版";s:10:"histlegend";s:111:"凡例:（最新版）= 最新版との比較、（前の版）= 直前の版との比較、M = 細部の編集";s:10:"difference";s:24:"（版間での差分）";s:10:"loadingrev";s:60:"差分をとるために古い版を読み込んでいます";s:6:"lineno";s:6:"$1 行";s:11:"editcurrent";s:36:"このページの最新版を編集";s:25:"selectnewerversionfordiff";s:37:"Select a newer version for comparison";s:25:"selectolderversionfordiff";s:38:"Select an older version for comparison";s:23:"compareselectedversions";s:30:"選択した版同士を比較";s:13:"searchresults";s:12:"検索結果";s:14:"searchhelppage";s:19:"Wikipedia:Searching";s:18:"searchingwikipedia";s:30:"検索機能の解説ページ";s:16:"searchresulttext";s:80:"Wikipedia の検索についての詳しい情報は、 $1 をご覧下さい。";s:11:"searchquery";s:36:"問い合わせ "$1" について、";s:8:"badquery";s:42:"おかしな形式の検索問い合わせ";s:12:"badquerytext";s:291:"問い合わせを処理できませんでした。
+これはおそらく、3文字未満の語を検索しようとしたためですが、これにはまだ対応していません。
+例えば「魚 and and 大きさ」のように、表現を誤記しているのかもしれません。";s:11:"matchtotals";s:97:"問い合わせ「$1」は $2 の記事の題及び $3 の記事の本文と一致しました。";s:9:"nogomatch";s:105:"検索した名称の項目は存在しませんでした。全文検索を試してみてください。";s:12:"titlematches";s:18:"項目名と一致";s:14:"notitlematches";s:42:"項目名とは一致しませんでした";s:11:"textmatches";s:21:"記事本文と一致";s:13:"notextmatches";s:45:"記事本文とは一致しませんでした";s:5:"prevn";s:6:"前 $1";s:5:"nextn";s:6:"次 $1";s:12:"viewprevnext";s:30:"（$1）（$2）($3) を見る";s:14:"showingresults";s:63:"<b>$2</b> 件目から <b>$1</b> 件を表示しています。";s:17:"showingresultsnum";s:63:"<b>$2</b> 件目から <b>$3</b> 件を表示しています。";s:9:"nonefound";s:311:"<strong>Note</strong>: 検索がうまくいかないのは、「ある」や「から」のような一般的な語で索引付けがされていないとか、複数の検索語を指定している（全ての検索語を含む頁だけが結果に示されます。）などのためかもしれません。";s:11:"powersearch";s:6:"検索";s:15:"powersearchtext";s:99:"検索する名前空間 :<br>
+$1<br>
+$2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9";s:14:"searchdisabled";s:228:"<p>全文検索はサーバー負荷の都合から、一時的に使用停止しています。<br>元に戻るまでGoogle での全文検索を利用してください。検索結果は少し古い内容となります。</p>";s:12:"googlesearch";s:1740:"<form method="get" action="http://www.google.com/search"><!-- SiteSearch Google -->
+<table>
+<tr><td>
+<a href="http://www.google.com/"><img src="http://www.google.com/logos/Logo_40wht.gif" border="0" alt="Google" /></a>
+</td><td>
+<input type="hidden" name="domains" value="http://ja.wikipedia.org" />
+<input type="hidden" name="ie" value="$2" />
+<input type="hidden" name="oe" value="$2" />
+<input type="text" name="q" size="31" maxlength="255" value="$1" />
+<input type="submit" name="btnG" value="Google 検索" /><br />
+<small><input type="radio" name="sitesearch" value="" id="googlesearch_www"/><label for="googlesearch_www">WWW</label>
+<input type="radio" name="sitesearch" value="http://ja.wikipedia.org" checked="checked" id="googlesearch_jawp" /><label for="googlesearch_jawp">http://ja.wikipedia.org/</label></small>
+</td></tr>
+</table>
+</form>
+<form method="get" action="http://search.yahoo.com/search"><!-- SiteSearch Google --><!-- Yahoo search -->
+<table>
+<tr><td>
+<a href="http://search.yahoo.com/"><img src="http://us.i1.yimg.com/us.yimg.com/i/us/search/ysan/ysanlogo.gif" border="0" alt="Yahoo!" /></a>
+</td><td>
+<input type="hidden" name="ei" value="UTF-8" />
+<input type="hidden" name="va_vt" value="any" />
+<input type="hidden" name="x" value="op" />
+<input type="text" name="va" size="31" value="$1" />
+<input type="submit" value="Yahoo! 検索" /><br />
+<small><input type="radio" name="vs" value="" id="yahoosearch_www" /><label for="yahoosearch_www">WWW</label>
+<input type="radio" name="vs" value="ja.wikipedia.org" checked="checked" id="yahoosearch_jawp" /><label for="yahoosearch_jawp">http://ja.wikipedia.org/</label></small>
+</td></tr>
+</table>
+<p>諸事情により、yahoo.com での検索です。</p>
+</form>";s:14:"blanknamespace";s:6:"(Main)";s:11:"preferences";s:15:"オプション";s:12:"prefsnologin";s:30:"ログインしていません";s:16:"prefsnologintext";s:138:"ユーザーオプションを変更するためには、
+<a href="/wiki/特別:Userlogin">ログイン</a>する必要があります。";s:14:"prefslogintext";s:221:"あなたは "$1" としてログインしています。
+あなたのユーザー番号は $2 です。
+
+オプションの変更詳細については [[Wikipedia:オプションのヘルプ]] をご覧ください。";s:10:"prefsreset";s:48:"ユーザー設定は初期化されました。";s:10:"qbsettings";s:24:"クイックバー設定";s:14:"qbsettingsnote";s:72:"This preference only works in the 'Standard' and the 'CologneBlue' skin.";s:14:"changepassword";s:21:"パスワード変更";s:4:"skin";s:6:"外装";s:4:"math";s:21:"数式の表記方法";s:10:"dateformat";s:15:"日付の書式";s:12:"math_failure";s:15:"Failed to parse";s:18:"math_unknown_error";s:13:"unknown error";s:21:"math_unknown_function";s:17:"unknown function ";s:17:"math_lexing_error";s:12:"lexing error";s:17:"math_syntax_error";s:12:"syntax error";s:16:"math_image_error";s:36:"PNGへの変換に失敗しました";s:15:"math_bad_tmpdir";s:44:"Can't write to or create math temp directory";s:15:"math_bad_output";s:46:"Can't write to or create math output directory";s:12:"math_notexvc";s:62:"Missing texvc executable; please see math/README to configure.";s:14:"prefs-personal";s:18:"利用者の情報";s:8:"prefs-rc";s:33:"最近更新とスタブの表示";s:10:"prefs-misc";s:18:"その他の設定";s:9:"saveprefs";s:15:"設定の保存";s:10:"resetprefs";s:18:"設定の初期化";s:11:"oldpassword";s:21:"古いパスワード";s:11:"newpassword";s:24:"新しいパスワード";s:9:"retypenew";s:51:"新しいパスワードを再入力して下さい";s:11:"textboxsize";s:36:"テキストボックスの大きさ";s:4:"rows";s:3:"縦";s:7:"columns";s:3:"横";s:17:"searchresultshead";s:21:"検索結果の表示";s:14:"resultsperpage";s:34:"1ページあたりの表示件数";s:12:"contextlines";s:22:"1件あたりの行数";s:12:"contextchars";s:25:"1行あたりの文字数";s:13:"stubthreshold";s:30:"スタブ表示にする閾値";s:18:"recentchangescount";s:45:"最近更新されたページの表示件数";s:10:"savedprefs";s:39:"ユーザー設定を保存しました";s:14:"timezonelegend";s:9:"Time zone";s:12:"timezonetext";s:99:"UTCとあなたの地域の標準時間との差を入力して下さい。（日本国内は 9 ）";s:9:"localtime";s:33:"あなたの地域の標準時間";s:14:"timezoneoffset";s:3:"差";s:10:"servertime";s:24:"サーバの現在時刻";s:13:"guesstimezone";s:12:"自動設定";s:9:"emailflag";s:60:"他のユーザーからのメール送付を差し止める";s:9:"defaultns";s:34:"標準で検索する名前空間:";s:7:"changes";s:7:"changes";s:13:"recentchanges";s:27:"最近更新したページ";s:17:"recentchangestext";s:976:"最近付け加えられた変更はこのページで確認することができます。
+[[Wikipedia:新規参加者の方、ようこそ]]！
+以下のページも参照して下さい:
+[[wikipedia:ウィキペディア　よくある質問集]],
+[[Wikipedia:ウィキペディアの基本方針とガイドライン]]
+（特に[[Wikipedia:記事名のつけ方]],
+[[Wikipedia:中立的な観点]]）,
+[[Wikipedia:ウィキペディアで起こしがちな間違い]].
+
+ウィキペディアが成功するためには、あなたの投稿する内容が他人の著作権などによって束縛されていないことがとても重要です。[[Wikipedia:著作権]]
+法的責任問題は、プロジェクトに致命傷を与えることもある問題です。他人の著作物などを流用することは絶対に避けてください。また次のページも参照して下さい。[http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion]";s:9:"rcloaderr";s:45:"最近の更新情報をダウンロード中";s:6:"rcnote";s:99:"以下は最近 <strong>$2</strong> 日間に編集された <strong>$1</strong> ページです。";s:10:"rcnotefrom";s:70:"以下は <b>$2</b> までの更新です。（最大 <b>$1</b> 件）";s:10:"rclistfrom";s:160:"$1以後現在までの更新を表示（<strong>N</strong>=新規記事、<strong>M</strong>=細部の編集、日時はオプションで未設定ならUTC）";s:13:"showhideminor";s:105:"細部の編集を$1 | ボットによる編集を$2 | ログイン済みのユーザによる編集を$3";s:7:"rclinks";s:50:"最近 $2 日間の $1 件分を表示する<br>$3";s:6:"rchide";s:71:"in $4 form; $1 minor edits; $2 secondary namespaces; $3 multiple edits.";s:5:"rcliu";s:31:"; $1 edits from logged in users";s:4:"diff";s:6:"差分";s:4:"hist";s:6:"履歴";s:4:"hide";s:6:"隠す";s:4:"show";s:6:"表示";s:9:"tableform";s:3:"表";s:8:"listform";s:9:"リスト";s:8:"nchanges";s:14:"$1件の変更";s:15:"minoreditletter";s:1:"M";s:13:"newpageletter";s:1:"N";s:6:"upload";s:18:"アップロード";s:9:"uploadbtn";s:87:"上記の事項を完全に理解し同意した上でファイルをアップロード";s:10:"uploadlink";s:27:"画像のアップロード";s:8:"reupload";s:21:"再アップロード";s:12:"reuploaddesc";s:42:"アップロードのフォームへ戻る";s:13:"uploadnologin";s:30:"ログインしていません";s:17:"uploadnologintext";s:124:"ファイルをアップロードするには<a href="/wiki/特別:Userlogin">ログイン</a>する必要があります。";s:10:"uploadfile";s:33:"ファイルのアップロード";s:11:"uploaderror";s:28:"アップロード エラー";s:10:"uploadtext";s:2624:"<p><strong>ご注意！</strong> - ここにファイルをアップロードする前に、ウィキペディアの<a href="/wiki/Wikipedia:画像利用の方針">画像利用の方針</a>をよく読んで、方針に反することのないようにして下さい。</p>
+
+<p>これまでにアップロードされたイメージの一覧や検索には、<a href="/wiki/特別:Imagelist">画像リスト</a>が便利です。アップロードと削除の記録は<a href="/wiki/Wikipedia:Upload_log">Wikipedia:Upload_log</a>にあります。</p>
+
+<p>記事に必要な画像を新しくアップロードする場合には、以下のフォームを利用して下さい。</p>
+
+<p>ほとんどのブラウザーでは、"Browse"というボタンが表示されます。そのボタンを押すと、あなたの使用しているコンピューター（のオペレーティング・システム）でファイルを開く際の標準的な手続きが始まります。ファイルを選択して、Browseというボタンの横にある空欄にファイル名が入力された状態にして下さい。また、あなたがそのファイルをアップロードすることが著作権を侵害に該当しないことをあなたが表明する必要があります。そのために、チェック欄にチェックを入れて下さい。上記の事項を完全に理解し同意した上でファイルをアップロードボタンを押すことで、アップロード手続きは完了します。もしもあなたのインターネット接続が低速のものであれば、アップロードには多少時間がかかります。</p>
+
+<p>望ましいフォーマットは、写真などのイメージの場合はJPEG、手書きのものやアイコンなどはPNG、サウンドにはOGGです。</p>
+
+<p>混乱を避けるために説明的な名前をつけて下さい。</p>
+
+<p>画像を記事に組み入れるためには、次のようなフォーマットでリンクを張ります。<strong>[[画像:file.jpg]]、[[画像:file.png|説明文]]</strong>また、サウンドには <strong>[[media:file.ogg]]</strong> のようなフォーマットを用います。</p>
+
+<p>ウィキペディアの他のページと同じく、あなたがアップロードしたファイルも、よりよい百科事典作成のために他のユーザーによって編集、削除されることがあります。また、アップロード機能を乱用した利用者は、アップロード機能の使用を禁じられることもありますのでご承知下さい。</p>";s:9:"uploadlog";s:24:"アップロードログ";s:13:"uploadlogpage";s:24:"アップロードログ";s:17:"uploadlogpagetext";s:157:"以下は最近のファイルのアップロードのログです。
+記録は全てサーバーの時間であるUTCに基づくものです。
+<ul>
+</ul>
+";s:8:"filename";s:15:"ファイル名";s:8:"filedesc";s:21:"ファイルの概要";s:10:"filestatus";s:16:"Copyright status";s:10:"filesource";s:6:"Source";s:11:"affirmation";s:223:"このファイルの著作権者は$1のライセンスに基づく
+使用を許可したことをここに表明します。
+
+I affirm that the copyright holder of this file
+agrees to license it under the terms of the $1.";s:13:"copyrightpage";s:19:"Wikipedia:著作権";s:17:"copyrightpagename";s:33:"ウィキペディアの著作権";s:13:"uploadedfiles";s:39:"アップロードされたファイル";s:13:"noaffirmation";s:99:"あなたのアップロードが著作権の侵害にあたらない旨を表明して下さい。";s:13:"ignorewarning";s:42:"警告を無視し、保存してしまう";s:9:"minlength";s:64:"ファイル名は3文字以上である必要があります。";s:11:"badfilename";s:49:"ファイル名は"$1"へ変更されました。";s:11:"badfiletype";s:84:"".$1" は推奨されているファイルフォーマットではありません。";s:9:"largefile";s:96:"ファイルサイズは100キロバイト以下に抑えることが推奨されています。";s:16:"successfulupload";s:24:"アップロード成功";s:12:"fileuploaded";s:237:"ファイル"$1\は無事にアップロードされました。
+以下のリンク($2)をクリックし、ファイルについての情報－出典、製作者や時期、
+その他知っている情報を書き込んで下さい。
+
+";s:13:"uploadwarning";s:25:"アップロード 警告";s:8:"savefile";s:21:"ファイルを保存";s:13:"uploadedimage";s:40:""$1"をアップロードしました。";s:14:"uploaddisabled";s:81:"申し訳ありませんが、アップロードは現在使用出来ません。";s:9:"imagelist";s:15:"画像リスト";s:13:"imagelisttext";s:46:"$1 枚の画像を $2 に表示しています";s:12:"getimagelist";s:24:"画像リストを取得";s:11:"ilshowmatch";s:45:"マッチする名前の画像を全て表示";s:8:"ilsubmit";s:6:"検索";s:8:"showlast";s:30:"$2に $1 枚の画像を表示";s:3:"all";s:6:"全て";s:6:"byname";s:9:"名前順";s:6:"bydate";s:9:"日付順";s:6:"bysize";s:12:"サイズ順";s:9:"imgdelete";s:6:"削除";s:7:"imgdesc";s:6:"詳細";s:9:"imglegend";s:53:"凡例: （詳細）= 画像の詳細を表示/編集";s:10:"imghistory";s:15:"画像の履歴";s:9:"revertimg";s:6:"差戻";s:9:"deleteimg";s:6:"削除";s:13:"imghistlegend";s:225:"凡例:（最新）= 最新版の画像、（削除）= この版の画像を削除、（差戻）= この版の画像に差し戻す<br><b>アップロードされた画像を見るには日付をクリックします。</b>";s:10:"imagelinks";s:9:"リンク";s:12:"linkstoimage";s:55:"この画像にリンクしているページの一覧:";s:14:"nolinkstoimage";s:66:"この画像にリンクしているページはありません。";s:10:"statistics";s:18:"アクセス統計";s:9:"sitestats";s:24:"サイト全体の統計";s:9:"userstats";s:24:"ユーザー登録統計";s:13:"sitestatstext";s:1098:"データベース内には '''$1''' ページのデータがあります。この数字には「会話ページ」や「Wikipedia関連のページ」、「書きかけのページ」、「リダイレクト」など、記事とはみなせないページが含まれています。これらを除いた、記事とみなされるページ数は約 '''$2''' ページになります。
+
+ページの総閲覧回数は '''$3''' 回<sup>※</sup>です。また、ソフトウェアの更新 (2002/06/20) 以来、'''$4''' 回の編集が行われました。平均すると、1 ページあたり '''$5''' 回の編集が行われ、1 編集あたり '''$6''' 回閲覧されています。
+
+※ページの総閲覧回数はサーバ負荷低減のため、現在は更新されていません。
+:* [http://ja.wikipedia.org/stats/ Webalizer によるウィキペディア日本語版アクセス統計]
+:* [http://www.wikipedia.org/wikistats/JA/Sitemap.htm エーリック・ザクテ氏によるウィキペディアの統計ページ]
+:*[[Wikipedia:日本語版の統計|日本語版の統計]]";s:13:"userstatstext";s:123:"登録済みの利用者は <b>$1</b> 人で、内 <b>$2</b> 人が管理者権限を持っています。（$3を参照）";s:11:"maintenance";s:27:"メンテナンスページ";s:18:"maintnancepagetext";s:176:"This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)";s:19:"maintenancebacklink";s:24:"Back to Maintenance Page";s:15:"disambiguations";s:20:"Disambiguation pages";s:19:"disambiguationspage";s:39:"Wikipedia:Links_to_disambiguating_pages";s:19:"disambiguationstext";s:234:"The following pages link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.";s:15:"doubleredirects";s:24:"二重リダイレクト";s:19:"doubleredirectstext";s:338:"<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />
+Each row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the "real" target page, which the first redirect should point to.";s:15:"brokenredirects";s:16:"Broken Redirects";s:19:"brokenredirectstext";s:53:"The following redirects link to a non-existing pages.";s:9:"selflinks";s:21:"Pages with Self Links";s:13:"selflinkstext";s:72:"The following pages contain a link to themselves, which they should not.";s:11:"mispeelings";s:23:"Pages with misspellings";s:15:"mispeelingstext";s:122:"The following pages contain a common misspelling, which are listed on $1. The correct spelling might be given (like this).";s:15:"mispeelingspage";s:27:"List of common misspellings";s:20:"missinglanguagelinks";s:22:"Missing Language Links";s:26:"missinglanguagelinksbutton";s:31:"Find missing language links for";s:24:"missinglanguagelinkstext";s:103:"These pages do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.";s:7:"orphans";s:27:"孤立しているページ";s:11:"lonelypages";s:27:"孤立しているページ";s:12:"unusedimages";s:27:"使われていない画像";s:12:"popularpages";s:18:"人気のページ";s:6:"nviews";s:12:"$1 回表示";s:11:"wantedpages";s:36:"投稿が望まれているページ";s:6:"nlinks";s:18:"$1 個のリンク";s:8:"allpages";s:12:"全ページ";s:10:"randompage";s:18:"おまかせ表示";s:10:"shortpages";s:15:"短いページ";s:9:"longpages";s:15:"長いページ";s:12:"deadendpages";s:60:"有効な記事へのリンクを持っていないページ";s:9:"listusers";s:24:"登録ユーザー一覧";s:10:"listadmins";s:11:"Admins list";s:12:"specialpages";s:15:"特別ページ";s:9:"spheading";s:15:"特別ページ";s:14:"sysopspheading";s:45:"管理者用特別ページ (pages for sysop)";s:18:"developerspheading";s:50:"開発者用特別ページ (pages for developper)";s:11:"protectpage";s:12:"Protect page";s:19:"recentchangeslinked";s:21:"リンク先の更新";s:6:"rclsub";s:50:"（"$1" からリンクされているページ）";s:5:"debug";s:20:"デバッグ (debug)";s:8:"newpages";s:18:"新しいページ";s:12:"ancientpages";s:33:"更新されていないページ";s:4:"intl";s:19:"Interlanguage links";s:4:"move";s:6:"移動";s:12:"movethispage";s:24:"このページを移動";s:16:"unusedimagestext";s:289:"<p>ご注意:他言語版のウィキペディアも含め、他のウェブサイトがURLを直接用いて画像にリンクしている場合もあります。以下の画像一覧には、そのような形で利用されている画像が含まれている可能性があります。";s:11:"booksources";s:12:"文献資料";s:14:"booksourcetext";s:434:"以下のリストは、新本、古本などを販売している外部サイトへのリンクです。
+あなたがお探しの本について、更に詳しい情報が提供されている場合もあります｡
+ウィキペディアはこれらの業務とは提携関係は持っていません。また、このリストはリストされたサイトへのウィキペディアの支持を表すものでもありません。";s:4:"isbn";s:4:"ISBN";s:6:"rfcurl";s:35:"http://www.faqs.org/rfcs/rfc$1.html";s:14:"alphaindexline";s:8:"$1 to $2";s:7:"version";s:7:"Version";s:11:"mailnologin";s:45:"送信先のアドレスがありません。";s:15:"mailnologintext";s:285:"ログインしていません。メールを送信するためには、あなたのメールアドレスを<a href="/wiki/Special:オプションのヘルプ">ユーザーオプション</a>で指定し、<a href="/wiki/特別:Userlogin">ログイン</a>する必要があります。";s:9:"emailuser";s:39:"このユーザーにメールを送信";s:9:"emailpage";s:24:"メール送信ページ";s:13:"emailpagetext";s:386:"もしメールを送る先のユーザーが、有効なメールアドレスを
+ユーザーオプションに登録してあれば、下のフォームを通じてメールを送ることができます。
+あなたが登録したご自分のメールアドレスはFrom:の欄に自動的に組み込まれ、受け取った相手が
+返事を出せるようになっています。";s:15:"usermailererror";s:28:"Mail object returned error: ";s:15:"defemailsubject";s:21:"Wikipedia (ja) e-mail";s:12:"noemailtitle";s:54:"送り先のメールアドレスがありません。";s:11:"noemailtext";s:168:"このユーザーは有効なメールアドレスを登録していないか、メールを受け取りたくないというオプションを選択しています。";s:9:"emailfrom";s:24:"あなたのアドレス";s:7:"emailto";s:9:"あて先";s:12:"emailsubject";s:6:"題名";s:12:"emailmessage";s:6:"本文";s:9:"emailsend";s:15:"メール送信";s:9:"emailsent";s:27:"メールを送りました";s:13:"emailsenttext";s:42:"メールは無事送信されました。";s:9:"watchlist";s:21:"ウォッチリスト";s:12:"watchlistsub";s:26:"（ユーザー名 "$1"）";s:11:"nowatchlist";s:48:"あなたのウォッチリストは空です。";s:12:"watchnologin";s:30:"ログインしていません";s:16:"watchnologintext";s:137:"ウォッチリストを変更するためには、
+<a href="/wiki/特別:Userlogin">ログイン</a>している必要があります。";s:10:"addedwatch";s:39:"ウォッチリストに加えました";s:14:"addedwatchtext";s:634:"ページ "[[$1]]" をあなたの[[特別:Watchlist|ウォッチリスト]]に追加しました。
+
+このページと、付属のノートのページに変更があった際にはそれをウォッチリストで知ることができます。また、[[特別:Recentchanges|最近更新したページ]]ではウォッチリストに含まれているページは'''ボールド体'''で表示され、見つけやすくなります。
+
+もしもウォッチリストから特定のページを削除したい場合には、サイドバーにある
+"ウォッチリストから削除" のリンクをクリックして下さい。";s:12:"removedwatch";s:45:"ウォッチリストから削除しました";s:16:"removedwatchtext";s:66:"ページ "$1" をウォッチリストから削除しました。";s:5:"watch";s:30:"ウォッチリストに追加";s:13:"watchthispage";s:30:"ウォッチリストに追加";s:7:"unwatch";s:33:"ウォッチリストから削除";s:15:"unwatchthispage";s:33:"ウォッチリストから削除";s:12:"notanarticle";s:39:"これは記事ではありません。";s:13:"watchnochange";s:99:"その期間内にウォッチリストにあるページはどれも編集されていません。";s:12:"watchdetails";s:268:"</i><ul>
+<li>ウォッチリストに入っている記事数（ノート除く）: $1</li>
+<li>表示期間内になされた編集数: $2</li>
+<li>このリストの集計方法: $3</li>
+<li><a href='$4'>ウォッチリストの一覧・編集</a></li>
+</ul><i>";s:18:"watchmethod-recent";s:69:"ウォッチリストの中から最近編集されたものを抽出";s:16:"watchmethod-list";s:72:"最近編集された中からウォッチしているページを抽出";s:13:"removechecked";s:60:"チェックした項目をウォッチリストから削除";s:17:"watchlistcontains";s:79:"あなたのウォッチリストには $1 ページ登録されています。";s:13:"watcheditlist";s:271:"ウォッチリストに登録しているページを文字コード順に表示しています。
+
+チェックボックスにチェックをし、「ウォッチリストから削除」のボタンをクリックするとウォッチリストから削除します。";s:15:"removingchecked";s:78:"要求された項目をウォッチリストから削除しています……";s:13:"couldntremove";s:74:""$1" をウォッチリストから削除するのに失敗しました。";s:15:"iteminvalidname";s:39:"Problem with item '$1', invalid name...";s:6:"wlnote";s:99:"以下は最近 <strong>$2</strong> 時間に編集された <strong>$1</strong> ページです。";s:10:"wlshowlast";s:54:"最近[$1時間][$2日間][$3]のものを表示する";s:7:"wlsaved";s:96:"現在、バックアップされたウォッチリストのみの表示となっています。";s:10:"deletepage";s:29:"ページ削除 (Delete page)";s:7:"confirm";s:16:"確認 (Confirm)";s:9:"excontent";s:7:"内容:";s:13:"exbeforeblank";s:22:"白紙化前の内容:";s:7:"exblank";s:14:"page was empty";s:13:"confirmdelete";s:29:"削除確認 (Confirm delete)";s:9:"deletesub";s:51:"（サブページ"$1"を削除 (Deleting "$1") ）";s:14:"historywarning";s:57:"Warning: The page you are about to delete has a history: ";s:17:"confirmdeletetext";s:663:"指定されたページまたはイメージは、その更新履歴と共に
+データベースから永久に削除されようとしています。
+あなたが削除を望んでおり、それがもたらす帰結を理解しており、かつあなたの
+しようとしていることが[[Wikipedia:Policy|ウィキペディアの基本方針]]に即したものであることを確認して下さい。
+
+You are about to permanently delete a page
+or image along with all of its history from the database.
+Please confirm that you intend to do this, that you understand the
+consequences, and that you are doing this in accordance with
+[[Wikipedia:Policy]].";s:12:"confirmcheck";s:70:"はい。上記の通りです。　Yes, I really want to delete this.";s:14:"actioncomplete";s:48:"削除を完了しました。　Action complete";s:11:"deletedtext";s:158:""$1" は削除されました。最近の削除に関しては $2 を参照して下さい。
+
+"$1" has been deleted. See $2 for a record of recent deletions.";s:14:"deletedarticle";s:26:""$1" を削除しました";s:10:"dellogpage";s:12:"削除記録";s:14:"dellogpagetext";s:229:"以下に示すのは最近の削除記録です。時間はサーバーの時間 (UTC) によって記録されています。
+
+Below is a list of the most recent deletions.
+All times shown are server time (UTC).
+<ul>
+</ul>";s:11:"deletionlog";s:27:"削除記録　deletion log";s:8:"reverted";s:76:"以前のバージョンへの差し戻し。　Reverted to earlier revision";s:13:"deletecomment";s:15:"削除の理由";s:13:"imagereverted";s:66:"以前のバージョンへの差し戻しに成功しました。";s:8:"rollback";s:15:"Roll back edits";s:14:"rollback_short";s:8:"Rollback";s:12:"rollbacklink";s:8:"rollback";s:14:"rollbackfailed";s:15:"Rollback failed";s:12:"cantrollback";s:65:"Cannot revert edit; last contributor is only author of this page.";s:13:"alreadyrolled";s:225:"Cannot rollback last edit of [[$1]]
+by [[利用者:$2|$2]] ([[利用者‐会話:$2|Talk]]); someone else has edited or rolled back the article already. 
+
+Last edit was by [[利用者:$3|$3]] ([[利用者‐会話:$3|Talk]]).";s:11:"editcomment";s:34:"The edit comment was: "<i>$1</i>".";s:10:"revertpage";s:55:"Reverted edit of $2, changed back to last version by $1";s:14:"protectlogpage";s:14:"Protection_log";s:14:"protectlogtext";s:93:"Below is a list of page locks/unlocks.
+See [[Wikipedia:Protected page]] for more information.";s:16:"protectedarticle";s:27:"[[$1]]を保護しました";s:18:"unprotectedarticle";s:39:"[[$1]]の保護を解除しました。";s:10:"protectsub";s:17:"(Protecting "$1")";s:18:"confirmprotecttext";s:89:"本当にこのページを保護しますか? (Do you really want to protect this page?)";s:14:"confirmprotect";s:33:"保護確認 (Confirm protection)";s:14:"protectcomment";s:15:"保護の理由";s:12:"unprotectsub";s:19:"(Unprotecting "$1")";s:20:"confirmunprotecttext";s:100:"本当にこのページの保護を解除しますか? (Do you really want to unprotect this page?)";s:16:"confirmunprotect";s:44:"保護解除の確認 (Confirm unprotection)";s:16:"unprotectcomment";s:21:"保護解除の理由";s:13:"protectreason";s:15:"(give a reason)";s:8:"undelete";s:20:"Restore deleted page";s:12:"undeletepage";s:30:"View and restore deleted pages";s:16:"undeletepagetext";s:132:"The following pages have been deleted but are still in the archive and
+can be restored. The archive may be periodically cleaned out.";s:15:"undeletearticle";s:20:"Restore deleted page";s:17:"undeleterevisions";s:21:"$1 revisions archived";s:15:"undeletehistory";s:276:"If you restore the page, all revisions will be restored to the history.
+If a new page with the same name has been created since the deletion, the restored
+revisions will appear in the prior history, and the current revision of the live page
+will not be automatically replaced.";s:16:"undeleterevision";s:25:"Deleted revision as of $1";s:11:"undeletebtn";s:8:"Restore!";s:16:"undeletedarticle";s:13:"restored "$1"";s:13:"undeletedtext";s:120:"[[$1]] has been successfully restored.
+See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations.";s:13:"contributions";s:27:"ユーザーの投稿記録";s:9:"mycontris";s:21:"自分の投稿記録";s:10:"contribsub";s:20:"ユーザー名：$1";s:10:"nocontribs";s:63:"ユーザーの投稿記録は見つかりませんでした。";s:6:"ucnote";s:102:"以下に示すのが過去<b>$2</b>日間における、最大<b>$1</b>件の投稿・編集です。";s:7:"uclinks";s:129:"$1 件の投稿・編集を見る。; $2日間分の投稿・編集を見る。
+
+View the last $1 changes; view the last $2 days.";s:5:"uctop";s:6:" (top)";s:13:"notargettitle";s:45:"対象となるページが存在しません";s:12:"notargettext";s:72:"対象となるページ又はユーザーが指定されていません";s:11:"linklistsub";s:21:"リンクのリスト";s:9:"linkshere";s:78:"指定したページは以下のページからリンクされています。";s:11:"nolinkshere";s:78:"指定されたページにリンクしているページはありません。";s:10:"isredirect";s:27:"リダイレクトページ";s:7:"blockip";s:16:"Block IP address";s:11:"blockiptext";s:276:"Use the form below to block write access
+from a specific IP address.
+This should be done only only to prevent valndalism, and in
+accordance with [[Wikipedia:Policy|Wikipedia policy]].
+Fill in a specific reason below (for example, citing particular
+pages that were vandalized).";s:9:"ipaddress";s:22:"IP Address / user name";s:9:"ipbexpiry";s:6:"Expiry";s:9:"ipbreason";s:6:"Reason";s:9:"ipbsubmit";s:25:"Block this address / user";s:12:"badipaddress";s:31:"The IP address is badly formed.";s:13:"noblockreason";s:39:"You must supply a reason for the block.";s:17:"blockipsuccesssub";s:15:"Block succeeded";s:18:"blockipsuccesstext";s:101:"The IP address "$1" has been blocked.
+<br>See [[特別:Ipblocklist|IP block list]] to review blocks.";s:9:"unblockip";s:18:"Unblock IP address";s:13:"unblockiptext";s:78:"Use the form below to restore write access
+to a previously blocked IP address.";s:9:"ipusubmit";s:27:"Unblock this address / user";s:10:"ipusuccess";s:25:"IP address "$1" unblocked";s:11:"ipblocklist";s:53:"投稿ブロック中のユーザーやIPアドレス";s:13:"blocklistline";s:47:"$1, $2 は $3 をブロック （$4に解除）";s:9:"blocklink";s:5:"block";s:11:"unblocklink";s:7:"unblock";s:12:"contribslink";s:12:"投稿記録";s:11:"autoblocker";s:166:"投稿ブロックされているユーザー"$1"と同じIPアドレスのため、自動的にブロックされています。ブロックの理由は"$2"です。";s:12:"blocklogpage";s:9:"Block_log";s:13:"blocklogentry";s:32:""$1" をブロックしました";s:12:"blocklogtext";s:211:"This is a log of user blocking and unblocking actions. Automatically 
+blocked IP addresses are not be listed. See the [[特別:Ipblocklist|IP block list]] for
+the list of currently operational bans and blocks.";s:15:"unblocklogentry";s:38:""$1" をブロック解除しました";s:20:"range_block_disabled";s:53:"The sysop ability to create range blocks is disabled.";s:18:"ipb_expiry_invalid";s:20:"Expiry time invalid.";s:16:"ip_range_invalid";s:18:"Invalid IP range.
+";s:12:"proxyblocker";s:13:"Proxy blocker";s:16:"proxyblockreason";s:173:"Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.";s:17:"proxyblocksuccess";s:6:"Done.
+";s:6:"lockdb";s:13:"Lock database";s:8:"unlockdb";s:15:"Unlock database";s:10:"lockdbtext";s:294:"Locking the database will suspend the ability of all
+users to edit pages, change their preferences, edit their watchlists, and
+other things requiring changes in the database.
+Please confirm that this is what you intend to do, and that you will
+unlock the database when your maintenance is done.";s:12:"unlockdbtext";s:227:"Unlocking the database will restore the ability of all
+users to edit pages, change their preferences, edit their watchlists, and
+other things requiring changes in the database.
+Please confirm that this is what you intend to do.";s:11:"lockconfirm";s:40:"Yes, I really want to lock the database.";s:13:"unlockconfirm";s:42:"Yes, I really want to unlock the database.";s:7:"lockbtn";s:13:"Lock database";s:9:"unlockbtn";s:15:"Unlock database";s:13:"locknoconfirm";s:39:"You did not check the confirmation box.";s:16:"lockdbsuccesssub";s:23:"Database lock succeeded";s:18:"unlockdbsuccesssub";s:21:"Database lock removed";s:17:"lockdbsuccesstext";s:107:"The Wikipedia database has been locked.
+<br>Remember to remove the lock after your maintenance is complete.";s:19:"unlockdbsuccesstext";s:41:"The Wikipedia database has been unlocked.";s:6:"asksql";s:9:"SQL query";s:10:"asksqltext";s:219:"Use the form below to make a direct query of the
+Wikipedia database.
+Use single quotes ('like this') to delimit string literals.
+This can often add considerable load to the server, so please use
+this function sparingly.";s:11:"sqlislogged";s:40:"Please note that all queries are logged.";s:8:"sqlquery";s:11:"Enter query";s:8:"querybtn";s:12:"Submit query";s:10:"selectonly";s:67:"Queries other than "SELECT" are restricted to
+Wikipedia developers.";s:15:"querysuccessful";s:16:"Query successful";s:14:"makesysoptitle";s:24:"Make a user into a sysop";s:13:"makesysoptext";s:169:"This form is used by bureaucrats to turn ordinary users into administrators. 
+Type the name of the user in the box and press the button to make the user an administrator";s:13:"makesysopname";s:17:"Name of the user:";s:15:"makesysopsubmit";s:27:"Make this user into a sysop";s:11:"makesysopok";s:31:"<b>User "$1" is now a sysop</b>";s:13:"makesysopfail";s:84:"<b>User "$1" could not be made into a sysop. (Did you enter the name correctly?)</b>";s:17:"setbureaucratflag";s:19:"Set bureaucrat flag";s:13:"bureaucratlog";s:14:"Bureaucrat_log";s:18:"bureaucratlogentry";s:29:"Rights for user "$1" set "$2"";s:6:"rights";s:7:"Rights:";s:15:"set_user_rights";s:15:"Set user rights";s:15:"user_rights_set";s:35:"<b>User rights for "$1" updated</b>";s:15:"set_rights_fail";s:81:"<b>User rights for "$1" could not be set. (Did you enter the name correctly?)</b>";s:9:"makesysop";s:24:"Make a user into a sysop";s:8:"movepage";s:18:"ページの移動";s:12:"movepagetext";s:1009:"下のフォームを利用すると、ページ名を変更し、その履歴も変更先へ移動することができます。古いページは変更先へのリダイレクトページとなります。ページの中身と変更前のページに張られたリンクは変わりません。ですから、二重になったり壊れてしまったリダイレクトをチェックする必要があります。
+
+変更先がすでに存在する場合には、白紙やリダイレクトしか履歴がない場合を除いて、移動できません。つまり、間違えてページ名を変更した場合には元に戻せます。また、すでに存在するページには上書きできません。
+
+<b>注意！</b>
+よく閲覧されるページや、他の多くのページからリンクされているページを移動すると予期せぬ結果が起こるかもしれません。
+ページの移動に伴う影響をよく考えてから踏み切るようにして下さい。";s:16:"movepagetalktext";s:488:"付随するノートのページがある場合には、基本的には、一緒に移動されることになります。
+
+但し、以下の場合については別です。
+*名前空間をまたがる移動の場合
+*移動先に既に履歴のあるノートページが存在する場合
+*下のチェックボックスのチェックマークを消した場合
+
+これらの場合、ノートページを移動する場合には、別に作業する必要があります。";s:11:"movearticle";s:21:"移動するページ";s:11:"movenologin";s:30:"ログインしていません";s:15:"movenologintext";s:159:"この機能を利用するためには、ユーザー登録をして、
+<a href="/wiki/特別:Userlogin">ログイン</a>している必要が
+あります。";s:8:"newtitle";s:21:"新しいページ名";s:11:"movepagebtn";s:18:"ページを移動";s:12:"pagemovedsub";s:27:"無事移動しました。";s:13:"pagemovedtext";s:55:"ページ"[[$1]]" は "[[$2]]" に移動しました。";s:13:"articleexists";s:93:"指定された移動先には既にページが存在するか、名前が不適切です。";s:10:"talkexists";s:149:"The page itself was moved successfully, but the
+talk page could not be moved because one already exists at the new
+title. Please merge them manually.";s:7:"movedto";s:10:"移動先:";s:8:"movetalk";s:78:"ノートページが付随する場合には、それも一緒に移動する";s:13:"talkpagemoved";s:54:"付随のノートのページも移動しました。";s:16:"talkpagenotmoved";s:73:"付随のノートのページは<b>移動されませんでした。</b>";s:9:"1movedto2";s:19:"$1 を $2 へ移動";s:6:"export";s:30:"記事データの書き出し";s:10:"exporttext";s:227:"You can export the text and editing history of a particular
+page or set of pages wrapped in some XML; this can then be imported into another
+wiki running MediaWiki software, transformed, or just kept for your private
+amusement.";s:13:"exportcuronly";s:55:"Include only the current revision, not the full history";s:11:"allmessages";s:27:"表示メッセージ一覧";s:15:"allmessagestext";s:76:"This is a list of all system messages available in the MediaWiki: namespace.";s:14:"thumbnail-more";s:6:"拡大";s:12:"missingimage";s:36:"<b>Missing image</b><br /><i>$1</i>
+";s:6:"import";s:12:"Import pages";s:10:"importtext";s:118:"Please export the file from the source wiki using the Special:Export utility, save it to your disk and upload it here.";s:12:"importfailed";s:17:"Import failed: $1";s:12:"importnotext";s:16:"Empty or no text";s:13:"importsuccess";s:17:"Import succeeded!";s:21:"importhistoryconflict";s:72:"Conflicting history revision exists (may have imported this page before)";s:16:"accesskey-search";s:1:"f";s:19:"accesskey-minoredit";s:1:"i";s:14:"accesskey-save";s:1:"s";s:17:"accesskey-preview";s:1:"p";s:33:"accesskey-compareselectedversions";s:1:"v";s:14:"tooltip-search";s:24:"Search this wiki [alt-f]";s:17:"tooltip-minoredit";s:33:"Mark this as a minor edit [alt-i]";s:12:"tooltip-save";s:35:"編集を保存します。 [alt-s]";s:15:"tooltip-preview";s:86:"編集結果を確認します。保存前に是非使用してください。 [alt-p]";s:31:"tooltip-compareselectedversions";s:75:"See the differences between the two selected versions of this page. [alt-v]";s:12:"Monobook.css";s:34:"#globalWrapper {font-size:medium;}";s:12:"nodublincore";s:50:"Dublin Core RDF metadata disabled for this server.";s:17:"nocreativecommons";s:55:"Creative Commons RDF metadata disabled for this server.";s:13:"notacceptable";s:68:"The wiki server can't provide data in a format your client can read.";s:9:"anonymous";s:30:"Anonymous user(s) of Wikipedia";s:8:"siteuser";s:17:"Wikipedia user $1";s:14:"lastmodifiedby";s:37:"This page was last modified $1 by $2.";s:3:"and";s:3:"and";s:13:"othercontribs";s:20:"Based on work by $1.";s:9:"siteusers";s:20:"Wikipedia user(s) $1";s:19:"spamprotectiontitle";s:22:"Spam protection filter";s:18:"spamprotectiontext";s:214:"The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site. 
+
+You might want to check the following regular expression for patterns that are currently blocked:";s:16:"subcategorycount";s:44:"There are $1 subcategories to this category.";s:20:"categoryarticlecount";s:39:"There are $1 articles in this category.";s:18:"usenewcategorypage";s:70:"1
+
+Set first character to "0" to disable the new category page layout.";s:11:"Monobook.js";s:3547:"/* tooltips and access keys */
+ta = new Object();
+ta['pt-userpage'] = new Array('.','My user page'); 
+ta['pt-anonuserpage'] = new Array('.','The user page for the ip you\'re editing as'); 
+ta['pt-mytalk'] = new Array('n','My talk page'); 
+ta['pt-anontalk'] = new Array('n','Discussion about edits from this ip address'); 
+ta['pt-preferences'] = new Array('','My preferences'); 
+ta['pt-watchlist'] = new Array('l','The list of pages you\'re monitoring for changes.'); 
+ta['pt-mycontris'] = new Array('y','List of my contributions'); 
+ta['pt-login'] = new Array('o','You are encouraged to log in, it is not mandatory however.'); 
+ta['pt-anonlogin'] = new Array('o','You are encouraged to log in, it is not mandatory however.'); 
+ta['pt-logout'] = new Array('o','Log out'); 
+ta['ca-article'] = new Array('a','View the content page'); 
+ta['ca-talk'] = new Array('t','Discussion about the content page'); 
+ta['ca-edit'] = new Array('e','You can edit this page. Please use the preview button before saving.'); 
+ta['ca-addsection'] = new Array('+','Add a comment to this discussion.'); 
+ta['ca-viewsource'] = new Array('e','This page is protected. You can view its source.'); 
+ta['ca-history'] = new Array('h','Past versions of this page.'); 
+ta['ca-protect'] = new Array('=','Protect this page'); 
+ta['ca-delete'] = new Array('d','Delete this page'); 
+ta['ca-undelete'] = new Array('d','Restore the edits done to this page before it was deleted'); 
+ta['ca-move'] = new Array('m','Move this page'); 
+ta['ca-nomove'] = new Array('','You don\'t have the permissions to move this page'); 
+ta['ca-watch'] = new Array('w','Add this page to your watchlist'); 
+ta['ca-unwatch'] = new Array('w','Remove this page from your watchlist'); 
+ta['search'] = new Array('f','Search this wiki'); 
+ta['p-logo'] = new Array('','Main Page'); 
+ta['n-mainpage'] = new Array('z','Visit the Main Page'); 
+ta['n-portal'] = new Array('','About the project, what you can do, where to find things'); 
+ta['n-currentevents'] = new Array('','Find background information on current events'); 
+ta['n-recentchanges'] = new Array('r','The list of recent changes in the wiki.'); 
+ta['n-randompage'] = new Array('x','Load a random page'); 
+ta['n-help'] = new Array('','The place to find out.'); 
+ta['n-sitesupport'] = new Array('','Support us'); 
+ta['t-whatlinkshere'] = new Array('j','List of all wiki pages that link here'); 
+ta['t-recentchangeslinked'] = new Array('k','Recent changes in pages linking to this page'); 
+ta['feed-rss'] = new Array('','RSS feed for this page'); 
+ta['feed-atom'] = new Array('','Atom feed for this page'); 
+ta['t-contributions'] = new Array('','View the list of contributions of this user'); 
+ta['t-emailuser'] = new Array('','Send a mail to this user'); 
+ta['t-upload'] = new Array('u','Upload images or media files'); 
+ta['t-specialpages'] = new Array('q','List of all special pages'); 
+ta['ca-nstab-main'] = new Array('c','View the content page'); 
+ta['ca-nstab-user'] = new Array('c','View the user page'); 
+ta['ca-nstab-media'] = new Array('c','View the media page'); 
+ta['ca-nstab-special'] = new Array('','This is a special page, you can\'t edit the page itself.'); 
+ta['ca-nstab-wp'] = new Array('a','View the project page'); 
+ta['ca-nstab-image'] = new Array('c','View the image page'); 
+ta['ca-nstab-mediawiki'] = new Array('c','View the system message'); 
+ta['ca-nstab-template'] = new Array('c','View the template'); 
+ta['ca-nstab-help'] = new Array('c','View the help page'); 
+ta['ca-nstab-category'] = new Array('c','View the category page'); 
+";}

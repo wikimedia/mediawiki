@@ -3,31 +3,21 @@
 # Rebuild link tracking tables from scratch.  This takes several
 # hours, depending on the database size and server configuration.
 
-if ( ! is_readable( "../LocalSettings.php" ) ) {
-	print "A copy of your installation's LocalSettings.php\n" .
-	  "must exist in the source directory.\n";
-	exit();
-}
+require_once( "commandLine.inc" );
 
-$wgCommandLineMode = true;
-$DP = "../includes";
-require_once( "../LocalSettings.php" );
-require_once( "../AdminSettings.php" );
-
-$sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
-ini_set( "include_path", "$IP$sep$include_path" );
-
-require_once( "Setup.php" );
-require_once( "./rebuildlinks.inc" );
-require_once( "./rebuildtextindex.inc" );
-require_once( "./rebuildrecentchanges.inc" );
-$wgTitle = Title::newFromText( "Rebuild links script" );
-set_time_limit(0);
+#require_once( "rebuildlinks.inc" );
+require_once( "refreshlinks.inc" );
+require_once( "rebuildtextindex.inc" );
+require_once( "rebuildrecentchanges.inc" );
 
 $wgDBuser			= $wgDBadminuser;
 $wgDBpassword		= $wgDBadminpassword;
 
-rebuildLinkTables();
+# Doesn't work anymore
+# rebuildLinkTables();
+
+# Use the slow incomplete one instead. It's designed to work in the background
+#refreshLinks( 1 );
 
 dropTextIndex();
 rebuildTextIndex();

@@ -25,6 +25,7 @@ a.new{ color:#ba0000; text-decoration:none; }
 .toctoggle, .editsection {
 	font-size: smaller;
 }
+
 /* images */
 div.floatright { 
     float: right; 
@@ -47,31 +48,34 @@ div.thumb {
     margin-bottom: 0.5em;
     border-style: solid; border-color: White;
     width: auto;
+    overflow: hidden;
 }
 div.thumb div {
     border:1px solid #cccccc;
     padding: 3px !important;
     background-color:#f9f9f9;
     font-size: 94%;
+    text-align: center;
 }
 div.thumb div a img {
     border:1px solid #cccccc;
 }
-div div.thumbcaption {
+div.thumb div div.thumbcaption {
     border: none;
     text-align: left;
-    padding: 0.3em 0 0.1em 0 !important;
+    padding: 0.3em 0 0.1em 0;
 }
-div.magnify {
+div.magnify { display: none; }
+div.tright {
     float: right;
-    border: none !important;
-    background: none !important;
+    border-width: 0.5em 0 0.8em 1.4em;
 }
-div.magnify a, div.magnify img {
-    display: block;
-    border: none !important;
-    background: none !important;
+div.tleft {
+    float: left;
+    margin-right:0.5em;
+    border: 0.5em 1.4em 0.8em 0;
 }
+
 /* table standards */
 table.rimage {
     float:right; 
@@ -84,8 +88,7 @@ table.rimage {
 
 body {
     background: White;
-    font-family: "Bitstream Vera Sans",Verdana, sans;
-    font-size: 11pt !important;
+    /*font-size: 11pt !important;*/
     color: Black;
     margin: 0;
     padding: 0;
@@ -186,8 +189,36 @@ a, a.external, a.new, a.stub {
 	text-decoration: inherit ! important;
 }
 
+img { border: none; }
+img.tex { vertical-align: middle; }
+span.texhtml { font-family: serif; }
 
 /* Show some stuff */
 .urlexpansion {
 	display: inline ! important;
+}
+
+div.townBox {
+    position:relative;
+    float:right;
+    background:White;
+    margin-left:1em;
+    border: 1px solid Grey;
+    padding:0.3em;
+    width: 200px;
+    overflow: hidden;
+    clear: right;
+}
+div.townBox dl {
+    padding: 0;
+    margin: 0 0 0.3em 0; 
+    font-size: 96%;
+}
+div.townBox dl dt {
+    background: none;
+    margin: 0.4em 0 0 0;
+}
+div.townBox dl dd {
+    margin: 0.1em 0 0 1.1em;
+    background-color: #f3f3f3;
 }

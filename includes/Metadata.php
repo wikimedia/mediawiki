@@ -119,8 +119,8 @@ function wfCreativeCommonsRdf($article) {
 
 	$contributors = $article->getContributors();
 	
-	foreach ($contributors as $cid => $user_parts) {
-		dcPerson('contributor', $cid, $user_parts[0], $user_parts[1]);
+	foreach ($contributors as $user_parts) {
+		dcPerson('contributor', $user_parts[0], $user_parts[1], $user_parts[2]);
 	}
 	
 	dcRights($article);

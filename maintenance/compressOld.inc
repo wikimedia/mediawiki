@@ -1,7 +1,5 @@
 <?php
 
-include_once( "Article.php" );
-
 function compressOldPages( $start = 0 ) {
 	$chunksize = 50;
 	print "Starting from old_id $start...\n";

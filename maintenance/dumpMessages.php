@@ -1,17 +1,12 @@
 <?php
 require_once( "commandLine.inc" );
-
+$wgMessageCache->disableTransform();
 $messages = array();
 foreach ( $wgAllMessagesEn as $key => $englishValue )
 {
 	$messages[$key] = wfMsg( $key );
 }
-
-if ( count( $argv ) >= 2 ) {
-	$res = fopen( $argv[2] );
-	fwrite( $res, serialize( $messages ) );
-} else {
-	print serialize( $messages );
-}
+print "MediaWiki $wgVersion language file\n";
+print serialize( $messages );
 
 ?>

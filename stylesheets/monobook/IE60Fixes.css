@@ -1,16 +1,26 @@
 /* 6.0 - only fixes */
 /* content area */ 
-
 /* workaround for various ie float bugs */
+#column-content { 
+    float: none; 
+    margin-left: 0;
+    height: 1%;
+}
 #column-content #content {
+    margin-left: 12.2em;
     margin-top: 3em;
     height: 1%;
 }
-#bodyContent {
-    height: 1%;
+#column-one {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
 }
-
-#column-content { display: inline; }
+#footer {
+    margin-left: 13.6em;
+    border-left: 1px solid #fabd23;
+}
 
 /* the tabs */
 
@@ -53,7 +63,7 @@ div.visualClear {
 }
 textarea {
     overflow: auto;
-    width: 97%;
+    width: 96%;
 }
 
 div.editsection,

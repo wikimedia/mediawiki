@@ -29,7 +29,7 @@ if($wgMetaNamespace === FALSE)
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsFy = array(
 	"Ut", "Lofts fêst", "Rjochts fêst", "Lofsts sweevjend"
@@ -43,7 +43,8 @@ if($wgMetaNamespace === FALSE)
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesFy = array(
