@@ -14,7 +14,7 @@
 
 /** */
 function initialiseMessages( $overwrite = false, $messageArray = false ) {
-	global $wgLang, $wgScript, $wgServer, $wgAllMessagesEn;
+	global $wgContLang, $wgScript, $wgServer, $wgAllMessagesEn;
 	global $wgOut, $wgArticle, $wgUser;
 	global $wgMessageCache, $wgMemc, $wgDBname, $wgUseMemCached;
 
@@ -93,8 +93,8 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	# Insert queries are done in one multi-row insert
 	# Here's the start of it:
 	$arr = array();
-	$talk = $wgLang->getNsText( NS_TALK );
-	$mwtalk = $wgLang->getNsText( NS_MEDIAWIKI_TALK );
+	$talk = $wgContLang->getNsText( NS_TALK );
+	$mwtalk = $wgContLang->getNsText( NS_MEDIAWIKI_TALK );
 	
 	# Process each message
 	foreach ( $sortedArray as $key => $enMsg ) {
@@ -105,7 +105,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		if ( $messageArray ) {
 			$message = $enMsg;
 		} else {
-			$message = wfMsgNoDB( $key );
+			$message = wfMsgNoDBForContent( $key );
 		}
 		$titleObj = Title::newFromText( $key );
 		$title = $titleObj->getDBkey();
