@@ -127,7 +127,6 @@ class EditPage {
 					  $this->mTitle->getPrefixedURL() ) );
 					return;
 				}
-				$this->mCountAdjustment = $this->mArticle->isCountable( $wpTextbox1 );
 				$this->mArticle->insertNewArticle( $wpTextbox1, $wpSummary, $wpMinoredit, $wpWatchthis );
 				return;
 			}
