@@ -21,7 +21,7 @@ Changes from 1.3.7:
   existing numbered section edits
 * (bug 806) Removed some "Wikipedia" hardcoding in German localization
 * User option localization fix for some extensions
-
+* (bug 809) now try to load the mysql php extension if it isn't loaded
 
 == Version 1.3.7, 2004-10-18 ==
 Changes from 1.3.6:
