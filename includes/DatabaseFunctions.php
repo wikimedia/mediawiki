@@ -9,6 +9,7 @@ define( "DB_LAST", -3 );
 $wgLastDatabaseQuery = "";
 
 /* private */ $wgBufferSQLResults = true;
+/* private */ $wgIgnoreSQLErrors = false;
 
 function wfGetDB( $altuser = "", $altpassword = "", $altserver = "", $altdb = "" )
 {
@@ -96,8 +97,9 @@ function wfEmergencyAbort( $msg = "" ) {
 # Replication is not actually implemented just yet
 function wfQuery( $sql, $db, $fname = "" )
 {
-	global $wgLastDatabaseQuery, $wgOut, $wgDebugDumpSql, $wgBufferSQLResults;
-	global $wgProfiling;
+	global $wgLastDatabaseQuery, $wgOut, $wgDebugDumpSql, $wgBufferSQLResults, 
+		$wgIgnoreSQLErrors, $wgProfiling;
+
 	if ( $wgProfiling ) {
 		# wfGeneralizeSQL will probably cut down the query to reasonable
 		# logging size most of the time. The substr is really just a sanity check.
@@ -126,8 +128,12 @@ function wfQuery( $sql, $db, $fname = "" )
 	}
 
 	if ( false === $ret ) {
-		$wgOut->databaseError( $fname );
-		wfAbruptExit();
+		if( $wgIgnoreSQLErrors ) {
+			wfDebug("SQL ERROR (ignored): " . mysql_error( $conn ) . "\n");
+		} else {
+			wfDebug("SQL ERROR: " . mysql_error( $conn ) . "\n");
+			$wgOut->databaseError( $fname ); // calls wfAbruptExit()
+		}
 	}
 	
 	if ( $wgProfiling ) {
@@ -136,15 +142,29 @@ function wfQuery( $sql, $db, $fname = "" )
 	return $ret;
 }
 
-function wfUnbufferedQuery( $sql, $db, $fname = "" ){
+# Turns buffering of SQL result sets on (true) or off (false). Default is
+# "on" and it should not be changed without good reasons. 
+# Returns the previous state.
+
+function wfBufferSQLResults( $newstate ){
 	global $wgBufferSQLResults;
 	$oldstate = $wgBufferSQLResults;
+	$wgBufferSQLResults = $newstate;
+	return $oldstate;
+}
 
-	$wgBufferSQLResults = true;
-	$res = wfQuery($sql, $db, $fname);
+# Turns on (false) or off (true) the automatic generation and sending
+# of a "we're sorry, but there has been a database error" page on
+# database errors. Default is on (false). When turned off, the
+# code should use wfLastErrno() and wfLastError() to handle the
+# situation as appropriate.
+# Returns the previous state.
 
-	$wgBufferSQLResults = $oldstate;
-	return $res;
+function wfIgnoreSQLErrors( $newstate ){
+	global $wgIgnoreSQLErrors;
+	$oldstate = $wgIgnoreSQLErrors;
+	$wgIgnoreSQLErrors = $newstate;	
+	return $oldstate;
 }
 
 function wfFreeResult( $res ) { mysql_free_result( $res ); }
