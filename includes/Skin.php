@@ -1721,20 +1721,13 @@ class Skin {
 	}
 
 	function tocTable($toc) {
-
-/* does not auto-expand, use table for now
-	return "
-	<div><div style=\"border-width:1px;background-color:#f3f3ff;border-color:#8888aa;border-style:solid;padding:1em;padding-bottom:1em;\">
-	<b>".wfMsg("toc")."</b><P>
-	$toc</div></div>";
-*/
+	// note to CSS fanatics: putting this in a div does not works -- div won't auto-expand
 	return
-	"<table border=\"0\" bgcolor=\"#8888aa\" cellpadding=\"0\" cellspacing=\"1\"><tr><td>\n" .
-	"<table border=\"0\" bgcolor=\"#f3f3ff\" CELLPADDING=5><tr><td>\n".
+	"<table border=\"0\" align=\"center\" id=\"toc\"><tr><td align=\"center\">\n".
 	"<b>".wfMsg("toc")."</b>" .
 	" <script type='text/javascript'>showTocToggle(\"" . wfMsg("showtoc") . "\",\"" . wfMsg("hidetoc") . "\")</script>" .
-	"</td></tr><tr id='tocinside'><td>\n".
-	$toc."</td></tr></table></td></tr></table><P>\n";
+	"</td></tr><tr id='tocinside'><td align=\"left\">\n".
+	$toc."</td></tr></table><P>\n";
 	}
 
 	function editSectionLink($section) {

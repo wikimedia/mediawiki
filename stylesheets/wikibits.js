@@ -47,26 +47,30 @@ function guessTimezone(box) {
 	document.preferences.wpHourDiff.value = fetchTimezone();
 }
 
-var tocShow, tocHide;
 function showTocToggle(show,hide) {
 	if(document.getElementById) {
-		document.writeln('<small>[<a href="javascript:toggleToc()" id="toctoggle">' +
-			hide + '/' + show + '</a>]</small>');
-		tocShow = show;
-		tocHide = hide;
+		document.writeln('<small>[<a href="javascript:toggleToc()" class="internal">' +
+		'<span id="showlink" style="display:none;">' + show + '</span>' +
+		'<span id="hidelink">' + hide + '</span>' 
+		+ '</a>]</small>');
 	}
 }
 
 function toggleToc() {
 	var toc = document.getElementById('tocinside');
-	var tog = document.getElementById('toctoggle');
+	var showlink=document.getElementById('showlink');
+	var hidelink=document.getElementById('hidelink');
 	if(toc.style.display == 'none') {
-		toc.style.display = tocWas;
-		// tog.innerHtml = tocHide;
+		toc.style.display = tocWas;		
+		hidelink.style.display='';
+		showlink.style.display='none';
+
 	} else {
 		tocWas = toc.style.display;
 		toc.style.display = 'none';
-		// tog.innerHtml = tocShow;
+		hidelink.style.display='none';
+		showlink.style.display='';
+
 	}
 }
 
