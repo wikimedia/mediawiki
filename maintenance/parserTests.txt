@@ -507,6 +507,15 @@ BUG 361: URL inside bracketed URL
 </p>
 !! end
 
+!! test
+BUG 289: ">"-token in URL-tail
+!! input
+http://www.example.com/<hello>
+!! result
+<p><a href="http://www.example.com/" class='external'>http://www.example.com/</a>&lt;hello&gt;
+</p>
+!!end
+
 ###
 ### Quotes
 ###
