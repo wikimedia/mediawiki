@@ -2,7 +2,7 @@
 # Test if PHPTal is enabled. If not MediaWiki will load the 'standard' skin
 # which doesnt use PHPTal
 if ($wgUsePHPTal) {
-require_once($IP.'/includes/SkinPHPTal.php');
+require_once('includes/SkinPHPTal.php');
 
 # Your class extension is defined there.
 #
