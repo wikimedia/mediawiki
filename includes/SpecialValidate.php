@@ -64,7 +64,7 @@ class Validation
 		$validationtypes = $wgLang->getValidationTypes() ;
 		if ( $article_title == "" )
 			{
-			$article_title = $_GET['article'] ;
+			$article_title = $_GET['article_title'] ;
 			$heading = "<h1>" . $article_title . "</h1>\n" ;
 			}
 		else $heading = "" ;
@@ -130,6 +130,11 @@ class Validation
 		
 		# Generating HTML
 		$html = "" ;
+		
+		$skin = $wgUser->getSkin() ;
+		$staturl = $skin->makeSpecialURL ( "validate" , "mode=stat_page&article_title={$article_title}" ) ;
+		$html .= "<a href=\"{$staturl}\">" . wfMsg('val_stat_link_text') . "</a>" ;
+		
 		$tabsep = "<td width=0px style='border-left:2px solid black;'></td>" ;
 		$topstyle = "style='border-top:2px solid black'" ;
 		foreach ( $val AS $time => $stuff )
@@ -187,8 +192,9 @@ class Validation
 		
 	function getPageStatistics ( $article_title = "" )
 		{
+		global $wgLang, $wgUser ;
 		$validationtypes = $wgLang->getValidationTypes() ;
-		$article_title = $_GET['article'] ;
+		$article_title = $_GET['article_title'] ;
 		$html = "<h1>Page validation statistics</h1>\n" ;
 		$d = $this->getData ( -1 , $article_title , -1 ) ;
 		if ( count ( $d ) ) $d = array_shift ( $d ) ;
@@ -203,8 +209,11 @@ class Validation
 		$html .= "</tr>\n" ;
 		foreach ( $d AS $version => $data )
 			{
+			$title = Title::newFromDBkey ( $article_title ) ;
+			$version_link = $title->getFullURL( "action=validate&timestamp={$version}" ) ;
+			$version_link = "<a class=intern href=\"{$version_link}\">" . gmdate("F d, Y H:i:s",wfTimestamp2Unix($version)) . "</a>" ;
 			$html .= "<tr>" ;
-			$html .= "<th align=left>{$version}</th>" ;
+			$html .= "<th align=left>{$version_link}</th>" ;
 
 			$vmax = array() ;
 			$vcur = array() ;
@@ -213,7 +222,8 @@ class Validation
 				if ( !isset ( $vcur[$type] ) ) $vcur[$type] = 0 ;
 				if ( !isset ( $vmax[$type] ) ) $vmax[$type] = 0 ;
 				$vcur[$type] += $x->val_value ;
-				$vmax[$type] += $title[3] ;
+				$temp = explode ( "|" , $validationtypes[$type]) ;
+				$vmax[$type] += $temp[3] - 1 ;
 				}
 	
 	
