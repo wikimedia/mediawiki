@@ -15,17 +15,27 @@ require_once( 'Revision.php' );
  * @subpackage DifferenceEngine
  */
 class DifferenceEngine {
-	/* private */ var $mOldid, $mNewid;
-	/* private */ var $mOldtitle, $mNewtitle, $mPagetitle;
-	/* private */ var $mOldtext, $mNewtext;
-	/* private */ var $mOldUser, $mNewUser;
-	/* private */ var $mOldComment, $mNewComment;
-	/* private */ var $mOldPage, $mNewPage;
-	/* private */ var $mRcidMarkPatrolled;
+	/**#@+
+	 * @access private
+	 */
+	var $mOldid, $mNewid;
+	var $mOldtitle, $mNewtitle, $mPagetitle;
+	var $mOldtext, $mNewtext;
+	var $mOldUser, $mNewUser;
+	var $mOldComment, $mNewComment;
+	var $mOldPage, $mNewPage;
+	var $mRcidMarkPatrolled;
+	/**#@-*/
 
-	function DifferenceEngine( $old, $new, $rcid = 0 )
-	{
+	/**
+	 * Constructor
+	 * @param integer $old Actual revision ID we want to show and diff with.
+	 * @param string $new Either 'prev' or 'next'. 
+	 * @param integer $rcid ??? (default 0)
+	 */
+	function DifferenceEngine( $old, $new, $rcid = 0 ) {
 		global $wgTitle;
+
 		if ( 'prev' == $new ) {
 			# Show diff between revision $old and the previous one.
 			# Get previous one from DB.
@@ -35,7 +45,6 @@ class DifferenceEngine {
 			$this->mOldid = $wgTitle->getPreviousRevisionID( $this->mNewid );
 
 		} elseif ( 'next' == $new ) {
-
 			# Show diff between revision $old and the previous one.
 			# Get previous one from DB.
 			#
@@ -48,15 +57,13 @@ class DifferenceEngine {
 			}
 
 		} else {
-
 			$this->mOldid = intval($old);
 			$this->mNewid = intval($new);
 		}
 		$this->mRcidMarkPatrolled = intval($rcid);  # force it to be an integer
 	}
 
-	function showDiffPage()
-	{
+	function showDiffPage() {
 		global $wgUser, $wgTitle, $wgOut, $wgContLang, $wgOnlySysopsCanPatrol, $wgUseRCPatrol;
 		$fname = 'DifferenceEngine::showDiffPage';
 		wfProfileIn( $fname );
@@ -154,11 +161,11 @@ class DifferenceEngine {
 		wfProfileOut( $fname );
 	}
 
-	# Show the first revision of an article. Uses normal diff headers in contrast to normal
-	# "old revision" display style.
-	#
-	function showFirstRevision()
-	{
+	/**
+	 * Show the first revision of an article. Uses normal diff headers in
+	 * contrast to normal "old revision" display style.
+	 */
+	function showFirstRevision() {
 		global $wgOut, $wgTitle, $wgUser, $wgLang;
 
 		$fname = 'DifferenceEngine::showFirstRevision';
@@ -215,8 +222,7 @@ class DifferenceEngine {
 		wfProfileOut( $fname );
 	}
 
-	function showDiff( $otext, $ntext, $otitle, $ntitle )
-	{
+	function showDiff( $otext, $ntext, $otitle, $ntitle ) {
 		global $wgOut;
 		$wgOut->addHTML( DifferenceEngine::getDiff( $otext, $ntext, $otitle, $ntitle ) );
 	}
@@ -254,13 +260,13 @@ class DifferenceEngine {
 		return $out;
 	}
 
-	# Load the text of the articles to compare.  If newid is 0, then compare
-	# the old article in oldid to the current article; if oldid is 0, then
-	# compare the current article to the immediately previous one (ignoring
-	# the value of newid).
-	#
-	function loadText()
-	{
+	/**
+	 * Load the text of the articles to compare.  If newid is 0, then compare
+	 * the old article in oldid to the current article; if oldid is 0, then
+	 * compare the current article to the immediately previous one (ignoring the
+	 * value of newid).
+	 */	
+	function loadText() {
 		global $wgTitle, $wgOut, $wgLang;
 		$fname = 'DifferenceEngine::loadText';
 
