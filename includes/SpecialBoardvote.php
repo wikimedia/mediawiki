@@ -174,10 +174,10 @@ class BoardVoteForm {
 	
 	function encrypt( $contributing, $volunteer ) {
 		global $wgVolunteerCandidates, $wgContributingCandidates;
-		global $wgGPGCommand, $wgGPGRecipient;
+		global $wgGPGCommand, $wgGPGRecipient, $wgGPGHomedir;
 		$file = @fopen( "/dev/urandom", "r" );
 		if ( $file ) {
-			$salt = implode( "", unpack( fread( $file, 64 ), "H*" ));
+			$salt = implode( "", unpack( "H*", fread( $file, 64 ) ));
 			fclose( $file );
 		} else {
 			$salt = Parser::getRandomString() . Parser::getRandomString();
@@ -198,7 +198,11 @@ class BoardVoteForm {
 
 		# Call GPG
 		$command = wfEscapeShellArg( $wgGPGCommand ) . " --batch --yes -ear " . 
-		  wfEscapeShellArg( $wgGPGRecipient ) . " -o " . wfEscapeShellArg( $output, $input );
+		  wfEscapeShellArg( $wgGPGRecipient ) . " -o " . wfEscapeShellArg( $output );
+		if ( $wgGPGHomedir ) {
+			$command .= " --homedir " . wfEscapeShellArg( $wgGPGHomedir );
+		} 
+		$command .= " " . wfEscapeShellArg( $input );
 
 		shell_exec( $command );
 
@@ -206,8 +210,8 @@ class BoardVoteForm {
 		$result = file_get_contents( $output );
 
 		# Delete temporary files
-		#unlink( $input );
-		#unlink( $output );
+		unlink( $input );
+		unlink( $output );
 		
 		return $result;
 	}
