@@ -315,11 +315,14 @@ class SqlBagOStuff extends BagOStuff {
 	}
 	
 	function garbageCollect() {
-		$nowtime = time();
-		/* Avoid repeating the delete within a few seconds */
-		if ( $nowtime > ($this->lastexpireall + 1) ) {
-			$this->lastexpireall = $nowtime;
-			$this->expireall();
+		/* Ignore 99% of requests */
+		if ( !mt_rand( 0, 100 ) ) {
+			$nowtime = time();
+			/* Avoid repeating the delete within a few seconds */
+			if ( $nowtime > ($this->lastexpireall + 1) ) {
+				$this->lastexpireall = $nowtime;
+				$this->expireall();
+			}
 		}
 	}
 	
