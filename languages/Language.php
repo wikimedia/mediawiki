@@ -1996,21 +1996,28 @@ class Language {
 			$marked = explode("}-", $txt);
 			
 			$choice = explode(";", $marked{0});
-			if($choice{1}==NULL) {
+			if(!array_key_exists(1, $choice)) {
+				/* a single choice */
 				$text .= $choice{0};
 			}
 			else {
 				foreach($choice as $c) {
-					list($code, $content) = split(":", $c);
-					$code = trim($code);
-					$content = trim($content);
+					$v = explode(":", $c);
+					if(!array_key_exists(1, $v)) {
+						//syntax error in the markup, give up
+						$text .= $marked{0};
+						break;			
+					}
+					$code = trim($v{0});
+					$content = trim($v{1});
 					if($code == $plang) {
 						$text .= $content;
 						break;
 					}
 				}
 			}
-			$text .= $this->autoConvert($marked{1});
+			if(array_key_exists(1, $marked))
+				$text .= $this->autoConvert($marked{1});
 		}
 		
 		return $text;
