@@ -208,46 +208,55 @@ function wfSpecialContributions( $par = '' ) {
  * @todo This would probably look a lot nicer in a table.
  */
 function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $target, $oldid ) {
+	$fname = 'ucListEdit';
+	wfProfileIn( $fname );
+	
 	global $wgLang, $wgOut, $wgUser, $wgRequest;
-	$page = Title::makeName( $ns, $t );
-	$link = $sk->makeKnownLink( $page, '' );
+	static $messages;
+	if( !isset( $messages ) ) {
+		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist minoreditletter' ) as $msg ) {
+			$messages[$msg] = wfMsg( $msg );
+		}
+	}
+	
+	$page =& Title::makeTitle( $ns, $t );
+	$link = $sk->makeKnownLinkObj( $page, '' );
 	$difftext = $topmarktext = '';
 	if($topmark) {
-		$topmarktext .= '<strong>' . wfMsg('uctop') . '</strong>';
+		$topmarktext .= '<strong>' . $messages['uctop'] . '</strong>';
 		if(!$isnew) {
-			$difftext .= $sk->makeKnownLink( $page, '(' . wfMsg('diff') . ')', 'diff=0' );
+			$difftext .= $sk->makeKnownLinkObj( $page, '(' . $messages['diff'] . ')', 'diff=0' );
 		} else {
-			$difftext .= wfMsg('newarticle');
+			$difftext .= $messages['newarticle'];
 		}
 		
 		if( $wgUser->isAllowed('rollback') ) {
 			$extraRollback = $wgRequest->getBool( 'bot' ) ? '&bot=1' : '';
 			# $target = $wgRequest->getText( 'target' );
-			$topmarktext .= ' ['. $sk->makeKnownLink( $page,
-		  	wfMsg( 'rollbacklink' ),
-		  	'action=rollback&from=' . urlencode( $target ) . $extraRollback ) .']';
+			$topmarktext .= ' ['. $sk->makeKnownLinkObj( $page,
+			  	$messages['rollbacklink'],
+			  	'action=rollback&from=' . urlencode( $target ) . $extraRollback ) .']';
 		}
 
 	}
 	if ( $oldid ) {
-		$difftext= $sk->makeKnownLink( $page, '('.wfMsg('diff').')', 'diff=prev&oldid='.$oldid );
+		$difftext= $sk->makeKnownLinkObj( $page, '(' . $messages['diff'].')', 'diff=prev&oldid='.$oldid );
 	} 
-	$histlink='('.$sk->makeKnownLink($page,wfMsg('hist'),'action=history').')';
+	$histlink='('.$sk->makeKnownLinkObj( $page, $messages['hist'], 'action=history' ) . ')';
 
-	if($comment) {
-
-		$comment='<em>('. $sk->formatComment($comment, Title::newFromText($t) ) .')</em> ';
-
+	if( $comment ) {
+		$comment = '<em>(' . $sk->formatComment( $comment, $page ) . ')</em> ';
 	}
 	$d = $wgLang->timeanddate( $ts, true );
 
 	if ($isminor) {
-		$mflag = '<span class="minor">'.wfMsg( 'minoreditletter' ).'</span> ';
+		$mflag = '<span class="minor">' . $messages['minoreditletter'] . '</span> ';
 	} else {
 		$mflag = '';
 	}
 
 	$wgOut->addHTML( "<li>{$d} {$histlink} {$difftext} {$mflag} {$link} {$comment} {$topmarktext}</li>\n" );
+	wfProfileOut( $fname );
 }
 
 /**
@@ -302,8 +311,6 @@ function namespaceForm ( $target, $hideminor, $namespace ) {
 	}
 	$namespaceselect .= '</select>';
 
-	$frombox = '<input type="text" size="20" name="from" value="'
-	            . htmlspecialchars ( $from ) . '"/>';
 	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
 
 	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>";
