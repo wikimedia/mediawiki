@@ -269,7 +269,7 @@ function wfSpecialMissingLanguageLinks() {
 
 	$sql = "SELECT cur_title FROM $cur " .
 	  "WHERE cur_namespace=0 AND cur_is_redirect=0 " .
-	  "AND cur_title NOT LIKE '%/%' AND cur_text NOT LIKE '%[[{$thelang}:%' " .
+	  "AND cur_title NOT LIKE '%/%' AND cur_text NOT LIKE '%[[" . wfStrencode( $thelang ) . ":%' " .
 	  "LIMIT {$offset}, {$limit}";
 
 	$res = $dbr->query( $sql, $fname );
