@@ -844,9 +844,13 @@ $3... <a href='$4'>komplette Liste zeigen und bearbeiten</a>.)",
 "removingchecked" => "Wunschgemäß werden die Einträge aus der Beobachtungsliste entfernt...",
 "couldntremove" => "Der Eintrag '$1' kann nicht gelöscht werden...",
 "iteminvalidname" => "Ploblem mit dem Eintrag '$1', ungültiger Name...",
-"wlnote" => "Es folgen die letzten $1 Änderungen der letzten <b>$2</b> Stunden.",
-"wlshowlast" => "Zeige die letzen $1 Stunden $2 Tage $3",
-"wlsaved"			=> "Dies ist eine gespeicherte Version Ihrer Beobachtungsliste.",
+'wlnote' => 'Es folgen die letzten $1 Änderungen der letzten <b>$2</b> Stunden.',
+'wlshowlast' => 'Zeige die letzen $1 Stunden $2 Tage $3',
+'wlsaved'	 => 'Dies ist eine gespeicherte Version Ihrer Beobachtungsliste.',
+'wlhideshowown'  => '$1 von mir bearbeitete Artikel.',
+'wlshow'         => 'Zeige ',
+'wlhide'         => 'Verstecke ',
+
 
 # Delete/protect/revert
 #
