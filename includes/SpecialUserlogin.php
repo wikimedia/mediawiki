@@ -238,7 +238,6 @@ class LoginForm {
 		#
 		if ( $this->mRemember ) {
 			$r = 1;
-			$u->setCookiePassword( $this->mPassword );
 		} else {
 			$r = 0;
 		}
@@ -305,7 +304,7 @@ class LoginForm {
 		$np = User::randomPassword();
 		$u->setNewpassword( $np );
 
-		setcookie( $wgDBname.'Password', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
+		setcookie( "{$wgDBname}Token", '', time() - 3600, $wgCookiePath, $wgCookieDomain );
 		$u->saveSettings();
 
 		$ip = $wgIP;
