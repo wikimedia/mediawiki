@@ -1,4 +1,6 @@
 <?php
+#$Id$
+#
 # Class to simplify the use of log pages
 
 class LogPage {
@@ -30,11 +32,11 @@ class LogPage {
 		if( $s !== false ) {
 			$this->mId = $s->cur_id;
 			$this->mContent = $s->cur_text;
-			$this->mTimestamp = $s->cur_timestamp;
+			$this->mTimestamp = wfTimestamp(TS_MW,$s->cur_timestamp);
 		} else {
 			$this->mId = 0;
 			$this->mContent = $defaulttext;
-			$this->mTimestamp = wfTimestampNow();
+			$this->mTimestamp = wfTimestamp(TS_MW);
 		}
 		$this->mContentLoaded = true; # Well, sort of
 		
@@ -70,7 +72,7 @@ class LogPage {
 			$dbw->insertArray( 'cur',
 				array(
 					'cur_id' => $seqVal,
-					'cur_timestamp' => $now,
+					'cur_timestamp' => $dbw->timestamp($now),
 					'cur_user' => $uid,
 					'cur_user_text' => $wgUser->getName(),
 					'cur_namespace' => NS_WIKIPEDIA,
@@ -79,21 +81,21 @@ class LogPage {
 					'cur_comment' => $this->mComment,
 					'cur_restrictions' => 'sysop',
 					'inverse_timestamp' => $won,
-					'cur_touched' => $now,
+					'cur_touched' => $dbw->timestamp($now),
 				), $fname
 			);
 			$this->mId = $dbw->insertId();
 		} else {
 			$dbw->updateArray( 'cur',
 				array( /* SET */ 
-					'cur_timestamp' => $now,
+					'cur_timestamp' => $dbw->timestamp($now),
 					'cur_user' => $uid, 
 					'cur_user_text' => $wgUser->getName(),
 					'cur_text' => $this->mContent,
 					'cur_comment' => $this->mComment,
 					'cur_restrictions' => 'sysop', 
 					'inverse_timestamp' => $won,
-					'cur_touched' => $now,
+					'cur_touched' => $dbw->timestamp($now),
 				), array( /* WHERE */
 					'cur_id' => $this->mId
 				), $fname
