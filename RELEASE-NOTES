@@ -212,6 +212,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1205) Fix broken article saving in PHP 5.1
 * (bug 1206) Implement CURRENTWEEK and CURRENTDOW magic keyword (will give
   number of the week and number of the day).
+* (bug 1204) Blocks do not expire automatically
 
 === Caveats ===
 
