@@ -163,4 +163,48 @@ class WebRequest {
 	}
 }
 
+class FauxRequest extends WebRequest {
+	var $data = null;
+	var $wasPosted = false;
+	
+	function WebRequest( $data, $wasPosted = false ) {
+		if( is_array( $data ) ) {
+			$this->data = $data;
+		} else {
+			wfDebugDieBacktrace( "FauxReqeust() got bogus data" );
+		}
+		$this->wasPosted = $wasPosted;
+	}
+
+	function getVal( $name, $default = NULL ) {
+		return $this->getGPCVal( $this->data, $name, $default );
+	}
+	
+	function getText( $name, $default = '' ) {
+		# Override; don't recode since we're using internal data
+		return $this->getVal( $name, $default );
+	}
+	
+	function getValues() {	
+		return $this->data;
+	}
+
+	function wasPosted() {
+		return $this->wasPosted;
+	}
+	
+	function checkSessionCookie() {
+		return false;
+	}
+	
+	function getRequestURL() {
+		wfDebugDieBacktrace( 'FauxRequest::getRequestURL() not implemented' );
+	}
+	
+	function appendQuery( $query ) {
+		wfDebugDieBacktrace( 'FauxRequest::appendQuery() not implemented' );
+	}
+	
+}
+
 ?>
