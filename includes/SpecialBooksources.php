@@ -37,7 +37,7 @@ class BookSourceList {
 			$res = wfQuery( $sql, $fname );
 			if( ( $s = wfFetchObject( $res ) ) and ( $s->cur_text != "" ) ) {	
 				$bstext = $s->cur_text;
-				$bstext = str_replace( "WIKI-ISBN", $this->mIsbn, $bstext );
+				$bstext = str_replace( "MAGICNUMBER", $this->mIsbn, $bstext );
 				$noautolist = 1;
 			}
 		}
