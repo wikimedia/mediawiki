@@ -261,7 +261,7 @@ class Parser
 		$ti = $this->mTitle->getText() ;
 		$ti = explode ( ":" , $ti , 2 ) ;
 		if ( $cat != $ti[0] ) return "" ;
-		$r = "<br break='all' />\n" ;
+		$r = '<br style="clear:both;"/>\n';
 
 		$articles = array() ;
 		$parents = array () ;
@@ -1118,11 +1118,11 @@ class Parser
 							} else {
 								$t = '';
 							}
-						} else {
+						} else if ($this->mLastSection != $newSection or $newSection != 'p') {
 							$text .= $this->closeParagraph();
 							$text .= "<" . $newSection . ">";
 							$this->mLastSection = $newSection;
-						}
+						}			
 					}
 
 				} 
