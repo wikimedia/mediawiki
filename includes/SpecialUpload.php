@@ -32,7 +32,7 @@ function processUpload()
 {
 	global $wgUser, $wgOut, $wgLang, $wpUploadAffirm, $wpUploadFile;
 	global $wpUploadDescription, $wpIgnoreWarning;
-	global $HTTP_POST_FILES, $wgUploadDirectory;
+	global $wgUploadDirectory;
 	global $wpUploadSaveName, $wpUploadTempName, $wpUploadSize;
 	global $wgSavedFile, $wgUploadOldVersion, $wpUploadOldVersion;
 	global $wgUseCopyrightUpload , $wpUploadCopyStatus , $wpUploadSource ;
@@ -52,13 +52,13 @@ function processUpload()
 		return;
 	}
 	if ( ! $wpUploadTempName ) {
-		$wpUploadTempName = $HTTP_POST_FILES['wpUploadFile']['tmp_name'];
+		$wpUploadTempName = $_FILES['wpUploadFile']['tmp_name'];
 	}
 	if ( ! $wpUploadSize ) {
-		$wpUploadSize = $HTTP_POST_FILES['wpUploadFile']['size'];
+		$wpUploadSize = $_FILES['wpUploadFile']['size'];
 	}
 	$prev = error_reporting( E_ALL & ~( E_NOTICE | E_WARNING ) );
-	$oname = $wgRequest->getGPCVal( $HTTP_POST_FILES['wpUploadFile'], 'name' );
+	$oname = $wgRequest->getGPCVal( $_FILES['wpUploadFile'], 'name' );
 	error_reporting( $prev );
 
 	if ( "" != $oname ) {

@@ -90,7 +90,7 @@ function wfSpecialPreferences()
 	global $wpQuickbar, $wpOldpass, $wpNewpass, $wpRetypePass;
 	global $wpSkin, $wpMath, $wpDate, $wpUserEmail, $wpEmailFlag, $wpNick, $wpSearch, $wpRecent;
 	global $wpSearchLines, $wpSearchChars, $wpStubs;
-	global $wpRows, $wpCols, $wpHourDiff, $HTTP_POST_VARS;
+	global $wpRows, $wpCols, $wpHourDiff;
 
 	if ( "" != $wpNewpass ) {
 		if ( $wpNewpass != $wpRetypePass ) {
@@ -136,7 +136,7 @@ function wfSpecialPreferences()
 
 	$togs = $wgLang->getUserToggles();
 	foreach ( $togs as $tname => $ttext ) {
-		if ( array_key_exists( "wpOp$tname", $HTTP_POST_VARS ) ) {
+		if ( array_key_exists( "wpOp$tname", $_POST ) ) {
 			$wgUser->setOption( $tname, 1 );
 		} else {
 			$wgUser->setOption( $tname, 0 );
@@ -153,7 +153,7 @@ function wfSpecialPreferences()
 	global $wgUser, $wgLang;
 	global $wpQuickbar, $wpOldpass, $wpNewpass, $wpRetypePass, $wpStubs;
 	global $wpRows, $wpCols, $wpSkin, $wpMath, $wpDate, $wpUserEmail, $wpEmailFlag, $wpNick;
-	global $wpSearch, $wpRecent, $HTTP_POST_VARS;
+	global $wpSearch, $wpRecent;
 	global $wpHourDiff, $wpSearchLines, $wpSearchChars;
 
 	$wpOldpass = $wpNewpass = $wpRetypePass = "";
@@ -177,7 +177,7 @@ function wfSpecialPreferences()
 
 	$togs = $wgLang->getUserToggles();
 	foreach ( $togs as $tname => $ttext ) {
-		$HTTP_POST_VARS["wpOp$tname"] = $wgUser->getOption( $tname );
+		$_POST["wpOp$tname"] = $wgUser->getOption( $tname );
 	}
 }
 
