@@ -111,7 +111,7 @@ class PageHistory {
 		$this->lastdate = $this->lastline = "";
 		$s = "\n<p>" . wfMsg( "histlegend" ).'</p>'; 
 		$s .="\n<form id=\"pagehistory\" name=\"pagehistory\" action=\"" . $wgTitle->getFullURL("-") . "\" method=\"get\">";
-		$s .= "<input type=\"hidden\" name=\"title\" value=\"".urlencode($wgTitle->getPrefixedDbKey())."\"/>\n";
+		$s .= "<input type=\"hidden\" name=\"title\" value=\"".htmlspecialchars($wgTitle->getPrefixedDbKey())."\"/>\n";
 		$s .= "" . "\n<ul>";
 		return $s;
 	}
