@@ -60,7 +60,7 @@ function wfSpecialMaintenance( $par=NULL ) {
 	$r = wfMsg('maintnancepagetext') ;
 	
 	# Links to subfunctions
-	$r .= "<UL>\n" ;
+	$r .= "<ul>\n" ;
 	$r .= "<li>".$sk->makeKnownLink( sns().':Disambiguations', wfMsg('disambiguations')) . "</li>\n";
 	$r .= '<li>'.$sk->makeKnownLink( sns().':DoubleRedirects', wfMsg('doubleredirects')) . "</li>\n";
 	$r .= '<li>'.$sk->makeKnownLink( sns().':BrokenRedirects', wfMsg('brokenredirects')) . "</li>\n";
@@ -71,13 +71,14 @@ function wfSpecialMaintenance( $par=NULL ) {
 	$r .= '<li>';
 	  $l = getMPL('missinglanguagelinks');
 	  $l = str_replace ( '</a>' , '' , $l ) ;
-	  $l = str_replace ( '<a ' , '<FORM method="post" ' , $l ) ;
+	  $l = str_replace ( '<a ' , '<form method="post" ' , $l ) ;
+	  $l = str_replace ( ' href=' , ' action=' , $l ) ;
 	  $l = explode ( '>' , $l ) ;
 	  $l = $l[0] ;
 	$r .= $l.">\n" ;
 	$r .= '<input type="submit" name="submitmll" value="' ;
 	$r .= htmlspecialchars(wfMsg('missinglanguagelinksbutton'), ENT_QUOTES);
-	$r .= "\">\n" ;
+	$r .= "\" />\n" ;
 	$r .= "<select name=\"thelang\">\n" ;
 	
 	$a = $wgContLang->getLanguageNames();
@@ -87,9 +88,9 @@ function wfSpecialMaintenance( $par=NULL ) {
 			$r .= "<option value='{$k}'>{$a[$k]}</option>\n" ;
 	}
 	$r .= "</select>\n" ;
-	$r .= "</FORM>\n</li>" ;
+	$r .= "</form>\n</li>" ;
 
-	$r .= "</UL>\n" ;
+	$r .= "</ul>\n" ;
 	$wgOut->addHTML ( $r ) ;
 }
 
@@ -164,13 +165,13 @@ function wfSpecialSelfLinks() {
 	$res = wfQuery( $sql, DB_SLAVE, $fname );
 
 	$top = getMaintenancePageBacklink( 'selflinks' );
-	$top .= '<p>'.wfMsg('selflinkstext')."</p><br>\n";
+	$top .= '<p>'.wfMsg('selflinkstext')."</p><br />\n";
 	$top .= wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
 
 	$sl = wfViewPrevNext( $offset, $limit, 'REPLACETHIS' ) ;
 	$sl = str_replace ( 'REPLACETHIS' , sns().":Maintenance&subfunction=selflinks" , $sl ) ;
-	$wgOut->addHTML( "<br>{$sl}\n" );
+	$wgOut->addHTML( "<br />{$sl}\n" );
 
 	$sk = $wgUser->getSkin();
 	$s = '<ol start=' . ( $offset + 1 ) . '>';
@@ -239,13 +240,13 @@ function wfSpecialMispeelings () {
 		}
 	}
 	$top = getMaintenancePageBacklink( 'mispeelings' );
-	$top .= "<p>".wfMsg( 'mispeelingstext', $msl )."</p><br>\n";
+	$top .= "<p>".wfMsg( 'mispeelingstext', $msl )."</p><br />\n";
 	$top .= wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
 
 	$sl = wfViewPrevNext( $offset, $limit, 'REPLACETHIS' ) ;
 	$sl = str_replace ( 'REPLACETHIS' , sns().":Maintenance&subfunction=mispeelings" , $sl ) ;
-	$wgOut->addHTML( "<br>{$sl}\n" );
+	$wgOut->addHTML( "<br />{$sl}\n" );
 
 	$s = implode ( '' , $b ) ;
 	if ( count ( $b ) > 0 ) $s .= '</ol>';
@@ -278,14 +279,14 @@ function wfSpecialMissingLanguageLinks() {
 	$mll = wfMsg( 'missinglanguagelinkstext', $wgContLang->getLanguageName($thelang) );
 
 	$top = getMaintenancePageBacklink( 'missinglanguagelinks' );
-	$top .= "<p>$mll</p><br>";
+	$top .= "<p>$mll</p><br />";
 	$top .= wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
 
 	$sl = wfViewPrevNext( $offset, $limit, 'REPLACETHIS' ) ;
 	$sl = str_replace ( 'REPLACETHIS' , sns().":Maintenance&subfunction=missinglanguagelinks&thelang=".
 						htmlspecialchars($thelang), $sl ) ;
-	$wgOut->addHTML( "<br>{$sl}\n" );
+	$wgOut->addHTML( "<br />{$sl}\n" );
 
 	$sk = $wgUser->getSkin();
 	$s = '<ol start=' . ( $offset + 1 ) . '>';

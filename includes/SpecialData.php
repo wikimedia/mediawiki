@@ -150,7 +150,7 @@ function wfDataEdit ( $dt ) # $dt = data type
 			}
 		$dbw->query( "COMMIT", "wfDataEdit" );
 				
-		$s .= "Action complete.<br>\n" ;
+		$s .= "Action complete.<br />\n" ;
 		$s .= wfDataPreview ( $t , $dk ) ;
 		$wgOut->AddHTML ( $s ) ;
 		
@@ -190,16 +190,16 @@ function wfDataEdit ( $dt ) # $dt = data type
 			
 			if ( count ( $z ) == 1 ) $z[] = "line" ; # Default
 			$type = strtolower ( $z[1] ) ;
-			if ( $type == "line" ) $input = "<input type=text style=\"width:100%\" name=\"{$name}\" value=\"{$value}\"></input>" ;
+			if ( $type == "line" ) $input = "<input type=text style=\"width:100%\" name=\"{$name}\" value=\"{$value}\" />" ;
 			else if ( $type == "multiline" ) $input = "<textarea style=\"width:100%\" name=\"{$name}\">{$value}</textarea>" ;
-			else if ( $type == "number" ) $input = "<input type=int width=5 name=\"{$name}\" value=\"{$value}\"></input>" ;
-			else if ( $type == "date" ) $input = "<input type=date width=10 name=\"{$name}\" value=\"{$value}\"></input>" ;
+			else if ( $type == "number" ) $input = "<input type=int width=5 name=\"{$name}\" value=\"{$value}\" />" ;
+			else if ( $type == "date" ) $input = "<input type=date width=10 name=\"{$name}\" value=\"{$value}\" />" ;
 			else if ( $type == "dropdown" ) 
 				{
 				$s .= "<select name=\"{$name}\">" ;
 				foreach ( $z AS $k => $v )
 					{
-					if ( htmlentities ( $value ) == $v ) $default = " selected" ;
+					if ( htmlentities ( $value ) == $v ) $default = ' selected="selected"' ;
 					else $default = "" ;
 					if ( $k > 1 ) $s .= "<option value=\"{$v}\"{$default}>{$v}</option>\n" ;
 					}
@@ -212,13 +212,13 @@ function wfDataEdit ( $dt ) # $dt = data type
 			}
 		else $s .= $x ;
 		}
-	$s .= "<br>Comment : <input type='test' name='comment' value='{$comment}'></input>" ;
-	$s .= " &nbsp; <input type='hidden' name='revision' value='{$revision}'></input>" ;
-	$s .= "<input type='hidden' name='add_data' value='1'></input>" ;
-	if ( $masterkey ) $s .= "<input type='hidden' name='masterkey' value='{$masterkey}'></input>" ;
-	$s .= "<input type='hidden' name='data_type' value='{$dt}'></input>" ;
-	$s .= "<input type=submit name='doit' value=\"Do it\"></input> " ;
-	$s .= "<input type=submit name='preview' value=\"Preview\"></input>" ;
+	$s .= "<br />Comment : <input type='test' name='comment' value='{$comment}' />" ;
+	$s .= " &nbsp; <input type='hidden' name='revision' value='{$revision}' />" ;
+	$s .= "<input type='hidden' name='add_data' value='1' />" ;
+	if ( $masterkey ) $s .= "<input type='hidden' name='masterkey' value='{$masterkey}' />" ;
+	$s .= "<input type='hidden' name='data_type' value='{$dt}' />" ;
+	$s .= "<input type=submit name='doit' value=\"Do it\" /> " ;
+	$s .= "<input type=submit name='preview' value=\"Preview\" />" ;
 	$s .= "</form>" ;
 	
 	$wgOut->AddHTML ( $s ) ;
@@ -253,10 +253,10 @@ function wfSpecialData()
 			{
 			$s .= "<option>{$o->cur_title}</option>\n" ;
 			}
-		$s .= "</select><br>\n" ;
-		$s .= "<input type=submit name='add_data' value=\"Add data\"></input> " ;
-		$s .= "<input type=submit name='view_data' value=\"View data\"></input> " ;
-		$s .= "<br>\nTo add a new data type <i>Stuff</i>, edit the page <i>Data:Stuff</i>." ;
+		$s .= "</select><br />\n" ;
+		$s .= "<input type=submit name='add_data' value=\"Add data\" /> " ;
+		$s .= "<input type=submit name='view_data' value=\"View data\" /> " ;
+		$s .= "<br />\nTo add a new data type <i>Stuff</i>, edit the page <i>Data:Stuff</i>." ;
 		$s .= "</form>" ;
 
 		$wgOut->AddHTML ( $s ) ;

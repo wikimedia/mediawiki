@@ -26,7 +26,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 
 	function getPageHeader( ) {
 		#FIXME : probably need to add a backlink to the maintenance page.
-		return '<p>'.wfMsg("doubleredirectstext")."</p><br>\n";
+		return '<p>'.wfMsg("doubleredirectstext")."</p><br />\n";
 	}
 
 	function getSQL() {

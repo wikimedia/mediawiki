@@ -540,7 +540,7 @@ You can view and copy the source of this page:",
 # Login and logout pages
 #
 "logouttitle"	=> 'User logout',
-"logouttext" 		=> "You are now logged out.<br>
+"logouttext" 		=> "You are now logged out.<br />
 You can continue to use {{SITENAME}} anonymously, or you can log in
 again as the same or as a different user. Note that some pages may
 continue to be displayed as if you were still logged in, until you clear
@@ -621,7 +621,7 @@ Please re-login with that for authentication purposes.",
 'mailerror' => "Error sending mail: $1",
 'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts. You can\'t make any more.',
 'emailauthenticated' 	=> 'Your email address was authenticated on $1.',
-'emailnotauthenticated'	=> 'Your email address is <strong>not yet authenticated</strong> and the advanced email features are disabled until authentication <strong>(d.u.a.)</strong>.<br>
+'emailnotauthenticated'	=> 'Your email address is <strong>not yet authenticated</strong> and the advanced email features are disabled until authentication <strong>(d.u.a.)</strong>.<br />
 To authenticate, please login in with the temporary password which has been mailed to you, or request a new one on the login page.',
 'invalidemailaddress'	=> 'The email address cannot be accepted as it appears to have an invalid format. Please enter a well-formatted address or empty that field.',
 'disableduntilauthent'	=> '<strong>(d.u.a.)</strong>',
@@ -1127,7 +1127,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'movethispage'	=> 'Move this page',
 'unusedimagestext' => '<p>Please note that other web sites may link to an image with
 a direct URL, and so may still be listed here despite being
-in active use.',
+in active use.</p>',
 'booksources'	=> 'Book sources',
 'categoriespagetext' => 'The following categories exists in the wiki.',
 'data'	=> 'Data',
