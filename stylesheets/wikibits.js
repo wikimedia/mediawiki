@@ -101,9 +101,10 @@ function addInfobox(infoText) {
                 && (clientPC.indexOf('webtv')==-1) && (clientPC.indexOf('hotjava')==-1)
 		&& (clientPC.indexOf('khtml')==-1) && (clientPC.indexOf('gecko')==-1));
  	if(!document.selection && !is_nav) {
+ 		infoText=escapeQuotesHTML(infoText);
 	 	document.write("<form name='infoform' id='infoform'>"+
-			"<input size=80 id='infobox' name='infobox' value='"+
-			infoText+"' READONLY></form>");
+			"<input size=80 id='infobox' name='infobox' value=\""+
+			infoText+"\" READONLY></form>");
  	}
 
 }
@@ -111,8 +112,16 @@ function addInfobox(infoText) {
 function escapeQuotes(text) {
 	var re=new RegExp("'","g");
 	text=text.replace(re,"\\'");
+	re=new RegExp('"',"g");
+	text=text.replace(re,'&quot;');
 	re=new RegExp("\\n","g");
 	text=text.replace(re,"\\n");
+	return text;
+}
+
+function escapeQuotesHTML(text) {
+	var re=new RegExp('"',"g");
+	text=text.replace(re,"&quot;");
 	return text;
 }
 
