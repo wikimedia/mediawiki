@@ -20,6 +20,9 @@ $wgMathPath         = "{$wgUploadPath}/math";
 $wgMathDirectory    = "{$wgUploadDirectory}/math";
 $wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
 $wgEmergencyContact = "wikiadmin@" . getenv( "SERVER_NAME" );
+#$wgPasswordSender	= "Wikipedia Mail <apache@www.wikipedia.org>";
+$wgPasswordSender	= "Wikipedia Mail <apache@www.wikipedia.org>\r\nReply-To: webmaster@www.wikipedia.org";
+
 
 # MySQL settings
 #
@@ -62,9 +65,35 @@ $wgSqlLogFile		= "{$wgUploadDirectory}/sqllog_mFhyRe6";
 $wgLogQueries		= false;
 $wgUseBetterLinksUpdate = true;
 
+
+# The following three config variables are used to define
+# the rights of users in your system. 
+#
 # If wgWhitelistEdit is set to true, only logged in users
 # are allowed to edit articles.
-# $wgWhitelistEdit	= true;
+# If wgWhitelistRead is set to true, only logged in users
+# are allowed to read articles.
+#
+# wgWhitelistAccount lists user types that can add user accounts:
+# "key" => 1 defines permission if user has right "key".
+#
+# Typical setups are:
+#
+# Everything goes (this is the default behaviour):
+# $wgWhitelistEdit = false;
+# $wgWhitelistRead = false;
+# $wgWhitelistAccount = array ( "user" => 1, "sysop" => 1, "developer" => 1 );
+#
+# Invitation-only closed shop type of system
+# $wgWhitelistEdit = true;
+# $wgWhitelistRead = true;
+# $wgWhitelistAccount = array ( "user" => 0, "sysop" => 1, "developer" => 1 );
+#
+# Public website, closed editorial team
+# $wgWhitelistEdit = true;
+# $wgWhitelistRead = false;
+# $wgWhitelistAccount = array ( "user" => 0, "sysop" => 1, "developer" => 1 );
+
 
 # Client-side caching:
 $wgCachePages       = true; # Allow client-side caching of pages
