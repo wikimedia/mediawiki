@@ -282,7 +282,11 @@ class User {
 
 	function addSalt( $p )
 	{
-		return md5( "{$this->mId}-{$p}" );
+		global $wgPasswordSalt;
+		if($wgPasswordSalt)
+			return md5( "{$this->mId}-{$p}" );
+		else
+			return $p;
 	}
 
 	function encryptPassword( $p )
