@@ -1524,6 +1524,31 @@ class Parser
 		return $text;
 	}
 
+	# Split template arguments
+	function getTemplateArgs( $argsString ) {
+		if ( $argsString === '' ) {
+			return array();
+		}
+
+		$args = explode( '|', substr( $argsString, 1 ) );
+
+		# If any of the arguments contains a '[[' but no ']]', it needs to be
+		# merged with the next arg because the '|' character between belongs
+		# to the link syntax and not the template parameter syntax.
+		$argc = count($args);
+		$i = 0;
+		for ( $i = 0; $i < $argc-1; $i++ ) {
+			if ( substr_count ( $args[$i], "[[" ) != substr_count ( $args[$i], "]]" ) ) {
+				$args[$i] .= "|".$args[$i+1];
+				array_splice($args, $i+1, 1);
+				$i--;
+				$argc--;
+			}
+		}
+
+		return $args;
+	}
+
 	function braceSubstitution( $matches ) {
 		global $wgLinkCache, $wgLang;
 		$fname = 'Parser::braceSubstitution';
@@ -1540,11 +1565,8 @@ class Parser
 		$newline = $matches[1];
 		$part1 = $matches[2];
 		# If the third subpattern matched anything, it will start with |
-		if ( $matches[3] !== '' ) {
-			$args = explode( '|', substr( $matches[3], 1 ) );
-		} else {
-			$args = array();
-		}
+
+		$args = $this->getTemplateArgs($matches[3]);
 		$argc = count( $args );
 
 		# {{{}}}
