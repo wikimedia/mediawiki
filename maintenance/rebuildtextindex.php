@@ -3,15 +3,14 @@
 # hours, depending on the database size and server configuration.
 
 require_once( "commandLine.inc" );
-require_once( "./rebuildtextindex.inc" );
+require_once( "rebuildtextindex.inc" );
 $wgTitle = Title::newFromText( "Rebuild text index script" );
 
-$wgDBuser			= $wgDBadminuser;
-$wgDBpassword		= $wgDBadminpassword;
+$database = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
 
-dropTextIndex();
-rebuildTextIndex();
-createTextIndex();
+dropTextIndex( $database );
+rebuildTextIndex( $database );
+createTextIndex( $database );
 
 print "Done.\n";
 exit();
