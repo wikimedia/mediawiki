@@ -1580,6 +1580,10 @@ class Skin {
 	{
 		global $wgOut, $wgUser;
 
+		# Fail gracefully
+		if ( ! isset($nt) )
+			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
+
 		$fname = 'Skin::makeBrokenLinkObj';
 		wfProfileIn( $fname );
 
