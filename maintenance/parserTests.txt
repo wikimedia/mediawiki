@@ -376,6 +376,12 @@ Normal text.
 ###
 ### Internal links
 ###
+!! article
+Main Page
+!! text
+blah blah
+!! endarticle
+
 !! test
 Plain link, capitalized
 !! input
@@ -466,10 +472,12 @@ Piped link to namespace
 </p>
 !! end
 
-# NOTE: it is assumed that [[Category:MediaWiki User's Guide]] exists. It may be necessary to
-# create it, because there are no categories in a default MediaWiki installation. Ideally the
-# parser tester could create a category for testing purposes; this may be necessary for
-# templates anyway.
+!! article
+Category:MediaWiki User's Guide
+!! text
+blah
+!! endarticle
+
 !! test
 Link to category
 !! input
@@ -528,6 +536,13 @@ Inline interwiki link
 <p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity" class='extiw'>MeatBall:SoftSecurity</a>
 </p>
 !! end
+
+###
+### Images
+###
+
+!! test
+[[
 
 
 ##
@@ -640,7 +655,7 @@ Magic links: internal link to RFC
 !! test
 Magic links: ISBN
 !! input
-ISBN  0-306-40615-2
+ISBN 0-306-40615-2
 !! result
 <p><a href="/index.php?title=Special:Booksources&amp;isbn=0306406152" class="internal">ISBN 0-306-40615-2</a>
 </p>
@@ -658,8 +673,136 @@ Nonexistant template
 </p>
 !! end
 
+###
+### Templates
+####
+!! article
+Template:test
+!! text
+This is a test template
+!! endarticle
+
+!! test
+Simple template
+!! input
+{{test}}
+!! result
+<p>This is a test template
+</p>
+!! end
+
+!! test
+Template with explicit namespace
+!! input
+{{Template:test}}
+!! result
+<p>This is a test template
+</p>
+!! end
+
+
+!! article
+Template:paramtest
+!! text
+This is a test template with parameter {{{param}}}
+!! endarticle
+
+!! test
+Template parameter
+!! input
+{{paramtest|param=foo}}
+!! result
+<p>This is a test template with parameter foo
+</p>
+!! end
+
+!! test
+Magic variable as template parameter
+!! input
+{{paramtest|param={{SITENAME}}}}
+!! result
+<p>This is a test template with parameter MediaWiki
+</p>
+!! end
+
+!! article
+Template:linktest
+!! text
+[[{{{param}}}|foo]]
+!! endarticle
+
+XXX this works outside of parser testing
+!! test
+!! disabled
+Template parameter as link source
+!! input
+{{linktest|param=Main Page}}
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>
+</p>
+!! end
+
+###
+### Pre-save transform tests
+###
+!! test
+pre-save transform: subst:
+!! options
+PST
+!! input
+{{subst:test}}
+!! result
+This is a test template
+!! end
+
+!! test
+pre-save transform: normal template
+!! options
+PST
+!! input
+{{test}}
+!! result
+{{test}}
+!! end
+
+!! test
+pre-save transform: subst magic variables
+!! options
+pst
+!! input
+{{subst:SITENAME}}
+!! result
+MediaWiki
+!! end
+
+###
+### Message transform tests
+###
+!! test
+message transform: magic variables
+!! options
+msg
+!! input
+{{SITENAME}}
+!! result
+MediaWiki
+!! end
+
+!! test
+message transform: should transform wiki markup
+!! options
+msg
+!! input
+''test''
+!! result
+''test''
+!! end
+
 TODO:
+more templates
+tables
+images
 subpages
-templates
+pre-save transform and message transform checking
 and much more
 
