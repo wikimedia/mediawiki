@@ -1478,8 +1478,8 @@ class Skin {
 				}
 				
 				# Allows wiki to bypass using linkcache, see OutputPage::parseLinkHolders()
-				$retVal = "<tmp=" . implode( ' ', array( $nt->getNamespace(), $nt->getDBkey(), 
-					$query, $prefix . $text . $inside ) ) . ">{$trail}";
+				$retVal = '<!--LINK ' . implode( ' ', array( $nt->getNamespace(), $nt->getDBkey(), 
+					$query, $prefix . $text . $inside ) ) . "-->{$trail}";
 			} else {
 				# Work out link colour immediately
 				$aid = $nt->getArticleID() ;
