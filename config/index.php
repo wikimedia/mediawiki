@@ -694,7 +694,7 @@ function getLanguageList() {
 	}
 	
 	$codes = array();
-	$latin1 = array( "da", "de", "en", "es", "fr", "nl", "sv" );
+	$latin1 = array( "da", "de", "en", "es", "nl", "sv" );
 	
 	$d = opendir( "../languages" );
 	while( false !== ($f = readdir( $d ) ) ) {
