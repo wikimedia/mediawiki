@@ -156,6 +156,20 @@ class MessageCache
 		}
 
 		$dbr->freeResult( $res );
+		/*
+		# FIXME: This is too slow currently.
+		# We need to bulk-fetch revisions, but in a portable way...
+		$resultSet = Revision::fetchFromConds( $dbr, array(
+			'page_namespace'   => NS_MEDIAWIKI,
+			'page_is_redirect' => 0,
+			'page_id=rev_page' ) );
+		while( $row = $resultSet->fetchObject() ) {
+			$revision = new Revision( $row );
+			$title = $revision->getTitle();
+			$this->mCache[$title->getDBkey()] = $revision->getText();
+		}
+		$resultSet->free();
+		*/
 	}
 
 	/**
@@ -297,15 +311,9 @@ class MessageCache
 
 		# If it wasn't in the cache, load each message from the DB individually
 		if ( !$message ) {
-			$dbr =& wfGetDB( DB_SLAVE );
-			$result = $dbr->selectRow( array( 'page', 'text' ),
-			  array( 'old_flags', 'old_text' ),
-			  'page_namespace=' . NS_MEDIAWIKI .
-			  ' AND page_title=' . $dbr->addQuotes( $title ) .
-			  ' AND page_latest=old_id',
-			  'MessageCache::get' );
-			if ( $result ) {
-				$message = Revision::getRevisionText( $result );
+			$revision = Revision::newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
+			if( $revision ) {
+				$message = $revision->getText();
 				if ($this->mUseCache) {
 					$this->mCache[$title]=$message;
 					/* individual messages may be often 
