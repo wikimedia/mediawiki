@@ -18,7 +18,8 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	
 	# Don't try to draw messages from the database we're initialising
 	$wgMessageCache->disable();
-
+	$wgMessageCache->disableTransform();
+	
 	$fname = 'initialiseMessages';
 	$ns = NS_MEDIAWIKI;
 	# cur_user_text responsible for the modifications
