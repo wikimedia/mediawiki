@@ -321,12 +321,11 @@ class SpecialSearch {
 			if ( 0 == $contextlines ) {
 				break;
 			}
-			--$contextlines;
 			++$lineno;
 			if ( ! preg_match( $pat1, $line, $m ) ) {
 				continue;
 			}
-
+			--$contextlines;
 			$pre = $wgContLang->truncate( $m[1], -$contextchars, '...' );
 
 			if ( count( $m ) < 3 ) {
