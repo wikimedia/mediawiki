@@ -118,9 +118,10 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 	#
 	function loadText()
 	{
-		global $wgTitle, $wgOut, $wgLang, $wgIsMySQL;
+		global $wgTitle, $wgOut, $wgLang, $wgIsMySQL, $wgIsPg;
 		$fname = "DifferenceEngine::loadText";
 		
+		$oldtable=wgIsPg?'"old"':'old';
 		if ( 0 == $this->mNewid || 0 == $this->mOldid ) {
 			$wgOut->setArticleFlag( true );
 			$this->mNewtitle = wfMsg( "currentrev" );
@@ -136,7 +137,7 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 			$this->mNewUser = $s->cur_user_text;
 			$this->mNewComment = $s->cur_comment;
 		} else {
-			$sql = "SELECT old_namespace,old_title,old_timestamp,old_text,old_flags,old_user_text,old_comment FROM old WHERE " .
+			$sql = "SELECT old_namespace,old_title,old_timestamp,old_text,old_flags,old_user_text,old_comment FROM $oldtable WHERE " .
 			  "old_id={$this->mNewid}";
 
 			$res = wfQuery( $sql, DB_READ, $fname );
@@ -154,13 +155,13 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 		if ( 0 == $this->mOldid ) {
 			$use_index=$wgIsMySQL?"USE INDEX (name_title_timestamp)":"";
 			$sql = "SELECT old_namespace,old_title,old_timestamp,old_text,old_flags,old_user_text,old_comment " .
-			  "FROM old $use_index WHERE " .
+			  "FROM $oldtable $use_index WHERE " .
 			  "old_namespace=" . $this->mNewPage->getNamespace() . " AND " .
 			  "old_title='" . wfStrencode( $this->mNewPage->getDBkey() ) .
 			  "' ORDER BY inverse_timestamp LIMIT 1";
 			$res = wfQuery( $sql, DB_READ, $fname );
 		} else {
-			$sql = "SELECT old_namespace,old_title,old_timestamp,old_text,old_flags,old_user_text,old_comment FROM old WHERE " .
+			$sql = "SELECT old_namespace,old_title,old_timestamp,old_text,old_flags,old_user_text,old_comment FROM $oldtable WHERE " .
 			  "old_id={$this->mOldid}";
 			$res = wfQuery( $sql, DB_READ, $fname );
 		}
