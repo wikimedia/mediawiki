@@ -15,9 +15,15 @@ class LanguageZh extends LanguageZh_cn {
 	var $mZhClient=false;	
 	function LanguageZh() {
 		global $wgUseZhdaemon, $wgZhdaemonHost, $wgZhdaemonPort;
-		global $wgDisableLangConversion;
+		global $wgDisableLangConversion, $wgUser;
+        
+		if( $wgUser->getID()!=0 ) {
+			/* allow user to diable conversion */
+			if( $wgDisableLangConversion == false &&
+				$wgUser->getOption('nolangconversion') == 1)
+				$wgDisableLangConversion = true;
+		}		
 
-		$this->mZhLanguageCode = $this->getPreferredVariant();
 		if($wgUseZhdaemon) {
 			$this->mZhClient=new ZhClient($wgZhdaemonHost, $wgZhdaemonPort);
 			if(!$this->mZhClient->isconnected())
@@ -34,11 +40,18 @@ class LanguageZh extends LanguageZh_cn {
 		the setting pages is finalized.
 	*/
 	function getPreferredVariant() {
-		global $wgUser;
+		global $wgUser, $wgRequest;
 		
 		if($this->mZhLanguageCode)
 			return $this->mZhLanguageCode;
-		
+
+		// see if the preference is set in the request
+		$zhreq = $wgRequest->getText( 'zh' );
+		if( in_array( $zhreq, $this->getVariants() ) ) {
+			$this->mZhLanguageCode = $zhreq;
+			return $zhreq;
+		}
+
 		// get language variant preference for logged in users 
 		if($wgUser->getID()!=0) {
 			$this->mZhLanguageCode = $wgUser->getOption('variant');
@@ -55,8 +68,19 @@ class LanguageZh extends LanguageZh_cn {
 		return $this->mZhLanguageCode;
 	}
 	
-	
-	
+	# this should give much better diff info
+	function segmentForDiff( $text ) {
+		return preg_replace(
+			"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
+			"' ' .\"$1\"", $text);
+	}
+
+	function unsegmentForDiff( $text ) {
+		return preg_replace(
+			"/ ([\\xc0-\\xff][\\x80-\\xbf]*)/e",
+			"\"$1\"", $text);
+	}
+
 	function autoConvert($text, $toVariant=false) {
 		if(!$toVariant) 
 			$toVariant = $this->getPreferredVariant();
@@ -112,8 +136,8 @@ class LanguageZh extends LanguageZh_cn {
 		//better to use zh-cn for search, since conversion from 
 		//Traditional to Simplified is less ambiguous than the
 		//other way around
-        $string = $this->autoConvert($string, 'zh-cn');
 		$t = $this->mZhClient->segment($string);
+        $t = $this->autoConvert($t, 'zh-cn');
 		$t = LanguageUtf8::stripForSearch( $t );
 		wfProfileOut( $fname );
 		return $t;
@@ -125,6 +149,13 @@ class LanguageZh extends LanguageZh_cn {
 		$terms = implode( '|', $this->autoConvertToAllVariants( $terms ) );
 		$ret = array_unique( explode('|', $terms) );
 		return $ret;
+	}
+
+	function getExtraHashOptions() {
+		global $wgUser;
+		$variant = $this->getPreferredVariant();
+		$noconvert = $wgUser->getOption( 'nolangconversion' );
+		return '!' . $variant . '!' . $noconvert;
 	}
 }
 ?>

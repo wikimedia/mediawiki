@@ -65,13 +65,23 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		$cmq = 'AND cur_minor_edit=0';
 	} else { $cmq = ''; }
 
-	extract( $dbr->tableNames( 'cur', 'links' ) );
-
-	$sql = "SELECT cur_id,cur_namespace,cur_title,cur_user,cur_comment," .
-	  "cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new FROM $links, $cur " .
-	  "WHERE cur_timestamp > '{$cutoff}' {$cmq} AND l_to=cur_id AND l_from=$id " .
-          "GROUP BY cur_id,cur_namespace,cur_title,cur_user,cur_comment,cur_user_text," .
-	  "cur_timestamp,cur_minor_edit,cur_is_new,inverse_timestamp ORDER BY inverse_timestamp LIMIT {$limit}";
+	// If target is a Category, use categorylinks and invert from and to
+	if ( $nt->getNamespace() == NS_CATEGORY ) {
+		extract( $dbr->tableNames( 'cur', 'categorylinks' ) );
+		$catkey = $dbr->addQuotes( $nt->getDBKey() );
+		$sql = "SELECT cur_id,cur_namespace,cur_title,cur_user,cur_comment," .
+	  	  "cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new FROM $categorylinks, $cur " .
+	  	  "WHERE cur_timestamp > '{$cutoff}' {$cmq} AND cl_from=cur_id AND cl_to=$catkey " .
+	  	  "GROUP BY cur_id,cur_namespace,cur_title,cur_user,cur_comment,cur_user_text," .
+	  	  "cur_timestamp,cur_minor_edit,cur_is_new,inverse_timestamp ORDER BY inverse_timestamp LIMIT {$limit}";
+	} else {
+		extract( $dbr->tableNames( 'cur', 'links' ) );
+		$sql = "SELECT cur_id,cur_namespace,cur_title,cur_user,cur_comment," .
+		  "cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new FROM $links, $cur " .
+		  "WHERE cur_timestamp > '{$cutoff}' {$cmq} AND l_to=cur_id AND l_from=$id " .
+			  "GROUP BY cur_id,cur_namespace,cur_title,cur_user,cur_comment,cur_user_text," .
+		  "cur_timestamp,cur_minor_edit,cur_is_new,inverse_timestamp ORDER BY inverse_timestamp LIMIT {$limit}";
+	}
 	$res = $dbr->query( $sql, $fname );
 
 	$wgOut->addHTML("&lt; ".$sk->makeKnownLinkObj($nt, "", "redirect=no" )."<br />\n");

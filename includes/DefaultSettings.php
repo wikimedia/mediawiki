@@ -19,7 +19,7 @@ if( defined( 'MEDIAWIKI' ) ) {
  * MediaWiki version number
  * @global string $wgVersion
  */
-$wgVersion			= '1.4-beta0';
+$wgVersion			= '1.4beta2';
 
 /** 
  * Name of the site.
@@ -773,6 +773,20 @@ $wgUseExternalDiffEngine = false;
 # Use RC Patrolling to check for vandalism
 $wgUseRCPatrol = true;
 
+# Set maximum number of results to return in syndication feeds
+# (RSS, Atom) for eg Recentchanges, Newpages.
+$wgFeedLimit = 50;
+
+# _Minimum_ timeout for cached Recentchanges feed, in seconds.
+# A cached version will continue to be served out even if changes
+# are made, until this many seconds runs out since the last render.
+$wgFeedCacheTimeout = 60;
+
+# When generating Recentchanges RSS/Atom feed, diffs will not be
+# generated for pages larger than this size.
+$wgFeedDiffCutoff = 32768;
+
+
 # Additional namespaces. If the namespaces defined in Language.php and Namespace.php are insufficient,
 # you can create new ones here, for example, to import Help files in other languages.
 # PLEASE NOTE: Once you delete a namespace, the pages in that namespace will no longer be accessible.
@@ -842,14 +856,26 @@ $wgBrowserBlackList = array(
 # $wgLocaltimezone = 'PST8PDT';
 # $wgLocaltimezone = 'Europe/Sweden';
 # $wgLocaltimezone = 'CET';
+$wgLocaltimezone = null;
 
-# User level management
-# The number is the database id of a group you want users to be attached by
-# default. A better interface should be coded [av]
-$wgAnonGroupId = 1;
-$wgLoggedInGroupId = 2;
+/*
+When translating messages with wfMsg(), it is not always clear what should
+be considered UI messages and what shoud be content messages. 
 
-$wgWhitelistRead = array ( ':Accueil', ':Main_Page');
+For example, for regular wikipedia site like en, there should be only one 
+'mainpage', therefore when getting the link of 'mainpage', we should 
+treate it as content of the site and call wfMsgForContent(), while for 
+rendering the text of the link, we call wfMsg(). The code in default
+behaves this way. However, sites like common do offer different versions 
+of 'mainpage' and the like for different languages. This array provides a
+way to override the default behavior. For example, to allow language specific
+mainpage and community portal, set
+
+$wgForceUIMsgAsContentMsg = array( 'mainpage', 'portal-url' );
+
+*/
+$wgForceUIMsgAsContentMsg = array();
+
 
 /**
  * Authentication plugin.

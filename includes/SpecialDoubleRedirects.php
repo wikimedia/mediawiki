@@ -18,7 +18,7 @@ require_once('QueryPage.php');
 class DoubleRedirectsPage extends PageQueryPage {
 
 	function getName() {
-		return 'doubleredirects';
+		return 'DoubleRedirects';
 	}
 	
 	function isExpensive( ) { return true; }

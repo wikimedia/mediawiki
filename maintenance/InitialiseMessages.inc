@@ -11,18 +11,17 @@
  */
 
 
-
 function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	global $wgContLang, $wgContLanguageCode;
 	global $wgContLangClass, $wgAllMessagesEn;
-	global $IP;
+	global $wgDisableLangConversion;
+	global $wgForceUIMsgAsContentMsg;
+	global $wgLanguageNames;
+	global $IP, $wgUseLatin1;
 	
-	$langclass = 'Language'. str_replace( '-', '_', ucfirst( $wgContLanguageCode ) );
-	require_once("$IP/languages/$langclass.php");
-
-	$variants = $wgContLang->getVariants();
-	if(!in_array($wgContLanguageCode, $variants))
-		$variants[]=$wgContLanguageCode;
+	# overwrite language conversion	option so that all variants 
+	# of the messages are initialised
+	$wgDisableLangConversion = false;
 
 	if ( $messageArray ) {
 		$sortedArray = $messageArray;
@@ -31,13 +30,23 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	}
 	
 	ksort( $sortedArray );
-	
 	$messages=array();
+
+	$variants = $wgContLang->getVariants();
+	if(!in_array($wgContLanguageCode, $variants))
+		$variants[]=$wgContLanguageCode;
+
 	foreach ($variants as $v) {
 		$langclass = 'Language'. str_replace( '-', '_', ucfirst( $v ) );
-		$lang = new $langclass;
-		if(!is_object($lang)) {
+		if( !class_exists($langclass) ) {
 			die ("class $langclass not defined. perhaps you need to include the file $langclass.php in $wgContLangClass.php?");
+		}
+		$lang = new $langclass;
+		if($wgUseLatin1) {
+			require_once( "$IP/languages/LanguageLatin1.php" );
+			$latin1 = new LanguageLatin1( $lang );
+			unset($lang);
+			$lang = $latin1;
 		}
 		if($v==$wgContLanguageCode)
 			$suffix='';
@@ -46,7 +55,25 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		foreach ($sortedArray as $key => $msg) {
 			$messages[$key.$suffix] = $lang->getMessage($key);
 		}
-	}	
+	}
+
+	require_once('languages/Names.php');
+
+    /*
+	  initialize all messages in $wgForceUIMsgAsContentMsg for all
+	  languages in Names.php
+    */
+	if( is_array( $wgForceUIMsgAsContentMsg ) ) {
+		foreach( $wgForceUIMsgAsContentMsg as $uikey ) {
+			foreach( $wgLanguageNames as $code => $name) {
+				if( $code == $wgContLanguageCode )
+					continue;
+				$msg = $wgContLang->getMessage( $uikey );
+				if( $msg )
+					$messages[$uikey. '/' . $code] = $msg;
+			}
+		}
+	}
 
 	initialiseMessagesReal( $overwrite, $messages );
 }
@@ -180,7 +207,7 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 		}
 	}
 
-	$dbw->insert( $cur, $arr, $fname );
+	$dbw->insert( 'cur', $arr, $fname );
 
 	# Clear the relevant memcached key
 	print 'Clearing message cache...';

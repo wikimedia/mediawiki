@@ -5,6 +5,9 @@
  * @subpackage SpecialPage
  */
 
+if( !defined( 'MEDIAWIKI' ) )
+	die();
+
 /* to get a list of languages in setting user's language preference */
 require_once('languages/Names.php');
 
@@ -230,7 +233,12 @@ class PreferencesForm {
 		$this->mOldpass = $this->mNewpass = $this->mRetypePass = '';
 		$this->mUserEmail = $wgUser->getEmail();
 		$this->mRealName = ($wgAllowRealName) ? $wgUser->getRealName() : '';
-		$this->mUserLanguage = $wgUser->getOption( 'language');
+		$this->mUserLanguage = $wgUser->getOption( 'language' );
+		if( empty( $this->mUserLanguage ) ) {
+			# Quick hack for conversions, where this value is blank
+			global $wgContLanguageCode;
+			$this->mUserLanguage = $wgContLanguageCode;
+		}
         $this->mUserVariant = $wgUser->getOption( 'variant');
 		if ( 1 == $wgUser->getOption( 'disablemail' ) ) { $this->mEmailFlag = 1; }
 		else { $this->mEmailFlag = 0; }
@@ -320,7 +328,7 @@ class PreferencesForm {
 		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgUseDynamicDates, $wgValidSkinNames;
 		global $wgAllowRealName, $wgImageLimits;
 		global $wgLanguageNames, $wgDisableLangConversion;
-
+		global $wgContLanguageCode;
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
@@ -414,7 +422,7 @@ class PreferencesForm {
 			global $IP;
 			/* only add languages that have a file */
 			$langfile="$IP/languages/Language".str_replace('-', '_', ucfirst($code)).".php";
-			if(file_exists($langfile)) {
+			if(file_exists($langfile) || $code == $wgContLanguageCode) {
 				$sel = ($code == $this->mUserLanguage)? 'selected="selected"' : '';
 				$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
 			}
@@ -442,6 +450,7 @@ class PreferencesForm {
 					$sel = ($code==$this->mUserVariant)? 'selected="selected"' : '';
 					$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
 				}
+			$wgOut->addHtml("</select></label></div>\n");
 			}
 		}
 		# Fields for changing password

@@ -959,7 +959,9 @@ class Parser
 		wfProfileIn( $fname );
 
 		$sk =& $this->mOptions->getSkin();
-		$linktrail = wfMsgForContent('linktrail');
+		global $wgContLang;
+		$linktrail = $wgContLang->linkTrail();
+		
 		$bits = preg_split( EXT_LINK_BRACKETED, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 
 		$s = $this->replaceFreeExternalLinks( array_shift( $bits ) );
@@ -3083,7 +3085,12 @@ class Parser
 			} else {
 				$label = '';
 			}
-			$ig->add( Image::newFromTitle( $nt ), $label );
+			
+			# FIXME: Use the full wiki parser and add its links
+			# to the page's links.
+			$html = $this->mOptions->mSkin->formatComment( $label );
+			
+			$ig->add( Image::newFromTitle( $nt ), $html );
 			$wgLinkCache->addImageLinkObj( $nt );
 		}
 		return $ig->toHTML();

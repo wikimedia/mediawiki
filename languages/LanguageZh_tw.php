@@ -59,6 +59,10 @@ require_once( "LanguageZh_cn.php" );
 	"新絲書店" => "http://www.silkbook.com/function/Search_List_Book.asp?item=5&text=$1"
 );
 
+/* private */ $wgUserTogglesZh_tw = array(
+	'nolangconversion',
+) + $wgUserTogglesEn;
+
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).
@@ -137,14 +141,14 @@ require_once( "LanguageZh_cn.php" );
    "tog-editondblclick" => "雙擊頁面編輯(JavaScript)",
 	"tog-editsection"=>"允許通過點擊[編輯]鏈結編輯段落",
  	"tog-editsectiononrightclick"=>"允許右擊標題編輯段落(JavaScript)",
- 	"tog-showtoc"=>"顯示目錄<br>(針對一頁超過3個標題的文章)",
+ 	"tog-showtoc"=>"顯示目錄<br />(針對一頁超過3個標題的文章)",
 	"tog-rememberpassword" => "下次登陸記住密碼",/* "Remember password across sessions", */
 	"tog-editwidth" => "編輯欄位寬度",/* "Edit box has full width", */
 	"tog-editondblclick" => "雙擊編輯頁面（Javascript）",/* "Edit pages on double click (JavaScript)", */
 	"tog-watchdefault" => "監視新的以及更改過的文章",/* "Watch new and modified articles", */
 	"tog-minordefault" => "細微編輯為默認設置",/* "Mark all edits minor by default", */
 	"tog-previewontop" => "在編輯框上方顯示預覽", /* "Show preview before edit box and not after it" */
-
+"tog-nolangconversion" => "不進行繁簡體轉換", /* "disable language conversion" */
 
 
 # Bits of text used by many pages:
@@ -322,8 +326,8 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "yourpasswordagain" => "再次輸入密碼",
 "newusersonly"	=> "（僅限新用戶）",
 "remembermypassword" => "下次登錄記住密碼。",
-"loginproblem"	=> "<b>登錄有問題。</b><br>再試一次！",
-"alreadyloggedin" => "<font color=red><b>用戶$1，您已經登錄了!</b></font><br>\n",
+"loginproblem"	=> "<b>登錄有問題。</b><br />再試一次！",
+"alreadyloggedin" => "<font color=red><b>用戶$1，您已經登錄了!</b></font><br />\n",
 
 "login"			=> "登錄",
 "userlogin"		=> "用戶登錄",
@@ -363,7 +367,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "showpreview"	=> "顯示預覽",
 "blockedtitle"	=> "用戶被封",
 "blockedtext"	=> "您的用戶名或網址已被$1封。
-理由是：<br>'''$2'''<p>您可以與$1向其他任何[[維基百科:管理員|管理員]]詢問。",
+理由是：<br />'''$2'''<p>您可以與$1向其他任何[[維基百科:管理員|管理員]]詢問。",
  "whitelistedittitle" => "登錄後才可編輯",
  	 "whitelistedittext" => "您必須先[[特殊:登錄]]才可編輯頁面。",
  	 "whitelistreadtitle" => "登錄後才可閱讀",
@@ -400,7 +404,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "yourdiff"		=> "差別",
 "copyrightwarning" => "請注意對W維基百科的任何貢獻都將被認為是在GNU自由文檔協議證書下發佈。
 (細節請見$1).
-如果您不希望您的文字被任意修改和再散佈，請不要提交。<br>
+如果您不希望您的文字被任意修改和再散佈，請不要提交。<br />
 您同時也向我們保證你所提交的內容是你自己所作，或得自一個不受版權保護或相似自由的來源。
 <strong>不要在未獲授權的情況下發表！</strong>",
 
@@ -460,7 +464,7 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "nonefound"		=> "<strong>注意：</strong>失敗的搜索往往是由於試圖搜索諸如“的”或“和”之類的常見字所引起。",
 "powersearch" => "搜索",
 "powersearchtext" => "
-搜索名字空間：<br>$1<br>$2列出重定向頁面；搜索$3 $9",
+搜索名字空間：<br />$1<br />$2列出重定向頁面；搜索$3 $9",
 
 "searchdisabled" => "<p>維基百科內部搜索功能由於高峰時段服務器超載而停止使用。
 您可以暫時通過
@@ -478,9 +482,9 @@ alt=\"Google\" align=\"middle\"></a>
 <input type=text name=\"q\" size=31 maxlength=255 value=\"$1\">
 <input type=submit name=\"sa\" value=\"Google搜索\">
 <input type=hidden name=\"cof\" value=\"LW:135;L:http://zh-tw.wikipedia.org/upload/wiki.png;LH:133;AH:left;S:http://www.wikiped<font face=arial,sans-serif size=-1>
-<input type=hidden name=\"domains\" value=\"zh-tw.wikipedia.org\"><br>
+<input type=hidden name=\"domains\" value=\"zh-tw.wikipedia.org\"><br />
 <input type=radio name=\"sitesearch\" value=\"\"> 搜索WWW
-<input type=radio name=\"sitesearch\" value=\"zh-tw.wikipedia.org\" checked> 搜索zh-tw.wikipedia.org </font><br>
+<input type=radio name=\"sitesearch\" value=\"zh-tw.wikipedia.org\" checked> 搜索zh-tw.wikipedia.org </font><br />
 </td></tr></table></form>
 <!-- Search Google -->\n",
 
@@ -543,8 +547,7 @@ alt=\"Google\" align=\"middle\"></a>
 "rcnote"		=> "下面是最近<strong>$2</strong>天內最新的<strong>$1</strong>次改動。",
 "rcnotefrom"	=> "下面是自<b>$2</b>（最多顯示<b>$1</b>）。",
 "rclistfrom"	=> "顯示自$1以來的新更改",
-# "rclinks"		=> "顯示最後$2小時／$3天內的$1此修改",
-"rclinks"		=> "顯示最近 $2 天內最新的 $1 次改動。",
+"rclinks"		=> "顯示最近 $2 天內最新的 $1 次改動。<br />$3",
 "rchide"		=> "以$4形式；$1個小修改；$2個二級名字空間；$3個多重修改",
 "diff"			=> "差異",
 "hist"			=> "歷史",
@@ -636,7 +639,7 @@ alt=\"Google\" align=\"middle\"></a>
 "deleteimg"		=> "刪",
 "imghistlegend" => "題跋: (現) = 目前的圖像，(刪) = 刪除舊版本，
 (複) = 恢復到舊版本。
-<br><i>點擊日期查看當天上載的圖像</i>.",
+<br /><i>點擊日期查看當天上載的圖像</i>.",
 "imagelinks"	=> "圖像鏈接",
 
 "linkstoimage"	=> "以下頁面連接到本圖像：",
@@ -663,10 +666,10 @@ alt=\"Google\" align=\"middle\"></a>
 "maintenancebacklink"	=> "返回維護頁",
 "disambiguations"	=> "消含糊頁",
 "disambiguationspage"	=> "維基百科:鏈接到消歧義的頁面",
-"disambiguationstext"	=> "以下的條目都有到消含糊頁的鏈接，但它們應該是鏈到適當的題目。<br>一個頁面會被視為消含糊頁如果它是鏈自$1.<br>由其它他名字空間來的鏈接<i>不會</i>在這兒被列出來。",
+"disambiguationstext"	=> "以下的條目都有到消含糊頁的鏈接，但它們應該是鏈到適當的題目。<br />一個頁面會被視為消含糊頁如果它是鏈自$1.<br />由其它他名字空間來的鏈接<i>不會</i>在這兒被列出來。",
 "doubleredirects"	=> "雙重重定向",
 "doubleredirectstext"	=> "<b>請注意：</b> 這列表可能包括不正確的反應。
-這通常表示在那頁面第一個#REDIRECT之下還有文字。<br>\n
+這通常表示在那頁面第一個#REDIRECT之下還有文字。<br />\n
 每一行都包含到第一跟第二個重定向頁的鏈接，以及第二個重定向頁的第一行文字，
 通常顯示的都會是\“真正\” 的目標頁面，也就是第一個重定向頁應該指向的條目。",
 "brokenredirects"	=> "損壞的重定向頁",
@@ -855,7 +858,7 @@ alt=\"Google\" align=\"middle\"></a>
 "noblockreason" => "您必須說明查封的具體理由。",
 "blockipsuccesssub" => "查封成功",
 "blockipsuccesstext" => "網址“$1”已經被查封。
-<br>參看[[特殊:被封網址列表|被封網址列表]]以復審查封。",
+<br />參看[[特殊:被封網址列表|被封網址列表]]以復審查封。",
 "unblockip"		=> "解除禁封網址",
 "unblockiptext"	=> "用下面的表單來恢復先前被禁封的網址的書寫權。",
 "ipusubmit"		=> "解除禁封",
@@ -883,7 +886,7 @@ alt=\"Google\" align=\"middle\"></a>
 
 "unlockdbsuccesssub" => "數據庫開放",
 "lockdbsuccesstext" => "維基百科數據庫已經上鎖。
-<br>請記住在維護完成後重新開放數據庫。",
+<br />請記住在維護完成後重新開放數據庫。",
 "unlockdbsuccesstext" => "維基百科數據庫重新開放。",
 
 # SQL query
@@ -937,12 +940,72 @@ alt=\"Google\" align=\"middle\"></a>
 "talkpagemoved" => "相應的對話頁也已經移動。",
 "talkpagenotmoved" => "相應的對話頁<strong>沒有</strong>被移動。",
 
+
+# some untranslated messages as of 1.4 beta1
+'1movedto2' => "$1移動到$2", //"$1 moved to $2",
+'1movedto2_redir' => "$1重定向到$2", //"$1 moved to $2 over redirect",
+'acct_creation_throttle_hit' => "對不起，您已經註冊了$1賬號。你不能再註冊了。", //"Sorry, you have already created $1 accounts. You can't make any more.",
+'addgroup' => "增加新的組", //"Add Group",
+'allarticles' => "所有條目", //"All articles",
+'allmessages' => "系統界面", //"All system messages",
+'allmessagesnotsupportedDB' => "系統界面功能處於關閉狀態 (wgUseDatabaseMessages)。", //"Special:AllMessages not supported because wgUseDatabaseMessages is off.",
+'allmessagestext' => "這裡列出所有可定製的系統界面。", //"This is a list of all system messages available in the MediaWiki: namespace.",
+'allpagesformtext1' => "列出從 $1 起的條目", //"Display pages starting at: $1",
+'allpagesformtext2' => "選定名字空間： $1 $1", //"Choose namespace: $1 $2",
+'allpagesnamespace' => "所有 $1 名字空間的條目", //"All pages ($1 namespace)",
+'allpagesnext' => "下一頁", //"Next",
+'allpagesprev' => "上一頁", //"Previous",
+'allpagessubmit' => "提交", //"Go",
+'ancientpages' => "老條目", //"Oldest pages",
+'and' => "和", //"and",
+'anontalk' => "該IP的對話頁", //"Talk for this IP",
+'anonymous' => "匿名用戶", //"Anonymous user(s) of 1.4",
+'article' => "條目", //"Content page",
+'autoblocker' => "你的IP和被封了的 \"$1\" 是一樣的。封鎖原因： \"$2\".",//"Autoblocked because you share an IP address with \"$1\". Reason \"$2\".",
+'blocklogentry' => "封鎖 $1, $2",//"blocked \"$1\" with an expiry time of $2",
+'blocklogpage' => "封鎖記錄", //"Block_log",
+'categoriespagetext' => "以下列出所有的頁面分類。", //"The following categories exists in the wiki.",
+'categoryarticlecount' => "該類頁面共有 $1 條目", //There are $1 articles in this category.",
+'clearyourcache' => "'''註意：''' 保存設置後，要清掉瀏覽器的緩存才能生效：'''Mozilla:''' 點''刷新'' （或用快鍵''Ctrl-R''），'''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''。",//"'''Note:''' After saving, you have to clear your browser cache to see the changes: '''Mozilla:''' click ''Reload'' (or ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'edit' => "編輯", //"Edit",
+'navigation' => "導航", //"Navigation",
+'nstab-category' => "分類", //"Category",
+'nstab-help' => "幫助",//"Help",
+'nstab-image' => "圖像",//"Image",
+'nstab-main' => "條目", //"Article",
+'nstab-mediawiki' => "界面",//"Message",
+'nstab-special' => "特殊",//"Special",
+'nstab-template' => "模板", //"Template",
+'nstab-user' => "用戶頁面", //"User page",
+'nstab-wp' => "關於", //"About",
+'portal' => "社區",//"Community portal",
+'prefs-help-userdata' => "*<strong>真實姓名</strong>（可選）：用以對您的貢獻署名。<br />*<strong>點子郵件</strong>（可選）：讓他人通過網站在不知道您的電子郵件地址的情況下通過電子郵件與您聯絡，以及通過電子郵件取得遺忘的密碼。", /*"* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />
+* <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your
+email address to them, and it can be used to send you a new password if you forget it.", */
+'prefs-misc' => "雜項", //"Misc settings",
+'prefs-personal' => "用戶數據",//"User data",
+'prefs-rc' => "最近更新", //"Recent changes and stub display",
+'showhideminor' => "$1 小修改 | $2 bots | $3 登錄用戶 | $4 檢查過的", //"$1 minor edits | $2 bots | $3 logged in users | $4 patrolled edits ",
+'skin' => "皮膚", //"Skin",
+'talk' => "討論",//"Discussion",
+'timezonelegend' => "時區", //"Time zone",
+'toolbox' => "工具",//"Toolbox",
+'watch' => "監視",//"Watch",
+'yourlanguage' => "界面語言", //"Your language"
+'yourrealname' => "真實姓名*", //"Your real name"
+'yourvariant' => "中文字體", //"language variant"
+
 );
 
 class LanguageZh_tw extends LanguageZh_cn {
 	function getBookstoreList () {
 		global $wgBookstoreListZh_tw ;
 		return $wgBookstoreListZh_tw ;
+	}
+
+	function getUserToggles() {
+		global $wgUserTogglesZh_tw;
+		return $wgUserTogglesZh_tw;
 	}
 
 	function getNamespaces() {

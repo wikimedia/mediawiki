@@ -471,6 +471,9 @@ Please report this to an administrator, making note of the URL.",
 'formerror'		=> 'Error: could not submit form',
 'badarticleerror' => 'This action cannot be performed on this page.',
 'cannotdelete'	=> 'Could not delete the page or image specified. (It may have already been deleted by someone else.)',
+'block_compress_delete' => "Can't delete this article because it contains block-compressed revisions. 
+This is a temporary situation which the developers are well aware of, and should be fixed within a month or two. 
+Please mark the article for deletion and wait for a developer to fix our buggy software.",
 'badtitle'		=> 'Bad title',
 'badtitletext' => "The requested page title was invalid, empty, or
 an incorrectly linked inter-language or inter-wiki title.",
@@ -530,7 +533,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yournick'		=> 'Your nickname (for signatures)',
 'emailforlost'	=> "Fields marked with a star (*) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.<br /><br />Your real name, if you choose to provide it, will be used for giving you attribution for your work.",
-'prefs-help-userdata' => '* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br/>
+'prefs-help-userdata' => '* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />
 * <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.',
 'loginerror'	=> 'Login error',
@@ -689,7 +692,7 @@ Please check the URL you used to access this page.\n",
 'next'			=> 'next',
 'last'			=> 'last',
 'orig'			=> 'orig',
-'histlegend'	=> 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br/>
+'histlegend'	=> 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />
 Legend: (cur) = difference with current version,
 (last) = difference with preceding version, M = minor edit.',
 'history_copyright'    => '-',
@@ -1016,6 +1019,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'validate'		=> 'Validate page',
 'lonelypages'	=> 'Orphaned pages',
 'uncategorizedpages'	=> 'Uncategorized pages',
+'uncategorizedcategories'	=> 'Uncategorized categories',
 'unusedimages'	=> 'Unused images',
 'popularpages'	=> 'Popular pages',
 'nviews'		=> '$1 views',
@@ -1356,8 +1360,8 @@ for a newer revision, but also keep your other settings for this article in
 this revision, just select which option you intend to <i>change</i>, and
 merging will fill in the other options with your previous settings.',
 'val_noop' => 'No opinion',
-'val_percent' => '<b>$1%</b><br>($2 of $3 points<br>by $4 users)',
-'val_percent_single' => '<b>$1%</b><br>($2 of $3 points<br>by one user)',
+'val_percent' => '<b>$1%</b><br />($2 of $3 points<br />by $4 users)',
+'val_percent_single' => '<b>$1%</b><br />($2 of $3 points<br />by one user)',
 'val_total' => 'Total',
 'val_version' => 'Version',
 'val_tab' => 'Validate',
@@ -1443,13 +1447,14 @@ article [[Train]].
 
 'allmessages'	=> 'All system messages',
 'allmessagestext'	=> 'This is a list of all system messages available in the MediaWiki: namespace.',
-'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:AllMessages at this site.',
+'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:AllMessages at this site. ',
 'allmessagesnotsupportedDB' => 'Special:AllMessages not supported because wgUseDatabaseMessages is off.',
 
 # Thumbnails
 
 'thumbnail-more'	=> 'Enlarge',
 'missingimage'		=> "<b>Missing image</b><br /><i>$1</i>\n",
+'filemissing'		=> 'File missing',
 
 # Special:Import
 'import'	=> 'Import pages',
@@ -2036,7 +2041,16 @@ class Language {
 		return $word;
 	}
 
-	
+	# languages like Chinese need to be segmented in order for the diff
+	# to be of any use
+	function segmentForDiff( $text ) {
+		return $text;
+	}
+	# and unsegment to show the result
+	function unsegmentForDiff( $text ) {
+		return $text;
+	}
+
 	# convert text to different variants of a language. the automatic
 	# conversion is done in autoConvert(). here we parse the text 
 	# marked with -{}-, which specifies special conversions of the 
@@ -2157,20 +2171,29 @@ class Language {
 
 	function getPreferredVariant() {
 		global $wgUser;
-		
+
+		$lang ='';		
+
 		// if user logged in, get in from user's preference
-		if( $wgUser->getID() != 0 )
-			return $wgUser->getOption( 'variant' );
-		
+		if( $wgUser->getID() != 0 ) {
+			$lang = $wgUser->getOption( 'variant' );
+		}
+		if($lang != '')
+			return $lang;
+
 		// if we have multiple variants for this langauge, 
-		// pick the first one as default
+		// pick the first one that's not utf8 (it could be
+		// utf8 if the language does not have a language file)
 		$v = $this->getVariants();
-		if( !empty( $v ) )
-			return $v{0};
-		
-		// otherwise there should really be just one variant, 
+		if( !empty( $v ) ) {
+			$lang = $v[0];
+		}
+		if($lang != '')
+			return $lang;
+
 		// get it from the class name
 		$lang = strtolower( substr( get_class( $this ), 8 ) );
+
 		return $lang;
 	}
 
@@ -2201,6 +2224,27 @@ class Language {
 				break;
 			}
 		}
+	}
+
+	/*
+		returns an array of extra options used by User::getPageRenderHash()
+	*/
+	function getExtraHashOptions() {
+		return '';
+	}
+	
+	/**
+	 * A regular expression to match legal word-trailing characters
+	 * which should be merged onto a link of the form [[foo]]bar.
+	 * FIXME
+	 *
+	 * @return string
+	 * @access public
+	 */
+	function linkTrail() {
+		$trail = $this->getMessage( 'linktrail' );
+		if( empty( $trail ) ) $trail = Language::linkTrail();
+		return $trail;
 	}
 }
 

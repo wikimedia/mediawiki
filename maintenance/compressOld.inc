@@ -65,7 +65,8 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	$pageRes = $dbw->select( 'cur', array('cur_namespace', 'cur_title'), false, $fname );
 
 	# For each of those, get a list of revisions which fit the criteria
-	$conds = array();
+	# No recompression, use a condition on old_flags
+	$conds = array("old_flags NOT LIKE '%object%'");
 	if ( $beginDate ) {
 		$conds[] = "old_timestamp>'" . $beginDate . "'";
 	} 
@@ -146,19 +147,12 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 					$chunk->setText( $text );
 					print '.';
 				} else {
-					# Don't make a stub if it's going to be longer than the article
-					# Stubs are typically about 100 bytes
-					if ( strlen( $text ) < 120 ) {
-						$stub = false;
-						print 'x';
-					} else {
-						$stub = $chunk->addItem( $text );
-						$stub->setLocation( $primaryOldid );
-						$hash = $stub->getHash();
-						$stub = serialize( $stub );
-						print '.';
-						$usedChunk = true;
-					}
+					$stub = $chunk->addItem( $text );
+					$stub->setLocation( $primaryOldid );
+					$hash = $stub->getHash();
+					$stub = serialize( $stub );
+					print '.';
+					$usedChunk = true;
 					$stubs[$j] = $stub;
 				}
 			}

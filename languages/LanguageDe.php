@@ -339,7 +339,7 @@ gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
 "cannotdelete"	=> "Kann spezifizierte Seite oder Artikel nicht löschen. (Wurde möglicherweise schon von jemand anderem gelöscht.)",
 "badtitle"		=> "Ungültiger Titel",
 "badtitletext"	=> "Der Titel der angeforderten Seite war ungültig, leer, oder ein ungültiger Sprachlink von einem anderen Wiki.",
-"perfdisabled" => "Diese Funktion wurde wegen Überlastung des Servers vorübergehend deaktiviert. Versuchen Sie es bitte zwischen 02:00 und 14:00 UTC noch einmal<br>(Aktuelle Serverzeit : ".date("H:i:s")." UTC).",
+"perfdisabled" => "Diese Funktion wurde wegen Überlastung des Servers vorübergehend deaktiviert. Versuchen Sie es bitte zwischen 02:00 und 14:00 UTC noch einmal<br />(Aktuelle Serverzeit : ".date("H:i:s")." UTC).",
 "perfdisabledsub" => "Hier ist eine gespeicherte Kopie von $1:",
 "perfcached" => "Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:",
 "wrong_wfQuery_params" => "Falsche Parameter für wfQuery()<br />
@@ -368,8 +368,8 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "yourpasswordagain" => "Passwort wiederholen",
 "newusersonly"	=> " (nur für neue Mitglieder)",
 "remembermypassword" => "Dauerhaftes einloggen",
-"loginproblem"	=> "<b>Es gab ein Problem mit Ihrer Anmeldung.</b><br>Bitte versuchen Sie es nochmal!",
-"alreadyloggedin" => "<font color=red><b>Benutzer $1, Sie sind bereits angemeldet!</b></font><br>\n",
+"loginproblem"	=> "<b>Es gab ein Problem mit Ihrer Anmeldung.</b><br />Bitte versuchen Sie es nochmal!",
+"alreadyloggedin" => "<font color=red><b>Benutzer $1, Sie sind bereits angemeldet!</b></font><br />\n",
 
 "login"			=> "Anmelden",
 "loginprompt"           => "Um sich bei {{SITENAME}} anmelden zu können, müssen Cookies aktiviert sein.",
@@ -416,7 +416,7 @@ Bitte melden Sie sich an, sobald Sie es erhalten.",
 "showpreview"	=> "Vorschau zeigen",
 "blockedtitle"	=> "Benutzer ist blockiert",
 "blockedtext"	=> "Ihr Benutzername oder Ihre IP-Adresse wurde von $1 blockiert.
-Als Grund wurde angegeben:<br>$2<p>Bitte kontaktieren Sie den Administrator, um über die Blockierung zu sprechen.",
+Als Grund wurde angegeben:<br />$2<p>Bitte kontaktieren Sie den Administrator, um über die Blockierung zu sprechen.",
 "whitelistedittitle" => "Zum Bearbeiten ist es erforderlich angemeldet zu sein",
 "whitelistedittext" => "Sie müssen sich [[Spezial:Userlogin|hier anmelden]] um Artikel bearbeiten zu können.",
 "whitelistreadtitle" => "Zum Lesen ist es erforderlich angemeldet zu sein",
@@ -487,7 +487,7 @@ Benutzer mit Sysop-Rechten bearbeitet werden kann. Beachten Sie bitte die
 "last"			=> "Letzte",
 "orig"			=> "Original",
 "histlegend"	=> "Diff Auswahl: Die Boxen der gewünschten
-Versionen markieren und 'Enter' drücken oder den Button unten klicken/alt-v.<br/>
+Versionen markieren und 'Enter' drücken oder den Button unten klicken/alt-v.<br />
 Legende:
 (Aktuell) = Unterschied zur aktuellen Version,
 (Letzte) = Unterschied zur vorherigen Version,
@@ -532,8 +532,8 @@ Sie die Volltextsuche oder legen Sie den Artikel <a href=\"$1\">neu</a> an. ",
 Erfolglose Suchanfragen werden häufig verursacht durch den Versuch, nach 'gewöhnlichen' Worten zu suchen; diese sind nicht indiziert.",
 "powersearch" => "Suche",
 "powersearchtext" => "
-Suche in Namensräumen :<br>
-$1<br>
+Suche in Namensräumen :<br />
+$1<br />
 $2 Zeige auch REDIRECTs &nbsp; Suche nach $3 $9",
 "searchdisabled" => "<p>Entschuldigung! Die Volltextsuche wurde wegen Überlastung temporär deaktiviert. Derweil können Sie die folgende Google Suche verwenden, die allerdings nicht den aktuellen Stand wiederspiegelt.<p>
 
@@ -549,9 +549,9 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Google Search\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio name
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio name
 =sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer
-}\" checked> {$wgServer} <br>
+}\" checked> {$wgServer} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -609,8 +609,8 @@ Ihre interne ID-Nummer ist $2.",
 "changes" => "Änderungen",
 "recentchanges" => "Letzte Änderungen",
 "recentchangestext" => "
-Diese Seite wird beim Laden automatisch aktualisiert. Angezeigt werden Seiten, die zuletzt bearbeitet wurden, sowie die Zeit und der Name des Autors.<br>
-Falls Sie neu bei {{SITENAME}} sind, lesen Sie bitte die [[Project:Willkommen|Willkommensseite]] und [[Project:Erste Schritte|Erste Schritte]].<br>
+Diese Seite wird beim Laden automatisch aktualisiert. Angezeigt werden Seiten, die zuletzt bearbeitet wurden, sowie die Zeit und der Name des Autors.<br />
+Falls Sie neu bei {{SITENAME}} sind, lesen Sie bitte die [[Project:Willkommen|Willkommensseite]] und [[Project:Erste Schritte|Erste Schritte]].<br />
 Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte keine Texte hinzu, die dem [[Project:Urheberrechte beachten|Urheberrecht]] anderer unterliegen. Dies könnte dem Projekt sonst schweren Schaden zufügen.",
 "rcloaderr"		=> "Lade Letzte Änderungen",
 "rcnote"		=> "Hier sind die letzten <b>$1</b> Änderungen der letzten <b>$2</b> Tage. (<b>N</b> - Neuer Artikel; <b>M</b> - kleine Änderung)",
@@ -737,7 +737,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "maintenancebacklink"	=> "Zurück zur Wartungsseite",
 "disambiguations"	=> "Begriffsklärungsseiten",
 "disambiguationspage"	=> "Project:Begriffsklärung",
-"disambiguationstext"	=> "Die folgenden Artikel verweisen auf eine <i>Seite zur Begriffsklärung</i>. Sie sollten statt dessen auf die eigentlich gemeinte Seite verweisen.<br>Eine Seite wird als Begriffsklärungsseite behandelt, wenn $1 auf sie verweist.<br>Verweise aus Namensräumen werden hier <i>nicht</i> aufgelistet.",
+"disambiguationstext"	=> "Die folgenden Artikel verweisen auf eine <i>Seite zur Begriffsklärung</i>. Sie sollten statt dessen auf die eigentlich gemeinte Seite verweisen.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn $1 auf sie verweist.<br />Verweise aus Namensräumen werden hier <i>nicht</i> aufgelistet.",
 "doubleredirects"	=> "Doppelte Redirects",
 "doubleredirectstext"	=> "<b>Achtung:</b> Diese Liste kann \"falsche Positive\" enthalten. Das ist dann der Fall, wenn ein Redirect außer dem Redirect-Verweis noch weiteren Text mit anderen Verweisen enthält. Letztere sollten dann entfernt werden.",
 "brokenredirects"	=> "Kaputte Redirects",
@@ -935,7 +935,7 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 "noblockreason" => "Sie müssen einen Grund für die Blockade angeben.",
 "blockipsuccesssub" => "Blockade erfolgreich",
 "blockipsuccesstext" => "Die IP-Adresse \"$1\" wurde blockiert.
-<br>Auf [[Spezial:Ipblocklist|IP block list]] ist eine Liste der Blockaden.",
+<br />Auf [[Spezial:Ipblocklist|IP block list]] ist eine Liste der Blockaden.",
 "unblockip"		=> "IP-Adresse freigeben",
 "unblockiptext"	=> "Benutzen Sie das Formular, um eine blockierte IP-Adresse freizugeben.",
 "ipusubmit"		=> "Diese Adresse freigeben",
@@ -961,7 +961,7 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 "lockdbsuccesssub" => "Datenbank wurde erfolgreich gesperrt",
 "unlockdbsuccesssub" => "Datenbank wurde erfolgreich freigegeben",
 "lockdbsuccesstext" => "Die {{SITENAME}}-Datenbank wurde gesperrt.
-<br>Bitte geben Sie die Datenbank wieder frei, sobald die Wartung abgeschlossen ist.",
+<br />Bitte geben Sie die Datenbank wieder frei, sobald die Wartung abgeschlossen ist.",
 "unlockdbsuccesstext" => "Die {{SITENAME}}-Datenbank wurde freigegeben.",
 
 # SQL query
@@ -1009,7 +1009,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "export"        => "Seiten exportieren",
 "exporttext"    => "Sie können den Text und die Bearbeitungshistorie einer bestimmten oder einer Auswahl von Seiten nach XML exportieren. Das Ergebnis kann in ein anderes Wiki mit WikiMedia Software eingespielt werden, bearbeitet oder archiviert werden.",
 "exportcuronly" => "Nur die aktuelle Version der Seite exportieren",
-"missingimage"          => "<b>Fehlendes Bild</b><br><i>$1</i>\n",
+"missingimage"          => "<b>Fehlendes Bild</b><br /><i>$1</i>\n",
 
 #Tooltips:
 'tooltip-atom'	=> 'Atom-Feed von dieser Seite',

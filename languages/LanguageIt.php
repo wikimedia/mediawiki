@@ -115,20 +115,20 @@
 
 "tog-hover"		=> "Mostra etichetta sui wiki-links",
 "tog-underline" => "Sottolinea links",
-"tog-highlightbroken" => "Evidenzia i links che puntano ad<br>articoli ancora da scrivere",
+"tog-highlightbroken" => "Evidenzia i links che puntano ad<br />articoli ancora da scrivere",
 "tog-justify"	=> "Paragrafo: giustificato",
-"tog-hideminor" => "Nascondi le modifiche minori<br>nella pagina \"Modifiche recenti\"",
+"tog-hideminor" => "Nascondi le modifiche minori<br />nella pagina \"Modifiche recenti\"",
 "tog-usenewrc" => "Enhanced recent changes (not for all browsers)",
-"tog-numberheadings" => "Auto-numerazione dei<br>titoli di paragrafo",
+"tog-numberheadings" => "Auto-numerazione dei<br />titoli di paragrafo",
 "tog-showtoolbar" => "Show edit toolbar",
-"tog-editondblclick" => "Doppio click per modificare l'articolo<br>(richiede JavaScript)",
+"tog-editondblclick" => "Doppio click per modificare l'articolo<br />(richiede JavaScript)",
 "tog-editsection"=>"Enable section editing via [edit] links",
-"tog-editsectiononrightclick"=>"Enable section editing by right clicking<br> on section titles (JavaScript)",
-"tog-showtoc"=>"Show table of contents<br>(for articles with more than 3 headings)",
-"tog-rememberpassword" => "Ricorda la password<br>(non limitare a una sessione<br>- richiede uso di cookies)",
-"tog-editwidth" => "Casella di edizione ampliata<br>alla massima larghezza",
+"tog-editsectiononrightclick"=>"Enable section editing by right clicking<br /> on section titles (JavaScript)",
+"tog-showtoc"=>"Show table of contents<br />(for articles with more than 3 headings)",
+"tog-rememberpassword" => "Ricorda la password<br />(non limitare a una sessione<br />- richiede uso di cookies)",
+"tog-editwidth" => "Casella di edizione ampliata<br />alla massima larghezza",
 "tog-watchdefault" => "Notifica articoli nuovi e modificati",
-"tog-minordefault" => "Indica ogni modifica come minore<br>(solo come predefinito)",
+"tog-minordefault" => "Indica ogni modifica come minore<br />(solo come predefinito)",
 "tog-previewontop" => "Show preview before edit box and not after it",
 "tog-nocache" => "Disable page caching",
 # dates
@@ -250,11 +250,11 @@ MySQL ha restituito un errore \"<tt>$3: $4</tt>\".",
 "nodb"			=> "Selezione del database $1 fallita",
 "readonly"		=> "Accesso al database temporaneamente disabilitato",
 "enterlockreason" => "Fornisci una spiegazione sui motivi del blocco, includendo le probabili data ed ora di riattivazione o di rimozione del blocco.",
-"readonlytext"	=> "Il database di Wikipedia è al momento bloccato, e non consente nuove immissioni né modifiche, molto probabilmente per manutenzione server, nel qual caso il database sarà presto di nuovo completamente accessibile.<br>
+"readonlytext"	=> "Il database di Wikipedia è al momento bloccato, e non consente nuove immissioni né modifiche, molto probabilmente per manutenzione server, nel qual caso il database sarà presto di nuovo completamente accessibile.<br />
 L'amministratore di sistema che ha imposto il blocco, ha lasciato questa nota:
 <p>:$1",
-"missingarticle" => "Il database non ha trovato il testo di una pagina, che invece avrebbe dovuto trovare, intitolata \"$1\".<br>
-Questo non è un errore del database, ma più probabilmente un problema del software.<br>
+"missingarticle" => "Il database non ha trovato il testo di una pagina, che invece avrebbe dovuto trovare, intitolata \"$1\".<br />
+Questo non è un errore del database, ma più probabilmente un problema del software.<br />
 Per favore, segnalate l'accaduto ad un amministratore di sistema, segnalando la URL e l'ora dell'incidente.",
 "internalerror" => "Errore interno",
 "filecopyerror" => "Non è stato possibile copiare il file \"$1\" come \"$2\".",
@@ -267,7 +267,7 @@ Per favore, segnalate l'accaduto ad un amministratore di sistema, segnalando la 
 "cannotdelete"	=> "Impossibile cancellare la pagina o l'immagine richiesta.",
 "badtitle"		=> "Titolo non corretto",
 "badtitletext"	=> "La pagina richiesta non è disponibile, potrebbe essere non valida, vuota, o potrebbe trattarsi di un errore in un link interlinguistico o fra diverse versioni di Wikipedia.",
-"perfdisabled" => "Siamo davvero rammaricati, ma questa funzionalità è temporaneamente disabilitata durante le ore di maggiore accesso al database, per ragioni di accessibilità al resto del sito!<br>Torna fra le 02:00 e le 14:00 UTC e riprova.<br><br>Grazie.",
+"perfdisabled" => "Siamo davvero rammaricati, ma questa funzionalità è temporaneamente disabilitata durante le ore di maggiore accesso al database, per ragioni di accessibilità al resto del sito!<br />Torna fra le 02:00 e le 14:00 UTC e riprova.<br /><br />Grazie.",
 
 # Login and logout pages
 #
@@ -275,7 +275,7 @@ Per favore, segnalate l'accaduto ad un amministratore di sistema, segnalando la 
 "logouttext"	=> "Logout effettuato.
 Ora puoi continuare ad usare Wikipedia come utente anonimo (ma il tuo indirizzo IP resterà riconoscibile), oppure puoi nuovamente richiedere il login con il precedente username, oppure come uno diverso.\n",
 
-"welcomecreation" => "<h2>Benvenuto, $1!</h2><p>Il tuo account è stato creato con successo.<br>Grazie per aver scelto di far crescere Wikipedia con il tuo aiuto.<br>Per rendere Wikipedia più tua, e per usarla più scorrevolmente, non dimenticare di personalizzare le tue preferenze.",
+"welcomecreation" => "<h2>Benvenuto, $1!</h2><p>Il tuo account è stato creato con successo.<br />Grazie per aver scelto di far crescere Wikipedia con il tuo aiuto.<br />Per rendere Wikipedia più tua, e per usarla più scorrevolmente, non dimenticare di personalizzare le tue preferenze.",
 
 "loginpagetitle" => "Login",
 "yourname"		=> "Il tuo  user name",
@@ -283,8 +283,8 @@ Ora puoi continuare ad usare Wikipedia come utente anonimo (ma il tuo indirizzo 
 "yourpasswordagain" => "Ripeti la password",
 "newusersonly"	=> " (solo per nuovi Utenti)",
 "remembermypassword" => "Ricorda la mia password per più sessioni (richiede uso dei cookies).",
-"loginproblem"	=> "<b>Si è verificato un errore durante il tuo tentativo di login.</b><br>Riprova, sarai più fortunato!",
-"alreadyloggedin" => "<font color=red><b>Ehi, Utente $1, hai già fatto il login, sei già connesso al nostro server!</b></font><br>\n",
+"loginproblem"	=> "<b>Si è verificato un errore durante il tuo tentativo di login.</b><br />Riprova, sarai più fortunato!",
+"alreadyloggedin" => "<font color=red><b>Ehi, Utente $1, hai già fatto il login, sei già connesso al nostro server!</b></font><br />\n",
 
 "login"			=> "Log in",
 "userlogin"		=> "Log in",
@@ -292,7 +292,7 @@ Ora puoi continuare ad usare Wikipedia come utente anonimo (ma il tuo indirizzo 
 "userlogout"	=> "Log out",
 "createaccount"	=> "Crea nuovo account",
 "badretype"		=> "Le password che hai immesso non coincidono, sono diverse fra loro.",
-"userexists"	=> "Siamo spiacenti.<br>Lo user name che hai scelto è già usato da un altro Utente.<br>Ti preghiamo perciò di voler scegliere uno user name diverso.",
+"userexists"	=> "Siamo spiacenti.<br />Lo user name che hai scelto è già usato da un altro Utente.<br />Ti preghiamo perciò di voler scegliere uno user name diverso.",
 "youremail"		=> "La tua e-mail",
 "yournick"		=> "Il tuo diminutivo o soprannome (per le firme)",
 "emailforlost"	=> "Se per caso ti dimenticassi della tua password, ne potresti ricevere una nuova di zecca presso la casella e-mail che ci hai indicato.",
@@ -300,9 +300,9 @@ Ora puoi continuare ad usare Wikipedia come utente anonimo (ma il tuo indirizzo 
 "noname"		=> "Lo user name indicato non è valido, non è possibile creare un account a questo nome.",
 "loginsuccesstitle" => "Login effettuato con successo!",
 "loginsuccess"	=> "Sei stato ammesso alla connessione al server di Wikipedia con il nome utente di \"$1\".",
-"nosuchuser"	=> "Attenzione<br><br>a seguito di verifica, non ci risulta alcun Utente con il nome di  \"$1\".<br><br>
+"nosuchuser"	=> "Attenzione<br /><br />a seguito di verifica, non ci risulta alcun Utente con il nome di  \"$1\".<br /><br />
 Controlla per favore il nome digitato, oppure usa il modulo qui sotto per creare un nuovo user account.",
-"wrongpassword"	=> "La password immessa non è corretta.<br><br>Riprova, per favore.",
+"wrongpassword"	=> "La password immessa non è corretta.<br /><br />Riprova, per favore.",
 "mailmypassword" => "Spediscimi una nuova password in posta elettronica",
 "passwordremindertitle" => "Servizio Password Reminder di Wikipedia",
 "passwordremindertext" => "Qualcuno (probabilmente tu, con indirizzo IP $1)
@@ -322,8 +322,8 @@ Per favore, fai subito un log in non appena la ricevi.",
 "preview"		=> "Anteprima",
 "showpreview"	=> "Visualizza Anteprima",
 "blockedtitle"	=> "Questo User name corrisponde purtroppo ad un Utente che è stato disabilitato alla modifica degli articoli.",
-"blockedtext"	=> "Il tuo User name o il tuo indirizzo IP sono stati bloccati da $1.<br>
-La motivazione del blocco è la seguente:<br>:''$2''<p>Se lo desideri, puoi contattare $1, o uno degli altri [[Wikipedia:administrators|amministratori]] per discutere del blocco.",
+"blockedtext"	=> "Il tuo User name o il tuo indirizzo IP sono stati bloccati da $1.<br />
+La motivazione del blocco è la seguente:<br />:''$2''<p>Se lo desideri, puoi contattare $1, o uno degli altri [[Wikipedia:administrators|amministratori]] per discutere del blocco.",
 "newarticle"	=> "(Nuovo)",
 "newarticletext" => "Scrivi qui il tuo testo.",
 "noarticletext" => "(Questo articolo è vuoto, potresti gentilmente iniziare l'articolo, oppure richiedere la cancellazione di questa pagina)",
@@ -333,17 +333,17 @@ La motivazione del blocco è la seguente:<br>:''$2''<p>Se lo desideri, puoi cont
 "previewconflict" => "Questa anteprima rappresenta il testo nella casella di edizione di sopra, l'articolo apparirà in questa forma se sceglierai di salvare la pagina ora.",
 "editing"		=> "Modifica di $1",
 "editconflict"	=> "Conflitto di edizione: $1",
-"explainconflict" => "Qualcun altro ha salvato una sua versione dell'articolo nel tempo in cui tu stavi preparando la tua versione.<br>
+"explainconflict" => "Qualcun altro ha salvato una sua versione dell'articolo nel tempo in cui tu stavi preparando la tua versione.<br />
 La casella di modifica di sopra contiene il testo dell'articolo nella sua forma attuale (cioè il testo attualmente online). Le tue modifiche sono invece contenute nella casella di modifica inferiore. 
 Dovrai inserire, se lo desideri, le tue modifiche nel testo esistente, e perciò scriverle nella casella di sopra. 
 <b>Soltanto</b> il testo nella casella di sopra sarà salvato se premerai il bottone \"Salva\".\n<p>",
 "yourtext"		=> "Il tuo testo",
 "storedversion" => "Versione in archivio",
-"editingold"	=> "<strong>ATTENZIONE: Stai modificando una versione dell'articolo non aggiornata.<br>
+"editingold"	=> "<strong>ATTENZIONE: Stai modificando una versione dell'articolo non aggiornata.<br />
 Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno persi per sempre.</strong>\n",
 "yourdiff"		=> "Differenze",
 "copyrightwarning" => "Nota, per favore, che tutti i contributi a Wikipedia si considerano rilasciati sotto licenza di tipo GNU Free Documentation License (vedi $1 per maggiori dettagli).
-Se non vuoi che il tuo testo possa essere modificato e ridistribuito da chiunque senza pietà e senza altri limiti, allora non inviarlo a Wikipedia, ma realizza piuttosto un tuo sito web personale.<br>
+Se non vuoi che il tuo testo possa essere modificato e ridistribuito da chiunque senza pietà e senza altri limiti, allora non inviarlo a Wikipedia, ma realizza piuttosto un tuo sito web personale.<br />
 Con l'invio di questo testo stai garantendo, a tua responsabilità, che il testo è stato scritto da te personalmente ed originalmente, oppure che è stato copiato da una fonte di publico dominio, o da una simile fonte, oppure che hai ottenuto espressa autorizzazione ad usare questo testo e che puoi dimostrarlo.
 <strong>NON USARE MATERIALE COPERTO DA DIRITTO DI AUTORE (COPYRIGHT - (c)) IN MANCANZA DI ESPRESSA AUTORIZZAZIONE!!!</strong>",
 
@@ -382,7 +382,7 @@ Controlla per favore la URL che hai usato per accedere a questa pagina.\n",
 Questo potrebbe dipendere dall'aver ricercato una parola di meno di tre caratteri.
 Oppure potresti aver scritto male la richiesta, per esempio \"pesce and and azzurro\".
 Per favore, riprova.",
-"matchtotals"	=> "La ricerca per la voce \"$1\" ha trovato<br>$2 riscontri nei titoli degli articoli e<br>$3 riscontri nei testi degli articoli.",
+"matchtotals"	=> "La ricerca per la voce \"$1\" ha trovato<br />$2 riscontri nei titoli degli articoli e<br />$3 riscontri nei testi degli articoli.",
 "titlematches"	=> "Nei titoli degli articoli",
 "notitlematches" => "Voce richiesta non trovata in titoli di articolo",
 "textmatches"	=> "Nel testo degli articoli ",
@@ -394,8 +394,8 @@ Per favore, riprova.",
 "nonefound"		=> "<strong>Nota</strong>: la ricerca di parole troppo comuni, come \"avere\" o \"essere\", che non sono indicizzate, può causare un esito negativo, così come indicare più di un termine da ricercare (solo le pagine che contengano tutti i termini ricercati verrebbero infatti visualizzate fra i risultati).",
 "powersearch" => "Ricerca",
 "powersearchtext" => "
-Cerca fra i campi :<br>
-$1<br>
+Cerca fra i campi :<br />
+$1<br />
 $2 Elenca i redirects &nbsp; cerca per $3 $9",
 
 
@@ -430,7 +430,7 @@ Il tuo numero identificativo (ID) interno è $2.",
 "timezonetext"	=> "Immetti il numero di ore di differenza fra la tua ora locale e la ora del server (UTC).",
 "localtime"	=> "Ora Locale",
 "timezoneoffset" => "Offset",
-"emailflag"		=> "Nascondi la mia e-mail<br>agli altri utenti",
+"emailflag"		=> "Nascondi la mia e-mail<br />agli altri utenti",
 
 # Recent changes
 #
@@ -483,7 +483,7 @@ Uploads e cancellazioni delle immagini sono registrati nello
 [[Project:Upload_log|upload log]].
 
 Usa il modulo sottostante per caricare nuovi files immagine da utilizzare per arricchire ed illustrare i tuoi articoli.
-Sulla maggior parte dei browsers, dovresti vedere un bottone con la scritta \"Browse...\" (oppure \"Sfoglia...\", che aprirà una comune finestra di dialogo.<br>
+Sulla maggior parte dei browsers, dovresti vedere un bottone con la scritta \"Browse...\" (oppure \"Sfoglia...\", che aprirà una comune finestra di dialogo.<br />
 Scegliendo uno dei files sul tuo PC, il nome di questo file verrà scritto in automatico nella casella di testo a fianco al bottone.<p>
 '''Devi anche selezionare la casellina nella quale affermi che con questo upload non stai violando nessun copyright.'''
 
@@ -520,7 +520,7 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).
 "largefile"		=> "Il peso raccomandato per le immagini deve essere inferiore a 100kb.",
 "successfulupload" => "Caricamento completato",
 "fileuploaded"	=> "File \"$1\" correttamente caricato sul server.
-Segui questo link: ($2) per modificare la pagina di descrizione del file che hai appena caricato, e immetti subito le informazioni che ritieni opportune (cosa rappresenta, dove lo hai trovato, chi lo ha creato e quando, etc) oltre ad una nota circa la situazione di copyright sul file.<br>Non omettere la nota sul copyright, o il file verrebbe cancellato molto presto. ",
+Segui questo link: ($2) per modificare la pagina di descrizione del file che hai appena caricato, e immetti subito le informazioni che ritieni opportune (cosa rappresenta, dove lo hai trovato, chi lo ha creato e quando, etc) oltre ad una nota circa la situazione di copyright sul file.<br />Non omettere la nota sul copyright, o il file verrebbe cancellato molto presto. ",
 "uploadwarning" => "Avviso di Upload",
 "savefile"		=> "Salva file",
 "uploadedimage" => "caricato \"$1\"",
@@ -545,7 +545,7 @@ Segui questo link: ($2) per modificare la pagina di descrizione del file che hai
 "deleteimg"		=> "canc",
 "deleteimgcompletely"		=> "canc",
 "imghistlegend" => "Legenda: (cur) = immagine corrente, (canc) = cancella questa vecchia versione, (ripr) = ripristina questa vecchia versione come versione attuale.
-<br><i>Clicca su una data per vedere tutte le immagini che sono state caricate in quella data </i>.",
+<br /><i>Clicca su una data per vedere tutte le immagini che sono state caricate in quella data </i>.",
 "imagelinks"	=> "Link alle immagini",
 "linkstoimage"	=> "Le pagine seguenti linkano questa immagine:",
 "nolinkstoimage" => "Nessuna pagina linka questa immagine.",
@@ -570,9 +570,9 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 "maintenancebacklink"	=> "Torna alla pagina manutenzione",
 "disambiguations"	=> "Disambiguation pages",
 "disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
-"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
+"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Doppi Redirects",
-"doubleredirectstext"	=> "<b>Attenzione:</b> Questa lista può talvolta contenere dei risultati non corretti. Ciò potrebbe magari accadere perchè vi sono del testo aggiuntivo o dei link dopo il tag #REDIRECT.<br>\nOgni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene il \"reale\" articolo di destinazione, quello al quale anche il primo redirect dovrebbe puntare.",
+"doubleredirectstext"	=> "<b>Attenzione:</b> Questa lista può talvolta contenere dei risultati non corretti. Ciò potrebbe magari accadere perchè vi sono del testo aggiuntivo o dei link dopo il tag #REDIRECT.<br />\nOgni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene il \"reale\" articolo di destinazione, quello al quale anche il primo redirect dovrebbe puntare.",
 "brokenredirects"	=> "Redirects errati",
 "brokenredirectstext"	=> "I seguenti redirects puntano ad articoli non ancora creati.",
 "selflinks"		=> "Pagine con Auto-Links",
@@ -694,7 +694,7 @@ Tutti i tempi sono in ora del server (UTC).
 "undeletepagetext" => "Le pagine qui di seguito indicate sono state cancellate, ma sono ancora in archivio e pertanto possono essere recuperate. L'archivio viene svuotato periodicamente.",
 "undeletearticle" => "Recupera un articolo cancellato",
 "undeleterevisions" => "$1 revisioni in archivio",
-"undeletehistory" => "Se recuperi questo articolo, tutte le sue revisioni verranno recuperate nella relativa cronologia.<br>
+"undeletehistory" => "Se recuperi questo articolo, tutte le sue revisioni verranno recuperate nella relativa cronologia.<br />
 Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione, le revisioni recuperate saranno inserite nella cronologia e la versione attualmente online della pagina non verrà modificata.",
 "undeleterevision" => "Cancellata revisione $1",
 "undeletebtn" => "RIPRISTINA!",
@@ -724,8 +724,8 @@ Vedi [[Wikipedia:Deletion_log]] per un elenco delle pagine cancellate e recupera
 # Block/unblock IP
 #
 "blockip"		=> "Blocca indirizzo IP",
-"blockiptext"	=> "Usa il modulo sottostante per bloccare l'accesso con diritto di scrittura da uno specifico indirizzo IP.<br>
-Questo blocco deve essere operato SOLO per prevenire atti di vandalismo, ed in stretta osservanza dei principi tutti della [[Wikipedia:Policy|policy di Wikipedia]].<br>Il blocco non può in nessun caso essere applicato per motivi ideologici.<p> 
+"blockiptext"	=> "Usa il modulo sottostante per bloccare l'accesso con diritto di scrittura da uno specifico indirizzo IP.<br />
+Questo blocco deve essere operato SOLO per prevenire atti di vandalismo, ed in stretta osservanza dei principi tutti della [[Wikipedia:Policy|policy di Wikipedia]].<br />Il blocco non può in nessun caso essere applicato per motivi ideologici.<p> 
 Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avviso essere bloccato (per esempio, cita i titoli di pagine eventualmente già oggetto di vandalismo editoriale).",
 "ipaddress"		=> "Indirizzo IP (IP Address)",
 "ipbreason"		=> "Motivazione",
@@ -734,7 +734,7 @@ Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avvis
 "noblockreason" => "Devi obbligatoriamente fornire una motivazione per il blocco.",
 "blockipsuccesssub" => "Blocco eseguito",
 "blockipsuccesstext" => " L'indirizzo IP \"$1\" è stato bloccato.
-<br>Vedi [[Special:Ipblocklist|lista IP bloccati]].",
+<br />Vedi [[Special:Ipblocklist|lista IP bloccati]].",
 "unblockip"		=> " Sblocca indirizzo IP",
 "unblockiptext"	=> "Usa il modulo sottostante per restituire il diritto di scrittura ad un indirizzo IP precedentemente bloccato.",
 "ipusubmit"		=> "Sblocca questo indirizzo IP",
@@ -749,7 +749,7 @@ Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avvis
 #
 "lockdb"		=> "Blocca il database",
 "unlockdb"		=> "Sblocca il database",
-"lockdbtext"	=> "Bloccare il database sospenderà la possibilità per tutti gli Utenti di modificare le pagine o di crearne di nuove, di cambiare le loro preferenze, di modificare le loro liste di Osservati Speciali, ed in genere non consentirà a nessuno di eseguire operazioni che richiedano modifiche del database.<br><br>
+"lockdbtext"	=> "Bloccare il database sospenderà la possibilità per tutti gli Utenti di modificare le pagine o di crearne di nuove, di cambiare le loro preferenze, di modificare le loro liste di Osservati Speciali, ed in genere non consentirà a nessuno di eseguire operazioni che richiedano modifiche del database.<br /><br />
 Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effettuare e, soprattutto, che il prima possibile sbloccherai nuovamente il database, ripristinandone la corretta funzionalità, non appena avrai terminato le tue manutenzioni.",
 "unlockdbtext"	=> "Sbloccare il database ripristinerà la possibilità per tutti gli Utenti di modificare le pagine o di crearne di nuove, di cambiare le loro preferenze, di modificare le loro liste di Osservati Speciali, ed in genere di eseguire operazioni che richiedano modifiche del database.
 Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effettuare.",
@@ -761,7 +761,7 @@ Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effett
 "lockdbsuccesssub" => "Blocco del database eseguito",
 "unlockdbsuccesssub" => "Sblocco del database eseguito, rimosso blocco",
 "lockdbsuccesstext" => "Il database di Wikipedia è stato bloccato.
-<br>Ricordati di rimuovere il blocco non appena avrai terminatoi le tue manutenzioni.",
+<br />Ricordati di rimuovere il blocco non appena avrai terminatoi le tue manutenzioni.",
 "unlockdbsuccesstext" => " Il database di Wikipedia è stato sbloccato.",
 
 # SQL query
@@ -801,7 +801,7 @@ per poter spostare una pagina.",
 "movepagebtn"	=> "Sposta questa pagina",
 "pagemovedsub"	=> "Spostamento effettuato con successo",
 "pagemovedtext" => "Pagina \"[[$1]]\" rinominata in \"[[$2]]\".",
-"articleexists" => "Una pagina con questo nome esiste già, oppure il nome che hai scelto non è valido.<br>
+"articleexists" => "Una pagina con questo nome esiste già, oppure il nome che hai scelto non è valido.<br />
 Scegli, per cortesia, un titolo diverso per l'articolo.",
 "talkexists"	=> "La pagina è stata spostata correttamente, ma non si è potuto spostare la pagina di discussione perché ne esiste già un'altra con il nuovo titolo. Per favore, modifica manualmente i contenuti delle due pagine discussione, così da mantenerle entrambe per non perdere potenzialmente interessanti riflessioni.",
 "movedto"		=> "spostata a ",

@@ -4,36 +4,140 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 
-== MediaWiki 1.4 BETA ==
+== MediaWiki 1.4 BETA 3 ==
 
-[Not everything is 100% working in beta yet, the installer needs fixes still.]
+Users of earlier betas, take note that there is a security fix for
+uploads in this release.
 
-Major changes from 1.3.x:
-* (?) Support for table prefixes for better sharing with other web apps
-* (?) PostgreSQL support
-* Optional article validation voting features
-* 'Recentchanges Patrol' to mark new edits that haven't yet been viewed
-* Support for faster C++ diff module (WikiDiff extension)
-* More scary link caching modes
-* Old manually maintained log pages replaced with searchable Special:Log
+''''' Thinking of using MySQL 4.1? Please read this first! '''''
+''''' Your PHP installation probably uses the OLD protocol '''''
+'''''   http://dev.mysql.com/doc/mysql/en/Old_client.html  '''''
+
+This is a beta release; while most things are working, there are some
+known problems and probably unknown problems. Don't run a public site
+on this beta unless you're willing to help with investigating and
+fixing any problems you encounter.
+
+CARELESS USE OF THIS CODE MAY RENDER YOU STERILE, GROW WEEDS IN YOUR
+YARD, AND FEED YOUR CAT TO A SEWER ALLIGATOR. DON'T SAY YOU WEREN'T
+WARNED, CAUSE WE WARNED YOU.
+
+If upgrading from an older release, see the file UPGRADING.
+
+=== New features ===
+
+* 'Recentchanges Patrol' to mark new edits that haven't yet been viewed.
+* New, searchable deletion/upload/protection logs
+* Image gallery generation (Special:Newimages and <gallery> tag)
+* SVG rasterization support (requires external support)
+* Users can select from the available localizations to override the
+  default user interface language.
+* Traditional/Simplified Chinese conversion support
+
+=== Installation and compatibility ===
+
+* The default MonoBook theme now works with PHP 5.0
+* Installation on systems with PHP's safe mode or other oddities
+  should work more reliably, as MonoBook no longer needs to
+  create a compiled template file for the wiki to run.
+* A table prefix may be specified, to avoid conflicts with other
+  web applications forced to share a database.
+* More thorough UTF-8 input validation; fixes non-ASCII uploaded
+  filenames from Safari.
+* Command-line database upgrade script.
+
+=== Customizability ===
+
+* Default user options can now be overridden in LocalSettings.
 * Skins system more modular: templates and CSS are now in /skins/
-* New user preference for limitting the image size for images on image description
-  pages 
-* Error pages no more offer edit / talk / watch links (bug #502)
-* Allow user to preview article on first edit (bug #530)
-* New dark background skin named Amethyst (thanks Sorwena and Sorkhiri)
-* [[RFC 1234]] will now make an internal link (bug #479)
-* PhpTal skins shown bogus 'What links here' etc on special pages (bug #511)
-* Experimental code to manage user and group rights (Special:Userlevels)
-* UI language switching
-* Adding filter and username exact search match for Special:Listusers (bug #770)
-* Special:Listadmins outdated, use Special:Listusers instead (bug #857)
-* Traditional/Simplified Chinese conversion
-* New tag "<gallery>" to generate a table of image thumbnails
-* Installer die if it can not write LocalSettings.php (bug #733)
-* Various special pages no more show the rss/atom feed links (bug #705)
-* Support for external authentication plug-ins
-* ... and more!
+  New skins can be dropped into this directory and used immediately.
+* More extension hooks have been added.
+* Authentication plugin hook.
+* More internal code documentation, generated with phpdoc:
+  http://www.mediawiki.org/docs/html/
+
+=== Optimization ===
+
+* For many operations, MediaWiki 1.4 should run faster and use
+  less memory than MediaWiki 1.3. Page rendering is up to twice
+  as fast. (Use a PHP accelerator such as Turck MMCache for best
+  results with any PHP application, though!)
+* The parser cache no longer requires memcached, and is enabled
+  by default. This avoids a lot of re-rendering of pages that
+  have been shown recently, greatly speeding longer page views.
+* Support for compiled PHP modules to speed up page diff and
+  Unicode validation/normalization. (Requires ability to compile
+  and load PHP extensions).
+
+=== What isn't ready yet ===
+
+* A new user/groups permissions scheme has been held back to 1.5.
+* An experimental SOAP interface will be made available as an extension
+* PostgreSQL support is largely working, but search and installer
+  support are not complete. These are being actively worked on
+  and should come in later betas.
+* E-mail notification of watched page changes and verification of
+  user-submitted e-mail addresses is not yet included. If updates
+  are available, this may make it into later betas.
+* Log pages are not automatically imported into the new log table
+  at upgrade time. A script to import old text log entries is
+  incomplete, but may be available by the time 1.4 finishes.
+* UI messages may be broken in Latin-1 mode in this release due to some
+  minor breakage in the language selection module.
+
+=== Misc bugs fixed in beta 1 ===
+
+* (bug 95) Templates no longer limited to 5 inclusions per page
+* New user preference for limiting the image size for images on image description
+  pages
+* (bug 530) Allow user to preview article on first edit
+* (bug 479) [[RFC 1234]] will now make an internal link
+* (bug 511) PhpTal skins shown bogus 'What links here' etc on special pages
+* (bug 770) Adding filter and username exact search match for Special:Listusers
+* (bug 733) Installer die if it can not write LocalSettings.php
+* (bug 705) Various special pages no more show the rss/atom feed links
+* (bug 114) use category backlinks in Special:Recentchangeslinked
+
+=== Beta 2 fixes ===
+
+* (bug 987) Reverted bogus fix for bug 502
+* (bug 992) Fix enhanced recent changes in PHP5
+* (bug 1009) Fix Special:Makesysop when using table prefixes
+* (bug 1010) fix broken Commons image link on Classic & Cologne Blue
+* (bug 985) Fix auto-summary for section edits
+* (bug 995) Close <a> tag
+* (bug 1004) renamed norsk language links (twice)
+* Login works again when using an old-style default skin
+* Fix for load balancing mode, notify if using old settings format
+* (bug 1014) Missing image size option on old accounts handled gracefully
+* (bug 1027) Fix page moves with table prefix
+* (bug 1018) Some pages fail with stub threshold enabled
+* (bug 1024) Fix link to high-res image version on Image: pages
+* (bug 1016) Fix handling of lines omitting Image: in a <gallery> tag
+* security fix for image galleries
+* (bug 1039) Avoid error message in certain message cache failure modes
+* Fix string escaping with PostgreSQL
+* (bug 1015) [partial] -- use comment formatter on image gallery text
+* Allow customization of all UI languages
+* use $wgForceUIMsgAsContentMsg to make regular UI messages act as content
+* new user option for zh users to disable language conversion
+* Defer message cache initialization, shaving a few ms off file cache hits
+* Fixed Special:Allmessages when using table prefixes
+* (bug 996) Fix $wgWhitelistRead to work again
+* (bug 1028) fix page move over redirect to not fail on the unique index
+
+=== Beta 3 fixes ===
+
+* Hide RC patrol markers when patrol is disabled or not allowed to patrol.
+* Fix language selection for upgraded accounts
+* (bug 1076) navigation links in QueryPage should be translated by wgContLang.
+* (bug 922) bogus DOS line endings in LanguageEl.php
+* Fix index usage in contribs
+* Caching and load limiting options for Recentchanges RSS/Atom feed
+* (bug 1074) Add stock icons for non-image files in gallery/Newimages
+* Add width and height attributes on thumbs in gallery/Newimages
+* Enhance upload extension blacklist to protect against vulnerable
+  Apache configurations
 
 === Caveats ===
 
@@ -42,10 +146,6 @@ produce 100% valid or well-formed XHTML output. Testers are welcome to
 set $wgMimeType = "application/xhtml+xml"; to test for remaining problem
 cases, but this is not recommended on live sites. (This must be set for
 MathML to display properly in Mozilla.)
-
-The new 'MonoBook' skin is not compatible with PHP 5 due to bugs in the
-underlying PHPTAL library. It will be automatically disabled when running
-on PHP5; the older look and feel will be used instead.
 
 
 For notes on 1.3.x and older releases, see HISTORY.
@@ -66,6 +166,12 @@ A MediaWiki-l mailing list has been set up distinct from the Wikipedia
 wikitech-l list:
 
   http://mail.wikipedia.org/mailman/listinfo/mediawiki-l
+
+A low-traffic announcements-only list is also available:
+  http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
 
 
 === IRC help ===

@@ -4,7 +4,7 @@
 Example command-line:
 	php rcdumper.php | irc -d -c \#channel-to-join nick-of-bot some.irc.server
 where irc is the name of the ircII executable.
-The name of the IRC server should match $ircServer below.
+The name of the the IRC should match $ircServer below.
 */
 
 $ircServer = "irc.freenode.net";
@@ -48,34 +48,35 @@ if ( empty($options['b']) ) {
 if (isset($args[0]) && isset($args[1])) {
 	$lowest = $args[0];
 	$highest = $args[1];
-	#$what = $args[0][0];
-	#$highest = $args[0][1];
 }
-#sleep(30);
 
-$res = $dbr->query( "SELECT rc_timestamp FROM $recentchanges ORDER BY rc_timestamp DESC LIMIT 1" ); 
-$row = $dbr->fetchObject( $res );
-$oldTimestamp = $row->rc_timestamp;
+$res = wfQuery( "SELECT MAX(rc_id) as m FROM recentchanges", DB_READ ); 
+$row = wfFetchObject( $res );
+$oldId = $row->m;
 $serverCount = 0;
 
 while (1) {
-	$res = $dbr->query( "SELECT * FROM $recentchanges WHERE rc_timestamp>'$oldTimestamp' ORDER BY rc_timestamp" );
+	$res = wfQuery( "SELECT rc_this_oldid,rc_timestamp,rc_user_text,rc_namespace,rc_title,rc_comment,rc_minor,
+			rc_bot,rc_new,rc_cur_id,rc_last_oldid,rc_type,rc_moved_to_ns,rc_moved_to_title,rc_id,
+			cur_text, old_text, old_flags FROM recentchanges LEFT OUTER JOIN old ON rc_last_oldid=old_id
+			LEFT OUTER JOIN cur ON rc_cur_id=cur_id WHERE rc_id>'$oldId' $bots 
+			ORDER BY rc_timestamp", DB_READ );
+
 	$rowIndex = 0;
-	while ( $row = $dbr->fetchObject( $res ) ) {
-		if ( ++$serverCount % 20 == 0 ) {
-			print "/server $ircServer\n";
-		}
+	while ( $row = wfFetchObject( $res ) ) {
+		$oldtext = $row->old_text;
+		if (strstr($row->old_flags, "gzip"))
+			$oldtext = gzinflate($oldtext);
+		$szdiff = strlen($row->cur_text) - strlen($oldtext);
+		if ($szdiff >= 0)
+			$szdiff = "+$szdiff";
 		$ns = $wgLang->getNsText( $row->rc_namespace ) ;
 		if ( $ns ) {
 			$title = "$ns:{$row->rc_title}";
 		} else {
 			$title = $row->rc_title;
 		}
-		/*if ( strlen( $row->rc_comment ) > 50 ) {
-			$comment = substr( $row->rc_comment, 0, 50 );
-		} else {*/
-			$comment = $row->rc_comment;
-//		}
+		$comment = $row->rc_comment;
 		$bad = array("\n", "\r");
 		$empty = array("", "");
 		$comment = str_replace($bad, $empty, $comment);
@@ -83,7 +84,6 @@ while (1) {
 		$a = $title[0];
 		if ($a < 'A' || $a > 'Z')
 			$a = 'Z';
-			#if ((isset($highest)) && (($what == "<" && $a > "$highest") || ($what == ">" && $a <= "$highest")))
 		if ((isset($highest) && ($a > $highest)) || (isset($lowest) && $a <= $lowest))
 			continue;
 		$user = str_replace($bad, $empty, $row->rc_user_text);
@@ -99,18 +99,18 @@ while (1) {
 		}
 		$url = str_replace($stupid_urlencode, $haha_take_that, $url);
 		$title = str_replace("_", " ", $title);
-                # see http://www.irssi.org/?page=docs&doc=formats for some colour codes. prefix is \003, 
+		# see http://www.irssi.org/?page=docs&doc=formats for some colour codes. prefix is \003, 
 		# no colour (\003) switches back to the term default
 		$comment = preg_replace("/\/\* (.*) \*\/(.*)/", "\00315\$1\003 - \00310\$2\003", $comment);
 		$fullString = "\00314[[\00307$title\00314]]\0034 $flag\00310 " .
-		              "\00302$url\003 \0035*\003 \00303$user\003 \0035*\003 \00310$comment\003\n";
+		              "\00302$url\003 \0035*\003 \00303$user\003 \0035*\003 ($szdiff) \00310$comment\003\n";
 	        if ( $channel ) {
 			$fullString = "$channel\t$fullString";
 		}
 
 		print( $fullString );
-		$oldTimestamp = $row->rc_timestamp;
-		sleep(2);
+		$oldId = max( $row->rc_id, $oldId );
+		sleep(1);
 	}
 	sleep(5);
 }

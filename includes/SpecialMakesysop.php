@@ -6,9 +6,6 @@
  * @deprecated
  */
 
-wfDebugDieBacktrace('Use SpecialUserlevels instead !!'); // [av]
-
-
 /**
  *
  */
@@ -96,13 +93,7 @@ class MakesysopForm {
 		);
 		
 		$makeburo = wfMsg( "setbureaucratflag" );
-		$wgOut->addHTML(
-			"<tr>
-				<td>&nbsp;</td><td align=left>
-					<input type=checkbox name=\"wpSetBureaucrat\" value=1>$makeburo
-				</td>
-			</tr>"
-		);
+
 
 		if ( $wgUser->isDeveloper() ) {
 			$rights = wfMsg( "rights" );
@@ -119,6 +110,14 @@ class MakesysopForm {
 						<input type='text' size='40' name=\"wpRights\" value=\"$encRights\" />
 					</td>
 				</tr>" 
+			);
+		} else {
+			$wgOut->addHTML(
+				"<tr>
+					<td>&nbsp;</td><td align=left>
+						<input type=checkbox name=\"wpSetBureaucrat\" value=1>$makeburo
+					</td>
+				</tr>"
 			);
 		}
 
@@ -139,7 +138,7 @@ class MakesysopForm {
 
 	function doSubmit() {
 		global $wgOut, $wgUser, $wgLang;
-		global $wgDBname, $wgMemc, $wgLocalDatabases;
+		global $wgDBname, $wgMemc, $wgLocalDatabases, $wgSharedDB;
 
 		$fname = 'MakesysopForm::doSubmit';
 		
@@ -147,13 +146,16 @@ class MakesysopForm {
 		$parts = explode( '@', $this->mUser );
 		$user_rights = $dbw->tableName( 'user_rights' );
 		$usertable   = $dbw->tableName( 'user' );
+		
 
 		if( count( $parts ) == 2 && $wgUser->isDeveloper() && strpos( '.', $user_rights ) === false ){
 			$username = $dbw->strencode( $parts[0] );
 			if ( array_key_exists( $parts[1], $wgLocalDatabases ) ) {
 				$dbName = $wgLocalDatabases[$parts[1]];
-				$user_rights = $dbName . '.' . $user_rights;
-				$usertable   = $usertable . '.' . $usertable;
+				$user_rights = "`$dbName`.$user_rights";
+				if ( !$wgSharedDB ) {
+					$usertable   = "`$dbName`.$usertable";
+				}
 			} else {
 				$this->showFail();
 				return;

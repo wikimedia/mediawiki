@@ -4,7 +4,7 @@
 --
 -- Indexes should be defined here; please import the rest from indexes.sql.
 
-CREATE TABLE user (
+CREATE TABLE /*$wgDBprefix*/user (
   user_id int(5) unsigned NOT NULL auto_increment,
   user_name varchar(255) binary NOT NULL default '',
   user_real_name varchar(255) binary NOT NULL default '',
@@ -19,20 +19,20 @@ CREATE TABLE user (
 );
 
 -- TODO: de-blob this; it should be a property table
-CREATE TABLE user_rights (
+CREATE TABLE /*$wgDBprefix*/user_rights (
   ur_user int(5) unsigned NOT NULL,
   ur_rights tinyblob NOT NULL default '',
   UNIQUE KEY ur_user (ur_user)
 );
 
-CREATE TABLE user_newtalk (
+CREATE TABLE /*$wgDBprefix*/user_newtalk (
   user_id int(5) NOT NULL default '0',
   user_ip varchar(40) NOT NULL default '',
   INDEX user_id (user_id),
   INDEX user_ip (user_ip)
 );
 
-CREATE TABLE cur (
+CREATE TABLE /*$wgDBprefix*/cur (
   cur_id int(8) unsigned NOT NULL auto_increment,
   cur_namespace tinyint(2) unsigned NOT NULL default '0',
   cur_title varchar(255) binary NOT NULL default '',
@@ -63,7 +63,7 @@ CREATE TABLE cur (
   INDEX namespace_redirect_timestamp(cur_namespace,cur_is_redirect,cur_timestamp)
 );
 
-CREATE TABLE old (
+CREATE TABLE /*$wgDBprefix*/old (
   old_id int(8) unsigned NOT NULL auto_increment,
   old_namespace tinyint(2) unsigned NOT NULL default '0',
   old_title varchar(255) binary NOT NULL default '',
@@ -83,7 +83,7 @@ CREATE TABLE old (
   INDEX usertext_timestamp (old_user_text,inverse_timestamp)
 );
 
-CREATE TABLE archive (
+CREATE TABLE /*$wgDBprefix*/archive (
   ar_namespace tinyint(2) unsigned NOT NULL default '0',
   ar_title varchar(255) binary NOT NULL default '',
   ar_text mediumtext NOT NULL default '',
@@ -101,7 +101,7 @@ CREATE TABLE archive (
 -- Track links that do exist
 -- l_from and l_to key to cur_id
 --
-CREATE TABLE links (
+CREATE TABLE /*$wgDBprefix*/links (
   l_from int(8) unsigned NOT NULL default '0',
   l_to int(8) unsigned NOT NULL default '0',
   UNIQUE KEY l_from(l_from,l_to),
@@ -113,7 +113,7 @@ CREATE TABLE links (
 -- bl_from keys to cur_id
 -- bl_to is a text link (namespace:title)
 --
-CREATE TABLE brokenlinks (
+CREATE TABLE /*$wgDBprefix*/brokenlinks (
   bl_from int(8) unsigned NOT NULL default '0',
   bl_to varchar(255) binary NOT NULL default '',
   UNIQUE KEY bl_from(bl_from,bl_to),
@@ -125,7 +125,7 @@ CREATE TABLE brokenlinks (
 -- il_from keys to cur_id, il_to keys to image_name.
 -- We don't distinguish live from broken links.
 --
-CREATE TABLE imagelinks (
+CREATE TABLE /*$wgDBprefix*/imagelinks (
   il_from int(8) unsigned NOT NULL default '0',
   il_to varchar(255) binary NOT NULL default '',
   UNIQUE KEY il_from(il_from,il_to),
@@ -138,7 +138,7 @@ CREATE TABLE imagelinks (
 -- cl_sortkey is the title of the linking page or an optional override
 -- cl_timestamp marks when the link was last added
 --
-CREATE TABLE categorylinks (
+CREATE TABLE /*$wgDBprefix*/categorylinks (
   cl_from int(8) unsigned NOT NULL default '0',
   cl_to varchar(255) binary NOT NULL default '',
   cl_sortkey varchar(255) binary NOT NULL default '',
@@ -153,12 +153,12 @@ CREATE TABLE categorylinks (
 -- cache arrays to reduce database load slurping up
 -- from links and brokenlinks.
 --
-CREATE TABLE linkscc (
+CREATE TABLE /*$wgDBprefix*/linkscc (
   lcc_pageid INT UNSIGNED NOT NULL UNIQUE KEY,
   lcc_cacheobj MEDIUMBLOB NOT NULL
 );
 
-CREATE TABLE site_stats (
+CREATE TABLE /*$wgDBprefix*/site_stats (
   ss_row_id int(8) unsigned NOT NULL,
   ss_total_views bigint(20) unsigned default '0',
   ss_total_edits bigint(20) unsigned default '0',
@@ -166,11 +166,11 @@ CREATE TABLE site_stats (
   UNIQUE KEY ss_row_id (ss_row_id)
 );
 
-CREATE TABLE hitcounter (
+CREATE TABLE /*$wgDBprefix*/hitcounter (
   hc_id INTEGER UNSIGNED NOT NULL
 ) TYPE=HEAP MAX_ROWS=25000;
 
-CREATE TABLE ipblocks (
+CREATE TABLE /*$wgDBprefix*/ipblocks (
   ipb_id int(8) NOT NULL auto_increment,
   ipb_address varchar(40) binary NOT NULL default '',
   ipb_user int(8) unsigned NOT NULL default '0',
@@ -185,7 +185,7 @@ CREATE TABLE ipblocks (
   INDEX ipb_user (ipb_user)
 );
 
-CREATE TABLE image (
+CREATE TABLE /*$wgDBprefix*/image (
   img_name varchar(255) binary NOT NULL default '',
   img_size int(8) unsigned NOT NULL default '0',
   img_description tinyblob NOT NULL default '',
@@ -197,7 +197,7 @@ CREATE TABLE image (
   INDEX img_timestamp (img_timestamp)
 );
 
-CREATE TABLE oldimage (
+CREATE TABLE /*$wgDBprefix*/oldimage (
   oi_name varchar(255) binary NOT NULL default '',
   oi_archive_name varchar(255) binary NOT NULL default '',
   oi_size int(8) unsigned NOT NULL default 0,
@@ -208,7 +208,7 @@ CREATE TABLE oldimage (
   INDEX oi_name (oi_name(10))
 );
 
-CREATE TABLE recentchanges (
+CREATE TABLE /*$wgDBprefix*/recentchanges (
   rc_id int(8) NOT NULL auto_increment,
   rc_timestamp varchar(14) binary NOT NULL default '',
   rc_cur_time varchar(14) binary NOT NULL default '',
@@ -237,7 +237,7 @@ CREATE TABLE recentchanges (
   INDEX rc_ip (rc_ip)
 );
 
-CREATE TABLE watchlist (
+CREATE TABLE /*$wgDBprefix*/watchlist (
   wl_user int(5) unsigned NOT NULL,
   wl_namespace tinyint(2) unsigned NOT NULL default '0',
   wl_title varchar(255) binary NOT NULL default '',
@@ -245,7 +245,7 @@ CREATE TABLE watchlist (
   KEY namespace_title (wl_namespace,wl_title)
 );
 
-CREATE TABLE math (
+CREATE TABLE /*$wgDBprefix*/math (
   math_inputhash varchar(16) NOT NULL,
   math_outputhash varchar(16) NOT NULL,
   math_html_conservativeness tinyint(1) NOT NULL,
@@ -257,7 +257,7 @@ CREATE TABLE math (
 
 -- Table searchindex must be MyISAM for fulltext support
 
-CREATE TABLE searchindex (
+CREATE TABLE /*$wgDBprefix*/searchindex (
   si_page int(8) unsigned NOT NULL,
   si_title varchar(255) NOT NULL default '',
   si_text mediumtext NOT NULL default '',
@@ -267,7 +267,7 @@ CREATE TABLE searchindex (
 
 ) TYPE=MyISAM;
 
-CREATE TABLE interwiki (
+CREATE TABLE /*$wgDBprefix*/interwiki (
   iw_prefix char(32) NOT NULL,
   iw_url char(127) NOT NULL,
   iw_local BOOL NOT NULL,
@@ -275,7 +275,7 @@ CREATE TABLE interwiki (
 );
 
 -- Used for caching expensive grouped queries
-CREATE TABLE querycache (
+CREATE TABLE /*$wgDBprefix*/querycache (
   qc_type char(32) NOT NULL,
   qc_value int(5) unsigned NOT NULL default '0',
   qc_namespace tinyint(2) unsigned NOT NULL default '0',
@@ -284,7 +284,7 @@ CREATE TABLE querycache (
 );
 
 -- For a few generic cache operations if not using Memcached
-CREATE TABLE objectcache (
+CREATE TABLE /*$wgDBprefix*/objectcache (
   keyname char(255) binary not null default '',
   value mediumblob,
   exptime datetime,
@@ -293,7 +293,7 @@ CREATE TABLE objectcache (
 );
 
 -- For storing revision text
-CREATE TABLE blobs (
+CREATE TABLE /*$wgDBprefix*/blobs (
   blob_index char(255) binary NOT NULL default '',
   blob_data longblob NOT NULL default '',
   UNIQUE key blob_index (blob_index)
@@ -301,7 +301,7 @@ CREATE TABLE blobs (
 
 -- For article validation
 
-CREATE TABLE `validate` (
+CREATE TABLE /*$wgDBprefix*/validate (
   `val_user` int(11) NOT NULL default '0',
   `val_title` varchar(255) binary NOT NULL default '',
   `val_timestamp` varchar(14) binary NOT NULL default '',
@@ -312,7 +312,7 @@ CREATE TABLE `validate` (
 );
 
 
-CREATE TABLE logging (
+CREATE TABLE /*$wgDBprefix*/logging (
   -- Symbolic keys for the general log type and the action type
   -- within the log. The output format will be controlled by the
   -- action field, but only the type controls categorization.
@@ -338,22 +338,3 @@ CREATE TABLE logging (
   KEY page_time (log_namespace, log_title, log_timestamp)
 );
 
-
-
-
-
--- Hold group name and description
-CREATE TABLE `group` (
-  group_id int(5) unsigned NOT NULL auto_increment,
-  group_name varchar(50) NOT NULL default '',
-  group_description varchar(255) NOT NULL default '',
-  group_rights tinyblob,
-  PRIMARY KEY  (group_id)
-);
-
--- Relation table between user and groups
-CREATE TABLE user_groups (
-	ug_user int(5) unsigned NOT NULL default '0',
-	ug_group int(5) unsigned NOT NULL default '0',
-	PRIMARY KEY  (ug_user,ug_group)
-);

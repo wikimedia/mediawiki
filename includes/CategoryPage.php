@@ -5,8 +5,11 @@
  *
  * @package MediaWiki
  */
+ 
+if( !defined( 'MEDIAWIKI' ) )
+	die();
 
-if ( $wgCategoryMagicGallery ) 
+if( $wgCategoryMagicGallery ) 
 	require_once('ImageGallery.php');
 
 /**
@@ -71,7 +74,7 @@ class CategoryPage extends Article {
 
 		$t = $dbr->strencode( $this->mTitle->getDBKey() );
 		$sql = "SELECT DISTINCT cur_title,cur_namespace FROM $cur,$categorylinks " .
-			"WHERE cl_to='$t' AND cl_from=cur_id AND cur_is_redirect=0 ORDER BY cl_sortkey" ;
+			"WHERE cl_to='$t' AND cl_from=cur_id AND cur_is_redirect=0 ORDER BY cl_sortkey LIMIT 100" ;
 		$res = $dbr->query( $sql, $fname ) ;
 		# For all pages that link to this category
 		while ( $x = $dbr->fetchObject ( $res ) )
