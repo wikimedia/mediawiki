@@ -1577,7 +1577,7 @@ class Skin {
 		global $wgUseImageMagick;
 		global $wgUseSquid, $wgInternalServer;
 		$imgPath   = wfImagePath( $name );
-		$thumbName = $width."px-".$icon.$name;
+		$thumbName = $width."px-".$name;
 		$thumbPath = wfImageThumbDir( $thumbName )."/".$thumbName;
 		$thumbUrl  = wfImageThumbUrl( $thumbName );
 
