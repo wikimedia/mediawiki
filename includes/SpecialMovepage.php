@@ -105,7 +105,7 @@ class MovePageForm {
 	{
 		global $wgOut, $wgUser, $wgLang;
 		global $wgDeferredUpdateList, $wgMessageCache;
-		global  $wgUseSquid, $wgInternalServer;
+		global  $wgUseSquid;
 		$fname = "MovePageForm::doSubmit";
 
 		$this->ot = Title::newFromText( $this->oldTitle );
@@ -169,9 +169,9 @@ class MovePageForm {
 			/* this needs to be done after LinksUpdate */
 			$urlArr = Array(				
 				# purge new title
-				$wgInternalServer.$this->nt->getLocalURL(),
+				$this->nt->getInternalURL(),
 				# purge old title
-				$wgInternalServer.$this->ot->getLocalURL(),
+				$this->ot->getInternalURL(),
 			);			
 			wfPurgeSquidServers($urlArr);	
 			# purge pages linking to new title
