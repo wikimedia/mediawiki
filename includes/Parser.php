@@ -586,6 +586,7 @@ class Parser
 		$text = $this->doAllQuotes( $text );
 		$text = $this->replaceExternalLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
+		$text = $this->replaceInternalLinks ( $text );
 		//$text = $this->doTokenizedParser ( $text );
 		$text = $this->doTableStuff ( $text ) ;
 		$text = $this->magicISBN( $text );
