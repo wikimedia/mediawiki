@@ -1573,7 +1573,7 @@ class Parser
 				$text .= "&lt;" . str_replace( ">", "&gt;", $x);
 			}
 			# Close off any remaining tags
-			while ( $t = array_pop( $tagstack ) ) {
+			while ( is_array( $tagstack ) && ($t = array_pop( $tagstack )) ) {
 				$text .= "</$t>\n";
 				if ( $t == "table" ) { $tagstack = array_pop( $tablestack ); }
 			}
