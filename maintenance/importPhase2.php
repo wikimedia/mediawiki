@@ -88,7 +88,7 @@ class Phase2Importer {
 	# MySQL copies everything over to the new database and tweaks a few things.
 	function importCurData() {
 		print "Clearing pages from default install, if any...\n";
-		wfQuery( "DELETE FROM cur", DB_WRITE );
+		wfQuery( "DELETE FROM cur", DB_MASTER );
 		
 		print "Importing current revision data...\n";
 		wfQuery( "INSERT INTO cur (cur_id,cur_namespace,cur_title,cur_text,cur_comment,
@@ -97,35 +97,35 @@ class Phase2Importer {
 			SELECT cur_id,0,cur_title,cur_text,cur_comment,
 				cur_user,cur_user_text,cur_timestamp,REPLACE(cur_restrictions,'is_',''),cur_counter,
 				cur_text like '#redirect%',cur_minor_edit,0,RAND(),NOW()+0,99999999999999-cur_timestamp
-			FROM {$this->olddb}.cur", DB_WRITE );
+			FROM {$this->olddb}.cur", DB_MASTER );
 		$n = mysql_affected_rows();
 		print "$n rows imported.\n";
 	}
 
 	function importOldData() {
 		print "Clearing old revision data from default install, if any...\n";
-		wfQuery( "DELETE FROM old", DB_WRITE );
+		wfQuery( "DELETE FROM old", DB_MASTER );
 
 		print "Importing old revision data...\n";
 		wfQuery( "INSERT INTO old (old_id,old_namespace,old_title,old_text,old_comment,
 			old_user,old_user_text,old_timestamp,old_minor_edit,old_flags,inverse_timestamp)
 			SELECT old_id,0,old_title,old_text,old_comment,
 				old_user,old_user_text,old_timestamp,old_minor_edit,'',99999999999999-old_timestamp
-			FROM {$this->olddb}.old", DB_WRITE );
+			FROM {$this->olddb}.old", DB_MASTER );
 		$n = mysql_affected_rows();
 		print "$n rows imported.\n";
 	}
 
 	function importUserData() {
 		print "Clearing users from default install, if any...\n";
-		wfQuery( "DELETE FROM user", DB_WRITE );
+		wfQuery( "DELETE FROM user", DB_MASTER );
 
 		print "Importing user data...\n";
 		wfQuery( "INSERT INTO $newdb.user (user_id,user_name,user_rights,
 			user_password,user_newpassword,user_email,user_options,user_touched)
 			SELECT user_id,user_name,REPLACE(user_rights,'is_',''),
 				MD5(CONCAT(user_id,'-',MD5(user_password))),'',user_email,user_options,NOW()+0
-			FROM {$this->olddb}.user", DB_WRITE );
+			FROM {$this->olddb}.user", DB_MASTER );
 		$n = mysql_affected_rows();
 		print "$n rows imported.\n";
 	}
@@ -133,10 +133,10 @@ class Phase2Importer {
 	# A little less clean...
 	function importWatchlists() {
 		print "Clearing watchlists from default install, if any...\n";
-		wfQuery( "DELETE FROM watchlist", DB_WRITE );
+		wfQuery( "DELETE FROM watchlist", DB_MASTER );
 
 		print "Importing watchlists...";
-		$res = wfQuery( "SELECT user_id,user_watch FROM {$this->olddb}.user WHERE user_watch != ''", DB_WRITE );
+		$res = wfQuery( "SELECT user_id,user_watch FROM {$this->olddb}.user WHERE user_watch != ''", DB_MASTER );
 		$total = wfNumRows( $res );
 		$n = 0;
 		print " ($total total)\n";
@@ -151,7 +151,7 @@ class Phase2Importer {
 				} else {
 					$ns = $title->getNamespace();
 					$t = wfStrencode( $title->getDBkey() );
-					wfQuery( "INSERT INTO watchlist(wl_user,wl_namespace,wl_title) VALUES ($id,$ns,'$t')", DB_WRITE );
+					wfQuery( "INSERT INTO watchlist(wl_user,wl_namespace,wl_title) VALUES ($id,$ns,'$t')", DB_MASTER );
 				}
 			}
 			if( ++$n % 50 == 0 ) {
@@ -164,14 +164,14 @@ class Phase2Importer {
 	function importLinkData() {
 		# MUST BE CALLED BEFORE! fixCurTitles()
 		print "Clearing links from default install, if any...\n";
-		wfQuery( "DELETE FROM links", DB_WRITE );
-		wfQuery( "DELETE FROM brokenlinks", DB_WRITE );
+		wfQuery( "DELETE FROM links", DB_MASTER );
+		wfQuery( "DELETE FROM brokenlinks", DB_MASTER );
 
 		print "Importing live links...";
 		wfQuery( "INSERT INTO links (l_from, l_to)
 					SELECT DISTINCT linked_from,cur_id
 					FROM {$this->olddb}.linked,{$this->olddb}.cur
-					WHERE linked_to=cur_title", DB_WRITE );
+					WHERE linked_to=cur_title", DB_MASTER );
 		$n = mysql_affected_rows();
 		print "$n rows imported.\n";
 		
@@ -179,7 +179,7 @@ class Phase2Importer {
 		wfQuery( "INSERT INTO brokenlinks (bl_from, bl_to)
 					SELECT DISTINCT cur_id,unlinked_to
 					FROM {$this->olddb}.unlinked,{$this->olddb}.cur
-					WHERE unlinked_from=cur_title", DB_WRITE );
+					WHERE unlinked_from=cur_title", DB_MASTER );
 		$n = mysql_affected_rows();
 		print "$n rows imported.\n";
 	}
@@ -195,7 +195,7 @@ class Phase2Importer {
 	
 	function fixTitles( $table ) {
 		print "Fixing titles in $table...";
-		$res = wfQuery( "SELECT DISTINCT {$table}_title AS title FROM $table", DB_WRITE );
+		$res = wfQuery( "SELECT DISTINCT {$table}_title AS title FROM $table", DB_MASTER );
 		$total = wfNumRows( $res );
 		$n = 0;
 		print " ($total total)\n";
@@ -209,7 +209,7 @@ class Phase2Importer {
 				$ns = $title->getNamespace();
 				$t = wfStrencode( $title->getDBkey() );
 				wfQuery( "UPDATE $table SET {$table}_namespace=$ns,{$table}_title='$t'
-								WHERE {$table}_namespace=0 AND {$table}_title='$xt'", DB_WRITE );
+								WHERE {$table}_namespace=0 AND {$table}_title='$xt'", DB_MASTER );
 			}
 			if( ++$n % 50 == 0 ) {
 				print "$n\n";
@@ -288,7 +288,7 @@ class Phase2Importer {
 
 	function fixUserOptions() {
 		print "Fixing user options...";
-		$res = wfQuery( "SELECT user_id,user_options FROM user", DB_WRITE );
+		$res = wfQuery( "SELECT user_id,user_options FROM user", DB_MASTER );
 		$total = wfNumRows( $res );
 		$n = 0;
 		print " ($total total)\n";
@@ -296,7 +296,7 @@ class Phase2Importer {
 		while( $row = wfFetchObject( $res ) ) {
 			$id = IntVal( $row->user_id );
 			$option = wfStrencode( $this->rewriteUserOptions( $row->user_options ) );
-			wfQuery( "UPDATE user SET user_options='$option' WHERE user_id=$id LIMIT 1", DB_WRITE );
+			wfQuery( "UPDATE user SET user_options='$option' WHERE user_id=$id LIMIT 1", DB_MASTER );
 			if( ++$n % 50 == 0 ) {
 				print "$n\n";
 			}

@@ -13,6 +13,9 @@ class WantedPagesPage extends QueryPage {
 	}
 
 	function getSQL() {
+		$dbr =& wfGetDB( DB_SLAVE );
+		$brokenlinks = $dbr->tableName( 'brokenlinks' );
+
 		# We cheat and return the full-text from bl_to in the title.
 		# In the future, a pre-parsed name will be available.
 		return
@@ -20,7 +23,7 @@ class WantedPagesPage extends QueryPage {
 			        0 as namespace,
 			        bl_to as title,
 			        COUNT(DISTINCT bl_from) as value
-			FROM brokenlinks
+			FROM $brokenlinks
 			GROUP BY bl_to
 			HAVING value > 1";
 	}

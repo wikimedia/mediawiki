@@ -15,6 +15,9 @@ class NewPagesPage extends QueryPage {
 	}
 
 	function getSQL() {
+		$dbr =& wfGetDB( DB_SLAVE );
+		extract( $dbr->tableNames( 'recentchanges', 'cur' ) );
+
 		return
 			"SELECT 'Newpages' as type,
 			        rc_namespace AS namespace,
@@ -27,7 +30,7 @@ class NewPagesPage extends QueryPage {
 			        rc_timestamp AS timestamp,
 			        length(cur_text) as length,
 			        cur_text as text
-			FROM recentchanges,cur
+			FROM $recentchanges,$cur
 			WHERE rc_cur_id=cur_id AND rc_new=1
 			  AND rc_namespace=0 AND cur_is_redirect=0";
 	}

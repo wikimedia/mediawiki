@@ -1350,11 +1350,12 @@ You might want to check the following regular expression for patterns that are c
 
 # Info page
 "infosubtitle" => "Information for page",
-"numedits" => "Number of edits (article): ",
-"numtalkedits" => "Number of edits (discussion page): ",
-"numwatchers" => "Number of watchers: ",
-"numauthors" => "Number of distinct authors (article): ",
-"numtalkauthors" => "Number of distinct authors (discussion page): ",
+"numedits" => "Number of edits (article): $1",
+"numtalkedits" => "Number of edits (discussion page): $1",
+"numwatchers" => "Number of watchers: $1",
+"numauthors" => "Number of distinct authors (article): $1",
+"numtalkauthors" => "Number of distinct authors (discussion page): $1",
+
 # Math options
 	'mw_math_png' => 'Always render PNG',
 	'mw_math_simple' => 'HTML if very simple or else PNG',

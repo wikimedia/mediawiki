@@ -11,7 +11,8 @@ class User {
 	/* private */ var $mBlockedby, $mBlockreason;
 	/* private */ var $mTouched;
 	/* private */ var $mCookiePassword;
-        /* private */ var $mRealName;
+	/* private */ var $mRealName;
+	/* private */ var $mHash;
 
 	function User()	{
 		$this->loadDefaults();
@@ -30,28 +31,29 @@ class User {
 	}
 
 	/* static */ function whoIs( $id )	{
-		return wfGetSQL( 'user', 'user_name', 'user_id='.$id );
+		$dbr =& wfGetDB( DB_SLAVE );
+		return $dbr->getField( 'user', 'user_name', array( 'user_id' => $id ) );
 	}
 
 	/* static */ function whoIsReal( $id )	{
-		return wfGetSQL( 'user', 'user_real_name', 'user_id='.$id );
+		$dbr =& wfGetDB( DB_SLAVE );
+		return $dbr->getField( 'user', 'user_real_name', array( 'user_id' => $id ) );
 	}
 
 	/* static */ function idFromName( $name ) {
+		$fname = "User::idFromName";
+
 		$nt = Title::newFromText( $name );
 		if( is_null( $nt ) ) {
 			# Illegal name
 			return null;
 		}
-		$sql = "SELECT user_id FROM user WHERE user_name='" .
-		  wfStrencode( $nt->getText() ) . "'";
-		$res = wfQuery( $sql, DB_READ, 'User::idFromName' );
+		$dbr =& wfGetDB( DB_SLAVE );
+		$s = $dbr->getArray( 'user', array( 'user_id' ), array( 'user_name' => $nt->getText() ), $fname );
 
-		if ( 0 == wfNumRows( $res ) ) {
+		if ( $s === false ) {
 			return 0;
 		} else {
-			$s = wfFetchObject( $res );
-			wfFreeResult( $res );
 			return $s->user_id;
 		}
 	}
@@ -66,7 +68,6 @@ class User {
 		$pwchars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz';
 		$l = strlen( $pwchars ) - 1;
 
-		wfSeedRandom();
 		$np = $pwchars{mt_rand( 0, $l )} . $pwchars{mt_rand( 0, $l )} .
 		  $pwchars{mt_rand( 0, $l )} . chr( mt_rand(48, 57) ) .
 		  $pwchars{mt_rand( 0, $l )} . $pwchars{mt_rand( 0, $l )} .
@@ -95,6 +96,7 @@ class User {
 		$this->mBlockedby = -1; # Unset
 		$this->mTouched = '0'; # Allow any pages to be cached
 		$this->cookiePassword = '';
+		$this->mHash = false;
 	}
 
 	/* private */ function getBlockedStatus()
@@ -221,6 +223,7 @@ class User {
 	function loadFromDatabase()
 	{
 		global $wgCommandLineMode;
+		$fname = "User::loadFromDatabase";
 		if ( $this->mDataLoaded || $wgCommandLineMode ) {
 			return;
 		}
@@ -230,24 +233,23 @@ class User {
 
 		# check in separate table if there are changes to the talk page
 		$this->mNewtalk=0; # reset talk page status
+		$dbr =& wfGetDB( DB_SLAVE );
 		if($this->mId) {
-			$sql = "SELECT 1 FROM user_newtalk WHERE user_id={$this->mId}";
-			$res = wfQuery ($sql, DB_READ, "User::loadFromDatabase" );
+			$res = $dbr->select( 'user_newtalk', 1, array( 'user_id' => $this->mId ), $fname );
 
-			if (wfNumRows($res)>0) {
+			if ( $dbr->numRows($res)>0 ) {
 				$this->mNewtalk= 1;
 			}
-			wfFreeResult( $res );
+			$dbr->freeResult( $res );
 		} else {
 			global $wgDBname, $wgMemc;
 			$key = "$wgDBname:newtalk:ip:{$this->mName}";
 			$newtalk = $wgMemc->get( $key );
 			if( ! is_integer( $newtalk ) ){
-				$sql = "SELECT 1 FROM user_newtalk WHERE user_ip='{$this->mName}'";
-				$res = wfQuery ($sql, DB_READ, "User::loadFromDatabase" );
+				$res = $dbr->select( 'user_newtalk', 1, array( 'user_ip' => $this->mName ), $fname );
 
-				$this->mNewtalk = (wfNumRows($res)>0) ? 1 : 0;
-				wfFreeResult( $res );
+				$this->mNewtalk = $dbr->numRows( $res ) > 0 ? 1 : 0;
+				$dbr->freeResult( $res );
 
 				$wgMemc->set( $key, $this->mNewtalk, time() ); // + 1800 );
 			} else {
@@ -259,13 +261,11 @@ class User {
 			return;
 		} # the following stuff is for non-anonymous users only
 
-		$sql = "SELECT user_name,user_password,user_newpassword,user_email," .
-		  "user_real_name,user_options,user_rights,user_touched " . 
-                  " FROM user WHERE user_id=" . $this->mId;
-		$res = wfQuery( $sql, DB_READ, "User::loadFromDatabase" );
+		$s = $dbr->getArray( 'user', array( 'user_name','user_password','user_newpassword','user_email',
+		  'user_real_name','user_options','user_rights','user_touched' ), 
+		  array( 'user_id' => $this->mId ), $fname );
 
-		if ( wfNumRows( $res ) > 0 ) {
-			$s = wfFetchObject( $res );
+		if ( $s !== false ) {
 			$this->mName = $s->user_name;
 			$this->mEmail = $s->user_email;
 			$this->mRealName = $s->user_real_name;
@@ -276,7 +276,6 @@ class User {
 			$this->mTouched = $s->user_touched;
 		}
 
-		wfFreeResult( $res );
 		$this->mDataLoaded = true;
 	}
 
@@ -514,7 +513,7 @@ class User {
 			array_push( $a, $oname.'='.$oval );
 		}
 		$s = implode( "\n", $a );
-		return wfStrencode( $s );
+		return $s;
 	}
 
 	/* private */ function decodeOptions( $str ) {
@@ -558,65 +557,71 @@ class User {
 
 	function saveSettings() {
 		global $wgMemc, $wgDBname;
+		$fname = 'User::saveSettings';
 
+		$dbw =& wfGetDB( DB_MASTER );
 		if ( ! $this->mNewtalk ) {
+			# Delete user_newtalk row
 			if( $this->mId ) {
-				$sql="DELETE FROM user_newtalk WHERE user_id={$this->mId}";
-				wfQuery ($sql, DB_WRITE, "User::saveSettings");
+				$dbw->delete( 'user_newtalk', array( 'user_id' => $this->mId ), $fname );
 			} else {
-				$sql="DELETE FROM user_newtalk WHERE user_ip='{$this->mName}'";
-				wfQuery ($sql, DB_WRITE, "User::saveSettings");
+				$dbw->delete( 'user_newtalk', array( 'user_ip' => $this->mName ), $fname );
 				$wgMemc->delete( "$wgDBname:newtalk:ip:{$this->mName}" );
 			}
 		}
 		if ( 0 == $this->mId ) { return; }
 
-		$sql = "UPDATE user SET " .
-		  "user_name= '" . wfStrencode( $this->mName ) . "', " .
-		  "user_password= '" . wfStrencode( $this->mPassword ) . "', " .
-		  "user_newpassword= '" . wfStrencode( $this->mNewpassword ) . "', " .
-		  "user_real_name= '" . wfStrencode( $this->mRealName ) . "', " .
-		  "user_email= '" . wfStrencode( $this->mEmail ) . "', " .
-		  "user_options= '" . $this->encodeOptions() . "', " .
-		  "user_rights= '" . wfStrencode( implode( ",", $this->mRights ) ) . "', " .
-		  "user_touched= '" . wfStrencode( $this->mTouched ) .
-		  "' WHERE user_id={$this->mId}";
-		wfQuery( $sql, DB_WRITE, "User::saveSettings" );
+		$dbw->update( 'user', 
+			array( /* SET */
+				'user_name' => $this->mName,
+				'user_password' => $this->mPassword,
+				'user_newpassword' => $this->mNewpassword,
+				'user_real_name' => $this->mRealName,
+		 		'user_email' => $this->mEmail,
+				'user_options' => $this->encodeOptions(),
+				'user_rights' => implode( ",", $this->mRights ),
+				'user_touched' => $this->mTouched
+			), array( /* WHERE */
+				'user_id' => $this->mId
+			), $fname
+		);
 		$wgMemc->delete( "$wgDBname:user:id:$this->mId" );
 	}
 
-	# Checks if a user with the given name exists
+	# Checks if a user with the given name exists, returns the ID
 	#
 	function idForName() {
+		$fname = 'User::idForName';
+
 		$gotid = 0;
 		$s = trim( $this->mName );
 		if ( 0 == strcmp( '', $s ) ) return 0;
-
-		$sql = "SELECT user_id FROM user WHERE user_name='" .
-		  wfStrencode( $s ) . "'";
-		$res = wfQuery( $sql, DB_READ, "User::idForName" );
-		if ( 0 == wfNumRows( $res ) ) { return 0; }
-
-		$s = wfFetchObject( $res );
-		if ( '' == $s ) return 0;
-
-		$gotid = $s->user_id;
-		wfFreeResult( $res );
-		return $gotid;
+		
+		$dbr =& wfGetDB( DB_SLAVE );
+		$id = $dbr->selectField( 'user', 'user_id', array( 'user_name' => $s ), $fname );
+		if ( $id === false ) {
+			$id = 0;
+		}
+		return $id;
 	}
 
 	function addToDatabase() {
-		$sql = "INSERT INTO user (user_name,user_password,user_newpassword," .
-		  "user_email, user_real_name, user_rights, user_options) " .
-		  " VALUES ('" . wfStrencode( $this->mName ) . "', '" .
-		  wfStrencode( $this->mPassword ) . "', '" .
-		  wfStrencode( $this->mNewpassword ) . "', '" .
-		  wfStrencode( $this->mEmail ) . "', '" .
-		  wfStrencode( $this->mRealName ) . "', '" .
-		  wfStrencode( implode( ',', $this->mRights ) ) . "', '" .
-		  $this->encodeOptions() . "')";
-		wfQuery( $sql, DB_WRITE, "User::addToDatabase" );
-		$this->mId = $this->idForName();
+		$fname = 'User::addToDatabase';
+		$dbw =& wfGetDB( DB_MASTER );
+		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
+		$dbw->insert( 'user', 
+			array(
+				'user_id' => $seqVal,
+				'user_name' => $this->mName,
+				'user_password' => $this->mPassword,
+				'user_newpassword' => $this->mNewpassword,
+				'user_email' => $this->mEmail,
+				'user_real_name' => $this->mRealName,
+				'user_rights' => implode( ',', $this->mRights ),
+				'user_options' => $this->encodeOptions()
+			), $fname
+		);
+		$this->mId = $dbw->insertId();
 	}
 
 	function spreadBlock()
@@ -666,19 +671,14 @@ class User {
 	}
 
 	function getPageRenderingHash(){
-		static $hash = false;
-		if( $hash ){
-			return $hash;
+		if( $this->mHash ){
+			return $this->mHash;
 		}
 
 		// stubthreshold is only included below for completeness, 
 		// it will always be 0 when this function is called by parsercache.
 
-		$confstr = 	  $this->getOption( 'quickbar' );
-		$confstr .= '!' . $this->getOption( 'underline' );
-		$confstr .= '!' . $this->getOption( 'hover' );
-		$confstr .= '!' . $this->getOption( 'skin' );
-		$confstr .= '!' . $this->getOption( 'math' );
+		$confstr =        $this->getOption( 'math' );
 		$confstr .= '!' . $this->getOption( 'highlightbroken' );
 		$confstr .= '!' . $this->getOption( 'stubthreshold' ); 
 		$confstr .= '!' . $this->getOption( 'editsection' );
@@ -686,11 +686,8 @@ class User {
 		$confstr .= '!' . $this->getOption( 'showtoc' );
 		$confstr .= '!' . $this->getOption( 'date' );
 
-		if(strlen($confstr) > 32)
-			$hash = md5($confstr);
-		else
-			$hash = $confstr;
-		return $hash;
+		$this->mHash = $confstr;
+		return $confstr ;
 	}
 
 	function isAllowedToCreateAccount() {
@@ -709,7 +706,7 @@ class User {
 	# Use this to prevent DB access in command-line scripts or similar situations
 	function setLoaded( $loaded ) 
 	{
-		wfSetVar( $this->mDataLoaded, $loaded );
+		return wfSetVar( $this->mDataLoaded, $loaded );
 	}
 	
 	function getUserPage() {
@@ -717,8 +714,8 @@ class User {
 	}
 
 	/* static */ function getMaxID() {
-		$row = wfGetArray( 'user', array('max(user_id) as m'), false );
-		return $row->m;
+		$dbr =& wfGetDB( DB_SLAVE );
+		return $dbr->selectField( 'user', 'max(user_id)', false );
 	}
 
 	function isNewbie() {

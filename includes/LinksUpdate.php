@@ -26,7 +26,7 @@ class LinksUpdate {
 		$del = array();
 		$add = array();
 
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$links = $dbw->tableName( 'links' );
 		$brokenlinks = $dbw->tableName( 'brokenlinks' );
 		$imagelinks = $dbw->tableName( 'imagelinks' );
@@ -189,7 +189,7 @@ class LinksUpdate {
 		wfProfileIn( $fname );
 		
 		
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$links = $dbw->tableName( 'links' );
 		$brokenlinks = $dbw->tableName( 'brokenlinks' );
 		$imagelinks = $dbw->tableName( 'imagelinks' );
@@ -292,7 +292,7 @@ class LinksUpdate {
 		/* Call for a newly created page, or just to make sure state is consistent */
 		$fname = "LinksUpdate::fixBrokenLinks";
 
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$cur = $dbw->tableName( 'cur' );
 		$links = $dbw->tableName( 'links' );
 		

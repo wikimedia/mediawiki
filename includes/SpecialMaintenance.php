@@ -36,10 +36,10 @@ function wfSpecialMaintenance( $par=NULL )
 	$ns = $wgLang->getNamespaces() ;
 	$r = wfMsg("maintnancepagetext") ;
 	$r .= "<UL>\n" ;
-	$r .= "<li>".getMPL("disambiguations")."</li>\n" ;
+	#$r .= "<li>".getMPL("disambiguations")."</li>\n" ; # Doesn't work
 	$r .= "<li>".getMPL("doubleredirects")."</li>\n" ;
 	$r .= "<li>".getMPL("brokenredirects")."</li>\n" ;
-	$r .= "<li>".getMPL("selflinks")."</li>\n" ;
+	#$r .= "<li>".getMPL("selflinks")."</li>\n" ; # Doesn't work
 	$r .= "<li>".getMPL("mispeelings")."</li>\n" ;
 
 	$r .= "<li>";
@@ -97,15 +97,17 @@ function wfSpecialDisambiguations()
 	$fname = "wfSpecialDisambiguations";
 
 	list( $limit, $offset ) = wfCheckLimits();
+	$dbr =& wfGetDB( DB_SLAVE );
+	extract( $dbr->tableNames( 'links', 'cur' ) );
 
-	$dp = wfStrencode( wfMsg("disambiguationspage") );
+	$dp = $dbr->strencode( wfMsg("disambiguationspage") );
 	
 	die( "wfSpecialDisambiguation is broken. Link tables have changed...\n" );
 	
 	$sql = "SELECT la.l_from,la.l_to,"
 		. " lb.l_from AS source,lb.l_to AS dest,"
 		. " c.cur_id, c.cur_title AS dt"
-		. " FROM links AS la, links AS lb, cur AS c, cur AS d"
+		. " FROM $links AS la, $links AS lb, $cur AS c, $cur AS d"
 		. " WHERE la.l_from='{$dp}'"
 		. " AND la.l_to=lb.l_to"
 		. " AND la.l_from<>lb.l_from"
@@ -115,7 +117,7 @@ function wfSpecialDisambiguations()
 		. " AND d.cur_namespace=0"
 		. " LIMIT {$offset}, {$limit}";
 
-	$res = wfQuery( $sql, DB_READ, $fname );
+	$res = $dbr->query( $sql, $fname );
 
 	$sk = $wgUser->getSkin();
 
@@ -129,13 +131,13 @@ function wfSpecialDisambiguations()
 	$wgOut->addHTML( "<br>{$sl}\n" );
 
 	$s = "<ol start=" . ( $offset + 1 ) . ">";
-	while ( $obj = wfFetchObject( $res ) ) {
+	while ( $obj = $dbr->fetchObject( $res ) ) {
 		$l1 = $sk->makeKnownLink ( $obj->source , "" , "redirect=no" ) ;
 		$l2 = $sk->makeKnownLink ( $obj->dt ) ;
 		$l3 = $sk->makeBrokenLink ( $obj->source , "(".wfMsg("qbedit").")" , "redirect=no" ) ;
 		$s .= "<li>{$l1} {$l3} => {$l2}</li>\n" ;
 	}
-	wfFreeResult( $res );
+	$dbr->freeResult( $res );
 	$s .= "</ol>";
 	$wgOut->addHTML( $s );
 	$wgOut->addHTML( "<p>{$sl}\n" );
@@ -147,15 +149,17 @@ function wfSpecialDoubleRedirects()
 	$fname = "wfSpecialDoubleRedirects";
 
 	list( $limit, $offset ) = wfCheckLimits();
+	$dbr =& wfGetDB( DB_SLAVE );
+	extract( $dbr->tableNames( 'cur', 'links' ) );
 
 	$sql = "SELECT ca.cur_namespace as ns_a, ca.cur_title as title_a," . 
 	       "  cb.cur_namespace as ns_b, cb.cur_title as title_b," .
 		   "  cb.cur_text AS rt " . 
-	       "FROM links,cur AS ca,cur AS cb ". 
+	       "FROM $links,$cur AS ca,$cur AS cb ". 
 	       "WHERE ca.cur_is_redirect=1 AND cb.cur_is_redirect=1 AND l_to=cb.cur_id " .
 	       "  AND l_from=ca.cur_id LIMIT {$offset}, {$limit}" ;
 
-	$res = wfQuery( $sql, DB_READ, $fname );
+	$res = $dbr->query( $sql, $fname );
 
 	$top = getMaintenancePageBacklink( "doubleredirects" );
 	$top .= "<p>".wfMsg("doubleredirectstext")."</p><br>\n";
@@ -168,7 +172,7 @@ function wfSpecialDoubleRedirects()
 
 	$sk = $wgUser->getSkin();
 	$s = "<ol start=" . ( $offset + 1 ) . ">";
-	while ( $obj = wfFetchObject( $res ) ) {
+	while ( $obj = $dbr->fetchObject( $res ) ) {
 		$n = explode ( "\n" , $obj->rt ) ;
 		$n = $n[0] ;
 		$sourceTitle = Title::makeTitle( $obj->ns_a, $obj->title_a );
@@ -179,7 +183,7 @@ function wfSpecialDoubleRedirects()
 		$l3 = $sk->makeBrokenLinkObj( $sourceTitle , "(".wfMsg("qbedit").")" , "redirect=no" ) ;
 		$s .= "<li>{$l1} {$l3} => {$l2} (\"{$n}\")</li>\n" ;
 	}
-	wfFreeResult( $res );
+	$dbr->freeResult( $res );
 	$s .= "</ol>";
 	$wgOut->addHTML( $s );
 	$wgOut->addHTML( "<p>{$sl}\n" );
@@ -191,12 +195,15 @@ function wfSpecialBrokenRedirects()
 	$fname = "wfSpecialBrokenRedirects";
 
 	list( $limit, $offset ) = wfCheckLimits();
+	$dbr =& wfGetDB( DB_SLAVE );
+	extract( $dbr->tableNames( 'cur', 'brokenlinks' ) );
 
-	$sql = "SELECT bl_to,cur_title FROM brokenlinks,cur " .
+
+	$sql = "SELECT bl_to,cur_title FROM $brokenlinks,$cur " .
 	  "WHERE cur_is_redirect=1 AND cur_namespace=0 AND bl_from=cur_id " . 
 	  "LIMIT {$offset}, {$limit}" ;
 
-	$res = wfQuery( $sql, DB_READ, $fname );
+	$res = $dbr->query( $sql, $fname );
 
 	$top = getMaintenancePageBacklink( "brokenredirects" );
 	$top .= "<p>".wfMsg("brokenredirectstext")."</p><br>\n";
@@ -209,13 +216,13 @@ function wfSpecialBrokenRedirects()
 
 	$sk = $wgUser->getSkin();
 	$s = "<ol start=" . ( $offset + 1 ) . ">";
-	while ( $obj = wfFetchObject( $res ) ) {
+	while ( $obj = $dbr->fetchObject( $res ) ) {
 		$l1 = $sk->makeKnownLink ( $obj->cur_title , "" , "redirect=no" ) ;
 		$l2 = $sk->makeBrokenLink ( $obj->cur_title , "(".wfMsg("qbedit").")" , "redirect=no" ) ;
 		$l3 = $sk->makeBrokenLink ( $obj->bl_to , "" , "redirect=no" ) ;
 		$s .= "<li>{$l1} {$l2} => {$l3}</li>\n" ;
 	}
-	wfFreeResult( $res );
+	$dbr->freeResult( $res );
 	$s .= "</ol>";
 	$wgOut->addHTML( $s );
 	$wgOut->addHTML( "<p>{$sl}\n" );
@@ -234,7 +241,7 @@ function wfSpecialSelfLinks()
 	  "WHERE l_from=l_to AND l_to=cur_id " . 
 	  "LIMIT {$offset}, {$limit}";
 
-	$res = wfQuery( $sql, DB_READ, $fname );
+	$res = wfQuery( $sql, DB_SLAVE, $fname );
 
 	$top = getMaintenancePageBacklink( "selflinks" );
 	$top .= "<p>".wfMsg("selflinkstext")."</p><br>\n";
@@ -264,18 +271,17 @@ function wfSpecialMispeelings ()
 	$fname = "wfSpecialMispeelings";
 
 	list( $limit, $offset ) = wfCheckLimits();
+	$dbr =& wfGetDB( DB_SLAVE );
+	extract( $dbr->tableNames( 'cur', 'searchindex' ) );
 
 	# Determine page name
 	$ms = wfMsg ( "mispeelingspage" ) ;
-	$mss = wfStrencode( str_replace ( " " , "_" , $ms ) );
+	$mss = str_replace ( " " , "_" , $ms );
 	$msp = $wgLang->getNsText(4).":".$ms ;
 	$msl = $sk->makeKnownLink ( $msp ) ;
 
 	# Load list from database
-	$sql = "SELECT cur_text FROM cur WHERE cur_title='{$mss}' AND cur_namespace=4" ;
-	$res = wfQuery( $sql, DB_READ, $fname );
-	$obj = wfFetchObject ( $res ) ;
-	$l = $obj->cur_text ;
+	$l = $dbr->selectField( 'cur', 'cur_text', array( 'cur_title' => $mss, 'cur_namespace' => 4 ), $fname );
 	$l = explode ( "\n" , $l ) ;
 	$a = array () ;
 	foreach ( $l as $x )
@@ -289,10 +295,11 @@ function wfSpecialMispeelings ()
 		if ( $cnt < $offset+$limit && $x != "" ) {
 			$y = $x ;
 			$x = preg_replace( '/^(\S+).*$/', '$1', $x );
-			#$sql = "SELECT DISTINCT cur_title FROM cur WHERE cur_namespace=0 AND cur_is_redirect=0 AND (MATCH(cur_ind_text) AGAINST ('" . wfStrencode( $wgLang->stripForSearch( $x ) ) . "'))" ;
-			$sql = "SELECT DISTINCT cur_title FROM cur,searchindex WHERE cur_id=si_page AND cur_namespace=0 AND cur_is_redirect=0 AND (MATCH(si_text) AGAINST ('" . wfStrencode( $wgLang->stripForSearch( $x ) ) . "'))" ;
-			$res = wfQuery( $sql, DB_READ, $fname );
-			while ( $obj = wfFetchObject ( $res ) ) {
+			$sql = "SELECT DISTINCT cur_title FROM $cur,$searchindex WHERE cur_id=si_page AND ".
+				"cur_namespace=0 AND cur_is_redirect=0 AND " .
+				"(MATCH(si_text) AGAINST ('" . $dbr->strencode( $wgLang->stripForSearch( $x ) ) . "'))" ;
+			$res = $dbr->query( $sql, $fname );
+			while ( $obj = $dbr->fetchObject ( $res ) ) {
 				if ( $cnt >= $offset AND $cnt < $offset+$limit ) {
 					if ( $y != "" ) {
 						if ( count ( $b ) > 0 ) $b[] = "</OL>\n" ;
@@ -334,13 +341,15 @@ function wfSpecialMissingLanguageLinks()
 	if ( $thelang == "w" ) $thelang = "en" ; # Fix for international wikis
 
 	list( $limit, $offset ) = wfCheckLimits();
+	$dbr =& wfGetDB( DB_SLAVE );
+	$cur = $dbr->tableName( 'cur' );
 
-	$sql = "SELECT cur_title FROM cur " .
+	$sql = "SELECT cur_title FROM $cur " .
 	  "WHERE cur_namespace=0 AND cur_is_redirect=0 " .
 	  "AND cur_title NOT LIKE '%/%' AND cur_text NOT LIKE '%[[{$thelang}:%' " .
 	  "LIMIT {$offset}, {$limit}";
 
-	$res = wfQuery( $sql, DB_READ, $fname );
+	$res = $dbr->query( $sql, $fname );
 
 
 	$mll = wfMsg( "missinglanguagelinkstext", $wgLang->getLanguageName($thelang) );
@@ -356,9 +365,9 @@ function wfSpecialMissingLanguageLinks()
 
 	$sk = $wgUser->getSkin();
 	$s = "<ol start=" . ( $offset + 1 ) . ">";
-	while ( $obj = wfFetchObject( $res ) )
+	while ( $obj = $dbr->fetchObject( $res ) )
 		$s .= "<li>".$sk->makeKnownLink ( $obj->cur_title )."</li>\n" ;
-	wfFreeResult( $res );
+	$dbr->freeResult( $res );
 	$s .= "</ol>";
 	$wgOut->addHTML( $s );
 	$wgOut->addHTML( "<p>{$sl}\n" );

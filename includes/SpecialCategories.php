@@ -14,11 +14,13 @@ class CategoriesPage extends QueryPage {
 
 	function getSQL() {
 		$NScat = NS_CATEGORY;
+		$dbr =& wfGetDB( DB_SLAVE );
+		$categorylinks = $dbr->tableName( 'categorylinks' );
 		return "SELECT DISTINCT 'Categories' as type, 
 				{$NScat} as namespace,
 				cl_to as title,
 				1 as value
-			   FROM categorylinks";
+			   FROM $categorylinks";
 	}
 	
 	function sortDescending() {

@@ -84,6 +84,9 @@ class MagicWord {
 	{
 		global $wgMagicWords;
 		
+		if ( !is_array( $wgMagicWords ) ) {
+			wfDebugDieBacktrace( "Incorrect initialisation order, \$wgMagicWords does not exist\n" );
+		}
 		if (!array_key_exists( $id, $wgMagicWords ) ) {
 			$mw = new MagicWord();
 			$mw->load( $id );

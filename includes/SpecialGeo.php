@@ -18,8 +18,8 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 function wfSpecialGeo( $page = "" ) {
-	global $wgOut, $wgLang;
-	$coordinates = $_GET['coordinates'] ;
+	global $wgOut, $wgLang, $wgRequest;
+	$coordinates = $wgRequest->getText( 'coordinates' ) ;
 	$coordinates = explode ( ":" , $coordinates ) ;
 	$ns = array_shift ( $coordinates ) ;
 	$ew = array_shift ( $coordinates ) ;

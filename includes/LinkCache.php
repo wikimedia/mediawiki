@@ -14,7 +14,8 @@ class LinkCache {
 	/* private */ var $mGoodLinks, $mBadLinks, $mActive;
 	/* private */ var $mImageLinks, $mCategoryLinks;
 	/* private */ var $mPreFilled, $mOldGoodLinks, $mOldBadLinks;
-	
+	/* private */ var $mForUpdate;
+
 	/* private */ function getKey( $title ) {
 		global $wgDBname;
 		return "$wgDBname:lc:title:$title";
@@ -24,6 +25,7 @@ class LinkCache {
 	{
 		$this->mActive = true;
 		$this->mPreFilled = false;
+		$this->mForUpdate = false;
 		$this->mGoodLinks = array();
 		$this->mBadLinks = array();
 		$this->mImageLinks = array();
@@ -32,6 +34,11 @@ class LinkCache {
 		$this->mOldBadLinks = array();
 	}
 
+	# General accessor to get/set whether SELECT FOR UPDATE should be used
+	function forUpdate( $update = NULL ) { 
+		return wfSetVar( $this->mForUpdate, $update );
+	}
+	
 	function getGoodLinkID( $title )
 	{
 		if ( array_key_exists( $title, $this->mGoodLinks ) ) {
@@ -131,8 +138,15 @@ class LinkCache {
 		if( $wgLinkCacheMemcached )
 			$id = $wgMemc->get( $key = $this->getKey( $title ) );
 		if( ! is_integer( $id ) ) {
-			$dbr =& wfGetDB( DB_READ );
-			$id = $dbr->getField( 'cur', 'cur_id', array( 'cur_namespace' => $ns, 'cur_title' => $t ), $fname );
+			if ( $this->mForUpdate ) {
+				$db =& wfGetDB( DB_MASTER );
+				$options = array( 'FOR UPDATE' );
+			} else {
+				$db =& wfGetDB( DB_SLAVE );
+				$options = array();
+			}
+
+			$id = $db->getField( 'cur', 'cur_id', array( 'cur_namespace' => $ns, 'cur_title' => $t ), $fname, $options );
 			if ( !$id ) {
 				$id = 0;
 			}
@@ -170,23 +184,29 @@ class LinkCache {
 				return;
 			}
 		}
+		if ( $this->mForUpdate ) {
+			$db =& wfGetDB( DB_MASTER );
+			$options = 'FOR UPDATE';
+		} else {
+			$db =& wfGetDB( DB_SLAVE );
+			$options = '';
+		}
 
-		$dbr =& wfGetDB( DB_READ );
-		$cur = $dbr->tableName( 'cur' );
-		$links = $dbr->tableName( 'links' );
+		$cur = $db->tableName( 'cur' );
+		$links = $db->tableName( 'links' );
 
 		$sql = "SELECT cur_id,cur_namespace,cur_title
 			FROM $cur,$links
-			WHERE cur_id=l_to AND l_from=$id";
-		$res = $dbr->query( $sql, $fname );
-		while( $s = $dbr->fetchObject( $res ) ) {
+			WHERE cur_id=l_to AND l_from=$id $options";
+		$res = $db->query( $sql, $fname );
+		while( $s = $db->fetchObject( $res ) ) {
 			$this->addGoodLink( $s->cur_id,
 				Title::makeName( $s->cur_namespace, $s->cur_title )
 				);
 		}
 		
-		$res = $dbr->select( 'brokenlinks', array( 'bl_to' ), array( 'bl_from' => $id ), $fname );
-		while( $s = wfFetchObject( $res ) ) {
+		$res = $db->select( 'brokenlinks', array( 'bl_to' ), array( 'bl_from' => $id ), $fname, array( $options ) );
+		while( $s = $db->fetchObject( $res ) ) {
 			$this->addBadLink( $s->bl_to );
 		}
 		
@@ -271,9 +291,17 @@ class LinkCache {
 	}
 
 	/* private */ function fillFromLinkscc( $id ){ 
+		$fname = 'LinkCache::fillFromLinkscc';
+
 		$id = IntVal( $id );
-		$dbr =& wfGetDB( DB_READ );
-		$raw = $dbr->getField( 'linkscc', 'lcc_cacheobj', array( 'lcc_pageid' => $id ) );
+		if ( $this->mForUpdate ) {
+			$db =& wfGetDB( DB_MASTER );
+			$options = 'FOR UPDATE';
+		} else {
+			$db =& wfGetDB( DB_SLAVE );
+			$options = '';
+		}
+		$raw = $db->getField( 'linkscc', 'lcc_cacheobj', array( 'lcc_pageid' => $id ), $fname, $options );
 		if ( $raw === false ) {
 			return false;
 		}
@@ -304,7 +332,7 @@ class LinkCache {
 		} else {
 			$ser = serialize( $this );
 		}
-		$db =& wfGetDB( DB_WRITE );
+		$db =& wfGetDB( DB_MASTER );
 		$db->replace( 'linkscc', array( 'lcc_pageid' ), array( 'lcc_pageid' => $pid, 'lcc_cacheobj' => $ser ) );
 	}
 
@@ -315,7 +343,7 @@ class LinkCache {
 		if ( $wgEnablePersistentLC ) {
 			$fname = "LinkCache::linksccClearLinksTo";
 			$pid = intval( $pid );
-			$dbw =& wfGetDB( DB_WRITE );
+			$dbw =& wfGetDB( DB_MASTER );
 			# Delete linkscc rows which link to here
 			$dbw->deleteJoin( 'linkscc', 'links', 'lcc_pageid', 'l_from', array( 'l_to' => $pid ), $fname );
 			# Delete linkscc row representing this page
@@ -331,7 +359,7 @@ class LinkCache {
 		$fname = 'LinkCache::linksccClearBrokenLinksTo';
 
 		if ( $wgEnablePersistentLC ) {
-			$dbw =& wfGetDB( DB_WRITE );
+			$dbw =& wfGetDB( DB_MASTER );
 			$dbw->deleteJoin( 'linkscc', 'brokenlinks', 'lcc_pageid', 'bl_from', array( 'bl_to' => $title ), $fname );
 		}
 	}
@@ -341,7 +369,7 @@ class LinkCache {
 		global $wgEnablePersistentLC;
 		if ( $wgEnablePersistentLC ) {
 			$pid = intval( $pid );
-			$dbw =& wfGetDB( DB_WRITE );
+			$dbw =& wfGetDB( DB_MASTER );
 			$dbw->delete( 'linkscc', array( 'lcc_pageid' => $pid ) );
 		}
 	}

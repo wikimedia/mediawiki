@@ -65,15 +65,16 @@ function pages2xml( $pages, $curonly = false ) {
 
 function page2xml( $page, $curonly, $full = false ) {
 	global $wgLang;
+	$fname = 'page2xml';
+	
 	$title = Title::NewFromText( $page );
 	if( !$title ) return "";
-	$t = wfStrencode( $title->getDBKey() );
-	$ns = $title->getNamespace();
-	$sql = "SELECT cur_id as id,cur_timestamp as timestamp,cur_user as user,cur_user_text as user_text," .
-		"cur_restrictions as restrictions,cur_comment as comment,cur_text as text FROM cur " .
-		"WHERE cur_namespace=$ns AND cur_title='$t'";
-	$res = wfQuery( $sql, DB_READ );
-	if( $s = wfFetchObject( $res ) ) {
+
+	$dbr =& wfGetDB( DB_SLAVE );
+	$s = $dbr->selectRow( 'cur', array( 'cur_id as id','cur_timestamp as timestamp','cur_user as user',
+		'cur_user_text as user_text', 'cur_restrictions as restrictions','cur_comment as comment',
+		'cur_text as text' ), $title->curCond(), $fname );
+	if( $s !== false ) {
 		$tl = htmlspecialchars( $title->getPrefixedText() );
 		$xml = "  <page>\n";
 		$xml .= "    <title>$tl</title>\n";
@@ -84,12 +85,13 @@ function page2xml( $page, $curonly, $full = false ) {
 			$xml .= "    <restrictions>$s->restrictions</restrictions>\n";
 		}
 		if( !$curonly ) {
-			$sql = "SELECT old_id as id,old_timestamp as timestamp, old_user as user, old_user_text as user_text," .
-				"old_comment as comment, old_text as text, old_flags as flags FROM old " .
-				"WHERE old_namespace=$ns AND old_title='$t' ORDER BY old_timestamp";
-			$res = wfQuery( $sql, DB_READ );
+			$res = $dbr->select( 'old', array( 'old_id as id','old_timestamp as timestamp', 
+				'old_user as user', 'old_user_text as user_text', 'old_comment as comment', 
+				'old_text as text', 'old_flags as flags' ), $title->curCond(), 
+				array( 'ORDER BY' => 'old_timestamp' ), $fname
+			);
 
-			while( $s2 = wfFetchObject( $res ) ) {
+			while( $s2 = $dbr->fetchObject( $res ) ) {
 				$xml .= revision2xml( $s2, $full, false );
 			}
 		}

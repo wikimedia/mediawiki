@@ -51,11 +51,14 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 		$cmq = "AND cur_minor_edit=0";
 	} else { $cmq = ""; }
 
+	$dbr =& wfGetDB( DB_SLAVE );
+	extract( $dbr->tableNames( 'cur', 'links' ) );
+
 	$sql = "SELECT cur_id,cur_namespace,cur_title,cur_user,cur_comment," .
-	  "cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new FROM links, cur " .
+	  "cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new FROM $links, $cur " .
 	  "WHERE cur_timestamp > '{$cutoff}' {$cmq} AND l_to=cur_id AND l_from=$id " .
       "GROUP BY cur_id ORDER BY inverse_timestamp LIMIT {$limit}";
-	$res = wfQuery( $sql, DB_READ, $fname );
+	$res = $dbr->query( $sql, $fname );
 
 	$wgOut->addHTML("&lt; ".$sk->makeKnownLinkObj($nt, "", "redirect=no" )."<br />\n");
 	$note = wfMsg( "rcnote", $limit, $days );
@@ -68,12 +71,12 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 	$wgOut->addHTML( "{$note}\n" );
 
 	$s = $sk->beginRecentChangesList();
-	$count = wfNumRows( $res );
+	$count = $dbr->numRows( $res );
 	
 	$counter = 1;
 	while ( $limit ) {
 		if ( 0 == $count ) { break; }
-		$obj = wfFetchObject( $res );
+		$obj = $dbr->fetchObject( $res );
 		--$count;
 
 		$rc = RecentChange::newFromCurRow( $obj );
@@ -83,7 +86,7 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 	}
 	$s .= $sk->endRecentChangesList();
 
-	wfFreeResult( $res );
+	$dbr->freeResult( $res );
 	$wgOut->addHTML( $s );
 }
 

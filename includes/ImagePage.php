@@ -85,13 +85,13 @@ class ImagePage extends Article {
 
 		$wgOut->addHTML( "<h2>" . wfMsg( "imagelinks" ) . "</h2>\n" );
 
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$cur = $dbr->tableName( 'cur' );
 		$imagelinks = $dbr->tableName( 'imagelinks' );
 		
 		$sql = "SELECT cur_namespace,cur_title FROM $imagelinks,$cur WHERE il_to=" .
 		  $dbr->addQuotes( $this->mTitle->getDBkey() ) . " AND il_from=cur_id";
-		$res = $dbr->query( $sql, DB_READ, "Article::imageLinks" );
+		$res = $dbr->query( $sql, DB_SLAVE, "Article::imageLinks" );
 
 		if ( 0 == $dbr->numRows( $res ) ) {
 			$wgOut->addHtml( "<p>" . wfMsg( "nolinkstoimage" ) . "</p>\n" );
@@ -162,7 +162,7 @@ class ImagePage extends Article {
 		$image = $wgRequest->getVal( 'image' );
 		$oldimage = $wgRequest->getVal( 'oldimage' );
 		
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 
 		if ( !is_null( $image ) ) {
 			$dest = wfImageDir( $image );
@@ -273,7 +273,7 @@ class ImagePage extends Article {
 		}
 		$oldver = wfTimestampNow() . "!{$name}";
 		
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$size = $dbr->getField( "oldimage", "oi_size", "oi_archive_name='" .
 		  $dbr->strencode( $oldimage ) . "'" );
 

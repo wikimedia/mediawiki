@@ -7,17 +7,18 @@ function wfSpecialStatistics()
 
 	$wgOut->addHTML( "<h2>" . wfMsg( "sitestats" ) . "</h2>\n" );
 	
-	$db =& wfGetDB( DB_READ );
+	$dbr =& wfGetDB( DB_SLAVE );
+	extract( $dbr->tableNames( 'cur', 'site_stats', 'user' ) );
 
-	$sql = "SELECT COUNT(cur_id) AS total FROM cur";
-	$res = $db->query( $sql, $fname );
-	$row = $db->fetchObject( $res );
+	$sql = "SELECT COUNT(cur_id) AS total FROM $cur";
+	$res = $dbr->query( $sql, $fname );
+	$row = $dbr->fetchObject( $res );
 	$total = $row->total;
 
 	$sql = "SELECT ss_total_views, ss_total_edits, ss_good_articles " .
-	  "FROM site_stats WHERE ss_row_id=1";
-	$res = $db->query( $sql, $fname );
-	$row = $db->fetchObject( $res );
+	  "FROM $site_stats WHERE ss_row_id=1";
+	$res = $dbr->query( $sql, $fname );
+	$row = $dbr->fetchObject( $res );
 	$views = $row->ss_total_views;
 	$edits = $row->ss_total_edits;
 	$good = $row->ss_good_articles;
@@ -33,16 +34,15 @@ function wfSpecialStatistics()
 	$wgOut->addWikiText( $text );
 	$wgOut->addHTML( "<h2>" . wfMsg( "userstats" ) . "</h2>\n" );
 
-	$usertable = $db->tableName( 'user' );
-	$sql = "SELECT COUNT(user_id) AS total FROM $usertable";
-	$res = $db->query( $sql, $fname );
-	$row = $db->fetchObject( $res );
+	$sql = "SELECT COUNT(user_id) AS total FROM $user";
+	$res = $dbr->query( $sql, $fname );
+	$row = $dbr->fetchObject( $res );
 	$total = $row->total;
 
-	$sql = "SELECT COUNT(user_id) AS total FROM $usertable " .
+	$sql = "SELECT COUNT(user_id) AS total FROM $user " .
 	  "WHERE user_rights LIKE '%sysop%'";
-	$res = $db->query( $sql, $fname );
-	$row = $db->fetchObject( $res );
+	$res = $dbr->query( $sql, $fname );
+	$row = $dbr->fetchObject( $res );
 	$admins = $row->total;
 
 	$sk = $wgUser->getSkin();

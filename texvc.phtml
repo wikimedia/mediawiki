@@ -28,7 +28,7 @@ function xlinkToMathImage ( $tex, $outputhash )
 function texvc_cgi_renderMath( $tex )
 {
 	global $wgMathDirectory, $wgTmpDirectory, $wgInputEncoding;
-	$dbr =& wfGetDB( DB_READ );
+	$dbr =& wfGetDB( DB_SLAVE );
 	$mf   = wfMsg( "math_failure" );
 	$munk = wfMsg( "math_unknown_error" );
 
@@ -113,7 +113,7 @@ function texvc_cgi_renderMath( $tex )
 		$outmd5_sql = pack("H32", $outmd5);
 		
 		# Someone may have inserted the same hash since the SELECT, but that's no big deal, just ignore errors
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->insertArray( 'math', 
 		  array( 
 		    'math_inputhash' => $md5_sql, 

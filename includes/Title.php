@@ -110,7 +110,7 @@ class Title {
 		$t->mDbkeyform = str_replace( " ", "_", $s );
 		if( $t->secureAndSplit() ) {
 			# check that length of title is < cur_title size
-			$dbr =& wfGetDB( DB_READ );
+			$dbr =& wfGetDB( DB_SLAVE );
 			$maxSize = $dbr->textFieldSize( 'cur', 'cur_title' );
 			if ( $maxSize != -1 && strlen( $t->mDbkeyform ) > $maxSize ) {
 				return NULL;
@@ -128,7 +128,7 @@ class Title {
 	/* static */ function newFromID( $id ) 
 	{
 		$fname = "Title::newFromID";
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->getArray( "cur", array( "cur_namespace", "cur_title" ), 
 			array( "cur_id" => $id ), $fname );
 		if ( $row !== false ) {
@@ -164,7 +164,7 @@ class Title {
 	/* static */ function nameOf( $id )
 	{
 		$fname = 'Title::nameOf';
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		
 		$s = $dbr->getArray( 'cur', array( 'cur_namespace','cur_title' ),  array( 'cur_id' => $id ), $fname );
 		if ( $s === false ) { return NULL; }
@@ -247,7 +247,7 @@ class Title {
 			$wgTitleInterwikiCache[$k] = $s;
 			return $s->iw_url;
 		}
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'interwiki', array( 'iw_url', 'iw_local' ), array( 'iw_prefix' => $key ), $fname );
                 if(!$res) return "";
 		
@@ -285,7 +285,7 @@ class Title {
 		if ( $timestamp == "" ) {
 			$timestamp = wfTimestampNow();
 		}
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$cur = $dbw->tableName( 'cur' );
 		$sql = "UPDATE $cur SET cur_touched='{$timestamp}' WHERE cur_id IN (";
 		$first = true;
@@ -558,7 +558,7 @@ class Title {
 		if ( 0 == $id ) { return array(); }
 
 		if ( ! $this->mRestrictionsLoaded ) {
-			$dbr =& wfGetDB( DB_READ );
+			$dbr =& wfGetDB( DB_SLAVE );
 			$res = $dbr->getField( "cur", "cur_restrictions", "cur_id=$id" );
 			$this->mRestrictions = explode( ",", trim( $res ) );
 			$this->mRestrictionsLoaded = true;
@@ -570,7 +570,7 @@ class Title {
 	# Returns the number of archived revisions
 	function isDeleted() {
 		$fname = 'Title::isDeleted';
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$n = $dbr->getField( 'archive', 'COUNT(*)', array( 'ar_namespace' => $this->getNamespace(), 
 			'ar_title' => $this->getDBkey() ), $fname );
 		return (int)$n;
@@ -605,7 +605,7 @@ class Title {
 	# Called from LinksUpdate.php
 	function invalidateCache() {
 		$now = wfTimestampNow();
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$success = $dbw->updateArray( 'cur', 
 			array( /* SET */ 
 				'cur_touched' => wfTimestampNow()
@@ -776,9 +776,9 @@ class Title {
 		$id = $this->getArticleID();
 		
 		if ( $options ) {
-			$db =& wfGetDB( DB_WRITE );
+			$db =& wfGetDB( DB_MASTER );
 		} else {
-			$db =& wfGetDB( DB_READ );
+			$db =& wfGetDB( DB_SLAVE );
 		}
 		$cur = $db->tableName( 'cur' );
 		$links = $db->tableName( 'links' );
@@ -804,9 +804,9 @@ class Title {
 		global $wgLinkCache;
 		
 		if ( $options ) {
-			$db =& wfGetDB( DB_WRITE );
+			$db =& wfGetDB( DB_MASTER );
 		} else {
-			$db =& wfGetDB( DB_READ );
+			$db =& wfGetDB( DB_SLAVE );
 		}
 		$cur = $db->tableName( 'cur' );
 		$brokenlinks = $db->tableName( 'brokenlinks' );
@@ -912,7 +912,7 @@ class Title {
         $won = wfInvertTimestamp( $now );
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$links = $dbw->tableName( 'links' );
 
 		# Change the name of the target page:
@@ -1008,7 +1008,7 @@ class Title {
 				$sql .= "($id, $oldid)";
 			}
 
-			$dbw->query( $sql, DB_WRITE, $fname );
+			$dbw->query( $sql, DB_MASTER, $fname );
 		}
 
 		# Now, we record the link from the redirect to the new title.
@@ -1041,7 +1041,7 @@ class Title {
 		$won = wfInvertTimestamp( $now );
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 
 		# Rename cur entry
 		$dbw->updateArray( 'cur',
@@ -1122,7 +1122,7 @@ class Title {
 	function isValidMoveTarget( $nt )
 	{
 		$fname = "Title::isValidMoveTarget";
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 
 		# Is it a redirect?
 		$id  = $nt->getArticleID();
@@ -1163,7 +1163,7 @@ class Title {
 		}
 		
 		$fname = "Title::createRedirect";
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
 		$won = wfInvertTimestamp( $now );
 		$seqVal = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
@@ -1216,7 +1216,7 @@ class Title {
 		$cns = Namespace::getCategory();
 		$sk =& $wgUser->getSkin();
 		$parents = array();
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$cur = $dbr->tableName( 'cur' );
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 
@@ -1286,6 +1286,13 @@ class Title {
 		else { return ''; };
 	}
 	
-	
+	# Returns an associative array for selecting this title from cur
+	function curCond() {
+		return array( 'cur_namespace' => $this->mNamespace, 'cur_title' => $this->mDbkeyform );
+	}
+
+	function oldCond() {
+		return array( 'old_namespace' => $this->mNamespace, 'old_title' => $this->mDbkeyform );
+	}
 }
 ?>

@@ -209,14 +209,23 @@ class DatabasePgsql extends Database {
 
 	function insertArray( $table, $a, $fname = "Database::insertArray", $options = array() ) {
 		# PostgreSQL doesn't support options
-		# We have a go at faking some of them
+		# We have a go at faking one of them
+		# TODO: DELAYED, LOW_PRIORITY 
+
+		# IGNORE is performed using single-row inserts, ignoring errors in each
 		if ( in_array( 'IGNORE', $options ) ) {
-			$ignore = true;
+			# FIXME: need some way to distiguish between key collision and other types of error
 			$oldIgnore = $this->setIgnoreErrors( true );
-		}
-		$retVal = parent::insertArray( $table, $a, $fname, array() );
-		if ( $ignore ) {
+			if ( !is_array( reset( $a ) ) ) {
+				$a = array( $a );
+			}
+			foreach ( $a as $row ) {
+				parent::insertArray( $table, $row, $fname, array() );
+			}
 			$this->setIgnoreErrors( $oldIgnore );
+			$retVal = true;
+		} else {
+			$retVal = parent::insertArray( $table, $a, $fname, array() );
 		}
 		return $retVal;
 	}
@@ -273,56 +282,46 @@ class DatabasePgsql extends Database {
 	function replace( $table, $uniqueIndexes, $rows, $fname = "Database::replace" ) {
 		$table = $this->tableName( $table );
 
-		# Delete rows which collide
-		if ( $uniqueIndexes ) {
-			$sql = "DELETE FROM $table WHERE (";
-			$first = true;
-			foreach ( $uniqueIndexes as $index ) {
-				if ( $first ) {
-					$first = false;
-				} else {
-					$sql .= ") OR (";
-				}
-				if ( is_array( $col ) ) {
-					$first2 = true;
-					$sql .= "(";
-					foreach ( $index as $col ) {
-						if ( $first2 ) { 
-							$first2 = false;
-						} else {
-							$sql .= " AND ";
-						}
-						//midom: atleast unbreak the class (remove syntax errors)
-						//$sql .= "$col = " $this->strencode;
-					}
-				}
-				if ( $first ) {
-					$first = false;
-				} else {
-					$sql .= "OR ";
-				}
-				$sql .= "$col IN (";
-				$indexValues = array();
-				foreach ( $rows as $row ) {
-					$indexValues[] = $row[$col];
-				}
-				$sql .= $this->makeList( $indexValues, LIST_COMMA ) . ") ";
-			}
-			$this->query( $sql, $fname );
+		# Single row case
+		if ( !is_array( reset( $rows ) ) ) {
+			$rows = array( $rows );
 		}
 
-		# Now insert the rows
-		$sql = "INSERT INTO $table (" . $this->makeList( array_flip( $rows[0] ) ) .") VALUES ";
-		$first = true;
-		foreach ( $rows as $row ) {
-			if ( $first ) {
-				$first = false;
-			} else {
-				$sql .= ",";
+		foreach( $rows as $row ) {
+			# Delete rows which collide
+			if ( $uniqueIndexes ) {
+				$sql = "DELETE FROM $table WHERE (";
+				$first = true;
+				foreach ( $uniqueIndexes as $index ) {
+					if ( $first ) {
+						$first = false;
+					} else {
+						$sql .= ") OR (";
+					}
+					if ( is_array( $index ) ) {
+						$first2 = true;
+						$sql .= "(";
+						foreach ( $index as $col ) {
+							if ( $first2 ) { 
+								$first2 = false;
+							} else {
+								$sql .= " AND ";
+							}
+							$sql .= "$col=" . $this->addQuotes( $row[$col] )
+						}
+				} else {
+						$sql .= "$index=" . $this->addQuotes( $row[$index] );
+				}
+				}
+				$sql .= ")";
+				$this->query( $sql, $fname );
 			}
-			$sql .= "(" . $this->makeList( $row, LIST_COMMA ) . ")";
+
+			# Now insert the row
+			$sql = "INSERT INTO $table (" . $this->makeList( array_flip( $row ) ) .') VALUES (' .
+				$this->makeList( $row, LIST_COMMA ) . ')';
+			$this->query( $sql, $fname );
 		}
-		$this->query( $sql, $fname );
 	}
 
 	# DELETE where the condition is a join
@@ -357,6 +356,11 @@ class DatabasePgsql extends Database {
 
 	function limitResult($limit,$offset) {
         	return " LIMIT $limit ".(is_numeric($offset)?" OFFSET {$offset} ":"");
+	}
+
+	# FIXME: actually detecting deadlocks might be nice
+	function wasDeadlock() {
+		return false;
 	}
 }
 

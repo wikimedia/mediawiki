@@ -6,9 +6,10 @@ function wfSpecialImagelist()
 	
 	$sort = $wgRequest->getVal( 'sort' );
 	$wpIlMatch = $wgRequest->getText( 'wpIlMatch' );
-
+	$dbr =& wfGetDB( DB_SLAVE );
+	$image = $dbr->tableName( 'image' );
 	$sql = "SELECT img_size,img_name,img_user,img_user_text," .
-	  "img_description,img_timestamp FROM image";
+	  "img_description,img_timestamp FROM $image";
 
 	$byname = wfMsg( "byname" );
 	$bydate = wfMsg( "bydate" );
@@ -20,7 +21,7 @@ function wfSpecialImagelist()
 	} else if ( "byname" == $sort ) {
 		if ( $wpIlMatch ) {
 			$nt = Title::newFromUrl( $wpIlMatch );
-			$m = wfStrencode( strtolower( $nt->getDBkey() ) );
+			$m = $dbr->strencode( strtolower( $nt->getDBkey() ) );
 			$m = str_replace( "%", "\\%", $m );
 			$m = str_replace( "_", "\\_", $m );
 			$sql .= " WHERE LCASE(img_name) LIKE '%{$m}%'";
@@ -93,8 +94,8 @@ function wfSpecialImagelist()
 	$text = wfMsg( "showlast", $fill, $bydate );
 	$wgOut->addHTML( "{$text}</p>\n<p>" );
 
-	$res = wfQuery( $sql, DB_READ, "wfSpecialImagelist" );
-	while ( $s = wfFetchObject( $res ) ) {
+	$res = $dbr->query( $sql, "wfSpecialImagelist" );
+	while ( $s = $dbr->fetchObject( $res ) ) {
 		$name = $s->img_name;
 		$ut = $s->img_user_text;
 		if ( 0 == $s->img_user ) { $ul = $ut; }
@@ -117,7 +118,7 @@ function wfSpecialImagelist()
 		$wgOut->addHTML( "{$l}<br />\n" );
 	}
 	$wgOut->addHTML( "</p>" );
-	wfFreeResult( $res );
+	$dbr->freeResult( $res );
 }
 
 ?>

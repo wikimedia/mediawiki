@@ -88,6 +88,7 @@ class RecentChange
 		global $wgUseRCQueue, $wgRCQueueID, $wgLocalInterwiki, $wgPutIPinRC;
 		$fname = "RecentChange::save";
 		
+		$dbw =& wfGetDB( DB_MASTER );
 		if ( !is_array($this->mExtra) ) {
 			$this->mExtra = array();
 		}
@@ -98,26 +99,31 @@ class RecentChange
 		}
 		
 		# Insert new row
-		wfInsertArray( "recentchanges", $this->mAttribs, $fname );
+		$dbw->insertArray( "recentchanges", $this->mAttribs, $fname );
 		
 		# Update old rows, if necessary
 		if ( $this->mAttribs['rc_type'] == RC_EDIT ) {
 			$oldid = $this->mAttribs['rc_last_oldid'];
 			$ns = $this->mAttribs['rc_namespace'];
-			$title = wfStrencode($this->mAttribs['rc_title']);
+			$title = $this->mAttribs['rc_title'];
 			$lastTime = $this->mExtra['lastTimestamp'];
 			$now = $this->mAttribs['rc_timestamp'];
 			$curId = $this->mAttribs['rc_cur_id'];
 			
 			# Update rc_this_oldid for the entries which were current
-			$sql = "UPDATE recentchanges SET rc_this_oldid={$oldid} " .
-				"WHERE rc_namespace=$ns AND rc_title='$title' AND rc_timestamp='$lastTime'";
-			wfQuery( $sql, DB_WRITE, $fname );
+			$dbw->updateArray( 'recentchanges', 
+				array( /* SET */
+					'rc_this_oldid' => $oldid
+				), array( /* WHERE */ 
+					'rc_namespace' => $ns,
+					'rc_title' => $title,
+					'rc_timestamp' => $lastTime
+				), $fname
+			);
 
 			# Update rc_cur_time
-			$sql = "UPDATE recentchanges SET rc_cur_time='{$now}' " .
-			  "WHERE rc_cur_id=" . $curId;
-			wfQuery( $sql, DB_WRITE, $fname );
+			$dbw->updateArray( 'recentchanges', array( 'rc_cur_time' => $now ), 
+				array( 'rc_cur_id' => $curId ), $fname );
 		}
 		
 		# Notify external application

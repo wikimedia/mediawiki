@@ -13,9 +13,11 @@ class ListUsersPage extends QueryPage {
 	}
 
 	function getSQL() {
-		$usertable = wfTableName( 'user', DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
+		$usertable = $dbr->tableName( 'user' );
 		$userspace = Namespace::getUser();
-		return "SELECT user_rights as type, $userspace as namespace, user_name as title, user_name as value FROM $usertable";
+		return "SELECT user_rights as type, $userspace as namespace, user_name as title, " .
+			"user_name as value FROM $usertable";
 	}
 	
 	function sortDescending() {

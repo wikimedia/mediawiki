@@ -9,6 +9,13 @@ define( "LIST_COMMA", 0 );
 define( "LIST_AND", 1 );
 define( "LIST_SET", 2 );
 
+# Number of times to re-try an operation in case of deadlock
+define( "DEADLOCK_TRIES", 4 );
+# Minimum time to wait before retry, in microseconds
+define( "DEADLOCK_DELAY_MIN", 500000 );
+# Maximum time to wait before retry
+define( "DEADLOCK_DELAY_MAX", 1500000 );
+
 class Database {
 
 #------------------------------------------------------------------------------
@@ -22,6 +29,7 @@ class Database {
 	/* private */ var $mOut, $mDebug, $mOpened = false;
 	
 	/* private */ var $mFailFunction; 
+	/* private */ var $mTablePrefix;
 
 #------------------------------------------------------------------------------
 # Accessors
@@ -61,9 +69,10 @@ class Database {
 #------------------------------------------------------------------------------
 
 	function Database( $server = false, $user = false, $password = false, $dbName = false, 
-		$failFunction = false, $debug = false, $bufferResults = true, $ignoreErrors = false )
+		$failFunction = false, $debug = false, $bufferResults = true, $ignoreErrors = false,
+		$tablePrefix = 'get from global' )
 	{
-		global $wgOut;
+		global $wgOut, $wgDBprefix;
 		# Can't get a reference if it hasn't been set yet
 		if ( !isset( $wgOut ) ) {
 			$wgOut = NULL;
@@ -74,6 +83,12 @@ class Database {
 		$this->mIgnoreErrors = $ignoreErrors;
 		$this->mDebug = $debug;
 		$this->mBufferResults = $bufferResults;
+		if ( $tablePrefix == 'get from global' ) {
+			$this->mTablePrefix = $wgDBprefix;
+		} else {
+			$this->mTablePrefix = $tablePrefix;
+		}
+
 		if ( $server ) {
 			$this->open( $server, $user, $password, $dbName );
 		}
@@ -188,29 +203,7 @@ class Database {
 		}
 	
 		if ( false === $ret ) {
-			# Ignore errors during error handling to avoid infinite recursion
-			$ignore = $this->setIgnoreErrors( true );
-
-			$error = mysql_error( $this->mConn );
-			$errno = mysql_errno( $this->mConn );
-			if( $ignore || $tempIgnore ) {
-				wfDebug("SQL ERROR (ignored): " . $error . "\n");
-			} else {
-				$sql1line = str_replace( "\n", "\\n", $sql );
-				wfLogDBError("$fname\t$errno\t$error\t$sql1line\n");
-				wfDebug("SQL ERROR: " . $error . "\n");
-				if ( $wgCommandLineMode ) {
-					wfDebugDieBacktrace( "A database error has occurred\n" .
-					  "Query: $sql\n" .
-					  "Function: $fname\n" .
-					  "Error: $errno $error\n"
-					);
-				} elseif ( $this->mOut ) {
-					// this calls wfAbruptExit()
-					$this->mOut->databaseError( $fname, $sql, $error, $errno ); 				
-				}
-			}
-			$this->setIgnoreErrors( $ignore );
+			$this->reportQueryError( mysql_error(), mysql_errno(), $sql, $fname, $tempIgnore );
 		}
 		
 		if ( $wgProfiling ) {
@@ -219,6 +212,34 @@ class Database {
 		return $ret;
 	}
 	
+	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
+		global $wgCommandLineMode, $wgFullyInitialised;
+		# Ignore errors during error handling to avoid infinite recursion
+		$ignore = $this->setIgnoreErrors( true );
+
+		if( $ignore || $tempIgnore ) {
+			wfDebug("SQL ERROR (ignored): " . $error . "\n");
+		} else {
+			$sql1line = str_replace( "\n", "\\n", $sql );
+			wfLogDBError("$fname\t$errno\t$error\t$sql1line\n");
+			wfDebug("SQL ERROR: " . $error . "\n");
+			if ( $wgCommandLineMode || !$this->mOut || empty( $wgFullyInitialised ) ) {
+				$message = "A database error has occurred\n" .
+				  "Query: $sql\n" .
+				  "Function: $fname\n" .
+				  "Error: $errno $error\n";
+				if ( !$wgCommandLineMode ) {	
+					$message = nl2br( $message );
+				}
+				wfDebugDieBacktrace( $message );
+			} else {
+				// this calls wfAbruptExit()
+				$this->mOut->databaseError( $fname, $sql, $error, $errno ); 				
+			}
+		}
+		$this->setIgnoreErrors( $ignore );
+	}
+
 	function freeResult( $res ) {
 		if ( !@mysql_free_result( $res ) ) {
 			wfDebugDieBacktrace( "Unable to free MySQL result\n" );
@@ -263,41 +284,39 @@ class Database {
 	{
 		$table = $this->tableName( $table );
 		$sql = "UPDATE $table SET $var = '" .
-		  wfStrencode( $value ) . "' WHERE ($cond)";
-		return !!$this->query( $sql, DB_WRITE, $fname );
+		  $this->strencode( $value ) . "' WHERE ($cond)";
+		return !!$this->query( $sql, DB_MASTER, $fname );
 	}
 	
+	function getField( $table, $var, $cond, $fname = "Database::get", $options = array() ) {
+		return $this->selectField( $table, $var, $cond, $fname = "Database::get", $options = array() );
+	}
+
 	# Simple SELECT wrapper, returns a single field, input must be encoded
 	# Usually aborts on failure
 	# If errors are explicitly ignored, returns FALSE on failure
-	function getField( $table, $var, $cond, $fname = "Database::get" )
+	function selectField( $table, $var, $cond, $fname = "Database::selectField", $options = array() )
 	{
-		$table = $this->tableName( $table );
-		$from = $table?" FROM $table ":"";
-		if ( is_array( $cond ) ) {
-			$where = ' WHERE ' . $this->makeList( $cond, LIST_AND );
-		} elseif ( $cond ) {
-			$where = " WHERE ($cond)";
+		if ( !is_array( $options ) ) {
+			$options = array( $options );
+		}
+		$options['LIMIT'] = 1;
+
+		$res = $this->select( $table, $var, $cond, $fname, $options );
+		if ( $res === false || !$this->numRows( $res ) ) {
+			return false;
+		}
+		$row = $this->fetchRow( $res );
+		if ( $row !== false ) {
+			$this->freeResult( $res );
+			return $row[0];
 		} else {
-			$where = '';
+			return false;
 		}
-		$sql = "SELECT $var $from $where LIMIT 1";
-		$result = $this->query( $sql, $fname );
-	
-		$ret = false;
-		if ( $this->numRows( $result ) > 0 ) {
-			$s = $this->fetchRow( $result );
-			$ret = $s[0];
-			$this->freeResult( $result );
-		}
-		return $ret;
 	}
 	
-	# SELECT wrapper
-	function select( $table, $vars, $conds, $fname = "Database::select", $options = array() )
-	{
-		$vars = implode( ",", $vars );
-		$table = $this->tableName( $table );
+	# Returns an optional USE INDEX clause to go after the table, and a string to go at the end of the query
+	function makeSelectOptions( $options ) {
 		if ( !is_array( $options ) ) {
 			$options = array( $options );
 		}
@@ -324,14 +343,31 @@ class Database {
 		} else {
 			$useIndex = '';
 		}
+		return array( $useIndex, $tailOpts );
+	}
 
+	# SELECT wrapper
+	function select( $table, $vars, $conds, $fname = "Database::select", $options = array() )
+	{
+		if ( is_array( $vars ) ) {
+			$vars = implode( ",", $vars );
+		}
+		$table = $this->tableName( $table );
+		list( $useIndex, $tailOpts ) = $this->makeSelectOptions( $options );
+		
 		if ( $conds !== false ) {
-			$where = $this->makeList( $conds, LIST_AND );
-			$sql = "SELECT $vars FROM $table $useIndex WHERE $where $tailOpts";
+			if ( is_array( $conds ) ) {
+				$conds = $this->makeList( $conds, LIST_AND );
+			}
+			$sql = "SELECT $vars FROM $table $useIndex WHERE $conds $tailOpts";
 		} else {
 			$sql = "SELECT $vars FROM $table $useIndex $tailOpts";
 		}
 		return $this->query( $sql, $fname );
+	}
+	
+	function getArray( $table, $vars, $conds, $fname = "Database::getArray", $options = array() ) {
+		return $this->selectRow( $table, $vars, $conds, $fname, $options );
 	}
 	
 	# Single row SELECT wrapper
@@ -341,9 +377,9 @@ class Database {
 	# $conds: a condition map, terms are ANDed together. 
 	#    Items with numeric keys are taken to be literal conditions
 	# Takes an array of selected variables, and a condition map, which is ANDed
-	# e.g. getArray( "cur", array( "cur_id" ), array( "cur_namespace" => 0, "cur_title" => "Astronomy" ) )
+	# e.g. selectRow( "cur", array( "cur_id" ), array( "cur_namespace" => 0, "cur_title" => "Astronomy" ) )
 	#   would return an object where $obj->cur_id is the ID of the Astronomy article
-	function getArray( $table, $vars, $conds, $fname = "Database::getArray", $options = array() ) {
+	function selectRow( $table, $vars, $conds, $fname = "Database::selectRow", $options = array() ) {
 		$options['LIMIT'] = 1;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
 		if ( $res === false || !$this->numRows( $res ) ) {
@@ -384,7 +420,7 @@ class Database {
 	function fieldExists( $table, $field, $fname = "Database::fieldExists" )
 	{
 		$table = $this->tableName( $table );
-		$res = $this->query( "DESCRIBE $table", DB_READ, $fname );
+		$res = $this->query( "DESCRIBE $table", DB_SLAVE, $fname );
 		if ( !$res ) {
 			return NULL;
 		}
@@ -459,6 +495,22 @@ class Database {
 		}
 		return false;
 	}
+	
+	function fieldType( $res, $index ) {
+		return mysql_field_type( $res, $index );
+	}
+
+	function indexUnique( $table, $index ) {
+		$indexInfo = $this->indexInfo( $table, $index );
+		if ( !$indexInfo ) {
+			return NULL;
+		}
+		return !$indexInfo->Non_unique;
+	}
+
+	function insertArray( $table, $a, $fname = "Database::insertArray", $options = array() ) {
+		return $this->insert( $table, $a, $fname = "Database::insertArray", $options = array() );
+	}
 
 	# INSERT wrapper, inserts an array into a table
 	#
@@ -467,9 +519,12 @@ class Database {
 	#
 	# Usually aborts on failure
 	# If errors are explicitly ignored, returns success
-	function insertArray( $table, $a, $fname = "Database::insertArray", $options = array() )
+	function insert( $table, $a, $fname = "Database::insert", $options = array() )
 	{
 		$table = $this->tableName( $table );
+		if ( !is_array( $options ) ) {
+			$options = array( $options );
+		}
 		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
 			$multi = true;
 			$keys = array_keys( $a[0] );
@@ -496,9 +551,13 @@ class Database {
 		}
 		return !!$this->query( $sql, $fname );
 	}
+
+	function updateArray( $table, $values, $conds, $fname = "Database::updateArray" ) {
+		return $this->update( $table, $values, $conds, $fname );
+	}
 	
 	# UPDATE wrapper, takes a condition array and a SET array
-	function updateArray( $table, $values, $conds, $fname = "Database::updateArray" )
+	function update( $table, $values, $conds, $fname = "Database::update" )
 	{
 		$table = $this->tableName( $table );
 		$sql = "UPDATE $table SET " . $this->makeList( $values, LIST_SET );
@@ -559,9 +618,23 @@ class Database {
 	}
 
 	function tableName( $name ) {
+		if ( $this->mTablePrefix !== '' ) {
+			if ( strpos( '.', $name ) === false ) {
+				$name = $this->mTablePrefix . $name;
+			}
+		}
 		return $name;
 	}
 
+	function tableNames() {
+		$inArray = func_get_args();
+		$retVal = array();
+		foreach ( $inArray as $name ) {
+			$retVal[$name] = $this->tableName( $name );
+		}
+		return $retVal;
+	}
+	
 	function strencode( $s ) {
 		return addslashes( $s );
 	}
@@ -653,7 +726,7 @@ class Database {
 		$table = $this->tableName( $table );
 		$sql = "SHOW COLUMNS FROM $table LIKE \"$field\";";
 		$res = $this->query( $sql, "Database::textFieldSize" );
-		$row = wfFetchObject( $res );
+		$row = $this->fetchObject( $res );
 		$this->freeResult( $res );
 
 		if ( preg_match( "/\((.*)\)/", $row->Type, $m ) ) {
@@ -699,6 +772,84 @@ class Database {
 
 	function limitResult($limit,$offset) {
 		return " LIMIT ".(is_numeric($offset)?"{$offset},":"")."{$limit} ";
+	}
+
+	function wasDeadlock() {
+		return $this->lastErrno() == 1213;
+	}
+
+	function deadlockLoop() {
+		$myFname = 'Database::deadlockLoop';
+		
+		$this->query( "BEGIN", $myFname );
+		$args = func_get_args();
+		$function = array_shift( $args );
+		$oldIgnore = $dbw->setIgnoreErrors( true );
+		$tries = DEADLOCK_TRIES;
+		if ( is_array( $function ) ) {
+			$fname = $function[0];
+		} else {
+			$fname = $function;
+		}
+		do {
+			$retVal = call_user_func_array( $function, $args );
+			$error = $this->lastError();
+			$errno = $this->lastErrno();
+			$sql = $this->lastQuery();
+			
+			if ( $errno ) {
+				if ( $dbw->wasDeadlock() ) {
+					# Retry
+					usleep( mt_rand( DEADLOCK_DELAY_MIN, DEADLOCK_DELAY_MAX ) );
+				} else {
+					$dbw->reportQueryError( $error, $errno, $sql, $fname );
+				}
+			}
+		} while( $dbw->wasDeadlock && --$tries > 0 );
+		$this->setIgnoreErrors( $oldIgnore );
+		if ( $tries <= 0 ) {
+			$this->query( "ROLLBACK", $myFname );
+			$this->reportQueryError( $error, $errno, $sql, $fname );
+			return false;
+		} else {
+			$this->query( "COMMIT", $myFname );
+			return $retVal;
+		}
+	}
+
+	# Do a SELECT MASTER_POS_WAIT()
+	function masterPosWait( $file, $pos ) {
+		$encFile = $this->strencode( $file );
+		$sql = "SELECT MASTER_POS_WAIT('$encFile', $pos)";
+		$res = $this->query( $sql, "Database::masterPosWait" );
+		if ( $res && $row = $this->fetchRow( $res ) ) {
+			$this->freeResult( $res );
+			return $row[0];
+		} else {
+			return false;
+		}
+	}
+
+	# Get the position of the master from SHOW SLAVE STATUS
+	function getSlavePos() {
+		$res = $this->query( 'SHOW SLAVE STATUS', 'Database::getSlavePos' );
+		$row = $this->fetchObject( $res );
+		if ( $row ) {
+			return array( $row->Master_Log_File, $row->Read_Master_Log_Pos );
+		} else {
+			return array( false, false );
+		}
+	}
+	
+	# Get the position of the master from SHOW MASTER STATUS
+	function getMasterPos() {
+		$res = $this->query( 'SHOW MASTER STATUS', 'Database::getMasterPos' );
+		$row = $this->fetchObject( $res );
+		if ( $row ) {
+			return array( $row->File, $row->Position );
+		} else {
+			return array( false, false );
+		}
 	}
 } 
 

@@ -49,7 +49,7 @@ class Block
 
 		$ret = false;
 		$killed = false;
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$ipblocks = $dbr->tableName( 'ipblocks' );
 
 		if ( 0 == $user && $address=="" ) {
@@ -132,14 +132,14 @@ class Block
 	# Callback with a Block object for every block
 	/*static*/ function enumBlocks( $callback, $tag, $killExpired = true ) 
 	{
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$ipblocks = $dbr->tableName( 'ipblocks' );
 		
 		$sql = "SELECT * FROM $ipblocks ORDER BY ipb_timestamp DESC";
 		$res = $dbr->query( $sql, 'Block::enumBans' );
 		$block = new Block();
 
-		while ( $row = wfFetchObject( $res ) ) {
+		while ( $row = $dbr->fetchObject( $res ) ) {
 			$block->initFromRow( $row );
 			if ( $killExpired ) {
 				if ( !$block->deleteIfExpired() ) {
@@ -155,7 +155,7 @@ class Block
 	function delete() 
 	{
 		$fname = 'Block::delete';
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 
 		if ( $this->mAddress == "" ) {
 			$condition = array( 'ipb_id' => $this->mId );
@@ -168,7 +168,7 @@ class Block
 
 	function insert() 
 	{
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->insertArray( 'ipblocks',
 			array(
 				'ipb_address' => $this->mAddress,
@@ -214,7 +214,7 @@ class Block
 			$this->mTimestamp = wfTimestampNow();
 			$this->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
 
-			$dbw =& wfGetDB( DB_WRITE );
+			$dbw =& wfGetDB( DB_MASTER );
 			$dbw->updateArray( 'ipblocks', 
 				array( /* SET */ 
 					'ipb_timestamp' => $this->mTimestamp,

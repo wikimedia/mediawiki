@@ -121,7 +121,7 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 		global $wgTitle, $wgOut, $wgLang;
 		$fname = "DifferenceEngine::loadText";
 		
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		if ( 0 == $this->mNewid || 0 == $this->mOldid ) {
 			$wgOut->setArticleFlag( true );
 			$this->mNewtitle = wfMsg( "currentrev" );

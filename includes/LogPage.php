@@ -20,7 +20,7 @@ class LogPage {
 	{
 		$fname = 'LogPage::getContent';
 
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$s = $dbw->getArray( 'cur', 
 			array( 'cur_id','cur_text','cur_timestamp' ),
 			array( 'cur_namespace' => Namespace::getWikipedia(), 'cur_title' => $this->mTitle ), 
@@ -56,7 +56,7 @@ class LogPage {
 		global $wgUser;
 		$fname = "LogPage::saveContent";
 
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$uid = $wgUser->getID();
 
 		if( !$this->mContentLoaded ) return false;

@@ -74,6 +74,7 @@ global $wgMsgCacheExpiry, $wgCommandLineMode;
 global $wgBlockCache, $wgParserCache, $wgParser, $wgDBConnections;
 global $wgLoadBalancer, $wgDBservers;
 global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype;
+global $wgFullyInitialised;
 
 # Useful debug output
 if ( $wgCommandLineMode ) {
@@ -126,13 +127,6 @@ if( $wgUseMemCached ) {
 	$wgMemc->set_servers( $wgMemCachedServers );
 	$wgMemc->set_debug( $wgMemCachedDebug );
 
-	# Test it to see if it's working
-	# This is necessary because otherwise wfMsg would be extremely inefficient
-	if ( !$wgMemc->set( 'test', '', 0 ) ) {
-		wfDebug( "Memcached failed setup test - connection error?\n" );
-		$wgUseMemCached = false;
-		$wgMemc = new FakeMemCachedClient();
-	}
 	$messageMemc = &$wgMemc;
 } else {
 	$wgMemc = new FakeMemCachedClient();
@@ -144,6 +138,16 @@ if( $wgUseMemCached ) {
 }
 
 wfProfileOut( $fname.'-memcached' );
+wfProfileIn( $fname.'-SetupSession' );
+
+if( !$wgCommandLineMode && ( isset( $_COOKIE[ini_get('session.name')] ) || isset( $_COOKIE[$wgDBname.'Password'] ) ) ) {
+	User::SetupSession();
+	$wgSessionStarted = true;
+} else {
+	$wgSessionStarted = false;
+}
+
+wfProfileOut( $fname.'-SetupSession' );
 wfProfileIn( $fname.'-database' );
 
 if ( !$wgDBservers ) {
@@ -157,7 +161,7 @@ if ( !$wgDBservers ) {
 	));
 }
 $wgLoadBalancer = LoadBalancer::newFromParams( $wgDBservers );
-$wgLoadBalancer->force(0);
+$wgLoadBalancer->loadMasterPos();
 
 wfProfileOut( $fname.'-database' );
 wfProfileIn( $fname.'-language' );
@@ -205,13 +209,6 @@ if ( $wgUseDynamicDates ) {
 }
 
 wfProfileOut( $fname.'-DateFormatter' );
-wfProfileIn( $fname.'-SetupSession' );
-
-if( !$wgCommandLineMode && ( isset( $_COOKIE[ini_get('session.name')] ) || isset( $_COOKIE[$wgDBname.'Password'] ) ) ) {
-	User::SetupSession();
-}
-
-wfProfileOut( $fname.'-SetupSession' );
 wfProfileIn( $fname.'-BlockCache' );
 
 $wgBlockCache = new BlockCache( true );
@@ -238,6 +235,7 @@ $wgParserCache = new ParserCache();
 $wgParser = new Parser();
 $wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
 $wgDBConnections = array();
+wfSeedRandom();
 
 # Placeholders in case of DB error
 $wgTitle = Title::newFromText( wfMsg( 'badtitle' ) );
@@ -254,6 +252,7 @@ foreach ( $wgExtensionFunctions as $func ) {
 	$func();
 }
 
+$wgFullyInitialised = true;
 wfProfileOut( $fname.'-extensions' );
 wfProfileOut( $fname );
 

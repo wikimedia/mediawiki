@@ -32,16 +32,18 @@ $wgCommandLineMode = true;
 set_time_limit(0);
 
 sleep(30);
+$dbr =& wfGetDB( DB_SLAVE );
+$recentchanges = $dbr->tableName( 'recentchanges' );
 
-$res = wfQuery( "SELECT rc_timestamp FROM recentchanges ORDER BY rc_timestamp DESC LIMIT 1", DB_READ ); 
-$row = wfFetchObject( $res );
+$res = $dbr->query( "SELECT rc_timestamp FROM $recentchanges ORDER BY rc_timestamp DESC LIMIT 1" ); 
+$row = $dbr->fetchObject( $res );
 $oldTimestamp = $row->rc_timestamp;
 $serverCount = 0;
 
 while (1) {
-	$res = wfQuery( "SELECT * FROM recentchanges WHERE rc_timestamp>'$oldTimestamp' ORDER BY rc_timestamp", DB_READ );
+	$res = $dbr->query( "SELECT * FROM $recentchanges WHERE rc_timestamp>'$oldTimestamp' ORDER BY rc_timestamp" );
 	$rowIndex = 0;
-	while ( $row = wfFetchObject( $res ) ) {
+	while ( $row = $dbr->fetchObject( $res ) ) {
 		if ( ++$serverCount % 20 == 0 ) {
 			print "/server $ircServer\n";
 		}

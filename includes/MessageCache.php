@@ -51,16 +51,18 @@ class MessageCache
 				wfDebug( "MessageCache::load(): loading all messages\n" );
 				$this->lock();
 				# Other threads don't need to load the messages if another thread is doing it.
-				$this->mMemc->set( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT );
-				$this->loadFromDB();
-				# Save in memcached
-				# Keep trying if it fails, this is kind of important
-				for ( $i=0; $i<20 && !$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry ); $i++ ) {
-					usleep(mt_rand(500000,1500000));
-				}
-				if ( $i == 20 ) {
-					$this->mMemc->set( $this->mMemcKey, "error", 86400 );
-					wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
+				$success = $this->mMemc->set( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT );
+				if ( $success ) {
+					$this->loadFromDB();
+					# Save in memcached
+					# Keep trying if it fails, this is kind of important
+					for ( $i=0; $i<20 && !$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry ); $i++ ) {
+						usleep(mt_rand(500000,1500000));
+					}
+					if ( $i == 20 ) {
+						$this->mMemc->set( $this->mMemcKey, "error", 86400 );
+						wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
+					}
 				}
 				$this->unlock();
 			}
@@ -90,7 +92,7 @@ class MessageCache
 	function loadFromDB()
 	{
 	        $fname = "MessageCache::loadFromDB";
-		$dbr =& wfGetDB( DB_READ );
+		$dbr =& wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cur', 
 			array( 'cur_title', 'cur_text' ), 
 			array( 'cur_is_redirect' => 0, 'cur_namespace' => NS_MEDIAWIKI ),
@@ -181,7 +183,7 @@ class MessageCache
 			
 			# If it wasn't in the cache, load each message from the DB individually
 			if ( !$message && $useDB) {
-				$dbr =& wfGetDB( DB_READ );
+				$dbr =& wfGetDB( DB_SLAVE );
 				$result = $dbr->getArray( "cur", array("cur_text"), 
 				  array( "cur_namespace" => NS_MEDIAWIKI, "cur_title" => $title ),
 				  "MessageCache::get" );

@@ -3,11 +3,6 @@
 
 # Backwards compatibility wrapper for Database.php
 
-# I imagine this file will eventually become a backwards
-# compatibility wrapper around a load balancer object, and
-# the load balancer will finally call Database, which will
-# represent a single connection
-
 # Note: $wgDatabase has ceased to exist. Destroy all references.
 
 # Usually aborts on failure
@@ -27,12 +22,13 @@ function wfQuery( $sql, $db, $fname = "" )
 	}
 }
 
-function wfSingleQuery( $sql, $db, $fname = "" )
+function wfSingleQuery( $sql, $dbi, $fname = "" )
 {
-	$res = wfQuery($sql, $db, $fname );
-	$row = wfFetchRow( $res );
+	$db =& wfGetDB( $dbi );
+	$res = $db->query($sql, $fname );
+	$row = $db->fetchRow( $res );
 	$ret = $row[0];
-	wfFreeResult( $res );
+	$db->freeResult( $res );
 	return $ret;
 }
 
@@ -194,7 +190,7 @@ function wfLastDBquery( $dbi = DB_LAST )
 	}
 }
 
-function wfSetSQL( $table, $var, $value, $cond, $dbi = DB_WRITE )
+function wfSetSQL( $table, $var, $value, $cond, $dbi = DB_MASTER )
 {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {
@@ -234,7 +230,7 @@ function wfIndexExists( $table, $index, $dbi = DB_LAST )
 	}
 }
 
-function wfInsertArray( $table, $array, $fname = "wfInsertArray", $dbi = DB_WRITE ) 
+function wfInsertArray( $table, $array, $fname = "wfInsertArray", $dbi = DB_MASTER ) 
 {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {
@@ -254,7 +250,7 @@ function wfGetArray( $table, $vars, $conds, $fname = "wfGetArray", $dbi = DB_LAS
 	}
 }
 
-function wfUpdateArray( $table, $values, $conds, $fname = "wfUpdateArray", $dbi = DB_WRITE )
+function wfUpdateArray( $table, $values, $conds, $fname = "wfUpdateArray", $dbi = DB_MASTER )
 {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {
@@ -284,7 +280,7 @@ function wfStrencode( $s, $dbi = DB_LAST )
 	}
 }
 
-function wfNextSequenceValue( $seqName, $dbi = DB_WRITE ) {
+function wfNextSequenceValue( $seqName, $dbi = DB_MASTER ) {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->nextSequenceValue( $seqName );
@@ -293,7 +289,7 @@ function wfNextSequenceValue( $seqName, $dbi = DB_WRITE ) {
 	}
 }
 
-function wfUseIndexClause( $index, $dbi = DB_READ ) {
+function wfUseIndexClause( $index, $dbi = DB_SLAVE ) {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->useIndexClause( $index );

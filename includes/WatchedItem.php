@@ -1,7 +1,9 @@
 <?php
 
 class WatchedItem {
+	var $mTitle, $mUser;
 
+	# Create a WatchedItem object with the given user and title
 	/* static */ function &fromUserTitle( &$user, &$title ) {
 		$wl = new WatchedItem;
 		$wl->mUser =& $user;
@@ -9,27 +11,31 @@ class WatchedItem {
 		$wl->id = $user->getId();
 		$wl->ns = $title->getNamespace() & ~1;
 		$wl->ti = $title->getDBkey();
-		$wl->eti = wfStrencode( $wl->ti );
 		return $wl;
 	}
 
+	# Returns the memcached key for this item
 	function watchKey() {
 		global $wgDBname;
 		return "$wgDBname:watchlist:user:$this->id:page:$this->ns:$this->ti";
 	}
 	
+	# Is mTitle being watched by mUser?
 	function isWatched()
 	{
 		# Pages and their talk pages are considered equivalent for watching;
 		# remember that talk namespaces are numbered as page namespace+1.
 		global $wgMemc;
+		$fname = 'WatchedItem::isWatched';
+
 		$key = $this->watchKey();
 		$iswatched = $wgMemc->get( $key );
 		if( is_integer( $iswatched ) ) return $iswatched;
 		
-		$sql = "SELECT 1 FROM watchlist WHERE wl_user=$this->id AND wl_namespace=$this->ns AND wl_title='$this->eti'";
-		$res = wfQuery( $sql, DB_READ );
-		$iswatched = (wfNumRows( $res ) > 0) ? 1 : 0;
+		$dbr =& wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'watchlist', 1, array( 'wl_user' => $this->id, 'wl_namespace' => $this->ns, 
+			'wl_title' => $this->ti ), $fname );
+		$iswatched = ($dbr->numRows( $res ) > 0) ? 1 : 0;
 		$wgMemc->set( $key, $iswatched );
 		return $iswatched;
 	}
@@ -39,12 +45,12 @@ class WatchedItem {
 		$fname = "WatchedItem::addWatch";
 		# REPLACE instead of INSERT because occasionally someone
 		# accidentally reloads a watch-add operation.
-		$dbw =& wfGetDB( DB_WRITE );
+		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->replace( 'watchlist', array(array('wl_user', 'wl_namespace', 'wl_title')),
 		  array( 
 		    'wl_user' => $this->id,
 			'wl_namespace' => $this->ns,
-			'wl_title' => $this->eti,
+			'wl_title' => $this->ti,
 		  ), $fname );
 
 		global $wgMemc;
@@ -54,13 +60,22 @@ class WatchedItem {
 
 	function removeWatch()
 	{
-		$sql = "DELETE FROM watchlist WHERE wl_user=$this->id AND wl_namespace=$this->ns AND wl_title='$this->eti'";
-		$res = wfQuery( $sql, DB_WRITE );
-		if( $res === false ) return false;
+		$dbw =& wfGetDB( DB_MASTER );
+		$dbw->delete( 'watchlist', 
+			array( 
+				'wl_user' => $this->id, 
+				'wl_namespace' => $this->ns,  
+				'wl_title' => $this->ti
+			), $fname
+		);
 		
-		global $wgMemc;
-		$wgMemc->set( $this->watchkey(), 0 );
-		return true;
+		if ( $dbw->affectedRows() ) {
+			global $wgMemc;
+			$wgMemc->set( $this->watchkey(), 0 );
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/* static */ function duplicateEntries( $ot, $nt ) {
@@ -70,25 +85,29 @@ class WatchedItem {
 		$newnamespace = $nt->getNamespace() & ~1;
 		$oldtitle = $ot->getDBkey();
 		$newtitle = $nt->getDBkey();
-		$eoldtitle = wfStrencode( $oldtitle );
-		$enewtitle = wfStrencode( $newtitle );
 
-		$sql = "SELECT wl_user FROM watchlist
-			WHERE wl_namespace={$oldnamespace} AND wl_title='{$eoldtitle}'";
-		$res = wfQuery( $sql, DB_READ, $fname );
-		if( $s = wfFetchObject( $res ) ) {
-			$sql = "REPLACE INTO watchlist (wl_user,wl_namespace,wl_title)
-				VALUES ({$s->wl_user},{$newnamespace},'{$enewtitle}')";
-			$key = "$wgDBname:watchlist:user:$s->wl_user:page:$newnamespace:$newtitle";
-			$wgMemc->set( $key, 1 );
-			while( $s = wfFetchObject( $res ) ) {
-				$sql .= ",({$s->wl_user},{$newnamespace},'{$enewtitle}')";
-				$key = "$wgDBname:watchlist:user:$s->wl_user:page:$newnamespace:$newtitle";
-				$wgMemc->set( $key, 1 );
-			}
-			$res = wfQuery( $sql, DB_WRITE, $fname );
-			if( $res === false ) return false; # db error?
+		$dbw =& wfGetDB( DB_MASTER );
+		$watchlist = $dbw->tableName( 'watchlist' );
+		
+		$res = $dbw->select( 'watchlist', 'wl_user', 
+			array( 'wl_namespace' => $oldnamespace, 'wl_title' => $oldtitle ),
+			$fname, 'FOR UPDATE'
+		);
+		# Construct array to replace into the watchlist
+		$values = array();
+		while ( $s = $dbw->fetchObject( $res ) ) {
+			$values[] = array(
+				'wl_user' => $s->wl_user,
+				'wl_namespace' => $newnamespace,
+				'wl_title' => $newtitle
+			);
 		}
+		$dbw->freeResult( $res );
+
+		# Perform replace
+		# Note that multi-row replace is very efficient for MySQL but may be inefficient for
+		# some other DBMSes, mostly due to poor simulation by us
+		$dbw->replace( 'watchlist', array(array( 'wl_user', 'wl_namespace', 'wl_title')), $values, $fname );
 		return true;
 	}
 

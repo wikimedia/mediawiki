@@ -9,15 +9,18 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 	$wgQuiet = $quiet;
 	$wgDisableSearchUpdate = false;
 
+	$dbw =& wfGetDB( DB_MASTER );
+	$recentchanges = $dbw->tableName( 'recentchanges' );
+	
 	output( "Updating searchindex between $start and $end\n" );
 
 	# Select entries from recentchanges which are on top and between the specified times
-	$start = wfStrencode( $start );
-	$end = wfStrencode( $end );
+	$start = $dbw->strencode( $start );
+	$end = $dbw->strencode( $end );
 
-	$sql = "SELECT rc_cur_id,rc_type,rc_moved_to_ns,rc_moved_to_title FROM recentchanges
+	$sql = "SELECT rc_cur_id,rc_type,rc_moved_to_ns,rc_moved_to_title FROM $recentchanges
 	  WHERE rc_this_oldid=0 AND rc_timestamp BETWEEN '$start' AND '$end'";
-	$res = wfQuery( $sql, DB_READ, $fname );
+	$res = $dbw->query( $sql, $fname );
 
 	# Lock searchindex
 	if ( $maxLockTime ) {
@@ -28,7 +31,7 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 	}
 
 	# Loop through the results and do a search update
-	while ( $row = wfFetchObject( $res ) ) {
+	while ( $row = $dbw->fetchObject( $res ) ) {
 		# Allow reads to be processed
 		if ( $maxLockTime && time() > $lockTime + $maxLockTime ) {
 			output( "    --- Relocking ---" );
@@ -47,7 +50,8 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 			output( "\n" );
 		} else {
 			# Get cur row
-			$curRow = wfGetArray( 'cur', array( 'cur_namespace', 'cur_title', 'cur_text' ), array( 'cur_id' => $row->rc_cur_id ) );
+			$curRow = $dbw->selectRow( 'cur', array( 'cur_namespace', 'cur_title', 'cur_text' ), 
+				array( 'cur_id' => $row->rc_cur_id ), $fname, 'FOR UPDATE' );
 			if ( $curRow ) {
 				$titleObj = Title::makeTitle( $curRow->cur_namespace, $curRow->cur_title );
 				$title = $titleObj->getPrefixedDBkey();
@@ -67,12 +71,15 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 	output( "Done\n" );
 }
 
-function lockSearchindex() {
-	wfQuery( "LOCK TABLES searchindex LOW_PRIORITY WRITE, cur READ, interwiki READ", DB_WRITE );
+function lockSearchindex( &$db ) {
+	$dbw =& wfGetDB( DB_MASTER );
+	extract( $dbw->tableNames( 'searchindex', 'cur', 'interwiki' ) );
+	$dbw->query( "LOCK TABLES $searchindex LOW_PRIORITY WRITE, $cur READ, $interwiki READ" );
 }
 
 function unlockSearchindex() {
-	wfQuery( "UNLOCK TABLES", DB_WRITE );
+	$dbw =& wfGetDB( DB_MASTER );
+	$dbw->query( "UNLOCK TABLES" );
 }
 
 # Unlock and lock again

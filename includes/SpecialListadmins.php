@@ -16,11 +16,12 @@ class ListAdminsPage extends PageQueryPage {
 	}
 
 	function getSQL() {
-		$usertable = wfTableName( 'user' );
+		$dbr =& wfGetDB( DB_SLAVE );
+		$user = $dbr->tableName( 'user' );
 		$userspace = Namespace::getUser();
 		return 'SELECT user_rights as type,'.$userspace.' as namespace,'.
 		       'user_name as title, user_name as value '.
-		       "FROM $usertable ".
+		       "FROM $user ".
 			   'WHERE user_rights LIKE "%sysop%"';
 	}
 }

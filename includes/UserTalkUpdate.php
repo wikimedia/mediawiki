@@ -34,22 +34,25 @@ class UserTalkUpdate {
 			# Not ours.  If writing, mark it as modified.
 
 			$sql = false;
+			$dbw =& wfGetDB( DB_MASTER );
+			$user_newtalk = $dbw->tableName( 'user_newtalk' );
+
 			if ( 1 == $this->mAction ) {
 				$user = new User();				
 				$user->setID(User::idFromName($this->mTitle));
 				if ($id=$user->getID()) {									
-					$sql = "INSERT INTO user_newtalk (user_id) values ({$id})";
+					$sql = "INSERT INTO $user_newtalk (user_id) values ({$id})";
 					$wgMemc->delete( "$wgDBname:user:id:$id" );
 				} else {
 					#anon
 					if(preg_match("/^\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}$/",$this->mTitle)) { #real anon (user:xxx.xxx.xxx.xxx)
-						$sql = "INSERT INTO user_newtalk (user_id,user_ip) values (0,\"{$this->mTitle}\")";		
+						$sql = "INSERT INTO $user_newtalk (user_id,user_ip) values (0,\"{$this->mTitle}\")";		
 						$wgMemc->delete( "$wgDBname:newtalk:ip:$this->mTitle" );
 					}
 				}
 				
 				if($sql && !$user->getNewtalk()) { # only insert if real user and it's not already there
-					wfQuery( $sql, DB_WRITE, $fname );
+					$dbw->query( $sql, $fname );
 				}
 			}
 		}
