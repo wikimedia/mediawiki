@@ -373,7 +373,6 @@ span.texhtml { font-family: serif; }
 /* table standards */
 table.rimage {
     float:right; 
-    width:1pt; 
     position:relative;
     margin-left:1em; 
     margin-bottom:1em;
