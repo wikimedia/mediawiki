@@ -1347,11 +1347,6 @@ class LanguageEt extends LanguageUtf8 {
 		return $wgMathNamesEt;
 	}
 
-	function getUserToggles() {
-		global $wgUserTogglesEt;
-		return $wgUserTogglesEt;
-	}
-
 	function getMonthName( $key )
 	{
 		global $wgMonthNamesEt;
