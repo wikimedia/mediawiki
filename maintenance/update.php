@@ -15,9 +15,13 @@ $wgDatabase = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpa
 
 print "Going to run database updates for $wgDBname\n";
 print "Depending on the size of your database this may take a while!\n";
-print "Abort with control-c in the next five seconds or...\n";
-sleep(5);
+print "Abort with control-c in the next five seconds to aboard.. ";
 
+for ($i = 5; $i >= 0; --$i) {
+	echo $i;
+	sleep(1);
+	echo( ($i == 0) ? "\n" : chr(8) );
+}
 
 do_all_updates();
 
