@@ -2186,13 +2186,17 @@ class Skin {
 		$s = '';
 		if ( $date != $this->lastdate ) {
 			if ( '' != $this->lastdate ) { $s .= "</ul>\n"; }
-			$s .= "<h4>{$uidate}</h4>\n<ul class='special'>";
+			$s .= "<h4>{$uidate}</h4>\n<ul class=\"special\">";
 			$this->lastdate = $date;
 			$this->rclistOpen = true;
 		}
 
 		# If this edit has not yet been patrolled, make it stick out
-		$s .= ( ! $wgUseRCPatrol || $rc_patrolled ) ? '<li> ' : '<li class="not_patrolled"> ';
+		if ( !$wgUseRCPatrol || $rc_patrolled ) {
+			$s .= '<table border="0"><tr><td><li>';
+		} else {
+			$s .= '<table border="0" width="96%"><tr><td class="not_patrolled"><li>';
+		}
 
 		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			# Diff
@@ -2289,7 +2293,7 @@ class Skin {
 			$rc_comment=$this->formatComment($rc_comment,$rc->getTitle());
 			$s .= $wgContLang->emphasize(' (' . $rc_comment . ')');
 		}
-		$s .= "</li>\n";
+		$s .= "</li></td></tr></table>\n";
 
 		return $s;
 	}
