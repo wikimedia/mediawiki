@@ -250,6 +250,9 @@ class SearchEngine {
 
 	function parseQuery() {
 		global $wgDBmysql4;
+		if (strlen($this->filteredText) < 1)
+			return MW_SEARCH_BAD_QUERY;
+
 		if( $wgDBmysql4 ) {
 			# Use cleaner boolean search if available
 			return $this->parseQuery4();
