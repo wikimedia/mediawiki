@@ -539,7 +539,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$yourtext = $obj->cur_text;
 		$ns = $this->mTitle->getNamespace();
 		$title = wfStrencode( $this->mTitle->getDBkey() );
-		$res = wfQuery("SELECT old_text FROM old WHERE old_namespace = $ns AND ".
+		$res = wfQuery("SELECT old_text,old_flags FROM old WHERE old_namespace = $ns AND ".
 		  "old_title = '{$title}' AND old_timestamp = '{$oldDate}'", DB_WRITE);
 		$obj = wfFetchObject($res);
 		$oldText = Article::getRevisionText( $obj );
