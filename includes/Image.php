@@ -325,13 +325,28 @@ class Image
 			return '';
 		}
 
-		if( $width > $this->width ) {
+		if( $width > $this->width && !$this->mustRender() ) {
 			# Don't make an image bigger than the source
 			return $this->getViewURL();
 		}
 
 		if ( (! file_exists( $thumbPath ) ) || ( filemtime($thumbPath) < filemtime($this->imagePath) ) ) {
-			if ( $wgUseImageMagick ) {
+			if( $this->extension == 'svg' ) {
+				global $wgSVGConverters, $wgSVGConverter;
+				if( isset( $wgSVGConverters[$wgSVGConverter] ) ) {
+					global $wgSVGConverterPath;
+					$cmd = str_replace(
+						array( '$path/', '$width', '$input', '$output' ),
+						array( $wgSVGConverterPath,
+							   $width,
+							   escapeshellarg( $this->imagePath ),
+							   escapeshellarg( $thumbPath ) ),
+						$wgSVGConverters[$wgSVGConverter] );
+					$conv = shell_exec( $cmd );
+				} else {
+					$conv = false;
+				}
+			} elseif ( $wgUseImageMagick ) {
 				# use ImageMagick
 				# Specify white background color, will be used for transparent images
 				# in Internet Explorer/Windows instead of default black.
