@@ -313,6 +313,14 @@ Old &amp; use: http://x&y
 </p>
 !! end
 
+!! test
+External links: www.jpeg.org (bug 554)
+!! input
+http://www.jpeg.org
+!!result
+<p><a href="http://www.jpeg.org" class='external'>http://www.jpeg.org</a>
+</p>
+!! end
 
 ###
 ### Quotes
