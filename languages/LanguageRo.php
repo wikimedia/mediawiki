@@ -107,7 +107,8 @@ include_once("LanguageUtf8.php");
     MAG_CURRENTMONTHNAMEGEN  => array( 1,    "{{NUMELUNACURENTAGEN}}"),
 	MAG_MSG                  => array( 1,    "{{MSJ:$1}}"             ),
 	MAG_SUBST                => array( 1,    "{{SUBST:$1}}"           ),
-    MAG_MSGNW                => array( 1,    "{{MSJNOU:$1}}"           )
+    MAG_MSGNW                => array( 1,    "{{MSJNOU:$1}}"           ),
+	MAG_END                  => array( 0,    "__FINAL__"                )
 );
 
 # All special pages have to be listed here: a description of ""
@@ -134,6 +135,7 @@ include_once("LanguageUtf8.php");
 	"Longpages"		=> "Articole lungi",
 	"Newpages"		=> "Articole noi",
 	"Ancientpages"	=> "Cele mai vechi articole",
+        "Deadendpages"  => "Pagini fără legături",
 #	"Intl"	=> "Legături între limbi",
 	"Allpages"		=> "Toate paginile după titlu",
 
@@ -325,6 +327,7 @@ Nu uitaţi să vă personalizaţi preferinţele în Wikipedia.",
 "notloggedin" => "Nu sunteţi autentificat",
 
 "login"			=> "Autentificare",
+"loginprompt"           => "Trebuie să aveţi cookies activate în browser pentru a vă putea autentifica pe $wgSitename.",
 "userlogin"		=> "Autentificare",
 "logout"		=> "Închide sesiunea",
 "userlogout"	=> "Închide sesiunea",
@@ -336,8 +339,9 @@ Nu uitaţi să vă personalizaţi preferinţele în Wikipedia.",
 "yournick"		=> "Versiune scurtă a numelui, pentru semnături",
 "emailforlost"	=> "Dacă vă pierdeţi parola, puteţi cere să vi se trimită una nouă la adresa de mail.",
 "loginerror"	=> "Eroare de autentificare",
-"nocookies"	=> "Cookie-uri deactivate",
+"nocookiesnew"	=> "Contul a fost creat, dar Dvs. nu sunteţi autentificat(ă). $wgSitename foloseşte cookies pentru a reţine utilizatorii autentificaţi. Browser-ul Dvs. are cookies neactivate (disabled). Vă rugăm să le activaţi şi să vă reautentificaţi folosind noul nume de utilizator şi noua parolă.",
 "nocookiestext"	=> "Wiki foloseşte cookie-uri pentru a autentifica utilizatorii. Browser-ul Dvs. are cookies dezactivate. Vă rugăm să le activaţi în browser şi să încercaţi din nou.",
+"nocookieslogin"	=> "$wgSitename foloseşte cookies pentru a autentifica utilizatorii. Browser-ul Dvs. are cookies dezactivate. Vă rugăm să le activaţi şi să incercaţi din nou.",
 "noname"		=> "Numele de utilizator pe care l-aţi specificat este invalid.",
 "loginsuccesstitle" => "Autentificare reuşită",
 "loginsuccess"	=> "Aţi fost autentificat în Wikipedia ca \"$1\".",
@@ -550,6 +554,7 @@ Este foarte important să nu adăugaţi în Wikipedia materiale protejate de [[d
 "rcnotefrom"	=> "Dedesubt sunt modificările de la <b>$2</b> (maxim <b>$1</b> de modificări sunt afişate - schimbaţi numărul maxim de linii alegând altă valoare mai jos).",
 "rclistfrom"	=> "Arată modificările începând de la $1",
 # "rclinks"		=> "Arată ultimele $1 modificări din ultimele $2 ore / ultimele $3 zile",
+"showhideminor"         => "$1 editări minore",
 "rclinks"		=> "Arată ultimele $1 modificări din ultimele $2 zile.",
 
 "rchide"		=> "în in $4 form; $1 minor edits; $2 secondary namespaces; $3 multiple edits.",
@@ -624,10 +629,11 @@ Toate datele/orele sunt afişate ca timp universal (UTC).
 "largefile"		=> "Este recomandat ca imaginile să nu depăşească 100 KB ca mărime.",
 "successfulupload" => "Fişierul a fost trimis",
 "fileuploaded"	=> "Fişierul \"$1\" a fost trimis.
-Vă rugăm să vizitaţi această legătură: ($2) pentru a descrie fişierul şi pentru a completa informaţii despre acesta, ca de exemplu de unde provine, când a fost creat şi de către cine şi orice alte informaţii doriţi să adăugaţi.",
+Vă rugăm să vizitaţi această legătură: ($2) pentru a descrie fişierul şi pentru a completa informaţii despre acesta, ca de exemplu de unde provine, când a fost creat şi de către cine, cât şi orice alte informaţii doriţi să adăugaţi.",
 "uploadwarning" => "Avertizare la trimiterea fişierului",
-"savefile"		=> "Salvează fiţierul",
+"savefile"		=> "Salvează fişierul",
 "uploadedimage" => "trimis \"$1\"",
+"uploaddisabled" => "Ne pare rău, trimiterea de imagini este dezactivată.",
 
 # Image list
 #
@@ -663,7 +669,7 @@ Acest număr include paginile de \"discuţii\", paginile despre Wikipedia, pagin
 În afară de acestea, există <b>$2</b> pagini care sunt probabil articole (numărate automat, în funcţie strict de mărime).<p>
 În total au fost <b>$3</b> vizite (accesări) şi <b>$4</b> editări
 de la ultima actualizare a programului (July 20, 2002).
-În medie rezultă <b>$5</b> editări la fiecare vizionare şi <b>$6</b> vizualizări la fiecare editare.",
+În medie rezultă că fiecare pagină a fost editată de <b>$5</b>ori şi că au fost <b>$6</b> vizualizări la fiecare editare.",
 "userstatstext" => "Există un număr de <b>$1</b> utilizatori înregistraţi.
 Dintre aceştia <b>$2</b> sunt administratori (vezi $3).",
 
@@ -702,6 +708,7 @@ Dintre aceştia <b>$2</b> sunt administratori (vezi $3).",
 "randompage"	=> "Pagină aleatoare",
 "shortpages"	=> "Pagini scurte",
 "longpages"		=> "Pagini lungi",
+"deadendpages"  => "Pagini fără legături",
 "listusers"		=> "Lista de utilizatori",
 "specialpages"	=> "Pagini speciale",
 "spheading"		=> "Pagini speciale",
