@@ -1450,6 +1450,10 @@ class Skin {
 		global $wgOut, $wgUser;
 		$fname = 'Skin::makeLinkObj';
 
+		# Fail gracefully
+		if ( ! isset($nt) )
+			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
+
 		if ( $nt->isExternal() ) {
 			$u = $nt->getFullURL();
 			$link = $nt->getPrefixedURL();
