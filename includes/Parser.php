@@ -1696,7 +1696,7 @@ class Parser
 	 * @access private
 	 */
 	function getVariableValue( $index ) {
-		global $wgContLang, $wgSitename, $wgServer;
+		global $wgContLang, $wgSitename, $wgServer, $wgArticle;
 		
 		/**
 		 * Some of these require message or data lookups and can be
@@ -1720,6 +1720,8 @@ class Parser
 				return $this->mTitle->getText();
 			case MAG_PAGENAMEE:
 				return $this->mTitle->getPartialURL();
+			case MAG_REVISIONID:
+				return $wgArticle->getRevIdFetched();
 			case MAG_NAMESPACE:
 				# return Namespace::getCanonicalName($this->mTitle->getNamespace());
 				return $wgContLang->getNsText($this->mTitle->getNamespace()); # Patch by Dori

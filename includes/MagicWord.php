@@ -9,7 +9,7 @@
  */
 $wgMagicFound = false;
 
-
+/** Actual keyword to be used is set in Language.php */
 define('MAG_REDIRECT', 0);
 define('MAG_NOTOC', 1);
 define('MAG_START', 2);
@@ -50,6 +50,7 @@ define('MAG_NOTITLECONVERT', 36);
 define('MAG_NOCONTENTCONVERT', 37);
 define('MAG_CURRENTWEEK', 38);
 define('MAG_CURRENTDOW', 39);
+define('MAG_REVISIONID', 40);
 
 $wgVariableIDs = array(
 	MAG_CURRENTMONTH,
@@ -67,7 +68,8 @@ $wgVariableIDs = array(
 	MAG_PAGENAMEE,
 	MAG_NAMESPACE,
 	MAG_CURRENTWEEK,
-	MAG_CURRENTDOW
+	MAG_CURRENTDOW,
+	MAG_REVISIONID,
 );
 
 /**
