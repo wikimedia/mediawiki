@@ -305,7 +305,7 @@ class EditPage {
 		$save = wfMsg( "savearticle" );
 		$prev = wfMsg( "showpreview" );
 
-		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedURL(),
+		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedText(),
 		  wfMsg( "cancel" ) );
 		$edithelpurl = $sk->makeUrl( wfMsg( "edithelppage" ));
 		$edithelp = '<a onclick="window.open('.
