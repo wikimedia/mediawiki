@@ -821,6 +821,7 @@ class Parser
 
 		$text = $this->removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text, $args );
+		print $text;
 
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
 
@@ -1758,7 +1759,9 @@ class Parser
 			$this->mTemplatePath[$part1] = 1;
 
 			# Run full parser on the included text
-			$text = $this->stripParse( $text, $newline, $assocArgs );
+			$text = $this->internalParse( $text, $newline, $assocArgs );
+			# I replaced the line below with the line above, as it former seems to cause several bugs
+			#$text = $this->stripParse( $text, $newline, $assocArgs );
 
 			# Resume the link cache and register the inclusion as a link
 			if ( !is_null( $title ) ) {
