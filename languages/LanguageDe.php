@@ -156,12 +156,12 @@
 /* private */ $wgSysopSpecialPagesDe = array(
 	"Blockip"		=> "Blockiere eine IP-Addresse",
 	"Asksql"		=> "Datenbank-Abfrage",
-	"Undelete"              => "Gelöschte Seiten anzeigen und wiederherstellen"
+	"Undelete"              => "Gelöschte Seiten wiederherstellen"
 );
 
 /* private */ $wgDeveloperSpecialPagesDe = array(
-	"Lockdb"		=> "Datenbank auf 'nur lesen' stellen",
-	"Unlockdb"		=> "Datenbank Schreibzugriff wieder herstellen",
+	"Lockdb"		=> "Datenbank sperren",
+	"Unlockdb"		=> "Datenbank freigeben",
 	"Debug"			=> "Zeige debugging information"
 );
 
@@ -171,11 +171,13 @@
 #
 "linktrail"		=> "/^([ä|ö|ü|ß|a-z]+)(.*)\$/sD",
 "mainpage"		=> "Hauptseite",
+"mainpagetext"          => "Die Wiki Software wurde erfolgreich installiert.",
 "about"			=> "Über",
 "aboutwikipedia" => "Über Wikipedia",
 "aboutpage"		=> "Wikipedia:Über_Wikipedia",
 "help"			=> "Hilfe",
 "helppage"		=> "Wikipedia:Hilfe",
+"wikititlesuffix"       => "Wikipedia",
 "bugreports"	=> "Fehlerliste",
 "bugreportspage" => "Wikipedia:Beobachtete_Fehler",
 "faq"			=> "FAQ",
@@ -242,15 +244,19 @@
 "databaseerror" => "Fehler in der Datenbank",
 "dberrortext"	=> "Es gab einen Syntaxfehler in der Datenbankabfrage.
 Das könnte eine illegale Suchanfrage sein (siehe $5),
-oder ein Softwarefehler.
-Die letzte Datenbankabfrage lautete:
+oder ein Softwarefehler. Die letzte Datenbankabfrage lautete:
 <blockquote><tt>$1</tt></blockquote>
 aus der Funktion \"<tt>$2</tt>\".
 MySQL meldete den Fehler \"<tt>$3: $4</tt>\".",
+"dberrortextcl" => "Es gab einen Syntaxfehler in der Datenbankabfrage. 
+Die letzte Datenbankabfrage lautete: \"$1\" aus der Funktion \"<tt>$2</tt>\". 
+MySQL meldete den Fehler: \"<tt>$3: $4</tt>\".\n",
 "noconnect"		=> "Konnte keine Verbindung zur Datenbank auf $1 herstellen",
 "nodb"			=> "Konnte Datenbank $1 nicht auswählen",
 "readonly"		=> "Datenbank ist geperrt",
-"readonlytext"	=> "Die Datenbank der Wikipedia ist vorübergehend gesperrt, z.B. für Wartungsarbeiten. Bitte versuchen Sie es später noch einmal\n",
+"enterlockreason" => "Bitte geben Sie einen Grund ein, warum die Datenbank
+gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
+"readonlytext"	=> "Die Datenbank der Wikipedia ist vorübergehend gesperrt, z.B. für Wartungsarbeiten. Bitte versuchen Sie es später noch einmal.\n",
 "missingarticle" => "Der Text für den Artikel \"$1\" wurde nicht in der Datenbank gefunden. Das ist wahrscheinlich ein Fehler in der Software. Bitte melden Sie dies einem Administrator, und geben sie den Artikelnamen an.",
 "internalerror" => "Interner Fehler",
 "filecopyerror" => "Konnte Datei \"$1\" nicht nach \"$2\" kopieren.",
@@ -328,7 +334,7 @@ Bitte melden Sie sich an, sobald Sie es erhalten.",
 Als Grund wurde angegeben:<br>$2<p>Bitte kontaktieren Sie den Administrator, um über die Blockierung zu sprechen.",
 "newarticle"	=> "(Neu)",
 "newarticletext" => "Hier den Text des neuen Artikels eintragen.\nBitte nur in ganzen Sätzen schreiben und keine urheberrechtsgeschützten Texte anderer kopieren.",
-"anontalkpagetext" => "---- ''Dies ist die Diskussions-Seite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische [[IP-Adresse]] zur Identifizierung verwenden. Eine solche Adresse kann nacheinander von mehreren Benutzer verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[Spezial:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden. ''",
+"anontalkpagetext" => "---- ''Dies ist die Diskussions-Seite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische [[IP-Adresse]] zur Identifizierung verwenden. Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[Spezial:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden. ''",
 "noarticletext" => "(Dieser Artikel enthält momentan keinen Text)",
 "updated"		=> "(Geändert)",
 "note"			=> "<strong>Hinweis:</strong> ",
@@ -352,6 +358,13 @@ Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>\n",
 <p><i>Bitte beachten Sie, dass alle Beiträge zur Wikipedia automatisch unter der \"GNU Freie Dokumentationslizenz\" stehen. Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
 "longpagewarning" => "WARNUNG: Diese Seite ist $1KB groß; einige Browser könnten Probleme haben, Seiten zu editieren, die größer als 32KB sind.
 Überlegen Sie bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.",
+"readonlywarning" => "WARNUNG: Die Datenbank wurde während dem Ändern der
+Seite für Wartungsarbeiten gesperrt, so dass Sie die Seite im Moment nicht
+speichern können. Sichern Sie sich den Text und versuchen Sie die Änderungen
+später einzuspielen.",
+"protectedpagewarning" => "WARNUNG: Diese Seite wurde gesperrt, so dass nur
+Benutzer mit Sysop-Rechten editieren können. Beachten Sie bitte die 
+<a href='/wiki/Wikipedia:Geschützte Seiten'>Regeln für geschützte Seiten</a>.",
 
 # History pages
 #
@@ -681,7 +694,7 @@ Im $2 finden Sie eine Liste der letzten Löschungen.",
 
 # Undelete
 "undelete" => "Gelöschte Seite wiederherstellen",
-"undeletepage" => "Gelöschte Seiten anzeigen und wiederherstellen",
+"undeletepage" => "Gelöschte Seiten wiederherstellen",
 "undeletepagetext" => "Die folgenden Seiten wurden gelöscht, sind aber immer noch
 gespeichert und können wiederhergestellt werden.",
 "undeletearticle" => "Gelöschten Artikel wiederherstellen",
@@ -759,9 +772,10 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 # SQL query
 #
 "asksql"		=> "SQL-Abfrage",
-"asksqltext"	=> "Benutzen Sie das Formular für eine direkte Datenbank-Abfrage.
-Benutze einzelne Hochkommata ('so'), um Text zu begrenzen.
-Bitte diese Funktion vorsichtig benutzen!",
+"asksqltext"	=> "Benutzen Sie das Formular für eine direkte
+Datenbank-Abfrage. Benutze einzelne Hochkommata ('so'), um Text zu begrenzen.
+Bitte diese Funktion vorsichtig benutzen! Das abschließende ';' wird
+automatisch ergänzt.",
 "sqlquery"		=> "Abfrage eingeben",
 "querybtn"		=> "Abfrage starten",
 "selectonly"	=> "Andere Abfragen als \"SELECT\" können nur von Entwicklern benutzt werden.",
@@ -778,12 +792,18 @@ Bitte diese Funktion vorsichtig benutzen!",
 
 In diesen Fällen müssen Sie die Seite, falls gewünscht, von Hand verschieben.",
 "movearticle"	=> "Artikel verschieben",
+"movenologin"   => "Sie sind nicht angemeldet",
+"movenologintext" => "Sie müssen ein registrierter Benutzer und 
+<a href=\"" . wfLocalUrl( "Special:Userlogin" ) . "\">angemeldet</a> sein,
+um eine Seite zu verschieben.",
 "newtitle"		=> "Zu neuem Titel",
 "movepagebtn"	=> "Artikel verschieben",
 "pagemovedsub"	=> "Verschiebung erfolgreich",
 "pagemovedtext" => "Artikel \"$1\" wurde nach \"$2\" verschoben.",
 "articleexists" => "Unter diesem Namen existiert bereits ein Artikel.
 Bitte wählen Sie einen anderen Namen.",
+"talkexists"    => "Die Seite selbst wurde erfolgreich verschoben, aber die
+Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte gleichen Sie die Inhalte von Hand ab.",
 "movedto"		=> "verschoben nach",
 "movetalk"		=> "Die \"Diskussions\"-Seite mitverschieben, wenn möglich.",
 "talkpagemoved" => "Die \"Diskussions\"-Seite wurde ebenfalls verschoben.",
