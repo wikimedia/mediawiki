@@ -49,6 +49,7 @@ $wgEditEncoding		= "x";
 	"HTMLigu se eble, aŭ PNG",
 	"Lasu TeX-fonton (por tekstfoliumiloj)",
 	"Rekomendita por modernaj foliumiloj",
+	"MathML seeble (provizora)",
 );
 
 /* private */ $wgUserTogglesEo = array(
