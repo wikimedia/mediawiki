@@ -110,9 +110,11 @@ class ZhClient {
 		$info = explode(";", $infoline);
 		$ret = array();
 		$i=0;
-		foreach($info as $code => $len) {
+		foreach($info as $variant) {
+			list($code, $len) = explode(' ', $variant);
 			$ret[strtolower($code)] = substr($data, $i, $len);
-			$i+=$len+1;
+			$r = $ret[strtolower($code)];
+			$i+=$len;
 		}
 		return $ret;
     }
@@ -250,7 +252,7 @@ class ZhClientFake {
 	 * @access public
 	 */
 	function segment($text) {
-		/* adapted from LanguageZh_cn.stripForSearch()
+		/* adapted from LanguageZh_cn::stripForSearch()
 			here we will first separate the single characters,
 			and let the caller conver it to hex
         */
