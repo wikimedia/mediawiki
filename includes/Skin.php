@@ -2148,7 +2148,7 @@ class Skin {
 		$secureName = $title->getPrefixedDBkey();
 		if ( $rc_type == RC_MOVE ) {
 			# Use an @ character to prevent collision with page names
-			$this->rc_cache["@@" . ($rcMoveIndex++)] = array($rc);
+			$this->rc_cache["@@" . ($this->rcMoveIndex++)] = array($rc);
 		} else {
 			if ( !isset ( $this->rc_cache[$secureName] ) ) $this->rc_cache[$secureName] = array() ;
 			array_push ( $this->rc_cache[$secureName] , $rc ) ;
