@@ -117,6 +117,10 @@ class WebRequest {
 	
 	function getValues() {	
 		$names = func_get_args();
+		if ( count( $names ) == 0 ) {
+			$names = array_keys( $_REQUEST );
+		}
+
 		$retVal = array();
 		foreach ( $names as $name ) { 
 			$value = $this->getVal( $name );
