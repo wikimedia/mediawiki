@@ -91,17 +91,37 @@ if ( !function_exists( 'mb_substr' ) ) {
 function do_html_entity_decode( $string, $quote_style=ENT_COMPAT, $charset='ISO-8859-1' ) {
 	static $trans;
 	static $savedCharset;
+	static $regexp;
 	if( !isset( $trans ) || $savedCharset != $charset ) {
 		$trans = array_flip( get_html_translation_table( HTML_ENTITIES, $quote_style ) );
 		$savedCharset = $charset;
-		# Assumes $charset will always be the same through a run, and only understands
-		# utf-8 or default. Note - mixing latin1 named entities and unicode numbered
+		
+		# Note - mixing latin1 named entities and unicode numbered
 		# ones will result in a bad link.
 		if( strcasecmp( 'utf-8', $charset ) == 0 ) {
 			$trans = array_map( 'utf8_encode', $trans );
 		}
+		
+		/**
+		 * Most links will _not_ contain these fun guys,
+		 * and on long pages with many links we can get
+		 * called a lot.
+		 *
+		 * A regular expression search is faster than
+		 * a strtr or str_replace with a hundred-ish
+		 * entries, though it may be slower to actually
+		 * replace things.
+		 *
+		 * They all look like '&xxxx;'...
+		 */
+		foreach( $trans as $key => $val ) {
+			$snip[] = substr( $key, 1, -1 );
+		}
+		$regexp = '/(&(?:' . implode( '|', $snip ) . ');)/e';
 	}
-	return strtr( $string, $trans );
+
+	$out = preg_replace( $regexp, '$trans["$1"]', $string );
+	return $out;
 }
 
 
