@@ -309,7 +309,7 @@ class EditPage {
 		  wfMsg( "cancel" ) );
 		$edithelpurl = $sk->makeUrl( wfMsg( "edithelppage" ));
 		$edithelp = '<a onclick="window.open('.
-		"'$edithelpurl', 'helpwindow', 'width=610,height=400,left=10,top=10'".'); return false;" href="'.$edithelpurl.'">'.
+		"'$edithelpurl', 'helpwindow', 'width=610,height=400,left=10,top=10,scrollbars=yes'".'); return false;" href="'.$edithelpurl.'">'.
 		wfMsg( "edithelp" ).'</a>';
 		$copywarn = wfMsg( "copyrightwarning", $sk->makeKnownLink(
 		  wfMsg( "copyrightpage" ) ) );
