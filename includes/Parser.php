@@ -53,7 +53,6 @@ define( 'STRIP_COMMENTS', 'HTMLCommentStrip' );
 
 # prefix for escaping, used in two functions at least
 define( 'UNIQ_PREFIX', 'NaodW29');
-#define( 'UNIQ_PREFIX', "\x07NaodW29");
 
 # Constants needed for external link processing
 define( 'URL_PROTOCOLS', 'http|https|ftp|irc|gopher|news|mailto' );
