@@ -107,29 +107,32 @@ class UploadForm {
 				return;
 			}
 			$nt = Title::newFromText( $basename );
+			if( !$nt ) {
+				return $this->uploadError( wfMsg( "illegalfilename", htmlspecialchars( $basename ) ) );
+			}
 			$nt->setNamespace( Namespace::getImage() );
 			$this->mUploadSaveName = $nt->getDBkey();
 
 			/* Don't allow users to override the blacklist */
 			if( $this->checkFileExtension( $ext, $wgFileBlacklist ) ||
 				($wgStrictFileExtensions && !$this->checkFileExtension( $ext, $wgFileExtensions ) ) ) {
-				return $this->uploadError( wfMsg( "badfiletype", $ext ) );
+				return $this->uploadError( wfMsg( "badfiletype", htmlspecialchars( $ext ) ) );
 			}
 			
 			$this->saveUploadedFile( $this->mUploadSaveName, $this->mUploadTempName );
 			if ( !$nt->userCanEdit() ) {
 				return $this->uploadError( wfMsg( "protectedpage" ) );
-		        }
+			}
 			
 			if ( ! $this->mIgnoreWarning ) {
 				$warning = '';
 				if( 0 != strcmp( ucfirst( $basename ), $this->mUploadSaveName ) ) {
-					$warning .=  '<li>'.wfMsg( "badfilename", $this->mUploadSaveName ).'</li>';
+					$warning .=  '<li>'.wfMsg( "badfilename", htmlspecialchars( $this->mUploadSaveName ) ).'</li>';
 				}
 
 				if ( $wgCheckFileExtensions ) {
 					if ( ! $this->checkFileExtension( $ext, $wgFileExtensions ) ) {
-						$warning .= '<li>'.wfMsg( "badfiletype", $ext ).'</li>';
+						$warning .= '<li>'.wfMsg( "badfiletype", htmlspecialchars( $ext ) ).'</li>';
 					}
 				}
 				if ( $wgUploadSizeWarning && ( $this->mUploadSize > $wgUploadSizeWarning ) ) {
