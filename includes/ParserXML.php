@@ -36,6 +36,33 @@ class element {
     		$ret .= "</" . $tag . ">\n" ;
       return $ret ;
     	}
+    	
+    function createInternalLink ( &$parser , $target , $display_title , $options )
+    	{
+    	$tp = explode ( ":" , $target ) ; # tp = target parts
+    	$title = "" ;     # The plain title
+    	$language = "" ;  # The language/meta/etc. part
+    	$namespace = "" ; # The namespace, if any
+    	$subtarget = "" ; # The '#' thingy
+    	if ( count ( $tp ) == 1 ) $title = $target ; # Plain and simple case
+    	else
+    		{
+    		# To be implemented
+    		}
+    	
+    	if ( $language != "" ) # External link within the WikiMedia project
+    		{
+    		return "{language link}" ;
+    		}
+    	else if ( $namespace != "" ) # Link to another namespace, check for image/media stuff
+    		{
+    		return "{namespace link}" ;
+    		}
+    	else
+    		{
+    		return "{internal link}" ;
+    		}
+    	}
     
     function makeInternalLink ( &$parser )
     	{
@@ -52,9 +79,9 @@ class element {
             }
            }
            
-      $ret = "" ;
-      $ret .= "\n[[" . $target . "|" . implode ( "|" , $option ) . "]]\n" ;
-      return $ret ;
+      if ( count ( $option ) == 0 ) $option[] = $target ; # Create dummy display title
+      $display_title = array_pop ( $option ) ;
+      return $this->createInternalLink ( $parser , $target , $display_title , $option ) ;
     	}
     	
     function makeXHTML ( &$parser )
@@ -117,6 +144,8 @@ class element {
     		$ret .= $this->sub_makeXHTML ( $parser ) ;
     		$ret .= "&lt;/" . $n . "&gt; " ;
     		}
+    	$ret = "\n{$ret}\n" ;
+    	$ret = str_replace ( "\n\n" , "\n" , $ret ) ;
     	return $ret ;
     	}
 
