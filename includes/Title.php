@@ -22,7 +22,10 @@ class Title {
 	{
 		$t = new Title();
 		$t->mDbkeyform = $key;
-		$t->secureAndSplit();
+		if( $t->secureAndSplit() )
+			return $t;
+		else
+			return NULL;
 		return $t;
 	}
 
@@ -42,10 +45,12 @@ class Title {
 
 		$t = new Title();
 		$t->mDbkeyform = str_replace( " ", "_", $text );
-		$t->secureAndSplit();
-		
-		wfProfileOut();
-		return $t;
+		if( $t->secureAndSplit() ) {
+			wfProfileOut();
+			return $t;
+		} else {
+			return NULL;
+		}
 	}
 
 	function newFromURL( $url )
@@ -64,8 +69,11 @@ class Title {
 			$s = $wgLang->checkTitleEncoding( $s );
 		
 		$t->mDbkeyform = str_replace( " ", "_", $s );
-		$t->secureAndSplit();
-		return $t;
+		if( $t->secureAndSplit() ) {
+			return $t;
+		} else {
+			return NULL;
+		}
 	}
 
 	function nameOf( $id )
@@ -162,8 +170,11 @@ class Title {
 	{
 		$t = new Title();
 		$t->mDbkeyform = Title::makeName( $ns, $title );
-		$t->secureAndSplit();
-		return $t;
+		if( $t->secureAndSplit() ) {
+			return $t;
+		} else {
+			return NULL;
+		}
 	}
 
 	function getPrefixedDBkey()
@@ -353,7 +364,10 @@ class Title {
 		if ( "_" == $t{0} ) { $t = substr( $t, 1 ); }
 		$l = strlen( $t );
 		if ( $l && ( "_" == $t{$l-1} ) ) { $t = substr( $t, 0, $l-1 ); }
-		if ( "" == $t ) { $t = "_"; }
+		if ( "" == $t ) {
+			wfProfileOut();
+			return false;
+		}
 
 		$this->mDbkeyform = $t;
 		$done = false;
@@ -411,6 +425,7 @@ class Title {
 		$this->mTextform = str_replace( "_", " ", $t );
 		
 		wfProfileOut();
+		return true;
 	}
 }
 ?>
