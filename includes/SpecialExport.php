@@ -51,7 +51,7 @@ function page2xml( $page, $curonly, $full = false ) {
 	$sql = "SELECT cur_id as id,cur_timestamp as timestamp,cur_user as user,cur_user_text as user_text," .
 		"cur_restrictions as restrictions,cur_comment as comment,cur_text as text FROM cur " .
 		"WHERE cur_namespace=$ns AND cur_title='$t'";
-	$res = wfQuery( $sql );
+	$res = wfQuery( $sql, DB_READ );
 	if( $s = wfFetchObject( $res ) ) {
 		$tl = htmlspecialchars( $title->getPrefixedText() );
 		$xml = "  <page>\n";
@@ -66,7 +66,7 @@ function page2xml( $page, $curonly, $full = false ) {
 			$sql = "SELECT old_id as id,old_timestamp as timestamp, old_user as user, old_user_text as user_text," .
 				"old_comment as comment, old_text as text FROM old " .
 				"WHERE old_namespace=$ns AND old_title='$t' ORDER BY old_timestamp";
-			$res = wfQuery( $sql );
+			$res = wfQuery( $sql, DB_READ );
 
 			while( $s = wfFetchObject( $res ) ) {
 				$xml .= revision2xml( $s, $full, false );

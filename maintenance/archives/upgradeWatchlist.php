@@ -12,19 +12,19 @@ $wgDBuser			= "wikiadmin";
 $wgDBpassword		= $wgDBadminpassword;
 
 $sql = "DROP TABLE IF EXISTS watchlist";
-wfQuery( $sql );
+wfQuery( $sql, DB_WRITE );
 $sql = "CREATE TABLE watchlist (
   wl_user int(5) unsigned NOT NULL,
   wl_page int(8) unsigned NOT NULL,
   UNIQUE KEY (wl_user, wl_page)
 ) TYPE=MyISAM PACK_KEYS=1";
-wfQuery( $sql );
+wfQuery( $sql, DB_WRITE );
 
 $lc = new LinkCache;
 
 # Now, convert!
 $sql = "SELECT user_id,user_watch FROM user";
-$res = wfQuery( $sql );
+$res = wfQuery( $sql, DB_READ );
 $nu = wfNumRows( $res );
 $sql = "INSERT into watchlist (wl_user,wl_page) VALUES ";
 $i = $n = 0;
@@ -40,7 +40,7 @@ while( $row = wfFetchObject( $res ) ) {
 }
 echo "$n users done.\n";
 if( $i ) {
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 }
 
 
@@ -49,6 +49,6 @@ if( $i ) {
 $sql = "ALTER TABLE watchlist
   ADD INDEX wl_user (wl_user),
   ADD INDEX wl_page (wl_page)";
-#wfQuery( $sql );
+#wfQuery( $sql, DB_WRITE );
 
 ?>

@@ -63,14 +63,14 @@ function convertUserTable()
 	print "Converting USER table.\n";
 
 	$sql = "LOCK TABLES old_user READ, user WRITE";
-	$newres = wfQuery( $sql );
+	$newres = wfQuery( $sql, DB_WRITE );
 
 	$sql = "SELECT user_id,user_name,user_rights,user_password," .
 	  "user_email,user_options,user_watch FROM old_user";
-	$oldres = wfQuery( $sql );
+	$oldres = wfQuery( $sql, DB_READ );
 
 	$sql = "DELETE FROM user";
-	$newres = wfQuery( $sql );
+	$newres = wfQuery( $sql, DB_WRITE );
 
 	$sql = "";
 	while ( $row = mysql_fetch_object( $oldres ) ) {
@@ -78,7 +78,7 @@ function convertUserTable()
 		if ( "" == $name ) continue; # Don't convert illegal names
 
 		if ( 0 == ( $count % 10 ) ) {
-			if ( 0 != $count ) { $newres = wfQuery( $sql ); }
+			if ( 0 != $count ) { $newres = wfQuery( $sql, DB_WRITE ); }
 
 			$sql = "INSERT INTO user (user_id,user_name,user_rights," .
 			  "user_password,user_newpassword,user_email,user_options," .
@@ -99,13 +99,13 @@ function convertUserTable()
 			print "$count user records processed.\n";
 		}
 	}
-	if ( $sql ) { $newres = wfQuery( $sql ); }
+	if ( $sql ) { $newres = wfQuery( $sql, DB_WRITE ); }
 
 	print "$count user records processed.\n";
 	mysql_free_result( $oldres );
 
 	$sql = "UNLOCK TABLES";
-	$newres = wfQuery( $sql );
+	$newres = wfQuery( $sql, DB_WRITE );
 }
 
 # Convert May 2002 version of database into new format.
@@ -116,18 +116,18 @@ function convertCurTable()
 	print "Converting CUR table.\n";
 
 	$sql = "LOCK TABLES old_cur READ, cur WRITE, site_stats WRITE";
-	$newres = wfQuery( $sql );
+	$newres = wfQuery( $sql, DB_WRITE );
 
 	$sql = "SELECT cur_id,cur_title,cur_text,cur_comment,cur_user," .
 	  "cur_timestamp,cur_minor_edit,cur_restrictions," .
 	  "cur_counter,cur_ind_title,cur_user_text FROM old_cur";
-	$oldres = wfQuery( $sql );
+	$oldres = wfQuery( $sql, DB_READ );
 
 	$sql = "DELETE FROM cur";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
 	$sql = "DELETE FROM site_stats";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
 	$sql = "";
 	while ( $row = mysql_fetch_object( $oldres ) ) {
@@ -166,7 +166,7 @@ function convertCurTable()
 		  "'{$com}',{$row->cur_user},'{$row->cur_timestamp}'," .
 		  "{$isme},{$isnew},'{$cr}',0,'{$ititle}','{$itext}'," .
 		  "{$redir},'{$cut}')";
-		wfQuery( $sql );
+		wfQuery( $sql, DB_WRITE );
 
 		if ( ( ++$count % 1000 ) == 0 ) {
 			print "$count article records processed.\n";
@@ -181,10 +181,10 @@ function convertCurTable()
 
 	$sql = "REPLACE INTO site_stats (ss_row_id,ss_total_views," .
 	  "ss_total_edits,ss_good_articles) VALUES (1,0,0,{$countables})";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
 	$sql = "UNLOCK TABLES";
-	$newres = wfQuery( $sql );
+	$newres = wfQuery( $sql, DB_WRITE );
 }
 
 # Convert May 2002 version of database into new format.
@@ -195,14 +195,14 @@ function convertOldTable()
 	print "Converting OLD table.\n";
 
 	$sql = "LOCK TABLES old_old READ, old WRITE";
-	$newres = wfQuery( $sql );
+	$newres = wfQuery( $sql, DB_WRITE );
 
 	$sql = "SELECT old_id,old_title,old_text,old_comment,old_user," .
 	  "old_timestamp,old_minor_edit,old_user_text FROM old_old";
-	$oldres = wfQuery( $sql );
+	$oldres = wfQuery( $sql, DB_READ );
 
 	$sql = "DELETE FROM old";
-	$newres = wfQuery( $sql );
+	$newres = wfQuery( $sql, DB_WRITE );
 
 	while ( $row = mysql_fetch_object( $oldres ) ) {
 		$nt = Title::newFromDBkey( $row->old_title );
@@ -231,7 +231,7 @@ function convertOldTable()
 		$sql .= "({$row->old_id},{$ns},'{$title}','{$text}'," .
 		  "'{$com}',{$row->old_user},'{$row->old_timestamp}'," .
 		  "{$isme},'{$cut}')";
-		wfQuery( $sql );
+		wfQuery( $sql, DB_WRITE );
 
 		if ( ( ++$count % 1000 ) == 0 ) {
 			print "$count history records processed.\n";
@@ -241,7 +241,7 @@ function convertOldTable()
 	mysql_free_result( $oldres );
 
 	$sql = "UNLOCK TABLES";
-	$newres = wfQuery( $sql );
+	$newres = wfQuery( $sql, DB_WRITE );
 }
 
 function convertImageDirectoriesX()
@@ -284,14 +284,14 @@ function convertImageDirectoriesX()
 
 			$sql = "DELETE FROM image WHERE img_name='" .
 			  addslashes( $nname ) . "'";
-			$res = wfQuery( $sql );
+			$res = wfQuery( $sql, DB_WRITE );
 
 			$sql = "INSERT INTO image (img_name,img_timestamp,img_user," .
 			  "img_user_text,img_size,img_description) VALUES ('" .
 			  addslashes( $nname ) . "','" .
 			  date( "YmdHis" ) . "',0,'(Automated conversion)','" .
 			  filesize( "{$dest}/{$nname}" ) . "','')";
-			$res = wfQuery( $sql );
+			$res = wfQuery( $sql, DB_WRITE );
 		} else {
 			die( "Couldn't copy \"{$oname}\" to \"{$nname}\"\n" );
 		}
@@ -306,7 +306,7 @@ function convertImageDirectories()
 
 
 	$sql = "SELECT DISTINCT il_to FROM imagelinks";
-	$result = wfQuery ( $sql ) ;
+	$result = wfQuery ( $sql, DB_READ ) ;
 
    while ( $row = mysql_fetch_object ( $result ) ) {
    	$oname = $row->il_to ;
@@ -347,14 +347,14 @@ function convertImageDirectories()
 
 			$sql = "DELETE FROM image WHERE img_name='" .
 			  addslashes( $nname ) . "'";
-			$res = wfQuery( $sql );
+			$res = wfQuery( $sql, DB_WRITE );
 
 			$sql = "INSERT INTO image (img_name,img_timestamp,img_user," .
 			  "img_user_text,img_size,img_description) VALUES ('" .
 			  addslashes( $nname ) . "','" .
 			  date( "YmdHis" ) . "',0,'(Automated conversion)','" .
 			  filesize( "{$dest}/{$nname}" ) . "','')";
-			$res = wfQuery( $sql );
+			$res = wfQuery( $sql, DB_WRITE );
 		} else {
             echo( "Couldn't copy \"{$oname}\" to \"{$nname}\"\n" );
         }
@@ -557,36 +557,36 @@ function refillRandom()
 	$sql = "INSERT INTO random(ra_current,ra_title) SELECT 0,cur_title " .
 	  "FROM cur WHERE cur_namespace=0 AND cur_is_redirect=0 " .
 	  "ORDER BY RAND() LIMIT 1000";
-	wfQuery( $sql, $fname );
+	wfQuery( $sql, DB_WRITE, $fname );
 
 	$sql = "UPDATE random SET ra_current=(ra_current+1)";
-	wfQuery( $sql, $fname );
+	wfQuery( $sql, DB_WRITE, $fname );
 
 	$sql = "DELETE FROM random WHERE ra_current>1";
-	wfQuery( $sql, $fname );
+	wfQuery( $sql, DB_WRITE, $fname );
 }
 
 function renameOldTables()
 {
 	$sql = "ALTER TABLE user RENAME TO old_user";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 	$sql = "ALTER TABLE cur RENAME TO old_cur";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 	$sql = "ALTER TABLE old RENAME TO old_old";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 	$sql = "DROP TABLE IF EXISTS linked";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 	$sql = "DROP TABLE IF EXISTS unlinked";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 }
 
 function removeOldTables()
 {
-	wfQuery( "DROP TABLE IF EXISTS old_user" );
-	wfQuery( "DROP TABLE IF EXISTS old_linked" );
-	wfQuery( "DROP TABLE IF EXISTS old_unlinked" );
-	wfQuery( "DROP TABLE IF EXISTS old_cur" );
-	wfQuery( "DROP TABLE IF EXISTS old_old" );
+	wfQuery( "DROP TABLE IF EXISTS old_user", DB_WRITE );
+	wfQuery( "DROP TABLE IF EXISTS old_linked", DB_WRITE );
+	wfQuery( "DROP TABLE IF EXISTS old_unlinked", DB_WRITE );
+	wfQuery( "DROP TABLE IF EXISTS old_cur", DB_WRITE );
+	wfQuery( "DROP TABLE IF EXISTS old_old", DB_WRITE );
 }
 
 ?>
