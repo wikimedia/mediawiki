@@ -1,10 +1,16 @@
 <?php
+/**
+ * This is a drop-in replacement for commandLine.inc, for use only on
+ * the Wikimedia wikis.
+ * Call your command-line script with the language name and site name,
+ * e.g. php convertLinks.php aa wikipedia
+ *
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
-# This is a drop-in replacement for commandLine.inc, for use only on
-# the Wikimedia wikis.
-# Call your command-line script with the language name and site name,
-# e.g. php convertLinks.php aa wikipedia
-
+/** */
 if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
 	print "This script must be run from the command line\n";
 	exit();

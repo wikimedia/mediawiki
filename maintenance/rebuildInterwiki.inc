@@ -1,12 +1,24 @@
 <?php
+/**
+ * Rebuild interwiki table using the file on meta and the language list
+ * Wikimedia specific!
+ *
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
-# Rebuild interwiki table using the file on meta and the language list
-# Wikimedia specific!
+/** */
 $oldCwd = getcwd();
 
 $optionsWithArgs = array( "o" );
 include_once( "commandLine.inc" );
 
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 class Site {
 	var $suffix, $lateral, $url;
 

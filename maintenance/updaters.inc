@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
+ 
+ /** */
 function do_revision_updates() {
 	global $wgSoftwareRevision;
 	if ( $wgSoftwareRevision < 1001 ) {

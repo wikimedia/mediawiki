@@ -1,8 +1,13 @@
 <?php
+/**
+ * Rebuild recent changes table.
+ *
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
-# Rebuild recent changes table.
-#
-
+/** */
 function rebuildRecentChangesTablePass1()
 {
 	$fname = 'rebuildRecentChangesTablePass1';

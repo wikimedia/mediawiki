@@ -1,9 +1,16 @@
 <?php
-# Script to initialise the MediaWiki namespace
+/**
+ * Script to initialise the MediaWiki namespace
+ *
+ * This script is included from update.php and install.php. Do not run it 
+ * by itself.
+ *
+ * @deprecated
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
-# This script is included from update.php and install.php. Do not run it 
-# by itself.
-
+/** */
 function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	global $wgLang, $wgScript, $wgServer, $wgAllMessagesEn;
 	global $wgOut, $wgArticle, $wgUser;

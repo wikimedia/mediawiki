@@ -1,4 +1,11 @@
 <?php
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
+
+/** */
 require_once( "commandLine.inc" );
 include_once( "InitialiseMessages.inc" );
 

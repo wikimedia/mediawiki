@@ -1,17 +1,20 @@
 <?php
+/**
+ * Check to see if all messages have been translated into
+ * the selected language. To run this script, you must have
+ * a working installation, and it checks the selected language
+ * of that installation.
+ *
+ * The enhanced version will check more arrays than just
+ * wgAllMessages
+ *
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
-# Check to see if all messages have been translated into
-# the selected language. To run this script, you must have
-# a working installation, and it checks the selected language
-# of that installation.
-#
-# The enhanced version will check more arrays than just
-# wgAllMessages
-
-
-
-function check($arrayname)
-{
+/** */
+function check($arrayname) {
 	$arraynameprinted = 0;
 	
 	global $count, $total, $wgLanguageCode;
@@ -36,11 +39,6 @@ function check($arrayname)
 		}
 	}
 }
-
-
-
-
-
 
 if ( ! is_readable( "../LocalSettings.php" ) ) {
 	print "A copy of your installation's LocalSettings.php\n" .
@@ -72,11 +70,6 @@ $wgCommandLineMode = true;
 $count = $total = 0;
 
 
-
-
-
-
-
 check("wgLanguageNames");
 check("wgNamespaceNames");
 check("wgDefaultUserOptions");
@@ -93,4 +86,3 @@ check("wgDeveloperSpecialPages");
 check("wgAllMessages");
 
 print "{$count} messages of {$total} not translated.\n";
-

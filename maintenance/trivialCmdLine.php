@@ -1,5 +1,10 @@
 <?php
+/**
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
+/** */
 require_once( "commandLine.inc" );
 # print "DB name: $wgDBname\n";
 # print "DB user: $wgDBuser\n";

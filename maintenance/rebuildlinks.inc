@@ -1,10 +1,18 @@
 <?php
+/**
+ * Functions for rebuilding the link tracking tables; must
+ * be included within a script that also includes the Setup.
+ * See @see rebuildlinks.php, for example.
+ *
+ * @deprecated
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 
+/** */
 die( "rebuildLinks.inc needs to be updated for the new schema\n" );
 
-# Functions for rebuilding the link tracking tables; must
-# be included within a script that also includes the Setup.
-# See rebuildlinks.php, for example.
 #
 
 # Buffer this many rows before inserting them all in one sweep. More
@@ -238,13 +246,18 @@ function rebuildLinkTables()
 	return intval($n/$t);
 }
 
-# InsertBuffer increases performance slightly by inserting many rows
-# at once. The gain is small (<5%) when running against a local, idle
-# database, but may be significant in other circumstances. It also
-# limits the number of inserted rows uppwards, which should avoid
-# problems with huge articles and certain mysql settings that limits
-# the size of queries. It's also convenient.
-
+/**
+ * InsertBuffer increases performance slightly by inserting many rows
+ * at once. The gain is small (<5%) when running against a local, idle
+ * database, but may be significant in other circumstances. It also
+ * limits the number of inserted rows uppwards, which should avoid
+ * problems with huge articles and certain mysql settings that limits
+ * the size of queries. It's also convenient.
+ *
+ * @deprecated
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 class InsertBuffer {
 	/* private */ var $mBuf, $mSql, $mBufcount, $mMaxsize;
 	
@@ -276,10 +289,15 @@ class InsertBuffer {
 	
 }
 
-# Select parts from a large table by using the "BETWEEN X AND Y"
-# operator on the id column. Avoids buffering the whole thing in
-# RAM. It's also convenient.  
-
+/**
+ * Select parts from a large table by using the "BETWEEN X AND Y"
+ * operator on the id column. Avoids buffering the whole thing in
+ * RAM. It's also convenient.
+ *
+ * @deprecated
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 class SelectPulser {
 	/* private */ var $mSql, $mSetsize, $mPos, $mMax, $mSet;
 
@@ -316,8 +334,13 @@ class SelectPulser {
 	}
 }
 
-# A simple MRU for general cacheing.
-
+/**
+ * A simple MRU for general cacheing.
+ * @deprecated
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Maintenance
+ */
 class MRUCache {
 	/* private */ var $mMru, $mCache, $mSize, $mPurgefreq, $nexti;
 	/* private */ var $hits, $misses;

@@ -1,11 +1,15 @@
 <?php
+/**
+ * Check to see if all messages have been translated into
+ * the selected language. To run this script, you must have
+ * a working installation, and it checks the selected language
+ * of that installation.
+ *
+ * @package MediaWiki
+ * @subpackage Maintenance
+*/
 
-# Check to see if all messages have been translated into
-# the selected language. To run this script, you must have
-# a working installation, and it checks the selected language
-# of that installation.
-#
-
+/** */
 if ( ! is_readable( "../LocalSettings.php" ) ) {
 	print "A copy of your installation's LocalSettings.php\n" .
 	  "must exist in the source directory.\n";
@@ -45,4 +49,3 @@ foreach ( $wgAllMessagesEn as $code => $msg ) {
 	}
 }
 print "{$count} messages of {$total} not translated.\n";
-
