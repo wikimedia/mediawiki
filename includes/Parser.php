@@ -662,7 +662,11 @@ class Parser
 					}
 					break;
 				case "ISBN ":
-					$txt = $this->doMagicISBN( $tokenizer );
+					if ( $tagIsOpen ) {
+						$txt = "ISBN ";
+					} else {
+						$txt = $this->doMagicISBN( $tokenizer );
+					}
 					break;
 				default:
 					# Call language specific Hook.
