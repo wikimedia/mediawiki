@@ -37,6 +37,7 @@ class LanguageZh extends LanguageZh_cn {
 	var $mTables=false; //the mapping tables
 	var $mTablesLoaded = false;
 	var $mCacheKey;
+	var $mDoTitleConvert = true;
 	function LanguageZh() {
 		global $wgDBname;
 		$this->mCacheKey = $wgDBname . ":zhtables";
@@ -76,6 +77,7 @@ class LanguageZh extends LanguageZh_cn {
 
 				$cached = $this->parseCachedTable( $wgMessageCache->get( 'zhconversiontable/zh-hk', true, true, true ) );
 				$this->mTables['zh-hk'] = array_merge($this->mTables['zh-hk'], $cached);
+
 			}
 			$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
 		}
@@ -204,16 +206,22 @@ class LanguageZh extends LanguageZh_cn {
 	# -{text}- in which case no conversion should take place for text
 	function convert( $text , $isTitle=false) {
 		global $wgDisableLangConversion;
-
 		if($wgDisableLangConversion)
 			return $text; 
-		
+
+		$mw =& MagicWord::get( MAG_NOTITLECONVERT );
+		if( $mw->matchAndRemove( $text ) )
+			$this->mDoTitleConvert = false;
+
 		// no conversion if redirecting
-		if(strtolower( substr( $text,0,9 ) ) == "#redirect") {
+		$mw =& MagicWord::get( MAG_REDIRECT );
+		if( $mw->matchStart( $text ))
 			return $text;
-		}
 
 		if( $isTitle ) {
+			if( !$this->mDoTitleConvert )
+				return $text;
+
 			global $wgRequest;
 			$isredir = $wgRequest->getText( 'redirect', 'yes' );
 			$action = $wgRequest->getText( 'action' );
@@ -221,8 +229,7 @@ class LanguageZh extends LanguageZh_cn {
 				return $text;
 			}
 			else {
-				$text = $this->convertTitle($text);
-				return $text;
+				return $this->autoConvert($text);
 			}
 		}
 
@@ -271,18 +278,6 @@ class LanguageZh extends LanguageZh_cn {
 		return $text;
 	}
 
-
-	# only convert titles having more than one character
-	function convertTitle($text) {
-		$len=0;
-		if( function_exists( 'mb_strlen' ) )
-			$len = mb_strlen($text);
-		else
-			$len = strlen($text)/3;
-		if($len>1)
-			return $this->autoConvert( $text);
-		return $text;
-	}
 
 	function getVariants() {
 		return array("zh", "zh-cn", "zh-tw", "zh-sg", "zh-hk");
