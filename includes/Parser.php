@@ -3086,6 +3086,10 @@ class Parser
 	 * 'A tree'.
 	 */
 	function renderImageGallery( $text ) {
+		# Setup the parser
+		global $wgUser, $wgParser, $wgTitle;
+		$parserOptions = ParserOptions::newFromUser( $wgUser );
+	
 		global $wgLinkCache;
 		$ig = new ImageGallery();
 		$ig->setShowBytes( false );
@@ -3111,9 +3115,8 @@ class Parser
 				$label = '';
 			}
 			
-			# FIXME: Use the full wiki parser and add its links
-			# to the page's links.
-			$html = $this->mOptions->mSkin->formatComment( $label );
+			$html = $wgParser->parse( $label , $wgTitle, $parserOptions );
+			$html = $html->mText;
 			
 			$ig->add( Image::newFromTitle( $nt ), $html );
 			$wgLinkCache->addImageLinkObj( $nt );
