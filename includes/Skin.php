@@ -1409,21 +1409,18 @@ class Skin {
 		wfProfileIn( $fname );
 
 		if ( !is_object( $nt ) ) {
+			wfProfileIn( $fname );
 			return $text;
 		}
-		$link = $nt->getPrefixedURL();
-#		if ( '' != $section && substr($section,0,1) != "#" ) {
-#			$section = ''
-
-		if ( '' == $link ) {
-			$u = '';
-			if ( '' == $text ) {
-				$text = htmlspecialchars( $nt->getFragment() );
-			}
-		} else {
-			$u = $nt->escapeLocalURL( $query );
-		}
+		
+		$u = $nt->escapeLocalURL( $query );
 		if ( '' != $nt->getFragment() ) {
+			if( $nt->getPrefixedDbkey() == '' ) {
+				$u = '';
+				if ( '' == $text ) {
+					$text = htmlspecialchars( $nt->getFragment() );
+				}
+			}
 			$anchor = urlencode( do_html_entity_decode( str_replace(' ', '_', $nt->getFragment()), ENT_COMPAT, $wgInputEncoding ) );
 			$replacearray = array(
 				'%3A' => ':',
@@ -2192,8 +2189,18 @@ class Skin {
 	}
 
 	function recentChangesLineOld( &$rc, $watched = false ) {
+		$fname = 'Skin::recentChangesLineOld';
+		wfProfileIn( $fname );
+		
 		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgRCSeconds, $wgUseRCPatrol, $wgOnlySysopsCanPatrol;
 
+		static $message;
+		if( !isset( $message ) ) {
+			foreach( explode(' ', 'diff hist minoreditletter newpageletter blocklink' ) as $msg ) {
+				$message[$msg] = wfMsg( $msg );
+			}
+		}
+		
 		# Extract DB fields into local scope
 		extract( $rc->mAttribs );
 		$curIdEq = 'curid=' . $rc_cur_id;
@@ -2203,12 +2210,11 @@ class Skin {
 		  ( !$wgOnlySysopsCanPatrol || $wgUser->isAllowed('patrol') ) && $rc_patrolled == 0;
 		
 		# Make date header if necessary
-		$date = $wgContLang->date( $rc_timestamp, true);
-		$uidate = $wgLang->date( $rc_timestamp, true);
+		$date = $wgLang->date( $rc_timestamp, true);
 		$s = '';
 		if ( $date != $this->lastdate ) {
 			if ( '' != $this->lastdate ) { $s .= "</ul>\n"; }
-			$s .= "<h4>{$uidate}</h4>\n<ul class=\"special\">";
+			$s .= "<h4>{$date}</h4>\n<ul class=\"special\">";
 			$this->lastdate = $date;
 			$this->rclistOpen = true;
 		}
@@ -2217,9 +2223,9 @@ class Skin {
 
 		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			# Diff
-			$s .= '(' . wfMsg( 'diff' ) . ') (';
+			$s .= '(' . $message['diff'] . ') (';
 			# Hist
-			$s .= $this->makeKnownLinkObj( $rc->getMovedToTitle(), wfMsg( 'hist' ), 'action=history' ) .
+			$s .= $this->makeKnownLinkObj( $rc->getMovedToTitle(), $message['hist'], 'action=history' ) .
 				') . . ';
 
 			# "[[x]] moved to [[y]]"
@@ -2232,27 +2238,28 @@ class Skin {
 			$logname = LogPage::logName( $logtype );
 			$s .= '(' . $this->makeKnownLinkObj( $rc->getTitle(), $logname ) . ')';
 		} else {
+			wfProfileIn("$fname-page");
 			# Diff link
 			if ( $rc_type == RC_NEW || $rc_type == RC_LOG ) {
-				$diffLink = wfMsg( 'diff' );
+				$diffLink = $message['diff'];
 			} else {
 				if ( $unpatrolled )
 					$rcidparam = "&rcid={$rc_id}";
 				else
 					$rcidparam = "";
-				$diffLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'diff' ),
+				$diffLink = $this->makeKnownLinkObj( $rc->getTitle(), $message['diff'],
 				  "{$curIdEq}&diff={$rc_this_oldid}&oldid={$rc_last_oldid}{$rcidparam}",
 				  '', '', ' tabindex="'.$rc->counter.'"');
 			}
 			$s .= '('.$diffLink.') (';
 
 			# History link
-			$s .= $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'hist' ), $curIdEq.'&action=history' );
+			$s .= $this->makeKnownLinkObj( $rc->getTitle(), $message['hist'], $curIdEq.'&action=history' );
 			$s .= ') . . ';
 
 			# M, N and ! (minor, new and unpatrolled)
-			if ( $rc_minor ) { $s .= ' <span class="minor">'.wfMsg( "minoreditletter" ).'</span>'; }
-			if ( $rc_type == RC_NEW ) { $s .= '<span class="newpage">'.wfMsg( "newpageletter" ).'</span>'; }
+			if ( $rc_minor ) { $s .= ' <span class="minor">'.$message["minoreditletter"].'</span>'; }
+			if ( $rc_type == RC_NEW ) { $s .= '<span class="newpage">'.$message["newpageletter"].'</span>'; }
 			if ( !$rc_patrolled ) { $s .= ' <span class="unpatrolled">!</span>'; }
 
 			# Article link
@@ -2267,35 +2274,39 @@ class Skin {
 				$articleLink = '<strong>'.$articleLink.'</strong>';
 			}
 			$s .= ' '.$articleLink;
-
+			wfProfileOut("$fname-page");
 		}
 
+		wfProfileIn( "$fname-rest" );
 		# Timestamp
 		$s .= '; ' . $wgLang->time( $rc_timestamp, true, $wgRCSeconds ) . ' . . ';
 
 		# User link (or contributions for unregistered users)
 		if ( 0 == $rc_user ) {
-			$userLink = $this->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
-			$rc_user_text, 'target=' . $rc_user_text );
+			$contribsPage =& Title::makeTitle( NS_SPECIAL, 'Contributions' );
+			$userLink = $this->makeKnownLinkObj( $contribsPage,
+				$rc_user_text, 'target=' . $rc_user_text );
 		} else {
-			$userLink = $this->makeLink( $wgContLang->getNsText( NS_USER ) . ':'.$rc_user_text, $rc_user_text );
+			$userPage =& Title::makeTitle( NS_USER, $rc_user_text );
+			$userLink = $this->makeLinkObj( $userPage, $rc_user_text );
 		}
 		$s .= $userLink;
 
 		# User talk link
-		$talkname=$wgContLang->getNsText(NS_TALK); # use the shorter name
+		$talkname = $wgContLang->getNsText(NS_TALK); # use the shorter name
 		global $wgDisableAnonTalk;
 		if( 0 == $rc_user && $wgDisableAnonTalk ) {
 			$userTalkLink = '';
 		} else {
-			$utns=$wgContLang->getNsText(NS_USER_TALK);
-			$userTalkLink= $this->makeLink($utns . ':'.$rc_user_text, $talkname );
+			$userTalkPage =& Title::makeTitle( NS_USER_TALK, $rc_user_text );
+			$userTalkLink= $this->makeLinkObj( $userTalkPage, $talkname );
 		}
 		# Block link
 		$blockLink='';
 		if ( ( 0 == $rc_user ) && $wgUser->isAllowed('block') ) {
-			$blockLink = $this->makeKnownLink( $wgContLang->specialPage(
-			  'Blockip' ), wfMsg( 'blocklink' ), 'ip='.$rc_user_text );
+			$blockLinkPage = Title::makeTitle( NS_SPECIAL, 'Blockip' );
+			$blockLink = $this->makeKnownLink( $blockLinkPage,
+				$message['blocklink'], 'ip='.$rc_user_text );
 
 		}
 		if($blockLink) {
@@ -2306,17 +2317,26 @@ class Skin {
 
 		# Add comment
 		if ( '' != $rc_comment && '*' != $rc_comment && $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
-			$rc_comment=$this->formatComment($rc_comment,$rc->getTitle());
+			$rc_comment = $this->formatComment($rc_comment,$rc->getTitle());
 			$s .= $wgContLang->emphasize(' (' . $rc_comment . ')');
 		}
 		$s .= "</li>\n";
 
+		wfProfileOut( "$fname-rest" );
+		wfProfileOut( $fname );
 		return $s;
 	}
 
 	function recentChangesLineNew( &$baseRC, $watched = false ) {
 		global $wgTitle, $wgLang, $wgContLang, $wgUser, $wgRCSeconds;
 		global $wgUseRCPatrol, $wgOnlySysopsCanPatrol;
+		
+		static $message;
+		if( !isset( $message ) ) {
+			foreach( explode(' ', 'cur diff hist minoreditletter newpageletter last blocklink' ) as $msg ) {
+				$message[$msg] = wfMsg( $msg );
+			}
+		}
 		
 		# Create a specialised object
 		$rc = RCCacheEntry::newFromParent( $baseRC ) ;
@@ -2326,14 +2346,13 @@ class Skin {
 		$curIdEq = 'curid=' . $rc_cur_id;
 
 		# If it's a new day, add the headline and flush the cache
-		$date = $wgContLang->date( $rc_timestamp, true);
-		$uidate = $wgLang->date( $rc_timestamp, true);
+		$date = $wgLang->date( $rc_timestamp, true);
 		$ret = '';
 		if ( $date != $this->lastdate ) {
 			# Process current cache
 			$ret = $this->recentChangesBlock () ;
 			$this->rc_cache = array() ;
-			$ret .= "<h4>{$uidate}</h4>\n";
+			$ret .= "<h4>{$date}</h4>\n";
 			$this->lastdate = $date;
 		}
 		
@@ -2369,13 +2388,13 @@ class Skin {
 
 		# Make "cur" and "diff" links
 		if ( ( $rc_type == RC_NEW && $rc_this_oldid == 0 ) || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
-			$curLink = wfMsg( 'cur' );
-			$diffLink = wfMsg( 'diff' );
+			$curLink = $message['cur'];
+			$diffLink = $message['diff'];
 		} else {
 			$query = $curIdEq.'&diff=0&oldid='.$rc_this_oldid;
 			$aprops = ' tabindex="'.$baseRC->counter.'"';
-			$curLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'cur' ), $query, '' ,'' , $aprops );
-			$diffLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'diff'), $query, '' ,'' , $aprops );
+			$curLink = $this->makeKnownLinkObj( $rc->getTitle(), $message['cur'], $query, '' ,'' , $aprops );
+			$diffLink = $this->makeKnownLinkObj( $rc->getTitle(), $message['diff'], $query, '' ,'' , $aprops );
 		}
 
 		# Make "last" link
@@ -2386,19 +2405,20 @@ class Skin {
 			$rcIdQuery = '';
 		}
 		if ( $rc_last_oldid == 0 || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
-			$lastLink = wfMsg( 'last' );
+			$lastLink = $message['last'];
 		} else {
-			$lastLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'last' ),
+			$lastLink = $this->makeKnownLinkObj( $rc->getTitle(), $message['last'],
 			  $curIdEq.'&diff='.$rc_this_oldid.'&oldid='.$rc_last_oldid . $rcIdQuery );
 		}
 
 		# Make user link (or user contributions for unregistered users)
 		if ( $rc_user == 0 ) {
-			$userLink = $this->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
-			$rc_user_text, 'target=' . $rc_user_text );
+			$contribsPage =& Title::makeTitle( NS_SPECIAL, 'Contributions' );
+			$userLink = $this->makeKnownLinkObj( $contribsPage,
+				$rc_user_text, 'target=' . $rc_user_text );
 		} else {
-			$userLink = $this->makeLink( $wgContLang->getNsText(
-			  Namespace::getUser() ) . ':'.$rc_user_text, $rc_user_text );
+			$userPage =& Title::makeTitle( NS_USER, $rc_user_text );
+			$userLink = $this->makeLinkObj( $userPage, $rc_user_text );
 		}
 
 		$rc->userlink = $userLink;
@@ -2407,14 +2427,15 @@ class Skin {
 		$rc->difflink = $diffLink;
 
 		# Make user talk link
-		$utns=$wgContLang->getNsText(NS_USER_TALK);
-		$talkname=$wgContLang->getNsText(NS_TALK); # use the shorter name
-		$userTalkLink= $this->makeLink($utns . ':'.$rc_user_text, $talkname );
+		$talkname = $wgContLang->getNsText( NS_TALK ); # use the shorter name
+		$userTalkPage =& Title::makeTitle( NS_USER_TALK, $rc_user_text );
+		$userTalkLink = $this->makeLinkObj( $userTalkPage, $talkname );
 
 		global $wgDisableAnonTalk;
 		if ( ( 0 == $rc_user ) && $wgUser->isAllowed('block') ) {
-			$blockLink = $this->makeKnownLink( $wgContLang->specialPage(
-			  'Blockip' ), wfMsg( 'blocklink' ), 'ip='.$rc_user_text );
+			$blockPage =& Title::makeTitle( NS_SPECIAL, 'Blockip' );
+			$blockLink = $this->makeKnownLinkObj( $blockPage,
+				$message['blocklink'], 'ip='.$rc_user_text );
 			if( $wgDisableAnonTalk )
 				$rc->usertalklink = ' ('.$blockLink.')';
 			else
@@ -2460,6 +2481,9 @@ class Skin {
 	 * temporarily to a value pass. Should be adjusted further. --brion
 	 */
 	function formatComment($comment, $title = NULL) {
+		$fname = 'Skin::formatComment';
+		wfProfileIn( $fname );
+		
 		global $wgContLang;
 		$comment = htmlspecialchars( $comment );
 
@@ -2517,6 +2541,7 @@ class Skin {
 			}
 			$comment = preg_replace( $linkRegexp, $thelink, $comment, 1 );
 		}
+		wfProfileOut( $fname );
 		return $comment;
 	}
 
