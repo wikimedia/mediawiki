@@ -2,7 +2,7 @@
 
 function wfSpecialSpecialpages()
 {
-	global $wgUser, $wgOut, $wgLang;
+	global $wgUser, $wgOut, $wgLang, $wgAllowSysopQueries;
 
 	$wgOut->setRobotpolicy( "index,nofollow" );
 
@@ -23,6 +23,9 @@ function wfSpecialSpecialpages()
 
 		foreach ( $sysopSP as $name => $desc ) {
 			if ( "" == $desc ) { continue; }
+			if( "Asksql" == $name && !$wgAllowSysopQueries ) {
+				continue;
+			}
 			$link = $sk->makeKnownLink( $wgLang->specialPage( $name ), $desc );
 			$wgOut->addHTML( "<li>{$link}</li>\n" );
 		}

@@ -42,6 +42,25 @@ function renderMath( $tex )
 		}
 	}
 	
+	# Ensure that the temp and output directories are available before continuing...
+	if( !file_exists( $wgMathDirectory ) ) {
+		if( !@mkdir( $wgMathDirectory ) ) {
+			return "<b>$mf (" . wfMsg( "math_bad_output" ) . ")</b>";
+		}
+	} elseif( !is_dir( $wgMathDirectory ) || !is_writable( $wgMathDirectory ) ) {
+		return "<b>$mf (" . wfMsg( "math_bad_output" ) . ")</b>";
+	}
+	if( !file_exists( $wgTmpDirectory ) ) {
+		if( !@mkdir( $wgTmpDirectory ) ) {
+			return "<b>$mf (" . wfMsg( "math_bad_tmpdir" ) . ")</b>";
+		}
+	} elseif( !is_dir( $wgTmpDirectory ) || !is_writable( $wgTmpDirectory ) ) {
+		return "<b>$mf (" . wfMsg( "math_bad_tmpdir" ) . ")</b>";
+	}
+	
+	if( !is_executable( $wgTexvc ) ) {
+		return "<b>$mf (" . wfMsg( "math_notexvc" ) . ")</b>";
+	}
 	$cmd = $wgTexvc." ".
 		escapeshellarg($wgTmpDirectory)." ".
 		escapeshellarg($wgMathDirectory)." ".

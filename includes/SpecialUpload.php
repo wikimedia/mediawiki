@@ -35,7 +35,7 @@ function processUpload()
 {
 	global $wgUser, $wgOut, $wgLang, $wpUploadAffirm, $wpUploadFile;
 	global $wpUploadDescription, $wpIgnoreWarning;
-	global $HTTP_POST_FILES, $wgUploadDirectory;
+	global $wgUploadDirectory;
 	global $wpUploadSaveName, $wpUploadTempName, $wpUploadSize;
 	global $wgSavedFile, $wgUploadOldVersion, $wpUploadOldVersion;
 	global $wgUseCopyrightUpload , $wpUploadCopyStatus , $wpUploadSource ;
@@ -54,13 +54,13 @@ function processUpload()
 		return;
 	}
 	if ( ! $wpUploadTempName ) {
-		$wpUploadTempName = $HTTP_POST_FILES['wpUploadFile']['tmp_name'];
+		$wpUploadTempName = $_FILES['wpUploadFile']['tmp_name'];
 	}
 	if ( ! $wpUploadSize ) {
-		$wpUploadSize = $HTTP_POST_FILES['wpUploadFile']['size'];
+		$wpUploadSize = $_FILES['wpUploadFile']['size'];
 	}
 	$prev = error_reporting( E_ALL & ~( E_NOTICE | E_WARNING ) );
-	$oname = wfCleanQueryVar( $HTTP_POST_FILES['wpUploadFile']['name'] );
+	$oname = wfCleanQueryVar( $_FILES['wpUploadFile']['name'] );
 	if ( $wpUploadSaveName != "" ) $wpUploadSaveName = wfCleanQueryVar( $wpUploadSaveName );
 	error_reporting( $prev );
 
@@ -77,10 +77,14 @@ function processUpload()
 		$partname = substr( $basename, 0, strlen( $basename ) - $xl );
 
 		if ( strlen( $partname ) < 3 ) {
-			mainUploadForm( WfMsg( "minlength" ) );
+			mainUploadForm( wfMsg( "minlength" ) );
 			return;
 		}
 		$nt = Title::newFromText( $basename );
+		if( !$nt ) {
+			mainUploadForm( wfMsg( "badtitle" ) );
+			return;
+		}
 		$wpUploadSaveName = $nt->getDBkey();
 
 		/* Don't allow users to override the blacklist */
@@ -157,9 +161,9 @@ function saveUploadedFile()
 function unsaveUploadedFile()
 {
 	global $wpSessionKey, $wpUploadOldVersion;
-	global $wgUploadDirectory, $wgOut, $wsUploadFiles;
+	global $wgUploadDirectory, $wgOut;
 	
-	$wgSavedFile = $wsUploadFiles[$wpSessionKey];
+	$wgSavedFile = $_SESSION['wsUploadFiles'][$wpSessionKey];
 	$wgUploadOldVersion = $wpUploadOldVersion;
 
 	if ( ! @unlink( $wgSavedFile ) ) {
@@ -193,12 +197,12 @@ function uploadWarning( $warning )
 	global $wpUploadDescription, $wpIgnoreWarning;
 	global $wpUploadSaveName, $wpUploadTempName, $wpUploadSize;
 	global $wgSavedFile, $wgUploadOldVersion;
-	global $wpSessionKey, $wpUploadOldVersion, $wsUploadFiles;
+	global $wpSessionKey, $wpUploadOldVersion;
 	global $wgUseCopyrightUpload , $wpUploadCopyStatus , $wpUploadSource ;
 
 	# wgSavedFile is stored in the session not the form, for security
 	$wpSessionKey = mt_rand( 0, 0x7fffffff );
-	$wsUploadFiles[$wpSessionKey] = $wgSavedFile;
+	$_SESSION['wsUploadFiles'][$wpSessionKey] = $wgSavedFile;
 
 	$sub = wfMsg( "uploadwarning" );
 	$wgOut->addHTML( "<h2>{$sub}</h2>\n" );

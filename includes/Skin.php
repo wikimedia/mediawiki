@@ -475,15 +475,18 @@ class Skin {
 	{
 		global $wgOut, $wgTitle, $oldid, $action;
 
-		$q = "";
+		$basequery = "";
 		foreach( $_GET as $var => $val ) {
-			if( $var != "title" && $var != "printable" )
-				$q .= urlencode( $var ) . "=" . urlencode( $val );
+			if( $var == "title" ) continue;
+			$basequery .= "&" . urlencode( $var ) . "=" . urlencode( $val );
 		}
-		if( !empty( $q ) ) $q .= "&";
+		$basequery .= "&printable=yes";
 		
-		$s = $this->makeKnownLink( $wgTitle->getPrefixedText(),
-		  WfMsg( "printableversion" ), "{$q}printable=yes" );
+		# Trim the extra & if there was nothing else
+		$basequery = substr( $basequery, 1 );
+		
+		$s = $this->makeKnownLinkObj( $wgTitle,
+		  wfMsg( "printableversion" ), $basequery );
 		return $s;
 	}
 
@@ -1524,8 +1527,13 @@ class Skin {
 		$alt = htmlspecialchars( $alt );
 
 		$u = wfLocalUrlE( $link );
-		$s = "<a href=\"{$u}\" class='image' title=\"{$alt}\">" .
-		  "<img border=\"0\" src=\"{$url}\" alt=\"{$alt}\"></a>";
+		if ( $url == "" )
+		{
+			$s = str_replace( "$1", $name, wfMsg("missingimage") );
+		} else {
+			$s = "<a href=\"{$u}\" class='image' title=\"{$alt}\">" .
+				"<img border=\"0\" src=\"{$url}\" alt=\"{$alt}\"></a>";
+		}
 		if ( "" != $align ) {
 			$s = "<div class=\"float{$align}\">{$s}</div>";
 		}
@@ -1542,7 +1550,13 @@ class Skin {
 		$thumbPath = wfImageThumbDir( $thumbName )."/".$thumbName;
 		$thumbUrl  = wfImageThumbUrl( $thumbName );
 
-		if (     (! file_exists( $thumbPath ) && file_exists( $imgPath )) 
+		if ( ! file_exists( $imgPath ) )
+		{
+			# If there is no image, there will be no thumbnail
+			return "";
+		}
+
+		if (     (! file_exists( $thumbPath ) )
 		||  ( filemtime($thumbPath) < filemtime($imgPath) ) ) {
 			# Squid purging
 			if ( $wgUseSquid ) {
@@ -1629,7 +1643,7 @@ class Skin {
 	}
 
 	function makeThumbLinkObj( $nt, $label = "", $align = "right", $boxwidth = 180 ) {
-		global $wgUploadPath;
+		global $wgStockPath, $wgLang;
 		$name = $nt->getDBKey();
 		$image = Title::makeTitle( Namespace::getImage(), $name );
 		$link = $image->getPrefixedURL();
@@ -1638,7 +1652,12 @@ class Skin {
 		
 		$label = htmlspecialchars( $label );
 		
-		list($width, $height, $type, $attr) = getimagesize( $path );
+		if ( file_exists( $path ) )
+		{
+			list($width, $height, $type, $attr) = getimagesize( $path );
+		} else {
+			$width = $height = 200;
+		}
 		$boxheight  = intval( $height/($width/$boxwidth) );
 		if ( $boxwidth > $width ) {
 			$boxwidth  = $width;
@@ -1649,14 +1668,22 @@ class Skin {
 
 		$u = wfLocalUrlE( $link );
 
-		$more = wfMsg( "thumbnail-more" );
+		$more = htmlspecialchars( wfMsg( "thumbnail-more" ) );
+		$magnifyalign = $wgLang->isRTL() ? "left" : "right";
+		$textalign = $wgLang->isRTL() ? " style=\"text-align:right\"" : "";
 		
-		$s = "<div class=\"thumbnail-{$align}\" style=\"width:{$boxwidth}px;\">" .
-		  "<a href=\"{$u}\" class=\"internal\" title=\"{$label}\">" .
-		  "<img border=\"0\" src=\"{$thumbUrl}\" alt=\"{$label}\" width=\"{$boxwidth}\" height=\"{$boxheight}\"></a>" .
-		  "<a href=\"{$u}\" class=\"internal\" title=\"{$more}\">" .
-		    "<img border=\"0\" src=\"{$wgUploadPath}/magnify-clip.png\" width=\"26\" height=\"24\" align=\"right\" alt=\"{$more}\"></a>" .
-		  "<p>{$label}</p></div>";
+		$s = "<div class=\"thumbnail-{$align}\" style=\"width:{$boxwidth}px;\">";
+		if ( $thumbUrl == "" ) {
+			$s .= str_replace( "$1", $name, wfMsg("missingimage") );
+		} else {
+		  	$s .= "<a href=\"{$u}\" class=\"internal\" title=\"{$alt}\">" .
+		  		"<img border=\"0\" src=\"{$thumbUrl}\" alt=\"{$alt}\" " .
+				"  width=\"{$boxwidth}\" height=\"{$boxheight}\"></a>" .
+		  		"<a href=\"{$u}\" class=\"internal\" title=\"{$more}\">" .
+		    		"<img border=\"0\" src=\"{$wgStockPath}/magnify-clip.png\" " .
+				"  width=\"26\" height=\"24\" align=\"{$magnifyalign}\" alt=\"{$more}\"></a>";
+		}
+		$s .= "<p{$textalign}>{$label}</p></div>";
 		return $s;
 	}
 
@@ -1720,7 +1747,7 @@ class Skin {
 	# Enhanced RC ungrouped line
 	function recentChangesBlockLine ( $rcObj ) 
 	{
-		global $wgUploadPath, $wgLang ;
+		global $wgStockPath, $wgLang ;
 		
 		# Get rc_xxxx variables
 		extract( $rcObj->mAttribs ) ;
@@ -1728,7 +1755,7 @@ class Skin {
 		
 		# Spacer image
 		$r = "" ;
-		$r .= "<img src='{$wgUploadPath}/Arr_.png' width=12 height=12 border=0>" ;		$r .= "<tt>" ;
+		$r .= "<img src='{$wgStockPath}/Arr_.png' width='12' height='12' border='0'>" ;		$r .= "<tt>" ;
 		
 		if ( $rc_type == RC_MOVE ) {
 			$r .= "&nbsp;&nbsp;";
@@ -1781,7 +1808,7 @@ class Skin {
 	# Enhanced RC group
 	function recentChangesBlockGroup ( $block ) 
 	{
-		global $wgUploadPath, $wgLang ;
+		global $wgStockPath, $wgLang ;
 		
 		$r = "" ;
 		$M = wfMsg( "minoreditletter" );
@@ -1813,10 +1840,10 @@ class Skin {
 		$rci = "RCI{$this->rcCacheIndex}" ;
 		$rcl = "RCL{$this->rcCacheIndex}" ;
 		$rcm = "RCM{$this->rcCacheIndex}" ;
-		$tl = "<a href='javascript:toggleVisibility(\"{$rci}\",\"{$rcm}\",\"{$rcl}\")'>" ;
-		$tl .= "<span id='{$rcm}'><img src='{$wgUploadPath}/Arr_r.png' width=12 height=12 border=0></span>" ;
-		$tl .= "<span id='{$rcl}' style='display:none'><img src='{$wgUploadPath}/Arr_d.png' width=12 height=12 border=0></span>" ;
-		$tl .= "</a>" ;
+		$toggleLink = "javascript:toggleVisibility(\"{$rci}\",\"{$rcm}\",\"{$rcl}\")" ;
+		$arrowdir = $wgLang->isRTL() ? "l" : "r";
+		$tl  = "<span id='{$rcm}'><a href='$toggleLink'><img src='{$wgStockPath}/Arr_{$arrowdir}.png' width='12' height='12' border='0' /></a></span>" ;
+		$tl .= "<span id='{$rcl}' style='display:none'><a href='$toggleLink'><img src='{$wgStockPath}/Arr_d.png' width='12' height='12' border='0' /></a></span>" ;
 		$r .= $tl ;
 
 		# Main line
@@ -1858,7 +1885,7 @@ class Skin {
 			# Get rc_xxxx variables
 			extract( $rcObj->mAttribs );
 			
-			$r .= "<img src='{$wgUploadPath}/Arr_.png' width=12 height=12 border=0>";
+			$r .= "<img src='{$wgStockPath}/Arr_.png' width=12 height=12 border=0>";
 			$r .= "<tt>&nbsp; &nbsp; &nbsp; &nbsp;" ;
 			if ( $rc_new ) $r .= $N ;
 			else $r .= "&nbsp;" ;
@@ -1899,7 +1926,6 @@ class Skin {
 	# RC lines, arranges them, and outputs the HTML
 	function recentChangesBlock ()
 	{
-		global $wgUploadPath ;
 		if ( count ( $this->rc_cache ) == 0 ) return "" ;
 		#$k = array_keys ( $this->rc_cache ) ;
 		foreach ( $this->rc_cache AS $secureName => $block ) {
@@ -1910,7 +1936,7 @@ class Skin {
 			}
 		}
 
-		return "<div align=left>{$r}</div>" ;
+		return "<div>{$r}</div>" ;
 	}
 
 	# Called in a loop over all displayed RC entries
@@ -2122,7 +2148,7 @@ class Skin {
 		$secureName = $title->getPrefixedDBkey();
 		if ( $rc_type == RC_MOVE ) {
 			# Use an @ character to prevent collision with page names
-			$this->rc_cache["@@" . ($rcMoveIndex++)] = array($rc);
+			$this->rc_cache["@@" . ($this->rcMoveIndex++)] = array($rc);
 		} else {
 			if ( !isset ( $this->rc_cache[$secureName] ) ) $this->rc_cache[$secureName] = array() ;
 			array_push ( $this->rc_cache[$secureName] , $rc ) ;
@@ -2267,7 +2293,7 @@ class Skin {
 	// The necsesary JavaScript code can be found in style/wikibits.js.
 	function getEditToolbar() {
 
-		global $wgUploadPath,$wgLang;
+		global $wgStockPath,$wgLang;
 
 		// toolarray an array of arrays which each include the filename of
 		// the button image (without path), the opening tag, the closing tag,
@@ -2335,20 +2361,20 @@ class Skin {
 		$toolbar.="document.writeln(\"<div id='toolbar'>\");\n";
 		foreach($toolarray as $tool) {
 
-			$image=$wgUploadPath."/".$tool["image"];
+			$image=$wgStockPath."/".$tool["image"];
 			$open=$tool["open"];
 			$close=$tool["close"];
-			$sample=$tool["sample"];
+			$sample = addslashes( $tool["sample"] );
 
 			// Note that we use the tip both for the ALT tag and the TITLE tag of the image.
 			// Older browsers show a "speedtip" type message only for ALT.
 			// Ideally these should be different, realistically they
 			// probably don't need to be.
-			$tip=$tool["tip"];
+			$tip = addslashes( $tool["tip"] );
 			$toolbar.="addButton('$image','$tip','$open','$close','$sample');\n";
 		}
 
-		$toolbar.="addInfobox('".wfMsg("infobox")."');\n";
+		$toolbar.="addInfobox('" . addslashes( wfMsg( "infobox" ) ) . "');\n";
 		$toolbar.="document.writeln(\"</div>\");\n</script>";
 		return $toolbar;
 	}

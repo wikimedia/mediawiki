@@ -141,6 +141,15 @@ class SearchEngine {
 		return $ret;
 	}
 
+	function setupPage() {
+		global $wgOut;
+		$wgOut->setPageTitle( wfMsg( "searchresults" ) );
+		$q = wfMsg( "searchquery", htmlspecialchars( $this->mUsertext ) );
+		$wgOut->setSubtitle( $q );
+		$wgOut->setArticleRelated( false );
+		$wgOut->setRobotpolicy( "noindex,nofollow" );
+	}
+
 	# Perform the search and construct the results page
 	function showResults()
 	{
@@ -152,12 +161,8 @@ class SearchEngine {
 
 		$powersearch = $this->powersearch(); /* Need side-effects here? */
 
-		$wgOut->setPageTitle( wfMsg( "searchresults" ) );
-		$q = wfMsg( "searchquery", htmlspecialchars( $this->mUsertext ) );
-		$wgOut->setSubtitle( $q );
-		$wgOut->setArticleRelated( false );
-		$wgOut->setRobotpolicy( "noindex,nofollow" );
-
+		$this->setupPage();
+		
 		$sk = $wgUser->getSkin();
 		$header = wfMsg( "searchresulttext", $sk->makeKnownLink(
 		  wfMsg( "searchhelppage" ), wfMsg( "searchingwikipedia" ) ) );
@@ -420,7 +425,13 @@ class SearchEngine {
 		global $wgOut, $wgDisableTextSearch;
 		$fname = "SearchEngine::goResult";
 		
-		$search		= $_REQUEST['search'];
+		$search		= trim( $_REQUEST['search'] );
+ 		# Entering an IP address goes to the contributions page
+		if ( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', $search ) ) {
+			$title = Title::makeTitle( NS_SPECIAL, "Contributions" );
+			$wgOut->redirect( wfLocalUrl( $title->getPrefixedURL(), "target=$search" ) );
+			return;
+		}
 
 		# First try to go to page as entered.
 		#
@@ -471,15 +482,18 @@ class SearchEngine {
 			foreach( array(NS_MAIN, NS_WP, NS_USER, NS_IMAGE, NS_MEDIAWIKI) as $namespace){
 				$anyhit |= SearchEngine::doFuzzyTitleSearch( $search, $namespace );
 			}
-		} 
-		if( ! $anyhit ){
-			$wgOut->addHTML( wfMsg("notitlematches") );
 		}
-		$wgOut->addHTML( wfMsg( "googlesearch", htmlspecialchars( $search ), $GLOBALS['wgInputEncoding'] ) );
+		
+		if( ! $anyhit ){
+			return $this->showResults();
+		}
 	}
 
 	/* static */ function doFuzzyTitleSearch( $search, $namespace ){
 		global $wgLang, $wgOut;
+		
+		$this->setupPage();
+		
 		$sstr = ucfirst($search);
 		$sstr = str_replace(" ", "_", $sstr);
 		$fuzzymatches = SearchEngine::fuzzyTitles( $sstr, $namespace );
