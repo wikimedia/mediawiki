@@ -188,6 +188,8 @@ If upgrading from an older release, see the file UPGRADING.
   $wgUseDynamicDates is enabled
 * Added magic word MAG_NOCONTENTCONVERT to supress the conversion of the
   content of an article. Useful in zh:
+* write-lock for updating the zh conversion tables in memcache
+* recursively parse subpages of MediaWiki:Zhconversiontable
 
 === Caveats ===
 
