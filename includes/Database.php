@@ -79,6 +79,7 @@ class Database {
 		$db->mFailFunction = $failFunction;
 		$db->mIgnoreErrors = $ignoreErrors;
 		$db->mDebug = $debug;
+		$db->mBufferResults = $bufferResults;
 		$db->open( $server, $user, $password, $dbName );
 		return $db;
 	}
