@@ -1654,6 +1654,10 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 # Chinese conversion table
 'zhconversiontable' => '-{}-',
 
+# labels for User: and Title: on Special:Log pages
+'specialloguserlabel' => 'User: ',
+'speciallogtitlelabel' => 'Title: ',
+
 );
 
 #--------------------------------------------------------------------------
