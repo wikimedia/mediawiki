@@ -815,7 +815,7 @@ class Parser
 		$sk =& $this->mOptions->getSkin();
 		$text = $sk->transformContent( $text );
 
-		if ( !isset ( $this->categoryMagicDone ) ) {
+		if ( $isMain && !isset ( $this->categoryMagicDone ) ) {
 			$text .= $this->categoryMagic () ;
 			$this->categoryMagicDone = true ;
 		}
