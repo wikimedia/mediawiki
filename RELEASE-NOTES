@@ -130,6 +130,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1076) navigation links in QueryPage should be translated by wgContLang.
 * (bug 922) bogus DOS line endings in LanguageEl.php
 * Fix index usage in contribs
+* Caching and load limiting options for Recentchanges RSS/Atom feed
 
 === Caveats ===
 
