@@ -2340,17 +2340,17 @@ class Skin {
 			$image=$wgUploadPath."/".$tool["image"];
 			$open=$tool["open"];
 			$close=$tool["close"];
-			$sample=$tool["sample"];
+			$sample = addslashes( $tool["sample"] );
 
 			// Note that we use the tip both for the ALT tag and the TITLE tag of the image.
 			// Older browsers show a "speedtip" type message only for ALT.
 			// Ideally these should be different, realistically they
 			// probably don't need to be.
-			$tip=$tool["tip"];
+			$tip = addslashes( $tool["tip"] );
 			$toolbar.="addButton('$image','$tip','$open','$close','$sample');\n";
 		}
 
-		$toolbar.="addInfobox('".addslashes(wfMsg("infobox"))."');\n";
+		$toolbar.="addInfobox('" . addslashes( wfMsg( "infobox" ) ) . "');\n";
 		$toolbar.="document.writeln(\"</div>\");\n</script>";
 		return $toolbar;
 	}
