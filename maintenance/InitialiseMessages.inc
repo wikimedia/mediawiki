@@ -62,7 +62,9 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 			foreach( $wgLanguageNames as $code => $name) {
 				if( $code == $wgContLanguageCode )
 					continue;
-				$messages[$uikey. '/' . $code] = $wgContLang->getMessage($uikey);
+				$msg = $wgContLang->getMessage( $uikey );
+				if( $msg )
+					$messages[$uikey. '/' . $code] = $msg;
 			}
 		}
 	}
