@@ -402,6 +402,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1057) Fix logging table encoding (error on MySQL 4.1)
 * (bug 1680) Fix linktrail for fo
 * (bug 1653) Removing hardcoded messages in Special:Allmessages
+* (bug 1594) Render a hyphen in a formula as &minus; in HTML
 
 
 === Caveats ===
