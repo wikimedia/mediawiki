@@ -251,7 +251,7 @@ class OutputPage {
 		# FIXME: This header may cause trouble with some versions of Internet Explorer
 		header( "Vary: Accept-Encoding, Cookie" );
 		if( $this->mLastModified != "" ) {
-			if( $wgUseSquid && ! isset( $_COOKIE[ini_get( "session.name") ] ) ) {
+		        if( $wgUseSquid && ! isset( $_COOKIE[ini_get( "session.name") ] ) ) {
 				if ( $wgUseESI ) {
 					# We'll purge the proxy cache explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
@@ -269,7 +269,7 @@ class OutputPage {
 					wfDebug( "** local proxy caching; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
 					# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
-					header( "Cache-Control: s-maxage='.$wgSquidMaxage.', must-revalidate, max-age=0" );
+					header( 'Cache-Control: s-maxage='.$wgSquidMaxage.', must-revalidate, max-age=0' );
 				}
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
