@@ -344,6 +344,8 @@ class RecentChange
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
 			'rc_ip' => '',
+			'rc_patrolled' => '1',  # we can't support patrolling on the Watchlist
+			                        # currently because it uses cur, not recentchanges
 			'rc_new' => $row->cur_is_new # obsolete
 		);
 
