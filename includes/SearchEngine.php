@@ -507,7 +507,7 @@ class SearchEngine {
 		} else {
 			$editurl = ''; # ?? 
 		}
-		$wgOut->addHTML( '<p>' . wfMsg('nogomatch', $editurl ) . "</p>\n" );
+		$wgOut->addHTML( '<p>' . wfMsg('nogomatch', $editurl, htmlspecialchars( $search ) ) . "</p>\n" );
 
 		# Try a fuzzy title search
 		$anyhit = false;
