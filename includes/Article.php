@@ -385,7 +385,7 @@ class Article {
 		global $oldid, $redirect, $section;
 		global $wgLang;
 
-		if(isset($wpSection)) { $section=$wpSection; }
+		if(isset($wpSection)) { $section=$wpSection; } else { $wpSection=$section; }
 
 		$sk = $wgUser->getSkin();
 		$isConflict = false;
@@ -429,16 +429,23 @@ class Article {
 			}
 			# Article exists. Check for edit conflict.
 			# Don't check for conflict when appending a comment - this should always work
-			# switch from section editing to normal editing in edit conflict
 
 			$this->clear(); # Force reload of dates, etc.
-			if ( $section!="new" && ( $this->getTimestamp() != $wpEdittime ) ) { $isConflict = true;$section="";$wpSection=""; }
+			if ( $section!="new" && ( $this->getTimestamp() != $wpEdittime ) ) { 
+				$isConflict = true;		
+			}
 			$u = $wgUser->getID();
 
 			# Supress edit conflict with self
 
 			if ( ( 0 != $u ) && ( $this->getUser() == $u ) ) {
 				$isConflict = false;
+			} else {
+				# switch from section editing to normal editing in edit conflict
+				if($isConflict) {
+					$section="";$wpSection="";
+				}
+
 			}
 			if ( ! $isConflict ) {
 				# All's well: update the article here
@@ -672,14 +679,13 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		global $wgOut, $wgUser, $wgTitle, $wgLinkCache;
 		global $wgDBtransactions;
 		$fname = "Article::updateArticle";
-
 		// insert updated section into old text if we have only edited part 
-		// of the article
+		// of the article		
 		if ($section != "") {			
 			$oldtext=$this->getContent();
 			if($section=="new") {
-				if($summary) $summary="== {$summary} ==\n\n";
-				$text=$oldtext."\n\n".$summary.$text;
+				if($summary) $subject="== {$summary} ==\n\n";
+				$text=$oldtext."\n\n".$subject.$text;
 			} else {
 				$secs=preg_split("/(^=+.*?=+|^<h[1-6].*?>.*?<\/h[1-6].*?>)/mi",
 				  $oldtext,-1,PREG_SPLIT_DELIM_CAPTURE);
