@@ -3,7 +3,7 @@ SCHEMA.DOC
 The most up-to-date schema for the tables in the database
 should always be "tables.sql" in the maintenance directory,
 which is called from the installation script. Here are a
-few highlight that may be out of date:
+few highlights that may be out of date:
 
 user    (Wikipedia users)
 
@@ -14,8 +14,6 @@ user    (Wikipedia users)
     an IP address. _Shouldn't_ allow slashes or case
     conflicts. Spaces are allowed, and are _not_ converted
     to underscores like titles. (Conflicts?)
-  user_rights
-    Comma-separated list of textual flags.
   user_password
     Hash of current password.
   user_newpassword
@@ -25,6 +23,11 @@ user    (Wikipedia users)
     Same with passwords. ;)
   user_options
     Newline-separated list of name=value pairs.
+  user_token
+    A pseudorandomly generated value that is stored in
+    a cookie when the "remember password" feature is
+    used (previously, a hash of the password was used, but
+    this was vulnerable to cookie-stealing attacks)
 
 
 
@@ -65,6 +68,9 @@ cur     (Wikipedia "current" articles)
     1 indicates this was a minor edit.
   cur_is_new
     1 indicates this is the first revision of a new entry.
+  cur_random
+    Random value between 0 and 1, used for
+    Special:Randompage
 
 
 
@@ -127,6 +133,30 @@ imagelinks (Internal links to images via [[Image:filename]] syntax)
 
 
 
+categorylinks (Track category inclusions)
+
+  cl_from
+    corresponds to cur_id of the linking page
+  cl_to
+    corresponds to cur_title of the category page
+  cl_sortkey
+    the title of the linking page, or an optional override
+  cl_timestampe
+    when the link was last added
+
+
+
+linkscc 	(Stores (possibly gzipped) serialized objects with
+		cache arrays to reduce database load slurping up
+		from links and brokenlinks.)
+     
+  lcc_pageid
+    The ID of the linking page
+  lcc_cacheobj
+    A serialized LinkCache object
+
+
+
 image (Uploaded images and other files)
 
   img_name
@@ -184,16 +214,6 @@ ipblocks (IP addresses and users blocked from editing)
     will be hidden.
 
 
-random (Random page queue)
-
-  ra_current
-    1 = hasn't come up on a random page view yet.
-    >1 = has been viewed, will be ignored for a few
-  ra_title
-    Title of an article.
-
-
-
 site_stats (Site-wide statistics)
 
   ss_row_id
@@ -206,6 +226,16 @@ site_stats (Site-wide statistics)
     Number of total page edits.
   ss_good_articles
     Number of "countable" articles.
+
+
+
+hitcounter (Stores an ID for every time any article is visited;
+            depending on $wgHitcounterUpdateFreq, it is
+	    periodically cleared and the cur_counter column
+	    in the cur table updated for the all articles
+	    that have been visited.)
+  hc_id
+    The ID of an article, representing one hit
 
 
 
@@ -229,3 +259,28 @@ watchlist
     Note also that the linked page may not exist in page
     or talk namespace, or at all.
 
+
+searchindex 	(Used for MySQL fulltext searching)
+
+  si_page
+    The ID of an article
+  si_title
+    The title of an article, indexed for searching
+  si_text
+    The text of an article, indexed for searching
+
+
+
+interwiki	(Recognized interwiki link prefixes)
+  iw_prefix
+    The interwiki prefix, (e.g. "Meatball", or the
+    language prefix "de")
+  iw_url
+    The URL of the wiki, with "$1" as a placeholder
+    for an article name
+  iw_local
+    A boolean value indicating whether the wiki is
+    in this project (used, for example, to detect
+    redirect loops)
+  
+  
