@@ -123,7 +123,8 @@ class User {
 
 	/**
 	 * Set properties to default
-	 * Used at construction.
+	 * Used at construction. It will load per language default settings only
+	 * if we have an available language object.
 	 */
 	function loadDefaults() {
 		global $wgLang, $wgIP;
@@ -134,10 +135,9 @@ class User {
 		$this->mRealName = $this->mEmail = '';
 		$this->mPassword = $this->mNewpassword = '';
 		$this->mRights = array();
-		$defOpt = $wgLang->getDefaultUserOptions() ;
-		foreach ( $defOpt as $oname => $val ) {
-			$this->mOptions[$oname] = $val;
-		}
+		// Getting user defaults only if we have an available language
+		if(isset($wgLang)) { $this->loadDefaultFromLanguage(); }
+		
 		foreach ($wgNamespacesToBeSearchedDefault as $nsnum => $val) {
 			$this->mOptions['searchNs'.$nsnum] = $val;
 		}
@@ -147,6 +147,19 @@ class User {
 		$this->mTouched = '0'; # Allow any pages to be cached
 		$this->cookiePassword = '';
 		$this->mHash = false;
+	}
+	
+	/**
+	 * Used to load user options from a language.
+	 * This is not in loadDefault() cause we sometime create user before having
+	 * a language object.
+	 */	
+	function loadDefaultFromLanguage(){
+		global $wgLang;
+		$defOpt = $wgLang->getDefaultUserOptions() ;
+		foreach ( $defOpt as $oname => $val ) {
+			$this->mOptions[$oname] = $val;
+		}		
 	}
 
 	/**
@@ -378,8 +391,7 @@ class User {
 		return ( 0 != $this->mNewtalk );
 	}
 
-	function setNewtalk( $val )
-	{
+	function setNewtalk( $val ) {
 		$this->loadFromDatabase();
 		$this->mNewtalk = $val;
 		$this->invalidateCache();

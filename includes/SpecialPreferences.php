@@ -24,6 +24,7 @@ function wfSpecialPreferences() {
 class PreferencesForm {
 	var $mQuickbar, $mOldpass, $mNewpass, $mRetypePass, $mStubs;
 	var $mRows, $mCols, $mSkin, $mMath, $mDate, $mUserEmail, $mEmailFlag, $mNick;
+	var $mUserLanguage;
 	var $mSearch, $mRecent, $mHourDiff, $mSearchLines, $mSearchChars, $mAction;
 	var $mReset, $mPosted, $mToggles, $mSearchNs, $mRealName;
 
@@ -45,9 +46,10 @@ class PreferencesForm {
 		$this->mMath = $request->getVal( 'wpMath' );
 		$this->mDate = $request->getVal( 'wpDate' );
 		$this->mUserEmail = $request->getVal( 'wpUserEmail' );
-	        $this->mRealName = ($wgAllowRealName) ? $request->getVal( 'wpRealName' ) : '';
+		$this->mRealName = ($wgAllowRealName) ? $request->getVal( 'wpRealName' ) : '';
 		$this->mEmailFlag = $request->getCheck( 'wpEmailFlag' ) ? 1 : 0;
 		$this->mNick = $request->getVal( 'wpNick' );
+		$this->mUserLanguage = $request->getVal( 'wpUserLanguage' );
 		$this->mSearch = $request->getVal( 'wpSearch' );
 		$this->mRecent = $request->getVal( 'wpRecent' );
 		$this->mHourDiff = $request->getVal( 'wpHourDiff' );
@@ -170,6 +172,7 @@ class PreferencesForm {
 		}
 		$wgUser->setEmail( $this->mUserEmail );
 		$wgUser->setRealName( $this->mRealName );
+		$wgUser->setOption( 'language', $this->mUserLanguage );
 		$wgUser->setOption( 'nickname', $this->mNick );
 		$wgUser->setOption( 'quickbar', $this->mQuickbar );
 		$wgUser->setOption( 'skin', $this->mSkin );
@@ -205,12 +208,14 @@ class PreferencesForm {
 
 	/**
 	 * @access private
-	 */ function resetPrefs() {
+	 */
+	function resetPrefs() {
 		global $wgUser, $wgLang, $wgAllowRealName;
 
 		$this->mOldpass = $this->mNewpass = $this->mRetypePass = '';
 		$this->mUserEmail = $wgUser->getEmail();
-	        $this->mRealName = ($wgAllowRealName) ? $wgUser->getRealName() : '';
+		$this->mRealName = ($wgAllowRealName) ? $wgUser->getRealName() : '';
+		$this->mUserLanguage = $wgUser->getOption( 'language');
 		if ( 1 == $wgUser->getOption( 'disablemail' ) ) { $this->mEmailFlag = 1; }
 		else { $this->mEmailFlag = 0; }
 		$this->mNick = $wgUser->getOption( 'nickname' );
@@ -340,7 +345,8 @@ class PreferencesForm {
 		$tzGuess = wfMsg( 'guesstimezone' );
 		$tzServerTime = wfMsg( 'servertime' );
 		$yem = wfMsg( 'youremail' );
-	        $yrn = ($wgAllowRealName) ? wfMsg( 'yourrealname' ) : '';
+		$yrn = ($wgAllowRealName) ? wfMsg( 'yourrealname' ) : '';
+		$yl  = wfMsg( 'yourlanguage' );
 		$emf = wfMsg( 'emailflag' );
 		$ynn = wfMsg( 'yournick' );
 		$stt = wfMsg ( 'stubthreshold' ) ;
@@ -373,7 +379,8 @@ class PreferencesForm {
 	        $wgOut->addHTML("
 		<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>
 		<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" /> $emf</label></div>
-		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>\n" );
+		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>
+		<div><label>$yl: <input type='text' name=\"wpUserLanguage\" value=\"{$this->mUserLanguage}\" size='8' /></label></div>\n" );
 
 		# Fields for changing password
 		#
