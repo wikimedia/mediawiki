@@ -184,7 +184,7 @@ class ImagePage extends Article {
 		$sql = "SELECT page_namespace,page_title FROM $imagelinks,$page WHERE il_to=" .
 		  $dbr->addQuotes( $this->mTitle->getDBkey() ) . " AND il_from=page_id"
 		  . " LIMIT 500"; # quickie emergency brake
-		$res = $dbr->query( $sql, DB_SLAVE, "Article::imageLinks" );
+		$res = $dbr->query( $sql, "ImagePage::imageLinks" );
 
 		if ( 0 == $dbr->numRows( $res ) ) {
 			$wgOut->addHtml( '<p>' . wfMsg( "nolinkstoimage" ) . "</p>\n" );
