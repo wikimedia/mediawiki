@@ -172,10 +172,11 @@ class IPBlockForm {
 		$ban = new Block( $this->BlockAddress, $userId, $wgUser->getID(), 
 			$this->BlockReason, wfTimestampNow(), 0, $expiry );
 		
-		if (wfRunHooks('BlockIp', $ban, $wgUser)) {
+		if (wfRunHooks('BlockIp', array(&$ban, &$wgUser))) {
+			
 			$ban->insert();
 			
-			wfRunHooks('BlockIpComplete', $ban, $wgUser);
+			wfRunHooks('BlockIpComplete', array($ban, $wgUser));
 			
 			# Make log entry
 			$log = new LogPage( 'block' );

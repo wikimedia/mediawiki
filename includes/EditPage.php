@@ -336,13 +336,14 @@ class EditPage {
 					$wgOut->redirect( $this->mTitle->getFullURL() );
 					return;
 				}
-				if (wfRunHooks('ArticleSave', $this->mArticle, $wgUser, $this->textbox1, 
-							   $this->summary, $this->minoredit, $this->watchthis, NULL))
+				if (wfRunHooks('ArticleSave', array(&$this->mArticle, &$wgUser, &$this->textbox1,
+							   &$this->summary, &$this->minoredit, &$this->watchthis, NULL)))
 				{
 					$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
 													   $this->minoredit, $this->watchthis );
-					wfRunHooks('ArticleSaveComplete', $this->mArticle, $wgUser, $this->textbox1, 
-							   $this->summary, $this->minoredit, $this->watchthis, NULL);
+					wfRunHooks('ArticleSaveComplete', array(&$this->mArticle, &$wgUser, $this->textbox1,
+															$this->summary, $this->minoredit,
+															$this->watchthis, NULL));
 				}
 				return;
 			}
@@ -403,15 +404,17 @@ class EditPage {
 					}
 				}
 				
-				if (wfRunHooks('ArticleSave', $this->mArticle, $wgUser, $text, $this->summary,
-							   $this->minoredit, $this->watchthis, $sectionanchor))
+				if (wfRunHooks('ArticleSave', array(&$this->mArticle, &$wgUser, &$text,
+													&$this->summary, &$this->minoredit,
+													&$this->watchthis, &$sectionanchor)))
 				{
 					# update the article here
 					if($this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
 													   $this->watchthis, '', $sectionanchor ))
 					{
-						wfRunHooks('ArticleSaveComplete', $this->mArticle, $wgUser, $text, $this->summary,
-								   $this->minoredit, $this->watchthis, $sectionanchor);
+						wfRunHooks('ArticleSaveComplete', array(&$this->mArticle, &$wgUser, $text,
+																$this->summary, $this->minoredit,
+																$this->watchthis, $sectionanchor));
 						return;
 					}
 					else
