@@ -713,7 +713,7 @@ class Title {
 		}
 		
 		global $wgUseLatin1;
-		if( !$wgUseLatin1 &&  false !== strpos( $t, UTF8_REPLACEMENT, $t ) ) {
+		if( !$wgUseLatin1 &&  false !== strpos( $t, UTF8_REPLACEMENT ) ) {
 			# Contained illegal UTF-8 sequences or forbidden Unicode chars.
 			wfProfileOut( $fname );
 			return false;
