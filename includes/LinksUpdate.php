@@ -16,8 +16,6 @@ class LinksUpdate {
 	{
 		global $wgUseBetterLinksUpdate, $wgLinkCache, $wgDBtransactions;
 		
-		wfDebug("Hello\n");
-
 		/* Update link tables with outgoing links from an updated article */
 		/* Relies on the 'link cache' to be filled out */
 
