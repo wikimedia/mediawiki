@@ -212,7 +212,7 @@ class Skin {
 		} else if ( $broken == "yes" ) { 
 			$r = " class='new'"; 
 		} else { 
-			$r = ""; 
+			$r = " class='internal'"; 
 		}
 
 		if ( 1 == $wgUser->getOption( "hover" ) ) {
@@ -232,7 +232,7 @@ class Skin {
 		} else if ( $broken == "yes" ) { 
 			$r = " class='new'"; 
 		} else { 
-			$r = ""; 
+			$r = " class='internal'"; 
 		}
 
 		if ( 1 == $wgUser->getOption( "hover" ) ) {
@@ -316,7 +316,7 @@ class Skin {
 
 		$s .= $this->pageTitle();
 		$s .= $this->pageSubtitle() ;
-                $s .= getCategories(); // For some odd reason, zhis can't be a function of the object
+		$s .= getCategories(); // For some odd reason, zhis can't be a function of the object
 		$s .= "\n<p>";
 		wfProfileOut( $fname );
 		return $s;
@@ -413,42 +413,42 @@ class Skin {
 				$style = $this->getInternalLinkAttributes( $link, $name );
 				$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
 			}
-# This will show the "Approve" link if $wgUseApproval=true;
-if ( isset ( $wgUseApproval ) && $wgUseApproval )
-{
-  $t = $wgTitle->getDBkey();
-  $name = "Approve this article" ; 
-  $link = "http://test.wikipedia.org/w/magnus/wiki.phtml?title={$t}&action=submit&doit=1" ;
-#wfEscapeHTML( wfImageUrl( $name ) );
-  $style = $this->getExternalLinkAttributes( $link, $name );
-  $s .= " | <a href=\"{$link}\"{$style}>{$name}</a>" ;
-}		}
-		if ( "history" == $action || isset( $diff ) || isset( $oldid ) ) {
-			$s .= " | " . $this->makeKnownLink( $wgTitle->getPrefixedText(),
-			  wfMsg( "currentrev" ) );
-		}
+			# This will show the "Approve" link if $wgUseApproval=true;
+			if ( isset ( $wgUseApproval ) && $wgUseApproval )
+			{
+				$t = $wgTitle->getDBkey();
+				$name = "Approve this article" ; 
+				$link = "http://test.wikipedia.org/w/magnus/wiki.phtml?title={$t}&action=submit&doit=1" ;
+				#wfEscapeHTML( wfImageUrl( $name ) );
+				$style = $this->getExternalLinkAttributes( $link, $name );
+				$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>" ;
+			}		}
+			if ( "history" == $action || isset( $diff ) || isset( $oldid ) ) {
+				$s .= " | " . $this->makeKnownLink( $wgTitle->getPrefixedText(),
+						wfMsg( "currentrev" ) );
+			}
 
-		if ( $wgUser->getNewtalk() ) {
+			if ( $wgUser->getNewtalk() ) {
 			# do not show "You have new messages" text when we are viewing our 
 			# own talk page 
-			
-			if(!(strcmp($wgTitle->getText(),$wgUser->getName()) == 0 &&
-			     $wgTitle->getNamespace()==Namespace::getTalk(Namespace::getUser()))) {
-				$n =$wgUser->getName();
-				$tl = $this->makeKnownLink( $wgLang->getNsText(
-				Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
-				wfMsg("newmessageslink") );
-				$s.=" | <strong>". wfMsg( "newmessages", $tl ) . "</strong>";
+
+				if(!(strcmp($wgTitle->getText(),$wgUser->getName()) == 0 &&
+							$wgTitle->getNamespace()==Namespace::getTalk(Namespace::getUser()))) {
+					$n =$wgUser->getName();
+					$tl = $this->makeKnownLink( $wgLang->getNsText(
+								Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
+							wfMsg("newmessageslink") );
+					$s.=" | <strong>". wfMsg( "newmessages", $tl ) . "</strong>";
+				}
 			}
-		}
-		if( $wgUser->isSysop() &&
-			(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
-			($n = $wgTitle->isDeleted() ) ) {
+			if( $wgUser->isSysop() &&
+					(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
+					($n = $wgTitle->isDeleted() ) ) {
 				$s .= " | " . wfMsg( "thisisdeleted",
-					$this->makeKnownLink(
-					$wgLang->SpecialPage( "Undelete/" . $wgTitle->getPrefixedDBkey() ),
-					wfMsg( "restorelink", $n ) ) );
-		}
+						$this->makeKnownLink(
+							$wgLang->SpecialPage( "Undelete/" . $wgTitle->getPrefixedDBkey() ),
+							wfMsg( "restorelink", $n ) ) );
+			}
 		return $s;
 	}
 
@@ -765,17 +765,22 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 			unwatched. Therefore we do not show the "Watch this page" link in edit mode
 			*/			
 			if ( 0 != $wgUser->getID() && $articleExists) {
-				if($action!="edit" && $action!="history" &&
-                                   $action != "submit" ) 
-				{$s .= $sep . $this->watchThisPage(); }
-				if ( $wgTitle->userCanEdit() ) $s .= $sep . $this->moveThisPage();
+				if($action!="edit" && $action!="history" && 
+					$action != "submit" ) 
+				{
+					$s .= $sep . $this->watchThisPage(); 
+				}
+				if ( $wgTitle->userCanEdit() ) 
+					$s .= $sep . $this->moveThisPage();
 			}
 			if ( $wgUser->isSysop() and $articleExists ) {
 				$s .= $sep . $this->deleteThisPage() .
 				$sep . $this->protectThisPage();
 			}
 			$s .= $sep . $this->talkLink();
-			if ($articleExists && $action !="history") { $s .= $sep . $this->historyLink();}
+			if ($articleExists && $action !="history") { 
+				$s .= $sep . $this->historyLink();
+			}
 			$s.=$sep . $this->whatLinksHere();
 			
 			if($wgOut->isArticle()) {
@@ -919,7 +924,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 
 			$s = $this->makeKnownLink( $n, $t, "action=delete" );
 		} else {
-			$s = wfMsg( "error" );
+			$s = "";
 		}
 		return $s;
 	}
@@ -940,7 +945,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 			}
 			$s = $this->makeKnownLink( $n, $t, $q );
 		} else {
-			$s = wfMsg( "error" );
+			$s = "";
 		}
 		return $s;
 	}
@@ -1146,6 +1151,29 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 
 		$wgLinkCache->suspend();
 		$s = $this->makeLink( $link, $text );
+		$wgLinkCache->resume();
+
+		return $s;
+	}
+
+	function commentLink()
+	{
+		global $wgLang, $wgTitle, $wgLinkCache;
+
+		$tns = $wgTitle->getNamespace();
+		if ( -1 == $tns ) { return ""; }
+
+		$lns = ( Namespace::isTalk( $tns ) ) ? $tns : Namespace::getTalk( $tns );
+
+		# assert Namespace::isTalk( $lns )
+
+		$n = $wgLang->getNsText( $lns );
+		$pn = $wgTitle->getText();
+
+		$link = "{$n}:{$pn}";
+
+		$wgLinkCache->suspend();
+		$s = $this->makeKnownLink($link, wfMsg("postcomment"), "action=edit&section=new");
 		$wgLinkCache->resume();
 
 		return $s;
@@ -1487,7 +1515,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		$link = $this->makeKnownLink( $artname, $dt, $q );
 
 		if ( 0 == $u ) {
-            $ul = $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
+			$ul = $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
 			$ut, "target=" . $ut );
 		} else { 
 			$ul = $this->makeLink( $wgLang->getNsText(

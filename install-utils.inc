@@ -44,10 +44,10 @@ function copyfile( $sdir, $name, $ddir, $perms = 0664 ) {
 function copydirectory( $source, $dest ) {
 	$handle = opendir( $source );
 	while ( false !== ( $f = readdir( $handle ) ) ) {
-		if ( "." == $f{0} ) continue;
-		# Something made all my "CVSs" go lowercase :(
-		if ( !strcasecmp( "CVS", $f ) ) continue;
-		copyfile( $source, $f, $dest );
+		$fullname = "$source/$f";
+		if ( $f{0} !="." && is_file( $fullname ) ) {
+			copyfile( $source, $f, $dest );
+		}
 	}
 }
 

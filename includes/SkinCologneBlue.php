@@ -138,6 +138,8 @@ class SkinCologneBlue extends Skin {
 	{
 		global $wgOut, $wgTitle, $wgUser, $wgLang;
 
+		$tns=$wgTitle->getNamespace();
+
 		$s = "\n<div id='quickbar'>";
 
 		$sep = "<br>";
@@ -147,45 +149,47 @@ class SkinCologneBlue extends Skin {
 		$s .= $this->menuHead( "qbbrowse" )
 		  . $this->mainPageLink()
 		  . $sep . $this->specialLink( "recentchanges" )
-		  . $sep . $this->specialLink( "randompage" ) 
-		  . $sep . $this->specialLink( "newpages" ) 
-		  . $sep . $this->specialLink( "imagelist" ) 
-		  . $sep . $this->specialLink( "statistics" ) 
-		  . $sep . $this->specialLink( "specialpages" ) 
-		  . $sep . $this->bugReportsLink() ;
-                if ( wfMsg ( "currentevents" ) != "-" ) $s .= $sep . $this->makeKnownLink( wfMsg( "currentevents" ), "" ) ;
-                $s .= "\n";
+		  . $sep . $this->specialLink( "randompage" );
+		if ( wfMsg ( "currentevents" ) != "-" ) $s .= $sep . $this->makeKnownLink( wfMsg( "currentevents" ), "" ) ;
+			$s .= "\n";
 
 		if ( $wgOut->isArticle() ) {
 			$s .= $this->menuHead( "qbedit" );
-			$s .= "<strong>" . $this->editThisPage() . "</strong>"
-			  . $sep . $this->makeKnownLink( wfMsg( "edithelppage" ),
-			  wfMsg( "edithelp" ) );
+			$s .= "<strong>" . $this->editThisPage() . "</strong>";
+
+			$s .= $sep . $this->makeKnownLink( wfMsg( "edithelppage" ), wfMsg( "edithelp" ) );
 
 			if ( 0 != $wgUser->getID() ) {
-				$s .= $sep . $this->specialLink( "upload" )
-				. $sep . $this->moveThisPage();
+				$s .= $sep . $this->moveThisPage();
 			}
 			if ( $wgUser->isSysop() ) {
-				$s .= $sep . $this->deleteThisPage() .
-				$sep . $this->protectThisPage();
+				$dtp = $this->deleteThisPage();
+				if ( "" != $dtp ) {
+					$s .= $sep . $dtp;
+				}
+				$ptp = $this->protectThisPage();
+				if ( "" != $ptp ) {
+					$s .= $sep . $ptp;
+				}
 			}
 			$s .= $sep;
 
 			$s .= $this->menuHead( "qbpageoptions" );
 			$s .= $this->talkLink()
+			  . $sep . $this->commentLink() 
 			  . $sep . $this->printableLink();
 			if ( 0 != $wgUser->getID() ) {
 				$s .= $sep . $this->watchThisPage();
 			}
+
 			$s .= $sep;
 
-			$s .= $this->menuHead( "qbpageinfo" )
+			$s .= $this->menuHead("qbpageinfo")
 			  . $this->historyLink()
 			  . $sep . $this->whatLinksHere()
 			  . $sep . $this->watchPageLinksLink();
 
-			if ( Namespace::getUser() == $wgTitle->getNamespace() ) {
+			if ( Namespace::getUser() == $tns ) {
 				$s .= $sep . $this->userContribsLink();
 				if ( 0 != $wgUser->getID() ) {
 					$s .= $sep . $this->emailUserLink();
@@ -193,6 +197,7 @@ class SkinCologneBlue extends Skin {
 			}
 			$s .= $sep;
 		}
+
 		$s .= $this->menuHead( "qbmyoptions" );
 		if ( 0 != $wgUser->getID() ) {
 			$name = $wgUser->getName();
@@ -210,6 +215,18 @@ class SkinCologneBlue extends Skin {
 		} else {
 			$s .= $this->specialLink( "userlogin" );
 		}
+
+		$s .= $this->menuHead( "qbspecialpages" )
+		  . $this->specialLink( "newpages" ) 
+		  . $sep . $this->specialLink( "imagelist" ) 
+		  . $sep . $this->specialLink( "statistics" ) 
+		  . $sep . $this->bugReportsLink();
+		if ( 0 != $wgUser->getID() ) {
+			$s .= $sep . $this->specialLink( "upload" );
+		}
+
+		$s .= $sep . $this->makeKnownLink( wfMsg("specialpages" ), wfMsg("moredotdotdot") );
+
 		$s .= $sep . "\n</div>\n";
 		return $s;
 	}
@@ -227,9 +244,9 @@ class SkinCologneBlue extends Skin {
 		  wfLocalUrlE( "" ) . "\">";
 		if ( "" != $label ) { $s .= "{$label}: "; }
 
-		$s .= "<input type=text name=\"search\" size=10 value=\""
-          . htmlspecialchars(substr($search,0,256)) . "\">"
-		  . "<input type=submit value=\"" . wfMsg( "ok" ) . "\"></form>";
+		$s .= "<input type=text name=\"search\" size=14 value=\""
+		  . htmlspecialchars(substr($search,0,256)) . "\">"
+		  . "<br><input type=submit name=\"go\" value=\"" . wfMsg( "go" ) . "\"> <input type=submit value=\"" . wfMsg( "search" ) . "\"></form>";
 
 		return $s;
 	}
