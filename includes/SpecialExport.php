@@ -66,7 +66,7 @@ function page2xml( $page, $curonly, $full = false ) {
 		}
 		if( !$curonly ) {
 			$sql = "SELECT old_id as id,old_timestamp as timestamp, old_user as user, old_user_text as user_text," .
-				"old_comment as comment, old_text as text FROM old " .
+				"old_comment as comment, old_text as text, old_flags as flags FROM old " .
 				"WHERE old_namespace=$ns AND old_title='$t' ORDER BY old_timestamp";
 			$res = wfQuery( $sql, DB_READ );
 
@@ -103,7 +103,7 @@ function revision2xml( $s, $full, $cur ) {
 		$c = htmlspecialchars( $s->comment );
 		$xml .= "      <comment>$c</comment>\n";
 	}
-	$t = htmlspecialchars( $s->text );
+	$t = htmlspecialchars( Article::getRevisionText( $s, "" ) );
 	$xml .= "      <text>$t</text>\n";
 	$xml .= "    </revision>\n";
 	return $xml;

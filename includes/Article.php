@@ -36,6 +36,20 @@ class Article {
 		$this->mTouched = "19700101000000";
 	}
 
+	/* static */ function getRevisionText( $row, $prefix = "old_" ) {
+		# Deal with optional compression of archived pages.
+		# This can be done periodically via maintenance/compressOld.php
+		$text = $prefix . "text";
+		$flags = $prefix . "flags";
+		if( isset( $row->$flags ) && (false !== strpos( $row->$flags, "gzip" ) ) ) {
+			return gzinflate( $row->$text );
+		}
+		if( isset( $row->$text ) ) {
+			return $row->$text;
+		}
+		return false;
+	}
+	
 	# Note that getContent/loadContent may follow redirects if
 	# not told otherwise, and so may cause a change to mTitle.
 
@@ -172,13 +186,13 @@ class Article {
 			$this->mTitle->mRestrictionsLoaded = true;
 			wfFreeResult( $res );
 		} else { # oldid set, retrieve historical version
-			$sql = "SELECT old_text,old_timestamp,old_user FROM old " .
+			$sql = "SELECT old_text,old_timestamp,old_user,old_flags FROM old " .
 			  "WHERE old_id={$oldid}";
 			$res = wfQuery( $sql, DB_READ, $fname );
 			if ( 0 == wfNumRows( $res ) ) { return; }
 
 			$s = wfFetchObject( $res );
-			$this->mContent = $s->old_text;
+			$this->mContent = Article::getRevisionText( $s );
 			$this->mUser = $s->old_user;
 			$this->mCounter = 0;
 			$this->mTimestamp = $s->old_timestamp;
@@ -671,7 +685,7 @@ class Article {
 		$ns = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getDBkey();
 		$etitle = wfStrencode( $title );
-		$sql = "SELECT old_text FROM old WHERE old_namespace=$ns and old_title='$etitle' ORDER BY inverse_timestamp LIMIT 1";
+		$sql = "SELECT old_text,old_flags FROM old WHERE old_namespace=$ns and old_title='$etitle' ORDER BY inverse_timestamp LIMIT 1";
 		$res = wfQuery( $sql, DB_READ, $fname );
 		if( ($old=wfFetchObject($res)) && !$wpConfirm ) {
 			$skin=$wgUser->getSkin();
@@ -690,7 +704,7 @@ class Article {
 				$text=$s->cur_text;
 			} else {
 				if($old) {
-					$text=$old->old_text;
+					$text = Article::getRevisionText( $old );
 					$blanked=1;
 				}
 				
@@ -943,7 +957,7 @@ class Article {
 		}
 		
 		# Get the last edit not by this guy
-		$sql = "SELECT old_text,old_user,old_user_text,old_timestamp
+		$sql = "SELECT old_text,old_user,old_user_text,old_timestamp,old_flags
 		FROM old USE INDEX (name_title_timestamp)
 		WHERE old_namespace={$n} AND old_title='{$tt}'
 		AND (old_user <> {$uid} OR old_user_text <> '{$ut}')
@@ -969,7 +983,7 @@ class Article {
 		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->addHTML( "<h2>" . $newcomment . "</h2>\n<hr>\n" );
-		$this->updateArticle( $s->old_text, $newcomment, 1, $this->mTitle->userIsWatching(), "", $bot );
+		$this->updateArticle( Article::getRevisionText( $s ), $newcomment, 1, $this->mTitle->userIsWatching(), "", $bot );
 
 		global $wgEnablePersistentLC;
 		if ( $wgEnablePersistentLC ) {

@@ -81,33 +81,33 @@ cellpadding=0 cellspacing='4px'><tr>
 			$s = wfFetchObject( $res );
 			$this->mNewtext = $s->cur_text;
 		} else {
-			$sql = "SELECT old_timestamp,old_text FROM old WHERE " .
+			$sql = "SELECT old_timestamp,old_text,old_flags FROM old WHERE " .
 			  "old_id={$this->mNewid}";
 
 			$res = wfQuery( $sql, DB_READ, $fname );
 			if ( 0 == wfNumRows( $res ) ) { return false; }
 
 			$s = wfFetchObject( $res );
-			$this->mNewtext = $s->old_text;
+			$this->mNewtext = Article::getRevisionText( $s );
 
 			$t = $wgLang->timeanddate( $s->old_timestamp, true );
 			$this->mNewtitle = wfMsg( "revisionasof", $t );
 		}
 		if ( 0 == $this->mOldid ) {
-			$sql = "SELECT old_timestamp,old_text FROM old USE INDEX (name_title_timestamp) WHERE " .
+			$sql = "SELECT old_timestamp,old_text,old_flags FROM old USE INDEX (name_title_timestamp) WHERE " .
 			  "old_namespace=" . $wgTitle->getNamespace() . " AND " .
 			  "old_title='" . wfStrencode( $wgTitle->getDBkey() ) .
 			  "' ORDER BY inverse_timestamp LIMIT 1";
 			$res = wfQuery( $sql, DB_READ, $fname );
 		} else {
-			$sql = "SELECT old_timestamp,old_text FROM old WHERE " .
+			$sql = "SELECT old_timestamp,old_text,old_flags FROM old WHERE " .
 			  "old_id={$this->mOldid}";
 			$res = wfQuery( $sql, DB_READ, $fname );
 		}
 		if ( 0 == wfNumRows( $res ) ) { return false; }
 
 		$s = wfFetchObject( $res );
-		$this->mOldtext = $s->old_text;
+		$this->mOldtext = Article::getRevisionText( $s );
 
 		$t = $wgLang->timeanddate( $s->old_timestamp, true );
 		$this->mOldtitle = wfMsg( "revisionasof", $t );
