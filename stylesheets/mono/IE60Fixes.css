@@ -1,0 +1,54 @@
+/* 6.0 - only fixes */
+
+/* slightly smaller top margin for the content area */
+#portlet-contentViews {
+    left: 12.4em;
+    z-index: 3;
+}
+
+#portlet-contentViews li a,
+#portlet-contentViews .selected a,
+#portlet-contentViews li a:hover {
+    padding-bottom: 0.1em;
+}
+
+#portlet-contentViews li.selected {
+    background-color: White;
+}
+
+
+#portal-column-content {
+    margin: 0 0 0 -11.9em;
+}
+
+#portal-column-content #content {
+    margin: 1.9em 0 0 11.9em;
+    padding-top: 0.3em;
+}
+
+#portal-personaltools {
+    padding-bottom: 0.1em;
+}
+
+
+/* height on everything... */
+#content,
+#content p,
+div.comment,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.description,
+.portalMessage {
+    height: 100%;    
+}
+
+p {
+    margin: 0.2em 0em 0.4em 0em;
+    line-height: 1.5em;
+}
+
+/*{ border:1px solid Red !important;}*/
