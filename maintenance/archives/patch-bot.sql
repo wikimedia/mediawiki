@@ -6,6 +6,6 @@
 -- this affects code in Article.php, User.php SpecialRecentchanges.php
 -- column also added to buildTables.inc
 
-ALTER TABLE recentchanges
+ALTER TABLE /*$wgDBprefix*/recentchanges
   ADD COLUMN rc_bot tinyint(3) unsigned NOT NULL default '0'
   AFTER rc_minor;

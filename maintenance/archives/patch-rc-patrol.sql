@@ -4,6 +4,6 @@
 -- 2004-08-09
 --
 
-ALTER TABLE recentchanges
+ALTER TABLE /*$wgDBprefix*/recentchanges
 	ADD COLUMN rc_patrolled tinyint(3) unsigned NOT NULL default '0';
 
