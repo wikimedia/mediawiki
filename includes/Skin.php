@@ -869,7 +869,13 @@ class Skin {
 		
 		$mp = wfMsg( 'mainpage' );
 		$titleObj = Title::newFromText( $mp );
-		$s = '<a href="' . $titleObj->escapeLocalURL()
+		if ( is_object( $titleObj ) ) {
+			$url = $titleObj->escapeLocalURL();
+		} else {
+			$url = '';
+		}
+
+		$s = '<a href="' . $url
 		  . '"><img'.$a.' src="'
 		  . $this->getLogo() . '" alt="' . "[{$mp}]\" /></a>";
 		return $s;
