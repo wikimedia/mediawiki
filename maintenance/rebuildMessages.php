@@ -12,10 +12,12 @@ if ( $argv[1] ) {
 	$newpath = "";
 }
 
-if ( $argv[2] ) {
-	$patterns = explode( ",", $argv[2]);
+if ( $argv[2] == "update" ) {
+	$response = 1;
+} elseif ( $argv[2] == "reinitialise" ) {
+	$response = 2;
 } else {
-	$patterns = false;
+	$response = 0;
 }
 
 if ( ! is_readable( $settingsFile ) ) {
@@ -37,24 +39,26 @@ $wgTitle = Title::newFromText( "Rebuild messages script" );
 $wgCommandLineMode = true;
 set_time_limit(0);
 
-$row = wfGetArray( "cur", array("count(*) as c"), array("cur_namespace" => NS_MEDIAWIKI) );
-print "Current namespace size: {$row->c}\n";
+if ( $response == 0 ) {
+	$row = wfGetArray( "cur", array("count(*) as c"), array("cur_namespace" => NS_MEDIAWIKI) );
+	print "Current namespace size: {$row->c}\n";
 
-print	"1. Update messages to include latest additions to Language.php\n" . 
+	print	"1. Update messages to include latest additions to Language.php\n" . 
 		"2. Delete all messages and reinitialise namespace\n" .
 		"3. Quit\n\n".
 		
 		"Please enter a number: ";
 
-do {
-	$response = IntVal(readconsole());
-	if ( $response >= 1 && $response <= 3 ) {
-		$good = true;
-	} else {
-		$good = false;
-		print "Please type a number between 1 and 3: ";
-	}
-} while ( !$good );
+	do {
+		$response = IntVal(readconsole());
+		if ( $response >= 1 && $response <= 3 ) {
+			$good = true;
+		} else {
+			$good = false;
+			print "Please type a number between 1 and 3: ";
+		}
+	} while ( !$good );
+}
 
 switch ( $response ) {
 	case 1:
