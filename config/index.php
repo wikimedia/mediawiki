@@ -590,28 +590,18 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			}
 
 			$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
-			$now = wfTimestampNow();
+			$article = new Article( $titleobj );
+			$newid = $article->insertOn( $wgDatabase );
+			$revision = new Revision( array(
+				'page'      => $newid,
+				'text'      => wfMsg( 'mainpagetext' ) . "\n\n" . wfMsg( 'mainpagedocfooter' ),
+				'comment'   => '',
+				'user'      => 0,
+				'user_text' => 'MediaWiki default',
+				) );
+			$revid = $revision->insertOn( $wgDatabase );
+			$article->updateRevisionOn( $wgDatabase, $revision );
 			
-			extract( $wgDatabase->tableNames( 'text', 'page', 'revision' ) );
-			$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
-			$title = $titleobj->getDBkey();
-			$sql = "INSERT INTO $text (old_text, old_flags) VALUES ('" .
-				wfStrencode( wfMsg( "mainpagetext" ) . "\n\n" . wfMsg( "mainpagedocfooter" ) ) .
-				"', '')";
-			$wgDatabase->query( $sql, $fname );
-			$text_id = $wgDatabase->insertID();
-
-			$sql = "INSERT INTO $page (page_namespace, page_title, page_restrictions, page_counter, page_is_redirect, 
-				page_is_new, page_random, page_touched, page_latest) VALUES (
-				0, '{$title}', '', 0, 0, 1, 0.5, '{$now}', {$text_id} )";
-			$wgDatabase->query( $sql, $fname );
-			$page_id = $wgDatabase->insertID();
-
-			$sql = "INSERT INTO $revision (rev_id, rev_page, rev_comment, rev_user, rev_user_text,
-					rev_timestamp, rev_minor_edit)
-				VALUES ({$text_id}, {$page_id}, '', 0, 'MediaWiki default', '{$now}', 0)";
-			$wgDatabase->query( $sql, $fname );
-
 			print "<li><pre>";
 			initialiseMessages();
 			print "</pre></li>\n";
