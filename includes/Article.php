@@ -925,7 +925,7 @@ class Article {
 		$now = wfTimestampNow();
 		$won = wfInvertTimestamp( $now );
 		wfSeedRandom();
-		$rand = number_format( mt_rand() / mt_getrandmax(), 12, '.', '' );
+		$rand = wfRandom();
 		$dbw =& wfGetDB( DB_MASTER );
 
 		$cur_id = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
@@ -2097,7 +2097,7 @@ class Article {
 			$fields['cur_is_new'] = 1;
 			$fields['cur_namespace'] = $ns;
 			$fields['cur_title'] = $dbkey;
-			$fields['cur_random'] = $rand = number_format( mt_rand() / mt_getrandmax(), 12, '.', '' );
+			$fields['cur_random'] = $rand = wfRandom();
 			$dbw->insertArray( 'cur', $fields, $fname );
 		}
 		wfProfileOut( $fname );
