@@ -479,12 +479,16 @@ class Article {
 		if ( -1 != $this->mUser )
 			return;
 
+		# New or non-existent articles have no user information
+		$id = $this->getID();
+		if ( 0 == $id ) return;
+
 		$fname = 'Article::loadLastEdit';
 
 		$dbr =& $this->getDB();
 		$s = $dbr->selectRow( array( 'revision', 'page') ,
 		  array( 'rev_user','rev_user_text','rev_timestamp', 'rev_comment','rev_minor_edit' ),
-		  array( 'page_id' => $this->getID(), 'page_latest=rev_id' ), $fname, $this->getSelectOptions() );
+		  array( 'page_id' => $id, 'page_latest=rev_id' ), $fname, $this->getSelectOptions() );
 
 		if ( $s !== false ) {
 			$this->mUser = $s->rev_user;
