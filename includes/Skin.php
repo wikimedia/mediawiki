@@ -2491,11 +2491,12 @@ class Skin {
 		# is ignored
 		while(preg_match('/\[\[(.*?)(\|(.*?))*\]\]/',$comment,$match)) {
 
-			$medians = $wgLang->getNsText(Namespace::getMedia());
+			$medians = $wgLang->getNsText(Namespace::getMedia()).':';
 			$func='makeLink';
 			if(preg_match('/^'.$medians.'/i',$match[1])) {
 				$func='makeMediaLink';
 			}
+			# Handle link renaming [[foo|text]] will show link as "text"
 			if(isset($match[3]) ) {
 				$comment=
 				preg_replace('/\[\[(.*?)\]\]/',
