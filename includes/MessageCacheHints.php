@@ -4,7 +4,7 @@
  */ 
 
 /** 
- * @package Mediawiki
+ * @package MediaWiki
  *
  * This class should provide methods for message cache key hints for various
  * scopes
