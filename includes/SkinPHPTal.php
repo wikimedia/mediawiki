@@ -114,6 +114,7 @@
 			$tpl->set( 'headlinks', $out->getHeadLinks() );
 			$tpl->setRef( 'skinname', &$this->skinname );
 			$tpl->setRef( "loggedin", &$this->loggedin );
+			$tpl->set('nsclass', 'ns-'.$wgTitle->getNamespace());
 			/* XXX currently unused, might get useful later
 			$tpl->set( "editable", ($wgTitle->getNamespace() != NS_SPECIAL ) );
 			$tpl->set( "exists", $wgTitle->getArticleID() != 0 );
