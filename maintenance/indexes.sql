@@ -17,7 +17,8 @@ ALTER TABLE cur
   ADD INDEX (cur_random),
   ADD INDEX name_title_timestamp (cur_namespace,cur_title,inverse_timestamp),
   ADD INDEX user_timestamp (cur_user,inverse_timestamp),
-  ADD INDEX usertext_timestamp (cur_user_text,inverse_timestamp);
+  ADD INDEX usertext_timestamp (cur_user_text,inverse_timestamp),
+  ADD INDEX namespace_redirect_timestamp(cur_namespace,cur_is_redirect,cur_timestamp);
 
 ALTER TABLE old
   ADD INDEX (old_namespace,old_title(20)),
