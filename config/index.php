@@ -731,6 +731,18 @@ function writeAdminSettings( $conf ) {
 ";
 }
 
+function escapePhpString( $string ) {
+	return strtr( $string,
+		array(
+			"\n" => "\\n",
+			"\r" => "\\r",
+			"\t" => "\\t",
+			"\\" => "\\\\",
+			"\$" => "\\\$",
+			"\"" => "\\\""
+		));
+}
+
 function writeLocalSettings( $conf ) {
 	$conf->DBmysql4 = @$conf->DBmysql4 ? 'true' : 'false';
 	$conf->UseImageResize = $conf->UseImageResize ? 'true' : 'false';
@@ -761,7 +773,7 @@ function writeLocalSettings( $conf ) {
 	}
 
 	# Add slashes to strings for double quoting
-	$slconf = array_map( "addslashes", get_object_vars( $conf ) );
+	$slconf = array_map( "escapePhpString", get_object_vars( $conf ) );
 
 
 	$sep = (DIRECTORY_SEPARATOR == "\\") ? ";" : ":";
