@@ -1678,100 +1678,98 @@ class Skin {
 		$align = '';
 		$prefix = $postfix = '';
 
-		if ( $wgUseImageResize ) {
-			# Check if the alt text is of the form "options|alt text"
-			# Options are:
-			#  * thumbnail       	make a thumbnail with enlarge-icon and caption, alignment depends on lang
-			#  * left		no resizing, just left align. label is used for alt= only
-			#  * right		same, but right aligned
-			#  * none		same, but not aligned
-			#  * ___px		scale to ___ pixels width, no aligning. e.g. use in taxobox
-			#  * center		center the image
-			#  * framed		Keep original image size, no magnify-button.
+		# Check if the alt text is of the form "options|alt text"
+		# Options are:
+		#  * thumbnail       	make a thumbnail with enlarge-icon and caption, alignment depends on lang
+		#  * left		no resizing, just left align. label is used for alt= only
+		#  * right		same, but right aligned
+		#  * none		same, but not aligned
+		#  * ___px		scale to ___ pixels width, no aligning. e.g. use in taxobox
+		#  * center		center the image
+		#  * framed		Keep original image size, no magnify-button.
 
-			$part = explode( '|', $alt);
+		$part = explode( '|', $alt);
 
-			$mwThumb  =& MagicWord::get( MAG_IMG_THUMBNAIL );
-			$mwLeft   =& MagicWord::get( MAG_IMG_LEFT );
-			$mwRight  =& MagicWord::get( MAG_IMG_RIGHT );
-			$mwNone   =& MagicWord::get( MAG_IMG_NONE );
-			$mwWidth  =& MagicWord::get( MAG_IMG_WIDTH );
-			$mwCenter =& MagicWord::get( MAG_IMG_CENTER );
-			$mwFramed =& MagicWord::get( MAG_IMG_FRAMED );
-			$alt = $part[count($part)-1];
+		$mwThumb  =& MagicWord::get( MAG_IMG_THUMBNAIL );
+		$mwLeft   =& MagicWord::get( MAG_IMG_LEFT );
+		$mwRight  =& MagicWord::get( MAG_IMG_RIGHT );
+		$mwNone   =& MagicWord::get( MAG_IMG_NONE );
+		$mwWidth  =& MagicWord::get( MAG_IMG_WIDTH );
+		$mwCenter =& MagicWord::get( MAG_IMG_CENTER );
+		$mwFramed =& MagicWord::get( MAG_IMG_FRAMED );
+		$alt = $part[count($part)-1];
 
-			$height = $framed = $thumb = false;
-			$manual_thumb = "" ;
+		$height = $framed = $thumb = false;
+		$manual_thumb = "" ;
 
-			foreach( $part as $key => $val ) {
-				$val_parts = explode ( "=" , $val , 2 ) ;
-				$left_part = array_shift ( $val_parts ) ;
-				if ( ! is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
-					$thumb=true;
-				} elseif ( count ( $val_parts ) == 1 && ! is_null( $mwThumb->matchVariableStartToEnd($left_part) ) ) {
-					# use manually specified thumbnail
-					$thumb=true;
-					$manual_thumb = array_shift ( $val_parts ) ;
-				} elseif ( ! is_null( $mwRight->matchVariableStartToEnd($val) ) ) {
-					# remember to set an alignment, don't render immediately
-					$align = 'right';
-				} elseif ( ! is_null( $mwLeft->matchVariableStartToEnd($val) ) ) {
-					# remember to set an alignment, don't render immediately
-					$align = 'left';
-				} elseif ( ! is_null( $mwCenter->matchVariableStartToEnd($val) ) ) {
-					# remember to set an alignment, don't render immediately
-					$align = 'center';
-				} elseif ( ! is_null( $mwNone->matchVariableStartToEnd($val) ) ) {
-					# remember to set an alignment, don't render immediately
-					$align = 'none';
-				} elseif ( ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
-					# $match is the image width in pixels
-					if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
-						$width = intval( $m[1] );
-						$height = intval( $m[2] );
-					} else {
-						$width = intval($match);
-					}
-				} elseif ( ! is_null( $mwFramed->matchVariableStartToEnd($val) ) ) {
-					$framed=true;
+		foreach( $part as $key => $val ) {
+			$val_parts = explode ( "=" , $val , 2 ) ;
+			$left_part = array_shift ( $val_parts ) ;
+			if ( $wgUseImageResize && ! is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
+				$thumb=true;
+			} elseif ( $wgUseImageResize && count ( $val_parts ) == 1 && ! is_null( $mwThumb->matchVariableStartToEnd($left_part) ) ) {
+				# use manually specified thumbnail
+				$thumb=true;
+				$manual_thumb = array_shift ( $val_parts ) ;
+			} elseif ( ! is_null( $mwRight->matchVariableStartToEnd($val) ) ) {
+				# remember to set an alignment, don't render immediately
+				$align = 'right';
+			} elseif ( ! is_null( $mwLeft->matchVariableStartToEnd($val) ) ) {
+				# remember to set an alignment, don't render immediately
+				$align = 'left';
+			} elseif ( ! is_null( $mwCenter->matchVariableStartToEnd($val) ) ) {
+				# remember to set an alignment, don't render immediately
+				$align = 'center';
+			} elseif ( ! is_null( $mwNone->matchVariableStartToEnd($val) ) ) {
+				# remember to set an alignment, don't render immediately
+				$align = 'none';
+			} elseif ( $wgUseImageResize && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
+				# $match is the image width in pixels
+				if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
+					$width = intval( $m[1] );
+					$height = intval( $m[2] );
+				} else {
+					$width = intval($match);
 				}
+			} elseif ( ! is_null( $mwFramed->matchVariableStartToEnd($val) ) ) {
+				$framed=true;
 			}
-			if ( 'center' == $align )
-			{
-				$prefix  = '<div class="center">';
-				$postfix = '</div>';
-				$align   = 'none';
+		}
+		if ( 'center' == $align )
+		{
+			$prefix  = '<div class="center">';
+			$postfix = '</div>';
+			$align   = 'none';
+		}
+
+		if ( $thumb || $framed ) {
+
+			# Create a thumbnail. Alignment depends on language
+			# writing direction, # right aligned for left-to-right-
+			# languages ("Western languages"), left-aligned
+			# for right-to-left-languages ("Semitic languages")
+			#
+			# If  thumbnail width has not been provided, it is set
+			# here to 180 pixels
+			if ( $align == '' ) {
+				$align = $wgContLang->isRTL() ? 'left' : 'right';
 			}
-
-			if ( $thumb || $framed ) {
-
-				# Create a thumbnail. Alignment depends on language
-				# writing direction, # right aligned for left-to-right-
-				# languages ("Western languages"), left-aligned
-				# for right-to-left-languages ("Semitic languages")
-				#
-				# If  thumbnail width has not been provided, it is set
-				# here to 180 pixels
-				if ( $align == '' ) {
-					$align = $wgContLang->isRTL() ? 'left' : 'right';
-				}
-				if ( ! isset($width) ) {
-					$width = 180;
-				}
-				return $prefix.$this->makeThumbLinkObj( $img, $alt, $align, $width, $height, $framed, $manual_thumb ).$postfix;
-
-			} elseif ( isset($width) ) {
-
-				# Create a resized image, without the additional thumbnail
-				# features
-
-				if (    ( ! $height === false )
-				     && ( $img->getHeight() * $width / $img->getWidth() > $height ) ) {
-					$width = $img->getWidth() * $height / $img->getHeight();
-				}
-				if ( '' == $manual_thumb ) $url = $img->createThumb( $width );
+			if ( ! isset($width) ) {
+				$width = 180;
 			}
-		} # endif $wgUseImageResize
+			return $prefix.$this->makeThumbLinkObj( $img, $alt, $align, $width, $height, $framed, $manual_thumb ).$postfix;
+
+		} elseif ( isset($width) ) {
+
+			# Create a resized image, without the additional thumbnail
+			# features
+
+			if (    ( ! $height === false )
+			     && ( $img->getHeight() * $width / $img->getWidth() > $height ) ) {
+				$width = $img->getWidth() * $height / $img->getHeight();
+			}
+			if ( '' == $manual_thumb ) $url = $img->createThumb( $width );
+		}
 
 		if ( empty( $alt ) ) {
 			$alt = preg_replace( '/\.(.+?)^/', '', $img->getName() );
