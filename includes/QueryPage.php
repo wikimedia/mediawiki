@@ -1,6 +1,7 @@
 <?php
 
 include_once ( "LogPage.php" ) ;
+include_once ( "Feed.php" );
 
 # This is a class for doing query pages; since they're almost all the same,
 # we factor out some of the functionality into a superclass, and let
@@ -36,7 +37,7 @@ class QueryPage {
 	function formatResult( $skin, $result ) {
 		return "";
 	}
-
+	
 	# This is the actual workhorse. It does everything needed to make a
 	# real, honest-to-gosh query page.
 
@@ -86,6 +87,82 @@ class QueryPage {
 		if ( $this->isExpensive() && $offset == 0 && $limit >= 50 ) {
 			$logpage->replaceContent( $s );
 		}
+	}
+	
+	# Similar to above, but packaging in a syndicated feed instead of a web page
+	function doFeed( $class = "" ) {
+		global $wgFeedClasses;
+		global $wgOut, $wgLanguageCode, $wgLang;
+		if( $class == "rss" ) {
+			$wgOut->disable();
+			
+			$feed = new RSSFeed(
+				$this->feedTitle(),
+				$this->feedDesc(),
+				$this->feedUrl() );
+			$feed->outHeader();
+			
+			$sql = $this->getSQL( 0, 50 );
+			$res = wfQuery( $sql, DB_READ, "QueryPage::doFeed" );
+			while( $obj = wfFetchObject( $res ) ) {
+				$item = $this->feedResult( $obj );
+				if( $item ) $feed->outItem( $item );
+			}
+			wfFreeResult( $res );
+
+			$feed->outFooter();
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	# Override for custom handling. If the titles/links are ok, just do feedItemDesc()
+	function feedResult( $result ) {
+		if( isset( $result->cur_title ) ) {
+			$title = Title::MakeTitle( $result->cur_namespace, $result->cur_title );
+		} elseif( isset( $result->old_title ) ) {
+			$title = Title::MakeTitle( $result->old_namespace, $result->old_title );
+		} elseif( isset( $result->rc_title ) ) {
+			$title = Title::MakeTitle( $result->rc_namespace, $result->rc_title );
+		} else {
+			return NULL;
+		}
+		if( $title ) {
+			return new FeedItem(
+				$title->getText(),
+				$this->feedItemDesc( $result ),
+				wfFullUrl( $title->getUrl() ) );
+		} else {
+			return NULL;
+		}
+	}
+	
+	function feedItemDesc( $row ) {
+		if( isset( $row->cur_comment ) ) {
+			return $row->cur_comment;
+		} elseif( isset( $row->old_comment ) ) {
+			return $row->old_comment;
+		} elseif( isset( $row->rc_comment ) ) {
+			return $row->rc_comment;
+		}
+		return "";
+	}
+
+	function feedTitle() {
+		global $wgLanguageCode, $wgSitename, $wgLang;
+		$pages = $wgLang->getValidSpecialPages();
+		$title = $pages[$this->getName()];
+		return "$title - $wgSitename [$wgLanguageCode]";
+	}
+	
+	function feedDesc() {
+		return wfMsg( "fromwikipedia" );
+	}
+	
+	function feedUrl() {
+		global $wgLang;
+		return wfFullUrl( $wgLang->SpecialPage( $this->getName() ) );
 	}
 }
 

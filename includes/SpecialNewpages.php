@@ -7,7 +7,7 @@ class NewPagesPage extends QueryPage {
 	function getName() {
 		return "Newpages";
 	}
-
+	
 	function isExpensive() {
 		return parent::isExpensive();
 	}
@@ -54,7 +54,10 @@ function wfSpecialNewpages()
     
     $npp = new NewPagesPage();
     
-    $npp->doQuery( $offset, $limit );
+
+    if( !$npp->doFeed( $_GET["feed"] ) ) {
+	    $npp->doQuery( $offset, $limit );
+	}
 }
 
 ?>
