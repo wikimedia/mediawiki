@@ -30,6 +30,9 @@ function createTextIndex( &$database )
 
 function rebuildTextIndex( &$database )
 {
+	global $wgDisableSearchUpdate;
+	$wgDisableSearchUpdate = false;
+
 	$sql = "SELECT MAX(cur_id) AS count FROM cur";
 	$res = $database->query($sql, "rebuildTextIndex" );
 	$s = wfFetchObject($res);
