@@ -385,6 +385,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 563) Fix UTF-8 interwiki URL redirects via Latin-1 wikis
 * (bug 1536) Fix page info
 * Support os (Ossetic) as language code, using Russian localization base
+* (bug 1610) Support non (Old Norse) as language code, using Icelandic localization base
 
 
 === Caveats ===
