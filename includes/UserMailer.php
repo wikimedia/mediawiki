@@ -1,4 +1,4 @@
-<?
+<?php
 
 # This function will perform a direct (authenticated) login to
 # a SMTP Server to use for mail relaying if 'wgSMTP' specifies an
