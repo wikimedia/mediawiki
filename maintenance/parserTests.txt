@@ -1897,6 +1897,35 @@ DIV IN UPPERCASE
 
 !!end
 
+
+!! test
+text with amp in the middle of nowhere
+!! input
+Remember AT&T?
+!!result
+<p>Remember AT&amp;T?
+</p>
+!! end
+
+!! test
+text with character entity: eacute
+!! input
+I always thought &eacute; was a cute letter.
+!! result
+<p>I always thought &eacute; was a cute letter.
+</p>
+!! end
+
+!! test
+text with undefined character entity: xacute
+!! input
+I always thought &xacute; was a cute letter.
+!! result
+<p>I always thought &amp;xacute; was a cute letter.
+</p>
+!! end
+
+
 TODO:
 more images
 more tables
