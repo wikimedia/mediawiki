@@ -128,10 +128,9 @@ class Parser
 			$fixtags = array(
 				# french spaces, last one Guillemet-left
 				# only if there is something before the space
-				'/ (?=\\?|:|;|!|\\302\\273)/' => '&nbsp;\\1',
-				'/(\d) (?=\d{3}\D)/' => '\\1&nbsp;\\2',
+				'/(.) (?=\\?|:|;|!|\\302\\273)/i' => '\\1&nbsp;\\2',
 				# french spaces, Guillemet-right
-				"/(\\302\\253) /"=>"\\1&nbsp;",
+				"/(\\302\\253) /i"=>"\\1&nbsp;",
 				'/<hr *>/i' => '<hr />',
 				'/<br *>/i' => '<br />',
 				'/<center *>/i' => '<div class="center">',
@@ -144,10 +143,9 @@ class Parser
 		} else {
 			$fixtags = array(
 				# french spaces, last one Guillemet-left
-				'/ (?=\\?|:|;|!|\\302\\273)/' => '&nbsp;\\1',
-				'/(\d) (?=\d{3}\D)/' => '\\1&nbsp;\\2',
+				'/ (\\?|:|;|!|\\302\\273)/i' => '&nbsp;\\1',
 				# french spaces, Guillemet-right
-				'/(\\302\\253) /' => '\\1&nbsp;',
+				'/(\\302\\253) /i' => '\\1&nbsp;',
 				'/([^> ]+(&#x30(1|3|9);)[^< ]*)/i' => '<span class="diacrit">\\1</span>',
 				'/<center *>/i' => '<div class="center">',
 				'/<\\/center *>/i' => '</div>'
