@@ -788,8 +788,8 @@ sein, um Ihre Beobachtungsliste zu bearbeiten.",
 "exblank" => "Seite war leer",
 "confirmdelete" => "Löschung bestätigen",
 "deletesub"		=> "(Lösche \"$1\")",
-"historywarning" => "WARNUNG: Die Seite die Sie zu löscheni gedenken hat
-eine Versionsgeschichte:",
+"historywarning" => "WARNUNG: Die Seite die Sie zu löschen gedenken hat
+eine Versionsgeschichte: ",
 "confirmdeletetext" => "Sie sind dabei, einen Artikel oder ein Bild und alle älteren Versionen permanent aus der Datenbank zu löschen.
 Bitte bestätigen Sie Ihre Absicht, dies zu tun, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit [[Wikipedia:Leitlinien|den Wikipedia Leitlinien]] handeln.",
 "confirmcheck"	=> "Ja, ich möchte den Löschvorgang fortsetzen.",
