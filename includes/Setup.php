@@ -230,7 +230,7 @@ $wgDBConnections = array();
 $wgTitle = Title::newFromText( wfMsg( 'badtitle' ) );
 $wgArticle = new Article($wgTitle);
 
-if ( $wgSiteNotice{0} == ':' ) {
+if ( !empty( $wgSiteNotice ) && $wgSiteNotice{0} == ':' ) {
 	$key = substr( $wgSiteNotice, 1 );
 	$wgSiteNotice = wfMsg( $key );
 	if ( $wgSiteNotice == "&lt;$key&gt;" ) {
