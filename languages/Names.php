@@ -61,7 +61,7 @@
 	'gd' => 'Gàidhlig',	# Scots Gaelic
 	'gl' => 'Galego',		# Gallegan
 	'gn' => 'Avañe\'ẽ',	# Guarani
-	'got' => 'x⡜xFЉx⡨x⡣x⡧xAЉ',	# Gothic
+	'got' => '𐌲𐌿𐍄𐌹𐍃𐌺',	# Gothic
 	'gu' => 'ગુજરાતી',	# Gujarati
 	'gv' => 'Gaelg',		# Manx
 	'ha' => 'هَوُسَ',	# Hausa
