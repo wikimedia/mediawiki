@@ -110,7 +110,8 @@ class CacheManager {
 		if(!file_exists($mydir2)) { mkdir($mydir2,0775); }
 	}
 	
-	function saveToFileCache( $text ) {
+	function saveToFileCache( $origtext ) {
+		$text = $origtext;
 		if(strcmp($text,'') == 0) return '';
 		
 		wfDebug(" saveToFileCache()\n", false);
