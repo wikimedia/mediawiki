@@ -810,7 +810,7 @@ class OutputPage {
 	 * $options is a bit field, RLH_FOR_UPDATE to select for update
 	 */
 	function replaceLinkHolders( &$text, $options = 0 ) {
-		global $wgUser, $wgLinkCache, $wgUseOldExistenceCheck;
+		global $wgUser, $wgLinkCache, $wgUseOldExistenceCheck, $wgLinkHolders;
 		
 		if ( $wgUseOldExistenceCheck ) {
 			return array();
@@ -819,36 +819,25 @@ class OutputPage {
 		$fname = 'OutputPage::replaceLinkHolders';
 		wfProfileIn( $fname );
 
-		$titles = array();
 		$pdbks = array();
 		$colours = array();
 		
-		# Get placeholders from body
-		wfProfileIn( $fname.'-match' );
-		preg_match_all( "/<!--LINK (.*?) (.*?) (.*?) (.*?)-->/", $text, $tmpLinks );
-		wfProfileOut( $fname.'-match' );
-		
-		if ( !empty( $tmpLinks[0] ) ) {
+		#if ( !empty( $tmpLinks[0] ) ) { #TODO
+		if ( !empty( $wgLinkHolders['namespaces'] ) ) {
 			wfProfileIn( $fname.'-check' );
 			$dbr =& wfGetDB( DB_SLAVE );
 			$cur = $dbr->tableName( 'cur' );
 			$sk = $wgUser->getSkin();
 			$threshold = $wgUser->getOption('stubthreshold');
 			
-			$namespaces =& $tmpLinks[1];
-			$dbkeys =& $tmpLinks[2];
-			$queries =& $tmpLinks[3];
-			$texts =& $tmpLinks[4];
-
 			# Sort by namespace
-			asort( $namespaces );
+			asort( $wgLinkHolders['namespaces'] );
 	
 			# Generate query
 			$query = false;
-			foreach ( $namespaces as $key => $val ) {
+			foreach ( $wgLinkHolders['namespaces'] as $key => $val ) {
 				# Make title object
-				$dbk = $dbkeys[$key];
-				$title = $titles[$key] = Title::makeTitleSafe( $val, $dbk );
+				$title = $wgLinkHolders['titles'][$key];
 
 				# Skip invalid entries.
 				# Result will be ugly, but prevents crash.
@@ -878,7 +867,7 @@ class OutputPage {
 						$query .= ', ';
 					}
 				
-					$query .= $dbr->addQuotes( $dbkeys[$key] );
+					$query .= $dbr->addQuotes( $wgLinkHolders['dbkeys'][$key] );
 				}
 			}
 			if ( $query ) {
@@ -916,18 +905,24 @@ class OutputPage {
 			wfProfileIn( $fname.'-construct' );
 			global $outputReplace;
 			$outputReplace = array();
-			foreach ( $namespaces as $key => $ns ) {
+			foreach ( $wgLinkHolders['namespaces'] as $key => $ns ) {
 				$pdbk = $pdbks[$key];
-				$searchkey = $tmpLinks[0][$key];
-				$title = $titles[$key];
+				$searchkey = '<!--LINK '.$key.'-->';
+				$title = $wgLinkHolders['titles'][$key];
 				if ( empty( $colours[$pdbk] ) ) {
 					$wgLinkCache->addBadLink( $pdbk );
 					$colours[$pdbk] = 0;
-					$outputReplace[$searchkey] = $sk->makeBrokenLinkObj( $title, $texts[$key], $queries[$key] );
+					$outputReplace[$searchkey] = $sk->makeBrokenLinkObj( $title,
+									$wgLinkHolders['texts'][$key],
+									$wgLinkHolders['queries'][$key] );
 				} elseif ( $colours[$pdbk] == 1 ) {
-					$outputReplace[$searchkey] = $sk->makeKnownLinkObj( $title, $texts[$key], $queries[$key] );
+					$outputReplace[$searchkey] = $sk->makeKnownLinkObj( $title,
+									$wgLinkHolders['texts'][$key],
+									$wgLinkHolders['queries'][$key] );
 				} elseif ( $colours[$pdbk] == 2 ) {
-					$outputReplace[$searchkey] = $sk->makeStubLinkObj( $title, $texts[$key], $queries[$key] );
+					$outputReplace[$searchkey] = $sk->makeStubLinkObj( $title,
+									$wgLinkHolders['texts'][$key],
+									$wgLinkHolders['queries'][$key] );
 				}
 			}
 			wfProfileOut( $fname.'-construct' );
@@ -936,7 +931,7 @@ class OutputPage {
 			wfProfileIn( $fname.'-replace' );
 			
 			$text = preg_replace_callback(
-				'/(<!--LINK .*? .*? .*? .*?-->)/',
+				'/(<!--LINK .*?-->)/',
 				"outputReplaceMatches",
 				$text);
 			wfProfileOut( $fname.'-replace' );
