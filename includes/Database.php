@@ -526,13 +526,25 @@ class Database {
 	 * Get the last error number
 	 * See mysql_errno()
 	 */
-	function lastErrno() { return mysql_errno(); }
+	function lastErrno() { 
+		if ( $this->mConn ) {
+			return mysql_errno( $this->mConn ); 
+		} else {
+			return mysql_errno();
+		}
+	}
 	
 	/**
 	 * Get a description of the last error
 	 * See mysql_error() for more details
 	 */
-	function lastError() { return mysql_error(); }
+	function lastError() { 
+		if ( $this->mConn ) {
+			return mysql_error( $this->mConn ); 
+		} else {
+			return mysql_error();
+		}
+	}
 	
 	/**
 	 * Get the number of rows affected by the last write query
