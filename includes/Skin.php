@@ -899,6 +899,10 @@ class Skin {
 		return $s;
 	}
 
+	/**
+	 * show a drop-down box of special pages
+	 * @TODO crash bug913. Need to be rewrote completly.
+	 */
 	function specialPagesList() {
 		global $wgUser, $wgOut, $wgContLang, $wgServer, $wgRedirectScript;
 		require_once('SpecialPage.php');
