@@ -979,7 +979,7 @@ class LanguageJa extends LanguageUtf8 {
 		global $wgWeekdayAbbreviationsJa;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-		$x = getdate(mktime(( (int)substr( $ts, 8, 2) ) + $diff,
+		$x = getdate(mktime(( (int)substr( $ts, 8, 2) ),
 			(int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
 			(int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
 			(int)substr( $ts, 0, 4 )));
@@ -1055,11 +1055,8 @@ class LanguageJa extends LanguageUtf8 {
 		$s = preg_replace( '/\xef\xbc([\x80-\xbf])/e', 'chr((ord("$1") & 0x3f) + 0x20)', $s );
 		$s = preg_replace( '/\xef\xbd([\x80-\x99])/e', 'chr((ord("$1") & 0x3f) + 0x60)', $s );
 
-		return trim( preg_replace(
-		  "/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-		  "'U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
-		  $s ) );
-		return $s;
+		# Do general case folding and UTF-8 armoring
+		return LanguageUtf8::stripForSearch( $s );
 	}
 
 	# Italic is not appropriate for Japanese script
