@@ -315,7 +315,8 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 "wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "Bug reports",
 "bugreportspage" => "{{ns:4}}:Bug_reports",
-'sitesupport'   => 'Donations', # Set a URL in $wgSiteSupportPage in LocalSettings.php
+'sitesupport'   => 'Donations', 
+'sitesupport-url' => '{{ns:4}}:Site support',
 'faq'			=> 'FAQ',
 "faqpage"		=> "{{ns:4}}:FAQ",
 "edithelp"		=> "Editing help",
@@ -335,6 +336,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'anontalk'		=> 'Talk for this IP',
 'navigation' => 'Navigation',
 'currentevents' => 'Current events',
+'currentevents-url' => 'Current events',
 'disclaimers' => 'Disclaimers',
 "disclaimerpage"		=> "{{ns:4}}:General_disclaimer",
 "errorpagetitle" => "Error",
@@ -817,6 +819,7 @@ from server time (UTC).',
 #
 'changes' => 'changes',
 'recentchanges' => 'Recent changes',
+'recentchanges-url' => 'Special:Recentchanges',
 'recentchangestext' => 'Track the most recent changes to the wiki on this page.',
 'rcloaderr'		=> 'Loading recent changes',
 'rcnote'		=> "Below are the last <strong>$1</strong> changes in last <strong>$2</strong> days.",
@@ -992,6 +995,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'nlinks'		=> '$1 links',
 'allpages'		=> 'All pages',
 'randompage'	=> 'Random page',
+'randompage-url'=> 'Special:Randompage',
 'shortpages'	=> 'Short pages',
 'longpages'		=> 'Long pages',
 'deadendpages'  => 'Dead-end pages',
@@ -1550,6 +1554,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
 
 'newimages' => 'New images gallery',
+'mormo' => 'mormo.org',
+'mormo-url' => 'http://mormo.org',
 
 
 );

@@ -120,6 +120,15 @@ $wgDBminWordLen		= 3;
 #
 # $wgUseDatabaseMessages = false;
 
+## The links in the navigation sidebar can be configured.
+## To add a link to the sidebar, add a line like the following
+#
+# $wgNavigationLinks[] = array( 'text' => 'helpdesk', 'href' => 'helpdesk-url' );
+#
+## and create two MediaWiki:-pages with the corresponding names, e.g.
+## MediaWiki:helpdesk="User help desk"
+## MediaWiki:helpdesk-url="YourProject:Help_desk"
+
 ## Set $wgUseImageResize to true if you want to enable dynamic
 ## server side image resizing ("Thumbnails")
 #
