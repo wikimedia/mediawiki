@@ -32,7 +32,8 @@ $wgNewFields = array(
 	array( 'recentchanges', 'rc_patrolled',     'patch-rc-patrol.sql' ),
 	array( 'user',          'user_real_name',   'patch-user-realname.sql' ),
 	array( 'user',          'user_token',       'patch-user_token.sql' ),
-	array( 'user_rights',   'ur_user',           'patch-rename-user_groups-and_rights.sql' ),
+	array( 'user_rights',   'ur_user',          'patch-rename-user_groups-and_rights.sql' ),
+	array( 'group',         'group_rights',     'patch-userlevels-rights.sql' ),
 );
 
 function add_table( $name, $patch ) {
@@ -170,7 +171,7 @@ function do_all_updates() {
 
 	# Add missing fields
 	foreach ( $wgNewFields as $fieldRecord ) {
-		add_table( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2] );
+		add_field( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2] );
 		flush();
 	}
 	
