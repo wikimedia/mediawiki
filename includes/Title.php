@@ -1111,6 +1111,11 @@ class Title {
 	
 						# Redundant interwiki prefix to the local wiki
 						if ( 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki ) ) {
+							if( $t == '' ) {
+								# Can't have an empty self-link
+								wfProfileOut( $fname );
+								return false;
+							}
 							$this->mInterwiki = '';
 							$firstPass = false;
 							# Do another namespace split...
