@@ -832,7 +832,7 @@ class Skin extends Linker {
 	}
 
 	function lastModified() {
-		global $wgLang, $wgArticle;
+		global $wgLang, $wgArticle, $wgLoadBalancer;
 
 		$timestamp = $wgArticle->getTimestamp();
 		if ( $timestamp ) {
@@ -840,6 +840,9 @@ class Skin extends Linker {
 			$s = ' ' . wfMsg( 'lastmodified', $d );
 		} else {
 			$s = '';
+		}
+		if ( $wgLoadBalancer->getLaggedSlaveMode() ) {
+			$s .= ' <strong>' . wfMsg( 'laggedslavemode' ) . '</strong>';
 		}
 		return $s;
 	}
