@@ -26,7 +26,11 @@ class geo_params
 
 	function get_styles ( $id , $type )
 		{
-		return "fill:brown; stroke:black; stroke-width:1" ;
+		if ( isset ( $this->style_fill[$id] ) ) $fill = $this->style_fill[$id] ;
+		else $fill = "fill:#CCCCCC" ;
+		if ( isset ( $this->style_border[$id] ) ) $border = $this->style_border[$id] ;
+		else $border = "stroke:black; stroke-width:10" ;
+		return $fill . "; " . $border ;
 		}
 
 	function data_to_real ( &$x , &$y )
@@ -70,7 +74,7 @@ class geo_params
 	function get_svg_labels ()
 		{
 		$ret = "" ;
-		$medium_font_size = floor ( ( $this->max_x - $this->min_x ) / (100/3) ) ;
+		$medium_font_size = floor ( ( $this->max_x - $this->min_x ) / 50 ) ;
 		foreach ( $this->labels AS $l )
 			{
 			$text = $l['text'] ;
@@ -89,7 +93,6 @@ class geo_params
 			
 			$s .= "' x='{$x}' y='{$y}'>{$text}</text>\n" ;
 			$ret .= $s ;
-#		$ret = "<text style='font-size:1000pt;text-anchor:middle;fill-opacity:0.7' x='{$x}' y='{$y}'>{$text}</text>\n" ;
 			}
 		return $ret ;
 		}
@@ -285,7 +288,7 @@ $g->set_from_id ( "germany" ) ;
 
 $p = new geo_params ;
 $p->languages = array ( "de" , "en" ) ; # Fallback to "en" if there's no "de"
-$p->style_fill = array ( "de.sylt" => "blue" ) ;
+$p->style_fill = array ( "germany.hamburg" => "fill:red" ) ;
 
 $svg = $g->draw ( $p ) ;
 $svg .= $p->get_svg_labels () ;
