@@ -795,7 +795,7 @@ class Skin {
 						$link = $nstext . ":" . $link ;
 					}			
 
-					$s .= $this->makeLink( $link, $text );			
+					$s .= $this->makeLink( $link, $text );
 				} elseif( $wgTitle->getNamespace() != Namespace::getSpecial() ) {
 					# we just throw in a "New page" text to tell the user that he's in edit mode,
 					# and to avoid messing with the separator that is prepended to the next item
@@ -1259,20 +1259,20 @@ class Skin {
 	function makeLink( $title, $text = "", $query = "", $trail = "" ) {
 		wfProfileIn( "Skin::makeLink" );
 	 	$nt = Title::newFromText( $title );
-		if ($nt) {		
+		if ($nt) {
 			$result = $this->makeLinkObj( Title::newFromText( $title ), $text, $query, $trail );
 		} else {
 			wfDebug( "Invalid title passed to Skin::makeLink(): \"$title\"\n" );
 			$result = $text == "" ? $title : $text;
-		}	
-		
+		}
+
 		wfProfileOut( "Skin::makeLink" );
 		return $result;
 	}
 
 	function makeKnownLink( $title, $text = "", $query = "", $trail = "" ) {
 		$nt = Title::newFromText( $title );
-		if ($nt) {		
+		if ($nt) {
 			return $this->makeKnownLinkObj( Title::newFromText( $title ), $text, $query, $trail );
 		} else {
 			wfDebug( "Invalid title passed to Skin::makeKnownLink(): \"$title\"\n" );
@@ -1282,7 +1282,7 @@ class Skin {
 
 	function makeBrokenLink( $title, $text = "", $query = "", $trail = "" ) {
 		$nt = Title::newFromText( $title );
-		if ($nt) {		
+		if ($nt) {
 			return $this->makeBrokenLinkObj( Title::newFromText( $title ), $text, $query, $trail );
 		} else {
 			wfDebug( "Invalid title passed to Skin::makeBrokenLink(): \"$title\"\n" );
@@ -1343,7 +1343,7 @@ class Skin {
 					}
 				} else {
 					$size = 1 ;
-				}	
+				}
 				if ( $size < $threshold ) {
 					$retVal = $this->makeStubLinkObj( $nt, $text, $query, $trail, $prefix );
 				} else {
@@ -1387,12 +1387,12 @@ class Skin {
 		wfProfileOut( $fname );
 		return $r;
 	}
-	
+
 	# Pass a title object, not a title string
 	function makeBrokenLinkObj( &$nt, $text = "", $query = "", $trail = "", $prefix = "" )
 	{
 		global $wgOut, $wgUser;
-		
+
 		$fname = "Skin::makeBrokenLinkObj";
 		wfProfileIn( $fname );
 
@@ -1859,7 +1859,7 @@ class Skin {
 			if ( !isset ( $userlinks[$u] ) ) $userlinks[$u] = 0 ;
 			$userlinks[$u]++ ;
 		}
-		
+
 		# Sort the list and convert to text
 		krsort ( $userlinks ) ;
 		asort ( $userlinks ) ;
@@ -2203,16 +2203,51 @@ class Skin {
 	/* This function is called by all recent changes variants, by the page history,
 	   and by the user contributions list. It is responsible for formatting edit
 	   comments. It escapes any HTML in the comment, but adds some CSS to format
-	   auto-generated comments (from section editing).
+	   auto-generated comments (from section editing) and formats [[wikilinks]].
+	   Main author: Erik Möller (moeller@scireview.de)
 	*/
 	function formatComment($comment)
 	{
+		global $wgLang;
 		$comment=wfEscapeHTML($comment);
-		
-		# format text between /* .. */ with autocomment CSS class
-		$comment=preg_replace("/\/\*\s*(.*?)\s*\*\//i",
-		"<span class=\"autocomment\">$1</span>",$comment);
+
+		# The pattern for autogen comments is / * foo * /, which makes for
+		# some nasty regex.
+		# We look for all comments, match any text before and after the comment,
+		# add a separator where needed and format the comment itself with CSS
+		while (preg_match("/(.*)\/\*\s*(.*?)\s*\*\/(.*)/", $comment,$match)) {
+			$pre=$match[1];
+			$auto=$match[2];
+			$post=$match[3];
+			$sep="-";
+			if($pre) { $auto="$sep ".$auto; }
+			if($post) { $auto.=" $sep"; }
+			$auto="<span class=\"autocomment\">".$auto."</span>";
+			$comment=$pre.$auto.$post;
+		}
+
+		# format regular and media links - all other wiki formatting
+		# is ignored
+		while(preg_match("/\[\[(.*?)(\|(.*?))*\]\]/",$comment,$match)) {
+
+			$medians = $wgLang->getNsText(Namespace::getMedia());
+			$func="makeLink";
+			if(preg_match("/^".$medians."/i",$match[1])) {
+				$func="makeMediaLink";
+			}
+			if($match[3]) {
+				$comment=
+				preg_replace("/\[\[(.*?)\]\]/",
+				$this->$func($match[1],$match[3]),$comment,1);
+			} else {
+				$comment=
+				preg_replace("/\[\[(.*?)\]\]/",
+				$this->$func($match[1],$match[1]),$comment,1);
+			}
+		}
+
 		return $comment;
+
 	}
 
 	function imageHistoryLine( $iscur, $ts, $img, $u, $ut, $size, $c )
@@ -2262,7 +2297,8 @@ class Skin {
 		  . " . . {$ul} ({$nb})";
 
 		if ( "" != $c && "*" != $c ) {
-			$s .= $wgLang->emphasize(" (" . wfEscapeHTML( $c ) . ")");
+			$sk=$wgUser->getSkin();
+			$s .= $wgLang->emphasize(" (" . $sk->formatComment($c) . ")");
 		}
 		$s .= "</li>\n";
 		return $s;
@@ -2345,70 +2381,96 @@ class Skin {
 		// and optionally a sample text that is inserted between the two when no
 		// selection is highlighted.
 		// The tip text is shown when the user moves the mouse over the button.
+
+		// Already here are accesskeys (key), which are not used yet until someone
+		// can figure out a way to make them work in IE. However, we should make
+		// sure these keys are not defined on the edit page.
 		$toolarray=array(
 			array(	"image"=>"button_bold.png",
 				"open"=>"\'\'\'",
 				"close"=>"\'\'\'",
 				"sample"=>wfMsg("bold_sample"),
-				"tip"=>wfMsg("bold_tip")),
+				"tip"=>wfMsg("bold_tip"),
+				"key"=>"B"
+				),
 			array(	"image"=>"button_italic.png",
 				"open"=>"\'\'",
 				"close"=>"\'\'",
 				"sample"=>wfMsg("italic_sample"),
-				"tip"=>wfMsg("italic_tip")),
+				"tip"=>wfMsg("italic_tip"),
+				"key"=>"I"
+				),
 			array(	"image"=>"button_link.png",
 				"open"=>"[[",
 				"close"=>"]]",
 				"sample"=>wfMsg("link_sample"),
-				"tip"=>wfMsg("link_tip")),
+				"tip"=>wfMsg("link_tip"),
+				"key"=>"L"
+				),
 			array(	"image"=>"button_extlink.png",
 				"open"=>"[",
 				"close"=>"]",
 				"sample"=>wfMsg("extlink_sample"),
-				"tip"=>wfMsg("extlink_tip")),
+				"tip"=>wfMsg("extlink_tip"),
+				"key"=>"X"
+				),
 			array(	"image"=>"button_headline.png",
 				"open"=>"\\n== ",
 				"close"=>" ==\\n",
 				"sample"=>wfMsg("headline_sample"),
-				"tip"=>wfMsg("headline_tip")),
+				"tip"=>wfMsg("headline_tip"),
+				"key"=>"H"
+				),
 			array(	"image"=>"button_image.png",
 				"open"=>"[[".$wgLang->getNsText(NS_IMAGE).":",
 				"close"=>"]]",
 				"sample"=>wfMsg("image_sample"),
-				"tip"=>wfMsg("image_tip")),
+				"tip"=>wfMsg("image_tip"),
+				"key"=>"D"
+				),
 			array(	"image"=>"button_media.png",
 				"open"=>"[[".$wgLang->getNsText(NS_MEDIA).":",
 				"close"=>"]]",
 				"sample"=>wfMsg("media_sample"),
-				"tip"=>wfMsg("media_tip")),
+				"tip"=>wfMsg("media_tip"),
+				"key"=>"M"
+				),
 			array(	"image"=>"button_math.png",
 				"open"=>"\\<math\\>",
 				"close"=>"\\</math\\>",
 				"sample"=>wfMsg("math_sample"),
-				"tip"=>wfMsg("math_tip")),
+				"tip"=>wfMsg("math_tip"),
+				"key"=>"C"
+				),
 			array(	"image"=>"button_nowiki.png",
 				"open"=>"\\<nowiki\\>",
 				"close"=>"\\</nowiki\\>",
 				"sample"=>wfMsg("nowiki_sample"),
-				"tip"=>wfMsg("nowiki_tip")),
+				"tip"=>wfMsg("nowiki_tip"),
+				"key"=>"N"
+				),
 			array(	"image"=>"button_sig.png",
 				"open"=>"--~~~~",
 				"close"=>"",
 				"sample"=>"",
-				"tip"=>wfMsg("sig_tip")),
+				"tip"=>wfMsg("sig_tip"),
+				"key"=>"Y"
+				),
 			array(	"image"=>"button_hr.png",
 				"open"=>"\\n----\\n",
 				"close"=>"",
 				"sample"=>"",
-				"tip"=>wfMsg("hr_tip"))
+				"tip"=>wfMsg("hr_tip"),
+				"key"=>"R"
+				)
 		);
 		$toolbar ="<script type='text/javascript'>\n";
-		
+
 		$xml = ($wgMimeType == "text/xml");
 		if( $xml ) {
 			$toolbar .= "<![CDATA[";
 		}
-		
+
 		$toolbar.="document.writeln(\"<div id='toolbar'>\");\n";
 		foreach($toolarray as $tool) {
 
@@ -2422,12 +2484,15 @@ class Skin {
 			// Ideally these should be different, realistically they
 			// probably don't need to be.
 			$tip = addslashes( $tool["tip"] );
+
+			#$key = $tool["key"];
+
 			$toolbar.="addButton('$image','$tip','$open','$close','$sample');\n";
 		}
 
 		$toolbar.="addInfobox('" . addslashes( wfMsg( "infobox" ) ) . "','" . addslashes(wfMsg("infobox_alert")) . "');\n";
 		$toolbar.="document.writeln(\"</div>\");\n";
-		
+
 		if( $xml ) {
 			$toolbar .= "]]>";
 		}

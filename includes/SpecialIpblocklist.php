@@ -134,7 +134,7 @@ function wfAddRow( $block, $tag ) {
 	$line = wfMsg( "blocklistline", $formattedTime, $ulink, $addr, $formattedExpiry );
 	
 	$wgOut->addHTML( "<li>{$line}" );
-	
+
 	if ( !$block->mAuto ) {
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Contributions" );
 		$clink = "<a href=\"" . $titleObj->escapeLocalURL( "target={$block->mAddress}" ) . "\">" .
