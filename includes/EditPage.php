@@ -113,7 +113,7 @@ class EditPage {
 		$sk = $wgUser->getSkin();
 		$isConflict = false;
 		// css / js subpages of user pages get a special treatment
-		$isCssJsSubpage = Namespace::getUser() == $wgTitle->getNamespace() and preg_match("/\\.(css|js)$/", $wgTitle->getText() );
+		$isCssJsSubpage = (Namespace::getUser() == $wgTitle->getNamespace() and preg_match("/\\.(css|js)$/", $wgTitle->getText() ));
 
 		if(!$this->mTitle->getArticleID()) { # new article
 			$wgOut->addWikiText(wfmsg("newarticletext"));
