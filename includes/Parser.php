@@ -426,7 +426,7 @@ class Parser
 			$text = $wgDateFormatter->reformat( $this->mOptions->getDateFormat(), $text );
 		}
 
-		$text = ' '.$this->replaceExternalLinks( $text );
+		$text = $this->replaceExternalLinks( $text );
 		$text = $this->doTokenizedParser ( $text );
 		$text = $this->doTableStuff ( $text ) ;
 
@@ -974,7 +974,6 @@ class Parser
 		# and making lists from lines starting with * # : etc.
 		#
 		$a = explode( "\n", $text );
-		$a[0] = "\n".$a[0];
 		$lastPref = $text = '';
 		$this->mDTopen = $inBlockElem = false;
 
@@ -1591,8 +1590,8 @@ class Parser
 			}
 			$full .= $block;
 			if( $doShowToc && !$i) {
-				# Let's add a top anchor just in case we want to link to the top of the page
-				$full = "<a name=\"top\"></a>".$full.$toc;
+			# Top anchor now in skin
+				$full = $full.$toc;
 			}
 
 			if( !empty( $head[$i] ) ) {
