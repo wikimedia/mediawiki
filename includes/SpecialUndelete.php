@@ -117,13 +117,11 @@ class UndeleteForm {
 		$row = $dbr->fetchObject( $ret );
 		$wgOut->addWikiText( wfMsg( "undeletehistory" ) . "\n<hr>\n" . $row->ar_text );
 
-		# Get remaining revisions
+		# List all stored revisions
 		$sql = "SELECT ar_minor_edit,ar_timestamp,ar_user,ar_user_text,ar_comment
 		  FROM archive WHERE ar_namespace={$namespace} AND ar_title='" . $dbr->strencode( $title ) .
 		  "' ORDER BY ar_timestamp DESC";
 		$ret = $dbr->query( $sql );
-		# Ditch first row
-		$row = $dbr->fetchObject( $ret );
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Undelete" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
