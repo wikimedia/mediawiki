@@ -1,4 +1,10 @@
 <?php
+#
+# If enabled through $wgAllowSysopQueries = true, this class
+# let users with sysop right the possibility to make sql queries
+# against the cur table.
+# Heavy queries could slow down the database specially for the
+# biggest wikis.
 
 function wfSpecialAsksql()
 {
