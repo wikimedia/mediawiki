@@ -140,7 +140,7 @@ class Skin {
 
 		}
 		if($action=="edit") { # set focus in edit box
-			$foc = "document.editform.wpTextbox1.form1.focus()";
+			$foc = "document.editform.wpTextbox1.focus()";
 			if($a['onload']) {
 				$a['onload'] .= ";$foc";
 			} else {
