@@ -76,7 +76,7 @@ $wgLogQueries           = false;
 $wgUseBetterLinksUpdate = true;
 
 # User rights settings
-$wgSysopUserBans        = true; # Allow sysops to ban logged-in users
+$wgSysopUserBans        = false; # Allow sysops to ban logged-in users
 $wgIPBlockExpiration    = 86400; # IP blocks expire after this many seconds, 0=infinite
 $wgUserBlockExpiration  = 0; # As above, but for logged-in users
 
