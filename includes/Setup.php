@@ -49,6 +49,8 @@ include_once( "SearchEngine.php" );
 include_once( "DifferenceEngine.php" );
 include_once( "MessageCache.php" );
 include_once( "BlockCache.php" );
+include_once( "Parser.php" );
+include_once( "ParserCache.php" );
 
 wfProfileOut( "$fname-includes" );
 wfProfileIn( "$fname-memcached" );
@@ -57,7 +59,7 @@ global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
 global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
 global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
 global $wgMsgCacheExpiry, $wgDBname, $wgCommandLineMode;
-global $wgBlockCache;
+global $wgBlockCache, $wgParserCache, $wgParser;
 
 # Useful debug output
 if ( function_exists( "getallheaders" ) ) {
@@ -156,6 +158,8 @@ $wgDeferredUpdateList = array();
 $wgLinkCache = new LinkCache();
 $wgMagicWords = array();
 $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
+$wgParserCache = new ParserCache();
+$wgParser = new Parser();
 
 wfProfileOut( "$fname-misc" );
 wfProfileOut( $fname );

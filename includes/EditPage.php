@@ -142,7 +142,7 @@ class EditPage {
 			}
 			$u = $wgUser->getID();
 
-			# Supress edit conflict with self
+			# Suppress edit conflict with self
 
 			if ( ( 0 != $u ) && ( $this->mArticle->getUser() == $u ) ) {
 				$isConflict = false;
