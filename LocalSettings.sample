@@ -42,6 +42,9 @@ $wgDBtransactions   = false; # Set to true if using InnoDB tables
 # Turn this on to get HTML debug comments
 # $wgDebugComments	= true;
 
+# If you want a non-English wiki, add a line like this
+# $wgLanguageCode = "de";
+
 $wgUseTeX			= false;
 $wgLocalInterwiki   = "w";
 
