@@ -16,6 +16,7 @@ class OutputPage {
 	var $mContainsOldMagic, $mContainsNewMagic; 
 	var $mIsArticleRelated;
 	var $mParserOptions;
+	var $mShowFeedLinks = false;
 
 	function OutputPage()
 	{
@@ -104,6 +105,8 @@ class OutputPage {
 	function isArticle() { return $this->mIsarticle; }
 	function setPrintable() { $this->mPrintable = true; }
 	function isPrintable() { return $this->mPrintable; }
+	function setSyndicated( $show = true ) { $this->mShowFeedLinks = $show; }
+	function isSyndicated() { return $this->mShowFeedLinks; }
 	function setOnloadHandler( $js ) { $this->mOnloadHandler = $js; }
 	function getOnloadHandler() { return $this->mOnloadHandler; }
 	function disable() { $this->mDoNothing = true; }

@@ -1,11 +1,17 @@
 <?php
 
+include_once( "Feed.php" );
+
 function wfSpecialRecentchanges( $par )
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgDBname;
+	global $wgRequest, $wgSitename, $wgLanguageCode;
 	global $days, $hideminor, $from, $hidebots, $hideliu; # From query string
 	$fname = "wfSpecialRecentchanges";
-
+	
+	$feedFormat = $wgRequest->getVal( "feed" );
+	$feeding = ( $feedFormat == "rss" );
+	
 	if( $par ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
 		if( in_array( "hidebots", $bits ) ) $hidebots = 1;
@@ -119,22 +125,43 @@ function wfSpecialRecentchanges( $par )
 
 	$wgOut->addHTML( "{$note}\n" );
 
-	$s = $sk->beginRecentChangesList();
-	foreach( $rows as $obj ){
-		if( $limit == 0) {
-			break; 
+	if( $feeding ) {
+		$wgOut->disable();
+		
+		$feed = new RSSFeed(
+			$wgSitename . " - " . wfMsg( "recentchanges" ) . " [" . $wgLanguageCode . "]",
+			htmlspecialchars( wfMsg( "recentchangestext" ) ),
+			$wgTitle->getFullUrl() );
+		$feed->outHeader();
+		foreach( $rows as $obj ) {
+			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
+			$item = new FeedItem(
+				$title->getPrefixedText(),
+				htmlspecialchars( $obj->rc_comment ),
+				$title->getFullURL(),
+				$obj->rc_timestamp,
+				$obj->rc_user_text );
+			$feed->outItem( $item );
 		}
-
-		if ( ! ( $hideminor && $obj->rc_minor ) ) {
-			$rc = RecentChange::newFromRow( $obj );
-			$s .= $sk->recentChangesLine( $rc, !empty( $obj->wl_user ) );
-			--$limit;
+		$feed->outFooter();
+	} else {
+		$wgOut->setSyndicated( true );
+		$s = $sk->beginRecentChangesList();
+		foreach( $rows as $obj ){
+			if( $limit == 0) {
+				break; 
+			}
+			
+			if ( ! ( $hideminor && $obj->rc_minor ) ) {
+				$rc = RecentChange::newFromRow( $obj );
+				$s .= $sk->recentChangesLine( $rc, !empty( $obj->wl_user ) );
+				--$limit;
+			}
 		}
+		$s .= $sk->endRecentChangesList();
+		$wgOut->addHTML( $s );
 	}
-	$s .= $sk->endRecentChangesList();
-
 	wfFreeResult( $res );
-	$wgOut->addHTML( $s );
 }
 
 function rcCountLink( $lim, $d, $page="Recentchanges", $more="" )

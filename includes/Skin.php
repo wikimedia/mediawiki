@@ -1,4 +1,7 @@
 <?php
+
+include_once( "Feed.php" );
+
 # See skin.doc
 
 # These are the INTERNAL names, which get mapped
@@ -422,7 +425,7 @@ class Skin {
 
 	function pageTitleLinks()
 	{
-		global $wgOut, $wgTitle, $oldid, $action, $diff, $wgUser, $wgLang, $wgUseApproval ;
+		global $wgOut, $wgTitle, $oldid, $action, $diff, $wgUser, $wgLang, $wgUseApproval;
 
 		$s = $this->printableLink();
 		if ( wfMsg ( "disclaimers" ) != "-" ) $s .= " | " . $this->makeKnownLink( wfMsg( "disclaimerpage" ), wfMsg( "disclaimers" ) ) ;
@@ -476,17 +479,22 @@ class Skin {
 
 	function printableLink()
 	{
-		global $wgOut, $wgTitle, $oldid, $action;
+		global $wgOut, $wgFeedClasses;
 
-		$q = "";
-		foreach( $_GET as $var => $val ) {
-			if( $var != "title" && $var != "printable" )
-				$q .= urlencode( $var ) . "=" . urlencode( $val );
+		$baseurl = $_SERVER['REQUEST_URI'];
+		if( strpos( "?", $baseurl ) == false ) {
+			$baseurl .= "?";
+		} else {
+			$baseurl .= "&";
 		}
-		if( !empty( $q ) ) $q .= "&";
+		$baseurl = htmlspecialchars( $baseurl );
 		
-		$s = $this->makeKnownLink( $wgTitle->getPrefixedText(),
-		  WfMsg( "printableversion" ), "{$q}printable=yes" );
+		$s = "<a href=\"{$baseurl}printable=yes\">" . wfMsg( "printableversion" ) . "</a>";
+		if( $wgOut->isSyndicated() ) {
+			foreach( $wgFeedClasses as $format => $class ) {
+				$s .= " | <a href=\"{$baseurl}feed={$format}\">{$format}</a>";
+			}
+		}
 		return $s;
 	}
 

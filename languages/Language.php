@@ -406,7 +406,8 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	"Asksql"		=> "Query the database",
 	"Allmessages"	=> "All system messages",
 	"Undelete"		=> "Restore deleted pages",
-	"Makesysop"		=> "Turn a user into a sysop"
+	"Makesysop"		=> "Turn a user into a sysop",
+	"Import"		=> "Import a page with history",
 );
 
 /* private */ $wgDeveloperSpecialPagesEn = array(
@@ -1405,9 +1406,14 @@ amusement.",
 # Thumbnails
 
 "thumbnail-more"	=> "Enlarge",
-"missingimage"		=> "<b>Missing image</b><br><i>$1</i>\n"
+"missingimage"		=> "<b>Missing image</b><br><i>$1</i>\n",
 
-
+# Special:Import
+"import"	=> "Import pages",
+"importtext"	=> "Blah blah blah",
+"importfailed"	=> "Import failed: $1",
+"importnotext"	=> "Empty or no text",
+"importsuccess"	=> "Import succeeded!",
 );
 
 #--------------------------------------------------------------------------
