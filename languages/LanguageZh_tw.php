@@ -185,7 +185,7 @@ require_once( "LanguageZh_cn.php" );
 "search"		=> "搜索",
 "go"		=> "進入",
 "history"		=> "較早版本",
-"printableversion" => "可打印版",
+"printableversion" => "可列印版",
 "editthispage"	=> "編輯本頁",
 "deletethispage" => "刪除本頁",
 "protectthispage" => "保護本頁",
@@ -962,7 +962,7 @@ alt=\"Google\" align=\"middle\"></a>
 'blocklogpage' => "封鎖記錄", //"Block_log",
 'categoriespagetext' => "以下列出所有的頁面分類。", //"The following categories exists in the wiki.",
 'categoryarticlecount' => "該類頁面共有 $1 條目", //There are $1 articles in this category.",
-'clearyourcache' => "'''註意：''' 保存設置後，要清掉瀏覽器的緩存才能生效：'''Mozilla:''' 點''刷新'' （或用快鍵''Ctrl-R''），'''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''。",//"'''Note:''' After saving, you have to clear your browser cache to see the changes: '''Mozilla:''' click ''Reload'' (or ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'clearyourcache' => "'''注意：''' 保存設置後，要清掉瀏覽器的緩存才能生效：'''Mozilla:''' 點''刷新'' （或用快鍵''Ctrl-R''），'''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''。",//"'''Note:''' After saving, you have to clear your browser cache to see the changes: '''Mozilla:''' click ''Reload'' (or ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
 'edit' => "編輯", //"Edit",
 'navigation' => "導航", //"Navigation",
 'nstab-category' => "分類", //"Category",
@@ -982,7 +982,7 @@ email address to them, and it can be used to send you a new password if you forg
 'prefs-personal' => "用戶數據",//"User data",
 'prefs-rc' => "最近更新", //"Recent changes and stub display",
 'showhideminor' => "$1 小修改 | $2 bots | $3 登錄用戶 | $4 檢查過的", //"$1 minor edits | $2 bots | $3 logged in users | $4 patrolled edits ",
-'skin' => "皮膚", //"Skin",
+'skin' => "面板", //"Skin",
 'talk' => "討論",//"Discussion",
 'timezonelegend' => "時區", //"Time zone",
 'toolbox' => "工具",//"Toolbox",
@@ -991,6 +991,22 @@ email address to them, and it can be used to send you a new password if you forg
 'yourrealname' => "真實姓名*", //"Your real name"
 'yourvariant' => "中文字體", //"language variant"
 
+'personaltools' => "個人工具", //"personaltools""
+'history_short' => "沿革",
+"protect" => "封鎖",
+"delete" => "刪除",
+"move" => "移動",
+"tog-nocache" => "停用頁面快取",
+"specialpage" => "特殊頁面",
+"defaultns" => "預設的搜尋範圍",
+"default" => "預設",
+"aboutsite" => "關於 {{SITENAME}}",
+"disclaimers" => "免責聲明",
+"tog-fancysig" => "使用原始簽名 (不產生自動連結)",
+"qbsettingsnote" => '這些設定只會在 \'Standard\' 和 \'CologneBlue\' 面板生效',
+"tog-previewonfirst" => "第一次編輯時顯示原文內容的預覽",
+"copyright" => "本站所有內容允許以下方式利用: $1",
+"loginprompt" => "您必須允許瀏覽器紀錄Cookie才能成功登入 Wikipedia 並順利進行操作",
 );
 
 class LanguageZh_tw extends LanguageZh_cn {
