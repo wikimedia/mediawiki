@@ -84,12 +84,12 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 	/* redirect to canonical url, make it a 301 to allow caching */
 	$wgOut->setSquidMaxage( 1200 );
 	$wgOut->redirect( $wgTitle->getFullURL(), '301');
-} else if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
+} else if ( NS_SPECIAL == $wgTitle->getNamespace() ) {
 	# actions that need to be made when we have a special pages
 	require_once( 'includes/SpecialPage.php' );
 	SpecialPage::executePath( $wgTitle );
 } else {
-	if ( Namespace::getMedia() == $wgTitle->getNamespace() ) {
+	if ( NS_MEDIA == $wgTitle->getNamespace() ) {
 		$wgTitle = Title::makeTitle( NS_IMAGE, $wgTitle->getDBkey() );
 	}
 
