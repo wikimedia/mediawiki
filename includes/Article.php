@@ -831,7 +831,7 @@ class Article {
 	# After we've either updated or inserted the article, update
 	# the link tables and redirect to the new page.
 
-	function showArticle( $text, $subtitle , $sectionanchor )
+	function showArticle( $text, $subtitle , $sectionanchor = '' )
 	{
 		global $wgOut, $wgUser, $wgLinkCache;
 		global $wgMwRedir;
