@@ -285,8 +285,9 @@ CREATE TEMPORARY TABLE parsertestlogging (
   KEY page_time (log_namespace, log_title, log_timestamp)
 );
 
-INSERT INTO parsertestinterwiki VALUES('MeatBall',
-	'http://www.usemod.com/cgi-bin/mb.pl?$1',
-	0
-);
+INSERT INTO parsertestinterwiki (iw_prefix,iw_url,iw_local) VALUES
+	('MeatBall','http://www.usemod.com/cgi-bin/mb.pl?$1',0),
+	('es','http://es.wikipedia.org/wiki/$1',1),
+	('fr','http://fr.wikipedia.org/wiki/$1',1),
+	('zh','http://zh.wikipedia.org/wiki/$1',1);
 

@@ -189,8 +189,15 @@ class ParserTest {
 			$options->setUseTex(true);
 		}
 
+		if (preg_match('/title=\[\[(.*)\]\]/', $opts, $m)) {
+			$titleText = $m[1];
+		}
+		else {
+			$titleText = 'Parser test';
+		}
+
 		$parser =& new Parser();
-		$title =& Title::makeTitle( NS_MAIN, 'Parser_test' );
+		$title =& Title::makeTitle( NS_MAIN, $titleText );
 
 		if (preg_match('/pst/i', $opts)) {
 			$out = $parser->preSaveTransform( $input, $title, $user, $options );
@@ -205,12 +212,12 @@ class ParserTest {
 			$op = new OutputPage();
 			$op->replaceLinkHolders($out);
 
-			#if (preg_match('/ill/i', $opts)) {
-			#	$out .= $output->getLanguageLinks();
-			#}
-			#if (preg_match('/cat/i', $opts)) {
-			#	$out .= $output->getCategoryLinks();
-			#}
+			if (preg_match('/ill/i', $opts)) {
+				$out .= implode( ' ', $output->getLanguageLinks() );
+			}	
+			if (preg_match('/cat/i', $opts)) {
+				$out .= implode( ' ', $output->getCategoryLinks() );
+			}
 
 			if ($GLOBALS['wgUseTidy']) {
 				$result = Parser::tidy($result);
