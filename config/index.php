@@ -2,17 +2,17 @@
 # MediaWiki web-based config/installation
 # Copyright (C) 2004 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
-# 
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or 
+# the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -40,7 +40,7 @@ header( "Content-type: text/html; charset=utf-8" );
 		padding: 8px;
 		margin-left: 8px;
 	}
-	
+
 	dl.setup dd {
 		margin-left: 0;
 	}
@@ -77,28 +77,28 @@ header( "Content-type: text/html; charset=utf-8" );
   <a href="http://www.mediawiki.org/"><img
     src="../stylesheets/images/wiki.png" width="135" height="135" alt="" border="0" /></a>
  </center>
- 
+
  <b><a href="http://www.mediawiki.org/">MediaWiki</a></b> is
  Copyright (C) 2001-2004 by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
  Tim Starling, Erik M&ouml;ller, Gabriel Wicke and others.</p>
- 
+
  <ul>
  <li><a href="../README">Readme</a></li>
  <li><a href="../RELEASE-NOTES">Release notes</a></li>
  <li><a href="../docs/">doc/</a></li>
  <li><a href="http://meta.wikipedia.org/wiki/MediaWiki_User's_Guide">User's Guide</a></li>
  </ul>
- 
+
  <p>This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.</p>
- 
+
  <p>This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.</p>
- 
+
  <p>You should have received <a href="../COPYING">a copy of the GNU General Public License</a>
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -124,15 +124,15 @@ require_once( "../includes/Namespace.php" );
 
 if( file_exists( "../LocalSettings.php" ) || file_exists( "../AdminSettings.php" ) ) {
 	dieout( "<h2>Wiki is configured.</h2>
-	
+
 	<p>Already configured... <a href='../index.php'>return to the wiki</a>.</p>
-	
+
 	<p>(You should probably remove this directory for added security.)</p>" );
 }
 
 if( file_exists( "./LocalSettings.php" ) || file_exists( "./AdminSettings.php" ) ) {
 	dieout( "<h2>You're configured!</h2>
-	
+
 	<p>Please move <tt>LocalSettings.php</tt> to the parent directory, then
 	<a href='../index.php'>try out your wiki</a>.
 	(You should remove this config directory for added security once you're done.)</p>" );
@@ -140,14 +140,14 @@ if( file_exists( "./LocalSettings.php" ) || file_exists( "./AdminSettings.php" )
 
 if( !is_writable( "." ) ) {
 	dieout( "<h2>Can't write config file, aborting</h2>
-	
+
 	<p>In order to configure the wiki you have to make the <tt>config</tt> subdirectory
 	writable by the web server. Once configuration is done you'll move the created
 	<tt>LocalSettings.php</tt> to the parent directory, and for added safety you can
 	then remove the <tt>config</tt> subdirectory entirely.</p>
-	
+
 	<p>To make the directory writable on a Unix/Linux system:</p>
-	
+
 	<pre>
 	cd <i>/path/to/wiki</i>
 	chmod a+w config
@@ -269,7 +269,7 @@ $conf->UseImageResize = $conf->HaveGD || $conf->ImageMagick;
 # $conf->IP = "/Users/brion/Sites/inplace";
 chdir( ".." );
 $conf->IP = getcwd();
-$conf->IP = preg_replace( "/\\\\/","\\\\\\\\",$conf->IP );  // For Windows, \ -> \\ 
+$conf->IP = preg_replace( "/\\\\/","\\\\\\\\",$conf->IP );  // For Windows, \ -> \\
 chdir( "config" );
 print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt></li>\n";
 
@@ -278,7 +278,7 @@ $conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $_SERVER["REQUEST_U
 print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</tt></li>\n";
 
 	$conf->posted = ($_SERVER["REQUEST_METHOD"] == "POST");
-	
+
 	$conf->Sitename = ucfirst( importPost( "Sitename", "" ) );
 	$conf->EmergencyContact = importPost( "EmergencyContact", $_SERVER["SERVER_ADMIN"] );
 	$conf->DBserver = importPost( "DBserver", "localhost" );
@@ -330,7 +330,7 @@ if( $conf->License == "gfdl" ) {
 if( $conf->posted && ( 0 == count( $errs ) ) ) {
 	do { /* So we can 'continue' to end prematurely */
 		$conf->Root = ($conf->RootPW != "");
-		
+
 		/* Load up the settings and get installin' */
 		$local = writeLocalSettings( $conf );
 		$wgCommandLineMode = false;
@@ -348,7 +348,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgTitle = Title::newFromText( "Installation script" );
 		$wgDatabase = Database::newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
 		$wgDatabase->mIgnoreErrors = true;
-		
+
 		@$myver = mysql_get_server_info( $wgDatabase->mConn );
 		if( $myver ) {
 			$conf->Root = true;
@@ -393,7 +393,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			}
 			if( !$ok ) continue;
 		}
-		
+
 		if ( !$wgDatabase->isOpen() ) {
 			$errs["DBserver"] = "Couldn't connect to database";
 			continue;
@@ -406,7 +406,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$local = writeLocalSettings( $conf );
 		}
 		print "</li>\n";
-		
+
 		@$sel = mysql_select_db( $wgDBname, $wgDatabase->mConn );
 		if( $sel ) {
 			print "<li>Database <tt>" . htmlspecialchars( $wgDBname ) . "</tt> exists</li>\n";
@@ -421,12 +421,12 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			}
 			print "<li>Created database <tt>" . htmlspecialchars( $wgDBname ) . "</tt></li>\n";
 		}
-		
+
 		$wgDatabase->selectDB( $wgDBname );
-		
+
 		if( $wgDatabase->tableExists( "cur" ) ) {
 			print "<li>There are already MediaWiki tables in this database. Checking if updates are needed...</li>\n<pre>";
-			
+
 			chdir( ".." );
 			flush();
 			do_ipblocks_update(); flush();
@@ -441,7 +441,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			do_querycache_update(); flush();
 			do_objectcache_update(); flush();
 			do_categorylinks_update(); flush();
-			
+
 			if ( isTemplateInitialised() ) {
 				print "Template namespace already initialised\n";
 			} else {
@@ -452,7 +452,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 			initialiseMessages(); flush();
 			chdir( "config" );
-			
+
 			print "</pre>\n";
 			print "<li>Finished update checks.</li>\n";
 		} else {
@@ -462,16 +462,16 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			dbsource( "../maintenance/interwiki.sql", $wgDatabase );
 			dbsource( "../maintenance/indexes.sql", $wgDatabase );
 			print " done.</li>\n";
-			
+
 			print "<li>Initializing data...";
 			$wgDatabase->query( "INSERT INTO site_stats (ss_row_id,ss_total_views," .
 				"ss_total_edits,ss_good_articles) VALUES (1,0,0,0)" );
-			# setting up the db user	
+			# setting up the db user
 			if( $conf->Root ) {
 				print "<li>Granting user permissions...</li>\n";
 				dbsource( "../maintenance/users.sql", $wgDatabase );
 			}
-			
+
 			if( $conf->SysopName ) {
 				$u = User::newFromName( $conf->getSysopName() );
 				if ( 0 == $u->idForName() ) {
@@ -488,7 +488,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			} else {
 				print "<li>Skipped sysop account creation, no name given.</li>\n";
 			}
-			
+
 			print "<li>Initialising log pages...";
 			$logs = array(
 				"uploadlogpage" => "uploadlogpagetext",
@@ -507,14 +507,14 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				  "VALUES ($metaNamespace,'$logTitle','$logText','sysop','$now','$won','$now')" );
 			}
 			print "</li>\n";
-			
+
 			$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
 			$title = $titleobj->getDBkey();
 			$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text,cur_timestamp,inverse_timestamp,cur_touched) " .
 			  "VALUES (0,'$title','" .
 			  wfStrencode( wfMsg( "mainpagetext" ) . "\n\n" . wfMsg( "mainpagedocfooter" ) ) . "','$now','$won','$now')";
 			$wgDatabase->query( $sql, $fname );
-			
+
 			print "<li><pre>";
 			initialiseMessages();
 			print "</pre></li>\n";
@@ -523,14 +523,14 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		/* Write out the config file now that all is well */
 		print "<p>Creating LocalSettings.php...</p>\n\n";
 		$localSettings =  "<" . "?php$endl$local$endl?" . ">";
-		
+
 		if( version_compare( phpversion(), "4.3.2" ) >= 0 ) {
 			$xt = "xt"; # Refuse to overwrite an existing file
 		} else {
 			$xt = "wt"; # 'x' is not available prior to PHP 4.3.2. We did check above, but race conditions blah blah
 		}
 		$f = fopen( "LocalSettings.php", $xt );
-		
+
 		if( $f == false ) {
 			dieout( "<p>Couldn't write out LocalSettings.php. Check that the directory permissions are correct and that there isn't already a file of that name here...</p>\n" .
 			"<p>Here's the file that would have been written, try to paste it into place manually:</p>\n" .
@@ -538,10 +538,10 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		}
 		fwrite( $f, $localSettings );
 		fclose( $f );
-		
-		print "<p>Success! Move the LocalSettings.php file into the parent directory, then follow
+
+		print "<p>Success! Move the config/LocalSettings.php file into the parent directory, then follow
 		<a href='{$conf->ScriptPath}/index.php'>this link</a> to your wiki.</p>\n";
-		
+
 	} while( false );
 }
 ?>
@@ -552,7 +552,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 if( count( $errs ) ) {
 	/* Display options form */
-	
+
 	if( $conf->posted ) {
 		echo "<p class='error'>Something's not quite right yet; make sure everything below is filled out correctly.</p>\n";
 	}
@@ -607,7 +607,7 @@ if( count( $errs ) ) {
 		more compatible with older browsers for some languages. Unicode will
 		be used where not specified otherwise.
 	</dt>
-	
+
 	<dd>
 		<label class='column'>Copyright/license metadata</label>
 		<div>Select one:</div>
@@ -616,7 +616,7 @@ if( count( $errs ) ) {
 		<li><?php aField( $conf, "License", "no license metadata", "radio", "none" ); ?></li>
 		<li><?php aField( $conf, "License", "GNU Free Documentation License 1.2 (Wikipedia-compatible)", "radio", "gfdl" ); ?></li>
 		<li><?php
-			aField( $conf, "License", "a Creative Commons license...", "radio", "cc" ); 
+			aField( $conf, "License", "a Creative Commons license...", "radio", "cc" );
 			$partner = "MediaWiki";
 			$exit = urlencode( "$wgServer{$conf->ScriptPath}/config/index.php?License=cc&RightsUrl=[license_url]&RightsText=[license_name]&RightsCode=[license_code]&RightsIcon=[license_button]" );
 			$icon = urlencode( "$wgServer$wgUploadPath/wiki.png" );
@@ -635,8 +635,8 @@ if( count( $errs ) ) {
 		the GNU FDL or a Creative Commons license. If you're not sure, leave
 		it at "none".
 	</dt>
-	
-	
+
+
 	<dd>
 		<?php aField( $conf, "SysopName", "Sysop account name:", "" ) ?>
 	</dd>
@@ -734,7 +734,7 @@ function writeLocalSettings( $conf ) {
 	$pretty = ($conf->prettyURLs ? "" : "# ");
 	$ugly = ($conf->prettyURLs ? "# " : "");
 	$rights = ($conf->RightsUrl) ? "" : "# ";
-	
+
 	$file = @fopen( "/dev/random", "r" );
 	if ( $file ) {
 		$proxyKey = bin2hex( fread( $file, 32 ) );
@@ -750,7 +750,7 @@ function writeLocalSettings( $conf ) {
 	# Add slashes to strings for double quoting
 	$slconf = array_map( "addslashes", get_object_vars( $conf ) );
 
-	
+
 	$sep = (DIRECTORY_SEPARATOR == "\\") ? ";" : ":";
 	return "
 # This file was automatically generated by the MediaWiki installer.
@@ -869,7 +869,7 @@ function aField( &$conf, $field, $text, $type = "", $value = "" ) {
 	} else {
 		$xtype = "";
 	}
-	
+
 	if(!(isset($id)) or ($id == "") ) $id = $field;
 	$nolabel = ($type == "radio") || ($type == "hidden");
 	if( $nolabel ) {
@@ -877,7 +877,7 @@ function aField( &$conf, $field, $text, $type = "", $value = "" ) {
 	} else {
 		echo "\t\t<label class='column' for=\"$id\">$text</label>\n";
 	}
-	
+
 	if( $type == "radio" && $value == $conf->$field ) {
 		$checked = "checked='checked'";
 	} else {
@@ -893,7 +893,7 @@ function aField( &$conf, $field, $text, $type = "", $value = "" ) {
 	if( $nolabel ) {
 		echo " $text</label>\n";
 	}
-	
+
 	global $errs;
 	if(isset($errs[$field])) echo "<span class='error'>" . $errs[$field] . "</span>\n";
 }
@@ -906,10 +906,10 @@ function getLanguageList() {
 		function wfLocalUrlE( $x ) { return $x; }
 		require_once( "../languages/Names.php" );
 	}
-	
+
 	$codes = array();
 	$latin1 = array( "da", "de", "en", "es", "fr", "nl", "sv" );
-	
+
 	$d = opendir( "../languages" );
 	while( false !== ($f = readdir( $d ) ) ) {
 		if( preg_match( '/Language([A-Z][a-z]+)\.php$/', $f, $m ) ) {
