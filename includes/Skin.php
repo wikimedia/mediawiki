@@ -1257,7 +1257,7 @@ class Skin {
 	}
 
 	# Pass a title object, not a title string
-	function makeLinkObj( &$nt, $text= "", $query = "", $trail = "" )
+	function makeLinkObj( &$nt, $text= "", $query = "", $trail = "", $prefix = "" )
 	{
 		global $wgOut, $wgUser;
 		if ( $nt->isExternal() ) {
@@ -1274,14 +1274,14 @@ class Skin {
 			}
 			$retVal = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>{$trail}";
 		} elseif ( 0 == $nt->getNamespace() && "" == $nt->getText() ) {
-			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail );
+			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
 		} elseif ( ( -1 == $nt->getNamespace() ) ||
 				( Namespace::getImage() == $nt->getNamespace() ) ) {
-			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail );
+			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
 		} else {
 			$aid = $nt->getArticleID() ;
 			if ( 0 == $aid ) {
-				$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail );
+				$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail, $prefix );
 			} else {
 				$threshold = $wgUser->getOption("stubthreshold") ;
 				if ( $threshold > 0 ) {
@@ -1301,9 +1301,9 @@ class Skin {
 					$size = 1 ;
 				}	
 				if ( $size < $threshold ) {
-					$retVal = $this->makeStubLinkObj( $nt, $text, $query, $trail );
+					$retVal = $this->makeStubLinkObj( $nt, $text, $query, $trail, $prefix );
 				} else {
-					$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail );
+					$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
 				}
 			}
 		}
@@ -1311,7 +1311,7 @@ class Skin {
 	}
 
 	# Pass a title object, not a title string
-	function makeKnownLinkObj( &$nt, $text = "", $query = "", $trail = "" )
+	function makeKnownLinkObj( &$nt, $text = "", $query = "", $trail = "", $prefix = "" )
 	{
 		global $wgOut, $wgTitle;
 
@@ -1339,13 +1339,13 @@ class Skin {
 				$trail = $m[2];
 			}
 		}
-		$r = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>{$trail}";
+		$r = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 		wfProfileOut( $fname );
 		return $r;
 	}
 	
 	# Pass a title object, not a title string
-	function makeBrokenLinkObj( &$nt, $text = "", $query = "", $trail = "" )
+	function makeBrokenLinkObj( &$nt, $text = "", $query = "", $trail = "", $prefix = "" )
 	{
 		global $wgOut, $wgUser;
 		
@@ -1370,9 +1370,9 @@ class Skin {
 		}
 		if ( $wgOut->isPrintable() ||
 		  ( 1 == $wgUser->getOption( "highlightbroken" ) ) ) {
-			$s = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>{$trail}";
+			$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 		} else {
-			$s = "{$text}{$inside}<a href=\"{$u}\"{$style}>?</a>{$trail}";
+			$s = "{$prefix}{$text}{$inside}<a href=\"{$u}\"{$style}>?</a>{$trail}";
 		}
 
 		wfProfileOut( $fname );
@@ -1380,7 +1380,7 @@ class Skin {
 	}
 	
 	# Pass a title object, not a title string
-	function makeStubLinkObj( &$nt, $text = "", $query = "", $trail = "" )
+	function makeStubLinkObj( &$nt, $text = "", $query = "", $trail = "", $prefix = "" )
 	{
 		global $wgOut, $wgUser;
 
@@ -1400,9 +1400,9 @@ class Skin {
 		}
 		if ( $wgOut->isPrintable() ||
 				( 1 == $wgUser->getOption( "highlightbroken" ) ) ) {
-			$s = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>{$trail}";
+			$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 		} else {
-			$s = "{$text}{$inside}<a href=\"{$u}\"{$style}>!</a>{$trail}";
+			$s = "{$prefix}{$text}{$inside}<a href=\"{$u}\"{$style}>!</a>{$trail}";
 		}
 		return $s;
 	}

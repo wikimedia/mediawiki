@@ -985,21 +985,43 @@ $t[] = "</table>" ;
 		$s = array_shift( $a );
 		$s = substr( $s, 1 );
 
+		# Match a link having the form [[namespace:link|alternate]]trail
 		$e1 = "/^([{$tc}]+)(?:\\|([^]]+))?]](.*)\$/sD";
+		# Match the end of a line for a word that's not followed by whitespace,
+		# e.g. in the case of 'The Arab al[[Razi]]', 'al' will be matched
+		#$e2 = "/^(.*)\\b(\\w+)\$/suD";
+		#$e2 = "/^(.*\\s)(\\S+)\$/suD";
+		$e2 = '/^(.*\s)([a-zA-Z\x80-\xff]+)$/sD';
+		
 
 		# Special and Media are pseudo-namespaces; no pages actually exist in them
 		$image = Namespace::getImage();
 		$special = Namespace::getSpecial();
 		$media = Namespace::getMedia();
 		$nottalk = !Namespace::isTalk( $wgTitle->getNamespace() );
+
+		if ( $wgLang->linkPrefixExtension() && preg_match( $e2, $s, $m ) ) {
+			$new_prefix = $m[2];
+			$s = $m[1];
+		} else {
+			$new_prefix="";
+		}
+
 		wfProfileOut( "$fname-setup" );
 
 		foreach ( $a as $line ) {
+			$prefix = $new_prefix;
+			if ( $wgUseLinkPrefixCombination && preg_match( $e2, $line, $m ) ) {
+				$new_prefix = $m[2];
+				$line = $m[1];
+			} else {
+				$new_prefix = "";
+			}
 			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 				$text = $m[2];
 				$trail = $m[3];				
 			} else { # Invalid form; output directly
-				$s .= "[[" . $line ;
+				$s .= $prefix . "[[" . $line ;
 				continue;
 			}
 			
@@ -1036,7 +1058,7 @@ $t[] = "</table>" ;
 
 			$nt = Title::newFromText( $link );
 			if( !$nt ) {
-				$s .= "[[" . $line;
+				$s .= $prefix . "[[" . $line;
 				continue;
 			}
 			$ns = $nt->getNamespace();
@@ -1044,29 +1066,29 @@ $t[] = "</table>" ;
 			if( $noforce ) {
 				if( $iw && $wgInterwikiMagic && $nottalk && $wgLang->getLanguageName( $iw ) ) {
 					array_push( $this->mLanguageLinks, $nt->getPrefixedText() );
-					$s .= $trail;
+					$s .= $prefix . $trail;
 					continue;
 				}
 				if( $ns == $image ) {
-					$s .= $sk->makeImageLinkObj( $nt, $text ) . $trail;
+					$s .= $prefix . $sk->makeImageLinkObj( $nt, $text ) . $trail;
 					$wgLinkCache->addImageLinkObj( $nt );
 					continue;
 				}
 			}
 			if( ( $nt->getPrefixedText() == $wgTitle->getPrefixedText() ) &&
 			    ( strpos( $link, "#" ) == FALSE ) ) {
-				$s .= "<strong>" . $text . "</strong>" . $trail;
+				$s .= $prefix . "<strong>" . $text . "</strong>" . $trail;
 				continue;
 			}
 			if( $ns == $media ) {
-				$s .= $sk->makeMediaLinkObj( $nt, $text ) . $trail;
+				$s .= $prefix . $sk->makeMediaLinkObj( $nt, $text ) . $trail;
 				$wgLinkCache->addImageLinkObj( $nt );
 				continue;
 			} elseif( $ns == $special ) {
-				$s .= $sk->makeKnownLinkObj( $nt, $text, "", $trail );
+				$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, "", $trail );
 				continue;
 			}
-			$s .= $sk->makeLinkObj( $nt, $text, "", $trail );
+			$s .= $sk->makeLinkObj( $nt, $text, "", $trail , $prefix );
 		}
 		wfProfileOut( $fname );
 		return $s;
