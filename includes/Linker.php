@@ -23,13 +23,6 @@ class Linker {
 	function Linker() {
 		global $wgContLang;
 		$this->linktrail = $wgContLang->linkTrail();
-		
-		# Cache option lookups done very frequently
-		$options = array( 'highlightbroken', 'hover' );
-		foreach( $options as $opt ) {
-			global $wgUser;
-			$this->mOptions[$opt] = $wgUser->getOption( $opt );
-		}
 	}
 	
 	/**
@@ -51,9 +44,7 @@ class Linker {
 
 		$r = ($class != '') ? " class='$class'" : " class='external'";
 
-		if( !$same && $this->mOptions['hover'] ) {
-			$r .= " title=\"{$link}\"";
-		}
+		$r .= " title=\"{$link}\"";
 		return $r;
 	}
 
@@ -71,9 +62,7 @@ class Linker {
 			$r = '';
 		}
 
-		if( $this->mOptions['hover'] ) {
-			$r .= " title=\"{$link}\"";
-		}
+		$r .= " title=\"{$link}\"";
 		return $r;
 	}
 
@@ -89,9 +78,7 @@ class Linker {
 			$r = '';
 		}
 
-		if( $this->mOptions['hover'] ) {
-			$r .= ' title="' . $nt->getEscapedText() . '"';
-		}
+		$r .= ' title="' . $nt->getEscapedText() . '"';
 		return $r;
 	}
 
@@ -333,11 +320,7 @@ class Linker {
 				$trail = $m[2];
 			}
 		}
-		if ( $this->mOptions['highlightbroken'] ) {
-			$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
-		} else {
-			$s = "{$prefix}{$text}{$inside}<a href=\"{$u}\"{$style}>?</a>{$trail}";
-		}
+		$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 
 		wfProfileOut( $fname );
 		return $s;
@@ -363,11 +346,7 @@ class Linker {
 				$trail = $m[2];
 			}
 		}
-		if ( $this->mOptions['highlightbroken'] ) {
-			$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
-		} else {
-			$s = "{$prefix}{$text}{$inside}<a href=\"{$u}\"{$style}>!</a>{$trail}";
-		}
+		$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 		return $s;
 	}
 

@@ -879,26 +879,14 @@ class SkinTemplate extends Skin {
 	 * returns css with user-specific options
 	 * @access public
 	 */
+
 	function getUserStylesheet() {
 		$fname = 'SkinTemplate::getUserStylesheet';
 		wfProfileIn( $fname );
 		
 		global $wgUser;
 		$s = "/* generated user stylesheet */\n";
-
-		if( $wgUser->isLoggedIn() ) {
-			if ( $wgUser->getOption( "underline" ) ) {
-				$s .= "a { text-decoration: underline; }\n";
-			} else {
-				$s .= "a { text-decoration: none; }\n";
-			}
-		}
-		if ( !$wgUser->getOption( "highlightbroken" ) ) {
-			$s .= "a.new, #quickbar a.new { color: #CC2200; }\n";
-		}
-		if ( $wgUser->getOption( "justify" ) ) {
-			$s .= "#bodyContent { text-align: justify; }\n";
-		}
+		$s .= $this->reallyDoGetUserStyles();
 		wfProfileOut( $fname );
 		return $s;
 	}
