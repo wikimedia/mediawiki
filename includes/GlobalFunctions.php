@@ -803,7 +803,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
  */
 function wfVarDump( $var ) {
 	global $wgOut;
-	$s = str_replace("\n","<br>\n", var_export( $var, true ) . "\n");
+	$s = str_replace("\n","<br />\n", var_export( $var, true ) . "\n");
 	if ( headers_sent() || !@is_object( $wgOut ) ) {
 		print $s;
 	} else {
