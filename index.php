@@ -5,6 +5,9 @@ $wgRequestTime = microtime();
 
 unset( $IP );
 ini_set( "allow_url_fopen", 0 ); # For security...
+if(!file_exists("LocalSettings.php")) {
+	die( "You'll have to <a href='config/index.php'>set the wiki up</a> first!" );
+}
 include_once( "./LocalSettings.php" );
 
 if( $wgSitename == "MediaWiki" ) {
