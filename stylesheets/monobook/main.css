@@ -250,7 +250,10 @@ span.subpages { display: block; }
 #siteNotice {
     border:1px solid #aaaaaa;
     border-top: none;
+    font-size: 95%;
+    padding: 0 0.9em 0 0.9em;
 }
+#siteNotice p { margin: none; padding: none; }
 .error {
     color: red;
     font-size: larger;
