@@ -1256,7 +1256,7 @@ class Parser
 						$inBlockElem = true;
 					}
 				} else if ( !$inBlockElem ) {
-					if ( " " == $t{0} ) {
+					if ( " " == $t{0} and trim($t) != '' ) {
 						// pre
 						if ($this->mLastSection != 'pre') {
 							$paragraphStack = false;
