@@ -390,7 +390,7 @@ class PreferencesForm {
 		}
 		$wgOut->addHTML("
 		<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>
-		<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" /> $emf</label></div>
+		<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" />$emf</label></div>
 		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>
 		<div><label>$yl: <select name=\"wpUserLanguage\">\n");
 
