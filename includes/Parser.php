@@ -1845,7 +1845,6 @@ class Parser
 	# string and re-inserts the newly formatted headlines.
 	/* private */ function formatHeadings( $text, $isMain=true ) {
 		global $wgInputEncoding, $wgMaxTocLevel;
-		#print "<pre>{$text}</pre>\n";
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
