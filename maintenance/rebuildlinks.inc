@@ -11,15 +11,16 @@ $wgUseMemoryTables = false;
 # Buffer this many rows before inserting them all in one sweep. More
 # than about 1000 will probably not increase speed significantly on
 # most setups.
-/* private */ $rowbuf_size = 2000; // 2000 rows ~ 80 kB
+/* private */ $rowbuf_size = 1000; // 1000 rows ~40 kB
 
 function rebuildLinkTables()
 {
-	global $wgLang, $wgUseMemoryTables, $rowbuf_size;
+	error_reporting (E_ALL);
+	global $wgLang, $wgUseMemoryTables, $wgLinkCache, $rowbuf_size;
 
-	print "This script may take many hours to complete. If you abort during that time,\n";
-	print "your wiki will be in an inconsistent state and you may have problems running\n";
-	print "this script again. If you are going to abort, this is the time to do it.\n\n";
+	print "This script may take several hours to complete. If you abort during that time,\n";
+	print "your wiki will be in an inconsistent state. If you are going to abort, this is\n";
+	print "the time to do it.\n\n";
 	print "Press control-c to abort (will proceed automatically in 15 seconds)\n";
 	sleep(15);
 
@@ -28,6 +29,11 @@ function rebuildLinkTables()
 
 	print "Setting AUTOCOMMIT=1\n";
 	wfQuery("SET SESSION AUTOCOMMIT=1", DB_WRITE);
+
+	print "Locking tables\n";
+	$sql = "LOCK TABLES cur READ, interwiki READ, user_newtalk READ, " .
+		"links WRITE, brokenlinks WRITE, imagelinks WRITE";
+	wfQuery( $sql, DB_WRITE );
 
 	print "Deleting old data in links table.\n";
 	$sql = "DELETE FROM links";
@@ -41,41 +47,21 @@ function rebuildLinkTables()
 	$sql = "DELETE FROM imagelinks";
 	wfQuery( $sql, DB_WRITE );
 
-	print "\nAdding temporary unique index on links, brokenlinks and imagelinks.\n";
-	print "->If build aborts now, you probably aborted a previous build. If that is\n";
-	print "  the case, you can clean up the remains with the following SQL commands,\n";
-	print "  and then try again.\n";
-	print "  ALTER TABLE links DROP INDEX tmp_unique;\n";
-	print "  ALTER TABLE brokenlinks DROP INDEX tmp_unique;\n";
-	print "  ALTER TABLE imagelinks DROP INDEX tmp_unique;\n\n";
-
-	$sql = "ALTER TABLE links ADD UNIQUE tmp_unique (l_from, l_to)";
-	wfQuery( $sql, DB_WRITE );
-	$sql = "ALTER TABLE brokenlinks ADD UNIQUE tmp_unique (bl_from, bl_to)";
-	wfQuery( $sql, DB_WRITE );
-	$sql = "ALTER TABLE imagelinks ADD UNIQUE tmp_unique (il_from, il_to(244))";
-	wfQuery( $sql, DB_WRITE );
-	print "Temporary unique index added ok. Forget what I said.\n\n";
-
-	print "Locking tables\n";
-	$sql = "LOCK TABLES cur READ, interwiki READ, user_newtalk READ, " .
-		"links WRITE, brokenlinks WRITE, imagelinks WRITE";
-	wfQuery( $sql, DB_WRITE );
-
-	print "Finding number of articles to process\n";
+	print "Finding number of articles to process... ";
 	$sql = "SELECT COUNT(*) as count FROM cur";
 	$res = wfQuery( $sql, DB_READ );
 	$obj = wfFetchObject( $res );
 	$total = $obj->count;
+	print "$total\n";
 
 	print "Finding highest article id\n";
 	$sql = "SELECT MIN(cur_id) AS min, MAX(cur_id) AS max FROM cur";
 	$res = wfQuery( $sql, DB_READ );
 	$obj = wfFetchObject( $res );
-
+ 
 	$cur_pulser = new SelectPulser("SELECT cur_id,cur_namespace,cur_title,cur_text " .
 		"FROM cur WHERE cur_id ", 
-		$obj->min, $obj->max, $rowbuf_size);
+		$obj->min, $obj->max, 100);
 
 	$brokenlinks_inserter = new InsertBuffer(
 		"INSERT IGNORE INTO brokenlinks (bl_from,bl_to) VALUES " , $rowbuf_size);
@@ -93,91 +79,148 @@ function rebuildLinkTables()
 
 	$tc = Title::legalChars();
 	
+	$titleCache = new MRUCache( 10000 );
+	$titlecount = 0;
 	$start_time = time();
-	while ( $row = $cur_pulser->next() ) {
-		$from_id = $row->cur_id;
-		$ns = $wgLang->getNsText( $row->cur_namespace );
 
-		$raw_title = $row->cur_title;
+	while ( $row = $cur_pulser->next() ) {
+
+		$from_id = intval($row->cur_id);
+		$ns = $wgLang->getNsText( $row->cur_namespace );	
+		$from_full_title = $row->cur_title;		
 		if ( "" != $ns ) {
-			$raw_title = "$ns:{$raw_title}";
+			$from_full_title = "$ns:{$from_full_title}";
 		}
-		$title = addslashes( $raw_title );
+		$from_full_title_with_slashes = addslashes( $from_full_title );
 		$text = $row->cur_text;
 
 		$numlinks = preg_match_all( "/\\[\\[([{$tc}]+)(]|\\|)/", $text,
 		  $m, PREG_PATTERN_ORDER );
 
-		for ( $i = 0; $i < $numlinks; ++$i ) {
+		$seen_links = array(); // seen links in this article
+		$titles_ready_for_insertion = array();
+		$titles_needing_curdata = array();
+		$titles_needing_curdata_pos = array();
+		$links_corresponding_to_titles = array();
+
+		for ( $i = 0 ; $i < $numlinks; ++$i ) {
+			$link = $m[1][$i];
+
+			// We're only interested in the link once per article
+			if( isset( $seen_links[$link] ) )
+				continue;
+			$seen_links[$link] = 1;
+
 			if( preg_match( '/^(http|https|ftp|mailto|news):/', $m[1][$i] ) ) {
 				# an URL link; not for us!
 				continue;
 			}
-
+			
 			# FIXME: Handle subpage links
-			$nt = Title::newFromText( $m[1][$i] );
-				
-			if (! $nt)
-			{
-				$txt = $m[1][$i];
-				print "error in '$ns:{$row->cur_title}' :\t'$txt'\n";
-				continue;
-			}
-			if( $nt->getInterwiki() != "" ) {
-				# Interwiki links are not stored in the link tables
-				continue;
-			}
-			if( $nt->getNamespace() == Namespace::getSpecial() ) {
-				# Special links not stored in link tables
-				continue;
-			}
-			if( $nt->getNamespace() == Namespace::getMedia() ) {
-				# treat media: links as image: links
-				$nt = Title::makeTitle( Namespace::getImage(), $nt->getDBkey() );
-			}
-
-			$dest = addslashes( $nt->getPrefixedDBkey() );
-			$dest_id = $nt->getArticleID();
-
-			if ( 0 == strncmp( "$ins:", $raw_title, $inslen ) ) { 
-				$iname = addslashes( substr( $raw_title, $inslen ) );
-				$imagelinks_inserter->insert( "('{$title}','{$iname}')" );
-			} else if ( 0 == $dest_id ) {
-				$brokenlinks_inserter->insert( "({$from_id},'{$dest}')" );
+			$nt = $titleCache->get( $link );
+			if( $nt != false ){
+				$titles_ready_for_insertion[] = $nt;				
 			} else {
-				$links_inserter->insert( "('{$title}',{$dest_id})" );
+				$nt = Title::newFromText( $link );
+				if (! $nt) {
+					print "\nerror in '$ns:{$from_full_title}': '$link'\n";
+					continue;
+				}
+				if( $nt->getInterwiki() != "" ) {
+					# Interwiki links are not stored in the link tables
+					continue;
+				}
+				if( $nt->getNamespace() == Namespace::getSpecial() ) {
+					# Special links not stored in link tables
+					continue;
+				}
+				if( $nt->getNamespace() == Namespace::getMedia() ) {
+					# treat media: links as image: links
+					$nt = Title::makeTitle( Namespace::getImage(), $nt->getDBkey() );
+				}
+				$nt->mArticleID = 0; // assume broken link until proven otherwise
+
+				$pos = array_push($titles_needing_curdata, $nt) - 1;
+				$titles_needing_curdata_pos[$nt->getDBkey()] = $pos;
+				$links_corresponding_to_titles[] = $link;
+				unset( $link ); // useless outside this loop, but tempting 
 			}
 		}
 
-		if ( ( $count % 10 ) == 0 )
+
+		if ( count( $titles_needing_curdata ) > 0 ){
+			$parts = array();
+			foreach ($titles_needing_curdata as $nt ) {
+				$parts[] = " (cur_namespace = " . $nt->getNamespace() . " AND " .
+					"cur_title='" . wfStrencode( $nt->getDBkey() ) . "' AND ".
+					"cur_namespace=" . intval( $nt->getNamespace() ) . ")";
+			}
+			$sql = "SELECT cur_title, cur_id FROM cur WHERE " . implode(" OR ", $parts);
+			$res = wfQuery( $sql, DB_WRITE );
+			while($row = wfFetchObject( $res ) ){
+				$pos = $titles_needing_curdata_pos[$row->cur_title];
+				$titles_needing_curdata[$pos]->mArticleID = intval($row->cur_id);
+			}
+			for( $k = 0; $k < count( $titles_needing_curdata ) ; $k++) {
+				$tmplink = $links_corresponding_to_titles[$k];
+				$titleCache->set( $tmplink, $titles_needing_curdata[$k] );
+				$titles_ready_for_insertion[] = $titles_needing_curdata[$k];
+			}
+		}
+
+		foreach ( $titles_ready_for_insertion as $nt ) {
+			$dest = addslashes( $nt->getPrefixedDBkey() );
+			$dest_id = $nt->getArticleID();
+			$from = $from_full_title_with_slashes;
+
+			# print "\nLINK '$from_full_title' ($from_id) -> '$dest' ($dest_id)\n";
+			if ( 0 == strncmp( "$ins:", $from_full_title, $inslen ) ) { 
+				$iname = addslashes( substr( $from_full_title, $inslen ) );
+				$imagelinks_inserter->insert( "('{$from}','{$iname}')" );
+			} else if ( 0 == $dest_id ) {
+				$brokenlinks_inserter->insert( "({$from_id},'{$dest}')" );
+			} else {
+				$links_inserter->insert( "('{$from}',{$dest_id})" );
+			}
+			$titlecount++;
+		}
+
+		if ( ( $count % 20 ) == 0 )
 			print "."; 
 
 		if ( ( ++$count % 1000 ) == 0 ) {
 			$dt = time() - $start_time;
 			$start_time = time();
-			$rps = ($dt == 0 ? "lots of" : intval(1000/$dt));
-			print "\n$count of $total articles scanned ({$rps} articles per second)\n";
+			$rps = persec(1000, $dt);
+			$tps = persec($titlecount, $dt);
+			$titlecount = 0;
+			print "\n$count of $total articles scanned ({$rps} articles ".
+				"and {$tps} titles per second)\n";
+			print "Title cache hits: " . $titleCache->getPerformance() . "%\n";
+
 		}
 
 	}
 
+	print "\nFlushing insertion buffers...";
 	$imagelinks_inserter->flush();
 	$links_inserter->flush();
 	$brokenlinks_inserter->flush();
+	print "ok\n";
 
-	print "$total articles scanned.\n";
-
-	print "Removing temporary unique indexes from tables links, brokenlinks and imagelinks.\n";
-	$sql = "ALTER TABLE links DROP INDEX tmp_unique";
-	wfQuery( $sql, DB_WRITE );
-	$sql = "ALTER TABLE brokenlinks DROP INDEX tmp_unique";
-	wfQuery( $sql, DB_WRITE );
-	$sql = "ALTER TABLE imagelinks DROP INDEX tmp_unique";
-	wfQuery( $sql, DB_WRITE );
+	print "$count articles scanned.\n";
 
 	$sql = "UNLOCK TABLES";
 	wfQuery( $sql, DB_WRITE );
 	print "Done\n";
+}
+
+/* private */ function persec($n, $t){
+	if($n == 0)
+		return "zero";
+	if($t == 0)
+		return "lots of";
+	return intval($n/$t);
 }
 
 # InsertBuffer increases performance slightly by inserting many rows
@@ -221,6 +264,7 @@ class InsertBuffer {
 # Select parts from a large table by using the "BETWEEN X AND Y"
 # operator on the id column. Avoids buffering the whole thing in
 # RAM. It's also convenient.  
+
 class SelectPulser {
 	/* private */ var $mSql, $mSetsize, $mPos, $mMax, $mSet;
 
@@ -248,7 +292,7 @@ class SelectPulser {
 			while ( $row = wfFetchObject( $res ) ) {
 				$this->mSet[] = $row;
 			}
-
+			wfFreeResult( $res );
 			if( count( $this->mSet ) > 0 ){
 				return $this->next();
 			} 
@@ -256,5 +300,63 @@ class SelectPulser {
 		return false;
 	}
 }
+
+# A simple MRU for general cacheing.
+
+class MRUCache {
+	/* private */ var $mMru, $mCache, $mSize, $mPurgefreq, $nexti;
+	/* private */ var $hits, $misses;
+
+	function MRUCache( $size, $purgefreq = -1 ) {
+		// purgefreq is 1/10 of $size if not stated		
+		$purgefreq = ($purgefreq == -1 ? intval($size/10) : $purgefreq);
+		$purgefreq = ($purgefreq <= 0 ? 1 : $purgefreq);
+
+		$this->mSize = $size;
+		$this->mMru = array();
+		$this->mCache = array();
+		$this->mPurgefreq = $purgefreq;
+		$this->nexti = 1;
+		print "purgefreq = " . $this->mPurgefreq . "\n";
+	}
+
+	function get( $key ){
+		if ( ! array_key_exists( $key, $this->mCache) ){
+			$this->misses++;
+			return false;
+		}
+		$this->hits++;
+		$this->mMru[$key] = $this->nexti++;
+		return $this->mCache[$key];
+	}
+	
+	function set( $key, $value ){	
+		$this->mMru[$key] = $this->nexti++;
+		$this->mCache[$key] = $value;
+
+		if($this->nexti % $this->mPurgefreq == 0)
+			$this->purge();
+	}
+
+	function purge(){
+		$to_remove = count( $this->mMru ) - $this->mSize;
+		if( $to_remove <= 0 ){
+			return;
+		}		
+		asort( $this->mMru );
+		$removed = array_splice( $this->mMru, 0, $to_remove );
+		foreach( array_keys( $removed ) as $key ){
+			unset( $this->mCache[$key] );
+		}
+	}
+	
+	function getPerformance(){
+		$tot = $this->hits + $this->misses;
+		if($tot > 0)
+			return intval(100.0 * $this->hits / $tot);
+		else
+			return 0;
+	}
+}	
 
 ?>
