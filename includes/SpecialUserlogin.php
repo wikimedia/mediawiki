@@ -295,10 +295,13 @@ class LoginForm {
 			 * automatically create a new account for users that
 			 * are externally defined but have not yet logged in.
 			 */
-			if( $wgAuth->autoCreate() &&
-			    $wgAuth->userExists( $u->getName() ) &&
-			    $wgAuth->authenticate( $u->getName(), $this->mPassword ) ) {
-			    $u =& $this->initUser( $u );
+			if ( $wgAuth->autoCreate() && $wgAuth->userExists( $u->getName() ) ) {
+				if ( $wgAuth->authenticate( $u->getName(), $this->mPassword ) ) {
+					$u =& $this->initUser( $u );
+				} else {
+					$this->mainLoginForm( wfMsg( 'wrongpassword' ) );
+					return;
+				}
 			} else {
 				$this->mainLoginForm( wfMsg( 'nosuchuser', $u->getName() ) );
 				return;
