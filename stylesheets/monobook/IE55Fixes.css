@@ -4,7 +4,7 @@
     display: inline;
 }
 #portal-column-content #content {
-    margin-top: 2.9em;
+    margin-top: 3em;
     overflow: auto;
 }
 #bodyContent center,
@@ -30,26 +30,21 @@ body {
     z-index: 3 !important;
     float: none;
 }
-
 #portlet-contentViews li {
-    display: block;
     float: left;
-    padding: 0;
-}
-#portlet-contentViews li.selected {
-    background-color: White;
-}
-
-#portlet-contentViews li a,
-#portlet-contentViews .selected a,
-#portlet-contentViews li a:hover {
-    padding-bottom: 0.1em;
-}
-#portlet-contentViews li a:hover {
-    padding-bottom: 0.5em;
+    padding-top: 0;
+    padding-bottom: 0 !important;
+    height: 0.9em;
 }
 #portlet-contentViews li a {
-    z-index: 0 !important;
+    display: block;
+    padding-bottom: 0.045em;
+}
+#portlet-contentViews li.selected a {
+    padding-bottom: 0.17em;
+}
+#portlet-contentViews li a:hover {
+    padding-bottom: 0.17em;
 }
 .portlet {
     overflow:hidden;
