@@ -172,6 +172,10 @@ class LanguageHi extends LanguageUtf8 {
 		return $wgMonthNamesHi[$key-1];
 	}
 	
+	function getMonthAbbreviation( $key ) {
+		return $this->getMonthName( $key );
+	}
+	
 	function getMessage( $key )
 	{
 		global $wgAllMessagesHi;
