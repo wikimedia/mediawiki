@@ -113,7 +113,8 @@ function dbsource( $fname, $database = false ) {
 				$res = mysql_query( $cmd );
 
 			if ( false === $res ) {
-				print "Query \"{$cmd}\" failed.\n";
+				$err = mysql_error();
+				print "Query \"{$cmd}\" failed with error code \"$err\".\n";
 				exit();
 			}
 
