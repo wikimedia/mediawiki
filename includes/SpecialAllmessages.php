@@ -2,7 +2,7 @@
 
 	function wfSpecialAllmessages()
 	{
-		global $wgOut, $wgAllMessagesEn, $wgRequest;
+		global $wgOut, $wgAllMessagesEn, $wgRequest, $wgMessageCache;
 		$ot = $wgRequest->getText('ot');
 		$mwMsg =& MagicWord::get( MAG_MSG );
 		set_time_limit(0);
@@ -12,10 +12,12 @@
 		$sortedArray = $wgAllMessagesEn;
 		ksort( $sortedArray );
 		$messages = array();
+		$wgMessageCache->disableTransform();
 		foreach ( $sortedArray as $key => $enMsg ) {
-
 			$messages[$key]['enmsg'] = $enMsg;
-			$messages[$key]['statmsg'] = wfMsgNoDB( $key );
+		$wgMessageCache->disable();
+			$messages[$key]['statmsg'] = wfMsg( $key );
+		$wgMessageCache->enable();
 			$messages[$key]['msg'] = wfMsg ( $key );
 		}
 		if ($ot == 'php') {
@@ -39,7 +41,7 @@
 			} else {
 				$comment = '';
 			}
-			$txt .= "    '".$key."' => \"".str_replace('"','\"',$m['msg'])."\",$comment\n";
+			$txt .= "'".$key."' => \"".str_replace('"','\"',$m['msg'])."\",$comment\n";
 		}
 		$txt .= ');';
 		return $txt;
