@@ -173,61 +173,66 @@
 					'ttip' => wfMsg('tooltip-edit'),
 					'akey' => wfMsg('accesskey-edit'));
 				}
-				$content_actions['history'] = array('class' => ($action == 'history') ? 'selected' : '',
-				'text' => wfMsg('history_short'),
-				'href' => $this->makeUrl($thispage, 'action=history'),
-				'ttip' => wfMsg('tooltip-history'),
-				'akey' => wfMsg('accesskey-history'));
 
-				/*
-				$content_actions['revert'] = array('class' => ($action == 'revert') ? 'selected' : '',
-				'i18n_key' => 'revert',
-				'href' => $this->makeUrl($wgTitle->getPrefixedDbKey(), 'action=revert'),
-				'akey' => wfMsg('accesskeyrevert'));
-				*/
-				if( $wgUser->getNewtalk() ) {
-					$content_actions['rollback'] = array('class' => ($action == 'rollback') ? 'selected' : '',
-					'text' => wfMsg('rollback_short'),
-					'href' => $this->makeUrl($thispage, 'action=rollback'),
-					'ttip' => wfMsg('tooltip-rollback'),
-					'akey' => wfMsg('accesskey-rollback'));
-				}
-				if($wgUser->isSysop()){
-					if(!$wgTitle->isProtected()){
-						$content_actions['protect'] = array('class' => ($action == 'protect') ? 'selected' : '',
-						'text' => wfMsg('protect'),
-						'href' => $this->makeUrl($thispage, 'action=protect'),
-						'ttip' => wfMsg('tooltip-protect'),
-						'akey' => wfMsg('accesskey-protect'));
+				if ( $wgTitle->getArticleId() ) {
 
-					} else {
-						$content_actions['unprotect'] = array('class' => ($action == 'unprotect') ? 'selected' : '',
-						'text' => wfMsg('unprotect'),
-						'href' => $this->makeUrl($thispage, 'action=unprotect'),
-						'ttip' => wfMsg('tooltip-protect'),
-						'akey' => wfMsg('accesskey-protect'));
+					$content_actions['history'] = array('class' => ($action == 'history') ? 'selected' : '',
+					'text' => wfMsg('history_short'),
+					'href' => $this->makeUrl($thispage, 'action=history'),
+					'ttip' => wfMsg('tooltip-history'),
+					'akey' => wfMsg('accesskey-history'));
+
+					/*
+					$content_actions['revert'] = array('class' => ($action == 'revert') ? 'selected' : '',
+					'i18n_key' => 'revert',
+					'href' => $this->makeUrl($wgTitle->getPrefixedDbKey(), 'action=revert'),
+					'akey' => wfMsg('accesskeyrevert'));
+					*/
+					if( $wgUser->getNewtalk() ) {
+						$content_actions['rollback'] = array('class' => ($action == 'rollback') ? 'selected' : '',
+						'text' => wfMsg('rollback_short'),
+						'href' => $this->makeUrl($thispage, 'action=rollback'),
+						'ttip' => wfMsg('tooltip-rollback'),
+						'akey' => wfMsg('accesskey-rollback'));
 					}
-					$content_actions['delete'] = array('class' => ($action == 'delete') ? 'selected' : '',
-					'text' => wfMsg('delete'),
-					'href' => $this->makeUrl($thispage, 'action=delete'),
-					'ttip' => wfMsg('tooltip-delete'),
-					'akey' => wfMsg('accesskey-delete'));
-				}
-				if ( $wgUser->getID() != 0 ) {
-					if ( $wgTitle->userCanEdit()) {
-						$content_actions['move'] = array('class' => ($wgTitle->getDbKey() == 'Movepage' and $wgTitle->getNamespace == Namespace::getSpecial()) ? 'selected' : '',
-						'text' => wfMsg('move'),
-						'href' => $this->makeSpecialUrl('Movepage', 'target='.$thispage),
-						'ttip' => wfMsg('tooltip-move'),
-						'akey' => wfMsg('accesskey-move'));
-					} else {
-						$content_actions['move'] = array('class' => 'inactive',
-						'text' => wfMsg('move'),
-						'href' => '',
-						'akey' => '');
+					if($wgUser->isSysop()){
+						if(!$wgTitle->isProtected()){
+							$content_actions['protect'] = array('class' => ($action == 'protect') ? 'selected' : '',
+							'text' => wfMsg('protect'),
+							'href' => $this->makeUrl($thispage, 'action=protect'),
+							'ttip' => wfMsg('tooltip-protect'),
+							'akey' => wfMsg('accesskey-protect'));
 
+						} else {
+							$content_actions['unprotect'] = array('class' => ($action == 'unprotect') ? 'selected' : '',
+							'text' => wfMsg('unprotect'),
+							'href' => $this->makeUrl($thispage, 'action=unprotect'),
+							'ttip' => wfMsg('tooltip-protect'),
+							'akey' => wfMsg('accesskey-protect'));
+						}
+						$content_actions['delete'] = array('class' => ($action == 'delete') ? 'selected' : '',
+						'text' => wfMsg('delete'),
+						'href' => $this->makeUrl($thispage, 'action=delete'),
+						'ttip' => wfMsg('tooltip-delete'),
+						'akey' => wfMsg('accesskey-delete'));
+					}
+					if ( $wgUser->getID() != 0 ) {
+						if ( $wgTitle->userCanEdit()) {
+							$content_actions['move'] = array('class' => ($wgTitle->getDbKey() == 'Movepage' and $wgTitle->getNamespace == Namespace::getSpecial()) ? 'selected' : '',
+							'text' => wfMsg('move'),
+							'href' => $this->makeSpecialUrl('Movepage', 'target='.$thispage),
+							'ttip' => wfMsg('tooltip-move'),
+							'akey' => wfMsg('accesskey-move'));
+						} else {
+							$content_actions['move'] = array('class' => 'inactive',
+							'text' => wfMsg('move'),
+							'href' => '',
+							'akey' => '');
+
+						}
 					}
 				}
+			
 				if ( $wgUser->getID() != 0 and $action != 'edit' and $action != 'submit' ) {
 					if( !$wgTitle->userIsWatching()) {
 						$content_actions['watch'] = array('class' => ($action == 'watch' or $action == 'unwatch') ? 'selected' : '',
