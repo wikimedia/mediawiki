@@ -35,15 +35,15 @@ define("MAG_NOEDITSECTION", 14);
     -2  => "Media",
     -1  => "Speisialta",
     0   => "",
-    1   => "Plé",
-    2   => "Úsáideoir",
-    3   => "Plé_úsáideora",
-    4   => "Vicipéid",
-    5   => "Plé_Vicipéide",
-    6   => "Íomhá",
-    7   => "Plé_íomhá",
+    1   => "PlÃ©",
+    2   => "ÃšsÃ¡ideoir",
+    3   => "PlÃ©_ÃºsÃ¡ideora",
+    4   => "VicipÃ©id",
+    5   => "PlÃ©_VicipÃ©ide",
+    6   => "ÃomhÃ¡",
+    7   => "PlÃ©_Ã­omhÃ¡",
     8   => "MediaWiki",
-    9   => "Plé_MediaWiki"
+    9   => "PlÃ©_MediaWiki"
 );
 
 /* private */ $wgDefaultUserOptionsGa = array(
@@ -57,46 +57,46 @@ define("MAG_NOEDITSECTION", 14);
 );
 
 /* private */ $wgQuickbarSettingsGa = array(
-    "Faic", "Greamaithe ar chlé", "Greamaithe ar an taobh deas", "Ag faoileáil ar chlé"
+    "Faic", "Greamaithe ar chlÃ©", "Greamaithe ar an taobh deas", "Ag faoileÃ¡il ar chlÃ©"
 );
 
 /* private */ $wgSkinNamesGa = array(
-    "Gnáth", "Sean-nós", "Gorm na Cologne", "Paddington", "Montparnasse"
+    "GnÃ¡th", "Sean-nÃ³s", "Gorm na Cologne", "Paddington", "Montparnasse"
 );
 
 /* private */ $wgMathNamesGa = array(
-    "Déan PNG-íomhá gach uair",
-    "Déan HTML má tá sin an-easca, nó PNG ar mhodh eile",
-    "Déan HTML más féidir, nó PNG ar mhodh eile",
-    "Fág mar cló TeX (do teacsleitheoirí)",
-    "Inmholta do líonleitheoirí nua"
+    "DÃ©an PNG-Ã­omhÃ¡ gach uair",
+    "DÃ©an HTML mÃ¡ tÃ¡ sin an-easca, nÃ³ PNG ar mhodh eile",
+    "DÃ©an HTML mÃ¡s fÃ©idir, nÃ³ PNG ar mhodh eile",
+    "FÃ¡g mar clÃ³ TeX (do teacsleitheoirÃ­)",
+    "Inmholta do lÃ­onleitheoirÃ­ nua"
 );
 
 /* private */ $wgDateFormatsGa = array(
     "Is cuma liom",
-    "Eanáir 15, 2001",
-    "15 Eanáir 2001",
-    "2001 Eanáir 15",
+    "EanÃ¡ir 15, 2001",
+    "15 EanÃ¡ir 2001",
+    "2001 EanÃ¡ir 15",
     "2001-01-15"
 );
 
 /* private */ $wgUserTogglesGa = array(
-    "hover"     => "Taispeáin airebhoscaí os cionn na vicilúibíní",
-    "underline" => "Cuir línte faoi na lúibíní",
-    "highlightbroken" => "Cuir dath dearg ar lúibíní briste, <a href=\"\" class=\"new\">mar sin</a> (rogha eile: mar sin<a href=\"\" class=\"internal\">?</a>).",
+    "hover"     => "TaispeÃ¡in airebhoscaÃ­ os cionn na vicilÃºibÃ­nÃ­",
+    "underline" => "Cuir lÃ­nte faoi na lÃºibÃ­nÃ­",
+    "highlightbroken" => "Cuir dath dearg ar lÃºibÃ­nÃ­ briste, <a href=\"\" class=\"new\">mar sin</a> (rogha eile: mar sin<a href=\"\" class=\"internal\">?</a>).",
     "justify"   => "Comhfhadaigh na paragraif",
-    "hideminor" => "Ná taispeáin fo-eagair sna athruithe deireanacha",
-    "usenewrc" => "Stíl nua do na athruithe deireanacha (le JavaScript)",
-    "numberheadings" => "Uimhrigh ceannteidil go huathoibríoch",
-    "editondblclick" => "Cuir leathanaigh in eagar le roghna dúbailte (JavaScript)",
-    "editsection"=>"Cumasaigh eagarthóireacht mír le lúibíní [athraithe]",
-    "editsectiononrightclick"=>"Cumasaigh eagarthóireacht mír le deas-roghna<br> ar ceannteidil (JavaScript)",
-    "showtoc"=>"Déan liosta na ceannteideal<br>(do ailt le níos mó ná 3 ceannteidil)",
+    "hideminor" => "NÃ¡ taispeÃ¡in fo-eagair sna athruithe deireanacha",
+    "usenewrc" => "StÃ­l nua do na athruithe deireanacha (le JavaScript)",
+    "numberheadings" => "Uimhrigh ceannteidil go huathoibrÃ­och",
+    "editondblclick" => "Cuir leathanaigh in eagar le roghna dÃºbailte (JavaScript)",
+    "editsection"=>"Cumasaigh eagarthÃ³ireacht mÃ­r le lÃºibÃ­nÃ­ [athraithe]",
+    "editsectiononrightclick"=>"Cumasaigh eagarthÃ³ireacht mÃ­r le deas-roghna<br> ar ceannteidil (JavaScript)",
+    "showtoc"=>"DÃ©an liosta na ceannteideal<br>(do ailt le nÃ­os mÃ³ nÃ¡ 3 ceannteidil)",
     "rememberpassword" => "Cuimhnigh mo focal faire",
-    "editwidth" => "Cuir uasméid ar an athrúbhosca",
-    "watchdefault" => "Breathnaigh ar leathanaigh a d'athraigh tú",
-    "minordefault" => "Cuir marc mionathraithe ar gach athrú, mar réamhshocrú",
-    "previewontop" => "Cuir an réamhthaispeántas os cionn an athrúbhosca, agus ná taobh thíos de",
+    "editwidth" => "Cuir uasmÃ©id ar an athrÃºbhosca",
+    "watchdefault" => "Breathnaigh ar leathanaigh a d'athraigh tÃº",
+    "minordefault" => "Cuir marc mionathraithe ar gach athrÃº, mar rÃ©amhshocrÃº",
+    "previewontop" => "Cuir an rÃ©amhthaispeÃ¡ntas os cionn an athrÃºbhosca, agus nÃ¡ taobh thÃ­os de",
     "nocache" => "Ciorraigh an taisce leathanaigh"
 );
 
@@ -115,7 +115,7 @@ define("MAG_NOEDITSECTION", 14);
 /* private */ $wgLanguageNamesGa = array(
     "aa"    => "Afar",
     "ab"    => "Abkhazian",
-    "af"    => "Afrikaans", # Afracáinis
+    "af"    => "Afrikaans", # AfracÃ¡inis
     "am"    => "Amharic",
     "ar" => "&#8238;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;&#8236; (Araby)", # Araibis
     "as"    => "Assamese",
@@ -126,27 +126,27 @@ define("MAG_NOEDITSECTION", 14);
     "bh"    => "Bihara",
     "bi"    => "Bislama",
     "bn"    => "Bengali",
-    "bo"    => "Tibetan", # Tibéadis
+    "bo"    => "Tibetan", # TibÃ©adis
     "br" => "Brezhoneg",
     "bs" => "Bosnian",
-    "ca" => "Catal&#224;", # Catalóinis
+    "ca" => "Catal&#224;", # CatalÃ³inis
     "ch" => "Chamoru",
     "co"    => "Corsican",
     "cs" => "&#268;esk&#225;",
     "cy" => "Cymraeg", # Breatnais
     "da" => "Dansk", # Danmhairgis. Note two different subdomains.
     "dk" => "Dansk", # 'da' is correct for the language.
-    "de" => "Deutsch", # Gearmáinis
+    "de" => "Deutsch", # GearmÃ¡inis
     "dz"    => "Bhutani",
     "el" => "&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940; (Ellenika)",
-    "en"    => "English", # Béarla
-    "eo"    => "Esperanto", # Espeirantó
-    "es" => "Espa&#241;ol", # Spáinnis
+    "en"    => "English", # BÃ©arla
+    "eo"    => "Esperanto", # EspeirantÃ³
+    "es" => "Espa&#241;ol", # SpÃ¡innis
     "et" => "Eesti",
     "eu" => "Euskara",
     "fa" => "&#8238;&#1601;&#1585;&#1587;&#1609;&#8236; (Farsi)",
     "fi" => "Suomi",
-    "fj"    => "Fijian", # Fidsis? Fiji= An Fhidsí.
+    "fj"    => "Fijian", # Fidsis? Fiji= An FhidsÃ­.
     "fo"    => "Faeroese",
     "fr" => "Fran&#231;ais", # Fraincis
     "fy" => "Frysk",
@@ -156,17 +156,17 @@ define("MAG_NOEDITSECTION", 14);
     "gu" => "&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752; (Gujarati)",
     "ha"    => "Hausa",
     "he" => "&#1506;&#1489;&#1512;&#1497;&#1514; (Ivrit)",
-    "hi" => "&#2361;&#2367;&#2344;&#2381;&#2342;&#2368; (Hindi)", # Hiondúis
+    "hi" => "&#2361;&#2367;&#2344;&#2381;&#2342;&#2368; (Hindi)", # HiondÃºis
     "hr" => "Hrvatski",
-    "hu" => "Magyar", # Ungáiris
-    "hy"    => "Armenian", # Airméinis
+    "hu" => "Magyar", # UngÃ¡iris
+    "hy"    => "Armenian", # AirmÃ©inis
     "ia"    => "Interlingua",
-    "id"    => "Indonesia", # Indinéisis
+    "id"    => "Indonesia", # IndinÃ©isis
     "ik"    => "Inupiak",
     "is" => "&#205;slenska",
-    "it" => "Italiano", # Iodáilis
+    "it" => "Italiano", # IodÃ¡ilis
     "iu"    => "Inuktitut",
-    "ja" => "&#26085;&#26412;&#35486; (Nihongo)", # Seapáinis
+    "ja" => "&#26085;&#26412;&#35486; (Nihongo)", # SeapÃ¡inis
     "jv"    => "Javanese", # Iavais? Java = An Iava.
     "ka" => "&#4325;&#4304;&#4320;&#4311;&#4309;&#4308;&#4314;&#4312; (Kartuli)",
     "kk"    => "Kazakh",
@@ -184,9 +184,9 @@ define("MAG_NOEDITSECTION", 14);
     "lv"    => "Latvian", # Laitvis
     "mg" => "Malagasy",
     "mi"    => "Maori",
-    "mk"    => "Macedonian", # Macadóinis
+    "mk"    => "Macedonian", # MacadÃ³inis
     "ml"    => "Malayalam",
-    "mn"    => "Mongolian", # Mongóilis
+    "mn"    => "Mongolian", # MongÃ³ilis
     "mo"    => "Moldavian",
     "mr"    => "Marathi",
     "ms" => "Bahasa Melayu",
@@ -201,20 +201,20 @@ define("MAG_NOEDITSECTION", 14);
     "pa"    => "Punjabi",
     "pl" => "Polski", # Polainnis
     "ps"    => "Pashto",
-    "pt" => "Portugu&#234;s", # Portaingéilis
+    "pt" => "Portugu&#234;s", # PortaingÃ©ilis
     "qu"    => "Quechua",
     "rm"    => "Rhaeto-Romance",
     "rn"    => "Kirundi",
     "ro" => "Rom&#226;n&#259;",
-    "ru" => "&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081; (Russkij)", # Rúisis
+    "ru" => "&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081; (Russkij)", # RÃºisis
     "rw"    => "Kinyarwanda",
     "sa" => "&#2360;&#2306;&#2360;&#2381;&#2325;&#2371;&#2340; (Samskrta)",
     "sd"    => "Sindhi",
     "sg"    => "Sangro",
-    "sh"    => "Serbocroatian", # ? Serbian = Serbis; Croatian = Cróitis.
+    "sh"    => "Serbocroatian", # ? Serbian = Serbis; Croatian = CrÃ³itis.
     "si"    => "Sinhalese",
-    "simple" => "Simple English", # Béarla Simplí
-    "sk"    => "Slovak", # Slóvaicis
+    "simple" => "Simple English", # BÃ©arla SimplÃ­
+    "sk"    => "Slovak", # SlÃ³vaicis
     "sl"    => "Slovensko",
     "sm"    => "Samoan",
     "sn"    => "Shona",
@@ -243,34 +243,34 @@ define("MAG_NOEDITSECTION", 14);
     "uk" => "&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072; (Ukrayins`ka)",
     "ur"    => "Urdu",
     "uz"    => "Uzbek",
-    "vi"    => "Vietnamese", # Vítneamis
+    "vi"    => "Vietnamese", # VÃ­tneamis
     "vo" => "Volap&#252;k",
     "wo"    => "Wolof",
     "xh" => "isiXhosa",
-    "yi"    => "Yiddish", # Giúdais
+    "yi"    => "Yiddish", # GiÃºdais
     "yo"    => "Yoruba",
     "za"    => "Zhuang",
-    "zh" => "&#20013;&#25991; (Zhongwen)", # Sínis
-    "zh-cn" => "&#20013;&#25991;(&#31616;&#20307;) (Simplified Chinese)", # Sínis Simplithe
-    "zh-tw" => "&#20013;&#25991;(&#32321;&#20307;) (Traditional Chinese)", # Sínis Traidisiúnta
+    "zh" => "&#20013;&#25991; (Zhongwen)", # SÃ­nis
+    "zh-cn" => "&#20013;&#25991;(&#31616;&#20307;) (Simplified Chinese)", # SÃ­nis Simplithe
+    "zh-tw" => "&#20013;&#25991;(&#32321;&#20307;) (Traditional Chinese)", # SÃ­nis TraidisiÃºnta
     "zu"    => "Zulu"
 );
 
-# Different spellings of days  (with Dé) may be needed for some uses
+# Different spellings of days  (with DÃ©) may be needed for some uses
 
 /* private */ $wgWeekdayNamesGa = array(
-    "Domhnach", "Luan", "Máirt", "Céadaoin", "Déardaoin",
+    "Domhnach", "Luan", "MÃ¡irt", "CÃ©adaoin", "DÃ©ardaoin",
     "Aoine", "Satharn"
 );
 
 /* private */ $wgMonthNamesGa = array(
-    "Eanáir", "Feabhra", "Márta", "Aibreán", "Bealtaine", "Meitheamh",
-    "Iúil", "Lúnasa", "Meán Fómhair", "Deireadh Fómhair", "Mí na Samhna",
-    "Mí na Nollag"
+    "EanÃ¡ir", "Feabhra", "MÃ¡rta", "AibreÃ¡n", "Bealtaine", "Meitheamh",
+    "IÃºil", "LÃºnasa", "MeÃ¡n FÃ³mhair", "Deireadh FÃ³mhair", "MÃ­ na Samhna",
+    "MÃ­ na Nollag"
 );
 
 /* private */ $wgMonthAbbreviationsGa = array(
-    "Ean", "Fea", "Már", "Aib", "Bea", "Mei", "Iúi", "Lún",
+    "Ean", "Fea", "MÃ¡r", "Aib", "Bea", "Mei", "IÃºi", "LÃºn",
     "Mea", "Dei", "Samh", "Nol"
 );
 
@@ -303,48 +303,48 @@ define("MAG_NOEDITSECTION", 14);
     "Userlogin"     => "",
     "Userlogout"    => "",
     "Preferences"   => "Athraigh mo socruithe",
-    "Watchlist"     => "Mo fairechlár", # List of pages, which the user has chosen to watch
-    "Recentchanges" => "Leathanaigh athraithe le déanaí",
-    "Upload"        => "Suaslódáil comhaid agus íomhánna",
-    "Imagelist"     => "Liosta íomhánna",
-    "Listusers"     => "Úsáideoirí cláraithe",
-    "Statistics"    => "Staitistic an shuíomh",
-    "Randompage"    => "Leathanach fánach",
+    "Watchlist"     => "Mo fairechlÃ¡r", # List of pages, which the user has chosen to watch
+    "Recentchanges" => "Leathanaigh athraithe le dÃ©anaÃ­",
+    "Upload"        => "SuaslÃ³dÃ¡il comhaid agus Ã­omhÃ¡nna",
+    "Imagelist"     => "Liosta Ã­omhÃ¡nna",
+    "Listusers"     => "ÃšsÃ¡ideoirÃ­ clÃ¡raithe",
+    "Statistics"    => "Staitistic an shuÃ­omh",
+    "Randompage"    => "Leathanach fÃ¡nach",
 
-    "Lonelypages"   => "Leathanaigh dílleachtaí",
-    "Unusedimages"  => "Íomhánna dílleachtaí",
+    "Lonelypages"   => "Leathanaigh dÃ­lleachtaÃ­",
+    "Unusedimages"  => "ÃomhÃ¡nna dÃ­lleachtaÃ­",
     "Popularpages"  => "Ailt coitianta",
     "Wantedpages"   => "Ailt santaithe",
     "Shortpages"    => "Ailt gairide",
     "Longpages"     => "Ailt fada",
     "Newpages"      => "Ailt nua",
-    "Ancientpages"  => "Ailt ársa",
-#   "Intl"      => "Lúibíní idirtheangacha",
-    "Allpages"      => "Gach leathanach de réir teidil",
+    "Ancientpages"  => "Ailt Ã¡rsa",
+#   "Intl"      => "LÃºibÃ­nÃ­ idirtheangacha",
+    "Allpages"      => "Gach leathanach de rÃ©ir teidil",
 
-    "Ipblocklist"   => "Úsáideoirí/IP-sheolaidh coisctha",
-    "Maintenance"   => "Leathanach coiméadta",
+    "Ipblocklist"   => "ÃšsÃ¡ideoirÃ­/IP-sheolaidh coisctha",
+    "Maintenance"   => "Leathanach coimÃ©adta",
     "Specialpages"  => "",
     "Contributions" => "",
     "Emailuser"     => "",
     "Whatlinkshere" => "",
     "Recentchangeslinked" => "",
     "Movepage"      => "",
-    "Booksources"   => "Leabharfhoinsí seachtraí",
+    "Booksources"   => "LeabharfhoinsÃ­ seachtraÃ­",
 #   "Categories"    => "Ranganna leathanaigh",
     "Export"        => ""
 );
 
 /* private */ $wgSysopSpecialPagesGa = array(
-    "Blockip"       => "Cuir cosc ar úsáideoir/IP-sheoladh",
-    "Asksql"        => "Cuir ceist ar an bhunachar sonraí",
+    "Blockip"       => "Cuir cosc ar ÃºsÃ¡ideoir/IP-sheoladh",
+    "Asksql"        => "Cuir ceist ar an bhunachar sonraÃ­",
     "Undelete"      => "Cuir leathanaigh scriosaithe ar ais"
 );
 
 /* private */ $wgDeveloperSpecialPagesGa = array(
-    "Lockdb"        => "Cuir glas ar an mbunachar sonraí",
-    "Unlockdb"      => "Bain an glas den bunachar sonraí",
-    "Debug"     => "Eolas chun fadhtanna a réitigh"
+    "Lockdb"        => "Cuir glas ar an mbunachar sonraÃ­",
+    "Unlockdb"      => "Bain an glas den bunachar sonraÃ­",
+    "Debug"     => "Eolas chun fadhtanna a rÃ©itigh"
 );
 
 #-------------------------------------------------------------------
@@ -365,345 +365,345 @@ define("MAG_NOEDITSECTION", 14);
 
 "linktrail"     => "/^([a-z]+)(.*)\$/sD",
 "mainpage"      => "Ceannleathanach",
-"mainpagetext"  => "D'insealbhaíodh an oideas Wiki go rathúil.",
+"mainpagetext"  => "D'insealbhaÃ­odh an oideas Wiki go rathÃºil.",
 "about"     => "Faoi",
-"aboutwikipedia"    => "Faoi Vicipéid",
-"aboutpage"     => "Vicipéid:Faoi",
+"aboutwikipedia"    => "Faoi VicipÃ©id",
+"aboutpage"     => "VicipÃ©id:Faoi",
 "help"      => "Cabhair",
-"helppage"      => "Vicipéid:Cabhair",
-"wikititlesuffix" => "Vicipéid",
-"bugreports"    => "Fabht-thuairiscí",
-"bugreportspage"    => "Vicipéid:Fabht-thuairiscí",
+"helppage"      => "VicipÃ©id:Cabhair",
+"wikititlesuffix" => "VicipÃ©id",
+"bugreports"    => "Fabht-thuairiscÃ­",
+"bugreportspage"    => "VicipÃ©id:Fabht-thuairiscÃ­",
 "faq"           => "Ceisteanna Coiteanta",
-"faqpage"       => "Vicipéid:Ceisteanna Coiteanta",
-"edithelp"      => "Cabhair eagarthóireachta",
-"edithelppage"  => "Vicipéid:Conas_alt_a_cur_in_eagar",
+"faqpage"       => "VicipÃ©id:Ceisteanna Coiteanta",
+"edithelp"      => "Cabhair eagarthÃ³ireachta",
+"edithelppage"  => "VicipÃ©id:Conas_alt_a_cur_in_eagar",
 "cancel"        => "Cealaigh",
 "qbfind"        => "Faigh",
-"qbbrowse"      => "Útamáil",
+"qbbrowse"      => "ÃštamÃ¡il",
 "qbedit"        => "Athraigh",
 "qbpageoptions" => "Roghanna leathanaigh",
 "qbpageinfo"    => "Eolas leathanaigh",
 "qbmyoptions"   => "Mo roghanna",
 "mypage"        => "Mo leathanach",
-"mytalk"        => "Mo plé",
-"currentevents" => "Cursaí reatha",
-"errorpagetitle"    => "Earráid",
+"mytalk"        => "Mo plÃ©",
+"currentevents" => "CursaÃ­ reatha",
+"errorpagetitle"    => "EarrÃ¡id",
 "returnto"      => "Dul ar ais go $1.",
-"fromwikipedia" => "Ón Vicipéid, an chiclipéid shaor.",
-"whatlinkshere" => "Leathanaigh a cheanglaíonn chuig an leathanach seo",
+"fromwikipedia" => "Ã“n VicipÃ©id, an chiclipÃ©id shaor.",
+"whatlinkshere" => "Leathanaigh a cheanglaÃ­onn chuig an leathanach seo",
 "help"      => "Cabhair",
 "search"        => "Cuardaigh",
 "go"            => "Dul",
 "history"       => "Stair leathanaigh",
-"printableversion" => "Eagrán clóbhuala",
+"printableversion" => "EagrÃ¡n clÃ³bhuala",
 "editthispage"  => "Athraigh an leathanach seo",
 "deletethispage"    => "Dealaigh an leathanach seo",
 "protectthispage" => "Cuir glas ar an leathanach seo",
 "unprotectthispage" => "Bain an glas den leathanach seo",
 "newpage"       => "Leathanach nua",
-"talkpage"      => "Plé an leathanach seo",
-"postcomment"   => "Cuir mínithe leis an leathanach",
+"talkpage"      => "PlÃ© an leathanach seo",
+"postcomment"   => "Cuir mÃ­nithe leis an leathanach",
 "articlepage"   => "Feach ar an alt",
-"subjectpage"   => "Feach ar an t-ábhar", # For compatibility
-"userpage"      => "Feach ar leathanach úsáideora",
+"subjectpage"   => "Feach ar an t-Ã¡bhar", # For compatibility
+"userpage"      => "Feach ar leathanach ÃºsÃ¡ideora",
 "wikipediapage" => "Feach ar meitea-leathanach",
-"imagepage"     => "Feach ar leathanach íomhá",
-"viewtalkpage"  => "Feach ar phlé",
+"imagepage"     => "Feach ar leathanach Ã­omhÃ¡",
+"viewtalkpage"  => "Feach ar phlÃ©",
 "otherlanguages"    => "Teangacha eile",
-"redirectedfrom"    => "(Athsheoladh ó $1)",
-"lastmodified"  => "Mhionathraíodh an leathanach seo ar $1.",
-"viewcount"     => "Rochtainíodh an leathanach seo $1 uair.",
-"gnunote"       => "Tá an teacs ar fad le fáil faoi na téarmaí an <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
-"printsubtitle" => "(Ó http://ga.wikipedia.org)",
+"redirectedfrom"    => "(Athsheoladh Ã³ $1)",
+"lastmodified"  => "MhionathraÃ­odh an leathanach seo ar $1.",
+"viewcount"     => "RochtainÃ­odh an leathanach seo $1 uair.",
+"gnunote"       => "TÃ¡ an teacs ar fad le fÃ¡il faoi na tÃ©armaÃ­ an <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
+"printsubtitle" => "(Ã“ http://ga.wikipedia.org)",
 "protectedpage" => "Leathanach faoi ghlas",
-"administrators"    => "Vicipéid:Riarthóirí",
-"sysoptitle"    => "Cuntas ceannasaí de dhíth",
-"sysoptext"     => "Caithfidh tú bheith i do \"ceannasaí\" 
-chun an gníomh seo a dhéanamh.
-Féach ar $1.",
-"developertitle"    => "Cuntas ríomhchláraitheora de dhíth",
-"developertext" => "Caithfidh tú bheith i do \"cláraitheoir\" 
-chun an gníomh seo a dhéanamh.
-Féach ar $1.",
+"administrators"    => "VicipÃ©id:RiarthÃ³irÃ­",
+"sysoptitle"    => "Cuntas ceannasaÃ­ de dhÃ­th",
+"sysoptext"     => "Caithfidh tÃº bheith i do \"ceannasaÃ­\" 
+chun an gnÃ­omh seo a dhÃ©anamh.
+FÃ©ach ar $1.",
+"developertitle"    => "Cuntas rÃ­omhchlÃ¡raitheora de dhÃ­th",
+"developertext" => "Caithfidh tÃº bheith i do \"clÃ¡raitheoir\" 
+chun an gnÃ­omh seo a dhÃ©anamh.
+FÃ©ach ar $1.",
 "nbytes"        => "$1 bearta",
 "go"            => "Dul",
 "ok"            => "Go maith",
-"sitetitle"     => "Vicipéid",
-"sitesubtitle"  => "An Chiclipéid Shaor",
-"retrievedfrom" => "Faightear ar ais ó \"$1\"",
-"newmessages"   => "Tá $1 agat.",
-"newmessageslink" => "teachtaireachtaí nua",
+"sitetitle"     => "VicipÃ©id",
+"sitesubtitle"  => "An ChiclipÃ©id Shaor",
+"retrievedfrom" => "Faightear ar ais Ã³ \"$1\"",
+"newmessages"   => "TÃ¡ $1 agat.",
+"newmessageslink" => "teachtaireachtaÃ­ nua",
 "editsection"   => "athraigh",
-"toc"           => "Clár ábhair",
-"showtoc"       => "taispeáin",
+"toc"           => "ClÃ¡r Ã¡bhair",
+"showtoc"       => "taispeÃ¡in",
 "hidetoc"       => "folaigh",
-"thisisdeleted" => "Breathnaigh nó cuir ar ais $1?",
+"thisisdeleted" => "Breathnaigh nÃ³ cuir ar ais $1?",
 "restorelink"   => "$1 athruithe scriosaithe",
 
 # Main script and global functions
 #
-"nosuchaction"  => "Níl a leithéid de ghníomh ann",
-"nosuchactiontext" => "Níl aithníonn an oideas Vicipéide 
-an gníomh ('action') atá ann san líonsheoladh.",
-"nosuchspecialpage" => "Níl a leithéid de leathanach speisialta ann",
-"nospecialpagetext" => "Níl aithníonn an oideas Vicipéide 
-an leathanach speisialta a d'iarr tú ar.",
+"nosuchaction"  => "NÃ­l a leithÃ©id de ghnÃ­omh ann",
+"nosuchactiontext" => "NÃ­l aithnÃ­onn an oideas VicipÃ©ide 
+an gnÃ­omh ('action') atÃ¡ ann san lÃ­onsheoladh.",
+"nosuchspecialpage" => "NÃ­l a leithÃ©id de leathanach speisialta ann",
+"nospecialpagetext" => "NÃ­l aithnÃ­onn an oideas VicipÃ©ide 
+an leathanach speisialta a d'iarr tÃº ar.",
 
 # General errors
 #
-"error"         => "Earráid",
-"databaseerror"     => "Earráid an bhunachar sonraí",
-"dberrortext"   => "Tharlaigh earráid chomhréir sa cheist chuig an bhunachar sonraí.
-Tá seans gur cuireadh ceist cuardach neamhcheart (féach ar $5),
-nó tá seans go bhfuil fabht san oideas.
-<blockquote><tt>$1</tt></blockquote>, ón suim \"<tt>$2</tt>\",
+"error"         => "EarrÃ¡id",
+"databaseerror"     => "EarrÃ¡id an bhunachar sonraÃ­",
+"dberrortext"   => "Tharlaigh earrÃ¡id chomhrÃ©ir sa cheist chuig an bhunachar sonraÃ­.
+TÃ¡ seans gur cuireadh ceist cuardach neamhcheart (fÃ©ach ar $5),
+nÃ³ tÃ¡ seans go bhfuil fabht san oideas.
+<blockquote><tt>$1</tt></blockquote>, Ã³n suim \"<tt>$2</tt>\",
 ab ea an ceist seo caite chuig an bhunachar sonrai.
-Chuir MySQL an earráid seo ar ais: \"<tt>$3: $4</tt>\".",
-"dberrortextcl"     => "Tharlaigh earráid chomhréir sa cheist chuig an bhunachar sonraí.
-\"$1\", ón suim \"$2\",
+Chuir MySQL an earrÃ¡id seo ar ais: \"<tt>$3: $4</tt>\".",
+"dberrortextcl"     => "Tharlaigh earrÃ¡id chomhrÃ©ir sa cheist chuig an bhunachar sonraÃ­.
+\"$1\", Ã³n suim \"$2\",
 ab ea an ceist seo caite chuig an bhunachar sonrai,
-Chuir MySQL an earráid seo ar ais: \"$3: $4\".\n",
-"noconnect"     => "Tá brón orainn! Chuaigh an oideas Wiki in abar teicniúil, agus theipeadh an nasc leis an mbunachar sonraí .",
-"nodb"      => "Theipeadh an rogha den bhunachar sonraí $1",
-"cachederror"   => "Seo í cóip athscríobhtha den leathanach a raibh tú ag lorg (is dócha go nach bhfuil sí bord ar bhord leis an eagrán reatha).",
-"readonly"      => "Bunachar sonraí faoi ghlas",
-"enterlockreason" => "Iontráil cúis don ghlas, agus meastachán
+Chuir MySQL an earrÃ¡id seo ar ais: \"$3: $4\".\n",
+"noconnect"     => "TÃ¡ brÃ³n orainn! Chuaigh an oideas Wiki in abar teicniÃºil, agus theipeadh an nasc leis an mbunachar sonraÃ­ .",
+"nodb"      => "Theipeadh an rogha den bhunachar sonraÃ­ $1",
+"cachederror"   => "Seo Ã­ cÃ³ip athscrÃ­obhtha den leathanach a raibh tÃº ag lorg (is dÃ³cha go nach bhfuil sÃ­ bord ar bhord leis an eagrÃ¡n reatha).",
+"readonly"      => "Bunachar sonraÃ­ faoi ghlas",
+"enterlockreason" => "IontrÃ¡il cÃºis don ghlas, agus meastachÃ¡n
 den cathain a mbainfear an ghlas de.",
-"readonlytext"  => "Tá an bunachar sonraí Vicipéide faoi ghlas anois do iontráilí agus athruithe nua 
-(is dócha go bhfuil sé do gnáthchothabháil).
-Tar éis seo, beidh an bunachar sonraí tofa ar ais.
-Thug an riarthóir a ghlasaigh an míniú seo:
+"readonlytext"  => "TÃ¡ an bunachar sonraÃ­ VicipÃ©ide faoi ghlas anois do iontrÃ¡ilÃ­ agus athruithe nua 
+(is dÃ³cha go bhfuil sÃ© do gnÃ¡thchothabhÃ¡il).
+Tar Ã©is seo, beidh an bunachar sonraÃ­ tofa ar ais.
+Thug an riarthÃ³ir a ghlasaigh an mÃ­niÃº seo:
 <p>$1",
-"missingarticle" => "Chuardaigh an bunachar sonraí ar leathanach go mba chóir a bheith faighte, darbh ainm \"$1\". Níor bhfuarthas an leathanach.
+"missingarticle" => "Chuardaigh an bunachar sonraÃ­ ar leathanach go mba chÃ³ir a bheith faighte, darbh ainm \"$1\". NÃ­or bhfuarthas an leathanach.
 
-<p>Ní earráid san bunachar sonraí é seo, ach b'fhéidir go bhfuair tú amach fabht 
-sna oideasra MediaWiki. De ghnáth, tarlaíonn sé sin nuair a leantar nasc staire nó difríochta go leathanach a raibh scriosaithe cheana féin.
+<p>NÃ­ earrÃ¡id san bunachar sonraÃ­ Ã© seo, ach b'fhÃ©idir go bhfuair tÃº amach fabht 
+sna oideasra MediaWiki. De ghnÃ¡th, tarlaÃ­onn sÃ© sin nuair a leantar nasc staire nÃ³ difrÃ­ochta go leathanach a raibh scriosaithe cheana fÃ©in.
 
-<p>Déan nóta den URL le do thoil, agus cuir an ábhar in iúl do riarthóir.",
-"internalerror" => "Earráid inmhéanach",
-"filecopyerror" => "Ní féidir an comhad \"$1\" a chóipeáil go \"$2\".",
-"filerenameerror" => "Ní féidir an comhad \"$1\" a athainmnigh bheith \"$2\".",
-"filedeleteerror" => "Ní féidir an comhad \"$1\" a scriosaigh amach.",
-"filenotfound"  => "Ní bhfuarthas an comhad \"$1\".",
-"unexpected"    => "Luach gan súil leis: \"$1\"=\"$2\".",
-"formerror"     => "Earráid: ní féidir an foirm a tabhair isteach", 
-"badarticleerror" => "Ní féidir an gníomh seo a dhéanamh ar an leathanach seo.",
-"cannotdelete"  => "Ní féidir an leathanach nó íomhá sonraithe a scriosaigh. (B'fhéidir go shcriosaigh duine eile é cheana féin.)",
-"badtitle"      => "Teideal neamhbhailí",
-"badtitletext"  => "Bhí teideal an leanthanaigh a d'iarr tú ar neamhbhailí, folamh, nó
-teideal idirtheangach no idir-Wiki nasctha go mícheart.",
-"perfdisabled" => "Tá brón orainnn! Mhíchumasaíodh an gné seo go sealadach chun luas an bunachair sonraí a chosaint.",
-"perfdisabledsub" => "Seo cóip sábháilte ó $1:",
-"wrong_wfQuery_params" => "Paraiméadair míchearta don wfQuery()<br>
+<p>DÃ©an nÃ³ta den URL le do thoil, agus cuir an Ã¡bhar in iÃºl do riarthÃ³ir.",
+"internalerror" => "EarrÃ¡id inmhÃ©anach",
+"filecopyerror" => "NÃ­ fÃ©idir an comhad \"$1\" a chÃ³ipeÃ¡il go \"$2\".",
+"filerenameerror" => "NÃ­ fÃ©idir an comhad \"$1\" a athainmnigh bheith \"$2\".",
+"filedeleteerror" => "NÃ­ fÃ©idir an comhad \"$1\" a scriosaigh amach.",
+"filenotfound"  => "NÃ­ bhfuarthas an comhad \"$1\".",
+"unexpected"    => "Luach gan sÃºil leis: \"$1\"=\"$2\".",
+"formerror"     => "EarrÃ¡id: nÃ­ fÃ©idir an foirm a tabhair isteach",  
+"badarticleerror" => "NÃ­ fÃ©idir an gnÃ­omh seo a dhÃ©anamh ar an leathanach seo.",
+"cannotdelete"  => "NÃ­ fÃ©idir an leathanach nÃ³ Ã­omhÃ¡ sonraithe a scriosaigh. (B'fhÃ©idir go shcriosaigh duine eile Ã© cheana fÃ©in.)",
+"badtitle"      => "Teideal neamhbhailÃ­",
+"badtitletext"  => "BhÃ­ teideal an leanthanaigh a d'iarr tÃº ar neamhbhailÃ­, folamh, nÃ³
+teideal idirtheangach no idir-Wiki nasctha go mÃ­cheart.",
+"perfdisabled" => "TÃ¡ brÃ³n orainnn! MhÃ­chumasaÃ­odh an gnÃ© seo go sealadach chun luas an bunachair sonraÃ­ a chosaint.",
+"perfdisabledsub" => "Seo cÃ³ip sÃ¡bhÃ¡ilte Ã³ $1:",
+"wrong_wfQuery_params" => "ParaimÃ©adair mÃ­chearta don wfQuery()<br>
 Feidhm: $1<br>
 Ceist: $2
 ",
-"viewsource" => "Féach ar foinse",
-"protectedtext" => "Chuirtear ghlas ar an leathanach seo chun é a chosaint in aghaidh athruithe. Tá go leor
-cúiseanna féideartha don scéal seo. Féach ar 
+"viewsource" => "FÃ©ach ar foinse",
+"protectedtext" => "Chuirtear ghlas ar an leathanach seo chun Ã© a chosaint in aghaidh athruithe. TÃ¡ go leor
+cÃºiseanna fÃ©ideartha don scÃ©al seo. FÃ©ach ar 
 [[$wgMetaNamespace:Leathanach faoi ghlas]] le do thoil.
 
-Is féidir leat foinse an leathanaigh seo a feachaint ar agus a chóipeáil:",
+Is fÃ©idir leat foinse an leathanaigh seo a feachaint ar agus a chÃ³ipeÃ¡il:",
 
 # Login and logout pages
 #
 "logouttitle"   => "Log as",
-"logouttext" => "Tá tú logtha as anois.
-Is féidir leat an Vicipéid a úsáid fós gan ainm, nó is féidir leat log ann 
-arís mar an úsáideoir céanna, nó mar úsáideoir eile. Tabhair faoi deara go taispeáinfear roinnt
-leathanaigh mar atá tú logtha ann fós, go dtí go ghlanfá amach do taisce brabhsála\n",
+"logouttext" => "TÃ¡ tÃº logtha as anois.
+Is fÃ©idir leat an VicipÃ©id a ÃºsÃ¡id fÃ³s gan ainm, nÃ³ is fÃ©idir leat log ann 
+arÃ­s mar an ÃºsÃ¡ideoir cÃ©anna, nÃ³ mar ÃºsÃ¡ideoir eile. Tabhair faoi deara go taispeÃ¡infear roinnt
+leathanaigh mar atÃ¡ tÃº logtha ann fÃ³s, go dtÃ­ go ghlanfÃ¡ amach do taisce brabhsÃ¡la\n",
 
-"welcomecreation" => "<h2>Tá fáilte romhat, a $1!</h2><p>Chruthaíodh do chuntas.
-Ná déan dearmad do socruithe phearsanta a gcrích.",
+"welcomecreation" => "<h2>TÃ¡ fÃ¡ilte romhat, a $1!</h2><p>ChruthaÃ­odh do chuntas.
+NÃ¡ dÃ©an dearmad do socruithe phearsanta a gcrÃ­ch.",
 
 "loginpagetitle" => "Log ann",
-"yourname"      => "Do ainm úsáideora",
+"yourname"      => "Do ainm ÃºsÃ¡ideora",
 "yourpassword"  => "Do focal faire",
-"yourpasswordagain" => "Athiontráil do focal faire",
-"newusersonly"  => " (Do úsáideoirí nua amháin)",
+"yourpasswordagain" => "AthiontrÃ¡il do focal faire",
+"newusersonly"  => " (Do ÃºsÃ¡ideoirÃ­ nua amhÃ¡in)",
 "remembermypassword" => "Cuimhnigh mo focal faire.",
-"loginproblem"  => "<b>Bhí fadhb le do logadh ann.</b><br>Déan iarracht eile!",
-"alreadyloggedin" => "<font color=red><b>A hÚsáideoir $1, tá tú logtha ann cheana féin!</b></font><br>\n",
+"loginproblem"  => "<b>BhÃ­ fadhb le do logadh ann.</b><br>DÃ©an iarracht eile!",
+"alreadyloggedin" => "<font color=red><b>A hÃšsÃ¡ideoir $1, tÃ¡ tÃº logtha ann cheana fÃ©in!</b></font><br>\n",
 
-"areyounew"     => "Má tá tú i do núíosach chuig an Vicipéid agus tá cuntas úsáideora uait,
-iontráil ainm úsáideora, agus ansin iontráil agus athiontráil focal faire.
-Tá an seoladh ríomhphoist rud roghnach; dá bhfágfá do focal faire, is feidir leat a iarradh
-go seolfar é chuig an seoladh ríomhphoist a thug tú.<br>\n",
+"areyounew"     => "MÃ¡ tÃ¡ tÃº i do nÃºÃ­osach chuig an VicipÃ©id agus tÃ¡ cuntas ÃºsÃ¡ideora uait,
+iontrÃ¡il ainm ÃºsÃ¡ideora, agus ansin iontrÃ¡il agus athiontrÃ¡il focal faire.
+TÃ¡ an seoladh rÃ­omhphoist rud roghnach; dÃ¡ bhfÃ¡gfÃ¡ do focal faire, is feidir leat a iarradh
+go seolfar Ã© chuig an seoladh rÃ­omhphoist a thug tÃº.<br>\n",
 
 "login"     => "Log ann",
 "userlogin"     => "Log ann",
 "logout"        => "Log as",
 "userlogout"    => "Log as",
-"notloggedin"   => "Níl tú logtha ann",
+"notloggedin"   => "NÃ­l tÃº logtha ann",
 "createaccount" => "Cruthaigh cuntas nua",
-"createaccountmail" => "le ríomhphost",
-"badretype"     => "D'iontráil tú dhá focail faire difriúla.",
-"userexists"    => "Tá an ainm úsáideora a d'iontráil tú in úsáid cheana féin. Déan rogha de ainm eile, le do thoil.",
-"youremail"     => "Do ríomhphost*",
-"yournick"      => "Do leasainm (do síniúithe)",
-"emailforlost"  => "* Is roghnach é do seoladh ríomhphoist a iontráil.  Ach ba féidir daoine teagmhail a dhéanamh leat 
-tríd an suíomh gan do seoladh ríomhphoist a nochtaigh dóibh. Ina theannta sin,  
-is cabhair é má dheanfá dearmad ar do focal faire.",
-"loginerror"    => "Earráid leis an log ann",
-"noname"        => "Ní shonraigh tú ainm úsáideora bailí.",
-"loginsuccesstitle" => "Log ann rathúil",
-"loginsuccess"  => "Tá tú logtha ann anois go Vicipéid mar \"$1\".",
-"nosuchuser"    => "Níl aon úsáideoir ann leis an ainm \"$1\".
-Cinntigh do litriú, nó bain úsáid as an foirm thíos chun cuntas úsáideora nua a chruthaigh.",
-"wrongpassword" => "Bhí an focal faire a d'iontráil tú mícheart. Déan iarracht eile le do thoil.",
+"createaccountmail" => "le rÃ­omhphost",
+"badretype"     => "D'iontrÃ¡il tÃº dhÃ¡ focail faire difriÃºla.",
+"userexists"    => "TÃ¡ an ainm ÃºsÃ¡ideora a d'iontrÃ¡il tÃº in ÃºsÃ¡id cheana fÃ©in. DÃ©an rogha de ainm eile, le do thoil.",
+"youremail"     => "Do rÃ­omhphost*",
+"yournick"      => "Do leasainm (do sÃ­niÃºithe)",
+"emailforlost"  => "* Is roghnach Ã© do seoladh rÃ­omhphoist a iontrÃ¡il.  Ach ba fÃ©idir daoine teagmhail a dhÃ©anamh leat 
+trÃ­d an suÃ­omh gan do seoladh rÃ­omhphoist a nochtaigh dÃ³ibh. Ina theannta sin,  
+is cabhair Ã© mÃ¡ dheanfÃ¡ dearmad ar do focal faire.",
+"loginerror"    => "EarrÃ¡id leis an log ann",
+"noname"        => "NÃ­ shonraigh tÃº ainm ÃºsÃ¡ideora bailÃ­.",
+"loginsuccesstitle" => "Log ann rathÃºil",
+"loginsuccess"  => "TÃ¡ tÃº logtha ann anois go VicipÃ©id mar \"$1\".",
+"nosuchuser"    => "NÃ­l aon ÃºsÃ¡ideoir ann leis an ainm \"$1\".
+Cinntigh do litriÃº, nÃ³ bain ÃºsÃ¡id as an foirm thÃ­os chun cuntas ÃºsÃ¡ideora nua a chruthaigh.",
+"wrongpassword" => "BhÃ­ an focal faire a d'iontrÃ¡il tÃº mÃ­cheart. DÃ©an iarracht eile le do thoil.",
 "mailmypassword" => "Cuir focal faire nua chugam",
-"passwordremindertitle" => "Cuimhneachán focail faire ó Vicipéid",
-"passwordremindertext" => "D'iarr duine éigin (tusa de réir cosúlachta, ón seoladh IP $1)
-go sheolfaimis focal faire Vicipéide nua do log ann duit.
-Is é an focal faire don úsáideoir \"$2\" ná \"$3\" anois.
-Ba chóir duit log ann anois agus athraigh do focal faire.",
-"noemail"       => "Níl aon seoladh ríomhphoist i gcuntas don úsáideoir \"$1\".",
-"passwordsent"  => "Cuireadh focal faire nua chuig an seoladh ríomhphoist cláraithe do \"$1\".
-Agus atá sé agat, log ann arís leis le do thoil.",
+"passwordremindertitle" => "CuimhneachÃ¡n focail faire Ã³ VicipÃ©id",
+"passwordremindertext" => "D'iarr duine Ã©igin (tusa de rÃ©ir cosÃºlachta, Ã³n seoladh IP $1)
+go sheolfaimis focal faire VicipÃ©ide nua do log ann duit.
+Is Ã© an focal faire don ÃºsÃ¡ideoir \"$2\" nÃ¡ \"$3\" anois.
+Ba chÃ³ir duit log ann anois agus athraigh do focal faire.",
+"noemail"       => "NÃ­l aon seoladh rÃ­omhphoist i gcuntas don ÃºsÃ¡ideoir \"$1\".",
+"passwordsent"  => "Cuireadh focal faire nua chuig an seoladh rÃ­omhphoist clÃ¡raithe do \"$1\".
+Agus atÃ¡ sÃ© agat, log ann arÃ­s leis le do thoil.",
 
 # Edit pages
 #
 "summary"       => "Achomair",
-"subject"       => "Ábhar/ceannlíne",
-"minoredit"     => "Seo é mionathrú",
-"watchthis"     => "Déan faire ar an leathanach seo",
-"savearticle"   => "Sábháil an leathanach",
-"preview"       => "Reamhthaispeántas",
-"showpreview"   => "Reamhthaispeáin",
-"blockedtitle"  => "Tá an úsáideoir seo coiscthe",
-"blockedtext"   => "Chuir $1 cosc ar do ainm úsáideora nó do seoladh IP. 
-Seo é an cúis a thugadh:<br>''$2''<p>Is féidir leat teagmháil a dhéanamh le $1 nó le ceann eile de na 
-[[$wgMetaNamespace:Riarthóirí|riarthóirí]] chun an cosc a phléigh. 
+"subject"       => "Ãbhar/ceannlÃ­ne",
+"minoredit"     => "Seo Ã© mionathrÃº",
+"watchthis"     => "DÃ©an faire ar an leathanach seo",
+"savearticle"   => "SÃ¡bhÃ¡il an leathanach",
+"preview"       => "ReamhthaispeÃ¡ntas",
+"showpreview"   => "ReamhthaispeÃ¡in",
+"blockedtitle"  => "TÃ¡ an ÃºsÃ¡ideoir seo coiscthe",
+"blockedtext"   => "Chuir $1 cosc ar do ainm ÃºsÃ¡ideora nÃ³ do seoladh IP. 
+Seo Ã© an cÃºis a thugadh:<br>''$2''<p>Is fÃ©idir leat teagmhÃ¡il a dhÃ©anamh le $1 nÃ³ le ceann eile de na 
+[[$wgMetaNamespace:RiarthÃ³irÃ­|riarthÃ³irÃ­]] chun an cosc a phlÃ©igh. 
 
-Tabhair faoi deara go nach féidir leat an gné \"cuir ríomhphost chuig an úsáideoir seo\" 
-mura bhfuil seoladh ríomhphoist bailí cláraithe i do [[Speisialta:Preferences|socruithe úsáideora]]. 
+Tabhair faoi deara go nach fÃ©idir leat an gnÃ© \"cuir rÃ­omhphost chuig an ÃºsÃ¡ideoir seo\" 
+mura bhfuil seoladh rÃ­omhphoist bailÃ­ clÃ¡raithe i do [[Speisialta:Preferences|socruithe ÃºsÃ¡ideora]]. 
 
-Is é $3 do sheoladh IP. Más é do thoil é, déan tagairt den seoladh seo le gach ceist a chuirfeá.
+Is Ã© $3 do sheoladh IP. MÃ¡s Ã© do thoil Ã©, dÃ©an tagairt den seoladh seo le gach ceist a chuirfeÃ¡.
 
-==Nóta do úsáideoirí AOL==
-De bhrí ghníomhartha leanúnacha creachadóireachta de haon úsáideoir AOL áirithe, 
-is minic a coisceann Vicipéid ar friothálaithe AOL. Go mífhortúnach, áfach, is féidir 
-go leor úsáídeoirí AOL an friothálaí céanna a úsáid, agus mar sin is minic a coiscaítear 
-úsáideoirí AOL neamhchiontacha. Iarraimis pardún do aon trioblóid. 
+==NÃ³ta do ÃºsÃ¡ideoirÃ­ AOL==
+De bhrÃ­ ghnÃ­omhartha leanÃºnacha creachadÃ³ireachta de haon ÃºsÃ¡ideoir AOL Ã¡irithe, 
+is minic a coisceann VicipÃ©id ar friothÃ¡laithe AOL. Go mÃ­fhortÃºnach, Ã¡fach, is fÃ©idir 
+go leor ÃºsÃ¡Ã­deoirÃ­ AOL an friothÃ¡laÃ­ cÃ©anna a ÃºsÃ¡id, agus mar sin is minic a coiscaÃ­tear 
+ÃºsÃ¡ideoirÃ­ AOL neamhchiontacha. Iarraimis pardÃºn do aon trioblÃ³id. 
 
-Má tharlódh an scéal seo duit, cuir ríomhphost chuig riarthóir le seoladh ríomhphoist AOL. Bheith cinnte tagairt a dhéanamh leis an seoladh IP seo thuas.",
-"whitelistedittitle" => "Log ann chun athrú a dhéanamh",
-"whitelistedittext" => "Caithfidh tú [[Speisialta:Userlogin|log ann]] chun ailt a athraigh.",
-"whitelistreadtitle" => "Log ann chun ailt a léigh",
-"whitelistreadtext" => "Caithfidh tú [[Speisialta:Userlogin|log ann]] chun ailt a léigh.",
-"whitelistacctitle" => "Níl cead agat cuntas a chruthaigh",
-"whitelistacctext" => "Chun cuntais nua a chruthaigh san Wiki seo caithfidh tú [[Speisialta:Userlogin|log ann]] agus caithfidh bheith an cead riachtanach agat.",
+MÃ¡ tharlÃ³dh an scÃ©al seo duit, cuir rÃ­omhphost chuig riarthÃ³ir le seoladh rÃ­omhphoist AOL. Bheith cinnte tagairt a dhÃ©anamh leis an seoladh IP seo thuas.",
+"whitelistedittitle" => "Log ann chun athrÃº a dhÃ©anamh",
+"whitelistedittext" => "Caithfidh tÃº [[Speisialta:Userlogin|log ann]] chun ailt a athraigh.",
+"whitelistreadtitle" => "Log ann chun ailt a lÃ©igh",
+"whitelistreadtext" => "Caithfidh tÃº [[Speisialta:Userlogin|log ann]] chun ailt a lÃ©igh.",
+"whitelistacctitle" => "NÃ­l cead agat cuntas a chruthaigh",
+"whitelistacctext" => "Chun cuntais nua a chruthaigh san Wiki seo caithfidh tÃº [[Speisialta:Userlogin|log ann]] agus caithfidh bheith an cead riachtanach agat.",
 "accmailtitle" => "Cuireadh an focal faire.",
 "accmailtext" => "Cuireadh an focal faire do '$1' chuig $2.",
 "newarticle"    => "(Nua)",
 "newarticletext" =>
-"Lean tú nasc go leathanach a nach bhfuil ann fós. 
-Chun an leathanach a chruthaigh, tosaigh ag clóscríobh san bosca anseo thíos 
-(féach ar an [[Vicipéid:Cabhair|leathanach cabhrach]] chun níos mó eolas a fháil).
-Má tháinig tú anseo as dearmad, brúigh an cnaipe '''ar ais''' ar do líonléitheoir.",
-"anontalkpagetext" => "---- ''Seo é an leathanach plé do úsáideoir gan ainm a nach chruthaigh 
-cuntas fós nó a nach úsáideann a chuntas. Dá bhrí sin caithfimid an [[seoladh IP]] uimhriúil 
-chun é/í a ionannaigh. Is féidir cuid mhaith úsáideoirí an seoladh IP céanna a úsáid. Má tá tú 
-i do úsáideoir gan ainm agus má tá sé do thuairim go rinneadh léiriuithe neamhfheidhmeacha fút, 
-[[Special:Userlogin|cruthaigh cuntas nó log ann]] le do thoil chun mearbhall le húsáideoirí eile 
-gan ainmneacha a héalaigh amach anseo.'' ",
-"noarticletext" => "(Níl aon téacs ar an leathanach seo)",
+"Lean tÃº nasc go leathanach a nach bhfuil ann fÃ³s. 
+Chun an leathanach a chruthaigh, tosaigh ag clÃ³scrÃ­obh san bosca anseo thÃ­os 
+(fÃ©ach ar an [[VicipÃ©id:Cabhair|leathanach cabhrach]] chun nÃ­os mÃ³ eolas a fhÃ¡il).
+MÃ¡ thÃ¡inig tÃº anseo as dearmad, brÃºigh an cnaipe '''ar ais''' ar do lÃ­onlÃ©itheoir.",
+"anontalkpagetext" => "---- ''Seo Ã© an leathanach plÃ© do ÃºsÃ¡ideoir gan ainm a nach chruthaigh 
+cuntas fÃ³s nÃ³ a nach ÃºsÃ¡ideann a chuntas. DÃ¡ bhrÃ­ sin caithfimid an [[seoladh IP]] uimhriÃºil 
+chun Ã©/Ã­ a ionannaigh. Is fÃ©idir cuid mhaith ÃºsÃ¡ideoirÃ­ an seoladh IP cÃ©anna a ÃºsÃ¡id. MÃ¡ tÃ¡ tÃº 
+i do ÃºsÃ¡ideoir gan ainm agus mÃ¡ tÃ¡ sÃ© do thuairim go rinneadh lÃ©iriuithe neamhfheidhmeacha fÃºt, 
+[[Special:Userlogin|cruthaigh cuntas nÃ³ log ann]] le do thoil chun mearbhall le hÃºsÃ¡ideoirÃ­ eile 
+gan ainmneacha a hÃ©alaigh amach anseo.'' ",
+"noarticletext" => "(NÃ­l aon tÃ©acs ar an leathanach seo)",
 "updated"       => "(Nuashonraithe)",
 "note"          => "<strong>Tabhair faoi deara:</strong> ",
-"previewnote"   => "Tabhair faoi deara go nach bhfuil seo ach reamhthaispeántas, agus go nach sábháladh é fós!",
-"previewconflict" => "San reamhthaispeántas seo, feachann tú an téacs dé réir an eagarbhosca 
-thuas mar a taispeáinfear é má sábháilfear é.",
+"previewnote"   => "Tabhair faoi deara go nach bhfuil seo ach reamhthaispeÃ¡ntas, agus go nach sÃ¡bhÃ¡ladh Ã© fÃ³s!",
+"previewconflict" => "San reamhthaispeÃ¡ntas seo, feachann tÃº an tÃ©acs dÃ© rÃ©ir an eagarbhosca 
+thuas mar a taispeÃ¡infear Ã© mÃ¡ sÃ¡bhÃ¡ilfear Ã©.",
 "editing"       => "Ag athraigh $1",
 "sectionedit"   => " (roinnt)",
-"commentedit"   => " (léiriú)",
+"commentedit"   => " (lÃ©iriÃº)",
 "editconflict"  => "Coimhlint athraithe: $1",
-"explainconflict" => "D'athraigh duine eile an leathanach seo ó shin a thosaigh tú ag cuireadh é in eagar.
-San bhosca thuas feiceann tú téacs an leathanaigh mar a bhfuil sé faoi láthair.
-Tá do athruithe san bhosca thíos.
-Caithfidh tú do athruithe a chumasadh leis an eagrán atá ann anois.
-Nuair a brúann tú ar an cnaipe \"Sábháil an leathanach\", ní sábhálfar <b>ach amháin</b> an téacs san bhosca thuas.\n<p>",
-"yourtext"      => "Do téacs",
-"storedversion" => "Eagrán i dtaisce",
-"editingold"    => "<strong>AIRE: Cuireann tú in eagar eagrán an leathanach seo as dáta.
-Má shábhálfá é, caillfear aon athrú a rinneadh ó shin an eagrán seo.</strong>\n",
-"yourdiff"      => "Difríochtaí",
-"copyrightwarning" => "Tabhair faoi dearadh go scaoilítear gach cúnamh go Vicipéid maidir lena tearmaí an <i>GNU Free Documentation License</i>
-(féach ar $1 chun eolas a fháil).
-Má nach mian leat go cuirfear do scríbhinn in eagar go héadrócaireach agus go athdálfar é gan teorainn, 
-ná tabhair é isteach anseo.<br>
-Ina theannta sin, geallann tú duinn go shcríobh tú féin an rud seo, nó go chóipeáil tú é ón 
-fhoinse gan chóipcheart.
-<strong>NÁ TABHAIR ISTEACH OBAIR LE CÓIPCHEART GAN CEAD!</strong>",
-"longpagewarning" => "AIRE: Tá an leathanach seo $1 cilibhirt i bhfad; ní féidir le roinnt líonléitheoirí
-leathanaigh breis agus nó níos fada ná 32kb a athraigh.
-Meáigh an seans go mbrisfeadh tú an leathanach sna codanna níos bige.",
-"readonlywarning" => "AIRE: Cuireadh ghlas ar an bhunachar sonraí, agus mar sin 
-ní féidir leat do athruithe a shábháil díreach anois. B'fhéidir go mhaith leat an téacs a 
-chóipeáil is a taosaigh go chomhad téacs agus é a shábháil do úsáid níos déanach.",
-"protectedpagewarning" => "AIRE:  Cuireadh ghlas ar an leathanach seo, agus is féidir amháin na úsáideoirí le 
-pribhléidí ceannasaí é a athraigh. Bí cinnte go leanann tú na 
-<a href='/wiki/Vicipéid:Treoirlínte_do_leathanaigh_cosnaithe'>treoirlínte do leathanaigh cosnaithe</a>.",
+"explainconflict" => "D'athraigh duine eile an leathanach seo Ã³ shin a thosaigh tÃº ag cuireadh Ã© in eagar.
+San bhosca thuas feiceann tÃº tÃ©acs an leathanaigh mar a bhfuil sÃ© faoi lÃ¡thair.
+TÃ¡ do athruithe san bhosca thÃ­os.
+Caithfidh tÃº do athruithe a chumasadh leis an eagrÃ¡n atÃ¡ ann anois.
+Nuair a brÃºann tÃº ar an cnaipe \"SÃ¡bhÃ¡il an leathanach\", nÃ­ sÃ¡bhÃ¡lfar <b>ach amhÃ¡in</b> an tÃ©acs san bhosca thuas.\n<p>",
+"yourtext"      => "Do tÃ©acs",
+"storedversion" => "EagrÃ¡n i dtaisce",
+"editingold"    => "<strong>AIRE: Cuireann tÃº in eagar eagrÃ¡n an leathanach seo as dÃ¡ta.
+MÃ¡ shÃ¡bhÃ¡lfÃ¡ Ã©, caillfear aon athrÃº a rinneadh Ã³ shin an eagrÃ¡n seo.</strong>\n",
+"yourdiff"      => "DifrÃ­ochtaÃ­",
+"copyrightwarning" => "Tabhair faoi dearadh go scaoilÃ­tear gach cÃºnamh go VicipÃ©id maidir lena tearmaÃ­ an <i>GNU Free Documentation License</i>
+(fÃ©ach ar $1 chun eolas a fhÃ¡il).
+MÃ¡ nach mian leat go cuirfear do scrÃ­bhinn in eagar go hÃ©adrÃ³caireach agus go athdÃ¡lfar Ã© gan teorainn, 
+nÃ¡ tabhair Ã© isteach anseo.<br>
+Ina theannta sin, geallann tÃº duinn go shcrÃ­obh tÃº fÃ©in an rud seo, nÃ³ go chÃ³ipeÃ¡il tÃº Ã© Ã³n 
+fhoinse gan chÃ³ipcheart.
+<strong>NÃ TABHAIR ISTEACH OBAIR LE CÃ“IPCHEART GAN CEAD!</strong>",
+"longpagewarning" => "AIRE: TÃ¡ an leathanach seo $1 cilibhirt i bhfad; nÃ­ fÃ©idir le roinnt lÃ­onlÃ©itheoirÃ­
+leathanaigh breis agus nÃ³ nÃ­os fada nÃ¡ 32kb a athraigh.
+MeÃ¡igh an seans go mbrisfeadh tÃº an leathanach sna codanna nÃ­os bige.",
+"readonlywarning" => "AIRE: Cuireadh ghlas ar an bhunachar sonraÃ­, agus mar sin 
+nÃ­ fÃ©idir leat do athruithe a shÃ¡bhÃ¡il dÃ­reach anois. B'fhÃ©idir go mhaith leat an tÃ©acs a 
+chÃ³ipeÃ¡il is a taosaigh go chomhad tÃ©acs agus Ã© a shÃ¡bhÃ¡il do ÃºsÃ¡id nÃ­os dÃ©anach.",
+"protectedpagewarning" => "AIRE:  Cuireadh ghlas ar an leathanach seo, agus is fÃ©idir amhÃ¡in na ÃºsÃ¡ideoirÃ­ le 
+pribhlÃ©idÃ­ ceannasaÃ­ Ã© a athraigh. BÃ­ cinnte go leanann tÃº na 
+<a href='/wiki/VicipÃ©id:TreoirlÃ­nte_do_leathanaigh_cosnaithe'>treoirlÃ­nte do leathanaigh cosnaithe</a>.",
 
 # History pages
 #
-"revhistory"    => "Stáir athruithe",
-"nohistory"     => "Níl aon stáir athruithe don leathanach seo.",
-"revnotfound"   => "Ní bhfuarthas an athrú",
-"revnotfoundtext" => "Ní bhfuarthas seaneagrán an leathanagh a d'iarr tú ar. 
-Cinntigh an URL a d'úsáid tú chun an leathanach seo a rochtain.\n",
-"loadhist"      => "Ag lódáil stáir an leathanaigh",
-"currentrev"    => "Eagrán reatha",
-"revisionasof"  => "Eagrán ó $1",
+"revhistory"    => "StÃ¡ir athruithe",
+"nohistory"     => "NÃ­l aon stÃ¡ir athruithe don leathanach seo.",
+"revnotfound"   => "NÃ­ bhfuarthas an athrÃº",
+"revnotfoundtext" => "NÃ­ bhfuarthas seaneagrÃ¡n an leathanagh a d'iarr tÃº ar. 
+Cinntigh an URL a d'ÃºsÃ¡id tÃº chun an leathanach seo a rochtain.\n",
+"loadhist"      => "Ag lÃ³dÃ¡il stÃ¡ir an leathanaigh",
+"currentrev"    => "EagrÃ¡n reatha",
+"revisionasof"  => "EagrÃ¡n Ã³ $1",
 "cur"           => "rea",
 "next"          => "lea",
 "last"          => "roi",
 "orig"          => "bun",
-"histlegend"    => "Eochair: (rea) = difríocht leis an eagrán reatha,
-(roi) = difríocht leis an eagrán roimhe, M = mionathrú",
+"histlegend"    => "Eochair: (rea) = difrÃ­ocht leis an eagrÃ¡n reatha,
+(roi) = difrÃ­ocht leis an eagrÃ¡n roimhe, M = mionathrÃº",
 
 # Diffs
 #
-"difference"    => "(Difríochtaí idir eagráin)",
-"loadingrev"    => "ag lódáil eagrán don difríocht",
-"lineno"        => "Líne $1:",
-"editcurrent"   => "Athraigh eagrán reatha an leathanaigh seo",
+"difference"    => "(DifrÃ­ochtaÃ­ idir eagrÃ¡in)",
+"loadingrev"    => "ag lÃ³dÃ¡il eagrÃ¡n don difrÃ­ocht",
+"lineno"        => "LÃ­ne $1:",
+"editcurrent"   => "Athraigh eagrÃ¡n reatha an leathanaigh seo",
 
 # Search results
 #
 "searchresults" => "Toraidh an cuardaigh",
-"searchhelppage" => "Vicipéid:Ag_cuardaigh",
-"searchingwikipedia" => "Ag cuardaigh sa Vicipéid",
-"searchresulttext" => "Chun níos mó eolas a fháil mar gheall ar cuardach Vicipéide, féach ar $1.",
+"searchhelppage" => "VicipÃ©id:Ag_cuardaigh",
+"searchingwikipedia" => "Ag cuardaigh sa VicipÃ©id",
+"searchresulttext" => "Chun nÃ­os mÃ³ eolas a fhÃ¡il mar gheall ar cuardach VicipÃ©ide, fÃ©ach ar $1.",
 "searchquery"   => "Do cheist \"$1\"",
-"badquery"      => "Ceist cuardaigh neamhbhailí",
-"badquerytext"  => "Nior éirigh linn do cheist a phróiseáil. 
-Is docha go rinne tú cuardach ar focal le níos lú ná trí litir, 
-gné a nach bhfuil le tacaíocht aige fós. 
-B'fhéidir freisin go mhíchlóshcríobh tú an leagan, mar shampla 
-\"éisc agus agus lanna\". Déan iarracht eile.",
-"matchtotals"   => "Bhí an cheist \"$1\" ina mhacasamhail le $2 teidil alt
-agus le téacs de $3 ailt.",
-"nogomatch" => "Níl aon leathanach leis an teideal áirithe seo. Déantar cuardach an téacs ar fad...",
-"titlematches"  => "Tá macasamhla teideal alt ann",
-"notitlematches" => "Níl macasamhla teideal alt ann",
-"textmatches"   => "Tá macasamhla téacs alt ann",
-"notextmatches" => "Níl macasamhla téacs alt ann",
+"badquery"      => "Ceist cuardaigh neamhbhailÃ­",
+"badquerytext"  => "Nior Ã©irigh linn do cheist a phrÃ³iseÃ¡il. 
+Is docha go rinne tÃº cuardach ar focal le nÃ­os lÃº nÃ¡ trÃ­ litir, 
+gnÃ© a nach bhfuil le tacaÃ­ocht aige fÃ³s. 
+B'fhÃ©idir freisin go mhÃ­chlÃ³shcrÃ­obh tÃº an leagan, mar shampla 
+\"Ã©isc agus agus lanna\". DÃ©an iarracht eile.",
+"matchtotals"   => "BhÃ­ an cheist \"$1\" ina mhacasamhail le $2 teidil alt
+agus le tÃ©acs de $3 ailt.",
+"nogomatch" => "NÃ­l aon leathanach leis an teideal Ã¡irithe seo. DÃ©antar cuardach an tÃ©acs ar fad...",
+"titlematches"  => "TÃ¡ macasamhla teideal alt ann",
+"notitlematches" => "NÃ­l macasamhla teideal alt ann",
+"textmatches"   => "TÃ¡ macasamhla tÃ©acs alt ann",
+"notextmatches" => "NÃ­l macasamhla tÃ©acs alt ann",
 "prevn"         => "na $1 roimhe",
-"nextn"         => "an chéad $1 eile",
-"viewprevnext"  => "Taispeáin ($1) ($2) ($3).",
-"showingresults" => "Ag taispeáint thíos <b>$1</b> toraidh, ag tosaigh le #<b>$2</b>.",
-"showingresultsnum" => "Ag taispeáint thíos <b>$3</b> toraidh, ag tosaigh le #<b>$2</b>.",
-"nonefound"     => "<strong>Tabhair faoi deara</strong>: déantar cuardaigh mírathúla go minic nuair a cuardaítear focail coiteanta, m.sh., \"ag\" is \"an\",
-a nach bhfuil innéacsaítear, nó nuair a ceisteann tú níos mó ná téarma amháin (ní
-taispeáintear sna toraidh ach na leathanaigh ina bhfuil go leoir na téarmaí cuardaigh).",
+"nextn"         => "an chÃ©ad $1 eile",
+"viewprevnext"  => "TaispeÃ¡in ($1) ($2) ($3).",
+"showingresults" => "Ag taispeÃ¡int thÃ­os <b>$1</b> toraidh, ag tosaigh le #<b>$2</b>.",
+"showingresultsnum" => "Ag taispeÃ¡int thÃ­os <b>$3</b> toraidh, ag tosaigh le #<b>$2</b>.",
+"nonefound"     => "<strong>Tabhair faoi deara</strong>: dÃ©antar cuardaigh mÃ­rathÃºla go minic nuair a cuardaÃ­tear focail coiteanta, m.sh., \"ag\" is \"an\",
+a nach bhfuil innÃ©acsaÃ­tear, nÃ³ nuair a ceisteann tÃº nÃ­os mÃ³ nÃ¡ tÃ©arma amhÃ¡in (nÃ­
+taispeÃ¡intear sna toraidh ach na leathanaigh ina bhfuil go leoir na tÃ©armaÃ­ cuardaigh).",
 "powersearch" => "Cuardaigh",
 "powersearchtext" => "
 Cuardaigh sna roinn :<br>
 $1<br>
 $2 Cuir athsheolaidh in aireamh &nbsp; Cuardaigh ar $3 $9",
-"searchdisabled" => "<p>Tá brón orainn! Mhíchumasaíodh an ghné lánchuardaigh téacs go sealadach chun luas an suímh 
-a chosaint. Idir an dá linn, is féidir leat an cuardach Google anseo thíos a úsáid - b'fhéidir go bhfuil sé as dáta.</p>
+"searchdisabled" => "<p>TÃ¡ brÃ³n orainn! MhÃ­chumasaÃ­odh an ghnÃ© lÃ¡nchuardaigh tÃ©acs go sealadach chun luas an suÃ­mh 
+a chosaint. Idir an dÃ¡ linn, is fÃ©idir leat an cuardach Google anseo thÃ­os a ÃºsÃ¡id - b'fhÃ©idir go bhfuil sÃ© as dÃ¡ta.</p>
 
 <!-- SiteSearch Google -->
 <!-- Get Irish version of this!!! -->
@@ -730,79 +730,79 @@ border=\"0\" ALT=\"Google\"></A>
 # Preferences page
 #
 "preferences"   => "Socruithe",
-"prefsnologin" => "Níl tú logtha ann",
-"prefsnologintext"  => "Caithfidh tú bheith <a href=\"" .
+"prefsnologin" => "NÃ­l tÃº logtha ann",
+"prefsnologintext"  => "Caithfidh tÃº bheith <a href=\"" .
   wfLocalUrl( "Speisialta:Userlogin" ) . "\">logtha ann</a>
 chun do socruithe phearsanta a athraigh.",
-"prefslogintext" => "Tá tú logtha ann mar \"$1\".
-Is é $2 do uimir aitheantais inmhéanach.
+"prefslogintext" => "TÃ¡ tÃº logtha ann mar \"$1\".
+Is Ã© $2 do uimir aitheantais inmhÃ©anach.
 
-Féach ar [[Vicipéid:Cabhair do socruithe úsáideora]] chun cabhair a fháil mar gheall ar na roghanna.",
-"prefsreset"    => "D'athraigh do socruithe ar ais chuig an leagan bunúsach, mar gheall ar stóráil.",
-"qbsettings"    => "Socruithe an bosca uirlisí", 
+FÃ©ach ar [[VicipÃ©id:Cabhair do socruithe ÃºsÃ¡ideora]] chun cabhair a fhÃ¡il mar gheall ar na roghanna.",
+"prefsreset"    => "D'athraigh do socruithe ar ais chuig an leagan bunÃºsach, mar gheall ar stÃ³rÃ¡il.",
+"qbsettings"    => "Socruithe an bosca uirlisÃ­", 
 "changepassword" => "Athraigh do focal faire",
 "skin"          => "Cuma",
 "math"          => "Ag aistrigh an matamaitic",
-"dateformat"    => "Cruth an dáta",
-"math_failure"      => "Theipeadh anailís an foirmle",
-"math_unknown_error"    => "earráid anaithnid",
+"dateformat"    => "Cruth an dÃ¡ta",
+"math_failure"      => "Theipeadh anailÃ­s an foirmle",
+"math_unknown_error"    => "earrÃ¡id anaithnid",
 "math_unknown_function" => "foirmle anaithnid ",
-"math_lexing_error" => "Theipeadh anailís an foclóra",
-"math_syntax_error" => "earráid comhréire",
-"saveprefs"     => "Sábháil socruithe",
+"math_lexing_error" => "Theipeadh anailÃ­s an foclÃ³ra",
+"math_syntax_error" => "earrÃ¡id comhrÃ©ire",
+"saveprefs"     => "SÃ¡bhÃ¡il socruithe",
 "resetprefs"    => "Athshuigh socruithe",
 "oldpassword"   => "Seanfhocal faire",
 "newpassword"   => "Nuafhocal faire",
-"retypenew"     => "Athchlóshcríobh an nuafhocal faire",
-"textboxsize"   => "Méid an théacsbhosca",
+"retypenew"     => "AthchlÃ³shcrÃ­obh an nuafhocal faire",
+"textboxsize"   => "MÃ©id an thÃ©acsbhosca",
 "rows"          => "Sraitheanna",
-"columns"       => "Colúin",
+"columns"       => "ColÃºin",
 "searchresultshead" => "Socruithe na toraidh cuardaigh",
-"resultsperpage" => "Taispeáin faighte de réir",
-"contextlines"  => "Taispeáin línte de réir",
-"contextchars"  => "Taispeáin litreacha de réir",
-"stubthreshold" => "Cuir comharthaí ar leathanaigh níos bigé ná",
-"recentchangescount" => "Méid teidil sna athruithe deireanacha",
-"savedprefs"    => "Sábháladh do socruithe.",
-"timezonetext"  => "Iontráil an méid uaireanta a difríonn do am áitiúil den am an friothálaí (UTC).",
-"localtime" => "An t-am áitiúil",
+"resultsperpage" => "TaispeÃ¡in faighte de rÃ©ir",
+"contextlines"  => "TaispeÃ¡in lÃ­nte de rÃ©ir",
+"contextchars"  => "TaispeÃ¡in litreacha de rÃ©ir",
+"stubthreshold" => "Cuir comharthaÃ­ ar leathanaigh nÃ­os bigÃ© nÃ¡",
+"recentchangescount" => "MÃ©id teidil sna athruithe deireanacha",
+"savedprefs"    => "SÃ¡bhÃ¡ladh do socruithe.",
+"timezonetext"  => "IontrÃ¡il an mÃ©id uaireanta a difrÃ­onn do am Ã¡itiÃºil den am an friothÃ¡laÃ­ (UTC).",
+"localtime" => "An t-am Ã¡itiÃºil",
 "timezoneoffset" => "Difear",
-"servertime"    => "Am an friothálaí anois",
-"guesstimezone" => "Cuardaigh ón líonléitheoir",
-"emailflag"     => "Coisc ríomhphost ón úsáideoirí eile",
-"defaultns"     => "Cuardaigh sna ranna seo a los éagmaise:",
+"servertime"    => "Am an friothÃ¡laÃ­ anois",
+"guesstimezone" => "Cuardaigh Ã³n lÃ­onlÃ©itheoir",
+"emailflag"     => "Coisc rÃ­omhphost Ã³n ÃºsÃ¡ideoirÃ­ eile",
+"defaultns"     => "Cuardaigh sna ranna seo a los Ã©agmaise:",
 
 # Recent changes
 #
 "changes" => "athruithe",
 "recentchanges" => "Athruithe deireanacha",
 "recentchangestext" => 
-"Lean na athruithe is deireanacha go Vicipéid ar an leathanach seo.
-[[Wikipedia:Fáilte,_a_núíosaigh|Fáilte, a núíosaigh]]!
-Féach ar na leathanaigh seo, más é do thoil é: [[Vicipéid:CMT|CMT Vicipéide]],
-[[Vicipéid:Polasaithe agus treoirlínte|Polasaí Vicipéide]]
-(go háirithe [[Vicipéid:Coinbhinsiúin ainmneacha|coinbhinsiúin ainmneacha]],
-[[Vicipéid:Dearcadh neodrach|dearcadh neodrach]]),
-agus [[Vicipéid:Na botúin Vicipéide is coitianta|na botúin Vicipéide is coitianta]].
+"Lean na athruithe is deireanacha go VicipÃ©id ar an leathanach seo.
+[[Wikipedia:FÃ¡ilte,_a_nÃºÃ­osaigh|FÃ¡ilte, a nÃºÃ­osaigh]]!
+FÃ©ach ar na leathanaigh seo, mÃ¡s Ã© do thoil Ã©: [[VicipÃ©id:CMT|CMT VicipÃ©ide]],
+[[VicipÃ©id:Polasaithe agus treoirlÃ­nte|PolasaÃ­ VicipÃ©ide]]
+(go hÃ¡irithe [[VicipÃ©id:CoinbhinsiÃºin ainmneacha|coinbhinsiÃºin ainmneacha]],
+[[VicipÃ©id:Dearcadh neodrach|dearcadh neodrach]]),
+agus [[VicipÃ©id:Na botÃºin VicipÃ©ide is coitianta|na botÃºin VicipÃ©ide is coitianta]].
 
-Más maith leat go éireóidh Vicipéid, tá sé an-tabhachtach go nach cuireann tú ábhair 
-a nach bhfuil teorainnaithe de na [[Vicipéid:Cóipchearta|cóipchearta]] de ghrúpaí eile.
-Ba féidir leis an dliteanas an tionscnamh a gortaigh go fíor, mar sin ná déan é.
-Féach ar an [http://meta.wikipedia.org/wiki/Special:Recentchanges meiteaphlé deireanach] freisin.",
-"rcloaderr"     => "Ag lódáil athruithe deireanacha",
+MÃ¡s maith leat go Ã©ireÃ³idh VicipÃ©id, tÃ¡ sÃ© an-tabhachtach go nach cuireann tÃº Ã¡bhair 
+a nach bhfuil teorainnaithe de na [[VicipÃ©id:CÃ³ipchearta|cÃ³ipchearta]] de ghrÃºpaÃ­ eile.
+Ba fÃ©idir leis an dliteanas an tionscnamh a gortaigh go fÃ­or, mar sin nÃ¡ dÃ©an Ã©.
+FÃ©ach ar an [http://meta.wikipedia.org/wiki/Special:Recentchanges meiteaphlÃ© deireanach] freisin.",
+"rcloaderr"     => "Ag lÃ³dÃ¡il athruithe deireanacha",
 "rcnote"        => "Is iad seo a leanas na <strong>$1</strong> athruithe deireanacha sna <strong>$2</strong> lae seo caite.",
-"rcnotefrom"    => "Is iad seo a leanas na athruithe ó <b>$2</b> (go dti <b>$1</b> taispeánaithe).",
-"rclistfrom"    => "Taispeáin nua-athruithe ó $1 anuas",
-# "rclinks"     => "Taispeáin na $1 athruithe is deireanacha sna $2 uaire seo caite / $3 laethanta seo caite.",
-# "rclinks"     => "Taispeáin na $1 athruithe is deireanacha sna $2 laethanta seo caite.",
-"rclinks"       => "Taispeáin na $1 athruithe is deireanacha sna $2 laethanta seo caite; $3 mionathruithe",
+"rcnotefrom"    => "Is iad seo a leanas na athruithe Ã³ <b>$2</b> (go dti <b>$1</b> taispeÃ¡naithe).",
+"rclistfrom"    => "TaispeÃ¡in nua-athruithe Ã³ $1 anuas",
+# "rclinks"     => "TaispeÃ¡in na $1 athruithe is deireanacha sna $2 uaire seo caite / $3 laethanta seo caite.",
+# "rclinks"     => "TaispeÃ¡in na $1 athruithe is deireanacha sna $2 laethanta seo caite.",
+"rclinks"       => "TaispeÃ¡in na $1 athruithe is deireanacha sna $2 laethanta seo caite; $3 mionathruithe",
 "rchide"        => "sa cuma $4; $1 mionathruithe; $2 foranna; $3 athruithe ilchodacha.",
-"rcliu"         => "; $1 athruithe de úsáideoirí logtha ann",
-"diff"          => "difríochtaí",
-"hist"          => "stáir",
+"rcliu"         => "; $1 athruithe de ÃºsÃ¡ideoirÃ­ logtha ann",
+"diff"          => "difrÃ­ochtaÃ­",
+"hist"          => "stÃ¡ir",
 "hide"          => "folaigh",
-"show"          => "taispeáin",
-"tableform"     => "tábla",
+"show"          => "taispeÃ¡in",
+"tableform"     => "tÃ¡bla",
 "listform"      => "liosta",
 "nchanges"      => "$1 athruithe",
 "minoreditletter" => "M",
@@ -810,463 +810,463 @@ Féach ar an [http://meta.wikipedia.org/wiki/Special:Recentchanges meiteaphlé dei
 
 # Upload
 #
-"upload"        => "Suaslódáilcomhad",
-"uploadbtn"     => "Suaslódáil comhad",
-"uploadlink"    => "Suaslódáil íomhánna",
-"reupload"      => "Athshuaslódáil",
-"reuploaddesc"  => "Fill ar ais chuig an fhoirm shuaslódála.",
-"uploadnologin" => "Nil tú logtha ann",
-"uploadnologintext" => "Caithfifh tú bheith <a href=\"" .
+"upload"        => "SuaslÃ³dÃ¡ilcomhad",
+"uploadbtn"     => "SuaslÃ³dÃ¡il comhad",
+"uploadlink"    => "SuaslÃ³dÃ¡il Ã­omhÃ¡nna",
+"reupload"      => "AthshuaslÃ³dÃ¡il",
+"reuploaddesc"  => "Fill ar ais chuig an fhoirm shuaslÃ³dÃ¡la.",
+"uploadnologin" => "Nil tÃº logtha ann",
+"uploadnologintext" => "Caithfifh tÃº bheith <a href=\"" .
   wfLocalUrl( "Speisialta:Userlogin" ) . "\">logtha ann</a>
-chun comhaid a shuaslódáil.",
-"uploadfile"    => "Suaslódáil íomhánna, fuaimeanna, doiciméid srl.",
-"uploaderror"   => "Earráid suaslódála",
-"uploadtext"    => "<strong>STOP!</strong> Roimh a suaslódálaíonn tú anseo, 
-bí cinnte leigh agus géill don <a href=\"" .
-wfLocalUrlE( "Vicipéid:Polasaí_úsáide_íomhá" ) . "\">polasaí úsáide íomhá</a> atá ag Vicipéid.
-<p>Má bhfuil aon comhad ann fós leis an ainm céanna a bhfuil tú ag
-tabhairt don comhad nua, cuirfear an nuachomhad in ionad an seanchomhad gan fógr.
-Mar sin, mura nuashonraíonn tú comhad éigin, is scéal maith é cinntigh má bhfuil comhad 
-leis an ainm seo ann fós.
+chun comhaid a shuaslÃ³dÃ¡il.",
+"uploadfile"    => "SuaslÃ³dÃ¡il Ã­omhÃ¡nna, fuaimeanna, doicimÃ©id srl.",
+"uploaderror"   => "EarrÃ¡id suaslÃ³dÃ¡la",
+"uploadtext"    => "<strong>STOP!</strong> Roimh a suaslÃ³dÃ¡laÃ­onn tÃº anseo, 
+bÃ­ cinnte leigh agus gÃ©ill don <a href=\"" .
+wfLocalUrlE( "VicipÃ©id:PolasaÃ­_ÃºsÃ¡ide_Ã­omhÃ¡" ) . "\">polasaÃ­ ÃºsÃ¡ide Ã­omhÃ¡</a> atÃ¡ ag VicipÃ©id.
+<p>MÃ¡ bhfuil aon comhad ann fÃ³s leis an ainm cÃ©anna a bhfuil tÃº ag
+tabhairt don comhad nua, cuirfear an nuachomhad in ionad an seanchomhad gan fÃ³gr.
+Mar sin, mura nuashonraÃ­onn tÃº comhad Ã©igin, is scÃ©al maith Ã© cinntigh mÃ¡ bhfuil comhad 
+leis an ainm seo ann fÃ³s.
 <p>To view or search previously uploaded images,
 go to the Dul go dti an<a href=\"" . wfLocalUrlE( "Speisialta:Imagelist" ) .
-"\">liosta íomhánna suaslódálaithe</a>chun féach ar nó chuardaigh idir íomhánna a raibh suaslódálaithe roimhe seo.
-Déantar liosta de suaslósála agus scriosaidh ar an <a href=\"" .
-wfLocalUrlE( "Vicipéid:Liosta_suaslódála" ) . "\">liosta suaslódála</a>.
-<p>Bain úsáid as an fhoirm anseo thíos chun íomháchomhaid nua a suaslódáil. 
-Ba féidir leat na íomhánna a úsáid i do ailt. 
-Ar an chuid is mó de na líonléitheoirí, feicfidh tú cnaipe \"Brabhsáil...\" no mar sin. Lé brú ar an cnaipe seo, 
-gheobhaigh tú an gháthbhosca agallaimh comhadtheacta do chóras oibriúcháin. 
-Nuair a luíonn tú comhad, líonfar ainm an comhaid san téacsbhosca in aice leis an cnaipe.
-Caithfidh tú a admháil le brú san bosca beag go nach 
-bhfuil tú ag sáraigh aon chóipcheart leis an súaslódáil seo.
-Brúigh an cnaipe \"Suaslódáil\" chun an suaslódáil a chríochnaigh.
-Mura bhfuil nasc idirlín tapaidh agat, beidh roinnt ama uait chun an rud sin a dhéanamh. 
-<p>Is iad na formáide inmholta ná JPEG do íomhánna grianghrafacha, PNG 
-do pictiúir tarraingthe agus léaráide, agus OGG do fuaimeanna. 
-Ainmnigh do comhaid go tuairisciúil chun mearbhall a héalaigh. 
-Chun an íomhá a úsáid san alt, úsáid nasc mar sin:
-<b>[[íomhá:comhad.jpg]]</b> nó <b>[[image:íomhá.png|téacs eile]]</b>
-nó <b>[[meán:comhad.ogg]]</b> do fuaimeanna.
-<p>Tabhair faoi deara go, cosúil le leathanaigh Vicipéide, is féidir le daoine eile do suaslódálacha a 
-athraigh nó a scriosadh amach, má síltear go bhfuil sé i gcabhair 
-don ciclipéid, agus má bhainfeá mí-úsáid as an córas ta seans go coiscfí tú ón gcóras.",
+"\">liosta Ã­omhÃ¡nna suaslÃ³dÃ¡laithe</a>chun fÃ©ach ar nÃ³ chuardaigh idir Ã­omhÃ¡nna a raibh suaslÃ³dÃ¡laithe roimhe seo.
+DÃ©antar liosta de suaslÃ³sÃ¡la agus scriosaidh ar an <a href=\"" .
+wfLocalUrlE( "VicipÃ©id:Liosta_suaslÃ³dÃ¡la" ) . "\">liosta suaslÃ³dÃ¡la</a>.
+<p>Bain ÃºsÃ¡id as an fhoirm anseo thÃ­os chun Ã­omhÃ¡chomhaid nua a suaslÃ³dÃ¡il. 
+Ba fÃ©idir leat na Ã­omhÃ¡nna a ÃºsÃ¡id i do ailt. 
+Ar an chuid is mÃ³ de na lÃ­onlÃ©itheoirÃ­, feicfidh tÃº cnaipe \"BrabhsÃ¡il...\" no mar sin. LÃ© brÃº ar an cnaipe seo, 
+gheobhaigh tÃº an ghÃ¡thbhosca agallaimh comhadtheacta do chÃ³ras oibriÃºchÃ¡in. 
+Nuair a luÃ­onn tÃº comhad, lÃ­onfar ainm an comhaid san tÃ©acsbhosca in aice leis an cnaipe.
+Caithfidh tÃº a admhÃ¡il le brÃº san bosca beag go nach 
+bhfuil tÃº ag sÃ¡raigh aon chÃ³ipcheart leis an sÃºaslÃ³dÃ¡il seo.
+BrÃºigh an cnaipe \"SuaslÃ³dÃ¡il\" chun an suaslÃ³dÃ¡il a chrÃ­ochnaigh.
+Mura bhfuil nasc idirlÃ­n tapaidh agat, beidh roinnt ama uait chun an rud sin a dhÃ©anamh. 
+<p>Is iad na formÃ¡ide inmholta nÃ¡ JPEG do Ã­omhÃ¡nna grianghrafacha, PNG 
+do pictiÃºir tarraingthe agus lÃ©arÃ¡ide, agus OGG do fuaimeanna. 
+Ainmnigh do comhaid go tuairisciÃºil chun mearbhall a hÃ©alaigh. 
+Chun an Ã­omhÃ¡ a ÃºsÃ¡id san alt, ÃºsÃ¡id nasc mar sin:
+<b>[[Ã­omhÃ¡:comhad.jpg]]</b> nÃ³ <b>[[image:Ã­omhÃ¡.png|tÃ©acs eile]]</b>
+nÃ³ <b>[[meÃ¡n:comhad.ogg]]</b> do fuaimeanna.
+<p>Tabhair faoi deara go, cosÃºil le leathanaigh VicipÃ©ide, is fÃ©idir le daoine eile do suaslÃ³dÃ¡lacha a 
+athraigh nÃ³ a scriosadh amach, mÃ¡ sÃ­ltear go bhfuil sÃ© i gcabhair 
+don ciclipÃ©id, agus mÃ¡ bhainfeÃ¡ mÃ­-ÃºsÃ¡id as an cÃ³ras ta seans go coiscfÃ­ tÃº Ã³n gcÃ³ras.",
 
-"uploadlog"     => "liosta suaslódála",
-"uploadlogpage" => "Liosta_suaslódála",
-"uploadlogpagetext" => "Is liosta é seo a leanas de na suaslódálacha comhad is deireanacha.
-Is am an friothálaí (UTC) iad na hamanna atá anseo thíos.
+"uploadlog"     => "liosta suaslÃ³dÃ¡la",
+"uploadlogpage" => "Liosta_suaslÃ³dÃ¡la",
+"uploadlogpagetext" => "Is liosta Ã© seo a leanas de na suaslÃ³dÃ¡lacha comhad is deireanacha.
+Is am an friothÃ¡laÃ­ (UTC) iad na hamanna atÃ¡ anseo thÃ­os.
 <ul>
 </ul>
 ",
 "filename"      => "Ainm comhaid",
-"filedesc"      => "Achoimriú",
-"filestatus" => "Stádas cóipchirt",
+"filedesc"      => "AchoimriÃº",
+"filestatus" => "StÃ¡das cÃ³ipchirt",
 "filesource" => "Foinse",
-"affirmation"   => "Dearbhaím go aontaíonn coimeádaí cóipchirt an comhaid seo
-chun é a ceadúnaigh de réir na téarmaí an $1.",
-"copyrightpage" => "Vicipéid:Cóipchearta",
-"copyrightpagename" => "Cóipcheart Vicipéide",
-"uploadedfiles" => "Comhaid suaslódálaithe",
-"noaffirmation" => "Caithfidh tú a dearbhaigh go nach sáraíonn do suaslódáil
-aon cóipchearta.",
-"ignorewarning" => "Scaoil tharat an rabhadh agus sábháil an comhad ar aon chaoi.",
-"minlength"     => "Caithfidh trí litreacha ar a laghad bheith ann sa ainm íomhá.",
-"badfilename"   => "D'athraíodh an ainm íomhá go \"$1\".",
-"badfiletype"   => "Níl \".$1\" ina formáid comhaid íomhá inmholta.",
-"largefile"     => "Moltar go nach téann comhaid íomhá thar 100k i méid.",
-"successfulupload" => "Suaslódáil rathúil",
-"fileuploaded"  => "Suaslódáladh an comhad \"$1\" go rathúil.
-Lean an nasc seo: ($2) chuig an leathanach cuir sios agus líon isteach
-eolas mar gheall ar an comhad, mar shampla cá bhfuair tú é, cathain a 
-chruthaíodh é agus rud eile ar bith tá an fhios agat faoi.",
-"uploadwarning" => "Rabhadh suaslódála",
-"savefile"      => "Sábháil comhad",
-"uploadedimage" => "suaslódálaithe \"$1\"",
+"affirmation"   => "DearbhaÃ­m go aontaÃ­onn coimeÃ¡daÃ­ cÃ³ipchirt an comhaid seo
+chun Ã© a ceadÃºnaigh de rÃ©ir na tÃ©armaÃ­ an $1.",
+"copyrightpage" => "VicipÃ©id:CÃ³ipchearta",
+"copyrightpagename" => "CÃ³ipcheart VicipÃ©ide",
+"uploadedfiles" => "Comhaid suaslÃ³dÃ¡laithe",
+"noaffirmation" => "Caithfidh tÃº a dearbhaigh go nach sÃ¡raÃ­onn do suaslÃ³dÃ¡il
+aon cÃ³ipchearta.",
+"ignorewarning" => "Scaoil tharat an rabhadh agus sÃ¡bhÃ¡il an comhad ar aon chaoi.",
+"minlength"     => "Caithfidh trÃ­ litreacha ar a laghad bheith ann sa ainm Ã­omhÃ¡.",
+"badfilename"   => "D'athraÃ­odh an ainm Ã­omhÃ¡ go \"$1\".",
+"badfiletype"   => "NÃ­l \".$1\" ina formÃ¡id comhaid Ã­omhÃ¡ inmholta.",
+"largefile"     => "Moltar go nach tÃ©ann comhaid Ã­omhÃ¡ thar 100k i mÃ©id.",
+"successfulupload" => "SuaslÃ³dÃ¡il rathÃºil",
+"fileuploaded"  => "SuaslÃ³dÃ¡ladh an comhad \"$1\" go rathÃºil.
+Lean an nasc seo: ($2) chuig an leathanach cuir sios agus lÃ­on isteach
+eolas mar gheall ar an comhad, mar shampla cÃ¡ bhfuair tÃº Ã©, cathain a 
+chruthaÃ­odh Ã© agus rud eile ar bith tÃ¡ an fhios agat faoi.",
+"uploadwarning" => "Rabhadh suaslÃ³dÃ¡la",
+"savefile"      => "SÃ¡bhÃ¡il comhad",
+"uploadedimage" => "suaslÃ³dÃ¡laithe \"$1\"",
 
 # Image list
 #
-"imagelist"     => "Liosta íomhánna",
-"imagelisttext" => "Is liosta é seo a leanas de $1 íomhánna, curtha in eagar le $2.",
-"getimagelist"  => "ag fáil an liosta íomhánna",
-"ilshowmatch"   => "Taispeáin na íomhánna le ainmneacha maith go léir",
+"imagelist"     => "Liosta Ã­omhÃ¡nna",
+"imagelisttext" => "Is liosta Ã© seo a leanas de $1 Ã­omhÃ¡nna, curtha in eagar le $2.",
+"getimagelist"  => "ag fÃ¡il an liosta Ã­omhÃ¡nna",
+"ilshowmatch"   => "TaispeÃ¡in na Ã­omhÃ¡nna le ainmneacha maith go lÃ©ir",
 "ilsubmit"      => "Cuardaigh",
-"showlast"      => "Taispeáin na $1 íomhánna seo caite, curtha in eagar le $2.",
-"all"           => "go léir",
-"byname"        => "de réir hainm",
-"bydate"        => "de réir dáta",
-"bysize"        => "de réir méid",
+"showlast"      => "TaispeÃ¡in na $1 Ã­omhÃ¡nna seo caite, curtha in eagar le $2.",
+"all"           => "go lÃ©ir",
+"byname"        => "de rÃ©ir hainm",
+"bydate"        => "de rÃ©ir dÃ¡ta",
+"bysize"        => "de rÃ©ir mÃ©id",
 "imgdelete"     => "scrios",
 "imgdesc"       => "cur",
-"imglegend"     => "Eochair: (cur) = taispeáin/athraigh cur síos an íomhá.",
-"imghistory"    => "Stair an íomhá",
+"imglegend"     => "Eochair: (cur) = taispeÃ¡in/athraigh cur sÃ­os an Ã­omhÃ¡.",
+"imghistory"    => "Stair an Ã­omhÃ¡",
 "revertimg"     => "ath",
 "deleteimg"     => "scr",
-"imghistlegend" => "Legend: (rea) = seo é an eagrán reatha, (scr) = scrios an
-sean-eagrán seo, (ath) = athúsáid an sean-eagrán seo.
-<br><i>Bruigh an dáta chun feach ar an íomhá mar a suaslódálaíodh é ar an dáta sin</i>.",
-"imagelinks"    => "Naisc íomhá",
-"linkstoimage"  => "Is iad na leathanaigh seo a leanas a nascaíonn chuig an íomhá seo:",
-"nolinkstoimage" => "Níl aon leathanach ann a nascaíonn chuig an íomhá seo.",
+"imghistlegend" => "Legend: (rea) = seo Ã© an eagrÃ¡n reatha, (scr) = scrios an
+sean-eagrÃ¡n seo, (ath) = athÃºsÃ¡id an sean-eagrÃ¡n seo.
+<br><i>Bruigh an dÃ¡ta chun feach ar an Ã­omhÃ¡ mar a suaslÃ³dÃ¡laÃ­odh Ã© ar an dÃ¡ta sin</i>.",
+"imagelinks"    => "Naisc Ã­omhÃ¡",
+"linkstoimage"  => "Is iad na leathanaigh seo a leanas a nascaÃ­onn chuig an Ã­omhÃ¡ seo:",
+"nolinkstoimage" => "NÃ­l aon leathanach ann a nascaÃ­onn chuig an Ã­omhÃ¡ seo.",
 
 # Statistics
 #
 "statistics"    => "Staitistic",
-"sitestats"     => "Staitistic suímh",
-"userstats"     => "Staitistic úsáideora",
-"sitestatstext" => "Is é <b>$1</b> an méid leathanach in iomlán san bunachar sonraí.
-Cuirtear san áireamh \"plé\"-leathanaigh, leathanaigh faoi Vicipéid, ailt \"stumpaí\"
-íosmhéadacha, athsheolaidh, agus leathanaigh eile a nach cáileann mar ailt.
-Ag fágáil na leathanaigh seo as, tá <b>$2</b> leathanaigh ann atá ailt dlisteanacha, is dócha.<p>
-In iomlán bhí <b>$3</b> radhairc leathanaigh, agus <b>$4</b> athruithe leathanaigh
-ó thus athchóiriú na hoideasra (25 Eanáir, 2004).
-Sin é <b>$5</b> athruithe ar meán do gach leathanach, agus <b>$6</b> radhairc do gach athrú.",
-"userstatstext" => "Tá <b>$1</b> úsáideoirí cláraithe ann.
-Is iad <b>$2</b> de na úsáideoirí seo ina riarthóirí (féach ar $3).",
+"sitestats"     => "Staitistic suÃ­mh",
+"userstats"     => "Staitistic ÃºsÃ¡ideora",
+"sitestatstext" => "Is Ã© <b>$1</b> an mÃ©id leathanach in iomlÃ¡n san bunachar sonraÃ­.
+Cuirtear san Ã¡ireamh \"plÃ©\"-leathanaigh, leathanaigh faoi VicipÃ©id, ailt \"stumpaÃ­\"
+Ã­osmhÃ©adacha, athsheolaidh, agus leathanaigh eile a nach cÃ¡ileann mar ailt.
+Ag fÃ¡gÃ¡il na leathanaigh seo as, tÃ¡ <b>$2</b> leathanaigh ann atÃ¡ ailt dlisteanacha, is dÃ³cha.<p>
+In iomlÃ¡n bhÃ­ <b>$3</b> radhairc leathanaigh, agus <b>$4</b> athruithe leathanaigh
+Ã³ thus athchÃ³iriÃº na hoideasra (25 EanÃ¡ir, 2004).
+Sin Ã© <b>$5</b> athruithe ar meÃ¡n do gach leathanach, agus <b>$6</b> radhairc do gach athrÃº.",
+"userstatstext" => "TÃ¡ <b>$1</b> ÃºsÃ¡ideoirÃ­ clÃ¡raithe ann.
+Is iad <b>$2</b> de na ÃºsÃ¡ideoirÃ­ seo ina riarthÃ³irÃ­ (fÃ©ach ar $3).",
 
 # Maintenance Page
 #
-"maintenance"       => "Leathanach coinneála",
-"maintnancepagetext"    => "Sa leathanach seo faightear uirlisí éagsúla don gnáthchoinneáil. Is féidir le roinnt 
-de na feidhmeanna seo an bunachar sonraí a cuir strus ar, mar sin ná athbhruigh athlódáil tar éis gach mír a 
-chríochnaíonn tú ;-)",
-"maintenancebacklink"   => "Ar ais go Leathanach Coinneála",
-"disambiguations"   => "Leathanaigh easathbhríochais",
-"disambiguationspage"   => "Vicipéid:Naisc_go_leathanaigh_easathbhríochais",
-"disambiguationstext"   => "Nascaíonn na ailt seo a leanas go <i>leathanach easathbhríochais</i>. Ba chóir dóibh nasc a 
-dhéanamh leis an ábhar oiriúnach ina áit.<br>Tugtar an teideal easathbhríochais ar leathanach má bhfuil násc aige 
-ó $1.<br><i>Ní</i> cuirtear naisc ó ranna eile ar an liosta seo.",
-"doubleredirects"   => "Athsheolaidh Dúbailte",
-"doubleredirectstext"   => "<b>Tabhair faoi deara:</b> B'fheidir go bhfuil toraidh bréagacha ar an liosta seo. 
-De ghnáth cíallaíonn sé sin go bhfuil téacs breise le naisc thíos san chéad #REDIRECT.<br>\n Sa gach sraith tá 
-náisc chuig an chéad is an dara athsheoladh, chomh maith le chéad líne an dara téacs athsheolaidh. De ghnáth 
-tugann sé sin an sprioc-alt \"fíor\".",
+"maintenance"       => "Leathanach coinneÃ¡la",
+"maintnancepagetext"    => "Sa leathanach seo faightear uirlisÃ­ Ã©agsÃºla don gnÃ¡thchoinneÃ¡il. Is fÃ©idir le roinnt 
+de na feidhmeanna seo an bunachar sonraÃ­ a cuir strus ar, mar sin nÃ¡ athbhruigh athlÃ³dÃ¡il tar Ã©is gach mÃ­r a 
+chrÃ­ochnaÃ­onn tÃº ;-)",
+"maintenancebacklink"   => "Ar ais go Leathanach CoinneÃ¡la",
+"disambiguations"   => "Leathanaigh easathbhrÃ­ochais",
+"disambiguationspage"   => "VicipÃ©id:Naisc_go_leathanaigh_easathbhrÃ­ochais",
+"disambiguationstext"   => "NascaÃ­onn na ailt seo a leanas go <i>leathanach easathbhrÃ­ochais</i>. Ba chÃ³ir dÃ³ibh nasc a 
+dhÃ©anamh leis an Ã¡bhar oiriÃºnach ina Ã¡it.<br>Tugtar an teideal easathbhrÃ­ochais ar leathanach mÃ¡ bhfuil nÃ¡sc aige 
+Ã³ $1.<br><i>NÃ­</i> cuirtear naisc Ã³ ranna eile ar an liosta seo.",
+"doubleredirects"   => "Athsheolaidh DÃºbailte",
+"doubleredirectstext"   => "<b>Tabhair faoi deara:</b> B'fheidir go bhfuil toraidh brÃ©agacha ar an liosta seo. 
+De ghnÃ¡th cÃ­allaÃ­onn sÃ© sin go bhfuil tÃ©acs breise le naisc thÃ­os san chÃ©ad #REDIRECT.<br>\n Sa gach sraith tÃ¡ 
+nÃ¡isc chuig an chÃ©ad is an dara athsheoladh, chomh maith le chÃ©ad lÃ­ne an dara tÃ©acs athsheolaidh. De ghnÃ¡th 
+tugann sÃ© sin an sprioc-alt \"fÃ­or\".",
 "brokenredirects"   => "Athsheolaidh Briste",
-"brokenredirectstext"   => "Is iad na athsheolaidh seo a leanas a nascaíonn go ailt a nach bhfuil ann.",
-"selflinks"     => "Leathanaigh le féin-naisc",
-"selflinkstext"     => "Sna leathanaigh seo a leanas tá naisc a nascaíonn chuig an leathanach céanna é fhéin. Seo é flúirseach.",
-"mispeelings"           => "Leathanaigh mílitrithe",
-"mispeelingstext"               => "Sna leathanaigh seo a leanas tá mílitriú coiteanta, atá san liosta ar $1. The correct spelling might be given (like this).",
+"brokenredirectstext"   => "Is iad na athsheolaidh seo a leanas a nascaÃ­onn go ailt a nach bhfuil ann.",
+"selflinks"     => "Leathanaigh le fÃ©in-naisc",
+"selflinkstext"     => "Sna leathanaigh seo a leanas tÃ¡ naisc a nascaÃ­onn chuig an leathanach cÃ©anna Ã© fhÃ©in. Seo Ã© flÃºirseach.",
+"mispeelings"           => "Leathanaigh mÃ­litrithe",
+"mispeelingstext"               => "Sna leathanaigh seo a leanas tÃ¡ mÃ­litriÃº coiteanta, atÃ¡ san liosta ar $1. The correct spelling might be given (like this).",
 "mispeelingspage"       => "List of common misspellings",
 "missinglanguagelinks"  => "Naisc Teangacha Ar Iarraidh",
 "missinglanguagelinksbutton"    => "Cuardaigh ar naisc teangacha ar iarraidh do",
-"missinglanguagelinkstext"      => "<i>Ní</i> nascaíonn na ailt seo chuig a macasamhail sa $1. <i>Ní</i> taispeántar athsheolaidh nó foleathanaigh.",
+"missinglanguagelinkstext"      => "<i>NÃ­</i> nascaÃ­onn na ailt seo chuig a macasamhail sa $1. <i>NÃ­</i> taispeÃ¡ntar athsheolaidh nÃ³ foleathanaigh.",
 
 
 # Miscellaneous special pages
 #
-"orphans"       => "Leathanaigh dílleachtacha",
-"lonelypages"   => "Leathanaigh dílleachtacha",
-"unusedimages"  => "Íomhánna tréigthe",
+"orphans"       => "Leathanaigh dÃ­lleachtacha",
+"lonelypages"   => "Leathanaigh dÃ­lleachtacha",
+"unusedimages"  => "ÃomhÃ¡nna trÃ©igthe",
 "popularpages"  => "Leathanaigh coitianta",
 "nviews"        => "$1 radhairc",
-"wantedpages"   => "Leathanaigh de dhíth",
+"wantedpages"   => "Leathanaigh de dhÃ­th",
 "nlinks"        => "$1 naisc",
-"allpages"      => "Na leathanaigh go léir",
-"randompage"    => "Leathanach fánach",
+"allpages"      => "Na leathanaigh go lÃ©ir",
+"randompage"    => "Leathanach fÃ¡nach",
 "shortpages"    => "Leathanaigh gearra",
 "longpages"     => "Leathanaigh fada",
-"listusers"     => "Liosta úsáideoirí",
+"listusers"     => "Liosta ÃºsÃ¡ideoirÃ­",
 "specialpages"  => "Leathanaigh speisialta",
-"spheading"     => "Leathanaigh speisialta go gach úsáideoir",
-"sysopspheading" => "Amháin do ceannasaithe",
-"developerspheading" => "Amháin do cláraitheoirí",
+"spheading"     => "Leathanaigh speisialta go gach ÃºsÃ¡ideoir",
+"sysopspheading" => "AmhÃ¡in do ceannasaithe",
+"developerspheading" => "AmhÃ¡in do clÃ¡raitheoirÃ­",
 "protectpage"   => "Cuir glas ar leathanach",
 "recentchangeslinked" => "Athruithe gaolmharas",
-"rclsub"        => "(go leathanaigh nasctha ó \"$1\")",
+"rclsub"        => "(go leathanaigh nasctha Ã³ \"$1\")",
 "debug"         => "Bain fabhtanna",
 "newpages"      => "Leathanaigh nua",
 "ancientpages"      => "Na leathanaigh is sine",
 "intl"      => "Naisc idirtheangacha",
 "movethispage"  => "Aistrigh an leathanach seo",
-"unusedimagestext" => "<p>Tabhair faoi deara go féidir le líonshuímh
-eile, m.sh. na Vicipéidí eile, naisc a dhéanamh le íomha le URL díreach, 
-agus mar sin beidh siad ar an liosta seo fós cé go bhfuil an íomhá 
-in úsáid anois.",
-"booksources"   => "Foinsí leabhar",
-"booksourcetext" => "Seo é liosta anseo thíos go suímh eile a
-díolann leabhair nua agus athdhíolta, agus tá seans go bhfuil eolas
-breise acu faoina leabhair a bhfuil tú ag tnuth leis.
-Níl Vicipéid comhcheangaltha le aon de na gnóthaí seo, agus ní
-aontú leo é an liosta seo.",
+"unusedimagestext" => "<p>Tabhair faoi deara go fÃ©idir le lÃ­onshuÃ­mh
+eile, m.sh. na VicipÃ©idÃ­ eile, naisc a dhÃ©anamh le Ã­omha le URL dÃ­reach, 
+agus mar sin beidh siad ar an liosta seo fÃ³s cÃ© go bhfuil an Ã­omhÃ¡ 
+in ÃºsÃ¡id anois.",
+"booksources"   => "FoinsÃ­ leabhar",
+"booksourcetext" => "Seo Ã© liosta anseo thÃ­os go suÃ­mh eile a
+dÃ­olann leabhair nua agus athdhÃ­olta, agus tÃ¡ seans go bhfuil eolas
+breise acu faoina leabhair a bhfuil tÃº ag tnuth leis.
+NÃ­l VicipÃ©id comhcheangaltha le aon de na gnÃ³thaÃ­ seo, agus nÃ­
+aontÃº leo Ã© an liosta seo.",
 "alphaindexline" => "$1 go $2",
 
 # Email this user
 #
-"mailnologin"   => "Níl aon seoladh maith ann",
-"mailnologintext" => "Caithfidh tú bheith  <a href=\"" .
+"mailnologin"   => "NÃ­l aon seoladh maith ann",
+"mailnologintext" => "Caithfidh tÃº bheith  <a href=\"" .
   wfLocalUrl( "Speisialta:Userlogin" ) . "\">logtha ann</a>
-agus bheith le seoladh ríomhphoist bhailí i do chuid <a href=\"" .
+agus bheith le seoladh rÃ­omhphoist bhailÃ­ i do chuid <a href=\"" .
   wfLocalUrl( "Speisialta:Preferences" ) . "\">socruithe</a>
-más mian leat ríomhphost a chur go úsáideoirí eile.",
-"emailuser"     => "Cuir ríomhphost chuig an úsáideoir seo",
-"emailpage"     => "Seol ríomhphost",
-"emailpagetext" => "Ma d'iontráil an úsáideoir seo seoladh ríomhphoist bhailí 
-ina socruithe úsáideora, cuirfidh an foirm anseo thíos teactaireacht amháin do.
-Beidh do seoladh ríomhphoist, a d'iontráil tú i do socruithe úsáideora, ann
-san bhosca \"Ó\" an riomhphoist, agus mar sin ba féidir léis an faighteoir ríomhphost a chur leatsa.",
-"noemailtitle"  => "Níl aon seoladh ríomhphoist ann",
-"noemailtext"   => "Níor thug an úsáideoir seo seoladh ríomhphoist bhailí, nó shocraigh sé nach
-mian leis ríomhphost a fháil ón úsáideoirí eile.",
-"emailfrom"     => "Ó",
+mÃ¡s mian leat rÃ­omhphost a chur go ÃºsÃ¡ideoirÃ­ eile.",
+"emailuser"     => "Cuir rÃ­omhphost chuig an ÃºsÃ¡ideoir seo",
+"emailpage"     => "Seol rÃ­omhphost",
+"emailpagetext" => "Ma d'iontrÃ¡il an ÃºsÃ¡ideoir seo seoladh rÃ­omhphoist bhailÃ­ 
+ina socruithe ÃºsÃ¡ideora, cuirfidh an foirm anseo thÃ­os teactaireacht amhÃ¡in do.
+Beidh do seoladh rÃ­omhphoist, a d'iontrÃ¡il tÃº i do socruithe ÃºsÃ¡ideora, ann
+san bhosca \"Ã“\" an riomhphoist, agus mar sin ba fÃ©idir lÃ©is an faighteoir rÃ­omhphost a chur leatsa.",
+"noemailtitle"  => "NÃ­l aon seoladh rÃ­omhphoist ann",
+"noemailtext"   => "NÃ­or thug an ÃºsÃ¡ideoir seo seoladh rÃ­omhphoist bhailÃ­, nÃ³ shocraigh sÃ© nach
+mian leis rÃ­omhphost a fhÃ¡il Ã³n ÃºsÃ¡ideoirÃ­ eile.",
+"emailfrom"     => "Ã“",
 "emailto"       => "Go",
-"emailsubject"  => "Ábhar",
+"emailsubject"  => "Ãbhar",
 "emailmessage"  => "Teachtaireacht",
-"emailsend"     => "Cuir an ríomhphost",
-"emailsent"     => "Ríomhphost curtha",
-"emailsenttext" => "Cuireadh do teachtaireacht ríomhphoist go ráthúil.",
+"emailsend"     => "Cuir an rÃ­omhphost",
+"emailsent"     => "RÃ­omhphost curtha",
+"emailsenttext" => "Cuireadh do teachtaireacht rÃ­omhphoist go rÃ¡thÃºil.",
 
 # Watchlist
 #
 "watchlist"     => "Mo liosta faire",
-"watchlistsub"  => "(don úsáideoir \"$1\")",
-"nowatchlist"   => "Níl aon rud i do liosta faire.",
-"watchnologin"  => "Níl tú logtha ann",
-"watchnologintext"  => "Caithfidh tú bheith <a href=\"" .
+"watchlistsub"  => "(don ÃºsÃ¡ideoir \"$1\")",
+"nowatchlist"   => "NÃ­l aon rud i do liosta faire.",
+"watchnologin"  => "NÃ­l tÃº logtha ann",
+"watchnologintext"  => "Caithfidh tÃº bheith <a href=\"" .
   wfLocalUrl( "Speisialta:Userlogin" ) . "\">logtha ann</a>
 chun do liosta faire a athraigh.",
 "addedwatch"    => "Curtha san liosta faire",
 "addedwatchtext" => "Cuireadh an leathanach \"$1\" le do <a href=\"" .
   wfLocalUrl( "Speisialta:Watchlist" ) . "\">liosta faire</a>.
-Cuirfear athruithe amach anseo don leathanach sin agus a leathanach phlé leis an liosta ann,
-agus beidh <b>cló dubh</b> ar a teideal san <a href=\"" .
+Cuirfear athruithe amach anseo don leathanach sin agus a leathanach phlÃ© leis an liosta ann,
+agus beidh <b>clÃ³ dubh</b> ar a teideal san <a href=\"" .
   wfLocalUrl( "Speisialta:Recentchanges" ) . "\">liosta den athruithe deireanacha</a> sa chaoi go 
-bhfeicfeá iad go héasca.</p>
+bhfeicfeÃ¡ iad go hÃ©asca.</p>
 
-<p>Más mian leat an leathanach a bain amach do liosta faire níos déanaí, brúigh ar \"Stop ag faire\" ar an taobhbharra.",
-"removedwatch"  => "Bainthe amach ón liosta faire",
-"removedwatchtext" => "Baineadh an leathanach \"$1\" amach ó do liosta faire.",
+<p>MÃ¡s mian leat an leathanach a bain amach do liosta faire nÃ­os dÃ©anaÃ­, brÃºigh ar \"Stop ag faire\" ar an taobhbharra.",
+"removedwatch"  => "Bainthe amach Ã³n liosta faire",
+"removedwatchtext" => "Baineadh an leathanach \"$1\" amach Ã³ do liosta faire.",
 "watchthispage" => "Faire ar an leathanach seo",
 "unwatchthispage" => "Stop ag faire",
-"notanarticle"  => "Níl alt ann",
-"watchnochange" => "Níor athraíodh aon de na leathanaigh i do liosta faire taobh istigh den am socraithe.",
-"watchdetails" => "(Tá tú ag faire ar $1 leathanaigh chomh maith leis na leathanaigh phlé;
-le déanach athraíodh $2 leathanaigh in iomlán;
+"notanarticle"  => "NÃ­l alt ann",
+"watchnochange" => "NÃ­or athraÃ­odh aon de na leathanaigh i do liosta faire taobh istigh den am socraithe.",
+"watchdetails" => "(TÃ¡ tÃº ag faire ar $1 leathanaigh chomh maith leis na leathanaigh phlÃ©;
+le dÃ©anach athraÃ­odh $2 leathanaigh in iomlÃ¡n;
 $3...
 <a href='$4'>athraigh do liosta</a>.)",
-"watchmethod-recent" => "ag seiceáil na athruithe deireanacha do leathanaigh faire",
-"watchmethod-list" => "ag seiceáil na leathanaigh faire do athruithe deireanacha",
-"removechecked" => "Bain míreanna marcálaithe amach as do liosta faire",
-"watchlistcontains" => "Tá $1 leathanaigh i do liosta faire.",
+"watchmethod-recent" => "ag seiceÃ¡il na athruithe deireanacha do leathanaigh faire",
+"watchmethod-list" => "ag seiceÃ¡il na leathanaigh faire do athruithe deireanacha",
+"removechecked" => "Bain mÃ­reanna marcÃ¡laithe amach as do liosta faire",
+"watchlistcontains" => "TÃ¡ $1 leathanaigh i do liosta faire.",
 "watcheditlist" => "Seo liosta na leathanaigh i do liosta faire, in ord aibitre. 
-Marcáil boscaí de na leathanaigh atá le baint amach an liosta faire, agus bruigh 
+MarcÃ¡il boscaÃ­ de na leathanaigh atÃ¡ le baint amach an liosta faire, agus bruigh 
 an cnaipe 'bain amach le marcanna' ag bun an leathanaigh.",
-"removingchecked" => "Ag baint amach na míreanna ón liosta faire mar a iarraidh...",
-"couldntremove" => "Níor baineadh amach an mír '$1'...",
-"iteminvalidname" => "Fadhb leis an mír '$1', ainm neamhbhailí...",
+"removingchecked" => "Ag baint amach na mÃ­reanna Ã³n liosta faire mar a iarraidh...",
+"couldntremove" => "NÃ­or baineadh amach an mÃ­r '$1'...",
+"iteminvalidname" => "Fadhb leis an mÃ­r '$1', ainm neamhbhailÃ­...",
 "wlnote" => "Seo iad na $1 athruithe seo caite sna <b>$2</b> uaire seo caite.",
-"wlshowlast" => "Taispeáin na míreanna deireanacha $1 uaire $2 laethanta $3", #FIXME
+"wlshowlast" => "TaispeÃ¡in na mÃ­reanna deireanacha $1 uaire $2 laethanta $3", #FIXME
 
 # Delete/protect/revert
 #
 "deletepage"    => "Scrios leathanach",
 "confirm"       => "Cinntigh",
-"excontent" => "sin a raibh an ábhar:",
-"exbeforeblank" => "sin a raibh an ábhar roimh an folmhadh:",
-"exblank" => "bhí an leathanach folamh",
+"excontent" => "sin a raibh an Ã¡bhar:",
+"exbeforeblank" => "sin a raibh an Ã¡bhar roimh an folmhadh:",
+"exblank" => "bhÃ­ an leathanach folamh",
 "confirmdelete" => "Cinntigh an scriosadh",
 "deletesub"     => "(Ag scriosadh \"$1\")",
-"historywarning" => "Aire: Ta stair ag an leathanach a bhfuil tú ar tí é a scrios: ",
-"confirmdeletetext" => "Tá tú ar tí leathanach nó íomhá a scrios, 
-chomh maith leis a chuid stair, ón bunachar sonraí. 
-Cinntigh go mian leis an méid seo a dhéanamh, go dtuigeann tú na
-iarmhairtaí, agus go ndéanann tú é dar leis [[Vicipéid:Polasaí]].",
-"confirmcheck"  => "Sea, is mian liom go fírinneach an rud seo a scrios.",
-"actioncomplete" => "Gníomh déanta",
-"deletedtext"   => "\"$1\" atá scriosaithe.
-Féach ar $2 chun cuntas den scriosadh deireanacha a fháil.",
+"historywarning" => "Aire: Ta stair ag an leathanach a bhfuil tÃº ar tÃ­ Ã© a scrios: ",
+"confirmdeletetext" => "TÃ¡ tÃº ar tÃ­ leathanach nÃ³ Ã­omhÃ¡ a scrios, 
+chomh maith leis a chuid stair, Ã³n bunachar sonraÃ­. 
+Cinntigh go mian leis an mÃ©id seo a dhÃ©anamh, go dtuigeann tÃº na
+iarmhairtaÃ­, agus go ndÃ©anann tÃº Ã© dar leis [[VicipÃ©id:PolasaÃ­]].",
+"confirmcheck"  => "Sea, is mian liom go fÃ­rinneach an rud seo a scrios.",
+"actioncomplete" => "GnÃ­omh dÃ©anta",
+"deletedtext"   => "\"$1\" atÃ¡ scriosaithe.
+FÃ©ach ar $2 chun cuntas den scriosadh deireanacha a fhÃ¡il.",
 "deletedarticle" => "scriosadh \"$1\"",
 "dellogpage"    => "Cuntas_scriosaidh",
-"dellogpagetext" => "Seo é liosta de na scriosaidh is deireanacha. 
-Is am an friothálaí (UTC) iad na hamanna atá anseo thíos.
+"dellogpagetext" => "Seo Ã© liosta de na scriosaidh is deireanacha. 
+Is am an friothÃ¡laÃ­ (UTC) iad na hamanna atÃ¡ anseo thÃ­os.
 <ul>
 </ul>
 ",
 "deletionlog"   => "cuntas scriosaidh",
-"reverted"      => "Tá eagrán níos luaithe in úsáid anois",
-"deletecomment" => "Cúis do scriosadh",
-"imagereverted" => "D'éirigh le athúsáid go eagrán níos luath.",
+"reverted"      => "TÃ¡ eagrÃ¡n nÃ­os luaithe in ÃºsÃ¡id anois",
+"deletecomment" => "CÃºis do scriosadh",
+"imagereverted" => "D'Ã©irigh le athÃºsÃ¡id go eagrÃ¡n nÃ­os luath.",
 "rollback"      => "Aththosaigh athruithe", #FIXME
-"rollbacklink"  => "athúsáid",
-"rollbackfailed" => "Theipeadh an athúsáid",
-"cantrollback"  => "Ní féidir an athrú a áthúsáid; ba é údar an ailt an aon scríbhneoir atá ann.",
-"alreadyrolled" => "Ní féidir eagrán níos luath an leathanach [[$1]] 
-le [[Úsáideoir:$2|$2]] ([[Plé úsáideora:$2|Plé]]) a athúsáid; d'athraigh duine eile é fós nó 
-d'athúsáid duine eile eagrán níos luaithe fós.
+"rollbacklink"  => "athÃºsÃ¡id",
+"rollbackfailed" => "Theipeadh an athÃºsÃ¡id",
+"cantrollback"  => "NÃ­ fÃ©idir an athrÃº a Ã¡thÃºsÃ¡id; ba Ã© Ãºdar an ailt an aon scrÃ­bhneoir atÃ¡ ann.",
+"alreadyrolled" => "NÃ­ fÃ©idir eagrÃ¡n nÃ­os luath an leathanach [[$1]] 
+le [[ÃšsÃ¡ideoir:$2|$2]] ([[PlÃ© ÃºsÃ¡ideora:$2|PlÃ©]]) a athÃºsÃ¡id; d'athraigh duine eile Ã© fÃ³s nÃ³ 
+d'athÃºsÃ¡id duine eile eagrÃ¡n nÃ­os luaithe fÃ³s.
 
-Ba é [[Úsáideoir:$3|$3]] ([[Plé úsáideora:$3|Plé]]) an té a rinne an athrú seo caite. ",
+Ba Ã© [[ÃšsÃ¡ideoir:$3|$3]] ([[PlÃ© ÃºsÃ¡ideora:$3|PlÃ©]]) an tÃ© a rinne an athrÃº seo caite. ",
 #   only shown if there is an edit comment
-"editcomment" => "Seo a raibh an mínithe athraithe: \"<i>$1</i>\".", 
-"revertpage"    => "D'athúsáideadh an athrú seo caite le $1",
+"editcomment" => "Seo a raibh an mÃ­nithe athraithe: \"<i>$1</i>\".", 
+"revertpage"    => "D'athÃºsÃ¡ideadh an athrÃº seo caite le $1",
 "protectlogpage" => "Cuntas_cosanta",
-"protectlogtext" => "Seo é liosta de glais a cuireadh ar / baineadh de leathanaigh.
-Féach ar [[$wgMetaNamespace:Leathanach faoi ghlas]] chun níos mó eolais a fháil.",
+"protectlogtext" => "Seo Ã© liosta de glais a cuireadh ar / baineadh de leathanaigh.
+FÃ©ach ar [[$wgMetaNamespace:Leathanach faoi ghlas]] chun nÃ­os mÃ³ eolais a fhÃ¡il.",
 "protectedarticle" => "faoi ghlas [[$1]]",
 "unprotectedarticle" => "gan ghlas [[$1]]",
 
 # Undelete
 "undelete" => "Cuir leathanach scriosaithe ar ais",
-"undeletepage" => "Féach ar agus cuir ar ais leathanaigh scriosaithe",
-"undeletepagetext" => "Scriosaíodh na leathanaigh seo a leanas cheana, ach
-tá síad ann fós san cartlann agus is féidir iad a cuir ar ais. 
-Ó am go ham, is féidir leis an cartlann bheith folmhaithe.",
+"undeletepage" => "FÃ©ach ar agus cuir ar ais leathanaigh scriosaithe",
+"undeletepagetext" => "ScriosaÃ­odh na leathanaigh seo a leanas cheana, ach
+tÃ¡ sÃ­ad ann fÃ³s san cartlann agus is fÃ©idir iad a cuir ar ais. 
+Ã“ am go ham, is fÃ©idir leis an cartlann bheith folmhaithe.",
 "undeletearticle" => "Cuir alt scriosaithe ar ais",
 "undeleterevisions" => "Cuireadh $1 athbhreithniuthe sa chartlann",
-"undeletehistory" => "Má chuirfeá ab leathanach ar ais, cuirfear ar ais gach athbhreithniú chuig an stair.
-Má chruthaíodh leathanach nua leis an ainm céanna ó shin an scriosadh, taispeáinfear
-na sean-athruithe san stair roimhe seo, agus ní athshuighfear an eagrán reatha an leathanaigh go huathoibríoch.",
-"undeleterevision" => "Athbhreithniú scriosaithe den dáta $1",
+"undeletehistory" => "MÃ¡ chuirfeÃ¡ ab leathanach ar ais, cuirfear ar ais gach athbhreithniÃº chuig an stair.
+MÃ¡ chruthaÃ­odh leathanach nua leis an ainm cÃ©anna Ã³ shin an scriosadh, taispeÃ¡infear
+na sean-athruithe san stair roimhe seo, agus nÃ­ athshuighfear an eagrÃ¡n reatha an leathanaigh go huathoibrÃ­och.",
+"undeleterevision" => "AthbhreithniÃº scriosaithe den dÃ¡ta $1",
 "undeletebtn" => "Cuir ar ais!",
 "undeletedarticle" => "cuireadh \"$1\" ar ais",
-"undeletedtext"   => "Cuireadh an alt [[$1]] ar ais go rathúil.
-Féach ar [[Vicipéid:Cuntas_scriosaidh]] chun cuntas de scriosaidh agus athchóirithe deireanacha a fháil.",
+"undeletedtext"   => "Cuireadh an alt [[$1]] ar ais go rathÃºil.
+FÃ©ach ar [[VicipÃ©id:Cuntas_scriosaidh]] chun cuntas de scriosaidh agus athchÃ³irithe deireanacha a fhÃ¡il.",
 
 # Contributions
 #
-"contributions" => "Dréachtaí úsáideora",
-"mycontris" => "Mo dréachtaí",
+"contributions" => "DrÃ©achtaÃ­ ÃºsÃ¡ideora",
+"mycontris" => "Mo drÃ©achtaÃ­",
 "contribsub"    => "Do $1",
-"nocontribs"    => "Níor bhfuarthas aon athrú a raibh cosúil le na crítéir seo.",
-"ucnote"        => "Is iad seo thíos na <b>$1</b> athruithe is deireanaí an úsáideora sna <b>$2</b> lae seo caite.",
-"uclinks"       => "Féach ar na $1 athruithe is deireanaí; féach ar na $2 lae seo caite.",
+"nocontribs"    => "NÃ­or bhfuarthas aon athrÃº a raibh cosÃºil le na crÃ­tÃ©ir seo.",
+"ucnote"        => "Is iad seo thÃ­os na <b>$1</b> athruithe is deireanaÃ­ an ÃºsÃ¡ideora sna <b>$2</b> lae seo caite.",
+"uclinks"       => "FÃ©ach ar na $1 athruithe is deireanaÃ­; fÃ©ach ar na $2 lae seo caite.",
 "uctop"     => " (barr)" ,
 
 # What links here
 #
-"whatlinkshere" => "Cad a nascaíonn anseo",
-"notargettitle" => "Níl aon sprioc ann",
-"notargettext"  => "Níor thug tú leathanach nó úsáideoir sprice 
-chun an gníomh seo a dhéanamh ar.",
+"whatlinkshere" => "Cad a nascaÃ­onn anseo",
+"notargettitle" => "NÃ­l aon sprioc ann",
+"notargettext"  => "NÃ­or thug tÃº leathanach nÃ³ ÃºsÃ¡ideoir sprice 
+chun an gnÃ­omh seo a dhÃ©anamh ar.",
 "linklistsub"   => "(Liosta nasc)",
-"linkshere"     => "Nascaíonn na leathanaigh seo a leanas chuig an leathanach seo:",
-"nolinkshere"   => "Ní nascaíonn aon leathanach chuig an leathanach seo.",
+"linkshere"     => "NascaÃ­onn na leathanaigh seo a leanas chuig an leathanach seo:",
+"nolinkshere"   => "NÃ­ nascaÃ­onn aon leathanach chuig an leathanach seo.",
 "isredirect"    => "Leathanach athsheolaidh",
 
 # Block/unblock IP
 #
-"blockip"       => "Coisc úsáideoir",
-"blockiptext"   => "Úsáid an foirm anseo thíos chun bealach scríofa a chosc ó 
-seoladh IP nó ainm úsáideora áirithe.
-Is féidir leat an rud seo a dhéanamh amháin chun an chreachadóireacht a chosc, de réir
-mar a deirtear san [[Vicipéid:Polasaí|polasaí Vicipéide]].
-Líonaigh cúis áirithe anseo thíos (mar shampla, is féidir leat a luaigh
-leathanaigh áirithe a rinne an duine damáiste ar).",
-"ipaddress"     => "Seoladh IP / ainm úsáideora",
-"ipbreason"     => "Cúis",
-"ipbsubmit"     => "Coisc an úsáideoir seo",
-"badipaddress"  => "Níl aon úsáideoir ann leis an ainm seo.",
-"noblockreason" => "Caithfidh tú cúis a thabhairt don cosc.",
-"blockipsuccesssub" => "D'éirigh leis an cosc",
+"blockip"       => "Coisc ÃºsÃ¡ideoir",
+"blockiptext"   => "ÃšsÃ¡id an foirm anseo thÃ­os chun bealach scrÃ­ofa a chosc Ã³ 
+seoladh IP nÃ³ ainm ÃºsÃ¡ideora Ã¡irithe.
+Is fÃ©idir leat an rud seo a dhÃ©anamh amhÃ¡in chun an chreachadÃ³ireacht a chosc, de rÃ©ir
+mar a deirtear san [[VicipÃ©id:PolasaÃ­|polasaÃ­ VicipÃ©ide]].
+LÃ­onaigh cÃºis Ã¡irithe anseo thÃ­os (mar shampla, is fÃ©idir leat a luaigh
+leathanaigh Ã¡irithe a rinne an duine damÃ¡iste ar).",
+"ipaddress"     => "Seoladh IP / ainm ÃºsÃ¡ideora",
+"ipbreason"     => "CÃºis",
+"ipbsubmit"     => "Coisc an ÃºsÃ¡ideoir seo",
+"badipaddress"  => "NÃ­l aon ÃºsÃ¡ideoir ann leis an ainm seo.",
+"noblockreason" => "Caithfidh tÃº cÃºis a thabhairt don cosc.",
+"blockipsuccesssub" => "D'Ã©irigh leis an cosc",
 "blockipsuccesstext" => "Choisceadh \"$1\".
-<br>Féach ar [[Speisialta:Ipblocklist|Liosta coisc IP]] chun coisc a athbhreithnigh.",
-"unblockip"     => "Bain an cosc den úsáideoir",
-"unblockiptext" => "Úsáid an foirm anseo thíos chun bealach scríofa a thabhairt ar ais go seoladh 
-IP nó ainm úsáideora a raibh coiscthe roimhe seo.",
+<br>FÃ©ach ar [[Speisialta:Ipblocklist|Liosta coisc IP]] chun coisc a athbhreithnigh.",
+"unblockip"     => "Bain an cosc den ÃºsÃ¡ideoir",
+"unblockiptext" => "ÃšsÃ¡id an foirm anseo thÃ­os chun bealach scrÃ­ofa a thabhairt ar ais go seoladh 
+IP nÃ³ ainm ÃºsÃ¡ideora a raibh coiscthe roimhe seo.",
 "ipusubmit"     => "Bain an cosc den seoladh seo",
 "ipusuccess"    => "\"$1\" gan cosc",
-"ipblocklist"   => "Liosta seoltaí IP agus ainmneacha úsáideoirí coiscthe",
+"ipblocklist"   => "Liosta seoltaÃ­ IP agus ainmneacha ÃºsÃ¡ideoirÃ­ coiscthe",
 "blocklistline" => "$1, $2 a choisc$3",
 "blocklink"     => "Coisceadh",
 "unblocklink"   => "bain an cosc den",
-"contribslink"  => "dréachtaí",
-"autoblocker"   => "Coiscthe go sealadach go huathoibríoch de bhrí go roinneann tú an seoladh IP céanna le \"$1\". Cúis \"$2\".",
+"contribslink"  => "drÃ©achtaÃ­",
+"autoblocker"   => "Coiscthe go sealadach go huathoibrÃ­och de bhrÃ­ go roinneann tÃº an seoladh IP cÃ©anna le \"$1\". CÃºis \"$2\".",
 "blocklogpage"  => "Cuntas_coisc",
 "blocklogentry" => 'coisceadh "$1"',
-"blocklogtext"  => "Seo é cuntas de gníomhartha coisc úsáideoirí agus míchoisc úsáideoirí. Ní cuirtear
-seoltaí IP a raibh coiscthe go huathoibríoch ar an liosta seo. Féach ar an [[Speisialta:Ipblocklist|Liosta coisc IP]] chun
-liosta a fháil de coisc atá i bhfeidhm faoi láthair.",
+"blocklogtext"  => "Seo Ã© cuntas de gnÃ­omhartha coisc ÃºsÃ¡ideoirÃ­ agus mÃ­choisc ÃºsÃ¡ideoirÃ­. NÃ­ cuirtear
+seoltaÃ­ IP a raibh coiscthe go huathoibrÃ­och ar an liosta seo. FÃ©ach ar an [[Speisialta:Ipblocklist|Liosta coisc IP]] chun
+liosta a fhÃ¡il de coisc atÃ¡ i bhfeidhm faoi lÃ¡thair.",
 "unblocklogentry"   => 'baineadh an cosc den "$1"',
 
 # Developer tools
 #
-"lockdb"        => "Cuir glas ar an bunachar sonraí",
-"unlockdb"      => "Bain an glas den bunachar sonraí",
-"lockdbtext"    => "Má chuirfeá glas ar an bunachar sonraí, ní beidh cead ar aon úsáideoir
-leathanaigh a athraigh, a socruithe a athraigh, a liostaí faire a athraigh, nó rudaí eile a thrachtann le 
-athruithe san bunachar sonraí.
-Cinntigh go bhfuil an scéal seo d'intinn agat, is go bainfidh tú an glas den bunachar sonraí nuair a bhfuil 
-do chuid coinneála déanta.",
-"unlockdbtext"  => "Má bhainfeá an glas den bunachar sonraí, beidh ceat ag gach úsáideoirí aris
-na leathanaigh a cuir in eagar, a socruithe a athraigh, a liostaí faire a athraigh, agus rudaí eile
-a dhéanamh a thrachtann le athruithe san bunachar sonraí. 
-Cinntigh go bhfuil an scéal seo d'intinn agat.",
-"lockconfirm"   => "Sea, is mian liom glas a chur ar an bunachar sonraí.",
-"unlockconfirm" => "Sea, is mian liom glas a bhain den bunachar sonraí.",
-"lockbtn"       => "Cuir glas ar an bunachar sonraí",
-"unlockbtn"     => "Bain an glas den bunachar sonraí",
-"locknoconfirm" => "Níor mharcáil tú an bosca daingnithe.",
-"lockdbsuccesssub" => "D'éirigh le glas an bunachair sonraí",
-"unlockdbsuccesssub" => "Baineadh an glas den bunachar sonraí",
-"lockdbsuccesstext" => "Cuireadh glas ar an bunachar sonraí Vicipéide.
-<br>Cuimhnigh go caithfidh tú an glas a bhaint tar éis do chuid coinneála.",
-"unlockdbsuccesstext" => "Baineadh an glas den bunachar sonraí Vicipéide.",
+"lockdb"        => "Cuir glas ar an bunachar sonraÃ­",
+"unlockdb"      => "Bain an glas den bunachar sonraÃ­",
+"lockdbtext"    => "MÃ¡ chuirfeÃ¡ glas ar an bunachar sonraÃ­, nÃ­ beidh cead ar aon ÃºsÃ¡ideoir
+leathanaigh a athraigh, a socruithe a athraigh, a liostaÃ­ faire a athraigh, nÃ³ rudaÃ­ eile a thrachtann le 
+athruithe san bunachar sonraÃ­.
+Cinntigh go bhfuil an scÃ©al seo d'intinn agat, is go bainfidh tÃº an glas den bunachar sonraÃ­ nuair a bhfuil 
+do chuid coinneÃ¡la dÃ©anta.",
+"unlockdbtext"  => "MÃ¡ bhainfeÃ¡ an glas den bunachar sonraÃ­, beidh ceat ag gach ÃºsÃ¡ideoirÃ­ aris
+na leathanaigh a cuir in eagar, a socruithe a athraigh, a liostaÃ­ faire a athraigh, agus rudaÃ­ eile
+a dhÃ©anamh a thrachtann le athruithe san bunachar sonraÃ­. 
+Cinntigh go bhfuil an scÃ©al seo d'intinn agat.",
+"lockconfirm"   => "Sea, is mian liom glas a chur ar an bunachar sonraÃ­.",
+"unlockconfirm" => "Sea, is mian liom glas a bhain den bunachar sonraÃ­.",
+"lockbtn"       => "Cuir glas ar an bunachar sonraÃ­",
+"unlockbtn"     => "Bain an glas den bunachar sonraÃ­",
+"locknoconfirm" => "NÃ­or mharcÃ¡il tÃº an bosca daingnithe.",
+"lockdbsuccesssub" => "D'Ã©irigh le glas an bunachair sonraÃ­",
+"unlockdbsuccesssub" => "Baineadh an glas den bunachar sonraÃ­",
+"lockdbsuccesstext" => "Cuireadh glas ar an bunachar sonraÃ­ VicipÃ©ide.
+<br>Cuimhnigh go caithfidh tÃº an glas a bhaint tar Ã©is do chuid coinneÃ¡la.",
+"unlockdbsuccesstext" => "Baineadh an glas den bunachar sonraÃ­ VicipÃ©ide.",
 
 # SQL query
 #
 "asksql"        => "Ceist SQL",
-"asksqltext"    => "Úsáid an foirm anseo thíos chun ceist díreach a dhéanamh den bunachar sonraí Vicipéide. 
-Úsáid comharthaí athfhriotail singile ('mar sin') chun teorainn a chur le litriúla sraithe. Úsáid an gné seo go coigilteach.",
+"asksqltext"    => "ÃšsÃ¡id an foirm anseo thÃ­os chun ceist dÃ­reach a dhÃ©anamh den bunachar sonraÃ­ VicipÃ©ide. 
+ÃšsÃ¡id comharthaÃ­ athfhriotail singile ('mar sin') chun teorainn a chur le litriÃºla sraithe. ÃšsÃ¡id an gnÃ© seo go coigilteach.",
 "sqlislogged"   => "Tabhair faoi deara go cuirtear gach ceist i gcuntas.",
-"sqlquery"      => "Iontráil ceist",
+"sqlquery"      => "IontrÃ¡il ceist",
 "querybtn"      => "Cuir ceist",
-"selectonly"    => "Níl na ceisteanna ina theannta \"SELECT\" ann ach amháin do 
-cláraitheoirí Vicipéide.",
-"querysuccessful" => "D'éirigh leis an ceist",
+"selectonly"    => "NÃ­l na ceisteanna ina theannta \"SELECT\" ann ach amhÃ¡in do 
+clÃ¡raitheoirÃ­ VicipÃ©ide.",
+"querysuccessful" => "D'Ã©irigh leis an ceist",
 
 # Move page
 #
 "movepage"      => "Aistrigh an leathanach",
-"movepagetext"  => "Úsáis an foirm anseo thíos chun leathanach a athainmnigh. Aistreofar a chuid
-stair go léir chuig an ainm nua.
-Déanfar leathanach athsheolaidh den sean-teideal chuig an teideal nua.
-Ní athreofar naisc chuig sean-teideal an leathanach. Bheith cinnte chun 
-[[Special:Maintenance|cuardach]] a dhéanamh ar athsheolaidh dubáilte nó briste.
-Tá tú freagrach i cinnteach go leanann naisc chuig an pointe a bhfuil siad ag aimsigh ar.
+"movepagetext"  => "ÃšsÃ¡is an foirm anseo thÃ­os chun leathanach a athainmnigh. Aistreofar a chuid
+stair go lÃ©ir chuig an ainm nua.
+DÃ©anfar leathanach athsheolaidh den sean-teideal chuig an teideal nua.
+NÃ­ athreofar naisc chuig sean-teideal an leathanach. Bheith cinnte chun 
+[[Special:Maintenance|cuardach]] a dhÃ©anamh ar athsheolaidh dubÃ¡ilte nÃ³ briste.
+TÃ¡ tÃº freagrach i cinnteach go leanann naisc chuig an pointe a bhfuil siad ag aimsigh ar.
 
-Tabhair faoi deara go '''nach''' aistreofar an leathanach má bhfuil leathanach 
-ann cheana ag an teideal nua, mura bhfuil sé folamh nó athsheoladh nó mura bhfuil aon 
-stair athraithe aige cheana. Ciallaíonn sé sin go féidir leat leathanach a athainmnigh ar ais
-chuig an áit ina raibh sé roimhe má dhéanfá botún, agus ní féidir leat leathanach atá ann a forshcriobh ar.
+Tabhair faoi deara go '''nach''' aistreofar an leathanach mÃ¡ bhfuil leathanach 
+ann cheana ag an teideal nua, mura bhfuil sÃ© folamh nÃ³ athsheoladh nÃ³ mura bhfuil aon 
+stair athraithe aige cheana. CiallaÃ­onn sÃ© sin go fÃ©idir leat leathanach a athainmnigh ar ais
+chuig an Ã¡it ina raibh sÃ© roimhe mÃ¡ dhÃ©anfÃ¡ botÃºn, agus nÃ­ fÃ©idir leat leathanach atÃ¡ ann a forshcriobh ar.
 
 <b>AIRE!</b>
-Is féidir leis an méid seo bheith athrú borb gan súil leis do leathanach coitianta;
-cinntigh go dtuigeann tú na iarmhairtí go léir roimh a leanfá.",
-"movepagetalktext" => "Aistreofar an leathanach phlé leis, má tá sin ann:
-*'''mura''' bhfuil tú ag aistrigh an leathanach trasna ranna,
-*'''mura''' bhfuil leathanach phlé neamhfholamh ann leis an ainm nua, nó
-*'''mura''' baineann tú an marc den bosca anseo thíos.
+Is fÃ©idir leis an mÃ©id seo bheith athrÃº borb gan sÃºil leis do leathanach coitianta;
+cinntigh go dtuigeann tÃº na iarmhairtÃ­ go lÃ©ir roimh a leanfÃ¡.",
+"movepagetalktext" => "Aistreofar an leathanach phlÃ© leis, mÃ¡ tÃ¡ sin ann:
+*'''mura''' bhfuil tÃº ag aistrigh an leathanach trasna ranna,
+*'''mura''' bhfuil leathanach phlÃ© neamhfholamh ann leis an ainm nua, nÃ³
+*'''mura''' baineann tÃº an marc den bosca anseo thÃ­os.
 
-Sna scéil sin, caithfidh tú an leathanach a aistrigh nó a báigh leis na lámha má tá sin an rud atá uait.",
+Sna scÃ©il sin, caithfidh tÃº an leathanach a aistrigh nÃ³ a bÃ¡igh leis na lÃ¡mha mÃ¡ tÃ¡ sin an rud atÃ¡ uait.",
 "movearticle"   => "Aistrigh an leathanach",
-"movenologin"   => "Níl tú logtha ann",
-"movenologintext" => "Caithfidh tú bheith úsáideoir cláraithe agus <a href=\"" .
+"movenologin"   => "NÃ­l tÃº logtha ann",
+"movenologintext" => "Caithfidh tÃº bheith ÃºsÃ¡ideoir clÃ¡raithe agus <a href=\"" .
   wfLocalUrl( "Speisialta:Userlogin" ) . "\">logtha ann</a>
 chun leathanach a aistrigh.",
 "newtitle"      => "Go teideal nua",
 "movepagebtn"   => "Aistrigh an leathanach",
-"pagemovedsub"  => "D'éirigh leis an aistriú",
-"pagemovedtext" => "D'aistraíodh an leathanach \"[[$1]]\" go \"[[$2]]\".",
-"articleexists" => "Tá leathanach leis an ainm seo ann fós, nó níl an
-ainm a rinne tú rogha air ina ainm bailí.
+"pagemovedsub"  => "D'Ã©irigh leis an aistriÃº",
+"pagemovedtext" => "D'aistraÃ­odh an leathanach \"[[$1]]\" go \"[[$2]]\".",
+"articleexists" => "TÃ¡ leathanach leis an ainm seo ann fÃ³s, nÃ³ nÃ­l an
+ainm a rinne tÃº rogha air ina ainm bailÃ­.
 Toghaigh ainm eile le do thoil.",
-"talkexists"    => "D'aistraíodh an leathanach é féin go rathúil, ach ní raibh sé ar a chumas an 
-leathanach phlé a aistrigh de bhrí go bhfuil ceann ann fós ag an
-teideal nua. Báigh iad go láimhe le do thoil.",
+"talkexists"    => "D'aistraÃ­odh an leathanach Ã© fÃ©in go rathÃºil, ach nÃ­ raibh sÃ© ar a chumas an 
+leathanach phlÃ© a aistrigh de bhrÃ­ go bhfuil ceann ann fÃ³s ag an
+teideal nua. BÃ¡igh iad go lÃ¡imhe le do thoil.",
 "movedto"       => "aistraithe go",
-"movetalk"      => "Aistrigh an leathanach \"phlé\" freisin, má bhfuil an leathanach sin ann.",
-"talkpagemoved" => "D'aistraíodh an leathanach phlé frithiontráil.",
-"talkpagenotmoved" => "<strong>Níor</strong> aistraíodh an leathanach phlé frithiontráil.",
+"movetalk"      => "Aistrigh an leathanach \"phlÃ©\" freisin, mÃ¡ bhfuil an leathanach sin ann.",
+"talkpagemoved" => "D'aistraÃ­odh an leathanach phlÃ© frithiontrÃ¡il.",
+"talkpagenotmoved" => "<strong>NÃ­or</strong> aistraÃ­odh an leathanach phlÃ© frithiontrÃ¡il.",
 
 "export"        => "Onnmhairigh leathanaigh",
-"exporttext"    => "Is féidir leat an téacs agus stair athraithe de leathanach áirithe a onnmhairiú, 
-fillte i bpíosa XML; is féidir leat ansin é a iompórtál isteach wiki eile atá le na oideasra MediaWiki
-air, nó is féidir leat é a coinnigh do do siamsa féin.",
-"exportcuronly" => "Ná cuir san áireamh ach an eagrán reatha, ná cuir ann an stair in iomlán",
+"exporttext"    => "Is fÃ©idir leat an tÃ©acs agus stair athraithe de leathanach Ã¡irithe a onnmhairiÃº, 
+fillte i bpÃ­osa XML; is fÃ©idir leat ansin Ã© a iompÃ³rtÃ¡l isteach wiki eile atÃ¡ le na oideasra MediaWiki
+air, nÃ³ is fÃ©idir leat Ã© a coinnigh do do siamsa fÃ©in.",
+"exportcuronly" => "NÃ¡ cuir san Ã¡ireamh ach an eagrÃ¡n reatha, nÃ¡ cuir ann an stair in iomlÃ¡n",
 
 # Namespace 8 related
 
-"allmessages"   => "Teachtaireachtaí_go_léir",
-"allmessagestext"   => "Seo é liosta de na teachtaireachtaí go léir atá le fáil san roinn MediaWiki: ."
+"allmessages"   => "TeachtaireachtaÃ­_go_lÃ©ir",
+"allmessagestext"   => "Seo Ã© liosta de na teachtaireachtaÃ­ go lÃ©ir atÃ¡ le fÃ¡il san roinn MediaWiki: ."
 );
 
 #--------------------------------------------------------------------------
