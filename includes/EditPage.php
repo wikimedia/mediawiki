@@ -371,7 +371,6 @@ class EditPage {
 			}
 
 			$parserOptions = ParserOptions::newFromUser( $wgUser );
-			$parserOptions->setUseCategoryMagic( false );
 			$parserOptions->setEditSection( false );
 			$parserOptions->setEditSectionOnRightClick( false );
 
