@@ -2195,7 +2195,9 @@ class Language {
 }
 
 # This should fail gracefully if there's not a localization available
-@include_once( 'Language' . str_replace( '-', '_', ucfirst( $wgLanguageCode ) ) . '.php' );
+wfSuppressWarnings();
+include_once( 'Language' . str_replace( '-', '_', ucfirst( $wgLanguageCode ) ) . '.php' );
+wfRestoreWarnings();
 
 }
 ?>
