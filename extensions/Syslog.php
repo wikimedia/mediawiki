@@ -78,7 +78,9 @@ if (defined('MEDIAWIKI')) {
 
 	# Hook for article save
 	
-	function syslogArticleSave(&$article, &$user, &$text, $summary, $isminor, $iswatch, $section) {
+	function syslogArticleSave(&$article, &$user, &$text, $summary,
+							   $isminor, $iswatch, $section)
+	{
 		$title = $article->mTitle;
 		syslog(LOG_NOTICE, "User '" . $user->getName() . "' saved '" .
 			   $title->getPrefixedText() .

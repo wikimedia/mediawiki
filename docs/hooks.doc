@@ -276,6 +276,11 @@ $user: the user _doing_ the block (not the one being blocked)
 $block: the Block object that was saved
 $user: the user who did the block (not the one being blocked)
 
+'UnknownAction': An unknown "action" has occured (useful for defining
+		 your own actions)
+$action: action name
+$article: article "acted on"
+
 'UserLoginComplete': after a user has logged in
 $user: the user object that was created on login
 		    
