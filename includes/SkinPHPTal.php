@@ -37,14 +37,26 @@
 if( defined( 'MEDIAWIKI' ) ) {
 
 require_once 'GlobalFunctions.php';
-global $IP;
-require_once $IP.'/PHPTAL-NP-0.7.0/libs/PHPTAL.php';
+
+if( version_compare( phpversion(), "5.0", "lt" ) ) {
+	define( 'OLD_PHPTAL', true );
+	global $IP;
+	require_once $IP.'/PHPTAL-NP-0.7.0/libs/PHPTAL.php';
+} else {
+	define( 'NEW_PHPTAL', true );
+	# For now, PHPTAL 1.0.x must be installed via PEAR in system dir.
+	require_once 'PEAR.php';
+	require_once 'PHPTAL.php';
+	require_once 'PHPTAL/Attribute.php';
+	require_once 'PHPTAL/Attribute/I18N/Attributes.php';
+}
 
 /**
  * @todo document
  * @package MediaWiki
  */
-class MediaWiki_I18N extends PHPTAL_I18N {
+//class MediaWiki_I18N extends PHPTAL_I18N {
+class MediaWiki_I18N {
 	var $_context = array();
 
 	function set($varName, $value) {
@@ -63,8 +75,18 @@ class MediaWiki_I18N extends PHPTAL_I18N {
 		}
 		return $value;
 	}
-}
 
+	/* For PHPTAL 1.0: */
+	function setLanguage( $langCode ) {
+	}
+	
+	function setDomain( $domain ) {
+	}
+	
+	function setVar( $key, $value ) {
+		$this->set( $key, $value );
+	}
+}
 /**
  *
  * @package MediaWiki
@@ -103,6 +125,20 @@ class SkinPHPTal extends Skin {
 	}
 
 	/**
+	 * If using PHPTAL 0.7 on PHP 4.x, return a PHPTAL template object.
+	 * If using PHPTAL 1.0 on PHP 5.x, return a bridge object.
+	 * @return object
+	 * @access private
+	 */
+	function &setupTemplate( $file, $repository=false, $cache_dir=false ) {
+		if( NEW_PHPTAL ) {
+			return new PHPTAL_version_bridge( $file, $repository, $cache_dir );
+		} else {
+			return new PHPTAL( $file, $repository, $cache_dir );
+		}
+	}
+	
+	/**
 	 * initialize various variables and generate the template
 	 */
 	function outputPage( &$out ) {
@@ -115,7 +151,7 @@ class SkinPHPTal extends Skin {
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 
 		$this->initPage( $out );
-		$tpl = new PHPTAL($this->template . '.pt', 'skins');
+		$tpl =& $this->setupTemplate( $this->template . '.pt', 'skins' );
 
 		#if ( $wgUseDatabaseMessages ) { // uncomment this to fall back to GetText
 		$tpl->setTranslator(new MediaWiki_I18N());
@@ -163,6 +199,8 @@ class SkinPHPTal extends Skin {
 				);
 			}
 			$tpl->setRef( 'feeds', $feeds );
+		} else {
+			$tpl->set( 'feeds', false );
 		}
 		$tpl->setRef( 'mimetype', $wgMimeType );
 		$tpl->setRef( 'charset', $wgOutputEncoding );
@@ -228,19 +266,27 @@ class SkinPHPTal extends Skin {
 				}
 			}
 			$tpl->set('lastmod', $this->lastModified());
-				$tpl->set('copyright',$this->getCopyright());
+			$tpl->set('copyright',$this->getCopyright());
 
-				$this->credits = false;
+			$this->credits = false;
 
-				if (isset($wgMaxCredits) && $wgMaxCredits != 0) {
-					require_once("Credits.php");
-					$this->credits = getCredits($wgArticle, $wgMaxCredits, $wgShowCreditsIfMax);
-				}
+			if (isset($wgMaxCredits) && $wgMaxCredits != 0) {
+				require_once("Credits.php");
+				$this->credits = getCredits($wgArticle, $wgMaxCredits, $wgShowCreditsIfMax);
+			}
 
-					$tpl->setRef( 'credits', $this->credits );
+			$tpl->setRef( 'credits', $this->credits );
 
 		} elseif ( isset( $oldid ) && !isset( $diff ) ) {
 			$tpl->set('copyright', $this->getCopyright());
+			$tpl->set('viewcount', false);
+			$tpl->set('lastmod', false);
+			$tpl->set('credits', false);
+		} else {
+			$tpl->set('copyright', false);
+			$tpl->set('viewcount', false);
+			$tpl->set('lastmod', false);
+			$tpl->set('credits', false);
 		}
 
 		$tpl->set( 'copyrightico', $this->getCopyrightIcon() );
@@ -274,9 +320,9 @@ class SkinPHPTal extends Skin {
 		// XXX: attach this from javascript, same with section editing
 		if($this->iseditable &&	$wgUser->getOption("editondblclick") )
 		{
-			$tpl->set('body-ondblclick', 'document.location = "' .$content_actions['edit']['href'] .'";');
+			$tpl->set('body_ondblclick', 'document.location = "' .$content_actions['edit']['href'] .'";');
 		} else {
-			$tpl->set('body-ondblclick', false);
+			$tpl->set('body_ondblclick', false);
 		}
 		$tpl->set( 'nav_urls', $this->buildNavUrls() );
 
@@ -527,14 +573,16 @@ class SkinPHPTal extends Skin {
 		$nav_urls['mainpage'] = array('href' => htmlspecialchars( $this->makeI18nUrl('mainpage')));
 		$nav_urls['randompage'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Randompage')));
 		$nav_urls['recentchanges'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchanges')));
-		$nav_urls['currentevents'] = (wfMsgForContent('currentevents') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('currentevents'))) : false;
-		$nav_urls['portal'] = (wfMsgForContent('portal') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('portal-url'))) : false;
+		$nav_urls['currentevents'] = (wfMsg('currentevents') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('currentevents'))) : false;
+		$nav_urls['portal'] = (wfMsg('portal') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('portal-url'))) : false;
 		$nav_urls['bugreports'] = array('href' => htmlspecialchars( $this->makeI18nUrl('bugreportspage')));
 		// $nav_urls['sitesupport'] = array('href' => htmlspecialchars( $this->makeI18nUrl('sitesupportpage')));
 		$nav_urls['sitesupport'] = array('href' => htmlspecialchars( $wgSiteSupportPage));
 		$nav_urls['help'] = array('href' => htmlspecialchars( $this->makeI18nUrl('helppage')));
 		if( $this->loggedin && !$wgDisableUploads ) {
 			$nav_urls['upload'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Upload')));
+		} else {
+			$nav_urls['upload'] = false;
 		}
 		$nav_urls['specialpages'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Specialpages')));
 
@@ -555,7 +603,10 @@ class SkinPHPTal extends Skin {
 			$nav_urls['contributions'] = array(
 				'href' => htmlspecialchars( $this->makeSpecialUrl('Contributions', "target=" . $wgTitle->getPartialURL() ) )
 			);
+		} else {
+			$nav_urls['contributions'] = false;
 		}
+		$nav_urls['emailuser'] = false;
 		if ( 0 != $wgUser->getID() ) { # show only to signed in users
 			if($id) {	# can only email non-anons
 				$nav_urls['emailuser'] = array(
@@ -675,6 +726,42 @@ class SkinPHPTal extends Skin {
 		$s .= '/* MediaWiki:'.ucfirst($this->skinname)." */\n";
 		$s .= wfMsg(ucfirst($this->skinname).'.js');
 		return $s;
+	}
+}
+
+class PHPTAL_version_bridge {
+	function PHPTAL_version_bridge( $file, $repository=false, $cache_dir=false ) {
+		$this->tpl =& new PHPTAL( $file );
+		if( $repository ) {
+			$this->tpl->setTemplateRepository( $repository );
+		}
+	}
+	
+	function set( $name, $value ) {
+		$this->tpl->$name = $value;
+	}
+	
+	function setRef($name, &$value) {
+		$this->set( $name, $value );
+	}
+	
+	function setTranslator( &$t ) {
+		$this->tpl->setTranslator( $t );
+	}
+	
+	function execute() {
+		/*
+		try {
+		*/
+			return $this->tpl->execute();
+		/*
+		}
+		catch (Exception $e) {
+			echo "<div class='error' style='background: white; white-space: pre; position: absolute; z-index: 9999; border: solid 2px black; padding: 4px;'>We caught an exception...\n ";
+			echo $e;
+			echo "</div>";
+		}
+		*/
 	}
 }
 
