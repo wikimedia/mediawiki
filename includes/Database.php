@@ -185,7 +185,11 @@ class Database {
 		return $ret;
 	}
 	
-	function freeResult( $res ) { mysql_free_result( $res ); }
+	function freeResult( $res ) {
+		if ( !@mysql_free_result( $res ) ) {
+			wfDebugDieBacktrace( "Unable to free MySQL result\n" );
+		}
+	}
 	function fetchObject( $res ) {
 		@$row = mysql_fetch_object( $res );
 		# FIXME: HACK HACK HACK HACK debug
