@@ -22,7 +22,8 @@
  "contextlines" => 5, "contextchars" => 50,
  "skin" => 0, "math" => 1, "rcdays" => 3, "rclimit" => 50,
  "highlightbroken" => 0, "stubthreshold" => 0,
- "previewontop" => 1, "editsection" => 0, "showtoc" => 0,
+ "previewontop" => 1, "editsection" => 0,
+ "editsectiononrightclick" => 0, "showtoc" => 0,
  "date" => 2
 );
 
@@ -50,11 +51,12 @@
  "hideminor" => "Kleine wijzigingen verbergen in recente wijzigingen",
  "usenewrc" => "Gebruik de uitgebreide Recente Wijzigingen-pagina (niet op alle browsers mogelijk)",
  "numberheadings" => "Koppen automatisch nummeren",
+"editondblclick" => "Dubbelklikken levert bewerkingspagina (vereist JavaScript)",
  "editsection" => "Maak het bewerken van deelpagina's mogelijk",
- "showtoc" => "Geef een inhoudsopgave van de pagina",
+ "editsectionondblclick" => "Edit deelpagina's met rechtermuisklik (vereist JavaScript)",
+ "showtoc" => "Geef een inhoudsopgave (van pagina's met minstens 3 tussenkoppen)",
  "rememberpassword" => "Wachtwoord onthouden",
  "editwidth" => "Bewerkingsveld over volle breedte",
- "editondblclick" => "Dubbelklikken levert bewerkingspagina (vereist JavaScript)",
  "watchdefault" => "Artikelen die u wijzigt automatisch volgen",
  "minordefault" => "Maak 'kleine' veranderingen mijn standaard",
  "previewontop" => "Toon controlepagina boven bewerkingsveld",
@@ -217,7 +219,7 @@
 
 /* private */ $wgMonthAbbreviationsNl = array(
  "jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug",
- "sep", "oct", "nov", "dec"
+ "sep", "okt", "nov", "dec"
 );
 
 # All special pages have to be listed here: a description of ""
@@ -244,7 +246,6 @@
  "Longpages"  => "Lange artikels",
  "Newpages"  => "Nieuwe artikels",
  "Ancientpages" => "Oudste artikels",
- "Intl" => "Taallinks",
  "Allpages"  => "Alle paginatitels",
 
  "Ipblocklist" => "Geblokkeerde IP-adressen",
@@ -314,6 +315,7 @@
 "unprotectthispage" => "Beveiliging opheffen",
 "newpage" => "Nieuwe pagina",
 "talkpage"  => "Overlegpagina",
+"postcomment" => "Schrijf commentaar",
 "subjectpage" => "Artikel",
 "articlepage"   => "Artikel",
 "userpage" => "Gebruikerspagina",
@@ -369,6 +371,7 @@ Vanuit de functie \"$2\"
 MySQL gaf de volgende foutmelding: \"$3: $4\".\n",
 "noconnect"  => "Verbinden met de database op $1 was niet mogelijk",
 "nodb"   => "Selectie van database $1 niet mogelijk",
+"cachederror" => "Hieronder wordt een versie uit de cache getoond. Deze is mogelijk niet up-to-date.",
 "readonly"  => "Database geblokeerd",
 "enterlockreason" => "Geef een reden voor de blokkering en hoelang het waarschijnlijk gaat duren. De ingegeven reden zal aan de gebruikers getoond worden.",
 "readonlytext" => "De database van Wikipedia is momenteel gesloten voor nieuwe bewerkingen en wijzigingen, waarschijnlijk voor bestandsonderhoud.
@@ -409,8 +412,8 @@ U kan Wikipedia anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde
 "areyounew"  => "Bent u nieuw op Wikipedia en wilt u een gebruikersprofiel aanmaken, voer dan een gebruikersnaam in en voer tweemaal hetzelfde wachtwoord in.
 Invoeren van uw e-mailadres is niet verplicht; het is handig als u uw wachtwoord bent vergeten; dat kan dan per e-mail worden opgestuurd.<br>\n",
 
-"login"   => "Inschrijven/Aanmelden",
-"userlogin"  => "Inschrijven/Aanmelden",
+"login"   => "Aanmelden & Inschrijven",
+"userlogin"  => "Aanmelden",
 "logout"  => "Afmelden",
 "userlogout" => "Afmelden",
 "notloggedin" => "Niet aangemeld",
@@ -436,6 +439,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 # Edit pages
 # Pagina bewerken
 "summary"  => "Samenvatting",
+"subject" => "Onderwerp",
 "minoredit"  => "Dit is een kleine wijziging",
 "watchthis" => "Volg deze pagina",
 "savearticle" => "Pagina opslaan",
@@ -452,7 +456,8 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "previewnote" => "Let op: dit is een controlepagina; uw tekst is nog niet opgeslagen!",
 "previewconflict" => "Deze versie toont hoe de tekst in het bovenste veld eruit gaat zien wanneer u zou opslaan.",
 "editing"  => "Bewerkingspagina: $1",
-"sectionedit" => "(deelpagina)",
+"sectionedit" => " (deelpagina)",
+"commentedit" => " (nieuwe opmerking)",
 "editconflict" => "Bewerkingsconflict: $1",
 "explainconflict" => "Iemand anders heeft deze pagina gewijzigd nadat u aan deze bewerking bent begonnen. Het bovenste tekstveld toont de huidige versie van de pagina. U zal uw eigen wijzigingen moeten integreren in die tekst. Alleen de tekst in het bovenste veld wordt bewaard wanneer u kiest voor \"Pagina opslaan\".\n<p>",
 "yourtext"  => "Uw tekst",
@@ -487,14 +492,14 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "editcurrent" => "De huidige versie van deze pagina bewerken",
 
 # Search results
-# Zoek resultaten
+# Zoekresultaten
 "searchresults" => "Zoekresultaten",
 "searchhelppage" => "Wikipedia:Zoeken",
 "searchingwikipedia" => "Zoeken op Wikipedia",
 "searchresulttext" => "Voor meer informatie over zoeken op Wikipedia: zie $1.",
 "searchquery" => "Voor zoekopdracht \"$1\"",
 "badquery"  => "Slecht geformuleerde zoekopdracht",
-"badquerytext" => "Uw zoekopdracht kon niet worden uitgevoerd. Dit komt wellicht doordat u heeft geprobeerd een woord van minder dan drie letters te zoeken; dat wordt door de software niet ondersteund. Het is ook mogelijk dat u de zoekterm verkeerd hebt ingetypt, zoals bij \"vissen en en schubben\".",
+"badquerytext" => "Uw zoekopdracht kon niet worden uitgevoerd. Dit kan komen doordat u geprobeerd hebt om een 'woord' van 1 letter te zoeken, of 1 van de [[Wikipedia:Verboden woorden|verboden woorden]].",
 "matchtotals" => "De zoekterm \"$1\" is gevonden in $2 paginatitels en in de tekst van $3 pagina's.",
 "nogomatch" => "Er bestaat geen pagina met deze titel, op zoek naar pagina's waarin de tekst voorkomt.",
 "titlematches" => "Overeenkomst met volgende titels",
@@ -506,13 +511,17 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "viewprevnext" => "($1) ($2) ($3) bekijken.",
 "showingresults" => "Hieronder <b>$1</b> resultaten vanaf nummer <b>$2</b>.",
 "showingresultsnum" => "Hieronder <b>$3</b> resultaten vanaf nummer <b>$2</b>.",
-"nonefound"  => "<strong>Merk op:</strong> wanneer een zoekopdracht mislukt komt dat vaak door gebruik van (in het Engels) veel voorkomende woorden zoals \"of\" en \"be\", die niet geïndexeerd zijn, of door verschillende zoektermen tegelijk op te geven (u krijgt dan alleen in pagina's waaarin alle opgegeven termen voorkomen).",
+"nonefound"  => "<strong>Merk op:</strong> wanneer een zoekopdracht mislukt komt dat vaak door gebruik van veel voorkomende woorden zoals \"de\" en \"het\", die niet geïndexeerd zijn, of door verschillende zoektermen tegelijk op te geven (u krijgt dan alleen in pagina's waaarin alle opgegeven termen voorkomen).
+
+Het kan natuurlijk dat er gewoon nog geen artikel aanwezig op Wikipedia NL over dit onderwerp. Mogelijk is het aanwezig in een andere taal. Zoek met de <a HREF="http://pliny.wikipedia.org/tools/wikisearch.php">multi-wikipedia zoeker</a> in de andere Wikipedia's, of buiten Wikipedia in een <a href="http://encyclopedie.zoekhulp.nl/?refer=Wikipedia.nl">andere encyclopedie</a>. Wanneer u gevonden heeft wat u zocht, kunt u wellicht daarover een artikel schrijven op Wikipedia NL, zodat de volgende die zoekt wat u zocht het wel kan vinden. 
+",
 "powersearch" => "Zoeken",
 "powersearchtext" => "   
  Zoek in naamruimten :<br>
 $1<br>
 $2 Toon redirects &nbsp; Zoek: $3 $9",   
 "searchdisabled" => "Om overbelasting van het systeem te voorkomen, is de zoekfunctie momenteel buiten gebruik gesteld.",
+"blanknamespace" => "(encyclopedie)",
 
 # Preferences page
 # Voorkeuren
@@ -520,7 +529,9 @@ $2 Toon redirects &nbsp; Zoek: $3 $9",
 "prefsnologin" => "Niet aangemeld",
 "prefsnologintext" => "U dient <a href=\"" .
   wfLocalUrl( "Special:Userlogin" ) . "\">aangemeld</a> te zijn om voorkeuren te kunnen instellen.",
-"prefslogintext" => "U bent aangemeld als \"$1\". Uw interne identificatienummer is $2.",
+"prefslogintext" => "U bent aangemeld als \"$1\". Uw interne identificatienummer is $2.
+
+Een beschrijving van de verschillende opties staat op [[Wikipedia:Voorkeuren]].",
 "prefsreset" => "Standaardvoorkeuren hersteld.",
 "qbsettings" => "Menubalkinstellingen", 
 "changepassword" => "Wachtwoord wijzigen",
@@ -561,7 +572,7 @@ $2 Toon redirects &nbsp; Zoek: $3 $9",
 "changes" => "wijzigingen",
 "recentchanges" => "Recente wijzigingen",
 "recentchangestext" => "Deze pagina toont de meest recente wijzigingen aan Wikipedia NL
-Mocht u hier nieuw zijn, dan welkom bij Wikipedia! Bekijk AUB de volgende pagina's eens: [[Wikipedia:Veel gestelde vragen|Veel gestelde vragen]], [[Wikipedia:Instructies|Instructies]], [[Wikipedia:Objectiviteit|Objectiviteit]] en [[Wikipedia:Wat je niet moet doen|Wat je NIET moet doen]].
+Mocht u hier nieuw zijn, dan welkom bij Wikipedia! Bekijk AUB de volgende pagina's eens: [[Wikipedia:Veelgestelde vragen|Veel gestelde vragen]], [[Wikipedia:Instructies|Instructies]], [[Wikipedia:Objectiviteit|Objectiviteit]] en [[Wikipedia:Wat je niet moet doen|Wat je NIET moet doen]].
 Als u pagina's wilt verwijderen, ga naar [[Wikipedia:Te verwijderen pagina's|Te verwijderen pagina's]], als u iets wilt bediscussi&euml;ren, ga naar [[Wikipedia:Overleg gewenst|Overleg gewenst]]. Er is ook een email-lijst voor WikipediaNL: [http://www.wikipedia.org/mailman/listinfo/wikinl-l WikiNL-l].
 <br>Om Wikipedia te laten slagen is het erg belangrijk '''geen''' materiaal toe te voegen waarop iemand anders auteursrechten heeft, tenzij u daartoe toestemming heeft. De wettelijke gevolgen van inbreuk op de rechten van anderen zouden de hele onderneming zwaar kunnen schaden.",
 "rcloaderr"  => "Meest recente wijzigingen laden",
@@ -698,16 +709,15 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 "longpages"  => "Lange artikels",
 "listusers"  => "Lijst van gebruikers",
 "specialpages" => "Speciale pagina's",
-"spheading"  => "Speciale pagina's",
-"sysopspheading" => "Speciale pagina's voor systeembeheerders",
-"developerspheading" => "Speciale pagina's voor systeemontwikkelaars",
+"spheading"  => "",
+"sysopspheading" => "Alleen voor systeembeheerders",
+"developerspheading" => "Alleen voor systeemontwikkelaars",
 "protectpage" => "Beveilig pagina",
 "recentchangeslinked" => "Volg links",
 "rclsub"  => "(van pagina's waarnaar \"$1\" verwijst)",
 "debug"   => "Bugreparatie",
 "newpages"  => "Nieuwe artikels",
 "ancientpages" => "Oudste artikels",
-"intl" => "Taallinks",
 "movethispage" => "Verplaats deze pagina",
 "unusedimagestext" => "<p>Let op! Het zou kunnen dat er via een directe link verwezen wordt naar een afbeelding, bijvoorbeeld vanuit een anderstalige Wikipedia. Het is daarom mogelijk dat een afbeelding hier vermeld staat terwijl het wel degelijk gebruikt wordt.",
 "booksources" => "Boekhandels",
@@ -757,7 +767,21 @@ Ook zullen deze pagina's in het <b>vet</b> verschijnen in de <a href=\"" .
 "watchthispage" => "Volg deze pagina",
 "unwatchthispage" => "Niet meer volgen",
 "notanarticle" => "Is geen artikel",
-
+"watchnochange" => "Geen van de pagina's op uw volglijst is in deze periode gewijzigd",
+"watchdetails" => "($1 pagina's op uw volglijst (overlegpagina's niet meegeteld);
+in de aangegeven periode zijn $2 pagina's gewijzigd;
+$3. <a href='$4'>toon mijn volledige volglijst</a>.)",
+"watchmethod-recent" => "pagina's op volglijst in recente wijzigingen bekeken",
+"watchmethod-list" => "recent gewijzigde pagina's bekeken en naar volglijstpagina's gezocht",
+"removechecked" => "Aangevinkte pagina's van uw volglijst verwijderen",
+"watchlistcontains" => "U heeft $1 pagina's op uw volglijst",
+"watcheditlist" => "Hier is een lijst van alle pagina's op uw volglijst.
+Vink de vakjes aan voor de pagina's die u wilt verwijderen, en druk dan
+op 'pagina's verwijderen' onderaan deze pagina.",
+"removingchecked" => "De aangegeven pagina's worden van uw volglijst verwijderd.",
+"couldntremove" => "Verwijdering van '$1' onmogelijk.",
+"iteminvalidname" => "Incorrecte naam '$1'",
+"wlnote" => "Getoond worden de laatste $1 wijzigingen in de laatste $2 uur.",
 
 # Delete/protect/revert
 # Verwijderen/beschermen/annuleren
@@ -1059,3 +1083,5 @@ class LanguageNl extends Language {
 
 }
 ?>
+
+
