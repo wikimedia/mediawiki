@@ -41,7 +41,14 @@ for( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
 			}
 			$options[$option] = $param;
 		} else {
-			$options[$option] = 1;
+			$bits = explode( '=', $option, 2 );
+			if( count( $bits ) > 1 ) {
+				$option = $bits[0];
+				$param = $bits[1];
+			} else {
+				$param = 1;
+			}
+			$options[$option] = $param;
 		}
 	} elseif ( $arg{0} == '-' ) {
 		# Short options
