@@ -6,16 +6,15 @@ function wfSpecialRandompage()
 	$fname = "wfSpecialRandompage";
 
 	wfSeedRandom();
+	$rand = mt_rand() / mt_getrandmax();
 	$sqlget = "SELECT cur_id,cur_title
 		FROM cur USE INDEX (cur_random)
 		WHERE cur_namespace=0 AND cur_is_redirect=0
-		AND cur_random>RAND()
+		AND cur_random>$rand
 		ORDER BY cur_random
 		LIMIT 1";
 	$res = wfQuery( $sqlget, $fname );
 	if( $s = wfFetchObject( $res ) ) {
-		$sql = "UPDATE cur SET cur_random=RAND() WHERE cur_id={$s->cur_id}";
-		wfQuery( $sql, $fname );
 		$rt = wfUrlEncode( $s->cur_title );
 	} else {
 		# No articles?!

@@ -32,7 +32,8 @@ function wfSeedRandom()
 	global $wgRandomSeeded;
 
 	if ( ! $wgRandomSeeded ) {
-		mt_srand( (double)microtime() * 1000000 );
+		$seed = hexdec(substr(md5(microtime()),-8)) & 0x7fffffff;
+		mt_srand( $seed );
 		$wgRandomSeeded = true;
 	}
 }

@@ -591,6 +591,8 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 
 		$now = wfTimestampNow();
 		$won = wfInvertTimestamp( $now );
+		wfSeedRandom();
+		$rand = mt_rand() / mt_getrandmax();
 		$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
 		  "cur_comment,cur_user,cur_timestamp,cur_minor_edit,cur_counter," .
 		  "cur_restrictions,cur_user_text,cur_is_redirect," .
@@ -599,7 +601,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 		  wfStrencode( $summary ) . "', '" .
 		  $wgUser->getID() . "', '{$now}', " .
 		  ( $isminor ? 1 : 0 ) . ", 0, '', '" .
-		  wfStrencode( $wgUser->getName() ) . "', $redir, 1, RAND(), '{$now}', '{$won}')";
+		  wfStrencode( $wgUser->getName() ) . "', $redir, 1, $rand, '{$now}', '{$won}')";
 		$res = wfQuery( $sql, $fname );
 
 		$newid = wfInsertId();
