@@ -17,7 +17,7 @@ function rebuildRecentChangesTablePass1()
 	$dbw->delete( 'recentchanges', '*' );
 
 	print( "Loading from CUR table...\n" );
-
+	
 	$dbw->insertSelect( 'recentchanges', 'cur', 
 		array(
 			'rc_timestamp' => 'cur_timestamp',
@@ -33,7 +33,7 @@ function rebuildRecentChangesTablePass1()
 			'rc_cur_id' => 'cur_id',
 			'rc_this_oldid' => 0,
 			'rc_last_oldid' => 0,
-			'rc_type' => 'IF(cur_is_new,' . RC_NEW . ',' . RC_EDIT . ')'
+			'rc_type' => $dbw->conditional( 'cur_is_new != 0', RC_NEW, RC_EDIT ),
 		), '*', $fname, array( 'ORDER BY' => 'inverse_timestamp', 'LIMIT' => 5000 )
 	);
 	
@@ -41,21 +41,23 @@ function rebuildRecentChangesTablePass1()
 
 	$sql = "INSERT INTO $recentchanges (rc_timestamp,rc_cur_time,rc_user," .
       "rc_user_text,rc_namespace,rc_title,rc_comment,rc_minor,rc_bot,rc_new," .
-      "rc_cur_id,rc_this_oldid,rc_last_oldid) SELECT old_timestamp,cur_timestamp," .
+      "rc_cur_id,rc_this_oldid,rc_last_oldid,rc_type) SELECT old_timestamp,cur_timestamp," .
 	  "old_user,old_user_text,old_namespace,old_title,old_comment," .
-	  "old_minor_edit,0,0,cur_id,old_id,0 FROM $old,$cur " .
+	  "old_minor_edit,0,0,cur_id,old_id,0,0 FROM $old,$cur " .
 	  "WHERE old_namespace=cur_namespace AND old_title=cur_title ORDER BY $old.inverse_timestamp " .
 	  "LIMIT 5000";
 	$dbw->query( $sql );
 
 	$sql = "SELECT rc_timestamp FROM $recentchanges " .
-	  "ORDER BY rc_timestamp DESC LIMIT 5000,1";
+	  "ORDER BY rc_timestamp DESC" . $dbw->limitResult( 1, 5000 );
 	$res = $dbw->query( $sql );
 	$obj = $dbw->fetchObject( $res );
-	$ts = $obj->rc_timestamp;
-
-	$sql = "DELETE FROM $recentchanges WHERE rc_timestamp < '{$ts}'";
-	$dbw->query( $sql );
+	if( $obj ) {
+		$ts = $obj->rc_timestamp;
+	
+		$sql = "DELETE FROM $recentchanges WHERE rc_timestamp < '{$ts}'";
+		$dbw->query( $sql );
+	}
 }
 
 function rebuildRecentChangesTablePass2()

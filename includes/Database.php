@@ -1042,6 +1042,19 @@ class Database {
 	}
 
 	/**
+	 * Returns an SQL expression for a simple conditional.
+	 * Uses IF on MySQL.
+	 *
+	 * @param string $cond SQL expression which will result in a boolean value
+	 * @param string $trueVal SQL expression to return if true
+	 * @param string $falseVal SQL expression to return if false
+	 * @return string SQL fragment
+	 */
+	function conditional( $cond, $trueVal, $falseVal ) {
+		return " IF($cond, $trueVal, $falseVal) ";
+	}
+
+	/**
 	 * @todo document
 	 */
 	function wasDeadlock() {
