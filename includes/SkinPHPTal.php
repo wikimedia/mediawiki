@@ -1,7 +1,30 @@
 <?php
-	# And turn on $wgUsePHPTal so this file gets included
-
-	# Set your include_path so the PHPTal dir is available
+# Generic PHPTal (http://phptal.sourceforge.net/) skin
+# Based on Brion's smarty skin
+# Copyright (C) Gabriel Wicke -- http://www.aulinx.de/
+#
+# Todo: Needs some serious refactoring into functions that correspond
+# to the computations individual esi snippets need. Most importantly no body
+# parsing for most of those of course.
+#
+# Set this in LocalSettings to enable phptal:
+# set_include_path(get_include_path() . ":" . $IP.'/PHPTAL-NP-0.7.0/libs');
+# $wgUsePHPTal = true;
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or 
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+# http://www.gnu.org/copyleft/gpl.html
 
 	require_once "PHPTAL.php";
 
