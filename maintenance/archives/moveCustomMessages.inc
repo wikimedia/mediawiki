@@ -108,8 +108,9 @@ function moveCustomMessages( $phase ) {
 					$text = $parser->unstrip( $text, $stripState );
 					$text = $parser->unstripNoWiki( $text, $stripState );
 					if ( $text != $row->cur_text ) {
-						wfUpdateArray( 'cur', array( 'cur_text' => $text ), array( 'cur_id' => $id ) );
 						print "$pdbk\n";
+						$art = new Article( $source );
+						$art->quickEdit( $text );
 					} else {
 						print "($pdbk)\n";
 					}
