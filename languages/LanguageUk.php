@@ -20,7 +20,9 @@ include_once( "LanguageUtf8.php" );
 	4	=> $wgMetaNamespace,
 	5	=> $wgMetaNamespace . "_обговорення",
 	6	=> "Зображення",
-	7	=> "Зображення_обговорення"
+	7	=> "Зображення_обговорення",
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_обговорення"
 );
 
 /* private */ $wgQuickbarSettingsUk = array(
