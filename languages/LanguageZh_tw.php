@@ -93,30 +93,6 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 	"新絲書店" => "http://www.silkbook.com/function/Search_List_Book.asp?item=5&text=$1"
 );
 
-/* private */ $wgWeekdayNamesZh_tw = array(
-        "星期日", "星期一", "星期二", "星期三", "星期四",
-	"星期五", "星期六"
-/* "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-	"Friday", "Saturday" */
-);
-
-/* private */ $wgMonthNamesZh_tw = array(
-        "一月", "二月", "三月", "四月", "五月", "六月",
-	"七月", "八月", "九月", "十月", "十一月",
-	"十二月"
-/* "January", "February", "March", "April", "May", "June",
-   "July", "August", "September", "October", "November",
-	"December" */
-);
-
-/* private */ $wgMonthAbbreviationsZh_tw = array(
-"一月", "二月", "三月", "四月", "五月", "六月",
-	"七月", "八月", "九月", "十月", "十一月",
-	"十二月"
-/* "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
-	"Sep", "Oct", "Nov", "Dec" */
-);
-
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).
@@ -261,6 +237,41 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
  "toc" => "目錄",
 "showtoc" => "顯示",
  	 "hidetoc" => "隱藏",
+
+# weekdays, month names
+'sunday'    => "星期日",
+'monday'    => "星期一",
+'tuesday'   => "星期二",
+'wednesday' => "星期三",
+'thursday'  => "星期四",
+'friday'    => "星期五",
+'saturday'  => "星期六",
+
+'january'   => "一月",
+'february'  => "二月",
+'march'     => "三月",
+'april'     => "四月",
+'may_long'  => "五月",
+'june'      => "六月",
+'july'      => "七月",
+'august'    => "八月",
+'september' => "九月",
+'october'   => "十月",
+'november'  => "十一月",
+'december'  => "十二月",
+
+'jan'       => "一月",
+'feb'       => "二月",
+'mar'       => "三月",
+'apr'       => "四月",
+'may'       => "五月",
+'jun'       => "六月",
+'jul'       => "七月",
+'aug'       => "八月",
+'sep'       => "九月",
+'oct'       => "十月",
+'nov'       => "十一月",
+'dec'       => "十二月",
 
 # Main script and global functions
 #
