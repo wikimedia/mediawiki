@@ -153,6 +153,7 @@ $wgDisableCounters = false;
 $wgDisableTextSearch = false;
 $wgDisableSearchUpdate = false; # If you've disabled search semi-permanently, this also disables updates to the table. If you ever re-enable, be sure to rebuild the search table.
 $wgDisableUploads = true; # Uploads have to be specially set up to be secure
+$wgRemoteUploads = false; # Set to true to enable the upload _link_ while local uploads are disabled. Assumes that the special page link will be bounced to another server where uploads do work.
 $wgDisableAnonTalk = false;
 
 # We can serve pages compressed in order to save bandwidth,
