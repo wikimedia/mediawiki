@@ -118,9 +118,11 @@ Naming/coding conventions:
     values wpName ("p" for "POST").
 
   - Be kind to your release manager and don't use CVS keywords (Id,
-    Revision, etc.) to mark file versions; they make merging code between
-    different branches a pain for older versions (<1.12.x) of CVS, and
-    are kind of sketchy for versions after that.
+    Revision, etc.) to mark file versions. They make merging code
+    between different branches a pain for CVS, and are kind of sketchy
+    for versions after that. (Yes, you can use the '-kk' flag so that
+    merges ignore keywords, but that messes up binary  files. See
+    https://www.cvshome.org/docs/manual/cvs-1.11.18/cvs_5.html#SEC64).
     
 
     
