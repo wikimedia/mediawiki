@@ -5,8 +5,7 @@ else var version = 0;
 
 window.attachEvent("onload", hookit);
 function hookit() {
-    // replaced by special indexed logo for now
-    //fixalpha();
+    fixalpha();
     if(version == 6) {
         var wrapper = document.getElementById('tawrapper');
         if (!wrapper) relativeforfloats();

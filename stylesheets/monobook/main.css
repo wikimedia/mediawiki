@@ -661,7 +661,6 @@ div.townBox dl dd {
     display: block;
     height: 155px;
     width: 135px;
-    background: url(wiki.png) no-repeat;
     background-repeat: no-repeat;
     text-decoration: none;
 }
@@ -951,11 +950,6 @@ head:first-child+body #portal-footer li {
 /* fixes for broken IE float handling */
 * html #portal-column-content {
     display: inline;
-}
-/* only indexed png transparency */
-* html #portlet-logo a,
-* html #portlet-logo a:hover {
-    background: url(wiki-indexed.png) no-repeat;
 }
 
 /* float/negative margin brokenness */

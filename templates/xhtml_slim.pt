@@ -80,7 +80,7 @@
         </div>
         <!--<esi:include src="staticLogoNaviSearch"/> same for all pages, contains quite a few messages that are worth caching -->
         <div class="portlet" id="portlet-logo">
-          <a href="${nav_urls/mainpage/href}" i18n:attributes="title string:mainpage"></a>
+          <a style="background: url(${logopath}) no-repeat;" href="${nav_urls/mainpage/href}" i18n:attributes="title string:mainpage"></a>
         </div>
         <div class="portlet" id="portlet-navigation">
           <h5 i18n:translate="string:navigation">Navigation</h5>
