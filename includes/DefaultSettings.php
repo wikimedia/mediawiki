@@ -181,10 +181,24 @@ $wgCompressRevisions = false;
 
 $wgFileExtensions = array( "png", "jpg", "jpeg", "ogg" );
 
+# Files with these extensions will never be allowed as uploads.
+$wgFileBlacklist = array(
+	# HTML may contain cookie-stealing JavaScript and web bugs
+	"html", "htm",
+	# PHP scripts may execute arbitrary code on the server
+	"php", "phtml", "php3", "php4", "phps",
+	# Other types that may be interpreted by some servers
+	"shtml", "jhtml", "pl", "py",
+	# May contain harmful executables for Windows victims
+	"exe", "scr", "dll", "msi", "vbs", "bat", "com", "pif" );
+
 # This is a flag to determine whether or not to check file extensions on
 # upload.
-
 $wgCheckFileExtensions = true;
+
+# If this is turned off, users may override the warning for files not
+# covered by $wgFileExtensions.
+$wgStrictFileExtensions = true;
 
 $wgPasswordSalt = true; # For compatibility with old installations set to false
 
