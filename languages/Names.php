@@ -119,7 +119,7 @@
 	'mus' => 'Muscogee',
 	'my' => 'Myanmasa',	# Burmese
 	'na' => 'Nauri',		# Nauruan
-	'nb' => 'Bokm&aring;l',		# Norwegian (Bokmal)
+	'nb' => 'norsk (bokm&aring;l)',		# Norwegian (Bokmal)
 	'nah' => 'Nahuatl',
 	'nds' => 'Plattd&uuml;&uuml;tsch',	# Low German ''or'' Low Saxon
 	'ne' => '&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;',	# Nepali
@@ -127,8 +127,8 @@
 	'nl' => 'Nederlands',	# Dutch
 	'nb' => 'Norsk',		# Norwegian [currently using old '''no''' code]
 	'ne' => '&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;',	# Nepali
-	'nn' => 'Nynorsk'	,	# (Norwegian) Nynorsk
-	'no' => 'Norsk',		# Norwegian
+	'nn' => 'norsk (nynorsk)'	,	# (Norwegian) Nynorsk
+	'no' => 'norsk',		# Norwegian
 	'nv' => 'Din&eacute; bizaad',	# Navajo
 	'ny' => 'Chi-Chewa',	# Chichewa
 	'oc' => 'Occitan',		# Occitan
