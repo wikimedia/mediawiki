@@ -492,7 +492,7 @@ MySQL returned error \"$3: $4\".\n",
 $1',
 'nodb'			=> "Could not select database $1",
 'cachederror'		=> 'The following is a cached copy of the requested page, and may not be up to date.',
-'laggedslave'   => 'Warning: Page may not contain recent updates.',
+'laggedslavemode'   => 'Warning: Page may not contain recent updates.',
 'readonly'		=> 'Database locked',
 'enterlockreason' => 'Enter a reason for the lock, including an estimate
 of when the lock will be released',
