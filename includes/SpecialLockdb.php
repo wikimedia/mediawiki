@@ -46,11 +46,11 @@ class DBLockForm {
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
-			$wgOut->addHTML( "<p><font color='red' size='+1'>{$err}</font>\n" );
+			$wgOut->addHTML( '<p class="error">' . htmlspecialchars( $err ) . "</p>\n" );
 		}
-		$lc = wfMsg( "lockconfirm" );
-		$lb = wfMsg( "lockbtn" );
-		$elr = wfMsg( "enterlockreason" );
+		$lc = htmlspecialchars( wfMsg( "lockconfirm" ) );
+		$lb = htmlspecialchars( wfMsg( "lockbtn" ) );
+		$elr = htmlspecialchars( wfMsg( "enterlockreason" ) );
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Lockdb" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 
