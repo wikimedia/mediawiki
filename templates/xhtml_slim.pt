@@ -16,10 +16,9 @@
     <style tal:condition="usercss" type="text/css">/*<![CDATA[*/ ${usercss} /*]]>*/</style>
     <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script><script 
       tal:condition="userjsprev" type="text/javascript">/*<![CDATA[*/${userjsprev}/*]]>*/</script>
-    ${customscript}
   </head>
 
-  <body tal:attributes="onload body-onload; ondblclick body-ondblclick|default">
+  <body tal:attributes="ondblclick body-ondblclick|default">
     <div id="globalWrapper">
       <div id="column-content">
 	<div id="content">

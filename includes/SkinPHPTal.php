@@ -29,8 +29,6 @@
 	require_once "GlobalFunctions.php";
 	require_once $IP."/PHPTAL-NP-0.7.0/libs/PHPTAL.php";
 
-	require_once "TabbedCardSet.php";
-
 	class MediaWiki_I18N extends PHPTAL_I18N
 	{
 		var $_context = array();
@@ -114,7 +112,6 @@
 			$tpl->setRef( 'mimetype', &$wgMimeType );
 			$tpl->setRef( 'charset', &$wgOutputEncoding );
 			$tpl->set( 'headlinks', $out->getHeadLinks() );
-			$tpl->set( 'customscript', $out->getScript() ); 
 			$tpl->setRef( 'skinname', &$this->skinname );
 			$tpl->setRef( "loggedin", &$this->loggedin );
 			/* XXX currently unused, might get useful later
@@ -199,7 +196,6 @@
 			} else {
 				$tpl->set('body-ondblclick', false);
 			}
-			$tpl->set( 'body-onload',$wgOut->getOnloadHandler() );
 			$tpl->set( "nav_urls", $this->buildNavUrls() );
 
 			// execute template
@@ -549,7 +545,6 @@
 					return wfMsg('nstab-main');
 			}
 		}
-
 		/* private */ function setupUserCssJs () {
 			global $wgRequest, $wgTitle;
 			$action = $wgRequest->getText('action');
@@ -567,14 +562,6 @@
 				$this->userjs = $this->makeUrl($this->userpage.'/'.$this->skinname.'.js', 'action=raw&ctype=text/javascript');
 			}
 		}
-
-		// Overload the Skin::newCardSet function to replace 
-		// the default CardSet widget
-		function newCardSet( $title = "")
-		{
-			return new TabbedCardSet( $title );
-		}
-
 	}
 
 	class SkinDaVinci extends SkinPHPTal {
