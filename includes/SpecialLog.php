@@ -153,13 +153,17 @@ class LogViewer {
 		$this->showHeader( $wgOut );
 		$this->showOptions( $wgOut );
 		$this->showPrevNext( $wgOut );
-		$out = "";
+		$this->showList( $wgOut );
+		$this->showPrevNext( $wgOut );
+	}
+	
+	function showList( &$out ) {
+		$html = "";
 		$this->reader->initQuery();
 		while( $s = $this->reader->fetchObject() ) {
-			$out .= $this->logLine( $s );
+			$html .= $this->logLine( $s );
 		}
-		$wgOut->addHTML( $out );
-		$this->showPrevNext( $wgOut );
+		$out->addHTML( $html );
 	}
 	
 	# wfMsg( unprotectedarticle, $text )
