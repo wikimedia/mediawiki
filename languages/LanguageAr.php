@@ -2,6 +2,13 @@
 # See language.doc
 include_once("LanguageUtf8.php");
 
+if ( $wgSitename == "Wikipedia" ) {
+	$wgSitename = "ويكيبيديا";
+}
+if ( $wgMetaNamespace == "Wikipedia" ) {
+	$wgMetaNamespace = "ويكيبيديا";
+}
+
 /* private */ $wgNamespaceNamesAr = array(
 	-2 => "ملف",
 	-1 => "خاص",
@@ -9,8 +16,8 @@ include_once("LanguageUtf8.php");
 	1 => "نقاش",
 	2 => "مستخدم",
 	3 => "نقاش_المستخدم",
-	4 => "ويكيبيديا",
-	5 => "ويكيبيديا_نقاش",
+	4 => $wgMetaNamespace,
+	5 => "{$wgMetaNamespace}_نقاش",
 	6 => "صورة",
 	7 => "نقاش_الصورة",
 	8 => "MediaWiki",

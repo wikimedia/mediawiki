@@ -1,5 +1,13 @@
 <?
 
+if ( $wgSitename == "Wikipedia" ) {
+	$wgSitename = "विकिपीडिया";
+}
+if ( $wgMetaNamespace = "Wikipedia" ) {
+	$wgMetaNamespace = "विकिपीडिया";
+}
+
+
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
 
@@ -13,8 +21,8 @@
 	1	=> "वार्ता",
 	2	=> "सदस्य",
 	3	=> "सदस्य वार्ता",
-	4	=> "विकिपीडिया",
-	5	=> "विकिपीडिया वार्ता",
+	4	=> $wgMetaNamespace,
+	5	=> $wgMetaNamespace." वार्ता",
 	6	=> "चित्र",
 	7	=> "चित्र वार्ता",
 	8	=> "MediaWiki",
@@ -82,16 +90,16 @@
 "mainpage"		=> "मुख्य पृष्ठ",
 "about"		        => "अबाउट",
 "aboutwikipedia"        => "हिन्दी विकिपीडिया के बारे में",
-"aboutpage"		=> "विकिपीडिया:जानकारी",
+"aboutpage"		=> "{$wgMetaNamespace}:जानकारी",
 "help"			=> "सहायता",
-"helppage"		=> "विकिपीडिया:सहायता",
+"helppage"		=> "{$wgMetaNamespace}:सहायता",
 "wikititlesuffix"       => "हिन्दी विकिपीडिया",
 "bugreports"	        => "बग रिपोर्ट ",
-"bugreportspage"        => "विकिपीडिया:बग रिपोर्ट ",
+"bugreportspage"        => "{$wgMetaNamespace}:बग रिपोर्ट ",
 "faq"			=> "प्रश्नावली - FAQ",
-"faqpage"		=> "विकिपीडिया:प्रश्नावली",
+"faqpage"		=> "{$wgMetaNamespace}:प्रश्नावली",
 "edithelp"		=> "बदलाव  सहायता ",
-"edithelppage"	        => "विकिपीडिया:पृष्ठ कैसे बदलें",
+"edithelppage"	        => "{$wgMetaNamespace}:पृष्ठ कैसे बदलें",
 "cancel"		=> "रद्द करें - कैन्सल",
 "qbfind"		=> "खोजें - फ़ाइन्ड ",
 "qbbrowse"		=> "देखें - ब्राउज़",
@@ -130,7 +138,7 @@
 "gnunote" => "सभी सामग्री <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a> की शर्तों के तहत् उपलब्ध की गई है.",
 "printsubtitle"         => "(http://www.wikipedia.org से)",
 "protectedpage"         => "सुरक्षित पृष्ठ",
-"administrators"        => "विकिपीडिया:प्रबन्धक",
+"administrators"        => "{$wgMetaNamespace}:प्रबन्धक",
 "sysoptitle"	        => "सिसओप होना आवश्यक है",
 "sysoptext"		=> "आप जो करना चाहते हैं‌ उसे केवल \"sysop\" स्तर के सदस्य कर सकते हैं. $1 देखें.",
 "developertitle"        => "डेवेलपर होना आवश्यक है",
@@ -284,7 +292,7 @@ Please log in again after you receive it.",
 "blockedtitle"	=> "User is blocked",
 "blockedtext"	=> "Your user name or IP address has been blocked by $1.
 The reason given is this:<br>''$2''<p>You may contact $1 or one of the other
-[[Wikipedia:administrators|administrators]] to discuss the block.",
+[[{$wgMetaNamespace}:administrators|administrators]] to discuss the block.",
 "whitelistedittitle" => "Login required to edit",
 "whitelistedittext" => "You have to [[Special:Userlogin|login]] to edit articles.",
 "whitelistreadtitle" => "Login required to read",
@@ -297,7 +305,7 @@ The reason given is this:<br>''$2''<p>You may contact $1 or one of the other
 "newarticletext" =>
 "You've followed a link to a page that doesn't exist yet.
 To create the page, start typing in the box below 
-(see the [[Wikipedia:Help|help page]] for more info).
+(see the [[{$wgMetaNamespace}:Help|help page]] for more info).
 If you are here by mistake, just click your browser's '''back''' button.",
 "anontalkpagetext" => "---- ''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.'' ",
 "noarticletext" => "(There is currently no text in this page)",
@@ -339,7 +347,7 @@ so you will not be able to save your edits right now. You may wish to cut-n-past
 the text into a text file and save it for later.",
 "protectedpagewarning" => "WARNING:  This page has been locked so that only
 users with sysop privileges can edit it. Be sure you are following the
-<a href='/wiki/Wikipedia:Protected_page_guidelines'>protected page
+<a href='/wiki/{$wgMetaNamespace}:Protected_page_guidelines'>protected page
 guidelines</a>.",
 
 # History pages
@@ -369,7 +377,7 @@ Please check the URL you used to access this page.\n",
 # Search results
 #
 "searchresults" => "Search results",
-"searchhelppage" => "Wikipedia:Searching",
+"searchhelppage" => "{$wgMetaNamespace}:Searching",
 "searchingwikipedia" => "Searching Wikipedia",
 "searchresulttext" => "For more information about searching Wikipedia, see $1.",
 "searchquery"	=> "For query \"$1\"",
@@ -413,7 +421,7 @@ to set user preferences.",
 "prefslogintext" => "You are logged in as \"$1\".
 Your internal ID number is $2.
 
-See [[Wikipedia:User preferences help]] for help deciphering the options.",
+See [[{$wgMetaNamespace}:User preferences help]] for help deciphering the options.",
 "prefsreset"	=> "Preferences have been reset from storage.",
 "qbsettings"	=> "Quickbar settings", 
 "changepassword" => "Change password",
@@ -454,15 +462,15 @@ from server time (UTC).",
 "changes" => "changes",
 "recentchanges" => "Recent changes",
 "recentchangestext" => "Track the most recent changes to Wikipedia on this page.
-[[Wikipedia:Welcome,_newcomers|Welcome, newcomers]]!
-Please have a look at these pages: [[wikipedia:FAQ|Wikipedia FAQ]],
-[[Wikipedia:Policies and guidelines|Wikipedia policy]]
-(especially [[wikipedia:Naming conventions|naming conventions]],
-[[wikipedia:Neutral point of view|neutral point of view]]),
-and [[wikipedia:Most common Wikipedia faux pas|most common Wikipedia faux pas]].
+[[{$wgMetaNamespace}:Welcome,_newcomers|Welcome, newcomers]]!
+Please have a look at these pages: [[{$wgMetaNamespace}:FAQ|Wikipedia FAQ]],
+[[{$wgMetaNamespace}:Policies and guidelines|Wikipedia policy]]
+(especially [[{$wgMetaNamespace}:Naming conventions|naming conventions]],
+[[{$wgMetaNamespace}:Neutral point of view|neutral point of view]]),
+and [[{$wgMetaNamespace}:Most common Wikipedia faux pas|most common Wikipedia faux pas]].
 
 If you want to see Wikipedia succeed, it's very important that you don't add
-material restricted by others' [[wikipedia:Copyrights|copyrights]].
+material restricted by others' [[{$wgMetaNamespace}:Copyrights|copyrights]].
 The legal liability could really hurt the project, so please don't do it.
 See also the [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
 "rcloaderr"		=> "Loading recent changes",
@@ -499,12 +507,12 @@ to upload files.",
 "uploaderror"	=> "Upload error",
 "uploadtext"	=> "<strong>STOP!</strong> Before you upload here,
 make sure to read and follow Wikipedia's <a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">image use policy</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Image_use_policy" ) . "\">image use policy</a>.
 <p>To view or search previously uploaded images,
 go to the <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
 "\">list of uploaded images</a>.
 Uploads and deletions are logged on the <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">upload log</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_log" ) . "\">upload log</a>.
 <p>Use the form below to upload new image files for use in
 illustrating your articles.
 On most browsers, you will see a \"Browse...\" button, which will
@@ -535,7 +543,7 @@ All times shown are server time (UTC).
 "filedesc"		=> "Summary",
 "affirmation"	=> "I affirm that the copyright holder of this file
 agrees to license it under the terms of the $1.",
-"copyrightpage" => "Wikipedia:Copyrights",
+"copyrightpage" => "{$wgMetaNamespace}:Copyrights",
 "copyrightpagename" => "Wikipedia copyright",
 "uploadedfiles"	=> "Uploaded files",
 "noaffirmation" => "You must affirm that your upload does not violate
@@ -601,7 +609,7 @@ That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.",
 "maintnancepagetext"	=> "This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)",
 "maintenancebacklink"	=> "Back to Maintenance Page",
 "disambiguations"	=> "Disambiguation pages",
-"disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
 "doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
@@ -737,7 +745,7 @@ at the bottom of the screen.",
 or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
-[[Wikipedia:Policy]].",
+[[{$wgMetaNamespace}:Policy]].",
 "confirmcheck"	=> "Yes, I really want to delete this.",
 "actioncomplete" => "Action complete",
 "deletedtext"	=> "\"$1\" has been deleted.
@@ -780,7 +788,7 @@ will not be automatically replaced.",
 "undeletebtn" => "Restore!",
 "undeletedarticle" => "restored \"$1\"",
 "undeletedtext"   => "The article [[$1]] has been successfully restored.
-See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations.",
+See [[{$wgMetaNamespace}:Deletion_log]] for a record of recent deletions and restorations.",
 
 # Contributions
 #
@@ -809,7 +817,7 @@ to perform this function on.",
 "blockiptext"	=> "Use the form below to block write access
 from a specific IP address.
 This should be done only only to prevent vandalism, and in
-accordance with [[Wikipedia:Policy|Wikipedia policy]].
+accordance with [[{$wgMetaNamespace}:Policy|Wikipedia policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 "ipaddress"		=> "IP Address",

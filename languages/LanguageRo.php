@@ -16,8 +16,8 @@ include_once("LanguageUtf8.php");
 	1	=> "Discuţie",
 	2	=> "Utilizator",
 	3	=> "Discuţie_Utilizator",
-	4	=> "Wikipedia",
-	5	=> "Discuţie_Wikipedia",
+	4	=> $wgMetaNamespace,
+	5	=> "Discuţie_".$wgMetaNamespace,
 	6	=> "Imagine",
 	7	=> "Discuţie_Imagine",
 	8	=> "MediaWiki",
@@ -178,18 +178,18 @@ include_once("LanguageUtf8.php");
 "mainpagetext"	=> "Programul Wiki a fost instalat cu succes",
 "about"			=> "Despre",
 "aboutwikipedia" => "Despre Wikipedia",
-"aboutpage"		=> "Wikipedia:Despre",
+"aboutpage"		=> "{$wgMetaNamespace}:Despre",
 "help"			=> "Ajutor",
-"helppage"		=> "Wikipedia:Ajutor",
+"helppage"		=> "{$wgMetaNamespace}:Ajutor",
 "wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "Raportare probleme",
-"bugreportspage" => "Wikipedia:Rapoarte_probleme",
+"bugreportspage" => "{$wgMetaNamespace}:Rapoarte_probleme",
 "sitesupport"   => "Donaţii",
 "sitesupportpage" => "", # If not set, won't appear. Can be wiki page or URL
 "faq"			=> "Întrebări frecvente",
-"faqpage"		=> "Wikipedia:Întrebări_frecvente",
+"faqpage"		=> "{$wgMetaNamespace}:Întrebări_frecvente",
 "edithelp"		=> "Ajutor pentru editare",
-"edithelppage"	=> "Wikipedia:Cum_să_editezi_o_pagină",
+"edithelppage"	=> "{$wgMetaNamespace}:Cum_să_editezi_o_pagină",
 "cancel"		=> "Renunţă",
 "qbfind"		=> "Găseşte",
 "qbbrowse"		=> "Răsfoieşte",
@@ -231,7 +231,7 @@ include_once("LanguageUtf8.php");
 "gnunote" => "Tot textul este disponibil în termenii licenţei <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(De la http://ro.wikipedia.org)",
 "protectedpage" => "Pagină protejată",
-"administrators" => "Wikipedia:Administratori",
+"administrators" => "{$wgMetaNamespace}:Administratori",
 "sysoptitle"	=> "Aveţi nevoie de acces ca operator",
 "sysoptext"		=> "Acţiunea pe care aţi încercat-o necesită drepturi de operator.
 Vezi $1.",
@@ -371,7 +371,7 @@ Vă rugăm să vă autentificaţi pe Wikipedia după ce o primiţi.",
 "blockedtitle"	=> "Utilizatorul este blocat",
 "blockedtext"	=> "Utilizatorul sau parola Dvs. au fost blocate de $1.
 Motivul oferit pentru blocare a fost:<br>''$2''<p>Puteţi contacta pe $1 sau pe unul dintre ceilalţi
-[[Wikipedia:administratori|administratori]] pentru a discuta această blocare.",
+[[{$wgMetaNamespace}:administratori|administratori]] pentru a discuta această blocare.",
 "whitelistedittitle" => "Este necesară autentificarea pentru a edita",
 "whitelistedittext" => "Trebuie să vă [[Special:Userlogin|autentificaţi]] pentru a edita articole.",
 "whitelistreadtitle" => "Este necesară autentificarea pentru a citi",
@@ -384,7 +384,7 @@ Motivul oferit pentru blocare a fost:<br>''$2''<p>Puteţi contacta pe $1 sau pe 
 "newarticletext" =>
 "Aţi ajuns la o pagină care nu există.
 Pentru a o crea, începeţi să scrieţi în caseta de mai jos
-(vezi [[Wikipedia:Ajutor|pagina de ajutor]] pentru mai multe informaţii).
+(vezi [[{$wgMetaNamespace}:Ajutor|pagina de ajutor]] pentru mai multe informaţii).
 Dacă aţi ajuns aici din greşeală, întoarceţi-vă folosind controalele browser-ului Dvs.",
 "anontalkpagetext" => "---- ''Aceasta este pagina de discuţii pentru un utilizator care nu şi-a creat un cont încă, sau care nu s-a autentificat. De aceea trebuie să folosim [[adresa IP]] pentru a identifica această persoană. O adresă IP poate fi împărţită între mai mulţi utilizatori. Dacă sunteţi un astfel de utilizator şi credeţi că vi se adresează mesaje irelevante, vă rugăm să [[Special:Userlogin|vă creaţi un cont sau să vă autentificaţi]] pentru a evita confuzii cu alţi utilizatori anonimi în viitor.'' ",
 "noarticletext" => "(Nu există text în această pagină)",
@@ -417,7 +417,7 @@ deci vă nu veţi putea salva editările în acest moment. Puteţi copia textul
 într-un fişier text local pentru a modifica conţinutul în Wikipedia când va fi posibil.",
 "protectedpagewarning" => "ATENŢIE! Această pagină a fost blocată şi numai utilizatorii
 cu privilegii de administrator o pot edita. Vă rugăm urmaţi sugestiile
-<a href='Wikipedia:Despre_pagini_protejate'>despre pagini protejate</a> când editaţi.",
+<a href='{$wgMetaNamespace}:Despre_pagini_protejate'>despre pagini protejate</a> când editaţi.",
 
 # History pages
 #
@@ -445,7 +445,7 @@ cu privilegii de administrator o pot edita. Vă rugăm urmaţi sugestiile
 # Search results
 #
 "searchresults" => "Rezultatele căutării",
-"searchhelppage" => "Wikipedia:Searching",
+"searchhelppage" => "{$wgMetaNamespace}:Searching",
 "searchingwikipedia" => "Căutare în Wikipedia",
 "searchresulttext" => "Pentru mai multe detalii despre căutarea în Wikipedia, vezi $1.",
 "searchquery"	=> "Pentru căutarea \"$1\"",
@@ -548,7 +548,7 @@ Numărul intern de identificare este $2 (nu trebuie să-l reţineţi decât dac�
 "recentchanges" => "Schimbări recente",
 "recentchangestext" => "Aceată pagină permite vizualizarea ultimelor modificări ale paginilor Wikipedia în română.
 
-[[Wikipedia:bun venit|Bun venit pe Wikipedia]]! Nu ezitaţi să vizitaţi secţiunile de [[Wikipedia:întrebări frecvente|întrebări frecvente]], [[Wikipedia:politica|politica Wikipedia]] (în special [[Wikipedia:convenţii pentru denumiri|convenţii pentru denumiri]] şi [[Wikipedia:punct de vedere neutru|punct de vedere neutru]]), şi cele mai comune [[Wikipedia:greşeli frecvente|greşeli în Wikipedia]].
+[[{$wgMetaNamespace}:bun venit|Bun venit pe Wikipedia]]! Nu ezitaţi să vizitaţi secţiunile de [[{$wgMetaNamespace}:întrebări frecvente|întrebări frecvente]], [[{$wgMetaNamespace}:politica|politica Wikipedia]] (în special [[{$wgMetaNamespace}:convenţii pentru denumiri|convenţii pentru denumiri]] şi [[{$wgMetaNamespace}:punct de vedere neutru|punct de vedere neutru]]), şi cele mai comune [[{$wgMetaNamespace}:greşeli frecvente|greşeli în Wikipedia]].
 
 Este foarte important să nu adăugaţi în Wikipedia materiale protejate de [[drepturi de autor]]. Problemele legale rezultate ar putea prejudicia în mod serios proiectul în întregime, aşa că vă rugăm insistent să aveţi grijă să nu faceţi asta.",
 "rcloaderr"		=> "Încarc ultimele modificări",
@@ -586,11 +586,11 @@ ca să trimiteţi fişiere.",
 "uploaderror"	=> "Eroare la trimitere fişier",
 "uploadtext"	=> "<strong>STOP!</strong> Înainte de a trimite un fişier aici,
 vă rugăm să citiţi şi să respectaţi <a href=\"" .
-wfLocalUrlE("Wikipedia:Politica_de_utilizare_a_imaginilor" ) . "\">politica de utilizare a imaginilor</a>.
+wfLocalUrlE("{$wgMetaNamespace}:Politica_de_utilizare_a_imaginilor" ) . "\">politica de utilizare a imaginilor</a>.
 <p>Pentru a vizualiza sau căuta imagini deja trimise, mergeţi la <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
 "\">lista de imagini</a>.
 Fişierele noi şi cele şterse sunt contorizate pe paginile de <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">raport de trimiteri</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_log" ) . "\">raport de trimiteri</a>.
 <p>Folosiţi formularul de mai jos pentru a trimite imagini noi
 pe care le veţi putea folosi pentru a vă ilustra articolele.
 În majoritatea browserelor veţi vedea un buton \"Browse...\"
@@ -620,7 +620,7 @@ Toate datele/orele sunt afişate ca timp universal (UTC).
 "filestatus" => "Statutul drepturilor de autor",
 "filesource" => "Sursa",
 "affirmation"	=> "Afirm că persoana care deţine drepturile de autor asupra acestui fişier este de acord cu termenii licenţei $1.",
-"copyrightpage" => "Wikipedia:Drepturi_de_autor",
+"copyrightpage" => "{$wgMetaNamespace}:Drepturi_de_autor",
 "copyrightpagename" => "Drepturi de autor în Wikipedia",
 "uploadedfiles"	=> "Fişiere trimise",
 "noaffirmation" => "Trebuie să afirmaţi că fişierul pe care în trimiteţi nu violează drepturi de autor (trebuie să bifaţi căsuţa aferentă de pe pagina anterioară).",
@@ -681,7 +681,7 @@ Dintre aceştia <b>$2</b> sunt administratori (vezi $3).",
 "maintnancepagetext"	=> "Această pagină conţine diverse unelte create pentru administrare cotidiană. Unele dintre acestea solicită în mod deosebit baza de date, aşa că vă rugăm să evitaţi suprasolicitarea lor.",
 "maintenancebacklink"	=> "Înapoi la pagina administrativă",
 "disambiguations"	=> "Pagini de dezambiguizare",
-"disambiguationspage"	=> "Wikipedia:Legături_către_paginile_de_dezambiguizare",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Legături_către_paginile_de_dezambiguizare",
 "disambiguationstext"	=> "Următoarele articole conţin legături către cel puţin o <i>pagină de dezambiguizare</i>. Legăturile respective ar trebui făcute către paginile specifice.<br>O pagină este considerată ca fiind de dezambiguizare dacă există o legătură în ea dinspre $1.<br>Legăturile dinspre alte secţiuni Wikipedia <i>nu sunt</i> luate în considerare aici.",
 "doubleredirects"	=> "Redirectări duble",
 "doubleredirectstext"	=> "<b>Atenţie:</b> Această listă poate conţine articole care nu sunt în fapt duble redirectări. Asta înseamnă de obicei că există text adiţional sub primul #REDIRECT.<br>\nFiecare rând care conţine legături către prima sau a doua redirectare, ca şi prima linie din textul celei de-a doua redirectări, de obicei conţinând numele \"real\" al articolului ţintă, către care ar trebui să arate prima redirectare.",
@@ -808,7 +808,7 @@ pagini urmărite şi apăsaţi pe butonul corespunzător din partea de jos a pag
 sau imagine din baza de date, împreună cu istoria asociată.
 Vă rugăm să vă confirmaţi intenţia de a face asta, faptul că
 înţelegeţi consecinţele acestei acţiuni şi faptul că o faceţi
-în conformitate cu [[Wikipedia:Politica]].",
+în conformitate cu [[{$wgMetaNamespace}:Politica]].",
 "confirmcheck"	=> "Da, chiar vreau să şterg.",
 "actioncomplete" => "Acţiune finalizată",
 "deletedtext"	=> "\"$1\" a fost ştearsă.
@@ -857,7 +857,7 @@ fi înlocuită automat de către versiunea recuperată.",
 "undeletebtn" => "Recuperează!",
 "undeletedarticle" => "\"$1\" a fost recuperat",
 "undeletedtext"   => "Articolul [[$1]] a fost recuperat.
-Vezi [[Wikipedia:Raport_ştergeri]] pentru o listă a ştergerilor şi recuperărilor recente.",
+Vezi [[{$wgMetaNamespace}:Raport_ştergeri]] pentru o listă a ştergerilor şi recuperărilor recente.",
 
 # Contributions
 #
@@ -884,7 +884,7 @@ Vezi [[Wikipedia:Raport_ştergeri]] pentru o listă a ştergerilor şi recuperă
 "blockip"		=> "Blocheză adresa IP",
 "blockiptext"	=> "Folosiţi chestionarul de mai jos pentru a bloca
 la scriere o adresă IP. Această funţie trebuie folosită numai pentru
-a preveni vandalismul conform [[Wikipedia:Politica|politicii Wikipedia]].
+a preveni vandalismul conform [[{$wgMetaNamespace}:Politica|politicii Wikipedia]].
 Includeţi un motiv specific mai jos (de exemplu citând paginile care
 au fost vandalizate de acest utilizator).",
 "ipaddress"		=> "Adresa IP",

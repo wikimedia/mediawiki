@@ -11,7 +11,13 @@ abound here, but corrections should principally be made to the live version on
 Sourceforge (when that gets added.)
 */
 
-# FIXME: Use $wgSitename, $wgMetaNamespace etc
+if ( $wgSitename == "Wikipedia" ) {
+	$wgSitename = "Vicipéid";
+}
+if ( $wgMetaNamespace = "Wikipedia" ) {
+	$wgMetaNamespace = "Vicipéid";
+}
+
 
 /* private */ $wgNamespaceNamesGa = array(
     -2  => "Media",
@@ -20,8 +26,8 @@ Sourceforge (when that gets added.)
     1   => "Plé",
     2   => "Úsáideoir",
     3   => "Plé_úsáideora",
-    4   => "Vicipéid",
-    5   => "Plé_Vicipéide",
+    4   => $wgMetaNamespace,
+    5   => "Plé_".$wgMetaNamespace,
     6   => "Íomhá",
     7   => "Plé_íomhá",
     8   => "MediaWiki",
@@ -205,16 +211,16 @@ Sourceforge (when that gets added.)
 "mainpagetext"  => "D'insealbhaíodh an oideas Wiki go rathúil.",
 "about"     => "Faoi",
 "aboutwikipedia"    => "Faoi Vicipéid",
-"aboutpage"     => "Vicipéid:Faoi",
+"aboutpage"     => "{$wgMetaNamespace}:Faoi",
 "help"      => "Cabhair",
-"helppage"      => "Vicipéid:Cabhair",
+"helppage"      => "{$wgMetaNamespace}:Cabhair",
 "wikititlesuffix" => "Vicipéid",
 "bugreports"    => "Fabht-thuairiscí",
-"bugreportspage"    => "Vicipéid:Fabht-thuairiscí",
+"bugreportspage"    => "{$wgMetaNamespace}:Fabht-thuairiscí",
 "faq"           => "Ceisteanna Coiteanta",
-"faqpage"       => "Vicipéid:Ceisteanna Coiteanta",
+"faqpage"       => "{$wgMetaNamespace}:Ceisteanna Coiteanta",
 "edithelp"      => "Cabhair eagarthóireachta",
-"edithelppage"  => "Vicipéid:Conas_alt_a_cur_in_eagar",
+"edithelppage"  => "{$wgMetaNamespace}:Conas_alt_a_cur_in_eagar",
 "cancel"        => "Cealaigh",
 "qbfind"        => "Faigh",
 "qbbrowse"      => "Útamáil",
@@ -254,7 +260,7 @@ Sourceforge (when that gets added.)
 "gnunote"       => "Tá an teacs ar fad le fáil faoi na téarmaí an <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(Ó http://ga.wikipedia.org)",
 "protectedpage" => "Leathanach faoi ghlas",
-"administrators"    => "Vicipéid:Riarthóirí",
+"administrators"    => "{$wgMetaNamespace}:Riarthóirí",
 "sysoptitle"    => "Cuntas ceannasaí de dhíth",
 "sysoptext"     => "Caithfidh tú bheith i do \"ceannasaí\" 
 chun an gníomh seo a dhéanamh.
@@ -437,7 +443,7 @@ Má tharlódh an scéal seo duit, cuir ríomhphost chuig riarthóir le seoladh r
 "newarticletext" =>
 "Lean tú nasc go leathanach a nach bhfuil ann fós. 
 Chun an leathanach a chruthaigh, tosaigh ag clóscríobh san bosca anseo thíos 
-(féach ar an [[Vicipéid:Cabhair|leathanach cabhrach]] chun níos mó eolas a fháil).
+(féach ar an [[{$wgMetaNamespace}:Cabhair|leathanach cabhrach]] chun níos mó eolas a fháil).
 Má tháinig tú anseo as dearmad, brúigh an cnaipe '''ar ais''' ar do líonléitheoir.",
 "anontalkpagetext" => "---- ''Seo é an leathanach plé do úsáideoir gan ainm a nach chruthaigh 
 cuntas fós nó a nach úsáideann a chuntas. Dá bhrí sin caithfimid an [[seoladh IP]] uimhriúil 
@@ -480,7 +486,7 @@ ní féidir leat do athruithe a shábháil díreach anois. B'fhéidir go mhaith 
 chóipeáil is a taosaigh go chomhad téacs agus é a shábháil do úsáid níos déanach.",
 "protectedpagewarning" => "AIRE:  Cuireadh ghlas ar an leathanach seo, agus is féidir amháin na úsáideoirí le 
 pribhléidí ceannasaí é a athraigh. Bí cinnte go leanann tú na 
-<a href='/wiki/Vicipéid:Treoirlínte_do_leathanaigh_cosnaithe'>treoirlínte do leathanaigh cosnaithe</a>.",
+<a href='/wiki/{$wgMetaNamespace}:Treoirlínte_do_leathanaigh_cosnaithe'>treoirlínte do leathanaigh cosnaithe</a>.",
 
 # History pages
 #
@@ -509,7 +515,7 @@ Cinntigh an URL a d'úsáid tú chun an leathanach seo a rochtain.\n",
 # Search results
 #
 "searchresults" => "Toraidh an cuardaigh",
-"searchhelppage" => "Vicipéid:Ag_cuardaigh",
+"searchhelppage" => "{$wgMetaNamespace}:Ag_cuardaigh",
 "searchingwikipedia" => "Ag cuardaigh sa Vicipéid",
 "searchresulttext" => "Chun níos mó eolas a fháil mar gheall ar cuardach Vicipéide, féach ar $1.",
 "searchquery"   => "Do cheist \"$1\"",
@@ -574,7 +580,7 @@ chun do socruithe phearsanta a athraigh.",
 "prefslogintext" => "Tá tú logtha ann mar \"$1\".
 Is é $2 do uimir aitheantais inmhéanach.
 
-Féach ar [[Vicipéid:Cabhair do socruithe úsáideora]] chun cabhair a fháil mar gheall ar na roghanna.",
+Féach ar [[{$wgMetaNamespace}:Cabhair do socruithe úsáideora]] chun cabhair a fháil mar gheall ar na roghanna.",
 "prefsreset"    => "D'athraigh do socruithe ar ais chuig an leagan bunúsach, mar gheall ar stóráil.",
 "qbsettings"    => "Socruithe an bosca uirlisí", 
 "changepassword" => "Athraigh do focal faire",
@@ -615,15 +621,15 @@ Féach ar [[Vicipéid:Cabhair do socruithe úsáideora]] chun cabhair a fháil m
 "recentchanges" => "Athruithe deireanacha",
 "recentchangestext" => 
 "Lean na athruithe is deireanacha go Vicipéid ar an leathanach seo.
-[[Wikipedia:Fáilte,_a_núíosaigh|Fáilte, a núíosaigh]]!
-Féach ar na leathanaigh seo, más é do thoil é: [[Vicipéid:CMT|CMT Vicipéide]],
-[[Vicipéid:Polasaithe agus treoirlínte|Polasaí Vicipéide]]
-(go háirithe [[Vicipéid:Coinbhinsiúin ainmneacha|coinbhinsiúin ainmneacha]],
-[[Vicipéid:Dearcadh neodrach|dearcadh neodrach]]),
-agus [[Vicipéid:Na botúin Vicipéide is coitianta|na botúin Vicipéide is coitianta]].
+[[{$wgMetaNamespace}:Fáilte,_a_núíosaigh|Fáilte, a núíosaigh]]!
+Féach ar na leathanaigh seo, más é do thoil é: [[{$wgMetaNamespace}:CMT|CMT Vicipéide]],
+[[{$wgMetaNamespace}:Polasaithe agus treoirlínte|Polasaí Vicipéide]]
+(go háirithe [[{$wgMetaNamespace}:Coinbhinsiúin ainmneacha|coinbhinsiúin ainmneacha]],
+[[{$wgMetaNamespace}:Dearcadh neodrach|dearcadh neodrach]]),
+agus [[{$wgMetaNamespace}:Na botúin Vicipéide is coitianta|na botúin Vicipéide is coitianta]].
 
 Más maith leat go éireóidh Vicipéid, tá sé an-tabhachtach go nach cuireann tú ábhair 
-a nach bhfuil teorainnaithe de na [[Vicipéid:Cóipchearta|cóipchearta]] de ghrúpaí eile.
+a nach bhfuil teorainnaithe de na [[{$wgMetaNamespace}:Cóipchearta|cóipchearta]] de ghrúpaí eile.
 Ba féidir leis an dliteanas an tionscnamh a gortaigh go fíor, mar sin ná déan é.
 Féach ar an [http://meta.wikipedia.org/wiki/Special:Recentchanges meiteaphlé deireanach] freisin.",
 "rcloaderr"     => "Ag lódáil athruithe deireanacha",
@@ -660,7 +666,7 @@ chun comhaid a shuaslódáil.",
 "uploaderror"   => "Earráid suaslódála",
 "uploadtext"    => "<strong>STOP!</strong> Roimh a suaslódálaíonn tú anseo, 
 bí cinnte leigh agus géill don <a href=\"" .
-wfLocalUrlE( "Vicipéid:Polasaí_úsáide_íomhá" ) . "\">polasaí úsáide íomhá</a> atá ag Vicipéid.
+wfLocalUrlE( "{$wgMetaNamespace}:Polasaí_úsáide_íomhá" ) . "\">polasaí úsáide íomhá</a> atá ag Vicipéid.
 <p>Má bhfuil aon comhad ann fós leis an ainm céanna a bhfuil tú ag
 tabhairt don comhad nua, cuirfear an nuachomhad in ionad an seanchomhad gan fógr.
 Mar sin, mura nuashonraíonn tú comhad éigin, is scéal maith é cinntigh má bhfuil comhad 
@@ -669,7 +675,7 @@ leis an ainm seo ann fós.
 go to the Dul go dti an<a href=\"" . wfLocalUrlE( "Speisialta:Imagelist" ) .
 "\">liosta íomhánna suaslódálaithe</a>chun féach ar nó chuardaigh idir íomhánna a raibh suaslódálaithe roimhe seo.
 Déantar liosta de suaslósála agus scriosaidh ar an <a href=\"" .
-wfLocalUrlE( "Vicipéid:Liosta_suaslódála" ) . "\">liosta suaslódála</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Liosta_suaslódála" ) . "\">liosta suaslódála</a>.
 <p>Bain úsáid as an fhoirm anseo thíos chun íomháchomhaid nua a suaslódáil. 
 Ba féidir leat na íomhánna a úsáid i do ailt. 
 Ar an chuid is mó de na líonléitheoirí, feicfidh tú cnaipe \"Brabhsáil...\" no mar sin. Lé brú ar an cnaipe seo, 
@@ -702,7 +708,7 @@ Is am an friothálaí (UTC) iad na hamanna atá anseo thíos.
 "filesource" => "Foinse",
 "affirmation"   => "Dearbhaím go aontaíonn coimeádaí cóipchirt an comhaid seo
 chun é a ceadúnaigh de réir na téarmaí an $1.",
-"copyrightpage" => "Vicipéid:Cóipchearta",
+"copyrightpage" => "{$wgMetaNamespace}:Cóipchearta",
 "copyrightpagename" => "Cóipcheart Vicipéide",
 "uploadedfiles" => "Comhaid suaslódálaithe",
 "noaffirmation" => "Caithfidh tú a dearbhaigh go nach sáraíonn do suaslódáil
@@ -769,7 +775,7 @@ de na feidhmeanna seo an bunachar sonraí a cuir strus ar, mar sin ná athbhruig
 chríochnaíonn tú ;-)",
 "maintenancebacklink"   => "Ar ais go Leathanach Coinneála",
 "disambiguations"   => "Leathanaigh easathbhríochais",
-"disambiguationspage"   => "Vicipéid:Naisc_go_leathanaigh_easathbhríochais",
+"disambiguationspage"   => "{$wgMetaNamespace}:Naisc_go_leathanaigh_easathbhríochais",
 "disambiguationstext"   => "Nascaíonn na ailt seo a leanas go <i>leathanach easathbhríochais</i>. Ba chóir dóibh nasc a 
 dhéanamh leis an ábhar oiriúnach ina áit.<br>Tugtar an teideal easathbhríochais ar leathanach má bhfuil násc aige 
 ó $1.<br><i>Ní</i> cuirtear naisc ó ranna eile ar an liosta seo.",
@@ -907,7 +913,7 @@ an cnaipe 'bain amach le marcanna' ag bun an leathanaigh.",
 "confirmdeletetext" => "Tá tú ar tí leathanach nó íomhá a scrios, 
 chomh maith leis a chuid stair, ón bunachar sonraí. 
 Cinntigh go mian leis an méid seo a dhéanamh, go dtuigeann tú na
-iarmhairtaí, agus go ndéanann tú é dar leis [[Vicipéid:Polasaí]].",
+iarmhairtaí, agus go ndéanann tú é dar leis [[{$wgMetaNamespace}:Polasaí]].",
 "confirmcheck"  => "Sea, is mian liom go fírinneach an rud seo a scrios.",
 "actioncomplete" => "Gníomh déanta",
 "deletedtext"   => "\"$1\" atá scriosaithe.
@@ -956,7 +962,7 @@ na sean-athruithe san stair roimhe seo, agus ní athshuighfear an eagrán reatha
 "undeletebtn" => "Cuir ar ais!",
 "undeletedarticle" => "cuireadh \"$1\" ar ais",
 "undeletedtext"   => "Cuireadh an alt [[$1]] ar ais go rathúil.
-Féach ar [[Vicipéid:Cuntas_scriosaidh]] chun cuntas de scriosaidh agus athchóirithe deireanacha a fháil.",
+Féach ar [[{$wgMetaNamespace}:Cuntas_scriosaidh]] chun cuntas de scriosaidh agus athchóirithe deireanacha a fháil.",
 
 # Contributions
 #
@@ -985,7 +991,7 @@ chun an gníomh seo a dhéanamh ar.",
 "blockiptext"   => "Úsáid an foirm anseo thíos chun bealach scríofa a chosc ó 
 seoladh IP nó ainm úsáideora áirithe.
 Is féidir leat an rud seo a dhéanamh amháin chun an chreachadóireacht a chosc, de réir
-mar a deirtear san [[Vicipéid:Polasaí|polasaí Vicipéide]].
+mar a deirtear san [[{$wgMetaNamespace}:Polasaí|polasaí Vicipéide]].
 Líonaigh cúis áirithe anseo thíos (mar shampla, is féidir leat a luaigh
 leathanaigh áirithe a rinne an duine damáiste ar).",
 "ipaddress"     => "Seoladh IP / ainm úsáideora",

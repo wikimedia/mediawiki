@@ -14,8 +14,8 @@
 	1	=> "Discussione",
 	2	=> "Utente",
 	3	=> "Discussioni_utente",
-	4	=> "Wikipedia",
-	5	=> "Discussioni_Wikipedia",
+	4	=> $wgMetaNamespace,
+	5	=> "Discussioni_".$wgMetaNamespace,
 	6	=> "Immagine",
 	7	=> "Discussioni_immagine",
 	8	=> "MediaWiki",
@@ -136,16 +136,16 @@
 "mainpage"		=> "Wikipedia",
 "about"			=> "A proposito di ",
 "aboutwikipedia" => "A proposito di Wikipedia",
-"aboutpage"		=> "Wikipedia:About",
+"aboutpage"		=> "{$wgMetaNamespace}:About",
 "help"			=> "Aiuto",
-"helppage"		=> "Wikipedia:Aiuto",
+"helppage"		=> "{$wgMetaNamespace}:Aiuto",
 "wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "Malfunzionamenti",
-"bugreportspage" => "Wikipedia:Malfunzionamenti",
+"bugreportspage" => "{$wgMetaNamespace}:Malfunzionamenti",
 "faq"			=> "FAQ",
-"faqpage"		=> "Wikipedia:FAQ",
+"faqpage"		=> "{$wgMetaNamespace}:FAQ",
 "edithelp"		=> "Guida",
-"edithelppage"	=> "Wikipedia:Come_scrivere_un_articolo",
+"edithelppage"	=> "{$wgMetaNamespace}:Come_scrivere_un_articolo",
 "cancel"		=> "Cancella",
 "qbfind"		=> "Trova",
 "qbbrowse"		=> "Sfoglia",
@@ -181,7 +181,7 @@
 "gnunote" => "Questa pagina è disponibile con licenza <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>.",
 "printsubtitle" => "(Articolo di http://www.wikipedia.org)",
 "protectedpage" => "Pagina protetta",
-"administrators" => "Wikipedia:Amministratori",
+"administrators" => "{$wgMetaNamespace}:Amministratori",
 "sysoptitle"	=> "Riservato Sysop",
 "sysoptext"		=> "Questa operazione può essere eseguita solo da Utenti con grado di \"sysop\".
 Vedi $1.",
@@ -288,7 +288,7 @@ Per favore, fai subito un log in non appena la ricevi.",
 "showpreview"	=> "Visualizza Anteprima",
 "blockedtitle"	=> "Questo User name corrisponde purtroppo ad un Utente che è stato disabilitato alla modifica degli articoli.",
 "blockedtext"	=> "Il tuo User name o il tuo indirizzo IP sono stati bloccati da $1.<br>
-La motivazione del blocco è la seguente:<br>:''$2''<p>Se lo desideri, puoi contattare $1, o uno degli altri [[Wikipedia:administrators|amministratori]] per discutere del blocco.",
+La motivazione del blocco è la seguente:<br>:''$2''<p>Se lo desideri, puoi contattare $1, o uno degli altri [[{$wgMetaNamespace}:administrators|amministratori]] per discutere del blocco.",
 "newarticle"	=> "(Nuovo)",
 "newarticletext" => "Scrivi qui il tuo testo.",
 "noarticletext" => "(Questo articolo è vuoto, potresti gentilmente iniziare l'articolo, oppure richiedere la cancellazione di questa pagina)",
@@ -340,7 +340,7 @@ Controlla per favore la URL che hai usato per accedere a questa pagina.\n",
 # Search results
 #
 "searchresults" => "Risultato della ricerca",
-"searchhelppage" => "Wikipedia:Ricerca",
+"searchhelppage" => "{$wgMetaNamespace}:Ricerca",
 "searchingwikipedia" => "Ricerca in Wikipedia",
 "searchresulttext" => "Per maggiori informazioni sulla ricerca interna di Wikipedia, vedi $1.",
 "searchquery"	=> "Richiesta \"$1\"",
@@ -403,14 +403,14 @@ Il tuo numero identificativo (ID) interno è $2.",
 #
 "recentchanges" => "Ultime Modifiche",
 "recentchangestext" => "Segui in questa pagina le ultime modifiche apportate agli articoli di Wikipedia.
-[[Wikipedia:Welcome,_newcomers|Benvenuto]]!
-Leggi anche queste pagine: [[wikipedia:FAQ|Wikipedia FAQ]],
-[[Wikipedia:Policies and guidelines|la policy di Wikipedia]]
-(specialmente [[wikipedia:Convenzioni di nomenclatura| Convenzioni di nomenclatura]],
-[[wikipedia:Neutral point of view|oggettività e neutralità]]),
-e [[wikipedia:Most common Wikipedia faux pas|facili errori nell'uso di Wikipedia]].
+[[{$wgMetaNamespace}:Welcome,_newcomers|Benvenuto]]!
+Leggi anche queste pagine: [[{$wgMetaNamespace}:FAQ|Wikipedia FAQ]],
+[[{$wgMetaNamespace}:Policies and guidelines|la policy di Wikipedia]]
+(specialmente [[{$wgMetaNamespace}:Convenzioni di nomenclatura| Convenzioni di nomenclatura]],
+[[{$wgMetaNamespace}:Neutral point of view|oggettività e neutralità]]),
+e [[{$wgMetaNamespace}:Most common Wikipedia faux pas|facili errori nell'uso di Wikipedia]].
 
-Se tieni al successo di questo progetto, è molto importante che eviti di immettere materiale coperto da diritti di autore ([[wikipedia:Copyrights|copyrights]]).
+Se tieni al successo di questo progetto, è molto importante che eviti di immettere materiale coperto da diritti di autore ([[{$wgMetaNamespace}:Copyrights|copyrights]]).
 Gli aspetti legali connessi potrebbero dare fastidio a noi ed a te personalmente, perciò controlla bene che quanto scrivi sia di [[pubblico dominio]], o prova ad ottenere le relative autorizzazioni, che in genere vengono concesse molto facilmente. Vedi anche [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
 "rcloaderr"		=> "Caricamento modifiche recenti ",
 "rcnote"		=> "Qui di seguito sono elencate le ultime <strong>$1</strong> pagine modificate negli ultimi <strong>$2</strong> giorni.",
@@ -443,11 +443,11 @@ per fare lo upload di files.",
 "uploadfile"	=> "Upload",
 "uploaderror"	=> "Errore di Upload",
 "uploadtext"	=> "<strong>FERMA!</strong> Prima di effettuare un upload su Wikipedia, accertati di avere ben letto e soprattutto compreso <a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">le regole di Wikipedia sull'uso delle immagini</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Image_use_policy" ) . "\">le regole di Wikipedia sull'uso delle immagini</a>.
 <p>Per visualizzare o cercare immagini precedentemente caricate su Wikipedia, vai alla <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
 "\">lista delle immagini già caricate</a>.
 Uploads e cancellazioni delle immagini sono registrati nello <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">upload log</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_log" ) . "\">upload log</a>.
 <p>Usa il modulo sottostante per caricare nuovi files immagine da utilizzare per arricchire ed illustrare i tuoi articoli.
 Sulla maggior parte dei browsers, dovresti vedere un bottone con la scritta \"Browse...\" (oppure \"Sfoglia...\", che aprirà una comune finestra di dialogo.<br>
 Scegliendo uno dei files sul tuo PC, il nome di questo file verrà scritto in automatico nella casella di testo a fianco al bottone.<p>
@@ -471,7 +471,7 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).
 "filename"		=> "Nome del file",
 "filedesc"		=> "Oggetto",
 "affirmation"	=> "Io dichiaro che il titolare dei diritti di autore (copyright, (c)) su questo file consente a cederlo in licenza di uso nei termini del $1.",
-"copyrightpage" => "Wikipedia:Copyrights",
+"copyrightpage" => "{$wgMetaNamespace}:Copyrights",
 "copyrightpagename" => "Wikipedia copyright",
 "uploadedfiles"	=> "Files Caricati in Wikipedia",
 "noaffirmation" => "Devi dichiarare che il caricamento di questo file non viola, in alcun modo, alcun tipo di diritto altrui, e segnatamente non infrange nessun diritto di autore (copyright - (c)).",
@@ -530,7 +530,7 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 "maintnancepagetext"	=> "In questa pagina sono elencati alcuni utili strumenti per una comoda manutenzione quotidiana della nostra enciclopedia. Alcune delle funzioni tendono a stressare il database, assorbendo molte risorse, perciò non fatene un uso continuo: non aggiornate le pagine (reload, refresh) subito dopo ogni singolo intervento. ;-)",
 "maintenancebacklink"	=> "Torna alla pagina manutenzione",
 "disambiguations"	=> "Disambiguation pages",
-"disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Doppi Redirects",
 "doubleredirectstext"	=> "<b>Attenzione:</b> Questa lista può talvolta contenere dei risultati non corretti. Ciò potrebbe magari accadere perchè vi sono del testo aggiuntivo o dei link dopo il tag #REDIRECT.<br>\nOgni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene il \"reale\" articolo di destinazione, quello al quale anche il primo redirect dovrebbe puntare.",
@@ -629,7 +629,7 @@ Le future modifiche a questa pagina ed alla relativa pagina di discussione saran
 "deletesub"		=> "(Cancellazione di \"$1\")",
 "confirmdeletetext" => "Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia.<p>
 Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, conferma che hai piena consapevolezza delle conseguenze della tua azione, e conferma che la tua azione è pienamente ottemperante alle regole stabilite nella 
-[[Wikipedia:Policy]].",
+[[{$wgMetaNamespace}:Policy]].",
 "confirmcheck"	=> "Sì, voglio davvero procedere con la cancellazione della pagina.",
 "actioncomplete" => "Azione completata",
 "deletedtext"	=> "La pagina \"$1\" è stata cancellata.
@@ -661,7 +661,7 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 "undeletebtn" => "RIPRISTINA!",
 "undeletedarticle" => "Recuperata \"$1\"",
 "undeletedtext"   => "La pagina [[$1]] è stata recuperata.
-Vedi [[Wikipedia:Deletion_log]] per un elenco delle pagine cancellate e recuperate di recente.",
+Vedi [[{$wgMetaNamespace}:Deletion_log]] per un elenco delle pagine cancellate e recuperate di recente.",
 
 # Contributions
 #
@@ -686,7 +686,7 @@ Vedi [[Wikipedia:Deletion_log]] per un elenco delle pagine cancellate e recupera
 #
 "blockip"		=> "Blocca indirizzo IP",
 "blockiptext"	=> "Usa il modulo sottostante per bloccare l'accesso con diritto di scrittura da uno specifico indirizzo IP.<br>
-Questo blocco deve essere operato SOLO per prevenire atti di vandalismo, ed in stretta osservanza dei principi tutti della [[Wikipedia:Policy|policy di Wikipedia]].<br>Il blocco non può in nessun caso essere applicato per motivi ideologici.<p> 
+Questo blocco deve essere operato SOLO per prevenire atti di vandalismo, ed in stretta osservanza dei principi tutti della [[{$wgMetaNamespace}:Policy|policy di Wikipedia]].<br>Il blocco non può in nessun caso essere applicato per motivi ideologici.<p> 
 Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avviso essere bloccato (per esempio, cita i titoli di pagine eventualmente già oggetto di vandalismo editoriale).",
 "ipaddress"		=> "Indirizzo IP (IP Address)",
 "ipbreason"		=> "Motivazione",

@@ -130,16 +130,16 @@
 "mainpage"		=> "Etusivu",
 "about"			=> "Tietoja",
 "aboutwikipedia" => "Tietoja Wikipediasta",
-"aboutpage"		=> "Wikipedia:Tietoja",
+"aboutpage"		=> "{$wgMetaNamespace}:Tietoja",
 "help"			=> "Ohje",
-"helppage"		=> "Wikipedia:Ohje",
+"helppage"		=> "{$wgMetaNamespace}:Ohje",
 "wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "Bugiraportit",
-"bugreportspage" => "Wikipedia:Bugiraportit",
+"bugreportspage" => "{$wgMetaNamespace}:Bugiraportit",
 "faq"			=> "FAQ",
-"faqpage"		=> "Wikipedia:FAQ",
+"faqpage"		=> "{$wgMetaNamespace}:FAQ",
 "edithelp"		=> "Muokkausohjeet",
-"edithelppage"	=> "Wikipedia:Kuinka_sivuja_muokataan",
+"edithelppage"	=> "{$wgMetaNamespace}:Kuinka_sivuja_muokataan",
 "cancel"		=> "Keskeytä",
 "qbfind"		=> "Etsi",
 "qbbrowse"		=> "Selaa",
@@ -178,7 +178,7 @@
 "gnunote" => "Kaikki teksti on saatavilla <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation -lisenssin</a> ehdoilla.",
 "printsubtitle" => "(Lähde: http://fi.wikipedia.org)",
 "protectedpage" => "Suojattu sivu",
-"administrators" => "Wikipedia:Ylläpitäjät",
+"administrators" => "{$wgMetaNamespace}:Ylläpitäjät",
 "sysoptitle"	=> "Vaatii ylläpitäjä-oikeudet",
 "sysoptext"	=> "Tämän toiminnon voi suorittaa vain käyttäjä, jolla on \"ylläpitäjä\"-oikeudet.
 Katso $1.",
@@ -297,9 +297,9 @@ sähköpostiosoitteeseen. Kirjaudu sisään uudestaan, kun olet saanut sen.",
 "blockedtitle"	=> "Pääsy käyttäjältä estetty",
 "blockedtext"	=> "$1 on estänyt pääsysi Wikpediaan joko käyttäjänimesi tai IP-osoitteesi perusteella.
 Syynä tähän on:<br>''$2''<p>Ota yhteyttä henkilöön $1 tai johonkuhun
-muuhun [[Wikipedia:ylläpitäjät|ylläpitäjään]] keskustellaksesi estosta.",
+muuhun [[{$wgMetaNamespace}:ylläpitäjät|ylläpitäjään]] keskustellaksesi estosta.",
 "newarticle"	=> "(uusi)",
-"newarticletext" => "Olet seurannut linkkiä sivulle, jota ei ole vielä olemassa.Luodaksesi sivun, kirjoita alla olevaan laatikkoon  (katso [[Wikipedia:Ohje|ohjeesta]] lisätietoja). Jos tarkoituksesi ei ole luoda uutta sivua, paina selaimesi '''back'''-painiketta.",
+"newarticletext" => "Olet seurannut linkkiä sivulle, jota ei ole vielä olemassa.Luodaksesi sivun, kirjoita alla olevaan laatikkoon  (katso [[{$wgMetaNamespace}:Ohje|ohjeesta]] lisätietoja). Jos tarkoituksesi ei ole luoda uutta sivua, paina selaimesi '''back'''-painiketta.",
 "anontalkpagetext" => "----\n''Tämä on nimettömän käyttäjän keskustelusivu. Hän ei ole joko luonut itselleen käyttäjätunnusta tai ei käytä sitä. Siksi hänet tunnistetaan nyt numeerisella [[IP-osoite|IP-osoitteella]]. Kyseinen IP-osoite voi olla useamman henkilön käytössä. Jos olet nimetön käyttäjä, ja sinusta tuntuu, että merkityksettömiä kommentteja on ohjattu sinulle, [[Erikoissivut:Sisäänkirjautuminen|luo itsellesi käyttäjätunnus tai kirjaudu sisään]] välttääksesi jatkossa sekaannukset muiden nimettömien käyttäjien kanssa.''",
 "noarticletext" => "(Tällä sivulla ei ole vielä tekstiä)",
 "updated"		=> "(Päivitetty)",
@@ -353,7 +353,7 @@ Tarkista URL, jolla hait tätä sivua.\n",
 # Search results
 #
 "searchresults" => "Hakutulokset",
-"searchhelppage" => "Wikipedia:Haku",
+"searchhelppage" => "{$wgMetaNamespace}:Haku",
 "searchingwikipedia" => "Etsitään Wikipediasta",
 "searchresulttext" => "Lisätietoja Wikipedian hakutoiminnoista, katso $1.",
 "searchquery"	=> "Haku \"$1\"",
@@ -427,11 +427,11 @@ välinen aikaero tunteina.",
 "changes" => "muutokset",
 "recentchanges" => "Tuoreet muutokset",
 "recentchangestext" => "Tältä sivulta voi seurata tuoreita Wikipediaan tehtyjä muutoksia.
-[[Wikipedia:Tervetuloa Wikipediaan|Tervetuloa Wikipediaan!]]
-Katso seuraavia sivuja: [[Wikipedia:Kysymyksiä ja vastauksia Wikipediasta|Useimmin kysyttyjä asioita]], [[Wikipedia:Sääntöjä ja ohjeita|Wikipedian säännöt]]
-(erityisesti [[Wikipedia:Merkitsemiskäytäntöjä|Merkitsemiskäytännöt]],
-[[Wikipedia::Neutraali näkökulma|Neutraali näkökulma]]),
-ja [[Wikipedia:Aloittelijan virheitä|Aloittelijan virheitä]].
+[[{$wgMetaNamespace}:Tervetuloa Wikipediaan|Tervetuloa Wikipediaan!]]
+Katso seuraavia sivuja: [[{$wgMetaNamespace}:Kysymyksiä ja vastauksia Wikipediasta|Useimmin kysyttyjä asioita]], [[{$wgMetaNamespace}:Sääntöjä ja ohjeita|Wikipedian säännöt]]
+(erityisesti [[{$wgMetaNamespace}:Merkitsemiskäytäntöjä|Merkitsemiskäytännöt]],
+[[{$wgMetaNamespace}::Neutraali näkökulma|Neutraali näkökulma]]),
+ja [[{$wgMetaNamespace}:Aloittelijan virheitä|Aloittelijan virheitä]].
 Jos haluat nähdä Wikipedian onnistuvan, on erittäin tärkeää, että et lisää materiaalia,
 jonka käyttöä rajoittavat [[Wikipedia ja Tekijänoikeudet|tekijänoikeudet]].
 Oikeudelliset seuraukset voivat vahingoittaa projektia vakavasti, joten kunnioita muiden tekijänoikeuksia.
@@ -468,12 +468,12 @@ tallentaaksesi tiedoston.",
 "uploaderror"	=> "Tallennusvirhe",
 "uploadtext"	=> "<strong>SEIS!</strong> Ennen kuin tallennat tänne,
 tutustu ja seuraa Wikipedian <a href=\"" .
-wfLocalUrlE( "Wikipedia:Kuvien käyttösäännöt" ) . "\">kuvienkäyttösääntöihin</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Kuvien käyttösäännöt" ) . "\">kuvienkäyttösääntöihin</a>.
 <p>Näyttääksesi tai etsiäksesi aiemmin tallennettuja kuvia,
 katso <a href=\"" . wfLocalUrlE( "Erityissivut:Luettelo kuvista" ) .
 "\">luetteloa tallennetuista kuvista</a>.
 Tallennukset ja poistot kirjataan <a href=\"" .
-wfLocalUrlE( "Wikipedia:Tallennusloki" ) . "\">tallennuslokiin</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Tallennusloki" ) . "\">tallennuslokiin</a>.
 <p>Käytä allaolevaa lomaketta tallentaaksesi uusia kuvatiedostoja artikkelien
 kuvittamista varten.
 Useimmissa selaimissa näet \"Browse...\" tai \"Selaa...\"-painikkeen, josta aukeaa käyttöjärjestelmäsi normaali tiedostonavausikkuna.
@@ -501,7 +501,7 @@ Kaikki ajat näytetään palvelimen aikoina (UTC).
 "filedesc"	=> "Yhteenveto",
 "affirmation"	=> "Lupaan, että tämän tiedoston tekijänoikeuksien haltija sallii sen 
 käytön $1 lisenssin mukaisesti.",
-"copyrightpage" => "Wikipedia:Wikipedia ja tekijänoikeudet",
+"copyrightpage" => "{$wgMetaNamespace}:Wikipedia ja tekijänoikeudet",
 "copyrightpagename" => "Wikipedia ja tekijänoikeudet",
 "uploadedfiles"	=> "Tallennetut tiedostot",
 "noaffirmation" => "Vahvista, ettei lähettämäsi tiedosto riko tekijänoikeuksia.",
@@ -567,7 +567,7 @@ Keskimäärin sivua on muokattu  <b>$5</b> kertaa, ja muokkausta kohden sivua on
 
 "maintenancebacklink"	=> "Takaisin ylläpitosivulle",
 "disambiguations"	=> "Tarkennussivu",
-"disambiguationspage"	=> "Wikipedia:Linkkejä_tarkennussivuihin",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Linkkejä_tarkennussivuihin",
 "disambiguationstext"	=> "Seuraavat artikkelit linkittävät <i>tarkennussivuun</i>. Sen sijasta niiden pitäisi linkittää asianomaiseen aiheeseen.<br>Sivua kohdellaan tarkennussivuna jos siihen on linkki sivulta $1.<br>Linkkejä muihin nimiavaruuksiin <i>ei</i> ole listattu tässä.",
 "doubleredirects"	=> "Kaksinkertaiset uudelleenohjaukset",
 "doubleredirectstext"	=> "<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECT:in jälkeen on tekstiä.<br>\nJokaisella rivillä on linkit ensimmäiseen ja toiseen uudelleenohjaukseen sekä toisen uudelleenohjauksen kohteen ensimmäiseen riviin, eli yleensä \"oikeaan\" kohteeseen, johon ensimmäisen uudelleenohjauksen pitäisi osoittaa.",
@@ -663,7 +663,7 @@ Tulevaisuudessa sivuun ja sen keskustelusivuun tehtävät muutokset listataan t�
 "confirm"		=> "Vahvista",
 "confirmdelete" => "Vahvista poisto",
 "deletesub"		=> "(Poistetaan \"$1\")",
-"confirmdeletetext" => "Olet tuhoamassa pysyvästi sivun tai kuvan ja kaiken sen historian tietokannasta. Vahvista, että todella aiot tehdä näin ja että ymmärrät seuraukset, sekä että teet tämän [[Wikipedia:Policy|Wikipedian käytännön]] mukaisesti.",
+"confirmdeletetext" => "Olet tuhoamassa pysyvästi sivun tai kuvan ja kaiken sen historian tietokannasta. Vahvista, että todella aiot tehdä näin ja että ymmärrät seuraukset, sekä että teet tämän [[{$wgMetaNamespace}:Policy|Wikipedian käytännön]] mukaisesti.",
 "confirmcheck"	=> "Kyllä, haluan varmasti poistaa tämän.",
 "actioncomplete" => "Toiminta suoritettu",
 "deletedtext"	=> "\"$1\" on poistettu.
@@ -698,7 +698,7 @@ ja olemassa olevaa versiota ei korvata automaattisesti.",
 "undeletebtn" => "Palauta!",
 "undeletedarticle" => "palautettiin \"$1\"",
 "undeletedtext"   => "Artikkeli [[$1]] on palautettu onnistuneesti.
-Lista viimeisimmistä poistoista ja palautuksista on sivulla [[Wikipedia:poistoloki]].",
+Lista viimeisimmistä poistoista ja palautuksista on sivulla [[{$wgMetaNamespace}:poistoloki]].",
 
 # Contributions
 #
@@ -723,7 +723,7 @@ Lista viimeisimmistä poistoista ja palautuksista on sivulla [[Wikipedia:poistol
 # Block/unblock IP
 #
 "blockip"	=> "Aseta muokkausesto",
-"blockiptext"	=> "Käytä allaolevaa lomaketta estämään kirjoitusoikeudet tietyltä IP-osoitteelta. Näin pitäisi tehdä vain vandalismin estämiseksi, ja samalla on noudatettava [[Wikipedia:Policy|Wikipedian käytäntöjä]].
+"blockiptext"	=> "Käytä allaolevaa lomaketta estämään kirjoitusoikeudet tietyltä IP-osoitteelta. Näin pitäisi tehdä vain vandalismin estämiseksi, ja samalla on noudatettava [[{$wgMetaNamespace}:Policy|Wikipedian käytäntöjä]].
 Ilmoita syy alapuolella (esimerkiksi lista vandalisoiduista sivuista).",
 "ipaddress"		=> "IP-osoite",
 "ipbreason"		=> "Syy",

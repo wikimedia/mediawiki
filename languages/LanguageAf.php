@@ -13,8 +13,8 @@
 	1	=> "BronnemateriaalEnBespreking",
 	2	=> "Gebruiker",
 	3	=> "GebruikerBespreking",
-	4	=> "Wikipedia",
-	5	=> "WikipediaBespreking",
+	4	=> "$wgMetaNamespace",
+	5	=> "{$wgMetaNamespace}Bespreking",
 	6	=> "Beeld",
 	7	=> "BeeldBespreking",
 	8	=> "MediaWiki",
@@ -136,16 +136,16 @@
 "mainpage"		=> "Tuisblad",
 "about"			=> "Omtrent",
 "aboutwikipedia" => "Inligting oor Wikipedia",
-"aboutpage"		=> "Wikipedia:Omtrent",
+"aboutpage"		=> "{$wgMetaNamespace}:Omtrent",
 "help"			=> "Help",
-"helppage"		=> "Wikipedia:Hulp",
+"helppage"		=> "{$wgMetaNamespace}:Hulp",
 "wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "Foutrapporte",
-"bugreportspage" => "Wikipedia:FoutRapporte",
+"bugreportspage" => "{$wgMetaNamespace}:FoutRapporte",
 "faq"			=> "Gewilde vrae",
-"faqpage"		=> "Wikipedia:GewildeVrae",
+"faqpage"		=> "{$wgMetaNamespace}:GewildeVrae",
 "edithelp"		=> "Wysighulp",
-"edithelppage"	=> "Wikipedia:Hoe_word_'n_bladsy_gewysig",
+"edithelppage"	=> "{$wgMetaNamespace}:Hoe_word_'n_bladsy_gewysig",
 "cancel"		=> "Kanselleer",
 "qbfind"		=> "Vind",
 "qbbrowse"		=> "Snuffel", 
@@ -184,7 +184,7 @@
 "gnunote" => "Alle teks is beskikbaar onder die terme van die <a class=internal href='http://en.wikipedia.org/wiki/GNU_FDL'>GNU gratis dokumentasielisensie</a>.",
 "printsubtitle" => "(Van http://af.wikipedia.org)",
 "protectedpage" => "Beskermde bladsy",
-"administrators" => "Wikipedia:Administreerders",
+"administrators" => "{$wgMetaNamespace}:Administreerders",
 "sysoptitle"	=> "Sisopregte verlang",
 
 
@@ -305,12 +305,12 @@ Teken asseblief in na jy dit ontvang het.",
 "showpreview"	=> "Wys voorskou",
 "blockedtitle"	=> "Gebruiker is geblokkeer",
 "blockedtext"	=> "Jou gebruikersnaam of IP-adres is deur $1 geblokkeer:
-<br>''$2''<p>Jy mag $1 of een van die ander [[Wikipedia:administreerders|administreerders]] kontak 
+<br>''$2''<p>Jy mag $1 of een van die ander [[{$wgMetaNamespace}:administreerders|administreerders]] kontak 
 om dit te bespreek.",
 "newarticle"	=> "(Nuut)", 
 "newarticletext" => 
 "Die bladsy waarna geskakel is, bestaan nie.
-Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[Wikipedia:Help|hulp bladsy]] 
+Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{$wgMetaNamespace}:Help|hulp bladsy]] 
 vir meer inligting.
 Indien jy per ongeluk hier is, gebruik jou blaaier se '''terug''' knop.",
 "anontalkpagetext" => "---- ''Dit is die besprekingsbladsy vir 'n anonieme gebruiker wat nie 'n rekening geskep het nie. Ons moet dus hul [[IP-adres]] gebruik om hulle te identifiseer. So 'n IP-adres kan deur verskeie gebruikers gedeel word. Indien jy 'n anonieme gebruiker is wat voel dat oneerbiedige komentaar aan jou gerig is, [[Special:Userlogin|skep 'n rekening of teken in]] om verwarring te voorkom met ander anonieme gebruikers.'' ", 
@@ -366,7 +366,7 @@ het om toegang te kry tot hierdie bladsy, reg is.\n",
 # Search results
 #
 "searchresults" => "soekresultate",
-"searchhelppage" => "Wikipedia:Soek",
+"searchhelppage" => "{$wgMetaNamespace}:Soek",
 "searchingwikipedia" => "Soek in Wikipedia",
 "searchresulttext" => "Vir meer inligting oor Wikipedia soekresultate, lees $1.",
 "searchquery"	=> "Vir navraag \"$1\"",
@@ -438,15 +438,15 @@ Jou internet ID-nommer is $2.",
 "changes" => "wysigings",
 "recentchanges" => "Onlangse wysigings",
 "recentchangestext" => "Volg wysigings wat onlangs verander het, op 
-[[Wikipedia:Welkom nuwelinge|Welkom nuwelinge]]!
-Kyk asb. ook na hierdie bladsye: [[wikipedia:FAQ|Wikipedia FAQ]],
-[[Wikipedia:beleid|beleid]]
-(veral [[wikipedia:styl|styl]],
-[[wikipedia:neutrale standpunt|neutrale standpunt]]),
-en [[wikipedia:mees algemene Wikipedia foute|mees algemene Wikipedia foute]].
+[[{$wgMetaNamespace}:Welkom nuwelinge|Welkom nuwelinge]]!
+Kyk asb. ook na hierdie bladsye: [[{$wgMetaNamespace}:FAQ|Wikipedia FAQ]],
+[[{$wgMetaNamespace}:beleid|beleid]]
+(veral [[{$wgMetaNamespace}:styl|styl]],
+[[{$wgMetaNamespace}:neutrale standpunt|neutrale standpunt]]),
+en [[{$wgMetaNamespace}:mees algemene Wikipedia foute|mees algemene Wikipedia foute]].
 
 As jy wil hê dat Wikipedia suksesvol moet wees, is dit belangrik dat jy nie 
-materiaal byvoeg wat deur [[wikipedia:kopiereg|kopiereg]] beperk word nie.
+materiaal byvoeg wat deur [[{$wgMetaNamespace}:kopiereg|kopiereg]] beperk word nie.
 Die wetlike onderhewigheid kan die projek skade aandoen.
 Kyk ook na [http://meta.wikipedia.org/wiki/Special:Recentchanges|onlangse metabesprekings].", #fixMeContinue
 "rcloaderr"		=> "Laai onlangse wysigings",
@@ -480,11 +480,11 @@ om lêers te laai.",
 "uploadfile"	=> "Laai lêer",
 "uploaderror"	=> "Laaifout",
 "uploadtext"	=> "<strong>STOP!</strong> Voor jy hier laai, lees en volg Wikipedia se <a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">beleid oor prentgebruik</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Image_use_policy" ) . "\">beleid oor prentgebruik</a>.
 <p>Om prente wat voorheen gelaai is te sien of te soek, gaan na die <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
 "\">lys van gelaaide prente</a>.
 Laai van lêers en skrappings word aangeteken in die <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">laailog</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_log" ) . "\">laailog</a>.
 <p>Gebruik die vorm hier onder om nuwe prente te laai wat jy ter illustrasie in jou artikels wil gebruik.
 In die meeste webblaaiers sal jy 'n \"Browse...\" knop sien, wat jou bedryfstelsel se standaard lêeroopmaak dialoogblokkie sal oopmaak.
 Deur 'n lêer in hierdie dialoogkassie te kies, vul jy die teksboks naas die knop met die naam van die lêer.
@@ -506,7 +506,7 @@ Alle tye is bedienertyd (UGT).
 "filename"		=> "Lêernaam",
 "filedesc"		=> "Opsomming",
 "affirmation"	=> "Ek bevestig dat die kopiereghouer van hierdie lêer toestem om dit te lisensieer volgens die terme van die $1.",
-"copyrightpage" => "Wikipedia:kopiereg",
+"copyrightpage" => "{$wgMetaNamespace}:kopiereg",
 "copyrightpagename" => "Wikipedia kopiereg",
 "uploadedfiles"	=> "Gelaaide lêers",
 "noaffirmation" => "Jy moet bevestig dat die laai van jou lêer geen kopieregte skend nie.",
@@ -566,7 +566,7 @@ Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>
 "maintnancepagetext"	=> "Hierdie bladsy bevat handige gereedskap vir alledaagse instandhouding. Party van hierdie funksies gebruik die databasis, so moet asseblief nie die bladsy herlaai na elke item wat jy verander het nie ;-)",
 "maintenancebacklink"	=> "Terug na die instandhoudingsbladsy",
 "disambiguations"	=> "Bladsye wat onduidelikhede opklaar",
-"disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "Die volgende artikels skakel na 'n <i>bladsy wat onduidelikhede opklaar</i>. Hulle behoort eerder na die relevante onderwerp te skakel.<br>'n Bladsy word gesien as een wat onduidelikhede opklaar as $1 daarna toe skakel.<br>Skakels van ander naamkontekste is <i>nie</i> hier gelys nie.",
 "doubleredirects"	=> "Dubbele aansture",
 "doubleredirectstext"	=> "<b>Let op:</b> Hierdie lys bevat moontlik false positiewe. Dit beteken gewoonlik dat daar nog teks met skakels onder die eerste #REDIRECT is.<br>\nElke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reël van van die tweede aanstuurteks, wat gewoonlik die \"regte\" teikenbladsy gee waarna die eerste aanstuur behoort te wys.",
@@ -662,7 +662,7 @@ Toekomstige veranderinge aan hierdie bladsye en sy geassosieerde Bespreekbladsy 
 "confirmdelete" => "Bevestig skrapping",
 "deletesub"		=> "(Besig om \"$1\" te skrap)",
 "confirmdeletetext" => "Jy staan op die punt om 'n bladsy of prent asook al hulle geskiedenis uit die databasis te skrap.
-Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [Wikipedia:Policy]].",
+Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [{$wgMetaNamespace}:Policy]].",
 "confirmcheck"	=> "Ja, ek wil dit regtig skrap.",
 "actioncomplete" => "Aksie uitgevoer",
 "deletedtext"	=> "\"$1\" is geskrap.
@@ -694,7 +694,7 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 "undeletebtn" => "Herstel!",
 "undeletedarticle" => "het \"$1\" herstel",
 "undeletedtext"   => "Die bladsy [[$1]] is sukselsvol herstel.
-Kyk na [[Wikipedia:Deletion_log]] vir 'n rekord van onlangse skrappings en herstellings.",
+Kyk na [[{$wgMetaNamespace}:Deletion_log]] vir 'n rekord van onlangse skrappings en herstellings.",
 
 # Contributions
 #
@@ -721,7 +721,7 @@ Kyk na [[Wikipedia:Deletion_log]] vir 'n rekord van onlangse skrappings en herst
 #
 "blockip"		=> "Blok IP-adres",
 "blockiptext"	=> "Gebruik die vorm hier onder om skryftoegang van 'n sekere IP-adres te blok.
-Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [Wikipedia:Policy|Wikipedia policy]].
+Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [{$wgMetaNamespace}:Policy|Wikipedia policy]].
 Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat gevandaliseer is, aan).",
 "ipaddress"		=> "IP-Adres",
 "ipbreason"		=> "Rede",

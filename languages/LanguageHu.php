@@ -2,6 +2,13 @@
 
 include_once("LanguageUtf8.php");
 
+if ( $wgSitename == "Wikipedia" ) {
+	$wgSitename = "Wikipédia";
+}
+if ( $wgMetaNamespace = "Wikipedia" ) {
+	$wgMetaNamespace = "Wikipédia";
+}
+
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
 
@@ -16,8 +23,8 @@ include_once("LanguageUtf8.php");
 	1	=> "Vita",
 	2	=> "User",
 	3	=> "User_vita",
-	4	=> "Wikipédia",
-	5	=> "Wikipédia_vita",
+	4	=> $wgMetaNamespace,
+	5	=> $wgMetaNamespace."_vita",
 	6	=> "Kép",
 	7	=> "Kép_vita",
 	8	=> "MediaWiki",
@@ -71,7 +78,7 @@ include_once("LanguageUtf8.php");
 	"nocache" => "Lapok gyorstárazásának letiltása"
 );
 
-/* Change bookstore list through the wiki page [[hu:Wikipédia:Külső könyvinformációk]] */
+/* Change bookstore list through the wiki page [[hu:{$wgMetaNamespace}:Külső könyvinformációk]] */
 
 /* Language names should be the native names. Inherit common array from Language.php */
 
@@ -156,16 +163,16 @@ include_once("LanguageUtf8.php");
 "mainpagetext"	=> "Wiki szoftver sikeresen telepítve.",
 "about"			=> "Névjegy",
 "aboutwikipedia" => "A Wikipédiáról",
-"aboutpage"		=> "Wikipédia:Névjegy",
+"aboutpage"		=> "{$wgMetaNamespace}:Névjegy",
 "help"			=> "Segítség",
-"helppage"		=> "Wikipédia:Segítség",
+"helppage"		=> "{$wgMetaNamespace}:Segítség",
 "wikititlesuffix" => "Wikipédia",
 "bugreports"	=> "Hibajelentés",
-"bugreportspage" => "Wikipédia:Hibajelentések",
+"bugreportspage" => "{$wgMetaNamespace}:Hibajelentések",
 "faq"			=> "GyIK",
-"faqpage"		=> "Wikipédia:GyIK",
+"faqpage"		=> "{$wgMetaNamespace}:GyIK",
 "edithelp"		=> "Segítség a szerkesztéshez",
-"edithelppage"	=> "Wikipédia:Hogyan_szerkessz_egy_lapot",
+"edithelppage"	=> "{$wgMetaNamespace}:Hogyan_szerkessz_egy_lapot",
 "cancel"		=> "Vissza",
 "qbfind"		=> "Keresés",
 "qbbrowse"		=> "Böngészés",
@@ -205,7 +212,7 @@ include_once("LanguageUtf8.php");
 "gnunote" 		=> "Minden szöveg a <a class=internal href='/wiki/GNU_FDL'>GNU Szabad Dokumentációk Liszensze</a> feltételei mellett érhető el.",
 "printsubtitle" => "(From http://www.wikipedia.org/)",
 "protectedpage" => "Védett lap",
-"administrators" => "Wikipédia:Adminisztrátorok",
+"administrators" => "{$wgMetaNamespace}:Adminisztrátorok",
 "sysoptitle"	=> "Sysop hozzáférés szükséges",
 "sysoptext"		=> "Az általad kért tevékenységet csak \"sysopok\" végezhetik el.
 Lásd $1.",
@@ -355,7 +362,7 @@ Lépj be a levélben található adatokkal.",
 "blockedtext"	=> "A felhasználói neved vagy IP számod $1 letiltotta.
 Az indoklás:<br>''$2''
 <p>Felveheted a kapcsolatot $1 adminnal vagy bármely más
-[[Wikipédia:adminisztrátorok|adminisztrátorral]] hogy megvitasd a letiltást.",
+[[{$wgMetaNamespace}:adminisztrátorok|adminisztrátorral]] hogy megvitasd a letiltást.",
 "whitelistedittitle" => "A szerkesztéshez be kell lépned",
 "whitelistedittext" => "A szócikkek szerkesztéséhez [[Special:Userlogin|be kell lépned]].",
 "whitelistreadtitle" => "Az olvasáshoz be kell lépned",
@@ -368,7 +375,7 @@ Az indoklás:<br>''$2''
 "newarticletext" =>
 "Egy olyan lapra jutottál ami még nem létezik.
 A lap létrehozásához kezdd el írni a szövegét lenti keretbe
-(a [[Wikipédia:Segítség|segítség]] lapon lelsz további 
+(a [[{$wgMetaNamespace}:Segítség|segítség]] lapon lelsz további 
 információkat).
 Ha tévedésből jöttél ide, csak nyomd meg a böngésző '''Vissza/Back'''
 gombját.",
@@ -416,7 +423,7 @@ ezért a módosításaidat most nem lehetséges elmenteni. Érdemes a szöveget
 kimásolni és elmenteni egy szövegszerkesztőben a későbbi mentéshez.",
 "protectedpagewarning" => "FIGYELEM: A lap lezárásra került és ilyenkor
 csak a Sysop jogú adminisztrátorok tudják szerkeszteni. Ellenőrizd, hogy
-betartod a <a href='/wiki/Wikipédia:Zárt_lapok_irányelve'>zárt lapok 
+betartod a <a href='/wiki/{$wgMetaNamespace}:Zárt_lapok_irányelve'>zárt lapok 
 irányelvét</a>.",
 
 # History pages
@@ -448,7 +455,7 @@ A = Apró változtatás",
 # Search results
 #
 "searchresults" => "A keresés eredménye",
-"searchhelppage" => "Wikipédia:Keresés",
+"searchhelppage" => "{$wgMetaNamespace}:Keresés",
 "searchingwikipedia" => "Keresés a Wikipédiában",
 "searchresulttext" => "További információkkal a keresésről $1 szolgál.",
 "searchquery"	=> "A \"$1\" kereséshez",
@@ -556,13 +563,13 @@ idő a GMT-től eltér (Magyarországon nyáron 2, télen 1).",
 "changes" 		=> "változtatás",
 "recentchanges" => "Friss változtatások",
 "recentchangestext" => "Ezen a lapon követheted a Wikipédián történt legutóbbi 
-változtatásokat. [[Wikipédia:Üdvözlünk_látogató|Üdvözlünk, látogató]]!
-Légy szíves ismerkedj meg az alábbi lapokkal: [[Wikipédia:GyIK|Wikipédia GyIK]],
-[[Wikipédia:Irányelvek]] (különösen az [[Wikipédia:Elnevezési szokások|elnevezési szokásokat]],
-a [[wikipédia:Semleges nézőpont|semleges nézőpontot]]), és a
-[[wikipédia:Legelterjedtebb baklövések|legelterjedtebb baklövéseket]].
+változtatásokat. [[{$wgMetaNamespace}:Üdvözlünk_látogató|Üdvözlünk, látogató]]!
+Légy szíves ismerkedj meg az alábbi lapokkal: [[{$wgMetaNamespace}:GyIK|Wikipédia GyIK]],
+[[{$wgMetaNamespace}:Irányelvek]] (különösen az [[{$wgMetaNamespace}:Elnevezési szokások|elnevezési szokásokat]],
+a [[{$wgMetaNamespace}:Semleges nézőpont|semleges nézőpontot]]), és a
+[[{$wgMetaNamespace}:Legelterjedtebb baklövések|legelterjedtebb baklövéseket]].
 Ha azt szeretnéd hogy a Wikipedia sikeres legyen akkor nagyon fontos, hogy 
-soha ne add hozzá mások [[wikipédia:Copyright|jogvédett és nem felhasználható]]
+soha ne add hozzá mások [[{$wgMetaNamespace}:Copyright|jogvédett és nem felhasználható]]
 anyagait.
 A jogi problémák komolyan árthatnak a projektnek ezért kérünk arra, hogy ne tegyél
 ilyet.
@@ -603,12 +610,12 @@ to upload files.",
 "uploaderror"	=> "Felküldési hiba",
 "uploadtext"	=> "<strong>ÁLLJ!</strong> Mielőtt bármit felküldesz ide
 győződj meg róla hogy elolvastad és követed a <a href=\"" .
-wfLocalUrlE( "Wikipédia:Képhasználati_irányelvek" ) . "\">képhasználati irányelveket</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Képhasználati_irányelvek" ) . "\">képhasználati irányelveket</a>.
 <p>A régebben felküldött képek megnézéséhez vagy kereséséhez
 nézd meg a <a href=\"" . wfLocalUrlE( "Speciális:Képlista" ) .
 "\">felküldött képek listáját</a>.
 A felküldések és törlések naplója a <a href=\"" .
-wfLocalUrlE( "Wikipédia:Upload_log" ) . "\">felküldési naplóban</a>
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_log" ) . "\">felküldési naplóban</a>
 található.
 <p>Az alábbi űrlapot használd a cikkeidet illusztráló új kép felküldéséhez.
 A legtöbb büngészőben látsz egy \"Böngészés...\" (Browse) gombot
@@ -643,7 +650,7 @@ Minden időpont a server idejében (UTC) van megadva.
 "filesource" 	=> "Forrás",
 "affirmation"	=> "Igazolom hogy ezen file szerzői jogainak tulajdonosa
 elfogadja azt, hogy az anyag a $1 licenc alapján publikálásra kerül.",
-"copyrightpage" => "Wikipédia:Copyright",
+"copyrightpage" => "{$wgMetaNamespace}:Copyright",
 "copyrightpagename" => "Wikipédia copyright",
 "uploadedfiles"	=> "Felküldött file-ok",
 "noaffirmation" => "Igazolnod kell azt, hogy a felküldött file-ok 
@@ -712,7 +719,7 @@ Ebből <b>$2</b> darab adminisztrátor (lásd $3).",
 "maintnancepagetext" => "Ezen a lapon a mindennapi karbantartáshoz hasznos dologkat lelsz. Mivel ezek az adatbázist a szokásosnál jobban terhelik kérlek ne nyomj minden kijavított cikk után reloadot ;-)",
 "maintenancebacklink" => "Vissza a karbantartás lapra",
 "disambiguations" => "Egyértelműsítő lapok",
-"disambiguationspage" => "Wikipédia:Egyértelműsítő lapok",
+"disambiguationspage" => "{$wgMetaNamespace}:Egyértelműsítő lapok",
 "disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
 "doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
@@ -722,7 +729,7 @@ Ebből <b>$2</b> darab adminisztrátor (lásd $3).",
 "selflinkstext"	=> "The following pages contain a link to themselves, which they should not.",
 "mispeelings"           => "Pages with misspellings",
 "mispeelingstext"	=> "The following pages contain a common misspelling, which are listed on $1. The correct spelling might be given (like this).",
-"mispeelingspage"	=> "Wikipédia:Gyakori elírások listája",
+"mispeelingspage"	=> "{$wgMetaNamespace}:Gyakori elírások listája",
 "missinglanguagelinks"  => "Missing Language Links",
 "missinglanguagelinksbutton"    => "Find missing language links for",
 "missinglanguagelinkstext"      => "These articles do <i>not</i> link to their counterpart in $1. Redirects and subpages are <i>not</i> shown.",
@@ -849,7 +856,7 @@ gombot a lap alján.",
 or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
-[[Wikipedia:Policy]].",
+[[{$wgMetaNamespace}:Policy]].",
 "confirmcheck"	=> "Yes, I really want to delete this.",
 "actioncomplete" => "Action complete",
 "deletedtext"	=> "\"$1\" has been deleted.
@@ -892,7 +899,7 @@ will not be automatically replaced.",
 "undeletebtn" => "Restore!",
 "undeletedarticle" => "restored \"$1\"",
 "undeletedtext"   => "The article [[$1]] has been successfully restored.
-See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations.",
+See [[{$wgMetaNamespace}:Deletion_log]] for a record of recent deletions and restorations.",
 
 # Contributions
 #
@@ -921,7 +928,7 @@ See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations
 "blockiptext"	=> "Use the form below to block write access
 from a specific IP address.
 This should be done only only to prevent vandalism, and in
-accordance with [[Wikipedia:Policy|Wikipedia policy]].
+accordance with [[{$wgMetaNamespace}:Policy|Wikipedia policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 "ipaddress"		=> "IP Address",

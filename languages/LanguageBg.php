@@ -770,7 +770,7 @@ wfLocalUrlE( "$wgMetaNamespace:Дневник_на_качванията" ) . "\"
 <ul>
 <li><a href=\"http://www.wikipedia.org/wikistats/EN/Sitemap.htm\">Уики-статистика</a>,</li>
 <li><a href=\"http://www.wikipedia.org/stats\">Потребителска статистика</a>,</li>
-<li><a href=\"http://www.wikipedia.org/wiki/Wikipedia:Statistics\">Прираст</a>.</li>
+<li><a href=\"http://www.wikipedia.org/wiki/{$wgMetaNamespace}:Statistics\">Прираст</a>.</li>
 </ul>",
 
 # Maintenance Page

@@ -2,6 +2,13 @@
 global $IP;
 include_once( "LanguageUtf8.php" );
 
+if ( $wgSitename == "Wikipedia" ) {
+	$wgSitename = "위키백과";
+}
+if ( $wgMetaNamespace = "Wikipedia" ) {
+	$wgMetaNamespace = "위키백과";
+}
+
 # The names of the namespaces can be set here, but the numbers
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
@@ -13,8 +20,8 @@ include_once( "LanguageUtf8.php" );
 	1	=> "토론",	# Talk
 	2	=> "사용자",	# User
 	3	=> "사용자토론",	# User_talk
-	4	=> "위키백과",	# Wikipedia
-	5	=> "위키백과토론",# Wikipedia_talk
+	4	=> $wgMetaNamespace,	# Wikipedia
+	5	=> $wgMetaNamespace."토론",# Wikipedia_talk
 	6	=> "그림",	# Image
 	7	=> "그림토론"	,# Image_talk
 	8	=> "MediaWiki",
@@ -159,16 +166,16 @@ include_once( "LanguageUtf8.php" );
 "mainpage"		=> "대문",
 "about"			=> "소개",
 "aboutwikipedia" => "위키백과란",
-"aboutpage"		=> "위키백과:소개",
+"aboutpage"		=> "{$wgMetaNamespace}:소개",
 "help"			=> "도움말",
-"helppage"		=> "위키백과:도움말",
+"helppage"		=> "{$wgMetaNamespace}:도움말",
 "wikititlesuffix" => "위키백과",
 "bugreports"	=> "벌레 발견",
-"bugreportspage" => "위키백과:벌레_발견",
+"bugreportspage" => "{$wgMetaNamespace}:벌레_발견",
 "faq"			=> "잦은질문(FAQ)",
-"faqpage"		=> "위키백과:잦은질문(FAQ)",
+"faqpage"		=> "{$wgMetaNamespace}:잦은질문(FAQ)",
 "edithelp"		=> "편집 도움말",
-"edithelppage"	=> "위키백과:문서_편집_방법",
+"edithelppage"	=> "{$wgMetaNamespace}:문서_편집_방법",
 "cancel"		=> "취소",
 "qbfind"		=> "찾기",
 
@@ -207,7 +214,7 @@ include_once( "LanguageUtf8.php" );
 "viewcount"		=> "이 문서는 총 $1번 읽혔습니다.",
 "printsubtitle" => "(http://www.wikipedia.org에서)",
 "protectedpage" => "보호되는 문서",
-"administrators" => "위키백과:관리자",
+"administrators" => "{$wgMetaNamespace}:관리자",
 "sysoptitle"	=> "Sysop 권한 필요",
 "sysoptext"		=> "해당 action은 \"Sysop\"만 실행할 수 있습니다.
 참조 $1.",
@@ -382,7 +389,7 @@ text editing area as it will appear if you choose to save.",
 # Search results
 #
 "searchresults" => "찾아본 결과",
-"searchhelppage" => "위키백과:찾기",
+"searchhelppage" => "{$wgMetaNamespace}:찾기",
 "searchingwikipedia" => "위키백과 찾기",
 "searchresulttext" => "위키백과 찾기에 대해 자세한 정보는 $1 를 보세요.",
 "searchquery"	=> "열쇠말 \"$1\"",
@@ -467,15 +474,15 @@ $2 List redirects &nbsp; Search for $3 $9",
 "recentchanges" => "최근 바뀜",
 "recentchangestext" => "아래 나열된 문서들이 최근에 바뀌었습니다.
 
-[[위키백과:새내기_환영|새내기, 환영합니다]]!
-새내기들은 다음 문서를 읽어 보세요.: [[위키백과:잦은질문(FAQ)|위키백과 잦은질문(FAQ)]],
-[[위키백과:정책과 지침|위키백과 정책]]
-(특별히 [[위키백과:제목달기 규칙|제목달기 규칙]],
-[[위키백과:중립적인 시각|중립적인 시각]]),
-그리고 [[위키백과:범하기_쉬운_실수|범하기 쉬운 실수]].
+[[{$wgMetaNamespace}:새내기_환영|새내기, 환영합니다]]!
+새내기들은 다음 문서를 읽어 보세요.: [[{$wgMetaNamespace}:잦은질문(FAQ)|위키백과 잦은질문(FAQ)]],
+[[{$wgMetaNamespace}:정책과 지침|위키백과 정책]]
+(특별히 [[{$wgMetaNamespace}:제목달기 규칙|제목달기 규칙]],
+[[{$wgMetaNamespace}:중립적인 시각|중립적인 시각]]),
+그리고 [[{$wgMetaNamespace}:범하기_쉬운_실수|범하기 쉬운 실수]].
 
 위키백과가 성공하려면, 여러분이 저작권에 저촉되는 내용을 이곳에 써 넣지 않는 것이
-매우 중요합니다.' [[위키백과:저작권|저작권]].
+매우 중요합니다.' [[{$wgMetaNamespace}:저작권|저작권]].
 법적 문제가 프로젝트를 망칠 수 있습니다. 저작권에 유의해 주세요.
 또, [http://meta.wikipedia.org/wiki/Special:Recentchanges 최근 메타 토론]도 
 읽어 보세요.",
@@ -513,14 +520,14 @@ $2 List redirects &nbsp; Search for $3 $9",
 "uploaderror"	=> "올리기 오류",
 "uploadtext"	=> "<strong>잠깐!</strong> 여기 그림을 올리기 전에,
 위키백과의 <a href=\"" .
-wfLocalUrlE( "위키백과:Image_use_policy" ) . "\">그림 사용 정책</a>읽고 따라 주세요.
+wfLocalUrlE( "{$wgMetaNamespace}:Image_use_policy" ) . "\">그림 사용 정책</a>읽고 따라 주세요.
 <p>
 이미 올라온 그림을 찾아 보려면, <a href=\"" . wfLocalUrlE( "특수기능:Imagelist" ) .
 "\">올라온 그림 목록</a>으로 가세요.
 # Special:Image list  특수기능:그림_목록
 그림을 올리거나 지우면 <a href=\"" .
-wfLocalUrlE( "위키백과:올리기_기록" ) . "\">올리기 기록</a>에 그 사실이 남습니다.
-# 위키백과:올리기_기록 위키백과:올리기_기록
+wfLocalUrlE( "{$wgMetaNamespace}:올리기_기록" ) . "\">올리기 기록</a>에 그 사실이 남습니다.
+# {$wgMetaNamespace}:올리기_기록 {$wgMetaNamespace}:올리기_기록
 
 <p>
 밑에 있는 틀을 이용해서 문서에 담을 파일을 올리세요.
@@ -553,7 +560,7 @@ OGG형식을 더 좋아합니다.
 "filedesc"		=> "짧은설명",
 "affirmation"	=> "파일의 저작권자가
 $1의 조건으로 사용을 허가했음을 확인합니다.",
-"copyrightpage" => "위키백과:저작권",
+"copyrightpage" => "{$wgMetaNamespace}:저작권",
 "copyrightpagename" => "위키백과 저작권",
 "uploadedfiles"	=> "파일 올리기",
 "noaffirmation" => "올리는 파일이 어떤 저작권에도 저촉되지 않음을
@@ -622,7 +629,7 @@ $1의 조건으로 사용을 허가했음을 확인합니다.",
 "maintnancepagetext"	=> "This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)",
 "maintenancebacklink"	=> "Back to Maintenance Page",
 "disambiguations"	=> "Disambiguation pages",
-"disambiguationspage"	=> "위키백과:Links_to_disambiguating_pages",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
 "doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
@@ -725,7 +732,7 @@ $1의 조건으로 사용을 허가했음을 확인합니다.",
 or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
-[[위키백과:Policy]].",
+[[{$wgMetaNamespace}:Policy]].",
 "confirmcheck"	=> "Yes, I really want to delete this.",
 "actioncomplete" => "Action complete",
 "deletedtext"	=> "\"$1\" has been deleted.
@@ -755,7 +762,7 @@ will not be automatically replaced.",
 "undeletebtn" => "Restore!",
 "undeletedarticle" => "restored \"$1\"",
 "undeletedtext"   => "The article [[$1]] has been successfully restored.
-See [[위키백과:Deletion_log]] for a record of recent deletions and restorations.",
+See [[{$wgMetaNamespace}:Deletion_log]] for a record of recent deletions and restorations.",
 
 # Contributions
 #
@@ -782,7 +789,7 @@ See [[위키백과:Deletion_log]] for a record of recent deletions and restorati
 "blockiptext"	=> "Use the form below to block write access
 from a specific IP address.
 This should be done only only to prevent valndalism, and in
-accordance with [[위키백과:Policy|Wikipedia policy]].
+accordance with [[{$wgMetaNamespace}:Policy|Wikipedia policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 "ipaddress"		=> "IP Address",

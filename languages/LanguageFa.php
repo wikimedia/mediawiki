@@ -8,6 +8,14 @@ include_once("LanguageUtf8.php");
 # Language-specific text
 #--------------------------------------------------------------------------
 
+if ( $wgSitename == "Wikipedia" ) {
+	$wgSitename = "ویکی‌پدیا";
+}
+if ( $wgMetaNamespace = "Wikipedia" ) {
+	$wgMetaNamespace = "ویکی‌پدیا";
+}
+
+
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
 
@@ -26,8 +34,8 @@ include_once("LanguageUtf8.php");
 	1	=> "بحث",
 	2	=> "کاربر",
 	3	=> "بحث_کاربر",
-	4	=> "ویکی‌پدیا",
-	5	=> "بحث_ویکی‌پدیا",
+	4	=> $wgMetaNamespace,
+	5	=> "بحث_" . $wgMetaNamespace,
 	6	=> "تصویر",
 	7	=> "بحث_تصویر",
 	8	=> "مدیاویکی",
@@ -155,18 +163,18 @@ include_once("LanguageUtf8.php");
 "mainpagetext"	=> "نرم‌افزار ویکی با موفقیت نصب شد.",
 "about"			=> "درباره",
 "aboutwikipedia" => "درباره‌ی ویکی‌پدیا",
-"aboutpage"		=> "ویکی‌پدیا:درباره",
+"aboutpage"		=> "{$wgMetaNamespace}:درباره",
 "help"			=> "راهنما",
-"helppage"		=> "ویکی‌پدیا:راهنما",
+"helppage"		=> "{$wgMetaNamespace}:راهنما",
 "wikititlesuffix" => "ویکی‌پدیا",
 "bugreports"	=> "گزارش اشکالات",
-"bugreportspage" => "ویکی‌پدیا:گزارش اشکالات",
+"bugreportspage" => "{$wgMetaNamespace}:گزارش اشکالات",
 "sitesupport"   => "کمک مالی",
-"sitesupportpage" => "ویکی‌پدیا:کمک_مالی", # If not set, won't appear. Can be wiki page or URL
+"sitesupportpage" => "{$wgMetaNamespace}:کمک_مالی", # If not set, won't appear. Can be wiki page or URL
 "faq"			=> "سؤالات معمول",
-"faqpage"		=> "ویکی‌پدیا:سؤالات معمول",
+"faqpage"		=> "{$wgMetaNamespace}:سؤالات معمول",
 "edithelp"		=> "راهنمای ویرایش کردن",
-"edithelppage"	=> "ویکی‌پدیا:چگونه_صفحات_را_ویرایش_کنیم",
+"edithelppage"	=> "{$wgMetaNamespace}:چگونه_صفحات_را_ویرایش_کنیم",
 "cancel"		=> "لغو",
 "qbfind"		=> "یافتن",
 "qbbrowse"		=> "مرور",
@@ -180,7 +188,7 @@ include_once("LanguageUtf8.php");
 "mytalk"		=> "بحث من",
 "currentevents" => "وقایع کنونی",
 "disclaimers" => "تکذیب‌نامه‌ها",
-"disclaimerpage"		=> "ویکی‌پدیا:تکذیب‌نامه‌ی عمومی",
+"disclaimerpage"		=> "{$wgMetaNamespace}:تکذیب‌نامه‌ی عمومی",
 "errorpagetitle" => "خطا",
 "returnto"		=> "بازگشت به $1.",
 "fromwikipedia"	=> "از ویکی‌پدیا، دایرةالمعارف آزاد.",
@@ -207,10 +215,10 @@ include_once("LanguageUtf8.php");
 "redirectedfrom" => "(تغییر مسیر از $1)",
 "lastmodified"	=> "این صفحه آخرین بار در $1 تغییر کرده است.",
 "viewcount"		=> "این صفحه $1 بار دیده شده است.",
-"gnunote" => "کلیه‌ی متون تحت شرایط <a class=internal href='http://en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License'>اجازه‌نامه‌ی مستندات آزاد گنو</a> در دسترسند.",
+"gnunote" => "کلیه‌ی متون تحت شرایط <a class=internal href='http://en.wikipedia.org/wiki/{$wgMetaNamespace}:Text_of_the_GNU_Free_Documentation_License'>اجازه‌نامه‌ی مستندات آزاد گنو</a> در دسترسند.",
 "printsubtitle" => "(از http://fa.wikipedia.org)",
 "protectedpage" => "صفحه‌ی محافظت‌شده",
-"administrators" => "ویکی‌پدیا:مدیران",
+"administrators" => "{$wgMetaNamespace}:مدیران",
 "sysoptitle"	=> "دسترسی اپراتور سیستم لازم است",
 "sysoptext"		=> "عملی را که شما درخواست کرده‌اید فقط کاربران با وضعیت «اپراتور سیستم» می‌توانند انجام دهند.
 به $1 مراجعه کنید.",
@@ -291,7 +299,7 @@ The administrator who locked it offered this explanation:
 ",
 "viewsource" => "نمایش مبدأ",
 "protectedtext" => "این صفحه برای جلوگیری از ویرایش قفل شده است؛ این کار ممکن است دلایل مختلفی داشته باشد. لطفاً به
-[[ویکی‌پدیا:صفحه‌ی محافظت‌شده]] مراجعه کنید.
+[[{$wgMetaNamespace}:صفحه‌ی محافظت‌شده]] مراجعه کنید.
 
 شما می‌توانید مبدأ این صفحه را مشاهده و تکثیر کنید:",
 
@@ -389,7 +397,7 @@ You should log in and change your password now.",
 "blockedtitle"	=> "کاربر بسته شده است",
 "blockedtext"	=> "نام کاربری یا نشانی IP شما توسط $1 بسته شده است.
 دلیل داده‌شده این است:<br>''$2''<p>شما می‌توانید با $1 یا یکی از 
-[[ویکی‌پدیا:مدیران|مدیران]] تماس بگیرید و در این باره صحبت کنید.
+[[{$wgMetaNamespace}:مدیران|مدیران]] تماس بگیرید و در این باره صحبت کنید.
 
 توجه کنید که شما نمی‌توانید از امکان «فرستادن پست الکترونیکی به این کاربر» استفاده کنید مگر اینکه نشانی پست الکترونیکی
 معتبری در [[ویژه:ترجیحات|ترجیحات کاربری]]‌تان ثبت کرده باشید.
@@ -418,7 +426,7 @@ You should log in and change your password now.",
 "newarticletext" =>
 "شما پیوندی را دنبال کرده‌اید و به صفحه‌ای رسیده‌اید که هنوز وجود ندارد.
 برای ایجاد صفحه، در مستطیل زیر شروع به تایپ کنید
-(برای اطلاعات بیشتر به [[ویکی‌پدیا:راهنما|صفحه‌ی راهنما]] مراجعه کنید).
+(برای اطلاعات بیشتر به [[{$wgMetaNamespace}:راهنما|صفحه‌ی راهنما]] مراجعه کنید).
 اگر اشتباهاً اینجا آمده‌اید، دکمه‌ی '''back''' مرورگرتان را بزنید.",
 "anontalkpagetext" => "---- ''این صفحه‌ی بحث برای کاربر گمنامی است که هنوز حسابی درست نکرده است یا از آن استفاده نمی‌کند.
 بنابراین برای شناسایی‌اش مجبوریم از [[نشانی IP]] عددی استفاده کنیم. چنین نشانی‌های IPای ممکن است توسط چندین کاربر به شکل
@@ -463,7 +471,7 @@ You should log in and change your password now.",
 اگر می‌خواهید متن را در یک پرونده‌ی متنی ببرید و بچسبانید و برای آینده ذخیره‌اش کنید.",
 "protectedpagewarning" => "هشدار: این صفحه قفل شده است تا فقط کاربران با امتیاز اپراتور سیستم بتوانند ویرایشش کنند.
 مطمئن شوید که از 
-<a href='/wiki/ویکی‌پدیا:توصیه‌های صفحات محافظت‌شده'>توصیه‌های صفحات محافظت‌شده</a> پیروی می‌کنید.",
+<a href='/wiki/{$wgMetaNamespace}:توصیه‌های صفحات محافظت‌شده'>توصیه‌های صفحات محافظت‌شده</a> پیروی می‌کنید.",
 
 # History pages
 #
@@ -492,7 +500,7 @@ You should log in and change your password now.",
 # Search results
 #
 "searchresults" => "نتایج جستجو",
-"searchhelppage" => "ویکی‌پدیا:جستجو کردن",
+"searchhelppage" => "{$wgMetaNamespace}:جستجو کردن",
 "searchingwikipedia" => "جستجوی ویکی‌پدیا",
 "searchresulttext" => "برای اطلاعات بیشتر درباره‌ی جستجوی ویکی‌پدیا، به $1 مراجعه کنید.",
 "searchquery"	=> "برای پرس‌وجوی «$1»",
@@ -554,7 +562,7 @@ border=\"0\" ALT=\"گوگل\"></A>
 "prefslogintext" => "شما با نام «$1» وارد سیستم شده‌اید.
 شماره‌ی شناسایی داخلی شما $2 است.
 
-برای راهنمایی در فهمیدن گزینه‌ها، به [[ویکی‌پدیا:راهنمای ترجیحات کاربر]] مراجعه کنید.",
+برای راهنمایی در فهمیدن گزینه‌ها، به [[{$wgMetaNamespace}:راهنمای ترجیحات کاربر]] مراجعه کنید.",
 "prefsreset"	=> "ترجیحات از حافظه میزان شد.",
 "qbsettings"	=> "تنظیمات نوار سریع",
 "changepassword" => "تغییر کلمه‌ی عبور",
@@ -630,7 +638,7 @@ border=\"0\" ALT=\"گوگل\"></A>
 "uploadtext"	=> "<strong>ایست!</strong> قبل از این که چیزی اینجا بار کنید،
 مطمئن شوید که 
 <a href=\"" .
-wfLocalUrlE( "ویکی‌پدیا:سیاست_استفاده_از_تصاویر" ). "\">سیاست استفاده از تصاویر</a>
+wfLocalUrlE( "{$wgMetaNamespace}:سیاست_استفاده_از_تصاویر" ). "\">سیاست استفاده از تصاویر</a>
 را خوانده‌اید و از آن پیروی می‌کنید.
 <p>If a file with the name you are specifying already
 exists on the wiki, it'll be replaced without warning.
@@ -673,7 +681,7 @@ you may be blocked from uploading if you abuse the system.",
 "filestatus" => "وضعیت حق تکثیر",
 "filesource" => "منبع",
 "affirmation"	=> "من تأیید می‌کنم که دارنده‌ی حق انحصاری تکثیر این پرونده موافق است که تحت شرایط $1 منتشر شود.",
-"copyrightpage" => "ویکی‌پدیا:حق_تکثیر",
+"copyrightpage" => "{$wgMetaNamespace}:حق_تکثیر",
 "copyrightpagename" => "حق تکثیر ویکی‌پدیا",
 "uploadedfiles"	=> "پرونده‌های بارشده",
 "noaffirmation" => "شما باید تأیید کنید که این بار کردن شما هیچ حق انحصاری تکثیری را زیر پا نمی‌گذارد.",
@@ -738,7 +746,7 @@ you may be blocked from uploading if you abuse the system.",
 "maintnancepagetext"	=> "This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)",
 "maintenancebacklink"	=> "بازگشت به صفحه‌ی نگهداری",
 "disambiguations"	=> "صفحات رفع ابهام",
-"disambiguationspage"	=> "ویکی‌پدیا:پیوند به صفحات رفع ابهام",
+"disambiguationspage"	=> "{$wgMetaNamespace}:پیوند به صفحات رفع ابهام",
 "disambiguationstext"	=> "مقاله‌های زیر به یک <i>صفحه‌ی رفع ابهام</i> پیوند دارند. به جای این، این صفحات باید به
 They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "تغییرمسیرهای دوتایی",
@@ -903,7 +911,7 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 "revertpage"	=> "ویرایش $2 برگردانده شد، به آخرین تغییری که  $1 انجام داده است",
 "protectlogpage" => "سیاهه‌ی_محافظت",
 "protectlogtext" => "در زیر فهرست قفل کردن‌ها/ازقفل‌درآوردن‌های صفحات آمده است.
-برای اطلاعات بیشتر به [[ویکی‌پدیا:صفحه‌ی محافظت‌شده]] مراجعه کنید.",
+برای اطلاعات بیشتر به [[{$wgMetaNamespace}:صفحه‌ی محافظت‌شده]] مراجعه کنید.",
 "protectedarticle" => "[[$1]] محافظت شد",
 "unprotectedarticle" => "[[$1]] از محافظت در آمد",
 
@@ -921,7 +929,7 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 "undeletebtn" => "احیا شود!",
 "undeletedarticle" => "«$1» احیا شد",
 "undeletedtext"   => "مقاله‌ی [[$1]] با موفقیت احیا شد.
-برای سوابق حذف‌ها و احیاهای اخیر به [[ویکی‌پدیا:سیاهه‌ی_حذف]] مراجعه کنید.",
+برای سوابق حذف‌ها و احیاهای اخیر به [[{$wgMetaNamespace}:سیاهه‌ی_حذف]] مراجعه کنید.",
 
 # Contributions
 #
@@ -949,7 +957,7 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 "blockiptext"	=> "از فرم زیر برای بستن دسترسی نوشتن از یک نشانی IP یا
 نام کاربری مشخص استفاده کنید.
 این کار فقط فقط باید برای جلوگیری از خرابکاری انجام شود، و بر اساس
-[[ویکی‌پدیا:خط مشی|خط مشی].
+[[{$wgMetaNamespace}:خط مشی|خط مشی].
 دلیل مشخص این کار را در زیر ذکر کنید (مثلاً با ذکر صفحات به‌خصوصی که تخریب شده‌اند).",
 "ipaddress"		=> "نشانی IP/نام کاربر",
 "ipbreason"		=> "دلیل",

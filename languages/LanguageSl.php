@@ -469,7 +469,7 @@ Prosimo poglejte na naslednje strani: [[Wikipedija:Najpogostejša vprašanja|Naj
 [[Wikipedija:Nepristransko stališče videnja|Nepristransko stališče videnja (NSV)]]),
 in [[Wikipedija:Najpogostejše stranpoti Wikipedije|Najpogostejše stranpoti Wikipedije]].
 Če bi radi, da Wikipedija uspe, je zelo pomembno, da ne dodajate
-snovi, ki je pridržana z drugimi [[wikipedia:Avtorske pravice|avtorskimi pravicami]].
+snovi, ki je pridržana z drugimi [[{$wgMetaNamespace}:Avtorske pravice|avtorskimi pravicami]].
 Zakonita obveza lahko v resnici škodi opravilu, zatorej ne počnite tega.
 Poglejte tudi [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
 "rcloaderr"		=> "Nalagam trenutne spremembe",

@@ -15,8 +15,8 @@ include_once( "LanguageUtf8.php" );
 	1	=> "Talk",
 	2	=> "User",
 	3	=> "User_talk",
-	4	=> "Wikipedia",
-	5	=> "Wikipedia_talk",
+	4	=> $wgMetaNamespace,
+	5	=> $wgMetaNamespace."_talk",
 	6	=> "Image",
 	7	=> "Image_talk",
 	8	=> "MediaWiki",
@@ -186,16 +186,16 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 "mainpage"		=> "首页",
 "about"			=> "关于",
 "aboutwikipedia" => "关于Wikipedia",
-"aboutpage"		=> "Wikipedia:关于",
+"aboutpage"		=> "{$wgMetaNamespace}:关于",
 "help"			=> "帮助",
-"helppage"		=> "Wikipedia:帮助",
+"helppage"		=> "{$wgMetaNamespace}:帮助",
 "wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "错误报告",
-"bugreportspage" => "Wikipedia:错误报告",
+"bugreportspage" => "{$wgMetaNamespace}:错误报告",
 "faq"			=> "常见问题解答",
-"faqpage"		=> "Wikipedia:常见问题解答",
+"faqpage"		=> "{$wgMetaNamespace}:常见问题解答",
 "edithelp"		=> "编辑帮助",
-"edithelppage"	=> "Wikipedia:如何编辑页面",
+"edithelppage"	=> "{$wgMetaNamespace}:如何编辑页面",
 "cancel"		=> "取消",
 "qbfind"		=> "寻找",
 "qbbrowse"		=> "浏览",
@@ -235,7 +235,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 "gnunote" => "所有文本在<a class=internal href='/wiki/GNU_FDL'>GNU自由文档协议证书 </a>下发布",
 "printsubtitle" => "(来自 http://zh.wikipedia.org)",
 "protectedpage" => "被保护页",
-"administrators" => "Wikipedia:管理员",
+"administrators" => "{$wgMetaNamespace}:管理员",
 "sysoptitle"	=> "需要管理员权限",
 "sysoptext"		=> "您刚才的请求只有拥有管理员权限的用户才可使用。
 参见$1。",
@@ -357,7 +357,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "showpreview"	=> "显示预览",
 "blockedtitle"	=> "用户被封",
 "blockedtext"	=> "您的用户名或IP地址已被$1封。
-理由是：<br>'''$2'''<p>您可以与$1向其他任何[[Wikipedia:管理员|管理员]]询问。",
+理由是：<br>'''$2'''<p>您可以与$1向其他任何[[{$wgMetaNamespace}:管理员|管理员]]询问。",
  "whitelistedittitle" => "登录后才可编辑",
  	 "whitelistedittext" => "您必须先[[Special:Userlogin|登录]]才可编辑页面。",
  	 "whitelistreadtitle" => "登录后才可阅读",
@@ -369,7 +369,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "newarticle"	=> "（新）",
 "newarticletext" =>
 "您从一个链接进入了一个并不存在的页面。
-要创建该页面，请在下面的编辑框中输入内容（详情参见Wikipedia:帮助|帮助页面]]）。
+要创建该页面，请在下面的编辑框中输入内容（详情参见{$wgMetaNamespace}:帮助|帮助页面]]）。
 如果您不小心来到本页面，直接点击您浏览器中的“返回”按钮。",
 
 "anontalkpagetext" => "---- ''这是一个还未建立帐号的匿名用户的对话页。我们因此只能用[[IP地址]]来与他／她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为本页上的评语与您无关，请[[Special:Userlogin|创建新帐号或登录]]以避免在未来于其他匿名用户混淆。''",
@@ -402,7 +402,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 
 "readonlywarning" => "警告：数据库被锁以进行维护，所以您目前将无法保存您的修改。您或许希望先将本断文字复制并保存到文本文件，然后等一会儿再修改。",
 "protectedpagewarning" => "警告：本页已经被保护，只有拥有管理员权限的用户才可修改。请确认您遵守
-<a href='/wiki/Wikipedia:Protected_page_guidelines'>保护页面守则</a>.",
+<a href='/wiki/{$wgMetaNamespace}:Protected_page_guidelines'>保护页面守则</a>.",
 
 # History pages
 #
@@ -430,7 +430,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 # Search results
 #
 "searchresults" => "搜索结果",
-"searchhelppage" => "Wikipedia:搜索",
+"searchhelppage" => "{$wgMetaNamespace}:搜索",
 "searchingwikipedia" => "搜索Wikipedia",
 "searchresulttext" => "有关搜索Wikipedia的更多详情,参见$1。",
 "searchquery"	=> "查询\"$1\"",
@@ -521,14 +521,14 @@ alt=\"Google\" align=\"middle\"></a>
 "changes" => "更改",
 "recentchanges" => "最近更改",
 "recentchangestext" => "本页跟踪Wikipedia内最新的更改。
-[[Wikipedia:欢迎，新来者|欢迎，新来者]]！
-请参见这些页面：[[wikipedia:常见问题解答|Wikipedia常见问题解答]]、
-[[Wikipedia:守则与指导|Wikipedia守则]]
-（特别是[[wikipedia:命名常规|命名常规]]、
-[[wikipedia:中性的观点|中立观点]]）
-和[[wikipedia:最常见失礼行为|最常见失礼行为]]。
+[[{$wgMetaNamespace}:欢迎，新来者|欢迎，新来者]]！
+请参见这些页面：[[{$wgMetaNamespace}:常见问题解答|Wikipedia常见问题解答]]、
+[[{$wgMetaNamespace}:守则与指导|Wikipedia守则]]
+（特别是[[{$wgMetaNamespace}:命名常规|命名常规]]、
+[[{$wgMetaNamespace}:中性的观点|中立观点]]）
+和[[{$wgMetaNamespace}:最常见失礼行为|最常见失礼行为]]。
 
-如果您希望 Wikipedia 成功，那么请您不要增加受其它[[wikipedia:版权信息|版权]]
+如果您希望 Wikipedia 成功，那么请您不要增加受其它[[{$wgMetaNamespace}:版权信息|版权]]
 限制的材料，这一点将非常重要。相关的法律责任会伤害本项工程，所以请不要这样做。
 此外请参见
 [http://meta.wikipedia.org/wiki/Special:Recentchanges 最近的 meta 讨论]。",
@@ -564,12 +564,12 @@ alt=\"Google\" align=\"middle\"></a>
 "uploadfile"	=> "上载文件",
 "uploaderror"	=> "上载错误",
 "uploadtext"	=> "<strong>停止！</strong>在您上载之前，请先阅读并遵守Wikipedia<a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">图像使用守则</a>。
+wfLocalUrlE( "{$wgMetaNamespace}:Image_use_policy" ) . "\">图像使用守则</a>。
 <p>如果您要查看或搜索之前上载的图像，
 请到<a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
 "\">已上载图像列表</a>.
 所有上载与删除行为都被记录在<a href=\"" .
-wfLocalUrlE( "Wikipedia:上载纪录" ) . "\">上载纪录</a>内。
+wfLocalUrlE( "{$wgMetaNamespace}:上载纪录" ) . "\">上载纪录</a>内。
 <p>使用下面的表单来上载用在条目内新的图像文件。
 在绝大多数浏览器内，你会看到一个\"浏览...\"按钮，点击它后就会跳出一个打开文件对话框。
 选择一个文件后文件名将出现在按钮旁边的文字框中。
@@ -593,7 +593,7 @@ wfLocalUrlE( "Wikipedia:上载纪录" ) . "\">上载纪录</a>内。
 "filename"		=> "文件名",
 "filedesc"		=> "简述",
 "affirmation"	=> "我保证本文件的版权持有人同意将其在$1条款下发布。",
-"copyrightpage" => "Wikipedia:版权信息",
+"copyrightpage" => "{$wgMetaNamespace}:版权信息",
 "copyrightpagename" => "Wikipedia版权",
 "uploadedfiles"	=> "已上载文件",
 "noaffirmation" => "您必须保证您上载的文件并没有侵犯版权。",
@@ -656,7 +656,7 @@ wfLocalUrlE( "Wikipedia:上载纪录" ) . "\">上载纪录</a>内。
 所以请您不要在每修理好几个项目后就按重新载入 ;-)",
 "maintenancebacklink"	=> "返回维护页",
 "disambiguations"	=> "消含糊页",
-"disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "以下的条目都有到消含糊页的链接，但它们应该是链到适当的题目。<br>一个页面会被视为消含糊页如果它是链自$1.<br>由其它他名字空间来的链接<i>不会</i>在这儿被列出来。",
 "doubleredirects"	=> "双重重定向",
 "doubleredirectstext"	=> "<b>请注意：</b> 这列表可能包括不正确的反应。
@@ -778,7 +778,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "confirmdelete" => "确认删除",
 "deletesub"		=> "（正在删除“$1”）",
 "confirmdeletetext" => "您即将从数据库中永远删除一个页面或图像以及其历史。
-请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[Wikipedia:守则与指导]]。
+请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[{$wgMetaNamespace}:守则与指导]]。
 ",
 "confirmcheck"	=> "是的，我确定要删除。",
 "actioncomplete" => "操作完成",
@@ -815,7 +815,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "undeletebtn" => "恢复！",
 "undeletedarticle" => "已经恢复“$1”",
 "undeletedtext"   => "[[$1]]已经被成功复原。
-有关Wikipedia最近的删除与复原，参见[[Wikipedia:删除纪录]]",
+有关Wikipedia最近的删除与复原，参见[[{$wgMetaNamespace}:删除纪录]]",
 
 # Contributions
 #
@@ -841,7 +841,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 #
 "blockip"		=> "查封IP地址",
 "blockiptext"	=> "用下面的表单来禁止来自某一特定IP地址的修改权限。
-只有在为防止破坏，及符合[[Wikipedia:守则与指导]]的情况下才可采取此行动。
+只有在为防止破坏，及符合[[{$wgMetaNamespace}:守则与指导]]的情况下才可采取此行动。
 请在下面输入一个具体的理由（例如引述一个被破坏的页面）。",
 "ipaddress"		=> "IP地址",
 "ipbreason"		=> "原因",
