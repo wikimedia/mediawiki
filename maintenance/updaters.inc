@@ -128,11 +128,11 @@ function do_linkscc_1_3_update() {
 
 function do_image_name_unique_update() {
 	global $wgDatabase;
-	if ( $wgDatabase->indexUnique( 'image', 'img_name' ) ) {
-		echo "...img_name already unique.\n";
+	if( $wgDatabase->indexExists( 'image', 'PRIMARY' ) ) {
+		echo "...image primary key already set.\n";
 	} else {
-		echo "Making the img_name index unique... ";
-		dbsource( "maintenance/archives/patch-image_name_unique.sql", $wgDatabase );
+		echo "Making img_name the primary key... ";
+		dbsource( "maintenance/archives/patch-image_name_primary.sql", $wgDatabase );
 		echo "ok\n";
 	}
 }
