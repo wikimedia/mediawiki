@@ -80,6 +80,30 @@ class SearchTsearch2 extends SearchEngine {
 			"FROM $cur,$searchindex " .
 			'WHERE cur_id=si_page AND ' . $match;
 	}
+
+        function update( $id, $title, $text ) {
+                $dbw=& wfGetDB(DB_MASTER);
+		$searchindex = $dbw->tableName( 'searchindex' );
+		$sql = "DELETE FROM $searchindex WHERE si_page={$id}";
+		$dbw->query($sql,"SearchTsearch2:update");
+		$sql = "INSERT INTO $searchindex (si_page,si_title,si_text) ".
+			" VALUES ( $id, to_tsvector('".
+				$dbw->strencode($title).
+				"'),to_tsvector('".
+				$dbw->strencode( $text)."')) ";
+		$dbw->query($sql,"SearchTsearch2:update");
+        }
+
+        function updateTitle($id,$title) {
+                $dbw=& wfGetDB(DB_MASTER);
+                $searchindex = $dbw->tableName( 'searchindex' );
+                $sql = "UPDATE $searchindex SET si_title=to_tsvector('" .
+                          $db->strencode( $title ) .
+                          "') WHERE si_page={$id}";
+
+                $dbw->query( $sql, "SearchMySQL4::updateTitle" );
+        }
+
 }
 
 ?>
