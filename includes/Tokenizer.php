@@ -64,9 +64,10 @@ class Tokenizer {
 			while ( $this->mPos <= $this->mTextLength ) {
 				switch ( @$ch = $this->mText[$this->mPos] ) {
 					case 'R': // for "RFC "
-						if ( isset($this->mText[$this->mPos+1]) && $this->mText[$this->mPos+1] == 'F' &&
-                                                isset($this->mText[$this->mPos+2]) && $this->mText[$this->mPos+2] == 'C' &&
-                                                isset($this->mText[$this->mPos+4]) && $this->mText[$this->mPos+4] == ' ' ) {
+						if ( isset($this->mText[$this->mPos+4]) &&
+						     $this->mText[$this->mPos+1] == 'F' &&
+                                                     $this->mText[$this->mPos+2] == 'C' &&
+                                                     $this->mText[$this->mPos+4] == ' ' ) {
 						     	$queueToken["type"] = $queueToken["text"] = "RFC ";
 							$this->mQueuedToken[] = $queueToken;
 					     		$this->mPos += 3;
@@ -74,10 +75,11 @@ class Tokenizer {
 						}
 						break;
 					case 'I': // for "ISBN "
-						if ( $this->mText[$this->mPos+1] == 'S' &&
-					     	$this->mText[$this->mPos+2] == 'B' &&
-					     	$this->mText[$this->mPos+3] == 'N' &&
-					     	$this->mText[$this->mPos+4] == ' ' ) {
+						if ( isset($this->mText[$this->mPos+4]) &&
+						     $this->mText[$this->mPos+1] == 'S' &&
+					     	     $this->mText[$this->mPos+2] == 'B' &&
+					     	     $this->mText[$this->mPos+3] == 'N' &&
+					     	     $this->mText[$this->mPos+4] == ' ' ) {
 						     	$queueToken["type"] = $queueToken["text"] = "ISBN ";
 							$this->mQueuedToken[] = $queueToken;
 					     		$this->mPos += 4;
@@ -85,14 +87,16 @@ class Tokenizer {
 						}
 						break;
 					case "[": // for links "[["
-						if ( $this->mText[$this->mPos+1] == "[" &&
+						if ( isset($this->mText[$this->mPos+2]) &&
+						     $this->mText[$this->mPos+1] == "[" &&
 					     	     $this->mText[$this->mPos+2] == "[" ) {
 						     	$queueToken["type"] = "[[[";
 							$queueToken["text"] = "";
 							$this->mQueuedToken[] = $queueToken;
 					     		$this->mPos += 3;
 							break 2; // switch + while
-						} else if ( $this->mText[$this->mPos+1] == "[" ) {
+						} else if ( isset($this->mText[$this->mPos+1]) &&
+						            $this->mText[$this->mPos+1] == "[" ) {
 						     	$queueToken["type"] = "[[";
 							$queueToken["text"] = "";
 							$this->mQueuedToken[] = $queueToken;
@@ -101,7 +105,8 @@ class Tokenizer {
 						}
 						break;
 					case "]": // for end of links "]]"
-						if ( $this->mText[$this->mPos+1] == "]" ) {
+						if ( isset($this->mText[$this->mPos+1]) &&
+						     $this->mText[$this->mPos+1] == "]" ) {
 						     	$queueToken["type"] = "]]";
 							$queueToken["text"] = "";
 							$this->mQueuedToken[] = $queueToken;
@@ -110,7 +115,8 @@ class Tokenizer {
 						}
 						break;
 					case "'": // for all kind of em's and strong's
-						if ( $this->mText[$this->mPos+1] == "'" ) {
+						if ( isset($this->mText[$this->mPos+1]) &&
+						     $this->mText[$this->mPos+1] == "'" ) {
 							$queueToken["type"] = "'";
 							$queueToken["text"] = "";
 							while(isset($this->mText[$this->mPos+1]) && $this->mText[$this->mPos+1] == "'" ) {
