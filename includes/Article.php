@@ -751,13 +751,15 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 
 	function showArticle( $text, $subtitle )
 	{
-		global $wgOut, $wgTitle, $wgUser, $wgLinkCache;
+		global $wgOut, $wgTitle, $wgUser, $wgLinkCache, $wgUseBetterLinksUpdate;
 
 		$wgLinkCache = new LinkCache();
 
 		# Get old version of link table to allow incremental link updates
-		$wgLinkCache->preFill( $wgTitle );
-		$wgLinkCache->clear();
+		if ( $wgUseBetterLinksUpdate ) {
+			$wgLinkCache->preFill( $wgTitle );
+			$wgLinkCache->clear();
+		}
 
 		# Now update the link cache by parsing the text
 		$wgOut->addWikiText( $text );
