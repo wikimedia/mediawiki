@@ -39,8 +39,26 @@ class RawPage {
 			$this->mContentType = $ctype;
 		}
 	}
+	
 	function view() {
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgScript;
+
+		if( strncmp( $wgScript . '?', $_SERVER['REQUEST_URI'], strlen( $wgScript ) + 1 ) ) {
+			# Internet Explorer will ignore the Content-Type header if it
+			# thinks it sees a file extension it recognizes. Make sure that
+			# all raw requests are done through the script node, which will
+			# have eg '.php' and should remain safe.
+			
+			$destUrl = $this->mTitle->getFullUrl(
+				'action=raw' .
+				'&ctype=' . urlencode( $this->mContentType ) .
+				'&smaxage=' . urlencode( $this->mSmaxage ) .
+				'&maxage=' . urlencode( $this->mMaxage ) .
+				'&oldid=' . urlencode( $this->mOldId ) );
+			header( 'Location: ' . $destUrl );
+			wfAbruptExit();
+		}
+
 		header( "Content-type: ".$this->mContentType.'; charset='.$this->mCharset );
 		# allow the client to cache this for 24 hours
 		header( 'Cache-Control: s-maxage='.$this->mSmaxage.', max-age='.$this->mMaxage );
