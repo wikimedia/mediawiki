@@ -6,6 +6,9 @@
 /**
  *
  */
+if( !defined( 'MEDIAWIKI' ) )
+	die();
+
 require_once( 'Image.php' );
 
 /**

@@ -5,6 +5,9 @@
  * @subpackage SpecialPage
  */
 
+if( !defined( 'MEDIAWIKI' ) )
+	die();
+
 /* to get a list of languages in setting user's language preference */
 require_once('languages/Names.php');
 
