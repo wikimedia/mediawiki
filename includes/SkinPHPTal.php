@@ -80,7 +80,7 @@
 			$this->iseditable = ($this->iscontent and !($action == 'edit' or $action == 'submit'));
 			$this->username = $wgUser->getName();
 			$this->userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
-			$this->userpageurl = $this->makeUrl($this->userpage);
+			$this->userpageUrlDetails = $this->makeUrlDetails($this->userpage);
 			
 			$this->usercss =  $this->userjs = $this->userjsprev = false;
 			if( $this->loggedin ) { $this->setupUserCssJs(); }
@@ -131,7 +131,7 @@
 			$tpl->set( "langname", $wgLang->getLanguageName( $wgLanguageCode ) );
 			$tpl->setRef( "username", &$this->username );
 			$tpl->setRef( "userpage", &$this->userpage);
-			$tpl->setRef( "userpageurl", &$this->userpageurl);
+			$tpl->setRef( "userpageurl", &$this->userpageUrlDetails['href']);
 			$tpl->setRef( "usercss", &$this->usercss);
 			$tpl->setRef( "userjs", &$this->userjs);
 			$tpl->setRef( "userjsprev", &$this->userjsprev);
@@ -217,13 +217,16 @@
 			if ($this->loggedin) {
 				$personal_urls['userpage'] = array(
 					'text' => $this->username,
-					'href' => &$this->userpageurl,
+					'href' => &$this->userpageUrlDetails['href'],
+					'class' => $this->userpageUrlDetails['exists']?false:'new',
 					'ttip' => wfMsg('tooltip-userpage'),
 					'akey' => wfMsg('accesskey-userpage')
 				);
+				$usertalkUrlDetails = $this->makeTalkUrlDetails($this->userpage);
 				$personal_urls['mytalk'] = array(
 					'text' => wfMsg('mytalk'),
-					'href' => $this->makeTalkUrl($this->userpage),
+					'href' => &$usertalkUrlDetails['href'],
+					'class' => $usertalkUrlDetails['exists']?false:'new',
 					'ttip' => wfMsg('tooltip-mytalk'),
 					'akey' => wfMsg('accesskey-mytalk')
 				);
@@ -255,13 +258,16 @@
 				if( $wgShowIPinHeader && isset(  $_COOKIE[ini_get("session.name")] ) ) {
 					$personal_urls['anonuserpage'] = array(
 						'text' => $this->username,
-						'href' => $this->makeUrl($this->userpage),
+						'href' => &$this->userpageUrlDetails['href'],
+						'class' => $this->userpageUrlDetails['exists']?false:'new',
 						'ttip' => wfMsg('tooltip-anonuserpage'),
 						'akey' => wfMsg('accesskey-anonuserpage')
 					);
+					$usertalkUrlDetails = $this->makeTalkUrlDetails($this->userpage);
 					$personal_urls['anontalk'] = array(
 						'text' => wfMsg('anontalk'),
-						'href' => $this->makeTalkUrl($this->userpage),
+						'href' => &$this->usertalkUrlDetails['href'],
+						'class' => $this->usertalkUrlDetails['exists']?false:'new',
 						'ttip' => wfMsg('tooltip-anontalk'),
 						'akey' => wfMsg('accesskey-anontalk')
 					);

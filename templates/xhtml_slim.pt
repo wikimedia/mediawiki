@@ -62,7 +62,7 @@
 	    <ul>
 	      <li tal:repeat="item personal_urls" 
 	      tal:attributes="id string:pt-${repeat/item/key};"><a href="myuserpage"
-		tal:attributes="href item/href; accesskey item/akey|default; title item/ttip|default"
+		tal:attributes="href item/href; accesskey item/akey|default; title item/ttip|default; class item/class|default"
 		tal:content="item/text">Log in</a></li>
 	    </ul>
 	  </div>
