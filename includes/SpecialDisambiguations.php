@@ -11,8 +11,11 @@ class DisambiguationsPage extends PageQueryPage {
 	function isExpensive( ) { return true; }
 
 	function getPageHeader( ) {
+		global $wgUser;
+		$sk = $wgUser->getSkin();
+		
 		#FIXME : probably need to add a backlink to the maintenance page.
-		return '<p>'.wfMsg("disambiguationstext", wfMsg("disambiguationspage"))."</p><br>\n";
+		return '<p>'.wfMsg("disambiguationstext", $sk->makeKnownLink(wfMsg('disambiguationspage')) )."</p><br>\n";
 	}
 
 	function getSQL() {
