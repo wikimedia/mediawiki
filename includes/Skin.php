@@ -15,6 +15,10 @@ if( $wgUseSmarty ) {
 	$wgValidSkinNames[] = "Smarty";
 	$wgValidSkinNames[] = "Montparnasse";
 }
+if( $wgUsePHPTal ) {
+    #$wgValidSkinNames[] = "PHPTal";
+    $wgValidSkinNames[] = "DaVinci";
+}
 
 include_once( "RecentChange.php" );
 
@@ -290,7 +294,7 @@ class Skin {
 		}
 
 		$s .= "\n<div id='content'>\n<div id='topbar'>" .
-		  "<table width='98%' border=0 cellspacing=0><tr>";
+		  "<table border=0 cellspacing=0><tr>";
 
 		$shove = ($qb != 0);
 		$left = ($qb == 1 || $qb == 3);
@@ -363,7 +367,7 @@ class Skin {
 
 		$s = "\n</div><br clear=all>\n";
 		$s .= "\n<div id='footer'>";
-		$s .= "<table width='98%' border=0 cellspacing=0><tr>";
+		$s .= "<table border=0 cellspacing=0><tr>";
 		
 		wfProfileOut( "$fname-1" );
 		wfProfileIn( "$fname-2" );
@@ -687,7 +691,7 @@ class Skin {
 		$titleObj = Title::newFromText( $mp );
 		$s = "<a href=\"" . $titleObj->escapeLocalURL()
 		  . "\"><img{$a} border=0 src=\""
-		  . $this->getLogo() . "\" alt=\"" . "[{$mp}]\"></a>";
+		  . $this->getLogo() . "\" alt=\"" . "[{$mp}]\" /></a>";
 		return $s;
 	}
 
@@ -1420,7 +1424,7 @@ class Skin {
 		global $wgOut;
 
 		if ( "" == $alt ) { $alt = $this->fnamePart( $url ); }
-		$s = "<img src=\"{$url}\" alt=\"{$alt}\">";
+		$s = "<img src=\"{$url}\" alt=\"{$alt}\" />";
 		return $s;
 	}
 	
@@ -1519,11 +1523,11 @@ class Skin {
 		{
 			$s = str_replace( "$1", $name, wfMsg("missingimage") );
 		} else {
-			$s = "<a href=\"{$u}\" class='image' title=\"{$alt}\">" .
-				"<img border=\"0\" src=\"{$url}\" alt=\"{$alt}\"></a>";
+			$s = "\n  <a href=\"{$u}\" class='image' title=\"{$alt}\">\n" .
+				"  <img border=\"0\" src=\"{$url}\" alt=\"{$alt}\" />\n  </a>";
 		}
 		if ( "" != $align ) {
-			$s = "<div class=\"float{$align}\">{$s}</div>";
+			$s = "<div class=\"float{$align}\">{$s}\n</div>";
 		}
 		return $prefix.$s.$postfix;
 	}
@@ -1665,14 +1669,14 @@ class Skin {
 		if ( $thumbUrl == "" ) {
 			$s .= str_replace( "$1", $name, wfMsg("missingimage") );
 		} else {
-		  	$s .= "<a href=\"{$u}\" class=\"internal\" title=\"{$alt}\">" .
-		  		"<img border=\"0\" src=\"{$thumbUrl}\" alt=\"{$alt}\" " .
-				"  width=\"{$boxwidth}\" height=\"{$boxheight}\"></a>" .
-		  		"<a href=\"{$u}\" class=\"internal\" title=\"{$more}\">" .
-		    		"<img border=\"0\" src=\"{$wgUploadPath}/magnify-clip.png\" " .
-				"  width=\"26\" height=\"24\" align=\"{$magnifyalign}\" alt=\"{$more}\"></a>";
+		  	$s .= "\n".'  <a href="'.$u.'" class="internal" title="'.$alt.'">'."\n".
+		  		'  <img border="0" src="'.$thumbUrl.'" alt="'.$alt.'" ' .
+				'  width="'.$boxwidth.'" height="'.$boxheight.'" /></a>' ."\n".
+		  		'  <a href="'.$u.'" class="internal" title="'.$more.'"> ' ."\n".
+		    		'  <img border="0" src="'.$wgUploadPath.'/magnify-clip.png" ' .
+				'width="26" height="24" align="'.$magnifyalign.'" alt="'.$more.'" /> </a>'."\n";
 		}
-		$s .= "<p{$textalign}>{$label}</p></div>";
+		$s .= '  <p'.$textalign.'>'.$label."</p>\n</div>";
 		return $s;
 	}
 
@@ -1720,7 +1724,7 @@ class Skin {
 	function beginImageHistoryList()
 	{
 		$s = "\n<h2>" . wfMsg( "imghistory" ) . "</h2>\n" .
-		  "<p>" . wfMsg( "imghistlegend" ) . "\n<ul>";
+		  "<p>" . wfMsg( "imghistlegend" ) . "\n<ul class='special'>";
 		return $s;
 	}
 
@@ -1744,7 +1748,7 @@ class Skin {
 		
 		# Spacer image
 		$r = "" ;
-		$r .= "<img src='{$wgUploadPath}/Arr_.png' width='12' height='12' border='0'>" ;		$r .= "<tt>" ;
+		$r .= "<img src='{$wgUploadPath}/Arr_.png' width='12' height='12' border='0' />" ;		$r .= "<tt>" ;
 		
 		if ( $rc_type == RC_MOVE ) {
 			$r .= "&nbsp;&nbsp;";
@@ -1874,7 +1878,7 @@ class Skin {
 			# Get rc_xxxx variables
 			extract( $rcObj->mAttribs );
 			
-			$r .= "<img src='{$wgUploadPath}/Arr_.png' width=12 height=12 border=0>";
+			$r .= "<img src='{$wgUploadPath}/Arr_.png' width=12 height=12 border=0 />";
 			$r .= "<tt>&nbsp; &nbsp; &nbsp; &nbsp;" ;
 			if ( $rc_new ) $r .= $N ;
 			else $r .= "&nbsp;" ;
@@ -1955,7 +1959,7 @@ class Skin {
 		$s = "";
 		if ( $date != $this->lastdate ) {
 			if ( "" != $this->lastdate ) { $s .= "</ul>\n"; }
-			$s .= "<h4>{$date}</h4>\n<ul>";
+			$s .= "<h4>{$date}</h4>\n<ul class='special'>";
 			$this->lastdate = $date;
 		}
 		$s .= "<li> ";
@@ -2370,5 +2374,9 @@ include_once( "SkinCologneBlue.php" );
 if( $wgUseSmarty ) {
 	include_once( "SkinSmarty.php" );
 }
+if( $wgUsePHPTal ) {
+	include_once( "SkinPHPTal.php" );
+}
+
 
 ?>
