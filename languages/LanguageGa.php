@@ -21,7 +21,7 @@ DISCUSSION!
 # is needed for "of" uses etc. The genitive varies for each sitename.
 # How can this be incorporated?
 
-/* private */ $wgNamespaceNamesEn = array(
+/* private */ $wgNamespaceNamesGa = array(
 	NS_MEDIA            => 'Meán',
 	NS_SPECIAL          => 'Speisialta',
 	NS_MAIN	            => '',
@@ -42,7 +42,7 @@ DISCUSSION!
 	NS_HELP_TALK        => 'Plé_cabhrach',
 	NS_CATEGORY	    => 'Rang',
 	NS_CATEGORY_TALK    => 'Plé_ranga'
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgDefaultUserOptionsGa = array(
     "quickbar" => 1, "underline" => 1, "hover" => 1,
@@ -477,7 +477,7 @@ go seolfar é chuig an seoladh rí­omhphoist a thug tú.<br>\n",
 "badretype"     => "D'iontráil tú dhá fhocal faire difriúla.",
 "userexists"    => "Tá an ainm úsáideora a d'iontráil tú in úsáid cheana féin. Déan rogha d'ainm eile, más é do thoil é.",
 "youremail"     => "Do rí­omhphost*",
-'yourrealname'  => 'D'ainm ceart*',
+'yourrealname'  => "D'ainm ceart*",
 "yournick"      => "Do leasainm (do sí­niúithe)",
 "emailforlost"  => "* Níl na boscaí le réalt (*) ach roghnach.  Le seoladh ríomhphoist i dtaisce, ba féidir le daoine teagmhail a dhéanamh leat
 trí­d an suí­omh gan do sheoladh rí­omhphoist a nochtaigh dóibh. Ina theannta sin,
@@ -629,7 +629,7 @@ Cinntigh an URL a d'úsáid tú chun an leathanach seo a rochtain.\n",
 "next"          => "lns",
 "last"          => "rmh",
 "orig"          => "bun",
-'histlegend'	=> 'Difríochtaí a roghnú: marcáil na boscaí de na eagráin atá ag teastail uait á cuir i gcomparáid, agus brúigh Iontráil nó an cnaipe ag bun an leathanaigh.<br/>
+'histlegend'	=> "Difríochtaí a roghnú: marcáil na boscaí de na eagráin atá ag teastail uait á cuir i gcomparáid, agus brúigh Iontráil nó an cnaipe ag bun an leathanaigh.<br/>
 Eochair: (rth) = difrí­ocht leis an eagrán reatha,
 (rmh) = difrí­ocht leis an eagrán roimhe, M = mionathrú",
 
@@ -849,7 +849,7 @@ aon cóipchearta.",
 "badfilename"   => "D'athraí­odh an ainm í­omhá go \"$1\".",
 "badfiletype"   => "Ní­l \".$1\" ina formáid comhaid í­omhá inmholta.",
 "largefile"     => "Moltar nach uaslódálaítear comhaid í­omhá thar 100kb i méid.",
-'emptyfile'		=> 'De réir cuma, ní aon rud san chomhad a d'uaslódáil tú ach comhad folamh. Is dócha gur míchruinneas é seo san ainm chomhaid. Seiceáil más é an comhad seo atá le huaslódáil agat.',
+'emptyfile'		=> "De réir cuma, ní aon rud san chomhad a d'uaslódáil tú ach comhad folamh. Is dócha gur míchruinneas é seo san ainm chomhaid. Seiceáil más é an comhad seo atá le huaslódáil agat.",
 "successfulupload" => "Uaslódáil rathúil",
 "fileuploaded"  => "Uaslódáladh an comhad \"$1\" go rathúil.
 Lean an nasc seo: ($2) chuig an leathanach cuir sios agus lí­on isteach
@@ -1181,7 +1181,7 @@ liosta a fháil de coisc atá i bhfeidhm faoi láthair.",
 'ipb_expiry_invalid'	=> 'Am éaga neamhbhailí.',
 'ip_range_invalid'	=> "Réimse IP neamhbhailí.\n",
 'proxyblocker'	=> 'Cosc do inneall fo-friothála', #FIXME
-'proxyblockreason'	=> 'Cuireadh cosc ar do sheoladh IP de bharr gur bealach fo-friothála neamhshlándála é. Déan teagmháil le do chomhlacht idirlín nó do lucht cabhrach teicneolaíochta go mbeidh 'fhios acu faoin fadhb slándála tábhachtach seo.',
+'proxyblockreason'	=> "Cuireadh cosc ar do sheoladh IP de bharr gur bealach fo-friothála neamhshlándála é. Déan teagmháil le do chomhlacht idirlín nó do lucht cabhrach teicneolaíochta go mbeidh 'fhios acu faoin fadhb slándála tábhachtach seo.",
 'proxyblocksuccess'	=> "Críochnaithe.\n",
 
 # Developer tools
@@ -1310,7 +1310,7 @@ ainm nua. Báigh iad tusa féin, le do thoil.",
 "talkpagemoved" => "D'aistraí­odh an leathanach phlé frithiontráil.",
 "talkpagenotmoved" => "<strong>Ní­or</strong> aistraí­odh an leathanach phlé frithiontráil.",
 '1movedto2'		=> "D'aistríodh $1 chuig $2",
-'1movedto2_redir' => 'D'aistríodh $1 chuig $2 thar athsheoladh',
+'1movedto2_redir' => "D'aistríodh $1 chuig $2 thar athsheoladh",
 
 #Export
 
@@ -1335,7 +1335,7 @@ air, nó is féidir leat é a coinniú do do chuid shiamsa féin.",
 'importtext'	=> 'Onnmhairigh an comhad ón fhoinse-vicí le do thoil (le húsáid an tréith Speisialta:Export), sábháil é ar do dhíosca agus uaslódáil é anseo.',
 'importfailed'	=> "Theip ar an iompórtáil: $1",
 'importnotext'	=> 'Folamh nó gan téacs',
-'importsuccess'	=> 'D'eirigh leis an iompórtáil!',
+'importsuccess'	=> "D'eirigh leis an iompórtáil!",
 'importhistoryconflict' => 'Tá stair athraithe contrártha ann cheana féin (is dócha go uaslódáladh an leathanach seo roimh ré)',
 
 # Keyboard access keys for power users
@@ -1452,8 +1452,7 @@ ta[\'ca-nstab-image\'] = new Array(\'c\',\'Féach ar an leathanach íomhá\');
 ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Féach ar an teachtaireacht córais\');
 ta[\'ca-nstab-template\'] = new Array(\'c\',\'Féach ar an múnla\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Féach ar an leathanach cabhrach\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'Féach ar an leathanach ranga\');
-
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'Féach ar an leathanach ranga\');'
 
 );
 
