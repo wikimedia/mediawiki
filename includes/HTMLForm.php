@@ -26,7 +26,7 @@ class HTMLForm {
 	 * @param boolean $checked Set true to check the box (default False).
 	 */
 	function checkbox( $varname, $checked=false ) {
-		$checked = isset( $GLOBALS[$varname] ) && $GLOBALS[$varname] ;
+		$checked = isset( $_POST[$varname] ) && $_POST[$varname] ;
 		return "<div><input type='checkbox' value=\"1\" id=\"{$varname}\" name=\"wpOp{$varname}\"" .
 			( $checked ? ' checked="checked"' : '' ) .
 			" /><label for=\"{$varname}\">". wfMsg( $this->mName.'-'.$varname ) .
@@ -40,9 +40,9 @@ class HTMLForm {
 	 * @param integer $size Optional size of the textbox (default 20)
 	 */
 	function textbox( $varname, $value='', $size=20 ) {
-		$value = isset( $GLOBALS[$varname] ) ? $GLOBALS[$varname] : $value;
+		$value = isset( $_POST[$varname] ) ? $_POST[$varname] : $value;
 		return "<div><label>". wfMsg( $this->mName.'-'.$varname ) .
-			"<input type='text' name=\"wpOp{$varname}\" value=\"{$value}\" size=\"{$size}\" /></label></div>\n";
+			"<input type='text' name=\"{$varname}\" value=\"{$value}\" size=\"{$size}\" /></label></div>\n";
 	}
 
 	/* 
@@ -52,7 +52,7 @@ class HTMLForm {
 	 */
 	function radiobox( $varname, $fields ) {
 		foreach ( $fields as $value => $checked ) {
-			$s .= "<div><label><input type='radio' name=\"wpOp{$varname}\" value=\"{$value}\"" .
+			$s .= "<div><label><input type='radio' name=\"{$varname}\" value=\"{$value}\"" .
 				( $checked ? ' checked="checked"' : '' ) . " />" . wfMsg( $this->mName.'-'.$varname.'-'.$value ) .
 				"</label></div>\n";
 		}
@@ -66,9 +66,9 @@ class HTMLForm {
 	 * @param integer $size Optional size of the textarea (default 20)
 	 */
 	function textareabox ( $varname, $value='', $size=20 ) {
-		$value = isset( $GLOBALS[$varname] ) ? $GLOBALS[$varname] : $value;
+		$value = isset( $_POST[$varname] ) ? $_POST[$varname] : $value;
 		return '<div><label>'.wfMsg( $this->mName.'-'.$varname ).
-		       "<textarea name=\"wpOp{$varname}\" rows=\"5\" cols=\"{$size}\">$value</textarea>\n";
+		       "<textarea name=\"{$varname}\" rows=\"5\" cols=\"{$size}\">$value</textarea>\n";
 	}
 
 	/* 
@@ -78,13 +78,13 @@ class HTMLForm {
 	 */
 	function arraybox( $varname , $size=20 ) {
 		$s = '';
-		if ( isset( $GLOBALS[$varname] ) && is_array( $GLOBALS[$varname] ) ) {
-			foreach ( $GLOBALS[$varname] as $index=>$element ) {
+		if ( isset( $_POST[$varname] ) && is_array( $_POST[$varname] ) ) {
+			foreach ( $_POST[$varname] as $index=>$element ) {
 				$s .= $element."\n";
 			}
 		}
 		return "<div><label>".wfMsg( $this->mName.'-'.$varname ).
-			"<textarea name=\"wpOp{$varname}\" rows=\"5\" cols=\"{$size}\">{$s}</textarea>\n";
+			"<textarea name=\"{$varname}\" rows=\"5\" cols=\"{$size}\">{$s}</textarea>\n";
 	}
 }
 ?>

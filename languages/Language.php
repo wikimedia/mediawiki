@@ -815,6 +815,33 @@ from server time (UTC).',
 'emailflag'		=> 'Disable e-mail from other users',
 'defaultns'		=> 'Search in these namespaces by default:',
 
+# User levels special page
+#
+
+# switching pan
+'userlevels-lookup-group' => 'Manage group rights',
+'userlevels-group-edit' => 'Existent groups: ',
+'editgroup' => 'Edit Group',
+'addgroup' => 'Add Group',
+
+'userlevels-lookup-user' => 'Manage user groups',
+'userlevels-user-editname' => 'Enter a username: ',
+'editusergroup' => 'Edit User Groups',
+
+# group editing
+'userlevels-editgroup' => 'Edit group',
+'userlevels-addgroup' => 'Add group',
+'userlevels-editgroup-name' => 'Group name: ',
+'userlevels-editgroup-description' => 'Group description (max 255 characters):<br />',
+'savegroup' => 'Save Group',
+
+# user groups editing
+'userlevels-editusergroup' => 'Edit user groups',
+'saveusergroups' => 'Save User Groups',
+'userlevels-groupsmember' => 'Member of:',
+'userlevels-groupsavailable' => 'Available groups:',
+'userlevels-groupshelp' => 'Select groups you want the user to be removed from or added to.
+Unselected groups will not be changed. You can unselect a group by using CTRL + Left Click',
 # Recent changes
 #
 'changes' => 'changes',
@@ -1020,6 +1047,7 @@ in active use.',
 'booksources'	=> 'Book sources',
 'categoriespagetext' => 'The following categories exists in the wiki.',
 'data'	=> 'Data',
+'userlevels' => 'User levels management',
 
 # FIXME: Other sites, of course, may have affiliate relations with the booksellers list
 'booksourcetext' => "Below is a list of links to other sites that
