@@ -196,3 +196,7 @@ div.townBox dl dd {
 #siteNotice {
     border:1px solid #aaaaaa;
 }
+.redirectText {
+	font-size:150%;
+	margin:5px;
+}

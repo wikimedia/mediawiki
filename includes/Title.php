@@ -151,9 +151,22 @@ class Title {
 		}
 	}
 
-	function newMainPage()
+	/* static */ function newMainPage()
 	{
 		return Title::newFromText( wfMsg( "mainpage" ) );
+	}
+
+	# Get the title object for a redirect
+	# Returns NULL if the text is not a valid redirect
+	/* static */ function newFromRedirect( $text ) {
+		global $wgMwRedir;
+		$rt = NULL;
+		if ( $wgMwRedir->matchStart( $text ) ) {
+			if ( preg_match( '/\\[\\[([^\\]\\|]+)[\\]\\|]/', $text, $m ) ) {
+				$rt = Title::newFromText( $m[1] );
+			}
+		}
+		return $rt;
 	}
 	
 #----------------------------------------------------------------------------

@@ -218,17 +218,14 @@ class Article {
 			return wfMsg( 'noarticletext' );
 		} else {
 			$this->loadContent( $noredir );
-
-			if(
-				# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
-				( $this->mTitle->getNamespace() == Namespace::getTalk( Namespace::getUser()) ) &&
-				  preg_match('/^\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}$/',$this->mTitle->getText()) &&
-				  $action=='view'
-				)
-				{
+			# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
+			if ( $this->mTitle->getNamespace() == NS_USER_TALK &&
+			  preg_match('/^\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}$/',$this->mTitle->getText()) &&
+			  $action=='view'
+			) {
 				wfProfileOut( $fname );
-				return $this->mContent . "\n" .wfMsg('anontalkpagetext'); }
-			else {
+				return $this->mContent . "\n" .wfMsg('anontalkpagetext'); 
+			} else {
 				if($action=='edit') {
 					if($section!='') {
 						if($section=='new') {
@@ -332,7 +329,7 @@ class Article {
 		}
 		return $wgArticleOldContentFields;
 	}
-
+				
 	# Load the revision (including cur_text) into this object
 	function loadContent( $noredir = false )
 	{
@@ -371,33 +368,29 @@ class Article {
 
 			# If we got a redirect, follow it (unless we've been told
 			# not to by either the function parameter or the query
-			if ( ( 'no' != $redirect ) && ( false == $noredir ) &&
-			  ( $wgMwRedir->matchStart( $s->cur_text ) ) ) {
-				if ( preg_match( '/\\[\\[([^\\]\\|]+)[\\]\\|]/',
-				  $s->cur_text, $m ) ) {
-					$rt = Title::newFromText( $m[1] );
-					if( $rt ) {
-						# Gotta hand redirects to special pages differently:
-						# Fill the HTTP response "Location" header and ignore
-						# the rest of the page we're on.
+			if ( ( 'no' != $redirect ) && ( false == $noredir ) ) {
+			  	$rt = Title::newFromRedirect( $s->cur_text );
+				if ( $rt ) {
+					# Gotta hand redirects to special pages differently:
+					# Fill the HTTP response "Location" header and ignore
+					# the rest of the page we're on.
 
-						if ( $rt->getInterwiki() != '' ) {
-							$wgOut->redirect( $rt->getFullURL() ) ;
-							return;
-						}
-						if ( $rt->getNamespace() == Namespace::getSpecial() ) {
-							$wgOut->redirect( $rt->getFullURL() );
-							return;
-						}
-						$rid = $rt->getArticleID();
-						if ( 0 != $rid ) {
-							$redirRow = $dbr->getArray( 'cur', $this->getCurContentFields(), array( 'cur_id' => $rid ), $fname );
+					if ( $rt->getInterwiki() != '' ) {
+						$wgOut->redirect( $rt->getFullURL() ) ;
+						return;
+					}
+					if ( $rt->getNamespace() == NS_SPECIAL ) {
+						$wgOut->redirect( $rt->getFullURL() );
+						return;
+					}
+					$rid = $rt->getArticleID();
+					if ( 0 != $rid ) {
+						$redirRow = $dbr->getArray( 'cur', $this->getCurContentFields(), array( 'cur_id' => $rid ), $fname );
 
-							if ( $redirRow !== false ) {
-								$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
-								$this->mTitle = $rt;
-								$s = $redirRow;
-							}
+						if ( $redirRow !== false ) {
+							$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
+							$this->mTitle = $rt;
+							$s = $redirRow;
 						}
 					}
 				}
@@ -461,20 +454,17 @@ class Article {
 
 			# If we got a redirect, follow it (unless we've been told
 			# not to by either the function parameter or the query
-			if ( !$noredir && $wgMwRedir->matchStart( $s->cur_text ) ) {
-				if ( preg_match( '/\\[\\[([^\\]\\|]+)[\\]\\|]/',
-				  $s->cur_text, $m ) ) {
-					$rt = Title::newFromText( $m[1] );
-					if( $rt &&  $rt->getInterwiki() == '' && $rt->getNamespace() != Namespace::getSpecial() ) {
-						$rid = $rt->getArticleID();
-						if ( 0 != $rid ) {
-							$redirRow = $dbr->getArray( 'cur', $this->getCurContentFields(), array( 'cur_id' => $rid ), $fname );
+			if ( !$noredir ) {
+				$rt = Title::newFromRedirect( $s->cur_text );
+				if( $rt &&  $rt->getInterwiki() == '' && $rt->getNamespace() != NS_SPECIAL ) {
+					$rid = $rt->getArticleID();
+					if ( 0 != $rid ) {
+						$redirRow = $dbr->getArray( 'cur', $this->getCurContentFields(), array( 'cur_id' => $rid ), $fname );
 
-							if ( $redirRow !== false ) {
-								$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
-								$this->mTitle = $rt;
-								$s = $redirRow;
-							}
+						if ( $redirRow !== false ) {
+							$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
+							$this->mTitle = $rt;
+							$s = $redirRow;
 						}
 					}
 				}
@@ -634,8 +624,8 @@ class Article {
 
 	function view()
 	{
-		global $wgUser, $wgOut, $wgLang, $wgRequest;
-		global $wgLinkCache, $IP, $wgEnableParserCache;
+		global $wgUser, $wgOut, $wgLang, $wgRequest, $wgMwRedir;
+		global $wgLinkCache, $IP, $wgEnableParserCache, $wgStylePath;
 
 		$fname = 'Article::view';
 		wfProfileIn( $fname );
@@ -718,14 +708,25 @@ class Article {
 			# wrap user css and user js in pre and don't parse
 			# XXX: use $this->mTitle->usCssJsSubpage() when php is fixed/ a workaround is found
 			if (
-				$this->mTitle->getNamespace() == Namespace::getUser() &&
+				$this->mTitle->getNamespace() == NS_USER &&
 				preg_match('/\\/[\\w]+\\.(css|js)$/', $this->mTitle->getDBkey())
 			) {
 				$wgOut->addWikiText( wfMsg('clearyourcache'));
 				$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
+			} else if ( $rt = Title::newFromRedirect( $text ) ) {
+				# Display redirect
+				$sk = $wgUser->getSkin();
+				$imageUrl = "$wgStylePath/images/redirect.png";
+				$targetUrl = $rt->escapeLocalURL();
+				$titleText = htmlspecialchars( $rt->getPrefixedText() );
+				$link = $sk->makeLinkObj( $rt );
+				$wgOut->addHTML( "<img valign=\"center\" src=\"$imageUrl\">" .
+				  "<span class=\"redirectText\">$link</span>" );
 			} else if ( $pcache ) {
+				# Display content and save to parser cache
 				$wgOut->addWikiText( $text, true, $this );
 			} else {
+				# Display content, don't attempt to save to parser cache
 				$wgOut->addWikiText( $text );
 			}
 		}
@@ -1403,8 +1404,7 @@ class Article {
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 			$sk = $wgUser->getSkin();
-			$loglink = $sk->makeKnownLink( $wgLang->getNsText(
-			  Namespace::getWikipedia() ) .
+			$loglink = $sk->makeKnownLink( $wgLang->getNsText( NS_WIKIPEDIA ) .
 			  ':' . wfMsg( 'dellogpage' ), wfMsg( 'deletionlog' ) );
 
 			$text = wfMsg( "deletedtext", $deleted, $loglink );
@@ -1747,7 +1747,7 @@ class Article {
 			and ($this->getID() != 0)
 			and ($wgUser->getId() == 0)
 			and (!$wgUser->getNewtalk())
-			and ($this->mTitle->getNamespace() != Namespace::getSpecial())
+			and ($this->mTitle->getNamespace() != NS_SPECIAL )
 			and ($action == 'view' || empty( $action ))
 			and (!isset($oldid))
 			and (!isset($diff))

@@ -898,3 +898,7 @@ fieldset.operaprefsection { margin-left: 15em }
 * > html #footer {
     margin-left: 13.2em;
 }
+.redirectText {
+	font-size:150%;
+	margin:5px;
+}
