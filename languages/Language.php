@@ -1463,7 +1463,7 @@ amusement.',
 'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for some actions, most are in Monobook.js
-'tooltip-search' => 'Search this wiki- [alt-f]',
+'tooltip-search' => 'Search this wiki [alt-f]',
 'tooltip-minoredit' => 'Mark this as a minor edit [alt-i]',
 'tooltip-save' => 'Save your changes [alt-s]',
 'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
@@ -1531,23 +1531,23 @@ ta[\'n-randompage\'] = new Array(\'x\',\'Load a random page\');
 ta[\'n-help\'] = new Array(\'\',\'The place to find out.\'); 
 ta[\'n-sitesupport\'] = new Array(\'\',\'Support us\'); 
 ta[\'t-whatlinkshere\'] = new Array(\'b\',\'List of all wiki pages that link here\'); 
-ta[\'t-recentchangeslinked\'] = new Array(\'c\',\'Recent changes in pages linking to this page\'); 
+ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Recent changes in pages linking to this page\'); 
 ta[\'feed-rss\'] = new Array(\'\',\'RSS feed for this page\'); 
 ta[\'feed-atom\'] = new Array(\'\',\'Atom feed for this page\'); 
 ta[\'t-contributions\'] = new Array(\'\',\'View the list of contributions of this user\'); 
 ta[\'t-emailuser\'] = new Array(\'\',\'Send a mail to this user\'); 
 ta[\'t-upload\'] = new Array(\'u\',\'Upload images or media files\'); 
 ta[\'t-specialpages\'] = new Array(\'q\',\'List of all special pages\'); 
-ta[\'ca-nstab-main\'] = new Array(\'a\',\'View the content page\'); 
-ta[\'ca-nstab-user\'] = new Array(\'a\',\'View the user page\'); 
-ta[\'ca-nstab-media\'] = new Array(\'a\',\'View the media page\'); 
+ta[\'ca-nstab-main\'] = new Array(\'c\',\'View the content page\'); 
+ta[\'ca-nstab-user\'] = new Array(\'c\',\'View the user page\'); 
+ta[\'ca-nstab-media\'] = new Array(\'c\',\'View the media page\'); 
 ta[\'ca-nstab-special\'] = new Array(\'\',\'This is a special page, you can\\\'t edit the page itself.\'); 
 ta[\'ca-nstab-wp\'] = new Array(\'a\',\'View the project page\'); 
-ta[\'ca-nstab-image\'] = new Array(\'a\',\'View the image page\'); 
-ta[\'ca-nstab-mediawiki\'] = new Array(\'a\',\'View the system message\'); 
-ta[\'ca-nstab-template\'] = new Array(\'a\',\'View the template\'); 
-ta[\'ca-nstab-help\'] = new Array(\'a\',\'View the help page\'); 
-ta[\'ca-nstab-category\'] = new Array(\'a\',\'View the category page\'); 
+ta[\'ca-nstab-image\'] = new Array(\'c\',\'View the image page\'); 
+ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'View the system message\'); 
+ta[\'ca-nstab-template\'] = new Array(\'c\',\'View the template\'); 
+ta[\'ca-nstab-help\'] = new Array(\'c\',\'View the help page\'); 
+ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\'); 
 '
 
 
