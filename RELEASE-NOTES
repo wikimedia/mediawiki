@@ -201,6 +201,7 @@ If upgrading from an older release, see the file UPGRADING.
 === Beta 5 fixes ===
 
 * (bug 1124) Fix ImageGallery XHTML compliance
+* (bug 1186) news: in the middle of a word
 
 === Caveats ===
 
