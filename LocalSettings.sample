@@ -127,4 +127,15 @@ $wgOutputEncoding	= "ISO-8859-1";
 # $wgWhitelistEdit = true;
 # $wgWhitelistRead = false;
 # $wgWhitelistAccount = array ( "user" => 0, "sysop" => 1, "developer" => 1 );
+
+
+# Squid-related settings
+#
+# Enable/disable Squid
+# $wgUseSquid = true;
+# Internal server name as known to Squid, if different
+# $wgInternalServer = 'http://yourinternal.tld.:8000';
+# A list of proxy servers (ips if possible) to purge on changes
+# don't specify ports here (80 is default)
+# $wgSquidServers = array('127.0.0.1');
 ?>

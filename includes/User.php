@@ -70,11 +70,11 @@ class User {
 
 	function loadDefaults()
 	{
-		global $wgLang ;
+		global $wgLang, $wgIP;
 		global $wgNamespacesToBeSearchedDefault;
 
 		$this->mId = $this->mNewtalk = 0;
-		$this->mName = getenv( "REMOTE_ADDR" );
+		$this->mName = $wgIP;
 		$this->mEmail = "";
 		$this->mPassword = $this->mNewpassword = "";
 		$this->mRights = array();
@@ -94,7 +94,7 @@ class User {
 
 	/* private */ function getBlockedStatus()
 	{
-		global $wgBadRanges, $wgBadUserAgents, $wgRangeBlockUser, $wgRangeBlockReason;
+		global $wgBadRanges, $wgBadUserAgents, $wgRangeBlockUser, $wgRangeBlockReason, $wgIP;
 
 		if ( -1 != $this->mBlockedby ) { return; }
 		
@@ -105,7 +105,7 @@ class User {
 					array_key_exists( getenv( "HTTP_USER_AGENT" ), $wgBadUserAgents ) ) &&
 				is_array( $wgBadRanges ) )
 		{
-			$iIp = ip2long( getenv( "REMOTE_ADDR" ) );
+			$iIp = ip2long( $wgIP );
 			foreach ( $wgBadRanges as $range ) {
 				$start = ip2long( $range[0] );
 				$end = ip2long( $range[1] );
@@ -125,8 +125,8 @@ class User {
 		# User/IP blocking
 
 		$block = new Block();
-		if ( !$block->load( getenv( "REMOTE_ADDR" ), $this->mId ) ) {
-			wfDebug( getenv( "REMOTE_ADDR" ) ." is not blocked\n" );
+		if ( !$block->load( $wgIP , $this->mId ) ) {
+			wfDebug( $wgIP ." is not blocked\n" );
 			$this->mBlockedby = 0;
 			return;
 		}
@@ -150,6 +150,21 @@ class User {
 	function blockedFor() {
 		$this->getBlockedStatus();
 		return $this->mBlockreason;
+	}
+
+	function SetupSession() {
+		global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain;
+		global $wsUserID, $wsUserName, $wsUserPassword, $wsUploadFiles;
+		if( $wgSessionsInMemcached ) {
+			include_once( "MemcachedSessions.php" );
+		}
+		session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain );
+		session_cache_limiter( "private, must-revalidate" );
+		session_start();
+		session_register( "wsUserID" );
+		session_register( "wsUserName" );
+		session_register( "wsUserPassword" );
+		session_register( "wsUploadFiles" );
 	}
 
 	/* static */ function loadFromSession()
@@ -572,6 +587,7 @@ class User {
 
 	function spreadBlock()
 	{
+          	global $wgIP;
 		# If the (non-anonymous) user is blocked, this function will block any IP address
 		# that they successfully log on from.
 		$fname = "User::spreadBlock";
@@ -587,8 +603,7 @@ class User {
 		}
 		
 		# Check if this IP address is already blocked
-		$addr = getenv( "REMOTE_ADDR" );
-		$ipblock = Block::newFromDB( $addr );
+		$ipblock = Block::newFromDB( $wgIP );
 		if ( $ipblock->isValid() ) {
 			# Just update the timestamp
 			$ipblock->updateTimestamp();
@@ -596,8 +611,8 @@ class User {
 		}
 		
 		# Make a new block object with the desired properties
-		wfDebug( "Autoblocking {$this->mUserName}@{$addr}\n" );
-		$ipblock->mAddress = $addr;
+		wfDebug( "Autoblocking {$this->mUserName}@{$wgIP}\n" );
+		$ipblock->mAddress = $wgIP;
 		$ipblock->mUser = 0;
 		$ipblock->mBy = $userblock->mBy;
 		$ipblock->mReason = wfMsg( "autoblocker", $this->getName(), $userblock->mReason );

@@ -349,7 +349,7 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 
 	function blockedIPpage()
 	{
-		global $wgOut, $wgUser, $wgLang;
+		global $wgOut, $wgUser, $wgLang, $wgIP;
 
 		$wgOut->setPageTitle( wfMsg( "blockedtitle" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
@@ -357,9 +357,9 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 
 		$id = $wgUser->blockedBy();
 		$reason = $wgUser->blockedFor();
-		$ip = getenv( "REMOTE_ADDR" );
-
-		$name = User::whoIs( $id );
+                $ip = $wgIP;
+		
+                $name = User::whoIs( $id );
 		$link = "[[" . $wgLang->getNsText( Namespace::getUser() ) .
 		  ":{$name}|{$name}]]";
 

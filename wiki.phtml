@@ -55,6 +55,9 @@ wfProfileOut( "main-misc-setup" );
 if( !$wgTitle or $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" ) {
 	$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 	$wgOut->errorpage( "badtitle", "badtitletext" );
+} else if ( $wgTitle->getPrefixedDBKey() != $title ) {
+	/* redirect to canonical url */
+	$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
 } else if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
 	wfSpecialPage();
 } else if ( "" != $search ) {
@@ -93,6 +96,9 @@ if( !$wgTitle or $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" ) 
 			break;
 		case "edit":
 		case "submit":
+			if( !$wgCommandLineMode && !isset( $_COOKIE[ini_get("session.name")] ) ) {
+				User::SetupSession();
+			}
 			include_once( "EditPage.php" );
 			$editor = new EditPage( $wgArticle );
 			$editor->$action();

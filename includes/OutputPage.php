@@ -63,8 +63,10 @@ class OutputPage {
 			wfDebug( "USER DISABLED CACHE\n", false );
 			return;
 		}
-
-		$lastmod = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix(
+		
+                $this->sendCacheControl();
+		
+                $lastmod = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix(
 			max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
 		
 		if( !empty( $_SERVER["HTTP_IF_MODIFIED_SINCE"] ) ) {
@@ -79,8 +81,6 @@ class OutputPage {
 			if( ($ismodsince >= $timestamp ) and $wgUser->validateCache( $ismodsince ) ) {
 				# Make sure you're in a place you can leave when you call us!
 				header( "HTTP/1.0 304 Not Modified" );
-				header( "Expires: Mon, 15 Jan 2001 00:00:00 GMT" ); # Cachers always validate the page!
-				header( "Cache-Control: private, must-revalidate, max-age=0" );
 				header( "Last-Modified: {$lastmod}" );			
 				wfDebug( "CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
 				$this->disable();
@@ -248,23 +248,21 @@ class OutputPage {
 	}
 
 	function sendCacheControl() {
-		global $wgUseGzip;
+		header( "Vary: Accept-Encoding, Cookie" );
 		if( $this->mLastModified != "" ) {
-			wfDebug( "** private caching; {$this->mLastModified} **\n", false );
-			header( "Cache-Control: private, must-revalidate, max-age=0" );
+                        wfDebug( "** private caching; {$this->mLastModified} **\n", false );
+                        if (isset($_COOKIE[ini_get("session.name")] )){
+                                header( "Cache-Control: no-cache, must-revalidate, max-age=0" );
+                        } else {
+                                header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
+                        }
 			header( "Last-modified: {$this->mLastModified}" );
-			if( $wgUseGzip ) {
-				# We should put in Accept-Encoding, but IE chokes on anything but
-				# User-Agent in a Vary: header (at least through 6.0)
-				header( "Vary: User-Agent" );
-			}
 		} else {
 			wfDebug( "** no caching **\n", false );
 			header( "Cache-Control: no-cache" ); # Experimental - see below
 			header( "Pragma: no-cache" );
 			header( "Last-modified: " . gmdate( "D, j M Y H:i:s" ) . " GMT" );
 		}
-		header( "Expires: Mon, 15 Jan 2001 00:00:00 GMT" ); # Cachers always validate the page!
 	}
 	
 	# Finally, all the text has been munged and accumulated into
