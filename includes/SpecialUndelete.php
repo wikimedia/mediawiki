@@ -169,7 +169,7 @@ class UndeleteForm {
 			return;
 		}
 		$dbw =& wfGetDB( DB_MASTER );
-		extract( $dbw->tableNames( 'cur', 'archive' ) );
+		extract( $dbw->tableNames( 'cur', 'archive', 'old' ) );
 		$t = $dbw->strencode($title);
 
 		# Move article and history from the "archive" table
@@ -188,7 +188,7 @@ class UndeleteForm {
 			$redirect = MagicWord::get( MAG_REDIRECT );
 			$redir = $redirect->matchStart( $s->ar_text ) ? 1 : 0;
 			
-			$seqVal = addQuotes( $dbw->nextSequenceValue( 'cur_cur_id_seq' ) );
+			$seqVal = $dbw->addQuotes( $dbw->nextSequenceValue( 'cur_cur_id_seq' ) );
 
 			$sql = "INSERT INTO $cur (cur_id,cur_namespace,cur_title,cur_text," .
 			  "cur_comment,cur_user,cur_user_text,cur_timestamp,inverse_timestamp,cur_minor_edit,cur_is_redirect,cur_random,cur_touched)" .
