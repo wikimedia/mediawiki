@@ -52,7 +52,7 @@ function wfSpecialMaintenance( $par=NULL ) {
 	
 	# Links to subfunctions
 	$r .= "<UL>\n" ;
-	#$r .= "<li>".getMPL("disambiguations")."</li>\n" ; # Doesn't work
+	$r .= "<li>".$sk->makeKnownLink( sns().':Disambiguations', wfMsg('disambiguations')) . "</li>\n";
 	$r .= '<li>'.$sk->makeKnownLink( sns().':DoubleRedirects', wfMsg('doubleredirects')) . "</li>\n";
 	$r .= '<li>'.$sk->makeKnownLink( sns().':BrokenRedirects', wfMsg('brokenredirects')) . "</li>\n";
 	#$r .= "<li>".getMPL("selflinks")."</li>\n" ; # Doesn't work
@@ -107,60 +107,9 @@ function getMaintenancePageBacklink( $subfunction ) {
 	return $s ;
 }
 
-# Broken function
-# Suggest deprecating this in favour of a Special:Whatlinkshere with prev/next links [TS]
-function wfSpecialDisambiguations() {
-	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	$fname = "wfSpecialDisambiguations";
 
-	list( $limit, $offset ) = wfCheckLimits();
-	$dbr =& wfGetDB( DB_SLAVE );
-	extract( $dbr->tableNames( 'links', 'cur' ) );
-
-	$dp = $dbr->strencode( wfMsg("disambiguationspage") );
-	
-	die( "wfSpecialDisambiguation is broken. Link tables have changed...\n" );
-	
-	$sql = "SELECT la.l_from,la.l_to,"
-		. " lb.l_from AS source,lb.l_to AS dest,"
-		. " c.cur_id, c.cur_title AS dt"
-		. " FROM $links AS la, $links AS lb, $cur AS c, $cur AS d"
-		. " WHERE la.l_from='{$dp}'"
-		. " AND la.l_to=lb.l_to"
-		. " AND la.l_from<>lb.l_from"
-		. " AND c.cur_id=lb.l_to"
-		. " AND c.cur_namespace=0"
-		. " AND d.cur_title=lb.l_from"
-		. " AND d.cur_namespace=0"
-		. " LIMIT {$offset}, {$limit}";
-
-	$res = $dbr->query( $sql, $fname );
-
-	$sk = $wgUser->getSkin();
-
-	$top = "<p>".wfMsg( "disambiguationstext", $sk->makeKnownLink( $dp ) )."</p><br>\n";
-	$top = getMaintenancePageBacklink( "disambiguations" ) . $top;
-	$top .= wfShowingResults( $offset, $limit );
-	$wgOut->addHTML( "<p>{$top}\n" );
-
-	$sl = wfViewPrevNext( $offset, $limit, "REPLACETHIS" ) ;
-	$sl = str_replace ( "REPLACETHIS" , sns().":Maintenance&subfunction=disambiguations" , $sl ) ;
-	$wgOut->addHTML( "<br>{$sl}\n" );
-
-	$s = "<ol start=" . ( $offset + 1 ) . ">";
-	while ( $obj = $dbr->fetchObject( $res ) ) {
-		$l1 = $sk->makeKnownLink ( $obj->source , "" , "redirect=no" ) ;
-		$l2 = $sk->makeKnownLink ( $obj->dt ) ;
-		$l3 = $sk->makeBrokenLink ( $obj->source , "(".wfMsg("qbedit").")" , "redirect=no" ) ;
-		$s .= "<li>{$l1} {$l3} => {$l2}</li>\n" ;
-	}
-	$dbr->freeResult( $res );
-	$s .= '</ol>';
-	$wgOut->addHTML( $s );
-	$wgOut->addHTML( "<p>{$sl}\n" );
-}
-
-# DoubleRedirects and BrokenRedirects are now using the QueryPage class.
+# Disambiguations, DoubleRedirects and BrokenRedirects are now using the
+# QueryPage class. Code is in a Special*.php file.
 function wfSpecialDoubleRedirects() {
 	global $wgOut;
 	$t = Title::makeTitle( NS_SPECIAL, "DoubleRedirects" );
@@ -172,6 +121,13 @@ function wfSpecialBrokenRedirects() {
 	$t = Title::makeTitle( NS_SPECIAL, "BrokenRedirects" );
 	$wgOut->redirect ($t->getFullURL());
 }
+
+function wfSpecialDisambiguations() {
+	global $wgOut;
+	$t = Title::makeTitle( NS_SPECIAL, "Disambiguations" );
+	$wgOut->redirect ($t->getFullURL());
+}
+
 
 # This doesn't really work anymore, because self-links are now displayed as
 # unlinked bold text, and are not entered into the link table.

@@ -15,6 +15,7 @@ global $wgSpecialPages;
 /* private */ $wgSpecialPages = array(
 	'DoubleRedirects'	=> new UnlistedSpecialPage ( 'DoubleRedirects' ),
 	'BrokenRedirects'	=> new UnlistedSpecialPage ( 'BrokenRedirects' ),
+	'Disambiguations'	=> new UnlistedSpecialPage ( 'Disambiguations' ),
 	
 	"Userlogin"         => new SpecialPage( "Userlogin" ),
 	"Userlogout"        => new UnlistedSpecialPage( "Userlogout" ),
