@@ -131,6 +131,7 @@ REPLACE INTO interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('tl','http://tl.wikipedia.org/wiki/$1',1),
 ('tn','http://tn.wikipedia.org/wiki/$1',1),
 ('to','http://to.wikipedia.org/wiki/$1',1),
+('tp','http://tp.wikipedia.org/wiki/$1',1),
 ('tr','http://tr.wikipedia.org/wiki/$1',1),
 ('ts','http://ts.wikipedia.org/wiki/$1',1),
 ('tt','http://tt.wikipedia.org/wiki/$1',1),
