@@ -176,7 +176,7 @@ class Skin {
 		} else {
 			# CHECK MERGE @@@
 			# Force no underline
-			$s .= "a.stub, a.new, a.internal, a.external { " .
+			$s .= "a { " .
 			  "text-decoration: none; }\n";
 		}
 		if ( 1 == $wgUser->getOption( "highlightbroken" ) ) {
