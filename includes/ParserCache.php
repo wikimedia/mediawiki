@@ -9,9 +9,9 @@ class ParserCache
 		$key = "$wgDBname:pcache:idhash:$pageid-$hash";
 		return $key;
 	}
-
+	
 	function get( &$article, &$user ) {
-		global $wgMemc;
+		global $wgMemc, $wgCacheEpoch;
 		$fname = "ParserCache::get";
 		wfProfileIn( $fname );
 
@@ -21,7 +21,8 @@ class ParserCache
 		$value = $wgMemc->get( $key );
 		if ( $value ) {
 			# Delete if article has changed since the cache was made
-			if ( $value->getTouched() != $article->getTouched() ) {
+			$touched = $article->getTouched();
+			if ( $value->getTouched() != $touched || $touched > $wgCacheEpoch ) {
 				$wgMemc->delete( $key );
 				$value = false;
 			}
