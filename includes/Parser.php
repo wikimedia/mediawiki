@@ -1055,8 +1055,9 @@ class Parser
 		if ( !$tc ) { $tc = Title::legalChars() . '#%'; }
 		$sk =& $this->mOptions->getSkin();
 
-		$isRedirect = false ;
-		if ( trim ( substr ( $s , 0 , 10 ) ) == '#REDIRECT' ) $isRedirect = true ;
+		$redirect = MagicWord::get ( MAG_REDIRECT ) ;
+		$isRedirect = $redirect->matchStart ( strtoupper ( substr ( $s , 0 , 10 ) ) ) ;
+
 		$a = explode( '[[', ' ' . $s );
 		$s = array_shift( $a );
 		$s = substr( $s, 1 );
