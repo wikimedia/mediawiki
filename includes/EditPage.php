@@ -305,7 +305,8 @@ class EditPage {
 		$watchhtml = "";
 
 		if ( 0 != $wgUser->getID() ) {
-			$watchhtml = "<input tabindex='4' type='checkbox' name='wpWatchthis'".($this->watchthis?" checked":"")." id='wpWatchthis' />".
+			$watchhtml = "<input tabindex='4' type='checkbox' name='wpWatchthis'".($this->watchthis?" checked='checked'":"").
+			" accesskey='w' id='wpWatchthis'  />".
 			"<label for='wpWatchthis'>{$watchthis}</label>";
 		}
 
