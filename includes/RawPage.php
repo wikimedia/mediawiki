@@ -21,12 +21,14 @@ class RawPage {
 			
 		$charset = $wgRequest->getText( 'charset' );
 		$this->mCharset = !empty($charset) ? $charset : $wgInputEncoding;
+		$smaxage = $wgRequest->getText( 'smaxage' );
+		$this->mSmaxage = !empty($smaxage) ? $smaxage : 0;
 		$this->mOldId = $wgRequest->getInt( 'oldid' );
 	}
 	function view() {
 		header( "Content-type: ".$this->mContentType.'; charset='.$this->mCharset );
 		# allow the client to cache this for 24 hours
-		header( 'Cache-Control: s-maxage=0, max-age=86400' );
+		header( 'Cache-Control: s-maxage='.$this->mSmaxage.', max-age=86400' );
 		echo $this->getrawtext();
 		wfAbruptExit();
 	}
