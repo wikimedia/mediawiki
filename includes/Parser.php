@@ -412,7 +412,7 @@ class Parser
 		$descriptorspec = array(
 			0 => array("pipe", "r"),
 			1 => array("pipe", "w"),
-			2 => array("pipe", "w")
+			2 => array("file", "/dev/null", "a")
 		);
 		$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts", $descriptorspec, $pipes);
 		if (is_resource($process)) {
@@ -423,16 +423,9 @@ class Parser
 			}
 			fclose($pipes[1]);
 			$return_value = proc_close($process);
-			if($return_value == 2) {
-				$errors = '';
-				while (!feof($pipes[2])) {
-					$errors .= fgets($pipes[2], 1024);
-				}
-			}
-			fclose($pipes[2]);
 		}
-		if( $cleansource == '' and !empty($errors)) {
-			return '<pre>'.htmlspecialchars($errors).'</pre>';
+		if( $cleansource == '' && $text != '') {
+			return '<h2>'.wfMsg('seriousxhtmlerrors').'</h2><pre>'.htmlspecialchars($text).'</pre>';
 		} else {
 			return $cleansource;
 		}
@@ -1627,7 +1620,7 @@ class Parser
 			foreach ( $bits as $x ) {
 				preg_match( "/^(\\/?)(\\w+)([^>]*)(\\/{0,1}>)([^<]*)$/",
 				$x, $regs );
-				list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
+				@list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
 				if ( in_array( $t = strtolower( $t ), $htmlelements ) ) {
 					$newparams = $this->fixTagAttributes($params);
 					$rest = str_replace( ">", "&gt;", $rest );
