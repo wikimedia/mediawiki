@@ -77,10 +77,6 @@ if($wgMetaNamespace === FALSE)
 	"date" => 0
 );
 
-/* private */ $wgDefaultAnonOptionsEn = array(
-	"editsection" => 0
-);
-
 /* private */ $wgQuickbarSettingsEn = array(
 	"None", "Fixed left", "Fixed right", "Floating left"
 );
@@ -1425,11 +1421,6 @@ class Language {
 	function getDefaultUserOptions () {
 		global $wgDefaultUserOptionsEn ;
 		return $wgDefaultUserOptionsEn ;
-	}
-
-	function getDefaultAnonOptions() {
-		global $wgDefaultAnonOptionsEn;
-		return $wgDefaultAnonOptionsEn + $this->getDefaultUserOptions();
 	}
 	
 	function getBookstoreList () {
