@@ -151,7 +151,7 @@ class LoginForm {
 	 */
 	function addNewAccountInternal() {
 		global $wgUser, $wgOut;
-		global $wgMaxNameChars;
+		global $wgMaxNameChars, $wgUseLatin1;
 		global $wgMemc, $wgAccountCreationThrottle, $wgDBname, $wgIP;
 
 		if (!$wgUser->isAllowedToCreateAccount()) {
@@ -171,6 +171,7 @@ class LoginForm {
 		  preg_match( "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/", $name ) ||
 		  (strpos( $name, "/" ) !== false) ||
 		  (strlen( $name ) > $wgMaxNameChars) ||
+                  ($wgUseLatin1 && preg_match( "/[\x80-\xA0]/", $name )) ||
 		  ucFirst($name) != $u->getName() ) 
 		{
 			$this->mainLoginForm( wfMsg( 'noname' ) );
