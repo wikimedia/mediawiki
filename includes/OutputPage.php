@@ -102,7 +102,7 @@ class OutputPage {
 			return;
 		}
 
-		$lastmod = gmdate( 'D, j M Y H:i:s', wfTimestamp(TS_UNIX, max( $timestamp, $wgUser->mTouched ) ) ) . ' GMT';
+		$lastmod = wfTimestamp( TS_RFC2822, max( $timestamp, $wgUser->mTouched ) );
 
 		if( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
 			# IE sends sizes after the date like this:
@@ -384,7 +384,7 @@ class OutputPage {
 				if( !$wgDebugRedirects ) {
 					header("HTTP/1.1 {$this->mRedirectCode} Moved Permanently");
 				}
-				$this->mLastModified = gmdate( 'D, j M Y H:i:s' ) . ' GMT';
+				$this->mLastModified = wfTimestamp( TS_RFC2822 );
 			}
 
 			$this->sendCacheControl();

@@ -995,6 +995,8 @@ define('TS_UNIX',0);
 define('TS_MW',1);	
 /** Standard database timestamp (yyyy-mm-dd hh:mm:ss) */
 define('TS_DB',2);
+/** For HTTP and e-mail headers -- output only */
+define('TS_RFC2822', 3 );
 
 /**
  * @todo document
@@ -1018,13 +1020,12 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
  	switch($outputtype) {
 	case TS_UNIX:
 		return $uts;
-		break;
 	case TS_MW:
 		return gmdate( 'YmdHis', $uts );
-		break;
 	case TS_DB:
 		return gmdate( 'Y-m-d H:i:s', $uts );
-		break;
+	case TS_RFC2822:
+		return gmdate( "D, j M Y H:i:s", $uts ) . ' GMT';
 	default:
 		return;
 	}
