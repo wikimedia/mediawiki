@@ -34,6 +34,7 @@ $wgNewFields = array(
 	array( 'user',          'user_token',       'patch-user_token.sql' ),
 	array( 'user_rights',   'ur_user',          'patch-rename-user_groups-and_rights.sql' ),
 	array( 'group',         'group_rights',     'patch-userlevels-rights.sql' ),
+ 	array( 'logging',       'log_params',       'patch-log_params.sql' ),
 );
 
 function add_table( $name, $patch ) {
@@ -255,8 +256,11 @@ function do_schema_restructuring() {
 	} else {
 		echo "...converting from cur/old to page/revision/text DB structure.\n"; flush();
 		echo "......checking for duplicate entries.\n"; flush();
-		$rows = $wgDatabase->query( 'SELECT cur_title, cur_namespace, COUNT(cur_namespace) AS c
-				FROM cur GROUP BY cur_title, cur_namespace HAVING c>1', $fname );
+		
+		extract( $wgDatabase->tableNames( 'cur', 'old', 'page', 'revision', 'text' ) );
+
+		$rows = $wgDatabase->query( "SELECT cur_title, cur_namespace, COUNT(cur_namespace) AS c
+				FROM $cur GROUP BY cur_title, cur_namespace HAVING c>1", $fname );
 
 		if ( $wgDatabase->numRows( $rows ) > 0 ) {
 			echo "......<b>Found duplicate entries</b>\n";
@@ -268,7 +272,7 @@ function do_schema_restructuring() {
 				$duplicate[$row->cur_namespace][] = $row->cur_title;
 				echo ( sprintf( "      %-60s %3s %5s\n", $row->cur_title, $row->cur_namespace, $row->c ) );
 			}
-			$sql = 'SELECT cur_title, cur_namespace, cur_id, cur_timestamp FROM cur WHERE ';
+			$sql = "SELECT cur_title, cur_namespace, cur_id, cur_timestamp FROM $cur WHERE ";
 			$firstCond = true; 
 			foreach ( $duplicate as $ns => $titles ) {
 				if ( $firstCond ) {
@@ -304,14 +308,14 @@ function do_schema_restructuring() {
 				$prev_title     = $row->cur_title;
 				$prev_namespace = $row->cur_namespace;
 			}
-			$sql = 'DELETE FROM cur WHERE cur_id IN ( ' . join( ',', $deleteId ) . ')';
+			$sql = "DELETE FROM $cur WHERE cur_id IN ( " . join( ',', $deleteId ) . ')';
 			$rows = $wgDatabase->query( $sql, $fname );
 			echo "......<b>Deleted</b> ".$wgDatabase->affectedRows()." records.\n";
 		}
 		
 
 		echo "......Creating tables.\n";
-		$wgDatabase->query(" CREATE TABLE page (
+		$wgDatabase->query(" CREATE TABLE $page (
   			page_id int(8) unsigned NOT NULL auto_increment,
   			page_namespace tinyint NOT NULL,
   			page_title varchar(255) binary NOT NULL,
@@ -327,7 +331,7 @@ function do_schema_restructuring() {
   			UNIQUE INDEX name_title (page_namespace,page_title),
   			INDEX (page_random)
 			)", $fname );
-		$wgDatabase->query("CREATE TABLE revision (
+		$wgDatabase->query("CREATE TABLE $revision (
   			rev_id int(8) unsigned NOT NULL auto_increment,
   			rev_page int(8) unsigned NOT NULL,
   			rev_comment tinyblob NOT NULL default '',
@@ -346,38 +350,38 @@ function do_schema_restructuring() {
 			)", $fname );
 
 		echo "......Locking tables.\n";
-		$wgDatabase->query( 'LOCK TABLES page WRITE, revision WRITE, old WRITE, cur WRITE', $fname );
+		$wgDatabase->query( "LOCK TABLES $page WRITE, $revision WRITE, $old WRITE, $cur WRITE", $fname );
 
 		$maxold = $wgDatabase->selectField( 'old', 'max(old_id)', '', $fname );
 		echo "......maxold is {$maxold}\n";
 
 		echo "......Moving text from cur.\n";
-		$wgDatabase->query( "INSERT INTO old (old_namespace, old_title, old_text, old_comment, old_user, old_user_text,
+		$wgDatabase->query( "INSERT INTO $old (old_namespace, old_title, old_text, old_comment, old_user, old_user_text,
     				old_timestamp, old_minor_edit, old_flags, inverse_timestamp)
   			SELECT cur_namespace, cur_title, cur_text, cur_comment, cur_user, cur_user_text, cur_timestamp, cur_minor_edit,
     				'', inverse_timestamp
-  			FROM cur", $fname );
+  			FROM $cur", $fname );
 
 		echo "......Setting up revision table.\n";
-		$wgDatabase->query( "INSERT INTO revision (rev_id, rev_page, rev_comment, rev_user, rev_user_text, rev_timestamp,
+		$wgDatabase->query( "INSERT INTO $revision (rev_id, rev_page, rev_comment, rev_user, rev_user_text, rev_timestamp,
     				inverse_timestamp, rev_minor_edit)
 			SELECT old_id, cur_id, old_comment, old_user, old_user_text,
-    				old_timestamp, old.inverse_timestamp, old_minor_edit
-			FROM old,cur WHERE old_namespace=cur_namespace AND old_title=cur_title", $fname );
+    				old_timestamp, $old.inverse_timestamp, old_minor_edit
+			FROM $old,$cur WHERE old_namespace=cur_namespace AND old_title=cur_title", $fname );
 
 		echo "......Setting up page table.\n";
-		$wgDatabase->query( "INSERT INTO page (page_id, page_namespace, page_title, page_restrictions, page_counter,
+		$wgDatabase->query( "INSERT INTO $page (page_id, page_namespace, page_title, page_restrictions, page_counter,
     				page_is_redirect, page_is_new, page_random, page_touched, page_latest)
   			SELECT cur_id, cur_namespace, cur_title, cur_restrictions, cur_counter, cur_is_redirect, cur_is_new,
     				cur_random, cur_touched, rev_id
-  			FROM cur,revision
+  			FROM $cur,$revision
   			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}", $fname );
 
 		echo "......Unlocking tables.\n";
 		$wgDatabase->query( "UNLOCK TABLES", $fname );
 
 		echo "......Renaming old.\n";
-		$wgDatabase->query( "ALTER TABLE old RENAME TO text", $fname );
+		$wgDatabase->query( "ALTER TABLE $old RENAME TO $text", $fname );
 		echo "...done.\n";
 	}
 }
