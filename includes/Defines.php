@@ -23,6 +23,9 @@ define('NS_SPECIAL', -1);
 
 /**#@+
  * Real namespaces
+ *
+ * Number 100 and beyond are reserved for custom namespaces;
+ * DO NOT assign standard namespaces at 100 or beyond.
  */
 define('NS_MAIN', 0);
 define('NS_TALK', 1);
@@ -40,7 +43,8 @@ define('NS_HELP', 12);
 define('NS_HELP_TALK', 13);
 define('NS_CATEGORY', 14);
 define('NS_CATEGORY_TALK', 15);
-define('NS_THREAD', 100);           // Reserved for Forum-like
+define('NS_THREAD', 16);           // Reserved for Forum-like
+define('NS_THREAD_TALK', 17);
 /**#@-*/
 
 /**#@+
