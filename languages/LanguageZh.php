@@ -164,6 +164,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 );
 
 /* private */ $wgSysopSpecialPagesZh = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "查封一个IP地址",
 	"Asksql"		=> "查询数据库",
 	"Undelete"		=> "恢复被删页面"

@@ -107,6 +107,7 @@ include_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgSysopSpecialPagesJa = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "IPアドレスをブロック",
 	"Asksql"		=> "データベースに問い合わせ",
 	"Undelete"		=> "消去されたページを閲覧し、復帰させる"

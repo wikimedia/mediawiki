@@ -124,6 +124,7 @@ $wgValidSpecialPagesSv = array(
 );
 
 /* private */ $wgSysopSpecialPagesSv = array(
+	"Makesysop" => "Turn a user into a sysop",
         "Blockip"       => "Blockera en IP-adress",
         "Asksql"        => "Gör en sökning i databasen",
         "Undelete"      => "Se och återställ raderade sidor"

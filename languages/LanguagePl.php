@@ -132,6 +132,7 @@ include_once("LanguageUtf8.php");
 );
 
 /* private */ $wgSysopSpecialPagesPl = array(
+	"Makesysop" => "Turn a user into a sysop",
         "Blockip"       => "Zablokuj adres IP",
         "Asksql"        => "Zapytanie SQL",
         "Undelete"      => "Odtwarzanie skasowanych stron"

@@ -133,6 +133,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesMs = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Sekat IP dan pengguna", #"Block IP or user",
 	"Asksql"		=> "Kueri terhadap pangkalan data", #"Query the database",
 	"Undelete"		=> "Papar dan masukkan semula halaman yang telah dibuang", #"View and restore deleted pages",

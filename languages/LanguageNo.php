@@ -124,6 +124,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesNo = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Blokker IP-adresse",
 	"Asksql"		=> "Søk i databasen",
 	"Undelete"		=> "Vis og gjenopprett slettede sider"

@@ -140,6 +140,7 @@ if ( $wgMetaNamespace = "Wikipedia" ) {
 );
 
 /* private */ $wgSysopSpecialPagesHu = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"	=> "Block an IP address",
 	"Asksql"	=> "Query the database",
 	"Undelete"	=> "Restore deleted pages"

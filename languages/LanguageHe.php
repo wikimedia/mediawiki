@@ -133,6 +133,7 @@ if ( $wgMetaNamespace == "Wikipedia" ) {
 );
 
 /* private */ $wgSysopSpecialPagesHe = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "חסום כתובת IP",
 	"Asksql"		=> "שאילתא לבסיס-הנתונים",
 	"Undelete"		=> "צפה ושחזר דפים מחוקים"

@@ -123,6 +123,7 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgSysopSpecialPagesDe = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Blockiere eine IP-Adresse",
 	"Asksql"		=> "Datenbank-Abfrage",
 	"Undelete"              => "Gelöschte Seiten wiederherstellen"

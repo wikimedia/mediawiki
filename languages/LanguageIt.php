@@ -118,6 +118,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesIt = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Blocca indirizzo IP",
 	"Asksql"		=> "Interroga database",
 	"Undelete"		=> "Leggi e ripara pagine cancellate"

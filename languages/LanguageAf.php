@@ -118,6 +118,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesAf = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Blokkeer 'n IP-adres.",
 	"Asksql"		=> "SQL.",
 	"Undelete"		=> "Kyk na en herstel geskrapte bladsye."

@@ -134,6 +134,7 @@ if ( $wgMetaNamespace = "Wikipedia" ) {
 );
 
 /* private */ $wgSysopSpecialPagesFa = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "بستن کاربر/نشانی IP",
 	"Asksql"		=> "پرس‌وجوی پایگاه داده",
 	"Undelete"		=> "احیای صفحات حذف‌شده"

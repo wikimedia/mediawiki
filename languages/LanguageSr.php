@@ -147,6 +147,7 @@ include( "LanguageUtf8.php" );
 );
 
 /* private */ $wgSysopSpecialPagesSr = array(
+	"Makesysop" => "Turn a user into a sysop",
  "Blockip"  => "Блокирај корисника/ИП адресу",
  "Asksql"  => "Постави упит бази података",
  "Undelete"  => "Поврати обрисане странице"

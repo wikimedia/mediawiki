@@ -304,6 +304,7 @@ include_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgSysopSpecialPagesWa = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Bloker èn uzeu/ene adresse IP",
 	"Asksql"		=> "Query the database", # co a fé
 	"Undelete"		=> "Rapexhî des disfacêyès pådjes"

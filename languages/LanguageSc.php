@@ -108,6 +108,7 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgSysopSpecialPagesSc = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Blocca un indirizzo IP",
 	"Asksql"		=> "Interroga il database",
 	"Undelete"		=> "Leggi e ripara pagine cancellate"

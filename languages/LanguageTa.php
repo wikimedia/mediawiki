@@ -148,6 +148,7 @@ if ( $wgMetaNamespace = "Wikipedia" ) {
 );
 
 /* private */ $wgSysopSpecialPagesTa = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "பயனர் ஒருவரைத் தடு/ஐபி முகவரி",
 	"Asksql"		=> "தரவுத் தளத்தில் விபரமறி",
 	"Undelete"		=> "அழிக்கப்பட்ட பக்கங்களை மீள்வி"

@@ -120,6 +120,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesLa = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Obstruere locum IP",
 	"Asksql"		=> "Quaerere basem dati",
 	"Undelete"		=> "Videre et restituere paginas deletas"

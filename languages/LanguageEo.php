@@ -138,6 +138,7 @@ if ( $wgMetaNamespace == "Wikipedia" ) {
 );
 
 /* private */ $wgSysopSpecialPagesEo = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Forbaru fi-IP-adreson",
 	"Asksql"		=> "Informomendu je la datumbazo",
 	"Undelete"		=> "Restarigu forigitan paĝon"

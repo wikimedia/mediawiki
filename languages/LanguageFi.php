@@ -112,6 +112,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesFi = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"	=> "Muokkausesto",
 	"Asksql"	=> "Tietokantahaku",
 	"Undelete"	=> "Palauta poistetut"

@@ -126,6 +126,7 @@ if ( $wgMetaNamespace = "Wikipedia" ) {
 );
 
 /* private */ $wgSysopSpecialPagesOc = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"       => "Bloquer une adresse IP",
 	"Asksql"        => "Accès SQL",
 	"Undelete"      => "Gérer les pages effacées"

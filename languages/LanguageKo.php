@@ -149,6 +149,7 @@ if ( $wgMetaNamespace = "Wikipedia" ) {
 # both Korean and English. And he can later koreanize this part.
 
 /* private */ $wgSysopSpecialPagesKo = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Block an IP address",
 	"Asksql"		=> "Query the database",
 	"Undelete"		=> "Undelete Page"

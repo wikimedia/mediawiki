@@ -155,6 +155,7 @@ include_once("LanguageUtf8.php");
 );
 
 /* private */ $wgSysopSpecialPagesRo = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Blochează adresa IP",
 	"Asksql"		=> "Efectuează un query în baza de date",
 	"Undelete"		=> "Afişează şi restaurează pagini şterse"
