@@ -78,7 +78,17 @@ class ImagePage extends Article {
 				}
 				if ( $width != $this->img->getWidth() || $height != $this->img->getHeight() ) {
 					if( $wgUseImageResize ) {
-						$url = $this->img->createThumb( $width );
+						$thumbnail = $this->img->getThumbnail( $width );
+						if (    ( ! $this->img->mustRender() )
+						     && ( $thumbnail->getSize() > $this->img->getSize() ) ) {
+							# the thumbnail is bigger thatn the original image.
+							# show the original image instead of the thumb.
+							$url = $full_url;
+							$width = $this->img->getWidth();
+							$height = $this->img->getHeight();
+						} else {
+							$url = $thumbnail->getUrl();
+						}
 					} else {
 						# No resize ability? Show the full image, but scale
 						# it down in the browser so it fits on the page.
