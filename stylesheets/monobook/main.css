@@ -217,13 +217,13 @@ pre {
     width: auto;
 }
 span.subpages { display: block; }
-#catlinks {
+/*#catlinks {
     margin: 0;
     padding: 0;
     width: 34%;
     text-align: right;
     float: right;
-}
+}*/
 
 /* Some space under the headers in the content area */
 #bodyContent h1,
