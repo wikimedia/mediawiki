@@ -386,7 +386,7 @@ $cambutton
 {
 	global $wgOut, $wgLang;
 
-	$check = wfLocalUrl( $wgLang->specialPage( "Userlogin" ),
+	$check = wfLocalUrl( wfUrlEncode( $wgLang->specialPage( "Userlogin" ) ),
 			 "wpCookieCheck=$type" );
 
 	return $wgOut->redirect( $check );
