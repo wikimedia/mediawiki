@@ -134,4 +134,15 @@ function do_user_real_name_update() {
 	}
 }
 
+function do_querycache_update() {
+	global $wgDatabase;
+	if( $wgDatabase->tableExists( "querycache" ) ) {
+		echo "...have special page querycache table.\n";
+	} else {
+		echo "Adding querycache table for slow special pages... ";
+		dbsource( "maintenance/archives/patch-querycache.sql", $wgDatabase );
+		echo "ok\n";
+	}
+}
+
 ?>

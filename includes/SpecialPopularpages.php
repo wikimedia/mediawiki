@@ -9,19 +9,24 @@ class PopularPagesPage extends QueryPage {
 	}
 
 	function isExpensive() {
-		return 1;
+		# cur_counter is not indexed
+		return true;
 	}
 
-	function getSQL( $offset, $limit ) {
-		return "SELECT cur_title, cur_counter FROM cur " .
-		  "WHERE cur_namespace=0 AND cur_is_redirect=0 ORDER BY " .
-		  "cur_counter DESC LIMIT {$offset}, {$limit}";
+	function getSQL() {
+		return
+			"SELECT 'Popularpages' as type,
+			        cur_namespace as namespace,
+			        cur_title as title,
+			        cur_counter as value
+			FROM cur
+			WHERE cur_namespace=0 AND cur_is_redirect=0";
 	}
 
 	function formatResult( $skin, $result ) {
 		global $wgLang;
-		$link = $skin->makeKnownLink( $result->cur_title, "" );
-		$nv = wfMsg( "nviews", $wgLang->formatNum( $result->cur_counter ) );
+		$link = $skin->makeKnownLink( $result->title, "" );
+		$nv = wfMsg( "nviews", $wgLang->formatNum( $result->value ) );
 		return "{$link} ({$nv})";
 	}
 }
