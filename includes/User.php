@@ -424,7 +424,9 @@ class User {
 	function isBot()
 	{
 		$this->loadFromDatabase();
-		if ( 0 == $this->mId ) { return false; }
+
+		# Why was this here? I need a UID=0 conversion script [TS]
+		# if ( 0 == $this->mId ) { return false; }
 
 		return in_array( "bot", $this->mRights );
 	}
@@ -669,8 +671,12 @@ class User {
 		return $allowed;
 	}
 
-
-
+	# Set mDataLoaded, return previous value
+	# Use this to prevent DB access in command-line scripts or similar situations
+	function setLoaded( $loaded ) 
+	{
+		wfSetVar( $this->mDataLoaded, $loaded );
+	}
 }
 
 ?>
