@@ -17,7 +17,9 @@ function userMailer( $to, $from, $subject, $body )
 		$timestamp = time();
 	
 		$headers["From"] = $from;
-		$headers["To"] = $qto;
+/* removing to: field as it should be set by the send() function below
+   UNTESTED - Hashar */
+//		$headers["To"] = $qto;
 		$headers["Subject"] = $subject;
 		$headers["MIME-Version"] = "1.0";
 		$headers["Content-type"] = "text/plain; charset={$wgOutputEncoding}";
@@ -47,7 +49,6 @@ function userMailer( $to, $from, $subject, $body )
 			"Content-transfer-encoding: 8bit\r\n" .
 			"From: {$from}\r\n" .
 			"Reply-To: {$from}\r\n" .
-			"To: {$qto}\r\n" .
 			"X-Mailer: MediaWiki interuser e-mailer";
 
 		$wgErrorString = "";
