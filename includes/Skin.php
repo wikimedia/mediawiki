@@ -1509,6 +1509,7 @@ class Skin {
 	function createThumb( $name, $width ) {
 		global $wgUploadDirectory;
 		global $wgImageMagickConvertCommand;
+		global $wgUseImageMagick;
 		$imgPath   = wfImagePath( $name );
 		$thumbName = $width."px-".$icon.$name;
 		$thumbPath = wfImageArchiveDir( $thumbName, "thumb" )."/".$thumbName;
@@ -1516,11 +1517,68 @@ class Skin {
 
 		if (     (! file_exists( $thumbPath )) 
 		     ||  ( filemtime($thumbPath) < filemtime($imgPath) ) ) {
-			$cmd  =  $wgImageMagickConvertCommand .
+		        if ( $wgUseImageMagick ) {
+				# use ImageMagick
+				$cmd  =  $wgImageMagickConvertCommand .
 					" -quality 95 -geometry {$width}x ".
 					escapeshellarg($imgPath) . " " .
 					escapeshellarg($thumbPath);
-			$conv = shell_exec( $cmd );
+				$conv = shell_exec( $cmd );
+			} else {
+				# Use PHP's builtin GD library functions.
+				#
+				# First find out what kind of file this is, and select the correct
+				# input routine for this.
+				list($src_width, $src_height, $src_type, $src_attr) = getimagesize( $imgPath );
+				switch( $src_type ) {
+					case 1: # GIF
+						$src_image = imagecreatefromgif( $imgPath );
+						break;
+					case 2: # JPG
+						$src_image = imagecreatefromjpeg( $imgPath );
+						break;
+					case 3: # PNG
+						$src_image = imagecreatefrompng( $imgPath );
+						break;
+					case 15: # WBMP for WML
+						$src_image = imagecreatefromwbmp( $imgPath );
+						break;
+					case 16: # XBM
+						$src_image = imagecreatefromxbm( $imgPath );
+						break;
+					default:
+						return "Image type not supported";
+						break;
+				}
+				$height = floor( $src_height * ( $width/$src_width ) );
+				$dst_image = imagecreatetruecolor( $width, $height );
+				imagecopyresampled( $dst_image, $src_image, 
+							0,0,0,0,
+							$width, $height, $src_width, $src_height );
+				switch( $src_type ) {
+					case 1:  # GIF
+					case 3:  # PNG
+					case 15: # WBMP
+					case 16: # XBM
+						#$thumbUrl .= ".png";
+						#$thumbPath .= ".png";
+						imagepng( $dst_image, $thumbPath );
+						break;
+					case 2:  # JPEG
+						#$thumbUrl .= ".jpg";
+						#$thumbPath .= ".jpg";
+						imageinterlace( $dst_image );
+						imagejpeg( $dst_image, $thumbPath, 95 );
+						break;
+					default:
+						break;
+				}
+				imagedestroy( $dst_image );
+				imagedestroy( $src_image );
+
+
+			}
+
 		}
 		return $thumbUrl;
 	}
