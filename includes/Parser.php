@@ -484,8 +484,8 @@ cl_sortkey" ;
 						$index++ )
 					{
 						// check for change of starting letter or begging of chunk
-						if ( ($children_start_char[$index] != $children_start_char[$index - 1])
-							|| ($index == $startChunk) )
+						if ( ($index == $startChunk)
+							|| ($children_start_char[$index] != $children_start_char[$index - 1]) )
 						{
 							$r .= "</ul><h3>{$children_start_char[$index]}</h3>\n<ul>";
 						}
@@ -542,8 +542,8 @@ cl_sortkey" ;
 					$index++ )
 				{
 					// check for change of starting letter or begging of chunk
-					if ( ($articles_start_char[$index] != $articles_start_char[$index - 1])
-						|| ($index == $startChunk) )
+					if ( ($index == $startChunk)
+						|| ($articles_start_char[$index] != $articles_start_char[$index - 1]) )
 					{
 						$r .= "</ul><h3>{$articles_start_char[$index]}</h3>\n<ul>";
 					}
