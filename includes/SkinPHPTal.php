@@ -90,7 +90,7 @@
 			$tpl->set( "title", $wgOut->getPageTitle() );
 			$tpl->set( "pagetitle", $wgOut->getHTMLTitle() );
 			
-			$tpl->setRef( "thispage", &$this->thispage );
+			$tpl->setRef( "thispage", $this->thispage );
 			$subpagestr = $this->subPageSubtitle();
 			$tpl->set( 
 				"subtitle",  !empty($subpagestr)?
@@ -114,13 +114,13 @@
 						'ttip' => wfMsg('tooltip-'.$format)
 					);
 				}
-				$tpl->setRef( 'feeds', &$feeds );
+				$tpl->setRef( 'feeds', $feeds );
 			}
-			$tpl->setRef( 'mimetype', &$wgMimeType );
-			$tpl->setRef( 'charset', &$wgOutputEncoding );
+			$tpl->setRef( 'mimetype', $wgMimeType );
+			$tpl->setRef( 'charset', $wgOutputEncoding );
 			$tpl->set( 'headlinks', $out->getHeadLinks() );
-			$tpl->setRef( 'skinname', &$this->skinname );
-			$tpl->setRef( "loggedin", &$this->loggedin );
+			$tpl->setRef( 'skinname', $this->skinname );
+			$tpl->setRef( "loggedin", $this->loggedin );
 			$tpl->set('nsclass', 'ns-'.$wgTitle->getNamespace());
 			/* XXX currently unused, might get useful later
 			$tpl->set( "editable", ($wgTitle->getNamespace() != NS_SPECIAL ) );
@@ -131,18 +131,18 @@
 			$tpl->set( "sysop", $wgUser->isSysop() );
 			*/
 			$tpl->set( "searchaction", $this->escapeSearchLink() );
-			$tpl->setRef( "stylepath", &$wgStylePath );
-			$tpl->setRef( "logopath", &$wgLogo );
-			$tpl->setRef( "lang", &$wgLanguageCode );
+			$tpl->setRef( "stylepath", $wgStylePath );
+			$tpl->setRef( "logopath", $wgLogo );
+			$tpl->setRef( "lang", $wgLanguageCode );
 			$tpl->set( "dir", $wgLang->isRTL() ? "rtl" : "ltr" );
 			$tpl->set( "rtl", $wgLang->isRTL() );
 			$tpl->set( "langname", $wgLang->getLanguageName( $wgLanguageCode ) );
-			$tpl->setRef( "username", &$this->username );
-			$tpl->setRef( "userpage", &$this->userpage);
-			$tpl->setRef( "userpageurl", &$this->userpageUrlDetails['href']);
-			$tpl->setRef( "usercss", &$this->usercss);
-			$tpl->setRef( "userjs", &$this->userjs);
-			$tpl->setRef( "userjsprev", &$this->userjsprev);
+			$tpl->setRef( "username", $this->username );
+			$tpl->setRef( "userpage", $this->userpage);
+			$tpl->setRef( "userpageurl", $this->userpageUrlDetails['href']);
+			$tpl->setRef( "usercss", $this->usercss);
+			$tpl->setRef( "userjs", $this->userjs);
+			$tpl->setRef( "userjsprev", $this->userjsprev);
 			if($this->loggedin) {
 				$tpl->set( "jsvarurl", $this->makeUrl('-','action=raw&gen=js&smaxage=0') );
 			} else {
@@ -164,8 +164,8 @@
 				$ntl = "";
 			}
 
-			$tpl->setRef( "newtalk", &$ntl );
-			$tpl->setRef( "skin", &$this);
+			$tpl->setRef( "newtalk", $ntl );
+			$tpl->setRef( "skin", $this);
 			$tpl->set( "logo", $this->logoText() );
 			if ( $wgOut->isArticle() and (!isset( $oldid ) or isset( $diff )) and 0 != $wgArticle->getID() ) {
 				if ( !$wgDisableCounters ) {
@@ -182,11 +182,11 @@
 			$tpl->set( "disclaimer", $this->disclaimerLink() );
 			$tpl->set( "about", $this->aboutLink() );
 
-			$tpl->setRef( "debug", &$out->mDebugtext );
+			$tpl->setRef( "debug", $out->mDebugtext );
 			$tpl->set( "reporttime", $out->reportTime() );
 			$tpl->set( "sitenotice", $wgSiteNotice );
 			
-			$tpl->setRef( "bodytext", &$out->mBodytext );
+			$tpl->setRef( "bodytext", $out->mBodytext );
 
 			$language_urls = array();
 			foreach( $wgOut->getLanguageLinks() as $l ) {
@@ -196,13 +196,13 @@
 				'class' => $wgLang->isRTL() ? 'rtl' : 'ltr');
 			}
 			if(count($language_urls)) {
-				$tpl->setRef( 'language_urls', &$language_urls);
+				$tpl->setRef( 'language_urls', $language_urls);
 			} else {
 				$tpl->set('language_urls', false);
 			}
 			$tpl->set('personal_urls', $this->buildPersonalUrls());
 			$content_actions = $this->buildContentActionUrls();
-			$tpl->setRef('content_actions', &$content_actions);
+			$tpl->setRef('content_actions', $content_actions);
 			// XXX: attach this from javascript, same with section editing
 			if($this->iseditable &&	$wgUser->getOption("editondblclick") ) 
 			{
@@ -305,7 +305,7 @@
 				$talk_class = (Namespace::isTalk( $wgTitle->getNamespace()) ? 'selected' : false);				
 				$talktitle = Title::newFromText( $this->titletxt );
 				$talktitle = $talktitle->getTalkPage();
-				$this->checkTitle(&$talktitle, &$this->titletxt);	
+				$this->checkTitle($talktitle, $this->titletxt);	
 				if($talktitle->getArticleId() != 0) { 
 					$content_actions['talk'] = array(
 						'class' => $talk_class,
