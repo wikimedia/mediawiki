@@ -999,11 +999,6 @@ class LanguageZh_tw extends LanguageZh_cn {
 		return $wgBookstoreListZh_tw ;
 	}
 
-	function getUserToggles() {
-		global $wgUserTogglesZh_tw;
-		return $wgUserTogglesZh_tw;
-	}
-
 	function getNamespaces() {
 		global $wgNamespaceNamesZh_tw;
 		return $wgNamespaceNamesZh_tw;
