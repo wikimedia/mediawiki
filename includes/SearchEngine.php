@@ -65,6 +65,10 @@ class SearchEngine {
 		$ret = wfMsg("powersearchtext"); # Text to be returned
 		$tempText = ""; # Temporary text, for substitution into $ret	
 
+		if( isset( $_REQUEST["searchx"] ) ) {
+			$this->addtoquery["searchx"] = "1";
+		}
+		
 		# Do namespace checkboxes
 		$namespaces = $wgLang->getNamespaces();
 		foreach ( $namespaces as $i => $namespace ) {
