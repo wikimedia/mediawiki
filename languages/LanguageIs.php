@@ -69,8 +69,6 @@ if($wgMetaNamespace === FALSE)
 	"2001-01-15"
 );
 
-/* private */ $wgBookstoreListIs = array() + $wgBookstoreListEn;
-
 /* private */ $wgSysopSpecialPagesIs = array(
 	"Blockip"		=> "Banna notanda/IP tölu",
 	"Asksql"		=> "Leita í gagnagrunni",
@@ -808,11 +806,6 @@ class LanguageIs extends LanguageUtf8 {
 		return $wgDefaultUserOptionsIs;
 	}
 
-	function getBookstoreList () {
-		global $wgBookstoreListIs;
-		return $wgBookstoreListIs;
-	}
-
 	function getNamespaces() {
 		global $wgNamespaceNamesIs;
 		return $wgNamespaceNamesIs;
@@ -879,6 +872,12 @@ class LanguageIs extends LanguageUtf8 {
 	function getMagicWords() {
 		global $wgMagicWordsIs;
 		return $wgMagicWordsIs;
+	}
+	
+	function date( $ts, $adj = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); } # Adjust based on the timezone setting.
+		$date = (0 + substr( $ts, 6, 2 )) . '. ' . $this->getMonthName( substr( $ts, 4, 2 ) );
+		return $date;
 	}
 }
 
