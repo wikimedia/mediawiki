@@ -4,6 +4,9 @@
 --
 --
 
+CREATE SCHEMA mediawiki;
+SET search_path=mediawiki;
+
 CREATE TABLE cur (
     cur_id serial PRIMARY KEY,
     cur_namespace smallint NOT NULL,
@@ -18,7 +21,7 @@ CREATE TABLE cur (
     cur_is_redirect smallint DEFAULT 0 NOT NULL,
     cur_minor_edit smallint DEFAULT 0 NOT NULL,
     cur_is_new smallint DEFAULT 0 NOT NULL,
-    cur_random double precision,
+    cur_random double precision DEFAULT random(),
     cur_touched timestamp without time zone,
     inverse_timestamp varchar(14)
 );
@@ -115,7 +118,8 @@ CREATE TABLE "user" (
     user_newpassword text DEFAULT ''::text NOT NULL,
     user_email text DEFAULT ''::text NOT NULL,
     user_options text DEFAULT ''::text NOT NULL,
-    user_touched timestamp without time zone DEFAULT '1900-01-01 00:00:00'::timestamp without time zone NOT NULL
+    user_touched timestamp without time zone DEFAULT '1900-01-01 00:00:00'::timestamp without time zone NOT NULL,
+    user_token char(32) DEFAULT '' NOT NULL
 );
 
 
