@@ -44,12 +44,10 @@ class UnusedimagesPage extends QueryPage {
 		# Last modified date
 		. ' . . '.$wgLang->timeanddate($result->value)
 		# Link to username
-		. ' . . '.$skin->makeLinkObj( Title::makeTitle( NS_USER, $result->img_user_text ), $result->img_user_text);
-		
+		. ' . . '.$skin->makeLinkObj( Title::makeTitle( NS_USER, $result->img_user_text ), $result->img_user_text)
 		# If there is a description, show it
-		if($result->img_description != '') {
-			$return .= ' <i>(' . $skin->formatComment( $result->img_description ) . ')</i>';
-		}
+		. $skin->commentBlock( $result->img_description );
+		
 		return $return;
 	}
 	

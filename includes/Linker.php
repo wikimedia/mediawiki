@@ -780,11 +780,11 @@ class Linker {
 	 * @access public
 	 */
 	function commentBlock( $comment, $title = NULL ) {
-		if( $comment == '' ) {
+		if( $comment == '' || $comment == '*' ) {
 			return '';
 		} else {
 			$formatted = $this->formatComment( $comment, $title );
-			return " <em>($formatted)</em>";
+			return " <span class='comment'>($formatted)</span>";
 		}
 	}
 

@@ -194,10 +194,7 @@ class PageHistory {
 		$s .= $isminor ? ' <span class="minor">'.$message['minoreditletter'].'</span>': '' ;
 
 
-		if ( '' != $c && '*' != $c ) {
-			$c = $this->mSkin->formatcomment( $c, $this->mTitle );
-			$s .= " <em>($c)</em>";
-		}
+		$s .= $this->mSkin->commentBlock( $c, $this->mTitle );
 		if ($notificationtimestamp && ($ts >= $notificationtimestamp)) {
 			$s .= wfMsg( 'updatedmarker' );
 		}

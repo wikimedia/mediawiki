@@ -201,9 +201,7 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $t
 	} 
 	$histlink='('.$sk->makeKnownLinkObj( $page, $messages['hist'], 'action=history' ) . ')';
 
-	if( $comment ) {
-		$comment = '<em>(' . $sk->formatComment( $comment, $page ) . ')</em> ';
-	}
+	$comment = $sk->commentBlock( $comment, $page );
 	$d = $wgLang->timeanddate( $ts, true );
 
 	if ($isminor) {
@@ -214,32 +212,6 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $t
 
 	$wgOut->addHTML( "<li>{$d} {$histlink} {$difftext} {$mflag} {$link} {$comment} {$topmarktext}</li>\n" );
 	wfProfileOut( $fname );
-}
-
-/**
- *
- */
-function ucCountLink( $lim, $d ) {
-	global $wgUser, $wgContLang, $wgRequest;
-
-	$target = $wgRequest->getText( 'target' );
-	$sk = $wgUser->getSkin();
-	$s = $sk->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
-	  "{$lim}", "target={$target}&days={$d}&limit={$lim}" );
-	return $s;
-}
-
-/**
- *
- */
-function ucDaysLink( $lim, $d ) {
-	global $wgUser, $wgContLang, $wgRequest;
-
-	$target = $wgRequest->getText( 'target' );
-	$sk = $wgUser->getSkin();
-	$s = $sk->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
-	  "{$d}", "target={$target}&days={$d}&limit={$lim}" );
-	return $s;
 }
 
 /**

@@ -61,7 +61,6 @@ class NewPagesPage extends QueryPage {
 		$ut = $result->user_text;
 
 		$length = wfMsg( "nbytes", $wgLang->formatNum( $result->length ) );
-		$c = $skin->formatComment($result->comment );
 
 		if ( $u == 0 ) { # not by a logged-in user
 			$ul = $ut;
@@ -83,9 +82,7 @@ class NewPagesPage extends QueryPage {
 
 		$s = "{$d} {$link} ({$length}) . . {$ul}";
 
-		if ( "" != $c && "*" != $c ) {
-			$s .= " <em>({$c})</em>";
-		}
+		$s .= $skin->commentBlock( $result->comment );
 
 		return $s;
 	}

@@ -105,9 +105,8 @@ class ChangesList {
 		$r .= $rcObj->usertalklink ;
 
 		# Comment
-		 if ( $rc_comment != '' && $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
-			$rc_comment=$this->skin->formatComment($rc_comment, $rcObj->getTitle());
-			$r .= $wgContLang->emphasize( ' ('.$rc_comment.')' );
+		 if ( $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
+			$r .= $this->skin->commentBlock( $rc_comment, $rcObj->getTitle() );
 		}
 
 		if ($rcObj->numberofWatchingusers > 0) {
@@ -263,10 +262,7 @@ class ChangesList {
 			$r .= $rcObj->lastlink ;
 			$r .= ') . . '.$rcObj->userlink ;
 			$r .= $rcObj->usertalklink ;
-			if ( $rc_comment != '' ) {
-				$rc_comment=$this->skin->formatComment($rc_comment, $rcObj->getTitle());
-				$r .= $wgContLang->emphasize( ' ('.$rc_comment.')' ) ;
-			}
+			$r .= $this->skin->commentBlock( $rc_comment, $rcObj->getTitle() );
 			$r .= "<br />\n" ;
 		}
 		$r .= "</div>\n" ;
@@ -443,9 +439,8 @@ class ChangesList {
 		if($userTalkLink) $s.=' ('.$userTalkLink.')';
 
 		# Add comment
-		if ( '' != $rc_comment && '*' != $rc_comment && $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
-			$rc_comment = $this->skin->formatComment($rc_comment,$rc->getTitle());
-			$s .= $wgContLang->emphasize(' (' . $rc_comment . ')');
+		if ( $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
+			$s .= $this->skin->commentBlock( $rc_comment, $rc->getTitle() );
 		}
 
 		if ($rc->numberofWatchingusers > 0) {
