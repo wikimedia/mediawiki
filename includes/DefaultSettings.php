@@ -11,12 +11,17 @@ $wgVersion			= "1.3.0pre-alpha";
 $wgSitename         = "MediaWiki"; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
 
+
+# check if server use https:
+$wgProto = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") ? "https" : "http";
+
 if ( @$wgCommandLineMode ) {
-	$wgServer = "http://localhost";
+	$wgServer = $wgProto."://localhost";
 } else {
-	$wgServer           = "http://" . $_SERVER["SERVER_NAME"];
+	$wgServer           = $wgProto."://" . $_SERVER["SERVER_NAME"];
 	if( $_SERVER["SERVER_PORT"] != 80 ) $wgServer .= ":" . $_SERVER["SERVER_PORT"];
 }
+unset($wgProto);
 
 $wgScriptPath	    = "/wiki";
 
