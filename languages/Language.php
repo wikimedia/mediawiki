@@ -1229,7 +1229,7 @@ Type the name of the user in the box and press the button to make the user an ad
 'makesysop'         => 'Make a user into a sysop',
 
 # Validation
-'val_clear_old' => 'Clear my other validation data for <a href="$1">the article</a>',
+'val_clear_old' => 'Clear my other validation data for the <a href="$1">$2</a> article',
 'val_noop' => 'No opinion',
 'val_percent' => '<b>$1%</b> ($2 of $3 points)',
 
