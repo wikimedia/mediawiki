@@ -498,7 +498,12 @@ class Article {
 			$res = wfQuery( $sql, DB_WRITE, $fname );
 			
 			if( wfAffectedRows() == 0 ) {
-				/* Belated edit conflict! Run away!! */
+				# This is *not* the main edit conflict check. The main edit conflict
+				# check is done in the EditPage user interface. This here is a check
+				# for a race condition where simultaneous edits partially go through
+				# and we end up stepping on each other. If the last save turns out
+				# not to be what we just checked against a millisecond ago, we abort
+				# now instead of stepping all over it.
 				return false;
 			}
 
