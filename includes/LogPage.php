@@ -94,6 +94,9 @@ class LogPage {
 	function addEntry( $action, $comment, $textaction = "" )
 	{
 		global $wgLang, $wgUser;
+
+		$comment_esc = wfEscapeWikiText( $comment );
+
 		$this->getContent();
 
 		$ut = $wgUser->getName();
@@ -117,7 +120,8 @@ class LogPage {
 		if ( "" == $comment ) {
 			$inline = "";
 		} else {
-			$inline = " <em>({$comment})</em>";
+			$inline = " <em>({$comment_esc})</em>";
+			# comment gets escaped again, so we use the unescaped version
 			$this->mComment .= ": {$comment}";
 		}
 		$this->mContent = "{$m[1]}<ul><li>{$d} {$ul} {$action}{$inline}</li>\n{$m[2]}";
