@@ -71,6 +71,44 @@ class LanguageUtf8 extends Language {
 		
 		return isset( $matches[1] ) ? $matches[1] : "";
 	}
+
+	# Crop a string from the beginning or end to a certain number of bytes.
+	# (Bytes are used because our storage has limited byte lengths for some
+	# columns in the database.) Multibyte charsets will need to make sure that
+	# only whole characters are included!
+	#
+	# $length does not include the optional ellipsis.
+	# If $length is negative, snip from the beginning
+	function truncate( $string, $length, $ellipsis = "" ) {
+		if( $length == 0 ) {
+			return $ellipsis;
+		}
+		if ( strlen( $string ) <= abs( $length ) ) {
+			return $string;
+		}
+		if( $length > 0 ) {
+			$string = substr( $string, 0, $length );
+			$char = ord( $string[strlen( $string ) - 1] );
+			if ($char >= 0xc0) {
+				# We got the first byte only of a multibyte char; remove it.
+				$string = substr( $string, 0, -1 );
+			} elseif( $char >= 0x80 &&
+			          preg_match( '/^(.*)(?:[\xe0-\xef][\x80-\xbf]|' .
+			                      '[\xf0-\xf7][\x80-\xbf]{1,2})$/', $string, $m ) ) {
+			    # We chopped in the middle of a character; remove it
+				$string = $m[1];
+			}
+			return $string . $ellipsis;
+		} else {
+			$string = substr( $string, $length );
+			$char = ord( $string[0] );
+			if( $char >= 0x80 && $char < 0xc0 ) {
+				# We chopped in the middle of a character; remove the whole thing
+				$string = preg_replace( '/^[\x80-\xbf]+/', '', $string );
+			}
+			return $ellipsis . $string;
+		}
+	}
 }
 
 } # ifdef MEDIAWIKI
