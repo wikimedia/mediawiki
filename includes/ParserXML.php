@@ -218,6 +218,10 @@ class element {
     	else if ( $n == "STRIKE" )
     		$ret .= $this->sub_makeXHTML ( $parser , "strike" ) ;
 
+	# HTML comment
+    	else if ( $n == "COMMENT" )
+    		$ret .= "" ; # Comments are parsed out
+
 	# Links
     	else if ( $n == "LINK" )
     		$ret .= $this->makeInternalLink ( $parser ) ;
