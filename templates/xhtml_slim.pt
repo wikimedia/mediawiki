@@ -18,8 +18,8 @@
     <script type="text/javascript" src="${stylepath}/IEFixes.js"></script>
     <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
     <link tal:condition="favicon" rel="shortcut icon" href="${favicon}" type="image/x-icon" />
-    <script type="text/javascript" src="${stylepath}/wikibits.js">
-    </script>
+    <script type="text/javascript" src="${stylepath}/wikibits.js"></script>
+    <script type="text/javascript"> /*<![CDATA[*/ if(addcss){addcss('${stylepath}/${skinname}/');} /*]]>*/</script>
   </head>
 
   <body tal:attributes="ondblclick body-ondblclick|default">
@@ -59,7 +59,7 @@
           <h5>Views</h5>
           <ul>
             <li tal:repeat="action content_actions" 
-            tal:attributes="id string:contentaction-${repeat/action/key}; class action/class|default"><a
+              tal:attributes="id string:contentaction-${repeat/action/key}; class action/class|default"><a
               tal:attributes="title action/ttip|default;accesskey action/akey|default;href action/href|default"
               tal:content="action/text">Linktext</a></li>
           </ul>

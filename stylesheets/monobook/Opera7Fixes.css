@@ -5,4 +5,7 @@
 #portlet-contentViews li a {
     top: 2px;
 }
-
+#bodyContent a.external {
+    background: url(external.png) center right no-repeat;
+    padding-right: 13px;
+}

@@ -7,6 +7,21 @@ var clientPC = navigator.userAgent.toLowerCase(); // Get client info
 var is_gecko = ((clientPC.indexOf('gecko')!=-1) && (clientPC.indexOf('spoofer')==-1)
                 && (clientPC.indexOf('khtml') == -1));
 var is_safari = ((clientPC.indexOf('AppleWebKit')!=-1) && (clientPC.indexOf('spoofer')==-1));
+if (clientPC.indexOf('opera')!=-1) {
+    var is_opera = true;
+    var is_opera_preseven = (window.opera && !document.childNodes);
+    var is_opera_seven = (window.opera && document.childNodes);
+}
+
+// document.write special stylesheet links
+function addcss ( stylepath ) {
+    if (is_opera_preseven) {
+        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'Opera6Fixes.css">');
+    } else if (is_opera_seven) {
+        document.write('<link rel="stylesheet" type="text/css" href="'+stylepath+'Opera7Fixes.css">');
+    }
+    return;
+}
 
 // Un-trap us from framesets
 if( window.top != window ) window.top.location = window.location;

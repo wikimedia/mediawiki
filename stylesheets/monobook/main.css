@@ -403,7 +403,7 @@ div.thumb div a img {
 div div.thumbcaption {
     border: none;
     text-align: left;
-    padding: 0.3em 0 0.2em 0 !important;
+    padding: 0.3em 0 0.1em 0 !important;
 }
 div.magnify {
     float: right;
@@ -788,14 +788,11 @@ input.searchButton {
 }
 #portal-personaltools li a {
     text-decoration: none;
-/*    color: #436976;*/
     color: #005896;
     padding-bottom: 0.2em;
-    background-color: transparent;
+    background: none;
 }
 #portal-personaltools li a:hover {
-    text-decoration: none;
-/*    color: #436976;*/
     background-color: White;
     padding-bottom: 0.2em;
 }
@@ -821,7 +818,6 @@ li#personaltools-login {
     left: 11.5em;
     margin: 0;
     white-space:nowrap;
-    /*width:auto;*/
     width: 76%;
     line-height: 1.1em;
     overflow: visible;
@@ -831,11 +827,7 @@ li#personaltools-login {
     list-style: none;
     font-size: 95%;
 }
-
-#portlet-contentViews .hiddenStructure {
-    display: none;
-}
-
+#portlet-contentViews .hiddenStructure { display: none; }
 #portlet-contentViews ul {
     list-style: none;
 }
@@ -846,13 +838,12 @@ li#personaltools-login {
     padding: 0 0 0.1em 0;
     margin: 0 0.3em 0 0;
     overflow: visible;
+    background: White;
 }
-
 #portlet-contentViews li.selected {
     border-color: #fabd23;
     padding: 0 0 0.2em 0;
 }
-    
 #portlet-contentViews li a {
     background-color: White;
     color: #005189;
@@ -864,7 +855,6 @@ li#personaltools-login {
     z-index: 0;
     margin: 0;
 }
-
 #portlet-contentViews .selected a {
     z-index: 3;
 }
@@ -976,25 +966,6 @@ head:first-child+body #portal-footer li {
     font-size: smaller;
 }
 
-/* opera 6 fixes */
-html>body #portal-column-one {
-    position: relative;
-    max-width: 11.7em;
-}
-head:first-child+body #portal-column-one {
-    position: static; 
-    width: auto;
-}
-
-html>body #portlet-personal {
-    width: 45em;
-    margin-left: 8.6em;
-    right: 0;
-}
-head:first-child+body #portlet-personal {
-    margin-left: 0;
-    width: 100%;
-}
 /* debugging tool.. */
 /*div{ border:1px solid #000000;}*/
 
