@@ -193,7 +193,8 @@ $wgLocalInterwiki   = $wgSitename;
 #
 # Invitation-only closed shop type of system
 # $wgWhitelistEdit = true;
-# $wgWhitelistRead = array ( ":Main_Page" );
+# Pages anonymous user may see:
+# $wgWhitelistRead = array ( ":Main_Page", "Special:Userlogin", "Wikipedia:Help");
 # $wgWhitelistAccount = array ( "user" => 0, "sysop" => 1, "developer" => 1 );
 #
 # Public website, closed editorial team
