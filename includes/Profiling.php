@@ -47,7 +47,8 @@ class Profiler
 
 	function profileOut( $functionname) 
 	{
-		global $wgDebugProfiling, $wgDebugFunctionEntry;
+		global $wgDebugProfiling, $wgDebugFunctionEntry, $wgProfileToDatabase;
+
 		if ( $wgDebugFunctionEntry && function_exists( "wfDebug" ) ) {
 			wfDebug( "Exiting $functionname\n" );
 		}
@@ -126,11 +127,38 @@ class Profiler
 			$percent = $total ? 100. * $elapsed / $total : 0;
 			$prof .= sprintf( $format, $fname, $calls, (float)($elapsed * 1000), 
 				(float)($elapsed * 1000) / $calls, $percent );
+
+			if( $wgProfileToDatabase ) {
+			        logToDB( $fname, (float)($elapsed * 1000), $calls );
+			}
 		}
 		$prof .= "\nTotal: $total\n\n";
 
 		return $prof;
 	}
+}
+
+/* private */ function logToDB($name, $timeSum, $eventCount) 
+{
+        $name = wfStrencode( $name );
+	$sql = "UPDATE profiling ".
+	  "SET pf_count=pf_count+{$eventCount}, ".
+	  "pf_time=pf_time + {$timeSum} ".
+	  "WHERE pf_name='{$name}'";
+	wfQuery($sql , DB_WRITE);
+
+	$rc = wfAffectedRows();	
+	if( $rc == 0) {
+	         $sql = "INSERT IGNORE INTO profiling (pf_name,pf_count,pf_time) ".
+		   "VALUES ('{$name}', {$eventCount}, {$timeSum}) ";
+		 wfQuery($sql , DB_WRITE);
+		 $rc = wfAffectedRows();    
+	}
+	// When we upgrade to mysql 4.1, the insert+update
+	// can be merged into just a insert with this construct added:
+	//     "ON DUPLICATE KEY UPDATE ".
+	//     "pf_count=pf_count + VALUES(pf_count), ".
+	//     "pf_time=pf_time + VALUES(pf_time)"; 
 }
 
 $wgProfiler = new Profiler();
