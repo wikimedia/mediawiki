@@ -1,31 +1,27 @@
 /* 6.0 - only fixes */
 /* content area */ 
-#portal-column-content {
-    margin: 0 0 4.8em 0;
-    float: none;
-}
-body, #visual-portal-wrapper {
-    height: 100%;
-}
+
+/* workaround for various ie float bugs */
 #portal-column-content #content {
-    height: 100%;
     margin-top: 2.9em;
-}
-#portal-column-one {
-    position: absolute;
-    top:0;
-    left:0;
-    margin-bottom: 4em;
-    z-index: 3;
-}
-#portal-footer {
-    position: absolute;
-    float: none;
-    bottom: 0px;
-    width: 100%;
+    overflow: auto;
 }
 
+#portal-column-content {
+    display: inline;
+}
+#bodyContent center, /* the full-size images are in center tags */
+#bodyContent pre {
+    width: 100%;
+    overflow: auto;
+}
+
+
 /* the tabs */
+
+#portlet-contentViews {
+    z-index: 3;
+}
 
 #portlet-contentViews li {
     display: block;
@@ -48,12 +44,6 @@ body, #visual-portal-wrapper {
     padding-right: 13px;
 }
 
-/* disappearing table fix */
-#bodyContent,
-.documentContent {
-    position: relative;
-    z-index: 0 !important;
-}
 
 /* height on everything... */
 #toc,

@@ -39,6 +39,7 @@ body {
     display: block;
     float: left;
     overflow: visible;
+    padding: 0;
     white-space: nowrap !important;
 }
 #portlet-contentViews li.selected {
