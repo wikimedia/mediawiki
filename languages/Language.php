@@ -912,6 +912,7 @@ created and by whom, and anything else you may know about it. If this is an imag
 'imghistory'	=> 'Image history',
 'revertimg'		=> 'rev',
 'deleteimg'		=> 'del',
+'deleteimgcompletely'		=> 'Delete all revisions',
 'imghistlegend' => 'Legend: (cur) = this is the current image, (del) = delete
 this old version, (rev) = revert to this old version.
 <br /><i>Click on date to see image uploaded on that date</i>.',
