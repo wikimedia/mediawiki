@@ -1189,7 +1189,7 @@ class Title {
 			while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
 			wfFreeResult ( $res ) ;
 		} else {
-			$data = "";
+			$data = '';
 		}
 		return $data;
 	}
@@ -1200,12 +1200,12 @@ class Title {
 	function getAllParentCategories(&$stack)
 	{
 		global $wgUser,$wgLang;
-		$result = "";
+		$result = '';
 		
 		# getting parents
 		$parents = $this->getParentCategories( );
 
-		if($parents == "")
+		if($parents == '')
 		{
 			# The current element has no more parent so we dump the stack
 			# and make a clean line of categories
@@ -1215,11 +1215,15 @@ class Title {
 			{
 				# make a link of that parent
 				$result .= $sk->makeLink($wgLang->getNSText ( Namespace::getCategory() ).":".$parent,$parent);
-				$result .= " &gt; ";
+				$result .= ' &gt; ';
 				$lastchild = $child;
 			}
-			# append the last child
-			$result .= "$lastchild<br/>\n";
+			# append the last child.
+			# TODO : We should have a last child unless there is an error in the
+			# "categorylinks" table.
+			if(isset($lastchild) { $result .= $lastchild; }
+			
+			$result .= "<br/>\n";
 			
 			# now we can empty the stack
 			$stack = array();
@@ -1238,7 +1242,7 @@ class Title {
 		}
 
 		if(isset($result)) { return $result; }
-		else { return ""; };
+		else { return ''; };
 	}
 	
 	
