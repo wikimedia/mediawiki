@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 #
 # Tatarish localisation for MediaWiki
 #
@@ -260,19 +260,19 @@ class LanguageTt extends LanguageUtf8 {
         # Inherit ucfirst()
 
         # Inherit lcfirst()
-        
+
         # Inherit checkTitleEncoding()
-        
+
         # Inherit stripForSearch()
-        
+
         # Inherit setAltEncoding()
-        
+
         # Inherit recodeForEdit()
-        
+
         # Inherit recodeInput()
 
         # Inherit isRTL()
-        
+
         # Inherit getMagicWords()
 
         function fallback8bitEncoding() {
