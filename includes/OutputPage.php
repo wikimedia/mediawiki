@@ -664,7 +664,7 @@ class OutputPage {
 		$a = array_slice ( $a , 0 , 10 ) ; # 10 keywords max
 		$a = implode ( "," , $a ) ;
 		$strip = array(
-			"/<.*?>/" => '',
+			"/<.*?" . ">/" => '',
 			"/[_]/" => ' '
 		);
 		$a = htmlspecialchars(preg_replace(array_keys($strip), array_values($strip),$a ));
@@ -736,7 +736,7 @@ class OutputPage {
 
 		if ( count( $this->mKeywords ) > 0 ) {
 			$strip = array(
-				"/<.*?>/" => '',
+				"/<.*?" . ">/" => '',
 				"/[_]/" => ' '
 			);
 			$ret .= "<meta name=\"keywords\" content=\"" .
@@ -785,9 +785,12 @@ class OutputPage {
 		$colours = array();
 		
 		# Get placeholders from body
+		wfProfileIn( "$fname-match" );
 		preg_match_all( "/<!--LINK (.*?) (.*?) (.*?) (.*?)-->/", $this->mBodytext, $tmpLinks );
+		wfProfileOut( "$fname-match" );
 		
 		if ( !empty( $tmpLinks[0] ) ) {
+			wfProfileIn( "$fname-check" );
 			$dbr =& wfGetDB( DB_SLAVE );
 			$cur = $dbr->tableName( 'cur' );
 			$sk = $wgUser->getSkin();
@@ -868,8 +871,10 @@ class OutputPage {
 					}
 				}
 			}
+			wfProfileOut( "$fname-check" );
 			
 			# Construct search and replace arrays
+			wfProfileIn( "$fname-construct" );
 			$search = $replace = array();
 			foreach ( $namespaces as $key => $ns ) {
 				$pdbk = $pdbks[$key];
@@ -885,8 +890,11 @@ class OutputPage {
 					$replace[] = $sk->makeStubLinkObj( $title, $texts[$key], $queries[$key] );
 				}
 			}
+			wfProfileOut( "$fname-construct" );
 			# Do the thing
+			wfProfileIn( "$fname-replace" );
 			$this->mBodytext = str_replace( $search, $replace, $this->mBodytext );
+			wfProfileOut( "$fname-replace" );
 		}
 		wfProfileOut( $fname );
 		return $colours;
