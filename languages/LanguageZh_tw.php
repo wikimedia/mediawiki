@@ -10,24 +10,24 @@ require_once( "LanguageZh_cn.php" );
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesZh_tw = array(
-    NS_MEDIA            => "媒體",
-    NS_SPECIAL          => "特殊",
-    NS_MAIN             => "",
-    NS_TALK             => "討論",
-    NS_USER             => "用戶",
-    NS_USER_TALK        => "用戶討論",
-    NS_PROJECT          => "維基百科",
-    NS_PROJECT_TALK     => "維基討論",
-    NS_IMAGE            => "圖像",
-    NS_IMAGE_TALK       => "圖像討論",
-    NS_MEDIAWIKI        => "媒體維基",
-    NS_MEDIAWIKI_TALK   => "媒體維基討論",
-    NS_TEMPLATE         => "樣板",
-    NS_TEMPLATE_TALK    => "樣板討論",
-    NS_HELP             => "幫助",
-    NS_HELP_TALK        => "幫助討論",
-    NS_CATEGORY         => "分類",
-    NS_CATEGORY_TALK    => "分類討論"
+	NS_MEDIA            => "媒體",
+	NS_SPECIAL          => "特殊",
+	NS_MAIN             => "",
+	NS_TALK             => "討論",
+	NS_USER             => "用戶",
+	NS_USER_TALK        => "用戶討論",
+	NS_PROJECT          => $wgMetaNamespace,
+	NS_PROJECT_TALK     => $wgMetaNamespace . "討論",
+	NS_IMAGE            => "圖像",
+	NS_IMAGE_TALK       => "圖像討論",
+	NS_MEDIAWIKI        => "媒體維基",
+	NS_MEDIAWIKI_TALK   => "媒體維基討論",
+	NS_TEMPLATE         => "樣板",
+	NS_TEMPLATE_TALK    => "樣板討論",
+	NS_HELP             => "幫助",
+	NS_HELP_TALK        => "幫助討論",
+	NS_CATEGORY         => "分類",
+	NS_CATEGORY_TALK    => "分類討論"
 );
 
 /* private */ $wgQuickbarSettingsZh_tw = array(
