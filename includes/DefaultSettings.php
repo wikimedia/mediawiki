@@ -375,9 +375,10 @@ $wgGoToEdit = false;
 # constructs.
 $wgUserHtml = true;
 
-# $wgUseTidy: use tidy to make sure HTML output is sane.
-# This should only be enabled if $wgUserHtml is true.
-# tidy is a free tool that fixes broken HTML. 
+# $wgUseTidy: use tidy to make sure we produce valid XHTML output.
+# tidy is a free tool that fixes broken HTML/transforms it into xhtml.
+# When enabled, it does some of the cleaning/converting that's done in php otherwise
+# Performace penalty on a long page: about 5%.
 # See http://www.w3.org/People/Raggett/tidy/
 # $wgTidyBin should be set to the path of the binary and 
 # $wgTidyConf to the path of the configuration file.
