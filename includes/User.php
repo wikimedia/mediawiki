@@ -271,8 +271,8 @@ class User {
 		# Proxy blocking
 		if ( !$this->mBlockedby ) {
 			if ( array_key_exists( $wgIP, $wgProxyList ) ) {
+				$this->mBlockedby = wfMsg( 'proxyblocker' );
 				$this->mBlockreason = wfMsg( 'proxyblockreason' );
-				$this->mBlockedby = "Proxy blocker";
 			}
 		}
 	}
