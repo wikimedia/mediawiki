@@ -189,7 +189,7 @@ class MathRenderer {
 	function _linkToMathImage() {
 		global $wgMathPath;
 		$url = htmlspecialchars( "$wgMathPath/{$this->hash}.png" );
-		$alt = htmlspecialchars( $this->tex );
+		$alt = trim(str_replace("\n", ' ', htmlspecialchars( $this->tex )));
 		return "<img class='tex' src=\"$url\" alt=\"$alt\" />";
 	}
 
