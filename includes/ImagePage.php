@@ -42,16 +42,13 @@ class ImagePage extends Article {
 			} else {
 				$s .= "<center>".$sk->makeMediaLink($name,"")."</center>";
 			}
-			$wgOut->AddHTML( $s );
+			$wgOut->addHTML( $s );
 		}
 	}
 	
 	function closeShowImage()
 	{
-		global $wgOut, $wgUser;
-		$sk = $wgUser->getSkin();
-		$s = "</center>";
-		$wgOut->AddHTML( $s );
+		# For overloading
 	}
 
 	# If the page we've just displayed is in the "Image" namespace,
