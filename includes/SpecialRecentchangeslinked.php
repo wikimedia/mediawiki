@@ -57,6 +57,7 @@ function wfSpecialRecentchangeslinked( $par = NULL )
       "GROUP BY cur_id ORDER BY inverse_timestamp LIMIT {$limit}";
 	$res = wfQuery( $sql, DB_READ, $fname );
 
+	$wgOut->addHTML("&lt; ".$sk->makeKnownLinkObj($nt, "", "redirect=no" )."<br>\n");
 	$note = wfMsg( "rcnote", $limit, $days );
 	$wgOut->addHTML( "<hr />\n{$note}\n<br />" );
 
