@@ -234,7 +234,7 @@ class UploadForm {
 
 		$sub = wfMsg( "uploadwarning" );
 		$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
-		$wgOut->addHTML( "<ul>{$warning}</ul><br/>\n" );
+		$wgOut->addHTML( "<ul class='warning'>{$warning}</ul><br/>\n" );
 
 		$save = wfMsg( "savefile" );
 		$reupload = wfMsg( "reupload" );
