@@ -3,9 +3,9 @@
 function wfSpecialAllmessages()
 {
 	global $wgUser, $wgOut, $wgAllMessagesEn, $wgServer, $wgScript, $wgLang;
-	$fname = "wfSpecialAllmessages";
 	
 	$talk = $wgLang->getNsText( NS_TALK );
+	$mwnspace = $wgLang->getNsText( NS_MEDIAWIKI );
 	$mwtalk = $wgLang->getNsText( NS_MEDIAWIKI_TALK );
 	$mwMsg =& MagicWord::get( MAG_MSG );
 	$navText = str_replace( "$1", "allmessagestext", $mwMsg->getSynonym( 0 ) );
@@ -36,10 +36,10 @@ function wfSpecialAllmessages()
 		$message = wfEscapeWikiText( $message );
 		$mw = wfEscapeWikiText( $mw );
 		
-# [$wgServer$wgScript?title=MediaWiki:$title&action=edit $key]<br>
+# [$wgServer$wgScript?title=$mwnspace:$title&action=edit $key]<br>
 		$navText .= 
 "<tr$colorIt><td>
-  [[MediaWiki:$title|$key]]<br>
+  [[$mwnspace:$title|$key]]<br>
   [[$mwtalk:$title|$talk]]
 </td><td>
   $message

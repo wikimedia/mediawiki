@@ -1386,8 +1386,8 @@ amusement.",
 
 # Namespace 8 related
 
-"allmessages"	=> "All_messages",
-"allmessagestext"	=> "This is a list of all messages available in the MediaWiki: namespace",
+"allmessages"	=> "All system messages",
+"allmessagestext"	=> "This is a list of all system messages available in the MediaWiki: namespace.",
 
 # Thumbnails
 
