@@ -804,6 +804,7 @@ agrees to license it under the terms of the $1.",
 'badfilename'	=> "Image name has been changed to \"$1\".",
 'badfiletype'	=> "\".$1\" is not a recommended image file format.",
 'largefile'		=> 'It is recommended that images not exceed 100k in size.',
+'fileexists'		=> 'A file with this name exists already, please check $1 if you are not sure if you want to change it.',
 'successfulupload' => 'Successful upload',
 'fileuploaded'	=> "File \"$1\" uploaded successfully.
 Please follow this link: $2 to the description page and fill

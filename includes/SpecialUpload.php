@@ -107,6 +107,7 @@ class UploadForm {
 				return;
 			}
 			$nt = Title::newFromText( $basename );
+			$nt->setNamespace( Namespace::getImage() );
 			$this->mUploadSaveName = $nt->getDBkey();
 
 			/* Don't allow users to override the blacklist */
@@ -130,6 +131,15 @@ class UploadForm {
 			if ( $wgUploadSizeWarning && ( ! $this->mIgnoreWarning ) && 
 			  ( $this->mUploadSize > $wgUploadSizeWarning ) ) {
 				return $this->uploadWarning( wfMsg( "largefile" ) );
+			}
+			if ( !$nt->userCanEdit() ) {
+				return $this->uploadError( wfMsg( "protectedpage" ) );
+		        }
+			if($nt->getArticleID()) {
+				$sk = $wgUser->getSkin();
+				$dname = $wgLang->getNsText( Namespace::getImage() ) . ":{$this->mUploadSaveName}";
+				$dlink = $sk->makeKnownLink( $dname, $dname );
+				return $this->uploadWarning( wfMsg( "fileexists", $dlink ) );
 			}
 		}
 		if ( !is_null( $this->mUploadOldVersion ) ) {
