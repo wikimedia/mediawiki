@@ -27,7 +27,10 @@ class WebRequest {
 		$this->checkMagicQuotes();
 		global $wgUseLatin1;
 		if( !$wgUseLatin1 ) {
-			$this->normalizeUnicode();
+			require_once( 'normal/UtfNormal.php' );
+			wfProfileIn( 'WebRequest:normalizeUnicode-fix' );
+			$this->normalizeUnicode( $_REQUEST );
+			wfProfileOut( 'WebRequest:normalizeUnicode-fix' );
 		}
 	}
 
@@ -53,15 +56,14 @@ class WebRequest {
 		}
 	}
 	
-	function normalizeUnicode() {
-		wfProfileIn( 'WebRequest:normalizeUnicode-include' );
-		require_once( 'normal/UtfNormal.php' );
-		wfProfileOut( 'WebRequest:normalizeUnicode-include' );
-		wfProfileIn( 'WebRequest:normalizeUnicode-fix' );
-		foreach( $_REQUEST as $key => $val ) {
-			$_REQUEST[$key] = UtfNormal::toNFC( $val );
+	function normalizeUnicode( &$arr ) {
+		foreach( $arr as $key => $val ) {
+			if( is_array( $val ) ) {
+				$this->normalizeUnicode( $arr[$key ] );
+			} else {
+				$arr[$key] = UtfNormal::toNFC( $val );
+			}
 		}
-		wfProfileOut( 'WebRequest:normalizeUnicode-fix' );
 	}
 	
 	function getGPCVal( &$arr, $name, $default ) {

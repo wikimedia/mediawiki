@@ -28,6 +28,10 @@ $action = $wgRequest->getVal( "action", "view" );
 
 if( isset( $_SERVER['PATH_INFO'] ) && $wgUsePathInfo ) {
 	$title = substr( $_SERVER['PATH_INFO'], 1 );
+	if( !$wgUseLatin1 ) {
+		require_once( 'includes/normal/UtfNormal.php' );
+		$title = UtfNormal::toNFC( $title );
+	}
 } else {
 	$title = $wgRequest->getVal( "title" );
 }
