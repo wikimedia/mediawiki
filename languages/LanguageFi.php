@@ -879,14 +879,14 @@ class LanguageFi extends LanguageUtf8 {
 	}
 
 	# Inherit userAdjust()
- 
+
 	function date( $ts, $adj = false )
 	{
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-		  " " . (0 + substr( $ts, 6, 2 )) . ", " .
-		  substr( $ts, 0, 4 );
+		
+		$d = (0 + substr( $ts, 6, 2 )) . ". " .
+			 $this->getMonthName( substr( $ts, 4, 2 ) ) . "ta " .
+			 substr( $ts, 0, 4 );
 		return $d;
 	}
 
@@ -900,7 +900,7 @@ class LanguageFi extends LanguageUtf8 {
 
 	function timeanddate( $ts, $adj = false )
 	{
-		return $this->time( $ts, $adj ) . " " . $this->date( $ts, $adj );
+		return $this->date( $ts, $adj ) . " kello " . $this->time( $ts, $adj );
 	}
 
 	function getValidSpecialPages()
