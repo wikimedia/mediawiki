@@ -45,6 +45,7 @@ $testfiles = array(
 	'testdata/sociology.txt' => 'Korean text'
 );
 $normalizer = new UtfNormal;
+UtfNormal::loadData();
 foreach( $testfiles as $file => $desc ) {
 	benchmarkTest( $normalizer, $file, $desc );
 }
@@ -62,7 +63,7 @@ function benchmarkTest( &$u, $filename, $desc ) {
 		'NFC',
 #		'NFKC',
 #		'NFD', 'NFKD',
-#		'fastDecompose', 'fastCombiningSort', 'fastCompose',
+		'fastDecompose', 'fastCombiningSort', 'fastCompose',
 		'quickIsNFC', 'quickIsNFCVerify',
 		);
 	foreach( $forms as $form ) {
