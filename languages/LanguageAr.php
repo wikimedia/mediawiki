@@ -41,7 +41,7 @@ include_once("LanguageUtf8.php");
 
 
 	"linktrail"		=> "/^([a-z]+)(.*)\$/sD",
-	"mainpage"		=> "Main Page",
+	"mainpage"		=> "الصفحة الرئيسية",
 	"mainpagetext"	=> "Wiki software successfully installed.",
 	'portal'		=> 'Community portal',
 	'portal-url'		=> '{{ns:4}}:Community Portal',
@@ -87,10 +87,10 @@ include_once("LanguageUtf8.php");
 	"printableversion" => "Printable version",
 	'edit' => 'عدل هذه الصفحة',
 	"editthispage"	=> "Edit this page",
-	'delete' => 'Delete',
+	'delete' => 'حذف هذه الصفحة',
 	"deletethispage" => "Delete this page",
 	"undelete_short" => "Undelete",
-	'protect' => 'Protect',
+	'protect' => 'صفحة محمية',
 	"protectthispage" => "Protect this page",
 	'unprotect' => 'Unprotect',
 	"unprotectthispage" => "Unprotect this page",
@@ -697,7 +697,7 @@ include_once("LanguageUtf8.php");
 		"newpages"		=> "New pages",
 		"ancientpages"		=> "Oldest articles",
 		"intl"		=> "Interlanguage links",
-		'move' => 'Move',
+		'move' => 'نقل صفحة',
 		"movethispage"	=> "Move this page",
 		"unusedimagestext" => "<p>Please note that other web sites may link to an image with
 		a direct URL, and so may still be listed here despite being
@@ -757,10 +757,10 @@ include_once("LanguageUtf8.php");
 		<p>If you want to remove the page from your watchlist later, click \"Stop watching\" in the sidebar.",
 		"removedwatch"		=> "Removed from watchlist",
 		"removedwatchtext" 	=> "The page \"$1\" has been removed from your watchlist.",
-		'watch' => 'Watch',
-		"watchthispage"		=> "Watch this page",
-		'unwatch' => 'Unwatch',
-		"unwatchthispage" 	=> "Stop watching",
+		'watch' => 'راقب هذه الصفحة',
+		"watchthispage"		=> "راقب هذه الصفحة",
+		'unwatch' => 'توقف عن مراقبة الصفحة',
+		"unwatchthispage" 	=> "توقف عن مراقبة الصفحة",
 		"notanarticle"		=> "Not an article",
 		"watchnochange" 	=> "None of your watched items were edited in the time period displayed.",
 		"watchdetails"		=> "($1 pages watched not counting talk pages;
