@@ -119,9 +119,8 @@ class ImagePage extends Article {
 		global $wgUser, $wgOut;
 		global $wpConfirm, $wpReason, $image, $oldimage;
 
-		# Anybody can delete old revisions of images; only sysops
-		# can delete articles and current images
-
+		# Only sysops can delete images. Previously ordinary users could delete 
+		# old revisions, but this is no longer the case.
 		if ( !$wgUser->isSysop() ) {
 			$wgOut->sysopRequired();
 			return;
@@ -140,7 +139,7 @@ class ImagePage extends Article {
 			}
 		}
 		
-		# Likewise, deleting old images doesn't require confirmation
+		# Deleting old images doesn't require confirmation
 		if ( $oldimage || 1 == $wpConfirm ) {
 			$this->doDelete();
 			return;
@@ -194,7 +193,7 @@ class ImagePage extends Article {
 			# Squid purging, part II
 			if ( $wgUseSquid ) {
 				/* this needs to be done after LinksUpdate */
-				$u = new SquidUpdate($this->mTitle, $urlArr);
+				$u = new SquidUpdate( $urlArr );
 				array_push( $wgDeferredUpdateList, $u );
 			}
 			
@@ -206,7 +205,8 @@ class ImagePage extends Article {
 			# Now we remove the image description page.
 
 			$nt = Title::newFromText( $wgLang->getNsText( Namespace::getImage() ) . ":" . $image );
-			$this->doDeleteArticle( $nt );
+			$article = new Article( $nt );
+			$article->doDeleteArticle(); # ignore errors
 
 			$deleted = $image;
 		} else if ( $oldimage ) {
@@ -224,7 +224,7 @@ class ImagePage extends Article {
 
 			$deleted = $oldimage;
 		} else {
-			$this->doDeleteArticle( $this->mTitle );
+			$this->doDeleteArticle(); # ignore errors
 			$deleted = $this->mTitle->getPrefixedText();
 		}
 		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );

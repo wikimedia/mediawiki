@@ -22,6 +22,9 @@ include_once("LanguageUtf8.php");
 	7	=> "Discuţie_Imagine",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_talk",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsRo = array(
@@ -94,22 +97,31 @@ include_once("LanguageUtf8.php");
 
 /* private */ $wgMagicWordsRo = array(
 #   ID                                 CASE  SYNONYMS
-    MAG_REDIRECT             => array( 0,    "#redirect"              ),
-    MAG_NOTOC                => array( 0,    "__FARACUPRINS__"              ),
-    MAG_NOEDITSECTION        => array( 0,    "__FARAEDITSECTIUNE__"      ),
-    MAG_START                => array( 0,    "__START__"              ),
-    MAG_CURRENTMONTH         => array( 1,    "{{NUMARLUNACURENTA}}"       ),
-    MAG_CURRENTMONTHNAME     => array( 1,    "{{NUMELUNACURENTA}}"   ),
-    MAG_CURRENTDAY           => array( 1,    "{{NUMARZIUACURENTA}}"         ),   
-    MAG_CURRENTDAYNAME       => array( 1,    "{{NUMEZIUACURENTA}}"     ),
-    MAG_CURRENTYEAR          => array( 1,    "{{ANULCURENT}}"        ),
-    MAG_CURRENTTIME          => array( 1,    "{{ORACURENTA}}"        ),
-    MAG_NUMBEROFARTICLES     => array( 1,    "{{NUMARDEARTICOLE}}"   ),
-    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "{{NUMELUNACURENTAGEN}}"),
-	MAG_MSG                  => array( 1,    "{{MSJ:$1}}"             ),
-	MAG_SUBST                => array( 1,    "{{SUBST:$1}}"           ),
-    MAG_MSGNW                => array( 1,    "{{MSJNOU:$1}}"           ),
-	MAG_END                  => array( 0,    "__FINAL__"                )
+    MAG_REDIRECT             => array( 0,    "#redirect"                                       ),
+    MAG_NOTOC                => array( 0,    "__NOTOC__", "__FARACUPRINS__"                    ),
+    MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__", "__FARAEDITSECTIUNE__"       ),
+    MAG_START                => array( 0,    "__START__"                                       ),
+    MAG_CURRENTMONTH         => array( 1,    "CURRENTMONTH", "{{NUMARLUNACURENTA}}"            ),
+    MAG_CURRENTMONTHNAME     => array( 1,    "CURRENTMONTHNAME", "{{NUMELUNACURENTA}}"         ),
+    MAG_CURRENTDAY           => array( 1,    "CURRENTDAY", "{{NUMARZIUACURENTA}}"              ),   
+    MAG_CURRENTDAYNAME       => array( 1,    "CURRENTDAYNAME", "{{NUMEZIUACURENTA}}"           ),
+    MAG_CURRENTYEAR          => array( 1,    "CURRENTYEAR", "{{ANULCURENT}}"                   ),
+    MAG_CURRENTTIME          => array( 1,    "CURRENTTIME", "{{ORACURENTA}}"                   ),
+    MAG_NUMBEROFARTICLES     => array( 1,    "NUMBEROFARTICLES", "{{NUMARDEARTICOLE}}"         ),
+    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN", "{{NUMELUNACURENTAGEN}}"   ),
+	MAG_MSG                  => array( 0,    "MSG:", "MSJ:"                                    ),
+	MAG_SUBST                => array( 0,    "SUBST:"                                          ),
+    MAG_MSGNW                => array( 0,    "MSGNW:", "MSJNOU:"                               ),
+	MAG_END                  => array( 0,    "__END__", "__FINAL__"                            ),
+    MAG_IMG_THUMBNAIL        => array( 1,    "thumbnail", "thumb"                              ),
+    MAG_IMG_RIGHT            => array( 1,    "right"                                           ),
+    MAG_IMG_LEFT             => array( 1,    "left"                                            ),
+    MAG_IMG_NONE             => array( 1,    "none"                                            ),
+    MAG_IMG_WIDTH            => array( 1,    "$1px"                                            ),
+    MAG_IMG_CENTER           => array( 1,    "center", "centre"                                ),
+    MAG_INT                  => array( 0,    "INT:"                                            )
+
+
 );
 
 # All special pages have to be listed here: a description of ""

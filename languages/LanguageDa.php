@@ -19,7 +19,10 @@
 	6	=> "Billede",
 	7	=> "Billede_diskussion",
 	8	=> "MediaWiki",
-	9	=> "MediaWiki_diskussion"
+	9	=> "MediaWiki_diskussion",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsDa = array(

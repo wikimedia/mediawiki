@@ -19,6 +19,9 @@
 	7	=> "BeeldBespreking",
 	8	=> "MediaWiki",
 	9	=> "MediaWikiBespreking",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsAf = array(

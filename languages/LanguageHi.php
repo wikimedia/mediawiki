@@ -22,6 +22,9 @@ include( "LanguageUtf8.php" );
 	7	=> "चित्र_वार्ता",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_talk",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgWeekdayNamesHi = array(

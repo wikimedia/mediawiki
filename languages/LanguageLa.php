@@ -19,7 +19,10 @@
 	6	=> "Imago",
 	7	=> "Disputatio_Imaginis",
 	8	=> "MediaWiki",
-	9	=> "Disputatio_MediaWiki"
+	9	=> "Disputatio_MediaWiki",
+	10  => "Template",
+	11  => "Template_talk"
+
 
 );
 

@@ -65,11 +65,11 @@ class OutputPage {
 			wfDebug( "USER DISABLED CACHE\n", false );
 			return;
 		}
-		
-                $lastmod = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix(
-			max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
-		
-		if( !empty( $_SERVER["HTTP_IF_MODIFIED_SINCE"] ) ) {
+
+		$lastmod = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix(
+		  max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
+
+        if( !empty( $_SERVER["HTTP_IF_MODIFIED_SINCE"] ) ) {
 			# IE sends sizes after the date like this:
 			# Wed, 20 Aug 2003 06:51:19 GMT; length=5202
 			# this breaks strtotime().

@@ -77,10 +77,6 @@ class MessageCache
 	{
 		$fname = "MessageCache::loadFromDB";
 		$sql = "SELECT cur_title,cur_text FROM cur WHERE cur_namespace=" . NS_MEDIAWIKI;
-		$sql .= " AND cur_title IN ('";
-		$sql .= implode( "','", $this->getKeys() ) . "')";
-		wfDebug( "$sql\n" );
-
 		$res = wfQuery( $sql, DB_READ, $fname );
 		
 		$this->mCache = array();
@@ -88,11 +84,10 @@ class MessageCache
 			$this->mCache[$row->cur_title] = $row->cur_text;
 		}
 
-		wfDebug( var_export( $this->mCache, true ) );
-
 		wfFreeResult( $res );
 	}
 	
+	# Not really needed anymore
 	function getKeys() {
 		global $wgAllMessagesEn, $wgLang;
 		if ( !$this->mKeys ) {
@@ -104,23 +99,25 @@ class MessageCache
 		return $this->mKeys;
 	}
 	
+	# Obsolete
 	function isCacheable( $key ) {
+		return true;
+		/*
 		global $wgAllMessagesEn, $wgLang;
 		return array_key_exists( $wgLang->lcfirst( $key ), $wgAllMessagesEn ) || 
 			array_key_exists( $key, $wgAllMessagesEn );
+		*/
 	}
 
 	function replace( $title, $text ) {
 		global $wgMemc;
-		if ( $this->isCacheable( $title ) ) {
-			$this->lock();
-			$this->load();
-			if ( is_array( $this->mCache ) ) {
-				$this->mCache[$title] = $text;
-				$wgMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry );
-			}
-			$this->unlock();
+		$this->lock();
+		$this->load();
+		if ( is_array( $this->mCache ) ) {
+			$this->mCache[$title] = $text;
+			$wgMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry );
 		}
+		$this->unlock();
 	}
 
 	# Returns success
@@ -173,14 +170,11 @@ class MessageCache
 		
 		# If it wasn't in the cache, load each message from the DB individually
 		if ( !$message && $useDB) {
-			$sql = "SELECT cur_text FROM cur WHERE cur_namespace=" . NS_MEDIAWIKI . 
-				" AND cur_title='$title'";
-			$res = wfQuery( $sql, DB_READ, "MessageCache::get" );
-
-			if ( wfNumRows( $res ) ) {
-				$obj = wfFetchObject( $res );
-				$message = $obj->cur_text;
-				wfFreeResult( $res );
+			$result = wfGetArray( "cur", array("cur_text"), 
+			  array( "cur_namespace" => NS_MEDIAWIKI, "cur_title" => $title ),
+			  "MessageCache::get" );
+			if ( $result ) {
+				$message = $result->cur_text;
 			}
 		}
 

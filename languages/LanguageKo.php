@@ -19,6 +19,9 @@ include_once( "LanguageUtf8.php" );
 	7	=> "그림토론"	,# Image_talk
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_talk",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 # I always compare this file with japanese file, when I'm confused.

@@ -5,6 +5,8 @@
 # setting up a few globals.
 #
 
+global $wgProfiling, $wgProfileSampleRate, $wgIP, $wgUseSquid;
+
 if( !isset( $wgProfiling ) )
 	$wgProfiling = false;
 
@@ -17,13 +19,11 @@ if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
 	function wfProfileClose() {}
 }
 
-
-
 /* collect the originating ips */
 if( $wgUseSquid && isset( $_SERVER["HTTP_X_FORWARDED_FOR"] ) ) {
 	# If the web server is behind a reverse proxy, we need to find
 	# out where our requests are really coming from.
-	$hopips = split(', ', $_SERVER['HTTP_X_FORWARDED_FOR'] );
+	$hopips = array_map( "trim", explode( ',', $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
 
 	while(in_array(trim(end($hopips)), $wgSquidServers)){
 		array_pop($hopips);

@@ -4,10 +4,13 @@ include_once('Tokenizer.php');
 
 # PHP Parser 
 # 
-# Converts wikitext to HTML. 
+# Processes wiki markup
+#
+# There are two main entry points into the Parser class: parse() and preSaveTransform(). 
+# The parse() function produces HTML output, preSaveTransform() produces altered wiki markup.
 #
 # Globals used: 
-#    objects:   $wgLang, $wgDateFormatter, $wgLinkCache, $wgCurOut
+#    objects:   $wgLang, $wgDateFormatter, $wgLinkCache, $wgCurParser
 #
 # NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
 #
@@ -16,14 +19,33 @@ include_once('Tokenizer.php');
 #               $wgLocaltimezone
 #
 #      * only within ParserOptions
+#
+#
+#----------------------------------------
+#    Variable substitution O(N^2) attack
+#-----------------------------------------
+# Without countermeasures, it would be possible to attack the parser by saving a page
+# filled with a large number of inclusions of large pages. The size of the generated 
+# page would be proportional to the square of the input size. Hence, we limit the number 
+# of inclusions of any given page, thus bringing any attack back to O(N).
+#
+define( "MAX_INCLUDE_REPEAT", 5 );
+
+# Recursion depth of variable/inclusion evaluation
+define( "MAX_INCLUDE_PASSES", 3 );
+
+# Allowed values for $mOutputType
+define( "OT_HTML", 1 );
+define( "OT_WIKI", 2 );
 
 class Parser
 {
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mLastSection, $mDTopen, $mStripState;
+	var $mVariables, $mIncludeCount;
 
 	# Temporary:
-	var $mOptions, $mTitle;
+	var $mOptions, $mTitle, $mOutputType;
 
 	function Parser()
 	{
@@ -37,6 +59,8 @@ class Parser
 		$this->mLastSection = "";
 		$this->mDTopen = false;
 		$this->mStripState = false;
+		$this->mVariables = false;
+		$this->mIncludeCount = array();
 	}
 	
 	# First pass--just handle <nowiki> sections, pass the rest off
@@ -55,9 +79,10 @@ class Parser
 		
 		$this->mOptions = $options;
 		$this->mTitle =& $title;
+		$this->mOutputType = OT_HTML;
 		
 		$stripState = NULL;
-		$text = $this->strip( $text, $this->mStripState, true );
+		$text = $this->strip( $text, $this->mStripState );
 		$text = $this->doWikiPass2( $text, $linestart );
 		$text = $this->unstrip( $text, $this->mStripState );
 		
@@ -74,7 +99,7 @@ class Parser
 	# Strips <nowiki>, <pre> and <math>
 	# Returns the text, and fills an array with data needed in unstrip()
 	#
-	function strip( $text, &$state, $render = true )
+	function strip( $text, &$state )
 	{
 		$state = array(
 			'nwlist' => array(),
@@ -87,7 +112,7 @@ class Parser
 			'presecs' => 0,
 			'preunq' => Parser::getRandomString()
 		);
-
+		$render = ($this->mOutputType == OT_HTML);
 		$stripped = "";
 		$stripped2 = "";
 		$stripped3 = "";
@@ -184,7 +209,7 @@ class Parser
 		global $wgLang , $wgUser ;
 		if ( !$this->mOptions->getUseCategoryMagic() ) return ;
 		$id = $this->mTitle->getArticleID() ;
-		$cat = ucfirst ( wfMsg ( "category" ) ) ;
+		$cat = $wgLang->ucfirst ( wfMsg ( "category" ) ) ;
 		$ti = $this->mTitle->getText() ;
 		$ti = explode ( ":" , $ti , 2 ) ;
 		if ( $cat != $ti[0] ) return "" ;
@@ -391,7 +416,7 @@ class Parser
 	#
 	function doWikiPass2( $text, $linestart )
 	{
-		$fname = "OutputPage::doWikiPass2";
+		$fname = "Parser::doWikiPass2";
 		wfProfileIn( $fname );
 		
 		$text = $this->removeHTMLtags( $text );
@@ -439,7 +464,7 @@ class Parser
 
 	/* private */ function replaceExternalLinks( $text )
 	{
-		$fname = "OutputPage::replaceExternalLinks";
+		$fname = "Parser::replaceExternalLinks";
 		wfProfileIn( $fname );
 		$text = $this->subReplaceExternalLinks( $text, "http", true );
 		$text = $this->subReplaceExternalLinks( $text, "https", true );
@@ -592,6 +617,7 @@ class Parser
 		# Every call to the tokenizer returns a new token.
 		while ( $token = $tokenizer->nextToken() )
 		{
+			$threeopen = false;
 			switch ( $token["type"] )
 			{
 				case "text":
@@ -729,7 +755,7 @@ class Parser
 	{
 		global $wgLang, $wgLinkCache;
 		global $wgNamespacesWithSubpages, $wgLanguageCode;
-		static $fname = "OutputPage::replaceInternalLinks" ;
+		static $fname = "Parser::replaceInternalLinks" ;
 		wfProfileIn( $fname );
 
 		wfProfileIn( "$fname-setup" );
@@ -838,7 +864,7 @@ class Parser
  			$t = $wgLang->ucFirst ( $t ) ;
 			$nnt = Title::newFromText ( $category.":".$t ) ;
 			$t = $sk->makeLinkObj( $nnt, $t, "", $trail , $prefix );
- 			$this->mCategoryLinks[] = $t ;
+ 			$this->mOutput->mCategoryLinks[] = $t ;
  			$s .= $prefix . $trail ;
 			return $s ;
 		}
@@ -936,7 +962,7 @@ class Parser
 
 	/* private */ function doBlockLevels( $text, $linestart )
 	{
-		$fname = "OutputPage::doBlockLevels";
+		$fname = "Parser::doBlockLevels";
 		wfProfileIn( $fname );
 		# Parsing through the text line by line.  The main thing
 		# happening here is handling of block-level elements p, pre,
@@ -1040,55 +1066,203 @@ class Parser
 		return $text;
 	}
 
+	function getVariableValue( $index ) {
+		global $wgLang;
+
+		switch ( $index ) {
+			case MAG_CURRENTMONTH:
+				return date( "m" );
+			case MAG_CURRENTMONTHNAME:
+				return $wgLang->getMonthName( date("n") );
+			case MAG_CURRENTMONTHNAMEGEN:
+				return $wgLang->getMonthNameGen( date("n") );
+			case MAG_CURRENTDAY:
+				return date("j");
+			case MAG_CURRENTDAYNAME:
+				return $wgLang->getWeekdayName( date("w")+1 );
+			case MAG_CURRENTYEAR:
+				return date( "Y" );
+			case MAG_CURRENTTIME:
+				return $wgLang->time( wfTimestampNow(), false );
+			case MAG_NUMBEROFARTICLES:
+				return wfNumberOfArticles();
+			default:
+				return NULL;
+		}
+	}
+
+	function initialiseVariables()
+	{
+		global $wgVariableIDs;
+		$this->mVariables = array();
+
+		foreach ( $wgVariableIDs as $id ) {
+			$mw =& MagicWord::get( $id );
+			$mw->addToArray( $this->mVariables, $this->getVariableValue( $id ) );
+		}
+	}
+
 	/* private */ function replaceVariables( $text )
 	{
-		global $wgLang, $wgCurOut;
-		$fname = "OutputPage::replaceVariables";
+		global $wgLang, $wgCurParser;
+		global $wgScript, $wgArticlePath;
+
+		$fname = "Parser::replaceVariables";
 		wfProfileIn( $fname );
-
-		$magic = array();
-
-		# Basic variables
-		# See Language.php for the definition of each magic word
-		# As with sigs, this uses the server's local time -- ensure 
-		# this is appropriate for your audience!
-
-		$magic[MAG_CURRENTMONTH] = date( "m" );
-		$magic[MAG_CURRENTMONTHNAME] = $wgLang->getMonthName( date("n") );
-		$magic[MAG_CURRENTMONTHNAMEGEN] = $wgLang->getMonthNameGen( date("n") );
-		$magic[MAG_CURRENTDAY] = date("j");
-		$magic[MAG_CURRENTDAYNAME] = $wgLang->getWeekdayName( date("w")+1 );
-		$magic[MAG_CURRENTYEAR] = date( "Y" );
-		$magic[MAG_CURRENTTIME] = $wgLang->time( wfTimestampNow(), false );
 		
-		$this->mOutput->mContainsOldMagic += MagicWord::replaceMultiple($magic, $text, $text);
+		$bail = false;
+		if ( !$this->mVariables ) {
+			$this->initialiseVariables();
+		}
+		$titleChars = Title::legalChars();
+		$regex = "/{{([$titleChars]*?)}}/s";
 
-		$mw =& MagicWord::get( MAG_NUMBEROFARTICLES );
-		if ( $mw->match( $text ) ) {
-			$v = wfNumberOfArticles();
-			$text = $mw->replace( $v, $text );
-			if( $mw->getWasModified() ) { $this->mOutput->mContainsOldMagic++; }
+		# "Recursive" variable expansion: run it through a couple of passes
+		for ( $i=0; $i<MAX_INCLUDE_REPEAT && !$bail; $i++ ) {
+			$oldText = $text;
+			
+			# It's impossible to rebind a global in PHP
+			# Instead, we run the substitution on a copy, then merge the changed fields back in
+			$wgCurParser = $this->fork();
+
+			$text = preg_replace_callback( $regex, "wfBraceSubstitution", $text );
+			if ( $oldText == $text ) {
+				$bail = true;
+			}
+			$this->merge( $wgCurParser );
 		}
 
-		# "Variables" with an additional parameter e.g. {{MSG:wikipedia}}
-		# The callbacks are at the bottom of this file
-		$wgCurOut = $this;
-		$mw =& MagicWord::get( MAG_MSG );
-		$text = $mw->substituteCallback( $text, "wfReplaceMsgVar" );
-		if( $mw->getWasModified() ) { $this->mContainsNewMagic++; }
-
-		$mw =& MagicWord::get( MAG_MSGNW );
-		$text = $mw->substituteCallback( $text, "wfReplaceMsgnwVar" );
-		if( $mw->getWasModified() ) { $this->mContainsNewMagic++; }
-
-		wfProfileOut( $fname );
 		return $text;
+	}
+
+	# Returns a copy of this object except with various variables cleared
+	# This copy can be re-merged with the parent after operations on the copy
+	function fork()
+	{
+		$copy = $this;
+		$copy->mOutput = new ParserOutput;
+		return $copy;
+	}
+
+	# Merges a copy split off with fork()
+	function merge( &$copy )
+	{
+		$this->mOutput->merge( $copy->mOutput );
+		
+		# Merge include throttling arrays
+		foreach( $copy->mIncludeCount as $dbk => $count ) {
+			if ( array_key_exists( $dbk, $this->mIncludeCount ) ) {
+				$this->mIncludeCount[$dbk] += $count;
+			} else {
+				$this->mIncludeCount[$dbk] = $count;
+			}
+		}
+	}
+
+	function braceSubstitution( $matches )
+	{
+		global $wgLinkCache;
+		$fname = "Parser::braceSubstitution";
+		$found = false;
+		$nowiki = false;
+	
+		$text = $matches[1];
+
+		# SUBST
+		$mwSubst =& MagicWord::get( MAG_SUBST );
+		if ( $mwSubst->matchStartAndRemove( $text ) ) {
+			if ( $this->mOutputType == OT_HTML ) {
+				# Invalid SUBST not replaced at PST time
+				# Return without further processing
+				$text = $matches[0];
+				$found = true;
+			}
+		} elseif ( $this->mOutputType == OT_WIKI ) {
+			# SUBST not found in PST pass, do nothing
+			$text = $matches[0];
+			$found = true;
+		}
+		
+		# Various prefixes
+		if ( !$found ) {
+			# Check for MSGNW:
+			$mwMsgnw =& MagicWord::get( MAG_MSGNW );
+			if ( $mwMsgnw->matchStartAndRemove( $text ) ) {
+				$nowiki = true;
+			} else {
+				# Remove obsolete MSG:
+				$mwMsg =& MagicWord::get( MAG_MSG );
+				$mwMsg->matchStartAndRemove( $text );
+			}
+			
+			# Check if it is an internal message
+			$mwInt =& MagicWord::get( MAG_INT );
+			if ( $mwInt->matchStartAndRemove( $text ) ) {
+				$text = wfMsg( $text );
+				$found = true;
+			}
+		}
+		
+		# Check for a match against internal variables
+		if ( !$found && array_key_exists( $text, $this->mVariables ) ) {
+			$text = $this->mVariables[$text];
+			$found = true;
+			$this->mOutput->mContainsOldMagic = true;
+		} 
+		
+		# Load from database
+		if ( !$found ) {
+			$title = Title::newFromText( $text, NS_TEMPLATE );
+			if ( !is_null( $text ) && !$title->isExternal() ) {
+				# Check for excessive inclusion
+				$dbk = $title->getPrefixedDBkey();
+				if ( !array_key_exists( $dbk, $this->mIncludeCount ) ) {
+					$this->mIncludeCount[$dbk] = 0;
+				}
+				if ( ++$this->mIncludeCount[$dbk] <= MAX_INCLUDE_REPEAT ) {
+					$row = wfGetArray( "cur", array("cur_text"), array( 
+					  "cur_namespace" => $title->getNamespace(),
+					  "cur_title" => $title->getDBkey() ), $fname );
+					if ( $row !== false ) {
+						$found = true;
+						$text = $row->cur_text;
+						
+						# Escaping and link table handling
+						# Not required for preSaveTransform()
+						if ( $this->mOutputType == OT_HTML ) {
+							if ( $nowiki ) {
+								$text = wfEscapeWikiText( $text );
+							} else {
+								$text = $this->removeHTMLtags( $text );
+							}
+							$wgLinkCache->suspend();
+							$text = $this->replaceInternalLinks( $text );
+							$wgLinkCache->resume();
+							$wgLinkCache->addLinkObj( $title );
+
+						}
+					} 
+				} 
+
+				# If the title is valid but undisplayable, make a link to it
+				if ( $this->mOutputType == OT_HTML && !$found ) {
+					$text = "[[" . $title->getPrefixedText() . "]]";
+					$found = true;
+				}
+			}
+		}
+
+		if ( !$found ) {
+			return $matches[0];
+		} else {
+			return $text;
+		}
 	}
 
 	# Cleans up HTML, removes dangerous tags and attributes
 	/* private */ function removeHTMLtags( $text )
 	{
-		$fname = "OutputPage::removeHTMLtags";
+		$fname = "Parser::removeHTMLtags";
 		wfProfileIn( $fname );
 		$htmlpairs = array( # Tags that must be closed
 			"b", "i", "u", "font", "big", "small", "sub", "sup", "h1",
@@ -1188,8 +1362,8 @@ class Parser
  *
  * It loops through all headlines, collects the necessary data, then splits up the
  * string and re-inserts the newly formatted headlines.
- *
- * */
+ * 
+ */
 	/* private */ function formatHeadings( $text )
 	{
 		$nh=$this->mOptions->getNumberHeadings();
@@ -1448,6 +1622,8 @@ class Parser
 	{
 		$this->mOptions = $options;
 		$this->mTitle = $title;
+		$this->mOutputType = OT_WIKI;
+		
 		if ( $clearState ) {
 			$this->clearState();
 		}
@@ -1462,7 +1638,11 @@ class Parser
 
 	/* private */ function pstPass2( $text, &$user )
 	{
-		global $wgLang, $wgLocaltimezone;
+		global $wgLang, $wgLocaltimezone, $wgCurParser;
+
+		# Variable replacement
+		# Because mOutputType is OT_WIKI, this will only process {{subst:xxx}} type tags
+		$text = $this->replaceVariables( $text );
 
 		# Signatures
 		#
@@ -1509,11 +1689,13 @@ class Parser
 			$text = preg_replace( $p2, "[[\\1 ({$context})|\\1]]", $text );
 		}
 		
-		# {{SUBST:xxx}} variables
-		#
+		/*
 		$mw =& MagicWord::get( MAG_SUBST );
-		$text = $mw->substituteCallback( $text, "wfReplaceSubstVar" );
-
+		$wgCurParser = $this->fork();
+		$text = $mw->substituteCallback( $text, "wfBraceSubstitution" );
+		$this->merge( $wgCurParser );
+		*/
+		
 		# Trim trailing whitespace
 		# MAG_END (__END__) tag allows for trailing 
 		# whitespace to be deliberately included
@@ -1548,6 +1730,13 @@ class ParserOutput
 	function setLanguageLinks( $ll ) { return wfSetVar( $this->mLanguageLinks, $ll ); }
 	function setCategoryLinks( $cl ) { return wfSetVar( $this->mCategoryLinks, $cl ); }
 	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
+
+	function merge( $other ) {
+		$this->mLanguageLinks = array_merge( $this->mLanguageLinks, $other->mLanguageLinks );
+		$this->mCategoryLinks = array_merge( $this->mCategoryLinks, $this->mLanguageLinks );
+		$this->mContainsOldMagic = $this->mContainsOldMagic || $other->mContainsOldMagic;
+	}
+
 }
 
 class ParserOptions
@@ -1625,31 +1814,12 @@ class ParserOptions
 
 
 }
-	
-# Regex callbacks, used in OutputPage::replaceVariables
 
-# Just get rid of the dangerous stuff
-# Necessary because replaceVariables is called after removeHTMLtags, 
-# and message text can come from any user
-function wfReplaceMsgVar( $matches ) {
-	global $wgCurOut, $wgLinkCache;
-	$text = $wgCurOut->removeHTMLtags( wfMsg( $matches[1] ) );
-	$wgLinkCache->suspend();
-	$text = $wgCurOut->replaceInternalLinks( $text );
-	$wgLinkCache->resume();
-	$wgLinkCache->addLinkObj( Title::makeTitle( NS_MEDIAWIKI, $matches[1] ) );
-	return $text;
+# Regex callbacks, used in Parser::replaceVariables
+function wfBraceSubstitution( $matches )
+{
+	global $wgCurParser;
+	return $wgCurParser->braceSubstitution( $matches );
 }
-
-# Effective <nowiki></nowiki>
-# Not real <nowiki> because this is called after nowiki sections are processed
-function wfReplaceMsgnwVar( $matches ) {
-	global $wgCurOut, $wgLinkCache;
-	$text = wfEscapeWikiText( wfMsg( $matches[1] ) );
-	$wgLinkCache->addLinkObj( Title::makeTitle( NS_MEDIAWIKI, $matches[1] ) );
-	return $text;
-}
-
-
 
 ?>

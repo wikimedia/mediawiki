@@ -22,6 +22,9 @@ include_once("LanguageUtf8.php");
 	7	=> "Kép_vita",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_vita",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* Inherit default options; make specific changes via 

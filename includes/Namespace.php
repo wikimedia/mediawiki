@@ -14,13 +14,13 @@ define("NS_TALK", 1);
 define("NS_USER", 2);
 define("NS_USER_TALK", 3);
 define("NS_WP", 4);
+define("NS_WIKIPEDIA", 4);
 define("NS_WP_TALK", 5);
+define("NS_WIKIPEDIA_TALK", 5);
 define("NS_IMAGE", 6);
 define("NS_IMAGE_TALK", 7);
 define("NS_MEDIAWIKI", 8);
 define("NS_MEDIAWIKI_TALK", 9);
-
-# Reserved:
 define("NS_TEMPLATE", 10);
 define("NS_TEMPLATE_TALK", 11);
 
@@ -35,7 +35,7 @@ class Namespace {
 
 	function isMovable( $index )
 	{
-		if ( $index < NS_MAIN || $index == NS_IMAGE ) { 
+		if ( $index < NS_MAIN || $index == NS_IMAGE || $index == NS_TEMPLATE) { 
 			return false; 
 		}
 		return true;
@@ -43,7 +43,7 @@ class Namespace {
 
 	function isTalk( $index )
 	{
-		if ( NS_TALK == $index || NS_USER_TALK == $index || NS_WP_TALK == $index || NS_IMAGE_TALK == $index || NS_MEDIAWIKI_TALK == $index ) {
+		if ( NS_TALK == $index || NS_USER_TALK == $index || NS_WP_TALK == $index || NS_IMAGE_TALK == $index || NS_MEDIAWIKI_TALK == $index || NS_TEMPLATE_TALK == $index ) {
 			return true;
 		}
 		return false;

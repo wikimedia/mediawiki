@@ -25,7 +25,10 @@ include_once( "LanguageUtf8.php" );
 	6	=> "படிமம்",
 	7	=> "உருவப் பேச்சு",
 	8	=> "மீடியாவிக்கி",
-	9	=> "மீடியாவிக்கி_பேச்சு"
+	9	=> "மீடியாவிக்கி_பேச்சு",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsTa = array(

@@ -22,6 +22,9 @@ include_once("LanguageUtf8.php");
 	7	=> "שיחת_תמונה",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_talk",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsHe = array(

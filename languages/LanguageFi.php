@@ -23,6 +23,9 @@
 	7	=> "Keskustelu_kuvasta",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_talk",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsFi = array(

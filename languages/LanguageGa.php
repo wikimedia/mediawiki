@@ -25,7 +25,10 @@ Sourceforge (when that gets added.)
     6   => "Íomhá",
     7   => "Plé_íomhá",
     8   => "MediaWiki",
-    9   => "Plé_MediaWiki"
+    9   => "Plé_MediaWiki",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgDefaultUserOptionsGa = array(
@@ -118,17 +121,26 @@ Sourceforge (when that gets added.)
     MAG_NOTOC                => array( 0,    "__NOTOC__"              ),
     MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__"      ),
     MAG_START                => array( 0,    "__START__"              ),
-    MAG_CURRENTMONTH         => array( 1,    "{{CURRENTMONTH}}"       ),
-    MAG_CURRENTMONTHNAME     => array( 1,    "{{CURRENTMONTHNAME}}"   ),
-    MAG_CURRENTDAY           => array( 1,    "{{CURRENTDAY}}"         ),   
-    MAG_CURRENTDAYNAME       => array( 1,    "{{CURRENTDAYNAME}}"     ),
-    MAG_CURRENTYEAR          => array( 1,    "{{CURRENTYEAR}}"        ),
-    MAG_CURRENTTIME          => array( 1,    "{{CURRENTTIME}}"        ),
-    MAG_NUMBEROFARTICLES     => array( 1,    "{{NUMBEROFARTICLES}}"   ),
-    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "{{CURRENTMONTHNAMEGEN}}"),
-    MAG_MSG                  => array( 1,    "{{MSG:$1}}"             ),
-    MAG_SUBST                => array( 1,    "{{SUBST:$1}}"           ),
-    MAG_MSGNW                => array( 1,    "{{MSGNW:$1}}"           )
+    MAG_CURRENTMONTH         => array( 1,    "CURRENTMONTH"           ),
+    MAG_CURRENTMONTHNAME     => array( 1,    "CURRENTMONTHNAME"       ),
+    MAG_CURRENTDAY           => array( 1,    "CURRENTDAY"             ),   
+    MAG_CURRENTDAYNAME       => array( 1,    "CURRENTDAYNAME"         ),
+    MAG_CURRENTYEAR          => array( 1,    "CURRENTYEAR"            ),
+    MAG_CURRENTTIME          => array( 1,    "CURRENTTIME"            ),
+    MAG_NUMBEROFARTICLES     => array( 1,    "NUMBEROFARTICLES"       ),
+    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN"    ),
+    MAG_MSG                  => array( 1,    "MSG:"                   ),
+    MAG_SUBST                => array( 1,    "SUBST:"                 ),
+    MAG_MSGNW                => array( 1,    "MSGNW:"                 )
+	MAG_END                  => array( 0,    "__END__"                ),
+    MAG_IMG_THUMBNAIL        => array( 1,    "thumbnail", "thumb"     ),
+    MAG_IMG_RIGHT            => array( 1,    "right"                  ),
+    MAG_IMG_LEFT             => array( 1,    "left"                   ),
+    MAG_IMG_NONE             => array( 1,    "none"                   ),
+    MAG_IMG_WIDTH            => array( 1,    "$1px"                   ),
+    MAG_IMG_CENTER           => array( 1,    "center", "centre"       ),
+    MAG_INT                  => array( 0,    "INT:"                   )
+
 );
     
 # All special pages have to be listed here: a description of ""

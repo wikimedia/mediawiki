@@ -19,6 +19,9 @@
 	7	=> "Pildi_arutelu",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_arutelu",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsEt = array(

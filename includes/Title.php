@@ -23,7 +23,9 @@ class Title {
                               # Only null or "sysop" are supported
 	var $mRestrictionsLoaded; # Boolean for initialisation on demand
 	var $mPrefixedText;       # Text form including namespace/interwiki, initialised on demand
-
+	var $mDefaultNamespace;   # Namespace index when there is no namespace
+                              # Zero except in {{transclusion}} tags
+	
 #----------------------------------------------------------------------------
 #   Construction
 #----------------------------------------------------------------------------
@@ -36,6 +38,7 @@ class Title {
 		$this->mNamespace = 0;
 		$this->mRestrictionsLoaded = false;
 		$this->mRestrictions = array();
+        $this->mDefaultNamespace = 0;
 	}
 
 	# From a prefixed DB key
@@ -50,7 +53,7 @@ class Title {
 	}
 	
 	# From text, such as what you would find in a link
-	/* static */ function newFromText( $text )
+	/* static */ function newFromText( $text, $defaultNamespace = 0 )
 	{	
 		static $trans;
 		$fname = "Title::newFromText";
@@ -79,6 +82,8 @@ class Title {
 
 		$t = new Title();
 		$t->mDbkeyform = str_replace( " ", "_", $text );
+        $t->mDefaultNamespace = $defaultNamespace;
+        
 		wfProfileOut( $fname );
 		if( $t->secureAndSplit() ) {
 			return $t;
@@ -256,6 +261,32 @@ class Title {
 		return $s->iw_url;
 	}
 	
+	# Update the cur_touched field for an array of title objects
+	# Inefficient unless the IDs are already loaded into the link cache
+	/* static */ function touchArray( $titles, $timestamp = "" ) {
+		if ( count( $titles ) == 0 ) {
+			return;
+		}
+		if ( $timestamp == "" ) {
+			$timestamp = wfTimestampNow();
+		}
+		$sql = "UPDATE cur SET cur_touched='{$timestamp}' WHERE cur_id IN (";
+		$first = true;
+
+		foreach ( $titles as $title ) {
+			if ( ! $first ) { 
+				$sql .= ","; 
+			}
+
+			$first = false;
+			$sql .= $title->getArticleID();
+		}
+		$sql .= ")";
+		if ( ! $first ) {
+			wfQuery( $sql, DB_WRITE, "Title::touchArray" );
+		}
+	}
+
 #----------------------------------------------------------------------------
 #	Other stuff
 #----------------------------------------------------------------------------
@@ -270,6 +301,7 @@ class Title {
 	function setNamespace( $n ) { $this->mNamespace = $n; }
 	function getInterwiki() { return $this->mInterwiki; }
 	function getFragment() { return $this->mFragment; }
+	function getDefaultNamespace() { return $this->mDefaultNamespace; }
 
 	# Get title for search index
 	function getIndexTitle()
@@ -559,9 +591,8 @@ class Title {
 			$rxTc = "/[^" . Title::legalChars() . "]/";
 		}
 
-
 		$this->mInterwiki = $this->mFragment = "";
-		$this->mNamespace = 0;
+		$this->mNamespace = $this->mDefaultNamespace; # Usually NS_MAIN
 
 		# Clean up whitespace
 		#
@@ -586,9 +617,10 @@ class Title {
 			$t = substr( $t, 1 );
 		}
 
-		# Redundant initial colon
+		# Initial colon indicating main namespace
 		if ( ":" == $t{0} ) {
 			$r = substr( $t, 1 );
+			$this->mNamespace = NS_MAIN;
 		} else {
 			# Namespace or interwiki prefix
 	 		if ( preg_match( "/^((?:i|x|[a-z]{2,3})(?:-[a-z0-9]+)?|[A-Za-z0-9_\\x80-\\xff]+?)_*:_*(.*)$/", $t, $m ) ) {
@@ -660,6 +692,52 @@ class Title {
 	# Get a title object associated with the subject page of this talk page
 	function getSubjectPage() {
 		return Title::makeTitle( Namespace::getSubject( $this->getNamespace() ), $this->getDBkey() );
+	}
+
+	# Get an array of Title objects linking to this title
+	# Also stores the IDs in the link cache
+	function getLinksTo() {
+		global $wgLinkCache;
+		$id = $this->getArticleID();
+		$sql = "SELECT cur_namespace,cur_title,cur_id FROM cur,links WHERE l_from=cur_id AND l_to={$id}";
+		$res = wfQuery( $sql, DB_READ, "Title::getLinksTo" );
+		$retVal = array();
+		if ( wfNumRows( $res ) ) {
+			while ( $row = wfFetchObject( $res ) ) {
+				$titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title );
+				$wgLinkCache->addGoodLink( $row->cur_id, $titleObj->getPrefixedDBkey() );
+				$retVal[] = $titleObj;
+			}
+		}
+		wfFreeResult( $res );
+		return $retVal;
+	}
+
+	# Get an array of Title objects linking to this non-existent title
+	# Also stores the IDs in the link cache
+	function getBrokenLinksTo() {
+		global $wgLinkCache;
+		$encTitle = wfStrencode( $this->getPrefixedDBkey() );
+		$sql = "SELECT cur_namespace,cur_title,cur_id FROM brokenlinks,cur " .
+		  "WHERE bl_from=cur_id AND bl_to='$encTitle'";
+		$res = wfQuery( $sql, DB_READ, "Title::getBrokenLinksTo" );
+		$retVal = array();
+		if ( wfNumRows( $res ) ) {
+			while ( $row = wfFetchObject( $res ) ) {
+				$titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title );
+				$wgLinkCache->addGoodLink( $titleObj->getPrefixedDBkey(), $row->cur_id );
+				$retVal[] = $titleObj;
+			}
+		}
+		wfFreeResult( $res );
+		return $retVal;
+	}
+
+	function getSquidURLs() {
+		return array(
+			$this->getInternalURL(),
+			$this->getInternalURL( "action=history" )
+		);
 	}
 }
 ?>

@@ -19,6 +19,9 @@
   7 => "চিত্র_আলাপ",
   8 => "MediaWiki",
   9 => "MediaWik i_আলাপ",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgDefaultUserOptionsBn = array(

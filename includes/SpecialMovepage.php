@@ -138,8 +138,7 @@ class MovePageForm {
 		     ( ! Namespace::isMovable( $this->nns ) ) ||
 			 ( "" == $this->ndt ) ||
 			 ( "" != $this->nt->getInterwiki() ) ||
-			 ( !$this->nt->userCanEdit() ) || 
-			 ( $this->ons == NS_MEDIAWIKI && $wgMessageCache->isCacheable( $this->odt ) ) ) {
+			 ( !$this->nt->userCanEdit() ) ) {
 			$this->showForm( wfMsg( "badarticleerror" ) );
 			return;
 		}
@@ -164,26 +163,6 @@ class MovePageForm {
 		$u = new SearchUpdate( $this->newid, $this->ot->getPrefixedDBkey(), "" );
 		$u->doUpdate();
 		
-		# Squid purging
-		if ( $wgUseSquid ) {
-			/* this needs to be done after LinksUpdate */
-			$urlArr = Array(				
-				# purge new title
-				$this->nt->getInternalURL(),
-				# purge old title
-				$this->ot->getInternalURL(),
-			);			
-			wfPurgeSquidServers($urlArr);	
-			# purge pages linking to new title
-			$u = new SquidUpdate($this->nt);
-			array_push( $wgDeferredUpdateList, $u );
-			# purge pages linking to old title
-			$u = new SquidUpdate($this->ot);
-			array_push( $wgDeferredUpdateList, $u );
-			
-			
-		}
-
 		# Move talk page if
 		# (1) the checkbox says to,
 		# (2) the namespaces are not themselves talk namespaces, and of course
@@ -227,26 +206,6 @@ class MovePageForm {
 				$u->doUpdate();
 				$u = new SearchUpdate( $this->newid, $this->ot->getPrefixedDBkey(), "" );
 				$u->doUpdate();
-				
-				# Squid purging
-				if ( $wgUseSquid ) {
-					/* this needs to be done after LinksUpdate */
-					$urlArr = Array(				
-						# purge new title
-						$nt->getInternalURL(),
-						# purge old title
-						$ot->getInternalURL(),
-					);			
-					wfPurgeSquidServers($urlArr);	
-					# purge pages linking to new title
-					$u = new SquidUpdate($this->nt);
-					array_push( $wgDeferredUpdateList, $u );
-					# purge pages linking to old title
-					$u = new SquidUpdate($this->ot);
-					array_push( $wgDeferredUpdateList, $u );
-
-
-				}
 			}
 		}
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Movepage" );
@@ -313,7 +272,7 @@ class MovePageForm {
 
 	function moveOverExistingRedirect()
 	{
-		global $wgUser, $wgLinkCache;
+		global $wgUser, $wgLinkCache, $wgUseSquid;
 		$fname = "MovePageForm::moveOverExistingRedirect";
 		$mt = wfMsg( "movedto" );
 
@@ -371,13 +330,20 @@ class MovePageForm {
 		wfQuery( $sql, DB_WRITE, $fname );
 		$sql = "INSERT INTO links (l_from,l_to) VALUES ({$this->newid},{$this->oldid})";
 		wfQuery( $sql, DB_WRITE, $fname );
+
+		# Purge squid
+		if ( $wgUseSquid ) {
+			$urls = array_merge( $this->nt->getSquidURLs(), $this->ot->getSquidURLs() );
+			$u = new SquidUpdate( $urls );
+			$u->doUpdate();
+		}
 	}
 
 	# Move page to non-existing title.
 
 	function moveToNewTitle()
 	{
-		global $wgUser, $wgLinkCache;
+		global $wgUser, $wgLinkCache, $wgUseSquid;
 		$fname = "MovePageForm::moveToNewTitle";
 		$mt = wfMsg( "movedto" );
 
@@ -422,6 +388,18 @@ class MovePageForm {
 		# now be removed and made into good links.
 		$update = new LinksUpdate( $this->oldid, $this->nft );
 		$update->fixBrokenLinks();
+
+		# Purge old title from squid
+		# The new title, and links to the new title, are purged in Article::onArticleCreate()
+		$titles = $this->nt->getLinksTo();
+		if ( $wgUseSquid ) {
+			$urls = $this->ot->getSquidURLs();
+			foreach ( $titles as $linkTitle ) {
+				$urls[] = $linkTitle->getInternalURL();
+			}
+			$u = new SquidUpdate( $urls );
+			$u->doUpdate();
+		}
 	}
 
 	function updateWatchlists()

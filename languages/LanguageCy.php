@@ -14,7 +14,10 @@
 	6  => "Delwedd",
 	7  => "Sgwrs_Delwedd",
 	8  => "MediaWiki",
-	9  => "Sgwrs_MediaWiki"
+	9  => "Sgwrs_MediaWiki",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgDefaultUserOptionsCy = array(
@@ -101,28 +104,30 @@
 
 /* private */ $wgMagicWordsCy = array(
 #   ID                                 CASE  SYNONYMS
-    MAG_REDIRECT             => array( 0,    "#ail-cyfeirio"          ),
-    MAG_NOTOC                => array( 0,    "__DIMTAFLENCYNNWYS__"   ),
-    MAG_NOEDITSECTION        => array( 0,    "__DIMADRANGOLYGU__"     ),
-    MAG_START                => array( 0,    "__DECHRAU__"            ),
-    MAG_CURRENTMONTH         => array( 1,    "{{MISCYFOES}}"          ),
-    MAG_CURRENTMONTHNAME     => array( 1,    "{{ENWMISCYFOES}}"       ),
-    MAG_CURRENTDAY           => array( 1,    "{{DYDDIADCYFOES}}"      ),   
-    MAG_CURRENTDAYNAME       => array( 1,    "{{ENWDYDDCYFOES}}"      ),
-    MAG_CURRENTYEAR          => array( 1,    "{{FLWYDDYNCYFOES}}"     ),
-    MAG_CURRENTTIME          => array( 1,    "{{AMSERCYFOES}}"        ),
-    MAG_NUMBEROFARTICLES     => array( 1,    "{{NIFEROERTHYGLAU}}"    ),
-    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "{{GENENWMISCYFOES}}"    ),
-    MAG_MSG                  => array( 1,    "{{MSG:$1}}"             ),
-    MAG_SUBST                => array( 1,    "{{SUBST:$1}}"           ),
-    MAG_MSGNW                => array( 0,    "{{MSGNW:$1}}"           ),
-    MAG_END                  => array( 0,    "DIWEDD_"                ),
-    MAG_IMG_THUMBNAIL        => array( 1,    "ewin bawd", "bawd"      ),
-    MAG_IMG_RIGHT            => array( 1,    "de"                     ),
-    MAG_IMG_LEFT             => array( 1,    "chwith"                 ),
-    MAG_IMG_NONE             => array( 1,    "dim"                    ),
-    MAG_IMG_WIDTH            => array( 1,    "$1px"                   ),
-    MAG_IMG_CENTER           => array( 1,    "canol", "canol"         )
+    MAG_REDIRECT             => array( 0,    "#redirect", "#ail-cyfeirio"                 ),
+    MAG_NOTOC                => array( 0,    "__NOTOC__", "__DIMTAFLENCYNNWYS__"          ),
+    MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__", "__DIMADRANGOLYGU__"    ),
+    MAG_START                => array( 0,    "__START__", "__DECHRAU__"                   ),
+    MAG_CURRENTMONTH         => array( 1,    " CURRENTMONTH", "MISCYFOES"                 ),
+    MAG_CURRENTMONTHNAME     => array( 1,    "CURRENTMONTHNAME", "ENWMISCYFOES"           ),
+    MAG_CURRENTDAY           => array( 1,    "CURRENTDAY", "DYDDIADCYFOES"                ),   
+    MAG_CURRENTDAYNAME       => array( 1,    "CURRENTDAYNAME", "ENWDYDDCYFOES"            ),
+    MAG_CURRENTYEAR          => array( 1,    "CURRENTYEAR", "FLWYDDYNCYFOES"              ),
+    MAG_CURRENTTIME          => array( 1,    "CURRENTTIME", "AMSERCYFOES"                 ),
+    MAG_NUMBEROFARTICLES     => array( 1,    "NUMBEROFARTICLES", "NIFEROERTHYGLAU"        ),
+    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN", "GENENWMISCYFOES"     ),
+    MAG_MSG                  => array( 1,    "MSG:"                                       ),
+    MAG_SUBST                => array( 1,    "SUBST:"                                     ),
+    MAG_MSGNW                => array( 0,    "MSGNW:"                                     ),
+    MAG_END                  => array( 0,    "DIWEDD_"                                    ),
+    MAG_IMG_THUMBNAIL        => array( 1,    "ewin bawd", "bawd", "thumbnail", "thumb"    ),
+    MAG_IMG_RIGHT            => array( 1,    "de", "right"                                ),
+    MAG_IMG_LEFT             => array( 1,    "chwith", "left"                             ),
+    MAG_IMG_NONE             => array( 1,    "dim", "none"                                ),
+    MAG_IMG_WIDTH            => array( 1,    "$1px"                                       ),
+    MAG_IMG_CENTER           => array( 1,    "canol", "center", "centre"                  ),
+    MAG_INT                  => array( 0,    "INT:"                                       )
+
 );
 	
 # All special pages have to be listed here: a description of ""

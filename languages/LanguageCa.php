@@ -16,7 +16,10 @@
 	6	=> "Imatge",
 	7	=> "Imatge_Discussió",
 	8	=> "MediaWiki",
-	9	=> "MediaWiki_Dicussió"
+	9	=> "MediaWiki_Dicussió",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* Note that some default options can be customized -- see

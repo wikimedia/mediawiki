@@ -22,6 +22,9 @@
     7   => "Imagem_Discussão",
     8   => "MediaWiki",
     9   => "MediaWiki_Discussão",
+	10  => "Template",
+	11  => "Template_talk"
+
 );
 
 /* private */ $wgDefaultUserOptionsPt = array(
