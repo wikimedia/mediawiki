@@ -1908,7 +1908,7 @@ class Skin {
 
 	function makeMediaLinkObj( $nt, $alt = "" )
 	{
-		if ( ! defined( $nt ) )
+		if ( ! isset( $nt ) )
 		{
 			### HOTFIX. Instead of breaking, return empry string.
 			$s = $alt;
