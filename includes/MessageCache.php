@@ -93,16 +93,17 @@ class MessageCache
 	}
 	
 	function getKeys() {
-		global $wgAllMessagesEn;
+		global $wgAllMessagesEn, $wgLang;
+		$ucfirst = get_class($wgLang) . "::ucfirst";
 		if ( !$this->mKeys ) {
-			$this->mKeys = array_map( 'ucfirst', array_keys( $wgAllMessagesEn ) );
+			$this->mKeys = array_map( $ucfirst, array_keys( $wgAllMessagesEn ) );
 		}
 		return $this->mKeys;
 	}
 	
 	function isCacheable( $key ) {
-		global $wgAllMessagesEn;
-		return array_key_exists( lcfirst( $key ), $wgAllMessagesEn ) || 
+		global $wgAllMessagesEn, $wgLang;
+		return array_key_exists( $wgLang->lcfirst( $key ), $wgAllMessagesEn ) || 
 			array_key_exists( $key, $wgAllMessagesEn );
 	}
 
@@ -158,7 +159,7 @@ class MessageCache
 		if ( $this->mDisable ) {
 			return $wgLang->getMessage( $key );
 		}
-		$title = ucfirst( $key );
+		$title = $wgLang->ucfirst( $key );
 		
 		$message = false;
 
@@ -196,9 +197,5 @@ class MessageCache
 		}
 		return $message;
 	}
-}
-
-function lcfirst( $s ) {
-	return strtolower( $s{0}  ). substr( $s, 1 );
 }
 ?>
