@@ -186,7 +186,7 @@ class QueryPage {
 			for ( $i = 0; $i < $num && $obj = $dbr->fetchObject( $res ); $i++ ) {
 				$format = $this->formatResult( $sk, $obj );
 				$attr = ( isset ( $obj->usepatrol ) && $obj->usepatrol &&
-									$obj->patrolled == 0 ) ? ' class="not_patrolled"' : '';
+									$obj->patrolled == 0 ) ? ' class="not-patrolled"' : '';
 				$s .= "<li{$attr}>{$format}</li>\n";
 			}
 			$dbr->freeResult( $res );

@@ -983,7 +983,7 @@ fieldset.operaprefsection { margin-left: 15em }
         display: none;
 }
 
-ul.special li.not_patrolled, ol.special li.not_patrolled {
+ul.special li.not-patrolled, ol.special li.not-patrolled {
 	background-color: #2A3C61;
 }
 div.patrollink {
