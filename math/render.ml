@@ -1,4 +1,4 @@
-let cmd_dvips tmpprefix = "dvips -R -E " ^ tmpprefix ^ ".dvi -f"
+let cmd_dvips tmpprefix = "dvips -q -R -E " ^ tmpprefix ^ ".dvi -f"
 let cmd_latex tmpprefix = "latex " ^ tmpprefix ^ ".tex >/dev/null"
 let cmd_convert finalpath = "convert -quality 100 -density 120 ps:- " ^ finalpath ^ " >/dev/null 2>/dev/null"
 
