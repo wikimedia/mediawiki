@@ -2001,7 +2001,7 @@ class Parser
 class ParserOutput
 {
 	var $mText, $mLanguageLinks, $mCategoryLinks, $mContainsOldMagic;
-	var $mTouched; # Used for caching
+	var $mCacheTime; # Used in ParserCache
 
 	function ParserOutput( $text = "", $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false )
@@ -2010,19 +2010,19 @@ class ParserOutput
 		$this->mLanguageLinks = $languageLinks;
 		$this->mCategoryLinks = $categoryLinks;
 		$this->mContainsOldMagic = $containsOldMagic;
-		$this->mTouched = "";
+		$this->mCacheTime = "";
 	}
 
 	function getText() { return $this->mText; }
 	function getLanguageLinks() { return $this->mLanguageLinks; }
 	function getCategoryLinks() { return $this->mCategoryLinks; }
-	function getTouched() { return $this->mTouched; }
+	function getCacheTime() { return $this->mCacheTime; }
 	function containsOldMagic() { return $this->mContainsOldMagic; }
 	function setText( $text ) { return wfSetVar( $this->mText, $text ); }
 	function setLanguageLinks( $ll ) { return wfSetVar( $this->mLanguageLinks, $ll ); }
 	function setCategoryLinks( $cl ) { return wfSetVar( $this->mCategoryLinks, $cl ); }
 	function setContainsOldMagic( $com ) { return wfSetVar( $this->mContainsOldMagic, $com ); }
-	function setTouched( $t ) { return wfSetVar( $this->mTouched, $t ); }
+	function setCacheTime( $t ) { return wfSetVar( $this->mCacheTime, $t ); }
 
 	function merge( $other ) {
 		$this->mLanguageLinks = array_merge( $this->mLanguageLinks, $other->mLanguageLinks );
