@@ -878,7 +878,7 @@ class QuickTemplate {
 	 */
 	function QuickTemplate() {
 		$this->data = array();
-		$this->translator = null;
+		$this->translator = new MediaWiki_I18N();
 	}
 	
 	/**
