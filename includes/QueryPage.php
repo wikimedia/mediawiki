@@ -64,6 +64,12 @@ class QueryPage {
 	function formatResult( $skin, $result ) {
 		return '';
 	}
+		
+	# The content returned by this function will be output before any result
+	
+	function getPageHeader( ) {
+		return '';
+	}
 
 	# This is the actual workhorse. It does everything needed to make a
 	# real, honest-to-gosh query page.
@@ -138,6 +144,8 @@ class QueryPage {
 
 
 		$sk = $wgUser->getSkin( );
+		
+		$wgOut->addHTML( $this->getPageHeader() );
 
 		$top = wfShowingResults( $offset, $num);
 		$wgOut->addHTML( "<p>{$top}\n" );
