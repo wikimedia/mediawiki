@@ -144,7 +144,7 @@ class LinkCache {
 
 	function preFill( &$fromtitle )
 	{
-		global $wgEnablePersistentLC, $wgCompressedPersistentLC;
+		global $wgEnablePersistentLC;
 
 		$fname = "LinkCache::preFill";
 		wfProfileIn( $fname );
@@ -292,6 +292,7 @@ class LinkCache {
 	}
 
 	/* private */ function saveToLinkscc( $pid, $dbkeyfrom ){
+		global $wgCompressedPersistentLC;
 		if( $wgCompressedPersistentLC and function_exists( "gzcompress" ) ) {
 			$ser = wfStrencode( gzcompress( serialize( $this ), 3 ));
 		} else {
