@@ -504,6 +504,7 @@ class User {
 
 	function logout()
 	{
+		global $wgCookiePath, $wgCookieDomain, $wgDBname;
 		$this->mId = 0;
 
 		$_SESSION['wsUserID'] = 0;
