@@ -151,16 +151,19 @@ class EditPage {
 				$this->mArticle->insertNewArticle( $this->textbox1, $this->summary, $this->minoredit, $this->watchthis );
 				return;
 			}
+			
 			# Article exists. Check for edit conflict.
-			# Don't check for conflict when appending a comment - this should always work
 
 			$this->mArticle->clear(); # Force reload of dates, etc.
-			if( ( $this->section != "new" ) &&
-				( $this->mArticle->getTimestamp() != $this->edittime ) ) {
+
+			if( ( $this->section != "new" ) && 
+				($this->mArticle->getTimestamp() != $this->edittime ) ) {
 				$isConflict = true;
 			}
 			$userid = $wgUser->getID();
 
+			$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded( 
+				$this->section, $this->textbox1, $this->summary);
 			# Suppress edit conflict with self
 
 			if ( ( 0 != $userid ) && ( $this->mArticle->getUser() == $userid ) ) {
@@ -170,17 +173,18 @@ class EditPage {
 				# FIXME: This is confusing. In theory we should attempt to merge, finding
 				# the equivalent section if it's unchanged and avoid the conflict.
 				if($isConflict) {
-					if( $this->merge() ){
+					if( $this->mergeChangesInto( $text ) ){
 						// Successful merge! Maybe we should tell the user the good news?
 						$isConflict = false;
 					} else {
 						$this->section = "";
+						$this->textbox1 = $text;
 					}
 				}
 			}
 			if ( ! $isConflict ) {
 				# All's well: update the article here
-				if($this->mArticle->updateArticle( $this->textbox1, $this->summary, $this->minoredit, $this->watchthis, $this->section ))
+				if($this->mArticle->updateArticle( $text, $this->summary, $this->minoredit, $this->watchthis ))
 					return;
 				else
 					$isConflict = true;
@@ -452,7 +456,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		}
 	}
 
-	/* private */ function merge(){
+	/* private */ function mergeChangesInto( &$text ){
 		$oldDate = $this->edittime;
 		$res = wfQuery("SELECT cur_text FROM cur WHERE cur_id=" . 
 			$this->mTitle->getArticleID() . " FOR UPDATE", DB_WRITE);
@@ -464,8 +468,8 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$res = wfQuery("SELECT old_text FROM old WHERE old_namespace = $ns AND ".
 		  "old_title = '{$title}' AND old_timestamp = '{$oldDate}'", DB_WRITE);
 		$obj = wfFetchObject($res);
-		if(wfMerge($obj->old_text, $this->textbox1, $yourtext, $result)){
-			$this->textbox1 = $result;
+		if(wfMerge($obj->old_text, $text, $yourtext, $result)){
+			$text = $result;
 			return true;
 		} else {
 			return false;
