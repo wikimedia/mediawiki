@@ -485,9 +485,16 @@ class SkinTemplate extends Skin {
 			$nskey = $this->getNameSpaceKey();
 			$is_active = !Namespace::isTalk( $wgTitle->getNamespace()) ;
 			if ( $action == 'validate' ) $is_active = false ; # Show article tab deselected when validating
-			$content_actions[$nskey] = array('class' => ($is_active) ? 'selected' : false,
-			'text' => wfMsg($nskey),
-			'href' => $this->makeArticleUrl($this->thispage));
+
+			$subjectTitle = $wgTitle->getSubjectPage();
+			if( $subjectTitle->getArticleId() != 0 ) {
+				$class = ($is_active) ? 'selected' : false;
+			} else {
+				$class = ($is_active) ? 'selected new' : 'new';
+			}
+			$content_actions[$nskey] = array('class' => $class,
+			                                 'text' => wfMsg($nskey),
+			                                 'href' => $this->makeArticleUrl($this->thispage));
 
 			/* set up the classes for the talk link */
 			wfProfileIn( "$fname-talk" );
