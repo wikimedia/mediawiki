@@ -834,7 +834,7 @@ class OutputPage {
 				$link = $m[1]; 
 			}
 
-			if ( preg_match( "/^([A-Za-z\\x80-\\xff]+):(.*)\$/", $link,  $m ) ) {
+			if ( preg_match( "/^((?:i|x|[a-z]{2,3})(?:-[a-z0-9]+)?|[A-Za-z\\x80-\\xff]+):(.*)\$/", $link,  $m ) ) {
 				$pre = strtolower( $m[1] );
 				$suf = $m[2];
 				if ( $wgLang->getNsIndex( $pre ) ==

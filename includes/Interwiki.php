@@ -258,6 +258,8 @@ $WikiPediaLanguages = array(
 	"yo"    => "http://yo.wikipedia.com/wiki.cgi?$1",
 	"za"    => "http://za.wikipedia.com/wiki.cgi?$1",
 	"zh"	=> "http://zh.wikipedia.org/wiki/$1",
+	"zh-cn"	=> "http://zh.wikipedia.org/wiki/$1",
+	"zh-tw"	=> "http://zh.wikipedia.org/wiki/$1",
 	"zu"    => "http://zu.wikipedia.com/wiki.cgi?$1",
 	"nds"	=> "http://nds.wikipedia.org/wiki.cgi?$1"
 );
