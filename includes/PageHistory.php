@@ -66,7 +66,7 @@ class PageHistory {
 				$fname );
 		else $notificationtimestamp = false;
 
-		$use_index = $db->useIndexClause( 'rev_timestamp' );
+		$use_index = $db->useIndexClause( 'page_timestamp' );
 		$revision = $db->tableName( 'revision' );
 
 		$limits = $offsets = "";
