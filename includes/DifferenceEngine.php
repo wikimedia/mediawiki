@@ -118,7 +118,7 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 	#
 	function loadText()
 	{
-		global $wgTitle, $wgOut, $wgLang;
+		global $wgTitle, $wgOut, $wgLang, $wgIsMySQL;
 		$fname = "DifferenceEngine::loadText";
 		
 		if ( 0 == $this->mNewid || 0 == $this->mOldid ) {
@@ -152,8 +152,9 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 			$this->mNewComment = $s->old_comment;
 		}
 		if ( 0 == $this->mOldid ) {
+			$use_index=$wgIsMySQL?"USE INDEX (name_title_timestamp)":"";
 			$sql = "SELECT old_namespace,old_title,old_timestamp,old_text,old_flags,old_user_text,old_comment " .
-			  "FROM old USE INDEX (name_title_timestamp) WHERE " .
+			  "FROM old $use_index WHERE " .
 			  "old_namespace=" . $this->mNewPage->getNamespace() . " AND " .
 			  "old_title='" . wfStrencode( $this->mNewPage->getDBkey() ) .
 			  "' ORDER BY inverse_timestamp LIMIT 1";

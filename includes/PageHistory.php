@@ -17,7 +17,7 @@ class PageHistory {
 
 	function history()
 	{
-		global $wgUser, $wgOut, $wgLang;
+		global $wgUser, $wgOut, $wgLang, $wgIsMySQL;
 
 		# If page hasn't changed, client can cache this
 		
@@ -54,9 +54,10 @@ class PageHistory {
 		
 		$namespace = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getText();
+		$use_index=$wgIsMySQL?"USE INDEX (name_title_timestamp)":"";
 		$sql = "SELECT old_id,old_user," .
 		  "old_comment,old_user_text,old_timestamp,old_minor_edit ".
-		  "FROM old USE INDEX (name_title_timestamp) " .
+		  "FROM old $use_index " .
 		  "WHERE old_namespace={$namespace} AND " .
 		  "old_title='" . wfStrencode( $this->mTitle->getDBkey() ) . "' " .
 		  "ORDER BY inverse_timestamp LIMIT $rawoffset, $limitplus";

@@ -1,4 +1,6 @@
 <?php
+# $Id$
+#
 # Class representing a Wikipedia article and history.
 # See design.doc for an overview.
 
@@ -1322,7 +1324,7 @@ class Article {
 
 	function rollback()
 	{
-		global $wgUser, $wgLang, $wgOut, $wgRequest;
+		global $wgUser, $wgLang, $wgOut, $wgRequest, $wgIsMySQL;
 
 		if ( ! $wgUser->isSysop() ) {
 			$wgOut->sysopRequired();
@@ -1370,8 +1372,10 @@ class Article {
 		}
 		
 		# Get the last edit not by this guy
+
+		$use_index=$wgIsMySQL?"USE INDEX (name_title_timestamp)":"";
 		$sql = 'SELECT old_text,old_user,old_user_text,old_timestamp,old_flags ' .
-		'FROM old USE INDEX (name_title_timestamp)' .
+		'FROM old {$use_index}' .
 		"WHERE old_namespace={$n} AND old_title='{$tt}'" .
 		"AND (old_user <> {$uid} OR old_user_text <> '{$ut}')" .
 		'ORDER BY inverse_timestamp LIMIT 1';
