@@ -38,6 +38,7 @@ a.printable { text-decoration: underline; }
 a.stub { color:#772233; text-decoration:none; }
 body { margin: 0px; padding: 4px; color: black; }
 form.inline { display: inline; }
+textarea { overflow: auto; }
 
 
 h1.pagetitle { padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0;
