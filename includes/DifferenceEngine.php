@@ -69,10 +69,10 @@ class DifferenceEngine {
 		  htmlspecialchars( $ntext ) ) );
 
 		$wgOut->addHTML( "<table border='0' width='98%'
-cellpadding='0' cellspacing='4px' class='special'><tr>
-<td colspan='2' width='50%' align='center' bgcolor='#cccccc'>
+cellpadding='0' cellspacing='4px' class='diff'><tr>
+<td colspan='2' width='50%' align='center' class='diff-otitle'>
 {$otitle}</td>
-<td colspan='2' width='50%' align='center' bgcolor='#cccccc'>
+<td colspan='2' width='50%' align='center' class='diff-ntitle'>
 {$ntitle}</td>
 </tr>\n" );
 
@@ -1104,12 +1104,12 @@ class TableDiffFormatter extends DiffFormatter
 	}
 
 	function addedLine( $line ) {
-		return "<td>+</td><td bgcolor='#ccffcc'>" .
+		return "<td>+</td><td class='diff-addedline'>" .
 		  "<small>{$line}</small></td>";
 	}
 
 	function deletedLine( $line ) {
-		return "<td>-</td><td bgcolor='#ffffaa'>" .
+		return "<td>-</td><td class='diff-deletedline'" .
 		  "<small>{$line}</small></td>";
 	}
 
@@ -1118,7 +1118,7 @@ class TableDiffFormatter extends DiffFormatter
 	}
 
 	function contextLine( $line ) {
-		return "<td> </td><td bgcolor='white'><small>{$line}</small></td>";
+		return "<td> </td><td class='diff-context'><small>{$line}</small></td>";
 	}
     
     function _added($lines) {
