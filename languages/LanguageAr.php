@@ -2,10 +2,49 @@
 # See language.doc
 include_once("LanguageUtf8.php");
 
+$wgNamespaceNamesAr = array(
+	"-2" => "ملف",
+	"-1" => "خاص",
+	"0" => "",
+	"1" => "نقاش",
+	"2" => "مستخدم",
+	"3" => "نقاش_المستخدم",
+	"4" => "ويكيبيديا",
+	"5" => "ويكيبيديا_نقاش",
+	"6" => "صورة",
+	"7" => "نقاش_الصورة",
+	"8" => "MediaWiki",
+	"9" => "MediaWiki_talk",
+);
+
 class LanguageAr extends LanguageUtf8 {
 	# TODO: TRANSLATION!
 
 	# Inherit everything except...
+
+	function getNamespaces()
+	{
+		global $wgNamespaceNamesAr;
+		return $wgNamespaceNamesAr;
+	}
+
+
+	function getNsText( $index )
+	{
+		global $wgNamespaceNamesAr;
+		return $wgNamespaceNamesAr[$index];
+	}
+
+	function getNsIndex( $text ) 
+	{
+		global $wgNamespaceNamesAr;
+
+		foreach ( $wgNamespaceNamesAr as $i => $n ) 
+		{
+			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+		}
+		return LanguageUtf8::getNsIndex( $text );
+	}
 
 	function isRTL() { return true; }
 
