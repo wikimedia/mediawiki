@@ -442,4 +442,7 @@ $wgExtraRandompageSQL = false;
 
 # Allow the "info" action, very inefficient at the moment
 $wgAllowPageInfo = false;
+
+# Maximum indent level of toc.
+$wgMaxTocLevel = 999;
 ?>
