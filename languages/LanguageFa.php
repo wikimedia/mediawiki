@@ -736,6 +736,7 @@ you may be blocked from uploading if you abuse the system.",
 "imghistory"	=> "تاریخچه‌ی تصویر",
 "revertimg"		=> "برگرد",
 "deleteimg"		=> "حذف",
+"deleteimgcompletely"		=> "حذف",
 "imghistlegend" => "شرح: (فعلی) = این تصویر فعلی است، (حذف) = این
 نسخه‌ی قدیمی حذف شود، (برگرد) = برگرداندن به این نسخه‌ی قدیمی.
 <br><i>برای دیدن تصویر بار شده در تاریخ مشخص، روی تاریخ کلیک کنید</i>.",

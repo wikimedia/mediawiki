@@ -644,6 +644,7 @@ Por favor, siga este link : ($2) para ir �  página de descrição e preencha-
 "imghistory"    => "Histórico das imagens",
 "revertimg"     => "rev",
 "deleteimg"     => "del",
+"deleteimgcompletely"     => "del",
 "imghistlegend" => "Legenda: (cur) = esta é a imagem atual, (del) = deletar
 esta versão antiga, (rev) = reverter para esta versão antiga.
 <br><i>Clique em data para ver das imagens carregadas nesta data</i>.",

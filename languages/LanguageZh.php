@@ -632,6 +632,7 @@ wfLocalUrlE( "Wikipedia:上载纪录" ) . "\">上载纪录</a>内。
 "imghistory"	=> "图像历史",
 "revertimg"		=> "复",
 "deleteimg"		=> "删",
+"deleteimgcompletely"		=> "删",
 "imghistlegend" => "egend: (现) = 目前的图像，(删) = 删除旧版本，
 (复) = 恢复到旧版本。
 <br><i>点击日期查看当天上载的图像</i>.",

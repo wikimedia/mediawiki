@@ -704,6 +704,7 @@ gemacht wurde und besondere Angaben zum Copyright, falls notwendig.",
 "imghistory"	=> "Bild-Versionen",
 "revertimg"		=> "Zurücksetzen",
 "deleteimg"		=> "Löschen",
+"deleteimgcompletely"		=> "Löschen",
 "imghistlegend" => "Legende: (cur) = Dies ist das aktuelle Bild, (Löschen) = lösche
 diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.",
 "imagelinks"	=> "Bildverweise",

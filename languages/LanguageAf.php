@@ -562,6 +562,7 @@ Volg asseblief hierdie skakel: ($2) na die beskrywingsbladsy en vul inligting in
 "imghistory"	=> "Prentgeskiedenis",
 "revertimg"		=> "gaan terug",
 "deleteimg"		=> "skrap",
+"deleteimgcompletely"		=> "skrap",
 "imghistlegend" => "Legende: (huidig) = dit is die huidige prent, (skrap) = skrap hierdie ou weergawe, (gaan terug) = gaan terug na hierdie ou weergawe.
 <br><i>Kliek die datum om die prent te sien wat op daardie datum gelaai is</i>.",
 "imagelinks"	=> "Prentskakels",

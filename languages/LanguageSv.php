@@ -644,6 +644,7 @@ när den skapades och vem som gjort den och allt annat du vet om den.",
 "imghistory"            => "Bildhistoria",
 "revertimg"             => "återgå",
 "deleteimg"             => "radera",
+"deleteimgcompletely"             => "radera",
 "imghistlegend"         => "Legend: (nuvarande) = detta är den nuvarande bilden, 
 (ta bort) = ta bort den gamla version, (återgå) = återgå till en gammal version.
 <br><i>Klicka på ett datum för att se bilden som laddades upp den dagen</i>.", //"

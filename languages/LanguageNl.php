@@ -581,6 +581,7 @@ Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. O
 "imghistory" => "Geschiedenis van de afbeelding",
 "revertimg"  => "rev",
 "deleteimg"  => "verw",
+"deleteimgcompletely"  => "verw",
 "imghistlegend" => "Verklaring: (cur)= huidige afbeelding, (verw) = verwijder de oude versie, (rev) = breng oude versie terug.<br>
 <i>Klik op de datum om de afbeeldingen die ge-upload zijn op die datum te zien</i>.",
 "imagelinks" => "Afbeeldingsverwijzingen",

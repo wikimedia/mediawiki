@@ -710,6 +710,7 @@ más információ amit meg tudsz adni.",
 "imghistory"	=> "Kép története",
 "revertimg"		=> "régi",
 "deleteimg"		=> "töröl",
+"deleteimgcompletely"		=> "töröl",
 "imghistlegend" => "Jelmagyarázat: (akt) = ez az aktuális kép,
 (töröl) = ezen régi változat törlése,
 (régi) = visszaállás erre a régi változatra.

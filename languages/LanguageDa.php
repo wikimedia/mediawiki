@@ -731,6 +731,7 @@ og af hvem, og andre ting du ved om filen.",
 "imghistory"	=> "Billedhistorik",
 "revertimg"		=> "gendan",
 "deleteimg"		=> "slet",
+"deleteimgcompletely"		=> "slet",
 "imghistlegend" => "Forklaring: (nuværende) = dette er det nuværende billede, 
 (slet) = slet denne gamle version, (gendan) = gendan en gammel version.
 <br><i>Klik på en dato for at se billedet, som er lagt op den dag</i>.",

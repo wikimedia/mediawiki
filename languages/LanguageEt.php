@@ -581,6 +581,7 @@ created and by whom, and anything else you may know about it.",
 "imghistory"	=> "Pildi ajalugu",
 "revertimg"		=> "taas",
 "deleteimg"		=> "del",
+"deleteimgcompletely"		=> "del",
 "imghistlegend" => "Legend: (viim) = see on pildi viimane versioon, (del) = kustuta
 see vana versioon, (taas) = taasta see vana versioon.
 <br><i>Click on date to see image uploaded on that date</i>.",

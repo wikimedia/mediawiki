@@ -692,6 +692,7 @@ Vă rugăm să vizitaţi această legătură: ($2) pentru a descrie fişierul ş
 "imghistory"	=> "Istoria imaginii",
 "revertimg"		=> "rev",
 "deleteimg"		=> "şterg",
+"deleteimgcompletely"		=> "şterg",
 "imghistlegend" => "Legend: (actuală) = versiunea curentă a imaginii, (şterg) = şterge această versiune veche, (rev) = revino la această versiune veche.
 <br><i>Apăsaţi pe dată pentru a vedea versiunea trimisă la data respectivă</i>.",
 "imagelinks"	=> "Legăturile imaginii",

@@ -673,6 +673,7 @@ creado y por quién, y cualquier otra cosa que puedas saber al respecto.",
 "imghistory"	=> "Historia de la imagen",
 "revertimg"		=> "rev",
 "deleteimg"		=> "borr",
+"deleteimgcompletely"		=> "borr",
 "imghistlegend" => "Simbología: (act) = esta es la imagen actual, (borr) = borrar
 esta versión antigua, (rev) = revertir a esta versión antigua.
 <br><i>Click en la fecha para ver imagen subida en esa fecha</i>.",

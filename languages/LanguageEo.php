@@ -663,6 +663,7 @@ kiam ĝi estis kreita, kaj kiu kreis ĝin; kaj ion ajn, kion vi scias pri ĝi.",
 "imghistory"	=> "Historio de alŝutoj",
 "revertimg"		=> "res",
 "deleteimg"		=> "for",
+"deleteimgcompletely"		=> "for",
 "imghistlegend" => "(nun) = ĉi tiu estas la nuna versio de la dosiero, (for) = forigu
 ĉi tiun malnovan version, (res) = restarigu ĉi tiun malnovan version.
 <br /><i>Por vidi la dosieron laŭdate, alklaku la daton</i>.",

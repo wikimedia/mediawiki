@@ -680,6 +680,7 @@ tjetër që na duhet të dimë për të.",
 "imghistory"	=> "Historia e skedarit",
 "revertimg"		=> "ktheje",
 "deleteimg"		=> "gris",
+"deleteimgcompletely"		=> "gris",
 "imghistlegend" => "Legjendë: (tani) = ky është skedari i tanishëm, (gris) = grise
 këtë version të vjetër, (ktheje) = ktheje në këtë version të vjetër.
 <br><i>Shtyp datën për të parë skedarin e dhënë në atë ditë</i>.",

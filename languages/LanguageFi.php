@@ -557,6 +557,7 @@ mistä se on peräisin, milloin se on luotu, kuka sen loi ja mahdollisesti muita
 "imghistory"	=> "Kuvan historia",
 "revertimg"		=> "palauta",
 "deleteimg"		=> "poista",
+"deleteimgcompletely"		=> "poista",
 "imghistlegend" => "Merkinnät: (nyk.) = nykyinen kuva, (poista) = poista 
 tämä vanha versio, (palauta) = palauta kuva tähän vanhaan versioon.
 <br><i>Klikkaa päiväystä nähdäksesi silloin tallennettu kuva</i>.",

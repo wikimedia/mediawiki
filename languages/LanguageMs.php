@@ -643,6 +643,7 @@ oleh siapa, dan lain-lain yang anda ketahui.",
 "imghistory"	=> "Sejarah imej",  #"Image history",
 "revertimg"		=> "rev",
 "deleteimg"		=> "del",
+"deleteimgcompletely"		=> "del",
 "imghistlegend" => "Legend: (cur) = this is the current image, (del) = delete
 this old version, (rev) = revert to this old version.
 <br><i>Click on date to see image uploaded on that date</i>.",
