@@ -229,7 +229,9 @@ class DifferenceEngine {
 			# input text to be HTML-escaped already
 			$otext = str_replace( "\r\n", "\n", htmlspecialchars ( $otext ) );
 			$ntext = str_replace( "\r\n", "\n", htmlspecialchars ( $ntext ) );
-			dl('php_wikidiff.so');
+			if( !function_exists( 'wikidiff_do_diff' ) ) {
+				dl('php_wikidiff.so');
+			}
 			$out .= wikidiff_do_diff( $otext, $ntext, 2 );
 		} else {
 			$ota = explode( "\n", str_replace( "\r\n", "\n", $otext ) );
