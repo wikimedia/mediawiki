@@ -96,8 +96,16 @@ INSERT INTO interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('ZWiki','http://www.zwiki.org/$1',0),
 ('ReVo','http://purl.org/NET/voko/revo/art/$1.html',0),
 ('EcheI','http://www.ikso.net/cgi-bin/wiki.pl?$1',0),
+('EcxeI','http://www.ikso.net/cgi-bin/wiki.pl?$1',0),
 ('EĉeI','http://www.ikso.net/cgi-bin/wiki.pl?$1',0),
-('JEFO','http://esperanto.jeunes.free.fr/vikio/index.php?$1',0),
+('JEFO','http://www.esperanto-jeunes.org/vikio/index.php?$1',0),
 ('PMEG','http://www.bertilow.com/pmeg/$1.php',0),
-('EnciclopediaLibre','http://enciclopedia.us.es/wiki.phtml?title=$1',0);
+('TEJO','http://www.tejo.org/vikio/$1',0),
+('USEJ','http://www.tejo.org/usej/$1',0),
+('UEA','http://www.tejo.org/uea/$1',0),
+('Turismo','http://www.tejo.org/turismo/$1',0),
+('GEJ','http://www.esperanto.de/cgi-bin/aktivikio/wiki.pl?$1',0),
+('BEMI','http://bemi.free.fr/vikio/index.php?$1',0),
+('EnciclopediaLibre','http://enciclopedia.us.es/wiki.phtml?title=$1',0),
+('WikiBooks','http://wikibooks.org/wiki/$1',0);
 
