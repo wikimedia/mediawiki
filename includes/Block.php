@@ -8,7 +8,7 @@
 #
 # To use delete(), you only need to fill $mAddress
 
-# Globals used: $wgIPBlockCache, $wgAutoblockExpiry
+# Globals used: $wgBlockCache, $wgAutoblockExpiry
 
 class Block
 {
