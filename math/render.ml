@@ -8,12 +8,10 @@ let render tmppath finalpath outtex md5 =
     let tmpprefix = (tmppath^"/"^(string_of_int (Unix.getpid ()))^"_"^md5) in
     let unlink_all () =
       begin
-(*
 	Sys.remove (tmpprefix ^ ".dvi");
 	Sys.remove (tmpprefix ^ ".aux");
 	Sys.remove (tmpprefix ^ ".log");
         Sys.remove (tmpprefix ^ ".tex")
-*)
       end in
     let f = (Util.open_out_unless_exists (tmpprefix ^ ".tex")) in
       begin
