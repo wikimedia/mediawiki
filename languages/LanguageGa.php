@@ -98,21 +98,6 @@ Sourceforge (when that gets added.)
 
 # Different spellings of days  (with Dé) may be needed for some uses
 
-/* private */ $wgWeekdayNamesGa = array(
-    "Domhnach", "Luan", "Máirt", "Céadaoin", "Déardaoin",
-    "Aoine", "Satharn"
-);
-
-/* private */ $wgMonthNamesGa = array(
-    "Eanáir", "Feabhra", "Márta", "Aibreán", "Bealtaine", "Meitheamh",
-    "Iúil", "Lúnasa", "Meán Fómhair", "Deireadh Fómhair", "Mí na Samhna",
-    "Mí na Nollag"
-);
-
-/* private */ $wgMonthAbbreviationsGa = array(
-    "Ean", "Fea", "Már", "Aib", "Bea", "Mei", "Iúi", "Lún",
-    "Mea", "Dei", "Samh", "Nol"
-);
 
 # The following exist for the purpose of being translated:
 
@@ -205,6 +190,40 @@ Sourceforge (when that gets added.)
 # the regex in MagicWord::initRegex
 
 /* private */ $wgAllMessagesGa = array(
+# Dates
+#
+'sunday' => 'Domhnach',
+'monday' => 'Luan',
+'tuesday' => 'Máirt',
+'wednesday' => 'Céadaoin',
+'thursday' => 'Déardaoin',
+'friday' => 'Aoine',
+'saturday' => 'Satharn',
+'january' => 'Eanáir',
+'february' => 'Feabhra',
+'march' => 'Márta',
+'april' => 'Aibreán',
+'may_long' => 'Bealtaine',
+'june' => 'Meitheamh',
+'july' => 'Iúil',
+'august' => 'Lúnasa',
+'september' => 'Meán Fómhair',
+'october' => 'Deireadh Fómhair',
+'november' => 'Mí na Samhna',
+'december' => 'Mí na Nollag',
+'jan' => 'Ean',
+'feb' => 'Fea',
+'mar' => 'Már',
+'apr' => 'Aib',
+'may' => 'Bea',
+'jun' => 'Mei',
+'jul' => 'Iúi',
+'aug' => 'Lún',
+'sep' => 'Mea',
+'oct' => 'Dei',
+'nov' => 'Samh',
+'dec' => 'Nol',
+
 
 # Bits of text used by many pages:
 #
@@ -1180,24 +1199,6 @@ class LanguageGa extends LanguageUtf8 {
     function getUserToggles() {
         global $wgUserTogglesGa;
         return $wgUserTogglesGa;
-    }
-
-    function getMonthName( $key )
-    {
-        global $wgMonthNamesGa;
-        return $wgMonthNamesGa[$key-1];
-    }
-
-    function getMonthAbbreviation( $key )
-    {
-        global $wgMonthAbbreviationsGa;
-        return $wgMonthAbbreviationsGa[$key-1];
-    }
-
-    function getWeekdayName( $key )
-    {
-        global $wgWeekdayNamesGa;
-        return $wgWeekdayNamesGa[$key-1];
     }
 
     function getValidSpecialPages()

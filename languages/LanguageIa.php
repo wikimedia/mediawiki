@@ -68,21 +68,6 @@
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesIa = array(
-	"dominica", "lunedi", "martedi", "mercuridi", "jovedi",
-	"venerdi", "sabbato"
-);
-
-/* private */ $wgMonthNamesIa = array(
-	"januario", "februario", "martio", "april", "maio", "junio",
-	"julio", "augusto", "septembre", "octobre", "novembre",
-	"decembre"
-);
-
-/* private */ $wgMonthAbbreviationsIa = array(
-	"jan", "feb", "mar", "apr", "mai", "jun", "jul", "aug",
-	"sep", "oct", "nov", "dec"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -136,6 +121,42 @@
 );
 
 /* private */ $wgAllMessagesIa = array(
+
+# dates
+#
+
+'sunday' => 'dominica',
+'monday' => 'lunedi',
+'tuesday' => 'martedi',
+'wednesday' => 'mercuridi',
+'thursday' => 'jovedi',
+'friday' => 'venerdi',
+'saturday' => 'sabbato',
+'january' => 'januario',
+'february' => 'februario',
+'march' => 'martio',
+'april' => 'april',
+'may_long' => 'maio',
+'june' => 'junio',
+'july' => 'julio',
+'august' => 'augusto',
+'september' => 'septembre',
+'october' => 'octobre',
+'november' => 'novembre',
+'december' => 'decembre',
+'jan' => 'jan',
+'feb' => 'feb',
+'mar' => 'mar',
+'apr' => 'apr',
+'may' => 'mai',
+'jun' => 'jun',
+'jul' => 'jul',
+'aug' => 'aug',
+'sep' => 'sep',
+'oct' => 'oct',
+'nov' => 'nov',
+'dec' => 'dec',
+
 
 # Bits of text used by many pages:
 #
@@ -964,24 +985,6 @@ class LanguageIa extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesIa;
 		return $wgUserTogglesIa;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesIa;
-		return $wgMonthNamesIa[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsIa;
-		return $wgMonthAbbreviationsIa[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesIa;
-		return $wgWeekdayNamesIa[$key-1];
 	}
 
 	function date( $ts, $adj = false )

@@ -68,24 +68,10 @@ require_once( "LanguageUtf8.php" );
 	"nocache" => "ページをキャッシュしない"
 );
 
-/* private */ $wgWeekdayNamesJa = array(
-	"日曜日", "月曜日", "火曜日", "水曜日", "木曜日",
-	"金曜日", "土曜日"
-);
-
 /* private */ $wgWeekdayAbbreviationsJa = array(
 	"日", "月", "火", "水", "木", "金", "土"
 );
 
-/* private */ $wgMonthNamesJa = array(
-	"1月", "2月", "3月", "4月", "5月", "6月",
-	"7月", "8月", "9月", "10月", "11月", "12月"
-);
-
-/* private */ $wgMonthAbbreviationsJa = array(
-	"1月", "2月", "3月", "4月", "5月", "6月",
-	"7月", "8月", "9月", "10月", "11月", "12月"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -141,6 +127,39 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesJa = array(
+# Dates
+
+'sunday' => "日曜日",
+'monday' => "月曜日",
+'tuesday' => "火曜日",
+'wednesday' => "水曜日",
+'thursday' => "木曜日",
+'friday' => "金曜日",
+'saturday' => "土曜日",
+'january' => "1月",
+'february' => "2月",
+'march' => "3月",
+'april' => "4月",
+'may_long' => "5月",
+'june' => "6月",
+'july' => "7月",
+'august' => "8月",
+'september' => "9月",
+'october' => "10月",
+'november' => "11月",
+'december' => "12月",
+'jan' => "1月",
+'feb' => "2月",
+'mar' => "3月",
+'apr' => "4月",
+'may' => "5月",
+'jun' => "6月",
+'jul' => "7月",
+'aug' => "8月",
+'sep' => "9月",
+'oct' => "10月",
+'nov' => "11月",
+'dec' => "12月",
 
 # Bits of text used by many pages:
 #
@@ -956,24 +975,6 @@ class LanguageJa extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesJa;
 		return $wgUserTogglesJa;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesJa;
-		return $wgMonthNamesJa[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsJa;
-		return $wgMonthAbbreviationsJa[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesJa;
-		return $wgWeekdayNamesJa[$key-1];
 	}
 
 	# Inherit default userAdjust()

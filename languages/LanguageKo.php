@@ -73,10 +73,6 @@ require_once( "LanguageUtf8.php" );
 	"Aladdin.co.kr" => "http://www.aladdin.co.kr/catalog/book.asp?ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesKo = array(
-	"일요일", "월요일", "화요일", "수요일", "목요일",
-	"금요일", "토요일"
-);
 
 
 # (Okay, I think I got it right now. This can be adjusted
@@ -93,16 +89,6 @@ require_once( "LanguageUtf8.php" );
 	"金", "土"
 );
 
-/* private */ $wgMonthNamesKo = array(
-	"1월", "2월", "3월", "4월", "5월", "6월",
-	"7월", "8월", "9월", "10월", "11월",
-	"12월"
-);
-
-/* private */ $wgMonthAbbreviationsKo = array(
-	"1", "2", "3", "4", "5", "6", "7", "8",
-	 "9", "10", "11",	"12"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -164,6 +150,39 @@ require_once( "LanguageUtf8.php" );
 
 /* private */ $wgAllMessagesKo = array(
 
+# Dates
+
+'sunday' => "일요일",
+'monday' => "월요일",
+'tuesday' => "화요일",
+'wednesday' => "수요일",
+'thursday' => "목요일",
+'friday' => "금요일",
+'saturday' => "토요일",
+'january' => "1월",
+'february' => "2월",
+'march' => "3월",
+'april' => "4월",
+'may_long' => "5월",
+'june' => "6월",
+'july' => "7월",
+'august' => "8월",
+'september' => "9월",
+'october' => "10월",
+'november' => "11월",
+'december' => "12월",
+'jan' => "1",
+'feb' => "2",
+'mar' => "3",
+'apr' => "4",
+'may' => "5",
+'jun' => "6",
+'jul' => "7",
+'aug' => "8",
+'sep' => "9",
+'oct' => "10",
+'nov' => "11",
+'dec' => "12",
 # Bits of text used by many pages:
 #
 "mainpage"		=> "대문",
@@ -917,24 +936,6 @@ class LanguageKo extends LanguageUtf8 {
 		return $wgUserTogglesKo;
 	}
 
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesKo;
-		return $wgMonthNamesKo[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsKo;
-		return $wgMonthAbbreviationsKo[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesKo;
-		return $wgWeekdayNamesKo[$key-1];
-	}
-
 	# Inherit default userAdjust()
  
 	function date( $ts, $adj = false )
@@ -942,13 +943,13 @@ class LanguageKo extends LanguageUtf8 {
 		global $wgWeekdayAbbreviationsKo;
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-        # This is horribly inefficient; I need to rework this
-        $x = getdate(mktime(( (int)substr( $ts, 8, 2) ) + $diff,
-		  (int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
-		  (int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
-          (int)substr( $ts, 0, 4 )));
-        
-        $d = substr( $ts, 0, 4 ) . "년 " .
+		# This is horribly inefficient; I need to rework this
+		$x = getdate(mktime(( (int)substr( $ts, 8, 2) ) + $diff,
+			(int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
+			(int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
+			(int)substr( $ts, 0, 4 )));
+	
+		$d = substr( $ts, 0, 4 ) . "년 " .
 		  $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . "월 " .
 		  (0 + substr( $ts, 6, 2 )) . "일 " .
 		  "(" . $wgWeekdayAbbreviationsKo[$x["wday"]] . ")";

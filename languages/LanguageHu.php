@@ -82,21 +82,6 @@ require_once("LanguageUtf8.php");
 
 /* Language names should be the native names. Inherit common array from Language.php */
 
-/* private */ $wgWeekdayNamesHu = array(
-	"vasárnap", "hétfő", "kedd", "szerda", "csütörtök",
-	"péntek", "szombat"
-);
-
-/* private */ $wgMonthNamesHu = array(
-	"január", "február", "március", "április", "május", "június",
-	"július", "augusztus", "szeptember", "október", "november",
-	"december"
-);
-
-/* private */ $wgMonthAbbreviationsHu = array(
-	"Jan", "Feb", "Már", "Ápr", "Máj", "Jún", "Júl", "Aug",
-	"Sep", "Okt", "Nov", "Dec"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -151,6 +136,41 @@ require_once("LanguageUtf8.php");
 );
 
 /* private */ $wgAllMessagesHu = array(
+
+# Dates
+#
+
+'sunday' => "vasárnap",
+'monday' => "hétfő",
+'tuesday' => "kedd",
+'wednesday' => "szerda",
+'thursday' => "csütörtök",
+'friday' => "péntek",
+'saturday' => "szombat",
+'january' => "január",
+'february' => "február",
+'march' => "március",
+'april' => "április",
+'may_long' => "május",
+'june' => "június",
+'july' => "július",
+'august' => "augusztus",
+'september' => "szeptember",
+'october' => "október",
+'november' => "november",
+'december' => "december",
+'jan' => "Jan",
+'feb' => "Feb",
+'mar' => "Már",
+'apr' => "Ápr",
+'may' => "Máj",
+'jun' => "Jún",
+'jul' => "Júl",
+'aug' => "Aug",
+'sep' => "Sep",
+'oct' => "Okt",
+'nov' => "Nov",
+'dec' => "Dec",
 
 # Bits of text used by many pages:
 #
@@ -1053,7 +1073,7 @@ rendszerbe való importálásra, átalakításra vagy a saját szórakoztatásod
 # Namespace 8 related
 
 "allmessages"	=> "All_messages",
-"allmessagestext"	=> "Ez a MediaWiki: névtérben elérhető összes üzenet listája"
+"allmessagestext"	=> "Ez a MediaWiki: névtérben elérhető összes üzenet listája",
 
 # Math
 
@@ -1113,26 +1133,6 @@ class LanguageHu extends LanguageUtf8 {
 		return $wgUserTogglesHu;
 	}
 	
-	/* inherit common getLanguageNames() */
-	
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesHu;
-		return $wgMonthNamesHu[$key-1];
-	}
-	
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsHu;
-		return $wgMonthAbbreviationsHu[$key-1];
-	}
-	
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesHu;
-		return $wgWeekdayNamesHu[$key-1];
-	}
-	 
 	function getValidSpecialPages()
 	{
 		global $wgValidSpecialPagesHu;

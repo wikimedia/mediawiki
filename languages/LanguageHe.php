@@ -77,21 +77,6 @@ require_once("LanguageUtf8.php");
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesHe = array(
-	"ראשון", "שני", "שלישי", "רביעי", "חמישי",
-	"שישי", "שבת"
-);
-
-/* private */ $wgMonthNamesHe = array(
-	"ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני",
-	"יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר",
-	"דצמבר"
-);
-
-/* private */ $wgMonthAbbreviationsHe = array(
-	"ינו'", "פבר'", "מרץ", "אפר'", "מאי", "יוני", "יולי", "אוג'",
-	"ספט'", "אוק'", "נוב'", "דצמ'"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -145,6 +130,40 @@ require_once("LanguageUtf8.php");
 
 /* private */ $wgAllMessagesHe = array(
 
+# Dates
+#
+
+'sunday' => "ראשון",
+'monday' => "שני",
+'tuesday' => "שלישי",
+'wednesday' => "רביעי",
+'thursday' => "חמישי",
+'friday' => "שישי",
+'saturday' => "שבת",
+'january' => "ינואר",
+'february' => "פברואר",
+'march' => "מרץ",
+'april' => "אפריל",
+'may_long' => "מאי",
+'june' => "יוני",
+'july' => "יולי",
+'august' => "אוגוסט",
+'september' => "ספטמבר",
+'october' => "אוקטובר",
+'november' => "נובמבר",
+'december' => "דצמבר",
+'jan' => "ינו'",
+'feb' => "פבר'",
+'mar' => "מרץ",
+'apr' => "אפר'",
+'may' => "מאי",
+'jun' => "יוני",
+'jul' => "יולי",
+'aug' => "אוג'",
+'sep' => "ספט'",
+'oct' => "אוק'",
+'nov' => "נוב'",
+'dec' => "דצמ'",
 # Bits of text used by many pages:
 #
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
@@ -833,24 +852,6 @@ class LanguageHe extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesHe;
 		return $wgUserTogglesHe;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesHe;
-		return $wgMonthNamesHe[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsHe;
-		return $wgMonthAbbreviationsHe[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesHe;
-		return $wgWeekdayNamesHe[$key-1];
 	}
 
 	function getValidSpecialPages()
