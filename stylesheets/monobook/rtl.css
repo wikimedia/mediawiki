@@ -57,7 +57,6 @@ html>body .portlet {
 }
 
 /* Fix alignment */
-#catlinks,
 .documentByLine,
 .portletDetails,
 .portletMore,
@@ -69,7 +68,6 @@ div div.thumbcaption {
 	text-align: right;
 }
 
-#catlinks,
 div.magnify,
 #div.townBox,
 #p-logo {

@@ -26,7 +26,6 @@
 	  <a name="top" id="contentTop"></a>
 	  <h1 class="firstHeading" tal:content="title">Leonardo da Vinci</h1>
 	  <div id="bodyContent">
-	    <div tal:condition="catlinks" id="catlinks" tal:content="structure catlinks"></div>
 	    <h3 id="siteSub" i18n:translate="string:fromwikipedia">From Wikipedia, the free encyclopedia.</h3>
 	    <div id="contentSub" tal:content="structure subtitle"></div>
 	    <div id="contentSub" tal:condition="undelete" tal:content="structure undelete"></div>
@@ -39,6 +38,7 @@
 
 	    ${bodytext}
 
+	    <div tal:condition="catlinks" id="catlinks" tal:content="structure catlinks"></div>
 	    <!-- end content -->
 	    <div class="visualClear"></div>
 	  </div>
@@ -175,7 +175,6 @@
 	  <li id="f-disclaimer" tal:condition="disclaimer">${disclaimer}</li>
 	</ul>
       </div>
-      <div id="colophon"></div>
     </div>
     ${reporttime}
   </body>
