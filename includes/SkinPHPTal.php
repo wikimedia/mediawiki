@@ -117,6 +117,8 @@
 			$tpl->setRef( "stylepath", &$wgStyleSheetPath );
 			$tpl->setRef( "logopath", &$wgLogo );
 			$tpl->setRef( "lang", &$wgLanguageCode );
+			$tpl->set( "dir", $wgLang->isRTL() ? "rtl" : "ltr" );
+			$tpl->set( "rtl", $wgLang->isRTL() );
 			$tpl->set( "langname", $wgLang->getLanguageName( $wgLanguageCode ) );
 			$tpl->setRef( "username", &$this->username );
 			$tpl->setRef( "userpage", &$this->userpage);

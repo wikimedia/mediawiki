@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${lang}" lang="${lang}">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${lang}" lang="${lang}" dir="${dir}">
   <head>
     <meta http-equiv="Content-Type" content="${mimetype}; charset=${charset}" />
 	${headlinks}
@@ -11,6 +11,11 @@
       @import url(${stylepath}/${skinname}/main.css);
       /* custom css, could be either a pref or a subpage of the the user page */
       /* @import url(${stylepath}/custom.css); */
+      /*]]>*/
+    </style>
+    <style tal:condition="rtl" type="text/css">
+      /*<![CDATA[*/
+      @import url(${stylepath}/rtl.css); */
       /*]]>*/
     </style>
     <link rel="stylesheet" type="text/css" media="print" href="${stylepath}/commonPrint.css" />

@@ -22,8 +22,12 @@ include_once("LanguageUtf8.php");
 	7	=> "שיחת_תמונה",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_talk",
-	10  => "Template",
-	11  => "Template_talk"
+	10	=> "Template",
+	11	=> "Template_talk",
+	12	=> "Help",
+	13	=> "Help_talk",
+	14	=> "Category",
+	15	=> "Category_talk",
 
 );
 
@@ -215,7 +219,7 @@ include_once("LanguageUtf8.php");
 "retrievedfrom" => "מקור: $1",
 "newmessages" => "יש לך $1",
 "newmessageslink" => "הודעות חדשות",
-
+"editsection" => "עריכה",
 
 # Main script and global functions
 #
