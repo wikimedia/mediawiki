@@ -168,6 +168,7 @@ class ConfigData {
 
 ?>
 
+<p><i>Please include all of the lines below when reporting installation problems.</i></p>
 
 <h2>Checking environment...</h2>
 <ul>

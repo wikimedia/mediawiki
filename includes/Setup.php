@@ -165,7 +165,13 @@ if( !$wgCommandLineMode && ( isset( $_COOKIE[ini_get("session.name")] ) || isset
 }
 
 $wgBlockCache = new BlockCache( true );
-$wgUser = User::loadFromSession();
+if( $wgCommandLineMode ) {
+	# Used for some maintenance scripts; user session cookies can screw things up
+	# when the database is in an in-between state.
+	$wgUser = new User();
+} else {
+	$wgUser = User::loadFromSession();
+}
 $wgDeferredUpdateList = array();
 $wgLinkCache = new LinkCache();
 $wgMagicWords = array();
