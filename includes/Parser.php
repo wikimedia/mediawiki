@@ -158,7 +158,11 @@ class Parser
 		$this->mOutputType = OT_HTML;
 
 		$stripState = NULL;
-		$text = $this->strip( $text, $this->mStripState );
+		global $fnord; $fnord = 1;
+		//$text = $this->strip( $text, $this->mStripState );
+		// VOODOO MAGIC FIX! Sometimes the above segfaults in PHP5.
+		$x =& $this->mStripState;
+		$text = $this->strip( $text, $x );
 
 		$text = $this->internalParse( $text, $linestart );
 		$text = $this->unstrip( $text, $this->mStripState );
@@ -2952,7 +2956,7 @@ class Parser
 		if ( !empty( $wgLinkHolders['namespaces'] ) ) {
 			wfProfileIn( $fname.'-check' );
 			$dbr =& wfGetDB( DB_SLAVE );
-			$cur = $dbr->tableName( 'cur' );
+			$page = $dbr->tableName( 'page' );
 			$sk = $wgUser->getSkin();
 			$threshold = $wgUser->getOption('stubthreshold');
 			
@@ -2981,14 +2985,19 @@ class Parser
 					# Not in the link cache, add it to the query
 					if ( !isset( $current ) ) {
 						$current = $val;
-						$query =  "SELECT cur_id, cur_namespace, cur_title";
+						$tables = $page;
+						$join = '';
+						$query =  "SELECT page_id, page_namespace, page_title";
 						if ( $threshold > 0 ) {
-							$query .= ", LENGTH(cur_text) AS cur_len, cur_is_redirect";
-						} 
-						$query .= " FROM $cur WHERE (cur_namespace=$val AND cur_title IN(";
+							$textTable = $dbr->tableName( 'text' );
+							$query .= ', LENGTH(old_text) AS page_len, page_is_redirect';
+							$tables .= ", $textTable";
+							$join = 'page_latest=old_id AND';
+						}
+						$query .= " FROM $tables WHERE $join (page_namespace=$val AND page_title IN(";
 					} elseif ( $current != $val ) {
 						$current = $val;
-						$query .= ")) OR (cur_namespace=$val AND cur_title IN(";
+						$query .= ")) OR (page_namespace=$val AND page_title IN(";
 					} else {
 						$query .= ', ';
 					}
@@ -3009,13 +3018,13 @@ class Parser
 				# 1 = known
 				# 2 = stub
 				while ( $s = $dbr->fetchObject($res) ) {
-					$title = Title::makeTitle( $s->cur_namespace, $s->cur_title );
+					$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 					$pdbk = $title->getPrefixedDBkey();
-					$wgLinkCache->addGoodLink( $s->cur_id, $pdbk );
+					$wgLinkCache->addGoodLink( $s->page_id, $pdbk );
 					
 					if ( $threshold >  0 ) {
-						$size = $s->cur_len;
-						if ( $s->cur_is_redirect || $s->cur_namespace != 0 || $length < $threshold ) {
+						$size = $s->page_len;
+						if ( $s->page_is_redirect || $s->page_namespace != 0 || $length < $threshold ) {
 							$colours[$pdbk] = 1;
 						} else {
 							$colours[$pdbk] = 2;

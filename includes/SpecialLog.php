@@ -59,9 +59,9 @@ class LogReader {
 	 * @private
 	 */
 	function setupQuery( $request ) {
-		$cur = $this->db->tableName( 'cur' );
+		$page = $this->db->tableName( 'page' );
 		$user = $this->db->tableName( 'user' );
-		$this->joinClauses = array( "LEFT OUTER JOIN $cur ON log_namespace=cur_namespace AND log_title=cur_title" );
+		$this->joinClauses = array( "LEFT OUTER JOIN $page ON log_namespace=page_namespace AND log_title=page_title" );
 		$this->whereClauses = array( 'user_id=log_user' );
 		
 		$this->limitType( $request->getVal( 'type' ) );
@@ -145,7 +145,7 @@ class LogReader {
 		$user = $this->db->tableName( 'user' );
 		$sql = "SELECT log_type, log_action, log_timestamp,
 			log_user, user_name,
-			log_namespace, log_title, cur_id,
+			log_namespace, log_title, page_id,
 			log_comment FROM $user, $logging ";
 		if( !empty( $this->joinClauses ) ) {
 			$sql .= implode( ',', $this->joinClauses );
@@ -250,7 +250,7 @@ class LogViewer {
 		$title = Title::makeTitle( $s->log_namespace, $s->log_title );
 		$user = Title::makeTitleSafe( NS_USER, $s->user_name );
 		$time = $wgLang->timeanddate( $s->log_timestamp );
-		if( $s->cur_id ) {
+		if( $s->page_id ) {
 			$titleLink = $this->skin->makeKnownLinkObj( $title );
 		} else {
 			$titleLink = $this->skin->makeBrokenLinkObj( $title );

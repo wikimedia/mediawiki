@@ -652,8 +652,8 @@ class Database {
 	 * $conds: a condition map, terms are ANDed together. 
 	 *   Items with numeric keys are taken to be literal conditions
 	 * Takes an array of selected variables, and a condition map, which is ANDed
-	 * e.g. selectRow( "cur", array( "cur_id" ), array( "cur_namespace" => 0, "cur_title" => "Astronomy" ) )
-	 *   would return an object where $obj->cur_id is the ID of the Astronomy article
+	 * e.g. selectRow( "page", array( "page_id" ), array( "page_namespace" => 0, "page_title" => "Astronomy" ) )
+	 *   would return an object where $obj->page_id is the ID of the Astronomy article
 	 *
 	 * @todo migrate documentation to phpdocumentor format
 	 */

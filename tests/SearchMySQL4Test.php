@@ -14,7 +14,7 @@ class SearchMySQL4Test extends SearchEngine_TestCase {
 		$GLOBALS['wgContLang'] = new LanguageUtf8;
 		$this->db =& buildTestDatabase(
 			'mysql4',
-			array( 'cur', 'searchindex' ) );
+			array( 'page', 'revision', 'text', 'searchindex' ) );
 		if( $this->db ) {
 			$this->insertSearchData();
 		}

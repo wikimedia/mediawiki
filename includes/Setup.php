@@ -77,7 +77,7 @@ require_once( 'ParserCache.php' );
 require_once( 'WebRequest.php' );
 require_once( 'LoadBalancer.php' );
 require_once( 'HistoryBlob.php' );
-	
+
 $wgRequest = new WebRequest();
 
 wfProfileOut( $fname.'-includes' );

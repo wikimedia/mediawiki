@@ -147,7 +147,7 @@ class LinkCache {
 				$options = array();
 			}
 
-			$id = $db->selectField( 'cur', 'cur_id', array( 'cur_namespace' => $ns, 'cur_title' => $t ), $fname, $options );
+			$id = $db->selectField( 'page', 'page_id', array( 'page_namespace' => $ns, 'page_title' => $t ), $fname, $options );
 			if ( !$id ) {
 				$id = 0;
 			}
@@ -192,16 +192,16 @@ class LinkCache {
 			$options = '';
 		}
 
-		$cur = $db->tableName( 'cur' );
+		$page = $db->tableName( 'page' );
 		$links = $db->tableName( 'links' );
 
-		$sql = "SELECT cur_id,cur_namespace,cur_title
-			FROM $cur,$links
-			WHERE cur_id=l_to AND l_from=$id $options";
+		$sql = "SELECT page_id,page_namespace,page_title
+			FROM $page,$links
+			WHERE page_id=l_to AND l_from=$id $options";
 		$res = $db->query( $sql, $fname );
 		while( $s = $db->fetchObject( $res ) ) {
-			$this->addGoodLink( $s->cur_id,
-				Title::makeName( $s->cur_namespace, $s->cur_title )
+			$this->addGoodLink( $s->page_id,
+				Title::makeName( $s->page_namespace, $s->page_title )
 				);
 		}
 		

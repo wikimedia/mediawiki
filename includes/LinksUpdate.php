@@ -272,7 +272,7 @@ class LinksUpdate {
 		$fname = 'LinksUpdate::fixBrokenLinks';
 
 		$dbw =& wfGetDB( DB_MASTER );
-		$cur = $dbw->tableName( 'cur' );
+		$page = $dbw->tableName( 'page' );
 		$links = $dbw->tableName( 'links' );
 		
 		$res = $dbw->select( 'brokenlinks', array( 'bl_from' ), array( 'bl_to' => $this->mTitle ), 
@@ -281,7 +281,7 @@ class LinksUpdate {
 
 		$arr=array();
 		$now = $dbw->timestamp();
-		$sql2 = "UPDATE $cur SET cur_touched='{$now}' WHERE cur_id IN (";
+		$sql2 = "UPDATE $page SET page_touched='{$now}' WHERE page_id IN (";
 		$first = true;
 		while ( $row = $dbw->fetchObject( $res ) ) {
 			if ( ! $first ) { $sql2 .= ","; }

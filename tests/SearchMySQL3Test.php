@@ -14,7 +14,7 @@ class SearchMySQL3Test extends SearchEngine_TestCase {
 		$GLOBALS['wgContLang'] = new LanguageUtf8;
 		$this->db =& buildTestDatabase(
 			'mysql3',
-			array( 'cur', 'searchindex' ) );
+			array( 'page', 'revision', 'text', 'searchindex' ) );
 		if( $this->db ) {
 			$this->insertSearchData();
 		}

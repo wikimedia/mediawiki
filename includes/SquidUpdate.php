@@ -33,15 +33,15 @@ class SquidUpdate {
 
 		$dbr =& wfGetDB( DB_SLAVE );
 		$links = $dbr->tableName( 'links' );
-		$cur = $dbr->tableName( 'cur' );
+		$page = $dbr->tableName( 'page' );
 
-		$sql = "SELECT cur_namespace,cur_title FROM $links,$cur WHERE l_to={$id} and l_from=cur_id" ;
+		$sql = "SELECT page_namespace,page_title FROM $links,$page WHERE l_to={$id} and l_from=page_id" ;
 		$res = $dbr->query( $sql, $fname ) ;
 		$blurlArr = $title->getSquidURLs();
 		if ( $dbr->numRows( $res ) <= $this->mMaxTitles ) {
 			while ( $BL = $dbr->fetchObject ( $res ) )
 			{
-				$tobj = Title::makeTitle( $BL->cur_namespace, $BL->cur_title ) ; 
+				$tobj = Title::makeTitle( $BL->page_namespace, $BL->page_title ) ; 
 				$blurlArr[] = $tobj->getInternalURL();
 			}
 		}
@@ -58,16 +58,16 @@ class SquidUpdate {
 		# Get a list of URLs linking to this (currently non-existent) page
 		$dbr =& wfGetDB( DB_SLAVE );
 		$brokenlinks = $dbr->tableName( 'brokenlinks' );
-		$cur = $dbr->tableName( 'cur' );
+		$page = $dbr->tableName( 'page' );
 		$encTitle = $dbr->addQuotes( $title->getPrefixedDBkey() );
 
-		$sql = "SELECT cur_namespace,cur_title FROM $brokenlinks,$cur WHERE bl_to={$encTitle} AND bl_from=cur_id";
+		$sql = "SELECT page_namespace,page_title FROM $brokenlinks,$cur WHERE bl_to={$encTitle} AND bl_from=page_id";
 		$res = $dbr->query( $sql, $fname );
 		$blurlArr = array();
 		if ( $dbr->numRows( $res ) <= $this->mMaxTitles ) {
 			while ( $BL = $dbr->fetchObject( $res ) )
 			{
-				$tobj = Title::makeTitle( $BL->cur_namespace, $BL->cur_title );
+				$tobj = Title::makeTitle( $BL->page_namespace, $BL->page_title );
 				$blurlArr[] = $tobj->getInternalURL();
 			}
 		}

@@ -170,7 +170,7 @@ class SearchEngine {
 		if ($namespaces == '') {
 			$namespaces = '0';
 		}
-		return 'AND cur_namespace IN (' . $namespaces . ')';
+		return 'AND page_namespace IN (' . $namespaces . ')';
 	}
 	
 	/**

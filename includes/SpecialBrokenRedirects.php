@@ -31,10 +31,10 @@ class BrokenRedirectsPage extends PageQueryPage {
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'cur', 'brokenlinks' ) );
+		extract( $dbr->tableNames( 'page', 'brokenlinks' ) );
 
-		$sql = "SELECT bl_to,cur_title FROM $brokenlinks,$cur " .
-		       "WHERE cur_is_redirect=1 AND cur_namespace=0 AND bl_from=cur_id ";
+		$sql = "SELECT bl_to,page_title FROM $brokenlinks,$page " .
+		       "WHERE page_is_redirect=1 AND page_namespace=0 AND bl_from=page_id ";
 		return $sql;
 	}
 
@@ -46,8 +46,8 @@ class BrokenRedirectsPage extends PageQueryPage {
 		global $wgContLang ;
 		
 		$ns = $wgContLang->getNamespaces() ; /* not used, why bother? */
-		$from = $skin->makeKnownLink( $result->cur_title ,'', 'redirect=no' );
-		$edit = $skin->makeBrokenLink( $result->cur_title , "(".wfMsg("qbedit").")" , 'redirect=no');
+		$from = $skin->makeKnownLink( $result->page_title ,'', 'redirect=no' );
+		$edit = $skin->makeBrokenLink( $result->page_title , "(".wfMsg("qbedit").")" , 'redirect=no');
 		$to   = $skin->makeBrokenLink( $result->bl_to );
 				
 		return "$from $edit => $to";

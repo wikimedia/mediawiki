@@ -22,22 +22,22 @@ class PopularPagesPage extends QueryPage {
 	}
 
 	function isExpensive() {
-		# cur_counter is not indexed
+		# page_counter is not indexed
 		return true;
 	}
 	function isSyndicated() { return false; }
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		$cur = $dbr->tableName( 'cur' );
+		$page = $dbr->tableName( 'page' );
 
 		return
 			"SELECT 'Popularpages' as type,
-			        cur_namespace as namespace,
-			        cur_title as title,
-			        cur_counter as value
-			FROM $cur
-			WHERE cur_namespace=0 AND cur_is_redirect=0";
+			        page_namespace as namespace,
+			        page_title as title,
+			        page_counter as value
+			FROM $page
+			WHERE page_namespace=0 AND page_is_redirect=0";
 	}
 
 	function formatResult( $skin, $result ) {

@@ -29,15 +29,17 @@ class AncientPagesPage extends QueryPage {
 
 	function getSQL() {
 		$db =& wfGetDB( DB_SLAVE );
-		$cur = $db->tableName( 'cur' );
-		$use_index = $db->useIndexClause( 'cur_timestamp' );
+		$page = $db->tableName( 'page' );
+		$revision = $db->tableName( 'revision' );
+		#$use_index = $db->useIndexClause( 'cur_timestamp' ); # FIXME! this is gone
 		return
 			"SELECT 'Ancientpages' as type,
-					cur_namespace as namespace,
-			        cur_title as title,
-			        cur_timestamp as value
-			FROM $cur $use_index
-			WHERE cur_namespace=0 AND cur_is_redirect=0";
+					page_namespace as namespace,
+			        page_title as title,
+			        rev_timestamp as value
+			FROM $page, $revision
+			WHERE page_namespace=0 AND page_is_redirect=0
+			  AND page_latest=rev_id";
 	}
 	
 	function sortDescending() {

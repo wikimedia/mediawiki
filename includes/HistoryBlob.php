@@ -155,7 +155,7 @@ class HistoryBlobStub
 	
 	function getText() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'old', array( 'old_flags', 'old_text' ), array( 'old_id' => $this->mOldId ) );
+		$row = $dbr->selectRow( 'text', array( 'old_flags', 'old_text' ), array( 'old_id' => $this->mOldId ) );
 		if ( !$row || $row->old_flags != 'object' ) {
 			return false;
 		}

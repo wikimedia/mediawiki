@@ -69,27 +69,41 @@ class CategoryPage extends Article {
 
 		# FIXME: add limits
 		$dbr =& wfGetDB( DB_SLAVE );
-		$cur = $dbr->tableName( 'cur' );
+		$page = $dbr->tableName( 'page' );
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 
 		$t = $dbr->strencode( $this->mTitle->getDBKey() );
-		$sql = "SELECT DISTINCT cur_title,cur_namespace FROM $cur,$categorylinks " .
-			"WHERE cl_to='$t' AND cl_from=cur_id AND cur_is_redirect=0 ORDER BY cl_sortkey" ;
+		$sql = "SELECT DISTINCT page_title, page_namespace FROM $page,$categorylinks " .
+				"WHERE cl_to='$t' AND cl_from=page_id AND page_is_redirect=0 ORDER BY cl_sortkey" ;
 		$res = $dbr->query( $sql, $fname ) ;
 		# For all pages that link to this category
 		while ( $x = $dbr->fetchObject ( $res ) )
 		{
-			$t = $wgContLang->getNsText ( $x->cur_namespace ) ;
+			$t = $wgContLang->getNsText ( $x->page_namespace ) ;
 			if ( $t != '' ) $t .= ':' ;
-			$t .= $x->cur_title ;
+			$t .= $x->page_title ;
 
-			if ( $x->cur_namespace == NS_CATEGORY ) {
-				array_push ( $children , $sk->makeLink ( $t ) ) ; # Subcategory
+			if ( $x->page_namespace == NS_CATEGORY ) {
+					array_push ( $children , $sk->makeLink ( $t ) ) ; # Subcategory
 			} else {
-				array_push ( $articles , $sk->makeLink ( $t ) ) ; # Page in this category
+					array_push ( $articles , $sk->makeLink ( $t ) ) ; # Page in this category
 			}
 		}
 		$dbr->freeResult ( $res ) ;
+
+		# Showing subcategories
+		if ( count ( $children ) > 0 ) {
+			$r .= '<h2>'.wfMsg('subcategories')."</h2>\n" ;
+			$r .= implode ( ', ' , $children ) ;
+		}
+
+		# Showing pages in this category
+		if ( count ( $articles ) > 0 ) {
+			$ti = $this->mTitle->getText() ;
+			$h =  wfMsg( 'category_header', $ti );
+			$r .= "<h2>$h</h2>\n" ;
+			$r .= implode ( ', ' , $articles ) ;
+		}
 
 		# Showing subcategories
 		if ( count ( $children ) > 0 ) {
@@ -128,21 +142,21 @@ class CategoryPage extends Article {
 
 		# FIXME: add limits
 		$dbr =& wfGetDB( DB_SLAVE );
-		$cur = $dbr->tableName( 'cur' );
+		$page = $dbr->tableName( 'page' );
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 
 		$t = $dbr->strencode( $this->mTitle->getDBKey() );
-		$sql = "SELECT DISTINCT cur_title,cur_namespace,cl_sortkey FROM " .
-			"$cur,$categorylinks WHERE cl_to='$t' AND cl_from=cur_id AND cur_is_redirect=0 ORDER BY cl_sortkey" ;
+		$sql = "SELECT DISTINCT page_title,page_namespace,cl_sortkey FROM " .
+				"$page,$categorylinks WHERE cl_to='$t' AND cl_from=page_id AND page_is_redirect ORDER BY cl_sortkey" ;
 		$res = $dbr->query ( $sql ) ;
 		while ( $x = $dbr->fetchObject ( $res ) )
 		{
-			$t = $ns = $wgContLang->getNsText ( $x->cur_namespace ) ;
+			$t = $ns = $wgContLang->getNsText ( $x->page_namespace ) ;
 			if ( $t != '' ) $t .= ':' ;
-			$t .= $x->cur_title ;
-			$ctitle = str_replace( '_',' ',$x->cur_title );
+			$t .= $x->page_title ;
+			$ctitle = str_replace( '_',' ',$x->page_title );
 
-			if ( $x->cur_namespace == NS_CATEGORY ) {
+			if ( $x->page_namespace == NS_CATEGORY ) {
 				array_push ( $children, $sk->makeKnownLink ( $t, $ctitle ) ) ; # Subcategory
 
 				// If there's a link from Category:A to Category:B, the sortkey of the resulting
@@ -150,12 +164,12 @@ class CategoryPage extends Article {
 				// Workaround: If sortkey == "Category:".$title, than use $title for sorting,
 				// else use sortkey...
 				if ( ($ns.':'.$ctitle) == $x->cl_sortkey ) {
-					array_push ( $children_start_char, $wgContLang->firstChar( $x->cur_title ) );
+					array_push ( $children_start_char, $wgContLang->firstChar( $x->page_title ) );
 				} else {
 					array_push ( $children_start_char, $wgContLang->firstChar( $x->cl_sortkey ) ) ;
 				}
-			} elseif ( $wgCategoryMagicGallery && $x->cur_namespace == NS_IMAGE ) {
-				$ig->add( new Image( $x->cur_title ) );
+			} elseif ( $wgCategoryMagicGallery && $x->page_namespace == NS_IMAGE ) {
+				$ig->add( new Image( $x->page_title ) );
 			} else {
 				array_push ( $articles , $sk->makeKnownLink ( $t ) ) ; # Page in this category
 				array_push ( $articles_start_char, $wgContLang->firstChar( $x->cl_sortkey ) ) ;

@@ -53,8 +53,9 @@ class BookSourceList {
 		# First, see if we have a custom list setup in
 		# [[Wikipedia:Book sources]] or equivalent.
 		$bstitle = Title::makeTitleSafe( NS_PROJECT, wfMsg( "booksources" ) );
-		$dbr =& wfGetDB( DB_SLAVE );
-		$bstext = $dbr->selectField( 'cur', 'cur_text', $bstitle->curCond(), $fname );
+		$bsarticle = new Article( $bstitle );
+		$bstext = $bsarticle->getContent( false );
+
 		if( $bstext ) {	
 			$bstext = str_replace( "MAGICNUMBER", $this->mIsbn, $bstext );
 			$wgOut->addWikiText( $bstext );

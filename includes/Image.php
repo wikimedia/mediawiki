@@ -748,7 +748,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 			'img_description' => $desc,
 			'img_user' => $wgUser->getID(),
 			'img_user_text' => $wgUser->getName(),
-		), $fname, 'IGNORE'
+		), $fname, 'IGNORE' 
 	);
 	$descTitle = Title::makeTitleSafe( NS_IMAGE, $name );
 
@@ -757,27 +757,49 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 		$id = $descTitle->getArticleID();
 
 		if ( $id == 0 ) {
-			$seqVal = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
-			$dbw->insert( 'cur',
+			$now = wfTimestampNow();
+			$won = wfInvertTimestamp( $now );
+
+			$text_old_id = $dbw->nextSequenceValue( 'text_old_id_seq' );
+			$dbw->insert( 'text',
 				array(
-					'cur_id' => $seqVal,
-					'cur_namespace' => NS_IMAGE,
-					'cur_title' => $name,
-					'cur_comment' => $desc,
-					'cur_user' => $wgUser->getID(),
-					'cur_user_text' => $wgUser->getName(),
-					'cur_timestamp' => $dbw->timestamp($now),
-					'cur_is_new' => 1,
-					'cur_text' => $textdesc,
+					'old_id' => $text_old_id,
+					'old_text' => $textdesc,
+					'old_flags' => '' ),
+				$fname );
+			if ( is_null( $text_old_id ) ) $text_old_id = $dbw->insertId();
+
+			$page_page_id = $dbw->nextSequenceValue( 'page_page_id' );
+			$dbw->insert( 'page',
+				array(
+					'page_id'	 => $page_page_id,
+					'page_namespace' => NS_IMAGE,
+					'page_title'	 => $name,
+					'page_restrictions' => '',
+					'page_counter'	 => 0,
+					'page_is_redirect' => 0,
+					'page_is_new'	 => 1,
+					'page_random'	 => 0.5,
+					'page_touched'	 => $now,
+					'page_latest'	 => $text_old_id ),
+				$fname );
+			if ( is_null( $page_page_id ) ) $page_page_id = $dbw->insertId();
+
+			$dbw->insert( 'revision',
+				array(
+					'rev_id'	=> $text_old_id,
+					'rev_page'	=> $page_page_id,
+					'rev_comment'	=> $desc,
+					'rev_user'	=> $wgUser->getID(),
+					'rev_user_text'	=> $wgUser->getName(),
+					'rev_timestamp'	=> $now,
 					'inverse_timestamp' => $won,
-					'cur_touched' => $dbw->timestamp($now)
-				), $fname
-			);
-			$id = $dbw->insertId() or 0; # We should throw an error instead
+					'rev_minor_edit' => 0 ),
+				$fname );
 
 			RecentChange::notifyNew( $now, $descTitle, 0, $wgUser, $desc );
 
-			$u = new SearchUpdate( $id, $name, $desc );
+			$u = new SearchUpdate( $page_page_id, $name, $desc );
 			$u->doUpdate();
 		}
 	} else {

@@ -75,11 +75,12 @@ class SearchMySQL3 extends SearchEngine {
 
 	function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
-		$cur = $this->db->tableName( 'cur' );
+		$page = $this->db->tableName( 'page' );
+		$text = $this->db->tableName( 'text' );
 		$searchindex = $this->db->tableName( 'searchindex' );
-		return 'SELECT cur_id, cur_namespace, cur_title, cur_text ' .
-			"FROM $cur,$searchindex " .
-			'WHERE cur_id=si_page AND ' . $match;
+		return 'SELECT page_id, page_namespace, page_title, old_flags, old_text ' .
+			"FROM $page,$text,$searchindex " .
+			'WHERE page_id=si_page AND page_latest=old_id AND ' . $match;
 	}
 
 	function update( $id, $title, $text ) {

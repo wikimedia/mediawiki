@@ -101,7 +101,7 @@ class MessageCache
 			}
 
 			if ( !is_array( $this->mCache ) ) {
-				wfMsg( "MessageCache::load(): individual message mode\n" );
+				wfDebug( "MessageCache::load(): individual message mode\n" );
 				# If it is 'loading' or 'error', switch to individual message mode, otherwise disable
 				# Causing too much DB load, disabling -- TS
 				$this->mDisable = true;
@@ -130,22 +130,26 @@ class MessageCache
 		global $wgPartialMessageCache;
 		$fname = 'MessageCache::loadFromDB';
 		$dbr =& wfGetDB( DB_SLAVE );
-		$conditions = array( 'cur_is_redirect' => 0, 
-					'cur_namespace' => NS_MEDIAWIKI);
+		$conditions = array( 'page_is_redirect' => 0, 
+					'page_namespace' => NS_MEDIAWIKI);
 		if ($wgPartialMessageCache) {
+			wfDebugDieBacktrace( "Confused about how this works." );
 			if (is_array($wgPartialMessageCache)) {
-				$conditions['cur_title']=$wgPartialMessageCache;
+				$conditions['page_title']=$wgPartialMessageCache;
 			} else {
 				require_once("MessageCacheHints.php");
-				$conditions['cur_title']=MessageCacheHints::get();
+				$conditions['page_title']=MessageCacheHints::get();
 			}
 		}
-		$res = $dbr->select( 'cur',
-			array( 'cur_title', 'cur_text' ), $conditions, $fname);
+		$res = $dbr->select( array( 'page', 'text' ),
+			array( 'page_title', 'old_text', 'old_flags' ),
+			'page_is_redirect=0 AND page_namespace = '.NS_MEDIAWIKI.' AND page_latest = old_id',
+			$fname
+		);
 
 		$this->mCache = array();
 		for ( $row = $dbr->fetchObject( $res ); $row; $row = $dbr->fetchObject( $res ) ) {
-			$this->mCache[$row->cur_title] = $row->cur_text;
+			$this->mCache[$row->page_title] = Article::getRevisionText( $row );
 		}
 
 		$dbr->freeResult( $res );
@@ -172,11 +176,6 @@ class MessageCache
 	 */
 	function isCacheable( $key ) {
 		return true;
-		/*
-		global $wgAllMessagesEn, $wgLang;
-		return array_key_exists( $wgLang->lcfirst( $key ), $wgAllMessagesEn ) ||
-			array_key_exists( $key, $wgAllMessagesEn );
-		*/
 	}
 
 	function replace( $title, $text ) {
@@ -258,13 +257,16 @@ class MessageCache
 			# If it wasn't in the cache, load each message from the DB individually
 			if ( !$message ) {
 				$dbr =& wfGetDB( DB_SLAVE );
-				$result = $dbr->selectRow( 'cur', array('cur_text'),
-				  array( 'cur_namespace' => NS_MEDIAWIKI, 'cur_title' => $title ),
+				$result = $dbr->selectRow( array( 'page', 'text' ),
+				  array( 'old_flags', 'old_text' ),
+				  'page_namespace=' . NS_MEDIAWIKI .
+				  ' AND page_title=' . $dbr->addQuotes( $title ) .
+				  ' AND page_latest=old_id',
 				  'MessageCache::get' );
 				if ( $result ) {
-					$message = $result->cur_text;
-					if( $this->mUseCache ) {
-						$this->mCache[$title] = $message;
+					$message = Article::getRevisionText( $result );
+					if ($this->mUseCache) {
+						$this->mCache[$title]=$message;
 						/* individual messages may be often 
 						   recached until proper purge code exists 
 						*/

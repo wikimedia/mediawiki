@@ -36,11 +36,11 @@ function wfSpecialWhatlinkshere($par = NULL) {
 
 	$wgOut->addHTML("&lt; ".$sk->makeKnownLinkObj($nt, "", "redirect=no" )."<br />\n");
 	$dbr =& wfGetDB( DB_SLAVE );
-	extract( $dbr->tableNames( 'cur', 'brokenlinks', 'links' ) );
+	extract( $dbr->tableNames( 'page', 'brokenlinks', 'links' ) );
 
 	if ( 0 == $id ) {
-		$sql = "SELECT cur_id,cur_namespace,cur_title,cur_is_redirect FROM $brokenlinks,$cur WHERE bl_to='" .
-		  $dbr->strencode( $nt->getPrefixedDBkey() ) . "' AND bl_from=cur_id LIMIT $limit";
+		$sql = "SELECT page_id,page_namespace,page_title,page_is_redirect FROM $brokenlinks,$page WHERE bl_to='" .
+		  $dbr->strencode( $nt->getPrefixedDBkey() ) . "' AND bl_from=page_id LIMIT $limit";
 		$res = $dbr->query( $sql, $fname );
 
 		if ( 0 == $dbr->numRows( $res ) ) {
@@ -50,16 +50,16 @@ function wfSpecialWhatlinkshere($par = NULL) {
 			$wgOut->addHTML( "\n<ul>" );
 
 			while ( $row = $dbr->fetchObject( $res ) ) {
-				$nt = Title::makeTitle( $row->cur_namespace, $row->cur_title );
+				$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
 				if( !$nt ) {
 					continue;
 				}
 				$link = $sk->makeKnownLinkObj( $nt, "", "redirect=no" );
 				$wgOut->addHTML( "<li>{$link}" );
 
-				if ( $row->cur_is_redirect ) {
+				if ( $row->page_is_redirect ) {
 					$wgOut->addHTML( $isredir );
-					wfShowIndirectLinks( 1, $row->cur_id, $limit );
+					wfShowIndirectLinks( 1, $row->page_id, $limit );
 				}
 				$wgOut->addHTML( "</li>\n" );
 			}
@@ -79,9 +79,9 @@ function wfShowIndirectLinks( $level, $lid, $limit ) {
 	$fname = "wfShowIndirectLinks";
 
 	$dbr =& wfGetDB( DB_READ );
-	extract( $dbr->tableNames( 'links','cur' ) );
+	extract( $dbr->tableNames( 'links','page' ) );
 
-	$sql = "SELECT cur_id,cur_namespace,cur_title,cur_is_redirect FROM $links,$cur WHERE l_to={$lid} AND l_from=cur_id LIMIT $limit";
+	$sql = "SELECT page_id,page_namespace,page_title,page_is_redirect FROM $links,$page WHERE l_to={$lid} AND l_from=page_id LIMIT $limit";
 	$res = $dbr->query( $sql, $fname );
 
 	if ( 0 == $dbr->numRows( $res ) ) {
@@ -98,13 +98,13 @@ function wfShowIndirectLinks( $level, $lid, $limit ) {
 
 	$wgOut->addHTML( "<ul>" );
 	while ( $row = $dbr->fetchObject( $res ) ) {
-		$nt = Title::makeTitle( $row->cur_namespace, $row->cur_title );
+		$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
 		if( !$nt ) {
 			$wgOut->addHTML( "<!-- bad backlink: " . htmlspecialchars( $row->l_from ) . " -->\n" );
 			continue;
 		}
 
-		if ( $row->cur_is_redirect ) {
+		if ( $row->page_is_redirect ) {
 			$extra = "redirect=no";
 		} else {
 			$extra = "";
@@ -113,10 +113,10 @@ function wfShowIndirectLinks( $level, $lid, $limit ) {
 		$link = $sk->makeKnownLinkObj( $nt, "", $extra );
 		$wgOut->addHTML( "<li>{$link}" );
 
-		if ( $row->cur_is_redirect ) {
+		if ( $row->page_is_redirect ) {
 			$wgOut->addHTML( $isredir );
 			if ( $level < 2 ) {
-				wfShowIndirectLinks( $level + 1, $row->cur_id, $limit );
+				wfShowIndirectLinks( $level + 1, $row->page_id, $limit );
 			}
 		}
 		$wgOut->addHTML( "</li>\n" );

@@ -74,7 +74,7 @@ function wfSpecialWatchlist() {
 	}
 
 	$dbr =& wfGetDB( DB_SLAVE );
-	extract( $dbr->tableNames( 'cur', 'watchlist', 'recentchanges' ) );
+	extract( $dbr->tableNames( 'page', 'revision', 'watchlist', 'recentchanges' ) );
 
 	$sql = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_user=$uid";
 	$res = $dbr->query( $sql, $fname );
@@ -107,10 +107,10 @@ function wfSpecialWatchlist() {
 		$cutoff = false;
 		$npages = wfMsg( "all" );
 	} else {
-	        $docutoff = "AND cur_timestamp > '" .
+	        $docutoff = "AND rev_timestamp > '" .
 		  ( $cutoff = $dbr->timestamp( time() - intval( $days * 86400 ) ) )
 		  . "'";
-	        $sql = "SELECT COUNT(*) AS n FROM $cur WHERE cur_timestamp>'$cutoff'";
+	        $sql = "SELECT COUNT(*) AS n FROM $page, $revision  WHERE rev_timestamp>'$cutoff' AND page_id=rev_page";
 		$res = $dbr->query( $sql, $fname );
 		$s = $dbr->fetchObject( $res );
 		$npages = $s->n;
@@ -160,19 +160,19 @@ function wfSpecialWatchlist() {
 
 	# Up estimate of watched items by 15% to compensate for talk pages...
 	if( $cutoff && ( $nitems*1.15 > $npages ) ) {
-		$x = "cur_timestamp";
+		$x = "rev_timestamp";
 		$y = wfMsg( "watchmethod-recent" );
 		# TG patch: here we do not consider pages and their talk pages equivalent - why should we ?
 		# The change results in talk-pages not automatically included in watchlists, when their parent page is included
 		# $z = "wl_namespace=cur_namespace & ~1";
-		$z = "wl_namespace=cur_namespace";
+		$z = "wl_namespace=page_namespace";
 	} else {
-		$x = "name_title_timestamp";
+		$x = "page_timestamp";
 		$y = wfMsg( "watchmethod-list" );
 		# TG patch: here we do not consider pages and their talk pages equivalent - why should we ?
 		# The change results in talk-pages not automatically included in watchlists, when their parent page is included
 		# $z = "(wl_namespace=cur_namespace OR wl_namespace+1=cur_namespace)";
-		$z = "wl_namespace=cur_namespace";
+		$z = "wl_namespace=page_namespace";
 	}
 
 
@@ -182,14 +182,15 @@ function wfSpecialWatchlist() {
 
 	$use_index = $dbr->useIndexClause( $x );
 	$sql = "SELECT
-  cur_namespace,cur_title,cur_comment, cur_id,
-  cur_user,cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new,wl_notificationtimestamp
-  FROM $watchlist,$cur $use_index
+  page_namespace,page_title,rev_comment, page_id,
+  rev_user,rev_user_text,rev_timestamp,rev_minor_edit,page_is_new,wl_notificationtimestamp
+  FROM $watchlist,$page,$revision  $use_index
   WHERE wl_user=$uid
   AND $z
-  AND wl_title=cur_title
+  AND wl_title=page_title
+  AND page_latest=rev_id
   $docutoff
-  ORDER BY cur_timestamp DESC";
+  ORDER BY rev_timestamp DESC";
 
 
 	$res = $dbr->query( $sql, $fname );
