@@ -64,7 +64,7 @@
 			global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgOut;
 			global $wgScript, $wgStyleSheetPath, $wgLanguageCode, $wgUseNewInterlanguage;
 			global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
-			global $wgDisableCounters;
+			global $wgDisableCounters, $wgLogo;
 			
 			extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 
@@ -101,6 +101,7 @@
 			*/
 			$tpl->setRef( "searchaction", &$wgScript );
 			$tpl->setRef( "stylepath", &$wgStyleSheetPath );
+			$tpl->setRef( "logopath", &$wgLogo );
 			$tpl->setRef( "lang", &$wgLanguageCode );
 			$tpl->set( "langname", $wgLang->getLanguageName( $wgLanguageCode ) );
 			$tpl->setRef( "username", &$this->username );
