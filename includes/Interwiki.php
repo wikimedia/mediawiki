@@ -263,6 +263,7 @@ $WikiPediaLanguages = array(
 );
 foreach($WikiPediaLanguages as $code => $url) {
 	$wgValidInterwikis[ucfirst($code) . "WikiPedia"] = $url;
+	$wgValidInterwikis[ucfirst($code) . "Wikipedia"] = $url;
 	# If you're not Wikipedia, comment out next line!
 	$wgValidInterwikis[$code] = $url;
 }
