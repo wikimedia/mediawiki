@@ -602,13 +602,7 @@ class Title {
 		# Clean up whitespace
 		#
 		$t = preg_replace( "/[\\s_]+/", "_", $this->mDbkeyform );
-		if ( "_" == @$t{0} ) { 
-			$t = substr( $t, 1 ); 
-		}
-		$l = strlen( $t );
-		if ( $l && ( "_" == $t{$l-1} ) ) { 
-			$t = substr( $t, 0, $l-1 ); 
-		}
+		$t = preg_replace( '/^_*(.*?)_*$/', '$1', $t );
 
 		if ( "" == $t ) {
 			wfProfileOut( $fname );
