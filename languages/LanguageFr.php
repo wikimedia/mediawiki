@@ -81,7 +81,8 @@
 );
 
 /* private */ $wgBookstoreListFr = array(
-	"Amazon.fr" => "http://www.amazon.fr/exec/obidos/ISBN=$1"
+	"Amazon.fr" => "http://www.amazon.fr/exec/obidos/ISBN=$1",
+	"alapage.fr"	=> "http://www.alapage.com/mx/?tp=F&type=101&l_isbn=$1&donnee_appel=ALASQ&devise=&",
 );
 
 /* private */ $wgWeekdayNamesFr = array(
