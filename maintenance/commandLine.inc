@@ -65,15 +65,27 @@ $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
 
 if ( $sep == ":" && strpos( `hostname`, "wikimedia.org" ) !== false ) {
 	$wgWikiFarm = true;
-	if ( isset( $args[0] ) ) {
-		$lang = array_shift( $args );
-	} else {
-		$lang = "aa";
-	}
-	if ( isset( $args[0] ) ) {
-		$site = array_shift( $args );
-	} else {
-		$site = "wikipedia";
+	require_once( "$IP/includes/SiteConfiguration.php" );
+
+	# Get $conf
+	require( "$IP/InitialiseSettings.php" );
+
+	# Check if we were passed a db name
+	$db = array_shift( $args );
+	list( $site, $lang ) = $conf->siteFromDB( $db );
+
+	# If not, work out the language and site the old way
+	if ( is_null( $site ) || is_null( $lang ) ) {
+		if ( !$db ) {	
+			$lang = "aa";
+		} else {
+			$lang = $db;
+		}
+		if ( isset( $args[0] ) ) {
+			$site = array_shift( $args );
+		} else {
+			$site = "wikipedia";
+		}
 	}
 
 	# This is for the IRC scripts, which now run as the apache user
