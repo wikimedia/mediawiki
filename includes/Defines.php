@@ -40,6 +40,8 @@ define('NS_HELP', 12);
 define('NS_HELP_TALK', 13);
 define('NS_CATEGORY', 14);
 define('NS_CATEGORY_TALK', 15);
+define('NS_THREAD', 100);           // Reserved for Forum-like
+define('NS_THREAD_TALK', 101);      // Reserved for Forum-like
 /**#@-*/
 
 /**#@+
