@@ -368,6 +368,25 @@ wfSeedRandom();
 $wgTitle = Title::makeTitle( NS_SPECIAL, 'Error' );
 $wgArticle = new Article($wgTitle);
 
+# Site notice
+
+$notice = wfMsg( 'sitenotice' );
+if($notice == '&lt;sitenotice&gt;') $notice = '';
+# Allow individual wikis to turn it off
+if ( $notice == '-' ) {
+	$wgSiteNotice = '';
+} else {
+	# if($wgSiteNotice) $notice .= $wgSiteNotice;
+	if ($notice == '') {
+		$notice = $wgSiteNotice;
+	}
+	if($notice != '-' && $notice != '') {
+		$specialparser = new Parser();
+		$parserOutput = $specialparser->parse( $notice, $wgTitle, $wgOut->mParserOptions, false );
+		$wgSiteNotice = $parserOutput->getText();
+	}
+}
+
 wfProfileOut( $fname.'-misc2' );
 wfProfileIn( $fname.'-extensions' );
 
