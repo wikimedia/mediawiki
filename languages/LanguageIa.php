@@ -920,7 +920,7 @@ nove titulo. Per favor fusiona los manualmente.",
 
 );
 
-include( "LanguageUtf8.php" );
+include_once( "LanguageUtf8.php" );
 
 class LanguageIa extends LanguageUtf8 {
 

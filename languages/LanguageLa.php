@@ -142,7 +142,7 @@
 );
 
 
-include( "LanguageUtf8.php" );
+include_once( "LanguageUtf8.php" );
 
 class LanguageLa extends LanguageUtf8 {
 
