@@ -106,7 +106,7 @@ class PageHistory {
 		global $wgTitle;
 		$this->lastdate = $this->lastline = "";
 		$s = "\n<p>" . wfMsg( "histlegend" ) . "\n<ul class='special'>";
-		$url = $wgTitle->getLocalURL("-");
+		$url = $wgTitle->getFullURL("-");
 		$s .= "<SCRIPT>
 			var sel = -1;
 			function anysel(oid){ 
@@ -131,7 +131,7 @@ class PageHistory {
 				if( (diff < oldid && diff != 0) || oldid == 0 ){ 
 					tmp = oldid; oldid = diff; diff = tmp; 
 				}
-				u = \"{$url}&diff=\" + diff + \"&oldid=\" + oldid;
+				u = \"{$url}diff=\" + diff + \"&oldid=\" + oldid;
 				location.href=u;
 			}
 		</SCRIPT>";
