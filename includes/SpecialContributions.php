@@ -15,6 +15,8 @@ function wfSpecialContributions( $par = "" )
 		$wgOut->errorpage( "notargettitle", "notargettext" );
 		return;
 	}
+	
+	# FIXME: Change from numeric offsets to date offsets
 	list( $limit, $offset ) = wfCheckLimits( 50, "" );
 	$offlimit = $limit + $offset;
 	$querylimit = $offlimit + 1;
@@ -29,7 +31,7 @@ function wfSpecialContributions( $par = "" )
 	if ( 0 == $id ) {
 		$ul = $nt->getText();
 	} else {
-		$ul = $sk->makeKnownLink( $nt->getPrefixedText(), $nt->getText() );
+		$ul = $sk->makeLinkObj( $nt, $nt->getText() );
 	}
 	$talk = $nt->getTalkPage();
 	if( $talk )
