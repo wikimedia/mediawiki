@@ -1588,6 +1588,12 @@ title. Please merge them manually.',
 'movelogpagetext' => 'Below is a list of page moved.',
 'movereason'	=> 'Reason',
 'revertmove'	=> 'revert',
+'delete_and_move' => 'Delete and move',
+'delete_and_move_text'	=> 
+'==Deletion required==
+
+The destination article "[[$1]]" already exists. Do you want to delete it to make way for the move?',
+'delete_and_move_reason' => 'Deleted to make way for move',
 
 # Export
 
