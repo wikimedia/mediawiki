@@ -58,6 +58,7 @@ class Namespace {
 	function getWikipedia() { return NS_WP; }
 	function getImage() { return NS_IMAGE; }
 	function getMedia() { return NS_MEDIA; }
+	function getCategory() { return NS_CATEGORY; }
 
 	function isMovable( $index )
 	{
@@ -69,7 +70,10 @@ class Namespace {
 
 	function isTalk( $index )
 	{
-		if ( NS_TALK == $index || NS_USER_TALK == $index || NS_WP_TALK == $index || NS_IMAGE_TALK == $index || NS_MEDIAWIKI_TALK == $index || NS_TEMPLATE_TALK == $index || NS_HELP_TALK == $index ) {
+		if ( NS_TALK == $index || NS_USER_TALK == $index || NS_WP_TALK
+	== $index || NS_IMAGE_TALK == $index || NS_MEDIAWIKI_TALK == $index ||
+	NS_TEMPLATE_TALK == $index || NS_HELP_TALK == $index ||
+	NS_CATEGORY_TALK ) {
 			return true;
 		}
 		return false;

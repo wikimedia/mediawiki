@@ -261,31 +261,25 @@ class Parser
 		global $wgLang , $wgUser ;
 		if ( !$this->mOptions->getUseCategoryMagic() ) return ;
 		$id = $this->mTitle->getArticleID() ;
-		$cat = $wgLang->ucfirst ( wfMsg ( "category" ) ) ;
+		if ( $this->mTitle->getNamespace() != Namespace::getCategory() ) return "" ;
 		$ti = $this->mTitle->getText() ;
-		$ti = explode ( ":" , $ti , 2 ) ;
-		if ( $cat != $ti[0] ) return "" ;
 		$r = "<br style=\"clear:both;\"/>\n";
 
 		$articles = array() ;
 		$parents = array () ;
 		$children = array() ;
 
-
-#		$sk =& $this->mGetSkin();
 		$sk =& $wgUser->getSkin() ;
 
 		$data = array () ;
-		$cns = 14 ;
-		$sql1 = "SELECT DISTINCT cur_title,cur_namespace FROM cur,links WHERE cur_namespace={$cns} l_to={$id} AND l_from=cur_id";
-		$sql2 = "SELECT DISTINCT cur_title,cur_namespace FROM cur,brokenlinks cur_namespace={$cns} WHERE bl_to={$id} AND bl_from=cur_id" ;
+		$sql1 = "SELECT DISTINCT cur_title,cur_namespace FROM cur,links WHERE l_to={$id} AND l_from=cur_id";
+		$sql2 = "SELECT DISTINCT cur_title,cur_namespace FROM cur,brokenlinks WHERE bl_to={$id} AND bl_from=cur_id" ;
 
 		$res = wfQuery ( $sql1, DB_READ ) ;
 		while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
 
 		$res = wfQuery ( $sql2, DB_READ ) ;
 		while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
-
 
 		foreach ( $data AS $x )
 		{
@@ -314,7 +308,7 @@ class Parser
 		if ( count ( $articles ) > 0 )
 		{
 			asort ( $articles ) ;
-			$h =  wfMsg( "category_header", $ti[1] );
+			$h =  wfMsg( "category_header", $ti );
 			$r .= "<h2>{$h}</h2>\n" ;
 			$r .= implode ( ", " , $articles ) ;
 		}
@@ -485,7 +479,10 @@ class Parser
 		$sk =& $this->mOptions->getSkin();
 		$text = $sk->transformContent( $text );
 
-		$text .= $this->categoryMagic () ;
+		if ( !isset ( $this->categoryMagicDone ) ) {
+		   $text .= $this->categoryMagic () ;
+		   $this->categoryMagicDone = true ;
+		   }
 
 		wfProfileOut( $fname );
 		return $text;
@@ -830,7 +827,7 @@ class Parser
 		if ( !$image ) { $image = Namespace::getImage(); }
 		if ( !$special ) { $special = Namespace::getSpecial(); }
 		if ( !$media ) { $media = Namespace::getMedia(); }
-		if ( !$category ) { $category = wfMsg ( "category" ) ; }
+		if ( !$category ) { $category = Namespace::getCategory(); ; }
 
 		$nottalk = !Namespace::isTalk( $this->mTitle->getNamespace() );
 
@@ -893,9 +890,9 @@ class Parser
 				$wgLinkCache->addImageLinkObj( $nt );
 				return $s;
 			}
-			if ( $ns == 14 ) {
+			if ( $ns == $category ) {
 				$t = $nt->getText() ;
-				$nnt = Title::newFromText ( $category.":".$t ) ;
+				$nnt = Title::newFromText ( Namespace::getCanonicalName($category).":".$t ) ;
 				$t = $sk->makeLinkObj( $nnt, $t, "", "" , $prefix );
 				$this->mOutput->mCategoryLinks[] = $t ;
 				$s .= $prefix . $trail ;
