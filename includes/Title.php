@@ -453,5 +453,13 @@ class Title {
 		wfProfileOut( $fname );
 		return true;
 	}
+	
+	function getTalkPage() {
+		return Title::makeTitle( Namespace::getTalk( $this->getNamespace() ), $this->getDBkey() );
+	}
+	
+	function getSubjectPage() {
+		return Title::makeTitle( Namespace::getSubject( $this->getNamespace() ), $this->getDBkey() );
+	}
 }
 ?>
