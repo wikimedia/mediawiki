@@ -106,7 +106,7 @@ class Installer {
 	}
 	
 	function checkConfigured() {
-		if( file_exists( "../LocalSettings.php" ) || file_exists( "../AdminSettings.php" ) ) {
+		if( file_exists( "../LocalSettings.php" ) ) {
 			$this->ui->warning( "Already configured." );
 			return false;
 		}
@@ -114,7 +114,7 @@ class Installer {
 	}
 	
 	function checkInstalled() {
-		if( file_exists( "./LocalSettings.php" ) || file_exists( "./AdminSettings.php" ) ) {
+		if( file_exists( "./LocalSettings.php" ) ) {
 			$this->ui->warning( "Already configured; move LocalSettings.php from this directory to the parent dir and take the wiki for a spin." );
 			return false;
 		}

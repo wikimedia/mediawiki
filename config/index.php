@@ -123,7 +123,7 @@ require_once( "../includes/Namespace.php" );
 
 /* Check for existing configurations and bug out! */
 
-if( file_exists( "../LocalSettings.php" ) || file_exists( "../AdminSettings.php" ) ) {
+if( file_exists( "../LocalSettings.php" ) ) {
 	dieout( "<h2>Wiki is configured.</h2>
 
 	<p>Already configured... <a href='../index.php'>return to the wiki</a>.</p>
@@ -131,7 +131,7 @@ if( file_exists( "../LocalSettings.php" ) || file_exists( "../AdminSettings.php"
 	<p>(You should probably remove this directory for added security.)</p>" );
 }
 
-if( file_exists( "./LocalSettings.php" ) || file_exists( "./AdminSettings.php" ) ) {
+if( file_exists( "./LocalSettings.php" ) ) {
 	dieout( "<h2>You're configured!</h2>
 
 	<p>Please move <tt>LocalSettings.php</tt> to the parent directory, then
@@ -925,13 +925,6 @@ if( count( $errs ) ) {
 }
 
 /* -------------------------------------------------------------------------------------- */
-
-function writeAdminSettings( $conf ) {
-	return "
-\$wgDBadminuser      = \"{$conf->DBadminuser}\";
-\$wgDBadminpassword  = \"{$conf->DBadminpassword}\";
-";
-}
 
 function escapePhpString( $string ) {
 	return strtr( $string,
