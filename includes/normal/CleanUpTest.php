@@ -207,7 +207,7 @@ class CleanUpTest extends PHPUnit_TestCase {
 							bin2hex( $head . UTF8_REPLACEMENT . UTF8_REPLACEMENT . UTF8_REPLACEMENT . $tail ),
 							bin2hex( $clean ),
 							"Forbidden triplet $x should be rejected" );
-					} elseif( $second < 0xc0 && $second < 0xc0 ) {
+					} elseif( $first > 0xc2 && $second < 0xc0 && $third < 0xc0 ) {
 						$this->assertEquals(
 							bin2hex( $head . UTF8_REPLACEMENT . $tail ),
 							bin2hex( $clean ),
@@ -278,6 +278,31 @@ class CleanUpTest extends PHPUnit_TestCase {
 			bin2hex( $expect ),
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
+	
+	function testOverlongRegression() {
+		$text   = "\x67" .
+		          "\x1a" . # forbidden ascii
+		          "\xea" . # bad head
+		          "\xc1\xa6" . # overlong sequence
+		          "\xad" . # bad tail
+		          "\x1c" . # forbidden ascii
+		          "\xb0" . # bad tail
+		          "\x3c" .
+		          "\x9e";  # bad tail
+		$expect = "\x67" .
+		          "\xef\xbf\xbd" .
+		          "\xef\xbf\xbd" .
+		          "\xef\xbf\xbd" .
+		          "\xef\xbf\xbd" .
+		          "\xef\xbf\xbd" .
+		          "\xef\xbf\xbd" .
+		          "\x3c" .
+		          "\xef\xbf\xbd";
+		$this->assertEquals(
+			bin2hex( $expect ),
+			bin2hex( UtfNormal::cleanUp( $text ) ) );
+	}
+	
 }
 
 
