@@ -313,7 +313,7 @@ class ParserTest {
 			if (!(strcmp($db->getServerVersion(), '4.1') < 0 and stristr($db->getSoftwareLink(), 'MySQL'))) {
 				# Database that supports CREATE TABLE ... LIKE
 				foreach ($tables as $tbl) {
-					$db->query("CREATE TEMPORARY TABLE $wgDBprefix$tbl LIKE $tbl");
+					$db->query("CREATE TEMPORARY TABLE $wgDBprefix$tbl (LIKE $tbl)");
 				}
 			}
 			else {
