@@ -48,8 +48,6 @@ ini_set( "include_path", "/home/wikipedia/common/php-new:/home/wikipedia/common/
 
 require_once( "/home/wikipedia/common/php-new/CommonSettings.php" );
 
-$wgUsePHPTal = false;
-
 define("MEDIAWIKI",true);
 require_once( "Setup.php" );
 require_once( "../install-utils.inc" );

@@ -608,17 +608,6 @@ $wgSVGConverters = array(
 $wgSVGConverter = 'ImageMagick'; # Pick one of the above
 $wgSVGConverterPath = ''; # If not in the executable PATH, specify
 
-# PHPTAL is a library for page templates. This is optional;
-# MediaWiki's internal skins no longer use it but you might
-# create your own custom skin using it.
-#
-# Use PHPTAL 0.7.0 for PHP 4.x or PHPTAL 1.0.0 for PHP 5.0.
-# http://phptal.sourceforge.net/
-#
-# Leave it off to avoid trying to load the template library
-# if you're not going to be using any such skins.
-$wgUsePHPTal = false;
-
 if( !isset( $wgCommandLineMode ) ) {
 	$wgCommandLineMode = false;
 }

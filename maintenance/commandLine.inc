@@ -140,7 +140,6 @@ $wgDBuser = $wgDBadminuser;
 $wgDBpassword = $wgDBadminpassword;
 
 
-$wgUsePHPTal = false;
 require_once( "Setup.php" );
 require_once( "install-utils.inc" );
 $wgTitle = Title::newFromText( "Command line script" );

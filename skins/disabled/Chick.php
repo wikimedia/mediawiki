@@ -8,8 +8,8 @@
  */
 
 /** */
-if ($wgUsePHPTal) {
 require_once('includes/SkinPHPTal.php');
+if( class_exists( 'SkinPHPTal' ) ) {
 
 /**
  * See skin.doc

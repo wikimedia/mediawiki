@@ -19,13 +19,14 @@
  * Based on Brion's smarty skin
  * Copyright (C) Gabriel Wicke -- http://www.aulinx.de/
  *
- * Todo: Needs some serious refactoring into functions that correspond
- * to the computations individual esi snippets need. Most importantly no body
- * parsing for most of those of course.
- * 
- * Set this in LocalSettings to enable phptal:
- * set_include_path(get_include_path() . ":" . $IP.'/PHPTAL-NP-0.7.0/libs');
- * $wgUsePHPTal = true;
+ * The guts of this have moved to SkinTemplate.php
+ *
+ * Make sure the appropriate version of PHPTAL is installed (0.7.0 for PHP4,
+ * or 1.0.0 for PHP5) and available in the include_path. The system PEAR
+ * directory is good.
+ *
+ * If PEAR or PHPTAL can't be loaded, it will try to gracefully fall back.
+ * Turn on MediaWiki's debug log to see it complain.
  *
  * @package MediaWiki
  * @subpackage Skins
@@ -42,14 +43,27 @@ require_once 'SkinTemplate.php';
 
 if( version_compare( phpversion(), "5.0", "lt" ) ) {
 	define( 'OLD_PHPTAL', true );
-	global $IP;
-	require_once $IP.'/PHPTAL-NP-0.7.0/libs/PHPTAL.php';
+	# PEAR and PHPTAL 0.7.x must be installed and in include_path
 } else {
 	define( 'NEW_PHPTAL', true );
-	# For now, PHPTAL 1.0.x must be installed via PEAR in system dir.
-	require_once 'PEAR.php';
-	require_once 'PHPTAL.php';
+	# PEAR and PHPTAL 1.0.x must be installed and in include_path
 }
+
+@include_once 'PEAR.php';
+if( !class_exists( 'PEAR' ) ) {
+	wfDebug( 'PHPTAL-based skin couldn\'t include PEAR.php' );
+} else {
+
+// PHPTAL may be in the libs dir direct, or under HTML/Template.
+// Try them both to be safe.
+@include_once 'HTML/Template/PHPTAL.php';
+if( !class_exists( 'PHPTAL' ) ) {
+	@include_once 'PHPTAL.php';
+}
+
+if( !class_exists( 'PHPTAL' ) ) {
+	wfDebug( 'PHPTAL-based skin couldn\'t include PHPTAL.php' );
+} else {
 
 /**
  *
@@ -130,5 +144,7 @@ class PHPTAL_version_bridge {
 	}
 }
 
+} // end of if( class_exists( 'PHPTAL' ) )
+} // end of if( class_exists( 'PEAR' ) )
 } // end of if( defined( 'MEDIAWIKI' ) ) 
 ?>
