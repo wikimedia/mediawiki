@@ -1,3 +1,7 @@
+body {
+	/* Background color is set separately on page type */
+	color: black;
+}
 #article { }
 #specialform { display: inline; }
 #powersearch {
