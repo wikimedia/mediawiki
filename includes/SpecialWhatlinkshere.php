@@ -67,7 +67,7 @@ function wfShowIndirectLinks( $level, $lid )
 	global $wgOut, $wgUser;
 	$fname = "wfShowIndirectLinks";
 
-	$sql = "SELECT DISTINCT l_from FROM links WHERE l_to={$lid} LIMIT 500";
+	$sql = "SELECT DISTINCT l_from FROM links WHERE l_to={$lid} ORDER BY l_from LIMIT 500";
 	$res = wfQuery( $sql, DB_READ, $fname );
 
 	if ( 0 == wfNumRows( $res ) ) {
@@ -92,19 +92,27 @@ function wfShowIndirectLinks( $level, $lid )
 		$ns = $nt->getNamespace();
 		$t = wfStrencode( $nt->getDBkey() );
 
-		$link = $sk->makeKnownLink( $row->l_from, "", "redirect=no" );
-		$wgOut->addHTML( "<li>{$link}" );
-
+	        # FIXME: this should be in a join above, or cached in the links table
+		
 		$sql = "SELECT cur_id,cur_is_redirect FROM cur " .
 		  "WHERE cur_namespace={$ns} AND cur_title='{$t}'";
 		$res2 = wfQuery( $sql, DB_READ, $fname );
 		$s = wfFetchObject( $res2 );
 
 		if ( 1 == $s->cur_is_redirect ) {
-			$wgOut->addHTML( $isredir );
-			if ( $level < 2 ) {
-				wfShowIndirectLinks( $level + 1, $s->cur_id );
-			}
+		    $extra = "redirect=no";
+		} else {
+		    $extra = "";
+		}
+	    
+	        $link = $sk->makeKnownLink( $row->l_from, "", $extra );
+		$wgOut->addHTML( "<li>{$link}" );
+
+		if ( 1 == $s->cur_is_redirect ) {
+		    $wgOut->addHTML( $isredir );
+		    if ( $level < 2 ) {
+			wfShowIndirectLinks( $level + 1, $s->cur_id );
+		    }
 		}
 		$wgOut->addHTML( "</li>\n" );
 	}
