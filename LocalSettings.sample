@@ -154,6 +154,10 @@ $wgLocalInterwiki   = $wgSitename;
 # $wgInputEncoding	= "UTF-8";
 # $wgOutputEncoding	= "UTF-8";
 
+## Default skin: you can change the default skin. Use the internal symbolic
+## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
+# $wgDefaultSkin = 'monobook';
+
 ## Extremely high-traffic wikis may want to disable
 ## some database-intensive features here:
 #

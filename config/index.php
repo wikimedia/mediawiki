@@ -760,6 +760,11 @@ if ( \$wgUsePHPTal ) {
 \$wgLanguageCode = \"{$conf->LanguageCode}\";
 " . ($conf->Encoding ? "\$wgInputEncoding = \$wgOutputEncoding = \"{$conf->Encoding}\";" : "" ) . "
 
+## Default skin: you can change the default skin. Use the internal symbolic
+## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
+# \$wgDefaultSkin = 'monobook';
+
+## This is incomplete, ignore it:
 #\$wgProxyKey = $proxyKey;
 
 ## For attaching licensing metadata to pages, and displaying an
