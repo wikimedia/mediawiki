@@ -770,7 +770,7 @@ if ( \$wgCommandLineMode ) {
 	if ( isset( \$_SERVER ) && array_key_exists( 'REQUEST_METHOD', \$_SERVER ) ) {
 		die( \"This script must be run from the command line\\n\" );
 	}
-} elseif ( !\$wgConfiguring ) {
+} elseif ( empty( \$wgConfiguring ) ) {
 	## Compress output if the browser supports it
 	{$zlib}if( !ini_get( 'zlib.output_compression' ) ) ob_start( 'ob_gzhandler' );
 }
