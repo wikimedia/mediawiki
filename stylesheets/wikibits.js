@@ -370,7 +370,7 @@ function akeytt() {
             a = n.childNodes[0];
             if(a){
                 if(ta[id][0].length > 0) {
-                    a.accesskey = ta[id][0];
+                    a.accessKey = ta[id][0];
                     ak = ' ['+pref+ta[id][0]+']';
                 } else {
                     ak = '';
