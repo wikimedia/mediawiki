@@ -940,7 +940,7 @@ $t[] = "</table>" ;
 				}
 				if($wgNamespacesWithSubpages[$wgTitle->getNamespace()]) { # subpages allowed here
 					$link = $wgTitle->getPrefixedText(). "/" . trim($noslash);
-					if(!$text) {
+					if( "" == $text ) {
 						$text= $m[1]; 
 					} # this might be changed for ugliness reasons
 				} else {
@@ -951,7 +951,7 @@ $t[] = "</table>" ;
 			} else {
 				$link = substr( $m[1], 1 );
 			}
-			if( empty( $text ) )
+			if( "" == $text )
 				$text = $link;
 
 			$nt = Title::newFromText( $link );
