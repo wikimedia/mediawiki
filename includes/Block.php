@@ -179,7 +179,11 @@ class Block
 
 	function isExpired() 
 	{	
-		return wfTimestampNow() > $this->mExpiry;
+		if ( !$this->mExpiry ) {
+			return false;
+		} else {
+			return wfTimestampNow() > $this->mExpiry;
+		}
 	}
 
 	function isValid() 
