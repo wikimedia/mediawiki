@@ -19,6 +19,7 @@ if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
 
 $fname = "Setup.php";
 wfProfileIn( $fname );
+global $wgUseDynamicDates;
 wfProfileIn( "$fname-includes" );
 
 # Only files which are used on every invocation should be included here
@@ -53,6 +54,12 @@ $wgMemc = new MemCachedClientforWiki();
 if( $wgUseMemCached ) {
 	$wgMemc->set_servers( $wgMemCachedServers );
 	$wgMemc->set_debug( $wgMemCachedDebug );
+}
+
+if ( $wgUseDynamicDates ) {
+	include_once( "DateFormatter.php" );
+	global $wgDateFormatter;
+	$wgDateFormatter = new DateFormatter;
 
 	# Test it to see if it's working
 	# This is necessary because otherwise wfMsg would be extremely inefficient

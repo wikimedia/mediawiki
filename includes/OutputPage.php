@@ -713,7 +713,8 @@ $t[] = "</table>" ;
 		$text = $this->doBlockLevels( $text, $linestart );
 		
 		if($wgUseDynamicDates) {
-			$text = $wgLang->replaceDates( $text );
+			global $wgDateFormatter;
+			$text = $wgDateFormatter->reformat( $wgUser->getOption("date"), $text );
 		}
 
 		$text = $this->replaceExternalLinks( $text );
