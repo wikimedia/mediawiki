@@ -825,17 +825,22 @@ class Parser
 			$s .= $prefix . "<strong>" . $text . "</strong>" . $trail;
 			return $s;
 		}
- 		if ( $ns == $category && $this->mOptions->getUseCategoryMagic() ) {
+
+		# Category feature
+		$catns = strtoupper ( $nt->getDBkey () ) ;
+		$catns = explode ( ":" , $catns ) ;
+		if ( count ( $catns ) > 1 ) $catns = array_shift ( $catns ) ;
+		else $catns = "" ;
+ 		if ( $catns == strtoupper($category) && $this->mOptions->getUseCategoryMagic() ) {
 		  	$t = explode ( ":" , $nt->getText() ) ;
  			array_shift ( $t ) ;
  			$t = implode ( ":" , $t ) ;
  			$t = $wgLang->ucFirst ( $t ) ;
-#			$t = $sk->makeKnownLink( $category.":".$t, $t, "", $trail , $prefix );
 			$nnt = Title::newFromText ( $category.":".$t ) ;
 			$t = $sk->makeLinkObj( $nnt, $t, "", $trail , $prefix );
  			$this->mCategoryLinks[] = $t ;
  			$s .= $prefix . $trail ;
- 			return $s ;	    
+			return $s ;
 		}
 		if( $ns == $media ) {
 			$s .= $prefix . $sk->makeMediaLinkObj( $nt, $text ) . $trail;
