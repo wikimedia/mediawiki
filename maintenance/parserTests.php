@@ -298,6 +298,7 @@ class ParserTest {
 			'wgNamespacesWithSubpages' => array( 0 => preg_match('/\\bsubpage\\b/i', $opts)),
 			'wgMaxTocLevel' => 999,
 			'wgCapitalLinks' => true,
+			'wgNoFollowLinks' => true,
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {

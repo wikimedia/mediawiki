@@ -1944,6 +1944,10 @@ class Skin {
 
 	function makeExternalLink( $url, $text, $escape = true ) {
 		$style = $this->getExternalLinkAttributes( $url, $text );
+		global $wgNoFollowLinks;
+		if( $wgNoFollowLinks ) {
+			$style .= ' rel="nofollow"';
+		}
 		$url = htmlspecialchars( $url );
 		if( $escape ) {
 			$text = htmlspecialchars( $text );
