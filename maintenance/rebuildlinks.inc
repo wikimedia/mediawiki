@@ -120,7 +120,7 @@ function rebuildLinkTables()
 			} else {
 				$nt = Title::newFromText( $link );
 				if (! $nt) {
-					print "\nInvalid link in page '{$from_full_title}': '$link'\n";
+					// Invalid link, probably something like "[[  ]]"
 					continue;
 				}
 				
