@@ -374,7 +374,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					$u->addToDatabase();
 					$u->setPassword( $conf->getSysopPass() );
 					$u->addRight( "sysop" );
-					$u->addRight( "developer" ); /* ?? */
+					$u->addRight( "bureaucrat" );
 					$u->saveSettings();
 					print "<li>Created sysop account <tt>" .
 						htmlspecialchars( $conf->SysopName ) . "</tt>.</li>\n";
