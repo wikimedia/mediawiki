@@ -4,19 +4,33 @@
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
 # Limburgish file - Limburgse versie 2.2.a
-/* private */ $wgNamespaceNamesNl = array(
- -1 => "Speciaal",
- 0 => "",
- 1 => "Euverlik",
- 2 => "Gebroeker",
- 3 => "Euverlik_gebroeker",
- 4 => "Wikipedia",
- 5 => "Euverlik_Wikipedia",
- 6 => "Afbeelding",
- 7 => "euverlik_afbeelding"
-);
 
-/* private */ $wgDefaultUserOptionsNl = array(
+/**
+ * @access private
+ */
+$wgNamespaceNamesLi = array(
+	NS_MEDIA			=> 'Media',
+	NS_SPECIAL			=> 'Speciaal',
+	NS_MAIN				=> '',
+	NS_TALK				=> 'Euverlik',
+	NS_USER				=> 'Gebroeker',
+	NS_USER_TALK		=> 'Euverlik_gebroeker',
+	NS_PROJECT			=> $wgMetaNamespace,
+	NS_PROJECT_TALK		=> 'Euverlik_Wikipedia',
+	NS_IMAGE			=> 'Afbeelding',
+	NS_IMAGE_TALK		=> 'Euverlik_afbeelding',
+	NS_MEDIAWIKI		=> 'MediaWiki',
+	NS_MEDIAWIKI_TALK	=> 'Euverlik_MediaWiki',
+	NS_TEMPLATE			=> 'Sjabloon',
+	NS_TEMPLATE_TALK	=> 'Euverlik_sjabloon',
+	NS_HELP				=> 'Help',
+	NS_HELP_TALK		=> 'Euverlik_help',
+	NS_CATEGORY			=> 'Kategorie',
+	NS_CATEGORY_TALK	=> 'Euverlik_kategorie'
+
+) + $wgNamespaceNamesEn;
+
+/* private */ $wgDefaultUserOptionsLi = array(
  "quickbar" => 1, "underline" => 1, "hover" => 1,
  "cols" => 80, "rows" => 25, "searchlimit" => 20,
  "contextlines" => 5, "contextchars" => 50,
@@ -24,15 +38,23 @@
  "highlightbroken" => 0
 );
 
-/* private */ $wgQuickbarSettingsNl = array(
+/* private */ $wgQuickbarSettingsLi = array(
  "Oetgesjakeld", "Links vas", "Rechts vas", "Links zwevend"
 );
 
-/* private */ $wgSkinNamesNl = array(
- "Standaard", "Nostalgie", "Keuls blauw"
+/* private */ $wgSkinNamesLi = array(
+	'standard' => "Standaard",
+	'nostalgia' => "Nostalgie",
+	'cologneblue' => "Keuls blauw",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
-/* private */ $wgUserTogglesNl = array(
+/* private */ $wgUserTogglesLi = array(
  "hover"  => "Wikilinks in zwevend tekstvak toene",
  "underline" => "Links ongerstjreipe",
  "highlightbroken" => "Links noa lege pagina's loate oplichte",
@@ -46,167 +68,9 @@
  "minordefault" => "Maak 'kleine' veranderingen mien standaard"
 );
 
-/* private */ $wgLanguageNamesNl = array(
- "nl" => "Nederlands",
- "en" => "Ingelsj",
- "de" => "Duutsch",
- "pl" => "Polski",
- "eo" => "Esperanto",
- "fr" => "Français",
- "sv" => "Svenska",
- "es" => "Español",
- "it" => "Italiano",
- "pt" => "Português",
- "no" => "Norsk",
- "da" => "Dansk",
- "fy" => "Frysk",
- "af" => "Afrikaans",
- "ab" => "Abchazisch",
- "aa" => "Afar",
- "am" => "Amhaars",
- "ar" => "Arabisch",
- "hy" => "Armeens",
- "as" => "Assamitisch",
- "ay" => "Aymara",
- "az" => "Azerbeidzjaans",
- "ba" => "Basjkir",
- "bn" => "Bengaals",
- "dz" => "Bhutaans",
- "bh" => "Bihari",
- "my" => "Birmaans",
- "bi" => "Bislama",
- "km" => "Cambodjaans",
- "ca" => "Català",
- "cs" => "Cesky",
- "co" => "Corsicaans",
- "et" => "Eesti",
- "eu" => "Euskara",
- "fo" => "Faeroers",
- "fa" => "Farsi",
- "fj" => "Fijisch",
- "gl" => "Galicisch",
- "ka" => "Georgisch",
- "el" => "Grieks",
- "kl" => "Groenlands",
- "gn" => "Guarani",
- "gu" => "Gujarati",
- "zh" => "Hanyu",
- "ha" => "Hausa",
- "hr" => "Hrvatsky",
- "hi" => "Hindi",
- "he" => "Ivrit",
- "is" => "IJslands",
- "id" => "Bahasa Indonesia",
- "ia" => "Interlingua",
- "iu" => "Inuktitut",
- "ik" => "Inupiak",
- "ga" => "Irish Gaelic",
- "jv" => "Javaans",
- "yi" => "Jiddisch",
- "yo" => "Joruba",
- "kn" => "Kannada",
- "ks" => "Kashmiri",
- "kk" => "Kazachstaans",
- "rw" => "Kinyarwanda",
- "ky" => "Kirgizisch",
- "rn" => "Kirundi",
- "ko" => "Koreaans",
- "lo" => "Laotiaans",
- "la" => "Latina",
- "lv" => "Lets",
- "ln" => "Lingala",
- "lt" => "Litouws",
- "mk" => "Macedonisch",
- "hu" => "Magyar",
- "mg" => "Malagasi",
- "ms" => "Bahasa Melayu",
- "ml" => "Malayalam",
- "mi" => "Maori",
- "mr" => "Marathi",
- "mo" => "Moldavisch",
- "mn" => "Mongools",
- "na" => "Nauruaans",
- "ne" => "Nepalees",
- "ja" => "Nihongo",
- "oc" => "Occitaans",
- "ug" => "Oeigoers",
- "uk" => "Oekraïens",
- "uz" => "Oezbeeks",
- "or" => "Oriya",
- "om" => "Oromo",
- "ps" => "Pashtu",
- "pa" => "Punjabi",
- "qu" => "Quechua",
- "rm" => "Reto-Romaans",
- "ro" => "Roemeens",
- "ru" => "Russkiy",
- "sm" => "Samoaans",
- "sg" => "Sangro",
- "sa" => "Sanskriet",
- "sq" => "Shqiptare",
- "sr" => "Srpski",
- "sh" => "Srpskohrvatska",
- "st" => "Sesotho",
- "tn" => "Setswana",
- "sn" => "Shona",
- "sd" => "Sindhi",
- "si" => "Singalees",
- "ss" => "Siswati",
- "sl" => "Slovensko",
- "sk" => "Slowaaks",
- "su" => "Soedanees",
- "so" => "Somali",
- "fi" => "Suomi",
- "sw" => "Swahili",
- "tl" => "Tagalog",
- "tg" => "Tadzjieks",
- "ta" => "Tamil",
- "tt" => "Tataars",
- "te" => "Telugu",
- "th" => "Thais",
- "bo" => "Tibetaans",
- "ti" => "Tigrinya",
- "to" => "Tongaans",
- "ts" => "Tsonga",
- "tr" => "Turks",
- "tk" => "Turkmeens",
- "tw" => "Twi",
- "ur" => "Urdu",
- "vi" => "Vietnamees",
- "vo" => "Volapuk",
- "cy" => "Welsh",
- "be" => "Witrussisch",
- "wo" => "Wolof",
- "xh" => "isiXhosa",
- "za" => "Zhuang",
- "zu" => "isiZulu",
- "simple" => "Simplified English",
- "dk" => "Gebroek voor Deens da"
-);
-
-/* private */ $wgWeekdayNamesNl = array(
- "zondig", "moandig", "dinsdig", "woonsdig", "donderdig",
- "vriedig", "zoaterdig"
-);
-
-/* private */ $wgMonthNamesNl = array(
- "januari", "fibberwari", "maart", "april", "mei", "juni",
- "juli", "augustus", "september", "oktober", "november",
- "december"
-);
-
-/* private */ $wgMonthAbbreviationsNl = array(
- "jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug",
- "sep", "oct", "nov", "dec"
-);
-
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesNl = array(
- "Userlogin"  => "",
- "Userlogout" => "",
+/* private */ $wgValidSpecialPagesLi = array(
+ "Userlogin"  => "Aanmelden",
+ "Userlogout" => "Afmelden",
  "Preferences" => "Mien gebroekersvoorkeuren einsjtille",
  "Watchlist"  => "Mien volgliest loate zeen",
  "Recentchanges" => "Recent biegewirkte pagina's loate zeen",
@@ -227,39 +91,72 @@
 
  "Ipblocklist" => "Geblokkierde IP-adressen tonen",
  "Maintenance" => "Ongerhoudspagina",
- "Specialpages"  => "",
- "Contributions" => "",
- "Emailuser"  => "",
- "Whatlinkshere" => "",
- "Recentchangeslinked" => "",
- "Movepage"  => "",
+ "Specialpages"  => "Speciale pagina's",
+ "Contributions" => "Bijdragen per gebroeker",
+ "Emailuser"  => "E-mail gebroeker",
+ "Whatlinkshere" => "Verwijzende pagina's",
+ "Recentchangeslinked" => "verwante verangeringen",
+ "Movepage"  => "Pagina verplaatsen",
  "Booksources" => "Bookwinkels"
 );
 
-/* private */ $wgSysopSpecialPagesNl = array(
+/* private */ $wgSysopSpecialPagesLi = array(
  "Blockip"  => "Blokkier un IP-adres",
  "Asksql"  => "Raadpleeg de database",
  "Undelete" => "Verwiederde pagina's truukzitten"
 );
 
-/* private */ $wgDeveloperSpecialPagesNl = array(
+/* private */ $wgDeveloperSpecialPagesLi = array(
  "Lockdb"  => "Maak de database alleen-lèze",
  "Unlockdb"  => "Maak de database euversjriefbaar",
- "Debug"   => "Foutverwijderingsinformatie tonen"
 );
 
-/* private */ $wgAllMessagesNl = array(
+/* private */ $wgAllMessagesLi = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
+
+'sunday' => 'zondig',
+'monday' => 'moandig',
+'tuesday' => 'dinsdig',
+'wednesday' => 'woonsdig',
+'thursday' => 'donderdig',
+'friday' => 'vriedig',
+'saturday' => 'zoaterdig',
+'january' => 'januari',
+'february' => 'fibberwari',
+'march' => 'maart',
+'april' => 'april',
+'may_long' => 'mei',
+'june' => 'juni',
+'july' => 'juli',
+'august' => 'augustus',
+'september' => 'september',
+'october' => 'oktober',
+'november' => 'november',
+'december' => 'december',
+'jan' => 'jan',
+'feb' => 'feb',
+'mar' => 'mrt',
+'apr' => 'apr',
+'may' => 'mei',
+'jun' => 'jun',
+'jul' => 'jul',
+'aug' => 'aug',
+'sep' => 'sep',
+'oct' => 'okt',
+'nov' => 'nov',
+'dec' => 'dec',
 
 # Bits of text used by many pages:
 # Diverse stukjes tekst
-"linktrail" => "/^([a-z]+)(.*)\$/sD",
+"linktrail" => "/^([àáèéìíòóùúâêîôûäöüïëça-z]+)(.*)$/sD",
 "mainpage"  => "Hoofdpagina",
 "about"   => "Info",
 "aboutwikipedia" => "Euver Wikipedia",
 "aboutpage"  => "Wikipedia:info",
 "help"   => "Help",
 "helppage"  => "Wikipedia:Help",
-"wikititlesuffix" => "Wikipedia NL",
+"wikititlesuffix" => "Wikipedia",
 "bugreports" => "Foutenrapportage",
 "bugreportspage" => "Wikipedia:Foutenrapportage",
 "faq"   => "FAQ",
@@ -299,7 +196,7 @@
 "lastmodified" => "Deze pagina werd het laatst gewijzigd op $1.",
 "viewcount"  => "Deze pagina werd $1 maal bekeken.",
 "gnunote" => "Deze pagina valt onder de  <a class=internal href='/wiki/Gnu_Vrije_Documentatie_Licentie'>GNU FDL</a>.",
-"printsubtitle" => "(Uit http://nl.wikipedia.org)",
+"printsubtitle" => "(Uit http://li.wikipedia.org)",
 "protectedpage" => "Beveiligde pagina",
 "administrators" => "Wikipedia:Systeembeheerders",
 "sysoptitle" => "Toegang alleen voor systeembeheerders",
@@ -309,9 +206,9 @@
 "nbytes"  => "$1 bytes",
 "go"   => "OK",
 "ok"   => "OK",
-"sitetitle"  => "<span style=\"text-transform: none\">Wikipedia NL</span>", # Okay, HERE's an ugly hack. There should be a cleaner way to do this.
+"sitetitle"  => "Wikipedia",
 "sitesubtitle" => "De vrije encyclopedie",
-"retrievedfrom" => "Afkomstig van Wikipedia NL, de Vrije Encyclopedie. \"$1\"",
+"retrievedfrom" => "Afkomstig van Wikipedia, de Vrije Encyclopedie. \"$1\"",
 
 # Main script and global functions
 # Algemene functies
@@ -385,12 +282,12 @@ Invoeren van uw e-mailadres is neet verplicht; het is handig als u uw wachtwoord
 "loginerror" => "Inlogfout",
 "noname"  => "U dient een gebroekersnaam op te geven.",
 "loginsuccesstitle" => "Aanmelden gelukt.",
-"loginsuccess" => "U bent nu aangemeld bij Wikipedia NL als \"$1\".",
+"loginsuccess" => "U bent nu aangemeld bij Wikipedia als \"$1\".",
 "nosuchuser" => "Er bestaat geen gebroeker met de naam \"$1\". Controleer uw spelling, of gebruik onderstaand formulier om een nieuw gebroekersprofiel aan te maken.",
 "wrongpassword" => "Het ingegeven wachtwoord is neet juist. Probeer het opnieuw.",
 "mailmypassword" => "Stuur mij een nieuw wachtwoord op",
-"passwordremindertitle" => "Herinnering wachtwoord Wikipedia NL",
-"passwordremindertext" => "Iemand (waarschijnlijk uzelf) vanaf IP-adres $1 heeft verzocht u een nieuw wachtwoord voor Wikipedia NL toe te zenden. Het nieuwe wachtwoord voor gebroeker \"$2\" is \"$3\". Advies: nu aanmelden en uw wachtwoord wijzigigen.",
+"passwordremindertitle" => "Herinnering wachtwoord Wikipedia Li",
+"passwordremindertext" => "Iemand (waarschijnlijk uzelf) vanaf IP-adres $1 heeft verzocht u een nieuw wachtwoord voor Wikipedia toe te zenden. Het nieuwe wachtwoord voor gebroeker \"$2\" is \"$3\". Advies: nu aanmelden en uw wachtwoord wijzigigen.",
 "noemail"  => "Er is geen e-mailadres geregistreerd voor \"$1\".",
 "passwordsent" => "Er is een nieuw wachtwoord verzonden naar het e-mailadres wat geregistreerd staat voor \"$1\".
 Gelieve na ontvangst opnieuw aan te melden.",
@@ -503,7 +400,7 @@ $2 Toon redirects   Zoek: $3 $9",
 # Recent changes
 # Recente wijzigingen
 "recentchanges" => "Recente wijzigingen",
-"recentchangestext" => "Deze pagina toont de meest recente wijzigingen aan Wikipedia NL
+"recentchangestext" => "Deze pagina toont de meest recente wijzigingen aan Wikipedia.
 Mocht u hier nieuw zijn, dan welkom bij Wikipedia! Bekijk AUB de volgende pagina's eens: [[Wikipedia:Veel gestelde vragen|Veel gestelde vragen]], [[Wikipedia:Instructies|Instructies]], [[Wikipedia:Objectiviteit|Objectiviteit]] en [[Wikipedia:Wat je neet moet doen|Wat je NIET moet doen]].
 Als u pagina's wilt verwijderen, ga naar [[Wikipedia:Te verwijderen pagina's|Te verwijderen pagina's]], als u iets wilt bediscussiëren, ga naar [[Wikipedia:euverlik gewenst|euverlik gewenst]]. Er is ook een email-liest voor WikipediaNL: [http://www.wikipedia.org/mailman/listinfo/wikinl-l WikiNL-l].
 <br>Om Wikipedia te laten slagen is het erg belangrijk '''geen''' materiaal toe te voegen waarop iemand anders auteursrechten heeft, tenzij u daartoe toestemming heeft. De wettelijke gevolgen van inbreuk op de rechten van anderen zouden de hele onderneming zwaar kunnen schaden.",
@@ -538,7 +435,7 @@ om bestanden te uploaden.",
 "uploadfile" => "upload bestand",
 "uploaderror" => "upload fout",
 "uploadtext" => "<strong>STOP!</strong> Voor u iets hier upload,
-wees zeker dat het in overeenkomst is met het Wikipedia NL <a href=\"" .
+wees zeker dat het in overeenkomst is met het Wikipedia <a href=\"" .
 wfLocalUrlE( "Wikipedia:Beleid_voor_gebruik_van_afbeeldingen" ) . "\">afbeeldingsbeleid</a>.
 <p>Om de reeds ge-uploade bestanden te bekijken of te zoeken ga naar de <a href=\"" . wfLocalUrlE( "Speciaal:Imagelist" ) .
 "\">liest van ge-uploade bestanden</a>.
@@ -547,7 +444,7 @@ wfLocalUrlE( "Wikipedia:Upload_logboek" ) . "\">upload logboek</a>.
 <p>Gebroek het onderstaande formulier om bestanden zoals afbeeldingen en geluidsbestanden die relevant zijn voor uw artikel te u-loaden. Bij de meeste browers zoals 'Internet Explorer' en 'Mozilla' zult u een \"Bladeren...\" of \"Browse..\" knop zien die een standaard dialoogscherm van uw bestuuringssysteem oproept. Kiest u een bestand, dan zal het ingevuld worden in het veld naast de \"Bladeren...\" knop. U dient ook het vakje aan te vinken waarmee u bevestigt dat er geen schending van auteursrechten plaatsvindt door het gebruik van dat bestand. Vul het veld \"Omschrijving\" in. Druk op de \"Upload\" knop om het uploaden te voltooien. Dit kan even duren als u een langzame internetverbinding gebruikt.
 <p>Gebroek bij voorkeur JPEG voor foto's, PNG voor tekeningen en dergelijke en OGG voor geluid. 
 Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. Om het bestand in een pagina te laten verschijnen, kunt u het volgende doen;  <b>[[afbeelding:uw_foto.jpg]]</b> of <b>[[afbeelding:uw_logo.png|alt text]]</b> of <b>[[media:uw_geluid.ogg]]</b> voor audio.
-<p>Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot Wikipedia NL ontzegd worden.",
+<p>Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot Wikipedia ontzegd worden.",
 "uploadlog"  => "upload logboek",
 "uploadlogpage" => "Upload_logboek",
 "uploadlogpagetext" => "Hieronder de liest met de meest recent ge-uploade bestanden. Alle tieden zijn servertied (UTC).
@@ -558,7 +455,7 @@ Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. O
 "filedesc"  => "Beschrijving",
 "affirmation" => "Ik verklaar dat de eigenaar van de rechten op dit bestand toestemt om het onder de voorwaarden van $1 te verspreiden.",
 "copyrightpage" => "Wikipedia:Auteursrechten",
-"copyrightpagename" => "Wikipedia NL auteursrechten",
+"copyrightpagename" => "Wikipedia auteursrechten",
 "uploadedfiles" => "Ge-uploade bestanden",
 "noaffirmation" => "U dient te bevestigen dat deze handeling geen inbreuk maakt op auteursrechten.",
 "ignorewarning" => "Negeer de waarschuwing en sla het bestand op.",
@@ -599,7 +496,7 @@ Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. O
 # Statistics
 # Statistieken
 "statistics" => "Statistieken",
-"sitestats"  => "Statistieken betreffende Wikipedia NL",
+"sitestats"  => "Statistieken betreffende Wikipedia LI",
 "userstats"  => "Statistieken betreffende gebroekers",
 "sitestatstext" => "Er zijn <b>$1</b> pagina's in de database. Hierbij zijn inbegrepen \"euverlik\" pagina's, pagina's over Wikipedia, extreem korte \"stub\" pagina's, redirects, en diverse andere pagina's die waarschijnlijk neet als artikel moeten worden geteld. Na uitsluiting daarvan, is er een geschat aantal van <b>$2</b> artikels.<p>
 Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat geeft een gemiddelde van $5 bewerkingen per pagina, en $6 paginabezoeken per wijziging.",
@@ -652,7 +549,7 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 "movethispage" => "Verplaats deze pagina",
 "unusedimagestext" => "<p>Let op! Het zou kunnen dat er via een directe link verwezen wordt naar een afbeelding, bijvoorbeeld vanuit een anderstalige Wikipedia. Het is daarom mogelijk dat een afbeelding hier vermeld staat terwijl het wel degelijk gebruikt wordt.",
 "booksources" => "Boekwinkels",
-"booksourcetext" => "Hieronder is een liest van externe websites die boeken verkopen en ook verdere informatie hierover kunnen verstekken. Via een ISBN-nummer in een artikel kan u via deze pagina een werk opzoeken. <p>Deze dienst is enkel ter uwer informatie. Wikipedia NL heeft <u>geen enkele</u> relatie met deze websites.",
+"booksourcetext" => "Hieronder is een liest van externe websites die boeken verkopen en ook verdere informatie hierover kunnen verstekken. Via een ISBN-nummer in een artikel kan u via deze pagina een werk opzoeken. <p>Deze dienst is enkel ter uwer informatie. Wikipedia heeft <u>geen enkele</u> relatie met deze websites.",
 
 # Email this user
 # E-mail deze gebroeker
@@ -756,7 +653,7 @@ Ook zullen deze pagina's in het <b>vet</b> verschijnen in de <a href=\"" .
 # Block/unblock IP
 #
 "blockip"  => "Blokkier IP-adres",
-"blockiptext" => "Gebroek het onderstaande formulier om schrijftoegang van een bepaald IP-adres te verbieden. Dit mag enkel gedaan worden om vandalisme te voorkomen en moet in overeenstemming zijn met de [[Wikipedia:spelregels|spelregels]] van Wikipedia NL. Vul een specifieke reden in.",
+"blockiptext" => "Gebroek het onderstaande formulier om schrijftoegang van een bepaald IP-adres te verbieden. Dit mag enkel gedaan worden om vandalisme te voorkomen en moet in overeenstemming zijn met de [[Wikipedia:spelregels|spelregels]] van Wikipedia. Vul een specifieke reden in.",
 "ipaddress"  => "IP-adres",
 "ipbreason"  => "Reden",
 "ipbsubmit"  => "Blokkier dit IP-adres",
@@ -790,12 +687,12 @@ Zie de [[speciaal:Ipblocklist|liest van geBlokkierde IP-adressen]].",
 "unlockdbsuccesssub" => "Blokkering van de database opgeheven",
 "lockdbsuccesstext" => "De database van Wikipedia LI is geblokkierd.
 Vergeet neet de database opnieuw te de-blokkeren zodra u klaar bent met uw onderhoud.",
-"unlockdbsuccesstext" => "Blokkering van de database van Wikipedia NL is opgeheven.",
+"unlockdbsuccesstext" => "Blokkering van de database van Wikipedia LI is opgeheven.",
 
 # SQL query
 # SQL raadplegen
 "asksql"  => "SQL raadplegen",
-"asksqltext" => "Gebroek het onderstaande formulier om een direct verzoek naar de database van Wikipedia NL te zenden. Gebroek enkelvoudige aanhalingstekens ('zoals hier') voor letterlijke teksten. Een ingewikkelde aanvraag kan de sever vaak extra belasten. Gelieve deze mogelijkheid daarom spaarzaam te gebruiken. Zie ook: [[Wikipedia:SQL opdrachten]].",
+"asksqltext" => "Gebroek het onderstaande formulier om een direct verzoek naar de database van Wikipedia te zenden. Gebroek enkelvoudige aanhalingstekens ('zoals hier') voor letterlijke teksten. Een ingewikkelde aanvraag kan de sever vaak extra belasten. Gelieve deze mogelijkheid daarom spaarzaam te gebruiken. Zie ook: [[Wikipedia:SQL opdrachten]].",
 "sqlquery"  => "Voer opdracht in",
 "querybtn"  => "Verstuur opdracht",
 "selectonly" => "Opdrachten anders dan \"SELECT\" zijn voorbehouden aan Wikipedia ontwikkelaars.",
@@ -827,143 +724,95 @@ te zijn om een pagina te verplaatsen.",
 
 );
 
-class LanguageNl extends Language {
+require_once( "LanguageUtf8.php" );
 
- function getDefaultUserOptions () {
-  global $wgDefaultUserOptionsNl ;
-  return $wgDefaultUserOptionsNl ;
-  }
+class LanguageLi extends LanguageUtf8 {
+	function LanguageLi() {
+		global $wgNamespaceNamesLi, $wgMetaNamespace;
+	}
 
- function getBookstoreList () {
-  global $wgBookstoreListNl ;
-  return $wgBookstoreListNl ;
- }
+	function getNamespaces() {
+		global $wgNamespaceNamesLi;
+		return $wgNamespaceNamesLi;
+	}
 
- function getNamespaces() {
-  global $wgNamespaceNamesNl;
-  return $wgNamespaceNamesNl;
- }
+	function getNsText( $index ) {
+		global $wgNamespaceNamesLi;
+		return $wgNamespaceNamesLi[$index];
+	}
 
- function getNsText( $index ) {
-  global $wgNamespaceNamesNl;
-  return $wgNamespaceNamesNl[$index];
- }
+	function getNsIndex( $text ) {
+		global $wgNamespaceNamesLi;
 
- function getNsIndex( $text ) {
-  global $wgNamespaceNamesNl;
+		foreach ( $wgNamespaceNamesLi as $i => $n ) {
+			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+		}
+		return false;
+	}
 
-  foreach ( $wgNamespaceNamesNl as $i => $n ) {
-   if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-  }
-  return false;
- }
+	function specialPage( $name ) {
+		return $this->getNsText( Namespace::getSpecial() ) . ":" . $name;
+	}
 
- # Inherit specialPage()
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsLi;
+		return $wgQuickbarSettingsLi;
+	}
 
- function getQuickbarSettings() {
-  global $wgQuickbarSettingsNl;
-  return $wgQuickbarSettingsNl;
- }
+	function getSkinNames() {
+		global $wgSkinNamesLi;
+		return $wgSkinNamesLi;
+	}
 
- function getSkinNames() {
-  global $wgSkinNamesNl;
-  return $wgSkinNamesNl;
- }
+	# Inherit userAdjust()
 
- function getUserToggles() {
-  global $wgUserTogglesNl;
-  return $wgUserTogglesNl;
- }
+	function date( $ts, $adj = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+		
+		$d = (0 + substr( $ts, 6, 2 )) . " " .
+		$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " . 
+		substr( $ts, 0, 4 );
+		return $d;
+	}
 
- function getLanguageNames() {
-  global $wgLanguageNamesNl;
-  return $wgLanguageNamesNl;
- }
+	function time( $ts, $adj = false )
+	{
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
- function getLanguageName( $code ) {
-  global $wgLanguageNamesNl;
-  if ( ! array_key_exists( $code, $wgLanguageNamesNl ) ) {
-   return "";
-  }
-  return $wgLanguageNamesNl[$code];
- }
+		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
+		return $t;
+	}
 
- function getMonthName( $key )
- {
-  global $wgMonthNamesNl;
-  return $wgMonthNamesNl[$key-1];
- }
+	function timeanddate( $ts, $adj = false ) {
+		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
+	}
 
- function getMonthAbbreviation( $key )
- {
-  global $wgMonthAbbreviationsNl;
+	function getValidSpecialPages()
+	{
+		global $wgValidSpecialPagesLi;
+		return $wgValidSpecialPagesLi;
+	}
 
-  return $wgMonthAbbreviationsNl[$key-1];
- }
+	function getSysopSpecialPages()
+	{
+		global $wgSysopSpecialPagesLi;
+		return $wgSysopSpecialPagesLi;
+	}
 
- function getWeekdayName( $key )
- {
-  global $wgWeekdayNamesNl;
-  return $wgWeekdayNamesNl[$key-1];
- }
+	function getDeveloperSpecialPages()
+	{
+		global $wgDeveloperSpecialPagesLi;
+		return $wgDeveloperSpecialPagesLi;
+	}
 
- # Inherit userAdjust()
- 
- function date( $ts, $adj = false )
- {
-  if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-  $d = (0 + substr( $ts, 6, 2 )) . " " .
-    $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " . 
-    substr( $ts, 0, 4 );
-  return $d;
- }
-
- function time( $ts, $adj = false )
- {
-  if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-  $t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-  return $t;
- }
-
- function timeanddate( $ts, $adj = false )
- {
-  return $this->time( $ts, $adj ) . " " . $this->date( $ts, $adj );
- }
-
- function getValidSpecialPages()
- {
-  global $wgValidSpecialPagesNl;
-  return $wgValidSpecialPagesNl;
- }
-
-
- function getSysopSpecialPages()
- {
-  global $wgSysopSpecialPagesNl;
-  return $wgSysopSpecialPagesNl;
- }
-
- function getDeveloperSpecialPages()
- {
-  global $wgDeveloperSpecialPagesNl;
-  return $wgDeveloperSpecialPagesNl;
- }
-
-
- function getMessage( $key )
- {
-                global $wgAllMessagesNl, $wgAllMessagesEn;
-                $m = $wgAllMessagesNl[$key];
-
-                if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
-                else return $m;
- }
-
- # Inherit iconv(), ucfirst(), stripForSearch(), recodeForEdit(), recodeInput()
- # since they are same as English/Latin1
-
+	function getMessage( $key )
+	{
+		global $wgAllMessagesLi;
+		if( isset( $wgAllMessagesLi[$key] ) ) {
+			return $wgAllMessagesLi[$key];
+		} else {
+			return Language::getMessage( $key );
+		}
+	}
 }
 ?>
-
