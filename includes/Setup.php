@@ -232,7 +232,7 @@ function setupLangObj(&$langclass, $langcode) {
 
 	if( ! class_exists( $langclass ) ) {
 		# Default to English/UTF-8
-		require_once( 'languages/LanguageUtf8.php' );
+		require_once( "$IP/languages/LanguageUtf8.php" );
 		$langclass = 'LanguageUtf8';
 	}
 
@@ -243,7 +243,7 @@ function setupLangObj(&$langclass, $langcode) {
 
 	if( $wgUseLatin1 ) {
 		# For non-UTF-8 latin-1 downconversion
-		require_once( 'languages/LanguageLatin1.php' );
+		require_once( "$IP/languages/LanguageLatin1.php" );
 		$xxx = new LanguageLatin1( $lang );
 		unset( $lang );
 		$lang = $xxx;
@@ -251,7 +251,7 @@ function setupLangObj(&$langclass, $langcode) {
 	return $lang;
 }
 
-require_once( 'languages/Language.php' );
+require_once( "$IP/languages/Language.php" );
 
 # $wgLanguageCode may be changed later to fit with user preference.
 # The content language will remain fixed as per the configuration,
@@ -275,7 +275,7 @@ $wgLangClass = 'Language'. str_replace( '-', '_', ucfirst( $wgLanguageCode ) );
 if( $wgLangClass == $wgContLangClass ) {
 	$wgLang = &$wgContLang;
 } else {
-	require_once("languages/$wgLangClass.php");
+	require_once("$IP/languages/$wgLangClass.php");
 	$wgLang = setupLangObj( $wgLangClass, $wgLanguageCode );
 }
 

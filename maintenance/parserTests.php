@@ -29,7 +29,7 @@ $options = array( 'quick', 'color' );
 $optionsWithArgs = array( 'regex' );
 
 require_once( 'commandLine.inc' );
-require_once( 'languages/LanguageUtf8.php' );
+require_once( "$IP/languages/LanguageUtf8.php" );
 
 /** */
 class ParserTest {
