@@ -2183,23 +2183,18 @@ class Skin {
 	}
 
 	function tocTable($toc) {
-	// note to CSS fanatics: putting this in a div does not work -- div won't auto-expand
-	global $printable, $wgLang;
-
-	if (!$printable) {
-		$hideline = " <script type='text/javascript'>showTocToggle(\"" . wfMsg("showtoc") . "\",\"" . wfMsg("hidetoc") . "\")</script>";
-	}
-	if( $wgLang->isRTL() ) {
-		$rtl = ' dir="rtl"';
-	} else {
-		$rtl = "";
-	}
-	return
-	"<p><table border=\"0\" id=\"toc\"$rtl><tr><td align=\"center\">\n".
-	"<b>".wfMsg("toc")."</b>" .
-	$hideline .
-	"</td></tr><tr id='tocinside'><td align=\"left\"$rtl>\n".
-	$toc."</td></tr></table><P>\n";
+		// note to CSS fanatics: putting this in a div does not work -- div won't auto-expand
+		global $printable;
+		
+		if (!$printable) {
+			$hideline = " <script type='text/javascript'>showTocToggle(\"" . wfMsg("showtoc") . "\",\"" . wfMsg("hidetoc") . "\")</script>";
+		}
+		return
+		"<p><table border=\"0\" id=\"toc\"><tr><td align=\"center\">\n".
+		"<b>".wfMsg("toc")."</b>" .
+		$hideline .
+		"</td></tr><tr id='tocinside'><td>\n".
+		$toc."</td></tr></table><P>\n";
 	}
 
 	# These two do not check for permissions: check $wgTitle->userCanEdit before calling them
@@ -2212,14 +2207,23 @@ class Skin {
 	}
 
 	function editSectionLink($section) {
-
-		global $printable;
-		global $wgTitle,$wgUser,$oldid;
-		if($oldid) return "";
-		if ($printable) return "";
-		$editurl="&section={$section}";
-		$url=$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg("editsection"),"action=edit".$editurl);
-		return "<div style=\"float:right;margin-left:5px;\"><small>[".$url."]</small></div>";
+		global $printable,$oldid;
+		global $wgTitle, $wgUser, $wgLang;
+		
+		if( isset( $oldid ) ) return "";
+		if( isset( $printable ) ) return "";
+		
+		$editurl = "&section={$section}";
+		$url = $this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg("editsection"),"action=edit".$editurl);
+		
+		if( $wgLang->isRTL() ) {
+			$farside = "left";
+			$nearside = "right";
+		} else {
+			$farside = "right";
+			$nearside = "left";
+		}
+		return "<div style=\"float:$farside;margin-$nearside:5px;\"><small>[".$url."]</small></div>";
 
 	}
 
