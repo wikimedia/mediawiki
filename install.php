@@ -48,9 +48,8 @@ print "Copying files...\n";
 
 copyfile( ".", "LocalSettings.php", $IP );
 copyfile( ".", "Version.php", $IP );
-copyfile( ".", "wiki.phtml", $IP );
-copyfile( ".", "redirect.phtml", $IP );
-copyfile( ".", "texvc.phtml", $IP );
+copyfileto( ".", "wiki.phtml", $IP, "wiki.$wgScriptExtension" );
+copyfileto( ".", "redirect.phtml", $IP, "redirect.$wgScriptExtension" );
 
 copydirectory( "./includes", $IP );
 copydirectory( "./stylesheets", $wgStyleSheetDirectory );
