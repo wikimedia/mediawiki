@@ -17,6 +17,7 @@ class Image
 		$attr;		# /
 
 
+
 	function Image( $name )
 	{
 		$this->name      = $name;
@@ -88,15 +89,28 @@ class Image
 		return $this->fileExists;
 	}
 
+	function thumbUrl( $width, $subdir="thumb" ) {
+		global $wgUploadPath;
+
+		$name = $this->thumbName( $width );
+		$hash = md5( $name );
+		$url = "{$wgUploadPath}/{$subdir}/" . $hash{0} . "/" . substr( $hash, 0, 2 ) . "/{$name}";
+
+		return wfUrlencode($url);
+	}
+
+	function thumbName( $width ) {
+		return $width."px-".$this->name;
+	}
 
 	function createThumb( $width ) {
 		global $wgUploadDirectory;
 		global $wgImageMagickConvertCommand;
 		global $wgUseImageMagick;
 		global $wgUseSquid, $wgInternalServer;
-		$thumbName = $width."px-".$this->name;
+		$thumbName = $this->thumbName( $width );
 		$thumbPath = wfImageThumbDir( $thumbName )."/".$thumbName;
-		$thumbUrl  = wfImageThumbUrl( $thumbName );
+		$thumbUrl  = $this->thumbUrl( $width );
 
 		if ( ! $this->exists() )
 		{
@@ -201,3 +215,20 @@ class Image
 	} //function createThumb
 
 } //class
+
+// return path name of an image
+// canonicalize name.
+function wfImagePath( $imgname )
+{
+	global $wgUploadDirectory;
+
+	$nt = Title::newFromText( $imgname );
+	if( !$nt ) return "";
+
+	$name = $nt->getDBkey();
+	$hash = md5( $name );
+
+	$path = "{$wgUploadDirectory}/" . $hash{0} . "/" .
+	  substr( $hash, 0, 2 ) . "/{$name}";
+	return $path;
+}

@@ -186,7 +186,7 @@ class ImagePage extends Article {
 			# Squid purging
 			if ( $wgUseSquid ) {
 				$urlArr = Array(
-					$wgInternalServer.wfImageUrl( $image )
+					$wgInternalServer . Image::wfImageUrl( $image )
 				);
 				wfPurgeSquidServers($urlArr);
 			}
@@ -301,7 +301,7 @@ class ImagePage extends Article {
 		if ( $wgUseSquid ) {
 			$urlArr = Array(
 				$wgInternalServer.wfImageArchiveUrl( $name ),
-				$wgInternalServer.wfImageUrl( $name )
+				$wgInternalServer . Image::wfImageUrl( $name )
 			);
 			wfPurgeSquidServers($urlArr);
 		}

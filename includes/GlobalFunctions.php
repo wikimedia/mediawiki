@@ -89,46 +89,21 @@ function wfFullUrlE( $a, $q = "" ) {
 
 }
 
-function wfImagePath( $img )
-{
-	global $wgUploadDirectory;
+// orphan function wfThumbUrl( $img )
+//{
+//	global $wgUploadPath;
+//
+//	$nt = Title::newFromText( $img );
+//	if( !$nt ) return "";
+//
+//	$name = $nt->getDBkey();
+//	$hash = md5( $name );
+//
+//	$url = "{$wgUploadPath}/thumb/" . $hash{0} . "/" .
+//	  substr( $hash, 0, 2 ) . "/{$name}";
+//	return wfUrlencode( $url );
+//}
 
-	$nt = Title::newFromText( $img );
-	if( !$nt ) return "";
-
-	$name = $nt->getDBkey();
-	$hash = md5( $name );
-
-	$path = "{$wgUploadDirectory}/" . $hash{0} . "/" .
-	  substr( $hash, 0, 2 ) . "/{$name}";
-	return $path;
-}
-
-function wfThumbUrl( $img )
-{
-	global $wgUploadPath;
-
-	$nt = Title::newFromText( $img );
-	if( !$nt ) return "";
-
-	$name = $nt->getDBkey();
-	$hash = md5( $name );
-
-	$url = "{$wgUploadPath}/thumb/" . $hash{0} . "/" .
-	  substr( $hash, 0, 2 ) . "/{$name}";
-	return wfUrlencode( $url );
-}
-
-
-function wfImageThumbUrl( $name, $subdir="thumb" )
-{
-	global $wgUploadPath;
-
-	$hash = md5( $name );
-	$url = "{$wgUploadPath}/{$subdir}/" . $hash{0} . "/" .
-	  substr( $hash, 0, 2 ) . "/{$name}";
-	return wfUrlencode($url);
-}
 
 function wfImageArchiveUrl( $name )
 {
