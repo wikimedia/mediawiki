@@ -85,8 +85,8 @@ class SearchMySQL4 extends SearchEngine {
                 $dbw->replace( 'searchindex', array(array('si_page')),
                         array(
                                 'si_page' => $id,
-                                'si_title' => $dbw->strencode($title),
-                                'si_text' => $dbw->strencode( $text )
+                                'si_title' => $title,
+                                'si_text' => $text
                         ), 'SearchMySQL4::update' );
         }
 
