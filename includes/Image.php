@@ -14,7 +14,8 @@ class Image
 		$historyLine,	# Number of line to return by nextHistoryLine()
 		$historyRes,	# result of the query for the image's history
 		$width,		# \
-		$height,	#  --- returned by getimagesize, see http://de3.php.net/manual/en/function.getimagesize.php
+		$height,	#  |
+		$bits,		#   --- returned by getimagesize, see http://de3.php.net/manual/en/function.getimagesize.php
 		$type,		#  |
 		$attr;		# /
 
@@ -35,6 +36,17 @@ class Image
 		if ( $this->fileExists = file_exists( $this->imagePath ) ) // Sic!, "=" is intended
 		{
 			list($this->width, $this->height, $this->type, $this->attr) = getimagesize( $this->imagePath );
+			$gid = getimagesize( $this->imagePath );
+			$this->width = $gid["width"];
+			$this->height = $gid["height"];
+			$this->type = $gid["type"];
+			$this->attr = $gid["attr"];
+			if ( defined( $gid["bits"] ) ) 
+			{
+				$this->bits = $gid["bits"];
+			} else {
+				$this->bits = 0;
+			}
 		}
 		$this->historyLine = 0;
 	}
@@ -168,6 +180,8 @@ class Image
 				#
 				# First find out what kind of file this is, and select the correct
 				# input routine for this.
+
+				$truecolor = false;
 				
 				switch( $this->type ) {
 					case 1: # GIF
@@ -175,9 +189,11 @@ class Image
 						break;
 					case 2: # JPG
 						$src_image = imagecreatefromjpeg( $this->imagePath );
+						$truecolor = true;
 						break;
 					case 3: # PNG
 						$src_image = imagecreatefrompng( $this->imagePath );
+						$truecolor = ( $this->bits > 8 );
 						break;
 					case 15: # WBMP for WML
 						$src_image = imagecreatefromwbmp( $this->imagePath );
@@ -190,7 +206,11 @@ class Image
 						break;
 				}
 				$height = floor( $this->height * ( $width/$this->width ) );
-				$dst_image = imagecreatetruecolor( $width, $height );
+				if ( $truecolor ) {
+					$dst_image = imagecreatetruecolor( $width, $height );
+				} else {
+					$dst_image = imagecreate( $width, $height );
+				}
 				imagecopyresampled( $dst_image, $src_image, 
 							0,0,0,0,
 							$width, $height, $this->width, $this->height );
