@@ -458,7 +458,12 @@ td.diff-context { background:#eeeeee; }
     background: url("discussionitem_icon.gif")  center right no-repeat;
     padding-right: 18px;
 }
-
+/* this can be used in the content area to switch off
+special external link styling */
+#bodyContent .plainlinks a {
+    background: none;
+    padding: 0;
+}
 /*
 ** Structural Elements
 */
@@ -776,15 +781,6 @@ head:first-child+body #footer li { white-space: nowrap; }
     height: 1%;
 }
 
-/* JeLuF's js-based preference dialog */
-#bar #p-cactions {
-    top: 8.0em;
-    left: 5em;
-}
-form #content {
-   left: -8em;
-}
-
 /* js pref toc */
 #preftoc { 
     float: left;
@@ -831,7 +827,8 @@ fieldset.operaprefsection { margin-left: 15em }
 
 /* more IE fixes */
 /* float/negative margin brokenness */
-* html #bodyContent {
+* html #bodyContent,
+* html #bodyContent pre {
     overflow-x: auto;
     width: 100%;
     padding-bottom: 25px;
