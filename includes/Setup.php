@@ -71,7 +71,7 @@ global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
 global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
 global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
 global $wgMsgCacheExpiry, $wgDBname, $wgCommandLineMode;
-global $wgBlockCache, $wgParserCache, $wgParser;
+global $wgBlockCache, $wgParserCache, $wgParser, $wgDontTrustMemcachedWithImportantStuff;
 
 # Useful debug output
 if ( $wgCommandLineMode ) {
@@ -142,8 +142,7 @@ if( $wgUseMemCached ) {
 }
 
 wfProfileOut( "$fname-memcached" );
-wfProfileIn( "$fname-misc" );
-
+wfProfileIn( "$fname-language" );
 require_once( "languages/Language.php" );
 
 $wgMessageCache = new MessageCache; 
@@ -158,10 +157,19 @@ $wgLang = new $wgLangClass();
 if ( !is_object($wgLang) ) {
 	print "No language class ($wgLang)\N";
 }
+wfProfileOut( "$fname-Language" );
+wfProfileIn( "$fname-MessageCache" );
+
 $wgMessageCache->initialise( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname );
+
+wfProfileOut( "$fname-MessageCache" );
+wfProfileIn( "$fname-OutputPage" );
 
 $wgOut = new OutputPage();
 wfDebug( "\n\n" );
+
+wfProfileOut( "$fname-OutputPage" );
+wfProfileIn( "$fname-DateFormatter" );
 
 if ( $wgUseDynamicDates ) {
 	require_once( "DateFormatter.php" );
@@ -169,11 +177,21 @@ if ( $wgUseDynamicDates ) {
 	$wgDateFormatter = new DateFormatter;
 }
 
+wfProfileOut( "$fname-DateFormatter" );
+wfProfileIn( "$fname-SetupSession" );
+
 if( !$wgCommandLineMode && ( isset( $_COOKIE[ini_get("session.name")] ) || isset( $_COOKIE["{$wgDBname}Password"] ) ) ) {
 	User::SetupSession();
 }
 
+wfProfileOut( "$fname-SetupSession" );
+wfProfileIn( "$fname-BlockCache" );
+
 $wgBlockCache = new BlockCache( true );
+
+wfProfileOut( "$fname-BlockCache" );
+wfProfileIn( "$fname-User" );
+
 if( $wgCommandLineMode ) {
 	# Used for some maintenance scripts; user session cookies can screw things up
 	# when the database is in an in-between state.
@@ -181,6 +199,10 @@ if( $wgCommandLineMode ) {
 } else {
 	$wgUser = User::loadFromSession();
 }
+
+wfProfileOut( "$fname-User" );
+wfProfileIn( "$fname-misc" );
+
 $wgDeferredUpdateList = array();
 $wgLinkCache = new LinkCache();
 $wgMagicWords = array();
@@ -197,6 +219,9 @@ if ( !$wgAllowSysopQueries ) {
 $wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 $wgArticle = new Article($wgTitle);
 
+wfProfileOut( "$fname-misc" );
+wfProfileIn( "$fname-extensions" );
+
 # Extension setup functions
 # Entries should be added to this variable during the inclusion 
 # of the extension file. This allows the extension to perform 
@@ -205,7 +230,7 @@ foreach ( $wgExtensionFunctions as $func ) {
 	$func();
 }
 
-wfProfileOut( "$fname-misc" );
+wfProfileOut( "$fname-extensions" );
 wfProfileOut( $fname );
 
 
