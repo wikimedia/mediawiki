@@ -7,6 +7,7 @@
 // encapsulates some of the magic-ness.
 require_once( "LanguageUtf8.php" );
 
+$GLOBALS['wgUseWikiHiero']) = true;
 
 /* private */ $wgNamespaceNamesFr = array(
 	NS_MEDIA		=> "Media",
