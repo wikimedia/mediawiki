@@ -26,6 +26,8 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+
+# This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
 if( defined( "MEDIAWIKI" ) ) {
 	require_once "GlobalFunctions.php";
 	global $IP;

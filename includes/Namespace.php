@@ -1,4 +1,6 @@
 <?php
+
+# This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
 if( defined( "MEDIAWIKI" ) ) {
 
 # This is a utility class with only static functions

@@ -1,4 +1,6 @@
 <?php
+
+# This file is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
 if( defined( "MEDIAWIKI" ) ) {
 
 # The main wiki script and things like database
