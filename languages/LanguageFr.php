@@ -47,7 +47,7 @@
 	"Toujours produire une image PNG",  
 	"HTML si très simple, autrement PNG", 
 	"HTML si possible, autrement PNG", 
-	"Produire le TeX original, pour les navigateurs a base de texte",	"Pour les navigateurs modernes"
+	"Produire le TeX original, pour les navigateurs à base de texte",	"Pour les navigateurs modernes"
 );
 
 /* private */ $wgUserTogglesFr = array(
@@ -72,7 +72,7 @@
     "ab" => "Abkhazien",
 	"af" => "Afrikaans",
 	"am" => "Amharique",
-	"ar" => "&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1617;&#1577; (Araby)",
+	"ar" => "???????? (Araby)",
 	"as" => "Assamais",
 	"ay" => "Aymara",
 	"az" => "Azerbaïjanais",
@@ -84,13 +84,13 @@
 	"bo" => "Tibétain",
 	"ca" => "Català",
 	"co" => "Corse",
-	"cs" => "&#268;esky (Tchèque)",
+	"cs" => "Cesky (Tchèque)",
 	"cy" => "Cymraeg",
 	"da" => "Dansk", # Note two different subdomains.
 	"dk" => "Dansk", # 'da' is correct for the language.
 	"de" => "Deutsch",
 	"dz" => "Bhoutani",
-	"el" => "&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940; (Ellenika)",
+	"el" => "???????? (Ellenika)",
 	"en" => "English",
     "simple" => "Anglais simplifié",
 	"eo" => "Esperanto",
@@ -107,7 +107,7 @@
 	"gn" => "Guarani",
 	"gu" => "Goujarati",
 	"ha" => "Haoussa",
-	"he" => "&#1506;&#1489;&#1512;&#1497;&#1514; (Ivrit)",
+	"he" => "????? (Ivrit)",
 	"hi" => "Hindi",
 	"hr" => "Hrvatski",
 	"hu" => "Magyar",
@@ -118,20 +118,20 @@
 	"is" => "Íslenska",
 	"it" => "Italiano",
 	"iu" => "Inuktitut",
-	"ja" => "&#26085;&#26412;&#35486; (Nihongo)",
+	"ja" => "??? (Nihongo)",
 	"jv" => "Javanais",
 	"ka" => "Géorgien",
 	"kk" => "Kazakh",
 	"kl" => "Groenlandais",
 	"km" => "Cambodgien",
 	"kn" => "Kannada",
-	"ko" => "&#54620;&#44397;&#50612; (Hangukeo)",
+	"ko" => "??? (Hangukeo)",
 	"ks" => "Kashmiri",
 	"ky" => "Kirghize",
 	"la" => "Latin",
 	"ln" => "Lingala",
 	"lo" => "Laotien",
-	"lt" => "Lietuvi&#371;",
+	"lt" => "Lietuviu",
 	"lv" => "Letton",
 	"mg" => "Malgache",
 	"mi" => "Maori",
@@ -156,8 +156,8 @@
 	"qu" => "Quechua",
 	"rm" => "Rhéto-Roman",
 	"rn" => "Kirundi",
-	"ro" => "Român&#259;",
-	"ru" => "&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081; (Russkij)",
+	"ro" => "Româna",
+	"ru" => "??????? (Russkij)",
 	"rw" => "Kinyarwanda",
 	"sa" => "Sanscrit",
 	"sd" => "Sindhi",
@@ -190,7 +190,7 @@
 	"tt" => "Tatar",
 	"tw" => "Tchi",
 	"ug" => "Ouïgour",
-	"uk" => "&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072; (Ukrayins`ka)",
+	"uk" => "?????????? (Ukrayins`ka)",
 	"ur" => "Ourdou",
 	"uz" => "Ouzbek",
 	"vi" => "Vietnamien",
@@ -200,7 +200,7 @@
 	"yi" => "Yiddish",
 	"yo" => "Yorouba",
 	"za" => "Zhuang",
-	"zh" => "&#20013;&#25991; (Zhongwen)",
+	"zh" => "?? (Zhongwen)",
 	"zu" => "Zoulou"
 );
 
@@ -460,6 +460,7 @@ Peut-être serait-il mieux que vous divisiez la page en sections plus petites.", 
 "nohistory"    => "Il n'existe pas d'historique pour cette page.",
 "revnotfound"  => "Version introuvable",
 "revnotfoundtext" => "La version précédente de cette page n'a pas pu être retrouvée. Vérifiez l'URL que vous avez utilisée pour accéder à cette page.\n",
+
 "loadhist"     => "Chargement de l'historique de la page",
 "currentrev"   => "Version actuelle",
 "revisionasof" => "Version du $1",
@@ -509,12 +510,12 @@ contenant tous les termes apparaissent dans les résultats).",
 "powersearchtext" => "
 Rechercher dans les espaces :<br>
 $1<br>
-$2 Inclure les page de redirections &nbsp; Rechercher $3 $9",
+$2 Inclure les page de redirections   Rechercher $3 $9",
 /* AOI
 "powersearchtext" => "
 Search in namespaces :<br>
 $1<br>
-$2 List redirects &nbsp; Search for $3 $9",
+$2 List redirects   Search for $3 $9",
 */
 
 // Preferences page
@@ -555,7 +556,7 @@ pour modifier vos préférences d'utilisateur.",
 "recentchanges" => "Modifications récentes",
 "recentchangestext" => "Suivez sur cette page les dernières modifications de Wikipédia.
 [[Wikipédia:Bienvenue|Bienvenue]] aux nouveaux participants!
-Jetez un coup d'&oelig;il sur ces pages: [[Wikipédia:FAQ|Foire aux questions]],
+Jetez un coup d'œil sur ces pages: [[Wikipédia:FAQ|Foire aux questions]],
 [[Wikipédia:Recommandations Et Règles à Suivre|Recommandations et règles à suivre]]
 (notamment [[Wikipédia:Règles de nommage|Conventions de nommage]],
 [[Wikipédia:La Neutralité De Point De Vue|La neutralité de point de vue]]),
@@ -795,7 +796,7 @@ Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en compr
 "deletedtext" => "\"$1\" a été supprimé.
 Voir $2 pour une liste des suppressions récentes.",
 "deletedarticle" => "effacement de \"$1\"",
-"dellogpage" => "Trace_des_effacements", # Doit avoir des _s!
+"dellogpage" => " Trace des effacements",
 "dellogpagetext" => "Voici la liste des suppressions récentes.
 L'heure indiquée est celle du serveur (UTC).
 <ul>
@@ -1049,7 +1050,7 @@ class LanguageFr extends Language
 
 	function timeanddate( $ts, $adj = false )
 	{
-		return $this->date( $ts, $adj ) . " &#12539;" . $this->time( $ts, $adj );
+		return $this->date( $ts, $adj ) . " à " . $this->time( $ts, $adj );
 	}
 
 	function getValidSpecialPages()
