@@ -822,6 +822,9 @@ class Parser
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
 
+		global $fixLbug ;
+		if ( $fixLbug ) $text = preg_replace ( '/(l|L)\'/' , '\\1&#39;' , $text ) ;
+		
 		$text = $this->removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text, $args );
 
