@@ -1855,7 +1855,7 @@ class Parser
 	# It loops through all headlines, collects the necessary data, then splits up the
 	# string and re-inserts the newly formatted headlines.
 	/* private */ function formatHeadings( $text, $isMain=true ) {
-		global $wgInputEncoding, $wgMaxTocLevel;
+		global $wgInputEncoding, $wgMaxTocLevel, $wgLang;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
@@ -1954,7 +1954,7 @@ class Parser
 						if( $dot ) {
 							$numbering .= '.';
 						}
-						$numbering .= $sublevelCount[$i];
+						$numbering .= $wgLang->formatNum( $sublevelCount[$i] );
 						$dot = 1;
 					}
 				}
