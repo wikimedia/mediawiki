@@ -12,20 +12,49 @@ if( defined( 'MEDIAWIKI' ) ) {
 
 /**
  * Image gallery
+ * 
+ * Add images to the gallery using add(), then render that list to HTML using toHTML().
+ *
  * @package MediaWiki
  */
 class ImageGallery
 {
 	var $mImages;
 
+	/** 
+	 * Create a new image gallery object.
+	 */
 	function ImageGallery( ) {
 		$this->mImages=array();
 	}
 
+	/**
+	 * Add an image to the gallery.
+	 *
+	 * @param Image  $image  Image object that is added to the gallery
+	 * @param string $text   Additional text to be shown. The name and size of the image are always shown.
+	 */
 	function add( $image, $text='' ) {
 		$this->mImages[] = array( &$image, $text );
 	}
 
+	/**
+	 * isEmpty() returns false iff the gallery doesn't contain any images
+	 */
+	function isEmpty() {
+		return empty( $this->mImages );
+	}
+
+	/**
+	 * Return a HTML representation of the image gallery
+	 * 
+	 * For each image in the gallery, display
+	 * - a thumbnail
+	 * - the image name
+	 * - the additional text provided when adding the image
+	 * - the size of the image
+	 *
+	 */
 	function toHTML() {
 		global $wgLang, $wgContLang, $wgUser;
 
@@ -43,16 +72,15 @@ class ImageGallery
 			//TODO
 			//$ul = $sk->makeLink( $wgContLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
 
-			$ilink = '<a href="' . $img->getURL() .  '">' . $nt->getText() . '</a>';
 			$nb = wfMsg( "nbytes", $wgLang->formatNum( $img->getSize() ) );
 
 			$s .= ($i%4==0) ? '<tr>' : '';
 			$s .= '<td valign="top" width="150px" style="background-color:#F0F0F0;">' .
 				'<table width="100%" height="150px">'.
 				'<tr><td align="center" valign="center" style="background-color:#F8F8F8;border:solid 1px #888888;">' .
-				'<img  src="'.$img->createThumb(120,120).'" alt=""></td></tr></table> ' .
-				'(' .  $sk->makeKnownLinkObj( $nt, wfMsg( "imgdesc" ) ) .
-				") {$ilink}<br />{$text}{$nb}<br />" ;
+				$sk->makeKnownLinkObj( $nt, '<img  src="'.$img->createThumb(120,120).'" alt="">' ) . '</td></tr></table> ' .
+				$sk->makeKnownLinkObj( $nt, Language::truncate( $nt->getText(), 20, '...' ) ) .
+				"<br />{$text}{$nb}<br />" ;
 
 			$s .= '</td>' .  (($i%4==3) ? '</tr>' : '');
 
