@@ -241,6 +241,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 211) Fix tabbed preferences with XHTML MIME type 
 * Fix for script execution vulnerability.
 * Set default MediaWiki:Sitenotice to '-', avoiding extra database hits
+* Skip message cache initialization on raw page view (quick hack)
 
 === Beta 6 fixes ===
 
