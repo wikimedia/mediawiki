@@ -18,12 +18,12 @@
 			$messages[$key]['msg'] = wfMsg ( $key );
 		}
 		if ($ot == 'html') {
-			$navText .= makeWikiText($messages);
-			$wgOut->addHTML('<a href="'.$wgTitle->getLocalUrl('ot=php').'">PHP</a> | HTML');
-			$wgOut->addWikiText($navText);
+			$wgOut->addHTML( '<a href="'.$wgTitle->escapeLocalUrl('ot=php').'">PHP</a> | HTML' );
+			$wgOut->addWikiText( $navText );
+			$wgOut->addHTML( makeHTMLText( $messages ) );
 		} else {
 			$navText .= makePhp($messages);
-			$wgOut->addHTML('PHP | <a href="'.$wgTitle->getLocalUrl('ot=html').'">HTML</a><pre>'.htmlspecialchars($navText).'</pre>');
+			$wgOut->addHTML('PHP | <a href="'.$wgTitle->escapeLocalUrl('ot=html').'">HTML</a><pre>'.htmlspecialchars($navText).'</pre>');
 		}
 		return;
 	}
@@ -37,6 +37,7 @@
 					$comment=' */';
 				} else {
 					$txt .= '#';
+					$comment = '';
 				}
 			} elseif ($m['msg'] == '&lt;'.$key.'&gt;'){
 				$m['msg'] = '';
@@ -50,33 +51,61 @@
 		return $txt;
 	}
 
-
-	function makeWikiText($messages) {
-		global $wgLang;
+	function makeHTMLText( $messages ) {
+		global $wgLang, $wgUser;
+		$sk =& $wgUser->getSkin();
 		$talk = $wgLang->getNsText( NS_TALK );
 		$mwnspace = $wgLang->getNsText( NS_MEDIAWIKI );
 		$mwtalk = $wgLang->getNsText( NS_MEDIAWIKI_TALK );
 		$txt = "
 
-		<table border=1 cellspacing=0 width=100%><tr bgcolor=#b2b2ff><td>
-		'''Name'''
-		</td><td>
-		'''Default text'''
-		</td><td>
-		'''Current text'''
-		</td></tr>";
+		<table border='1' cellspacing='0' width='100%'>
+		<tr bgcolor='#b2b2ff'>
+			<th>Name</th>
+			<th>Default text</th>
+			<th>Current text</th>
+		</tr>";
+		
+		# This is a nasty hack to avoid doing independent existence checks
+		# without sending the links and table through the slow wiki parser.
+		$pageExists = array(
+			NS_MEDIAWIKI => array(),
+			NS_MEDIAWIKI_TALK => array()
+		);
+		$sql = "SELECT cur_namespace,cur_title FROM cur WHERE cur_namespace IN (" . NS_MEDIAWIKI . ", " . NS_MEDIAWIKI_TALK . ")";
+		$dbr =& wfGetDB( DB_SLAVE );
+		$res = $dbr->query( $sql );
+		while( $s = $dbr->fetchObject( $res ) ) {
+			$pageExists[$s->cur_namespace][$s->cur_title] = true;
+		}
+		$dbr->freeResult( $res );
+
 		foreach( $messages as $key => $m ) {
-			$titleObj = Title::newFromText( $key );
+			$titleObj = Title::makeTitle( NS_MEDIAWIKI, $key );
+			$talkPage = Title::makeTitle( NS_MEDIAWIKI_TALK, $key );
 			$title = $titleObj->getDBkey();
 
 			$colorIt = ($m['statmsg'] == $m['msg']) ? " bgcolor=\"#f0f0ff\"" : " bgcolor=\"#ffe2e2\"";
-			$message = wfEscapeWikiText( $m['statmsg'] );
-			$mw = wfEscapeWikiText( $m['msg'] );
+			$message = htmlspecialchars( $m['statmsg'] );
+			$mw = htmlspecialchars( $m['msg'] );
+			
+			#$pageLink = $sk->makeLinkObj( $titleObj, htmlspecialchars( $key ) );
+			#$talkLink = $sk->makeLinkObj( $talkPage, htmlspecialchars( $talk ) );
+			if( isset( $pageExists[NS_MEDIAWIKI][$title] ) ) {
+				$pageLink = $sk->makeKnownLinkObj( $titleObj, htmlspecialchars( $key ) );
+			} else {
+				$pageLink = $sk->makeBrokenLinkObj( $titleObj, htmlspecialchars( $key ) );
+			}
+			if( isset( $pageExists[NS_MEDIAWIKI_TALK][$title] ) ) {
+				$talkLink = $sk->makeKnownLinkObj( $talkPage, htmlspecialchars( $talk ) );
+			} else {
+				$talkLink = $sk->makeBrokenLinkObj( $talkPage, htmlspecialchars( $talk ) );
+			}
 
 			$txt .= 
 			"<tr$colorIt><td>
-			[[$mwnspace:$title|$key]]<br>
-			[[$mwtalk:$title|$talk]]
+			$pageLink<br />
+			$talkLink
 			</td><td>
 			$message
 			</td><td>
@@ -88,4 +117,4 @@
 		return $txt;
 	}
 
-	?>
+?>
