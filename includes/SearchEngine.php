@@ -388,7 +388,7 @@ class SearchEngine {
 		$wgTitle = Title::newFromText( $search );
 
 		if ( 0 != $wgArticle->getID() ) {
-			$wgOut->redirect( "/wiki/" . $wgTitle->getURL() );
+			$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
 			return;
 		}
 
@@ -396,7 +396,7 @@ class SearchEngine {
 		#
 		$wgTitle = Title::newFromText( strtolower( $search ) );
 		if ( 0 != $wgArticle->getID() ) {
-			$wgOut->redirect( "/wiki/" . $wgTitle->getURL() );
+			$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
 			return;
 		}
 
@@ -404,7 +404,7 @@ class SearchEngine {
 		#
 		$wgTitle=Title::newFromText( ucwords( strtolower( $search ) ) );
 		if ( 0 != $wgArticle->getID() ) {
-			$wgOut->redirect( "/wiki/" . $wgTitle->getURL() );
+			$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
 			return;
 		}
 
@@ -412,7 +412,7 @@ class SearchEngine {
 		#
 		$wgTitle = Title::newFromText( strtoupper( $search ) );
 		if ( 0 != $wgArticle->getID() ) {
-			$wgOut->redirect( "/wiki/" . $wgTitle->getURL() );
+			$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
 			return;
 		}
 
@@ -430,7 +430,7 @@ class SearchEngine {
 
 			$wgTitle = Title::newFromDBkey( $s->cur_title );
 			$wgTitle->setNamespace( $s->cur_namespace );
-			$wgArticle->view();
+			$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
 			return;
 		}
 		$wgOut->addHTML( wfMsg("nogomatch", 
