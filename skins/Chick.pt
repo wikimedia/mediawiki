@@ -24,7 +24,7 @@
     </div>
     <div id="siteNotice" tal:condition="sitenotice" tal:content="structure sitenotice"></div>
     <h1 class="firstHeading" tal:content="title">Leonardo da Vinci</h1>
-    <div id="siteSub" i18n:translate="string:fromwikipedia">From Wikipedia, the free encyclopedia.</div>
+    <div id="siteSub" i18n:translate="string:tagline">From Wikipedia, the free encyclopedia.</div>
     <div id="contentSub" tal:content="structure subtitle"></div>
     <div id="contentUndel" tal:condition="undelete" tal:content="structure undelete"></div>
     <div tal:condition="newtalk" class="usermessage" tal:content="structure newtalk"></div>
