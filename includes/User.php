@@ -131,7 +131,7 @@ class User {
 	 * if we have an available language object.
 	 */
 	function loadDefaults() {
-		global $wgLang, $wgIP;
+		global $wgContLang, $wgIP;
 		global $wgNamespacesToBeSearchedDefault;
 
 		$this->mId = $this->mNewtalk = 0;
@@ -140,7 +140,7 @@ class User {
 		$this->mPassword = $this->mNewpassword = '';
 		$this->mRights = array();
 		// Getting user defaults only if we have an available language
-		if(isset($wgLang)) { $this->loadDefaultFromLanguage(); }
+		if(isset($wgContLang)) { $this->loadDefaultFromLanguage(); }
 		
 		foreach ($wgNamespacesToBeSearchedDefault as $nsnum => $val) {
 			$this->mOptions['searchNs'.$nsnum] = $val;
@@ -817,7 +817,7 @@ class User {
 	}
 
 	function getPageRenderingHash() {
-        global $wgLang;
+        global $wgContLang;
 		if( $this->mHash ){
 			return $this->mHash;
 		}
@@ -836,7 +836,7 @@ class User {
 
         // add in language variant option if there are multiple variants
         // supported by the language object
-        if(sizeof($wgLang->getVariants())>1) {
+        if(sizeof($wgContLang->getVariants())>1) {
              $confstr .= '!' . $this->getOption( 'variant' );
         }
 
