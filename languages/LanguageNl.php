@@ -148,7 +148,7 @@
  "mo" => "Moldavisch",
  "mn" => "Mongools",
  "na" => "Nauru",
- "nds" => "Nedersassisch (Plattdüütsch)",
+ "nds" => "Plattdüütsch",
  "ne" => "&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;",
  "no" => "Norsk",
  "oc" => "Occitaans",
