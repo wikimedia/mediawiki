@@ -1,30 +1,28 @@
 <?php
-
 /**
  * A few constants that might be needed during LocalSettings.php
+ * @package MediaWiki
  */
 
 /**#@+
- * @global integer
+ * Database related global
  */
 define( 'DBO_DEBUG', 1 );
 define( 'DBO_NOBUFFER', 2 );
 define( 'DBO_IGNORE', 4 );
 define( 'DBO_TRX', 8 );
 define( 'DBO_DEFAULT', 16 );
-/**#@- */
+/**#@-*/
 
 /**#@+
- * Virtual namespaces; these don't appear in the page database
- * @global integer
+ * Virtual namespace; it doesn't appear in the page database
  */
 define('NS_MEDIA', -2);
 define('NS_SPECIAL', -1);
-/**#@- */
+/**#@-*/
 
 /**#@+
- * Real namespaces
- * @global integer
+ * Real namespace
  */
 define('NS_MAIN', 0);
 define('NS_TALK', 1);
@@ -42,16 +40,16 @@ define('NS_HELP', 12);
 define('NS_HELP_TALK', 13);
 define('NS_CATEGORY', 14);
 define('NS_CATEGORY_TALK', 15);
-/**#@- */
+/**#@-*/
 
 /**#@+
  * Fix the code and remove these...
- * @global integer
- * @todo Globals that need to be removed after code cleaning
+ * @todo Global that need to be removed after code cleaning
+ * @deprecated
  */
 define('NS_WP', NS_PROJECT);
 define('NS_WP_TALK', NS_PROJECT_TALK);
 define('NS_WIKIPEDIA', NS_PROJECT);
 define('NS_WIKIPEDIA_TALK', NS_PROJECT_TALK);
-/**#@- */
+/**#@-*/
 ?>

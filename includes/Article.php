@@ -1,7 +1,8 @@
 <?php
-# $Id$
 /**
  * File for articles
+ * @version $Id$
+ * @package MediaWiki
  */
 
 /**
@@ -18,6 +19,9 @@ $wgArticleOldContentFields = false;
  * See design.doc for an overview.
  * Note: edit user interface and cache support functions have been
  * moved to separate EditPage and CacheManager classes.
+ *
+ * @version $Id$
+ * @package MediaWiki
  */
 class Article {
 	/**#@+
@@ -34,6 +38,7 @@ class Article {
 
 	/**
 	 * Constructor and clear the article
+	 * @param mixed &$title
 	 */
 	function Article( &$title ) {
 		$this->mTitle =& $title;
@@ -61,7 +66,7 @@ class Article {
 	  * @static
 	  * @param integer $row Id of a row
 	  * @param string $prefix table prefix (default 'old_')
-	  * @return string $text the text requested
+	  * @return string $text|false the text requested
 	*/
 	function getRevisionText( $row, $prefix = 'old_' ) {
 		# Get data
@@ -95,7 +100,7 @@ class Article {
 	/**
 	 * If $wgCompressRevisions is enabled, we will compress datas
 	 * @static
-	 * @param reference to a text
+	 * @param mixed $text reference to a text
 	 * @return string 'gzip' if it get compressed, '' overwise
 	 */
 	function compressRevisionText( &$text ) {
@@ -114,6 +119,8 @@ class Article {
 	/**
 	 * Returns the text associated with a "link" type old table row
 	 * @static
+	 * @param mixed $link
+	 * @return string $text|false
 	 */
 	function followLink( $link ) {
 		# Split the link into fields and values
@@ -155,6 +162,8 @@ class Article {
 
 	/**
 	 * @static
+	 * @param $location
+	 * @param $hash
 	 */
 	function fetchFromLocation( $location, $hash ) {
 		global $wgLoadBalancer;
@@ -236,7 +245,8 @@ class Article {
 	 * Note that getContent/loadContent may follow redirects if
 	 * not told otherwise, and so may cause a change to mTitle.
 	 *
-	 * Return the text of this revision
+	 * @param $noredir
+	 * @return Return the text of this revision
 	*/
 	function getContent( $noredir ) {
 		global $wgRequest;
@@ -291,7 +301,11 @@ class Article {
 	 * the first section before any such heading (section 0).
 	 *
 	 * If a section contains subsections, these are also returned.
-	*/
+	 *
+	 * @param string $text text to look in
+	 * @param integer $section section number
+	 * @return string text of the requested section
+	 */
 	function getSection($text,$section) {
 
 		# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
@@ -352,7 +366,7 @@ class Article {
 
 	/**
 	 * Return an array of the columns of the "cur"-table
-	*/
+	 */
 	function &getCurContentFields() {
 		global $wgArticleCurContentFields;
 		if ( !$wgArticleCurContentFields ) {
@@ -364,7 +378,7 @@ class Article {
 
 	/**
 	 * Return an array of the columns of the "old"-table
-	*/
+	 */
 	function &getOldContentFields() {
 		global $wgArticleOldContentFields;
 		if ( !$wgArticleOldContentFields ) {
@@ -480,7 +494,10 @@ class Article {
 	/**
 	 * Gets the article text without using so many damn globals
 	 * Returns false on error
-	*/
+	 *
+	 * @param integer $oldid
+	 * @uses $wgMwRedir
+	 */
 	function getContentWithoutUsingSoManyDamnGlobals( $oldid = 0, $noredir = false ) {
 		global $wgMwRedir;
 
@@ -1809,6 +1826,7 @@ class Article {
 	 * Do standard deferred updates after page edit.
 	 * Every 1000th edit, prune the recent changes table.
 	 * @private
+	 * @param string $text
 	 */
 	function editUpdates( $text ) {
 		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
@@ -1861,6 +1879,8 @@ class Article {
 	/**
 	 * This function is called right before saving the wikitext,
 	 * so we can do things like signatures and links-in-context.
+	 *
+	 * @param string $text
 	 */
 	function preSaveTransform( $text ) {
 		global $wgParser, $wgUser;
@@ -1869,9 +1889,11 @@ class Article {
 
 	/* Caching functions */
 
-	# checkLastModified returns true if it has taken care of all
-	# output to the client that is necessary for this request.
-	# (that is, it has sent a cached version of the page)
+	/**
+	 * checkLastModified returns true if it has taken care of all
+	 * output to the client that is necessary for this request.
+	 * (that is, it has sent a cached version of the page)
+	 */
 	function tryFileCache() {
 		static $called = false;
 		if( $called ) {
@@ -1900,7 +1922,11 @@ class Article {
 			wfDebug( " tryFileCache() - not cacheable\n" );
 		}
 	}
-
+	
+	/**
+	 * Check if the page can be cached
+	 * @return bool
+	 */
 	function isFileCacheable() {
 		global $wgUser, $wgUseFileCache, $wgShowIPinHeader, $wgRequest;
 		extract( $wgRequest->getValues( 'action', 'oldid', 'diff', 'redirect', 'printable' ) );
@@ -1919,7 +1945,10 @@ class Article {
 			and (!$this->mRedirectedFrom);
 	}
 
-	# Loads cur_touched and returns a value indicating if it should be used
+	/**
+	 * Loads cur_touched and returns a value indicating if it should be used
+	 *
+	 */
 	function checkTouched() {
 		$fname = 'Article::checkTouched';
 		$id = $this->getID();
@@ -1934,7 +1963,13 @@ class Article {
 		}
 	}
 
-	# Edit an article without doing all that other stuff
+	/**
+	 * Edit an article without doing all that other stuff
+	 *
+	 * @param string $text text submitted
+	 * @param string $comment comment submitted
+	 * @param integer $minor whereas it's a minor modification
+	 */
 	function quickEdit( $text, $comment = '', $minor = 0 ) {
 		global $wgUser, $wgMwRedir;
 		$fname = 'Article::quickEdit';
@@ -1994,7 +2029,13 @@ class Article {
 		wfProfileOut( $fname );
 	}
 
-	/* static */ function incViewCount( $id ) {
+	/**
+	 * Used to increment the view counter
+	 *
+	 * @static
+	 * @param integer $id article id
+	 */
+	function incViewCount( $id ) {
 		$id = intval( $id );
 		global $wgHitcounterUpdateFreq;
 
@@ -2043,7 +2084,7 @@ class Article {
 		$dbw->ignoreErrors( $oldignore );
 	}
 
-	/**
+	/**#@+
 	 * The onArticle*() functions are supposed to be a kind of hooks
 	 * which should be called whenever any of the specified actions
 	 * are done.
@@ -2054,6 +2095,7 @@ class Article {
 	 * @static
 	 * @param $title_obj a title object
 	 */
+
 	function onArticleCreate($title_obj) {
 		global $wgUseSquid, $wgDeferredUpdateList;
 
@@ -2073,20 +2115,13 @@ class Article {
 		LinkCache::linksccClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
 	}
 
-	/**
-	 * @static
-	 */
 	function onArticleDelete($title_obj) {
 		LinkCache::linksccClearLinksTo( $title_obj->getArticleID() );
 	}
-
-	/**
-	 * @static
-	 */
 	function onArticleEdit($title_obj) {
 		LinkCache::linksccClearPage( $title_obj->getArticleID() );
 	}
-
+	/**#@-*/
 
 	/**
 	 * Info about this page
