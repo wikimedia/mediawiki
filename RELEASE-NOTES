@@ -457,6 +457,8 @@ pages for purposes of page relevancy ranking.
 * (bug 1042) Fix UTF-8 case conversion for PHP <4.3 with mbstring extension
 * Fix code typo that broke article credits display
 * Installation fixes for running under IIS
+* (bug 1556) login page tab order. "remember" checkbox now come after password.
+
 
 
 === Caveats ===
