@@ -324,7 +324,7 @@ class EditPage {
 				$wgRightsText ) . "\n</div>";
 
 		if( $wgUser->getOption("showtoolbar") and !$isCssJsSubpage ) {
-# prepare toolbar for edit buttons
+			# prepare toolbar for edit buttons
 			$toolbar = $sk->getEditToolbar();
 		} else {
 			$toolbar = "";
@@ -372,8 +372,10 @@ class EditPage {
 			$parserOptions->setUseCategoryMagic( false );
 			$parserOptions->setEditSection( false );
 			$parserOptions->setEditSectionOnRightClick( false );
-# don't parse user css/js, show message about preview
-# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here
+
+			# don't parse user css/js, show message about preview
+			# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here
+
 			if ( $isCssJsSubpage ) {
 				if(preg_match("/\\.css$/", $wgTitle->getText() ) ) {
 					$previewtext = wfMsg('usercsspreview');
@@ -397,8 +399,8 @@ class EditPage {
 			}
 		}
 
-# if this is a comment, show a subject line at the top, which is also the edit summary.
-# Otherwise, show a summary field at the bottom
+		# if this is a comment, show a subject line at the top, which is also the edit summary.
+		# Otherwise, show a summary field at the bottom
 		$summarytext = htmlspecialchars( $wgLang->recodeForEdit( $this->summary ) ); # FIXME
 			if( $this->section == "new" ) {
 				$commentsubject="{$subject}: <input tabindex='1' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
