@@ -489,7 +489,8 @@ $2 List omdirigeringer &nbsp; Søg efter $3 $9",
 for stort pres på serveren; vi håber vi kan sætte den på igen når vi har
 opgraderet softwaren. I mellemtiden kan du søge via google:</p>
                                                                                                                                                         
-<!-- SiteSearch Google -->
+",
+"googlesearch" => "<!-- SiteSearch Google -->
 <FORM method=GET action=\"http://www.google.com/search\">
 <TABLE bgcolor=\"#FFFFFF\"><tr><td>
 <A HREF=\"http://www.google.com/\">

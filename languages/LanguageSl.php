@@ -395,7 +395,8 @@ $1<br>
 $2 Seznam se preusmerja   Iskanje za $3 $9",
 "searchdisabled" => "<p>Oprostite! Iskanje po celotni bazi je zaradi hitrejšega delovanja Wikipedije trenutno onomogočena. Lahko pa se poslužite z Googlovim iskalnikom.</p>
 
-<!-- SiteSearch Google -->
+",
+"googlesearch" => "<!-- SiteSearch Google -->
 <FORM method=GET action=\"http://www.google.com/search\">
 <TABLE bgcolor=\"#FFFFFF\"><tr><td>
 <A HREF=\"http://www.google.com/intl/sl/\">

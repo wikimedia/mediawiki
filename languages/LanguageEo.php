@@ -457,7 +457,8 @@ $2 Kun alidirektiloj   Serĉu $3 $9",
 "searchdisabled" => "<p>Oni provizore malŝaltis serĉadon per la plenteksta
 indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per google:</p>
                                                                                                                                                         
-<!-- SiteSearch Google -->
+",
+"googlesearch" => "<!-- SiteSearch Google -->
 <FORM method=GET action=\"http://www.google.com/search\">
 <TABLE bgcolor=\"#FFFFFF\"><tr><td>
 <A HREF=\"http://www.google.com/\">

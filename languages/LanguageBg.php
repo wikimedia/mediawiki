@@ -535,7 +535,8 @@ $2 List redirects &nbsp; Търсене на $3 $9",
 голямото натоварване на сървъра.
 Междувременно може да търсите чрез Google:</p>
 
-<!-- SiteSearch Google -->
+",
+"googlesearch" => "<!-- SiteSearch Google -->
 <FORM method=\"GET\" action=\"http://www.google.com/search\">
 <TABLE bgcolor=\"#FFFFFF\"><tr><td>
 <A HREF=\"http://www.google.com/\">

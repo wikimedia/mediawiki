@@ -468,7 +468,8 @@ $2 List trochferwizings &nbsp; Sykje nei \"$3\" \"$9\"",
 tsjinner it net oankin. Mei't we nije apparatuer krije wurdt it nei alle gedanken wer
 mooglik. Foar now kinne jo sykje fia Google:</p>
                                                                                                                                                         
-<!-- SiteSearch Google -->
+",
+"googlesearch" => "<!-- SiteSearch Google -->
 <FORM method=GET action=\"http://www.google.com/search\">
 <TABLE bgcolor=\"#FFFFFF\"><tr><td>
 <A HREF=\"http://www.google.com/\">
