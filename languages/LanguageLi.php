@@ -362,8 +362,7 @@ $2 Toon redirects   Zoek: $3 $9",
 # Voorkeuren
 "preferences" => "Voorkeuren",
 "prefsnologin" => "Niet aangemeld",
-"prefsnologintext" => "U dient <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">aangemeld</a> te zijn om voorkeuren te kunnen instellen.",
+"prefsnologintext" => "U dient <a href=\"{{localurl:Special:Userlogin}}\">aangemeld</a> te zijn om voorkeuren te kunnen instellen.",
 "prefslogintext" => "U bent aangemeld als \"$1\". Uw interne identificatienummer is $2.",
 "prefsreset" => "Standaardvoorkeuren hersteld.",
 "qbsettings" => "Menubalkinstellingen", 
@@ -421,22 +420,24 @@ Als u pagina's wilt verwijderen, ga naar [[Wikipedia:Te verwijderen pagina's|Te 
 "reupload"  => "Opnieuw uploaden",
 "reuploaddesc" => "Terug naar het uploadformulier.",
 "uploadnologin" => "Niet aangemeld",
-"uploadnologintext" => "U dient <a href=\"" .
-  wfLocalUrl( "Speciaal:Userlogin" ) . "\">aangemeld te zijn</a>
+"uploadnologintext" => "U dient <a href=\"{{localurl:Special:Userlogin}}\">aangemeld te zijn</a>
 om bestanden te uploaden.",
 "uploadfile" => "upload bestand",
 "uploaderror" => "upload fout",
 "uploadtext" => "<strong>STOP!</strong> Voor u iets hier upload,
-wees zeker dat het in overeenkomst is met het Wikipedia <a href=\"" .
-wfLocalUrlE( "Wikipedia:Beleid_voor_gebruik_van_afbeeldingen" ) . "\">afbeeldingsbeleid</a>.
-<p>Om de reeds ge-uploade bestanden te bekijken of te zoeken ga naar de <a href=\"" . wfLocalUrlE( "Speciaal:Imagelist" ) .
-"\">liest van ge-uploade bestanden</a>.
-Uploads en verwijderingen worden bijgehouden in het <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_logboek" ) . "\">upload logboek</a>.
-<p>Gebroek het onderstaande formulier om bestanden zoals afbeeldingen en geluidsbestanden die relevant zijn voor uw artikel te u-loaden. Bij de meeste browers zoals 'Internet Explorer' en 'Mozilla' zult u een \"Bladeren...\" of \"Browse..\" knop zien die een standaard dialoogscherm van uw bestuuringssysteem oproept. Kiest u een bestand, dan zal het ingevuld worden in het veld naast de \"Bladeren...\" knop. U dient ook het vakje aan te vinken waarmee u bevestigt dat er geen schending van auteursrechten plaatsvindt door het gebruik van dat bestand. Vul het veld \"Omschrijving\" in. Druk op de \"Upload\" knop om het uploaden te voltooien. Dit kan even duren als u een langzame internetverbinding gebruikt.
-<p>Gebroek bij voorkeur JPEG voor foto's, PNG voor tekeningen en dergelijke en OGG voor geluid. 
-Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. Om het bestand in een pagina te laten verschijnen, kunt u het volgende doen;  <b>[[afbeelding:uw_foto.jpg]]</b> of <b>[[afbeelding:uw_logo.png|alt text]]</b> of <b>[[media:uw_geluid.ogg]]</b> voor audio.
-<p>Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot Wikipedia ontzegd worden.",
+wees zeker dat het in overeenkomst is met het Wikipedia
+[[Wikipedia:Beleid_voor_gebruik_van_afbeeldingen|afbeeldingsbeleid]].
+
+Om de reeds ge-uploade bestanden te bekijken of te zoeken ga naar de . [[Special:Imagelist|liest van ge-uploade bestanden]].
+Uploads en verwijderingen worden bijgehouden in het
+[[Special:Log/upload|upload logboek]].
+
+Gebroek het onderstaande formulier om bestanden zoals afbeeldingen en geluidsbestanden die relevant zijn voor uw artikel te u-loaden. Bij de meeste browers zoals 'Internet Explorer' en 'Mozilla' zult u een \"Bladeren...\" of \"Browse..\" knop zien die een standaard dialoogscherm van uw bestuuringssysteem oproept. Kiest u een bestand, dan zal het ingevuld worden in het veld naast de \"Bladeren...\" knop. U dient ook het vakje aan te vinken waarmee u bevestigt dat er geen schending van auteursrechten plaatsvindt door het gebruik van dat bestand. Vul het veld \"Omschrijving\" in. Druk op de \"Upload\" knop om het uploaden te voltooien. Dit kan even duren als u een langzame internetverbinding gebruikt.
+
+Gebroek bij voorkeur JPEG voor foto's, PNG voor tekeningen en dergelijke en OGG voor geluid. 
+Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. Om het bestand in een pagina te laten verschijnen, kunt u het volgende doen;  <b><nowiki>[[afbeelding:uw_foto.jpg]]</nowiki></b> of <b><nowiki>[[afbeelding:uw_logo.png|alt text]]</nowiki></b> of <b><nowiki>[[media:uw_geluid.ogg]]</nowiki></b> voor audio.
+
+Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot Wikipedia ontzegd worden.",
 "uploadlog"  => "upload logboek",
 "uploadlogpage" => "Upload_logboek",
 "uploadlogpagetext" => "Hieronder de liest met de meest recent ge-uploade bestanden. Alle tieden zijn servertied (UTC).
@@ -546,10 +547,8 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 # Email this user
 # E-mail deze gebroeker
 "mailnologin" => "Geen e-mailadres gekend voor deze gebroeker",
-"mailnologintext" => "U dient <a href=\"" .
-  wfLocalUrl( "Speciaal:Userlogin" ) . "\">aangemeld te zijn </a>
-en een geldig e-mailadres in uw <a href=\"" .
-  wfLocalUrl( "Speciaal:Preferences" ) . "\">voorkeuren</a>
+"mailnologintext" => "U dient <a href=\"{{localurl:Special:Userlogin}}\">aangemeld te zijn </a>
+en een geldig e-mailadres in uw <a href=\"{{localurl:Special:Preferences}}\">voorkeuren</a>
 to send e-mail to other users.",
 "emailuser"  => "E-mail deze gebroeker",
 "emailpage"  => "E-mail gebroeker",
@@ -570,17 +569,14 @@ to send e-mail to other users.",
 "watchlistsub" => "(van gebroeker \"$1\")",
 "nowatchlist" => "Er staat neets op uw volgliest.",
 "watchnologin" => "U bent neet aangemeld",
-"watchnologintext" => "Om uw volgliest te veranderen dient u eerst <a href=\"" .
-  wfLocalUrl( "Speciaal:Userlogin" ) . "\">aangemeld</a>
+"watchnologintext" => "Om uw volgliest te veranderen dient u eerst <a href=\"{{localurl:Special:Userlogin}}\">aangemeld</a>
 te zijn.",
 "addedwatch" => "Toegevoegd aan volgliest",
-"addedwatchtext" => "De pagina \"$1\" is aan uw <a href=\"" .
-  wfLocalUrl( "Speciaal:Watchlist" ) . "\">volgliest</a> toegevoegd.
+"addedwatchtext" => "De pagina \"$1\" is aan uw [[Special:Watchlist|volgliest]] toegevoegd.
 Toekomstige wijzigingen aan deze pagina en euverlikpagina zullen hier vermeld worden. 
-Ook zullen deze pagina's in het <b>vet</b> verschijnen in de <a href=\"" .
-  wfLocalUrl( "Speciaal:Recentchanges" ) . "\">liest van recente wijzigingen</a> zodat u ze eenvoudiger kan opmerken.</p>
+Ook zullen deze pagina's in het <b>vet</b> verschijnen in de [[Special:Recentchanges|liest van recente wijzigingen]] zodat u ze eenvoudiger kan opmerken.
 
-<p>Indien u een pagina wenst te verwijderen van uw volgliest klik dan op \"Van volgliest verwijderen\" in de menubalk.",
+Indien u een pagina wenst te verwijderen van uw volgliest klik dan op \"Van volgliest verwijderen\" in de menubalk.",
 "removedwatch" => "Van volgliest verwijderen",
 "removedwatchtext" => "De pagina \"$1\" is van uw volgliest verwijderd.",
 "watchthispage" => "Volg deze pagina",
@@ -653,7 +649,7 @@ Ook zullen deze pagina's in het <b>vet</b> verschijnen in de <a href=\"" .
 "noblockreason" => "U dient een reden op te geven voor het blokkeren van een IP-adres.",
 "blockipsuccesssub" => "Blokkering gelukt",
 "blockipsuccesstext" => "Het IP-adres \"$1\" is geBlokkierd.<br />
-Zie de [[speciaal:Ipblocklist|liest van geBlokkierde IP-adressen]].",
+Zie de [[Special:Ipblocklist|liest van geBlokkierde IP-adressen]].",
 "unblockip"  => "De-Blokkier IP-adres",
 "unblockiptext" => "Gebroek het onderstaande formulier om terug schrijftoegang te geven aan een geBlokkierd IP-adres.",
 "ipusubmit"  => "De-Blokkier dit IP-adres.",
@@ -700,8 +696,7 @@ Vergeet neet de database opnieuw te de-blokkeren zodra u klaar bent met uw onder
 * Als u de onderstaande radiobox neet aangevinkt laat",
 "movearticle" => "Verplaatsj pagina",
 "movenologin" => "Neet aangemeld",
-"movenologintext" => "U dient <a href=\"" .
-  wfLocalUrl( "Speciaal:Userlogin" ) . "\">aangemeld</a>
+"movenologintext" => "U dient <a href=\"{{localurl:Special:Userlogin}}\">aangemeld</a>
 te zijn om een pagina te verplaatsen.",
 "newtitle"  => "Noa de nuuje titel",
 "movepagebtn" => "Verplaatsj pagina",

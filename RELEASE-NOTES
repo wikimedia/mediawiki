@@ -153,6 +153,8 @@ If upgrading from an older release, see the file UPGRADING.
 * Fix crash on banned user visit
 * Avoid PHP warning messages when thumbnail not generated
 * (bug 1157) List unblocks correctly in Special:Log
+* Fix fatal errors in LanguageLi.php
+
 
 === Caveats ===
 
