@@ -116,7 +116,7 @@
 			$tpl->set( "helppage", wfMsg('helppage'));
 			$tpl->set( "sysop", $wgUser->isSysop() );
 			*/
-			$tpl->setRef( "searchaction", &$wgScript );
+			$tpl->set( "searchaction", $this->escapeSearchLink() );
 			$tpl->setRef( "stylepath", &$wgStyleSheetPath );
 			$tpl->setRef( "logopath", &$wgLogo );
 			$tpl->setRef( "lang", &$wgLanguageCode );

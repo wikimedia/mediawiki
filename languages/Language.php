@@ -419,7 +419,8 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	"Categories"	=> "Page categories",
 	"Export"		=> "XML page export",
 	"Version"		=> "Show MediaWiki version",
-	"Allmessages"	=> "All system messages"
+	"Allmessages"	=> "All system messages",
+	"Search"		=> "",
 );
 
 /* private */ $wgSysopSpecialPagesEn = array(
