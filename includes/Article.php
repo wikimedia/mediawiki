@@ -1679,7 +1679,7 @@ class Article {
 			and ($wgUser->getId() == 0)
 			and (!$wgUser->getNewtalk())
 			and ($this->mTitle->getNamespace() != Namespace::getSpecial())
-			and ($action == 'view' || empty ( $action ))
+			and (empty ( $action ) || $action == 'view')
 			and (!isset($oldid))
 			and (!isset($diff))
 			and (!isset($redirect))
