@@ -64,7 +64,7 @@ function &wfGetDB( $db = DB_LAST ) {
 function wfBufferSQLResults( $newstate, $dbi = DB_LAST ) {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {
-		return $db->setBufferResults( $newstate );
+		return $db->bufferResults( $newstate );
 	} else {
 		return NULL;
 	}
