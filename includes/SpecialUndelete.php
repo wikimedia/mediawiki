@@ -30,6 +30,13 @@ class PageArchive {
 		$this->title =& $title;
 	}
 	
+	/**
+	 * List all deleted pages recorded in the archive table. Returns result
+	 * wrapper with (ar_namespace, ar_title, count) fields, ordered by page
+	 * namespace/title. Can be called staticaly.
+	 *
+	 * @return ResultWrapper
+	 */
 	/* static */ function &listAllPages() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$archive = $dbr->tableName( 'archive' );
@@ -40,6 +47,12 @@ class PageArchive {
 		return $dbr->resultObject( $dbr->query( $sql, 'PageArchive::listAllPages' ) );
 	}
 	
+	/**
+	 * List the revisions of the given page. Returns result wrapper with
+	 * (ar_minor_edit, ar_timestamp, ar_user, ar_user_text, ar_comment) fields.
+	 *
+	 * @return ResultWrapper
+	 */
 	function &listRevisions() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		return $dbr->resultObject( $dbr->select( 'archive',
@@ -50,6 +63,12 @@ class PageArchive {
 			array( 'ORDER BY' => 'ar_timestamp DESC' ) ) );
 	}
 	
+	/**
+	 * Fetch (and decompress if necessary) the stored text for the deleted
+	 * revision of the page with the given timestamp.
+	 *
+	 * @return string
+	 */
 	function getRevisionText( $timestamp ) {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'archive',
@@ -60,6 +79,14 @@ class PageArchive {
 		return Article::getRevisionText( $row, "ar_" );
 	}
 	
+	/**
+	 * Fetch (and decompress if necessary) the stored text of the most
+	 * recently edited deleted revision of the page.
+	 *
+	 * If there are no archived revisions for the page, returns NULL.
+	 *
+	 * @return string
+	 */
 	function getLastRevisionText() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'archive',
@@ -75,6 +102,10 @@ class PageArchive {
 		}
 	}
 	
+	/**
+	 * Quick check if any archived revisions are present for the page.
+	 * @return bool
+	 */
 	function isDeleted() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$n = $dbr->selectField( 'archive', 'COUNT(ar_title)',
@@ -83,6 +114,17 @@ class PageArchive {
 		return ($n > 0);
 	}
 	
+	/**
+	 * This is the meaty bit -- restores archived revisions of the given page
+	 * to the cur/old tables. If the page currently exists, all revisions will
+	 * be stuffed into old, otherwise the most recent will go into cur.
+	 * The deletion log will be updated with an undeletion notice.
+	 *
+	 * Returns true on success.
+	 *
+	 * @param array $timestamps Pass an empty array to restore all revisions, otherwise list the ones to undelete.
+	 * @return bool
+	 */
 	function undelete( $timestamps ) {
 		global $wgUser, $wgOut, $wgLang, $wgDeferredUpdateList;
 		global $wgUseSquid, $wgInternalServer, $wgLinkCache;
