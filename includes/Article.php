@@ -442,19 +442,12 @@ class Article {
 		$this->showArticle( $text, wfMsg( "newarticle" ) );
 	}
 
-	function updateArticle( $text, $summary, $minor, $watchthis, $section = "", $forceBot = false )
-	{
-		global $wgOut, $wgUser, $wgLinkCache;
-		global $wgDBtransactions, $wgMwRedir;
-		global $wgUseSquid, $wgInternalServer;
-		$fname = "Article::updateArticle";
 
+	/* Side effects: loads last edit */
+	function getTextOfLastEditWithSectionReplacedOrAdded($section, $text, $summary = ""){
 		$this->loadLastEdit();
-
-		// insert updated section into old text if we have only edited part 
-		// of the article		
-		if ($section != "") {			
-			$oldtext=$this->getContent();
+		$oldtext = $this->getContent();
+		if ($section != "") {
 			if($section=="new") {
 				if($summary) $subject="== {$summary} ==\n\n";
 				$text=$oldtext."\n\n".$subject.$text;
@@ -466,6 +459,16 @@ class Article {
 				$text=join("",$secs);		
 			}
 		}
+		return $text;
+	}
+
+	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false )
+	{
+		global $wgOut, $wgUser, $wgLinkCache;
+		global $wgDBtransactions, $wgMwRedir;
+		global $wgUseSquid, $wgInternalServer;
+		$fname = "Article::updateArticle";
+
 		if ( $this->mMinorEdit ) { $me1 = 1; } else { $me1 = 0; }
 		if ( $minor && $wgUser->getID() ) { $me2 = 1; } else { $me2 = 0; }		
 		if ( preg_match( "/^((" . $wgMwRedir->getBaseRegex() . ")[^\\n]+)/i", $text, $m ) ) {
@@ -1014,8 +1017,7 @@ class Article {
 		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->addHTML( "<h2>" . $newcomment . "</h2>\n<hr>\n" );
-		$this->updateArticle( Article::getRevisionText( $s ), $newcomment, 1, $this->mTitle->userIsWatching(), "", $bot );
-		
+		$this->updateArticle( Article::getRevisionText( $s ), $newcomment, 1, $this->mTitle->userIsWatching(), $bot );
 		Article::onArticleEdit( $this->mTitle );
 		$wgOut->returnToMain( false );
 	}
