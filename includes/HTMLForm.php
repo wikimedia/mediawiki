@@ -21,7 +21,7 @@ class HTMLForm {
 	}
 
 	/* private */ function textbox( $varname, $value='', $size=20 ) {
-		$value = isset( $GLOBALS[$varname] ) ? $GLOBALS[$varname] : '';
+		$value = isset( $GLOBALS[$varname] ) ? $GLOBALS[$varname] : $value;
 		return "<div><label>". wfMsg( $this->mName.'-'.$varname ) .
 			"<input type='text' name=\"wpOp{$varname}\" value=\"{$value}\" size=\"{$size}\" /></label></div>\n";
 	}
@@ -33,8 +33,14 @@ class HTMLForm {
 		}
 		return $this->fieldset( $this->mName.'-'.$varname, $s );
 	}
+	
+	/* private */ function textareabox ( $varname, $value='', $size=20 ) {
+		$value = isset( $GLOBALS[$varname] ) ? $GLOBALS[$varname] : $value;
+		return '<div><label>'.wfMsg( $this->mName.'-'.$varname ).
+		       "<textarea name=\"wpOp{$varname}\" rows=\"5\" cols=\"{$size}\">$value</textarea>\n";
+	}
 
-	/* private */ function arraybox( $varname , $value='', $size=20 ) {
+	/* private */ function arraybox( $varname , $size=20 ) {
 		$s = '';
 		if ( isset( $GLOBALS[$varname] ) && is_array( $GLOBALS[$varname] ) ) {
 			foreach ( $GLOBALS[$varname] as $index=>$element ) {
