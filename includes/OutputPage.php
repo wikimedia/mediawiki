@@ -806,9 +806,7 @@ class OutputPage {
 			$link = $wgRequest->escapeAppendQuery( 'feed=atom' );
 			$ret .= "<link rel='alternate' type='application/rss+atom' title='Atom 0.3' href='$link' />\n";
 		}
-		# FIXME: get these working
-		# $fix = htmlspecialchars( $wgStylePath . "/ie-png-fix.js" );
-		# $ret .= "<!--[if gte IE 5.5000]><script type='text/javascript' src='$fix'>< /script><![endif]-->";
+
 		return $ret;
 	}
 	
