@@ -11,6 +11,11 @@
 # encapsulates some of the magic-ness.
 #
 
+# Most of this was written by is:Notandi:Ævar Arnfjörð Bjarmason,
+# See:
+# http://is.wikipedia.org/wiki/Wikipedia:%C3%9E%C3%BD%C3%B0ing_%C3%A1_MediaWiki_hugb%C3%BAna%C3%B0inum
+# for the Icelandic translation collabaration page.
+
 require_once( "LanguageUtf8.php" );
 
 if($wgMetaNamespace === FALSE)
@@ -27,8 +32,8 @@ if($wgMetaNamespace === FALSE)
   NS_WIKIPEDIA_TALK   => $wgMetaNamespace . 'spjall',
   NS_IMAGE            => 'Mynd',
   NS_IMAGE_TALK       => 'Myndaspjall',
-  NS_MEDIAWIKI        => 'MediaWiki',
-  NS_MEDIAWIKI_TALK   => 'MediaWikispjall',
+  NS_MEDIAWIKI        => 'Kerfisskilaboð',
+  NS_MEDIAWIKI_TALK   => 'Kerfisskilaboðaspjall',
   NS_TEMPLATE         => 'Snið',
   NS_TEMPLATE_TALK    => 'Sniðaspjall',
   NS_HELP             => 'Hjálp',
@@ -38,7 +43,9 @@ if($wgMetaNamespace === FALSE)
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgDefaultUserOptionsIs = array(
-	"date" => 2
+	'date' => 2,
+  # The Icelandic Wikipedia wishes to use PNG rendering by default.
+  'math' => 0,
 ) + $wgDefaultUserOptionsEn;
 
 # Note to translators:
@@ -53,33 +60,33 @@ if($wgMetaNamespace === FALSE)
   MAG_TOC                  => array( 0,    '__TOC__'                ),
   MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__'      ),
   MAG_START                => array( 0,    '__START__'              ),
-  MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH'           ),
-  MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME'       ),
-  MAG_CURRENTDAY           => array( 1,    'CURRENTDAY'             ),
-  MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME'         ),
-  MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR'            ),
-  MAG_CURRENTTIME          => array( 1,    'CURRENTTIME'            ),
-  MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES'       ),
+  MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH', 'MÁNUÐUR'),
+  MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME', 'MÁNÐARNAFN'       ),
+  MAG_CURRENTDAY           => array( 1,    'CURRENTDAY', 'DAGUR'        ),
+  MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME', 'DAGANAFN' ),
+  MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR', 'ÁR'      ),
+  MAG_CURRENTTIME          => array( 1,    'CURRENTTIME', 'KLUKKAN'            ),
+  MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES', 'GREINATAL'       ),
   MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN'    ),
-  MAG_PAGENAME             => array( 1,    'PAGENAME'               ),
-  MAG_NAMESPACE            => array( 1,    'NAMESPACE'              ),
-  MAG_MSG                  => array( 0,    'MSG:'                   ),
-  MAG_SUBST                => array( 0,    'SUBST:'                 ),
+  MAG_PAGENAME             => array( 1,    'PAGENAME', 'SÍÐA'       ),
+  MAG_NAMESPACE            => array( 1,    'NAMESPACE', 'NAFNRÝMI'  ),
+  MAG_MSG                  => array( 0,    'MSG:', 'SKILABOÐ:'                  ),
+  MAG_SUBST                => array( 0,    'SUBST:' 'INNSETJA:'                ),
   MAG_MSGNW                => array( 0,    'MSGNW:'                 ),
   MAG_END                  => array( 0,    '__END__'                ),
-  MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb'     ),
-  MAG_IMG_RIGHT            => array( 1,    'right'                  ),
-  MAG_IMG_LEFT             => array( 1,    'left'                   ),
+  MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb', 'smámynd', 'örmynd'     ),
+  MAG_IMG_RIGHT            => array( 1,    'right', 'hægri'         ),
+  MAG_IMG_LEFT             => array( 1,    'left', 'vinstri'        ),
   MAG_IMG_NONE             => array( 1,    'none'                   ),
   MAG_IMG_WIDTH            => array( 1,    '$1px'                   ),
-  MAG_IMG_CENTER           => array( 1,    'center', 'centre'       ),
-  MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame' ),
+  MAG_IMG_CENTER           => array( 1,    'center', 'centre', 'miðja', 'miðju'       ),
+  MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame', 'römmuð', 'innrömmuð', 'rammi' ),
   MAG_INT                  => array( 0,    'INT:'                   ),
   MAG_SITENAME             => array( 1,    'SITENAME'               ),
-  MAG_NS                   => array( 0,    'NS:'                    ),
-  MAG_LOCALURL             => array( 0,    'LOCALURL:'              ),
-  MAG_LOCALURLE            => array( 0,    'LOCALURLE:'             ),
-  MAG_SERVER               => array( 0,    'SERVER'                 )
+  MAG_NS                   => array( 0,    'NS:', 'NR:'             ),
+  MAG_LOCALURL             => array( 0,    'LOCALURL:', 'SLÓÐ:'     ),
+  MAG_LOCALURLE            => array( 0,    'LOCALURLE:'             ), 
+  MAG_SERVER               => array( 0,    'SERVER', 'NETÞJÓNN', 'LÉN'  )
 );
 
 
