@@ -21,6 +21,9 @@ class element {
     var $attrs = array();
     var $children = array();
 
+    /**
+    * This finds the ATTRS element and returns the ATTR sub-children as a single string
+    */
     function getSourceAttrs ()
         {
 	$ret = "" ;
@@ -34,6 +37,9 @@ class element {
 	return $ret ;
 	}
 
+    /**
+    * This collects the ATTR thingies for getSourceAttrs()
+    */
     function getTheseAttrs ()
         {
 	$ret = array() ;
@@ -41,14 +47,15 @@ class element {
 	    {
             if ( !is_string($child) AND $child->name == "ATTR" )
 	        {
-		$s = $child->attrs["NAME"] . "='" . $child->children[0] . "'" ;
-#		$s = "ATTRIBUTE=" . $child->attrs["NAME"] ;
-		$ret[] = $s ;
+		$ret[] = $child->attrs["NAME"] . "='" . $child->children[0] . "'" ;
 		}
 	    }
 	return implode ( " " , $ret ) ;
 	}
 
+    /**
+    * This function generates the XHTML for the entire subtree
+    */
     function sub_makeXHTML ( &$parser , $tag = "" , $attr = "" )
     	{
     	$ret = "" ;
@@ -64,8 +71,7 @@ class element {
     		$ret .= ">" ;
     		}
 
-
-      foreach ($this->children as $child) {
+	foreach ($this->children as $child) {
             if ( is_string($child) ) {
                 $ret .= $child ;
             } else if ( $child->name != "ATTRS" ) {
@@ -74,7 +80,7 @@ class element {
            }
     	if ( $tag != "" )
     		$ret .= "</" . $tag . ">\n" ;
-      return $ret ;
+	return $ret ;
     	}
     	
     function createInternalLink ( &$parser , $target , $display_title , $options )
@@ -123,7 +129,10 @@ class element {
       $display_title = array_pop ( $option ) ;
       return $this->createInternalLink ( $parser , $target , $display_title , $option ) ;
     	}
-    	
+
+    /**
+    * This function actually converts wikiXML into XHTML tags
+    */    	
     function makeXHTML ( &$parser )
     	{
     	$ret = "" ;
@@ -131,10 +140,21 @@ class element {
 
 	if ( $n == "EXTENSION" ) # Fix allowed HTML
 	   {
+	   $old_n = $n ;
 	   $ext = strtoupper ( $this->attrs["NAME"] ) ;
-	   if ( $ext == "B" ) $n = "BOLD" ;
-	   if ( $ext == "I" ) $n = "ITALICS" ;
-	   if ( $ext == "P" ) $n = "PARAGRAPH" ;
+	   if ( $ext == "B" || $ext == "STRONG" ) $n = "BOLD" ;
+	   else if ( $ext == "I" || $ext == "EM" ) $n = "ITALICS" ;
+	   else if ( $ext == "U" ) $n = "UNDERLINED" ; # Hey, virtual wiki tag! ;-)
+	   else if ( $ext == "S" ) $n = "STRIKE" ;
+	   else if ( $ext == "P" ) $n = "PARAGRAPH" ;
+	   else if ( $ext == "TABLE" ) $n = "TABLE" ;
+	   else if ( $ext == "TR" ) $n = "TABLEROW" ;
+	   else if ( $ext == "TD" ) $n = "TABLECELL" ;
+	   else if ( $ext == "TH" ) $n = "TABLEHEAD" ;
+	   else if ( $ext == "CAPTION" ) $n = "CAPTION" ;
+	   else if ( $ext == "NOWIKI" ) $n = "NOWIKI" ;
+	   if ( $n != $old_n ) unset ( $this->attrs["NAME"] ) ; # Cleanup
+	   else if ( $parser->nowiki > 0 ) $n = "" ; # No "real" wiki tags allowed
 	   }
 
     	if ( $n == "ARTICLE" )
@@ -148,13 +168,28 @@ class element {
     	else if ( $n == "ITALICS" )
     		$ret .= $this->sub_makeXHTML ( $parser , "em" ) ;
 
+	# These don't exist as wiki markup
+    	else if ( $n == "UNDERLINED" )
+    		$ret .= $this->sub_makeXHTML ( $parser , "u" ) ;
+    	else if ( $n == "STRIKE" )
+    		$ret .= $this->sub_makeXHTML ( $parser , "strike" ) ;
+
+	# Links
     	else if ( $n == "LINK" )
     		$ret .= $this->makeInternalLink ( $parser ) ;
     	else if ( $n == "LINKTARGET" )
     		$ret .= $this->sub_makeXHTML ( $parser ) ;
     	else if ( $n == "LINKOPTION" )
     		$ret .= $this->sub_makeXHTML ( $parser ) ;
+
+    	else if ( $n == "NOWIKI" )
+		{
+		$parser->nowiki++ ;
+    		$ret .= $this->sub_makeXHTML ( $parser , "" ) ;
+		$parser->nowiki-- ;
+		}
     		
+	# Unknown HTML extension
     	else if ( $n == "EXTENSION" ) # This is currently a dummy!!!
     		{
     		$ext = $this->attrs["NAME"] ;
@@ -164,6 +199,7 @@ class element {
     		$ret .= "&lt;/" . $ext . "&gt; " ;
     		}
 
+	# Table stuff
     	else if ( $n == "TABLE" )
     		{
     		$ret .= $this->sub_makeXHTML ( $parser , "table" ) ;
@@ -190,7 +226,7 @@ class element {
 		return $this->getTheseAttrs () ;
     		}
 
-
+	# Lists
     	else if ( $n == "LISTITEM" )
     		$ret .= $this->sub_makeXHTML ( $parser , "li" ) ;
     	else if ( $n == "LIST" )
@@ -199,18 +235,23 @@ class element {
     		if ( $this->attrs["TYPE"] == "bullet" ) $type = "ul" ;
     		$ret .= $this->sub_makeXHTML ( $parser , $type ) ;
     		}
-    		
+
+	# Something else entirely    		
     	else
     		{
     		$ret .= "&lt;" . $n . "&gt;" ;
     		$ret .= $this->sub_makeXHTML ( $parser ) ;
     		$ret .= "&lt;/" . $n . "&gt; " ;
     		}
+
     	$ret = "\n{$ret}\n" ;
     	$ret = str_replace ( "\n\n" , "\n" , $ret ) ;
     	return $ret ;
     	}
 
+    /**
+    * A function for additional debugging output
+    */
     function myPrint() {
         $ret = "<ul>\n";
         $ret .= "<li> <b> Name: </b> $this->name </li>\n";
@@ -345,6 +386,8 @@ class ParserXML EXTENDS Parser
 	    $mTemplatePath;	// stores an unsorted hash of all the templates already loaded
 		                // in this path. Used for loop detection.
 
+	var $nowikicount ;
+
 	/**#@-*/
 
 	/**
@@ -389,6 +432,7 @@ class ParserXML EXTENDS Parser
 
 		unlink($tmpfname);
 
+		$nowikicount = 0 ;
 		$w = new xml2php;
 		$result = $w->scanString( $text );
 		$text .= "<hr>" . $result->makeXHTML ( $this );
