@@ -21,7 +21,7 @@ class SkinStandard extends Skin {
 
 		$s = parent::getUserStyles();
 		if ( 3 == $this->qbSetting() ) { # Floating left
-			$s .= "<style type='text/css' media='screen'>\n" .
+			$s .= "<style type='text/css' media='screen,projection'>\n" .
 			  "@import '{$wgStyleSheetPath}/quickbar.css';\n</style>\n";
 		}
 		return $s;
