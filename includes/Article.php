@@ -2072,78 +2072,91 @@ class Article {
 
 	/**
 	 * Info about this page
+	 * Called for ?action=info when $wgAllowPageInfo is on.
+	 *
+	 * @access public
 	 */
 	function info() {
-		global $wgUser, $wgTitle, $wgOut, $wgAllowPageInfo;
+		global $wgLang, $wgOut, $wgAllowPageInfo;
 		$fname = 'Article::info';
-
-wfDebugDieBacktrace( 'This function is apparently not called by any other PHP file and might be obsolete.' );
 
 		if ( !$wgAllowPageInfo ) {
 			$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
 			return;
 		}
 
-		$dbr =& $this->getDB();
-
-		$basenamespace = $wgTitle->getNamespace() & (~1);
-		$cur_clause = array( 'cur_title' => $wgTitle->getDBkey(), 'cur_namespace' => $basenamespace );
-		$old_clause = array( 'old_title' => $wgTitle->getDBkey(), 'old_namespace' => $basenamespace );
-		$wl_clause  = array( 'wl_title' => $wgTitle->getDBkey(), 'wl_namespace' => $basenamespace );
-		$fullTitle = $wgTitle->makeName($basenamespace, $wgTitle->getDBKey());
-		$wgOut->setPagetitle(  $fullTitle );
+		$page = $this->mTitle->getSubjectPage();
+		
+		$wgOut->setPagetitle( $page->getPrefixedText() );
 		$wgOut->setSubtitle( wfMsg( 'infosubtitle' ));
 
 		# first, see if the page exists at all.
-		$exists = $dbr->selectField( 'cur', 'COUNT(*)', $cur_clause, $fname, $this->getSelectOptions() );
-		if ($exists < 1) {
+		$exists = $page->getArticleId() != 0;
+		if( !$exists ) {
 			$wgOut->addHTML( wfMsg('noarticletext') );
 		} else {
-			$numwatchers = $dbr->selectField( 'watchlist', 'COUNT(*)', $wl_clause, $fname,
-				$this->getSelectOptions() );
-			$wgOut->addHTML( "<ul><li>" . wfMsg("numwatchers", $numwatchers) . '</li>' );
-			$old = $dbr->selectField( 'old', 'COUNT(*)', $old_clause, $fname, $this->getSelectOptions() );
-			$wgOut->addHTML( "<li>" . wfMsg('numedits', $old + 1) . '</li>');
-
-			# to find number of distinct authors, we need to do some
-			# funny stuff because of the cur/old table split:
-			# - first, find the name of the 'cur' author
-			# - then, find the number of *other* authors in 'old'
-
-			# find 'cur' author
-			$cur_author = $dbr->selectField( 'cur', 'cur_user_text', $cur_clause, $fname,
+			$dbr =& $this->getDB( DB_SLAVE );	
+			$wl_clause = array(
+				'wl_title'     => $page->getDBkey(),
+				'wl_namespace' => $page->getNamespace() );
+			$numwatchers = $dbr->selectField(
+				'watchlist',
+				'COUNT(*)',
+				$wl_clause,
+				$fname,
 				$this->getSelectOptions() );
 
-			# find number of 'old' authors excluding 'cur' author
-			$authors = $dbr->selectField( 'old', 'COUNT(DISTINCT old_user_text)',
-				$old_clause + array( 'old_user_text<>' . $dbr->addQuotes( $cur_author ) ), $fname,
-				$this->getSelectOptions() ) + 1;
-
-			# now for the Talk page ...
-			$cur_clause = array( 'cur_title' => $wgTitle->getDBkey(), 'cur_namespace' => $basenamespace+1 );
-			$old_clause = array( 'old_title' => $wgTitle->getDBkey(), 'old_namespace' => $basenamespace+1 );
-
-			# does it exist?
-			$exists = $dbr->selectField( 'cur', 'COUNT(*)', $cur_clause, $fname, $this->getSelectOptions() );
-
-			# number of edits
-			if ($exists > 0) {
-				$old = $dbr->selectField( 'old', 'COUNT(*)', $old_clause, $fname, $this->getSelectOptions() );
-				$wgOut->addHTML( '<li>' . wfMsg("numtalkedits", $old + 1) . '</li>');
+			$pageInfo = $this->pageCountInfo( $page );
+			$talkInfo = $this->pageCountInfo( $page->getTalkPage() );
+			
+			$wgOut->addHTML( "<ul><li>" . wfMsg("numwatchers", $wgLang->formatNum( $numwatchers ) ) . '</li>' );
+			$wgOut->addHTML( "<li>" . wfMsg('numedits', $wgLang->formatNum( $pageInfo['edits'] ) ) . '</li>');
+			if( $talkInfo ) {
+				$wgOut->addHTML( '<li>' . wfMsg("numtalkedits", $wgLang->formatNum( $talkInfo['edits'] ) ) . '</li>');
 			}
-			$wgOut->addHTML( '<li>' . wfMsg("numauthors", $authors) . '</li>' );
-
-			# number of authors
-			if ($exists > 0) {
-				$cur_author = $dbr->selectField( 'cur', 'cur_user_text', $cur_clause, $fname,
-					$this->getSelectOptions() );
-				$authors = $dbr->selectField( 'cur', 'COUNT(DISTINCT old_user_text)',
-					$old_clause + array( 'old_user_text<>' . $dbr->addQuotes( $cur_author ) ),
-					$fname, $this->getSelectOptions() );
-
-				$wgOut->addHTML( '<li>' . wfMsg('numtalkauthors', $authors) . '</li></ul>' );
+			$wgOut->addHTML( '<li>' . wfMsg("numauthors", $wgLang->formatNum( $pageInfo['authors'] ) ) . '</li>' );
+			if( $talkInfo ) {
+				$wgOut->addHTML( '<li>' . wfMsg('numtalkauthors', $wgLang->formatNum( $talkInfo['authors'] ) ) . '</li>' );
 			}
+			$wgOut->addHTML( '</ul>' );
+
 		}
+	}
+	
+	/**
+	 * Return the total number of edits and number of unique editors
+	 * on a given page. If page does not exist, returns false.
+	 *
+	 * @param Title $title
+	 * @return array
+	 * @access private
+	 */
+	function pageCountInfo( $title ) {
+		$id = $title->getArticleId();
+		if( $id == 0 ) {
+			return false;
+		}
+		
+		$dbr =& $this->getDB( DB_SLAVE );	
+
+		$rev_clause = array( 'rev_page' => $id );
+		$fname = 'Article::pageCountInfo';
+
+		$edits = $dbr->selectField(
+			'revision',
+			'COUNT(rev_page)',
+			$rev_clause,
+			$fname,
+			$this->getSelectOptions() );
+
+		$authors = $dbr->selectField(
+			'revision',
+			'COUNT(DISTINCT rev_user_text)',
+			$rev_clause,
+			$fname,
+			$this->getSelectOptions() );
+		
+		return array( 'edits' => $edits, 'authors' => $authors );
 	}
 }
 
