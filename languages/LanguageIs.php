@@ -1389,4 +1389,3 @@ class LanguageIs extends LanguageUtf8 {
 # @include_once( "Language" . ucfirst( $wgLanguageCode ) . ".php" );
 
 ?>
-
