@@ -961,6 +961,10 @@ class Article {
 			$wgOut->sysopRequired();
 			return;
 		}
+		if ( wfReadOnly() ) {
+			$wgOut->readOnlyPage( $this->getContent() );
+			return;
+		}
 
 		# Replace all this user's current edits with the next one down
 		$tt = wfStrencode( $this->mTitle->getDBKey() );
