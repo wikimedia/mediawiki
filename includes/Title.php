@@ -90,33 +90,34 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	/* static */ function newFromText( $text, $defaultNamespace = 0 ) {	
+	/* static */ function &newFromText( $text, $defaultNamespace = 0 ) {	
 		$fname = 'Title::newFromText';
 		wfProfileIn( $fname );
 
-		if( is_object( $text ) ) {
-			wfDebugDieBacktrace( 'Called with object instead of string.' );
-		}
+		/**
+		 * Convert things like &eacute; into real text...
+		 */
 		global $wgInputEncoding;
 		$text = do_html_entity_decode( $text, ENT_COMPAT, $wgInputEncoding );
 
+		/**
+		 * Convert things like &#257; or &#x3017; into real text...
+		 * WARNING: Not friendly to internal links on a latin-1 wiki.
+		 */
 		$text = wfMungeToUtf8( $text );
-		
 		
 		# What was this for? TS 2004-03-03
 		# $text = urldecode( $text );
 
-		$t = new Title();
+		$t =& new Title();
 		$t->mDbkeyform = str_replace( ' ', '_', $text );
 		$t->mDefaultNamespace = $defaultNamespace;
 
-		wfProfileOut( $fname );
-		if ( !is_object( $t ) ) {
-			var_dump( debug_backtrace() );
-		}
 		if( $t->secureAndSplit() ) {
+			wfProfileOut( $fname );
 			return $t;
 		} else {
+			wfProfileOut( $fname );
 			return NULL;
 		}
 	}
@@ -323,7 +324,7 @@ class Title {
 
 		$t = preg_replace( "/\\s+/", ' ', $t );
 
-		if ( $ns == Namespace::getImage() ) {
+		if ( $ns == NS_IMAGE ) {
 			$t = preg_replace( "/ (png|gif|jpg|jpeg|ogg)$/", "", $t );
 		}
 		return trim( $t );
@@ -354,23 +355,34 @@ class Title {
 	function getInterwikiLink( $key ) {	
 		global $wgMemc, $wgDBname, $wgInterwikiExpiry, $wgTitleInterwikiCache;
 		$fname = 'Title::getInterwikiLink';
+		
+		wfProfileIn( $fname );
+		
 		$k = $wgDBname.':interwiki:'.$key;
-
-		if( array_key_exists( $k, $wgTitleInterwikiCache ) )
+		if( array_key_exists( $k, $wgTitleInterwikiCache ) ) {
+			wfProfileOut( $fname );
 			return $wgTitleInterwikiCache[$k]->iw_url;
+		}
 
 		$s = $wgMemc->get( $k ); 
 		# Ignore old keys with no iw_local
 		if( $s && isset( $s->iw_local ) ) { 
 			$wgTitleInterwikiCache[$k] = $s;
+			wfProfileOut( $fname );
 			return $s->iw_url;
 		}
+		
 		$dbr =& wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'interwiki', array( 'iw_url', 'iw_local' ), array( 'iw_prefix' => $key ), $fname );
-		if(!$res) return '';
+		$res = $dbr->select( 'interwiki',
+			array( 'iw_url', 'iw_local' ),
+			array( 'iw_prefix' => $key ), $fname );
+		if( !$res ) {
+			wfProfileOut( $fname );
+			return '';
+		}
 		
 		$s = $dbr->fetchObject( $res );
-		if(!$s) {
+		if( !$s ) {
 			# Cache non-existence: create a blank object and save it to memcached
 			$s = (object)false;
 			$s->iw_url = '';
@@ -378,6 +390,8 @@ class Title {
 		}
 		$wgMemc->set( $k, $s, $wgInterwikiExpiry );
 		$wgTitleInterwikiCache[$k] = $s;
+		
+		wfProfileOut( $fname );
 		return $s->iw_url;
 	}
 
@@ -696,26 +710,6 @@ class Title {
 	}
 
 	/**
-	 * Is the page a log page, i.e. one where the history is messed up by 
-	 * LogPage.php? This used to be used for suppressing diff links in
-	 * recent changes, but now that's done by setting a flag in the
-	 * recentchanges table. Hence, this probably is no longer used.
-	 *
-	 * @deprecated
-	 * @access public
-	 */
-	function isLog() {
-		if ( $this->mNamespace != Namespace::getWikipedia() ) {
-			return false;
-		}
-		if ( ( 0 == strcmp( wfMsg( 'uploadlogpage' ), $this->mDbkeyform ) ) ||
-		  ( 0 == strcmp( wfMsg( 'dellogpage' ), $this->mDbkeyform ) ) ) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
 	 * Is $wgUser is watching this page?
 	 * @return boolean
 	 * @access public
@@ -735,16 +729,22 @@ class Title {
 	 * @access public
 	 */
 	function userCanEdit() {
+		$fname = 'Title::userCanEdit';
+		wfProfileIn( $fname );
+		
 		global $wgUser;
 		if( NS_SPECIAL == $this->mNamespace ) {
+			wfProfileOut( $fname );
 			return false;
 		}
 		if( NS_MEDIAWIKI == $this->mNamespace &&
 		    !$wgUser->isAllowed('editinterface') ) {
+			wfProfileOut( $fname );
 			return false;
 		}
 		if( $this->mDbkeyform == '_' ) {
 			# FIXME: Is this necessary? Shouldn't be allowed anyway...
+			wfProfileOut( $fname );
 			return false;
 		}
 		
@@ -752,6 +752,7 @@ class Title {
 		if ( NS_MEDIAWIKI == $this->mNamespace 
 	         && preg_match("/\\.(css|js)$/", $this->mTextform )
 		     && !$wgUser->isAllowed('editinterface') ) {
+			wfProfileOut( $fname );
 			return false;
 		}
 		
@@ -762,14 +763,17 @@ class Title {
 			&& preg_match("/\\.(css|js)$/", $this->mTextform )
 			&& !$wgUser->isAllowed('editinterface')
 			&& !preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) ) {
+			wfProfileOut( $fname );
 			return false;
 		}
 
 		foreach( $this->getRestrictions() as $right ) {
 			if( '' != $right && !$wgUser->isAllowed( $right ) ) {
+				wfProfileOut( $fname );
 				return false;
 			}
 		}
+		wfProfileOut( $fname );
 		return true;
 	}
 
@@ -816,7 +820,7 @@ class Title {
 	 * @access public
 	 */
 	function isCssJsSubpage() {
-		return ( Namespace::getUser() == $this->mNamespace and preg_match("/\\.(css|js)$/", $this->mTextform ) );
+		return ( NS_USER == $this->mNamespace and preg_match("/\\.(css|js)$/", $this->mTextform ) );
 	}
 	/**
 	 * Is this a .css subpage of a user page?
@@ -824,7 +828,7 @@ class Title {
 	 * @access public
 	 */
 	function isCssSubpage() {
-		return ( Namespace::getUser() == $this->mNamespace and preg_match("/\\.css$/", $this->mTextform ) );
+		return ( NS_USER == $this->mNamespace and preg_match("/\\.css$/", $this->mTextform ) );
 	}
 	/**
 	 * Is this a .js subpage of a user page?
@@ -832,7 +836,7 @@ class Title {
 	 * @access public
 	 */
 	function isJsSubpage() {
-		return ( Namespace::getUser() == $this->mNamespace and preg_match("/\\.js$/", $this->mTextform ) );
+		return ( NS_USER == $this->mNamespace and preg_match("/\\.js$/", $this->mTextform ) );
 	}
 	/**
 	 * Protect css/js subpages of user pages: can $wgUser edit
@@ -973,8 +977,7 @@ class Title {
 	 * @return bool true on success
 	 * @access private
 	 */
-	/* private */ function secureAndSplit()
-	{
+	/* private */ function secureAndSplit() {
 		global $wgContLang, $wgLocalInterwiki, $wgCapitalLinks;
 		$fname = 'Title::secureAndSplit';
  		wfProfileIn( $fname );
@@ -984,9 +987,9 @@ class Title {
 
 		# Initialisation
 		if ( $imgpre === false ) {
-			$imgpre = ':' . $wgContLang->getNsText( Namespace::getImage() ) . ':';
+			$imgpre = ':' . $wgContLang->getNsText( NS_IMAGE ) . ':';
 			# % is needed as well
-			$rxTc = '/[^' . Title::legalChars() . ']|%[0-9A-Fa-f]{2}/';
+			$rxTc = '/[^' . Title::legalChars() . ']|%[0-9A-Fa-f]{2}/S';
 		}
 
 		$this->mInterwiki = $this->mFragment = '';
@@ -1023,7 +1026,7 @@ class Title {
 			$this->mNamespace = NS_MAIN;
 		} else {
 			# Namespace or interwiki prefix
-	 		if ( preg_match( "/^(.+?)_*:_*(.*)$/", $t, $m ) ) {
+	 		if ( preg_match( "/^(.+?)_*:_*(.*)$/S", $t, $m ) ) {
 				#$p = strtolower( $m[1] );
 				$p = $m[1];
 				$lowerNs = strtolower( $p );
@@ -1075,7 +1078,11 @@ class Title {
 			return false;
 		}
 		
-		# "." and ".." conflict with the directories of those namesa
+		/**
+		 * Pages with "/./" or "/../" appearing in the URLs will
+		 * often be unreachable due to the way web browsers deal
+		 * with 'relative' URLs. Forbid them explicitly.
+		 */
 		if ( strpos( $r, '.' ) !== false &&
 		     ( $r === '.' || $r === '..' ||
 		       strpos( $r, './' ) === 0  ||
@@ -1093,7 +1100,14 @@ class Title {
 			return false;
 		}
 
-		# Initial capital letter
+		/**
+		 * Normally, all wiki links are forced to have
+		 * an initial capital letter so [[foo]] and [[Foo]]
+		 * point to the same place.
+		 *
+		 * Don't force it for interwikis, since the other
+		 * site might be case-sensitive.
+		 */
 		if( $wgCapitalLinks && $this->mInterwiki == '') {
 			$t = $wgContLang->ucfirst( $r );
 		} else {
