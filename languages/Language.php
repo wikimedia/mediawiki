@@ -1568,7 +1568,7 @@ amusement.",
 "siteuser" => "$wgSitename user $1",
 "lastmodifiedby" => "This page was last modified $1 by $2.",
 "and" => "and",
-"contributions" => "Based on work by $1.",
+"othercontribs" => "Based on work by $1.",
 "siteusers" => "$wgSitename user(s) $1",
 );
 

@@ -712,8 +712,8 @@ class Skin {
 	function pageStats()
 	{
 		global $wgOut, $wgLang, $wgArticle, $wgRequest;
-		global $wgDisableCounters, $wgMaxCredits;
-		
+		global $wgDisableCounters;
+
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 		if ( ! $wgOut->isArticle() ) { return ""; }
 		if ( isset( $oldid ) || isset( $diff ) ) { return ""; }
@@ -726,19 +726,27 @@ class Skin {
 				$s = wfMsg( "viewcount", $count );
 			}
 		}
-	        if (!isset($wgMaxCredits) || $wgMaxCredits <= 0) {
-		    $s .= $this->lastModified();
-		} else {
-		    $s .= " " . $this->getCredits();
-		}
+
+		$s .= " " . $this->getCredits();
 	    
 		return $s . " " .  $this->getCopyright();
 	}
 
         function getCredits() {
-	        $s = $this->getAuthorCredits();
-	        $s .= "<br />\n " . $this->getContributorCredits();
-	        return $s;
+	       global $wgMaxCredits;
+	       
+	       $s = '';
+	    
+	       if (!isset($wgMaxCredits) || $wgMaxCredits == 0) {
+		        $s = $this->lastModified();
+	       } else {
+		        $s = $this->getAuthorCredits();
+		        if ($wgMaxCredits > 1) {
+			    $s .= " " . $this->getContributorCredits();
+			}
+	       }
+	    
+	       return $s;
 	}
 
         function getAuthorCredits() {
@@ -769,8 +777,10 @@ class Skin {
         function getContributorCredits() {
 	    
 		global $wgArticle, $wgMaxCredits, $wgLang;
-	    
-	        $contributors = $wgArticle->getContributors($wgMaxCredits);
+
+                # don't count last editor
+
+	        $contributors = $wgArticle->getContributors($wgMaxCredits - 1);
 	    
 	        $real_names = array();
 	        $user_names = array();
@@ -802,7 +812,7 @@ class Skin {
 	    
 	        $creds = $wgLang->listToText(array($real, $user, $anon));
 	    
-	        return wfMsg("contributions", $creds);
+	        return wfMsg("othercontribs", $creds);
 	}
     
 	function getCopyright() {

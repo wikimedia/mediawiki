@@ -398,22 +398,34 @@ class Article {
 
         function getContributors($limit = 0, $offset = 0)
         {
+                $fname = "Article::getContributors";
+
 	        # XXX: this is expensive; cache this info somewhere.
 		
 	        $title = $this->mTitle;
 
 	        $contribs = array();
-	
-	        $res = wfQuery("SELECT DISTINCT old.old_user, old.old_user_text, user.user_real_name " .
-	                       " FROM old, user " .
-	                       " WHERE old.old_user = user.user_id " .
-			       " AND old.old_namespace = " . $title->getNamespace() .
-	                       " AND old.old_title = '" . $title->getDBkey() . "'" .
-                               " AND old.old_user != 0 " .
-                               " AND old.old_user != " . $this->getUser(), DB_READ);
+
+                $sql = "SELECT old.old_user, old.old_user_text, " .
+                       "  user.user_real_name, MAX(old.old_timestamp) as timestamp" .
+                       " FROM old, user " .
+                       " WHERE old.old_user = user.user_id " .
+		       " AND old.old_namespace = " . $title->getNamespace() .
+                       " AND old.old_title = '" . $title->getDBkey() . "'" .
+                       " AND old.old_user != 0 " .
+                       " AND old.old_user != " . $this->getUser() . 
+                       " GROUP BY old.old_user " . 
+                       " ORDER BY timestamp DESC ";
+
+                if ($limit > 0) {
+                        $sql .= " LIMIT $limit";
+                }
+
+	        $res = wfQuery($sql, DB_READ, $fname);
 	
         	while ( $line = wfFetchObject( $res ) ) {
-	 	        $contribs[$line->old_user] = array($line->old_user_text, $line->user_real_name);
+	 	        $contribs[$line->old_user] = 
+                                array($line->old_user_text, $line->user_real_name);
   	        }    
 
                 # Count anonymous users
@@ -422,8 +434,8 @@ class Article {
   	                       " FROM old " .
 	                       " WHERE old_namespace = " . $title->getNamespace() .
 	                       " AND old_title = '" . $title->getDBkey() . "'" .
-                               " AND old_user = 0 ", DB_READ);
-
+                               " AND old_user = 0 ", DB_READ, $fname);
+	
    	        while ( $line = wfFetchObject( $res ) ) {
                         $contribs[0] = array($line->cnt, 'Anonymous');
 	        }    
