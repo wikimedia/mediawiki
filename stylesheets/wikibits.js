@@ -96,7 +96,8 @@ function addInfobox(infoText) {
 	var clientPC = navigator.userAgent.toLowerCase(); // Get client info
 	var is_nav = ((clientPC.indexOf('mozilla')!=-1) && (clientPC.indexOf('spoofer')==-1)
                 && (clientPC.indexOf('compatible') == -1) && (clientPC.indexOf('opera')==-1)
-                && (clientPC.indexOf('webtv')==-1) && (clientPC.indexOf('hotjava')==-1));
+                && (clientPC.indexOf('webtv')==-1) && (clientPC.indexOf('hotjava')==-1)
+		&& (clientPC.indexOf('khtml')==-1));
  	if(!document.selection && !is_nav) {
 	 	document.write("<form name='infoform' id='infoform'>"+
 			"<input size=80 id='infobox' name='infobox' value='"+
