@@ -402,6 +402,21 @@ $wgZhdaemonPort=2004;
 $wgLocalInterwiki   = 'w';
 $wgInterwikiExpiry = 10800; # Expiry time for cache of interwiki table
 
+/**
+ * If local interwikis are set up which allow redirects,
+ * set this regexp to restrict URLs which will be displayed
+ * as 'redirected from' links.
+ *
+ * It might look something like this:
+ * $wgRedirectSources = '!^https?://[a-z-]+\.wikipedia\.org/!';
+ *
+ * Leave at false to avoid displaying any incoming redirect markers.
+ * This does not affect intra-wiki redirects, which don't change
+ * the URL.
+ */
+$wgRedirectSources = false;
+
+
 $wgShowIPinHeader	= true; # For non-logged in users
 $wgMaxNameChars     = 32; # Maximum number of bytes in username
 

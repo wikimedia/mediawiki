@@ -629,6 +629,14 @@ class Title {
 				$namepace .= ':';
 			}
 			$url = str_replace( '$1', $namespace . $this->mUrlform, $baseUrl );
+			if( $query != '' ) {
+				if( false === strpos( $url, '?' ) ) {
+					$url .= '?';
+				} else {
+					$url .= '&';
+				}
+				$url .= $query;
+			}
 			if ( '' != $this->mFragment ) {
 				$url .= '#' . $this->mFragment;
 			}

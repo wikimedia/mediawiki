@@ -76,7 +76,11 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 		$interwiki = Title::newFromUrl( $_REQUEST['title'] );
 		if( !is_null( $interwiki ) ) $wgTitle = $interwiki;
 	}
-	$url = $wgTitle->getFullURL();
+	if( $rdfrom = $wgRequest->getVal( 'rdfrom' ) ) {
+		$url = $wgTitle->getFullURL( 'rdfrom=' . urlencode( $rdfrom ) );
+	} else {
+		$url = $wgTitle->getFullURL();
+	}
 	# Check for a redirect loop
 	if ( !preg_match( '/^' . preg_quote( $wgServer, '/' ) . '/', $url ) && $wgTitle->isLocal() ) {
 		$wgOut->redirect( $url );
