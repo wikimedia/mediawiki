@@ -2,6 +2,7 @@
 
 # Rebuild interwiki table using the file on meta and the language list
 # Wikimedia specific!
+$oldCwd = getcwd();
 
 $optionsWithArgs = array( "o" );
 include( "commandLine.inc" );
@@ -16,7 +17,7 @@ class Site {
 	}
 
 	function getURL( $lang ) {
-		return "$lang.{$this->url}/wiki/\$1";
+		return "http://$lang.{$this->url}/wiki/\$1";
 	}
 }
 
@@ -33,7 +34,7 @@ foreach ( $lines as $line ) {
 	if ( preg_match( '/^\|\s*(.*?)\s*\|\|\s*(.*?)\s*$/', $line, $matches ) ) {
 		$prefix = $matches[1];
 		$url = $matches[2];
-		if ( preg_match( '/^http:\/\/(a-z)*\.(wikipedia|wiktionary|wikisource|wikiquote|wikibooks)/', $url ) ) {
+		if ( preg_match( '/(wikipedia|wiktionary|wikisource|wikiquote|wikibooks)\.org/', $url ) ) {
 			$local = 1;
 		} else {
 			$local = 0;
@@ -43,7 +44,7 @@ foreach ( $lines as $line ) {
 	}
 }
 
-$langlist = array_map( "trim", file( "/home/wikipedia/langlist" ) );
+$langlist = array_map( "trim", file( "/home/wikipedia/common/langlist" ) );
 
 # Insert links into special wikis
 # No interlanguage links, that's the definition of a special wiki
@@ -66,14 +67,14 @@ foreach ( $specials as $db => $host ) {
 	$first = true;
 	
 	foreach ( $iwArray as $iwEntry ) {
-		# Add comma
-		if ( $first ) {
-			$first = false;
-		} else {
-			$sql .= ",\n";
-		}
 		# Suppress links to self
-		if ( strpos( $host, $iwEntry['iw_url'] ) === false ) {
+		if ( strpos( $iwEntry['iw_url'], $host ) === false ) {
+			# Add comma
+			if ( $first ) {
+				$first = false;
+			} else {
+				$sql .= ",\n";
+			}
 			$sql .= "(" . Database::makeList( $iwEntry ) . ")";
 		}
 	}
@@ -85,48 +86,52 @@ $sql .= "\n";
 
 $sites = array( 
 	new Site( 'wiki', 'w', 'wikipedia.org' ),
-	new Site( 'wiktionary.org', 'wiktionary.org' );
+	new Site( 'wiktionary.org', 'wikt', 'wiktionary.org' )
 );
 
 foreach ( $sites as $site ) {
-	$sql <<<EOS
+	$sql .= <<<EOS
 
 ---
---- $site
+--- {$site->suffix}
 ---
+
 EOS;
 	foreach ( $langlist as $lang ) {
 		$db = $lang . $site->suffix;
 		$db = str_replace( "-", "_", $db );
 
 		$sql .= "USE $db;\n" .
-				"TRUNCATE TABLE interwiki\n" .
-				"INSERT INTO interwiki (iw_prefix,iw_url,iw_local\n";
+				"TRUNCATE TABLE interwiki;\n" .
+				"INSERT INTO interwiki (iw_prefix,iw_url,iw_local) VALUES\n";
 		$first = true;
 
 		# Intermap links
 		foreach ( $iwArray as $iwEntry ) {
-			# Add comma
-			if ( $first ) {
-				$first = false;
-			} else {
-				$sql .= ",\n";
-			}
 			# Suppress links to self
-			if ( strpos( $host, $iwEntry['iw_url'] ) === false ) {
+			if ( strpos( $iwEntry['iw_url'], $site->url ) === false ) {
+				# Add comma
+				if ( $first ) {
+					$first = false;
+				} else {
+					$sql .= ",\n";
+				}
 				$sql .= "(" . Database::makeList( $iwEntry ) . ")";
 			}
 		}
 
 		# Lateral links
 		foreach ( $sites as $targetSite ) {
-			if ( $first ) {
-				$first = false;
-			} else {
-				$sql .= ",\n";
+			# Suppress link to self
+			if ( $targetSite->suffix != $site->suffix ) {
+				if ( $first ) {
+					$first = false;
+				} else {
+					$sql .= ",\n";
+				}
+				$link = array( $targetSite->lateral, $targetSite->getURL( $lang ), 1 );
+				$sql .= "(" . Database::makeList( $link ) . ")";
 			}
-			$link = array( $targetSite->lateral, $targetSite->getURL( $lang ), 1 );
-			$sql .= "(" . Database::makeList( $link ) . ")";
 		}
 
 		# Interlanguage links
@@ -139,13 +144,14 @@ EOS;
 			$link = array( $targetLang, $site->getURL( $targetLang ), 1 );
 			$sql .= "(" . Database::makeList( $link ) . ")";
 		}
+		$sql .= ";\n\n";
 	}
-	$sql .= ";\n\n";
 }
 
 # Output
-if ( isset( $options['o'] ) ) {
+if ( isset( $options['o'] ) ) {	
 	# To file specified with -o
+	chdir( $oldCwd );
 	$file = fopen( $options['o'], "w" );
 	fwrite( $file, $sql );
 	fclose( $file );
