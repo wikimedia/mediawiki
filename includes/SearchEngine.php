@@ -74,11 +74,22 @@ class SearchEngine {
 			return $title;
 		}
 
+		$title = Title::newFromText( $term );
+
 		# Entering an IP address goes to the contributions page
-		if ( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', $term ) ) {
-			$title = Title::makeTitle( NS_SPECIAL, "Contributions/" . $term );
-			return $title;
+		if ( ( $title->getNameSpace() == NS_USER && User::isIP($title->getText() ) )
+                     || User::isIP( trim( $term ) ) ) {
+			$t2 = Title::makeTitle( NS_SPECIAL, "Contributions/" . $title->getText() );
+			return $t2;
 		}
+
+
+		# Entering a user goes to the user page whether it's there or not
+		if ( $title->getNameSpace() == NS_USER ) {
+                        if (User::idFromName($title->getText())) {
+                                return $title;
+                        }
+                }
 		
 		return NULL;
 	}
