@@ -188,7 +188,7 @@ class LinkCache {
 		$this->mPreFilled = true;
 
 		if ( $wgEnablePersistentLC ) {
-			$this->saveToLinkscc( $id, $dbkeyfrom );
+			$this->saveToLinkscc( $id );
 		}
 		wfProfileOut( $fname );
 	}
@@ -290,7 +290,7 @@ class LinkCache {
 
 	}
 
-	/* private */ function saveToLinkscc( $pid, $dbkeyfrom ){
+	/* private */ function saveToLinkscc( $pid ){
 		global $wgCompressedPersistentLC;
 		if( $wgCompressedPersistentLC and function_exists( "gzcompress" ) ) {
 			$ser = wfStrencode( gzcompress( serialize( $this ), 3 ));

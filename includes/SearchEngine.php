@@ -58,11 +58,11 @@ class SearchEngine {
 	# that is done by showResults()
 	function powersearch()
 	{
-		global $wgUser, $wgOut, $wgLang, $wgTitle;
+		global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest;
 
-		$search			= $_REQUEST['search'];
-		$searchx		= $_REQUEST['searchx'];
-		$listredirs		= $_REQUEST['redirs'];
+		$search			= $wgRequest->getText( 'search' );
+		$searchx		= $wgRequest->getVal( 'searchx' );
+		$listredirs		= $wgRequest->getVal( 'redirs' );
 		
 		$ret = wfMsg("powersearchtext"); # Text to be returned
 		$tempText = ""; # Temporary text, for substitution into $ret	
@@ -516,17 +516,19 @@ class SearchEngine {
 		$spanabs = ceil($slen * (1 + $span)) - $slen;
 		# print "Word: $sstr, len = $slen, range = [$min, $max], tolerance_count = $tolerance_count<BR>\n";
 		$result = array();
+		$cnt = 0;
 		for( $i=0; $i <= $spanabs; $i++ ){
 			$titles = SearchEngine::getTitlesByLength( $slen + $i, $namespace );
-			if( $i != 0)
+			if( $i != 0) {
 				$titles = array_merge($titles, SearchEngine::getTitlesByLength( $slen - $i, $namespace ) );
+			}
 			foreach($titles as $t){
 				$d = levenshtein($sstr, $t);
 				if($d < $tolerance_count) 
 					$result[] = array($d, $t);
 				$cnt++;
 			}
-	        }
+		}
 		usort($result, "SearchEngine_pcmp");
 		return $result;
 	}

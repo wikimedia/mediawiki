@@ -38,6 +38,7 @@ function processUpload()
 	global $wgUseCopyrightUpload , $wpUploadCopyStatus , $wpUploadSource ;
 	global $wgCheckFileExtensions, $wgStrictFileExtensions;
 	global $wgFileExtensions, $wgFileBlacklist;
+	global $wgRequest;
 
 	if ( $wgUseCopyrightUpload ) {
 		$wpUploadAffirm = 1;
@@ -57,7 +58,7 @@ function processUpload()
 		$wpUploadSize = $HTTP_POST_FILES['wpUploadFile']['size'];
 	}
 	$prev = error_reporting( E_ALL & ~( E_NOTICE | E_WARNING ) );
-	$oname = $wgRequest->getVal( $HTTP_POST_FILES['wpUploadFile'], 'name' );
+	$oname = $wgRequest->getGPCVal( $HTTP_POST_FILES['wpUploadFile'], 'name' );
 	error_reporting( $prev );
 
 	if ( "" != $oname ) {
