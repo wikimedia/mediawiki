@@ -34,6 +34,7 @@ $wgDBserver         = "localhost";
 $wgDBuser           = "wikiuser";
 $wgDBname           = "wikidb";
 $wgDBpassword       = "userpass";
+$wgDBsqluser        = "sqluser";
 $wgDBsqlpassword	= "sqlpass";
 $wgDBminWordLen		= 3;	 # Match this to your MySQL fulltext
 $wgDBtransactions   = false; # Set to true if using InnoDB tables
