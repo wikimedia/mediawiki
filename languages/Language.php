@@ -362,6 +362,10 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'anontalk'		=> 'Talk for this IP',
 'navigation' => 'Navigation',
 
+# Metadata in edit box
+'metadata' => '<b>Metadata</b> (for an explanation see <a href="$1">here</a>)',
+'metadata_page' => 'Wikipedia:Metadata',
+
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
 				       
