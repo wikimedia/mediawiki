@@ -659,9 +659,9 @@ class Title {
 			
 			# Disallow non-breaking space, except from interwiki links
 			if ( $wgUseLatin1 ) {
-				$rxTc = "/[^" . Title::legalChars() . "]|\\xa0/";
+				$rxTc = "/[^" . Title::legalChars() . "]|\\xa0|%[0-9A-Fa-f]{2}/";
 			} else {
-				$rxTc = '/\\xc2\\xa0|[^' . Title::legalChars() . ']/';
+				$rxTc = '/\\xc2\\xa0|[^' . Title::legalChars() . ']|%[0-9A-Fa-f]{2}/';
 			}
 		}
 		

@@ -411,7 +411,7 @@ class EditPage {
 		$wgOut->addHTML( "
 {$toolbar}
 <form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
-enctype=\"application/x-www-form-urlencoded\">
+enctype=\"multipart/form-data\">
 {$commentsubject}
 <textarea tabindex='1' accesskey=\",\" name=\"wpTextbox1\" rows='{$rows}'
 cols='{$cols}'{$ew}>" .
