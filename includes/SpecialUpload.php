@@ -497,8 +497,10 @@ class UploadForm {
 		global $wgOut, $wgUser, $wgLang, $wgUploadDirectory, $wgRequest;
 		global $wgUseCopyrightUpload;
 		
-		$cols = $wgUser->getOption( 'cols' );
+		$cols = intval($wgUser->getOption( 'cols' ));
 		$ew = $wgUser->getOption( 'editwidth' );
+		if ( $ew ) $ew = " style=\"width:100%\"";
+		else $ew = '';
 
 		if ( '' != $msg ) {
 			$sub = wfMsg( 'uploaderror' );
