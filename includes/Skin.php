@@ -193,9 +193,9 @@ class Skin {
 	{
 		global $wgOut, $wgStylePath, $wgLang;
 		$s = "<style type='text/css'>\n";
-		$s .= "/*/*/\n"; # <-- Hide the styles from Netscape 4 without hiding them from IE/Mac
+		$s .= "/*/*/ /*<![CDATA[*/\n"; # <-- Hide the styles from Netscape 4 without hiding them from IE/Mac
 		$s .= $this->getUserStylesheet();
-		$s .= "/* */\n";
+		$s .= "/*]]>*/ /* */\n";
 		$s .= "</style>\n";
 		return $s;
 	}
