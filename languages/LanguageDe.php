@@ -642,7 +642,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "unusedimagestext" => "<p>Bitte beachten Sie, dass andere Wikipedias, die noch die alte Software verwenden, möglicherweise einige dieser Bilder benutzen.",
 "booksources"	=> "Buchhandlungen",
 "booksourcetext" => "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben, die Sie interessieren. Wikipedia ist mit keinem dieser Anbieter geschäftlich verbunden.",
-"alphaindexline" => "$1 zu $2",
+"alphaindexline" => "$1 bis $2",
 
 # Email this user
 #
