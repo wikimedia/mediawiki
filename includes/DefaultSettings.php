@@ -477,6 +477,18 @@ $wgUseOldExistenceCheck = false;  # use old prefill link method, for debugging o
  */
 $wgEnableParserCache = true;
 
+/**
+ * Under which condition should a page in the main namespace be counted
+ * as a valid article? If $wgUseCommaCount is set to true, it will be
+ * counted if it contains at least one comma. If it is set to false
+ * (default), it will only be counted if it contains at least one [[wiki
+ * link]]. See http://meta.wikimedia.org/wiki/Help:Article_count
+ *
+ * Retroactively changing this variable will not affect
+ * the existing count (cf. maintenance/recount.sql).
+*/
+$wgUseCommaCount = false;
+
 /**#@-*/
 
 /**
