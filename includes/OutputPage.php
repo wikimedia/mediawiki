@@ -586,6 +586,9 @@ class OutputPage {
 		$this->fatalError( wfMsg( "filenotfound", $name ) );
 	}
 
+	// return from error messages or notes
+	//   auto: 	automatically redirect the user after 10 seconds
+	//   returnto:	page title to return to. Default is Main Page.
 	function returnToMain( $auto = true, $returnto = NULL )
 	{
 		global $wgUser, $wgOut, $wgRequest;

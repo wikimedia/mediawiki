@@ -131,8 +131,12 @@ class EditPage {
 		if ( "save" == $formtype ) {
 			# Check for spam
 			if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1 ) ) {
-					sleep(10);
-					$wgOut->redirect( $this->mTitle->getFullURL() );
+					if ( $wgUser->isSysop() ) {
+						$this->spamPage();
+					} else {
+						sleep(10);
+						$wgOut->redirect( $this->mTitle->getFullURL() );
+					}
 					return;
 			}
 			if ( $wgUser->isBlocked() ) {
@@ -468,6 +472,18 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikiText( wfMsg( "whitelistedittext" ) );
+		$wgOut->returnToMain( false );
+	}
+
+	function spamPage()
+	{
+		global $wgOut, $wgSpamRegex;
+		$wgOut->setPageTitle( wfMsg( "spamprotectiontitle" ) );
+		$wgOut->setRobotpolicy( "noindex,nofollow" );
+		$wgOut->setArticleRelated( false );
+
+		$wgOut->addWikiText( wfMsg( "spamprotectiontext" ) );
+		$wgOut->addWikiText( "<pre>".$wgSpamRegex."</pre>" );
 		$wgOut->returnToMain( false );
 	}
 
