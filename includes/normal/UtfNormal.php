@@ -324,10 +324,10 @@ class UtfNormal {
 			# Since PHP is not the fastest language on earth, some of
 			# this code is a little ugly with inner loop optimizations.
 			
-			$len = strlen( $str );
-			$tail = false;
+			$len = strlen( $str ) + 1;
+			$tail = 0;
 			$head = '';
-			for( $i = 0; $i < $len; $i++ ) {
+			for( $i = 0; --$len; ++$i ) {
 				if( $tail ) {
 					if( ( $c = $str{$i} ) >= "\x80" && $c < "\xc0" ) {
 						$sequence .= $c;
@@ -337,7 +337,7 @@ class UtfNormal {
 						}
 						
 						# We have come to the end of the sequence...
-						$tail = false;
+						$tail = 0;
 						
 						if( isset( $checkit[$head] ) ) {
 							# Do some more detailed validity checks, for
@@ -383,7 +383,7 @@ class UtfNormal {
 					echo UTF8_REPLACEMENT;
 				}
 				if( $remaining = $tailBytes[$c = $str{$i}] ) {
-					$tail = true;
+					$tail = 1;
 					$sequence = $head = $c;
 				} elseif( $c < "\x80" ) {
 					echo $c;
