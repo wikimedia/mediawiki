@@ -1579,7 +1579,7 @@ class Parser
 		# Variable substitution
 		$text = preg_replace_callback( "/{{([$titleChars]*?)}}/", 'wfVariableSubstitution', $text );
 		
-		if ( $this->mOutputType == OT_HTML ) {
+		if ( $this->mOutputType == OT_HTML || $this->mOutputType == OT_WIKI ) {
 			# Argument substitution
 			$text = preg_replace_callback( "/{{{([$titleChars]*?)}}}/", 'wfArgSubstitution', $text );
 		}
@@ -1684,18 +1684,14 @@ class Parser
 		# SUBST
 		if ( !$found ) {
 			$mwSubst =& MagicWord::get( MAG_SUBST );
-			if ( $mwSubst->matchStartAndRemove( $part1 ) ) {
-				if ( $this->mOutputType != OT_WIKI ) {
-					# Invalid SUBST not replaced at PST time
-					# Return without further processing
-					$text = $matches[0];
-					$found = true;
-					$noparse= true;
-				}
-			} elseif ( $this->mOutputType == OT_WIKI ) {
-				# SUBST not found in PST pass, do nothing
+			if ( $mwSubst->matchStartAndRemove( $part1 ) xor ($this->mOutputType == OT_WIKI) ) {
+				# One of two possibilities is true:
+				# 1) Found SUBST but not in the PST phase
+				# 2) Didn't find SUBST and in the PST phase
+				# In either case, return without further processing
 				$text = $matches[0];
 				$found = true;
+				$noparse = true;
 			}
 		}
 
@@ -1821,7 +1817,7 @@ class Parser
 		# Only for HTML output
 		if ( $nowiki && $found && $this->mOutputType == OT_HTML ) {
 			$text = wfEscapeWikiText( $text );
-		} elseif ( $this->mOutputType == OT_HTML && $found && !$noparse) {
+		} elseif ( ($this->mOutputType == OT_HTML || $this->mOutputType == OT_WIKI) && $found && !$noparse) {
 			# Clean up argument array
 			$assocArgs = array();
 			$index = 1;
@@ -1849,7 +1845,7 @@ class Parser
 			$text = $this->replaceVariables( $text, $assocArgs );
 
 			# Resume the link cache and register the inclusion as a link
-			if ( !is_null( $title ) ) {
+			if ( $mOutputType == OT_HTML && !is_null( $title ) ) {
 				$wgLinkCache->addLinkObj( $title );
 			}
 		}
@@ -2583,13 +2579,6 @@ class Parser
 		} else {
 			$text = preg_replace( $p2, "[[\\1 ({$context})|\\1]]", $text );
 		}
-
-		/*
-		$mw =& MagicWord::get( MAG_SUBST );
-		$wgCurParser = $this->fork();
-		$text = $mw->substituteCallback( $text, "wfBraceSubstitution" );
-		$this->merge( $wgCurParser );
-		*/
 
 		# Trim trailing whitespace
 		# MAG_END (__END__) tag allows for trailing
