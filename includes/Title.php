@@ -106,17 +106,6 @@ class Title {
 		# from some external search tools.
 		$s = str_replace( '+', ' ', $url );
 		
-		# For links that came from outside, check for alternate/legacy
-		# character encoding.
-		wfDebug( "Servr: $wgServer\n" );
-		if( empty( $_SERVER['HTTP_REFERER'] ) ||
-			strncmp($wgServer, $_SERVER['HTTP_REFERER'], strlen( $wgServer ) ) ) 
-		{
-			$s = $wgLang->checkTitleEncoding( $s );
-		} else {
-			wfDebug( "Refer: {$_SERVER['HTTP_REFERER']}\n" );
-		}
-		
 		$t->mDbkeyform = str_replace( ' ', '_', $s );
 		if( $t->secureAndSplit() ) {
 			# check that length of title is < cur_title size
