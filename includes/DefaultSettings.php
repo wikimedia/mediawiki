@@ -369,4 +369,11 @@ $wgTidyOpts = '';
 # See list of skins and their symbolic names in language/Language.php
 $wgDefaultSkin = "monobook";
 
+# Board of Trustees vote
+$wgBoardVoteDB = "boardvote";
+$wgContributingCandidates = array();
+$wgVolunteerCandidates = array();
+$wgGPGCommand = "gpg";
+$wgGPGRecipient = "boardvote";
+
 ?>
