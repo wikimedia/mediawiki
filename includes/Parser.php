@@ -1631,7 +1631,7 @@ class Parser
 		$found = false;
 		$nowiki = false;
 		$noparse = false;
-		$brokenlink = false;
+		$itcamefromthedatabase = false;
 
 		$title = NULL;
 
@@ -1782,6 +1782,7 @@ class Parser
 					if ( $articleContent !== false ) {
 						$found = true;
 						$text = $articleContent;
+						$itcamefromthedatabase = true;
 					}
 				}
 
@@ -1789,7 +1790,6 @@ class Parser
 				if ( $this->mOutputType == OT_HTML && !$found ) {
 					$text = '[['.$title->getPrefixedText().']]';
 					$found = true;
-					$brokenlink = true;
 				}
 
 				# Template cache array insertion
@@ -1842,13 +1842,12 @@ class Parser
 
 		# Empties the template path
 		$this->mTemplatePath = array();
-
 		if ( !$found ) {
 			return $matches[0];
 		} else {
 			# replace ==section headers==
 			# XXX this needs to go away once we have a better parser.
-			if ( $this->mOutputType != OT_WIKI && !$brokenlink ) {
+			if ( $this->mOutputType != OT_WIKI && $itcamefromthedatabase ) {
 				if( !is_null( $title ) )
 					$encodedname = base64_encode($title->getPrefixedDBkey());
 				else
@@ -2263,7 +2262,10 @@ class Parser
 
 			# Add the edit section span
 			if( $rightClickHack ) {
-				$headline = $sk->editSectionScript($sectionCount+1,$headline);
+				if( $istemplate )
+					$headline = $sk->editSectionScriptForOther($templatetitle, $templatesection, $headline);
+				else
+					$headline = $sk->editSectionScript($sectionCount+1,$headline);
 			}
 
 			# give headline the correct <h#> tag
