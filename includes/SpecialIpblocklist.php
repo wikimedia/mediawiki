@@ -18,7 +18,7 @@ function wfSpecialIpblocklist() {
 	$ipu = new IPUnblockForm( $ip, $reason );
 
 	if ( "success" == $action ) {
-		$msg = wfMsg( "ipusuccess", $ip );
+		$msg = wfMsg( "ipusuccess", htmlspecialchars( $ip ) );
 		$ipu->showList( $msg );
 	} else if ( "submit" == $action && $wgRequest->wasPosted() ) {
 		if ( ! $wgUser->isSysop() ) {
