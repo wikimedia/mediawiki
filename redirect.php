@@ -12,7 +12,7 @@ $wgRequest = new WebRequest();
 
 $page = $wgRequest->getVal( "wpDropdown" );
 
-$url = str_replace( "$1", $page, $wgArticlePath );
+$url = str_replace( "$1", urlencode( $page ), $wgArticlePath );
 
 header( "Location: {$url}" );
 ?>
