@@ -1282,6 +1282,9 @@ class Article {
 		$sql = "DELETE FROM brokenlinks WHERE bl_from={$id}";
 		wfQuery( $sql, DB_WRITE, $fname );
 		
+		$sql = "DELETE FROM categorylinks WHERE cl_from={$id}";
+		wfQuery( $sql, DB_WRITE, $fname );
+		
 		$log = new LogPage( wfMsg( "dellogpage" ), wfMsg( "dellogpagetext" ) );
 		$art = $this->mTitle->getPrefixedText();
 		$log->addEntry( wfMsg( "deletedarticle", $art ), $reason );

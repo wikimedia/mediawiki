@@ -156,4 +156,15 @@ function do_objectcache_update() {
 	}
 }
 
+function do_categorylinks_update() {
+	global $wgDatabase;
+	if( $wgDatabase->tableExists( "categorylinks" ) ) {
+		echo "...have categorylinks table.\n";
+	} else {
+		echo "Adding categorylinks table for category management... ";
+		dbsource( "maintenance/archives/patch-categorylinks.sql", $wgDatabase );
+		echo "ok\n";
+	}
+}
+
 ?>

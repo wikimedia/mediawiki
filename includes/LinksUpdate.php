@@ -16,7 +16,7 @@ class LinksUpdate {
 	function doUpdate()
 	{
 		global $wgUseBetterLinksUpdate, $wgLinkCache, $wgDBtransactions;
-		global $wgEnablePersistentLC;
+		global $wgEnablePersistentLC, $wgUseCategoryMagic;
 
 		/* Update link tables with outgoing links from an updated article */
 		/* Relies on the 'link cache' to be filled out */
@@ -133,6 +133,36 @@ class LinksUpdate {
 		}
 		if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
 
+		#------------------------------------------------------------------------------
+		# Category links
+		if( $wgUseCategoryMagic ) {
+			$sql = "DELETE FROM categorylinks WHERE cl_from='{$this->mId}'";
+			wfQuery( $sql, DB_WRITE, $fname );
+			
+			# Get addition list
+			$add = $wgLinkCache->getCategoryLinks();
+			
+			# Do the insertion
+			$sql = "";
+			if ( 0 != count ( $add ) ) {
+				$sql = "INSERT INTO categorylinks (cl_from,cl_to,cl_sortkey) VALUES ";
+				$first = true;
+				foreach( $add as $cname => $sortkey ) {
+					# FIXME: Change all this to avoid unnecessary duplication
+					$nt = Title::makeTitle( NS_CATEGORY, $cname );
+					if( !$nt ) continue;
+					$nt->invalidateCache();
+	
+					if ( ! $first ) { $sql .= ","; }
+					$first = false;
+	
+					$sql .= "({$this->mId},'" . wfStrencode( $cname ) .
+						"','" . wfStrencode( $sortkey ) . "')";
+				}
+			}
+			if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
+		}
+		
 		$this->fixBrokenLinks();
 
 		if( $wgDBtransactions ) {
@@ -147,7 +177,7 @@ class LinksUpdate {
 		# Old inefficient update function
 		# Used for rebuilding the link table
 		
-		global $wgLinkCache, $wgDBtransactions;
+		global $wgLinkCache, $wgDBtransactions, $wgUseCategoryMagic;
 		$fname = "LinksUpdate::doDumbUpdate";
 		wfProfileIn( $fname );
 
@@ -209,6 +239,33 @@ class LinksUpdate {
 		}
 		if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
 
+		if( $wgUseCategoryMagic ) {
+			$sql = "DELETE FROM categorylinks WHERE cl_from='{$this->mId}'";
+			wfQuery( $sql, DB_WRITE, $fname );
+			
+			# Get addition list
+			$add = $wgLinkCache->getCategoryLinks();
+			
+			# Do the insertion
+			$sql = "";
+			if ( 0 != count ( $add ) ) {
+				$sql = "INSERT INTO categorylinks (cl_from,cl_to,cl_sortkey) VALUES ";
+				$first = true;
+				foreach( $add as $cname => $sortkey ) {
+					# FIXME: Change all this to avoid unnecessary duplication
+					$nt = Title::makeTitle( NS_CATEGORY, $cname );
+					if( !$nt ) continue;
+					$nt->invalidateCache();
+	
+					if ( ! $first ) { $sql .= ","; }
+					$first = false;
+	
+					$sql .= "({$this->mId},'" . wfStrencode( $cname ) .
+						"','" . wfStrencode( $sortkey ) . "')";
+				}
+			}
+			if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
+		}
 		$this->fixBrokenLinks();
 
 		if( $wgDBtransactions ) {
