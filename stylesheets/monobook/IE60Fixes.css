@@ -1,0 +1,74 @@
+/* 6.0 - only fixes */
+/* content area */ 
+#portal-column-content {
+    margin: 0 0 4.8em 0;
+    float: none;
+}
+body, #visual-portal-wrapper {
+    height: 100%;
+}
+#portal-column-content #content {
+    height: 100%;
+    margin-top: 2.9em;
+}
+#portal-column-one {
+    position: absolute;
+    top:0;
+    left:0;
+    margin-bottom: 4em;
+    z-index: 3;
+}
+#portal-footer {
+    position: absolute;
+    float: none;
+    bottom: 0px;
+    width: 100%;
+}
+
+/* the tabs */
+
+#portlet-contentViews li {
+    display: block;
+    float: left;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 0.9em;
+}
+#portlet-contentViews li.selected {
+    background-color: White;
+    padding-bottom: 0.2em;
+}
+
+/* log in etc */
+#portal-personaltools {
+    padding-bottom: 0.1em;
+}
+#bodyContent a.external {
+    background: url(external.png) center right no-repeat;
+    padding-right: 13px;
+}
+
+/* disappearing table fix */
+#bodyContent,
+.documentContent {
+    position: relative;
+    z-index: 0 !important;
+}
+
+/* height on everything... */
+#toc,
+#content p,
+div.comment,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.description,
+.portalMessage {
+    height: 1%;    
+}
+
+
+/*{ border:1px solid Red !important;}*/

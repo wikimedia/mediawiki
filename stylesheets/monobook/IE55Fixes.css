@@ -1,0 +1,42 @@
+/* IE5.5/win- only fixes */
+
+#portal-column-content #content {
+    margin-top: 2.8em;
+}
+
+#portal-personaltools {
+    padding-bottom: 0.1em;
+}
+
+body {
+    font-size: xx-small;
+}
+#portlet-contentViews {
+    width: 76% !important;
+    z-index: 3 !important;
+    float: none;
+}
+
+#portlet-contentViews li {
+    display: block;
+    float: left;
+}
+#portlet-contentViews li.selected {
+    background-color: White;
+}
+
+#portlet-contentViews li a,
+#portlet-contentViews .selected a,
+#portlet-contentViews li a:hover {
+    padding-bottom: 0.1em;
+}
+#portlet-contentViews li a {
+    z-index: 0 !important;
+}
+.portlet {
+    overflow:hidden;
+}
+#bodyContent a.external {
+    background: url(external.png) center right no-repeat;
+    padding-right: 13px;
+}
