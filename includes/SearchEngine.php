@@ -471,11 +471,11 @@ class SearchEngine {
 			foreach( array(NS_MAIN, NS_WP, NS_USER, NS_IMAGE, NS_MEDIAWIKI) as $namespace){
 				$anyhit |= SearchEngine::doFuzzyTitleSearch( $search, $namespace );
 			}
-		} 
-		if( ! $anyhit ){
-			$wgOut->addHTML( wfMsg("notitlematches") );
 		}
-		$wgOut->addHTML( wfMsg( "googlesearch", htmlspecialchars( $search ), $GLOBALS['wgInputEncoding'] ) );
+		
+		if( ! $anyhit ){
+			return $this->showResults();
+		}
 	}
 
 	/* static */ function doFuzzyTitleSearch( $search, $namespace ){

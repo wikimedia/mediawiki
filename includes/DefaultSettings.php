@@ -6,18 +6,29 @@
 # like $wgScriptPath, you must also localize everything that
 # depends on it.
 
-$wgVersion			= "1.2.0rc1";
+# Disable reporting of 'notices'. 1.3.x should run clean with it on,
+# but 1.2.x relies on traditional behavior and doesn't appreciate
+# the output being replaced with a screenfull of paranoid _notices_
+# that our code is sloppy. We know it's sloppy.
+error_reporting( E_ALL & ~E_NOTICE );
+
+$wgVersion			= "1.2.3";
 
 $wgSitename         = "MediaWiki"; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
 
-$wgServer           = "http://" . getenv( "SERVER_NAME" );
+$wgServer           = "http://" . $_SERVER["SERVER_NAME"];
+if( $_SERVER["SERVER_PORT"] != 80 ) $wgServer .= ":" . $_SERVER["SERVER_PORT"];
+
 $wgScriptPath	    = "/wiki";
 
 # ATTN: Old installations used wiki.phtml and redirect.phtml -
 # make sure that LocalSettings.php is correctly set!
 $wgScript           = "{$wgScriptPath}/index.php";
 $wgRedirectScript   = "{$wgScriptPath}/redirect.php";
+
+# Whether to support URLs like index.php/Page_title
+$wgUsePathInfo		= ( strpos( php_sapi_name(), "cgi" ) === false );
 
 $wgStyleSheetPath   = "{$wgScriptPath}/style";
 $wgStyleSheetDirectory = "{$IP}/style";
@@ -42,12 +53,16 @@ $wgDBname           = "wikidb";
 $wgDBconnection     = "";
 $wgDBuser           = "wikiuser";
 $wgDBpassword       = "userpass";
-$wgDBsqluser		= "sqluser";
-$wgDBsqlpassword	= "sqlpass";
 $wgDBminWordLen     = 4;
 $wgDBtransactions	= false; # Set to true if using InnoDB tables
 $wgDBmysql4			= false; # Set to true to use enhanced fulltext search
+
+# Sysop SQL queries
+$wgAllowSysopQueries = false; # Dangerous if not configured properly.
+$wgDBsqluser		= "sqluser";
+$wgDBsqlpassword	= "sqlpass";
 $wgSqlTimeout		= 30;
+$wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
 
 # Database load balancer
 $wgDBservers		= false; # e.g. array("larousse", "pliny")
@@ -82,8 +97,8 @@ $wgShowIPinHeader	= true; # For non-logged in users
 $wgMaxNameChars     = 32; # Maximum number of bytes in username
 
 # Translation using MediaWiki: namespace
-# Not recommended unless memcached is installed
-$wgUseDatabaseMessages = false;
+# This will increase load times by 25-60% unless memcached is installed
+$wgUseDatabaseMessages = true;
 $wgMsgCacheExpiry	= 86400;
 
 $wgExtraSubtitle	= "";
@@ -99,7 +114,6 @@ $wgDebugLogFile         = "";
 
 $wgDebugComments        = false;
 $wgReadOnly             = false;
-$wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
 $wgLogQueries           = false;
 $wgUseCategoryMagic		= false;
 $wgEnablePersistentLC	= false;	# Persistent link cache in linkscc table; FAILS on MySQL 3.x
@@ -228,6 +242,21 @@ $wgCheckFileExtensions = true;
 # If this is turned off, users may override the warning for files not
 # covered by $wgFileExtensions.
 $wgStrictFileExtensions = true;
+
+## Set $wgUseImageResize to true if you want to enable dynamic
+## server side image resizing ("Thumbnails")
+# 
+$wgUseImageResize		= false;
+
+## Resizing can be done using PHP's internal image libraries
+## or using ImageMagick. The later supports more file formats
+## than PHP, which only supports PNG, GIF, JPG, XBM and WBMP.
+##
+## Set $wgUseImageMagick to true to use Image Magick instead
+## of the builtin functions
+#
+$wgUseImageMagick		= false;
+$wgImageMagickConvertCommand    = "/usr/bin/convert";
 
 $wgPasswordSalt = true; # For compatibility with old installations set to false
 

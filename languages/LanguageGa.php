@@ -1,36 +1,18 @@
-<?
-#--------------------------------------------------------------------------
-# Constants
-#--------------------------------------------------------------------------
+<?php
 
-# Magic words
-define("MAG_REDIRECT", 0);
-define("MAG_NOTOC", 1);
-define("MAG_START", 2);
-define("MAG_CURRENTMONTH", 3);
-define("MAG_CURRENTMONTHNAME", 4);
-define("MAG_CURRENTDAY", 5);
-define("MAG_CURRENTDAYNAME", 6);
-define("MAG_CURRENTYEAR", 7);
-define("MAG_CURRENTTIME", 8);
-define("MAG_NUMBEROFARTICLES", 9);
-define("MAG_CURRENTMONTHNAMEGEN", 10);
-define("MAG_MSG", 11);
-define("MAG_SUBST", 12);
-define("MAG_MSGNW", 13);
-define("MAG_NOEDITSECTION", 14);
+/* Irish */
 
-#--------------------------------------------------------------------------
-# Language-specific text
-#--------------------------------------------------------------------------
+/*
+(This version of LanguageGa.php originally dates from the first version of 23:20,
+14th February 2004. It was translated from LanguageEn.php and LanguageEo.php,
+using the standard Ó Dónaill and De Bhaldraithe dictionaries, the Oxford
+minidictionary and Ó Donnáile's computing wordlist. There are small mistakes
+abound here, but corrections should principally be made to the live version on
+Sourceforge (when that gets added.)
+*/
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
+# FIXME: Use $wgSitename, $wgMetaNamespace etc
 
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
 /* private */ $wgNamespaceNamesGa = array(
     -2  => "Media",
     -1  => "Speisialta",
@@ -110,152 +92,6 @@ define("MAG_NOEDITSECTION", 14);
     "Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-# Here, when possible, use Irish language names for languages
-
-/* private */ $wgLanguageNamesGa = array(
-    "aa"    => "Afar",
-    "ab"    => "Abkhazian",
-    "af"    => "Afrikaans", # Afracáinis
-    "am"    => "Amharic",
-    "ar" => "&#8238;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;&#8236; (Araby)", # Araibis
-    "as"    => "Assamese",
-    "ay"    => "Aymara",
-    "az"    => "Azerbaijani",
-    "ba"    => "Bashkir",
-    "be" => "&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1080;",
-    "bh"    => "Bihara",
-    "bi"    => "Bislama",
-    "bn"    => "Bengali",
-    "bo"    => "Tibetan", # Tibéadis
-    "br" => "Brezhoneg",
-    "bs" => "Bosnian",
-    "ca" => "Catal&#224;", # Catalóinis
-    "ch" => "Chamoru",
-    "co"    => "Corsican",
-    "cs" => "&#268;esk&#225;",
-    "cy" => "Cymraeg", # Breatnais
-    "da" => "Dansk", # Danmhairgis. Note two different subdomains.
-    "dk" => "Dansk", # 'da' is correct for the language.
-    "de" => "Deutsch", # Gearmáinis
-    "dz"    => "Bhutani",
-    "el" => "&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940; (Ellenika)",
-    "en"    => "English", # Béarla
-    "eo"    => "Esperanto", # Espeirantó
-    "es" => "Espa&#241;ol", # Spáinnis
-    "et" => "Eesti",
-    "eu" => "Euskara",
-    "fa" => "&#8238;&#1601;&#1585;&#1587;&#1609;&#8236; (Farsi)",
-    "fi" => "Suomi",
-    "fj"    => "Fijian", # Fidsis? Fiji= An Fhidsí.
-    "fo"    => "Faeroese",
-    "fr" => "Fran&#231;ais", # Fraincis
-    "fy" => "Frysk",
-    "ga" => "Gaeilge", # Gaeilge
-    "gl"    => "Galician",
-    "gn"    => "Guarani",
-    "gu" => "&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752; (Gujarati)",
-    "ha"    => "Hausa",
-    "he" => "&#1506;&#1489;&#1512;&#1497;&#1514; (Ivrit)",
-    "hi" => "&#2361;&#2367;&#2344;&#2381;&#2342;&#2368; (Hindi)", # Hiondúis
-    "hr" => "Hrvatski",
-    "hu" => "Magyar", # Ungáiris
-    "hy"    => "Armenian", # Airméinis
-    "ia"    => "Interlingua",
-    "id"    => "Indonesia", # Indinéisis
-    "ik"    => "Inupiak",
-    "is" => "&#205;slenska",
-    "it" => "Italiano", # Iodáilis
-    "iu"    => "Inuktitut",
-    "ja" => "&#26085;&#26412;&#35486; (Nihongo)", # Seapáinis
-    "jv"    => "Javanese", # Iavais? Java = An Iava.
-    "ka" => "&#4325;&#4304;&#4320;&#4311;&#4309;&#4308;&#4314;&#4312; (Kartuli)",
-    "kk"    => "Kazakh",
-    "kl"    => "Greenlandic", # Graonlainnis
-    "km"    => "Cambodian",
-    "kn"    => "Kannada",
-    "ko" => "&#54620;&#44397;&#50612; (Hangukeo)",
-    "ks"    => "Kashmiri",
-    "kw" => "Kernewek",
-    "ky"    => "Kirghiz",
-    "la" => "Latina", # Laidin
-    "ln"    => "Lingala",
-    "lo"    => "Laotian",
-    "lt" => "Lietuvi&#371;",
-    "lv"    => "Latvian", # Laitvis
-    "mg" => "Malagasy",
-    "mi"    => "Maori",
-    "mk"    => "Macedonian", # Macadóinis
-    "ml"    => "Malayalam",
-    "mn"    => "Mongolian", # Mongóilis
-    "mo"    => "Moldavian",
-    "mr"    => "Marathi",
-    "ms" => "Bahasa Melayu",
-    "my"    => "Burmese", # Burmais? Burma = Burma
-    "na"    => "Nauru",
-    "ne" => "&#2344;&#2375;&#2346;&#2366;&#2354;&#2368; (Nepali)", # Neipealis
-    "nl" => "Nederlands", # Ollainnis
-    "no" => "Norsk", # Ioruais
-    "oc"    => "Occitan",
-    "om"    => "Oromo",
-    "or"    => "Oriya",
-    "pa"    => "Punjabi",
-    "pl" => "Polski", # Polainnis
-    "ps"    => "Pashto",
-    "pt" => "Portugu&#234;s", # Portaingéilis
-    "qu"    => "Quechua",
-    "rm"    => "Rhaeto-Romance",
-    "rn"    => "Kirundi",
-    "ro" => "Rom&#226;n&#259;",
-    "ru" => "&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081; (Russkij)", # Rúisis
-    "rw"    => "Kinyarwanda",
-    "sa" => "&#2360;&#2306;&#2360;&#2381;&#2325;&#2371;&#2340; (Samskrta)",
-    "sd"    => "Sindhi",
-    "sg"    => "Sangro",
-    "sh"    => "Serbocroatian", # ? Serbian = Serbis; Croatian = Cróitis.
-    "si"    => "Sinhalese",
-    "simple" => "Simple English", # Béarla Simplí
-    "sk"    => "Slovak", # Slóvaicis
-    "sl"    => "Slovensko",
-    "sm"    => "Samoan",
-    "sn"    => "Shona",
-    "so" => "Soomaali",
-    "sq" => "Shqiptare",
-    "sr" => "Srpski",
-    "ss"    => "Siswati",
-    "st"    => "Sesotho",
-    "su"    => "Sundanese",
-    "sv" => "Svenska", # Sualainnis
-    "sw" => "Kiswahili",
-    "ta"    => "Tamil",
-    "te"    => "Telugu",
-    "tg"    => "Tajik",
-    "th"    => "Thai",
-    "ti"    => "Tigrinya",
-    "tk"    => "Turkmen",
-    "tl"    => "Tagalog",
-    "tn"    => "Setswana",
-    "to"    => "Tonga",
-    "tr" => "T&#252;rk&#231;e", # Tuircis
-    "ts"    => "Tsonga",
-    "tt"    => "Tatar",
-    "tw"    => "Twi",
-    "ug"    => "Uighur",
-    "uk" => "&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072; (Ukrayins`ka)",
-    "ur"    => "Urdu",
-    "uz"    => "Uzbek",
-    "vi"    => "Vietnamese", # Vítneamis
-    "vo" => "Volap&#252;k",
-    "wo"    => "Wolof",
-    "xh" => "isiXhosa",
-    "yi"    => "Yiddish", # Giúdais
-    "yo"    => "Yoruba",
-    "za"    => "Zhuang",
-    "zh" => "&#20013;&#25991; (Zhongwen)", # Sínis
-    "zh-cn" => "&#20013;&#25991;(&#31616;&#20307;) (Simplified Chinese)", # Sínis Simplithe
-    "zh-tw" => "&#20013;&#25991;(&#32321;&#20307;) (Traditional Chinese)", # Sínis Traidisiúnta
-    "zu"    => "Zulu"
-);
-
 # Different spellings of days  (with Dé) may be needed for some uses
 
 /* private */ $wgWeekdayNamesGa = array(
@@ -274,7 +110,7 @@ define("MAG_NOEDITSECTION", 14);
     "Mea", "Dei", "Samh", "Nol"
 );
 
-# Are the following safe to translate?
+# The following exist for the purpose of being translated:
 
 /* private */ $wgMagicWordsGa = array(
 #   ID                                 CASE  SYNONYMS
@@ -332,7 +168,8 @@ define("MAG_NOEDITSECTION", 14);
     "Movepage"      => "",
     "Booksources"   => "Leabharfhoinsí seachtraí",
 #   "Categories"    => "Ranganna leathanaigh",
-    "Export"        => ""
+    "Export"        => "XML Export",
+    "Version"		=> "Version",
 );
 
 /* private */ $wgSysopSpecialPagesGa = array(
@@ -1269,11 +1106,9 @@ air, nó is féidir leat é a coinnigh do do siamsa féin.",
 "allmessagestext"   => "Seo é liosta de na teachtaireachtaí go léir atá le fáil san roinn MediaWiki: ."
 );
 
-#--------------------------------------------------------------------------
-# Internationalisation code
-#--------------------------------------------------------------------------
+include_once( "LanguageUtf8.php" );
 
-class Language {
+class LanguageGa extends LanguageUtf8 {
 
     function getDefaultUserOptions () {
         global $wgDefaultUserOptionsGa ;
@@ -1301,11 +1136,8 @@ class Language {
         foreach ( $wgNamespaceNamesGa as $i => $n ) {
             if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
         }
-        return false;
-    }
-
-    function specialPage( $name ) {
-        return $this->getNsText( Namespace::getSpecial() ) . ":" . $name;
+        /* Fallback to English names for compatibility */
+        return Language::getNsIndex( $text );
     }
 
     function getQuickbarSettings() {
@@ -1333,27 +1165,7 @@ class Language {
         return $wgUserTogglesGa;
     }
 
-    function getLanguageNames() {
-        global $wgLanguageNamesGa;
-        return $wgLanguageNamesGa;
-    }
-
-    function getLanguageName( $code ) {
-        global $wgLanguageNamesGa;
-        if ( ! array_key_exists( $code, $wgLanguageNamesGa ) ) {
-            return "";
-        }
-        return $wgLanguageNamesGa[$code];
-    }
-
     function getMonthName( $key )
-    {
-        global $wgMonthNamesGa;
-        return $wgMonthNamesGa[$key-1];
-    }
-    
-    /* by default we just return base form */
-    function getMonthNameGen( $key )
     {
         global $wgMonthNamesGa;
         return $wgMonthNamesGa[$key-1];
@@ -1369,75 +1181,6 @@ class Language {
     {
         global $wgWeekdayNamesGa;
         return $wgWeekdayNamesGa[$key-1];
-    }
-
-    function userAdjust( $ts )
-    {
-        global $wgUser, $wgLocalTZoffset;
-
-        $diff = $wgUser->getOption( "timecorrection" );
-        if ( ! is_numeric( $diff ) ) {
-            $diff = isset( $wgLocalTZoffset ) ? $wgLocalTZoffset : 0;
-        }
-        if ( 0 == $diff ) { return $ts; }
-
-        $t = mktime( ( (int)substr( $ts, 8, 2) ) + $diff,
-          (int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
-          (int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
-          (int)substr( $ts, 0, 4 ) );
-        return date( "YmdHis", $t );
-    }
- 
-    function date( $ts, $adj = false )
-    {
-        global $wgAmericanDates, $wgUser, $wgUseDynamicDates;
-
-        if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-        
-        if ( $wgUseDynamicDates ) {
-            $datePreference = $wgUser->getOption( 'date' );     
-            if ( $datePreference == 0 ) {
-                $datePreference = $wgAmericanDates ? 1 : 2;
-            }
-        } else {
-            $datePreference = $wgAmericanDates ? 1 : 2;
-        }
-        
-        if ( $datePreference == 1 ) {
-            # MDY
-            $d = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-              " " . (0 + substr( $ts, 6, 2 )) . ", " .
-              substr( $ts, 0, 4 );
-        } else if ( $datePreference == 2 ) {
-            #DMY
-            $d = (0 + substr( $ts, 6, 2 )) . " " .
-              $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " .
-              substr( $ts, 0, 4 );
-        } else {
-            #YMD
-            $d = substr( $ts, 0, 4 ) . " " . $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-                " " . (0 + substr( $ts, 6, 2 ));
-        }
-
-        return $d;
-    }
-
-    function time( $ts, $adj = false )
-    {
-        if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-        $t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-        return $t;
-    }
-
-    function timeanddate( $ts, $adj = false )
-    {
-        return $this->time( $ts, $adj ) . ", " . $this->date( $ts, $adj );
-    }
-
-    function rfc1123( $ts )
-    {
-        return date( "D, d M Y H:i:s T", $ts );
     }
 
     function getValidSpecialPages()
@@ -1470,102 +1213,12 @@ class Language {
         return $wgAllMessagesGa;
     }
 
-    function iconv( $in, $out, $string ) {
-        # For most languages, this is a wrapper for iconv
-        return iconv( $in, $out, $string );
-    }
-    
-    function ucfirst( $string ) {
-        # For most languages, this is a wrapper for ucfirst()
-        return ucfirst( $string );
-    }
-    
-    function checkTitleEncoding( $s ) {
-        global $wgInputEncoding;
-        
-        # Check for UTF-8 URLs; Internet Explorer produces these if you
-        # type non-ASCII chars in the URL bar or follow unescaped links.
-        $ishigh = preg_match( '/[\x80-\xff]/', $s);
-        $isutf = ($ishigh ? preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-                '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s ) : true );
+	function getMagicWords() 
+	{
+		global $wgMagicWordsGa;
+		return $wgMagicWordsGa;
+	}
 
-        if( ($wgInputEncoding != "utf-8") and $ishigh and $isutf )
-            return iconv( "UTF-8", $wgInputEncoding, $s );
-        
-        if( ($wgInputEncoding == "utf-8") and $ishigh and !$isutf )
-            return utf8_encode( $s );
-        
-        # Other languages can safely leave this function, or replace
-        # it with one to detect and convert another legacy encoding.
-        return $s;
-    }
-    
-    function stripForSearch( $in ) {
-        # Some languages have special punctuation to strip out
-        # or characters which need to be converted for MySQL's
-        # indexing to grok it correctly. Make such changes here.
-        return $in;
-    }
-
-
-    function setAltEncoding() {
-        # Some languages may have an alternate char encoding option
-        # (Esperanto X-coding, Japanese furigana conversion, etc)
-        # If 'altencoding' is checked in user prefs, this gives a
-        # chance to swap out the default encoding settings.
-        #global $wgInputEncoding, $wgOutputEncoding, $wgEditEncoding;
-    }
-
-    function recodeForEdit( $s ) {
-        # For some languages we'll want to explicitly specify
-        # which characters make it into the edit box raw
-        # or are converted in some way or another.
-        # Note that if wgOutputEncoding is different from
-        # wgInputEncoding, this text will be further converted
-        # to wgOutputEncoding.
-        global $wgInputEncoding, $wgEditEncoding;
-        if( $wgEditEncoding == "" or
-          $wgEditEncoding == $wgInputEncoding ) {
-            return $s;
-        } else {
-            return $this->iconv( $wgInputEncoding, $wgEditEncoding, $s );
-        }
-    }
-
-    function recodeInput( $s ) {
-        # Take the previous into account.
-        global $wgInputEncoding, $wgOutputEncoding, $wgEditEncoding;
-        if($wgEditEncoding != "") {
-            $enc = $wgEditEncoding;
-        } else {
-            $enc = $wgOutputEncoding;
-        }
-        if( $enc == $wgInputEncoding ) {
-            return $s;
-        } else {
-            return $this->iconv( $enc, $wgInputEncoding, $s );
-        }
-    }
-
-    # For right-to-left language support
-    function isRTL() { return false; }
-
-    function getMagicWords() 
-    {
-        global $wgMagicWordsGa;
-        return $wgMagicWordsGa;
-    }
-
-    # Fill a MagicWord object with data from here
-    function getMagic( &$mw )
-    {
-        $raw = $this->getMagicWords(); # don't worry, it's reference counted not deep copy
-        $rawEntry = $raw[$mw->mId];
-        $mw->mCaseSensitive = $rawEntry[0];
-        $mw->mSynonyms = array_slice( $rawEntry, 1 );
-    }
 }
-
-include_once( "Language" . ucfirst( $wgLanguageCode ) . ".php" );
 
 ?>

@@ -1,11 +1,46 @@
 <?php
 # Main wiki script; see design.doc
 #
+
+# Fudge the variable imports to work around oddness with
+# magic_quotes_gpc being on and register_globals being off
+function &fix_magic_quotes( &$arr ) {
+	foreach( $arr as $key => $val ) {
+		if( is_array( $val ) ) {
+			fix_magic_quotes( $arr[$key] );
+		} else {
+			$arr[$key] = stripslashes( $val );
+		}
+	}
+	return $arr;
+}
+if( get_magic_quotes_gpc() ) {
+	fix_magic_quotes( $_COOKIE );
+	fix_magic_quotes( $_ENV );
+	fix_magic_quotes( $_GET );
+	fix_magic_quotes( $_POST );
+	fix_magic_quotes( $_REQUEST );
+	fix_magic_quotes( $_SERVER );
+	fix_magic_quotes( $_FILES );
+}
+if( get_magic_quotes_gpc() || !ini_get( "register_globals" ) ) {
+	# Import or re-import the variables
+	extract( $_REQUEST );
+}
+
+# Now that that's done, let's get on with business!
 $wgRequestTime = microtime();
 
 unset( $IP );
 ini_set( "allow_url_fopen", 0 ); # For security...
+if(!file_exists("LocalSettings.php")) {
+	die( "You'll have to <a href='config/index.php'>set the wiki up</a> first!" );
+}
 include_once( "./LocalSettings.php" );
+
+if( $wgSitename == "MediaWiki" ) {
+	die( "You must set the site name in \$wgSitename before installation.\n\n" );
+}
 
 # Windows requires ';' as separator, ':' for Unix
 $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
@@ -20,6 +55,12 @@ OutputPage::setEncodings(); # Not really used yet
 #
 global $action, $title, $search, $go, $target, $printable;
 global $returnto, $diff, $oldid, $curid;
+
+if( isset( $_SERVER['PATH_INFO'] ) && $wgUsePathInfo ) {
+	$title = substr( $_SERVER['PATH_INFO'], 1 );
+} else {
+	$title = $_REQUEST['title'];
+}
 
 # Placeholders in case of DB error
 $wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
@@ -49,8 +90,8 @@ if ( "" != $search ) {
 	$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 	$wgOut->errorpage( "badtitle", "badtitletext" );
 } else if ( ( $action == "view" ) && $wgTitle->getPrefixedDBKey() != $title ) {
-	/* redirect to canonical url */
-	$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
+	/* redirect to canonical url, make it a 301 to allow caching */
+	$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ), '301');
 } else if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
 	wfSpecialPage();
 } else {
@@ -70,6 +111,9 @@ if ( "" != $search ) {
 	wfQuery("BEGIN", DB_WRITE);
 	switch( $action ) {
 		case "view":
+			$wgOut->setSquidMaxage( $wgSquidMaxage );
+			$wgArticle->$action();
+			break;
 		case "watch":
 		case "unwatch":
 		case "delete":
@@ -92,9 +136,17 @@ if ( "" != $search ) {
 			$editor->$action();
 			break;
 		case "history":
+			if ($_SERVER["REQUEST_URI"] == $wgInternalServer.wfLocalUrl( $wgTitle->getPrefixedURL(), 'action=history')) {
+				$wgOut->setSquidMaxage( $wgSquidMaxage );
+			}
 			include_once( "PageHistory.php" );
 			$history = new PageHistory( $wgArticle );
 			$history->history();
+			break;
+		case "purge":
+			wfPurgeSquidServers(array($wgInternalServer.wfLocalUrl( $wgTitle->getPrefixedURL())));
+			$wgOut->setSquidMaxage( $wgSquidMaxage );
+			$wgArticle->view();
 			break;
 		default:
 			$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
