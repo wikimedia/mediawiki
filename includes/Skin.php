@@ -536,6 +536,8 @@ class Skin {
 							Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
 						wfMsg('newmessageslink') );
 				$s.= ' | <strong>'. wfMsg( 'newmessages', $tl ) . '</strong>';
+				# Disable squid cache
+				$wgOut->setSquidMaxage(0);
 			}
 		}
 		

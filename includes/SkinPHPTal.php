@@ -162,6 +162,8 @@ if( defined( "MEDIAWIKI" ) ) {
 						. ":" . $this->username,
 						wfMsg("newmessageslink") ) 
 					);
+					# Disable squid cache
+					$wgOut->setSquidMaxage(0);
 				}
 			} else {
 				$ntl = "";
