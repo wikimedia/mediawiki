@@ -1,6 +1,65 @@
-== Upgrading from 1.3.x betas ==
+== The basic theory ==
 
-Should generally go smoothly.
+Basically, to upgrade a wiki you:
+* Back up your data! (See Backups! below)
+* Extract the new archive. If you can do this in a clean directory that's
+  great, but it should work to extract over the old files too. This may
+  be easier if you have images etc in place and don't want to move them
+  around, but remember to back up first!
+* Run the installer to upgrade the database schema.
+
+=== Web installer ===
+
+You can use the web-based installer wizard if you first remove the
+LocalSettings.php (and AdminSettings.php, if any) files; be sure to
+give the installer the same information as you did on the original
+install (language/encoding, database name, password, etc). This will
+also generate a fresh LocalSettings.php, which you may need to customize.
+
+You may change some settings during the install, but be very careful!
+Changing the encoding in particular will generally leave you with a
+lot of corrupt pages, particularly if your wiki is not in English.
+
+=== Command-line upgrade ===
+
+Additionally, as of 1.4.0 you can run an in-place upgrade script from
+the command line, keeping your existing LocalSettings.php. This requires
+that you create an AdminSettings.php giving an appropriate database user
+and password with privileges to modify the database structure.
+
+Once the new files are in place, go into the maintenance subdirectory and
+run the script:
+
+  php upgrade.php
+
+
+== Backups! ==
+
+To upgrade an existing MediaWiki installation, first BACK UP YOUR WIKI!
+If something goes wrong, you want to be able to start again.
+
+Your image files, configuration, etc can simply be copied or archived as
+you would any other files. (Make sure that the contents of your
+LocalSettings.php are not accidentally make public, as this contains
+a database password.)
+
+To back up the database, use the tools provided by your service provider
+(if applicable) or the standard mysqldump program.
+
+For general help on mysqldump:
+http://dev.mysql.com/doc/mysql/en/mysqldump.html
+
+WARNING: If using MySQL 4.1.x, mysqldump's charset conversion may in
+some cases damage data in your wiki. If necessary, set the charset
+option to 'latin1' to avoid the conversion. Fore more info see:
+http://mail.wikipedia.org/pipermail/wikitech-l/2004-November/026359.html
+
+
+== Caveats ==
+
+=== Upgrading from 1.3.x ===
+
+This should generally go smoothly.
 
 Note that the 1.3 beta releases included a potential vulnerability if PHP
 is configured with register_globals on and the includes directory is
@@ -12,7 +71,7 @@ send them a kind note explaining that it can expose their servers and their
 customers to attacks.
 
 
-== Upgrading from 1.2.x ==
+=== Upgrading from 1.2.x ===
 
 If you've been using the MediaWiki: namespace for custom page templates,
 note that things are a little different. The Template: namespace has been
@@ -30,7 +89,7 @@ to dump the database to SQL, run it through iconv or another conversion tool,
 and restore it. Sorry.
 
 
-== Upgrading from 1.1.x or earlier ==
+=== Upgrading from 1.1.x or earlier ===
 
 This is less thoroughly tested, but should work.
 
@@ -38,10 +97,15 @@ You need to specify the *admin* database username and password to the
 installer in order for it to successfully upgrade the database structure.
 You may wish to manually change the GRANTs later.
 
+If you have a very old database (earlier than organized MediaWiki releases
+in late August 2003) you may need to manually run some of the update SQL
+scripts in maintenance/archives before the installer is able to pick up
+with remaining updates.
 
-== Upgrading from UseModWiki or old "phase 2" Wikipedia code ==
 
-There is an unmaintained UseModWiki to MediaWiki conversion script at
+=== Upgrading from UseModWiki or old "phase 2" Wikipedia code ===
+
+There is a semi-maintained UseModWiki to MediaWiki conversion script at
 maintenance/importUseModWiki.php; it may require tweaking and customization
 to work for you.
 
