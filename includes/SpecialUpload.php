@@ -117,29 +117,31 @@ class UploadForm {
 			}
 			
 			$this->saveUploadedFile( $this->mUploadSaveName, $this->mUploadTempName );
-			if ( ( ! $this->mIgnoreWarning ) &&
-			  ( 0 != strcmp( ucfirst( $basename ), $this->mUploadSaveName ) ) ) {
-				return $this->uploadWarning( wfMsg( "badfilename", $this->mUploadSaveName ) );
-			}
-			
-			if ( $wgCheckFileExtensions ) {
-				if ( ( ! $this->mIgnoreWarning ) &&
-					 ( ! $this->checkFileExtension( $ext, $wgFileExtensions ) ) ) {
-					return $this->uploadWarning( wfMsg( "badfiletype", $ext ) );
-				}
-			}
-			if ( $wgUploadSizeWarning && ( ! $this->mIgnoreWarning ) && 
-			  ( $this->mUploadSize > $wgUploadSizeWarning ) ) {
-				return $this->uploadWarning( wfMsg( "largefile" ) );
-			}
 			if ( !$nt->userCanEdit() ) {
 				return $this->uploadError( wfMsg( "protectedpage" ) );
 		        }
-			if($nt->getArticleID()) {
-				$sk = $wgUser->getSkin();
-				$dname = $wgLang->getNsText( Namespace::getImage() ) . ":{$this->mUploadSaveName}";
-				$dlink = $sk->makeKnownLink( $dname, $dname );
-				return $this->uploadWarning( wfMsg( "fileexists", $dlink ) );
+			
+			if ( ! $this->mIgnoreWarning ) {
+				$warning = '';
+				if( 0 != strcmp( ucfirst( $basename ), $this->mUploadSaveName ) ) {
+					$warning .=  '<li>'.wfMsg( "badfilename", $this->mUploadSaveName ).'</li>';
+				}
+
+				if ( $wgCheckFileExtensions ) {
+					if ( ! $this->checkFileExtension( $ext, $wgFileExtensions ) ) {
+						$warning .= '<li>'.wfMsg( "badfiletype", $ext ).'</li>';
+					}
+				}
+				if ( $wgUploadSizeWarning && ( $this->mUploadSize > $wgUploadSizeWarning ) ) {
+					$warning .= '<li>'.wfMsg( "largefile" ).'</li>';
+				}
+				if( $nt->getArticleID() ) {
+					$sk = $wgUser->getSkin();
+					$dname = $wgLang->getNsText( Namespace::getImage() ) . ":{$this->mUploadSaveName}";
+					$dlink = $sk->makeKnownLink( $dname, $dname );
+					$warning .= '<li>'.wfMsg( "fileexists", $dlink ).'</li>';
+				}
+				if($warning != '') return $this->uploadWarning($warning);
 			}
 		}
 		if ( !is_null( $this->mUploadOldVersion ) ) {
@@ -232,7 +234,7 @@ class UploadForm {
 
 		$sub = wfMsg( "uploadwarning" );
 		$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
-		$wgOut->addHTML( "<h4><font color=red>{$warning}</font></h4>\n" );
+		$wgOut->addHTML( "<ul>{$warning}</ul><br/>\n" );
 
 		$save = wfMsg( "savefile" );
 		$reupload = wfMsg( "reupload" );
