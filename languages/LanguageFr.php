@@ -53,7 +53,7 @@
 	"Toujours produire une image PNG",  
 	"HTML si très simple, autrement PNG", 
 	"HTML si possible, autrement PNG", 
-	"Produire le TeX original, pour<br> les navigateurs à base de texte",
+	"Laisser le code TeX original",
 	"Pour les navigateurs modernes"
 );
 
@@ -255,7 +255,7 @@
 	"Shortpages"    => "Articles courts",
 	"Longpages"     => "Articles longs",
 	"Newpages"      => "Nouvelles pages",
-	"Intl"		=> "Liens inter-langues",
+	"Ancientpages"	=> "Anciennes pages",
 	"Allpages"      => "Toutes les pages",
 
 	"Ipblocklist"   => "Adresses IP bloquées",
@@ -301,7 +301,7 @@
 "helppage"      => "Wikipédia:Aide",
 "wikititlesuffix" => "Wikipédia",
 "bugreports"    => "Rapport d'erreurs",
-"bugreportspage" => "Wikipédia:Rapport d'erreurs ",
+"bugreportspage" => "Wikipédia:Rapport d'erreurs",
 "faq"           => "FAQ",
 "faqpage"       => "Wikipédia:FAQ",
 "edithelp"      => "Aide",
@@ -342,7 +342,7 @@
 "redirectedfrom" => "(Redirigé depuis $1)",
 "lastmodified"  => "Dernière modification de cette page : $1.",
 "viewcount"     => "Cette page a été consultée $1 fois.",
-"gnunote"       => "Tous les textes sont disponibles sous les termes de la <a class=internal href='/wiki/GFDL'>Licence de documentation libre GNU </a>.",
+"gnunote"       => "Tous les textes sont disponibles sous les termes de la <a class=internal href='/wiki/GFDL'>Licence de documentation libre GNU</a>.",
 "printsubtitle" => "(de http://www.wikipedia.org)",
 "protectedpage" => "Page protégée",
 "administrators" => "Wikipédia:Administrateurs",
@@ -382,7 +382,7 @@ Voir $1.",
 <blockquote><tt>$1</tt></blockquote>
 depuis la fonction \"<tt>$2</tt>\".
 MySQL a renvoyé l'erreur \"<tt>$3: $4</tt>\".",
-"noconnect"	=> "Connexion impossible à la base de données sur $1",
+"noconnect"	=> "Désolé! Suite à des problèmes techniques, il est impossible de se connecter à la base de donées pour le moment.", //"Connexion impossible à la base de données sur $1",
 "nodb"		=> "Sélection impossible de la base de données $1",
 "cachederror"	=> "Ceci est une copie de la page demandée et peut ne pas être à jour", // Looxix 
 "readonly"	=> "Mises à jour bloquées sur la base de données",
@@ -477,10 +477,10 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 
 "newarticle"   => "(Nouveau)",
 "newarticletext" => "Saisissez ici le texte de votre article.",
-"anontalkpagetext" => "---- ''Ceci est la page de discussion pour un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utilisez l'[[adresse IP]] numérique pour l'identifier. Une adresse comme cela peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et que vous trouvez que des commentaires qui ne vous concernent pas vous ont été adressé, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion.", // Looxix 
+"anontalkpagetext" => "--- ''Ceci est la page de discussion pour un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utiliser l'[[adresse IP]] numérique pour l'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion à l'avenir.", 
 "noarticletext" => "(Il n'y a pour l'instant aucun texte sur cette page)",
 "updated"      => "(Mis à jour)",
-"note"         => "<strong>Note:</strong> ",
+"note"         => "<strong>Note :</strong> ",
 "previewnote"  => "Attention, ce texte n'est qu'une prévisualisation et n'a pas encore été sauvegardé!",
 "previewconflict" => "La prévisualisation montre le texte de cette page tel qu'il apparaîtra une fois sauvegardé.",
 "editing"      => "modification de $1",
@@ -491,15 +491,15 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.\n<p>",
 "yourtext"     => "Votre texte",
 "storedversion" => "Version enregistrée",
-"editingold"   => "<strong>Attention : Vous êtes en train de modifier une version obsolète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>\n",
+"editingold"   => "<strong>Attention : vous êtes en train de modifier une version obsolète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>\n",
 "yourdiff"  => "Différences",
 "copyrightwarning" => "Toutes les contributions à Wikipédia sont considérées comme publiées sous les termes de la GNU Free Documentation Licence, une licence de documentation libre (Voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient édités et distribués à volonté, ne les envoyez pas. De même, merci de ne contribuer qu'en apportant vos propres écrits ou des écrits issus d'une source libre de droits. <b>N'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE!</b>",
-"longpagewarning" => "AVERTISSEMENT : Cette page a une longueur de $1 ko;
+"longpagewarning" => "AVERTISSEMENT : cette page a une longueur de $1 ko;
 quelques navigateurs gèrent mal les pages approchant ou dépassant 32 ko lors de leur rédaction.
 Peut-être serait-il mieux que vous divisiez la page en sections plus petites.", // Panoramix
-"readonlywarning" => "AVERTISSEMENT : Cette page a été bloquée pour maintenance,
+"readonlywarning" => "AVERTISSEMENT : cette page a été bloquée pour maintenance,
 vous ne porrez donc pas sauvegardez vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.", // Looxix 
-"protectedpagewarning" => "AVERTISSEMENT : Cette page a été bloquée.
+"protectedpagewarning" => "AVERTISSEMENT : cette page a été bloquée.
 Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier. Soyez certain que
 vous suivez les <a href='/wiki/Wikipédia:Page protégée'>directives concernant les pages protégées</a>.", // Looxix
 
@@ -517,7 +517,7 @@ vous suivez les <a href='/wiki/Wikipédia:Page protégée'>directives concernant le
 "next"   => "suiv",
 "last"   => "dern",
 "orig"   => "orig",
-"histlegend" => "Légende: (actu) = différence avec la version actuelle ,
+"histlegend" => "Légende : (actu) = différence avec la version actuelle ,
 (dern) = différence avec la version précédente, M = modification mineure",
 
 // Diffs
@@ -589,16 +589,16 @@ Voir [[Wikipédia:Aide pour les préférences]] pour les explications concernant le
 "resetprefs"        => "Rétablir les préférences",
 "oldpassword"       => "Ancien mot de passe",
 "newpassword"       => "Nouveau mot de passe",
-"retypenew"         => "Confirmation du nouveau<br> mot de passe",
+"retypenew"         => "Confirmer le nouveau mot de passe",
 "textboxsize"       => "Taille de la fenêtre d'édition",
 "rows"              => "Rangées",
 "columns"           => "Colonnes",
 "searchresultshead" => "Affichage des résultats de recherche",
-"resultsperpage"    => "Nombre de réponses sur chaque page",
-"contextlines"      => "Nombre de lignes pour chaque réponse",
-"contextchars"      => "Nombre de caractères du contexte<br> sur chaque ligne",
-"stubthreshold"     => "Taille minimale d'affichage<br> des articles courts.",
-"recentchangescount" => "Nombre de titres dans les<br> modifications récentes",
+"resultsperpage"    => "Nombre de réponses par page",
+"contextlines"      => "Nombre de lignes par réponse",
+"contextchars"      => "Nombre de caractères de contexte par ligne",
+"stubthreshold"     => "Taille minimale des articles courts",
+"recentchangescount" => "Nombre de titres dans les modifications récentes",
 "savedprefs"        => "Les préférences ont été sauvegardées.",
 "timezonetext"      => "Si vous ne précisez pas de décalage horaire, c'est l'heure de l'Europe de l'ouest qui sera utilisée.",
 "localtime"         => "Heure locale",
@@ -606,7 +606,7 @@ Voir [[Wikipédia:Aide pour les préférences]] pour les explications concernant le
 "servertime"	    => "Heure du serveur", //Looxix (Server time is now)
 "guesstimezone"     => "Utiliser la valeur du navigateur", //Looxix (Fill in from browser)
 "emailflag"         => "Ne pas recevoir de courrier électronique<br> des autres utilisateurs",
-"defaultns"         => "Par défaut, rechercher dans ces espaces:", //Looxix (Search in these namespaces by default)
+"defaultns"         => "Par défaut, rechercher dans ces espaces :", //Looxix (Search in these namespaces by default)
 
 # Recent changes
 #
@@ -614,7 +614,7 @@ Voir [[Wikipédia:Aide pour les préférences]] pour les explications concernant le
 "recentchanges" => "Modifications récentes",
 "recentchangestext" => "Suivez sur cette page les dernières modifications de Wikipédia.
 [[Wikipédia:Bienvenue|Bienvenue]] aux nouveaux participants!
-Jetez un coup d'&oelig;il sur ces pages: [[Wikipédia:FAQ|foire aux questions]],
+Jetez un coup d'&oelig;il sur ces pages&nbsp;: [[Wikipédia:FAQ|foire aux questions]],
 [[Wikipédia:Recommandations et règles à suivre|recommandations et règles à suivre]]
 (notamment [[Wikipédia:Règles de nommage|conventions de nommage]],
 [[Wikipédia:La neutralité de point de vue|la neutralité de point de vue]]),
@@ -653,9 +653,9 @@ Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pas 
 pour copier des fichiers sur le serveur.",
 "uploadfile"   => "Copier un fichier",
 "uploaderror"  => "Erreur",
-"uploadtext"   => "<strong>STOP!</strong> Avant de copier votre fichier sur le serveur,
+"uploadtext"   => "<strong>STOP !</strong> Avant de copier votre fichier sur le serveur,
 prenez connaissance des <a href=\"" .wfLocalUrlE( "Wikipédia:règles d'utilisation des images" ) . "\">règles d'utilisation des images</a> de Wikipédia et assurez-vous que vous les respectez.<br>N'oubliez pas de remplir la <a href=\"" .wfLocalUrlE( "Wikipédia:Page de description d'une image" ). "\">page de description de l'image</a> quand celle-ci sera sur le serveur.
-<p>Pour voir les images déjà placées sur le serveur ou faire une recherche parmi celles-ci,
+<p>Pour voir les images déjà placées sur le serveur ou pour effectuer une recherche parmi celles-ci,
 allez à la <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) ."\">liste des images</a>.
 Les uploads et les suppressions sont listés dans le <a href=\"" .wfLocalUrlE( "Wikipédia:Journal_des_uploads" ) . "\">journal des uploads</a>.
 <p>Utilisez le formulaire ci-dessous pour copier sur le serveur de nouvelles images destinées à illustrer vos articles.
@@ -693,7 +693,7 @@ L'heure indiquée est celle du serveur (UTC).
 "successfulupload" => "Copie réussie",
 "fileuploaded" => "Le fichier \"$1\" a été copié sur le serveur.
 Suivez ce lien: ($2) pour accéder à la page de description, et donner des informations sur le fichier, par exemple son origine, sa date de création, son auteur, ou tout autre renseignement en votre possession.",
-"uploadwarning" => "Attention!",
+"uploadwarning" => "Attention !",
 "savefile"  => "Sauvegarder le fichier",
 "uploadedimage" => " \"$1\" copié sur le serveur",
 
@@ -746,7 +746,7 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "maintenancebacklink"	=> "Retour à la page de maintenance",
 "disambiguations"	=> "Pages d'homonymie",
 "disambiguationspage"	=> "Wikipédia:Liens_aux_pages_d'homonymie",
-"disambiguationstext"	=> "Les articles suivants sont liés vers une <i>page d'homonymie</i>. Or, ils devraient être liés vers le sujet.<br>Une page est considérée comme page d'homonymie si elle est liée a partir de $1.<br>Les liens à partir d'autres <i>espaces</i> ne sont pas considérés.", // Looxix 
+"disambiguationstext"	=> "Les articles suivants sont liés à une <i>page d'homonymie</i>. Or, ils devraient être liés au sujet.<br>Une page est considérée comme page d'homonymie si elle est liée à partir de $1.<br>Les liens à partir d'autres <i>espaces</i> ne sont pas pris en compte.",
 "doubleredirects"	=> "Double redirection",
 "doubleredirectstext"	=> "<b>Attention:</b> cette liste peut contenir des \"faux positifs\". Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br>Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la \"vraie\" destination. Le premier #REDIRECT devrait lier vers cette destination.",
 "brokenredirects"	=> "Redirections cassées", 
@@ -789,7 +789,7 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "movethispage"  => "Déplacer la page",
 "unusedimagestext" => "<p>N'oubliez pas que d'autres sites, comme certains Wikipédias non francophones, peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu'elle est en réalité utilisée.",
 "booksources"   => "Ouvrages de référence",
-"booksourcetext" => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les livres que vous cherchez. Wikipédia n'est liée à aucune de ces sociétés, et il n'y a aucune intention à en faire les objets d'une préférence particulière.",
+"booksourcetext" => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. Wikipédia n'étant liée à aucune de ces sociétés, elle n'a aucunement l'intention d'en faire les objets d'une préférence particulière.",
 "alphaindexline" => "$1 à $2",
 
 # Email this user
@@ -872,7 +872,7 @@ Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en compr
 "deletedtext"	=> "\"$1\" a été supprimé.
 Voir $2 pour une liste des suppressions récentes.",
 "deletedarticle" => "effacement de \"$1\"",
-"dellogpage"	=> " Trace des effacements",
+"dellogpage"	=> "Trace des effacements",
 "dellogpagetext" => "Voici la liste des suppressions récentes.
 L'heure indiquée est celle du serveur (UTC).
 <ul>
