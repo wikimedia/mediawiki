@@ -418,6 +418,8 @@ und dem Text von $3 Artikeln überein.",
 "nextn"			=> "nächste $1",
 "viewprevnext"	=> "Zeige ($1) ($2) ($3).",
 "showingresults" => "Hier sind <b>$1</b> Ergebnisse, beginnend mit #<b>$2</b>.",
+"showingresultsnum" => "Hier sind <b>$3</b> Ergebnisse bei einem jeweiligen 
+Limit von <b>$1</b>, beginnend mit #<b>$2</b>.",
 "nonefound"		=> "<strong>Hinweis</strong>:
 Erfolglose Suchanfragen werden häufig verursacht durch den Versuch, nach 'gewöhnlichen' Worten zu suchen; diese sind nicht indiziert.",
 "powersearch" => "Suche",
