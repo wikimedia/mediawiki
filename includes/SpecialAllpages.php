@@ -52,7 +52,7 @@ function wfSpecialAllpages( $par=NULL ) {
  * @param string $from Article name we are starting listing at.
  * @param bool $invert true if we want the namespaces inverted (default false)
  */
-function namespaceForm ( $namespace = NS_MAIN, $from = '', $invert = false) {
+function namespaceForm ( $namespace = NS_MAIN, $from = '', $invert ) {
 	global $wgContLang, $wgScript;
 	$t = Title::makeTitle( NS_SPECIAL, "Allpages" );
 
@@ -84,7 +84,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '', $invert = false) {
  * @param integer $namespace (default NS_MAIN)
  * @param bool $invert true if we want the namespaces inverted (default false)
  */
-function indexShowToplevel ( $namespace = NS_MAIN, $invert = 0 ) {
+function indexShowToplevel ( $namespace = NS_MAIN, $invert ) {
 	global $wgOut, $indexMaxperpage, $toplevelMaxperpage, $wgContLang, $wgRequest, $wgUser;
 	$sk = $wgUser->getSkin();
 	$fname = "indexShowToplevel";
@@ -150,7 +150,7 @@ function indexShowToplevel ( $namespace = NS_MAIN, $invert = 0 ) {
 	while ( count ( $lines ) > 0 ) {
 		$inpoint = array_shift ( $lines );
 		$outpoint = array_shift ( $lines );
-		$out .= indexShowline ( $inpoint, $outpoint, $namespace );
+		$out .= indexShowline ( $inpoint, $outpoint, $namespace, $invert );
 	}
 	$out .= '</table>';
 	
@@ -190,15 +190,16 @@ function indexShowToplevel ( $namespace = NS_MAIN, $invert = 0 ) {
  * @todo Document
  * @param string $from 
  * @param integer $namespace (Default NS_MAIN)
+ * @param bool $invert true if we want the namespaces inverted (default false)
  */
-function indexShowline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
+function indexShowline( $inpoint, $outpoint, $namespace = NS_MAIN, $invert ) {
 	global $wgOut, $wgLang, $wgUser;
 	$sk = $wgUser->getSkin();
 	$dbr =& wfGetDB( DB_SLAVE );
 
 	$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
 	$outpointf = htmlspecialchars( str_replace( '_', ' ', $outpoint ) );
-	$queryparams = $namespace ? ('namespace='.intval($namespace)) : '';
+	$queryparams = ($namespace ? ('namespace='.intval($namespace)) : '') . ($invert ? "&invert=$invert" : '');
 	$special = Title::makeTitle( NS_SPECIAL, 'Allpages/' . $inpoint );
 	$link = $special->escapeLocalUrl( $queryparams );
 	
