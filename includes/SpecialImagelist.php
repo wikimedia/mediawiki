@@ -113,8 +113,8 @@ function wfSpecialImagelist() {
 		else { $ul = $sk->makeLink( $wgContLang->getNsText(
 		  Namespace::getUser() ) . ":{$ut}", $ut ); }
 
-		$ilink = "<a href=\"" . Image::wfImageUrl( $name ) .
-		  "\">{$name}</a>";
+		$ilink = "<a href=\"" . htmlspecialchars( Image::wfImageUrl( $name ) ) .
+		  "\">" . htmlspecialchars( $name ) . "</a>";
 
 		$nb = wfMsg( "nbytes", $wgLang->formatNum( $s->img_size ) );
 		$l = "(" .
@@ -124,7 +124,7 @@ function wfSpecialImagelist() {
 		  $wgLang->timeanddate( $s->img_timestamp, true );
 
 		if ( "" != $s->img_description ) {
-			$l .= " <em>({$s->img_description})</em>";
+			$l .= ' <i>(' . $sk->formatComment( $s->img_description ) . ')</i>';
 		}
 		$wgOut->addHTML( "{$l}<br />\n" );
 	}
