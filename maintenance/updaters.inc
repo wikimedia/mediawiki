@@ -5,6 +5,52 @@
  */
  
  /** */
+
+$wgNewTables = array(
+#            table          patch file (in maintenance/archives)
+	array( 'linkscc',       'patch-linkscc.sql' ),
+	array( 'hitcounter',    'patch-hitcounter.sql' ),
+	array( 'querycache',    'patch-querycache.sql' ),
+	array( 'objectcache',   'patch-objectcache.sql' ),
+	array( 'categorylinks', 'patch-categorylinks.sql' ),
+	array( 'logging',       'patch-logging.sql' ),
+	array( 'user_rights',   'patch-user_rights.sql' ),
+);
+
+$wgNewFields = array(
+#           table            field             patch file (in maintenance/archives)
+	array( 'ipblocks',      'ipb_id',           'patch-ipblocks.sql' ),
+	array( 'ipblocks',      'ipb_expiry',       'patch-ipb_expiry.sql' ),
+	array( 'recentchanges', 'rc_type',          'patch-rc_type.sql' ),
+	array( 'recentchanges', 'rc_ip',            'patch-rc_ip.sql' ),
+	array( 'recentchanges', 'rc_id',            'patch-rc_id.sql' ),
+	array( 'recentchanges', 'rc_patrolled',     'patch-rc-patrol.sql' ),
+	array( 'user',          'user_real_name',   'patch-user-realname.sql' ),
+	array( 'user',          'user_token',       'patch-user_token.sql' ),
+);
+
+function add_table( $name, $patch ) {
+	global $wgDatabase;
+	if ( $wgDatabase->tableExists( $name ) ) {
+		echo "...$name table already exists.\n";
+	} else {
+		echo "Creating $name table...";
+		dbsource( "maintenance/archives/$patch", $wgDatabase );
+		echo "ok\n";
+	}
+}
+
+function add_field( $table, $field, $patch ) {
+	global $wgDatabase;
+	if ( $wgDatabase->fieldExists( $table, $field ) ) {
+		echo "...have $field field in $table table.\n";
+	} else {
+		echo "Adding $field field to table $table...";
+		dbsource( "maintenance/archives/$patch" , $wgDatabase );
+		echo "ok\n";
+	}
+}
+
 function do_revision_updates() {
 	global $wgSoftwareRevision;
 	if ( $wgSoftwareRevision < 1001 ) {
@@ -38,34 +84,6 @@ function update_passwords() {
 	}
 }
 
-function do_ipblocks_update() {
-	global $wgDatabase;
-
-	$do1 = $do2 = false;
-
-	if ( !$wgDatabase->fieldExists( "ipblocks", "ipb_id" ) ) {
-		$do1 = true;
-	}
-	if ( !$wgDatabase->fieldExists( "ipblocks", "ipb_expiry" ) ) {
-		$do2 = true;
-	}
-
-	if ( $do1 || $do2 ) {
-		echo "Updating ipblocks table... ";
-		if ( $do1 ) {
-			dbsource( "maintenance/archives/patch-ipblocks.sql", $wgDatabase );
-		}
-		if ( $do2 ) {
-			dbsource( "maintenance/archives/patch-ipb_expiry.sql", $wgDatabase );
-		}
-		echo "ok\n";
-	} else {
-		echo "...ipblocks is up to date.\n";
-	}
-
-}
-
-
 function do_interwiki_update() {
 	# Check that interwiki table exists; if it doesn't source it
 	global $wgDatabase;
@@ -95,18 +113,6 @@ function do_index_update() {
 	return false;
 }
 
-function do_linkscc_update() {
-	// Create linkscc if necessary
-	global $wgDatabase;
-	if( $wgDatabase->tableExists( "linkscc" ) ) {
-		echo "...have linkscc table.\n";
-	} else {
-		echo "Adding linkscc table... ";
-		dbsource( "maintenance/archives/patch-linkscc.sql", $wgDatabase );
-		echo "ok\n";
-	}
-}
-
 function do_linkscc_1_3_update() {
 	// Update linkscc table to 1.3 schema if necessary
 	global $wgDatabase, $wgVersion;
@@ -120,86 +126,6 @@ function do_linkscc_1_3_update() {
 	}
 }
 
-function do_hitcounter_update() {
-	// Create hitcounter if necessary
-	global $wgDatabase;
-	if( $wgDatabase->tableExists( "hitcounter" ) ) {
-		echo "...have hitcounter table.\n";
-	} else {
-		echo "Adding hitcounter table... ";
-		dbsource( "maintenance/archives/patch-hitcounter.sql", $wgDatabase );
-		echo "ok\n";
-	}
-}
-
-function do_recentchanges_update() {
-	global $wgDatabase;
-	if ( !$wgDatabase->fieldExists( "recentchanges", "rc_type" ) ) {
-		echo "Adding rc_type, rc_moved_to_ns, rc_moved_to_title...";
-		dbsource( "maintenance/archives/patch-rc_type.sql" , $wgDatabase );
-		echo "ok\n";
-	}
-	if ( !$wgDatabase->fieldExists( "recentchanges", "rc_ip" ) ) {
-		echo "Adding rc_ip...";
-		dbsource( "maintenance/archives/patch-rc_ip.sql", $wgDatabase );
-		echo "ok\n";
-	}
-	if ( !$wgDatabase->fieldExists( "recentchanges", "rc_id" ) ) {
-		echo "Adding rc_id...";
-		dbsource( "maintenance/archives/patch-rc_id.sql", $wgDatabase );
-		echo "ok\n";
-	}
-	if ( !$wgDatabase->fieldExists( "recentchanges", "rc_patrolled" ) ) {
-		echo "Adding rc_patrolled...";
-		dbsource( "maintenance/archives/patch-rc-patrol.sql", $wgDatabase );
-		echo "ok\n";
-	}
-}
-
-function do_user_real_name_update() {
-	global $wgDatabase;
-	if ( $wgDatabase->fieldExists( "user", "user_real_name" ) ) {
-		echo "...have user_real_name field in user table.\n";
-        } else {
-		echo "Adding user_real_name field to table user...";
-		dbsource( "maintenance/archives/patch-user-realname.sql" , $wgDatabase );
-		echo "ok\n";
-	}
-}
-
-function do_querycache_update() {
-	global $wgDatabase;
-	if( $wgDatabase->tableExists( "querycache" ) ) {
-		echo "...have special page querycache table.\n";
-	} else {
-		echo "Adding querycache table for slow special pages... ";
-		dbsource( "maintenance/archives/patch-querycache.sql", $wgDatabase );
-		echo "ok\n";
-	}
-}
-
-function do_objectcache_update() {
-	global $wgDatabase;
-	if( $wgDatabase->tableExists( "objectcache" ) ) {
-		echo "...have objectcache table.\n";
-	} else {
-		echo "Adding objectcache table for message caching... ";
-		dbsource( "maintenance/archives/patch-objectcache.sql", $wgDatabase );
-		echo "ok\n";
-	}
-}
-
-function do_categorylinks_update() {
-	global $wgDatabase;
-	if( $wgDatabase->tableExists( "categorylinks" ) ) {
-		echo "...have categorylinks table.\n";
-	} else {
-		echo "Adding categorylinks table for category management... ";
-		dbsource( "maintenance/archives/patch-categorylinks.sql", $wgDatabase );
-		echo "ok\n";
-	}
-}
-
 function do_image_name_unique_update() {
 	global $wgDatabase;
 	if ( $wgDatabase->indexUnique( 'image', 'img_name' ) ) {
@@ -207,28 +133,6 @@ function do_image_name_unique_update() {
 	} else {
 		echo "Making the img_name index unique... ";
 		dbsource( "maintenance/archives/patch-image_name_unique.sql", $wgDatabase );
-		echo "ok\n";
-	}
-}
-
-function do_logging_update() {
-	global $wgDatabase;
-	if ( $wgDatabase->tableExists( 'logging' ) ) {
-		echo "...logging table already exists.\n";
-	} else {
-		echo "Creating logging table and adjusting recentchanges... ";
-		dbsource( "maintenance/archives/patch-logging.sql", $wgDatabase );
-		echo "ok\n";
-	}
-}
-
-function do_user_rights_update() {
-	global $wgDatabase;
-	if ( $wgDatabase->tableExists( 'user_rights' ) ) {
-		echo "...user_rights table already exists.\n";
-	} else {
-		echo 'Creating user rights table...';
-		dbsource( 'maintenance/archives/patch-user_rights.sql', $wgDatabase );
 		echo "ok\n";
 	}
 }
