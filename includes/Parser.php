@@ -45,7 +45,7 @@ define( "OT_WIKI", 2 );
 class Parser
 {
 	# Cleared with clearState():
-	var $mOutput, $mAutonumber, $mLastSection, $mDTopen, $mStripState;
+	var $mOutput, $mAutonumber, $mLastSection, $mDTopen, $mStripState = array();
 	var $mVariables, $mIncludeCount;
 
 	# Temporary:
@@ -62,9 +62,9 @@ class Parser
 		$this->mAutonumber = 0;
 		$this->mLastSection = "";
 		$this->mDTopen = false;
-		$this->mStripState = false;
 		$this->mVariables = false;
 		$this->mIncludeCount = array();
+		$this->mStripState = array();
 	}
 	
 	# First pass--just handle <nowiki> sections, pass the rest off
@@ -135,6 +135,7 @@ class Parser
 	{
 		$render = ($this->mOutputType == OT_HTML);
 		$nowiki_content = array(); 
+		$hiero_content = array();
 		$math_content = array();
 		$pre_content = array();
 
