@@ -328,6 +328,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1430) Don't check for template data when editing page that doesn't exist
 * Recentchanges table purging fixed when using table prefix
 * (bug 1431) Avoid redundant objectcache garbage collection
+* (bug 1474) Switch to better-cached index for statistics page count
 
 
 === Caveats ===
