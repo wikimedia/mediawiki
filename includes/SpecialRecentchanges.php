@@ -126,8 +126,6 @@ function wfSpecialRecentchanges( $par )
 	$wgOut->addHTML( "{$note}\n" );
 
 	if( $feeding ) {
-		$wgOut->disable();
-		
 		$feed = new RSSFeed(
 			$wgSitename . " - " . wfMsg( "recentchanges" ) . " [" . $wgLanguageCode . "]",
 			htmlspecialchars( wfMsg( "recentchangestext" ) ),

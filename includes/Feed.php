@@ -88,9 +88,13 @@ class RSSFeed extends ChannelFeed {
 	}
 	
 	function outHeader() {
-		global $wgVersion;
+		global $wgVersion, $wgOut;
 		
+		# We take over from $wgOut, excepting its cache header info
+		$wgOut->disable();
 		header( "Content-type: application/xml; charset=UTF-8" );
+		$wgOut->sendCacheControl();
+		
 		print '<' . '?xml version="1.0" encoding="utf-8"?' . ">\n";
 		?><rss version="2.0">
 	<channel>
