@@ -214,8 +214,8 @@ class Database {
 	function fieldName( $res, $n ) { return mysql_field_name( $res, $n ); }
 	function insertId() { return mysql_insert_id( $this->mConn ); }
 	function dataSeek( $res, $row ) { return mysql_data_seek( $res, $row ); }
-	function lastErrno() { return mysql_errno( $this->mConn ); }
-	function lastError() { return mysql_error( $this->mConn ); }
+	function lastErrno() { return mysql_errno(); }
+	function lastError() { return mysql_error(); }
 	function affectedRows() { return mysql_affected_rows( $this->mConn ); }
 	
 	# Simple UPDATE wrapper
