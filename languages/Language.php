@@ -307,11 +307,11 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	MAG_SUBST                => array( 0,    "{{SUBST:$1}}"           ),
     MAG_MSGNW                => array( 0,    "{{MSGNW:$1}}"           ),
 	MAG_END                  => array( 0,    "__END__"                ),
-    MAG_IMG_THUMBNAIL         => array( 1, "thumbnail", "thumb"),
-    MAG_IMG_RIGHT             => array( 1, "right" ),
-    MAG_IMG_LEFT              => array( 1, "left" ),
-    MAG_IMG_NONE              => array( 1, "none" ),
-    MAG_IMG_WIDTH             => array( 1, "$1px" )
+    MAG_IMG_THUMBNAIL        => array( 1,    "thumbnail", "thumb"     ),
+    MAG_IMG_RIGHT            => array( 1,    "right"                  ),
+    MAG_IMG_LEFT             => array( 1,    "left"                   ),
+    MAG_IMG_NONE             => array( 1,    "none"                   ),
+    MAG_IMG_WIDTH            => array( 1,    "$1px"                   )
 
 );
 
