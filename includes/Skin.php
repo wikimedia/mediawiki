@@ -2050,10 +2050,12 @@ class Skin {
 
 		# Make user link (or user contributions for unregistered users)
 		if ( 0 == $rc_user ) {
-		$userLink = $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
+			$userLink = $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
 			$rc_user_text, "target=" . $rc_user_text );
-		} else { $userLink = $this->makeLink( $wgLang->getNsText(
-		  Namespace::getUser() ) . ":{$rc_user_text}", $rc_user_text ); }
+		} else { 
+			$userLink = $this->makeLink( $wgLang->getNsText(
+			  Namespace::getUser() ) . ":{$rc_user_text}", $rc_user_text ); 
+		}
 
 		$rc->userlink = $userLink ;
 		$rc->lastlink = $lastLink ;
