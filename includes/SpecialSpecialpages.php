@@ -2,44 +2,41 @@
 
 function wfSpecialSpecialpages()
 {
-	global $wgUser, $wgOut, $wgLang;
+	global $wgLang, $wgOut, $wgUser;
+	
+	# sub function generating the list of pages
+	#   $SP      : the list of pages
+	#   $heading : header to be used
+	#   $sk      : skin object ???
+	
+	function wfSpecialSpecialpages_gen($SP,$heading,$sk)
+	{
+		global $wgLang, $wgOut;
+
+		$wgOut->addHTML( "<h2>" . wfMsg( $heading ) . "</h2>\n<ul>" );
+		foreach ( $SP as $name => $desc ) {
+			if ( "" == $desc ) { continue; }
+			$link = $sk->makeKnownLink( $wgLang->specialPage( $name ), $desc );
+			$wgOut->addHTML( "<li>{$link}</li>\n" );
+		}
+		$wgOut->addHTML( "</ul>\n" );
+	}
 
 	$wgOut->setRobotpolicy( "index,nofollow" );
+	$sk = $wgUser->getSkin();	
 
-	$sk = $wgUser->getSkin();
-	$validSP = $wgLang->getValidSpecialPages();
-	$wgOut->addHTML( "<h2>" . wfMsg( "spheading" ) . "</h2>\n<ul>" );
+	# all users special pages
+	wfSpecialSpecialpages_gen($wgLang->getValidSpecialPages(),"spheading",$sk);
 
-	foreach ( $validSP as $name => $desc ) {
-		if ( "" == $desc ) { continue; }
-		$link = $sk->makeKnownLink( $wgLang->specialPage( $name ), $desc );
-		$wgOut->addHTML( "<li>{$link}</li>\n" );
-	}
-	$wgOut->addHTML( "</ul>\n" );
-
+	# sysops only special pages
 	if ( $wgUser->isSysop() ) {
-		$sysopSP = $wgLang->getSysopSpecialPages();
-		$wgOut->addHTML( "<h2>" . wfMsg( "sysopspheading" ) . "</h2>\n<ul>" );
-
-		foreach ( $sysopSP as $name => $desc ) {
-			if ( "" == $desc ) { continue; }
-			$link = $sk->makeKnownLink( $wgLang->specialPage( $name ), $desc );
-			$wgOut->addHTML( "<li>{$link}</li>\n" );
-		}
-		$wgOut->addHTML( "</ul>\n" );
+		wfSpecialSpecialpages_gen($wgLang->getSysopSpecialPages(),"sysopspheading",$sk);
 	}
 
+	# developers only special pages
 	if ( $wgUser->isDeveloper() ) {
-		$devSP = $wgLang->getDeveloperSpecialPages();
-		$wgOut->addHTML( "<h2>" . wfMsg( "developerspheading" ) .
-		  "</h2>\n<ul>" );
+		wfSpecialSpecialpages_gen($wgLang->getDeveloperSpecialPages(),"developerspheading",$sk);
 
-		foreach ( $devSP as $name => $desc ) {
-			if ( "" == $desc ) { continue; }
-			$link = $sk->makeKnownLink( $wgLang->specialPage( $name ), $desc );
-			$wgOut->addHTML( "<li>{$link}</li>\n" );
-		}
-		$wgOut->addHTML( "</ul>\n" );
 	}
 }
 
