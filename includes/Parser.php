@@ -360,7 +360,7 @@ class Parser
 		$text = $this->removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text );
 
-		$text = preg_replace( "/(^|\n)-----*/", "\\1<hr>", $text );
+		# $text = preg_replace( "/(^|\n)-----*/", "\\1<hr>", $text );
 		$text = str_replace ( "<HR>", "<hr>", $text );
 
 		$text = $this->doHeadings( $text );
@@ -542,6 +542,8 @@ class Parser
 
 	/* private */ function replaceInternalLinks( $str )
 	{
+		global $wgLang;	# for language specific parser hook
+
 		$tokenizer=Tokenizer::newFromString( $str );
 		$tokenStack = array();
 		
@@ -596,6 +598,9 @@ class Parser
 					}
 					$tagIsOpen = (count( $tokenStack ) != 0);
 					break;
+				case "----":
+					$txt = "\n<hr>\n";
+					break;
 				case "'''":
 					# This and the three next ones handle quotes
 					$txt = $this->handle3Quotes( $state, $token );
@@ -611,9 +616,13 @@ class Parser
 					$txt="";
 					break;
 				default:
-					# An unkown token. Highlight.
-					$txt = "<font color=\"#FF0000\"><b>".$token["type"]."</b></font>";
-					$txt .= "<font color=\"#FFFF00\"><b>".$token["text"]."</b></font>";
+					# Call language specific Hook.
+					$txt = $wgLang->processToken( $token, $tokenStack );
+					if ( NULL == $txt ) {
+						# An unkown token. Highlight.
+						$txt = "<font color=\"#FF0000\"><b>".$token["type"]."</b></font>";
+						$txt .= "<font color=\"#FFFF00\"><b>".$token["text"]."</b></font>";
+					}
 					break;
 			}
 			# If we're parsing the interior of a link, don't append the interior to $s,
