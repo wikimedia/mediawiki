@@ -466,6 +466,10 @@ Piped link to namespace
 </p>
 !! end
 
+# NOTE: it is assumed that [[Category:MediaWiki User's Guide]] exists. It may be necessary to
+# create it, because there are no categories in a default MediaWiki installation. Ideally the
+# parser tester could create a category for testing purposes; this may be necessary for
+# templates anyway.
 !! test
 Link to category
 !! input
@@ -498,7 +502,7 @@ Piped link to URL
 !! input
 Piped link to URL: [[http://www.example.org|an example URL]]
 !! result
-<p>Piped link to URL: <a href="/index.php?title=http://www.example.org&amp;action=edit" class="new">an example URL</a>
+<p>Piped link to URL: <a href="/index.php?title=Http://www.example.org&amp;action=edit" class="new" title="Http://www.example.org">an example URL</a>
 </p>
 !! end
 
@@ -507,7 +511,7 @@ BUG 2: [[page|http://url/]] should link to page, not http://url/
 !! input
 [[Main Page|http://url/]]
 !! result
-<p><a href="/wiki/Main_Page" title="Main Page">http://url</a>
+<p><a href="/wiki/Main_Page" title="Main Page">http://url/</a>
 </p>
 !! end
 
@@ -622,6 +626,27 @@ Magic variables
 !! end
 
 ###
+### Magic links
+###
+!! test
+Magic links: internal link to RFC
+!! input
+[[RFC 123]]
+!! result
+<p><a href="/index.php?title=RFC_123&amp;action=edit" class="new" title="RFC 123">RFC 123</a>
+</p>
+!! end
+
+!! test
+Magic links: ISBN
+!! input
+ISBN  0-306-40615-2
+!! result
+<p><a href="/index.php?title=Special:Booksources&amp;isbn=0306406152" class="internal">ISBN 0-306-40615-2</a>
+</p>
+!! end
+
+###
 ### Nonexistant template
 ###
 !! test
@@ -632,4 +657,9 @@ Nonexistant template
 <p><a href="/index.php?title=Template:Thistemplatedoesnotexist&amp;action=edit" class="new" title="Template:Thistemplatedoesnotexist">Template:Thistemplatedoesnotexist</a>
 </p>
 !! end
+
+TODO:
+subpages
+templates
+and much more
 
