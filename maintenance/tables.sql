@@ -60,14 +60,13 @@ CREATE TABLE /*$wgDBprefix*/revision (
   rev_user_text varchar(255) binary NOT NULL default '',
   rev_timestamp char(14) binary NOT NULL default '',
   rev_minor_edit tinyint(1) unsigned NOT NULL default '0',
-  inverse_timestamp char(14) binary NOT NULL default '',
   
   PRIMARY KEY rev_page_id (rev_page, rev_id),
   UNIQUE INDEX rev_id (rev_id),
   INDEX rev_timestamp (rev_timestamp),
-  INDEX page_timestamp (rev_page,inverse_timestamp),
-  INDEX user_timestamp (rev_user,inverse_timestamp),
-  INDEX usertext_timestamp (rev_user_text,inverse_timestamp)
+  INDEX page_timestamp (rev_page,rev_timestamp),
+  INDEX user_timestamp (rev_user,rev_timestamp),
+  INDEX usertext_timestamp (rev_user_text,rev_timestamp)
 );
 
 

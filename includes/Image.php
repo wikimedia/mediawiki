@@ -701,7 +701,6 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = '', $source
 
 
 	$now = wfTimestampNow();
-	$won = wfInvertTimestamp( $now );
 	$size = IntVal( $size );
 
 	if ( $wgUseCopyrightUpload ) {
@@ -712,7 +711,6 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = '', $source
 	else $textdesc = $desc ;
 
 	$now = wfTimestampNow();
-	$won = wfInvertTimestamp( $now );
 
 	# Test to see if the row exists using INSERT IGNORE
 	# This avoids race conditions by locking the row until the commit, and also

@@ -34,14 +34,13 @@ CREATE TABLE /*$wgDBprefix*/revision (
   rev_user_text varchar(255) binary NOT NULL default '',
   rev_timestamp char(14) binary NOT NULL default '',
   rev_minor_edit tinyint(1) unsigned NOT NULL default '0',
-  inverse_timestamp char(14) binary NOT NULL default '',
   
   PRIMARY KEY rev_page_id (rev_page, rev_id),
   UNIQUE INDEX rev_id (rev_id),
   INDEX rev_timestamp (rev_timestamp),
-  INDEX page_timestamp (rev_page,inverse_timestamp),
-  INDEX user_timestamp (rev_user,inverse_timestamp),
-  INDEX usertext_timestamp (rev_user_text,inverse_timestamp)
+  INDEX page_timestamp (rev_page,rev_timestamp),
+  INDEX user_timestamp (rev_user,rev_timestamp),
+  INDEX usertext_timestamp (rev_user_text,rev_timestamp)
 );
 
 -- If creating new 'text' table it would look like this:
@@ -72,8 +71,7 @@ INSERT
     old_user_text,
     old_timestamp,
     old_minor_edit,
-    old_flags,
-    inverse_timestamp)
+    old_flags)
   SELECT
     cur_namespace,
     cur_title,
@@ -83,8 +81,7 @@ INSERT
     cur_user_text,
     cur_timestamp,
     cur_minor_edit,
-    '',
-    inverse_timestamp
+    ''
   FROM /*$wgDBprefix*/cur;
 
 -- Now, copy all old data except the text into revisions
@@ -96,7 +93,6 @@ INSERT
     rev_user,
     rev_user_text,
     rev_timestamp,
-    inverse_timestamp,
     rev_minor_edit)
   SELECT
     old_id,
@@ -105,7 +101,6 @@ INSERT
     old_user,
     old_user_text,
     old_timestamp,
-    old.inverse_timestamp,
     old_minor_edit
   FROM /*$wgDBprefix*/old,/*$wgDBprefix*/cur
   WHERE old_namespace=cur_namespace

@@ -184,7 +184,6 @@ class PageArchive {
 				'cur_is_redirect' => $redir,
 				'cur_random' => $rand,
 				'cur_touched' => $dbw->timestamp( $now ),
-				'inverse_timestamp' => wfInvertTimestamp( wfTimestamp( TS_MW, $s->ar_timestamp ) ),
 			), $fname );
 			
 			$newid = $dbw->insertId();
@@ -213,9 +212,9 @@ class PageArchive {
 			$oldones = "AND ar_timestamp IN ( {$oldts} )";
 		}
 		$sql = "INSERT INTO $old (old_namespace,old_title,old_text," .
-		  "old_comment,old_user,old_user_text,old_timestamp,inverse_timestamp,old_minor_edit," .
+		  "old_comment,old_user,old_user_text,old_timestamp,old_minor_edit," .
 		  "old_flags) SELECT ar_namespace,ar_title,ar_text,ar_comment," .
-		  "ar_user,ar_user_text,ar_timestamp,99999999999999-ar_timestamp,ar_minor_edit,ar_flags " .
+		  "ar_user,ar_user_text,ar_timestamp,ar_minor_edit,ar_flags " .
 		  "FROM $archive WHERE ar_namespace={$namespace} AND ar_title='{$t}' {$oldones}";
 		if( $restoreAll || !empty( $oldts ) ) {
 			$dbw->query( $sql, $fname );

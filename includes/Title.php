@@ -1442,7 +1442,6 @@ class Title {
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 		
 		$now = wfTimestampNow();
-		$won = wfInvertTimestamp( $now );
 		$rand = wfRandom();
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
@@ -1474,8 +1473,8 @@ class Title {
 			'rev_comment' => $comment,
 			'rev_user' => $wgUser->getID(),
 			'rev_user_text' => $wgUser->getName(),
-			'rev_timestamp' => $now,
-			'inverse_timestamp' => $won ), $fname
+			'rev_timestamp' => $now
+			), $fname
 		);
 		$revid = $dbw->insertId();
 		$dbw->insert( 'text', array(
@@ -1578,7 +1577,6 @@ class Title {
 		$oldid = $this->getArticleID();
 		$dbw =& wfGetDB( DB_MASTER );
 		$now = $dbw->timestamp();
-		$won = wfInvertTimestamp( wfTimestamp(TS_MW,$now) );
 		wfSeedRandom();
 		$rand = wfRandom();
 
@@ -1602,8 +1600,8 @@ class Title {
 			'rev_comment' => $comment,
 			'rev_user' => $wgUser->getID(),
 			'rev_user_text' => $wgUser->getName(),
-			'rev_timestamp' => $now,
-			'inverse_timestamp' => $won ), $fname
+			'rev_timestamp' => $now
+			), $fname
 		);
 		$revid = $dbw->insertId();
 		$dbw->insert( 'text', array(
@@ -1728,7 +1726,6 @@ class Title {
 		$fname = 'Title::createRedirect';
 		$dbw =& wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
-		$won = wfInvertTimestamp( $now );
 		
 		$seqVal = $dbw->nextSequenceValue( 'page_page_id_seq' );
 		$dbw->insert( 'page', array(
@@ -1757,7 +1754,6 @@ class Title {
 			'rev_user' => $wgUser->getID(),
 			'rev_user_text' => $wgUser->getName(),
 			'rev_timestamp' => $now,
-			'inverse_timestamp' => $won,
 		), $fname );
 		
 		$dbw->update( 'page',

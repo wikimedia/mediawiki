@@ -718,7 +718,6 @@ class Article {
 		else { $redir = 0; }
 
 		$now = wfTimestampNow();
-		$won = wfInvertTimestamp( $now );
 		wfSeedRandom();
 		$rand = wfRandom();
 		$isminor = ( $isminor && $wgUser->isLoggedIn() ) ? 1 : 0;
@@ -759,7 +758,6 @@ class Article {
 			'rev_timestamp' => $dbw->timestamp($now),
 			'rev_minor_edit' => $isminor,
 			'rev_user_text' => $wgUser->getName(),
-			'inverse_timestamp' => $won,
 		), $fname );
 
 		$this->mTitle->resetArticleID( $newid );
@@ -948,7 +946,6 @@ class Article {
 			$this->mCountAdjustment = $this->isCountable( $text )
 			  - $this->isCountable( $oldtext );
 			$now = wfTimestampNow();
-			$won = wfInvertTimestamp( $now );
 
 			$mungedText = $text;
 			$flags = Revision::compressRevisionText( $mungedText );
@@ -977,7 +974,6 @@ class Article {
 					'rev_user' => $wgUser->getID(),
 					'rev_user_text' => $wgUser->getName(),
 					'rev_timestamp' => $dbw->timestamp( $now ),
-					'inverse_timestamp' => $won
 				), $fname
 			);
 			
@@ -1401,7 +1397,7 @@ class Article {
 				'page_namespace' => $ns,
 				'page_title' => $title,
 				'rev_page = page_id'
-			), $fname, $this->getSelectOptions( array( 'ORDER BY' => 'inverse_timestamp' ) )
+			), $fname, $this->getSelectOptions( array( 'ORDER BY' => 'rev_timestamp DESC' ) )
 		);
 
 		if( $dbr->numRows( $revisions ) > 1 && !$confirm ) {
@@ -1975,7 +1971,6 @@ class Article {
 			'rev_user' => $wgUser->getID(),
 			'rev_user_text' => $wgUser->getName(),
 			'rev_timestamp' => $timestamp,
-			'inverse_timestamp' => wfInvertTimestamp( $timestamp ),
 			'rev_minor_edit' => intval($minor) ),
 			$fname );
 		wfProfileOut( $fname );

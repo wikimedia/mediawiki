@@ -583,8 +583,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$page_id = $wgDatabase->insertID();
 
 			$sql = "INSERT INTO $revision (rev_id, rev_page, rev_comment, rev_user, rev_user_text,
-					rev_timestamp, inverse_timestamp, rev_minor_edit)
-				VALUES ({$text_id}, {$page_id}, '', 0, 'MediaWiki default', '{$now}', '{$won}', 0)";
+					rev_timestamp, rev_minor_edit)
+				VALUES ({$text_id}, {$page_id}, '', 0, 'MediaWiki default', '{$now}', 0)";
 			$wgDatabase->query( $sql, $fname );
 
 			print "<li><pre>";
