@@ -1658,13 +1658,13 @@ class Skin {
 
 	function tocIndent($level) {
 
-		while($level--) $rv.="<div style=\"margin-left:2em;\">\n";
+		while($level-->0) $rv.="<div style=\"margin-left:2em;\">\n";
 		return $rv;
 
 	}
 
 	function tocUnindent($level) {
-		while($level--) $rv.="</div>\n";
+		while($level-->0) $rv.="</div>\n";
 		return $rv;
 	}
 
