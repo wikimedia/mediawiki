@@ -1816,6 +1816,7 @@ class Article {
 	 */
 	function viewUpdates() {
 		global $wgDeferredUpdateList;
+		
 		if ( 0 != $this->getID() ) {
 			global $wgDisableCounters;
 			if( !$wgDisableCounters ) {
@@ -1824,9 +1825,18 @@ class Article {
 				array_push( $wgDeferredUpdateList, $u );
 			}
 		}
-		$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(),
-		  $this->mTitle->getDBkey() );
-		array_push( $wgDeferredUpdateList, $u );
+		
+		# Update newtalk status if user is reading their own
+		# talk page
+
+		global $wgUser;
+		
+		if ($this->mTitle->getNamespace() == NS_USER_TALK &&
+			$this->mTitle->getText() == $wgUser->getName())
+		{
+			$wgUser->setNewtalk(0);
+			$wgUser->saveNewtalk();
+		}
 	}
 
 	/**
@@ -1837,7 +1847,7 @@ class Article {
 	 */
 	function editUpdates( $text ) {
 		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
-		global $wgMessageCache;
+		global $wgMessageCache, $wgUser;
 
 		wfSeedRandom();
 		if ( 0 == mt_rand( 0, 999 ) ) {
@@ -1860,8 +1870,17 @@ class Article {
 			$u = new SearchUpdate( $id, $title, $text );
 			array_push( $wgDeferredUpdateList, $u );
 
-			$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(), $shortTitle );
-			array_push( $wgDeferredUpdateList, $u );
+			# If this is another user's talk page, save a
+			# newtalk notification for them
+			
+			if ($this->mTitle->getNamespace() == NS_USER_TALK &&
+				$shortTitle != $wgUser->getName())
+			{
+				$other = User::newFromName($shortTitle);
+				$other->setID(User::idFromName($shortTitle));
+				$other->setNewtalk(1);
+				$other->saveNewtalk();
+			}
 
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$wgMessageCache->replace( $shortTitle, $text );
