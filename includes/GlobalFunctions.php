@@ -36,7 +36,7 @@ require_once( 'LogPage.php' );
  * PHP <4.3.x is not actively supported; 4.1.x and 4.2.x might or might not work.
  * <4.1.x will not work, as we use a number of features introduced in 4.1.0
  * such as the new autoglobals.
-*/
+ */
 if( !function_exists('iconv') ) {
 	# iconv support is not in the default configuration and so may not be present.
 	# Assume will only ever use utf-8 and iso-8859-1.
@@ -67,15 +67,14 @@ if( !function_exists('is_a') ) {
 
 # UTF-8 substr function based on a PHP manual comment
 if ( !function_exists( 'mb_substr' ) ) {
-	function mb_substr($str,$start) 
-	{ 
-		preg_match_all("/./us", $str, $ar); 
+	function mb_substr( $str, $start ) { 
+		preg_match_all( '/./us', $str, $ar );
 
-		if(func_num_args() >= 3) { 
-			$end = func_get_arg(2); 
-			return join("",array_slice($ar[0],$start,$end)); 
+		if( func_num_args() >= 3 ) {
+			$end = func_get_arg( 2 ); 
+			return join( '', array_slice( $ar[0], $start, $end ) ); 
 		} else { 
-			return join("",array_slice($ar[0],$start)); 
+			return join( '', array_slice( $ar[0], $start ) ); 
 		}
 	}
 }
@@ -123,45 +122,6 @@ function wfSeedRandom() {
 		mt_srand( $seed );
 		$wgRandomSeeded = true;
 	}
-}
-
-/**
- * Generates a URL from a URL-encoded title and a query string
- * Title::getLocalURL() is preferred in most cases
- *
- * @param string $a URL encoded title
- * @param string $q URL (default '')
- */
-function wfLocalUrl( $a, $q = '' ) {
-	global $wgServer, $wgScript, $wgArticlePath;
-
-	$a = str_replace( ' ', '_', $a );
-
-	if ( '' == $a ) {
-		if( '' == $q ) {
-			$a = $wgScript;
-		} else {
-			$a = $wgScript.'?'.$q;
-		}
-	} else if ( '' == $q ) {
-		$a = str_replace( '$1', $a, $wgArticlePath );
-	} else if ($wgScript != '' ) {
-		$a = "{$wgScript}?title={$a}&{$q}";
-	} else { //XXX hackish solution for toplevel wikis
-		$a = "/{$a}?{$q}";
-	}
-	return $a;
-}
-
-/**
- * @todo document
- * @param string $a URL encoded title
- * @param string $q URL (default '')
- */
-function wfLocalUrlE( $a, $q = '' )
-{
-	return htmlspecialchars( wfLocalUrl( $a, $q ) );
-	# die( "Call to obsolete function wfLocalUrlE()" );
 }
 
 /**
@@ -225,38 +185,8 @@ function wfMungeToUtf8( $string ) {
  *
  */
 function wfUtf8Entity( $matches ) {
-	$char = $matches[0];
-	# Find the length
-	$z = ord( $char{0} );
-	if ( $z & 0x80 ) {
-		$length = 0;
-		while ( $z & 0x80 ) {
-			$length++;
-			$z <<= 1;
-		}
-	} else {
-		$length = 1;
-	}
-
-	if ( $length != strlen( $char ) ) {
-		return '';
-	}
-	if ( $length == 1 ) {
-		return $char;
-	}
-
-	# Mask off the length-determining bits and shift back to the original location
-	$z &= 0xff;
-	$z >>= $length;
-
-	# Add in the free bits from subsequent bytes
-	for ( $i=1; $i<$length; $i++ ) {
-		$z <<= 6;
-		$z |= ord( $char{$i} ) & 0x3f;
-	}
-
-	# Make entity
-	return "&#$z;";
+	$codepoint = utf8ToCodepoint( $matches[0] );
+	return "&#$codepoint;";
 }
 
 /**
@@ -268,7 +198,17 @@ function wfUtf8ToHTML($string) {
 }
 
 /**
- * @todo document
+ * Sends a line to the debug log if enabled or, optionally, to a comment in output.
+ * In normal operation this is a NOP.
+ *
+ * Controlling globals:
+ * $wgDebugLogFile - points to the log file
+ * $wgProfileOnly - if set, normal debug messages will not be recorded.
+ * $wgDebugRawPage - if false, 'action=raw' hits will not result in debug output.
+ * $wgDebugComments - if on, some debug items may appear in comments in the HTML output.
+ *
+ * @param string $text
+ * @param bool $logonly Set true to avoid appearing in HTML when $wgDebugComments is set
  */
 function wfDebug( $text, $logonly = false ) {
 	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly, $wgDebugRawPage;
@@ -346,11 +286,6 @@ function wfReadOnly() {
 	return is_file( $wgReadOnlyFile );
 }
 
-/**
- * Keys strings for replacement
- * @global array $wgReplacementKeys
- */
-$wgReplacementKeys = array( '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9' );
 
 /**
  * Get a message from anywhere, for the UI elements
@@ -419,7 +354,8 @@ function wfMsgNoDBForContent( $key ) {
  * Really get a message
  */
 function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
-	global $wgReplacementKeys, $wgParser, $wgMsgParserOptions;
+	static $replacementKeys = array( '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9' );
+	global $wgParser, $wgMsgParserOptions;
 	global $wgContLang, $wgLanguageCode;
     if($forContent) {
         global $wgMessageCache;
@@ -457,7 +393,7 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 
 	# Replace arguments
 	if( count( $args ) ) {
-		$message = str_replace( $wgReplacementKeys, $args, $message );
+		$message = str_replace( $replacementKeys, $args, $message );
 	}
 	wfProfileOut( $fname );
 	return $message;
@@ -566,15 +502,23 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 	$fmtLimit = $wgLang->formatNum( $limit );
 	$prev = wfMsg( 'prevn', $fmtLimit );
 	$next = wfMsg( 'nextn', $fmtLimit );
-	$link = wfUrlencode( $link );
-
+	
+	if( is_object( $link ) ) {
+		$title =& $link;
+	} else {
+		$title =& Title::newFromText( $link );
+		if( is_null( $title ) ) {
+			return false;
+		}
+	}
+	
 	$sk = $wgUser->getSkin();
 	if ( 0 != $offset ) {
 		$po = $offset - $limit;
 		if ( $po < 0 ) { $po = 0; }
 		$q = "limit={$limit}&offset={$po}";
 		if ( '' != $query ) { $q .= '&'.$query; }
-		$plink = '<a href="' . wfLocalUrlE( $link, $q ) . "\">{$prev}</a>";
+		$plink = '<a href="' . $title->escapeLocalUrl( $q ) . "\">{$prev}</a>";
 	} else { $plink = $prev; }
 
 	$no = $offset + $limit;
@@ -584,13 +528,13 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 	if ( $atend ) {
 		$nlink = $next;
 	} else {
-		$nlink = '<a href="' . wfLocalUrlE( $link, $q ) . "\">{$next}</a>";
+		$nlink = '<a href="' . $title->escapeLocalUrl( $q ) . "\">{$next}</a>";
 	}
-	$nums = wfNumLink( $offset, 20, $link , $query ) . ' | ' .
-	  wfNumLink( $offset, 50, $link, $query ) . ' | ' .
-	  wfNumLink( $offset, 100, $link, $query ) . ' | ' .
-	  wfNumLink( $offset, 250, $link, $query ) . ' | ' .
-	  wfNumLink( $offset, 500, $link, $query );
+	$nums = wfNumLink( $offset, 20, $title, $query ) . ' | ' .
+	  wfNumLink( $offset, 50, $title, $query ) . ' | ' .
+	  wfNumLink( $offset, 100, $title, $query ) . ' | ' .
+	  wfNumLink( $offset, 250, $title, $query ) . ' | ' .
+	  wfNumLink( $offset, 500, $title, $query );
 
 	return wfMsg( 'viewprevnext', $plink, $nlink, $nums );
 }
@@ -598,14 +542,14 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 /**
  * @todo document
  */
-function wfNumLink( $offset, $limit, $link, $query = '' ) {
+function wfNumLink( $offset, $limit, &$title, $query = '' ) {
 	global $wgUser, $wgLang;
 	if ( '' == $query ) { $q = ''; }
 	else { $q = $query.'&'; }
 	$q .= 'limit='.$limit.'&offset='.$offset;
 
 	$fmtLimit = $wgLang->formatNum( $limit );
-	$s = '<a href="' . wfLocalUrlE( $link, $q ) . "\">{$fmtLimit}</a>";
+	$s = '<a href="' . $title->escapeLocalUrl( $q ) . "\">{$fmtLimit}</a>";
 	return $s;
 }
 
