@@ -50,6 +50,10 @@ define("NS_CATEGORY_TALK", 15);
 	NS_CATEGORY_TALK    => "Category_talk"
 );
 
+if(isset($wgExtraNamespaces)) {
+	$wgCanonicalNamespaceNames=$wgCanonicalNamespaceNames+$wgExtraNamespaces;
+}
+
 class Namespace {
 
 	/* These functions are deprecated */
@@ -70,12 +74,21 @@ class Namespace {
 
 	function isTalk( $index )
 	{
+		global $wgExtraNamespaces;
 		if ( NS_TALK == $index || NS_USER_TALK == $index || NS_WP_TALK
 	== $index || NS_IMAGE_TALK == $index || NS_MEDIAWIKI_TALK == $index ||
 	NS_TEMPLATE_TALK == $index || NS_HELP_TALK == $index ||
 	NS_CATEGORY_TALK == $index ) {
 			return true;
 		}
+		# for custom namespaces, we'll just assume that any odd number
+		# signifies a talk page
+		if(isset($wgExtraNamespaces) && $index % 2) {
+			return true;
+		
+		}
+			
+				
 		return false;
 	}
 

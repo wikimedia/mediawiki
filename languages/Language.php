@@ -46,6 +46,10 @@ if($wgMetaNamespace === FALSE)
 	NS_CATEGORY_TALK    => 'Category_talk'
 );
 
+if(isset($wgExtraNamespaces)) {
+	$wgNamespaceNamesEn=$wgNamespaceNamesEn+$wgExtraNamespaces;
+}
+
 /* private */ $wgDefaultUserOptionsEn = array(
 	'quickbar' => 1, 'underline' => 1, 'hover' => 1,
 	'cols' => 80, 'rows' => 25, 'searchlimit' => 20,
