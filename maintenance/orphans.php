@@ -35,6 +35,7 @@ require_once( 'commandLine.inc' );
 $wgTitle = Title::newFromText( 'Orphan revision cleanup script' );
 
 checkOrphans( isset( $options['fix'] ) );
+checkSeparation( isset( $options['fix'] ) );
 #checkWidows( isset( $options['fix'] ) );
 
 # ------
@@ -125,6 +126,77 @@ function checkWidows( $fix ) {
 		}
 	} else {
 		echo "No childless pages! Yay!\n";
+	}
+	
+	if( $fix ) {
+		$dbw->query( "UNLOCK TABLES" );
+	}
+}
+
+
+function checkSeparation( $fix ) {
+	$dbw =& wfGetDB( DB_MASTER );
+	$page     = $dbw->tableName( 'page' );
+	$revision = $dbw->tableName( 'revision' );
+	$text     = $dbw->tableName( 'text' );
+	
+	if( $fix ) {
+		$dbw->query( "LOCK TABLES $page WRITE, $revision WRITE, $text WRITE" );
+	}
+	
+	echo "\nChecking for pages whose page_latest links are incorrect... (this may take a while on a large wiki)\n";
+	$result = $dbw->query( "
+		SELECT *
+		FROM $page LEFT OUTER JOIN $revision ON page_latest=rev_id
+	");
+	$found = 0;
+	while( $row = $dbw->fetchObject( $result ) ) {
+		$result2 = $dbw->query( "
+			SELECT MAX(rev_timestamp) as max_timestamp
+			FROM $revision 
+			WHERE rev_page=$row->page_id
+		" );
+		$row2 = $dbw->fetchObject( $result2 );
+		$dbw->freeResult( $result2 );
+		if( $row2 ) {
+			if( $row->rev_timestamp != $row2->max_timestamp ) {
+				if( $found == 0 ) {
+					printf( "%10s %10s %14s %14s\n",
+						'page_id', 'rev_id', 'timestamp', 'max timestamp' );
+				}
+				++$found;
+				printf( "%10d %10d %14s %14s\n",
+					$row->page_id,
+					$row->page_latest,
+					$row->rev_timestamp,
+					$row2->max_timestamp );
+				if( $fix ) {
+					# ...
+					$maxId = $dbw->selectField(
+						'revision',
+						'rev_id',
+						array(
+							'rev_page'      => $row->page_id,
+							'rev_timestamp' => $row2->max_timestamp ) );
+					echo "... updating to revision $maxId\n";
+					$maxRev = Revision::newFromId( $maxId );
+					$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+					$article = new Article( $title );
+					$article->updateRevisionOn( $dbw, $maxId, $maxRev->getText() );
+				}
+			}
+		} else {
+			echo "wtf\n";
+		}
+	}
+	
+	if( $found ) {
+		echo "Found $found pages with incorrect latest revision.\n";
+	} else {
+		echo "No pages with incorrect latest revision. Yay!\n";
+	}
+	if( !$fix && $found > 0 ) {
+		echo "Run again with --fix to remove these entries automatically.\n";
 	}
 	
 	if( $fix ) {
