@@ -157,7 +157,7 @@ class Database {
 	# If errors are explicitly ignored, returns success
 	function query( $sql, $fname = "" )
 	{
-		global $wgProfiling;
+		global $wgProfiling, $wgCommandLineMode;
 		
 		if ( $wgProfiling ) {
 			# generalizeSQL will probably cut down the query to reasonable
@@ -186,7 +186,13 @@ class Database {
 				wfDebug("SQL ERROR (ignored): " . $error . "\n");
 			} else {
 				wfDebug("SQL ERROR: " . $error . "\n");
-				if ( $this->mOut ) {
+				if ( $wgCommandLineMode ) {
+					wfDebugDieBacktrace( "A database error has occurred\n" .
+					  "Query: $sql\n" .
+					  "Function: $fname\n" .
+					  "Error: $errno $error\n"
+					);
+				} elseif ( $this->mOut ) {
 					// this calls wfAbruptExit()
 					$this->mOut->databaseError( $fname, $sql, $error, $errno ); 				
 				}

@@ -370,15 +370,31 @@ function wfAbruptExit(){
 }
 
 function wfDebugDieBacktrace( $msg = '' ) {
+	global $wgCommandLineMode;
+
 	if ( function_exists( 'debug_backtrace' ) ) {
-		$msg .= "\n<p>Backtrace:</p>\n<ul>\n";
+		if ( $wgCommandLineMode ) {
+			$msg .= "\nBacktrace:\n";
+		} else {
+			$msg .= "\n<p>Backtrace:</p>\n<ul>\n";
+		}
 		$backtrace = debug_backtrace();
 		foreach( $backtrace as $call ) {
 			$f = explode( DIRECTORY_SEPARATOR, $call['file'] );
 			$file = $f[count($f)-1];
-			$msg .= '<li>' . $file . " line " . $call['line'] . ', in ';
+			if ( $wgCommandLineMode ) {
+				$msg .= "$file line {$call['line']}, in ";
+			} else {
+				$msg .= '<li>' . $file . " line " . $call['line'] . ', in ';
+			}
 			if( !empty( $call['class'] ) ) $msg .= $call['class'] . '::';
-			$msg .= $call['function'] . "()</li>\n";
+			$msg .= $call['function'] . "()";
+			
+			if ( $wgCommandLineMode ) {
+				$msg .= "\n";
+			} else {
+				$msg .= "</li>\n";
+			}
 		}
 	 }
 	 die( $msg );
