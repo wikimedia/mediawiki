@@ -182,7 +182,7 @@ class ParserTest {
 	
 	function dumpToFile( $data, $filename ) {
 		$file = fopen( $filename, "wt" );
-		fwrite( $file, $data );
+		fwrite( $file, rtrim( $data ) . "\n" );
 		fclose( $file );
 	}
 }
