@@ -174,7 +174,7 @@ class PageHistory {
 				htmlspecialchars( $ut ), 'target=' . urlencode( $ut ) );
 		} else {
 			$userPage =& Title::makeTitle( NS_USER, $ut );
-			$ul = $this->mSkin->makeLink( $userPage , htmlspecialchars( $ut ) );
+			$ul = $this->mSkin->makeLinkObj( $userPage , htmlspecialchars( $ut ) );
 		}
 
 		$s = '<li>';
