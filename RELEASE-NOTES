@@ -123,6 +123,10 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 996) Fix $wgWhitelistRead to work again
 * (bug 1028) fix page move over redirect to not fail on the unique index
 
+=== Beta 3 fixes ===
+
+* Hide RC patrol markers when patrol is disabled or not allowed to patrol.
+
 
 === Caveats ===
 
