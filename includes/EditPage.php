@@ -108,6 +108,7 @@ class EditPage {
 		global $wgLang, $wgParser, $wgTitle;
 	    global $wgAllowAnonymousMinor;
 	    global $wgWhitelistEdit;
+		global $wgSpamRegex;
 
 		$sk = $wgUser->getSkin();
 		$isConflict = false;
@@ -126,6 +127,12 @@ class EditPage {
 		# in the back door with a hand-edited submission URL.
 
 		if ( "save" == $formtype ) {
+			# Check for spam
+			if ( $wgSpamRegex && preg_match( $wgSpamRegex, $wpTextbox1 ) ) {
+					sleep(10);
+					$wgOut->redirect( $this->mTitle->getFullURL() );
+					return;
+			}
 			if ( $wgUser->isBlocked() ) {
 				$this->blockedIPpage();
 				return;
