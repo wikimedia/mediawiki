@@ -68,13 +68,15 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 
 	$s = $sk->beginRecentChangesList();
 	$count = wfNumRows( $res );
-
+	
+	$counter = 1;
 	while ( $limit ) {
 		if ( 0 == $count ) { break; }
 		$obj = wfFetchObject( $res );
 		--$count;
 
 		$rc = RecentChange::newFromCurRow( $obj );
+		$rc->counter = $counter++;
 		$s .= $sk->recentChangesLine( $rc );
 		--$limit;
 	}
