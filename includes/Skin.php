@@ -527,13 +527,13 @@ function toggleVisibility( _levelId, _otherId, _linkId) {
 	function pageStats()
 	{
 		global $wgOut, $wgLang, $wgArticle;
-		global $oldid, $diff;
+		global $oldid, $diff, $wgDisableCounters;
 
 		if ( ! $wgOut->isArticle() ) { return ""; }
 		if ( isset( $oldid ) || isset( $diff ) ) { return ""; }
 		if ( 0 == $wgArticle->getID() ) { return ""; }
 
-		if ( $wgDisableCounts ) {
+		if ( $wgDisableCounters ) {
 			$s = "";
 		} else {
 			$count = $wgArticle->getCount();
