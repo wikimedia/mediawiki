@@ -807,7 +807,7 @@ function wfVarDump( $var )
 {
 	global $wgOut;
 	$s = str_replace("\n","<br>\n", var_export( $var, true ) . "\n");
-	if ( headers_sent() ) {
+	if ( headers_sent() || !@is_object( $wgOut ) ) {
 		print $s;
 	} else {
 		$wgOut->addHTML( $s );
