@@ -72,7 +72,7 @@ function wfSpecialNewimages() {
 		  "sort=bydate&limit={$num}&wpIlMatch=" . urlencode( $wpIlMatch ) );
 	}
 	$text = wfMsg( 'showlast', $fill, $bydate );
-	$wgOut->addHTML( $text."</p>\n" );
+	$wgOut->addHTML( $text."\n" );
 
 	$i=0;
 	$res = $dbr->query( $sql, 'wfSpecialImagelist' );

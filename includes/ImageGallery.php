@@ -97,19 +97,22 @@ class ImageGallery
 				wfMsg( "nbytes", $wgLang->formatNum( $img->getSize() ) )  . '<br />' :
 				'' ;
 			$textlink = $this->mShowFilename ?
-				$sk->makeKnownLinkObj( $nt, Language::truncate( $nt->getText(), 20, '...' ) ) . '<br />' :
+				$sk->makeKnownLinkObj( $nt, htmlspecialchars( $wgLang->truncate( $nt->getText(), 20, '...' ) ) ) . '<br />' :
 				'' ;
 
 			$s .= ($i%4==0) ? '<tr>' : '';
 			$s .= '<td valign="top" width="150px" style="background-color:#F0F0F0;">' .
 				'<table width="100%" height="150px">'.
 				'<tr><td align="center" valign="center" style="background-color:#F8F8F8;border:solid 1px #888888;">' .
-				$sk->makeKnownLinkObj( $nt, '<img  src="'.$img->createThumb(120,120).'" alt="">' ) . '</td></tr></table> ' .
+				$sk->makeKnownLinkObj( $nt, '<img  src="'.$img->createThumb(120,120).'" alt="" />' ) . '</td></tr></table> ' .
 				$textlink . $text . $nb; 
 
-			$s .= '</td>' .  (($i%4==3) ? '</tr>' : '');
+			$s .= "</td>\n" .  (($i%4==3) ? "</tr>\n" : '');
 
 			$i++;
+		}
+		if( $i %4 != 0 ) {
+			$s .= "</tr>\n";
 		}
 		$s .= '</table>';
 
