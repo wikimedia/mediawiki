@@ -456,7 +456,7 @@ function fixUserOptions( $in )
 	if ( "yes" == $s || "on" == $s ) { $nops["hover"] = 1; }
 
 	$c = $ops["cols"];
-	if ( $c < 20 || c > 200 ) { $nops["cols"] = 80; }
+	if ( $c < 20 || $c > 200 ) { $nops["cols"] = 80; }
 	else { $nops["cols"] = $c; }
 	$r = $ops["rows"];
 	if ( $r < 5 || $r > 100 ) { $nops["rows"] = 20; }
