@@ -1120,7 +1120,7 @@ class TableDiffFormatter extends DiffFormatter
 	}
 
 	function deletedLine( $line ) {
-		return "<td>-</td><td class='diff-deletedline'" .
+		return "<td>-</td><td class='diff-deletedline'>" .
 		  "<small>{$line}</small></td>";
 	}
 
