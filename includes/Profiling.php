@@ -82,6 +82,7 @@ class Profiler
 		if( !count( $this->mStack ) ) {
 			return "No profiling output\n";
 		}
+		$this->close();
 		$width = 125;
 		$format = "%-" . ($width - 28) . "s %6d %6.3f %6.3f %6.3f%%\n";
 		$titleFormat = "%-" . ($width - 28) . "s %9s %9s %9s %9s\n";
@@ -173,5 +174,4 @@ class Profiler
 
 $wgProfiler = new Profiler();
 $wgProfiler->profileIn( "-total" );
-
 ?>

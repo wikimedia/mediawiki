@@ -1125,7 +1125,7 @@ require_once("LanguageUtf8.php");
 		'tooltip-upload' => 'Upload images or media files [alt-u]',
 		'tooltip-specialpage' => 'This is a special page, you can\'t edit the page itself.',
 		'tooltip-minoredit' => 'Mark this as a minor edit [alt-i]',
-		'tooltip-save' => 'Save you changes [alt-s]',
+		'tooltip-save' => 'Save your changes [alt-s]',
 		'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
 		'tooltip-contributions' => 'View the list of contributions of this user',
 		'tooltip-emailuser' => 'Send a mail to this user',

@@ -36,10 +36,22 @@ class WatchedItem {
 
 	function addWatch()
 	{
+		global $wgIsMySQL;
 		# REPLACE instead of INSERT because occasionally someone
 		# accidentally reloads a watch-add operation.
-		$sql = "REPLACE INTO watchlist (wl_user, wl_namespace,wl_title) VALUES ($this->id,$this->ns,'$this->eti')";
-		$res = wfQuery( $sql, DB_WRITE );
+		if ($wgIsMySQL) {
+			$sql = "REPLACE INTO watchlist (wl_user, wl_namespace,wl_title) ". 
+				"VALUES ($this->id,$this->ns,'$this->eti')";
+			$res = wfQuery( $sql, DB_WRITE );
+		} else {
+			$sql = "DELETE FROM watchlist WHERE wl_user=$this->id AND
+					wl_namespace=$this->ns AND wl_title='$this->eti'";
+			wfQuery( $sql, DB_WRITE);
+			$sql = "INSERT INTO watchlist (wl_user, wl_namespace,wl_title) ". 
+				"VALUES ($this->id,$this->ns,'$this->eti')";
+			$res = wfQuery( $sql, DB_WRITE );
+		}
+
 		if( $res === false ) return false;
 		
 		global $wgMemc;
@@ -49,7 +61,7 @@ class WatchedItem {
 
 	function removeWatch()
 	{
-		$sql = "DELETE FROM watchlist WHERE wl_user=$this->id AND wl_namespace=$this->ns AND wl_title='$this->eti' LIMIT 1";
+		$sql = "DELETE FROM watchlist WHERE wl_user=$this->id AND wl_namespace=$this->ns AND wl_title='$this->eti'";
 		$res = wfQuery( $sql, DB_WRITE );
 		if( $res === false ) return false;
 		

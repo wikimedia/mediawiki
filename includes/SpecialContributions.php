@@ -2,7 +2,7 @@
 
 function wfSpecialContributions( $par = "" )
 {
-	global $wgUser, $wgOut, $wgLang, $wgRequest;
+	global $wgUser, $wgOut, $wgLang, $wgRequest, $wgIsPg;
 	$fname = "wfSpecialContributions";
 	$sysop = $wgUser->isSysop();
 
@@ -53,13 +53,14 @@ function wfSpecialContributions( $par = "" )
 		  "&offset={$offset}&limit={$limit}&hideminor=1" );
 	}
 
+	$oldtable=$wgIsPg?'"old"':'old';
 	if ( 0 == $id ) {
 		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new FROM cur " .
 		  "WHERE cur_user_text='" . wfStrencode( $nt->getText() ) . "' {$cmq} " .
 		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res1 = wfQuery( $sql, DB_READ, $fname );
 
-		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit FROM old " .
+		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit FROM $oldtable " .
 		  "WHERE old_user_text='" . wfStrencode( $nt->getText() ) . "' {$omq} " .
 		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res2 = wfQuery( $sql, DB_READ, $fname );
@@ -68,7 +69,7 @@ function wfSpecialContributions( $par = "" )
 		  "WHERE cur_user={$id} {$cmq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res1 = wfQuery( $sql, DB_READ, $fname );
 
-		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit FROM old " .
+		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit FROM $oldtable " .
 		  "WHERE old_user={$id} {$omq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res2 = wfQuery( $sql, DB_READ, $fname );
 	}

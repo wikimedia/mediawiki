@@ -18,7 +18,6 @@ div.floatleft p { font-style: italic; }
 /* table standards */
 table.rimage {
         float:right;
-        width:1pt;
         margin-left:1em;
         margin-bottom:1em;
         text-align:center;
@@ -30,6 +29,7 @@ div.thumb {
     margin: 10px;
     text-align: center;
     width: auto;
+    overflow: hidden;
 }
 div.thumb div {
     border: 1px solid #8888aa;
@@ -66,7 +66,7 @@ div.tleft {
 
 /* Page history styling */
 /* the auto-generated edit comments */
-.autocomment { color: gray; }
+.autocomment { color: #4b4b4b; }
 #pagehistory span.user { 
     margin-left: 1.4em;
     margin-right: 0.4em;
@@ -78,27 +78,26 @@ div.tleft {
     border:1px dashed #aaaaaa;
 }
 
-table.diff {
-        background:white;
+table.diff { background:white; }
+td.diff-otitle { background:#cccccc; }
+td.diff-ntitle { background:#cccccc; }
+td.diff-addedline { 
+    background:#ccffcc;
+    font-size: smaller;
 }
-td.diff-otitle {
-        background:#cccccc;
-}
-td.diff-ntitle {
-        background:#cccccc;
-}
-td.diff-addedline {
-        background:#ccffcc;
-}
-td.diff-deletedline {
-        background:#ffffaa;
+td.diff-deletedline { 
+    background:#ffffaa;
+    font-size: smaller;
 }
 td.diff-context {
-        background:#eeeeee;
+    background:#eeeeee;
+    font-size: smaller;
 }
+span.diffchange { color: red; }
 
 img { border: none; }
 img.tex { vertical-align: middle; }
+span.texhtml { font-family: serif; }
 
 
 #toc {
@@ -106,6 +105,14 @@ img.tex { vertical-align: middle; }
         background-color: #f7f8ff;
         padding: 5px;
         font-size: 95%;
+}
+#toc .tocindent { margin-left: 2em; }
+#toc .tocline { margin-bottom: 0px; }
+#toc p { margin: 0 }
+#toc .toctoggle { font-size: 94%; }
+#toc .editsection { 
+    margin-top: 0.7em; 
+    font-size: 94%;
 }
 
 .error {
@@ -140,3 +147,45 @@ div.prefsectiontip {
 }
 fieldset.prefsection { margin-top: 1em }
 fieldset.operaprefsection { margin-left: 15em }
+
+/* emulate center */
+.center {
+    width: 100%;
+    text-align: center;
+}
+*.center * {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.townBox {
+    position:relative;
+    float:right;
+    background:White;
+    margin-left:1em;
+    border: 1px solid Grey;
+    padding:0.3em;
+    width: 200px;
+    overflow: hidden;
+    clear: right;
+}
+div.townBox dl {
+    padding: 0;
+    margin: 0 0 0.3em 0; 
+    font-size: 96%;
+}
+div.townBox dl dt {
+    background: none;
+    margin: 0.4em 0 0 0;
+}
+div.townBox dl dd {
+    margin: 0.1em 0 0 1.1em;
+    background-color: #f3f3f3;
+}
+/* use this instead of #toc for page content */
+.toccolours { 
+    border:1px solid #aaaaaa;
+    background-color:#f9f9f9;
+    padding:5px;
+    font-size: 95%;
+}
