@@ -1,40 +1,43 @@
 <?
 
 $a = array (
+
+"germany-bavaria-bw" => "!data:231,458 237,455 239,449 248,449 240,440 250,438 257,440 257,446 263,444 267,447 270,457 274,461 280,459 284,463 285,473 287,487 290,493 295,498 302,509 303,525 296,530 294,529 295,534 295,542 285,547 283,547 279,553 285,567 286,582 286,591 284,601 285,612 275,612 266,612 258,618",
+"germany-bavaria-hesse" => "!data:230,455 229,449 231,442 227,431 222,416 231,412 243,411 251,412 250,403 257,401 262,396 265,386 272,388 278,380",
+"germany-bavaria-thuringia" => "!data:280,376 288,376 298,388 306,391 308,402 319,399 314,392 321,388 335,390 338,396 343,392 341,381 348,377 352,384 356,388 376,384",
+"germany-bavaria-saxony" => "!data:378,388 382,391 388,394",
+"germany-bavaria-east" => "!data:387,400 394,408 406,417 412,425 404,438 420,463 434,468 444,479 453,485 464,498 470,498 481,505 485,519 480,533 468,530 467,537 463,548 454,555 443,557 436,564 430,571 437,578 442,590 444,602 447,603 449,607 447,620",
+"germany-bavaria-south" => "!data:447,620 436,618 435,609 427,605 419,610 412,605 404,607 403,601 398,605 402,613 381,616 369,616 366,621 358,622 359,627 350,630 346,627 340,631 332,630 329,622 314,618 309,622 304,618 306,627 306,631 293,642 288,644 292,636 286,637 284,630 271,622 268,619 266,624 260,621",
+
+"germany-bw-south" => "!data:253,618 247,612 240,610 227,598 234,612 222,604 224,610 218,614 211,607 207,607 207,604 201,602 193,603 192,611 195,614 204,611 201,617 193,619 186,619 184,615 176,617 174,620 168,622 165,622 160,617 151,622",
+"germany-bw-west" => "!data:143,610 144,597 147,585 145,577 153,557 156,546 161,534 169,523 175,516 180,504",
+"germany-bw-rp" => "!data:183,503 190,493 197,480 196,467 194,467 192,455",
+"germany-bw-hesse" => "!data:193,454 201,459 202,453 207,452 207,459 215,460 217,467 228,457",
+
+"germany-bavaria" => "
+!type[political]:state
+!name[de]:Bayern
+!name[en]:Bavaria
+!region[political]:
+polygon(germany-bavaria-hesse,germany-bavaria-thuringia,germany-bavaria-saxony,germany-bavaria-east,germany-bavaria-south,germany-bavaria-bw)
+",
+
+"germany-bw" => "
+!type[political]:state
+!name[de]:Baden-Württemberg
+!name[en]:Baden-Württemberg
+!region[political]:
+polygon(germany-bavaria-bw,germany-bw-south,germany-bw-west,germany-bw-rp,germany-bw-hesse)
+",
+
 "germany" => "
 !type[political]:country
 !name[de]:Deutschland
 !name[en]:Germany
 !region[political]:
-addregs(germany-west,germany-east);
+addregs(germany-bavaria,germany-bw);
 include(danube)
 ",
-
-"germany-west" => "
-!type[political]:county
-!name[de]:Westdeutschland
-!name[en]:Western Germany
-!region[political]:
-polygon(germany-border-north-w,germany-border-ew,germany-border-south-w,germany-border-west-w)
-",
-
-"germany-east" => "
-!type[political]:county
-!name[de]:Westdeutschland
-!name[en]:Western Germany
-!region[political]:
-polygon(germany-border-north-e,germany-border-east-e,germany-border-south-e,germany-border-ew)
-",
-
-"germany-border-ew" => "!data:2,2 2,3",
-
-"germany-border-north-w" => "!data:1,1 1.8,1",
-"germany-border-south-w" => "!data:1,4 2.2,4",
-"germany-border-west-w" => "!data:1,1 1,4",
-
-"germany-border-north-e" => "!data:2,2 3,2",
-"germany-border-south-e" => "!data:2,3 3,3",
-"germany-border-east-e" => "!data:3,2 3,3",
 
 "danube" => "
 !type:river
@@ -46,6 +49,10 @@ polygon(germany-border-north-e,germany-border-east-e,germany-border-south-e,germ
 
 ) ;
 
+# Global, evil variables
+$min_x = $min_y = 1000000 ;
+$max_x = $max_y = -1000000 ;
+
 # Global functions
 function geo_get_text ( $id )
 	{
@@ -55,8 +62,15 @@ function geo_get_text ( $id )
 
 function data_to_real ( &$x , &$y )
 	{
-	$x = $x * 100 ;
-	$y = $y * 100 ;
+#	$x = $x * 100 ;
+#	$y = $y * 100 ;
+
+	# Recording min and max
+	global $min_x , $min_y , $max_x , $max_y ;
+	$min_x = min ( $min_x , $x ) ;
+	$min_y = min ( $min_y , $y ) ;
+	$max_x = max ( $max_x , $x ) ;
+	$max_y = max ( $max_y , $y ) ;
 	}
 
 
@@ -64,6 +78,8 @@ function data_to_real ( &$x , &$y )
 class geo
 	{
 	var $data = array () ;
+	var $xsum , $ysum , $count ;
+	
 	function set_from_text ( $t )
 		{
 		$t = explode ( "\n!" , "\n".$t ) ;
@@ -197,6 +213,9 @@ class geo
 				$x = $a[0] ;
 				$y = $a[1] ;
 				data_to_real ( $x , $y ) ;
+				$this->xsum += $x ;
+				$this->ysum += $y ;
+				$this->count++ ;
 				$ret .= "{$x},{$y} " ;
 				}
 			$ret = trim ( $ret ) . "\"/>\n" ;
@@ -204,16 +223,32 @@ class geo
 			}
 		return $ret ;
 		}
+
+	function add_label ( $x , $y )
+		{
+		$text = $this->get_specs ( "name" , array ( "de" ) ) ;
+		if ( $text == "" ) return "" ;
+		$text = utf8_decode ( $this->data[$text][0] ) ;
+		$ret = "<text style='text-anchor:middle' x='{$x}' y='{$y}'>{$text}</text>\n" ;
+		return $ret ;
+		}
 	
 	function draw ( $params = array() )
 		{
 		$ret = "" ;
+		$this->xsum = $this->ysum = $this->count = 0 ;
 		$match = $this->get_specs ( "region" , array ( "political" ) ) ;
 		if ( $match != "" )
 			{
 			$a = $this->data[$match] ;
 			foreach ( $a AS $line )
 				$ret .= $this->draw_line ( $line , $params ) ;
+			}
+		if ( $this->count > 0 )
+			{
+			$x = $this->xsum / $this->count ;
+			$y = $this->ysum / $this->count ;
+			$ret .= $this->add_label ( $x , $y ) ;
 			}
 		return $ret ;
 		}
@@ -236,10 +271,17 @@ $styles = '	<defs>
 ' ;
 */
 
+$width = $max_x - $min_x ;
+$height = $max_y - $min_y ;
+$min_x -= $width / 10 ;
+$min_y -= $height / 10 ;
+$max_x += $width / 10 ;
+$max_y += $height / 10 ;
+
 $svg = 
 '<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/SVG/DTD/svg10.dtd">
-<svg viewBox="0 0 270 400"
+<svg viewBox="' . "{$min_x} {$min_y} {$max_x} {$max_y}" . '"
      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
 '
 	. $styles .
