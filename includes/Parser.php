@@ -1862,13 +1862,13 @@ class Parser
 					$text .= $matches[$i];
 					$hl = $matches[$i + 1];
 					if ($hl == "") continue;
-					if( strstr($hl, "__MWTEMPLATESECTION") ) {
+					if( strstr($hl, "<!--MWTEMPLATESECTION") ) {
 						$text .= $hl;
 						continue;
 					}
 					preg_match('/^(={1,6})(.*?)(={1,6})\s*?$/m', $hl, $m2);
-					$text .= $m2[1] . $m2[2] . "__MWTEMPLATESECTION="
-						. $encodedname . "&" . base64_encode("$nsec") . "__" . $m2[3];
+					$text .= $m2[1] . $m2[2] . "<!--MWTEMPLATESECTION="
+						. $encodedname . "&" . base64_encode("$nsec") . "-->" . $m2[3];
 					
 					$nsec++;
 				}
@@ -2165,11 +2165,11 @@ class Parser
 			$templatetitle = "";
 			$templatesection = 0;
 
-			if (preg_match("/__MWTEMPLATESECTION=([^&]+)&([^_]+)__/", $headline, $mat)) {
+			if (preg_match("/<!--MWTEMPLATESECTION=([^&]+)&([^_]+)-->/", $headline, $mat)) {
 				$istemplate = 1;
 				$templatetitle = base64_decode($mat[1]);
 				$templatesection = 1 + (int)base64_decode($mat[2]);
-				$headline = preg_replace("/__MWTEMPLATESECTION=([^&]+)&([^_]+)__/", "", $headline);
+				$headline = preg_replace("/<!--MWTEMPLATESECTION=([^&]+)&([^_]+)-->/", "", $headline);
 			}
 
 			$numbering = '';
