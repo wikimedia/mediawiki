@@ -141,6 +141,7 @@ class Profiler
 		$this->mCalls["-overhead-total"] = $profileCount;
 
 		# Output
+		arsort( $this->mCollated, SORT_NUMERIC );
 		foreach ( $this->mCollated as $fname => $elapsed ) {
 			$calls = $this->mCalls[$fname];
 			# Adjust for overhead
