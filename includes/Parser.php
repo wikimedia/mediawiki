@@ -2424,8 +2424,9 @@ class Parser
 
 		# if the string __TOC__ (not case-sensitive) occurs in the HTML,
 		# override above conditions and always show TOC at that place
+
 		$mw =& MagicWord::get( MAG_TOC );
-		if ($mw->match( $text ) ) {
+		if($mw->match( $text ) ) {
 			$doShowToc = 1;
 			$forceTocHere = true;
 		} else {
@@ -2437,7 +2438,10 @@ class Parser
 			}
 		}
 
-
+		# Never ever show TOC if no headers
+		if( $numMatches < 1 ) {
+			$doShowToc = 0;
+		}
 
 		# We need this to perform operations on the HTML
 		$sk =& $this->mOptions->getSkin();
@@ -2448,17 +2452,22 @@ class Parser
 
 		# Ugh .. the TOC should have neat indentation levels which can be
 		# passed to the skin functions. These are determined here
-		$toclevel = 0;
 		$toc = '';
 		$full = '';
 		$head = array();
 		$sublevelCount = array();
+		$levelCount = array();
+		$toclevel = 0;
 		$level = 0;
 		$prevlevel = 0;
+		$toclevel = 0;
+		$prevtoclevel = 0;
+
 		foreach( $matches[3] as $headline ) {
 			$istemplate = 0;
-			$templatetitle = "";
+			$templatetitle = '';
 			$templatesection = 0;
+			$numbering = '';
 
 			if (preg_match("/<!--MWTEMPLATESECTION=([^&]+)&([^_]+)-->/", $headline, $mat)) {
 				$istemplate = 1;
@@ -2467,28 +2476,54 @@ class Parser
 				$headline = preg_replace("/<!--MWTEMPLATESECTION=([^&]+)&([^_]+)-->/", "", $headline);
 			}
 
-			$numbering = '';
-			if( $level ) {
+			if( $toclevel ) {
 				$prevlevel = $level;
+				$prevtoclevel = $toclevel;
 			}
 			$level = $matches[1][$headlineCount];
-			if( ( $doNumberHeadings || $doShowToc ) && $prevlevel && $level > $prevlevel ) {
-				# reset when we enter a new level
-				$sublevelCount[$level] = 0;
-				$toc .= $sk->tocIndent( $level - $prevlevel );
-				$toclevel += $level - $prevlevel;
-			}
-			if( ( $doNumberHeadings || $doShowToc ) && $level < $prevlevel ) {
-				# reset when we step back a level
-				$sublevelCount[$level+1]=0;
-				$toc .= $sk->tocUnindent( $prevlevel - $level );
-				$toclevel -= $prevlevel - $level;
-			}
-			# count number of headlines for each level
-			@$sublevelCount[$level]++;
+			
 			if( $doNumberHeadings || $doShowToc ) {
+				
+				if ( $level > $prevlevel ) {
+					# Increase TOC level
+					$toclevel++;
+					$sublevelCount[$toclevel] = 0;
+					$toc .= $sk->tocIndent();
+				}
+				elseif ( $level < $prevlevel && $toclevel > 1 ) {
+					# Decrease TOC level, find level to jump to
+
+					if ( $toclevel == 2 && $level <= $levelCount[1] ) {
+						# Can only go down to level 1
+						$toclevel = 1;
+					} else {
+						for ($i = $toclevel; $i > 0; $i--) {
+							if ( $levelCount[$i] == $level ) {
+								# Found last matching level
+								$toclevel = $i;
+								break;
+							}
+							elseif ( $levelCount[$i] < $level ) {
+								# Found first matching level below current level
+								$toclevel = $i + 1;
+								break;
+							}
+						}
+					}
+
+					$toc .= $sk->tocUnindent( $prevtoclevel - $toclevel );
+				}
+				else {
+					# No change in level, end TOC line
+					$toc .= $sk->tocLineEnd();
+				}
+				
+				$levelCount[$toclevel] = $level;
+
+				# count number of headlines for each level
+				@$sublevelCount[$toclevel]++;
 				$dot = 0;
-				for( $i = 1; $i <= $level; $i++ ) {
+				for( $i = 1; $i <= $toclevel; $i++ ) {
 					if( !empty( $sublevelCount[$i] ) ) {
 						if( $dot ) {
 							$numbering .= '.';
@@ -2527,16 +2562,10 @@ class Parser
 			@$refers[$canonized_headline]++;
 			$refcount[$headlineCount]=$refers[$canonized_headline];
 
-			# Prepend the number to the heading text
-
-			if( $doNumberHeadings || $doShowToc ) {
-				$tocline = $numbering . ' ' . $tocline;
-
-				# Don't number the heading if it is the only one (looks silly)
-				if( $doNumberHeadings && count( $matches[3] ) > 1) {
-					# the two are different if the line contains a link
-					$headline=$numbering . ' ' . $headline;
-				}
+			# Don't number the heading if it is the only one (looks silly)
+			if( $doNumberHeadings && count( $matches[3] ) > 1) {
+				# the two are different if the line contains a link
+				$headline=$numbering . ' ' . $headline;
 			}
 
 			# Create the anchor for linking from the TOC to the section
@@ -2545,7 +2574,7 @@ class Parser
 				$anchor .= '_' . $refcount[$headlineCount];
 			}
 			if( $doShowToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
-				$toc .= $sk->tocLine($anchor,$tocline,$toclevel);
+				$toc .= $sk->tocLine($anchor, $tocline, $numbering, $toclevel);
 			}
 			if( $showEditLink && ( !$istemplate || $templatetitle !== "" ) ) {
 				if ( empty( $head[$headlineCount] ) ) {
@@ -2575,8 +2604,8 @@ class Parser
 
 		if( $doShowToc ) {
 			$toclines = $headlineCount;
-			$toc .= $sk->tocUnindent( $toclevel );
-			$toc = $sk->tocTable( $toc );
+			$toc .= $sk->tocUnindent( $toclevel - 1 );
+			$toc = $sk->tocList( $toc );
 		}
 
 		# split up and insert constructed headlines

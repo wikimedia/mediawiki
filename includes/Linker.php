@@ -735,37 +735,39 @@ class Linker {
 		return $comment;
 	}
 	
-	function tocIndent($level) {
-		return str_repeat( '<div class="tocindent">'."\n", $level>0 ? $level : 0 );
+	function tocIndent() {
+		return "\n<ul>";
 	}
 
 	function tocUnindent($level) {
-		return str_repeat( "</div>\n", $level>0 ? $level : 0 );
+		return "</li>\n" . str_repeat( "</ul>\n</li>\n", $level>0 ? $level : 0 );
 	}
 
 	/**
 	 * parameter level defines if we are on an indentation level
 	 */
-	function tocLine( $anchor, $tocline, $level ) {
-		$link = '<a href="#'.$anchor.'">'.$tocline.'</a><br />';
-		if($level) {
-			return $link."\n";
-		} else {
-			return '<div class="tocline">'.$link."</div>\n";
-		}
-
+	function tocLine( $anchor, $tocline, $tocnumber, $level ) {
+		return "\n<li class='toclevel-$level'><a href=\"#" . $anchor . '"><span class="tocnumber">' . $tocnumber . '</span> <span class="toctext">' . $tocline . '</span></a>';
 	}
 
-	function tocTable($toc) {
-		# note to CSS fanatics: putting this in a div does not work -- div won't auto-expand
-		# try min-width & co when somebody gets a chance
-		$hideline = ' <script type="text/javascript">showTocToggle("' . addslashes( wfMsg('showtoc') ) . '","' . addslashes( wfMsg('hidetoc') ) . '")</script>';
-		return
-		'<table border="0" id="toc"><tr id="toctitle"><td align="center">'."\n".
-		'<b>'.wfMsgForContent('toc').'</b>' .
-		$hideline .
-		'</td></tr><tr id="tocinside"><td>'."\n".
-		$toc."</td></tr></table>\n";
+	function tocLineEnd()
+	{
+		return "</li>\n";
+ 	}
+
+	function tocList($toc) {
+		return "<div id='toc'>\n" 
+			   . "<div id='toctitle'><h2>" . wfMsg('toc') . "</h2></div>\n"
+		     . $toc
+				 . "</ul>\n</div>\n"
+				 . '<script type="text/javascript">'
+				 . ' if (window.showTocToggle) {'
+				 . ' var tocShowText = "' . addslashes( wfMsg('showtoc') ) . '";'
+				 . ' var tocHideText = "' . addslashes( wfMsg('hidetoc') ) . '"; '
+				 . ' showTocToggle();'
+				 . ' } '
+				 . '</script>'
+				 . "<div class='visualClear'></div>\n";
 	}
 
 	/**

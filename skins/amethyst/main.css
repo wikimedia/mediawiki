@@ -329,20 +329,50 @@ table.small { font-size: 100% }
 ** content styles
 */
 
+/* IE/mac fixes */
 #toc {
-    /* border:1px solid #2f6fab;*/
-	padding:0.5em;
-    border:1px solid #aaaaaa;
-    background-color: #2F333B;
-    font-size: 95%;
+  display: inline-table;
 }
-#toc .toctitle { background: #2A3C61;}
-#toc .tocindent { margin-left: 2em; }
-#toc .tocline { margin-bottom: 0px; }
-#toc p { margin: 0 }
-#toc .toctoggle { font-size: 94%; }
-#toc .editsection {
-    margin-top: 0.7em;
+#toc h2, #toc div, #toc ul, #toc li {
+  float: left;
+  clear: left;
+}
+@media all {
+  #toc {
+    display: block;
+    text-align: center;
+  }
+  #toc * {
+    float: none!important;
+  }
+}
+/* end IE/mac fixes */
+
+#toc {
+    border: 1px solid #aaa;
+    background-color: #2f333b;
+    padding: 0.5em;
+    font-size: 95%;
+    float: left;
+}
+#toc h2 {
+    display: inline;
+    border: none;
+    padding: 0;
+    font-size: 100%;
+    font-weight: bold;
+}
+#toc ul {
+    list-style-type: none;
+    list-style-image: none;
+    margin-left: 0;
+    padding-left: 0;
+    text-align: left;
+}
+#toc ul ul {
+    margin: 0 0 0 2em;
+}
+#toc .toctoggle {
     font-size: 94%;
 }
 

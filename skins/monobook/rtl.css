@@ -200,3 +200,15 @@ fieldset.operaprefsection {
     margin-left: 0 !important;
     margin-right: 15em;
 }
+
+#toc {
+    float: right;
+}
+
+#toc ul {
+    text-align: right;
+}
+
+#toc ul ul {
+    margin: 0 2em 0 0;
+}
