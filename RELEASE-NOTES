@@ -105,6 +105,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 995) Close <a> tag
 * (bug 1004) renamed norsk language links
 * Login works again when using an old-style default skin
+* Fix for load balancing mode, notify if using old settings format
 
 
 === Caveats ===

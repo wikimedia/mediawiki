@@ -191,7 +191,7 @@ class LoadBalancer {
 		}
 
 		if ( !$retVal && $this->isOpen( $index ) ) {
-			$conn =& $this->mConnections( $index );
+			$conn =& $this->mConnections[$index];
 			wfDebug( "Waiting for slave #$index to catch up...\n" );
 			$result = $conn->masterPosWait( $this->mWaitForFile, $this->mWaitForPos, MASTER_WAIT_TIMEOUT );
 
@@ -303,15 +303,19 @@ class LoadBalancer {
 	 * @private
 	 */
 	function reallyOpenConnection( &$server ) {
-			extract( $server );
-			# Get class for this database type
-			$class = 'Database' . ucfirst( $type );
-			if ( !class_exists( $class ) ) {
-				require_once( "$class.php" );
-			}
+		if( !is_array( $server ) ) {
+			wfDebugDieBacktrace( 'You must update your load-balancing configuration. See DefaultSettings.php entry for $wgDBservers.' );
+		}
+		
+		extract( $server );
+		# Get class for this database type
+		$class = 'Database' . ucfirst( $type );
+		if ( !class_exists( $class ) ) {
+			require_once( "$class.php" );
+		}
 
-			# Create object
-			return new $class( $host, $user, $password, $dbname, 1, $flags );
+		# Create object
+		return new $class( $host, $user, $password, $dbname, 1, $flags );
 	}
 	
 	function reportConnectionError( &$conn )
