@@ -5,31 +5,31 @@ class SkinStandard extends Skin {
 
 	function getHeadScripts()
 	{
-		global $wgStyleSheetPath;
+		global $wgStylePath;
 
 		$s = parent::getHeadScripts();
 		if ( 3 == $this->qbSetting() ) { # Floating left
 			$s .= "<script language='javascript' type='text/javascript' " .
-			  "src='{$wgStyleSheetPath}/sticky.js'></script>\n";
+			  "src='{$wgStylePath}/sticky.js'></script>\n";
 		}
 		return $s;
 	}
 
 	function getUserStyles()
 	{
-		global $wgStyleSheetPath;
+		global $wgStylePath;
 
 		$s = parent::getUserStyles();
 		if ( 3 == $this->qbSetting() ) { # Floating left
 			$s .= "<style type='text/css'>\n" .
-			  "@import '{$wgStyleSheetPath}/quickbar.css';\n</style>\n";
+			  "@import '{$wgStylePath}/quickbar.css';\n</style>\n";
 		}
 		return $s;
 	}
 
 	function doGetUserStyles()
 	{
-		global $wgUser, $wgOut, $wgStyleSheetPath;
+		global $wgUser, $wgOut, $wgStylePath;
 
 		$s = parent::doGetUserStyles();
 		$qb = $this->qbSetting();

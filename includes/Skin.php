@@ -167,18 +167,18 @@ class Skin {
 	}
 
 	function getHeadScripts() {
-		global $wgStyleSheetPath;
-		$r = "<script type=\"text/javascript\" src=\"{$wgStyleSheetPath}/wikibits.js\"></script>\n";
+		global $wgStylePath;
+		$r = "<script type=\"text/javascript\" src=\"{$wgStylePath}/wikibits.js\"></script>\n";
 		return $r;
 	}
 
 	function getUserStyles()
 	{
-		global $wgOut, $wgStyleSheetPath;
+		global $wgOut, $wgStylePath;
 		$sheet = $this->getStylesheet();
 		$s = "<style type='text/css'>\n";
 		$s .= "/*/*/\n"; # <-- Hide the styles from Netscape 4 without hiding them from IE/Mac
-		$s .= "@import url(\"$wgStyleSheetPath/$sheet\");\n";
+		$s .= "@import url(\"$wgStylePath/$sheet\");\n";
 		$s .= $this->doGetUserStyles();
 		$s .= "/* */\n";
 		$s .= "</style>\n";
@@ -834,8 +834,8 @@ class Skin {
 	}
 	
 	function getPoweredBy() {
-		global $wgUploadPath;
-		$url = htmlspecialchars( "$wgUploadPath/poweredby_mediawiki_88x31.png" );
+		global $wgStylePath;
+		$url = htmlspecialchars( "$wgStylePath/images/poweredby_mediawiki_88x31.png" );
 		$img = "<a href='http://www.mediawiki.org/'><img src='$url' alt='MediaWiki' /></a>";
 		return $img;
 	}
@@ -1745,7 +1745,7 @@ class Skin {
 
 
 	function makeThumbLinkObj( $img, $label = "", $align = "right", $boxwidth = 180, $framed=false ) {
-		global $wgUploadPath, $wgLang;
+		global $wgStylePath, $wgLang;
 		# $image = Title::makeTitle( Namespace::getImage(), $name );
 		$url  = $img->getURL();
 		
@@ -1795,7 +1795,7 @@ class Skin {
 			} else {
 				$zoomicon =  '<div class="magnify" style="float:'.$magnifyalign.'">'.
 					'<a href="'.$u.'" class="internal" title="'.$more.'">'.
-					'<img src="'.$wgUploadPath.'/magnify-clip.png" ' .
+					'<img src="'.$wgStylePath.'/magnify-clip.png" ' .
 					'width="15" height="11" alt="'.$more.'" /></a></div>';
 			}
 		}
@@ -1875,7 +1875,7 @@ class Skin {
 	# Enhanced RC ungrouped line
 	function recentChangesBlockLine ( $rcObj )
 	{
-		global $wgUploadPath, $wgLang ;
+		global $wgStylePath, $wgLang ;
 
 		# Get rc_xxxx variables
 		extract( $rcObj->mAttribs ) ;
@@ -1884,7 +1884,7 @@ class Skin {
 		# Spacer image
 		$r = "" ;
 
-		$r .= "<img src='{$wgUploadPath}/Arr_.png' width='12' height='12' border='0' />" ;		$r .= "<tt>" ;
+		$r .= "<img src='{$wgStylePath}/images/Arr_.png' width='12' height='12' border='0' />" ;		$r .= "<tt>" ;
 
 		if ( $rc_type == RC_MOVE ) {
 			$r .= "&nbsp;&nbsp;";
@@ -1939,7 +1939,7 @@ class Skin {
 	# Enhanced RC group
 	function recentChangesBlockGroup ( $block )
 	{
-		global $wgUploadPath, $wgLang ;
+		global $wgStylePath, $wgLang ;
 
 		$r = "" ;
 		$M = wfMsg( "minoreditletter" );
@@ -1973,8 +1973,8 @@ class Skin {
 		$rcm = "RCM{$this->rcCacheIndex}" ;
 		$toggleLink = "javascript:toggleVisibility(\"{$rci}\",\"{$rcm}\",\"{$rcl}\")" ;
 		$arrowdir = $wgLang->isRTL() ? "l" : "r";
-		$tl  = "<span id='{$rcm}'><a href='$toggleLink'><img src='{$wgUploadPath}/Arr_{$arrowdir}.png' width='12' height='12' /></a></span>" ;
-		$tl .= "<span id='{$rcl}' style='display:none'><a href='$toggleLink'><img src='{$wgUploadPath}/Arr_d.png' width='12' height='12' /></a></span>" ;
+		$tl  = "<span id='{$rcm}'><a href='$toggleLink'><img src='{$wgStylePath}/images/Arr_{$arrowdir}.png' width='12' height='12' /></a></span>" ;
+		$tl .= "<span id='{$rcl}' style='display:none'><a href='$toggleLink'><img src='{$wgStylePath}/images/Arr_d.png' width='12' height='12' /></a></span>" ;
 		$r .= $tl ;
 
 		# Main line
@@ -2016,7 +2016,7 @@ class Skin {
 			# Get rc_xxxx variables
 			extract( $rcObj->mAttribs );
 			
-			$r .= "<img src='{$wgUploadPath}/Arr_.png' width=12 height=12 />";
+			$r .= "<img src='{$wgStylePath}/images/Arr_.png' width=12 height=12 />";
 			$r .= "<tt>&nbsp; &nbsp; &nbsp; &nbsp;" ;
 			if ( $rc_new ) $r .= $N ;
 			else $r .= "&nbsp;" ;
@@ -2058,7 +2058,7 @@ class Skin {
 	# RC lines, arranges them, and outputs the HTML
 	function recentChangesBlock ()
 	{
-		global $wgUploadPath ;
+		global $wgStylePath ;
 		if ( count ( $this->rc_cache ) == 0 ) return "" ;
 		$blockOut = "";
 		foreach ( $this->rc_cache AS $secureName => $block ) {
@@ -2471,7 +2471,7 @@ class Skin {
 	// toolbar for common editing functions. It can be disabled in the user preferences.
 	// The necsesary JavaScript code can be found in style/wikibits.js.
 	function getEditToolbar() {
-		global $wgUploadPath, $wgLang, $wgMimeType;
+		global $wgStylePath, $wgLang, $wgMimeType;
 
 		// toolarray an array of arrays which each include the filename of
 		// the button image (without path), the opening tag, the closing tag,
@@ -2566,7 +2566,7 @@ class Skin {
 		$toolbar.="document.writeln(\"<div id='toolbar'>\");\n";
 		foreach($toolarray as $tool) {
 
-			$image=$wgUploadPath."/".$tool["image"];
+			$image=$wgStylePath."/images/".$tool["image"];
 			$open=$tool["open"];
 			$close=$tool["close"];
 			$sample = addslashes( $tool["sample"] );

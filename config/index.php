@@ -703,7 +703,7 @@ if ( \$wgCommandLineMode ) {
 {$pretty}\$wgArticlePath      = \"\$wgScript/\$1\";
 {$ugly}\$wgArticlePath      = \"\$wgScript?title=\$1\";
 
-\$wgStyleSheetPath   = \"\$wgScriptPath/stylesheets\";
+\$wgStylePath   = \"\$wgScriptPath/stylesheets\";
 \$wgStyleSheetDirectory = \"\$IP/stylesheets\";
 
 \$wgUploadPath       = \"\$wgScriptPath/images\";
