@@ -1,7 +1,11 @@
 <?php
-
+/**
+ * @package MediaWiki
+ * @subpackage Templates
+ */
 if( !defined( 'MEDIAWIKI' ) ) die();
 
+/** */
 require_once( 'includes/SkinTemplate.php' );
 
 /**
