@@ -122,18 +122,18 @@ class MovePageForm {
 		global  $wgUseSquid, $wgRequest;
 		$fname = "MovePageForm::doSubmit";
 		
-                # don't allow moving to pages with # in
-                if ( strchr( $this->newTitle, '#') !== FALSE ) {
-                        $this->showForm( wfMsg( "badtitletext" ) );
-                        return;
-                }
-
 		# Variables beginning with 'o' for old article 'n' for new article
 
 		# Attempt to move the article
 		
 		$ot = Title::newFromText( $this->oldTitle );
 		$nt = Title::newFromText( $this->newTitle );
+
+		# don't allow moving to pages with # in
+		if ( $nt->getFragment() != '' ) {
+			$this->showForm( wfMsg( "badtitletext" ) );
+			return;
+		}
 
 		$error = $ot->moveTo( $nt );
 		if ( $error !== true ) {
