@@ -723,8 +723,6 @@ Please log in again after you receive it.",
 "infobox"=>"Click a button to get an example text",
 # alert box shown in browsers where text selection does not work, test e.g. with mozilla or konqueror
 "infobox_alert"=>"Please enter the text you want to be formatted.\\n It will be shown in the infobox for copy and pasting.\\nExample:\\n$1\\nwill become:\\n$2",
-# only shown for Mozilla users
-"infobox_mozvote"=>"\\nPlease vote for bug #231389 to make text selection work in Mozilla!",
 
 # Edit pages
 #
