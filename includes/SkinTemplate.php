@@ -147,7 +147,7 @@ class SkinTemplate extends Skin {
 		global $wgScript, $wgStylePath, $wgLanguageCode, $wgContLanguageCode, $wgUseNewInterlanguage;
 		global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
 		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgSiteNotice;
-		global $wgMaxCredits, $wgShowCreditsIfMax;
+		global $wgMaxCredits, $wgShowCreditsIfMax, $wgSquidMaxage;
 
 		$fname = 'SkinTemplate::outputPage';
 		wfProfileIn( $fname );
@@ -244,7 +244,7 @@ class SkinTemplate extends Skin {
 		global $wgUseSiteJs;
 		if ($wgUseSiteJs) {
 			if($this->loggedin) {
-				$tpl->set( 'jsvarurl', $this->makeUrl($this->userpage.'/-','action=raw&smaxage=1&gen=js') );
+				$tpl->set( 'jsvarurl', $this->makeUrl($this->userpage.'/-','action=raw&smaxage=1&gen=js&maxage=' . $wgSquidMaxage) );
 			} else {
 				$tpl->set( 'jsvarurl', $this->makeUrl('-','action=raw&gen=js') );
 			}
@@ -795,7 +795,7 @@ class SkinTemplate extends Skin {
 
 		$sitecss = '';
 		$usercss = '';
-		$siteargs = '';
+		$siteargs = '&maxage=' . $wgSquidMaxage;
 		
 		if ($wgContLang->isRTL()) $sitecss .= '@import "' . $wgStylePath . '/' . $this->stylename . '/rtl.css";' . "\n";
 		
@@ -811,7 +811,7 @@ class SkinTemplate extends Skin {
 			# if we're previewing the CSS page, use it
 			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
 				# we are previewing
-				$siteargs .= "&maxage=0";
+				$siteargs = "&maxage=0";
 				# use the raw css just posted directly in the header of the page
 				$usercss = $wgRequest->getText('wpTextbox1');
 			} else {
