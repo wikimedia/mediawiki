@@ -19,6 +19,7 @@ class SearchEngine {
 		if( $wgDBmysql4 ) $lc .= "\"~<>*+-";
 		$this->mUsertext = trim( preg_replace( "/[^{$lc}]/", " ", $text ) );
 		$this->mSearchterms = array();
+		$this->mStrictMatching = true; # Google-style, add '+' on all terms
 	}
 
 	function queryNamespaces()
@@ -310,7 +311,6 @@ class SearchEngine {
 				$cond .= " (MATCH (##field##) AGAINST ('" .
 				  wfStrencode( $word ). "'))";
 				$last = $word;
-				$word = preg_quote( $word );
 				array_push( $this->mSearchterms, "\\b" . $word . "\\b" );
 			}
 		}
@@ -325,21 +325,37 @@ class SearchEngine {
 	
 	function parseQuery4()
 	{
-		# FIXME: not ready yet! Do not use.
-		
 		global $wgLang;
 		$lc = SearchEngine::legalSearchChars();
-		#$q = preg_replace( "/([+-]?)([$lc]+)/e",
-		#	"\"$1\" . \$wgLang->stripForSearch(\"$2\")",
-		#	$this->mUsertext );
+		$searchon = "";
+		$this->mSearchterms = array();
+
+		# FIXME: This doesn't handle parenthetical expressions.
+		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
+			  $this->mUsertext, $m, PREG_SET_ORDER ) ) {
+			foreach( $m as $terms ) {
+				if( $searchon !== "" ) $searchon .= " ";
+				if( $this->mStrictMatching && ($terms[1] == "") ) {
+					$terms[1] = "+";
+				}
+				$searchon .= $terms[1] . $wgLang->stripForSearch( $terms[2] );
+				if( $terms[3] ) {
+					$regexp = preg_quote( $terms[3] );
+					if( $terms[4] ) $regexp .= "[0-9A-Za-z_]+";
+				} else {
+					$regexp = preg_quote( str_replace( '"', '', $terms[2] ) );
+				}
+				$this->mSearchterms[] = $regexp;
+			}
+			wfDebug( "Would search with '$searchon'\n" );
+			wfDebug( "Match with /\b" . implode( '\b|\b', $this->mSearchterms ) . "\b/\n" );
+		} else {
+			wfDebug( "Can't understand search query '$this->mUsertext'\n" );
+		}
 		
-		$q = $this->mUsertext;
-		$qq = wfStrencode( $wgLang->stripForSearch( $q ) );
-		$this->mSearchterms = preg_split( '/\s+/', $q );
-		$this->mSearchterms = array_map( "preg_quote", $this->mSearchterms );
-		
-		$this->mTitlecond = " MATCH(si_title) AGAINST('$qq' IN BOOLEAN MODE)";
-		$this->mTextcond = " (MATCH(si_text) AGAINST('$qq' IN BOOLEAN MODE) AND cur_is_redirect=0)";
+		$searchon = wfStrencode( $searchon );
+		$this->mTitlecond = " MATCH(si_title) AGAINST('$searchon' IN BOOLEAN MODE)";
+		$this->mTextcond = " (MATCH(si_text) AGAINST('$searchon' IN BOOLEAN MODE) AND cur_is_redirect=0)";
 	}
 
 	function showHit( $row )
@@ -366,7 +382,6 @@ class SearchEngine {
 			if ( 0 == $contextlines ) { break; }
 			--$contextlines;
 			++$lineno;
-			wfDebug( "Search highlight pattern is '$pat1'\n" );
 			if ( ! preg_match( $pat1, $line, $m ) ) { continue; }
 
 			$pre = $m[1];
