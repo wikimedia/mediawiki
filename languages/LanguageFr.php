@@ -142,7 +142,7 @@ require_once( "LanguageUtf8.php" );
 'february' => "février",
 'march' => "mars",
 'april' => "avril",
-'may' => "mai",
+'may_long' => "mai",
 'june' => "juin",
 'july' => "juillet",
 'august' => "août",
