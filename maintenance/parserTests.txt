@@ -561,6 +561,15 @@ BUG 289: literal double quote in bracketed URL
 </p>
 !!end
 
+!! test
+External links: invalid character
+!! input
+[http://www.example.com  test]
+!! result
+<p>[<a href="http://www.example.com" class='external'>http://www.example.com</a>  test]
+</p>
+!! end
+
 ###
 ### Quotes
 ###
