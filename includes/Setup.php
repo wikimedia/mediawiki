@@ -203,7 +203,7 @@ require_once( 'languages/Language.php' );
 
 $wgMessageCache = new MessageCache; 
 
-$wgLangClass = 'Language' . ucfirst( $wgLanguageCode );
+$wgLangClass = 'Language' . str_replace( '-', '_', ucfirst( $wgLanguageCode ) );
 if( ! class_exists( $wgLangClass ) || ($wgLanguageCode == 'en' && !$wgUseLatin1) ) {
 	# Default to English/UTF-8
 	require_once( 'languages/LanguageUtf8.php' );
