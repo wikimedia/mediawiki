@@ -246,6 +246,7 @@ span.subpages { display: block; }
     border:1px solid #aaaaaa;
     background-color:#f9f9f9;
     padding:5px;
+    margin-top: 1em;
 }
 /* currently unused, intended to be used by a metadata box
 in the bottom-right corner of the content area */
