@@ -40,13 +40,7 @@ class WantedPagesPage extends QueryPage {
 			        COUNT(DISTINCT bl_from) as value
 			FROM $brokenlinks
 			GROUP BY bl_to
-			HAVING $agrvalue > 1
-			ORDER BY $agrvalue ".
-			($this->sortDescending() ? 'DESC' : '');
-	}
-
-	function getOrder() {
-		return '';
+			HAVING $agrvalue > 1";
 	}
 
 	function formatResult( $skin, $result ) {
