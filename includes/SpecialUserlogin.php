@@ -76,7 +76,7 @@ class LoginForm {
 				return $this->addNewAccountMailPassword();
 			} else if ( $this->mMailmypassword ) {
 				return $this->mailPassword();
-			} else if ( ( 'submit' == $this->mAction ) || $this->mLoginattempt ) {
+			} else if ( ( 'submitlogin' == $this->mAction ) || $this->mLoginattempt ) {
 				return $this->processLogin();
 			}
 		}
@@ -493,7 +493,7 @@ class LoginForm {
 			}
 		}
 
-		$q = 'action=submit';
+		$q = 'action=submitlogin';
 		if ( !empty( $this->mReturnto ) ) {
 			$q .= '&returnto=' . wfUrlencode( $this->mReturnto );
 		}
