@@ -895,6 +895,27 @@ BUG 2: [[page|http://url/]] should link to page, not http://url/
 </p>
 !! end
 
+!! test
+BUG 337: Escaped self-links should be bold
+!! options
+title=[[Bug462]]
+!! input
+[[Bu&#103;462]] [[Bug462]]
+!! result
+<p><strong>Bu&#103;462</strong> <strong>Bug462</strong>
+</p>
+!! end
+
+!! test
+Self-link to section should not be bold
+!! options
+title=[[Main Page]]
+!! input
+[[Main Page#section]]
+!! result
+<p><a href="/wiki/Main_Page#section" title="Main Page">Main Page#section</a>
+</p>
+!! end
 
 ###
 ### Interwiki links
