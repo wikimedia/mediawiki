@@ -225,7 +225,7 @@ class CategoryPage extends Article {
 		// get and display header
 		$r = '<table width="100%"><tr valign="top">';
 
-		$prev_start_char = ""; 
+		$prev_start_char = 'none'; 
 
 		// loop through the chunks
 		for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0;
@@ -240,13 +240,13 @@ class CategoryPage extends Article {
 				$index < $endChunk && $index < count($articles);
 				$index++ )
 			{
-				// check for change of starting letter or begging of chunk
+				// check for change of starting letter or begining of chunk
 				if ( ($index == $startChunk) ||
 					 ($articles_start_char[$index] != $articles_start_char[$index - 1]) )
 
 				{
 					$cont_msg = "";
-					if($articles_start_char[$index] == $prev_start_char)
+					if ( $articles_start_char[$index] == $prev_start_char )
 						$cont_msg = wfMsg('listingcontinuesabbrev');
 					$r .= "</ul><h3>{$articles_start_char[$index]}$cont_msg</h3>\n<ul>";
 					$prev_start_char = $articles_start_char[$index];

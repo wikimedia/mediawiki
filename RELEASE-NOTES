@@ -183,6 +183,7 @@ If upgrading from an older release, see the file UPGRADING.
 * Added magic word MAG_NOTITLECONVERT to indicate that the title of the page
   do not need to be converted. Useful in zh:
 * (bug 1224) Use proper date messages for date reformatter
+* (bug 1241) Don't show 'cont.' for first entry of the category list
 
 === Caveats ===
 
