@@ -791,7 +791,7 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::setupUserCss';
 		wfProfileIn( $fname );
 		
-		global $wgRequest, $wgTitle, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath;
+		global $wgRequest, $wgTitle, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath, $wgUser;
 
 		$sitecss = '';
 		$usercss = '';
@@ -820,8 +820,8 @@ class SkinTemplate extends Skin {
 								 'action=raw&ctype=text/css') . '";' ."\n";
 			}
 			if ( $wgUseSiteCss ) {
-				# no point in server-side caching for user-generated stylesheets, hence smaxage=0. Client caches.
-				$sitecss .= '@import "' . $this->makeUrl($this->userpage . '/-', 'action=raw&gen=css' . $siteargs ) . '";' . "\n";
+				# mTouched makes generated CSS update on prefs save
+				$sitecss .= '@import "' . $this->makeUrl($this->userpage . '/-', 'action=raw&gen=css&ts=' . $wgUser->mTouched . $siteargs ) . '";' . "\n";
 			}
 			
 		} else if ( $wgUseSiteCss ) {
