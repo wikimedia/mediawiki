@@ -1,4 +1,5 @@
 <?php
+die("This script is not being maintained.");
 
 # Checks translation of all language files
  

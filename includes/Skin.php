@@ -1,4 +1,6 @@
 <?php
+if( defined( "MEDIAWIKI" ) ) {
+
 # See skin.doc
 
 require_once( 'Feed.php' );  // should not be called if the actual page isn't feed enabled
@@ -2711,6 +2713,8 @@ class Skin {
 		$toolbar.="/*]]>*/\n</script>";
 		return $toolbar;
 	}
+
+}
 
 }
 ?>

@@ -1,4 +1,6 @@
 <?php
+if( defined( "MEDIAWIKI" ) ) {
+
 # See design.doc
 
 if($wgUseTeX) require_once( "Math.php" );
@@ -754,5 +756,7 @@ class OutputPage {
 		# $ret .= "<!--[if gte IE 5.5000]><script type='text/javascript' src='$fix'></script><![endif]-->";
 		return $ret;
 	}
+}
+
 }
 ?>
