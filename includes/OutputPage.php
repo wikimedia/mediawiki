@@ -248,18 +248,27 @@ class OutputPage {
 	}
 
 	function sendCacheControl() {
+		global $wgUseSquid;
+		# FIXME: This header may cause trouble with some versions of Internet Explorer
 		header( "Vary: Accept-Encoding, Cookie" );
 		if( $this->mLastModified != "" ) {
-                        wfDebug( "** private caching; {$this->mLastModified} **\n", false );
-                        if (isset($_COOKIE[ini_get("session.name")] )){
-                                header( "Cache-Control: no-cache, must-revalidate, max-age=0" );
-                        } else {
-                                header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
-                        }
+			if( $wgUseSquid && ! isset( $_COOKIE[ini_get( "session.name") ] ) ) {
+				# We'll purge the proxy cache for anons explicitly, but require end user agents
+				# to revalidate against the proxy on each visit.
+				wfDebug( "** local proxy caching; {$this->mLastModified} **\n", false );
+				header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
+			} else {
+				# We do want clients to cache if they can, but they *must* check for updates
+				# on revisiting the page.
+				wfDebug( "** private caching; {$this->mLastModified} **\n", false );
+				header( "Expires: -1" );
+				header( "Cache-Control: private, must-revalidate, max-age=0" );
+			}
 			header( "Last-modified: {$this->mLastModified}" );
 		} else {
 			wfDebug( "** no caching **\n", false );
-			header( "Cache-Control: no-cache" ); # Experimental - see below
+			header( "Expires: -1" );
+			header( "Cache-Control: no-cache" );
 			header( "Pragma: no-cache" );
 			header( "Last-modified: " . gmdate( "D, j M Y H:i:s" ) . " GMT" );
 		}
