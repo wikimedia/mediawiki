@@ -8,8 +8,6 @@ the necessary prerequesites available.
 
 Required software:
 * Web server with PHP 4.1.2 or higher (4.3.x is preferred)
-* PHP must be configured for register_globals = On
-  [Sorry, we know this is inconvenient for some people]
 * A MySQL server. 4.0.x is preferred, but 3.2.x should
   work as well.
 
@@ -190,8 +188,7 @@ Or for Apache 2.0 module:
   ./configure --enable-shmop --with-zlib --with-zlib-dir=/usr/lib --with-mysql=/usr/local/mysql --with-iconv --with-apxs2filter=/usr/local/apache/bin/apxs --with-readline --enable-sockets
 
   (using your own local paths, of course). Build and install as
-  instructed. Set "register_globals" on in the config file, and
-  "warnings" to 
+  instructed.
 
 8. Finish building Apache. Configure with something like:
 

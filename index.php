@@ -3,6 +3,11 @@
 #
 $wgRequestTime = microtime();
 
+if( !ini_get( "register_globals" ) ) {
+	# Insecure, but at least it'll run
+	import_request_variables( "GPC" );
+}
+
 unset( $IP );
 ini_set( "allow_url_fopen", 0 ); # For security...
 if(!file_exists("LocalSettings.php")) {

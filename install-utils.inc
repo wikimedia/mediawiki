@@ -8,9 +8,6 @@ function install_version_checks() {
 	if( version_compare( phpversion(), "4.3.2" ) < 0 ) {
 		echo "WARNING: PHP 4.3.2 or higher is recommended. Older versions from 4.1.x up may work but are not actively supported.\n\n";
 	}
-	if( !ini_get( "register_globals" ) ) {
-		echo "WARNING: register_globals is not on; MediaWiki currently relies on this option.\n\n";
-	}
 	
 	if (!extension_loaded('mysql')) {
 		if (!dl('mysql.so')) {
