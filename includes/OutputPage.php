@@ -588,7 +588,7 @@ class OutputPage {
 			$ret = "";
 		}
 		
-		$ret .= "<!DOCTYPE HTML PUBLIC \"$wgDocType\"\n        \"$wgDTD\">\n";
+		$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\"\n        \"$wgDTD\">\n";
 
 		if ( "" == $this->mHTMLtitle ) {
 			$this->mHTMLtitle = $this->mPagetitle;
