@@ -64,7 +64,7 @@ $wgStyleSheetDirectory = "{$IP}/style";
 
 $wgUploadPath       = "{$wgScriptPath}/upload";
 $wgUploadDirectory	= "{$IP}/upload";
-$wgLogo				= "{$wgUploadPath}/wiki.png";
+$wgLogo				= "{$wgStylePath}/images/wiki.png";
 
 ## Preferably these addresses should be able to receive mail asking for help
 #
