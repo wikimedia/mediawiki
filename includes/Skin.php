@@ -2182,16 +2182,21 @@ class Skin {
 
 	function tocTable($toc) {
 	// note to CSS fanatics: putting this in a div does not work -- div won't auto-expand
-	global $printable;
+	global $printable, $wgLang;
 
 	if (!$printable) {
 		$hideline = " <script type='text/javascript'>showTocToggle(\"" . wfMsg("showtoc") . "\",\"" . wfMsg("hidetoc") . "\")</script>";
 	}
+	if( $wgLang->isRTL() ) {
+		$rtl = ' dir="rtl"';
+	} else {
+		$rtl = "";
+	}
 	return
-	"<p><table border=\"0\" id=\"toc\"><tr><td align=\"center\">\n".
+	"<p><table border=\"0\" id=\"toc\"$rtl><tr><td align=\"center\">\n".
 	"<b>".wfMsg("toc")."</b>" .
 	$hideline .
-	"</td></tr><tr id='tocinside'><td align=\"left\">\n".
+	"</td></tr><tr id='tocinside'><td align=\"left\"$rtl>\n".
 	$toc."</td></tr></table><P>\n";
 	}
 
