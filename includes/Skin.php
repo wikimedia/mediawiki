@@ -3,6 +3,7 @@
 /**
  *
  * @package MediaWiki
+ * @subpackage Skins
  */
 
 /**
