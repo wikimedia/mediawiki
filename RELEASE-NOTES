@@ -320,6 +320,8 @@ If upgrading from an older release, see the file UPGRADE;
 === RC1 fixes ===
 
 * Fix notice error on nonexistent template in wikitext system message
+* (bug 1469) add missing <ul> tags on Special:Log
+
 
 === Caveats ===
 
