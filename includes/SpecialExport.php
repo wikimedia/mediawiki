@@ -15,8 +15,7 @@ function wfSpecialExport( $page = "" ) {
 		$pages = explode( "\n", $page );
 		$xml = pages2xml( $pages, $curonly );
 		echo $xml;
-		# exit(1) actually prints 1 in some PHP versions
-		exit("");
+		exit();
 	}
 	
 	$wgOut->addWikiText( wfMsg( "exporttext" ) );
