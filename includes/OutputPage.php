@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * $Id$
  * @package MediaWiki
  */
 
@@ -223,6 +223,7 @@ class OutputPage {
 	function isQuickbarSuppressed() { return $this->mSuppressQuickbar; }
 
 	function addHTML( $text ) { $this->mBodytext .= $text; }
+	function clearHTML() { $this->mBodytext = ''; }
 	function debug( $text ) { $this->mDebugtext .= $text; }
 
 	function setParserOptions( $options )
