@@ -176,6 +176,8 @@ If upgrading from an older release, see the file UPGRADING.
   Mediawiki:zhconversiontable
 * Add zh-min-man (back) to language names list
 * Ported $wgCopyrightIcon setting from REL1_3A
+* (bug 1218) Show the original image on image pages if the thumbnail would be
+  bigger than the original image
 
 === Caveats ===
 
