@@ -88,6 +88,9 @@ if ( "" != $search ) {
 	wfQuery("BEGIN", DB_WRITE);
 	switch( $action ) {
 		case "view":
+			$wgOut->setSquidMaxage( $wgSquidMaxage );
+			$wgArticle->$action();
+			break;
 		case "watch":
 		case "unwatch":
 		case "delete":
@@ -110,6 +113,10 @@ if ( "" != $search ) {
 			$editor->$action();
 			break;
 		case "history":
+			if ($_SERVER["REQUEST_URI"] == $wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL(), 'action=history')
+) {
+				$wgOut->setSquidMaxage( $wgSquidMaxage );
+			}
 			include_once( "PageHistory.php" );
 			$history = new PageHistory( $wgArticle );
 			$history->history();
