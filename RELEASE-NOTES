@@ -148,6 +148,8 @@ If upgrading from an older release, see the file UPGRADING.
 * Database error messages include the database server name/address
 * Paging support for large categories
 * Fix image page scaling when thumbnail generation is disabled
+* Select the content language in prefs when bogus interface language is set
+
 
 === Caveats ===
 

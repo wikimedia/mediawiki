@@ -418,12 +418,22 @@ class PreferencesForm {
 		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>
 		<div><label>$yl: <select name=\"wpUserLanguage\">\n");
 
+		/**
+		 * If a bogus value is set, default to the content language.
+		 * Otherwise, no default is selected and the user ends up
+		 * with an Afrikaans interface since it's first in the list.
+		 */
+		if( isset( $wgLanguageNames[$this->mUserLanguage] ) ) {
+			$selectedLang = $this->mUserLanguage;
+		} else {
+			$selectedLang = $wgContLanguageCode;
+		}
 		foreach($wgLanguageNames as $code => $name) {
 			global $IP;
 			/* only add languages that have a file */
 			$langfile="$IP/languages/Language".str_replace('-', '_', ucfirst($code)).".php";
 			if(file_exists($langfile) || $code == $wgContLanguageCode) {
-				$sel = ($code == $this->mUserLanguage)? 'selected="selected"' : '';
+				$sel = ($code == $selectedLang)? 'selected="selected"' : '';
 				$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
 			}
 		}
