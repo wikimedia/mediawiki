@@ -1857,6 +1857,7 @@ class Parser
 			if ($collapsedtoc && !$i) {
 				$full = $full.$collapsedtoc;		
 			}
+			$wgOut->setToc("");
 
 			if( !empty( $head[$i] ) ) {
 				$full .= $head[$i];
@@ -1870,8 +1871,7 @@ class Parser
 	/* Generates a HTML-formatted table of contents which links to individual sections 
 	   from the wikisource. Used for collapsing long pages.
 	 */	   
-	/* static */ function getTocFromSource( $text ) {
-		#$numMatches = preg_match_all( "/<H([1-6])(.*?" . ">)(.*?)<\/H[1-6]>/i", $text, $matches );
+	/* static */ function getTocFromSource( $text ) {		
 		
 		global $wgUser,$wgInputEncoding,$wgTitle,$wgOut,$wgParser;		
 		$sk = $wgUser->getSkin();		
@@ -1896,6 +1896,7 @@ class Parser
 		$combined_html=$myout->getText();		
 		$headlines=array();
 		$headlines=explode("!@@@!",$combined_html);
+		
 		# headline counter
 		$headlineCount = 0;		
 		$toclevel = 0;
@@ -1906,6 +1907,7 @@ class Parser
 		$level = 0;
 		$prevlevel = 0;
 		foreach( $headlines as $headline ) {			
+			$headline=trim($headline);
 			$numbering = "";
 			if( $level ) {
 				$prevlevel = $level;
@@ -1961,7 +1963,7 @@ class Parser
 			$tocline = $numbering . " " . $tocline;
 
 			# Create the anchor for linking from the TOC to the section
-			$anchor = $canonized_headline;
+			$anchor = trim($canonized_headline);
 			
 			if($refcount[$headlineCount] > 1 ) {
 				$anchor .= "_" . $refcount[$headlineCount];

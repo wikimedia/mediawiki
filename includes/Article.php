@@ -73,6 +73,7 @@ class Article {
 		$action = $wgRequest->getText( 'action', 'view' );
 		$section = $wgRequest->getText( 'section' );
 		$sectiontitle = $wgRequest->getText( 'sectiontitle' );	
+		$oid = $wgRequest->getInt( 'oldid' );	
 
 		if ( 0 == $this->getID() ) {
 			if ( "edit" == $action ) {
@@ -96,6 +97,7 @@ class Article {
 			if( $wgRequest->getText( 'collapse' ) == 'false') {			
 				$collapse=false;
 			}
+			if($oid) { $collapse=false; }
 			$wgOut->setCollapse($collapse);
 			
 			# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
@@ -110,13 +112,8 @@ class Article {
 			# When a page is viewed in collapsed mode, only the intro section and, for
 			# pages with multiple sections, a table of contents are shown.			
 			if($collapse && $action=="view" && $section=="") {
-				$secs =
-				  preg_split(
-		  		  "/(^=+.*?=+|^<h[1-6].*?" . ">.*?<\/h[1-6].*?" . ">)/mi",
-		  		  $this->mContent, -1,
-		  		  PREG_SPLIT_DELIM_CAPTURE);
-				$wgOut->setToc(Parser::getTocFromSource($this->mContent));
-				$rv=$secs[0];
+				$rv=$this->getSection($this->mContent,0,"");				
+				$wgOut->setToc(Parser::getTocFromSource($this->mContent));				
 				if($anontalk) { $rv = $rv . "\n" . wfMsg("anontalkpage"); }
 				return $rv;
 			}
@@ -739,7 +736,7 @@ class Article {
 				}
 				$text=join("",$secs);
 				# reinsert the stuff that we stripped out earlier
-				$text=$parser->unstrip($text,$striparray,true);	
+				$text=$parser->unstrip($text,$striparray);	
 			}
 								
 		}
