@@ -14,7 +14,8 @@
       /*]]>*/
     </style>
     <link rel="stylesheet" type="text/css" media="print" href="${stylepath}/commonPrint.css" />
-    <!--[if IE]><style type="text/css" media="all">@import url(${stylepath}/${skinname}/IEFixes.css);</style><![endif]-->
+    <!--[if IE]><style type="text/css" media="all">@import url(${stylepath}/${skinname}/IEFixes.css);</style>
+    <script type="text/javascript" src="${stylepath}/IEFixes.js"><![endif]-->
     <link tal:condition="favicon" rel="shortcut icon" href="${favicon}" type="image/x-icon" />
     <!-- Disable IE6 image toolbar --><meta http-equiv="imagetoolbar" content="no" />
     <script type="text/javascript" src="${stylepath}/wikibits.js">
