@@ -22,7 +22,8 @@
  "contextlines" => 5, "contextchars" => 50,
  "skin" => 0, "math" => 1, "rcdays" => 3, "rclimit" => 50,
  "highlightbroken" => 0, "stubthreshold" => 0,
- "previewontop" => 1
+ "previewontop" => 1, "editsection" => 0, "showtoc" => 0,
+ "date" => 2
 );
 
 /* private */ $wgQuickbarSettingsNl = array(
@@ -49,6 +50,8 @@
  "hideminor" => "Kleine wijzigingen verbergen in recente wijzigingen",
  "usenewrc" => "Gebruik de uitgebreide Recente Wijzigingen-pagina (niet op alle browsers mogelijk)",
  "numberheadings" => "Koppen automatisch nummeren",
+ "editsection" => "Maak het bewerken van deelpagina's mogelijk",
+ "showtoc" => "Geef een inhoudsopgave van de pagina",
  "rememberpassword" => "Wachtwoord onthouden",
  "editwidth" => "Bewerkingsveld over volle breedte",
  "editondblclick" => "Dubbelklikken levert bewerkingspagina (vereist JavaScript)",
@@ -64,13 +67,14 @@
  "de" => "Deutsch",
  "fr" => "Français",
  "pl" => "Polski",
- "es" => "Español",
+ "ja" => "&#26085;&#26412;&#35486;",
  "sv" => "Svenska",
  "da" => "Dansk",
- "ja" => "&#26085;&#26412;&#35486;",
- "it" => "Italiano",
+ "es" => "Español",
  "eo" => "Esperanto",
+ "it" => "Italiano",
  "pt" => "Português",
+ "fi" => "Suomen",
  "fy" => "Frysk",
  "af" => "Afrikaans",
  "ab" => "Abchazisch",
@@ -88,7 +92,7 @@
  "bh" => "Bihara",
  "my" => "Birmaans",
  "bi" => "Bislama",
- "bs" => "Bosnisch",
+ "bs" => "Bosanski",
  "br" => "Brezhoneg",
  "km" => "Cambodjaans",
  "ca" => "Català",
@@ -101,9 +105,9 @@
  "eu" => "Euskara",
  "fo" => "Faeroers",
  "fa" => "&#8238;&#1601;&#1585;&#1587;&#1609;&#8236;",
- "fj" => "Fijisch",
+ "fj" => "Fiji",
  "ga" => "Gaelige",
- "gl" => "Galicisch",
+ "gl" => "Galego",
  "kl" => "Groenlands",
  "gn" => "Guarani",
  "gu" => "&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752;",
@@ -142,7 +146,7 @@
  "mo" => "Moldavisch",
  "mn" => "Mongools",
  "na" => "Nauru",
- "za" => "Nedersassisch (Plattdüütsch)",
+ "nds" => "Nedersassisch (Plattdüütsch)",
  "ne" => "&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;",
  "no" => "Norsk",
  "oc" => "Occitaans",
@@ -151,7 +155,6 @@
  "or" => "Oriya",
  "om" => "Oromo",
  "ps" => "Pashto",
- "pd" => "Plattdüütsch (Nedersassisch)",
  "pa" => "Punjabi",
  "qu" => "Quechua",
  "rm" => "Rheto-Romaans",
@@ -172,7 +175,6 @@
  "sk" => "Slovak",
  "su" => "Soedanees",
  "so" => "Soomaali",
- "fi" => "Suomi",
  "tl" => "Tagalog",
  "tg" => "Tajik",
  "ta" => "Tamil",
@@ -194,10 +196,12 @@
  "xh" => "isiXhosa",
  "yi" => "Yiddish",
  "yo" => "Yoruba",
+ "za" => "Zhuang",
  "zh" => "&#20013;&#25991",
+ "zh-cn" => "&#20013;&#25991;(&#31616;&#20307;)",
+ "zh-tw" => "&#20013;&#25991;(&#32321;&#20307;)",
  "zu" => "isiZulu",
  "simple" => "Simplified English",
- "dk" => "Gebruik voor Deens da"
 );
 
 /* private */ $wgWeekdayNamesNl = array(
@@ -336,6 +340,10 @@
 "retrievedfrom" => "Afkomstig van Wikipedia NL, de Vrije Encyclopedie. \"$1\"",
 "newmessages" => "Er zijn $1.",
 "newmessageslink" => "nieuwe berichten voor u",
+"editsection" => "bewerken",
+"toc" => "Inhoud",
+"showtoc" => "Tonen",
+"hidetoc" => "Niet tonen",
 
 # Main script and global functions
 # Algemene functies
@@ -444,6 +452,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "previewnote" => "Let op: dit is een controlepagina; uw tekst is nog niet opgeslagen!",
 "previewconflict" => "Deze versie toont hoe de tekst in het bovenste veld eruit gaat zien wanneer u zou opslaan.",
 "editing"  => "Bewerkingspagina: $1",
+"sectionedit" => "(deelpagina)",
 "editconflict" => "Bewerkingsconflict: $1",
 "explainconflict" => "Iemand anders heeft deze pagina gewijzigd nadat u aan deze bewerking bent begonnen. Het bovenste tekstveld toont de huidige versie van de pagina. U zal uw eigen wijzigingen moeten integreren in die tekst. Alleen de tekst in het bovenste veld wordt bewaard wanneer u kiest voor \"Pagina opslaan\".\n<p>",
 "yourtext"  => "Uw tekst",
@@ -522,6 +531,8 @@ $2 Toon redirects &nbsp; Zoek: $3 $9",
 "math_unknown_function" => "Onbekende functie in formule",
 "math_lexing_error" => "Lexicografische fout in formule",
 "math_syntax_error" => "Syntax-fout in formule",
+# "dateformat" => "Wijze van tonen datum",
+# Not used in nl, kept here for reference if we want to change it
 "saveprefs"  => "Voorkeuren opslaan",
 "resetprefs" => "Standaardvoorkeuren herstellen",
 "oldpassword" => "Huidig wachtwoord",
@@ -542,7 +553,8 @@ $2 Toon redirects &nbsp; Zoek: $3 $9",
 "timezoneoffset" => "Tijdsverschil",
 "servertime" => "De locale tijd van de Wikipedia-server:",
 "guesstimezone" => "Vanuit de browser toe te voegen",
-"emailflag"  => "E-mail ontvangen van andere gebruikers uitschakelen",
+"emailflag" => "E-mail ontvangen van andere gebruikers uitschakelen",
+"defaultns" => "Naamruimten om direct in te zoeken:",
 
 # Recent changes
 # Recente wijzigingen
@@ -556,9 +568,9 @@ Als u pagina's wilt verwijderen, ga naar [[Wikipedia:Te verwijderen pagina's|Te 
 "rcnote"  => "Hieronder zijn de <strong>$1</strong> laatste wijzigingen gedaan in de laatste <strong>$2</strong> dagen.",
 "rcnotefrom"  => "Veranderingen sinds <b>$2</b> (met een maximum van <b>$1</b> veranderingen).",
 "rclistfrom"  => "Toon de veranderingen vanaf $1",
-# "rclinks"  => "Bekijk de $1 laatste wijzigingen in de laatste $2 uren / laatste $3 dagen.",
-"rclinks"  => "Bekijk de $1 laatste wijzigingen in de laatste $2 dagen.",
+"rclinks"  => "Bekijk de $1 laatste wijzigingen in de laatste $2 dagen - $3 kleine wijzigingen.",
 "rchide"  => "in $4 vorm; $1 kleine wijzigingen; $2 wijzigingen op speciale pagina's zoals overleg- en gebruikerspagina's; $3 meervoudige wijzigingen.",
+"rcliu" => "- $1 edits van geregistreerde gebruikers",
 "diff"   => "wijz",
 "hist"   => "hist",
 "hide"   => "verberg",
@@ -770,7 +782,10 @@ Ook zullen deze pagina's in het <b>vet</b> verschijnen in de <a href=\"" .
 "imagereverted" => "De omzetting naar de oudere versie is geslaagd.",
 "rollback"      => "Wijzigingen ongedaan maken",
 "rollbacklink"  => "Terugdraaien",
+"rollbackfailed" => "Ongedaan maken van wijzigingen mislukt.",
 "cantrollback"  => "Ongedaan maken van wijzigingen onmogelijk: Dit artikel heeft slechts 1 auteur.",
+"allreadyrolled" => "[[Gebruiker:$3|$3]] heeft de pagina [[$1]] bewerkt na de laatste bewerking door [[Gebruiker:$2|$2]].",
+"editcomment"   => "Commentaar bij de wijziging: <i>$1</i>",
 "revertpage"    => "Hersteld tot de versie na de laatste wijziging door $1.",
 
 # Undelete
@@ -848,6 +863,7 @@ Vergeet niet de database opnieuw te de-blokkeren zodra u klaar bent met uw onder
 # SQL raadplegen
 "asksql"  => "SQL raadplegen",
 "asksqltext" => "Gebruik het onderstaande formulier om een direct verzoek naar de database van Wikipedia NL te zenden. Gebruik enkelvoudige aanhalingstekens ('zoals hier') voor letterlijke teksten. Een ingewikkelde aanvraag kan de sever vaak extra belasten. Gelieve deze mogelijkheid daarom spaarzaam te gebruiken. Zie ook: [[Wikipedia:SQL opdrachten]].",
+"sqlislogged" => "Alle SQL Queries worden gelogd.",
 "sqlquery"  => "Voer opdracht in",
 "querybtn"  => "Verstuur opdracht",
 "selectonly" => "Opdrachten anders dan \"SELECT\" zijn voorbehouden aan Wikipedia ontwikkelaars.",
@@ -869,7 +885,7 @@ te zijn om een pagina te verplaatsen.",
 "newtitle"  => "Naar de nieuwe titel",
 "movepagebtn" => "Verplaats pagina",
 "pagemovedsub" => "De verplaatsing was succesvol",
-"pagemovedtext" => "Pagina \"[[$1]]\" verplaatst naar \"[[$2]]\".",
+"pagemovedtext" => "Pagina \"[[$1]]\" is verplaatst naar \"[[$2]]\".",
 "articleexists" => "Er is reeds een pagina met deze titel of de titel is ongeldig. <br>Gelieve een andere titel te kiezen.",
 "talkexists" => "De pagina zelf is verplaatst, maar de Overlegpagina kon niet worden verplaatst, omdat de doeltitel al een niet-lege overlegpagina had. Combineer de overlegpagina's a.u.b. handmatig.",
 "movedto"  => "verplaatst naar",
@@ -927,6 +943,11 @@ class LanguageNl extends Language {
   return $wgMathNamesNl;
  }
 
+ function getDateFormats(){
+  global $wgDateFormatsNl;
+  return $wgDateFormatsNl;
+ } 
+
  function getUserToggles() {
   global $wgUserTogglesNl;
   return $wgUserTogglesNl;
@@ -958,6 +979,14 @@ class LanguageNl extends Language {
   global $wgMonthNamesNl;
   return $wgMonthNamesNl[$key-1];
  }
+
+ function getMonthRegex()
+ {
+  global $wgMonthNamesNl;
+
+  return implode( "|", $wgMonthNamesNl );
+ }
+
 
  function getMonthAbbreviation( $key )
  {
