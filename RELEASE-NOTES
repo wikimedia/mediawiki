@@ -147,6 +147,7 @@ If upgrading from an older release, see the file UPGRADING.
   after installation and the wiki is subsequently upgraded
 * Database error messages include the database server name/address
 * Paging support for large categories
+* Fix image page scaling when thumbnail generation is disabled
 
 === Caveats ===
 
