@@ -71,7 +71,9 @@ global $wgMsgCacheExpiry, $wgDBname, $wgCommandLineMode;
 global $wgBlockCache, $wgParserCache, $wgParser;
 
 # Useful debug output
-if ( function_exists( "getallheaders" ) ) {
+if ( $wgCommandLineMode ) {
+	wfDebug( '"' . implode( '"  "', $argv ) . '"' );
+} elseif ( function_exists( "getallheaders" ) ) {
 	wfDebug( "\nStart request\n" );
 	wfDebug( $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . "\n" );
 	$headers = getallheaders();
