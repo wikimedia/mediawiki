@@ -424,7 +424,7 @@ class Parser
 		foreach ( $data AS $x )
 		{
 			$t = $wgLang->getNsText ( $x->cur_namespace ) ;
-			if ( $t != "" ) $t .= ":" ;
+			if ( $t != '' ) $t .= ':' ;
 			$t .= $x->cur_title ;
 
 			if ( $x->cur_namespace == NS_CATEGORY ) {
@@ -495,7 +495,7 @@ class Parser
 				// entry in the categorylinks table is Category:A, not A, which it SHOULD be.
 				// Workaround: If sortkey == "Category:".$title, than use $title for sorting,
 				// else use sortkey...
-				if ( ($ns.":".$ctitle) ==  $x->cl_sortkey ) {
+				if ( ($ns.':'.$ctitle) == $x->cl_sortkey ) {
 					array_push ( $children_start_char, $wgLang->firstChar( $x->cur_title ) );
 				} else {
 					array_push ( $children_start_char, $wgLang->firstChar( $x->cl_sortkey ) ) ;
@@ -625,7 +625,7 @@ class Parser
 
 			}
 			$r .= '</tr></table>';
-		} elseif ( count ( $articles )  > 0) {
+		} elseif ( count($articles) > 0) {
 			// for short lists of articles in categories.
 			$ti = $this->mTitle->getText() ;
 
@@ -898,8 +898,7 @@ class Parser
 	}
 
 	# Parse ^^ tokens and return html
-	/* private */ function doExponent ( $text )
-	{
+	/* private */ function doExponent ( $text ) {
 		$fname = 'Parser::doExponent';
 		wfProfileIn( $fname);
 		$text = preg_replace('/\^\^(.*)\^\^/','<small><sup>\\1</sup></small>', $text);
@@ -907,7 +906,7 @@ class Parser
 		return $text;
 	}
 
-    # Parse headers and return html
+	# Parse headers and return html
 	/* private */ function doHeadings( $text ) {
 		$fname = 'Parser::doHeadings';
 		wfProfileIn( $fname );
@@ -1149,10 +1148,10 @@ class Parser
 			} else {
 				# Expand the URL for printable version
 				if ( ! $sk->suppressUrlExpansion() ) {
-				    $paren = "<span class='urlexpansion'> (<i>" . htmlspecialchars ( $encUrl ) . "</i>)</span>";
-			    } else {
+					$paren = "<span class='urlexpansion'> (<i>" . htmlspecialchars ( $encUrl ) . "</i>)</span>";
+				} else {
 					$paren = '';
-			    }
+				}
 			}
 
 			# Process the trail (i.e. everything after this link up until start of the next link),
@@ -1219,6 +1218,7 @@ class Parser
 		return $s;
 	}
 
+	# make an image if it's allowed
 	function maybeMakeImageLink( $url ) {
 		$sk =& $this->mOptions->getSkin();
 		$text = false;
@@ -1418,8 +1418,7 @@ class Parser
 	# These next three functions open, continue, and close the list
 	# element appropriate to the prefix character passed into them.
 	#
-	/* private */ function openList( $char )
-    {
+	/* private */ function openList( $char ) {
 		$result = $this->closeParagraph();
 
 		if ( '*' == $char ) { $result .= '<ul><li>'; }
@@ -1563,7 +1562,7 @@ class Parser
 					if($preOpenMatch and !$preCloseMatch) {
 						$this->mInPre = true;
 					}
-					if ( $closematch  ) {
+					if ( $closematch ) {
 						$inBlockElem = false;
 					} else {
 						$inBlockElem = true;
@@ -1641,7 +1640,7 @@ class Parser
 				return $this->mTitle->getPartialURL();
 			case MAG_NAMESPACE:
 				# return Namespace::getCanonicalName($this->mTitle->getNamespace());
-				return $wgLang->getNsText($this->mTitle->getNamespace()); // Patch  by Dori
+				return $wgLang->getNsText($this->mTitle->getNamespace()); # Patch by Dori
 			case MAG_CURRENTDAYNAME:
 				return $wgLang->getWeekdayName( date('w')+1 );
 			case MAG_CURRENTYEAR:
@@ -1672,9 +1671,9 @@ class Parser
 	/* private */ function replaceVariables( $text, $args = array() ) {
 		global $wgLang, $wgScript, $wgArticlePath;
 
-                # Prevent too big inclusions
-                if(strlen($text)> MAX_INCLUDE_SIZE)
-                   return $text;
+		# Prevent too big inclusions
+		if(strlen($text)> MAX_INCLUDE_SIZE)
+		return $text;
 
 		$fname = 'Parser::replaceVariables';
 		wfProfileIn( $fname );
@@ -1866,7 +1865,7 @@ class Parser
 			$this->mOutput->mContainsOldMagic = true;
 		}
 
-                # Template table test
+		# Template table test
 
 		# Did we encounter this template already? If yes, it is in the cache
 		# and we need to check for loops.
@@ -1904,7 +1903,7 @@ class Parser
 					$found = true;
 				}
 
-                                # Template cache array insertion
+				# Template cache array insertion
 				$this->mTemplates[$part1] = $text;
 			}
 		}
@@ -1938,7 +1937,7 @@ class Parser
 				$wgLinkCache->suspend();
 			}
 
-                        # Add a new element to the templace recursion path
+			# Add a new element to the templace recursion path
 			$this->mTemplatePath[$part1] = 1;
 
 			$text = $this->stripParse( $text, $newline, $assocArgs );
@@ -1949,8 +1948,8 @@ class Parser
 				$wgLinkCache->addLinkObj( $title );
 			}
 		}
-                # Empties the template path
-                $this->mTemplatePath = array();
+				# Empties the template path
+				$this->mTemplatePath = array();
 
 		if ( !$found ) {
 			return $matches[0];
@@ -2293,7 +2292,7 @@ class Parser
 
 		foreach( $blocks as $block ) {
 			if( $showEditLink && $headlineCount > 0 && $i == 0 && $block != "\n" ) {
-			    # This is the [edit] link that appears for the top block of text when
+				# This is the [edit] link that appears for the top block of text when
 				# section editing is enabled
 
 				# Disabled because it broke block formatting
@@ -2435,7 +2434,7 @@ class Parser
 				$url = str_replace( '$1', $rfc, $url);
 				$sk =& $this->mOptions->getSkin();
 				$la = $sk->getExternalLinkAttributes( $url, "RFC {$rfc}" );
-                            	$text .= "<a href='{$url}'{$la}>RFC {$rfc}</a>{$x}";
+				$text .= "<a href='{$url}'{$la}>RFC {$rfc}</a>{$x}";
 			}
 		}
 		return $text;
@@ -2651,14 +2650,16 @@ class ParserOptions
 	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
 	function setShowToc( $x )                   { return wfSetVar( $this->mShowToc, $x ); }
 
-    function setSkin( &$x ) { $this->mSkin =& $x; }
+	function setSkin( &$x ) { $this->mSkin =& $x; }
 
+	# Get parser options
 	/* static */ function newFromUser( &$user ) {
 		$popts = new ParserOptions;
 		$popts->initialiseFromUser( $user );
 		return $popts;
 	}
 
+	# Get user options
 	function initialiseFromUser( &$userInput ) {
 		global $wgUseTeX, $wgUseCategoryMagic, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
 
@@ -2686,34 +2687,31 @@ class ParserOptions
 }
 
 # Regex callbacks, used in Parser::replaceVariables
-function wfBraceSubstitution( $matches )
-{
+function wfBraceSubstitution( $matches ) {
 	global $wgCurParser;
 	return $wgCurParser->braceSubstitution( $matches );
 }
 
-function wfArgSubstitution( $matches )
-{
+function wfArgSubstitution( $matches ) {
 	global $wgCurParser;
 	return $wgCurParser->argSubstitution( $matches );
 }
 
-function wfVariableSubstitution( $matches )
-{
+function wfVariableSubstitution( $matches ) {
 	global $wgCurParser;
 	return $wgCurParser->variableSubstitution( $matches );
 }
 
-function wfNumberOfArticles()
-{
+# Return the total number of articles
+function wfNumberOfArticles() {
 	global $wgNumberOfArticles;
 
 	wfLoadSiteStats();
 	return $wgNumberOfArticles;
 }
 
-/* private */ function wfLoadSiteStats()
-{
+# Get various statistics from the database
+/* private */ function wfLoadSiteStats() {
 	global $wgNumberOfArticles, $wgTotalViews, $wgTotalEdits;
 	$fname = 'wfLoadSiteStats';
 
