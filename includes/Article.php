@@ -1068,7 +1068,7 @@ class Article {
 		$up = new UserUpdate();
 		array_push( $wgDeferredUpdateList, $up );
 
-		$wgOut->returnToMain( false );
+		$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
 	}
 
 	function unwatch()
