@@ -219,8 +219,13 @@ class ImagePage extends Article {
 			}
 			$dest = wfImageDir( $image );
 			$archive = wfImageDir( $image );
-			if ( ! @unlink( "{$dest}/{$image}" ) ) {
-				$wgOut->fileDeleteError( "{$dest}/{$image}" );
+			
+			# Delete the image file if it exists; due to sync problems
+			# or manual trimming sometimes the file will be missing.
+			$targetFile = "{$dest}/{$image}";
+			if( file_exists( $targetFile ) && ! @unlink( $targetFile ) ) {
+				# If the deletion operation actually failed, bug out:
+				$wgOut->fileDeleteError( $targetFile );
 				return;
 			}
 			$dbw->delete( 'image', array( 'img_name' => $image ) );
@@ -280,7 +285,17 @@ class ImagePage extends Article {
 
 		$name = substr( $oldimage, 15 );
 		$archive = wfImageArchiveDir( $name );
-		if ( ! @unlink( "{$archive}/{$oldimage}" ) ) {
+		
+		# Delete the image if it exists. Sometimes the file will be missing
+		# due to manual intervention or weird sync problems; treat that
+		# condition gracefully and continue to delete the database entry.
+		# Also some records may end up with an empty oi_archive_name field
+		# if the original file was missing when a new upload was made;
+		# don't try to delete the directory then!
+		#
+		$targetFile = "{$archive}/{$oldimage}";
+		if( $oldimage != '' && file_exists( $targetFile ) && !@unlink( $targetFile ) ) {
+			# If we actually have a file and can't delete it, throw an error.
 			$wgOut->fileDeleteError( "{$archive}/{$oldimage}" );
 		} else {
 			# Log the deletion
