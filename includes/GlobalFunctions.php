@@ -475,12 +475,21 @@ function wfDebugDieBacktrace( $msg = '' ) {
 		}
 		$backtrace = debug_backtrace();
 		foreach( $backtrace as $call ) {
-			$f = explode( DIRECTORY_SEPARATOR, $call['file'] );
-			$file = $f[count($f)-1];
-			if ( $wgCommandLineMode ) {
-				$msg .= "$file line {$call['line']} calls ";
+			if( isset( $call['file'] ) ) {
+				$f = explode( DIRECTORY_SEPARATOR, $call['file'] );
+				$file = $f[count($f)-1];
 			} else {
-				$msg .= '<li>' . $file . ' line ' . $call['line'] . ' calls ';
+				$file = '-';
+			}
+			if( isset( $call['line'] ) ) {
+				$line = $call['line'];
+			} else {
+				$line = '-';
+			}
+			if ( $wgCommandLineMode ) {
+				$msg .= "$file line $line calls ";
+			} else {
+				$msg .= '<li>' . $file . ' line ' . $line . ' calls ';
 			}
 			if( !empty( $call['class'] ) ) $msg .= $call['class'] . '::';
 			$msg .= $call['function'] . '()';
