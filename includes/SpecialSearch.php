@@ -162,7 +162,9 @@ class SpecialSearch {
 			$wgOut->addHTML( "<br />{$prevnext}\n" );
 		}
 
-		$terms = implode( '|', $search->termMatches() );
+		global $wgContLang;
+		$tm = $wgContLang->convertForSearchResult( $search->termMatches() );
+		$terms = implode( '|', $tm );
 		
 		if( $titleMatches->numRows() ) {
 			$wgOut->addWikiText( '==' . wfMsg( 'titlematches' ) . "==\n" );
@@ -299,6 +301,10 @@ class SpecialSearch {
 			$out .= $this->showHit( $row, $terms );
 		}
 		$out .= "</ol>\n";
+
+		// convert the whole thing to desired language variant
+		global $wgContLang;
+		$out = $wgContLang->convert( $out );
 		wfProfileOut( $fname );
 		return $out;
 	}
@@ -329,8 +335,10 @@ class SpecialSearch {
 		$size = wfMsg( 'nbytes', strlen( $row->cur_text ) );
 
 		$lines = explode( "\n", $row->cur_text );
+
 		$max = IntVal( $contextchars ) + 1;
 		$pat1 = "/(.*)($terms)(.{0,$max})/i";
+
 		$lineno = 0;
 		
 		$extract = '';
