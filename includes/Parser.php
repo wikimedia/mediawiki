@@ -182,9 +182,9 @@ class Parser
 				$pre_content[$marker] = "<pre>$content</pre>";
 			}
 		}
-
-		$state = array( $nowiki_content, $hiero_content, $math_content, $pre_content );
 		
+		# Must expand in reverse order, otherwise nested tags will be corrupted
+		$state = array( $pre_content, $math_content, $hiero_content, $nowiki_content );
 		return $text;
 	}
 
@@ -576,6 +576,7 @@ class Parser
 	
 	/* private */ function handle5Quotes( &$state, $token )
 	{
+		$s = "";
 		if ( $state["em"] && $state["strong"] ) {
 			if ( $state["em"] < $state["strong"] ) {
 				$s .= "</strong></em>";
@@ -1407,7 +1408,10 @@ class Parser
 		$full = "";
 		$head = array();
 		$sublevelCount = array();
+		$level = 0;
+		$prevlevel = 0;
 		foreach( $matches[3] as $headline ) {
+			$numbering = "";
 			if( $level ) {
 				$prevlevel = $level;
 			}
@@ -1425,11 +1429,11 @@ class Parser
 				$toclevel -= $prevlevel - $level;
 			}
 			# count number of headlines for each level
-			$sublevelCount[$level]++;
-			
+			@$sublevelCount[$level]++;
 			if( $doNumberHeadings || $doShowToc ) {
+				$dot = 0;
 				for( $i = 1; $i <= $level; $i++ ) {
-					if( $sublevelCount[$i] ) {
+					if( !empty( $sublevelCount[$i] ) ) {
 						if( $dot ) {
 							$numbering .= ".";
 						}
@@ -1452,7 +1456,7 @@ class Parser
 			$refer[$headlineCount] = $canonized_headline;
 			
 			# count how many in assoc. array so we can track dupes in anchors
-			$refers[$canonized_headline]++;
+			@$refers[$canonized_headline]++;
 			$refcount[$headlineCount]=$refers[$canonized_headline];
 
 			# Prepend the number to the heading text
@@ -1476,6 +1480,9 @@ class Parser
 				$toc .= $sk->tocLine($anchor,$tocline,$toclevel);
 			}
 			if( $showEditLink ) {
+				if ( empty( $head[$headlineCount] ) ) {
+					$head[$headlineCount] = "";
+				}
 				$head[$headlineCount] .= $sk->editSectionLink($headlineCount+1);
 			}
 			
@@ -1491,16 +1498,14 @@ class Parser
 			}
 				
 			# give headline the correct <h#> tag
-			$head[$headlineCount] .= "<h".$level.$matches[2][$headlineCount] .$headline."</h".$level.">";
+			@$head[$headlineCount] .= "<h".$level.$matches[2][$headlineCount] .$headline."</h".$level.">";
 			
 			# Add the edit section link
 			if( $rightClickHack ) {
 				$head[$headlineCount] = $sk->editSectionScript($headlineCount+1,$head[$headlineCount]);	
 			}
 			
-			$numbering = "";
 			$headlineCount++;
-			$dot = 0;
 		}		
 
 		if( $doShowToc ) {
@@ -1515,7 +1520,7 @@ class Parser
 		$i = 0;
 
 		foreach( $blocks as $block ) {
-			if( $showEditLink && $headlineCount > 0 && $i == 0 ) {
+			if( $showEditLink && $headlineCount > 0 && $i == 0 && $block != "\n" ) {
 			    # This is the [edit] link that appears for the top block of text when 
 				# section editing is enabled
 				$full .= $sk->editSectionLink(0);

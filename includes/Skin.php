@@ -174,21 +174,22 @@ class Skin {
 
 	function getBodyOptions()
 	{
-		global $wgUser, $wgTitle, $wgNamespaceBackgrounds, $wgOut, $oldid, $redirect, $diff,$action;
+		global $wgUser, $wgTitle, $wgNamespaceBackgrounds, $wgOut, $wgRequest;
+		
+		extract( $wgRequest->getValues( 'oldid', 'redirect', 'diff' ) );
 
 		if ( 0 != $wgTitle->getNamespace() ) {
 			$a = array( "bgcolor" => "#ffffec" );
 		}
 		else $a = array( "bgcolor" => "#FFFFFF" );
-		if($wgOut->isArticle() && $wgUser->getOption("editondblclick")
-			&& 
-			(!$wgTitle->isProtected() || $wgUser->isSysop())
-			
-			) {
+		if($wgOut->isArticle() && $wgUser->getOption("editondblclick") && 
+		  (!$wgTitle->isProtected() || $wgUser->isSysop()) ) {
 			$t = wfMsg( "editthispage" );
 			$oid = $red = "";
-			if ( $redirect ) { $red = "&redirect={$redirect}"; }
-			if ( $oldid && ! isset( $diff ) ) {
+			if ( $redirect ) { 
+				$red = "&redirect={$redirect}"; 
+			}
+			if ( !empty($oldid) && ! isset( $diff ) ) {
 				$oid = "&oldid={$oldid}";
 			}
 			$s = $wgTitle->getFullURL( "action=edit{$oid}{$red}" );
@@ -411,7 +412,10 @@ class Skin {
 
 	function pageTitleLinks()
 	{
-		global $wgOut, $wgTitle, $oldid, $action, $diff, $wgUser, $wgLang, $wgUseApproval;
+		global $wgOut, $wgTitle, $wgUser, $wgLang, $wgUseApproval, $wgRequest;
+
+		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
+		$action = $wgRequest->getText( 'action' );
 
 		$s = $this->printableLink();
 		if ( wfMsg ( "disclaimers" ) != "-" ) $s .= " | " . $this->makeKnownLink( wfMsg( "disclaimerpage" ), wfMsg( "disclaimers" ) ) ;
@@ -584,7 +588,9 @@ class Skin {
 
 	function searchForm()
 	{
-		global $search;
+		global $wgRequest;
+
+		$search = $wgRequest->getText( 'search' );;
 
 		$s = "<form name='search' class='inline' method=post action=\""
 		  . wfLocalUrl( "" ) . "\">"
@@ -658,9 +664,10 @@ class Skin {
 
 	function pageStats()
 	{
-		global $wgOut, $wgLang, $wgArticle;
-		global $oldid, $diff, $wgDisableCounters;
-
+		global $wgOut, $wgLang, $wgArticle, $wgRequest;
+		global $wgDisableCounters;
+		
+		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 		if ( ! $wgOut->isArticle() ) { return ""; }
 		if ( isset( $oldid ) || isset( $diff ) ) { return ""; }
 		if ( 0 == $wgArticle->getID() ) { return ""; }
@@ -700,12 +707,14 @@ class Skin {
 
 	function quickBar()
 	{
-		global $wgOut, $wgTitle, $wgUser, $action, $wgLang;
-		global $wpPreview, $wgDisableUploads, $wgRemoteUploads;
+		global $wgOut, $wgTitle, $wgUser, $wgRequest, $wgLang;
+		global $wgDisableUploads, $wgRemoteUploads;
 	    
 		$fname =  "Skin::quickBar";
 		wfProfileIn( $fname );
 
+		$action = $wgRequest->getText( 'action' );
+		$wpPreview = $wgRequest->getBool( 'wpPreview' );
 		$tns=$wgTitle->getNamespace();
 
 		$s = "\n<div id='quickbar'>";
@@ -921,8 +930,12 @@ class Skin {
 
 	function editThisPage()
 	{
-		global $wgOut, $wgTitle, $oldid, $redirect, $diff;
-
+		global $wgOut, $wgTitle, $wgRequest;
+		
+		$oldid = $wgRequest->getVal( 'oldid' );
+		$diff = $wgRequest->getVal( 'diff' );
+		$redirect = $wgRequest->getVal( 'redirect' );
+		
 		if ( ! $wgOut->isArticleRelated() ) {
 			$s = wfMsg( "protectedpage" );
 		} else {
@@ -935,7 +948,7 @@ class Skin {
 			}
 			$oid = $red = "";
 
-			if ( $redirect ) { $red = "&redirect={$redirect}"; }
+			if ( !is_null( $redirect ) ) { $red = "&redirect={$redirect}"; }
 			if ( $oldid && ! isset( $diff ) ) {
 				$oid = "&oldid={$oldid}";
 			}
@@ -946,8 +959,9 @@ class Skin {
 
 	function deleteThisPage()
 	{
-		global $wgUser, $wgOut, $wgTitle, $diff;
+		global $wgUser, $wgOut, $wgTitle, $wgRequest;
 
+		$diff = $wgRequest->getVal( 'diff' );
 		if ( $wgTitle->getArticleId() && ( ! $diff ) && $wgUser->isSysop() ) {
 			$n = $wgTitle->getPrefixedText();
 			$t = wfMsg( "deletethispage" );
@@ -961,8 +975,9 @@ class Skin {
 
 	function protectThisPage()
 	{
-		global $wgUser, $wgOut, $wgTitle, $diff;
+		global $wgUser, $wgOut, $wgTitle, $wgRequest;
 
+		$diff = $wgRequest->getVal( 'diff' );
 		if ( $wgTitle->getArticleId() && ( ! $diff ) && $wgUser->isSysop() ) {
 			$n = $wgTitle->getPrefixedText();
 
@@ -982,7 +997,7 @@ class Skin {
 
 	function watchThisPage()
 	{
-		global $wgUser, $wgOut, $wgTitle, $diff;
+		global $wgUser, $wgOut, $wgTitle;
 
 		if ( $wgOut->isArticleRelated() ) {
 			$n = $wgTitle->getPrefixedText();
@@ -1067,7 +1082,6 @@ class Skin {
 		global $wgOut, $wgLang, $wgTitle, $wgUseNewInterlanguage;
 
 		$a = $wgOut->getLanguageLinks();
-		# TEST THIS @@@
 		if ( 0 == count( $a ) ) {
 			if ( !$wgUseNewInterlanguage ) return "";
 			$ns = $wgLang->getNsIndex ( $wgTitle->getNamespace () ) ;
@@ -2233,11 +2247,11 @@ class Skin {
 	}
 
 	function tocIndent($level) {
-		return str_repeat( "<div class='tocindent'>\n", $level );
+		return str_repeat( "<div class='tocindent'>\n", $level>0 ? $level : 0 );
 	}
 
 	function tocUnindent($level) {
-		return str_repeat( "</div>\n", $level );
+		return str_repeat( "</div>\n", $level>0 ? $level : 0 );
 	}
 
 	# parameter level defines if we are on an indentation level

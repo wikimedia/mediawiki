@@ -537,7 +537,9 @@ class OutputPage {
 
 	function returnToMain( $auto = true )
 	{
-		global $wgUser, $wgOut, $returnto;
+		global $wgUser, $wgOut, $wgRequest;
+		
+		$returnto = $wgRequest->getText( 'returnto' );
 
 		$sk = $wgUser->getSkin();
 		if ( "" == $returnto ) {

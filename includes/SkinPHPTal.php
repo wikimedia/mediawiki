@@ -39,7 +39,11 @@
 		function outputPage( &$out ) {
 			global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgOut;
 			global $wgScriptPath, $wgStyleSheetPath, $wgLanguageCode, $wgUseNewInterlanguage;
-			global $wgOutputEncoding, $wgUseDatabaseMessages, $action, $oldid, $diff;
+			global $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
+			
+			$action = $wgRequest->getText( 'action' );
+			$oldid = $wgRequest->getVal( 'oldid' );
+			$diff = $wgRequest->getVal( 'diff' );
 
 			$this->initPage();
 			$tpl = new PHPTAL($this->template . '.pt', 'templates');

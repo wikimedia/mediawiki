@@ -484,7 +484,9 @@ function wfImageArchiveDir( $fname , $subdir="archive")
 function wfRecordUpload( $name, $oldver, $size, $desc )
 {
 	global $wgUser, $wgLang, $wgTitle, $wgOut, $wgDeferredUpdateList;
-	global $wgUseCopyrightUpload , $wpUploadCopyStatus , $wpUploadSource ;
+	global $wgRequest, $wgUseCopyrightUpload; 
+	
+	extract( $wgRequest->getValues( 'wpUploadCopyStatus', 'wpUploadSource' ) );
 	
 	$fname = "wfRecordUpload";
 

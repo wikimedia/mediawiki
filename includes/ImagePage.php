@@ -116,9 +116,12 @@ class ImagePage extends Article {
 
 	function delete()
 	{
-		global $wgUser, $wgOut;
-		global $wpConfirm, $wpReason, $image, $oldimage;
+		global $wgUser, $wgOut, $wgRequest;
 
+		$confirm = $wgRequest->getBool( 'wpConfirm' );
+		$image = $wgRequest->getVal( 'image' );
+		$oldimage = $wgRequest->getVal( 'oldimage' );
+		
 		# Only sysops can delete images. Previously ordinary users could delete 
 		# old revisions, but this is no longer the case.
 		if ( !$wgUser->isSysop() ) {
@@ -132,7 +135,7 @@ class ImagePage extends Article {
 
 		# Better double-check that it hasn't been deleted yet!
 		$wgOut->setPagetitle( wfMsg( "confirmdelete" ) );
-		if ( $image ) {
+		if ( !is_null( $image ) ) {
 			if ( "" == trim( $image ) ) {
 				$wgOut->fatalError( wfMsg( "cannotdelete" ) );
 				return;
@@ -140,14 +143,14 @@ class ImagePage extends Article {
 		}
 		
 		# Deleting old images doesn't require confirmation
-		if ( $oldimage || 1 == $wpConfirm ) {
+		if ( !is_null( $oldimage ) || $confirm ) {
 			$this->doDelete();
 			return;
 		}
 		
-		if ( $image ) {
+		if ( !is_null( $image ) ) {
 			$q = "&image={$image}";
-		} else if ( $oldimage ) {
+		} else if ( !is_null( $oldimage ) ) {
 			$q = "&oldimage={$oldimage}";
 		}
 		return $this->confirmDelete( $q );
@@ -155,12 +158,15 @@ class ImagePage extends Article {
 
 	function doDelete()
 	{
-		global $wgOut, $wgUser, $wgLang;
-		global $image, $oldimage, $wpReason;
+		global $wgOut, $wgUser, $wgLang, $wgRequest;
 		global $wgUseSquid, $wgInternalServer, $wgDeferredUpdateList;
 		$fname = "Article::doDelete";
 
-		if ( $image ) {
+		$reason = $wgRequest->getVal( 'wpReason' );
+		$image = $wgRequest->getVal( 'image' );
+		$oldimage = $wgRequest->getVal( 'oldimage' );
+
+		if ( !is_null( $image ) ) {
 			$dest = wfImageDir( $image );
 			$archive = wfImageDir( $image );
 			if ( ! unlink( "{$dest}/{$image}" ) ) {
@@ -206,10 +212,10 @@ class ImagePage extends Article {
 
 			$nt = Title::newFromText( $wgLang->getNsText( Namespace::getImage() ) . ":" . $image );
 			$article = new Article( $nt );
-			$article->doDeleteArticle(); # ignore errors
+			$article->doDeleteArticle( $reason ); # ignore errors
 
 			$deleted = $image;
-		} else if ( $oldimage ) {
+		} else if ( !is_null( $oldimage ) ) {
 			# Squid purging
 			if ( $wgUseSquid ) {
 				$urlArr = Array(
@@ -224,7 +230,7 @@ class ImagePage extends Article {
 
 			$deleted = $oldimage;
 		} else {
-			$this->doDeleteArticle(); # ignore errors
+			$this->doDeleteArticle( $reason ); # ignore errors
 			$deleted = $this->mTitle->getPrefixedText();
 		}
 		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
@@ -254,10 +260,11 @@ class ImagePage extends Article {
 
 	function revert()
 	{
-		global $wgOut;
-		global $oldimage;
+		global $wgOut, $wgRequest;
 		global $wgUseSquid, $wgInternalServer, $wgDeferredUpdateList;
 
+		$oldimage = $wgRequest->getText( 'oldimage' );
+		
 		if ( strlen( $oldimage ) < 16 ) {
 			$wgOut->unexpectedValueError( "oldimage", $oldimage );
 			return;

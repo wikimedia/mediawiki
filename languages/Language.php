@@ -84,7 +84,7 @@ if($wgMetaNamespace === FALSE)
 	"contextlines" => 5, "contextchars" => 50,
 	"skin" => 'standard', "math" => 1, "rcdays" => 7, "rclimit" => 50,
 	"highlightbroken" => 1, "stubthreshold" => 0,
-	"previewontop" => 1, "editsection"=>0,"editsectiononrightclick"=>0, "showtoc"=>1,
+	"previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, "showtoc"=>1,
 	"showtoolbar" =>1,
 	"date" => 0
 );

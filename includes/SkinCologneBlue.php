@@ -252,7 +252,9 @@ class SkinCologneBlue extends Skin {
 
 	function searchForm( $label = "" )
 	{
-		global $search;
+		global $wgRequest;
+
+		$search = $wgRequest->getText( 'search' );
 		$s = "<form id=\"search\" method=\"get\" class=\"inline\" action=\"" .
 		  wfLocalUrlE( "" ) . "\">";
 		if ( "" != $label ) { $s .= "{$label}: "; }
