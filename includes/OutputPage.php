@@ -83,10 +83,9 @@ class OutputPage {
 			return;
 		}
 
-		$lastmod = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix(
-		  max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
+		$lastmod = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix( max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
 
-        if( !empty( $_SERVER["HTTP_IF_MODIFIED_SINCE"] ) ) {
+		if( !empty( $_SERVER["HTTP_IF_MODIFIED_SINCE"] ) ) {
 			# IE sends sizes after the date like this:
 			# Wed, 20 Aug 2003 06:51:19 GMT; length=5202
 			# this breaks strtotime().
@@ -94,7 +93,7 @@ class OutputPage {
 			$ismodsince = wfUnix2Timestamp( strtotime( $modsince ) );
 			wfDebug( "-- client send If-Modified-Since: " . $modsince . "\n", false );
 			wfDebug( "--  we might send Last-Modified : $lastmod\n", false ); 
-		
+
 			if( ($ismodsince >= $timestamp ) and $wgUser->validateCache( $ismodsince ) ) {
 				# Make sure you're in a place you can leave when you call us!
 				header( "HTTP/1.0 304 Not Modified" );
@@ -239,9 +238,9 @@ class OutputPage {
 		global $wgUseSquid, $wgUseESI;
 		# FIXME: This header may cause trouble with some versions of Internet Explorer
 		header( "Vary: Accept-Encoding, Cookie" );
-		if( $this->mEnableClientCache && $this->mLastModified != "" ) {
+		if( $this->mEnableClientCache ) {
 			if( $wgUseSquid && ! isset( $_COOKIE[ini_get( "session.name") ] ) && 
-			  ! $this->isPrintable() ) 
+			  ! $this->isPrintable() && $this->mSquidMaxage != 0 ) 
 			{
 				if ( $wgUseESI ) {
 					# We'll purge the proxy cache explicitly, but require end user agents
@@ -269,7 +268,7 @@ class OutputPage {
 				header( "Expires: -1" );
 				header( "Cache-Control: private, must-revalidate, max-age=0" );
 			}
-			header( "Last-modified: {$this->mLastModified}" );
+			if($this->mLastModified) header( "Last-modified: {$this->mLastModified}" );
 		} else {
 			wfDebug( "** no caching **\n", false );
 
