@@ -433,6 +433,8 @@ class EditPage {
 				}
 			}
 			$templates .= '</ul>';
+		} else {	
+			$templates = "";
 		}
 		$wgOut->addHTML( "
 {$toolbar}
