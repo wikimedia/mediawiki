@@ -5,14 +5,24 @@
 # configuration preferences. The install script will copy it to
 # the installation path, but a copy should also remain in the
 # source tree so that maintenance scripts can refer to it (you
-# may want to make it a symbolic link after installation).  Do
-# not check LocalSettings.php into CVS!  It is different for
-# every installation, and must not be overridden.
+# may want to make it a symbolic link after installation). 
+
+# Developers: Do not check LocalSettings.php into CVS! Make
+# changes to LocalSettings.sample instead.
+
+# Note that you will find many more settings in 
+# includes/DefaultSettings.php - if you want to change any of
+# them, copy the variables into LocalSettings.php, and change them
+# here, otherwise your settings will be overwritten with your
+# next update.
 
 # The most important setting is here: $IP is the installation
-# path for the software.
+# path for the software. In the example below, the htdocs
+# dir should be set as the DocumentRoot in the httpd.conf 
+# configuration file of Apache. To put it more simply:
+# The directory below needs to be accessible in some way
+# through your web browser.
 #
-
 $IP = "/usr/local/apache/htdocs/wiki";
 
 if ( ! isset( $DP ) ) { $DP = $IP; }
@@ -30,12 +40,18 @@ $wgEmergencyContact = "wikiadmin@myhost.com";
 
 # MySQL settings
 #
+# You should use a user with limited rights here,
+# instead of the root account.
+#
 $wgDBserver         = "localhost";
 $wgDBuser           = "wikiuser";
 $wgDBname           = "wikidb";
 $wgDBpassword       = "userpass";
 $wgDBsqluser        = "sqluser";
 $wgDBsqlpassword	= "sqlpass";
+
+# Advanced DB settings
+#
 $wgDBminWordLen		= 3;	 # Match this to your MySQL fulltext
 $wgDBtransactions   = false; # Set to true if using InnoDB tables
 
@@ -44,23 +60,25 @@ $wgDBtransactions   = false; # Set to true if using InnoDB tables
 # server side image resizing ("Thumbnails")
 # 
 $wgUseImageResize		= false;
+
 # Resizing can be done using PHP's internal image libraries
 # or using ImageMagick. The later supports more file formats
 # than PHP, which only supports PNG, GIF, JPG, XBM and WBMP.
 #
 # Set $wgUseImageMagick to true to use Image Magick instead
 # of the builtin functions
+#
 $wgUseImageMagick		= false;
 $wgImageMagickConvertCommand    = "/usr/bin/convert";
+
+# If you want a non-English wiki, add a line like this
+# $wgLanguageCode = "de";
 
 # Turn this on during database maintenance
 # $wgReadOnly = true;
 
 # Turn this on to get HTML debug comments
 # $wgDebugComments	= true;
-
-# If you want a non-English wiki, add a line like this
-# $wgLanguageCode = "de";
 
 $wgUseTeX			= false;
 $wgUseCategoryMagic = true ;
