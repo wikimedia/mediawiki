@@ -892,8 +892,8 @@ La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //
 "revertpage"	=> "restitution de la dernière modification de $1",
 "protectlogpage" => "Log_de_protection",
 "protectlogtext" => "Voir les [[{{ns:4}}:Page protégée|directives concernant les pages protégées]].",
-"protectedarticle" => "a protégée [[$1]]",
-"unprotectedarticle" => "a déprotégé [[$1]]",
+"protectedarticle" => "a protégée $1",
+"unprotectedarticle" => "a déprotégé $1",
 
 "protectsub" => "(Bloque \"$1\")",
 "confirmprotect" => "Confimer le bloquage",

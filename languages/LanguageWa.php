@@ -970,8 +970,8 @@ Li dierin candjmint a stî fwait pa [[Uzeu:$3|$3]] ([[Uzeu copene:$3|Copene]]). 
 "protectlogtext" => "Chal pa dzo c'&nbsp;est ene djivêye des protedjaedjes
 et disprotedjaedjes des pådjes.
 Loukîz [[{{ns:4}}:Pådje protedjeye]] po pus di racsegnes.",
-"protectedarticle" => "[[$1]] protedjî",
-"unprotectedarticle" => "[[$1]] disprotedjî",
+"protectedarticle" => "$1 protedjî",
+"unprotectedarticle" => "$1 disprotedjî",
 
 # Undelete
 "undelete" => "Rapexhî des disfacêyès pådjes",

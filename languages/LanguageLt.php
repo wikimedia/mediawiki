@@ -770,7 +770,7 @@ text editing area as it will appear if you choose to save.",*/
 'printsubtitle' => "(From http://lt.wikipedia.org)",
 #'protect' => "Protect",
 #'protectcomment' => "Reason for protecting",
-#'protectedarticle' => "protected [[$1]]",
+#'protectedarticle' => "protected $1",
 #'protectedpage' => "Protected page",
 'protectedpagewarning' => "WARNING:  This page has been locked so that only
 users with sysop privileges can edit it. Be sure you are following the
@@ -983,7 +983,7 @@ other things requiring changes in the database.
 Please confirm that this is what you intend to do.",*/
 #'unprotect' => "Unprotect",
 #'unprotectcomment' => "Reason for unprotecting",
-#'unprotectedarticle' => "unprotected [[$1]]",
+#'unprotectedarticle' => "unprotected $1",
 #'unprotectsub' => "(Unprotecting \"$1\")",
 #'unprotectthispage' => "Unprotect this page",
 'unusedimages' => "Nenaudojami paveikslėliai",
