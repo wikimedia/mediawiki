@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 #
 # In general you should not make customizations in these language files
 # directly, but should use the MediaWiki: special namespace to customize
@@ -168,20 +168,23 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"ab" => "Abkhazian",	# Abkhazian - FIXME
 	"af" => "Afrikaans",	# Afrikaans
 	"ak" => "Akana",		# Akan
+        "an" => "Aragon&eacute;s",      # Aragonese
 	"als" => "Els&auml;ssische",	# Alsatian
 	"am" => "&#4768;&#4635;&#4653;&#4763;",	# Amharic
 	"ar" => "&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;",	# Arabic
 	"arc" => "&#1813;&#1829;&#1810;&#1834;&#1848;&#1821;&#1819;",	# Aramaic
 	"as" => "&#2437;&#2488;&#2478;&#2496;&#2527;&#2494;",	# Assamese
+        "ast" => "Asturleon&eacute;s",  # Asturian
 	"av" => "&#1040;&#1074;&#1072;&#1088;",	# Avar
 	"ay" => "Aymar",		# Aymara
 	"az" => "Az&#601;rbaycan",	# Azerbaijani
 	"ba" => "&#1041;&#1072;&#1096;&#1185;&#1086;&#1088;&#1090;",	# Bashkir
 	"be" => "&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1072;&#1103;",	# Belarusian ''or'' Byelarussian
 	"bg" => "&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;",	# Bulgarian
-	"bh"	=> "Bihara",
+	"bh" => "&#2349;&#2379;&#2332;&#2346;&#2369;&#2352;&#2368;",	# Bihara
 	"bi" => "Bislama",		# Bislama
 	"bn" => "&#2476;&#2494;&#2434;&#2482;&#2494; - (Bangla)",	# Bengali
+        "bm" => "Bambara",
 	"bo" => "Bod skad",		# Tibetan
 	"br" => "Brezhoneg",	# Breton 
 	"bs" => "Bosanski",		# Bosnian
@@ -192,14 +195,14 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"co" => "Corsu",		# Corsican
 	"cr" => "Nehiyaw",		# Cree
 	"cs" => "&#268;esky",	# Czech
-	"csb" => "Cassubian",	# Cassubian - FIXME
+	"csb" => "Kasz&euml;bscziej",	# Cassubian - FIXME
 	"cv" => "&#1063;&#1233;&#1074;&#1072;&#1096; - (&#264;&#259;va&#349;)",	# Chuvash 
 	"cy" => "Cymraeg",		# Welsh
 	"da" => "Dansk",		# Danish
 	"de" => "Deutsch",		# German
 	"dk" => "Dansk", # 'da' is correct for the language.
 	"dv" => "Dhivehi",		# Dhivehi
-	"dz" => "(Dzongkha)",	# Bhutani
+	"dz" => "Dzongkha",	# Bhutani
 	"ee" => "Eve",			# Eve
 	"el" => "&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;",	# Greek
 	"en" => "English",		# English
@@ -224,7 +227,9 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"haw" => "Hawai`i",		# Hawaiian
 	"he" => "&#1506;&#1489;&#1512;&#1497;&#1514;",	# Hebrew
 	"hi" => "&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;",	# Hindi
+        "ho" => "Hiri Motu",
 	"hr" => "Hrvatski",		# Croatian
+        "ht" => "Haitian",	# Haitian (FIXME!)
 	"hu" => "Magyar",		# Hungarian
 	"hy" => "&#1344;&#1377;&#1397;&#1381;&#1408;&#1381;&#1398;",	# Armenian
 	"hz" => "Otsiherero",	# Herero
@@ -232,6 +237,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"id" => "Bahasa Indonesia",	# Indonesian
 	"ie" => "Interlingue",	# Interlingue (Occidental)
 	"ig" => "Igbo",			# Igbo
+        "ii" => "Yi",		# Sichuan Yi (FIXME!)
 	"ik" => "I&ntilde;upiak",	# Inupiak
 	"io" => "Ido",			# Ido
 	"is" => "&Iacute;slensk",	# Icelandic
@@ -240,23 +246,29 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"ja" => "&#26085;&#26412;&#35486;",	# Japanese
 	"jv" => "Bahasa Jawa",	# Javanese
 	"ka" => "&#4325;&#4304;&#4320;&#4311;&#4323;&#4314;&#4312;",	# Georgian
+        "kg" => "Kongo",		# Kongo (FIXME!)
+	"ki" => "Kikuyu",		# Kikuyu (FIXME!)
+	"kj" => "Kuanyama",		# Kuanyama (FIXME!)
 	"kk" => "&#1179;&#1072;&#1079;&#1072;&#1179;&#1096;&#1072;",	# Kazakh
 	"kl" => "Kalaallisut",	# Greenlandic
 	"km" => "&#6039;&#6070;&#6047;&#6070;&#6017;&#6098;&#6040;&#6082;&#6042;",	# Cambodian
 	"kn" => "&#3221;&#3240;&#3277;&#3240;&#3233;",	# Kannada
 	"ko" => "&#54620;&#44397;&#50612;",	# Korean
+	"kr" => "Kanuri",
 	"ks" => "&#2325;&#2358;&#2381;&#2350;&#2368;&#2352;&#2368; - (&#1603;&#1588;&#1605;&#1610;&#1585;&#1610;)",	# Kashmiri 
 	"ku" => "Kurd&icirc;",	# Kurdish
+	"kv" => "Komi",
 	"kw" => "Kernewek",		# Cornish
-	"ky" => "Kirghiz",
+	"ky" => "K&#305;rg&#305;zca",	# Kirghiz
 	"la" => "Latina",		# Latin
 	"lb" => "L&euml;tzebuergesch",	# Luxemburguish
+	"lg" => "Luganda",		# Ganda
 	"li" => "Limburgs",		# Limburgian
 	"ln" => "Lingala",		# Lingala
-	"lo" => "(Pha xa lao)",	# Laotian 
+	"lo" => "Pha xa lao",	# Laotian 
 	"lt" => "Lietuvi&#371;",	# Lithuanian
 	"lv" => "Latvie&scaron;u",	# Latvian
-	"mi" => "Malagasy",		# Malagasy - FIXME
+	"mg" => "Malagasy",		# Malagasy - FIXME
 	"mh" => "Ebon",			# Marshallese
 	"mi" => "M&#257;ori",	# Maori
 	"mk" => "&#1052;&#1072;&#1082;&#1077;&#1076;&#1086;&#1085;&#1089;&#1082;&#1080;",	# Macedonian
@@ -266,16 +278,18 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"mr" => "&#2350;&#2352;&#2366;&#2336;&#2368;",	# Marathi
 	"ms" => "Bahasa Melayu",	# Malay
 	"mt" => "bil-Malti",	# Maltese
-	"my" => "(Myanmasa)",	# Burmese
+	"my" => "Myanmasa",	# Burmese
 	"na" => "Nauru",		# Nauruan
+	"nb" => "Bokm&aring;l",		# Norwegian (Bokmal)
 	"nah" => "Nahuatl",
 	"nds" => "Platd&uuml;&uuml;tsch",	# Low German ''or'' Low Saxon
 	"ne" => "&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;",	# Nepali
+	"ng" => "Ndonga",
 	"nl" => "Nederlands",	# Dutch
 	"nb" => "Norsk",		# Norwegian [currently using old '''no''' code]
 	"ne" => "&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;",	# Nepali
 	"nn" => "Nynorsk"	,	# (Norwegian) Nynorsk
-	"no" => "Norsk",
+	"no" => "Norsk",		# Norwegian
 	"nv" => "Din&eacute; bizaad",	# Navajo
 	"ny" => "Chi-Chewa",	# Chichewa
 	"oc" => "Occitan",		# Occitan
@@ -297,8 +311,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"sd" => "&#2360;&#2367;&#2344;&#2343;&#2367;",	# Sindhi
 	"se" => "S&aacute;megiella",	# (Northern) Sami
 	"sg"	=> "Sangro",
-#	"sh"	=> "&#1057;&#1088;&#1087;&#1089;&#1082;&#1086;&#1093;&#1088;&#1074;&#1072;&#1090;&#1089;&#1082;&#1080; (Srbskohrvatski)", ## -- Obsolete
-	"si" => "(Simhala)",	# Sinhalese
+#	"sh"	=> "&#1057;&#1088;&#1087;&#1089;&#1082;&#1086;&#1093;&#1088;&#1074;&#1072;&#1090;&#1089;&#1082;&#1080; (Srbskohrvatski)", ## Serbocroatian -- Obsolete
+	"si" => "Simhala",	# Sinhalese
 	"simple" => "Simple English",
 	"sk" => "Sloven&#269;ina",	# Slovak
 	"sl" => "Sloven&scaron;&#269;ina",	# Slovenian
@@ -319,8 +333,10 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"ti" => "Tigrinya",		# Tigrinya - FIXME
 	"tk" => "&#1578;&#1585;&#1603;&#1605;&#1606; / &#1058;&#1091;&#1088;&#1082;&#1084;&#1077;&#1085;",	# Turkmen
 	"tl" => "Tagalog",		# Tagalog (Filipino)
+	"tlh" => "tlhIngan-Hol"		# Klingon
 	"tn" => "Setswana",		# Setswana
 	"to" => "Tonga",		# Tonga - FIXME
+	"tp" => "Toki Pona",		# Toki Pona
 	"tpi" => "Tok Pisin",	# Tok Pisin 
 	"tr" => "T&uuml;rk&ccedil;e",	# Turkish
 	"ts" => "Xitsonga",		# Tsonga
