@@ -9,7 +9,7 @@ $mcc->set_servers( $wgMemCachedServers );
 do {
 	$bad = false;
 	$quit = false;
-	$line = readline( "> " );
+	$line = readconsole( "> " );
 	$args = explode( " ", $line );
 	$command = array_shift( $args );
 	switch ( $command ) {
@@ -40,8 +40,25 @@ do {
 			print "Bad command\n";
 		}
 	} else {
-		readline_add_history( $line );
+		if ( function_exists( "readline_add_history" ) ) {
+			readline_add_history( $line );
+		}
 	}
 } while ( !$quit );
+
+function readconsole( $prompt = "" ) {
+	if ( function_exists( "readline" ) ) {
+		return readline( $prompt );
+	} else {
+		print $prompt;
+		$fp = fopen( "php://stdin", "r" );
+		$resp = trim( fgets( $fp, 1024 ) );
+		fclose( $fp );
+		return $resp;
+	}
+}
+
+
+
 ?>
 
