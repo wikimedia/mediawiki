@@ -368,10 +368,18 @@ class SearchEngine {
 			$wgArticle->view();
 			return;
 		}
-		
+
 		# Now try capitalized string
 		#
 		$wgTitle=Title::newFromText( ucwords( strtolower( $search ) ) );
+		if ( 0 != $wgArticle->getID() ) {
+			$wgArticle->view();
+			return;
+		}
+
+		# Now try all upper case
+		#
+		$wgTitle = Title::newFromText( strtoupper( $search ) );
 		if ( 0 != $wgArticle->getID() ) {
 			$wgArticle->view();
 			return;
