@@ -394,9 +394,10 @@ class Database {
 /* Standard fail function, called by default when a connection cannot be established
    Displays the file cache if possible */
 function wfEmergencyAbort( &$conn ) {
-	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgOutputEncoding;
+	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgSiteNotice, $wgOutputEncoding;
 	
 	header( "Content-type: text/html; charset=$wgOutputEncoding" );
+	$msg = $wgSiteNotice;
 	if($msg == "") $msg = wfMsgNoDB( "noconnect" );
 	$text = $msg;
 
