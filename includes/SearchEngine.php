@@ -172,17 +172,17 @@ class SearchEngine {
 		$searchnamespaces = $this->queryNamespaces();
 		$redircond = $this->searchRedirects();
 
-		$sql = "SELECT cur_id,cur_namespace,cur_title," .
-		  "cur_text FROM cur,searchindex " .
-		  "WHERE cur_id=si_page AND {$this->mTitlecond} " .
-		  "{$searchnamespaces} {$redircond}" .
-		  "LIMIT {$offset}, {$limit}";
-		$res1 = wfQuery( $sql, DB_READ, $fname );
-		$num = wfNumRows($res1);
-
 		if ( $wgDisableTextSearch ) {
 			$wgOut->addHTML( wfMsg( "searchdisabled", htmlspecialchars( $search ), $wgInputEncoding ) );
 		} else {
+			$sql = "SELECT cur_id,cur_namespace,cur_title," .
+			  "cur_text FROM cur,searchindex " .
+			  "WHERE cur_id=si_page AND {$this->mTitlecond} " .
+			  "{$searchnamespaces} {$redircond}" .
+			  "LIMIT {$offset}, {$limit}";
+			$res1 = wfQuery( $sql, DB_READ, $fname );
+			$num = wfNumRows($res1);
+
 			$sk = $wgUser->getSkin();
 			$text = wfMsg( "searchresulttext", $sk->makeKnownLink(
 			  wfMsg( "searchhelppage" ), wfMsg( "searchingwikipedia" ) ) );
