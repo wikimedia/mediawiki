@@ -289,6 +289,21 @@ $wgSiteNotice = "";
 
 $wgAllowAnonymousMinor = false;
 
+## Set $wgUseImageResize to true if you want to enable dynamic
+## server side image resizing ("Thumbnails")
+# 
+$wgUseImageResize		= false;
+
+## Resizing can be done using PHP's internal image libraries
+## or using ImageMagick. The later supports more file formats
+## than PHP, which only supports PNG, GIF, JPG, XBM and WBMP.
+##
+## Set $wgUseImageMagick to true to use Image Magick instead
+## of the builtin functions
+#
+$wgUseImageMagick		= false;
+$wgImageMagickConvertCommand    = "/usr/bin/convert";
+
 # Enable experimental smarty skins (put Smarty/libs in your include_path!)
 $wgUseSmarty = false;
 $wgUsePHPTal = false;
