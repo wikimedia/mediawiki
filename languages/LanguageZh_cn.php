@@ -151,7 +151,6 @@ require_once( "LanguageUtf8.php" );
 "tog-watchdefault" => "监视新的以及更改过的文章", /* "Watch new and modified articles", */
 "tog-minordefault" => "细微编辑为默认设置", /* "Mark all edits minor by default", */
 "tog-previewontop" => "在编辑框上方显示预览", /* "Show preview before edit box and not after it" */
-
 # Dates
 
 'sunday' => "星期日",
@@ -962,7 +961,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 'allmessagesnotsupportedDB' => "系统界面功能处于关闭状态 (wgUseDatabaseMessages)。", //"Special:AllMessages not supported because wgUseDatabaseMessages is off.",
 'allmessagestext' => "这里列出所有可定制的系统界面。", //"This is a list of all system messages available in the MediaWiki: namespace.",
 'allpagesformtext1' => "列出从 $1 起的条目", //"Display pages starting at: $1",
-'allpagesformtext2' => "选定名字空间： $1 $1", //"Choose namespace: $1 $2",
+'allpagesformtext2' => "选定名字空间： $1 $2", //"Choose namespace: $1 $2",
 'allpagesnamespace' => "所有 $1 名字空间的条目", //"All pages ($1 namespace)",
 'allpagesnext' => "下一页", //"Next",
 'allpagesprev' => "上一页", //"Previous",
