@@ -48,15 +48,15 @@ while( $s = wfFetchObject( $res ) ) {
 		while( $s = wfFetchObject( $res2 ) ) {
 			$from = Title::makeTitle( $s->cur_namespace, $s->cur_title );
 			$xt = $from->getPrefixedText();
-			echo "Found bad brokenlink to [[$tt]] from page #$s->cur_id [[$xt]]!\n";
+			echo "Found bad brokenlink to [[$t]] from page #$s->cur_id [[$xt]]!\n";
 			$any = true;
 		}
 		wfFreeResult( $res2 );
 		if($any) {
 			echo "Removing brokenlinks to [[$t]]...\n";
 			$sql3 = "DELETE FROM brokenlinks WHERE bl_to='$tt'";
-			#$res3 = wfQuery( $sql3, DB_WRITE );
-			echo "-- $sql3\n";
+			$res3 = wfQuery( $sql3, DB_WRITE );
+			#echo "-- $sql3\n";
 		}
 	} else {
 		echo "Illegal title?! Namespace $s->cur_namespace, title '$s->cur_title'\n";
