@@ -20,6 +20,8 @@
 define( 'MAX_INCLUDE_REPEAT', 100 );
 define( 'MAX_INCLUDE_SIZE', 1000000 ); // 1 Million
 
+define( 'RLH_FOR_UPDATE', 1 );
+
 # Allowed values for $mOutputType
 define( 'OT_HTML', 1 );
 define( 'OT_WIKI', 2 );
@@ -185,9 +187,15 @@ class Parser
 		# only once and last
 		$text = $this->doBlockLevels( $text, $linestart );
 
+		$this->replaceLinkHolders( $text );
 		$text = $wgContLang->convert($text);
 
 		$text = $this->unstripNoWiki( $text, $this->mStripState );
+		global $wgUseTidy;
+		if ($wgUseTidy) {
+			$text = Parser::tidy($text);
+		}
+
 		$this->mOutput->setText( $text );
 		wfProfileOut( $fname );
 		return $this->mOutput;
@@ -1185,7 +1193,7 @@ class Parser
 				$link = substr($link, 1);
 			}
 			
-			$nt = Title::newFromText( $link );
+			$nt = Title::newFromText( $this->unstripNoWiki($link, $this->mStripState) );
 			if( !$nt ) {
 				$s .= $prefix . '[[' . $line;
 				continue;
@@ -1335,8 +1343,8 @@ class Parser
 
 	/**
 	 * Handle link to subpage if necessary
-	 * @param $target string the source of the link
-	 * @param &$text the link text, modified as necessary
+	 * @param string $target the source of the link
+	 * @param string &$text the link text, modified as necessary
 	 * @return string the full name of the link
 	 * @access private
 	 */
@@ -1620,9 +1628,9 @@ class Parser
 	/**
 	 * Split up a string on ':', ignoring any occurences inside
 	 * <a>..</a> or <span>...</span>
-	 * @param $str string the string to split
-	 * @param &$before string set to everything before the ':'
-	 * @param &$after string set to everything after the ':'
+	 * @param string $str the string to split
+	 * @param string &$before set to everything before the ':'
+	 * @param string &$after set to everything after the ':'
 	 * return string the position of the ':', or false if none found
 	 */
 	function findColonNoLinks($str, &$before, &$after) {
@@ -2461,7 +2469,7 @@ class Parser
 				if( $istemplate )
 					$head[$headlineCount] .= $sk->editSectionLinkForOther($templatetitle, $templatesection);
 				else
-					$head[$headlineCount] .= $sk->editSectionLink($sectionCount+1);
+					$head[$headlineCount] .= $sk->editSectionLink($this->mTitle, $sectionCount+1);
 			}
 
 			# Add the edit section span
@@ -2469,7 +2477,7 @@ class Parser
 				if( $istemplate )
 					$headline = $sk->editSectionScriptForOther($templatetitle, $templatesection, $headline);
 				else
-					$headline = $sk->editSectionScript($sectionCount+1,$headline);
+					$headline = $sk->editSectionScript($this->title, $sectionCount+1,$headline);
 			}
 
 			# give headline the correct <h#> tag
@@ -2839,6 +2847,156 @@ class Parser
 		$this->mTagHooks[$tag] = $callback;
 		return $oldVal;
 	}
+
+	/**
+	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
+	 * Placeholders created in Skin::makeLinkObj()
+	 * Returns an array of links found, indexed by PDBK:
+	 *  0 - broken
+	 *  1 - normal link
+	 *  2 - stub
+	 * $options is a bit field, RLH_FOR_UPDATE to select for update
+	 */
+	function replaceLinkHolders( &$text, $options = 0 ) {
+		global $wgUser, $wgLinkCache, $wgUseOldExistenceCheck, $wgLinkHolders;
+		
+		if ( $wgUseOldExistenceCheck ) {
+			return array();
+		}
+
+		$fname = 'Parser::replaceLinkHolders';
+		wfProfileIn( $fname );
+
+		$pdbks = array();
+		$colours = array();
+		
+		#if ( !empty( $tmpLinks[0] ) ) { #TODO
+		if ( !empty( $wgLinkHolders['namespaces'] ) ) {
+			wfProfileIn( $fname.'-check' );
+			$dbr =& wfGetDB( DB_SLAVE );
+			$cur = $dbr->tableName( 'cur' );
+			$sk = $wgUser->getSkin();
+			$threshold = $wgUser->getOption('stubthreshold');
+			
+			# Sort by namespace
+			asort( $wgLinkHolders['namespaces'] );
+	
+			# Generate query
+			$query = false;
+			foreach ( $wgLinkHolders['namespaces'] as $key => $val ) {
+				# Make title object
+				$title = $wgLinkHolders['titles'][$key];
+
+				# Skip invalid entries.
+				# Result will be ugly, but prevents crash.
+				if ( is_null( $title ) ) {
+					continue;
+				}
+				$pdbk = $pdbks[$key] = $title->getPrefixedDBkey();
+
+				# Check if it's in the link cache already
+				if ( $wgLinkCache->getGoodLinkID( $pdbk ) ) {
+					$colours[$pdbk] = 1;
+				} elseif ( $wgLinkCache->isBadLink( $pdbk ) ) {
+					$colours[$pdbk] = 0;
+				} else {
+					# Not in the link cache, add it to the query
+					if ( !isset( $current ) ) {
+						$current = $val;
+						$query =  "SELECT cur_id, cur_namespace, cur_title";
+						if ( $threshold > 0 ) {
+							$query .= ", LENGTH(cur_text) AS cur_len, cur_is_redirect";
+						} 
+						$query .= " FROM $cur WHERE (cur_namespace=$val AND cur_title IN(";
+					} elseif ( $current != $val ) {
+						$current = $val;
+						$query .= ")) OR (cur_namespace=$val AND cur_title IN(";
+					} else {
+						$query .= ', ';
+					}
+				
+					$query .= $dbr->addQuotes( $wgLinkHolders['dbkeys'][$key] );
+				}
+			}
+			if ( $query ) {
+				$query .= '))';
+				if ( $options & RLH_FOR_UPDATE ) {
+					$query .= ' FOR UPDATE';
+				}
+			
+				$res = $dbr->query( $query, $fname );
+				
+				# Fetch data and form into an associative array
+				# non-existent = broken
+				# 1 = known
+				# 2 = stub
+				while ( $s = $dbr->fetchObject($res) ) {
+					$title = Title::makeTitle( $s->cur_namespace, $s->cur_title );
+					$pdbk = $title->getPrefixedDBkey();
+					$wgLinkCache->addGoodLink( $s->cur_id, $pdbk );
+					
+					if ( $threshold >  0 ) {
+						$size = $s->cur_len;
+						if ( $s->cur_is_redirect || $s->cur_namespace != 0 || $length < $threshold ) {
+							$colours[$pdbk] = 1;
+						} else {
+							$colours[$pdbk] = 2;
+						}
+					} else {
+						$colours[$pdbk] = 1;
+					}
+				}
+			}
+			wfProfileOut( $fname.'-check' );
+			
+			# Construct search and replace arrays
+			wfProfileIn( $fname.'-construct' );
+			global $outputReplace;
+			$outputReplace = array();
+			foreach ( $wgLinkHolders['namespaces'] as $key => $ns ) {
+				$pdbk = $pdbks[$key];
+				$searchkey = '<!--LINK '.$key.'-->';
+				$title = $wgLinkHolders['titles'][$key];
+				if ( empty( $colours[$pdbk] ) ) {
+					$wgLinkCache->addBadLink( $pdbk );
+					$colours[$pdbk] = 0;
+					$outputReplace[$searchkey] = $sk->makeBrokenLinkObj( $title,
+									$wgLinkHolders['texts'][$key],
+									$wgLinkHolders['queries'][$key] );
+				} elseif ( $colours[$pdbk] == 1 ) {
+					$outputReplace[$searchkey] = $sk->makeKnownLinkObj( $title,
+									$wgLinkHolders['texts'][$key],
+									$wgLinkHolders['queries'][$key] );
+				} elseif ( $colours[$pdbk] == 2 ) {
+					$outputReplace[$searchkey] = $sk->makeStubLinkObj( $title,
+									$wgLinkHolders['texts'][$key],
+									$wgLinkHolders['queries'][$key] );
+				}
+			}
+			wfProfileOut( $fname.'-construct' );
+
+			# Do the thing
+			wfProfileIn( $fname.'-replace' );
+			
+			$text = preg_replace_callback(
+				'/(<!--LINK .*?-->)/',
+				"outputReplaceMatches",
+				$text);
+			wfProfileOut( $fname.'-replace' );
+
+			wfProfileIn( $fname.'-interwiki' );
+			global $wgInterwikiLinkHolders;
+			$outputReplace = $wgInterwikiLinkHolders;
+			$text = preg_replace_callback(
+				'/<!--IWLINK (.*?)-->/',
+				"outputReplaceMatches",
+				$text);
+			wfProfileOut( $fname.'-interwiki' );
+		}
+
+		wfProfileOut( $fname );
+		return $colours;
+	}
 }
 
 /**
@@ -2958,6 +3116,16 @@ class ParserOptions
 
 
 }
+
+/**
+ * Callback function used by Parser::replaceLinkHolders()
+ * to substitute link placeholders.
+ */
+function &outputReplaceMatches($matches) {
+	global $outputReplace;
+	return $outputReplace[$matches[1]];
+}
+
 
 # Regex callbacks, used in Parser::replaceVariables
 function wfBraceSubstitution( $matches ) {
