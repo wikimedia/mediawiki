@@ -19,7 +19,8 @@ function wfSpecialExport( $page = "" ) {
 	}
 	
 	$wgOut->addWikiText( wfMsg( "exporttext" ) );
-	$action = wfLocalUrlE( $wgLang->SpecialPage( "Export" ) );
+	$titleObj = Title::makeTitle( NS_SPECIAL, "Export" );
+	$action = $titleObj->getURL( "", true );
 	$wgOut->addHTML( "
 <form method='post' action=\"$action\">
 <input type='hidden' name='action' value='submit' />

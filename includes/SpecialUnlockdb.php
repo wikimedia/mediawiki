@@ -31,8 +31,8 @@ class DBUnlockForm {
 		}
 		$lc = wfMsg( "unlockconfirm" );
 		$lb = wfMsg( "unlockbtn" );
-		$action = wfLocalUrlE( $wgLang->specialPage( "Unlockdb" ),
-		  "action=submit" );
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Unlockdb" );
+		$action = $titleObj->getURL( "action=submit", true );
 
 		$wgOut->addHTML( "<p>
 <form id=\"unlockdb\" method=\"post\" action=\"{$action}\">
@@ -62,8 +62,8 @@ class DBUnlockForm {
 			$wgOut->fileDeleteError( $wgReadOnlyFile );
 			return;
 		}
-		$success = wfLocalUrl( $wgLang->specialPage( "Unlockdb" ),
-		  "action=success" );
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Unlockdb" );
+		$success = $titleObj->getURL( "action=success" );
 		$wgOut->redirect( $success );
 	}
 

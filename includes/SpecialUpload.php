@@ -208,8 +208,8 @@ function uploadWarning( $warning )
 	$reupload = wfMsg( "reupload" );
 	$iw = wfMsg( "ignorewarning" );
 	$reup = wfMsg( "reuploaddesc" );
-	$action = wfLocalUrlE( $wgLang->specialPage( "Upload" ),
-	  "action=submit" );
+	$titleObj = Title::makeTitle( NS_SPECIAL, "Upload" );
+	$action = $titleObj->getURL( "action=submit", true );
 
 	if ( $wgUseCopyrightUpload )
 	{
@@ -267,7 +267,8 @@ function mainUploadForm( $msg )
 	$ca = wfMsg( "affirmation", $clink );
 	$iw = wfMsg( "ignorewarning" );
 
-	$action = wfLocalUrl( $wgLang->specialPage( "Upload" ) );
+	$titleObj = Title::makeTitle( NS_SPECIAL, "Upload" );
+	$action = $titleObj->getURL( "", true );
 
 	$source = "
 <td align=right>

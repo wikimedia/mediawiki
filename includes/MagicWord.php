@@ -54,14 +54,14 @@ class MagicWord {
 	# Preliminary initialisation
 	/* private */ function initRegex()
 	{
-		$variableClass = "A-Za-z0-9_\-\x80-\xff";
+		$variableClass = Title::legalChars();
 		$escSyn = array_map( "preg_quote", $this->mSynonyms );
 		$this->mBaseRegex = implode( "|", $escSyn );
 		$case = $this->mCaseSensitive ? "" : "i";
 		$this->mRegex = "/{$this->mBaseRegex}/{$case}";
 		$this->mRegexStart = "/^{$this->mBaseRegex}/{$case}";
-		$this->mVariableRegex = str_replace( "\\$1", "([$variableClass]*)", $this->mRegex );
-		$this->mVariableStartToEndRegex = str_replace( "\\$1", "([$variableClass]*)", 
+		$this->mVariableRegex = str_replace( "\\$1", "([$variableClass]*?)", $this->mRegex );
+		$this->mVariableStartToEndRegex = str_replace( "\\$1", "([$variableClass]*?)", 
 			"/^{$this->mBaseRegex}$/{$case}" );
 	}
 	

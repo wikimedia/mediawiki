@@ -175,14 +175,13 @@ class Skin {
 			(!$wgTitle->isProtected() || $wgUser->isSysop())
 			
 			) {
-			$n = $wgTitle->getPrefixedURL();
 			$t = wfMsg( "editthispage" );
 			$oid = $red = "";
 			if ( $redirect ) { $red = "&redirect={$redirect}"; }
 			if ( $oldid && ! isset( $diff ) ) {
 				$oid = "&oldid={$oldid}";
 			}
-			$s = wfLocalUrlE($n,"action=edit{$oid}{$red}");
+			$s = $wgTitle->getUrl( "action=edit{$oid}{$red}", false, true );
 			$s = "document.location = \"" .$s ."\";";
 			$a += array ("ondblclick" => $s);
 
@@ -690,9 +689,10 @@ class Skin {
 	{
 		if ( "" != $align ) { $a = " align='{$align}'"; }
 		else { $a = ""; }
-
+		
 		$mp = wfMsg( "mainpage" );
-		$s = "<a href=\"" . wfLocalUrlE( urlencode( str_replace(' ','_',$mp) ) )
+		$titleObj = Title::newFromText( $mp );
+		$s = "<a href=\"" . $titleObj->getURL( "", true )
 		  . "\"><img{$a} border=0 src=\""
 		  . $this->getLogo() . "\" alt=\"" . "[{$mp}]\"></a>";
 		return $s;
@@ -1035,7 +1035,7 @@ class Skin {
 		global $wgTitle, $wgLang;
 
 		$s = $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
-		  wfMsg( "contributions" ), "target=" . $wgTitle->getURL() );
+		  wfMsg( "contributions" ), "target=" . $wgTitle->getPartialURL() );
 		return $s;
 	}
 
@@ -1044,7 +1044,7 @@ class Skin {
 		global $wgTitle, $wgLang;
 
 		$s = $this->makeKnownLink( $wgLang->specialPage( "Emailuser" ),
-		  wfMsg( "emailuser" ), "target=" . $wgTitle->getURL() );
+		  wfMsg( "emailuser" ), "target=" . $wgTitle->getPartialURL() );
 		return $s;
 	}
 
@@ -1332,7 +1332,7 @@ class Skin {
 			$u = "";
 			if ( "" == $text ) { $text = $nt->getFragment(); }
 		} else {
-			$u = wfLocalUrlE( $link, $query );
+			$u = $nt->getURL( $query, true );
 		}
 		if ( "" != $nt->getFragment() ) {
 			$u .= "#" . wfEscapeHTML( $nt->getFragment() );
@@ -1364,7 +1364,7 @@ class Skin {
 
 		if ( "" == $query ) { $q = "action=edit"; }
 		else { $q = "action=edit&{$query}"; }
-		$u = wfLocalUrlE( $link, $q );
+		$u = $nt->getURL( $q );
 
 		if ( "" == $text ) { $text = $nt->getPrefixedText(); }
 		$style = $this->getInternalLinkAttributesObj( $nt, $text, "yes" );
@@ -1394,7 +1394,7 @@ class Skin {
 
 		$link = $nt->getPrefixedURL();
 
-		$u = wfLocalUrlE( $link, $query );
+		$u = $nt->getURL( $query, true );
 
 		if ( "" == $text ) { $text = $nt->getPrefixedText(); }
 		$style = $this->getInternalLinkAttributesObj( $nt, $text, "stub" );
@@ -1439,7 +1439,6 @@ class Skin {
 
 	function makeImageLinkObj( $nt, $alt = "" ) {
 		global $wgLang, $wgUseImageResize;
-		$link  = $nt->getPrefixedURL();
 		$name  = $nt->getDBKey();
 		$url   = wfImageUrl( $name );
 		$align = "";
@@ -1523,7 +1522,7 @@ class Skin {
 		}
 		$alt = htmlspecialchars( $alt );
 
-		$u = wfLocalUrlE( $link );
+		$u = $nt->getURL( "", true );
 		$s = "<a href=\"{$u}\" class='image' title=\"{$alt}\">" .
 		  "<img border=\"0\" src=\"{$url}\" alt=\"{$alt}\"></a>";
 		if ( "" != $align ) {
@@ -1632,7 +1631,6 @@ class Skin {
 		global $wgUploadPath;
 		$name = $nt->getDBKey();
 		$image = Title::makeTitle( Namespace::getImage(), $name );
-		$link = $image->getPrefixedURL();
 		$url  = wfImageUrl( $name );
 		$path = wfImagePath( $name );
 		
@@ -1649,7 +1647,7 @@ class Skin {
 		
 		$thumbUrl = $this->createThumb( $name, $boxwidth );
 
-		$u = wfLocalUrlE( $link );
+		$u = $nt->getURL( "", true );
 
 		$more = htmlspecialchars(wfMsg( "thumbnail-more" ));
 		
@@ -2150,8 +2148,8 @@ class Skin {
 			$url = wfImageUrl( $img );
 			$rlink = $cur;
 			if ( $wgUser->isSysop() ) {
-				$link = wfLocalUrlE( $wgTitle->getPrefixedText(), "image=" . $wgTitle->getURL() .
-				  "&action=delete" );
+				$link = $wgTitle->getURL( "image=" . $wgTitle->getPartialURL() . 
+				  "&action=delete", true );
 				$style = $this->getInternalLinkAttributes( $link, $del );
 
 				$dlink = "<a href=\"{$link}\"{$style}>{$del}</a>";
@@ -2239,7 +2237,7 @@ class Skin {
 
 		global $wgTitle,$wgUser,$oldid;
 		if($oldid) return $head;
-		$url = wfLocalUrlE(urlencode(str_replace(' ','_',$wgTitle->getPrefixedText())),"action=edit&section=$section");
+		$url = $wgTitle->getUrl( "action=edit&section=$section", true );
 		return "<span onContextMenu='document.location=\"".$url."\";return false;'>{$head}</span>";
 	}
 

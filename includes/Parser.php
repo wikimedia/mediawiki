@@ -9,15 +9,18 @@ include_once('Tokenizer.php');
 # Globals used: 
 #    objects:   $wgLang, $wgDateFormatter, $wgLinkCache, $wgCurOut
 #
+# NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
+#
 #    settings:  $wgUseTex*, $wgUseCategoryMagic*, $wgUseDynamicDates*, $wgInterwikiMagic*,
-#               $wgNamespacesWithSubpages, $wgLanguageCode, $wgAllowExternalImages*
+#               $wgNamespacesWithSubpages, $wgLanguageCode, $wgAllowExternalImages*, 
+#               $wgLocaltimezone
 #
 #      * only within ParserOptions
 
 class Parser
 {
 	# Cleared with clearState():
-	var $mOutput, $mAutonumber, $mLastSection, $mDTopen;
+	var $mOutput, $mAutonumber, $mLastSection, $mDTopen, $mStripState;
 
 	# Temporary:
 	var $mOptions, $mTitle;
@@ -33,6 +36,7 @@ class Parser
 		$this->mAutonumber = 0;
 		$this->mLastSection = "";
 		$this->mDTopen = false;
+		$this->mStripState = false;
 	}
 	
 	# First pass--just handle <nowiki> sections, pass the rest off
@@ -44,18 +48,6 @@ class Parser
 	{
 		$fname = "Parser::parse";
 		wfProfileIn( $fname );
-		$unique  = "3iyZiyA7iMwg5rhxP0Dcc9oTnj8qD1jm1Sfv4";
-		$unique2 = "4LIQ9nXtiYFPCSfitVwDw7EYwQlL4GeeQ7qSO";
-		$unique3 = "fPaA8gDfdLBqzj68Yjg9Hil3qEF8JGO0uszIp";
-		$nwlist = array();
-		$nwsecs = 0;
-		$mathlist = array();
-		$mathsecs = 0;
-		$prelist = array ();
-		$presecs = 0;
-		$stripped = "";
-		$stripped2 = "";
-		$stripped3 = "";
 
 		if ( $clearState ) {
 			$this->clearState();
@@ -64,20 +56,63 @@ class Parser
 		$this->mOptions = $options;
 		$this->mTitle =& $title;
 		
+		$stripState = NULL;
+		$text = $this->strip( $text, $this->mStripState, true );
+		$text = $this->doWikiPass2( $text, $linestart );
+		$text = $this->unstrip( $text, $this->mStripState );
+		
+		$this->mOutput->setText( $text );
+		wfProfileOut( $fname );
+		return $this->mOutput;
+	}
+
+	/* static */ function getRandomString()
+	{
+		return dechex(mt_rand(0, 0x7fffffff)) . dechex(mt_rand(0, 0x7fffffff));
+	}
+	
+	# Strips <nowiki>, <pre> and <math>
+	# Returns the text, and fills an array with data needed in unstrip()
+	#
+	function strip( $text, &$state, $render = true )
+	{
+		$state = array(
+			'nwlist' => array(),
+			'nwsecs' => 0,
+			'nwunq' => Parser::getRandomString(),
+			'mathlist' => array(),
+			'mathsecs' => 0,
+			'mathunq' => Parser::getRandomString(),
+			'prelist' => array(),
+			'presecs' => 0,
+			'preunq' => Parser::getRandomString()
+		);
+
+		$stripped = "";
+		$stripped2 = "";
+		$stripped3 = "";
+		
 		# Replace any instances of the placeholders
-		$text = str_replace( $unique, wfHtmlEscapeFirst( $unique ), $text );
-		$text = str_replace( $unique2, wfHtmlEscapeFirst( $unique2 ), $text );
-		$text = str_replace( $unique3, wfHtmlEscapeFirst( $unique3 ), $text );
-			
+		$text = str_replace( $state['nwunq'], wfHtmlEscapeFirst( $state['nwunq'] ), $text );
+		$text = str_replace( $state['mathunq'], wfHtmlEscapeFirst( $state['mathunq'] ), $text );
+		$text = str_replace( $state['preunq'], wfHtmlEscapeFirst( $state['preunq'] ), $text );
+		
 		while ( "" != $text ) {
 			$p = preg_split( "/<\\s*nowiki\\s*>/i", $text, 2 );
 			$stripped .= $p[0];
-			if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) { $text = ""; }
-			else {
+			if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) { 
+				$text = ""; 
+			} else {
 				$q = preg_split( "/<\\/\\s*nowiki\\s*>/i", $p[1], 2 );
-				++$nwsecs;
-				$nwlist[$nwsecs] = wfEscapeHTMLTagsOnly($q[0]);
-				$stripped .= $unique . $nwsecs . "s";
+				++$state['nwsecs'];
+
+				if ( $render ) {
+					$state['nwlist'][$state['nwsecs']] = wfEscapeHTMLTagsOnly($q[0]);
+				} else {
+					$state['nwlist'][$state['nwsecs']] = "<nowiki>{$q[0]}</nowiki>";
+				}
+				
+				$stripped .= $state['nwunq'] . sprintf("%08X", $state['nwsecs']);
 				$text = $q[1];
 			}
 		}
@@ -86,12 +121,19 @@ class Parser
 			while ( "" != $stripped ) {
 				$p = preg_split( "/<\\s*math\\s*>/i", $stripped, 2 );
 				$stripped2 .= $p[0];
-				if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) { $stripped = ""; }
-				else {
+				if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) { 
+					$stripped = ""; 
+				} else {
 					$q = preg_split( "/<\\/\\s*math\\s*>/i", $p[1], 2 );
-					++$mathsecs;
-					$mathlist[$mathsecs] = renderMath($q[0]);
-					$stripped2 .= $unique2 . $mathsecs . "s";
+					++$state['mathsecs'];
+
+					if ( $render ) {
+						$state['mathlist'][$state['mathsecs']] = renderMath($q[0]);
+					} else {
+						$state['mathlist'][$state['mathsecs']] = "<math>{$q[0]}</math>";
+					}
+					
+					$stripped2 .= $state['mathunq'] . sprintf("%08X", $state['mathsecs']);
 					$stripped = $q[1];
 				}
 			}
@@ -102,40 +144,39 @@ class Parser
 		while ( "" != $stripped2 ) {
 			$p = preg_split( "/<\\s*pre\\s*>/i", $stripped2, 2 );
 			$stripped3 .= $p[0];
-			if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) { $stripped2 = ""; }
-			else {
+			if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) { 
+				$stripped2 = ""; 
+			} else {
 				$q = preg_split( "/<\\/\\s*pre\\s*>/i", $p[1], 2 );
-				++$presecs;
-				$prelist[$presecs] = "<pre>". wfEscapeHTMLTagsOnly($q[0]). "</pre>\n";
-				$stripped3 .= $unique3 . $presecs . "s";
+				++$state['presecs'];
+
+				if ( $render ) {
+					$state['prelist'][$state['presecs']] = "<pre>". wfEscapeHTMLTagsOnly($q[0]). "</pre>\n";
+				} else {
+					$state['prelist'][$state['presecs']] = "<pre>{$q[0]}</pre>";
+				}
+				
+				$stripped3 .= $state['preunq'] . sprintf("%08X", $state['presecs']);
 				$stripped2 = $q[1];
 			}
 		}
+		return $stripped3;
+	}
 
-		$text = $this->doWikiPass2( $stripped3, $linestart );
-		
-		$specialChars = array("\\", "$");
-		$escapedChars = array("\\\\", "\\$");
-
-		# Go backwards so that {$unique1}1 doesn't overwrite {$unique1}10
-		for ( $i = $presecs; $i >= 1; --$i ) {
-			$text = preg_replace( "/{$unique3}{$i}s/", str_replace( $specialChars, 
-				$escapedChars, $prelist[$i] ), $text );
+	function unstrip( $text, &$state )
+	{
+		for ( $i = 1; $i <= $state['presecs']; ++$i ) {
+			$text = str_replace( $state['preunq'] . sprintf("%08X", $i), $state['prelist'][$i], $text );
 		}
 
-		for ( $i = $mathsecs; $i >= 1; --$i ) {
-			$text = preg_replace( "/{$unique2}{$i}s/", str_replace( $specialChars, 
-				$escapedChars, $mathlist[$i] ), $text );
+		for ( $i = 1; $i <= $state['mathsecs']; ++$i ) {
+			$text = str_replace( $state['mathunq'] . sprintf("%08X", $i), $state['mathlist'][$i], $text );		
 		}
 
-		for ( $i = $nwsecs; $i >= 1; --$i ) {
-			$text = preg_replace( "/{$unique}{$i}s/", str_replace( $specialChars, 
-				$escapedChars, $nwlist[$i] ), $text );
+		for ( $i = 1; $i <= $state['nwsecs']; ++$i ) {
+			$text = str_replace( $state['nwunq'] . sprintf("%08X", $i), $state['nwlist'][$i], $text );
 		}
-		
-		$this->mOutput->setText( $text );
-		wfProfileOut( $fname );
-		return $this->mOutput;
+		return $text;
 	}
 
 	function categoryMagic ()
@@ -1182,8 +1223,9 @@ class Parser
 			}
 
 			// The canonized header is a version of the header text safe to use for links
-			
-			$canonized_headline=preg_replace("/<.*?>/","",$headline); // strip out HTML
+			// Avoid insertion of weird stuff like <math> by expanding the relevant sections
+			$canonized_headline=Parser::unstrip( $headline, $this->mStripState );
+			$canonized_headline=preg_replace("/<.*?>/","",$canonized_headline); // strip out HTML
 			$tocline = trim( $canonized_headline );
 			$canonized_headline=str_replace('"',"",$canonized_headline);
 			$canonized_headline=str_replace(" ","_",trim($canonized_headline));			
@@ -1287,8 +1329,8 @@ class Parser
 			if ( "" == $num ) {
 				$text .= "ISBN $blank$x";
 			} else {
-				$text .= "<a href=\"" . wfLocalUrlE( $wgLang->specialPage(
-				  "Booksources"), "isbn={$num}" ) . "\" class=\"internal\">ISBN $isbn</a>";
+				$titleObj = Title::makeTitle( NS_SPECIAL, "Booksources" );
+				$text .= "<a href=\"" . $titleObj->getUrl( "isbn={$num}", false, true ) . "\" class=\"internal\">ISBN $isbn</a>";
 				$text .= $x;
 			}
 		}
@@ -1297,6 +1339,85 @@ class Parser
 
 	/* private */ function magicRFC( $text )
 	{
+		return $text;
+	}
+
+	function preSaveTransform( $text, &$title, &$user, $options, $clearState = true )
+	{
+		$this->mOptions = $options;
+		$this->mTitle = $title;
+		if ( $clearState ) {
+			$this->clearState;
+		}
+		
+		$stripState = false;
+		$text = $this->strip( $text, $stripState, false );
+		$text = $this->pstPass2( $text, $user );
+		$text = $this->unstrip( $text, $stripState );
+		return $text;
+	}
+
+	/* private */ function pstPass2( $text, &$user )
+	{
+		global $wgLang, $wgLocaltimezone;
+
+		# Signatures
+		#
+		$n = $user->getName();
+		$k = $user->getOption( "nickname" );
+		if ( "" == $k ) { $k = $n; }
+		if(isset($wgLocaltimezone)) {
+			$oldtz = getenv("TZ"); putenv("TZ=$wgLocaltimezone");
+		}
+		/* Note: this is an ugly timezone hack for the European wikis */
+		$d = $wgLang->timeanddate( date( "YmdHis" ), false ) .
+		  " (" . date( "T" ) . ")";
+		if(isset($wgLocaltimezone)) putenv("TZ=$oldtz");
+
+		$text = preg_replace( "/~~~~/", "[[" . $wgLang->getNsText(
+		  Namespace::getUser() ) . ":$n|$k]] $d", $text );
+		$text = preg_replace( "/~~~/", "[[" . $wgLang->getNsText(
+		  Namespace::getUser() ) . ":$n|$k]]", $text );
+
+		# Context links: [[|name]] and [[name (context)|]]
+		#
+		$tc = "[&;%\\-,.\\(\\)' _0-9A-Za-z\\/:\\x80-\\xff]";
+		$np = "[&;%\\-,.' _0-9A-Za-z\\/:\\x80-\\xff]"; # No parens
+		$namespacechar = '[ _0-9A-Za-z\x80-\xff]'; # Namespaces can use non-ascii!
+		$conpat = "/^({$np}+) \\(({$tc}+)\\)$/";
+
+		$p1 = "/\[\[({$np}+) \\(({$np}+)\\)\\|]]/";		# [[page (context)|]]
+		$p2 = "/\[\[\\|({$tc}+)]]/";					# [[|page]]
+		$p3 = "/\[\[($namespacechar+):({$np}+)\\|]]/";		# [[namespace:page|]]
+		$p4 = "/\[\[($namespacechar+):({$np}+) \\(({$np}+)\\)\\|]]/";
+														# [[ns:page (cont)|]]
+		$context = "";
+		$t = $this->mTitle->getText();
+		if ( preg_match( $conpat, $t, $m ) ) {
+			$context = $m[2];
+		}
+		$text = preg_replace( $p4, "[[\\1:\\2 (\\3)|\\2]]", $text );
+		$text = preg_replace( $p1, "[[\\1 (\\2)|\\1]]", $text );
+		$text = preg_replace( $p3, "[[\\1:\\2|\\2]]", $text );
+
+		if ( "" == $context ) {
+			$text = preg_replace( $p2, "[[\\1]]", $text );
+		} else {
+			$text = preg_replace( $p2, "[[\\1 ({$context})|\\1]]", $text );
+		}
+		
+		# {{SUBST:xxx}} variables
+		#
+		$mw =& MagicWord::get( MAG_SUBST );
+		$text = $mw->substituteCallback( $text, "wfReplaceSubstVar" );
+
+		# Trim trailing whitespace
+		# MAG_END (__END__) tag allows for trailing 
+		# whitespace to be deliberately included
+		$text = rtrim( $text );
+		$mw =& MagicWord::get( MAG_END );
+		$mw->matchAndRemove( $text );
+
 		return $text;
 	}
 
@@ -1398,6 +1519,8 @@ class ParserOptions
 		$this->mNumberHeadings = $user->getOption( "numberheadings" );
 		$this->mShowToc = $user->getOption( "showtoc" );
 	}
+
+
 }
 	
 # Regex callbacks, used in OutputPage::replaceVariables

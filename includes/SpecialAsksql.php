@@ -36,8 +36,8 @@ class SqlQueryForm {
 		if ( ! $wpSqlQuery ) { $wpSqlQuery = "SELECT ... FROM ... WHERE ..."; }
 		$q = wfMsg( "sqlquery" );
 		$qb = wfMsg( "querybtn" );
-		$action = wfLocalUrlE( $wgLang->specialPage( "Asksql" ),
-		  "action=submit" );
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Asksql" );
+		$action = $titleObj->getURL( "action=submit", true );
 
 		$wgOut->addHTML( "<p>
 <form id=\"asksql\" method=\"post\" action=\"{$action}\">
@@ -101,8 +101,6 @@ class SqlQueryForm {
 			if ( $titleList ) {
 				$r = "";
 				foreach ( $a as $y ) {
-					$o = "<a href=\"" . wfLocalUrlE($o) . "\" class='internal'>" .
-					  htmlspecialchars( $y->$x ) . "</a>" ;
 					$sTitle = htmlspecialchars( $y->cur_title );
 					if ( $y->cur_namespace ) {
 						$sNamespace = $wgLang->getNsText( $y->cur_namespace );

@@ -106,8 +106,8 @@ class Database {
 				$success = false;
 			}
 		} else {
-			# Delay USE
-			$success = true;
+			# Delay USE query
+			$success = !!$this->mConn;
 		}
 		
 		if ( !$success ) {

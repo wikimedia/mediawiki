@@ -106,7 +106,7 @@ class PageHistory {
 		global $wgTitle;
 		$this->lastdate = $this->lastline = "";
 		$s = "\n<p>" . wfMsg( "histlegend" ) . "\n<ul>";
-		$url = wfLocalUrl( $wgTitle->getPrefixedText(), "dummy=1");
+		$url = $wgTitle->getURL("-");
 		$s .= "<SCRIPT>
 			var sel = -1;
 			function anysel(oid){ 

@@ -237,7 +237,8 @@ function wfSpecialPreferences()
 	$dateopts = $wgLang->getDateFormats();
 	$togs = $wgLang->getUserToggles();
 
-	$action = wfLocalUrlE( $wgLang->specialPage( "Preferences" ));
+	$titleObj = Title::makeTitle( NS_SPECIAL, "Preferences" );
+	$action = $titleObj->getURL( "", true );
 
 	$qb = wfMsg( "qbsettings" );
 	$cp = wfMsg( "changepassword" );

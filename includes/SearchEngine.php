@@ -130,8 +130,10 @@ class SearchEngine {
 		  wfMsg("powersearch") . "\">\n";
 		$ret = str_replace( "$9", $tempText, $ret );
 
+		$titleObj = NULL; # this does tricky stuff
+		
 		$ret = "<br><br>\n<form id=\"powersearch\" method=\"get\" " .
-		  "action=\"" . wfLocalUrl( "" ) . "\">\n{$ret}\n</form>\n";
+		  "action=\"" . $titleObj->getUrl() . "\">\n{$ret}\n</form>\n";
 
 		if ( isset ( $searchx ) ) {
 			if ( ! $listredirs ) { 
@@ -433,7 +435,7 @@ class SearchEngine {
 		}
 
 		if ( 0 != $t->getArticleID() ) {
-			$wgOut->redirect( wfLocalUrl( $t->getPrefixedURL() ) );
+			$wgOut->redirect( $t->getURL() );
 			return;
 		}
 
@@ -441,7 +443,7 @@ class SearchEngine {
 		#
 		$t = Title::newFromText( strtolower( $search ) );
 		if ( 0 != $t->getArticleID() ) {
-			$wgOut->redirect( wfLocalUrl( $t->getPrefixedURL() ) );
+			$wgOut->redirect( $t->getURL() );
 			return;
 		}
 
@@ -449,7 +451,7 @@ class SearchEngine {
 		#
 		$t = Title::newFromText( ucwords( strtolower( $search ) ) );
 		if ( 0 != $t->getArticleID() ) {
-			$wgOut->redirect( wfLocalUrl( $t->getPrefixedURL() ) );
+			$wgOut->redirect( $t->getURL() );
 			return;
 		}
 
@@ -457,12 +459,13 @@ class SearchEngine {
 		#
 		$t = Title::newFromText( strtoupper( $search ) );
 		if ( 0 != $t->getArticleID() ) {
-			$wgOut->redirect( wfLocalUrl( $t->getPrefixedURL() ) );
+			$wgOut->redirect( $t->getURL() );
 			return;
 		}
-		$wgOut->addHTML( wfMsg("nogomatch", 
-			htmlspecialchars( wfLocalUrl( ucfirst($this->mUsertext), "action=edit") ) )
-			. "\n<p>" );
+
+		# No match, generate an edit URL
+		$t = Title::newFromText( $this->mUsertext );
+		$wgOut->addHTML( wfMsg("nogomatch", $t->getURL( "action=edit", true ) ) . "\n<p>" );
 
 		# Try a fuzzy title search
 		$anyhit = false;

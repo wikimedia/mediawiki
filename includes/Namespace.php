@@ -20,6 +20,10 @@ define("NS_IMAGE_TALK", 7);
 define("NS_MEDIAWIKI", 8);
 define("NS_MEDIAWIKI_TALK", 9);
 
+# Reserved:
+define("NS_TEMPLATE", 10);
+define("NS_TEMPLATE_TALK", 11);
+
 class Namespace {
 
 	/* These functions are deprecated */

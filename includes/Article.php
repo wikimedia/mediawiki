@@ -154,8 +154,7 @@ class Article {
 							return;
 						}
 						if ( $rt->getNamespace() == Namespace::getSpecial() ) {
-							$wgOut->redirect( wfLocalUrl(
-							  $rt->getPrefixedURL() ) );
+							$wgOut->redirect( $rt->getURL() );
 							return;
 						}
 						$rid = $rt->getArticleID();
@@ -431,7 +430,7 @@ class Article {
 		# Squid purging
 		if ( $wgUseSquid ) {
 			$urlArr = Array( 
-				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL())
+				$wgInternalServer.$this->mTitle->getURL()
 			);			
 			wfPurgeSquidServers($urlArr);
 			/* this needs to be done after LinksUpdate */
@@ -547,7 +546,7 @@ class Article {
 		
 		if ( $wgUseSquid ) {
 			$urlArr = Array( 
-				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL())
+				$wgInternalServer.$this->mTitle->getURL()
 			);			
 			wfPurgeSquidServers($urlArr);
 		}
@@ -578,7 +577,7 @@ class Article {
 			$r = "redirect=no";
 		else
 			$r = "";
-		$wgOut->redirect( wfLocalUrl( $this->mTitle->getPrefixedURL(), $r ) );
+		$wgOut->redirect( $this->mTitle->getURL( $r ) );
 	}
 
 	# Add this page to my watchlist
@@ -651,7 +650,7 @@ class Article {
 		} else {
 			$log->addEntry( wfMsg( "protectedarticle", $this->mTitle->getPrefixedText() ), "" );
 		}
-		$wgOut->redirect( wfLocalUrl( $this->mTitle->getPrefixedURL() ) );
+		$wgOut->redirect( $this->mTitle->getURL() );
 	}
 
 	function unprotect()
@@ -767,9 +766,8 @@ class Article {
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->addWikiText( wfMsg( "confirmdeletetext" ) );
 
-		$t = $this->mTitle->getPrefixedURL();
-
-		$formaction = wfEscapeHTML( wfLocalUrl( $t, "action=delete" . $par ) );
+		$formaction = $this->mTitle->getURL( $this->mTitle, "action=delete" . $par, true );
+		
 		$confirm = wfMsg( "confirm" );
 		$check = wfMsg( "confirmcheck" );
 		$delcom = wfMsg( "deletecomment" );
@@ -837,7 +835,7 @@ class Article {
 		# Squid purging
 		if ( $wgUseSquid ) {
 			$urlArr = Array(
-				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL())
+				$wgInternalServer.$this->mTitle->getURL()
 			);
 			wfPurgeSquidServers($urlArr);
 
@@ -847,7 +845,7 @@ class Article {
 			while ( $BL = wfFetchObject ( $res ) )
 			{
 				$tobj = Title::newFromDBkey( $BL->l_from) ; 
-				$blurlArr[] = $wgInternalServer.wfLocalUrl( $tobj->getPrefixedURL() );
+				$blurlArr[] = $wgInternalServer.$tobj->getURL();
 			}
 			wfFreeResult ( $res ) ;
 			$u = new SquidUpdate( $this->mTitle, $blurlArr );
@@ -1092,86 +1090,10 @@ class Article {
 
 	function preSaveTransform( $text )
 	{
-		$s = "";
-		while ( "" != $text ) {
-			$p = preg_split( "/<\\s*nowiki\\s*>/i", $text, 2 );
-			$s .= $this->pstPass2( $p[0] );
-
-			if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) { $text = ""; }
-			else {
-				$q = preg_split( "/<\\/\\s*nowiki\\s*>/i", $p[1], 2 );
-				$s .= "<nowiki>{$q[0]}</nowiki>";
-				$text = $q[1];
-			}
-		}
-		return rtrim( $s );
+		global $wgParser, $wgUser;
+		return $wgParser->preSaveTransform( $text, $this->mTitle, $wgUser, ParserOptions::newFromUser( $wgUser ) );
 	}
-
-	/* private */ function pstPass2( $text )
-	{
-		global $wgUser, $wgLang, $wgLocaltimezone;
-
-		# Signatures
-		#
-		$n = $wgUser->getName();
-		$k = $wgUser->getOption( "nickname" );
-		if ( "" == $k ) { $k = $n; }
-		if(isset($wgLocaltimezone)) {
-			$oldtz = getenv("TZ"); putenv("TZ=$wgLocaltimezone");
-		}
-		/* Note: this is an ugly timezone hack for the European wikis */
-		$d = $wgLang->timeanddate( date( "YmdHis" ), false ) .
-		  " (" . date( "T" ) . ")";
-		if(isset($wgLocaltimezone)) putenv("TZ=$oldtz");
-
-		$text = preg_replace( "/~~~~/", "[[" . $wgLang->getNsText(
-		  Namespace::getUser() ) . ":$n|$k]] $d", $text );
-		$text = preg_replace( "/~~~/", "[[" . $wgLang->getNsText(
-		  Namespace::getUser() ) . ":$n|$k]]", $text );
-
-		# Context links: [[|name]] and [[name (context)|]]
-		#
-		$tc = "[&;%\\-,.\\(\\)' _0-9A-Za-z\\/:\\x80-\\xff]";
-		$np = "[&;%\\-,.' _0-9A-Za-z\\/:\\x80-\\xff]"; # No parens
-		$namespacechar = '[ _0-9A-Za-z\x80-\xff]'; # Namespaces can use non-ascii!
-		$conpat = "/^({$np}+) \\(({$tc}+)\\)$/";
-
-		$p1 = "/\[\[({$np}+) \\(({$np}+)\\)\\|]]/";		# [[page (context)|]]
-		$p2 = "/\[\[\\|({$tc}+)]]/";					# [[|page]]
-		$p3 = "/\[\[($namespacechar+):({$np}+)\\|]]/";		# [[namespace:page|]]
-		$p4 = "/\[\[($namespacechar+):({$np}+) \\(({$np}+)\\)\\|]]/";
-														# [[ns:page (cont)|]]
-		$context = "";
-		$t = $this->mTitle->getText();
-		if ( preg_match( $conpat, $t, $m ) ) {
-			$context = $m[2];
-		}
-		$text = preg_replace( $p4, "[[\\1:\\2 (\\3)|\\2]]", $text );
-		$text = preg_replace( $p1, "[[\\1 (\\2)|\\1]]", $text );
-		$text = preg_replace( $p3, "[[\\1:\\2|\\2]]", $text );
-
-		if ( "" == $context ) {
-			$text = preg_replace( $p2, "[[\\1]]", $text );
-		} else {
-			$text = preg_replace( $p2, "[[\\1 ({$context})|\\1]]", $text );
-		}
-		
-		# {{SUBST:xxx}} variables
-		#
-		$mw =& MagicWord::get( MAG_SUBST );
-		$text = $mw->substituteCallback( $text, "wfReplaceSubstVar" );
-
-/* Experimental:
-		# Trim trailing whitespace
-		# MAG_END (__END__) tag allows for trailing 
-		# whitespace to be deliberately included
-		$text = rtrim( $text );
-		$mw =& MagicWord::get( MAG_END );
-		$mw->matchAndRemove( $text );
-*/
-		return $text;
-	}
-
+	
 	/* Caching functions */
 
 	# checkLastModified returns true iff it has taken care of all

@@ -8,7 +8,7 @@ function wfSpecialWhatlinkshere($par = NULL)
 	if($par) {
 		$target = $par;
 	} else {
-		$target = wfCleanQueryVar( $_REQUEST['target'] );
+		$target = $_REQUEST['target'] ;
 	}
 	if ( "" == $target ) {
 		$wgOut->errorpage( "notargettitle", "notargettext" );

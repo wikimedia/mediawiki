@@ -14,6 +14,8 @@ function wfSpecialWatchlist()
 	$wgOut->setSubtitle( $sub );
 	$wgOut->setRobotpolicy( "noindex,nofollow" );
 
+	$specialTitle = Title::makeTitle( NS_SPECIAL, "Watchlist" );
+	
 	$uid = $wgUser->getID();
 	if( $uid == 0 ) {
 		$wgOut->addHTML( wfMsg( "nowatchlist" ) );
@@ -91,7 +93,7 @@ function wfSpecialWatchlist()
 			"<p>" . wfMsg( "watcheditlist" ) . "</p>\n" );
 		
 		$wgOut->addHTML( "<form action='" .
-			wfLocalUrl( $wgLang->specialPage( "Watchlist" ), "action=submit" ) .
+			$specialTitle->getURL( "action=submit", true ) .
 			"' method='post'>\n" .
 			"<ul>\n" );
 		$sql = "SELECT wl_namespace,wl_title FROM watchlist WHERE wl_user=$uid";
@@ -130,8 +132,9 @@ function wfSpecialWatchlist()
 		$z = "(wl_namespace=cur_namespace OR wl_namespace+1=cur_namespace)";
 	}
 
+	
 	$wgOut->addHTML( "<i>" . wfMsg( "watchdetails", $nitems, $npages, $y,
-		wfLocalUrl( $wgLang->specialPage("Watchlist"),"magic=yes" ) ) . "</i><br>\n" );
+		$specialTitle->getURL( "magic=yes", true ) ) . "</i><br>\n" );
 	 
 
 	$sql = "SELECT
