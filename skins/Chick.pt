@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${lang}" lang="${lang}" dir="${dir}">
   <head>
     <meta http-equiv="Content-Type" content="${mimetype}; charset=${charset}" />
-    ${headlinks}
+    <div tal:replace="structure headlinks"></div>
     <title tal:content="pagetitle">Exciting xhtml slimfast</title>
     <style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "${stylepath}/${stylename}/main.css"; /*]]>*/</style>
     <script type="text/javascript" tal:attributes="src jsvarurl"></script>
     <script type="text/javascript" src="${stylepath}/common/wikibits.js"></script>
-    <style tal:condition="usercss" type="text/css">/*<![CDATA[*/ ${usercss} /*]]>*/</style>
-    <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script><script
-      tal:condition="userjsprev" type="text/javascript">/*<![CDATA[*/${userjsprev}/*]]>*/</script>
+    <style tal:condition="usercss" tal:content="structure usercss" type="text/css"></style>
+    <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script><script 
+      tal:condition="userjsprev" tal:content="structure userjsprev" type="text/javascript"></script>
   </head>
   <body>
     <a name="top"></a>
@@ -30,7 +30,7 @@
     <div tal:condition="newtalk" class="usermessage" tal:content="structure newtalk"></div>
     <div tal:condition="catlinks" id="catlinks" tal:content="structure catlinks"></div>
     <!-- start content -->
-        ${bodytext}
+	    <div tal:replace="structure bodytext"></div>
     <!-- end content -->
     <hr />
 
@@ -84,17 +84,17 @@
     <hr style="clear: both;" />
 
     <div id="footer">
-      <span tal:condition="poweredbyico">${poweredbyico}</span>
-      <span tal:condition="copyrightico">${copyrightico}</span>
+      <span tal:condition="poweredbyico" tal:content="structure poweredbyico"></span>
+      <span tal:condition="copyrightico" tal:content="structure copyrightico"></span>
       <ul id="f-list">
-        <li id="f-lastmod" tal:condition="lastmod">${lastmod}</li>
-        <li id="f-viewcount" tal:condition="viewcount">${viewcount}</li>
-        <li id="f-credits" tal:condition="credits">${credits}</li>
-        <li id="f-copyright" tal:condition="copyright">${copyright}</li>
-        <li id="f-about" tal:condition="about">${about}</li>
-        <li id="f-disclaimer" tal:condition="disclaimer">${disclaimer}</li>
+	  <li id="f-lastmod" tal:condition="lastmod" tal:content="structure lastmod"></li>
+	  <li id="f-viewcount" tal:condition="viewcount" tal:content="structure viewcount"></li>
+	  <li id="f-credits" tal:condition="credits" tal:content="structure credits"></li>
+	  <li id="f-copyright" tal:condition="copyright" tal:content="structure copyright"></li>
+	  <li id="f-about" tal:condition="about" tal:content="structure about"></li>
+	  <li id="f-disclaimer" tal:condition="disclaimer" tal:content="structure disclaimer"></li>
       </ul>
     </div>
-    ${reporttime}
+    <div tal:replace="structure reporttime"></div>
   </body>
 </html>
