@@ -19,7 +19,7 @@ if( defined( 'MEDIAWIKI' ) ) {
  * MediaWiki version number
  * @global string $wgVersion
  */
-$wgVersion			= '1.4rc1';
+$wgVersion			= '1.4.0';
 
 /** 
  * Name of the site.
@@ -170,7 +170,7 @@ $wgEnableEmail = true;
  * This can potentially be abused, as it's hard to track.
  * @global bool $wgEnableUserEmail
  */
-$wgEnableUserEmail = true;
+$wgEnableUserEmail = false;
 
 /**
  * SMTP Mode
