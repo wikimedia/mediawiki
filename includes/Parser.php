@@ -1507,6 +1507,8 @@ cl_sortkey" ;
 				return $wgLang->formatNum( date('j') );
 			case MAG_PAGENAME:
 				return $this->mTitle->getText();
+			case MAG_PAGENAMEE:
+				return $this->mTitle->getPartialURL();
 			case MAG_NAMESPACE:
 				# return Namespace::getCanonicalName($this->mTitle->getNamespace());
 				return $wgLang->getNsText($this->mTitle->getNamespace()); // Patch  by Dori
