@@ -102,10 +102,14 @@ function wfSpecialWatchlist()
 		$sk = $wgUser->getSkin();
 		while( $s = wfFetchObject( $res ) ) {
 			$t = Title::makeTitle( $s->wl_namespace, $s->wl_title );
-			$t = $t->getPrefixedText();
-			$wgOut->addHTML( "<li><input type='checkbox' name='id[]' value=\"" . htmlspecialchars($t) . "\" />" .
-				$sk->makeKnownLink( $t, $t ) .
-				"</li>\n" );
+			if( is_null( $t ) ) {
+				$wgOut->addHTML( '<!-- bad title \"' . htmlspecialchars( $s->wl_title ) . '\" in namespace ' . IntVal( $s->wl_namespace ) . " -->\n" );
+			} else {
+				$t = $t->getPrefixedText();
+				$wgOut->addHTML( "<li><input type='checkbox' name='id[]' value=\"" . htmlspecialchars($t) . "\" />" .
+					$sk->makeKnownLink( $t, $t ) .
+					"</li>\n" );
+			}
 		}
 		$wgOut->addHTML( "</ul>\n" .
 			"<input type='submit' name='remove' value='" .
