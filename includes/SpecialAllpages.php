@@ -51,7 +51,8 @@ function namespaceForm ( $namespace = 0, $from = '' ) {
 
 	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>";
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
-	$out .= wfMsg ( 'allpagesformtext', $frombox, $namespaceselect, $submitbutton );
+	$out .= wfMsg ( 'allpagesformtext1', $frombox ) . '<br />';
+	$out .= wfMsg ( 'allpagesformtext2', $namespaceselect, $submitbutton );
 	$out .= '</form></div>';
 	return $out;
 }
@@ -226,10 +227,11 @@ function indexShowChunk( $from, $namespace = 0 ) {
 			$sk->makeKnownLink( $wgLang->specialPage( "Allpages" ),
 				wfMsg ( 'allpages' ) );
 	if ( ($n == $indexMaxperpage) && ($s = $dbr->fetchObject( $res )) ) {
+		$namespaceparam = $namespace ? "&namespace=$namespace" : "";
 		$out2 .= " | " . $sk->makeKnownLink(
 			$wgLang->specialPage( "Allpages" ),
 			wfMsg ( 'nextpage', $s->cur_title ),
-			"from=" . wfUrlEncode ( $s->cur_title ) );
+			"from=" . wfUrlEncode ( $s->cur_title ) . $namespaceparam );
 	}
 	$out2 .= "</td></tr></table><hr />";
 
