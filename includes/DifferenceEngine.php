@@ -19,7 +19,7 @@ class DifferenceEngine {
 			#
 			$this->mNewid = intval($old);
 			$dbr =& wfGetDB( DB_SLAVE );
-			$this->mOldid = $dbr->selectField( 'old', 'old_id',  
+			$this->mOldid = $dbr->selectField( 'old', 'old_id',
 				"old_title='" . $wgTitle->getDBkey() . "'" .
 				' AND old_namespace=' . $wgTitle->getNamespace() .
 				" AND old_id<{$this->mNewid} ORDER BY old_id DESC" );
@@ -31,7 +31,7 @@ class DifferenceEngine {
 			#
 			$this->mOldid = intval($old);
 			$dbr =& wfGetDB( DB_SLAVE );
-			$this->mNewid = $dbr->selectField( 'old', 'old_id',  
+			$this->mNewid = $dbr->selectField( 'old', 'old_id',
 				"old_title='" . $wgTitle->getDBkey() . "'" .
 				' AND old_namespace=' . $wgTitle->getNamespace() .
 				" AND old_id>{$this->mOldid} ORDER BY old_id " );
@@ -135,7 +135,7 @@ class DifferenceEngine {
 			"($oldUTLink | $oldContribs)<br />" . $this->mOldComment .
 			'<br />' . $prevlink;
 		$newHeader = "<strong>{$this->mNewtitle}</strong><br />$newUserLink " .
-			"($newUTLink | $newContribs) $rollback<br />" . $this->mNewComment . 
+			"($newUTLink | $newContribs) $rollback<br />" . $this->mNewComment .
 			'<br />' . $nextlink . $patrol;
 
 		DifferenceEngine::showDiff( $this->mOldtext, $this->mNewtext,
@@ -192,7 +192,7 @@ class DifferenceEngine {
 		$header = "<div class=\"firstrevisionheader\" style=\"text-align: center\"><strong>{$this->mOldtitle}</strong><br />$userLink " .
 			"($uTLink | $contribs)<br />" . $this->mOldComment .
 			'<br />' . $nextlink. "</div>\n";
-	
+
 		$wgOut->addHTML( $header );
 
 		$wgOut->setSubtitle( wfMsg( 'difference' ) );
@@ -211,23 +211,24 @@ class DifferenceEngine {
 	{
 		global $wgOut, $wgUseExternalDiffEngine;
 
-		$otext = str_replace( "\r\n", "\n", htmlspecialchars( $otext ) );
-		$ntext = str_replace( "\r\n", "\n", htmlspecialchars( $ntext ) );
+		$wgOut->addHTML( "
+			<table border='0' width='98%' cellpadding='0' cellspacing='4' class='diff'>
+			<tr>
+				<td colspan='2' width='50%' align='center' class='diff-otitle'>{$otitle}</td>
+				<td colspan='2' width='50%' align='center' class='diff-ntitle'>{$ntitle}</td>
+			</tr>
+		" );
 
-
-			$wgOut->addHTML( "<table border='0' width='98%'
-cellpadding='0' cellspacing='4px' class='diff'><tr>
-<td colspan='2' width='50%' align='center' class='diff-otitle'>
-{$otitle}</td>
-<td colspan='2' width='50%' align='center' class='diff-ntitle'>
-{$ntitle}</td>
-</tr>\n" );
 		if ( $wgUseExternalDiffEngine ) {
+			# For historical reasons, external diff engine expects
+			# input text to be HTML-escaped already
+			$otext = str_replace( "\r\n", "\n", htmlspecialchars ( $otext ) );
+			$ntext = str_replace( "\r\n", "\n", htmlspecialchars ( $ntext ) );
 			dl('php_wikidiff.so');
 			$wgOut->addHTML( wikidiff_do_diff( $otext, $ntext, 2) );
 		} else {
-			$ota = explode( "\n", $otext);
-			$nta = explode( "\n", $ntext);
+			$ota = explode( "\n", str_replace( "\r\n", "\n", $otext ) );
+			$nta = explode( "\n", str_replace( "\r\n", "\n", $ntext ) );
 			$diffs = new Diff( $ota, $nta );
 			$formatter = new TableDiffFormatter();
 			$formatter->format( $diffs );
@@ -1154,11 +1155,12 @@ class _HWLDF_WordAccumulator {
 
 	function _flushGroup ($new_tag) {
 		if ($this->_group !== '') {
-	  if ($this->_tag == 'mark')
-			$this->_line .= '<span class="diffchange">'.$this->_group.'</span>';
-	  else
-		$this->_line .= $this->_group;
-	}
+			if ($this->_tag == 'mark')
+				$this->_line .= '<span class="diffchange">' .
+					htmlspecialchars ( $this->_group ) . '</span>';
+			else
+				$this->_line .= htmlspecialchars ( $this->_group );
+		}
 		$this->_group = '';
 		$this->_tag = $new_tag;
 	}
@@ -1166,7 +1168,10 @@ class _HWLDF_WordAccumulator {
 	function _flushLine ($new_tag) {
 		$this->_flushGroup($new_tag);
 		if ($this->_line != '')
-			$this->_lines[] = $this->_line;
+			array_push ( $this->_lines, $this->_line );
+		else
+			# make empty lines visible by inserting an NBSP
+			array_push ( $this->_lines, NBSP );
 		$this->_line = '';
 	}
 
@@ -1179,7 +1184,6 @@ class _HWLDF_WordAccumulator {
 			if ($word == '')
 				continue;
 			if ($word[0] == "\n") {
-				$this->_group .= NBSP;
 				$this->_flushLine($tag);
 				$word = substr($word, 1);
 			}
@@ -1206,8 +1210,6 @@ class WordLevelDiff extends MappedDiff
 	}
 
 	function _split($lines) {
-		// FIXME: fix POSIX char class.
-#		 if (!preg_match_all('/ ( [^\S\n]+ | [[:alnum:]]+ | . ) (?: (?!< \n) [^\S\n])? /xs',
 		if (!preg_match_all('/ ( [^\S\n]+ | [0-9_A-Za-z\x80-\xff]+ | . ) (?: (?!< \n) [^\S\n])? /xs',
 							implode("\n", $lines),
 							$m)) {
@@ -1272,36 +1274,37 @@ class TableDiffFormatter extends DiffFormatter
 	function _lines( $lines, $prefix=' ', $color='white' ) {
 	}
 
+	# HTML-escape parameter before calling this
 	function addedLine( $line ) {
-		return '<td>+</td><td class="diff-addedline">' .
-		  $line.'</td>';
+		return "<td>+</td><td class='diff-addedline'>{$line}</td>";
 	}
 
+	# HTML-escape parameter before calling this
 	function deletedLine( $line ) {
-		return '<td>-</td><td class="diff-deletedline">' .
-		  $line.'</td>';
+		return "<td>-</td><td class='diff-deletedline'>{$line}</td>";
+	}
+
+	# HTML-escape parameter before calling this
+	function contextLine( $line ) {
+		return "<td> </td><td class='diff-context'>{$line}</td>";
 	}
 
 	function emptyLine() {
 		return '<td colspan="2">&nbsp;</td>';
 	}
 
-	function contextLine( $line ) {
-		return '<td> </td><td class="diff-context">'.$line.'</td>';
-	}
-
-	function _added($lines) {
+	function _added( $lines ) {
 		global $wgOut;
 		foreach ($lines as $line) {
 			$wgOut->addHTML( '<tr>' . $this->emptyLine() .
-			  $this->addedLine( $line ) . "</tr>\n" );
+				$this->addedLine( htmlspecialchars ( $line ) ) . "</tr>\n" );
 		}
 	}
 
 	function _deleted($lines) {
 		global $wgOut;
 		foreach ($lines as $line) {
-			$wgOut->addHTML( '<tr>' . $this->deletedLine( $line ) .
+			$wgOut->addHTML( '<tr>' . $this->deletedLine( htmlspecialchars ( $line ) ) .
 			  $this->emptyLine() . "</tr>\n" );
 		}
 	}
@@ -1309,8 +1312,9 @@ class TableDiffFormatter extends DiffFormatter
 	function _context( $lines ) {
 		global $wgOut;
 		foreach ($lines as $line) {
-			$wgOut->addHTML( '<tr>' . $this->contextLine( $line ) .
-			  $this->contextLine( $line ) . "</tr>\n" );
+			$wgOut->addHTML( '<tr>' .
+				$this->contextLine( htmlspecialchars ( $line ) ) .
+				$this->contextLine( htmlspecialchars ( $line ) ) . "</tr>\n" );
 		}
 	}
 
@@ -1320,10 +1324,13 @@ class TableDiffFormatter extends DiffFormatter
 		$del = $diff->orig();
 		$add = $diff->closing();
 
+		# Notice that WordLevelDiff returns HTML-escaped output.
+		# Hence, we will be calling addedLine without HTML-escaping.
+
 		while ( $line = array_shift( $del ) ) {
 			$aline = array_shift( $add );
 			$wgOut->addHTML( '<tr>' . $this->deletedLine( $line ) .
-			  $this->addedLine( $aline ) . "</tr>\n" );
+				$this->addedLine( $aline ) . "</tr>\n" );
 		}
 		$this->_added( $add ); # If any leftovers
 	}
