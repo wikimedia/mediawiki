@@ -55,21 +55,6 @@ require_once( "LanguageUtf8.php" );
 /* Just inherit the (mostly) native-language plus latinized formed */
 /* private */ $wgLanguageNamesSc = $wgLanguageNamesEn;
 
-/* private */ $wgWeekdayNamesSc = array(
-	"Domiga", "Lúnis", "Màrtis", "Mércuris", "Zóbia",
-	"Canàbara", "Sàudu"
-);
-
-/* private */ $wgMonthNamesSc = array(
-	"Ghenàlliu", "Fiàrzu", "Màrtu", "Abríli", "Màzu", "Làmparas",
-	"Luglio", "Agosto", "Settembre", "Ottobre", "Novembre",
-	"Dicembre"
-);
-
-/* private */ $wgMonthAbbreviationsSc = array(
-	"Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago",
-	"Set", "Ott", "Nov", "Dic"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -120,6 +105,41 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesSc = array(
+
+# Dates
+#
+
+'sunday' => "Domiga",
+'monday' => "Lúnis",
+'tuesday' => "Màrtis",
+'wednesday' => "Mércuris",
+'thursday' => "Zóbia",
+'friday' => "Canàbara",
+'saturday' => "Sàudu",
+'january' => "Ghenàlliu",
+'february' => "Fiàrzu",
+'march' => "Màrtu",
+'april' => "Abríli",
+'may_long' => "Màzu",
+'june' => "Làmparas",
+'july' => "Luglio",
+'august' => "Agosto",
+'september' => "Settembre",
+'october' => "Ottobre",
+'november' => "Novembre",
+'december' => "Dicembre",
+'jan' => "Gen",
+'feb' => "Feb",
+'mar' => "Mar",
+'apr' => "Apr",
+'may' => "Mag",
+'jun' => "Giu",
+'jul' => "Lug",
+'aug' => "Ago",
+'sep' => "Set",
+'oct' => "Ott",
+'nov' => "Nov",
+'dec' => "Dic",
 
 # Bits of text used by many pages:
 #
@@ -824,24 +844,6 @@ class LanguageSc extends LanguageUtf8 {
 			return "";
 		}
 		return $wgLanguageNamesSc[$code];
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesSc;
-		return $wgMonthNamesSc[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsSc;
-		return $wgMonthAbbreviationsSc[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesSc;
-		return $wgWeekdayNamesSc[$key-1];
 	}
 
 	function date( $ts, $adj = false )

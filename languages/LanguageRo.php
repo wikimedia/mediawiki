@@ -80,21 +80,7 @@ require_once("LanguageUtf8.php");
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesRo = array(
-	"Duminică", "Luni", "Marţi", "Miercuri", "Joi",
-	"Vineri", "Sâmbătă"
-);
-# Yes, the month names start with small letters in Romanian.
-/* private */ $wgMonthNamesRo = array(
-	"ianuarie", "februarie", "martie", "aprilie", "mai", "iunie",
-	"iulie", "august", "septembrie", "octombrie", "noiembrie",
-	"decembrie"
-);
 
-/* private */ $wgMonthAbbreviationsRo = array(
-	"Ian", "Feb", "Mar", "Apr", "Mai", "Iun", "Iul", "Aug",
-	"Sep", "Oct", "Noi", "Dec"
-);
 
 /* private */ $wgMagicWordsRo = array(
 #   ID                                 CASE  SYNONYMS
@@ -179,6 +165,41 @@ require_once("LanguageUtf8.php");
 );
 
 /* private */ $wgAllMessagesRo = array(
+
+# Dates
+#
+
+'sunday' => "Duminică",
+'monday' => 'Luni',
+'tuesday' => 'Marţi',
+'wednesday' => 'Miercuri',
+'thursday' => 'Joi',
+'friday' => 'Vineri',
+'saturday' => "Sâmbătă",
+'january' => 'ianuarie',
+'february' => 'februarie',
+'march' => 'martie',
+'april' => 'aprilie',
+'may_long' => 'mai',
+'june' => 'iunie',
+'july' => 'iulie',
+'august' => 'august',
+'september' => 'septembrie',
+'october' => 'octombrie',
+'november' => 'noiembrie',
+'december' => 'decembrie',
+'jan' => 'Ian',
+'feb' => 'Feb',
+'mar' => 'Mar',
+'apr' => 'Apr',
+'may' => 'Mai',
+'jun' => 'Iun',
+'jul' => 'Iul',
+'aug' => 'Aug',
+'sep' => 'Sep',
+'oct' => 'Oct',
+'nov' => 'Noi',
+'dec' => 'Dec',
 
 # Bits of text used by many pages:
 #
@@ -1078,24 +1099,6 @@ class LanguageRo extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesRo;
 		return $wgUserTogglesRo;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesRo;
-		return $wgMonthNamesRo[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsRo;
-		return $wgMonthAbbreviationsRo[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesRo;
-		return $wgWeekdayNamesRo[$key-1];
 	}
 
 	function timeanddate( $ts, $adj = false )

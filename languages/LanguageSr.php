@@ -61,22 +61,6 @@ require_once( "LanguageUtf8.php" );
  "nocache" => "Онемогући кеширање страница"
 );
 
-/* private */ $wgWeekdayNamesSr = array(
- "Недеља", "Понедељак", "Уторак", "Среда", "Четвртак",
- "Петак", "Субота"
-);
-
-/* private */ $wgMonthNamesSr = array(
- "Јануар", "Фебруар", "Март", "Април", "Мај", "Јуни",
- "Јули", "Август", "Септембар", "Октобар", "Новембар",
- "Децембар"
-);
-
-/* private */ $wgMonthAbbreviationsSr = array(
- "Јан", "Феб", "Мар", "Апр", "Мај", "Јун",
- "Јул", "Авг", "Сеп", "Окт", "Нов",
- "Дец"
-);
 
 /* NOT USED IN STABLE VERSION */
 /* private */ $wgMagicWordsSr = array(
@@ -150,6 +134,41 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesSr = array(
+
+# Dates
+#
+
+'sunday' => "Недеља",
+'monday' => "Понедељак",
+'tuesday' => "Уторак",
+'wednesday' => "Среда",
+'thursday' => "Четвртак",
+'friday' => "Петак",
+'saturday' => "Субота",
+'january' => "Јануар",
+'february' => "Фебруар",
+'march' => "Март",
+'april' => "Април",
+'may_long' => "Мај",
+'june' => "Јуни",
+'july' => "Јули",
+'august' => "Август",
+'september' => "Септембар",
+'october' => "Октобар",
+'november' => "Новембар",
+'december' => "Децембар",
+'jan' => "Јан",
+'feb' => "Феб",
+'mar' => "Мар",
+'apr' => "Апр",
+'may' => "Мај",
+'jun' => "Јун",
+'jul' => "Јул",
+'aug' => "Авг",
+'sep' => "Сеп",
+'oct' => "Окт",
+'nov' => "Нов",
+'dec' => "Дец",
 
 # Bits of text used by many pages:
 #
@@ -1096,31 +1115,6 @@ class LanguageSr extends LanguageUtf8 {
  function getUserToggles() {
   global $wgUserTogglesSr;
   return $wgUserTogglesSr;
- }
-
- function getMonthName( $key )
- {
-  global $wgMonthNamesSr;
-  return $wgMonthNamesSr[$key-1];
- }
- 
- /* by default we just return base form */
- function getMonthNameGen( $key )
- {
-  global $wgMonthNamesSr;
-  return $wgMonthNamesSr[$key-1];
- }
- 
- function getMonthAbbreviation( $key )
- {
-  global $wgMonthAbbreviationsSr;
-  return $wgMonthAbbreviationsSr[$key-1];
- }
-
- function getWeekdayName( $key )
- {
-  global $wgWeekdayNamesSr;
-  return $wgWeekdayNamesSr[$key-1];
  }
 
  function getValidSpecialPages()

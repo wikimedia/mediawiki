@@ -76,21 +76,6 @@ require_once("LanguageUtf8.php");
 
 /* Please customize this list... */
 
-/* private */ $wgWeekdayNamesSq = array(
-	"E Djelë", "E Hënë", "E Martë", "E Mërkurë", "E Enjte",
-	"E Premte", "E Shtunë"
-);
-
-/* private */ $wgMonthNamesSq = array(
-	"Janar", "Shkurt", "Mars", "Prill", "Maj", "Qershor",
-	"Korrik", "Gusht", "Shtator", "Tetor", "Nëntor",
-	"Dhjetor"
-);
-
-/* private */ $wgMonthAbbreviationsSq = array(
-	"Jan", "Shk", "Mar", "Pri", "Maj", "Qer", "Kor", "Gus",
-	"Sht", "Tet", "Nën", "Dhj"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -143,6 +128,41 @@ require_once("LanguageUtf8.php");
 );
 
 /* private */ $wgAllMessagesSq = array(
+
+# Dates
+#
+
+'sunday' => 'E Djelë',
+'monday' => 'E Hënë',
+'tuesday' => 'E Martë',
+'wednesday' => 'E Mërkurë',
+'thursday' => 'E Enjte',
+'friday' => 'E Premte',
+'saturday' => 'E Shtunë',
+'january' => 'Janar',
+'february' => 'Shkurt',
+'march' => 'Mars',
+'april' => 'Prill',
+'may_long' => 'Maj',
+'june' => 'Qershor',
+'july' => 'Korrik',
+'august' => 'Gusht',
+'september' => 'Shtator',
+'october' => 'Tetor',
+'november' => 'Nëntor',
+'december' => 'Dhjetor',
+'jan' => 'Jan',
+'feb' => 'Shk',
+'mar' => 'Mar',
+'apr' => 'Pri',
+'may' => 'Maj',
+'jun' => 'Qer',
+'jul' => 'Kor',
+'aug' => 'Gus',
+'sep' => 'Sht',
+'oct' => 'Tet',
+'nov' => 'Nën',
+'dec' => 'Dhj',
 
 # Bits of text used by many pages:
 #
@@ -1064,31 +1084,6 @@ class LanguageSq extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesSq;
 		return $wgUserTogglesSq;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesSq;
-		return $wgMonthNamesSq[$key-1];
-	}
-
-	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
-		global $wgMonthNamesSq;
-		return $wgMonthNamesSq[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsSq;
-		return $wgMonthAbbreviationsSq[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesSq;
-		return $wgWeekdayNamesSq[$key-1];
 	}
 
 	# localised date and time

@@ -73,21 +73,6 @@
 	"Mao.no" => "http://www.mao.no/"
 );
 
-/* private */ $wgWeekdayNamesNo = array(
-	"søndag", "mandag", "tirsdag", "onsdag", "torsdag",
-	"fredag", "lørdag"
-);
-
-/* private */ $wgMonthNamesNo = array(
-	"januar", "februar", "mars", "april", "mai", "juni",
-	"juli", "august", "september", "oktober", "november",
-	"desember"
-);
-
-/* private */ $wgMonthAbbreviationsNo = array(
-	"jan", "feb", "mar", "apr", "mai", "jun", "jul", "aug",
-	"sep", "okt", "nov", "des"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -141,6 +126,41 @@
 );
 
 /* private */ $wgAllMessagesNo = array(
+
+# Dates
+#
+
+'sunday' => 'søndag',
+'monday' => 'mandag',
+'tuesday' => 'tirsdag',
+'wednesday' => 'onsdag',
+'thursday' => 'torsdag',
+'friday' => 'fredag',
+'saturday' => 'lørdag',
+'january' => 'januar',
+'february' => 'februar',
+'march' => 'mars',
+'april' => 'april',
+'may_long' => 'mai',
+'june' => 'juni',
+'july' => 'juli',
+'august' => 'august',
+'september' => 'september',
+'october' => 'oktober',
+'november' => 'november',
+'december' => 'desember',
+'jan' => 'jan',
+'feb' => 'feb',
+'mar' => 'mar',
+'apr' => 'apr',
+'may' => 'mai',
+'jun' => 'jun',
+'jul' => 'jul',
+'aug' => 'aug',
+'sep' => 'sep',
+'oct' => 'okt',
+'nov' => 'nov',
+'dec' => 'des',
 
 # Bits of text used by many pages:
 #
@@ -1077,37 +1097,6 @@ class LanguageNo extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesNo;
 		return $wgUserTogglesNo;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesNo;
-		return $wgMonthNamesNo[$key-1];
-	}
-
-	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
-		global $wgMonthNamesNo;
-		return $wgMonthNamesNo[$key-1];
-	}
-
-	function getMonthRegex()
-	{
-		global $wgMonthNamesNo;
-		return implode( "|", $wgMonthNamesNo );
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsNo;
-		return $wgMonthAbbreviationsNo[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesNo;
-		return $wgWeekdayNamesNo[$key-1];
 	}
 
 	# Inherit userAdjust()

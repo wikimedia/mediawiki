@@ -68,21 +68,6 @@
 	"nocache" => "ไม่นำหน้าต่าง ๆ มาใส่ใน cache"
 );
 
-/* private */ $wgWeekdayNamesTh = array(
-	"วันอาทิตย์", "วันจันทร์", "วันอังคาร", "วันพุธ", "วันพฤหัสบดี",
-	"วันศุกร์", "วันเสาร์"
-);
-
-/* private */ $wgMonthNamesTh = array(
-	"มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
-	"กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน",
-	"ธันวาคม"
-);
-
-/* private */ $wgMonthAbbreviationsTh = array(
-	"ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.",
-	"ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -145,6 +130,41 @@
 # the regex in MagicWord::initRegex
 
 /* private */ $wgAllMessagesTh = array(
+
+# Dates
+#
+
+'sunday' => "วันอาทิตย์",
+'monday' => "วันจันทร์",
+'tuesday' => "วันอังคาร",
+'wednesday' => "วันพุธ",
+'thursday' => "วันพฤหัสบดี",
+'friday' => "วันศุกร์",
+'saturday' => "วันเสาร์",
+'january' => "มกราคม",
+'february' => "กุมภาพันธ์",
+'march' => "มีนาคม",
+'april' => "เมษายน",
+'may_long' => "พฤษภาคม",
+'june' => "มิถุนายน",
+'july' => "กรกฎาคม",
+'august' => "สิงหาคม",
+'september' => "กันยายน",
+'october' => "ตุลาคม",
+'november' => "พฤศจิกายน",
+'december' => "ธันวาคม",
+'jan' => "ม.ค.",
+'feb' => "ก.พ.",
+'mar' => "มี.ค.",
+'apr' => "เม.ย.",
+'may' => "พ.ค.",
+'jun' => "มิ.ย.",
+'jul' => "ก.ค.",
+'aug' => "ส.ค.",
+'sep' => "ก.ย.",
+'oct' => "ต.ค.",
+'nov' => "พ.ย.",
+'dec' => "ธ.ค.",
 
 # Bits of text used by many pages:
 #
@@ -1118,24 +1138,6 @@ class LanguageTh extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesTh;
 		return $wgUserTogglesTh;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesTh;
-		return $wgMonthNamesTh[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsTh;
-		return $wgMonthAbbreviationsTh[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesTh;
-		return $wgWeekdayNamesTh[$key-1];
 	}
 
 	function getValidSpecialPages()
