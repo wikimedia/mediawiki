@@ -160,6 +160,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1164) Let wikitext be used in Loginprompt and Loginend messages
 * Add the dreaded <span> to the HTML whitelist
 * (bug 1170) Fix Russian linktrail
+* (bug 1168) Missing text on the bureaucrat log
 
 === Caveats ===
 

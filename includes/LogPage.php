@@ -127,7 +127,7 @@ class LogPage {
 			''        => 'alllogstext',
 			'block'   => 'blocklogtext',
 			'protect' => 'protectlogtext',
-			'rights'  => '',
+			'rights'  => 'rightslogtext',
 			'delete'  => 'dellogpagetext',
 			'upload'  => 'uploadlogpagetext'
 		);
