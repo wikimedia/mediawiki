@@ -26,8 +26,7 @@ class Article {
 		$this->clear();
 	}
 
-	/* private */ function clear()
-	{
+	/* private */ function clear() {
 		$this->mContentLoaded = false;
 		$this->mCurID = $this->mUser = $this->mCounter = -1; # Not loaded
 		$this->mRedirectedFrom = $this->mUserText =
@@ -198,8 +197,7 @@ class Article {
 	# not told otherwise, and so may cause a change to mTitle.
 
 	# Return the text of this revision
-	function getContent( $noredir )
-	{
+	function getContent( $noredir ) {
 		global $wgRequest;
 
 		# Get variables from query string :P
@@ -252,7 +250,7 @@ class Article {
 	#
 	# If a section contains subsections, these are also returned.
 	#
-	function getSection($text,$section)  {
+	function getSection($text,$section) {
 
 		# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
 		# comments to be stripped as well)
@@ -331,8 +329,7 @@ class Article {
 	}
 
 	# Load the revision (including cur_text) into this object
-	function loadContent( $noredir = false )
-	{
+	function loadContent( $noredir = false ) {
 		global $wgOut, $wgMwRedir, $wgRequest;
 
 		$dbr =& wfGetDB( DB_SLAVE );
@@ -503,8 +500,7 @@ class Article {
 		}
 	}
 
-	function getCount()
-	{
+	function getCount() {
 		if ( -1 == $this->mCounter ) {
 			$id = $this->getID();
 			$dbr =& wfGetDB( DB_SLAVE );
@@ -515,9 +511,7 @@ class Article {
 
 	# Would the given text make this article a "good" article (i.e.,
 	# suitable for including in the article count)?
-
-	function isCountable( $text )
-	{
+	function isCountable( $text ) {
 		global $wgUseCommaCount, $wgMwRedir;
 
 		if ( 0 != $this->mTitle->getNamespace() ) { return 0; }
@@ -529,9 +523,7 @@ class Article {
 
 	# Loads everything from cur except cur_text
 	# This isn't necessary for all uses, so it's only done if needed.
-
-	/* private */ function loadLastEdit()
-	{
+	/* private */ function loadLastEdit() {
 		global $wgOut;
 		if ( -1 != $this->mUser ) return;
 
@@ -551,44 +543,38 @@ class Article {
 		}
 	}
 
-	function getTimestamp()
-	{
+	function getTimestamp() {
 		$this->loadLastEdit();
 		return $this->mTimestamp;
 	}
 
-	function getUser()
-	{
+	function getUser() {
 		$this->loadLastEdit();
 		return $this->mUser;
 	}
 
-	function getUserText()
-	{
+	function getUserText() {
 		$this->loadLastEdit();
 		return $this->mUserText;
 	}
 
-	function getComment()
-	{
+	function getComment() {
 		$this->loadLastEdit();
 		return $this->mComment;
 	}
 
-	function getMinorEdit()
-	{
+	function getMinorEdit() {
 		$this->loadLastEdit();
 		return $this->mMinorEdit;
 	}
 
-        function getContributors($limit = 0, $offset = 0)
-        {
-                $fname = 'Article::getContributors';
+	function getContributors($limit = 0, $offset = 0) {
+		$fname = 'Article::getContributors';
 
-	        # XXX: this is expensive; cache this info somewhere.
+		# XXX: this is expensive; cache this info somewhere.
 
-	        $title = $this->mTitle;
-	        $contribs = array();
+		$title = $this->mTitle;
+		$contribs = array();
 		$dbr =& wfGetDB( DB_SLAVE );
 		$oldTable = $dbr->tableName( 'old' );
 		$userTable = $dbr->tableName( 'user' );
@@ -604,26 +590,22 @@ class Article {
 			GROUP BY old_user
 			ORDER BY timestamp DESC";
 
-                if ($limit > 0) {
-                        $sql .= ' LIMIT '.$limit;
-                }
+		if ($limit > 0) { $sql .= ' LIMIT '.$limit; }
 
 		$res = $dbr->query($sql, $fname);
 
 		while ( $line = $dbr->fetchObject( $res ) ) {
-	 	        $contribs[] = array($line->old_user, $line->old_user_text, $line->user_real_name);
-  	        }
+			$contribs[] = array($line->old_user, $line->old_user_text, $line->user_real_name);
+		}
 
 		$dbr->freeResult($res);
-
-	        return $contribs;
+		return $contribs;
 	}
 
 	# This is the default action of the script: just view the page of
 	# the given title.
 
-	function view()
-	{
+	function view()	{
 		global $wgUser, $wgOut, $wgLang, $wgRequest, $wgMwRedir, $wgOnlySysopsCanPatrol;
 		global $wgLinkCache, $IP, $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol;
 		$sk = $wgUser->getSkin();
@@ -756,8 +738,7 @@ class Article {
 	# of faith, and we want to be able to report database
 	# errors at some point.
 
-	/* private */ function insertNewArticle( $text, $summary, $isminor, $watchthis )
-	{
+	/* private */ function insertNewArticle( $text, $summary, $isminor, $watchthis ) {
 		global $wgOut, $wgUser, $wgMwRedir;
 		global $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
 
@@ -826,7 +807,7 @@ class Article {
 
 
 	/* Side effects: loads last edit */
-	function getTextOfLastEditWithSectionReplacedOrAdded($section, $text, $summary = ''){
+	function getTextOfLastEditWithSectionReplacedOrAdded($section, $text, $summary = '') {
 		$this->loadLastEdit();
 		$oldtext = $this->getContent( true );
 		if ($section != '') {
@@ -901,8 +882,7 @@ class Article {
 		return $text;
 	}
 
-	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' )
-	{
+	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' ) {
 		global $wgOut, $wgUser;
 		global $wgDBtransactions, $wgMwRedir;
 		global $wgUseSquid, $wgInternalServer;
@@ -1039,8 +1019,7 @@ class Article {
 	# After we've either updated or inserted the article, update
 	# the link tables and redirect to the new page.
 
-	function showArticle( $text, $subtitle , $sectionanchor = '' )
-	{
+	function showArticle( $text, $subtitle , $sectionanchor = '' ) {
 		global $wgOut, $wgUser, $wgLinkCache;
 		global $wgMwRedir;
 
@@ -1069,8 +1048,7 @@ class Article {
 
 	# Validate article
 
-	function validate ()
-	{
+	function validate () {
 		global $wgOut ;
 		$wgOut->setPagetitle( wfMsg( 'validate' ) . ": " . $this->mTitle->getPrefixedText()  );
 		$wgOut->setRobotpolicy( 'noindex,follow' );
@@ -1084,8 +1062,7 @@ class Article {
 	}
 
 	# Mark this particular edit as patrolled
-	function markpatrolled()
-	{
+	function markpatrolled() {
 		global $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgUseRCPatrol;
 		$wgOut->setRobotpolicy( 'noindex,follow' );
 
@@ -1120,8 +1097,8 @@ class Article {
 
 
 	# Add this page to my watchlist
-	function watch( $add = true )
-	{
+	
+	function watch( $add = true ) {
 		global $wgUser, $wgOut, $wgLang;
 		global $wgDeferredUpdateList;
 
@@ -1156,13 +1133,13 @@ class Article {
 		$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
 	}
 
-	function unwatch()
-	{
+	function unwatch() {
 		$this->watch( false );
 	}
 
-	function protect( $limit = 'sysop' )
-	{
+	# protect a page
+
+	function protect( $limit = 'sysop' ) {
 		global $wgUser, $wgOut, $wgRequest;
 
 		if ( ! $wgUser->isSysop() ) {
@@ -1207,9 +1184,9 @@ class Article {
 		}
 	}
 
-		# Output protection confirmation dialog
-	function confirmProtect( $par, $reason, $limit = 'sysop'  )
-	{
+	# Output protection confirmation dialog
+	
+	function confirmProtect( $par, $reason, $limit = 'sysop'  ) {
 		global $wgOut;
 
 		wfDebug( "Article::confirmProtect\n" );
@@ -1272,14 +1249,13 @@ class Article {
 		$wgOut->returnToMain( false );
 	}
 
-	function unprotect()
-	{
+	function unprotect() {
 		return $this->protect( '' );
 	}
 
 	# UI entry point for page deletion
-	function delete()
-	{
+	
+	function delete() {
 		global $wgUser, $wgOut, $wgMessageCache, $wgRequest;
 		$fname = 'Article::delete';
 		$confirm = $wgRequest->getBool( 'wpConfirm' ) && $wgRequest->wasPosted();
@@ -1386,8 +1362,8 @@ class Article {
 	}
 
 	# Output deletion confirmation dialog
-	function confirmDelete( $par, $reason )
-	{
+	
+	function confirmDelete( $par, $reason ) {
 		global $wgOut;
 
 		wfDebug( "Article::confirmDelete\n" );
@@ -1437,9 +1413,10 @@ class Article {
 		$wgOut->returnToMain( false );
 	}
 
+
 	# Perform a deletion and output success or failure messages
-	function doDelete( $reason )
-	{
+	
+	function doDelete( $reason ) {
 		global $wgOut, $wgUser, $wgLang;
 		$fname = 'Article::doDelete';
 		wfDebug( "$fname\n" );
@@ -1466,8 +1443,7 @@ class Article {
 	# Back-end article deletion
 	# Deletes the article with database consistency, writes logs, purges caches
 	# Returns success
-	function doDeleteArticle( $reason )
-	{
+	function doDeleteArticle( $reason ) {
 		global $wgUser, $wgLang;
 		global  $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
 
@@ -1586,8 +1562,7 @@ class Article {
 		return true;
 	}
 
-	function rollback()
-	{
+	function rollback() {
 		global $wgUser, $wgLang, $wgOut, $wgRequest;
 		$fname = "Article::rollback";
 
@@ -1679,8 +1654,7 @@ class Article {
 
 	# Do standard deferred updates after page view
 
-	/* private */ function viewUpdates()
-	{
+	/* private */ function viewUpdates() {
 		global $wgDeferredUpdateList;
 		if ( 0 != $this->getID() ) {
 			global $wgDisableCounters;
@@ -1698,8 +1672,7 @@ class Article {
 	# Do standard deferred updates after page edit.
 	# Every 1000th edit, prune the recent changes table.
 
-	/* private */ function editUpdates( $text )
-	{
+	/* private */ function editUpdates( $text ) {
 		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
 		global $wgMessageCache;
 
@@ -1733,8 +1706,7 @@ class Article {
 		}
 	}
 
-	/* private */ function setOldSubtitle()
-	{
+	/* private */ function setOldSubtitle() {
 		global $wgLang, $wgOut;
 
 		$td = $wgLang->timeanddate( $this->mTimestamp, true );
@@ -1745,8 +1717,7 @@ class Article {
 	# This function is called right before saving the wikitext,
 	# so we can do things like signatures and links-in-context.
 
-	function preSaveTransform( $text )
-	{
+	function preSaveTransform( $text ) {
 		global $wgParser, $wgUser;
 		return $wgParser->preSaveTransform( $text, $this->mTitle, $wgUser, ParserOptions::newFromUser( $wgUser ) );
 	}
@@ -1879,8 +1850,7 @@ class Article {
 		wfProfileOut( $fname );
 	}
 
-	/* static */ function incViewCount( $id )
-	{
+	/* static */ function incViewCount( $id ) {
 		$id = intval( $id );
 		global $wgHitcounterUpdateFreq;
 
@@ -1936,7 +1906,7 @@ class Article {
 	# This is a good place to put code to clear caches, for instance.
 
 	# This is called on page move and undelete, as well as edit
-	/* static */ function onArticleCreate($title_obj){
+	/* static */ function onArticleCreate($title_obj) {
 		global $wgUseSquid, $wgDeferredUpdateList;
 
 		$titles = $title_obj->getBrokenLinksTo();
@@ -1955,18 +1925,18 @@ class Article {
 		LinkCache::linksccClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
 	}
 
-	/* static */ function onArticleDelete($title_obj){
+	/* static */ function onArticleDelete($title_obj) {
 		LinkCache::linksccClearLinksTo( $title_obj->getArticleID() );
 	}
 
-	/* static */ function onArticleEdit($title_obj){
+	/* static */ function onArticleEdit($title_obj) {
 		LinkCache::linksccClearPage( $title_obj->getArticleID() );
 	}
 
+
 	# Info about this page
 
-	function info()
-	{
+	function info() {
 		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgAllowPageInfo;
 		$fname = 'Article::info';
 
