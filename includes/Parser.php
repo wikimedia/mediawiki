@@ -140,7 +140,7 @@ class Parser
 
 	function categoryMagic ()
 	{
-		global $wgLang ;
+		global $wgLang , $wgUser ;
 		if ( !$this->mOptions->getUseCategoryMagic() ) return ;
 		$id = $this->mTitle->getArticleID() ;
 		$cat = ucfirst ( wfMsg ( "category" ) ) ;
@@ -154,7 +154,8 @@ class Parser
 		$children = array() ;
 
 
-		$sk =& $this->mGetSkin();
+#		$sk =& $this->mGetSkin();
+		$sk =& $wgUser->getSkin() ;
 
 		$doesexist = false ;
 		if ( $doesexist ) {
@@ -742,7 +743,7 @@ class Parser
 			$s .= $prefix . "<strong>" . $text . "</strong>" . $trail;
 			return $s;
 		}
- 		if ( $ns == $category && $wgUseCategoryMagic ) {
+ 		if ( $ns == $category && $this->mOptions->getUseCategoryMagic() ) {
 		  	$t = explode ( ":" , $nt->getText() ) ;
  			array_shift ( $t ) ;
  			$t = implode ( ":" , $t ) ;
