@@ -121,7 +121,7 @@ function tabbedprefs() {
         if(children[i].nodeName.indexOf('FIELDSET') != -1) {
             children[i].id = 'prefsection-' + i;
             children[i].className = 'prefsection';
-            if(is_opera) children[i].className = 'prefsection operaprefsection';
+            if(is_opera || is_khtml) children[i].className = 'prefsection operaprefsection';
             legends = children[i].getElementsByTagName('LEGEND');
             sections[seci] = new Object();
             if(legends[0] && legends[0].firstChild.nodeValue)
