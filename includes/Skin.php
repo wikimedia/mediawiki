@@ -479,7 +479,7 @@ class Skin {
 
 	function printableLink()
 	{
-		global $wgOut, $wgFeedClasses;
+		global $wgOut, $wgFeedClasses, $wgRequest;
 
 		$baseurl = $_SERVER['REQUEST_URI'];
 		if( strpos( "?", $baseurl ) == false ) {
@@ -488,11 +488,13 @@ class Skin {
 			$baseurl .= "&";
 		}
 		$baseurl = htmlspecialchars( $baseurl );
+		$printurl = $wgRequest->escapeAppendQuery( "printable=yes" );
 		
-		$s = "<a href=\"{$baseurl}printable=yes\">" . wfMsg( "printableversion" ) . "</a>";
+		$s = "<a href=\"$printurl\">" . wfMsg( "printableversion" ) . "</a>";
 		if( $wgOut->isSyndicated() ) {
 			foreach( $wgFeedClasses as $format => $class ) {
-				$s .= " | <a href=\"{$baseurl}feed={$format}\">{$format}</a>";
+				$feedurl = $wgRequest->escapeAppendQuery( "feed=$format" );
+				$s .= " | <a href=\"$feedurl\">{$format}</a>";
 			}
 		}
 		return $s;

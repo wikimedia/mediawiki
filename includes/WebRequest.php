@@ -1,4 +1,23 @@
 <?php
+# Deal with importing all those nasssty globals and things
+# 
+# Copyright (C) 2003 Brion Vibber <brion@pobox.com>
+# http://www.mediawiki.org/
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or 
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+# http://www.gnu.org/copyleft/gpl.html
 
 # Hypothetically, we could use a WebRequest object to fake a
 # self-contained request.
@@ -6,7 +25,6 @@
 ## Enable this to debug total elimination of register_globals
 #define( "DEBUG_GLOBALS", 1 );
 
-# Deal with importing all those nasssty globals and things
 class WebRequest {
 	function WebRequest() {
 		if( defined('DEBUG_GLOBALS') ) error_reporting(E_ALL);
@@ -101,6 +119,35 @@ class WebRequest {
 	function checkSessionCookie() {
 		return isset( $_COOKIE[ini_get("session.name")] );
 	}
+	
+	function getRequestURL() {
+		return $_SERVER['REQUEST_URI'];
+	}
+	
+	function getFullRequestURL() {
+		global $wgServer;
+		return $wgServer . $this->getRequestURL();
+	}
+	
+	# Take an arbitrary query and rewrite the present URL to include it
+	function appendQuery( $query ) {
+		global $wgTitle;
+		$basequery = "";
+		foreach( $_GET as $var => $val ) {
+			if( $var == "title" ) continue;
+			$basequery .= "&" . urlencode( $var ) . "=" . urlencode( $val );
+		}
+		$basequery .= "&" . $query;
+		
+		# Trim the extra &
+		$basequery = substr( $basequery, 1 );
+		return $wgTitle->getLocalURL( $basequery );
+	}
+	
+	function escapeAppendQuery( $query ) {
+		return htmlspecialchars( $this->appendQuery( $query ) );
+	}
+	
 }
 
 ?>
