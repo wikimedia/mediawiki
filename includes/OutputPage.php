@@ -133,7 +133,8 @@ class OutputPage {
 	function addWikiText( $text, $linestart = true )
 	{
 		global $wgUseTeX;
-		wfProfileIn( "OutputPage::addWikiText" );
+		$fname = "OutputPage::addWikiText";
+		wfProfileIn( $fname );
 		$unique  = "3iyZiyA7iMwg5rhxP0Dcc9oTnj8qD1jm1Sfv4";
 		$unique2 = "4LIQ9nXtiYFPCSfitVwDw7EYwQlL4GeeQ7qSO";
 		$unique3 = "fPaA8gDfdLBqzj68Yjg9Hil3qEF8JGO0uszIp";
@@ -209,7 +210,7 @@ class OutputPage {
 				$escapedChars, $nwlist[$i] ), $text, 1 );
 		}
 		$this->addHTML( $text );
-		wfProfileOut();
+		wfProfileOut( $fname );
 	}
 
 	function sendCacheControl() {
@@ -328,27 +329,7 @@ class OutputPage {
 		$elapsed = $now - $start;
 
 		if ( "" != $wgDebugLogFile ) {
-			$prof = "";
-			if( $wgProfiling and count( $wgProfileStack ) ) {
-				$lasttime = $start;
-				foreach( $wgProfileStack as $ile ) {
-					# "foo::bar 99 0.12345 1 0.23456 2"
-					if( preg_match( '/^(\S+)\s+([0-9]+)\s+([0-9\.]+)\s+([0-9\.]+)\s+([0-9\.]+)\s+([0-9\.]+)/', $ile, $m ) ) {
-						$thisstart = (float)$m[3] + (float)$m[4] - $start;
-						$thisend = (float)$m[5] + (float)$m[6] - $start;
-						$thiselapsed = $thisend - $thisstart;
-						$thispercent = $thiselapsed / $elapsed * 100.0;
-						
-						$prof .= sprintf( "\tat %04.3f in %04.3f (%2.1f%%) - %s %s\n",
-							$thisstart, $thiselapsed, $thispercent,
-							str_repeat( "*", $m[2] ), $m[1] );
-						$lasttime = $thistime;
-						#$prof .= "\t(^ $ile)\n";
-					} else {
-						$prof .= "\t?broken? $ile\n";
-					}
-				}
-			}
+			$prof = wfGetProfilingOutput( $start, $elapsed );
 		
 			if( $forward = $HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR'] )
 				$forward = " forwarded for $forward";
@@ -734,7 +715,8 @@ $t[] = "</table>" ;
 	function doWikiPass2( $text, $linestart )
 	{
 		global $wgUser, $wgLang, $wgUseDynamicDates;
-		wfProfileIn( "OutputPage::doWikiPass2" );
+		$fname = "OutputPage::doWikiPass2";
+		wfProfileIn( $fname );
 		
 		$text = $this->removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text );
@@ -762,7 +744,7 @@ $t[] = "</table>" ;
 		$text = $sk->transformContent( $text );
                 $text .= $this->categoryMagic () ;
 
-		wfProfileOut();
+		wfProfileOut( $fname );
 		return $text;
 	}
 
@@ -840,14 +822,15 @@ $t[] = "</table>" ;
 
 	/* private */ function replaceExternalLinks( $text )
 	{
-		wfProfileIn( "OutputPage::replaceExternalLinks" );
+		$fname = "OutputPage::replaceExternalLinks";
+		wfProfileIn( $fname );
 		$text = $this->subReplaceExternalLinks( $text, "http", true );
 		$text = $this->subReplaceExternalLinks( $text, "https", true );
 		$text = $this->subReplaceExternalLinks( $text, "ftp", false );
 		$text = $this->subReplaceExternalLinks( $text, "gopher", false );
 		$text = $this->subReplaceExternalLinks( $text, "news", false );
 		$text = $this->subReplaceExternalLinks( $text, "mailto", false );
-		wfProfileOut();
+		wfProfileOut( $fname );
 		return $text;
 	}
 	
@@ -935,7 +918,7 @@ $t[] = "</table>" ;
 
 		$e1 = "/^([{$tc}]+)\\|([^]]+)]](.*)\$/sD";
 		$e2 = "/^([{$tc}]+)]](.*)\$/sD";
-		wfProfileOut();
+		wfProfileOut( "$fname-setup" );
 
 		foreach ( $a as $line ) {
 			wfProfileIn( "$fname-loop" );
@@ -952,7 +935,7 @@ $t[] = "</table>" ;
 			
 			else { # Invalid form; output directly
 				$s .= "[[" . $line ;
-				wfProfileOut();
+				wfProfileOut( "$fname-loop" );
 				continue;
 			}
 			if(substr($m[1],0,1)=="/") { # subpage
@@ -1021,9 +1004,9 @@ $t[] = "</table>" ;
 				if ( "" == $text ) { $text = $link; }
 				$s .= $sk->makeLink( $link, $text, "", $trail );
 			}
-			wfProfileOut();
+			wfProfileOut( "$fname-loop" );
 		}
-		wfProfileOut();
+		wfProfileOut( $fname );
 		return $s;
 	}
 
@@ -1106,7 +1089,8 @@ $t[] = "</table>" ;
 
 	/* private */ function doBlockLevels( $text, $linestart )
 	{
-		wfProfileIn( "OutputPage::doBlockLevels" );
+		$fname = "OutputPage::doBlockLevels";
+		wfProfileIn( $fname );
 		# Parsing through the text line by line.  The main thing
 		# happening here is handling of block-level elements p, pre,
 		# and making lists from lines starting with * # : etc.
@@ -1205,14 +1189,15 @@ $t[] = "</table>" ;
 			}
 			$this->mLastSection = "";
 		}
-		wfProfileOut();
+		wfProfileOut( $fname );
 		return $text;
 	}
 
 	/* private */ function replaceVariables( $text )
 	{
 		global $wgLang;
-		wfProfileIn( "OutputPage:replaceVariables" );
+		$fname = "OutputPage:replaceVariables";
+		wfProfileIn( $fname );
 
 		/* As with sigs, use server's local time --
 		   ensure this is appropriate for your audience! */
@@ -1257,13 +1242,14 @@ $t[] = "</table>" ;
 		$mw =& MagicWord::get( MAG_MSGNW );
 		$text = $mw->substituteCallback( $text, "replaceMsgVarNw" );
 
-		wfProfileOut();
+		wfProfileOut( $fname );
 		return $text;
 	}
 
 	/* private */ function removeHTMLtags( $text )
 	{
-		wfProfileIn( "OutputPage::removeHTMLtags" );
+		$fname = "OutputPage::removeHTMLtags";
+		wfProfileIn( $fname );
 		$htmlpairs = array( # Tags that must be closed
 			"b", "i", "u", "font", "big", "small", "sub", "sup", "h1",
 			"h2", "h3", "h4", "h5", "h6", "cite", "code", "em", "s",
@@ -1350,7 +1336,7 @@ $t[] = "</table>" ;
 			$text .= "</$t>\n";
 			if ( $t == "table" ) { $tagstack = array_pop( $tablestack ); }
 		}
-		wfProfileOut();
+		wfProfileOut( $fname );
 		return $text;
 	}
 

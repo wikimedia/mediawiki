@@ -83,11 +83,18 @@ class IPBlockForm {
 			return;
 		}
 		
+		# Create block
 		# Note: for a user block, ipb_address is only for display purposes
 		$ban = new Block( $wpBlockAddress, $userId, $wgUser->getID(), 
 			wfStrencode( $wpBlockReason ), wfTimestampNow(), 0 );
 		$ban->insert();
 
+		# Make log entry
+		$log = new LogPage( wfMsg( "blocklogpage" ), wfMsg( "blocklogtext" ) );
+		$action = str_replace( "$1", $wpBlockAddress, wfMsg( "blocklogentry" ) );
+		$log->addEntry( $action, $wpBlockReason );
+
+		# Report to the user
 		$success = wfLocalUrl( $wgLang->specialPage( "Blockip" ),
 		  "action=success&ip={$wpBlockAddress}" );
 		$wgOut->redirect( $success );

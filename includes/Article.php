@@ -35,17 +35,18 @@ class Article {
 	function getContent( $noredir = false )
 	{
 		global $action,$section,$count; # From query string
-		wfProfileIn( "Article::getContent" );
+		$fname =  "Article::getContent"; 
+		wfProfileIn( $fname );
 
 		if ( 0 == $this->getID() ) {
 			if ( "edit" == $action ) {
+				wfProfileOut( $fname );
 				return ""; # was "newarticletext", now moved above the box)
 			}
-			wfProfileOut();
+			wfProfileOut( $fname );
 			return wfMsg( "noarticletext" );
 		} else {
 			$this->loadContent( $noredir );
-			wfProfileOut();
 						
 			if(
 				# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
@@ -54,22 +55,29 @@ class Article {
 				  $action=="view"
 				) 
 				{
+				wfProfileOut( $fname );
 				return $this->mContent . "\n" .wfMsg("anontalkpagetext"); }
 			else {				
 				if($action=="edit") {
 					if($section!="") {
-						if($section=="new") { return ""; }
+						if($section=="new") { 
+							wfProfileOut( $fname );
+							return ""; 
+						}
 
 						$secs=preg_split("/(^=+.*?=+|^<h[1-6].*?>.*?<\/h[1-6].*?>)/mi",
 						 $this->mContent, -1,
 						 PREG_SPLIT_DELIM_CAPTURE);
 						if($section==0) {
+							wfProfileOut( $fname );
 							return trim($secs[0]);
 						} else {
+							wfProfileOut( $fname );
 							return trim($secs[$section*2-1] . $secs[$section*2]);
 						}
 					}
 				}
+				wfProfileOut( $fname );
 				return $this->mContent;
 			}
 		}
@@ -248,7 +256,8 @@ class Article {
 		global $wgUser, $wgOut, $wgLang;
 		global $oldid, $diff; # From query
 		global $wgLinkCache;
-		wfProfileIn( "Article::view" );
+		$fname = "Article::view";
+		wfProfileIn( $fname );
 
 		$wgOut->setArticleFlag( true );
 		$wgOut->setRobotpolicy( "index,follow" );
@@ -260,7 +269,7 @@ class Article {
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 			$de = new DifferenceEngine( $oldid, $diff );
 			$de->showDiffPage();
-			wfProfileOut();
+			wfProfileOut( $fname );
 			return;
 		}
 		$text = $this->getContent(); # May change wgTitle!
@@ -287,7 +296,7 @@ class Article {
 		$wgOut->addWikiText( $text );
 
 		$this->viewUpdates();
-		wfProfileOut();
+		wfProfileOut( $fname );
 	}
 
 	# Theoretically we could defer these whole insert and update
@@ -538,7 +547,8 @@ class Article {
 		# If page hasn't changed, client can cache this
 		
 		$wgOut->checkLastModified( $this->getTimestamp() );
-		wfProfileIn( "Article::history" );
+		$fname = "Article::history";
+		wfProfileIn( $fname );
 
 		$wgOut->setPageTitle( $this->mTitle->getPRefixedText() );
 		$wgOut->setSubtitle( wfMsg( "revhistory" ) );
@@ -547,7 +557,7 @@ class Article {
 
 		if( $this->mTitle->getArticleID() == 0 ) {
 			$wgOut->addHTML( wfMsg( "nohistory" ) );
-			wfProfileOut();
+			wfProfileOut( $fname );
 			return;
 		}
 		
@@ -567,7 +577,7 @@ class Article {
 		$revs = wfNumRows( $res );
 		if( $this->mTitle->getArticleID() == 0 ) {
 			$wgOut->addHTML( wfMsg( "nohistory" ) );
-			wfProfileOut();
+			wfProfileOut( $fname );
 			return;
 		}
 		
@@ -595,7 +605,7 @@ class Article {
 		$s .= $sk->endHistoryList();
 		$s .= $numbar;
 		$wgOut->addHTML( $s );
-		wfProfileOut();
+		wfProfileOut( $fname );
 	}
 
 	function protect( $limit = "sysop" )

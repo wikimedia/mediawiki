@@ -31,7 +31,8 @@ class Title {
 
 	function newFromText( $text )
 	{
-		wfProfileIn( "Title::newFromText" );
+		$fname = "Title::newFromText";
+		wfProfileIn( $fname );
 		
 		# Note - mixing latin1 named entities and unicode numbered
 		# ones will result in a bad link.
@@ -45,8 +46,8 @@ class Title {
 
 		$t = new Title();
 		$t->mDbkeyform = str_replace( " ", "_", $text );
+		wfProfileOut( $fname );
 		if( $t->secureAndSplit() ) {
-			wfProfileOut();
 			return $t;
 		} else {
 			return NULL;
@@ -352,7 +353,8 @@ class Title {
 	/* private */ function secureAndSplit()
 	{
 		global $wgLang, $wgLocalInterwiki;
- 		wfProfileIn( "Title::secureAndSplit" );
+		$fname = "Title::secureAndSplit";
+ 		wfProfileIn( $fname );
 		
 		$validNamespaces = $wgLang->getNamespaces();
 		unset( $validNamespaces[0] );
@@ -365,7 +367,7 @@ class Title {
 		$l = strlen( $t );
 		if ( $l && ( "_" == $t{$l-1} ) ) { $t = substr( $t, 0, $l-1 ); }
 		if ( "" == $t ) {
-			wfProfileOut();
+			wfProfileOut( $fname );
 			return false;
 		}
 
@@ -424,7 +426,7 @@ class Title {
 		$this->mUrlform = wfUrlencode( $t );
 		$this->mTextform = str_replace( "_", " ", $t );
 		
-		wfProfileOut();
+		wfProfileOut( $fname );
 		return true;
 	}
 }

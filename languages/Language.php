@@ -1146,6 +1146,12 @@ to a previously blocked IP address or username.",
 "unblocklink"	=> "unblock",
 "contribslink"	=> "contribs",
 "autoblocker"	=> "Autoblocked because you share an IP address with \"$1\". Reason \"$2\".",
+"blocklogpage"	=> "Block_log",
+"blocklogentry"	=> 'blocked "$1"',
+"blocklogtext"	=> "This is a log of user blocking and unblocking actions. Automatically 
+blocked IP addresses are not be listed. See the [[Special:Ipblocklist|IP block list]] for
+the list of currently operational bans and blocks.",
+"unblocklogentry"	=> 'unblocked "$1"',
 
 # Developer tools
 #
