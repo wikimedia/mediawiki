@@ -134,7 +134,9 @@ function wfSpecialRecentchanges( $par )
 				htmlspecialchars( $obj->rc_comment ),
 				$title->getFullURL(),
 				$obj->rc_timestamp,
-				$obj->rc_user_text );
+				$obj->rc_user_text,
+				htmlspecialchars( $obj->rc_comment )
+				);
 			$feed->outItem( $item );
 		}
 		$feed->outFooter();

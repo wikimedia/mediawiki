@@ -1515,6 +1515,7 @@ amusement.",
 'accesskey-emailuser' => '',
 
 # tooltip help for the main actions
+'tooltip-atom'	=> 'Atom feed for this page',
 'tooltip-article' => 'View the article [alt-a]',
 'tooltip-talk' => 'Discussion about the article [alt-t]',
 'tooltip-edit' => 'You can edit this page. Please use the preview button before saving. [alt-e]',
