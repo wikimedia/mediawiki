@@ -280,15 +280,16 @@ class Database {
 		} else {
 			$commentedSql = $sql;
 		}
-		if ( $this->debug() ) {
-			$sqlx = substr( $commentedSql, 0, 500 );
-			$sqlx = strtr($sqlx,"\t\n",'  ');
-			wfDebug( "SQL: $sqlx\n" );
-		}
-		
+
 		# If DBO_TRX is set, start a transaction
 		if ( ( $this->mFlags & DBO_TRX ) && !$this->trxLevel() && $sql != 'BEGIN' ) {
 			$this->begin();
+		}
+
+		if ( $this->debug() ) {
+			$sqlx = substr( $sql, 0, 500 );
+			$sqlx = strtr($sqlx,"\t\n",'  ');
+			wfDebug( "SQL: $sqlx\n" );
 		}
 		
 		# Do the query and handle errors
