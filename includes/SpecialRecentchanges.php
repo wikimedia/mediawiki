@@ -3,7 +3,7 @@
 function wfSpecialRecentchanges( $par )
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	global $days, $hideminor, $from, $hidebots; # From query string
+	global $days, $hideminor, $from, $hidebots, $hideliu; # From query string
 	$fname = "wfSpecialRecentchanges";
 
 	if( $par ) {
@@ -12,6 +12,7 @@ function wfSpecialRecentchanges( $par )
 		if( in_array( "bots", $bits ) ) $hidebots = 0;
 		if( in_array( "hideminor", $bits ) ) $hideminor = 1;
 		if( in_array( "minor", $bits ) ) $hideminor = 0;
+		if( in_array( "hideliu", $bits) ) $hideliu = 1;
 	}
 	
 	$sql = "SELECT MAX(rc_timestamp) AS lastmod FROM recentchanges";
@@ -77,6 +78,10 @@ function wfSpecialRecentchanges( $par )
 	}
 	if( $hidebots ) {
 		$hidem .= " AND rc_bot=0";
+	}
+	
+	if ( $hideliu ) {
+		$hidem .= " AND rc_user=0";
 	}
 
 	$uid = $wgUser->getID();
