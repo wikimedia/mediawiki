@@ -164,6 +164,10 @@ class User {
 		foreach ( $defOpt as $oname => $val ) {
 			$this->mOptions[$oname] = $val;
 		}		
+        /* so that new user will have a default 
+           language variant set using info from the http header 
+        */
+        $this->setOption('variant', $wgLang->getPreferredLanguage());
 	}
 
 	/**
