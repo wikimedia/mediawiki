@@ -79,7 +79,18 @@ class IPBlockForm {
 		<tr>
 			<td align=\"right\">{$mIpbexpiry}:</td>
 			<td align=\"left\">
-				<input tabindex='2' type='text' size='20' name=\"wpBlockExpiry\" value=\"{$scBlockExpiry}\" />
+				<select name=\"wpBlockExpiry\"/>
+					<option>2 hours</option>
+					<option>1 day</option>
+					<option>3 days</option>
+					<option>1 week</option>	
+					<option>2 weeks</option>	
+					<option>1 month</option>
+					<option>3 months</option>
+					<option>6 months</option>
+					<option>1 year</option>
+					<option>indefinite</option>
+				</select>
 			</td>
 		</tr>
 		<tr>
