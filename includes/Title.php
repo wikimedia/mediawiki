@@ -915,8 +915,10 @@ class Title {
 			$res = $dbr->selectField( 'cur', 'cur_restrictions', 'cur_id='.$id );
 			$this->loadRestrictions( $res );
 		}
-		$result = $this->mRestrictions[$action];
-		return $result ? $result : array();
+		if( isset( $this->mRestrictions[$action] ) ) {
+			return $this->mRestrictions[$action];
+		}
+		return array();
 	}
 	
 	/**
