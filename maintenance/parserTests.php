@@ -339,10 +339,16 @@ class ParserTest {
 
 			if (!(strcmp($db->getServerVersion(), '4.1') < 0 and stristr($db->getSoftwareLink(), 'MySQL'))) {
 				# Database that supports CREATE TABLE ... LIKE
+				global $wgDBtype;
+				if( $wgDBtype == 'PostgreSQL' ) {
+					$def = 'INCLUDING DEFAULTS';
+				} else {
+					$def = '';
+				}
 				foreach ($tables as $tbl) {
 					$newTableName = $db->tableName( $tbl );
 					$tableName = $this->oldTableNames[$tbl];
-					$db->query("CREATE TEMPORARY TABLE $newTableName (LIKE $tableName INCLUDING DEFAULTS)");
+					$db->query("CREATE TEMPORARY TABLE $newTableName (LIKE $tableName $def)");
 				}
 			} else {
 				# Hack for MySQL versions < 4.1, which don't support
