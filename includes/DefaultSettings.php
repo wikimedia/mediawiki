@@ -68,6 +68,8 @@ $wgDBtransactions	= false; # Set to true if using InnoDB tables
 $wgDBmysql4			= false; # Set to true to use enhanced fulltext search
 $wgSqlTimeout		= 30;
 
+$wgBufferSQLResults     = true; # use buffered queries by default
+
 # Other wikis on this site, can be administered from a single developer account
 # Array, interwiki prefix => database name
 $wgLocalDatabases   = array();
@@ -127,6 +129,10 @@ $wgDebugComments        = false;
 $wgReadOnly             = false;
 $wgLogQueries           = false;
 $wgDebugDumpSql         = false;
+
+# Whether to disable automatic generation of "we're sorry,
+# but there has been a database error" pages.
+$wgIgnoreSQLErrors      = false;
 
 $wgUseCategoryMagic		= false;
 $wgEnablePersistentLC	= false;	# Persistent link cache in linkscc table; FAILS on MySQL 3.x
