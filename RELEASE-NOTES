@@ -155,6 +155,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1157) List unblocks correctly in Special:Log
 * Fix fatal errors in LanguageLi.php
 * Undo overly bright, difficult to read colors in Cologne Blue
+* (bug 1162) fix five-tilde date inserter
 
 === Caveats ===
 
