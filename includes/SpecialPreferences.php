@@ -236,7 +236,7 @@ function wfSpecialPreferences()
 	$wgOut->addWikiText( wfMsg( "prefslogintext", $uname, $uid ) );
 
 	$qbs = $wgLang->getQuickbarSettings();
-	$skins = $wgLang->getSkinNames();
+	$skinNames = $wgLang->getSkinNames();
 	$mathopts = $wgLang->getMathNames();
 	$dateopts = $wgLang->getDateFormats();
 	$togs = $wgLang->getUserToggles();
@@ -300,17 +300,16 @@ value=\"$i\"$checked> {$qbs[$i]}</label><br>\n" );
 	# Skin setting
 	#
 	$wgOut->addHTML( "<tr><td valign=top nowrap><b>$sk:</b><br>\n" );
-	# Only count up to count($wgValidSkinNames) rather than 
-	# count($skins), to allow global disabling of experimental 
-	# skins.
-	foreach ($wgValidSkinNames as $i => $skinname ) {
-		if ( $i == $wpSkin ) { 
-			$checked = ' checked="checked"'; 
+	# Only show members of $wgValidSkinNames rather than
+	# $skinNames (skins is all skin names from Language.php)
+	foreach ($wgValidSkinNames as $skinkey => $skinname ) {
+		if ( $skinkey == $wpSkin ) { 
+			$checked = ' checked'; 
 		} else { 
 			$checked = ""; 
 		}
 		$wgOut->addHTML( "<label><input type=radio name=\"wpSkin\"
-value=\"$i\"$checked> {$wgValidSkinNames[$i]}</label><br>\n" );
+value=\"$skinkey\"$checked> {$skinNames[$skinkey]}</label><br>\n" );
 	}
 
 	# Various checkbox options
