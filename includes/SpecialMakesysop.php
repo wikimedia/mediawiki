@@ -149,7 +149,7 @@ class MakesysopForm {
 			$sql = "SELECT user_id, user_rights FROM $usertable WHERE user_name = '{$username}' FOR UPDATE";
 		}
 		
-		$prev = $dbw->setIgnoreErrors( TRUE );
+		$prev = $dbw->ignoreErrors( TRUE );
 		$res = $dbw->query( $sql );
 		$dbw->setIgnoreSQLErrors( $prev );
 

@@ -1848,14 +1848,14 @@ class Article {
 		}
 
 		# Not important enough to warrant an error page in case of failure
-		$oldignore = $dbw->setIgnoreErrors( true ); 
+		$oldignore = $dbw->ignoreErrors( true ); 
 
 		$dbw->query( "INSERT INTO $hitcounterTable (hc_id) VALUES ({$id})" );
 
 		$checkfreq = intval( $wgHitcounterUpdateFreq/25 + 1 );
 		if( (rand() % $checkfreq != 0) or ($dbw->lastErrno() != 0) ){
 			# Most of the time (or on SQL errors), skip row count check
-			$dbw->setIgnoreErrors( $oldignore );
+			$dbw->ignoreErrors( $oldignore );
 			return;
 		}
 
@@ -1879,7 +1879,7 @@ class Article {
 			ignore_user_abort( $old_user_abort );
 			wfProfileOut( 'Article::incViewCount-collect' );
 		}
-		$dbw->setIgnoreErrors( $oldignore );
+		$dbw->ignoreErrors( $oldignore );
 	}
 
 	# The onArticle*() functions are supposed to be a kind of hooks

@@ -63,7 +63,7 @@ function wfIgnoreSQLErrors( $newstate, $dbi = DB_LAST )
 {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {
-		return $db->setIgnoreErrors( $newstate );
+		return $db->ignoreErrors( $newstate );
 	} else {
 		return NULL;
 	}
