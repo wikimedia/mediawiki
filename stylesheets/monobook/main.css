@@ -661,7 +661,7 @@ div.townBox dl dd {
     display: block;
     height: 155px;
     width: 135px;
-    background: url(wiki.png) no-repeat !important;
+    background: url(wiki.png) no-repeat;
     background-repeat: no-repeat;
     text-decoration: none;
 }
