@@ -1823,6 +1823,8 @@ class Parser
 	 * @access private
 	 */
 	function variableSubstitution( $matches ) {
+		$fname = 'parser::variableSubstitution';
+		wfProfileIn( $fname );
 		if ( !$this->mVariables ) {
 			$this->initialiseVariables();
 		}
@@ -1842,6 +1844,7 @@ class Parser
 		} else {
 			$text = $matches[0];
 		}
+		wfProfileOut( $fname );
 		return $text;
 	}
 
@@ -1883,6 +1886,8 @@ class Parser
 	function braceSubstitution( $matches ) {
 		global $wgLinkCache, $wgContLang;
 		$fname = 'Parser::braceSubstitution';
+		wfProfileIn( $fname );
+		
 		$found = false;
 		$nowiki = false;
 		$noparse = false;
@@ -2096,6 +2101,7 @@ class Parser
 		# Empties the template path
 		$this->mTemplatePath = array();
 		if ( !$found ) {
+			wfProfileOut( $fname );
 			return $matches[0];
 		} else {
 			# replace ==section headers==
@@ -2130,8 +2136,10 @@ class Parser
 		$this->mTemplatePath = array();
 		
 		if ( !$found ) {
+			wfProfileOut( $fname );
 			return $matches[0];
 		} else {
+			wfProfileOut( $fname );
 			return $text;
 		}
 	}
