@@ -1582,7 +1582,7 @@ class Article {
 			$linkID = $titleObj->getArticleID();
 			$brokenLinks[] = array( 'bl_from' => $linkID, 'bl_to' => $t );
 		}
-		$dbw->insert( 'brokenlinks', $brokenLinks, $fname, 'IGNORE' );
+		$dbw->insertArray( 'brokenlinks', $brokenLinks, $fname, 'IGNORE' );
 
 		# Delete live links
 		$dbw->delete( 'links', array( 'l_to' => $id ) );

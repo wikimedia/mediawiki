@@ -179,9 +179,11 @@ class Profiler
 
 		$rc = $dbw->affectedRows();	
 		if( $rc == 0) {
-			$sql = "INSERT IGNORE INTO $profiling (pf_name,pf_count,pf_time) ".
-				"VALUES ('{$name}', {$eventCount}, {$timeSum}) ";
-			$dbw->query($sql , DB_MASTER);
+			$dbw->insertArray($profiling,array(
+				'pf_name'=>$name,
+				'pf_count'=>$eventCount,
+				'pf_time'=>$timeSum),
+				$fname,array('IGNORE'));
 		}
 		// When we upgrade to mysql 4.1, the insert+update
 		// can be merged into just a insert with this construct added:

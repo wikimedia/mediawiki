@@ -51,7 +51,6 @@ class LinksUpdate {
 		}
 
 		# Do the insertion
-		$sql = '';
 		if ( 0 != count( $add ) ) {
 			$arr=array();
 			foreach($add as $lt=>$lid) 
@@ -101,8 +100,7 @@ class LinksUpdate {
 					'bl_from'=>$this->mId,
 					'bl_to'=>$blt));
 			}
-			$dbw->insertArray( 'brokenlinks',$arr,array('IGNORE'));
-			$dbw->query( $sql, $fname );
+			$dbw->insertArray( 'brokenlinks',$arr,$fname,array('IGNORE'));
 		}
 
 		#------------------------------------------------------------------------------
@@ -117,23 +115,17 @@ class LinksUpdate {
 		$sql = '';
 		$image = Namespace::getImage();
 		if ( 0 != count ( $add ) ) {
-			$sql = "INSERT IGNORE INTO $imagelinks (il_from,il_to) VALUES ";
-			$first = true;
-			foreach( $add as $iname => $val ) {
-				# FIXME: Change all this to avoid unnecessary duplication
+			$arr = array();
+			foreach ($add as $iname => $val ) {
 				$nt = Title::makeTitle( $image, $iname );
 				if( !$nt ) continue;
 				$nt->invalidateCache();
-
 				$iname = $dbw->strencode( $iname );
-				if ( ! $first ) { $sql .= ','; }
-				$first = false;
-
-				$sql .= "({$this->mId},'{$iname}')";
+				array_push($arr,array(
+					'il_from'=>$this->mId,
+					'il_to'=>$iname));
 			}
-		}
-		if ( '' != $sql ) { 
-			$dbw->query( $sql, $fname ); 
+			$dbw->insertArray($imagelinks, $arr, $fname, array('IGNORE'));
 		}
 
 		#------------------------------------------------------------------------------
@@ -148,23 +140,17 @@ class LinksUpdate {
 			# Do the insertion
 			$sql = '';
 			if ( 0 != count ( $add ) ) {
-				$sql = "INSERT IGNORE INTO $categorylinks (cl_from,cl_to,cl_sortkey) VALUES ";
-				$first = true;
+				$arr=array();
 				foreach( $add as $cname => $sortkey ) {
-					# FIXME: Change all this to avoid unnecessary duplication
 					$nt = Title::makeTitle( NS_CATEGORY, $cname );
-					if( !$nt ) continue;
-					$nt->invalidateCache();
-	
-					if ( ! $first ) { $sql .= ','; }
-					$first = false;
-	
-					$sql .= "({$this->mId},'" . $dbw->strencode( $cname ) .
-						"','" . $dbw->strencode( $sortkey ) . "')";
+                                        if( !$nt ) continue;
+                                        $nt->invalidateCache();
+					array_push($arr,array(
+						'cl_from'=>$this->mId,
+						'cl_to'=>$dbw->strencode( $cname ),
+						'cl_sortkey'=>$dbw->strencode( $sortkey )));
 				}
-			}
-			if ( '' != $sql ) {
-				$dbw->query( $sql, $fname ); 
+				$dbw->insertArray($categorylinks,$arr,$fname,array('IGNORE'));
 			}
 		}
 		
@@ -192,39 +178,29 @@ class LinksUpdate {
 		$dbw->query( $sql, $fname );
 
 		$a = $wgLinkCache->getGoodLinks();
-		$sql = '';
 		if ( 0 != count( $a ) ) {
-			$sql = "INSERT IGNORE INTO $links (l_from,l_to) VALUES ";
-			$first = true;
+			$arr=array();
 			foreach( $a as $lt => $lid ) {
-				if ( ! $first ) { $sql .= ","; }
-				$first = false;
-
-				$sql .= "({$this->mId},{$lid})";
+				array_push($arr,array(
+					'l_from'=>$this->mId,
+					'l_to'=>$lid));
 			}
-		}
-		if ( '' != $sql ) { 
-			$dbw->query( $sql, $fname ); 
+			$dbw->insertArray($links,$arr,$fname,array('IGNORE'));
 		}
 
 		$sql = "DELETE FROM $brokenlinks WHERE bl_from={$this->mId}";
 		$dbw->query( $sql, $fname );
 
 		$a = $wgLinkCache->getBadLinks();
-		$sql = '';
 		if ( 0 != count ( $a ) ) {
-			$sql = "INSERT IGNORE INTO $brokenlinks (bl_from,bl_to) VALUES ";
-			$first = true;
+			$arr=array();
 			foreach( $a as $blt ) {
 				$blt = $dbw->strencode( $blt );
-				if ( ! $first ) { $sql .= ","; }
-				$first = false;
-
-				$sql .= "({$this->mId},'{$blt}')";
+				array_push($arr,array(
+					'bl_from'=>$this->mId,
+					'bl_to'=>$blt));
 			}
-		}
-		if ( '' != $sql ) { 
-			$dbw->query( $sql, $fname ); 
+			$dbw->insertArray($brokenlinks,$arr,$fname,array('IGNORE'));
 		}
 		
 		$sql = "DELETE FROM $imagelinks WHERE il_from={$this->mId}";
@@ -233,18 +209,12 @@ class LinksUpdate {
 		$a = $wgLinkCache->getImageLinks();
 		$sql = '';
 		if ( 0 != count ( $a ) ) {
-			$sql = "INSERT IGNORE INTO $imagelinks (il_from,il_to) VALUES ";
-			$first = true;
-			foreach( $a as $iname => $val ) {
-				$iname = $dbw->strencode( $iname );
-				if ( ! $first ) { $sql .= ","; }
-				$first = false;
-
-				$sql .= "({$this->mId},'{$iname}')";
-			}
-		}
-		if ( '' != $sql ) { 
-			$dbw->query( $sql, $fname ); 
+			$arr=array();
+			foreach( $a as $iname => $val )
+				array_push($arr,array(
+					'il_from'=>$this->mId,
+					'il_to'=>$dbw->strencode( $iname )));
+			$dbw->insertArray($imagelinks,$arr,$fname,array('IGNORE'));
 		}
 
 		if( $wgUseCategoryMagic ) {
@@ -257,23 +227,18 @@ class LinksUpdate {
 			# Do the insertion
 			$sql = '';
 			if ( 0 != count ( $add ) ) {
-				$sql = "INSERT IGNORE INTO $categorylinks (cl_from,cl_to,cl_sortkey) VALUES ";
-				$first = true;
+				$arr=array();
 				foreach( $add as $cname => $sortkey ) {
 					# FIXME: Change all this to avoid unnecessary duplication
 					$nt = Title::makeTitle( NS_CATEGORY, $cname );
-					if( !$nt ) continue;
-					$nt->invalidateCache();
-	
-					if ( ! $first ) { $sql .= ","; }
-					$first = false;
-	
-					$sql .= "({$this->mId},'" . $dbw->strencode( $cname ) .
-						"','" . $dbw->strencode( $sortkey ) . "')";
+                                        if( !$nt ) continue;
+                                        $nt->invalidateCache();
+					array_push($arr,array(
+						'cl_from'=>$this->mId,
+						'cl_to'=>$dbw->strencode( $cname ),
+						'cl_sortkey'=>$dbw->strencode( $sortkey )));
 				}
-			}
-			if ( '' != $sql ) { 
-				$dbw->query( $sql, $fname ); 
+				$dbw->insertArray($categorylinks,$arr,$fname,array('IGNORE'));
 			}
 		}
 		$this->fixBrokenLinks();
@@ -295,21 +260,19 @@ class LinksUpdate {
 
 		# Ignore errors. If a link existed in both the brokenlinks table and the links 
 		# table, that's an error which can be fixed at this stage by simply ignoring collisions
-		$sql = "INSERT IGNORE INTO $links (l_from,l_to) VALUES ";
+		$arr=array();
 		$now = wfTimestampNow();
 		$sql2 = "UPDATE $cur SET cur_touched='{$now}' WHERE cur_id IN (";
 		$first = true;
 		while ( $row = $dbw->fetchObject( $res ) ) {
-			if ( ! $first ) { $sql .= ","; $sql2 .= ","; }
+			if ( ! $first ) { $sql2 .= ","; }
 			$first = false;
-
-			$sql .= "({$row->bl_from},{$this->mId})";
+			array_push($arr,array('l_from'=>$row->bl_from,'l_to'=>$this->mId));
 			$sql2 .= $row->bl_from;
 		}
 		$sql2 .= ')';
-		$dbw->query( $sql, $fname );
+		$dbw->insertArray($links,$arr,$fname,array('IGNORE'));
 		$dbw->query( $sql2, $fname );
-
 		$dbw->delete( 'brokenlinks', array( 'bl_to' => $this->mTitle ), $fname );
 	}
 }
