@@ -199,6 +199,7 @@ class RecentChange
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
 			'rc_ip'	=> $ip,
+			'rc_patrolled' => 0,
 			'rc_new'	=> 0 # obsolete
 		);
 
@@ -239,6 +240,7 @@ class RecentChange
 			'rc_moved_to_ns'    => 0,
 			'rc_moved_to_title' => '',
 			'rc_ip'             => $ip,
+			'rc_patrolled'      => 0,
 			'rc_new'	=> 1 # obsolete
 		);
 
