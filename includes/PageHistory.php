@@ -118,7 +118,7 @@ class PageHistory {
 				return false; 
 			} 
 			function dodiff(v1, v2){
-				if(v2 > v1){ tmp = v1; v1 = v2; v2 = tmp; }
+				if(v2 > v1 && v1 != 0){ tmp = v1; v1 = v2; v2 = tmp; }
 				u = \"{$url}&diff=\" + v1 + \"&oldid=\" + v2;
 				location.href=u;
 			}
