@@ -8,41 +8,21 @@
 /**
  *
  */
-require_once( "QueryPage.php" );
+require_once( 'SpecialShortpages.php' );
 
 /**
  *
  * @package MediaWiki
  * @subpackage SpecialPage
  */
-class LongPagesPage extends QueryPage {
+class LongPagesPage extends ShortPagesPage {
 
 	function getName() {
 		return "Longpages";
 	}
 
-	function isExpensive() {
+	function sortDescending() {
 		return true;
-	}
-
-	function getSQL() {
-		$dbr =& wfGetDB( DB_SLAVE );
-		$cur = $dbr->tableName( 'cur' );
-
-		return
-			"SELECT 'Longpages' as type,
-					cur_namespace as namespace,
-			        cur_title as title,
-			        LENGTH(cur_text) AS value
-			FROM $cur
-			WHERE cur_namespace=0 AND cur_is_redirect=0";
-	}
-
-	function formatResult( $skin, $result ) {
-		global $wgLang;
-		$nb = wfMsg( "nbytes", $wgLang->formatNum( $result->value ) );
-		$link = $skin->makeKnownLink( $result->title, "" );
-		return "{$link} ({$nb})";
 	}
 }
 
@@ -53,7 +33,7 @@ function wfSpecialLongpages()
 {
     list( $limit, $offset ) = wfCheckLimits();
 
-    $lpp = new LongPagesPage( );
+    $lpp = new LongPagesPage();
     
     $lpp->doQuery( $offset, $limit );
 }
