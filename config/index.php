@@ -688,6 +688,9 @@ function writeLocalSettings( $conf ) {
 	$rights = ($conf->RightsUrl) ? "" : "# ";
 
 #	$proxyKey = Parser::getRandomString() . Parser::getRandomString();
+	# Add slashes to strings for double quoting
+	$slconf = array_map( "addslashes", get_object_vars( $conf ) );
+
 	
 	$sep = (DIRECTORY_SEPARATOR == "\\") ? ";" : ":";
 	return "
@@ -695,8 +698,9 @@ function writeLocalSettings( $conf ) {
 # If you make manual changes, please keep track in case you need to
 # recreate them later.
 
-\$IP = \"{$conf->IP}\";
-require_once( \"includes/DefaultSettings.php\" );
+\$IP = \"{$slconf[IP]}\";
+ini_set( \"include_path\", \"\$IP/includes$sep\$IP/languages$sep\" . ini_get(\"include_path\") );
+include_once( \"DefaultSettings.php\" );
 
 if ( \$wgCommandLineMode ) {
 	if ( isset( \$_SERVER ) && array_key_exists( 'REQUEST_METHOD', \$_SERVER ) ) {
@@ -707,9 +711,9 @@ if ( \$wgCommandLineMode ) {
 	{$zlib}if( !ini_get( 'zlib.output_compression' ) ) ob_start( 'ob_gzhandler' );
 }
 
-\$wgSitename         = \"{$conf->Sitename}\";
+\$wgSitename         = \"{$slconf[Sitename]}\";
 
-\$wgScriptPath	    = \"{$conf->ScriptPath}\";
+\$wgScriptPath	    = \"{$slconf[ScriptPath]}\";
 \$wgScript           = \"\$wgScriptPath/index.php\";
 \$wgRedirectScript   = \"\$wgScriptPath/redirect.php\";
 
@@ -724,13 +728,13 @@ if ( \$wgCommandLineMode ) {
 \$wgUploadPath       = \"\$wgScriptPath/images\";
 \$wgUploadDirectory  = \"\$IP/images\";
 
-\$wgEmergencyContact = \"{$conf->EmergencyContact}\";
-\$wgPasswordSender   = \"{$conf->PasswordSender}\";
+\$wgEmergencyContact = \"{$slconf[EmergencyContact]}\";
+\$wgPasswordSender	= \"{$slconf[PasswordSender]}\";
 
-\$wgDBserver         = \"{$conf->DBserver}\";
-\$wgDBname           = \"{$conf->DBname}\";
-\$wgDBuser           = \"{$conf->DBuser}\";
-\$wgDBpassword       = \"{$conf->DBpassword}\";
+\$wgDBserver         = \"{$slconf[DBserver]}\";
+\$wgDBname           = \"{$slconf[DBname]}\";
+\$wgDBuser           = \"{$slconf[DBuser]}\";
+\$wgDBpassword       = \"{$slconf[DBpassword]}\";
 
 ## To allow SQL queries through the wiki's Special:Askaql page,
 ## uncomment the next lines. THIS IS VERY INSECURE. If you want
@@ -760,8 +764,8 @@ if ( \$wgCommandLineMode ) {
 
 \$wgLocalInterwiki   = \$wgSitename;
 
-\$wgLanguageCode = \"{$conf->LanguageCode}\";
-" . ($conf->Encoding ? "\$wgInputEncoding = \$wgOutputEncoding = \"{$conf->Encoding}\";" : "" ) . "
+\$wgLanguageCode = \"{$slconf[LanguageCode]}\";
+" . ($conf->Encoding ? "\$wgInputEncoding = \$wgOutputEncoding = \"{$slconf[Encoding]}\";" : "" ) . "
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
@@ -787,11 +791,15 @@ function dieout( $text ) {
 }
 
 function importPost( $name, $default = "" ) {
-	if( isset( $_REQUEST[$name] ) ) {
-		return $_REQUEST[$name];
+	if( isset( $_POST[$name] ) ) {
+		$retval = $_POST[$name];
+		if ( get_magic_quotes_gpc() ) {
+			$retval = stripslashes( $retval );
+		}
 	} else {
-		return $default;
+		$retval = $default;
 	}
+	return $retval;
 }
 
 function aField( &$conf, $field, $text, $type = "", $value = "" ) {
