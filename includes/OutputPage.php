@@ -64,8 +64,6 @@ class OutputPage {
 			return;
 		}
 		
-                $this->sendCacheControl();
-		
                 $lastmod = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix(
 			max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
 		
@@ -81,7 +79,7 @@ class OutputPage {
 			if( ($ismodsince >= $timestamp ) and $wgUser->validateCache( $ismodsince ) ) {
 				# Make sure you're in a place you can leave when you call us!
 				header( "HTTP/1.0 304 Not Modified" );
-				header( "Last-Modified: {$lastmod}" );			
+				$this->sendCacheControl();
 				wfDebug( "CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp\n", false );
 				$this->disable();
 				return true;
