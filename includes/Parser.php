@@ -1818,7 +1818,7 @@ cl_sortkey" ;
  */
 
 	/* private */ function formatHeadings( $text, $isMain=true ) {
-		global $wgInputEncoding;
+		global $wgInputEncoding, $wgMaxTocLevel;
 		
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
@@ -1960,7 +1960,7 @@ cl_sortkey" ;
 			if($refcount[$headlineCount] > 1 ) {
 				$anchor .= '_' . $refcount[$headlineCount];
 			}
-			if( $doShowToc ) {
+			if( $doShowToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
 				$toc .= $sk->tocLine($anchor,$tocline,$toclevel);
 			}
 			if( $showEditLink ) {
