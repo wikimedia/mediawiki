@@ -75,7 +75,11 @@ $wgSiteSupportPage	= "";
 # Miscellaneous configuration settings
 #
 $wgReadOnlyFile         = "{$wgUploadDirectory}/lock_yBgMBwiR";
-$wgDebugLogFile         = "{$wgUploadDirectory}/log_dlJbnMZb";
+
+# The debug log file should be not be publically accessible if it is
+# used, as it may contain private data.
+$wgDebugLogFile         = "";
+
 $wgDebugComments        = false;
 $wgReadOnly             = false;
 $wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
