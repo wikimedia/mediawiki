@@ -16,13 +16,20 @@ function zhOnArticleSaveComplete($article, $user, $text, $summary, $isminor, $is
 			return true;
 
 		$title = $titleobj->getDBkey();
-		$t = explode('/', $title, 2);
-		if( $t[0] == 'Zhconversiontable' ) {
-			if(!in_array($t[1], array('zh-cn', 'zh-tw', 'zh-sg', 'zh-hk')))
-				return true;
-			$wgContLang->reloadTables();			
+		$t = explode('/', $title, 3);
+		$c = count($t);
+		if( $c > 1 && $t[0] == 'Zhconversiontable' ) {
+			if(in_array($t[1], array('zh-cn', 'zh-tw', 'zh-sg', 'zh-hk'))) {
+				if($c == 3)
+					$sub = $t[2];
+				else
+					$sub = '';
+				$newtable = $wgContLang->parseCachedTable($t[1], $sub, false);
+				$wgContLang->updateTable($t[1], $newtable);			
+			}
 		}
 	}
+	return true;
 }
 
 $wgHooks['ArticleSaveComplete'][] = 'zhOnArticleSaveComplete';
@@ -43,11 +50,34 @@ class LanguageZh extends LanguageZh_cn {
 		$this->mCacheKey = $wgDBname . ":zhtables";
 	}
 
-	function reloadTables() {
+	// a write lock
+	function lockCache() {
 		global $wgMemc;
-		$wgMemc->delete($this->mCacheKey);
-		$this->mTablesLoaded=false;
-		$this->loadTables();
+		$success = false;
+		for($i=0; $i<30; $i++) {
+			if($success = $wgMemc->add($this->mCacheKey . "lock", 1, 10))
+				break;
+			sleep(1);
+		}
+		return $success;		
+	}
+
+	function unlockCache() {
+		global $wgMemc;
+		$wgMemc->delete($this->mCacheKey . "lock");
+	}
+
+	function updateTable($code, $table) {
+		global $wgMemc;
+		if(!$this->mTablesLoaded)
+			$this->loadTables();
+
+		$this->mTables[$code] = array_merge($this->mTables[$code], $table);
+		if($this->lockCache()) {
+			$wgMemc->delete($this->mCacheKey);
+			$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
+			$this->unlockCache();
+		}
 	}
 
 	// load conversion tables either from the cache or the disk
@@ -57,59 +87,115 @@ class LanguageZh extends LanguageZh_cn {
 			return;
 		$this->mTablesLoaded = true;
 		$this->mTables = $wgMemc->get( $this->mCacheKey );
-		if( empty( $this->mTables ) ) {
-			global $wgMessageCache;
-			require( "includes/ZhConversion.php" );
-			$this->mTables = array();
-			$this->mTables['zh-cn'] = $zh2CN;
-			$this->mTables['zh-tw'] = $zh2TW;
-			$this->mTables['zh-sg'] = $zh2SG;
-			$this->mTables['zh-hk'] = $zh2HK;
-			if( is_object( $wgMessageCache ) ){
-				$cached = $this->parseCachedTable( $wgMessageCache->get( 'zhconversiontable/zh-cn', true, true, true ) );
-				$this->mTables['zh-cn'] = array_merge($this->mTables['zh-cn'], $cached);
+		if( !empty( $this->mTables ) ) //all done
+			return;
 
-				$cached = $this->parseCachedTable( $wgMessageCache->get( 'zhconversiontable/zh-tw', true, true, true ) );
-				$this->mTables['zh-tw'] = array_merge($this->mTables['zh-tw'], $cached);
+		// not in cache. we will first load the tables from file
+		// then update them using things in MediaWiki:Zhconversiontable/*
+		global $wgMessageCache;
+		require( "includes/ZhConversion.php" );
+		$this->mTables = array();
+		$this->mTables['zh-cn'] = $zh2CN;
+		$this->mTables['zh-tw'] = $zh2TW;
+		$this->mTables['zh-sg'] = $zh2SG;
+		$this->mTables['zh-hk'] = $zh2HK;
 
-				$cached = $this->parseCachedTable( $wgMessageCache->get( 'zhconversiontable/zh-sg', true, true, true ) );
-				$this->mTables['zh-sg'] = array_merge($this->mTables['zh-sg'], $cached);
+		$cached = $this->parseCachedTable('zh-cn');
+		$this->mTables['zh-cn'] = array_merge($this->mTables['zh-cn'], $cached);
 
-				$cached = $this->parseCachedTable( $wgMessageCache->get( 'zhconversiontable/zh-hk', true, true, true ) );
-				$this->mTables['zh-hk'] = array_merge($this->mTables['zh-hk'], $cached);
+		$cached = $this->parseCachedTable('zh-tw');
+		$this->mTables['zh-tw'] = array_merge($this->mTables['zh-tw'], $cached);
 
-			}
+		$cached = $this->parseCachedTable('zh-sg');
+		$this->mTables['zh-sg'] = array_merge($this->mTables['zh-sg'], $cached);
+
+		$cached = $this->parseCachedTable('zh-hk');
+		$this->mTables['zh-hk'] = array_merge($this->mTables['zh-hk'], $cached);
+
+		if($this->lockCache()) {
 			$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
+			$this->unlockCache();
 		}
 	}
 	
 	/*
 		parse the conversion table stored in the cache 
 
-		the table should be in the following format:
+		the tables should be in blocks of the following form:
 
 			-{
 				word => word ;
 				word => word ;
 				...
-			-}
-	*/
-	function parseCachedTable($txt) {
-		/* $txt should be enclosed by -{ and }- */
-		$a = explode( '-{', $txt);
-		if( count($a) < 2)
-			return array();
-		array_shift($a);
-		$b = explode( '}-', $a[0]);
+			}-
+		
+		to make the tables more manageable, subpages are allowed
+		and will be parsed recursively if $recursive=true
 
-		$stripped = str_replace(array('*','#'), '', $b[0]);
-		$table = explode( ';', $stripped );
-		$ret = array();
-		foreach( $table as $t ) {
-			$m = explode( '=>', $t );
-			if( count( $m ) != 2)
+	*/
+	function parseCachedTable($code, $subpage='', $recursive=true) {
+		global $wgMessageCache;
+		static $parsed = array();
+
+		if(!is_object($wgMessageCache))
+			return array();
+
+		$key = 'zhconversiontable/'.$code;
+		if($subpage)
+			$key .= '/' . $subpage;
+
+		if(array_key_exists($key, $parsed))
+			return array();
+	
+
+		$txt = $wgMessageCache->get( $key, true, true, true );
+
+		// get all subpage links of the form
+		// [[MediaWiki:Zhconversiontable/zh-xx/...|...]]
+		$linkhead = $this->getNsText(NS_MEDIAWIKI) . ':Zhconversiontable';
+		$subs = explode('[[', $txt);
+		$sublinks = array();
+		foreach( $subs as $sub ) {
+			$link = explode(']]', $sub, 2);
+			if(count($link) != 2)
 				continue;
-			$ret[trim($m[0])] = trim($m[1]);
+			$b = explode('|', $link[0]);
+			$b = explode('/', trim($b[0]), 3);
+			if(count($b)==3)
+				$sublink = $b[2];
+			else	
+				$sublink = '';
+
+			if($b[0] == $linkhead && $b[1] == $code) {
+				$sublinks[] = $sublink;
+			}
+		}
+
+
+		// parse the mappings in this page
+		$blocks = explode('-{', $txt);
+		array_shift($blocks);
+		$ret = array();	
+		foreach($blocks as $block) {
+			$mappings = explode('}-', $block, 2);
+			$stripped = str_replace(array("'", '"', '*','#'), '', $mappings[0]);
+			$table = explode( ';', $stripped );
+			foreach( $table as $t ) {
+				$m = explode( '=>', $t );
+				if( count( $m ) != 2)
+					continue;
+				$ret[trim($m[0])] = trim($m[1]);
+			}
+		}
+		$parsed[$key] = true;
+
+
+		// recursively parse the subpages
+		if($recursive) {
+			foreach($sublinks as $link) {
+				$s = $this->parseCachedTable($code, $link, $recursive);
+				$ret = array_merge($ret, $s);
+			}
 		}
 		return $ret;
 	}
