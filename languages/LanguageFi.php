@@ -1243,20 +1243,20 @@ class LanguageFi extends LanguageUtf8 {
 		# TODO: in the future add better version.
 		switch ( $case ) {
 			case 'genitive':
-				$word = '{$word}n';
+				$word .= 'n';
 				break;
 			case 'elative':
 				if ( mb_substr($word, -1) == 'y' ) {
-					$word = '{$word}stä';
+					$word .= 'stä';
 				} else {
-					$word = '{$word}sta';
+					$word .= 'sta';
 				}
 				break;
 			case 'partitive':
 				if ( mb_substr($word, -1) == 'y' ) {
-					$word = '{$word}ä';
+					$word .= 'ä';
 				} else {
-					$word = '{$word}a';
+					$word .= 'a';
 				}
 				break;
 			case 'illative':
@@ -1266,9 +1266,9 @@ class LanguageFi extends LanguageUtf8 {
 				break;
 			case 'inessive':
 				if ( mb_substr($word, -1) == 'y' ) {
-					$word = '{$word}ssä';
+					$word .= 'ssä';
 				} else {
-					$word = '{$word}ssa';
+					$word .= 'ssa';
 				}
 				break;
 
