@@ -1207,6 +1207,15 @@ class Article {
 		}
 	}
 
+	/**
+	 * Validate function
+	 */
+	function validate() {
+		global $wgOut, $wgUser;
+		$wgOut->setRobotpolicy( 'noindex,follow' );
+		
+		$wgOut->addWikiText ( "Not implemented yet" ) ;
+	}
 
 	/**
 	 * Add this page to $wgUser's watchlist

@@ -83,6 +83,6 @@ define( 'MW_MATH_MATHML', 5 );
  */
 $wgAvailableRights = array('read', 'edit', 'move', 'delete', 'undelete',
 'protect', 'block', 'userrights', 'grouprights', 'createaccount', 'upload',
-'asksql', 'rollback', 'patrol', 'editinterface', 'siteadmin', 'bot');
+'asksql', 'rollback', 'patrol', 'editinterface', 'siteadmin', 'bot', 'validate');
 
 ?>
