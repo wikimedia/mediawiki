@@ -77,6 +77,7 @@ div.tleft {
     background-color:#f9f9f9;
     border:1px dashed #aaaaaa;
 }
+#pagehistory li.histsubmitli { list-style: none }
 
 table.diff {
         background:white;
