@@ -13,8 +13,8 @@ if( !isset( $wgProfiling ) )
 if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {        
 	require_once( "Profiling.php" );
 } else {
-	function wfProfileIn( $fn ) {}
-	function wfProfileOut( $fn = "" ) {}
+	function wfProfileIn( $fn = '' ) {}
+	function wfProfileOut( $fn = '' ) {}
 	function wfGetProfilingOutput( $s, $e ) {}
 	function wfProfileClose() {}
 }
