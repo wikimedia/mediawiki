@@ -20,13 +20,15 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 # Hypothetically, we could use a WebRequest object to fake a
-# self-contained request.
-
-## Enable this to debug total elimination of register_globals
+# self-contained request (FauxRequest).
 
 class WebRequest {
 	function WebRequest() {
 		$this->checkMagicQuotes();
+		global $wgUseLatin1;
+		if( !$wgUseLatin1 ) {
+			$this->normalizeUnicode();
+		}
 	}
 
 	function &fix_magic_quotes( &$arr ) {
@@ -49,6 +51,17 @@ class WebRequest {
 			$this->fix_magic_quotes( $_REQUEST );
 			$this->fix_magic_quotes( $_SERVER );
 		}
+	}
+	
+	function normalizeUnicode() {
+		wfProfileIn( 'WebRequest:normalizeUnicode-include' );
+		require_once( 'normal/UtfNormal.php' );
+		wfProfileOut( 'WebRequest:normalizeUnicode-include' );
+		wfProfileIn( 'WebRequest:normalizeUnicode-fix' );
+		foreach( $_REQUEST as $key => $val ) {
+			$_REQUEST[$key] = UtfNormal::toNFC( $val );
+		}
+		wfProfileOut( 'WebRequest:normalizeUnicode-fix' );
 	}
 	
 	function getGPCVal( &$arr, $name, $default ) {
