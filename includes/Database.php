@@ -316,7 +316,10 @@ class Database {
 	# If errors are explicitly ignored, returns NULL on failure
 	function indexExists( $table, $index, $fname = "Database::indexExists" ) 
 	{
-		$sql = "SHOW INDEXES FROM $table";
+		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
+		# SHOW INDEX should work for 3.x and up:
+		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
+		$sql = "SHOW INDEX FROM $table";
 		$res = $this->query( $sql, DB_READ, $fname );
 		if ( !$res ) {
 			return NULL;
