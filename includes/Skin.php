@@ -1774,7 +1774,7 @@ class Skin {
 		if(!is_object($title)) {
 			$title = Title::newFromText( $name );
 			if(!is_object($title)) {
-				$title = Title::newFromText( '<error: link target missing>' );
+				$title = Title::newFromText( '--error: link target missing--' );
 			}
 		}
 	}
