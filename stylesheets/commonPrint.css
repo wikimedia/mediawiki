@@ -43,55 +43,34 @@ div.floatleft {
 }
 div.floatleft p { font-style: italic; } 
 /* thumbnails */
-div.thumbnail-none,
-div.thumbnail-right,
-div.thumbnail-left {
-    background-color:#f9f9f9;
-    padding: none;
-    margin: 0.3em 0 0.5em;
-    font-size: 95%;
+div.thumb {
+    margin-bottom: 0.5em;
+    border-style: solid; border-color: White;
+    width: auto;
 }
-div.thumbnail-none div,
-div.thumbnail-right div,
-div.thumbnail-left div {
+div.thumb div {
     border:1px solid #cccccc;
-    text-align: center;
+    padding: 3px !important;
+    background-color:#f9f9f9;
+    font-size: 94%;
+}
+div.thumb div a img {
+    border:1px solid #cccccc;
 }
 div div.thumbcaption {
     border: none;
     text-align: left;
-    padding: 2px;
+    padding: 0.3em 0 0.1em 0 !important;
 }
-div.thumbnail-right {
+div.magnify {
     float: right;
-    border-style: solid;
-    border-color: White;
-    border-width: 0.5em 0 0.8em 1.4em;
-}
-div div.magnify {
     border: none !important;
-    background: url(magnify-clip.png) center no-repeat;
-    width: 20px;
-    height: 20px;
-    float: right;
-    margin: 0;
+    background: none !important;
 }
-div div.magnify a {
+div.magnify a, div.magnify img {
     display: block;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    border: none;
-}
-div.magnify img {
-    visibility: hidden;
-}
-div.thumbnail-left {
-    float: left;
-    margin-right:0.5em;
-    border-style: solid;
-    border-color: White;
-    border: 0.5em 1.4em 0.8em 0;
+    border: none !important;
+    background: none !important;
 }
 /* table standards */
 table.rimage {
@@ -113,29 +92,16 @@ body {
 }
 
 div.top,
-#portal-logo,
-.hiddenStructure,
-#portal-searchbox,
-#portal-globalnav,
-#portal-personaltools,
-#portal-breadcrumbs,
-div#portal-column-one,
-.contentViews,
-.contentActions,
-.help,
-.legend,
-div.portalMessage,
-div.documentActions,
-.documentByLine,
-.netscape4,
-#portal-colophon,
-input
-.skipnav,
-#quickbar,
-#topbar,
+div#column-one,
+#colophon,
 .editsection,
-.toctoggle {
-    /* Hides all the elements irrelevant for presentations */
+.toctoggle,
+div#f-poweredbyico,
+div#f-copyrightico,
+li#f-viewcount,
+li#f-about,
+li#f-disclaimer {
+    /* Hides all the elements irrelevant for printing */
     display: none;
 }
 
@@ -144,14 +110,16 @@ ul {
 }
 
 #content {
-    background: transparent;
+    background: none;
     border: none ! important;
     font-size: 11pt;
     padding: 0 ! important;
     margin: 0 ! important;
     text-align: left;
 }
-
+#footer {
+    border-top: 1px solid black;
+}
 
 h1, h2, h3, h4, h5, h6
 {
@@ -198,11 +166,11 @@ a:link, a:visited {
     min-width: 0 !important;
 }
 
-#portal-column-content {
+#column-content {
     margin: 0 !important;
 }
 
-#portal-column-content #content {
+#column-content #content {
     padding: 1em;
     margin: 0 !important;
 }
@@ -211,9 +179,6 @@ a, a.external, a.new, a.stub {
 	color: black ! important;
 	text-decoration: none ! important;
 }
-#article {
-	margin: 0 ! important;
-}
 
 /* Continue ... */
 a, a.external, a.new, a.stub {
@@ -221,11 +186,6 @@ a, a.external, a.new, a.stub {
 	text-decoration: inherit ! important;
 }
 
-/* */
-#article {
-	position: relative;
-	margin: inherit ! important;
-}
 
 /* Show some stuff */
 .urlexpansion {
