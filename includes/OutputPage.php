@@ -251,7 +251,9 @@ class OutputPage {
 		# FIXME: This header may cause trouble with some versions of Internet Explorer
 		header( "Vary: Accept-Encoding, Cookie" );
 		if( $this->mLastModified != "" ) {
-		        if( $wgUseSquid && ! isset( $_COOKIE[ini_get( "session.name") ] ) ) {
+			if( $wgUseSquid && ! isset( $_COOKIE[ini_get( "session.name") ] ) && 
+			  ! $this->isPrintable() ) 
+			{
 				if ( $wgUseESI ) {
 					# We'll purge the proxy cache explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
