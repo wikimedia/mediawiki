@@ -19,6 +19,7 @@ class DeadendPagesPage extends PageQueryPage {
 	  "FROM cur LEFT JOIN links ON cur_id = l_from " .
 	  "WHERE l_from IS NULL " .
 	  "AND cur_namespace = 0 " .
+	  "AND cur_is_redirect = 0 " .
 	  "ORDER BY cur_title " . 
 	  "LIMIT {$offset}, {$limit}";
     }
