@@ -170,7 +170,8 @@ class IPBlockForm {
 			
 			# Make log entry
 			$log = new LogPage( 'block' );
-			$log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ), $this->BlockReason );
+			$log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ), 
+			  $this->BlockReason, $this->BlockExpiry );
 
 			# Report to the user
 			$titleObj = Title::makeTitle( NS_SPECIAL, 'Blockip' );
