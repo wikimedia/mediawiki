@@ -170,14 +170,14 @@ class Skin {
 		global $wgOut, $wgStylePath, $wgLang, $wgUser, $wgRequest, $wgTitle;
 		$sheet = $this->getStylesheet();
 		$action = $wgRequest->getText('action');
-		$s = "@import url(\"$wgStylePath/$sheet\");\n";
-		if($wgLang->isRTL()) $s .= "@import url(\"$wgStylePath/common_rtl.css\");\n";
+		$s = "@import \"$wgStylePath/$sheet\";\n";
+		if($wgLang->isRTL()) $s .= "@import \"$wgStylePath/common_rtl.css\";\n";
 		if( $wgUser->getID() != 0 ) { # logged in	
 			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
 				$s .= $wgRequest->getText('wpTextbox1');
 			} else {
 				$userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
-				$s.= '@import url("'.$this->makeUrl($userpage.'/'.$this->getSkinName(), 'action=raw&ctype=text/css').'");'."\n";
+				$s.= '@import "'.$this->makeUrl($userpage.'/'.$this->getSkinName(), 'action=raw&ctype=text/css').'";'."\n";
 			}
 		}
 		$s .= $this->doGetUserStyles();
