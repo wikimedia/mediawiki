@@ -1,5 +1,7 @@
 <?
 
+require_once( 'LanguageUtf8.php');
+
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
 
@@ -194,7 +196,7 @@
 	"Unlockdb"	      => "Endurstovna skriviatgongd til dátagrunnin",
 );
 
-class LanguageFo extends Language {
+class LanguageFo extends LanguageUtf8 {
 
 	function getDefaultUserOptions () {
 		$opt = Language::getDefaultUserOptions();
