@@ -658,11 +658,11 @@ class Parser
 			$text = $wgDateFormatter->reformat( $this->mOptions->getDateFormat(), $text );
 		}
 		$text = $this->doAllQuotes( $text );
-		$text = $this->doMagicLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
 		# Another call to replace links and images inside captions of images
 		$text = $this->replaceInternalLinks ( $text );
 		$text = $this->replaceExternalLinks( $text );
+		$text = $this->doMagicLinks( $text );
 		$text = $this->doTableStuff( $text );
 		$text = $this->formatHeadings( $text, $isMain );
 		$sk =& $this->mOptions->getSkin();
@@ -1550,12 +1550,16 @@ class Parser
 	 * @access private
 	 */
 	function initialiseVariables() {
+		$fname = 'Parser::initialiseVaraibles';
+		wfProfileIn( $fname );
 		global $wgVariableIDs;
 		$this->mVariables = array();
 		foreach ( $wgVariableIDs as $id ) {
 			$mw =& MagicWord::get( $id );
 			$mw->addToArray( $this->mVariables, $this->getVariableValue( $id ) );
 		}
+		$fname = 'Parser::initialiseVaraibles';
+		wfProfileOut( $fname );
 	}
 
 	/**
