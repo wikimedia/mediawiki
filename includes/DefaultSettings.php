@@ -511,6 +511,7 @@ $wgDefaultSkin = 'monobook';
 $wgAllowRealName = true;
 
 # Extensions
+$wgSkinExtensionFunctions = array();
 $wgExtensionFunctions = array();
 
 # Allow user Javascript page?

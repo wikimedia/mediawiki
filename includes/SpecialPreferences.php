@@ -382,8 +382,13 @@ class PreferencesForm {
 			} else { 
 				$checked = ""; 
 			}
+			if ( isset( $skinNames[$skinkey] ) ) {
+				$sn = $skinNames[$skinkey];
+			} else {
+				$sn = $skinname;
+			}
 			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpSkin\"
-	value=\"$skinkey\"$checked /> {$skinNames[$skinkey]}</label></div>\n" );
+	value=\"$skinkey\"$checked /> {$sn}</label></div>\n" );
 		}
 		$wgOut->addHTML( "</fieldset>\n\n" );
 
