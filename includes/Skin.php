@@ -601,7 +601,8 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		else { $a = ""; }
 
 		$mp = wfMsg( "mainpage" );
-		$s = "<a href=\"" . wfLocalUrlE( $mp ) . "\"><img{$a} border=0 src=\""
+		$s = "<a href=\"" . wfLocalUrlE( urlencode( $mp ) )
+		  . "\"><img{$a} border=0 src=\""
 		  . $this->getLogo() . "\" alt=\"" . "[{$mp}]\"></a>";
 		return $s;
 	}
