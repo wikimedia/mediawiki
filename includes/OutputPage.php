@@ -119,7 +119,7 @@ class OutputPage {
 				$this->mLastModified = $lastmod;
 			}
 		} else {
-			wfDebug( "We're confused.\n", false );
+			wfDebug( "client did not send If-Modified-Since header\n", false );
 			$this->mLastModified = $lastmod;
 		}
 	}
