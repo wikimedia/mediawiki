@@ -389,9 +389,12 @@ class Skin {
 	function getCategoryLinks () {
 		global $wgOut, $wgTitle, $wgUser, $wgParser;
 		global $wgUseCategoryMagic, $wgUseCategoryBrowser, $wgLang;
+	
 		if( !$wgUseCategoryMagic ) return '' ;
 		if( count( $wgOut->mCategoryLinks ) == 0 ) return '';
-		if( !$wgOut->isArticle() ) return '';
+		
+		# Taken out so that they will be displayed in previews -- TS
+		#if( !$wgOut->isArticle() ) return '';
 		
 		$t = implode ( ' | ' , $wgOut->mCategoryLinks ) ;
 		$s = $this->makeKnownLink( 'Special:Categories',
