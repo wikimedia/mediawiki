@@ -102,6 +102,7 @@ class Profiler
 		$prof .= sprintf( $titleFormat, "Name", "Calls", "Total", "Each", "%", "Mem" );
 		$this->mCollated = array();
 		$this->mCalls = array();
+		$this->mMemory = array();
 		
 		# Estimate profiling overhead
 		$profileCount = count( $this->mStack );
@@ -127,6 +128,7 @@ class Profiler
 			if ( !array_key_exists( $fname, $this->mCollated ) ) {
 				$this->mCollated[$fname] = 0;
 				$this->mCalls[$fname] = 0;
+				$this->mMemory[$fname] = 0;
 			}
 
 			$this->mCollated[$fname] += $elapsed;
