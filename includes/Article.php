@@ -1485,7 +1485,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 				$this->loadFromFileCache();
 				exit;
 			} else {
-	            wfDebug( " tryFileCache() - starting buffer\n" );
+	            wfDebug( " tryFileCache() - starting buffer\n" );			
 		        ob_start( array(&$this, 'saveToFileCache' ) );
 			}
 		} else {
@@ -1541,9 +1541,14 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 	}
 	
 	function saveToFileCache( $text ) {
-		# FIXME: assumes directories are already laid out
+
         wfDebug(" saveToFileCache()\n");
-		$f = fopen( $this->fileCacheName(), "w" );
+		$filename=$this->fileCacheName();
+		$mydir2=substr($filename,0,strrpos($filename,"/")); # subdirectory level 2
+		$mydir1=substr($mydir2,0,strrpos($mydir2,"/")); # subdirectory level 1
+		if(!file_exists($mydir1)) { mkdir($mydir1,0777); } # create if necessary
+		if(!file_exists($mydir2)) { mkdir($mydir2,0777); }			
+		$f = fopen( $filename, "w" );
 		if($f) {
 			fwrite( $f, str_replace( "</html>",
 				"<!-- Cached " . wfTimestampNow() . " -->\n</html>",
