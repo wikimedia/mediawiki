@@ -986,9 +986,9 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 
 		$log = new LogPage( wfMsg( "protectlogpage" ), wfMsg( "protectlogtext" ) );
 		if ( $limit === "" ) {
-	 		$log->addEntry( wfMsg( "unprotectedarticle", $wgTitle->getPrefixedText() ), "" );		
+	 		$log->addEntry( wfMsg( "unprotectedarticle", $this->mTitle->getPrefixedText() ), "" );		
 		} else {
-			$log->addEntry( wfMsg( "protectedarticle", $wgTitle->getPrefixedText() ), "" );
+			$log->addEntry( wfMsg( "protectedarticle", $this->mTitle->getPrefixedText() ), "" );
 		}
 		$wgOut->redirect( wfLocalUrl( $this->mTitle->getPrefixedURL() ) );
 	}
