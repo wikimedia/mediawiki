@@ -325,7 +325,16 @@ class Validation
 		$html .= "</table>\n" ;
 		return $html ;
 		}
-		
+
+	function countUserValidations ( $userid )
+		{
+		$sql = "SELECT count(DISTINCT val_title) AS num FROM validate WHERE val_user={$userid}" ;
+		$res = wfQuery( $sql, DB_READ );
+		if ( $s = wfFetchObject( $res ) ) $num = $s->num ;
+		else $num = 0 ;
+		return $num ;
+		}
+
 	}
 
 function wfSpecialValidate( $page = "" )

@@ -142,6 +142,12 @@ function wfSpecialContributions( $par = "" )
 			ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, ( $me > 0), $isnew, $usertext );
 	}
 	$wgOut->addHTML( "</ul>\n" );
+	
+	# Validations
+	$val = new Validation ;
+	$val = $val->countUserValidations ( $id ) ;
+	$val = str_replace ( "$1" , $val , wfMsg ( 'val_user_validations' ) ) ;
+	$wgOut->addHTML( $val );
 }
 
 

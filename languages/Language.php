@@ -1280,6 +1280,7 @@ merging will fill in the other options with your previous settings.',
 'val_stat_link_text' => 'Validation statistics for this article',
 'val_view_version' => 'View this version',
 'val_validate_version' => 'Validate this version',
+'val_user_validations' => 'This user has validated $1 pages.',
 
 # Move page
 #
