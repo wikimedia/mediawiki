@@ -30,19 +30,9 @@ if( php_sapi_name() != 'cli' ) {
 #$pdExec	= '/usr/bin/phpdoc';
 $pdExec = 'phpdoc';
 
-/** Figure out the base directory. This is harder than it should be. */
-/** Since we're on the command line, don't trust the PWD! */
-$here = null;
-$self = $_SERVER['SCRIPT_FILENAME'];
+/** Figure out the base directory. */
 $sep = DIRECTORY_SEPARATOR;
-foreach( get_included_files() as $f ) {
-	if( preg_match( "!^(.*)maintenance$sep$self\$!", $f, $matches ) ) {
-		$here = $matches[1];
-	}
-}
-if( is_null( $here ) ) {
-	die( "Couldn't determine current directory.\n" );
-}
+$here = dirname( dirname( __FILE__ ) ) . $sep;
 
 /** where Phpdoc should output documentation */
 #$pdOutput = '/var/www/mwdoc/';

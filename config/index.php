@@ -301,9 +301,7 @@ if( $conf->HaveGD ) {
 $conf->UseImageResize = $conf->HaveGD || $conf->ImageMagick;
 
 # $conf->IP = "/Users/brion/Sites/inplace";
-chdir( ".." );
-$conf->IP = getcwd();
-chdir( "config" );
+$conf->IP = dirname( dirname( __FILE__ ) );
 print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt></li>\n";
 
 # $conf->ScriptPath = "/~brion/inplace";
