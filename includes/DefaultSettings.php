@@ -324,7 +324,7 @@ $wgFileBlacklist = array(
 	# PHP scripts may execute arbitrary code on the server
 	'php', 'phtml', 'php3', 'php4', 'phps',
 	# Other types that may be interpreted by some servers
-	'shtml', 'jhtml', 'pl', 'py',
+	'shtml', 'jhtml', 'pl', 'py', 'cgi',
 	# May contain harmful executables for Windows victims
 	'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl' );
 
