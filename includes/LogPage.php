@@ -60,12 +60,13 @@ class LogPage {
 		$won = wfInvertTimestamp( $now );
 		if($this->mId == 0) {
 			$sql = "INSERT INTO cur (cur_timestamp,cur_user,cur_user_text,
-				cur_namespace,cur_title,cur_text,cur_comment,cur_restrictions,inverse_timestamp)
+				cur_namespace,cur_title,cur_text,cur_comment,cur_restrictions,
+				inverse_timestamp,cur_touched)
 				VALUES ('{$now}', {$uid}, '{$ut}', " .
 				Namespace::getWikipedia() . ", '" .
 				wfStrencode( $this->mTitle ) . "', '" .
 				wfStrencode( $this->mContent ) . "', '" .
-				wfStrencode( $this->mComment ) . "', 'sysop', '{$won}')";
+				wfStrencode( $this->mComment ) . "', 'sysop', '{$won}','{$now}')";
 			wfQuery( $sql, $fname );
 			$this->mId = wfInsertId();
 		} else {
@@ -73,7 +74,7 @@ class LogPage {
 			  "cur_user={$uid}, cur_user_text='{$ut}', " .
 			  "cur_text='" . wfStrencode( $this->mContent ) . "', " .
 			  "cur_comment='" . wfStrencode( $this->mComment ) . "', " .
-			  "cur_restrictions='sysop', inverse_timestamp='{$won}' " .
+			  "cur_restrictions='sysop', inverse_timestamp='{$won}', cur_touched='{$now}' " .
 			  "WHERE cur_id={$this->mId}";
 			wfQuery( $sql, $fname );
 		}
