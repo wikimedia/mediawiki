@@ -7,10 +7,10 @@ function wfSpecialNewpages()
 
 	list( $limit, $offset ) = wfCheckLimits();
 
-	$sql = "SELECT rc_title AS cur_title,rc_user AS cur_user,rc_user_text AS cur_user_text,cur_comment," .
+	$sql = "SELECT rc_title AS cur_title,rc_user AS cur_user,rc_user_text AS cur_user_text,rc_comment as cur_comment," .
 	  "rc_timestamp AS cur_timestamp,length(cur_text) as cur_length FROM recentchanges,cur " .
-	  "WHERE rc_cur_id=cur_id AND rc_new=1 AND rc_namespace=0 AND cur_text NOT LIKE '#REDIRECT%' " .
-	  " ORDER BY rc_timestamp DESC LIMIT {$offset}, {$limit}";
+	  "WHERE rc_cur_id=cur_id AND rc_new=1 AND rc_namespace=0 AND cur_is_redirect=0 " .
+	  "ORDER BY rc_timestamp DESC LIMIT {$offset}, {$limit}";
 	$res = wfQuery( $sql, $fname );
 
 	$top = wfShowingResults( $offset, $limit );
