@@ -86,7 +86,7 @@ function wfSpecialContributions( $par = '' ) {
 		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res1 = $dbr->query( $sql, $fname );
 
-		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit,old_user_text,old_id FROM $old " .
+		$sql = "SELECT old_articleid,old_timestamp,old_comment,old_minor_edit,old_user_text,old_id FROM $old " .
 		  "WHERE old_user_text='" . $dbr->strencode( $nt->getText() ) . "' {$omq} " .
 		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res2 = $dbr->query( $sql, $fname );
@@ -95,7 +95,7 @@ function wfSpecialContributions( $par = '' ) {
 		  "WHERE cur_user {$userCond} {$cmq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res1 = $dbr->query( $sql, $fname );
 
-		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit,old_user_text,old_id FROM $old " .
+		$sql = "SELECT old_articleid,old_timestamp,old_comment,old_minor_edit,old_user_text,old_id FROM $old " .
 		  "WHERE old_user {$userCond} {$omq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res2 = $dbr->query( $sql, $fname );
 	}
@@ -141,8 +141,9 @@ function wfSpecialContributions( $par = '' ) {
 			$oldid = false;
 			--$nCur;
 		} else {
-			$ns = $obj2->old_namespace;
-			$t = $obj2->old_title;
+			$tt = Title::newFromID($obj2->old_articleid);
+			$ns = $tt->getNamespace();
+			$t = $tt->getDBkey();
 			$ts = $obj2->old_timestamp;
 			$comment =$obj2->old_comment;
 			$me = $obj2->old_minor_edit;
