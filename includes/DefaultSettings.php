@@ -131,6 +131,11 @@ $wgMemCachedDebug   = false;
 $wgSessionsInMemcached = false;
 $wgLinkCacheMemcached = false; # Not fully tested
 
+# Turck MMCache shared memory
+# You can use this for persistent caching where your wiki runs on a small number of 
+# servers. Mutually exclusive with memcached. MMCache must be installed.
+$wgUseTurckShm      = false;
+
 
 # Language settings
 #

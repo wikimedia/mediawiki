@@ -122,7 +122,15 @@ if( $wgUseMemCached ) {
 	$wgMemc->set_debug( $wgMemCachedDebug );
 
 	$messageMemc = &$wgMemc;
+} elseif ( $wgUseTurckShm ) {
+	# Turck shared memory
+	#
+	require_once( 'ObjectCache.php' );
+	$wgMemc = new TurckBagOStuff;
+	$messageMemc = &$wgMemc;
 } else {
+	# No shared memory
+	#
 	class FakeMemCachedClient {
 		function add ($key, $val, $exp = 0) { return true; }
 		function decr ($key, $amt=1) { return null; }
