@@ -418,7 +418,11 @@ class OutputPage {
 		
 		# Use real server name if available, so we know which machine
 		# in a server farm generated the current page.
-		$uname = @posix_uname();
+		if ( function_exists( "posix_uname" ) ) {
+			$uname = @posix_uname();
+		} else {
+			$uname = false;
+		}
 		if( is_array( $uname ) && isset( $uname['nodename'] ) ) {
 			$hostname = $uname['nodename'];
 		} else {
