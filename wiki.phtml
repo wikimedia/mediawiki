@@ -52,7 +52,13 @@ if ( "" == $title && "delete" != $action ) {
 }
 wfProfileOut( "main-misc-setup" );
 
-if( !$wgTitle or $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" ) {
+if ( "" != $search ) {
+	if($go) {
+		wfGo( $search );
+	} else {
+		wfSearch( $search );
+	}
+} else if( !$wgTitle or $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" ) {
 	$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 	$wgOut->errorpage( "badtitle", "badtitletext" );
 } else if ( $wgTitle->getPrefixedDBKey() != $title ) {
@@ -60,12 +66,6 @@ if( !$wgTitle or $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" ) 
 	$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
 } else if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
 	wfSpecialPage();
-} else if ( "" != $search ) {
-	if($go) {
-		wfGo( $search );
-	} else {
-		wfSearch( $search );
-	}
 } else {
 	if ( Namespace::getMedia() == $wgTitle->getNamespace() ) {
 		$wgTitle = Title::makeTitle( Namespace::getImage(), $wgTitle->getDBkey() );
