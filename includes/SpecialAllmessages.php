@@ -112,9 +112,10 @@ function makeHTMLText( $messages ) {
 		NS_MEDIAWIKI => array(),
 		NS_MEDIAWIKI_TALK => array()
 	);
-	$sql = "SELECT cur_namespace,cur_title FROM cur WHERE cur_namespace IN (" . NS_MEDIAWIKI . ", " . NS_MEDIAWIKI_TALK . ")";
 	$dbr =& wfGetDB( DB_SLAVE );
-	$res = $dbr->query( $sql );
+	$res = $dbr->select( 'cur',
+		array( 'cur_namespace', 'cur_title' ),
+		"cur_namespace IN (" . NS_MEDIAWIKI . ", " . NS_MEDIAWIKI_TALK . ")" );
 	while( $s = $dbr->fetchObject( $res ) ) {
 		$pageExists[$s->cur_namespace][$s->cur_title] = true;
 	}
