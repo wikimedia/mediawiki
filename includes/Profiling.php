@@ -103,7 +103,7 @@ class Profiler
 		}
 		$this->close();
 		$width = 125;
-		$format = "%-" . ($width - 34) . "s %6d %6.3f %6.3f %6.3f%% %6d\n";
+		$format = "%-" . ($width - 34) . "s %6d %6.3f %6.3f %7.3f%% %6d (%6.3f-%6.3f)\n";
 		$titleFormat = "%-" . ($width - 34) . "s %9s %9s %9s %9s %6s\n";
 		$prof = "\nProfiling data\n";
 		$prof .= sprintf( $titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 'Mem' );
@@ -136,11 +136,15 @@ class Profiler
 				$this->mCollated[$fname] = 0;
 				$this->mCalls[$fname] = 0;
 				$this->mMemory[$fname] = 0;
+				$this->mMin[$fname] = 1 << 24;
+				$this->mMax[$fname] = 0;
 			}
 
 			$this->mCollated[$fname] += $elapsed;
 			$this->mCalls[$fname] ++;
 			$this->mMemory[$fname] += $memory;
+			$this->mMin[$fname] = min( $this->mMin[$fname], $elapsed );
+			$this->mMax[$fname] = max( $this->mMax[$fname], $elapsed );
 		}
 
 		$total = @$this->mCollated['-total'];
@@ -148,7 +152,7 @@ class Profiler
 		$this->mCalls['-overhead-total'] = $profileCount;
 
 		# Output
-		arsort( $this->mCollated, SORT_NUMERIC );
+		asort( $this->mCollated, SORT_NUMERIC );
 		foreach ( $this->mCollated as $fname => $elapsed ) {
 			$calls = $this->mCalls[$fname];
 			# Adjust for overhead
@@ -159,7 +163,9 @@ class Profiler
 			$percent = $total ? 100. * $elapsed / $total : 0;
 			$memory = $this->mMemory[$fname];
 			$prof .= sprintf( $format, $fname, $calls, (float)($elapsed * 1000), 
-					(float)($elapsed * 1000) / $calls, $percent, $memory );
+					(float)($elapsed * 1000) / $calls, $percent, $memory,
+					($this->mMin[$fname] * 1000.0),
+					($this->mMax[$fname] * 1000.0));
 
 			global $wgProfileToDatabase;
 			if( $wgProfileToDatabase ) {
