@@ -159,7 +159,7 @@
 			
 				$content_actions['article'] = array('class' => (!Namespace::isTalk( $wgTitle->getNamespace())) ? 'selected' : '',
 				'text' => wfMsg('article'),
-				'href' => $this->makeArticleUrl($wgTitle->getPrefixedDbKey()),
+				'href' => $this->makeArticleUrl($thispage),
 				'ttip' => wfMsg('tooltip-article'),
 				'akey' => wfMsg('accesskey-article'));
 
@@ -241,8 +241,8 @@
 						} else {
 							$content_actions['move'] = array('class' => 'inactive',
 							'text' => wfMsg('move'),
-							'href' => '',
-							'akey' => '');
+							'href' => false,
+							'akey' => false);
 
 						}
 					}
@@ -265,20 +265,13 @@
 					}
 				}
 			} else {
-				/* show special page actions */
+				/* show special page tab */
 
 				$content_actions['article'] = array('class' => 'selected',
 				'text' => wfMsg('specialpage'),
-				'href' => 'javascript:void()',
+				'href' => false,
 				'ttip' => wfMsg('tooltip-specialpage'),
-				'akey' => '');
-				
-				/*if ($wgTitle->getDbKey() == 'Movepage') {
-					$content_actions['move'] = array('class' => 'selected',
-					'i18n_key' => 'move',
-					'href' => '',
-					'akey' => '');
-				}*/
+				'akey' => false);
 			}
 			$tpl->setRef('content_actions', &$content_actions);
 
@@ -355,6 +348,14 @@
 		function initPage() {
 			SkinPHPTal::initPage();
 			$this->skinname = "mono";
+			$this->template = "xhtml_slim";
+		}
+	}
+	
+	class SkinMonoBook extends SkinPHPTal {
+		function initPage() {
+			SkinPHPTal::initPage();
+			$this->skinname = "monobook";
 			$this->template = "xhtml_slim";
 		}
 	}
