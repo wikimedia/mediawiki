@@ -1459,4 +1459,3 @@ global $IP;
 @include_once( "{$IP}/Language" . ucfirst( $wgLanguageCode ) . ".php" );
 
 ?>
-v
