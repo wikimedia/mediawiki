@@ -1255,6 +1255,7 @@ class OutputPage {
 
 			
 			$canonized_headline=preg_replace("/<.*?>/","",$headline); // strip out HTML
+			$canonized_headline=htmlspecialchars($canonized_headline);
 			$tocline=$canonized_headline;
 			$canonized_headline=str_replace(" ","_",trim($canonized_headline));			
 			$refer[$c]=$canonized_headline;
