@@ -948,7 +948,6 @@ gambar ini secara permanen berikut semua sejarahnya dari pangkalan data.
 Pastikan bahwa Anda memang ingin berbuat demikian, mengetahui segala 
 akibatnya, dan apa yang Anda lakukan ini adalah sejalan dengan 
 [[{{ns:4}}:Kebijaksanaan|kebijaksanaan Wikipedia]].",
-"confirmcheck"	      => "Ya, saya benar-benar ingin menghapus halaman ini", #"Yes, I really want to delete this.",
 "actioncomplete" => "Proses selesai", #"Action complete",
 "deletedtext" => "\"$1\" telah dihapus. 
 Lihat $2 untuk catatan terkini halaman yang telah dihapus.",

@@ -775,7 +775,6 @@ Omissa asetuksissasi annettu sähköpostiosoite tulee näkymään sähköpostin 
 'confirmdelete' => 'Vahvista poisto',
 'deletesub'             => "(Poistetaan \"$1\")",
 'confirmdeletetext' => 'Olet tuhoamassa pysyvästi sivun tai kuvan ja kaiken sen historian tietokannasta. Vahvista, että todella aiot tehdä näin ja että ymmärrät seuraukset, sekä että teet tämän [[Project:Policy|{{grammar:genitive|{{SITENAME}}}} käytännön]] mukaisesti.',
-'confirmcheck'        => 'Kyllä, haluan varmasti poistaa tämän.',
 'actioncomplete' => 'Toiminto suoritettu',
 'deletedtext'   => "\"$1\" on poistettu. Katso $2 nähdäksesi tallenteen viimeaikaisista poistoista.",
 'deletedarticle' => 'poisti sivun \'[[$1]]\'',

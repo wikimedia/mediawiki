@@ -777,7 +777,6 @@ require_once("LanguageUtf8.php");
 		Please confirm that you intend to do this, that you understand the
 		consequences, and that you are doing this in accordance with
 		[[{{ns:4}}:Policy]].",
-		"confirmcheck"	=> "Yes, I really want to delete this.",
 		"actioncomplete" => "Action complete",
 		"deletedtext"	=> "\"$1\" has been deleted.
 		See $2 for a record of recent deletions.",

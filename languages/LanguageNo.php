@@ -856,7 +856,6 @@ eller et bilde sammen med hele den tilhørende historikken fra databasen.
 Bekreft at du virkelig vil gjøre dette, at du forstår
 konsekvensene, og at du gjør dette i overensstemmelse med
 [[Wikipedia:Retningslinjer]].",
-"confirmcheck"	=> "Ja, jeg vil virkelig slette.",
 "actioncomplete" => "Gjennomført",
 "deletedtext"	=> "\"$1\" er slettet.
 Se $2 for en oversikt over de nyeste slettinger.",

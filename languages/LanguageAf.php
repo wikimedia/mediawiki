@@ -693,7 +693,6 @@ Toekomstige veranderinge aan hierdie bladsye en sy geassosieerde Bespreekbladsy 
 "deletesub"		=> "(Besig om \"$1\" te skrap)",
 "confirmdeletetext" => "Jy staan op die punt om 'n bladsy of prent asook al hulle geskiedenis uit die databasis te skrap.
 Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [[{{ns:4}}:Policy]].",
-"confirmcheck"	=> "Ja, ek wil dit regtig skrap.",
 "actioncomplete" => "Aksie uitgevoer",
 "deletedtext"	=> "\"$1\" is geskrap.
 Kyk na $2 vir 'n rekord van onlangse skrappings.",

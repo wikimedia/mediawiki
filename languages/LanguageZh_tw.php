@@ -784,7 +784,6 @@ alt=\"Google\" align=\"middle\"></a>
 "confirmdeletetext" => "您即將從數據庫中永遠刪除一個頁面或圖像以及其歷史。
 請確定您要進行此項操作，並且瞭解其後果，同時您的行為符合[[維基百科:守則與指導]]。
 ",
-"confirmcheck"	=> "是的，我確定要刪除。",
 "actioncomplete" => "操作完成",
 "deletedtext"	=> "“$1”已經被刪除。
 最近刪除的紀錄請參見$2。",

@@ -1051,7 +1051,6 @@ an cnaipe 'bain amach le marcanna' ag bun an leathanaigh.",
 chomh maith leis a chuid stair, ón bunachar sonraí­.
 Cinntigh go mian leis an méid seo a dhéanamh, go dtuigeann tú na
 iarmhairtaí­, agus go ndéanann tú é dar leis [[Vicipéid:Polasaí­]].",
-"confirmcheck"  => "Sea, is mian liom go fí­rinneach an rud seo a scrios.",
 "actioncomplete" => "Gní­omh déanta",
 "deletedtext"   => "\"$1\" atá scriosaithe.
 Féach ar $2 chun cuntas den scriosadh deireanacha a fháil.",

@@ -854,7 +854,6 @@ of ôfbyld, tegearre mei alle skiednis, út de databank.
 Befêstigje dat jo dat wier dwaan wolle. Befêstigje dat dat is wat jo witte wat it gefolch 
 is en dat jo dit dogge neffens de [[$wgMetaNamespace:wisk-rie]].",
 
-"confirmcheck"	=> "Ja, ik woe dit wier wiskje!",
 "actioncomplete"	=> "Dien",
 "deletedtext"	=> "\"$1\" is wiske.
 Sjoch \"$2\" foar in list fan wat resint wiske is.",

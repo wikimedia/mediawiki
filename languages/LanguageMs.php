@@ -763,7 +763,6 @@ imej ini dengan semua sejarahnya dari pangkalan data.  Sila pastikan
 yang anda memang mahu berbuat demikian, bahawa anda faham segala
 akibatnya, dan apa yang anda lakukan ini adalah mengikut
 [[Wikipedia:Polisi]].",
-"confirmcheck"	=> "Ya, saya mahu keluarkan halaman ini", #"Yes, I really want to delete this.",
 "actioncomplete" => "Proses selesai", #"Action complete",
 "deletedtext"	=> "\"$1\" telah dikeluarkan.
 Lihat $2 untuk rekod terkini halaman yang telah dikeluarkan.",

@@ -859,7 +859,6 @@ $3... <a href='$4'>komplette Liste zeigen und bearbeiten</a>.)",
 eine Versionsgeschichte: ",
 "confirmdeletetext" => "Sie sind dabei, einen Artikel oder ein Bild und alle älteren Versionen permanent aus der Datenbank zu löschen.
 Bitte bestätigen Sie Ihre Absicht, dies zu tun, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit unseren [[Project:Leitlinien|Leitlinien]] handeln.",
-"confirmcheck"	=> "Ja, ich möchte den Löschvorgang fortsetzen.",
 "actioncomplete" => "Aktion beendet",
 "deletedtext"	=> "\"$1\" wurde gelöscht.
 Im $2 finden Sie eine Liste der letzten Löschungen.",

@@ -669,7 +669,6 @@ Le future modifiche a questa pagina ed alla relativa pagina di discussione saran
 "confirmdeletetext" => "Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia.<p>
 Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, conferma che hai piena consapevolezza delle conseguenze della tua azione, e conferma che la tua azione è pienamente ottemperante alle regole stabilite nella 
 [[Wikipedia:Policy]].",
-"confirmcheck"	=> "Sì, voglio davvero procedere con la cancellazione della pagina.",
 "actioncomplete" => "Azione completata",
 "deletedtext"	=> "La pagina \"$1\" è stata cancellata.
 Vedi $2 per un elenco delle pagine cancellate di recente.",

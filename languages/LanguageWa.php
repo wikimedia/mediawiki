@@ -940,7 +940,6 @@ pådje ou ene imådje, avou tote si istwere.
 Acertinez s'&nbsp;i vs plait ki c'&nbsp;est bén çoula ki vos vloz fé,
 ki vos comprindoz les consecwinces, et ki vos fjhoz çoula
 tot [[Wikipedia:Rîles a shure|shuvant les rîles]].",
-"confirmcheck"	=> "Oyi, dji vou vormint disfacer ci fitchî chal.",
 "actioncomplete" => "Fwait",
 "deletedtext"	=> "Li pådje «$1» a stî disfacêye. Loukîz li $2 po ene
 djivêye des dierins disfaçaedjes.",

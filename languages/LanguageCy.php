@@ -835,7 +835,6 @@ y botwm 'dileu' ar gwaelod y sgrîn.",
 "historywarning" => "Rhubydd: Mae hanes gan y tudalen yr ydych yn mynd i dileuo: ",
 "confirmdeletetext" => "Rydych chi'n mynd i dileu erthygl neu llun yn parhaol, hefyd gyda'u hanes, oddiwrth y databas.
 Cadarnhaewch yr ydych yn bwriadu gwneud hwn, ac yr ydych yn ddeallt y canlyniad, ac yr ydych yn gwneud hwn yn ôl [[Wicipedia:Polisi]].",
-"confirmcheck" => "Ie, 'Dwi eisio dileu hwn mewn gwirionedd.",
 "actioncomplete" => "Gweithred llwyr",
 "deletedtext" => "Mae \"$1\" wedi eu dileu.
 Gwelwch $2 am cofnod o dileuon diweddar.",

@@ -853,7 +853,6 @@ dhe shtyp butonin 'Hiq të zgjedhurat' në fund të ekranit.",
 ose një skedar me tërë historinë e tij nga rregjistri.
 Të lutem konfirmo që ke ndër mënd ta bësh këtë gjë, që e kupton se cilat janë
 pasojat, dhe që po vepron ne përputhje me [[$wgMetaNamespace:Rregullat]].",
-"confirmcheck"	=> "Po, dëshiroj me të vërtetë ta gris këtë.",
 "actioncomplete" => "Veprim i mbaruar",
 "deletedtext"	=> "\"$1\" është grisur nga rregjistri.
 Shiko $2 për një rekord të grisjeve të fundit.",

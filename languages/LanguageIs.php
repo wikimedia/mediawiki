@@ -388,7 +388,6 @@ this list should not be construed as an endorsement.",
 #'commentedit' => " (comment)",
 #'compareselectedversions' => "Compare selected versions",
 'confirm' => "Staðfesta",
-'confirmcheck' => "Eyða.",
 'confirmdelete' => "Staðfesting á eyðingu",
 'confirmdeletetext' => "Þú ert um það bil að eyða síðu eða mynd ásamt
 breytingaskrá hennar úr gagnagrunninum.

@@ -1083,7 +1083,6 @@ ning [[Special:Recentchanges||viimaste muudatuste lehel]] tuuakse ta esile
 koos kogu tema ajalooga. Palud kinnita, et sa tahad seda tõepoolest teha, et
 sa mõistad tagajärgi ja et sinu tegevus on kooskõlas siinse
 [[{{ns:4}}:Policy|sisekorraga]].", # Wikipedia:Policy tuleks ka tõlkida
-"confirmcheck"	=> "Jah, tahan tõesti kustutada.",
 "actioncomplete" => "Toiming sooritatud",
 "deletedtext"	=> "\"$1\" on kustutatud.
 Viimaste kustutuste loendit näed siit: $2.",

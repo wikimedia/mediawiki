@@ -820,7 +820,6 @@ Elektu forigotajn paĝojn kaj alklaku 'forprenu elektitajn' sube.",
 forviŝos ĝian tutan historion el la datumaro.<br />
 Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas
 la sekvojn, kaj ke vi ja sekvas la [[{{ns:4}}:Reguloj pri forigado|regulojn pri forigado]].",
-"confirmcheck"	=> "Jes, mi tutkore certas ke mi volas forigi tiun artikolon/dosieron.",
 "actioncomplete" => "Ago farita",
 "deletedtext"	=> "\"$1\" estas forigita.
 Vidu la paĝon $2 por registro de lastatempaj forigoj.",

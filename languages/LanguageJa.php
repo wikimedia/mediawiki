@@ -785,7 +785,6 @@ or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
 [[{{ns:4}}:Policy]].",
-"confirmcheck"	=> "はい。上記の通りです。　Yes, I really want to delete this.",
 "actioncomplete" => "削除を完了しました。　Action complete",
 "deletedtext"	=> "\"$1\" は削除されました。　\"$1\" has been deleted.
 最近の削除に関しては$2 を参照して下さい。
