@@ -419,6 +419,9 @@ class Parser
 	function tidy ( $text ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
 		global $wgInputEncoding, $wgOutputEncoding;
+		$fname = "Parser::tidy";
+		wfProfileIn( $fname );
+		
 		$cleansource = '';
 		switch(strtoupper($wgOutputEncoding)) {
 			case 'ISO-8859-1':
@@ -449,8 +452,12 @@ class Parser
 			fclose($pipes[1]);
 			$return_value = proc_close($process);
 		}
+
+		wfProfileOut( $fname );
+		
 		if( $cleansource == '' && $text != '') {
-			return '<h2>'.wfMsg('seriousxhtmlerrors').'</h2><pre>'.htmlspecialchars($text).'</pre>';
+			wfDebug( "Tidy error detected!\n" );
+			return $text . "\n<!-- Tidy found serious XHTML errors -->\n";
 		} else {
 			return $cleansource;
 		}
