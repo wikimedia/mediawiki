@@ -226,6 +226,9 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 # set "portal" => ""
 
 
+# required for copyrightwarning
+global $wgRightsText;
+
 /* private */ $wgAllMessagesEn = array(
 'special_version_prefix' => '&nbsp;',
 'special_version_postfix' => '&nbsp;',
@@ -634,9 +637,8 @@ press \"Save page\".\n<p>",
 revision of this page.
 If you save it, any changes made since this revision will be lost.</strong>\n',
 'yourdiff'		=> 'Differences',
-# FIXME: This is inappropriate for third-party use!
 'copyrightwarning' => "Please note that all contributions to {{SITENAME}} are
-considered to be released under the GNU Free Documentation License
+considered to be released under the $wgRightsText
 (see $1 for details).
 If you don't want your writing to be edited mercilessly and redistributed
 at will, then don't submit it here.<br />
