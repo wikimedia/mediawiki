@@ -28,3 +28,6 @@ p.subpages { font-size:small;}
 p.subtitle { padding-top: 0; margin-top: 0;}
 td.bottom { border-top: 1px solid gray; }
 td.top { border-bottom: 1px solid gray; }
+/* images */
+div.floatright { float:right;margin:0 0 1em 1em; }
+div.floatright p { font-style: italic; } 
