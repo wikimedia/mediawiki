@@ -25,7 +25,8 @@
 	"contextlines" => 5, "contextchars" => 50,
 	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
 	"highlightbroken" => 1, "stubthreshold" => 0,
-	"previewontop" => 1, "editsection"=>1, "showtoc"=>1
+	"previewontop" => 1, "editsection"=>1, "showtoc"=>1,
+	"date" => 0
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
@@ -1225,8 +1226,8 @@ class Language {
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-		$datePreference = $wgUser->getOption('date');		
-		if ( $datePrefernce == 0 ) {
+		$datePreference = $wgUser->getOption( 'date' );		
+		if ( $datePreference == 0 ) {
 			$datePreference = $wgAmericanDates ? 1 : 2;
 		}
 		
@@ -1259,7 +1260,7 @@ class Language {
 
 	function timeanddate( $ts, $adj = false )
 	{
-		return $this->time( $ts, $adj ) . " " . $this->date( $ts, $adj );
+		return $this->time( $ts, $adj ) . ", " . $this->date( $ts, $adj );
 	}
 
 	function rfc1123( $ts )
@@ -1370,55 +1371,69 @@ class Language {
 
 	function replaceDates( $text )
 	{
-		global $wgUser;
+		global $wgUser, $wgInputEncoding;
 		
 		# Setup
 		
-		$datePreference = $wgUser->getOption('date');
+		$datePreference = $wgUser->getOption( 'date' );
+
 		static $monthNames = "", $rxDM, $rxMD, $rxY, $rxDMY, $rxYMD, $rxMDY, $rxYMD;
 		if ( $monthNames == "" ) {
 			$monthNames = $this->getMonthRegex();
-			$rxDM = '\[\[(\d{1,2})[ _](' . $monthNames . ')]](?![a-z])';
-			$rxMD = '\[\[(' . $monthNames . ')[ _](\d{1,2})]](?![a-z])';
-			$rxY = '\[\[(\d{1,4}([ _]BC|))]](?![a-z])';
 			
-			$rxDMY = "/{$rxDM} *, *{$rxY}/i";	
-			$rxYDM = "/{$rxY} *, *{$rxDM}/i";
-			$rxMDY = "/{$rxMD} *, *{$rxY}/i";
-			$rxYMD = "/{$rxY} *, *{$rxMD}/i";
+			# Attempt at UTF-8 support, untested at the moment
+			if ( $wgInputEncoding == 'UTF-8' ) {
+				$regexTrail = '(?![a-z])/iu';
+			} else {
+				$regexTrail = '(?![a-z])/i';
+			}
+
+			# Partial regular expressions
+			$prxDM = '\[\[(\d{1,2})[ _](' . $monthNames . ')]]';
+			$prxMD = '\[\[(' . $monthNames . ')[ _](\d{1,2})]]';
+			$prxY = '\[\[(\d{1,4}([ _]BC|))]]';
+			
+			# Real regular expressions
+			$rxDMY = "/{$prxDM} *,? *{$prxY}{$regexTrail}";	
+			$rxYDM = "/{$prxY} *,? *{$prxDM}{$regexTrail}";
+			$rxMDY = "/{$prxMD} *,? *{$prxY}{$regexTrail}";
+			$rxYMD = "/{$prxY} *,? *{$prxMD}{$regexTrail}";
+			$rxDM = "/{$prxDM}{$regexTrail}";
+			$rxMD = "/{$prxMD}{$regexTrail}";
+			$rxY = "/{$prxY}{$regexTrail}";
 		}
 		
 		# Do replacements
 		# TODO: month capitalisation?
 		if ( $datePreference == 0 ) { 
 			# no preference
-			$text = preg_replace( $rxDMY, '[[$2 $1|$1 $2]], [[$3]]', $text);
+			$text = preg_replace( $rxDMY, '[[$2 $1|$1 $2]] [[$3]]', $text);
 			$text = preg_replace( $rxYDM, '[[$1]] [[$4 $3]]', $text);
 			$text = preg_replace( $rxMDY, '[[$1 $2]], [[$3]]', $text);
 			$text = preg_replace( $rxYMD, '[[$1]] [[$3 $4]]', $text);
-			$text = preg_replace ( "/$rxDM/i", '[[$2 $1|$1 $2]]', $text);
+			$text = preg_replace ( $rxDM, '[[$2 $1|$1 $2]]', $text);
 		} else if ( $datePreference == 1 ) {
 			# MDY preferred
 			$text = preg_replace( $rxDMY, '[[$2 $1]], [[$3]]', $text);
 			$text = preg_replace( $rxYDM, '[[$4 $3]], [[$1]]', $text);
 			$text = preg_replace( $rxMDY, '[[$1 $2]], [[$3]]', $text);
 			$text = preg_replace( $rxYMD, '[[$3 $4]], [[$1]]', $text);
-			$text = preg_replace ( "/$rxDM/i", '[[$2 $1]]', $text);
+			$text = preg_replace ( $rxDM, '[[$2 $1]]', $text);
 		} else if ( $datePreference == 2 ) {
 			# DMY preferred
-			$text = preg_replace( $rxDMY, '[[$2 $1|$1 $2]], [[$3]]', $text);
-			$text = preg_replace( $rxYDM, '[[$4 $3|$3 $4]], [[$1]]', $text);
-			$text = preg_replace( $rxMDY, '[[$1 $2|$2 $1]], [[$3]]', $text);
-			$text = preg_replace( $rxYMD, '[[$3 $4|$4 $3]], [[$1]]', $text);
-			$text = preg_replace ( "/$rxDM/i", '[[$2 $1|$1 $2]]', $text);
-			$text = preg_replace ( "/$rxMD/i", '[[$1 $2|$2 $1]]', $text);
+			$text = preg_replace( $rxDMY, '[[$2 $1|$1 $2]] [[$3]]', $text);
+			$text = preg_replace( $rxYDM, '[[$4 $3|$3 $4]] [[$1]]', $text);
+			$text = preg_replace( $rxMDY, '[[$1 $2|$2 $1]] [[$3]]', $text);
+			$text = preg_replace( $rxYMD, '[[$3 $4|$4 $3]] [[$1]]', $text);
+			$text = preg_replace ( $rxDM, '[[$2 $1|$1 $2]]', $text);
+			$text = preg_replace ( $rxMD, '[[$1 $2|$2 $1]]', $text);
 		} else if ( $datePreference == 3 ) {
 			# YMD preferred
 			$text = preg_replace( $rxDMY, '[[$3]] [[$2 $1]]', $text);
 			$text = preg_replace( $rxYDM, '[[$1]] [[$4 $3]]', $text);
 			$text = preg_replace( $rxMDY, '[[$3]] [[$1 $2]]', $text);
 			$text = preg_replace( $rxYMD, '[[$1]] [[$3 $4]]', $text);
-			$text = preg_replace ( "/$rxDM/i", '[[$2 $1]]', $text);
+			$text = preg_replace ( $rxDM, '[[$2 $1]]', $text);
 		}
 		return $text;
 	}
