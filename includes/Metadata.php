@@ -228,38 +228,6 @@ function wfCreativeCommonsRdf($article) {
 	}
 }
 
-/* private */ function dcContributors($article) {
-
-        $title = $article->mTitle;
-
-	$contribs = array();
-	
-	$res = wfQuery("SELECT DISTINCT old_user,old_user_text" .
-	               " FROM old " .
-	               " WHERE old_namespace = " . $title->getNamespace() .
-	               " AND old_title = '" . $title->getDBkey() . "'" .
-                       " AND old_user != 0 " .
-                       " AND old_user != " . $article->getUser(), DB_READ);
-	
-	while ( $line = wfFetchObject( $res ) ) {
-		$contribs[$line->old_user_text] = $line->old_user;
-	}    
-
-        # Count anonymous users
-
-	$res = wfQuery("SELECT COUNT(*) AS cnt " .
-	               " FROM old " .
-	               " WHERE old_namespace = " . $title->getNamespace() .
-	               " AND old_title = '" . $title->getDBkey() . "'" .
-                       " AND old_user = 0 ", DB_READ);
-
-	while ( $line = wfFetchObject( $res ) ) {
-                $contribs[$line->cnt] = 0;
-	}    
-
-	return $contribs;
-}
-
 /* Takes an arg, for future enhancement with different rights for
  different pages. */
 
