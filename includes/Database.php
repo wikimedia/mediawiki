@@ -820,7 +820,7 @@ class Database {
 	 */
 	function selectDB( $db ) {
 		$this->mDBname = $db;
-		mysql_select_db( $db, $this->mConn );
+		return mysql_select_db( $db, $this->mConn );
 	}
 
 	/**
