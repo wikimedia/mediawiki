@@ -277,13 +277,13 @@ class Skin {
 	function afterContent()
 	{
 		global $wgUser, $wgOut, $wgServer, $HTTP_SERVER_VARS;
-
+		global $wgTitle;
+		
 		if ( $wgOut->isPrintable() ) {
 			$s = "\n</div>\n";
 
-			$u = $wgServer . $HTTP_SERVER_VARS['REQUEST_URI'];
-			$u = preg_replace( "/[?&]printable=yes/", "", $u );
-			$rf = str_replace( "$1", $u, wfMsg( "retrievedfrom" ) );
+			$u = $wgServer . $wgTitle->getFullURL();
+			$rf = wfMsg( "retrievedfrom", $u );
 
 			if ( $wgOut->isArticle() ) {
 				$lm = "<br>" . $this->lastModified();
