@@ -1063,8 +1063,14 @@ class Article {
 	
 	function tryFileCache() {
 		if($this->isFileCacheable()) {
+			$touched = $this->mTouched;
+			if( strpos( $this->mContent, "{{" ) !== false ) {
+				# Expire pages with variable replacements in an hour
+				$expire = wfUnix2Timestamp( time() - 3600 );
+				$touched = max( $expire, $touched );
+			}
 			$cache = new CacheManager( $this->mTitle );
-			if($cache->isFileCacheGood( $this->mTouched )) {
+			if($cache->isFileCacheGood( $touched )) {
 				wfDebug( " tryFileCache() - about to load\n" );
 				$cache->loadFromFileCache();
 				exit;
