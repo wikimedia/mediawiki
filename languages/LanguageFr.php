@@ -191,6 +191,7 @@ include_once( "LanguageUtf8.php" );
 "moredotdotdot"	=> "Et plus...",
 "mypage"        => "Ma page",
 "mytalk"        => "Ma page de discussion",
+"anontalk"	=> "Discussion avec cette adresse ip",
 "currentevents" => "Actualités",
 "errorpagetitle" => "Erreur",
 "returnto"      => "Revenir à la page $1.",
@@ -980,6 +981,8 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 "importtext"	=> "Exportez un fichier depuis le wiki source en utilisant la fonction Special:Export, sauvez la page sur votre disque puis envoyez là ici.",
 
 # Keyboard access keys for power users
+'accesskey-anontalk' => 'n',
+'accesskey-anonuserpage' => '.',
 'accesskey-article' => 'a',
 'accesskey-contributions' => '',
 'accesskey-currentevents' => '',
@@ -1018,6 +1021,8 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'accesskey-whatlinkshere' => 'b',
 
 # tooltip help for the main actions
+'tooltip-anontalk' => 'Discussion des éditions faites à partir de cette adresse ip [alt-n]',
+'tooltip-anonuserpage' => 'La page d\'utilisateur pour l\'adresse ip depuis laquelle vous éditez [alt-.]',
 'tooltip-article' => 'Voir l\'article [alt-a]',
 'tooltip-contributions' => 'Voir la liste des contributions de cet utilisateur',
 'tooltip-currentevents' => 'Trouver des informations sur les évenements actuels',
