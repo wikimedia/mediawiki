@@ -20,6 +20,7 @@ function wfSpecialRecentchanges( $par ) {
 	global $wgRequest, $wgSitename, $wgLanguageCode, $wgContLanguageCode;
 	global $wgFeedClasses, $wgUseRCPatrol;
 	global $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
+	global $wgLinkCache;
 	$fname = 'wfSpecialRecentchanges';
 
 	# Get query parameters
@@ -118,18 +119,36 @@ function wfSpecialRecentchanges( $par ) {
 	  $showhide[1-$hidepatrolled], wfArrayToCGI( array( 'hidepatrolled' => 1-$hidepatrolled ), $urlparams ) );
 
 	$uid = $wgUser->getID();
-	# Patch for showing "updated since last visit" marker
+
+	// Perform query
 	$sql2 = "SELECT $recentchanges.*" . ($uid ? ",wl_user,wl_notificationtimestamp" : "") . " FROM $recentchanges " .
 	  ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") .
 	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
 	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
-
 	$res = $dbr->query( $sql2, $fname );
+
+	// Fetch results, prepare a batch link existence check query
 	$rows = array();
+	$batch = new LinkBatch;
 	while( $row = $dbr->fetchObject( $res ) ){
 		$rows[] = $row;
+		
+		// Title
+		$batch->add( $row->rc_namespace, $row->rc_title );
+
+		// User page link
+		$title = Title::makeTitleSafe( NS_USER, $row->rc_user_text );
+		$batch->addObj( $title );
+
+		// User talk
+		$title = Title::makeTitleSafe( NS_USER_TALK, $row->rc_user_text );
+		$batch->addObj( $title );
+
 	}
 	$dbr->freeResult( $res );
+
+	// Run existence checks
+	$batch->execute( $wgLinkCache );
 
 	if(isset($from)) {
 		$note = wfMsg( 'rcnotefrom', $wgLang->formatNum( $limit ),
