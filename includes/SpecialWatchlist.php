@@ -37,7 +37,7 @@ function wfSpecialWatchlist() {
 	$days = $wgRequest->getVal( 'days' );
 	$action = $wgRequest->getVal( 'action' );
 	$remove = $wgRequest->getVal( 'remove' );
-	$id = $wgRequest->getVal( 'id' );
+	$id = $wgRequest->getArray( 'id' );
 
 	$wgOut->addHTML( wfMsg( "email_notification_infotext" ) );
 

@@ -111,11 +111,12 @@ class WebRequest {
 			global $wgUseLatin1, $wgServer, $wgContLang;
 			$data = $arr[$name];
 			if( isset( $_GET[$name] ) &&
+				!is_array( $data ) &&
 				( empty( $_SERVER['HTTP_REFERER'] ) ||
 				strncmp($wgServer, $_SERVER['HTTP_REFERER'], strlen( $wgServer ) ) ) ) {
 				# For links that came from outside, check for alternate/legacy
 				# character encoding.
-				if ( isset( $wgContLang ) ) {
+				if( isset( $wgContLang ) ) {
 					$data = $wgContLang->checkTitleEncoding( $data );
 				}
 			}
@@ -128,39 +129,45 @@ class WebRequest {
 			return $default;
 		}
 	}
-	
+
 	/**
-	 * Fetch a value from the given array or return $default if it's not set.
-	 * \r is stripped from the text, and with some language modules there is
-	 * an input transliteration applied.
-	 * @param array &$arr
+	 * Fetch a scalar from the input or return $default if it's not set.
+	 * Returns a string. Arrays are discarded.
+	 *
 	 * @param string $name
-	 * @param string $default
+	 * @param string $default optional default (or NULL)
 	 * @return string
-	 * @private
 	 */
-	function getGPCText( &$arr, $name, $default ) {
-		# Text fields may be in an alternate encoding which we should check.
-		# Also, strip CRLF line endings down to LF to achieve consistency.
-		global $wgContLang;
-		if( isset( $arr[$name] ) ) {
-			return str_replace( "\r\n", "\n", $wgContLang->recodeInput( $arr[$name] ) );
+	function getVal( $name, $default = NULL ) {
+		$val = $this->getGPCVal( $_REQUEST, $name, $default );
+		if( is_array( $val ) ) {
+			$val = $default;
+		}
+		if( is_null( $val ) ) {
+			return null;
 		} else {
-			return $default;
+			return (string)$val;
 		}
 	}
 	
 	/**
-	 * Fetch a value from the input or return $default if it's not set.
-	 * Value may be of a string or array, and is not altered.
+	 * Fetch an array from the input or return $default if it's not set.
+	 * If source was scalar, will return an array with a single element.
+	 * If no source and no default, returns NULL.
+	 *
 	 * @param string $name
-	 * @param mixed $default optional default (or NULL)
-	 * @return mixed
+	 * @param array $default optional default (or NULL)
+	 * @return array
 	 */
-	function getVal( $name, $default = NULL ) {
-		return $this->getGPCVal( $_REQUEST, $name, $default );
+	function getArray( $name, $default = NULL ) {
+		$val = $this->getGPCVal( $_REQUEST, $name, $default );
+		if( is_null( $val ) ) {
+			return null;
+		} else {
+			return (array)$val;
+		}
 	}
-	
+
 	/**
 	 * Fetch an integer value from the input or return $default if not set.
 	 * Guaranteed to return an integer; non-numeric input will typically
@@ -210,7 +217,10 @@ class WebRequest {
 	 * @return string
 	 */
 	function getText( $name, $default = '' ) {
-		return $this->getGPCText( $_REQUEST, $name, $default );
+		global $wgContLang;
+		$val = $this->getVal( $name, $default );
+		return str_replace( "\r\n", "\n",
+			$wgContLang->recodeInput( $val ) );
 	}
 	
 	/**
