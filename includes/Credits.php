@@ -125,9 +125,9 @@ function getContributorCredits($article, $cnt, $showIfMax) {
     foreach ($contributors as $user_parts) {
 	if ($user_parts[0] != 0) {
 	    if ($wgAllowRealName && !empty($user_parts[2])) {
-		$real_names[] = htmlspecialchars( creditLink($user_parts[1], $user_parts[2]) );
+		$real_names[] = creditLink($user_parts[1], $user_parts[2]);
 	    } else {
-		$user_names[] = htmlspecialchars( creditLink($user_parts[1]) );
+		$user_names[] = creditLink($user_parts[1]);
 	    }
 	} else {
 	    $anon = wfMsg('anonymous');
@@ -171,7 +171,7 @@ function creditLink($user_name, $link_text = '') {
     global $wgUser, $wgContLang;
     $skin = $wgUser->getSkin();
     return $skin->makeLink($wgContLang->getNsText(NS_USER) . ':' . $user_name,
-			   (empty($link_text)) ? $user_name : $link_text);
+			   htmlspecialchars( (empty($link_text)) ? $user_name : $link_text ));
 }
 
 /**
