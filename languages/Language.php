@@ -1488,6 +1488,7 @@ amusement.",
 'accesskey-preview' => 'p',
 'accesskey-contributions' => '',
 'accesskey-emailuser' => '',
+'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for the main actions
 'tooltip-atom'	=> 'Atom feed for this page',
@@ -1532,6 +1533,7 @@ amusement.",
 'tooltip-contributions' => 'View the list of contributions of this user',
 'tooltip-emailuser' => 'Send a mail to this user',
 'tooltip-rss' => 'RSS feed for this page',
+'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page. [alt-v]',
 
 # Metadata
 "nodublincore" => "Dublin Core RDF metadata disabled for this server.",
