@@ -1405,12 +1405,6 @@ cl_sortkey" ;
 		}
 	}
 
-	/* private */ function handleBraces( $text, $args = array() ) {
-		
-
-
-
-
 	/* private */ function replaceVariables( $text, $args = array() ) {
 		global $wgLang, $wgScript, $wgArticlePath;
 
