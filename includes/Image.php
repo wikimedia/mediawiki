@@ -239,11 +239,10 @@ class Image
 	function wfImageUrl( $name, $fromSharedDirectory = false )
 	{
 		global $wgUploadPath,$wgUploadBaseUrl,$wgHashedUploadDirectory,
-		       $wgHashedSharedUploadDirectory,$wgSharedUploadBaseUrl,
-		       $wgSharedUploadPath;
+		       $wgHashedSharedUploadDirectory,$wgSharedUploadPath;
 		if($fromSharedDirectory) {
 			$hash = $wgHashedSharedUploadDirectory;
-			$base = $wgSharedUploadBaseUrl;
+			$base = '';
 			$path = $wgSharedUploadPath;
 		} else {
 			$hash = $wgHashedUploadDirectory;
@@ -277,11 +276,11 @@ class Image
 	function thumbUrl( $width, $subdir='thumb') {
 		global $wgUploadPath,$wgHashedUploadDirectory, $wgUploadBaseUrl,
 		       $wgSharedUploadPath,$wgSharedUploadDirectory,
-		       $wgHashedSharedUploadDirectory, $wgSharedUploadBaseUrl;
+		       $wgHashedSharedUploadDirectory;
 		$name = $this->thumbName( $width );
 		if($this->fromSharedDirectory) {
 			$hashdir = $wgHashedSharedUploadDirectory;
-			$base = $wgSharedUploadBaseUrl;
+			$base = '';
 			$path = $wgSharedUploadPath;
 		} else {
 			$hashdir = $wgHashedUploadDirectory;
