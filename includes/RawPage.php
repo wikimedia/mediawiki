@@ -94,23 +94,31 @@ class RawPage {
 		global $wgInputEncoding, $wgContLang;
 		$fname = 'RawPage::getrawtext';
 		
-		if( !$this->mTitle ) return '';
-		
-		# Special case for MediaWiki: messages; we can hit the message cache.
-		if( $this->mTitle->getNamespace() == NS_MEDIAWIKI) {
-			$rawtext = wfMsg( $this->mTitle->getDbkey() );
-			return $rawtext;
+		if( $this->mTitle ) {
+			# Special case for MediaWiki: messages; we can hit the message cache.
+			if( $this->mTitle->getNamespace() == NS_MEDIAWIKI) {
+				$rawtext = wfMsg( $this->mTitle->getDbkey() );
+				return $rawtext;
+			}
+			
+			# else get it from the DB
+			$rev = Revision::newFromTitle( $this->mTitle, $this->mOldId );
+			if( $rev ) {
+				$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
+				header( 'Last-modified: ' . $lastmod );
+				return $rev->getText();
+			}
 		}
 		
-		# else get it from the DB
-		$rev = Revision::newFromTitle( $this->mTitle, $this->mOldId );
-		if( $rev ) {
-			$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
-			header( 'Last-modified: ' . $lastmod );
-			return $rev->getText();
-		} else {
-			return '';
+		# Bad title or page does not exist
+		if( $this->mContentType == 'text/x-wiki' ) {
+			# Don't return a 404 response for CSS or JavaScript;
+			# 404s aren't generally cached and it would create
+			# extra hits when user CSS/JS are on and the user doesn't
+			# have the pages.
+			header( "HTTP/1.0 404 Not Found" );
 		}
+		return '';
 	}
 }
 ?>
