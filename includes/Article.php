@@ -20,6 +20,7 @@ class Article {
 	/* private */ var $mMinorEdit, $mRedirectedFrom;
 	/* private */ var $mTouched, $mFileCache, $mTitle;
 	/* private */ var $mId, $mTable;
+	/* private */ var $mForUpdate;
 
 	function Article( &$title ) {
 		$this->mTitle =& $title;
@@ -33,6 +34,7 @@ class Article {
 		$this->mTimestamp = $this->mComment = $this->mFileCache = '';
 		$this->mCountAdjustment = 0;
 		$this->mTouched = '19700101000000';
+		$this->mForUpdate = false;
 	}
 
 	# Get revision text associated with an old or archive row
@@ -143,7 +145,7 @@ class Article {
 					$index = $matches[4];
 					if ( $machineID == 0 ) {
 						# Current connection
-						$db =& wfGetDB( DB_SLAVE );
+						$db =& $this->getDB();
 					} else {
 						# Alternate connection
 						$db =& $wgLoadBalancer->getConnection( $machineID );
@@ -157,7 +159,8 @@ class Article {
 					}
 					if ( $db->isOpen() ) {
 						$index = $db->strencode( $index );
-						$res = $db->query( "SELECT blob_data FROM $dbName.$tblName WHERE blob_index='$index'", $fname );
+						$res = $db->query( "SELECT blob_data FROM $dbName.$tblName " .
+							"WHERE blob_index='$index' " . $this->getSelectOptions(), $fname );
 						$row = $db->fetchObject( $res );
 						$text = $row->text_data;
 					}
@@ -332,7 +335,7 @@ class Article {
 	function loadContent( $noredir = false ) {
 		global $wgOut, $wgMwRedir, $wgRequest;
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr =& $this->getDB();
 		# Query variables :P
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$redirect = $wgRequest->getVal( 'redirect' );
@@ -358,7 +361,8 @@ class Article {
 			$id = $this->getID();
 			if ( 0 == $id ) return;
 
-			$s = $dbr->getArray( 'cur', $this->getCurContentFields(), array( 'cur_id' => $id ), $fname );
+			$s = $dbr->selectRow( 'cur', $this->getCurContentFields(), array( 'cur_id' => $id ), $fname, 
+				$this->getSelectOptions() );
 			if ( $s === false ) {
 				return;
 			}
@@ -382,7 +386,8 @@ class Article {
 					}
 					$rid = $rt->getArticleID();
 					if ( 0 != $rid ) {
-						$redirRow = $dbr->getArray( 'cur', $this->getCurContentFields(), array( 'cur_id' => $rid ), $fname );
+						$redirRow = $dbr->selectRow( 'cur', $this->getCurContentFields(), 
+							array( 'cur_id' => $rid ), $fname, $this->getSelectOptions() );
 
 						if ( $redirRow !== false ) {
 							$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
@@ -403,7 +408,8 @@ class Article {
 			$this->mTitle->mRestrictions = explode( ',', trim( $s->cur_restrictions ) );
 			$this->mTitle->mRestrictionsLoaded = true;
 		} else { # oldid set, retrieve historical version
-			$s = $dbr->getArray( 'old', $this->getOldContentFields(), array( 'old_id' => $oldid ), $fname );
+			$s = $dbr->getArray( 'old', $this->getOldContentFields(), array( 'old_id' => $oldid ), 
+				$fname, $this->getSelectOptions() );
 			if ( $s === false ) {
 				return;
 			}
@@ -436,7 +442,7 @@ class Article {
 		$this->mContent = false;
 
 		$fname = 'Article::getContentWithout';
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr =& $this->getDB();
 
 		if ( ! $oldid ) {	# Retrieve current version
 			$id = $this->getID();
@@ -444,7 +450,8 @@ class Article {
 				return false;
 			}
 
-			$s = $dbr->getArray( 'cur', $this->getCurContentFields(), array( 'cur_id' => $id ), $fname );
+			$s = $dbr->selectRow( 'cur', $this->getCurContentFields(), array( 'cur_id' => $id ), 
+				$fname, $this->getSelectOptions() );
 			if ( $s === false ) {
 				return false;
 			}
@@ -456,7 +463,8 @@ class Article {
 				if( $rt &&  $rt->getInterwiki() == '' && $rt->getNamespace() != NS_SPECIAL ) {
 					$rid = $rt->getArticleID();
 					if ( 0 != $rid ) {
-						$redirRow = $dbr->getArray( 'cur', $this->getCurContentFields(), array( 'cur_id' => $rid ), $fname );
+						$redirRow = $dbr->selectRow( 'cur', $this->getCurContentFields(), 
+							array( 'cur_id' => $rid ), $fname, $this->getSelectOptions() );
 
 						if ( $redirRow !== false ) {
 							$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
@@ -477,7 +485,8 @@ class Article {
 			$this->mTitle->mRestrictions = explode( ",", trim( $s->cur_restrictions ) );
 			$this->mTitle->mRestrictionsLoaded = true;
 		} else { # oldid set, retrieve historical version
-			$s = $dbr->getArray( 'old', $this->getOldContentFields(), array( 'old_id' => $oldid ) );
+			$s = $dbr->selectRow( 'old', $this->getOldContentFields(), array( 'old_id' => $oldid ), 
+				$fname, $this->getSelectOptions() );
 			if ( $s === false ) {
 				return false;
 			}
@@ -492,6 +501,33 @@ class Article {
 		return $this->mContent;
 	}
 
+	# Read/write accessor to select FOR UPDATE
+	function forUpdate( $x = NULL ) {
+		return wfSetVar( $this->mForUpdate, $x );
+	}
+	
+	# Get the database which should be used for reads
+	function &getDB() {
+		if ( $this->mForUpdate ) {
+			return wfGetDB( DB_MASTER );
+		} else {
+			return wfGetDB( DB_SLAVE );
+		}
+	}
+
+	# Get options for all SELECT statements
+	# Can pass an option array, to which the class-wide options will be appended
+	function getSelectOptions( $options = '' ) {
+		if ( $this->mForUpdate ) {
+			if ( $options ) {
+				$options[] = 'FOR UPDATE';
+			} else {
+				$options = 'FOR UPDATE';
+			}
+		} 
+		return $options;
+	}
+	
 	function getID() {
 		if( $this->mTitle ) {
 			return $this->mTitle->getArticleID();
@@ -503,8 +539,9 @@ class Article {
 	function getCount() {
 		if ( -1 == $this->mCounter ) {
 			$id = $this->getID();
-			$dbr =& wfGetDB( DB_SLAVE );
-			$this->mCounter = $dbr->getField( 'cur', 'cur_counter', "cur_id={$id}" );
+			$dbr =& $this->getDB();
+			$this->mCounter = $dbr->selectField( 'cur', 'cur_counter', "cur_id={$id}", 
+				'Article::getCount', $this->getSelectOptions() );
 		}
 		return $this->mCounter;
 	}
@@ -529,10 +566,10 @@ class Article {
 
 		$fname = 'Article::loadLastEdit';
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr =& $this->getDB();
 		$s = $dbr->getArray( 'cur',
 		  array( 'cur_user','cur_user_text','cur_timestamp', 'cur_comment','cur_minor_edit' ),
-		  array( 'cur_id' => $this->getID() ), $fname );
+		  array( 'cur_id' => $this->getID() ), $fname, $this->getSelectOptions() );
 
 		if ( $s !== false ) {
 			$this->mUser = $s->cur_user;
@@ -575,7 +612,7 @@ class Article {
 
 		$title = $this->mTitle;
 		$contribs = array();
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr =& $this->getDB();
 		$oldTable = $dbr->tableName( 'old' );
 		$userTable = $dbr->tableName( 'user' );
 		$encDBkey = $dbr->strencode( $title->getDBkey() );
@@ -591,9 +628,10 @@ class Article {
 			ORDER BY timestamp DESC";
 
 		if ($limit > 0) { $sql .= ' LIMIT '.$limit; }
+		$sql .= ' '. $this->getSelectOptions();
 
 		$res = $dbr->query($sql, $fname);
-
+		
 		while ( $line = $dbr->fetchObject( $res ) ) {
 			$contribs[] = array($line->old_user, $line->old_user_text, $line->user_real_name);
 		}
@@ -612,7 +650,6 @@ class Article {
 
 		$fname = 'Article::view';
 		wfProfileIn( $fname );
-
 		# Get variables from query string
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$diff = $wgRequest->getVal( 'diff' );
@@ -620,7 +657,6 @@ class Article {
 
 		$wgOut->setArticleFlag( true );
 		$wgOut->setRobotpolicy( 'index,follow' );
-
 		# If we got diff and oldid in the query, we want to see a
 		# diff page instead of the article.
 
@@ -635,7 +671,6 @@ class Article {
 			}
 			return;
 		}
-
 		if ( empty( $oldid ) && $this->checkTouched() ) {
 			if( $wgOut->checkLastModified( $this->mTouched ) ){
 				return;
@@ -646,7 +681,6 @@ class Article {
 				return;
 			}
 		}
-
 		# Should the parser cache be used?
 		if ( $wgEnableParserCache && intval($wgUser->getOption( 'stubthreshold' )) == 0 && empty( $oldid ) ) {
 			$pcache = true;
@@ -660,7 +694,6 @@ class Article {
 				$outputDone = true;
 			}
 		}
-
 		if ( !$outputDone ) {
 			$text = $this->getContent( false ); # May change mTitle by following a redirect
 
@@ -714,7 +747,6 @@ class Article {
 			}
 		}
 		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-
 		# If we have been passed an &rcid= parameter, we want to give the user a
 		# chance to mark this new article as patrolled.
 		if ( $wgUseRCPatrol && !is_null ( $rcid ) && $rcid != 0 && $wgUser->getID() != 0 &&
@@ -728,9 +760,10 @@ class Article {
 
 		# Put link titles into the link cache
 		$wgOut->replaceLinkHolders();
+
 		# Add link titles as META keywords
 		$wgOut->addMetaTags() ;
-
+			
 		$this->viewUpdates();
 		wfProfileOut( $fname );
 	}
@@ -1294,7 +1327,7 @@ class Article {
 		# determine whether this page has earlier revisions
 		# and insert a warning if it does
 		# we select the text because it might be useful below
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr =& $this->getDB();
 		$ns = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getDBkey();
 		$old = $dbr->getArray( 'old',
@@ -1302,7 +1335,7 @@ class Article {
 			array(
 				'old_namespace' => $ns,
 				'old_title' => $title,
-			), $fname, array( 'ORDER BY' => 'inverse_timestamp' )
+			), $fname, $this->getSelectOptions( array( 'ORDER BY' => 'inverse_timestamp' ) )
 		);
 
 		if( $old !== false && !$confirm ) {
@@ -1317,7 +1350,7 @@ class Article {
 			array(
 				'cur_namespace' => $ns,
 				'cur_title' => $title,
-			), $fname
+			), $fname, $this->getSelectOptions()
 		);
 
 		if( $s !== false ) {
@@ -1782,11 +1815,10 @@ class Article {
 	# Loads cur_touched and returns a value indicating if it should be used
 	function checkTouched() {
 		$fname = 'Article::checkTouched';
-
 		$id = $this->getID();
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr =& $this->getDB();
 		$s = $dbr->getArray( 'cur', array( 'cur_touched', 'cur_is_redirect' ),
-			array( 'cur_id' => $id ), $fname );
+			array( 'cur_id' => $id ), $fname, $this->getSelectOptions() );
 		if( $s !== false ) {
 			$this->mTouched = wfTimestamp(TS_MW,$s->cur_touched);
 			return !$s->cur_is_redirect;
@@ -1950,7 +1982,7 @@ class Article {
 			return;
 		}
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr =& $this->getDB();
 
 		$basenamespace = $wgTitle->getNamespace() & (~1);
 		$cur_clause = array( 'cur_title' => $wgTitle->getDBkey(), 'cur_namespace' => $basenamespace );
@@ -1961,13 +1993,14 @@ class Article {
 		$wgOut->setSubtitle( wfMsg( "infosubtitle" ));
 
 		# first, see if the page exists at all.
-		$exists = $dbr->selectField( 'cur', 'COUNT(*)', $cur_clause, $fname );
+		$exists = $dbr->selectField( 'cur', 'COUNT(*)', $cur_clause, $fname, $this->getSelectOptions() );
 		if ($exists < 1) {
 			$wgOut->addHTML( wfMsg("noarticletext") );
 		} else {
-			$numwatchers = $dbr->selectField( 'watchlist', 'COUNT(*)', $wl_clause, $fname );
+			$numwatchers = $dbr->selectField( 'watchlist', 'COUNT(*)', $wl_clause, $fname, 
+				$this->getSelectOptions() );
 			$wgOut->addHTML( "<ul><li>" . wfMsg("numwatchers", $numwatchers) . "</li>" );
-			$old = $dbr->selectField( 'old', 'COUNT(*)', $old_clause, $fname );
+			$old = $dbr->selectField( 'old', 'COUNT(*)', $old_clause, $fname, $this->getSelectOptions() );
 			$wgOut->addHTML( "<li>" . wfMsg("numedits", $old + 1) . "</li>");
 
 			# to find number of distinct authors, we need to do some
@@ -1976,31 +2009,35 @@ class Article {
 			# - then, find the number of *other* authors in 'old'
 
 			# find 'cur' author
-			$cur_author = $dbr->selectField( 'cur', 'cur_user_text', $cur_clause, $fname );
+			$cur_author = $dbr->selectField( 'cur', 'cur_user_text', $cur_clause, $fname, 
+				$this->getSelectOptions() );
 
 			# find number of 'old' authors excluding 'cur' author
 			$authors = $dbr->selectField( 'old', 'COUNT(DISTINCT old_user_text)',
-				$old_clause + array( 'old_user_text<>' . $dbr->addQuotes( $cur_author ) ), $fname ) + 1;
+				$old_clause + array( 'old_user_text<>' . $dbr->addQuotes( $cur_author ) ), $fname,
+				$this->getSelectOptions() ) + 1;
 
 			# now for the Talk page ...
 			$cur_clause = array( 'cur_title' => $wgTitle->getDBkey(), 'cur_namespace' => $basenamespace+1 );
 			$old_clause = array( 'old_title' => $wgTitle->getDBkey(), 'old_namespace' => $basenamespace+1 );
 
 			# does it exist?
-			$exists = $dbr->selectField( 'cur', 'COUNT(*)', $cur_clause, $fname );
+			$exists = $dbr->selectField( 'cur', 'COUNT(*)', $cur_clause, $fname, $this->getSelectOptions() );
 
 			# number of edits
 			if ($exists > 0) {
-				$old = $dbr->selectField( 'old', 'COUNT(*)', $old_clause, $fname );
+				$old = $dbr->selectField( 'old', 'COUNT(*)', $old_clause, $fname, $this->getSelectOptions() );
 				$wgOut->addHTML( "<li>" . wfMsg("numtalkedits", $old + 1) . "</li>");
 			}
 			$wgOut->addHTML( "<li>" . wfMsg("numauthors", $authors) . "</li>" );
 
 			# number of authors
 			if ($exists > 0) {
-				$cur_author = $dbr->selectField( 'cur', 'cur_user_text', $cur_clause, $fname );
+				$cur_author = $dbr->selectField( 'cur', 'cur_user_text', $cur_clause, $fname,
+					$this->getSelectOptions() );
 				$authors = $dbr->selectField( 'cur', 'COUNT(DISTINCT old_user_text)',
-					$old_clause + array( 'old_user_text<>' . $dbr->addQuotes( $cur_author ) ), $fname );
+					$old_clause + array( 'old_user_text<>' . $dbr->addQuotes( $cur_author ) ), 
+					$fname, $this->getSelectOptions() );
 
 				$wgOut->addHTML( "<li>" . wfMsg("numtalkauthors", $authors) . "</li></ul>" );
 			}

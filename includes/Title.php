@@ -8,6 +8,9 @@ $wgTitleInterwikiCache = array();
 # * Represents a title, which may contain an interwiki designation or namespace
 # * Can fetch various kinds of data from the database, albeit inefficiently. 
 #
+
+define ( 'GAID_FOR_UPDATE', 1 );
+
 class Title {
 	# All member variables should be considered private
 	# Please use the accessor functions
@@ -250,7 +253,7 @@ class Title {
 		}
 		$dbr =& wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'interwiki', array( 'iw_url', 'iw_local' ), array( 'iw_prefix' => $key ), $fname );
-                if(!$res) return "";
+		if(!$res) return "";
 		
 		$s = $dbr->fetchObject( $res );
 		if(!$s) {
@@ -580,12 +583,19 @@ class Title {
 	}
 
 	# Get the article ID from the link cache
-	# Used very heavily, e.g. in Parser::replaceInternalLinks()
-	function getArticleID() {
+	# $flags is a bit field, may be GAID_FOR_UPDATE to select for update
+	function getArticleID( $flags = 0 ) {
 		global $wgLinkCache;
-
-		if ( -1 != $this->mArticleID ) { return $this->mArticleID; }
-		$this->mArticleID = $wgLinkCache->addLinkObj( $this );
+		
+		if ( $flags & GAID_FOR_UPDATE ) {
+			$oldUpdate = $wgLinkCache->forUpdate( true );
+			$this->mArticleID = $wgLinkCache->addLinkObj( $this );
+			$wgLinkCache->forUpdate( $oldUpdate );
+		} else {
+			if ( -1 == $this->mArticleID ) {
+				$this->mArticleID = $wgLinkCache->addLinkObj( $this );
+			}
+		}
 		return $this->mArticleID;
 	}
 

@@ -153,7 +153,7 @@ class EditPage {
 			}
 
 			# If article is new, insert it.
-			$aid = $this->mTitle->getArticleID();
+			$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
 			if ( 0 == $aid ) {
 				# Don't save a new article if it's blank.
 				if ( ( "" == $this->textbox1 ) ||
@@ -168,6 +168,7 @@ class EditPage {
 			# Article exists. Check for edit conflict.
 
 			$this->mArticle->clear(); # Force reload of dates, etc.
+			$this->mArticle->forUpdate( true ); # Lock the article
 
 			if( ( $this->section != "new" ) &&
 				($this->mArticle->getTimestamp() != $this->edittime ) ) {
@@ -471,7 +472,6 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 			$wgOut->addHTML($previewhead);
 			$wgOut->addHTML($previewHTML);
 		}
-
 	}
 
 	function blockedIPpage()
@@ -484,10 +484,10 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 
 		$id = $wgUser->blockedBy();
 		$reason = $wgUser->blockedFor();
-                $ip = $wgIP;
+		$ip = $wgIP;
 		
 		if ( is_numeric( $id ) ) {
-	                $name = User::whoIs( $id );
+			$name = User::whoIs( $id );
 		} else {
 			$name = $id;
 		}
