@@ -37,6 +37,8 @@ $wgTitle = Title::newFromText( "RC dumper" );
 $wgCommandLineMode = true;
 set_time_limit(0);
 
+sleep(30);
+
 $res = wfQuery( "SELECT rc_timestamp FROM recentchanges ORDER BY rc_timestamp DESC LIMIT 1", DB_READ ); 
 $row = wfFetchObject( $res );
 $oldTimestamp = $row->rc_timestamp;
@@ -90,7 +92,7 @@ while (1) {
 		}
 		print( $fullString );
 		$oldTimestamp = $row->rc_timestamp;
-		sleep(1);
+		sleep(2);
 	}
 	sleep(5);
 }
