@@ -1015,7 +1015,7 @@ class Parser
 			} else {
 				# Expand the URL for printable version
 				if ( ! $sk->suppressUrlExpansion() ) {
-					$paren = "<span class='urlexpansion'> (<i>" . htmlspecialchars ( $encUrl ) . "</i>)</span>";
+					$paren = "<span class='urlexpansion'>&nbsp;(<i>" . htmlspecialchars ( $encUrl ) . "</i>)</span>";
 				} else {
 					$paren = '';
 				}
