@@ -347,7 +347,7 @@ Funktion: $1<br />
 Query: $2
 ",
 "viewsource" => "Quelltext betrachten",
-"protectedtext" => "Diese Seite ist für das Bearbeiten gesperrt, dafür kann es diverse Gründe geben, siehe [[{[ns:4}}:Geschützte Seiten]].
+"protectedtext" => "Diese Seite ist für das Bearbeiten gesperrt, dafür kann es diverse Gründe geben, siehe [[{{ns:4}}:Geschützte Seiten]].
 
 Sie können den Quelltext dieser Seite betrachten und kopieren:",
 'seriousxhtmlerrors' => 'Tidy entdeckte schwere Fehler im XHTML-Markup.',
