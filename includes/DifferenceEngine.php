@@ -298,7 +298,7 @@ class DifferenceEngine {
 		}
 		if ( 0 == $this->mOldid ) {
 			$s = $dbr->selectRow( 'old',
-				array( 'old_namespace','old_title','old_timestamp','old_text', 'old_flags','old_user_text','old_comment' ),
+				array( 'old_id', 'old_namespace','old_title','old_timestamp','old_text', 'old_flags','old_user_text','old_comment' ),
 				array( /* WHERE */
 					'old_namespace' => $this->mNewPage->getNamespace(),
 					'old_title' => $this->mNewPage->getDBkey()
@@ -308,6 +308,7 @@ class DifferenceEngine {
 				wfDebug( 'Unable to load ' . $this->mNewPage->getPrefixedDBkey() . " from old\n" );
 				return false;
 			}
+			$this->mOldid = IntVal( $s->old_id );
 		} else {
 			$s = $dbr->selectRow( 'old',
 				array( 'old_namespace','old_title','old_timestamp','old_text','old_flags','old_user_text','old_comment'),
