@@ -12,6 +12,7 @@ define( 'RC_NEW', 1);
 define( 'RC_MOVE', 2);
 define( 'RC_LOG', 3);
 define( 'RC_MOVE_OVER_REDIRECT', 4);
+define( "RC_EDIT_COMMENT", 5);
 
 
 /**
@@ -328,6 +329,46 @@ class RecentChange
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
 			'lastTimestamp' => 0
+		);
+		$rc->save();
+	}
+	
+	# Makes an entry in the database corresponding to editing a comment.
+	# Note: This code saves the old comment in 'rc_moved_to_title', which is only used
+	#       for logging move operations.
+	/*static*/ function notifyEditComment( $timestamp, &$title, $minor, &$user, $comment, $oldComment,
+		$revId, $lastTimestamp, $ip = '' ) 
+	{
+		if ( !$ip ) {
+			global $wgIP;
+			$ip = empty( $wgIP ) ? '' : $wgIP;
+		}
+		
+		$rc = new RecentChange;
+		$rc->mAttribs = array(
+			'rc_timestamp'	=> $timestamp,
+			'rc_cur_time'	=> $timestamp,
+			'rc_namespace'	=> $title->getNamespace(),
+			'rc_title'	=> $title->getDBkey(),
+			'rc_type'	=> RC_EDIT_COMMENT,
+			'rc_minor'	=> $minor ? 1 : 0,
+			'rc_cur_id'	=> $title->getArticleID(),
+			'rc_user'	=> $user->getID(),
+			'rc_user_text'	=> $user->getName(),
+			'rc_comment'	=> $comment,
+			'rc_this_oldid'	=> $revId,
+			'rc_last_oldid'	=> 0,
+			'rc_bot'	=> 0,
+			'rc_moved_to_ns'	=> 0,
+			'rc_moved_to_title'	=> $oldComment,
+			'rc_ip'	=> $ip,
+			'rc_patrolled' => 1,
+			'rc_new'	=> 0 # obsolete
+		);
+		
+		$rc->mExtra =  array(
+			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
+			'lastTimestamp' => $lastTimestamp
 		);
 		$rc->save();
 	}

@@ -948,6 +948,14 @@ function wfTimestampNow() {
 }
 
 /**
+ * Convenience function; adds seconds to a MediaWiki timestamp.
+ * @return string
+ */
+function wfTimestampPlus ( $ts, $moreseconds ) {
+	return gmdate( 'YmdHis', wfTimestamp( TS_UNIX, $ts ) + $moreseconds );
+}
+
+/**
  * Sorting hack for MySQL 3, which doesn't use index sorts for DESC
  */
 function wfInvertTimestamp( $ts ) {

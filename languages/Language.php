@@ -1239,6 +1239,25 @@ See [[Special:Log/delete]] for a record of recent deletions and restorations.",
 'uctop'         => ' (top)' ,
 'newbies'       => 'newbies',
 
+# Edit comments
+#
+'eceditsummary'	=> 'Edit Summary',
+'ecsubtitle'	=> 'Editing summary for revision of $1',
+'ecsubtitlerev0' => 'Editing summary for current revision',
+'ecwarnings'	=> 'Warnings: There is no revert or history for summaries. Changing summaries are permanent.
+Changes to summaries will not effect previous listings in Recent changes.',
+'eccommentlabel' => 'Summary',
+'ecsubmitbutton' => 'Change',
+'eccancelbutton' => 'Cancel',
+'ecsaveok'	=> 'Save completed successfully.',
+'ecsavewrong'	=> 'Save was not successful. Either the article was just modified, this change was unauthorized, or you made no changes.',
+'eccanceled'	=> 'Cancel requested. Summary not changed.',
+'eccantdo'	=> 'You are not allowed to edit the summary of this article.',
+'ecctimeexpired' => 'Sorry, the time period in which you could have edited this summary as expired.',
+'ectooltip'	=> 'Edit summary',
+'eccommentchanged' => 'Summary of $1 changed',
+'ecrccommentformat' => 'was $1 now $2',
+
 # What links here
 #
 'whatlinkshere'	=> 'What links here',

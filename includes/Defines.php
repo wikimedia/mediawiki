@@ -80,4 +80,10 @@ $wgAvailableRights = array('read', 'edit', 'move', 'delete', 'undelete',
 'protect', 'block', 'userrights', 'createaccount', 'upload', 'asksql',
 'rollback', 'patrol', 'editinterface', 'siteadmin', 'bot');
 
+/**#@+
+ * Edit Comments really needs its own separate rights.
+ * Two separate rights are required; edit all comments, edit your own comment.
+ */
+define('EDIT_COMMENT_ALL', 'protect');
+
 ?>

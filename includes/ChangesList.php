@@ -92,9 +92,20 @@ class ChangesList {
 		$r .= $rcObj->usertalklink ;
 
 		# Comment
-		 if ( $rc_comment != '' && $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
-			$rc_comment=$this->skin->formatComment($rc_comment, $rcObj->getTitle());
-			$r .= $wgContLang->emphasize( ' ('.$rc_comment.')' );
+		if ( ($rc_comment != '' || $rc_type == RC_EDIT_COMMENT) && 
+			 $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
+		
+			$rc_comment = $this->skin->formatComment($rc_comment, $rcObj->getTitle()); 
+		
+			# If a summary comment change, we want to form the message "was ($rc_moved_to_title)
+			# now ($rc_comment)".
+			if ( $rc_type == RC_EDIT_COMMENT ) {
+				$rc_comment = $wgContLang->emphasize( '(' . $rc_comment . ')' );
+				$rc_moved_to_title = $this->skin->formatComment( $rc_moved_to_title, $rcObj->getTitle() );
+				$rc_moved_to_title = $wgContLang->emphasize( '(' . $rc_moved_to_title . ')' );
+				$r .= ' ' . wfMsg( 'ecrccommentformat', $rc_moved_to_title, $rc_comment );
+			} else
+				$r .= $wgContLang->emphasize( ' ('.$rc_comment.')' );
 		}
 
 		$r .= "<br />\n" ;
@@ -324,6 +335,20 @@ class ChangesList {
 			$msg = ( $rc_type == RC_MOVE ) ? '1movedto2' : '1movedto2_redir';
 			$s .= wfMsg( $msg, $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
 				$this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
+		} else if ( $rc_type == RC_EDIT_COMMENT ) { 
+			# Diff
+			$s .= '(' . wfMsg( 'diff' ) . ') (';
+			# History link
+			$s .= $this->skin->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'hist' ), $curIdEq.'&action=history' );
+			$s .= ') . . ';
+
+			# M and ! (minor and unpatrolled)
+			if ( $rc_minor ) { $s .= '<span class="minor">'.$message["minoreditletter"].'</span> '; }
+			if ( !$rc_patrolled ) { $s .= '<span class="unpatrolled">!</span> '; }
+			
+			# Put a link to the revision the comment is for, in a message.
+			$s .= wfMsg( "eccommentchanged" , 
+						$this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no&oldid=' . $rc_this_oldid ) );
 		} elseif( $rc_namespace == NS_SPECIAL && preg_match( '!^Log/(.*)$!', $rc_title, $matches ) ) {
 			# Log updates, etc
 			$logtype = $matches[1];
@@ -408,9 +433,20 @@ class ChangesList {
 		if($userTalkLink) $s.=' ('.$userTalkLink.')';
 
 		# Add comment
-		if ( '' != $rc_comment && '*' != $rc_comment && $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
-			$rc_comment = $this->skin->formatComment($rc_comment,$rc->getTitle());
-			$s .= $wgContLang->emphasize(' (' . $rc_comment . ')');
+		if ( (('' != $rc_comment && '*' != $rc_comment) || $rc_type == RC_EDIT_COMMENT) && 
+		     $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
+			
+			$rc_comment = $this->skin->formatComment( $rc_comment, $rc->getTitle() );
+			
+			# If a summary comment change, we want to form the message "was ($rc_moved_to_title)
+			# now ($rc_comment)".
+			if ( $rc_type == RC_EDIT_COMMENT ) {
+				$rc_comment = $wgContLang->emphasize( '(' . $rc_comment . ')' );
+				$rc_moved_to_title = $this->skin->formatComment( $rc_moved_to_title, $rc->getTitle() );
+				$rc_moved_to_title = $wgContLang->emphasize( '(' . $rc_moved_to_title . ')' );
+				$s .= ' ' . wfMsg( 'ecrccommentformat', $rc_moved_to_title, $rc_comment );
+			} else
+				$s .= $wgContLang->emphasize(' (' . $rc_comment . ')');
 		}
 		$s .= "</li>\n";
 
@@ -461,6 +497,10 @@ class ChangesList {
 			$msg = ( $rc_type == RC_MOVE ) ? "1movedto2" : "1movedto2_redir";
 			$clink = wfMsg( $msg, $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
 			  $this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
+		} else if ( $rc_type == RC_EDIT_COMMENT ) { 
+			# Put a link to the revision the comment is for, in a message.
+			$clink = wfMsg( "eccommentchanged" , 
+							$this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no&oldid=' . $rc_this_oldid ) );
 		} elseif( $rc_namespace == NS_SPECIAL && preg_match( '!^Log/(.*)$!', $rc_title, $matches ) ) {
 			# Log updates, etc
 			$logtype = $matches[1];
@@ -485,7 +525,9 @@ class ChangesList {
 		} else {
 			$rcIdQuery = '';
 		}
-		if ( ( $rc_type == RC_NEW && $rc_this_oldid == 0 ) || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
+		if ( ( $rc_type == RC_NEW && $rc_this_oldid == 0 ) || $rc_type == RC_LOG || 
+			   $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT || 
+			   $rc_type == RC_EDIT_COMMENT) {
 			$curLink = $message['cur'];
 			$diffLink = $message['diff'];
 		} else {
@@ -543,7 +585,7 @@ class ChangesList {
 		# Page moves go on their own line
 		$title = $rc->getTitle();
 		$secureName = $title->getPrefixedDBkey();
-		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
+		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT || $rc_type == RC_EDIT_COMMENT ) {
 			# Use an @ character to prevent collision with page names
 			$this->rc_cache['@@' . ($this->rcMoveIndex++)] = array($rc);
 		} else {
