@@ -28,6 +28,9 @@ class SkinNostalgia extends Skin {
 
 		$ol = $this->otherLanguages();
 		if($ol) $s .= "<br />" . $ol;
+		
+		$cat = $this->getCategoryLinks();
+		if($cat) $s .= "<br />" . $cat;
 
 		$s .= "<br clear='all' /><hr />\n</div>\n";
 		$s .= "\n<div id='article'>";
