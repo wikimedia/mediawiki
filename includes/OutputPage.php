@@ -260,7 +260,7 @@ class OutputPage {
 
 	function setEncodings()
 	{
-		global $HTTP_SERVER_VARS, $wgInputEncoding, $wgOutputEncoding;
+		global $wgInputEncoding, $wgOutputEncoding;
 		global $wgUser, $wgLang;
 
 		$wgInputEncoding = strtolower( $wgInputEncoding );
@@ -308,7 +308,7 @@ class OutputPage {
 
 	function reportTime()
 	{
-		global $wgRequestTime, $wgDebugLogFile, $HTTP_SERVER_VARS;
+		global $wgRequestTime, $wgDebugLogFile;
 		global $wgProfiling, $wgProfileStack, $wgProfileLimit, $wgUser;
 
 		list( $usec, $sec ) = explode( " ", microtime() );
@@ -320,19 +320,19 @@ class OutputPage {
 
 		if ( "" != $wgDebugLogFile ) {
 			$prof = wfGetProfilingOutput( $start, $elapsed );
-			if( $forward = $HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR'] )
-				$forward = " forwarded for $forward";
-			if( $client = $HTTP_SERVER_VARS['HTTP_CLIENT_IP'] )
-				$forward .= " client IP $client";
-			if( $from = $HTTP_SERVER_VARS['HTTP_FROM'] )
-				$forward .= " from $from";
+			if( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
+				$forward = " forwarded for " . $_SERVER['HTTP_X_FORWARDED_FOR'];
+			if( !empty( $_SERVER['HTTP_CLIENT_IP'] ) )
+				$forward .= " client IP " . $_SERVER['HTTP_CLIENT_IP'];
+			if( !empty( $_SERVER['HTTP_FROM'] ) )
+				$forward .= " from " . $_SERVER['HTTP_FROM'];
 			if( $forward )
-				$forward = "\t(proxied via {$HTTP_SERVER_VARS['REMOTE_ADDR']}{$forward})";
+				$forward = "\t(proxied via {$_SERVER['REMOTE_ADDR']}{$forward})";
 			if($wgUser->getId() == 0)
 				$forward .= " anon";
 			$log = sprintf( "%s\t%04.3f\t%s\n",
 			  gmdate( "YmdHis" ), $elapsed,
-			  urldecode( $HTTP_SERVER_VARS['REQUEST_URI'] . $forward ) );
+			  urldecode( $_SERVER['REQUEST_URI'] . $forward ) );
 			error_log( $log . $prof, 3, $wgDebugLogFile );
 		}
 		$com = sprintf( "<!-- Time since request: %01.2f secs. -->",

@@ -56,7 +56,7 @@ class Title {
 
 	function newFromURL( $url )
 	{
-		global $wgLang, $wgServer, $HTTP_SERVER_VARS;
+		global $wgLang, $wgServer;
 		
 		$t = new Title();
 		$s = urldecode( $url ); # This is technically wrong, as anything
