@@ -31,7 +31,7 @@ function checkTimezone( tz, msg ) {
 	}
 }
 
-// in [-][H]H format...
+// in [-]HH:MM format...
 // won't yet work with non-even tzs
 function fetchTimezone() {
 	// FIXME: work around Safari bug
@@ -39,7 +39,9 @@ function fetchTimezone() {
 	// returns negative offset from GMT in minutes
 	var tzRaw = localclock.getTimezoneOffset();
 	var tzHour = Math.floor( Math.abs(tzRaw) / 60);
-	var tzString = ((tzRaw >= 0) ? "-" : "") + ((tzHour < 10) ? "" : "0") + tzHour;
+	var tzMin = Math.abs(tzRaw) % 60;
+	var tzString = ((tzRaw >= 0) ? "-" : "") + ((tzHour < 10) ? "0" : "") + tzHour + 
+		":" + ((tzMin < 10) ? "0" : "") + tzMin;
 	return tzString;
 }
 
