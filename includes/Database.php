@@ -951,6 +951,9 @@ class Database {
 		if ( isset( $wgSharedDB ) && 'user' == $name ) {
 			$name = $wgSharedDB . '.' . $name;
 		}
+		if( $name == 'group' ) {
+			$name = '`' . $name . '`';
+		}
 		return $name;
 	}
 

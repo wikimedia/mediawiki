@@ -247,9 +247,10 @@ class DatabasePgsql extends Database {
 		# Now quote PG reserved keywords
 		switch( $name ) {
 			case 'user':
-				return '"user"';
 			case 'old':
-				return '"old"';
+			case 'group':
+				return '"' . $name . '"';
+			
 			default:
 				return $name;
 		}
