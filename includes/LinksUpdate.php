@@ -53,20 +53,15 @@ class LinksUpdate {
 		# Do the insertion
 		$sql = "";
 		if ( 0 != count( $add ) ) {
-			# The link cache was constructed without FOR UPDATE, so there may be collisions
-			# Ignoring for now, I'm not sure if that causes problems or not, but I'm fairly
-			# sure it's better than without IGNORE
-			$sql = "INSERT IGNORE INTO $links (l_from,l_to) VALUES ";
-			$first = true;
-			foreach( $add as $lt => $lid ) {
-				if ( ! $first ) { $sql .= ","; }
-				$first = false;
-
-				$sql .= "({$this->mId},{$lid})";
-			}
-		}
-		if ( "" != $sql ) { 
-			$dbw->query( $sql, $fname ); 
+			$arr=array();
+			foreach($add as $lt=>$lid) 
+				array_push($arr,array(
+					'l_from'=>$this->mId,
+					'l_to'=>$lid));
+                        # The link cache was constructed without FOR UPDATE, so there may be collisions
+                        # Ignoring for now, I'm not sure if that causes problems or not, but I'm fairly
+                        # sure it's better than without IGNORE
+			$dbw->insertArray($links,$arr,array('IGNORE'));
 		}
 
 		#------------------------------------------------------------------------------
@@ -99,17 +94,14 @@ class LinksUpdate {
 		# Do additions
 		$sql = "";
 		if ( 0 != count ( $add ) ) {
-			$sql = "INSERT IGNORE INTO $brokenlinks (bl_from,bl_to) VALUES ";
-			$first = true;
+			$arr=array();
 			foreach( $add as $blt ) {
 				$blt = $dbw->strencode( $blt );
-				if ( ! $first ) { $sql .= ","; }
-				$first = false;
-
-				$sql .= "({$this->mId},'{$blt}')";
+				array_push($arr,array(
+					'bl_from'=>$this->mId,
+					'bl_to'=>$blt));
 			}
-		}
-		if ( "" != $sql ) { 
+			$dbw->insertArray($brokenlinks,$arr,array('IGNORE'));
 			$dbw->query( $sql, $fname );
 		}
 
