@@ -35,7 +35,9 @@ class ZhClient {
 	 * @access private
 	 */
 	function connect() {
+		wfSuppressWarnings();
 		$this->mFP = fsockopen($this->mHost, $this->mPort, $errno, $errstr, 30);
+		wfRestoreWarnings();
 		if(!$this->mFP) {
 			return false;
 		}
@@ -68,6 +70,9 @@ class ZhClient {
 			$bytesread += strlen($str);
 			$data .= $str;
 		}
+		//data should be of length $len. otherwise something is wrong
+		if(strlen($data) != $len)
+			return false;
 		return $data;
 	}
 
@@ -89,6 +94,29 @@ class ZhClient {
 	}
 
 	/**
+	 * Convert the input to all possible variants 
+	 *
+	 * @param string $text input text
+	 * @return array langcode => converted_string
+	 * @access public
+	 */	
+	function convertToAllVariants($text) {
+		$len = strlen($text);
+		$q = "CONV ALL $len\n$text";
+		$result = $this->query($q);
+		if(!$result)
+			return false;
+		list($infoline, $data) = explode('|', $result);
+		$info = explode(";", $infoline);
+		$ret = array();
+		$i=0;
+		foreach($info as $code => $len) {
+			$ret[strtolower($code)] = substr($data, $i, $len);
+			$i+=$len+1;
+		}
+		return $ret;
+    }
+	/**
 	 * Perform word segmentation
 	 *
 	 * @param string $text input text
@@ -99,8 +127,9 @@ class ZhClient {
 		$len = strlen($text);
 		$q = "SEG $len\n$text";
 		$result = $this->query($q);
-		if(!$result)
-			$result = $text;
+		if(!$result) {// fallback to character based segmentation
+			$result = ZhClientFake::segment($text);
+		}
 		return $result;
 	}
 
@@ -205,6 +234,15 @@ class ZhClientFake {
 		return $t;
 	}
 
+	function convertToAllVariants($text) {
+		$ret = array();
+		$ret['zh-cn'] = $this->zh2cn($text);
+		$ret['zh-tw'] = $this->zh2tw($text);
+		$ret['zh-sg'] = $this->zh2sg($text);
+		$ret['zh-hk'] = $this->zh2hk($text);
+		return $ret;
+	}
+
 	/**
 	 * Perform "fake" word segmentation, i.e. treating each character as a word
 	 *
@@ -218,13 +256,13 @@ class ZhClientFake {
 			return preg_replace(
 				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
 				"' U8' . bin2hex( \"$1\" )",
-				mb_strtolower( $string ) );
+				mb_strtolower( $text ) );
 		} else {
 			global $wikiLowerChars;
 			return preg_replace(
 				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
 				"' U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
-				$string );
+				$text );
 		}
 	}
 
