@@ -1084,6 +1084,7 @@ class Skin {
 	function specialPagesList()
 	{
 		global $wgUser, $wgOut, $wgLang, $wgServer, $wgRedirectScript;
+		require_once('SpecialPage.php');
 		$a = array();
 		$pages = SpecialPage::getPages();
 		
