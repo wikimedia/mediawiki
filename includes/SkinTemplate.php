@@ -297,7 +297,7 @@ class SkinTemplate extends Skin {
 					$tpl->set('numberofwatchingusers', wfMsg('number_of_watching_users_pageview', $numberofwatchingusers));
 				} else {
 					$tpl->set('numberofwatchingusers', false);
-				};
+				}
 			} else {
 				$tpl->set('numberofwatchingusers', false);
 			}
@@ -319,11 +319,13 @@ class SkinTemplate extends Skin {
 			$tpl->set('viewcount', false);
 			$tpl->set('lastmod', false);
 			$tpl->set('credits', false);
+			$tpl->set('numberofwatchingusers', false);
 		} else {
 			$tpl->set('copyright', false);
 			$tpl->set('viewcount', false);
 			$tpl->set('lastmod', false);
 			$tpl->set('credits', false);
+			$tpl->set('numberofwatchingusers', false);
 		}
 		wfProfileOut( "$fname-stuff3" );
 
