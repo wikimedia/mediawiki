@@ -668,7 +668,7 @@ class Skin {
 		if ( $wgDisableCounters ) {
 			$s = "";
 		} else {
-			$count = $wgArticle->getCount();
+			$count = $wgLang->formatNum( $wgArticle->getCount() );
 			$s = wfMsg( "viewcount", $count );
 		}
 		$s .= $this->lastModified();

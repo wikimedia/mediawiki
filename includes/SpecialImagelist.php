@@ -36,7 +36,7 @@ function wfSpecialImagelist()
 	if ( 0 == $limit ) {
 		$lt = wfMsg( "all" );
 	} else {
-		$lt = "${limit}";
+		$lt = $wgLang->formatNum( "${limit}" );
 		$sql .= " LIMIT {$limit}";
 	}
 	$wgOut->addHTML( "<p>" . wfMsg( "imglegend" ) . "\n" );
@@ -65,7 +65,7 @@ function wfSpecialImagelist()
 		if ( ! $first ) { $fill .= " | "; }
 		$first = false;
 
-		$fill .= $sk->makeKnownLink( $here, "{$num}",
+		$fill .= $sk->makeKnownLink( $here, $wgLang->formatNum( $num ),
 		  "sort=bysize&limit={$num}" );
 	}
 	$text = wfMsg( "showlast", $fill, $bysize );
@@ -77,7 +77,7 @@ function wfSpecialImagelist()
 		if ( ! $first ) { $fill .= " | "; }
 		$first = false;
 
-		$fill .= $sk->makeKnownLink( $here, $num,
+		$fill .= $sk->makeKnownLink( $here, $wgLang->formatNum( $num ),
 		  "sort=bydate&limit={$num}" );
 	}
 	$text = wfMsg( "showlast", $fill, $bydate );
@@ -94,7 +94,7 @@ function wfSpecialImagelist()
 		$ilink = "<a href=\"" . wfImageUrl( $name ) .
 		  "\">{$name}</a>";
 
-		$nb = wfMsg( "nbytes", $s->img_size );
+		$nb = wfMsg( "nbytes", $wgLang->formatNum( $s->img_size ) );
 		$l = "(" .
 		  $sk->makeKnownLink( $wgLang->getNsText(
 		  Namespace::getImage() ) . ":{$name}", wfMsg( "imgdesc" ) ) .

@@ -89,7 +89,7 @@ function wfSpecialWatchlist()
 	}
 	
 	if(isset($_REQUEST['magic'])) {
-		$wgOut->addHTML( wfMsg( "watchlistcontains", $nitems ) .
+		$wgOut->addHTML( wfMsg( "watchlistcontains", $wgLang->formatNum( $nitems ) ) .
 			"<p>" . wfMsg( "watcheditlist" ) . "</p>\n" );
 		
 		$wgOut->addHTML( "<form action='" .
@@ -133,7 +133,8 @@ function wfSpecialWatchlist()
 	}
 
 	
-	$wgOut->addHTML( "<i>" . wfMsg( "watchdetails", $nitems, $npages, $y,
+	$wgOut->addHTML( "<i>" . wfMsg( "watchdetails",
+		$wgLang->formatNum( $nitems ), $wgLang->formatNum( $npages ), $y,
 		$specialTitle->getURL( "magic=yes", true ) ) . "</i><br>\n" );
 	 
 
@@ -151,9 +152,9 @@ function wfSpecialWatchlist()
 	$res = wfQuery( $sql, DB_READ, $fname );
 
 	if($days >= 1)
-		$note = wfMsg( "rcnote", $limit, $days );
+		$note = wfMsg( "rcnote", $wgLang->formatNum( $limit ), $wgLang->formatNum( $days ) );
 	elseif($days > 0)
-		$note = wfMsg( "wlnote", $limit, round($days*24) );
+		$note = wfMsg( "wlnote", $wgLang->formatNum( $limit ), $wgLang->formatNum( round($days*24) ) );
 	else
 		$note = "";
 	$wgOut->addHTML( "\n<hr>\n{$note}\n<br>" );
@@ -189,7 +190,8 @@ function wlHoursLink( $h, $page ) {
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink(
 	  $wgLang->specialPage( $page ),
-	  $h, "days=" . ($h / 24.0) );
+	  $wgLang->formatNum( $h ),
+	  "days=" . ($h / 24.0) );
 	return $s;
 }
 
@@ -199,7 +201,7 @@ function wlDaysLink( $d, $page ) {
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink(
 	  $wgLang->specialPage( $page ),
-	  ($d ? $d : wfMsg( "all" ) ), "days=$d" );
+	  ($d ? $wgLang->formatNum( $d ) : wfMsg( "all" ) ), "days=$d" );
 	return $s;
 }
 

@@ -20,13 +20,12 @@ class NewPagesPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-
 		global $wgLang;
 
 		$u = $result->cur_user;
 		$ut = $result->cur_user_text;
 
-		$length = wfmsg( "nbytes", $result->cur_length );
+		$length = wfmsg( "nbytes", $wgLang->formatNum( $result->cur_length ) );
 		$c = wfEscapeHTML( $result->cur_comment );
 
 		if ( 0 == $u ) { # not by a logged-in user

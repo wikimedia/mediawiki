@@ -3,18 +3,18 @@
 include_once("LanguageUtf8.php");
 
 /* private */ $wgNamespaceNamesAr = array(
-	"-2" => "ملف",
-	"-1" => "خاص",
-	"0" => "",
-	"1" => "نقاش",
-	"2" => "مستخدم",
-	"3" => "نقاش_المستخدم",
-	"4" => "ويكيبيديا",
-	"5" => "ويكيبيديا_نقاش",
-	"6" => "صورة",
-	"7" => "نقاش_الصورة",
-	"8" => "MediaWiki",
-	"9" => "MediaWiki_talk",
+	-2 => "ملف",
+	-1 => "خاص",
+	0 => "",
+	1 => "نقاش",
+	2 => "مستخدم",
+	3 => "نقاش_المستخدم",
+	4 => "ويكيبيديا",
+	5 => "ويكيبيديا_نقاش",
+	6 => "صورة",
+	7 => "نقاش_الصورة",
+	8 => "MediaWiki",
+	9 => "MediaWiki_talk",
 );
 
 /* private */ $wgWeekdayNamesAr = array(
@@ -29,6 +29,22 @@ include_once("LanguageUtf8.php");
 );
 
 class LanguageAr extends LanguageUtf8 {
+	var $digitTransTable = array(
+		"0" => "٠",
+		"1" => "١",
+		"2" => "٢",
+		"3" => "٣",
+		"4" => "٤",
+		"5" => "٥",
+		"6" => "٦",
+		"7" => "٧",
+		"8" => "٨",
+		"9" => "٩",
+		"%" => "٪",
+		"." => "٫",
+		"," => "٬"
+	);
+	
 	# TODO: TRANSLATION!
 
 	# Inherit everything except...
@@ -101,7 +117,10 @@ class LanguageAr extends LanguageUtf8 {
 		
 		return $s;
 	}
-
+	
+	function formatNum( $number ) {
+		return strtr( $number, $this->digitTransTable );
+	}
 }
 
 ?>

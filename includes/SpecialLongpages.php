@@ -19,7 +19,8 @@ class LongPagesPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		$nb = wfMsg( "nbytes", $result->len );
+		global $wgLang;
+		$nb = wfMsg( "nbytes", $wgLang->formatNum( $result->len ) );
 		$link = $skin->makeKnownLink( $result->cur_title, "" );
 		return "{$link} ({$nb})";
 	}
