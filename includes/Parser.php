@@ -95,111 +95,90 @@ class Parser
 	{
 		return dechex(mt_rand(0, 0x7fffffff)) . dechex(mt_rand(0, 0x7fffffff));
 	}
-	
+
+	# Replaces all occurences of <$tag>content</$tag> in the text
+	# with a random marker and returns the new text. the output parameter
+	# $content will be an associative array filled with data on the form
+	# $unique_marker => content.
+
+	/* static */ function extractTags($tag, $text, &$content, $uniq_prefix = ""){
+		$result = array();
+		$rnd = $uniq_prefix . Parser::getRandomString();
+		$content = array( );
+		$n = 1;
+		$stripped = "";
+
+		while ( "" != $text ) {
+			$p = preg_split( "/<\\s*$tag\\s*>/i", $text, 2 );
+			$stripped .= $p[0];
+			if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) { 
+				$text = ""; 
+			} else {
+				$q = preg_split( "/<\\/\\s*$tag\\s*>/i", $p[1], 2 );
+				$marker = $rnd . sprintf("%08X", $n++);
+				$content[$marker] = $q[0];
+				$stripped .= $marker;
+				$text = $q[1];
+			}
+		}
+		return $stripped;
+	}	
+
 	# Strips <nowiki>, <pre> and <math>
 	# Returns the text, and fills an array with data needed in unstrip()
 	#
 	function strip( $text, &$state )
 	{
-		$state = array(
-			'nwlist' => array(),
-			'nwsecs' => 0,
-			'nwunq' => Parser::getRandomString(),
-			'mathlist' => array(),
-			'mathsecs' => 0,
-			'mathunq' => Parser::getRandomString(),
-			'prelist' => array(),
-			'presecs' => 0,
-			'preunq' => Parser::getRandomString()
-		);
 		$render = ($this->mOutputType == OT_HTML);
-		$stripped = "";
-		$stripped2 = "";
-		$stripped3 = "";
-		
+		$nowiki_content = array(); 
+		$math_content = array();
+		$pre_content = array();
+
 		# Replace any instances of the placeholders
-		$text = str_replace( $state['nwunq'], wfHtmlEscapeFirst( $state['nwunq'] ), $text );
-		$text = str_replace( $state['mathunq'], wfHtmlEscapeFirst( $state['mathunq'] ), $text );
-		$text = str_replace( $state['preunq'], wfHtmlEscapeFirst( $state['preunq'] ), $text );
+		$uniq_prefix = "NaodW29";
+		$text = str_replace( $uniq_prefix, wfHtmlEscapeFirst( $uniq_prefix ), $text );
+
+		$text = Parser::extractTags("nowiki", $text, $nowiki_content, $uniq_prefix);
+		foreach( $nowiki_content as $marker => $content ){
+			if( $render ){
+				$nowiki_content[$marker] = wfEscapeHTMLTagsOnly( $content );
+			} else {
+				$nowiki_content[$marker] = "<nowiki>$content</nowiki>";
+			}
+		}
+
+
+		if( true or $this->mOptions->getUseTeX() ){
+			$text = Parser::extractTags("math", $text, $math_content, $uniq_prefix);
+			foreach( $math_content as $marker => $content ){
+				if( $render ){
+					$math_content[$marker] = renderMath( $content );
+				} else {
+					$math_content[$marker] = "<math>$content</math>";
+				}
+			}
+		}
+
+		$text = Parser::extractTags("pre", $text, $pre_content, $uniq_prefix);
+		foreach( $pre_content as $marker => $content ){
+			if( $render ){
+				$pre_content[$marker] = "<pre>" . wfEscapeHTMLTagsOnly( $content ) . "</pre>";
+			} else {
+				$pre_content[$marker] = "<pre>$content</pre>";
+			}
+		}
+
+		$state = array( $nowiki_content, $math_content, $pre_content );
 		
-		while ( "" != $text ) {
-			$p = preg_split( "/<\\s*nowiki\\s*>/i", $text, 2 );
-			$stripped .= $p[0];
-			if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) { 
-				$text = ""; 
-			} else {
-				$q = preg_split( "/<\\/\\s*nowiki\\s*>/i", $p[1], 2 );
-				++$state['nwsecs'];
-
-				if ( $render ) {
-					$state['nwlist'][$state['nwsecs']] = wfEscapeHTMLTagsOnly($q[0]);
-				} else {
-					$state['nwlist'][$state['nwsecs']] = "<nowiki>{$q[0]}</nowiki>";
-				}
-				
-				$stripped .= $state['nwunq'] . sprintf("%08X", $state['nwsecs']);
-				$text = $q[1];
-			}
-		}
-
-		if( $this->mOptions->getUseTeX() ) {
-			while ( "" != $stripped ) {
-				$p = preg_split( "/<\\s*math\\s*>/i", $stripped, 2 );
-				$stripped2 .= $p[0];
-				if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) { 
-					$stripped = ""; 
-				} else {
-					$q = preg_split( "/<\\/\\s*math\\s*>/i", $p[1], 2 );
-					++$state['mathsecs'];
-
-					if ( $render ) {
-						$state['mathlist'][$state['mathsecs']] = renderMath($q[0]);
-					} else {
-						$state['mathlist'][$state['mathsecs']] = "<math>{$q[0]}</math>";
-					}
-					
-					$stripped2 .= $state['mathunq'] . sprintf("%08X", $state['mathsecs']);
-					$stripped = $q[1];
-				}
-			}
-		} else {
-			$stripped2 = $stripped;
-		}
-
-		while ( "" != $stripped2 ) {
-			$p = preg_split( "/<\\s*pre\\s*>/i", $stripped2, 2 );
-			$stripped3 .= $p[0];
-			if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) { 
-				$stripped2 = ""; 
-			} else {
-				$q = preg_split( "/<\\/\\s*pre\\s*>/i", $p[1], 2 );
-				++$state['presecs'];
-
-				if ( $render ) {
-					$state['prelist'][$state['presecs']] = "<pre>". wfEscapeHTMLTagsOnly($q[0]). "</pre>\n";
-				} else {
-					$state['prelist'][$state['presecs']] = "<pre>{$q[0]}</pre>";
-				}
-				
-				$stripped3 .= $state['preunq'] . sprintf("%08X", $state['presecs']);
-				$stripped2 = $q[1];
-			}
-		}
-		return $stripped3;
+		return $text;
 	}
 
 	function unstrip( $text, &$state )
 	{
-		for ( $i = 1; $i <= $state['presecs']; ++$i ) {
-			$text = str_replace( $state['preunq'] . sprintf("%08X", $i), $state['prelist'][$i], $text );
-		}
-
-		for ( $i = 1; $i <= $state['mathsecs']; ++$i ) {
-			$text = str_replace( $state['mathunq'] . sprintf("%08X", $i), $state['mathlist'][$i], $text );		
-		}
-
-		for ( $i = 1; $i <= $state['nwsecs']; ++$i ) {
-			$text = str_replace( $state['nwunq'] . sprintf("%08X", $i), $state['nwlist'][$i], $text );
+		foreach( $state as $content_dict ){
+			foreach( $content_dict as $marker => $content ){
+				$text = str_replace( $marker, $content, $text );
+			}
 		}
 		return $text;
 	}
