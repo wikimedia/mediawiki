@@ -718,4 +718,25 @@ function &wfSetRef( &$dest, $source )
 	return $temp;
 }
 
+# This function takes two arrays as input, and returns a CGI-style string, e.g.
+# "days=7&limit=100". Options in the first array override options in the second.
+# Options set to "" will not be output.
+function wfArrayToCGI( $array1, $array2 = NULL ) 
+{
+	if ( !is_null( $array2 ) ) {
+		$array1 = $array1 + $array2;
+	}
+
+	$cgi = "";
+	foreach ( $array1 as $key => $value ) {
+		if ( "" !== $value ) {
+			if ( "" != $cgi ) {
+				$cgi .= "&";
+			}
+			$cgi .= "{$key}={$value}";
+		}
+	}
+	return $cgi;
+}
+
 ?>

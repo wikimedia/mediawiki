@@ -51,29 +51,17 @@ function wfSpecialRecentchanges( $par )
 	}
 
 	$sk = $wgUser->getSkin();
-
+	$showhide = array( wfMsg( "show" ), wfMsg( "hide" ));
+	
 	if ( ! isset( $hideminor ) ) {
 		$hideminor = $wgUser->getOption( "hideminor" );
 	}
 	$hideminor = ($hideminor ? 1 : 0);
 	if ( $hideminor ) {
 		$hidem = "AND rc_minor=0";
-		$mltitle = wfMsg( "show" );
-		$mlhide = 0;
 	} else {
 		$hidem = "";
-		$mltitle = wfMsg( "hide" );
-		$mlhide = 1;
 	}
-
-	if ( isset( $from ) ) {
-		$mlparams = "from={$from}&hideminor={$mlhide}";
-	} else {
-		$mlparams = "days={$days}&limit={$limit}&hideminor={$mlhide}";
-	}
-
-	$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchanges" ),
-		$mltitle, $mlparams );
 	
 	if ( !isset( $hidebots ) ) {
 		$hidebots = 1;
@@ -81,10 +69,25 @@ function wfSpecialRecentchanges( $par )
 	if( $hidebots ) {
 		$hidem .= " AND rc_bot=0";
 	}
+	$hidebots = ($hidebots ? 1 : 0);
 	
+	if ( !isset( $hideliu ) ) {
+		$hideliu = 0;
+	}
 	if ( $hideliu ) {
 		$hidem .= " AND rc_user=0";
 	}
+	$hideliu = ($hideliu ? 1 : 0);
+	#$hideparams = "hideminor={$hideminor}&hideliu={$hideliu}&hidebots={$hidebots}";
+	$urlparams = array( "hideminor" => $hideminor, "hideliu" => $hideliu, "hidebots" => $hidebots );
+	$hideparams = wfArrayToCGI( $urlparams );
+	
+	$minorLink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchanges" ),
+	  $showhide[1-$hideminor], wfArrayToCGI( array( "hideminor" => 1-$hideminor ), $urlparams ) );
+	$botLink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchanges" ),
+	  $showhide[1-$hidebots], wfArrayToCGI( array( "hidebots" => 1-$hidebots ), $urlparams ) );
+	$liuLink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchanges" ),
+	  $showhide[1-$hideliu], wfArrayToCGI( array( "hideliu" => 1-$hideliu ), $urlparams ) );
 
 	$uid = $wgUser->getID();
 	$sql2 = "SELECT recentchanges.*" . ($uid ? ",wl_user" : "") . " FROM recentchanges " .
@@ -106,11 +109,11 @@ function wfSpecialRecentchanges( $par )
 	}
 	$wgOut->addHTML( "\n<hr>\n{$note}\n<br>" );
 
-	$note = rcDayLimitLinks( $days, $limit, "Recentchanges",  "hideminor={$hideminor}", false, $mlink );
+	$note = rcDayLimitLinks( $days, $limit, "Recentchanges", $hideparams, false, $minorLink, $botLink, $liuLink );
 
 	$note .= "<br>\n" . wfMsg( "rclistfrom",
 	  $sk->makeKnownLink( $wgLang->specialPage( "Recentchanges" ),
-	  $wgLang->timeanddate( $now, true ), "hideminor={$hideminor}&from=$now" ) );
+	  $wgLang->timeanddate( $now, true ), "{$hideparams}&from=$now" ) );
 
 	$wgOut->addHTML( "{$note}\n" );
 
@@ -152,7 +155,8 @@ function rcDaysLink( $lim, $d, $page="Recentchanges", $more="" )
 	return $s;
 }
 
-function rcDayLimitLinks( $days, $limit, $page="Recentchanges", $more="", $doall = false, $mlink = "" )
+function rcDayLimitLinks( $days, $limit, $page="Recentchanges", $more="", $doall = false, $minorLink = "", 
+	$botLink = "", $liuLink = "" )
 {
 	if ($more != "") $more .= "&";
 	$cl = rcCountLink( 50, $days, $page, $more ) . " | " .
@@ -166,11 +170,12 @@ function rcDayLimitLinks( $days, $limit, $page="Recentchanges", $more="", $doall
 	  rcDaysLink( $limit, 14, $page, $more  ) . " | " .
 	  rcDaysLink( $limit, 30, $page, $more  ) .
 	  ( $doall ? ( " | " . rcDaysLink( $limit, 0, $page, $more ) ) : "" );
-        $shm = wfMsg( "showhideminor", $mlink );
+	$shm = wfMsg( "showhideminor", $minorLink, $botLink, $liuLink );
 	$note = wfMsg( "rclinks", $cl, $dl, $shm );
 	return $note;
 }
 
+# Obsolete? Isn't called from anywhere and $mlink isn't defined
 function rcLimitLinks( $page="Recentchanges", $more="", $doall = false )
 {
 	if ($more != "") $more .= "&";
