@@ -1221,7 +1221,7 @@ class Title {
 			# append the last child.
 			# TODO : We should have a last child unless there is an error in the
 			# "categorylinks" table.
-			if(isset($lastchild) { $result .= $lastchild; }
+			if(isset($lastchild)) { $result .= $lastchild; }
 			
 			$result .= "<br/>\n";
 			
