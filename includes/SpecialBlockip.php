@@ -47,12 +47,16 @@ class IPBlockForm {
 	
 	function showForm( $err ) {
 		global $wgOut, $wgUser, $wgLang, $wgBlockExpiryOptions;
-		global $wgRequest;
+		global $wgRequest, $wgSysopUserBans;
 
 		$wgOut->setPagetitle( htmlspecialchars( wfMsg( 'blockip' ) ) );
 		$wgOut->addWikiText( htmlspecialchars( wfMsg( 'blockiptext' ) ) );
 
-		$mIpaddress = htmlspecialchars( wfMsg( 'ipaddress' ) );
+		if($wgSysopUserBans) {
+			$mIpaddress = htmlspecialchars( wfMsg( 'ipadressorusername' ) );
+		} else {
+			$mIpaddress = htmlspecialchars( wfMsg( 'ipaddress' ) );
+		}
 		$mIpbexpiry = htmlspecialchars( wfMsg( 'ipbexpiry' ) );
 		$mIpbreason = htmlspecialchars( wfMsg( 'ipbreason' ) );
 		$mIpbsubmit = htmlspecialchars( wfMsg( 'ipbsubmit' ) );
