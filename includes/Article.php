@@ -875,7 +875,7 @@ class Article {
 	 * errors at some point.
 	 * @private
 	 */
-	function insertNewArticle( $text, $summary, $isminor, $watchthis ) {
+	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC=false ) {
 		global $wgOut, $wgUser;
 		global $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
 
@@ -908,7 +908,9 @@ class Article {
 		$this->updateRevisionOn( $dbw, $revision, 0 );
 
 		Article::onArticleCreate( $this->mTitle );
-		RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary );
+		if(!$suppressRC) {
+			RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary );
+		}
 
 		if ($watchthis) {
 			if(!$this->mTitle->userIsWatching()) $this->watch();
