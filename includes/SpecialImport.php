@@ -21,9 +21,9 @@ function wfSpecialImport( $page = "" ) {
 	global $wgOut, $wgLang, $wgRequest, $wgTitle;
 	
 	if( $wgRequest->wasPosted() && $wgRequest->getVal( 'action' ) == 'submit') {
-		$importer = new WikiImporter;
+		$importer = new WikiImporter();
 		if( $importer->setupFromUpload( "xmlimport" ) ) {
-			$importer->setRevisionHandler( "wfImportRevision" );
+			$importer->setRevisionHandler( "wfImportOldRevision" );
 			if( $importer->doImport() ) {
 				# Success!
 				$wgOut->addHTML( "<p>" . wfMsg( "importsuccess" ) . "</p>" );
@@ -48,31 +48,43 @@ function wfSpecialImport( $page = "" ) {
 " );
 }
 
-function wfImportRevision( $revision ) {
-	$fname = "wfImportRevision";
+function wfImportOldRevision( $revision ) {
+	global $wgOut;
+	$fname = "wfImportOldRevision";
 	
 	# Sneak a single revision into place
-	$ns = $revision->title->getNamespace();
+	$ns = IntVal( $revision->title->getNamespace() );
 	$t = wfStrencode( $revision->title->getDBkey() );
-	$text = wfStrencode( $revision->text );
+	$text = wfStrencode( $revision->getText() );
 	$ts = wfStrencode( $revision->timestamp );
 	$its = wfStrencode( wfInvertTimestamp( $revision->timestamp ) ) ;
+	$comment = wfStrencode( $revision->getComment() );
+	
+	$user = User::newFromName( $revision->getUser() );
+	$user_id = IntVal( $user->getId() );
+	$user_text = wfStrencode( $user->getName() );
+
 	$minor = 0; # ??
 	$flags = "";
 	
 	# Make sure it doesn't already exist
-	$res = wfQuery( "SELECT COUNT(*) FROM old WHERE old_namespace=$ns AND old_title='$t' AND old_timestamp='$ts'", DB_WRITE, $fname );
+	$sql = "SELECT 1 FROM old WHERE old_namespace=$ns AND old_title='$t' AND old_timestamp='$ts'";
+	$wgOut->addHtml( htmlspecialchars( $sql ) . "<br />\n" );
+	
+	$res = wfQuery( $sql, DB_WRITE, $fname );
 	$numrows = wfNumRows( $res );
 	wfFreeResult( $res );
 	if( $numrows > 0 ) {
-		return "gaaah";
+		$wgOut->addHTML( "DIE<br />" );
+		return false;
 	}
 	
 	$res = wfQuery( "INSERT INTO old " .
 	  "(old_namespace,old_title,old_text,old_comment,old_user,old_user_text," .
 	  "old_timestamp,inverse_timestamp,old_minor_edit,old_flags) " .
-	  "VALUES ($ns,'$t','$text','$comment',$user,'$user_text','$ts','$its',$minor,'$flags')",
+	  "VALUES ($ns,'$t','$text','$comment',$user_id,'$user_text','$ts','$its',$minor,'$flags')",
 	  DB_WRITE, $fname );
+	$wgOut->addHTML( "OK<br />" );
 	
 	return true;
 }
@@ -83,6 +95,7 @@ class WikiRevision {
 	var $user = 0;
 	var $user_text = "";
 	var $text = "";
+	var $comment = "";
 	
 	function setTitle( $text ) {
 		$text = $this->fixEncoding( $text );
@@ -104,6 +117,10 @@ class WikiRevision {
 	
 	function setText( $text ) {
 		$this->text = $this->fixEncoding( $text );
+	}
+	
+	function setComment( $text ) {
+		$this->comment = $this->fixEncoding( $text );
 	}
 	
 	function fixEncoding( $data ) {
@@ -130,6 +147,10 @@ class WikiRevision {
 	
 	function getText() {
 		return $this->text;
+	}
+	
+	function getComment() {
+		return $this->comment;
 	}
 }
 
@@ -215,8 +236,8 @@ class WikiImporter {
 	}
 	
 	function debug( $data ) {
-		# global $wgOut;
-		# $wgOut->addHTML( htmlspecialchars( $data ) . "<br>\n" );
+		global $wgOut;
+		# $wgOut->addHTML( htmlspecialchars( $data ) . "<br />\n" );
 	}
 	
 	function setRevisionHandler( $functionref ) {
@@ -232,6 +253,7 @@ class WikiImporter {
 		}
 		$this->debug( "-- User: " . $revision->user_text );
 		$this->debug( "-- Timestamp: " . $revision->timestamp );
+		$this->debug( "-- Comment: " . $revision->comment );
 		$this->debug( "-- Text: " . $revision->text );
 	}
 	
@@ -272,6 +294,7 @@ class WikiImporter {
 		case "title":
 		case "restrictions":
 			$this->appendfield = $name;
+			$this->appenddata = "";
 			$this->parenttag = "page";
 			xml_set_element_handler( $parser, "in_nothing", "out_append" );
 			xml_set_character_data_handler( $parser, "char_append" );
@@ -327,6 +350,9 @@ class WikiImporter {
 			break;
 		case "timestamp":
 			$this->workRevision->setTimestamp( $this->appenddata );
+			break;
+		case "comment":
+			$this->workRevision->setComment( $this->appenddata );
 			break;
 		default;
 			$this->debug( "Bad append: {$this->appendfield}" );
