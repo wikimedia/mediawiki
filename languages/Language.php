@@ -1697,6 +1697,7 @@ class Language {
 	{
 		global $wgAmericanDates, $wgUser, $wgUseDynamicDates;
 
+		$ts=wfTimestamp(TS_MW,$ts);
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 		if ( $wgUseDynamicDates ) {
 			if ( $format == MW_DATE_USER_FORMAT ) {
@@ -1725,6 +1726,8 @@ class Language {
 
 	function time( $ts, $adj = false, $seconds = false )
 	{
+		$ts=wfTimestamp(TS_MW,$ts);
+
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
@@ -1736,6 +1739,8 @@ class Language {
 
 	function timeanddate( $ts, $adj = false, $format = MW_DATE_USER_FORMAT )
 	{
+		$ts=wfTimestamp(TS_MW,$ts);
+
 		return $this->time( $ts, $adj ) . ', ' . $this->date( $ts, $adj, $format );
 	}
 
