@@ -2,17 +2,17 @@
 # MediaWiki web-based config/installation
 # Copyright (C) 2004 Ashar Voultoiz <thoane@altern.org> and others
 # http://www.mediawiki.org/
-# 
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or 
+# the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -52,25 +52,25 @@ if ( isset($args[0]) ) {
 		@ob_end_flush();
 		print "Enter the language you want to check [$wgLanguageCode]:";
 		$input = readconsole();
-		
+
 		# set the input to current language
 		if($input == "") {
 			$input = $wgLanguageCode;
 		}
-		
+
 		# convert to 1st char upper, rest lower case
 		$input = strtoupper(substr($input,0,1)).strtolower(substr($input,1));
-		
-		# try to get the file		
+
+		# try to get the file
 		if( file_exists("$IP/languages/Language$input.php") ) {
 			$loop = false;
 			$lang = $input;
 		} else {
 			print "ERROR: The file Language$input.php doesn't exist !\n";
 		}
-		
+
 	} while ($loop);
-	
+
 }
 
 /* TODO
@@ -104,4 +104,4 @@ foreach($wgAllMessagesEn as $index => $localized)
 }
 echo "----\n";
 echo "$lang language is complete at ".number_format((100 - $i/count($wgAllMessagesEn) * 100),2)."%\n";
-echo "$i unlocalised message of the ".count($wgAllMessagesEn)." messages available.\n";
+echo "$i unlocalised messages of the ".count($wgAllMessagesEn)." messages available.\n";
