@@ -132,7 +132,6 @@ require_once( "LanguageUtf8.php" );
 
 # User Toggles
 
-"tog-hover"		=> "위키고리 풍선상자로 보이기",
 "tog-underline" => "고리에 밑줄치기",
 "tog-highlightbroken" => "없는 문서로의 고리 돋보이기",
 "tog-justify"	=> "문단 정렬",

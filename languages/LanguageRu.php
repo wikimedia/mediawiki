@@ -159,7 +159,6 @@ if(isset($wgExtraNamespaces)) {
 'special_version_postfix' => '',
 
 # User preference toggles 
-'tog-hover'             => 'Показывать всплывающие подсказки к ссылкам',
 'tog-underline' => 'Подчёркивать ссылки',
 'tog-highlightbroken' => 'Показывать несуществующие ссылки <a href=\"\" class=\"new\">вот так</a> (иначе вот так<a href=\"\" class=\"internal\">?</a>).',
 'tog-justify'   => 'Выравнивать текст по ширине страницы',

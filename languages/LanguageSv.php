@@ -138,7 +138,6 @@ $wgValidSpecialPagesSv = array(
 'special_version_postfix' => '',
 // User Toggles
 
-"tog-hover"            => "Svävande text över wikilänkar",
 "tog-underline"        => "Understryk länkar",
 "tog-highlightbroken"  => "Formatera trasiga länkar <a href=\"\" class=\"new\">så här</a> (alternativt: så här<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"          => "Justera indrag",

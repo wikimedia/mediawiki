@@ -130,7 +130,6 @@ require_once( "LanguageUtf8.php" );
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"		=> "Mostrar caja flotante sobre los enlaces wiki",
 "tog-underline" => "Subrayar enlaces",
 "tog-highlightbroken" => "Destacar enlaces a artículos vacíos <a href=\"\" class=\"new\">como este</a> (alternativa: como éste<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Ajustar párrafos",

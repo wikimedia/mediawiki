@@ -118,7 +118,6 @@ require_once( "LanguageUtf8.php" );
 
 # User Toggles
 #
-"tog-hover"  => "Прикажи лебдећи текст изнад вики веза",
 "tog-underline" => "Подвуци везе",
 "tog-highlightbroken" => "Форматирај покварене везе <a href=\"\" class=\"new\">овако</a> (алтернатива: овако<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify" => "Поравнај пасусе",

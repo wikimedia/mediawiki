@@ -112,7 +112,6 @@ if($wgMetaNamespace === FALSE)
 'special_version_prefix' => '',
 'special_version_postfix' => '',
 # User toggles
-"tog-hover"	            => "Hinweis über interne Verweise",
 "tog-underline"               => "Verweise unterstreichen",
 "tog-highlightbroken"         => "Verweise auf leere Themen hervorheben",
 "tog-justify"                 => "Text als Blocksatz",

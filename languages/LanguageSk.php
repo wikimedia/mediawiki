@@ -100,7 +100,6 @@ require_once("LanguageUtf8.php");
 
 # User Toggles
 
-"tog-hover"		=> "Zobrazuj text nad linkami do wiki",
 "tog-underline" => "Podčiarkuj linky",
 "tog-highlightbroken" => "Neexistujúce linky zobrazuj červenou.",
 "tog-justify"	=> "Zarovnávaj odstavce",

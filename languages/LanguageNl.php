@@ -110,7 +110,6 @@ require_once( "LanguageUtf8.php" );
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"  => "Wikilinks in zwevend tekstvak tonen",
 "tog-underline" => "Links onderstrepen",
 "tog-highlightbroken" => "Links naar lege pagina's laten oplichten",
 "tog-justify" => "Paragrafen uitvullen",

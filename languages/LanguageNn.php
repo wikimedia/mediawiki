@@ -148,7 +148,6 @@ $wgValidationTypesNn = array (
 'special_version_postfix' => '&nbsp;',
 
 # User preference toggles
-'tog-hover'		  => 'Vis svevetekst over wikilenkjer',
 'tog-underline'           => 'Understrek lenkjer',
 'tog-highlightbroken'     => 'Formatér lenkjer til tomme sider <a href="" class="new">slik</a> (alternativt slik<a href="" class="internal">?</a>)',
 'tog-justify'	          => 'Blokkjusterte avsnitt',

@@ -115,7 +115,6 @@
 # User Toggles
 #
 
-"tog-hover"		=> "แสดง hoverbox เหนือลิงก์",
 "tog-underline" => "ขีดเส้นใต้ลิงก์",
 "tog-highlightbroken" => "จัดลิงก์ที่ไม่มี <a href=\"\" class=\"new\">เป็น ดังนี้</a> (หรือ เป็นดังนี้<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "จัดย่อหน้าให้เรียบร้อย",

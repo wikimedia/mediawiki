@@ -149,7 +149,6 @@ require_once( "LanguageUtf8.php" );
 'special_version_prefix' => '',
 'special_version_postfix' => '',
 # User Toggles
-"tog-hover"		=> "Vis svævende tekst over wikihenvisninger",
 "tog-underline" => "Understreg henvisninger",
 "tog-highlightbroken" => "Brug røde henvisninger til tomme sider",
 "tog-justify"	=> "Justér afsnit",

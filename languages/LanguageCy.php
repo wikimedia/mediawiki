@@ -137,7 +137,6 @@
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"	 => "Dangos bocs hofren uwchben cysylltiadau wici",
 "tog-underline" => "Tanllinellu cysylltiadau",
 "tog-highlightbroken" => "Fformatio cysylltiadau wedi'i dorri <a href=\"\" class=\"new\">fel hyn</a> (dewis arall: fel hyn<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify" => "Unioni paragraffau",

@@ -112,7 +112,6 @@ require_once("LanguageUtf8.php");
 'special_version_prefix' => '',
 'special_version_postfix' => '',
 # User toggles
-"tog-hover"		=> "Montru helpilon super viki-ligiloj",
 "tog-underline" => "Substreku ligilojn",
 "tog-highlightbroken" => "Ruĝigu ligilojn al neekzistantaj paĝoj",
 "tog-justify"	=> "Alkadrigu liniojn",

@@ -126,7 +126,6 @@ require_once( "LanguageZh_cn.php" );
 /* private */ $wgAllMessagesZh_tw = array(
 
 /* User toggles */
-	"tog-hover"		=> "滑過維基鏈結時顯示注釋", /* "Show hoverbox over wiki links",*/
 	"tog-underline" => "下劃鏈結", /* "Underline links", */
 	"tog-highlightbroken" => "毀壞的鏈結格式<a href=\"\" class=\"new\">像這樣</a> (或者像這個<a href=\"\" class=\"internal\">?</a>)", /* "Format broken links <a href=\"\" class=\"new\">like this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 	"tog-justify"	=> "段落對齊", /* "Justify paragraphs", */

@@ -149,7 +149,6 @@ if( 0 == strcasecmp( "Wikipédia", $wgSitename ) ) {
 # User Toggles
 #
 
-"tog-hover"	=> "Mutassa a címdobozt a linkek fölött",
 "tog-underline" => "Linkek aláhúzása",
 "tog-highlightbroken" => "Törött linkek <a href=\"\" class=\"new\">így</a> (alternatíva: így<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Bekezdések teljes szélességű tördelése",

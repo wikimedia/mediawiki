@@ -110,7 +110,6 @@
 # User Toggles
 #
 
-"tog-hover"		=> "Evidentiar wikiligamines sub le ratto",
 "tog-underline" => "Sublinear ligamines",
 "tog-highlightbroken" => "Formatar ligamines rupte <a href=\"\" class=\"new\">assi</a> (alternativemente: assi<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"	=> "Justificar paragraphos",

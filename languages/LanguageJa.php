@@ -111,7 +111,6 @@ require_once( "LanguageUtf8.php" );
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover" => "ウィキリンクにツールチップを表示する",
 "tog-underline" => "リンクにアンダーラインをつける",
 "tog-highlightbroken" => "未作成のページへのリンクをハイライトする",
 "tog-justify" => "段落を均等割り付けする",

@@ -163,7 +163,6 @@ require_once( 'LanguageUtf8.php');
 /* private */ $wgAllMessagesFo = array(
 
 # User toggles
-"tog-hover"		      => "Vís sveimandi tekst yvur wikiávísingar",
 "tog-underline"	   => "Undurstrika ávísingar",
 "tog-highlightbroken" => "Brúka reyða ávísing til tómar síður",
 "tog-justify"	   => "Stilla greinpart",

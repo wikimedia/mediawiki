@@ -118,7 +118,6 @@ require_once( 'LanguageUtf8.php' );
 'tog-editsection'	=> 'Éditer une section via les liens [éditer]',
 'tog-editsectiononrightclick'	=> 'Éditer une section en cliquant à droite<br /> sur le titre de la section',
 'tog-fancysig' => "Signatures brutes (sans lien automatique)",
-'tog-hover' => 'Afficher des info-bulles sur les liens wiki',
 'tog-hideminor' => 'Cacher les <i>Modifications récentes</i> mineures',
 'tog-highlightbroken' => 'Liens vers les sujets non existants en rouge',
 'tog-justify' => 'Paragraphes justifiés',

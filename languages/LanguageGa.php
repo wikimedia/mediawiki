@@ -175,7 +175,6 @@ DISCUSSION!
 # User Toggles
 #
 
-"tog-hover"     => "Taispeáin airebhoscaí­ os cionn na vicilúibí­ní­",
 "tog-underline" => "Cuir lí­nte faoi na lúibí­ní­",
 "tog-highlightbroken" => "Cuir dath dearg ar lúibí­ní­ briste, <a href=\"\" class=\"new\">mar sin</a> (rogha eile: mar sin<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"   => "Comhfhadaigh na paragraif",

@@ -117,7 +117,6 @@
 'special_version_postfix' => '',
 # User Toggles
 
-"tog-hover"		=> "Mostra caixa surant sobre els enllaços wiki",
 "tog-underline" => "Subratlla enllaços",
 "tog-highlightbroken" => "Destaca enllaços a temes buits",
 "tog-justify"	=> "Ajusta paràgrafs",

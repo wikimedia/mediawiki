@@ -60,7 +60,7 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgDefaultUserOptionsId = array(
-	"quickbar" => 1, "underline" => 1, "hover" => 1, 
+	"quickbar" => 1, "underline" => 1,
 	"cols" => 80, "rows" => 25, "searchlimit" => 20, 
 	"contextlines" => 5, "contextchars" => 50, 
 	"skin" => $wgDefaultSkin, "math" => 1, "rcdays" => 7, "rclimit" => 50, 
@@ -79,7 +79,6 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgUserTogglesId = array(
-	"hover"		      => "Tampilkan hoverbox di atas pautan wiki", #"Show hoverbox over links",
 	"underline" => "Garisbawahi pautan", #"Underline links",
 	"highlightbroken" => "Beri tanda pautan yang berpaut ke topik kosong <a href=\"\" class=\"new\">seperti ini</a> (alternatif: seperti ini<a href=\"\" class=\"internal\">?</a>)",
 	"justify"     => "Ratakan paragraf", #"Justify paragraphs",

@@ -170,7 +170,6 @@ $wgLanguageNamesTt =& $wgLanguageNames;
 'dec' => "Dek",
 
 # User Toggles
-"tog-hover"                       => "Show hoverbox over wiki links",
 "tog-underline"           => "Underline links",
 "tog-highlightbroken"     => "Format broken links <a href=\"\" class=\"new\">like this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 "tog-justify"             => "Justify paragraphs",

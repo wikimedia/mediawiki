@@ -110,7 +110,6 @@
 'special_version_prefix' => '',
 'special_version_postfix' => '',
 # User Toggles
-"tog-hover"		=> "Ukázat odkazovou adresu (hoverbox) nad wikiovými odkazy",
 "tog-underline" => "Podtrhnout odkazy",
 "tog-highlightbroken" => "Začervenit odkazy na neexistující stránky",
 "tog-justify"	=> "Zarámovat řádky",

@@ -119,7 +119,6 @@ require_once("LanguageUtf8.php");
 'special_version_postfix' => '',
 # User toggles
 
-"tog-hover"		=> "نمایش جعبه‌ی hover روی پیوندهای ویکی",
 "tog-underline" => "زیر پیوندها خط کشیده شود",
 "tog-highlightbroken" => "قالب‌بندی پیوندهای ناقص <a href=\"\" class=\"new\">به این شکل</a> (امکان دیگر: به این شکل<a href=\"\" class=\"internal\">؟</a>).",
 "tog-justify"	=> "تنظیم بندها",
