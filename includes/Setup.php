@@ -87,7 +87,7 @@ global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
 global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
 global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
 global $wgMsgCacheExpiry, $wgCommandLineMode;
-global $wgBlockCache, $wgParserCache, $wgParser, $wgDBConnections, $wgMsgParserOptions;
+global $wgBlockCache, $wgParserCache, $wgParser, $wgMsgParserOptions;
 global $wgLoadBalancer, $wgDBservers, $wgDebugDumpSql;
 global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype;
 global $wgUseOldExistenceCheck, $wgEnablePersistentLC;
@@ -339,7 +339,6 @@ $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
 $wgParserCache = new ParserCache();
 $wgParser = new Parser();
 $wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
-$wgDBConnections = array();
 $wgMsgParserOptions = ParserOptions::newFromUser($wgUser);
 wfSeedRandom();
 
