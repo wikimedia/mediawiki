@@ -618,11 +618,11 @@ class Parser
 	/* private */ function doAllQuotes( $text )
 	{
 		$outtext = "";
-		$lines = explode( "\r\n", $text );
+		$lines = explode( "\n", $text );
 		foreach ( $lines as $line ) {
-			$outtext .= $this->doQuotes ( "", $line, "" ) . "\r\n";
+			$outtext .= $this->doQuotes ( "", $line, "" ) . "\n";
 		}
-		return $outtext;
+		return substr($outtext, 0,-1);
 	}
 
 	/* private */ function doQuotes( $pre, $text, $mode )
@@ -865,9 +865,9 @@ class Parser
 			if( $noforce ) {
 				if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgLang->getLanguageName( $iw ) ) {
 					array_push( $this->mOutput->mLanguageLinks, $nt->getPrefixedText() );
-					$s .= $prefix . $trail ;
+					$tmp = $prefix . $trail ;
 					wfProfileOut( $fname );
-					$s .= (trim($s) == '')? '': $s;
+					$s .= (trim($tmp) == '')? '': $tmp;
 					continue;
 				}
 				if ( $ns == $image ) {
@@ -2090,17 +2090,19 @@ function wfBraceSubstitution( $matches )
 	if(preg_match("/^([^}{]*)}}([^}{]*{{)(.*)$/s", $matches[2], $m)) {
 		$text = wfInternalBraceSubstitution( $m[1] );
 		$string = $text.$m[2].$m[3];
-		while(preg_match("/^([^}{]*){{([$titleChars]*?)(}}[^}{]*{{.*)?$/s", $string, $m)) {
+		$i = 0;
+		while(preg_match("/^([^}{]*){{([$titleChars]*?)(}}[^}{]*{{.*)?$/s", $string, $m) && ($i < 30)) {
 			$text = wfInternalBraceSubstitution( $m[2] );
 			$trail = !empty($m[3])? preg_replace("/^}}/", '', $m[3]):'';
 			$string = $m[1].$text.$trail;
+			$i++;
 		}
 		return $string;
 	}
 		
 	# Double brace substitution, expand bar in {{foo{{bar}}}}
 	$i = 0;
-	while(preg_match("/{{([$titleChars]*?)}}/", $matches[2], $internalmatches) and $i < 30) {
+	while(preg_match("/{{([$titleChars]*?)}}/", $matches[2], $internalmatches) && ($i < 30)) {
 		$text = wfInternalBraceSubstitution( $internalmatches[1] );
 		$matches[0] = str_replace($internalmatches[0], $text , $matches[0]);
 		$matches[2] = str_replace($internalmatches[0], $text , $matches[2]);
