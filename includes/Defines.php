@@ -1,6 +1,8 @@
 <?php
-# A few constants that might be needed during LocalSettings.php
 
+define( "MEDIAWIKI", true );
+
+# A few constants that might be needed during LocalSettings.php
 define( 'DBO_DEBUG', 1 );
 define( 'DBO_NOBUFFER', 2 );
 define( 'DBO_IGNORE', 4 );

@@ -1,5 +1,5 @@
 <?php
-
+#apd_set_pprof_trace();
 # Main wiki script; see design.doc
 #
 $wgRequestTime = microtime();
@@ -11,8 +11,6 @@ if(!file_exists("LocalSettings.php")) {
 }
 
 # Valid web server entry point, enable includes
-define( "MEDIAWIKI", true );
-
 require_once( "./includes/Defines.php" );
 require_once( "./LocalSettings.php" );
 require_once( "includes/Setup.php" );
