@@ -166,8 +166,8 @@ include_once("Utf8Case.php");
 "qbfind"		=> "Găseşte",
 "qbbrowse"		=> "Răsfoieşte",
 "qbedit"		=> "Editează",
-"qbpageoptions" => "Opţiuni ale paginii",
-"qbpageinfo"	=> "Informaţii ale paginii",
+"qbpageoptions" => "Opţiunile paginii",
+"qbpageinfo"	=> "Despre pagină",
 "qbmyoptions"	=> "Opţiunile mele",
 "mypage"		=> "Pagina mea",
 "mytalk"		=> "Discuţiile mele",
@@ -422,12 +422,31 @@ Vă rugăm să încercaţi o altă căutare.",
 "viewprevnext"	=> "Vezi ($1) ($2) ($3).",
 "showingresults" => "Mai jos apar <b>$1</b> rezultate începând cu numărul <b>$2</b>.",
 "showingresultsnum" => "Mai jos apar <b>$3</b> rezultate începând cu numărul <b>$2</b>.",
-"nonefound"		=> "<strong>Notă</strong>: căutările nereuşite sunt în general datorate căutării unor cuvinte prea comune care nu sunt indexate, sau cautărilor a mai multe cuvinte (numai articolele care conţin ''toate'' cuvintele specificate apar ca rezultate).",
+"nonefound"		=> "<strong>Notă</strong>: căutările nereuşite sunt în general datorate căutării unor cuvinte prea comune care nu sunt indexate, sau cautărilor a mai multe cuvinte (numai articolele care conţin <i>toate</i> cuvintele specificate apar ca rezultate).",
 "powersearch" => "Caută",
 "powersearchtext" => "
 Caută în secţiunile:<br>
 $1<br>
 $2 Redirecţionări&nbsp; Căutări după $3 $9",
+"searchdisabled" => "<p>Ne pare rău! Căutarea după text a fost dezactivată temporar pentru motive de performanţă. Între timp puteţi folosi caseta de căutare Google de mai jos; trebuie să aveţi însă în vedere că rezultatele se poate să nu fie curente.</p>
+
+<!-- SiteSearch Google -->
+<FORM method=GET action=\"http://www.google.com/search\">
+<TABLE bgcolor=\"#FFFFFF\"><tr><td>
+<A HREF=\"http://www.google.com/\">
+<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
+border=\"0\" ALT=\"Google\"></A>
+</td>
+<td>
+<INPUT TYPE=text name=q size=31 maxlength=255 value=\"\">
+<INPUT type=submit name=btnG VALUE=\"Google Search\">
+<font size=-1>
+<input type=hidden name='oe' value='utf-8'>
+<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br>
+</font>
+</td></tr></TABLE>
+</FORM>
+<!-- SiteSearch Google -->",
 "blanknamespace" => "(Principală)",
 
 
