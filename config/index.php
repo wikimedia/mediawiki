@@ -321,6 +321,7 @@ print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</t
 	$conf->DBuser = importPost( "DBuser", "wikiuser" );
 	$conf->DBpassword = importPost( "DBpassword" );
 	$conf->DBpassword2 = importPost( "DBpassword2" );
+	$conf->DBprefix = importPost( "DBprefix" );
 	$conf->RootPW = importPost( "RootPW" );
 	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
@@ -341,6 +342,9 @@ if( $conf->DBpassword == "" ) {
 }
 if( $conf->DBpassword != $conf->DBpassword2 ) {
 	$errs["DBpassword2"] = "Passwords don't match!";
+}
+if( !preg_match( '/^[A-Za-z_0-9]*$/', $conf->DBprefix ) ) {
+	$errs["DBprefix"] = "Invalid table prefix";
 }
 
 if( $conf->SysopPass == "" ) {
@@ -394,6 +398,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		eval($local);
 		$wgDBadminuser = "root";
 		$wgDBadminpassword = $conf->RootPW;
+		$wgDBprefix = $conf->DBprefix;
 		$wgCommandLineMode = true;
 		$wgUseDatabaseMessages = false;	/* FIXME: For database failure */
 		require_once( "includes/Setup.php" );
@@ -514,8 +519,11 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			print " done.</li>\n";
 
 			print "<li>Initializing data...";
-			$wgDatabase->query( "INSERT INTO site_stats (ss_row_id,ss_total_views," .
-				"ss_total_edits,ss_good_articles) VALUES (1,0,0,0)" );
+			$wgDatabase->insert( 'site_stats',
+				array( 'ss_row_id'        => 1,
+				       'ss_total_views'   => 0,
+				       'ss_total_edits'   => 0,
+				       'ss_good_articles' => 0 ) );
 			# setting up the db user
 			if( $conf->Root ) {
 				print "<li>Granting user permissions...</li>\n";
@@ -539,32 +547,19 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				print "<li>Skipped sysop account creation, no name given.</li>\n";
 			}
 
-			print "<li>Initialising log pages...";
-			$logs = array(
-				"uploadlogpage" => "uploadlogpagetext",
-				"dellogpage" => "dellogpagetext",
-				"protectlogpage" => "protectlogtext",
-				"blocklogpage" => "blocklogtext"
-			);
-			$metaNamespace = Namespace::getWikipedia();
+			$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
 			$now = wfTimestampNow();
 			$won = wfInvertTimestamp( $now );
-			foreach( $logs as $page => $text ) {
-				$logTitle = $wgDatabase->strencode( $wgLang->ucfirst( str_replace( " ", "_", wfMsgNoDB( $page ) ) ) );
-				$logText = $wgDatabase->strencode( wfMsgNoDB( $text ) );
-				$wgDatabase->query( "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
-				  "cur_restrictions,cur_timestamp,inverse_timestamp,cur_touched) " .
-				  "VALUES ($metaNamespace,'$logTitle','$logText','sysop','$now','$won','$now')" );
-			}
-			print "</li>\n";
-
-			$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
-			$title = $titleobj->getDBkey();
-			$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text,cur_timestamp,inverse_timestamp,cur_touched,cur_user,cur_user_text) " .
-			  "VALUES (0,'$title','" .
-			  wfStrencode( wfMsg( "mainpagetext" ) . "\n\n" . wfMsg( "mainpagedocfooter" ) ) .
-			  "','$now','$won','$now',0,'MediaWiki default')";
-			$wgDatabase->query( $sql, $fname );
+			$wgDatabase->insert( 'cur',
+				array( 'cur_namespace'     => $titleobj->getNamespace(),
+				       'cur_title'         => $titleobj->getDBkey(),
+				       'cur_text'          => wfMsg( 'mainpagetext' ) . "\n\n" .
+				                              wfMsg( 'mainpagedocfooter' ),
+				       'cur_timestamp'     => $now,
+				       'inverse_timestamp' => $won,
+				       'cur_touched'       => $now,
+				       'cur_user'          => 0,
+				       'cur_user_text'     => 'MediaWiki default' ) );
 
 			print "<li><pre>";
 			initialiseMessages();
@@ -767,6 +762,16 @@ if( count( $errs ) ) {
 		you can specify new accounts/databases to be created.
 	</dt>
 
+	<dd><?php
+		aField( $conf, "DBprefix", "Database table prefix" );
+	?></dd>
+	<dt>
+		<p>If you need to share one database between multiple wikis, or
+		MediaWiki and another web application, you may choose to
+		add a prefix to all the table names to avoid conflicts.</p>
+		
+		<p>Avoid exotic characters; something like <tt>mw_</tt> is good.</p>
+	</dt>
 
 	<dd>
 		<?php
@@ -914,6 +919,7 @@ if ( \$wgCommandLineMode ) {
 \$wgDBname           = \"{$slconf['DBname']}\";
 \$wgDBuser           = \"{$slconf['DBuser']}\";
 \$wgDBpassword       = \"{$slconf['DBpassword']}\";
+\$wgDBprefix         = \"{$slconf['DBprefix']}\";
 
 ## To allow SQL queries through the wiki's Special:Askaql page,
 ## uncomment the next lines. THIS IS VERY INSECURE. If you want
@@ -925,6 +931,7 @@ if ( \$wgCommandLineMode ) {
 # \$wgDBsqluser        = \"sqluser\";
 # \$wgDBsqlpassword    = \"sqlpass\";
 
+# If you're on MySQL 3.x, this next line must be FALSE:
 \$wgDBmysql4 = \$wgEnablePersistentLC = {$conf->DBmysql4};
 
 ## Shared memory settings
