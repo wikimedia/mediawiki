@@ -1728,7 +1728,7 @@ class Language {
 	# short names for language variants used for language conversion links. 
 	# so far only used by zh
 	function getVariantname( $code ) {
-		return wfMsg( 'variantname-' . $code );
+		return wfMsgUTF8( 'variantname-' . $code );
 	}
 
 	function specialPage( $name ) {
@@ -1766,7 +1766,7 @@ class Language {
 	}
 
 	function getUserToggle( $tog ) {
-		return wfMsg("tog-".$tog);
+		return wfMsgUTF8("tog-".$tog);
 	}
 
 	function getLanguageNames() {
@@ -1786,9 +1786,9 @@ class Language {
 		global $wgMonthNamesEn, $wgContLang;
 		// see who called us and use the correct message function
 		if( get_class( $wgContLang->getLangObj() ) == get_class( $this ) )
-			return wfMsgForContent($wgMonthNamesEn[$key-1]);
+			return wfMsgForContentUTF8($wgMonthNamesEn[$key-1]);
 		else
-			return wfMsg($wgMonthNamesEn[$key-1]);
+			return wfMsgUTF8($wgMonthNamesEn[$key-1]);
 	}
 
 	/* by default we just return base form */
@@ -1800,18 +1800,18 @@ class Language {
 		global $wgMonthAbbreviationsEn, $wgContLang;
 		// see who called us and use the correct message function
 		if( get_class( $wgContLang->getLangObj() ) == get_class( $this ) )
-			return wfMsgForContent(@$wgMonthAbbreviationsEn[$key-1]);
+			return wfMsgForContentUTF8(@$wgMonthAbbreviationsEn[$key-1]);
 		else
-			return wfMsg(@$wgMonthAbbreviationsEn[$key-1]);
+			return wfMsgUTF8(@$wgMonthAbbreviationsEn[$key-1]);
 	}
 
 	function getWeekdayName( $key ) {
 		global $wgWeekdayNamesEn, $wgContLang;
 		// see who called us and use the correct message function
 		if( get_class( $wgContLang->getLangObj() ) == get_class( $this ) )
-			return wfMsgForContent($wgWeekdayNamesEn[$key-1]);
+			return wfMsgForContentUTF8($wgWeekdayNamesEn[$key-1]);
 		else
-			return wfMsg($wgWeekdayNamesEn[$key-1]);
+			return wfMsgUTF8($wgWeekdayNamesEn[$key-1]);
 	}
 
 	function userAdjust( $ts ) {

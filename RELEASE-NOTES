@@ -453,6 +453,7 @@ pages for purposes of page relevancy ranking.
   search index and categories)
 * Support for manually converting article title to different Chinese
   variants (for zh)
+* (bug 1488, bug 1744) Fix encoding for preferences, dates in Latin-1 mode
 
 
 === Caveats ===

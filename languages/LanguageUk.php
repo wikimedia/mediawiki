@@ -987,7 +987,7 @@ class LanguageUk extends LanguageUtf8 {
 
 	function getMonthNameGen( $key ) {
 		global $wgMonthNamesGenEn;
-		return wfMsg( $wgMonthNamesGenEn[$key-1] );
+		return wfMsgUTF8( $wgMonthNamesGenEn[$key-1] );
 	}
 
 	function getMessage( $key )

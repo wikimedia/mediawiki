@@ -353,6 +353,43 @@ function wfMsgForContent( $key ) {
 }
 
 /**
+ * Get a message, forcing UTF-8 encoding
+ * This is mainly a hack for Latin-1 localization conversions.
+ */
+function wfMsgUTF8( $key ) {
+	$args = func_get_args();
+	array_shift( $args );
+	$msg = wfMsgReal( $key, $args, true );
+	global $wgUseLatin1;
+	if( $wgUseLatin1 ) {
+		return utf8_encode( $msg );
+	} else {
+		return $msg;
+	}
+}
+
+/**
+ * Get a content message, forcing UTF-8 encoding
+ * This is mainly a hack for Latin-1 localization conversions.
+ */
+function wfMsgForContentUTF8( $key ) {
+	global $wgForceUIMsgAsContentMsg;
+	$args = func_get_args();
+	array_shift( $args );
+	$forcontent = true;
+	if( is_array( $wgForceUIMsgAsContentMsg ) &&
+		in_array( $key, $wgForceUIMsgAsContentMsg ) )
+		$forcontent = false;
+	$msg = wfMsgReal( $key, $args, true, $forcontent );
+	global $wgUseLatin1;
+	if( $wgUseLatin1 ) {
+		return utf8_encode( $msg );
+	} else {
+		return $msg;
+	}
+}
+
+/**
  * Get a message from the language file, for the UI elements
  */
 function wfMsgNoDB( $key ) {
