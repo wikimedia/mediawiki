@@ -1214,7 +1214,7 @@ title. Please merge them manually.",
 "export"		=> "Export pages",
 "exporttext"	=> "You can export the text and editing history of a particular
 page or set of pages wrapped in some XML; this can then be imported into another
-wiki running MediaWiki softwore, transformed, or just kept for your private
+wiki running MediaWiki software, transformed, or just kept for your private
 amusement.",
 "exportcuronly"	=> "Include only the current revision, not the full history",
 
