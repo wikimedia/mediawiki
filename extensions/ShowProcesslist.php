@@ -1,10 +1,12 @@
 <?php
+# Not a valid entry point, skip unless MEDIAWIKI is defined
+if (defined('MEDIAWIKI')) {
 
 $wgExtensionFunctions[] = "wfShowProcesslist";
 
 function wfShowProcesslist() {
-
-require_once( 'includes/SpecialPage.php' );
+global $IP;
+require_once( "$IP/includes/SpecialPage.php" );
 
 class ShowProcesslistPage extends UnlistedSpecialPage
 {
@@ -41,4 +43,5 @@ class ShowProcesslistPage extends UnlistedSpecialPage
 SpecialPage::addPage( new ShowProcesslistPage );
 
 } # End of extension function
+} # End of invocation guard
 ?>

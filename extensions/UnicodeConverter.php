@@ -4,11 +4,13 @@
 # Given a string in UTF-8, it converts it to HTML entities suitable for 
 # an ISO 8859-1 web page.
 
+# Not a valid entry point, skip unless MEDIAWIKI is defined
+if (defined('MEDIAWIKI')) {
 $wgExtensionFunctions[] = "wfUnicodeConverter";
 
 function wfUnicodeConverter() {
-
-require_once( "includes/SpecialPage.php" );
+global $IP;
+require_once( "$IP/includes/SpecialPage.php" );
 
 class UnicodeConverter extends SpecialPage
 {
@@ -47,4 +49,5 @@ SpecialPage::addPage( new UnicodeConverter );
 $wgMessageCache->addMessage( "unicodeconverter", "Unicode Converter" );
 
 } # End of extension function
+} # End of invocation guard
 ?>

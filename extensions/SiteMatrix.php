@@ -2,10 +2,15 @@
 
 # Make an HTML table showing all the wikis on the site
 
-
+# Not a valid entry point, skip unless MEDIAWIKI is defined
+if (defined('MEDIAWIKI')) {
+	
 $wgExtensionFunctions[] = "wfSiteMatrix";
 
 function wfSiteMatrix() {
+global $IP;
+require_once( "$IP/includes/SpecialPage.php" );
+
 class SiteMatrixPage extends SpecialPage
 {
 	function SiteMatrixPage() {
@@ -93,4 +98,5 @@ global $wgMessageCache;
 $wgMessageCache->addMessage( "sitematrix", "List of Wikimedia wikis" );
 
 } # End of extension function
+} # End of invocation protection
 ?>
