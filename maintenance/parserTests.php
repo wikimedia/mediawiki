@@ -341,11 +341,11 @@ class ParserTest {
 				# "CREATE TEMPORARY TABLE ... SELECT * FROM ... LIMIT 0"
 				# would not create the indexes we need....
 				foreach ($tables as $tbl) {
-					$res = $db->query("SHOW CREATE TABLE $tbl");
+					$res = $db->query("SHOW CREATE TABLE {$this->oldTableNames[$tbl]}");
 					$row = $db->fetchRow($res);
 					$create = $row[1];
 					$create_tmp = preg_replace('/CREATE TABLE `(.*?)`/', 'CREATE TEMPORARY TABLE `'
-						. $wgDBprefix . '\\1`', $create);
+						. $wgDBprefix . $tbl .'`', $create);
 					if ($create === $create_tmp) {
 						# Couldn't do replacement
 						die("could not create temporary table $tbl");
