@@ -337,7 +337,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1471) unclosed <p> tag in Danish messages
 * convertLinks script fixes
 * Corrections to template loop detection
-
+* XHTML encoding fix for usernames containing & in Special:Emailuser
 
 === Caveats ===
 
