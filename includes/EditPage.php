@@ -150,7 +150,9 @@ class EditPage {
 			$wgOut->readOnlyPage( $this->mArticle->getContent( true ), true );
 			return;
 		}
-		if ( $wgUser->isBlocked() ) {
+		if ( !$this->preview && $wgUser->isBlocked( !$this->save ) ) {
+			# When previewing, don't check blocked state - will get caught at save time.
+			# Also, check when starting edition is done against slave to improve performance.
 			$this->blockedIPpage();
 			return;
 		}
@@ -310,7 +312,8 @@ class EditPage {
 				# Error messages or other handling should be performed by the filter function
 				return;
 			}
-			if ( $wgUser->isBlocked() ) {
+			if ( $wgUser->isBlocked( false ) ) {
+				# Check block state against master, thus 'false'.
 				$this->blockedIPpage();
 				return;
 			}
