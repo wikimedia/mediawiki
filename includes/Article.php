@@ -658,7 +658,7 @@ class Article {
 			return;
 		}
 
-		if ( !is_null( $oldid ) and $this->checkTouched() ) {
+		if ( empty( $oldid ) && $this->checkTouched() ) {
 			if( $wgOut->checkLastModified( $this->mTouched ) ){
 				return;
 			} else if ( $this->tryFileCache() ) {
@@ -1738,7 +1738,7 @@ class Article {
 			and ($wgUser->getId() == 0)
 			and (!$wgUser->getNewtalk())
 			and ($this->mTitle->getNamespace() != Namespace::getSpecial())
-			and ($action == 'view')
+			and ($action == 'view' || empty( $action ))
 			and (!isset($oldid))
 			and (!isset($diff))
 			and (!isset($redirect))
