@@ -1048,6 +1048,7 @@ class Parser
 	/* private */ function replaceExternalLinks( $text ) {
 		$fname = 'Parser::replaceExternalLinks';
 		wfProfileIn( $fname );
+
 		$text = $this->subReplaceExternalLinks( $text, 'http', true );
 		$text = $this->subReplaceExternalLinks( $text, 'https', true );
 		$text = $this->subReplaceExternalLinks( $text, 'ftp', false );
@@ -1059,8 +1060,11 @@ class Parser
 		return $text;
 	}
 
+	# Replaces all external links with a given protocol
 	/* private */ function subReplaceExternalLinks( $s, $protocol, $autonumber ) {
 		$unique = '4jzAfzB8hNvf4sqyO9Edd8pSmk9rE2in0Tgw3';
+
+		# URL character class
 		$uc = "A-Za-z0-9_\\/~%\\-+&*#?!=()@\\x80-\\xFF";
 
 		# this is  the list of separators that should be ignored if they
@@ -1069,42 +1073,53 @@ class Parser
 		# in this case, the last comma should not become part of the URL,
 		# but in "www.foo.com/123,2342,32.htm" it should.
 		$sep = ",;\.:";
+
+		# File name character class, used for identifying images
 		$fnc = 'A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF';
+		# Recognised image extensions
 		$images = 'gif|png|jpg|jpeg';
 
 		# PLEASE NOTE: The curly braces { } are not part of the regex,
 		# they are interpreted as part of the string (used to tell PHP
 		# that the content of the string should be inserted there).
-		$e1 = "/(^|[^\\[])({$protocol}:)([{$uc}{$sep}]+)\\/([{$fnc}]+)\\." .
+
+		# Regexp for matching image URLs
+		$rxImageURL = "/(^|[^\\[])({$protocol}:)([{$uc}{$sep}]+)\\/([{$fnc}]+)\\." .
 		  "((?i){$images})([^{$uc}]|$)/";
 
-		$e2 = "/(^|[^\\[])({$protocol}:)(([".$uc."]|[".$sep."][".$uc."])+)([^". $uc . $sep. "]|[".$sep."]|$)/";
+		# Regexp for matching non-delimited URLs 
+		$rxFreeURL = "/(^|[^\\[])({$protocol}:)(([".$uc."]|[".$sep."][".$uc."])+)([^". $uc . $sep. "]|[".$sep."]|$)/";
 		$sk =& $this->mOptions->getSkin();
 
-		if ( $autonumber and $this->mOptions->getAllowExternalImages() ) { # Use img tags only for HTTP urls
-			$s = preg_replace( $e1, '\\1' . $sk->makeImage( "{$unique}:\\3" .
+		# Replace image URLs with <img> tags, but only for HTTP and HTTPS ($autonumber=true)
+		if ( $autonumber and $this->mOptions->getAllowExternalImages() ) { 
+			$s = preg_replace( $rxImageURL, '\\1' . $sk->makeImage( "{$unique}:\\3" .
 			  '/\\4.\\5', '\\4.\\5' ) . '\\6', $s );
 		}
-		$s = preg_replace( $e2, '\\1' . "<a href=\"{$unique}:\\3\"" .
+
+		# Replace free URLs
+		$s = preg_replace( $rxFreeURL, '\\1' . "<a href=\"{$unique}:\\3\"" .
 		  $sk->getExternalLinkAttributes( "{$unique}:\\3", wfEscapeHTML(
 		  "{$unique}:\\3" ) ) . ">" . wfEscapeHTML( "{$unique}:\\3" ) .
 		  '</a>\\5', $s );
 		$s = str_replace( $unique, $protocol, $s );
 
+		# Search for external links with square brackets by splitting with explode()
 		$a = explode( "[{$protocol}:", " " . $s );
 		$s = array_shift( $a );
 		$s = substr( $s, 1 );
 
 		# Regexp for URL in square brackets
-		$e1 = "/^([{$uc}{$sep}]+)\\](.*)\$/sD";
+		$rxWithoutText = "/^([{$uc}{$sep}]+)\\](.*)\$/sD";
 		# Regexp for URL with link text in square brackets
-		$e2 = "/^([{$uc}{$sep}]+)\\s+([^\\]]+)\\](.*)\$/sD";
+		$rxWithText = "/^([{$uc}{$sep}]+)\\s+([^\\]]+)\\](.*)\$/sD";
 
+		# Now interpret each instance of [protocol:
 		foreach ( $a as $line ) {
 
 			# CASE 1: Link in square brackets, e.g.
 			# some text [http://domain.tld/some.link] more text
-			if ( preg_match( $e1, $line, $m ) ) {
+			if ( preg_match( $rxWithoutText, $line, $m ) ) {
 				$link = "{$protocol}:{$m[1]}";
 				$trail = $m[2];
 				if ( $autonumber ) { $text = "[" . ++$this->mAutonumber . "]"; }
@@ -1113,7 +1128,7 @@ class Parser
 
 			# CASE 2: Link with link text and text directly following it, e.g.
 			# This is a collection of [http://domain.tld/some.link link]s
-			else if ( preg_match( $e2, $line, $m ) ) {
+			else if ( preg_match( $rxWithText, $line, $m ) ) {
 				$link = "{$protocol}:{$m[1]}";
 				$text = $m[2];
 				$dtrail = '';
