@@ -465,21 +465,25 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 			chdir( ".." );
 			flush();
-			do_ipblocks_update(); flush();
+
+			# Add missing tables
+			foreach ( $wgNewTables as $tableRecord ) {
+				add_table( $tableRecord[0], $tableRecord[1] );
+				flush();
+			}
+
+			# Add missing fields
+			foreach ( $wgNewFields as $fieldRecord ) {
+				add_table( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2] );
+				flush();
+			}
+
+			# Do schema updates which require special handling
 			do_interwiki_update(); flush();
 			do_index_update(); flush();
-			do_linkscc_update(); flush();
 			do_linkscc_1_3_update(); flush();
-			do_hitcounter_update(); flush();
-			do_recentchanges_update(); flush();
 			convertLinks(); flush();
-			do_user_real_name_update(); flush();
-			do_querycache_update(); flush();
-			do_objectcache_update(); flush();
-			do_categorylinks_update(); flush();
 			do_image_name_unique_update(); flush();
-			do_logging_update(); flush();
-			do_user_rights_update(); flush();
 
 			if ( isTemplateInitialised() ) {
 				print "Template namespace already initialised\n";
