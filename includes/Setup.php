@@ -69,7 +69,7 @@ $wgRequest = new WebRequest();
 
 
 wfProfileOut( $fname.'-includes' );
-wfProfileIn( $fname.'-memcached' );
+wfProfileIn( $fname.'-misc1' );
 global $wgUser, $wgLang, $wgOut, $wgTitle;
 global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
 global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
@@ -78,6 +78,8 @@ global $wgMsgCacheExpiry, $wgCommandLineMode;
 global $wgBlockCache, $wgParserCache, $wgParser, $wgDBConnections;
 global $wgLoadBalancer, $wgDBservers, $wgDebugDumpSql;
 global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype;
+global $wgUseOldExistenceCheck, $wgEnablePersistentLC;
+
 global $wgFullyInitialised;
 
 # Useful debug output
@@ -94,6 +96,14 @@ if ( $wgCommandLineMode ) {
 } else {
 	wfDebug( $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . "\n" );
 }
+
+# Disable linkscc except if the old existence check method is enabled
+if (!$wgUseOldExistenceCheck) {
+	$wgEnablePersistentLC = false;
+}
+
+wfProfileOut( $fname.'-misc1' );
+wfProfileIn( $fname.'-memcached' );
 
 # Set up Memcached
 #
@@ -230,7 +240,7 @@ if( $wgCommandLineMode ) {
 }
 
 wfProfileOut( $fname.'-User' );
-wfProfileIn( $fname.'-misc' );
+wfProfileIn( $fname.'-misc2' );
 
 $wgDeferredUpdateList = array();
 $wgLinkCache = new LinkCache();
@@ -246,7 +256,7 @@ wfSeedRandom();
 $wgTitle = Title::newFromText( wfMsg( 'badtitle' ) );
 $wgArticle = new Article($wgTitle);
 
-wfProfileOut( $fname.'-misc' );
+wfProfileOut( $fname.'-misc2' );
 wfProfileIn( $fname.'-extensions' );
 
 # Extension setup functions

@@ -15,9 +15,6 @@ function refreshLinks( $start ) {
 	# Don't generate TeX PNGs (lack of a sensible current directory causes errors anyway)
 	$wgUser->setOption("math", 3);
 	
-	# Turn on link cache in skin
-	$sk =& $wgUser->getSkin();
-	$sk->postParseLinkColour( false );
 
 	for ($id = $start; $id <= $end; $id++) {
 		if ( !($id % REPORTING_INTERVAL) ) {
@@ -32,12 +29,18 @@ function refreshLinks( $start ) {
 		if ( is_null( $wgTitle ) ) {
 			continue;
 		}
-		
+		$dbw->query("BEGIN");
+
 		$wgArticle = new Article( $wgTitle );
 		$text = $wgArticle->getContent( true );
 		$wgLinkCache = new LinkCache;
 		$wgLinkCache->forUpdate( true );
+
+		# Parse the text and replace links with placeholders
 		$wgOut->addWikiText( $text );
+		
+		# Look up the links in the DB and add them to the link cache
+		$wgOut->replaceLinkHolders( RLH_FOR_UPDATE );
 
 		if ( $wgEnablePersistentLC ) {
 			$wgLinkCache->saveToLinkscc( $id, $dbw->strencode( $wgTitle->getPrefixedDBkey() ) );
@@ -46,6 +49,7 @@ function refreshLinks( $start ) {
 		$linksUpdate = new LinksUpdate( $id, $wgTitle->getPrefixedDBkey() );
 		$linksUpdate->doDumbUpdate();
 		$linksUpdate->fixBrokenLinks();
+		$dbw->query("COMMIT");
 	}
 }
 ?>

@@ -177,6 +177,7 @@ $wgUseCategoryBrowser   = false;
 
 $wgEnablePersistentLC	= false;	# Obsolete, do not use
 $wgCompressedPersistentLC = true; # use gzcompressed blobs
+$wgUseOldExistenceCheck = false;  # use old prefill link method, for debugging only
 
 $wgEnableParserCache = false; # requires that php was compiled --with-zlib
 

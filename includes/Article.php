@@ -726,6 +726,8 @@ class Article {
 			 ) );
 		}
 
+		# Put link titles into the link cache
+		$wgOut->replaceLinkHolders();
 		# Add link titles as META keywords
 		$wgOut->addMetaTags() ;
 
@@ -1031,13 +1033,12 @@ class Article {
 		$wgLinkCache->preFill( $this->mTitle );
 		$wgLinkCache->clear();
 
-		# Switch on use of link cache in the skin
-		$sk =& $wgUser->getSkin();
-		$sk->postParseLinkColour( false );
-
-		# Now update the link cache by parsing the text
+		# Parse the text and replace links with placeholders
 		$wgOut = new OutputPage();
 		$wgOut->addWikiText( $text );
+
+		# Look up the links in the DB and add them to the link cache
+		$wgOut->replaceLinkHolders( RLH_FOR_UPDATE );
 
 		if( $wgMwRedir->matchStart( $text ) )
 			$r = 'redirect=no';
