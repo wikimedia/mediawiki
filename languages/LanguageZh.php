@@ -12,7 +12,6 @@ function zhOnArticleSaveComplete($article, $user, $text, $summary, $isminor, $is
 	$titleobj = $article->getTitle();
 	if($titleobj->getNamespace() == NS_MEDIAWIKI) { 
 		global $wgContLang; // should be an LanguageZh.
-		$n = get_class($wgContLang);
 		if(get_class($wgContLang) != 'languagezh')	
 			return true;
 
@@ -21,8 +20,7 @@ function zhOnArticleSaveComplete($article, $user, $text, $summary, $isminor, $is
 		if( $t[0] == 'Zhconversiontable' ) {
 			if(!in_array($t[1], array('zh-cn', 'zh-tw', 'zh-sg', 'zh-hk')))
 				return true;
-			$newtable = LanguageZh::parseCachedTable($text);
-			$wgContLang->updateTable($t[1], $newtable);			
+			$wgContLang->reloadTables();			
 		}
 	}
 }
@@ -44,12 +42,8 @@ class LanguageZh extends LanguageZh_cn {
 		$this->mCacheKey = $wgDBname . ":zhtables";
 	}
 
-	function updateTable($code, $table) {
+	function reloadTables() {
 		global $wgMemc;
-		if(!in_array($code, array('zh-cn', 'zh-tw', 'zh-sg', 'zh-hk')))
-			return;
-		if(!is_array($table))
-			return;
 		$wgMemc->delete($this->mCacheKey);
 		$this->mTablesLoaded=false;
 		$this->loadTables();
@@ -107,7 +101,8 @@ class LanguageZh extends LanguageZh_cn {
 		array_shift($a);
 		$b = explode( '}-', $a[0]);
 
-		$table = explode( ';', $b[0] );
+		$stripped = str_replace(array('*','#'), '', $b[0]);
+		$table = explode( ';', $stripped );
 		$ret = array();
 		foreach( $table as $t ) {
 			$m = explode( '=>', $t );
