@@ -18,7 +18,9 @@ include_once( "LanguageUtf8.php" );
 	4	=> "Wikipedia",
 	5	=> "Wikipedia_talk",
 	6	=> "Image",
-	7	=> "Image_talk"
+	7	=> "Image_talk",
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_talk"
 );
 
 /* private */ $wgDefaultUserOptionsZh = array(
@@ -306,7 +308,9 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "站外书源",
-           "Categories" => "页面分类"
+#	"Categories" => "页面分类"
+	"Export"		=> ""
+
 );
 
 /* private */ $wgSysopSpecialPagesZh = array(

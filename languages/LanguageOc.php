@@ -15,7 +15,9 @@ include_once( "LanguageUtf8.php" );
 	4 => "Oiquipedià",
 	5 => "Discutida_Oiquipedià",
 	6 => "Image",
-	7 => "Discutida_Image"
+	7 => "Discutida_Image",
+	8	=> "MediaWiki",
+	9	=> "Discutida_MediaWiki"
 );
 
 /* using default options */
@@ -261,6 +263,7 @@ include_once( "LanguageUtf8.php" );
 	"Longpages"     => "Articles longs",
 	"Newpages"      => "Nouvelles pages",
 	"Ancientpages"	=> "Anciennes pages",
+#	"Intl"                => "Interlanguage Links",
 	"Allpages"      => "Toutes les pages",
 
 	"Ipblocklist"   => "Adresses IP bloquées",
@@ -271,8 +274,9 @@ include_once( "LanguageUtf8.php" );
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"      => "",
-	"Booksources"   => "Librairies en ligne"
+	"Booksources"   => "Librairies en ligne",
 //	"Categories"	=> "Page des catégories"	// Looxix "Page categories"
+	"Export"		=> ""
 );
 
 /* private */ $wgSysopSpecialPagesOc = array(

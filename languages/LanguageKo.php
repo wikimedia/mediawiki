@@ -16,7 +16,10 @@ include_once( "LanguageUtf8.php" );
 	4	=> "위키백과",	# Wikipedia
 	5	=> "위키백과토론",# Wikipedia_talk
 	6	=> "그림",	# Image
-	7	=> "그림토론"	# Image_talk
+	7	=> "그림토론",	# Image_talk
+	8	=> "MediaWiki",	# MediaWiki
+	9	=> "MediaWiki토론" # MediaWiki_talk
+
 );
 
 # I always compare this file with japanese file, when I'm confused.
@@ -187,6 +190,7 @@ include_once( "LanguageUtf8.php" );
 	"Shortpages"	=> "짧은 문서",
 	"Longpages"		=> "긴 문서",
 	"Newpages"		=> "새 문서",
+#	"Intl"                => "Interlanguage Links",
 	"Allpages"		=> "모두 나열",
 
 	"Ipblocklist"	=> "막힌 IP",
@@ -198,7 +202,9 @@ include_once( "LanguageUtf8.php" );
 	"Whatlinkshere" => "", # link so can't be used from the
 	"Recentchangeslinked" => "", # plain special pages list
 	"Movepage"		=> "",
-	"Booksources"	=> "외부 책방"
+	"Booksources"	=> "외부 책방",
+#	"Categories"	=> "Page categories",
+	"Export"		=> ""
 );
 
 # I'll leave this part in english, for it's more likely that

@@ -19,7 +19,9 @@ include_once("LanguageUtf8.php");
 	4	=> "Wikipedia",
 	5	=> "Discuţie_Wikipedia",
 	6	=> "Imagine",
-	7	=> "Discuţie_Imagine"
+	7	=> "Discuţie_Imagine",
+	8	=> "MediaWiki",
+	9	=> "Discuţie_MediaWiki"
 );
 
 /* private */ $wgQuickbarSettingsRo = array(
@@ -113,7 +115,7 @@ include_once("LanguageUtf8.php");
 	"Longpages"		=> "Articole lungi",
 	"Newpages"		=> "Articole noi",
 	"Ancientpages"	=> "Cele mai vechi articole",
-	"Intl"	=> "Legături între limbi",
+#	"Intl"	=> "Legături între limbi",
 	"Allpages"		=> "Toate paginile după titlu",
 
 	"Ipblocklist"	=> "Adrese IP blocate",
@@ -125,7 +127,8 @@ include_once("LanguageUtf8.php");
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "Mută pagina",
 	"Booksources"	=> "Surse externe de cărţi",
-	"Categories"	=> "Categorii de pagini"
+#	"Categories"	=> "Categorii de pagini"
+	"Export"		=> ""
 );
 
 /* private */ $wgSysopSpecialPagesRo = array(

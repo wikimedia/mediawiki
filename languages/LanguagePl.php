@@ -268,7 +268,8 @@ include_once("{$IP}/LanguageUtf8.php");
         "Shortpages"    => "Najkrótsze",
         "Longpages"     => "Najdłuższe",
         "Newpages"      => "Nowoutworzone",
-                "Ancientpages" => "Najstarsze",
+        "Ancientpages" => "Najstarsze",
+#       "Intl"                => "Interlanguage Links",
         "Allpages"      => "Wszystkie",
 
         "Ipblocklist"   => "Zablokowane adresy IP",
@@ -280,7 +281,8 @@ include_once("{$IP}/LanguageUtf8.php");
         "Recentchangeslinked" => "",
         "Movepage"      => "",
         "Booksources"   => "Książki",
-                "Categories"    => "Kategorie stron"
+#        "Categories"    => "Kategorie stron"
+        "Export"		=> ""
 );
 
 /* private */ $wgSysopSpecialPagesPl = array(

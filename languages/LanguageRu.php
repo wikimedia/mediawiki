@@ -23,7 +23,10 @@ if($wgMetaNamespace === FALSE)
 	4	=> $wgMetaNamespace,
 	5	=> $wgMetaNamespace . "_обсуждение",
 	6	=> "Изображение",
-	7	=> "Изображение_обсуждение"
+	7	=> "Изображение_обсуждение",
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_talk"
+
 );
 
 /* private */ $wgQuickbarSettingsRu = array(
@@ -115,6 +118,7 @@ if($wgMetaNamespace === FALSE)
 	"Longpages"		=> "Длинные статьи",
 	"Newpages"		=> "Новые созданные статьи",
 	"Ancientpages"	=> "Самые старые статьи",
+#	"Intl"                => "Interlanguage Links",
 	"Allpages"		=> "Все страницы по алфавиту",
 
 	"Ipblocklist"	=> "Заблокированные IP-адреса",
@@ -125,7 +129,9 @@ if($wgMetaNamespace === FALSE)
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
-	"Booksources"	=> "Внешние источники книг"
+	"Booksources"	=> "Внешние источники книг",
+#	"Categories"	=> "Page categories",
+	"Export"		=> ""
 );
 
 /* private */ $wgSysopSpecialPagesRu = array(

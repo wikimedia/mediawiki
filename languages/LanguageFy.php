@@ -28,7 +28,10 @@ if($wgMetaNamespace === FALSE)
 	4	=> $wgMetaNamespace,
 	5	=> $wgMetaNamespace . "_oerlis",
 	6	=> "Ofbyld",
-	7	=> "Ofbyld_oerlis"
+	7	=> "Ofbyld_oerlis",
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_oerlis"
+
 );
 
 /* private */ $wgDefaultUserOptionsFy = array(
@@ -276,6 +279,7 @@ if($wgMetaNamespace === FALSE)
 	"Longpages"		=> "Lange siden",
 	"Newpages"		=> "Nije siden",
 	"Ancientpages"	=> "Alde siden",
+#	"Intl"                => "Interlanguage Links",
 	"Allpages"		=> "Alle titels",
 
 	"Ipblocklist"	=> "Utsletten br&ucirc;kers/Ynternet-adressen",
@@ -287,7 +291,8 @@ if($wgMetaNamespace === FALSE)
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "",
-	"Categories"      => "Kategoryen"
+#	"Categories"      => "Kategoryen",
+	"Export"		=> ""
 );
 
 /* private */ $wgSysopSpecialPagesFy = array(

@@ -20,7 +20,10 @@ $wgEditEncoding		= "x";
 	4	=> "Vikipedio", # FIXME: Generalize v-isto kaj v-io
 	5	=> "Vikipedia_diskuto",
 	6	=> "Dosiero", #FIXME: Check the magic for Image: and Media:
-	7	=> "Dosiera_diskuto"
+	7	=> "Dosiera_diskuto",
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_diskuto"
+
 );
 
 # Heredu apriorajn preferojn: wgDefaultUserOptionsEn
@@ -112,6 +115,7 @@ $wgEditEncoding		= "x";
 	"Longpages"		=> "Longegaj artikoloj",
 	"Newpages"		=> "Novaj artikoloj",
 	"Ancientpages"	=> "Antikvaj artikoloj",
+#	"Intl"                => "Interlanguage Links",
 	"Allpages"		=> "Ĉiu paĝo laŭ titolo",
 
 	"Ipblocklist"	=> "Forbaritaj IP-adresoj",
@@ -122,7 +126,9 @@ $wgEditEncoding		= "x";
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
-	"Booksources"	=> "Eksteraj libroservoj"
+	"Booksources"	=> "Eksteraj libroservoj",
+#	"Categories"	=> "Page categories",
+	"Export"		=> ""
 );
 
 /* private */ $wgSysopSpecialPagesEo = array(

@@ -17,7 +17,10 @@
 	4	=> "Wikipedia",
 	5	=> "Wikipedia_discussioni",
 	6	=> "Immagine",
-	7	=> "Immagine_discussione"
+	7	=> "Immagine_discussione",
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_discussioni"
+
 );
 
 /* private */ $wgDefaultUserOptionsIt = array(
@@ -101,6 +104,7 @@
 	"Shortpages"	=> "Articoli più corti",
 	"Longpages"		=> "Articoli più lunghi",
 	"Newpages"		=> "Articoli nuovi",
+#	"Intl"                => "Interlanguage Links",
 	"Allpages"		=> "Tutti i titoli",
 
 	"Ipblocklist"	=> "Indirizzi IP bloccati",
@@ -111,7 +115,9 @@
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
-	"Booksources"	=> ""
+	"Booksources"	=> "",
+#	"Categories"	=> "Page categories",
+	"Export"		=> ""
 );
 
 /* private */ $wgSysopSpecialPagesIt = array(

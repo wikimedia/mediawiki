@@ -17,7 +17,10 @@
 	4	=> "Wikipedia",
 	5	=> "Wikipedia_diskussion",
 	6	=> "Billede",
-	7	=> "Billede_diskussion"
+	7	=> "Billede_diskussion",
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_diskussion"
+
 );
 
 /* private */ $wgDefaultUserOptionsDa = array(
@@ -267,6 +270,7 @@
 	"Longpages"	=> "Lange artikler",
 	"Newpages"	=> "Nyeste artikler",
 	"Ancientpages"	=> "Ældste artikler",
+#	"Intl"                => "Interlanguage Links",
 	"Allpages"	=> "Alle sider efter titel",
 
 	"Ipblocklist"	=> "Blokerede IP-adresser",
@@ -278,6 +282,8 @@
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "Eksterne bogkilder",
+#	"Categories"	=> "Page categories",
+	"Export"		=> ""
 );
 
 /* private */ $wgSysopSpecialPagesDa = array(
