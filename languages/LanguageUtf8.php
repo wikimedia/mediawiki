@@ -36,15 +36,24 @@ class LanguageUtf8 extends Language {
 	# it should be dealt with in Language classes.
 
 	function ucfirst( $string ) {
-		if (function_exists('mb_strtoupper')) {
-			return mb_strtoupper(mb_substr($string,0,1)).mb_substr($string,1);
-		} else {
-		    global $wikiUpperChars;
-		    return preg_replace (
-        	    "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
-        	    "strtr ( \"\$1\" , \$wikiUpperChars )",
-        	    $string );
+		/**
+		 * On pages with many links we can get called a lot.
+		 * The multibyte uppercase functions are relatively
+		 * slow, so check first if we can use a faster ASCII
+		 * version instead; it saves a few milliseconds.
+		 */
+		if( preg_match( '/^[\x80-\xff]/', $string ) ) {
+			if (function_exists('mb_strtoupper')) {
+				return mb_strtoupper(mb_substr($string,0,1)).mb_substr($string,1);
+			} else {
+				global $wikiUpperChars;
+				return preg_replace (
+					"/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
+					"strtr ( \"\$1\" , \$wikiUpperChars )",
+					$string );
+			}
 		}
+		return ucfirst( $string );
 	}
 	
 	function lcfirst( $string ) {
