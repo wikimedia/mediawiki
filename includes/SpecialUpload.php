@@ -119,6 +119,10 @@ class UploadForm {
 				return $this->uploadError( wfMsg( "badfiletype", htmlspecialchars( $ext ) ) );
 			}
 			
+			if( !$this->verify( $this->mUploadTempName, $ext ) ) {
+				return $this->uploadError( wfMsg( 'uploadcorrupt' ) );
+			}
+			
 			$this->saveUploadedFile( $this->mUploadSaveName, $this->mUploadTempName );
 			if ( !$nt->userCanEdit() ) {
 				return $this->uploadError( wfMsg( "protectedpage" ) );
@@ -343,6 +347,76 @@ class UploadForm {
 	<tr><td>&nbsp;</td><td align=left>
 	<input tabindex=5 type=submit name=\"wpUpload\" value=\"{$ulb}\">
 	</td></tr></table></form>\n" );
+	}
+	
+	function verify( $tmpfile, $extension ) {
+		$fname = 'SpecialUpload::verify';
+		$mergeExtensions = array(
+			'jpg' => 'jpeg',
+			'tif' => 'tiff' );
+		$extensionTypes = array(
+			# See http://www.php.net/getimagesize
+			1 => 'gif',
+			2 => 'jpeg',
+			3 => 'png',
+			4 => 'swf',
+			5 => 'psd',
+			6 => 'bmp',
+			7 => 'tiff',
+			8 => 'tiff',
+			9 => 'jpc',
+			10 => 'jp2',
+			11 => 'jpx',
+			12 => 'jb2',
+			13 => 'swc',
+			14 => 'iff',
+			15 => 'wbmp',
+			16 => 'xbm' );
+		
+		$extension = strtolower( $extension );
+		if( isset( $mergeExtensions[$extension] ) ) {
+			$extension = $mergeExtensions[$extension];
+		}
+		wfDebug( "$fname: Testing file '$tmpfile' with given extension '$extension'\n" );
+		
+		if( !in_array( $extension, $extensionTypes ) ) {
+			# Not a recognized image type. We don't know how to verify these.
+			# They're allowed by policy or they wouldn't get this far, so we'll
+			# let them slide for now.
+			wfDebug( "$fname: Unknown extension; passing.\n" );
+			return true;
+		}
+		
+		$data = @getimagesize( $tmpfile );
+		if( false === $data ) {
+			# Didn't recognize the image type.
+			# Either the image is corrupt or someone's slipping us some
+			# bogus data such as HTML+JavaScript trying to take advantage
+			# of an Internet Explorer security flaw.
+			wfDebug( "$fname: getimagesize() doesn't recognize the file; rejecting.\n" );
+			return false;
+		}
+		
+		$imageType = $data[2];
+		if( !isset( $extensionTypes[$imageType] ) ) {
+			# Now we're kind of confused. Perhaps new image types added
+			# to PHP's support that we don't know about.
+			# We'll let these slide for now.
+			wfDebug( "$fname: getimagesize() knows the file, but we don't recognize the type; passing.\n" );
+			return true;
+		}
+		
+		$ext = strtolower( $extension );
+		if( $extension != $extensionTypes[$imageType] ) {
+			# The given filename extension doesn't match the
+			# file type. Probably just a mistake, but it's a stupid
+			# one and we shouldn't let it pass. KILL THEM!
+			wfDebug( "$fname: file extension does not match recognized type; rejecting.\n" );
+			return false;
+		}
+		
+		wfDebug( "$fname: all clear; passing.\n" );
+		return true;
 	}
 }
 ?>

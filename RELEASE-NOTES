@@ -25,6 +25,7 @@ Changes from 1.3.3:
 * Fixed line spacing on printed table of contents
 * Allow links to pages with names of the form [[RFC 1234]]
 * Fixed broken edit links being shown for sections from included templates
+* Verify that uploaded image files are of the claimed type.
 
 
 == Version 1.3.3, 2004-09-09 ==
