@@ -5,8 +5,8 @@ class SkinFramed extends Skin {
 
 	function useBodyTag()
 	{
-		global $frame;
-		return ( "set" != $frame );
+		global $wgRequest;
+		return ( "set" != $wgRequest->getText( 'frame' ) );
 	}
 
 	function qbSetting() { return 0; }
@@ -50,9 +50,10 @@ class SkinFramed extends Skin {
 
 	function transformContent( $text )
 	{
-		global $frame, $HTTP_SERVER_VARS;
+		global $wgRequest, $HTTP_SERVER_VARS;
 		global $wgOut, $wgServer, $wgScript;
 
+		$frame = $wgRequest->getText( 'frame' );
 		$qs = $HTTP_SERVER_VARS["QUERY_STRING"];
 		$qs = wfEscapeHTML( $qs );
 

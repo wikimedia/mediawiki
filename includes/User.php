@@ -226,7 +226,6 @@ class User {
 			}
 			wfFreeResult( $res );
 		} else {
-		  	# TEST THIS @@@
 			global $wgDBname, $wgMemc;
 			$key = "$wgDBname:newtalk:ip:{$this->mName}";
 			$newtalk = $wgMemc->get( $key );

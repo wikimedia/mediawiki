@@ -64,7 +64,12 @@ class Article {
 	# Return the text of this revision
 	function getContent( $noredir = false )
 	{
-		global $action,$section,$count; # From query string
+		global $wgRequest;
+
+		# Get variables from query string :P
+		$action = $wgRequest->getText( 'action', 'view' );
+		$section = $wgRequest->getText( 'section' );
+
 		$fname =  "Article::getContent"; 
 		wfProfileIn( $fname );
 
@@ -116,8 +121,11 @@ class Article {
 	# Load the revision (including cur_text) into this object
 	function loadContent( $noredir = false )
 	{
-		global $wgOut, $wgMwRedir;
-		global $oldid, $redirect; # From query
+		global $wgOut, $wgMwRedir, $wgRequest;
+		
+		# Query variables :P
+		$oldid = $wgRequest->getVal( 'oldid' );
+		$redirect = $wgRequest->getVal( 'redirect' );
 
 		if ( $this->mContentLoaded ) return;
 		$fname = "Article::loadContent";
@@ -377,12 +385,15 @@ class Article {
 
 	function view()
 	{
-		global $wgUser, $wgOut, $wgLang;
-		global $oldid, $diff; # From query
+		global $wgUser, $wgOut, $wgLang, $wgRequest;
 		global $wgLinkCache, $IP, $wgEnableParserCache;
 		
 		$fname = "Article::view";
 		wfProfileIn( $fname );
+
+		# Get variables from query string :P
+		$oldid = $wgRequest->getVal( 'oldid' );
+		$diff = $wgRequest->getVal( 'diff' );
 
 		$wgOut->setArticleFlag( true );
 		$wgOut->setRobotpolicy( "index,follow" );
@@ -390,15 +401,15 @@ class Article {
 		# If we got diff and oldid in the query, we want to see a
 		# diff page instead of the article.
 
-		if ( isset( $diff ) ) {
+		if ( !is_null( $diff ) ) {
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-			$de = new DifferenceEngine( $oldid, $diff );
+			$de = new DifferenceEngine( intval($oldid), intval($diff) );
 			$de->showDiffPage();
 			wfProfileOut( $fname );
 			return;
 		}
 
-		if ( !isset( $oldid ) and $this->checkTouched() ) {
+		if ( !is_null( $oldid ) and $this->checkTouched() ) {
 			if( $wgOut->checkLastModified( $this->mTouched ) ){
 				return;
 			} else if ( $this->tryFileCache() ) {
@@ -416,7 +427,7 @@ class Article {
 
 		# We're looking at an old revision
 
-		if ( $oldid ) {
+		if ( !empty( $oldid ) ) {
 			$this->setOldSubtitle();
 			$wgOut->setRobotpolicy( "noindex,follow" );
 		}
@@ -736,14 +747,17 @@ class Article {
 		return $this->protect( "" );
 	}
 
+	# UI entry point for page deletion 
 	function delete()
 	{
-		global $wgUser, $wgOut, $wgMessageCache;
-		global $wpConfirm, $wpReason, $image, $oldimage;
+		global $wgUser, $wgOut, $wgMessageCache, $wgRequest;
 		$fname = "Article::delete";
-
+		$confirm = $wgRequest->getBool( 'wpConfirm' ) && $wgRequest->isPosted();
+		$reason = $wgRequest->getText( 'wpReason' );
+		
 		# This code desperately needs to be totally rewritten
 		
+		# Check permissions
 		if ( ( ! $wgUser->isSysop() ) ) {
 			$wgOut->sysopRequired();
 			return;
@@ -761,8 +775,8 @@ class Article {
 			return;
 		}
 
-		if ( @$_POST["wpConfirm"] ) {
-			$this->doDelete();
+		if ( $confirm ) {
+			$this->doDelete( $reason );
 			return;
 		}
 
@@ -774,7 +788,7 @@ class Article {
 		$etitle = wfStrencode( $title );
 		$sql = "SELECT old_text,old_flags FROM old WHERE old_namespace=$ns and old_title='$etitle' ORDER BY inverse_timestamp LIMIT 1";
 		$res = wfQuery( $sql, DB_READ, $fname );
-		if( ($old=wfFetchObject($res)) && !$wpConfirm ) {
+		if( ($old=wfFetchObject($res)) && !$confirm ) {
 			$skin=$wgUser->getSkin();
 			$wgOut->addHTML("<B>".wfMsg("historywarning"));
 			$wgOut->addHTML( $skin->historyLink() ."</B><P>");
@@ -802,10 +816,11 @@ class Article {
 			
 			# this should not happen, since it is not possible to store an empty, new
 			# page. Let's insert a standard text in case it does, though
-			if($length==0 && !$wpReason) { $wpReason=wfmsg("exblank");}
+			if($length == 0 && $reason === "") { 
+				$reason = wfMsg("exblank");
+			}
 			
-			
-			if($length < 500 && !$wpReason) {
+			if($length < 500 && $reason === "") {
 									
 				# comment field=255, let's grep the first 150 to have some user
 				# space left
@@ -816,22 +831,22 @@ class Article {
 				$text=preg_replace("/\>/","&gt;",$text);
 				$text=preg_replace("/[\n\r]/","",$text);
 				if(!$blanked) {
-					$wpReason=wfMsg("excontent"). " '".$text;
+					$reason=wfMsg("excontent"). " '".$text;
 				} else {
-					$wpReason=wfMsg("exbeforeblank") . " '".$text;
+					$reason=wfMsg("exbeforeblank") . " '".$text;
 				}
-				if($length>150) { $wpReason .= "..."; } # we've only pasted part of the text
-				$wpReason.="'"; 
+				if($length>150) { $reason .= "..."; } # we've only pasted part of the text
+				$reason.="'"; 
 			}
 		}
 
-		return $this->confirmDelete();
+		return $this->confirmDelete( "", $reason );
 	}
 	
-	function confirmDelete( $par = "" )
+	# Output deletion confirmation dialog
+	function confirmDelete( $par, $reason )
 	{
 		global $wgOut;
-		global $wpReason;
 
 		wfDebug( "Article::confirmDelete\n" );
 		
@@ -850,7 +865,7 @@ class Article {
 <form id=\"deleteconfirm\" method=\"post\" action=\"{$formaction}\">
 <table border=0><tr><td align=right>
 {$delcom}:</td><td align=left>
-<input type=text size=60 name=\"wpReason\" value=\"" . htmlspecialchars( $wpReason ) . "\">
+<input type=text size=60 name=\"wpReason\" value=\"" . htmlspecialchars( $reason ) . "\">
 </td></tr><tr><td>&nbsp;</td></tr>
 <tr><td align=right>
 <input type=checkbox name=\"wpConfirm\" value='1' id=\"wpConfirm\">
@@ -862,10 +877,10 @@ class Article {
 		$wgOut->returnToMain( false );
 	}
 
-	function doDelete()
+	# Perform a deletion and output success or failure messages
+	function doDelete( $reason )
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $wpReason;
 		$fname = "Article::doDelete";
 		wfDebug( "$fname\n" );
 
@@ -889,10 +904,12 @@ class Article {
 		}
 	}
 
-	# Delete the article, returns success
-	function doDeleteArticle()
+	# Back-end article deletion
+	# Deletes the article with database consistency, writes logs, purges caches
+	# Returns success
+	function doDeleteArticle( $reason )
 	{
-		global $wgUser, $wgLang, $wgRequest;
+		global $wgUser, $wgLang;
 		global  $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
 
 		$fname = "Article::doDeleteArticle";
@@ -991,8 +1008,7 @@ class Article {
 		
 		$log = new LogPage( wfMsg( "dellogpage" ), wfMsg( "dellogpagetext" ) );
 		$art = $this->mTitle->getPrefixedText();
-		$wpReason = $wgRequest->getText( "wpReason" );
-		$log->addEntry( wfMsg( "deletedarticle", $art ), $wpReason );
+		$log->addEntry( wfMsg( "deletedarticle", $art ), $reason );
 
 		# Clear the cached article id so the interface doesn't act like we exist
 		$this->mTitle->resetArticleID( 0 );
@@ -1189,8 +1205,9 @@ class Article {
 	}
 
 	function isFileCacheable() {
-		global $wgUser, $wgUseFileCache, $wgShowIPinHeader;
-		global $action, $oldid, $diff, $redirect, $printable;
+		global $wgUser, $wgUseFileCache, $wgShowIPinHeader, $wgRequest;
+		extract( $wgRequest->getValues( 'action', 'oldid', 'diff', 'redirect', 'printable' ) );
+		
 		return $wgUseFileCache
 			and (!$wgShowIPinHeader)
 			and ($this->getID() != 0)

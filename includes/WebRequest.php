@@ -112,6 +112,18 @@ class WebRequest {
 		return $this->getGPCText( $_REQUEST, $name, $default );
 	}
 	
+	function getValues() {	
+		$names = func_get_args();
+		$retVal = array();
+		foreach ( $names as $name ) { 
+			$value = $this->getVal( $name );
+			if ( !is_null( $value ) ) {
+				$retVal[$name] = $value;
+			}
+		}
+		return $retVal;
+	}
+
 	function wasPosted() {
 		return $_SERVER['REQUEST_METHOD'] == 'POST';
 	}

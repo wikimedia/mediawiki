@@ -304,7 +304,7 @@ function userNotPrivilegedMessage()
 		if ( 0 != $wgUser->getID() ) {
 			$name = $wgUser->getName();
 		} else {
-			$name = $_COOKIE["{$wgDBname}UserName"];
+			$name = @$_COOKIE["{$wgDBname}UserName"];
 		}
 	}
 	$pwd = $wgRequest->getText( 'wpPassword' );
