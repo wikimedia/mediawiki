@@ -64,9 +64,9 @@ class Tokenizer {
 			while ( $this->mPos <= $this->mTextLength ) {
 				switch ( @$ch = $this->mText[$this->mPos] ) {
 					case 'R': // for "RFC "
-						if ( $this->mText[$this->mPos+1] == 'F' &&
-					     	$this->mText[$this->mPos+2] == 'C' &&
-					     	$this->mText[$this->mPos+4] == ' ' ) {
+						if ( isset($this->mText[$this->mPos+1]) && $this->mText[$this->mPos+1] == 'F' &&
+                                                isset($this->mText[$this->mPos+2]) && $this->mText[$this->mPos+2] == 'C' &&
+                                                isset($this->mText[$this->mPos+4]) && $this->mText[$this->mPos+4] == ' ' ) {
 						     	$queueToken["type"] = $queueToken["text"] = "RFC ";
 							$this->mQueuedToken[] = $queueToken;
 					     		$this->mPos += 3;
