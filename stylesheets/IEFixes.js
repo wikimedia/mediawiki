@@ -6,6 +6,7 @@ else var version = 0;
 window.attachEvent("onload", hookit);
 function hookit() {
     fixalpha();
+    if(version == 6) relativeforfloats();
     fixtextarea();
     var wrapper = document.getElementById('tawrapper');
     if(wrapper) wrapper.attachEvent("onclick", fixtextarea);
@@ -48,5 +49,23 @@ function fixtextarea() {
     if(wrapper) {
             wrapper.style.width = 'auto';
             wrapper.style.width = (wrapper.offsetWidth - 4)  + 'px';
+    }
+}
+
+// fix ie6 disappering float bug
+function relativeforfloats() {
+    var bc = document.getElementById('bodyContent');
+    if (bc) {
+        var tables = bc.getElementsByTagName('table');
+        var divs = bc.getElementsByTagName('div');
+    }
+    setrelative(tables);
+    setrelative(divs);
+}
+function setrelative (nodes) {
+    var i = 0;
+    while (i < nodes.length) {
+        if(nodes[i].style.float || nodes[i].align != '') nodes[i].style.position = 'relative';
+        i++;
     }
 }
