@@ -45,6 +45,9 @@
 	"hideminor" => "Keine kleinen Änderungen in Letzte Änderungen anzeigen",
 	"usenewrc" => "Erweiterte letzte Änderungen (nicht für alle Browser geeignet)",
 	"numberheadings" => "Überschriften automatisch numerieren",
+  "editsection" => "Links zum Editieren einzelner Absätze anzeigen",
+  "showtoc" => "Anzeigen eines Inhaltsverzeichnisses bei Artikeln mit mehr
+  als 3 Überschriften",
 	"rememberpassword" => "Passwort merken",
 	"editwidth" => "Text-Eingabefeld mit voller Breite",
 	"editondblclick" => "Seiten mit Doppelklick bearbeiten (JavaScript)",
@@ -328,6 +331,10 @@
 "retrievedfrom" => "Von \"$1\"",
 "newmessages" => "Sie haben $1.",
 "newmessageslink" => "neue Nachrichten",
+"editsection" => "Editieren",
+"toc" => "Inhaltsverzeichnis",
+"showtoc" => "Anzeigen",
+"hidetoc" => "Verbergen",
 
 # Main script and global functions
 #
@@ -441,6 +448,7 @@ Als Grund wurde angegeben:<br>$2<p>Bitte kontaktieren Sie den Administrator, um 
 "previewnote"	=> "Dies ist nur eine Vorschau, der Artikel wurde noch nicht gespeichert!",
 "previewconflict" => "Diese Vorschau gibt den Inhalt des oberen Textfeldes wieder; so wird der Artikel aussehen, wenn Sie jetzt speichern.",
 "editing"		=> "Bearbeiten von $1",
+"sectionedit" => " (Absatz)",
 "editconflict"	=> "Bearbeitungs-Konflikt: $1",
 "explainconflict" => "Jemand anders hat diesen Artikel geändert, nachdem Sie angefangen haben, ihn zu bearbeiten.
 Das obere Textfeld enthält den aktuellen Artikel.
@@ -542,6 +550,7 @@ Ihre interne ID-Nummer ist $2.",
 "changepassword" => "Passwort ändern",
 "skin"			=> "Skin",
 "math"			=> "TeX darstellen",
+"dateformat" => "Datumsformat",
 "math_failure"		=> "Parser-Fehler",
 "math_unknown_error"	=> "Unbekannter Fehler",
 "math_unknown_function"	=> "Unbekannte Funktion ",
@@ -905,6 +914,8 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 Datenbank-Abfrage. Benutze einzelne Hochkommata ('so'), um Text zu begrenzen.
 Bitte diese Funktion vorsichtig benutzen! Das abschließende ';' wird
 automatisch ergänzt.",
+"sqlislogged" => "Bitte beachten Sie das alle SQL-Abfrage mitprotokolliert
+werden.",
 "sqlquery"		=> "Abfrage eingeben",
 "querybtn"		=> "Abfrage starten",
 "selectonly"	=> "Andere Abfragen als \"SELECT\" können nur von Entwicklern benutzt werden.",
