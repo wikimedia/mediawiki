@@ -9,6 +9,7 @@
  *
  */
 require_once( 'Feed.php' );
+require_once( 'ChangesList.php' );
 
 /**
  * Constructor
@@ -170,7 +171,8 @@ function wfSpecialRecentchanges( $par ) {
 		$feed->outFooter();
 	} else {
 		$wgOut->setSyndicated( true );
-		$s = $sk->beginRecentChangesList();
+		$list =& new ChangesList( $sk );
+		$s = $list->beginRecentChangesList();
 		$counter = 1;
 		foreach( $rows as $obj ){
 			if( $limit == 0) {
@@ -181,11 +183,11 @@ function wfSpecialRecentchanges( $par ) {
 			     ! ( $hidepatrolled && $obj->rc_patrolled ) ) {
 				$rc = RecentChange::newFromRow( $obj );
 				$rc->counter = $counter++;
-				$s .= $sk->recentChangesLine( $rc, !empty( $obj->wl_user ) );
+				$s .= $list->recentChangesLine( $rc, !empty( $obj->wl_user ) );
 				--$limit;
 			}
 		}
-		$s .= $sk->endRecentChangesList();
+		$s .= $list->endRecentChangesList();
 		$wgOut->addHTML( $s );
 	}
 }
