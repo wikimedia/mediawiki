@@ -378,8 +378,7 @@ class Parser
 
 		if ( !$this->mOptions->getUseCategoryMagic() ) return ; # Doesn't use categories at all
 
-		$cns = Namespace::getCategory() ;
-		if ( $this->mTitle->getNamespace() != $cns ) return "" ; # This ain't a category page
+		if ( $this->mTitle->getNamespace() != NS_CATEGORY ) return "" ; # This ain't a category page
 
 		$r = "<br style=\"clear:both;\"/>\n";
 
@@ -409,7 +408,7 @@ class Parser
 			if ( $t != "" ) $t .= ":" ;
 			$t .= $x->cur_title ;
 
-			if ( $x->cur_namespace == $cns ) {
+			if ( $x->cur_namespace == NS_CATEGORY ) {
 				array_push ( $children , $sk->makeLink ( $t ) ) ; # Subcategory
 			} else {
 				array_push ( $articles , $sk->makeLink ( $t ) ) ; # Page in this category
@@ -440,8 +439,7 @@ class Parser
 		global $wgLang , $wgUser ;
 		if ( !$this->mOptions->getUseCategoryMagic() ) return ; # Doesn't use categories at all
 
-		$cns = Namespace::getCategory() ;
-		if ( $this->mTitle->getNamespace() != $cns ) return '' ; # This ain't a category page
+		if ( $this->mTitle->getNamespace() != NS_CATEGORY ) return '' ; # This ain't a category page
 
 		$r = "<br style=\"clear:both;\"/>\n";
 
@@ -470,7 +468,7 @@ class Parser
 			if ( $t != '' ) $t .= ':' ;
 			$t .= $x->cur_title ;
 
-			if ( $x->cur_namespace == $cns ) {
+			if ( $x->cur_namespace == NS_CATEGORY ) {
 				$ctitle = str_replace( '_',' ',$x->cur_title );
 				array_push ( $children, $sk->makeKnownLink ( $t, $ctitle ) ) ; # Subcategory
 
@@ -1159,7 +1157,6 @@ class Parser
 		$sk =& $this->mOptions->getSkin();
 
 		$redirect = MagicWord::get ( MAG_REDIRECT ) ;
-		$isRedirect = $redirect->matchStart ( strtoupper ( substr ( $s , 0 , 10 ) ) ) ;
 
 		$a = explode( '[[', ' ' . $s );
 		$s = array_shift( $a );
@@ -1174,14 +1171,6 @@ class Parser
 
 		$useLinkPrefixExtension = $wgLang->linkPrefixExtension();
 		# Special and Media are pseudo-namespaces; no pages actually exist in them
-		static $image = FALSE;
-		static $special = FALSE;
-		static $media = FALSE;
-		static $category = FALSE;
-		if ( !$image ) { $image = Namespace::getImage(); }
-		if ( !$special ) { $special = Namespace::getSpecial(); }
-		if ( !$media ) { $media = Namespace::getMedia(); }
-		if ( !$category ) { $category = Namespace::getCategory(); }
 
 		$nottalk = !Namespace::isTalk( $this->mTitle->getNamespace() );
 
@@ -1271,14 +1260,14 @@ class Parser
 					$s .= (trim($tmp) == '')? '': $tmp;
 					continue;
 				}
-				if ( $ns == $image ) {
+				if ( $ns == NS_IMAGE ) {
 					$s .= $prefix . $sk->makeImageLinkObj( $nt, $text ) . $trail;
 					$wgLinkCache->addImageLinkObj( $nt );
 					continue;
 				}
-				if ( $ns == $category && !$isRedirect ) {
+				if ( $ns == NS_CATEGORY ) {
 					$t = $nt->getText() ;
-					$nnt = Title::newFromText ( Namespace::getCanonicalName($category).":".$t ) ;
+					$nnt = Title::newFromText ( Namespace::getCanonicalName(NS_CATEGORY).":".$t ) ;
 
 					$wgLinkCache->suspend(); # Don't save in links/brokenlinks
 					$pPLC=$sk->postParseLinkColour();
@@ -1301,11 +1290,11 @@ class Parser
 				continue;
 			}
 
-			if( $ns == $media ) {
+			if( $ns == NS_MEDIA ) {
 				$s .= $prefix . $sk->makeMediaLinkObj( $nt, $text ) . $trail;
 				$wgLinkCache->addImageLinkObj( $nt );
 				continue;
-			} elseif( $ns == $special ) {
+			} elseif( $ns == NS_SPECIAL ) {
 				$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, '', $trail );
 				continue;
 			}
@@ -2417,10 +2406,8 @@ class Parser
 		if(isset($wgLocaltimezone)) putenv('TZ='.$oldtzs);
 
 		$text = preg_replace( '/~~~~~/', $d, $text );
-		$text = preg_replace( '/~~~~/', '[[' . $wgLang->getNsText(
-		  Namespace::getUser() ) . ":$n|$k]] $d", $text );
-		$text = preg_replace( '/~~~/', '[[' . $wgLang->getNsText(
-		  Namespace::getUser() ) . ":$n|$k]]", $text );
+		$text = preg_replace( '/~~~~/', '[[' . $wgLang->getNsText( NS_USER ) . ":$n|$k]] $d", $text );
+		$text = preg_replace( '/~~~/', '[[' . $wgLang->getNsText( NS_USER ) . ":$n|$k]]", $text );
 
 		# Context links: [[|name]] and [[name (context)|]]
 		#
