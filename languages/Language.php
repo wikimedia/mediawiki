@@ -58,7 +58,7 @@ if(isset($wgExtraNamespaces)) {
 	'highlightbroken' => 1, 'stubthreshold' => 0,
 	'previewontop' => 1, 'editsection'=>1,'editsectiononrightclick'=>0, 'showtoc'=>1,
 	'showtoolbar' =>1,
-	'date' => 0
+	'date' => 0, 'imagesize' => 2
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
@@ -1535,6 +1535,9 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 # browsing diffs
 'previousdiff' => '&larr; Go to previous diff',
 'nextdiff' => 'Go to next diff &rarr;',
+
+'imagemaxsize' => 'Limit images on image description pages to: ',
+'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
 
 
 );

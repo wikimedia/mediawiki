@@ -392,7 +392,7 @@ class Article {
 	 * Load the revision (including cur_text) into this object
 	*/
 	function loadContent( $noredir = false ) {
-		global $wgOut, $wgMwRedir, $wgRequest;
+		global $wgOut, $wgRequest;
 
 		$dbr =& $this->getDB();
 		# Query variables :P
