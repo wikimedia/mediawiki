@@ -13,8 +13,7 @@ class ListUsersPage extends QueryPage {
 	}
 
 	function getSQL() {
-		global $wgIsPg;
-		$usertable = $wgIsPg?'"user"':'user';
+		$usertable = wfTableName( 'user', DB_READ );
 		$userspace = Namespace::getUser();
 		return "SELECT user_rights as type, $userspace as namespace, user_name as title, user_name as value FROM $usertable";
 	}
@@ -36,7 +35,7 @@ class ListUsersPage extends QueryPage {
 }
 
 function wfSpecialListusers() {
-	global $wgUser, $wgOut, $wgLang, $wgIsPg;
+	global $wgUser, $wgOut, $wgLang;
 
 	list( $limit, $offset ) = wfCheckLimits();
 

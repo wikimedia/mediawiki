@@ -40,7 +40,7 @@ class Profiler
 	{
 		global $wgDebugFunctionEntry;
 		if ( $wgDebugFunctionEntry && function_exists( "wfDebug" ) ) {
-			wfDebug( "Entering $functionname\n" );
+			wfDebug( str_repeat( " ", count( $this->mWorkStack ) ) . "Entering $functionname\n" );
 		}
 		array_push( $this->mWorkStack, array($functionname, count( $this->mWorkStack ), microtime() ) );
 	}
@@ -50,7 +50,7 @@ class Profiler
 		global $wgDebugProfiling, $wgDebugFunctionEntry;
 
 		if ( $wgDebugFunctionEntry && function_exists( "wfDebug" ) ) {
-			wfDebug( "Exiting $functionname\n" );
+			wfDebug( str_repeat( " ", count( $this->mWorkStack ) - 1 ) . "Exiting $functionname\n" );
 		}
 		
 		$bit = array_pop( $this->mWorkStack );
@@ -77,8 +77,11 @@ class Profiler
 		}
 	}
 
-	function getOutput( $scriptStart, $scriptElapsed )
+	function getOutput()
 	{
+		global $wgDebugFunctionEntry;
+		$wgDebugFunctionEntry = false;
+
 		if( !count( $this->mStack ) ) {
 			return "No profiling output\n";
 		}
@@ -148,19 +151,21 @@ class Profiler
 
 	/* static */ function logToDB($name, $timeSum, $eventCount) 
 	{
-		$name = wfStrencode( $name );
-		$sql = "UPDATE profiling ".
+		$dbw =& wfGetDB( DB_WRITE );
+		$profiling = $dbw->tableName( 'profiling' );
+
+		$name = $dbw->strencode( $name );
+		$sql = "UPDATE $profiling ".
 			"SET pf_count=pf_count+{$eventCount}, ".
 			"pf_time=pf_time + {$timeSum} ".
 			"WHERE pf_name='{$name}'";
-		wfQuery($sql , DB_WRITE);
+		$dbw->query($sql);
 
-		$rc = wfAffectedRows();	
+		$rc = $dbw->affectedRows();	
 		if( $rc == 0) {
-			$sql = "INSERT IGNORE INTO profiling (pf_name,pf_count,pf_time) ".
+			$sql = "INSERT IGNORE INTO $profiling (pf_name,pf_count,pf_time) ".
 				"VALUES ('{$name}', {$eventCount}, {$timeSum}) ";
-			wfQuery($sql , DB_WRITE);
-			$rc = wfAffectedRows();    
+			$dbw->query($sql , DB_WRITE);
 		}
 		// When we upgrade to mysql 4.1, the insert+update
 		// can be merged into just a insert with this construct added:

@@ -14,98 +14,32 @@
 #
 # Hashar
 
-require_once( "FulltextStoplist.php" );
-require_once( "CacheManager.php" );
+class DatabasePgsql extends Database {
+	var $mInsertId = NULL;
 
-define( "DB_READ", -1 );
-define( "DB_WRITE", -2 );
-define( "DB_LAST", -3 );
-
-define( "LIST_COMMA", 0 );
-define( "LIST_AND", 1 );
-define( "LIST_SET", 2 );
-
-class Database {
-
-#------------------------------------------------------------------------------
-# Variables
-#------------------------------------------------------------------------------	
-	/* private */ var $mLastQuery = "";
-	/* private */ var $mBufferResults = true;
-	/* private */ var $mIgnoreErrors = false;
-	
-	/* private */ var $mServer, $mUser, $mPassword, $mConn, $mDBname;
-	/* private */ var $mOut, $mDebug, $mOpened = false;
-	
-	/* private */ var $mFailFunction; 
-	/* private */ var $mLastResult;
-
-#------------------------------------------------------------------------------
-# Accessors
-#------------------------------------------------------------------------------
-	# Set functions
-	# These set a variable and return the previous state
-	
-	# Fail function, takes a Database as a parameter
-	# Set to false for default, 1 for ignore errors
-	function setFailFunction( $function ) { return wfSetVar( $this->mFailFunction, $function ); }
-	
-	# Output page, used for reporting errors
-	# FALSE means discard output
-	function &setOutputPage( &$out ) { $this->mOut =& $out; }
-	
-	# Boolean, controls output of large amounts of debug information 
-	function setDebug( $debug ) { return wfSetVar( $this->mDebug, $debug ); }
-	
-	# Turns buffering of SQL result sets on (true) or off (false). Default is
-	# "on" and it should not be changed without good reasons. 
-	function setBufferResults( $buffer ) { return wfSetVar( $this->mBufferResults, $buffer ); }
-
-	# Turns on (false) or off (true) the automatic generation and sending
-	# of a "we're sorry, but there has been a database error" page on
-	# database errors. Default is on (false). When turned off, the
-	# code should use wfLastErrno() and wfLastError() to handle the
-	# situation as appropriate.
-	function setIgnoreErrors( $ignoreErrors ) { return wfSetVar( $this->mIgnoreErrors, $ignoreErrors ); }
-	
-	# Get functions
-	
-	function lastQuery() { return $this->mLastQuery; }
-	function isOpen() { return $this->mOpened; }
-
-#------------------------------------------------------------------------------
-# Other functions
-#------------------------------------------------------------------------------
-
-	function Database()
+	function DatabasePgsql($server = false, $user = false, $password = false, $dbName = false, 
+		$failFunction = false, $debug = false, $bufferResults = true, $ignoreErrors = false)
 	{
-		global $wgOut;
-		# Can't get a reference if it hasn't been set yet
-		if ( !isset( $wgOut ) ) {
-			$wgOut = NULL;
-		}
-		$this->mOut =& $wgOut;
-	
+		Database::Database( $server, $user, $password, $dbName, $failFunction, $debug, 
+		  $bufferResults, $ignoreErrors );
 	}
-	
+
 	/* static */ function newFromParams( $server, $user, $password, $dbName, 
 		$failFunction = false, $debug = false, $bufferResults = true, $ignoreErrors = false )
 	{
-		$db = new Database;
-		$db->mFailFunction = $failFunction;
-		$db->mIgnoreErrors = $ignoreErrors;
-		$db->mDebug = $debug;
-		$db->mBufferResults = $bufferResults;
-		$db->open( $server, $user, $password, $dbName );
-		return $db;
+		return new DatabasePgsql( $server, $user, $password, $dbName, $failFunction, $debug, 
+		  $bufferResults, $ignoreErrors );
 	}
-	
+
 	# Usually aborts on failure
 	# If the failFunction is set to a non-zero integer, returns success
 	function open( $server, $user, $password, $dbName )
 	{
-		global $wgEmergencyContact;
-		
+		# Test for PostgreSQL support, to avoid suppressed fatal error
+		if ( !function_exists( 'pg_connect' ) ) {
+			die( "PostgreSQL functions missing, have you compiled PHP with the --with-pgsql option?\n" );
+		}
+
 		$this->close();
 		$this->mServer = $server;
 		$this->mUser = $user;
@@ -113,7 +47,6 @@ class Database {
 		$this->mDBname = $dbName;
 		
 		$success = false;
-		
 		
 		if ( "" != $dbName ) {
 			# start a database connection
@@ -141,20 +74,9 @@ class Database {
 		}
 	}
 	
-	/* private */ function reportConnectionError( $msg = "")
-	{
-		if ( $this->mFailFunction ) {
-			if ( !is_int( $this->mFailFunction ) ) {
-				$this->$mFailFunction( $this );
-			}
-		} else {
-			wfEmergencyAbort( $this );
-		}
-	}
-	
 	# Usually aborts on failure
 	# If errors are explicitly ignored, returns success
-	function query( $sql, $fname = "" )
+	function query( $sql, $fname = "", $tempIgnore = false )
 	{
 		global $wgProfiling;
 		
@@ -176,10 +98,12 @@ class Database {
 		$ret = pg_query( $this->mConn , $sql);
 		$this->mLastResult = $ret;
 		if ( false == $ret ) {
+			// Ignore errors during error handling to prevent infinite recursion
+			$ignore = $this->setIgnoreErrors( true );
 			$error = pg_last_error( $this->mConn );
 			// TODO FIXME : no error number function in postgre
 			// $errno = mysql_errno( $this->mConn );
-			if( $this->mIgnoreErrors ) {
+			if( $ignore || $tempIgnore ) {
 				wfDebug("SQL ERROR (ignored): " . $error . "\n");
 			} else {
 				wfDebug("SQL ERROR: " . $error . "\n");
@@ -188,12 +112,17 @@ class Database {
 					$this->mOut->databaseError( $fname, $sql, $error, 0 ); 				
 				}
 			}
+			$this->setIgnoreErrors( $ignore );
 		}
 		
 		if ( $wgProfiling ) {
 			wfProfileOut( $profName );
 		}
 		return $ret;
+	}
+	
+	function queryIgnore( $sql, $fname = "" ) {
+		return $this->query( $sql, $fname, true );
 	}
 	
 	function freeResult( $res ) {
@@ -231,150 +160,40 @@ class Database {
 	}
 	function numFields( $res ) { return pg_num_fields( $res ); }
 	function fieldName( $res, $n ) { return pg_field_name( $res, $n ); }
-	// TODO FIXME: need to implement something here
+	
+	# This must be called after nextSequenceVal
 	function insertId() { 
-		//return mysql_insert_id( $this->mConn );
-		wfDebugDieBacktrace( "Database::insertId() error : not implemented for postgre, use sequences" );
+		return $this->mInsertId;
 	}
+
 	function dataSeek( $res, $row ) { return pg_result_seek( $res, $row ); }
-	function lastErrno() { return $this->lastError(); }
 	function lastError() { return pg_last_error(); }
 	function affectedRows() { 
 		return pg_affected_rows( $this->mLastResult ); 
 	}
 	
-	# Simple UPDATE wrapper
-	# Usually aborts on failure
-	# If errors are explicitly ignored, returns success
-	function set( $table, $var, $value, $cond, $fname = "Database::set" )
-	{
-		$sql = "UPDATE \"$table\" SET \"$var\" = '" .
-		  wfStrencode( $value ) . "' WHERE ($cond)";
-		return !!$this->query( $sql, DB_WRITE, $fname );
-	}
-	
-	# Simple SELECT wrapper, returns a single field, input must be encoded
-	# Usually aborts on failure
-	# If errors are explicitly ignored, returns FALSE on failure
-	function get( $table, $var, $cond, $fname = "Database::get" )
-	{
-		$from=$table?" FROM \"$table\" ":"";
-		$where=$cond?" WHERE ($cond)":"";
-
-		$sql = "SELECT $var $from $where";
-
-		$result = $this->query( $sql, DB_READ, $fname );
-	
-		$ret = "";
-		if ( pg_num_rows( $result ) > 0 ) {
-			$s = pg_fetch_array( $result );
-			$ret = $s[0];
-			pg_free_result( $result );
-		}
-		return $ret;
-	}
-	
-	# More complex SELECT wrapper, single row only
-	# Aborts or returns FALSE on error
-	# Takes an array of selected variables, and a condition map, which is ANDed
-	# e.g. getArray( "cur", array( "cur_id" ), array( "cur_namespace" => 0, "cur_title" => "Astronomy" ) )
-	#   would return an object where $obj->cur_id is the ID of the Astronomy article
-	function getArray( $table, $vars, $conds, $fname = "Database::getArray" )
-	{
-		$vars = implode( ",", $vars );
-		$where = Database::makeList( $conds, LIST_AND );
-		$sql = "SELECT \"$vars\" FROM \"$table\" WHERE $where LIMIT 1";
-		$res = $this->query( $sql, $fname );
-		if ( $res === false || !$this->numRows( $res ) ) {
-			return false;
-		}
-		$obj = $this->fetchObject( $res );
-		$this->freeResult( $res );
-		return $obj;
-	}
-	
-	# Removes most variables from an SQL query and replaces them with X or N for numbers.
-	# It's only slightly flawed. Don't use for anything important.
-	/* static */ function generalizeSQL( $sql )
-	{	
-		# This does the same as the regexp below would do, but in such a way
-		# as to avoid crashing php on some large strings.
-		# $sql = preg_replace ( "/'([^\\\\']|\\\\.)*'|\"([^\\\\\"]|\\\\.)*\"/", "'X'", $sql);
-	
-		$sql = str_replace ( "\\\\", "", $sql);
-		$sql = str_replace ( "\\'", "", $sql);
-		$sql = str_replace ( "\\\"", "", $sql);
-		$sql = preg_replace ("/'.*'/s", "'X'", $sql);
-		$sql = preg_replace ('/".*"/s', "'X'", $sql);
-	
-		# All newlines, tabs, etc replaced by single space
-		$sql = preg_replace ( "/\s+/", " ", $sql);
-	
-		# All numbers => N	
-		$sql = preg_replace ('/-?[0-9]+/s', "N", $sql);
-	
-		return $sql;
-	}
-	
-	# Determines whether a field exists in a table
-	# Usually aborts on failure
+	# Returns information about an index
 	# If errors are explicitly ignored, returns NULL on failure
-	function fieldExists( $table, $field, $fname = "Database::fieldExists" )
-	{
-		$res = $this->query( "DESCRIBE '$table'", DB_READ, $fname );
-		if ( !$res ) {
-			return NULL;
-		}
-		
-		$found = false;
-		
-		while ( $row = $this->fetchObject( $res ) ) {
-			if ( $row->Field == $field ) {
-				$found = true;
-				break;
-			}
-		}
-		return $found;
-	}
-	
-	# Determines whether an index exists
-	# Usually aborts on failure
-	# If errors are explicitly ignored, returns NULL on failure
-	function indexExists( $table, $index, $fname = "Database::indexExists" ) 
+	function indexInfo( $table, $index, $fname = "Database::indexExists" ) 
 	{
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='$table'";
-		$res = $this->query( $sql, DB_READ, $fname );
+		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
 			return NULL;
 		}
-		
-		$found = false;
 		
 		while ( $row = $this->fetchObject( $res ) ) {
 			if ( $row->Key_name == $index ) {
-				$found = true;
-				break;
+				return $row;
 			}
 		}
-		return $found;
-	}
-	
-	function tableExists( $table )
-	{
-		$old = $this->mIgnoreErrors;
-		$this->mIgnoreErrors = true;
-		$res = $this->query( "SELECT 1 FROM '$table' LIMIT 1" );
-		$this->mIgnoreErrors = $old;
-		if( $res ) {
-			$this->freeResult( $res );
-			return true;
-		} else {
-			return false;
-		}
+		return false;
 	}
 
 	function fieldInfo( $table, $field )
 	{
+		wfDebugDieBacktrace( "Database::fieldInfo() error : mysql_fetch_field() not implemented for postgre" );
+		/*
 		$res = $this->query( "SELECT * FROM '$table' LIMIT 1" );
 		$n = pg_num_fields( $res );
 		for( $i = 0; $i < $n; $i++ ) {
@@ -385,134 +204,154 @@ class Database {
 				return $meta;
 			}
 		}
-		return false;
+		return false;*/
 	}
 
-	# INSERT wrapper, inserts an array into a table
-	# Keys are field names, values are values
-	# Usually aborts on failure
-	# If errors are explicitly ignored, returns success
-	function insertArray( $table, $a, $fname = "Database::insertArray" )
-	{
-		$sql1 = "INSERT INTO \"$table\" (";
-		$sql2 = "VALUES (" . Database::makeList( $a );
-		$first = true;
-		foreach ( $a as $field => $value ) {
-			if ( !$first ) {
-				$sql1 .= ",";
-			}
-			$first = false;
-			$sql1 .= $field;
+	function insertArray( $table, $a, $fname = "Database::insertArray", $options = array() ) {
+		# PostgreSQL doesn't support options
+		# We have a go at faking some of them
+		if ( in_array( 'IGNORE', $options ) ) {
+			$ignore = true;
+			$oldIgnore = $this->setIgnoreErrors( true );
 		}
-		$sql = "$sql1) $sql2)";
-		return !!$this->query( $sql, $fname );
-	}
-	
-	# A cross between insertArray and getArray, takes a condition array and a SET array
-	function updateArray( $table, $values, $conds, $fname = "Database::updateArray" )
-	{
-		$sql = "UPDATE '$table' SET " . $this->makeList( $values, LIST_SET );
-		$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
-		$this->query( $sql, $fname );
-	}
-	
-	# Makes a wfStrencoded list from an array
-	# $mode: LIST_COMMA - comma separated, no field names
-	#        LIST_AND   - ANDed WHERE clause (without the WHERE)
-	#        LIST_SET   - comma separated with field names, like a SET clause
-	/* static */ function makeList( $a, $mode = LIST_COMMA )
-	{
-		$first = true;
-		$list = "";
-		foreach ( $a as $field => $value ) {
-			if ( !$first ) {
-				if ( $mode == LIST_AND ) {
-					$list .= " AND ";
-				} else {
-					$list .= ",";
-				}
-			} else {
-				$first = false;
-			}
-			if ( $mode == LIST_AND || $mode == LIST_SET ) {
-				$list .= "$field=";
-			}
-			if ( !is_numeric( $value ) ) {
-				$list .= "'" . wfStrencode( $value ) . "'";
-			} else {
-				$list .= $value;
-			}
+		$retVal = parent::insertArray( $table, $a, $fname, array() );
+		if ( $ignore ) {
+			$this->setIgnoreErrors( $oldIgnore );
 		}
-		return $list;
+		return $retVal;
 	}
 	
 	function startTimer( $timeout )
 	{
 		global $IP;
 		wfDebugDieBacktrace( "Database::startTimer() error : mysql_thread_id() not implemented for postgre" );
-		$tid = mysql_thread_id( $this->mConn );
-		exec( "php $IP/killthread.php $timeout $tid &>/dev/null &" );
+		/*$tid = mysql_thread_id( $this->mConn );
+		exec( "php $IP/killthread.php $timeout $tid &>/dev/null &" );*/
 	}
 
-	function stopTimer()
-	{
+	function tableName( $name ) {
+		# First run any transformations from the parent object
+		$name = parent::tableName( $name );
+
+		# Now quote PG reserved keywords
+		switch( $name ) {
+			case 'user':
+				return '"user"';
+			case 'old':
+				return '"old"';
+			default:
+				return $name;
+		}
 	}
 
-}
+	function strencode( $s ) {
+		return pg_escape_string( $s );
+	}
 
-#------------------------------------------------------------------------------
-# Global functions
-#------------------------------------------------------------------------------
+	# Return the next in a sequence, save the value for retrieval via insertId()
+	function nextSequenceValue( $seqName ) {
+		$value = $this->getField(""," nextval('" . $seqName . "')");
+		$this->mInsertId = $value;
+		return $value;
+	}
 
-/* Standard fail function, called by default when a connection cannot be established
-   Displays the file cache if possible */
-function wfEmergencyAbort( &$conn ) {
-	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgSiteNotice, $wgOutputEncoding;
-	
-	header( "Content-type: text/html; charset=$wgOutputEncoding" );
-	$msg = $wgSiteNotice;
-	if($msg == "") $msg = wfMsgNoDB( "noconnect" );
-	$text = $msg;
+	# USE INDEX clause
+	# PostgreSQL doesn't have them and returns ""
+	function useIndexClause( $index ) {
+		return '';
+	}
 
-	if($wgUseFileCache) {
-		if($wgTitle) {
-			$t =& $wgTitle;
-		} else {
-			if($title) {
-				$t = Title::newFromURL( $title );
-			} elseif (@$_REQUEST['search']) {
-				$search = $_REQUEST['search'];
-				echo wfMsgNoDB( "searchdisabled" );
-				echo wfMsgNoDB( "googlesearch", htmlspecialchars( $search ), $wgInputEncoding );
-				wfAbruptExit();
-			} else {
-				$t = Title::newFromText( wfMsgNoDB( "mainpage" ) );
+	# REPLACE query wrapper
+	# PostgreSQL simulates this with a DELETE followed by INSERT
+	# $row is the row to insert, an associative array
+	# $uniqueIndexes is an array of indexes. Each element may be either a 
+	# field name or an array of field names
+	#
+	# It may be more efficient to leave off unique indexes which are unlikely to collide. 
+	# However if you do this, you run the risk of encountering errors which wouldn't have 
+	# occurred in MySQL
+	function replace( $table, $uniqueIndexes, $rows, $fname = "Database::replace" ) {
+		$table = $this->tableName( $table );
+
+		# Delete rows which collide
+		if ( $uniqueIndexes ) {
+			$sql = "DELETE FROM $table WHERE (";
+			$first = true;
+			foreach ( $uniqueIndexes as $index ) {
+				if ( $first ) {
+					$first = false;
+				} else {
+					$sql .= ") OR (";
+				}
+				if ( is_array( $col ) ) {
+					$first2 = true;
+					$sql .= "(";
+					foreach ( $index as $col ) {
+						if ( $first2 ) { 
+							$first2 = false;
+						} else {
+							$sql .= " AND ";
+						}
+						$sql .= "$col = " $this->strencode
+						
+				if ( $first ) {
+					$first = false;
+				} else {
+					$sql .= "OR ";
+				}
+				$sql .= "$col IN (";
+				$indexValues = array();
+				foreach ( $rows as $row ) {
+					$indexValues[] = $row[$col];
+				}
+				$sql .= $this->makeList( $indexValues, LIST_COMMA ) . ") ";
 			}
+			$this->query( $sql, $fname );
 		}
 
-		$cache = new CacheManager( $t );
-		if( $cache->isFileCached() ) {
-			$msg = "<p style='color: red'><b>$msg<br />\n" .
-				wfMsgNoDB( "cachederror" ) . "</b></p>\n";
-			
-			$tag = "<div id='article'>";
-			$text = str_replace(
-				$tag,
-				$tag . $msg,
-				$cache->fetchPageText() );
+		# Now insert the rows
+		$sql = "INSERT INTO $table (" . $this->makeList( array_flip( $rows[0] ) ) .") VALUES ";
+		$first = true;
+		foreach ( $rows as $row ) {
+			if ( $first ) {
+				$first = false;
+			} else {
+				$sql .= ",";
+			}
+			$sql .= "(" . $this->makeList( $row, LIST_COMMA ) . ")";
 		}
+		$this->query( $sql, $fname );
+	}
+
+	# DELETE where the condition is a join
+	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = "Database::deleteJoin" ) {
+		if ( !$conds ) {
+			wfDebugDieBacktrace( 'Database::deleteJoin() called with empty $conds' );
+		}
+
+		$delTable = $this->tableName( $delTable );
+		$joinTable = $this->tableName( $joinTable );
+		$sql = "DELETE FROM $delTable WHERE $delVar IN (SELECT $joinVar FROM $joinTable ";
+		if ( $conds != '*' ) {
+			$sql .= "WHERE " . $this->makeList( $conds, LIST_AND );
+		}
+		$sql .= ")";
+
+		$this->query( $sql, $fname );
+	}
+
+	# Returns the size of a text field, or -1 for "unlimited"
+	function textFieldSize( $table, $field ) {
+		$table = $this->tableName( $table );
+		$res = $this->query( "SELECT $field FROM $table LIMIT 1", "Database::textFieldLength" );
+		$size = pg_field_size( $res, 0 );
+		$this->freeResult( $res );
+		return $size;
 	}
 	
-	/* Don't cache error pages!  They cause no end of trouble... */
-	header( "Cache-control: none" );
-	header( "Pragma: nocache" );
-	echo $text;
-	wfAbruptExit();
-}
-
-function wfStrencode( $s )
-{
-	return pg_escape_string( $s );
+	function lowPriorityOption() {
+		return '';
+	}
 }
 
 function wfLimitResult( $limit, $offset ) {

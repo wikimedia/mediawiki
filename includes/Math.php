@@ -54,10 +54,10 @@ class MathRenderer {
 				return $this->_error( "math_notexvc" );
 			}
 			$cmd = $wgTexvc." ".
-				escapeshellarg($wgTmpDirectory)." ".
-				escapeshellarg($wgMathDirectory)." ".
-				escapeshellarg($this->tex)." ".
-				escapeshellarg($wgInputEncoding);
+				wfEscapeShellArg($wgTmpDirectory)." ".
+				wfEscapeShellArg($wgMathDirectory)." ".
+				wfEscapeShellArg($this->tex)." ".
+				wfEscapeShellArg($wgInputEncoding);
 			wfDebug( "TeX: $cmd" );
 			$contents = `$cmd`;
 		
@@ -79,9 +79,6 @@ class MathRenderer {
 		
 				$this->html = substr($outdata, 0, $i);
 				$this->mathml = substr($outdata, $i+1);
-		
-				$sql_html = "'".wfStrencode($this->html)."'";
-				$sql_mathml = "'".wfStrencode($this->mathml)."'";
 			} else if (($retval == "c") || ($retval == "m") || ($retval == "l"))  {
 				$this->html = substr ($contents, 33);
 				if ($retval == "c")
@@ -90,20 +87,14 @@ class MathRenderer {
 					$this->conservativeness = 1;
 				else
 					$this->conservativeness = 0;
-				$sql_html = "'".wfStrencode($this->html)."'";
-				$this->mathml = '';
-				$sql_mathml = 'NULL';
+				$this->mathml = NULL;
 			} else if ($retval == "X") {
-				$outhtml = '';
+				$outhtml = NULL;
 				$this->mathml = substr ($contents, 33);
-				$sql_html = 'NULL';
-				$sql_mathml = "'".wfStrencode($this->mathml)."'";
 				$this->conservativeness = 0;
 			} else if ($retval == "+") {
-				$this->outhtml = '';
-				$this->mathml = '';
-				$sql_html = 'NULL';
-				$sql_mathml = 'NULL';
+				$this->outhtml = NULL;
+				$this->mathml = NULL;
 				$this->conservativeness = 0;
 			} else {
 				$errbit = htmlspecialchars( substr($contents, 1) );
@@ -125,13 +116,21 @@ class MathRenderer {
 			}
 			
 			# Now save it back to the DB:
-			$outmd5_sql = wfStrencode(pack("H32", $this->hash));
+			$outmd5_sql = pack("H32", $this->hash);
 		
-			$md5_sql = wfStrencode( pack("H32", $this->md5) ); # Binary packed, not hex
-			$sql = "REPLACE INTO math VALUES ('".$md5_sql."', '".$outmd5_sql."', ".$this->conservativeness.", ".$sql_html.", ".$sql_mathml.")";
+			$md5_sql = pack("H32", $this->md5); # Binary packed, not hex
 			
-			$res = wfQuery( $sql, DB_WRITE, "MathRenderer::render" );
-			# we don't really care if it fails
+			$dbw =& wfGetDB( DB_WRITE );
+			$dbw->replace( 'math', array( 'math_inputhash' ),
+			  array( 
+				'math_inputhash' => $md5_sql, 
+				'math_outputhash' => $outmd5_sql,
+				'math_html_conservativeness' => $this->conservativeness,
+				'math_html' => $outhtml,
+				'math_mathml' => $mathml,
+			  ), $fname, array( 'IGNORE' ) 
+			);
+			
 		}
 		
 		return $this->_doRender();
@@ -147,14 +146,17 @@ class MathRenderer {
 	
 	function _recall() {
 		global $wgMathDirectory;
-		
+		$fname = 'MathRenderer::_recall';
+
 		$this->md5 = md5( $this->tex );
-		
-		$md5_sql = wfStrencode( pack("H32", $this->md5) ); # Binary packed, not hex
-		$sql = "SELECT math_outputhash,math_html_conservativeness,math_html,math_mathml FROM math WHERE math_inputhash = '$md5_sql'";
-		$res = wfQuery( $sql, DB_READ, "MathRenderer::_recall" );
-		
-		if( $rpage = wfFetchObject ( $res ) ) {
+		$dbr =& wfGetDB( DB_READ );
+		$rpage = $dbr->getArray( 'math', 
+			array( 'math_outputhash','math_html_conservativeness','math_html','math_mathml' ),
+			array( 'math_inputhash' => pack("H32", $this->md5), # Binary packed, not hex
+			$fname
+		);
+
+		if( $rpage !== false ) {
 			# Tailing 0x20s can get dropped by the database, add it back on if necessary:
 			$xhash = unpack( "H32md5", $rpage->math_outputhash . "                " );
 			$this->hash = $xhash ['md5'];

@@ -1,6 +1,8 @@
 <?php
 # Database load balancing object
 
+require_once( "Database.php" );
+
 # Valid database indexes
 # Operation-based indexes
 define( "DB_READ", -1 );     # Read from the slave (or only server)
@@ -20,43 +22,41 @@ define( "DB_TASK_LAST", 1004) ;   # Last in list
 
 class LoadBalancer {
 	/* private */ var $mServers, $mConnections, $mLoads;
-	/* private */ var $mUser, $mPassword, $mDbName, $mFailFunction;
+	/* private */ var $mFailFunction;
 	/* private */ var $mForce, $mReadIndex, $mLastConn;
 
 	function LoadBalancer()
 	{
 		$this->mServers = array();
-		$this->mLoads = array();
 		$this->mConnections = array();
-		$this->mUser = false;
-		$this->mPassword = false;
-		$this->mDbName = false;
 		$this->mFailFunction = false;
 		$this->mReadIndex = -1;
 		$this->mForce = -1;
 		$this->mLastConn = false;
 	}
 
-	function newFromParams( $servers, $loads, $user, $password, $dbName, $failFunction = false )
+	function newFromParams( $servers, $failFunction = false )
 	{
 		$lb = new LoadBalancer;
-		$lb->initialise( $servers, $loads, $user, $password, $dbName, $failFunction = false );
+		$lb->initialise( $servers, $failFunction = false );
 		return $lb;
 	}
 
-	function initialise( $servers, $loads, $user, $password, $dbName, $failFunction = false )
+	function initialise( $servers, $failFunction = false )
 	{
 		$this->mServers = $servers;
-		$this->mLoads = $loads;
-		$this->mUser = $user;
-		$this->mPassword = $password;
-		$this->mDbName = $dbName;
 		$this->mFailFunction = $failFunction;
 		$this->mReadIndex = -1;
 		$this->mWriteIndex = -1;
 		$this->mForce = -1;
 		$this->mConnections = array();
 		$this->mLastConn = false;
+		$this->mLoads = array();
+
+		foreach( $servers as $i => $server ) {
+			$this->mLoads[$i] = $server['load'];
+		}
+
 		wfSeedRandom();
 	}
 	
@@ -99,7 +99,7 @@ class LoadBalancer {
 				do {
 					$i = $this->pickRandom( $loads );
 					if ( $i !== false ) {
-						wfDebug( "Using reader #$i: {$this->mServers[$i]}\n" );
+						wfDebug( "Using reader #$i: {$this->mServers[$i]['host']}\n" );
 
 						$conn =& $this->getConnection( $i );
 						if ( !$conn->isOpen() ) {
@@ -148,11 +148,10 @@ class LoadBalancer {
 		} else {
 			# Explicit index
 			if ( !array_key_exists( $i, $this->mConnections) || !$this->mConnections[$i]->isOpen() ) {
-				$this->mConnections[$i] = Database::newFromParams( $this->mServers[$i], $this->mUser, 
-				  $this->mPassword, $this->mDbName, 1 );
+				$this->mConnections[$i] = $this->makeConnection( $this->mServers[$i] );
 			}
 			if ( !$this->mConnections[$i]->isOpen() ) {
-				wfDebug( "Failed to connect to database $i at {$this->mServers[$i]}\n" );
+				wfDebug( "Failed to connect to database $i at {$this->mServers[$i]['host']}\n" );
 				if ( $fail ) {
 					$this->reportConnectionError( $this->mConnections[$i] );
 				}
@@ -163,6 +162,18 @@ class LoadBalancer {
 		return $this->mLastConn;
 	}
 
+	/* private */ function makeConnection( &$server ) {
+			extract( $server );
+			# Get class for this database type
+			$class = 'Database' . ucfirst( $type );
+			if ( !class_exists( $class ) ) {
+				require_once( "$class.php" );
+			}
+
+			# Create object
+			return new $class( $host, $user, $password, $dbname, 1 );
+	}
+	
 	function reportConnectionError( &$conn )
 	{
 		if ( !is_object( $conn ) ) {

@@ -95,7 +95,8 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		$wgArticle = new Article( $wgTitle );
 	}
 
-	wfQuery("BEGIN", DB_WRITE);
+	$db =& wfGetDB( DB_WRITE );
+	$db->query("BEGIN", DB_WRITE);
 	switch( $action ) {
 		case "view":
 			$wgOut->setSquidMaxage( $wgSquidMaxage );
@@ -165,7 +166,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		default:
 			$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
 	}
-	wfQuery("COMMIT", DB_WRITE);
+	$db->query("COMMIT");
 }
 
 $wgOut->output();

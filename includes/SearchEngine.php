@@ -157,21 +157,17 @@ class SearchEngine {
 	{
 		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgRequest;
 		global $wgDisableTextSearch, $wgInputEncoding;
-		global $wgLoadBalancer;
-				
-                $wgLoadBalancer->force(-1);
-
-                $fname = "SearchEngine::showResults";
+		$fname = "SearchEngine::showResults";
 
 		$search = $wgRequest->getText( 'search' );
 
 		$powersearch = $this->powersearch(); /* Need side-effects here? */
 
 		$this->setupPage();
-		
+
 		$sk = $wgUser->getSkin();
 		$header = wfMsg( "searchresulttext", $sk->makeKnownLink(
-		  wfMsg( "searchhelppage" ), wfMsg( "searchingwikipedia" ) ) );
+					wfMsg( "searchhelppage" ), wfMsg( "searchingwikipedia" ) ) );
 		$wgOut->addHTML( $header );
 
 		$this->parseQuery();
@@ -284,8 +280,7 @@ class SearchEngine {
 			$wgOut->addHTML( "<p>{$sl}</p>\n" );
 			$wgOut->addHTML( $powersearch );
 		}
-	        $wgLoadBalancer->force(0);
-        }
+	}
 
 	function legalSearchChars()
 	{

@@ -17,7 +17,7 @@ class PageHistory {
 
 	function history()
 	{
-		global $wgUser, $wgOut, $wgLang, $wgIsMySQL, $wgIsPg;
+		global $wgUser, $wgOut, $wgLang;
 
 		# If page hasn't changed, client can cache this
 		
@@ -54,17 +54,20 @@ class PageHistory {
 		
 		$namespace = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getText();
-		$use_index=$wgIsMySQL?"USE INDEX (name_title_timestamp)":"";
-		$oldtable=$wgIsPg?'"old"':'old';
+		
+		$db =& wfGetDB( DB_READ );
+		$use_index = $db->useIndexClause( 'name_title_timestamp' );
+		$oldtable = $db->tableName( 'old' );
+
 		$sql = "SELECT old_id,old_user," .
 		  "old_comment,old_user_text,old_timestamp,old_minor_edit ".
 		  "FROM $oldtable $use_index " .
 		  "WHERE old_namespace={$namespace} AND " .
-		  "old_title='" . wfStrencode( $this->mTitle->getDBkey() ) . "' " .
+		  "old_title='" . $db->strencode( $this->mTitle->getDBkey() ) . "' " .
 		  "ORDER BY inverse_timestamp".wfLimitResult($limitplus,$rawoffset);
-		$res = wfQuery( $sql, DB_READ, $fname );
+		$res = $db->query( $sql, $fname );
 
-		$revs = wfNumRows( $res );
+		$revs = $db->numRows( $res );
 		
 		if( $revs < $limitplus ) // the sql above tries to fetch one extra
 			$this->linesonpage = $revs;
@@ -98,7 +101,7 @@ class PageHistory {
 				$counter++
 			);
 		}
-		while ( $line = wfFetchObject( $res ) ) {
+		while ( $line = $db->fetchObject( $res ) ) {
 			$s .= $this->historyLine( 
 				$line->old_timestamp, $line->old_user,
 				$line->old_user_text, $namespace,

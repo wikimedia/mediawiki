@@ -392,9 +392,9 @@ function wfDebugDieBacktrace( $msg = '' ) {
 			$f = explode( DIRECTORY_SEPARATOR, $call['file'] );
 			$file = $f[count($f)-1];
 			if ( $wgCommandLineMode ) {
-				$msg .= "$file line {$call['line']}, in ";
+				$msg .= "$file line {$call['line']} calls ";
 			} else {
-				$msg .= '<li>' . $file . " line " . $call['line'] . ', in ';
+				$msg .= '<li>' . $file . " line " . $call['line'] . ' calls ';
 			}
 			if( !empty( $call['class'] ) ) $msg .= $call['class'] . '::';
 			$msg .= $call['function'] . "()";
@@ -420,15 +420,18 @@ function wfNumberOfArticles()
 /* private */ function wfLoadSiteStats()
 {
 	global $wgNumberOfArticles, $wgTotalViews, $wgTotalEdits;
+	$fname = 'wfLoadSiteStats';
+
 	if ( -1 != $wgNumberOfArticles ) return;
+	$dbr =& wfGetDB( DB_READ );
+	$s = $dbr->getArray( 'site_stats', 
+		array( 'ss_total_views', 'ss_total_edits', 'ss_good_articles' ),
+		array( 'ss_row_id' => 1 ), $fname
+	);
 
-	$sql = 'SELECT ss_total_views, ss_total_edits, ss_good_articles ' .
-	  'FROM site_stats WHERE ss_row_id=1';
-	$res = wfQuery( $sql, DB_READ, 'wfLoadSiteStats' );
-
-	if ( 0 == wfNumRows( $res ) ) { return; }
-	else {
-		$s = wfFetchObject( $res );
+	if ( $s === false ) { 
+		return; 
+	} else {
 		$wgTotalViews = $s->ss_total_views;
 		$wgTotalEdits = $s->ss_total_edits;
 		$wgNumberOfArticles = $s->ss_good_articles;
@@ -505,10 +508,14 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 	global $wgUseCopyrightUpload; 
 	
 	$fname = 'wfRecordUpload';
-
-	$sql = 'SELECT img_name,img_size,img_timestamp,img_description,img_user,' .
-	  "img_user_text FROM image WHERE img_name='" . wfStrencode( $name ) . "'";
-	$res = wfQuery( $sql, DB_READ, $fname );
+	$dbw =& wfGetDB( DB_WRITE );
+	
+	# img_name must be unique
+	$indexInfo = $dbw->indexInfo( 'image', 'img_name' );
+	if ( $indexInfo && $indexInfo->Non_unique ) {
+		wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/archives/patch-img_name_unique.sql' );
+	}
+			
 
 	$now = wfTimestampNow();
 	$won = wfInvertTimestamp( $now );
@@ -524,15 +531,24 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 
 	$now = wfTimestampNow();
 	$won = wfInvertTimestamp( $now );
-	
-	if ( 0 == wfNumRows( $res ) ) {
-		$sql = 'INSERT INTO image (img_name,img_size,img_timestamp,' .
-		  "img_description,img_user,img_user_text) VALUES ('" .
-		  wfStrencode( $name ) . "',$size,'{$now}','" .
-		  wfStrencode( $desc ) . "', '" . $wgUser->getID() .
-		  "', '" . wfStrencode( $wgUser->getName() ) . "')";
-		wfQuery( $sql, DB_WRITE, $fname );
 
+	# Test to see if the row exists using INSERT IGNORE
+	# This avoids race conditions by locking the row until the commit, and also 
+	# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
+	$dbw->insertArray( 'image', 
+		array(
+			'img_name' => $name,
+			'img_size'=> $size,
+			'img_timestamp' => $now,
+			'img_description' => $desc,
+			'img_user' => $wgUser->getID(),
+			'img_user_text' => $wgUser->getName(),
+		), $fname, 'IGNORE'
+	);
+
+	if ( $dbw->affectedRows() ) {
+		# Successfully inserted, this is a new image
+		
 		$sql = 'SELECT cur_id,cur_text FROM cur WHERE cur_namespace=' .
 		  Namespace::getImage() . " AND cur_title='" .
 		  wfStrencode( $name ) . "'";
@@ -559,6 +575,9 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 			$u->doUpdate();
 		}
 	} else {
+		# Collision, this is an update of an image
+		$s = $dbw->getArray( 'image', array( 'img_name','img_size','img_timestamp','img_description',
+		  'img_user','img_user_text' ), array( 'img_name' => $name ), $fname, 'FOR UPDATE' );
 		$s = wfFetchObject( $res );
 
 		$sql = 'INSERT INTO oldimage (oi_name,oi_archive_name,oi_size,' .
@@ -999,5 +1018,29 @@ function wfInvertTimestamp( $ts ) {
 	);
 }
 
+# Reference-counted warning suppression
+function wfSuppressWarnings( $end = false ) {
+	static $suppressCount = 0;
+	static $originalLevel = false;
+
+	if ( $end ) {
+		if ( $suppressCount ) {
+			$suppressCount --;
+			if ( !$suppressCount ) {
+				error_reporting( $originalLevel );
+			}
+		}
+	} else {
+		if ( !$suppressCount ) {
+			$originalLevel = error_reporting( E_ALL & ~( E_WARNING | E_NOTICE ) );
+		}
+		$suppressCount++;
+	}
+}
+
+# Restore error level to previous value
+function wfRestoreWarnings() {
+	wfSuppressWarnings( true );
+}
 
 ?>

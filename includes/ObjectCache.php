@@ -285,16 +285,20 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 
 class MediaWikiBagOStuff extends SqlBagOStuff {
 	function _doquery($sql) {
-		return wfQuery($sql, DB_READ, "MediaWikiBagOStuff:_doquery");
+		$dbw = wfGetDB( DB_WRITE );
+		return $dbw->query($sql, "MediaWikiBagOStuff:_doquery");
 	}
 	function _fetchobject($result) {
-		return wfFetchObject($result);
+		$dbw = wfGetDB( DB_WRITE );
+		return $dbw->fetchObject($result);
 	}
 	function _freeresult($result) {
-		return wfFreeResult($result);
+		$dbw = wfGetDB( DB_WRITE );
+		return $dbw->freeResult($result);
 	}
 	function _dberror($result) {
-		return wfLastError();
+		$dbw = wfGetDB( DB_WRITE );
+		return $dbw->lastError();
 	}
 	function _maxdatetime() {
 		return "9999-12-31 12:59:59";
@@ -303,7 +307,8 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 		return gmdate( "Y-m-d H:i:s", $ts );
 	}
 	function _strencode($s) {
-		return wfStrEncode($s);
+		$dbw = wfGetDB( DB_WRITE );
+		return $dbw->strencode($s);
 	}
 }
 

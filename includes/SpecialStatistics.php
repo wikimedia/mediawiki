@@ -2,22 +2,22 @@
 
 function wfSpecialStatistics()
 {
-	global $wgUser, $wgOut, $wgLang, $wgIsPg, $wgLoadBalancer;
+	global $wgUser, $wgOut, $wgLang;
 	$fname = "wfSpecialStatistics";
 
-	$wgLoadBalancer->force(-1);
-
 	$wgOut->addHTML( "<h2>" . wfMsg( "sitestats" ) . "</h2>\n" );
+	
+	$db =& wfGetDB( DB_READ );
 
 	$sql = "SELECT COUNT(cur_id) AS total FROM cur";
-	$res = wfQuery( $sql, DB_READ, $fname );
-	$row = wfFetchObject( $res );
+	$res = $db->query( $sql, $fname );
+	$row = $db->fetchObject( $res );
 	$total = $row->total;
 
 	$sql = "SELECT ss_total_views, ss_total_edits, ss_good_articles " .
 	  "FROM site_stats WHERE ss_row_id=1";
-	$res = wfQuery( $sql, DB_READ, $fname );
-	$row = wfFetchObject( $res );
+	$res = $db->query( $sql, $fname );
+	$row = $db->fetchObject( $res );
 	$views = $row->ss_total_views;
 	$edits = $row->ss_total_edits;
 	$good = $row->ss_good_articles;
@@ -33,16 +33,16 @@ function wfSpecialStatistics()
 	$wgOut->addWikiText( $text );
 	$wgOut->addHTML( "<h2>" . wfMsg( "userstats" ) . "</h2>\n" );
 
-	$usertable=$wgIsPg?'"user"':'user';
+	$usertable = $db->tableName( 'user' );
 	$sql = "SELECT COUNT(user_id) AS total FROM $usertable";
-	$res = wfQuery( $sql, DB_READ, $fname );
-	$row = wfFetchObject( $res );
+	$res = $db->query( $sql, $fname );
+	$row = $db->fetchObject( $res );
 	$total = $row->total;
 
 	$sql = "SELECT COUNT(user_id) AS total FROM $usertable " .
 	  "WHERE user_rights LIKE '%sysop%'";
-	$res = wfQuery( $sql, DB_READ, $fname );
-	$row = wfFetchObject( $res );
+	$res = $db->query( $sql, $fname );
+	$row = $db->fetchObject( $res );
 	$admins = $row->total;
 
 	$sk = $wgUser->getSkin();
@@ -53,7 +53,6 @@ function wfSpecialStatistics()
 		$wgLang->formatNum( $admins ), $ap );
 	$wgOut->addWikiText( $text );
 
-	$wgLoadBalancer->force(0);
 }
 
 ?>

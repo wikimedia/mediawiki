@@ -10,18 +10,6 @@
 
 # Note: $wgDatabase has ceased to exist. Destroy all references.
 
-$wgIsMySQL=false;
-$wgIsPg=false;
-
-if ($wgDBtype=="mysql") {
-    require_once( "Database.php" );
-    $wgIsMySQL=true;
-} elseif ($wgDBtype=="pgsql") {
-    require_once( "DatabasePostgreSQL.php" );
-    $wgIsPg=true;
-} 
-
-
 # Usually aborts on failure
 # If errors are explicitly ignored, returns success
 function wfQuery( $sql, $db, $fname = "" )
@@ -220,7 +208,7 @@ function wfGetSQL( $table, $var, $cond="", $dbi = DB_LAST )
 {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {
-		return $db->get( $table, $var, $cond );
+		return $db->getField( $table, $var, $cond );
 	} else {	
 		return false;
 	}
@@ -277,4 +265,40 @@ function wfUpdateArray( $table, $values, $conds, $fname = "wfUpdateArray", $dbi 
 	}
 }
 
+function wfTableName( $name, $dbi = DB_LAST ) {
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->tableName( $name );
+	} else {
+		return false;
+	}
+}
+
+function wfStrencode( $s, $dbi = DB_LAST )
+{
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->strencode( $s );
+	} else {
+		return false;
+	}
+}
+
+function wfNextSequenceValue( $seqName, $dbi = DB_WRITE ) {
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->nextSequenceValue( $seqName );
+	} else {
+		return false;
+	}
+}
+
+function wfUseIndexClause( $index, $dbi = DB_READ ) {
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->useIndexClause( $index );
+	} else {
+		return false;
+	}
+}
 ?>

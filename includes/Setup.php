@@ -70,9 +70,10 @@ global $wgUser, $wgLang, $wgOut, $wgTitle;
 global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
 global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
 global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
-global $wgMsgCacheExpiry, $wgDBname, $wgCommandLineMode;
+global $wgMsgCacheExpiry, $wgCommandLineMode;
 global $wgBlockCache, $wgParserCache, $wgParser, $wgDBConnections;
-global $wgLoadBalancer, $wgDBservers, $wgDBloads, $wgDBuser, $wgDBpassword;
+global $wgLoadBalancer, $wgDBservers;
+global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype;
 
 # Useful debug output
 if ( $wgCommandLineMode ) {
@@ -146,10 +147,16 @@ wfProfileOut( $fname.'-memcached' );
 wfProfileIn( $fname.'-database' );
 
 if ( !$wgDBservers ) {
-	$wgDBservers = array( $wgDBserver );
-	$wgDBloads = array( 1 );
+	$wgDBservers = array(array( 
+		'host' => $wgDBserver,
+		'user' => $wgDBuser,
+		'password' => $wgDBpassword,
+		'dbname' => $wgDBname,
+		'type' => $wgDBtype,
+		'load' => 1
+	));
 }
-$wgLoadBalancer = LoadBalancer::newFromParams( $wgDBservers, $wgDBloads, $wgDBuser, $wgDBpassword, $wgDBname );
+$wgLoadBalancer = LoadBalancer::newFromParams( $wgDBservers );
 $wgLoadBalancer->force(0);
 
 wfProfileOut( $fname.'-database' );

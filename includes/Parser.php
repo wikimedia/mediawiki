@@ -343,6 +343,8 @@ class Parser
 	# This method generates the list of subcategories and pages for a category
 	function oldCategoryMagic () {
 		global $wgLang , $wgUser ;
+		$fname = 'Parser::oldCategoryMagic';
+
 		if ( !$this->mOptions->getUseCategoryMagic() ) return ; # Doesn't use categories at all
 
 		$cns = Namespace::getCategory() ;
@@ -359,10 +361,15 @@ class Parser
 		$id = $this->mTitle->getArticleID() ;
 
 		# FIXME: add limits
-		$t = wfStrencode( $this->mTitle->getDBKey() );
-		$sql = "SELECT DISTINCT cur_title,cur_namespace FROM cur,categorylinks WHERE cl_to='$t' AND cl_from=cur_id ORDER BY cl_sortkey" ;
-		$res = wfQuery ( $sql, DB_READ ) ;
-		while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
+		$dbr =& wfGetDB( DB_READ );
+		$cur = $dbr->tableName( 'cur' );
+		$categorylinks = $dbr->tableName( 'categorylinks' );
+
+		$t = $dbr->strencode( $this->mTitle->getDBKey() );
+		$sql = "SELECT DISTINCT cur_title,cur_namespace FROM $cur,$categorylinks " .
+			"WHERE cl_to='$t' AND cl_from=cur_id ORDER BY cl_sortkey" ;
+		$res = $dbr->query( $sql, $fname ) ;
+		while ( $x = $dbr->fetchObject ( $res ) ) $data[] = $x ;
 
 		# For all pages that link to this category
 		foreach ( $data AS $x )
@@ -377,7 +384,7 @@ class Parser
 				array_push ( $articles , $sk->makeLink ( $t ) ) ; # Page in this category
 			}
 		}
-		wfFreeResult ( $res ) ;
+		$dbr->freeResult ( $res ) ;
 
 		# Showing subcategories
 		if ( count ( $children ) > 0 ) {
@@ -392,7 +399,6 @@ class Parser
 			$r .= "<h2>{$h}</h2>\n" ;
 			$r .= implode ( ', ' , $articles ) ;
 		}
-
 
 		return $r ;
 	}
@@ -419,12 +425,15 @@ class Parser
 		$id = $this->mTitle->getArticleID() ;
 
 		# FIXME: add limits
-		$t = wfStrencode( $this->mTitle->getDBKey() );
-		$sql = "SELECT DISTINCT cur_title,cur_namespace,cl_sortkey FROM 
-cur,categorylinks WHERE cl_to='$t' AND cl_from=cur_id ORDER BY 
-cl_sortkey" ;
-		$res = wfQuery ( $sql, DB_READ ) ;
-		while ( $x = wfFetchObject ( $res ) )
+		$dbr =& wfGetDB( DB_READ );
+		$cur = $dbr->tableName( 'cur' );
+		$categorylinks = $dbr->tableName( 'categorylinks' );
+		
+		$t = $dbr->strencode( $this->mTitle->getDBKey() );
+		$sql = "SELECT DISTINCT cur_title,cur_namespace,cl_sortkey FROM " .
+			"$cur,$categorylinks WHERE cl_to='$t' AND cl_from=cur_id ORDER BY cl_sortkey" ;
+		$res = $dbr->query ( $sql ) ;
+		while ( $x = $dbr->fetchObject ( $res ) )
 		{
 			$t = $ns = $wgLang->getNsText ( $x->cur_namespace ) ;
 			if ( $t != '' ) $t .= ':' ;
@@ -448,7 +457,7 @@ cl_sortkey" ;
 				array_push ( $articles_start_char, $wgLang->firstChar( $x->cl_sortkey ) ) ;
 			}
 		}
-		wfFreeResult ( $res ) ;
+		$dbr->freeResult ( $res ) ;
 
 		$ti = $this->mTitle->getText() ;
 
@@ -665,6 +674,9 @@ cl_sortkey" ;
 
 	# parse the wiki syntax used to render tables
 	function doTableStuff ( $t ) {
+		$fname = 'Parser::doTableStuff';
+		wfProfileIn( $fname );
+		
 		$t = explode ( "\n" , $t ) ;
 		$td = array () ; # Is currently a td tag open?
 			$ltd = array () ; # Was it TD or TH?
@@ -760,6 +772,7 @@ cl_sortkey" ;
 
 		$t = implode ( "\n" , $t ) ;
 		#		$t = $this->removeHTMLtags( $t );
+		wfProfileOut( $fname );
 		return $t ;
 	}
 
@@ -2025,9 +2038,14 @@ cl_sortkey" ;
 	# Return an HTML link for the "ISBN 123456" text
 	/* private */ function magicISBN( $text ) {
 		global $wgLang;
+		$fname = 'Parser::magicISBN';
+		wfProfileIn( $fname );
 
 		$a = split( 'ISBN ', " $text" );
-		if ( count ( $a ) < 2 ) return $text;
+		if ( count ( $a ) < 2 ) {
+			wfProfileOut( $fname );
+			return $text;
+		}
 		$text = substr( array_shift( $a ), 1);
 		$valid = '0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -2054,6 +2072,7 @@ cl_sortkey" ;
 				$text .= $x;
 			}
 		}
+		wfProfileOut( $fname );
 		return $text;
 	}
 	

@@ -541,19 +541,19 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 	}
 
 	/* private */ function mergeChangesInto( &$text ){
-		global $wgIsPg;
+		$fname = 'EditPage::mergeChangesInto';
 		$oldDate = $this->edittime;
-		$res = wfQuery("SELECT cur_text FROM cur WHERE cur_id=" .
-			$this->mTitle->getArticleID() . " FOR UPDATE", DB_WRITE);
-		$obj = wfFetchObject($res);
+		$dbw =& wfGetDB( DB_WRITE );
+		$obj = $dbr->getArray( 'cur', array( 'cur_text' ), array( 'cur_id' => $this->mTitle->getArticleID() ), 
+			$fname, 'FOR UPDATE' );
 
 		$yourtext = $obj->cur_text;
 		$ns = $this->mTitle->getNamespace();
-		$title = wfStrencode( $this->mTitle->getDBkey() );
-		$oldtable=$wgIsPg?'"old"':'old';
-		$res = wfQuery("SELECT old_text,old_flags FROM $oldtable WHERE old_namespace = $ns AND ".
-		  "old_title = '{$title}' AND old_timestamp = '{$oldDate}'", DB_WRITE);
-		$obj = wfFetchObject($res);
+		$title = $this->mTitle->getDBkey();
+		$obj = $dbw->getArray( 'old', 
+			array( 'old_text','old_flags'), 
+			array( 'old_namespace' => $ns, 'old_title' => $title, 'old_timestamp' => $oldDate ),
+			$fname );
 		$oldText = Article::getRevisionText( $obj );
 		
 		if(wfMerge($oldText, $text, $yourtext, $result)){

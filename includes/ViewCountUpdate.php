@@ -12,12 +12,13 @@ class ViewCountUpdate {
 
 	function doUpdate()
 	{
-		global $wgDisableCounters, $wgIsMySQL;
+		global $wgDisableCounters;
 		if ( $wgDisableCounters ) { return; }
-		$lowpri=$wgIsMySQL?"LOW_PRIORITY":"";
+		$db =& wfGetDB( DB_WRITE );
+		$lowpri = $db->lowPriorityOption();
 		$sql = "UPDATE $lowpri cur SET cur_counter=(1+cur_counter)," .
 		  "cur_timestamp=cur_timestamp WHERE cur_id={$this->mPageID}";
-		$res = wfQuery( $sql, DB_WRITE, "ViewCountUpdate::doUpdate" );
+		$res = $db->query( $sql, "ViewCountUpdate::doUpdate" );
 	}
 }
 ?>

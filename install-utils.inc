@@ -132,7 +132,8 @@ function dbsource( $fname, $database = false ) {
 # Obsolete, use Database::fieldExists()
 function field_exists( $table, $field ) {
 	$fname = "Update script: field_exists";
-	$res = wfQuery( "DESCRIBE $table", $fname );
+	$db =& wfGetDB( DB_READ );
+	$res = $db->query( "DESCRIBE $table", $fname );
 	$found = false;
 	
 	while ( $row = wfFetchObject( $res ) ) {

@@ -88,7 +88,7 @@ class Title {
 	# From a URL-encoded title
 	/* static */ function newFromURL( $url )
 	{
-		global $wgLang, $wgServer, $wgIsMySQL, $wgIsPg;
+		global $wgLang, $wgServer;
 		$t = new Title();
 		
 		# For compatibility with old buggy URLs. "+" is not valid in titles,
@@ -109,20 +109,10 @@ class Title {
 		
 		$t->mDbkeyform = str_replace( " ", "_", $s );
 		if( $t->secureAndSplit() ) {
-			# check that lenght of title is < cur_title size
-			if ($wgIsMySQL) {
-				$sql = "SHOW COLUMNS FROM cur LIKE \"cur_title\";";
-				$cur_title_object = wfFetchObject(wfQuery( $sql, DB_READ ));
-
-				preg_match( "/\((.*)\)/", $cur_title_object->Type, $cur_title_type);
-				$cur_title_size=$cur_title_type[1];
-			} else {
-				/* midom:FIXME pg_field_type does not return varchar length
-				   assume 255 */
-				$cur_title_size=255;
-			}
-
-			if (strlen($t->mDbkeyform) > $cur_title_size ) {
+			# check that length of title is < cur_title size
+			$dbr =& wfGetDB( DB_READ );
+			$maxSize = $dbr->textFieldSize( 'cur', 'cur_title' );
+			if ( $maxSize != -1 && strlen( $t->mDbkeyform ) > $maxSize ) {
 				return NULL;
 			}
 
@@ -138,7 +128,8 @@ class Title {
 	/* static */ function newFromID( $id ) 
 	{
 		$fname = "Title::newFromID";
-		$row = wfGetArray( "cur", array( "cur_namespace", "cur_title" ), 
+		$dbr =& wfGetDB( DB_READ );
+		$row = $dbr->getArray( "cur", array( "cur_namespace", "cur_title" ), 
 			array( "cur_id" => $id ), $fname );
 		if ( $row !== false ) {
 			$title = Title::makeTitle( $row->cur_namespace, $row->cur_title );
@@ -172,12 +163,12 @@ class Title {
 	# Get the prefixed DB key associated with an ID
 	/* static */ function nameOf( $id )
 	{
-		$sql = "SELECT cur_namespace,cur_title FROM cur WHERE " .
-		  "cur_id={$id}";
-		$res = wfQuery( $sql, DB_READ, "Article::nameOf" );
-		if ( 0 == wfNumRows( $res ) ) { return NULL; }
+		$fname = 'Title::nameOf';
+		$dbr =& wfGetDB( DB_READ );
+		
+		$s = $dbr->getArray( 'cur', array( 'cur_namespace','cur_title' ),  array( 'cur_id' => $id ), $fname );
+		if ( $s === false ) { return NULL; }
 
-		$s = wfFetchObject( $res );
 		$n = Title::makeName( $s->cur_namespace, $s->cur_title );
 		return $n;
 	}
@@ -244,8 +235,7 @@ class Title {
 	function getInterwikiLink( $key )
 	{	
 		global $wgMemc, $wgDBname, $wgInterwikiExpiry, $wgTitleInterwikiCache;
-                global $wgLoadBalancer;
-                
+		$fname = 'Title::getInterwikiLink';
 		$k = "$wgDBname:interwiki:$key";
 
 		if( array_key_exists( $k, $wgTitleInterwikiCache ) )
@@ -257,17 +247,16 @@ class Title {
 			$wgTitleInterwikiCache[$k] = $s;
 			return $s->iw_url;
 		}
-		$dkey = wfStrencode( $key );
-		$wgLoadBalancer->force(-1);
-                $query = "SELECT iw_url,iw_local FROM interwiki WHERE iw_prefix='$dkey'";
-		$res = wfQuery( $query, DB_READ, "Title::getInterwikiLink" );
-		$wgLoadBalancer->force(0);
+		$dbr =& wfGetDB( DB_READ );
+		$res = $dbr->select( 'interwiki', array( 'iw_url', 'iw_local' ), array( 'iw_prefix' => $key ), $fname );
                 if(!$res) return "";
 		
-		$s = wfFetchObject( $res );
+		$s = $dbr->fetchObject( $res );
 		if(!$s) {
+			# Cache non-existence: create a blank object and save it to memcached
 			$s = (object)false;
 			$s->iw_url = "";
+			$s->iw_local = 0;
 		}
 		$wgMemc->set( $k, $s, $wgInterwikiExpiry );
 		$wgTitleInterwikiCache[$k] = $s;
@@ -296,20 +285,21 @@ class Title {
 		if ( $timestamp == "" ) {
 			$timestamp = wfTimestampNow();
 		}
-		$sql = "UPDATE cur SET cur_touched='{$timestamp}' WHERE cur_id IN (";
+		$dbw =& wfGetDB( DB_WRITE );
+		$cur = $dbw->tableName( 'cur' );
+		$sql = "UPDATE $cur SET cur_touched='{$timestamp}' WHERE cur_id IN (";
 		$first = true;
 
 		foreach ( $titles as $title ) {
 			if ( ! $first ) { 
 				$sql .= ","; 
 			}
-
 			$first = false;
 			$sql .= $title->getArticleID();
 		}
 		$sql .= ")";
 		if ( ! $first ) {
-			wfQuery( $sql, DB_WRITE, "Title::touchArray" );
+			$dbw->query( $sql, "Title::touchArray" );
 		}
 	}
 
@@ -568,7 +558,8 @@ class Title {
 		if ( 0 == $id ) { return array(); }
 
 		if ( ! $this->mRestrictionsLoaded ) {
-			$res = wfGetSQL( "cur", "cur_restrictions", "cur_id=$id" );
+			$dbr =& wfGetDB( DB_READ );
+			$res = $dbr->getField( "cur", "cur_restrictions", "cur_id=$id" );
 			$this->mRestrictions = explode( ",", trim( $res ) );
 			$this->mRestrictionsLoaded = true;
 		}
@@ -576,15 +567,13 @@ class Title {
 	}
 	
 	# Is there a version of this page in the deletion archive?
+	# Returns the number of archived revisions
 	function isDeleted() {
-		$ns = $this->getNamespace();
-		$t = wfStrencode( $this->getDBkey() );
-		$sql = "SELECT COUNT(*) AS n FROM archive WHERE ar_namespace=$ns AND ar_title='$t'";
-		if( $res = wfQuery( $sql, DB_READ ) ) {
-			$s = wfFetchObject( $res );
-			return $s->n;
-		}
-		return 0;
+		$fname = 'Title::isDeleted';
+		$dbr =& wfGetDB( DB_READ );
+		$n = $dbr->getField( 'archive', 'COUNT(*)', array( 'ar_namespace' => $this->getNamespace(), 
+			'ar_title' => $this->getDBkey() ), $fname );
+		return (int)$n;
 	}
 
 	# Get the article ID from the link cache
@@ -616,10 +605,16 @@ class Title {
 	# Called from LinksUpdate.php
 	function invalidateCache() {
 		$now = wfTimestampNow();
-		$ns = $this->getNamespace();
-		$ti = wfStrencode( $this->getDBkey() );
-		$sql = "UPDATE cur SET cur_touched='$now' WHERE cur_namespace=$ns AND cur_title='$ti'";
-		return wfQuery( $sql, DB_WRITE, "Title::invalidateCache" );
+		$dbw =& wfGetDB( DB_WRITE );
+		$success = $dbw->updateArray( 'cur', 
+			array( /* SET */ 
+				'cur_touched' => wfTimestampNow()
+			), array( /* WHERE */ 
+				'cur_namespace' => $this->getNamespace() ,
+				'cur_title' => $this->getDBkey()
+			), 'Title::invalidateCache'
+		);
+		return $success;
 	}
 
 	# Prefixes some arbitrary text with the namespace or interwiki prefix of this object
@@ -640,8 +635,8 @@ class Title {
 	# Secure and split - main initialisation function for this object
 	# 
 	# Assumes that mDbkeyform has been set, and is urldecoded
-    # and uses undersocres, but not otherwise munged.  This function
-    # removes illegal characters, splits off the winterwiki and
+    # and uses underscores, but not otherwise munged.  This function
+    # removes illegal characters, splits off the interwiki and
     # namespace prefixes, sets the other forms, and canonicalizes
     # everything.  	
 	#
@@ -733,6 +728,7 @@ class Title {
 		# Reject illegal characters.
 		#
 		if( preg_match( $rxTc, $r ) ) {
+			wfProfileOut( $fname );
 			return false;
 		}
 		
@@ -743,6 +739,7 @@ class Title {
 		       strpos( $r, "/./" !== false ) ||
 		       strpos( $r, "/../" !== false ) ) )
 		{
+			wfProfileOut( $fname );
 			return false;
 		}
 
@@ -773,21 +770,31 @@ class Title {
 
 	# Get an array of Title objects linking to this title
 	# Also stores the IDs in the link cache
+	# $options may be FOR UPDATE
 	function getLinksTo( $options = '' ) {
 		global $wgLinkCache;
 		$id = $this->getArticleID();
-		$sql = "SELECT cur_namespace,cur_title,cur_id FROM cur,links WHERE l_from=cur_id AND l_to={$id} $options";
-		$res = wfQuery( $sql, DB_READ, "Title::getLinksTo" );
+		
+		if ( $options ) {
+			$db =& wfGetDB( DB_WRITE );
+		} else {
+			$db =& wfGetDB( DB_READ );
+		}
+		$cur = $db->tableName( 'cur' );
+		$links = $db->tableName( 'links' );
+
+		$sql = "SELECT cur_namespace,cur_title,cur_id FROM $cur,$links WHERE l_from=cur_id AND l_to={$id} $options";
+		$res = $db->query( $sql, "Title::getLinksTo" );
 		$retVal = array();
-		if ( wfNumRows( $res ) ) {
-			while ( $row = wfFetchObject( $res ) ) {
+		if ( $db->numRows( $res ) ) {
+			while ( $row = $db->fetchObject( $res ) ) {
 				if ( $titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title ) ) {
 					$wgLinkCache->addGoodLink( $row->cur_id, $titleObj->getPrefixedDBkey() );
 					$retVal[] = $titleObj;
 				}
 			}
 		}
-		wfFreeResult( $res );
+		$db->freeResult( $res );
 		return $retVal;
 	}
 
@@ -795,19 +802,28 @@ class Title {
 	# Also stores the IDs in the link cache
 	function getBrokenLinksTo( $options = '' ) {
 		global $wgLinkCache;
-		$encTitle = wfStrencode( $this->getPrefixedDBkey() );
-		$sql = "SELECT cur_namespace,cur_title,cur_id FROM brokenlinks,cur " .
+		
+		if ( $options ) {
+			$db =& wfGetDB( DB_WRITE );
+		} else {
+			$db =& wfGetDB( DB_READ );
+		}
+		$cur = $db->tableName( 'cur' );
+		$brokenlinks = $db->tableName( 'brokenlinks' );
+		$encTitle = $db->strencode( $this->getPrefixedDBkey() );
+
+		$sql = "SELECT cur_namespace,cur_title,cur_id FROM $brokenlinks,$cur " .
 		  "WHERE bl_from=cur_id AND bl_to='$encTitle' $options";
-		$res = wfQuery( $sql, DB_READ, "Title::getBrokenLinksTo" );
+		$res = $db->query( $sql, "Title::getBrokenLinksTo" );
 		$retVal = array();
-		if ( wfNumRows( $res ) ) {
-			while ( $row = wfFetchObject( $res ) ) {
+		if ( $db->numRows( $res ) ) {
+			while ( $row = $db->fetchObject( $res ) ) {
 				$titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title );
 				$wgLinkCache->addGoodLink( $row->cur_id, $titleObj->getPrefixedDBkey() );
 				$retVal[] = $titleObj;
 			}
 		}
-		wfFreeResult( $res );
+		$db->freeResult( $res );
 		return $retVal;
 	}
 
@@ -896,10 +912,11 @@ class Title {
         $won = wfInvertTimestamp( $now );
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
-		
+		$dbw =& wfGetDB( DB_WRITE );
+		$links = $dbw->tableName( 'links' );
+
 		# Change the name of the target page:
-		wfUpdateArray( 
-			/* table */ 'cur',
+		$dbw->updateArray( 'cur',
 			/* SET */ array( 
 				'cur_touched' => $now, 
 				'cur_namespace' => $nt->getNamespace(),
@@ -914,8 +931,7 @@ class Title {
 		# by definition if we've got here it's rather uninteresting.
 		
 		$redirectText = $wgMwRedir->getSynonym( 0 ) . " [[" . $nt->getPrefixedText() . "]]\n";
-		wfUpdateArray( 
-			/* table */ 'cur',
+		$dbw->updateArray( 'cur',
 			/* SET */ array(
 				'cur_touched' => $now,
 				'cur_timestamp' => $now,
@@ -940,7 +956,7 @@ class Title {
 
 		# Fix the redundant names for the past revisions of the target page.
 		# The redirect should have no old revisions.
-		wfUpdateArray(
+		$dbw->updateArray(
 			/* table */ 'old',
 			/* SET */ array( 
 				'old_namespace' => $nt->getNamespace(),
@@ -962,12 +978,12 @@ class Title {
 		$linksToNew = $nt->getLinksTo( 'FOR UPDATE' );
 		
 		# Delete them all
-		$sql = "DELETE FROM links WHERE l_to=$oldid OR l_to=$newid";
-		wfQuery( $sql, DB_WRITE, $fname );
+		$sql = "DELETE FROM $links WHERE l_to=$oldid OR l_to=$newid";
+		$dbw->query( $sql, $fname );
 
 		# Reinsert
 		if ( count( $linksToOld ) || count( $linksToNew )) {
-			$sql = "INSERT INTO links (l_from,l_to) VALUES ";
+			$sql = "INSERT INTO $links (l_from,l_to) VALUES ";
 			$first = true;
 
 			# Insert links to old title
@@ -992,15 +1008,13 @@ class Title {
 				$sql .= "($id, $oldid)";
 			}
 
-			wfQuery( $sql, DB_WRITE, $fname );
+			$dbw->query( $sql, DB_WRITE, $fname );
 		}
 
 		# Now, we record the link from the redirect to the new title.
 		# It should have no other outgoing links...
-		$sql = "DELETE FROM links WHERE l_from={$newid}";
-		wfQuery( $sql, DB_WRITE, $fname );
-		$sql = "INSERT INTO links (l_from,l_to) VALUES ({$newid},{$oldid})";
-		wfQuery( $sql, DB_WRITE, $fname );
+		$dbw->delete( 'links', array( 'l_from' => $newid ) );
+		$dbw->insertArray( 'links', array( 'l_from' => $newid, 'l_to' => $oldid ) );
 		
 		# Clear linkscc
 		LinkCache::linksccClearLinksTo( $oldid );
@@ -1027,10 +1041,10 @@ class Title {
 		$won = wfInvertTimestamp( $now );
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
+		$dbw =& wfGetDB( DB_WRITE );
 
 		# Rename cur entry
-		wfUpdateArray(
-			/* table */ 'cur',
+		$dbw->updateArray( 'cur',
 			/* SET */ array(
 				'cur_touched' => $now,
 				'cur_namespace' => $nt->getNamespace(),
@@ -1043,7 +1057,7 @@ class Title {
 		$wgLinkCache->clearLink( $nt->getPrefixedDBkey() );
 
 		# Insert redirct
-		wfInsertArray( 'cur', array(
+		$dbw->insertArray( 'cur', array(
 			'cur_namespace' => $this->getNamespace(),
 			'cur_title' => $this->getDBkey(),
 			'cur_comment' => $comment,
@@ -1054,13 +1068,13 @@ class Title {
 			'cur_touched' => $now,
 			'cur_is_redirect' => 1,
 			'cur_is_new' => 1,
-			'cur_text' => "#REDIRECT [[" . $nt->getPrefixedText() . "]]\n" )
+			'cur_text' => "#REDIRECT [[" . $nt->getPrefixedText() . "]]\n" ), $fname
 		);
-		$newid = wfInsertId();
+		$newid = $dbw->insertId();
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
 
 		# Rename old entries
-		wfUpdateArray( 
+		$dbw->updateArray( 
 			/* table */ 'old',
 			/* SET */ array(
 				'old_namespace' => $nt->getNamespace(),
@@ -1079,13 +1093,11 @@ class Title {
 		Article::onArticleCreate( $nt );
 
 		# Any text links to the old title must be reassigned to the redirect
-		$sql = "UPDATE links SET l_to={$newid} WHERE l_to={$oldid}";
-		wfQuery( $sql, DB_WRITE, $fname );
+		$dbw->updateArray( 'links', array( 'l_to' => $newid ), array( 'l_to' => $oldid ), $fname );
 		LinkCache::linksccClearLinksTo( $oldid );
 
 		# Record the just-created redirect's linking to the page
-		$sql = "INSERT INTO links (l_from,l_to) VALUES ({$newid},{$oldid})";
-		wfQuery( $sql, DB_WRITE, $fname );
+		$dbw->insertArray( 'links', array( 'l_from' => $newid, 'l_to' => $oldid ), $fname );
 
 		# Non-existent target may have had broken links to it; these must
 		# now be removed and made into good links.
@@ -1106,19 +1118,18 @@ class Title {
 	}
 
 	# Checks if $this can be moved to $nt
-	# Both titles must exist in the database, otherwise it will blow up
+	# Selects for update, so don't call it unless you mean business
 	function isValidMoveTarget( $nt )
 	{
 		$fname = "Title::isValidMoveTarget";
+		$dbw =& wfGetDB( DB_WRITE );
 
 		# Is it a redirect?
 		$id  = $nt->getArticleID();
-		$sql = "SELECT cur_is_redirect,cur_text FROM cur " .
-		  "WHERE cur_id={$id}";
-		$res = wfQuery( $sql, DB_READ, $fname );
-		$obj = wfFetchObject( $res );
+		$obj = $dbw->getArray( 'cur', array( 'cur_is_redirect','cur_text' ), 
+			array( 'cur_id' => $id ), $fname, 'FOR UPDATE' );
 
-		if ( 0 == $obj->cur_is_redirect ) { 
+		if ( !$obj || 0 == $obj->cur_is_redirect ) { 
 			# Not a redirect
 			return false; 
 		}
@@ -1132,9 +1143,11 @@ class Title {
 		}
 
 		# Does the article have a history?
-		$row = wfGetArray( 'old', array( 'old_id' ), array( 
-			'old_namespace' => $nt->getNamespace(),
-			'old_title' => $nt->getDBkey() )
+		$row = $dbw->getArray( 'old', array( 'old_id' ), 
+			array( 
+				'old_namespace' => $nt->getNamespace(),
+				'old_title' => $nt->getDBkey() 
+			), $fname, 'FOR UPDATE' 
 		);
 
 		# Return true if there was no history
@@ -1149,10 +1162,14 @@ class Title {
 			return false;
 		}
 		
+		$fname = "Title::createRedirect";
+		$dbw =& wfGetDB( DB_WRITE );
 		$now = wfTimestampNow();
 		$won = wfInvertTimestamp( $now );
+		$seqVal = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
 
-		wfInsertArray( 'cur', array(
+		$dbw->insertArray( 'cur', array(
+			'cur_id' => $seqVal,
 			'cur_namespace' => $this->getNamespace(),
 			'cur_title' => $this->getDBkey(),
 			'cur_comment' => $comment,
@@ -1164,21 +1181,25 @@ class Title {
 			'cur_is_redirect' => 1,
 			'cur_is_new' => 1,
 			'cur_text' => "#REDIRECT [[" . $dest->getPrefixedText() . "]]\n" 
-		));
-		$newid = wfInsertId();
+		), $fname );
+		$newid = $dbw->insertId();
 		$this->resetArticleID( $newid );
 		
 		# Link table
 		if ( $dest->getArticleID() ) {
-			wfInsertArray( 'links', array(
-				'l_to' => $dest->getArticleID(),
-				'l_from' => $newid
-			));
+			$dbw->insertArray( 'links', 
+				array(
+					'l_to' => $dest->getArticleID(),
+					'l_from' => $newid
+				), $fname 
+			);
 		} else {
-			wfInsertArray( 'brokenlinks', array( 
-				'bl_to' => $dest->getPrefixedDBkey(),
-				'bl_from' => $newid
-			));
+			$dbw->insertArray( 'brokenlinks', 
+				array( 
+					'bl_to' => $dest->getPrefixedDBkey(),
+					'bl_from' => $newid
+				), $fname
+			);
 		}
 
 		Article::onArticleCreate( $this );
@@ -1191,21 +1212,23 @@ class Title {
 	{
 		global $wgLang,$wgUser;
 		
-		#$titlekey = wfStrencode( $this->getArticleID() );
 		$titlekey = $this->getArticleId();
 		$cns = Namespace::getCategory();
 		$sk =& $wgUser->getSkin();
 		$parents = array();
-		
+		$dbr =& wfGetDB( DB_READ );
+		$cur = $dbr->tableName( 'cur' );
+		$categorylinks = $dbr->tableName( 'categorylinks' );
+
 		# get the parents categories of this title from the database
-		$sql = "SELECT DISTINCT cur_id FROM cur,categorylinks
+		$sql = "SELECT DISTINCT cur_id FROM $cur,$categorylinks
 		        WHERE cl_from='$titlekey' AND cl_to=cur_title AND cur_namespace='$cns'
 				ORDER BY cl_sortkey" ;
-		$res = wfQuery ( $sql, DB_READ ) ;
+		$res = $dbr->query ( $sql ) ;
 		
-		if(wfNumRows($res) > 0) {
-			while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
-			wfFreeResult ( $res ) ;
+		if($dbr->numRows($res) > 0) {
+			while ( $x = $dbr->fetchObject ( $res ) ) $data[] = $x ;
+			$dbr->freeResult ( $res ) ;
 		} else {
 			$data = '';
 		}
