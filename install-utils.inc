@@ -72,12 +72,14 @@ function replacevars( $ins ) {
 	$varnames = array(
 		"wgDBserver", "wgDBname", "wgDBintlname", "wgDBuser",
 		"wgDBpassword", "wgDBsqluser", "wgDBsqlpassword",
-		"wgDBadminuser", "wgDBadminpassword"
+		"wgDBadminuser", "wgDBadminpassword", "wgDBprefix"
 	);
 
 	foreach ( $varnames as $var ) {
 		global $$var;
 		$ins = str_replace( '{$' . $var . '}', $$var, $ins );
+		$ins = str_replace( '/*$' . $var . '*/`', '`' . $$var, $ins );
+		$ins = str_replace( '/*$' . $var . '*/', $$var, $ins );
 	}
 	return $ins;
 }
