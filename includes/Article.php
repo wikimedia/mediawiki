@@ -532,7 +532,7 @@ class Article {
 	 */
 	function getSelectOptions( $options = '' ) {
 		if ( $this->mForUpdate ) {
-			if ( $options ) {
+			if ( is_array( $options ) ) {
 				$options[] = 'FOR UPDATE';
 			} else {
 				$options = 'FOR UPDATE';

@@ -209,6 +209,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1201) Double-escaping in brokenlinks, imagelinks, categorylinks, searchindex
 * When using squid reverse proxy, cache the redirect to the Main_Page
 * (bug 1302) fix Norwegian language file
+* (bug 1205) Fixed broken article saving in PHP 5.1
 
 === Caveats ===
 
