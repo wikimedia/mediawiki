@@ -192,6 +192,7 @@ class Parser
 		$render = ($this->mOutputType == OT_HTML);
 		$nowiki_content = array();
 		$hiero_content = array();
+		$timeline_content = array();
 		$math_content = array();
 		$pre_content = array();
 		$comment_content = array();
@@ -215,6 +216,15 @@ class Parser
 				$hiero_content[$marker] = WikiHiero( $content, WH_MODE_HTML);
 			} else {
 				$hiero_content[$marker] = "<hiero>$content</hiero>";
+			}
+		}
+		
+		$text = Parser::extractTags("timeline", $text, $timeline_content, $uniq_prefix);
+		foreach( $timeline_content as $marker => $content ){
+			if( $render && $GLOBALS['wgUseTimeline']){
+				$timeline_content[$marker] = renderTimeline( $content );
+			} else {
+				$timeline_content[$marker] = "<timeline>$content</timeline>";
 			}
 		}
 
@@ -250,6 +260,7 @@ class Parser
 		if ( $state ) {
 			$state['nowiki'] = $state['nowiki'] + $nowiki_content;
 			$state['hiero'] = $state['hiero'] + $hiero_content;
+			$state['timeline'] = $state['timeline'] + $timeline_content;
 			$state['math'] = $state['math'] + $math_content;
 			$state['pre'] = $state['pre'] + $pre_content;
 			$state['comment'] = $state['comment'] + $comment_content;
@@ -257,6 +268,7 @@ class Parser
 			$state = array(
 			  'nowiki' => $nowiki_content,
 			  'hiero' => $hiero_content,
+			  'timeline' => $timeline_content,
 			  'math' => $math_content,
 			  'pre' => $pre_content,
 			  'comment' => $comment_content
