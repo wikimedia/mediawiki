@@ -77,6 +77,7 @@ if ( $sep == ":" && strpos( `hostname -a`, "wikimedia.org" ) !== false ) {
 	# This is for the IRC scripts, which now run as the apache user
 	# The apache user doesn't have access to the wikiadmin_pass command
 	if ( $_ENV['USER'] != "apache" ) {
+		$admin = true;
 		$wgDBuser = $wgDBadminuser = "wikiadmin";
 		$wgDBpassword = $wgDBadminpassword = trim(`wikiadmin_pass`);
 	}
@@ -87,6 +88,11 @@ if ( $sep == ":" && strpos( `hostname -a`, "wikimedia.org" ) !== false ) {
 	ini_set( "include_path", ".:$IP:$IP/includes:$IP/languages:$IP/maintenance" );
 
 	require_once( "/home/wikipedia/common/php-new/CommonSettings.php" );
+	if ( $admin ) {
+		$wgDBuser = $wgDBadminuser = "wikiadmin";
+		$wgDBpassword = $wgDBadminpassword = trim(`wikiadmin_pass`);
+	}
+
 } else {
 	$wgWikiFarm = false;
 	$settingsFile = "$IP/LocalSettings.php";
@@ -101,15 +107,14 @@ if ( $sep == ":" && strpos( `hostname -a`, "wikimedia.org" ) !== false ) {
 	include_once( $settingsFile );
 	ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" );
 	include_once( "$IP/AdminSettings.php" );
+	$wgDBuser = $wgDBadminuser;
+	$wgDBpassword = $wgDBadminpassword;
 }
 
 # Turn off output buffering again, it might have been turned on in the settings files
 @ob_end_flush();
-# Same with these
+# Same with this
 $wgCommandLineMode = true;
-$wgDBuser = $wgDBadminuser;
-$wgDBpassword = $wgDBadminpassword;
-
 
 $wgUsePHPTal = false;
 define("MEDIAWIKI",true);
