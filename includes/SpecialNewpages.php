@@ -51,7 +51,7 @@ class NewPagesPage extends QueryPage {
 			        old_text as text
 			FROM $recentchanges,$page,$text
 			WHERE rc_cur_id=page_id AND rc_new=1
-			  AND rc_namespace=0 AND page_is_redirect=0
+			  AND rc_namespace=".NS_MAIN." AND page_is_redirect=0
 			  AND page_latest=old_id";
 	}
 

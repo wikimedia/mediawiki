@@ -1092,7 +1092,7 @@ class Skin extends Linker {
 		if ( 0 == count( $a ) ) {
 			if ( !$wgUseNewInterlanguage ) return '';
 			$ns = $wgContLang->getNsIndex ( $wgTitle->getNamespace () ) ;
-			if ( $ns != 0 AND $ns != 1 ) return '' ;
+			if ( $ns != NS_MAIN AND $ns != NS_TALK ) return '' ;
 			$pn = 'Intl' ;
 			$x = 'mode=addlink&xt='.$wgTitle->getDBkey() ;
 			return $this->makeKnownLink( $wgContLang->specialPage( $pn ),
@@ -1266,7 +1266,7 @@ class Skin extends Linker {
 	}
 
 	# this can be passed the NS number as defined in Language.php
-	/*static*/ function makeNSUrl( $name, $urlaction='', $namespace=0 ) {
+	/*static*/ function makeNSUrl( $name, $urlaction='', $namespace=NS_MAIN ) {
 		$title = Title::makeTitleSafe( $namespace, $name );
 		$this->checkTitle($title, $name);
 		return $title->getLocalURL( $urlaction );

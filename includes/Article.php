@@ -2231,7 +2231,7 @@ function wfArticleIsStub( $articleID ) {
 			array( 'LENGTH(old_text) AS len', 'page_namespace', 'page_is_redirect' ),
 			array( 'page_id' => $articleID, "page.page_latest=text.old_id" ),
 			$fname ) ;
-		if ( $s == false OR $s->page_is_redirect OR $s->page_namespace != 0 ) {
+		if ( $s == false OR $s->page_is_redirect OR $s->page_namespace != NS_MAIN ) {
 			return false;
 		}
 		$size = $s->len;

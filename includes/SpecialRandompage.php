@@ -34,7 +34,7 @@ function wfSpecialRandompage() {
 	}
 	$sqlget = "SELECT page_id,page_title
 		FROM $page $use_index
-		WHERE page_namespace=0 AND page_is_redirect=0 $extra
+		WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0 $extra
 		AND page_random>$randstr
 		ORDER BY page_random
 		LIMIT 1";

@@ -218,7 +218,7 @@ function wfSpecialMispeelings () {
 			$y = $x ;
 			$x = preg_replace( '/^(\S+).*$/', '$1', $x );
 			$sql = "SELECT DISTINCT cur_title FROM $cur,$searchindex WHERE cur_id=si_page AND ".
-				"cur_namespace=0 AND cur_is_redirect=0 AND " .
+				"cur_namespace=".NS_MAIN." AND cur_is_redirect=0 AND " .
 				"(MATCH(si_text) AGAINST ('" . $dbr->strencode( $wgContLang->stripForSearch( $x ) ) . "'))" ;
 			$res = $dbr->query( $sql, $fname );
 			while ( $obj = $dbr->fetchObject ( $res ) ) {
@@ -268,7 +268,7 @@ function wfSpecialMissingLanguageLinks() {
 	$cur = $dbr->tableName( 'cur' );
 
 	$sql = "SELECT cur_title FROM $cur " .
-	  "WHERE cur_namespace=0 AND cur_is_redirect=0 " .
+	  "WHERE cur_namespace=".NS_MAIN." AND cur_is_redirect=0 " .
 	  "AND cur_title NOT LIKE '%/%' AND cur_text NOT LIKE '%[[" . wfStrencode( $thelang ) . ":%' " .
 	  "LIMIT {$offset}, {$limit}";
 
