@@ -430,8 +430,8 @@ class Parser
 		}
 
 		$text = $this->replaceExternalLinks( $text );
-		$text = $this->doBlockLevels( $text, $linestart );
 		$text = $this->doTokenizedParser ( $text );
+
 		$text = $this->doTableStuff ( $text ) ;
 
 		$text = $this->formatHeadings( $text );
@@ -446,6 +446,8 @@ class Parser
 		);
 		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
 
+		# needs to be called last
+		$text = $this->doBlockLevels( $text, $linestart );		
 		$text .= $this->categoryMagic () ;
 
 		wfProfileOut( $fname );
@@ -754,7 +756,7 @@ class Parser
 					$txt = $lastToken["text"] . $txt;
 				} else {
 					$txt = $lastToken["type"] . $txt;
-				}
+				}	
 			}
 			$s .= $txt;
 		}
@@ -1031,6 +1033,7 @@ class Parser
 			}
 			if ( 0 == $npl ) { # No prefix--go to paragraph mode
 				$uniq_prefix = UNIQ_PREFIX;
+				$inBlockElem=false;
 				if ( preg_match(
 				  "/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<div)/i", $t ) ) {
 					$text .= $this->closeParagraph();
@@ -1039,7 +1042,7 @@ class Parser
 					$text .= $this->closeParagraph();
 					$inBlockElem = false;
 				}
-				if ( ! $inBlockElem ) {
+				if ( !$inBlockElem ) {
 					if ( " " == $t{0} ) {
 						$newSection = "pre";
 						$text .= $this->closeParagraph();
@@ -1423,6 +1426,7 @@ class Parser
 
 	/* private */ function formatHeadings( $text )
 	{
+		return $text;
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
 		if( !$this->mTitle->userCanEdit() ) {
