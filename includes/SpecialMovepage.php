@@ -106,6 +106,12 @@ class MovePageForm {
 		global  $wgUseSquid;
 		$fname = "MovePageForm::doSubmit";
 
+		# don't allow moving to pages with # in
+		if ( strchr( $this->newTitle, '#') !== FALSE ) {
+			$this->showForm( wfMsg( "badtitletext" ) );
+			return;
+		}
+
 		$ot = Title::newFromText( $this->oldTitle );
 		$nt = Title::newFromText( $this->newTitle );
 
