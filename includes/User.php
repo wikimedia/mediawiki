@@ -434,10 +434,12 @@ class User {
 		return in_array( 'bot', $this->mRights );
 	}
 
+	# Load a skin if it doesn't exist or return it
+	# FIXME : need to check the old failback system [AV]
 	function &getSkin() {
-		global $IP;
+		global $IP, $wgUsePHPTal;
 		if ( ! isset( $this->mSkin ) ) {
-			# get all skin names available from SkinNames.php
+			# get all skin names available
 			$skinNames = Skin::getSkinNames();
 			# get the user skin
 			$userSkin = $this->getOption( 'skin' );
@@ -449,8 +451,8 @@ class User {
 					0 => 'Standard',
 					1 => 'Nostalgia',
 					2 => 'CologneBlue');
-				# if phptal is enabled we should have monobook skin that superseed
-				# the good old SkinStandard.
+				# if phptal is enabled we should have monobook skin that
+				# superseed the good old SkinStandard.
 				if ( isset( $skinNames['monobook'] ) ) {
 					$fallback[0] = 'MonoBook';
 				}
@@ -465,9 +467,18 @@ class User {
 				$sn = $skinNames[$userSkin];
 			}
 
-			# Grab the skin class and initialise it
+			# Grab the skin class and initialise it. Each skin checks for PHPTal
+			# and will not load if it's not enabled.
 			require_once( $IP.'/skins/'.$sn.'.php' );
+			
+			# Check if we got if not failback to default skin
 			$sn = 'Skin'.$sn;
+			if(!class_exists($sn)) {
+				#FIXME : should we print an error message instead of loading
+				# standard skin ?
+				$sn = 'SkinStandard';
+				require_once( $IP.'/skins/Standard.php' );
+			}
 			$this->mSkin = new $sn;
 		}
 		return $this->mSkin;

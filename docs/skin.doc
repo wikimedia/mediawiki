@@ -1,13 +1,24 @@
 
 SKIN.DOC
 
-This document describes the overall architecture of MediaWiki's
-HTML rendering code. It is placed here rather than in comments
-in the code itself to help reduce the code size.
+This document describes the overall architecture of MediaWiki's HTML rendering
+code as well as some history about the skin system. It is placed here rather
+than in comments in the code itself to help reduce the code size.
 
-Unfortunately there isn't any documentation, and the code's in
-a bit of a mess right now during the transition from the old skin
-code to the new template-based skin code in 1.3.
+== Version 1.4 ==
+
+MediaWiki still use the PHPTal skin system introduced in version 1.3 but some
+changes have been made to the file organisation.
+
+PHP class and PHPTal templates have been moved to /skins/ (respectivly from
+/includes/ and /templates/). This way skin designer and end user just stick to
+one directory.
+
+Two samples are provided to start with, one for PHPTal use (SkinPHPTal.sample)
+and one without (Skin.sample).
+
+
+== Version 1.3 ==
 
 The following might help a bit though.
 
@@ -28,3 +39,10 @@ pages. The default 1.3 skin is MonoBook and it uses the SkinPHPTAL class.
 
 To change the layout, just edit the PHPTal template (templates/xhtml_slim.pt) 
 as well as the stylesheets (stylesheets/monobook/*).
+
+
+== pre 1.3 version ==
+
+Unfortunately there isn't any documentation, and the code's in a bit of a mess
+right now during the transition from the old skin code to the new template-based
+skin code in 1.3.

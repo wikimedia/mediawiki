@@ -12,7 +12,8 @@ require_once( 'Image.php' );
 # file names in ./skins/. For display purposes, the Language class has
 # internationalized names
 #
-/* private */ $wgValidSkinNames = array(
+/*
+$wgValidSkinNames = array(
 	'standard'      => 'Standard',
 	'nostalgia'     => 'Nostalgia',
 	'cologneblue'   => 'CologneBlue'
@@ -26,6 +27,24 @@ if( $wgUsePHPTal ) {
 	$wgValidSkinNames['myskin'] = 'MySkin';
 	$wgValidSkinNames['chick'] = 'Chick';
 }
+*/
+
+# Get a list of all skins available in /skins/
+# Build using the regular expression '^(.*).php$'
+# Array keys are all lower case, array value keep the case used by filename
+#
+
+$skinDir = dir($IP.'/skins');
+
+# while code from www.php.net
+while (false !== ($file = $skinDir->read())) {
+	if(preg_match('/^(.*).php$/',$file, $matches)) {
+		$aSkin = $matches[1];
+	$wgValidSkinNames[strtolower($aSkin)] = $aSkin;
+	}
+}
+$skinDir->close();
+unset($matches);
 
 require_once( 'RecentChange.php' );
 
