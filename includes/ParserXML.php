@@ -4,6 +4,11 @@ require_once ( "Parser.php" ) ;
 /**
  * This should one day become the XML->(X)HTML parser
  * Based on work by Jan Hidders and Magnus Manske
+ * To use, set
+ *    $wgUseXMLparser = true ;
+ *    $wgEnableParserCache = false ;
+ *    $wgWiki2xml to the path and executable of the command line version (cli)
+ * in LocalSettings.php
  * @package MediaWiki
  * @subpackage Experimental
  */
@@ -126,6 +131,14 @@ class element {
     	else if ( $n == "TABLECELL" )
     		{
     		$ret .= $this->sub_makeXHTML ( $parser , "td" ) ;
+    		}
+    	else if ( $n == "TABLEHEAD" )
+    		{
+    		$ret .= $this->sub_makeXHTML ( $parser , "th" ) ;
+    		}
+    	else if ( $n == "CAPTION" )
+    		{
+    		$ret .= $this->sub_makeXHTML ( $parser , "caption" ) ;
     		}
 
 
@@ -315,9 +328,18 @@ class ParserXML EXTENDS Parser
 	}
 	
 	function parse( $text, &$title, $options, $linestart = true, $clearState = true ) {
-		global $dummytext ;
-		$text = $dummytext ;
-		
+		 global $wgWiki2xml ;
+		$tmpfname = tempnam("/tmp", "FOO");
+
+		$handle = fopen($tmpfname, "w");
+		fwrite($handle, $text);
+		fclose($handle);
+
+		 exec ( $wgWiki2xml . " < " . $tmpfname , $a ) ;
+		 $text = implode ( "\n" , $a ) ;
+
+		unlink($tmpfname);
+
 		$w = new xml2php;
 		$result = $w->scanString( $text );
 		$text .= "<hr>" . $result->makeXHTML ( $this );
