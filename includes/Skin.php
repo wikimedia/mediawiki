@@ -475,15 +475,18 @@ class Skin {
 	{
 		global $wgOut, $wgTitle, $oldid, $action;
 
-		$q = "";
+		$basequery = "";
 		foreach( $_GET as $var => $val ) {
-			if( $var != "title" && $var != "printable" )
-				$q .= urlencode( $var ) . "=" . urlencode( $val );
+			if( $var == "title" ) continue;
+			$basequery .= "&" . urlencode( $var ) . "=" . urlencode( $val );
 		}
-		if( !empty( $q ) ) $q .= "&";
+		$basequery .= "&printable=yes";
 		
-		$s = $this->makeKnownLink( $wgTitle->getPrefixedText(),
-		  WfMsg( "printableversion" ), "{$q}printable=yes" );
+		# Trim the extra & if there was nothing else
+		$basequery = substr( $basequery, 1 );
+		
+		$s = $this->makeKnownLinkObj( $wgTitle,
+		  wfMsg( "printableversion" ), $basequery );
 		return $s;
 	}
 
