@@ -218,7 +218,7 @@
 "lastmodified"  => "এ পৃষ্ঠায় শেষ পরিবর্তন হয়েছিল $1.",
 "viewcount"   => "এ পৃষ্ঠা দেখা হয়েছে $1 বার।",
 "gnunote" => "সব লেখা <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a> অনুযায়ী বিনামূল্যে এবং মুক্তভাবে সংগ্রহ ও বিতরণযোগ্য",
-"printsubtitle" => "(From http://www.wikipedia.org)",
+"printsubtitle" => "(From {{SERVER}})",
 "protectedpage" => "সংরক্ষিত পাতা",
 "administrators" => "উইকিপেডিয়া:প্রশাসকবৃন্দ",
 "sysoptitle"  => "Sysop এর  ক্ষমতা প্রয়োজন",
