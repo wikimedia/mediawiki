@@ -1565,6 +1565,18 @@ Image caption containing another image
 
 !! end
 
+!! test
+Image caption containing a newline
+!! input
+[[Image:Foobar.jpg|This
+*is some text]]
+!! result
+<p><a href="/wiki/Image:Foobar.jpg" class="image" title="This *is some text"><img src="/images/3/3a/Foobar.jpg" alt="This *is some text" longdesc="/wiki/Image:Foobar.jpg" /></a>
+</p>
+!!end
+
+
+
 ###
 ### Subpages
 ###
@@ -1925,6 +1937,34 @@ I always thought &xacute; was a cute letter.
 </p>
 !! end
 
+
+!! test
+Media link
+!! input
+[[Media:Foobar.jpg]]
+!! result
+<p><a href="/images/3/3a/Foobar.jpg" class='internal' title="Foobar.jpg">Media:Foobar.jpg</a>
+</p>
+!! end
+
+!! test
+Media link with text
+!! input
+[[Media:Foobar.jpg|A neat file to look at]]
+!! result
+<p><a href="/images/3/3a/Foobar.jpg" class='internal' title="Foobar.jpg">A neat file to look at</a>
+</p>
+!! end
+
+# FIXME: this is still bad HTML tag nesting
+!! test
+Media link with nasty text
+!! input
+[[Media:Foobar.jpg|Safe Link<div style=display:none>" onmouseover="alert(document.cookie)" onfoo="</div>]]
+!! result
+<p><a href="/images/3/3a/Foobar.jpg" class='internal' title="Foobar.jpg">Safe Link<div style="display:none">" onmouseover="alert(document.cookie) onfoo="</div></a>
+</p>
+!! end
 
 TODO:
 more images
