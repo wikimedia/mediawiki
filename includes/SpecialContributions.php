@@ -129,9 +129,12 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor )
 	$link = $sk->makeKnownLink( $page, "" );
 	$topmarktext = $topmark ? wfMsg ( "uctop" ) : "";
 	$sysop = $wgUser->isSysop();
+
+	$extraRollback = $_REQUEST['bot'] ? '&bot=1' : '';	
 	if($sysop && $topmark ) {
 		$topmarktext .= " [". $sk->makeKnownLink( $page,
-		  wfMsg( "rollbacklink" ), "action=rollback&from=" . urlencode( $target ) ) ."]";
+		  wfMsg( "rollbacklink" ), 
+		  "action=rollback&from=" . urlencode( $target ) . $extraRollback ) ."]";
 	}
 	if($comment) {
 	
