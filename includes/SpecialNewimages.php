@@ -84,11 +84,15 @@ function wfSpecialNewimages() {
 		$ut = $s->img_user_text;
 
 		$nt = Title::newFromText( $name, NS_IMAGE );
-		$img = Image::newFromTitle( $nt );
-		$ul = $sk->makeLink( $wgContLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
-
-		$gallery->add( $img, $ul.'<br /><i>'.$wgLang->timeanddate( $s->img_timestamp, true ).'</i><br />' );
-		$i++;
+		
+		# We may not get an object back from Title if there is name problem.
+		if ( is_object($nt) ) {
+			$img = Image::newFromTitle( $nt );
+			$ul = $sk->makeLink( $wgContLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
+	
+			$gallery->add( $img, $ul.'<br /><i>'.$wgLang->timeanddate( $s->img_timestamp, true ).'</i><br />' );
+			$i++;
+		}
 	}
 	$wgOut->addHTML( $gallery->toHTML() );
 	$dbr->freeResult( $res );
