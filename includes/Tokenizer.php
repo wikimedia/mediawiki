@@ -62,7 +62,7 @@ class Tokenizer {
 				return false;
 
 			while ( $this->mPos <= $this->mTextLength ) {
-				switch ( $ch = $this->mText[$this->mPos] ) {
+				switch ( $ch = isset($this->mText[$this->mPos]) ? $this->mText[$this->mPos] : '' ) {
 					case 'R': // for "RFC "
 						if ( $this->mText[$this->mPos+1] == 'F' &&
 					     	$this->mText[$this->mPos+2] == 'C' &&

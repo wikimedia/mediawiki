@@ -622,7 +622,7 @@ class Parser
 			$state["strong"] = FALSE;
 		} else {
 			$s = "<strong>";
-			$state["strong"] = $token["pos"];
+			$state["strong"] = isset($token["pos"]) ? $token["pos"] : true;
 		}
 		return $s;
 	}
@@ -640,7 +640,8 @@ class Parser
 			$state["em"] = FALSE;
 		} else {
 			$s = "<em>";
-			$state["em"] = $token["pos"];
+			$state["em"] = isset($token["pos"]) ? $token["pos"] : true;
+
 		}
 		return $s;
 	}
