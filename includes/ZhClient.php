@@ -252,17 +252,20 @@ class ZhClientFake {
 	 * @access public
 	 */
 	function segment($text) {
-		/* copied from LanguageZh_cn.stripForSearch() */
+		/* adapted from LanguageZh_cn.stripForSearch()
+			here we will first separate the single characters,
+			and let the caller conver it to hex
+        */
 		if( function_exists( 'mb_strtolower' ) ) {
 			return preg_replace(
 				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-				"' U8' . bin2hex( \"$1\" )",
+				"' ' .\"$1\"",
 				mb_strtolower( $text ) );
 		} else {
 			global $wikiLowerChars;
 			return preg_replace(
 				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-				"' U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
+				"' ' . strtr( \"\$1\", \$wikiLowerChars )",
 				$text );
 		}
 	}
