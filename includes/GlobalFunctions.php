@@ -185,7 +185,8 @@ function wfMsg( $key )
 	}
 
 	if ( "" == $ret ) {
-		user_error( "Couldn't find text for message \"{$key}\"." );
+		# Let's at least _try_ to be graceful about this.
+		return "&lt;$key&gt;";
 	}
 	return $ret;
 }
@@ -254,6 +255,7 @@ function wfSpecialPage()
 {
 	global $wgUser, $wgOut, $wgTitle, $wgLang;
 
+	/* FIXME: this list probably shouldn't be language-specific, per se */
 	$validSP = $wgLang->getValidSpecialPages();
 	$sysopSP = $wgLang->getSysopSpecialPages();
 	$devSP = $wgLang->getDeveloperSpecialPages();
@@ -261,16 +263,21 @@ function wfSpecialPage()
 	$wgOut->setArticleFlag( false );
 	$wgOut->setRobotpolicy( "noindex,follow" );
 
-	$t = $wgTitle->getDBkey();
+	$par = NULL;
+	list($t, $par) = split( "/", $wgTitle->getDBkey(), 2 );
+	
 	if ( array_key_exists( $t, $validSP ) ||
 	  ( $wgUser->isSysop() && array_key_exists( $t, $sysopSP ) ) ||
 	  ( $wgUser->isDeveloper() && array_key_exists( $t, $devSP ) ) ) {
+	  	if($par !== NULL)
+			$wgTitle = Title::makeTitle( Namespace::getSpecial(), $t );
+
 		$wgOut->setPageTitle( wfMsg( strtolower( $wgTitle->getText() ) ) );
 
 		$inc = "Special" . $t . ".php";
 		include_once( $inc );
 		$call = "wfSpecial" . $t;
-		$call();
+		$call( $par );
 	} else if ( array_key_exists( $t, $sysopSP ) ) {
 		$wgOut->sysopRequired();
 	} else if ( array_key_exists( $t, $devSP ) ) {

@@ -1,11 +1,13 @@
 <?
 
-function wfSpecialAllpages()
+function wfSpecialAllpages( $par=NULL )
 {
 	global $from, $indexMaxperpage;
 	$indexMaxperpage = 480;
 
-	if( isset( $from ) ) {
+	if( $par ) {
+		indexShowChunk( $par );
+	} elseif( isset( $from ) ) {
 		indexShowChunk( $from );
 	} else {
 		indexShowToplevel();

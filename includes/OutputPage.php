@@ -1359,7 +1359,7 @@ class OutputPage {
 	{
 		global $wgDocType, $wgDTD, $wgUser, $wgLanguageCode, $wgOutputEncoding;
 
-		$ret = "<!DOCTYPE HTML PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
+		$ret = "<!DOCTYPE HTML PUBLIC \"$wgDocType\"\n        \"$wgDTD\">\n";
 
 		if ( "" == $this->mHTMLtitle ) {
 			$this->mHTMLtitle = $this->mPagetitle;

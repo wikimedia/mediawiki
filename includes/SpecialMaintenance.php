@@ -1,20 +1,25 @@
 <?
 
 function sns()
-	{
+{
 	global $wgLang ;
 	$ns = $wgLang->getNamespaces() ;
 	return $ns[-1] ;
-	}
+}
 
-function wfSpecialMaintenance ()
-	{
+function wfSpecialMaintenance( $par=NULL )
+{
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $subfunction, $wgLanguageCode, $submitmll;
 	global $wgMiserMode;
 	if ( $wgMiserMode ) {
 		$wgOut->addWikiText( wfMsg( "perfdisabled" ) );
 		return;
 	}
+	
+	if( $par )
+		$subfunction = $par;
+	else
+		$subfunction = $_REQUEST['subfunction'];
 
 	if ( $subfunction == "disambiguations" ) return wfSpecialDisambiguations() ;
 	if ( $subfunction == "doubleredirects" ) return wfSpecialDoubleRedirects() ;
@@ -56,17 +61,17 @@ function wfSpecialMaintenance ()
 
 	$r .= "</UL>\n" ;
 	$wgOut->addHTML ( $r ) ;
-	}
+}
 
 function getMPL ( $x )
-	{
+{
 	global $wgUser , $wgLang;
 	$sk = $wgUser->getSkin() ;
 	return $sk->makeKnownLink(sns().":Maintenance",wfMsg($x),"subfunction={$x}") ;
-	}
+}
 
 function getMaintenancePageBacklink()
-	{
+{
 	global $wgUser , $wgLang , $subfunction ;
 	$sk = $wgUser->getSkin() ;
 	$ns = $wgLang->getNamespaces() ;
@@ -79,7 +84,7 @@ function getMaintenancePageBacklink()
 	$s .= "<h2>{$t}</h2></td><td align=right>";
 	$s .= "{$r}</td></tr></table>\n" ;
 	return $s ;
-	}
+}
 
 
 function wfSpecialDisambiguations()
