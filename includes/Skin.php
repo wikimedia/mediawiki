@@ -1656,7 +1656,6 @@ class Skin {
 
 	function makeImage( $url, $alt = '' ) {
 		global $wgOut;
-
 		if ( '' == $alt ) {
 			$alt = $this->fnamePart( $url );
 		}
@@ -1778,7 +1777,7 @@ class Skin {
 		$alt = str_replace( array('<', '>', '"'), array('&lt;', '&gt;', '&quot;'), $alt );
 
 		$u = $nt->escapeLocalURL();
-		$uf = $nt->escapeFullURL();
+		$uf = $nt->escapeFullURL();		
 		if ( $url == '' )
 		{
 			$s = wfMsg( 'missingimage', $img->getName() );
@@ -1885,24 +1884,24 @@ class Skin {
 	}
 
 	function makeMediaLink( $name, $url, $alt = '' ) {
-		$nt = Title::makeTitleSafe( Namespace::getMedia(), $name );
+		$nt = Title::makeTitleSafe( NS_IMAGE, $name );
 		return $this->makeMediaLinkObj( $nt, $alt );
 	}
 
-	function makeMediaLinkObj( $nt, $alt = '' ) {
+	function makeMediaLinkObj( $nt, $alt = '' ) {		
 		if ( ! isset( $nt ) )
 		{
 			### HOTFIX. Instead of breaking, return empty string.
 			$s = $alt;
 		} else {
-			$name = $nt->getDBKey();
-			$url = Image::wfImageUrl( $name );
+			$name = $nt->getDBKey();	
+			$img   = Image::newFromTitle( $nt );
+			$url = $img->getURL();
 			if ( empty( $alt ) ) {
 				$alt = preg_replace( '/\.(.+?)^/', '', $name );
 			}
-
 			$u = htmlspecialchars( $url );
-			$s = "<a href=\"{$u}\" class='internal' title=\"{$alt}\">{$alt}</a>";
+			$s = "<a href=\"{$u}\" class='internal' title=\"{$alt}\">{$alt}</a>";			
 		}
 		return $s;
 	}
