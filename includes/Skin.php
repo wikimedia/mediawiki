@@ -21,11 +21,13 @@ require_once( 'Image.php' );
 
 $skinDir = dir($IP.'/skins');
 
+global $wgSkipSkin;
+
 # while code from www.php.net
-while (false !== ($file = $skinDir->read())) {
-	if(preg_match('/^([^.].*)\.php$/',$file, $matches)) {
+while ( false !== ( $file = $skinDir->read() ) ) {
+	if ( preg_match( '/^([^.].*)\.php$/',$file, $matches ) ) {
 		$aSkin = $matches[1];
-		$wgValidSkinNames[strtolower($aSkin)] = $aSkin;
+		$wgValidSkinNames[ strtolower($aSkin) ] = $aSkin;
 	}
 }
 $skinDir->close();

@@ -335,7 +335,7 @@ class PreferencesForm {
 		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgUseDynamicDates, $wgValidSkinNames;
 		global $wgAllowRealName, $wgImageLimits;
 		global $wgLanguageNames, $wgDisableLangConversion;
-		global $wgContLanguageCode;
+		global $wgContLanguageCode, $wgSkipSkin;
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
@@ -504,6 +504,9 @@ class PreferencesForm {
 		# Only show members of $wgValidSkinNames rather than
 		# $skinNames (skins is all skin names from Language.php)
 		foreach ($wgValidSkinNames as $skinkey => $skinname ) {
+			if ( $skinkey == $wgSkipSkin ) {
+				continue;
+			}
 			if ( $skinkey == $this->mSkin ) { 
 				$checked = ' checked="checked"'; 
 			} else { 
