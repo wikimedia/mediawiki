@@ -928,7 +928,7 @@ if ( \$wgCommandLineMode ) {
 \$wgDBmysql4 = \$wgEnablePersistentLC = {$conf->DBmysql4};
 
 ## Shared memory settings
-\$wgUseMemcached = $memcached;
+\$wgUseMemCached = $memcached;
 \$wgMemCachedServers = $mcservers;
 {$turck}\$wgUseTurckShm = function_exists( 'mmcache_get' ) && php_sapi_name() == 'apache';
 
