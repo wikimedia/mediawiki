@@ -7,11 +7,12 @@
 
 /** */
 function isTemplateInitialised() {
+	global $wgAllMessagesEn;
 	$fname = 'isTemplateInitialised';
 
 	$dbw =& wfGetDB( DB_MASTER );
-	$res = $dbw->select( 'cur', 1, array( 'cur_namespace' => NS_TEMPLATE ), $fname, array( 'LIMIT' => 1 ) );
-	return $dbw->numRows( $res ) ? true : false;
+	$n = $dbw->selectField( 'cur', 'count(*)', array( 'cur_namespace' => NS_MEDIAWIKI ) );
+	return $n > count( $wgAllMessagesEn ) ? false : true;
 }
 
 function moveCustomMessages( $phase ) {
