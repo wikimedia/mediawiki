@@ -148,7 +148,8 @@ require_once( 'languages/Language.php' );
 $wgMessageCache = new MessageCache; 
 
 $wgLangClass = 'Language' . ucfirst( $wgLanguageCode );
-if( ! class_exists( $wgLangClass ) || ($wgLanguageCode == 'en' && strcasecmp( $wgInputEncoding, 'utf-8' ) == 0 ) ) {
+if( ! class_exists( $wgLangClass ) || ($wgLanguageCode == 'en' && !$wgUseLatin1) ) {
+	# Default to English/UTF-8
 	require_once( 'languages/LanguageUtf8.php' );
 	$wgLangClass = 'LanguageUtf8';
 }
@@ -156,6 +157,14 @@ if( ! class_exists( $wgLangClass ) || ($wgLanguageCode == 'en' && strcasecmp( $w
 $wgLang = new $wgLangClass();
 if ( !is_object($wgLang) ) {
 	print "No language class ($wgLang)\N";
+}
+
+if( $wgUseLatin1 && $wgLanguageCode != 'en' ) {
+	# For non-UTF-8 non-English.
+	require_once( 'languages/LanguageLatin1.php' );
+	$xxx = new LanguageLatin1( $wgLang );
+	unset( $wgLang );
+	$wgLang = $xxx;
 }
 wfProfileOut( $fname.'-language' );
 wfProfileIn( $fname.'-MessageCache' );
