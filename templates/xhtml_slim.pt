@@ -87,7 +87,7 @@
 	      <input id="searchInput" name="search" type="text"
 	      i18n:attributes="accesskey string:accesskey-search | default"/>
 	      <input type='submit' name="go" value="Go" class="searchButton" 
-	      i18n:attributes="value string:go"/>&nbsp;<input type='submit'
+	      i18n:attributes="value string:go"/>&nbsp;<input type='submit' name="fulltext"
 	      value="Search" class="searchButton"
 	      i18n:attributes="value string:search"/>
 	    </form>
