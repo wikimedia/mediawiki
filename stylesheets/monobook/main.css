@@ -119,7 +119,7 @@ ul {
 }
 ol {
     line-height: 1.5em;
-    margin: 0.3em 0 0 2.2em;
+    margin: 0.3em 0 0 3.2em;
     padding:0;
 }
 li { margin-bottom: 0.1em; }
@@ -139,7 +139,7 @@ fieldset {
 legend {
     background: White;
     padding: 0.5em;
-    font-size: 90%;
+    font-size: 95%;
 }
 form {
     border: none;
@@ -283,7 +283,11 @@ in the bottom-right corner of the content area */
 }
 .tocindent { margin-left: 2em; }
 .tocline { margin-bottom: 0px; }
-.toctoggle, .editsection { font-size: 94%; }
+.toctoggle { font-size: 94%; }
+.editsection { 
+    margin-top: 0.7em; 
+    font-size: 94%;
+}
 
 /* images */
 div.floatright { 
@@ -688,8 +692,6 @@ li#pt-login {
     list-style: none;
     font-size: 95%;
 }
-
-
 #p-cactions .hiddenStructure { display: none; }
 #p-cactions ul {
     list-style: none;
@@ -784,6 +786,27 @@ head:first-child+body #footer li { white-space: nowrap; }
 }
 form #content {
    left: -8em;
+}
+
+#preftoc { 
+    float: left;
+    margin: 1em 1em 1em 1em;
+    width: 13em;
+}
+#preftoc li { border: 1px solid White; }
+#preftoc li.selected { 
+    background-color:#f9f9f9;
+    border:1px dashed #aaaaaa;
+}
+#preftoc a,
+#preftoc a:active {
+    display: block;
+    color: #005189;
+}
+#prefcontrol { 
+    clear: both;
+    float: left;
+    margin-top: 1em;
 }
 
 /* 
