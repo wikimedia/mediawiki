@@ -15,8 +15,8 @@ include_once("Utf8Case.php");
 	1	=> "Vita",
 	2	=> "User",
 	3	=> "User_vita",
-	4	=> "Wikipedia",
-	5	=> "Wikipedia_vita",
+	4	=> "Wikipédia",
+	5	=> "Wikipédia_vita",
 	6	=> "Kép",
 	7	=> "Kép_vita"
 );
@@ -66,7 +66,7 @@ include_once("Utf8Case.php");
 	"nocache" => "Lapok gyorstárazásának letiltása"
 );
 
-/* Change bookstore list through the wiki page [[hu:Wikipedia:Külső könyvinformációk]] */
+/* Change bookstore list through the wiki page [[hu:Wikipédia:Külső könyvinformációk]] */
 
 /* Language names should be the native names. Inherit common array from Language.php */
 
@@ -145,16 +145,16 @@ include_once("Utf8Case.php");
 "mainpagetext"	=> "Wiki szoftver sikeresen telepítve.",
 "about"			=> "Névjegy",
 "aboutwikipedia" => "A Wikipédiáról",
-"aboutpage"		=> "Wikipedia:Névjegy",
+"aboutpage"		=> "Wikipédia:Névjegy",
 "help"			=> "Segítség",
-"helppage"		=> "Wikipedia:Segítség",
+"helppage"		=> "Wikipédia:Segítség",
 "wikititlesuffix" => "Wikipédia",
 "bugreports"	=> "Hibajelentés",
-"bugreportspage" => "Wikipedia:Hibajelentések",
+"bugreportspage" => "Wikipédia:Hibajelentések",
 "faq"			=> "GyIK",
-"faqpage"		=> "Wikipedia:GyIK",
+"faqpage"		=> "Wikipédia:GyIK",
 "edithelp"		=> "Segítség a szerkesztéshez",
-"edithelppage"	=> "Wikipedia:Hogyan_szerkessz_egy_lapot",
+"edithelppage"	=> "Wikipédia:Hogyan_szerkessz_egy_lapot",
 "cancel"		=> "Vissza",
 "qbfind"		=> "Keresés",
 "qbbrowse"		=> "Böngészés",
@@ -191,9 +191,9 @@ include_once("Utf8Case.php");
 "lastmodified"	=> "A lap utolsó módosítása $1.",
 "viewcount"		=> "Ezt a lapot eddig $1 alkalommal látogatták.",
 "gnunote" => "Minden szöveg a <a class=internal href='/wiki/GNU_FDL'>GNU Szabad Dokumentációk Liszensze</a> feltételei mellett érhető el.",
-"printsubtitle" => "(From http://www.wikipedia.org)",
+"printsubtitle" => "(From http://www.wikipedia.org/)",
 "protectedpage" => "Védett lap",
-"administrators" => "Wikipedia:Adminisztrátorok",
+"administrators" => "Wikipédia:Adminisztrátorok",
 "sysoptitle"	=> "Sysop hozzáférés szükséges",
 "sysoptext"		=> "Az általad kért tevékenységet csak \"sysopok\" végezhetik el.
 Lásd $1.",
@@ -295,7 +295,6 @@ Ne felejtsd el átnézni a személyes Wikipédia beállításaidat.",
 
 "areyounew"		=> "Ha új látogató vagy és szeretnél magadnak felhasználói nevet,
 akkor adj meg egyet, és adj meg egy jelszót (kétszer).
-
 Az email cím megadása nem kötelező; ha elveszíted a jelszavad, akkor
 újat a megadott email címre tudsz kérni.<br>\n",
 
@@ -342,12 +341,12 @@ Lépj be a levélben található adatokkal.",
 "blockedtext"	=> "A felhasználói neved vagy IP számod $1 letiltotta.
 Az indoklás:<br>''$2''
 <p>Felveheted a kapcsolatot $1 adminnal vagy bármely más
-[[Wikipedia:adminisztrátorok|adminisztrátorral]] hogy megvitasd a letiltást.",
+[[Wikipédia:adminisztrátorok|adminisztrátorral]] hogy megvitasd a letiltást.",
 "newarticle"	=> "(Új)",
 "newarticletext" =>
 "Egy olyan lapra jutottál ami még nem létezik.
 A lap létrehozásához kezdd el írni a szövegét lenti keretbe
-(a [[Wikipedia:Segítség|segítség]] lapon lelsz további 
+(a [[Wikipédia:Segítség|segítség]] lapon lelsz további 
 információkat).
 Ha tévedésből jöttél ide, csak nyomd meg a böngésző '''Vissza/Back'''
 gombját.",
@@ -356,7 +355,6 @@ gombját.",
 "noarticletext" => "(Ez a lap jelenleg nem tartalmaz szöveget)",
 "updated"		=> "(Frissítve)",
 "note"			=> "<strong>Megjegyzés:</strong> ",
-
 "previewnote"	=> "Ne felejtsd el, hogy ez csak egy előnézet, és nincs elmentve!",
 "previewconflict" => "Ez az előnézet a felső szerkesztőablakban levő
 szövegnek megfelelő képet mutatja, ahogy az elmentés után kinézne.",
@@ -395,7 +393,7 @@ ezért a módosításaidat most nem lehetséges elmenteni. Érdemes a szöveget
 kimásolni és elmenteni egy szövegszerkesztőben a későbbi mentéshez.",
 "protectedpagewarning" => "FIGYELEM: A lap lezárásra került és ilyenkor
 csak a Sysop jogú adminisztrátorok tudják szerkeszteni. Ellenőrizd, hogy
-betartod a <a href='/wiki/Wikipedia:Zart_lapok_iranyelve'>zárt lapok 
+betartod a <a href='/wiki/Wikipédia:Zárt_lapok_irányelve'>zárt lapok 
 irányelvét</a>.",
 
 # History pages
@@ -427,7 +425,7 @@ A = Apró változtatás",
 # Search results
 #
 "searchresults" => "A keresés eredménye",
-"searchhelppage" => "Wikipedia:Keresés",
+"searchhelppage" => "Wikipédia:Keresés",
 "searchingwikipedia" => "Keresés a Wikipédiában",
 "searchresulttext" => "További információkkal a keresésről $1 szolgál.",
 "searchquery"	=> "A \"$1\" kereséshez",
@@ -510,16 +508,17 @@ idő a GMT-től eltér (Magyarországon nyáron 2, télen 1).",
 
 # Recent changes  'legutóbbi változtatások', 'friss v.'
 #
+
 "changes" => "változtatás",
 "recentchanges" => "Friss változtatások",
 "recentchangestext" => "Ezen a lapon követheted a Wikipédián történt legutóbbi 
-változtatásokat. [[Wikipedia:Üdvözlünk,_látogató|Üdvözlünk, látogató]]!
-Légy szíves ismerkedj meg az alábbi lapokkal: [[Wikipedia:GyIK|Wikipédia GyIK]],
-[[Wikipedia:Irányelvek]] (különösen az [[Wikipedia:Elnevezési szokások|elnevezési szokásokat]],
-a [[wikipedia:Semleges nézőpont|semleges nézőpontot]]), és a
-[[wikipedia:Legelterjedtebb baklövések|legelterjedtebb baklövéseket]].
+változtatásokat. [[Wikipédia:Üdvözlünk_látogató|Üdvözlünk, látogató]]!
+Légy szíves ismerkedj meg az alábbi lapokkal: [[Wikipédia:GyIK|Wikipédia GyIK]],
+[[Wikipédia:Irányelvek]] (különösen az [[Wikipédia:Elnevezési szokások|elnevezési szokásokat]],
+a [[wikipédia:Semleges nézőpont|semleges nézőpontot]]), és a
+[[wikipédia:Legelterjedtebb baklövések|legelterjedtebb baklövéseket]].
 Ha azt szeretnéd hogy a Wikipedia sikeres legyen akkor nagyon fontos, hogy 
-soha ne add hozzá mások [[wikipedia:Copyright|jogvédett és nem felhasználható]]
+soha ne add hozzá mások [[wikipédia:Copyright|jogvédett és nem felhasználható]]
 anyagait.
 A jogi problémák komolyan árthatnak a projektnek ezért kérünk arra, hogy ne tegyél
 ilyet.
@@ -560,12 +559,12 @@ to upload files.",
 "uploaderror"	=> "Felküldési hiba",
 "uploadtext"	=> "<strong>ÁLLJ!</strong> Mielőtt bármit felküldesz ide
 győződj meg róla hogy elolvastad és követed a <a href=\"" .
-wfLocalUrlE( "Wikipedia:Képhasználati_irányelvek" ) . "\">képhasználati irányelveket</a>.
+wfLocalUrlE( "Wikipédia:Képhasználati_irányelvek" ) . "\">képhasználati irányelveket</a>.
 <p>A régebben felküldött képek megnézéséhez vagy kereséséhez
 nézd meg a <a href=\"" . wfLocalUrlE( "Speciális:Képlista" ) .
 "\">felküldött képek listáját</a>.
 A felküldések és törlések naplója a <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">felküldési naplóban</a>
+wfLocalUrlE( "Wikipédia:Upload_log" ) . "\">felküldési naplóban</a>
 található.
 <p>Az alábbi űrlapot használd a cikkeidet illusztráló új kép felküldéséhez.
 A legtöbb büngészőben látsz egy \"Böngészés...\" (Browse) gombot
@@ -598,8 +597,8 @@ Minden időpont a server idejében (UTC) van megadva.
 "filedesc"		=> "Összefoglaló",
 "affirmation"	=> "Igazolom hogy ezen file szerzői jogainak tulajdonosa
 elfogadja azt, hogy az anyag a $1 licenc alapján publikálásra kerül.",
-"copyrightpage" => "Wikipedia:Copyright",
-"copyrightpagename" => "Wikipedia copyright",
+"copyrightpage" => "Wikipédia:Copyright",
+"copyrightpagename" => "Wikipédia copyright",
 "uploadedfiles"	=> "Felküldött file-ok",
 "noaffirmation" => "Igazolnod kell azt, hogy a felküldött file-ok 
 nem sértenek szerzői jogokat!",
@@ -646,18 +645,20 @@ más információ amit meg tudsz adni.",
 # Statistics
 #
 "statistics"	=> "Statisztika",
-"sitestats"		=> "Site statistics",
-"userstats"		=> "User statistics",
-"sitestatstext" => "There are <b>$1</b> total pages in the database.
-This includes \"talk\" pages, pages about Wikipedia, minimal \"stub\"
-pages, redirects, and others that probably don't qualify as articles.
-Excluding those, there are <b>$2</b> pages that are probably legitimate
-articles.<p>
-There have been a total of <b>$3</b> page views, and <b>$4</b> page edits
-since the software was upgraded (July 20, 2002).
-That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.",
-"userstatstext" => "There are <b>$1</b> registered users.
-<b>$2</b> of these are administrators (see $3).",
+"sitestats"		=> "Server statisztika",
+"userstats"		=> "User statisztika",
+"sitestatstext" => "Az adatbázisban összesen <b>$1</b> lap található.
+Ebben benne vannak a \"vita\" lapok, a Wikipédiáról szóló lapok, a
+minimális \"csonk\" lapok, átirányítások és hasonlók amik vélhetően nem
+számítanak igazi szócikkeknek. 
+Ezeket nem számítva <b>$2</b> lapunk van ami valószínűleg igazi szócikknek
+számít.<p>
+A magyar Wikipédia indítása óta (2003 júl 8) <b>$3</b> alkalommal néztek meg
+lapokat a rendszeren, és <b>$4</b> alkalommal szerkesztett valaki lapot.
+Ezek alapján átlagosan egy lapot <b>$5</b> alkalommal szerkesztettek, és
+szerkesztésenként <b>$6</b> alkalommal nézték meg.",
+"userstatstext" => "Jelenleg <b>$1</b> regisztrált felhasználónk van.
+Ebből <b>$2</b> darab adminisztrátor (lásd $3).",
 
 # Maintenance Page
 #
@@ -665,7 +666,7 @@ That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.",
 "maintnancepagetext"	=> "This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)",
 "maintenancebacklink"	=> "Back to Maintenance Page",
 "disambiguations"	=> "Disambiguation pages",
-"disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
+"disambiguationspage"	=> "Wikipédia:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
 "doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
@@ -759,7 +760,7 @@ nem kíván másoktól leveleket kapni.",
 "addedwatchtext" => "A \"$1\" lapot hozzáadtam a <a href=\"" .
   wfLocalUrl( "Speciális:Figyelőlista" ) . "\">figyelőlistádhoz</a>.
 Ezután minden a lapon vagy annak vitalapján történő változást ott fogsz
-látni, és a lap <b>vastagon</b> fog szerepelni a<a href=\"" .
+látni, és a lap <b>vastagon</b> fog szerepelni a <a href=\"" .
   wfLocalUrl( "Speciális:Friss_változtatások" ) . "\">friss változtatások</a> 
 lapon, hogy könnyen észrevehető legyen.</p>
 
@@ -832,24 +833,23 @@ See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations
 
 # Contributions
 #
-"contributions"	=> "User contributions",
-"mycontris" => "My contributions",
-"contribsub"	=> "For $1",
-"nocontribs"	=> "No changes were found matching these criteria.",
-"ucnote"		=> "Below are this user's last <b>$1</b> changes in the last <b>$2</b> days.",
+"contributions"	=> "User közreműködései",
+"mycontris" => "Közreműködéseim",
+"contribsub"	=> "$1 cikkhez",
+"nocontribs"	=> "Nem találtam a feltételnek megfelelő módosítást.",
+"ucnote"		=> "Lentebb <b>$1</b> módosításai láthatóak az elmúlt <b>$2</b> napban.",
 "uclinks"		=> "View the last $1 changes; view the last $2 days.",
 "uctop"		=> " (top)" ,
 
 # What links here
 #
-"whatlinkshere"	=> "What links here",
-"notargettitle" => "No target",
-"notargettext"	=> "You have not specified a target page or user
-to perform this function on.",
-"linklistsub"	=> "(List of links)",
-"linkshere"		=> "The following pages link to here:",
-"nolinkshere"	=> "No pages link to here.",
-"isredirect"	=> "redirect page",
+"whatlinkshere"	=> "Mi hivatkozik erre",
+"notargettitle" => "Nincs cél",
+"notargettext"	=> "Nem adtál meg lapot vagy usert keresési célpontnak.",
+"linklistsub"	=> "(Linkek )",
+"linkshere"		=> "Az alábbi lapok hivatkoznak erre:",
+"nolinkshere"	=> "Erre a lapra senki nem hivatkozik.",
+"isredirect"	=> "átirányítás",
 
 # Block/unblock IP
 #
@@ -867,7 +867,7 @@ pages that were vandalized).",
 "noblockreason" => "You must supply a reason for the block.",
 "blockipsuccesssub" => "Block succeeded",
 "blockipsuccesstext" => "The IP address \"$1\" has been blocked.
-<br>See [[Special:Ipblocklist|IP block list]] to review blocks.",
+<br>See [[Speciális:Ipblocklist|IP block list]] to review blocks.",
 "unblockip"		=> "Unblock IP address",
 "unblockiptext"	=> "Use the form below to restore write access
 to a previously blocked IP address.",
@@ -921,50 +921,50 @@ Wikipedia developers.",
 
 # Move page
 #
-"movepage"		=> "Move page",
-"movepagetext"	=> "Using the form below will rename a page, moving all
-of its history to the new name.
-The old title will become a redirect page to the new title.
-Links to the old page title will not be changed; be sure to
-[[Special:Maintenance|check]] for double or broken redirects.
-You are responsible for making sure that links continue to
-point where they are supposed to go.
+"movepage"		=> "Lap mozgatása",
+"movepagetext"	=> "A lentebb található űrlap segítségével legetséges 
+egy lapot átnevezni, és átmozgatni a teljes történetével együtt egy
+új névre.
+A régi név átirányítássá válik az új címszóra.
+A régi címszóra hivatkozások nem változnak meg; 
+[[Speciális:Karbantartás|győződj meg arról]] hogy nem hagysz
+magad után a régi címszóra hivatkozó linkeket. A te feladatod
+biztosítani hogy a linkek oda mutassanak, ahova kell nekik.
 
-Note that the page will '''not''' be moved if there is already
-a page at the new title, unless it is empty or a redirect and has no
-past edit history. This means that you can rename a page back to where
-it was just renamed from if you make a mistake, and you cannot overwrite
-an existing page.
+Vedd figyelembe azt hogy az átnevezés '''nem''' történik meg
+akkorr, ha már létezik olyan nevű lap, kivéve ha az üres, 
+átirányítás vagy nincs szerkesztési története. Ez azt jelenti
+hogy vissza tudsz nevezni egy tévedésből átnevezett lapot, de
+nem tudsz egy már létező aktív lapot felülírni.
 
-<b>WARNING!</b>
-This can be a drastic and unexpected change for a popular page;
-please be sure you understand the consequences of this before
-proceeding.",
-"movepagetalktext" => "The associated talk page, if any, will be automatically moved along with it '''unless:'''
-*You are moving the page across namespaces,
-*A non-empty talk page already exists under the new name, or
-*You uncheck the box below.
+<b>FIGYELEM!</b>
+Egy népszerű lap esetén ez egy drasztikus és váratlan változás;
+mielőtt átnevezel valamit győződj meg arról hogy tudatában vagy a következményeknek.",
+"movepagetalktext" => "A laphoz tartozó vitalap automatikusan átneveződik '''kivéve ha:'''
+* A lapot névterek között mozgatod át,
+* Már létezik egy nem üres vitalap az új helyen,
+* Nem jelölöd be a lenti pipát.
 
-In those cases, you will have to move or merge the page manually if desired.",
-"movearticle"	=> "Move page",
-"movenologin"	=> "Not logged in",
-"movenologintext" => "You must be a registered user and <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
-to move a page.",
-"newtitle"		=> "To new title",
-"movepagebtn"	=> "Move page",
-"pagemovedsub"	=> "Move succeeded",
-"pagemovedtext" => "Page \"[[$1]]\" moved to \"[[$2]]\".",
-"articleexists" => "A page of that name already exists, or the
-name you have chosen is not valid.
-Please choose another name.",
-"talkexists"	=> "The page itself was moved successfully, but the
-talk page could not be moved because one already exists at the new
-title. Please merge them manually.",
-"movedto"		=> "moved to",
-"movetalk"		=> "Move \"talk\" page as well, if applicable.",
-"talkpagemoved" => "The corresponding talk page was also moved.",
-"talkpagenotmoved" => "The corresponding talk page was <strong>not</strong> moved.",
+Ezen esetekben a vita lapot külön, kézzel kell átnevezned a kívánságaid
+szerint.",
+"movearticle"	=> "Lap mozgatás",
+"movenologin"	=> "Nincs belépve",
+"movenologintext" => "Ahhoz hogy mozgass egy lapot <a href=\"" .
+  wfLocalUrl( "Speciál:Belépés" ) . "\">be kell lépned</a>.",
+"newtitle"		=> "Az új névre",
+"movepagebtn"	=> "Lap mozgatása",
+"pagemovedsub"	=> "Átmozgatás sikeres",
+"pagemovedtext" => "A \"[[$1]]\" lapot átmozgattam a \"[[$2]]\" névre.",
+"articleexists" => "Ilyen névvel már létezik lap, vagy az általad
+választott név érvénytelen.
+Kérlek válassz egy másik nevet.",
+"talkexists"	=> "A lap átmozgatása sikerült, de a hozzá tartozó
+vitalapot nem tudtam átmozgatni mert már létezik egy egyező nevű
+lap az új helyen. Kérlek gondoskodj a két lap összefűzéséről.",
+"movedto"		=> "átmozgatva",
+"movetalk"		=> "Mozgasd a \"vita\" lapokat is ha lehetséges.",
+"talkpagemoved" => "A laphoz tartozó vita lap is átmozgatásra került.",
+"talkpagenotmoved" => "A laphoz tartozó vita lap <strong>nem került</strong> átmozgatásra.",
 
 );
 
@@ -989,6 +989,10 @@ class LanguageHu extends LanguageUtf8 {
 		foreach ( $wgNamespaceNamesHu as $i => $n ) {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
+		# Compatbility with old names:
+		if( 0 == strcasecmp( "Special", $text ) ) { return -1; }
+		if( 0 == strcasecmp( "Wikipedia", $text ) ) { return 4; }
+		if( 0 == strcasecmp( "Wikipedia_talk", $text ) ) { return 5; }
 		return false;
 	}
 
@@ -1045,6 +1049,7 @@ class LanguageHu extends LanguageUtf8 {
 
 	function getSysopSpecialPages()
 	{
+
 		global $wgSysopSpecialPagesHu;
 		return $wgSysopSpecialPagesHu;
 	}
@@ -1067,7 +1072,30 @@ class LanguageHu extends LanguageUtf8 {
 	function fallback8bitEncoding() {
 		return "iso8859-2";
 	}
-	
+
+        # localised date and time
+        function date( $ts, $adj = false )
+        {
+          if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+
+          $d = substr( $ts, 0, 4 ) . " " .
+            $this->getMonthName( substr( $ts, 4, 2 ) ) . " ".
+            (0 + substr( $ts, 6, 2 ));
+          return $d;
+        }
+
+        function time( $ts, $adj = false )
+        {
+          if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+
+          $t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
+          return $t;
+        }
+
+        function timeanddate( $ts, $adj = false )
+        {
+          return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
+        }
 }
 
 ?>
