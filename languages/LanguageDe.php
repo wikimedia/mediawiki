@@ -140,6 +140,7 @@
 	"Shortpages"	=> "Kurze Artikel",
 	"Longpages"	=> "Lange Artikel",
 	"Newpages"	=> "Neue Artikel",
+  "Ancientpages"  => "Älteste Artikel",
 	"Allpages"	=> "Alle Artikel (alphabetisch)",
 
 	"Ipblocklist"	=> "Blockierte IP-Addressen",
@@ -272,6 +273,7 @@ gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
 "badtitle"		=> "Ungültiger Titel",
 "badtitletext"	=> "Der Titel der angeforderten Seite war ungültig, leer, oder ein ungültiger Sprachlink von einer anderen Wikipedia.",
 "perfdisabled" => "Diese Funktion wurde wegen Überlastung des Servers vorübergehend deaktiviert. Versuchen Sie es bitte zwischen 02:00 und 14:00 UTC noch einmal<br>(Aktuelle Serverzeit : ".date("H:i:s")." UTC).",
+"perfdisabledsub" => "Hier ist eine gespeicherte Kopie von $1:",
 
 
 # Login and logout pages
@@ -300,6 +302,7 @@ Ihre E-Mail-Addresse brauchen Sie nicht anzugeben, aber falls Sie Ihr Passwort v
 "userlogin"		=> "Anmelden",
 "logout"		=> "Abmelden",
 "userlogout"	=> "Abmelden",
+"notloggedin" => "Nicht angemeldet",
 "createaccount"	=> "Neues Benutzerkonto anlegen",
 "badretype"		=> "Die beiden Passwörter stimmen nicht überein.",
 "userexists"	=> "Dieser Benutzername ist schon vergeben. Bitte wählen Sie einen anderen.",
@@ -467,6 +470,8 @@ Ihre interne ID-Nummer ist $2.",
 "timezonetext"	=> "Geben Sie die Anzahl der Stunden ein, die zwischen Ihrer Zeitzone und UTC liegen.",
 "localtime"	=> "Ortszeit",
 "timezoneoffset" => "Unterschied",
+"servertime" => "Aktuelle Zeit auf dem Server",
+"guesstimezone" => "Einfügen aus dem Browser",
 "emailflag"		=> "Keine E-Mail von anderen Benutzern erhalten",
 
 # Recent changes
@@ -631,6 +636,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "rclsub"		=> "(auf Artikel von \"$1\")",
 "debug"			=> "Debug",
 "newpages"		=> "Neue Artikel",
+"ancientpages" => "Älteste Artikel",
 "movethispage"	=> "Artikel verschieben",
 "unusedimagestext" => "<p>Bitte beachten Sie, dass andere Wikipedias, die noch die alte Software verwenden, möglicherweise einige dieser Bilder benutzen.",
 "booksources"	=> "Buchhandlungen",
@@ -677,8 +683,13 @@ sein, um Ihre Beobachtungsliste zu bearbeiten.",
 #
 "deletepage"	=> "Seite löschen",
 "confirm"		=> "Bestätigen",
+"excontent" => "Alter Inhalt:",
+"exbeforeblank" => "Inhalt for dem leeren der Seite:",
+"exblank" => "Seite war leer",
 "confirmdelete" => "Löschung bestätigen",
 "deletesub"		=> "(Lösche \"$1\")",
+"historywarning" => "WARNUNG: Die Seite die Sie zu löscheni gedenken hat
+eine Versionsgeschichte:",
 "confirmdeletetext" => "Sie sind dabei, einen Artikel oder ein Bild und alle älteren Versionen permanent aus der Datenbank zu löschen.
 Bitte bestätigen Sie Ihre Absicht, dies zu tun, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit [[Wikipedia:Leitlinien|den Wikipedia Leitlinien]] handeln.",
 "confirmcheck"	=> "Ja, ich möchte den Löschvorgang fortsetzen.",
@@ -694,7 +705,12 @@ Im $2 finden Sie eine Liste der letzten Löschungen.",
 "deletionlog"	=> "Lösch-Logbuch",
 "reverted"		=> "Auf eine alte Version zurückgesetzt",
 "deletecomment"	=> "Grund der Löschung",
-"imagereverted" => "Auf eine alte version zurückgesetzt.",
+"imagereverted" => "Auf eine alte Version zurückgesetzt.",
+"rollback" => "Zurücknahme der Aenderungen",
+"rollbacklink" => "Rollback",
+"cantrollback" => "Die Änderung kann nicht zurückgenommen werden; der
+letzte Beitragende ist der Einzige.",
+"revertpage" => "Wiederhergestellt zur letzten Änderung von $1",
 
 # Undelete
 "undelete" => "Gelöschte Seite wiederherstellen",
