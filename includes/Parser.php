@@ -566,14 +566,11 @@ class Parser
 
 	# Parses the text and adds the result to the strip state
 	# Returns the strip tag
-	function stripParse( $text, $linestart, $args ) 
+	function stripParse( $text, $newline, $args ) 
 	{
 		$text = $this->strip( $text, $this->mStripState );
-		$text = $this->internalParse( $text, $linestart, $args, false );
-		if( $linestart ) {
-			$text = "\n" . $text;
-		}
-		return $this->insertStripItem( $text, $this->mStripState );
+		$text = $this->internalParse( $text, (bool)$newline, $args, false );
+		return $newline.$this->insertStripItem( $text, $this->mStripState );
 	}
 	
 	function internalParse( $text, $linestart, $args = array(), $isMain=true )
@@ -1437,7 +1434,7 @@ class Parser
 			}
 
 			# Run full parser on the included text
-			$text = $this->stripParse( $text, (bool)$newline, $assocArgs );
+			$text = $this->stripParse( $text, $newline, $assocArgs );
 
 			# Resume the link cache and register the inclusion as a link
 			if ( !is_null( $title ) ) {
@@ -1462,7 +1459,7 @@ class Parser
 		$inputArgs = end( $this->mArgStack );
 
 		if ( array_key_exists( $arg, $inputArgs ) ) {
-			$text = $this->stripParse( $inputArgs[$arg], (bool)$newline, array() );
+			$text = $this->stripParse( $inputArgs[$arg], $newline, array() );
 		}
 		
 		return $text;
