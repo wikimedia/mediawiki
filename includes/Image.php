@@ -170,8 +170,10 @@ class Image
 
 			if ( $wgUseImageMagick ) {
 				# use ImageMagick
+				# Specify white background color, will be used for transparent images
+				# in Internet Explorer/Windows instead of default black.
 				$cmd  =  $wgImageMagickConvertCommand .
-					" -quality 85 -geometry {$width} ".
+					" -quality 85 -background white -geometry {$width} ".
 					escapeshellarg($this->imagePath) . " " .
 					escapeshellarg($thumbPath);
 				$conv = shell_exec( $cmd );
