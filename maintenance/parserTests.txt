@@ -1382,6 +1382,15 @@ Image caption with a link
 </p>
 !! end
 
+!! test
+BUG 499: Alt text should have &#1234;, not &amp;1234;
+!! input
+[[Image:image.jpg|&#9792;]]
+!! result
+<p><a href="/wiki/Image:Image.jpg" class="image" title="&#9792;"><img src="/images/7/78/Image.jpg" alt="&#9792;" /></a>
+</p>
+!! end
+
 ###
 ### Subpages
 ###
