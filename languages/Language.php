@@ -2058,7 +2058,7 @@ class Language {
 		} if ($datePreference == '0') {$datePreference = $wgAmericanDates ? 1 : 2;}
 
 		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
-		if ( $seconds || $format == 'ISO 8601' ) {
+		if ( $format == 'ISO 8601' ) {
 			$t .= ':' . substr( $ts, 12, 2 );
 		}
 		return $this->formatNum( $t );
