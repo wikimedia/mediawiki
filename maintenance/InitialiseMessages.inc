@@ -10,7 +10,6 @@
  * @subpackage Maintenance
  */
 
-require_once('languages/Names.php');
 
 function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	global $wgContLang, $wgContLanguageCode;
@@ -52,6 +51,8 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 			$messages[$key.$suffix] = $lang->getMessage($key);
 		}
 	}
+
+	require_once('$IP/languages/Names.php');
 
     /*
 	  initialize all messages in $wgForceUIMsgAsContentMsg for all
