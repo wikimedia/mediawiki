@@ -719,7 +719,7 @@ class Article {
 		return $text;
 	}
 
-	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false )
+	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = "" )
 	{
 		global $wgOut, $wgUser, $wgLinkCache;
 		global $wgDBtransactions, $wgMwRedir;
@@ -824,14 +824,14 @@ class Article {
 			$u->doUpdate();
 		}
 
-		$this->showArticle( $text, wfMsg( "updated" ) );
+		$this->showArticle( $text, wfMsg( "updated" ), $sectionanchor );
 		return true;
 	}
 
 	# After we've either updated or inserted the article, update
 	# the link tables and redirect to the new page.
 
-	function showArticle( $text, $subtitle )
+	function showArticle( $text, $subtitle , $sectionanchor )
 	{
 		global $wgOut, $wgUser, $wgLinkCache;
 		global $wgMwRedir;
@@ -850,7 +850,7 @@ class Article {
 			$r = "redirect=no";
 		else
 			$r = "";
-		$wgOut->redirect( $this->mTitle->getFullURL( $r ) );
+		$wgOut->redirect( $this->mTitle->getFullURL( $r ).$sectionanchor );
 	}
 
 	# Add this page to my watchlist
