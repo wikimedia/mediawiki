@@ -563,7 +563,6 @@ class Article {
 				exit;
 			}
 			
-			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 
 			# We're looking at an old revision
 
@@ -598,6 +597,7 @@ class Article {
 				$wgOut->addWikiText( $text );
 			}
 		}
+		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 		
 		# Add link titles as META keywords
 		$wgOut->addMetaTags() ;
