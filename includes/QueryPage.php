@@ -63,13 +63,15 @@ class QueryPage {
 		$sql = $this->getSQL( $offset, $limit );
 
 		$res = wfQuery( $sql, DB_READ, $fname );
-
+		
+		$num = wfNumRows($res);
+		
 		$sk = $wgUser->getSkin( );
 
-		$top = wfShowingResults( $offset, $limit );
+		$top = wfShowingResults( $offset, $num);
 		$wgOut->addHTML( "<p>{$top}\n" );
 
-		$sl = wfViewPrevNext( $offset, $limit, $wgLang->specialPage( $sname ) );
+		$sl = wfViewPrevNext( $offset, $limit , $wgLang->specialPage( $sname ) );
 		$wgOut->addHTML( "<br />{$sl}</p>\n" );
 
 		$s = "<ol start='" . ( $offset + 1 ) . "'>";
