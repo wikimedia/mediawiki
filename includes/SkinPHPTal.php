@@ -81,11 +81,10 @@
 			
 			if( $this->loggedin ) {
 				$this->usercss = $this->makeUrl($this->userpage.'/'.$this->skinname.'.css', 'action=raw&ctype=text/css');
-				$this->usercsse = htmlspecialchars($this->usercss);
 				$this->userjs = $this->makeUrl($this->userpage.'/'.$this->skinname.'.js', 'action=raw&ctype=text/javascript');
 				$this->userjse = htmlspecialchars($this->userjs);
 			} else {
-				$this->usercss = $this->usercsse =  $this->userjs = $this->userjse = false;
+				$this->usercss =  $this->userjs = $this->userjse = false;
 			}
 			$this->titletxt = $wgTitle->getPrefixedText();
 			
@@ -135,7 +134,6 @@
 			$tpl->setRef( "userpage", &$this->userpage);
 			$tpl->setRef( "userpageurl", &$this->userpageurl);
 			$tpl->setRef( "usercss", &$this->usercss);
-			$tpl->setRef( "usercsse", &$this->usercsse);
 			$tpl->setRef( "userjs", &$this->userjs);
 			$tpl->setRef( "userjse", &$this->userjse);
 			if( $wgUser->getNewtalk() ) {
