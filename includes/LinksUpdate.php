@@ -229,7 +229,7 @@ class LinksUpdate {
 		while ( $row = wfFetchObject( $res ) ) {
 			if ( ! $first ) { $sql .= ","; $sql2 .= ","; }
 			$first = false;
-			$nl = wfStrencode( Article::nameOf( $row->bl_from ) );
+			$nl = wfStrencode( Title::nameOf( $row->bl_from ) );
 
 			$sql .= "('{$nl}',{$this->mId})";
 			$sql2 .= $row->bl_from;
