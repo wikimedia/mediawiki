@@ -473,19 +473,19 @@
 		function getPageTitleActionText () {
 			global $action;
 			switch($action) {
-				case edit:
+				case 'edit':
 					return 	wfMsg('edit');
-				case history:
+				case 'history':
 					return wfMsg('history_short');
-				case protect:
+				case 'protect':
 					return wfMsg('unprotect');
-				case unprotect:
+				case 'unprotect':
 					return wfMsg('unprotect');
-				case delete:
+				case 'delete':
 					return wfMsg('delete');
-				case watch:
+				case 'watch':
 					return wfMsg('watch');
-				case unwatch:
+				case 'unwatch':
 					return wfMsg('unwatch');
 				default:
 					return '';
