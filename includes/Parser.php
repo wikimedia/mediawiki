@@ -2376,7 +2376,7 @@ class Parser
 	 * @access private
 	 */
 	/* private */ function formatHeadings( $text, $isMain=true ) {
-		global $wgInputEncoding, $wgMaxTocLevel, $wgContLang, $wgLinkHolders;
+		global $wgInputEncoding, $wgMaxTocLevel, $wgContLang, $wgLinkHolders, $wgInterwikiLinkHolders;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
@@ -2539,6 +2539,9 @@ class Parser
 			#     link text with suffix
 			$canonized_headline = preg_replace( '/<!--LINK ([0-9]*)-->/e',
 							    "\$wgLinkHolders['texts'][\$1]",
+							    $canonized_headline );
+			$canonized_headline = preg_replace( '/<!--IWLINK ([0-9]*)-->/e',
+							    "\$wgInterwikiLinkHolders[\$1]",
 							    $canonized_headline );
 
 			# strip out HTML
