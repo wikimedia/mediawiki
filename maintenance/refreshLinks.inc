@@ -3,7 +3,6 @@
  * @todo document
  * @package MediaWiki
  * @subpackage Maintenance
- * @version $Id$
  */
 
 /** */

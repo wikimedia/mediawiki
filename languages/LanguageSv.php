@@ -9,8 +9,6 @@
 
 require_once( "LanguageUtf8.php" );
 
-// $Id$
-
 /* private */ $wgNamespaceNamesSv = array(
 	NS_MEDIA            => "Media",
 	NS_SPECIAL          => "Special",

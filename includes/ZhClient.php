@@ -3,7 +3,6 @@
  * Client for querying zhdaemon
  *
  * @package MediaWiki
- * @version $Id$
  */
 
 class ZhClient {

@@ -1,5 +1,4 @@
 <?php
-# $Id$
 /**
  * See deferred.doc
  *

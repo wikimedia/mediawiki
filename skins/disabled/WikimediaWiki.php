@@ -2,7 +2,6 @@
 /**
  * Tentative to make a skin for wikimedia.org
  *
- * @version $Id$
  * @package MediaWiki
  * @subpackage Skins
  */

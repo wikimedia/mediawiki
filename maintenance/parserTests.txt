@@ -1,7 +1,6 @@
 # MediaWiki Parser test cases
 # Some taken from http://meta.wikimedia.org/wiki/Parser_testing
 # All (C) their respective authors and released under the GPL
-# $Id$
 #
 # The syntax should be fairly self-explanatory.
 #

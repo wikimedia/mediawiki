@@ -1,5 +1,4 @@
 <?php
-# $Id$
 #
 # Copyright (C) 2003-2004 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/

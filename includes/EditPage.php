@@ -2,7 +2,6 @@
 /**
  * Contain the EditPage class
  * @package MediaWiki
- * @version $Id$
  */
 
 /**

@@ -1,5 +1,4 @@
 <?php
-# $Id$
 
 /**
  * Global functions used everywhere

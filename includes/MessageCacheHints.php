@@ -2,7 +2,6 @@
 
 /* 
  *	@package Mediawiki
- *	@version $Id$
  *
  *	This class should provide methods for message 
  *	cache key hints for various scopes */

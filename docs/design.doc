@@ -117,3 +117,10 @@ Naming/coding conventions:
     of session variables are wsName, cookies wcName, and form field
     values wpName ("p" for "POST").
 
+  - Be kind to your release manager and don't use CVS keywords (Id,
+    Revision, etc.) to mark file versions; they make merging code between
+    different branches a pain for older versions (<1.12.x) of CVS, and
+    are kind of sketchy for versions after that.
+    
+
+    

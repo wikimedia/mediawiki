@@ -2,7 +2,6 @@
 /**
  * Blocks and bans object
  * @package MediaWiki
- * $Id$
  */
 
 /**

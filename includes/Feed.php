@@ -1,5 +1,4 @@
 <?php
-# $Id$
 # Basic support for outputting syndication feeds in RSS, other formats
 # 
 # Copyright (C) 2004 Brion Vibber <brion@pobox.com>
