@@ -1219,8 +1219,8 @@ class Article {
 		$called = true;
 		if($this->isFileCacheable()) {
 			$touched = $this->mTouched;
-			if( strpos( $this->mContent, "{{" ) !== false ) {
-				# Expire pages with variable replacements in an hour
+			if( $this->mTitle->getPrefixedDBkey() == wfMsg( "mainpage" ) ) {
+				# Expire the main page quicker
 				$expire = wfUnix2Timestamp( time() - 3600 );
 				$touched = max( $expire, $touched );
 			}
