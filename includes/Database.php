@@ -1,4 +1,8 @@
 <?php
+# $Id$
+# This file deals with MySQL interface functions 
+# and query specifics/optimisations
+#
 require_once( "CacheManager.php" );
 
 define( "DB_READ", -1 );
@@ -205,6 +209,15 @@ class Database {
 		}
 		return $row;
 	}
+	
+ 	function fetchRow( $res ) {
+		@$row = mysql_fetch_array( $res );
+		if (mysql_errno() ) {
+			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( mysql_error() ) );
+		}
+		return $row;
+	}	
+
 	function numRows( $res ) {
 		@$n = mysql_num_rows( $res ); 
 		if( mysql_errno() ) {

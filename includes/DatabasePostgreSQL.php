@@ -209,6 +209,15 @@ class Database {
 		}
 		return $row;
 	}
+
+	function fetchRow( $res ) {
+		@$row = pg_fetch_array( $res );
+                if( pg_last_error($this->mConn) ) {
+                        wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( pg_last_error($this->mConn) ) );
+                }
+		return $row;
+	}
+
 	function numRows( $res ) {
 		@$n = pg_num_rows( $res ); 
 		if( pg_last_error($this->mConn) ) {
