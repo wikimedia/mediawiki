@@ -168,5 +168,4 @@ $wgOut->output();
 foreach ( $wgDeferredUpdateList as $up ) { $up->doUpdate(); }
 logProfilingData();
 wfDebug( "Request ended normally\n" );
-print_r($GLOBALS);
 ?>
