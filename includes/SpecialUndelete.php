@@ -19,7 +19,7 @@ function wfSpecialUndelete( $par )
     }
     
     # List undeletable articles    
-    $sql = "SELECT ar_namespace,ar_title, COUNT(*) AS count FROM archive GROUP BY ar_namespace,ar_title ORDER BY ar_title";
+    $sql = "SELECT ar_namespace,ar_title, COUNT(*) AS count FROM archive GROUP BY ar_namespace,ar_title ORDER BY ar_namespace,ar_title";
     $res = wfQuery( $sql, DB_READ );
     
 	$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
