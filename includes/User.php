@@ -588,7 +588,7 @@ class User {
 				# scripts and can cause a user account to be unrecoverable
 				# except by SQL manipulation if a previously valid skin name
 				# is no longer valid.
-				$sn = 'SkinStandard';
+				$className = 'SkinStandard';
 				require_once( $IP.'/skins/Standard.php' );
 			}
 			$this->mSkin = new $className;
