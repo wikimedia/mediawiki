@@ -918,7 +918,7 @@ return $r ;
 	/* private */ function replaceInternalLinks( $s )
 	{
 		global $wgTitle, $wgUser, $wgLang;
-		global $wgLinkCache, $wgInterwikiMagic;
+		global $wgLinkCache, $wgInterwikiMagic, $wgUseCategoryMagic;
 		global $wgNamespacesWithSubpages, $wgLanguageCode;
 		wfProfileIn( $fname = "OutputPage::replaceInternalLinks" );
 
@@ -993,6 +993,10 @@ return $r ;
 					$s .= $sk->makeMediaLink( $name,
 					  wfImageUrl( $name ), $text );
 					$s .= $trail;
+                                } else if ( isset($wgUseCategoryMagic) && $wgUseCategoryMagic && $pre == wfMsg ( "category" ) ) {
+                                        $l = $sk->makeLink ( $pre.":".ucfirst($m[2]) , ucfirst ( $m[2] ) ) ;
+                                        array_push ( $this->mCategoryLinks , $l ) ;
+                                        $s .= $trail ;
 				} else {
 					$l = $wgLang->getLanguageName( $pre );
 					if ( "" == $l or !$wgInterwikiMagic or
