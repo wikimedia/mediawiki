@@ -884,11 +884,10 @@ class Title {
 		
 		# Fixing category links (those without piped 'alternate' names) to be sorted under the new title
 		
-		$dbw =& wfGetDB( DB_MASTER );
 		$sql = "UPDATE categorylinks SET cl_sortkey='" . wfStrencode( $nt->getPrefixedText() ) . "'" .
 			" WHERE cl_from='" . wfStrencode( $this->getArticleID() ) . "'" .
 			" AND cl_sortkey='" . wfStrencode( $this->getPrefixedText() ) . "'";
-		$dbw->query( $sql, "SpecialMovepage::doSubmit" );
+		wfQuery( $sql, DB_WRITE, "SpecialMovepage::doSubmit" );
 
 
 		# Update watchlists
