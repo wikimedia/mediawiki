@@ -38,6 +38,8 @@ require_once( "LanguageUtf8.php" );
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
 	'monobook' => "MonoBook"
+,
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesUk = array(

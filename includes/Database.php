@@ -1,5 +1,8 @@
 <?php
-require_once( "FulltextStoplist.php" );
+# $Id$
+# This file deals with MySQL interface functions 
+# and query specifics/optimisations
+#
 require_once( "CacheManager.php" );
 
 define( "DB_READ", -1 );
@@ -36,7 +39,7 @@ class Database {
 	
 	# Output page, used for reporting errors
 	# FALSE means discard output
-	function &setOutputPage( &$out ) { return wfSetRef( $this->mOut, $out ); }
+	function &setOutputPage( &$out ) { $this->mOut =& $out; }
 	
 	# Boolean, controls output of large amounts of debug information 
 	function setDebug( $debug ) { return wfSetVar( $this->mDebug, $debug ); }
@@ -206,6 +209,15 @@ class Database {
 		}
 		return $row;
 	}
+	
+ 	function fetchRow( $res ) {
+		@$row = mysql_fetch_array( $res );
+		if (mysql_errno() ) {
+			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( mysql_error() ) );
+		}
+		return $row;
+	}	
+
 	function numRows( $res ) {
 		@$n = mysql_num_rows( $res ); 
 		if( mysql_errno() ) {
@@ -450,7 +462,13 @@ class Database {
 function wfEmergencyAbort( &$conn ) {
 	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgSiteNotice, $wgOutputEncoding;
 	
-	header( "Content-type: text/html; charset=$wgOutputEncoding" );
+	if( !headers_sent() ) {
+		header( "HTTP/1.0 500 Internal Server Error" );
+		header( "Content-type: text/html; charset=$wgOutputEncoding" );
+		/* Don't cache error pages!  They cause no end of trouble... */
+		header( "Cache-control: none" );
+		header( "Pragma: nocache" );
+	}
 	$msg = $wgSiteNotice;
 	if($msg == "") $msg = wfMsgNoDB( "noconnect" );
 	$text = $msg;
@@ -484,9 +502,6 @@ function wfEmergencyAbort( &$conn ) {
 		}
 	}
 	
-	/* Don't cache error pages!  They cause no end of trouble... */
-	header( "Cache-control: none" );
-	header( "Pragma: nocache" );
 	echo $text;
 	wfAbruptExit();
 }
@@ -521,4 +536,9 @@ function wfInvertTimestamp( $ts ) {
 		"9876543210"
 	);
 }
+
+function wfLimitResult( $limit, $offset ) {
+	return " LIMIT ".(is_numeric($offset)?"{$offset},":"")."{$limit} ";
+}
+
 ?>

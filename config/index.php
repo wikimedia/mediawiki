@@ -18,7 +18,9 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+error_reporting( E_ALL );
 header( "Content-type: text/html; charset=utf-8" );
+@ini_set( "display_errors", true );
 
 ?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
@@ -109,6 +111,8 @@ $IP = ".."; # Just to suppress notices, not for anything useful
 define( "MEDIAWIKI", true );
 define( "MEDIAWIKI_INSTALL", true );
 require( "../includes/DefaultSettings.php" );
+require( "../includes/MagicWord.php" );
+require( "../includes/Namespace.php" );
 ?>
 
 <h1>MediaWiki <?php print $wgVersion ?> installation</h1>
@@ -159,11 +163,11 @@ require( "../maintenance/archives/moveCustomMessages.inc" );
 class ConfigData {
 	function getEncoded( $data ) {
 		# Hackish
-		global $wgInputEncoding;
-		if( strcasecmp( $wgInputEncoding, "utf-8" ) == 0 ) {
-			return $data;
-		} else {
+		global $wgUseLatin1;
+		if( $wgUseLatin1 ) {
 			return utf8_decode( $data ); /* to latin1 wikis */
+		} else {
+			return $data;
 		}
 	}
 	function getSitename() { return $this->getEncoded( $this->Sitename ); }
@@ -203,6 +207,35 @@ default:
 	print "unknown; using pretty URLs (<tt>index.php/Page_Title</tt>), if you have trouble change this in <tt>LocalSettings.php</tt>";
 }
 print "</li>\n";
+
+$conf->xml = function_exists( "utf8_encode" );
+if( $conf->xml ) {
+	print "<li>Have XML / Latin1-UTF-8 conversion support.</li>\n";
+} else {
+	print "<li><b>XML / Latin1-UTF-8 conversion is missing! Wiki will probably not work.</b></li>\n";
+}
+
+$memlimit = ini_get( "memory_limit" );
+$conf->raiseMemory = false;
+if( empty( $memlimit ) ) {
+	print "<li>PHP is configured with no <tt>memory_limit</tt>.</li>\n";
+} else {
+	print "<li>PHP's <tt>memory_limit</tt> is " . htmlspecialchars( $memlimit ) . ". <b>If this is too low, installation may fail!</b> ";
+	$n = IntVal( $memlimit );
+	if( preg_match( '/^([0-9]+)[Mm]$/', trim( $memlimit ), $m ) ) {
+		$n = IntVal( $m[1] * (1024*1024) );
+	}
+	if( $n < 20*1024*1024 ) {
+		print "Attempting to raise limit to 20M... ";
+		if( false === ini_set( "memory_limit", "20M" ) ) {
+			print "failed.";
+		} else {
+			$conf->raiseMemory = true;
+			print "ok.";
+		}
+	}
+	print "</li>\n";
+}
 
 $conf->zlib = function_exists( "gzencode" );
 if( $conf->zlib ) {
@@ -254,7 +287,7 @@ print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</t
 	$conf->DBpassword = importPost( "DBpassword" );
 	$conf->DBpassword2 = importPost( "DBpassword2" );
 	$conf->RootPW = importPost( "RootPW" );
-	$conf->LanguageCode = importPost( "LanguageCode", "en-utf8" );
+	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
 	$conf->SysopPass = importPost( "SysopPass" );
 	$conf->SysopPass2 = importPost( "SysopPass2" );
@@ -689,9 +722,11 @@ function writeLocalSettings( $conf ) {
 	$conf->DBmysql4 = @$conf->DBmysql4 ? 'true' : 'false';
 	$conf->UseImageResize = $conf->UseImageResize ? 'true' : 'false';
 	$conf->PasswordSender = $conf->EmergencyContact;
-	if( $conf->LanguageCode == "en-utf8" ) {
-		$conf->LanguageCode = "en";
-		$conf->Encoding = "UTF-8";
+	if( preg_match( '/^([a-z]+)-latin1$/', $conf->LanguageCode, $m ) ) {
+		$conf->LanguageCode = $m[1];
+		$conf->Latin1 = true;
+	} else {
+		$conf->Latin1 = false;
 	}
 	$zlib = ($conf->zlib ? "" : "# ");
 	$magic = ($conf->ImageMagick ? "" : "# ");
@@ -725,6 +760,9 @@ function writeLocalSettings( $conf ) {
 \$IP = \"{$slconf['IP']}\";
 ini_set( \"include_path\", \"\$IP/includes$sep\$IP/languages$sep\" . ini_get(\"include_path\") );
 include_once( \"DefaultSettings.php\" );
+
+# If PHP's memory limit is very low, some operations may fail.
+" . ($conf->raiseMemory ? '' : '# ' ) . "ini_set( 'memory_limit', '20M' );" . "
 
 if ( \$wgCommandLineMode ) {
 	if ( isset( \$_SERVER ) && array_key_exists( 'REQUEST_METHOD', \$_SERVER ) ) {
@@ -789,7 +827,7 @@ if ( \$wgCommandLineMode ) {
 \$wgLocalInterwiki   = \$wgSitename;
 
 \$wgLanguageCode = \"{$slconf['LanguageCode']}\";
-" . ($conf->Encoding ? "\$wgInputEncoding = \$wgOutputEncoding = \"{$slconf['Encoding']}\";" : "" ) . "
+\$wgUseLatin1 = " . ($conf->Latin1 ? 'true' : 'false') . ";\n
 
 \$wgProxyKey = \"$proxyKey\";
 
@@ -866,23 +904,24 @@ function getLanguageList() {
 		$wgLanguageCode = "xxx";
 		function wfLocalUrl( $x ) { return $x; }
 		function wfLocalUrlE( $x ) { return $x; }
-		require( "../languages/Language.php" );
+		require( "../languages/Names.php" );
 	}
 	
 	$codes = array();
-	$latin1 = array( "da", "de", "en", "es", "nl", "sv" );
+	$latin1 = array( "da", "de", "en", "es", "fr", "nl", "sv" );
 	
 	$d = opendir( "../languages" );
 	while( false !== ($f = readdir( $d ) ) ) {
 		if( preg_match( '/Language([A-Z][a-z]+)\.php$/', $f, $m ) ) {
 			$code = strtolower( $m[1] );
-			$codes[$code] = "$code - " . $wgLanguageNames[$code];
 			if( in_array( $code, $latin1 ) ) {
-				$codes[$code] .= " - Latin-1";
+				$codes[$code] = "$code - " . $wgLanguageNames[$code] . " - Unicode";
+				$codes[$code.'-latin1'] = "$code - " . $wgLanguageNames[$code] . " - Latin-1";
+			} else {
+				$codes[$code] = "$code - " . $wgLanguageNames[$code];
 			}
 		}
 	}
-	$codes["en-utf8"] = "en - English - Unicode";
 	closedir( $d );
 	ksort( $codes );
 	return $codes;

@@ -43,7 +43,8 @@ require_once( "LanguageUtf8.php" );
 	'montparnasse' => "மொண்ட்பார்னாசே (Montparnasse)",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesTa = array(

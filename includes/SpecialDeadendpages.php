@@ -18,8 +18,8 @@ class DeadendPagesPage extends PageQueryPage {
 		return false;
 	}
     
-	function getSQL( $offset, $limit ) {
-	return "SELECT cur_namespace AS namespace, cur_title as title, cur_title AS value " . 
+	function getSQL() {
+		return "SELECT 'Deadendpages' as type, cur_namespace AS namespace, cur_title as title, cur_title AS value " . 
 	"FROM cur LEFT JOIN links ON cur_id = l_from " .
 	"WHERE l_from IS NULL " .
 	"AND cur_namespace = 0 " .

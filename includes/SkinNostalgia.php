@@ -12,6 +12,9 @@ class SkinNostalgia extends Skin {
 	{
 		return "nostalgia.css";
 	}
+	function getSkinName() {
+		return "nostalgia";
+	}
 
 	function doBeforeContent()
 	{

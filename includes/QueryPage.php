@@ -37,7 +37,7 @@ class QueryPage {
 	function getOrderLimit( $offset, $limit ) {
 		return " ORDER BY value " .
 			($this->sortDescending() ? "DESC" : "")
-			. " LIMIT {$offset}, {$limit}";
+			. wfLimitResult($limit,$offset);
 	}
 
 	# Is this query expensive (for some definition of expensive)? Then we

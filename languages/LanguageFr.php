@@ -40,7 +40,8 @@ require_once( "LanguageUtf8.php" );
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesFr = array(
@@ -1290,6 +1291,8 @@ class LanguageFr extends LanguageUtf8
 			return $wgAllMessagesEn[$key];
 		}
 	}
+	
+	function isRTL() { return false; }
 }
 
 ?>

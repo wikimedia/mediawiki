@@ -7,13 +7,15 @@ function isTemplateInitialised() {
 }
 
 function moveCustomMessages( $phase ) {
-	global $wgUser, $wgAllMessagesEn, $wgDeferredUpdateList, $wgLang ;
+	global $wgUser, $wgAllMessagesEn, $wgDeferredUpdateList, $wgLang;
 	global $targets, $template, $replaceCount;
 
 	$wgUser = new User;
 	$wgUser->setLoaded( true ); # Don't load from DB
 	$wgUser->setName( "Template namespace initialisation script" );
 	$wgUser->addRight( "bot" );
+
+	wfIgnoreSQLErrors( true );
 
 	# Compose DB key array
 	$dbkeys = array();
@@ -59,6 +61,7 @@ function moveCustomMessages( $phase ) {
 	if ( $phase == 0 || $phase == 2 ) {
 		print "\nMoving pages...\n";
 		foreach ( $targets as $partial => $dummy ) {
+			wfQuery( "BEGIN", DB_WRITE );
 			$ot = Title::makeTitle( NS_MEDIAWIKI, $partial );
 			$nt = Title::makeTitle( NS_TEMPLATE, $partial );
 			print "$partial...";
@@ -73,6 +76,7 @@ function moveCustomMessages( $phase ) {
 				$up = array_pop( $wgDeferredUpdateList );
 				$up->doUpdate();
 			}
+			wfQuery( "COMMIT", DB_WRITE );
 		}
 	}
 
@@ -93,6 +97,7 @@ function moveCustomMessages( $phase ) {
 			$dest = Title::makeTitle( NS_MEDIAWIKI, $partial );
 			$linksTo = $dest->getLinksTo();
 			foreach( $linksTo as $source ) {
+				wfQuery( "BEGIN", DB_WRITE );
 				$pdbk = $source->getPrefixedDBkey();
 				if ( !array_key_exists( $pdbk, $completedTitles ) ) {	
 					$completedTitles[$pdbk] = 1;
@@ -110,11 +115,17 @@ function moveCustomMessages( $phase ) {
 					if ( $text != $row->cur_text ) {
 						print "$pdbk\n";
 						$art = new Article( $source );
-						$art->quickEdit( $text );
+						$art->updateArticle( $text, "", false, false );
+						# Do deferred updates
+						while ( count( $wgDeferredUpdateList ) ) {
+							$up = array_pop( $wgDeferredUpdateList );
+							$up->doUpdate();
+						}
 					} else {
 						print "($pdbk)\n";
 					}
 				} 
+				wfQuery( "COMMIT", DB_WRITE );
 			}
 		}
 	}

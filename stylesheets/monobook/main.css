@@ -61,21 +61,24 @@ table {
 }
 a {
     text-decoration: none;
-    color: #004ba6;
+    color: #002bb8;
     background: none;
 }
 a:visited { color: #5a3696; }
 a:active { color: Orange; }
 a:hover { text-decoration: underline; }
 a.stub { color: #772233; }
-a.new { color:#ba0000; }
+a.new,
+#p-personal a.new { color:#ba0000; }
+a.new:visited,
+#p-personal a.new:visited { color:#a55858; }
 
 img {
     border: none;
     vertical-align: middle;
 }
 p {
-    margin: 0.4em 0em 0.7em 0em;
+    margin: 0.4em 0em 0.5em 0em;
     line-height: 1.5em;
 }
 
@@ -120,13 +123,21 @@ ol {
     line-height: 1.5em;
     margin: 0.3em 0 0 3.2em;
     padding:0;
+    list-style-image: none;
 }
 li { margin-bottom: 0.1em; }
-dt { font-weight: bold; }
+dt { 
+    font-weight: bold; 
+    margin-bottom: 0.1em;
+}
+dl{
+    margin-top: 0.1em;
+    margin-bottom: 0.5em;
+}
 dd {
     line-height: 1.5em;
-    margin-bottom: 0.8em;
     margin-left: 2em;
+    margin-bottom: 0.1em;
 }
 
 fieldset {
@@ -246,6 +257,7 @@ span.subpages { display: block; }
     background-color:#f9f9f9;
     padding:5px;
     margin-top: 1em;
+    clear: both;
 }
 /* currently unused, intended to be used by a metadata box
 in the bottom-right corner of the content area */
@@ -317,6 +329,7 @@ div.thumb {
     margin-bottom: 0.5em;
     border-style: solid; border-color: White;
     width: auto;
+    overflow: hidden;
 }
 div.thumb div {
     border:1px solid #cccccc;
@@ -331,6 +344,7 @@ div.thumb div a img {
 div.thumb div div.thumbcaption {
     border: none;
     text-align: left;
+    line-height: 1.4;
     padding: 0.3em 0 0.1em 0;
 }
 div.magnify {
@@ -343,25 +357,6 @@ div.magnify a, div.magnify img {
     border: none !important;
     background: none !important;
 }
-
-.urlexpansion,
-.hiddenStructure {
-    display: none;
-}
-img.tex { vertical-align: middle; }
-/*
-** classes for special content elements like town boxes
-** intended to be referenced directly from the wiki src
-*/
-/* table standards */
-table.rimage {
-    float:right; 
-    width:1pt; 
-    position:relative;
-    margin-left:1em; 
-    margin-bottom:1em;
-    text-align:center;
-}
 div.tright {
     float: right;
     border-width: 0.5em 0 0.8em 1.4em;
@@ -372,6 +367,35 @@ div.tleft {
     border: 0.5em 1.4em 0.8em 0;
 }
 
+.urlexpansion,
+.hiddenStructure {
+    display: none;
+}
+img.tex { vertical-align: middle; }
+span.texhtml { font-family: serif; }
+/*
+** classes for special content elements like town boxes
+** intended to be referenced directly from the wiki src
+*/
+
+/*
+** User styles
+*/
+
+/* table standards */
+table.rimage {
+    float:right; 
+    position:relative;
+    margin-left:1em; 
+    margin-bottom:1em;
+    text-align:center;
+}
+.toccolours { 
+    border:1px solid #aaaaaa;
+    background-color:#f9f9f9;
+    padding:5px;
+    font-size: 95%;
+}
 div.townBox {
     position:relative;
     float:right;
@@ -427,9 +451,19 @@ div.townBox dl dd {
 table.diff { background:white; }
 td.diff-otitle { background:#ffffff; }
 td.diff-ntitle { background:#ffffff; }
-td.diff-addedline { background:#ccffcc; }
-td.diff-deletedline { background:#ffffaa; }
-td.diff-context { background:#eeeeee; }
+td.diff-addedline { 
+    background:#ccffcc;
+    font-size: smaller;
+}
+td.diff-deletedline { 
+    background:#ffffaa;
+    font-size: smaller;
+}
+td.diff-context {
+    background:#eeeeee;
+    font-size: smaller;
+}
+span.diffchange { color: red; }
 
 /* 
 ** keep the whitespace in front of the ^=, hides rule from konqueror
@@ -465,7 +499,8 @@ td.diff-context { background:#eeeeee; }
     padding-right: 18px;
 }
 /* disable interwiki styling */
-#bodyContent a.extiw {
+#bodyContent a.extiw,
+#bodyContent a.extiw:active {
     color: #3366bb;
     background: none;
     padding: 0;
@@ -686,7 +721,6 @@ li#pt-login {
     padding-left: 20px;
     text-transform: none;
 }
-#p-personal a.new { color:#ba0000; }
 
 /*
 ** the page-related actions- page/talk, edit etc 
@@ -726,7 +760,7 @@ li#pt-login {
 }
 #p-cactions li a {
     background-color: White;
-    color: #0014a6;
+    color: #002bb8;
     border: none;
     padding: 0 0.8em 0.3em 0.8em;
     text-decoration: none;
@@ -750,7 +784,7 @@ li#pt-login {
 }
 /* offsets to distinguish the tab groups */
 li#ca-talk { margin-right: 1.6em; }
-li#ca-watch { margin-left: 1.6em; }
+li#ca-watch, li#ca-watch { margin-left: 1.6em; }
 
 
 /*

@@ -18,7 +18,6 @@ div.floatleft p { font-style: italic; }
 /* table standards */
 table.rimage {
         float:right;
-        width:1pt;
         margin-left:1em;
         margin-bottom:1em;
         text-align:center;
@@ -30,6 +29,7 @@ div.thumb {
     margin: 10px;
     text-align: center;
     width: auto;
+    overflow: hidden;
 }
 div.thumb div {
     border: 1px solid #8888aa;
@@ -78,27 +78,26 @@ div.tleft {
     border:1px dashed #aaaaaa;
 }
 
-table.diff {
-        background:white;
+table.diff { background:white; }
+td.diff-otitle { background:#cccccc; }
+td.diff-ntitle { background:#cccccc; }
+td.diff-addedline { 
+    background:#ccffcc;
+    font-size: smaller;
 }
-td.diff-otitle {
-        background:#cccccc;
-}
-td.diff-ntitle {
-        background:#cccccc;
-}
-td.diff-addedline {
-        background:#ccffcc;
-}
-td.diff-deletedline {
-        background:#ffffaa;
+td.diff-deletedline { 
+    background:#ffffaa;
+    font-size: smaller;
 }
 td.diff-context {
-        background:#eeeeee;
+    background:#eeeeee;
+    font-size: smaller;
 }
+span.diffchange { color: red; }
 
 img { border: none; }
 img.tex { vertical-align: middle; }
+span.texhtml { font-family: serif; }
 
 
 #toc {
@@ -182,4 +181,11 @@ div.townBox dl dt {
 div.townBox dl dd {
     margin: 0.1em 0 0 1.1em;
     background-color: #f3f3f3;
+}
+/* use this instead of #toc for page content */
+.toccolours { 
+    border:1px solid #aaaaaa;
+    background-color:#f9f9f9;
+    padding:5px;
+    font-size: 95%;
 }

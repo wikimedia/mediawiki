@@ -88,7 +88,7 @@ class Title {
 	# From a URL-encoded title
 	/* static */ function newFromURL( $url )
 	{
-		global $wgLang, $wgServer;
+		global $wgLang, $wgServer, $wgIsMySQL, $wgIsPg;
 		$t = new Title();
 		
 		# For compatibility with old buggy URLs. "+" is not valid in titles,
@@ -109,14 +109,20 @@ class Title {
 		
 		$t->mDbkeyform = str_replace( " ", "_", $s );
 		if( $t->secureAndSplit() ) {
-
 			# check that lenght of title is < cur_title size
-			$sql = "SHOW COLUMNS FROM cur LIKE \"cur_title\";";
-			$cur_title_object = wfFetchObject(wfQuery( $sql, DB_READ ));
+			if ($wgIsMySQL) {
+				$sql = "SHOW COLUMNS FROM cur LIKE \"cur_title\";";
+				$cur_title_object = wfFetchObject(wfQuery( $sql, DB_READ ));
 
-			preg_match( "/\((.*)\)/", $cur_title_object->Type, $cur_title_size);
+				preg_match( "/\((.*)\)/", $cur_title_object->Type, $cur_title_type);
+				$cur_title_size=$cur_title_type[1];
+			} else {
+				/* midom:FIXME pg_field_type does not return varchar length
+				   assume 255 */
+				$cur_title_size=255;
+			}
 
-			if (strlen($t->mDbkeyform) > $cur_title_size[1] ) {
+			if (strlen($t->mDbkeyform) > $cur_title_size ) {
 				return NULL;
 			}
 
@@ -1180,7 +1186,7 @@ class Title {
 		$parents = array();
 		
 		# get the parents categories of this title from the database
-		$sql = "SELECT DISTINCT cl_from,cur_namespace,cur_title,cur_id FROM cur,categorylinks
+		$sql = "SELECT DISTINCT cur_id FROM cur,categorylinks
 		        WHERE cl_from='$titlekey' AND cl_to=cur_title AND cur_namespace='$cns'
 				ORDER BY cl_sortkey" ;
 		$res = wfQuery ( $sql, DB_READ ) ;
@@ -1189,37 +1195,60 @@ class Title {
 			while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
 			wfFreeResult ( $res ) ;
 		} else {
-			$data = array();
+			$data = '';
 		}
 		return $data;
 	}
 	
 	# will get the parents and grand-parents
+	# TODO : not sure what's happening when a loop happen like:
+	# 	Encyclopedia > Astronomy > Encyclopedia
 	function getAllParentCategories(&$stack)
 	{
-		global $wgUser;
-		$sk =& $wgUser->getSkin() ;
-
+		global $wgUser,$wgLang;
+		$result = '';
+		
 		# getting parents
 		$parents = $this->getParentCategories( );
-				
-		foreach($parents as $parent)
+
+		if($parents == '')
 		{
-			# create a title object for the parent
-			$tpar = Title::newFromID($parent->cur_id);
-			
-			if(isset($stack[$this->getText()]))
+			# The current element has no more parent so we dump the stack
+			# and make a clean line of categories
+			$sk =& $wgUser->getSkin() ;
+
+			foreach ( array_reverse($stack) as $child => $parent )
 			{
-				$stack[$tpar->getText()] = $sk->makeLink( $this->getPrefixedDBkey(), $this->getText() );
-				$stack[$tpar->getText()] .= " &gt; ".$stack[$this->getText()];
-			} else {
-				# don't make a link for current page
-				$stack[$tpar->getText()] = $this->getText();
+				# make a link of that parent
+				$result .= $sk->makeLink($wgLang->getNSText ( Namespace::getCategory() ).":".$parent,$parent);
+				$result .= ' &gt; ';
+				$lastchild = $child;
 			}
+			# append the last child.
+			# TODO : We should have a last child unless there is an error in the
+			# "categorylinks" table.
+			if(isset($lastchild)) { $result .= $lastchild; }
 			
-			unset( $stack[$this->getText()] );
-			$tpar->getAllParentCategories(&$stack);
+			$result .= "<br/>\n";
+			
+			# now we can empty the stack
+			$stack = array();
+			
+		} else {
+			# look at parents of current category
+			foreach($parents as $parent)
+			{
+				# create a title object for the parent
+				$tpar = Title::newFromID($parent->cur_id);
+				# add it to the stack
+				$stack[$this->getText()] = $tpar->getText();
+				# grab its parents
+				$result .= $tpar->getAllParentCategories($stack);
+			}
 		}
+
+		if(isset($result)) { return $result; }
+		else { return ''; };
 	}
 	
 	
