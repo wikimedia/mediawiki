@@ -76,7 +76,7 @@ class ImagePage extends Article {
 				}
 				$s = "<div class=\"fullImageLink\">" . $anchoropen .
 				     "<img border=\"0\" src=\"{$url}\" width=\"{$width}\" height=\"{$height}\" alt=\"" .
-				     $wgRequest->getVal( 'image' )."\" />" . $anchorclose . "</div>";
+				     htmlspecialchars( $wgRequest->getVal( 'image' ) )."\" />" . $anchorclose . "</div>";
 			} else {
 				$s = "<div class=\"fullMedia\">".$sk->makeMediaLink($this->img->getName(),"")."</div>";
 			}
