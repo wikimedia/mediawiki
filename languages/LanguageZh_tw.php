@@ -180,7 +180,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 	"Unlockdb"		=> "恢復數據庫修改權限",
 );
 
-/* private */ $wgAllMessageZh_tw = array(
+/* private */ $wgAllMessagesZh_tw = array(
 
 # Bits of text used by many pages:
 #
