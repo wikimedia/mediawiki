@@ -52,7 +52,7 @@ $wgRedirectScript   = "{$wgScriptPath}/redirect.php";
 # ArticlePath one is especially useful if you want to use
 # mod_redirect to make page-viewing URLs look static.
 #
-$wgArticlePath      = "{$wgScript}?title=$1";
+$wgArticlePath      = "{$wgScript}/$1";
 # $wgArticlePath     = "/wiki/$1"; # Prettier if you're setup for it
 
 ## Normally you don't need to change these once the above are set...

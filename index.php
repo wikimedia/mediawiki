@@ -28,6 +28,12 @@ OutputPage::setEncodings(); # Not really used yet
 global $action, $title, $search, $go, $target, $printable;
 global $returnto, $diff, $oldid, $curid;
 
+if( isset( $_SERVER['PATH_INFO'] ) ) {
+	$title = substr( $_SERVER['PATH_INFO'], 1 );
+} else {
+	$title = $_REQUEST['title'];
+}
+
 # Placeholders in case of DB error
 $wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 $wgArticle = new Article($wgTitle);
