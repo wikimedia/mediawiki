@@ -772,13 +772,13 @@ Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en compr
 "deletedtext"	=> "\"$1\" a été supprimé.
 Voir $2 pour une liste des suppressions récentes.",
 "deletedarticle" => "effacement de \"$1\"",
-"dellogpage"	=> "Trace des effacements",
+"dellogpage"	=> "Historique des effacements",
 "dellogpagetext" => "Voici la liste des suppressions récentes.
 L'heure indiquée est celle du serveur (UTC).
 <ul>
 </ul>
 ",
-"deletionlog"	=> "trace des effacements",
+"deletionlog"	=> "historique des effacements",
 "reverted"	=> "Rétablissement de la version précédente",
 "deletecomment" => "Motif de la suppression",
 "imagereverted" => "La version précédente a été rétablie.",
@@ -793,6 +793,10 @@ La dernière modificaion était de [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //Lo
 #   only shown if there is an edit comment
 "editcomment" => "Le résumé de la modification était: \"<i>$1</i>\".", //Looxix 
 "revertpage"	=> "restitution de la dernière modification de $1",
+"protectlogpage" => "Log_de_protection",
+"protectlogtext" => "Voir les [[Wikipédia:Page protégée|directives concernant les pages protégées]].",
+"protectedarticle" => "a protégée [[$1]]",
+"unprotectedarticle" => "a déprotégé [[$1]]",
 
 # Undelete
 #
@@ -856,7 +860,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont
 "unblocklink"	=> "débloquer",
 "contribslink"	=> "contribs",
 "autoblocker"	=> "Autobloqué parce que vous partagez une adresse IP avec \"$1\". Raison : \"$2\".",
-"blocklogpage"	=> "Trace_des effacements",
+"blocklogpage"	=> "Log de blocage",
 "blocklogentry"	=> 'blocage de "$1"',
 "blocklogtext"	=> "Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.",
 "unblocklogentry"	=> 'déblocage de "$1"',
