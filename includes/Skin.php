@@ -83,9 +83,7 @@ class Skin {
 		wfProfileIn( $fname );
 		
 		$out->addLink( "shortcut icon", "", "/favicon.ico" );
-		if ( $out->isPrintable() ) { $ss = "wikiprintable.css"; }
-		else { $ss = $this->getStylesheet(); }
-		$out->addLink( "stylesheet", "", "{$wgStyleSheetPath}/{$ss}" );
+		
 		wfProfileOut( $fname );
 	}
 	
@@ -126,8 +124,17 @@ class Skin {
 
 	function getUserStyles()
 	{
+		global $wgOut, $wgStyleSheetPath;
+		if( $wgOut->isPrintable() ) {
+			$sheet = "wikiprintable.css";
+		} else {
+			$sheet = $this->getStylesheet();
+		}
 		$s = "<style type='text/css'><!--\n";
+		$s .= "@import url(\"$wgStyleSheetPath/$sheet\");\n";
+		$s .= "@media screen {\n";
 		$s .= $this->doGetUserStyles();
+		$s .= "}\n";
 		$s .= "//--></style>\n";
 		return $s;
 	}
