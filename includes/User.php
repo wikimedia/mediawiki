@@ -164,8 +164,8 @@ class User {
 		}
 		if ( isset( $_SESSION['wsUserName'] ) ) {
 			$sName = $_SESSION['wsUserName'];
-		} else if ( isset( $HTTP_COOKIE_VARS["{$wgDBname}UserName"] ) ) {
-			$sName = $HTTP_COOKIE_VARS["{$wgDBname}UserName"];
+		} else if ( isset( $_COOKIE["{$wgDBname}UserName"] ) ) {
+			$sName = $_COOKIE["{$wgDBname}UserName"];
 			$_SESSION['wsUserName'] = $sName;
 		} else {
 			return new User();
@@ -184,8 +184,8 @@ class User {
 
 		if ( isset( $_SESSION['wsUserPassword'] ) ) {
 			$passwordCorrect = $_SESSION['wsUserPassword'] == $user->mPassword;
-		} else if ( isset( $HTTP_COOKIE_VARS["{$wgDBname}Password"] ) ) {
-			$user->mCookiePassword = $HTTP_COOKIE_VARS["{$wgDBname}Password"];
+		} else if ( isset( $_COOKIE["{$wgDBname}Password"] ) ) {
+			$user->mCookiePassword = $_COOKIE["{$wgDBname}Password"];
 			$_SESSION['wsUserPassword'] = $user->addSalt( $user->mCookiePassword );
 			$passwordCorrect = $_SESSION['wsUserPassword'] == $user->mPassword;
 		} else {
