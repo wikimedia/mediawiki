@@ -1,4 +1,6 @@
 <?php
+# $Id$
+#
 # Copyright (C) 2003-2004 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
 # 
@@ -114,7 +116,7 @@ class /* abstract */ BagOStuff {
 	
 	function _debug($text) {
 		if($this->debugmode)
-			echo "\ndebug: $text\n";
+			wfDebug("BagOStuff debug: $text\n");
 	}
 }
 
@@ -208,7 +210,7 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 		}
 		$this->delete( $key );
 		$this->_query(
-			"INSERT INTO $0 (keyname,value,exptime) VALUES('$1','$2',$exp)",
+			"INSERT INTO $0 (keyname,value,exptime) VALUES('$1','$2','$exp')",
 			$key, serialize(&$value));
 		return true; /* ? */
 	}
@@ -278,42 +280,27 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 	}
 }
 
-class MysqlBagOStuff extends SqlBagOStuff {
-	function _doquery($sql) {
-		return mysql_query($sql);
-	}
-	function _fetchrow($result) {
-		return mysql_fetch_array($result);
-	}
-	function _freeresult($result) {
-		return mysql_free_result($result);
-	}
-	function _dberror($result) {
-		if($result)
-			return mysql_error($result);
-		else
-			return mysql_error();
-	}
-	
-	function _maxdatetime() {
-		return "'9999-12-31 12:59:59'";
-	}
-	
-	function _fromunixtime($ts) {
-		return "FROM_UNIXTIME($ts)";
-	}
-	
-	function _strencode($s) {
-		return mysql_escape_string($s);
-	}
-}
-
-class MediaWikiBagOStuff extends MysqlBagOStuff {
+class MediaWikiBagOStuff extends SqlBagOStuff {
 	function _doquery($sql) {
 		return wfQuery($sql, DB_READ, "MediaWikiBagOStuff:_doquery");
 	}
+	function _fetchrow($result) {
+		return wfFetchRow($result);
+	}
 	function _freeresult($result) {
 		return wfFreeResult($result);
+	}
+	function _dberror($result) {
+		return wfLastError();
+	}
+	function _maxdatetime() {
+		return "9999-12-31 12:59:59";
+	}
+	function _fromunixtime($ts) {
+		return gmdate( "Y-m-d H:i:s", $ts );
+	}
+	function _strencode($s) {
+		return wfStrEncode($s);
 	}
 }
 
