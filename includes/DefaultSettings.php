@@ -271,8 +271,6 @@ $wgDBtransactions	= false; # Set to true if using InnoDB tables
 $wgDBmysql4			= false; # Set to true to use enhanced fulltext search
 $wgSqlTimeout		= 30;
 
-$wgBufferSQLResults     = true; # use buffered queries by default
-
 # Other wikis on this site, can be administered from a single developer account
 # Array, interwiki prefix => database name
 $wgLocalDatabases   = array();
@@ -394,9 +392,10 @@ $wgReadOnly             = false;
 $wgLogQueries           = false;
 $wgDebugDumpSql         = false;
 
-# Whether to disable automatic generation of "we're sorry,
-# but there has been a database error" pages.
-$wgIgnoreSQLErrors      = false;
+# Whether to show "we're sorry, but there has been a database error" pages.
+# Displaying errors aids in debugging, but may display information useful
+# to an attacker.
+$wgShowSQLErrors        = false;
 
 # Should [[Category:Dog]] on a page associate it with the
 # category "Dog"? (a link to that category page will be

@@ -323,6 +323,8 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1469) add missing <ul> tags on Special:Log
 * (bug 1470) remove extra <ul> tags from Danish log messages
 * Fix notice on purge w/ squid mode off
+* (bug 1477) hide details of SQL error messages by default
+  Set $wgShowSQLErrors = true for debugging.
 
 === Caveats ===
 

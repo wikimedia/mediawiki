@@ -581,7 +581,7 @@ class OutputPage {
 	}
 
 	function databaseError( $fname, $sql, $error, $errno ) {
-		global $wgUser, $wgCommandLineMode;
+		global $wgUser, $wgCommandLineMode, $wgShowSQLErrors;
 
 		$this->setPageTitle( wfMsgNoDB( 'databaseerror' ) );
 		$this->setRobotpolicy( 'noindex,nofollow' );
@@ -589,12 +589,20 @@ class OutputPage {
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
 
-		if ( $wgCommandLineMode ) {
-			$msg = wfMsgNoDB( 'dberrortextcl', htmlspecialchars( $sql ),
-						htmlspecialchars( $fname ), $errno, htmlspecialchars( $error ) );
+		if( $wgShowSQLErrors ) {
+			if ( $wgCommandLineMode ) {
+				$msg = wfMsgNoDB( 'dberrortextcl', htmlspecialchars( $sql ),
+							htmlspecialchars( $fname ), $errno, htmlspecialchars( $error ) );
+			} else {
+				$msg = wfMsgNoDB( 'dberrortext', htmlspecialchars( $sql ),
+							htmlspecialchars( $fname ), $errno, htmlspecialchars( $error ) );
+			}
 		} else {
-			$msg = wfMsgNoDB( 'dberrortext', htmlspecialchars( $sql ),
-						htmlspecialchars( $fname ), $errno, htmlspecialchars( $error ) );
+			if( $wgCommandLineMode ) {
+				$msg = wfMsg( 'internalerror' );
+			} else {
+				$msg = htmlspecialchars( wfMsg( 'internalerror' ) );
+			}
 		}
 
 		if ( $wgCommandLineMode || !is_object( $wgUser )) {
