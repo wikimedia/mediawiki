@@ -195,6 +195,8 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 752) Don't insert newline in link title for url with %0a
 * Fix missing search box contents in MonoBook skin
 * Add option to forward search directly to an external URL (eg google)
+* Correctly highlight the fallback language variant when the selected 
+  variant is disabled. Used in zh: only for now.
 
 === Caveats ===
 

@@ -622,7 +622,12 @@ class SkinTemplate extends Skin {
 		global $wgDisableLangConversion;
 		$variants = $wgContLang->getVariants();
 		if( !$wgDisableLangConversion && sizeof( $variants ) > 1 ) {
-			$preferred = $wgContLang->getPreferredVariant();
+			$highlight = $wgContLang->getPreferredVariant();
+			if( $wgContLang->getVariantname($highlight) == 'disable' ) {
+				$highlight = $wgContLang->getVariantFallback($highlight);
+				if( $highlight && $wgContLang->getVariantname($highlight) == 'false' )
+					$highlight = false;
+			}
 			$actstr = '';
 			if( $action )
 				$actstr = 'action=' . $action . '&';
@@ -631,7 +636,7 @@ class SkinTemplate extends Skin {
 				$varname = $wgContLang->getVariantname( $code );
 				if( $varname == 'disable' )
 					continue;
-				$selected = ( $code == $preferred )? 'selected' : false;
+				$selected = ( $code == $highlight )? 'selected' : false;
 				$content_actions['varlang-' . $vcount] = array(
 						'class' => $selected,
 						'text' => $varname,
