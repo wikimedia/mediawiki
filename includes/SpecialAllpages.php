@@ -6,7 +6,8 @@
  */
 
 /**
- *
+ * Entry point : initialise variables and call subfunctions.
+ * @param string $par ????? (default NULL)
  */
 function wfSpecialAllpages( $par=NULL ) {
 	global $indexMaxperpage, $toplevelMaxperpage, $wgRequest, $wgOut, $wgContLang;
@@ -30,6 +31,11 @@ function wfSpecialAllpages( $par=NULL ) {
 	}
 }
 
+/**
+ * HTML for the top form
+ * @param integer $namespace A namespace constant (default NS_MAIN).
+ * @param string $from Article name we are starting listing at.
+ */
 function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 	global $wgContLang, $wgScript;
 
@@ -38,7 +44,7 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 	$namespaceselect = '<select name="namespace">';
 	$arr = $wgContLang->getNamespaces();
 	for ( $i = 0; $i < 14; $i++ ) {
-		$namespacename = str_replace ( "_", " ", $arr[$i] );
+		$namespacename = str_replace ( '_', ' ', $arr[$i] );
 		$n = ($i == 0) ? wfMsg ( 'articlenamespace' ) : $namespacename;
 		$sel = ($i == $namespace) ? ' selected="selected"' : '';
 		$namespaceselect .= "<option value='{$i}'{$sel}>{$n}</option>";
@@ -57,6 +63,10 @@ function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 	return $out;
 }
 
+/**
+ * @todo Document
+ * @param integer $namespace (default NS_MAIN)
+ */
 function indexShowToplevel ( $namespace = NS_MAIN ) {
 	global $wgOut, $indexMaxperpage, $toplevelMaxperpage, $wgContLang, $wgRequest, $wgUser;
 	$sk = $wgUser->getSkin();
@@ -124,29 +134,29 @@ function indexShowToplevel ( $namespace = NS_MAIN ) {
 		$outpoint = array_shift ( $lines );
 		$out .= indexShowline ( $inpoint, $outpoint, $namespace );
 	}
-	$out .= "</table>";
+	$out .= '</table>';
 
 	$nsForm = namespaceForm ( $namespace );
 
 	# Is there more?
-	$morelinks = "";
+	$morelinks = '';
 	if ( $offset > 0 ) {
 		$morelinks = $sk->makeKnownLink (
-			$wgContLang->specialPage ( "Allpages" ),
+			$wgContLang->specialPage ( 'Allpages' ),
 			wfMsg ( 'allpagesprev' ),
 			( $offset > $toplevelMaxperpage ) ? 'offset='.($offset-$toplevelMaxperpage) : ''
 		);
 	}
 	if ( $stopat < $sections-1 ) {
-		if ( $morelinks != "" ) { $morelinks .= " | "; }
+		if ( $morelinks != '' ) { $morelinks .= " | "; }
 		$morelinks .= $sk->makeKnownLink (
-			$wgContLang->specialPage ( "Allpages" ),
+			$wgContLang->specialPage ( 'Allpages' ),
 			wfMsg ( 'allpagesnext' ),
 			'offset=' . ($offset + $toplevelMaxperpage)
 		);
 	}
 
-	if ( $morelinks != "" ) {
+	if ( $morelinks != '' ) {
 		$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
 		$out2 .= '<tr valign="top"><td align="left">' . $nsForm;
 		$out2 .= '</td><td align="right" style="font-size: smaller; margin-bottom: 1em;">';
@@ -158,13 +168,18 @@ function indexShowToplevel ( $namespace = NS_MAIN ) {
 	$wgOut->addHtml( $out2 . $out );
 }
 
+/**
+ * @todo Document
+ * @param string $from 
+ * @param integer $namespace (Default NS_MAIN)
+ */
 function indexShowline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 	global $wgOut, $wgLang, $wgUser;
 	$sk = $wgUser->getSkin();
 	$dbr =& wfGetDB( DB_SLAVE );
 
-	$inpointf = htmlspecialchars( str_replace( "_", " ", $inpoint ) );
-	$outpointf = htmlspecialchars( str_replace( "_", " ", $outpoint ) );
+	$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
+	$outpointf = htmlspecialchars( str_replace( '_', ' ', $outpoint ) );
 	$queryparams = $namespace ? ('namespace='.intval($namespace)) : '';
 	$special = Title::makeTitle( NS_SPECIAL, 'Allpages/' . $inpoint );
 	$link = $special->escapeLocalUrl( $queryparams );
@@ -183,7 +198,7 @@ function indexShowChunk( $from, $namespace = NS_MAIN ) {
 	$maxPlusOne = $indexMaxperpage + 1;
 	$namespacee = intval($namespace);
 
-	$out = "";
+	$out = '';
 	$dbr =& wfGetDB( DB_SLAVE );
 	$page = $dbr->tableName( 'page' );
 	
@@ -193,7 +208,7 @@ function indexShowChunk( $from, $namespace = NS_MAIN ) {
 	$sql = "SELECT page_title FROM $page WHERE page_namespace=$namespacee" .
 		" AND page_title >= ".  $dbr->addQuotes( $fromKey ) .
 		" ORDER BY page_title LIMIT " . $maxPlusOne;
-	$res = $dbr->query( $sql, "indexShowChunk" );
+	$res = $dbr->query( $sql, 'indexShowChunk' );
 
 	### FIXME: side link to previous
 
