@@ -687,9 +687,9 @@ Legend: (cur) = difference with current version,
 # Search results
 #
 'searchresults' => 'Search results',
-'searchhelppage' => "{{ns:4}}:Searching",
-'searchingwikipedia' => "Searching {{SITENAME}}",
-'searchresulttext' => "For more information about searching {{SITENAME}}, see $1.",
+#'searchhelppage' => "{{ns:4}}:Searching",
+#'searchingwikipedia' => "Searching {{SITENAME}}",
+'searchresulttext' => "For more information about searching {{SITENAME}}, see [[Project:Searching|Searching {{SITENAME}}]].",
 'searchquery'	=> "For query \"$1\"",
 'badquery'		=> 'Badly formed search query',
 'badquerytext'	=> 'We could not process your query.
@@ -710,7 +710,7 @@ and the text of $3 pages.",
 'viewprevnext'	=> "View ($1) ($2) ($3).",
 'showingresults' => "Showing below <b>$1</b> results starting with #<b>$2</b>.",
 'showingresultsnum' => "Showing below <b>$3</b> results starting with #<b>$2</b>.",
-'nonefound'		=> "<strong>Note</strong>: unsuccessful searches are
+'nonefound'		=> "'''Note''': unsuccessful searches are
 often caused by searching for common words like \"have\" and \"from\",
 which are not indexed, or by specifying more than one search term (only pages
 containing all of the search terms will appear in the result).",

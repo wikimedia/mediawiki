@@ -5,32 +5,34 @@ define( "MW_SEARCH_OK", true );
 define( "MW_SEARCH_BAD_QUERY", false );
 
 class SearchEngine {
-	/* private */ var $mRawtext, $mUsertext, $mSearchterms;
-	/* private */ var $mTitlecond, $mTextcond;
+	/* private */ var $rawText, $filteredText, $searchTerms;
+	/* private */ var $titleCond, $textCond;
 
 	var $doSearchRedirects = true;
-	var $addtoquery = array();
+	var $addToQuery = array();
 	var $namespacesToSearch = array();
 	var $alternateTitle;
-	var $all_titles = false;
+	var $allTitles = false;
 
-	function SearchEngine( $text )
-	{
+	function SearchEngine( $text ) {
+		$this->rawText = trim( $text );
+
 		# We display the query, so let's strip it for safety
 		#
 		global $wgDBmysql4;
 		$lc = SearchEngine::legalSearchChars() . "()";
-		if( $wgDBmysql4 ) $lc .= "\"~<>*+-";
-		$this->mRawtext = $text;
-		$this->mUsertext = trim( preg_replace( "/[^{$lc}]/", " ", $text ) );
-		$this->mSearchterms = array();
-		$this->mStrictMatching = true; # Google-style, add '+' on all terms
+		if( $wgDBmysql4 ) {
+			$lc .= "\"~<>*+-";
+		}
+		$this->filteredText = trim( preg_replace( "/[^{$lc}]/", " ", $text ) );
+		$this->searchTerms = array();
+		$this->strictMatching = true; # Google-style, add '+' on all terms
 
 		$this->db =& wfGetDB( DB_SLAVE );
 	}
 
-	function queryNamespaces()
-	{
+	# Return a partial WHERE clause to limit the search to the given namespaces
+	function queryNamespaces() {
 		$namespaces = implode( ",", $this->namespacesToSearch );
 		if ($namespaces == "") {
 			$namespaces = "0";
@@ -38,8 +40,8 @@ class SearchEngine {
 		return "AND cur_namespace IN (" . $namespaces . ")";
 	}
 
-	function searchRedirects()
-	{
+	# Return a partial WHERE clause to include or exclude redirects from results
+	function searchRedirects() {
 		if ( $this->doSearchRedirects ) {
 			return "";
 		} else {
@@ -62,12 +64,11 @@ class SearchEngine {
 
 	# Display the "power search" footer. Does not actually perform the search, 
 	# that is done by showResults()
-	function powersearch()
-	{
+	function powersearch() {
 		global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest;
 		$sk =& $wgUser->getSkin();
 		
-		$search			= $this->mRawtext;
+		$search			= $this->rawText;
 		$searchx		= $wgRequest->getVal( 'searchx' );
 		$listredirs		= $wgRequest->getVal( 'redirs' );
 		
@@ -75,7 +76,7 @@ class SearchEngine {
 		$tempText = ""; # Temporary text, for substitution into $ret	
 
 		if( isset( $_REQUEST["searchx"] ) ) {
-			$this->addtoquery["searchx"] = "1";
+			$this->addToQuery["searchx"] = "1";
 		}
 		
 		# Do namespace checkboxes
@@ -99,7 +100,7 @@ class SearchEngine {
 			$checked = "";
 			if ( $checkboxValue == 1 ) {
 				$checked = " checked='checked'";
-				$this->addtoquery["ns{$i}"] = 1;
+				$this->addToQuery["ns{$i}"] = 1;
 				array_push( $this->namespacesToSearch, $i );
 			}
 			$name = str_replace( "_", " ", $namespaces[$i] );
@@ -119,7 +120,7 @@ class SearchEngine {
 
 		$checked = "";
 		if ( $listredirs == 1 ) {
-			$this->addtoquery["redirs"] = 1;
+			$this->addToQuery["redirs"] = 1;
 			$checked = " checked='checked'";
 		}
 		$tempText = "<input type='checkbox' value='1' name=\"redirs\"{$checked} />\n";
@@ -152,107 +153,100 @@ class SearchEngine {
 	function setupPage() {
 		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( "searchresults" ) );
-		$q = wfMsg( "searchquery", htmlspecialchars( $this->mRawtext ) );
-		$wgOut->setSubtitle( $q );
+		$wgOut->setSubtitle( wfMsg( "searchquery", htmlspecialchars( $this->rawText ) ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 	}
 
 	# Perform the search and construct the results page
-	function showResults()
-	{
+	function showResults() {
 		global $wgUser, $wgTitle, $wgOut, $wgLang;
 		global $wgDisableTextSearch, $wgInputEncoding;
 		$fname = "SearchEngine::showResults";
 
-		$search = $this->mRawtext;
+		$search = $this->rawText;
 
 		$powersearch = $this->powersearch(); /* Need side-effects here? */
 
 		$this->setupPage();
 
 		$sk = $wgUser->getSkin();
-		$header = wfMsg( "searchresulttext", $sk->makeKnownLink(
-					wfMsg( "searchhelppage" ), wfMsg( "searchingwikipedia" ) ) );
-		$wgOut->addHTML( $header );
+		$wgOut->addWikiText( wfMsg( "searchresulttext" ) );
 
-		$this->parseQuery();
-		if ( "" == $this->mTitlecond || "" == $this->mTextcond ) {
-			$wgOut->addHTML( "<h2>" . wfMsg( "badquery" ) . "</h2>\n" .
-			  "<p>" . wfMsg( "badquerytext" ) . "</p>\n" );
+		if ( !$this->parseQuery() ) {
+			$wgOut->addWikiText(
+				"==" . wfMsg( "badquery" ) . "==\n" .
+				wfMsg( "badquerytext" ) );
 			return;
 		}
 		list( $limit, $offset ) = wfCheckLimits( 20, "searchlimit" );
-
-		$searchnamespaces = $this->queryNamespaces();
-		$redircond = $this->searchRedirects();
 		
 		if ( $wgDisableTextSearch ) {
 			$wgOut->addHTML( wfMsg( "searchdisabled" ) );
-			$wgOut->addHTML( wfMsg( "googlesearch", htmlspecialchars( $search ), htmlspecialchars( $wgInputEncoding ) ) );
-		} else {
-			if( $this->parseQuery() == MW_SEARCH_BAD_QUERY ) {
-				$wgOut->addHTML( "<h2>" . wfMsg( "badquery" ) . "</h2>\n" .
-				  "<p>" . wfMsg( "badquerytext" ) . "</p>\n" );
-				return;
-			}
-
-			list( $limit, $offset ) = wfCheckLimits( 20, "searchlimit" );
-			$titleMatches = $this->getMatches( $this->mTitlecond, $limit, $offset );
-			$textMatches = $this->getMatches( $this->mTextcond, $limit, $offset );
-
-			$sk = $wgUser->getSkin();
-			
-			$num = count( $titleMatches ) + count( $textMatches );
-			if ( $num >= $limit ) {
-				$top = wfShowingResults( $offset, $limit );
-			} else {
-				$top = wfShowingResultsNum( $offset, $limit, $num );
-			}
-			$wgOut->addHTML( "<p>{$top}</p>\n" );
-	
-			# For powersearch
-	
-			$a2l = "";
-			$akk = array_keys( $this->addtoquery );
-			foreach ( $akk AS $ak ) {
-				$a2l .= "&{$ak}={$this->addtoquery[$ak]}" ;
-			}
-	
-			$sl = wfViewPrevNext( $offset, $limit, "",
-			  "search=" . wfUrlencode( $this->mUsertext ) . $a2l );
-			$wgOut->addHTML( "<br />{$sl}\n" );
-	
-			$foundsome = $this->showMatches( $titleMatches, $offset, "notitlematches", "titlematches" )
-			          || $this->showMatches( $textMatches,  $offset, "notextmatches",  "textmatches"  );
-			
-			if ( ! $foundsome ) {
-				$wgOut->addHTML( "<p>" . wfMsg( "nonefound" ) . "</p>\n" );
-			}
-			$wgOut->addHTML( "<p>{$sl}</p>\n" );
-			$wgOut->addHTML( $powersearch );
+			$wgOut->addHTML( wfMsg( "googlesearch",
+				htmlspecialchars( $this->rawText ),
+				htmlspecialchars( $wgInputEncoding ) ) );
+			return;
 		}
+
+		$titleMatches = $this->getMatches( $this->titleCond, $limit, $offset );
+		$textMatches = $this->getMatches( $this->textCond, $limit, $offset );
+
+		$sk = $wgUser->getSkin();
+		
+		$num = count( $titleMatches ) + count( $textMatches );
+		if ( $num >= $limit ) {
+			$top = wfShowingResults( $offset, $limit );
+		} else {
+			$top = wfShowingResultsNum( $offset, $limit, $num );
+		}
+		$wgOut->addHTML( "<p>{$top}</p>\n" );
+
+		# For powersearch
+		$a2l = "";
+		$akk = array_keys( $this->addToQuery );
+		foreach ( $akk AS $ak ) {
+			$a2l .= "&{$ak}={$this->addToQuery[$ak]}" ;
+		}
+
+		$prevnext = wfViewPrevNext( $offset, $limit, "",
+		  "search=" . wfUrlencode( $this->filteredText ) . $a2l );
+		$wgOut->addHTML( "<br />{$prevnext}\n" );
+
+		$foundsome = $this->showMatches( $titleMatches, $offset, "notitlematches", "titlematches" )
+				  || $this->showMatches( $textMatches,  $offset, "notextmatches",  "textmatches"  );
+		
+		if ( !$foundsome ) {
+			$wgOut->addWikiText( wfMsg( "nonefound" ) );
+		}
+		$wgOut->addHTML( "<p>{$prevnext}</p>\n" );
+		$wgOut->addHTML( $powersearch );
 	}
 
-	function legalSearchChars()
-	{
+	function legalSearchChars() {
 		$lc = "A-Za-z_'0-9\\x80-\\xFF\\-";
 		return $lc;
 	}
 
-	function parseQuery()
-	{
-		global $wgDBminWordLen, $wgLang, $wgDBmysql4;
-
+	function parseQuery() {
+		global $wgDBmysql4;
 		if( $wgDBmysql4 ) {
 			# Use cleaner boolean search if available
-			return $this->parseQuery4( $this->db );
+			return $this->parseQuery4();
+		} else {
+			# Fall back to ugly hack with multiple search clauses
+			return $this->parseQuery3();
 		}
+	}
+	
+	function parseQuery3() {
+		global $wgDBminWordLen, $wgLang;
+
 		# on non mysql4 database: get list of words we don't want to search for
 		require_once( "FulltextStoplist.php" );
 
 		$lc = SearchEngine::legalSearchChars() . "()";
-		$q = preg_replace( "/([()])/", " \\1 ", $this->mUsertext );
+		$q = preg_replace( "/([()])/", " \\1 ", $this->filteredText );
 		$q = preg_replace( "/\\s+/", " ", $q );
 		$w = explode( " ", trim( $q ) );
 
@@ -272,35 +266,34 @@ class SearchEngine {
 				$cond .= " (MATCH (##field##) AGAINST ('" .
 				  $this->db->strencode( $word ). "'))";
 				$last = $word;
-				array_push( $this->mSearchterms, "\\b" . $word . "\\b" );
+				array_push( $this->searchTerms, "\\b" . $word . "\\b" );
 			}
 		}
-		if ( 0 == count( $this->mSearchterms ) ) {
+		if ( 0 == count( $this->searchTerms ) ) {
 			return MW_SEARCH_BAD_QUERY;
 		}
 
-		$this->mTitlecond = "(" . str_replace( "##field##",
+		$this->titleCond = "(" . str_replace( "##field##",
 		  "si_title", $cond ) . " )";
 
-		$this->mTextcond = "(" . str_replace( "##field##",
+		$this->textCond = "(" . str_replace( "##field##",
 		  "si_text", $cond ) . " AND (cur_is_redirect=0) )";
 		
 		return MW_SEARCH_OK;
 	}
 	
-	function parseQuery4()
-	{
+	function parseQuery4() {
 		global $wgLang;
 		$lc = SearchEngine::legalSearchChars();
 		$searchon = "";
-		$this->mSearchterms = array();
+		$this->searchTerms = array();
 
 		# FIXME: This doesn't handle parenthetical expressions.
 		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
-			  $this->mUsertext, $m, PREG_SET_ORDER ) ) {
+			  $this->filteredText, $m, PREG_SET_ORDER ) ) {
 			foreach( $m as $terms ) {
 				if( $searchon !== "" ) $searchon .= " ";
-				if( $this->mStrictMatching && ($terms[1] == "") ) {
+				if( $this->strictMatching && ($terms[1] == "") ) {
 					$terms[1] = "+";
 				}
 				$searchon .= $terms[1] . $wgLang->stripForSearch( $terms[2] );
@@ -310,21 +303,21 @@ class SearchEngine {
 				} else {
 					$regexp = preg_quote( str_replace( '"', '', $terms[2] ) );
 				}
-				$this->mSearchterms[] = $regexp;
+				$this->searchTerms[] = $regexp;
 			}
 			wfDebug( "Would search with '$searchon'\n" );
-			wfDebug( "Match with /\b" . implode( '\b|\b', $this->mSearchterms ) . "\b/\n" );
+			wfDebug( "Match with /\b" . implode( '\b|\b', $this->searchTerms ) . "\b/\n" );
 		} else {
-			wfDebug( "Can't understand search query '$this->mUsertext'\n" );
+			wfDebug( "Can't understand search query '{$this->filteredText}'\n" );
 		}
 		
 		$searchon = $this->db->strencode( $searchon );
-		$this->mTitlecond = " MATCH(si_title) AGAINST('$searchon' IN BOOLEAN MODE)";
-		$this->mTextcond = " (MATCH(si_text) AGAINST('$searchon' IN BOOLEAN MODE) AND cur_is_redirect=0)";
+		$this->titleCond = " MATCH(si_title) AGAINST('$searchon' IN BOOLEAN MODE)";
+		$this->textCond = " (MATCH(si_text) AGAINST('$searchon' IN BOOLEAN MODE) AND cur_is_redirect=0)";
 		return MW_SEARCH_OK;
 	}
 
-	function &getMatches( $cond, $limit, $offset ) {
+	function &getMatches( $cond, $limit, $offset = 0 ) {
 		$searchindex = $this->db->tableName( 'searchindex' );
 		$cur = $this->db->tableName( 'cur' );
 		$searchnamespaces = $this->queryNamespaces();
@@ -334,7 +327,7 @@ class SearchEngine {
 		  "cur_text FROM $cur,$searchindex " .
 		  "WHERE cur_id=si_page AND {$cond} " .
 		  "{$searchnamespaces} {$redircond} " .
-		  "LIMIT {$offset}, {$limit}";
+		  $this->db->limitResult( $limit, $offset );
 		
 		$res = $this->db->query( $sql, "SearchEngine::getMatches" );
 		$matches = array();
@@ -365,11 +358,14 @@ class SearchEngine {
 		}
 	}
 
-	function showHit( $row )
-	{
+	function showHit( $row ) {
 		global $wgUser, $wgOut, $wgLang;
 
 		$t = Title::makeName( $row->cur_namespace, $row->cur_title );
+		if( is_null( $t ) ) {
+			$wgOut->addHTML( "<!-- Broken link in search result -->\n" );
+			return;
+		}
 		$sk = $wgUser->getSkin();
 
 		$contextlines = $wgUser->getOption( "contextlines" );
@@ -382,7 +378,7 @@ class SearchEngine {
 		$wgOut->addHTML( "<li>{$link} ({$size})" );
 
 		$lines = explode( "\n", $row->cur_text );
-		$pat1 = "/(.*)(" . implode( "|", $this->mSearchterms ) . ")(.*)/i";
+		$pat1 = "/(.*)(" . implode( "|", $this->searchTerms ) . ")(.*)/i";
 		$lineno = 0;
 
 		foreach ( $lines as $line ) {
@@ -406,72 +402,76 @@ class SearchEngine {
 			$found = $m[2];
 
 			$line = htmlspecialchars( $pre . $found . $post );
-			$pat2 = "/(" . implode( "|", $this->mSearchterms ) . ")/i";
+			$pat2 = "/(" . implode( "|", $this->searchTerms ) . ")/i";
 			$line = preg_replace( $pat2,
-			  "<font color='red'>\\1</font>", $line );
+			  "<span class='searchmatch'>\\1</span>", $line );
 
 			$wgOut->addHTML( "<br /><small>{$lineno}: {$line}</small>\n" );
 		}
 		$wgOut->addHTML( "</li>\n" );
 	}
 
-	function goResult()
-	{
-		global $wgOut, $wgGoToEdit;
-		global $wgDisableTextSearch;
-		$fname = "SearchEngine::goResult";
-		
-		$search = trim( $this->mRawtext );
-
-		# Try to go to page as entered.
-		#
-		$t = Title::newFromText( $search );
-
-		# If the string cannot be used to create a title
-		if( false == $t ){ 
-			$this->showResults();
-			return;
-		}
-
+	function getNearMatch() {
 		# Exact match? No need to look further.
-		if ( $t->getNamespace() == NS_SPECIAL || 0 != $t->getArticleID() ) {
-			$wgOut->redirect( $t->getFullURL() );
-			return;
+		$title = Title::newFromText( $this->rawText );
+		if ( $title->getNamespace() == NS_SPECIAL || 0 != $title->getArticleID() ) {
+			return $title;
 		}
 
 		# Now try all lower case (i.e. first letter capitalized)
 		#
-		$t = Title::newFromText( strtolower( $search ) );
-		if ( 0 != $t->getArticleID() ) {
-			$wgOut->redirect( $t->getFullURL() );
-			return;
+		$title = Title::newFromText( strtolower( $this->rawText ) );
+		if ( 0 != $title->getArticleID() ) {
+			return $title;
 		}
 
 		# Now try capitalized string
 		#
-		$t = Title::newFromText( ucwords( strtolower( $search ) ) );
-		if ( 0 != $t->getArticleID() ) {
-			$wgOut->redirect( $t->getFullURL() );
-			return;
+		$title = Title::newFromText( ucwords( strtolower( $this->rawText ) ) );
+		if ( 0 != $title->getArticleID() ) {
+			return $title;
 		}
 
 		# Now try all upper case
 		#
-		$t = Title::newFromText( strtoupper( $search ) );
-		if ( 0 != $t->getArticleID() ) {
-			$wgOut->redirect( $t->getFullURL() );
-			return;
+		$title = Title::newFromText( strtoupper( $this->rawText ) );
+		if ( 0 != $title->getArticleID() ) {
+			return $title;
 		}
 
 		# Entering an IP address goes to the contributions page
-		if ( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', $search ) ) {
-			$title = Title::makeTitle( NS_SPECIAL, "Contributions" );
-			$wgOut->redirect( $title->getFullUrl( "target=$search" ) );
+		if ( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', $this->rawText ) ) {
+			$title = Title::makeTitle( NS_SPECIAL, "Contributions/" . $this->rawText );
+			return $title;
+		}
+		
+		return NULL;
+	}
+
+	function goResult() {
+		global $wgOut, $wgGoToEdit;
+		global $wgDisableTextSearch;
+		$fname = "SearchEngine::goResult";
+		
+		# Try to go to page as entered.
+		#
+		$t = Title::newFromText( $this->rawText );
+
+		# If the string cannot be used to create a title
+		if( is_null( $t ) ){ 
+			$this->showResults();
 			return;
 		}
 
+		# If there's an exact or very near match, jump right there.
+		$t = $this->getNearMatch();
+		if( !is_null( $t ) ) {
+			$wgOut->redirect( $t->getFullURL() );
+			return;
+		}
+		
 		# No match, generate an edit URL
-		$t = Title::newFromText( $this->mRawtext );
+		$t = Title::newFromText( $this->rawText );
 		
 		# If the feature is enabled, go straight to the edit page
 		if ( $wgGoToEdit ) {
@@ -491,7 +491,7 @@ class SearchEngine {
 		global $wgDisableFuzzySearch;
 		if(! $wgDisableFuzzySearch ){
 			foreach( array(NS_MAIN, NS_WP, NS_USER, NS_IMAGE, NS_MEDIAWIKI) as $namespace){
-				$anyhit |= SearchEngine::doFuzzyTitleSearch( $search, $namespace );
+				$anyhit |= SearchEngine::doFuzzyTitleSearch( $this->rawText, $namespace );
 			}
 		}
 		
@@ -561,9 +561,9 @@ class SearchEngine {
 		$fname = 'SearchEngin::getTitlesByLength';
 		
 		// to avoid multiple costly SELECTs in case of no memcached
-		if( $this->all_titles ){ 
-			if( isset( $this->all_titles[$aLength][$aNamespace] ) ){
-				return $this->all_titles[$aLength][$aNamespace];
+		if( $this->allTitles ){ 
+			if( isset( $this->allTitles[$aLength][$aNamespace] ) ){
+				return $this->allTitles[$aLength][$aNamespace];
 			} else {
 				return array();
 			}
@@ -596,7 +596,7 @@ class SearchEngine {
 				$wgMemc->set( $mkey, $title_arr, 3600 * 24 );
 			}
 		}
-		$this->all_titles = $titles;
+		$this->allTitles = $titles;
 		if( isset( $titles[$aLength][$aNamespace] ) )
 			return $titles[$aLength][$aNamespace];
 		else

@@ -200,3 +200,7 @@ div.townBox dl dd {
 	font-size:150%;
 	margin:5px;
 }
+.searchmatch {
+	color: red;
+	font-weight: bold;
+}

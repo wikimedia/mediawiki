@@ -914,6 +914,9 @@ div.patrollink {
 	font-size: 75%;
 	text-align: right;
 }
-span.newpage, span.minor {
+span.newpage, span.minor, span.searchmatch {
 	font-weight: bold;
+}
+span.searchmatch {
+	color: red;
 }
