@@ -727,7 +727,7 @@ $wgDisableTextSearch = false;
  */
 $wgDisableSearchUpdate = false;
 /** Uploads have to be specially set up to be secure */
-$wgDisableUploads = true;
+$wgEnableUploads = false;
 /**
  * Set to true to enable the upload _link_ while local uploads are disabled.
  * Assumes that the special page link will be bounced to another server where

@@ -132,7 +132,7 @@ class SkinStandard extends Skin {
 
 	function quickBar() {
 		global $wgOut, $wgTitle, $wgUser, $wgRequest, $wgContLang;
-		global $wgDisableUploads, $wgRemoteUploads, $wgNavigationLinks;
+		global $wgEnableUploads, $wgRemoteUploads, $wgNavigationLinks;
 
 		$fname =  'Skin::quickBar';
 		wfProfileIn( $fname );
@@ -261,7 +261,7 @@ class SkinStandard extends Skin {
 			$s .= "\n<br /><hr class='sep' />";
 		}
 
-		if ( $wgUser->isLoggedIn() && ( !$wgDisableUploads || $wgRemoteUploads ) ) {
+		if ( $wgUser->isLoggedIn() && ( $wgEnableUploads || $wgRemoteUploads ) ) {
 			$s .= $this->specialLink( 'upload' ) . $sep;
 		}
 		$s .= $this->specialLink( 'specialpages' )

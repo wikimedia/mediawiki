@@ -724,7 +724,7 @@ class SkinTemplate extends Skin {
 		wfProfileIn( $fname );
 		
 		global $wgUser, $wgRequest;
-		global $wgSiteSupportPage, $wgDisableUploads;
+		global $wgSiteSupportPage, $wgEnableUploads;
 
 		$action = $wgRequest->getText( 'action' );
 		$oldid = $wgRequest->getVal( 'oldid' );
@@ -740,7 +740,7 @@ class SkinTemplate extends Skin {
 		// $nav_urls['sitesupport'] = array('href' => $this->makeI18nUrl('sitesupportpage'));
 		$nav_urls['sitesupport'] = array('href' => $wgSiteSupportPage);
 		$nav_urls['help'] = array('href' => $this->makeI18nUrl('helppage'));
-		if( $this->loggedin && !$wgDisableUploads ) {
+		if( $this->loggedin && $wgEnableUploads ) {
 			$nav_urls['upload'] = array('href' => $this->makeSpecialUrl('Upload'));
 		} else {
 			$nav_urls['upload'] = false;
