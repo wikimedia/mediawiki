@@ -605,18 +605,27 @@ function getHTMLattrs ()
 return $htmlattrs ;
 }
 
-function fixTableTags ( $t )
+function fixTagAttributes ( $t )
 {
-  if ( trim ( $t ) == "" ) return "" ; # Saves runtime ;-)
-  $htmlattrs = $this->getHTMLattrs() ;
+	if ( trim ( $t ) == "" ) return "" ; # Saves runtime ;-)
+	$htmlattrs = $this->getHTMLattrs() ;
   
-# Strip non-approved attributes from the tag
-  $t = preg_replace(
-		    "/(\\w+)(\\s*=\\s*([^\\s\">]+|\"[^\">]*\"))?/e",
-		    "(in_array(strtolower(\"\$1\"),\$htmlattrs)?(\"\$1\".((\"x\$3\" != \"x\")?\"=\$3\":'')):'')",
-		    $t);
+	# Strip non-approved attributes from the tag
+	$t = preg_replace(
+		"/(\\w+)(\\s*=\\s*([^\\s\">]+|\"[^\">]*\"))?/e",
+		"(in_array(strtolower(\"\$1\"),\$htmlattrs)?(\"\$1\".((\"x\$3\" != \"x\")?\"=\$3\":'')):'')",
+		$t);
+	# Strip javascript "expression" from stylesheets. Brute force approach:
+	# If anythin offensive is found, all attributes of the HTML tag are dropped
 
-  return trim ( $t ) ;
+	if( preg_match( 
+		"/style\\s*=.*(expression|tps*:\/\/|url\\s*\().*/is",
+		wfMungeToUtf8( $t ) ) )
+	{
+		$t="";
+	}
+
+	return trim ( $t ) ;
 }
 
 function doTableStuff ( $t )
@@ -632,7 +641,7 @@ function doTableStuff ( $t )
       $fc = substr ( $x , 0 , 1 ) ;
       if ( "{|" == substr ( $x , 0 , 2 ) )
 	{
-	  $t[$k] = "<table " . $this->fixTableTags ( substr ( $x , 3 ) ) . ">" ;
+	  $t[$k] = "<table " . $this->fixTagAttributes ( substr ( $x , 3 ) ) . ">" ;
 	  array_push ( $td , false ) ;
 	  array_push ( $ltd , "" ) ;
 	  array_push ( $tr , false ) ;
@@ -666,7 +675,7 @@ function doTableStuff ( $t )
           array_push ( $tr , false ) ;
 	  array_push ( $td , false ) ;
           array_push ( $ltd , "" ) ;
-          array_push ( $ltr , $this->fixTableTags ( $x ) ) ;
+          array_push ( $ltr , $this->fixTagAttributes ( $x ) ) ;
 	}
       else if ( "|" == $fc || "!" == $fc || "|+" == substr ( $x , 0 , 2 ) ) # Caption
 	{
@@ -696,7 +705,7 @@ function doTableStuff ( $t )
           array_push ( $ltd , $l ) ;
 	  $y = explode ( "|" , $theline , 2 ) ;
           if ( count ( $y ) == 1 ) $y = "{$z}<{$l}>{$y[0]}" ;
-          else $y = $y = "{$z}<{$l} ".$this->fixTableTags($y[0]).">{$y[1]}" ;
+          else $y = $y = "{$z}<{$l} ".$this->fixTagAttributes($y[0]).">{$y[1]}" ;
           $t[$k] .= $y ;
 	  array_push ( $td , true ) ;
              }
@@ -1343,14 +1352,12 @@ $t[] = "</table>" ;
 						array_push( $tagstack, $t );
 					}
 					# Strip non-approved attributes from the tag
-					$newparams = preg_replace(
-					  "/(\\w+)(\\s*=\\s*([^\\s\">]+|\"[^\">]*\"))?/e",
-					  "(in_array(strtolower(\"\$1\"),\$htmlattrs)?(\"\$1\".((\"x\$3\" != \"x\")?\"=\$3\":'')):'')",
-					  $params);
+					$newparams = $this->fixTagAttributes($params);
+						
 				}
 				if ( ! $badtag ) {
 					$rest = str_replace( ">", "&gt;", $rest );
-					$text .= "<$slash$t$newparams$brace$rest";
+					$text .= "<$slash$t $newparams$brace$rest";
 					continue;
 				}
 			}
