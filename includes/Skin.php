@@ -368,6 +368,7 @@ class Skin {
 			}
 		}
 		if( $wgUser->isSysop() &&
+			(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
 			($n = $wgTitle->isDeleted() ) ) {
 				$s .= " | " . wfMsg( "thisisdeleted",
 					$this->makeKnownLink(
