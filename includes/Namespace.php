@@ -23,6 +23,8 @@ define("NS_MEDIAWIKI", 8);
 define("NS_MEDIAWIKI_TALK", 9);
 define("NS_TEMPLATE", 10);
 define("NS_TEMPLATE_TALK", 11);
+define("NS_HELP", 12);
+define("NS_HELP_TALK", 13);
 
 class Namespace {
 
@@ -43,7 +45,7 @@ class Namespace {
 
 	function isTalk( $index )
 	{
-		if ( NS_TALK == $index || NS_USER_TALK == $index || NS_WP_TALK == $index || NS_IMAGE_TALK == $index || NS_MEDIAWIKI_TALK == $index || NS_TEMPLATE_TALK == $index ) {
+		if ( NS_TALK == $index || NS_USER_TALK == $index || NS_WP_TALK == $index || NS_IMAGE_TALK == $index || NS_MEDIAWIKI_TALK == $index || NS_TEMPLATE_TALK == $index || NS_HELP_TALK == $index ) {
 			return true;
 		}
 		return false;
