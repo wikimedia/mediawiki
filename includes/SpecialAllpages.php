@@ -52,7 +52,7 @@ function indexShowToplevel()
 	# There's got to be a cleaner way to do this!
 	for( $i = 1; $i < $sections; $i++ ) {
 		$from = $i * $indexMaxperpage;
-		$sql = "SELECT cur_title $fromwhere $order LIMIT $from,2";
+		$sql = "SELECT cur_title $fromwhere $order ".wfLimitResult(2,$from);
 		$res = wfQuery( $sql, DB_READ, $fname );
 	
 		$s = wfFetchObject( $res );
@@ -66,7 +66,7 @@ function indexShowToplevel()
 	}
 	
 	$from = $i * $indexMaxperpage;
-	$sql = "SELECT cur_title $fromwhere $order LIMIT " . ($count-1) . ",1";
+	$sql = "SELECT cur_title $fromwhere $order ".wfLimitResult(1,$count-1);
 	$res = wfQuery( $sql, DB_READ, $fname );
 	$s = wfFetchObject( $res );
 	$outpoint = $s->cur_title;
