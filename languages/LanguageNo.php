@@ -507,7 +507,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br>
 "preferences"	=> "Innstillinger",
 "prefsnologin" => "Ikke logget inn",
 "prefsnologintext"	=> "Du må være <a href=\"" .
-  wfLocalUrl( "Spesial:Userlogin" ) . "\">logget inn</a>
+  "{{localurle:Spesial:Userlogin}}\">logget inn</a>
 for å endre brukerinnstillingene.",
 "prefslogintext" => "Du logget inn som \"$1\".
 Ditt interne ID-nummer er $2.
@@ -581,7 +581,7 @@ siste <strong>$2</strong> dagene.",
 "reuploaddesc"	=> "Tilbake til skjemaet for å laste opp filer.",
 "uploadnologin" => "Ikke logget inn",
 "uploadnologintext"	=> "Du må være <a href=\"" .
-  wfLocalUrl( "Spesial:Userlogin" ) . "\">logget inn</a>
+  "{{localurle:Spesial:Userlogin}}\">logget inn</a>
 for å kunne laste opp filer.",
 "uploadfile"	=> "Last opp filer",
 "uploaderror"	=> "Feil under opplasting av fil",
@@ -775,9 +775,9 @@ og denne listen skal ikke sees på som en anbefaling av disse.",
 #
 "mailnologin"	=> "Ingen avsenderadresse",
 "mailnologintext" => "Du må være <a href=\"" .
-  wfLocalUrl( "Spesial:Userlogin" ) . "\">logget inn</a>
+  "{{localurle:Spesial:Userlogin}}\">logget inn</a>
 og ha en gyldig e-postadresse satt i <a href=\"" .
-  wfLocalUrl( "Spesial:Preferences" ) . "\">brukerinnstillingene</a>
+  "{{localurle:Spesial:Preferences}}\">brukerinnstillingene</a>
 for å sende e-post til andre brukere.",
 "emailuser"		=> "E-post til denne brukeren",
 "emailpage"		=> "E-post til bruker",
@@ -804,14 +804,14 @@ eller har valgt å ikke motta e-post fra andre brukere.",
 "nowatchlist"	=> "Du har ingenting i overvåkningslisten.",
 "watchnologin"	=> "Ikke logget inn",
 "watchnologintext"	=> "Du må være <a href=\"" .
-  wfLocalUrl( "Spesial:Userlogin" ) . "\">logget inn</a>
+  "{{localurle:Spesial:Userlogin}}\">logget inn</a>
 for å kunne endre overvåkningslisten.",
 "addedwatch"	=> "Tilføyd til overvåkningslisten",
 "addedwatchtext" => "Siden \"$1\" er tilføyd <a href=\"" .
-  wfLocalUrl( "Spesial:Watchlist" ) . "\">overvåkningslisten</a>.
+  "{{localurle:Spesial:Watchlist}}\">overvåkningslisten</a>.
 Fremtidige endringer til denne siden og den tilhørende diskusjonssiden vil 
 bli listet opp her, og siden vil fremstå <b>fremhevet</b> i <a href=\"" .
-  wfLocalUrl( "Spesial:Recentchanges" ) . "\">listen med de siste 
+  "{{localurle:Spesial:Recentchanges}}\">listen med de siste 
 endringene</a> for å gjøre det lettere å finne den.</p>
 
 <p>Hvis du senere vil fjerne siden fra overvåkningslisten, klikk
@@ -1030,7 +1030,7 @@ I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt."
 "movearticle"	=> "Flytt side",
 "movenologin"	=> "Ikke logget inn",
 "movenologintext" => "Du må være registrert bruker og være <a href=\"" .
-  wfLocalUrl( "Spesial:Userlogin" ) . "\">logget på</a>
+  "{{localurle:Spesial:Userlogin}}\">logget på</a>
 for å flytte en side.",
 "newtitle"		=> "Til ny tittel",
 "movepagebtn"	=> "Flytt side",

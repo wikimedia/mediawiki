@@ -404,7 +404,7 @@ $2 Elenca i redirects &nbsp; cerca per $3 $9",
 "preferences"	=> "Preferenze",
 "prefsnologin" => "Non hai eseguito il login",
 "prefsnologintext"	=> "Devi avere eseguito il <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">login</a>
+  "{{localurle:Special:Userlogin}}\">login</a>
 per poter personalizzare le tue preferenze.",
 "prefslogintext" => "Sei connesso a Wikipedia come \"$1\".
 Il tuo numero identificativo (ID) interno è $2.",
@@ -471,7 +471,7 @@ Gli aspetti legali connessi potrebbero dare fastidio a noi ed a te personalmente
 "reuploaddesc"	=> "Torna al modulo per lo upload.",
 "uploadnologin" => "Devi fare il login per eseguire questa operazione.",
 "uploadnologintext"	=> "Devi eseguire  <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">il login</a>
+  "{{localurle:Special:Userlogin}}\">il login</a>
 per fare lo upload di files.",
 "uploadfile"	=> "Upload",
 "uploaderror"	=> "Errore di Upload",
@@ -621,9 +621,9 @@ this list should not be construed as an endorsement.",
 #
 "mailnologin"	=> "No send address",
 "mailnologintext" => "Devi fare il  <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">login</a>
+  "{{localurle:Special:Userlogin}}\">login</a>
 ed aver registrato una valida casella e-mail nelle tue <a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">preferenze</a> per mandare posta elettronica ad altri Utenti.",
+  "{{localurle:Special:Preferences}}\">preferenze</a> per mandare posta elettronica ad altri Utenti.",
 "emailuser"		=> "Manda una E-mail a questo Utente",
 "emailpage"		=> "E-mail user",
 "emailpagetext"	=> "Se questo Utente ha registrato una valida casella e-mail, il modulo qui sotto ti consentirà di scrivergli un solo messaggio.
@@ -645,13 +645,13 @@ La e-mail che hai indicato nelle tue preferenze apparirà nel campo \"From\" del
 "nowatchlist"	=> "Non hai indicato articoli da tenere d'occhio.",
 "watchnologin"	=> "Manca il login",
 "watchnologintext"	=> "Devi prima fare il <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">login</a>
+  "{{localurle:Special:Userlogin}}\">login</a>
 per modificare la tua lista di osservati speciali.",
 "addedwatch"	=> "Aggiunto ai tuoi Osservati Speciali",
 "addedwatchtext" => " La pagina  \"$1\" è stata aggiunta alla tua <a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\"> lista di osservati speciali </a>.
+  "{{localurle:Special:Watchlist}}\"> lista di osservati speciali </a>.
 Le future modifiche a questa pagina ed alla relativa pagina di discussione saranno elencate qui, e la pagina apparirà in <b>grassetto</b> nella pagina delle <a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">modifiche recenti</a> per essere più facile da tener d'occhio.</p>
+  "{{localurle:Special:Recentchanges}}\">modifiche recenti</a> per essere più facile da tener d'occhio.</p>
 
 <p>Se in seguito vorrai togliere questo articolo dalla tua lista di Osservati Speciali, clicca \" Smetti di seguire \" nella barra dei menu.",
 "removedwatch"	=> "Rimosso dalla lista degli Osservati Speciali",
@@ -795,7 +795,7 @@ In questi casi, se lo ritieni opportuno, dovrai spostare o aggiungere manualment
 "movearticle"	=> "Rinomina articolo",
 "movenologin"	=> "Non hai effettuato il login",
 "movenologintext" => "Devi essere un Utente registrato ed aver effettuato il <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">login</a>
+  "{{localurle:Special:Userlogin}}\">login</a>
 per poter spostare una pagina.",
 "newtitle"		=> "Al nuovo titolo di ",
 "movepagebtn"	=> "Sposta questa pagina",

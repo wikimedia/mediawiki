@@ -425,7 +425,7 @@ $2 Llista redireccions   Cerca $3 $9",
 "preferences"	=> "Preferències",
 "prefsnologin" => "No heu entrat",
 "prefsnologintext"	=> "Has haver <a href=\"" .
-  wfLocalUrl( "Especial:Userlogin" ) . "\">entrat</a>
+  "{{localurle:Especial:Userlogin}}\">entrat</a>
 per seleccionar preferències d'usuari.",
 "prefslogintext" => "Heu entrat amb el nom \"$1\".
 El vostre número d'identificació intern és $2.",
@@ -501,7 +501,7 @@ Vegeu també [http://meta.wikipedia.org/wiki/Special:Recentchanges discussió re
 "reuploaddesc"	=> "Torna al formulari per pujar.",
 "uploadnologin" => "No heu iniciat una sessió",
 "uploadnologintext"	=> "Deveu haver <a href=\"" .
-  wfLocalUrl( "Especial:Userlogin" ) . "\">entrat</a>
+  "{{localurle:Especial:Userlogin}}\">entrat</a>
 per carregar arxius.",
 "uploadfile"	=> "Carrega arxiu",
 "uploaderror"	=> "S'ha produït un error en l'intent de carregar",
@@ -676,9 +676,9 @@ La {{SITENAME}} no està afiliada amb cap d'aquests negocis, i aquest llistat no
 "mailnologin"	=> "No enviïs la direcció",
 "mailnologintext" => "Heu d'haver <a href=\"" .
 
-  wfLocalUrl( "Especial:Userlogin" ) . "\">entrat</a>
+  "{{localurle:Especial:Userlogin}}\">entrat</a>
 i tenir una direcció electrònica vàlida en les vostres <a href=\"" .
-  wfLocalUrl( "Especial:Preferences" ) . "\">preferències</a>
+  "{{localurle:Especial:Preferences}}\">preferències</a>
 per enviar un correu electrònic a altres usuaris.",
 "emailuser"		=> "Envia correu electrònic a aquest usuari",
 "emailpage"		=> "Correu electrònic a usuari",
@@ -707,15 +707,15 @@ respondre.",
 "nowatchlist"	=> "No teniu cap element en el vostre llistat de seguiment.",
 "watchnologin"	=> "No heu iniciat sessió",
 "watchnologintext"	=> "Heu d'<a href=\"" .
-  wfLocalUrl( "Especial:Userlogin" ) . "\">entrar</a>
+  "{{localurle:Especial:Userlogin}}\">entrar</a>
 per modificar el vostre llistat de seguiment.",
 "addedwatch"	=> "Afegit al llistat de seguiment",
 "addedwatchtext" => "La pàgina \"$1\" ha estat afegida al vostre  <a href=\"" .
-  wfLocalUrl( "Especial:Watchlist" ) . "\">llistat de seguiment</a>.
+  "{{localurle:Especial:Watchlist}}\">llistat de seguiment</a>.
 Canvis futurs a aquesta pàgina i a la vostra pàgina de discussió associada hi serà llistat, i la pàgina apareixerà <b>en negreta</b> al <a href=
 
 \"" .
-  wfLocalUrl( "Especial:Recentchanges" ) . "\">llistat de canvis recents</a> per fer-la notar més fàcilment.</p>
+  "{{localurle:Especial:Recentchanges}}\">llistat de canvis recents</a> per fer-la notar més fàcilment.</p>
 
 <p>Quan volgueu extreure la pàgina del vostre llistat de seguiment, pitgeu \"Deixa de vigilar\" a la barra del costat.",
 "removedwatch"	=> "S'ha extret del llistat de seguiment",
@@ -888,7 +888,7 @@ En aquests casos, haureu de traslladar o barrejar la pàgina manualment si ho de
 "movearticle"	=> "Reanomena pàgina",
 "movenologin"	=> "No sou a dins d'una sessió",
 "movenologintext" => "Heu de ser un usuari registrat i estar<a href=\"" .
-  wfLocalUrl( "Especial:Userlogin" ) . "\">dintre d'una sessió</a>
+  "{{localurle:Especial:Userlogin}}\">dintre d'una sessió</a>
 per reanomenar una pàgina.",
 "newtitle"		=> "A títol nou",
 "movepagebtn"	=> "Reanomena pàgina",

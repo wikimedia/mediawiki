@@ -580,7 +580,7 @@ border=\"0\" ALT=\"Google\"></A>
 "preferences"	=> "Preferinces",
 "prefsnologin" => "Vos n'&nbsp;estoz nén elodjî",
 "prefsnologintext"	=> "I vs fåt esse <a href=\"" .
-  wfLocalUrl( "Sipeciås:Userlogin" ) . "\">elodjî</a>
+  "{{localurle:Sipeciås:Userlogin}}\">elodjî</a>
 po pleur candjî vos preferinces.",
 "prefslogintext" => "Vos estoz elodjî dizo l'&nbsp;uzeu «$1».
 Vosse divintrin idintifiant est l'&nbsp;limero $2.
@@ -656,7 +656,7 @@ dzo Wikipedia.",
 "reuploaddesc"	=> "Rivni al pådje d'&nbsp;eberwetaedje.",
 "uploadnologin" => "Nén elodjî",
 "uploadnologintext"	=> "I vs fåt esse <a href=\"" .
-  wfLocalUrl( "Sipeciås:Userlogin" ) . "\">elodjî</a> por
+  "{{localurle:Sipeciås:Userlogin}}\">elodjî</a> por
 vos pleur eberweter des fitchîs.",
 "uploadfile"	=> "Eberweter des imådjes, des sons, evnd.",
 "uploaderror"	=> "Aroke d'&nbsp;eberwetaedje",
@@ -859,10 +859,10 @@ chal èn doet nén esse veyowe come èn aspoya ou nerén ene reclame.",
 #
 "mailnologin"	=> "Nole adresse d'&nbsp;evoyeu",
 "mailnologintext" => "Po-z evoyî èn emile a èn ôte uzeu i vs fåt esse <a href=\"" .
-  wfLocalUrl( "Sipeciås:Userlogin" ) . "\">elodjî</a>
+  "{{localurle:Sipeciås:Userlogin}}\">elodjî</a>
 eyet aveur ene adresse emile d'&nbsp;evoyeu ki soeye valide 
 dins vos <a href=\"" .
-  wfLocalUrl( "Sipeciås:Preferences" ) . "\">preferinces</a>.",
+  "{{localurle:Sipeciås:Preferences}}\">preferinces</a>.",
 "emailuser"		=> "Emiler a l'&nbsp;uzeu",
 "emailpage"		=> "Emilaedje a èn uzeu",
 "emailpagetext"	=> "Si cist uzeu chal a dné ene adresse emile valide dins
@@ -889,15 +889,15 @@ Do côp, c'&nbsp;est nén possibe di lyi evoyî èn emile.",
 "nowatchlist"	=> "Vosse djivêye des pådjes a shuve est vude.",
 "watchnologin"	=> "Vos n'&nbsp;estoz nén elodjî",
 "watchnologintext"	=> "I vs fåt esse <a href=\"" .
-  wfLocalUrl( "Sipeciås:Userlogin" ) . "\">elodjî</a>
+  "{{localurle:Sipeciås:Userlogin}}\">elodjî</a>
 po pleur candjî vosse djivêye des pådjes a shuve.",
 "addedwatch"	=> "Radjouté ås shuvous",
 "addedwatchtext" => "Li pådje «$1» a stî radjoutêye a vosse <a href=\"" .
-  wfLocalUrl( "Sipeciås:Watchlist" ) . "\">djivêye des pådjes a shuve</a>.
+  "{{localurle:Sipeciås:Watchlist}}\">djivêye des pådjes a shuve</a>.
 Tos les candjmints k'&nbsp;i gn årè di cisse pådje chal, eyet di si pådje
 di copene, seront håynés chal, eyet li pådje serè metowe e <b>cråssès letes</b>
 el <a href=\"" .
-  wfLocalUrl( "Sipeciås:Recentchanges" ) . "\">djivêye des dierins candjmints</a> po k'&nbsp;ça soeye pus åjhey por vos del rimårker.</p>
+  "{{localurle:Sipeciås:Recentchanges}}\">djivêye des dierins candjmints</a> po k'&nbsp;ça soeye pus åjhey por vos del rimårker.</p>
 <p>
 Si vos vloz bodjî l'&nbsp;pådje foû di vosse djivêye des shuvous,
 clitchîz so «Èn pus shuve li pådje» dins l'&nbsp;bår di menu sol costé.",
@@ -1124,7 +1124,7 @@ d'&nbsp;l'&nbsp;årtike.",
 "movearticle"	=> "Displaecî di",
 "movenologin"	=> "Nén elodjî",
 "movenologintext" => "I vs fåt esse èn uzeu eredjîstré eyet esse <a href=\"" .
-  wfLocalUrl( "Sipeciås:Userlogin" ) . "\">elodjî</a> por vos
+  "{{localurle:Sipeciås:Userlogin}}\">elodjî</a> por vos
 pleur displaecî ene pådje.",
 "newtitle"		=> "Viè l'&nbsp;novea tite",
 "movepagebtn"	=> "Displaecî",

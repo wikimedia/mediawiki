@@ -385,7 +385,7 @@ Se vi malintence alvenis ĉi tien, simple alklaku la \"reen\" butonon de via ret
 konton aŭ ne uzas ĝin. Ni tial devas uzi la cifran [[IP-adreso]] por tiun identigi.
 Tia IA-adreso povas kundividiĝi de pluraj uzuloj. Se vi estas anonimulo kaj preferus
 eviti tiajn maltrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj ĉe via retero,
-bonvolu [[Speciala:Userlogin|kreu konton aŭ ensalutu]].",
+bonvolu [[Special:Userlogin|kreu konton aŭ ensalutu]].",
 "noarticletext" => "(La paĝo nun estas malplena)", #FIXME
 "updated"		=> "(Ŝanĝo registrita)", #FIXME: ?
 "note"			=> "<strong>Noto:</strong> ", #FIXME: Where does this come from?
@@ -515,8 +515,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br />
 #
 "preferences"	=> "Preferoj",
 "prefsnologin" => "Ne jam salutis!",
-"prefsnologintext"	=> "<a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">Ensalutu</a>
+"prefsnologintext"	=> "<a href=\"{{localurle:Special:Userlogin}}\">Ensalutu</a>
 kaj vi povos ŝanĝi viajn preferojn.",
 "prefslogintext" => "Vi ensalutis kiel \"$1\".
 Via interna identeconumero estas $2.",
@@ -587,8 +586,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku \"1\" vintre aŭ \"2\" dum somer
 "reupload"		=> "Realŝutu",
 "reuploaddesc"	=> "Revenu al la alŝuta formularo.",
 "uploadnologin" => "Ne ensalutinta",
-"uploadnologintext"	=> "Se vi volas alŝuti dosierojn, vi devas <a href=\"" .
-  wfLocalUrl( "Speciala:Userlogin" ) . "\">ensaluti</a>.",
+"uploadnologintext"	=> "Se vi volas alŝuti dosierojn, vi devas <a href=\"{{localurle:Special:Userlogin}}\">ensaluti</a>.",
 "uploadfile"	=> "Alŝutu dosieron",
 "uploaderror"	=> "Eraro okazis dum alŝuto",
 "uploadtext"	=> "Por okulumi aŭ serĉi jam alŝutitajn dosierojn,
@@ -749,10 +747,8 @@ komprenata kiel rekomendo aŭ reklamo.",
 # Email this user
 #
 "mailnologin"	=> "Neniu alsendota adreso",
-"mailnologintext" => "Vi nepre estu <a href=\"" .
-  wfLocalUrl( "Speciala:Userlogin" ) . "\">salutanta</a>
-kaj havanta validan retpoŝtadreson en viaj <a href=\"" .
-  wfLocalUrl( "Speciala:Preferences" ) . "\">preferoj</a>
+"mailnologintext" => "Vi nepre estu <a href=\"{{localurle:Special:Userlogin}}\">salutanta</a>
+kaj havanta validan retpoŝtadreson en viaj <a href=\"{{localurle:Special:Preferences}}\">preferoj</a>
 por retpoŝti al aliaj Vikipediistoj.",
 "emailuser"		=> "Retpoŝtu",
 "emailpage"		=> "Retpoŝtu",
@@ -779,13 +775,12 @@ aŭ elektis ne ricevi retpoŝton de aliaj vikipediistoj.",
 "watchlistsub"	=> "(de uzulo \"$1\")",
 "nowatchlist"	=> "Vi ne jam elektis priatenti iun ajn paĝon.",
 "watchnologin"	=> "Ne salutinta",
-"watchnologintext"	=> "Nepras <a href=\"" .
-  wfLocalUrl( "Speciala:Userlogin" ) . "\">saluti</a>
+"watchnologintext"	=> "Nepras <a href=\"{{localurle:Special:Userlogin}}\">saluti</a>
 por ŝanĝi vian atentaron.",
 "addedwatch"	=> "Aldonis al atentaro",
-"addedwatchtext" => "La paĝo \"[[$1]]\" estis aldonita al via [[Speciala:Watchlist|atentaro]].
+"addedwatchtext" => "La paĝo \"[[$1]]\" estis aldonita al via [[Special:Watchlist|atentaro]].
 Estontaj ŝanĝoj al tiu paĝo aperos en '''grasa tiparo''' en la
-[[Speciala:Recentchanges|listo de Lastaj Ŝanĝoj]],
+[[Special:Recentchanges|listo de Lastaj Ŝanĝoj]],
 kaj estos kalkulitaj en la listo de via atentaro.
 
 Se vi poste volos eksigi la paĝon el via atentaro, alklaku \"Malatentu paĝon\" en la ilobreto.",
@@ -960,7 +955,7 @@ Tio povas ege ŝarĝi la servilon, do bonvolu uzi tiun eblon ŝpare kaj singarde
 ĝian historion de redaktoj je la nova nomo.
 La antaŭa titolo fariĝos alidirektilo al la nova titolo.
 Ligiloj al la antaŭa titolo <i>ne</i> estos ŝanĝitaj; uzu
-la [[Speciala:Maintenance|riparilojn kaj zorgilojn]] por certigi,
+la [[Special:Maintenance|riparilojn kaj zorgilojn]] por certigi,
 ke ne restos duoblaj aŭ fuŝitaj alidirektiloj.
 Kiel movanto, vi respondecas pri ĝustigado de fuŝitaj ligiloj.
 
@@ -983,8 +978,7 @@ ol vi antaŭeniru.",
 Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
 "movearticle"	=> "Movu paĝon",
 "movenologin"	=> "Ne ensalutinta",
-"movenologintext" => "Vi nepre estu registrita uzulo kaj <a href=\"" .
-  wfLocalUrl( "Speciala:Userlogin" ) . "\">ensalutu</a>
+"movenologintext" => "Vi nepre estu registrita uzulo kaj <a href=\"{{localurle:Special:Userlogin}}\">ensalutu</a>
 por rajti movi paĝojn.",
 "newtitle"		=> "Al nova titolo",
 "movepagebtn"	=> "Movu paĝon",

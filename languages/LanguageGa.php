@@ -704,7 +704,7 @@ border=\"0\" ALT=\"Google\"></A>
 "preferences"   => "Sainroghanna",
 "prefsnologin" => "Ní­l tú logáilte isteach",
 "prefsnologintext"  => "Ní mór duit bheith <a href=\"" .
-  wfLocalUrl( "Speisialta:Userlogin" ) . "\">logáilte isteach</a>
+  "{{localurle:Speisialta:Userlogin}}\">logáilte isteach</a>
 chun do chuid sainroghanna phearsanta a athrú.",
 "prefslogintext" => "Tá tú logáilte isteach mar \"$1\".
 Is é $2 d'uimhir aitheantais inmhéanach.
@@ -787,7 +787,7 @@ den am an innill friothála­ (UTC).",
 "reuploaddesc"  => "Dul ar ais chuig an fhoirm uaslódála.",
 "uploadnologin" => "Nil tú logáilte isteach",
 "uploadnologintext" => "Caithfifh tú bheith <a href=\"" .
-  wfLocalUrl( "Speisialta:Userlogin" ) . "\">logáilte isteach</a>
+  "{{localurle:Speisialta:Userlogin}}\">logáilte isteach</a>
 chun comhaid a uaslódáil.",
 "uploadfile"    => "Uaslódáil í­omhánna, fuaimeanna, doiciméid srl.",
 "uploaderror"   => "Earráid uaslódála",
@@ -1010,14 +1010,14 @@ mian leis rí­omhphost a fháil ón úsáideoirí­ eile.",
 "nowatchlist"   => "Ní­l aon rud i do liosta faire.",
 "watchnologin"  => "Ní­l tú logáilte isteach",
 "watchnologintext"  => "Ní mór duit bheith <a href=\"" .
-  wfLocalUrl( "Speisialta:Userlogin" ) . "\">logáilte isteach</a>
+  "{{localurle:Speisialta:Userlogin}}\">logáilte isteach</a>
 chun do liosta faire a athrú.",
 "addedwatch"    => "Curtha san liosta faire",
 "addedwatchtext" => "Cuireadh an leathanach \"$1\" le do <a href=\"" .
-  wfLocalUrl( "Speisialta:Watchlist" ) . "\">liosta faire</a>.
+  "{{localurle:Speisialta:Watchlist}}\">liosta faire</a>.
 Cuirfear athruithe amach anseo don leathanach sin agus a leathanach phlé leis an liosta ann,
 agus beidh <b>cló dubh</b> ar a teideal san <a href=\"" .
-  wfLocalUrl( "Speisialta:Recentchanges" ) . "\">liosta de na hathruithe is déanaí</a> sa chaoi go
+  "{{localurle:Speisialta:Recentchanges}}\">liosta de na hathruithe is déanaí</a> sa chaoi go
 bhfeicfeá iad go héasca.</p>
 
 <p>Más mian leat an leathanach a bain amach do liosta faire ní­os déanaí­, brúigh ar \"Stop ag faire\" ar an taobhbharra.",
@@ -1293,7 +1293,7 @@ Sna scéil sin, caithfidh tú an leathanach a aistrigh nó a báigh leis na lám
 "movearticle"   => "Aistrigh an leathanach",
 "movenologin"   => "Ní­l tú logtha ann",
 "movenologintext" => "Ní mór duit bheith úsáideoir cláraithe agus <a href=\"" .
-  wfLocalUrl( "Speisialta:Userlogin" ) . "\">logtha ann</a>
+  "{{localurle:Speisialta:Userlogin}}\">logtha ann</a>
 chun leathanach a aistrigh.",
 "newtitle"      => "Go teideal nua",
 "movepagebtn"   => "Aistrigh an leathanach",

@@ -562,7 +562,7 @@ border=\"0\" ALT=\"Google\"></A>
 "preferences"	=> "Einstellungen",
 "prefsnologin" => "Nicht angemeldet",
 "prefsnologintext"	=> "Sie müssen <a href=\"" .
-  wfLocalUrl( "Spezial:Userlogin" ) . "\">angemeldet</a>
+  "{{localurle:Spezial:Userlogin}}\">angemeldet</a>
 sein, um Ihre Einstellungen zu ändern.",
 "prefslogintext" => "Sie sind angemeldet als \"$1\".
 Ihre interne ID-Nummer ist $2.",
@@ -634,7 +634,7 @@ Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte
 "reuploaddesc"	=> "Zurück zur Hochladen-Seite.",
 "uploadnologin" => "Nicht angemeldet",
 "uploadnologintext"	=> "Sie müssen <a href=\"" .
-  wfLocalUrl( "Spezial:Userlogin" ) . "\">angemeldet sein</a>
+  "{{localurle:Spezial:Userlogin}}\">angemeldet sein</a>
 um Dateien hochladen zu können.",
 "uploadfile"	=> "Datei hochladen",
 "uploaderror"	=> "Fehler beim Hochladen",
@@ -783,7 +783,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 #
 "mailnologin"	=> "Sie sind nicht angemeldet.",
 "mailnologintext" => "Sie müssen <a href=\"" .
-  wfLocalUrl( "Spezial:Userlogin" ) . "\">angemeldet sein</a>
+  "{{localurle:Spezial:Userlogin}}\">angemeldet sein</a>
 und eine gültige E-Mail-Adresse haben, um anderen Benutzern E-Mail zu schicken.",
 "emailuser"		=> "E-Mail an diesen Benutzer",
 "emailpage"		=> "E-Mail an Benutzer",
@@ -808,14 +808,14 @@ und eine gültige E-Mail-Adresse haben, um anderen Benutzern E-Mail zu schicken.
 "nowatchlist"	=> "Sie haben keine Einträge auf Ihrer Beobachtungsliste.",
 "watchnologin"	=> "Sie sind nicht angemeldet",
 "watchnologintext"	=> "Sie müssen <a href=\"" .
-  wfLocalUrl( "Spezial:Userlogin" ) . "\">angemeldet</a>
+  "{{localurle:Spezial:Userlogin}}\">angemeldet</a>
 sein, um Ihre Beobachtungsliste zu bearbeiten.",
 "addedwatch"	=> "Zur Beobachtungsliste hinzugefügt",
 "addedwatchtext" => "Der Artikel \"$1\" wurde zu Ihrer <a href=\"" .
-wfLocalUrl( "Spezial:Watchlist" ) . "\">Beobachtungsliste</a> hinzugefügt.
+"{{localurle:Spezial:Watchlist}}\">Beobachtungsliste</a> hinzugefügt.
 Spätere Änderungen an diesem Artikel und der zugehörigen Diskussions-Seite
-werden dort gelistet und der Artikel wird in der <a href=\"" . wfLocalUrl(
-"Spezial:Recentchanges" ) . "\">Liste der letzten Änderungen</a>
+werden dort gelistet und der Artikel wird in der <a href=\""
+"{{localurle:Spezial:Recentchanges}}\">Liste der letzten Änderungen</a>
 <b>fett</b> angezeigt. <p>Wenn Sie den Artikel wieder von ihrer
 Beobachtungsliste entfernen wollen, klicken Sie auf \"Nicht mehr beobachten\"
 am Ende des Artikels.",
@@ -988,7 +988,7 @@ In diesen Fällen müssen Sie die Seite, falls gewünscht, von Hand verschieben.
 "movearticle"	=> "Artikel verschieben",
 "movenologin"   => "Sie sind nicht angemeldet",
 "movenologintext" => "Sie müssen ein registrierter Benutzer und
-<a href=\"" . wfLocalUrl( "Special:Userlogin" ) . "\">angemeldet</a> sein,
+<a href=\"{{localurle:Special:Userlogin}}\">angemeldet</a> sein,
 um eine Seite zu verschieben.",
 "newtitle"		=> "Zu neuem Titel",
 "movepagebtn"	=> "Artikel verschieben",

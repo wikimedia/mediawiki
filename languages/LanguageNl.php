@@ -447,7 +447,7 @@ Enkel de pagina's die geen prefix (zoals {{ns:4}}:, Gebruiker: of Overleg:) hebb
 "preferences" => "Voorkeuren",
 "prefsnologin" => "Niet aangemeld",
 "prefsnologintext" => "U dient <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">aangemeld</a> te zijn om voorkeuren te kunnen instellen.",
+  "{{localurle:Special:Userlogin}}\">aangemeld</a> te zijn om voorkeuren te kunnen instellen.",
 "prefslogintext" => "U bent aangemeld als \"$1\". Uw interne identificatienummer is $2.
 
 Een beschrijving van de verschillende opties staat op [[{{ns:4}}:Voorkeuren]].",
@@ -519,7 +519,7 @@ Om {{SITENAME}} te laten slagen is het erg belangrijk geen materiaal toe te voeg
 "reuploaddesc" => "Terug naar het uploadformulier.",
 "uploadnologin" => "Niet aangemeld",
 "uploadnologintext" => "U dient <a href=\"" .
-  wfLocalUrl( "Speciaal:Userlogin" ) . "\">aangemeld te zijn</a>
+  "{{localurle:Speciaal:Userlogin}}\">aangemeld te zijn</a>
 om bestanden te uploaden.",
 "uploadfile" => "upload bestand",
 "uploaderror" => "upload fout",
@@ -655,9 +655,9 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 # E-mail deze gebruiker
 "mailnologin" => "Geen verzendadres beschikbaar",
 "mailnologintext" => "U dient <a href=\"" .
-  wfLocalUrl( "Speciaal:Userlogin" ) . "\">aangemeld te zijn </a>
+  "{{localurle:Speciaal:Userlogin}}\">aangemeld te zijn </a>
 en een geldig e-mailadres in uw <a href=\"" .
-  wfLocalUrl( "Speciaal:Preferences" ) . "\">voorkeuren</a>
+  "{{localurle:Speciaal:Preferences}}\">voorkeuren</a>
 te vermelden om deze functie te kunnen gebruiken.",
 "emailuser"  => "E-mail deze gebruiker",
 "emailpage"  => "E-mail gebruiker",
@@ -679,14 +679,14 @@ te vermelden om deze functie te kunnen gebruiken.",
 "nowatchlist" => "Er staat niets op uw volglijst.",
 "watchnologin" => "U bent niet aangemeld",
 "watchnologintext" => "Om uw volglijst te veranderen dient u eerst <a href=\"" .
-  wfLocalUrl( "Speciaal:Userlogin" ) . "\">aangemeld</a>
+  "{{localurle:Speciaal:Userlogin}}\">aangemeld</a>
 te zijn.",
 "addedwatch" => "Toegevoegd aan volglijst",
 "addedwatchtext" => "De pagina \"$1\" is aan uw <a href=\"" .
-  wfLocalUrl( "Speciaal:Watchlist" ) . "\">volglijst</a> toegevoegd.
+  "{{localurle:Speciaal:Watchlist}}\">volglijst</a> toegevoegd.
 Toekomstige wijzigingen aan deze pagina en overlegpagina zullen hier vermeld worden. 
 Ook zullen deze pagina's in het <b>vet</b> verschijnen in de <a href=\"" .
-  wfLocalUrl( "Speciaal:Recentchanges" ) . "\">lijst van recente wijzigingen</a> zodat u ze eenvoudiger kunt opmerken.</p>
+  "{{localurle:Speciaal:Recentchanges}}\">lijst van recente wijzigingen</a> zodat u ze eenvoudiger kunt opmerken.</p>
 
 <p>Indien u een pagina wenst te verwijderen van uw volglijst klik dan op \"Van volglijst verwijderen\" in de menubalk.",
 "removedwatch" => "Van volglijst verwijderen",
@@ -833,7 +833,7 @@ Vergeet niet de database opnieuw te de-blokkeren zodra u klaar bent met uw onder
 "movearticle" => "Verplaats pagina",
 "movenologin" => "Niet aangemeld",
 "movenologintext" => "U dient <a href=\"" .
-  wfLocalUrl( "Speciaal:Userlogin" ) . "\">aangemeld</a>
+  "{{localurle:Speciaal:Userlogin}}\">aangemeld</a>
 te zijn om een pagina te verplaatsen.",
 "newtitle"  => "Naar de nieuwe titel",
 "movepagebtn" => "Verplaats pagina",

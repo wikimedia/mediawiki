@@ -870,7 +870,7 @@ dan daftar ini seharusnya tidak dianggap sebagai sebuah dukungan.",
 # Email this user 
 # 
 "mailnologin" => "Tidak ada alamat e-mail", #"No send address",
-"mailnologintext" => "Anda harus <a href=\"{{localurl:Istimewa:Userlogin\">login</a> dan mempunyai alamat e-mail yang sah di dalam <a href=\"{{localurl:Istimewa:Preferences}}\">konfigurasi</a> untuk mengirimkan e-mail kepada pengguna lain.",  #"You must be <a href=\"" .	 wfLocalUrl( "Istimewa:Userlogin" ) . "\">logged in</a> and have a valid e-mail address in your <#a href=\"" .	 wfLocalUrl( "Istimewa:Preferences" ) . "\">preferences</a> to send e-mail to other users.",
+"mailnologintext" => "Anda harus <a href=\"{{localurl:Istimewa:Userlogin\">login</a> dan mempunyai alamat e-mail yang sah di dalam <a href=\"{{localurl:Istimewa:Preferences}}\">konfigurasi</a> untuk mengirimkan e-mail kepada pengguna lain.",  #"You must be <a href=\"{{localurle:Istimewa:Userlogin}}\">logged in</a> and have a valid e-mail address in your <#a href=\"{{localurle:Istimewa:Preferences}}\">preferences</a> to send e-mail to other users.",
 
 "emailuser"	      => "e-mail pengguna ini", #"E-mail this user",
 "emailpage"	      => "e-mail pengguna", #"E-mail user",

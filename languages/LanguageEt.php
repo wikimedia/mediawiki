@@ -425,7 +425,7 @@ $2 Loetle ümbersuunamisi &nbsp; Otsi $3 $9",
 "preferences"	=> "Teie eelistused",
 "prefsnologin" => "Te ei ole sisse loginud",
 "prefsnologintext"	=> "Et oma eelistusi seada, <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">tuleb Teil</a>
+  "{{localurle:Special:Userlogin}}\">tuleb Teil</a>
 sisse logida.",
 "prefslogintext" => "Te olete sisse loginud kasutajanimega \"$1\".
 Teie sisemine ID-number on $2.",
@@ -501,7 +501,7 @@ Vaata ka [http://meta.wikipedia.org/wiki/Special:Recentchanges hiljutist inglisk
 "reuploaddesc"	=> "Return to the upload form.",
 "uploadnologin" => "sisse logimata",
 "uploadnologintext"	=> "Kui Te soovite faile üles laadida, peate <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">sisse logima</a>.",
+  "{{localurle:Special:Userlogin}}\">sisse logima</a>.",
 "uploadfile"	=> "Upload file",
 "uploaderror"	=> "Upload error",
 "uploadlog"		=> "upload log",
@@ -639,9 +639,9 @@ this list should not be construed as an endorsement.",
 #
 "mailnologin"	=> "No send address",
 "mailnologintext" => "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+  "{{localurle:Special:Userlogin}}\">logged in</a>
 and have a valid e-mail address in your <a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">preferences</a>
+  "{{localurle:Special:Preferences}}\">preferences</a>
 to send e-mail to other users.",
 "emailuser"		=> "E-mail this user",
 "emailpage"		=> "E-mail user",
@@ -668,13 +668,13 @@ or has chosen not to receive e-mail from other users.",
 "nowatchlist"	=> "Teie jälgimisloend on tühi.",
 "watchnologin"	=> "Ei ole sisse loginud",
 "watchnologintext"	=> "Jälgimisloendi muutmiseks peate <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">sisse logima</a>.",
+  "{{localurle:Special:Userlogin}}\">sisse logima</a>.",
 "addedwatch"	=> "Lisatud jälgimisloendile",
 "addedwatchtext" => "Lehekülg \"$1\" on lisatud Teie <a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\">jälgimisloendile</a>.
+  "{{localurle:Special:Watchlist}}\">jälgimisloendile</a>.
 Future changes to this page and its associated Talk page will be listed there,
 and the page will appear <b>bolded</b> in the <a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">list of recent changes</a> to
+  "{{localurle:Special:Recentchanges}}\">list of recent changes</a> to
 make it easier to pick out.</p>
 
 <p>If you want to remove the page from your watchlist later, click \"Stop watching\" in the sidebar.",
@@ -848,7 +848,7 @@ Nimetatud juhtudel teisaldage arutelulehekülg soovi korral ise või ühendage s
 "movearticle"	=> "Teisalda artiklilehekülg",
 "movenologin"	=> "Te ei ole sisse loginud",
 "movenologintext" => "Te peate registreeruma kasutajaks ja <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">sisse logima</a>
+  "{{localurle:Special:Userlogin}}\">sisse logima</a>
 to move a page.",
 "newtitle"		=> "Uue pealkirja alla",
 "movepagebtn"	=> "Teisalda artikkel",

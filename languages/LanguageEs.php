@@ -511,7 +511,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br>
 "preferences"	=> "Preferencias",
 "prefsnologin" => "No has entrado",
 "prefsnologintext"	=> "Debes <a href=\"" .
-  wfLocalUrl( "Especial:Userlogin" ) . "\">entrar</a>
+  "{{localurle:Especial:Userlogin}}\">entrar</a>
 para seleccionar preferencias de usuario.",
 "prefslogintext" => "Has entrado con el nombre \"$1\".
 Tu número de identificación interno es $2.",
@@ -593,7 +593,7 @@ Ve también [http://meta.wikipedia.org/wiki/Special:Recentchanges discusión rec
 "reuploaddesc"	=> "Regresar al formulario para subir.",
 "uploadnologin" => "No has iniciado sesión",
 "uploadnologintext"	=> "Tú debes <a href=\"" .
-  wfLocalUrl( "Especial:Userlogin" ) . "\">iniciar sesión</a>
+  "{{localurle:Especial:Userlogin}}\">iniciar sesión</a>
 para subir archivos.",
 "uploadfile"	=> "Subir archivo",
 "uploaderror"	=> "Error tratando de subir",
@@ -759,9 +759,9 @@ $wgSitename no está relacionada con ninguno de estos negocios, y esta lista no 
 #
 "mailnologin"	=> "No enviar dirección",
 "mailnologintext" => "Debes <a href=\"" .
-  wfLocalUrl( "Especial:Userlogin" ) . "\">inciar sesión</a>
+  "{{localurle:Especial:Userlogin}}\">inciar sesión</a>
 y tener una dirección electrónica válida en tus <a href=\"" .
-  wfLocalUrl( "Especial:Preferences" ) . "\">preferencias</a>
+  "{{localurle:Especial:Preferences}}\">preferencias</a>
 para enviar un correo electrónico a otros usuarios.",
 "emailuser"		=> "Envía correo electrónico a este usuario",
 "emailpage"		=> "Correo electrónico a usuario",
@@ -784,13 +784,13 @@ La dirección electrónica que indicaste en tus preferencias de usuario aparecer
 "nowatchlist"	=> "No tienes ninguna página en tu lista de seguimiento.",
 "watchnologin"	=> "No has iniciado sesión",
 "watchnologintext"	=> "Debes <a href=\"" .
-  wfLocalUrl( "Especial:Userlogin" ) . "\">iniciar sesión</a>
+  "{{localurle:Especial:Userlogin}}\">iniciar sesión</a>
 para modificar tu lista de seguimiento.",
 "addedwatch"	=> "Añadido a la lista de seguimiento",
 "addedwatchtext" => "La página \"$1\" ha sido añadida a tu  <a href=\"" .
-  wfLocalUrl( "Especial:Watchlist" ) . "\">lista se seguimiento</a>.
+  "{{localurle:Especial:Watchlist}}\">lista se seguimiento</a>.
 Cambios futuros en esta página y su página de discusión asociada se indicarán ahí, y la página aparecerá <b>en negritas</b> en la <a href=\"" .
-  wfLocalUrl( "Especial:Recentchanges" ) . "\">lista de cambios recientes</a> para hacerla más fácil de detectar.</p>
+  "{{localurle:Especial:Recentchanges}}\">lista de cambios recientes</a> para hacerla más fácil de detectar.</p>
 
 <p>Cuando quieras eliminar la página de tu lista de seguimiento, presiona \"Dejar de vigilar\" en el menú.",
 "removedwatch"	=> "Eliminada de la lista de seguimiento",
@@ -980,7 +980,7 @@ En estos casos, deberás trasladar manualmente el contenido de la página de dis
 "movearticle"	=> "Renombrar página",
 "movenologin"	=> "No has iniciado sesion",
 "movenologintext" => "Es necesario ser usuario registrado y <a href=\"" .
-  wfLocalUrl( "Especial:Userlogin" ) . "\">haber iniciado sesión</a>
+  "{{localurle:Especial:Userlogin}}\">haber iniciado sesión</a>
 para renombrar una página.",
 "newtitle"		=> "A título nuevo",
 "movepagebtn"	=> "Renombrar página",

@@ -423,7 +423,7 @@ $2 List redirects   Search for $3 $9", #fixMe
 "preferences"	=> "Voorkeure",
 "prefsnologin" => "Nie ingeteken nie",
 "prefsnologintext"	=> "Jy moet <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">ingeteken wees</a>
+  "{{localurle:Special:Userlogin}}\">ingeteken wees</a>
 om voorkeure te spesifiseer.",
 "prefslogintext" => "Jy is ingeteken as \"$1\".
 Jou internet ID-nommer is $2.",
@@ -499,7 +499,7 @@ Kyk ook na [http://meta.wikipedia.org/wiki/Special:Recentchanges|onlangse metabe
 "reuploaddesc"	=> "Keer terug na die laaivorm.",
 "uploadnologin" => "Nie ingeteken nie",
 "uploadnologintext"	=> "Teken eers in <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+  "{{localurle:Special:Userlogin}}\">logged in</a>
 om lêers te laai.",
 "uploadfile"	=> "Laai lêer",
 "uploaderror"	=> "Laaifout",
@@ -645,9 +645,9 @@ Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>
 #
 "mailnologin"	=> "Geen verstuuradres",
 "mailnologintext" => "Jy moet <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">ingeteken</a>
+  "{{localurle:Special:Userlogin}}\">ingeteken</a>
 wees en 'n geldige e-posadres in jou <a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">voorkeure</a>
+  "{{localurle:Special:Preferences}}\">voorkeure</a>
 hê om e-pos aan ander gebruikers te stuur.",
 "emailuser"		=> "Stuur e-pos na hierdie gebruiker",
 "emailpage"		=> "Stuur e-pos na gebruiker",
@@ -670,13 +670,13 @@ Die e-posadres wat jy in jou gebruikersvoorkeure het sal verkyn as die \"Van\" a
 "nowatchlist"	=> "Jy het geen items in jou dophoulys nie.",
 "watchnologin"	=> "Nie ingeteken nie",
 "watchnologintext"	=> "Jy moet <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">ingeteken</a>
+  "{{localurle:Special:Userlogin}}\">ingeteken</a>
 wees om jou dophoulys te verander.",
 "addedwatch"	=> "Bygevoeg tot dophoulys",
 "addedwatchtext" => "Die bladsy \"$1\" is by jou <a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\">dophoulys</a> gevoeg.
+  "{{localurle:Special:Watchlist}}\">dophoulys</a> gevoeg.
 Toekomstige veranderinge aan hierdie bladsye en sy geassosieerde Bespreekbladsy sal hier verskyn en die bladsy sal in <b>vetdruk</b> verskyn in die <a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">lys van onlangse wysigings</a> om dit makliker te maak om dit raak te sien.</p>
+  "{{localurle:Special:Recentchanges}}\">lys van onlangse wysigings</a> om dit makliker te maak om dit raak te sien.</p>
 
 <p>As jy die bladsy later van jou dophoulys wil verwyder, kliek \"Moenie meer dophou\" in die kantbalk.",
 "removedwatch"	=> "Afgehaal van dophoulys",
@@ -824,7 +824,7 @@ In hierdie gevalle, sal jy die bladsy met die hand moet skuif of saamsmelt as jy
 "movearticle"	=> "Skuif bladsy",
 "movenologin"	=> "Nie ingeteken nie",
 "movenologintext" => "Jy moet 'n geregistreerde gebruiker wees en <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">ingeteken</a>
+  "{{localurle:Special:Userlogin}}\">ingeteken</a>
 wees om 'n bladsy te skuif.",
 "newtitle"		=> "Na nuwe titel",
 "movepagebtn"	=> "Skuif bladsy",

@@ -525,7 +525,7 @@ border=\"0\" ALT=\"Google\"></A>
 "preferences" => "Подешавања",
 "prefsnologin" => "Нисте пријављени",
 "prefsnologintext" => "Морате бити <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">пријављени</a>
+  "{{localurle:Special:Userlogin}}\">пријављени</a>
 да бисте подешавали корисничка подешавања.",
 "prefslogintext" => "Пријављени сте као \"$1\".
 Ваш интерни ИД број је $2.
@@ -615,7 +615,7 @@ border=\"0\" ALT=\"Google\"></A>
 "reuploaddesc" => "Врати се на упитник за слање.",
 "uploadnologin" => "Нисте пријављени",
 "uploadnologintext" => "Морате бити <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">пријављени</a>
+  "{{localurle:Special:Userlogin}}\">пријављени</a>
 да бисте слали фајлове.",
 "uploadfile" => "Пошаљи слике, звуке, документа итд.",
 "uploaderror" => "Грешка при слању",
@@ -787,9 +787,9 @@ or '''<nowiki>[[media:file.ogg]]</nowiki>''' за звукове.
 #
 "mailnologin" => "Нема адресе за слање",
 "mailnologintext" => "Морате бити <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">пријављени</a>
+  "{{localurle:Special:Userlogin}}\">пријављени</a>
 и имати исправну е-адресу in your <a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">подешавањима</a>
+  "{{localurle:Special:Preferences}}\">подешавањима</a>
 да бисте слали електронску пошту другим корисницима.",
 "emailuser"  => "Пошаљи е-писмо овом кориснику",
 "emailpage"  => "Пошаљи е-писмо кориснику",
@@ -816,14 +816,14 @@ or '''<nowiki>[[media:file.ogg]]</nowiki>''' за звукове.
 "nowatchlist" => "Немате ништа на свом списку надгледања.",
 "watchnologin" => "Нисте пријављени",
 "watchnologintext" => "Морате бити <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">пријављени</a>
+  "{{localurle:Special:Userlogin}}\">пријављени</a>
 да бисте мењали списак надгледања.",
 "addedwatch" => "Додати списку надгледања",
 "addedwatchtext" => "Страница \"$1\" је додата вашој <a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\">списку надгледања</a>.
+  "{{localurle:Special:Watchlist}}\">списку надгледања</a>.
 Будуће промене ове странице и њој придружене странице за разговор ће бити наведене овде,
 и страница ће бити <b>подебљана</b> у <a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">списку скорашњих измена</a> да
+  "{{localurle:Special:Recentchanges}}\">списку скорашњих измена</a> да
 би се лакше уочила.</p>
 
 <p>Ако касније желите да уклоните страницу са вашег списка надгледања, кликните на \"Прекини надгледање\" на бочној палети.",
@@ -1035,7 +1035,7 @@ $3...
 "movearticle" => "Премести страницу",
 "movenologin" => "Нисте улоговани",
 "movenologintext" => "Морате бити регистровани корисник и <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">пријављени</a>
+  "{{localurle:Special:Userlogin}}\">пријављени</a>
 да бисте преместили страницу.",
 "newtitle"  => "Нови наслов",
 "movepagebtn" => "премести страницу",

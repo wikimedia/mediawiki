@@ -487,7 +487,7 @@ alt=\"Google\" align=\"middle\"></a>
 "preferences"	=> "参数设置",
 "prefsnologin" => "还未登录",
 "prefsnologintext"	=> "您必须先<a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">登录</a>才能设置个人参数。",
+  "{{localurle:Special:Userlogin}}\">登录</a>才能设置个人参数。",
 "prefslogintext" => "你已经以\"$1\"的身份登录。
 你的内部ID是$2。",
 "prefsreset"	=> "参数重新设置。",
@@ -563,7 +563,7 @@ alt=\"Google\" align=\"middle\"></a>
 "reuploaddesc"	=> "返回上载表单。",
 "uploadnologin" => "未登录",
 "uploadnologintext"	=> "您必须先<a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">登录</a>
+  "{{localurle:Special:Userlogin}}\">登录</a>
 才能上载文件。",
 "uploadfile"	=> "上载文件",
 "uploaderror"	=> "上载错误",
@@ -723,9 +723,9 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 #
 "mailnologin"	=> "无电邮地址",
 "mailnologintext" => "您必须先<a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">登录</a>
+  "{{localurle:Special:Userlogin}}\">登录</a>
 并在<a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">参数设置</a>
+  "{{localurle:Special:Preferences}}\">参数设置</a>
 中有一个有效的e-mail地址才可以电邮其他用户。",
 "emailuser"		=> "E-mail该用户",
 "emailpage"		=> "E-mail用户",
@@ -749,14 +749,14 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "nowatchlist"	=> "您的监视列表为空。",
 "watchnologin"	=> "未登录",
 "watchnologintext"	=> "您必须先<a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">登录</a>
+  "{{localurle:Special:Userlogin}}\">登录</a>
 才能更改您的监视列表",
 "addedwatch"	=> "加入到监视列表",
 "addedwatchtext" => "本页（“$1”）已经被加入到您的<a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\">监视列表</a>中。
+  "{{localurle:Special:Watchlist}}\">监视列表</a>中。
 未来有关它或它的对话页的任何修改将会在本页中列出，
 而且还会在<a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">最近更改列表</a>中
+  "{{localurle:Special:Recentchanges}}\">最近更改列表</a>中
 以<b>粗体</b>形式列出。</p>
 
 <p>如果您之后想将该页面从监视列表中删除，点击导航条中的“停止监视”链接。",
@@ -927,7 +927,7 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "movearticle"	=> "移动页面",
 "movenologin"	=> "未登录",
 "movenologintext" => "您必须是一名登记用户并且<a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">登录</a>
+  "{{localurle:Special:Userlogin}}\">登录</a>
 后才可移动一个页面。",
 "newtitle"		=> "新标题",
 "movepagebtn"	=> "移动页面",
