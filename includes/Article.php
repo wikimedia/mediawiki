@@ -127,6 +127,13 @@ class Article {
 						wfProfileOut( $fname );
 						return $rv;
 					}
+				} else if ( 
+					# wrap user css and user js in pre
+					$this->mTitle->getNamespace() == Namespace::getUser() && 
+					preg_match("/\\/[\\w]+\\.(css|js)$/", $this->mTitle->getDBkey())
+				) 
+				{
+					$this->mContent = '<pre>'.htmlspecialchars($this->mContent)."\n</pre>";
 				}
 				wfProfileOut( $fname );
 				return $this->mContent;
