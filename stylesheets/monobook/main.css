@@ -309,17 +309,19 @@ in the bottom-right corner of the content area */
 
 /* images */
 div.floatright { 
+    clear: right;
     float: right; 
     margin: 0;
-    position:relative;
+    position: relative;
     border: 0.5em solid White;
     border-width: 0.5em 0 0.8em 1.4em;
 }
-div.floatright p { font-style: italic;} 
+div.floatright p { font-style: italic; } 
 div.floatleft { 
+    clear: left;
     float: left; 
     margin: 0.3em 0.5em 0.5em 0;
-    position:relative;
+    position: relative;
     border: 0.5em solid White;
     border-width: 0.5em 1.4em 0.8em 0;
 }
