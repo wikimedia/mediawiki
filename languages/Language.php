@@ -439,7 +439,7 @@ that it be to the address you give.<br>\n",
 "userlogout"	=> "Log out",
 "createaccount"	=> "Create new account",
 "badretype"		=> "The passwords you entered do not match.",
-"userexists"	=> "The user name you entered is already in use. Please choosea different name.",
+"userexists"	=> "The user name you entered is already in use. Please choose a different name.",
 "youremail"		=> "Your e-mail*",
 "yournick"		=> "Your nickname (for signatures)",
 "emailforlost"	=> "* Entering an email address is optional.  But it enables people to
@@ -519,7 +519,7 @@ Please consider breaking the page into smaller sections.",
 so you will not be able to save your edits right now. You may wish to cut-n-paste
 the text into a text file and save it for later.",
 "protectedpagewarning" => "WARNING:  This page has been locked so that only
-users with sysop priviledges can edit it. Be sure you are following the
+users with sysop privileges can edit it. Be sure you are following the
 <a href='/wiki/Wikipedia:Protected_page_guidelines'>protected page
 guidelines</a>.",
 
