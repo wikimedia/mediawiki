@@ -453,7 +453,7 @@ class Parser
 					array_push ( $children_start_char, $wgLang->firstChar( $x->cl_sortkey ) ) ;
 				}
 			} else {
-				array_push ( $articles , $sk->makeLink ( $t ) ) ; # Page in this category
+				array_push ( $articles , $sk->makeKnownLink ( $t ) ) ; # Page in this category
 				array_push ( $articles_start_char, $wgLang->firstChar( $x->cl_sortkey ) ) ;
 			}
 		}
