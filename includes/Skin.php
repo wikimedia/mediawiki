@@ -1833,9 +1833,9 @@ class Skin {
 				"<img src=\"{$url}\" alt=\"{$alt}\" /></a>";
 		}
 		if ( "" != $align ) {
-			$s = "<div class=\"float{$align}\"><span>{$s}</span>\n</div>";
+			$s = "<div class=\"float{$align}\"><span>{$s}</span></div>";
 		}
-		return $prefix.$s.$postfix;
+		return str_replace("\n", ' ',$prefix.$s.$postfix);
 	}
 
 
@@ -1897,8 +1897,8 @@ class Skin {
 					'width="15" height="11" alt="'.$more.'" /></a></div>';
 			}
 		}
-		$s .= '  <div class="thumbcaption" '.$textalign.'>'.$zoomicon.$label."</div></div>\n</div>";
-		return $s;
+		$s .= '  <div class="thumbcaption" '.$textalign.'>'.$zoomicon.$label."</div></div></div>";
+		return str_replace("\n", ' ', $s);
 	}
 
 	function makeMediaLink( $name, $url, $alt = "" ) {
