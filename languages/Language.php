@@ -440,7 +440,9 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Main Page",
-"mainpagetext"	=> "Wiki software successfully installed.\n\nPlease see [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface].",
+"mainpagetext"	=> "Wiki software successfully installed.",
+"mainpagedocfooter" => "Please see [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface]
+and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] for usage and configuration help.",
 "about"			=> "About",
 "aboutwikipedia" => "About $wgSitename",
 "aboutpage"		=> "$wgMetaNamespace:About",
