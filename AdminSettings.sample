@@ -6,10 +6,14 @@
 #
 # Developers: Do not check AdminSettings.php into CVS!
 
-# This data is used for all maintenance operations.
-# The user DOES NOT NEED TO EXIST. It is created by the
-# installation script.
-
+# This data is used by all database maintenance scripts
+# (see directory maintenance/). The SQL user DOES NOT NEED 
+# TO EXIST. It is created by the installation script,
+# which will prompt you for the MySQL root password.
+#
+# This is not to be confused with sysop accounts for the
+# wiki.
+#
 $wgDBadminuser      = "wikiadmin";
 $wgDBadminpassword  = "adminpass";
 
