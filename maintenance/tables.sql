@@ -164,7 +164,10 @@ CREATE TABLE recentchanges (
   rc_new tinyint(3) unsigned NOT NULL default '0',
   rc_cur_id int(10) unsigned NOT NULL default '0',
   rc_this_oldid int(10) unsigned NOT NULL default '0',
-  rc_last_oldid int(10) unsigned NOT NULL default '0'
+  rc_last_oldid int(10) unsigned NOT NULL default '0',
+  rc_type tinyint(3) unsigned NOT NULL default '0',
+  rc_moved_to_ns tinyint(3) unsigned NOT NULL default '0',
+  rc_moved_to_title varchar(255) binary NOT NULL default '',
 ) TYPE=MyISAM PACK_KEYS=1;
 
 DROP TABLE IF EXISTS watchlist;

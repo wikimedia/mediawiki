@@ -299,21 +299,7 @@ class MovePageForm {
 		  "old_namespace={$this->ons} AND old_title='{$this->odt}'";
 		wfQuery( $sql, DB_WRITE, $fname );
 		
-		$sql = "UPDATE recentchanges SET ".
-			"rc_namespace={$this->nns}, rc_title='{$this->ndt}' WHERE ".
-			"rc_cur_id={$this->oldid}";
-        wfQuery( $sql, DB_WRITE, $fname );
-
-		# FIXME: Here we mark the redirect as 'new' in recentchanges,
-		# but as old in cur. Is there a reason for this?
-		$sql = "INSERT INTO recentchanges (rc_namespace,rc_title,
-			rc_comment,rc_user,rc_user_text,rc_timestamp,
-			rc_cur_time,rc_cur_id,rc_new)
-			VALUES ({$this->ons},'{$this->odt}'," .
-		  "'{$mt} \\\"{$this->nft}\\\"','" .
-		  $wgUser->getID() . "','" . wfStrencode( $wgUser->getName() ) .
-          "','{$now}','{$now}',{$this->newid},1)";
-        wfQuery( $sql, DB_WRITE, $fname );
+		RecentChange::notifyMove( $now, $this->ot, $this->nt, $wgUser, $mt );
 
 		# The only link from here should be the old redirect
 
@@ -360,10 +346,11 @@ class MovePageForm {
 		wfQuery( $sql, DB_WRITE, $fname );
 		$wgLinkCache->clearLink( $this->nft );
 
+		$comment = "{$mt} \"{$this->nft}\"";
+		$encComment = wfStrencode( $comment );
 		$common = "{$this->ons},'{$this->odt}'," .
-		  "'{$mt} \\\"{$this->nft}\\\"','" .
-		  $wgUser->getID() . "','" . wfStrencode( $wgUser->getName() ) .
-          "','{$now}'";
+		  "'$encComment','" .$wgUser->getID() . "','" . 
+		  wfStrencode( $wgUser->getName() ) ."','{$now}'";
 		$sql = "INSERT INTO cur (cur_namespace,cur_title," .
 		  "cur_comment,cur_user,cur_user_text,cur_timestamp,inverse_timestamp," .
 		  "cur_touched,cur_text,cur_is_redirect,cur_is_new) " .
@@ -377,17 +364,7 @@ class MovePageForm {
 		  "old_namespace={$this->ons} AND old_title='{$this->odt}'";
 		wfQuery( $sql, DB_WRITE, $fname );
 
-		$sql = "UPDATE recentchanges SET ".
-			"rc_namespace={$this->nns}, rc_title='{$this->ndt}' WHERE ".
-			"rc_namespace={$this->ons} AND rc_title='{$this->odt}'";
-		wfQuery( $sql, DB_WRITE, $fname );
-
-		$sql = "INSERT INTO recentchanges (rc_namespace,rc_title,
-			rc_comment,rc_user,rc_user_text,rc_timestamp,
-			rc_cur_time,rc_cur_id,rc_new)
-			VALUES ({$common},'{$now}',{$this->newid},1)";
-		wfQuery( $sql, DB_WRITE, $fname );
-
+		RecentChange::notifyMove( $now, $this->ot, $this->nt, $wgUser, $comment );
 		Article::onArticleCreate( $this->nt );
 
 		$sql = "UPDATE links SET l_from='{$this->nft}' WHERE l_from='{$this->oft}'";

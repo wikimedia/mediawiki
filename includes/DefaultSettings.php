@@ -64,6 +64,7 @@ $wgAmericanDates    = false; # Enable for English module to print dates
 							 # as eg 'May 12' instead of '12 May'
 $wgLocalInterwiki   = "w";
 $wgShowIPinHeader	= true; # For non-logged in users
+$wgMaxNameChars     = 32; # Maximum number of bytes in username
 
 # Translation using MediaWiki: namespace
 # Not recommended unless memcached is installed

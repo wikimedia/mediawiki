@@ -96,8 +96,8 @@ print "\nYou should have already created a root password for the database.\n" .
 
 $rootpw = readconsole();
 
-$rconn = mysql_connect( $wgDBserver, "root", $rootpw );
-if ( false === $rconn ) {
+$wgDatabase = Database::newFromParams( $wgDBserver, "root", $rootpw, "", 1 );
+if ( !$wgDatabase->isOpen() ) {
 	print "Could not connect to database on \"{$wgDBserver}\" as root.\n";
 	exit();
 }
@@ -110,18 +110,18 @@ $wgTitle = Title::newFromText( "Installation script" );
 # Now do the actual database creation
 #
 print "Creating database...\n";
-dbsource( "./maintenance/database.sql", $rconn );
+dbsource( "./maintenance/database.sql", $wgDatabase );
 
-mysql_select_db( $wgDBname, $rconn );
-dbsource( "./maintenance/tables.sql", $rconn );
-dbsource( "./maintenance/users.sql", $rconn );
-dbsource( "./maintenance/initialdata.sql", $rconn );
-dbsource( "./maintenance/interwiki.sql", $rconn );
+$wgDatabase->selectDB( $wgDBname );
+dbsource( "./maintenance/tables.sql", $wgDatabase );
+dbsource( "./maintenance/users.sql", $wgDatabase );
+dbsource( "./maintenance/initialdata.sql", $wgDatabase );
+dbsource( "./maintenance/interwiki.sql", $wgDatabase );
 
 populatedata(); # Needs internationalized messages
 
 print "Adding indexes...\n";
-dbsource( "./maintenance/indexes.sql", $rconn );
+dbsource( "./maintenance/indexes.sql", $wgDatabase );
 
 print "Done.\nBrowse \"{$wgServer}{$wgScript}\" to test.\n";
 exit();
@@ -148,18 +148,18 @@ function makedirectory( $d ) {
 
 
 function populatedata() {
-	global $wgDBadminpassword;
+	global $wgDBadminpassword, $wgDatabase;
 	$fname = "Installation script: populatedata()";
 
 	$sql = "DELETE FROM site_stats";
-	wfQuery( $sql, DB_WRITE, $fname );
+	$wgDatabase->query( $sql, $fname );
 
 	$sql = "INSERT INTO site_stats (ss_row_id,ss_total_views," .
 		"ss_total_edits,ss_good_articles) VALUES (1,0,0,0)";
-	wfQuery( $sql, DB_WRITE, $fname );
+	$wgDatabase->query( $sql, $fname );
 
 	$sql = "DELETE FROM user";
-	wfQuery( $sql, DB_WRITE, $fname );
+	$wgDatabase->query( $sql, $fname );
 
 	$u = User::newFromName( "WikiSysop" );
 	if ( 0 == $u->idForName() ) {
@@ -182,7 +182,7 @@ function populatedata() {
 	$dlp = addslashes( wfMsgNoDB( "dellogpage" ) );
 
 	$sql = "DELETE FROM cur";
-	wfQuery( $sql, DB_WRITE, $fname );
+	$wgDatabase->query( $sql, $fname );
 
 	$now = wfTimestampNow();
 	$won = wfInvertTimestamp( $now );
@@ -190,19 +190,19 @@ function populatedata() {
 	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
 	  "cur_restrictions,cur_timestamp,inverse_timestamp,cur_touched) VALUES ({$wns},'{$ulp}','" .
 	  wfStrencode( wfMsg( "uploadlogpagetext" ) ) . "','sysop','$now','$won','$now')";
-	wfQuery( $sql, DB_WRITE, $fname );
+	$wgDatabase->query( $sql, $fname );
 
 	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
 	  "cur_restrictions,cur_timestamp,inverse_timestamp,cur_touched) VALUES ({$wns},'{$dlp}','" .
 	  wfStrencode( wfMsg( "dellogpagetext" ) ) . "','sysop','$now','$won','$now')";
-	wfQuery( $sql, DB_WRITE, $fname );
+	$wgDatabase->query( $sql, $fname );
 	
 	$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
 	$title = $titleobj->getDBkey();
 	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text,cur_timestamp,inverse_timestamp,cur_touched) " .
 	  "VALUES (0,'$title','" .
 	  wfStrencode( wfMsg( "mainpagetext" ) ) . "','$now','$won','$now')";
-	wfQuery( $sql, DB_WRITE, $fname );
+	$wgDatabase->query( $sql, $fname );
 	
 	initialiseMessages();
 }

@@ -6,6 +6,9 @@ define( "DB_READ", -1 );
 define( "DB_WRITE", -2 );
 define( "DB_LAST", -3 );
 
+define( "LIST_COMMA", 0 );
+define( "LIST_AND", 1 );
+
 class Database {
 
 #------------------------------------------------------------------------------
@@ -16,7 +19,7 @@ class Database {
 	/* private */ var $mIgnoreErrors = false;
 	
 	/* private */ var $mServer, $mUser, $mPassword, $mConn, $mDBname;
-	/* private */ var $mOut, $mDebug;
+	/* private */ var $mOut, $mDebug, $mOpened = false;
 	
 	/* private */ var $mFailFunction; 
 
@@ -51,7 +54,8 @@ class Database {
 	# Get functions
 	
 	function lastQuery() { return $this->mLastQuery; }
-		
+	function isOpen() { return $this->mOpened; }
+
 #------------------------------------------------------------------------------
 # Other functions
 #------------------------------------------------------------------------------
@@ -84,12 +88,12 @@ class Database {
 		$this->mServer = $server;
 		$this->mUser = $user;
 		$this->mPassword = $password;
-		$this->mDbName = $dbName;
+		$this->mDBname = $dbName;
 		
 		$success = false;
 		
 		@$this->mConn = mysql_connect( $server, $user, $password );
-		if ( $this->mConn !== false ) {
+		if ( $this->mConn !== false && $dbName != "" ) {
 			$success = @mysql_select_db( $dbName, $this->mConn );
 			if ( !$success ) {
 				wfDebug( "Error selecting database \"$dbName\": " . $this->lastError() . "\n" );
@@ -105,6 +109,7 @@ class Database {
 			$this->reportConnectionError();
 			$this->close();
 		}
+		$this->mOpened = $success;
 		return $success;
 	}
 	
@@ -112,6 +117,7 @@ class Database {
 	# Returns success, true if already closed
 	function close()
 	{
+		$this->mOpened = false;
 		if ( $this->mConn ) {
 			return mysql_close( $this->mConn );
 		} else {
@@ -132,7 +138,7 @@ class Database {
 	
 	# Usually aborts on failure
 	# If errors are explicitly ignored, returns success
-	function query( $sql, $db, $fname = "" )
+	function query( $sql, $fname = "" )
 	{
 		global $wgProfiling;
 		
@@ -211,6 +217,23 @@ class Database {
 		return $ret;
 	}
 	
+	# More complex SELECT wrapper, single row only
+	# Aborts or returns FALSE on error
+	# Takes an array of selected variables, and a condition map, which is ANDed
+	# e.g. getArray( "cur", array( "cur_id" ), array( "cur_namespace" => 0, "cur_title" => "Astronomy" ) )
+	#   would return an object where $obj->cur_id is the ID of the Astronomy article
+	function getArray( $table, $vars, $conds, $fname = "Database::getArray" )
+	{
+		$vars = implode( ",", $vars );
+		$where = Database::makeList( $conds, LIST_AND );
+		$sql = "SELECT $vars FROM $table WHERE $where";
+		$res = $this->query( $sql, $fname );
+		if ( $res === false || !$this->numRows( $res ) ) {
+			return false;
+		}
+		return $this->fetchObject( $res );
+	}
+	
 	# Removes most variables from an SQL query and replaces them with X or N for numbers.
 	# It's only slightly flawed. Don't use for anything important.
 	/* static */ function generalizeSQL( $sql )
@@ -277,6 +300,32 @@ class Database {
 		return $found;
 	}
 	
+	function tableExists( $table )
+	{
+		$res = mysql_list_tables( $this->mDBname );
+		if( !$res ) {
+			echo "** " . $this->lastError() . "\n";
+			return false;
+		}
+		for( $i = $this->numRows( $res ) - 1; $i--; $i > 0 ) {
+			if( mysql_tablename( $res, $i ) == $table ) return true;
+		}
+		return false;
+	}
+
+	function fieldInfo( $table, $field )
+	{
+		$res = $this->query( "SELECT * FROM $table LIMIT 1" );
+		$n = mysql_num_fields( $res );
+		for( $i = 0; $i < $n; $i++ ) {
+			$meta = mysql_fetch_field( $res, $i );
+			if( $field == $meta->name ) {
+				return $meta;
+			}
+		}
+		return false;
+	}
+
 	# INSERT wrapper, inserts an array into a table
 	# Keys are field names, values are values
 	# Usually aborts on failure
@@ -284,23 +333,52 @@ class Database {
 	function insertArray( $table, $a, $fname = "Database::insertArray" )
 	{
 		$sql1 = "INSERT INTO $table (";
-		$sql2 = "VALUES (";
+		$sql2 = "VALUES (" . Database::makeList( $a );
 		$first = true;
 		foreach ( $a as $field => $value ) {
-			if ( $first ) {
+			if ( !$first ) {
 				$sql1 .= ",";
-				$sql2 .= ",";
-				$first = false;
 			}
+			$first = false;
 			$sql1 .= $field;
-			if ( is_string( $value ) ) {
-				$sql2 .= "'" . wfStrencode( $value ) . "'";
-			} else {
-				$sql2 .= $value;
-			}
 		}
 		$sql = "$sql1) $sql2)";
-		return !!$this->query( $sql, DB_WRITE, $fname );
+		return !!$this->query( $sql, $fname );
+	}
+	
+	# Makes a wfStrencoded list from an array
+	# $mode: LIST_COMMA - comma separated
+	#        LIST_AND   - ANDed WHERE clause (without the WHERE)
+	/* static */ function makeList( $a, $mode = LIST_COMMA)
+	{
+		$first = true;
+		$list = "";
+		foreach ( $a as $field => $value ) {
+			if ( !$first ) {
+				if ( $mode == LIST_AND ) {
+					$list .= " AND ";
+				} else {
+					$list .= ",";
+				}
+			} else {
+				$first = false;
+			}
+			if ( $mode == LIST_AND ) {
+				$list .= "$field=";
+			}
+			if ( is_string( $value ) ) {
+				$list .= "'" . wfStrencode( $value ) . "'";
+			} else {
+				$list .= $value;
+			}
+		}
+		return $list;
+	}
+	
+	function selectDB( $db ) 
+	{
+		$this->mDatabase = $db;
+		mysql_select_db( $db, $this->mConn );
 	}
 }
 

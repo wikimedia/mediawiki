@@ -88,6 +88,21 @@ class Title {
 			return NULL;
 		}
 	}
+	
+	# Create a title from a cur id
+	# This is inefficiently implemented
+	function newFromID( $id ) 
+	{
+		$fname = "Title::newFromID";
+		$row = wfGetArray( "cur", array( "cur_namespace", "cur_title" ), 
+			array( "cur_id" => $id ), $fname );
+		if ( $row !== false ) {
+			$title = Title::makeTitle( $row->cur_namespace, $row->cur_title );
+		} else {
+			$title = NULL;
+		}
+		return $title;
+	}
 
 	function nameOf( $id )
 	{
