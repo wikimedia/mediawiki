@@ -33,7 +33,7 @@ class ParserCache
 				"DATE_ADD(NOW(), INTERVAL {$expire}))", DB_WRITE);
 
 		if( rand() % 50 == 0 ){ // more efficient to just do it sometimes
-			$this->purgeParserCache();
+			$this->purge();
 		}
 	}
 	
