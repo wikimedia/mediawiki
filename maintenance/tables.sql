@@ -11,6 +11,7 @@ CREATE TABLE /*$wgDBprefix*/user (
   user_password tinyblob NOT NULL default '',
   user_newpassword tinyblob NOT NULL default '',
   user_email tinytext NOT NULL default '',
+  user_emailauthenticationtimestamp varchar(14) binary NOT NULL default '0',
   user_options blob NOT NULL default '',
   user_touched char(14) binary NOT NULL default '',
   user_token char(32) binary NOT NULL default '',
@@ -25,12 +26,14 @@ CREATE TABLE /*$wgDBprefix*/user_rights (
   UNIQUE KEY ur_user (ur_user)
 );
 
-CREATE TABLE /*$wgDBprefix*/user_newtalk (
-  user_id int(5) NOT NULL default '0',
-  user_ip varchar(40) NOT NULL default '',
-  INDEX user_id (user_id),
-  INDEX user_ip (user_ip)
-);
+-- The following table is no longer needed with Enotif >= 2.00
+-- Entries for newtalk on user_talk page are handled like in the watchlist table
+-- CREATE TABLE /*$wgDBprefix*/user_newtalk (
+--  user_id int(5) NOT NULL default '0',
+--  user_ip varchar(40) NOT NULL default '',
+--  INDEX user_id (user_id),
+--  INDEX user_ip (user_ip)
+-- );
 
 CREATE TABLE /*$wgDBprefix*/cur (
   cur_id int(8) unsigned NOT NULL auto_increment,
@@ -241,6 +244,7 @@ CREATE TABLE /*$wgDBprefix*/watchlist (
   wl_user int(5) unsigned NOT NULL,
   wl_namespace tinyint(2) unsigned NOT NULL default '0',
   wl_title varchar(255) binary NOT NULL default '',
+  wl_notificationtimestamp varchar(14) binary NOT NULL default '0',
   UNIQUE KEY (wl_user, wl_namespace, wl_title),
   KEY namespace_title (wl_namespace,wl_title)
 );

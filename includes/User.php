@@ -23,6 +23,7 @@ class User {
 	 * @access private
 	 */
 	var $mId, $mName, $mPassword, $mEmail, $mNewtalk;
+	var $mEmailAuthenticationtimestamp;
 	var $mRights, $mOptions;
 	var $mDataLoaded, $mNewpassword;
 	var $mSkin;
@@ -116,6 +117,15 @@ class User {
 	}
 
 	/**
+	 * does the string match roughly an email address ?
+	 * @param string $addr email address
+	 * @static
+	 */
+	function isValidEmailAddr ( $addr ) {
+		return preg_match( '/^([a-z0-9_.-]+([a-z0-9_.-]+)*\@[a-z0-9_-]+([a-z0-9_.-]+)*([a-z.]{2,})+)$/', strtolower($addr));
+	}
+
+	/**
 	 * probably return a random password
 	 * @return string probably a random password
 	 * @static
@@ -150,10 +160,10 @@ class User {
 		$this->mNewtalk = -1;
 		$this->mName = $wgIP;
 		$this->mRealName = $this->mEmail = '';
+		$this->mEmailAuthenticationtimestamp = 0;
 		$this->mPassword = $this->mNewpassword = '';
 		$this->mRights = array();
 		$this->mGroups = array();
-		
 		// Getting user defaults only if we have an available language
 		if( isset( $wgContLang ) ) {
 			$this->loadDefaultFromLanguage();
@@ -394,12 +404,14 @@ class User {
 		
 		$dbr =& wfGetDB( DB_SLAVE );
 		$s = $dbr->selectRow( 'user', array( 'user_name','user_password','user_newpassword','user_email',
+		  'user_emailauthenticationtimestamp',
 		  'user_real_name','user_options','user_touched', 'user_token' ),
 		  array( 'user_id' => $this->mId ), $fname );
 		
 		if ( $s !== false ) {
 			$this->mName = $s->user_name;
 			$this->mEmail = $s->user_email;
+			$this->mEmailAuthenticationtimestamp = $s->user_emailauthenticationtimestamp;
 			$this->mRealName = $s->user_real_name;
 			$this->mPassword = $s->user_password;
 			$this->mNewpassword = $s->user_newpassword;
@@ -458,8 +470,12 @@ class User {
 		if ( $this->mNewtalk == -1 ) {
 			$this->mNewtalk=0; # reset talk page status
 			$dbr =& wfGetDB( DB_SLAVE );
+			extract( $dbr->tableNames( 'watchlist' ) );
 			if($this->mId) {
-				$res = $dbr->select( 'user_newtalk', 1, array( 'user_id' => $this->mId ), $fname );
+				$sql = "SELECT wl_user FROM $watchlist
+					WHERE wl_title='" . $dbr->strencode( str_replace( ' ', '_', $this->mName) )."'  AND wl_namespace = " . NS_USER_TALK .
+					" AND wl_user=" . $this->mId . " AND wl_notificationtimestamp != 0";
+				$res = $dbr->query( $sql,'User::get:Newtalk');
 
 				if ( $dbr->numRows($res)>0 ) {
 					$this->mNewtalk= 1;
@@ -470,7 +486,11 @@ class User {
 				$key = "$wgDBname:newtalk:ip:{$this->mName}";
 				$newtalk = $wgMemc->get( $key );
 				if( ! is_integer( $newtalk ) ){
-					$res = $dbr->select( 'user_newtalk', 1, array( 'user_ip' => $this->mName ), $fname );
+					extract( $dbr->tableNames( 'watchlist' ) );
+					$sql = "SELECT wl_user FROM $watchlist
+						WHERE wl_title='" . $dbr->strencode( str_replace( ' ', '_', $this->mName) )."'  AND wl_namespace = " . NS_USER_TALK .
+						" AND wl_user =" . 0 . " AND wl_notificationtimestamp != 0";
+					$res = $dbr->query( $sql,'User::getNewtalk');
 
 					$this->mNewtalk = $dbr->numRows( $res ) > 0 ? 1 : 0;
 					$dbr->freeResult( $res );
@@ -563,6 +583,11 @@ class User {
 	function getEmail() {
 		$this->loadFromDatabase();
 		return $this->mEmail;
+	}
+
+	function getEmailAuthenticationtimestamp() {
+		$this->loadFromDatabase();
+		return $this->mEmailAuthenticationtimestamp;
 	}
 
 	function setEmail( $str ) {
@@ -839,11 +864,18 @@ class User {
 		global $wgMemc, $wgDBname;
 		$fname = 'User::saveSettings';
 
-		$this->saveNewtalk();
+		$dbw =& wfGetDB( DB_MASTER );
+		if ( ! $this->getNewtalk() ) {
+			# Delete the watchlist entry for user_talk page X watched by user X
+			if( $this->mId ) {
+				$dbw->delete( 'watchlist', array( 'wl_user' => $this->mId, 'wl_title' => str_replace('_', ' ', $this->mName) ,'wl_namespace' => NS_USER_TALK ), $fname );
+			} else {
+				$dbw->delete( 'watchlist', array( 'wl_user' => 0, 'wl_title' => $this->mName, 'wl_namespace' => NS_USER_TALK ), $fname );
+				$wgMemc->delete( "$wgDBname:newtalk:ip:{$this->mName}" );
+			}
+		}
 
 		if ( 0 == $this->mId ) { return; }
-		
-		$dbw =& wfGetDB( DB_MASTER );
 		
 		$dbw->update( 'user',
 			array( /* SET */
@@ -852,6 +884,7 @@ class User {
 				'user_newpassword' => $this->mNewpassword,
 				'user_real_name' => $this->mRealName,
 		 		'user_email' => $this->mEmail,
+		 		'user_emailauthenticationtimestamp' => $this->mEmailAuthenticationtimestamp,
 				'user_options' => $this->encodeOptions(),
 				'user_touched' => $dbw->timestamp($this->mTouched),
 				'user_token' => $this->mToken
@@ -878,38 +911,6 @@ class User {
 		}
 	}
 
-	/**
-	 * Save value of new talk flag.
-	 */
-	function saveNewtalk() {
-		global $wgDBname, $wgMemc;
-		
-		$fname = 'User::saveNewtalk';
-
-		if ($this->getID() != 0) {
-			$field = 'user_id';
-			$value = $this->getID();
-			$key = "$wgDBname:user:id:$this->mId";
-		} else {
-			$field = 'user_ip';
-			$value = $this->mName;
-			$key = "$wgDBname:newtalk:ip:$this->mName";
-		}
-		
-		$dbr =& wfGetDB( DB_SLAVE );
-		$dbw =& wfGetDB( DB_MASTER );
-
-		$res = $dbr->selectField('user_newtalk', $field,
-								 array($field => $value), $fname);
-
-		if ($res !== false && $this->mNewtalk == 0) {
-			$dbw->delete('user_newtalk', array($field => $value), $fname);
-			$wgMemc->delete($key);
-		} else if ($res === false && $this->mNewtalk == 1) {
-			$dbw->insert('user_newtalk', array($field => $value), $fname);
-			$wgMemc->delete($key);			
-		}
-	}
 	
 	/**
 	 * Checks if a user with the given name exists, returns the ID
@@ -943,6 +944,7 @@ class User {
 				'user_password' => $this->mPassword,
 				'user_newpassword' => $this->mNewpassword,
 				'user_email' => $this->mEmail,
+				'user_emailauthenticationtimestamp' => $this->mEmailAuthenticationtimestamp,
 				'user_real_name' => $this->mRealName,
 				'user_options' => $this->encodeOptions(),
 				'user_token' => $this->mToken
@@ -1087,20 +1089,22 @@ class User {
 	 * @return bool True if the given password is correct otherwise False.
 	 */
 	function checkPassword( $password ) {
+		global $wgAuth;
 		$this->loadFromDatabase();
 		
-		global $wgAuth;
 		if( $wgAuth->authenticate( $this->getName(), $password ) ) {
 			return true;
 		} elseif( $wgAuth->strict() ) {
 			/* Auth plugin doesn't allow local authentication */
 			return false;
 		}
-		
 		$ep = $this->encryptPassword( $password );
 		if ( 0 == strcmp( $ep, $this->mPassword ) ) {
 			return true;
-		} elseif ( 0 == strcmp( $ep, $this->mNewpassword ) ) {
+		} elseif ( ($this->mNewpassword != '') && (0 == strcmp( $ep, $this->mNewpassword )) ) {
+			$this->mEmailAuthenticationtimestamp = wfTimestampNow();
+			$this->mNewpassword = ''; # use the temporary one-time password only once: clear it now !
+			$this->saveSettings();
 			return true;
 		} elseif ( function_exists( 'iconv' ) ) {
 			# Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted

@@ -22,7 +22,7 @@ class PageHistory {
 	# This shares a lot of issues (and code) with Recent Changes
 
 	function history() {
-		global $wgUser, $wgOut, $wgLang;
+		global $wgUser, $wgOut, $wgLang, $wgShowUpdatedMarker;
 
 		# If page hasn't changed, client can cache this
 
@@ -59,8 +59,17 @@ class PageHistory {
 
 		$namespace = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getText();
-
+		$uid = $wgUser->getID();
 		$db =& wfGetDB( DB_SLAVE );
+		if ($wgShowUpdatedMarker && $wgUser->getOption( 'showupdated' )) {
+			$dbr =& wfGetDB( DB_MASTER );
+			$row = $dbr->selectRow( 'watchlist',
+				array( 'wl_notificationtimestamp' ),
+				array( 'wl_namespace' => $namespace, 'wl_title' => $this->mTitle->getDBkey(), 'wl_user' => $wgUser->getID() ),
+				$fname );
+			$notificationtimestamp = $row->wl_notificationtimestamp;
+		} else $notificationtimestamp = false ;
+
 		$use_index = $db->useIndexClause( 'name_title_timestamp' );
 		$oldtable = $db->tableName( 'old' );
 
@@ -103,7 +112,8 @@ class PageHistory {
 				$this->mArticle->getUserText(), $namespace,
 				$title, 0, $this->mArticle->getComment(),
 				( $this->mArticle->getMinorEdit() > 0 ),
-				$counter++
+				$counter++,
+				$notificationtimestamp
 			);
 		}
 		while ( $line = $db->fetchObject( $res ) ) {
@@ -112,7 +122,8 @@ class PageHistory {
 				$line->old_user_text, $namespace,
 				$title, $line->old_id,
 				$line->old_comment, ( $line->old_minor_edit > 0 ),
-				$counter++
+				$counter++,
+				$notificationtimestamp
 			);
 		}
 		$s .= $this->endHistoryList( !$atend );
@@ -143,7 +154,7 @@ class PageHistory {
 		return $s;
 	}
 
-	function historyLine( $ts, $u, $ut, $ns, $ttl, $oid, $c, $isminor, $counter = '' ) {
+	function historyLine( $ts, $u, $ut, $ns, $ttl, $oid, $c, $isminor, $counter = '', $notificationtimestamp = false ) {
 		global $wgLang, $wgContLang;
 
 		static $message;
@@ -205,6 +216,9 @@ class PageHistory {
 		if ( '' != $c && '*' != $c ) {
 			$c = $this->mSkin->formatcomment( $c, $this->mTitle );
 			$s .= " <em>($c)</em>";
+		}
+		if ($notificationtimestamp && ($ts >= $notificationtimestamp)) {
+			$s .= wfMsg( 'updatedmarker' );
 		}
 		$s .= '</li>';
 

@@ -146,6 +146,82 @@ function do_image_name_unique_update() {
 	}
 }
 
+function do_watchlist_update() {
+	global $wgDatabase;
+	if( $wgDatabase->fieldExists( 'watchlist', 'wl_notificationtimestamp' ) ) {
+		echo "ENOTIF: The watchlist table is already set up for email notification.\n";
+	} else {
+		echo "ENOTIF: Adding wl_notificationtimestamp field for email notification management.";
+		/* ALTER TABLE watchlist ADD (wl_notificationtimestamp varchar(14) binary NOT NULL default '0'); */
+		dbsource( "maintenance/archives/patch-email-notification.sql", $wgDatabase );
+		echo "ok\n";
+	}
+}
+
+function do_copy_newtalk_to_watchlist() {
+	global $wgDatabase;
+	global $wgCommandLineMode;	# this needs to be saved while getID() and getName() are called
+
+	$CommandLineMode_save = $wgCommandLineMode;
+	$wgCommandLineMode = false;	# otherwise User:loadfromDatabase() early returns, but we need it herein
+
+	if ( $wgDatabase->tableExists( 'user_newtalk' ) ) {
+		$res = $wgDatabase->safeQuery( 'SELECT user_id, user_ip FROM !',
+			$wgDatabase->tableName( 'user_newtalk' ) );
+		$num_newtalks=$wgDatabase->numRows($res);
+		echo "ENOTIF: Now converting ".$num_newtalks." user_newtalk entries to watchlist table entries ... \n";
+
+		$user = new User();
+		for ( $i = 1; $i <= $num_newtalks; $i++ ) {
+			$wluser = $wgDatabase->fetchObject( $res );
+			echo 'ENOTIF: <= user_newtalk: user_id='.$wluser->user_id.' user_ip='.$wluser->user_ip."\n";
+			if ($wluser->user_id == 0) { # anonymous users ... have IP numbers as "names"
+				if ($user->isIP($wluser->user_ip)) { # do only if it really looks like an IP number (double checked)
+					$wgDatabase->replace( 'watchlist',
+						array(array('wl_user','wl_namespace', 'wl_title', 'wl_notificationtimestamp' )),
+						  array('wl_user' 			=> 0,
+							'wl_namespace' 			=> NS_USER_TALK,
+							'wl_title' 			=> $wluser->user_ip,
+							'wl_notificationtimestamp' 	=> '19700101000000'
+							), 'updaters.inc::do_watchlist_update2'
+						);
+					echo 'ENOTIF: ====> watchlist: user_id=0 '.$wluser->user_ip."\n";
+				}
+			} else { # normal users ... have user_ids
+				$user->setID($wluser->user_id);
+				$wgDatabase->replace( 'watchlist',
+					array(array('wl_user','wl_namespace', 'wl_title', 'wl_notificationtimestamp' )),
+					  array('wl_user' 			=> $user->getID(),
+						'wl_namespace' 			=> NS_USER_TALK,
+						'wl_title' 			=> $user->getName(),
+						'wl_notificationtimestamp' 	=> '19700101000000'
+						), 'updaters.inc::do_watchlist_update3'
+					);
+				echo 'ENOTIF: ====> watchlist: user_id='.$user->getID().' '.$user->getName()."\n";
+			}
+		}
+		echo "ENOTIF: The watchlist table has got the former user_newtalk entries.\n";
+		dbsource( "maintenance/archives/patch-drop-user_newtalk.sql", $wgDatabase );
+		echo "ENOTIF: Deleting the user_newtalk table as its entries are now in the watchlist table.\n";
+	} else {
+		echo "ENOTIF: No user_newtalk table found. Nothing to convert to watchlist table entries.\n";
+	}
+	$wgCommandLineMode = $CommandLineMode_save;
+}
+
+
+function do_user_update() {
+	global $wgDatabase;
+	if( $wgDatabase->fieldExists( 'user', 'user_emailauthenticationtimestamp' ) ) {
+		echo "EAUTHENT: The user table is already set up for email authentication.\n";
+	} else {
+		echo "EAUTHENT: Adding user_emailauthenticationtimestamp field for email authentication management.";
+		/* ALTER TABLE user ADD (user_emailauthenticationtimestamp varchar(14) binary NOT NULL default '0'); */
+		dbsource( "maintenance/archives/patch-email-authentication.sql", $wgDatabase );
+		echo "ok\n";
+	}
+}
+
 # Assumes that the group table has been added.
 function do_group_update() {
 	global $wgDatabase;
@@ -199,6 +275,9 @@ function do_all_updates() {
 	do_linkscc_1_3_update(); flush();
 	convertLinks(); flush();
 	do_image_name_unique_update(); flush();
+	do_watchlist_update(); flush();
+	do_copy_newtalk_to_watchlist(); flush();
+	do_user_update(); flush();
 
 	if ( isTemplateInitialised() ) {
 		print "Template namespace already initialised\n";

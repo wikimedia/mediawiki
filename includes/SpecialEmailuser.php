@@ -19,7 +19,7 @@ function wfSpecialEmailuser( $par ) {
 	}
 	
 	if ( 0 == $wgUser->getID() ||
-		( false === strpos( $wgUser->getEmail(), "@" ) ) ) {
+		( !$wgUser->isValidEmailAddr( $wgUser->getEmail() ) ) ) {
 		$wgOut->errorpage( "mailnologin", "mailnologintext" );
 		return;
 	}
@@ -48,8 +48,9 @@ function wfSpecialEmailuser( $par ) {
 
 	$address = $nu->getEmail();
 
-	if ( ( false === strpos( $address, "@" ) ) ||
-	  ( 1 == $nu->getOption( "disablemail" ) ) ) {
+	if ( ( !$nu->isValidEmailAddr( $address ) ) ||
+	     ( 1 == $nu->getOption( "disablemail" ) ) ||
+	     ( 0 == $nu->getEmailauthenticationtimestamp() ) ) {
 		$wgOut->errorpage( "noemailtitle", "noemailtext" );
 		return;
 	}

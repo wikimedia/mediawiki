@@ -148,6 +148,7 @@ class SkinTemplate extends Skin {
 		global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
 		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgSiteNotice;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
+		global $wgPageShowWatchingUsers;
 
 		$fname = 'SkinTemplate::outputPage';
 		wfProfileIn( $fname );
@@ -282,6 +283,25 @@ class SkinTemplate extends Skin {
 					$tpl->set('viewcount', false);
 				}
 			}
+
+			if ($wgPageShowWatchingUsers) {
+				$dbr =& wfGetDB( DB_SLAVE );
+				extract( $dbr->tableNames( 'watchlist' ) );
+				$sql = "SELECT COUNT(*) AS n FROM $watchlist
+					WHERE wl_title='" . $dbr->strencode($wgTitle->getDBKey()) .
+					"' AND  wl_namespace=" . $wgTitle->getNamespace() ;
+				$res = $dbr->query( $sql, 'SkinPHPTal::outputPage');
+				$x = $dbr->fetchObject( $res );
+				$numberofwatchingusers = $x->n;
+				if ($numberofwatchingusers > 0) {
+					$tpl->set('numberofwatchingusers', wfMsg('number_of_watching_users_pageview', $numberofwatchingusers));
+				} else {
+					$tpl->set('numberofwatchingusers', false);
+				};
+			} else {
+				$tpl->set('numberofwatchingusers', false);
+			}
+
 			$tpl->set('lastmod', $this->lastModified());
 			$tpl->set('copyright',$this->getCopyright());
 
@@ -316,6 +336,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'debug', $out->mDebugtext );
 		$tpl->set( 'reporttime', $out->reportTime() );
 		$tpl->set( 'sitenotice', $wgSiteNotice );
+		$tpl->set( 'tagline', wfMsg('tagline') );
 
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printSource() . "</div>\n";
 		$out->mBodytext .= $printfooter ;

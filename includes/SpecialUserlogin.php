@@ -6,12 +6,7 @@
  */
 
 /**
- *
- */
-require_once('UserMailer.php');
-
-/**
- * consutrctor
+ * constructor
  */
 function wfSpecialUserlogin() {
 	global $wgCommandLineMode;
@@ -36,6 +31,7 @@ class LoginForm {
 	
 	function LoginForm( &$request ) {
 		global $wgLang, $wgAllowRealName, $wgEnableEmail;
+		global $wgEmailAuthentication;
 
 		$this->mName = $request->getText( 'wpName' );
 		$this->mPassword = $request->getText( 'wpPassword' );
@@ -92,6 +88,7 @@ class LoginForm {
 	 */
 	function addNewAccountMailPassword() {
 		global $wgOut;
+ 		global $wgEmailAuthentication;
 		
 		if ('' == $this->mEmail) {
 			$this->mainLoginForm( wfMsg( 'noemail', htmlspecialchars( $this->mName ) ) );
@@ -104,20 +101,37 @@ class LoginForm {
 			return;
 		}
 
-		$u->saveSettings();
-		$error = $this->mailPasswordInternal($u);
+		$newadr = strtolower($this->mEmail);
+
+		# prepare for authentication and mail a temporary password to newadr
+		if ( !$u->isValidEmailAddr( $newadr ) ) {
+			return $this->mainLoginForm( wfMsg( 'invalidemailaddress', $error ) );
+		}
+		$u->mEmail = $newadr; # new behaviour: set this new emailaddr from login-page into user database record
+		$u->mEmailAuthenticationtimestamp = 0; # but flag as "dirty" = unauthenticated
+
+		if ($wgEmailAuthentication) {
+			$error = $this->mailPasswordInternal( $u, true, $dummy ); # mail a temporary password to the dirty address
+		}
 
 		$wgOut->setPageTitle( wfMsg( 'accmailtitle' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 	
-		if ( $error === '' ) {
-			$wgOut->addWikiText( wfMsg( 'accmailtext', $u->getName(), $u->getEmail() ) );
-			$wgOut->returnToMain( false );
+		if ($wgEmailAuthentication) {
+			if ($error === '') {
+				return $this->mainLoginForm( wfMsg( 'passwordsentforemailauthentication', $u->getName() ) );
 		} else {
-			$this->mainLoginForm( wfMsg( 'mailerror', $error ) );
+				return $this->mainLoginForm( wfMsg( 'mailerror', $error ) );
 		}
-
+			# if user returns, that new email address gets authenticated in checkpassword()
+		}
+#		if ( $error === '' ) {
+#			$wgOut->addWikiText( wfMsg( 'accmailtext', $u->getName(), $u->getEmail() ) );
+#			$wgOut->returnToMain( false );
+#		} else {
+#			$this->mainLoginForm( wfMsg( 'mailerror', $error ) );
+#		}
 		$u = 0;
 	}
 
@@ -127,11 +141,33 @@ class LoginForm {
 	 */
 	function addNewAccount() {
 		global $wgUser, $wgOut;
+		global $wgEmailAuthentication;
 
 		$u = $this->addNewAccountInternal();
 
 		if ($u == NULL) {
 			return;
+		}
+
+		$newadr = strtolower($this->mEmail);
+		if ($newadr != '') {		# prepare for authentication and mail a temporary password to newadr
+			if ( !$u->isValidEmailAddr( $newadr ) ) {
+				return $this->mainLoginForm( wfMsg( 'invalidemailaddress', $error ) );
+			}
+			$u->mEmail = $newadr; # new behaviour: set this new emailaddr from login-page into user database record
+			$u->mEmailAuthenticationtimestamp = 0; # but flag as "dirty" = unauthenticated
+
+			if ($wgEmailAuthentication) {
+				# mail a temporary password to the dirty address
+
+				$error = $this->mailPasswordInternal( $u, true, $dummy );
+				if ($error === '') {
+					return $this->mainLoginForm( wfMsg( 'passwordsentforemailauthentication', $u->getName() ) );
+				} else {
+					return $this->mainLoginForm( wfMsg( 'mailerror', $error ) );
+				}
+				# if user returns, that new email address gets authenticated in checkpassword()
+			}
 		}
 
 		$wgUser = $u;
@@ -168,7 +204,7 @@ class LoginForm {
 		$u = User::newFromName( $name );
 		if ( is_null( $u ) ||
 		  ( '' == $name ) ||
-		  preg_match( "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/", $name ) ||
+		  $wgUser->isIP( $name ) ||
 		  (strpos( $name, "/" ) !== false) ||
 		  (strlen( $name ) > $wgMaxNameChars) ||
 		  ucFirst($name) != $u->getName() ) 
@@ -229,7 +265,8 @@ class LoginForm {
 	 * @access private
 	 */
 	function processLogin() {
-		global $wgUser;
+		global $wgUser, $wgLang;
+		global $wgEmailAuthentication;
 
 		if ( '' == $this->mName ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
@@ -258,6 +295,15 @@ class LoginForm {
 		} else {
 			$u->loadFromDatabase();
 		}
+
+		# store temporarily the status before the password check is performed
+		$mailmsg = '';
+		$oldadr = strtolower($u->getEmail());
+		$newadr = strtolower($this->mEmail);
+		$alreadyauthenticated = (( $u->mEmailAuthenticationtimestamp != 0 ) || ($oldadr == '')) ;
+
+		# checkPassword sets EmailAuthenticationtimestamp, if the newPassword is used
+
 		if (!$u->checkPassword( $this->mPassword )) {
 			$this->mainLoginForm( wfMsg( 'wrongpassword' ) );
 			return;
@@ -272,13 +318,54 @@ class LoginForm {
 		}
 		$u->setOption( 'rememberpassword', $r );
 
+		/* check if user with correct password has entered a new email address */
+		if (($newadr <> '') && ($newadr <> $oldadr)) { # the user supplied a new email address on the login page
+
+			# prepare for authentication and mail a temporary password to newadr
+			if ( !$u->isValidEmailAddr( $newadr ) ) {
+				return $this->mainLoginForm( wfMsg( 'invalidemailaddress', $error ) );
+			}
+			$u->mEmail = $newadr; # new behaviour: store this new emailaddr from login-page now into user database record ...
+			$u->mEmailAuthenticationtimestamp = 0; # ... but flag the address as "dirty" (unauthenticated)
+			$alreadyauthenticated = false;
+
+			if ($wgEmailAuthentication) {
+
+				# mail a temporary one-time password to the dirty address and return here to complete the user login
+				# if the user returns now or later using this temp. password, then the new email address $newadr
+				# - which is already stored in his user record - gets authenticated in checkpassword()
+
+				$error = $this->mailPasswordInternal( $u, false, $newpassword_temp);
+				$u->mNewpassword = $newpassword_temp;
+
+				#	The temporary password is mailed. The user is logged-in as he entered his correct password
+				#	This appears to be more intuitive than alternative 2.
+
+				if ($error === '') {
+					$mailmsg = '<br>' . wfMsg( 'passwordsentforemailauthentication', $u->getName() );
+				} else {
+					$mailmsg = '<br>' . wfMsg( 'mailerror', $error ) ;
+				}
+			}
+		}
+
 		$wgUser = $u;
 		$wgUser->setCookies();
 
+		# save all settings (incl. new email address and/or temporary password, if applicable)
 		$wgUser->saveSettings();
 		
+		if ( !$wgEmailAuthentication || $alreadyauthenticated ) {
+			$authenticated = '';
+			$mailmsg = '';
+		} elseif ($u->mEmailAuthenticationtimestamp != 0) {
+				$authenticated = ' ' . wfMsg( 'emailauthenticated', $wgLang->timeanddate( $u->mEmailAuthenticationtimestamp, true ) );
+			} else {
+				$authenticated = ' ' . wfMsg( 'emailnotauthenticated' );
+			}
+
 		if( $this->hasSessionCookie() ) {
-			return $this->successfulLogin( wfMsg( 'loginsuccess', $wgUser->getName() ) );
+			return $this->successfulLogin( wfMsg( 'loginsuccess', $wgUser->getName() ) . $authenticated .  $mailmsg );
 		} else {
 			return $this->cookieRedirectCheck( 'login' );
 		}
@@ -307,39 +394,47 @@ class LoginForm {
 
 		$u->loadFromDatabase();
 
-		$error = $this->mailPasswordInternal( $u );
+		$error = $this->mailPasswordInternal( $u, true, $dummy );
 		if ($error === '') {
 			$this->mainLoginForm( wfMsg( 'passwordsent', $u->getName() ) );
 		} else {
 			$this->mainLoginForm( wfMsg( 'mailerror', $error ) );
 		}
-
+		return;
 	}
 
 
 	/**
 	 * @access private
 	 */
-	function mailPasswordInternal( $u ) {
-		global $wgDeferredUpdateList, $wgOutputEncoding;
+	function mailPasswordInternal( $u, $savesettings = true, &$newpassword_out ) {
 		global $wgPasswordSender, $wgDBname, $wgIP;
 		global $wgCookiePath, $wgCookieDomain;
 
 		if ( '' == $u->getEmail() ) {
 			return wfMsg( 'noemail', $u->getName() );
 		}
-		$np = User::randomPassword();
+
+		$np = $u->randomPassword();
 		$u->setNewpassword( $np );
 
+		# we want to store this new password together with other values in the calling function
+		$newpassword_out = $u->mNewpassword;
+
+		# WHY IS THIS HERE ? SHOULDN'T IT BE User::setcookie ???
 		setcookie( "{$wgDBname}Token", '', time() - 3600, $wgCookiePath, $wgCookieDomain );
+
+		if ($savesettings) {
 		$u->saveSettings();
+		}
 
 		$ip = $wgIP;
 		if ( '' == $ip ) { $ip = '(Unknown)'; }
 
-		$m = wfMsg( 'passwordremindertext', $ip, $u->getName(), $np );
+		$m = wfMsg( 'passwordremindermailbody', $ip, $u->getName(), wfUrlencode($u->getName()), $np );
 
-		$error = userMailer( $u->getEmail(), $wgPasswordSender, wfMsg( 'passwordremindertitle' ), $m );
+		require_once('UserMailer.php');
+		$error = userMailer( $u->getEmail(), $wgPasswordSender, wfMsg( 'passwordremindermailsubject' ), $m );
 		
 		return htmlspecialchars( $error );
 	}
@@ -350,7 +445,6 @@ class LoginForm {
 	 */
 	function successfulLogin( $msg ) {
 		global $wgUser;
-		global $wgDeferredUpdateList;
 		global $wgOut;
 
 		# Run any hooks; ignore results
@@ -382,6 +476,7 @@ class LoginForm {
 	function mainLoginForm( $err ) {
 		global $wgUser, $wgOut, $wgLang;
 		global $wgDBname, $wgAllowRealName, $wgEnableEmail;
+		global $wgEmailAuthentication;
 
 		if ( '' == $this->mName ) {
 			if ( 0 != $wgUser->getID() ) {
@@ -397,7 +492,6 @@ class LoginForm {
 		}
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
 
-
 		require_once( 'templates/Userlogin.php' );
 		$template =& new UserloginTemplate();
 		
@@ -410,9 +504,10 @@ class LoginForm {
 		$template->set( 'action', $titleObj->getLocalUrl( $q ) );
 		$template->set( 'error', $err );
 		$template->set( 'create', $wgUser->isAllowedToCreateAccount() );
-		$template->set( 'createemail', $wgEnableEmail && $wgUser->getID() != 0 );
+		$template->set( 'createemail', $wgEnableEmail && ($wgUser->getID() != 0) );
 		$template->set( 'userealname', $wgAllowRealName );
 		$template->set( 'useemail', $wgEnableEmail );
+		$template->set( 'useemailauthent', $wgEmailAuthentication );
 		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) );
 		
 		$wgOut->setPageTitle( wfMsg( 'userlogin' ) );

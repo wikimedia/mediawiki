@@ -166,6 +166,8 @@ class PreferencesForm {
 	 */
 	function savePreferences() {
 		global $wgUser, $wgLang, $wgOut;
+		global $wgEnableUserEmail, $wgEnableEmail;
+		global $wgEmailAuthentication;
 
 		if ( '' != $this->mNewpass ) {
 			if ( $this->mNewpass != $this->mRetypePass ) {
@@ -178,10 +180,6 @@ class PreferencesForm {
 				return;
 			}
 			$wgUser->setPassword( $this->mNewpass );
-		}
-		global $wgEnableEmail;
-		if( $wgEnableEmail ) {
-			$wgUser->setEmail( $this->mUserEmail );
 		}
 		$wgUser->setRealName( $this->mRealName );
 		$wgUser->setOption( 'language', $this->mUserLanguage );
@@ -206,7 +204,6 @@ class PreferencesForm {
 			$wgUser->setOption( "searchNs{$i}", $value );
 		}
 		
-		global $wgEnableUserEmail;
 		if( $wgEnableEmail && $wgEnableUserEmail ) {
 			$wgUser->setOption( 'disablemail', $this->mEmailFlag );
 		}
@@ -216,8 +213,38 @@ class PreferencesForm {
 			$wgUser->setOption( $tname, $tvalue );
 		}
 		$wgUser->setCookies();
-		
 		$wgUser->saveSettings();
+		
+		if( $wgEnableEmail ) {
+			$newadr = strtolower( $this->mUserEmail );
+			$oldadr = strtolower($wgUser->getEmail());
+			if (($newadr <> '') && ($newadr <> $oldadr)) { # the user has supplied a new email address on the login page
+				# prepare for authentication and mail a temporary password to newadr
+				require_once( 'SpecialUserlogin.php' );
+				if ( !$wgUser->isValidEmailAddr( $newadr ) ) {
+					$this->mainPrefsForm( wfMsg( 'invalidemailaddress' ) );
+					return;
+				}
+				$wgUser->mEmail = $newadr; # new behaviour: set this new emailaddr from login-page into user database record
+				$wgUser->mEmailAuthenticationtimestamp = 0; # but flag as "dirty" = unauthenticated
+		$wgUser->saveSettings();
+				if ($wgEmailAuthentication) {
+					# mail a temporary password to the dirty address
+					# on "save options", this user will be logged-out automatically
+					$error = LoginForm::mailPasswordInternal( $wgUser, true, $dummy );
+					if ($error === '') {
+						return LoginForm::mainLoginForm( wfMsg( 'passwordsentforemailauthentication', $wgUser->getName() ) );
+					} else {
+						return LoginForm::mainLoginForm( wfMsg( 'mailerror', $error ) );
+					}
+					# if user returns, that new email address gets authenticated in checkpassword()
+				}
+			} else {
+				$wgUser->setEmail( strtolower($this->mUserEmail) );
+				$wgUser->setCookies();
+				$wgUser->saveSettings();
+			}
+		}
 
 		$wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
 		$po = ParserOptions::newFromUser( $wgUser );
@@ -232,6 +259,7 @@ class PreferencesForm {
 
 		$this->mOldpass = $this->mNewpass = $this->mRetypePass = '';
 		$this->mUserEmail = $wgUser->getEmail();
+		$this->mUserEmailAuthenticationtimestamp = $wgUser->getEmailAuthenticationtimestamp();
 		$this->mRealName = ($wgAllowRealName) ? $wgUser->getRealName() : '';
 		$this->mUserLanguage = $wgUser->getOption( 'language' );
 		if( empty( $this->mUserLanguage ) ) {
@@ -306,7 +334,7 @@ class PreferencesForm {
 	}
 
 
-	function getToggle( $tname ) {
+	function getToggle( $tname, $trailer = false) {
 		global $wgUser, $wgLang;
 		
 		$this->mUsedToggles[$tname] = true;
@@ -317,8 +345,9 @@ class PreferencesForm {
 		} else {
 			$checked = '';
 		}		
+		$trailer =($trailer) ? $trailer : '';
 		return "<div><input type='checkbox' value=\"1\" "
-		  . "id=\"$tname\" name=\"wpOp$tname\"$checked /><label for=\"$tname\">$ttext</label></div>\n";
+		  . "id=\"$tname\" name=\"wpOp$tname\"$checked /><label for=\"$tname\">$ttext</label>$trailer</div>\n";
 	}
 
 	/**
@@ -328,7 +357,11 @@ class PreferencesForm {
 		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgUseDynamicDates, $wgValidSkinNames;
 		global $wgAllowRealName, $wgImageLimits;
 		global $wgLanguageNames, $wgDisableLangConversion;
+		global $wgEmailNotificationForWatchlistPages, $wgEmailNotificationForUserTalkPages,$wgEmailNotificationForMinorEdits;
+		global $wgRCUseModStyle, $wgRCShowWatchingUsers, $wgEmailNotificationRevealPageEditorAddress;
+		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
 		global $wgContLanguageCode;
+
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
@@ -396,21 +429,50 @@ class PreferencesForm {
 		if ( $this->mEmailFlag ) { $emfc = 'checked="checked"'; }
 		else { $emfc = ''; }
 
+		if ($wgEmailAuthentication && ($this->mUserEmail != '') ) {
+			if ($wgUser->getEmailAuthenticationtimestamp() != 0) {
+				$emailauthenticated = wfMsg('emailauthenticated',$wgLang->timeanddate($wgUser->getEmailAuthenticationtimestamp(), true ) ).'<br>';
+				$disabled = '';
+			} else {
+				$emailauthenticated = wfMsg('emailnotauthenticated').'<br>';
+				$disabled = ' '.wfMsg('disableduntilauthent');
+			}
+		} else {
+			$emailauthenticated = '';
+		}
+
+		if ($this->mUserEmail == '') {
+			$disabled = ' '.wfMsg('disablednoemail');
+		}
+
 		$ps = $this->namespacesCheckboxes();
+
+		$enotifwatchlistpages = ($wgEmailNotificationForWatchlistPages) ? $this->getToggle( 'enotifwatchlistpages', $disabled) : '';
+		$enotifusertalkpages = ($wgEmailNotificationForUserTalkPages) ? $this->getToggle( 'enotifusertalkpages', $disabled) : '';
+		$enotifminoredits = ($wgEmailNotificationForMinorEdits) ? $this->getToggle( 'enotifminoredits', $disabled) : '';
+		$enotifrevealaddr = ($wgEmailNotificationRevealPageEditorAddress) ? $this->getToggle( 'enotifrevealaddr', $disabled) : '';
+		$prefs_help_email_enotif = ( $wgEmailNotificationForWatchlistPages || $wgEmailNotificationForUserTalkPages) ? ' ' . wfMsg('prefs-help-email-enotif') : '';
+		$prefs_help_realname = '';
 
 		$wgOut->addHTML( "<fieldset>
 		<legend>".wfMsg('prefs-personal')."</legend>");
+
 			if ($wgAllowRealName) {
 			$wgOut->addHTML("<div><label>$yrn: <input type='text' name=\"wpRealName\" value=\"{$this->mRealName}\" size='20' /></label></div>");
+			$prefs_help_realname = wfMsg('prefs-help-realname').'<br>';
 		}
 		
-		global $wgEnableEmail, $wgEnableUserEmail;
 		if( $wgEnableEmail ) {
 			$wgOut->addHTML("
 			<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>" );
 			if( $wgEnableUserEmail ) {
-				$wgOut->addHTML("
-				<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" />$emf</label></div>" );
+				$wgOut->addHTML(
+				$emailauthenticated.
+				$enotifrevealaddr.
+				$enotifwatchlistpages.
+				$enotifusertalkpages.
+				$enotifminoredits.
+				"<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" />$emf.$disabled</label></div>" );
 			}
 		}
 		
@@ -465,7 +527,7 @@ class PreferencesForm {
 	<div><label>$rpw: <input type='password' name=\"wpRetypePass\" value=\"{$this->mRetypePass}\" size='20' /></label></div>
 	" . $this->getToggle( "rememberpassword" ) . "
 	</fieldset>
-	<div class='prefsectiontip'>".wfMsg('prefs-help-userdata')."</div>\n</fieldset>\n" );
+	<div class='prefsectiontip'>".$prefs_help_realname.wfMsg('prefs-help-email').$prefs_help_email_enotif."</div>\n</fieldset>\n" );
 
 	
 		# Quickbar setting
@@ -559,12 +621,15 @@ class PreferencesForm {
 		<div class='prefsectiontip'>* {$tzt}</div>
 	</fieldset>\n\n" );
 
+		$shownumberswatching = ($wgRCShowWatchingUsers) ? $this->getToggle('shownumberswatching') : '';
+		$rcusemodstyle = ($wgRCUseModStyle) ? $this->getToggle('rcusemodstyle') : '';
+
 		$wgOut->addHTML( "
 	<fieldset><legend>".wfMsg('prefs-rc')."</legend>
-		<div><label>$rcc: <input type='text' name=\"wpRecent\" value=\"$this->mRecent\" size='6' /></label></div>
-		" . $this->getToggle( "hideminor" ) .
-		$this->getToggle( "usenewrc" ) . "
-		<div><label>$stt: <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>
+		<div><label>$rcc: <input type='text' name=\"wpRecent\" value=\"$this->mRecent\" size='6' /></label></div>" .
+		$this->getToggle( "hideminor" ) . $shownumberswatching .
+		$this->getToggle( "usenewrc" ) . $rcusemodstyle . $this->getToggle('showupdated', wfMsg('updatedmarker')) .
+		"<div><label>$stt: <input type='text' name=\"wpStubs\" value=\"$this->mStubs\" size='6' /></label></div>
                 <div><label>".wfMsg('imagemaxsize')."<select name=\"wpImageSize\">");
 		
 		$imageLimitOptions='';

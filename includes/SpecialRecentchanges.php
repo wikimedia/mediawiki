@@ -18,6 +18,7 @@ function wfSpecialRecentchanges( $par ) {
 	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgTitle, $wgMemc, $wgDBname;
 	global $wgRequest, $wgSitename, $wgLanguageCode, $wgContLanguageCode;
 	global $wgFeedClasses, $wgUseRCPatrol;
+	global $wgRCUseModStyle, $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
 	$fname = 'wfSpecialRecentchanges';
 
 	# Get query parameters
@@ -115,10 +116,13 @@ function wfSpecialRecentchanges( $par ) {
 	$patrLink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
 	  $showhide[1-$hidepatrolled], wfArrayToCGI( array( 'hidepatrolled' => 1-$hidepatrolled ), $urlparams ) );
 
+	$RCUseModStyle = ($wgRCUseModStyle && $wgUser->getOption('rcusemodstyle')) ? 'AND rc_this_oldid=0 '  :  '' ;
+
 	$uid = $wgUser->getID();
-	$sql2 = "SELECT $recentchanges.*" . ($uid ? ",wl_user" : "") . " FROM $recentchanges " .
-	  ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace & 65534 " : "") .
-	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
+	# Patch for showing "updated since last visit" marker
+	$sql2 = "SELECT $recentchanges.*" . ($uid ? ",wl_user,wl_notificationtimestamp" : "") . " FROM $recentchanges " .
+	  ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") .
+	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " . $RCUseModStyle .
 	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
 
 	$res = $dbr->query( $sql2, DB_SLAVE, $fname );
@@ -161,6 +165,24 @@ function wfSpecialRecentchanges( $par ) {
 			     ! ( $hidepatrolled && $obj->rc_patrolled ) ) {
 				$rc = RecentChange::newFromRow( $obj );
 				$rc->counter = $counter++;
+
+				if ($wgShowUpdatedMarker
+					&& $wgUser->getOption( 'showupdated' )
+					&& $obj->wl_notificationtimestamp
+					&& ($obj->rc_timestamp >= $obj->wl_notificationtimestamp)) {
+						$rc->notificationtimestamp = true;
+				} else {
+					$rc->notificationtimestamp = false;
+				}
+
+				if ($wgRCShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' )) {
+					$sql3 = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_title='" . $dbr->strencode($obj->rc_title) ."' AND wl_namespace=$obj->rc_namespace" ;
+					$res3 = $dbr->query( $sql3, 'wfSpecialRecentChanges');
+					$x = $dbr->fetchObject( $res3 );
+					$rc->numberofWatchingusers = $x->n;
+				} else {
+					$rc->numberofWatchingusers = 0;
+				}
 				$s .= $list->recentChangesLine( $rc, !empty( $obj->wl_user ) );
 				--$limit;
 			}

@@ -80,7 +80,7 @@ header( "Content-type: text/html; charset=utf-8" );
 
  <b><a href="http://www.mediawiki.org/">MediaWiki</a></b> is
  Copyright (C) 2001-2004 by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
- Tim Starling, Erik M&ouml;ller, Gabriel Wicke and others.</p>
+ Tim Starling, Erik M&ouml;ller, Gabriel Wicke, Thomas Gries and others.</p>
 
  <ul>
  <li><a href="../README">Readme</a></li>
@@ -387,6 +387,12 @@ if ( $conf->Shm == 'memcached' && $conf->MCServers ) {
 	$errs["MCServers"] = "Please specify at least one server if you wish to use memcached";
 }
 
+/* default values for installation */
+$conf->Email	=importRequest("Email", "email_enabled");
+$conf->Emailuser=importRequest("Emailuser", "emailuser_enabled");
+$conf->Enotif	=importRequest("Enotif", "enotif_allpages");
+$conf->Eauthent	=importRequest("Eauthent", "eauthent_enabled");
+
 if( $conf->posted && ( 0 == count( $errs ) ) ) {
 	do { /* So we can 'continue' to end prematurely */
 		$conf->Root = ($conf->RootPW != "");
@@ -636,7 +642,8 @@ if( count( $errs ) ) {
 	<dt>
 		This will be used as the return address for password reminders and
 		may be displayed in some error conditions so visitors can get in
-		touch with you.
+		touch with you. It is also be used as the default sender address of e-mail
+		notifications (enotifs).
 	</dt>
 
 	<dd>
@@ -731,6 +738,87 @@ if( count( $errs ) ) {
 		up MediaWiki significantly. Memcached is the best solution but needs to be 
 		installed. Specify the server addresses and ports in a comma-separted list. Only 
 		use Turck shared memory if the wiki will be running on a single Apache server.
+	</dl>
+
+<h2>E-mail, e-mail notification and authentification setup</h2>
+
+<dl class="setup">
+	<dd>
+		<label class='column'>E-mail (general)</label>
+		<div>Select one:</div>
+
+		<ul class="plain">
+		<li><?php aField( $conf, "Email", "enabled", "radio", "email_enabled" ); ?></li>
+		<li><?php aField( $conf, "Email", "disabled", "radio", "email_disabled" ); ?></li>
+		</ul>
+	</dd>
+	<dt>
+		Use this to disable all e-mail functions (send a password reminder, user-to-user e-mail and e-mail notification),
+		if sending e-mails on your server doesn't work.
+	</dt>
+	<dd>
+		<label class='column'>User-to-user e-mail</label>
+		<div>Select one:</div>
+
+		<ul class="plain">
+		<li><?php aField( $conf, "Emailuser", "enabled", "radio", "emailuser_enabled" ); ?></li>
+		<li><?php aField( $conf, "Emailuser", "disabled", "radio", "emailuser_disabled" ); ?></li>
+		</ul>
+	</dd>
+	<dt>
+		Use this to disable only the user-to-user e-mail function (EmailUser).
+	</dt>
+	<dd>
+		<label class='column'>E-mail notification</label>
+		<div>Select one:</div>
+
+		<ul class="plain">
+		<li><?php aField( $conf, "Enotif", "disabled", "radio", "enotif_disabled" ); ?></li>
+		<li><?php aField( $conf, "Enotif", "enabled for changes of watch-listed and user_talk pages (recommended for small wikis; perhaps not suited for large wikis)", "radio", "enotif_allpages" ); ?></li>
+		<li><?php aField( $conf, "Enotif", "enabled for changes of user_talk pages only (suited for small and large wikis)", "radio", "enotif_usertalk" ); ?></li>
+		</ul>
+	</dd>
+	<dt>
+		<p><?php
+			$ccEnotif = htmlspecialchars( 'http://meta.wikipedia.org/Enotif' );
+			print "<a href=\"$ccEnotif\">E-mail notification</a>";
+		?>
+		 sends a notification e-mail to a user, when the user_talk page is changed
+                and/or when watch-listed pages are changed, depending on the above settings.
+		When testing this feature, be reminded, that obviously an e-mail address must be present in your preferences
+		and that your own changes never trigger notifications to be sent to yourself.</p>
+
+		<p>Users get corresponding options to select or deselect in their users' preferences.
+		The user options are not shown on the preference page, if e-mail notification is disabled.</p>
+
+		<p>There are additional options for fine tuning in /includes/DefaultSettings.php .</p>
+	</dt>
+
+	<dd>
+		<label class='column'>E-mail address authentication</label>
+		<div>Select one:</div>
+
+		<ul class="plain">
+		<li><?php aField( $conf, "Eauthent", "disabled", "radio", "eauthent_disabled" ); ?></li>
+		<li><?php aField( $conf, "Eauthent", "enabled", "radio", "eauthent_enabled" ); ?></li>
+		</ul>
+	</dd>
+	<dt>
+		<p><?php
+			$ccEauthent = htmlspecialchars( 'http://meta.wikipedia.org/Eauthent' );
+			print "<a href=\"$ccEnotif\">E-mail address authentication</a>";
+		?>
+		 uses a scheme to authenticate e-mail addresses of the users. The user who initially enters or who changes his/her stored e-mail address
+		gets a one-time temporary password mailed to that address. The user can use the original password as long as wanted, however, the stored e-mail address
+		is only authenticated at the moment when the user logs in with the one-time temporary password.<p>
+
+		<p>The e-mail address stays authenticated as long as the user does not change it; the time of authentication is indicated
+		on the user preference page.</p>
+
+		<p>If the option is enabled, only authenticated e-mail addresses can receive EmailUser mails and/or
+		e-mail notification mails.</p>
+	</dt>
+
 	</dl>
 
 <h2>Database config</h2>
@@ -853,6 +941,30 @@ function writeLocalSettings( $conf ) {
 			$turck = '#';
 	}
 
+	if ( $conf->Email == 'email_enabled' ) {
+		$enableemail = 'true';
+		$enableuseremail = ( $conf->Emailuser == 'emailuser_enabled' ) ? 'true' : 'false' ;
+		$eauthent = ( $conf->Eauthent == 'eauthent_enabled' ) ? 'true' : 'false' ;
+		switch ( $conf->Enotif ) {
+			case 'enotif_usertalk':
+				$enotifusertalk = 'true';
+				$enotifwatchlist = 'false';
+				break;
+			case 'enotif_allpages':
+				$enotifusertalk = 'true';
+				$enotifwatchlist = 'true';
+				break;
+			default:
+				$enotifusertalk = 'false';
+				$enotifwatchlist = 'false';
+		}
+	} else {
+		$enableuseremail = 'false';
+		$enableemail = 'false';
+		$eauthent = 'false';
+		$enotifusertalk = 'false';
+		$enotifwatchlist = 'false';
+	}
 
 	$file = @fopen( "/dev/urandom", "r" );
 	if ( $file ) {
@@ -912,8 +1024,20 @@ if ( \$wgCommandLineMode ) {
 \$wgUploadPath       = \"\$wgScriptPath/images\";
 \$wgUploadDirectory  = \"\$IP/images\";
 
+\$wgEnableEmail = $enableemail;
+\$wgEnableUserEmail = $enableuseremail;
+
 \$wgEmergencyContact = \"{$slconf['EmergencyContact']}\";
 \$wgPasswordSender	= \"{$slconf['PasswordSender']}\";
+
+## For a detailed description of the following switches see
+## http://meta.wikimedia.org/Enotif and http://meta.wikimedia.org/Eauthent
+## There are many more options for fine tuning available see
+## /includes/DefaultSettings.php
+## UPO means: this is also a user preference option
+\$wgEmailNotificationForUserTalkPages = $enotifusertalk; # UPO
+\$wgEmailNotificationForWatchlistPages = $enotifwatchlist; # UPO
+\$wgEmailAuthentication = $eauthent;
 
 \$wgDBserver         = \"{$slconf['DBserver']}\";
 \$wgDBname           = \"{$slconf['DBname']}\";

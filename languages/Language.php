@@ -51,14 +51,35 @@ if(isset($wgExtraNamespaces)) {
 }
 
 /* private */ $wgDefaultUserOptionsEn = array(
-	'quickbar' => 1, 'underline' => 1, 'hover' => 1,
-	'cols' => 80, 'rows' => 25, 'searchlimit' => 20,
-	'contextlines' => 5, 'contextchars' => 50,
-	'skin' => $wgDefaultSkin, 'math' => 1, 'rcdays' => 7, 'rclimit' => 50,
-	'highlightbroken' => 1, 'stubthreshold' => 0,
-	'previewontop' => 1, 'editsection'=>1,'editsectiononrightclick'=>0, 'showtoc'=>1,
-	'showtoolbar' =>1,
-	'date' => 0, 'imagesize' => 2
+	'quickbar' 		=> 1,
+	'underline' 		=> 1,
+	'hover' 		=> 1,
+	'cols'			=> 80,
+	'rows' 			=> 25,
+	'searchlimit' 		=> 20,
+	'contextlines' 		=> 5,
+	'contextchars' 		=> 50,
+	'skin' 			=> $wgDefaultSkin,
+	'math' 			=> 1,
+	'rcdays' 		=> 7,
+	'rclimit' 		=> 50,
+	'highlightbroken'	=> 1,
+	'stubthreshold' 	=> 0,
+	'previewontop' 		=> 1,
+	'editsection'		=> 1,
+	'editsectiononrightclick'=> 0,
+	'showtoc'		=> 1,
+ 	'showtoolbar' 		=> 1,
+	'date' 			=> 0,
+	'imagesize' 		=> 2,
+	'rememberpassword' 	=> 0,
+	'enotifwatchlistpages' 	=> 1,
+	'enotifusertalkpages' 	=> 1,
+	'enotifminoredits' 	=> 0,
+	'enotifrevealaddr' 	=> 0,
+	'shownumberswatching' 	=> 1,
+	'rcusemodstyle' 	=> 1,
+	'showupdated'		=> 1
 );
 
 /* private */ $wgQuickbarSettingsEn = array(
@@ -127,6 +148,13 @@ define( 'MW_DATE_USER_FORMAT', true );
 	'previewontop',
 	'previewonfirst',
 	'nocache',
+	'enotifwatchlistpages',
+	'enotifusertalkpages',
+	'enotifminoredits',
+	'enotifrevealaddr',
+	'shownumberswatching',
+	'rcusemodstyle',
+	'showupdated',
 );
 
 /* private */ $wgBookstoreListEn = array(
@@ -229,11 +257,11 @@ global $wgRightsText;
 'tog-hideminor' => 'Hide minor edits in recent changes',
 'tog-usenewrc' => 'Enhanced recent changes (not for all browsers)',
 'tog-numberheadings' => 'Auto-number headings',
-'tog-showtoolbar'=>'Show edit toolbar',
+'tog-showtoolbar'		=> 'Show edit toolbar',
 'tog-editondblclick' => 'Edit pages on double click (JavaScript)',
-'tog-editsection'=>'Enable section editing via [edit] links',
-'tog-editsectiononrightclick'=>'Enable section editing by right clicking<br /> on section titles (JavaScript)',
-'tog-showtoc'=>'Show table of contents<br />(for pages with more than 3 headings)',
+'tog-editsection'		=> 'Enable section editing via [edit] links',
+'tog-editsectiononrightclick'	=> 'Enable section editing by right clicking<br /> on section titles (JavaScript)',
+'tog-showtoc'			=> 'Show table of contents<br />(for pages with more than 3 headings)',
 'tog-rememberpassword' => 'Remember password across sessions',
 'tog-editwidth' => 'Edit box has full width',
 'tog-watchdefault' => 'Add pages you edit to your watchlist',
@@ -241,6 +269,13 @@ global $wgRightsText;
 'tog-previewontop' => 'Show preview before edit box and not after it',
 'tog-previewonfirst' => 'Show preview on first edit',
 'tog-nocache' => 'Disable page caching',
+'tog-enotifwatchlistpages' 	=> 'Send me an email on page changes (remark: existing notification flags need to be cleared manually in the watchlist)',
+'tog-enotifusertalkpages' 	=> 'Send me an email when my user talk page is changed (remark: existing notification flags need to be cleared manually in the watchlist)',
+'tog-enotifminoredits' 		=> 'Send me an email also for minor edits of pages (which usually do not trigger notification mails)',
+'tog-enotifrevealaddr' 		=> 'Reveal my email address in notification mails (when I change a page, it allows watching users to reply quickly to me)',
+'tog-shownumberswatching' 	=> 'Show the number of watching users (in recent changes view, watchlist and article page footers)',
+'tog-rcusemodstyle' 		=> 'Show recent changes in UseMod style: only the most recent change of any page is listed.',
+'tog-showupdated'		=> 'Show update marker ',
 
 # dates
 'sunday' => 'Sunday',
@@ -494,11 +529,11 @@ You can view and copy the source of this page:",
 # Login and logout pages
 #
 "logouttitle"	=> 'User logout',
-"logouttext" => "You are now logged out.
+"logouttext" 		=> "You are now logged out.<br>
 You can continue to use {{SITENAME}} anonymously, or you can log in
 again as the same or as a different user. Note that some pages may
 continue to be displayed as if you were still logged in, until you clear
-your browser cache\n",
+your browser cache.\n",
 
 'welcomecreation' => "== Welcome, $1! ==
 
@@ -523,13 +558,17 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'createaccountmail'	=> 'by email',
 'badretype'		=> 'The passwords you entered do not match.',
 'userexists'	=> 'The user name you entered is already in use. Please choose a different name.',
-'youremail'		=> 'Your email*',
+'youremail'		=> 'Your email**',
 'yourrealname'		=> 'Your real name*',
 'yourlanguage'	=> 'Interface language',
 'yourvariant'  => 'Language variant',
 'yournick'		=> 'Your nickname (for signatures)',
-'emailforlost'	=> "Fields marked with a star (*) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your
+'emailforlost'		=> "Fields marked with stars (*, **) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.<br /><br />Your real name, if you choose to provide it, will be used for giving you attribution for your work.",
+'prefs-help-email' 	=> '** <strong>Email</strong> (optional): Enables others to contact you through your user or user_talk page without the need of revealing your
+email address. It also allows the wiki to sent you a temporary password in case you forgot your current one.',
+'prefs-help-email-enotif' => 'This address is also used to send you email notifications if you enabled the options.',
+'prefs-help-realname' 	=> '* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.',
 'prefs-help-userdata' => '* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />
 * <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.',
@@ -542,20 +581,40 @@ email address to them, and it can be used to send you a new password if you forg
 'nosuchuser'	=> "There is no user by the name \"$1\".
 Check your spelling, or use the form below to create a new user account.",
 'nosuchusershort'	=> "There is no user by the name \"$1\". Check your spelling.",
-'wrongpassword'	=> 'The password you entered is incorrect. Please try again.',
-'mailmypassword' => 'Mail me a new password',
-'passwordremindertitle' => "Password reminder from {{SITENAME}}",
-'passwordremindertext' => "Someone (probably you, from IP address $1)
-requested that we send you a new {{SITENAME}} login password.
-The password for user \"$2\" is now \"$3\".
-You should log in and change your password now.",
+'wrongpassword'		=> 'The password you entered is incorrect (or missing). Please try again.',
+'mailmypassword' 	=> 'Mail me a temporary password
+because I forgot my password',
+'mailmypasswordauthent'	=> 'Mail me a temporary password
+because I forgot my password or
+for authentication of my email address',
+'passwordremindermailsubject' => "Email address authentication and temporary login password from {{SITENAME}}",
+'passwordremindermailbody' 	=> "Someone, probably you from IP address $1,
+requested that we send you a temporary one-time login password for {{SITENAME}}.
+
+This mail is also be sent for the purpose of authentication of your email address.
+The password for user \"$2\" is now \"$4\".
+
+You can now log in with this temporary password, which is valid for only one login.
+You may wish to keep using your old password if you remember it or to set a new one.
+
+{{SERVER}}{{localurl:Special:Userlogin|wpName=$3&wpPassword=$4&returnto=Special:Preferences}}",
 'noemail'		=> "There is no e-mail address recorded for user \"$1\".",
-'passwordsent'	=> "A new password has been sent to the e-mail address
+'passwordsent'		=> "A temporary password has been sent to the e-mail address
 registered for \"$1\".
 Please log in again after you receive it.",
+'passwordsentforemailauthentication'
+			=>  "A temporary password has been sent to the e-mail address newly
+registered for \"$1\".
+Please re-login with that for authentication purposes.",
 'loginend'		=> '&nbsp;',
 'mailerror' => "Error sending mail: $1",
 'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts. You can\'t make any more.',
+'emailauthenticated' 	=> 'Your email address was authenticated on $1.',
+'emailnotauthenticated'	=> 'Your email address is <strong>not yet authenticated</strong> and the advanced email features are disabled until authentication <strong>(d.u.a.)</strong>.<br>
+To authenticate, please login in with the temporary password which has been mailed to you, or request a new one on the login page.',
+'invalidemailaddress'	=> 'The email address cannot be accepted as it appears to have an invalid format. Please enter a well-formatted address or empty that field.',
+'disableduntilauthent'	=> '<strong>(d.u.a.)</strong>',
+'disablednoemail'	=> '<strong>(disabled; no email address)</strong>',
 
 # Edit page toolbar
 'bold_sample'=>'Bold text',
@@ -586,7 +645,7 @@ Please log in again after you receive it.",
 #
 'summary'		=> 'Summary',
 'subject'		=> 'Subject/headline',
-'minoredit'		=> 'This is a minor edit',
+'minoredit'		=> 'This is a minor edit.',
 'watchthis'		=> 'Watch this page',
 'savearticle'	=> 'Save page',
 'preview'		=> 'Preview',
@@ -866,6 +925,8 @@ Unselected groups will not be changed. You can unselect a group by using CTRL + 
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
 'sectionlink' => '&rarr;',
+'number_of_watching_users_RCview' 	=> '[$1]',
+'number_of_watching_users_pageview' 	=> '[$1 watching user/s]',
 
 # Upload
 #
@@ -1145,9 +1206,8 @@ $3...
 'removechecked' 	=> 'Remove checked items from watchlist',
 'watchlistcontains' => "Your watchlist contains $1 pages.",
 'watcheditlist'		=> 'Here\'s an alphabetical list of your
-watched pages. Check the boxes of pages you want to remove
-from your watchlist and click the \'remove checked\' button
-at the bottom of the screen.',
+watched content pages. Check the boxes of pages you want to remove from your watchlist and click the \'remove checked\' button
+at the bottom of the screen (deleting a content page also deletes the accompanying talk page and vice versa).',
 'removingchecked' 	=> 'Removing requested items from watchlist...',
 'couldntremove' 	=> "Couldn't remove item '$1'...",
 'iteminvalidname' 	=> "Problem with item '$1', invalid name...",
@@ -1155,6 +1215,48 @@ at the bottom of the screen.',
 'wlshowlast' 		=> "Show last $1 hours $2 days $3",
 'wlsaved'			=> 'This is a saved version of your watchlist.',
 
+'updatedmarker'		=> '<span class=\'updatedmarker\'>&nbsp;updated (since my last visit)&nbsp;</span>',
+
+'email_notification_mailer' 		=> '{{SITENAME}} Notification Mailer',
+'email_notification_infotext' 		=> '
+<strong>Email Notification</strong><p>
+<form action=\'{{localurl:Special:Watchlist|action=submit&magic=yes}}\' method=\'post\'>
+<ul>
+<li>You will be notified by email when someone changes a page which is listed in your watchlist.</li>
+<li>A flag is set so that you receive only one email on the first change.</li>
+<li>Your own edits do <b>not</b> trigger the sending of notifications.
+<li>{{MediaWiki:updatedmarker}} means that the <b><i>page has changed since your last visit and that a notification mail has been sent to you.</i></b>.</li>
+<li>The flag is automatically cleared when you visit such pages.</li>
+<li> Alternatively, you can reset all flags at once by clicking on&nbsp; <input type="submit" name="dummy" value=\'Reset all notification flags (set their status to "visited")\'><input type="hidden" name="reset" value="all"></form></li>
+</ul>
+<hr>',
+'email_notification_newpagetext'=> 'This is a new page.',
+'email_notification_to' 	=> '$WATCHINGUSERNAME_QP <$WATCHINGUSEREMAILADDR>',
+'email_notification_subject' 	=> '{{SITENAME}} page $PAGETITLE_QP has been changed by $PAGEEDITOR_QP',
+'email_notification_lastvisitedrevisiontext' => 'See {{SERVER}}{{localurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} for all changes since your last visit.',
+'email_notification_body' => 'Dear $WATCHINGUSERNAME,
+
+the {{SITENAME}} page $PAGETITLE has been changed on $PAGEEDITDATE by $PAGEEDITOR,
+see {{SERVER}}{{localurl:$PAGETITLE_RAWURL}} for the current version.
+
+$NEWPAGE
+
+Editor\'s summary: $PAGESUMMARY $PAGEMINOREDIT
+Contact the editor:
+mail {{SERVER}}{{localurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
+wiki {{SERVER}}{{localurl:User:$PAGEEDITOR_RAWURL}}
+
+There will be no other notifications in case of further changes unless you visit this page.
+You could also reset the notification flags for all your watched pages on your watchlist.
+
+             Your friendly {{SITENAME}} notification system
+
+--
+To change your watchlist settings, visit
+{{SERVER}}{{localurl:Special:Watchlist|magic=yes}}
+
+Feedback and further assistance:
+{{SERVER}}{{localurl:WikiHelpdesk}}',
 
 # Delete/protect/revert
 #
@@ -1772,10 +1874,13 @@ class Language {
 			return wfMsg($wgWeekdayNamesEn[$key-1]);
 	}
 
-	function userAdjust( $ts ) {
+	function userAdjust( $ts, $tz = false )	{
 		global $wgUser, $wgLocalTZoffset;
 
+		if (!$tz) {
 		$tz = $wgUser->getOption( 'timecorrection' );
+		}
+
 		if ( $tz === '' ) {
 			$hrDiff = isset( $wgLocalTZoffset ) ? $wgLocalTZoffset : 0;
 			$minDiff = 0;
@@ -1798,11 +1903,13 @@ class Language {
 		return date( 'YmdHis', $t );
 	}
 
-	function date( $ts, $adj = false, $format = MW_DATE_USER_FORMAT ) {
+	function date( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false ) {
 		global $wgAmericanDates, $wgUser, $wgUseDynamicDates;
 
 		$ts=wfTimestamp(TS_MW,$ts);
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
+
 		if ( $wgUseDynamicDates ) {
 			if ( $format == MW_DATE_USER_FORMAT ) {
 				$datePreference = $wgUser->getOption( 'date' );
@@ -1828,10 +1935,10 @@ class Language {
 		}
 	}
 
-	function time( $ts, $adj = false, $seconds = false ) {
+	function time( $ts, $adj = false, $seconds = false, $timecorrection = false ) {
 		$ts=wfTimestamp(TS_MW,$ts);
 
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
 		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
 		if ( $seconds ) {
@@ -1840,10 +1947,14 @@ class Language {
 		return $this->formatNum( $t );
 	}
 
-	function timeanddate( $ts, $adj = false, $format = MW_DATE_USER_FORMAT ) {
+	function timeanddate( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false, $dateandtime = false) {
 		$ts=wfTimestamp(TS_MW,$ts);
-
-		return $this->time( $ts, $adj ) . ', ' . $this->date( $ts, $adj, $format );
+		if ($dateandtime) {
+			$ret = $this->date( $ts, $adj, $format, $timecorrection ) . ', ' . $this->time( $ts, $adj, false, $timecorrection );
+		} else {
+			$ret = $this->time( $ts, $adj, false, $timecorrection ) . ', ' . $this->date( $ts, $adj, $format, $timecorrection );
+		}
+		return $ret;
 	}
 
 	function rfc1123( $ts ) {

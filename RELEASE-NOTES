@@ -3,6 +3,111 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== Version Enotif+Eauthent EN+EA v2.00/CVS, 14.12.2004 ==
+written by Thomas Gries, Berlin and Markus Arndt, Munich
+
+Executive summary for the impatient reader:
+
+Enotif adds e-mail notification to MediaWiki and sends e-mails
+to watching users when a watch-listed page or user_talk page is changed
+http://bugzilla.wikipedia.org/show_bug.cgi?id=454
+Visit the complete documentation on http://meta.wikipedia.org/Enotif
+
+Eauthent is a mechanism to use a temporary one-time password cycle
+to check whether the email address a user has entered is a valid one.
+http://bugzilla.wikipedia.org/show_bug.cgi?id=866
+Visit the complete documentation on http://meta.wikipedia.org/Eauthent
+
+The current patch has only been checked for (see DefaultSettings.php):
+
+- php mail()
+  ( = not using PEAR:Mail() module --- I do not know anyone who uses that)
+  $wgSMTP = false;
+- MySQL database
+  ( = not using PostgreSQL --- I do not know anyone who uses that)
+  $wgDBtype = "mysql";
+  $wgSearchType = "MyISAM";
+
+- STILL TODO:
+  NEW (newpageletter) and CORR (minoreditletter) markers needs
+  corresponding "spacers"
+
+- table user_newtalk dropped; changes on usertalk pages and their
+  notifications are now fully handled via existing table watchlist
+  The user interface and behavious is unchanged to previous version.
+- updaters.inc for compatibility with older mediawiki tables:
+  the conversion script converts existing user_newtalk entries
+  watchlist table entries
+  (user_newtalk) id ==> (watchlist) NS_USER_TALK:namefromId(id) timestamp=1
+- minor bug fixes:
+  updated marker now correctly shown on watchlist page
+  watching users number display with enhanced RC view + RCUseModStyle
+- wfUrlencode() instead of rawurlencode() in enotif mails
+- duplicate enotif code moved from UserTalkUpdate.php and
+  merged into UserMailer.php and using usermailer() solely
+- fixed an enotif mail text error for user names with spaces
+- fixed missing part for suppressing watching user number
+
+v1.36:
+magic watchlist shows and counts now only the content page, notwithstanding
+the content and talk page are stored separately in watchlist.
+* bug fixed: rawurlencode for pagetitles in enotif mails
+* bug fixed: link to userpages of anonymous user are correct now
+
+* Enotif v1.34
+ bugs fixed regarding missing $oldid parameter
+
+* v1.33
+* Details:
+ Implements almost all enotif options as user preferences.
+ These are only shown on the user preference page, if they are globally
+ enabled by the corresponding admin option in DefaultSettings.php.
+ Added admin feature to let enotifs appear to come from the page editor.
+ This facilitates automatic mail sorting and anti-spam filtering; feature was
+ originally proposed by Nick Triantos, thank you !
+ Page editor's email address is however only shown, if this user enabled
+ the option "reveal my email address" in user preferences. Otherwise,
+ the enotifs appear to come from WikiAdmin as usual (tricky to program,
+ but simply trust the algorithm. or look into UserMailer.php and
+ UserTalkPage.php).
+
+* Changes from previous enotif versions
+* v1.31 is an improved version with many security and also cosmetic changes
+ applied after two first reviews by Brion Vibber. v1.31 is basically the same as
+ the older Enotif v1.30 and v1.22 versions.
+
+ Added UseMod style for recent changes view so that only the most recent
+ change of any page is listed. The (diff) and (hist) still allow to retrieve the
+ older versions at users' discretion, but the RC view is much cleaner for
+ trusted environments such as medium-size companies or family wikis.
+
+* Enotif v1.30 redesign after review by Brion Vibber 25.10.2003
+
+* v1.22 "updated (since my last visit)" also shown for users without stored
+ email address in preferences, so that they can see, what watched pages
+ have changed.
+* show "updated (since my last visit)" markers in RC, history and watchlist
+* Systemvariables to suppress updated marker in all views
+* show number of watching users in RC and on bottom of articles in
+ classic skin and in monobook skin
+* Systemvariables in DefaultSettings.php to enable or disable features
+* v1.21 now suppresses displaying the marker "updated (since my last visit)"
+ in recent changes view for the older (already visited) versions of watched
+ pages - i.e. page versions before the enotif was sent do not bear that
+ marker any longer.
+* enotif mails come with a link to the diff view between current and last
+ visited version of the watching user.
+*database structure is changed automatically when installing via the
+ recommended way (starting index.php and re-using the old database name).
+	run php /maintenance/update.php
+ OR see /maintenance/archives/patch-email-notification.sql and apply the
+ command
+	ALTER TABLE  watchlist
+	ADD (wl_notificationtimestamp varchar(14) binary NOT NULL default '0');
+ manually to your database, which does not harm the non notification versions
+
+*adding a page x to the watchlist does automatically add a watch
+  for the accompanying talk_page talk:x and vice versa;
 
 == MediaWiki 1.4 BETA ==
 
