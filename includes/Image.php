@@ -27,7 +27,8 @@ class Image
 		$height,	#  |
 		$bits,		#   --- returned by getimagesize, see http://de3.php.net/manual/en/function.getimagesize.php
 		$type,		#  |
-		$attr;		# /
+		$attr,		# /
+		$attributesLoaded;
 
 	/**#@-*/
 
@@ -44,7 +45,8 @@ class Image
 		       $wgUseSharedUploads, $wgSharedUploadDirectory, 
 		       $wgHashedSharedUploadDirectory,$wgUseLatin1,
 		       $wgSharedLatin1,$wgLang;
-
+		
+		$this->attributesLoaded = false;
 		$this->name      = $name;
 		$this->title     = Title::makeTitleSafe( NS_IMAGE, $this->name );
 		$this->fromSharedDirectory = false;				
@@ -87,27 +89,7 @@ class Image
 		
 		$n = strrpos( $name, '.' );
 		$this->extension = strtolower( $n ? substr( $name, $n + 1 ) : '' );
-				
-
-		if ( $this->fileExists )
-		{
-			if( $this->extension == 'svg' ) {
-				@$gis = getSVGsize( $this->imagePath );
-			} else {
-				@$gis = getimagesize( $this->imagePath );
-			}
-			if( $gis !== false ) {
-				$this->width = $gis[0];
-				$this->height = $gis[1];
-				$this->type = $gis[2];
-				$this->attr = $gis[3];
-				if ( isset( $gis['bits'] ) )  {
-					$this->bits = $gis['bits'];
-				} else {
-					$this->bits = 0;
-				}
-			}
-		}
+		
 		$this->historyLine = 0;				
 	}
 
@@ -124,6 +106,35 @@ class Image
 		$img = new Image( $nt->getDBKey() );
 		$img->title = $nt;
 		return $img;
+	}
+
+	function loadAttributes()
+	{
+		if ( $this->fileExists ) {
+			if( $this->extension == 'svg' ) {
+				@$gis = getSVGsize( $this->imagePath );
+			} else {
+				@$gis = getimagesize( $this->imagePath );
+			}
+			if( $gis !== false ) {
+				$this->width = $gis[0];
+				$this->height = $gis[1];
+				$this->type = $gis[2];
+				$this->attr = $gis[3];
+				if ( isset( $gis['bits'] ) )  {
+					$this->bits = $gis['bits'];
+				} else {
+					$this->bits = 0;
+				}
+			}
+		} else {
+			$this->width = 0;
+			$this->height = 0;
+			$this->type = 0;
+			$this->attr = 0;
+			$this->bits = 0;
+		}
+		$this->attributesLoaded = true;
 	}
 
 	/**
@@ -179,6 +190,9 @@ class Image
 	 */
 	function getWidth()
 	{
+		if ( !$this->attributesLoaded ) {
+			loadAttributes();
+		}
 		return $this->width;
 	}
 
@@ -190,6 +204,9 @@ class Image
 	 */
 	function getHeight()
 	{
+		if ( !$this->attributesLoaded ) {
+			loadAttributes();
+		}
 		return $this->height;
 	}
 
@@ -214,6 +231,9 @@ class Image
 	 */
 	function getType()
 	{
+		if ( !$this->attributesLoaded ) {
+			loadAttributes();
+		}
 		return $this->type;
 	}
 
@@ -360,6 +380,9 @@ class Image
 	 * @access public
 	 */
 	function &getThumbnail( $width, $height=-1 ) {
+		if ( !$this->attributesLoaded ) {
+			loadAttributes();
+		}
 		if ( $height == -1 ) {
 			return $this->renderThumb( $width );
 		}
@@ -414,6 +437,10 @@ class Image
 		global $wgImageMagickConvertCommand;
 		global $wgUseImageMagick;
 		global $wgUseSquid, $wgInternalServer;
+		
+		if ( !$this->attributesLoaded ) {
+			loadAttributes();
+		}
 
 		$width = IntVal( $width );
 
