@@ -406,7 +406,7 @@ class Skin extends Linker {
 		# optional 'dmoz-like' category browser. Will be shown under the list
 		# of categories an article belong to
 		if($wgUseCategoryBrowser) {
-			$s .= '<br/><hr/>';
+			$s .= '<br /><hr />';
 
 			# get a big array of the parents tree
 			$parenttree = $wgTitle->getParentCategoryTree();
