@@ -258,8 +258,6 @@ njihet nga wiki software.",
 "error"			=> "Gabim",
 "databaseerror" => "Gabim rregjistri",
 "dberrortext"	=> "Ka ndodhur një gabim me pyetjen e rregjistrit.
-Kjo mund të ndodhi n.q.s. pyetja nuk është e vlehshme (shiko $5),
-ose mund të jetë nje yçkël e softuerit.
 Pyetja e fundit qe ti i bëre rregjistrit ishte:
 <blockquote><tt>$1</tt></blockquote>
 nga funksioni \"<tt>$2</tt>\".

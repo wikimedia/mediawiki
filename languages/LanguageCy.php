@@ -292,7 +292,6 @@ Gwelwch $1.",
 "error"	=> "Gwall",
 "databaseerror" => "Databas ar gam",
 "dberrortext" => "Mae gwall cystrawen wedi digwydd ar y databas.
-Wyrach mae hwn wedi digwydd am achos gofyniad chwilio anghyfreithlon (gwelwch $5), neu mae 'ne byg yn y meddalwedd.
 Y gofyniad olaf triodd y databas oedd:
 <blockquote><tt>$1</tt></blockquote>
 oddiwrth ffwythiant \"<tt>$2</tt>\".

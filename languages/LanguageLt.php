@@ -302,19 +302,6 @@ Jūs taip pat pasižadate, kad tai jūsų pačių rašytas turinys arba kopijuot
 'currentrev' => "Dabartinė versija",
 #'databaseerror' => "Database error",
 'dateformat' => "Datos formatas",
-/*#'dberrortext' => "A database query syntax error has occurred.
-This could be because of an illegal search query (see $5),
-or it may indicate a bug in the software.
-The last attempted database query was:
-<blockquote><tt>$1</tt></blockquote>
-from within function \"<tt>$2</tt>\".
-MySQL returned error \"<tt>$3: $4</tt>\".",*/
-/*#'dberrortextcl' => "A database query syntax error has occurred.
-The last attempted database query was:
-\"$1\"
-from within function \"$2\".
-MySQL returned error \"$3: $4\".
-",*/
 'deadendpages' => "Straipsniai-aklavietės",
 #'debug' => "Debug",
 'defaultns' => "Pagal nutylėjimą ieškoti šiose vardų erdvėse:",

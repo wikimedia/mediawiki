@@ -253,8 +253,7 @@ require_once( "LanguageUtf8.php" );
 #
 "error"			=> "Napaka",
 "databaseerror"         => "Napaka podatkovne baze",
-"dberrortext"	        => "Nastopila je skladenjska povpraševanja podatkovne baze. To je lahko zaradi nepravilnega iskalnega povpraševanja (glej $5),
-ali pa lahko nakazuje hrošča v programju.
+"dberrortext"	        => "Nastopila je skladenjska povpraševanja podatkovne baze.
 Zadnje poskušano povpraševanje podatkovne baze je bilo:
 <blockquote><tt>$1</tt></blockquote>
 iz telesa funkcije \"<tt>$2</tt>\".

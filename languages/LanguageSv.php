@@ -322,7 +322,7 @@ hittas av Wikipediaprogramvaran.",
 //
 "error"                 => "Fel",
 "databaseerror"         => "Databasfel",
-"dberrortext"           => "Ett syntaxfel i databasfrågan har uppstått. Detta kan bero på en felaktig sökfråga (se $5) eller det kan bero på ett fel i programvaran.
+"dberrortext"           => "Ett syntaxfel i databasfrågan har uppstått.
 Den senste utförda databasfrågan var:
 <blockquote><tt>$1</tt></blockquote>
 från funktionen \"<tt>$2</tt>\".

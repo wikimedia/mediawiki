@@ -241,10 +241,10 @@ Vedi $1.",
 #
 "error"			=> "Errore",
 "databaseerror" => "Errore del database ",
-"dberrortext"	=> "Errore di sintassi nella richiesta inoltrata al database.<br>Potrebbe trattarsi di una richiesta non consentita (vedi $5), oppure potrebbe esserci un errore software.<br>
-L'ultima richiesta inoltrata al database è stata:<br>
+"dberrortext"	=> "Errore di sintassi nella richiesta inoltrata al database.
+L'ultima richiesta inoltrata al database è stata:
 <blockquote><tt>$1</tt></blockquote>
-dalla funzione \"<tt>$2</tt>\".<br>
+dalla funzione \"<tt>$2</tt>\".
 MySQL ha restituito un errore \"<tt>$3: $4</tt>\".",
 "noconnect"		=> "Connessione al database fallita su $1",
 "nodb"			=> "Selezione del database $1 fallita",

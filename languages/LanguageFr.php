@@ -303,7 +303,7 @@ Voir $1.",
 #
 "error"		=> "Erreur",
 "databaseerror" => "Erreur base de données",
-"dberrortext"	=> "Erreur de syntaxe dans la base de données. Cette erreur peut être causée par une requête de recherche incorrecte (voir $5), ou une erreur dans le logiciel. La dernière requête traitée par la base de données était :
+"dberrortext"	=> "Erreur de syntaxe dans la base de données. La dernière requête traitée par la base de données était :
 <blockquote><tt>$1</tt></blockquote>
 depuis la fonction \"<tt>$2</tt>\".
 MySQL a renvoyé l'erreur \"<tt>$3: $4</tt>\".",

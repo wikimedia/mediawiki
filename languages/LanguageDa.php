@@ -302,8 +302,6 @@ kan genkendes af Wikipediasoftwaren.",
 "error"			=> "Fejl",
 "databaseerror" => "Databasefejl",
 "dberrortext"	=> "Der er sket en syntaksfejl i en databaseforespørgsel.
-Dette kan være på grund af en illegal forespørgsel (se $5),
-eller det kan betyde en fejl i softwaren.
 Den sidst forsøgte databaseforespørgsel var:
 <blockquote><tt>$1</tt></blockquote>
 fra funktionen \"<tt>$2</tt>\".

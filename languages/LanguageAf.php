@@ -239,9 +239,7 @@
 #
 "error"			=> "Fout",
 "databaseerror" => "Databasisfout",
-"dberrortext"	=> "Sintaksisfout in databasisnavraag 
-as gevolg van verbode navraag (sien $5), 
-of fout in die sagteware. 
+"dberrortext"	=> "Sintaksisfout in databasisnavraag.
 Die laaste navraag was:
 <blockquote><tt>$1</tt></blockquote>
 van funksie \"<tt>$2</tt>\".

@@ -388,8 +388,6 @@ an leathanach speisialta a d'iarr tú ar.",
 "error"         => "Earráid",
 "databaseerror"     => "Earráid sa bunachar sonraí­",
 "dberrortext"   => "Tharlaigh earráid chomhréir in órdú chuig an bhunachar sonraí­.
-Tá seans go cuireadh órdú fiosraithe neamhcheart (féach ar $5),
-nó tá seans go bhfuil fabht san oideasra.
 <blockquote><tt>$1</tt></blockquote>, ón suim \"<tt>$2</tt>\",
 an órdú deireanach chuig an bhunachar sonrai.
 Chuir MySQL an earráid seo ar ais: \"<tt>$3: $4</tt>\".",

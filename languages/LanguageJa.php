@@ -233,8 +233,6 @@ require_once( "LanguageUtf8.php" );
 "error"			=> "エラー",
 "databaseerror" => "データベース・エラー",
 "dberrortext"	=> "データベース検索の文法エラー。
-検索問合わせが間違っているか($5 を参照),
-あるいはソフトウェアのバグかもしれません。
 最後に実行を試みた問い合わせ:
 <blockquote><tt>$1</tt></blockquote>
 from within function \"<tt>$2</tt>\".

@@ -266,13 +266,6 @@ require_once( "LanguageUtf8.php" );
 # I'll leave this part in English for admins who don't understand Korean.
 "error"			=> "Error",
 "databaseerror" => "Database error",
-"dberrortext"	=> "A database query syntax error has occurred.
-This could be because of an illegal search query (see $5),
-or it may indicate a bug in the software.
-The last attempted database query was:
-<blockquote><tt>$1</tt></blockquote>
-from within function \"<tt>$2</tt>\".
-MySQL returned error \"<tt>$3: $4</tt>\".",
 "noconnect"		=> "Could not connect to DB on $1",
 "nodb"			=> "Could not select database $1",
 "readonly"		=> "Database locked",

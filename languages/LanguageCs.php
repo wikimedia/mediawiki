@@ -228,7 +228,7 @@
 #
 "error"         => "Chyba",
 "databaseerror" => "Databázová chyba",
-"dberrortext"	=> "Syntaktická chyba se stala při dotazu na databázi. Možná ji způsobila nedovolená otázka. (viz $1), nebo to indikuje chybu v programovém vybavení. Jako poslední jste volil(a) otázku:
+"dberrortext"	=> "Syntaktická chyba se stala při dotazu na databázi.  Jako poslední jste volil(a) otázku:
 <blockquote><tt>$1</tt></blockquote>
 z funkce \"<tt>$2</tt>\". 
 MySQL vrátil chybu  \"<tt>$3: $4</tt>\".",

@@ -313,8 +313,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "error" => "Fehler",
 "databaseerror" => "Fehler in der Datenbank",
 "dberrortext"	=> "Es gab einen Syntaxfehler in der Datenbankabfrage.
-Das könnte eine illegale Suchanfrage sein (siehe $5),
-oder ein Softwarefehler. Die letzte Datenbankabfrage lautete:
+Die letzte Datenbankabfrage lautete:
 <blockquote><tt>$1</tt></blockquote>
 aus der Funktion \"<tt>$2</tt>\".
 MySQL meldete den Fehler \"<tt>$3: $4</tt>\".",
