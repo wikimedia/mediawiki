@@ -171,11 +171,11 @@ class User {
 		foreach ( $defOpt as $oname => $val ) {
 			$this->mOptions[$oname] = $val;
 		}		
-        /* 
-           default language setting
-        */
-        $this->setOption('variant', $wgContLang->getPreferredVariant());
-        $this->setOption('language', $wgContLang->getPreferredVariant());
+		/* 
+		  default language setting
+		*/
+		$this->setOption('variant', $wgContLang->getPreferredVariant());
+		$this->setOption('language', $wgContLang->getPreferredVariant());
 	}
 
 	/**
@@ -898,12 +898,12 @@ class User {
 		$confstr .= '!' . $this->getOption( 'showtoc' );
 		$confstr .= '!' . $this->getOption( 'date' );
 		$confstr .= '!' . $this->getOption( 'numberheadings' );
-
-        // add in language variant option if there are multiple variants
-        // supported by the language object
-        if(sizeof($wgContLang->getVariants())>1) {
-             $confstr .= '!' . $this->getOption( 'variant' );
-        }
+		$confstr .= '!' . $this->getOption( 'language' );
+		// add in language variant option if there are multiple variants
+		// supported by the language object
+		if(sizeof($wgContLang->getVariants())>1) {
+			$confstr .= '!' . $this->getOption( 'variant' );
+		}
 
 		$this->mHash = $confstr;
 		return $confstr ;
