@@ -19,8 +19,7 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 		return;
 	}
 	$nt = Title::newFromURL( $target );
-	$sub = str_replace( "$1", $nt->getPrefixedText(), wfMsg( "rclsub" ) );
-	$wgOut->setSubtitle( $sub );
+	$wgOut->setSubtitle( wfMsg( "rclsub", $nt->getPrefixedText() ) );
 
 	if ( ! $days ) {
 		$days = $wgUser->getOption( "rcdays" );

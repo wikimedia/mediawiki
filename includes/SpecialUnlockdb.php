@@ -74,8 +74,7 @@ class DBUnlockForm {
 
 		$wgOut->setPagetitle( wfMsg( "unlockdb" ) );
 		$wgOut->setSubtitle( wfMsg( "unlockdbsuccesssub" ) );
-		$text = str_replace( "$1", $ip, wfMsg( "unlockdbsuccesstext" ) );
-		$wgOut->addWikiText( $text );
+		$wgOut->addWikiText( wfMsg( "unlockdbsuccesstext", $ip ) );
 	}
 }
 

@@ -219,8 +219,7 @@ class MovePageForm {
 		$fields = array( "oldtitle", "newtitle" );
 		wfCleanFormFields( $fields );
 
-		$text = str_replace( "$1", $oldtitle, wfMsg( "pagemovedtext" ) );
-		$text = str_replace( "$2", $newtitle, $text );
+		$text = wfMsg( "pagemovedtext", $oldtitle, $newtitle );
 		$wgOut->addWikiText( $text );
 
 		if ( 1 == $talkmoved ) {

@@ -20,12 +20,10 @@ function wfSpecialStatistics()
 	$edits = $row->ss_total_edits;
 	$good = $row->ss_good_articles;
 
-	$text = str_replace( "$1", $total, wfMsg( "sitestatstext" ) );
-	$text = str_replace( "$2", $good, $text );
-	$text = str_replace( "$3", $views, $text );
-	$text = str_replace( "$4", $edits, $text );
-	$text = str_replace( "$5", sprintf( "%.2f", $total ? $edits / $total : 0 ), $text );
-	$text = str_replace( "$6", sprintf( "%.2f", $edits ? $views / $edits : 0 ), $text );
+	$text = wfMsg( "sitestatstext",
+		$total, $good, $views, $edits,
+		sprintf( "%.2f", $total ? $edits / $total : 0 ),
+		sprintf( "%.2f", $edits ? $views / $edits : 0 ) );
 
 	$wgOut->addHTML( $text );
 	$wgOut->addHTML( "<h2>" . wfMsg( "userstats" ) . "</h2>\n" );
@@ -44,9 +42,7 @@ function wfSpecialStatistics()
 	$sk = $wgUser->getSkin();
 	$ap = $sk->makeKnownLink( wfMsg( "administrators" ), "" );
 
-	$text = str_replace( "$1", $total, wfMsg( "userstatstext" ) );
-	$text = str_replace( "$2", $admins, $text );
-	$text = str_replace( "$3", $ap, $text );
+	$text = wfMsg( "userstatstext", $total, $admins, $ap );
 	$wgOut->addHTML( $text );
 }
 
