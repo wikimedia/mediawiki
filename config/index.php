@@ -735,7 +735,7 @@ function writeLocalSettings( $conf ) {
 	$ugly = ($conf->prettyURLs ? "# " : "");
 	$rights = ($conf->RightsUrl) ? "" : "# ";
 	
-	$file = @fopen( "/dev/random", "r" );
+	$file = @fopen( "/dev/urandom", "r" );
 	if ( $file ) {
 		$proxyKey = bin2hex( fread( $file, 32 ) );
 		fclose( $file );
@@ -914,11 +914,13 @@ function getLanguageList() {
 	while( false !== ($f = readdir( $d ) ) ) {
 		if( preg_match( '/Language([A-Z][a-z]+)\.php$/', $f, $m ) ) {
 			$code = strtolower( $m[1] );
-			if( in_array( $code, $latin1 ) ) {
-				$codes[$code] = "$code - " . $wgLanguageNames[$code] . " - Unicode";
-				$codes[$code.'-latin1'] = "$code - " . $wgLanguageNames[$code] . " - Latin-1";
-			} else {
-				$codes[$code] = "$code - " . $wgLanguageNames[$code];
+			if ( array_key_exists( $code, $wgLanguageNames ) ) {
+				if( in_array( $code, $latin1 ) ) {
+					$codes[$code] = "$code - " . $wgLanguageNames[$code] . " - Unicode";
+					$codes[$code.'-latin1'] = "$code - " . $wgLanguageNames[$code] . " - Latin-1";
+				} else {
+					$codes[$code] = "$code - " . $wgLanguageNames[$code];
+				}
 			}
 		}
 	}
