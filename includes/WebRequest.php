@@ -82,20 +82,33 @@ class WebRequest {
 	}
 	
 	/**
-	 * Recursively normalizes UTF-8 strings in the given array.
+	 * Recursively normalizes strings in the given array.
+	 * For Latin-1, strips illegal XML characters only.
+	 * For Unicode, marks illegal chars and normalizes to form C.
+	 *
 	 * @param array $data string or array
-	 * @return cleaned-up version of the given
+	 * @return mixed cleaned-up version of the given
 	 * @private
 	 */
 	function normalizeUnicode( $data ) {
+		global $wgUseLatin1;
 		if( is_array( $data ) ) {
 			foreach( $data as $key => $val ) {
 				$data[$key] = $this->normalizeUnicode( $val );
 			}
+			return $data;
 		} else {
-			$data = UtfNormal::cleanUp( $data );
+			if( $wgUseLatin1 ) {
+				# Strip control characters not legal in XML.
+				return preg_replace(
+					'/[\x00-\x08\x0b\x0c\x0e-\x1f]/',
+					'',
+					$data );
+			} else {
+				require_once( 'normal/UtfNormal.php' );
+				return UtfNormal::cleanUp( $data );
+			}
 		}
-		return $data;
 	}
 	
 	/**
@@ -108,7 +121,7 @@ class WebRequest {
 	 */
 	function getGPCVal( &$arr, $name, $default ) {
 		if( isset( $arr[$name] ) ) {
-			global $wgUseLatin1, $wgServer, $wgContLang;
+			global $wgServer, $wgContLang;
 			$data = $arr[$name];
 			if( isset( $_GET[$name] ) &&
 				( empty( $_SERVER['HTTP_REFERER'] ) ||
@@ -119,11 +132,7 @@ class WebRequest {
 					$data = $wgContLang->checkTitleEncoding( $data );
 				}
 			}
-			if( !$wgUseLatin1 ) {
-				require_once( 'normal/UtfNormal.php' );
-				$data = $this->normalizeUnicode( $data );
-			}
-			return $data;
+			return $this->normalizeUnicode( $data );
 		} else {
 			return $default;
 		}
@@ -144,7 +153,9 @@ class WebRequest {
 		# Also, strip CRLF line endings down to LF to achieve consistency.
 		global $wgContLang;
 		if( isset( $arr[$name] ) ) {
-			return str_replace( "\r\n", "\n", $wgContLang->recodeInput( $arr[$name] ) );
+			$data = str_replace( "\r\n", "\n",
+				$wgContLang->recodeInput( $arr[$name] ) );
+			return $this->normalizeUnicode( $data );
 		} else {
 			return $default;
 		}
