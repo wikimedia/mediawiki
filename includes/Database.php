@@ -265,8 +265,12 @@ class Database {
 	function getArray( $table, $vars, $conds, $fname = "Database::getArray" )
 	{
 		$vars = implode( ",", $vars );
-		$where = Database::makeList( $conds, LIST_AND );
-		$sql = "SELECT $vars FROM $table WHERE $where LIMIT 1";
+		if ( $conds !== false ) {
+			$where = Database::makeList( $conds, LIST_AND );
+			$sql = "SELECT $vars FROM $table WHERE $where LIMIT 1";
+		} else {
+			$sql = "SELECT $vars FROM $table LIMIT 1";
+		}
 		$res = $this->query( $sql, $fname );
 		if ( $res === false || !$this->numRows( $res ) ) {
 			return false;
