@@ -1512,6 +1512,10 @@ class Article {
 			return false;
 		}
 	}
+
+	function getTouched() {
+		return $this->mTouched;
+	}
 	
 	/* static */ function incViewCount( $id )
 	{
@@ -1567,7 +1571,7 @@ class Article {
 
 	# This is called on page move and undelete, as well as edit	
 	/* static */ function onArticleCreate($title_obj){
-		global $wgEnablePersistentLC, $wgEnableParserCache, $wgUseSquid, $wgDeferredUpdateList;
+		global $wgEnablePersistentLC, $wgUseSquid, $wgDeferredUpdateList;
 
 		$titles = $title_obj->getBrokenLinksTo();
 		
@@ -1585,30 +1589,19 @@ class Article {
 		if ( $wgEnablePersistentLC ) {
 			LinkCache::linksccClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
 		}
-
-		# Clear parser cache (not really used)
-		if ( $wgEnableParserCache ) {
-			OutputPage::parsercacheClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
-		}
 	}
 
 	/* static */ function onArticleDelete($title_obj){
-		global $wgEnablePersistentLC, $wgEnableParserCache;
+		global $wgEnablePersistentLC;
 		if ( $wgEnablePersistentLC ) {
 			LinkCache::linksccClearLinksTo( $title_obj->getArticleID() );
-		}
-		if ( $wgEnableParserCache ) {
-			OutputPage::parsercacheClearLinksTo( $title_obj->getArticleID() );
 		}
 	}
 
 	/* static */ function onArticleEdit($title_obj){
-		global $wgEnablePersistentLC, $wgEnableParserCache;
+		global $wgEnablePersistentLC;
 		if ( $wgEnablePersistentLC ) {
 			LinkCache::linksccClearPage( $title_obj->getArticleID() );
-		}
-		if ( $wgEnableParserCache ) {
-			OutputPage::parsercacheClearPage( $title_obj->getArticleID(), $title_obj->getNamespace() );
 		}
 	}
 }
