@@ -17,6 +17,8 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+require_once( 'Revision.php' );
+
 /**
  *
  * @package MediaWiki
@@ -90,31 +92,35 @@ function page2xml( $page, $curonly, $full = false ) {
 	}
 
 	$dbr =& wfGetDB( DB_SLAVE );
-	$s = $dbr->selectRow( 'cur', array( 'cur_id as id','cur_timestamp as timestamp','cur_user as user',
-		'cur_user_text as user_text', 'cur_restrictions as restrictions','cur_comment as comment',
-		'cur_text as text' ), $title->curCond(), $fname );
-	if( $s !== false ) {
+	$s = $dbr->selectRow( 'page',
+		array( 'page_id', 'page_restrictions' ),
+		array( 'page_namespace' => $title->getNamespace(),
+			   'page_title'     => $title->getDbkey() ) );
+	if( $s ) {
 		$tl = xmlsafe( $title->getPrefixedText() );
 		$xml = "  <page>\n";
 		$xml .= "    <title>$tl</title>\n";
+		
 		if( $full ) {
-			$xml .= "    <id>$s->id</id>\n";
+			$xml .= "    <id>$s->page_id</id>\n";
 		}
-		if( $s->restrictions ) {
-			$xml .= "    <restrictions>$s->restrictions</restrictions>\n";
+		if( $s->page_restrictions ) {
+			$xml .= "    <restrictions>" . xmlsafe( $s->page_restrictions ) . "</restrictions>\n";
 		}
-		if( !$curonly ) {
-			$res = $dbr->select( 'old', array( 'old_id as id','old_timestamp as timestamp', 
-				'old_user as user', 'old_user_text as user_text', 'old_comment as comment', 
-				'old_text as text', 'old_flags as flags' ), $title->oldCond(), 
-				$fname, array( 'ORDER BY' => 'old_timestamp' )
-			);
 
-			while( $s2 = $dbr->fetchObject( $res ) ) {
-				$xml .= revision2xml( $s2, $full, false );
-			}
+		if( $curonly ) {
+			$res = Revision::fetchRevision( $title );
+		} else {
+			$res = Revision::fetchAllRevisions( $title );
 		}
-		$xml .= revision2xml( $s, $full, true );
+		if( $res ) {
+			while( $s = $res->fetchObject() ) {
+				$rev = new Revision( $s );
+				$xml .= revision2xml( $rev, $full, false );
+			}
+			$res->free();
+		}
+		
 		$xml .= "  </page>\n";
 		wfProfileOut( $fname );
 		return $xml;
@@ -124,31 +130,40 @@ function page2xml( $page, $curonly, $full = false ) {
 	}
 }
 
-function revision2xml( $s, $full, $cur ) {
+/**
+ * @return string
+ * @param Revision $rev
+ * @param bool $full
+ * @access private
+ */
+function revision2xml( $rev, $full ) {
 	$fname = 'revision2xml';
 	wfProfileIn( $fname );
 	
-	$ts = wfTimestamp2ISO8601( $s->timestamp );
 	$xml = "    <revision>\n";
-	if($full && !$cur)
-		$xml .= "    <id>$s->id</id>\n";
+	if( $full )
+		$xml .= "    <id>" . $rev->getId() . "</id>\n";
+	
+	$ts = wfTimestamp2ISO8601( $rev->getTimestamp() );
 	$xml .= "      <timestamp>$ts</timestamp>\n";
-	if($s->user) {
-		$u = "<username>" . xmlsafe( $s->user_text ) . "</username>";
-		if($full)
-			$u .= "<id>$s->user</id>";
+	
+	if( $rev->getUser() ) {
+		$u = "<username>" . xmlsafe( $rev->getUserText() ) . "</username>";
+		if( $full )
+			$u .= "<id>" . $rev->getUser() . "</id>";
 	} else {
-		$u = "<ip>" . xmlsafe( $s->user_text ) . "</ip>";
+		$u = "<ip>" . xmlsafe( $rev->getUserText() ) . "</ip>";
 	}
 	$xml .= "      <contributor>$u</contributor>\n";
-	if( !empty( $s->minor ) ) {
+	
+	if( $rev->isMinor() ) {
 		$xml .= "      <minor/>\n";
 	}
-	if($s->comment != "") {
-		$c = xmlsafe( $s->comment );
+	if($rev->getComment() != "") {
+		$c = xmlsafe( $rev->getComment() );
 		$xml .= "      <comment>$c</comment>\n";
 	}
-	$t = xmlsafe( Article::getRevisionText( $s, "" ) );
+	$t = xmlsafe( $rev->getText() );
 	$xml .= "      <text>$t</text>\n";
 	$xml .= "    </revision>\n";
 	wfProfileOut( $fname );

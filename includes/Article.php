@@ -7,7 +7,8 @@
 /**
  * Need the CacheManager to be loaded
  */
-require_once ( 'CacheManager.php' );
+require_once( 'CacheManager.php' );
+require_once( 'Revision.php' );
 
 $wgArticleCurContentFields = false;
 $wgArticleOldContentFields = false;
@@ -56,96 +57,6 @@ class Article {
 		$this->mCountAdjustment = 0;
 		$this->mTouched = '19700101000000';
 		$this->mForUpdate = false;
-	}
-
-	/**
-	  * Get revision text associated with an old or archive row
-	  * $row is usually an object from wfFetchRow(), both the flags and the text
-	  * field must be included
-	  * @static
-	  * @param integer $row Id of a row
-	  * @param string $prefix table prefix (default 'old_')
-	  * @return string $text|false the text requested
-	*/
-	function getRevisionText( $row, $prefix = 'old_' ) {
-		$fname = 'Article::getRevisionText';
-		wfProfileIn( $fname );
-		
-		# Get data
-		$textField = $prefix . 'text';
-		$flagsField = $prefix . 'flags';
-
-		if( isset( $row->$flagsField ) ) {
-			$flags = explode( ',', $row->$flagsField );
-		} else {
-			$flags = array();
-		}
-
-		if( isset( $row->$textField ) ) {
-			$text = $row->$textField;
-		} else {
-			wfProfileOut( $fname );
-			return false;
-		}
-
-		if( in_array( 'gzip', $flags ) ) {
-			# Deal with optional compression of archived pages.
-			# This can be done periodically via maintenance/compressOld.php, and
-			# as pages are saved if $wgCompressRevisions is set.
-			$text = gzinflate( $text );
-		}
-			
-		if( in_array( 'object', $flags ) ) {
-			# Generic compressed storage
-			$obj = unserialize( $text );
-
-			# Bugger, corrupted my test database by double-serializing
-			if ( !is_object( $obj ) ) {
-				$obj = unserialize( $obj );
-			}
-
-			$text = $obj->getText();
-		}
-	
-		global $wgLegacyEncoding;
-		if( $wgLegacyEncoding && !in_array( 'utf-8', $flags ) ) {
-			# Old revisions kept around in a legacy encoding?
-			# Upconvert on demand.
-			global $wgInputEncoding, $wgContLang;
-			$text = $wgContLang->iconv( $wgLegacyEncoding, $wgInputEncoding, $text );
-		}
-		wfProfileOut( $fname );
-		return $text;
-	}
-
-	/**
-	 * If $wgCompressRevisions is enabled, we will compress data.
-	 * The input string is modified in place.
-	 * Return value is the flags field: contains 'gzip' if the
-	 * data is compressed, and 'utf-8' if we're saving in UTF-8
-	 * mode.
-	 *
-	 * @static
-	 * @param mixed $text reference to a text
-	 * @return string
-	 */
-	function compressRevisionText( &$text ) {
-		global $wgCompressRevisions, $wgUseLatin1;
-		$flags = array();
-		if( !$wgUseLatin1 ) {
-			# Revisions not marked this way will be converted
-			# on load if $wgLegacyCharset is set in the future.
-			$flags[] = 'utf-8';
-		}
-		if( $wgCompressRevisions ) {
-			if( function_exists( 'gzdeflate' ) ) {
-				$text = gzdeflate( $text );
-				$flags[] = 'gzip';
-			} else {
-				wfDebug( "Article::compressRevisionText() -- no zlib support, not compressing\n" );
-			}
-		}
-		return implode( ',', $flags );
 	}
 
 	/**
@@ -394,7 +305,7 @@ class Article {
 		# If we got a redirect, follow it (unless we've been told
 		# not to by either the function parameter or the query
 		if ( !$oldid && !$noredir ) {
-			$rt = Title::newFromRedirect( Article::getRevisionText( $s ) );
+			$rt = Title::newFromRedirect( Revision::getRevisionText( $s ) );
 			# process if title object is valid and not special:userlogout
 			if ( $rt && ! ( $rt->getNamespace() == NS_SPECIAL && $rt->getText() == 'Userlogout' ) ) {
 				# Gotta hand redirects to special pages differently:
@@ -443,7 +354,7 @@ class Article {
 		$this->mTitle->mRestrictionsLoaded = true;
 		$this->mTouched = wfTimestamp( TS_MW, $s->page_touched );
 
-		$this->mContent = Article::getRevisionText( $s );
+		$this->mContent = Revision::getRevisionText( $s );
 		
 		$this->mUser = $s->rev_user;
 		$this->mUserText = $s->rev_user_text;
@@ -799,7 +710,7 @@ class Article {
 		$isminor = ( $isminor && $wgUser->getID() ) ? 1 : 0;
 		
 		$mungedText = $text;
-		$flags = Article::compressRevisionText( $mungedText );
+		$flags = Revision::compressRevisionText( $mungedText );
 
 		$dbw =& wfGetDB( DB_MASTER );
 
@@ -891,7 +802,7 @@ class Article {
 			$fname );
 		$obj = $dbw->fetchObject( $result );
 		$dbw->freeResult( $result );
-		$oldtext = Article::getRevisionText( $obj );
+		$oldtext = Revision::getRevisionText( $obj );
 		return $oldtext;
 	}
 	
@@ -1026,7 +937,7 @@ class Article {
 			$won = wfInvertTimestamp( $now );
 
 			$mungedText = $text;
-			$flags = Article::compressRevisionText( $newtext );
+			$flags = Revision::compressRevisionText( $newtext );
 			
 			$lastRevision = $dbw->selectField(
 				'page', 'page_latest', array( 'page_id' => $this->getId() ) );
@@ -1517,7 +1428,7 @@ class Article {
 				$text=$s->cur_text;
 			} else {
 				if($old) {
-					$text = Article::getRevisionText( $old );
+					$text = Revision::getRevisionText( $old );
 					$blanked = true;
 				}
 
@@ -1849,7 +1760,7 @@ class Article {
 		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->addHTML( '<h2>' . htmlspecialchars( $newcomment ) . "</h2>\n<hr />\n" );
-		$this->updateArticle( Article::getRevisionText( $s ), $newcomment, 1, $this->mTitle->userIsWatching(), $bot );
+		$this->updateArticle( Revision::getRevisionText( $s ), $newcomment, 1, $this->mTitle->userIsWatching(), $bot );
 		Article::onArticleEdit( $this->mTitle );
 		$wgOut->returnToMain( false );
 	}

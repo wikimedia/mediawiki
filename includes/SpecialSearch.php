@@ -24,6 +24,7 @@
  */
 
 require_once( 'SearchEngine.php' );
+require_once( 'Revision.php' );
 
 function wfSpecialSearch( $par='' ) {
 	global $wgRequest, $wgUser;
@@ -305,7 +306,7 @@ class SpecialSearch {
 		if ( '' == $contextchars ) { $contextchars = 50; }
 
 		$link = $sk->makeKnownLinkObj( $t, '' );
-		$text = Article::getRevisionText( $row );
+		$text = Revision::getRevisionText( $row );
 		$size = wfMsg( 'nbytes', strlen( $text ) );
 
 		$lines = explode( "\n", $text );

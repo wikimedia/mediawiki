@@ -10,6 +10,8 @@
  * @package MediaWiki
  */
 
+require_once( 'Revision.php' );
+
 /**
  * @todo document
  * @package MediaWiki
@@ -92,31 +94,19 @@ class RawPage {
 		$fname = 'RawPage::getrawtext';
 		
 		if( !$this->mTitle ) return '';
-		$dbr =& wfGetDB( DB_SLAVE );
-		extract( $dbr->tableNames( 'revision', 'page', 'text' ) );
-
-		$t = $dbr->strencode( $this->mTitle->getDBKey() );
-		$ns = $this->mTitle->getNamespace();
-		# special case
-		if($ns == NS_MEDIAWIKI) {
-			$rawtext = wfMsg($t);
+		
+		# Special case for MediaWiki: messages; we can hit the message cache.
+		if( $this->mTitle->getNamespace() == NS_MEDIAWIKI) {
+			$rawtext = wfMsg( $this->mTitle->getDbkey() );
 			return $rawtext;
 		}
+		
 		# else get it from the DB
-		$sql = "SELECT old_text AS text, rev_timestamp AS timestamp
-			FROM $text, $revision";
-		if(!empty($this->mOldId)) {
-			$sql .= " WHERE old_id={$this->mOldId} AND rev_id={$this->mOldId}";
-		} else {
-			$sql .= ", $page
-				WHERE page_namespace=$ns AND page_title='$t'
-				  AND page_latest=rev_id AND rev_id=old_id";
-		}
-		$res = $dbr->query( $sql, $fname );
-		if( $s = $dbr->fetchObject( $res ) ) {
-			$rawtext = Article::getRevisionText( $s, "" );
-			header( 'Last-modified: '.gmdate( "D, j M Y H:i:s", wfTimestamp( TS_UNIX, $s->timestamp )).' GMT' );
-			return $rawtext;
+		$rev = Revision::newFromTitle( $this->mTitle, $this->mOldId );
+		if( $rev ) {
+			$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
+			header( 'Last-modified: ' . $lastmod );
+			return $rev->getText();
 		} else {
 			return '';
 		}

@@ -36,7 +36,7 @@ class ArticleTest extends PHPUnit_TestCase {
 		$row->old_text = 'This is a bunch of revision text.';
 		$this->assertEquals(
 			'This is a bunch of revision text.',
-			Article::getRevisionText( $row ) );
+			Revision::getRevisionText( $row ) );
 	}
 	
 	function testGetRevisionTextGzip() {
@@ -45,7 +45,7 @@ class ArticleTest extends PHPUnit_TestCase {
 		$row->old_text = gzdeflate( 'This is a bunch of revision text.' );
 		$this->assertEquals(
 			'This is a bunch of revision text.',
-			Article::getRevisionText( $row ) );
+			Revision::getRevisionText( $row ) );
 	}
 	
 	function testGetRevisionTextUtf8Native() {
@@ -55,7 +55,7 @@ class ArticleTest extends PHPUnit_TestCase {
 		$GLOBALS['wgLegacyEncoding'] = 'iso-8859-1';
 		$this->assertEquals(
 			"Wiki est l'\xc3\xa9cole superieur !",
-			Article::getRevisionText( $row ) );
+			Revision::getRevisionText( $row ) );
 	}
 	
 	function testGetRevisionTextUtf8Legacy() {
@@ -65,7 +65,7 @@ class ArticleTest extends PHPUnit_TestCase {
 		$GLOBALS['wgLegacyEncoding'] = 'iso-8859-1';
 		$this->assertEquals(
 			"Wiki est l'\xc3\xa9cole superieur !",
-			Article::getRevisionText( $row ) );
+			Revision::getRevisionText( $row ) );
 	}
 	
 	function testGetRevisionTextUtf8NativeGzip() {
@@ -75,7 +75,7 @@ class ArticleTest extends PHPUnit_TestCase {
 		$GLOBALS['wgLegacyEncoding'] = 'iso-8859-1';
 		$this->assertEquals(
 			"Wiki est l'\xc3\xa9cole superieur !",
-			Article::getRevisionText( $row ) );
+			Revision::getRevisionText( $row ) );
 	}
 	
 	function testGetRevisionTextUtf8LegacyGzip() {
@@ -85,12 +85,12 @@ class ArticleTest extends PHPUnit_TestCase {
 		$GLOBALS['wgLegacyEncoding'] = 'iso-8859-1';
 		$this->assertEquals(
 			"Wiki est l'\xc3\xa9cole superieur !",
-			Article::getRevisionText( $row ) );
+			Revision::getRevisionText( $row ) );
 	}
 	
 	function testCompressRevisionTextUtf8() {
 		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
-		$row->old_flags = Article::compressRevisionText( $row->old_text );
+		$row->old_flags = Revision::compressRevisionText( $row->old_text );
 		$this->assertTrue( false !== strpos( $row->old_flags, 'utf-8' ),
 			"Flags should contain 'utf-8'" );
 		$this->assertFalse( false !== strpos( $row->old_flags, 'gzip' ),
@@ -98,13 +98,13 @@ class ArticleTest extends PHPUnit_TestCase {
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
 			$row->old_text, "Direct check" );
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
-			Article::getRevisionText( $row ), "getRevisionText" );
+			Revision::getRevisionText( $row ), "getRevisionText" );
 	}
 
 	function testCompressRevisionTextLatin1() {
 		$GLOBALS['wgUseLatin1'] = true;
 		$row->old_text = "Wiki est l'\xe9cole superieur !";
-		$row->old_flags = Article::compressRevisionText( $row->old_text );
+		$row->old_flags = Revision::compressRevisionText( $row->old_text );
 		$this->assertFalse( false !== strpos( $row->old_flags, 'utf-8' ),
 			"Flags should not contain 'utf-8'" );
 		$this->assertFalse( false !== strpos( $row->old_flags, 'gzip' ),
@@ -112,13 +112,13 @@ class ArticleTest extends PHPUnit_TestCase {
 		$this->assertEquals( "Wiki est l'\xe9cole superieur !",
 			$row->old_text, "Direct check" );
 		$this->assertEquals( "Wiki est l'\xe9cole superieur !",
-			Article::getRevisionText( $row ), "getRevisionText" );
+			Revision::getRevisionText( $row ), "getRevisionText" );
 	}
 	
 	function testCompressRevisionTextUtf8Gzip() {
 		$GLOBALS['wgCompressRevisions'] = true;
 		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
-		$row->old_flags = Article::compressRevisionText( $row->old_text );
+		$row->old_flags = Revision::compressRevisionText( $row->old_text );
 		$this->assertTrue( false !== strpos( $row->old_flags, 'utf-8' ),
 			"Flags should contain 'utf-8'" );
 		$this->assertTrue( false !== strpos( $row->old_flags, 'gzip' ),
@@ -126,7 +126,7 @@ class ArticleTest extends PHPUnit_TestCase {
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
 			gzinflate( $row->old_text ), "Direct check" );
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
-			Article::getRevisionText( $row ), "getRevisionText" );
+			Revision::getRevisionText( $row ), "getRevisionText" );
 	}
 
 	function testCompressRevisionTextLatin1Gzip() {
@@ -134,7 +134,7 @@ class ArticleTest extends PHPUnit_TestCase {
 		$GLOBALS['wgUseLatin1'] = true;
 		$row = new stdClass;
 		$row->old_text = "Wiki est l'\xe9cole superieur !";
-		$row->old_flags = Article::compressRevisionText( $row->old_text );
+		$row->old_flags = Revision::compressRevisionText( $row->old_text );
 		$this->assertFalse( false !== strpos( $row->old_flags, 'utf-8' ),
 			"Flags should not contain 'utf-8'" );
 		$this->assertTrue( false !== strpos( $row->old_flags, 'gzip' ),
@@ -142,7 +142,7 @@ class ArticleTest extends PHPUnit_TestCase {
 		$this->assertEquals( "Wiki est l'\xe9cole superieur !",
 			gzinflate( $row->old_text ), "Direct check" );
 		$this->assertEquals( "Wiki est l'\xe9cole superieur !",
-			Article::getRevisionText( $row ), "getRevisionText" );
+			Revision::getRevisionText( $row ), "getRevisionText" );
 	}
 
 }

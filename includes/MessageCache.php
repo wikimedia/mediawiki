@@ -4,6 +4,8 @@
  * @package MediaWiki
  */
 
+require_once( 'Revision.php' );
+
 /**
  *
  */
@@ -149,7 +151,7 @@ class MessageCache
 
 		$this->mCache = array();
 		for ( $row = $dbr->fetchObject( $res ); $row; $row = $dbr->fetchObject( $res ) ) {
-			$this->mCache[$row->page_title] = Article::getRevisionText( $row );
+			$this->mCache[$row->page_title] = Revision::getRevisionText( $row );
 		}
 
 		$dbr->freeResult( $res );
@@ -264,7 +266,7 @@ class MessageCache
 				  ' AND page_latest=old_id',
 				  'MessageCache::get' );
 				if ( $result ) {
-					$message = Article::getRevisionText( $result );
+					$message = Revision::getRevisionText( $result );
 					if ($this->mUseCache) {
 						$this->mCache[$title]=$message;
 						/* individual messages may be often 
