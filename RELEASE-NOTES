@@ -224,6 +224,8 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1326) Use content language for '1movedto2' in edit history
 * zh: Fix warning when HTTP_ACCEPT_LANGUAGE is not set
 * zh: Fix double conversion for zh-sg and zh-hk
+* (bug 1132) Fix concatenation of link lists in refreshLinks
+* (bug 1101) Fix memory leak in refreshLinks
 
 === Caveats ===
 
