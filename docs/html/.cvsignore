@@ -1,0 +1,5 @@
+*.html
+media
+MediaWiki
+memcached-client
+UtfNormal
