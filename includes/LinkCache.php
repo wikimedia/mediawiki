@@ -171,6 +171,7 @@ class LinkCache {
 		
 		if ( $wgEnablePersistentLC ) {
 			if( $this->fillFromLinkscc( $id ) ){
+				wfProfileOut( $fname );
 				return;
 			}
 		}
@@ -313,23 +314,32 @@ class LinkCache {
 
 	# $pid is a page id
 	/* static */ function linksccClearLinksTo( $pid ){
-		$pid = intval( $pid );
-		wfQuery("DELETE linkscc FROM linkscc,links ".
-			"WHERE lcc_pageid=links.l_from AND l_to={$pid}", DB_WRITE);
-		wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
+		global $wgEnablePersistentLC;
+		if ( $wgEnablePersistentLC ) {
+			$pid = intval( $pid );
+			wfQuery("DELETE linkscc FROM linkscc,links ".
+				"WHERE lcc_pageid=links.l_from AND l_to={$pid}", DB_WRITE);
+			wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
+		}
 	}
 
 	# $title is a prefixed db title, for example like Title->getPrefixedDBkey() returns.
 	/* static */ function linksccClearBrokenLinksTo( $title ){
-		$title = wfStrencode( $title );
-		wfQuery("DELETE linkscc FROM linkscc,brokenlinks ".
-			"WHERE lcc_pageid=bl_from AND bl_to='{$title}'", DB_WRITE);
+		global $wgEnablePersistentLC;
+		if ( $wgEnablePersistentLC ) {
+			$title = wfStrencode( $title );
+			wfQuery("DELETE linkscc FROM linkscc,brokenlinks ".
+				"WHERE lcc_pageid=bl_from AND bl_to='{$title}'", DB_WRITE);
+		}
 	}
 
 	# $pid is a page id
 	/* static */ function linksccClearPage( $pid ){
-		$pid = intval( $pid );
-		wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
+		global $wgEnablePersistentLC;
+		if ( $wgEnablePersistentLC ) {
+			$pid = intval( $pid );
+			wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
+		}
 	}
 }
 ?>

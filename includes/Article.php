@@ -1641,7 +1641,7 @@ class Article {
 
 	# This is called on page move and undelete, as well as edit	
 	/* static */ function onArticleCreate($title_obj){
-		global $wgEnablePersistentLC, $wgUseSquid, $wgDeferredUpdateList;
+		global $wgUseSquid, $wgDeferredUpdateList;
 
 		$titles = $title_obj->getBrokenLinksTo();
 		
@@ -1656,23 +1656,15 @@ class Article {
 		}
 
 		# Clear persistent link cache
-		if ( $wgEnablePersistentLC ) {
-			LinkCache::linksccClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
-		}
+		LinkCache::linksccClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
 	}
 
 	/* static */ function onArticleDelete($title_obj){
-		global $wgEnablePersistentLC;
-		if ( $wgEnablePersistentLC ) {
-			LinkCache::linksccClearLinksTo( $title_obj->getArticleID() );
-		}
+		LinkCache::linksccClearLinksTo( $title_obj->getArticleID() );
 	}
 
 	/* static */ function onArticleEdit($title_obj){
-		global $wgEnablePersistentLC;
-		if ( $wgEnablePersistentLC ) {
-			LinkCache::linksccClearPage( $title_obj->getArticleID() );
-		}
+		LinkCache::linksccClearPage( $title_obj->getArticleID() );
 	}
 }
 
