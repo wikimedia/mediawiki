@@ -366,6 +366,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 "wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "Bug reports",
 "bugreportspage" => "Wikipedia:Bug_reports",
+"sitesupport"   => "Donations",
+"sitesupportpage" => "", # If not set, won't appear. Can be wiki page or URL
 "faq"			=> "FAQ",
 "faqpage"		=> "Wikipedia:FAQ",
 "edithelp"		=> "Editing help",
