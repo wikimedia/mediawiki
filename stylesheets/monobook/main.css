@@ -1,4 +1,4 @@
-/*
+﻿/*
 ** Mediawiki 'monobook' style sheet for CSS2-capable browsers.
 ** Copyright Gabriel Wicke - http://wikidev.net/
 ** License: GPL (http://www.gnu.org/copyleft/gpl.html)
@@ -901,4 +901,8 @@ fieldset.operaprefsection { margin-left: 15em }
 .redirectText {
 	font-size:150%;
 	margin:5px;
+}
+
+.printfooter {
+        display: none;
 }
