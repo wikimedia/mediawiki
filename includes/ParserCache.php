@@ -44,6 +44,7 @@ class ParserCache
 				$value = false;
 			}
 		} else {
+			wfDebug( "Parser cache miss.\n" );
 			$value = false;
 		}
 
