@@ -28,7 +28,7 @@ class ParserCache
 		$key = $this->getKey( $article, $user );
 		wfDebug( "Trying parser cache $key\n" );
 		$value = $wgMemc->get( $key );
-		if ( $value ) {
+		if ( is_object( $value ) ) {
 			wfDebug( "Found.\n" );
 			# Delete if article has changed since the cache was made
 			$canCache = $article->checkTouched();
