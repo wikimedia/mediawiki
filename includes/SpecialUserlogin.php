@@ -128,18 +128,6 @@ class LoginForm {
 		global $wgMaxNameChars;
 		global $wgMemc, $wgAccountCreationThrottle, $wgDBname, $wgIP;
 
-		if ( $wgAccountCreationThrottle ) {
-			$key = "$wgDBname:acctcreate:ip:$wgIP";
-			$value = $wgMemc->incr( $key );
-			if ( !$value ) {
-				$wgMemc->set( $key, 1, 86400 );
-			}
-			if ( $value > $wgAccountCreationThrottle ) {
-				$this->throttleHit( $wgAccountCreationThrottle );
-				return;
-			}
-		}
-
 		if (!$wgUser->isAllowedToCreateAccount()) {
 			$this->userNotPrivilegedMessage();
 			return;
@@ -170,6 +158,19 @@ class LoginForm {
 			$this->mainLoginForm( wfMsg( "userexists" ) );
 			return;
 		}
+
+		if ( $wgAccountCreationThrottle ) {
+			$key = "$wgDBname:acctcreate:ip:$wgIP";
+			$value = $wgMemc->incr( $key );
+			if ( !$value ) {
+				$wgMemc->set( $key, 1, 86400 );
+			}
+			if ( $value > $wgAccountCreationThrottle ) {
+				$this->throttleHit( $wgAccountCreationThrottle );
+				return;
+			}
+		}
+
 		$u->addToDatabase();
 		$u->setPassword( $this->mPassword );
 		$u->setEmail( $this->mEmail );
