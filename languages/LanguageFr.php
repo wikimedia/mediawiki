@@ -66,15 +66,15 @@
 	"usenewrc" => "Modifications récentes améliorées<br> (certains navigateurs seulement)",
 	"numberheadings" => "Numérotation automatique des titres",
 	"editondblclick" => "Double cliquer pour éditer une page (JavaScript)",
-	"editsection"	=> "Éditer une section via les liens [éditer]", //Looxix (Enable section editing via [edit] links)
-	"editsectiononrightclick"	=> "Éditer une section en cliquant à droite<br> sur le titre de la section", // Looxix 
+	"editsection"	=> "Éditer une section via les liens [éditer]",
+	"editsectiononrightclick"	=> "Éditer une section en cliquant à droite<br> sur le titre de la section",
 	"showtoc"	=> "Afficher la table des matières<br> (pour les articles ayant plus de 3 sections)",
 	"rememberpassword" => "Se souvenir de mon mot de passe (cookie)",
 	"editwidth" => "La fenêtre d'édition s'affiche en pleine largeur",
 	"watchdefault" => "Suivre les articles que je crée ou modifie",
 	"minordefault" => "Mes modifications sont considérées<br> comme mineures par défaut",
 	"previewontop" => "La prévisualisation s'affiche au<br> dessus de la boite de rédaction",
-	"nocache" => "Désactiver le cache des pages" // Looxix "Disable page caching"
+	"nocache" => "Désactiver le cache des pages"
 );
 
 /* private */ $wgBookstoreListFr = array(
@@ -337,7 +337,7 @@
 "unprotectthispage" => "Déprotéger cette page",
 "newpage"       => "Nouvelle page",
 "talkpage"      => "Page de discussion",
-"postcomment"	=> "Ajouter un commentaire", // Looxix "Post a comment",	
+"postcomment"	=> "Ajouter un commentaire",
 "articlepage"	=> "Voir l'article",
 "subjectpage"   => "Page sujet",
 "userpage"      => "Page utilisateur",
@@ -359,7 +359,7 @@ Voir $1.",
 "developertext" => "L'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut de \"développeur\".
 Voir $1.",
 "nbytes"        => "$1 octets",
-"go"            => "Consulter",			// Looxix "OK",
+"go"            => "Consulter",
 "ok"            => "OK",
 "sitetitle"     => "Wikipédia",
 "sitesubtitle"  => "L'encyclopédie libre",
@@ -367,11 +367,11 @@ Voir $1.",
 "newmessages"   => "Vous avez des $1.",
 "newmessageslink" => "nouveaux messages",
 "editsection"	=> "modifier",
-"toc"		=> "Sommaire",			// Looxix "Table"
-"showtoc"	=> "montrer",			// Looxix
-"hidetoc"	=> "cacher",			// Looxix
-"thisisdeleted" => "Afficher ou restaurer $1?",	// Looxix "View or restore $1?"
-"restorelink"	=> "$1 modifications effacées",		// Looxix "$1 deleted edits"
+"toc"		=> "Sommaire",
+"showtoc"	=> "montrer",
+"hidetoc"	=> "cacher",
+"thisisdeleted" => "Afficher ou restaurer $1?",
+"restorelink"	=> "$1 modifications effacées",
 
 # Main script and global functions
 #
@@ -390,7 +390,7 @@ depuis la fonction \"<tt>$2</tt>\".
 MySQL a renvoyé l'erreur \"<tt>$3: $4</tt>\".",
 "noconnect"	=> "Désolé! Suite à des problèmes techniques, il est impossible de se connecter à la base de données pour le moment.", //"Connexion impossible à la base de données sur $1",
 "nodb"		=> "Sélection impossible de la base de données $1",
-"cachederror"	=> "Ceci est une copie de la page demandée et peut ne pas être à jour", // Looxix 
+"cachederror"	=> "Ceci est une copie de la page demandée et peut ne pas être à jour",
 "readonly"	=> "Mises à jour bloquées sur la base de données",
 "enterlockreason" => "Indiquez la raison du blocage, ainsi qu'une estimation de la durée de blocage ",
 "readonlytext"	=> "Les ajouts et mises à jour sur la base de données Wikipédia sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloqué la base :
@@ -407,14 +407,14 @@ Veuillez rapporter cette erreur à un administrateur, en lui indiquant l'adresse 
 "formerror"	=> "Erreur: Impossible de soumettre le formulaire",
 "badarticleerror" => "Cette action ne peut pas être effectuée sur cette page.",
 "cannotdelete"	=> "Impossible de supprimer la page ou l'image indiquée.",
-"badtitle"	=> "Mauvais titre", // Looxix "Bad title",
-"badtitletext"	=> "Le titre de la page demandée est invalide, vide ou le lien interlangue est invalide", // Looxix 
+"badtitle"	=> "Mauvais titre",
+"badtitletext"	=> "Le titre de la page demandée est invalide, vide ou le lien interlangue est invalide",
 "perfdisabled" => "Désolé! Cette fonctionnalité est temporairement désactivée
 car elle ralentit la base de données à un point tel que plus personne
-ne peut utiliser le wiki.", // Looxix 
-"perfdisabledsub" => "Ceci est une copie de sauvegarde de $1:", // Looxix 
+ne peut utiliser le wiki.",
+"perfdisabledsub" => "Ceci est une copie de sauvegarde de $1:",
 "viewsource"	=> "Voir le texte source",
-"protectedtext"	=> "Cette page a été bloquée pour empêcher sa modification. Consultez [[Wikipédia:Page protégée]] pour voir les différentes raisons possibles.", // Looxix
+"protectedtext"	=> "Cette page a été bloquée pour empêcher sa modification. Consultez [[Wikipédia:Page protégée]] pour voir les différentes raisons possibles.",
 
 # Login and logout pages
 #
@@ -493,7 +493,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 "previewconflict" => "La prévisualisation montre le texte de cette page tel qu'il apparaîtra une fois sauvegardé.",
 "editing"      => "modification de $1",
 "section edit"	=> " (section)",
-"comment edit"	=> " (commentaire)", // Looxix " (comment)",
+"comment edit"	=> " (commentaire)",
 "editconflict" => "Conflit de modification : $1",
 "explainconflict" => "<b>Cette page a été sauvegardée après que vous avez commencé à la modifier.
 La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.\n<p>",
@@ -506,10 +506,10 @@ La zone d'édition supérieure contient le texte tel qu'il est enregistré actuelle
 quelques navigateurs gèrent mal les pages approchant ou dépassant 32 ko lors de leur rédaction.
 Peut-être serait-il mieux que vous divisiez la page en sections plus petites.", // Panoramix
 "readonlywarning" => "AVERTISSEMENT : cette page a été bloquée pour maintenance,
-vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.", // Looxix 
+vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.",
 "protectedpagewarning" => "AVERTISSEMENT : cette page a été bloquée.
 Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier. Soyez certain que
-vous suivez les <a href='/wiki/Wikipédia:Page protégée'>directives concernant les pages protégées</a>.", // Looxix
+vous suivez les <a href='/wiki/Wikipédia:Page protégée'>directives concernant les pages protégées</a>.",
 
 # History pages
 #
@@ -552,7 +552,7 @@ et écailles\".
 Veuillez essayer une autre requête.",
 "matchtotals" => "La requête \"$1\" correspond à $2 titre(s)
 d'article et au texte de $3 article(s).",
-"nogomatch" => "Aucune page avec ce titre n'existe, essai avec la recherche complète.", // Looxix
+"nogomatch" => "Aucune page avec ce titre n'existe, essai avec la recherche complète.",
 "titlematches" => "Correspondances dans les titres",
 "notitlematches" => "Aucun titre d'article ne contient le(s) mot(s) demandé(s)",
 "textmatches" => "Correspondances dans les textes",
@@ -561,7 +561,7 @@ d'article et au texte de $3 article(s).",
 "nextn"   => "$1 suivants",
 "viewprevnext" => "Voir ($1) ($2) ($3).",
 "showingresults" => "Affichage de <b>$1</b> résultats à partir du #<b>$2</b>.",
-"showingresultsnum" => "Affichage de <b>$3</b> résultats à partir du #<b>$2</b>.", // Looxix
+"showingresultsnum" => "Affichage de <b>$3</b> résultats à partir du #<b>$2</b>.",
 "nonefound"  => "<strong>Note</strong>: l'absence de résultat est souvent due à l'emploi de termes de recherche trop courants, comme \"à\" ou \"de\",
 qui ne sont pas indexés, ou à l'emploi de plusieurs termes de recherche (seules les pages
 contenant tous les termes apparaissent dans les résultats).",
@@ -581,18 +581,18 @@ $2 Inclure les page de redirections &nbsp; Rechercher $3 $9",
 pour modifier vos préférences d'utilisateur.",
 "prefslogintext" => "Je suis connecté(e) en tant que $1 avec le numéro d'utilisateur $2.
 
-Voir [[Wikipédia:Aide pour les préférences]] pour les explications concernant les options.", // Looxix
+Voir [[Wikipédia:Aide pour les préférences]] pour les explications concernant les options.",
 "prefsreset"        => "Les préférences ont été rétablies à partir de la version enregistrée.",
 "qbsettings"        => "Personnalisation de la barre outils",
 "changepassword"    => "Modification du mot de passe",
 "skin"              => "Apparence",
 "math"			=> "Rendu des maths",	// Looxix "Rendering math",
-"dateformat"		=> "Format de date",    // Looxix "Date format",
+"dateformat"		=> "Format de date",
 "math_failure"		=> "Erreur math",	// Looxix "Failure toparse",
 "math_unknown_error"	=> "erreur indéterminée",   // FvdP+Looxix "unknown error",
-"math_unknown_function"	=> "fonction inconnue", // Looxix "unknown function ",
+"math_unknown_function"	=> "fonction inconnue",
 "math_lexing_error"	=> "erreur lexicale",   // Looxxi "lexing error",
-"math_syntax_error"	=> "erreur de syntaxe", // Looxix "syntax error",
+"math_syntax_error"	=> "erreur de syntaxe",
 "saveprefs"         => "Enregistrer les préférences",
 "resetprefs"        => "Rétablir les préférences",
 "oldpassword"       => "Ancien mot de passe",
@@ -792,8 +792,7 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "rclsub"        => "(des pages liées à \"$1\")",
 "debug"         => "Déboguer",
 "newpages"      => "Nouvelles pages",
-"ancientpages"	=> "Articles les plus anciens",	// Looxix
-// "intl"		    => "Liens inter-langues",
+"ancientpages"	=> "Articles les plus anciens",
 "movethispage"  => "Déplacer la page",
 "unusedimagestext" => "<p>N'oubliez pas que d'autres sites, comme certains Wikipédias non francophones, peuvent contenir un lien direct vers cette image, et que celle-ci peut être placée dans cette liste alors qu'elle est en réalité utilisée.",
 "booksources"   => "Ouvrages de référence",
@@ -844,17 +843,17 @@ Les prochaines modifications de cette page et de la page discussion associée ser
 "watchthispage"	=> "Suivre cette page",
 "unwatchthispage" => "Ne plus suivre",
 "notanarticle"	=> "Aucun article",
-"watchnochange" => "Aucune des pages que vous suivez n'ont été modifiées pendant la période affichée", // Looxix 
+"watchnochange" => "Aucune des pages que vous suivez n'a été modifiée pendant la période affichée",
 // "watchdetails" => "($1 pages suivies, sans compter les pages de discussion; $2 pages en total modifiées depuis la limite; $3...  <a href='$4'>afficher et modifier la liste complète</a>.)", // Looxix 
 "watchdetails" => "Vous suivez $1 pages, sans compter les pages de discussion.  <a href='$4'>Afficher et modifier la liste complète</a>.", // Looxix 
 "watchmethod-recent" => "vérification des modifications récentes des pages suivies", // Looxix 
 "watchmethod-list" => "vérification des pages suivies pour des modifications récentes", // Looxix 
-"removechecked" => "Retirer de la liste de suivi les articles sélectionnés", // Looxix 
-"watchlistcontains" => "Votre liste de suivi contient $1 pages", // Looxix 
-"watcheditlist" => "Ceci est votre liste de suivi par ordre alphabétique. Sélectionnez les pages que vous souhaitez retirer de la liste et cliquez le bouton \"retirer de la liste de suivi\" en bas de l'écran.", // Looxix 
-"removingchecked" => "Les articles sélectionnés sont retirés de votre liste de suivi...", // Looxix 
-"couldntremove" => "Impossible de retirer l'article '$1'...", // Looxix "Couldn't remove item '$1'...",
-"iteminvalidname" => "Problème avec l'article '$1': les nom est invalide...", // Looxix 
+"removechecked" => "Retirer de la liste de suivi les articles sélectionnés",
+"watchlistcontains" => "Votre liste de suivi contient $1 pages",
+"watcheditlist" => "Ceci est votre liste de suivi par ordre alphabétique. Sélectionnez les pages que vous souhaitez retirer de la liste et cliquez le bouton \"retirer de la liste de suivi\" en bas de l'écran.",
+"removingchecked" => "Les articles sélectionnés sont retirés de votre liste de suivi...",
+"couldntremove" => "Impossible de retirer l'article '$1'...",
+"iteminvalidname" => "Problème avec l'article '$1': le nom est invalide...",
 "wlnote" => "Ci-dessous se trouve les $1 dernières modifications depuis les <b>$2</b> dernières heures.", // Looxix 
 
 
@@ -909,12 +908,12 @@ La corbeille peut être effacée périodiquement.",
 "undeleterevisions" => "$1 révisions archivées", // Looxix "$1 revisions archived",
 "undeletehistory" => "Si vous restaurez la page, toutes les révisions seront restaurées dans l'historique.
 Si une nouvelle page avec le même nom a été crée depuis la suppression,
-les révisions restaurées apparaîtront dans l'historique antérieur et la version courante ne sera pas automatiquement remplacée.", // Looxix  
+les révisions restaurées apparaîtront dans l'historique antérieur et la version courante ne sera pas automatiquement remplacée.",
 "undeleterevision" => "Version effacée ($1)", // Looxix "Deleted revision as of $1",	
-"undeletebtn"	=> "Restaurer!", // Looxix "Restore!",
+"undeletebtn"	=> "Restaurer!",
 "undeletedarticle" => "restauré \"$1\"",	// FvdP "restored \"$1\""
 "undeletedtext"   => "L'article [[$1]] a été restauré avec succès.
-Voir [[Wikipedia:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.", // Looxix 
+Voir [[Wikipedia:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.",
 # Contributions
 #
 "contributions"	=> "Contributions",
@@ -959,7 +958,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont
 "blocklink"	=> "bloquer",
 "unblocklink"	=> "débloquer",
 "contribslink"	=> "contribs",
-"autoblocker"	=> "Autobloqué parce que vous partagez un adresse IP avec \"$1\". Raison : \"$2\".", // Looxix 
+"autoblocker"	=> "Autobloqué parce que vous partagez une adresse IP avec \"$1\". Raison : \"$2\".",
 
 
 # Developer tools
@@ -1012,7 +1011,7 @@ assurez-vous que vous en comprenez bien les conséquences avant de procéder.",
 *Une page de discussion existe déjà avec le nouveau nom, ou
 *Vous avez désélectionné le bouton ci-dessous.
 
-Dans ce cas, vous devrez déplacer ou fusionner la page manuellement si vous le désirez.", // Looxix
+Dans ce cas, vous devrez déplacer ou fusionner la page manuellement si vous le désirez.",
 
 "movearticle"	=> "Déplacer l'article",
 "movenologin"	=> "Non connecté",
@@ -1027,7 +1026,7 @@ en tant qu'utilisateur enregistré.",
 Veuillez en choisir un autre.",
 "talkexists"	=> "La page elle-même a été déplacée avec succès, mais
 la page de discussion n'a pas pu être déplacée car il en existait déjà une
-sous le nouveau nom. S'il vous plait, fusionnez les manuellement.", // Looxix
+sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 
 "movedto"  => "déplacé vers",
 "movetalk"  => "Déplacer aussi la page \"discussion\", s'il y a lieu.",
