@@ -108,7 +108,7 @@
 	"gu" => "Goujarati",
 	"ha" => "Haoussa",
 	"he" => "&#1506;&#1489;&#1512;&#1497;&#1514; (Ivrit)",
-	"hi" => "Hindi",
+	"hi" => "&#2361;&#2367;&#2344;&#2381;&#2342;&#2368; (Hindi)",
 	"hr" => "Hrvatski",
 	"hu" => "Magyar",
 	"hy" => "Arménien",
@@ -786,8 +786,12 @@ Les prochaines modifications de cette page et de la page discussion associée ser
 
 "deletepage" => "Supprimer une page",
 "confirm"  => "Confirmer",
+"excontent" => "contenant", //"content was:", //AOI
+"exbeforeblank" => "le contenu avant effacement était :", //"content before blanking was:", //AOI
+"exblank" => "page vide", //"page was empty", //AOI
 "confirmdelete" => "Confirmer la suppression",
 "deletesub"  => "(Suppression de \"$1\")",
+"historywarning" => "Attention: La page que vous êtes sur le point de supprimer à un historique: ", //"Warning: The page you are about to delete has a history: ", //AOI
 "confirmdeletetext" => "Vous êtes sur le point de supprimer définitivement de la base de données une page
 ou une image, ainsi que toutes ses versions antérieures.
 Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[Wikipédia:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].",
@@ -808,7 +812,14 @@ L'heure indiquée est celle du serveur (UTC).
 "imagereverted" => "La version précédente a été rétablie.",
 "rollback"	=> "révoquer modifications",
 "rollbacklink"	=> "révoquer",
+"rollbackfailed" => "La révocation a échoué", //"Rollback failed",  //AOI
 "cantrollback"	=> "Impossible de révoquer: dernier auteur est le seul à avoir modifié cet article",
+"alreadyrolled"	=> "Cannot rollback last edit of [[$1]]
+by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already. 
+
+Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ", //ENG
+#   only shown if there is an edit comment
+"editcomment" => "The edit comment was: \"<i>$1</i>\".", //ENG
 "revertpage"	=> "restitution de la dernière modification de $1",
 
 // Undelete
