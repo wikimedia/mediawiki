@@ -669,6 +669,7 @@ div.townBox dl dd {
     height: 155px;
     width: 12.2em;
     background-repeat: no-repeat;
+    background-position: center !important;
     text-decoration: none;
 }
 
@@ -957,7 +958,7 @@ head:first-child+body #portal-footer li {
 * html #bodyContent div.fullImage {
     overflow: auto;
     overflow-y: hidden;
-    width: 96%;
+    width: 95%;
     margin-bottom: 25px;
     margin-right: 0;
 }
