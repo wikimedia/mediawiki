@@ -148,7 +148,8 @@ class QueryPage {
 		# Only read at most $num rows, because $res may contain the whole 1000
 		for ( $i = 0; $i < $num && $obj = $dbr->fetchObject( $res ); $i++ ) {
 			$format = $this->formatResult( $sk, $obj );
-			$attr = ( $obj->usepatrol && $obj->patrolled == 0 ) ? ' class="not_patrolled"' : '';
+			$attr = ( !is_null ( $obj->usepatrol ) && $obj->usepatrol &&
+			          $obj->patrolled == 0 ) ? ' class="not_patrolled"' : '';
 			$s .= "<li{$attr}>{$format}</li>\n";
 		}
 		$dbr->freeResult( $res );
