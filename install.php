@@ -208,7 +208,8 @@ function populatedata() {
 	}
 	print "Do you want to create a sysop+developer account? A developer\n";
 	print "can switch the database to read-only mode and run any type of\n";
-	print "query through a web interface. [Y/n] ";
+	print "query through a web interface. This account can also assign\n";
+	print "sysop access to other accounts. [Y/n] ";
 	$response=readconsole();
 	if(strtolower($response)!="n") {
 		print "Enter the username [Developer]: ";
@@ -224,6 +225,7 @@ function populatedata() {
 			$u->setPassword( $developer_password );
 			$u->addRight( "sysop" );
 			$u->addRight( "developer" );
+			$u->addRight( "bureaucrat" );
 			$u->saveSettings();
 		} else {
 			print "Could not create user - already exists!\n";
