@@ -368,8 +368,7 @@ class OutputPage {
 
 		$sk = $wgUser->getSkin();
 		$ap = $sk->makeKnownLink( wfMsg( "administrators" ), "" );	
-		$text = str_replace( "$1", $ap, wfMsg( "sysoptext" ) );
-		$this->addHTML( $text );
+		$this->addHTML( wfMsg( "sysoptext", $ap ) );
 		$this->returnToMain();
 	}
 
@@ -385,8 +384,7 @@ class OutputPage {
 
 		$sk = $wgUser->getSkin();
 		$ap = $sk->makeKnownLink( wfMsg( "administrators" ), "" );	
-		$text = str_replace( "$1", $ap, wfMsg( "developertext" ) );
-		$this->addHTML( $text );
+		$this->addHTML( wfMsg( "developertext", $ap ) );
 		$this->returnToMain();
 	}
 
@@ -401,7 +399,7 @@ class OutputPage {
 		if ( $wgCommandLineMode ) {
 			$msg = wfMsgNoDB( "dberrortextcl" );
 		} else {
-			$msg = wfMsgNoDB( "dberrortextcl" );
+			$msg = wfMsgNoDB( "dberrortext" );
 		}
 
 		$msg = str_replace( "$1", htmlspecialchars( wfLastDBquery() ), $msg );
@@ -463,35 +461,27 @@ class OutputPage {
 
 	function unexpectedValueError( $name, $val )
 	{
-		$msg = str_replace( "$1", $name, wfMsg( "unexpected" ) );
-		$msg = str_replace( "$2", $val, $msg );
-		$this->fatalError( $msg );
+		$this->fatalError( wfMsg( "unexpected", $name, $val ) );
 	}
 
 	function fileCopyError( $old, $new )
 	{
-		$msg = str_replace( "$1", $old, wfMsg( "filecopyerror" ) );
-		$msg = str_replace( "$2", $new, $msg );
-		$this->fatalError( $msg );
+		$this->fatalError( wfMsg( "filecopyerror", $old, $new ) );
 	}
 
 	function fileRenameError( $old, $new )
 	{
-		$msg = str_replace( "$1", $old, wfMsg( "filerenameerror" ) );
-		$msg = str_replace( "$2", $new, $msg );
-		$this->fatalError( $msg );
+		$this->fatalError( wfMsg( "filerenameerror", $old, $new ) );
 	}
 
 	function fileDeleteError( $name )
 	{
-		$msg = str_replace( "$1", $name, wfMsg( "filedeleteerror" ) );
-		$this->fatalError( $msg );
+		$this->fatalError( wfMsg( "filedeleteerror", $name ) );
 	}
 
 	function fileNotFoundError( $name )
 	{
-		$msg = str_replace( "$1", $name, wfMsg( "filenotfound" ) );
-		$this->fatalError( $msg );
+		$this->fatalError( wfMsg( "filenotfound", $name ) );
 	}
 
 	function returnToMain( $auto = true )
@@ -504,7 +494,7 @@ class OutputPage {
 		}
 		$link = $sk->makeKnownLink( $returnto, "" );
 
-		$r = str_replace( "$1", $link, wfMsg( "returnto" ) );
+		$r = wfMsg( "returnto", $link );
 		if ( $auto ) {
 			$wgOut->addMeta( "http:Refresh", "10;url=" .
 			  wfLocalUrlE( wfUrlencode( $returnto ) ) );
@@ -560,7 +550,7 @@ class OutputPage {
 		if ( count ( $articles ) > 0 )
 		{
 			asort ( $articles ) ;
-			$h = str_replace ( "$1" , $ti[1] , wfMsg("category_header") ) ;
+			$h =  wfMsg( "category_header", $ti[1] );
 			$r .= "<h2>{$h}</h2>\n" ;
 			$r .= implode ( ", " , $articles ) ;
 		}
