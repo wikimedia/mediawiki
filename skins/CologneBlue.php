@@ -78,7 +78,7 @@ class SkinCologneBlue extends Skin {
 		$s .= "<td class='bottom' align='center' valign='top'>";
 
 		$s .= $this->bottomLinks();
-		$s .= "\n<br />" . $this->makeKnownLink( wfMsg( "mainpage" ) ) . " | "
+		$s .= "\n<br />" . $this->makeKnownLink( wfMsgForContent( "mainpage" ) ) . " | "
 		  . $this->aboutLink() . " | "
 		  . $this->searchForm( wfMsg( "qbfind" ) );
 
@@ -116,9 +116,9 @@ class SkinCologneBlue extends Skin {
 	}
 	function sysLinks()
 	{
-		global $wgUser, $wgLang, $wgTitle;
-		$li = $wgLang->specialPage("Userlogin");
-		$lo = $wgLang->specialPage("Userlogout");
+		global $wgUser, $wgContLang, $wgTitle;
+		$li = $wgContLang->specialPage("Userlogin");
+		$lo = $wgContLang->specialPage("Userlogout");
 
 		$rt = $wgTitle->getPrefixedURL();
 		if ( 0 == strcasecmp( urlencode( $lo ), $rt ) ) {
@@ -128,13 +128,13 @@ class SkinCologneBlue extends Skin {
 		}
 		
 		$s = "" .
-		  $this->makeKnownLink( wfMsg( "mainpage" ), wfMsg( "mainpage" ) )
+		  $this->makeKnownLink( wfMsgForContent( "mainpage" ), wfMsg( "mainpage" ) )
 		  . " | " .
-		  $this->makeKnownLink( wfMsg( "aboutpage" ), wfMsg( "about" ) )
+		  $this->makeKnownLink( wfMsgForContent( "aboutpage" ), wfMsg( "about" ) )
 		  . " | " .
-		  $this->makeKnownLink( wfMsg( "helppage" ), wfMsg( "help" ) )
+		  $this->makeKnownLink( wfMsgForContent( "helppage" ), wfMsg( "help" ) )
 		  . " | " .
-		  $this->makeKnownLink( wfMsg( "faqpage" ), wfMsg("faq") )
+		  $this->makeKnownLink( wfMsgForContent( "faqpage" ), wfMsg("faq") )
 		  . " | " .
 		  $this->specialLink( "specialpages" ) . " | ";
 
@@ -152,7 +152,7 @@ class SkinCologneBlue extends Skin {
 
 	function quickBar()
 	{
-		global $wgOut, $wgTitle, $wgUser, $wgLang, $wgDisableUploads;
+		global $wgOut, $wgTitle, $wgUser, $wgLang, $wgContLang, $wgDisableUploads;
 
 		$tns=$wgTitle->getNamespace();
 
@@ -166,14 +166,14 @@ class SkinCologneBlue extends Skin {
 		  . $this->mainPageLink()
 		  . $sep . $this->specialLink( "recentchanges" )
 		  . $sep . $this->specialLink( "randompage" );
-		if ( wfMsg ( "currentevents" ) != "-" ) $s .= $sep . $this->makeKnownLink( wfMsg( "currentevents" ), "" ) ;
+		if ( wfMsgForContent ( "currentevents" ) != "-" ) $s .= $sep . $this->makeKnownLink( wfMsgForContent( "currentevents" ), "" ) ;
 			$s .= "\n";
 
 		if ( $wgOut->isArticle() ) {
 			$s .= $this->menuHead( "qbedit" );
 			$s .= "<strong>" . $this->editThisPage() . "</strong>";
 
-			$s .= $sep . $this->makeKnownLink( wfMsg( "edithelppage" ), wfMsg( "edithelp" ) );
+			$s .= $sep . $this->makeKnownLink( wfMsgForContent( "edithelppage" ), wfMsg( "edithelp" ) );
 
 			if ( 0 != $wgUser->getID() ) {
 				$s .= $sep . $this->moveThisPage();
@@ -220,16 +220,16 @@ class SkinCologneBlue extends Skin {
 		$s .= $this->menuHead( "qbmyoptions" );
 		if ( 0 != $wgUser->getID() ) {
 			$name = $wgUser->getName();
-			$tl = $this->makeKnownLink( $wgLang->getNsText(
+			$tl = $this->makeKnownLink( $wgContLang->getNsText(
 			  Namespace::getTalk( Namespace::getUser() ) ) . ":{$name}",
 			  wfMsg( "mytalk" ) );
 			if ( 0 != $wgUser->getNewtalk() ) { $tl .= " *"; }
 
-			$s .= $this->makeKnownLink( $wgLang->getNsText(
+			$s .= $this->makeKnownLink( $wgContLang->getNsText(
 			  Namespace::getUser() ) . ":{$name}", wfMsg( "mypage" ) )
 			  . $sep . $tl
 			  . $sep . $this->specialLink( "watchlist" )
-			  . $sep . $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
+			  . $sep . $this->makeKnownLink( $wgContLang->specialPage( "Contributions" ),
 			  	wfMsg( "mycontris" ), "target=" . wfUrlencode($wgUser->getName() ) )		
 		  	  . $sep . $this->specialLink( "preferences" )
 		  	  . $sep . $this->specialLink( "userlogout" );
@@ -251,7 +251,7 @@ class SkinCologneBlue extends Skin {
 			      .wfMsg( "sitesupport" )."</a>";
 		}
 		
-		$s .= $sep . $this->makeKnownLink( $wgLang->specialPage( "Specialpages" ), wfMsg("moredotdotdot") );
+		$s .= $sep . $this->makeKnownLink( $wgContLang->specialPage( "Specialpages" ), wfMsg("moredotdotdot") );
 
 		$s .= $sep . "\n</div>\n";
 		return $s;
