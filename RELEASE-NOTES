@@ -31,6 +31,8 @@ Major changes from 1.3.x:
 * Special:Listadmins outdated, use Special:Listusers instead (bug #857)
 * Traditional/Simplified Chinese conversion
 * New tag "<gallery>" to generate a table of image thumbnails
+* Installer die if it can not write LocalSettings.php (bug #733)
+* Various special pages no more show the rss/atom feed links (bug #705)
 * ... and more!
 
 === Caveats ===
