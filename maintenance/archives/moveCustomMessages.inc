@@ -16,7 +16,7 @@ function isTemplateInitialised() {
 }
 
 function moveCustomMessages( $phase ) {
-	global $wgUser, $wgAllMessagesEn, $wgDeferredUpdateList, $wgLang;
+	global $wgUser, $wgAllMessagesEn, $wgDeferredUpdateList, $wgLang, $wgContLang;
 	global $targets, $template, $replaceCount;
 
 	$wgUser = new User;
@@ -32,7 +32,7 @@ function moveCustomMessages( $phase ) {
 	$dbkeys = array();
 
 	foreach ( $wgAllMessagesEn as $key => $enValue ) {
-		$title = Title::newFromText( $key );
+		$title = Title::newFromText( $wgContLang->ucfirst( $key ) );
 		$dbkeys[$title->getDBkey()] = 1;
 	}
 
