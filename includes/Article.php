@@ -786,11 +786,19 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 			  "WHERE rc_cur_id=" . $this->getID();
 			wfQuery( $sql, DB_WRITE, $fname );
 			
-			// Purge related entries in link cache when a page change
-			// (probably just affects anything when article changes stub state)
-			$pageid=$this->getID();
-			wfQuery("DELETE linkscc FROM linkscc,links ".
-				"WHERE lcc_title=links.l_from AND l_to={$pageid}", DB_WRITE);
+			if ( $wgEnablePersistentLC ) {
+
+				// Purge link cache for this page 
+				$pageid=$this->getID();
+				wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pageid}'", DB_WRITE);
+
+				// This next query just makes sure stub colored links to this page 
+				// are updated correctly (I think). If performance is more important
+				// than real-time updating of stub links, we really should skip
+				// this query.
+				wfQuery("DELETE linkscc FROM linkscc,links ".
+					"WHERE lcc_title=links.l_from AND l_to={$pageid}", DB_WRITE);
+			}
 
 		}
 		if( $wgDBtransactions ) {
@@ -1162,23 +1170,26 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		
 		$sql = "DELETE FROM recentchanges WHERE rc_namespace={$ns} AND " .
 		  "rc_title='{$t}'";
-        wfQuery( $sql, DB_WRITE, $fname );
+       		wfQuery( $sql, DB_WRITE, $fname );
 
 		# Finally, clean up the link tables
 
 		if ( 0 != $id ) {
 
-                        // Purge related entries in links cache on delete,
-                        wfQuery("DELETE linkscc FROM linkscc,links ".
-                                "WHERE lcc_title=links.l_from AND l_to={$id}", DB_WRITE);
-                        wfQuery("DELETE FROM linkscc WHERE lcc_title='{$t}'", DB_WRITE);
-
 			$t = wfStrencode( $title->getPrefixedDBkey() );
+
+			if ( $wgEnablePersistentLC ) {
+	                        // Purge related entries in links cache on delete,
+				wfQuery("DELETE linkscc FROM linkscc,links ".
+                                	"WHERE lcc_title=links.l_from AND l_to={$id}", DB_WRITE);
+                        	wfQuery("DELETE FROM linkscc WHERE lcc_title='{$t}'", DB_WRITE);
+			}
+
 			$sql = "SELECT l_from FROM links WHERE l_to={$id}";
 			$res = wfQuery( $sql, DB_READ, $fname );
 
 			$sql = "INSERT INTO brokenlinks (bl_from,bl_to) VALUES ";
-            $now = wfTimestampNow();
+            		$now = wfTimestampNow();
 			$sql2 = "UPDATE cur SET cur_touched='{$now}' WHERE cur_id IN (";
 			$first = true;
 
