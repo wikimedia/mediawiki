@@ -27,7 +27,8 @@ function initialiseMessages( $overwrite = false) {
 	$sql = "SELECT cur_title FROM cur WHERE cur_namespace=$ns AND cur_title IN(";
 
 	$first = true;
-	$sortedArray = ksort( $wgAllMessagesEn );
+	$sortedArray = $wgAllMessagesEn;
+	ksort( $sortedArray );
 
 	foreach ( $sortedArray as $key => $enMsg ) {
 		if ( $first ) {
