@@ -418,7 +418,6 @@ $wgUseCategoryMagic		= true;
 
 # disable experimental dmoz-like category browsing. Output things like:
 # Encyclopedia > Music > Style of Music > Jazz
-# FIXME: need fixing
 $wgUseCategoryBrowser   = false;
 
 $wgEnablePersistentLC	= false;	# Obsolete, do not use
