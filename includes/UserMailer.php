@@ -1,51 +1,57 @@
 <?php
-/** Copyright (C) 2004 Thomas Gries <mail@tgries.de>
-# http://www.mediawiki.org/
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License along
-# with this program; if not, write to the Free Software Foundation, Inc.,
-# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-# http://www.gnu.org/copyleft/gpl.html
-**/
-
 /**
- * Provide mail capabilities
+ * UserMailer.php
+ *  Copyright (C) 2004 Thomas Gries <mail@tgries.de>
+ * http://www.mediawiki.org/
  *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ * 
+ * @author <brion@pobox.com>
+ * @author <mail@tgries.de>
+ * 
  * @package MediaWiki
  */
 
+/**
+ * Provide mail capabilities
+ * @param string $string ????
+ * 
+ * The function takes formats like "name <emailaddr>" into account, for which
+ * the partial string "name" will be quoted-printable converted but not
+ * "<emailaddr>".
+ *
+ * The php mail() function does not accept the email address partial string to
+ * be quotedprintable, it does not accept inputs as
+ *  quotedprintable("name <emailaddr>") .
+ * 
+ * case 1:
+ * input:	"name <emailaddr> rest"
+ * output:	"quoted-printable(name) <emailaddr>"
+ * 
+ * case 2: (should not happen)
+ * input:	"<emailaddr> rest"
+ * output:	"<emailaddr>"
+ * 
+ * case 3:	(should not happen)
+ * input:	"name"
+ * output:	"quoted-printable(name)"
+ * 
+ * @package MediaWiki
+ */
 function wfQuotedPrintable_name_and_emailaddr( $string ) {
-	/*	it takes formats like "name <emailaddr>" into account,
-		for which the partial string "name" will be quoted-printable converted
-		but not "<emailaddr>".
-
-		The php mail() function does not accept the email address partial string
-		to be quotedprintable, it does not accept inputs as quotedprintable("name <emailaddr>") .
-
-		case 1:
-		input:	"name <emailaddr> rest"
-		output:	"quoted-printable(name) <emailaddr>"
-
-		case 2: (should not happen)
-		input:	"<emailaddr> rest"
-		output:	"<emailaddr>"
-
-		case 3:	(should not happen)
-		input:	"name"
-		output:	"quoted-printable(name)"
-
-		T. Gries 18.11.2004
-	*/
 
 	/* do not quote printable for email address string <emailaddr>, but only for the (leading) string, usually the name */
 	preg_match( '/^([^<]*)?(<([A-z0-9_.-]+([A-z0-9_.-]+)*\@[A-z0-9_-]+([A-z0-9_.-]+)*([A-z.]{2,})+)>)?$/', $string, $part );
@@ -64,6 +70,7 @@ function wfQuotedPrintable_name_and_emailaddr( $string ) {
  * @param string $from sender's email
  * @param string $subject email's subject
  * @param string $body email's text
+ * @param string $replyto optional reply-to email (default : false)
  */
 function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 	global $wgUser, $wgSMTP, $wgOutputEncoding, $wgErrorString, $wgEmergencyContact;
@@ -125,7 +132,7 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 }
 
 /**
- *
+ * @package MediaWiki
  */
 function mailErrorHandler( $code, $string ) {
 	global $wgErrorString;
@@ -134,24 +141,43 @@ function mailErrorHandler( $code, $string ) {
 
 
 /**
- * Patch for email notification on page changes T.Gries/M.Arndt 11.09.2004
+ * This module processes the email notifications when the current page is
+ * changed. It looks up the table watchlist to find out which users are watching
+ * that page.
  *
- *	This new module processes the email notifications when the current page is changed.
- *	It looks up the table watchlist to find out which users are watching that page.
+ * The current implementation sends independent emails to each watching user for
+ * the following reason:
  *
- *	The current implementation sends independent emails to each watching user for the following reason:
+ * - Each watching user will be notified about the page edit time expressed in
+ * his/her local time (UTC is shown additionally). To achieve this, we need to
+ * find the individual timeoffset of each watching user from the preferences..
  *
- * 	-	Each watching user will be notified about the page edit time expressed in his/her local time (UTC is shown additionally).
- *		To achieve this, we need to find the individual timeoffset of each watching user from the preferences..
+ * Suggested improvement to slack down the number of sent emails: We could think
+ * of sending out bulk mails (bcc:user1,user2...) for all these users having the
+ * same timeoffset in their preferences.
  *
- *		Suggested improvement to slack down the number of sent emails:
- *		We could think of sending out bulk mails (bcc:user1,user2...) for all these users having the same timeoffset in their preferences.
- *
- *	-	Visit the documentation pages under http://meta.wikipedia.com/Enotif
+ * Visit the documentation pages under http://meta.wikipedia.com/Enotif
+ * 
+ * @package MediaWiki
+ * 
  */
 class EmailNotification {
+	/**#@+
+	 * @access private
+	 */
 	var $to, $subject, $body, $replyto, $from;
+	/**#@-*/
 	
+	/**
+	 * @todo document
+	 * @param $currentUser
+	 * @param $currentPage
+	 * @param $currentNs
+	 * @param $timestamp
+	 * @param $currentSummary
+	 * @param $currentMinorEdit
+	 * @param $oldid (default: false)
+	 */
 	function NotifyOnPageChange($currentUser, $currentPage, $currentNs, $timestamp, $currentSummary, $currentMinorEdit, $oldid=false) {
 	
 		# we use $wgEmergencyContact as sender's address
@@ -180,12 +206,14 @@ class EmailNotification {
 				WHERE wl_title='" . $dbr->strencode($currentPage)."'  AND wl_namespace = " . $currentNs .
 				" AND wl_user <>" . $currentUser . " AND wl_notificationtimestamp <= 1";
 			$res = $dbr->query( $sql,'UserMailer::NotifyOnChange');
-	
-			if ( $dbr->numRows( $res ) > 0 ) { # if anyone is watching ... set up the email message text which is common for all receipients ...
+
+			# if anyone is watching ... set up the email message text which is
+			# common for all receipients ...
+			if ( $dbr->numRows( $res ) > 0 ) { 
 	
 				# This is a switch for one beep on the server when sending notification mails
 				$beeped = false;
-	
+
 				$article->mTimestamp = $timestamp;
 				$article->mSummary = $currentSummary;
 				$article->mMinorEdit = $currentMinorEdit;
@@ -196,8 +224,9 @@ class EmailNotification {
 				$mail = $this->composeCommonMailtext( $wgUser, $article );
 				$watchingUser = new User();
 	
-				for ($i = 1; $i <= $dbr->numRows( $res ); $i++) { # ... now do for all watching users ... if the options fit
-	
+				# ... now do for all watching users ... if the options fit
+				for ($i = 1; $i <= $dbr->numRows( $res ); $i++) { 
+
 					$wuser = $dbr->fetchObject( $res );
 					$watchingUser->setID($wuser->wl_user);
 					if ( ( $enotifwatchlistpage && $watchingUser->getOption('enotifwatchlistpages') ) ||
