@@ -414,7 +414,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 		$wgTitle = Title::newFromText( "Installation script" );
 		$wgDatabase = Database::newFromParams( $wgDBserver, "root", $conf->RootPW, "", 1 );
-		$wgDatabase->mIgnoreErrors = true;
+		$wgDatabase->ignoreErrors(true);
 
 		@$myver = mysql_get_server_info( $wgDatabase->mConn );
 		if( $myver ) {
@@ -436,7 +436,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					$wgDBadminpassword = $wgDBpassword;
 					$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, "", 1 );
 					$wgDatabase->isOpen();
-					$wgDatabase->mIgnoreErrors = true;
+					$wgDatabase->ignoreErrors(true);
 					@$myver = mysql_get_server_info( $wgDatabase->mConn );
 					if( !$myver ) {
 						$errs["DBuser"] = "Check name/pass";
@@ -1103,6 +1103,9 @@ if ( \$wgCommandLineMode ) {
 \$wgUseLatin1 = " . ($conf->Latin1 ? 'true' : 'false') . ";\n
 
 \$wgProxyKey = \"$proxyKey\";
+
+# The whitelist
+\$wgWhitelistRead = array(\"Special:Userlogin\");
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
