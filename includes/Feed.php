@@ -44,7 +44,7 @@ class FeedItem {
 		global $wgInputEncoding, $wgLang;
 		$string = str_replace( "\r\n", "\n", $string );
 		if( strcasecmp( $wgInputEncoding, "utf-8" ) != 0 ) {
-			$string = $wgLang->iconv( $wgInputEncoding, "utf-8" );
+			$string = $wgLang->iconv( $wgInputEncoding, "utf-8", $string );
 		}
 		return htmlspecialchars( $string );
 	}
