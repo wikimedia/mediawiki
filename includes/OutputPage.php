@@ -56,7 +56,7 @@ class OutputPage {
 		$lastmod = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix(
 			max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
 		
-		if( $_SERVER["HTTP_IF_MODIFIED_SINCE"] != "" ) {
+		if( !empty( $_SERVER["HTTP_IF_MODIFIED_SINCE"] ) ) {
 			# IE sends sizes after the date like this:
 			# Wed, 20 Aug 2003 06:51:19 GMT; length=5202
 			# this breaks strtotime().
@@ -264,18 +264,22 @@ class OutputPage {
 		global $wgUser, $wgLang;
 
 		$wgInputEncoding = strtolower( $wgInputEncoding );
-		$s = $HTTP_SERVER_VARS['HTTP_ACCEPT_CHARSET'];
 		
 		if( $wgUser->getOption( 'altencoding' ) ) {
 			$wgLang->setAltEncoding();
 			return;
 		}
 
-		if ( "" == $s ) {
+		if ( empty( $_SERVER['HTTP_ACCEPT_CHARSET'] ) ) {
 			$wgOutputEncoding = strtolower( $wgOutputEncoding );
 			return;
 		}
-		$a = explode( ",", $s );
+		
+		/*
+		# This code is unused anyway!
+		# Commenting out. --bv 2003-11-15
+		
+		$a = explode( ",", $_SERVER['HTTP_ACCEPT_CHARSET'] );
 		$best = 0.0;
 		$bestset = "*";
 
@@ -298,6 +302,7 @@ class OutputPage {
 
 # Disable for now
 #
+		*/
 		$wgOutputEncoding = $wgInputEncoding;
 	}
 
