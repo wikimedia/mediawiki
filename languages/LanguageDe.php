@@ -817,7 +817,7 @@ sein, um Ihre Beobachtungsliste zu bearbeiten.",
 "addedwatchtext" => "Der Artikel \"$1\" wurde zu Ihrer <a href=\"" .
 "{{localurle:Spezial:Watchlist}}\">Beobachtungsliste</a> hinzugefügt.
 Spätere Änderungen an diesem Artikel und der zugehörigen Diskussions-Seite
-werden dort gelistet und der Artikel wird in der <a href=\""
+werden dort gelistet und der Artikel wird in der <a href=\"" .
 "{{localurle:Spezial:Recentchanges}}\">Liste der letzten Änderungen</a>
 <b>fett</b> angezeigt. <p>Wenn Sie den Artikel wieder von ihrer
 Beobachtungsliste entfernen wollen, klicken Sie auf \"Nicht mehr beobachten\"
