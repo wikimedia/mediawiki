@@ -53,21 +53,22 @@ class MovePageForm {
 
 		$wgOut->setPagetitle( wfMsg( 'movepage' ) );
 
-		if ( $this->oldTitle == "" ) {
+		if ( $this->oldTitle == '' ) {
 			$wgOut->errorpage( 'notargettitle', 'notargettext' );
 			return;
 		}
+
+		$ot = Title::newFromURL( $this->oldTitle );
+		$ott = $ot->getPrefixedText();
 		
 		$encOldTitle = htmlspecialchars( $this->oldTitle );
-		if( $this->newTitle == "" ) {
+		if( $this->newTitle == '' ) {
 			# Show the current title as a default
 			# when the form is first opened.
-			$encNewTitle = $encOldTitle;
+			$encNewTitle = $ott;
 		} else {
 			$encNewTitle = htmlspecialchars( $this->newTitle );
 		}
-		$ot = Title::newFromURL( $this->oldTitle );
-		$ott = $ot->getPrefixedText();
 
 		$wgOut->addWikiText( wfMsg( 'movepagetext' ) );
 		if ( ! Namespace::isTalk( $ot->getNamespace() ) ) {
