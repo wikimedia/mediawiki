@@ -2,10 +2,11 @@
 
 function wfSpecialIpblocklist()
 {
-	global $wgUser, $wgOut, $wgRequest, $action;
+	global $wgUser, $wgOut, $wgRequest;
 	
 	$ip = $wgRequest->getVal( 'wpUnblockAddress', $wgRequest->getVal( 'ip' ) );
 	$reason = $wgRequest->getText( 'wpUnblockReason' );
+	$action = $wgRequest->getText( 'action' );
 	
 	$ipu = new IPUnblockForm( $ip, $reason );
 

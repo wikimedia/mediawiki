@@ -2,12 +2,13 @@
 
 function wfSpecialAllpages( $par=NULL )
 {
-	global $from, $indexMaxperpage;
+	global $indexMaxperpage, $wgRequest;
 	$indexMaxperpage = 480;
+	$from = $wgRequest->getVal( 'from' );
 
 	if( $par ) {
 		indexShowChunk( $par );
-	} elseif( isset( $from ) ) {
+	} elseif( !is_null( $from ) ) {
 		indexShowChunk( $from );
 	} else {
 		indexShowToplevel();

@@ -2,8 +2,8 @@
 
 function wfSpecialCategories()
 {
-	global $wgUser, $wgOut , $wgLang ;
-	global $article , $category ;
+	global $wgUser, $wgOut , $wgLang;
+
 	$sk = $wgUser->getSkin() ;
 	$sc = "Special:Categories" ;
 	$r = "" ;

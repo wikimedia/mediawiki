@@ -3,10 +3,13 @@ include_once( "SpecialRecentchanges.php" );
 
 function wfSpecialRecentchangeslinked( $par = NULL )
 {
-	global $wgUser, $wgOut, $wgLang, $wgTitle;
-	global $days, $target, $hideminor; # From query string
+	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest;
 	$fname = "wfSpecialRecentchangeslinked";
 
+	$days = $wgRequest->getInt( 'days' );
+	$target = $wgRequest->getText( 'target' );
+	$hideminor = $wgRequest->getBool( 'hideminor' ) ? 1 : 0;
+	
 	$wgOut->setPagetitle( wfMsg( "recentchanges" ) );
 	$sk = $wgUser->getSkin();
 
