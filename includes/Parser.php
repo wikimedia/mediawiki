@@ -1837,10 +1837,12 @@ cl_sortkey" ;
 		} else {
 			# replace ==section headers==
 			# XXX this needs to go away once we have a better parser.
-			for ( $i = 1; $i <= 6; ++$i ) {
-				$h = substr( '======', 0, $i );
-				$text = preg_replace( "/^{$h}([^=].*){$h}\\s?$/m",
-				  "${h}\\1 __MWTEMPLATESECTION__${h}\\2", $text );
+			if ( $this->mOutputType != OT_WIKI ) {
+				for ( $i = 1; $i <= 6; ++$i ) {
+					$h = substr( '======', 0, $i );
+					$text = preg_replace( "/^{$h}([^=].*){$h}\\s?$/m",
+					  "${h}\\1 __MWTEMPLATESECTION__${h}\\2", $text );
+				}
 			}
 			return $text;
 		}
