@@ -1851,6 +1851,7 @@ cl_sortkey" ;
 					if ($matches[$i] == "" && $matches[$i + 1] == "") break;
 					$text .= $matches[$i];
 					$hl = $matches[$i + 1];
+					if( $hl == "" ) continue;
 					if( strstr($hl, "<!--MWTEMPLATESECTION") ) {
 						$text .= $hl;
 						continue;
