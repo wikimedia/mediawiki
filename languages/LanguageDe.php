@@ -45,7 +45,7 @@
   "hideminor"               => "Keine kleinen Änderungen in Letzte Änderungen anzeigen",
   "usenewrc"                => "Erweiterte letzte Änderungen (nicht für alle Browser geeignet)",
   "numberheadings"          => "Überschriften automatisch numerieren",
-	"showtoolbar" => "Show edit toolbar",
+  "showtoolbar" 	    => "Editier-Werkzeugleiste anzeigen",
   "editondblclick"          => "Seiten mit Doppelklick bearbeiten (JavaScript)",
   "editsection"             => "Links zum Bearbeiten einzelner Absätze anzeigen",
   "editsectiononrightclick" => "Einzelne Absätze per Rechtsklick bearbeiten (Javascript)",
@@ -212,6 +212,25 @@
 "thisisdeleted" => "Ansehen oder wiederherstellen von $1?",
 "restorelink" => "$1 gelöschte Bearbeitungsvorgänge",
 
+# Editier-Werkzeugleiste
+"bold_sample"=>"Fetter Text",
+"bold_tip"=>"Fetter Text",
+"italic_sample"=>"Kursiver Text",
+"italic_tip"=>"Kursiver Text",
+"link_sample"=>"Link-Text",
+"link_tip"=>"Interner Link",
+"extlink_sample"=>"http://www.beispiel.de Link-Text",
+"extlink_tip"=>"Externer Link (http:// beachten)",
+"headline_sample"=>"Ebene 2 Überschrift",
+"headline_tip"=>"Ebene 2 Überschrift",
+"math_sample"=>"Formel hier einfügen",
+"math_tip"=>"Mathematische Formel (LaTeX)",
+"image_sample"=>"Beispiel.jpg",
+"image_tip"=>"Bild-Verweis",
+"media_sample"=>"Beispiel.mp3",
+"media_tip"=>"Mediendatei-Verweis",
+"sig_tip"=>"Ihre Signatur mit Zeitstempel",
+"hr_tip"=>"Horizontale Linie (sparsam verwenden)",
 
 # Main script and global functions
 #
