@@ -279,7 +279,7 @@ if( $conf->License == "gfdl" ) {
 	$conf->RightsUrl = "http://www.gnu.org/copyleft/fdl.html";
 	$conf->RightsText = "GNU Free Documentation License 1.2";
 	$conf->RightsCode = "gfdl";
-	$conf->RightsIcon = "{$conf->ScriptPath}/images/gnu-fdl.png";
+	$conf->RightsIcon = "{$conf->ScriptPath}/stylesheets/images/gnu-fdl.png";
 } elseif( $conf->License == "none" ) {
 	$conf->RightsUrl = $conf->RightsText = $conf->RightsCode = $conf->RightsIcon = "";
 } else {
