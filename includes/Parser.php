@@ -442,7 +442,7 @@ cl_sortkey" ;
 			
 			if ( $x->cur_namespace == $cns ) {
 				array_push ( $children, $sk->makeKnownLink ( $t, str_replace( '_',' ',$x->cur_title) ) ) ; # Subcategory
-				array_push ( $children_start_char, $wgLang->firstChar( $x->cur_title ) ) ;
+				array_push ( $children_start_char, $wgLang->firstChar( $x->cl_sortkey ) ) ;
 			} else {
 				array_push ( $articles , $sk->makeLink ( $t ) ) ; # Page in this category
 				array_push ( $articles_start_char, $wgLang->firstChar( $x->cl_sortkey ) ) ;
