@@ -598,7 +598,6 @@ class EditPage {
 <form id="editform" name="editform" method="post" action="$action"
 enctype="multipart/form-data">
 {$commentsubject}
-{$mbegin}
 <textarea tabindex='1' accesskey="," name="wpTextbox1" rows='{$rows}'
 cols='{$cols}'{$ew}>
 END
