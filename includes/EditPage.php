@@ -204,11 +204,12 @@ class EditPage {
 					$hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $this->textbox1, $matches );
 					# we can't deal with anchors, includes, html etc in the header for now, 
 					# headline would need to be parsed to improve this
-					if($hasmatch and strlen($matches[2]) > 0 and !preg_match( "/[\\['{<>]/", $matches[2])) {
+					#if($hasmatch and strlen($matches[2]) > 0 and !preg_match( "/[\\['{<>]/", $matches[2])) {
+					if($hasmatch and strlen($matches[2]) > 0) {
 						global $wgInputEncoding;
 						$headline = do_html_entity_decode( $matches[2], ENT_COMPAT, $wgInputEncoding );
-						# strip out HTML, will be useful when 
-						# $headline = preg_replace( "/<.*?" . ">/","",$headline );
+						# strip out HTML 
+						$headline = preg_replace( "/<.*?" . ">/","",$headline );
 						$headline = trim( $headline );
 						$sectionanchor = '#'.preg_replace("/[ \\?&\\/<>\\(\\)\\[\\]=,+']+/", '_', urlencode( $headline ) );
 					}
