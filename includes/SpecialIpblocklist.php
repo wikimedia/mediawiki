@@ -57,18 +57,24 @@ class IPUnblockForm {
 </form>\n" );
 
 	}
-
+	
 	function doSubmit()
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $ip, $wpUnblockAddress;
-		$fname = "IPUnblockForm::doSubmit";
+		global $wpUnblockAddress;
 
-		$sql = "DELETE FROM ipblocks WHERE ipb_address='{$wpUnblockAddress}'";
-		wfQuery( $sql, $fname );
+		$block = new Block();
+		
+		if ( $wpUnblockAddress{0} == "#" ) {
+			$block->mId = substr( $wpUnblockAddress, 1 );
+		} else {
+			$block->mAddress = $wpUnblockAddress;
+		}
+		
+		$block->delete();
 
 		$success = wfLocalUrl( $wgLang->specialPage( "Ipblocklist" ),
-		  "action=success&ip={$wpUnblockAddress}" );
+		  "action=success&ip=" . urlencode($wpUnblockAddress) );
 		$wgOut->redirect( $success );
 	}
 
@@ -86,29 +92,35 @@ class IPUnblockForm {
 	}
 }
 
-# Callback function
+# Callback function to output a block
 function wfAddRow( $block, $tag ) {
 	global $wgOut, $wgUser, $wgLang, $ip;
 
 	$sk = $wgUser->getSkin();
-	$addr = $block->mAddress;
+
+	# Hide addresses blocked by User::spreadBlocks, for privacy
+	$addr = $block->mAuto ? "#{$block->mId}" : $block->mAddress;
+
 	$name = User::whoIs( $block->mBy );
 	$ulink = $sk->makeKnownLink( $wgLang->getNsText( Namespace::getUser() ). ":{$name}", $name );
 	$d = $wgLang->timeanddate( $block->mTimestamp, true );
 
 	$line = str_replace( "$1", $d, wfMsg( "blocklistline" ) );
 	$line = str_replace( "$2", $ulink, $line );
-	$line = str_replace( "$3", $block->mAddress, $line );
+	$line = str_replace( "$3", $addr, $line );
 
 	$wgOut->addHTML( "<li>{$line}" );
-	$clink = "<a href=\"" . wfLocalUrlE( $wgLang->specialPage(
-	  "Contributions" ), "target={$addr}" ) . "\">" .
-	  wfMsg( "contribslink" ) . "</a>";
-	$wgOut->addHTML( " ({$clink})" );
+	
+	if ( !$block->mAuto ) {
+		$clink = "<a href=\"" . wfLocalUrlE( $wgLang->specialPage(
+		  "Contributions" ), "target={$block->mAddress}" ) . "\">" .
+		  wfMsg( "contribslink" ) . "</a>";
+		$wgOut->addHTML( " ({$clink})" );
+	}
 
 	if ( $wgUser->isSysop() ) {
 		$ublink = "<a href=\"" . wfLocalUrlE( $wgLang->specialPage(
-		  "Ipblocklist" ), "action=unblock&ip={$addr}" ) . "\">" .
+		  "Ipblocklist" ), "action=unblock&ip=" . urlencode( $addr ) ) . "\">" .
 		  wfMsg( "unblocklink" ) . "</a>";
 		$wgOut->addHTML( " ({$ublink})" );
 	}

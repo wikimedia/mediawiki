@@ -94,14 +94,15 @@ class User {
 	{
 		if ( -1 != $this->mBlockedby ) { return; }
 
-		$ban = new Ban();
-		if ( $ban->load( getenv( "REMOTE_ADDR" ), $this->mId ) ) {
+		$block = new Block();
+		if ( !$block->load( getenv( "REMOTE_ADDR" ), $this->mId ) ) {
+			wfDebug( getenv( "REMOTE_ADDR" ) ." is not blocked\n" );
 			$this->mBlockedby = 0;
 			return;
 		}
 		
-		$this->mBlockedby = $ban->by;
-		$this->mBlockreason = $ban->reason;
+		$this->mBlockedby = $block->mBy;
+		$this->mBlockreason = $block->mReason;
 	}
 
 	function isBlocked()
@@ -588,7 +589,7 @@ class User {
 			return;
 		}
 		
-		# Make a new ban object with the desired properties
+		# Make a new block object with the desired properties
 		wfDebug( "Autoblocking {$this->mUserName}@{$addr}\n" );
 		$ipblock->mAddress = $addr;
 		$ipblock->mUser = 0;
@@ -596,6 +597,7 @@ class User {
 		$ipblock->mReason = str_replace( "$1", $this->getName(), wfMsg( "autoblocker" ) );
 		$ipblock->mReason = str_replace( "$2", $userblock->mReason, $ipblock->mReason );
 		$ipblock->mTimestamp = wfTimestampNow();
+		$ipblock->mAuto = 1;
 
 		# Insert it
 		$ipblock->insert();
