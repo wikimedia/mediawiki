@@ -160,7 +160,7 @@ class OutputPage {
 	function setHTMLTitle( $name ) {$this->mHTMLtitle = $name; }
 	function setPageTitle( $name ) {
 		global $action, $wgContLang;
-		$name = $wgContLang->autoConvert($name);
+		$name = $wgContLang->convert($name, true);
 		$this->mPagetitle = $name;
 		if(!empty($action)) {
 			$taction =  $this->getPageTitleActionText();
