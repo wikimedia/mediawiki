@@ -1217,7 +1217,7 @@ class Database {
 		$this->query( 'BEGIN', $myFname );
 		$args = func_get_args();
 		$function = array_shift( $args );
-		$oldIgnore = $dbw->ignoreErrors( true );
+		$oldIgnore = $this->ignoreErrors( true );
 		$tries = DEADLOCK_TRIES;
 		if ( is_array( $function ) ) {
 			$fname = $function[0];
@@ -1231,14 +1231,14 @@ class Database {
 			$sql = $this->lastQuery();
 			
 			if ( $errno ) {
-				if ( $dbw->wasDeadlock() ) {
+				if ( $this->wasDeadlock() ) {
 					# Retry
 					usleep( mt_rand( DEADLOCK_DELAY_MIN, DEADLOCK_DELAY_MAX ) );
 				} else {
-					$dbw->reportQueryError( $error, $errno, $sql, $fname );
+					$this->reportQueryError( $error, $errno, $sql, $fname );
 				}
 			}
-		} while( $dbw->wasDeadlock && --$tries > 0 );
+		} while( $this->wasDeadlock() && --$tries > 0 );
 		$this->ignoreErrors( $oldIgnore );
 		if ( $tries <= 0 ) {
 			$this->query( 'ROLLBACK', $myFname );
