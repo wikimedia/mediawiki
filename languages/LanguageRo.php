@@ -18,7 +18,9 @@ include_once("Utf8Case.php");
 	4	=> "Wikipedia",
 	5	=> "Discuţie_Wikipedia",
 	6	=> "Imagine",
-	7	=> "Discuţie_Imagine"
+	7	=> "Discuţie_Imagine",
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_talk"
 );
 
 /* private */ $wgQuickbarSettingsRo = array(
@@ -124,7 +126,8 @@ include_once("Utf8Case.php");
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "Mută pagina",
 	"Booksources"	=> "Surse externe de cărţi",
-	"Categories"	=> "Categorii de pagini"
+	"Categories"	=> "Categorii de pagini",
+	"Export"	=> "Exportă"
 );
 
 /* private */ $wgSysopSpecialPagesRo = array(
@@ -241,7 +244,7 @@ Ultimul query încercat a fost:
 <blockquote><tt>$1</tt></blockquote>
 în cadrul funcţiei \"<tt>$2</tt>\".
 MySQL a returnat eroarea \"<tt>$3: $4</tt>\".",
-"dberrortextcl"	=> "A aoărut o eroare de sintaxă în query.
+"dberrortextcl"	=> "A apărut o eroare de sintaxă în query.
 Ultimul query încercat a fost:
 \"$1\"
 din funcţia \"$2\".
@@ -557,7 +560,7 @@ Această operaţiune poate dura, mai ales dacă aveţi o legătură lentă la In
 PNG pentru desene şi alte imagini cu contururi clare şi OGG pentru fişiere de sunet.
 
 Vă rugăm să folosiţi nume explicite pentru fişiere ca să evitaţi confuziile.
-Pentru a include o imagine într-un articol, folosiţi o legătură de forma <b>[[image:fişier.jpg]]</b> sau <b>[[image:fişier.png|text alternativ]]</b>
+Pentru a include o imagine într-un articol, folosiţi o legătură de forma <b>[[imagine:fişier.jpg]]</b> sau <b>[[imagine:fişier.png|text alternativ]]</b>
 sau <b>[[media:fişier.ogg]]</b> pentru fişiere de sunet.
 <p>Vă rugăm să reţineţi că, la fel ca şi în cazul celorlalte secţiuni din Wikipedia, alte persoane pot edita sau şterge fişierele pe care le trimiteţi dacă e în interesul enciclopediei, şi vi se poate chiar bloca accesul la trimiterea de fişiere dacă abuzaţi de sistem.",
 "uploadlog"		=> "raport de trimitere fişiere",
@@ -569,6 +572,8 @@ Toate datele/orele sunt afişate ca timp universal (UTC).
 ",
 "filename"		=> "Nume fişier",
 "filedesc"		=> "Sumar",
+"filestatus" => "Drepturi de autor",
+"filesource" => "Sursa",
 "affirmation"	=> "Afirm că persoana care deţine drepturile de autor asupra acestui fişier este de acord cu termenii licenţei $1.",
 "copyrightpage" => "Wikipedia:Drepturi_de_autor",
 "copyrightpagename" => "Drepturi de autor în Wikipedia",
@@ -741,6 +746,9 @@ pagini urmărite şi apăsaţi pe butonul corespunzător din partea de jos a pag
 "couldntremove" => "Elementul '$1' nu a putut fi şters...",
 "iteminvalidname" => "E o problemă cu elementul '$1', numele este invalid...",
 "wlnote" => "Dedesubt găsiţi ultimele $1 schimbări din ultimele <b>$2</b> ore.",
+"wlshowlast" => "Arată ultimele ",
+"wlhours"    => " ore",
+"wldays"     => " zile",
 
 # Delete/protect/revert
 #
@@ -935,6 +943,17 @@ să unificaţi manual cele două pagini de discuţii.",
 "movetalk"		=> "Mută şi pagina de \"discuţii\" dacă se poate.",
 "talkpagemoved" => "Şi pagina de discuţii asociată a fost mutată.",
 "talkpagenotmoved" => "Pagina asociată de discuţii <strong>nu</strong> a fost mutată.",
+"export"		=> "Exportă pagini",
+"exporttext"	=> "Puteţi exporta textul şi istoria de editare a unei anume
+pagini sau ale unui set de pagini în format XML; acestea pot fi apoi importate
+în alt Wiki ce rulează programul MediaWiki, pot fi transformate sau le puteţi
+păstra pentru scopuri personale.",
+"exportcuronly"	=> "Exportă numai versiunea actuală, nu şi versiunile mai vechi (istoria)",
+
+# Namespace 8 related
+
+"allmessages"	=> "Toate_mesajele",
+"allmessagestext"	=> "Aceasta este lista completă a mesajelor disponibile în domeniul MediaWiki:"
 
 );
 
