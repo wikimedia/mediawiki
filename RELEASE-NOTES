@@ -165,6 +165,8 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1178) Fix previous diff link when using 'oldid=0'
 * (bug 1173) Stop blocked accounts from reverting/deleting images
 * Keep generated stylesheets cache-separated for each user
+* (bug 1175) Fix "preview on first edit" mode
+
 
 === Caveats ===
 
