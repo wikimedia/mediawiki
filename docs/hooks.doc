@@ -226,6 +226,16 @@ hooks than for "complete" hooks.
 This is a list of known events and parameters; please add to it if
 you're going to add events to the MediaWiki code.
 
+'ArticleDelete': before an article is deleted
+$article: the article (object) being deleted
+$user: the user (object) deleting the article
+$reason: the reason (string) the article is being deleted
+
+'ArticleDeleteComplete': after an article is deleted
+$article: the article that was deleted
+$user: the user that deleted the article
+$reason: the reason the article was deleted
+
 'ArticleProtect': before an article is protected
 $article: the article being protected
 $user: the user doing the protection

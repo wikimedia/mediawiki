@@ -61,7 +61,16 @@ if (defined('MEDIAWIKI')) {
 			   "' for '" . $reason . "' " . (($moveonly) ? "(moves only)" : "") );
 		return true;
 	}
+
+	function syslogArticleDelete(&$article, &$user, &$reason) {
+		$title = $article->mTitle;
+		syslog(LOG_NOTICE, "User '" . $user->getName() . "' deleted '" .
+			   $title->getPrefixedText() .
+			   "' for '" . $reason . "' ");
+		return true;
+	}
 	
+
 	# Setup -- called once environment is configured
 	
 	function setupSyslog() {
@@ -75,6 +84,7 @@ if (defined('MEDIAWIKI')) {
 		$wgHooks['UserLogout'][] = 'syslogUserLogout';
 		$wgHooks['BlockIpComplete'][] = 'syslogBlockIp';
 		$wgHooks['ArticleProtectComplete'][] = 'syslogArticleProtect';
+		$wgHooks['ArticleDeleteComplete'][] = 'syslogArticleDelete';
 		
 		return true;
 	}
