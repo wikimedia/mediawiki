@@ -4,10 +4,16 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 
-== MediaWiki 1.4 BETA 4 ==
+== MediaWiki 1.4 BETA 5 ==
 
-Users of earlier betas, take note that there is a security fix for
-uploads in this release.
+MediaWiki 1.4beta5 is a security and bug fix release for the 1.4 beta
+series. Previous MediaWiki 1.4 beta releases include an input validation
+error which could lead to execution of arbitrary PHP code on the server.
+
+All users of 1.4 beta releases are strongly urged to upgrade to 1.4beta5
+immediately. The 1.3.x stable release series is not affected by this
+problem.
+
 
 ''''' Thinking of using MySQL 4.1? Please read this first! '''''
 ''''' Your PHP installation probably uses the OLD protocol '''''
@@ -22,7 +28,8 @@ CARELESS USE OF THIS CODE MAY RENDER YOU STERILE, GROW WEEDS IN YOUR
 YARD, AND FEED YOUR CAT TO A SEWER ALLIGATOR. DON'T SAY YOU WEREN'T
 WARNED, CAUSE WE WARNED YOU.
 
-If upgrading from an older release, see the file UPGRADING.
+If upgrading from an older release, see the file UPGRADE;
+1.4beta5 does include a minor database change from earlier betas.
 
 === New features ===
 
@@ -232,6 +239,8 @@ If upgrading from an older release, see the file UPGRADING.
 * Several valid XHTML fixes
 * (bug 624) Fix IE freezing rendering whilst waiting for CSS with MonoBook
 * (bug 211) Fix tabbed preferences with XHTML MIME type 
+* Fix for script execution vulnerability.
+
 
 === Caveats ===
 
