@@ -9,7 +9,7 @@ function wfSpecialIpblocklist()
 	$ipu = new IPUnblockForm();
 
 	if ( "success" == $action ) {
-		$msg = str_replace( "$1", $ip, wfMsg( "ipusuccess" ) );
+		$msg = wfMsg( "ipusuccess", $ip );
 		$ipu->showList( $msg );
 	} else if ( "submit" == $action ) {
 		if ( ! $wgUser->isSysop() ) {
@@ -83,7 +83,7 @@ class IPUnblockForm {
 
 		# Make log entry
 		$log = new LogPage( wfMsg( "blocklogpage" ), wfMsg( "blocklogtext" ) );
-		$action = str_replace( "$1", $wpUnblockAddress, wfMsg( "unblocklogentry" ) );
+		$action = wfMsg( "unblocklogentry", $wpUnblockAddress );
 		$log->addEntry( $action, $wpUnblockReason );
 
 		# Report to the user
@@ -119,10 +119,8 @@ function wfAddRow( $block, $tag ) {
 	$ulink = $sk->makeKnownLink( $wgLang->getNsText( Namespace::getUser() ). ":{$name}", $name );
 	$d = $wgLang->timeanddate( $block->mTimestamp, true );
 
-	$line = str_replace( "$1", $d, wfMsg( "blocklistline" ) );
-	$line = str_replace( "$2", $ulink, $line );
-	$line = str_replace( "$3", $addr, $line );
-
+	$line = wfMsg( "blocklistline", $d, $ulink, $addr );
+	
 	$wgOut->addHTML( "<li>{$line}" );
 	
 	if ( !$block->mAuto ) {

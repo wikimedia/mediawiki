@@ -68,8 +68,7 @@ function wfSpecialImagelist()
 		$fill .= $sk->makeKnownLink( $here, "{$num}",
 		  "sort=bysize&limit={$num}" );
 	}
-	$text = str_replace( "$1", $fill, wfMsg( "showlast" ) );
-	$text = str_replace( "$2", $bysize, $text );
+	$text = wfMsg( "showlast", $fill, $bysize );
 	$wgOut->addHTML( "{$text}<br>\n" );
 
 	$fill = "";
@@ -81,8 +80,7 @@ function wfSpecialImagelist()
 		$fill .= $sk->makeKnownLink( $here, $num,
 		  "sort=bydate&limit={$num}" );
 	}
-	$text = str_replace( "$1", $fill, wfMsg( "showlast" ) );
-	$text = str_replace( "$2", $bydate, $text );
+	$text = wfMsg( "showlast", $fill, $bydate );
 	$wgOut->addHTML( "{$text}<br>\n<p>" );
 
 	$res = wfQuery( $sql, DB_READ, "wfSpecialImagelist" );
@@ -96,7 +94,7 @@ function wfSpecialImagelist()
 		$ilink = "<a href=\"" . wfImageUrl( $name ) .
 		  "\">{$name}</a>";
 
-		$nb = str_replace( "$1", $s->img_size, wfMsg( "nbytes" ) );
+		$nb = wfMsg( "nbytes", $s->img_size );
 		$l = "(" .
 		  $sk->makeKnownLink( $wgLang->getNsText(
 		  Namespace::getImage() ) . ":{$name}", wfMsg( "imgdesc" ) ) .

@@ -113,9 +113,8 @@ function wfSpecialDisambiguations()
 
 	$sk = $wgUser->getSkin();
 
-	$top = "<p>".wfMsg("disambiguationstext")."</p><br>\n";
-	$top = str_replace ( "$1" , $sk->makeKnownLink ( $dp ) , $top ) ;
-	$top = getMaintenancePageBacklink().$top ;
+	$top = "<p>".wfMsg( "disambiguationstext", $sk->makeKnownLink( $dp ) )."</p><br>\n";
+	$top = getMaintenancePageBacklink() . $top;
 	$top .= wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
 
@@ -289,7 +288,7 @@ function wfSpecialMispeelings ()
                         }
                 }
         $top = getMaintenancePageBacklink();
-        $top .= "<p>".str_replace("$1",$msl,wfMsg("mispeelingstext"))."</p><br>\n";
+        $top .= "<p>".wfMsg( "mispeelingstext", $msl )."</p><br>\n";
         $top .= wfShowingResults( $offset, $limit );
         $wgOut->addHTML( "<p>{$top}\n" );
 
@@ -318,8 +317,7 @@ function wfSpecialMissingLanguageLinks()
 	$res = wfQuery( $sql, DB_READ, $fname );
 
 
-	$mll = wfMsg("missinglanguagelinkstext");
-	$mll = str_replace ( "$1" , $wgLang->getLanguageName($thelang) , $mll ) ;
+	$mll = wfMsg( "missinglanguagelinkstext", $wgLang->getLanguageName($thelang) );
 
 	$top = getMaintenancePageBacklink();
 	$top .= "<p>$mll</p><br>";

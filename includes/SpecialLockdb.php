@@ -88,8 +88,7 @@ class DBLockForm {
 
 		$wgOut->setPagetitle( wfMsg( "lockdb" ) );
 		$wgOut->setSubtitle( wfMsg( "lockdbsuccesssub" ) );
-		$text = str_replace( "$1", $ip, wfMsg( "lockdbsuccesstext" ) );
-		$wgOut->addWikiText( $text );
+		$wgOut->addWikiText( wfMsg( "lockdbsuccesstext", $ip ) );
 	}
 }
 

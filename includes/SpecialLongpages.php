@@ -34,7 +34,7 @@ function wfSpecialLongpages()
 
 	$s = "<ol start=" . ( $offset + 1 ) . ">";
 	while ( $obj = wfFetchObject( $res ) ) {
-		$nb = str_replace( "$1", $obj->len, wfMsg( "nbytes" ) );
+		$nb = wfMsg( "nbytes", $obj->len );
 		$link = $sk->makeKnownLink( $obj->cur_title, "" );
 		$s .= "<li>{$link} ({$nb})</li>\n";
 	}
