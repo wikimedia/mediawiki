@@ -3,10 +3,9 @@ body {
 	/* Background color is set separately on page type */
 	color: black;
 }
-#article { }
 #specialform { display: inline; }
 #powersearch {
-  background: #DDEEFF; border-style: solid; border-width: 1; padding: 2;
+  background: #DDEEFF; border-style: solid; border-width: 1px; padding: 2px;
 }
 .bodytext { }
 a.interwiki, a.external { color: #3366BB; }

@@ -5,7 +5,7 @@ body { margin: 0px; padding: 0px; color: black; }
 #content { top: 0; margin: 0; padding: 0; }
 #topbar { padding: 0px; }
 #powersearch {
-  background: #DDEEFF; border-style: solid; border-width: 1; padding: 2;
+  background: #DDEEFF; border-style: solid; border-width: 1px; padding: 2px;
 }
 #quickbar {
  width: 140px; top: 18ex; padding: 2px; visibility: visible; z-index: 99;
