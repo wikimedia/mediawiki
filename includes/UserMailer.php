@@ -1,11 +1,21 @@
 <?php
+/**
+ * Provide mail capabilities
+ *
+ */
 
-# This function will perform a direct (authenticated) login to
-# a SMTP Server to use for mail relaying if 'wgSMTP' specifies an
-# array of parameters. It requires PEAR:Mail to do that.
-# Otherwise it just uses the standard PHP 'mail' function.
-function userMailer( $to, $from, $subject, $body )
-{
+/**
+ * This function will perform a direct (authenticated) login to
+ * a SMTP Server to use for mail relaying if 'wgSMTP' specifies an
+ * array of parameters. It requires PEAR:Mail to do that.
+ * Otherwise it just uses the standard PHP 'mail' function.
+ *
+ * @param string $to recipient's email
+ * @param string $from sender's email
+ * @param string $subject email's subject
+ * @param string $body email's text
+ */
+function userMailer( $to, $from, $subject, $body ) {
 	global $wgUser, $wgSMTP, $wgOutputEncoding, $wgErrorString;
 	
   	$qto = wfQuotedPrintable( $to );
@@ -59,9 +69,11 @@ function userMailer( $to, $from, $subject, $body )
 	}
 }
 
+/**
+ *
+ */
 function mailErrorHandler( $code, $string ) {
 	global $wgErrorString;
 	$wgErrorString = preg_replace( "/^mail\(\): /", "", $string );
 }
-
 ?>

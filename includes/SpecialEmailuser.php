@@ -1,5 +1,11 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 require_once('UserMailer.php');
 
 function wfSpecialEmailuser( $par ) {
@@ -45,14 +51,16 @@ function wfSpecialEmailuser( $par ) {
 	else { $f->showForm( "" ); }
 }
 
+/**
+ * @todo document
+ */
 class EmailUserForm {
 
 	var $mAddress;
 	var $target;
 	var $text, $subject;
 
-	function EmailUserForm( $addr, $target )
-	{
+	function EmailUserForm( $addr, $target ) {
 		global $wgRequest;
 		$this->mAddress = $addr;
 		$this->target = $target;
@@ -60,8 +68,7 @@ class EmailUserForm {
 		$this->subject = $wgRequest->getText( 'wpSubject' );
 	}
 
-	function showForm( $err )
-	{
+	function showForm( $err ) {
 		global $wgOut, $wgUser, $wgLang;
 
 		$wgOut->setPagetitle( wfMsg( "emailpage" ) );
@@ -114,8 +121,7 @@ class EmailUserForm {
 
 	}
 
-	function doSubmit()
-	{
+	function doSubmit() {
 		global $wgOut, $wgUser, $wgLang, $wgOutputEncoding;
 	    
 		$from = wfQuotedPrintable( $wgUser->getName() ) . " <" . $wgUser->getEmail() . ">";
@@ -132,8 +138,7 @@ class EmailUserForm {
 			$wgOut->addHTML( wfMsg( "usermailererror" ) . $mailResult);
 	}
 
-	function showSuccess()
-	{
+	function showSuccess() {
 		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( "emailsent" ) );

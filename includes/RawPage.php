@@ -1,10 +1,17 @@
 <?php
-# Copyright (C) 2004 Gabriel Wicke <gw@wikidev.net>
-# http://www.aulinx.de/
-# Based on PageHistory and SpecialExport
-# 
-# License: GPL (http://www.gnu.org/copyleft/gpl.html)
+/**
+ * Copyright (C) 2004 Gabriel Wicke <gw@wikidev.net>
+ * http://www.aulinx.de/
+ * Based on PageHistory and SpecialExport
+ * 
+ * License: GPL (http://www.gnu.org/copyleft/gpl.html)
+ *
+ * @author Gabriel Wicke <gw@wikidev.net>
+ */
 
+/**
+ * @todo document
+ */
 class RawPage {
 
 	function RawPage( $article ) {
@@ -40,6 +47,7 @@ class RawPage {
 			$this->mContentType = $ctype;
 		}
 	}
+	
 	function view() {
 		global $wgUser, $wgOut;
 		header( "Content-type: ".$this->mContentType.'; charset='.$this->mCharset );

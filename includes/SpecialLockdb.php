@@ -1,5 +1,11 @@
 <?php
+/**
+ *
+ */
 
+/**
+ * Constructor
+ */
 function wfSpecialLockdb()
 {
 	global $wgUser, $wgOut, $wgRequest;
@@ -16,8 +22,11 @@ function wfSpecialLockdb()
 	else { $f->showForm( "" ); }
 }
 
+/**
+ *
+ */
 class DBLockForm {
-	var $reason = "";
+	var $reason = '';
 	
 	function DBLockForm() {
 		global $wgRequest;
@@ -59,8 +68,7 @@ class DBLockForm {
 
 	}
 
-	function doSubmit()
-	{
+	function doSubmit() {
 		global $wgOut, $wgUser, $wgLang, $wgRequest;
 		global $wgReadOnlyFile;
 
@@ -83,8 +91,7 @@ class DBLockForm {
 		$wgOut->redirect( $titleObj->getFullURL( "action=success" ) );
 	}
 
-	function showSuccess()
-	{
+	function showSuccess() {
 		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( "lockdb" ) );

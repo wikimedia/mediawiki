@@ -1,20 +1,23 @@
 <?php
-# See deferred.doc
+/**
+ * See deferred.doc
+ *
+ */
 
+/**
+ *
+ */
 class UserTalkUpdate {
 
 	/* private */ var $mAction, $mNamespace, $mTitle;
 
-	function UserTalkUpdate( $action, $ns, $title )
-	{
+	function UserTalkUpdate( $action, $ns, $title ) {
 		$this->mAction = $action;
 		$this->mNamespace = $ns;
 		$this->mTitle = str_replace( '_', ' ', $title );
 	}
 
-	function doUpdate()
-	{
-	
+	function doUpdate() {	
 		global $wgUser, $wgLang, $wgMemc, $wgDBname;
 		$fname = 'UserTalkUpdate::doUpdate';
 

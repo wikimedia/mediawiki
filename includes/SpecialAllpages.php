@@ -1,7 +1,12 @@
 <?php
+/**
+ *
+ */
 
-function wfSpecialAllpages( $par=NULL )
-{
+/**
+ *
+ */
+function wfSpecialAllpages( $par=NULL ) {
 	global $indexMaxperpage, $toplevelMaxperpage, $wgRequest, $wgOut, $wgLang;
 	$indexMaxperpage = 480;
 	$toplevelMaxperpage = 50;
@@ -23,8 +28,7 @@ function wfSpecialAllpages( $par=NULL )
 	}
 }
 
-function namespaceForm ( $namespace = 0, $from = "" )
-{
+function namespaceForm ( $namespace = 0, $from = '' ) {
 	global $wgLang, $wgScript;
 
 	$t = Title::makeTitle( NS_SPECIAL, "Allpages" );
@@ -50,8 +54,7 @@ function namespaceForm ( $namespace = 0, $from = "" )
 	return $out;
 }
 
-function indexShowToplevel ( $namespace = 0 )
-{
+function indexShowToplevel ( $namespace = 0 ) {
 	global $wgOut, $indexMaxperpage, $toplevelMaxperpage, $wgLang, $wgRequest, $wgUser;
 	$sk = $wgUser->getSkin();
 	$fname = "indexShowToplevel";
@@ -152,8 +155,7 @@ function indexShowToplevel ( $namespace = 0 )
 	$wgOut->addHtml( $out2 . $out );
 }
 
-function indexShowline( $inpoint, $outpoint, $namespace = 0 )
-{
+function indexShowline( $inpoint, $outpoint, $namespace = 0 ) {
 	global $wgOut, $wgLang, $wgUser;
 	$sk = $wgUser->getSkin();
 	$dbr =& wfGetDB( DB_SLAVE );
@@ -172,8 +174,7 @@ function indexShowline( $inpoint, $outpoint, $namespace = 0 )
 	return '<tr><td align="right">'.$out.'</td></tr>';
 }
 
-function indexShowChunk( $from, $namespace = 0 )
-{
+function indexShowChunk( $from, $namespace = 0 ) {
 	global $wgOut, $wgUser, $indexMaxperpage, $wgLang;
 	$sk = $wgUser->getSkin();
 	$maxPlusOne = $indexMaxperpage + 1;

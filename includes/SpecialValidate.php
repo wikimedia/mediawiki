@@ -17,6 +17,13 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+/**
+ *
+ */
+
+/**
+ *
+ */
 class Validation {
 	
 	function find_this_version( $article_title , &$article_time , &$id , &$tab ) {
@@ -512,7 +519,10 @@ class Validation {
 
 }
 
-function wfSpecialValidate( $page = "" ) {
+/**
+ * constructor
+ */
+function wfSpecialValidate( $page = '' ) {
 	global $wgOut, $wgRequest, $wgUseValidation;
 
 	if( !$wgUseValidation ) {

@@ -2,36 +2,40 @@
 
 // require_once('Tokenizer.php');
 
-# PHP Parser
-#
-# Processes wiki markup
-#
-# There are two main entry points into the Parser class:
-# parse()
-#   produces HTML output
-# preSaveTransform().
-#   produces altered wiki markup.
-#
-# Globals used:
-#    objects:   $wgLang, $wgDateFormatter, $wgLinkCache, $wgCurParser
-#
-# NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
-#
-# settings:
-#   $wgUseTex*, $wgUseDynamicDates*, $wgInterwikiMagic*,
-#   $wgNamespacesWithSubpages, $wgLanguageCode, $wgAllowExternalImages*,
-#   $wgLocaltimezone
-#
-#   * only within ParserOptions
-#
-#----------------------------------------
-#    Variable substitution O(N^2) attack
-#-----------------------------------------
-# Without countermeasures, it would be possible to attack the parser by saving
-# a page filled with a large number of inclusions of large pages. The size of
-# the generated page would be proportional to the square of the input size.
-# Hence, we limit the number of inclusions of any given page, thus bringing any
-# attack back to O(N).
+/**
+ * PHP Parser
+ * 
+ * Processes wiki markup
+ *
+ * There are two main entry points into the Parser class:
+ * parse()
+ *   produces HTML output
+ * preSaveTransform().
+ *   produces altered wiki markup.
+ *
+ * Globals used:
+ *    objects:   $wgLang, $wgDateFormatter, $wgLinkCache, $wgCurParser
+ *
+ * NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
+ *
+ * settings:
+ *  $wgUseTex*, $wgUseDynamicDates*, $wgInterwikiMagic*,
+ *  $wgNamespacesWithSubpages, $wgLanguageCode, $wgAllowExternalImages*,
+ *  $wgLocaltimezone
+ *
+ *  * only within ParserOptions
+ *
+ */
+
+/**
+ * Variable substitution O(N^2) attack
+ *
+* Without countermeasures, it would be possible to attack the parser by saving
+* a page filled with a large number of inclusions of large pages. The size of
+* the generated page would be proportional to the square of the input size.
+* Hence, we limit the number of inclusions of any given page, thus bringing any
+* attack back to O(N).
+*/
 define( 'MAX_INCLUDE_REPEAT', 100 );
 define( 'MAX_INCLUDE_SIZE', 1000000 ); // 1 Million
 
@@ -66,6 +70,9 @@ define( 'EXT_IMAGE_REGEX',
 	'('.EXT_IMAGE_FNAME_CLASS.'+)\\.((?i)'.EXT_IMAGE_EXTENSIONS.')$/S' # Filename
 );
 
+/**
+ * @todo document
+ */
 class Parser
 {
 	# Persistent:
@@ -2321,6 +2328,9 @@ class Parser
 	}
 }
 
+/**
+ * @todo document
+ */
 class ParserOutput
 {
 	var $mText, $mLanguageLinks, $mCategoryLinks, $mContainsOldMagic;
@@ -2355,6 +2365,10 @@ class ParserOutput
 
 }
 
+/**
+ * Set options of the Parser
+ * @todo document
+ */
 class ParserOptions
 {
 	# All variables are private
@@ -2446,7 +2460,9 @@ function wfVariableSubstitution( $matches ) {
 	return $wgCurParser->variableSubstitution( $matches );
 }
 
-# Return the total number of articles
+/**
+ * Return the total number of articles
+ */
 function wfNumberOfArticles() {
 	global $wgNumberOfArticles;
 
@@ -2454,8 +2470,11 @@ function wfNumberOfArticles() {
 	return $wgNumberOfArticles;
 }
 
-# Get various statistics from the database
-/* private */ function wfLoadSiteStats() {
+/**
+ * Get various statistics from the database
+ * @private
+ */
+function wfLoadSiteStats() {
 	global $wgNumberOfArticles, $wgTotalViews, $wgTotalEdits;
 	$fname = 'wfLoadSiteStats';
 

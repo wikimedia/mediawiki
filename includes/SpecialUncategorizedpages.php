@@ -1,7 +1,16 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 require_once( "QueryPage.php" );
 
+/**
+ *
+ */
 class UncategorizedPagesPage extends PageQueryPage {
 
 	function getName() {
@@ -26,6 +35,9 @@ class UncategorizedPagesPage extends PageQueryPage {
 	}
 }
 
+/**
+ * constructor
+ */
 function wfSpecialUncategorizedpages() {
 	list( $limit, $offset ) = wfCheckLimits();
 

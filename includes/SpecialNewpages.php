@@ -1,7 +1,16 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 require_once( "QueryPage.php" );
 
+/**
+ *
+ */
 class NewPagesPage extends QueryPage {
 
 	function getName() {
@@ -76,6 +85,9 @@ class NewPagesPage extends QueryPage {
 	}
 }
 
+/**
+ * constructor
+ */
 function wfSpecialNewpages()
 {
 	global $wgRequest;

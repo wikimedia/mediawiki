@@ -1,6 +1,11 @@
 <?php
-# See deferred.doc
+/**
+ * See deferred.doc
+ */
 
+/**
+ * @todo document
+ */
 class LinksUpdate {
 
 	/* private */ var $mId, $mTitle;

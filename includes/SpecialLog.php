@@ -17,6 +17,13 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+/**
+ *
+ */
+
+/**
+ * constructor
+ */
 function wfSpecialLog( $par = '' ) {
 	global $wgRequest;
 	$logReader =& new LogReader( $wgRequest );
@@ -27,6 +34,9 @@ function wfSpecialLog( $par = '' ) {
 	$logViewer->show();
 }
 
+/**
+ *
+ */
 class LogReader {
 	var $db, $joinClauses, $whereClauses;
 	var $type = '', $user = '', $title = null;
@@ -130,6 +140,9 @@ class LogReader {
 	}
 }
 
+/**
+ *
+ */
 class LogViewer {
 	var $reader, $skin;
 	

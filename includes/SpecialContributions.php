@@ -1,7 +1,12 @@
 <?php
+/**
+ *
+ */
 
-function wfSpecialContributions( $par = "" )
-{
+/**
+ *
+ */
+function wfSpecialContributions( $par = '' ) {
 	global $wgUser, $wgOut, $wgLang, $wgRequest;
 	$fname = "wfSpecialContributions";
 	$sysop = $wgUser->isSysop();
@@ -159,26 +164,23 @@ function wfSpecialContributions( $par = "" )
 }
 
 
-/*
-
-Generates each row in the contributions list.
-
-Contributions which are marked "top" are currently on top of the history.
-For these contributions, a [rollback] link is shown for users with sysop
-privileges. The rollback link restores the most recent version that was not
-written by the target user.
-
-If the contributions page is called with the parameter &bot=1, all rollback
-links also get that parameter. It causes the edit itself and the rollback
-to be marked as "bot" edits. Bot edits are hidden by default from recent
-changes, so this allows sysops to combat a busy vandal without bothering
-other users.
-
-TODO: This would probably look a lot nicer in a table.
-
-*/
-function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $target, $oldid )
-{
+/**
+ * Generates each row in the contributions list.
+ *
+ * Contributions which are marked "top" are currently on top of the history.
+ * For these contributions, a [rollback] link is shown for users with sysop
+ * privileges. The rollback link restores the most recent version that was not
+ * written by the target user.
+ * 
+ * If the contributions page is called with the parameter &bot=1, all rollback
+ * links also get that parameter. It causes the edit itself and the rollback
+ * to be marked as "bot" edits. Bot edits are hidden by default from recent
+ * changes, so this allows sysops to combat a busy vandal without bothering
+ * other users.
+ * 
+ * @todo This would probably look a lot nicer in a table.
+ */
+function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $target, $oldid ) {
 	global $wgLang, $wgOut, $wgUser, $wgRequest;
 	$page = Title::makeName( $ns, $t );
 	$link = $sk->makeKnownLink( $page, "" );
@@ -220,8 +222,10 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $t
 	$wgOut->addHTML( "<li>{$d} {$histlink} {$mflag} {$link} {$comment}{$topmarktext}{$oldtext}</li>\n" );
 }
 
-function ucCountLink( $lim, $d )
-{
+/**
+ *
+ */
+function ucCountLink( $lim, $d ) {
 	global $wgUser, $wgLang, $wgRequest;
 
 	$target = $wgRequest->getText( 'target' );
@@ -231,8 +235,10 @@ function ucCountLink( $lim, $d )
 	return $s;
 }
 
-function ucDaysLink( $lim, $d )
-{
+/**
+ *
+ */
+function ucDaysLink( $lim, $d ) {
 	global $wgUser, $wgLang, $wgRequest;
 
 	$target = $wgRequest->getText( 'target' );

@@ -1,8 +1,14 @@
 <?php
-# Class to represent an image
-# Provides methods to retrieve paths (physical, logical, URL),
-# to generate thumbnails or for uploading.
+/**
+ *
+ */
 
+/**
+ * Class to represent an image
+ * 
+ * Provides methods to retrieve paths (physical, logical, URL),
+ * to generate thumbnails or for uploading.
+ */
 class Image
 {
 	/* private */
@@ -123,13 +129,14 @@ class Image
 		return $width."px-".$this->name;
 	}
 
-	//**********************************************************************
-	// Create a thumbnail of the image having the specified width.
-	// The thumbnail will not be created if the width is larger than the
-	// image's width. Let the browser do the scaling in this case.
-	// The thumbnail is stored on disk and is only computed if the thumbnail
-	// file does not exist OR if it is older than the image.
-	// Returns the URL.
+	/**
+	 * Create a thumbnail of the image having the specified width.
+	 * The thumbnail will not be created if the width is larger than the
+	 * image's width. Let the browser do the scaling in this case.
+	 * The thumbnail is stored on disk and is only computed if the thumbnail
+	 * file does not exist OR if it is older than the image.
+	 * Returns the URL.
+	 */
 	function createThumb( $width ) {
 		global $wgUploadDirectory;
 		global $wgImageMagickConvertCommand;
@@ -254,13 +261,14 @@ class Image
 		return $thumbUrl;
 	} // END OF function createThumb
 
-	//**********************************************************************
-	// Return the image history of this image, line by line.
-	// starts with current version, then old versions.
-	// uses $this->historyLine to check which line to return:
-	//  0      return line for current version
-	//  1      query for old versions, return first one
-	//  2, ... return next old version from above query
+	/**
+	 * Return the image history of this image, line by line.
+	 * starts with current version, then old versions.
+	 * uses $this->historyLine to check which line to return:
+	 *  0      return line for current version
+	 *  1      query for old versions, return first one
+	 *  2, ... return next old version from above query
+	 */
 	function nextHistoryLine()
 	{
 		$fname = 'Image::nextHistoryLine()';

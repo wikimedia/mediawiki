@@ -1,7 +1,16 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 require_once( "QueryPage.php" );
 
+/**
+ *
+ */
 class LongPagesPage extends QueryPage {
 
 	function getName() {
@@ -33,6 +42,9 @@ class LongPagesPage extends QueryPage {
 	}
 }
 
+/**
+ * constructor
+ */
 function wfSpecialLongpages()
 {
     list( $limit, $offset ) = wfCheckLimits();

@@ -1,13 +1,21 @@
 <?php
+/**
+ *
+ */
 
-function wfSpecialUndelete( $par )
-{
+/**
+ *
+ */
+function wfSpecialUndelete( $par ) {
     global $wgRequest;
 
 	$form = new UndeleteForm( $wgRequest, $par );
 	$form->execute();
 }
 
+/**
+ *
+ */
 class PageArchive {
 	var $title;
 	
@@ -165,6 +173,9 @@ class PageArchive {
 	}
 }
 
+/**
+ *
+ */
 class UndeleteForm {
 	var $mAction, $mTarget, $mTimestamp, $mRestore, $mTargetObj;
 

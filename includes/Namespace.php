@@ -1,18 +1,19 @@
 <?php
-
-# This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
+/**
+ * Provide things related to namespaces
+ */
+ 
+/**
+ * This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
+ */
 if( defined( 'MEDIAWIKI' ) ) {
 
-# This is a utility class with only static functions
-# for dealing with namespaces that encodes all the
-# "magic" behaviors of them based on index.  The textual
-# names of the namespaces are handled by Language.php.
-
-# Definitions of the NS_ constants are in Defines.php
-
-# These are synonyms for the names given in the language file
-# Users and translators should not change them
-/* private */ $wgCanonicalNamespaceNames = array(
+ 
+/**
+ * Definitions of the NS_ constants are in Defines.php
+ * @private
+ */
+$wgCanonicalNamespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
 	NS_TALK	            => 'Talk',
@@ -36,26 +37,45 @@ if(isset($wgExtraNamespaces)) {
 	$wgCanonicalNamespaceNames=$wgCanonicalNamespaceNames+$wgExtraNamespaces;
 }
 
+/**
+ * This is a utility class with only static functions
+ * for dealing with namespaces that encodes all the
+ * "magic" behaviors of them based on index.  The textual
+ * names of the namespaces are handled by Language.php.
+ *
+ * These are synonyms for the names given in the language file
+ * Users and translators should not change them
+*/
 class Namespace {
 
-	/* These functions are deprecated */
+	/**#@+
+	 * These functions are deprecated
+	 * @deprecated
+	 */
 	function getSpecial() { return NS_SPECIAL; }
 	function getUser() { return NS_USER; }
 	function getWikipedia() { return NS_PROJECT; }
 	function getImage() { return NS_IMAGE; }
 	function getMedia() { return NS_MEDIA; }
 	function getCategory() { return NS_CATEGORY; }
+	/**#@-*/
 
-	function isMovable( $index )
-	{
+	/**
+	 * Check if the given namespace might be moved
+	 * @return bool
+	 */
+	function isMovable( $index ) {
 		if ( $index < NS_MAIN || $index == NS_IMAGE  || $index == NS_CATEGORY ) { 
 			return false; 
 		}
 		return true;
 	}
 
-	function isTalk( $index )
-	{
+	/**
+	 * Check if the give namespace is a talk page
+	 * @return bool
+	 */
+	function isTalk( $index ) {
 		global $wgExtraNamespaces;
 		return ( $index == NS_TALK           || $index == NS_USER_TALK     ||
 				 $index == NS_PROJECT_TALK   || $index == NS_IMAGE_TALK    ||
@@ -66,10 +86,10 @@ class Namespace {
 		
 	}
 
-	# Get the talk namespace corresponding to the given index
-	#
-	function getTalk( $index )
-	{
+	/**
+	 * Get the talk namespace corresponding to the given index
+	 */
+	function getTalk( $index ) {
 		if ( Namespace::isTalk( $index ) ) {
 			return $index;
 		} else {
@@ -78,8 +98,7 @@ class Namespace {
 		}
 	}
 
-	function getSubject( $index )
-	{
+	function getSubject( $index ) {
 		if ( Namespace::isTalk( $index ) ) {
 			return $index - 1;
 		} else {
@@ -87,17 +106,19 @@ class Namespace {
 		}
 	}
 
-	# Returns the canonical (English Wikipedia) name for a given index
-	function &getCanonicalName( $index )
-	{
+	/**
+	 * Returns the canonical (English Wikipedia) name for a given index
+	 */
+	function &getCanonicalName( $index ) {
 		global $wgCanonicalNamespaceNames;
 		return $wgCanonicalNamespaceNames[$index];
 	}
 
-	# Returns the index for a given canonical name, or NULL
-	# The input *must* be converted to lower case first
-	function &getCanonicalIndex( $name )
-	{
+	/**
+	 * Returns the index for a given canonical name, or NULL
+	 * The input *must* be converted to lower case first
+	 */
+	function &getCanonicalIndex( $name ) {
 		global $wgCanonicalNamespaceNames;
 		static $xNamespaces = false;
 		if ( $xNamespaces === false ) {

@@ -1,7 +1,14 @@
 <?php
-# Global functions used everywhere
 # $Id$
 
+/**
+ * Global functions used everywhere
+ */
+
+/**
+ * Some globals and requires needed
+ */
+ 
 $wgNumberOfArticles = -1; # Unset
 $wgTotalViews = -1;
 $wgTotalEdits = -1;
@@ -10,14 +17,12 @@ require_once( 'DatabaseFunctions.php' );
 require_once( 'UpdateClasses.php' );
 require_once( 'LogPage.php' );
 
-/*
+/**
  * Compatibility functions
- */
-
-# PHP <4.3.x is not actively supported; 4.1.x and 4.2.x might or might not work.
-# <4.1.x will not work, as we use a number of features introduced in 4.1.0
-# such as the new autoglobals.
-
+ * PHP <4.3.x is not actively supported; 4.1.x and 4.2.x might or might not work.
+ * <4.1.x will not work, as we use a number of features introduced in 4.1.0
+ * such as the new autoglobals.
+*/
 if( !function_exists('iconv') ) {
 	# iconv support is not in the default configuration and so may not be present.
 	# Assume will only ever use utf-8 and iso-8859-1.
@@ -61,8 +66,10 @@ if ( !function_exists( 'mb_substr' ) ) {
 	}
 }
 
-# html_entity_decode exists in PHP 4.3.0+ but is FATALLY BROKEN even then,
-# with no UTF-8 support.
+/**
+ * html_entity_decode exists in PHP 4.3.0+ but is FATALLY BROKEN even then,
+ * with no UTF-8 support.
+ */
 function do_html_entity_decode( $string, $quote_style=ENT_COMPAT, $charset='ISO-8859-1' ) {
 	static $trans;
 	if( !isset( $trans ) ) {
@@ -79,8 +86,10 @@ function do_html_entity_decode( $string, $quote_style=ENT_COMPAT, $charset='ISO-
 
 $wgRandomSeeded = false;
 
-# Seed Mersenne Twister
-# Only necessary in PHP < 4.2.0
+/**
+ * Seed Mersenne Twister
+ * Only necessary in PHP < 4.2.0
+ */
 function wfSeedRandom()
 {
 	global $wgRandomSeeded;
@@ -92,9 +101,10 @@ function wfSeedRandom()
 	}
 }
 
-# Generates a URL from a URL-encoded title and a query string
-# Title::getLocalURL() is preferred in most cases
-#
+/**
+ * Generates a URL from a URL-encoded title and a query string
+ * Title::getLocalURL() is preferred in most cases
+ */
 function wfLocalUrl( $a, $q = '' )
 {
 	global $wgServer, $wgScript, $wgArticlePath;
@@ -117,15 +127,19 @@ function wfLocalUrl( $a, $q = '' )
 	return $a;
 }
 
+/**
+ * @todo document
+ */
 function wfLocalUrlE( $a, $q = '' )
 {
 	return htmlspecialchars( wfLocalUrl( $a, $q ) );
 	# die( "Call to obsolete function wfLocalUrlE()" );
 }
 
-# We want / and : to be included as literal characters in our title URLs.
-# %2F in the page titles seems to fatally break for some reason.
-#
+/**
+ * We want / and : to be included as literal characters in our title URLs.
+ * %2F in the page titles seems to fatally break for some reason.
+*/
 function wfUrlencode ( $s )
 {
 	$s = urlencode( $s );
@@ -135,9 +149,10 @@ function wfUrlencode ( $s )
 	return $s;
 }
 
-# Return the UTF-8 sequence for a given Unicode code point.
-# Currently doesn't work for values outside the Basic Multilingual Plane.
-#
+/**
+ * Return the UTF-8 sequence for a given Unicode code point.
+ * Currently doesn't work for values outside the Basic Multilingual Plane.
+*/
 function wfUtf8Sequence( $codepoint ) {
 	if($codepoint <		0x80) return chr($codepoint);
 	if($codepoint <    0x800) return chr($codepoint >>	6 & 0x3f | 0xc0) .
@@ -154,7 +169,9 @@ function wfUtf8Sequence( $codepoint ) {
 	return "&#$codepoint;";
 }
 
-# Converts numeric character entities to UTF-8
+/**
+ * Converts numeric character entities to UTF-8
+ */
 function wfMungeToUtf8( $string ) {
 	global $wgInputEncoding; # This is debatable
 	#$string = iconv($wgInputEncoding, "UTF-8", $string);
@@ -164,8 +181,10 @@ function wfMungeToUtf8( $string ) {
 	return $string;
 }
 
-# Converts a single UTF-8 character into the corresponding HTML character entity
-# (for use with preg_replace_callback)
+/**
+ * Converts a single UTF-8 character into the corresponding HTML character
+ * entity (for use with preg_replace_callback)
+ */
 function wfUtf8Entity( $matches ) {
 	$char = $matches[0];
 	# Find the length
@@ -201,11 +220,17 @@ function wfUtf8Entity( $matches ) {
 	return "&#$z;";
 }
 
-# Converts all multi-byte characters in a UTF-8 string into the appropriate character entity
+/**
+ * Converts all multi-byte characters in a UTF-8 string into the appropriate
+ * character entity
+ */
 function wfUtf8ToHTML($string) {
 	return preg_replace_callback( '/[\\xc0-\\xfd][\\x80-\\xbf]*/', 'wfUtf8Entity', $string );
 }
 
+/**
+ * @todo document
+ */
 function wfDebug( $text, $logonly = false )
 {
 	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly, $wgDebugRawPage;
@@ -223,7 +248,9 @@ function wfDebug( $text, $logonly = false )
 	}
 }
 
-# Log for database errors
+/**
+ * Log for database errors
+ */
 function wfLogDBError( $text ) {
 	global $wgDBerrorLog;
 	if ( $wgDBerrorLog ) {
@@ -232,6 +259,9 @@ function wfLogDBError( $text ) {
 	}
 }
 
+/**
+ * @todo document
+ */
 function logProfilingData()
 {
 	global $wgRequestTime, $wgDebugLogFile, $wgDebugRawPage, $wgRequest;
@@ -263,8 +293,11 @@ function logProfilingData()
 	}
 }
 
-# Check if the wiki read-only lock file is present. This can be used to lock off
-# editing functions, but doesn't guarantee that the database will not be modified.
+/**
+ * Check if the wiki read-only lock file is present. This can be used to lock
+ * off editing functions, but doesn't guarantee that the database will not be
+ * modified.
+ */
 function wfReadOnly() {
 	global $wgReadOnlyFile;
 
@@ -276,7 +309,9 @@ function wfReadOnly() {
 
 $wgReplacementKeys = array( '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9' );
 
-# Get a message from anywhere
+/**
+ * Get a message from anywhere
+ */
 function wfMsg( $key ) {
 	global $wgRequest;
 	if ( $wgRequest->getVal( 'debugmsg' ) ) {
@@ -292,7 +327,9 @@ function wfMsg( $key ) {
 	return wfMsgReal( $key, $args, true );
 }
 
-# Get a message from the language file
+/**
+ * Get a message from the language file
+ */
 function wfMsgNoDB( $key ) {
 	$args = func_get_args();
 	if ( count( $args ) ) {
@@ -301,7 +338,9 @@ function wfMsgNoDB( $key ) {
 	return wfMsgReal( $key, $args, false );
 }
 
-# Really get a message
+/**
+ * Really get a message
+ */
 function wfMsgReal( $key, $args, $useDB ) {
 	global $wgReplacementKeys, $wgMessageCache, $wgLang;
 
@@ -324,8 +363,10 @@ function wfMsgReal( $key, $args, $useDB ) {
 	return $message;
 }
 
-# Just like exit() but makes a note of it.
-# Commits open transactions except if the error parameter is set
+/**
+ * Just like exit() but makes a note of it.
+ * Commits open transactions except if the error parameter is set
+ */
 function wfAbruptExit( $error = false ){
 	global $wgLoadBalancer;
 	static $called = false;
@@ -350,13 +391,17 @@ function wfAbruptExit( $error = false ){
 	exit();
 }
 
+/**
+ * @todo document
+ */
 function wfErrorExit() {
 	wfAbruptExit( true );
 }
 
-# This is meant as a debugging aid to track down where bad data comes from.
-# Shouldn't be used in production code except maybe in "shouldn't happen" areas.
-#
+/**
+ * This is meant as a debugging aid to track down where bad data comes from.
+ * Shouldn't be used in production code except maybe in "shouldn't happen" areas.
+ */
 function wfDebugDieBacktrace( $msg = '' ) {
 	global $wgCommandLineMode;
 
@@ -466,18 +511,22 @@ function wfClientAcceptsGzip() {
 	return false;
 }
 
-# Yay, more global functions!
+/**
+ * Yay, more global functions!
+ */
 function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
 	global $wgRequest;
 	return $wgRequest->getLimitOffset( $deflimit, $optionname );
 }
 
-# Escapes the given text so that it may be output using addWikiText()
-# without any linking, formatting, etc. making its way through. This
-# is achieved by substituting certain characters with HTML entities.
-# As required by the callers, <nowiki> is not used. It currently does
-# not filter out characters which have special meaning only at the
-# start of a line, such as "*".
+/**
+ * Escapes the given text so that it may be output using addWikiText()
+ * without any linking, formatting, etc. making its way through. This
+ * is achieved by substituting certain characters with HTML entities.
+ * As required by the callers, <nowiki> is not used. It currently does
+ * not filter out characters which have special meaning only at the
+ * start of a line, such as "*".
+ */
 function wfEscapeWikiText( $text )
 {
 	$text = str_replace( 
@@ -511,15 +560,19 @@ function wfTime(){
 	return (float)$st[0] + (float)$st[1];
 }
 
-# Changes the first character to an HTML entity
+/**
+ * Changes the first character to an HTML entity
+ */
 function wfHtmlEscapeFirst( $text ) {
 	$ord = ord($text);
 	$newText = substr($text, 1);
 	return "&#$ord;$newText";
 }
 
-# Sets dest to source and returns the original value of dest
-# If source is NULL, it just returns the value, it doesn't set the variable
+/**
+ * Sets dest to source and returns the original value of dest
+ * If source is NULL, it just returns the value, it doesn't set the variable
+ */
 function wfSetVar( &$dest, $source )
 {
 	$temp = $dest;
@@ -529,7 +582,9 @@ function wfSetVar( &$dest, $source )
 	return $temp;
 }
 
-# As for wfSetVar except setting a bit
+/**
+ * As for wfSetVar except setting a bit
+ */
 function wfSetBit( &$dest, $bit, $state = true ) {
 	$temp = (bool)($dest & $bit );
 	if ( !is_null( $state ) ) {
@@ -542,9 +597,11 @@ function wfSetBit( &$dest, $bit, $state = true ) {
 	return $temp;
 }
 
-# This function takes two arrays as input, and returns a CGI-style string, e.g.
-# "days=7&limit=100". Options in the first array override options in the second.
-# Options set to "" will not be output.
+/**
+ * This function takes two arrays as input, and returns a CGI-style string, e.g.
+ * "days=7&limit=100". Options in the first array override options in the second.
+ * Options set to "" will not be output.
+ */
 function wfArrayToCGI( $array1, $array2 = NULL )
 {
 	if ( !is_null( $array2 ) ) {
@@ -563,14 +620,19 @@ function wfArrayToCGI( $array1, $array2 = NULL )
 	return $cgi;
 }
 
-# This is obsolete, use SquidUpdate::purge()
+/**
+ * This is obsolete, use SquidUpdate::purge()
+ * @deprecated
+ */
 function wfPurgeSquidServers ($urlArr) {
 	SquidUpdate::purge( $urlArr );
 }
 
-# Windows-compatible version of escapeshellarg()
-# Windows doesn't recognise single-quotes in the shell, but the escapeshellarg() 
-# function puts single quotes in regardless of OS
+/**
+ * Windows-compatible version of escapeshellarg()
+ * Windows doesn't recognise single-quotes in the shell, but the escapeshellarg() 
+ * function puts single quotes in regardless of OS
+ */
 function wfEscapeShellArg( )
 {
 	$args = func_get_args();
@@ -592,9 +654,10 @@ function wfEscapeShellArg( )
 	return $retVal;
 }
 
-# wfMerge attempts to merge differences between three texts.
-# Returns true for a clean merge and false for failure or a conflict.
-
+/**
+ * wfMerge attempts to merge differences between three texts.
+ * Returns true for a clean merge and false for failure or a conflict.
+ */
 function wfMerge( $old, $mine, $yours, &$result ){
 	global $wgDiff3;
 
@@ -645,6 +708,9 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	return ! $conflict;
 }
 
+/**
+ * @todo document
+ */
 function wfVarDump( $var )
 {
 	global $wgOut;
@@ -656,7 +722,9 @@ function wfVarDump( $var )
 	}
 }
 
-# Provide a simple HTTP error.
+/**
+ * Provide a simple HTTP error.
+ */
 function wfHttpError( $code, $label, $desc ) {
 	global $wgOut;
 	$wgOut->disable();
@@ -671,7 +739,10 @@ function wfHttpError( $code, $label, $desc ) {
 	}
 }
 
-# Converts an Accept-* header into an array mapping string values to quality factors
+/**
+ * Converts an Accept-* header into an array mapping string values to quality
+ * factors
+ */
 function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 	# No arg means accept anything (per HTTP spec)
 	if( !$accept ) {
@@ -695,7 +766,11 @@ function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 	return $prefs;
 }
 
-/* private */ function mimeTypeMatch( $type, $avail ) {
+/**
+ * @todo document
+ * @private
+ */
+function mimeTypeMatch( $type, $avail ) {
 	if( array_key_exists($type, $avail) ) {
 		return $type;
 	} else {
@@ -710,8 +785,10 @@ function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 	}
 }
 
-# FIXME: doesn't handle params like 'text/plain; charset=UTF-8'
-# XXX: generalize to negotiate other stuff
+/**
+ * @todo FIXME: doesn't handle params like 'text/plain; charset=UTF-8'
+ * XXX: generalize to negotiate other stuff
+ */
 function wfNegotiateType( $cprefs, $sprefs ) {
 	$combine = array();
 
@@ -748,16 +825,21 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 	return $besttype;
 }
 
-# Array lookup
-# Returns an array where the values in the first array are replaced by the
-# values in the second array with the corresponding keys
+/**
+ * Array lookup
+ * Returns an array where the values in the first array are replaced by the
+ * values in the second array with the corresponding keys
+ */
 function wfArrayLookup( $a, $b )
 {
 	return array_flip( array_intersect( array_flip( $a ), array_keys( $b ) ) );
 }
 
 
-# Ideally we'd be using actual time fields in the db
+/**
+ * Ideally we'd be using actual time fields in the db
+ * @todo fixme
+ */
 function wfTimestamp2Unix( $ts ) {
 	return gmmktime( ( (int)substr( $ts, 8, 2) ),
 		  (int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
@@ -774,7 +856,9 @@ function wfTimestampNow() {
 	return gmdate( 'YmdHis' );
 }
 
-# Sorting hack for MySQL 3, which doesn't use index sorts for DESC
+/**
+ * Sorting hack for MySQL 3, which doesn't use index sorts for DESC
+ */
 function wfInvertTimestamp( $ts ) {
 	return strtr(
 		$ts,
@@ -783,7 +867,9 @@ function wfInvertTimestamp( $ts ) {
 	);
 }
 
-# Reference-counted warning suppression
+/**
+ * Reference-counted warning suppression
+ */
 function wfSuppressWarnings( $end = false ) {
 	static $suppressCount = 0;
 	static $originalLevel = false;
@@ -803,7 +889,9 @@ function wfSuppressWarnings( $end = false ) {
 	}
 }
 
-# Restore error level to previous value
+/**
+ * Restore error level to previous value
+ */
 function wfRestoreWarnings() {
 	wfSuppressWarnings( true );
 }
@@ -813,6 +901,9 @@ define('TS_UNIX',0);	# Standard unix timestamp (number of seconds since 1 Jan 19
 define('TS_MW',1);	# Mediawiki concatenated string timestamp (yyyymmddhhmmss)
 define('TS_DB',2);	# Standard database timestamp (yyyy-mm-dd hh:mm:ss)
 
+/**
+ * @todo document
+ */
 function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 	if (preg_match("/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/",$ts,$da)) {
 		# TS_DB
@@ -844,6 +935,9 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 	}
 }
 
+/**
+ * @todo document
+ */
 function wfIsWindows() {   
 	if (substr(php_uname(), 0, 7) == 'Windows') {   
 		return true;   

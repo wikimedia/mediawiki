@@ -1,7 +1,12 @@
 <?php
+/**
+ *
+ */
 
-function wfSpecialStatistics()
-{
+/**
+ * constructor
+ */
+function wfSpecialStatistics() {
 	global $wgUser, $wgOut, $wgLang;
 	$fname = "wfSpecialStatistics";
 

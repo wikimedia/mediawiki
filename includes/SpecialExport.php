@@ -17,7 +17,14 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-function wfSpecialExport( $page = "" ) {
+/**
+ *
+ */
+
+/**
+ *
+ */
+function wfSpecialExport( $page = '' ) {
 	global $wgOut, $wgLang, $wgRequest;
 	
 	if( $wgRequest->getVal( 'action' ) == 'submit') {
@@ -28,7 +35,7 @@ function wfSpecialExport( $page = "" ) {
 		$curonly = true;
 	}
 	
-	if( $page != "" ) {
+	if( $page != '' ) {
 		header( "Content-type: application/xml; charset=utf-8" );
 		$pages = explode( "\n", $page );
 		$xml = pages2xml( $pages, $curonly );

@@ -17,7 +17,14 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-function wfSpecialImport( $page = "" ) {
+/**
+ *
+ */
+
+/**
+ * Constructor
+ */
+function wfSpecialImport( $page = '' ) {
 	global $wgOut, $wgLang, $wgRequest, $wgTitle;
 	global $wgImportSources;
 	
@@ -99,6 +106,9 @@ function wfImportOldRevision( &$revision ) {
 	$dbw->deadlockLoop( array( &$revision, 'importOldRevision' ) );
 }
 
+/**
+ *
+ */
 class WikiRevision {
 	var $title = NULL;
 	var $timestamp = "20010115000000";
@@ -164,6 +174,9 @@ class WikiRevision {
 	}
 }
 
+/**
+ *
+ */
 class WikiImporter {
 	var $mSource = NULL;
 	var $mError = "";

@@ -1,6 +1,8 @@
 <?php
-# Deal with importing all those nasssty globals and things
-# 
+/**
+ * Deal with importing all those nasssty globals and things
+ */
+
 # Copyright (C) 2003 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
 # 
@@ -19,9 +21,10 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-# Hypothetically, we could use a WebRequest object to fake a
-# self-contained request (FauxRequest).
-
+/**
+ * Hypothetically, we could use a WebRequest object to fake a
+ * self-contained request (FauxRequest).
+ */
 class WebRequest {
 	function WebRequest() {
 		$this->checkMagicQuotes();
@@ -141,7 +144,9 @@ class WebRequest {
 		return $wgServer . $this->getRequestURL();
 	}
 	
-	# Take an arbitrary query and rewrite the present URL to include it
+	/**
+	 * Take an arbitrary query and rewrite the present URL to include it
+	 */
 	function appendQuery( $query ) {
 		global $wgTitle;
 		$basequery = '';
@@ -178,6 +183,9 @@ class WebRequest {
 	}
 }
 
+/**
+ *
+ */
 class FauxRequest extends WebRequest {
 	var $data = null;
 	var $wasPosted = false;

@@ -1,7 +1,16 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 require_once('QueryPage.php');
 
+/**
+ *
+ */
 class DisambiguationsPage extends PageQueryPage {
 
 	function getName() {
@@ -52,6 +61,9 @@ class DisambiguationsPage extends PageQueryPage {
 	}
 }
 
+/**
+ * Constructor
+ */
 function wfSpecialDisambiguations() {
 	list( $limit, $offset ) = wfCheckLimits();
 	

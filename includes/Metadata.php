@@ -1,5 +1,6 @@
 <?php
-/* Metadata.php -- provides DublinCore and CreativeCommons metadata
+/**
+ * Metadata.php -- provides DublinCore and CreativeCommons metadata
  * Copyright 2004, Evan Prodromou <evan@wikitravel.org>.
  * 
  *  This program is free software; you can redistribute it and/or modify
@@ -15,8 +16,13 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * @author Evan Prodromou <evan@wikitravel.org>
  */
 
+/**
+ *
+ */
 define('RDF_TYPE_PREFS', "application/rdf+xml,text/xml;q=0.7,application/xml;q=0.5,text/rdf;q=0.1");
 
 function wfDublinCoreRdf($article) {
@@ -60,7 +66,10 @@ function wfCreativeCommonsRdf($article) {
 	ccEpilogue();
 }
 
-/* private */ function rdfSetup() {
+/**
+ * @private
+ */
+function rdfSetup() {
 	global $wgOut, $wgRdfMimeType, $_SERVER;
 	
 	$rdftype = wfNegotiateType(wfAcceptToPrefs($_SERVER['HTTP_ACCEPT']), wfAcceptToPrefs(RDF_TYPE_PREFS));
@@ -76,7 +85,10 @@ function wfCreativeCommonsRdf($article) {
 	}
 }
 
-/* private */ function dcPrologue($url) {
+/**
+ * @private
+ */
+function dcPrologue($url) {
 	global $wgOutputEncoding;
 	
 	$url = htmlspecialchars( $url );
@@ -90,14 +102,20 @@ function wfCreativeCommonsRdf($article) {
 ";
 }
 
-/* private */ function dcEpilogue() {
+/**
+ * @private
+ */
+function dcEpilogue() {
 	print "
   </rdf:Description>
 </rdf:RDF>
 ";
 }
 
-/* private */ function dcBasics($article) {
+/**
+ * @private
+ */
+function dcBasics($article) {
 	global $wgLanguageCode, $wgSitename;
 	
 	dcElement('title', $article->mTitle->getText());
@@ -126,7 +144,10 @@ function wfCreativeCommonsRdf($article) {
 	dcRights($article);
 }
 
-/* private */ function ccPrologue() {
+/**
+ * @private
+ */
+function ccPrologue() {
 	global $wgOutputEncoding;
 	
 	echo "<" . "?xml version='1.0'  encoding='{$wgOutputEncoding}' ?" . ">
@@ -137,16 +158,25 @@ function wfCreativeCommonsRdf($article) {
 ";
 }  
 
-/* private */ function ccSubPrologue($type, $url) {
+/**
+ * @private
+ */
+function ccSubPrologue($type, $url) {
 	$url = htmlspecialchars( $url );
 	echo "  <cc:{$type} rdf:about=\"{$url}\">\n";
 }  
 
-/* private */ function ccSubEpilogue($type) {
+/**
+ * @private
+ */
+function ccSubEpilogue($type) {
 	echo "  </cc:{$type}>\n";
 }  
 
-/* private */ function ccLicense($terms) {
+/**
+ * @private
+ */
+function ccLicense($terms) {
 	
 	foreach ($terms as $term) {
 		switch ($term) {
@@ -170,30 +200,48 @@ function wfCreativeCommonsRdf($article) {
 	}
 }
 
-/* private */ function ccTerm($term, $name) {
+/**
+ * @private
+ */
+function ccTerm($term, $name) {
 	print "    <cc:{$term} rdf:resource=\"http://web.resource.org/cc/{$name}\" />\n";
 }
 
-/* private */ function ccEpilogue() {
+/**
+ * @private
+ */
+function ccEpilogue() {
 	echo "</rdf:RDF>\n";
 }
 
-/* private */ function dcElement($name, $value) {
+/**
+ * @private
+ */
+function dcElement($name, $value) {
 	$value = htmlspecialchars( $value );
 	print "    <dc:{$name}>{$value}</dc:{$name}>\n";
 }
 
-/* private */ function dcDate($timestamp) {
+/**
+ * @private
+ */
+function dcDate($timestamp) {
 	return substr($timestamp, 0, 4) . '-'
 		. substr($timestamp, 4, 2) . '-'
 		. substr($timestamp, 6, 2);
 }
 
-/* private */ function dcReallyFullUrl($title) {
+/**
+ * @private
+ */
+function dcReallyFullUrl($title) {
 	return $title->getFullURL();
 }
 
-/* private */ function dcPageOrString($name, $page, $str) {
+/**
+ * @private
+ */
+function dcPageOrString($name, $page, $str) {
 	$nt = Title::newFromText($page);
 	
 	if (!$nt || $nt->getArticleID() == 0) {
@@ -203,16 +251,25 @@ function wfCreativeCommonsRdf($article) {
 	}
 }
 
-/* private */ function dcPage($name, $title) {
+/**
+ * @private
+ */
+function dcPage($name, $title) {
 	dcUrl($name, dcReallyFullUrl($title));
 }
 
-/* private */ function dcUrl($name, $url) {
+/**
+ * @private
+ */
+function dcUrl($name, $url) {
 	$url = htmlspecialchars( $url );
 	print "    <dc:{$name} rdf:resource=\"{$url}\" />\n";
 }
 
-/* private */ function dcPerson($name, $id, $user_name='', $user_real_name='') {
+/**
+ * @private
+ */
+function dcPerson($name, $id, $user_name='', $user_real_name='') {
 	global $wgLang;
 
 	if ($id == 0) {
@@ -228,10 +285,12 @@ function wfCreativeCommonsRdf($article) {
 	}
 }
 
-/* Takes an arg, for future enhancement with different rights for
- different pages. */
-
-/* private */ function dcRights($article) {
+/**
+ * Takes an arg, for future enhancement with different rights for
+ * different pages.
+ * @private
+ */
+function dcRights($article) {
 	
 	global $wgRightsPage, $wgRightsUrl, $wgRightsText;
 	
@@ -246,7 +305,10 @@ function wfCreativeCommonsRdf($article) {
 	}
 }
 
-/* private */ function ccGetTerms($url) {
+/**
+ * @private
+ */
+function ccGetTerms($url) {
 	global $wgLicenseTerms;
 	
 	if (isset($wgLicenseTerms)) {
@@ -257,7 +319,10 @@ function wfCreativeCommonsRdf($article) {
 	}
 }
 
-/* private */ function getKnownLicenses() {
+/**
+ * @private
+ */
+function getKnownLicenses() {
 	
 	$ccLicenses = array('by', 'by-nd', 'by-nd-nc', 'by-nc', 
 	                     'by-nc-sa', 'by-sa');

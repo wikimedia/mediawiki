@@ -1,11 +1,20 @@
 <?php
+/**
+ *
+ */
 
-require_once ( "QueryPage.php" ) ;
+/**
+ *
+ */
+require_once ( 'QueryPage.php' ) ;
 
+/**
+ *
+ */
 class WantedPagesPage extends QueryPage {
 
 	function getName() {
-		return "Wantedpages";
+		return 'Wantedpages';
 	}
 
 	function isExpensive() {
@@ -44,8 +53,10 @@ class WantedPagesPage extends QueryPage {
 	}
 }
 
-function wfSpecialWantedpages()
-{
+/**
+ * constructor
+ */
+function wfSpecialWantedpages() {
 	list( $limit, $offset ) = wfCheckLimits();
 
 	$wpp = new WantedPagesPage();

@@ -1,7 +1,16 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 require_once( "QueryPage.php" );
 
+/**
+ *
+ */
 class PopularPagesPage extends QueryPage {
 
 	function getName() {
@@ -34,8 +43,10 @@ class PopularPagesPage extends QueryPage {
 	}
 }
 
-function wfSpecialPopularpages()
-{
+/**
+ * Constructor
+ */
+function wfSpecialPopularpages() {
     list( $limit, $offset ) = wfCheckLimits();
     
     $ppp = new PopularPagesPage();

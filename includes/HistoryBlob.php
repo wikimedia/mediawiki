@@ -1,6 +1,11 @@
 <?php
+/**
+ *
+ */
 
-# Pure virtual parent
+/**
+ * Pure virtual parent
+ */
 class HistoryBlob
 {
 	function setMeta() {}
@@ -9,7 +14,9 @@ class HistoryBlob
 	function getItem() {}
 }
 
-# The real object
+/**
+ * The real object
+ */
 class ConcatenatedGzipHistoryBlob
 {
 	/* private */ var $mVersion = 0, $mCompressed = false, $mItems = array();

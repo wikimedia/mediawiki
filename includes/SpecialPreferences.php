@@ -1,12 +1,21 @@
 <?php
-function wfSpecialPreferences()
-{
+/**
+ *
+ */
+
+/**
+ *
+ */
+function wfSpecialPreferences() {
 	global $wgRequest;
 
 	$form = new PreferencesForm( $wgRequest );
 	$form->execute();
 }
 
+/**
+ *
+ */
 class PreferencesForm {
 	var $mQuickbar, $mOldpass, $mNewpass, $mRetypePass, $mStubs;
 	var $mRows, $mCols, $mSkin, $mMath, $mDate, $mUserEmail, $mEmailFlag, $mNick;

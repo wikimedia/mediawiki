@@ -1,8 +1,17 @@
 <?php
+/**
+ *
+ */
+
+/**
+ *
+ */
 require_once( "LinksUpdate.php" );
 
-function wfSpecialMakesysop()
-{
+/**
+ * Constructor
+ */
+function wfSpecialMakesysop() {
 	global $wgUser, $wgOut, $wgRequest;
 
 	if ( 0 == $wgUser->getID() or $wgUser->isBlocked() ) {
@@ -24,15 +33,17 @@ function wfSpecialMakesysop()
 	if ( $f->mSubmit ) { 
 		$f->doSubmit(); 
 	} else { 
-		$f->showForm( "" ); 
+		$f->showForm( '' ); 
 	}
 }
 
+/**
+ *
+ */
 class MakesysopForm {
 	var $mTarget, $mAction, $mRights, $mUser, $mSubmit;
 
-	function MakesysopForm( &$request ) 
-	{
+	function MakesysopForm( &$request ) {
 		$this->mAction = $request->getText( 'action' );
 		$this->mRights = $request->getVal( 'wpRights' );
 		$this->mUser = $request->getText( 'wpMakesysopUser' );
@@ -40,8 +51,7 @@ class MakesysopForm {
 		$this->mBuro = $request->getBool( 'wpSetBureaucrat' );
 	}
 
-	function showForm( $err = "")
-	{
+	function showForm( $err = '') {
 		global $wgOut, $wgUser, $wgLang;
 
 		if ( $wgUser->isDeveloper() ) {
@@ -119,8 +129,7 @@ class MakesysopForm {
 
 	}
 
-	function doSubmit()
-	{
+	function doSubmit() {
 		global $wgOut, $wgUser, $wgLang;
 		global $wgDBname, $wgMemc, $wgLocalDatabases;
 
@@ -208,8 +217,7 @@ class MakesysopForm {
 		}
 	}
 
-	function showSuccess()
-	{
+	function showSuccess() {
 		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( "makesysoptitle" ) );
@@ -225,8 +233,7 @@ class MakesysopForm {
 
 	}
 
-	function showFail()
-	{
+	function showFail() {
 		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( "makesysoptitle" ) );

@@ -1,7 +1,16 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 require_once('QueryPage.php');
 
+/**
+ *
+ */
 class BrokenRedirectsPage extends PageQueryPage {
 
 	function getName() {
@@ -40,6 +49,9 @@ class BrokenRedirectsPage extends PageQueryPage {
 	}
 }
 
+/**
+ * constructor
+ */
 function wfSpecialBrokenRedirects() {
 	list( $limit, $offset ) = wfCheckLimits();
 	

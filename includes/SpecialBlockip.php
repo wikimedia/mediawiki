@@ -1,7 +1,13 @@
 <?php
+/**
+ * Constructor for Special:Blockip page
+ *
+ */
 
-function wfSpecialBlockip()
-{
+/**
+ * Constructor
+ */
+function wfSpecialBlockip() {
 	global $wgUser, $wgOut, $wgRequest;
 
 	if ( ! $wgUser->isSysop() ) {
@@ -16,6 +22,10 @@ function wfSpecialBlockip()
 	else { $ipb->showForm( "" ); }
 }
 
+/**
+ * Form object
+ *
+ */
 class IPBlockForm {
 	var $BlockAddress, $BlockExpiry, $BlockReason;
 
@@ -86,8 +96,7 @@ class IPBlockForm {
 
 	}
 
-	function doSubmit()
-	{
+	function doSubmit() {
 		global $wgOut, $wgUser, $wgLang;
 		global $wgSysopUserBans, $wgSysopRangeBans;
 		
@@ -161,8 +170,7 @@ class IPBlockForm {
 		$wgOut->redirect( $titleObj->getFullURL( "action=success&ip={$this->BlockAddress}" ) );
 	}
 
-	function showSuccess()
-	{
+	function showSuccess() {
 		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( "blockip" ) );

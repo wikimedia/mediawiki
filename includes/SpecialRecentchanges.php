@@ -1,9 +1,17 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 require_once( 'Feed.php' );
 
-function wfSpecialRecentchanges( $par )
-{
+/**
+ * Constructor
+ */
+function wfSpecialRecentchanges( $par ) {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc, $wgDBname;
 	global $wgRequest, $wgSitename, $wgLanguageCode;
 	global $wgFeedClasses;
@@ -156,8 +164,10 @@ function wfSpecialRecentchanges( $par )
 	}
 }
 
-function rcCountLink( $lim, $d, $page='Recentchanges', $more='' )
-{
+/**
+ *
+ */
+function rcCountLink( $lim, $d, $page='Recentchanges', $more='' ) {
 	global $wgUser, $wgLang;
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink( $wgLang->specialPage( $page ),
@@ -166,8 +176,10 @@ function rcCountLink( $lim, $d, $page='Recentchanges', $more='' )
 	return $s;
 }
 
-function rcDaysLink( $lim, $d, $page='Recentchanges', $more='' )
-{
+/**
+ *
+ */
+function rcDaysLink( $lim, $d, $page='Recentchanges', $more='' ) {
 	global $wgUser, $wgLang;
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink( $wgLang->specialPage( $page ),
@@ -176,9 +188,11 @@ function rcDaysLink( $lim, $d, $page='Recentchanges', $more='' )
 	return $s;
 }
 
+/**
+ *
+ */
 function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall = false, $minorLink = '',
-	$botLink = '', $liuLink = '', $patrLink = '' )
-{
+	$botLink = '', $liuLink = '', $patrLink = '' ) {
 	if ($more != '') $more .= '&';
 	$cl = rcCountLink( 50, $days, $page, $more ) . ' | ' .
 	  rcCountLink( 100, $days, $page, $more  ) . ' | ' .
@@ -196,9 +210,10 @@ function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall
 	return $note;
 }
 
-# Obsolete? Isn't called from anywhere and $mlink isn't defined
-function rcLimitLinks( $page='Recentchanges', $more='', $doall = false )
-{
+/**
+ * Obsolete? Isn't called from anywhere and $mlink isn't defined
+ */
+function rcLimitLinks( $page='Recentchanges', $more='', $doall = false ) {
 	if ($more != '') $more .= '&';
 	$cl = rcCountLink( 50, 0, $page, $more ) . ' | ' .
 	  rcCountLink( 100, 0, $page, $more  ) . ' | ' .

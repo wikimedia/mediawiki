@@ -1,12 +1,15 @@
 <?php
-#
-# Takes LaTeX fragments, sends them to a helper program (texvc) for rendering
-# to rasterized PNG and HTML and MathML approximations. An appropriate
-# rendering form is picked and returned.
-#
-# by Tomasz Wegrzanowski, with additions by Brion Vibber (2003, 2004)
-#
+/**
+ * Contain everything related to <math> </math> parsing
+ */
 
+/**
+ * Takes LaTeX fragments, sends them to a helper program (texvc) for rendering
+ * to rasterized PNG and HTML and MathML approximations. An appropriate
+ * rendering form is picked and returned.
+ * 
+ * by Tomasz Wegrzanowski, with additions by Brion Vibber (2003, 2004)
+ */
 class MathRenderer {
 	var $mode = MW_MATH_MODERN;
 	var $tex = '';
@@ -174,7 +177,9 @@ class MathRenderer {
 		return false;
 	}
 
-	# Select among PNG, HTML, or MathML output depending on 
+	/**
+	 * Select among PNG, HTML, or MathML output depending on
+	 */
 	function _doRender() {
 		if( $this->mode == MW_MATH_MATHML && $this->mathml != '' ) {
 			return "<math xmlns='http://www.w3.org/1998/Math/MathML'>{$this->mathml}</math>";

@@ -1,18 +1,23 @@
 <?php
-# Blocks and bans object
-#
-#TODO: This could be used everywhere, but it isn't.
-#
-# All the functions in this class assume the object is either explicitly 
-# loaded or filled. It is not load-on-demand. There are no accessors.
-#
-# To use delete(), you only need to fill $mAddress
+/**
+ * Blocks and bans object
+ */
 
-# Globals used: $wgBlockCache, $wgAutoblockExpiry
-
+/**
+ * Some globals
+ */
 define ( 'EB_KEEP_EXPIRED', 1 );
 define ( 'EB_FOR_UPDATE', 2 );
 
+/**
+ * The block class
+ * All the functions in this class assume the object is either explicitly 
+ * loaded or filled. It is not load-on-demand. There are no accessors.
+ * 
+ * To use delete(), you only need to fill $mAddress
+ * Globals used: $wgBlockCache, $wgAutoblockExpiry
+ * @todo This could be used everywhere, but it isn't.
+ */
 class Block
 {
 	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry;

@@ -1,7 +1,12 @@
 <?php
-
-function wfSpecialDebug()
-{
+/**
+ * Let developpers receive the full phpinfo output
+ */
+ 
+/**
+ *
+ */
+function wfSpecialDebug() {
 	global $wgUser, $wgOut;
 
 	if ( ! $wgUser->isDeveloper() ) {
@@ -10,4 +15,3 @@ function wfSpecialDebug()
 	}
 	phpinfo();
 }
-

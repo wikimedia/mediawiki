@@ -1,12 +1,16 @@
 <?php
 # $Id$
 
-# Backwards compatibility wrapper for Database.php
+/**
+ * Backwards compatibility wrapper for Database.php
+ * 
+ * Note: $wgDatabase has ceased to exist. Destroy all references.
+ */
 
-# Note: $wgDatabase has ceased to exist. Destroy all references.
-
-# Usually aborts on failure
-# If errors are explicitly ignored, returns success
+/**
+ * Usually aborts on failure
+ * If errors are explicitly ignored, returns success
+ */
 function wfQuery( $sql, $db, $fname = '' )
 {
 	global $wgOut;

@@ -1,15 +1,22 @@
 <?php
+/**
+ * Command line script to check for an open proxy at a specified location
+ */
 
-# Command line script to check for an open proxy at a specified location
-
-# Exit if there are not enough parameters, or if it's not command line mode
-
+/**
+ *
+ */
 $output = '';
+
+/**
+ * Exit if there are not enough parameters, or if it's not command line mode
+ */
 if ( ( isset( $_REQUEST ) && array_key_exists( 'argv', $_REQUEST ) ) || count( $argv ) < 4 ) {
 	$output .= "Incorrect parameters\n";
 } else {
-
-	# Get parameters
+	/**
+	 * Get parameters
+	 */
 	$ip = $argv[1];
 	$port = $argv[2];
 	$url = $argv[3];

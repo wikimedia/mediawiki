@@ -1,5 +1,11 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 class ParserCache
 {
 	function getKey( &$article, &$user ) {

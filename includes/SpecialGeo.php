@@ -17,7 +17,14 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-function wfSpecialGeo( $page = "" ) {
+/**
+ *
+ */
+
+/**
+ *
+ */
+function wfSpecialGeo( $page = '' ) {
 	global $wgOut, $wgLang, $wgRequest;
 	$coordinates = $wgRequest->getText( 'coordinates' ) ;
 	$coordinates = explode ( ":" , $coordinates ) ;

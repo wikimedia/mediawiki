@@ -1,9 +1,18 @@
 <?php
-# See search.doc
+/**
+ * Contain site class
+ * See search.doc
+ */
 
+/**
+ *
+ */
 define( 'MW_SEARCH_OK', true );
 define( 'MW_SEARCH_BAD_QUERY', false );
 
+/**
+ * @todo document
+ */
 class SearchEngine {
 	/* private */ var $rawText, $filteredText, $searchTerms;
 	/* private */ var $titleCond, $textCond;
@@ -31,7 +40,9 @@ class SearchEngine {
 		$this->db =& wfGetDB( DB_SLAVE );
 	}
 
-	# Return a partial WHERE clause to limit the search to the given namespaces
+	/**
+	 * Return a partial WHERE clause to limit the search to the given namespaces
+	 */
 	function queryNamespaces() {
 		$namespaces = implode( ',', $this->namespacesToSearch );
 		if ($namespaces == '') {
@@ -40,7 +51,9 @@ class SearchEngine {
 		return "AND cur_namespace IN (" . $namespaces . ')';
 	}
 
-	# Return a partial WHERE clause to include or exclude redirects from results
+	/**
+	 * Return a partial WHERE clause to include or exclude redirects from results
+	 */
 	function searchRedirects() {
 		if ( $this->doSearchRedirects ) {
 			return '';
@@ -49,8 +62,9 @@ class SearchEngine {
 		}
 	}
 
-	/* private */ function initNamespaceCheckbox( $i )
-	{
+	/**
+	 * @access private
+	 */ function initNamespaceCheckbox( $i ) {
 		global $wgUser, $wgNamespacesToBeSearchedDefault;
 		
 		if ($wgUser->getID()) {
@@ -62,8 +76,10 @@ class SearchEngine {
 		}
 	}
 
-	# Display the "power search" footer. Does not actually perform the search, 
-	# that is done by showResults()
+	/**
+	 * Display the "power search" footer. Does not actually perform the search, 
+	 * that is done by showResults()
+	 */
 	function powersearch() {
 		global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest;
 		$sk =& $wgUser->getSkin();
@@ -158,7 +174,9 @@ class SearchEngine {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 	}
 
-	# Perform the search and construct the results page
+	/**
+	 * Perform the search and construct the results page
+	 */
 	function showResults() {
 		global $wgUser, $wgTitle, $wgOut, $wgLang;
 		global $wgDisableTextSearch, $wgInputEncoding;
@@ -500,7 +518,10 @@ class SearchEngine {
 		}
 	}
 
-	/* static */ function doFuzzyTitleSearch( $search, $namespace ){
+	/**
+	 * @static
+	 */
+	function doFuzzyTitleSearch( $search, $namespace ){
 		global $wgLang, $wgOut;
 		
 		$this->setupPage();
@@ -531,7 +552,10 @@ class SearchEngine {
 		return false;
 	}
 
-	/* static */ function fuzzyTitles( $sstr, $namespace = NS_MAIN ){
+	/**
+	 * @static
+	 */
+	function fuzzyTitles( $sstr, $namespace = NS_MAIN ){
 		$span = 0.10; // weed on title length before doing levenshtein.
 		$tolerance = 0.35; // allowed percentage of erronous characters
 		$slen = strlen($sstr);
@@ -556,7 +580,10 @@ class SearchEngine {
 		return $result;
 	}
 
-	/* static */ function getTitlesByLength($aLength, $aNamespace = 0){
+	/**
+	 * static
+	 */
+	function getTitlesByLength($aLength, $aNamespace = 0){
 		global $wgMemc, $wgDBname;
 		$fname = 'SearchEngin::getTitlesByLength';
 		
@@ -604,6 +631,10 @@ class SearchEngine {
 	}
 }
 
-/* private static */ function SearchEngine_pcmp($a, $b){ return $a[0] - $b[0]; }
+/**
+ * @access private
+ * @static
+ */
+function SearchEngine_pcmp($a, $b){ return $a[0] - $b[0]; }
 
 ?>

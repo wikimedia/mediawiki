@@ -1,6 +1,12 @@
 <?php
 
-# This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
+/**
+ *
+ */
+
+/**
+ * This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
+ */
 if( defined( "MEDIAWIKI" ) ) {
 
 # See skin.doc
@@ -48,6 +54,9 @@ unset($matches);
 
 require_once( 'RecentChange.php' );
 
+/**
+ * @todo document
+ */
 class RCCacheEntry extends RecentChange
 {
 	var $secureName, $link;
@@ -64,18 +73,22 @@ class RCCacheEntry extends RecentChange
 } ;
 
 
-# The main skin class that provide methods and properties for all other skins
-# including PHPTal skins.
-# This base class is also the "Standard" skin.
-
+/**
+ * The main skin class that provide methods and properties for all other skins
+ * including PHPTal skins.
+ * This base class is also the "Standard" skin.
+ */
 class Skin {
-
-	/* private */ var $lastdate, $lastline;
+	/**#@+
+	 * @access private
+	 */
+	var $lastdate, $lastline;
 	var $linktrail ; # linktrail regexp
 	var $rc_cache ; # Cache for Enhanced Recent Changes
 	var $rcCacheIndex ; # Recent Changes Cache Counter for visibility toggle
 	var $rcMoveIndex;
 	var $postParseLinkColour = true;
+	/**#@-*/
 
 	function Skin() {
 		global $wgUseOldExistenceCheck;
@@ -96,7 +109,9 @@ class Skin {
 		return 'standard';
 	}
 
-	# Get/set accessor for delayed link colouring
+	/**
+	 * Get/set accessor for delayed link colouring
+	 */
 	function postParseLinkColour( $setting = NULL ) {
 		return wfSetVar( $this->postParseLinkColour, $setting );
 	}
@@ -216,10 +231,14 @@ class Skin {
 		return $s."\n";
 	}
 	
-	# placeholder, returns generated js in monobook
+	/**
+	 * placeholder, returns generated js in monobook
+	 */
 	function getUserJs() { return; }
 
-	# Return html code that include User stylesheets
+	/**
+	 * Return html code that include User stylesheets
+	 */
 	function getUserStyles() {
 		global $wgOut, $wgStylePath, $wgLang;
 		$s = "<style type='text/css'>\n";
@@ -230,7 +249,9 @@ class Skin {
 		return $s;
 	}
 
-	# Some styles that are set by user through the user settings interface.
+	/**
+	 * Some styles that are set by user through the user settings interface.
+	 */
 	function doGetUserStyles() {
 		global $wgUser, $wgLang;
 
@@ -253,8 +274,7 @@ class Skin {
 		return $s;
 	}
 
-	function getBodyOptions()
-	{
+	function getBodyOptions() {
 		global $wgUser, $wgTitle, $wgNamespaceBackgrounds, $wgOut, $wgRequest;
 
 		extract( $wgRequest->getValues( 'oldid', 'redirect', 'diff' ) );
@@ -282,8 +302,7 @@ class Skin {
 		return $a;
 	}
 
-	function getExternalLinkAttributes( $link, $text, $class='' )
-	{
+	function getExternalLinkAttributes( $link, $text, $class='' ) {
 		global $wgUser, $wgOut, $wgLang;
 
 		$link = urldecode( $link );
@@ -299,8 +318,7 @@ class Skin {
 		return $r;
 	}
 
-	function getInternalLinkAttributes( $link, $text, $broken = false )
-	{
+	function getInternalLinkAttributes( $link, $text, $broken = false ) {
 		global $wgUser, $wgOut;
 
 		$link = urldecode( $link );
@@ -321,8 +339,10 @@ class Skin {
 		return $r;
 	}
 
-	function getInternalLinkAttributesObj( &$nt, $text, $broken = false )
-	{
+	/**
+	 * @param bool $broken
+	 */
+	function getInternalLinkAttributesObj( &$nt, $text, $broken = false ) {
 		global $wgUser, $wgOut;
 
 		if ( $broken == 'stub' ) {
@@ -339,24 +359,25 @@ class Skin {
 		return $r;
 	}
 
-	# URL to the logo
+	/**
+	 * URL to the logo
+	 */
 	function getLogo() {
 		global $wgLogo;
 		return $wgLogo;
 	}
 
-	# This will be called immediately after the <body> tag.  Split into
-	# two functions to make it easier to subclass.
-	#
-	function beforeContent()
-	{
+	/**
+	 * This will be called immediately after the <body> tag.  Split into
+	 * two functions to make it easier to subclass.
+	 */
+	function beforeContent() {
 		global $wgUser, $wgOut;
 
 		return $this->doBeforeContent();
 	}
 
-	function doBeforeContent()
-	{
+	function doBeforeContent() {
 		global $wgUser, $wgOut, $wgTitle, $wgLang, $wgSiteNotice;
 		$fname = 'Skin::doBeforeContent';
 		wfProfileIn( $fname );
@@ -1414,16 +1435,19 @@ class Skin {
 		return $s;
 	}
 
-	# After all the page content is transformed into HTML, it makes
-	# a final pass through here for things like table backgrounds.
-	#
+	/**
+	 * After all the page content is transformed into HTML, it makes
+	 * a final pass through here for things like table backgrounds.
+	 * @todo probably deprecated [AV]
+	 */
 	function transformContent( $text ) {
 		return $text;
 	}
 
-	# Note: This function MUST call getArticleID() on the link,
-	# otherwise the cache won't get updated properly.  See LINKCACHE.DOC.
-	#
+	/**
+	 * Note: This function MUST call getArticleID() on the link,
+	 * otherwise the cache won't get updated properly.  See LINKCACHE.DOC.
+	 */
 	function makeLink( $title, $text = '', $query = '', $trail = '' ) {
 		wfProfileIn( 'Skin::makeLink' );
 	 	$nt = Title::newFromText( $title );
@@ -1468,7 +1492,9 @@ class Skin {
 		}
 	}
 
-	# Pass a title object, not a title string
+	/**
+	 * Pass a title object, not a title string
+	 */
 	function makeLinkObj( &$nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgOut, $wgUser;
 		$fname = 'Skin::makeLinkObj';
@@ -1543,7 +1569,9 @@ class Skin {
 		return $retVal;
 	}
 
-	# Pass a title object, not a title string
+	/**
+	 * Pass a title object, not a title string
+	 */
 	function makeKnownLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '' ) {
 		global $wgOut, $wgTitle, $wgInputEncoding;
 
@@ -1590,7 +1618,9 @@ class Skin {
 		return $r;
 	}
 
-	# Pass a title object, not a title string
+	/**
+	 * Pass a title object, not a title string
+	 */
 	function makeBrokenLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgOut, $wgUser;
 
@@ -1630,7 +1660,9 @@ class Skin {
 		return $s;
 	}
 
-	# Pass a title object, not a title string
+	/**
+ 	 * Pass a title object, not a title string
+	 */
 	function makeStubLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgOut, $wgUser;
 
@@ -1904,8 +1936,10 @@ class Skin {
 		return str_replace("\n", ' ',$prefix.$s.$postfix);
 	}
 
-	# Make HTML for a thumbnail including image, border and caption
-	# $img is an Image object
+	/**
+	 * Make HTML for a thumbnail including image, border and caption
+	 * $img is an Image object
+	 */
 	function makeThumbLinkObj( $img, $label = '', $align = 'right', $boxwidth = 180, $boxheight=false, $framed=false , $manual_thumb = "" ) {
 		global $wgStylePath, $wgLang;
 		# $image = Title::makeTitleSafe( NS_IMAGE, $name );
@@ -2050,8 +2084,10 @@ class Skin {
 		return $s;
 	}
 
-	# Returns text for the end of RC
-	# If enhanced RC is in use, returns pretty much all the text
+	/**
+ 	 * Returns text for the end of RC
+	 * If enhanced RC is in use, returns pretty much all the text
+	 */
 	function endRecentChangesList() {
 		$s = $this->recentChangesBlock() ;
 		if( $this->rclistOpen ) {
@@ -2060,7 +2096,9 @@ class Skin {
 		return $s;
 	}
 
-	# Enhanced RC ungrouped line
+	/**
+	 * Enhanced RC ungrouped line
+	 */
 	function recentChangesBlockLine ( $rcObj ) {
 		global $wgStylePath, $wgLang ;
 
@@ -2124,7 +2162,9 @@ class Skin {
 		return $r ;
 	}
 
-	# Enhanced RC group
+	/**
+	 * Enhanced RC group
+	 */
 	function recentChangesBlockGroup ( $block ) {
 		global $wgStylePath, $wgLang ;
 
@@ -2241,8 +2281,10 @@ class Skin {
 		return $r ;
 	}
 
-	# If enhanced RC is in use, this function takes the previously cached
-	# RC lines, arranges them, and outputs the HTML
+	/**
+	 * If enhanced RC is in use, this function takes the previously cached
+	 * RC lines, arranges them, and outputs the HTML
+	 */
 	function recentChangesBlock () {
 		global $wgStylePath ;
 		if ( count ( $this->rc_cache ) == 0 ) return '' ;
@@ -2258,8 +2300,10 @@ class Skin {
 		return '<div>'.$blockOut.'</div>' ;
 	}
 
-	# Called in a loop over all displayed RC entries
-	# Either returns the line, or caches it for later use
+	/**
+	 * Called in a loop over all displayed RC entries
+	 * Either returns the line, or caches it for later use
+	 */
 	function recentChangesLine( &$rc, $watched = false ) {
 		global $wgUser ;
 		$usenew = $wgUser->getOption( 'usenewrc' );
@@ -2503,18 +2547,20 @@ class Skin {
 		return $s;
 	}
 
-	/* This function is called by all recent changes variants, by the page history,
-	   and by the user contributions list. It is responsible for formatting edit
-	   comments. It escapes any HTML in the comment, but adds some CSS to format
-	   auto-generated comments (from section editing) and formats [[wikilinks]].
-	   
-	   The &$title parameter must be a title OBJECT. It is used to generate a 
-	   direct link to the section in the autocomment.
-	   Main author: Erik Moeller (moeller@scireview.de)
-	*/
-	# Note: there's not always a title to pass to this function.
-	# Since you can't set a default parameter for a reference, I've turned it
-	# temporarily to a value pass. Should be adjusted further. --brion
+	/**
+	 * This function is called by all recent changes variants, by the page history,
+	 * and by the user contributions list. It is responsible for formatting edit
+	 * comments. It escapes any HTML in the comment, but adds some CSS to format
+	 * auto-generated comments (from section editing) and formats [[wikilinks]].
+	 *
+	 * The &$title parameter must be a title OBJECT. It is used to generate a 
+	 * direct link to the section in the autocomment.
+	 * @author Erik Moeller <moeller@scireview.de>
+	 * 
+	 * Note: there's not always a title to pass to this function.
+	 * Since you can't set a default parameter for a reference, I've turned it
+	 * temporarily to a value pass. Should be adjusted further. --brion
+	 */
 	function formatComment($comment, $title = NULL) {
 		global $wgLang;
 		$comment = htmlspecialchars( $comment );
@@ -2640,7 +2686,9 @@ class Skin {
 		return str_repeat( "</div>\n", $level>0 ? $level : 0 );
 	}
 
-	# parameter level defines if we are on an indentation level
+	/**
+	 * parameter level defines if we are on an indentation level
+	 */
 	function tocLine( $anchor, $tocline, $level ) {
 		$link = '<a href="#'.$anchor.'">'.$tocline.'</a><br />';
 		if($level) {
@@ -2663,7 +2711,10 @@ class Skin {
 		$toc."</td></tr></table>\n";
 	}
 
-	# These two do not check for permissions: check $wgTitle->userCanEdit before calling them
+	/**
+	 * These two do not check for permissions: check $wgTitle->userCanEdit
+	 * before calling them
+	 */
 	function editSectionScript( $section, $head ) {
 		global $wgTitle, $wgRequest;
 		if( $wgRequest->getInt( 'oldid' ) && ( $wgRequest->getVal( 'diff' ) != '0' ) ) {
@@ -2698,21 +2749,26 @@ class Skin {
 
 	}
 
-	// This function is called by EditPage.php and shows a bulletin board style
-	// toolbar for common editing functions. It can be disabled in the user preferences.
-	// The necsesary JavaScript code can be found in style/wikibits.js.
+	/**
+	 * This function is called by EditPage.php and shows a bulletin board style
+	 * toolbar for common editing functions. It can be disabled in the user
+	 * preferences.
+	 * The necsesary JavaScript code can be found in style/wikibits.js.
+	 */
 	function getEditToolbar() {
 		global $wgStylePath, $wgLang, $wgMimeType;
 
-		// toolarray an array of arrays which each include the filename of
-		// the button image (without path), the opening tag, the closing tag,
-		// and optionally a sample text that is inserted between the two when no
-		// selection is highlighted.
-		// The tip text is shown when the user moves the mouse over the button.
-
-		// Already here are accesskeys (key), which are not used yet until someone
-		// can figure out a way to make them work in IE. However, we should make
-		// sure these keys are not defined on the edit page.
+		/**
+		 * toolarray an array of arrays which each include the filename of
+		 * the button image (without path), the opening tag, the closing tag,
+		 * and optionally a sample text that is inserted between the two when no
+		 * selection is highlighted.
+		 * The tip text is shown when the user moves the mouse over the button.
+		 *
+		 * Already here are accesskeys (key), which are not used yet until someone
+		 * can figure out a way to make them work in IE. However, we should make
+		 * sure these keys are not defined on the edit page.
+		 */
 		$toolarray=array(
 			array(	'image'=>'button_bold.png',
 					'open'	=>	"\'\'\'",
@@ -2820,7 +2876,10 @@ class Skin {
 		return $toolbar;
 	}
 
-	/* public */ function suppressUrlExpansion() {
+	/**
+	 * @access public
+	 */
+	function suppressUrlExpansion() {
 		return false;
 	}
 }

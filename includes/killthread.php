@@ -1,7 +1,11 @@
 <?php
+/**
+ * Script to kill a MySQL thread after a specified timeout
+ */
 
-# Script to kill a MySQL thread after a specified timeout
-
+/**
+ *
+ */
 $wgCommandLineMode = true;
 
 unset( $IP );

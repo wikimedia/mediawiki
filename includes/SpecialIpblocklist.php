@@ -1,7 +1,12 @@
 <?php
+/**
+ *
+ */
 
-function wfSpecialIpblocklist()
-{
+/**
+ *
+ */
+function wfSpecialIpblocklist() {
 	global $wgUser, $wgOut, $wgRequest;
 	
 	$ip = $wgRequest->getVal( 'wpUnblockAddress', $wgRequest->getVal( 'ip' ) );
@@ -26,6 +31,9 @@ function wfSpecialIpblocklist()
 	}
 }
 
+/**
+ * 
+ */
 class IPUnblockForm {
 	var $ip, $reason;
 	
@@ -78,8 +86,7 @@ class IPUnblockForm {
 
 	}
 	
-	function doSubmit()
-	{
+	function doSubmit() {
 		global $wgOut, $wgUser, $wgLang;
 
 		$block = new Block();
@@ -105,8 +112,7 @@ class IPUnblockForm {
 		$wgOut->redirect( $success );
 	}
 
-	function showList( $msg )
-	{
+	function showList( $msg ) {
 		global $wgOut;
 		
 		$wgOut->setPagetitle( wfMsg( "ipblocklist" ) );
@@ -119,7 +125,9 @@ class IPUnblockForm {
 	}
 }
 
-# Callback function to output a block
+/**
+ * Callback function to output a block
+ */
 function wfAddRow( $block, $tag ) {
 	global $wgOut, $wgUser, $wgLang;
 

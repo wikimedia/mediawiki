@@ -1,4 +1,12 @@
 <?php
+/**
+ * Contain things
+ * @todo document
+ */
+
+/**
+ *
+ */
 define('DF_ALL', -1);
 define('DF_NONE', 0);
 define('DF_MDY', 1);
@@ -13,8 +21,9 @@ define('DF_DM', 7);
 define('DF_MD', 8);
 define('DF_LAST', 8);
 
-# To do: preferences, OutputPage
-
+/**
+ * @todo preferences, OutputPage
+ */
 class DateFormatter
 {
 	var $mSource, $mTarget;

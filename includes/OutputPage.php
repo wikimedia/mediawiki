@@ -1,6 +1,11 @@
 <?php
+/**
+ *
+ */
 
-# This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
+/**
+ * This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
+ */
 if( defined( 'MEDIAWIKI' ) ) {
 
 # See design.doc
@@ -9,6 +14,9 @@ if($wgUseTeX) require_once( 'Math.php' );
 
 define( 'RLH_FOR_UPDATE', 1 );
 
+/**
+ * @todo document
+ */
 class OutputPage {
 	var $mHeaders, $mCookies, $mMetatags, $mKeywords;
 	var $mLinktags, $mPagetitle, $mBodytext, $mDebugtext;
@@ -68,10 +76,12 @@ class OutputPage {
 		$haveMeta = true;
 	}
 
-	# checkLastModified tells the client to use the client-cached page if
-	# possible. If sucessful, the OutputPage is disabled so that
-	# any future call to OutputPage->output() have no effect. The method
-	# returns true iff cache-ok headers was sent.
+	/**
+	 * checkLastModified tells the client to use the client-cached page if
+	 * possible. If sucessful, the OutputPage is disabled so that
+	 * any future call to OutputPage->output() have no effect. The method
+	 * returns true iff cache-ok headers was sent.
+	 */
 	function checkLastModified ( $timestamp )
 	{
 		global $wgLang, $wgCachePages, $wgUser;
@@ -218,8 +228,9 @@ class OutputPage {
 		return wfSetVar( $this->mParserOptions, $options );
 	}
 
-	# Convert wikitext to HTML and add it to the buffer
-	#
+	/**
+	 * Convert wikitext to HTML and add it to the buffer
+	 */
 	function addWikiText( $text, $linestart = true )
 	{
 		global $wgParser, $wgTitle;
@@ -230,9 +241,10 @@ class OutputPage {
 		$this->addHTML( $parserOutput->getText() );
 	}
 
-	# Add wikitext to the buffer, assuming that this is the primary text for a page view
-	# Saves the text into the parser cache if possible
-	#
+	/**
+	 * Add wikitext to the buffer, assuming that this is the primary text for a page view
+	 * Saves the text into the parser cache if possible
+	 */
 	function addPrimaryWikiText( $text, $cacheArticle ) {
 		global $wgParser, $wgParserCache, $wgUser, $wgTitle;
 
@@ -265,12 +277,16 @@ class OutputPage {
 		}
 	}
 
-	# Set the maximum cache time on the Squid in seconds
+	/**
+	 * Set the maximum cache time on the Squid in seconds
+	 */
 	function setSquidMaxage( $maxage ) {
 		$this->mSquidMaxage = $maxage;
 	}
 
-	# Use enableClientCache(false) to force it to send nocache headers
+	/**
+	 * Use enableClientCache(false) to force it to send nocache headers
+	 */
 	function enableClientCache( $state ) {
 		return wfSetVar( $this->mEnableClientCache, $state );
 	}
@@ -321,9 +337,10 @@ class OutputPage {
 		}
 	}
 
-	# Finally, all the text has been munged and accumulated into
-	# the object, let's actually output it:
-	#
+	/**
+	 * Finally, all the text has been munged and accumulated into
+	 * the object, let's actually output it:
+	 */
 	function output()
 	{
 		global $wgUser, $wgLang, $wgDebugComments, $wgCookieExpiration;
@@ -384,8 +401,7 @@ class OutputPage {
 		# flush();
 	}
 
-	function out( $ins )
-	{
+	function out( $ins ) {
 		global $wgInputEncoding, $wgOutputEncoding, $wgLang;
 		if ( 0 == strcmp( $wgInputEncoding, $wgOutputEncoding ) ) {
 			$outs = $ins;
@@ -396,8 +412,7 @@ class OutputPage {
 		print $outs;
 	}
 
-	function setEncodings()
-	{
+	function setEncodings() {
 		global $wgInputEncoding, $wgOutputEncoding;
 		global $wgUser, $wgLang;
 
@@ -444,10 +459,11 @@ class OutputPage {
 		$wgOutputEncoding = $wgInputEncoding;
 	}
 
-	# Returns a HTML comment with the elapsed time since request.
-	# This method has no side effects.
-	function reportTime()
-	{
+	/**
+	 * Returns a HTML comment with the elapsed time since request.
+	 * This method has no side effects.
+	 */
+	function reportTime() {
 		global $wgRequestTime;
 
 		$now = wfTime();
@@ -473,10 +489,10 @@ class OutputPage {
 		return $com;
 	}
 
-	# Note: these arguments are keys into wfMsg(), not text!
-	#
-	function errorpage( $title, $msg )
-	{
+	/**
+	 * Note: these arguments are keys into wfMsg(), not text!
+	 */
+	function errorpage( $title, $msg ) {
 		global $wgTitle;
 
 		$this->mDebugtext .= 'Original title: ' .
@@ -496,8 +512,7 @@ class OutputPage {
 		wfErrorExit();
 	}
 
-	function sysopRequired()
-	{
+	function sysopRequired() {
 		global $wgUser;
 
 		$this->setPageTitle( wfMsg( 'sysoptitle' ) );
@@ -512,8 +527,7 @@ class OutputPage {
 		$this->returnToMain();
 	}
 
-	function developerRequired()
-	{
+	function developerRequired() {
 		global $wgUser;
 
 		$this->setPageTitle( wfMsg( 'developertitle' ) );
@@ -528,8 +542,7 @@ class OutputPage {
 		$this->returnToMain();
 	}
 
-	function loginToUse()
-	{
+	function loginToUse() {
 		global $wgUser, $wgTitle, $wgLang;
 
 		$this->setPageTitle( wfMsg( 'loginreqtitle' ) );
@@ -548,8 +561,7 @@ class OutputPage {
 		$this->returnToMain();		# Flip back to the main page after 10 seconds.
 	}
 
-	function databaseError( $fname, $sql, $error, $errno )
-	{
+	function databaseError( $fname, $sql, $error, $errno ) {
 		global $wgUser, $wgCommandLineMode;
 
 		$this->setPageTitle( wfMsgNoDB( 'databaseerror' ) );
@@ -575,8 +587,7 @@ class OutputPage {
 		wfErrorExit();
 	}
 
-	function readOnlyPage( $source = null, $protected = false )
-	{
+	function readOnlyPage( $source = null, $protected = false ) {
 		global $wgUser, $wgReadOnlyFile;
 
 		$this->setRobotpolicy( 'noindex,nofollow' );
@@ -605,8 +616,7 @@ class OutputPage {
 		$this->returnToMain( false );
 	}
 
-	function fatalError( $message )
-	{
+	function fatalError( $message ) {
 		$this->setPageTitle( wfMsg( "internalerror" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleRelated( false );
@@ -618,36 +628,32 @@ class OutputPage {
 		wfErrorExit();
 	}
 
-	function unexpectedValueError( $name, $val )
-	{
+	function unexpectedValueError( $name, $val ) {
 		$this->fatalError( wfMsg( 'unexpected', $name, $val ) );
 	}
 
-	function fileCopyError( $old, $new )
-	{
+	function fileCopyError( $old, $new ) {
 		$this->fatalError( wfMsg( 'filecopyerror', $old, $new ) );
 	}
 
-	function fileRenameError( $old, $new )
-	{
+	function fileRenameError( $old, $new ) {
 		$this->fatalError( wfMsg( 'filerenameerror', $old, $new ) );
 	}
 
-	function fileDeleteError( $name )
-	{
+	function fileDeleteError( $name ) {
 		$this->fatalError( wfMsg( 'filedeleteerror', $name ) );
 	}
 
-	function fileNotFoundError( $name )
-	{
+	function fileNotFoundError( $name ) {
 		$this->fatalError( wfMsg( 'filenotfound', $name ) );
 	}
 
-	// return from error messages or notes
-	//   auto: 	automatically redirect the user after 10 seconds
-	//   returnto:	page title to return to. Default is Main Page.
-	function returnToMain( $auto = true, $returnto = NULL )
-	{
+	/**
+	 * return from error messages or notes
+	 * @param $auto automatically redirect the user after 10 seconds
+	 * @param $returnto page title to return to. Default is Main Page.
+	 */
+	function returnToMain( $auto = true, $returnto = NULL ) {
 		global $wgUser, $wgOut, $wgRequest;
 
 		if ( $returnto == NULL ) {
@@ -668,10 +674,11 @@ class OutputPage {
 		$wgOut->addHTML( "\n<p>$r</p>\n" );
 	}
 
-	# This function takes the existing and broken links for the page
-	# and uses the first 10 of them for META keywords
-	function addMetaTags ()
-	{
+	/**
+	 * This function takes the existing and broken links for the page
+	 * and uses the first 10 of them for META keywords
+	 */
+	function addMetaTags () {
 		global $wgLinkCache , $wgOut ;
 		$good = array_keys ( $wgLinkCache->mGoodLinks ) ;
 		$bad = array_keys ( $wgLinkCache->mBadLinks ) ;
@@ -687,8 +694,10 @@ class OutputPage {
 		$wgOut->addMeta ( 'KEYWORDS' , $a ) ;
 	}
 
-	/* private */ function headElement()
-	{
+	/**
+ 	 * @private
+	 */
+	function headElement() {
 		global $wgDocType, $wgDTD, $wgLanguageCode, $wgOutputEncoding, $wgMimeType;
 		global $wgUser, $wgLang, $wgRequest;
 
@@ -777,19 +786,22 @@ class OutputPage {
 		return $ret;
 	}
 	
-	# Run any necessary pre-output transformations on the buffer text
-	function transformBuffer( $options = 0 )
-	{
+	/**
+	 * Run any necessary pre-output transformations on the buffer text
+	 */
+	function transformBuffer( $options = 0 ) {
 		$this->replaceLinkHolders( $this->mBodytext, $options );
 	}
 
-	# Replace <!--LINK--> link placeholders with actual links, in the buffer
-	# Placeholders created in Skin::makeLinkObj()
-	# Returns an array of links found, indexed by PDBK:
-	#   0 - broken
-	#   1 - normal link
-	#   2 - stub
-	# $options is a bit field, RLH_FOR_UPDATE to select for update
+	/**
+	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
+	 * Placeholders created in Skin::makeLinkObj()
+	 * Returns an array of links found, indexed by PDBK:
+	 *  0 - broken
+	 *  1 - normal link
+	 *  2 - stub
+	 * $options is a bit field, RLH_FOR_UPDATE to select for update
+	 */
 	function replaceLinkHolders( &$text, $options = 0 ) {
 		global $wgUser, $wgLinkCache, $wgUseOldExistenceCheck;
 		

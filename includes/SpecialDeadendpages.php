@@ -1,23 +1,41 @@
 <?php
+/**
+ *
+ */
 
+/**
+ *
+ */
 require_once( "QueryPage.php" );
 
+/**
+ *
+ */
 class DeadendPagesPage extends PageQueryPage {
 
 	function getName( ) {
 		return "Deadendpages";
 	}
 
-	# LEFT JOIN is expensive
-    
+	/**
+	 * LEFT JOIN is expensive
+	 *
+	 * @return true
+	 */
 	function isExpensive( ) {
 		return 1;
 	}
 
+	/**
+	 * @return false
+	 */
 	function sortDescending() {
 		return false;
 	}
-    
+	
+    /**
+	 * @return string an sqlquery
+	 */
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'cur', 'links' ) );
@@ -29,6 +47,9 @@ class DeadendPagesPage extends PageQueryPage {
     }
 }
 
+/**
+ * Constructor
+ */
 function wfSpecialDeadendpages() {
     
     list( $limit, $offset ) = wfCheckLimits();

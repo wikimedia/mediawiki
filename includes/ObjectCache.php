@@ -18,16 +18,23 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
-
-# Simple generic object store
-# interface is intended to be more or less compatible with
-# the PHP memcached client.
-#
-# backends for local hash array and SQL table included:
-#  $bag = new HashBagOStuff();
-#  $bag = new MysqlBagOStuff($tablename); # connect to db first
-
-class /* abstract */ BagOStuff {
+/**
+ *
+ */
+ 
+/**
+ * Simple generic object store
+ *
+ * interface is intended to be more or less compatible with
+ * the PHP memcached client.
+ *
+ * backends for local hash array and SQL table included:
+ * $bag = new HashBagOStuff();
+ * $bag = new MysqlBagOStuff($tablename); # connect to db first
+ *
+ * @abstract
+ */
+class BagOStuff {
 	var $debugmode;
 	
 	function BagOStuff() {
@@ -142,7 +149,10 @@ class /* abstract */ BagOStuff {
 }
 
 
-/* Functional versions! */
+/**
+ * Functional versions!
+ * @todo document
+ */
 class HashBagOStuff extends BagOStuff {
 	/*
 	   This is a test of the interface, mainly. It stores
@@ -194,7 +204,12 @@ CREATE TABLE objectcache (
   key (exptime)
 );
 */
-class /* abstract */ SqlBagOStuff extends BagOStuff {
+
+/**
+ * @todo document
+ * @abstract
+ */
+class SqlBagOStuff extends BagOStuff {
 	var $table;
 
 	function SqlBagOStuff($tablename = 'objectcache') {
@@ -307,6 +322,9 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 	}
 }
 
+/**
+ * @todo document
+ */
 class MediaWikiBagOStuff extends SqlBagOStuff {
 	var $tableInitialised = false;
 
@@ -346,6 +364,9 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 	}
 }
 
+/**
+ * @todo document
+ */
 class TurckBagOStuff extends BagOStuff {
 	function get($key) {
 		return mmcache_get( $key );
