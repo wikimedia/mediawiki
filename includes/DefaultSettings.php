@@ -291,4 +291,5 @@ $wgProxyMemcExpiry = 86400;
 # as links in the middle of a sentence using a lowercase initial.
 $wgCapitalLinks = true;
 
+$wgSpamRegex 	= false; # Text matching this regex will be recognised as spam
 ?>

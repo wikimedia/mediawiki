@@ -85,8 +85,8 @@ class EditPage {
 		global $wpSave, $wpPreview;
 		global $wpMinoredit, $wpEdittime, $wpTextbox2, $wpSection;
 		global $oldid, $redirect, $section;
-		global $wgLang;
-	        global $wgAllowAnonymousMinor;
+		global $wgLang, $wgSpamRegex;
+		global $wgAllowAnonymousMinor;
 
 		if(isset($wpSection)) { $section=$wpSection; } else { $wpSection=$section; }
 
@@ -106,6 +106,14 @@ class EditPage {
 		# in the back door with a hand-edited submission URL.
 
 		if ( "save" == $formtype ) {
+			# Check for spam
+			if ( $wgSpamRegex && preg_match( $wgSpamRegex, $wpTextbox1 ) ) {
+					sleep(10); # Saving the page, be with you in a sec
+					$wgOut->redirect(  wfLocalUrl( $this->mTitle->getPrefixedURL() ) );
+					# Bwahahaha
+					return;
+			}
+
 			if ( $wgUser->isBlocked() ) {
 				$this->blockedIPpage();
 				return;
