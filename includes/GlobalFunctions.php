@@ -762,7 +762,7 @@ function wfEscapeShellArg( )
 			$first = false;
 		}
 
-		if ( isWindows() ) {
+		if ( wfIsWindows() ) {
 			$retVal .= '"' . str_replace( '"','\"', $arg ) . '"';
 		} else {
 			$retVal .= escapeshellarg( $arg );
