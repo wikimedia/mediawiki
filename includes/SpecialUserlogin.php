@@ -140,7 +140,9 @@ class LoginForm {
 		}
 		
 		$name = trim( $this->mName );
-		if ( ( "" == $name ) ||
+		$u = User::newFromName( $name );
+		if ( is_null( $u ) ||
+		  ( "" == $name ) ||
 		  preg_match( "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/", $name ) ||
 		  (strpos( $name, "/" ) !== false) ||
 		  (strlen( $name ) > $wgMaxNameChars) ) 
@@ -152,7 +154,6 @@ class LoginForm {
 			$wgOut->readOnlyPage();
 			return;
 		}
-		$u = User::newFromName( $name );
 		
 		if ( 0 != $u->idForName() ) {
 			$this->mainLoginForm( wfMsg( "userexists" ) );
@@ -189,11 +190,11 @@ class LoginForm {
 		global $wgUser;
 		global $wgDeferredUpdateList;
 
-		if ( "" == $this->mName ) {
+		$u = User::newFromName( $this->mName );
+		if( is_null( $u ) ) {
 			$this->mainLoginForm( wfMsg( "noname" ) );
 			return;
 		}
-		$u = User::newFromName( $this->mName );
 		$id = $u->idForName();
 		if ( 0 == $id ) {
 			$this->mainLoginForm( wfMsg( "nosuchuser", $u->getName() ) );
@@ -239,6 +240,10 @@ class LoginForm {
 			return;
 		}
 		$u = User::newFromName( $this->mName );
+		if( is_null( $u ) ) {
+			$this->mainLoginForm( wfMsg( "noname" ) );
+			return;
+		}
 		$id = $u->idForName();
 		if ( 0 == $id ) {
 			$this->mainLoginForm( wfMsg( "nosuchuser", $u->getName() ) );
@@ -264,8 +269,7 @@ class LoginForm {
 		global $wgCookiePath, $wgCookieDomain;
 
 		if ( "" == $u->getEmail() ) {
-			$this->mainLoginForm( wfMsg( "noemail", $u->getName() ) );
-			return;
+			return wfMsg( "noemail", $u->getName() );
 		}
 		$np = User::randomPassword();
 		$u->setNewpassword( $np );
@@ -328,7 +332,7 @@ class LoginForm {
 		$ca = wfMsg( "createaccount" );
 		$cam = wfMsg( "createaccountmail" );
 		$ye = wfMsg( "youremail" );
-	        if ($wgAllowRealName) {
+		if( $wgAllowRealName ) {
 		    $yrn = wfMsg( "yourrealname" );
 		} else {
 		    $yrn = '';
