@@ -409,6 +409,23 @@ class Article {
 		$t = $this->mTitle->getPrefixedText();
 		if ( isset( $oldid ) ) {
 			$oldid = IntVal( $oldid );
+			if ( $wgRequest->getVal( 'direction' ) == 'next' ) {
+				$nextid = $this->mTitle->getNextRevisionID( $oldid );
+				if ( $nextid ) {
+					$oldid = $nextid;
+				} else {
+					$wgOut->redirect( $this->mTitle->getFullURL( 'redirect=no' ) );
+				}
+			} elseif ( $wgRequest->getVal( 'direction' ) == 'prev' ) {
+				$previd = $this->mTitle->getPreviousRevisionID( $oldid );
+				if ( $previd ) {
+					$oldid = $previd;
+				} else {
+					# TODO
+				}
+			}
+		}
+		if ( isset( $oldid ) ) {
 			$t .= ',oldid='.$oldid;
 		}
 		if ( isset( $redirect ) ) {
@@ -803,7 +820,7 @@ class Article {
 			# We're looking at an old revision
 
 			if ( !empty( $oldid ) ) {
-				$this->setOldSubtitle();
+				$this->setOldSubtitle( $oldid );
 				$wgOut->setRobotpolicy( 'noindex,follow' );
 			}
 			if ( '' != $this->mRedirectedFrom ) {
@@ -1898,14 +1915,17 @@ class Article {
 	/**
 	 * @todo document this function
 	 * @private
+	 * @param string $oldid		Revision ID of this article revision
 	 */
-	function setOldSubtitle() {
+	function setOldSubtitle( $oldid=0 ) {
 		global $wgLang, $wgOut, $wgUser;
 
 		$td = $wgLang->timeanddate( $this->mTimestamp, true );
 		$sk = $wgUser->getSkin();
 		$lnk = $sk->makeKnownLinkObj ( $this->mTitle, wfMsg( 'currentrevisionlink' ) );
-		$r = wfMsg( 'revisionasofwithlink', $td, $lnk );
+		$prevlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'previousrevision' ), 'direction=prev&oldid='.$oldid );
+		$nextlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'nextrevision' ), 'direction=next&oldid='.$oldid );
+		$r = wfMsg( 'revisionasofwithlink', $td, $lnk, $prevlink, $nextlink );
 		$wgOut->setSubtitle( $r );
 	}
 
