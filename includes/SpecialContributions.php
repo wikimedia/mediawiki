@@ -54,7 +54,7 @@ function wfSpecialContributions( $par = "" )
 	}
 
 	if ( 0 == $id ) {
-		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit FROM cur " .
+		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new FROM cur " .
 		  "WHERE cur_user_text='" . wfStrencode( $nt->getText() ) . "' {$cmq} " .
 		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res1 = wfQuery( $sql, DB_READ, $fname );
@@ -64,7 +64,7 @@ function wfSpecialContributions( $par = "" )
 		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res2 = wfQuery( $sql, DB_READ, $fname );
 	} else {
-		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit FROM cur " .
+		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new FROM cur " .
 		  "WHERE cur_user={$id} {$cmq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res1 = wfQuery( $sql, DB_READ, $fname );
 
@@ -106,9 +106,10 @@ function wfSpecialContributions( $par = "" )
 			$ts = $obj1->cur_timestamp;
 			$comment =$obj1->cur_comment;
 			$me = $obj1->cur_minor_edit;
+			$isnew = $obj1->cur_is_new;
 
 			$obj1 = wfFetchObject( $res1 );
-			$topmark = true;			
+			$topmark = true;
 			--$nCur;
 		} else {
 			$ns = $obj2->old_namespace;
@@ -118,41 +119,53 @@ function wfSpecialContributions( $par = "" )
 			$me = $obj2->old_minor_edit;
 
 			$obj2 = wfFetchObject( $res2 );
+			$isnew = false;
 			$topmark = false;
 			--$nOld;
 		}
 		if( $n >= $offset )
-			ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, ( $me > 0) );
+			ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, ( $me > 0),$isnew );
 	}
 	$wgOut->addHTML( "</ul>\n" );
 }
 
-function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor )
+function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew )
 {
 	global $wgLang, $wgOut, $wgUser, $target;
 	$page = Title::makeName( $ns, $t );
 	$link = $sk->makeKnownLink( $page, "" );
-	$topmarktext = $topmark ? wfMsg ( "uctop" ) : "";
-	$sysop = $wgUser->isSysop();
+	$topmarktext="";
+	if($topmark) {
+		if(!$isnew) {
+			$topmarktext .= $sk->makeKnownLink( $page, wfMsg("uctop"), "diff=0" );
+		} else {
+			$topmarktext .= wfMsg("newarticle");
+		}
+		$sysop = $wgUser->isSysop();
+		if($sysop ) {
+			$extraRollback = $_REQUEST['bot'] ? '&bot=1' : '';
+			$topmarktext .= " [". $sk->makeKnownLink( $page,
+		  	  wfMsg( "rollbacklink" ), "action=rollback&from=" . urlencode( $target ) .
+			  $extraRollback ) ."]";
+		}
 
-	$extraRollback = $_REQUEST['bot'] ? '&bot=1' : '';	
-	if($sysop && $topmark ) {
-		$topmarktext .= " [". $sk->makeKnownLink( $page,
-		  wfMsg( "rollbacklink" ), 
-		  "action=rollback&from=" . urlencode( $target ) . $extraRollback ) ."]";
 	}
+	$histlink="(".$sk->makeKnownLink($page,wfMsg("hist"),"action=history").")";
+
 	if($comment) {
-	
+
 		$comment="<em>(". htmlspecialchars( $comment ) .")</em> ";
-	
+
 	}
 	$d = $wgLang->timeanddate( $ts, true );
 
-        if ($isminor) {
-          $mflag = "<strong>" . wfMsg( "minoreditletter" ) . "</strong> ";
-        }
+	if ($isminor) {
+		$mflag = "<strong>" . wfMsg( "minoreditletter" ) . "</strong> ";
+	} else {
+		$mflag = "";
+	}
 
-	$wgOut->addHTML( "<li>{$d} {$mflag}{$link} {$comment}{$topmarktext}</li>\n" );
+	$wgOut->addHTML( "<li>{$d} {$histlink} {$mflag} {$link} {$comment}{$topmarktext}</li>\n" );
 }
 
 function ucCountLink( $lim, $d )

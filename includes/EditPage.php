@@ -118,6 +118,7 @@ class EditPage {
 				$wgOut->readOnlyPage();
 				return;
 			}
+			$wpSummary=trim($wpSummary);
 			# If article is new, insert it.
 
 			$aid = $this->mTitle->getArticleID();
@@ -191,6 +192,14 @@ class EditPage {
 				} else {
 					$s.=wfMsg("sectionedit");
 				}
+				if(!$wpPreview) {
+
+					$sectitle=preg_match("/^=+(.*?)=+/mi",
+                                        $wpTextbox1,
+                                        $matches);
+                                        if($matches[1]) { $wpSummary =
+                                         "=". trim($matches[1])."= "; }
+                                }
 			}
 			$wgOut->setPageTitle( $s );
 			if ( $oldid ) {
