@@ -876,6 +876,9 @@ See [[{{ns:4}}:User preferences help]] for help deciphering the options.",
 "math_bad_tmpdir"	=> "Can't write to or create math temp directory",
 "math_bad_output"	=> "Can't write to or create math output directory",
 "math_notexvc"	=> "Missing texvc executable; please see math/README to configure.",
+'prefs-personal' => 'User data',
+'prefs-rc' => 'Recent changes and stub display',
+'prefs-misc' => 'Misc settings',
 "saveprefs"		=> "Save preferences",
 "resetprefs"	=> "Reset preferences",
 "oldpassword"	=> "Old password",
@@ -1658,7 +1661,7 @@ class Language {
 	function getMonthAbbreviation( $key )
 	{
 		global $wgMonthAbbreviationsEn;
-		return $wgMonthAbbreviationsEn[$key-1];
+		return @$wgMonthAbbreviationsEn[$key-1];
 	}
 
 	function getWeekdayName( $key )
