@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${lang}" lang="${lang}">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title tal:content="title">Leonardo Da Vinci - Wikipedia</title>
+
+    <style type="text/css" media="screen">
+      /*<![CDATA[*/
+      @import url(${stylepath}/DaVinci.css);
+      /*]]>*/
+    </style>
+    <!-- Custom style sheet if available, could either be a pref or a subpage of the user page
+    <style type="text/css" media="all">
+      /*<![CDATA[*/
+      @import url(${stylepath}/DaVinciCustom.css);
+      /*]]>*/
+    </style>-->
+    <!-- Style sheet used for printing -->
+    <link rel="stylesheet" type="text/css" media="print" href="${stylepath}/commonPrint.css" />
+    <!-- fixes for some this hack of a browser -->
+    <!--[if IE]>  
+    <style type="text/css" media="all">@import url(${stylepath}/DaVinciIEFixes.css);</style>
+    <![endif]-->
+    <link tal:condition="favicon" rel="shortcut icon" href="${favicon}" type="image/x-icon" />
+    <!-- Disable IE6 image toolbar -->
+    <meta http-equiv="imagetoolbar" content="no" />
+    <script type="text/javascript" src="${stylepath}/wikibits.js">
+    </script>
+  </head>
+
+  <body>
+    <div id="visual-portal-wrapper">
+      
+      <div id="portal-column-content">
+	<div id="content">
+	  <a name="top" id="contentTop"></a>
+	  <div class="documentContent">
+
+	    <h1 class="documentFirstHeading" tal:content="title">Leonardo da Vinci</h1>
+
+	    <div id="bodyContent" class="plain">
+	      <h3 id="documentSubtitle" i18n:translate="string:fromwikipedia">From Wikipedia, the free encyclopedia.</h3>
+	      <!--esi:include src="userxy/message"/> cached per user, purged on new message-->
+	      <!-- the content area is cached with the remaining inexpensive sceleton, one version for all.
+	      The edit links and right-click section stuff is attached from js -->
+	      <!-- start content -->
+
+	      ${bodytext}
+
+	      <!-- end content -->
+	      <div class="documentByLine">
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div><!-- end of main content block -->
+    <!-- start of the left (by default at least) column -->
+    <div id="portal-column-one">
+      <!--<esi:include src="thisurl?esiview=contentviews&watch=0&priv=sysop"/> tricky to purge because of the many different versions,
+      might not be worth it for non-anons -->
+      <div id="portlet-contentViews" class="portlet">
+	<h5 class="hiddenStructure">Views</h5>
+	
+	<ul class="contentViews">
+	  <li tal:repeat="action content_actions" 
+	  tal:attributes="id string:contentaction-${repeat/action/key}; class action/class">
+	  <a class="" href="?action=edit"
+	    tal:attributes="href action/href; accesskey action/akey"
+	    i18n:translate="action/i18n_key">Linktext</a>
+	  </li>
+	</ul>
+
+      </div>
+      <!--<esi:include src="userxy?personaltools"/> cached per user, just rendered once per session -->
+      <div class="portlet" id="portlet-personal">
+	<h5 class="hiddenStructure" i18n:translate="string:personaltools">Personal Tools</h5>
+
+	<div class="portletBody">
+	  <div class="portletContent odd">
+	    <h5 class="hiddenStructure">Personal Tools</h5>
+
+	    <ul id="portal-personaltools" tal:condition="loggedin">
+	      <li class="portalUser"><a tal:attributes="href php:skin.makeUrl(userpage); accesskey ''"
+		tal:content="username">Gwicke</a></li>
+	      
+	      <li><a tal:attributes="href php:skin.makeTalkUrl(userpage); accesskey ''"
+		i18n:translate="string:mytalk">My talk</a></li>
+
+	      <li><a tal:attributes="href php:skin.makeSpecialUrl('Preferences'); accesskey ''"
+		i18n:translate="string:preferences">Preferences</a></li>
+
+	      <li><a tal:attributes="href php:skin.makeSpecialUrl('Watchlist'); accesskey ''"
+		i18n:translate="string:watchlist">My Watchlist</a></li>
+
+	      <li><a tal:attributes="href php:skin.makeSpecialUrl('Contributions','target=' . username); accesskey ''"
+		i18n:translate="string:mycontris">My Contributions</a></li>
+
+	      <li><a tal:attributes="href php:skin.makeSpecialUrl('Userlogout','returnpage=' . thispage); accesskey ''"
+		i18n:translate="string:userlogout">Log out</a></li>
+
+	    </ul>
+	    <ul id="portal-personaltools" tal:condition="not: loggedin">
+	      <li class="portalUser" i18n:translate="string:notloggedin">You are not logged in</li>
+	      <li><a tal:attributes="href php:skin.makeSpecialUrl('Userlogin'); accesskey ''"
+		i18n:translate="string:userlogin">Log In</a></li>
+	    </ul>
+	  </div>
+	</div>
+      </div>
+      <!--<esi:include src="staticLogoNaviSearch"/> same for all pages, contains quite a few messages that are worth caching -->
+      <div class="portlet" id="portlet-logo">
+	<a href="${urls/mainpage/href}" i18n:attributes="title string:mainpage"></a>
+      </div>
+
+      <div class="portlet" id="portlet-navigation-tree">
+	<h5 i18n:translate="string:navigation">Navigation</h5>
+
+	<div class="portletBody">
+	  <div class="portletContent odd">
+	    <ul>
+	      <li><a href="${urls/mainpage/href}"
+		i18n:attributes="accesskey string:accesskey-mainpage;"
+		i18n:translate="string:mainpage">Main Page</a></li>
+	      
+	      <li><a href="${urls/randompage/href}"
+		i18n:attributes="accesskey string:accesskey-randompage;" 
+		i18n:translate="string:randompage">Random Page</a></li>
+
+	      <li><a href="${urls/currentevents/href"
+		i18n:translate="string:currentevents">Current Events</a></li>
+
+	      <li><a href="${urls/sitesupport/href}"
+		i18n:translate="string:sitesupport">Contact us</a></li>
+	    </ul>
+	  </div>
+	</div>
+      </div>
+
+      <div id="portlet-search" class="portlet">
+	<h5 i18n:translate="string:search">Search</h5>
+
+	<div class="portletBody">
+	  <div class="portletContent odd">
+	    <form name="searchform" action="${searchaction}" id="searchform">
+	      <input id="searchGadget" name="search" type="text" accesskey="s" tabindex="30001"
+	      i18n:attributes="accesskey accesskey-search"/>
+
+	      <input type='submit' name="go" value="Go" class="searchButton" 
+	      i18n:attributes="value string:go"/>&nbsp;<input type='submit'
+	      value="Search" class="searchButton"
+	      i18n:attributes="value string:search"/>
+	    </form>
+	  </div>
+	</div>
+      </div>
+      
+      <!--<esi:include src="thisurl?esiview=toolbox&loggedin=0"/> one anon, one logged-in user version per page because of the links -->
+      <div class="portlet" id="portlet-editor-box">
+	<h5 i18n:translate="string:toolbox">Toolbox</h5>
+
+	<div class="portletBody">
+	  <div class="portletContent odd">
+	    <ul>
+
+	      <li><a href="${urls/help/href}"
+		i18n:attributes="accesskey string:accesskey-help" 
+		i18n:translate="string:help">Help</a></li>
+
+	      <li><a href="${urls/recentchanges/href}"
+		i18n:attributes="accesskey string:accesskey-recentchanges" 
+		i18n:translate="string:recentchanges">Recent Changes</a></li>
+
+	      <li><a href="${urls/recentchangeslinked/href}"
+		i18n:attributes="accesskey string:accesskey-recentchangeslinked" 
+		i18n:translate="string:recentchangeslinked">Related Changes</a></li>
+
+	      <li><a href="${urls/whatlinkshere/href}"
+		i18n:attributes="accesskey string:accesskey-whatlinkshere" 
+		i18n:translate="string:whatlinkshere">What links here</a></li>
+
+	      <li><a href="${urls/specialpages/href}"
+		i18n:translate="string:specialpages">Special Pages</a></li>
+
+	      <li tal:condition="loggedin"><a href="${urls/upload/href"
+		i18n:attributes="accesskey string:accesskey-upload" 
+		i18n:translate="string:upload">Upload a file</a></li>
+
+	    </ul>
+	  </div>
+	</div>
+      </div>
+      <!-- end staticLogoNaviSearch -->
+
+      <div id="portlet-language" class="portlet" tal:condition="language_urls">
+	<h5 i18n:translate="string:otherlanguages">Language</h5>
+
+	<div class="portletBody">
+	  <div class="portletContent odd">
+	    <ul>
+	      <li tal:repeat="langlink language_urls">
+	      <a href="mylanguagelink"
+		tal:attributes="href langlink/href"
+		tal:content="structure langlink/text">English</a>
+	      </li>
+	    </ul>
+	  </div>
+	</div>
+      </div>
+    </div><!-- end of the left (by default at least) column -->
+    <!--<esi:include src="thisurl?esiview=toolbox&loggedin=0"/> static footer, same for all pages but contains a few messaged that are worth caching --> 
+    <div class="visualClear"></div>
+    <div id="portal-footer">
+      ${pagestats}
+    </div>
+
+    <div id="portal-colophon"></div>
+  </body>
+</html>
