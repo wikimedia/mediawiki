@@ -170,36 +170,33 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 		} else {
 			$message = wfMsgNoDBForContent( $key );
 		}
-		$titleObj = Title::newFromText( $wgContLang->ucfirst( $key ) );
+		$titleObj = Title::newFromText( $wgContLang->ucfirst( $key ), NS_MEDIAWIKI );
 		$title = $titleObj->getDBkey();
 
 		# Update messages which already exist
 		if ( array_key_exists( $title, $existingTitles ) ) {
 			if ( $existingTitles[$title] == 'chuck' || $overwrite) {
-				# print "$title\n";
-				$mwTitleObj = Title::makeTitle( NS_MEDIAWIKI, $title );
-				$article = new Article( $mwTitleObj );
-				$article->quickEdit( $message );
+				# Don't bother writing a new revision if we're the same
+				# as the current text!
+				$revision = Revision::newFromTitle( $titleObj );
+				if( is_null( $revision ) || $revision->getText() != $message ) {
+					$article = new Article( $titleObj );
+					$article->quickEdit( $message );
+				}
 			}
 		} else {
-			extract( $dbw->tableNames( 'text', 'page', 'revision' ) );
-			$sql = "INSERT INTO $text (old_text, old_flags) VALUES ('" .
-				wfStrencode( $message ) .
-				"', '')";
-			$dbw->query( $sql, $fname );
-			$text_id = $dbw->insertID();
-
-			$sql = "INSERT INTO $page (page_namespace, page_title, page_restrictions, page_counter, page_is_redirect,
-				page_is_new, page_random, page_touched, page_latest) VALUES (
-				{$ns}, '{$title}', 'sysop', 0, 0, 1, 0.5, '{$timestamp}', {$text_id} )";
-			$dbw->query( $sql, $fname );
-			$page_id = $dbw->insertID();
-
-			$sql = "INSERT INTO $revision (rev_id, rev_page, rev_comment, rev_user, rev_user_text,
-							rev_timestamp, rev_minor_edit)
-					VALUES ({$text_id}, {$page_id}, '', 0, '{$username}', '{$timestamp}', 0)";
-			$dbw->query( $sql, $fname );
-
+			$article = new Article( $titleObj );
+			$newid = $article->insertOn( $dbw, 'sysop' );
+			# FIXME: set restrictions
+			$revision = new Revision( array(
+				'page'      => $newid,
+				'text'      => $message,
+				'user'      => 0,
+				'user_text' => $username,
+				'comment'   => '',
+				) );
+			$revid = $revision->insertOn( $dbw );
+			$article->updateRevisionOn( $dbw, $revision );
 		}
 	}
 
