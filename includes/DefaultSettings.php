@@ -760,6 +760,8 @@ $wgNavigationLinks = array (
 # instead of listing them as articles.
 $wgCategoryMagicGallery = true;
 
+# Browser Blacklist for unicode non compliant browsers
+$wgBrowserBlackList = array();
 
 } else {
 	die();
