@@ -1696,7 +1696,7 @@ class Skin {
 	}
 	# this can be passed the NS number as defined in Language.php
 	/*static*/ function makeNSUrl( $name, $urlaction='', $namespace=0 ) {
-		$title = Title::makeTitle( $namespace, $name );
+		$title = Title::makeTitleSafe( $namespace, $name );
 		$this->checkTitle($title, $name);
 		return $title->getLocalURL( $urlaction );
 	}
@@ -1770,7 +1770,7 @@ class Skin {
 	}
 
 	function makeImageLink( $name, $url, $alt = '' ) {
-		$nt = Title::makeTitle( Namespace::getImage(), $name );
+		$nt = Title::makeTitleSafe( NS_IMAGE, $name );
 		return $this->makeImageLinkObj( $nt, $alt );
 	}
 
@@ -1903,7 +1903,7 @@ class Skin {
 	# $img is an Image object
 	function makeThumbLinkObj( $img, $label = '', $align = 'right', $boxwidth = 180, $boxheight=false, $framed=false , $manual_thumb = "" ) {
 		global $wgStylePath, $wgLang;
-		# $image = Title::makeTitle( Namespace::getImage(), $name );
+		# $image = Title::makeTitleSafe( NS_IMAGE, $name );
 		$url  = $img->getURL();
 
 		#$label = htmlspecialchars( $label );
@@ -1945,7 +1945,7 @@ class Skin {
 
 		if ( $manual_thumb != '' ) # Use manually specified thumbnail
 		{
-			$manual_title = Title::makeTitle( Namespace::getImage(), $manual_thumb ); #new Title ( $manual_thumb ) ;
+			$manual_title = Title::makeTitleSafe( NS_IMAGE, $manual_thumb ); #new Title ( $manual_thumb ) ;
 			$manual_img = Image::newFromTitle( $manual_title );
 			$thumbUrl = $manual_img->getURL();
 			if ( $manual_img->exists() )
@@ -1986,7 +1986,7 @@ class Skin {
 	}
 
 	function makeMediaLink( $name, $url, $alt = "" ) {
-		$nt = Title::makeTitle( Namespace::getMedia(), $name );
+		$nt = Title::makeTitleSafe( Namespace::getMedia(), $name );
 		return $this->makeMediaLinkObj( $nt, $alt );
 	}
 

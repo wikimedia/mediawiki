@@ -138,8 +138,8 @@ class Title {
 	}
 	
 	# From a namespace index and a DB key.
-	# It's assumed that $ns and $title are *valid*, for instance
-	# when they came directly from the database.
+	# It's assumed that $ns and $title are *valid*, for instance when
+	# they came directly from the database or a special page name.
 	/* static */ function &makeTitle( $ns, $title ) {
 		$t =& new Title();
 		$t->mInterwiki = '';
@@ -151,6 +151,19 @@ class Title {
 		$t->mTextform = str_replace( '_', ' ', $title );
 		return $t;
 	}
+	
+	# From a namespace index and a DB key.
+	# These will be checked for validity, which is a bit slower
+	# than makeTitle() but safer for user-provided data.
+	/* static */ function makeTitleSafe( $ns, $title ) {
+		$t = new Title();
+		$t->mDbkeyform = Title::makeName( $ns, $title );
+		if( $t->secureAndSplit() ) {
+			return $t;
+		} else {
+			return NULL;
+		}
+ 	}
 
 	/* static */ function newMainPage() {
 		return Title::newFromText( wfMsg( 'mainpage' ) );

@@ -60,10 +60,10 @@ class DifferenceEngine {
 		$this->mOldComment = $sk->formatComment($this->mOldComment);
 		$this->mNewComment = $sk->formatComment($this->mNewComment);
 
-		$oldUserLink = $sk->makeLinkObj( Title::makeTitle( NS_USER, $this->mOldUser ), $this->mOldUser );
-		$newUserLink = $sk->makeLinkObj( Title::makeTitle( NS_USER, $this->mNewUser ), $this->mNewUser );
-		$oldUTLink = $sk->makeLinkObj( Title::makeTitle( NS_USER_TALK, $this->mOldUser ), $talk );
-		$newUTLink = $sk->makeLinkObj( Title::makeTitle( NS_USER_TALK, $this->mNewUser ), $talk );
+		$oldUserLink = $sk->makeLinkObj( Title::makeTitleSafe( NS_USER, $this->mOldUser ), $this->mOldUser );
+		$newUserLink = $sk->makeLinkObj( Title::makeTitleSafe( NS_USER, $this->mNewUser ), $this->mNewUser );
+		$oldUTLink = $sk->makeLinkObj( Title::makeTitleSafe( NS_USER_TALK, $this->mOldUser ), $talk );
+		$newUTLink = $sk->makeLinkObj( Title::makeTitleSafe( NS_USER_TALK, $this->mNewUser ), $talk );
 		$oldContribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), $contribs,
 			'target=' . urlencode($this->mOldUser) );
 		$newContribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), $contribs,
