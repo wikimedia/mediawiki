@@ -938,7 +938,6 @@ $t[] = "</table>" ;
 			
 			else { # Invalid form; output directly
 				$s .= "[[" . $line ;
-				wfProfileOut( "$fname-loop1" );
 				continue;
 			}
 			if(substr($m[1],0,1)=="/") { # subpage
@@ -1203,8 +1202,12 @@ $t[] = "</table>" ;
 		$fname = "OutputPage::replaceVariables";
 		wfProfileIn( $fname );
 
-		/* As with sigs, use server's local time --
-		   ensure this is appropriate for your audience! */
+		
+		# Basic variables
+		# See Language.php for the definition of each magic word
+
+		# As with sigs, this uses the server's local time -- ensure 
+		# this is appropriate for your audience!
 		$v = date( "m" );
 		$mw =& MagicWord::get( MAG_CURRENTMONTH );
 		$text = $mw->replace( $v, $text );
@@ -1239,17 +1242,19 @@ $t[] = "</table>" ;
 			$text = $mw->replace( $v, $text );
 		}
 
-		# The callbacks are in GlobalFunctions.php
+		# "Variables" with an additional parameter e.g. {{MSG:wikipedia}}
+		# The callbacks are at the bottom of this file
 		$mw =& MagicWord::get( MAG_MSG );
-		$text = $mw->substituteCallback( $text, "replaceMsgVar" );
+		$text = $mw->substituteCallback( $text, "wfReplaceMsgVar" );
 
 		$mw =& MagicWord::get( MAG_MSGNW );
-		$text = $mw->substituteCallback( $text, "replaceMsgVarNw" );
+		$text = $mw->substituteCallback( $text, "wfReplaceMsgnwVar" );
 
 		wfProfileOut( $fname );
 		return $text;
 	}
 
+	# Cleans up HTML, removes dangerous tags and attributes
 	/* private */ function removeHTMLtags( $text )
 	{
 		$fname = "OutputPage::removeHTMLtags";
@@ -1574,6 +1579,24 @@ $t[] = "</table>" ;
 		$ret .= "</head>\n";
 		return $ret;
 	}
+}
+
+# Regex callbacks, used in OutputPage::replaceVariables
+
+# Just get rid of the dangerous stuff
+# Necessary because replaceVariables is called after removeHTMLtags, 
+# and message text can come from any user
+function wfReplaceMsgVar( $matches ) {
+	global $wgOut;
+	$text = $wgOut->removeHTMLtags( wfMsg( $matches[1] ) );
+	return $text;
+}
+
+# Effective <nowiki></nowiki>
+# Not real <nowiki> because this is called after nowiki sections are processed
+function wfReplaceMsgnwVar( $matches ) {
+	$text = wfEscapeWikiText( wfMsg( $matches[1] ) );
+	return $text;
 }
 
 ?>

@@ -54,7 +54,7 @@ class MagicWord {
 		$case = $this->mCaseSensitive ? "" : "i";
 		$this->mRegex = "/{$this->mBaseRegex}/{$case}";
 		$this->mRegexStart = "/^{$this->mBaseRegex}/{$case}";
-		$this->mVariableRegex = str_replace( "\\$1", "([A-Za-z0-9]*)", $this->mRegex );
+		$this->mVariableRegex = str_replace( "\\$1", "([A-Za-z0-9_\-]*)", $this->mRegex );
 	}
 	
 	function getRegex()

@@ -12,23 +12,23 @@ function rebuildLinkTablesPass1()
 	print "Rebuilding link tables (pass 1).\n";
 
 	$sql = "DROP TABLE IF EXISTS rebuildlinks";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
 	$sql = "CREATE TABLE rebuildlinks (
   rl_f_id int(8) unsigned NOT NULL default 0,
   rl_f_title varchar(255) binary NOT NULL default '',
   rl_to varchar(255) binary NOT NULL default '',
   INDEX rl_to (rl_to) ) TYPE=MyISAM";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
-	$sql = "LOCK TABLES cur READ, rebuildlinks WRITE";
-	wfQuery( $sql );
+	$sql = "LOCK TABLES cur READ, rebuildlinks WRITE, interwiki READ";
+	wfQuery( $sql, DB_WRITE );
 
 	$sql = "DELETE FROM rebuildlinks";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
 	$sql = "SELECT cur_id,cur_namespace,cur_title,cur_text FROM cur";
-	$res = wfQuery( $sql );
+	$res = wfQuery( $sql, DB_WRITE );
 	$total = wfNumRows( $res );
 
 	$tc = Title::legalChars();
@@ -53,7 +53,7 @@ function rebuildLinkTablesPass1()
 				if ( 0 != $i ) { $sql .= ","; }
 				$sql .= "({$id},'{$title}','{$dest}')";
 			}
-			wfQuery( $sql );
+			wfQuery( $sql, DB_WRITE );
 		}
 		if ( ( ++$count % 1000 ) == 0 ) {
 			print "$count of $total articles scanned.\n";
@@ -63,7 +63,7 @@ function rebuildLinkTablesPass1()
 	mysql_free_result( $res );
 
 	$sql = "UNLOCK TABLES";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 }
 
 function rebuildLinkTablesPass2()
@@ -72,24 +72,24 @@ function rebuildLinkTablesPass2()
 	$count = 0;
 	print "Rebuilding link tables (pass 2).\n";
 
-	$sql = "LOCK TABLES cur READ, rebuildlinks READ, " .
+	$sql = "LOCK TABLES cur READ, rebuildlinks READ, interwiki READ, " .
 	  "links WRITE, brokenlinks WRITE, imagelinks WRITE";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
 	$sql = "DELETE FROM links";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
 	$sql = "DELETE FROM brokenlinks";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
 	$sql = "DELETE FROM links";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
 	$ins = $wgLang->getNsText( Namespace::getImage() );
 	$inslen = strlen($ins)+1;
 	$sql = "SELECT rl_f_title,rl_to FROM rebuildlinks " .
 	  "WHERE rl_to LIKE '$ins:%'";
-	$res = wfQuery( $sql );
+	$res = wfQuery( $sql, DB_WRITE );
 
 	$sql = "INSERT INTO imagelinks (il_from,il_to) VALUES ";
 	$sqlX = "";
@@ -106,12 +106,12 @@ function rebuildLinkTablesPass2()
 	if ($sqlX != "") {
 	  $sql .= $sqlX;
 	  wfFreeResult( $res );
-	  wfQuery( $sql );
+	  wfQuery( $sql, DB_WRITE );
 	}
 
 	$sql = "SELECT DISTINCT rl_to FROM rebuildlinks " .
 	  "ORDER BY rl_to";
-	$res = wfQuery( $sql );
+	$res = wfQuery( $sql, DB_WRITE );
 	$count = 0;
 	$total = wfNumRows( $res );
 
@@ -124,7 +124,7 @@ function rebuildLinkTablesPass2()
 
 		if ( 0 == $id ) {
 			$sql = "SELECT rl_f_id FROM rebuildlinks WHERE rl_to='{$to}'";
-			$res2 = wfQuery( $sql );
+			$res2 = wfQuery( $sql, DB_WRITE );
 
 			$sql = "INSERT INTO brokenlinks (bl_from,bl_to) VALUES ";
 			$first = true;
@@ -135,10 +135,10 @@ function rebuildLinkTablesPass2()
 				$sql .= "({$from},'{$to}')";
 			}
 			wfFreeResult( $res2 );
-			if ( ! $first ) { wfQuery( $sql ); }
+			if ( ! $first ) { wfQuery( $sql, DB_WRITE ); }
 		} else {
 			$sql = "SELECT rl_f_title FROM rebuildlinks WHERE rl_to='{$to}'";
-			$res2 = wfQuery( $sql );
+			$res2 = wfQuery( $sql, DB_WRITE );
 
 			$sql = "INSERT INTO links (l_from,l_to) VALUES ";
 			$first = true;
@@ -149,7 +149,7 @@ function rebuildLinkTablesPass2()
 				$sql .= "('{$from}',{$id})";
 			}
 			wfFreeResult( $res2 );
-			if ( ! $first ) { wfQuery( $sql ); }
+			if ( ! $first ) { wfQuery( $sql, DB_WRITE ); }
 		}
 		if ( ( ++$count % 1000 ) == 0 ) {
 			print "$count of $total titles processed.\n";
@@ -158,9 +158,9 @@ function rebuildLinkTablesPass2()
 	wfFreeResult( $res );
 
 	$sql = "UNLOCK TABLES";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
 	$sql = "DROP TABLE rebuildlinks";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 }
 ?>

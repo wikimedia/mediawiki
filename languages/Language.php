@@ -349,6 +349,13 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"Debug"			=> "Debugging information"
 );
 
+#-------------------------------------------------------------------
+# Default messages
+#-------------------------------------------------------------------
+# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and 
+# hyphen (-). If you need more characters, you may be able to change
+# the regex in MagicWord::initRegex
+
 /* private */ $wgAllMessagesEn = array(
 
 # Bits of text used by many pages:
@@ -496,6 +503,7 @@ an incorrectly linked inter-language or inter-wiki title.",
 because it slows the database down to the point that no one can use
 the wiki.",
 "perfdisabledsub" => "Here's a saved copy from $1:",
+"wrong_wfQuery_params" => "Incorrect parameters to wfQuery",
 
 # Login and logout pages
 #

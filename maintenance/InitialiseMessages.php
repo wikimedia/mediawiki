@@ -64,7 +64,7 @@ function getAllMessages()
 		$mw = $mwObj->getSynonym( 0 );
 		$mw = str_replace( "$1", $key, $mw );
 
-		$message = htmlspecialchars( $message );
+		$message = wfEscapeWikiText( $message );
 		$navText .= 
 "<tr><td>
   [$wgServer$wgScript?title=MediaWiki:$title&action=edit $key]

@@ -150,6 +150,7 @@ function wfReadOnly()
 
 $wgReplacementKeys = array( "$1", "$2", "$3", "$4", "$5", "$6", "$7", "$8", "$9" );
 
+# Get a message from anywhere
 function wfMsg( $key ) {
 	$args = func_get_args();
 	if ( count( $args ) ) {
@@ -158,6 +159,7 @@ function wfMsg( $key ) {
 	return wfMsgReal( $key, $args, true );
 }
 
+# Get a message from the language file
 function wfMsgNoDB( $key ) {
 	$args = func_get_args();
 	if ( count( $args ) ) {
@@ -166,10 +168,11 @@ function wfMsgNoDB( $key ) {
 	return wfMsgReal( $key, $args, false );
 }
 
+# Really get a message
 function wfMsgReal( $key, $args, $useDB ) {
 	global $wgLang, $wgReplacementKeys, $wgMemc, $wgDBname;
 	global $wgUseDatabaseMessages, $wgUseMemCached, $wgOut;
-	global $wgAllMessagesEn;
+	global $wgAllMessagesEn, $wgLanguageCode;
 
 	$fname = "wfMsg";
 	wfProfileIn( $fname );
@@ -194,17 +197,16 @@ function wfMsgReal( $key, $args, $useDB ) {
 		}
 		
 		# If there's nothing in memcached, load all the messages from the database
+		# This should only happen on server reset -- ordinary changes should update
+		# memcached in editUpdates()
 		if ( !$messageCache ) {
 			# Other threads don't need to load the messages if another thread is doing it.
 			$wgMemc->set( $memcKey, "loading", time() + 60 );
-			
-			$sql = "SELECT cur_title,cur_text FROM cur WHERE cur_namespace=" . NS_MEDIAWIKI;
-			$res = wfQuery( $sql, DB_READ, $fname );
-			for ( $row = wfFetchObject( $res ); $row; $row = wfFetchObject( $res ) ) {
-				$messageCache[$row->cur_title] = $row->cur_text;
-			}
+			$messageCache = wfLoadAllMessages();
 			# Save in memcached
 			$wgMemc->set( $memcKey, $messageCache, time() + 3600 );
+			
+			
 		}
 		if ( is_array( $messageCache ) && array_key_exists( $title, $messageCache ) ) {
 			$message = $messageCache[$title];
@@ -226,10 +228,15 @@ function wfMsgReal( $key, $args, $useDB ) {
 		}
 	}
 
-	# Finally, try the array in $wgLang
+	# Try the array in $wgLang
 	if ( !$message ) {
 		$message = $wgLang->getMessage( $key );
 	} 
+
+	# Try the English array
+	if ( !$message && $wgLanguageCode != "en" ) {
+		$message = Language::getMessage( $key );
+	}
 	
 	# Replace arguments
 	if( count( $args ) ) {
@@ -237,7 +244,7 @@ function wfMsgReal( $key, $args, $useDB ) {
 	}
 	wfProfileOut( $fname );
 	if ( !$message ) {
-		# Failed, message not translated
+		# Failed, message does not exist
 		return "&lt;$key&gt;";
 	}
 	return $message;
@@ -620,14 +627,32 @@ function wfCheckLimits( $deflimit = 50, $optionname = "rclimit" ) {
 	return array( $limit, $offset );
 }
 
-# Used in OutputPage::replaceVariables and Article:pstPass2
-function replaceMsgVar( $matches ) {
-	return wfMsg( $matches[1] );
-}
-
-function replaceMsgVarNw( $matches ) {
-	$text = htmlspecialchars( wfMsg( $matches[1] ) );
+# Escapes the given text so that it may be output using addWikiText() 
+# without any linking, formatting, etc. making its way through. This 
+# is achieved by substituting certain characters with HTML entities.
+# As required by the callers, <nowiki> is not used. It currently does
+# not filter out characters which have special meaning only at the
+# start of a line, such as "*".
+function wfEscapeWikiText( $text )
+{
+	$text = str_replace( 
+		array( '[',     "'",     'ISBN '    , '://'),
+		array( '&#91;', '&#39;', 'ISBN&#32;', '&#58;//'),
+		htmlspecialchars($text) );
 	return $text;
 }
 
+# Loads the entire MediaWiki namespace, retuns the array
+function wfLoadAllMessages()
+{
+	$sql = "SELECT cur_title,cur_text FROM cur WHERE cur_namespace=" . NS_MEDIAWIKI;
+	$res = wfQuery( $sql, DB_READ, $fname );
+	
+	$messages = array();
+	for ( $row = wfFetchObject( $res ); $row; $row = wfFetchObject( $res ) ) {
+		$messages[$row->cur_title] = $row->cur_text;
+	}
+	wfFreeResult( $res );
+	return $messages;
+}
 ?>
