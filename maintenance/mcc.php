@@ -14,7 +14,11 @@ do {
 	$command = array_shift( $args );
 	switch ( $command ) {
 		case "get":
-			$res = $mcc->get( implode( " ", $args ) );
+			print "Getting {$args[0]}[{$args[1]}]\n";
+			$res = $mcc->get( $args[0] );
+			if ( array_key_exists( 1, $args ) ) {
+				$res = $res[$args[1]];
+			}
 			if ( $res === false ) {
 				print 'Error: ' . $mcc->error_string() . "\n";
 			} elseif ( is_string( $res ) ) {
@@ -25,10 +29,21 @@ do {
 			break;
 		case "set":
 			$key = array_shift( $args );
-			if ( !$mcc->set( $key, implode( " ", $args ), 0 ) ) {
+			if ( $args[0] == "#" && is_numeric( $args[1] ) ) {
+				$value = str_repeat( "*", $args[1] );
+			} else {
+				$value = implode( " ", $args );
+			}
+			if ( !$mcc->set( $key, $value, 0 ) ) {
 				print 'Error: ' . $mcc->error_string() . "\n";
 			}
 			break;
+		case "delete":
+			$key = implode( " ", $args );
+			if ( !$mcc->delete( $key ) ) {
+				print 'Error: ' . $mcc->error_string() . "\n";
+			}
+			break;				       
 		case "quit":
 			$quit = true;
 			break;
