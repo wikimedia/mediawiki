@@ -678,6 +678,11 @@ class SkinTemplate extends Skin {
 		wfProfileOut( $fname );
 		return $content_actions;
 	}
+	
+	function getNavigationLinks() {
+		global $wgNavigationLinks;
+		return $wgNavigationLinks;
+	}
 
 	/**
 	 * build array of global navigation links
@@ -688,9 +693,10 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::buildNavigationUrls';
 		wfProfileIn( $fname );
 		
-		global $wgNavigationLinks;
+		$links = $this->getNavigationLinks();
+		
 		$result = array();
-		foreach ( $wgNavigationLinks as $link ) {
+		foreach ( $links as $link ) {
 			$text = wfMsg( $link['text'] );
 			wfProfileIn( "$fname-{$link['text']}" );
 			if ($text != '-') {
