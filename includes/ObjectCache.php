@@ -71,8 +71,10 @@ class /* abstract */ BagOStuff {
 	}
 	
 	function add($key, $value, $exptime=0) {
-		if( $this->get($key) === false )
+		if( $this->get($key) == false ) {
 			$this->set($key, $value, $exptime);
+			return true;
+		}
 	}
 	
 	function add_multi($hash, $exptime=0) {
@@ -189,9 +191,9 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 			$this->_debug("get: ** error: " . $this->_dberror($res) . " **");
 			return false;
 		}
-		if($arr = $this->_fetchrow($res)) {
-			$this->_debug("get: retrieved data; exp time is " . $arr['exptime']);
-			return unserialize($arr['value']);
+		if($row=$this->_fetchobject($res)) {
+			$this->_debug("get: retrieved data; exp time is " . $row->exptime);
+			return unserialize($row->value);
 		} else {
 			$this->_debug("get: no matching rows");
 		}
@@ -232,7 +234,7 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 				$sql);
 		}
 		$res = $this->_doquery($sql);
-		if($res === false) {
+		if($res == false) {
 			$this->_debug("query failed: " . $this->_dberror($res));
 		}
 		return $res;
@@ -271,7 +273,8 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 	
 	function expireall() {
 		/* Remove any items that have expired */
-		$this->_query( "DELETE FROM $0 WHERE exptime<=NOW()" );
+		$now=$this->_fromunixtime(time());
+		$this->_query( "DELETE FROM $0 WHERE exptime<'$now'" );
 	}
 	
 	function deleteall() {
@@ -284,8 +287,8 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 	function _doquery($sql) {
 		return wfQuery($sql, DB_READ, "MediaWikiBagOStuff:_doquery");
 	}
-	function _fetchrow($result) {
-		return wfFetchRow($result);
+	function _fetchobject($result) {
+		return wfFetchObject($result);
 	}
 	function _freeresult($result) {
 		return wfFreeResult($result);
