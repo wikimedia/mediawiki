@@ -213,6 +213,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1206) Implement CURRENTWEEK and CURRENTDOW magic keyword (will give
   number of the week and number of the day).
 * (bug 1204) Blocks do not expire automatically
+* (bug 1184) expiry time of indefinite blocks shown as the current time
 
 === Caveats ===
 
