@@ -382,6 +382,7 @@ class EditPage {
 					$wgOut->addHTML($previewhead);
 					$wgOut->addHTML($previewHTML);
 				}
+				$wgOut->addLanguageLinks($parserOutput->getLanguageLinks());
 				$wgOut->addHTML( "<br style=\"clear:both;\" />\n" );
 			}
 		}
