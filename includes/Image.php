@@ -64,9 +64,9 @@ class Image
 			# in case we're running a capitallinks=false wiki						
 			$sharedname=$wgLang->ucfirst($name);
 			$sharedtitle=$wgLang->ucfirst($this->title->getDBkey());
-			if($wgUseLatin1 && !$wgSharedLatin1) {
+			if($wgUseLatin1 && !$wgSharedLatin1) {				
 				$sharedname=utf8_encode($sharedname);
-				$sharedtitle=utf8_encode($sharedtitle);				
+				$sharedtitle=utf8_encode($sharedtitle);					
 			}
 			
 			if($wgHashedSharedUploadDirectory) {				
@@ -251,9 +251,6 @@ class Image
 			$hash = $wgHashedSharedUploadDirectory;
 			$base = '';
 			$path = $wgSharedUploadPath;
-			if($wgUseLatin1 && !$wgSharedLatin1) {
-				$name=utf8_encode($name);
-			}
 		} else {
 			$hash = $wgHashedUploadDirectory;
 			$base = $wgUploadBaseUrl;
