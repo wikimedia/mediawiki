@@ -768,7 +768,7 @@ class Skin {
 	function pageStats()
 	{
 		global $wgOut, $wgLang, $wgArticle, $wgRequest;
-		global $wgDisableCounters;
+		global $wgDisableCounters, $wgMaxCredits;
 
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 		if ( ! $wgOut->isArticle() ) { return ''; }
@@ -783,92 +783,14 @@ class Skin {
 			}
 		}
 
-		$s .= ' ' . $this->getCredits();
+	        if (isset($wgMaxCredits) && $wgMaxCredits > 0) {
+		    require_once("Credits.php");
+		    $s .= ' ' . getCredits($wgArticle, $wgMaxCredits);
+		} else {
+		    $s .= $this->lastModified();
+		}
 	    
 		return $s . ' ' .  $this->getCopyright();
-	}
-
-        function getCredits() {
-	       global $wgMaxCredits;
-	       
-	       $s = '';
-	    
-	       if (!isset($wgMaxCredits) || $wgMaxCredits == 0) {
-		        $s = $this->lastModified();
-	       } else {
-		        $s = $this->getAuthorCredits();
-		        if ($wgMaxCredits > 1) {
-			    $s .= ' ' . $this->getContributorCredits();
-			}
-	       }
-	    
-	       return $s;
-	}
-
-        function getAuthorCredits() {
-		global $wgLang, $wgArticle;
-
-	        $last_author = $wgArticle->getUser();
-	    
-	        if ($last_author == 0) {
-		    $author_credit = wfMsg('anonymous');
-		} else {
-		    $real_name = User::whoIsReal($last_author);
-		    if (!empty($real_name)) {
-			$author_credit = $real_name;
-		    } else {
-			$author_credit = wfMsg('siteuser', User::whoIs($last_author));
-		    }
-		}
-	    
-		$timestamp = $wgArticle->getTimestamp();
-		if ( $timestamp ) {
-			$d = $wgLang->timeanddate( $wgArticle->getTimestamp(), true );
-		} else {
-			$d = '';
-		}
-		return wfMsg('lastmodifiedby', $d, $author_credit);
-	}
-
-        function getContributorCredits() {
-	    
-		global $wgArticle, $wgMaxCredits, $wgLang;
-
-                # don't count last editor
-
-	        $contributors = $wgArticle->getContributors($wgMaxCredits - 1);
-	    
-	        $real_names = array();
-	        $user_names = array();
-
-	        # Sift for real versus user names
-		
-	        foreach ($contributors as $user_id => $user_parts) {
-		    if ($user_id != 0) {
-			if (!empty($user_parts[1])) {
-			    $real_names[$user_id] = $user_parts[1];
-			} else {
-			    $user_names[$user_id] = $user_parts[0];
-			}
-		    }
-		}
-	    
-                $real = $wgLang->listToText(array_values($real_names));
-	        $user = $wgLang->listToText(array_values($user_names));
-
-	        if (!empty($user)) {
-		    $user = wfMsg('siteusers', $user);
-		}
-	    
-	        if ($contributors[0] && $contributors[0][0] > 0) {
-		    $anon = wfMsg('anonymous');
-		} else {
-		    $anon = '';
-		}
-	    
-	        $creds = $wgLang->listToText(array($real, $user, $anon));
-	    
-	        return wfMsg('othercontribs', $creds);
 	}
     
 	function getCopyright() {

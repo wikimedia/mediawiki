@@ -1292,6 +1292,11 @@ amusement.',
 'and' => 'and',
 'othercontribs' => "Based on work by $1.",
 'siteusers' => "$wgSitename user(s) $1",
+'creditspage' => 'Page credits',
+'nocredits' => 'There is no credits info available for this page.',
+
+# Spam protection
+
 'spamprotectiontitle' => 'Spam protection filter',
 'spamprotectiontext' => 'The page you wanted to save was blocked by the spam filter. This is probably caused by a link to an external site. 
 
