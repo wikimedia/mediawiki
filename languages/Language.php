@@ -1029,7 +1029,8 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 # Special:Allpages
 'nextpage'          => 'Next page ($1)',
 'articlenamespace'  => '(articles)',
-'allpagesformtext'  => 'Display pages starting at: $1 Choose namespace: $2 $3',
+'allpagesformtext1' => 'Display pages starting at: $1',
+'allpagesformtext2' => 'Choose namespace: $2 $3',
 'allarticles'       => 'All articles',
 'allpagesprev'      => 'Previous',
 'allpagesnext'      => 'Next',
