@@ -159,8 +159,7 @@ class MessageCache
 		if ( !$this->mKeys ) {
 			$this->mKeys = array();
 			foreach ( $wgAllMessagesEn as $key => $value ) {
-				global $wgCapitalLinks;
-				$title = $wgCapitalLinks ? $wgContLang->ucfirst( $key ) : $key;
+				$title = $wgContLang->ucfirst( $key );
 				array_push( $this->mKeys, $title );
 			}
 		}
@@ -237,8 +236,7 @@ class MessageCache
 
 		$message = false;
 		if( !$this->mDisable && $useDB ) {
-			global $wgCapitalLinks;
-			$title = $wgCapitalLinks ? $lang->ucfirst( $key ) : $key;
+			$title = $lang->ucfirst( $key );
 			if( $langcode != $wgContLanguageCode ) {
 				$title .= '/' . $langcode;
 			}

@@ -142,7 +142,7 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 		} else {
 			$sql .= ',';
 		}
-		$titleObj = Title::newFromText( $key );
+		$titleObj = Title::newFromText( $wgContLang->ucfirst( $key ) );
 		$enctitle = $dbr->strencode($titleObj->getDBkey());
 		$sql .= "'$enctitle'";
 	}
@@ -180,7 +180,7 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 		} else {
 			$message = wfMsgNoDBForContent( $key );
 		}
-		$titleObj = Title::newFromText( $key );
+		$titleObj = Title::newFromText( $wgContLang->ucfirst( $key ) );
 		$title = $titleObj->getDBkey();
 
 		# Update messages which already exist
