@@ -33,7 +33,7 @@ function wfSpecialContributions( $par = "" )
 	if ( 0 == $id ) {
 		$ul = $nt->getText();
 	} else {
-		$ul = $sk->makeLinkObj( $nt, $nt->getText() );
+		$ul = $sk->makeLinkObj( $nt, htmlspecialchars( $nt->getText() ) );
 		$userCond = "=" . $id;
 	}
 	$talk = $nt->getTalkPage();

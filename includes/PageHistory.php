@@ -162,10 +162,10 @@ class PageHistory {
 
 		if ( 0 == $u ) {
 			$ul = $this->mSkin->makeKnownLink( $wgLang->specialPage( "Contributions" ),
-				$ut, "target=" . $ut );
+				htmlspecialchars( $ut ), "target=" . urlencode( $ut ) );
 		} else { 
 			$ul = $this->mSkin->makeLink( $wgLang->getNsText(
-				Namespace::getUser() ) . ":{$ut}", $ut );
+				Namespace::getUser() ) . ":{$ut}", htmlspecialchars( $ut ) );
 		}
 
 		$s = "<li>";
