@@ -12,6 +12,7 @@ Changes from 1.3.7:
 * alias month abbreviations to month names in Hindi
 * add localized numerals for Gujarati
 * fix Category and project namespaces for Hindi
+* Don't output bogus timestamp on Special:Recentchanges if no entries
 
 == Version 1.3.7, 2004-10-18 ==
 Changes from 1.3.6:

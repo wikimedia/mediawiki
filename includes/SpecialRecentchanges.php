@@ -38,7 +38,7 @@ function wfSpecialRecentchanges( $par )
 	$s = wfFetchObject( $res );
 	# 10 seconds server-side caching max
 	$wgOut->setSquidMaxage( 10 );
-	if( $wgOut->checkLastModified( $s->lastmod ) ){
+	if( $s->lastmod && $wgOut->checkLastModified( $s->lastmod ) ){
 		# Client cache fresh and headers sent, nothing more to do.
 		return;
 	}
