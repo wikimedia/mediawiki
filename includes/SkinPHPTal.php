@@ -82,13 +82,9 @@
 			$this->userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
 			$this->userpageurl = $this->makeUrl($this->userpage);
 			
-			if( $this->loggedin ) {
-				$this->usercss = $this->makeUrl($this->userpage.'/'.$this->skinname.'.css', 'action=raw&ctype=text/css');
-				$this->userjs = $this->makeUrl($this->userpage.'/'.$this->skinname.'.js', 'action=raw&ctype=text/javascript');
-				$this->userjse = htmlspecialchars($this->userjs);
-			} else {
-				$this->usercss =  $this->userjs = $this->userjse = false;
-			}
+			$this->usercss =  $this->userjs = $this->userjsprev = false;
+			if( $this->loggedin ) { $this->setupUserCssJs(); }
+
 			$this->titletxt = $wgTitle->getPrefixedText();
 			
 			$tpl->set( "title", $wgOut->getPageTitle() );
@@ -138,7 +134,7 @@
 			$tpl->setRef( "userpageurl", &$this->userpageurl);
 			$tpl->setRef( "usercss", &$this->usercss);
 			$tpl->setRef( "userjs", &$this->userjs);
-			$tpl->setRef( "userjse", &$this->userjse);
+			$tpl->setRef( "userjsprev", &$this->userjsprev);
 			if( $wgUser->getNewtalk() ) {
 				$usertitle = Title::newFromText( $this->userpage );
 				$usertalktitle = $usertitle->getTalkPage();
@@ -541,6 +537,23 @@
 					return wfMsg('nstab-category');
 				default:
 					return wfMsg('nstab-main');
+			}
+		}
+		/* private */ function setupUserCssJs () {
+			global $wgRequest, $wgTitle;
+			$action = $wgRequest->getText('action');
+			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
+				// css preview
+				$this->usercss = $wgRequest->getText('wpTextbox1');
+			} else {
+				$this->usercss = '@import url('.
+				$this->makeUrl($this->userpage.'/'.$this->skinname.'.css', 'action=raw&ctype=text/css').');';
+			}
+			if($wgTitle->isJsSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
+				# XXX: additional security check/prompt?
+				$this->userjsprev = $wgRequest->getText('wpTextbox1');
+			} else {
+				$this->userjs = $this->makeUrl($this->userpage.'/'.$this->skinname.'.js', 'action=raw&ctype=text/javascript');
 			}
 		}
 	}

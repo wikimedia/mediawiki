@@ -503,6 +503,7 @@ class Article {
 		$wgLinkCache->preFill( $this->mTitle );
 
 		# wrap user css and user js in pre and don't parse
+		# XXX: use $this->mTitle->usCssJsSubpage() when php is fixed/ a workaround is found
 		if ( 
 			$this->mTitle->getNamespace() == Namespace::getUser() && 
 			preg_match("/\\/[\\w]+\\.(css|js)$/", $this->mTitle->getDBkey())
