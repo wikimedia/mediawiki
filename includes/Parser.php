@@ -1794,6 +1794,7 @@ class Parser
 		}
 
 		# Load from database
+		$itcamefromthedatabase = false;
 		if ( !$found ) {
 			$title = Title::newFromText( $part1, NS_TEMPLATE );
 			if ( !is_null( $title ) && !$title->isExternal() ) {
@@ -1806,6 +1807,7 @@ class Parser
 					if ( $articleContent !== false ) {
 						$found = true;
 						$text = $linestart . $articleContent;
+						$itcamefromthedatabase = true;
 					}
 				}
 
@@ -1856,9 +1858,21 @@ class Parser
 				$wgLinkCache->addLinkObj( $title );
 			}
 
+			# If the template begins with a table or block-level
+			# element, it should be treated as beginning a new line.
+			if ($linestart !== '\n' && preg_match('/^({\\||:|;|#|\*)/', $text)) {
+				$text = "\n" . $text;
+			}
+		}
+
+		# Empties the template path
+		$this->mTemplatePath = array();
+		if ( !$found ) {
+			return $matches[0];
+		} else {
 			# replace ==section headers==
 			# XXX this needs to go away once we have a better parser.
-			if ( $this->mOutputType == OT_HTML ) {
+			if ( $this->mOutputType != OT_WIKI && $itcamefromthedatabase ) {
 				if( !is_null( $title ) )
 					$encodedname = base64_encode($title->getPrefixedDBkey());
 				else
@@ -1881,12 +1895,6 @@ class Parser
 					
 					$nsec++;
 				}
-			}
-
-			# If the template begins with a table or block-level
-			# element, it should be treated as beginning a new line.
-			if ($linestart !== '\n' && preg_match('/^({\\||:|;|#|\*)/', $text)) {
-				$text = "\n" . $text;
 			}
 		}
 
