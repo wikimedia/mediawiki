@@ -687,7 +687,8 @@ function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
 	
 	$offset = $wgRequest->getInt( 'offset', 0 );
 	if( $offset < 0 ) $offset = 0;
-	if( $offset > 65000 ) $offset = 65000; # do we need a max? what?
+	# We don't need a limit, no?
+	#if( $offset > 65000 ) $offset = 65000; # do we need a max? what?
 	
 	return array( $limit, $offset );
 }
