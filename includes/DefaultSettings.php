@@ -6,7 +6,7 @@
 # like $wgScriptPath, you must also localize everything that
 # depends on it.
 
-$wgVersion			= "1.3.0beta1";
+$wgVersion			= "1.3.0beta2";
 
 $wgSitename         = "MediaWiki"; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
@@ -396,7 +396,6 @@ $wgTidyOpts = '';
 $wgDefaultSkin = "monobook";
 
 # Whether or not to allow real name fields. Defaults to true.
-
 $wgAllowRealName = true;
 
 # Extensions
