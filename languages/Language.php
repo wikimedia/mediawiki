@@ -213,7 +213,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 'subcategories' => 'Subcategories',
 
 
-'linktrail'		=> '/^([a-z]+)(.*)\$/sD',
+'linktrail'		=> '/^([a-z]+)(.*)$/sD',
 'mainpage'		=> 'Main Page',
 'mainpagetext'	=> 'Wiki software successfully installed.',
 "mainpagedocfooter" => "Please see [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface]
