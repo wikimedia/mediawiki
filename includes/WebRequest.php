@@ -89,7 +89,7 @@ class WebRequest {
 		return isset( $val );
 	}
 	
-	function getText( $name, $default = "" ) {
+	function getText( $name, $default = '' ) {
 		return $this->getGPCText( $_REQUEST, $name, $default );
 	}
 	
@@ -114,7 +114,7 @@ class WebRequest {
 	}
 	
 	function checkSessionCookie() {
-		return isset( $_COOKIE[ini_get("session.name")] );
+		return isset( $_COOKIE[ini_get('session.name')] );
 	}
 	
 	function getRequestURL() {
@@ -129,12 +129,12 @@ class WebRequest {
 	# Take an arbitrary query and rewrite the present URL to include it
 	function appendQuery( $query ) {
 		global $wgTitle;
-		$basequery = "";
+		$basequery = '';
 		foreach( $_GET as $var => $val ) {
-			if( $var == "title" ) continue;
-			$basequery .= "&" . urlencode( $var ) . "=" . urlencode( $val );
+			if( $var == 'title' ) continue;
+			$basequery .= '&' . urlencode( $var ) . '=' . urlencode( $val );
 		}
-		$basequery .= "&" . $query;
+		$basequery .= '&' . $query;
 		
 		# Trim the extra &
 		$basequery = substr( $basequery, 1 );

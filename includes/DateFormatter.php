@@ -1,17 +1,17 @@
 <?php
-define("DF_ALL", -1);
-define("DF_NONE", 0);
-define("DF_MDY", 1);
-define("DF_DMY", 2);
-define("DF_YMD", 3);
-define("DF_ISO1", 4);
-define("DF_LASTPREF", 4);
+define('DF_ALL', -1);
+define('DF_NONE', 0);
+define('DF_MDY', 1);
+define('DF_DMY', 2);
+define('DF_YMD', 3);
+define('DF_ISO1', 4);
+define('DF_LASTPREF', 4);
 
-define("DF_ISO2", 5);
-define("DF_YDM", 6);
-define("DF_DM", 7);
-define("DF_MD", 8);
-define("DF_LAST", 8);
+define('DF_ISO2', 5);
+define('DF_YDM', 6);
+define('DF_DM', 7);
+define('DF_MD', 8);
+define('DF_LAST', 8);
 
 # To do: preferences, OutputPage
 

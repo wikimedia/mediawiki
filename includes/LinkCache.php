@@ -18,7 +18,7 @@ class LinkCache {
 
 	/* private */ function getKey( $title ) {
 		global $wgDBname;
-		return "$wgDBname:lc:title:$title";
+		return $wgDBname.':lc:title:'.$title;
 	}
 	
 	function LinkCache()
@@ -123,13 +123,13 @@ class LinkCache {
 		$id = $this->getGoodLinkID( $title );
 		if ( 0 != $id ) { return $id; }
 
-		$fname = "LinkCache::addLinkObj";
+		$fname = 'LinkCache::addLinkObj';
 		wfProfileIn( $fname );
 
 		$ns = $nt->getNamespace();
 		$t = $nt->getDBkey();
 
-		if ( "" == $title ) { 
+		if ( '' == $title ) { 
 			wfProfileOut( $fname );
 			return 0; 
 		}
@@ -164,7 +164,7 @@ class LinkCache {
 	{
 		global $wgEnablePersistentLC;
 
-		$fname = "LinkCache::preFill";
+		$fname = 'LinkCache::preFill';
 		wfProfileIn( $fname );
 		# Note -- $fromtitle is a Title *object*
 
@@ -307,7 +307,7 @@ class LinkCache {
 		}
 		
 		$cacheobj = false;
-		if( function_exists( "gzuncompress" ) )
+		if( function_exists( 'gzuncompress' ) )
 			$cacheobj = @gzuncompress( $raw );
 
 		if($cacheobj == FALSE){
@@ -327,7 +327,7 @@ class LinkCache {
 
 	/* private */ function saveToLinkscc( $pid ){
 		global $wgCompressedPersistentLC;
-		if( $wgCompressedPersistentLC and function_exists( "gzcompress" ) ) {
+		if( $wgCompressedPersistentLC and function_exists( 'gzcompress' ) ) {
 			$ser = gzcompress( serialize( $this ), 3 );
 		} else {
 			$ser = serialize( $this );
@@ -341,7 +341,7 @@ class LinkCache {
 	/* static */ function linksccClearLinksTo( $pid ){
 		global $wgEnablePersistentLC;
 		if ( $wgEnablePersistentLC ) {
-			$fname = "LinkCache::linksccClearLinksTo";
+			$fname = 'LinkCache::linksccClearLinksTo';
 			$pid = intval( $pid );
 			$dbw =& wfGetDB( DB_MASTER );
 			# Delete linkscc rows which link to here

@@ -7,12 +7,12 @@
 
 # Usually aborts on failure
 # If errors are explicitly ignored, returns success
-function wfQuery( $sql, $db, $fname = "" )
+function wfQuery( $sql, $db, $fname = '' )
 {
 	global $wgOut;
 	if ( !is_numeric( $db ) ) {
 		# Someone has tried to call this the old way
-		$wgOut->fatalError( wfMsgNoDB( "wrong_wfQuery_params", $db, $sql ) );
+		$wgOut->fatalError( wfMsgNoDB( 'wrong_wfQuery_params', $db, $sql ) );
 	}
 	$c =& wfGetDB( $db );
 	if ( $c !== false ) {
@@ -22,7 +22,7 @@ function wfQuery( $sql, $db, $fname = "" )
 	}
 }
 
-function wfSingleQuery( $sql, $dbi, $fname = "" )
+function wfSingleQuery( $sql, $dbi, $fname = '' )
 {
 	$db =& wfGetDB( $dbi );
 	$res = $db->query($sql, $fname );
@@ -200,7 +200,7 @@ function wfSetSQL( $table, $var, $value, $cond, $dbi = DB_MASTER )
 	}
 }
 
-function wfGetSQL( $table, $var, $cond="", $dbi = DB_LAST )
+function wfGetSQL( $table, $var, $cond='', $dbi = DB_LAST )
 {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {
@@ -230,7 +230,7 @@ function wfIndexExists( $table, $index, $dbi = DB_LAST )
 	}
 }
 
-function wfInsertArray( $table, $array, $fname = "wfInsertArray", $dbi = DB_MASTER ) 
+function wfInsertArray( $table, $array, $fname = 'wfInsertArray', $dbi = DB_MASTER ) 
 {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {
@@ -240,7 +240,7 @@ function wfInsertArray( $table, $array, $fname = "wfInsertArray", $dbi = DB_MAST
 	}
 }
 
-function wfGetArray( $table, $vars, $conds, $fname = "wfGetArray", $dbi = DB_LAST )
+function wfGetArray( $table, $vars, $conds, $fname = 'wfGetArray', $dbi = DB_LAST )
 {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {
@@ -250,7 +250,7 @@ function wfGetArray( $table, $vars, $conds, $fname = "wfGetArray", $dbi = DB_LAS
 	}
 }
 
-function wfUpdateArray( $table, $values, $conds, $fname = "wfUpdateArray", $dbi = DB_MASTER )
+function wfUpdateArray( $table, $values, $conds, $fname = 'wfUpdateArray', $dbi = DB_MASTER )
 {
 	$db =& wfGetDB( $dbi );
 	if ( $db !== false ) {

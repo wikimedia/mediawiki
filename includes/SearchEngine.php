@@ -1,8 +1,8 @@
 <?php
 # See search.doc
 
-define( "MW_SEARCH_OK", true );
-define( "MW_SEARCH_BAD_QUERY", false );
+define( 'MW_SEARCH_OK', true );
+define( 'MW_SEARCH_BAD_QUERY', false );
 
 class SearchEngine {
 	/* private */ var $rawText, $filteredText, $searchTerms;
@@ -20,7 +20,7 @@ class SearchEngine {
 		# We display the query, so let's strip it for safety
 		#
 		global $wgDBmysql4;
-		$lc = SearchEngine::legalSearchChars() . "()";
+		$lc = SearchEngine::legalSearchChars() . '()';
 		if( $wgDBmysql4 ) {
 			$lc .= "\"~<>*+-";
 		}
@@ -33,19 +33,19 @@ class SearchEngine {
 
 	# Return a partial WHERE clause to limit the search to the given namespaces
 	function queryNamespaces() {
-		$namespaces = implode( ",", $this->namespacesToSearch );
-		if ($namespaces == "") {
-			$namespaces = "0";
+		$namespaces = implode( ',', $this->namespacesToSearch );
+		if ($namespaces == '') {
+			$namespaces = '0';
 		}
-		return "AND cur_namespace IN (" . $namespaces . ")";
+		return "AND cur_namespace IN (" . $namespaces . ')';
 	}
 
 	# Return a partial WHERE clause to include or exclude redirects from results
 	function searchRedirects() {
 		if ( $this->doSearchRedirects ) {
-			return "";
+			return '';
 		} else {
-			return "AND cur_is_redirect=0 ";
+			return 'AND cur_is_redirect=0 ';
 		}
 	}
 
@@ -55,7 +55,7 @@ class SearchEngine {
 		
 		if ($wgUser->getID()) {
 			// User is logged in so we retrieve his default namespaces
-			return $wgUser->getOption( "searchNs".$i );
+			return $wgUser->getOption( 'searchNs'.$i );
 		} else {
 			// User is not logged in so we give him the global default namespaces
 			return !empty($wgNamespacesToBeSearchedDefault[ $i ]);
@@ -72,11 +72,11 @@ class SearchEngine {
 		$searchx		= $wgRequest->getVal( 'searchx' );
 		$listredirs		= $wgRequest->getVal( 'redirs' );
 		
-		$ret = wfMsg("powersearchtext"); # Text to be returned
-		$tempText = ""; # Temporary text, for substitution into $ret	
+		$ret = wfMsg('powersearchtext'); # Text to be returned
+		$tempText = ''; # Temporary text, for substitution into $ret	
 
-		if( isset( $_REQUEST["searchx"] ) ) {
-			$this->addToQuery["searchx"] = "1";
+		if( isset( $_REQUEST['searchx'] ) ) {
+			$this->addToQuery['searchx'] = '1';
 		}
 		
 		# Do namespace checkboxes
@@ -87,7 +87,7 @@ class SearchEngine {
 				continue;
 			}
 
-			$formVar = "ns$i";
+			$formVar = 'ns'.$i;
 
 			# Initialise checkboxValues, either from defaults or from 
 			# a previous invocation
@@ -97,46 +97,46 @@ class SearchEngine {
 				$checkboxValue = $wgRequest->getVal( $formVar );
 			}
 
-			$checked = "";
+			$checked = '';
 			if ( $checkboxValue == 1 ) {
-				$checked = " checked='checked'";
-				$this->addToQuery["ns{$i}"] = 1;
+				$checked = ' checked="checked"';
+				$this->addToQuery['ns'.$i] = 1;
 				array_push( $this->namespacesToSearch, $i );
 			}
-			$name = str_replace( "_", " ", $namespaces[$i] );
-			if ( "" == $name ) { 
-				$name = wfMsg( "blanknamespace" ); 
+			$name = str_replace( '_', ' ', $namespaces[$i] );
+			if ( '' == $name ) { 
+				$name = wfMsg( 'blanknamespace' ); 
 			}
 
-			if ( $tempText !== "" ) { 
-				$tempText .= " "; 
+			if ( $tempText !== '' ) { 
+				$tempText .= ' '; 
 			}
 			$tempText .= "<input type='checkbox' value=\"1\" name=\"" .
 			  "ns{$i}\"{$checked} />{$name}\n";
 		}
-		$ret = str_replace ( "$1", $tempText, $ret );
+		$ret = str_replace ( '$1', $tempText, $ret );
 
 		# List redirects checkbox
 
-		$checked = "";
+		$checked = '';
 		if ( $listredirs == 1 ) {
-			$this->addToQuery["redirs"] = 1;
-			$checked = " checked='checked'";
+			$this->addToQuery['redirs'] = 1;
+			$checked = ' checked="checked"';
 		}
 		$tempText = "<input type='checkbox' value='1' name=\"redirs\"{$checked} />\n";
-		$ret = str_replace( "$2", $tempText, $ret );
+		$ret = str_replace( '$2', $tempText, $ret );
 
 		# Search field
 
 		$tempText = "<input type='text' name=\"search\" value=\"" .
-			htmlspecialchars( $search ) ."\" width='80' />\n";
+			htmlspecialchars( $search ) ."\" width=\"80\" />\n";
         $ret = str_replace( "$3", $tempText, $ret );
 
 		# Searchx button
 
-		$tempText = "<input type='submit' name=\"searchx\" value=\"" .
-		  wfMsg("powersearch") . "\" />\n";
-		$ret = str_replace( "$9", $tempText, $ret );
+		$tempText = '<input type="submit" name="searchx" value="' .
+		  wfMsg('powersearch') . "\" />\n";
+		$ret = str_replace( '$9', $tempText, $ret );
 
 		$action = $sk->escapeSearchLink();
 		$ret = "<br /><br />\n<form id=\"powersearch\" method=\"get\" " .
@@ -152,17 +152,17 @@ class SearchEngine {
 
 	function setupPage() {
 		global $wgOut;
-		$wgOut->setPageTitle( wfMsg( "searchresults" ) );
-		$wgOut->setSubtitle( wfMsg( "searchquery", htmlspecialchars( $this->rawText ) ) );
+		$wgOut->setPageTitle( wfMsg( 'searchresults' ) );
+		$wgOut->setSubtitle( wfMsg( 'searchquery', htmlspecialchars( $this->rawText ) ) );
 		$wgOut->setArticleRelated( false );
-		$wgOut->setRobotpolicy( "noindex,nofollow" );
+		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 	}
 
 	# Perform the search and construct the results page
 	function showResults() {
 		global $wgUser, $wgTitle, $wgOut, $wgLang;
 		global $wgDisableTextSearch, $wgInputEncoding;
-		$fname = "SearchEngine::showResults";
+		$fname = 'SearchEngine::showResults';
 
 		$search = $this->rawText;
 
@@ -171,19 +171,19 @@ class SearchEngine {
 		$this->setupPage();
 
 		$sk = $wgUser->getSkin();
-		$wgOut->addWikiText( wfMsg( "searchresulttext" ) );
+		$wgOut->addWikiText( wfMsg( 'searchresulttext' ) );
 
 		if ( !$this->parseQuery() ) {
 			$wgOut->addWikiText(
-				"==" . wfMsg( "badquery" ) . "==\n" .
-				wfMsg( "badquerytext" ) );
+				'==' . wfMsg( 'badquery' ) . "==\n" .
+				wfMsg( 'badquerytext' ) );
 			return;
 		}
-		list( $limit, $offset ) = wfCheckLimits( 20, "searchlimit" );
+		list( $limit, $offset ) = wfCheckLimits( 20, 'searchlimit' );
 		
 		if ( $wgDisableTextSearch ) {
-			$wgOut->addHTML( wfMsg( "searchdisabled" ) );
-			$wgOut->addHTML( wfMsg( "googlesearch",
+			$wgOut->addHTML( wfMsg( 'searchdisabled' ) );
+			$wgOut->addHTML( wfMsg( 'googlesearch',
 				htmlspecialchars( $this->rawText ),
 				htmlspecialchars( $wgInputEncoding ) ) );
 			return;
@@ -203,21 +203,21 @@ class SearchEngine {
 		$wgOut->addHTML( "<p>{$top}</p>\n" );
 
 		# For powersearch
-		$a2l = "";
+		$a2l = '';
 		$akk = array_keys( $this->addToQuery );
 		foreach ( $akk AS $ak ) {
 			$a2l .= "&{$ak}={$this->addToQuery[$ak]}" ;
 		}
 
-		$prevnext = wfViewPrevNext( $offset, $limit, "",
-		  "search=" . wfUrlencode( $this->filteredText ) . $a2l );
+		$prevnext = wfViewPrevNext( $offset, $limit, '',
+		  'search=' . wfUrlencode( $this->filteredText ) . $a2l );
 		$wgOut->addHTML( "<br />{$prevnext}\n" );
 
-		$foundsome = $this->showMatches( $titleMatches, $offset, "notitlematches", "titlematches" )
-				  || $this->showMatches( $textMatches,  $offset, "notextmatches",  "textmatches"  );
+		$foundsome = $this->showMatches( $titleMatches, $offset, 'notitlematches', 'titlematches' )
+				  || $this->showMatches( $textMatches,  $offset, 'notextmatches',  'textmatches'  );
 		
 		if ( !$foundsome ) {
-			$wgOut->addWikiText( wfMsg( "nonefound" ) );
+			$wgOut->addWikiText( wfMsg( 'nonefound' ) );
 		}
 		$wgOut->addHTML( "<p>{$prevnext}</p>\n" );
 		$wgOut->addHTML( $powersearch );
@@ -243,26 +243,26 @@ class SearchEngine {
 		global $wgDBminWordLen, $wgLang;
 
 		# on non mysql4 database: get list of words we don't want to search for
-		require_once( "FulltextStoplist.php" );
+		require_once( 'FulltextStoplist.php' );
 
-		$lc = SearchEngine::legalSearchChars() . "()";
+		$lc = SearchEngine::legalSearchChars() . '()';
 		$q = preg_replace( "/([()])/", " \\1 ", $this->filteredText );
 		$q = preg_replace( "/\\s+/", " ", $q );
-		$w = explode( " ", trim( $q ) );
+		$w = explode( ' ', trim( $q ) );
 
-		$last = $cond = "";
+		$last = $cond = '';
 		foreach ( $w as $word ) {
 			$word = $wgLang->stripForSearch( $word );
-			if ( "and" == $word || "or" == $word || "not" == $word
-			  || "(" == $word || ")" == $word ) {
-				$cond .= " " . strtoupper( $word );
-				$last = "";
+			if ( 'and' == $word || 'or' == $word || 'not' == $word
+			  || '(' == $word || ')' == $word ) {
+				$cond .= ' ' . strtoupper( $word );
+				$last = '';
 			} else if ( strlen( $word ) < $wgDBminWordLen ) {
 				continue;
 			} else if ( FulltextStoplist::inList( $word ) ) {
 				continue;
 			} else {
-				if ( "" != $last ) { $cond .= " AND"; }
+				if ( '' != $last ) { $cond .= ' AND'; }
 				$cond .= " (MATCH (##field##) AGAINST ('" .
 				  $this->db->strencode( $word ). "'))";
 				$last = $word;
@@ -273,11 +273,11 @@ class SearchEngine {
 			return MW_SEARCH_BAD_QUERY;
 		}
 
-		$this->titleCond = "(" . str_replace( "##field##",
-		  "si_title", $cond ) . " )";
+		$this->titleCond = '(' . str_replace( '##field##',
+		  'si_title', $cond ) . ' )';
 
-		$this->textCond = "(" . str_replace( "##field##",
-		  "si_text", $cond ) . " AND (cur_is_redirect=0) )";
+		$this->textCond = '(' . str_replace( '##field##',
+		  'si_text', $cond ) . ' AND (cur_is_redirect=0) )';
 		
 		return MW_SEARCH_OK;
 	}
@@ -285,16 +285,16 @@ class SearchEngine {
 	function parseQuery4() {
 		global $wgLang;
 		$lc = SearchEngine::legalSearchChars();
-		$searchon = "";
+		$searchon = '';
 		$this->searchTerms = array();
 
 		# FIXME: This doesn't handle parenthetical expressions.
 		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 			  $this->filteredText, $m, PREG_SET_ORDER ) ) {
 			foreach( $m as $terms ) {
-				if( $searchon !== "" ) $searchon .= " ";
-				if( $this->strictMatching && ($terms[1] == "") ) {
-					$terms[1] = "+";
+				if( $searchon !== '' ) $searchon .= ' ';
+				if( $this->strictMatching && ($terms[1] == '') ) {
+					$terms[1] = '+';
 				}
 				$searchon .= $terms[1] . $wgLang->stripForSearch( $terms[2] );
 				if( $terms[3] ) {
@@ -329,7 +329,7 @@ class SearchEngine {
 		  "{$searchnamespaces} {$redircond} " .
 		  $this->db->limitResult( $limit, $offset );
 		
-		$res = $this->db->query( $sql, "SearchEngine::getMatches" );
+		$res = $this->db->query( $sql, 'SearchEngine::getMatches' );
 		$matches = array();
 		while ( $row = $this->db->fetchObject( $res ) ) {
 			$matches[] = $row;
@@ -368,13 +368,13 @@ class SearchEngine {
 		}
 		$sk = $wgUser->getSkin();
 
-		$contextlines = $wgUser->getOption( "contextlines" );
-		if ( "" == $contextlines ) { $contextlines = 5; }
-		$contextchars = $wgUser->getOption( "contextchars" );
-		if ( "" == $contextchars ) { $contextchars = 50; }
+		$contextlines = $wgUser->getOption( 'contextlines' );
+		if ( '' == $contextlines ) { $contextlines = 5; }
+		$contextchars = $wgUser->getOption( 'contextchars' );
+		if ( '' == $contextchars ) { $contextchars = 50; }
 
-		$link = $sk->makeKnownLink( $t, "" );
-		$size = wfMsg( "nbytes", strlen( $row->cur_text ) );
+		$link = $sk->makeKnownLink( $t, '' );
+		$size = wfMsg( 'nbytes', strlen( $row->cur_text ) );
 		$wgOut->addHTML( "<li>{$link} ({$size})" );
 
 		$lines = explode( "\n", $row->cur_text );
@@ -391,18 +391,18 @@ class SearchEngine {
 				continue;
 			}
 
-			$pre = $wgLang->truncate( $m[1], -$contextchars, "..." );
+			$pre = $wgLang->truncate( $m[1], -$contextchars, '...' );
 
 			if ( count( $m ) < 3 ) {
-				$post = "";
+				$post = '';
 			} else {
-				$post = $wgLang->truncate( $m[3], $contextchars, "..." );
+				$post = $wgLang->truncate( $m[3], $contextchars, '...' );
 			}
 
 			$found = $m[2];
 
 			$line = htmlspecialchars( $pre . $found . $post );
-			$pat2 = "/(" . implode( "|", $this->searchTerms ) . ")/i";
+			$pat2 = '/(' . implode( '|', $this->searchTerms ) . ")/i";
 			$line = preg_replace( $pat2,
 			  "<span class='searchmatch'>\\1</span>", $line );
 
@@ -451,7 +451,7 @@ class SearchEngine {
 	function goResult() {
 		global $wgOut, $wgGoToEdit;
 		global $wgDisableTextSearch;
-		$fname = "SearchEngine::goResult";
+		$fname = 'SearchEngine::goResult';
 		
 		# Try to go to page as entered.
 		#
@@ -475,16 +475,16 @@ class SearchEngine {
 		
 		# If the feature is enabled, go straight to the edit page
 		if ( $wgGoToEdit ) {
-			$wgOut->redirect( $t->getFullURL( "action=edit" ) );
+			$wgOut->redirect( $t->getFullURL( 'action=edit' ) );
 			return;
 		}
 		
 		if( $t ) {
-			$editurl = $t->escapeLocalURL( "action=edit" );
+			$editurl = $t->escapeLocalURL( 'action=edit' );
 		} else {
-			$editurl = ""; # ?? 
+			$editurl = ''; # ?? 
 		}
-		$wgOut->addHTML( "<p>" . wfMsg("nogomatch", $editurl ) . "</p>\n" );
+		$wgOut->addHTML( '<p>' . wfMsg('nogomatch', $editurl ) . "</p>\n" );
 
 		# Try a fuzzy title search
 		$anyhit = false;
@@ -506,25 +506,25 @@ class SearchEngine {
 		$this->setupPage();
 		
 		$sstr = ucfirst($search);
-		$sstr = str_replace(" ", "_", $sstr);
+		$sstr = str_replace(' ', '_', $sstr);
 		$fuzzymatches = SearchEngine::fuzzyTitles( $sstr, $namespace );
 		$fuzzymatches = array_slice($fuzzymatches, 0, 10);
 		$slen = strlen( $search );
-		$wikitext = "";
+		$wikitext = '';
 		foreach($fuzzymatches as $res){
-			$t = str_replace("_", " ", $res[1]);
+			$t = str_replace('_', ' ', $res[1]);
 			$tfull = $wgLang->getNsText( $namespace ) . ":$t|$t";
 			if( $namespace == NS_MAIN )
 				$tfull = "$t";
 			$distance = $res[0];
 			$closeness = (strlen( $search ) - $distance) / strlen( $search );
-			$percent = intval( $closeness * 100 ) . "%";
-			$stars = str_repeat("*", ceil(5 * $closeness) );
+			$percent = intval( $closeness * 100 ) . '%';
+			$stars = str_repeat('*', ceil(5 * $closeness) );
 			$wikitext .= "* [[$tfull]] $percent ($stars)\n";	
 		}
 		if( $wikitext ){
 			if( $namespace != NS_MAIN )
-				$wikitext = "=== " . $wgLang->getNsText( $namespace ) . " ===\n" . $wikitext;
+				$wikitext = '=== ' . $wgLang->getNsText( $namespace ) . " ===\n" . $wikitext;
 			$wgOut->addWikiText( $wikitext );
 			return true;
 		}
@@ -552,7 +552,7 @@ class SearchEngine {
 				$cnt++;
 			}
 		}
-		usort($result, "SearchEngine_pcmp");
+		usort($result, 'SearchEngine_pcmp');
 		return $result;
 	}
 

@@ -1,30 +1,30 @@
 <?php
 # Database load balancing object
 
-require_once( "Database.php" );
+require_once( 'Database.php' );
 
 # Valid database indexes
 # Operation-based indexes
-define( "DB_SLAVE", -1 );     # Read from the slave (or only server)
-define( "DB_MASTER", -2 );    # Write to master (or only server)
-define( "DB_LAST", -3 );     # Whatever database was used last
+define( 'DB_SLAVE', -1 );     # Read from the slave (or only server)
+define( 'DB_MASTER', -2 );    # Write to master (or only server)
+define( 'DB_LAST', -3 );     # Whatever database was used last
 
 # Obsolete aliases
-define( "DB_READ", -1 );
-define( "DB_WRITE", -2 );
+define( 'DB_READ', -1 );
+define( 'DB_WRITE', -2 );
 
 # Task-based indexes
 # ***NOT USED YET, EXPERIMENTAL***
 # These may be defined in $wgDBservers. If they aren't, the default reader or writer will be used
 # Even numbers are always readers, odd numbers are writers
-define( "DB_TASK_FIRST", 1000 );  # First in list
-define( "DB_SEARCH_R", 1000 );    # Search read
-define( "DB_SEARCH_W", 1001 );    # Search write
-define( "DB_ASKSQL_R", 1002 );    # Special:Asksql read
-define( "DB_WATCHLIST_R", 1004 ); # Watchlist read
-define( "DB_TASK_LAST", 1004) ;   # Last in list
+define( 'DB_TASK_FIRST', 1000 );  # First in list
+define( 'DB_SEARCH_R', 1000 );    # Search read
+define( 'DB_SEARCH_W', 1001 );    # Search write
+define( 'DB_ASKSQL_R', 1002 );    # Special:Asksql read
+define( 'DB_WATCHLIST_R', 1004 ); # Watchlist read
+define( 'DB_TASK_LAST', 1004) ;   # Last in list
 
-define( "MASTER_WAIT_TIMEOUT", 15 ); # Time to wait for a slave to synchronise
+define( 'MASTER_WAIT_TIMEOUT', 15 ); # Time to wait for a slave to synchronise
 
 class LoadBalancer {
 	/* private */ var $mServers, $mConnections, $mLoads;
@@ -135,7 +135,7 @@ class LoadBalancer {
 	# If a DB_SLAVE connection has been opened already, waits
 	# Otherwise sets a variable telling it to wait if such a connection is opened
 	function waitFor( $file, $pos ) {
-		$fname = "LoadBalancer::waitFor";
+		$fname = 'LoadBalancer::waitFor';
 		wfProfileIn( $fname );
 
 		wfDebug( "User master pos: $file $pos\n" );
@@ -162,7 +162,7 @@ class LoadBalancer {
 		
 		$retVal = false;
 
-		$key = "masterpos:" . $index;
+		$key = 'masterpos:' . $index;
 		$memcPos = $wgMemc->get( $key );
 		if ( $memcPos ) {
 			list( $file, $pos ) = explode( ' ', $memcPos );
@@ -192,7 +192,7 @@ class LoadBalancer {
 	# Get a connection by index
 	function &getConnection( $i, $fail = true )
 	{
-		$fname = "LoadBalancer::getConnection";
+		$fname = 'LoadBalancer::getConnection';
 		wfProfileIn( $fname );
 		/*
 		# Task-based index
@@ -300,7 +300,7 @@ class LoadBalancer {
 			if ( $this->mFailFunction ) {
 				$conn->failFunction( $this->mFailFunction );
 			} else {
-				$conn->failFunction( "wfEmergencyAbort" );
+				$conn->failFunction( 'wfEmergencyAbort' );
 			}
 			$conn->reportConnectionError();
 			$reporting = false;

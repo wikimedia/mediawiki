@@ -25,17 +25,17 @@ class PageHistory {
 			# Client cache fresh and headers sent, nothing more to do.
 			return;
 		}
-		$fname = "PageHistory::history";
+		$fname = 'PageHistory::history';
 		wfProfileIn( $fname );
 
 		$wgOut->setPageTitle( $this->mTitle->getPRefixedText() );
-		$wgOut->setSubtitle( wfMsg( "revhistory" ) );
+		$wgOut->setSubtitle( wfMsg( 'revhistory' ) );
 		$wgOut->setArticleFlag( false );
 		$wgOut->setArticleRelated( true );
-		$wgOut->setRobotpolicy( "noindex,nofollow" );
+		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		if( $this->mTitle->getArticleID() == 0 ) {
-			$wgOut->addHTML( wfMsg( "nohistory" ) );
+			$wgOut->addHTML( wfMsg( 'nohistory' ) );
 			wfProfileOut( $fname );
 			return;
 		}
@@ -80,7 +80,7 @@ class PageHistory {
 		$numbar = wfViewPrevNext(
 			$offset, $limit,
 			$this->mTitle->getPrefixedText(),
-			"action=history", $atend );
+			'action=history', $atend );
 		$s = $numbar;
 		if($this->linesonpage > 0) {
 			$submitpart1 = '<input class="historysubmit" type="submit" accesskey="'.wfMsg('accesskey-compareselectedversions').
@@ -119,8 +119,8 @@ class PageHistory {
 	function beginHistoryList()
 	{
 		global $wgTitle;
-		$this->lastdate = $this->lastline = "";
-		$s = "\n<p>" . wfMsg( "histlegend" ).'</p>'; 
+		$this->lastdate = $this->lastline = '';
+		$s = "\n<p>" . wfMsg( 'histlegend' ).'</p>'; 
 		$s .="\n<form action=\"" . $wgTitle->escapeLocalURL( '-' ) . "\" method=\"get\">";
 		$s .= "<input type=\"hidden\" name=\"title\" value=\"".htmlspecialchars($wgTitle->getPrefixedDbKey())."\"/>\n";
 		$s .= !empty($this->submitbuttonhtml1) ? $this->submitbuttonhtml1."\n":'';
@@ -130,9 +130,9 @@ class PageHistory {
 
 	function endHistoryList( $skip = false )
 	{
-		$last = wfMsg( "last" );
+		$last = wfMsg( 'last' );
 
-		$s = $skip ? "" : preg_replace( "/!OLDID![0-9]+!/", $last, $this->lastline );
+		$s = $skip ? '' : preg_replace( "/!OLDID![0-9]+!/", $last, $this->lastline );
 		$s .= "</ul>";
 		$s .= !empty($this->submitbuttonhtml2) ? $this->submitbuttonhtml2."\n":'';
 		$s .= "</form>\n";
@@ -144,44 +144,44 @@ class PageHistory {
 		global $wgLang;
 
 		$artname = Title::makeName( $ns, $ttl );
-		$last = wfMsg( "last" );
-		$cur = wfMsg( "cur" );
-		$cr = wfMsg( "currentrev" );
+		$last = wfMsg( 'last' );
+		$cur = wfMsg( 'cur' );
+		$cr = wfMsg( 'currentrev' );
 
 		if ( $oid && $this->lastline ) {
 			$ret = preg_replace( "/!OLDID!([0-9]+)!/", $this->mSkin->makeKnownLink(
 			  $artname, $last, "diff=\\1&oldid={$oid}",'' ,'' ,' tabindex="'.$counter.'"' ), $this->lastline );
 		} else {
-			$ret = "";
+			$ret = '';
 		}
 		$dt = $wgLang->timeanddate( $ts, true );
 
 		if ( $oid ) {
-			$q = "oldid={$oid}";
+			$q = 'oldid='.$oid;
 		} else {
-			$q = "";
+			$q = '';
 		}
 		$link = $this->mSkin->makeKnownLink( $artname, $dt, $q );
 
 		if ( 0 == $u ) {
-			$ul = $this->mSkin->makeKnownLink( $wgLang->specialPage( "Contributions" ),
-				htmlspecialchars( $ut ), "target=" . urlencode( $ut ) );
+			$ul = $this->mSkin->makeKnownLink( $wgLang->specialPage( 'Contributions' ),
+				htmlspecialchars( $ut ), 'target=' . urlencode( $ut ) );
 		} else { 
 			$ul = $this->mSkin->makeLink( $wgLang->getNsText(
-				Namespace::getUser() ) . ":{$ut}", htmlspecialchars( $ut ) );
+				Namespace::getUser() ) . ':'.$ut , htmlspecialchars( $ut ) );
 		}
 
-		$s = "<li>";
+		$s = '<li>';
 		if ( $oid ) {
 			$curlink = $this->mSkin->makeKnownLink( $artname, $cur,
-			  "diff=0&oldid={$oid}" );
+			  'diff=0&oldid='.$oid );
 		} else {
 			$curlink = $cur;
 		}
-		$arbitrary = "";
+		$arbitrary = '';
 		if( $this->linesonpage > 1) {
 			# XXX: move title texts to javascript
-			$checkmark = "";
+			$checkmark = '';
 			if ( !$oid ) {
 				$arbitrary = '<input type="radio" style="visibility:hidden" name="oldid" value="'.$oid.'" title="'.wfMsg('selectolderversionfordiff').'" />';
 				$checkmark = ' checked="checked"';
@@ -196,7 +196,7 @@ class PageHistory {
 		$s .= $isminor ? ' <span class="minor">'.wfMsg( "minoreditletter" ).'</span>': '' ;
 		
 
-		if ( "" != $c && "*" != $c ) {
+		if ( '' != $c && '*' != $c ) {
 
 			$c = $this->mSkin->formatcomment($c);
 			$s .= " <em>(" . $c . ")</em>";

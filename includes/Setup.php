@@ -1,7 +1,7 @@
 <?php
 
 # This file is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
-if( defined( "MEDIAWIKI" ) ) {
+if( defined( 'MEDIAWIKI' ) ) {
 
 # The main wiki script and things like database
 # conversion and maintenance scripts all share a

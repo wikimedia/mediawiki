@@ -28,7 +28,7 @@ function memsess_close() {
 function memsess_read( $id ) {
 	global $wgMemc;
 	$data = $wgMemc->get( memsess_key( $id ) );
-	if( ! $data ) return "";
+	if( ! $data ) return '';
 	return $data;
 }
 
@@ -49,6 +49,6 @@ function memsess_gc( $maxlifetime ) {
 	return true;
 }
 
-session_set_save_handler( "memsess_open", "memsess_close", "memsess_read", "memsess_write", "memsess_destroy", "memsess_gc" );
+session_set_save_handler( 'memsess_open', 'memsess_close', 'memsess_read', 'memsess_write', 'memsess_destroy', 'memsess_gc' );
 
 ?>

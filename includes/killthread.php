@@ -5,16 +5,16 @@
 $wgCommandLineMode = true;
 
 unset( $IP );
-ini_set( "allow_url_fopen", 0 ); # For security...
-require_once( "./LocalSettings.php" );
+ini_set( 'allow_url_fopen', 0 ); # For security...
+require_once( './LocalSettings.php' );
 
 # Windows requires ';' as separator, ':' for Unix
-$sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
-ini_set( "include_path", "$IP$sep$include_path" );
+$sep = strchr( $include_path = ini_get( 'include_path' ), ';' ) ? ';' : ':';
+ini_set( 'include_path', "$IP$sep$include_path" );
 
-require_once( "Setup.php" );
+require_once( 'Setup.php' );
 
-$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
+$wgTitle = Title::newFromText( wfMsg( 'badtitle' ) );
 $wgArticle = new Article($wgTitle);
 
 if ( !$argv[1] || !$argv[2] ) {
@@ -31,6 +31,6 @@ sleep( $s );
 
 # Kill DB thread
 $conn = Database::newFromParams( $wgDBserver, $wgDBsqluser, $wgDBsqlpassword, $wgDBname );
-$conn->query( "KILL $tid" );
+$conn->query( 'KILL '.$tid );
 
 ?>

@@ -47,7 +47,7 @@ class Block
 	}
 
 	# Get a ban from the DB, with either the given address or the given username
-	function load( $address = "", $user = 0, $killExpired = true ) 
+	function load( $address = '', $user = 0, $killExpired = true ) 
 	{
 		$fname = 'Block::load';
 
@@ -62,7 +62,7 @@ class Block
 		}
 		$ipblocks = $db->tableName( 'ipblocks' );
 
-		if ( 0 == $user && $address=="" ) {
+		if ( 0 == $user && $address=='' ) {
 			$sql = "SELECT * from $ipblocks $options";
 		} elseif ($address=="") {
 			$sql = "SELECT * FROM $ipblocks WHERE ipb_user={$user} $options";
@@ -174,7 +174,7 @@ class Block
 		$fname = 'Block::delete';
 		$dbw =& wfGetDB( DB_MASTER );
 
-		if ( $this->mAddress == "" ) {
+		if ( $this->mAddress == '' ) {
 			$condition = array( 'ipb_id' => $this->mId );
 		} else {
 			$condition = array( 'ipb_address' => $this->mAddress );

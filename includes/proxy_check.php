@@ -4,8 +4,8 @@
 
 # Exit if there are not enough parameters, or if it's not command line mode
 
-$output = "";
-if ( ( isset( $_REQUEST ) && array_key_exists( "argv", $_REQUEST ) ) || count( $argv ) < 4 ) {
+$output = '';
+if ( ( isset( $_REQUEST ) && array_key_exists( 'argv', $_REQUEST ) ) || count( $argv ) < 4 ) {
 	$output .= "Incorrect parameters\n";
 } else {
 

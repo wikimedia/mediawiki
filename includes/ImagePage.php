@@ -4,7 +4,7 @@
 	Special handling for image description pages
 */
 
-require_once( "Image.php" );
+require_once( 'Image.php' );
 
 class ImagePage extends Article {
 
@@ -34,15 +34,15 @@ class ImagePage extends Article {
 		global $wgOut, $wgUser, $wgRequest, $wgMaxImageWidth, $wgUseImageResize;
 		$this->img  = Image::newFromTitle( $this->mTitle );
 		$url  = $this->img->getUrl();
-		$anchoropen = "";
-		$anchorclose = "";
+		$anchoropen = '';
+		$anchorclose = '';
 
 
 		if ( $this->img->exists() ) {
 
 			$sk = $wgUser->getSkin();
 			
-			if ( $this->img->getType() != "" ) {
+			if ( $this->img->getType() != '' ) {
 				# image
 				$width = $this->img->getWidth();
 				$height = $this->img->getHeight();
@@ -91,7 +91,7 @@ class ImagePage extends Article {
 			  	$line->img_user_text, $line->img_size, $line->img_description );
 			}
 			$s .= $sk->endImageHistoryList();
-		} else { $s=""; }
+		} else { $s=''; }
 		$wgOut->addHTML( $s );
 	}
 
@@ -99,7 +99,7 @@ class ImagePage extends Article {
 	{
 		global $wgUser, $wgOut;
 
-		$wgOut->addHTML( "<h2>" . wfMsg( "imagelinks" ) . "</h2>\n" );
+		$wgOut->addHTML( '<h2>' . wfMsg( 'imagelinks' ) . "</h2>\n" );
 
 		$dbr =& wfGetDB( DB_SLAVE );
 		$cur = $dbr->tableName( 'cur' );
@@ -110,10 +110,10 @@ class ImagePage extends Article {
 		$res = $dbr->query( $sql, DB_SLAVE, "Article::imageLinks" );
 
 		if ( 0 == $dbr->numRows( $res ) ) {
-			$wgOut->addHtml( "<p>" . wfMsg( "nolinkstoimage" ) . "</p>\n" );
+			$wgOut->addHtml( '<p>' . wfMsg( "nolinkstoimage" ) . "</p>\n" );
 			return;
 		}
-		$wgOut->addHTML( "<p>" . wfMsg( "linkstoimage" ) .  "</p>\n<ul>" );
+		$wgOut->addHTML( '<p>' . wfMsg( 'linkstoimage' ) .  "</p>\n<ul>" );
 
 		$sk = $wgUser->getSkin();
 		while ( $s = $dbr->fetchObject( $res ) ) {
@@ -144,10 +144,10 @@ class ImagePage extends Article {
 		}
 
 		# Better double-check that it hasn't been deleted yet!
-		$wgOut->setPagetitle( wfMsg( "confirmdelete" ) );
+		$wgOut->setPagetitle( wfMsg( 'confirmdelete' ) );
 		if ( !is_null( $image ) ) {
-			if ( "" == trim( $image ) ) {
-				$wgOut->fatalError( wfMsg( "cannotdelete" ) );
+			if ( '' == trim( $image ) ) {
+				$wgOut->fatalError( wfMsg( 'cannotdelete' ) );
 				return;
 			}
 		}
@@ -159,11 +159,11 @@ class ImagePage extends Article {
 		}
 		
 		if ( !is_null( $image ) ) {
-			$q = "&image=" . urlencode( $image );
+			$q = '&image=' . urlencode( $image );
 		} else if ( !is_null( $oldimage ) ) {
-			$q = "&oldimage=" . urlencode( $oldimage );
+			$q = '&oldimage=' . urlencode( $oldimage );
 		} else {
-			$q = "";
+			$q = '';
 		}
 		return $this->confirmDelete( $q, $wgRequest->getText( 'wpReason' ) );
 	}
@@ -172,7 +172,7 @@ class ImagePage extends Article {
 	{
 		global $wgOut, $wgUser, $wgLang, $wgRequest;
 		global $wgUseSquid, $wgInternalServer, $wgDeferredUpdateList;
-		$fname = "Article::doDelete";
+		$fname = 'Article::doDelete';
 
 		$reason = $wgRequest->getVal( 'wpReason' );
 		$image = $wgRequest->getVal( 'image' );
@@ -237,17 +237,17 @@ class ImagePage extends Article {
 			$this->doDeleteArticle( $reason ); # ignore errors
 			$deleted = $this->mTitle->getPrefixedText();
 		}
-		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
-		$wgOut->setRobotpolicy( "noindex,nofollow" );
+		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
+		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		$sk = $wgUser->getSkin();
 		$loglink = $sk->makeKnownLink( $wgLang->getNsText(
 		  Namespace::getWikipedia() ) .
-		  ":" . wfMsg( "dellogpage" ), wfMsg( "deletionlog" ) );
+		  ':' . wfMsg( 'dellogpage' ), wfMsg( 'deletionlog' ) );
 
-		$text = wfMsg( "deletedtext", $deleted, $loglink );
+		$text = wfMsg( 'deletedtext', $deleted, $loglink );
 
-		$wgOut->addHTML( "<p>" . $text . "</p>\n" );
+		$wgOut->addHTML( '<p>' . $text . "</p>\n" );
 		$wgOut->returnToMain( false );
 	}
 
@@ -270,7 +270,7 @@ class ImagePage extends Article {
 		$oldimage = $wgRequest->getText( 'oldimage' );
 		
 		if ( strlen( $oldimage ) < 16 ) {
-			$wgOut->unexpectedValueError( "oldimage", $oldimage );
+			$wgOut->unexpectedValueError( 'oldimage', $oldimage );
 			return;
 		}
 		if ( wfReadOnly() ) {
@@ -294,7 +294,7 @@ class ImagePage extends Article {
 		$oldver = wfTimestampNow() . "!{$name}";
 		
 		$dbr =& wfGetDB( DB_SLAVE );
-		$size = $dbr->getField( "oldimage", "oi_size", "oi_archive_name='" .
+		$size = $dbr->getField( 'oldimage', 'oi_size', 'oi_archive_name=\'' .
 		  $dbr->strencode( $oldimage ) . "'" );
 
 		if ( ! rename( $curfile, "${archive}/{$oldver}" ) ) {
@@ -314,9 +314,9 @@ class ImagePage extends Article {
 			wfPurgeSquidServers($urlArr);
 		}
 
-		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
-		$wgOut->setRobotpolicy( "noindex,nofollow" );
-		$wgOut->addHTML( wfMsg( "imagereverted" ) );
+		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
+		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->addHTML( wfMsg( 'imagereverted' ) );
 		$wgOut->returnToMain( false );
 	}
 }

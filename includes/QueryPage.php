@@ -126,7 +126,7 @@ class QueryPage {
 					 FROM $querycache WHERE qc_type='$type'";
 			}
 			if( $wgMiserMode ) {
-				$wgOut->addWikiText( wfMsg( "perfcached" ) );
+				$wgOut->addWikiText( wfMsg( 'perfcached' ) );
 			}
 		}
 		if ( $res === false ) {
@@ -158,7 +158,7 @@ class QueryPage {
 			$s .= "<li{$attr}>{$format}</li>\n";
 		}
 		$dbr->freeResult( $res );
-		$s .= "</ol>";
+		$s .= '</ol>';
 		$wgOut->addHTML( $s );
 		$wgOut->addHTML( "<p>{$sl}</p>\n" );
 	}
@@ -230,7 +230,7 @@ class QueryPage {
 		}
 
 		if( isset( $row->text ) ) {
-			$text = "<p>" . htmlspecialchars( wfMsg( "summary" ) ) . ": " . $text . "</p>\n<hr />\n<div>" .
+			$text = '<p>' . htmlspecialchars( wfMsg( 'summary' ) ) . ': ' . $text . "</p>\n<hr />\n<div>" .
 				nl2br( htmlspecialchars( $row->text ) ) . "</div>";;
 		}
 		return $text;
@@ -252,7 +252,7 @@ class QueryPage {
 	}
 
 	function feedDesc() {
-		return wfMsg( "fromwikipedia" );
+		return wfMsg( 'fromwikipedia' );
 	}
 
 	function feedUrl() {
@@ -270,7 +270,7 @@ class PageQueryPage extends QueryPage {
 
 	function formatResult( $skin, $result ) {
 		$nt = Title::makeTitle( $result->namespace, $result->title );
-		return $skin->makeKnownLinkObj( $nt, "" );
+		return $skin->makeKnownLinkObj( $nt, '' );
 	}
 }
 

@@ -4,27 +4,27 @@
 
 //  the base class for an element
 class element {
-  var $name = "";
+  var $name = '';
   var $attrs = array();
   var $children = array();
   
   function myPrint() {
-    echo "<UL>";
+    echo '<UL>';
     echo "<LI> <B> Name: </B> $this->name";
     // print attributes
-    echo "<LI> <B> Attributes: </B>";
+    echo '<LI> <B> Attributes: </B>';
     foreach ($this->attrs as $name => $value) {
       echo "$name => $value; " ;
     }
     // print children
     foreach ($this->children as $child) {
        if ( is_string($child) ) {
-         echo "<LI> $child";
+         echo '<LI> '.$child;
        } else {
          $child->myPrint();
        }
     }
-    echo "</UL>";
+    echo '</UL>';
   }
 
 }
@@ -76,10 +76,10 @@ class xml2php {
        $ancStack = array();
    
        $xml_parser = xml_parser_create();
-       xml_set_element_handler($xml_parser, "wgXMLstartElement", "wgXMLendElement");
-       xml_set_character_data_handler($xml_parser, "wgXMLcharacterData");
-       if (!($fp = fopen($filename, "r"))) {
-          die("could not open XML input");
+       xml_set_element_handler($xml_parser, 'wgXMLstartElement', 'wgXMLendElement');
+       xml_set_character_data_handler($xml_parser, 'wgXMLcharacterData');
+       if (!($fp = fopen($filename, 'r'))) {
+          die('could not open XML input');
        }
        while ($data = fread($fp, 4096)) {
           if (!xml_parse($xml_parser, $data, feof($fp))) {

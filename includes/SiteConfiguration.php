@@ -13,7 +13,7 @@ class SiteConfiguration {
 			$retval = $this->settings[$setting][$wiki];
 		} elseif ( array_key_exists( $suffix, $this->settings[$setting] ) ) {
 			$retval = $this->settings[$setting][$suffix];
-		} elseif ( array_key_exists( "default", $this->settings[$setting] ) ) {
+		} elseif ( array_key_exists( 'default', $this->settings[$setting] ) ) {
 			$retval = $this->settings[$setting]['default'];
 		} else {
 			$retval = NULL;

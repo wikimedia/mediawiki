@@ -45,7 +45,7 @@ class Article {
 		$flagsField = $prefix . 'flags';
 
 		if ( isset( $row->$flagsField ) ) {
-			$flags = explode( ",", $row->$flagsField );
+			$flags = explode( ',', $row->$flagsField );
 		} else {
 			$flags = array();
 		}
@@ -349,11 +349,11 @@ class Article {
 		$t = $this->mTitle->getPrefixedText();
 		if ( isset( $oldid ) ) {
 			$oldid = IntVal( $oldid );
-			$t .= ",oldid={$oldid}";
+			$t .= ',oldid='.$oldid;
 		}
 		if ( isset( $redirect ) ) {
 			$redirect = ($redirect == 'no') ? 'no' : 'yes';
-			$t .= ",redirect={$redirect}";
+			$t .= ',redirect='.$redirect;
 		}
 		$this->mContent = wfMsg( 'missingarticle', $t );
 
@@ -371,6 +371,7 @@ class Article {
 			# not to by either the function parameter or the query
 			if ( ( 'no' != $redirect ) && ( false == $noredir ) ) {
 			  	$rt = Title::newFromRedirect( $s->cur_text );
+				# process if title object is valid and not special:userlogout
 				if ( $rt && ! ( $rt->getNamespace() == NS_SPECIAL && $rt->getText() == 'Userlogout' ) ) {
 					# Gotta hand redirects to special pages differently:
 					# Fill the HTTP response "Location" header and ignore
@@ -482,7 +483,7 @@ class Article {
 			$this->mCounter = $s->cur_counter;
 			$this->mTimestamp = wfTimestamp(TS_MW,$s->cur_timestamp);
 			$this->mTouched = wfTimestamp(TS_MW,$s->cur_touched);
-			$this->mTitle->mRestrictions = explode( ",", trim( $s->cur_restrictions ) );
+			$this->mTitle->mRestrictions = explode( ',', trim( $s->cur_restrictions ) );
 			$this->mTitle->mRestrictionsLoaded = true;
 		} else { # oldid set, retrieve historical version
 			$s = $dbr->selectRow( 'old', $this->getOldContentFields(), array( 'old_id' => $oldid ), 
@@ -540,7 +541,7 @@ class Article {
 		if ( -1 == $this->mCounter ) {
 			$id = $this->getID();
 			$dbr =& $this->getDB();
-			$this->mCounter = $dbr->selectField( 'cur', 'cur_counter', "cur_id={$id}", 
+			$this->mCounter = $dbr->selectField( 'cur', 'cur_counter', 'cur_id='.$id, 
 				'Article::getCount', $this->getSelectOptions() );
 		}
 		return $this->mCounter;
@@ -733,12 +734,12 @@ class Article {
 				$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
 			} else if ( $rt = Title::newFromRedirect( $text ) ) {
 				# Display redirect
-				$imageUrl = "$wgStylePath/images/redirect.png";
+				$imageUrl = $wgStylePath.'/images/redirect.png';
 				$targetUrl = $rt->escapeLocalURL();
 				$titleText = htmlspecialchars( $rt->getPrefixedText() );
 				$link = $sk->makeLinkObj( $rt );
-				$wgOut->addHTML( "<img valign=\"center\" src=\"$imageUrl\">" .
-				  "<span class=\"redirectText\">$link</span>" );
+				$wgOut->addHTML( '<img valign="center" src="'.$imageUrl.'">' .
+				  '<span class="redirectText">'.$link.'</span>' );
 			} else if ( $pcache ) {
 				# Display content and save to parser cache
 				$wgOut->addPrimaryWikiText( $text, $this );
@@ -755,7 +756,7 @@ class Article {
 		{
 			$wgOut->addHTML( wfMsg ( 'markaspatrolledlink',
 				$sk->makeKnownLinkObj ( $this->mTitle, wfMsg ( 'markaspatrolledtext' ),
-					"action=markpatrolled&rcid={$rcid}" )
+					'action=markpatrolled&rcid='.$rcid )
 			 ) );
 		}
 
@@ -1087,7 +1088,7 @@ class Article {
 	function validate () {
 		global $wgOut, $wgUseValidation;
 		if( $wgUseValidation ) {
-			$wgOut->setPagetitle( wfMsg( 'validate' ) . ": " . $this->mTitle->getPrefixedText() );
+			$wgOut->setPagetitle( wfMsg( 'validate' ) . ': ' . $this->mTitle->getPrefixedText() );
 			$wgOut->setRobotpolicy( 'noindex,follow' );
 			if( $this->mTitle->getNamespace() != 0 ) {
 				$wgOut->addHTML( wfMsg( 'val_validate_article_namespace_only' ) );
@@ -1096,7 +1097,7 @@ class Article {
 			$v = new Validation;
 			$v->validate_form( $this->mTitle->getDBkey() );
 		} else {
-			$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
+			$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
 		}
 	}
 
@@ -1210,7 +1211,7 @@ class Article {
 			);
 
 			$log = new LogPage( wfMsg( 'protectlogpage' ), wfMsg( 'protectlogtext' ) );
-			if ( $limit === "" ) {
+			if ( $limit === '' ) {
 					$log->addEntry( wfMsg( 'unprotectedarticle', $this->mTitle->getPrefixedText() ), $reason );
 			} else {
 					$log->addEntry( wfMsg( 'protectedarticle', $this->mTitle->getPrefixedText() ), $reason );
@@ -1458,7 +1459,7 @@ class Article {
 	function doDelete( $reason ) {
 		global $wgOut, $wgUser, $wgLang;
 		$fname = 'Article::doDelete';
-		wfDebug( "$fname\n" );
+		wfDebug( $fname."\n" );
 
 		if ( $this->doDeleteArticle( $reason ) ) {
 			$deleted = $this->mTitle->getPrefixedText();
@@ -1470,7 +1471,7 @@ class Article {
 			$loglink = $sk->makeKnownLink( $wgLang->getNsText( NS_WIKIPEDIA ) .
 			  ':' . wfMsg( 'dellogpage' ), wfMsg( 'deletionlog' ) );
 
-			$text = wfMsg( "deletedtext", $deleted, $loglink );
+			$text = wfMsg( 'deletedtext', $deleted, $loglink );
 
 			$wgOut->addHTML( '<p>' . $text . "</p>\n" );
 			$wgOut->returnToMain( false );
@@ -1603,7 +1604,7 @@ class Article {
 
 	function rollback() {
 		global $wgUser, $wgLang, $wgOut, $wgRequest;
-		$fname = "Article::rollback";
+		$fname = 'Article::rollback';
 
 		if ( ! $wgUser->isSysop() ) {
 			$wgOut->sysopRequired();
@@ -1979,7 +1980,7 @@ class Article {
 		$fname = 'Article::info';
 
 		if ( !$wgAllowPageInfo ) {
-			$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
+			$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
 			return;
 		}
 
@@ -1991,18 +1992,18 @@ class Article {
 		$wl_clause  = array( 'wl_title' => $wgTitle->getDBkey(), 'wl_namespace' => $basenamespace );
 		$fullTitle = $wgTitle->makeName($basenamespace, $wgTitle->getDBKey());
 		$wgOut->setPagetitle(  $fullTitle );
-		$wgOut->setSubtitle( wfMsg( "infosubtitle" ));
+		$wgOut->setSubtitle( wfMsg( 'infosubtitle' ));
 
 		# first, see if the page exists at all.
 		$exists = $dbr->selectField( 'cur', 'COUNT(*)', $cur_clause, $fname, $this->getSelectOptions() );
 		if ($exists < 1) {
-			$wgOut->addHTML( wfMsg("noarticletext") );
+			$wgOut->addHTML( wfMsg('noarticletext') );
 		} else {
 			$numwatchers = $dbr->selectField( 'watchlist', 'COUNT(*)', $wl_clause, $fname, 
 				$this->getSelectOptions() );
-			$wgOut->addHTML( "<ul><li>" . wfMsg("numwatchers", $numwatchers) . "</li>" );
+			$wgOut->addHTML( "<ul><li>" . wfMsg("numwatchers", $numwatchers) . '</li>' );
 			$old = $dbr->selectField( 'old', 'COUNT(*)', $old_clause, $fname, $this->getSelectOptions() );
-			$wgOut->addHTML( "<li>" . wfMsg("numedits", $old + 1) . "</li>");
+			$wgOut->addHTML( "<li>" . wfMsg('numedits', $old + 1) . '</li>');
 
 			# to find number of distinct authors, we need to do some
 			# funny stuff because of the cur/old table split:
@@ -2028,9 +2029,9 @@ class Article {
 			# number of edits
 			if ($exists > 0) {
 				$old = $dbr->selectField( 'old', 'COUNT(*)', $old_clause, $fname, $this->getSelectOptions() );
-				$wgOut->addHTML( "<li>" . wfMsg("numtalkedits", $old + 1) . "</li>");
+				$wgOut->addHTML( '<li>' . wfMsg("numtalkedits", $old + 1) . '</li>');
 			}
-			$wgOut->addHTML( "<li>" . wfMsg("numauthors", $authors) . "</li>" );
+			$wgOut->addHTML( '<li>' . wfMsg("numauthors", $authors) . '</li>' );
 
 			# number of authors
 			if ($exists > 0) {
@@ -2040,7 +2041,7 @@ class Article {
 					$old_clause + array( 'old_user_text<>' . $dbr->addQuotes( $cur_author ) ), 
 					$fname, $this->getSelectOptions() );
 
-				$wgOut->addHTML( "<li>" . wfMsg("numtalkauthors", $authors) . "</li></ul>" );
+				$wgOut->addHTML( '<li>' . wfMsg('numtalkauthors', $authors) . '</li></ul>' );
 			}
 		}
 	}
