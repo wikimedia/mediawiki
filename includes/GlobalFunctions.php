@@ -746,9 +746,9 @@ function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
 # start of a line, such as "*".
 function wfEscapeWikiText( $text )
 {
-	$text = str_replace(
-		array( '[',		'|',	  "'",	   'ISBN '	  , '://'	  , "\n=" ),
-		array( '&#91;', '&#124;', '&#39;', 'ISBN&#32;', '&#58;//' , "\n&#61;" ),
+	$text = str_replace( 
+		array( '[',		'|',	  "'",	   'ISBN '	  , '://'	  , "\n=", '{{' ),
+		array( '&#91;', '&#124;', '&#39;', 'ISBN&#32;', '&#58;//' , "\n&#61;", '&#123;&#123;' ),
 		htmlspecialchars($text) );
 	return $text;
 }
