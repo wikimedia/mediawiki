@@ -663,7 +663,7 @@ class Title {
 	/* private */ function secureAndSplit()
 	{
 		global $wgLang, $wgLocalInterwiki, $wgCapitalLinks;
-		global $wgInputEncoding;
+		global $wgUseLatin1;
 		$fname = "Title::secureAndSplit";
  		wfProfileIn( $fname );
 		
@@ -675,10 +675,10 @@ class Title {
 			$imgpre = ":" . $wgLang->getNsText( NS_IMAGE ) . ":";
 			
 			# Disallow non-breaking space, except from interwiki links
-			if ( $wgInputEncoding == 'utf-8' ) {
-				$rxTc = '/\\xc2\\xa0|[^' . Title::legalChars() . ']/';
-			} else {
+			if ( $wgUseLatin1 ) {
 				$rxTc = "/[^" . Title::legalChars() . "]|\\xa0/";
+			} else {
+				$rxTc = '/\\xc2\\xa0|[^' . Title::legalChars() . ']/';
 			}
 		}
 		

@@ -9,6 +9,8 @@ Changes from 1.3.2:
 * Fix for long numeric page titles
 * Fix Go search for "0", numeric almost-self-links
 * Avoid caching of pages with "You have new messages" headers
+* Don't block UTF-8 titles containing byte 0xA0
+
 
 == Version 1.3.2, 2004-08-30 ==
 
