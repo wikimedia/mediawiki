@@ -317,6 +317,10 @@ If upgrading from an older release, see the file UPGRADE;
   Content-Type header, you can re-add it in LocalSettings.php:
     $wgFileExtensions[] = 'ogg';
 
+=== RC1 fixes ===
+
+* Fix notice error on nonexistent template in wikitext system message
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not

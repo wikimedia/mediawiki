@@ -2062,7 +2062,9 @@ class Parser
 				}
 
 				# Template cache array insertion
-				$this->mTemplates[$part1] = $text;
+				if( $found ) {
+					$this->mTemplates[$part1] = $text;
+				}
 			}
 		}
 
