@@ -11,6 +11,7 @@ class User {
 	/* private */ var $mBlockedby, $mBlockreason;
 	/* private */ var $mTouched;
 	/* private */ var $mCookiePassword;
+        /* private */ var $mRealName;
 
 	function User()
 	{
@@ -247,14 +248,15 @@ class User {
 		} # the following stuff is for non-anonymous users only
 
 		$sql = "SELECT user_name,user_password,user_newpassword,user_email," .
-		  "user_options,user_rights,user_touched FROM user WHERE user_id=" .
-		  "{$this->mId}";
+		  "user_real_name,user_options,user_rights,user_touched " . 
+                  " FROM user WHERE user_id=" . $this->mId;
 		$res = wfQuery( $sql, DB_READ, "User::loadFromDatabase" );
 
 		if ( wfNumRows( $res ) > 0 ) {
 			$s = wfFetchObject( $res );
 			$this->mName = $s->user_name;
 			$this->mEmail = $s->user_email;
+			$this->mRealName = $s->user_real_name;
 			$this->mPassword = $s->user_password;
 			$this->mNewpassword = $s->user_newpassword;
 			$this->decodeOptions( $s->user_options );
@@ -364,6 +366,18 @@ class User {
 	{
 		$this->loadFromDatabase();
 		$this->mEmail = $str;
+	}
+
+	function getRealName()
+	{
+		$this->loadFromDatabase();
+		return $this->mRealName;
+	}
+
+	function setRealName( $str )
+	{
+		$this->loadFromDatabase();
+		$this->mRealName = $str;
 	}
 
 	function getOption( $oname )
@@ -549,6 +563,7 @@ class User {
 		  "user_name= '" . wfStrencode( $this->mName ) . "', " .
 		  "user_password= '" . wfStrencode( $this->mPassword ) . "', " .
 		  "user_newpassword= '" . wfStrencode( $this->mNewpassword ) . "', " .
+		  "user_real_name= '" . wfStrencode( $this->mRealName ) . "', " .
 		  "user_email= '" . wfStrencode( $this->mEmail ) . "', " .
 		  "user_options= '" . $this->encodeOptions() . "', " .
 		  "user_rights= '" . wfStrencode( implode( ",", $this->mRights ) ) . "', " .
@@ -582,11 +597,12 @@ class User {
 	function addToDatabase()
 	{
 		$sql = "INSERT INTO user (user_name,user_password,user_newpassword," .
-		  "user_email, user_rights, user_options) " .
+		  "user_email, user_real_name, user_rights, user_options) " .
 		  " VALUES ('" . wfStrencode( $this->mName ) . "', '" .
 		  wfStrencode( $this->mPassword ) . "', '" .
 		  wfStrencode( $this->mNewpassword ) . "', '" .
 		  wfStrencode( $this->mEmail ) . "', '" .
+		  wfStrencode( $this->mRealName ) . "', '" .
 		  wfStrencode( implode( ",", $this->mRights ) ) . "', '" .
 		  $this->encodeOptions() . "')";
 		wfQuery( $sql, DB_WRITE, "User::addToDatabase" );

@@ -63,6 +63,7 @@ do_index_update();
 do_linkscc_update();
 do_hitcounter_update();
 do_recentchanges_update();
+do_user_real_name_update();
 
 initialiseMessages();
 

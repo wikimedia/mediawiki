@@ -35,6 +35,7 @@ class LoginForm {
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
 		$this->mEmail = $request->getText( 'wpEmail' );
+		$this->mRealName = $request->getText( 'wpRealName' );
 		
 		# When switching accounts, it sucks to get automatically logged out
 		if( $this->mReturnto == $wgLang->specialPage( "Userlogout" ) ) {
@@ -154,6 +155,8 @@ class LoginForm {
 		$u->addToDatabase();
 		$u->setPassword( $this->mPassword );
 		$u->setEmail( $this->mEmail );
+		$u->setRealName( $this->mRealName );
+
 		if ( $this->mRemember ) { $r = 1; }
 		else { $r = 0; }
 		$u->setOption( "rememberpassword", $r );
@@ -310,6 +313,7 @@ class LoginForm {
 		$ca = wfMsg( "createaccount" );
 		$cam = wfMsg( "createaccountmail" );
 		$ye = wfMsg( "youremail" );
+		$yrn = wfMsg( "yourrealname" );
 		$efl = wfMsg( "emailforlost" );
 		$mmp = wfMsg( "mailmypassword" );
 		$endText = wfMsg( "loginend" );
@@ -355,6 +359,7 @@ class LoginForm {
 		$encPassword = wfEscapeHTML( $this->mPassword );
 		$encRetype = wfEscapeHTML( $this->mRetype );
 		$encEmail = wfEscapeHTML( $this->mEmail );
+		$encRealName = wfEscapeHTML( $this->mRealName );
 
 		if ($wgUser->getID() != 0) {
 			$cambutton = "<input tabindex='6' type='submit' name=\"wpCreateaccountMail\" value=\"{$cam}\" />";
@@ -395,9 +400,17 @@ class LoginForm {
 	<tr>
 	<td align='right'>$ye:</td>
 	<td align='left'>
-	<input tabindex='5' type='text' name=\"wpEmail\" value=\"{$encEmail}\" size='20' />
-	</td><td align='left'>
-	<input tabindex='6' type='submit' name=\"wpCreateaccount\" value=\"{$ca}\" />
+	<input tabindex='6' type='text' name=\"wpEmail\" value=\"{$encEmail}\" size='20' />
+	</td>
+        <td>&nbsp;</td>
+        </tr>
+        <tr>
+	<td align='right'>$yrn:</td>
+	<td align='left'>
+	<input tabindex='6' type='text' name=\"wpRealName\" value=\"{$encRealName}\" size='20' />
+	</td>
+        <td align='left'>
+	<input tabindex='7' type='submit' name=\"wpCreateaccount\" value=\"{$ca}\" />
 	$cambutton
 	</td></tr>");
 		}
