@@ -6,6 +6,7 @@ Various things will be happening for 1.3.0...
 * More advanced parser
 * New schema...
 * Magic goodies!
+* Included PHPTAL 0.7.0 from http://phptal.sourceforge.net/
 * stuff
 
 == Version 1.2.0 ==
