@@ -432,9 +432,9 @@ class SearchEngine {
 			$wgArticle->view();
 			return;
 		}
-		$wgOut->addHTML( str_replace( "$1",
-		  wfLocalUrl( ucfirst($this->mUsertext) . "&action=edit"),
-		  wfMsg("nogomatch")) . "\n<p>" );
+		$wgOut->addHTML( wfMsg("nogomatch", 
+		  htmlspecialchars( wfLocalUrl( ucfirst($this->mUsertext), "action=edit") ) )
+		  . "\n<p>" );
 		$this->showResults();
 	}
 }
