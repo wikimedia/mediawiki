@@ -65,7 +65,7 @@ class ParserTest {
 					if( $this->runTest(
 						rtrim( $data['test'] ),
 						rtrim( $data['input'] ),
-						$this->resultTransform(rtrim( $data['result'] ) ) ) ) {
+						rtrim( $data['result'] ) ) ) {
 						$success++;
 					}
 					$total++;
@@ -87,19 +87,6 @@ class ParserTest {
 		} else {
 			die( "No tests found.\n" );
 		}
-	}
-
-	/**
-	 * Substitute simple variables to allow for slightly more
-	 * sophisticated tests.
-	 * @access private
-	 */
-	function resultTransform($text) {
-		$rep = array (
-			'__SCRIPT__' => $GLOBALS['wgScript']
-		);
-		$text = str_replace(array_keys($rep), array_values($rep), $text);
-		return $text;
 	}
 
 	/**
