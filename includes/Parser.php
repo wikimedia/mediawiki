@@ -2211,35 +2211,65 @@ class Parser
 		return $text;
 	}
 
-	# Return an HTML link for the "RFC 1234" text
-	/* private */ function magicRFC( $text ) {
+	/**
+	 * Return an HTML link for the "RFC 1234" text
+	 * @access private
+	 * @param string $text text to be processed
+	 */
+	function magicRFC( $text ) {
 		global $wgLang;
+		
+		$valid = '0123456789';
+		$internal = false;
 
 		$a = split( 'RFC ', ' '.$text );
 		if ( count ( $a ) < 2 ) return $text;
 		$text = substr( array_shift( $a ), 1);
-		$valid = '0123456789';
+		
+		/* Check if RFC keyword is preceed by [[.
+		 * This test is made here cause of the array_shift above
+		 * that prevent the test to be done in the foreach.
+		 */
+		if(substr($text, -2) == '[[') { $internal = true; }
 
 		foreach ( $a as $x ) {
+			/* token might be empty if we have RFC RFC 1234 */
+			if($x=='') {
+				$text.='RFC ';
+				continue;
+				}
+
 			$rfc = $blank = '' ;
-			while ( ' ' == $x{0} ) {
+
+			/** remove and save whitespaces in $blank */
+			while ( $x{0} == ' ' ) {
 				$blank .= ' ';
 				$x = substr( $x, 1 );
 			}
+
+			/** remove and save the rfc number in $rfc */
 			while ( strstr( $valid, $x{0} ) != false ) {
 				$rfc .= $x{0};
 				$x = substr( $x, 1 );
 			}
 
-			if ( '' == $rfc ) {
+			if ( $rfc == '') {
+				/* call back stripped spaces*/
 				$text .= "RFC $blank$x";
+			} elseif( $internal) {
+				/* normal link */
+				$text .= "RFC $rfc$x";
 			} else {
+				/* build the external link*/
 				$url = wfmsg( 'rfcurl' );
 				$url = str_replace( '$1', $rfc, $url);
 				$sk =& $this->mOptions->getSkin();
 				$la = $sk->getExternalLinkAttributes( $url, 'RFC '.$rfc );
 				$text .= "<a href='{$url}'{$la}>RFC {$rfc}</a>{$x}";
 			}
+			
+			/* Check if the next RFC keyword is preceed by [[ */
+			$internal = (substr($x,-2) == '[[');
 		}
 		return $text;
 	}
