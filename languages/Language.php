@@ -1283,6 +1283,8 @@ merging will fill in the other options with your previous settings.',
 'val_user_validations' => 'This user has validated $1 pages.',
 'val_no_anon_validation' => 'You have to be logged in to validate an article.',
 'val_validate_article_namespace_only' => 'Only articles can be validated. This page is <i>not</i> in the article namespace.',
+'val_validated' => 'Validation done.',
+'val_article_lists' => 'List validated articles',
 
 # Move page
 #
