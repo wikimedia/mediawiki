@@ -538,48 +538,67 @@ class Article {
 				return;
 			}
 		}
-
-		$text = $this->getContent( false ); # May change mTitle by following a redirect
 		
-		# Another whitelist check in case oldid or redirects are altering the title
-		if ( !$this->mTitle->userCanRead() ) {
-			$wgOut->loginToUse();
-			$wgOut->output();
-			exit;
-		}
-		
-		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-
-		# We're looking at an old revision
-
-		if ( !empty( $oldid ) ) {
-			$this->setOldSubtitle();
-			$wgOut->setRobotpolicy( "noindex,follow" );
-		}
-		if ( "" != $this->mRedirectedFrom ) {
-			$sk = $wgUser->getSkin();
-			$redir = $sk->makeKnownLink( $this->mRedirectedFrom, "",
-			  "redirect=no" );
-			$s = wfMsg( "redirectedfrom", $redir );
-			$wgOut->setSubtitle( $s );
-		}
-
-		$wgLinkCache->preFill( $this->mTitle );
-
-		# wrap user css and user js in pre and don't parse
-		# XXX: use $this->mTitle->usCssJsSubpage() when php is fixed/ a workaround is found
-		if ( 
-			$this->mTitle->getNamespace() == Namespace::getUser() && 
-			preg_match("/\\/[\\w]+\\.(css|js)$/", $this->mTitle->getDBkey())
-		) {
-			$wgOut->addWikiText( wfMsg('usercssjs'));
-			$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
-		} else if( $wgEnableParserCache && intval($wgUser->getOption( "stubthreshold" )) == 0 && empty( $oldid ) ){
-			$wgOut->addWikiText( $text, true, $this );
+		# Should the parser cache be used?
+		if ( $wgEnableParserCache && intval($wgUser->getOption( "stubthreshold" )) == 0 && empty( $oldid ) ) {
+			$pcache = true;
 		} else {
-			$wgOut->addWikiText( $text );
+			$pcache = false;
+		}
+		
+		$outputDone = false;
+		if ( $pcache ) {
+			if ( $wgOut->tryParserCache( $this, $wgUser ) ) {
+				$outputDone = true;
+			}
 		}
 
+		if ( !$outputDone ) {
+			$text = $this->getContent( false ); # May change mTitle by following a redirect
+			
+			# Another whitelist check in case oldid or redirects are altering the title
+			if ( !$this->mTitle->userCanRead() ) {
+				$wgOut->loginToUse();
+				$wgOut->output();
+				exit;
+			}
+			
+			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+
+			# We're looking at an old revision
+
+			if ( !empty( $oldid ) ) {
+				$this->setOldSubtitle();
+				$wgOut->setRobotpolicy( "noindex,follow" );
+			}
+			if ( "" != $this->mRedirectedFrom ) {
+				$sk = $wgUser->getSkin();
+				$redir = $sk->makeKnownLink( $this->mRedirectedFrom, "",
+				  "redirect=no" );
+				$s = wfMsg( "redirectedfrom", $redir );
+				$wgOut->setSubtitle( $s );
+			
+				# Can't cache redirects				
+				$pcache = false;
+			}
+
+			$wgLinkCache->preFill( $this->mTitle );
+
+			# wrap user css and user js in pre and don't parse
+			# XXX: use $this->mTitle->usCssJsSubpage() when php is fixed/ a workaround is found
+			if ( 
+				$this->mTitle->getNamespace() == Namespace::getUser() && 
+				preg_match("/\\/[\\w]+\\.(css|js)$/", $this->mTitle->getDBkey())
+			) {
+				$wgOut->addWikiText( wfMsg('usercssjs'));
+				$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
+			} else if ( $pcache ) {
+				$wgOut->addWikiText( $text, true, $this );
+			} else {
+				$wgOut->addWikiText( $text );
+			}
+		}
+		
 		# Add link titles as META keywords
 		$wgOut->addMetaTags() ;
 
@@ -1507,6 +1526,7 @@ class Article {
 			and (!$this->mRedirectedFrom);
 	}
 	
+	# Loads cur_touched and returns a value indicating if it should be used
 	function checkTouched() {
 		$id = $this->getID();
 		$sql = "SELECT cur_touched,cur_is_redirect FROM cur WHERE cur_id=$id";
@@ -1517,10 +1537,6 @@ class Article {
 		} else {
 			return false;
 		}
-	}
-
-	function getTouched() {
-		return $this->mTouched;
 	}
 
 	# Edit an article without doing all that other stuff

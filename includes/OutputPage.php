@@ -208,26 +208,29 @@ class OutputPage {
 	function addWikiText( $text, $linestart = true, $cacheArticle = NULL )
 	{
 		global $wgParser, $wgParserCache, $wgUser, $wgTitle;
-
-		$parserOutput = false;
+		
+		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
 		if ( $cacheArticle ) {
-			$parserOutput = $wgParserCache->get( $cacheArticle, $wgUser );
-		}
-
-		if ( $parserOutput === false ) {
-			$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
-			if ( $cacheArticle ) {
-				$wgParserCache->save( $parserOutput, $cacheArticle, $wgUser );
-			}
+			$wgParserCache->save( $parserOutput, $cacheArticle, $wgUser );
 		}
 		
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
-		
 		$this->addHTML( $parserOutput->getText() );
-		
 	}
 
+	function tryParserCache( $article, $user ) {
+		$parserOutput = $wgParserCache->get( $article, $user );
+		if ( $parserOutput !== false ) {
+			$this->mLanguageLinks += $parserOutput->getLanguageLinks();
+			$this->mCategoryLinks += $parserOutput->getCategoryLinks();
+			$this->addHTML( $parserOutput->getText() );
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	# Set the maximum cache time on the Squid in seconds
 	function setSquidMaxage( $maxage ) {
 		$this->mSquidMaxage = $maxage;
