@@ -6,6 +6,9 @@
 
 class ImagePage extends Article {
 
+	/* private */ var $img;  // Image object this page is shown for. Initilaized in openShowImage, not
+				 // available in doDelete etc.
+
 	function view() {
 		if ( Namespace::getImage() == $this->mTitle->getNamespace() ) {
 			$this->openShowImage();
@@ -27,20 +30,20 @@ class ImagePage extends Article {
 	function openShowImage()
 	{
 		global $wgOut, $wgUser,$wgRequest;
-		$img  = Image::newFromTitle( $this->mTitle );
-		$url  = $img->getUrl();
+		$this->img  = Image::newFromTitle( $this->mTitle );
+		$url  = $this->img->getUrl();
 
-		if ( $img->exists() ) {
+		if ( $this->img->exists() ) {
 
 			$sk = $wgUser->getSkin();
 			
-			if ( $img->getType() != "" ) {
+			if ( $this->img->getType() != "" ) {
 				# image
 				$s = "<div class=\"fullImage\">" .
-				     "<img src=\"{$url}\" width=\"" . $img->getWidth() . "\" height=\"" . $img->getHeight() .
+				     "<img src=\"{$url}\" width=\"" . $this->img->getWidth() . "\" height=\"" . $this->img->getHeight() .
 				     "\" alt=\"".$wgRequest->getVal( 'image' )."\" /></div>";
 			} else {
-				$s = "<div class=\"fullMedia\">".$sk->makeMediaLink($img->getName(),"")."</div>";
+				$s = "<div class=\"fullMedia\">".$sk->makeMediaLink($this->img->getName(),"")."</div>";
 			}
 			$wgOut->addHTML( $s );
 		}
@@ -56,34 +59,21 @@ class ImagePage extends Article {
 
 	function imageHistory()
 	{
-		global $wgUser, $wgOut, $wgLang;
-		$fname = "Article::imageHistory";
-
-		$sql = "SELECT img_size,img_description,img_user," .
-		  "img_user_text,img_timestamp FROM image WHERE " .
-		  "img_name='" . wfStrencode( $this->mTitle->getDBkey() ) . "'";
-		$res = wfQuery( $sql, DB_READ, $fname );
-
-		if ( 0 == wfNumRows( $res ) ) { return; }
+		global $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
 		$s = $sk->beginImageHistoryList();		
 
-		$line = wfFetchObject( $res );
+		$line = $this->img->nextHistoryLine();
+
 		$s .= $sk->imageHistoryLine( true, $line->img_timestamp,
 		  $this->mTitle->getText(),  $line->img_user,
 		  $line->img_user_text, $line->img_size, $line->img_description );
 
-		$sql = "SELECT oi_size,oi_description,oi_user," .
-		  "oi_user_text,oi_timestamp,oi_archive_name FROM oldimage WHERE " .
-		  "oi_name='" . wfStrencode( $this->mTitle->getDBkey() ) . "' " .
-		  "ORDER BY oi_timestamp DESC";
-		$res = wfQuery( $sql, DB_READ, $fname );
-
-		while ( $line = wfFetchObject( $res ) ) {
-			$s .= $sk->imageHistoryLine( false, $line->oi_timestamp,
-			  $line->oi_archive_name, $line->oi_user,
-			  $line->oi_user_text, $line->oi_size, $line->oi_description );
+		while ( $line = $this->img->nextHistoryLine() ) {
+			$s .= $sk->imageHistoryLine( false, $line->img_timestamp,
+			  $line->oi_archive_name, $line->img_user,
+			  $line->img_user_text, $line->img_size, $line->img_description );
 		}
 		$s .= $sk->endImageHistoryList();
 		$wgOut->addHTML( $s );

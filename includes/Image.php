@@ -11,6 +11,8 @@ class Image
 		$url,		# Image URL
 		$title,		# Title object for this image. Initialized when needed.
 		$fileExists,	# does the image file exist on disk?
+		$historyLine,	# Number of line to return by nextHistoryLine()
+		$historyRes,	# result of the query for the image's history
 		$width,		# \
 		$height,	#  --- returned by getimagesize, see http://de3.php.net/manual/en/function.getimagesize.php
 		$type,		#  |
@@ -34,6 +36,7 @@ class Image
 		{
 			list($this->width, $this->height, $this->type, $this->attr) = getimagesize( $this->imagePath );
 		}
+		$this->historyLine = 0;
 	}
 
 	function newFromTitle( $nt )
@@ -108,6 +111,12 @@ class Image
 		return $width."px-".$this->name;
 	}
 
+	//**********************************************************************
+	// Create a thumbnail of the image having the specified width.
+	// The thumbnail will not be created if the width is larger than the
+	// image's width. Let the browser do the scaling in this case.
+	// The thumbnail is stored on disk and is only computed if the thumbnail
+	// file does not exist OR if it is older than the image.
 	function createThumb( $width ) {
 		global $wgUploadDirectory;
 		global $wgImageMagickConvertCommand;
@@ -217,7 +226,47 @@ class Image
 
 		}
 		return $thumbUrl;
-	} //function createThumb
+	} // END OF function createThumb
+
+	//**********************************************************************
+	// Return the image history of this image, line by line.
+	// start with current version, than old versions.
+	// use $this->historyLine to check which line to return:
+	//  0      return line for current version
+	//  1      query for old versions, return first one
+	//  2, ... return next old version from above query
+	function nextHistoryLine()
+	{
+		$fname = "Image::nextHistoryLine()";
+		
+		if ( $this->historyLine == 0 ) // called for the first time, return line from cur
+		{ 
+			$sql = "SELECT img_size,img_description,img_user," .
+			  "img_user_text,img_timestamp, '' AS oi_archive_name FROM image WHERE " .
+			  "img_name='" . wfStrencode( $this->title->getDBkey() ) . "'";
+			$this->historyRes = wfQuery( $sql, DB_READ, $fname );
+
+			if ( 0 == wfNumRows( $this->historyRes ) ) { return FALSE; }
+
+		} else if ( $this->historyLine == 1 )
+		{
+			$sql = "SELECT oi_size AS img_size, oi_description AS img_description," .
+			  "oi_user AS img_user," .
+			  "oi_user_text AS img_user_text, oi_timestamp AS img_timestamp , oi_archive_name FROM oldimage WHERE " .
+			  "oi_name='" . wfStrencode( $this->title->getDBkey() ) . "' " .
+			  "ORDER BY oi_timestamp DESC";
+			$this->historyRes = wfQuery( $sql, DB_READ, $fname );
+		}
+		$this->historyLine ++;
+
+		return wfFetchObject( $this->historyRes );
+	}
+
+	function resetHistory()
+	{
+		$this->historyLine = 0;
+	}
+
 
 } //class
 
