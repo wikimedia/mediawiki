@@ -266,8 +266,8 @@
 					$usertalkUrlDetails = $this->makeTalkUrlDetails($this->userpage);
 					$personal_urls['anontalk'] = array(
 						'text' => wfMsg('anontalk'),
-						'href' => &$this->usertalkUrlDetails['href'],
-						'class' => $this->usertalkUrlDetails['exists']?false:'new',
+						'href' => &$usertalkUrlDetails['href'],
+						'class' => $usertalkUrlDetails['exists']?false:'new',
 						'ttip' => wfMsg('tooltip-anontalk'),
 						'akey' => wfMsg('accesskey-anontalk')
 					);
