@@ -195,7 +195,7 @@ function dbsource( $conn, $fname ) {
 	$done = false;
 
 	while ( ! feof( $fp ) ) {
-		$line = trim( fgets( $fp ) );
+		$line = trim( fgets( $fp, 1024 ) );
 		$sl = strlen( $line ) - 1;
 
 		if ( $sl < 0 ) { continue; }
