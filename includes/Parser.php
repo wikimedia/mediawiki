@@ -2834,9 +2834,14 @@ class Parser
 			putenv( 'TZ='.$oldtzs );
 		}
 
+		if( $user->getOption( 'fancysig' ) ) {
+			$sigText = $k;
+		} else {
+			$sigText = '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]]";
+		}
 		$text = preg_replace( '/~~~~~/', $d, $text );
-		$text = preg_replace( '/~~~~/', '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]] $d", $text );
-		$text = preg_replace( '/~~~/', '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]]", $text );
+		$text = preg_replace( '/~~~~/', "$sigText $d", $text );
+		$text = preg_replace( '/~~~/', $sigText, $text );
 
 		# Context links: [[|name]] and [[name (context)|]]
 		#
