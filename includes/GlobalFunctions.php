@@ -1075,7 +1075,7 @@ function wfRestoreWarnings() {
 }
 
 # Autodetect, convert and provide timestamps of various types
-define("TS_UNIX",0);	# Standard unix timestamp
+define("TS_UNIX",0);	# Standard unix timestamp (number of seconds since 1 Jan 1970)
 define("TS_MW",1);	# Mediawiki concatenated string timestamp (yyyymmddhhmmss)
 define("TS_DB",2);	# Standard database timestamp (yyyy-mm-dd hh:mm:ss)
 
