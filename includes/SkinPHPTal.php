@@ -247,8 +247,8 @@
 					$content_actions['edit'] = array('class' => ($action == 'edit') ? 'selected' : '',
 					'text' => wfMsg('viewsource'),
 					'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid),
-					'ttip' => wfMsg('tooltip-edit'),
-					'akey' => wfMsg('accesskey-edit'));
+					'ttip' => wfMsg('tooltip-viewsource'),
+					'akey' => wfMsg('accesskey-viewsource'));
 				}
 
 				if ( $wgTitle->getArticleId() ) {
