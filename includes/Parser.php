@@ -1007,6 +1007,11 @@ class Parser
 				}
 			}
 
+			# Replace &amp; from obsolete syntax with &.
+			# All HTML entities will be escaped by makeExternalLink()
+			# or maybeMakeImageLink()
+			$url = str_replace( '&amp;', '&', $url );
+			
 			$encUrl = htmlspecialchars( $url );
 			# Bit in parentheses showing the URL for the printable version
 			if( $url == $text || preg_match( "!$protocol://" . preg_quote( $text, '/' ) . "/?$!", $url ) ) {
@@ -1014,7 +1019,7 @@ class Parser
 			} else {
 				# Expand the URL for printable version
 				if ( ! $sk->suppressUrlExpansion() ) {
-					$paren = "<span class='urlexpansion'>&nbsp;(<i>" . htmlspecialchars ( $encUrl ) . "</i>)</span>";
+					$paren = "<span class='urlexpansion'>&nbsp;(<i>$encUrl</i>)</span>";
 				} else {
 					$paren = '';
 				}
