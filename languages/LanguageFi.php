@@ -258,12 +258,6 @@ Käyttäjätunnuksesi on luotu.
 "loginproblem"	=> "<b>Sisäänkirjautumisessasi oli ongelmia.</b><br>Yritä uudelleen!",
 "alreadyloggedin" => "<font color=red><b>Käyttäjä $1, olet jo kirjautunut sisään!</b></font><br>\n",
 "notloggedin"	=> "Et ole kirjautunut",
-"areyounew"		=> "Jos olet uusi Wikipediassa ja haluat saada
-käyttäjätunnuksen, syötä käyttäjänimesi, ja kirjoita kahteen kertaan
-salasanasi. Sähköpostiosoite on valinnainen; jos unohdat salasanasi,
-voit pyytää lähettämään sen antamaasi osoitteeseen.
-
-<br>\n",
 
 "login"			=> "Kirjaudu sisään",
 "userlogin"		=> "Kirjaudu sisään",

@@ -309,11 +309,6 @@ Ne felejtsd el átnézni a személyes Wikipédia beállításaidat.",
 "loginproblem"	=> "<b>Valami probléma van a belépéseddel.</b><br>Kérlek próbáld ismét!",
 "alreadyloggedin" => "<font color=red><b>Kedves $1, már be vagy lépve!</b></font><br>\n",
 
-"areyounew"		=> "Ha új látogató vagy és szeretnél magadnak felhasználói nevet,
-akkor adj meg egyet, és adj meg egy jelszót (kétszer).
-Az email cím megadása nem kötelező; ha elveszíted a jelszavad, akkor
-újat a megadott email címre tudsz kérni.<br>\n",
-
 "login"			=> "Belépés",
 "userlogin"		=> "Belépés",
 "logout"		=> "Kilépés",

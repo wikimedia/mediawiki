@@ -469,11 +469,6 @@ oprettet. Glem ikke at personliggøre dine Wikipedia-indstillinger.",
 på.</b><br>Prøv igen!",
 "alreadyloggedin" => "<font color=red><b>Bruger $1, du er allerede logget 
 på!</b></font><br>\n",
-"areyounew"		=> "Hvis du er ny på Wikipedia og gerne vil have en 
-brugerkonto, så indtast et brugernavn, derefter indtaster du en 
-adgangskode og gentager samme adgangskode. Din e-mailadresse er valgfri; 
-hvis du mister din adgangskode, kan du bede om
-at få den sendt til den e-mailadresse, du har oplyst.<br>\n",
 
 "login"			=> "Log på",
 "userlogin"		=> "Log på",

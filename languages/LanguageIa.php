@@ -277,11 +277,6 @@ Non oblida personalisar Wikipedia secundo tu preferentias.",
 "loginproblem"	=> "<b>Occurreva problemas pro initiar tu session.</b><br>Tenta de nove!",
 "alreadyloggedin" => "<font color=red><b>Usator $1, tu session ja es aperte!</b></font><br>\n",
 
-"areyounew"		=> "Si tu es nove in Wikipedia e tu vole crear un conto de usator,
-scribe tu nomine de usator, depost scribe e confirma un contrasigno.
-Le adresse de e-mail es optional; si tu oblida tu contrasigno,
-tu pote demandar que illo sia inviate al adresse fornite.<br>\n",
-
 "login"			=> "Aperir session",
 "userlogin"		=> "Aperir session",
 "logout"		=> "Clauder session",

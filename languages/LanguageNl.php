@@ -456,9 +456,6 @@ U kunt Wikipedia anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfd
 "loginproblem" => "<b>Er is een probleem met het aanmelden.</b><br>Probeer het opnieuw a.u.b.",
 "alreadyloggedin" => "<font color=red><b>Gebruiker $1, u bent al aangemeld.</b></font><br>\n",
 
-"areyounew"  => "Bent u nieuw op Wikipedia en wilt u een gebruikersprofiel aanmaken, voer dan een gebruikersnaam in en voer tweemaal hetzelfde wachtwoord in.
-Invoeren van uw e-mailadres is niet verplicht; het is handig als u uw wachtwoord bent vergeten; dat kan dan per e-mail worden opgestuurd.<br>\n",
-
 "login"   => "Aanmelden & Inschrijven",
 "userlogin"  => "Aanmelden",
 "logout"  => "Afmelden",

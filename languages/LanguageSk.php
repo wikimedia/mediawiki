@@ -253,11 +253,6 @@ Nezabudnite si nastaviť užívateľské nastavenia.",
 "loginproblem"	=> "<b>Nastal problém pri prihlasovaní.</b><br>Skúste znova!",
 "alreadyloggedin" => "<font color=red><b>Užívateľ $1, vy už ste prihlásený!</b></font><br>\n",
 
-"areyounew"		=> "If you are new to Wikipedia and want to get a user account,
-enter a user name, then type and re-type a password.
-Your e-mail address is optional; if you lose your password you can request
-that it be to the address you give.<br>\n",
-
 "login"			=> "Log in",
 "userlogin"		=> "Log in",
 "logout"		=> "Log out",

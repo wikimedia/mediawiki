@@ -354,11 +354,6 @@ Please report this to an administrator, making note of the URL.",
 "loginproblem"	=> "<b>들어가는 데 문제가 있습니다.</b><br>다시 해 보세요!",
 "alreadyloggedin" => "<font color=red><b>$1 님, 벌써 들어와 있습니다!</b></font><br>\n",
 
-"areyounew"		=> "위키백과에 처음 왔나요? 위키백과의 한 사람이 되고 싶다면, 
-또이름을 하나 지어 또이름란에 써 넣고, 암호를 두번 써 넣으세요. 
-누리편지주소는 넣지 않아도 됩니다. 다만,  
-암호를 잊었을 때, 편지로 새 암호를 보내드립니다.<br>\n",
-
 "login"			=> "들어가기",
 "userlogin"		=> "들어가기",
 "logout"		=> "나가기",

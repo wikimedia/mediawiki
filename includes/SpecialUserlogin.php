@@ -278,7 +278,6 @@ function userNotPrivilegedMessage()
 	$yp = wfMsg( "yourpassword" );
 	$ypa = wfMsg( "yourpasswordagain" );
 	$rmp = wfMsg( "remembermypassword" );
-	$ayn = wfMsg( "areyounew" );
 	$nuo = wfMsg( "newusersonly" );
 	$li = wfMsg( "login" );
 	$ca = wfMsg( "createaccount" );
