@@ -126,7 +126,6 @@ function wfSpecialUserlogin()
 		mainLoginForm( wfMsg( "userexists" ) );
 		return;
 	}
-	$u->loadDefaultUserOptions();
 	$u->addToDatabase();
 	$u->setPassword( $wpPassword );
 	$u->setEmail( $wpEmail );
