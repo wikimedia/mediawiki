@@ -110,3 +110,5 @@ function wfBlockCacheInsert( $block, $tag ) {
 	global $wgBlockCache;
 	$wgBlockCache->insert( $block );
 }
+
+?>
