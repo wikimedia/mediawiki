@@ -36,7 +36,7 @@ class LonelyPagesPage extends PageQueryPage {
 
 		return "SELECT 'Lonelypages' as type, page_namespace AS namespace, page_title AS title, page_title AS value " .
 			"FROM $page LEFT JOIN $links ON page_id=l_to ".
-			"WHERE l_to IS NULL AND page_namespace=0 AND page_is_redirect=0";
+			'WHERE l_to IS NULL AND page_namespace='.NS_MAIN.' AND page_is_redirect=0';
 	}
 }
 

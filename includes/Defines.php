@@ -26,6 +26,8 @@ define('NS_SPECIAL', -1);
  *
  * Number 100 and beyond are reserved for custom namespaces;
  * DO NOT assign standard namespaces at 100 or beyond.
+ * DO NOT Change integer values as they are most probably hardcoded everywhere
+ * see bug #696 which talked about that.
  */
 define('NS_MAIN', 0);
 define('NS_TALK', 1);

@@ -34,7 +34,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 		extract( $dbr->tableNames( 'page', 'brokenlinks' ) );
 
 		$sql = "SELECT bl_to,page_title FROM $brokenlinks,$page " .
-		       "WHERE page_is_redirect=1 AND page_namespace=0 AND bl_from=page_id ";
+		       'WHERE page_is_redirect=1 AND page_namespace='.NS_MAIN.' AND bl_from=page_id ';
 		return $sql;
 	}
 

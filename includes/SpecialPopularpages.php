@@ -37,7 +37,7 @@ class PopularPagesPage extends QueryPage {
 			        page_title as title,
 			        page_counter as value
 			FROM $page
-			WHERE page_namespace=0 AND page_is_redirect=0";
+			WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0";
 	}
 
 	function formatResult( $skin, $result ) {

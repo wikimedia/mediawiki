@@ -55,7 +55,9 @@ class Title {
 		$this->mNamespace = 0;
 		$this->mRestrictionsLoaded = false;
 		$this->mRestrictions = array();
-		$this->mDefaultNamespace = 0;
+		# Dont change the following, NS_MAIN is hardcoded in several place
+		# See bug #696
+		$this->mDefaultNamespace = NS_MAIN;
 	}
 
 	/**

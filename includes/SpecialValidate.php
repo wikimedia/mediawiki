@@ -33,7 +33,7 @@ class Validation {
 	function find_this_version( $article_title , &$article_time , &$id , &$tab ) {
 		$id = "";
 		$tab = "";
-		$sql = "SELECT cur_id,cur_timestamp FROM cur WHERE cur_namespace=0 AND cur_title='" . wfStrencode( $article_title ) . "'";
+		$sql = "SELECT cur_id,cur_timestamp FROM cur WHERE cur_namespace=".NS_MAIN." AND cur_title='" . wfStrencode( $article_title ) . "'";
 		$res = wfQuery( $sql, DB_READ );
 		if( $s = wfFetchObject( $res ) ) {
 			if ( $article_time == "" ) {
@@ -47,7 +47,7 @@ class Validation {
 		}
 			
 		if ( $id == "" ) {
-			$sql = "SELECT old_id FROM old WHERE old_namespace=0 AND old_title='" . wfStrencode( $article_title ) .
+			$sql = "SELECT old_id FROM old WHERE old_namespace=".NS_MAIN." AND old_title='" . wfStrencode( $article_title ) .
 				"' AND old_timestamp='" . wfStrencode( $article_time ) . "'";
 			$res = wfQuery( $sql, DB_READ );
 			if( $s = wfFetchObject( $res ) ) {
@@ -103,7 +103,7 @@ class Validation {
 		if( !isset( $val[$article_time] ) ) {
 			if( $article_time == "" ) {
 				$res = wfQuery( "select cur_timestamp FROM cur WHERE cur_title='" .
-					wfStrencode( $article_title ) . "' AND cur_namespace=0", DB_READ );
+					wfStrencode( $article_title ) . "' AND cur_namespace=".NS_MAIN, DB_READ );
 				if( $s = wfFetchObject( $res ) ) {
 					$article_time = $s->cur_timestamp;
 				}

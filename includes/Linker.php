@@ -223,7 +223,7 @@ class Linker {
 						'cur_is_redirect' ), array( 'cur_id' => $aid ), $fname ) ;
 					if ( $s !== false ) {
 						$size = $s->x;
-						if ( $s->cur_is_redirect OR $s->cur_namespace != 0 ) {
+						if ( $s->cur_is_redirect OR $s->cur_namespace != NS_MAIN ) {
 							$size = $threshold*2 ; # Really big
 						}
 					} else {

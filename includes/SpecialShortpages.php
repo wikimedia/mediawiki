@@ -42,7 +42,7 @@ class ShortPagesPage extends QueryPage {
 			        page_title as title,
 			        LENGTH(old_text) AS value
 			FROM $page, $text
-			WHERE page_namespace=0 AND page_is_redirect=0
+			WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0
 			  AND page_latest=old_id";
 	}
 	
