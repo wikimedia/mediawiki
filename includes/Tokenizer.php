@@ -1,7 +1,12 @@
 <?php
 class Tokenizer {
-	/* private */ var $mText, $mPos, $mTextLength;
-	/* private */ var $mCount, $mM, $mMPos; # What is M meant to stand for?
+	/* private */ var $mText, 		# Text to be processed by the tokenizer
+			  $mPos,		# current position of tokenizer in text
+			  $mTextLength,		# Length of $mText
+			  $mCount,		# token count, computed in preParse
+			  $mMatch,		# matches of tokenizer regex, computed in preParse
+			  $mMatchPos;		# current token position of tokenizer. Each match can
+			  			# be up to two tokens: A matched token and the text after it.
 
 	/* private */ function Tokenizer()
 	{
@@ -21,9 +26,9 @@ class Tokenizer {
 	function preParse()
 	{
 		$this->mCount = preg_match_all( "/(\[\[|\]\]|\'\'\'\'\'|\'\'\'|\'\')/",
-						$this->mText, $this->mM,
+						$this->mText, $this->mMatch,
 						PREG_PATTERN_ORDER|PREG_OFFSET_CAPTURE);
-		$this->mMPos=0;
+		$this->mMatchPos=0;
 	}
 
 	function nextToken()
@@ -33,7 +38,7 @@ class Tokenizer {
 			if ( $token["type"] == "text" ) {
 				$this->mPos = $token["mPos"];
 			} else {
-				$this->mMPos = $token["mMPos"];
+				$this->mMatchPos = $token["mMatchPos"];
 				$this->mPos = $token["mPos"];
 			}
 		}
@@ -43,17 +48,17 @@ class Tokenizer {
 
 	function previewToken()
 	{
-		if ( $this->mMPos <= $this->mCount  ) {
+		if ( $this->mMatchPos <= $this->mCount  ) {
 			$token["pos"] = $this->mPos;
-			if ( $this->mPos < $this->mM[0][$this->mMPos][1] ) {
+			if ( $this->mPos < $this->mMatch[0][$this->mMatchPos][1] ) {
 				$token["type"] = "text";
 				$token["text"] = substr( $this->mText, $this->mPos,
-							 $this->mM[0][$this->mMPos][1] - $this->mPos );
-				$token["mPos"] = $this->mM[0][$this->mMPos][1];
+							 $this->mMatch[0][$this->mMatchPos][1] - $this->mPos );
+				$token["mPos"] = $this->mMatch[0][$this->mMatchPos][1];
 			} else {
-				$token["type"] = $this->mM[0][$this->mMPos][0];
+				$token["type"] = $this->mMatch[0][$this->mMatchPos][0];
 				$token["mPos"] = $this->mPos + strlen($token["type"]);
-				$token["mMPos"] = $this->mMPos + 1;
+				$token["mMatchPos"] = $this->mMatchPos + 1;
 			}
 		} elseif ( $this->mPos < $this->mTextLength ) {
 			$token["type"] = "text";
