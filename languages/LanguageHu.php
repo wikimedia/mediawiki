@@ -58,6 +58,7 @@ include_once("LanguageUtf8.php");
 	"hideminor" => "Apró változtatások elrejtése a recent changes-ben",
 	"usenewrc" => "Modern változások listája (nem minden böngészőre)",
 	"numberheadings" => "Címsorok automatikus számozása",
+	"showtoolbar" => "Show edit toolbar",
 	"editsection"=>"Linkek az egyes szakaszok szerkesztéséhez",
 	"editsectiononrightclick"=>"Egyes szakaszok szerkesztése a szakaszcímre klikkeléssel (Javascript)",
 	"showtoc"=>"Három fejezetnél többel rendelkező cikkeknél mutasson tartalomjegyzéket",

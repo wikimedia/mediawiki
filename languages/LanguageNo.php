@@ -46,6 +46,7 @@
 	"hideminor" => "Skjul mindre redigeringer i siste endringer",
 	"usenewrc" => "Forbedret siste endringer (ikke for alle nettlesere)",
 	"numberheadings" => "Nummerer overskrifter",
+	"showtoolbar" => "Show edit toolbar",
 	"editondblclick" => "Rediger sider med dobbeltklikk (JavaScript)",
 	"editsection"=>"Rediger avsnitt ved hjelp av [rediger]-lenke",
 	"editsectiononrightclick"=>"Rediger avsnitt ved å høyreklikke<br> på avsnittsoverskrift (JavaScript)",

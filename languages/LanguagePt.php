@@ -65,6 +65,7 @@
 	"hideminor" => "Esconder edições secundárias em mudanças recentes",
 	"usenewrc" => "Mudanças recentes melhoradas(nem todos os navegadores)",
 	"numberheadings" => "Auto-numerar cabeçalhos",
+	"showtoolbar" => "Show edit toolbar",
 	"editondblclick" => "Editar páginas quando houver clique duplo(JavaScript)",
 	"editsection"=>"Habilitar seção de edição via links [edit]",
 	"editsectiononrightclick"=>"Habilitar seção de edição por clique <br> com o botão direito no título da seção (JavaScript)",

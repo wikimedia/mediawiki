@@ -45,6 +45,7 @@
 	"hideminor" => "Peida pisiparandused viimastes muudatustes",
 	"usenewrc" => "Laiendatud viimased muudatused (mitte kõikide brauserite puhul)",
 	"numberheadings" => "Pealkirjade automaatnummerdus",
+	"showtoolbar" => "Show edit toolbar",
 	"rememberpassword" => "Parooli meeldejätmine tulevasteks seanssideks",
 	"editwidth" => "Redaktoriboksil on täislaius",
 	"editondblclick" => "Artiklite redigeerimine topeltklõpsu peale (JavaScript)",

@@ -55,6 +55,7 @@
   "hideminor"               => "Keine kleinen Änderungen in Letzte Änderungen anzeigen",
   "usenewrc"                => "Erweiterte letzte Änderungen (nicht für alle Browser geeignet)",
   "numberheadings"          => "Überschriften automatisch numerieren",
+	"showtoolbar" => "Show edit toolbar",
   "editondblclick"          => "Seiten mit Doppelklick bearbeiten (JavaScript)",
   "editsection"             => "Links zum Bearbeiten einzelner Absätze anzeigen",
   "editsectiononrightclick" => "Einzelne Absätze per Rechtsklick bearbeiten (Javascript)",

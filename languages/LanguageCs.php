@@ -38,6 +38,7 @@
 	"justify"	=> "Zarámovat řádky",
 	"hideminor" => "Ukrýt malé redakční úpravy <i>Poslední změny</i>",
 	"numberheadings" => "Automaticky spočítat sekce",
+	"showtoolbar" => "Show edit toolbar",
 	"rememberpassword" => "Pamatovat si mé heslo od návštěvy k návětěvě",
 	"editwidth" => "Redakční okno roztáhnout na celou šíři.",
 	"editondblclick" => "Redigovat dvojím kliknutím (JavaScript)",

@@ -53,6 +53,7 @@
 	"hideminor" => "Amaga edicions menors en canvis recents",
 	"usenewrc" => "Canvis recents remarcats (no per tots els navegadors)",
 	"numberheadings" => "Autoenumera encapçalaments",
+	"showtoolbar" => "Show edit toolbar",
 	"rememberpassword" => "Recorda la contrasenya entre sessions",
 	"editwidth" => "La caixa d'edició té l'ample màxim",
 	"editondblclick" => "Edita pàgines amb un doble clic (JavaScript)",

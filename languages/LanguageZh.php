@@ -69,6 +69,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 	"usenewrc" => "最近更改增强（只适用部分浏览器）",
 /* "Enhanced recent changes (not for all browsers)", */
 	"numberheadings" => "标题自动编号",
+	"showtoolbar" => "Show edit toolbar",
 /* "Auto-number headings", */
    "editondblclick" => "双击页面编辑(JavaScript)",
                  "editsection"=>"允许通过点击[编辑]链接编辑段落",

@@ -38,6 +38,7 @@
 	"hideminor" => "Nascondi le modifiche minori<br>nella pagina \"Modifiche recenti\"",
 	"usenewrc" => "Enhanced recent changes (not for all browsers)",
 	"numberheadings" => "Auto-numerazione dei<br>titoli di paragrafo",
+	"showtoolbar" => "Show edit toolbar",
 	"editondblclick" => "Doppio click per modificare l'articolo<br>(richiede JavaScript)",
 	"editsection"=>"Enable section editing via [edit] links",
 	"editsectiononrightclick"=>"Enable section editing by right clicking<br> on section titles (JavaScript)",

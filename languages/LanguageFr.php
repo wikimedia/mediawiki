@@ -68,6 +68,7 @@
 	"hideminor" => "Cacher les <i>Modifications récentes</i> mineures",
 	"usenewrc" => "Modifications récentes améliorées<br> (certains navigateurs seulement)",
 	"numberheadings" => "Numérotation automatique des titres",
+	"showtoolbar" => "Show edit toolbar",
 	"editondblclick" => "Double cliquer pour éditer une page (JavaScript)",
 	"editsection"	=> "Éditer une section via les liens [éditer]",
 	"editsectiononrightclick"	=> "Éditer une section en cliquant à droite<br> sur le titre de la section",

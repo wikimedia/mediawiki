@@ -50,6 +50,7 @@
 	"hideminor" => "Piilota pienet muutokset tuoreimpien muutosten listasta",
 	"usenewrc" => "Kehittynyt tuoreet muutokset (ei kaikille selaimille)",
 	"numberheadings" => "Numeroi otsikot",
+	"showtoolbar" => "Show edit toolbar",
 	"rememberpassword" => "Älä kysy salasanaa jos sama yhteys",
 	"editwidth" => "Muokkausruutu käyttää koko ikkunanleveyttä",
 	"editondblclick" => "Muokkaa sivuja kaksoisklikkauksella (JavaScript)",
