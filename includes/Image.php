@@ -49,6 +49,9 @@ class Image
 		$this->attributesLoaded = false;
 		$this->name      = $name;
 		$this->title     = Title::makeTitleSafe( NS_IMAGE, $this->name );
+		if( is_null( $this->title ) ) {
+			wfDebugDieBacktrace( 'Bad title given to Image() constructor: ' . htmlspecialchars( $name ) );
+		}
 		$this->fromSharedDirectory = false;				
 		if ($wgHashedUploadDirectory) {
 			$hash 		 = md5( $this->title->getDBkey() );
@@ -103,6 +106,9 @@ class Image
 	 */
 	function newFromTitle( $nt )
 	{
+		if( is_null( $nt ) ) {
+			wfDebugDieBacktrace( 'Image::newFromTitle given null title' );
+		}
 		$img = new Image( $nt->getDBKey() );
 		$img->title = $nt;
 		return $img;
