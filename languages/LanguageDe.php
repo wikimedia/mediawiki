@@ -313,7 +313,7 @@ Das Passwort für Benutzer \"$2\" lautet nun \"$3\".
 Sie sollten sich jetzt anmelden und Ihr Passwort ändern.",
 "noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Addresse angegeben.",
 "passwordsent"	=> "Ein neues Passwort wurde an die E-Mail-Addresse von Benutzer \"$1\" gesendet.
-Bitte melden Si sich an, sobald Sie es erhalten.",
+Bitte melden Sie sich an, sobald Sie es erhalten.",
 
 # Edit pages
 #
