@@ -395,6 +395,7 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'editthispage'	=> 'Edit this page',
 'delete' => 'Delete',
 "deletethispage" => "Delete this page",
+"undelete_short1" => "Undelete one edit",
 "undelete_short" => "Undelete $1 edits",
 'protect' => 'Protect',
 'protectthispage' => 'Protect this page',

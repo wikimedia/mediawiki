@@ -220,6 +220,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "delete" => "löschen",
 "deletethispage" => "Diese Seite löschen",
 "undelete_short" => "Wiederherstellen",
+"undelete_short1" => "Wiederherstellen",
 "protect" => "Schützen",
 "protectthispage" => "Artikel schützen",
 "unprotect" => "Freigeben",

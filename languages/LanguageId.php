@@ -238,6 +238,7 @@ if($wgMetaNamespace === FALSE)
 'delete'		=> 'Hapus',
 "deletethispage"	=> "Hapus halaman ini", #"Delete this page",
 "undelete_short"      => "Undelete",
+"undelete_short1"      => "Undelete",
 'protect'		=> 'Lindungi',
 "protectthispage"	=> "Lindungi halaman ini", #"Protect this page",
 'unprotect'		=> 'Hilangkan Perlindungan',

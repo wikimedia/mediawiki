@@ -272,6 +272,7 @@ $wgValidationTypesNn = array (
 'delete'                  => 'Slett',
 'deletethispage'          => 'Slett side',
 'undelete_short'          => 'Attopprett $1 redigeringar',
+'undelete_short1'          => 'Attopprett 1 redigeringar',
 'protect'                 => 'Vern',
 'protectthispage'         => 'Vern denne sida',
 'unprotect'               => 'Fjern vern',

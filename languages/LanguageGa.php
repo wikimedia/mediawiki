@@ -295,6 +295,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 "delete"        => "Scrios",
 "deletethispage"    => "Scrios an lch seo",
 "undelete_short" => "Cuir ar ais $1 athruithe",
+"undelete_short1" => "Cuir ar ais 1 athruithe",
 "protect"        => "Cuir faoi ghlas",
 "protectthispage" => "Cuir glas ar an lch seo",
 "unprotect"     =>  "Bain an glas",

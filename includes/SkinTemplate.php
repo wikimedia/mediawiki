@@ -589,7 +589,7 @@ class SkinTemplate extends Skin {
 					if( $n = $this->mTitle->isDeleted() ) {
 						$content_actions['undelete'] = array(
 							'class' => false,
-							'text' => wfMsg( "undelete_short", $n ),
+							'text' => ($n == 1) ? wfMsg( 'undelete_short1' ) : wfMsg('undelete_short', $n ),
 							'href' => $this->makeSpecialUrl('Undelete/'.$this->thispage)
 						);
 					}
