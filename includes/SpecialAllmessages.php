@@ -100,9 +100,9 @@ function makeHTMLText( $messages ) {
 
 	<table border='1' cellspacing='0' width='100%'>
 	<tr bgcolor='#b2b2ff'>
-		<th>Name</th>
-		<th>Default text</th>
-		<th>Current text</th>
+		<th>" . wfMsg('allmessagesname') . "</th>
+		<th>" . wfMsg('allmessagesdefault') . "</th>
+		<th>" . wfMsg('allmessagescurrent')  . "</th>
 	</tr>";
 	
 	wfProfileIn( "$fname-check" );
