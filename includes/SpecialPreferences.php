@@ -146,8 +146,7 @@ function wfSpecialPreferences()
 	$uname = $wgUser->getName();
 	$uid = $wgUser->getID();
 
-	$wgOut->addHTML( "<p>" . str_replace( array("$1","$2"), array($uname,$uid),
-		wfMsg( "prefslogintext" ) ) . "\n" );
+	$wgOut->addWikiText( wfMsg( "prefslogintext", $uname, $uid ) );
 
 	$qbs = $wgLang->getQuickbarSettings();
 	$skins = $wgLang->getSkinNames();
