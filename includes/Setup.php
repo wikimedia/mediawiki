@@ -33,7 +33,6 @@ if( $wgUseSquid && isset( $_SERVER["HTTP_X_FORWARDED_FOR"] ) ) {
 	$wgIP = getenv("REMOTE_ADDR");
 }
 
-
 $fname = "Setup.php";
 wfProfileIn( $fname );
 global $wgUseDynamicDates;
@@ -166,6 +165,9 @@ $wgMagicWords = array();
 $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
 $wgParserCache = new ParserCache();
 $wgParser = new Parser();
+
+# Disable known broken features
+$wgUseCategoryMagic = false;
 
 wfProfileOut( "$fname-misc" );
 wfProfileOut( $fname );
