@@ -30,7 +30,7 @@ class ImageGallery
 	}
 
 	/**
-	 * Add an image at the end of the gallery.
+	 * Add an image to the gallery.
 	 *
 	 * @param Image  $image  Image object that is added to the gallery
 	 * @param string $html   Additional HTML text to be shown. The name and size of the image are always shown.
@@ -38,16 +38,17 @@ class ImageGallery
 	function add( $image, $html='' ) {
 		$this->mImages[] = array( &$image, $html );
 	}
-	
+
 	/**
-	 * Add an image at the beginning of the gallery.
-	 *
-	 * @param Image  $image  Image object that is added to the gallery
-	 * @param string $html   Additional HTML text to be shown. The name and size of the image are always shown.
-	 */
+ 	* Add an image at the beginning of the gallery.
+ 	*
+ 	* @param Image  $image  Image object that is added to the gallery
+ 	* @param string $html   Additional HTML text to be shown. The name and size of the image are always shown.
+ 	*/
 	function insert( $image, $html='' ) {
 		array_unshift( $this->mImages, array( &$image, $html ) );
 	}
+
 
 	/**
 	 * isEmpty() returns false iff the gallery doesn't contain any images
@@ -91,7 +92,7 @@ class ImageGallery
 
 		$sk = $wgUser->getSkin();
 
-		$s = '<table  style="border:solid 1px #DDDDDD; cellspacing:0; cellpadding:0; margin:1em;">';
+		$s = '<table class="gallery" cellspacing="0" cellpadding="0">';
 		$i = 0;
 		foreach ( $this->mImages as $pair ) {
 			$img =& $pair[0];
@@ -102,8 +103,8 @@ class ImageGallery
 
 			// Not an image. Just print the name and skip.
 			if ( $nt->getNamespace() != NS_IMAGE ) {
-				$s .= '<td valign="top" width="150px" style="background-color:#F0F0F0;">' .
-					htmlspecialchars( $nt->getText() ) . '</td>' .  (($i%4==3) ? "</tr>\n" : '');
+				$s .= '<td><div class="gallerybox" style="height: 152px;">' .
+					htmlspecialchars( $nt->getText() ) . '</div></td>' .  (($i%4==3) ? "</tr>\n" : '');
 				$i++;
 
 				continue;
@@ -129,15 +130,18 @@ class ImageGallery
 				'' ;
 
 			$s .= ($i%4==0) ? '<tr>' : '';
-			$thumb = $img->getThumbnail(120,120);
-			$s .= '<td valign="top" width="150px" style="background-color:#F0F0F0;">' .
-				'<table width="100%" height="150px">'.
-				'<tr><td align="center" valign="center" style="background-color:#F8F8F8;border:solid 1px #888888;">' .
-				$sk->makeKnownLinkObj( $nt, $thumb->toHtml() ) . '</td></tr></table> ' .
-				$textlink . $text . $nb; 
-
-			$s .= "</td>\n" .  (($i%4==3) ? "</tr>\n" : '');
-
+			$thumb = $img->getThumbnail( 120, 120 );
+			$vpad = floor( ( 150 - $thumb->height ) /2 ) - 2;
+			$s .= '<td><div class="gallerybox">' .
+				'<div class="thumb" style="padding: ' . $vpad . 'px 0;">'.
+				$sk->makeKnownLinkObj( $nt, $thumb->toHtml() ) . '</div>';
+			if($text <> '') {
+				$s .= '<div class="gallerytext">' .
+					$textlink . $text . $nb .
+					'</div>';
+			}
+			$s .= "</div></td>\n";
+			$s .= ($i%4==3) ? '</tr>' : '';
 			$i++;
 		}
 		if( $i %4 != 0 ) {
