@@ -6,37 +6,39 @@
 #
 # Processes wiki markup
 #
-# There are two main entry points into the Parser class: parse() and preSaveTransform().
-# The parse() function produces HTML output, preSaveTransform() produces altered wiki markup.
+# There are two main entry points into the Parser class:
+# parse()
+#   produces HTML output
+# preSaveTransform().
+#   produces altered wiki markup.
 #
 # Globals used:
 #    objects:   $wgLang, $wgDateFormatter, $wgLinkCache, $wgCurParser
 #
 # NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
 #
-#    settings:  $wgUseTex*, $wgUseCategoryMagic*, $wgUseDynamicDates*, $wgInterwikiMagic*,
-#               $wgNamespacesWithSubpages, $wgLanguageCode, $wgAllowExternalImages*,
-#               $wgLocaltimezone
+# settings:
+#   $wgUseTex*, $wgUseCategoryMagic*, $wgUseDynamicDates*, $wgInterwikiMagic*,
+#   $wgNamespacesWithSubpages, $wgLanguageCode, $wgAllowExternalImages*,
+#   $wgLocaltimezone
 #
-#      * only within ParserOptions
-#
+#   * only within ParserOptions
 #
 #----------------------------------------
 #    Variable substitution O(N^2) attack
 #-----------------------------------------
-# Without countermeasures, it would be possible to attack the parser by saving a page
-# filled with a large number of inclusions of large pages. The size of the generated
-# page would be proportional to the square of the input size. Hence, we limit the number
-# of inclusions of any given page, thus bringing any attack back to O(N).
-#
-
+# Without countermeasures, it would be possible to attack the parser by saving
+# a page filled with a large number of inclusions of large pages. The size of
+# the generated page would be proportional to the square of the input size.
+# Hence, we limit the number of inclusions of any given page, thus bringing any
+# attack back to O(N).
 define( "MAX_INCLUDE_REPEAT", 20 );
 define( "MAX_INCLUDE_SIZE", 1000000 ); // 1 Million
 
 # Allowed values for $mOutputType
 define( "OT_HTML", 1 );
 define( "OT_WIKI", 2 );
-define( "OT_MSG", 3 );
+define( "OT_MSG" , 3 );
 
 # string parameter for extractTags which will cause it
 # to strip HTML comments in addition to regular
@@ -47,9 +49,7 @@ define( 'STRIP_COMMENTS', 'HTMLCommentStrip' );
 # prefix for escaping, used in two functions at least
 define( 'UNIQ_PREFIX', 'NaodW29');
 
-
 # Constants needed for external link processing
-
 define( 'URL_PROTOCOLS', 'http|https|ftp|irc|gopher|news|mailto' );
 define( 'HTTP_PROTOCOLS', 'http|https' );
 # Everything except bracket, space, or control characters
@@ -78,9 +78,9 @@ class Parser
 	# Temporary:
 	var $mOptions, $mTitle, $mOutputType,
 	    $mTemplates,	// cache of already loaded templates, avoids
-	    			// multiple SQL queries for the same string
+		                // multiple SQL queries for the same string
 	    $mTemplatePath;	// stores an unsorted hash of all the templates already loaded
-	    			// in this path. Used for loop detection.
+		                // in this path. Used for loop detection.
 
 	function Parser() {
  		$this->mTemplates = array();
@@ -359,7 +359,6 @@ class Parser
 	# Add an item to the strip state
 	# Returns the unique tag which must be inserted into the stripped text
 	# The tag will be replaced with the original text in unstrip()
-
 	function insertStripItem( $text, &$state ) {
 		$rnd = UNIQ_PREFIX . '-item' . Parser::getRandomString();
 		if ( !$state ) {
@@ -445,7 +444,7 @@ class Parser
 		if ( count ( $articles ) > 0 ) {
 			$ti = $this->mTitle->getText() ;
 			$h =  wfMsg( 'category_header', $ti );
-			$r .= "<h2>{$h}</h2>\n" ;
+			$r .= "<h2>$h</h2>\n" ;
 			$r .= implode ( ', ' , $articles ) ;
 		}
 
@@ -751,8 +750,7 @@ class Parser
 		{
 			$x = trim ( $x ) ;
 			$fc = substr ( $x , 0 , 1 ) ;
-			if ( preg_match( '/^(:*)\{\|(.*)$/', $x, $matches ) )
-			{
+			if ( preg_match( '/^(:*)\{\|(.*)$/', $x, $matches ) ) {
 				$indent_level = strlen( $matches[1] );
 				$t[$k] = "\n" .
 					str_repeat( "<dl><dd>", $indent_level ) .
@@ -763,23 +761,21 @@ class Parser
 				array_push ( $ltr , '' ) ;
 			}
 			else if ( count ( $td ) == 0 ) { } # Don't do any of the following
-			else if ( '|}' == substr ( $x , 0 , 2 ) )
-			{
+			else if ( '|}' == substr ( $x , 0 , 2 ) ) {
 				$z = "</table>\n" ;
 				$l = array_pop ( $ltd ) ;
 				if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
-				if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+				if ( array_pop ( $td ) ) $z = '</'.$l.'>' . $z ;
 				array_pop ( $ltr ) ;
 				$t[$k] = $z . str_repeat( "</dd></dl>", $indent_level );
 			}
-			else if ( '|-' == substr ( $x , 0 , 2 ) ) # Allows for |---------------
-			{
+			else if ( '|-' == substr ( $x , 0 , 2 ) ) { # Allows for |---------------
 				$x = substr ( $x , 1 ) ;
 				while ( $x != '' && substr ( $x , 0 , 1 ) == '-' ) $x = substr ( $x , 1 ) ;
 				$z = '' ;
 				$l = array_pop ( $ltd ) ;
 				if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
-				if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+				if ( array_pop ( $td ) ) $z = '</'.$l.'>' . $z ;
 				array_pop ( $ltr ) ;
 				$t[$k] = $z ;
 				array_push ( $tr , false ) ;
@@ -787,10 +783,8 @@ class Parser
 				array_push ( $ltd , '' ) ;
 				array_push ( $ltr , $this->fixTagAttributes ( $x ) ) ;
 			}
-			else if ( '|' == $fc || '!' == $fc || '|+' == substr ( $x , 0 , 2 ) ) # Caption
-			{
-				if ( '|+' == substr ( $x , 0 , 2 ) )
-				{
+			else if ( '|' == $fc || '!' == $fc || '|+' == substr ( $x , 0 , 2 ) ) { # Caption
+				if ( '|+' == substr ( $x , 0 , 2 ) ) {
 					$fc = '+' ;
 					$x = substr ( $x , 1 ) ;
 				}
@@ -804,13 +798,13 @@ class Parser
 					if ( $fc != '+' )
 					{
 						$tra = array_pop ( $ltr ) ;
-						if ( !array_pop ( $tr ) ) $z = "<tr {$tra}>\n" ;
+						if ( !array_pop ( $tr ) ) $z = '<tr '.$tra.">\n" ;
 						array_push ( $tr , true ) ;
 						array_push ( $ltr , '' ) ;
 					}
 
 					$l = array_pop ( $ltd ) ;
-					if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+					if ( array_pop ( $td ) ) $z = '</'.$l.'>' . $z ;
 					if ( $fc == '|' ) $l = 'td' ;
 					else if ( $fc == '!' ) $l = 'th' ;
 					else if ( $fc == '+' ) $l = 'caption' ;
@@ -1227,7 +1221,8 @@ class Parser
 		}
 		return $text;
 	}
-
+	
+	# The wikilinks [[ ]] are procedeed here.
 	/* private */ function replaceInternalLinks( $s ) {
 		global $wgLang, $wgLinkCache;
 		global $wgNamespacesWithSubpages, $wgLanguageCode;
@@ -1271,6 +1266,7 @@ class Parser
 
 		wfProfileOut( $fname.'-setup' );
 
+		# start procedeeding each line
 		foreach ( $a as $line ) {
 			wfProfileIn( $fname.'-prefixhandling' );
 			if ( $useLinkPrefixExtension ) {
@@ -1298,57 +1294,74 @@ class Parser
 				continue;
 			}
 
-			/* Valid link forms:
-			Foobar -- normal
-			:Foobar -- override special treatment of prefix (images, language links)
-			/Foobar -- convert to CurrentPage/Foobar
-			/Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
-			*/
+			# Valid link forms:
+			# Foobar -- normal
+			# :Foobar -- override special treatment of prefix (images, language links)
+			# /Foobar -- convert to CurrentPage/Foobar
+			# /Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
+			
+			# Look at the first character
 			$c = substr($m[1],0,1);
 			$noforce = ($c != ':');
-			if( $c == '/' ) { # subpage
-				if(substr($m[1],-1,1)=='/') {                 # / at end means we don't want the slash to be shown
+			
+			# subpage
+			if( $c == '/' ) {
+				# / at end means we don't want the slash to be shown
+				if(substr($m[1],-1,1)=='/') {
 					$m[1]=substr($m[1],1,strlen($m[1])-2);
 					$noslash=$m[1];
 				} else {
 					$noslash=substr($m[1],1);
 				}
-				if(!empty($wgNamespacesWithSubpages[$this->mTitle->getNamespace()])) { # subpages allowed here
+				
+				# Some namespaces don't allow subpages
+				if(!empty($wgNamespacesWithSubpages[$this->mTitle->getNamespace()])) {
+					# subpages allowed here
 					$link = $this->mTitle->getPrefixedText(). '/' . trim($noslash);
 					if( '' == $text ) {
 						$text= $m[1];
 					} # this might be changed for ugliness reasons
 				} else {
-					$link = $noslash; # no subpage allowed, use standard link
+					# no subpage allowed, use standard link
+					$link = $noslash;
 				}
+				
 			} elseif( $noforce ) { # no subpage
 				$link = $m[1];
 			} else {
+				# We don't want to keep the first character
 				$link = substr( $m[1], 1 );
 			}
+			
 			$wasblank = ( '' == $text );
-			if( $wasblank )
-			$text = $link;
+			if( $wasblank ) $text = $link;
 
 			$nt = Title::newFromText( $link );
 			if( !$nt ) {
 				$s .= $prefix . '[[' . $line;
 				continue;
 			}
+			
 			$ns = $nt->getNamespace();
 			$iw = $nt->getInterWiki();
+			
+			# Link not escaped by : , create the various objects
 			if( $noforce ) {
+
+				# Interwikis
 				if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgLang->getLanguageName( $iw ) ) {
 					array_push( $this->mOutput->mLanguageLinks, $nt->getFullText() );
 					$tmp = $prefix . $trail ;
 					$s .= (trim($tmp) == '')? '': $tmp;
 					continue;
 				}
+				
 				if ( $ns == NS_IMAGE ) {
 					$s .= $prefix . $sk->makeImageLinkObj( $nt, $text ) . $trail;
 					$wgLinkCache->addImageLinkObj( $nt );
 					continue;
 				}
+				
 				if ( $ns == NS_CATEGORY ) {
 					$t = $nt->getText() ;
 					$nnt = Title::newFromText ( Namespace::getCanonicalName(NS_CATEGORY).":".$t ) ;
@@ -1367,8 +1380,9 @@ class Parser
 					continue;
 				}
 			}
+			
 			if( ( $nt->getPrefixedText() == $this->mTitle->getPrefixedText() ) &&
-			( strpos( $link, '#' ) == FALSE ) ) {
+			    ( strpos( $link, '#' ) == FALSE ) ) {
 				# Self-links are handled specially; generally de-link and change to bold.
 				$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, '', $trail );
 				continue;
@@ -1446,7 +1460,7 @@ class Parser
 		return '<!-- ERR 2 -->';
 	}
 
-	/* private */function closeList( $char ) {
+	/* private */ function closeList( $char ) {
 		if ( '*' == $char ) { $text = '</li></ul>'; }
 		else if ( '#' == $char ) { $text = '</li></ol>'; }
 		else if ( ':' == $char ) {
@@ -1890,13 +1904,12 @@ class Parser
 					if ( $articleContent !== false ) {
 						$found = true;
 						$text = $articleContent;
-
 					}
 				}
 
 				# If the title is valid but undisplayable, make a link to it
 				if ( $this->mOutputType == OT_HTML && !$found ) {
-					$text = '[[' . $title->getPrefixedText() . ']]';
+					$text = '[['.$title->getPrefixedText().']]';
 					$found = true;
 				}
 
@@ -2099,19 +2112,14 @@ class Parser
 	}
 
 
-/*
- *
- * This function accomplishes several tasks:
- * 1) Auto-number headings if that option is enabled
- * 2) Add an [edit] link to sections for logged in users who have enabled the option
- * 3) Add a Table of contents on the top for users who have enabled the option
- * 4) Auto-anchor headings
- *
- * It loops through all headlines, collects the necessary data, then splits up the
- * string and re-inserts the newly formatted headlines.
- *
- */
-
+	# This function accomplishes several tasks:
+	# 1) Auto-number headings if that option is enabled
+	# 2) Add an [edit] link to sections for logged in users who have enabled the option
+	# 3) Add a Table of contents on the top for users who have enabled the option
+	# 4) Auto-anchor headings
+	#
+	# It loops through all headlines, collects the necessary data, then splits up the
+	# string and re-inserts the newly formatted headlines.
 	/* private */ function formatHeadings( $text, $isMain=true ) {
 		global $wgInputEncoding, $wgMaxTocLevel;
 
@@ -2502,7 +2510,7 @@ class Parser
 		$p3 = "/\[\[($namespacechar+):({$np}+)\\|]]/";		# [[namespace:page|]]
 		$p4 = "/\[\[($namespacechar+):({$np}+) \\(({$np}+)\\)\\|]]/";
 														# [[ns:page (cont)|]]
-		$context = "";
+		$context = '';
 		$t = $this->mTitle->getText();
 		if ( preg_match( $conpat, $t, $m ) ) {
 			$context = $m[2];
