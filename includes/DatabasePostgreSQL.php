@@ -172,21 +172,27 @@ class DatabasePgsql extends Database {
 		# We have a go at faking one of them
 		# TODO: DELAYED, LOW_PRIORITY 
 
-		# IGNORE is performed using single-row inserts, ignoring errors in each
-		if ( in_array( 'IGNORE', $options ) ) {
-			# FIXME: need some way to distiguish between key collision and other types of error
+		if ( !is_array($options))
+			$options = array($options);
+
+		if ( in_array( 'IGNORE', $options ) ) 
 			$oldIgnore = $this->ignoreErrors( true );
-			if ( !is_array( reset( $a ) ) ) {
-				$a = array( $a );
-			}
-			foreach ( $a as $row ) {
-				parent::insertArray( $table, $row, $fname, array() );
-			}
-			$this->ignoreErrors( $oldIgnore );
-			$retVal = true;
-		} else {
-			$retVal = parent::insertArray( $table, $a, $fname, array() );
+
+		# IGNORE is performed using single-row inserts, ignoring errors in each
+		# FIXME: need some way to distiguish between key collision and other types of error
+		$oldIgnore = $this->ignoreErrors( true );
+		if ( !is_array( reset( $a ) ) ) {
+			$a = array( $a );
 		}
+		foreach ( $a as $row ) {
+			parent::insertArray( $table, $row, $fname, array() );
+		}
+		$this->ignoreErrors( $oldIgnore );
+		$retVal = true;
+
+		if ( in_array( 'IGNORE', $options ) ) 
+			$this->ignoreErrors( $oldIgnore );
+
 		return $retVal;
 	}
 	
