@@ -462,8 +462,8 @@ class UploadForm {
 		if ( $wgUseCopyrightUpload )
 		{
 			$copyright =  "
-	<input type='hidden' name='wpUploadCopyStatus' value='" . htmlspecialchars( $this->mUploadCopyStatus ) . "' />
-	<input type='hidden' name='wpUploadSource' value='" . htmlspecialchars( $this->mUploadSource ) . "' />
+	<input type='hidden' name='wpUploadCopyStatus' value=\"" . htmlspecialchars( $this->mUploadCopyStatus ) . "\" />
+	<input type='hidden' name='wpUploadSource' value=\"" . htmlspecialchars( $this->mUploadSource ) . "\" />
 	";
 		} else {
 			$copyright = "";
@@ -473,8 +473,8 @@ class UploadForm {
 	<form id='uploadwarning' method='post' enctype='multipart/form-data' action='$action'>
 		<input type='hidden' name='wpUploadAffirm' value='1' />
 		<input type='hidden' name='wpIgnoreWarning' value='1' />
-		<input type='hidden' name='wpSessionKey' value='" . htmlspecialchars( $this->mSessionKey ) . "' />
-		<input type='hidden' name='wpUploadDescription' value='" . htmlspecialchars( $this->mUploadDescription ) . "' />
+		<input type='hidden' name='wpSessionKey' value=\"" . htmlspecialchars( $this->mSessionKey ) . "\" />
+		<input type='hidden' name='wpUploadDescription' value=\"" . htmlspecialchars( $this->mUploadDescription ) . "\" />
 	{$copyright}
 	<table border='0'>
 		<tr>
@@ -546,8 +546,8 @@ class UploadForm {
 	htmlspecialchars($this->mUploadCopyStatus). "\" size='40' /></td>
 	</tr><tr>
 	<td align='right'>". wfMsg ( 'filesource' ) . ":</td>
-	<td><input tabindex='4' type='text' name='wpUploadSource' value='" .
-	htmlspecialchars($this->mUploadSource). "' size='40' /></td>
+	<td><input tabindex='4' type='text' name='wpUploadSource' value=\"" .
+	htmlspecialchars($this->mUploadSource). "\" size='40' /></td>
 	" ;
 		  }
 
