@@ -1561,7 +1561,7 @@ class Skin {
 	}
 
 	# Pass a title object, not a title string
-	function makeKnownLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '')
+	function makeKnownLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '' )
 	{
 		global $wgOut, $wgTitle, $wgInputEncoding;
 
@@ -1572,6 +1572,8 @@ class Skin {
 			return $text;
 		}
 		$link = $nt->getPrefixedURL();
+#		if ( '' != $section && substr($section,0,1) != "#" ) {
+#			$section = ''
 
 		if ( '' == $link ) {
 			$u = '';
@@ -2143,7 +2145,7 @@ class Skin {
 
 		# Comment
 		 if ( $rc_comment != '' && $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
-			$rc_comment=$this->formatComment($rc_comment);
+			$rc_comment=$this->formatComment($rc_comment, $rcObj->getTitle());
 			$r .= $wgLang->emphasize( ' ('.$rc_comment.')' );
 		}
 
@@ -2258,7 +2260,7 @@ class Skin {
 			$r .= ') . . '.$rcObj->userlink ;
 			$r .= $rcObj->usertalklink ;
 			if ( $rc_comment != '' ) {
-				$rc_comment=$this->formatComment($rc_comment);
+				$rc_comment=$this->formatComment($rc_comment, $rcObj->getTitle());
 				$r .= $wgLang->emphasize( ' ('.$rc_comment.')' ) ;
 			}
 			$r .= "<br />\n" ;
@@ -2408,7 +2410,7 @@ class Skin {
 
 		# Add comment
 		if ( '' != $rc_comment && '*' != $rc_comment && $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
-			$rc_comment=$this->formatComment($rc_comment);
+			$rc_comment=$this->formatComment($rc_comment,$rc->getTitle());
 			$s .= $wgLang->emphasize(' (' . $rc_comment . ')');
 		}
 		$s .= "</li>\n";
@@ -2530,9 +2532,12 @@ class Skin {
 	   and by the user contributions list. It is responsible for formatting edit
 	   comments. It escapes any HTML in the comment, but adds some CSS to format
 	   auto-generated comments (from section editing) and formats [[wikilinks]].
-	   Main author: Erik Möller (moeller@scireview.de)
+	   
+	   The $title parameter, which is optional, must be a title OBJECT. It is
+	   used to generate a direct link to the section in the autocomment.
+	   Main author: Erik Moeller (moeller@scireview.de)
 	*/
-	function formatComment($comment)
+	function formatComment($comment, $title='')
 	{
 		global $wgLang;
 		$comment = htmlspecialchars( $comment );
@@ -2545,7 +2550,18 @@ class Skin {
 			$pre=$match[1];
 			$auto=$match[2];
 			$post=$match[3];
+			$link='';
+			if($title) {
+				$section=$auto;
+				
+				# This is hackish but should work in most cases.
+				$section=str_replace('[[','',$section);
+				$section=str_replace(']]','',$section);
+				$title->mFragment=$section;
+				$link=$this->makeKnownLinkObj($title,wfMsg('sectionlink'));
+			}
 			$sep='-';
+			$auto=$link.$auto;
 			if($pre) { $auto = $sep.' '.$auto; }
 			if($post) { $auto .= ' '.$sep; }
 			$auto='<span class="autocomment">'.$auto.'</span>';

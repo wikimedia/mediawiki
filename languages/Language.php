@@ -823,6 +823,7 @@ from server time (UTC).',
 'nchanges'		=> "$1 changes",
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
+'sectionlink' => '&rarr;',
 
 # Upload
 #

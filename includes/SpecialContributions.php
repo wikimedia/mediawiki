@@ -1,4 +1,5 @@
 <?php
+require_once('SpecialValidate.php');
 
 function wfSpecialContributions( $par = "" )
 {
@@ -197,7 +198,7 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $t
 
 	if($comment) {
 
-		$comment="<em>(". $sk->formatComment($comment ) .")</em> ";
+		$comment="<em>(". $sk->formatComment($comment, Title::newFromText($t) ) .")</em> ";
 
 	}
 	$d = $wgLang->timeanddate( $ts, true );
