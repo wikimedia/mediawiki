@@ -246,6 +246,11 @@ class OutputPage {
 		header( "Content-language: {$wgLanguageCode}" );
 		
 		if ( "" != $this->mRedirect ) {
+			if( substr( $this->mRedirect, 0, 4 ) != "http" ) {
+				# Standards require redirect URLs to be absolute
+				global $wgServer;
+				$this->mRedirect = $wgServer . $this->mRedirect;
+			}
 			header( "Location: {$this->mRedirect}" );
 			return;
 		}
