@@ -84,6 +84,7 @@ class EditPage {
 		global $wpMinoredit, $wpEdittime, $wpTextbox2, $wpSection;
 		global $oldid, $redirect, $section;
 		global $wgLang;
+	        global $wgAllowAnonymousMinor;
 
 		if(isset($wpSection)) { $section=$wpSection; } else { $wpSection=$section; }
 
@@ -257,17 +258,23 @@ class EditPage {
 		// checked unnecessarily
 		if (!$wpWatchthis && !$wpPreview && $this->mTitle->userIsWatching()) $wpWatchthis=1;
 
-		if ( 0 != $wgUser->getID() ) {
-			$checkboxhtml=
+                $minoredithtml = "";
+
+		if ( 0 != $wgUser->getID() || $wgAllowAnonymousMinor ) {
+			$minoredithtml =
 			"<input tabindex=3 type=checkbox value=1 name='wpMinoredit'".($wpMinoredit?" checked":"")." id='wpMinoredit'>".
-			"<label for='wpMinoredit'>{$minor}</label>".
-			"<input tabindex=4 type=checkbox name='wpWatchthis'".($wpWatchthis?" checked":"")." id='wpWatchthis'>".
-			"<label for='wpWatchthis'>{$watchthis}</label><br>";
-
-		} else {
-			$checkboxhtml="";
+			"<label for='wpMinoredit'>{$minor}</label>";
 		}
+	    
+	        $watchhtml = "";
+	    
+		if ( 0 != $wgUser->getID() ) {
+		        $watchhtml = "<input tabindex=4 type=checkbox name='wpWatchthis'".($wpWatchthis?" checked":"")." id='wpWatchthis'>".
+			"<label for='wpWatchthis'>{$watchthis}</label>";
 
+		}
+	    
+	        $checkboxhtml= $minoredithtml . $watchhtml . "<br>";
 
 		if ( "preview" == $formtype) {
 

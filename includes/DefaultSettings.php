@@ -221,4 +221,8 @@ $wgNamespacesToBeSearchedDefault = array( -1 => 0, 0 => 1, 1 => 0,
 
 # If set, a bold ugly notice will show up at the top of every page.
 $wgSiteNotice = "";
+
+# Whether to allow anonymous users to set changes to 'minor'
+
+$wgAllowAnonymousMinor = false;
 ?>
