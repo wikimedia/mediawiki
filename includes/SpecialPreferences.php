@@ -233,7 +233,12 @@ class PreferencesForm {
 		$this->mOldpass = $this->mNewpass = $this->mRetypePass = '';
 		$this->mUserEmail = $wgUser->getEmail();
 		$this->mRealName = ($wgAllowRealName) ? $wgUser->getRealName() : '';
-		$this->mUserLanguage = $wgUser->getOption( 'language');
+		$this->mUserLanguage = $wgUser->getOption( 'language' );
+		if( empty( $this->mUserLanguage ) ) {
+			# Quick hack for conversions, where this value is blank
+			global $wgContLanguageCode;
+			$this->mUserLanguage = $wgContLanguageCode;
+		}
         $this->mUserVariant = $wgUser->getOption( 'variant');
 		if ( 1 == $wgUser->getOption( 'disablemail' ) ) { $this->mEmailFlag = 1; }
 		else { $this->mEmailFlag = 0; }
