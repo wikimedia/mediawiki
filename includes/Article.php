@@ -854,7 +854,8 @@ class Article {
 
 	function doDeleteArticle( $title )
 	{
-		global $wgUser, $wgOut, $wgLang, $wpReason, $wgDeferredUpdateList;
+		global $wgUser, $wgOut, $wgLang, $wpReason, $wgDeferredUpdateList, 
+			$wgEnablePersistentLC;
 
 		$fname = "Article::doDeleteArticle";
 		wfDebug( "$fname\n" );
