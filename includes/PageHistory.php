@@ -120,11 +120,12 @@ class PageHistory {
 	{
 		global $wgTitle;
 		$this->lastdate = $this->lastline = '';
-		$s = "\n<p>" . wfMsg( 'histlegend' ).'</p>'; 
-		$s .="\n<form action=\"" . $wgTitle->escapeLocalURL( '-' ) . "\" method=\"get\">";
-		$s .= "<input type=\"hidden\" name=\"title\" value=\"".htmlspecialchars($wgTitle->getPrefixedDbKey())."\"/>\n";
+		$s = '<p>' . wfMsg( 'histlegend' ) . '</p>';
+		$s .= '<form action="' . $wgTitle->escapeLocalURL( '-' ) . '" method="get">';
+		$prefixedkey = htmlspecialchars($wgTitle->getPrefixedDbKey())
+		$s .= "<input type='hidden' name='title' value='{$prefixedkey}' />\n";
 		$s .= !empty($this->submitbuttonhtml1) ? $this->submitbuttonhtml1."\n":'';
-		$s .= "" . "\n<ul id=\"pagehistory\" >";
+		$s .= '<ul id="pagehistory">';
 		return $s;
 	}
 
@@ -133,9 +134,9 @@ class PageHistory {
 		$last = wfMsg( 'last' );
 
 		$s = $skip ? '' : preg_replace( "/!OLDID![0-9]+!/", $last, $this->lastline );
-		$s .= "</ul>";
-		$s .= !empty($this->submitbuttonhtml2) ? $this->submitbuttonhtml2."\n":'';
-		$s .= "</form>\n";
+		$s .= '</ul>';
+		$s .= !empty($this->submitbuttonhtml2) ? $this->submitbuttonhtml2 : '';
+		$s .= '</form>';
 		return $s;
 	}
 
@@ -198,9 +199,9 @@ class PageHistory {
 
 		if ( '' != $c && '*' != $c ) {
 			$c = $this->mSkin->formatcomment($c,$this->mTitle);
-			$s .= " <em>(" . $c . ")</em>";
+			$s .= " <em>($c)</em>";
 		}
-		$s .= "</li>\n";
+		$s .= '</li>';
 
 		$this->lastline = $s;
 		return $ret;
