@@ -7,8 +7,7 @@ many people, so it's something of a hodgepodge. The
 main wiki software itself is written in PHP, and requires
 the Apache web server and MySQL database. The optional
 math rendering functions are written in Objective CAML,
-which is required to compile them. The test suite is
-written in Java, using several external libraries.
+which is required to compile them.
 
 Recommended versions are: Apache 1.3.27 or later; MySQL
 4.0.13 or later; PHP 4.3.2 or later. The installation at
