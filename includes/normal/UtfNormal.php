@@ -346,7 +346,15 @@ class UtfNormal {
 			}
 			if( $n < 0x80 ) {
 				# Friendly ASCII chars.
+				# We can speed things up a bit for latin-based scripts
+				# where they tend to come in groups:
 				$out .= $c;
+				$i++;
+				while( $i < $len && ( $c = $string{$i} ) < "\x80" ) {
+					$out .= $c;
+					$i++;
+				}
+				$i--;
 			} elseif( $n < 0xc0 ) {
 				# illegal tail bytes or head byte of overlong sequence
 				if( $head == 0 ) {
