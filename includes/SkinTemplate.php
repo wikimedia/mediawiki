@@ -809,11 +809,11 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::setupUserCss';
 		wfProfileIn( $fname );
 		
-		global $wgRequest, $wgTitle, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath;
+		global $wgRequest, $wgTitle, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath, $wgUser;
 
 		$sitecss = '';
 		$usercss = '';
-		$siteargs = '';
+		$siteargs = '&maxage=' . $wgSquidMaxage;
 
 		# Add user-specific code if this is a user and we allow that kind of thing
 		
@@ -822,14 +822,15 @@ class SkinTemplate extends Skin {
 			
 			# if we're previewing the CSS page, use it
 			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
-				$siteargs .= "&smaxage=0&maxage=0";
+				$siteargs = "&smaxage=0&maxage=0";
 				$usercss = $wgRequest->getText('wpTextbox1');
 			} else {
-				$siteargs .= "&maxage=0";
 				$usercss = '@import "' .
 				  $this->makeUrl($this->userpage . '/'.$this->skinname.'.css',
 								 'action=raw&ctype=text/css') . '";' ."\n";
 			}
+
+			$siteargs .= '&ts=' . $wgUser->mTouched;
 		}
 
 		if ($wgContLang->isRTL()) $sitecss .= '@import "' . $wgStylePath . '/' . $this->stylename . '/rtl.css";' . "\n";
