@@ -796,7 +796,7 @@ Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en compr
 "deletedtext" => "\"$1\" a été supprimé.
 Voir $2 pour une liste des suppressions récentes.",
 "deletedarticle" => "effacement de \"$1\"",
-"dellogpage" => " Trace des effacements",
+"dellogpage" => "Trace des effacements",
 "dellogpagetext" => "Voici la liste des suppressions récentes.
 L'heure indiquée est celle du serveur (UTC).
 <ul>

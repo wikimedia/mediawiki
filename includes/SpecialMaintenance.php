@@ -246,7 +246,7 @@ function wfSpecialMispeelings ()
 
         # Determine page name
         $ms = wfMsg ( "mispeelingspage" ) ;
-        $mss = str_replace ( " " , "_" , $ms ) ;
+        $mss = wfStrencode( str_replace ( " " , "_" , $ms ) );
         $msp = $wgLang->getNsText(4).":".$ms ;
         $msl = $sk->makeKnownLink ( $msp ) ;
 
