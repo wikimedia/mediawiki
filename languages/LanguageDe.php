@@ -16,16 +16,6 @@
 	9	=> "MediaWiki_Diskussion",
 );
 
-/* private */ $wgDefaultUserOptionsDe = array(
-	"quickbar" => 1, "underline" => 1, "hover" => 1,
-	"cols" => 80, "rows" => 25, "searchlimit" => 20,
-	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 0, "math" => 1, "rcdays" => 3, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0,
-        "editsection" => 0, "showtoc" => 1, "date" => 0,
-	"previewontop" => 0, "editsectiononrightclick" => 0
-);
-
 /* private */ $wgQuickbarSettingsDe = array(
 	"Keine", "Links, fest", "Rechts, fest", "Links, schwebend"
 );
@@ -899,8 +889,8 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 class LanguageDe extends Language {
 
 	function getDefaultUserOptions () {
-		global $wgDefaultUserOptionsDe ;
-		return $wgDefaultUserOptionsDe ;
+		$opt = Language::getDefaultUserOptions();
+		return $opt;
 		}
 
 	function getBookstoreList () {
