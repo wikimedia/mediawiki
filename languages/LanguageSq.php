@@ -24,8 +24,9 @@ require_once("LanguageUtf8.php");
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_diskutim",
 	10  => "Stampa",
-	11  => "Stampa_diskutim"
-
+	11  => "Stampa_diskutim",
+        NS_HELP             => 'Ndihmë',
+        NS_HELP_TALK        => 'Ndihmë_diskutim'
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsSq = array(
