@@ -255,6 +255,7 @@ If upgrading from an older release, see the file UPGRADE;
 * Suppress notice error on bogus timestamp input (returns epoch as before)
 * Remove unnecessary initialization and double-caching of parser variables
 * Call-tree output mode for profiling
+* (bug 730) configurable $wgRCMaxAge; don't try to update purged RC entries
 
 === Caveats ===
 
