@@ -1043,12 +1043,10 @@ Por favor, elige otro nombre.",
 # Special:Allpages
 'nextpage'          => 'Next page ($1)',
 'articlenamespace'  => '(artículos)',
-'allpagesformtext1' => 'Mostrar páginas que comiencen por: $1',
-'allpagesformtext2' => 'Elige espacio de nombres: $1 $2',
 'allarticles'       => 'Todos los artículos',
 'allpagesprev'      => 'Anterior',
 'allpagesnext'      => 'Siguiente',
-'allpagesnamespace' => 'Todas las páginas (espacio $1)',
+'allinnamespace' => 'Todas las páginas (espacio $1)',
 'allpagessubmit'    => 'Mostrar',
 
 # Patrolling

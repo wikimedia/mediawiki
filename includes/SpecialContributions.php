@@ -244,7 +244,7 @@ function namespaceForm ( $target, $hideminor, $namespace ) {
 	$out .= '<input type="hidden" name="title" value="'.$wgContLang->specialpage( 'Contributions' ).'" />';
 	$out .= '<input type="hidden" name="target" value="'.htmlspecialchars( $target ).'" />';
 	$out .= '<input type="hidden" name="hideminor" value="'.$hideminor.'" />';	
-	$out .= wfMsg ( 'allpagesformtext2', $namespaceselect, $submitbutton );
+	$out .= wfMsg ( 'contributionsformtext', $namespaceselect, $submitbutton );
 	$out .= '</form></div>';
 	return $out;
 }

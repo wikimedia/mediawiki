@@ -1163,15 +1163,30 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 # Special:Allpages
 'nextpage'          => 'Next page ($1)',
 'articlenamespace'  => '(articles)',
-'allpagesformtext1' => 'Display pages starting at: $1',
-'allpagesformtext2' => 'Choose namespace: $1 $2',
-'allarticles'       => 'All articles',
-'allpagesprev'      => 'Previous',
-'allpagesnext'      => 'Next',
-'allpagesnamespace' => 'All pages ($1 namespace)',
-'allpagessubmit'    => 'Go',
+'allpagesformtext' => '
+<table border="0">
+	<tr>
+		<td align="right">Display pages starting at:</td>
+		<td align="left">$1</td>
+	</tr>
+	<tr>
+		<td align="right">Namespace:</td>
+		<td align="left">$2 $3</td>
+	</tr>
+	<tr>
+		<td align="right">$4</td>
+		<td align="left">Invert</td>
+	</tr>
+</table>',
+'allarticles'		=> 'All articles',
+'allnonarticles'	=> 'All non-articles',
+'allinnamespace'	=> 'All pages ($1 namespace)',
+'allnotinnamespace'	=> 'All pages (not in $1 namespace)',
+'allpagesprev'		=> 'Previous',
+'allpagesnext'		=> 'Next',
+'allpagessubmit'	=> 'Go',
 
-# Email this user
+# E this user
 #
 'mailnologin'	=> 'No send address',
 'mailnologintext' => "You must be <a href=\"{{localurl:Special:Userlogin\">logged in</a>
@@ -1354,6 +1369,13 @@ See [[Special:Log/delete]] for a record of recent deletions and restorations.",
 'contributions' => 'User contributions',
 'mycontris'     => 'My contributions',
 'contribsub'    => "For $1",
+'contributionsformtext' => '
+<table border="0">
+        <tr>
+                <td align="right">Namespace:</td>
+                <td align="left">$1 $2</td>
+        </tr>
+</table>',
 'nocontribs'    => 'No changes were found matching these criteria.',
 'ucnote'        => "Below are this user's last <b>$1</b> changes in the last <b>$2</b> days.",
 'uclinks'       => "View the last $1 changes; view the last $2 days.",
@@ -1958,7 +1980,7 @@ class Language {
 		global $wgUser, $wgLocalTZoffset;
 
 		if (!$tz) {
-		$tz = $wgUser->getOption( 'timecorrection' );
+			$tz = $wgUser->getOption( 'timecorrection' );
 		}
 
 		if ( $tz === '' ) {
@@ -2026,7 +2048,7 @@ class Language {
 		}
 		return $this->formatNum( $t );
 	}
-
+	
 	function timeanddate( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false, $dateandtime = false) {
 		global $wgUser;
 		$ts=wfTimestamp(TS_MW,$ts);

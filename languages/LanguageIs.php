@@ -156,7 +156,6 @@ svo auðveldara sé að sjá hana þar meðal fjöldans.
 'allmessages' => 'Kerfismeldingar',
 'allmessagestext' => 'Listi yfir meldingar í kerfismeldingarýminu.',
 'allpages' => 'Allar síður',
-'allpagesformtext2' => 'Nafnrými: $1 $2',
 'alphaindexline' => '$1 til $2',
 'alreadyloggedin' => '<font color=red><b>Notandinn $1 er þegar innskráður!</b></font><br />',
 'ancientpages' => 'Elstu síður',

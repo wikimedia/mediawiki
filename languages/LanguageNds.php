@@ -868,12 +868,10 @@ Du kannst de List kötter maken, wenn du den Logtyp, den Brukernaam oder de de S
 # Special:Allpages
 'nextpage'          => 'tokamen Siet ($1)',
 'articlenamespace'  => '(Artikels)',
-'allpagesformtext1' => 'Wies Sieten, anfungen bi: $1',
-'allpagesformtext2' => 'Wähl Naamruum: $1 $2',
 'allarticles'       => 'Alle Artikels',
 'allpagesprev'      => 'vörig',
 'allpagesnext'      => 'tokamen',
-'allpagesnamespace' => 'Alle Sieten ($1 Naamruum)',
+'allinnamespace' => 'Alle Sieten ($1 Naamruum)',
 'allpagessubmit'    => 'Los',
 
 # Oppasslist
