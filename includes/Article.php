@@ -34,6 +34,7 @@ class Article {
 	var $mId, $mTable;
 	var $mForUpdate;
 	var $mOldId;
+	var $mRevIdFetched;
 	/**#@-*/
 
 	/**
@@ -68,6 +69,7 @@ class Article {
 		$this->mTouched = '19700101000000';
 		$this->mForUpdate = false;
 		$this->mIsRedirect = false;
+		$this->mRevIdFetched = false;
 	}
 
 	/**
@@ -426,7 +428,9 @@ class Article {
 		$this->mComment   = $revision->getComment();
 		$this->mTimestamp = wfTimestamp( TS_MW, $revision->getTimestamp() );
 		
+		$this->mRevIdFetched = $revision->getID();
 		$this->mContentLoaded = true;
+		
 		return $this->mContent;
 	}
 
@@ -574,6 +578,11 @@ class Article {
 	function getMinorEdit() {
 		$this->loadLastEdit();
 		return $this->mMinorEdit;
+	}
+	
+	function getRevIdFetched() {
+		$this->loadLastEdit();
+		return $this->mRevIdFetched;
 	}
 
 	function getContributors($limit = 0, $offset = 0) {

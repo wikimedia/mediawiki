@@ -241,6 +241,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_NOCONTENTCONVERT     => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__'),
 	MAG_CURRENTWEEK          => array( 1,    'CURRENTWEEK'            ),
 	MAG_CURRENTDOW           => array( 1,    'CURRENTDOW'             ),
+	MAG_REVISIONID           => array( 1,    'REVISIONID'             ),    
 );
 
 #-------------------------------------------------------------------

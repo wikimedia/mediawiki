@@ -16,6 +16,8 @@ New exciting things! Need further work and testing...
 * New WikiSyntax: -- turns into &emdash; or &ndash; depending on context
 * (bug 15) Allow editors to view diff of their change before actually submitting an edit
 * (bug 190) Hide your own edits on the watchlist
+* (bug 1739) Magic keyword {{REVISIONID}} give you the article or diff database
+~ revision id, useful for proper citation.
 * ...and more!
 
 Need to merge:
