@@ -616,9 +616,8 @@ special external link styling */
     font-size:95%;
 }
 .portlet li {
-    padding:0;
-    margin: 0 0 0 0;
-    margin-bottom: 0;
+    padding: 0;
+    margin: 0;
 }
 
 /*
@@ -674,8 +673,8 @@ input.searchButton {
     font-weight: bold;
 }
 #searchInput {
-    width:10.9em;
-    margin: 0 0 0 0;
+    width: 10.9em;
+    margin: 0;
     font-size: 95%;
 }
 #p-search .pBody {
@@ -689,8 +688,8 @@ input.searchButton {
 #p-personal {
     width:100%;
     white-space:nowrap;
-    padding:0 0 0 0;
-    margin:0;
+    padding: 0;
+    margin: 0;
     position:absolute;
     left:0px;
     top:0px;
@@ -753,8 +752,7 @@ in bg url to hide it from iemac */
 li#pt-userpage,
 li#pt-anonuserpage,
 li#pt-login {
-    background:  url('user.gif') top left no-repeat;
-    background-repeat: no-repeat;
+    background: url('user.gif') top left no-repeat;
     padding-left: 20px;
     text-transform: none;
 }
