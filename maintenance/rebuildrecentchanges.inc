@@ -7,7 +7,7 @@ function rebuildRecentChangesTablePass1()
 {
 	$fname = 'rebuildRecentChangesTablePass1';
 	$dbw =& wfGetDB( DB_MASTER );
-	extract( $dbw->tableNames( 'recentchanges', 'cur', 'old' );
+	extract( $dbw->tableNames( 'recentchanges', 'cur', 'old' ) );
 
 	$dbw->delete( 'recentchanges', '*' );
 
@@ -29,7 +29,7 @@ function rebuildRecentChangesTablePass1()
 			'rc_this_oldid' => 0,
 			'rc_last_oldid' => 0,
 			'rc_type' => 'IF(cur_is_new,' . RC_NEW . ',' . RC_EDIT . ')'
-		), '*', $fname, array( 'ORDER BY' => 'inverse_timestamp', 'LIMIT' => 5000 
+		), '*', $fname, array( 'ORDER BY' => 'inverse_timestamp', 'LIMIT' => 5000 )
 	);
 	
 	print( "Loading from OLD table...\n" );
@@ -56,7 +56,7 @@ function rebuildRecentChangesTablePass1()
 function rebuildRecentChangesTablePass2()
 {
 	$dbw =& wfGetDB( DB_MASTER );
-	extract( $dbw->tableNames( 'recentchanges', 'cur', 'old' );
+	extract( $dbw->tableNames( 'recentchanges', 'cur', 'old' ) );
 
 	$ns = $id = $count = 0;
 	$title = $ct =  "";

@@ -8,7 +8,7 @@ function refreshLinks( $start ) {
 
 	$dbw =& wfGetDB( DB_MASTER );
 	
-	$end = $dbw->selectField( 'cur_id', 'max(cur_id)', false );
+	$end = $dbw->selectField( 'cur', 'max(cur_id)', false );
 
 	print("Refreshing link table. Starting from cur_id $start of $end.\n");
 
