@@ -189,6 +189,16 @@ class OutputPage {
 	function setLanguageLinks($newLinkArray) {
 		$this->mLanguageLinks = $newLinkArray;
 	}
+	function getCategoryLinks() {
+		return $this->mCategoryLinks;
+	} 
+	function addCategoryLinks($newLinkArray) {
+		$this->mCategoryLinks += $newLinkArray;
+	}
+	function setCategoryLinks($newLinkArray) {
+		$this->mCategoryLinks += $newLinkArray;
+	}
+
 	function suppressQuickbar() { $this->mSuppressQuickbar = true; }
 	function isQuickbarSuppressed() { return $this->mSuppressQuickbar; }
 
