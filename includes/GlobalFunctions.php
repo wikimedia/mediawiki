@@ -64,6 +64,15 @@ function wfLocalUrlE( $a, $q = "" )
 	return wfEscapeHTML( wfLocalUrl( $a, $q ) );
 }
 
+function wfFullUrl( $a, $q = "" ) {
+	global $wgServer;
+	return $wgServer . "/" . wfLocalUrl( $a, $q );
+}
+
+function wfFullUrlE( $a, $q = "" ) {
+	return wfEscapeHTML( wfFullUrl( $a, $q ) );
+}
+
 function wfImageUrl( $img )
 {
 	global $wgUploadPath;

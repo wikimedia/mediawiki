@@ -53,7 +53,7 @@ while( $row = wfFetchObject( $res ) ) {
 	$title = htmlspecialchars(
 		iconv($wgInputEncoding, "utf-8",
 		str_replace( "_", " ", $row->cur_title ) ) );
-	$url = wfLocalUrl( wfUrlencode( $row->cur_title ) );
+	$url = wfFullUrl( wfUrlencode( $row->cur_title ) );
 	$description = "<description>" . iconv($wgInputEncoding, "utf-8",
 		htmlspecialchars( $row->cur_comment )) . "</description>";
 	echo "
