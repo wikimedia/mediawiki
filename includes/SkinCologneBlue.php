@@ -97,7 +97,20 @@ class SkinCologneBlue extends Skin {
 	}
 	function sysLinks()
 	{
-		global $wgUser;
+		global $wgUser, $wgLang, $wgTitle;
+		$li = $wgLang->specialPage("Userlogin");
+		$lo = $wgLang->specialPage("Userlogout");
+
+		$rt = $wgTitle->getPrefixedURL();
+		if ( 0 == strcasecmp( urlencode( $lo ), $rt ) ) {
+			$q = "";
+		} else { 
+			$q = "returnto={$rt}"; 
+		}
+		
+		$s .= "\n<br>" . $this->makeKnownLink( $li,
+		  wfMsg( "login" ), $q );
+
 		$s = "" .
 		  $this->makeKnownLink( wfMsg( "mainpage" ), wfMsg( "mainpage" ) )
 		  . " | " .
@@ -107,8 +120,17 @@ class SkinCologneBlue extends Skin {
 		  . " | " .
 		  $this->makeKnownLink( wfMsg( "faqpage" ), wfMsg("faq") )
 		  . " | " .
-		  $this->specialLink( "specialpages" ) . " | " .
-		  $this->specialLink( $wgUser->getID() ? "userlogout" : "userlogin" ) ;
+		  $this->specialLink( "specialpages" ) . " | ";
+
+		if ( $wgUser->getID() )
+		{
+			$s .=  $this->makeKnownLink( $lo, wfMsg( "logout" ), $q );
+		}
+		else
+		{
+			$s .=  $this->makeKnownLink( $li, wfMsg( "login" ), $q );
+		}
+
 		return $s;
 	}
 
