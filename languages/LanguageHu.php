@@ -49,13 +49,6 @@ require_once("LanguageUtf8.php");
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesHu = array(
-	"Mindig készítsen PNG-t",
-	"HTML ha nagyon egyszerű, egyébként PNG",
-	"HTML ha lehetséges, egyébként PNG",
-	"Hagyja TeX formában (szöveges böngészőknek)",
-	"Modern böngészőknek ajánlott beállítás"
-);
 
 /* private */ $wgDateFormatsHu = array(
 	"Mindegy",
@@ -1061,6 +1054,15 @@ rendszerbe való importálásra, átalakításra vagy a saját szórakoztatásod
 
 "allmessages"	=> "All_messages",
 "allmessagestext"	=> "Ez a MediaWiki: névtérben elérhető összes üzenet listája"
+
+# Math
+
+	'mw_math_png' => "Mindig készítsen PNG-t",
+	'mw_math_simple' => "HTML ha nagyon egyszerű, egyébként PNG",
+	'mw_math_html' => "HTML ha lehetséges, egyébként PNG",
+	'mw_math_source' => "Hagyja TeX formában (szöveges böngészőknek)",
+	'mw_math_modern' => "Modern böngészőknek ajánlott beállítás",
+	'mw_math_mathml' => 'MathML',
 );
 
 class LanguageHu extends LanguageUtf8 {
@@ -1099,11 +1101,6 @@ class LanguageHu extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesHu;
 		return $wgSkinNamesHu;
-	}
-	
-	function getMathNames() {
-		global $wgMathNamesHu;
-		return $wgMathNamesHu;
 	}
 	
 	function getDateFormats() {

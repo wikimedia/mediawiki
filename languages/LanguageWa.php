@@ -41,13 +41,6 @@ require_once( "LanguageUtf8.php" );
 	"Sitandård", "Nostaldjike", "Bleu Cologne", "Paddington", "Montparnasse"
 );
 
-/* private */ $wgMathNamesWa = array(
-	"Håyner tofer come ene imådje PNG",
-	"Håyner en HTML si c'&nbsp;est foirt simpe, ôtmint e PNG",
-	"Håyner en HTML si c'&nbsp;est possibe, ôtmint e PNG",
-	"El leyî e TeX (po les betchteus e môde tecse)",
-	"Ricmandé po les betchteus modienes"
-);
 
 /* private */ $wgDateFormatsWa = array( /* cwè fé chal ??? */
 	"Nole preferince",
@@ -1151,6 +1144,14 @@ amusement.", # co a fé
 
 "allmessages"	=> "Tos les messaedjes",
 "allmessagestext"	=> "Çouchal est ene djivêye di tos les messaedjes k'&nbsp;i gn a dins l'&nbsp;espåce di lomaedje ''MediaWiki:''",
+
+# Math
+
+'mw_math_png' => "Håyner tofer come ene imådje PNG",
+'mw_math_simple' => "Håyner en HTML si c'&nbsp;est foirt simpe, ôtmint e PNG",
+'mw_math_html' => "Håyner en HTML si c'&nbsp;est possibe, ôtmint e PNG",
+'mw_math_source' => "El leyî e TeX (po les betchteus e môde tecse)",
+'mw_math_modern' => "Ricmandé po les betchteus modienes",
 );
 
 #--------------------------------------------------------------------------
@@ -1191,11 +1192,6 @@ class LanguageWa extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesWa;
 		return $wgSkinNamesWa;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesWa;
-		return $wgMathNamesWa;
 	}
 
 	function getDateFormats() {

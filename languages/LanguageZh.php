@@ -49,13 +49,6 @@ require_once( "LanguageUtf8.php" );
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesZh = array(
-	"永远使用PNG图像",    /* "Always render PNG" */
-	"如果是简单的公式使用HTML，否则使用PNG图像",   /* "HTML if very simple or else PNG" */
-	"如果可以用HTML，否则用PNG图像",   /* "HTML if possible or else PNG" */
-	"显示为TeX代码(使用文字浏览器时)",  /* "Leave it as TeX (for text browsers)" */
-	"推荐为新版浏览器使用"  /* "Recommended for modern browsers" */
-);
 
 /* private */ $wgUserTogglesZh = array(
 	"hover"		=> "滑过Wiki链接时显示注释",
@@ -945,6 +938,14 @@ Wikipedia与这些公司并没有任何商业关系，因此本表不应该
 "talkpagemoved" => "相应的对话页也已经移动。",
 "talkpagenotmoved" => "相应的对话页<strong>没有</strong>被移动。",
 
+# Math
+
+'mw_math_png' => "永远使用PNG图像",    /* "Always render PNG" */
+'mw_math_simple' => "如果是简单的公式使用HTML，否则使用PNG图像",   /* "HTML if very simple or else PNG" */
+'mw_math_html' => "如果可以用HTML，否则用PNG图像",   /* "HTML if possible or else PNG" */
+'mw_math_source' => "显示为TeX代码(使用文字浏览器时)",  /* "Leave it as TeX (for text browsers)" */
+'mw_math_modern' => "推荐为新版浏览器使用",  /* "Recommended for modern browsers" */
+
 );
 
 class LanguageZh extends LanguageUtf8 {
@@ -995,11 +996,6 @@ class LanguageZh extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesZh;
 		return $wgSkinNamesZh;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesZh;
-		return $wgMathNamesZh;
 	}
 
 	function getUserToggles() {

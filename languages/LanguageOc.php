@@ -39,14 +39,6 @@ require_once( "LanguageUtf8.php" );
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesOc = array(
-
-	"Totjorn produsir una image PNG",  
-	"HTML si plan simpla, senon PNG", 
-	"HTML si possibla, senon PNG", 
-	"Laissar lo còdi TeX del origina",
-	"Per los navigaire modèrn"
-);
 
 /* private */ $wgUserTogglesOc = array(
 	"hover"  => "Mostrar info-botiòlas sus ligams wiki",
@@ -890,6 +882,15 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.", // Looxix
 "talkpagemoved" => "La page discussion correspondante a également été déplacée.",
 "talkpagenotmoved" => "La page discussion correspondante n'a <strong>pas</strong> été déplacée.",
 
+# Math
+
+	'mw_math_png' => "Totjorn produsir una image PNG",  
+	'mw_math_simple' => "HTML si plan simpla, senon PNG", 
+	'mw_math_html' => "HTML si possibla, senon PNG", 
+	'mw_math_source' => "Laissar lo còdi TeX del origina",
+	'mw_math_modern' => "Per los navigaire modèrn",
+	'mw_math_mathml' => 'MathML',
+
 );
 
 class LanguageOc extends LanguageUtf8
@@ -948,12 +949,6 @@ class LanguageOc extends LanguageUtf8
 		global $wgSkinNamesOc;
 		return $wgSkinNamesOc;
 	}
-
-	function getMathNames() {
-		global $wgMathNamesOc;
-		return $wgMathNamesOc;
-	}
-
 
 	function getUserToggles()
 	{

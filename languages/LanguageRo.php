@@ -43,13 +43,6 @@ require_once("LanguageUtf8.php");
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesRo = array(
-	"Întotdeauna PNG",
-	"HTML dacă e foarte simplu sau PNG altfel",
-	"HTML dacă e posibil sau PNG altfel",
-	"Lasă-l TeX (pentru browsere text)",
-	"Recomandat pentru browsere moderne"
-);
 
 /* private */ $wgDateFormatsRo = array(
 	"Nici o preferinţă",
@@ -1029,6 +1022,15 @@ pate fi transformat sau păstrat pur şi simplu fiindcă doriţi Dvs. să-l păs
 
 "allmessages"	=> "Toate_mesajele",
 "allmessagestext"	=> "Aceasta este lista completă a mesajelor disponibile în domeniul \"MediaWiki:\"",
+
+# Math
+
+	'mw_math_png' => "Întotdeauna PNG",
+	'mw_math_simple' => "HTML dacă e foarte simplu sau PNG altfel",
+	'mw_math_html' => "HTML dacă e posibil sau PNG altfel",
+	'mw_math_source' => "Lasă-l TeX (pentru browsere text)",
+	'mw_math_modern' => "Recomandat pentru browsere moderne",
+	'mw_math_mathml' => 'MathML',
 );
 
 class LanguageRo extends LanguageUtf8 {
@@ -1066,11 +1068,6 @@ class LanguageRo extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesRo;
 		return $wgSkinNamesRo;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesRo;
-		return $wgMathNamesRo;
 	}
 
         function getDateFormats() {

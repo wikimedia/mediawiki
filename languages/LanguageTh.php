@@ -38,14 +38,6 @@
  "myskin" => "MySkin"
 );
 
-/* private */ $wgMathNamesTh = array(
-	"Always render PNG",
-	"HTML if very simple or else PNG",
-	"HTML if possible or else PNG",
-	"Leave it as TeX (for text browsers)",
-	"Recommended for modern browsers"
-);
-
 /* private */ $wgDateFormatsTh = array(
 	"No preference",
 	"มกราคม 15, 2001",
@@ -1069,7 +1061,16 @@ amusement.",
 # Namespace 8 related
 
 "allmessages"	=> "All_messages",
-"allmessagestext"	=> "This is a list of all messages available in the MediaWiki: namespace"
+"allmessagestext"	=> "This is a list of all messages available in the MediaWiki: namespace",
+
+# Math options
+'mw_math_png' => 'Always render PNG',
+'mw_math_simple' => 'HTML if very simple or else PNG',
+'mw_math_html' => 'HTML if possible or else PNG',
+'mw_math_source' => 'Leave it as TeX (for text browsers)',
+'mw_math_modern' => 'Recommended for modern browsers',
+'mw_math_mathml' => 'MathML if possible (experimental)',
+
 );
 
 #--------------------------------------------------------------------------
@@ -1107,11 +1108,6 @@ class LanguageTh extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesTh;
 		return $wgSkinNamesTh;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesTh;
-		return $wgMathNamesTh;
 	}
 
 	function getDateFormats() {
