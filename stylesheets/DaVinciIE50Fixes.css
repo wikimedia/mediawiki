@@ -31,8 +31,8 @@ table.listing td.top {
     background: none;
     padding: 0;
 }
-
-#portal-personaltools .portalUser {
+#personaltools-userpage,
+#personaltools-login {
     background: none;
     padding-left: none;
 }
