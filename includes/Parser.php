@@ -1234,6 +1234,8 @@ class Parser
 		# /Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
 		global $wgNamespacesWithSubpages;
 
+		$fname = 'Parser::maybeDoSubpageLink';
+		wfProfileIn( $fname );
 		# Look at the first character
 		if( $target{0} == '/' ) {
 			# / at end means we don't want the slash to be shown
@@ -1260,6 +1262,7 @@ class Parser
 			$ret = $target;
 		}
 
+		wfProfileOut( $fname );
 		return $ret;
 	}
 
@@ -1395,7 +1398,7 @@ class Parser
 					# So we check for : in the remainder text to split up the
 					# title and definition, without b0rking links.
 					# FIXME: This is not foolproof. Something better in Tokenizer might help.
-					if( preg_match( '/^(.*?(?:\s|&nbsp;)):(.*)$/', $t, $match ) ) {
+					if( preg_match( '/^(.*?):(.*)$/', $t, $match ) ) {
 						$term = $match[1];
 						$output .= $term . $this->nextItem( ':' );
 						$t = $match[2];
@@ -1419,7 +1422,7 @@ class Parser
 
 					if ( ';' == $char ) {
 						# FIXME: This is dupe of code above
-						if( preg_match( '/^(.*?(?:\s|&nbsp;)):(.*)$/', $t, $match ) ) {
+						if( preg_match( '/^(.*?):(.*)$/', $t, $match ) ) {
 							$term = $match[1];
 							$output .= $term . $this->nextItem( ':' );
 							$t = $match[2];
@@ -1550,7 +1553,7 @@ class Parser
 	 * @access private
 	 */
 	function initialiseVariables() {
-		$fname = 'Parser::initialiseVaraibles';
+		$fname = 'Parser::initialiseVariables';
 		wfProfileIn( $fname );
 		global $wgVariableIDs;
 		$this->mVariables = array();
@@ -1558,7 +1561,6 @@ class Parser
 			$mw =& MagicWord::get( $id );
 			$mw->addToArray( $this->mVariables, $this->getVariableValue( $id ) );
 		}
-		$fname = 'Parser::initialiseVaraibles';
 		wfProfileOut( $fname );
 	}
 
