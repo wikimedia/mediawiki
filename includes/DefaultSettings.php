@@ -721,6 +721,12 @@ $wgAllowUserJs = true;
 # Allow user Cascading Style Sheets (CSS)?
 $wgAllowUserCss = true;
 
+# Use the site's Javascript page?
+$wgUseSiteJs = true;
+
+# Use the site's Cascading Style Sheets (CSS)?
+$wgUseSiteCss = true;
+	
 # Filter for Special:Randompage. Part of a WHERE clause
 $wgExtraRandompageSQL = false;
 

@@ -5,7 +5,7 @@
     <div tal:replace="structure headlinks"></div>
     <title tal:content="pagetitle">Exciting xhtml slimfast</title>
     <style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "${stylepath}/${stylename}/main.css"; /*]]>*/</style>
-    <script type="text/javascript" tal:attributes="src jsvarurl"></script>
+    <script tal:condition="jsvarurl" type="text/javascript" tal:attributes="src jsvarurl"></script>
     <script type="text/javascript" src="${stylepath}/common/wikibits.js"></script>
     <style tal:condition="usercss" tal:content="structure usercss" type="text/css"></style>
     <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script><script 
