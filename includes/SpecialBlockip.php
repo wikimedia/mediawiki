@@ -160,7 +160,7 @@ class IPBlockForm {
 		# Note: for a user block, ipb_address is only for display purposes
 
 		$ban = new Block( $this->BlockAddress, $userId, $wgUser->getID(), 
-			wfStrencode( $this->BlockReason ), wfTimestampNow(), 0, $expiry );
+			$this->BlockReason, wfTimestampNow(), 0, $expiry );
 		
 		if (wfRunHooks('BlockIp', $ban, $wgUser)) {
 			
