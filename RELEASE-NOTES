@@ -22,6 +22,7 @@ Changes from 1.3.5:
   <span>.
 * catch MySQL error 2000 during installation.
 * (bug 704) Removed misleading LocalSettings.sample
+* Fix cross site scripting bug in SpecialIpblocklist
 
 
 == Version 1.3.5, 2004-09-30 ==
