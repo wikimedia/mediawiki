@@ -981,13 +981,11 @@ class Parser
 			# replacing any non-bracketed links
 			$trail = $this->replaceFreeExternalLinks( $trail );
 
-			$la = $sk->getExternalLinkAttributes( $url, $text );
-
 			# Use the encoded URL
 			# This means that users can paste URLs directly into the text
 			# Funny characters like &ouml; aren't valid in URLs anyway
 			# This was changed in August 2004
-			$s .= "<a href=\"{$url}\"{$la}>{$text}</a>{$dtrail}{$paren}{$trail}";
+			$s .= $sk->makeExternalLink( $url, $text, false ) . $dtrail. $paren . $trail;
 		}
 
 		wfProfileOut( $fname );
@@ -1163,11 +1161,11 @@ class Parser
 
 			//check other language variants of the link
 			//if the article does not exist
-			if($nt->getArticleID() == 0) {
-				global $wgContLang;
-				$variants = $wgContLang->getVariants();
+			global $wgContLang;
+			$variants = $wgContLang->getVariants();
+			if(sizeof($variants) > 1) {
 				$varnt = false; 
-				if(sizeof($variants) > 1) {
+				if($nt->getArticleID() == 0) {
 					foreach ( $variants as $v ) {
 						if($v == $wgContLang->getPreferredVariant())
 							continue;
