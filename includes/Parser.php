@@ -1133,9 +1133,14 @@ class Parser
 				continue;
 			}
 
-			# Make subpage if necessary, and check for leading ':'
-			$noforce = true;
-			$link = $this->maybeDoSubpageLink( $m[1], $noforce, $text );
+			# Make subpage if necessary
+			$link = $this->maybeDoSubpageLink( $m[1], $text );
+
+			$noforce = (substr($m[1], 0, 1) != ':');
+			if (!$noforce) {
+				# Strip off leading ':'
+				$link = substr($link, 1);
+			}
 			
 			$wasblank = ( '' == $text );
 			if( $wasblank ) $text = $link;
@@ -1217,12 +1222,11 @@ class Parser
 	/**
 	 * Handle link to subpage if necessary
 	 * @param $target string the source of the link
-	 * @param $target set to true unless target began with ':'
 	 * @param &$text the link text, modified as necessary
 	 * @return string the full name of the link
 	 * @access private
 	 */
-	function maybeDoSubpageLink($target, &$noforce, &$text) {
+	function maybeDoSubpageLink($target, &$text) {
 		# Valid link forms:
 		# Foobar -- normal
 		# :Foobar -- override special treatment of prefix (images, language links)
@@ -1231,11 +1235,7 @@ class Parser
 		global $wgNamespacesWithSubpages;
 
 		# Look at the first character
-		$c = $target{0};
-		$noforce = ($c != ':');
-		
-		# subpage
-		if( $c == '/' ) {
+		if( $target{0} == '/' ) {
 			# / at end means we don't want the slash to be shown
 			if(substr($target,-1,1)=='/') {
 				$target=substr($target,1,-1);
@@ -1255,12 +1255,9 @@ class Parser
 				# no subpage allowed, use standard link
 				$ret = $target;
 			}
-		} elseif( $noforce ) {
+		} else {
 			# no subpage
 			$ret = $target;
-		} else {
-			# We don't want to keep the first character
-			$ret = substr( $target, 1 );
 		}
 
 		return $ret;
@@ -1812,7 +1809,7 @@ class Parser
 		$itcamefromthedatabase = false;
 		if ( !$found ) {
 			$ns = NS_TEMPLATE;
-			$part1 = $this->maybeDoSubpageLink( $part1, $noforce, $subpage='' );
+			$part1 = $this->maybeDoSubpageLink( $part1, $subpage='' );
 			if ($subpage !== '') {
 				$ns = $this->mTitle->getNamespace();
 			}
