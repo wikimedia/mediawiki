@@ -218,25 +218,40 @@ class OutputPage {
 		return wfSetVar( $this->mParserOptions, $options );
 	}
 
-	# First pass--just handle <nowiki> sections, pass the rest off
-	# to doWikiPass2() which does all the real work.
+	# Convert wikitext to HTML and add it to the buffer
 	#
-	# $cacheArticle - assume this text is the main text for the given article
-	#
-	function addWikiText( $text, $linestart = true, $cacheArticle = NULL )
+	function addWikiText( $text, $linestart = true )
 	{
-		global $wgParser, $wgParserCache, $wgUser, $wgTitle;
+		global $wgParser, $wgTitle;
 
 		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
+		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
+		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
+		$this->addHTML( $parserOutput->getText() );
+	}
+
+	# Add wikitext to the buffer, assuming that this is the primary text for a page view
+	# Saves the text into the parser cache if possible
+	#
+	function addPrimaryWikiText( $text, $cacheArticle ) {
+		global $wgParser, $wgParserCache, $wgUser, $wgTitle;
+
+		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, true );
+
+		# Replace link holders
+		$text = $parserOutput->getText();
+		$this->replaceLinkHolders( $text );
+		$parserOutput->setText( $text );
+		
 		if ( $cacheArticle ) {
 			$wgParserCache->save( $parserOutput, $cacheArticle, $wgUser );
 		}
 
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
-		$this->addHTML( $parserOutput->getText() );
+		$this->addHTML( $text );
 	}
-
+	
 	function tryParserCache( $article, $user ) {
 		global $wgParserCache;
 		$parserOutput = $wgParserCache->get( $article, $user );
@@ -352,7 +367,7 @@ class OutputPage {
 
 		$this->sendCacheControl();
 		# Perform link colouring
-		$this->replaceLinkHolders();
+		$this->transformBuffer();
 		
 		# Disable temporary placeholders, so that the skin produces HTML
 		$sk->postParseLinkColour( false );
@@ -762,6 +777,12 @@ class OutputPage {
 		return $ret;
 	}
 	
+	# Run any necessary pre-output transformations on the buffer text
+	function transformBuffer( $options = 0 )
+	{
+		$this->replaceLinkHolders( $this->mBodytext, $options );
+	}
+
 	# Replace <!--LINK--> link placeholders with actual links, in the buffer
 	# Placeholders created in Skin::makeLinkObj()
 	# Returns an array of links found, indexed by PDBK:
@@ -769,8 +790,7 @@ class OutputPage {
 	#   1 - normal link
 	#   2 - stub
 	# $options is a bit field, RLH_FOR_UPDATE to select for update
-	function replaceLinkHolders( $options = 0 )
-	{
+	function replaceLinkHolders( &$text, $options = 0 ) {
 		global $wgUser, $wgLinkCache, $wgUseOldExistenceCheck;
 		
 		if ( $wgUseOldExistenceCheck ) {
@@ -786,7 +806,7 @@ class OutputPage {
 		
 		# Get placeholders from body
 		wfProfileIn( "$fname-match" );
-		preg_match_all( "/<!--LINK (.*?) (.*?) (.*?) (.*?)-->/", $this->mBodytext, $tmpLinks );
+		preg_match_all( "/<!--LINK (.*?) (.*?) (.*?) (.*?)-->/", $text, $tmpLinks );
 		wfProfileOut( "$fname-match" );
 		
 		if ( !empty( $tmpLinks[0] ) ) {
@@ -896,10 +916,10 @@ class OutputPage {
 			# Do the thing
 			wfProfileIn( "$fname-replace" );
 			
-			$this->mBodytext = preg_replace_callback(
+			$text = preg_replace_callback(
 				'/(<!--LINK .*? .*? .*? .*?-->)/',
 				"outputReplaceMatches",
-				$this->mBodytext);
+				$text);
 			wfProfileOut( "$fname-replace" );
 		}
 		wfProfileOut( $fname );
