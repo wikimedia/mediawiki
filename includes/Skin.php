@@ -1630,6 +1630,45 @@ class Skin {
 		return "<strong>{$prefix}{$text}{$inside}</strong>{$trail}";
 	}
 
+	/* these are used extensively in SkinPHPTal, but also some other places */
+	/*static*/ function makeSpecialUrl( $name, $urlaction='' ) {
+		$title = Title::makeTitle( NS_SPECIAL, $name );
+		$this->checkTitle(&$title, &$name);	
+		return $title->getLocalURL( $urlaction );
+	}
+	/*static*/ function makeTalkUrl ( $name, $urlaction='' ) {
+		$title = Title::newFromText( $name );
+		$title = $title->getTalkPage();
+		$this->checkTitle(&$title, &$name);	
+		return $title->getLocalURL( $urlaction );
+	}
+	/*static*/ function makeArticleUrl ( $name, $urlaction='' ) {
+		$title = Title::newFromText( $name );
+		$title= $title->getSubjectPage();
+		$this->checkTitle(&$title, &$name);	
+		return $title->getLocalURL( $urlaction );
+	}
+	/*static*/ function makeI18nUrl ( $name, $urlaction='' ) {
+		$title = Title::newFromText( wfMsg($name) );
+		$this->checkTitle(&$title, &$name);	
+		return $title->getLocalURL( $urlaction );
+	}
+	/*static*/ function makeUrl ( $name, $urlaction='' ) {
+		$title = Title::newFromText( $name );
+		$this->checkTitle(&$title, &$name);	
+		return $title->getLocalURL( $urlaction ); 
+	}
+
+	# make sure we have some title to operate on, mind the '&'
+	/*static*/ function &checkTitle ( $title, $name ) { 
+		if(!is_object($title)) {
+			$title = Title::newFromText( $name );
+			if(!is_object($title)) {
+				$title = Title::newFromText( '<error: link target missing>' );
+			}
+		}
+	}
+
 	function fnamePart( $url )
 	{
 		$basename = strrchr( $url, "/" );
