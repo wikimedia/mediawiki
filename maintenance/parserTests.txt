@@ -166,21 +166,28 @@ asdf<!-- comment 1 -->jkl
 ### External links
 ###
 !! test
-External links 1
+External links 1-4
 !! input
 Non-bracketed: http://example.com
+
+Numbered: [http://example.com]
+
+Specified text: [http://example.com link]
+
+Trail (not sure if this is meant to work): [http://example.com link]s
 !! result
 <p>Non-bracketed: <a href="http://example.com" class='external' title="http://example.com">http://example.com</a>
+</p><p>Numbered: <a href="http://example.com"  class='external' title="http://example.com">[1]</a><span class='urlexpansion'> (<i>http://example.com</i>)</span>
+</p><p>Specified text: <a href="http://example.com"  class='external' title="http://example.com">link</a><span class='urlexpansion'> (<i>http://example.com</i>)</span>
+</p><p>Trail (not sure if this is meant to work): <a href="http://example.com"  class='external' title="http://example.com">link</a>s<span class='urlexpansion'> (<i>http://example.com</i>)</span>
 </p>
 !! end
 
+# todo: enable these
 !! test
 !! disabled
 External links
 !! input
-Numbered: [http://example.com]
-Specified text: [http://example.com link]
-Trail (not sure if this is meant to work): [http://example.com link]s
 Unrecognised characters (for no good reason): http://example.com/1$2345  [http://example.com/1$2345]
 External image: http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
 External image from https: https://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
@@ -194,12 +201,6 @@ ja-style clickable images: [http://example.com http://meta.wikimedia.org/upload/
 Old &amp; use: http://x&y
 Escaping without &amp;: http://x&y
 !! result
-<p>Numbered: <a href='http://example.com' class='external'>[2]</a> <span class=
-'urlexpansion'>(<i>http://example.com</i>)</span></p>
-<p>Specified text: <a href='http://example.com' class='external'>link</a> <span class=
-'urlexpansion'>(<i>http://example.com</i>)</span></p>
-<p>Trail (not sure if this is meant to work): <a href='http://example.com' class='external'>link</a> <span class=
-'urlexpansion'>(<i>http://example.com</i>)</span>s</p>
 <p>Unrecognised characters (for no good reason): <a href="http://example.com/1" class='external'>http://example.com/1</a>$2345
 [http://example.com/1$2345]</p>
 <p>External image: <img src="http://example.com/test.jpg" alt="test.jpg" /></p>
@@ -220,3 +221,105 @@ link]</p>
 <p>Escaping without &amp;: <a href="http://x&y" class='external'>http://x&y</a></p>
 !! end
 
+###
+### Quotes
+###
+
+!! test
+Quotes
+!! input
+Normal text. '''Bold text.''' Normal text. ''Italic text.''
+
+'''Bold text..
+
+..spanning two paragraphs (should not work).'''
+
+Normal text. '''''Bold italic text.''''' Normal text.
+
+'''''Bold italic text '''with bold deactivated''' in between.'''''
+
+'''''Bold italic text ''with italic deactivated'' in between.'''''
+
+'''Bold tag left open
+
+''Italic tag left open
+
+Normal text.
+
+<!-- Unmatching number of opening, closing tags: -->
+'''This year''''s election ''should'' beat '''last year''''s.
+
+''Tom'''s car is bigger than ''Susan'''s.
+!! result
+<p>Normal text. <b>Bold text.</b> Normal text. <i>Italic text.</i>
+</p><p><b>Bold text..</b>
+</p><p>..spanning two paragraphs (should not work).
+</p><p>Normal text. <i><b>Bold italic text.</b></i> Normal text.
+</p><p><i><b>Bold italic text</b> with bold deactivated <b>in between.</b></i>
+</p><p><b><i>Bold italic text</i> with italic deactivated <i>in between.</i></b>
+</p><p><b>Bold tag left open</b>
+</p><p><i>Italic tag left open</i>
+</p><p>Normal text.
+</p><p><b>This year</b>'s election <i>should</i> beat <b>last year</b>'s.
+</p><p><i>Tom<b>s car is bigger than</b></i> <b>Susan</b>s.
+</p>
+!! end
+
+###
+### Internal links
+###
+!! test
+Internal links
+!! input
+Plain link, capitalized: [[Main Page]]
+!! result
+<p>Plain link, capitalized: <a href="/wiki/Main_Page" title ="Main Page">Main Page</a>
+!! end
+
+!! test
+Internal links 2
+!! disabled
+!!input
+Plain link, uncapitalized: [[main Page]]
+
+Piped link: [[Main Page|The Main Page]]
+
+Broken link: [[Zigzagzogzagzig]]
+
+Link with prefix: XXX[[main Page]], XXX[[Main Page]]
+
+Link with suffix: [[Main Page]]XXX
+
+Link with 3 brackets: [[[main page]]]
+
+Piped link with 3 brackets: [[[main page|the main page]]]
+
+Link to namespaces: [[Talk:Parser testing]], [[Meta:Disclaimers]]
+
+Piped link to namespace: [[Meta:Disclaimers|The disclaimers]]
+
+Link to category: [[:Category:MediaWiki User's Guide]]
+
+Link to image page: [[:Image:Ncwikicol.png]]
+
+Plain link to URL: [[http://www.example.org]]
+
+Piped link to URL: [[http://www.example.org|an example URL]]
+!! result
+</p><p>Plain link, uncapitalized: <a href="/wiki/Main_Page">main Page</a>
+</p><p>Piped link: <a href="/wiki/Main_Page">The Main Page</a></p>
+<p>Broken link: <a href="/w/wiki.phtml?title=Zigzagzogzagzig&action=edit" class="new">Zigzagzogzagzig</a></p>
+<p>Link with prefix: xxx<a href="/wiki/Main_Page">main Page</a>, xxx<a href="/wiki/Main_Page">Main Page</a>, Xxx<a href=
+"/wiki/Main_Page">main Page</a> XXX<a href="/wiki/Main_Page">main Page</a>, XXX<a href="/wiki/Main_Page">Main Page</a></p>
+<p>Link with suffix: <a href="/wiki/Main_Page">Main Pagexxx</a>, <a href="/wiki/Main_Page">Main Page</a>XXX</p>
+<p>Link with 3 brackets: [[[main page]]]</p>
+<p>Piped link with 3 brackets: [[[main page|the main page]]]</p>
+<p>Link to namespaces: <a href="/w/wiki.phtml?title=Talk:Parser_testing&action=edit" class="new">Talk:Parser testing</a>,
+<a href="/w/wiki.phtml?title=Meta:Disclaimers&action=edit" class="new">Meta:Disclaimers</a></p>
+<p>Piped link to namespace: <a href="/w/wiki.phtml?title=Meta:Disclaimers&action=edit" class="new">The disclaimers</a></p>
+<p>Link to category: <a href="/wiki/Category:MediaWiki_User%27s_Guide">Category:MediaWiki User's Guide</a></p>
+<p>Link to image page: <a href="/wiki/Image:Ncwikicol.png">Image:Ncwikicol.png</a></p>
+<p>Plain link to URL: [<a href='http://www.example.org' class='external'>[1]</a> <span class=
+'urlexpansion'>(<i>http://www.example.org</i>)</span>]</p>
+<p>Piped link to URL: <a href="/w/wiki.phtml?title=Http://www.example.org&action=edit" class="new">an example URL</a></p>
+!! end
