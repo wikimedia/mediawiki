@@ -1621,7 +1621,7 @@ class Skin {
 		  "<img border=\"0\" src=\"{$thumbUrl}\" alt=\"{$label}\" width=\"{$cwidth}\" height=\"{$cheight}\"></a>" .
 		  "<a href=\"{$u}\" class=\"internal\" title=\"{$more}\">" .
 		    "<img border=\"0\" src=\"{$wgUploadPath}/magnify-clip.png\" width=\"26\" height=\"24\" align=\"right\" alt=\"{$more}\"></a>" .
-		  "<p>{$label}</div></p>";
+		  "<p>{$label}</p></div>";
 		return $s;
 	}
 
