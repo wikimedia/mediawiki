@@ -243,7 +243,7 @@ class OutputPage {
 				global $wgServer;
 				$this->mRedirect = $wgServer . $this->mRedirect;
 			}
-			if( $this->mRdirectCode != '302') {
+			if( $this->mRdirectCode == '301') {
 				header("HTTP/1.1 {$this->mRedirectCode} Moved Permanently");
 				$this->mLastModified = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix(
 					max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
