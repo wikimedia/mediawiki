@@ -36,7 +36,7 @@ class Block
 		$this->mReason = $reason;
 		$this->mTimestamp = wfTimestamp(TS_MW,$timestamp);
 		$this->mAuto = $auto;
-		$this->mExpiry = $expiry;
+		$this->mExpiry = wfTimestamp(TS_MW,$expiry);
 		
 		$this->mForUpdate = false;
 		$this->initialiseRange();
@@ -127,7 +127,7 @@ class Block
 		$this->mBy = $row->ipb_by;
 		$this->mAuto = $row->ipb_auto;
 		$this->mId = $row->ipb_id;
-		$this->mExpiry = $row->ipb_expiry;
+		$this->mExpiry = wfTimestamp(TS_MW,$row->ipb_expiry);
 
 		$this->initialiseRange();
 	}	
@@ -203,7 +203,7 @@ class Block
 				'ipb_reason' => $this->mReason,
 				'ipb_timestamp' => $dbw->timestamp($this->mTimestamp),
 				'ipb_auto' => $this->mAuto,
-				'ipb_expiry' => $this->mExpiry,
+				'ipb_expiry' => $dbw->timestamp($this->mExpiry),
 			), 'Block::insert' 
 		);
 
@@ -244,7 +244,7 @@ class Block
 			$dbw->updateArray( 'ipblocks', 
 				array( /* SET */ 
 					'ipb_timestamp' => $dbw->timestamp($this->mTimestamp),
-					'ipb_expiry' => $this->mExpiry,
+					'ipb_expiry' => $dbw->timestamp($this->mExpiry),
 				), array( /* WHERE */
 					'ipb_address' => $this->mAddress
 				), 'Block::updateTimestamp' 
@@ -279,7 +279,7 @@ class Block
 	/* static */ function getAutoblockExpiry( $timestamp )
 	{
 		global $wgAutoblockExpiry;
-		return wfUnix2Timestamp( wfTimestamp2Unix( $timestamp ) + $wgAutoblockExpiry );
+		return wfTimestamp( TS_MW, wfTimestamp( TS_UNIX, $timestamp ) + $wgAutoblockExpiry );
 	}
 
 	/* static */ function normaliseRange( $range )
