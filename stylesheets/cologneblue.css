@@ -90,7 +90,6 @@ a:visited { color: #8D0749; }
 a.printable { text-decoration: underline; }
 a.stub { color:#772233; text-decoration:none; }
 h2, h3, h4, h5, h6 { margin-bottom: 0; }
-a.stub { color:#772233; text-decoration:none; }
 small { font-size: 75%; }
 #toc { border:1px solid #8888aa; background-color:#f7f8ff;padding:5px;font-size:95%; }
 
