@@ -28,15 +28,25 @@
  *
  * @package MediaWiki
  */
-
 class UserTalkUpdate {
 
-	/* private */ var $mAction, $mNamespace, $mTitle, $mSummary, $mMinorEdit, $mTimestamp;
+	/**#@+
+	 * @access private
+	 */
+	var $mAction, $mNamespace, $mTitle, $mSummary, $mMinorEdit, $mTimestamp;
+	/**#@-*/
 
+	/**
+	 * @todo document
+	 * @param string $action
+	 * @param integer $ns
+	 * @param $title
+	 * @param $summary
+	 * @param $minoredit
+	 * @param $timestamp
+	 */
 	function UserTalkUpdate( $action, $ns, $title, $summary, $minoredit, $timestamp) {
-		global $wgUser, $wgLang, $wgMemc, $wgDBname, $wgEnotif;
-		global $wgEmailNotificationForUserTalkPages, $wgEmailNotificationSystembeep;
-		global $wgEmailAuthentication;
+		global $wgUser, $wgLang, $wgMemc, $wgDBname;
 		$fname = 'UserTalkUpdate::UserTalkUpdate';
 
 		$this->mAction = $action;
@@ -62,6 +72,7 @@ class UserTalkUpdate {
 			if ( 1 == $this->mAction ) {
 				$user = new User();
 				$user->setID(User::idFromName($this->mTitle));
+
 				if ($id=$user->getID()) {
 					$sql = true;
 					$wgMemc->delete( "$wgDBname:user:id:$id" );
@@ -92,10 +103,10 @@ class UserTalkUpdate {
 					$dbw =& wfGetDB( DB_MASTER );
 					$dbw->replace( 'watchlist',
 						array(array('wl_user','wl_namespace', 'wl_title', 'wl_notificationtimestamp')),
-						  array('wl_user' 			=> $id,
-							'wl_namespace' 			=> NS_USER_TALK,
-							'wl_title' 			=> $this->mTitle,
-							'wl_notificationtimestamp' 	=> 1
+						  array('wl_user' => $id,
+							'wl_namespace' => NS_USER_TALK,
+							'wl_title' => $this->mTitle,
+							'wl_notificationtimestamp' => 1
 							), 'UserTalkUpdate'
 						);
 				}
