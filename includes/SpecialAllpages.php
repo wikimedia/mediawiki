@@ -57,16 +57,8 @@ function indexShowToplevel ( $namespace = 0 )
 	$fname = "indexShowToplevel";
 	$namespace = intval ($namespace);
 
-	# Cache
-	$vsp = $wgLang->getValidSpecialPages();
-	$log = new LogPage( $vsp["Allpages"] );
-	$log->mUpdateRecentChanges = false;
-
-	global $wgMiserMode;
-	if ( $wgMiserMode ) {
-		$log->showAsDisabledPage();
-		return;
-	}
+	# TODO: Either make this *much* faster or cache the title index points
+	# in the querycache table.
 
 	$dbr =& wfGetDB( DB_SLAVE );
 	$cur = $dbr->tableName( 'cur' );
@@ -157,9 +149,6 @@ function indexShowToplevel ( $namespace = 0 )
 		$out2 = $nsForm . '<hr />';
 	}
 
-	# Saving cache
-	$log->replaceContent( $out );
-
 	$wgOut->addHtml( $out2 . $out );
 }
 
@@ -169,14 +158,16 @@ function indexShowline( $inpoint, $outpoint, $namespace = 0 )
 	$sk = $wgUser->getSkin();
 	$dbr =& wfGetDB( DB_SLAVE );
 
-	$inpointf = str_replace( "_", " ", $inpoint );
-	$outpointf = str_replace( "_", " ", $outpoint );
-	$queryparams = 'from=' . $dbr->strencode( $inpoint );
-	if ( $namespace > 0 ) { $queryparams .= '&namespace='.intval($namespace); }
+	$inpointf = htmlspecialchars( str_replace( "_", " ", $inpoint ) );
+	$outpointf = htmlspecialchars( str_replace( "_", " ", $outpoint ) );
+	$queryparams = $namespace ? ('namespace='.intval($namespace)) : '';
+	$special = Title::makeTitle( NS_SPECIAL, 'Allpages/' . $inpoint );
+	$link = $special->escapeLocalUrl( $queryparams );
+	
 	$out = wfMsg(
 		'alphaindexline',
-		$sk->makeKnownLink( $wgLang->specialPage( "Allpages" ), $inpointf, $queryparams ) . '</td><td>',
-		'</td><td align="left">' . $outpointf
+		"<a href=\"$link\">$inpointf</a></td><td><a href=\"$link\">",
+		"</a></td><td align=\"left\"><a href=\"$link\">$outpointf</a>"
 	);
 	return '<tr><td align="right">'.$out.'</td></tr>';
 }
