@@ -29,7 +29,7 @@ if ($lang == "commons") $site = "wikimedia";
 if ($wgWikiFarm) {
 	$serverName="$lang.$site.org";
 	$newPageURLFirstPart="http://$serverName/wiki/";
-	$URLFirstPart="http://$serverName/w/wiki.phtml?title=";
+	$URLFirstPart="http://$serverName/w/index.php?title=";
 } else {
 	$newPageURLFirstPart="http://$serverName$wgScript/";
 	$URLFirstPart="http://$serverName$wgScript?title=";
