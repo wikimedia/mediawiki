@@ -259,7 +259,7 @@ class PageArchive {
 			$reason = wfMsg( 'undeletedrevisions', $restoreRevisions );
 		}
 		$log->addEntry( 'restore', $this->title, $reason );
-		
+
 		return true;
 	}
 }
@@ -429,6 +429,12 @@ class UndeleteForm {
 			$archive = new PageArchive( $this->mTargetObj );
 			if( $archive->undelete( $this->mTargetTimestamp ) ) {
 				$wgOut->addWikiText( wfMsg( "undeletedtext", $this->mTarget ) );
+
+				if (NS_IMAGE == $this->mTargetObj->getNamespace()) {
+					/* refresh image metadata cache */
+					new Image( $this->mTargetObj->getText(), true );
+				}
+
 				return true;
 			}
 		}

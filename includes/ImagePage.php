@@ -187,7 +187,7 @@ class ImagePage extends Article {
 	{
 		global $wgUser, $wgOut, $wgRequest;
 
-		$confirm = $wgRequest->getBool( 'wpConfirm' );
+		$confirm = $wgRequest->getBool( 'wpConfirmB' );
 		$image = $wgRequest->getVal( 'image' );
 		$oldimage = $wgRequest->getVal( 'oldimage' );
 		
@@ -307,6 +307,9 @@ class ImagePage extends Article {
 			$article = new Article( $nt );
 			$article->doDeleteArticle( $reason ); # ignore errors
 
+			/* refresh image metadata cache */
+			new Image( $image, true );
+
 			$deleted = $image;
 		}
 
@@ -404,6 +407,10 @@ class ImagePage extends Article {
 			$wgOut->fileCopyError( "${archive}/{$oldimage}", $curfile );
 		}
 		wfRecordUpload( $name, $oldver, $size, wfMsg( "reverted" ) );
+
+		/* refresh image metadata cache */
+		new Image( $name, true );
+
 		# Squid purging
 		if ( $wgUseSquid ) {
 			$urlArr = Array(

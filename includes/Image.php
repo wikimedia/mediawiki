@@ -36,68 +36,137 @@ class Image
 	 * Create an Image object from an image name
 	 *
 	 * @param string $name name of the image, used to create a title object using Title::makeTitleSafe
+	 * @param bool $recache if true, ignores anything in memcached and sets the updated metadata
 	 * @access public
 	 */
-	function Image( $name ) {
+	function Image( $name, $recache = false ) {
 
-		global $wgUseSharedUploads, $wgUseLatin1, $wgSharedLatin1, $wgLang;
+		global $wgUseSharedUploads, $wgUseLatin1, $wgSharedLatin1, $wgLang, $wgMemc, $wgDBname;
 
 		$this->name      = $name;
 		$this->title     = Title::makeTitleSafe( NS_IMAGE, $this->name );
 		$this->fromSharedDirectory = false;
 		$this->imagePath = $this->getFullPath();
-		$this->fileExists = file_exists( $this->imagePath);		
+
+		$n = strrpos( $name, '.' );
+		$this->extension = strtolower( $n ? substr( $name, $n + 1 ) : '' );
+		$gis = false;
+		$hashedName = md5($this->name);
+		$cacheKey = "$wgDBname:Image:".$hashedName;
+		$foundCached = false;
 		
-		# If the file is not found, and a shared upload directory 
-		# like the Wikimedia Commons is used, look for it there.
-		if (!$this->fileExists && $wgUseSharedUploads) {			
-			
-			# In case we're on a wgCapitalLinks=false wiki, we 
-			# capitalize the first letter of the filename before 
-			# looking it up in the shared repository.
-			$this->name= $wgLang->ucfirst($name);
-			
-			# Encode the filename if we're on a Latin1 wiki and the
-			# shared repository is UTF-8
-			if($wgUseLatin1 && !$wgSharedLatin1) {
-				$this->name  = utf8_encode($name);
+		if ( !$recache ) {
+			$cachedValues = $wgMemc->get( $cacheKey );
+
+			if (!empty($cachedValues) && is_array($cachedValues)) {
+				if ($wgUseSharedUploads && $cachedValues['fromShared']) {
+					# if this is shared file, we need to check if image
+					# in shared repository has not changed
+					$commonsCachedValues = $wgMemc->get( "$wgSharedUploadDBname:Image:".$hashedName );
+					if (!empty($commonsCachedValues) && is_array($commonsCachedValues)) {
+						$this->name = $commonsCachedValues['name'];
+						$this->imagePath = $commonsCachedValues['imagePath'];
+						$this->fileExists = $commonsCachedValues['fileExists'];
+						$this->fromSharedDirectory = true;
+						$gis = $commonsCachedValues['gis'];
+						$foundCached = true;
+					}
+				}
+				else {
+					$this->name = $cachedValues['name'];
+					$this->imagePath = $cachedValues['imagePath'];
+					$this->fileExists = $cachedValues['fileExists'];
+					$this->fromSharedDirectory = false;
+					$gis = $cachedValues['gis'];
+					$foundCached = true;
+				}
 			}
-			
-			$this->imagePath = $this->getFullPath(true);
-			$this->fileExists = file_exists( $this->imagePath);
-			$this->fromSharedDirectory = true;
-			$name=$this->name;
-			
 		}
+
+		if (!$foundCached) {
+			$this->fileExists = file_exists( $this->imagePath); 	
+
+			# If the file is not found, and a shared upload directory 
+			# like the Wikimedia Commons is used, look for it there.
+			if (!$this->fileExists && $wgUseSharedUploads) {			
+				
+				# In case we're on a wgCapitalLinks=false wiki, we 
+				# capitalize the first letter of the filename before 
+				# looking it up in the shared repository.
+				$this->name= $wgLang->ucfirst($name);
+				
+				# Encode the filename if we're on a Latin1 wiki and the
+				# shared repository is UTF-8
+				if($wgUseLatin1 && !$wgSharedLatin1) {
+					$this->name  = utf8_encode($name);
+				}
+				
+				$this->imagePath = $this->getFullPath(true);
+				$this->fileExists = file_exists( $this->imagePath);
+				$this->fromSharedDirectory = true;
+				$name=$this->name;
+			}
+
+			if ( $this->fileExists ) {
+				# Don't try to get the size of sound and video files, that's bad for performance
+				if ( !Image::isKnownImageExtension( $this->extension ) ) {
+					$gis = false;
+				} elseif( $this->extension == 'svg' ) {
+					wfSuppressWarnings();
+					$gis = getSVGsize( $this->imagePath );
+					wfRestoreWarnings();
+				} else {
+					wfSuppressWarnings();
+					$gis = getimagesize( $this->imagePath );
+					wfRestoreWarnings();
+				}
+			}
+
+			$cachedValues = array('name' => $this->name,
+								  'imagePath' => $this->imagePath,
+								  'fileExists' => $this->fileExists,
+								  'fromShared' => $this->fromSharedDirectory,
+								  'gis' => $gis);
+
+			$wgMemc->set( $cacheKey, $cachedValues );
+
+			if ($wgUseSharedUploads && $this->fromSharedDirectory) {
+				$cachedValues['fromShared'] = false;
+				$wgMemc->set( "$wgSharedUploadDBname:Image:".$hashedName, $cachedValues );
+			}
+		}
+
+		if( $gis !== false ) {
+			$this->width = $gis[0];
+			$this->height = $gis[1];
+			$this->type = $gis[2];
+			$this->attr = $gis[3];
+			if ( isset( $gis['bits'] ) )  {
+				$this->bits = $gis['bits'];
+			} else {
+				$this->bits = 0;
+			}
+		}
+
 		if($this->fileExists) {			
 			$this->url = $this->wfImageUrl( $this->name, $this->fromSharedDirectory );
 		} else {
 			$this->url='';
 		}
-		
-		$n = strrpos( $name, '.' );
-		$this->extension = strtolower( $n ? substr( $name, $n + 1 ) : '' );
-				
-
-		if ( $this->fileExists ) {
-			if( $this->extension == 'svg' ) {
-				@$gis = getSVGsize( $this->imagePath );
-			} else {
-				@$gis = getimagesize( $this->imagePath );
-			}
-			if( $gis !== false ) {
-				$this->width = $gis[0];
-				$this->height = $gis[1];
-				$this->type = $gis[2];
-				$this->attr = $gis[3];
-				if ( isset( $gis['bits'] ) )  {
-					$this->bits = $gis['bits'];
-				} else {
-					$this->bits = 0;
-				}
-			}
-		}
 		$this->historyLine = 0;				
+	}
+
+	/**
+	 * Remove image metadata from cache if any
+	 *
+	 * Don't call this, use the $recache parameter of Image::Image() instead
+	 *
+	 * @param string $name the title of an image
+	 * @static
+	 */
+	function invalidateMetadataCache( $name ) {
+		global $wgMemc, $wgDBname;
+		$wgMemc->delete("$wgDBname:Image:".md5($name));
 	}
 
 	/**
@@ -586,6 +655,15 @@ class Image
 		$name     = $this->name;							
 		$fullpath = $dir . wfGetHashPath($name, $fromSharedRepository) . $name;		
 		return $fullpath;
+	}
+	
+	/**
+	 * @return bool
+	 * @static
+	 */
+	function isKnownImageExtension( $ext ) {
+		static $extensions = array( 'svg', 'png', 'jpg', 'jpeg', 'gif', 'bmp', 'xbm' );
+		return in_array( $ext, $extensions );
 	}
 	
 } //class
