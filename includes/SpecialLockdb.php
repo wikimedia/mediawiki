@@ -16,7 +16,7 @@ function wfSpecialLockdb()
 		$wgOut->developerRequired();
 		return;
 	}
-	$action = $wgRequest->getText( 'action' );
+	$action = $wgRequest->getVal( 'action' );
 	$f = new DBLockForm();
 
 	if ( "success" == $action ) { $f->showSuccess(); }
@@ -54,21 +54,27 @@ class DBLockForm {
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Lockdb" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 
-		$wgOut->addHTML( "<p>
-<form id=\"lockdb\" method=\"post\" action=\"{$action}\">
+		$wgOut->addHTML( <<<END
+<form id="lockdb" method="post" action="{$action}">
 {$elr}:
-<textarea name=\"wpLockReason\" rows=10 cols=60 wrap=virtual>
-</textarea>
-<table border=0><tr>
-<td align=right>
-<input type=checkbox name=\"wpLockConfirm\">
-</td>
-<td align=left>{$lc}<td>
-</tr><tr>
-<td>&nbsp;</td><td align=left>
-<input type=submit name=\"wpLock\" value=\"{$lb}\">
-</td></tr></table>
-</form>\n" );
+<textarea name="wpLockReason" rows="10" cols="60" wrap="virtual"></textarea>
+<table border="0">
+	<tr>
+		<td align="right">
+			<input type="checkbox" name="wpLockConfirm" />
+		</td>
+		<td align="left">{$lc}</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td align="left">
+			<input type="submit" name="wpLock" value="{$lb}" />
+		</td>
+	</tr>
+</table>
+</form>
+END
+);
 
 	}
 

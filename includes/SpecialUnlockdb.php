@@ -15,11 +15,11 @@ function wfSpecialUnlockdb() {
 		$wgOut->developerRequired();
 		return;
 	}
-	$action = $wgRequest->getText( 'action' );
+	$action = $wgRequest->getVal( 'action' );
 	$f = new DBUnlockForm();
 
 	if ( "success" == $action ) { $f->showSuccess(); }
-	else if ( "submit" == $action ) { $f->doSubmit(); }
+	else if ( "submit" == $action && $wgRequest->wasPosted() ) { $f->doSubmit(); }
 	else { $f->showForm( "" ); }
 }
 
@@ -45,18 +45,26 @@ class DBUnlockForm {
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Unlockdb" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 
-		$wgOut->addHTML( "<p>
-<form id=\"unlockdb\" method=\"post\" action=\"{$action}\">
-<table border=0><tr>
-<td align=right>
-<input type=checkbox name=\"wpLockConfirm\">
-</td>
-<td align=\"left\">{$lc}<td>
-</tr><tr>
-<td>&nbsp;</td><td align=left>
-<input type=submit name=\"wpLock\" value=\"{$lb}\">
-</td></tr></table>
-</form>\n" );
+		$wgOut->addHTML( <<<END
+
+<form id="unlockdb" method="post" action="{$action}">
+<table border="0">
+	<tr>
+		<td align="right">
+			<input type="checkbox" name="wpLockConfirm" />
+		</td>
+		<td align="left">{$lc}</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td align="left">
+			<input type="submit" name="wpLock" value="{$lb}" />
+		</td>
+	</tr>
+</table>
+</form>
+END
+);
 
 	}
 
@@ -69,7 +77,7 @@ class DBUnlockForm {
 			$this->showForm( wfMsg( "locknoconfirm" ) );
 			return;
 		}
-		if ( ! unlink( $wgReadOnlyFile ) ) {
+		if ( @! unlink( $wgReadOnlyFile ) ) {
 			$wgOut->fileDeleteError( $wgReadOnlyFile );
 			return;
 		}
