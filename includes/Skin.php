@@ -168,14 +168,7 @@ class Skin {
 			$a += array ("ondblclick" => $s);
 
 		}
-		if($action=="edit") { # set focus in edit box
-			$foc = "document.editform.wpTextbox1.focus()";
-			if($a['onload']) {
-				$a['onload'] .= ";$foc";
-			} else {
-				$a['onload'] = $foc;
-			}
-		}
+		$a['onload'] = $wgOut->getOnloadHandler();
 		return $a;
 	}
 
