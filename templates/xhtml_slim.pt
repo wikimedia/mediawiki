@@ -138,6 +138,7 @@
 	<ul id="f-list">
 	  <li id="f-lastmod" tal:condition="lastmod">${lastmod}</li>
 	  <li id="f-viewcount" tal:condition="viewcount">${viewcount}</li>
+	  <li id="f-credits" tal:condition="credits">${credits}</li>
 	  <li id="f-copyright" tal:condition="copyright">${copyright}</li>
 	  <li id="f-about" tal:condition="about">${about}</li>
 	  <li id="f-disclaimer" tal:condition="disclaimer">${disclaimer}</li>
