@@ -225,7 +225,7 @@ class Parser
 				}
 			}
 		}
-		
+
 		# nowiki
 		$text = Parser::extractTags('nowiki', $text, $nowiki_content, $uniq_prefix);
 		foreach( $nowiki_content as $marker => $content ) {
@@ -326,7 +326,7 @@ class Parser
 		for ( $content = end($state['nowiki']); $content !== false; $content = prev( $state['nowiki'] ) ) {
 			$text = str_replace( key( $state['nowiki'] ), $content, $text );
 		}
-		
+
 		global $wgRawHtml;
 		if ($wgRawHtml) {
 			for ( $content = end($state['html']); $content !== false; $content = prev( $state['html'] ) ) {
@@ -640,9 +640,9 @@ class Parser
 			'/(\\w+)(\\s*=\\s*([^\\s\">]+|\"[^\">]*\"))?/e',
 			"(in_array(strtolower(\"\$1\"),\$htmlattrs)?(\"\$1\".((\"x\$3\" != \"x\")?\"=\$3\":'')):'')",
 			$t);
-			
+
 		$t = str_replace ( "<></>" , "" , $t ) ; # This should fix bug 980557
-			
+
 		# Strip javascript "expression" from stylesheets. Brute force approach:
 		# If anythin offensive is found, all attributes of the HTML tag are dropped
 
@@ -848,7 +848,7 @@ class Parser
 		wfProfileOut( $fname );
 		return $text;
 	}
-	
+
 	/* private */ function &doMagicLinks( &$text ) {
 		$text = $this->magicISBN( $text );
 		$text = $this->magicGEO( $text );
@@ -929,7 +929,7 @@ class Parser
 				}
 				$i++;
 			}
-			
+
 			# If there is an odd number of both bold and italics, it is likely
 			# that one of the bold ones was meant to be an apostrophe followed
 			# by italics. Which one we cannot know for certain, but it is more
@@ -956,7 +956,7 @@ class Parser
 					}
 					$i++;
 				}
-		
+
 				# If there is a single-letter word, use it!
 				if ($firstsingleletterword > -1)
 				{
@@ -976,7 +976,7 @@ class Parser
 					$arr [ $firstspace-1 ] .= "'";
 				}
 			}
-		
+
 			# Now let's actually convert our apostrophic mush to HTML!
 			$output = '';
 			$buffer = '';
@@ -1087,12 +1087,12 @@ class Parser
 		$rxImageURL = "/(^|[^\\[])({$protocol}:)([{$uc}{$sep}]+)\\/([{$fnc}]+)\\." .
 		  "((?i){$images})([^{$uc}]|$)/";
 
-		# Regexp for matching non-delimited URLs 
+		# Regexp for matching non-delimited URLs
 		$rxFreeURL = "/(^|[^\\[])({$protocol}:)(([".$uc."]|[".$sep."][".$uc."])+)([^". $uc . $sep. "]|[".$sep."]|$)/";
 		$sk =& $this->mOptions->getSkin();
 
 		# Replace image URLs with <img> tags, but only for HTTP and HTTPS ($autonumber=true)
-		if ( $autonumber and $this->mOptions->getAllowExternalImages() ) { 
+		if ( $autonumber and $this->mOptions->getAllowExternalImages() ) {
 			$s = preg_replace( $rxImageURL, '\\1' . $sk->makeImage( "{$unique}:\\3" .
 			  '/\\4.\\5', '\\4.\\5' ) . '\\6', $s );
 		}
@@ -1801,7 +1801,7 @@ class Parser
 			if ( isset( $this->mTemplatePath[$part1] ) ) {
 				$noparse = true;
 				$found = true;
-			}                  
+			}
 			# set $text to cached message.
 			$text = $this->mTemplates[$part1];
 			$found = true;
