@@ -150,8 +150,9 @@ class LoadBalancer {
 		} else {
 			# Explicit index
 			if ( !array_key_exists( $i, $this->mConnections) || !$this->mConnections[$i]->isOpen() ) {
+				global $wgDebugDumpSql;
 				$this->mConnections[$i] = Database::newFromParams( $this->mServers[$i], $this->mUser, 
-				  $this->mPassword, $this->mDbName, 1 );
+				  $this->mPassword, $this->mDbName, 1, $wgDebugDumpSql );
 			}
 			if ( !$this->mConnections[$i]->isOpen() ) {
 				wfDebug( "Failed to connect to database $i at {$this->mServers[$i]}\n" );
