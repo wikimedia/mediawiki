@@ -1161,6 +1161,7 @@ class Parser
 			$prefix = '';
 		}
 
+		$selflink = $this->mTitle->getPrefixedText();
 		wfProfileOut( $fname.'-setup' );
 
 		$checkVariantLink = sizeof($wgContLang->getVariants())>1;
@@ -1217,7 +1218,7 @@ class Parser
 				$link = substr($link, 1);
 			}
 			
-			$nt = Title::newFromText( $this->unstripNoWiki($link, $this->mStripState) );
+			$nt =& Title::newFromText( $this->unstripNoWiki($link, $this->mStripState) );
 			if( !$nt ) {
 				$s .= $prefix . '[[' . $line;
 				continue;
@@ -1285,6 +1286,8 @@ class Parser
 				}
 				
 				if ( $ns == NS_IMAGE ) {
+					wfProfileIn( "$fname-image" );
+					
 					# recursively parse links inside the image caption
 					# actually, this will parse them in any other parameters, too,
 					# but it might be hard to fix that, and it doesn't matter ATM
@@ -1294,11 +1297,14 @@ class Parser
 					# replace the image with a link-holder so that replaceExternalLinks() can't mess with it
 					$s .= $prefix . $this->insertStripItem( $sk->makeImageLinkObj( $nt, $text ), $this->mStripState ) . $trail;
 					$wgLinkCache->addImageLinkObj( $nt );
+					
+					wfProfileOut( "$fname-image" );
 					continue;
 				}
 				
 				if ( $ns == NS_CATEGORY ) {
-					$t = $nt->getText() ;
+					wfProfileIn( "$fname-category" );
+					$t = $nt->getText();
 
 					$wgLinkCache->suspend(); # Don't save in links/brokenlinks
 					$pPLC=$sk->postParseLinkColour();
@@ -1319,11 +1325,13 @@ class Parser
 					$wgLinkCache->addCategoryLinkObj( $nt, $sortkey );
 					$this->mOutput->mCategoryLinks[] = $t ;
 					$s .= $prefix . $trail ;
+					
+					wfProfileOut( "$fname-category" );
 					continue;
 				}
 			}
 
-			if( ( $nt->getPrefixedText() === $this->mTitle->getPrefixedText() ) &&
+			if( ( $nt->getPrefixedText() === $selflink ) &&
 			    ( $nt->getFragment() === '' ) ) {
 				# Self-links are handled specially; generally de-link and change to bold.
 				$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, '', $trail );
