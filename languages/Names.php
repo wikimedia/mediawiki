@@ -55,6 +55,7 @@
 	'fj' => 'Na Vosa Vakaviti',	# Fijian
 	'fo' => 'F&oslash;royskt',	# Faroese
 	'fr' => 'Fran&ccedil;ais',	# French
+	'fur' => 'Furlan',		# Friulian
 	'fy' => 'Frysk',		# Frisian
 	'ga' => 'Gaeilge',		# Irish
 	'gd' => 'G&agrave;idhlig',	# Scots Gaelic
