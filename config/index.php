@@ -791,7 +791,7 @@ function writeLocalSettings( $conf ) {
 	$ugly = ($conf->prettyURLs ? "# " : "");
 	$rights = ($conf->RightsUrl) ? "" : "# ";
 
-	$file = @fopen( "/dev/random", "r" );
+	$file = @fopen( "/dev/urandom", "r" );
 	if ( $file ) {
 		$proxyKey = bin2hex( fread( $file, 32 ) );
 		fclose( $file );
