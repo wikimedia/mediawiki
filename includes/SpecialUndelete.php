@@ -123,14 +123,21 @@ function wfSpecialUndelete( $par )
 		$sql = "SELECT COUNT(*) AS count FROM cur WHERE cur_namespace={$namespace} AND cur_title='{$t}'";
 		$res = wfQuery( $sql, DB_READ );
 		$row = wfFetchObject( $res );
+		$now = wfTimestampNow();
+
 		if( $row->count == 0) {
 			# Have to create new article...
-			$now = wfTimestampNow();
-			$max = wfGetSQL( "archive", "MAX(ar_timestamp)", "ar_namespace={$namespace} AND ar_title='{$t}'" );
-        	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
-			  "cur_comment,cur_user,cur_user_text,cur_timestamp,inverse_timestamp,cur_minor_edit,cur_random,cur_touched)" .
+			$sql = "SELECT ar_text,ar_timestamp FROM archive WHERE ar_namespace={$namespace} AND ar_title='{$t}' ORDER BY ar_timestamp DESC LIMIT 1";
+			$res = wfQuery( $sql, DB_READ, $fname );
+			$s = wfFetchObject( $res );
+			$max = $s->ar_timestamp;
+			$redirect = MagicWord::get( MAG_REDIRECT );
+			$redir = $redirect->matchStart( $s->ar_text ) ? 1 : 0;
+			
+			$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
+			  "cur_comment,cur_user,cur_user_text,cur_timestamp,inverse_timestamp,cur_minor_edit,cur_is_redirect,cur_random,cur_touched)" .
 			  "SELECT ar_namespace,ar_title,ar_text,ar_comment," .
-			  "ar_user,ar_user_text,ar_timestamp,99999999999999-ar_timestamp,ar_minor_edit,RAND(),'{$now}' FROM archive " .
+			  "ar_user,ar_user_text,ar_timestamp,99999999999999-ar_timestamp,ar_minor_edit,{$redir},RAND(),'{$now}' FROM archive " .
 			  "WHERE ar_namespace={$namespace} AND ar_title='{$t}' AND ar_timestamp={$max}";
 			wfQuery( $sql, DB_WRITE, $fname );
         	$newid = wfInsertId();
@@ -139,6 +146,13 @@ function wfSpecialUndelete( $par )
 			# If already exists, put history entirely into old table
 			$oldones = "";
 			$newid = 0;
+			
+			# But to make the history list show up right, we need to touch it.
+			$sql = "UPDATE cur SET cur_touched='{$now}' WHERE cur_namespace={$namespace} AND cur_title='{$t}'";
+			wfQuery( $sql, DB_WRITE, $fname );
+			
+			# FIXME: Sometimes restored entries will be _newer_ than the current version.
+			# We should merge.
 		}
 		
 		$sql = "INSERT INTO old (old_namespace,old_title,old_text," .
