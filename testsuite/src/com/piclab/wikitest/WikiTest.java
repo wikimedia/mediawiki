@@ -263,7 +263,6 @@ throws WikiSuiteFailureException {
 	String msg = null;
 	WebForm[] forms = null;
 
-
 	try {
 		forms = resp.getForms();
 	} catch ( org.xml.sax.SAXException e ) {

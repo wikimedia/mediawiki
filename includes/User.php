@@ -53,8 +53,6 @@ class User {
 
 	}
 
-
-
 	/* static */ function randomPassword()
 	{
 		$pwchars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz";
@@ -163,7 +161,7 @@ class User {
 			$passwordCorrect = $wsUserPassword == $this->mPassword;
 		} else if ( isset( $HTTP_COOKIE_VARS["wcUserPassword"] ) ) {
 			$this->mCookiePassword = $HTTP_COOKIE_VARS["wcUserPassword"];
-			$wsUserPassword = User::addSalt($this->mCookiePassword);
+			$wsUserPassword = $this->addSalt( $this->mCookiePassword );
 			$passwordCorrect = $wsUserPassword == $this->mPassword;
 		} else {
 			$this->mId = 0;
@@ -284,14 +282,14 @@ class User {
 
 	function encryptPassword( $p )
 	{
-		return User::addSalt( md5( $p ) );
+		return $this->addSalt( md5( $p ) );
 	}
 
 	function setPassword( $str )
 	{
 		$this->loadFromDatabase();
 		$this->setCookiePassword( $str );
-		$this->mPassword = User::encryptPassword( $str );
+		$this->mPassword = $this->encryptPassword( $str );
 		$this->mNewpassword = "";
 	}
 
@@ -304,7 +302,7 @@ class User {
 	function setNewpassword( $str )
 	{
 		$this->loadFromDatabase();
-		$this->mNewpassword = User::encryptPassword( $str );
+		$this->mNewpassword = $this->encryptPassword( $str );
 	}
 
 	function getEmail()
@@ -340,6 +338,13 @@ class User {
 	{
 		$this->loadFromDatabase();
 		return $this->mRights;
+	}
+
+	function addRight( $rname )
+	{
+		$this->loadFromDatabase();
+		array_push( $this->mRights, $rname );
+		$this->invalidateCache();
 	}
 
 	function isSysop()
@@ -479,20 +484,15 @@ class User {
 	{
 		global $wgUser;
 
-		if(!$this->mNewtalk) {
-
-			if($this->mId) {
+		if ( ! $this->mNewtalk ) {
+			if( $this->mId ) {
 				$sql="DELETE FROM user_newtalk WHERE user_id={$this->mId}";
 				wfQuery ($sql,"User::saveSettings");
 			} else {
-
-
 				$sql="DELETE FROM user_newtalk WHERE user_ip='{$this->mName}'";
 				wfQuery ($sql,"User::saveSettings");
-
 			}
 		}
-
 		if ( 0 == $this->mId ) { return; }
 
 		$sql = "UPDATE user SET " .

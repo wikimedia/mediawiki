@@ -246,11 +246,21 @@ function populatedata() {
 	$sql = "DELETE FROM user";
 	wfQuery( $sql, $fname );
 
-	$sql = "INSERT INTO user (user_name, user_password, user_rights)" .
-	  "VALUES ('WikiSysop','" . User::encryptPassword( $wgDBadminpassword ) .
-	  "','sysop'),('WikiDeveloper','" . User::encryptPassword(
-	  $wgDBadminpassword ) . "','sysop,developer')";
-	wfQuery( $sql, $fname );
+	$u = User::newFromName( "WikiSysop" );
+	if ( 0 == $u->idForName() ) {
+		$u->addToDatabase();
+		$u->setPassword( $wgDBadminpassword );
+		$u->addRight( "sysop" );
+		$u->saveSettings();
+	}
+	$u = User::newFromName( "WikiDeveloper" );
+	if ( 0 == $u->idForName() ) {
+		$u->addToDatabase();
+		$u->setPassword( $wgDBadminpassword );
+		$u->addRight( "sysop" );
+		$u->addRight( "developer" );
+		$u->saveSettings();
+	}
 	
 	$wns = Namespace::getWikipedia();
 	$ulp = addslashes( wfMsg( "uploadlogpage" ) );

@@ -93,7 +93,7 @@ private int part3() throws Exception {
     wr = getResponse( req );
 
 	l = wr.getFirstMatchingLink( WebLink.MATCH_CONTAINED_TEXT, "View article" );
-	l = wr.getFirstMatchingLink( WebLink.MATCH_CONTAINED_TEXT, "Older versions" );
+	l = wr.getFirstMatchingLink( WebLink.MATCH_CONTAINED_TEXT, "Page history" );
 	if ( l == null ) { return 302; }
 	wr = l.click();
 

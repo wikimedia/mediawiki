@@ -216,40 +216,40 @@ color='red'>$err</font>\n" );
 	$wpEmail = wfEscapeHTML( $wpEmail );
 
 	$wgOut->addHTML( "
-<form name='userlogin' method=post action=\"{$action}\">
+<form id=\"userlogin\" method=\"post\" action=\"{$action}\">
 <table border=0><tr>
 <td align=right>$yn:</td>
 <td colspan=2 align=left>
-<input tabindex=1 type=text name='wpName' value=\"{$name}\" size=20>
+<input tabindex=1 type=text name=\"wpName\" value=\"{$name}\" size=20>
 </td></tr><tr>
 <td align=right>$yp:</td>
 <td align=left>
-<input tabindex=2 type=password name='wpPassword' value=\"{$pwd}\" size=20>
+<input tabindex=2 type=password name=\"wpPassword\" value=\"{$pwd}\" size=20>
 </td>
 <td align=left>
-<input tabindex=3 type=submit name='wpLoginattempt' value=\"{$li}\">
+<input tabindex=3 type=submit name=\"wpLoginattempt\" value=\"{$li}\">
 </td></tr>
 <tr><td colspan=3>&nbsp;</td></tr><tr>
 <td align=right>$ypa:</td>
 <td align=left>
-<input tabindex=4 type=password name='wpRetype' value=\"{$wpRetype}\" 
+<input tabindex=4 type=password name=\"wpRetype\" value=\"{$wpRetype}\" 
 size=20>
 </td><td>$nuo</td></tr>
 <tr>
 <td align=right>$ye:</td>
 <td align=left>
-<input tabindex=5 type=text name='wpEmail' value=\"{$wpEmail}\" size=20>
+<input tabindex=5 type=text name=\"wpEmail\" value=\"{$wpEmail}\" size=20>
 </td><td align=left>
-<input tabindex=6 type=submit name='wpCreateaccount' value=\"{$ca}\">
+<input tabindex=6 type=submit name=\"wpCreateaccount\" value=\"{$ca}\">
 </td></tr>
 <tr>
 <td colspan=3 align=left>
-<input tabindex=7 type=checkbox name='wpRemember' value='1'$checked>$rmp
+<input tabindex=7 type=checkbox name=\"wpRemember\" value=\"1\"$checked>$rmp
 </td></tr>
 <tr><td colspan=3>&nbsp;</td></tr><tr>
 <td colspan=3 align=left>
 <p>$efl<br>
-<input tabindex=8 type=submit name='wpMailmypassword' value=\"{$mmp}\">
+<input tabindex=8 type=submit name=\"wpMailmypassword\" value=\"{$mmp}\">
 </td></tr></table>
 </form>\n" );
 }

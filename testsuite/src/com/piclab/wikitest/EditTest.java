@@ -135,7 +135,7 @@ private int part3() throws Exception {
 	if ( text.indexOf( "sucks" ) < 0 ) { return 304; }
 	if ( text.indexOf( "doesn't" ) < 0 ) { return 305; }
 
-	WebLink l = wr.getFirstMatchingLink( WebLink.MATCH_CONTAINED_TEXT, "Older versions" );
+	WebLink l = wr.getFirstMatchingLink( WebLink.MATCH_CONTAINED_TEXT, "Page history" );
 	wr = l.click();
 	text = getArticle( wr );
 	if ( text.indexOf( "Fred" ) < 0 ) { return 306; }
