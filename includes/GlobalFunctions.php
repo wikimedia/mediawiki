@@ -30,6 +30,7 @@ $wgTotalEdits = -1;
 require_once( 'DatabaseFunctions.php' );
 require_once( 'UpdateClasses.php' );
 require_once( 'LogPage.php' );
+require_once( 'normal/UtfNormalUtil.php' );
 
 /**
  * Compatibility functions
@@ -89,8 +90,10 @@ if ( !function_exists( 'mb_substr' ) ) {
  */
 function do_html_entity_decode( $string, $quote_style=ENT_COMPAT, $charset='ISO-8859-1' ) {
 	static $trans;
-	if( !isset( $trans ) ) {
+	static $savedCharset;
+	if( !isset( $trans ) || $savedCharset != $charset ) {
 		$trans = array_flip( get_html_translation_table( HTML_ENTITIES, $quote_style ) );
+		$savedCharset = $charset;
 		# Assumes $charset will always be the same through a run, and only understands
 		# utf-8 or default. Note - mixing latin1 named entities and unicode numbered
 		# ones will result in a bad link.
