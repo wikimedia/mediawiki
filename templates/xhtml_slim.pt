@@ -10,7 +10,6 @@
     <!--[if IE]><style type="text/css" media="all">@import url(${stylepath}/${skinname}/IEFixes.css);</style>
     <script type="text/javascript" src="${stylepath}/IEFixes.js"></script>
     <meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-    <link tal:condition="favicon" rel="shortcut icon" href="${favicon}" type="image/x-icon" />
     <script type="text/javascript" src="${stylepath}/wikibits.js"></script>
     <script type="text/javascript"> /*<![CDATA[*/ if(addcss){addcss('${stylepath}/${skinname}/');} /*]]>*/</script>
     <style tal:condition="rtl" type="text/css">/*<![CDATA[*/@import url(${stylepath}/${skinname}/rtl.css);/*]]>*/</style>
