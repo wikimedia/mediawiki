@@ -292,25 +292,21 @@ class Article {
 	}
 
 	/**
-	 * Load the revision (including cur_text) into this object
-	*/
-	function loadContent( $noredir = false ) {
-		global $wgOut, $wgRequest;
+	 * Return the oldid of the article that is to be shown.
+	 * For requests with a "direction", this is not the oldid of the
+	 * query
+	 */
+	function getOldID() {
+		global $wgRequest, $wgOut;
+		static $lastid;
 
-		if ( $this->mContentLoaded ) return;
-		
-		$dbr =& $this->getDB();
-		# Query variables :P
+		if ( isset( $lastid ) ) {
+			return $lastid;
+		}
+
 		$oldid = $wgRequest->getVal( 'oldid' );
-		$redirect = $wgRequest->getVal( 'redirect' );
-
-		$fname = 'Article::loadContent';
-
-		# Pre-fill content with error message so that if something
-		# fails we'll have something telling us what we intended.
-
-		$t = $this->mTitle->getPrefixedText();
 		if ( isset( $oldid ) ) {
+			$dbr =& $this->getDB();
 			$oldid = IntVal( $oldid );
 			if ( $wgRequest->getVal( 'direction' ) == 'next' ) {
 				$nextid = $this->mTitle->getNextRevisionID( $oldid );
@@ -327,7 +323,32 @@ class Article {
 					# TODO
 				}
 			}
+			$lastid = $oldid;
 		}
+		return @$oldid;	# "@" to be able to return "unset" without PHP complaining
+	}
+
+
+	/**
+	 * Load the revision (including cur_text) into this object
+	*/
+	function loadContent( $noredir = false ) {
+		global $wgOut, $wgRequest;
+
+		if ( $this->mContentLoaded ) return;
+		
+		$dbr =& $this->getDB();
+		# Query variables :P
+		$oldid = $this->getOldID();
+		$redirect = $wgRequest->getVal( 'redirect' );
+
+		$fname = 'Article::loadContent';
+
+		# Pre-fill content with error message so that if something
+		# fails we'll have something telling us what we intended.
+
+		$t = $this->mTitle->getPrefixedText();
+
 		if ( isset( $oldid ) ) {
 			$t .= ',oldid='.$oldid;
 		}
@@ -658,14 +679,14 @@ class Article {
 	 * the given title.
 	*/
 	function view()	{
-		global $wgUser, $wgOut, $wgRequest, $wgOnlySysopsCanPatrol;
+		global $wgUser, $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgLang;
 		global $wgLinkCache, $IP, $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol;
 		$sk = $wgUser->getSkin();
 
 		$fname = 'Article::view';
 		wfProfileIn( $fname );
 		# Get variables from query string
-		$oldid = $wgRequest->getVal( 'oldid' );
+		$oldid = $this->getOldID();
 		$diff = $wgRequest->getVal( 'diff' );
 		$rcid = $wgRequest->getVal( 'rcid' );
 
@@ -753,8 +774,10 @@ class Article {
 				$targetUrl = $rt->escapeLocalURL();
 				$titleText = htmlspecialchars( $rt->getPrefixedText() );
 				$link = $sk->makeLinkObj( $rt );
-				$wgOut->addHTML( '<img valign="center" src="'.$imageUrl.'" />' .
+
+				$wgOut->addHTML( '<img valign="center" src="'.$imageUrl.'" alt="#REDIRECT" />' .
 				  '<span class="redirectText">'.$link.'</span>' );
+
 			} else if ( $pcache ) {
 				# Display content and save to parser cache
 				$wgOut->addPrimaryWikiText( $text, $this );
