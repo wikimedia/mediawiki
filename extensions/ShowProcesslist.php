@@ -23,7 +23,7 @@ class ShowProcesslistPage extends UnlistedSpecialPage
 
 		$res=wfQuery("SHOW FULL PROCESSLIST",DB_READ);
 		$output=array();
-		$output = "<table border=1>";
+		$output = '<table border="1">';
 		while ( $row=wfFetchObject($res)){
 			$output .= "<tr>";
 			$fields = get_object_vars($row);
