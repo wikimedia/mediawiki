@@ -89,6 +89,12 @@ class Database {
 	{
 		global $wgEmergencyContact;
 		
+		# Test for missing mysql.so
+		# Otherwise we get a suppressed fatal error, which is very hard to track down
+		if ( !function_exists( 'mysql_connect' ) ) {
+			die( "MySQL functions missing, have you compiled PHP with the --with-mysql option?\n" );
+		}
+		
 		$this->close();
 		$this->mServer = $server;
 		$this->mUser = $user;
