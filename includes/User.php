@@ -165,6 +165,7 @@ class User {
 			$passwordCorrect = $wsUserPassword == $this->mPassword;
 		} else {
 			$this->mId = 0;
+			$this->loadDefaults(); # Can't log in from session
 			return;
 		}
 
