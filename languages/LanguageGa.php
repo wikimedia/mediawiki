@@ -138,7 +138,7 @@ Sourceforge (when that gets added.)
     MAG_CURRENTMONTHNAMEGEN  => array( 1,    "CURRENTMONTHNAMEGEN"    ),
     MAG_MSG                  => array( 1,    "MSG:"                   ),
     MAG_SUBST                => array( 1,    "SUBST:"                 ),
-    MAG_MSGNW                => array( 1,    "MSGNW:"                 )
+    MAG_MSGNW                => array( 1,    "MSGNW:"                 ),
 	MAG_END                  => array( 0,    "__END__"                ),
     MAG_IMG_THUMBNAIL        => array( 1,    "thumbnail", "thumb"     ),
     MAG_IMG_RIGHT            => array( 1,    "right"                  ),
