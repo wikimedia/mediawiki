@@ -8,7 +8,7 @@ $wgExtensionFunctions[] = "wfUnicodeConverter";
 
 function wfUnicodeConverter() {
 
-require_once( "SpecialPage.php" );
+require_once( "includes/SpecialPage.php" );
 
 class UnicodeConverter extends SpecialPage
 {
