@@ -924,4 +924,12 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 	return $besttype;
 }
 
+# Array lookup
+# Returns an array where the values in the first array are replaced by the 
+# values in the second array with the corresponding keys
+function wfArrayLookup( $a, $b )
+{
+	return array_flip( array_intersect( array_flip( $a ), array_keys( $b ) ) ); 
+}
+
 ?>
