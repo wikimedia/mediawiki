@@ -2591,7 +2591,7 @@ class Skin {
 		# try min-width & co when somebody gets a chance
 		$hideline = ' <script type="text/javascript">showTocToggle("' . addslashes( wfMsg('showtoc') ) . '","' . addslashes( wfMsg('hidetoc') ) . '")</script>';
 		return
-		'<table border="0" id="toc"><tr><td align="center">'."\n".
+		'<table border="0" id="toc"><tr id="toctitle"><td align="center">'."\n".
 		'<b>'.wfMsg('toc').'</b>' .
 		$hideline .
 		'</td></tr><tr id="tocinside"><td>'."\n".
