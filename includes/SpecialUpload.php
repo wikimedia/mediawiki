@@ -8,10 +8,10 @@
 /**
  *
  */
-require_once( "Image.php" );
+require_once( 'Image.php' );
 
 /**
- * Constructor
+ * Entry point
  */
 function wfSpecialUpload() {
 	global $wgRequest;
@@ -30,6 +30,11 @@ class UploadForm {
 	var $mUploadCopyStatus, $mUploadSource, $mReUpload, $mAction, $mUpload;
 	var $mOname, $mSessionKey;
 
+	/**
+	 * Constructor : initialise object
+	 * Get data POSTed through the form and assign them to the object
+	 * @param $request Data posted.
+	 */
 	function UploadForm( &$request ) {
 		$this->mUploadAffirm = $request->getVal( 'wpUploadAffirm' );
 		$this->mUploadFile = $request->getVal( 'wpUploadFile' );
@@ -47,44 +52,58 @@ class UploadForm {
 		$this->mUpload = $request->getCheck( 'wpUpload' );
 		$this->mSessionKey = $request->getVal( 'wpSessionKey' );
 
+		/** Generate a temporary name if we don't have one yet */
 		if ( ! $this->mUploadTempName ) {
 			$this->mUploadTempName = $request->getFileTempName( 'wpUploadFile' );
 		}
+		
+		/** Get size of file */
 		if ( ! $this->mUploadSize ) {
 			$this->mUploadSize = $request->getFileSize( 'wpUploadFile' );
 		}
 		$this->mOname = $request->getFileName( 'wpUploadFile' );
-
 	}
 
+	/**
+	 * Start doing stuff
+	 * @access public
+	 */
 	function execute() {
 		global $wgUser, $wgOut;
 		global $wgDisableUploads;
 
+		/** Show an error message if file upload is disabled */ 
 		if ( $wgDisableUploads ) {
-			$wgOut->addWikiText( wfMsg( "uploaddisabled" ) );
+			$wgOut->addWikiText( wfMsg( 'uploaddisabled' ) );
 			return;
 		}
-		if ( ( 0 == $wgUser->getID() )
-			or $wgUser->isBlocked() ) {
-			$wgOut->errorpage( "uploadnologin", "uploadnologintext" );
+		
+		/** Various rights checks */
+		if ( ( $wgUser->getID() == 0 )
+			 OR $wgUser->isBlocked() ) {
+			$wgOut->errorpage( 'uploadnologin', 'uploadnologintext' );
 			return;
 		}
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return;
 		}
+		
 		if ( $this->mReUpload ) {
 			$this->unsaveUploadedFile();
-			$this->mainUploadForm( "" );
-		} else if ( "submit" == $this->mAction || $this->mUpload ) {
+			$this->mainUploadForm( '' );
+		} else if ( 'submit' == $this->mAction || $this->mUpload ) {
 			$this->processUpload();
 		} else {
-			$this->mainUploadForm( "" );
+			$this->mainUploadForm( '' );
 		}
 	}
 
-
+	/**
+	 * Really do the upload
+	 * Checks are made in SpecialUpload::execute()
+	 * @access private
+	 */
 	function processUpload() {
 		global $wgUser, $wgOut, $wgLang;
 		global $wgUploadDirectory;
@@ -96,32 +115,32 @@ class UploadForm {
 		if ( $wgUseCopyrightUpload ) {
 			$this->mUploadAffirm = 1;
 			if ($wgCheckCopyrightUpload && 
-				(trim ( $this->mUploadCopyStatus ) == "" || trim ( $this->mUploadSource ) == "" )) {
+				(trim ( $this->mUploadCopyStatus ) == '' || trim ( $this->mUploadSource ) == '' )) {
 				$this->mUploadAffirm = 0;
 			}
 		}
 
-		if ( 1 != $this->mUploadAffirm ) {
-			$this->mainUploadForm( WfMsg( "noaffirmation" ) );
+		if ( $this->mUploadAffirm != 1) {
+			$this->mainUploadForm( WfMsg( 'noaffirmation' ) );
 			return;
 		}
 
-		if ( "" != $this->mOname ) {
-			$basename = strrchr( $this->mOname, "/" );
+		if ( '' != $this->mOname ) {
+			$basename = strrchr( $this->mOname, '/' );
 
 			if ( false === $basename ) { $basename = $this->mOname; }
 			else ( $basename = substr( $basename, 1 ) );
 
 
-			$ext = strrchr( $basename, "." );
-			if ( false === $ext ) { $ext = ""; }
+			$ext = strrchr( $basename, '.' );
+			if ( false === $ext ) { $ext = ''; }
 			else { $ext = substr( $ext, 1 ); }
 
-			if ( "" == $ext ) { $xl = 0; } else { $xl = strlen( $ext ) + 1; }
+			if ( '' == $ext ) { $xl = 0; } else { $xl = strlen( $ext ) + 1; }
 			$partname = substr( $basename, 0, strlen( $basename ) - $xl );
 
 			if ( strlen( $partname ) < 3 ) {
-				$this->mainUploadForm( WfMsg( "minlength" ) );
+				$this->mainUploadForm( WfMsg( 'minlength' ) );
 				return;
 			}
 
@@ -136,7 +155,7 @@ class UploadForm {
 
 			$nt = Title::newFromText( $basename );
 			if( !$nt ) {
-				return $this->uploadError( wfMsg( "illegalfilename", htmlspecialchars( $basename ) ) );
+				return $this->uploadError( wfMsg( 'illegalfilename', htmlspecialchars( $basename ) ) );
 			}
 			$nt->setNamespace( Namespace::getImage() );
 			$this->mUploadSaveName = $nt->getDBkey();
@@ -144,36 +163,36 @@ class UploadForm {
 			/* Don't allow users to override the blacklist */
 			if( $this->checkFileExtension( $ext, $wgFileBlacklist ) ||
 				($wgStrictFileExtensions && !$this->checkFileExtension( $ext, $wgFileExtensions ) ) ) {
-				return $this->uploadError( wfMsg( "badfiletype", htmlspecialchars( $ext ) ) );
+				return $this->uploadError( wfMsg( 'badfiletype', htmlspecialchars( $ext ) ) );
 			}
 			
 			$this->saveUploadedFile( $this->mUploadSaveName, $this->mUploadTempName );
 			if ( !$nt->userCanEdit() ) {
-				return $this->uploadError( wfMsg( "protectedpage" ) );
+				return $this->uploadError( wfMsg( 'protectedpage' ) );
 			}
 			
 			if ( ! $this->mIgnoreWarning ) {
 				$warning = '';
 				if( $changed_name || 0 != strcmp( ucfirst( $basename ), $this->mUploadSaveName ) ) {
-					$warning .=  '<li>'.wfMsg( "badfilename", htmlspecialchars( $this->mUploadSaveName ) ).'</li>';
+					$warning .=  '<li>'.wfMsg( 'badfilename', htmlspecialchars( $this->mUploadSaveName ) ).'</li>';
 				}
 
 				if ( $wgCheckFileExtensions ) {
 					if ( ! $this->checkFileExtension( $ext, $wgFileExtensions ) ) {
-						$warning .= '<li>'.wfMsg( "badfiletype", htmlspecialchars( $ext ) ).'</li>';
+						$warning .= '<li>'.wfMsg( 'badfiletype', htmlspecialchars( $ext ) ).'</li>';
 					}
 				}
 				if ( $wgUploadSizeWarning && ( $this->mUploadSize > $wgUploadSizeWarning ) ) {
-					$warning .= '<li>'.wfMsg( "largefile" ).'</li>';
+					$warning .= '<li>'.wfMsg( 'largefile' ).'</li>';
 				}
 				if ( $this->mUploadSize == 0 ) {
-					$warning .= '<li>'.wfMsg( "emptyfile" ).'</li>';
+					$warning .= '<li>'.wfMsg( 'emptyfile' ).'</li>';
 				}
 				if( $nt->getArticleID() ) {
 					$sk = $wgUser->getSkin();
 					$dname = $wgLang->getNsText( Namespace::getImage() ) . ":{$this->mUploadSaveName}";
 					$dlink = $sk->makeKnownLink( $dname, $dname );
-					$warning .= '<li>'.wfMsg( "fileexists", $dlink ).'</li>';
+					$warning .= '<li>'.wfMsg( 'fileexists', $dlink ).'</li>';
 				}
 				if($warning != '') return $this->uploadWarning($warning);
 			}
@@ -189,8 +208,8 @@ class UploadForm {
 		$dname = $wgLang->getNsText( Namespace::getImage() ) . ":{$this->mUploadSaveName}";
 		$dlink = $sk->makeKnownLink( $dname, $dname );
 
-		$wgOut->addHTML( "<h2>" . wfMsg( "successfulupload" ) . "</h2>\n" );
-		$text = wfMsg( "fileuploaded", $ilink, $dlink );
+		$wgOut->addHTML( '<h2>' . wfMsg( 'successfulupload' ) . "</h2>\n" );
+		$text = wfMsg( 'fileuploaded', $ilink, $dlink );
 		$wgOut->addHTML( "<p>{$text}\n" );
 		$wgOut->returnToMain( false );
 	}
@@ -208,7 +227,7 @@ class UploadForm {
 		$wgSavedFile = "{$dest}/{$saveName}";
 
 		if ( is_file( $wgSavedFile ) ) {
-			$wgUploadOldVersion = gmdate( "YmdHis" ) . "!{$saveName}";
+			$wgUploadOldVersion = gmdate( 'YmdHis' ) . "!{$saveName}";
 
 			if ( ! rename( $wgSavedFile, "${archive}/{$wgUploadOldVersion}" ) ) { 
 				$wgOut->fileRenameError( $wgSavedFile,
@@ -216,7 +235,7 @@ class UploadForm {
 				return;
 			}
 		} else {
-			$wgUploadOldVersion = "";
+			$wgUploadOldVersion = '';
 		}
 		if ( ! move_uploaded_file( $tempName, $wgSavedFile ) ) {
 			$wgOut->fileCopyError( $tempName, $wgSavedFile );
@@ -234,10 +253,10 @@ class UploadForm {
 			$wgOut->fileDeleteError( $wgSavedFile );
 			return;
 		}
-		if ( "" != $wgUploadOldVersion ) {
+		if ( '' != $wgUploadOldVersion ) {
 			$hash = md5( substr( $wgUploadOldVersion, 15 ) );
-			$archive = "{$wgUploadDirectory}/archive/" . $hash{0} .
-			"/" . substr( $hash, 0, 2 );
+			$archive = $wgUploadDirectory.'/archive/' . $hash{0} .
+			'/' . substr( $hash, 0, 2 );
 
 			if ( ! rename( "{$archive}/{$wgUploadOldVersion}", $wgSavedFile ) ) {
 				$wgOut->fileRenameError( "{$archive}/{$wgUploadOldVersion}",
@@ -248,7 +267,7 @@ class UploadForm {
 
 	function uploadError( $error ) {
 		global $wgOut;
-		$sub = wfMsg( "uploadwarning" );
+		$sub = wfMsg( 'uploadwarning' );
 		$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
 		$wgOut->addHTML( "<h4 style='error'>{$error}</h4>\n" );
 	}
@@ -262,16 +281,16 @@ class UploadForm {
 		$this->mSessionKey = mt_rand( 0, 0x7fffffff );
 		$_SESSION['wsUploadFiles'][$this->mSessionKey] = $wgSavedFile;
 
-		$sub = wfMsg( "uploadwarning" );
+		$sub = wfMsg( 'uploadwarning' );
 		$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
 		$wgOut->addHTML( "<ul class='warning'>{$warning}</ul><br/>\n" );
 
-		$save = wfMsg( "savefile" );
-		$reupload = wfMsg( "reupload" );
-		$iw = wfMsg( "ignorewarning" );
-		$reup = wfMsg( "reuploaddesc" );
-		$titleObj = Title::makeTitle( NS_SPECIAL, "Upload" );
-		$action = $titleObj->escapeLocalURL( "action=submit" );
+		$save = wfMsg( 'savefile' );
+		$reupload = wfMsg( 'reupload' );
+		$iw = wfMsg( 'ignorewarning' );
+		$reup = wfMsg( 'reuploaddesc' );
+		$titleObj = Title::makeTitle( NS_SPECIAL, 'Upload' );
+		$action = $titleObj->escapeLocalURL( 'action=submit' );
 
 		if ( $wgUseCopyrightUpload )
 		{
@@ -308,27 +327,27 @@ class UploadForm {
 		global $wgOut, $wgUser, $wgLang, $wgUploadDirectory, $wgRequest;
 		global $wgUseCopyrightUpload;
 
-		if ( "" != $msg ) {
-			$sub = wfMsg( "uploaderror" );
+		if ( '' != $msg ) {
+			$sub = wfMsg( 'uploaderror' );
 			$wgOut->addHTML( "<h2>{$sub}</h2>\n" .
 			  "<h4 style='error'>{$msg}</h4>\n" );
 		} else {
-			$sub = wfMsg( "uploadfile" );
+			$sub = wfMsg( 'uploadfile' );
 			$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
 		}
-		$wgOut->addWikiText( wfMsg( "uploadtext" ) );
+		$wgOut->addWikiText( wfMsg( 'uploadtext' ) );
 		$sk = $wgUser->getSkin();
 
-		$fn = wfMsg( "filename" );
-		$fd = wfMsg( "filedesc" );
-		$ulb = wfMsg( "uploadbtn" );
+		$fn = wfMsg( 'filename' );
+		$fd = wfMsg( 'filedesc' );
+		$ulb = wfMsg( 'uploadbtn' );
 
-		$clink = $sk->makeKnownLink( wfMsg( "copyrightpage" ),
-		  wfMsg( "copyrightpagename" ) );
-		$ca = wfMsg( "affirmation", $clink );
-		$iw = wfMsg( "ignorewarning" );
+		$clink = $sk->makeKnownLink( wfMsg( 'copyrightpage' ),
+		  wfMsg( 'copyrightpagename' ) );
+		$ca = wfMsg( 'affirmation', $clink );
+		$iw = wfMsg( 'ignorewarning' );
 
-		$titleObj = Title::makeTitle( NS_SPECIAL, "Upload" );
+		$titleObj = Title::makeTitle( NS_SPECIAL, 'Upload' );
 		$action = $titleObj->escapeLocalURL();
 
 		$source = "
@@ -339,11 +358,11 @@ class UploadForm {
 		if ( $wgUseCopyrightUpload )
 		  {
 			$source = "
-	<td align='right' nowrap='nowrap'>" . wfMsg ( "filestatus" ) . ":</td>
+	<td align='right' nowrap='nowrap'>" . wfMsg ( 'filestatus' ) . ":</td>
 	<td><input tabindex='3' type='text' name=\"wpUploadCopyStatus\" value=\"" .
 	htmlspecialchars($this->mUploadCopyStatus). "\" size='40' /></td>
 	</tr><tr>
-	<td align='right'>". wfMsg ( "filesource" ) . ":</td>
+	<td align='right'>". wfMsg ( 'filesource' ) . ":</td>
 	<td><input tabindex='4' type='text' name=\"wpUploadSource\" value=\"" .
 	htmlspecialchars($this->mUploadSource). "\" size='40' /></td>
 	" ;
