@@ -2183,11 +2183,14 @@ cl_sortkey" ;
 		$valid = '0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 		foreach ( $a as $x ) {
-			if ( $x == '' ) continue;
 			$isbn = $blank = '' ;
 			while ( ' ' == $x{0} ) {
 				$blank .= ' ';
 				$x = substr( $x, 1 );
+			}
+			if ( $x == '' ) { # blank isbn
+				$text .= "ISBN $blank";
+				continue;
 			}
 			while ( strstr( $valid, $x{0} ) != false ) {
 				$isbn .= $x{0};
