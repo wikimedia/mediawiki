@@ -77,7 +77,7 @@ if($wgMetaNamespace === FALSE)
 	"quickbar" => 1, "underline" => 1, "hover" => 1,
 	"cols" => 80, "rows" => 25, "searchlimit" => 20,
 	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 2, "math" => 1, "rcdays" => 7, "rclimit" => 50,
+	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
 	"highlightbroken" => 1, "stubthreshold" => 0,
 	"previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, "showtoc"=>1,
 	"showtoolbar" =>1,
