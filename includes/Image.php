@@ -38,8 +38,7 @@ class Image
 	 * @param string $name name of the image, used to create a title object using Title::makeTitleSafe
 	 * @access public
 	 */
-	function Image( $name )
-	{
+	function Image( $name ) {
 
 		global $wgUseSharedUploads, $wgUseLatin1, $wgSharedLatin1, $wgLang;
 
@@ -80,8 +79,7 @@ class Image
 		$this->extension = strtolower( $n ? substr( $name, $n + 1 ) : '' );
 				
 
-		if ( $this->fileExists )
-		{
+		if ( $this->fileExists ) {
 			if( $this->extension == 'svg' ) {
 				@$gis = getSVGsize( $this->imagePath );
 			} else {
@@ -110,8 +108,7 @@ class Image
 	 * @param Title $nt Title object. Must be from namespace "image"
 	 * @access public
 	 */
-	function newFromTitle( $nt )
-	{
+	function newFromTitle( $nt ) {
 		$img = new Image( $nt->getDBKey() );
 		$img->title = $nt;
 		return $img;
@@ -121,8 +118,7 @@ class Image
 	 * Return the name of this image
 	 * @access public
 	 */
-	function getName()
-	{
+	function getName() {
 		return $this->name;
 	}
 
@@ -130,8 +126,7 @@ class Image
 	 * Return the associated title object
 	 * @access public
 	 */
-	function getTitle()
-	{
+	function getTitle() {
 		return $this->title;
 	}
 
@@ -139,8 +134,7 @@ class Image
 	 * Return the URL of the image file
 	 * @access public
 	 */
-	function getURL()
-	{
+	function getURL() {
 		return $this->url;
 	}
 	
@@ -168,8 +162,7 @@ class Image
 	 * Returns -1 if the file specified is not a known image type
 	 * @access public
 	 */
-	function getWidth()
-	{
+	function getWidth() {
 		return $this->width;
 	}
 
@@ -179,8 +172,7 @@ class Image
 	 * Returns -1 if the file specified is not a known image type
 	 * @access public
 	 */
-	function getHeight()
-	{
+	function getHeight() {
 		return $this->height;
 	}
 
@@ -188,8 +180,7 @@ class Image
 	 * Return the size of the image file, in bytes
 	 * @access public
 	 */
-	function getSize()
-	{
+	function getSize() {
 		$st = stat( $this->getImagePath() );
 		if( $st ) {
 			return $st['size'];
@@ -207,8 +198,7 @@ class Image
 	 * - 15 WBMP
 	 * - 16 XBM
 	 */
-	function getType()
-	{
+	function getType() {
 		return $this->type;
 	}
 
@@ -216,8 +206,7 @@ class Image
 	 * Return the escapeLocalURL of this image
 	 * @access public
 	 */
-	function getEscapeLocalURL()
-	{
+	function getEscapeLocalURL() {
 		return $this->title->escapeLocalURL();
 	}
 
@@ -225,8 +214,7 @@ class Image
 	 * Return the escapeFullURL of this image
 	 * @access public
 	 */
-	function getEscapeFullURL()
-	{
+	function getEscapeFullURL() {
 		return $this->title->escapeFullURL();
 	}
 
@@ -237,8 +225,7 @@ class Image
 	 * @param boolean $fromSharedDirectory	Should this be in $wgSharedUploadPath?	 
 	 * @access public
 	 */
-	function wfImageUrl( $name, $fromSharedDirectory = false )
-	{
+	function wfImageUrl( $name, $fromSharedDirectory = false ) {
 		global $wgUploadPath,$wgUploadBaseUrl,$wgSharedUploadPath;
 		if($fromSharedDirectory) {
 			$base = '';
@@ -256,8 +243,7 @@ class Image
 	 *
 	 * @access public
 	 */
-	function exists()
-	{
+	function exists() {
 		return $this->fileExists;
 	}
 
@@ -536,8 +522,7 @@ class Image
 	 *
 	 * @access public
 	 */
-	function nextHistoryLine()
-	{
+	function nextHistoryLine() {
 		$fname = 'Image::nextHistoryLine()';
 		$dbr =& wfGetDB( DB_SLAVE );
 		if ( $this->historyLine == 0 ) {// called for the first time, return line from cur 
@@ -565,8 +550,7 @@ class Image
 	 * Reset the history pointer to the first element of the history
 	 * @access public
 	 */
-	function resetHistory()
-	{
+	function resetHistory() {
 		$this->historyLine = 0;
 	}
 
@@ -593,8 +577,7 @@ class Image
 	*   options in DefaultSettings.php) instead of a local one.
 	* 
 	*/
-	function getFullPath( $fromSharedRepository = false )
-	{
+	function getFullPath( $fromSharedRepository = false ) {
 		global $wgUploadDirectory, $wgSharedUploadDirectory;
 		global $wgHashedUploadDirectory, $wgHashedSharedUploadDirectory;
 		
@@ -607,7 +590,6 @@ class Image
 		return $fullpath;
 	}
 	
-	
 } //class
 
 
@@ -619,8 +601,7 @@ class Image
  * @param string $fname		file name of the image file
  * @access public
  */
-function wfImageDir( $fname )
-{
+function wfImageDir( $fname ) {
 	global $wgUploadDirectory, $wgHashedUploadDirectory;
 	
 	if (!$wgHashedUploadDirectory) { return $wgUploadDirectory; }
@@ -646,8 +627,7 @@ function wfImageDir( $fname )
  * @param boolean $shared	(optional) use the shared upload directory
  * @access public
  */
-function wfImageThumbDir( $fname , $subdir='thumb', $shared=false)
-{
+function wfImageThumbDir( $fname , $subdir='thumb', $shared=false) {
 	return wfImageArchiveDir( $fname, $subdir, $shared );
 }
 
@@ -661,8 +641,7 @@ function wfImageThumbDir( $fname , $subdir='thumb', $shared=false)
  * @param boolean $shared	(optional) use the shared upload directory (only relevant for other functions which call this one)
  * @access public
  */
-function wfImageArchiveDir( $fname , $subdir='archive', $shared=false )
-{
+function wfImageArchiveDir( $fname , $subdir='archive', $shared=false ) {
 	global $wgUploadDirectory, $wgHashedUploadDirectory,
 	       $wgSharedUploadDirectory, $wgHashedSharedUploadDirectory;
 	$dir = $shared ? $wgSharedUploadDirectory : $wgUploadDirectory;
@@ -699,7 +678,7 @@ function wfGetHashPath ( $dbkey, $fromSharedDirectory = false ) {
 	                                   $wgSharedUploadDirectory;
 	if($ishashed) {
 		$hash = md5($dbkey);
-		return '/' . $hash{0} . '/' . substr( $hash, 0, 2 ) . "/";
+		return '/' . $hash{0} . '/' . substr( $hash, 0, 2 ) . '/';
 	} else {
 		return '/';
 	}
@@ -709,8 +688,7 @@ function wfGetHashPath ( $dbkey, $fromSharedDirectory = false ) {
 /**
  * Record an image upload in the upload log.
  */
-function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source = "" )
-{
+function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = '', $source = '' ) {
 	global $wgUser, $wgLang, $wgTitle, $wgOut, $wgDeferredUpdateList;
 	global $wgUseCopyrightUpload;
 
@@ -727,12 +705,11 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 	$won = wfInvertTimestamp( $now );
 	$size = IntVal( $size );
 
-	if ( $wgUseCopyrightUpload )
-	  {
+	if ( $wgUseCopyrightUpload ) {
 		$textdesc = '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n" .
 		  '== ' . wfMsg ( 'filestatus' ) . " ==\n" . $copyStatus . "\n" .
 		  '== ' . wfMsg ( 'filesource' ) . " ==\n" . $source ;
-	  }
+	}
 	else $textdesc = $desc ;
 
 	$now = wfTimestampNow();
@@ -850,8 +827,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
  * @param string $subdir	(optional) subdirectory of the image upload directory that is used by the old version. Default is 'archive'
  * @access public
  */
-function wfImageArchiveUrl( $name, $subdir='archive' )
-{
+function wfImageArchiveUrl( $name, $subdir='archive' ) {
 	global $wgUploadPath, $wgHashedUploadDirectory;
 
 	if ($wgHashedUploadDirectory) {
@@ -949,7 +925,10 @@ class ThumbnailImage {
 			$this->height = 0;
 		}
 	}
-	
+
+	/**
+	 * @return string The thumbnail URL
+	 */	
 	function getUrl() {
 		return $this->url;
 	}
@@ -980,19 +959,18 @@ class ThumbnailImage {
 		return $html;
 	}
 
-        /**             
-         * Return the size of the thumbnail file, in bytes
-         * @access public 
-         */                     
-        function getSize()
-        {               
-                $st = stat( $this->path );
-                if( $st ) {     
-                        return $st['size']; 
-                } else {        
-                        return false;                }                       
-        }
-
+    /**             
+     * Return the size of the thumbnail file, in bytes or false if the file
+     * can't be stat().
+     * @access public
+     */                     
+    function getSize() {               
+		$st = stat( $this->path );
+		if( $st ) {     
+			return $st['size']; 
+		} else {        
+			return false;
+		}                       
+	}
 }
-
 ?>
