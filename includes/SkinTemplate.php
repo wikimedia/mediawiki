@@ -809,7 +809,7 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::setupUserCss';
 		wfProfileIn( $fname );
 		
-		global $wgRequest, $wgTitle, $wgAllowUserCss, $wgUseSiteCss, $wgContLang;
+		global $wgRequest, $wgTitle, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath;
 
 		$sitecss = '';
 		$usercss = '';
@@ -832,10 +832,10 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		# If we use the site's dynamic CSS, throw that in, too
+		if ($wgContLang->isRTL()) $sitecss .= '@import "' . $wgStylePath . '/' . $this->stylename . '/rtl.css";' . "\n";
 		
+		# If we use the site's dynamic CSS, throw that in, too
 		if ( $wgUseSiteCss ) {
-			if ($wgContLang->isRTL()) $s .= '@import "' . $wgStylePath . '/' . $this->stylename . '/rtl.css";' . "\n";
 			$sitecss .= '@import "' . $this->makeNSUrl(ucfirst($this->skinname) . '.css', 'action=raw&ctype=text/css&smaxage=' . $wgSquidMaxage, NS_MEDIAWIKI) . '";' . "\n";
 			$sitecss .= '@import "' . $this->makeUrl('-','action=raw&gen=css' . $siteargs) . '";' . "\n";
 		}
@@ -877,9 +877,7 @@ class SkinTemplate extends Skin {
 		$fname = 'SkinTemplate::getUserStylesheet';
 		wfProfileIn( $fname );
 		
-		global $wgUser, $wgRequest, $wgTitle, $wgContLang, $wgSquidMaxage, $wgStylePath;
-		$action = $wgRequest->getText('action');
-		$maxage = $wgRequest->getText('maxage');
+		global $wgUser;
 		$s = "/* generated user stylesheet */\n";
 
 		if($wgUser->getID() != 0) {
