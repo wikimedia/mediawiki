@@ -885,7 +885,7 @@ if ( \$wgCommandLineMode ) {
 
 \$wgLocalInterwiki   = \$wgSitename;
 
-\$wgLanguageCode = \"{$slconf['LanguageCode']}\";
+\$wgContLanguageCode = \"{$slconf['LanguageCode']}\";
 \$wgUseLatin1 = " . ($conf->Latin1 ? 'true' : 'false') . ";\n
 
 \$wgProxyKey = \"$proxyKey\";
@@ -968,7 +968,7 @@ function aField( &$conf, $field, $text, $type = "", $value = "" ) {
 function getLanguageList() {
 	global $wgLanguageNames;
 	if( !isset( $wgLanguageNames ) ) {
-		$wgLanguageCode = "xxx";
+		$wgContLanguageCode = "xxx";
 		function wfLocalUrl( $x ) { return $x; }
 		function wfLocalUrlE( $x ) { return $x; }
 		require_once( "../languages/Names.php" );
