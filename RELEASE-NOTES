@@ -208,8 +208,10 @@ If upgrading from an older release, see the file UPGRADING.
 * Show filename for images in gallery by default (restore beta 3 behaviour)
 * (bug 1201) Double-escaping in brokenlinks, imagelinks, categorylinks, searchindex
 * When using squid reverse proxy, cache the redirect to the Main_Page
-* (bug 1302) fix Norwegian language file
-* (bug 1205) Fixed broken article saving in PHP 5.1
+* (bug 1302) Fix Norwegian language file
+* (bug 1205) Fix broken article saving in PHP 5.1
+* (bug 1206) Implement CURRENTWEEK and CURRENTDOW magic keyword (will give
+  number of the week and number of the day).
 
 === Caveats ===
 
