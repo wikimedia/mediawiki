@@ -66,7 +66,7 @@ class Skin {
 	function getSkinName() {
 		return "standard";
 	}
-	
+
 	# Get/set accessor for delayed link colouring
 	function postParseLinkColour( $setting = NULL ) {
 		return wfSetVar( $this->postParseLinkColour, $setting );
@@ -1476,9 +1476,9 @@ class Skin {
 						$trail = $m[2];
 					}
 				}
-				
+
 				# Allows wiki to bypass using linkcache, see OutputPage::parseLinkHolders()
-				$retVal = '<!--LINK ' . implode( ' ', array( $nt->getNamespace(), $nt->getDBkey(), 
+				$retVal = '<!--LINK ' . implode( ' ', array( $nt->getNamespace(), $nt->getDBkey(),
 					$query, $prefix . $text . $inside ) ) . "-->{$trail}";
 			} else {
 				# Work out link colour immediately
@@ -1487,9 +1487,9 @@ class Skin {
 					$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail, $prefix );
 				} else {
 					$threshold = $wgUser->getOption('stubthreshold') ;
-					if ( $threshold > 0 ) {	
+					if ( $threshold > 0 ) {
 						$dbr =& wfGetDB( DB_SLAVE );
-						$s = $dbr->selectRow( 'cur', array( 'LENGTH(cur_text) AS x', 'cur_namespace', 
+						$s = $dbr->selectRow( 'cur', array( 'LENGTH(cur_text) AS x', 'cur_namespace',
 							'cur_is_redirect' ), array( 'cur_id' => $aid ), $fname ) ;
 						if ( $s !== false ) {
 							$size = $s->x;
@@ -2499,11 +2499,11 @@ class Skin {
 			}
 			if ( preg_match( '/^' . $medians . '(.*)$/i', $match[1], $submatch ) ) {
 				# Media link
-				$comment = preg_replace( '/\[\[(.*?)\]\]/', $this->makeMediaLink( $submatch[1], "", $text ), 
+				$comment = preg_replace( '/\[\[(.*?)\]\]/', $this->makeMediaLink( $submatch[1], "", $text ),
 				  $comment, 1 );
 			} else {
 				# Other kind of link
-				$comment = preg_replace('/\[\[(.*?)\]\]/', $this->$func( $match[1], $match[1] ), 
+				$comment = preg_replace('/\[\[(.*?)\]\]/', $this->makeLink( $match[1], $match[1] ),
 				  $comment , 1);
 			}
 		}
