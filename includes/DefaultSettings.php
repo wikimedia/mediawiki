@@ -25,10 +25,10 @@ unset($wgProto);
 
 $wgScriptPath	    = "/wiki";
 
-# ATTN: Old installations used wiki.phtml and redirect.phtml -
 # Whether to support URLs like index.php/Page_title
 $wgUsePathInfo		= ( strpos( php_sapi_name(), "cgi" ) === false );
 
+# ATTN: Old installations used wiki.phtml and redirect.phtml -
 # make sure that LocalSettings.php is correctly set!
 $wgScript           = "{$wgScriptPath}/index.php";
 $wgRedirectScript   = "{$wgScriptPath}/redirect.php";
@@ -304,9 +304,8 @@ $wgUseImageResize		= false;
 $wgUseImageMagick		= false;
 $wgImageMagickConvertCommand    = "/usr/bin/convert";
 
-# Enable experimental smarty skins (put Smarty/libs in your include_path!)
-$wgUseSmarty = false;
-$wgUsePHPTal = false;
+# Make sure include_path is set correctly
+$wgUsePHPTal = true;
 
 if( !isset( $wgCommandLineMode ) ) {
 	$wgCommandLineMode = false;
@@ -317,15 +316,14 @@ $wgRCSeconds = false;
 
 
 # RDF metadata toggles
-
 $wgEnableDublinCoreRdf = false;
 $wgEnableCreativeCommonsRdf = false;
 
 # Override for copyright metadata.
-
 $wgRightsPage = NULL;
 $wgRightsUrl = NULL;
 $wgRightsText = NULL;
+$wgRightsIcon = NULL;
 
 # Set this to false to avoid forcing the first letter of links
 # to capitals. WARNING: may break links! This makes links
@@ -333,5 +331,10 @@ $wgRightsText = NULL;
 # the beginning of a sentence will *not* go to the same place
 # as links in the middle of a sentence using a lowercase initial.
 $wgCapitalLinks = true;
+
+# List of interwiki prefixes for wikis we'll accept as sources
+# for Special:Import (for sysops). Since complete page history
+# can be imported, these should be 'trusted'.
+$wgImportSources = array();
 
 ?>
