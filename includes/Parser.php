@@ -436,13 +436,23 @@ cl_sortkey" ;
 		$res = wfQuery ( $sql, DB_READ ) ;
 		while ( $x = wfFetchObject ( $res ) )
 		{
-			$t = $wgLang->getNsText ( $x->cur_namespace ) ;
+			$t = $ns = $wgLang->getNsText ( $x->cur_namespace ) ;
 			if ( $t != '' ) $t .= ':' ;
 			$t .= $x->cur_title ;
 			
 			if ( $x->cur_namespace == $cns ) {
-				array_push ( $children, $sk->makeKnownLink ( $t, str_replace( '_',' ',$x->cur_title) ) ) ; # Subcategory
-				array_push ( $children_start_char, $wgLang->firstChar( $x->cl_sortkey ) ) ;
+				$ctitle = str_replace( '_',' ',$x->cur_title );
+				array_push ( $children, $sk->makeKnownLink ( $t, $ctitle ) ) ; # Subcategory
+
+				// If there's a link from Category:A to Category:B, the sortkey of the resulting
+				// entry in the categorylinks table is Category:A, not A, which it SHOULD be.
+				// Workaround: If sortkey == "Category:".$title, than use $title for sorting,
+				// else use sortkey...
+				if ( ($ns.":".$ctitle) ==  $x->cl_sortkey ) {
+					array_push ( $children_start_char, $wgLang->firstChar( $x->cur_title ) );
+				} else {
+					array_push ( $children_start_char, $wgLang->firstChar( $x->cl_sortkey ) ) ;
+				}
 			} else {
 				array_push ( $articles , $sk->makeLink ( $t ) ) ; # Page in this category
 				array_push ( $articles_start_char, $wgLang->firstChar( $x->cl_sortkey ) ) ;
@@ -458,7 +468,7 @@ cl_sortkey" ;
 			# Showing subcategories
 			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n"
 				. wfMsg( 'subcategorycount', count( $children ) );
-			if ( count ( $children ) > 20) {
+			if ( count ( $children ) > 6 ) {
 			
 				// divide list into three equal chunks
 				$chunk = (int) (count ( $children ) / 3);
