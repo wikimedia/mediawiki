@@ -39,7 +39,7 @@ class ImagePage extends Article {
 	{
 		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, $wgUseImageResize;
 		$this->img  = Image::newFromTitle( $this->mTitle );
-		$url  = $this->img->getUrl();
+		$url  = $this->img->getViewURL();
 		$anchoropen = '';
 		$anchorclose = '';
 		if ( $wgUseImageResize && $wgUser->getOption( 'imagesize' ) != '' ) {
