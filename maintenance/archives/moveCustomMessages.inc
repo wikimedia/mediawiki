@@ -1,4 +1,4 @@
-<?
+<?php
 
 function isTemplateInitialised() {
 	$sql = "SELECT 1 FROM cur WHERE cur_namespace=" . NS_TEMPLATE . " LIMIT 1";
@@ -133,3 +133,4 @@ function wfReplaceMediaWiki( $m ) {
 	return $text;
 }
 
+?>
