@@ -15,14 +15,21 @@ $wgSitename         = 'MediaWiki'; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
 
 
+if( isset( $_SERVER['SERVER_NAME'] ) ) {
+	$wgServerName = $_SERVER['SERVER_NAME'];
+} elseif( isset( $_SERVER['HOSTNAME'] ) ) {
+	$wgServerName = $_SERVER['HOSTNAME'];
+} else {
+	# FIXME: Fall back on... something else?
+	$wgServerName = 'localhost';
+}
+
 # check if server use https:
 $wgProto = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
 
-if ( @$wgCommandLineMode ) {
-	$wgServer = $wgProto.'://localhost';
-} else {
-	$wgServer           = $wgProto.'://' . $_SERVER['SERVER_NAME'];
-	if( $_SERVER['SERVER_PORT'] != 80 ) $wgServer .= ":" . $_SERVER['SERVER_PORT'];
+$wgServer = $wgProto.'://' . $wgServerName;
+if( isset( $_SERVER['SERVER_PORT'] ) && $_SERVER['SERVER_PORT'] != 80 ) {
+	$wgServer .= ":" . $_SERVER['SERVER_PORT'];
 }
 unset($wgProto);
 
@@ -47,8 +54,8 @@ $wgLogo				= "{$wgUploadPath}/wiki.png";
 $wgMathPath         = "{$wgUploadPath}/math";
 $wgMathDirectory    = "{$wgUploadDirectory}/math";
 $wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
-$wgEmergencyContact = 'wikiadmin@' . $_SERVER['SERVER_NAME'];
-$wgPasswordSender	= 'Wikipedia Mail <apache@' . $_SERVER['SERVER_NAME'] . '>';
+$wgEmergencyContact = 'wikiadmin@' . $wgServerName;
+$wgPasswordSender	= 'Wikipedia Mail <apache@' . $wgServerName . '>';
 
 # For using a direct (authenticated) SMTP server connection.
 # "host" => 'SMTP domain', "IDHost" => 'domain for MessageID', "port" => "25", "auth" => true/false, "username" => user, "password" => password
