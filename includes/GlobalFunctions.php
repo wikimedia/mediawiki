@@ -280,6 +280,9 @@ $wgReplacementKeys = array( "$1", "$2", "$3", "$4", "$5", "$6", "$7", "$8", "$9"
 
 # Get a message from anywhere
 function wfMsg( $key ) {
+	global $wgRequest;
+	if ( $wgRequest->getVal( 'debugmsg' ) )
+		return $key;
 	$args = func_get_args();
 	if ( count( $args ) ) {
 		array_shift( $args );
