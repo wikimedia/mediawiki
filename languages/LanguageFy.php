@@ -8,56 +8,38 @@
 # encapsulates some of the magic-ness.
 #
 
-## 1 De fariabelen $wgSitename en $wgServer binne foar�f beskikber.
-## 2 Yn de tekst binne alle bys�ndere letters troch teken-omskriuwings ferfongen.
-##    Sa hawwe �lde bl�dzjers it minst l�st. Uts�ndering is de nammeromte dy't
-##    faaks net werkent wurde soe nei sa'n feroaring.
-
 include_once( "LanguageUtf8.php" );
 
 if($wgMetaNamespace === FALSE)
 	$wgMetaNamespace = str_replace( " ", "_", $wgSitename );
 
 /* private */ $wgNamespaceNamesFy = array(
-        -2      => "Media",
+	-2	=> "Media",
 	-1	=> "Wiki",
 	0	=> "",
 	1	=> "Oerlis",
-	2	=> "Br�ker",
-	3	=> "Br�ker_oerlis",
+	2	=> "Brûker",
+	3	=> "Brûker_oerlis",
 	4	=> $wgMetaNamespace,
 	5	=> $wgMetaNamespace . "_oerlis",
 	6	=> "Ofbyld",
-	7	=> "Ofbyld_oerlis",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_oerlis"
-
-);
-
-/* private */ $wgDefaultUserOptionsFy = array(
-	"quickbar" => 1, "underline" => 1, "hover" => 1,
-	"cols" => 80, "rows" => 25, "searchlimit" => 20,
-	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
-	"highlightbroken" => 0, "stubthreshold" => 250,
-	"previewontop" => 1, "editsection"=>0, "editsectiononrightclick"=>0, "showtoc"=>1,
-	"date" => 2
+	7	=> "Ofbyld_oerlis"
 );
 
 /* private */ $wgQuickbarSettingsFy = array(
-	"Ut", "Lofts f&ecirc;st", "Rjochts f&ecirc;st", "Lofsts sweevjend"
+	"Ut", "Lofts fêst", "Rjochts fêst", "Lofsts sweevjend"
 );
 
 /* private */ $wgSkinNamesFy = array(
-	"Standert", "Nostalgy", "Keuls blau", "Paddington", "Montparnasse"
+	"Standert", "Nostalgy", "Keuls blau" # , "Paddington", "Montparnasse"
 );
 
 /* private */ $wgMathNamesFy = array(
-           "Altiten as PNG &ocirc;fbyldzje",
-           "HTML foar ienf&acirc;ldiche formules, oars PNG",
+           "Altiten as PNG ôfbyldzje",
+           "HTML foar ienfâldiche formules, oars PNG",
            "HTML as mooglik, oars PNG",
-           "Lit de TeX ferzje stean (foar tekstbl&ecirc;dzjers)",
-           "Oanbefelle foar resinte bl&ecirc;dzjers"
+           "Lit de TeX ferzje stean (foar tekstblêdzjers)",
+           "Oanbefelle foar resinte blêdzjers"
 );
 
 /* private */ $wgDateFormatsFy = array(
@@ -69,174 +51,26 @@ if($wgMetaNamespace === FALSE)
 
 /* private */ $wgUserTogglesFy = array(
 	"hover"		=> "Wiki-keppelings yn sweeffak sjen litte",
-	"underline"		=> "Keppelings &ucirc;nderstreekje",
-	"highlightbroken"	=> "Keppelings mei lege siden <a href=\"\" class=\"new\">read</a>
+	"underline"		=> "Keppelings ûnderstreekje",
+	"highlightbroken"	=> "Keppelings nei lege siden ta <a href=\"\" class=\"new\">read</a>
 					(oars mei in fraachteken<a href=\"\" class=\"internal\">?</a>).",
-	"justify"		=> "Paragrafen &uacute;tfolje",
-	"hideminor"		=> "Tekstwizigings wei litte &uacute;t 'Koarts feroare'",
-	"usenewrc"		=> "Utwreide ferzje fan 'Koarts feroare' br&ucirc;ke (net mei alle bl&ecirc;dzjers mooglik)",
-	"numberheadings"	=> "Koppen fansels n&ucirc;merje",
-	"editondblclick"	=> "D&ucirc;belklik jout bewurkingsside (freget JavaScript)",
+	"justify"		=> "Paragrafen útfolje",
+	"hideminor"		=> "Tekstwizigings wei litte út 'Koarts feroare'",
+	"usenewrc"		=> "Utwreide ferzje fan 'Koarts feroare' brûke (net mei alle blêdzjers mooglik)",
+	"numberheadings"	=> "Koppen fansels nûmerje",
+	"editondblclick"	=> "Dûbelklik jout bewurkingsside (freget JavaScript)",
 	"editsection"	=> "Jou [bewurk]-keppelings foar seksjebewurking",
 	"editsectiononrightclick" => "Rjochtsklik op sekjsetitels jout seksjebewurking (freget JavaScript)",
- 	"showtoc"		=> "Ynh&acirc;ldsopjefte, foar siden mei mear as twa koppen",
+ 	"showtoc"		=> "Ynhâldsopjefte, foar siden mei mear as twa koppen",
 	"rememberpassword" => "Oare kear fansels oanmelde",
 	"editwidth"		=> "Bewurkingsfjild sa breed as de side",
 	"watchdefault"	=> "Sides dy't jo feroare hawwe folgje",
 	"minordefault"	=> "Feroarings yn it earst oanjaan as tekstwizigings.",
-	"previewontop"	=> "By it neisjen, bewurkingsfjild &ucirc;nderoan sette",
-	"nocache"		=> "Gjin oerslag br&ucirc;ke"
+	"previewontop"	=> "By it neisjen, bewurkingsfjild ûnderoan sette",
+	"nocache"		=> "Gjin oerslag brûke"
 );
 
 /* private */ $wgBookstoreListFy = array(
-);
-
-/* private */ $wgLanguageNamesFy = array(
-	"aa" => "Afar",
-	"ab" => "Abkhazian",
-	"af" => "Afrikaans",
-	"am" => "Amharic",
-	"ar" => "&#8238;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;&#8236; (Araby)",
-	"as" => "Assamese",
-	"ay" => "Aymara",
-	"az" => "Azerbaijani",
-	"ba" => "Bashkir",
-	"be" => "&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1080;",
-	"bh" => "Bihara",
-	"bi" => "Bislama",
-	"bn" => "Bengali",
-	"bo" => "Tibetan",
-	"br" => "Brezhoneg",
-	"bs" => "Bosnian",
-	"ca" => "Catal&agrave;",
-	"ch" => "Chamoru",
-	"co" => "Corsican",
-	"cs" => "&#268;esk&#225;",
-	"cy" => "Cymraeg",
-	"da" => "Dansk", # Note two different subdomains.
-	"dk" => "Dansk", # 'da' is correct for the language.
-	"de" => "Deutsch",
-	"dz" => "Bhutani",
-	"el" => "&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940; (Ellenika)",
-	"en" => "English",
-	"eo" => "Esperanto",
-	"es" => "Espa&ntilde;ol",
-	"et" => "Eesti",
-	"eu" => "Euskara",
-	"fa" => "&#8238;&#1601;&#1585;&#1587;&#1609;&#8236; (Farsi)",
-	"fi" => "Suomi",
-	"fj" => "Fijian",
-	"fo" => "Faeroese",
-	"fr" => "Fran&ccedil;ais",
-	"fy" => "Frysk",
-	"ga" => "Gaelige",
-	"gd" => "G&agrave;idhlig",
-	"gl" => "Galician",
-	"gn" => "Guarani",
-	"gu" => "&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752; (Gujarati)",
-	"gv" => "Gaelg",
-	"ha" => "Hausa",
-	"he" => "&#1506;&#1489;&#1512;&#1497;&#1514; (Ivrit)",
-	"hi" => "&#2361;&#2367;&#2344;&#2381;&#2342;&#2368; (Hindi)",
-	"hr" => "Hrvatski",
-	"hu" => "Magyar",
-	"hy" => "Armenian",
-	"ia" => "Interlingua",
-	"id" => "Indonesia",
-	"ik" => "Inupiak",
-	"is" => "&#205;slenska",
-	"it" => "Italiano",
-	"iu" => "Inuktitut",
-	"ja" => "&#26085;&#26412;&#35486; (Nihongo)",
-	"jv" => "Javanese",
-	"ka" => "&#4325;&#4304;&#4320;&#4311;&#4309;&#4308;&#4314;&#4312; (Kartuli)",
-	"kk" => "Kazakh",
-	"kl" => "Greenlandic",
-	"km" => "Cambodian",
-	"kn" => "&#3221;&#3240;&#3277;&#3240;&#3233; (Kannada)",
-	"ko" => "&#54620;&#44397;&#50612; (Hangukeo)",
-	"ks" => "Kashmiri",
-	"kw" => "Kernewek",
-	"ky" => "Kirghiz",
-	"la" => "Latina",
-	"ln" => "Lingala",
-	"lo" => "Laotian",
-	"lt" => "Lietuvi&#371;",
-	"lv" => "Latvian",
-	"mg" => "Malagasy",
-	"mi" => "Maori",
-	"mk" => "Macedonian",
-	"ml" => "Malayalam",
-	"mn" => "Mongolian",
-	"mo" => "Moldavian",
-	"mr" => "Marathi",
-	"ms" => "Bahasa Melayu",
-	"my" => "Burmese",
-	"na" => "Nauru",
-	"nah" => "Nahuatl",
-	"nds" => "Plattd&uuml;&uuml;tsch",
-	"ne" => "&#2344;&#2375;&#2346;&#2366;&#2354;&#2368; (Nepali)",
-	"nl" => "Nederlands",
-	"no" => "Norsk",
-	"oc" => "Occitan",
-	"om" => "Oromo",
-	"or" => "Oriya",
-	"pa" => "Punjabi",
-	"pl" => "Polski",
-	"ps" => "Pashto",
-	"pt" => "Portugu&#234;s",
-	"qu" => "Quechua",
-	"rm" => "Rhaeto-Romance",
-	"rn" => "Kirundi",
-	"ro" => "Rom&#226;n&#259;",
-	"ru" => "&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081; (Russkij)",
-	"rw" => "Kinyarwanda",
-	"sa" => "&#2360;&#2306;&#2360;&#2381;&#2325;&#2371;&#2340; (Samskrta)",
-	"sd" => "Sindhi",
-	"sg" => "Sangro",
-	"sh" => "Serbocroatian",
-	"si" => "Sinhalese",
-	"simple" => "Simple English",
-	"sk" => "Slovak",
-	"sl" => "Slovensko",
-	"sm" => "Samoan",
-	"sn" => "Shona",
-	"so" => "Soomaali",
-	"sq" => "Shqiptare",
-	"sr" => "Srpski",
-	"ss" => "Siswati",
-	"st" => "Sesotho",
-	"su" => "Sundanese",
-	"sv" => "Svenska",
-	"sw" => "Kiswahili",
-	"ta" => "&#2980;&#2990;&#3007;&#2996;&#3021; (Tamil)",
-	"te" => "&#3108;&#3142;&#3122;&#3137;&#3095;&#3137; (Telugu)",
-	"tg" => "Tajik",
-	"th" => "Thai",
-	"ti" => "Tigrinya",
-	"tk" => "Turkmen",
-	"tl" => "Tagalog",
-	"tn" => "Setswana",
-	"to" => "Tonga",
-	"tr" => "T&uuml;rk&ccedil;e",
-	"ts" => "Tsonga",
-	"tt" => "Tatar",
-	"tw" => "Twi",
-	"ug" => "Uighur",
-	"uk" => "&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072; (Ukrayins`ka)",
-	"ur" => "Urdu",
-	"uz" => "Uzbek",
-	"vi" => "Vietnamese",
-	"vo" => "Volap&#252;k",
-	"wo" => "Wolof",
-	"xh" => "isiXhosa",
-	"yi" => "Yiddish",
-	"yo" => "Yoruba",
-	"za" => "Zhuang",
-	"zh" => "&#20013;&#25991; (Zhongwen)",
-	"zh-cn" => "&#20013;&#25991;(&#31616;&#20307;) (Simplified Chinese)",
-	"zh-tw" => "&#20013;&#25991;(&#32321;&#20307;) (Traditional Chinese)",
-	"zu" => "Zulu"
 );
 
 /* private */ $wgWeekdayNamesFy = array(
@@ -265,45 +99,43 @@ if($wgMetaNamespace === FALSE)
 	"Preferences"	=> "Ynstellings",
 	"Watchlist"		=> "Folchlist",
 	"Recentchanges"   => "Koarts feroare",
-	"Upload"		=> "Ofbyld oanbringe",
+	"Upload"		=> "Ofbyld oanbiede",
 	"Imagelist"		=> "Ofbyld list",
-	"Listusers"		=> "Bekinde br&ucirc;kers",
+	"Listusers"		=> "Bekinde brûkers",
 	"Statistics"	=> "Statistyk",
 	"Randompage"	=> "Samar in side",
 
 	"Lonelypages"	=> "Lossteande siden",
-	"Unusedimages"	=> "Lossteande &ocirc;fbylden",
+	"Unusedimages"	=> "Lossteande ôfbylden",
 	"Popularpages"	=> "Grage siden",
 	"Wantedpages"	=> "Nedige siden",
 	"Shortpages"	=> "Koarte siden",
 	"Longpages"		=> "Lange siden",
 	"Newpages"		=> "Nije siden",
 	"Ancientpages"	=> "Alde siden",
-#	"Intl"                => "Interlanguage Links",
 	"Allpages"		=> "Alle titels",
 
-	"Ipblocklist"	=> "Utsletten br&ucirc;kers/Ynternet-adressen",
-	"Maintenance"     => "Underh&acirc;ldsside",
-	"Specialpages"    => "Bys&ucirc;ndere siden",
+	"Ipblocklist"	=> "Utsletten brûkers/Ynternet-adressen",
+	"Maintenance"     => "Underhâldsside",
+	"Specialpages"    => "Bysûndere siden",
 	"Contributions"   => "",
 	"Emailuser"		=> "",
 	"Whatlinkshere"   => "",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "",
-#	"Categories"      => "Kategoryen",
-	"Export"		=> ""
+	"Categories"      => "Kategoryen",
 );
 
 /* private */ $wgSysopSpecialPagesFy = array(
-	"Blockip"		=> "Utsletten br&ucirc;ker/Ynternet-adres",
+	"Blockip"		=> "Utsletten brûker/Ynternet-adres",
 	"Asksql"		=> "Freegje de databank",
-	"Undelete"		=> "Set wiske siden wer teplak"
+	"Undelete"		=> "Set wisse siden wer teplak"
 );
 
 /* private */ $wgDeveloperSpecialPagesFy = array(
-	"Lockdb"  		=> "Skoattelje databank.",
-	"Unlockdb"  	=> "Untskoattel de databank",
+	"Lockdb"  		=> "Meitsje de databank Net-Skriuwe",
+	"Unlockdb"  	=> "Meitsje de databank skriuwber",
 	"Debug"   		=> "Breksykynformaasje"
 );
 
@@ -311,9 +143,10 @@ if($wgMetaNamespace === FALSE)
 
 # Bits of text used by many pages:
 #
-"linktrail"		=> "/^([���������������a-z]+)(.*)\$/sD",
+#"linktrail"		=> "/^([àáèéìíòóùúâêîôûäëïöüa-z]+)(.*)\$/sD",
+"linktrail"		=> "/^((?:[a-z]|à|á|è|é|ì|í|ò|ó|ù|ú|â|ê|î|ô|û|ä|ë|ï|ö|ü)+)(.*)\$/sD",
 "mainpage"		=> "Haadside",
-"mainpagetext"	=> "Wiki-programma goed ynstallearre.",
+"mainpagetext"	=> "Wiki-programma goed installearre.",
 "about"		=> "Ynfo",
 "aboutwikipedia" 	=> "Oer de $wgSitename",
 "aboutpage"		=> "$wgMetaNamespace:Ynfo",
@@ -324,11 +157,11 @@ if($wgMetaNamespace === FALSE)
 "bugreportspage"	=> "$wgMetaNamespace:Brekmelding",
 "faq"			=> "FAQ",
 "faqpage"		=> "$wgMetaNamespace:FAQ",
-"edithelp"		=> "Help",
+"edithelp"		=> "Siden bewurkje",
 "edithelppage"	=> "$wgMetaNamespace:Bewurk-rie",
 "cancel"		=> "Ferlitte",
 "qbfind"		=> "Sykje",
-"qbbrowse"		=> "Bl&ecirc;dzje",
+"qbbrowse"		=> "Blêdzje",
 "qbedit"		=> "Bewurkje",
 "qbpageoptions" 	=> "Side-opsjes",
 "qbpageinfo"	=> "Side-ynfo",
@@ -338,38 +171,38 @@ if($wgMetaNamespace === FALSE)
 "currentevents" 	=> "Hjoeddeis",
 "errorpagetitle" 	=> "Fout",
 "returnto"		=> "Werom nei \"$1\".",
-"fromwikipedia"	=> "In side fan de $wgSitename, de frije ensyklopedy.", # FIXME
+"fromwikipedia"	=> "Fan $wgSitename, de frije ensyklopedy.", # FIXME
 "whatlinkshere"	=> "Siden mei in keppeling hjirhinne",
 "help"		=> "Help",
-"search"		=> "<B>Sykje</B>",
+"search"		=> "Sykje",
 "go"			=> "Side",
 "history"		=> "Sideskiednis",
 "printableversion" => "Ofdruk-ferzje",
 "editthispage"	=> "Side bewurkje",
 "deletethispage" 	=> "Side wiskje",
-"protectthispage" => "Side skoattelje",
-"unprotectthisside" => "Side &ucirc;ntskoattelje",
+"protectthispage" => "Side beskermje",
+"unprotectthisside" => "Side frij jaan",
 "newpage" 		=> "Nije side",
 "talkpage"		=> "Sideoerlis",
-"postcomment"   	=> "Skriuw in opmerking",
-"articlepage"	=> "Side l&ecirc;ze",
-"subjectpage"	=> "M&ecirc;d l&ecirc;ze", # For compatibility
-"userpage" 		=> "Br&ucirc;kerside",
+"postcomment"   	=> "Skrieuw in opmerking",
+"articlepage"	=> "Side lêze",
+"subjectpage"	=> "Side lêze", # For compatibility
+"userpage" 		=> "Brûkerside",
 "wikipediapage" 	=> "Metaside",
 "imagepage" 	=> "Ofbyldside",
 "viewtalkpage" 	=> "Oerlisside",
 "otherlanguages" 	=> "Oare talen",
 "redirectedfrom" 	=> "(Trochwiisd fan \"$1\")",
-"lastmodified"	=> "L&ecirc;ste kear bewurke op $1.",
+"lastmodified"	=> "Lêste kear bewurke op $1.",
 "viewcount"		=> "Disse side is $1 kear iepenslein.",
-"gnunote" 		=> "Alle tekst is beskiber &ucirc;nder de betingsten fan de <a class=internal href='/wiki/GNU_FDL'>GNU Iepen Dokumentaasje Lisinsje</a>.",
+"gnunote" 		=> "Alle tekst is beskiber ûnder de betingsten fan de <a class=internal href='/wiki/GNU_Vrije_Documentatie_Licentie'>GNU Iepen Dokumentaasje Lisinsje</a>.",
 "printsubtitle" 	=> "(Fan http://$wgServer)",
-"protectedpage" 	=> "Skoattele side",
+"protectedpage" 	=> "Beskerme side",
 "administrators" 	=> "$wgMetaNamespace:Behear",
 "sysoptitle"	=> "Allinnich foar behearders",
-"sysoptext"		=> "Om dit te dwaan moatte jo behearder w&ecirc;ze. Sjoch \"$1\".",
+"sysoptext"		=> "Om dit te dwaan moatte jo behearder wêze. Sjoch \"$1\".",
 "developertitle"  => "Allinich foar untwiklers",
-"developertext"	=> "Om dit te dwaan moatte jo &ucirc;ntwikler w&ecirc;ze. Sjoch \"$1\".",
+"developertext"	=> "Om dit te dwaan moatte jo ûntwikler wêze. Sjoch \"$1\".",
 "nbytes"		=> "$1 byte",
 "go"			=> "Side",
 "ok"			=> "Goed",
@@ -379,10 +212,10 @@ if($wgMetaNamespace === FALSE)
 "newmessages" 	=> "Jo hawwe $1.",
 "newmessageslink" => "nije berjochten",
 "editsection"	=> "edit",
-"toc" 		=> "Ynh&acirc;ld",
+"toc" 		=> "Ynhâld",
 "showtoc" 		=> "sjen litte",
 "hidetoc" 		=> "net sjen litte",
-"thisisdeleted"	=> "\"$1\" l&ecirc;ze of werombringje?",
+"thisisdeleted"	=> "\"$1\" lêze of werombringje?",
 "restorelink" 	=> "$1 wiske ferzjes",
 
 # Main script and global functions
@@ -397,190 +230,190 @@ if($wgMetaNamespace === FALSE)
 #
 "error"			=> "Fout",
 "databaseerror" 		=> "Databankfout",
-"dberrortext"		=> "Sinboufout yn databankfraach.
+"dberrortext"		=> "Sinboufout in databankfraach.
 Dit soe troch in ferkearde sykfraach komme kinne (sjoch \"$5\"),
-of it soe in brek yn it programma w&ecirc;ze kinne.
-De l&ecirc;st besochte databankfraach wie:
+of it soe in brek yn it programma wêze kinne.
+De lêst besochte databankfraach wie:
 <blockquote><tt>$1</tt></blockquote>
-fan funksje \"<tt>$2</tt>\" &uacute;t.
+fan funksje \"<tt>$2</tt>\" út.
 MySQL joech fout \"<tt>$3: $4</tt>\" werom.",
 
 "dberrortextcl" 		=> "Sinboufout in databankfraach.
-De l&ecirc;st besochte databankfraach wie:
+De lêst besochte databankfraach wie:
 \"$1\"
-fan funksje \"$2\" &uacute;t.
+fan funksje \"$2\" út.
 MySQL joech fout \"<tt>$3: $4</tt>\" werom.",
 
 "noconnect"			=> "Sorry! Troch in fout yn de technyk, kin de Wiki gjin ferbining meitsje mei de databanktsjinner.",
 "nodb"			=> "Kin databank \"$1\" net berikke.",
-"cachederror"		=> "Dit is in ferzje &uacute;t de oerslag, mar it kin w&ecirc;ze dat dy fer&acirc;ldere is.",
-"readonly"			=> "Databank is skoattele",
-"enterlockreason" 	=> "Skriuw w&ecirc;rom de databank skoattele is,
-en sawat hoenear't dy wer &ucirc;ntskoattele wurdt",
-"readonlytext"	=> "De $wgSitename databank is skoattele foar nije siden en oare wizigings,
-nei alle gedachten is it foar &ucirc;nderh&acirc;ld, en kinne jo der letter gewoan wer br&ucirc;k fan meitsje.
-De behearder hat dizze &uacute;tlis joen:
+"cachederror"		=> "Dit is in ferzje út de oerslag, mar it kin wêze dat dy ferâldere is.",
+"readonly"			=> "Databank is Net-skriuwe",
+"enterlockreason" 	=> "Skriuw wêrom de databank net-skriuwe makke is,
+en sawat hoenear't de men wêr skriuwe kin",
+"readonlytext"	=> "De $wgSitename databank is ôfsletten foar nije siden en oare wizigings,
+nei alle gedachten is it foar ûnderhâld, en kinne jo der letter gewoan wer brûk fan meitsje.
+De behearder hat dizze útlis joen:
 <p>$1</p>",
 
 "missingarticle" 		=> "De databank kin in side net fine, nammentlik: \"$1\".
-<p>Faak is dit om't in &acirc;lde ferskil-, of skiednisside opfreege wurdt fan in side dy't wiske is.
-<p>As dat it hjir net is, dan hawwe jo faaks in brek yn it programa f&ucirc;n.
+<p>Faak is dit om't in âlde ferskil-, of skiednisside opfreege wurdt fan in side dy't wiske is.
+<p>As dat it hjir net is, dan hawwe jo faaks in brek yn it programa fûn.
 Jou dat asjebleaft troch oan de [[$wgMetaNamespace:Brekmelding|behearder]], tegearre mei de URL.",
 
 "internalerror" 		=> "Ynwindige fout",
-"filecopyerror" 		=> "Koe triem \"$1\" net kopiearje as \"$2\".",
-"filerenameerror" 	=> "Koe triem \"$1\" net werneame as \"$2\".",
-"filedeleteerror" 	=> "Koe triem \"$1\" net wiskje.",
-"filenotfound"		=> "Koe triem \"$1\" net fine.",
+"filecopyerror" 		=> "Koe bestân \"$1\" net kopiearje as \"$2\".",
+"filerenameerror" 	=> "Koe bestân \"$1\" net werneame as \"$2\".",
+"filedeleteerror" 	=> "Koe bestân \"$1\" net wiskje.",
+"filenotfound"		=> "Koe bestân \"$1\" net fine.",
 "unexpected"		=> "Hommelse wearde: \"$1\"=\"$2\".",
 "formerror"			=> "Fout: koe formulier net oerlizze",	
 "badarticleerror" 	=> "Dit kin op dizze side net dien wurden.",
-"cannotdelete"		=> "Koe de oantsjutte side of &ocirc;fbyld net wiskje. (Faaks hat in oar dat al dien.)",
+"cannotdelete"		=> "Koe de oantsjutte side of ôfbyld net wiskje. (Faaks hat in oar dat al dien.)",
 "badtitle"			=> "Misse titel",
-"badtitletext"		=> "De opfreeche side titel wie &ucirc;njildich, leech, of in 
+"badtitletext"		=> "De opfreeche side titel wie ûnjildich, leech, of in 
 miskeppele ynter-taal of ynter-wiki titel.",
-"perfdisabled" 		=> "Sorry! Dit &ucirc;nderdiel is tydlik &uacute;t set om't it de databank sa starich makket
-dat gjinien de wiki br&ucirc;ke kin.",
+"perfdisabled" 		=> "Sorry! Dit ûnderdiel is tydlik út set om't it de databank sa starich makket
+dat gjinien de wiki brûke kin.",
 "perfdisabledsub" 	=> "Dit is in opsleine ferzje fan \"$1\":",
 
 
 # Login and logout pages
 #
 "logouttitle" 	=> "Ofmelde",
-"logouttext"	=> "Jo binne no &ocirc;fmeld.
-Jo kinne de $wgSitename fierders anonym br&ucirc;ke,
-of jo op 'e nij [[Wiki:Userlogin|oanmelde]] &ucirc;nder in oare namme.\n",
+"logouttext"	=> "Jo binne no ôfmeld.
+Jo kinne de $wgSitename fierders anonym brûke,
+of jo op 'e nij [[Wiki:Userlogin|oanmelde]] ûnder in oare namme.\n",
 "welcomecreation" => "<h2>Wolkom, $1!</h2><p>Jo ynstellings bin oanmakke.
 Ferjit net se oan jo foarkar oan te passen.",
 
 "loginpagetitle" 	=> "Oanmelde",
-"yourname"  	=> "Jo br&ucirc;kersnamme",
+"yourname"  	=> "Jo brûkersnamme",
 "yourpassword" => "Jo wachtwurd",
 "yourpasswordagain" => "Jo wachtwurd (nochris)",
-"newusersonly" 	=> " (allinnich foar nije br&ucirc;kers)",
+"newusersonly" 	=> " (allinnich foar nije brûkers)",
 "remembermypassword" => "Oare kear fansels oanmelde.",
 "loginproblem" 	=> "<b>Der wie wat mis mei jo oanmelden.</b><br>Besykje it nochris, a.j.w.",
-"alreadyloggedin" => "<font color=red><b>Br&ucirc;ker $1, jo binne al oanmeld!</b></font><br>\n",
-"areyounew"  	=> "Binne jo nij op de $wgSitename en wolle jo br&ucirc;kersynstellings oanmeitsje, 
-jou dan in br&ucirc;kersnamme en twa kear itselde wachtwurd yn.
-In netpostadres hoecht net, mar as jo it wachtwurd in kear ferjitte soenen,
-dan koe jo d&ecirc;r in nijenien tastjoerd wurde.<br>\n",
+"alreadyloggedin" => "<font color=red><b>Brûker $1, jo binne al oanmeld!</b></font><br>\n",
+"areyounew"  	=> "Binne jo nij op de $wgSitename en wolle jo brûkersinstellings oanmeitsje, 
+jou dan in brûkersnamme en twa kear itselde wachtwurd yn.
+In e-postadres hoecht net, mar as jo it wachtwurd in kear ferjitte soenen,
+dan koe jo dêr in nijenien tastjoerd wurde.<br>\n",
 "login"		=> "Oanmelde",
 "userlogin"		=> "Oanmelde",
 "logout"		=> "Ofmelde",
 "userlogout"	=> "Ofmelde",
 "notloggedin"	=> "Net oanmelde",
-"createaccount"	=> "Nije ynstellings oanmeitsje",
-"badretype"		=> "De ynfierde wuchtwurden binne net lyk. (Nochris?)",
-"userexists"	=> "Dy br&ucirc;kersname wurdt al br&ucirc;kt. Besykje in oarenien.",
-"youremail"		=> "Jo netpostadres (*).",
+"createaccount"	=> "Nije ynstelingd oanmeitsje",
+"badretype"		=> "De infierde wuchtwurden binne net lyk.",
+"userexists"	=> "Dy brûkersname wurdt al brûkt. Besykje in oarenien.",
+"youremail"		=> "Jo e-postadres (*).",
 "yournick"		=> "Jo alias (foar sinjaturen)",
-"emailforlost"	=> "* In netpostadres hoecht net.<br>
+"emailforlost"	=> "* In e-postadres hoecht net.<br>
 Mar it helpt, soenen jo jo wachtwurd ferjitte.
-En mei in netpostadres hjir, kinne oaren fan jo side &ocric;f contact mei jo meitsje,
-s&ucirc;nder dat se dat adres witte. (Dat leste kin ek wer &uacute;tset by de ynstellings.)",
+En mei in e-postadres kinne oaren fan de web siden contact mei jo krije,
+sûnder dat se dat adres witte. (Dat leste kin ek wer útset by de instellings.)",
 
 "loginerror"	=> "Oanmeldflater",
-"noname"		=> "Jo moatte in br&ucirc;kersnamme opjaan.",
+"noname"		=> "Jo moatte in brûkersnamme opjaan.",
 "loginsuccesstitle" => "Oanmelden slagge.",
 "loginsuccess"	=> "Jo binne no oanmelde op de $wgSitename as: $1.",
-"nosuchuser"	=> "Br&ucirc;kersnamme en wachtwurd hearre net tegearre.
-Besykje op 'e nij, of fier it wachtwurd twa kear yn en meitsje nije br&ucirc;kersynstellings.",
+"nosuchuser"	=> "Brûkersnamme en wachtwurd hearre net by elkoar.
+Besykje op 'e nij, of fier it wachtwurd twa kear yn en meitsje neie brûkersynstellings.",
 
-"wrongpassword"	=> "Br&ucirc;kersnamme en wachtwurd hearre net tegearre.
-Besykje op 'e nij, of fier it wachtwurd twa kear yn en meitsje nije br&ucirc;kersynstellings.",
+"wrongpassword"	=> "Brûkersnamme en wachtwurd hearre net by elkoar.
+Besykje op 'e nij, of fier it wachtwurd twa kear yn en meitsje neie brûkersynstellings.",
 
 "mailmypassword" 	=> "Stjoer my in nij wachtwurd.",
 "passwordremindertitle" => "Nij wachtwurd foar de $wgSitename",
 "passwordremindertext" => "Immen (nei alle gedachten jo, fan Ynternet-adres $1)
 hat frege en stjoer jo in nij $wgSitename wachtwurd.
-I wachtwurd foar br&ucirc;ker \"$2\" is no \"$3\".
+I wachtwurd foar brûker \"$2\" is no \"$3\".
 Meld jo no oan, en feroarje jo wachtwurd.",
-"noemail"		=> "Der is gjin netpostadres foar br&ucirc;ker \"$1\".",
-"passwordsent"	=> "In nij wachtwurd is tastjoert oan it netpostadres foar \"$1\".
-Meld jo ope 'e nij oan nei't jo it krige hawwe, a.j.w.",
+"noemail"		=> "Der is gjin e-postadres foar brûker \"$1\".",
+"passwordsent"	=> "In nij wachtwurd is tastjoert oan it e-postadres foar \"$1\".
+Please log in again after you receive it.",
 
 # Edit pages
 #
 "summary"		=> "Gearfetting",
-"subject"		=> "M&ecirc;d",
+"subject"		=> "Mêd",
 "minoredit"		=> "Dit is in tekstwiziging",
 "watchthis"		=> "Folgje dizze side",
-"savearticle"	=> "F&ecirc;stlizze",
-"preview"		=> "Oerl&ecirc;ze",
-"showpreview"	=> "Earst oerl&ecirc;ze",
-"blockedtitle"	=> "Br&ucirc;ker is &uacute;tsletten troch",
-"blockedtext"	=> "Jo br&ucirc;kersname of Ynternet-adres is &uacute;tsletten.
-As reden is opj&ucirc;n:<br>''$2''<p>As jo wolle, kinne jo hjiroer kontakt op nimme mei de behearder. 
+"savearticle"	=> "Fêstlizze",
+"preview"		=> "Oerlêze",
+"showpreview"	=> "Oerlêze foar de side fêstlein is",
+"blockedtitle"	=> "Brûker is útsletten troch",
+"blockedtext"	=> "Jo brûkersname of Ynternet-adres is útsletten.
+As reden is opjûn:<br>''$2''<p>As jo wolle, kinne jo hjiroer kontakt op nimme meid de behearder. 
 
-(Om't Ynternet-adressen faak mar foar ien sessie tawiisd wurde, kin it w&ecirc;ze
-dat it eins gjit om in oar dy't deselde kedizer hat as jo hawwe. As it jo
+(Om't in Ynternet-adressen faak mar foar ien sessie tawiisd wurde, kin it wêze
+dat it eins gjit om in oar dy't deselde tagongferskaffer hat as jo hawwe. As it jo
 net betreft, besykje dan earst of it noch sa is as jo in skofke gjin
-Ynternet-ferbining h&acirc;n hawwe. As it in probleem bliuwt, skriuw dan de behearder.
-Sorry, foar it &ucirc;ngemak.)
+Ynternet-ferbining hân hawwe. As it in probleem bliuwt, skriuw dan de behearder.
+Sorry, foar it ûngemak.)
 
 Jo Ynternet-adres is: $3. Nim dat op yn jo berjocht.
 
-Tink derom, dat \"skriuw dizze br&ucirc;ker\" allinich wol as jo in
-netpostadres opj&ucirc;n hawwe in jo [[Wiki:Preferences|ynstellings]].",
+Tink derom, dat \"skriuw nei dizze brûker\" allinich wol as jo in
+e-postadres opjûn hawwe in jo [[Wiki:Preferences|ynstellings]].",
 
 "newarticle"	=> "(Nij)",
 "newarticletext" =>
-"Jo hawwe in keppeling folge nei in side d&ecirc;r't noch gjin tekst op stiet.
-Jo kinne sels de tekst meitjsen troch dy gewoan yn te typen yn dit bewurkingsfjild. 
+"Jo hawwe in keppeling folge nei in side dêr't noch gjin tekst op stiet.
+Om sels tekst te meistjsen kinne jo dy gewoan yntype in dit bewurkingsfjild 
 ([[$wgMetaNamespace:Bewurk-rie|Mear ynformaasje oer bewurkjen]].)
-Oars kinne jo tebek mei de tebek-knop fan jo bl&ecirc;dzjer.",
+Oars kinne jo tebek mei de tebek-knop fan jo blêdzjer.",
 
-"anontalkpagetext" => "---- ''Dit is de oerlisside fan in unbekinde br&ucirc;ker; in br&ucirc;ker
-dy't sich net oanmeld hat. Om't der gjin namme is wurd it Ynternet-adres br&ucirc;kt om
-oan te jaan wa. Mar faak is it sa dat sa'n adres net altid troch deselde br&ucirc;kt wurdt.
-As jo it idee hawwe dat jo as &ucirc;nbekinde br&ucirc;ker opmerkings foar in oar krije, dan kinne
+"anontalkpagetext" => "---- ''Dit is de oerlisside fan in unbekinde brûker; in brûker
+dy't sich net oanmeld hat. Om't der gjin namme is wurd it Ynternet-adres brûkt om
+oan te jaan wa. Mar faak is it sa dat sa'n adres net altid troch deselde brûkt wurdt.
+As jo it idee hawwe dat jo as ûnbekinde brûker opmerkings foar in oar krije, dan kinne
 jo jo [[Wiki:Userlogin|oanmelde]], dat jo allinnich opmerkings foar josels krije.'' ",
-"noarticletext" => "(Der stiet noch gjin tekst op dizze side.)",
+"noarticletext" => "(Der stjit noch gjin tekst op dizze side.)",
 "updated"		=> "(Bewurke)",
 "note"		=> "<strong>Opmerking:</strong> ",
-"previewnote"	=> "Tink der om dat dizze side noch net f&ecirc;stlein is!",
+"previewnote"	=> "Tink der om dat dizze side noch net fêstlein is!",
 "previewconflict" => "Dizze side belanget allinich it earste bewurkingsfjild oan.",
 "editing"		=> "Bewurkje \"$1\"",
 "sectionedit"	=> " (seksje)",
 "commentedit"	=> " (nije opmerking)",
 "editconflict"	=> "Tagelyk bewurke: \"$1\"",
-"explainconflict" => "In oar hat de side feroare s&ucirc;nt jo beg&ucirc;n binne mei it bewurkjen.
+"explainconflict" => "In oar hat de side feroare sûnt jo begûn binne mei it bewurkjen.
 It earste bewurkingsfjild is hoe't de tekst wilens wurde is. 
 Jo feroarings stean yn it twadde fjild.
 Dy wurde allinnich tapasse safier as jo se yn it earste fjild ynpasse.
-<b>Allinnich</b> de tekst &uacute;t it earste fjild kin f&ecirc;stlein wurde.\n<p>",
+<b>Allinnich</b> de tekst út it earste fjild kin fêstlein wurde.\n<p>",
 "yourtext"		=> "Jo tekst",
-"storedversion" => "F&ecirc;stleine ferzje",
-"editingold"	=> "<strong><font color=red>Warsk&ocirc;ging</font>: Jo binne dwaande mei in &acirc;ldere ferzje fan dizze side.
-Soenen jo dizze f&ecirc;stlizze, dan is al wat s&ucirc;nt dy tiid feroare is kwyt.</strong>\n",
+"storedversion" => "Fêstleine ferzje",
+"editingold"	=> "<strong><font color=red>Waarskôging</font>: Jo binne dwaande mei in âldere ferzje fan dizze side.
+Soenen jo dizze fêstlizze, dan is al wat sûnt dy tiid feroare is kwyt.</strong>\n",
 "yourdiff"		=> "Feroarings",
 # REPLACE THE COPYRIGHT WARNING IF YOUR SITE ISN'T GFDL!
 "copyrightwarning" => "Alle bydragen ta de $wgSitename wurde sjoen
-as fallend &ucirc;nder de GNU Iepen Dokumentaasje Lisinsje
+as fallend ûnder de GNU Iepen Dokumentaasje Lisinsje
 (sjoch fierders: \"$1\").
-As jo net wolle dat jo skriuwen &ucirc;nferbidlik oanpast en frij ferspraat wurdt,
+As jo net wolle dat jo skriuwen ûnferbidlik oanpast en frij ferspraat wurdt,
 dan is it baas, en set it net op de $wgSitename.<br>
-Jo ferklare ek dat jo dit sels skreaun hawwe, of it oernaam hawwe &uacute;t in
+Jo ferklare ek dat jo dit sels skreaun hawwe, of it oernaam hawwe út in
 publyk eigendom of in oare iepen boarne.
-<strong><big>Foegje gjin wurk &ucirc;nder auteursrjocht ta s&ucirc;nder tastimming!</big></strong>",
-"longpagewarning" => "<font color=red>Warsk&ocirc;ging</font>: Dizze side is $1 kilobyte lang; 
-der binne bl&ecirc;dzjers dy problemen hawwe mei siden fan tsjin de 32kb. of langer.
+<strong><big>Foeg gjin wurk ûnder auteursrjocht ta sûnder tastimming!</big></strong>",
+"longpagewarning" => "<font color=red>Waarskôging</font>: Dizze side is $1 kilobyte lang; 
+der binne blêdzjers dy problemen hawwe mei siden fan tsjin de 32kb. of langer.
 Besykje de side yn lytsere stikken te brekken.",
-"readonlywarning" => "<font color=red>Warsk&ocirc;ging</font>: De databank is skoattele foar
-&ucirc;nderh&acirc;ld, dus jo kinne jo bewurkings no net f&ecirc;stlizze.
-It wie baas en nim de tekst foar letter oer yn in teksttriem.",
-"protectedpagewarning" => "<font color=red>Warsk&ocirc;ging</font>: Dizze side is skoattele, dat
-gewoane br&ucirc;kers dy net bewurkje kinne. Tink om de
-<a href='/wiki/$wgMetaNamespace:Skoattel-rie'>rie foar skoattele siden</a>.",
+"readonlywarning" => "<font color=red>Waarskôging</font>: De databank is ôfsletten foar
+ûnderhâld, dus jo kinne jo bewurkings no net fêstlizze.
+It wie baas en nim de tekst foar letter oer yn in tekstbestân.",
+"protectedpagewarning" => "<font color=red>Waarskôging</font>: Dizze side is beskerme, dat
+gewoane brûkers dy net bewurkje kinne. Tink om de
+<a href='/wiki/$wgMetaNamespace:Beskerm-rie'>rie oer beskerme siden</a>.",
 
 # History pages
 #
 "revhistory"	=> "Sideskiednis",
 "nohistory"		=> "Dit is de earste ferzje fan de side.",
-"revnotfound"	=> "Ferzje net f&ucirc;n",
-"revnotfoundtext" => "De &acirc;lde ferzje fan dizze side d&ecirc;r't jo om frege hawwe, is der net.
-Gean nei of de keppeling dy jo br&ucirc;kt hawwe wol goed is.\n",
+"revnotfound"	=> "Ferzje net fûn",
+"revnotfoundtext" => "De âlde ferzje fan dizze side dêr't jo om frege hawwe, is der net.
+Gean nei of de keppeling dy jo brûkt hawwe wol goed is.\n",
 "loadhist"		=> "Sideskiednis ...",
 "currentrev"	=> "Dizze ferzje",
 "revisionasof"	=> "Ferzje op $1",
@@ -608,10 +441,9 @@ Gean nei of de keppeling dy jo br&ucirc;kt hawwe wol goed is.\n",
 "searchquery"	=> "Foar fraach \"$1\"",
 "badquery"		=> "Misfoarme sykfraach",
 "badquerytext"	=> "Jo fraach koe net ferwurke wurde.
-Dit is faaks om't jo besyke hawwe en sykje in word fan ien of twa letters,
-wat it programma noch net kin. Of it soe kinne dat jo de fraach misskreaun hawwe,
-lykas \"Midden fan fan Frysl&acirc;n\". Besykje it nochris.",
-"matchtotals"	=> "Foar \"$1\" binne $2 titles f&ucirc;n en $3 siden.",
+Dit is faaks om't jo besyke hawwe en sykje in word fan ien of twa letters, wat it programma noch net kin.
+Of it soe kinne dat jo de fraach misskreaun hawwe, lykas \"frysk en en frei\". Besykje it nochris.",
+"matchtotals"	=> "Foar \"$1\" binne $2 titles fûn en $3 siden.",
 "nogomatch" => "Der is gjin side mei krekt dizze titel. Faaks is it better en Sykje nei dizze tekst.",
 "titlematches"	=> "Titels",
 "notitlematches" => "Gjin titels",
@@ -620,19 +452,19 @@ lykas \"Midden fan fan Frysl&acirc;n\". Besykje it nochris.",
 "prevn"		=> "foarige $1",
 "nextn"		=> "folgende $1",
 "viewprevnext"	=> "($1) ($2) ($3) besjen.",
-"showingresults"	=> "<b>$1</b> resultaten fan <b>$2</b> &ocirc;f.",
-"showingresultsnum" => "<b>$3</b> resultaten fan <b>$2</b> &ocirc;f.",
+"showingresults"	=> "<b>$1</b> resultaten fan <b>$2</b> ôf.",
+"showingresultsnum" => "<b>$3</b> resultaten fan <b>$2</b> ôf.",
 "nonefound"		=> "As der gjin resultaten binne, tink der dan om dat der <b>net</b> socht
-wurde kin om wurden as \"it\" en \"in\", om't dy net byh&acirc;lden wurde, en dat as der mear
-wurden syke wurde, allinnich siden f&ucirc;n wurde w&ecirc;r't <b>alle</b> worden op f&ucirc;n wurde.",
+wurde kin om wurden as \"it\" en \"in\", om't dy net byhâlden wurde, en dat as der mear
+wurden syke wurde, allinnich siden fûn wurde wêr't <b>alle</b> worden op fûn wurde.",
 
 "powersearch" => "Sykje",
 "powersearchtext" => "
-Sykje yn nammeromten :<br>
+Sykje in nammeromten :<br>
 $1<br>
 $2 List trochferwizings &nbsp; Sykje nei \"$3\" \"$9\"",
 
-"searchdisabled" => "<p>Op it stuit stiet it trochsykjen fan tekst net oan, om't de 
+"searchdisabled" => "<p>Op it stuit stjit it trochsykjen fan tekst net oan, om't de 
 tsjinner it net oankin. Mei't we nije apparatuer krije wurdt it nei alle gedanken wer
 mooglik. Foar now kinne jo sykje fia Google:</p>
                                                                                                                                                         
@@ -667,14 +499,14 @@ value=\"{$wgServer}\" checked> $wgSitename <br>
 "prefsnologin" 		=> "Net oanmeld",
 "prefsnologintext"	=> "Jo moatte <a href=\""
 . wfLocalUrl( "Wiki:Userlogin" ) 
-. "\">oanmeld</a> w&ecirc;ze om jo ynstellings te feroarjen.",
+. "\">oanmeld</a> wêze om jo ynstellings te feroarjen.",
 
 "prefslogintext" 		=> "Jo binne oanmeld, $1.
-Jo Wiki-n&ucirc;mer is $2.
+Jo Wiki-nûmer is $2.
 
 ([[$wgMetaNamespace:Ynstelling-rie|Help by de ynstellings]].",
 
-"prefsreset"		=> "De ynstellings binne tebek set sa't se f&ecirc;stlein wienen.",
+"prefsreset"		=> "De ynstellings binne tebek set sa't se fêstlein wienen.",
 "qbsettings"		=> "Menu", 
 "changepassword" 		=> "Wachtword feroarje",
 "skin"			=> "Side-oansjen",
@@ -685,7 +517,7 @@ Jo Wiki-n&ucirc;mer is $2.
 "math_unknown_function"	=> "Unbekinde funksje",
 "math_lexing_error"	=> "Unbekind wurd",
 "math_syntax_error"	=> "Sinboufout",
-"saveprefs"			=> "Ynstellings f&ecirc;stlizze",
+"saveprefs"			=> "Ynstellings fêstlizze",
 "resetprefs"		=> "Ynstellings tebek sette",
 "oldpassword"		=> "Ald wachtwurd",
 "newpassword"		=> "Nij wachtwurd",
@@ -695,17 +527,17 @@ Jo Wiki-n&ucirc;mer is $2.
 "columns"			=> "Kolommen",
 "searchresultshead" 	=> "Sykje",
 "resultsperpage" 		=> "Treffers de side",
-"contextlines"		=> "Rigels ynh&acirc;ld de treffer",
-"contextchars"		=> "Tekens fan de inh&acirc;ld de rigel",
+"contextlines"		=> "Rigels inhâld de treffer",
+"contextchars"		=> "Tekens fan de inhâld de rigel",
 "stubthreshold" 		=> "Grins foar stobben",
-"recentchangescount" 	=> "Tal fan titels op 'Koarts feroare'",
-"savedprefs"		=> "Jo ynstellings binne f&ecirc;stlein.",
-"timezonetext"		=> "Jou it tal fan oeren dat jo tiids&ocirc;ne ferskilt fan UTC (Greenwich).",
-"localtime"			=> "Jo tiids&ocirc;ne",
+"recentchangescount" 	=> "Nûmer of titels op 'Koarts feroare'",
+"savedprefs"		=> "Jo ynstellings binne fêstlein.",
+"timezonetext"		=> "Jou it tal fan oeren dat jo tiidsône ferskilt fan UTC (Greenwich).",
+"localtime"			=> "Jo tiidsône",
 "timezoneoffset" 		=> "Ferskil",
 "servertime"		=> "UTC",
-"guesstimezone" 		=> "Freegje de bl&ecirc;dzjer",
-"emailflag"			=> "Gjin post fan oare br&ucirc;kers",
+"guesstimezone" 		=> "Freegje de blêdzjer",
+"emailflag"			=> "Gjin post fan oare brûkers",
 "defaultns"			=> "Nammeromten dy't normaal trochsykje wurde:",
 
 # Recent changes
@@ -713,14 +545,14 @@ Jo Wiki-n&ucirc;mer is $2.
 "changes" 			=> "feroarings",
 "recentchanges" 		=> "Koarts feroare",
 # This is the default text, and can be overriden by editing [[$wgMetaNamespace::Recentchanges]]
-"recentchangestext" 	=> "De l&ecirc;ste feroarings fan de $wgSitename.",
+"recentchangestext" 	=> "De lêste feroarings fan de $wgSitename.",
 "rcloaderr"			=> "Koarts feroare ...",
-"rcnote"			=> "Dit binne de l&ecirc;ste <strong>$1</strong> feroarings yn de l&ecirc;ste <strong>$2</strong> dagen.",
-"rcnotefrom"		=> "Dit binne de feroarings s&ucirc;nt <b>$2</b> (maksimaal <b>$1</b>).",
+"rcnote"			=> "Dit binne de lêste <strong>$1</strong> feroarings yn de lêste <strong>$2</strong> dagen.",
+"rcnotefrom"		=> "Dit binne de feroarings sûnt <b>$2</b> (maksimaal <b>$1</b>).",
 "rclistfrom"		=> "Jou nije feroarings, begjinnende mei $1",
-"rclinks"			=> "Jou $1 nije feroarings yn de l&ecirc;ste $2 dagen; $3 tekstwiziging",
-"rchide"			=> "yn $4 foarm; $1 tekstwizigings; $2 oare nammeromten; $3 meartallige feroarings.",
-"rcliu"			=> "; $1 feroarings troch oanmelde br&ucirc;kers",
+"rclinks"			=> "Jou $1 nije feroarings yn de lêste $2 dagen; $3 tekstwiziging",
+"rchide"			=> "in $4 form; $1 tekstwizigings; $2 oare nammeromten; $3 meartallige feroarings.",
+"rcliu"			=> "; $1 feroarings troch oanmelde brûkers",
 "diff"			=> "ferskil",
 "hist"			=> "skiednis",
 "hide"			=> "gjin",
@@ -733,157 +565,157 @@ Jo Wiki-n&ucirc;mer is $2.
 
 # Upload
 #
-"upload"		=> "Bring triem oan",
-"uploadbtn"		=> "Bring triem oan",
-"uploadlink"	=> "Bring &ocirc;fbylden oan",
-"reupload"		=> "Op 'e nij oanbringe",
-"reuploaddesc"	=> "Werom nei oanbring-side.",
+"upload"		=> "Bied bestân oan",
+"uploadbtn"		=> "Bied bestân oan",
+"uploadlink"	=> "Bied ôfbylden oan",
+"reupload"		=> "Op 'e nij oanbiede",
+"reuploaddesc"	=> "Werom nei oanbied-side.",
 "uploadnologin" 	=> "Net oanmelde",
 "uploadnologintext" => "Jo moatte <a href=\""
 . wfLocalUrl( "Wiki:Userlogin" ) 
-. "\">oanmeld</a> w&ecirc;ze om in triem oanbringe te kinnen.",
+. "\">oanmeld</a> wêze om in bestân oanbieden te kinnen.",
 
-"uploadfile"	=> "Bring &ocirc;fbylden, l&ucirc;den, dokuminten ensfh. oan.",
-"uploaderror"	=> "Oanbring-fout",
-"uploadtext"	=> "<strong>STOP!</strong> L&ecirc;s ear't jo eat oanbringe
+"uploadfile"	=> "Bied ôfbylden, lûden, dokuminten ensfh. oan.",
+"uploaderror"	=> "Oanbied-fout",
+"uploadtext"	=> "<strong>STOP!</strong> Lês ear't jo eat oanbiede
 de <a href=\"" . wfLocalUrlE( "$wgMetaNamespace:Ofbyld-rie" )
-. "\">regels foar &ocirc;fbyldbr&ucirc;k</a> foar de $wgSitename.
-<p>Earder oanbrochte &ocirc;fbylden, kinne jo fine op de <a href=\"" 
+. "\">regels foar ôfbyldbrûk</a> foar de $wgSitename.
+<p>Earder oanbeane ôfbylden, kinne jo fine op de <a href=\"" 
 . wfLocalUrlE( "Wiki:Imagelist" ) 
-. "\">list fan oanbrochte &ocirc;fbylden</a>.
-Wat oanbrocht en wat wiske wurdt, wurdt delskreaun yn it <a href=\"" .
-wfLocalUrlE( "$wgMetaNamespace:Oanbring-loch" ) . "\">lochboek</a>.
-<p>Om't nije &ocirc;fbylden oan te bringen, kieze jo in triem &uacute;t sa't dat
-normaal is foar jo bl&ecirc;dzjer en bestjoersysteem.
-Dan jouwe jo oan jo gjin auteursrjocht skeine troch it oanbringen.
-Mei \"Bring oan\" begjinne jo dan it oanbringen.
+. "\">list of oanbeane ôfbylden</a>.
+Wat oanbean en wat wiske wurdt, wurdt delskreaun yn it <a href=\"" .
+wfLocalUrlE( "$wgMetaNamespace:Oanbied-loch" ) . "\">lochboek</a>.
+<p>Om't nije ôfbylden oan te bieden, kieze jo in bestân út sa't dat
+normaal is foar jo blêdzjer en bestjoersysteem.
+Dan jouwe jo oan jo gjin auteursrjocht skeine troch it oanbieden.
+Mei \"Bied oan\" begjinne jo dan it oanbieden.
 Dit kin efkes duorje as jo Ynternet-ferbining net sa flug is.
-<p>Foar de triemfoarm wurdt foar foto's JPEG oanret, foar tekenings ensfh. PNG,
-en foar l&ucirc;den OGG. Br&ucirc;k in d&uacute;dlike triemnamme, sa't in oar ek wit wat it is.
-<P>Om it &ocirc;fbyld yn in side op te nimmen, meitsje jo d&ecirc;r sa'n keppeling:<br>
-<b>[[&ocirc;fbyld:jo_foto.jpg|omskriuwing]]</b> of <b>[[&ocirc;fbyld:jo_logo.png|omskriuwing]]</b>;
-en foar l&ucirc;den <b>[[media:jo_l&ucirc;d.ogg]]</b>.
-<p>Tink derom dat oaren bewurkje kinne wat jo oanbringe, as dat better is foar de $wgSitename,
-krekt's sa't dat foar siden jildt, en dat jo &uacute;tsletten wurde kinne as jo misbr&ucirc;k
+<p>Foar de bestânsforam wurdt foto's JPEG oanret, foar tekenings ensfh. PNG, en foar
+lûden OGG. Brûk in dúdlike bestânsnamme, sa't in oar ek wit wat it is.
+<P>Om it ôfbyld yn in side op te nimmen, meitsje jo dêr sa'n keppeling:<br>
+<b>[[ôfbyld:jo_foto.jpg|omskriuwing]]</b> of <b>[[ôfbyld:jo_logo.png|omskriuwing]]</b>;
+en foar lûden <b>[[media:jo_lûd.ogg]]</b>.
+<p>Tink derom dat oaren bewurkje kinne wat jo oanbiede, as dat better is foar de $wgSitename,
+krekt's sa't dat foar siden jildt, en dat jo útsletten wurde kinne as jo misbrûk
 meitsje fan it systeem..",
 
-"uploadlog"		=> "oanbring log",
-"uploadlogpage" 	=> "Oanbring_log",
-"uploadlogpagetext" => "Liste fan de l&ecirc;st oanbrochte triemmen.
-(Tiid oanj&ucirc;n as UTC).
+"uploadlog"		=> "oanbied log",
+"uploadlogpage" 	=> "Oanbied_log",
+"uploadlogpagetext" => "Liste fan de lêst oanbeane bestannen.
+(Tiid oanjûn as UTC).
 <ul>
 </ul>
 ",
 
-"filename"		=> "triemnamme",
+"filename"		=> "Bestânsnamme",
 "filedesc"		=> "Omskriuwing",
-"affirmation"	=> "Ik bef&ecirc;stigje dat de eigner fan de rjochten op dit triem 
-ynstimt mei fersprieding &ucirc;nder de betingsten fan de $1.",
+"affirmation"	=> "Ik befêstigje dat de eigner fan de rjochten op dit bestân 
+ynstimt mei fersprieding ûnder de betingsten fan de $1.",
 
 "copyrightpage" 	=> "$wgMetaNamespace:Auteursrjocht",
 "copyrightpagename" => "$wgSitename auteursrjocht",
-"uploadedfiles"	=> "Oanbrochte triemmen",
-"noaffirmation" => "Jo moatte befestigje dat wat jo oanbringe gjin rjochten skeint.",
-"ignorewarning"	=> "Sjoch oer de warsk&ocirc;ging hinne en lis triem dochs f&ecirc;st.",
-"minlength"		=> "Ofbyldnammen moatte trije letters of mear w&ecirc;ze.",
-"badfilename"	=> "De &ocirc;fbyldnamme is feroare nei \"$1\".",
-"badfiletype"	=> "\".$1\" is net yn in oanrette triemfoarm.",
-"largefile"		=> "It is baas as &ocirc;fbylden net grutter as 100k binne.",
-"successfulupload" => "Oanbringen slagge.",
-"fileuploaded"	=> "triem \"$1\" goed oanbrocht.
-Gean no fierder nei de beskriuwingsside: ($2). D&ecirc;r kinne jo oanjaan
-w&ecirc;r't it triem wei kaam, hoenear it oanmakke is en wa't it makke hat, 
+"uploadedfiles"	=> "Oanbeane bestannen",
+"noaffirmation" => "Jo moatte befestigje dat wat jo oanbiede gjin rjochten skeint.",
+"ignorewarning"	=> "Sjoch oer de warskôging hinne en lis bestân dochs fêst.",
+"minlength"		=> "Ofbyldnammen moatte trije letters of mear wêze.",
+"badfilename"	=> "De ôfbyldnamme is feroare nei \"$1\".",
+"badfiletype"	=> "\".$1\" is net yn in oanrette bestânsfoarm.",
+"largefile"		=> "It is baas as ôfbylden net grutter as 100k binne.",
+"successfulupload" => "Oanbieden slagge.",
+"fileuploaded"	=> "Bestân \"$1\" goed oanbean.
+Gean no fierder nei de beskriuwingsside: ($2). Dêr kinne jo oanjaan
+wêr't it bestân wei kaam, hoenear it oanmakke is en wa't it makke hat, 
 en wat jo fierder mar oan ynformaasje hawwe.",
 
-"uploadwarning" 	=> "Oanbring warsk&ocirc;ging",
-"savefile"		=> "Lis triem f&ecirc;st",
-"uploadedimage" 	=> " \"$1\" oanbrocht",
-"uploaddisabled" => "Sorry, op dizze tsjinner kin net oanbrocht wurde.",
+"uploadwarning" 	=> "Oanbied waarskôging",
+"savefile"		=> "Lis bestân fêst",
+"uploadedimage" 	=> " \"$1\" oanbean",
+"uploaddisabled" => "Sorry, op dizze tsjinner kin net oanbean wurde.",
 
 # Image list
 #
 "imagelist"		=> "Ofbyld list",
-"imagelisttext"	=> "Dit is in list fan $1 &ocirc;fbylden, op $2.",
+"imagelisttext"	=> "Dit is in list fan $1 ôfbylden, op $2.",
 "getimagelist"	=> "Ofbyld list ...",
-"ilshowmatch"	=> "Jou alle &ocirc;fbylden mei in name as",
+"ilshowmatch"	=> "Jou alle ôfbylden mei in name as",
 "ilsubmit"		=> "Sykje",
-"showlast"		=> "Jou l&ecirc;ste $1 &ocirc;fbylden, op $2.",
+"showlast"		=> "Jou lêste $1 ôfbylden, op $2.",
 "all"			=> "alle",
 "byname"		=> "namme",
 "bydate"		=> "datum",
 "bysize"		=> "grutte",
 "imgdelete"		=> "wisk",
 "imgdesc"		=> "tekst",
-"imglegend"		=> "Utlis: (tekst) = Jou/bewurk &ocirc;fbyld-omskriuwing.",
+"imglegend"		=> "Utlis: (tekst) = Jou/bewurk ôfbyld-omskriuwing.",
 "imghistory"	=> "Ofbyldskiednis",
 "revertimg"		=> "tebek",
 "deleteimg"		=> "wisk",
-"imghistlegend"	=> "Utlis: (no) = dit is it hjoeddeiske &ocirc;fbyld,
-(wisk) = wiskje dizze &acirc;ldere ferzje, (tebek) = set &ocirc;fbyld tebek nei dizze &acirc;ldere ferzje.
-<br><i>Fia de datum kinne jo it &ocirc;fbyld dat doe oanbrocht waard besjen</i>.",
+"imghistlegend"	=> "Utlis: (no) = dit is it hjoeddeiske ôfbyld,
+(wisk) = wiskje dizze âldere ferzje, (tebek) = set ôfbyld tebek nei dizze âldere ferzje.
+<br><i>Fia de datum kinne jo it ôfbyld dat doe oanbean besjen</i>.",
 
 "imagelinks"	=> "Ofbyldkeppelings",
-"linkstoimage"	=> "Dizze siden binne keppele oan it &ocirc;fbyld:",
-"nolinkstoimage" => "Der binne gjin siden oan dit &ocirc;fbyld keppelje.",
+"linkstoimage"	=> "Dizze siden binne keppele oan it ôfbyld:",
+"nolinkstoimage" => "Der binne gjin siden oan dit ôfbyld keppelje.",
 
 # Statistics
 #
 "statistics"	=> "Statistyk",
 "sitestats"		=> "Side statistyk",
-"userstats"		=> "Br&ucirc;ker statistyk",
-"sitestatstext" => "It tal fan siden yn de $wgSitename is: <b>$2</b>.<br>
-(Oerlissiden, siden oer de $wgSitename, oare bys&ucirc;ndere siden, stobben en
-trochferwizings yn de databank binne d&ecirc;rby net meiteld.)<br>
-It tal fan siden yn de databank is: <b>$1</b>.
+"userstats"		=> "Brûker statistyk",
+"sitestatstext" => "It tal fan siden in de $wgSitename is: <b>$2</b>.<br>
+(Oerlissiden, siden oer de $wgSitename, oare bysûndere siden,  stobben en
+trochferwizings yn de databank binne dêrby net meiteld.)<br>
+It tal fan siden in de databank is: <b>$1</b>.
 <p>
 Der is <b>$3</b> kear in side opfrege, en <b>$4</b> kear in side bewurke,
-s&ucirc;nt it programma bywurke is (15 oktober 2002).
+sûnt it programma bywurke is (15 oktober 2002).
 Dat komt yn trochslach del op <b>$5</b> kear bewurke de side,
 en <b>$6</b> kear opfrege de bewurking.",
 
-"userstatstext" => "It tal fan registreare br&ucirc;kers is <b>$1</b>.
-It tal fan behearders d&ecirc;rfan is: <b>$2</b>.",
+"userstatstext" => "It tal fan registreare brûkers is <b>$1</b>.
+It tal fan behearders dêrfan is: <b>$2</b>.",
 
 # Maintenance Page
 #
-"maintenance"		=> "Underh&acirc;ld",
-"maintnancepagetext"	=> "Op dizze side stiet ark foar it deistich &ucirc;nderh&acirc;ld.
-In part fan de funksjes freegje in soad fan de databank, dus freegje net efter
+"maintenance"		=> "Underhâld",
+"maintnancepagetext"	=> "Op dizze side stiet ark foar it deistich ûnderhâld.
+In part fan de funksjes freegje in soad fan de databank, dus freegje net nei
 eltse oanpassing daalks in fernijde side op.",
 
-"maintenancebacklink"	=> "Werom nei Underh&acirc;ldside",
+"maintenancebacklink"	=> "Werom nei Underhâldside",
 "disambiguations"		=> "Trochverwizings",
 "disambiguationspage"	=> "$wgMetaNamespace:trochferwizing",
 "disambiguationstext"	=> "Dizze siden binne keppele fia in
 [[$wgMetaNamespace:trochferwizing]]. 
 Se soenen mei de side sels keppele wurde moatte.<br>
-(Allinnich siden &uacute;t deselde nammeromte binne oanj&ucirc;n.)",
+(Allinnich siden út deselde nammeromte binne oanjûn.)",
 
-"doubleredirects"	=> "D&ucirc;bele trochverwizings",
+"doubleredirects"	=> "Dûbele trochverwizings",
 "doubleredirectstext"	=> "<b>Let op!</b> Der kinne missen yn dizze list stean!
-Dat komt dan ornaris troch oare keppelings &ucirc;nder de \"#REDIRECT\".<br>
-Eltse rigel jout keppelings foar de earste en twadde trochverwizing, en dan de earste regel fan
-de twadde trochferwizing, wat it werklik doel w&ecirc;ze moat.",
+Dat komt dan ornaris troch oare keppelings ûnder de \"#REDIRECT\".<br>
+Eltse rigel jout keppelings nei de earste en twadde trochverwizing, en dan de earste regel fan
+de twadde trochferwizing, wat it \"echte\" doel wêze moat.",
 
 "brokenredirects"		=> "Misse trochferwizings",
 "brokenredirectstext"	=> "Dizze trochferwizings ferwize nei siden dy't der net binne.",
 "selflinks"			=> "Siden mei sels-ferwizings",
-"selflinkstext"		=> "Dizze siden hawwe in keppeling mei harrensels, wat net sa w&ecirc;ze moat.",
+"selflinkstext"		=> "Dizze siden hawwe in keppeling nei de side sels, wat net sa wêze moat.",
 "mispeelings"           => "Siden mei skriuwflaters",
 "mispeelingstext"		=> "Op dizze siden stiet in skriuw- of typ-flater dy't in soad makke wurd, lykas oanjoen op \"$1\".
-D&ecirc;r soe ek stean moatte hoe't it (goed skreaun) wurdt.",
+Dêr soe ek stean moatte hoe't it (goed skreaun) wurdt.",
 "mispeelingspage"       => "List fan faak makke flaters",
 "missinglanguagelinks"  => "Untbrekkende taalkeppelings",
-"missinglanguagelinksbutton"    => "Fyn &ucirc;ntbrekkende taalkeppelings foar",
-"missinglanguagelinkstext"      => "Dizze siden hawwe gjin taalkeppeling mei deselde side yn taal \"$1\".
-(Ferwizings en oanheake siden binne <i>net</i> besjoen.",
+"missinglanguagelinksbutton"    => "Fyn ûntbrekkende taalkeppelings foar",
+"missinglanguagelinkstext"      => "Dizze siden hawwe gjin taalkeppeling nei deselde side yn taal \"$1\".
+(Ferwizings en oanheake siden binne net <i>net</i> besocht.",
 
 
 # Miscellaneous special pages
 #
 "orphans"		=> "Lossteande siden",
 "lonelypages"	=> "Lossteande siden",
-"unusedimages"	=> "Lossteande &ocirc;bylden",
+"unusedimages"	=> "Lossteande ôbylden",
 "popularpages"	=> "Grage siden",
 "nviews"		=> "$1 kear sjoen",
 "wantedpages"	=> "Nedige siden",
@@ -892,46 +724,45 @@ D&ecirc;r soe ek stean moatte hoe't it (goed skreaun) wurdt.",
 "randompage"	=> "Samar in side",
 "shortpages"	=> "Koarte siden",
 "longpages"		=> "Lange siden",
-"listusers"		=> "Br&ucirc;kerlist",
-"specialpages"	=> "Bys&ucirc;ndere siden",
-"spheading"		=> "Bys&ucirc;ndere siden foar all br&ucirc;kers",
-"sysopspheading"	=> "Allinnich foar behearders",
-"developerspheading" => "Allinich foar &ucirc;ntwiklers",
-"protectpage"	=> "Skoattel side",
-"recentchangeslinked" => "Feroare buorsiden",
-"rclsub"		=> "(feroare siden d&ecirc;r't \"$1\" in keppeling mei hat)",
+"listusers"		=> "Brûkerlist",
+"specialpages"	=> "Bysûndere siden",
+"spheading"		=> "Bysûndere siden foar all brûkers",
+"sysopspheading"	=> "Allinich foar behearders",
+"developerspheading" => "Allinich foar untwiklers",
+"protectpage"	=> "Beskerm side",
+"recentchangeslinked" => "Folgje keppelings",
+"rclsub"		=> "(nei siden dêr't \"$1\" keppelings nei hat)",
 "debug"		=> "Breksykje",
 "newpages"		=> "Nije siden",
 "ancientpages"	=> "Alde siden",
-"movethispage"	=> "Feroarje titel",
-"unusedimagestext" => "<p>Tink derom dat oare webstee&euml;en as de $wgSitename,
-begelyks oare parten fan itselde projekt,
-in keppeling mei direkt de URL fan it &ocirc;fbyld makke hawwe kinne.
-Dan wurdt it &ocirc;fbyld noch br&ucirc;ke, mar stiet al yn dizze list.",
+"movethispage"	=> "Move this side",
+"unusedimagestext" => "<p>Tink derom dat ore web sides lykas fan de oare
+parten fan it meartaliche projekt mei in keppeling nei in direkte URL nei
+an ôfbyld makke hawwe kinne. Dan wurde se noch brûke, mar stean al in dizze list.",
 
 "booksources"	=> "",
 "booksourcetext" 	=> "",
 "alphaindexline" 	=> "$1 oan't $2",
 
 
-# Email this br&ucirc;ker
+# Email this brûker
 #
 "mailnologin"	=> "Gjin adres beskikber",
 "mailnologintext" => "Jo moatte <a href=\""
 . wfLocalUrl( "Wiki:Userlogin" ) . "\">oanmeld</a>
-w&ecirc;ze, en in jildich netpostadres <a href=\"" .
+wêze, en in jildich e-postadres <a href=\"" .
   wfLocalUrl( "Wiki:Preferences" ) . "\">ynsteld</a>
-hawwe, om oan oare br&ucirc;kers netpost stjoere te kinnen.",
+hawwe, om oan oare brûkers e-post stjoere te kinnen.",
 
-"emailuser"		=> "Skriuw dizze br&ucirc;ker",
-"emailpage"		=> "Netpost nei br&ucirc;ker",
-"emailpagetext"	=> "As dizze br&ucirc;ker in jildich netpostadres ynsteld hat,
-dan kinne jo dat hjir ien berjocht tastjoere.
-It netpostadres dat jo ynsteld hawwe wurdt br&ucirc;kt as de &ocirc;fstjoerder, sa't de &ucirc;ntfanger
+"emailuser"		=> "Skriuw dizze brûker",
+"emailpage"		=> "E-post nei brûker",
+"emailpagetext"	=> "As dizze brûker in jildich e-postadres in ynsteld hat,
+dan kinne jo ien berjocht ferstjoere.
+It e-postadres dat jo ynsteld hawwe wurdt brûkt as de ôfstjoerder, sa't de ûntfanger
 antwurdzje kin.",
-"noemailtitle"	=> "Gjin netpostadres",
-"noemailtext"	=> "Dizze br&ucirc;ker had gjin jildich e-postadres ynsteld,
-of hat oanj&ucirc;n gjin post hawwe te wollen.",
+"noemailtitle"	=> "Gjin e-postadres",
+"noemailtext"	=> "Dizze brûker had gjin jildich e-postadres ynsteld,
+of hat oanjaan gjin post fan oare brûkers krije te wollen.",
 "emailfrom"		=> "Fan",
 "emailto"		=> "Oan",
 "emailsubject"	=> "Oer",
@@ -943,21 +774,21 @@ of hat oanj&ucirc;n gjin post hawwe te wollen.",
 # Watchlist
 #
 "watchlist"		=> "Folchlist",
-"watchlistsub"	=> "(foar br&ucirc;ker \"$1\")",
+"watchlistsub"	=> "(foar brûker \"$1\")",
 "nowatchlist"	=> "Jo hawwe gjin siden op jo folchlist.",
-"watchnologin"	=> "Net oanmeld",
+"watchnologin"	=> "Not oanmeld in",
 "watchnologintext"=> "Jo moatte <a href=\""
 . wfLocalUrl( "Wiki:Userlogin" ) 
-. "\">oanmeld</a> w&ecirc;ze om jo folchlist te feroarjen.",
+. "\">oanmeld</a> wêze om jo folchlist te feroarjen.",
 
 "addedwatch"	=> "Oan folchlist tafoege",
 "addedwatchtext"	=> "De side \"$1\" is tafoege oan jo <a href=\"" 
 . wfLocalUrl( "Wiki:Watchlist" ) . "\">folchlist</a>.
-As dizze side sels, of de oerlisside, feroare wurd, dan komt dat d&ecirc;r yn,
+As dizze side sels, of de oerlisside, feroare wurd, dan komt dat dêr yn,
 en de side stiet dan ek <b>fet</b> yn de <a href=\"" .
   wfLocalUrl( "Wiki:Recentchanges" ) . "\">Koarts feroare</a> list.
 
-<p>As jo letter in side net mear folgje wolle, dan br&ucirc;ke jo \"Ferjit dizze side\".",
+<p>As jo letter in side net mear folgje wolle, dan brûke jo \"Ferjit dizze side\".",
 "removedwatch"	=> "Net mear folgje",
 "removedwatchtext" => "De side \"$1\" stiet net mear op jo folchlist.",
 "watchthispage"	=> "Folgje dizze side",
@@ -965,35 +796,35 @@ en de side stiet dan ek <b>fet</b> yn de <a href=\"" .
 "notanarticle"	=> "Dit kin net folge wurde.",
 "watchnochange" 	=> "Fan de siden dy't jo folgje is der yn dizze perioade net ien feroare.",
 "watchdetails"	=> "Jo folchlist hat $1 siden (oerlissiden net meiteld).
-Yn dizze perioade binne $2 siden feroare. (<a href='$4'>G&acirc;ns myn folchlist</a>.)
-<br>$3:",
+In dizze perioade binne der $2 siden feroare.
+$3. (<a href='$4'>Gâns myn folchlist</a>.)",
 
 "watchmethod-recent" => "Koarts feroare ...",
 "watchmethod-list" => "Folge ...",
 "removechecked"	=> "Ferjit dizze siden",
 "watchlistcontains" => "Jo folgje op it stuit $1 siden.",
 "watcheditlist"	=> "Dit binne de siden op jo folchlist, oardere op alfabet.
-Jou oan hokfoar siden jo net mear folgje wolle, en bef&ecirc;stigje dat &ucirc;nderoan de side.",
+Jou oan hokfoar siden jo net mear folgje wolle, en befêstigje dat ûnderoan de side.",
 
 "removingchecked" => "Wiskje siden fan jo folchlist ...",
 "couldntremove" 	=> "Koe \"$1\" net ferjitte ...",
 "iteminvalidname" => "Misse namme: \"$1\" ...",
-"wlnote" 		=> "Dit binne de l&ecirc;ste <strong>$1</strong> feroarings yn de l&ecirc;ste <strong>$2</strong> oeren.",
+"wlnote" 		=> "Dit binne de lêste <strong>$1</strong> feroarings yn de lêste <strong>$2</strong> oeren.",
 
 
 # Delete/protect/revert
 #
 "deletepage"	=> "Wisk side",
-"confirm"		=> "Bef&ecirc;stigje",
-"excontent"		=> "inh&acirc;ld wie:",
+"confirm"		=> "Befêstigje",
+"excontent"		=> "inhâld wie:",
 "exbeforeblank" 	=> "foar de tekst wiske wie, wie dat:",
 "exblank"		=> "side wie leech",
 "confirmdelete"	=> "Befestigje wiskjen",
 "deletesub"		=> "(Wiskje \"$1\")",
-"historywarning"	=> "Warsk&ocirc;ging: De side dy't jo wiskje wolle hat skiednis: ",
+"historywarning"	=> "Waarskôging: De side dy't jo wiskje wolle hat skiednis: ",
 "confirmdeletetext" => "Jo binne dwaande mei it foar altyd wiskjen fan in side
-of &ocirc;fbyld, tegearre mei alle skiednis, &uacute;t de databank.
-Bef&ecirc;stigje dat jo dat wier dwaan wolle. Bef&ecirc;stigje dat dat is wat jo witte wat it gefolch 
+of ôfbyld, tegearre mei alle skiednis, út de databank.
+Befêstigje dat jo dat wier dwaan wolle. Befêstigje dat dat is wat jo witte wat it gefolch 
 is en dat jo dit dogge neffens de [[$wgMetaNamespace:wisk-rie]].",
 
 "confirmcheck"	=> "Ja, ik woe dit wier wiskje!",
@@ -1003,7 +834,7 @@ Sjoch \"$2\" foar in list fan wat resint wiske is.",
 "deletedarticle"	=> "\"$1\" is wiske",
 "dellogpage"	=> "Wisk_loch",
 "dellogpagetext" => "Dit is wat der resint wiske is.
-(Tiden oanj&ucirc;n as UTC).
+(Tiden oanjûn as UTC).
 <ul>
 </ul>
 ",
@@ -1017,10 +848,10 @@ Sjoch \"$2\" foar in list fan wat resint wiske is.",
 "rollbackfailed"	=> "Feroaring tebeksette net slagge",
 "cantrollback"	=> "Disse feroaringt kin net tebek set, om't der mar ien skriuwer is.",
 "alreadyrolled"	=> "Kin de feroaring fan [[$1]]
-troch [[Br&ucirc;ker:$2|$2]] ([[Br&ucirc;ker oerlis:$2|Oerlis]]) net tebeksette;
+troch [[Brûker:$2|$2]] ([[Brûker oerlis:$2|Oerlis]]) net tebeksette;
 inoar hat de feroaring tebekset, of oars wat oan de side feroare.
 
-De l&ecirc;ste feroaring wie fan [[Br&ucirc;ker:$3|$3]] ([[Br&ucirc;ker oerlis:$3|Oerlis]]). ",
+De lêste feroaring wie fan [[Brûker:$3|$3]] ([[Brûker oerlis:$3|Oerlis]]). ",
 #   only shown if there is an edit comment
 "editcomment"	=> "De gearfetting wie: \"<i>$1</i>\".", 
 "revertpage"	=> "Tebek set ta de ferzje fan \"$1\"",
@@ -1029,12 +860,12 @@ De l&ecirc;ste feroaring wie fan [[Br&ucirc;ker:$3|$3]] ([[Br&ucirc;ker oerlis:$
 "undelete"		=> "Side werom set",
 "undeletepage"	=> "Side besjen en werom sette",
 "undeletepagetext" => "Dizze siden binne wiske, mar sitte noch yn it argyf en kinne weromset wurde.
-(It argyf kin &uacute;t en troch leechmeitsje wurde.)",
+(It argyf kin út en troch leechmeitsje wurde.)",
 "undeletearticle" => "Set side werom",
-"undeleterevisions" => "$1 ferzjes yn it argyf",
+"undeleterevisions" => "$1 ferzjes in it argyf",
 "undeletehistory" => "Soenen jo dizze side weromsette, dan wurde alle ferzjes weromset as part
-fan de skiednis. As der in nije side is mei dizze namme, dan wurd de hjoeddeiske ferzje <b>net</b>
-troch de l&ecirc;ste ferzje &uacute;t dy weromsette skiednis ferfangen.",
+fan de skiednis. As der in nije side is mei dizze namme, dan wurd de hjoeddeise ferzje <b>net</b>
+troch de lêste ferzje út dy weromsette skiednis ferfangen.",
 "undeleterevision" => "Wiske side, sa't dy $1 wie.",
 "undeletebtn" 	=> "Weromset!",
 "undeletedarticle" => "\"$1\" weromset",
@@ -1043,19 +874,19 @@ troch de l&ecirc;ste ferzje &uacute;t dy weromsette skiednis ferfangen.",
 
 # Contributions
 #
-"contributions"	=> "Br&ucirc;ker bydragen",
+"contributions"	=> "Brûker bydragen",
 "mycontris"		=> "Myn bydragen",
 "contribsub"	=> "Foar \"$1\"",
-"nocontribs"	=> "Der binne gjin feroarings f&ucirc;n dyt't hjirmei oerienkomme.",
-"ucnote"		=> "Dit binne dizze br&ucirc;ker's leste <b>$1</b> feroarings yn de l&ecirc;ste <b>$2</b> dagen.",
-"uclinks"		=> "Besjoch de l&ecirc;ste $1 feroarings; besjoch de l&ecirc;ste $2 dagen.",
-"uctop"		=> " (boppen)" ,
+"nocontribs"	=> "Der binne gjin feroarings fûn dyt't hjirmei oerienkomme.",
+"ucnote"		=> "Dit binne dizze brûker's leste <b>$1</b> feroarings yn de lêste <b>$2</b> dagen.",
+"uclinks"		=> "Besjoch de lêste $1 feroarings; besjoch de lêste $2 dagen.",
+"uctop"		=> " (boppen)",
 
 # What links here
 #
-"whatlinkshere"	=> "Wat is hjirmei keppele?",
+"whatlinkshere"	=> "Wat is hjirmei keppele",
 "notargettitle"	=> "Gjin side",
-"notargettext"	=> "Jo hawwe net sein fan hokfoar side jo dit witte wolle.",
+"notargettext"	=> "Jo hawwe net sein oer hokfoar side jo dit witte wolle.",
 "linklistsub"	=> "(List fan keppelings)",
 "linkshere"		=> "Dizze siden binne hjirmei keppele:",
 "nolinkshere"	=> "Gjinien side is hjirmei keppele!",
@@ -1063,104 +894,104 @@ troch de l&ecirc;ste ferzje &uacute;t dy weromsette skiednis ferfangen.",
 
 # Block/unblock IP
 #
-"blockip"		=> "Slut br&ucirc;ker &uacute;t",
-"blockiptext"	=> "Br&ucirc;k dizze fjilden om in br&ucirc;ker fan skriuwtagong &uacute;t te sluten.
+"blockip"		=> "Slut brûker út",
+"blockiptext"	=> "Brûk dizze fjilden om in brûker fan skriuwtagong út te sluten.
 Dit soe allinnich omwillens fan fandalisme dwaan wurde moatte, sa't de
-[[$wgMetaNamespace:Utslut-rie|&uacute;tslut-rie]] it oanjout.
+[[$wgMetaNamespace:Utslut-rie|útslut-rie]] it oanjout.
 Meld de krekte reden! Begelyk, neam de siden dy't oantaaste waarden.",
-"ipaddress"		=> "Br&ucirc;kernamme of Ynternet-adres",
+"ipaddress"		=> "Brûkernamme of Ynternet-adres",
 "ipbreason"		=> "Reden",
-"ipbsubmit"		=> "Slut dizze br&ucirc;ker &uacute;t",
-"badipaddress"	=> "Sa'n br&ucirc;ker is der net",
+"ipbsubmit"		=> "Slut dizze brûker út",
+"badipaddress"	=> "Dy brûker bestiet net",
 "noblockreason"	=> "Jo moatte de krekte reden opjaan.",
-"blockipsuccesssub" => "Utsluten slagge",
-"blockipsuccesstext" => "Br&ucirc;ker \"$1\" is &uacute;tsletten.<br>
-(List fan [[Wiki:Ipblocklist|&uacute;tslette br&ucirc;kers]].)",
-"unblockip"		=> "Lit br&ucirc;ker der wer yn",
-"unblockiptext"	=> "Br&ucirc;k dizze fjilden om in br&ucirc;ker wer skriuwtagong te jaan.",
-"ipusubmit"		=> "Lit dizze br&ucirc;ker der wer yn",
-"ipusuccess"	=> "Br&ucirc;ker \"$1\" ynlitten",
-"ipblocklist"	=> "List fan &uacute;tsletten Ynternet-adressen en br&ucirc;kersnammen",
+"blockipsuccesssub" => "Utsluting slagge",
+"blockipsuccesstext" => "Brûker \"$1\" is útsletten.<br>
+(List fan [[Wiki:Ipblocklist|útslette brûkers]].)",
+"unblockip"		=> "Lit brûker der wer yn",
+"unblockiptext"	=> "Brûk dizze fjilden om in brûker wer skriuwtagong te jaan.",
+"ipusubmit"		=> "Lit dizze brûker der wer yn",
+"ipusuccess"	=> "Brûker \"$1\" ynlitten",
+"ipblocklist"	=> "List fan útsletten Ynternet-adressen en brûkersnammen",
 "blocklistline"	=> "$\"3\", troch \"$2\" op $1",
-"blocklink"		=> "slut &uacute;t",
+"blocklink"		=> "slut út",
 "unblocklink"	=> "lit yn",
 "contribslink"	=> "bydragen",
-"autoblocker"	=> "Jo wienen &uacute;tsletten om't jo Ynternet-adres oerienkomt mei dat fan \"$1\".
-Foar it &uacute;tslute fan dy br&ucirc;ker waard dizze reden joen: \"$2\".",
+"autoblocker"	=> "Jo wienen útsletten om't jo Ynternet-adres oerienkomt mei dat fan \"$1\".
+Foar it útslute fan dy brûker waard dizze reden joen: \"$2\".",
 
 # Developer tools
 #
-"lockdb"		=> "Skoattelje de databank",
-"unlockdb"  	=> "Untskoattelje de databank",
-"lockdbtext"	=> "Salang as de databank skoattele is,
-is foar br&ucirc;kers it feroarjen fan siden, ynstellings, folchlisten, ensfh. net mooglik.
-Bef&ecirc;stigje dat dit is wat jo wolle, en dat jo de databank wer &ucirc;ntskoattelje sille 
-as jo &ucirc;nderh&acirc;ld ree is.",
-"unlockdbtext"	=> "As de databank &ucirc;ntskoattele makke wurdt,
-is foar br&ucirc;kers it feroarjen fan siden, ynstelingen, folchlisten, ensfh, wer mooglik.
-Bef&ecirc;stigje dat dit is wat jo wolle.",
-"lockconfirm"	=> "Ja, ik wol wier de databank skoattelje.",
-"unlockconfirm"	=> "Ja, ik wol wier de databank &ucirc;ntskoattelje.",
-"lockbtn"		=> "Skoattelje de databank",
-"unlockbtn"		=> "Untskoattelje de databank",
-"locknoconfirm"	=> "Jo hawwe jo hanneling net bef&ecirc;stige.",
-"lockdbsuccesssub" => "Databank is skoattele",
-"unlockdbsuccesssub" => "Databank is &ucirc;ntskoattele",
-"lockdbsuccesstext" => "De $wgSitename databank is skoattele.
-<br>Tink derom en &ucirc;ntskoattele de databank as jo &ucirc;nderh&acirc;ld ree is.",
-"unlockdbsuccesstext" => "De $wgSitename databank is &ucirc;ntskoattele.",
+"lockdb"		=> "Meitsje de database 'Net-skriuwe'",
+"unlockdb"  	=> "Meitsje de databank skriuwber",
+"lockdbtext"	=> "Salang as de databank 'Net-skriuwe' is,
+is foar brûkers it feroarjen fan siden, ynstellings, folchlisten, ensfh. net mooglik.
+Befêstigje dat dit is wat jo wolle, en dat jo de databank wer skriuwber meitsje as
+jo ûnderhâld ree is.",
+"unlockdbtext"	=> "As de databank skriuwber makke wurdt,
+is foar brûkers it feroarjen fan siden, ynstelingen, folchlisten, ensfh, wer mooglik.
+Befêstigje dat dit is wat jo wolle.",
+"lockconfirm"	=> "Ja, ik wol wier de databank 'Net--skriuwe' meitsje.",
+"unlockconfirm"	=> "Ja, ik wol wier de databank skriuwber meitsje.",
+"lockbtn"		=> "Meitsje de database 'Net-skriuwe'",
+"unlockbtn"		=> "Meitsje de databank skriuwber",
+"locknoconfirm"	=> "Jo hawwe jo hanneling net befêstige.",
+"lockdbsuccesssub" => "Databank is 'Net-skriuwe'",
+"unlockdbsuccesssub" => "Database is skriuwber",
+"lockdbsuccesstext" => "De $wgSitename databank is 'Net-skriuwe' makke.
+<br>Tink derom en meitsje de databank skriuwber as jo ûnderhâld ree is.",
+"unlockdbsuccesstext" => "De $wgSitename databank is skriuwber makke.",
 
 # SQL query
 #
 "asksql"		=> "SQL-fraach",
-"asksqltext"	=> "Br&ucirc;k dizze fjilden foar in databank-fraach oan de $wgSitename databank.
-Br&ucirc;k inkele oanheltekens ('likas dit') foar tekst.
-Dit kin foar de tsjinner in soad wurk betsjutte. Br&ucirc;k dit dus net &ucirc;nnedig.",
-"sqlislogged"	=> "(Alle fragen komme yn in lochtriem.)",
+"asksqltext"	=> "Brûk dizze fjilden foar in databank-fraach oan de $wgSitename databank.
+Brûk inkele oanheltekens ('likas dit') foar tekst.
+Dit kin in foar de tsjinner in soad wurk betsjutte. Brûk dit dus net ûnnedig.",
+"sqlislogged"	=> "(Alle fragen komme yn in lochbestân.)",
 "sqlquery"		=> "Fraach",
 "querybtn"		=> "Bied de fraach oan",
-"selectonly"	=> "Oare fragen as \"SELECT\" binne foarbeh&acirc;lden oan
-$wgSitename &ucirc;ntwiklers.",
+"selectonly"	=> "Oare fragen as \"SELECT\" binne foarbehâlden oan
+$wgSitename ûntwiklers.",
 "querysuccessful" => "Fraach slagge",
 
 
 # Move page
 #
-"movepage"		=> "Titel feroarje",
-"movepagetext"	=> "Feroaret de titel, mei beh&acirc;ld fan de sideskiednis.
-De &acirc;lde titel wurdt in trochferwizing nei de nije.
-Keppelings mei de &acirc;lde side wurde net feroare; 
-[[Wiki:Maintenance|gean sels nei]] of't der d&ucirc;bele of misse ferwizings binne.
-It hinget fan jo &ocirc;f of't de siden noch keppele binne sa't it w&ecirc;ze moat.
+"movepage"		=> "Werneam side",
+"movepagetext"	=> "Dit werneamt in side, mei alle sideskiednis.
+De âlde titel wurdt in trochferwizing nei de nije.
+Keppelings mei de âlde side wurde net feroare; 
+[[Wiki:Maintenance|gean sels nei]] of't der dûbele of misse ferwizings binne.
+It hinget fan jo ôf of't de siden noch keppelen binne sa't it mient wie.
 
-De titel wurdt '''net''' feroare as der al in side mei dy titel is, &uacute;tsein as it in side
-s&ucirc;nder skiednis is en de side leech is of in trochferwizing is. Sa kinne jo in titel
-daalks weromferoarje as jo in flater meitsje, mar jo kinne in oare side net oerskriuwe.",
+De side wurdt '''net''' werneamt as der al in side mei dy namme is, útsein as it in side
+sûnder skiednis is en de side leech is of in trochferwizing is. Sa kinne jo in side
+daalks weromneame as jo in flater meitsje, mar jo kinne in oare side net oerskriuwe.",
 
-"movepagetalktext" => "As der in oerlisside by heart, dan bliuwt dy oan de side keppele, '''&uacute;tsein''':
-*De nije titel yn in oare nammeromte is,
-*Der keppele oan de nije titel al in net-lege oerlisside is, of
-*Jo d&ecirc;r net foar kieze.
+"movepagetalktext" => "As der in oerlisside by heart, dan bliuwt dy oan de side keppele, '''útsein''':
+*De nije sidenamme yn in oare nammeromte is,
+*Der keppele oan de nije namme al in net-lege oerlisside is, of
+*Jo dêr net foar kieze.
 
-Yn dizze gefallen is it oan jo hoe't jo de oerlisside ynfoegje wolle.",
+In dizze gefallen is it oan jo hoe't jo de oerlisside werneame of ynfoegje wolle.",
 
-"movearticle"	=> "Feroarje titel",
+"movearticle"	=> "Werneam side",
 "movenologin"	=> "Net oameld",
 "movenologintext" => "Jo moatte <a href=\""
 . wfLocalUrl( "Wiki:Userlogin" ) 
-. "\">oanmeld</a> w&ecirc;ze om in titel te feroarjen.",
+. "\">oanmeld</a> wêze om in side wer te neamen.",
 
-"newtitle"		=> "As nije titel",
-"movepagebtn"	=> "Feroarje titel",
-"pagemovedsub"	=> "Feroarjen slagge",
-"pagemovedtext"	=> "Titel \"[[$1]]\" feroare yn \"[[$2]]\".",
-"articleexists"	=> "Der is al in side mei dy titel,
-of oars is de titel dy't jo oanj&ucirc;n hawwe net tastean.
+"newtitle"		=> "As nij titel",
+"movepagebtn"	=> "Werneam side",
+"pagemovedsub"	=> "Werneamen slagge",
+"pagemovedtext"	=> "Side \"[[$1]]\" werneamd as \"[[$2]]\".",
+"articleexists"	=> "Der is al in side mei dy namme,
+of oars is de namme dy't jo oanjûn hawwe net tastean.
 Besykje it op 'e nij.",
 
-"talkexists"	=> "De titel is al feroare, mar de eardere oerlisside is 
-net mear keppele om't der foar de nije titel ek al in oerlisside wie.
-Gearfoegje de oerlissiden h&acirc;nmjittig.",
+"talkexists"	=> "It werneamen op sich is slagge, mar de eardere oerlisside is 
+net mear keppele om't der foar de nije namme el al in oerlisside wie.
+Gearfoegje de oerlissiden hânmjittig.",
 
 "movedto"		=> "werenamd as",
 "moveoerlis"	=> "De oerlisside, as dy der is, moat oan de side keppele bliuwe.",
@@ -1171,11 +1002,6 @@ Gearfoegje de oerlissiden h&acirc;nmjittig.",
 
 
 class LanguageFy extends LanguageUtf8 {
-
-	function getDefaultUserOptions () {
-		global $wgDefaultUserOptionsFy ;
-		return $wgDefaultUserOptionsFy ;
-		}
 
 	function getBookstoreList () {
 		global $wgBookstoreListFy ;
@@ -1227,19 +1053,6 @@ class LanguageFy extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesFy;
 		return $wgUserTogglesFy;
-	}
-
-	function getLanguageNames() {
-		global $wgLanguageNamesFy;
-		return $wgLanguageNamesFy;
-	}
-
-	function getLanguageName( $code ) {
-		global $wgLanguageNamesFy;
-		if ( ! array_key_exists( $code, $wgLanguageNamesFy ) ) {
-			return "";
-		}
-		return $wgLanguageNamesFy[$code];
 	}
 
 	function getMonthName( $key )
