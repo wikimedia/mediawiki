@@ -59,7 +59,7 @@ function wfSpecialEmailuser( $par ) {
 
 	if ( "success" == $action ) { $f->showSuccess(); }
 	else if ( "submit" == $action && $wgRequest->wasPosted() ) { $f->doSubmit(); }
-	else { $f->showForm( "" ); }
+	else { $f->showForm(); }
 }
 
 /**
@@ -81,7 +81,7 @@ class EmailUserForm {
 		$this->subject = $wgRequest->getText( 'wpSubject' );
 	}
 
-	function showForm( $err ) {
+	function showForm() {
 		global $wgOut, $wgUser, $wgLang;
 
 		$wgOut->setPagetitle( wfMsg( "emailpage" ) );
@@ -101,20 +101,17 @@ class EmailUserForm {
 		$encSubject = htmlspecialchars( $this->subject );
 		
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
-		$action = $titleObj->escapeLocalURL( "target={$this->target}&action=submit" );
+		$action = $titleObj->escapeLocalURL( "target=" .
+			urlencode( $this->target ) . "&action=submit" );
 
-		if ( "" != $err ) {
-			$wgOut->setSubtitle( wfMsg( "formerror" ) );
-			$wgOut->addHTML( "<p><font color='red' size='+1'>{$err}</font></p>\n" );
-		}
 		$wgOut->addHTML( "
 <form id=\"emailuser\" method=\"post\" action=\"{$action}\">
 <table border='0'><tr>
 <td align='right'>{$emf}:</td>
-<td align='left'><strong>{$sender}</strong></td>
+<td align='left'><strong>" . htmlspecialchars( $sender ) . "</strong></td>
 </tr><tr>
 <td align='right'>{$emt}:</td>
-<td align='left'><strong>{$rcpt}</strong></td>
+<td align='left'><strong>" . htmlspecialchars( $rcpt ) . "</strong></td>
 </tr><tr>
 <td align='right'>{$emr}:</td>
 <td align='left'>
