@@ -806,6 +806,10 @@ to upload files.",
 "uploadtext"	=> "<strong>STOP!</strong> Before you upload here,
 make sure to read and follow Wikipedia's <a href=\"" .
 wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">image use policy</a>.
+<p>If a file with the name you are specifying already
+exists on Wikipedia, it'll be replaced without warning.
+So unless you mean to update a file, it's a good idea
+to first check if such a file exists.
 <p>To view or search previously uploaded images,
 go to the <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
 "\">list of uploaded images</a>.
