@@ -120,6 +120,7 @@ require_once( 'LanguageUtf8.php' );
 'tog-fancysig' => "Signatures brutes (sans lien automatique)",
 'tog-hideminor' => 'Cacher les <i>Modifications récentes</i> mineures',
 'tog-highlightbroken' => 'Liens vers les sujets non existants en rouge',
+'tog-hover' => "Afficher des info-bulles sur les liens wiki",
 'tog-justify' => 'Paragraphes justifiés',
 'tog-minordefault' => 'Mes modifications sont considérées<br /> comme mineures par défaut',
 'tog-nocache' => 'Désactiver le cache des pages',
@@ -255,10 +256,10 @@ require_once( 'LanguageUtf8.php' );
 'viewcount'     => 'Cette page a été consultée $1 fois.',
 'copyright'	=> 'Contenu disponible sous $1.',
 "gnunote"       => "Tous les textes sont disponibles sous les termes de la <a href='/wiki/GFDL'>Licence de documentation libre GNU</a>.",
-"printsubtitle" => "(de http://$wgServer)",
-"protectedpage" => "Page protégée",
-"administrators" => "{{ns:4}}:Administrateurs",
-"sysoptitle"    => "Accès administrateur requis",
+'printsubtitle' => '(de http://$wgServer)',
+'protectedpage' => 'Page protégée',
+'administrators' => '{{ns:4}}:Administrateurs',
+'sysoptitle'    => 'Accès administrateur requis',
 "sysoptext"     => "L'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut d'\"administrateur\".
 Voir $1.",
 "developertitle" => "Accès développeur requis",
@@ -269,6 +270,7 @@ Voir $1.",
 'nbytes'        => '$1 octets',
 'go'            => 'Consulter',
 'ok'            => 'OK',
+'undo'			=> 'annuler',
 'pagetitle'	=> '$1 - {{SITENAME}}',
 'history'	=> 'Historique de la page',
 'history_short' => 'Historique',
@@ -281,8 +283,8 @@ Voir $1.",
 'toc'		=> 'Sommaire',
 'showtoc'	=> 'montrer',
 'hidetoc'	=> 'cacher',
-"thisisdeleted" => "Afficher ou restaurer $1?",
-"restorelink"	=> "$1 modifications effacées",
+'thisisdeleted' => "Afficher ou restaurer $1?",
+'restorelink'	=> "$1 modifications effacées",
 'feedlinks'	=> 'Flux:',
 'sitenotice'	=> '-', # the equivalent to wgSiteNotice
 
@@ -343,6 +345,9 @@ ne peut utiliser le wiki.",
 'allmessagesnotsupportedDB' => "Special:AllMessages n'est pas disponible parce que wgUseDatabaseMessages est désactivé.",
 'allmessagesnotsupportedUI' => "Special:AllMessages n'accepte pas la langue de votre interface (<b>$1</b>) sur ce site.",
 'seriousxhtmlerrors' => 'Tidy a détecté de sérieuses erreurs xhtml.',
+'wrong_wfQuery_params' => "Paramètres incorrects sur la commande wfQuery()<br />
+Fonction : $1<br />
+Requête : $2",
 
 # Login and logout pages
 #
@@ -778,24 +783,25 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 
 # Miscellaneous special pages
 #
-'orphans'       => "Pages orphelines",
-'lonelypages'   => "Pages orphelines",
-'unusedimages'  => "Images orphelines",
-'popularpages'  => "Pages les plus consultées",
-'nviews'        => "$1 consultations",
-'wantedpages'   => "Pages les plus demandées",
-'nlinks'        => "$1 références",
-'allpages'      => "Toutes les pages",
-'randompage'    => "Une page au hasard",
-'shortpages'    => "Articles courts",
-'longpages'     => "Articles longs",
-'listusers'     => "Liste des participants",
-'specialpages'  => "Pages spéciales",
-'spheading'     => "Pages spéciales",
+'orphans'       => 'Pages orphelines',
+'lonelypages'   => 'Pages orphelines',
+'unusedimages'  => 'Images orphelines',
+'popularpages'  => 'Pages les plus consultées',
+'nviews'        => '$1 consultations',
+'wantedpages'   => 'Pages les plus demandées',
+'nlinks'        => '$1 références',
+'allpages'      => 'Toutes les pages',
+'randompage'    => 'Une page au hasard',
+'shortpages'    => 'Articles courts',
+'longpages'     => 'Articles longs',
+'listusers'     => 'Liste des participants',
+'specialpages'  => 'Pages spéciales',
+'spheading'     => 'Pages spéciales',
 'sysopspheading' => "Pages spéciales à l'usage des administrateurs",
 'developerspheading' => "Pages spéciales à l'usage des développeurs",
 'blockpheading' => 'Onglet blocage',
-'deletepheading' => "Onglet suppression",
+'deletepheading' => 'Onglet suppression',
+'siteadminpheading' => 'niveau administrateur du site',
 'protectpage'   => 'Protéger la page',
 'recentchangeslinked' => 'Suivi des liens',
 'rclsub'        => "(des pages liées à \"$1\")",
@@ -1100,10 +1106,11 @@ Tapez le nom de l'utilisateur dans la boite et pressez le bouton pour lui donner
 
 # Patrolling
 #
-'markaspatrolleddiff' => "Marquer comme vérifiée",
-'markaspatrolledtext' => "Marquer cet article comme vérifié",
-'markedaspatrolled' => "Marqué comme vérifié",
-'markedaspatrolledtext' => "La version sélectionnée a été marquée comme vérifiée.",
+'markaspatrolleddiff' => 'Marquer comme vérifiée',
+'markaspatrolledtext' => 'Marquer cet article comme vérifié',
+'markedaspatrolled' => 'Marqué comme vérifié',
+'markedaspatrolledtext' => 'La version sélectionnée a été marquée comme vérifiée.',
+'rcpatroldisabledtext' => "La fonctionnalité de surveillance des modifications récentes n'est pas activée.",
 
 # Move page
 #
@@ -1270,6 +1277,13 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'mw_math_source' => "Laisser le code TeX original",
 'mw_math_modern' => "Pour les navigateurs modernes",
 'mw_math_mathml' => 'MathML',
+
+
+'usercssjsyoucanpreview' => "'''Astuce :''' utilisez le bouton '''Prévisualisation''' pour tester votre nouvelle feuille css/js avant de l'enregistrer.",
+'usercsspreview' => "'''Rappelez-vous que vous êtes en train de prévisualiser votre propre feuille css et qu'elle n'a pas encore été enregistrée !'''",
+'userjspreview' => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code javascript et qu'il n'a pas encore été enregistré !'''",
+'validate' => "Valider la page",
+
 );
 
 class LanguageFr extends LanguageUtf8 {
