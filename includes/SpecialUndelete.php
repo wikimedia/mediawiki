@@ -8,174 +8,80 @@ function wfSpecialUndelete( $par )
 	$form->execute();
 }
 
-class UndeleteForm {
-	var $mAction, $mTarget, $mTimestamp, $mRestore, $mTargetObj;
-
-	function UndeleteForm( &$request, $par = "" ) {
-		$this->mAction = $request->getText( 'action' );
-		$this->mTarget = $request->getText( 'target' );
-		$this->mTimestamp = $request->getText( 'timestamp' );
-		$this->mRestore = $request->getCheck( 'restore' );
-		if( $par != "" ) {
-			$this->mTarget = $par;
+class PageArchive {
+	var $title;
+	
+	function PageArchive( &$title ) {
+		if( is_null( $title ) ) {
+			wfDebugDieBacktrace( 'Archiver() given a null title.');
 		}
-		if ( $this->mTarget !== "" ) {
-			$this->mTargetObj = Title::newFromURL( $this->mTarget );
-		} else {
-			$this->mTargetObj = NULL;
-		}
+		$this->title =& $title;
 	}
-
-	function execute() {
-		if( !is_null( $this->mTargetObj ) ) {
-			$title = $this->mTargetObj->mDbkeyform;
-			$namespace = $this->mTargetObj->mNamespace;
-			if( $this->mTimestamp !== "" ) {
-				return $this->showRevision( $namespace, $title, $this->mTimestamp );
-			}
-			if( $this->mRestore and $this->mAction == "submit" ) {
-				return $this->undelete( $namespace, $title );
-			}
-			return $this->showHistory( $namespace, $title );
-		} else {
-			return $this->showList();
-		}
-	}
-
-	/* private */ function showList() {
-		global $wgLang, $wgUser, $wgOut;
-		$fname = "UndeleteForm::showList";
-		
-		# List undeletable articles    
+	
+	/* static */ function &listAllPages() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$archive = $dbr->tableName( 'archive' );
 
 		$sql = "SELECT ar_namespace,ar_title, COUNT(*) AS count FROM $archive " . 
 		  "GROUP BY ar_namespace,ar_title ORDER BY ar_namespace,ar_title";
 
-		$res = $dbr->query( $sql, $fname );
-		
-		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
-		$wgOut->addWikiText( wfMsg( "undeletepagetext" ) );
-
-		$special = $wgLang->getNsText( Namespace::getSpecial() );
-		$sk = $wgUser->getSkin();
-		$wgOut->addHTML( "<ul>\n" );
-		while ($row = $dbr->fetchObject( $res )) {
-			$n = ($row->ar_namespace ? 
-				($wgLang->getNsText( $row->ar_namespace ) . ":") : "").
-				$row->ar_title;
-
-			$wgOut->addHTML( "<li>" .
-			  $sk->makeKnownLink( $wgLang->specialPage( "Undelete" ),
-			  $n, "target=" . urlencode($n) ) . " " .
-			  wfMsg( "undeleterevisions", $row->count ) );
-		}
-		$wgOut->addHTML( "</ul>\n" );
-		
-		return 0;
+		return $dbr->resultObject( $dbr->query( $sql, 'PageArchive::listAllPages' ) );
 	}
 	
-	/* private */ function showRevision( $namespace, $title, $timestamp ) {
-		global $wgLang, $wgUser, $wgOut;
-		$fname = "UndeleteForm::showRevision";
-
-		if(!preg_match("/[0-9]{14}/",$timestamp)) return 0;
-
+	function &listRevisions() {
 		$dbr =& wfGetDB( DB_SLAVE );
-		$archive = $dbr->tableName( 'archive' );
-		$sql = "SELECT ar_text,ar_flags FROM $archive ". 
-		  "WHERE ar_namespace={$namespace} AND ar_title='" .
-		  $dbr->strencode( $title ) . "' AND ar_timestamp='" . $dbr->strencode( $timestamp ) ."'";
-		$ret = $dbr->query( $sql, $fname );
-		$row = $dbr->fetchObject( $ret );
-		
-		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
-		$wgOut->addWikiText( "(" . wfMsg( "undeleterevision", $wgLang->date($timestamp, true) )
-		  . ")\n<hr>\n" . Article::getRevisionText( $row, "ar_" ) );
-
-		return 0;
+		$sql = "SELECT ar_minor_edit,ar_timestamp,ar_user,ar_user_text,ar_comment
+		  FROM archive WHERE ar_namespace=" . $this->title->getNamespace() .
+		  " AND ar_title='" . $dbr->strencode( $this->title->getDBkey() ) .
+		  "' ORDER BY ar_timestamp DESC";
+		return $dbr->resultObject( $dbr->query( $sql ) );
 	}
-
-	/* private */ function showHistory( $namespace, $title ) {
-		global $wgLang, $wgUser, $wgOut;
-		
-		$sk = $wgUser->getSkin();
-		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
+	
+	function getRevisionText( $timestamp ) {
+		$dbr =& wfGetDB( DB_SLAVE );
+		$row = $dbr->selectRow( 'archive',
+			array( 'ar_text', 'ar_flags' ),
+			array( 'ar_namespace' => $this->title->getNamespace(),
+			       'ar_title' => $this->title->getDbkey(),
+			       'ar_timestamp' => $timestamp ) );
+		return Article::getRevisionText( $row, "ar_" );
+	}
+	
+	function getLastRevisionText() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$archive = $dbr->tableName( 'archive' );
 		
 		# Get text of first revision
-		$sql = "SELECT ar_text FROM $archive WHERE ar_namespace={$namespace} AND ar_title='" .
-		  $dbr->strencode( $title ) . "' ORDER BY ar_timestamp DESC LIMIT 1";
+		$sql = "SELECT ar_text,ar_flags FROM $archive WHERE ar_namespace=" . $this->title->getNamespace() . " AND ar_title='" .
+		  $dbr->strencode( $this->title->getDBkey() ) . "' ORDER BY ar_timestamp DESC LIMIT 1";
 		$ret = $dbr->query( $sql );
-
-		if( $dbr->numRows( $ret ) == 0 ) {
-			$wgOut->addWikiText( wfMsg( "nohistory" ) );
-			return 0;
-		}
 		$row = $dbr->fetchObject( $ret );
-		$wgOut->addWikiText( wfMsg( "undeletehistory" ) . "\n<hr>\n" . $row->ar_text );
-
-		# List all stored revisions
-		$sql = "SELECT ar_minor_edit,ar_timestamp,ar_user,ar_user_text,ar_comment
-		  FROM archive WHERE ar_namespace={$namespace} AND ar_title='" . $dbr->strencode( $title ) .
-		  "' ORDER BY ar_timestamp DESC";
-		$ret = $dbr->query( $sql );
-
-		$titleObj = Title::makeTitle( NS_SPECIAL, "Undelete" );
-		$action = $titleObj->escapeLocalURL( "action=submit" );
-		$encTarget = htmlspecialchars( $this->mTarget );
-		
-		$wgOut->addHTML("<p>
-	<form id=\"undelete\" method=\"post\" action=\"{$action}\">
-	<input type=hidden name=\"target\" value=\"{$encTarget}\">
-	<input type=submit name=\"restore\" value=\"".wfMsg("undeletebtn")."\">
-	</form>");
-
-		# Show relevant lines from the deletion log:
-		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
-		require_once( 'SpecialLog.php' );
-		$t = Title::MakeTitle( $namespace, $title );
-		# TODO: make a pure, faux request for this.
-		global $wgRequest;
-		$logReader = new LogReader( $wgRequest );
-		$logReader->limitTitle( $t->getPrefixedText() );
-		$logViewer =& new LogViewer( $logReader );
-		$logViewer->showList( $wgOut );
-		
-		# The page's stored (deleted) history:
-		$special = $wgLang->getNsText( Namespace::getSpecial() );
-		$wgOut->addHTML( "<h2>" . htmlspecialchars( wfMsg( "history" ) ) . "</h2>\n" );
-		$wgOut->addHTML("<ul>");
-		while( $row = $dbr->fetchObject( $ret ) ) {
-			$wgOut->addHTML( "<li>" .
-			  $sk->makeKnownLink( $wgLang->specialPage( "Undelete" ),
-			  $wgLang->timeanddate( $row->ar_timestamp, true ),
-			  "target=" . urlencode($this->mTarget) . "&timestamp={$row->ar_timestamp}" ) . " " .
-			  ". . " . htmlspecialchars( $row->ar_user_text )  .
-			  " <i>(" . htmlspecialchars($row->ar_comment) . "</i>)\n");
-
+		$dbr->freeResult( $ret );
+		if( $row ) {
+			return Article::getRevisionText( $row, "ar_" );
+		} else {
+			return NULL;
 		}
-		$wgOut->addHTML("</ul>");
-		
-		return 0;
-	}	
-
-	/* private */ function undelete( $namespace, $title )
-	{
+	}
+	
+	function isDeleted() {
+		$dbr =& wfGetDB( DB_SLAVE );
+		$n = $dbr->selectField( 'archive', 'COUNT(ar_title)',
+			array( 'ar_namespace' => $this->title->getNamespace(),
+			       'ar_title' => $this->title->getDBkey() ) );
+		return ($n > 0);
+	}
+	
+	function undelete() {
 		global $wgUser, $wgOut, $wgLang, $wgDeferredUpdateList;
 		global  $wgUseSquid, $wgInternalServer, $wgLinkCache;
 
 		$fname = "doUndeleteArticle";
 
-		if ( "" == $title ) {
-			$wgOut->fatalError( wfMsg( "cannotundelete" ) );
-			return;
-		}
 		$dbw =& wfGetDB( DB_MASTER );
 		extract( $dbw->tableNames( 'cur', 'archive', 'old' ) );
-		$t = $dbw->strencode($title);
+		$namespace = $this->title->getNamespace();
+		$t = $dbw->strencode( $this->title->getDBkey() );
 
 		# Move article and history from the "archive" table
 		$sql = "SELECT COUNT(*) AS count FROM $cur WHERE cur_namespace={$namespace} AND cur_title='{$t}' FOR UPDATE";
@@ -237,10 +143,10 @@ class UndeleteForm {
 			);
 			$dummyOut->addWikiText( $text );
 
-			$u = new LinksUpdate( $newid, $this->mTargetObj->getPrefixedDBkey() );
+			$u = new LinksUpdate( $newid, $this->title->getPrefixedDBkey() );
 			array_push( $wgDeferredUpdateList, $u );
 			
-			Article::onArticleCreate( $this->mTargetObj );
+			Article::onArticleCreate( $this->title );
 
 			#TODO: SearchUpdate, etc.
 		}
@@ -253,10 +159,159 @@ class UndeleteForm {
 		
 		# Touch the log?
 		$log = new LogPage( 'delete' );
-		$log->addEntry( 'restore', Title::makeTitle( $namespace, $title ), "" );
-
-		$wgOut->addWikiText( wfMsg( "undeletedtext", $this->mTarget ) );
-		return 0;
+		$log->addEntry( 'restore', $this->title, "" );
+		
+		return true;
 	}
 }
+
+class UndeleteForm {
+	var $mAction, $mTarget, $mTimestamp, $mRestore, $mTargetObj;
+
+	function UndeleteForm( &$request, $par = "" ) {
+		$this->mAction = $request->getText( 'action' );
+		$this->mTarget = $request->getText( 'target' );
+		$this->mTimestamp = $request->getText( 'timestamp' );
+		$this->mRestore = $request->getCheck( 'restore' ) && $request->wasPosted();
+		if( $par != "" ) {
+			$this->mTarget = $par;
+		}
+		if ( $this->mTarget !== "" ) {
+			$this->mTargetObj = Title::newFromURL( $this->mTarget );
+		} else {
+			$this->mTargetObj = NULL;
+		}
+	}
+
+	function execute() {
+		if( is_null( $this->mTargetObj ) ) {
+			return $this->showList();
+		}
+		if( $this->mTimestamp !== "" ) {
+			return $this->showRevision( $this->mTimestamp );
+		}
+		if( $this->mRestore && $this->mAction == "submit" ) {
+			return $this->undelete();
+		}
+		return $this->showHistory();
+	}
+
+	/* private */ function showList() {
+		global $wgLang, $wgUser, $wgOut;
+		$fname = "UndeleteForm::showList";
+		
+		# List undeletable articles    
+		$result = PageArchive::listAllPages();
+		
+		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
+		$wgOut->addWikiText( wfMsg( "undeletepagetext" ) );
+
+		$sk = $wgUser->getSkin();
+		$undelete =& Title::makeTitle( NS_SPECIAL, 'Undelete' );
+		$wgOut->addHTML( "<ul>\n" );
+		while( $row = $result->fetchObject() ) {
+			$n = ($row->ar_namespace ? 
+				($wgLang->getNsText( $row->ar_namespace ) . ":") : "").
+				$row->ar_title;
+			$link = $sk->makeKnownLinkObj( $undelete,
+				htmlspecialchars( $n ), "target=" . urlencode( $n ) );
+			$revisions = htmlspecialchars( wfMsg( "undeleterevisions",
+				$wgLang->formatNum( $row->count ) ) );
+			$wgOut->addHTML( "<li>$link $revisions</li>\n" );
+		}
+		$result->free();
+		$wgOut->addHTML( "</ul>\n" );
+		
+		return true;
+	}
+	
+	/* private */ function showRevision( $timestamp ) {
+		global $wgLang, $wgUser, $wgOut;
+		$fname = "UndeleteForm::showRevision";
+
+		if(!preg_match("/[0-9]{14}/",$timestamp)) return 0;
+
+		$archive =& new PageArchive( $this->mTargetObj );
+		$text = $archive->getRevisionText( $timestamp );
+		
+		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
+		$wgOut->addWikiText( "(" . wfMsg( "undeleterevision",
+			$wgLang->date( $timestamp ) ) . ")\n<hr />\n" . $text );
+	}
+
+	/* private */ function showHistory() {
+		global $wgLang, $wgUser, $wgOut;
+		
+		$sk = $wgUser->getSkin();
+		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
+
+		$archive = new PageArchive( $this->mTargetObj );
+		$text = $archive->getLastRevisionText();
+		if( is_null( $text ) ) {
+			$wgOut->addWikiText( wfMsg( "nohistory" ) );
+			return;
+		}
+		$wgOut->addWikiText( wfMsg( "undeletehistory" ) . "\n----\n" . $text );
+
+		# List all stored revisions
+		$revisions = $archive->listRevisions();
+		
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Undelete" );
+		$action = $titleObj->escapeLocalURL( "action=submit" );
+		$encTarget = htmlspecialchars( $this->mTarget );
+		$button = htmlspecialchars( wfMsg("undeletebtn") );
+		
+		$wgOut->addHTML("
+	<form id=\"undelete\" method=\"post\" action=\"{$action}\">
+	<input type=\"hidden\" name=\"target\" value=\"{$encTarget}\" />
+	<input type=\"submit\" name=\"restore\" value=\"{$button}\" />
+	</form>");
+
+		# Show relevant lines from the deletion log:
+		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
+		require_once( 'SpecialLog.php' );
+		$logViewer =& new LogViewer(
+			new LogReader(
+				new FauxRequest(
+					array( 'page', $this->mTargetObj->getPrefixedText() ) ) ) );
+		$logViewer->showList( $wgOut );
+		
+		# The page's stored (deleted) history:
+		$wgOut->addHTML( "<h2>" . htmlspecialchars( wfMsg( "history" ) ) . "</h2>\n" );
+		$wgOut->addHTML("<ul>");
+		$target = urlencode( $this->mTarget );
+		while( $row = $revisions->fetchObject() ) {
+			$pageLink = $sk->makeKnownLinkObj( $titleObj,
+				$wgLang->timeanddate( $row->ar_timestamp, true ),
+				"target=$target&timestamp={$row->ar_timestamp}" );
+			$userLink = htmlspecialchars( $row->ar_user_text );
+			if( $row->ar_user ) {
+				$userLink = $sk->makeKnownLinkObj(
+					Title::makeTitle( NS_USER, $row->ar_user_text ),
+					$userLink );
+			}
+			$comment = $sk->formatComment( $row->ar_comment );
+			$wgOut->addHTML( "<li>$pageLink . . $userLink (<i>$comment</i>)</li>\n" );
+
+		}
+		$revisions->free();
+		$wgOut->addHTML("</ul>");
+		
+		return true;
+	}
+
+	function undelete() {
+		global $wgOut;
+		if( !is_null( $this->mTargetObj ) ) {
+			$archive = new PageArchive( $this->mTargetObj );
+			if( $archive->undelete() ) {
+				$wgOut->addWikiText( wfMsg( "undeletedtext", $this->mTarget ) );
+				return true;
+			}
+		}
+		$wgOut->fatalError( wfMsg( "cannotundelete" ) );
+		return false;
+	}
+}
+
 ?>
