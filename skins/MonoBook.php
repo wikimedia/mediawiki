@@ -31,7 +31,12 @@ class SkinMonoBook extends SkinTemplate {
 		$this->template  = 'MonoBookTemplate';
 	}
 }
-	
+
+/**
+ * @todo document
+ * @package MediaWiki
+ * @subpackage Skins
+ */
 class MonoBookTemplate extends QuickTemplate {
 	/**
 	 * Template filter callback for MonoBook skin.
@@ -200,5 +205,4 @@ class MonoBookTemplate extends QuickTemplate {
 <?php
 	}
 }
-
 ?>
