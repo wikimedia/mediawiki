@@ -24,10 +24,16 @@ function wfSpecialContributions( $par = "" )
 	$sk = $wgUser->getSkin();
 	$id = User::idFromName( $nt->getText() );
 
-	if ( 0 == $id ) { $ul = $nt->getText(); }
-	else {
+	if ( 0 == $id ) {
+		$ul = $nt->getText();
+	} else {
 		$ul = $sk->makeKnownLink( $nt->getPrefixedText(), $nt->getText() );
 	}
+	$talk = $nt->getTalkPage();
+	if( $talk )
+		$ul .= " (" . $sk->makeLinkObj( $talk, $wgLang->getNsText(Namespace::getTalk(0)) ) . ")";
+	else
+		$ul .= "brrrp";
 	$wgOut->setSubtitle( wfMsg( "contribsub", $ul ) );
 
 	if ( ! isset( $hideminor ) ) {
