@@ -180,6 +180,9 @@ class ImagePage extends Article {
 			$wgOut->sysopRequired();
 			return;
 		}
+		if ( $wgUser->isBlocked() ) {
+			return $this->blockedIPpage();
+		}
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return;
@@ -326,7 +329,7 @@ class ImagePage extends Article {
 
 	function revert()
 	{
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgUser;
 		global $wgUseSquid, $wgInternalServer, $wgDeferredUpdateList;
 
 		$oldimage = $wgRequest->getText( 'oldimage' );
@@ -346,6 +349,9 @@ class ImagePage extends Article {
 		if ( ! $this->mTitle->userCanEdit() ) {
 			$wgOut->sysopRequired();
 			return;
+		}
+		if ( $wgUser->isBlocked() ) {
+			return $this->blockedIPpage();
 		}
 		$name = substr( $oldimage, 15 );
 
@@ -384,6 +390,14 @@ class ImagePage extends Article {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->addHTML( wfMsg( 'imagereverted' ) );
 		$wgOut->returnToMain( false );
+	}
+	
+	function blockedIPpage() {
+		# yucky hack
+		require_once( 'EditPage.php' );
+		$edit = new EditPage( $this->mTitle );
+		$edit->blockedIPpage();
+		return;
 	}
 }
 
@@ -458,7 +472,6 @@ class ImageHistoryList {
 		$s .= "</li>\n";
 		return $s;
 	}
-
 }
 
 

@@ -163,6 +163,7 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 1168) Missing text on the bureaucrat log
 * (bug 1180) Fix Makesysop on shared-user-table sites
 * (bug 1178) Fix previous diff link when using 'oldid=0'
+* (bug 1173) Stop blocked accounts from reverting/deleting images
 
 === Caveats ===
 
