@@ -112,6 +112,9 @@ class SpecialSearch {
 	 * @access public
 	 */
 	function showResults( $term ) {
+		$fname = 'SpecialSearch::showResults';
+		wfProfileIn( $fname );
+		
 		$this->setupPage( $term );
 		
 		global $wgUser, $wgOut;
@@ -123,6 +126,7 @@ class SpecialSearch {
 			$wgOut->addWikiText(
 				'==' . wfMsg( 'badquery' ) . "==\n" .
 				wfMsg( 'badquerytext' ) );
+			wfProfileOut( $fname );
 			return;
 		}
 		
@@ -133,6 +137,7 @@ class SpecialSearch {
 			$wgOut->addHTML( wfMsg( 'googlesearch',
 				htmlspecialchars( $term ),
 				htmlspecialchars( $wgInputEncoding ) ) );
+			wfProfileOut( $fname );
 			return;
 		}
 
@@ -181,6 +186,7 @@ class SpecialSearch {
 			$wgOut->addHTML( "<p>{$prevnext}</p>\n" );
 		}
 		$wgOut->addHTML( $this->powerSearchBox( $term ) );
+		wfProfileOut( $fname );
 	}
 	
 	#------------------------------------------------------------------
@@ -279,6 +285,9 @@ class SpecialSearch {
 	 * @param string $terms partial regexp for highlighting terms
 	 */
 	function showMatches( &$matches, $terms ) {
+		$fname = 'SpecialSearch::showMatches';
+		wfProfileIn( $fname );
+		
 		global $wgOut;
 		$off = $this->offset + 1;
 		$out = "<ol start='{$off}'>\n";
@@ -287,6 +296,7 @@ class SpecialSearch {
 			$out .= $this->showHit( $row, $terms );
 		}
 		$out .= "</ol>\n";
+		wfProfileOut( $fname );
 		return $out;
 	}
 	
@@ -296,27 +306,32 @@ class SpecialSearch {
 	 * @param string $terms partial regexp for highlighting terms
 	 */
 	function showHit( $row, $terms ) {
+		$fname = 'SpecialSearch::showHit';
+		wfProfileIn( $fname );
 		global $wgUser, $wgContLang;
 
-		$t = Title::makeName( $row->cur_namespace, $row->cur_title );
+		$t = Title::makeTitle( $row->cur_namespace, $row->cur_title );
 		if( is_null( $t ) ) {
+			wfProfileOut( $fname );
 			return "<!-- Broken link in search result -->\n";
 		}
-		$sk = $wgUser->getSkin();
+		$sk =& $wgUser->getSkin();
 
 		$contextlines = $wgUser->getOption( 'contextlines' );
 		if ( '' == $contextlines ) { $contextlines = 5; }
 		$contextchars = $wgUser->getOption( 'contextchars' );
 		if ( '' == $contextchars ) { $contextchars = 50; }
 
-		$link = $sk->makeKnownLink( $t, '' );
+		$link = $sk->makeKnownLinkObj( $t, '' );
 		$size = wfMsg( 'nbytes', strlen( $row->cur_text ) );
 
 		$lines = explode( "\n", $row->cur_text );
-		$pat1 = "/(.*)($terms)(.*)/i";
+		$max = IntVal( $contextchars ) + 1;
+		$pat1 = "/(.*)($terms)(.{0,$max})/i";
 		$lineno = 0;
 		
 		$extract = '';
+		wfProfileIn( "$fname-extract" );
 		foreach ( $lines as $line ) {
 			if ( 0 == $contextlines ) {
 				break;
@@ -343,6 +358,8 @@ class SpecialSearch {
 
 			$extract .= "<br /><small>{$lineno}: {$line}</small>\n";
 		}
+		wfProfileOut( "$fname-extract" );
+		wfProfileOut( $fname );
 		return "<li>{$link} ({$size}){$extract}</li>\n";
 	}
 	
