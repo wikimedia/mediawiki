@@ -4,7 +4,7 @@
 
 1.3.0 final release should come up very soon; this final beta includes
 various bug fixes and a security fix affecting some PHP configurations
-(when register_globals and are allow_url_fopen both on -- it's recommended
+(when register_globals and allow_url_fopen are both on -- it's recommended
 that you turn both *off* for security).
 
 
