@@ -90,10 +90,10 @@ class DateFormatter
 	{
 		for ( $i=1; $i<=DF_LAST; $i++ ) {
 			$this->mSource = $i;
-			if ( $this->rules[$preference][$i] ) {
+			if ( @$this->rules[$preference][$i] ) {
 				# Specific rules
 				$this->mTarget = $this->rules[$preference][$i];
-			} elseif ( $this->rules[DF_ALL][$i] ) {
+			} elseif ( @$this->rules[DF_ALL][$i] ) {
 				# General rules
 				$this->mTarget = $this->rules[DF_ALL][$i];
 			} elseif ( $preference ) {
