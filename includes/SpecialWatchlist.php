@@ -54,7 +54,7 @@ function wfSpecialWatchlist()
 			# Set default cutoff shorter
 			$days = (12.0 / 24.0); # 12 hours...
 		} else {
-			$days = 0; # no time cutoff for shortlisters
+			$days = 3; # longer cutoff for shortlisters
 		}
 	} else {
 		$days = floatval($days);
