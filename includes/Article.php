@@ -562,7 +562,7 @@ class Article {
 
 		# Now update the link cache by parsing the text	
 		$wgOut = new OutputPage();
-		$wgOut->addWikiText( $text, true, $this );
+		$wgOut->addWikiText( $text );
 
 		if( $wgMwRedir->matchStart( $text ) )
 			$r = "redirect=no";

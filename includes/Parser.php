@@ -165,7 +165,7 @@ class Parser
 		$doesexist = false ;
 		if ( $doesexist ) {
 			$sql = "SELECT l_from FROM links WHERE l_to={$id}" ;
-		} else 
+		} else {
 			$sql = "SELECT cur_title,cur_namespace FROM cur,brokenlinks WHERE bl_to={$id} AND bl_from=cur_id" ;
 		}
 
