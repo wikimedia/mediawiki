@@ -126,6 +126,7 @@ class LinksUpdate {
 			foreach( $add as $iname => $val ) {
 				# FIXME: Change all this to avoid unnecessary duplication
 				$nt = Title::makeTitle( $image, $iname );
+				if( !$nt ) continue;
 				$nt->invalidateCache();
 
 				$iname = wfStrencode( $iname );
