@@ -30,13 +30,19 @@ phrase_lib.txt:
 printutf8: printutf8.c
 	gcc -o printutf8 printutf8.c
 
-trad2simp.t: Unihan.txt trad2simp.manual printutf8
-	grep kSimplifiedVariant Unihan.txt | sed  '/#/d' | sed  's/kSimplifiedVariant//' | ./printutf8 > tmp1
+unihan.t2s.t: Unihan.txt printutf8
+	grep kSimplifiedVariant Unihan.txt | sed  '/#/d' | sed  's/kSimplifiedVariant//' | ./printutf8 > unihan.t2s.t
+
+trad2simp.t: trad2simp.manual unihan.t2s.t
+	cp unihan.t2s.t tmp1
 	for I in `colrm 11 < trad2simp.manual` ; do sed "/^$$I/d" tmp1 > tmp2; mv tmp2 tmp1; done
 	cat trad2simp.manual tmp1 > trad2simp.t
 
-simp2trad.t: Unihan.txt simp2trad.manual printutf8
-	grep kTraditionalVariant Unihan.txt | sed  '/#/d' | sed  's/kTraditionalVariant//' | ./printutf8 > tmp1
+unihan.s2t.t: Unihan.txt printutf8
+	grep kTraditionalVariant Unihan.txt | sed  '/#/d' | sed  's/kTraditionalVariant//' | ./printutf8 > unihan.s2t.t
+
+simp2trad.t: unihan.s2t.t simp2trad.manual
+	cp unihan.s2t.t tmp1
 	for I in `colrm 11 < simp2trad.manual` ; do sed "/^$$I/d" tmp1 > tmp2; mv tmp2 tmp1; done
 	cat simp2trad.manual tmp1 > simp2trad.t
 
@@ -51,7 +57,8 @@ t2s_1to1.t: trad2simp.t s2t_1tomany.t
 	grep  '"."=>"....",' s2t_1tomany.t | sed 's/\("."\)=>".\(.\)..",/"\2"=>\1,/' >> t2s_1to1.t
 	grep  '"."=>"....",' s2t_1tomany.t | sed 's/\("."\)=>"..\(.\).",/"\2"=>\1,/' >> t2s_1to1.t
 	grep  '"."=>"....",' s2t_1tomany.t | sed 's/\("."\)=>"...\(.\)",/"\2"=>\1,/' >> t2s_1to1.t
-	sort t2s_1to1.t | uniq > t2s_1to1.t
+	sort t2s_1to1.t | uniq > t
+	mv t t2s_1to1.t
 
 
 s2t_1tomany.t: simp2trad.t
@@ -65,13 +72,15 @@ s2t_1to1.t: simp2trad.t t2s_1tomany.t
 	grep  '"."=>"....",' t2s_1tomany.t | sed 's/\("."\)=>".\(.\)..",/"\2"=>\1,/' >> s2t_1to1.t
 	grep  '"."=>"....",' t2s_1tomany.t | sed 's/\("."\)=>"..\(.\).",/"\2"=>\1,/' >> s2t_1to1.t
 	grep  '"."=>"....",' t2s_1tomany.t | sed 's/\("."\)=>"...\(.\)",/"\2"=>\1,/' >> s2t_1to1.t
-	sort s2t_1to1.t | uniq > s2t_1to1.t
+	sort s2t_1to1.t | uniq > t
+	mv t s2t_1to1.t
 
 ez.t: EZ.txt.in
 	colrm 1 8 < EZ.txt.in | sed 's/\t//g' | grep "^.\{2,4\}[0-9]" | sed 's/[0-9]//g' > ez.t
 
-alltradphrases.t: ez.t s2t_1tomany.t
-	for i in `cat s2t_1tomany.t | sed 's/.......//' | sed 's/",/\n/' | sed 's/\(.\)/\1\n/g' |sort | uniq`; do grep -s $$i ez.t ; done  > alltradphrases.t || true
+alltradphrases.t: ez.t s2t_1tomany.t 
+	for i in `cat s2t_1tomany.t | sed 's/.*=>".//' | sed 's/"//g' |sed 's/,/\n/' | sed 's/\(.\)/\1\n/g' |sort | uniq`; do grep -s $$i ez.t ; done  > alltradphrases.t || true
+
 
 tradphrases_2.t: alltradphrases.t
 	cat alltradphrases.t | grep  "^..$$" | sort | uniq > tradphrases_2.t
@@ -79,7 +88,8 @@ tradphrases_2.t: alltradphrases.t
 tradphrases_3.t: alltradphrases.t
 	cat alltradphrases.t | grep  "^...$$" | sort | uniq > tradphrases_3.t
 	for i in `cat tradphrases_2.t`; do grep $$i tradphrases_3.t ; done | sort | uniq > t3 || true
-	diff t3 tradphrases_3.t | grep ">" | sed 's/> //' > tradphrases_3.t
+	diff t3 tradphrases_3.t | grep ">" | sed 's/> //' > t
+	mv t tradphrases_3.t
 
 
 tradphrases_4.t: alltradphrases.t
@@ -101,7 +111,7 @@ ph.t: phrase_lib.txt
 
 allsimpphrases.t: ph.t
 	rm -f allsimpphrases.t
-	for i in `cat t2s_1tomany.t | sed 's/.......//' | sed 's/",/\n/' | sed 's/\(.\)/\1\n/g' | sort | uniq `; do grep $$i ph.t >> allsimpphrases.t; done
+	for i in `cat t2s_1tomany.t | sed 's/.*=>".//' | sed 's/"//g' | sed 's/,/\n/' | sed 's/\(.\)/\1\n/g' | sort | uniq `; do grep $$i ph.t >> allsimpphrases.t; done
 
 simpphrases_2.t: allsimpphrases.t
 	cat allsimpphrases.t | grep "^..$$" | sort | uniq > simpphrases_2.t
