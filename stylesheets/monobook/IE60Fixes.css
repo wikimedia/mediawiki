@@ -63,9 +63,13 @@ textarea {
 }
 #tawrapper {
     width: 100%;
-    text-align: left;
     overflow: hidden;
 }
+.special li {
+    overflow: auto;
+    width: 100%;
+}
+
 div.editsection,
 #catlinks,
 div.tright,
