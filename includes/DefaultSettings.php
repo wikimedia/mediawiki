@@ -351,6 +351,14 @@ $wgRightsUrl = NULL;
 $wgRightsText = NULL;
 $wgRightsIcon = NULL;
 
+# Set this to true if you want detailed copyright information forms on Upload.
+$wgUseCopyrightUpload = false;
+
+# Set this to false if you want to disable checking that detailed 
+# copyright information values are not empty.
+$wgCheckCopyrightUpload = true;
+
+
 # Set this to false to avoid forcing the first letter of links
 # to capitals. WARNING: may break links! This makes links
 # COMPLETELY case-sensitive. Links appearing with a capital at

@@ -73,13 +73,14 @@ class UploadForm {
 		global $wgUser, $wgOut, $wgLang;
 		global $wgUploadDirectory;
 		global $wgSavedFile, $wgUploadOldVersion;
-		global $wgUseCopyrightUpload;
+		global $wgUseCopyrightUpload, $wgCheckCopyrightUpload;
 		global $wgCheckFileExtensions, $wgStrictFileExtensions;
 		global $wgFileExtensions, $wgFileBlacklist, $wgUploadSizeWarning;
 
 		if ( $wgUseCopyrightUpload ) {
 			$this->mUploadAffirm = 1;
-			if ( trim ( $this->mUploadCopyStatus ) == "" || trim ( $this->mUploadSource ) == "" ) {
+			if ($wgCheckCopyrightUpload && 
+				(trim ( $this->mUploadCopyStatus ) == "" || trim ( $this->mUploadSource ) == "" )) {
 				$this->mUploadAffirm = 0;
 			}
 		}
