@@ -649,6 +649,10 @@ class Article {
 			$de = new DifferenceEngine( intval($oldid), intval($diff) );
 			$de->showDiffPage();
 			wfProfileOut( $fname );
+			if( $diff == 0 ) {
+				# Run view updates for current revision only
+				$this->viewUpdates();
+			}
 			return;
 		}
 
@@ -1570,10 +1574,10 @@ class Article {
 				$u = new SiteStatsUpdate( 1, 0, 0 );
 				array_push( $wgDeferredUpdateList, $u );
 			}
-			$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(),
-			  $this->mTitle->getDBkey() );
-			array_push( $wgDeferredUpdateList, $u );
 		}
+		$u = new UserTalkUpdate( 0, $this->mTitle->getNamespace(),
+		  $this->mTitle->getDBkey() );
+		array_push( $wgDeferredUpdateList, $u );
 	}
 
 	# Do standard deferred updates after page edit.
