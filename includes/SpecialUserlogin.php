@@ -41,7 +41,10 @@ function wfSpecialUserlogin()
 	}
 
 	$u->saveSettings();
-	mailPasswordInternal($u);
+	if (mailPasswordInternal($u) == NULL)
+	{
+		return;  
+	}
 
 	$wgOut->setPageTitle( wfMsg( "accmailtitle" ) );
 	$wgOut->setRobotpolicy( "noindex,nofollow" );
@@ -78,7 +81,7 @@ function wfSpecialUserlogin()
 	global $wgUser, $wgOut, $wpPassword, $wpRetype, $wpName, $wpRemember;
 	global $wpEmail, $wgDeferredUpdateList;
 
-	if (!userAllowedToCreateAccount()) {
+	if (!$wgUser->isAllowedToCreateAccount()) {
 		userNotPrivilegedMessage();
 		return;
 	}
@@ -188,7 +191,7 @@ function wfSpecialUserlogin()
 
 /* private */ function mailPasswordInternal( $u )
 {
-	global $wgUser, $wpName, $wgDeferredUpdateList, $wgOutputEncoding;
+	global $wpName, $wgDeferredUpdateList, $wgOutputEncoding;
 	global $wgPasswordSender;
 
 	if ( "" == $u->getEmail() ) {
@@ -240,18 +243,6 @@ function wfSpecialUserlogin()
 
 
 
-/* private */ function userAllowedToCreateAccount() 
-{
-	global $wgUser, $wgWhitelistAccount;
-	$allowed = false;
-	
-	if (!$wgWhitelistAccount) { return 1; }; // default behaviour
-	foreach ($wgWhitelistAccount as $right => $ok) {
-		$userHasRight = (!strcmp($right, "user") || in_array($right, $wgUser->getRights()));
-		$allowed |= ($ok && $userHasRight);
-	}
-	return $allowed;
-}
 
 
 function userNotPrivilegedMessage()
@@ -342,7 +333,7 @@ color='red'>$err</font>\n" );
 <input tabindex=3 type=submit name=\"wpLoginattempt\" value=\"{$li}\">
 </td></tr>");
 
-	if (userAllowedToCreateAccount($wgUser)) {
+	if ($wgUser->isAllowedToCreateAccount()) {
 
 $wgOut->addHTML("<tr><td colspan=3>&nbsp;</td></tr><tr>
 <td align=right>$ypa:</td>
