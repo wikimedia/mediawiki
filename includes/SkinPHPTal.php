@@ -286,7 +286,9 @@
 			$nav_urls['currentevents'] = array('href' => $this->makeI18nUrl('currentevents'));
 			$nav_urls['recentchangeslinked'] = array('href' => $this->makeSpecialUrl('Recentchangeslinked', 'target='.$thispage));
 			$nav_urls['bugreports'] = array('href' => $this->makeI18nUrl('bugreportspage'));
-			$nav_urls['sitesupport'] = array('href' => $this->makeI18nUrl('sitesupportpage'));
+			global $wgSiteSupportPage;
+			// $nav_urls['sitesupport'] = array('href' => $this->makeI18nUrl('sitesupportpage'));
+			$nav_urls['sitesupport'] = array('href' => $this->makeUrl($wgSiteSupportPage));
 			$nav_urls['help'] = array('href' => $this->makeI18nUrl('helppage'));
 			$nav_urls['upload'] = array('href' => $this->makeSpecialUrl('Upload'));
 			$nav_urls['specialpages'] = array('href' => $this->makeSpecialUrl('Specialpages'));
