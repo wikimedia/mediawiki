@@ -94,7 +94,7 @@ td.diff-context {
     background:#eeeeee;
     font-size: 94%;
 }
-span.diffchange { color: red; }
+span.diffchange { color: red; font-weight: bold; }
 
 img { border: none; }
 img.tex { vertical-align: middle; }

@@ -474,7 +474,7 @@ td.diff-context {
     background:#eeeeee;
     font-size: smaller;
 }
-span.diffchange { color: red; }
+span.diffchange { color: red; font-weight: bold; }
 
 /*
 ** keep the whitespace in front of the ^=, hides rule from konqueror
