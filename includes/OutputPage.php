@@ -1047,6 +1047,11 @@ $t[] = "</table>" ;
 					continue;
 				}
 			}
+			if( ( $nt->getPrefixedText() == $wgTitle->getPrefixedText() ) &&
+			    ( strpos( $link, "#" ) == FALSE ) ) {
+				$s .= "<strong>" . $text . "</strong>" . $trail;
+				continue;
+			}
 			if( $ns == $media ) {
 				$s .= $sk->makeMediaLinkObj( $nt, $text ) . $trail;
 				$wgLinkCache->addImageLinkObj( $nt );
