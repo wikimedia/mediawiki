@@ -20,7 +20,7 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
- * Contain class to build rss / atom ... feeds
+ * Contain a feed class as well as classes to build rss / atom ... feeds
  */
 
 /**
@@ -35,12 +35,20 @@ $wgFeedClasses = array(
  * @todo document
  */
 class FeedItem {
+	/**@#+
+	 * @var string
+	 * @access private
+	 */
 	var $Title = 'Wiki';
 	var $Description = '';
 	var $Url = '';
 	var $Date = '';
 	var $Author = '';
+	/**@#-*/
 	
+	/**
+	 * @todo document
+	 */
 	function FeedItem( $Title, $Description, $Url, $Date = '', $Author = '', $Comments = '' ) {
 		$this->Title = $Title;
 		$this->Description = $Description;
@@ -50,7 +58,10 @@ class FeedItem {
 		$this->Comments = $Comments;
 	}
 	
-	/* Static... */
+	/**
+	 * @static
+	 * @todo document
+	 */
 	function xmlEncode( $string ) {
 		global $wgInputEncoding, $wgLang;
 		$string = str_replace( "\r\n", "\n", $string );
@@ -59,45 +70,72 @@ class FeedItem {
 		}
 		return htmlspecialchars( $string );
 	}
-	function getTitle() {
-		return $this->xmlEncode( $this->Title );
-	}
-	function getUrl() {
-		return $this->xmlEncode( $this->Url );
-	}
-	function getDescription() {
-		return $this->xmlEncode( $this->Description );
-	}
+	
+	/**
+	 * @todo document
+	 */
+	function getTitle() { return $this->xmlEncode( $this->Title ); }
+	/**
+	 * @todo document
+	 */
+	function getUrl() { return $this->xmlEncode( $this->Url ); }
+	/**
+	 * @todo document
+	 */
+	function getDescription() { return $this->xmlEncode( $this->Description ); }
+	/**
+	 * @todo document
+	 */
 	function getLanguage() {
 		global $wgLanguageCode;
 		return $wgLanguageCode;
 	}
-	function getDate() {
-		return $this->Date;
-	}
-	function getAuthor() {
-		return $this->xmlEncode( $this->Author );
-	}
-	function getComments() {
-		return $this->xmlEncode( $this->Comments );
-	}
+	/**
+	 * @todo document
+	 */
+	function getDate() { return $this->Date; }
+	/**
+	 * @todo document
+	 */
+	function getAuthor() { return $this->xmlEncode( $this->Author ); }
+	/**
+	 * @todo document
+	 */
+	function getComments() { return $this->xmlEncode( $this->Comments ); }
 }
 
 /**
  * @todo document
  */
 class ChannelFeed extends FeedItem {
-	/* Abstract functions, override! */
+	/**@#+
+	 * Abstract function, override!
+	 */
+	 
+	/**
+	 * @todo document
+	 */
 	function outHeader() {
 		# print "<feed>";
 	}
+	
+	/**
+	 * @todo document
+	 */
 	function outItem( $item ) {
 		# print "<item>...</item>";
 	}
+	
+	/**
+	 * @todo document
+	 */
 	function outFooter() {
 		# print "</feed>";
 	}
 	
+	/**
+	 * @todo document
+	 */
 	function outXmlHeader( $mimetype='application/xml' ) {
 		global $wgServer, $wgStylePath, $wgOut;
 		
@@ -110,6 +148,7 @@ class ChannelFeed extends FeedItem {
 		print '<' . '?xml-stylesheet type="text/css" href="' .
 			htmlspecialchars( "$wgServer$wgStylePath/feed.css" ) . '"?' . ">\n";
 	}
+	/**@#-*/
 }
 
 /**
@@ -118,10 +157,16 @@ class ChannelFeed extends FeedItem {
  */
 class RSSFeed extends ChannelFeed {
 
+	/**
+	 * @todo document
+	 */
 	function formatTime( $ts ) {
 		return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp2Unix( $ts ) );
 	}
 	
+	/**
+	 * @todo document
+	 */
 	function outHeader() {
 		global $wgVersion;
 		
@@ -137,6 +182,9 @@ class RSSFeed extends ChannelFeed {
 <?php
 	}
 	
+	/**
+	 * @todo document
+	 */
 	function outItem( $item ) {
 	?>
 		<item>
@@ -150,6 +198,9 @@ class RSSFeed extends ChannelFeed {
 <?php
 	}
 
+	/**
+	 * @todo document
+	 */
 	function outFooter() {
 	?>
 	</channel>
@@ -162,11 +213,17 @@ class RSSFeed extends ChannelFeed {
  * @todo document
  */
 class AtomFeed extends ChannelFeed {
+	/**
+	 * @todo document
+	 */
 	function formatTime( $ts ) {
 		// need to use RFC 822 time format at least for rss2.0
 		return gmdate( 'Y-m-d\TH:i:s', wfTimestamp2Unix( $ts ) );
 	}
 
+	/**
+	 * @todo document
+	 */
 	function outHeader() {
 		global $wgVersion, $wgOut;
 		
@@ -181,6 +238,9 @@ class AtomFeed extends ChannelFeed {
 <?php
 	}
 	
+	/**
+	 * @todo document
+	 */
 	function outItem( $item ) {
 		global $wgMimeType;
 	?>
@@ -202,6 +262,9 @@ class AtomFeed extends ChannelFeed {
       */
 	}
 	
+	/**
+	 * @todo document
+	 */
 	function outFooter() {?>
 	</feed><?php
 	}

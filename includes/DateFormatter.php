@@ -4,21 +4,30 @@
  * @todo document
  */
 
-/**
- *
- */
+/** */
 define('DF_ALL', -1);
+/** */
 define('DF_NONE', 0);
+/** */
 define('DF_MDY', 1);
+/** */
 define('DF_DMY', 2);
+/** */
 define('DF_YMD', 3);
+/** */
 define('DF_ISO1', 4);
+/** */
 define('DF_LASTPREF', 4);
 
+/** */
 define('DF_ISO2', 5);
+/** */
 define('DF_YDM', 6);
+/** */
 define('DF_DM', 7);
+/** */
 define('DF_MD', 8);
+/** */
 define('DF_LAST', 8);
 
 /**
@@ -32,8 +41,10 @@ class DateFormatter
 	var $regexes, $pDays, $pMonths, $pYears;
 	var $rules, $xMonths;
 	
-	function DateFormatter()
-	{
+	/**
+	 * @todo document
+	 */
+	function DateFormatter() {
 		global $wgMonthNamesEn, $wgInputEncoding;
 		
 		$this->monthNames = $this->getMonthRegex();
@@ -95,8 +106,11 @@ class DateFormatter
 		$this->rules[DF_NONE][DF_ISO2] 	= DF_ISO1;
 	}
 	
-	function reformat( $preference, $text ) 
-	{
+	/**
+	 * @param $preference
+	 * @param $text
+	 */
+	function reformat( $preference, $text ) {
 		for ( $i=1; $i<=DF_LAST; $i++ ) {
 			$this->mSource = $i;
 			if ( @$this->rules[$preference][$i] ) {
@@ -117,8 +131,10 @@ class DateFormatter
 		return $text;
 	}
 
-	function replace( $matches )
-	{
+	/**
+	 * @param $matches
+	 */
+	function replace( $matches ) {
 		global $wgMonthNamesEn;
 		# Extract information from $matches
 		$bits = array();
@@ -200,21 +216,30 @@ class DateFormatter
 		return $text;
 	}
 	
-	function getMonthRegex()
-	{
+	/**
+	 * @todo document
+	 */
+	function getMonthRegex() {
 		global $wgMonthNamesEn;
 		return implode( '|', $wgMonthNamesEn );
 	}
 
-	# Makes an ISO month, e.g. 02, from a month name
-	function makeIsoMonth( $monthName )
-	{
+	/**
+	 * Makes an ISO month, e.g. 02, from a month name
+	 * @param string $monthName Month name
+	 * @return string ISO month name
+	 */
+	function makeIsoMonth( $monthName ) {
 		$n = $this->xMonths[strtolower( $monthName )];
 		return sprintf( '%02d', $n );
 	}
 
-	function makeIsoYear( $year )
-	{
+	/**
+	 * @todo document
+	 * @param string $year Year name
+	 * @return string ISO year name
+	 */
+	function makeIsoYear( $year ) {
 		# Assumes the year is in a nice format, as enforced by the regex
 		if ( substr( $year, -2 ) == 'BC' ) {
 			$num = IntVal(substr( $year, 0, -3 )) - 1;
@@ -227,8 +252,10 @@ class DateFormatter
 		return $text;
 	}
 
-	function makeNormalYear( $iso ) 
-	{
+	/**
+	 * @todo document
+	 */
+	function makeNormalYear( $iso ) {
 		if ( $iso{0} == '-' ) {
 			$text = (IntVal( substr( $iso, 1 ) ) - 1) . ' BC';
 		} else {
@@ -238,8 +265,10 @@ class DateFormatter
 	}
 }
 
-function wfMainDateReplace( $matches )
-{
+/**
+ * @todo document
+ */
+function wfMainDateReplace( $matches ) {
 	global $wgDateFormatter;
 	return $wgDateFormatter->replace( $matches );
 }
