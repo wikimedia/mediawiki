@@ -6,10 +6,15 @@ else var version = 0;
 window.attachEvent("onload", hookit);
 function hookit() {
     fixalpha();
-    if(version == 6) relativeforfloats();
-    fixtextarea();
-    var wrapper = document.getElementById('tawrapper');
-    if(wrapper) wrapper.attachEvent("onclick", fixtextarea);
+    if(version == 6) {
+        relativeforfloats();
+        fixtextarea();
+        var wrapper = document.getElementById('tawrapper');
+        if(wrapper) {
+            //wrapper.attachEvent("onclick", fixtextarea);
+            window.onresize = refixtextarea;
+        }
+    }
 }
 
 // png alpha transparency fixes
@@ -50,6 +55,9 @@ function fixtextarea() {
             wrapper.style.width = 'auto';
             wrapper.style.width = (wrapper.offsetWidth - 4)  + 'px';
     }
+}
+function refixtextarea () {
+    setTimeout("fixtextarea()",10);
 }
 
 // fix ie6 disappering float bug
