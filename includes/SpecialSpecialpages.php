@@ -14,41 +14,24 @@ function wfSpecialSpecialpages() {
 	$wgOut->setRobotpolicy( 'index,nofollow' );
 	$sk = $wgUser->getSkin();	
 	
-	# Get listable pages
+	# Get listable pages, in a 2-d array with the first dimension being user right
 	$pages = SpecialPage::getPages();
 
-	/** pages available to all */
+	/** Pages available to all */
 	wfSpecialSpecialpages_gen($pages[''],'spheading',$sk);
 
-	/** show pages splitted by user rights */
+	/** Restricted special pages */
+	$rpages = array();
 	foreach($wgAvailableRights as $right) {
 		/** only show pages a user can access */
 		if( $wgUser->isAllowed($right) ) {
 			/** some rights might not have any special page associated */
 			if(isset($pages[$right])) {
-			wfSpecialSpecialpages_gen($pages[$right], $right.'pheading', $sk);
+				$rpages = array_merge( $rpages, $pages[$right] );
 			}
 		}
-	
 	}
-
-/** FIXME : spheading, sysopspheading, developerspheading need to be removed
-from language files [av] */
-/**
-	# all users special pages
-	wfSpecialSpecialpages_gen($pages[''],'spheading',$sk);
-
-	# sysops only special pages
-	if ( $wgUser->isSysop() ) {
-		wfSpecialSpecialpages_gen($pages['sysop'],'sysopspheading',$sk);
-	}
-
-	# developers only special pages
-	if ( $wgUser->isDeveloper() ) {
-		wfSpecialSpecialpages_gen($pages['developer'],'developerspheading',$sk);
-
-	}
-*/
+	wfSpecialSpecialpages_gen( $rpages, 'restrictedpheading', $sk );
 }
 
 /**
@@ -60,12 +43,21 @@ from language files [av] */
 function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 	global $wgLang, $wgOut;
 
-	$wgOut->addHTML( '<h2>' . wfMsg( $heading ) . "</h2>\n<ul>" );
+	/** Put them into a sortable array */
+	$sortedPages = array();
 	foreach ( $pages as $name => $page ) {
-		if( !$page->isListed() ) {
-			continue;
+		if ( $page->isListed() ) {
+			$sortedPages[$page->getDescription()] = $page->getTitle();
 		}
-		$link = $sk->makeKnownLinkObj( $page->getTitle(), $page->getDescription() );
+	}
+	
+	/** Sort */
+	ksort( $sortedPages );
+
+	/** Now output the HTML */
+	$wgOut->addHTML( '<h2>' . wfMsg( $heading ) . "</h2>\n<ul>" );
+	foreach ( $sortedPages as $desc => $title ) {
+		$link = $sk->makeKnownLinkObj( $title, $desc );
 		$wgOut->addHTML( "<li>{$link}</li>\n" );
 	}
 	$wgOut->addHTML( "</ul>\n" );
