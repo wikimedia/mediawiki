@@ -5,9 +5,12 @@
 # See rebuildlinks.php, for example.
 #
 
+# Turn this on if you've got memory to burn
+$wgUseMemoryTables = false;
+
 function rebuildLinkTablesPass1()
 {
-	global $wgLang;
+	global $wgLang, $wgUseMemoryTables;
 	$count = 0;
 	print "Rebuilding link tables (pass 1).\n";
 
@@ -18,10 +21,11 @@ function rebuildLinkTablesPass1()
   rl_f_id int(8) unsigned NOT NULL default 0,
   rl_f_title varchar(255) binary NOT NULL default '',
   rl_to varchar(255) binary NOT NULL default '',
-  INDEX rl_to (rl_to) ) TYPE=MyISAM";
+  INDEX rl_to (rl_to) )";
+	if( $wgUseMemoryTables ) $sql .= " TYPE=heap";
 	wfQuery( $sql, DB_WRITE );
 
-	$sql = "LOCK TABLES cur READ, rebuildlinks WRITE, interwiki READ";
+	$sql = "LOCK TABLES cur READ, rebuildlinks WRITE, interwiki READ, user_newtalk READ";
 	wfQuery( $sql, DB_WRITE );
 
 	$sql = "DELETE FROM rebuildlinks";
@@ -48,12 +52,29 @@ function rebuildLinkTablesPass1()
 			$first = true;
 			$sql = "INSERT INTO rebuildlinks (rl_f_id,rl_f_title,rl_to) VALUES ";
 			for ( $i = 0; $i < $numlinks; ++$i ) {
+				if( preg_match( '/^(http|https|ftp|mailto|news):/', $m[1][$i] ) ) {
+					# an URL link; not for us!
+					continue;
+				}
+				# FIXME: Handle subpage links
 				$nt = Title::newFromText( $m[1][$i] );
 				if (! $nt)
 				{
 					$txt = $m[1][$i];
 					print "error in '$ns:{$row->cur_title}' :\t'$txt'\n";
 					continue;
+				}
+				if( $nt->getInterwiki() != "" ) {
+					# Interwiki links are not stored in the link tables
+					continue;
+				}
+				if( $nt->getNamespace() == Namespace::getSpecial() ) {
+					# Special links not stored in link tables
+					continue;
+				}
+				if( $nt->getNamespace() == Namespace::getMedia() ) {
+					# treat media: links as image: links
+					$nt = Title::makeTitle( Namespace::getImage(), $nt->getDBkey() );
 				}
 
 				if (!$first)
@@ -138,7 +159,7 @@ function rebuildLinkTablesPass2()
 		$to = addslashes( $row->rl_to );
 
 		if ( 0 == $id ) {
-			$sql = "SELECT rl_f_id FROM rebuildlinks WHERE rl_to='{$to}'";
+			$sql = "SELECT DISTINCT rl_f_id FROM rebuildlinks WHERE rl_to='{$to}'";
 			$res2 = wfQuery( $sql, DB_WRITE );
 
 			$sql = "INSERT INTO brokenlinks (bl_from,bl_to) VALUES ";
@@ -156,7 +177,7 @@ function rebuildLinkTablesPass2()
 			wfFreeResult( $res2 );
 			if ( ! $first ) { wfQuery( $sql, DB_WRITE ); }
 		} else {
-			$sql = "SELECT rl_f_title FROM rebuildlinks WHERE rl_to='{$to}'";
+			$sql = "SELECT DISTINCT rl_f_title FROM rebuildlinks WHERE rl_to='{$to}'";
 			$res2 = wfQuery( $sql, DB_WRITE );
 
 			$sql = "INSERT INTO links (l_from,l_to) VALUES ";

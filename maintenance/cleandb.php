@@ -3,9 +3,13 @@
 # Creating a new empty database; either this or the conversion
 # script from the old format needs to be run, but not both.
 
-global $IP;
+$wgCommandLineMode = true;
 include_once( "../LocalSettings.php" );
-include_once( "$IP/Setup.php" );
+
+$sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
+ini_set( "include_path", "$IP$sep$include_path" );
+
+include_once( "Setup.php" );
 
 $wgTitle = Title::newFromText( "Database creation script" );
 include_once( "./buildTables.inc" );

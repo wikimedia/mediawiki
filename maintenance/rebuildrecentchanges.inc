@@ -6,7 +6,7 @@
 function rebuildRecentChangesTablePass1()
 {
 	$sql = "DROP TABLE IF EXISTS recentchanges";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
 	$sql = "CREATE TABLE recentchanges (
   rc_timestamp varchar(14) binary NOT NULL default '',
@@ -28,7 +28,7 @@ function rebuildRecentChangesTablePass1()
   INDEX rc_namespace (rc_namespace),
   INDEX rc_title (rc_title)
 ) TYPE=MyISAM PACK_KEYS=1;";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
 	print( "Loading from CUR table...\n" );
 
@@ -38,7 +38,7 @@ function rebuildRecentChangesTablePass1()
 	  "cur_timestamp,cur_user,cur_user_text,cur_namespace,cur_title," .
 	  "cur_comment,cur_minor_edit,0,cur_is_new,cur_id,0,0 FROM cur " .
 	  "ORDER BY cur_timestamp DESC LIMIT 5000";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
 	print( "Loading from OLD table...\n" );
 
@@ -48,16 +48,16 @@ function rebuildRecentChangesTablePass1()
 	  "old_user,old_user_text,old_namespace,old_title,old_comment," .
 	  "old_minor_edit,0,0,0,old_id,0 FROM old ORDER BY old_timestamp " .
 	  "DESC LIMIT 5000";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 
 	$sql = "SELECT rc_timestamp FROM recentchanges " .
 	  "ORDER BY rc_timestamp DESC LIMIT 5000,1";
-	$res = wfQuery( $sql );
+	$res = wfQuery( $sql, DB_WRITE );
 	$obj = wfFetchObject( $res );
 	$ts = $obj->rc_timestamp;
 
 	$sql = "DELETE FROM recentchanges WHERE rc_timestamp < '{$ts}'";
-	wfQuery( $sql );
+	wfQuery( $sql, DB_WRITE );
 }
 
 function rebuildRecentChangesTablePass2()
@@ -69,7 +69,7 @@ function rebuildRecentChangesTablePass2()
 
 	$sql = "SELECT rc_namespace,rc_title,rc_timestamp FROM recentchanges " .
 	  "ORDER BY rc_namespace,rc_title,rc_timestamp DESC";
-	$res = wfQuery( $sql );
+	$res = wfQuery( $sql, DB_WRITE );
 
 	while ( $obj = wfFetchObject( $res ) ) {
 		if ( ! ( $ns == $obj->rc_namespace &&
@@ -80,7 +80,7 @@ function rebuildRecentChangesTablePass2()
 
 			$sql = "SELECT cur_id,cur_timestamp FROM cur WHERE " .
 			  "cur_namespace={$ns} AND cur_title='{$title}'";
-			$res2 = wfQuery( $sql );
+			$res2 = wfQuery( $sql, DB_WRITE );
 			$obj2 = wfFetchObject( $res2 );
 
 			$id = $obj2->cur_id;
@@ -89,7 +89,7 @@ function rebuildRecentChangesTablePass2()
 		$sql = "SELECT old_id FROM old WHERE old_namespace={$ns} " .
 		  "AND old_title='{$title}' AND old_timestamp < '" .
 		  "{$obj->rc_timestamp}' ORDER BY old_timestamp DESC LIMIT 1";
-		$res2 = wfQuery( $sql );
+		$res2 = wfQuery( $sql, DB_WRITE );
 
 		if ( 0 != wfNumRows( $res2 ) ) {
 			$obj2 = wfFetchObject( $res2 );
@@ -98,12 +98,12 @@ function rebuildRecentChangesTablePass2()
 			  "'{$ct}',rc_last_oldid={$obj2->old_id} WHERE " .
 			  "rc_namespace={$ns} AND rc_title='{$title}' AND " .
 			  "rc_timestamp='{$obj->rc_timestamp}'";
-			wfQuery( $sql );
+			wfQuery( $sql, DB_WRITE );
 		} else {
 			$sql = "UPDATE recentchanges SET rc_cur_id={$id},rc_cur_time=" .
 			  "'{$ct}' WHERE rc_namespace={$ns} AND rc_title='{$title}' " .
 			  "AND rc_timestamp='{$obj->rc_timestamp}'";
-			wfQuery( $sql );
+			wfQuery( $sql, DB_WRITE );
 		}
 
 		if ( 0 == ( ++$count % 500 ) ) {
