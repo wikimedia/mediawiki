@@ -80,8 +80,7 @@ function wfSpecialRecentchanges( $par )
 	}
 
 	$uid = $wgUser->getID();
-	$sql2 = "SELECT rc_cur_id,rc_namespace,rc_title,rc_user,rc_new," .
-	  "rc_comment,rc_user_text,rc_timestamp,rc_minor,rc_this_oldid,rc_last_oldid,rc_bot" . ($uid ? ",wl_user" : "") . " FROM recentchanges " .
+	$sql2 = "SELECT recentchanges.*" . ($uid ? ",wl_user" : "") . " FROM recentchanges " .
 	  ($uid ? "LEFT OUTER JOIN watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace & 65534 " : "") .
 	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
 	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
@@ -108,27 +107,15 @@ function wfSpecialRecentchanges( $par )
 
 	$s = $sk->beginRecentChangesList();
 	while ( $limit ) {
-		if ( ( 0 == $count1 ) ) { break; }
-
-			$ts = $obj1->rc_timestamp;
-			$u = $obj1->rc_user;
-			$ut = $obj1->rc_user_text;
-			$ns = $obj1->rc_namespace;
-			$ttl = $obj1->rc_title;
-			$com = $obj1->rc_comment;
-			$me = ( $obj1->rc_minor > 0 );
-			$new = ( $obj1->rc_new > 0 );
-			$watched = ($obj1->wl_user > 0);
-			$oldid = $obj1->rc_this_oldid ;
-			$diffid = $obj1->rc_last_oldid ;
-
-			$obj1 = wfFetchObject( $res );
-			--$count1;
-		if ( ! ( $hideminor && $me ) ) {
-			$s .= $sk->recentChangesLine( $ts, $u, $ut, $ns, $ttl,
-			  $com, $me, $new, $watched, $oldid , $diffid );
+		if ( ( 0 == $count1 ) ) { 
+			break; 
+		}
+		if ( ! ( $hideminor && $obj1->rc_minor ) ) {
+			$s .= $sk->recentChangesLine( $obj1, $obj1->wl_user );
 			--$limit;
 		}
+		$obj1 = wfFetchObject( $res );
+		--$count1;
 	}
 	$s .= $sk->endRecentChangesList();
 

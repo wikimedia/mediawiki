@@ -20,16 +20,17 @@ class Article {
 	/* private */ var $mCounter, $mComment, $mCountAdjustment;
 	/* private */ var $mMinorEdit, $mRedirectedFrom;
 	/* private */ var $mTouched, $mFileCache, $mTitle;
-
+	/* private */ var $mId, $mTable;
+	
 	function Article( &$title ) {
 		$this->mTitle =& $title;
 		$this->clear();
 	}
-
+	
 	/* private */ function clear()
 	{
 		$this->mContentLoaded = false;
-		$this->mUser = $this->mCounter = -1; # Not loaded
+		$this->mCurID = $this->mUser = $this->mCounter = -1; # Not loaded
 		$this->mRedirectedFrom = $this->mUserText =
 		$this->mTimestamp = $this->mComment = $this->mFileCache = "";
 		$this->mCountAdjustment = 0;
@@ -67,6 +68,7 @@ class Article {
 	# Note that getContent/loadContent may follow redirects if
 	# not told otherwise, and so may cause a change to mTitle.
 
+	# Return the text of this revision
 	function getContent( $noredir = false )
 	{
 		global $action,$section,$count; # From query string
@@ -117,7 +119,8 @@ class Article {
 			}
 		}
 	}
-
+	
+	# Load the revision (including cur_text) into this object
 	function loadContent( $noredir = false )
 	{
 		global $wgOut, $wgMwRedir;
@@ -125,21 +128,8 @@ class Article {
 
 		if ( $this->mContentLoaded ) return;
 		$fname = "Article::loadContent";
-
-		# Pre-fill content with error message so that if something
-		# fails we'll have something telling us what we intended.
-
-		$t = $this->mTitle->getPrefixedText();
-		if ( isset( $oldid ) ) {
-			$oldid = IntVal( $oldid );
-			$t .= ",oldid={$oldid}";
-		}
-		if ( isset( $redirect ) ) {
-			$redirect = ($redirect == "no") ? "no" : "yes";
-			$t .= ",redirect={$redirect}";
-		}
-		$this->mContent = wfMsg( "missingarticle", $t );
-
+		$success = true;
+		
 		if ( ! $oldid ) {	# Retrieve current version
 			$id = $this->getID();
 			if ( 0 == $id ) return;
@@ -212,6 +202,22 @@ class Article {
 			$this->mTimestamp = $s->old_timestamp;
 			wfFreeResult( $res );
 		}
+
+		# Return error message :P
+		# Horrible, confusing UI and data. I think this should return false on error -- TS
+		if ( !$success ) {
+			$t = $this->mTitle->getPrefixedText();
+			if ( isset( $oldid ) ) {
+				$oldid = IntVal( $oldid );
+				$t .= ",oldid={$oldid}";
+			}
+			if ( isset( $redirect ) ) {
+				$redirect = ($redirect == "no") ? "no" : "yes";
+				$t .= ",redirect={$redirect}";
+			}
+			$this->mContent = wfMsg( "missingarticle", $t );
+		}
+
 		$this->mContentLoaded = true;
 	}
 
@@ -246,7 +252,7 @@ class Article {
 		return 1;
 	}
 
-	# Load the field related to the last edit time of the article.
+	# Loads everything from cur except cur_text
 	# This isn't necessary for all uses, so it's only done if needed.
 
 	/* private */ function loadLastEdit()
@@ -399,16 +405,8 @@ class Article {
 		$this->mTitle->resetArticleID( $newid );
 
 		Article::onArticleCreate( $this->mTitle );
+		RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary );
 		
-		$sql = "INSERT INTO recentchanges (rc_timestamp,rc_cur_time," .
-		  "rc_namespace,rc_title,rc_new,rc_minor,rc_cur_id,rc_user," .
-		  "rc_user_text,rc_comment,rc_this_oldid,rc_last_oldid,rc_bot) VALUES (" .
-		  "'{$now}','{$now}',{$ns},'" . wfStrencode( $ttl ) . "',1," .
-		  ( $isminor ? 1 : 0 ) . ",{$newid}," . $wgUser->getID() . ",'" .
-		  wfStrencode( $wgUser->getName() ) . "','" .
-		  wfStrencode( $summary ) . "',0,0," .
-		  ( $wgUser->isBot() ? 1 : 0 ) . ")";
-		wfQuery( $sql, DB_WRITE, $fname );
 		if ($watchthis) { 		
 			if(!$this->mTitle->userIsWatching()) $this->watch(); 
 		} else {
@@ -505,27 +503,8 @@ class Article {
 			$oldid = wfInsertID( $res );
 
 			$bot = (int)($wgUser->isBot() || $forceBot);
-			
-			$sql = "INSERT INTO recentchanges (rc_timestamp,rc_cur_time," .
-			  "rc_namespace,rc_title,rc_new,rc_minor,rc_bot,rc_cur_id,rc_user," .
-			  "rc_user_text,rc_comment,rc_this_oldid,rc_last_oldid) VALUES (" .
-			  "'{$now}','{$now}'," . $this->mTitle->getNamespace() . ",'" .
-			  wfStrencode( $this->mTitle->getDBkey() ) . "',0,{$me2}," .
-			  "$bot," . $this->getID() . "," . $wgUser->getID() . ",'" .
-			  wfStrencode( $wgUser->getName() ) . "','" .
-			  wfStrencode( $summary ) . "',0,{$oldid})";
-			wfQuery( $sql, DB_WRITE, $fname );
-
-			$sql = "UPDATE recentchanges SET rc_this_oldid={$oldid} " .
-			  "WHERE rc_namespace=" . $this->mTitle->getNamespace() . " AND " .
-			  "rc_title='" . wfStrencode( $this->mTitle->getDBkey() ) . "' AND " .
-			  "rc_timestamp='" . $this->getTimestamp() . "'";
-			wfQuery( $sql, DB_WRITE, $fname );
-
-			$sql = "UPDATE recentchanges SET rc_cur_time='{$now}' " .
-			  "WHERE rc_cur_id=" . $this->getID();
-			wfQuery( $sql, DB_WRITE, $fname );
-
+			RecentChange::notifyEdit( $now, $this->mTitle, $me2, $wgUser, $this->getComment(), 
+				$oldid, $this->getTimestamp() );
 			Article::onArticleEdit( $this->mTitle );
 		}
 

@@ -5,7 +5,8 @@ class DifferenceEngine {
 	/* private */ var $mOldid, $mNewid;
 	/* private */ var $mOldtitle, $mNewtitle;
 	/* private */ var $mOldtext, $mNewtext;
-
+	/* private */ var $mOldUser, $mNewUser;
+	
 	function DifferenceEngine( $old, $new )
 	{
 		$this->mOldid = $old;
@@ -29,9 +30,17 @@ class DifferenceEngine {
 		$wgOut->supressQuickbar();
 		$wgOut->setSubtitle( wfMsg( "difference" ) );
 		$wgOut->setRobotpolicy( "noindex,follow" );
+		
+		$sk = $wgUser->getSkin();
+		$oldUserTitle = Title::makeTitle( NS_USER, $this->mOldUser );
+		$newUserTitle = Title::makeTitle( NS_USER, $this->mNewUser );
+		$oldUserLink = $sk->makeLinkObj( $oldUserTitle, $this->mOldUser );
+		$newUserLink = $sk->makeLinkObj( $newUserTitle, $this->mNewUser );
+		$oldHeader = "<strong>{$this->mOldtitle}</strong><br>$oldUserLink";
+		$newHeader = "<strong>{$this->mNewtitle}</strong><br>$newUserLink";
 
 		DifferenceEngine::showDiff( $this->mOldtext, $this->mNewtext,
-		  $this->mOldtitle, $this->mNewtitle );
+		  $oldHeader, $newHeader );
 		$wgOut->addHTML( "<hr><h2>{$this->mNewtitle}</h2>\n" );
 		$wgOut->addWikiText( $this->mNewtext );
 	}
@@ -48,9 +57,9 @@ class DifferenceEngine {
 		$wgOut->addHTML( "<table width='98%' border=0
 cellpadding=0 cellspacing='4px'><tr>
 <td colspan=2 width='50%' align=center bgcolor='#cccccc'>
-<strong>{$otitle}</strong></td>
+{$otitle}</td>
 <td colspan=2 width='50%' align=center bgcolor='#cccccc'>
-<strong>{$ntitle}</strong></td>
+{$ntitle}</td>
 </tr>\n" );
 
 		$diffs = new Diff( $ota, $nta );
@@ -68,20 +77,21 @@ cellpadding=0 cellspacing='4px'><tr>
 	{
 		global $wgTitle, $wgOut, $wgLang;
 		$fname = "DifferenceEngine::loadText";
-
+		
 		if ( 0 == $this->mNewid || 0 == $this->mOldid ) {
 			$wgOut->setArticleFlag( true );
 			$this->mNewtitle = wfMsg( "currentrev" );
 			$id = $wgTitle->getArticleID();
-
-			$sql = "SELECT cur_text FROM cur WHERE cur_id={$id}";
+			
+			$sql = "SELECT cur_text, cur_user_text FROM cur WHERE cur_id={$id}";
 			$res = wfQuery( $sql, DB_READ, $fname );
 			if ( 0 == wfNumRows( $res ) ) { return false; }
 
 			$s = wfFetchObject( $res );
 			$this->mNewtext = $s->cur_text;
+			$this->mNewUser = $s->cur_user_text;
 		} else {
-			$sql = "SELECT old_timestamp,old_text,old_flags FROM old WHERE " .
+			$sql = "SELECT old_timestamp,old_text,old_flags,old_user_text FROM old WHERE " .
 			  "old_id={$this->mNewid}";
 
 			$res = wfQuery( $sql, DB_READ, $fname );
@@ -92,15 +102,17 @@ cellpadding=0 cellspacing='4px'><tr>
 
 			$t = $wgLang->timeanddate( $s->old_timestamp, true );
 			$this->mNewtitle = wfMsg( "revisionasof", $t );
+			$this->mNewUser = $s->old_user_text;
 		}
 		if ( 0 == $this->mOldid ) {
-			$sql = "SELECT old_timestamp,old_text,old_flags FROM old USE INDEX (name_title_timestamp) WHERE " .
+			$sql = "SELECT old_timestamp,old_text,old_flags,old_user_text " .
+			  "FROM old USE INDEX (name_title_timestamp) WHERE " .
 			  "old_namespace=" . $wgTitle->getNamespace() . " AND " .
 			  "old_title='" . wfStrencode( $wgTitle->getDBkey() ) .
 			  "' ORDER BY inverse_timestamp LIMIT 1";
 			$res = wfQuery( $sql, DB_READ, $fname );
 		} else {
-			$sql = "SELECT old_timestamp,old_text,old_flags FROM old WHERE " .
+			$sql = "SELECT old_timestamp,old_text,old_flags,old_user_text FROM old WHERE " .
 			  "old_id={$this->mOldid}";
 			$res = wfQuery( $sql, DB_READ, $fname );
 		}
@@ -111,7 +123,8 @@ cellpadding=0 cellspacing='4px'><tr>
 
 		$t = $wgLang->timeanddate( $s->old_timestamp, true );
 		$this->mOldtitle = wfMsg( "revisionasof", $t );
-
+		$this->mOldUser = $s->old_user_text;
+		
 		return true;
 	}
 }

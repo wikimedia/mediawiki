@@ -24,6 +24,7 @@ wfProfileIn( "$fname-includes" );
 
 include_once( "GlobalFunctions.php" );
 include_once( "Namespace.php" );
+include_once( "RecentChange.php" ); 
 include_once( "Skin.php" );
 include_once( "OutputPage.php" );
 include_once( "User.php" );

@@ -76,7 +76,7 @@ function replacevars( $ins ) {
 #
 # Read and execute SQL commands from a file
 #
-function dbsource( $fname, $conn = false ) {
+function dbsource( $fname, $database = false ) {
 	$fp = fopen( $fname, "r" );
 	if ( false === $fp ) {
 		print "Could not open \"{$fname}\".\n";
@@ -103,8 +103,8 @@ function dbsource( $fname, $conn = false ) {
 
 		if ( $done ) {
 			$cmd = replacevars( $cmd );
-			if( $conn )
-				$res = mysql_query( $cmd, $conn );
+			if( $database )
+				$res = $database->query( $cmd );
 			else
 				$res = mysql_query( $cmd );
 
@@ -120,7 +120,7 @@ function dbsource( $fname, $conn = false ) {
 	fclose( $fp );
 }
 
-
+# Obsolete, use Database::fieldExists()
 function field_exists( $table, $field ) {
 	$fname = "Update script: field_exists";
 	$res = wfQuery( "DESCRIBE $table", $fname );
@@ -135,7 +135,7 @@ function field_exists( $table, $field ) {
 	return $found;
 }
 
-
+# Obsolete Database::tableExists()
 function table_exists( $db ) {
 	global $wgDBname;
 	$res = mysql_list_tables( $wgDBname );
@@ -149,6 +149,7 @@ function table_exists( $db ) {
 	return false;
 }
 
+# Obsolete, use Database:fieldInfo()
 function field_info( $table, $field ) {
 	$res = mysql_query( "SELECT * FROM $table LIMIT 1" );
 	$n = mysql_num_fields( $res );

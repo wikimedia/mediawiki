@@ -81,13 +81,9 @@ class LogPage {
 		
 		# And update recentchanges
 		if ( $this->mUpdateRecentChanges ) {
-			$sql = "INSERT INTO recentchanges (rc_timestamp,rc_cur_time,
-        	        rc_user,rc_user_text,rc_namespace,rc_title,rc_comment,
-                	rc_cur_id) VALUES ('{$now}','{$now}',{$uid},'{$ut}',4,'" .
-				wfStrencode( $this->mTitle ) . "','" .
-				wfStrencode( $this->mComment ) . "',{$this->mId})";
-		        wfQuery( $sql, DB_WRITE, $fname );
-			}
+			$titleObj = Title::makeTitle( Namespace::getWikipedia(), $this->mTitle );
+			RecentChange::notifyLog( $now, $titleObj, $wgUser, $this->mComment );
+		}
 		return true;
 	}
 

@@ -41,22 +41,27 @@ $wgTitle = Title::newFromText( "Update script" );
 #
 # Check the database for things that need to be fixed...
 #
-	print "Checking database for necessary updates...\n";
+print "Checking database for necessary updates...\n";
 
-	$rconn = mysql_connect( $wgDBserver, $wgDBadminuser, $wgDBadminpassword );
-	mysql_select_db( $wgDBname );
+$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname, 
+	1, false, true, false);
+if ( !$wgDatabase->isOpen() ) {
+	print "Unable to connect to database: " . $wgDatabase->lastError() . "\n";
+	exit();
+}
 
-	do_revision_updates();
-	
-	do_ipblocks_update();
-	do_interwiki_update();
-	do_index_update();
-	do_linkscc_update();
-	do_hitcounter_update();
+do_revision_updates();
 
-	initialiseMessages();
+do_ipblocks_update();
+do_interwiki_update();
+do_index_update();
+do_linkscc_update();
+do_hitcounter_update();
+do_recentchanges_update();
 
-	mysql_close( $rconn );
+initialiseMessages();
+
+$wgDatabase->close();
 
 print "Done.\n";
 exit();
@@ -110,6 +115,7 @@ function do_revision_updates() {
 }
 
 function update_passwords() {
+	global $wgDatabase;
 	$fname = "Update script: update_passwords()";
 	print "\nIt appears that you need to update the user passwords in your\n" .
 	  "database. If you have already done this (if you've run this update\n" .
@@ -121,25 +127,26 @@ function update_passwords() {
     if ( ! ( "Y" == $resp{0} || "y" == $resp{0} ) ) { return; }
 
 	$sql = "SELECT user_id,user_password FROM user";
-	$source = wfQuery( $sql, DB_READ, fname );
+	$source = $wgDatabase->query( $sql, $fname );
 
-	while ( $row = mysql_fetch_object( $source ) ) {
+	while ( $row = $wgDatabase->fetchObject( $source ) ) {
 		$id = $row->user_id;
 		$oldpass = $row->user_password;
 		$newpass = md5( "{$id}-{$oldpass}" );
 
 		$sql = "UPDATE user SET user_password='{$newpass}' " .
 		  "WHERE user_id={$id}";
-		wfQuery( $sql, DB_WRITE, $fname );
+		$wgDatabase->query( $sql, $fname );
 	}
 }
 
 function do_ipblocks_update() {
-	if ( wfFieldExists( "ipblocks", "ipb_id" ) ) {
+	global $wgDatabase;
+	if ( $wgDatabase->fieldExists( "ipblocks", "ipb_id" ) ) {
 		echo "...ipblocks table is up to date.\n";
 	} else {
 		echo "Updating ipblocks table... ";
-		dbsource( "maintenance/archives/patch-ipblocks.sql" );
+		dbsource( "maintenance/archives/patch-ipblocks.sql", $wgDatabase );
 		echo "ok\n";
 	}
 }
@@ -147,7 +154,8 @@ function do_ipblocks_update() {
 
 function do_interwiki_update() {
 	# Check that interwiki table exists; if it doesn't source it
-	if( table_exists( "interwiki" ) ) {
+	global $wgDatabase;
+	if( $wgDatabase->tableExists( "interwiki" ) ) {
 		echo "...already have interwiki table\n";
 		return true;
 	}
@@ -161,7 +169,8 @@ function do_interwiki_update() {
 
 function do_index_update() {
 	# Check that proper indexes are in place
-	$meta = field_info( "recentchanges", "rc_timestamp" );
+	global $wgDatabase;
+	$meta = $wgDatabase->field_info( "recentchanges", "rc_timestamp" );
 	if( $meta->multiple_key == 0 ) {
 		echo "Updating indexes to 20031107: ";
 		dbsource( "maintenance/archives/patch-indexes.sql" );
@@ -174,27 +183,35 @@ function do_index_update() {
 
 function do_linkscc_update() {
 	// Create linkscc if necessary
-	global $rconn;
+	global $wgDatabase;
 	if( table_exists( "linkscc" ) ) {
 		echo "...have linkscc table.\n";
 	} else {
 		echo "Adding linkscc table... ";
-		dbsource( "maintenance/archives/patch-linkscc.sql" );
+		dbsource( "maintenance/archives/patch-linkscc.sql", $wgDatabase );
 		echo "ok\n";
 	}
 }
 
 function do_hitcounter_update() {
 	// Create hitcounter if necessary
-	global $rconn;
-	if( table_exists( "hitcounter" ) ) {
+	global $wgDatabase;
+	if( $wgDatabase->tableExists( "hitcounter" ) ) {
 		echo "...have hitcounter table.\n";
 	} else {
 		echo "Adding hitcounter table... ";
-		dbsource( "maintenance/archives/patch-hitcounter.sql" );
+		dbsource( "maintenance/archives/patch-hitcounter.sql", $wgDatabase );
 		echo "ok\n";
 	}
 }
 
+function do_recentchanges_update() {
+	global $wgDatabase;
+	if ( !$wgDatabase->fieldExists( "recentchanges", "rc_type" ) ) {
+		echo "Adding rc_type, rc_moved_to_ns, rc_moved_to_title...";
+		dbsource( "maintenance/archives/patch-rc_type.sql" , $wgDatabase );
+		echo "ok\n";
+	}
+}
 
 ?>

@@ -91,7 +91,7 @@ function wfSpecialUserlogin()
 /* private */ function addNewAccountInternal()
 {
 	global $wgUser, $wgOut, $wpPassword, $wpRetype, $wpName, $wpRemember;
-	global $wpEmail;
+	global $wpEmail, $wgMaxNameChars;
 
 	if (!$wgUser->isAllowedToCreateAccount()) {
 		userNotPrivilegedMessage();
@@ -105,7 +105,8 @@ function wfSpecialUserlogin()
 	$wpName = trim( $wpName );
 	if ( ( "" == $wpName ) ||
 	  preg_match( "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/", $wpName ) ||
-	  (strpos( $wpName, "/" ) !== false) ) 
+	  (strpos( $wpName, "/" ) !== false) ||
+	  (strlen( $wpName ) > $wgMaxNameChars) ) 
 	{
 		mainLoginForm( wfMsg( "noname" ) );
 		return;
