@@ -577,8 +577,8 @@ class EditPage {
 			}
 		}
 		$wgOut->addHTML( '</div>' );
-		$wgOut->addHTML( '<div id="wikiDiff">' );
 		if ( 'diff' == $formtype ) {
+			$wgOut->addHTML( '<div id="wikiDiff">' );
 			require_once( 'DifferenceEngine.php' );
 			$oldtext = $this->mArticle->getContent( true );
 			$newtext = $this->textbox1;
@@ -592,6 +592,7 @@ class EditPage {
 				$wgOut->addHTML( $difftext );
 				$wgOut->addHTML( "<br style=\"clear:both;\" />\n" );
 			}
+			$wgOut->addHTML( '</div>' );
 		}
 
 
