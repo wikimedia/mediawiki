@@ -39,7 +39,7 @@ class LinkCache {
 
 	function isBadLink( $title )
 	{
-		return in_array( $title, $this->mBadLinks );
+		return array_key_exists( $title, $this->mBadLinks ); 
 	}
 
 	function addGoodLink( $id, $title )
@@ -52,7 +52,7 @@ class LinkCache {
 	function addBadLink( $title )
 	{
 		if ( $this->mActive && ( ! $this->isBadLink( $title ) ) ) {
-			array_push( $this->mBadLinks, $title );
+			$this->mBadLinks[$title] = 1;
 		}
 	}
 
@@ -68,10 +68,7 @@ class LinkCache {
 
 	function clearBadLink( $title )
 	{
-		$index = array_search( $title, $this->mBadLinks );
-		if ( isset( $index ) ) {
-			unset( $this->mBadLinks[$index] );
-		}
+		unset( $this->mBadLinks[$title] );
 		$this->clearLink( $title );
 	}
 	
@@ -85,7 +82,7 @@ class LinkCache {
 	function suspend() { $this->mActive = false; }
 	function resume() { $this->mActive = true; }
 	function getGoodLinks() { return $this->mGoodLinks; }
-	function getBadLinks() { return $this->mBadLinks; }
+	function getBadLinks() { return array_keys( $this->mBadLinks ); }
 	function getImageLinks() { return $this->mImageLinks; }
 
 	function addLink( $title )
@@ -101,7 +98,7 @@ class LinkCache {
 	function addLinkObj( &$nt )
 	{
 		$title = $nt->getPrefixedDBkey();
-		if ( $this->isBadLink( $title ) ) { return 0; }
+		if ( $this->isBadLink( $title ) ) { return 0; }		
 		$id = $this->getGoodLinkID( $title );
 		if ( 0 != $id ) { return $id; }
 
@@ -120,7 +117,6 @@ class LinkCache {
 		$id = FALSE;
 		if( $wgLinkCacheMemcached )
 			$id = $wgMemc->get( $key = $this->getKey( $title ) );
-
 		if( $id === FALSE ) {
 			$sql = "SELECT cur_id FROM cur WHERE cur_namespace=" .
 			  "{$ns} AND cur_title='" . wfStrencode( $t ) . "'";
@@ -135,6 +131,7 @@ class LinkCache {
 			if( $wgLinkCacheMemcached )
 				$wgMemc->add( $key, $id, time()+3600 );
 		}
+		
 		if ( 0 == $id ) { $this->addBadLink( $title ); }
 		else { $this->addGoodLink( $id, $title ); }
 		wfProfileOut( $fname );
@@ -209,7 +206,7 @@ class LinkCache {
 
 	function getBadAdditions() 
 	{
-		return array_values( array_diff( $this->mBadLinks, $this->mOldBadLinks ) );
+		return array_values( array_diff( array_keys( $this->mBadLinks ), array_keys( $this->mOldBadLinks ) ) );
 	}
 
 	function getImageAdditions()
@@ -224,7 +221,7 @@ class LinkCache {
 
 	function getBadDeletions()
 	{
-		return array_values( array_diff( $this->mOldBadLinks, $this->mBadLinks ) );
+		return array_values( array_diff( array_keys( $this->mOldBadLinks ), array_keys( $this->mBadLinks ) ));
 	}
 
 	function getImageDeletions()
