@@ -965,7 +965,7 @@ function wfTimestampNow() {
  * No longer supported and nuked.
  */
 function wfInvertTimestamp( $ts ) {
-	wfDieDebugBacktrace("Inverted timestamps should be nuked away from all code\n");
+	wfDebugDieBacktrace("Inverted timestamps should be nuked away from all code\n");
 	return strtr(
 		$ts,
 		'0123456789',
