@@ -168,7 +168,7 @@
 # Bits of text used by many pages:
 #
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
-"mainpage"		=> "Wikipedia",
+"mainpage"		=> "Pagina principale",
 "about"			=> "A proposito di ",
 "aboutsite"      => "A proposito di Wikipedia",
 "aboutpage"		=> "Wikipedia:About",

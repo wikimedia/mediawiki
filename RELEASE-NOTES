@@ -342,6 +342,7 @@ If upgrading from an older release, see the file UPGRADE;
   to help prevent duplicate articles.
 * Disallow ISO 8859-1 C1 characters and "no-break space" in user names
   on Latin-1 wikis.
+* Correct the name of the main page it LanguageIt
 
 === Caveats ===
 
