@@ -1434,13 +1434,13 @@ class Parser
 
 		switch ( $index ) {
 			case MAG_CURRENTMONTH:
-				return date( 'm' );
+				return $wgLang->formatNum( date( 'm' ) );
 			case MAG_CURRENTMONTHNAME:
 				return $wgLang->getMonthName( date('n') );
 			case MAG_CURRENTMONTHNAMEGEN:
 				return $wgLang->getMonthNameGen( date('n') );
 			case MAG_CURRENTDAY:
-				return date('j');
+				return $wgLang->formatNum( date('j') );
 			case MAG_PAGENAME:
 				return $this->mTitle->getText();
 			case MAG_NAMESPACE:
@@ -1449,11 +1449,11 @@ class Parser
 			case MAG_CURRENTDAYNAME:
 				return $wgLang->getWeekdayName( date('w')+1 );
 			case MAG_CURRENTYEAR:
-				return date( 'Y' );
+				return $wgLang->formatNum( date( 'Y' ) );
 			case MAG_CURRENTTIME:
 				return $wgLang->time( wfTimestampNow(), false );
 			case MAG_NUMBEROFARTICLES:
-				return wfNumberOfArticles();
+				return $wgLang->formatNum( wfNumberOfArticles() );
 			case MAG_SITENAME:
 				return $wgSitename;
 			case MAG_SERVER:
