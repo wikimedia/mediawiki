@@ -515,7 +515,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			print "<li>Creating tables...";
 			dbsource( "../maintenance/tables.sql", $wgDatabase );
 			dbsource( "../maintenance/interwiki.sql", $wgDatabase );
-			dbsource( "../maintenance/archives/patch-userlevels-defaultgroups.sql", $wgDatabase );
 			print " done.</li>\n";
 
 			print "<li>Initializing data...";

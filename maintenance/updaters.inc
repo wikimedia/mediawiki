@@ -19,7 +19,6 @@ $wgNewTables = array(
 	array( 'categorylinks', 'patch-categorylinks.sql' ),
 	array( 'logging',       'patch-logging.sql' ),
 	array( 'user_rights',   'patch-user_rights.sql' ),
-	array( 'user_groups',   'patch-userlevels.sql' ),
 );
 
 $wgNewFields = array(
@@ -32,8 +31,7 @@ $wgNewFields = array(
 	array( 'recentchanges', 'rc_patrolled',     'patch-rc-patrol.sql' ),
 	array( 'user',          'user_real_name',   'patch-user-realname.sql' ),
 	array( 'user',          'user_token',       'patch-user_token.sql' ),
-	array( 'user_rights',   'ur_user',          'patch-rename-user_groups-and_rights.sql' ),
-	array( 'group',         'group_rights',     'patch-userlevels-rights.sql' ),
+	array( 'user_rights',   'ur_user',          'patch-rename-user_rights.sql' ),
 );
 
 function add_table( $name, $patch ) {
@@ -146,35 +144,6 @@ function do_image_name_unique_update() {
 	}
 }
 
-# Assumes that the group table has been added.
-function do_group_update() {
-	global $wgDatabase;
-	$res = $wgDatabase->safeQuery( 'SELECT COUNT(*) AS c FROM !',
-		$wgDatabase->tableName( 'group' ) );
-	$row = $wgDatabase->fetchObject( $res );
-	$wgDatabase->freeResult( $res );
-	if( $row->c == 0 ) {
-		echo "Adding default group definitions... ";
-		dbsource( "maintenance/archives/patch-userlevels-defaultgroups.sql", $wgDatabase );
-		echo "ok\n";
-	} else {
-		echo "...group definitions already in place.\n";
-		$res = $wgDatabase->safeQuery( "SELECT COUNT(*) AS n FROM !
-		                                 WHERE group_name IN ('Sysops','Bureaucrat')
-		                                   AND group_rights NOT LIKE 'sysop'",
-		                               $wgDatabase->tableName( 'group' ) );
-		$row = $wgDatabase->fetchObject( $res );
-		$wgDatabase->freeResult( $res );
-		if( $row->n ) {
-			echo "Fixing sysops group permissions... ";
-			dbsource( "maintenance/archives/patch-group-sysopfix.sql", $wgDatabase );
-			echo "ok\n";
-		} else {
-			echo "...sysop group permissions look ok.\n";
-		}
-	}
-}
-
 function do_all_updates() {
 	global $wgNewTables, $wgNewFields;
 	
@@ -190,9 +159,6 @@ function do_all_updates() {
 		flush();
 	}
 	
-	# Add default group data
-	do_group_update(); flush();
-
 	# Do schema updates which require special handling
 	do_interwiki_update(); flush();
 	do_index_update(); flush();
