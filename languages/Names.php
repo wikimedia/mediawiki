@@ -201,9 +201,9 @@
 	'zh' => '&#20013;&#25991;',	# (Zh&#333;ng Wén) - Chinese
 	'zh-cfr' => '&#38313;&#21335;&#35486;', # Min-nan alias (site is at minnan)
 	'zh-cn' => '&#20013;&#25991;(&#31616;&#20307;)',	# Simplified
-	'zh-tw' => '&#20013;&#25991;(&#32321;&#20307;)',	# Traditional
+	'zh-tw' => '&#20013;&#25991;(&#32321;&#39636;)',	# Traditional
 	'zh-sg' => '&#20013;&#25991;(&#31616;&#20307;)', # Simplified (Singapore)
-	'zh-hk' => '&#20013;&#25991;(&#32321;&#20307;)',	# Traditional (Hong Kong)
+	'zh-hk' => '&#20013;&#25991;(&#32321;&#39636;)',	# Traditional (Hong Kong)
 	'zu' => 'isiZulu',		# Zulu
 );
 ?>
