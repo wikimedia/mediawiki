@@ -171,9 +171,8 @@ class EditPage {
 				$isConflict = false;
 			} else {
 				# switch from section editing to normal editing in edit conflict
-				# FIXME: This is confusing. In theory we should attempt to merge, finding
-				# the equivalent section if it's unchanged and avoid the conflict.
 				if($isConflict) {
+                    # Attempt merge
 					if( $this->mergeChangesInto( $text ) ){
 						// Successful merge! Maybe we should tell the user the good news?
 						$isConflict = false;
