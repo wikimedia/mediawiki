@@ -9,14 +9,14 @@ class UserTalkUpdate {
 	{
 		$this->mAction = $action;
 		$this->mNamespace = $ns;
-		$this->mTitle = str_replace( "_", " ", $title );
+		$this->mTitle = str_replace( '_', ' ', $title );
 	}
 
 	function doUpdate()
 	{
 	
 		global $wgUser, $wgLang, $wgMemc, $wgDBname;
-		$fname = "UserTalkUpdate::doUpdate";
+		$fname = 'UserTalkUpdate::doUpdate';
 
 		# If namespace isn't User_talk:, do nothing.
 

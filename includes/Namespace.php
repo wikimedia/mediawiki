@@ -1,7 +1,7 @@
 <?php
 
 # This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
-if( defined( "MEDIAWIKI" ) ) {
+if( defined( 'MEDIAWIKI' ) ) {
 
 # This is a utility class with only static functions
 # for dealing with namespaces that encodes all the
@@ -13,23 +13,23 @@ if( defined( "MEDIAWIKI" ) ) {
 # These are synonyms for the names given in the language file
 # Users and translators should not change them
 /* private */ $wgCanonicalNamespaceNames = array(
-	NS_MEDIA            => "Media",
-	NS_SPECIAL          => "Special",
-	NS_TALK	            => "Talk",
-	NS_USER             => "User",
-	NS_USER_TALK        => "User_talk",
-	NS_WIKIPEDIA        => "Project",
-	NS_WIKIPEDIA_TALK   => "Project_talk",
-	NS_IMAGE            => "Image",
-	NS_IMAGE_TALK       => "Image_talk",
-	NS_MEDIAWIKI        => "MediaWiki",
-	NS_MEDIAWIKI_TALK   => "MediaWiki_talk",
-	NS_TEMPLATE         => "Template",
-	NS_TEMPLATE_TALK    => "Template_talk",
-	NS_HELP             => "Help",
-	NS_HELP_TALK        => "Help_talk",
-	NS_CATEGORY	    => "Category",
-	NS_CATEGORY_TALK    => "Category_talk"
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Special',
+	NS_TALK	            => 'Talk',
+	NS_USER             => 'User',
+	NS_USER_TALK        => 'User_talk',
+	NS_WIKIPEDIA        => 'Project',
+	NS_WIKIPEDIA_TALK   => 'Project_talk',
+	NS_IMAGE            => 'Image',
+	NS_IMAGE_TALK       => 'Image_talk',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
+	NS_TEMPLATE         => 'Template',
+	NS_TEMPLATE_TALK    => 'Template_talk',
+	NS_HELP             => 'Help',
+	NS_HELP_TALK        => 'Help_talk',
+	NS_CATEGORY	        => 'Category',
+	NS_CATEGORY_TALK    => 'Category_talk'
 );
 
 class Namespace {

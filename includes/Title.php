@@ -238,8 +238,8 @@ class Title {
 		global $wgLang;
 
 		$n = $wgLang->getNsText( $ns );
-		if ( "" == $n ) { return $title; }
-		else { return "{$n}:{$title}"; }
+		if ( '' == $n ) { return $title; }
+		else { return $n.':'.$title; }
 	}
 	
 	# Arguably static
@@ -261,13 +261,13 @@ class Title {
 		}
 		$dbr =& wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'interwiki', array( 'iw_url', 'iw_local' ), array( 'iw_prefix' => $key ), $fname );
-		if(!$res) return "";
+		if(!$res) return '';
 		
 		$s = $dbr->fetchObject( $res );
 		if(!$s) {
 			# Cache non-existence: create a blank object and save it to memcached
 			$s = (object)false;
-			$s->iw_url = "";
+			$s->iw_url = '';
 			$s->iw_local = 0;
 		}
 		$wgMemc->set( $k, $s, $wgInterwikiExpiry );
@@ -545,7 +545,7 @@ class Title {
 		
 		# Compatibility with old settings
 		if( $this->getNamespace() == NS_MAIN ) {
-			if( in_array( ":" . $name, $wgWhitelistRead ) ) return true;
+			if( in_array( ':' . $name, $wgWhitelistRead ) ) return true;
 		}
 		return false;
 	}
@@ -669,7 +669,7 @@ class Title {
 
 		# Initialisation
 		if ( $imgpre === false ) {
-			$imgpre = ':' . $wgLang->getNsText( Namespace::getImage() ) . ":";
+			$imgpre = ':' . $wgLang->getNsText( Namespace::getImage() ) . ':';
 			# % is needed as well
 			$rxTc = '/[^' . Title::legalChars() . ']/';
 		}
@@ -805,7 +805,7 @@ class Title {
 		$links = $db->tableName( 'links' );
 
 		$sql = "SELECT cur_namespace,cur_title,cur_id FROM $cur,$links WHERE l_from=cur_id AND l_to={$id} $options";
-		$res = $db->query( $sql, "Title::getLinksTo" );
+		$res = $db->query( $sql, 'Title::getLinksTo' );
 		$retVal = array();
 		if ( $db->numRows( $res ) ) {
 			while ( $row = $db->fetchObject( $res ) ) {
@@ -907,7 +907,7 @@ class Title {
 		$sql = "UPDATE categorylinks SET cl_sortkey=" . $dbw->addQuotes( $nt->getPrefixedText() ) .
 			" WHERE cl_from=" . $dbw->addQuotes( $this->getArticleID() ) .
 			" AND cl_sortkey=" . $dbw->addQuotes( $this->getPrefixedText() );
-		$dbw->query( $sql, "SpecialMovepage::doSubmit" );
+		$dbw->query( $sql, 'SpecialMovepage::doSubmit' );
 
 		# Update watchlists
 		
@@ -923,7 +923,7 @@ class Title {
 		# Update search engine
 		$u = new SearchUpdate( $oldid, $nt->getPrefixedDBkey() );
 		$u->doUpdate();
-		$u = new SearchUpdate( $newid, $this->getPrefixedDBkey(), "" );
+		$u = new SearchUpdate( $newid, $this->getPrefixedDBkey(), '' );
 		$u->doUpdate();
 
 		return true;
@@ -934,7 +934,7 @@ class Title {
 	/* private */ function moveOverExistingRedirect( &$nt ) {
 		global $wgUser, $wgLinkCache, $wgUseSquid, $wgMwRedir;
 		$fname = 'Title::moveOverExistingRedirect';
-		$comment = wfMsg( "1movedto2", $this->getPrefixedText(), $nt->getPrefixedText() );
+		$comment = wfMsg( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 		
         $now = wfTimestampNow();
         $won = wfInvertTimestamp( $now );
@@ -966,7 +966,7 @@ class Title {
 				'inverse_timestamp' => $won,
 				'cur_namespace' => $this->getNamespace(),
 				'cur_title' => $this->getDBkey(),
-				'cur_text' => $wgMwRedir->getSynonym( 0 ) . " [[" . $nt->getPrefixedText() . "]]\n",
+				'cur_text' => $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n",
 				'cur_comment' => $comment,
 				'cur_user' => $wgUser->getID(),
 				'cur_minor_edit' => 0,
@@ -1189,7 +1189,7 @@ class Title {
 			return false;
 		}
 		
-		$fname = "Title::createRedirect";
+		$fname = 'Title::createRedirect';
 		$dbw =& wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
 		$won = wfInvertTimestamp( $now );
@@ -1280,7 +1280,7 @@ class Title {
 			foreach ( array_reverse($stack) as $child => $parent )
 			{
 				# make a link of that parent
-				$result .= $sk->makeLink($wgLang->getNSText ( Namespace::getCategory() ).":".$parent,$parent);
+				$result .= $sk->makeLink($wgLang->getNSText ( Namespace::getCategory() ).':'.$parent,$parent);
 				$result .= ' &gt; ';
 				$lastchild = $child;
 			}

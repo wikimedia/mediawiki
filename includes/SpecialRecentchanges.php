@@ -22,6 +22,8 @@ function wfSpecialRecentchanges( $par )
 	$hideliu = $wgRequest->getBool( 'hideliu', false ) ? 1 : 0;
 	$hidepatrolled = $wgRequest->getBool( 'hidepatrolled', false ) ? 1 : 0;
 
+	list( $limit, $offset ) = wfCheckLimits( 100, 'rclimit' );
+
 	# Get query parameters from path
 	if( $par ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
@@ -33,6 +35,8 @@ function wfSpecialRecentchanges( $par )
 		if( in_array( 'hidepatrolled', $bits) ) $hidepatrolled = 1;
 	}
 
+
+	# Database connection and caching
 	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'recentchanges', 'watchlist' ) );
 
@@ -44,20 +48,11 @@ function wfSpecialRecentchanges( $par )
 		return;
 	}
 
-	# The next few lines can probably be commented out now that wfMsg can get text from the DB
-/*	$rctext = $dbr->selectField( 'cur', 'cur_text',
-		array( 'cur_namespace' => NS_WIKIPEDIA, 'cur_title' => 'Recentchanges' ),
-		$fname
-	);
-	if( !$rctext ) {
-		$rctext = wfMsg( "recentchangestext" );
-	} */
-
+	# Output header
 	$rctext = wfMsg( "recentchangestext" );
-
 	$wgOut->addWikiText( $rctext );
 
-	list( $limit, $offset ) = wfCheckLimits( 100, 'rclimit' );
+	
 	$now = wfTimestampNow();
 	$cutoff_unixtime = time() - ( $days * 86400 );
 	$cutoff_unixtime = $cutoff_unixtime - ($cutoff_unixtime % 86400);
@@ -69,6 +64,7 @@ function wfSpecialRecentchanges( $par )
 	}
 
 	$sk = $wgUser->getSkin();
+
 	$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ));
 
 	$hidem  = ( $hideminor )    ? 'AND rc_minor=0' : '';
@@ -77,7 +73,7 @@ function wfSpecialRecentchanges( $par )
 	$hidem .= ( $hidepatrolled )? ' AND rc_patrolled=0' : '';
 
 	$urlparams = array( 'hideminor' => $hideminor,  'hideliu'       => $hideliu,
-	                    'hidebots'  => $hidebots,   'hidepatrolled' => $hidepatrolled );
+	                    'hidebots'  => $hidebots,   'hidepatrolled' => $hidepatrolled);
 	$hideparams = wfArrayToCGI( $urlparams );
 
 	$minorLink = $sk->makeKnownLink( $wgLang->specialPage( 'Recentchanges' ),

@@ -12,33 +12,33 @@ function userMailer( $to, $from, $subject, $body )
 	
 	if (is_array( $wgSMTP ))
 	{
-		require_once( "Mail.php" );
+		require_once( 'Mail.php' );
 		
 		$timestamp = time();
 	
-		$headers["From"] = $from;
+		$headers['From'] = $from;
 /* removing to: field as it should be set by the send() function below
    UNTESTED - Hashar */
 //		$headers["To"] = $qto;
-		$headers["Subject"] = $subject;
-		$headers["MIME-Version"] = "1.0";
-		$headers["Content-type"] = "text/plain; charset={$wgOutputEncoding}";
-		$headers["Content-transfer-encoding"] = "8bit";
-		$headers["Message-ID"] = "<{$timestamp}" . $wgUser->getName() . "@" . $wgSMTP["IDHost"] . ">";
-		$headers["X-Mailer"] = "MediaWiki interuser e-mailer";
+		$headers['Subject"] = $subject;
+		$headers['MIME-Version'] = '1.0';
+		$headers['Content-type'] = 'text/plain; charset='.$wgOutputEncoding;
+		$headers['Content-transfer-encoding'] = '8bit';
+		$headers['Message-ID'] = "<{$timestamp}" . $wgUser->getName() . '@' . $wgSMTP['IDHost'] . '>';
+		$headers['X-Mailer'] = 'MediaWiki interuser e-mailer';
 	
 		// Create the mail object using the Mail::factory method
-		$mail_object =& Mail::factory("smtp", $wgSMTP);
+		$mail_object =& Mail::factory('smtp', $wgSMTP);
 	
 		$mailResult =& $mail_object->send($to, $headers, $body);
 		
 		# Based on the result return an error string, 
 		if ($mailResult === true)
-			return "";
+			return '';
 		else if (is_object($mailResult))
 			return $mailResult->getMessage();
 		else
-			return "Mail object return unknown error.";
+			return 'Mail object return unknown error.';
 	}
 	
 	else
@@ -50,8 +50,8 @@ function userMailer( $to, $from, $subject, $body )
 			"From: {$from}\n" .
 			"X-Mailer: MediaWiki interuser e-mailer";
 
-		$wgErrorString = "";
-		set_error_handler( "mailErrorHandler" );
+		$wgErrorString = '';
+		set_error_handler( 'mailErrorHandler' );
 		mail( $to, $subject, $body, $headers );
 		restore_error_handler();
 

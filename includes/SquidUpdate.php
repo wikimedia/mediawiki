@@ -86,7 +86,7 @@ class SquidUpdate {
 	/* static */ function purge( $urlArr ) {
 		global  $wgSquidServers;
 
-		if ( $wgSquidServers == "echo" ) {
+		if ( $wgSquidServers == 'echo' ) {
 			echo implode("<br>\n", $urlArr);
 			return;
 		}
@@ -126,7 +126,7 @@ class SquidUpdate {
 						$failed = true;
 						$totalsockets -= $sockspersq;
 					} else {
-						$msg ="PURGE " . $firsturl . " HTTP/1.0\r\n".
+						$msg = 'PURGE ' . $firsturl . " HTTP/1.0\r\n".
 						"Connection: Keep-Alive\r\n\r\n";
 						#$this->debug($msg);
 						@fputs($socket,$msg);
@@ -169,7 +169,7 @@ class SquidUpdate {
 						}
 					}
 					$urindex = $r + $urlspersocket * ($s - $sockspersq * floor($s / $sockspersq));
-					$msg = "PURGE " . $urlArr[$urindex] . " HTTP/1.0\r\n".
+					$msg = 'PURGE ' . $urlArr[$urindex] . " HTTP/1.0\r\n".
 					"Connection: Keep-Alive\r\n\r\n";
 					#$this->debug($msg);
 					@fputs($sockets[$s],$msg);

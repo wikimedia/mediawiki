@@ -30,11 +30,11 @@ class SearchUpdate {
 		if( $wgDisableSearchUpdate || !$this->mId ) {
 			return false;
 		}
-		$fname = "SearchUpdate::doUpdate";
+		$fname = 'SearchUpdate::doUpdate';
 		wfProfileIn( $fname );
 
 		require_once( 'SearchEngine.php' );
-		$lc = SearchEngine::legalSearchChars() . "&#;";
+		$lc = SearchEngine::legalSearchChars() . '&#;';
 		$db =& wfGetDB( DB_MASTER );
 		$searchindex = $db->tableName( 'searchindex' );
 		
@@ -52,9 +52,9 @@ class SearchUpdate {
 		# Language-specific strip/conversion
 		$text = $wgLang->stripForSearch( $this->mText );
 
-		wfProfileIn( "$fname-regexps" );
+		wfProfileIn( $fname.'-regexps' );
 		$text = preg_replace( "/<\\/?\\s*[A-Za-z][A-Za-z0-9]*\\s*([^>]*?)>/",
-		  " ", strtolower( " " . $text /*$this->mText*/ . " " ) ); # Strip HTML markup
+		  ' ', strtolower( " " . $text /*$this->mText*/ . " " ) ); # Strip HTML markup
 		$text = preg_replace( "/(^|\\n)\\s*==\\s+([^\\n]+)\\s+==\\s/sD",
 		  "\\2 \\2 \\2 ", $text ); # Emphasize headings
 
@@ -104,7 +104,7 @@ class SearchUpdate {
 		$sql = "REPLACE  INTO $searchindex (si_page,si_title,si_text) VALUES ({$this->mId},'" .
 		  $db->strencode( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) . "','" .
 		  $db->strencode( $text ) . "')";
-		$db->query( $sql, "SearchUpdate::doUpdate" );
+		$db->query( $sql, 'SearchUpdate::doUpdate' );
 		wfProfileOut( $fname );
 	}
 }

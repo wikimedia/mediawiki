@@ -20,16 +20,16 @@ class DifferenceEngine {
 	function showDiffPage()
 	{
 		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgOnlySysopsCanPatrol, $wgUseRCPatrol;
-		$fname = "DifferenceEngine::showDiffPage";
+		$fname = 'DifferenceEngine::showDiffPage';
 		wfProfileIn( $fname );
 
 		$t = $wgTitle->getPrefixedText() . " (Diff: {$this->mOldid}, " .
 		  "{$this->mNewid})";
-		$mtext = wfMsg( "missingarticle", $t );
+		$mtext = wfMsg( 'missingarticle', $t );
 
 		$wgOut->setArticleFlag( false );
 		if ( ! $this->loadText() ) {
-			$wgOut->setPagetitle( wfMsg( "errorpagetitle" ) );
+			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
 			$wgOut->addHTML( $mtext );
 			wfProfileOut( $fname );
 			return;
@@ -41,10 +41,10 @@ class DifferenceEngine {
 		if( $oldTitle == $newTitle ) {
 			$wgOut->setPageTitle( $newTitle );
 		} else {
-			$wgOut->setPageTitle( $oldTitle . ", " . $newTitle );
+			$wgOut->setPageTitle( $oldTitle . ', ' . $newTitle );
 		}
-		$wgOut->setSubtitle( wfMsg( "difference" ) );
-		$wgOut->setRobotpolicy( "noindex,follow" );
+		$wgOut->setSubtitle( wfMsg( 'difference' ) );
+		$wgOut->setRobotpolicy( 'noindex,follow' );
 
 		if ( !( $this->mOldPage->userCanRead() && $this->mNewPage->userCanRead() ) ) {
 			$wgOut->loginToUse();
@@ -55,7 +55,7 @@ class DifferenceEngine {
 
 		$sk = $wgUser->getSkin();
 		$talk = $wgLang->getNsText( NS_TALK );
-		$contribs = wfMsg( "contribslink" );
+		$contribs = wfMsg( 'contribslink' );
 
 		$this->mOldComment = $sk->formatComment($this->mOldComment);
 		$this->mNewComment = $sk->formatComment($this->mNewComment);
@@ -64,23 +64,23 @@ class DifferenceEngine {
 		$newUserLink = $sk->makeLinkObj( Title::makeTitle( NS_USER, $this->mNewUser ), $this->mNewUser );
 		$oldUTLink = $sk->makeLinkObj( Title::makeTitle( NS_USER_TALK, $this->mOldUser ), $talk );
 		$newUTLink = $sk->makeLinkObj( Title::makeTitle( NS_USER_TALK, $this->mNewUser ), $talk );
-		$oldContribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, "Contributions" ), $contribs,
-			"target=" . urlencode($this->mOldUser) );
-		$newContribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, "Contributions" ), $contribs,
-			"target=" . urlencode($this->mNewUser) );
+		$oldContribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), $contribs,
+			'target=' . urlencode($this->mOldUser) );
+		$newContribs = $sk->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ), $contribs,
+			'target=' . urlencode($this->mNewUser) );
 		if ( !$this->mNewid && $wgUser->isSysop() ) {
-			$rollback = "&nbsp;&nbsp;&nbsp;<strong>[" . $sk->makeKnownLinkObj( $wgTitle, wfMsg( "rollbacklink" ),
-				"action=rollback&from=" . urlencode($this->mNewUser) ) . "]</strong>";
+			$rollback = '&nbsp;&nbsp;&nbsp;<strong>[' . $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'rollbacklink' ),
+				'action=rollback&from=' . urlencode($this->mNewUser) ) . ']</strong>';
 		} else {
-			$rollback = "";
+			$rollback = '';
 		}
 		if ( $wgUseRCPatrol && $this->mRcidMarkPatrolled != 0 && $wgUser->getID() != 0 &&
 		     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
 		{
-			$patrol = " [" . $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'markaspatrolleddiff' ),
-				"action=markpatrolled&rcid={$this->mRcidMarkPatrolled}" ) . "]";
+			$patrol = ' [' . $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'markaspatrolleddiff' ),
+				"action=markpatrolled&rcid={$this->mRcidMarkPatrolled}" ) . ']';
 		} else {
-			$patrol = "";
+			$patrol = '';
 		}
 
 		$oldHeader = "<strong>{$this->mOldtitle}</strong><br />$oldUserLink " .
@@ -112,7 +112,7 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 {$ntitle}</td>
 </tr>\n" );
 		if ( $wgUseExternalDiffEngine ) {
-			dl("php_wikidiff.so");
+			dl('php_wikidiff.so');
 			$wgOut->addHTML( wikidiff_do_diff( $otext, $ntext, 2) );
 		} else {
 			$ota = explode( "\n", $otext);
@@ -132,12 +132,12 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 	function loadText()
 	{
 		global $wgTitle, $wgOut, $wgLang;
-		$fname = "DifferenceEngine::loadText";
+		$fname = 'DifferenceEngine::loadText';
 
 		$dbr =& wfGetDB( DB_SLAVE );
 		if ( 0 == $this->mNewid || 0 == $this->mOldid ) {
 			$wgOut->setArticleFlag( true );
-			$this->mNewtitle = wfMsg( "currentrev" );
+			$this->mNewtitle = wfMsg( 'currentrev' );
 			$id = $wgTitle->getArticleID();
 
 			$s = $dbr->getArray( 'cur', array( 'cur_text', 'cur_user_text', 'cur_comment' ),
@@ -162,7 +162,7 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 
 			$t = $wgLang->timeanddate( $s->old_timestamp, true );
 			$this->mNewPage = Title::MakeTitle( $s->old_namespace, $s->old_title );
-			$this->mNewtitle = wfMsg( "revisionasof", $t );
+			$this->mNewtitle = wfMsg( 'revisionasof', $t );
 			$this->mNewUser = $s->old_user_text;
 			$this->mNewComment = $s->old_comment;
 		}
@@ -188,7 +188,7 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 		$this->mOldtext = Article::getRevisionText( $s );
 
 		$t = $wgLang->timeanddate( $s->old_timestamp, true );
-		$this->mOldtitle = wfMsg( "revisionasof", $t );
+		$this->mOldtitle = wfMsg( 'revisionasof', $t );
 		$this->mOldUser = $s->old_user_text;
 		$this->mOldComment = $s->old_comment;
 
@@ -210,7 +210,7 @@ class _DiffOp {
 	var $closing;
 
 	function reverse() {
-		trigger_error("pure virtual", E_USER_ERROR);
+		trigger_error('pure virtual', E_USER_ERROR);
 	}
 
 	function norig() {
@@ -809,7 +809,7 @@ class Diff
 		}
 
 		$lcs = $this->lcs();
-		trigger_error("Diff okay: LCS = $lcs", E_USER_NOTICE);
+		trigger_error('Diff okay: LCS = '.$lcs, E_USER_NOTICE);
 	}
 }
 
@@ -966,7 +966,7 @@ class DiffFormatter
 			elseif ($edit->type == 'change')
 				$this->_changed($edit->orig, $edit->closing);
 			else
-				trigger_error("Unknown edit type", E_USER_ERROR);
+				trigger_error('Unknown edit type', E_USER_ERROR);
 		}
 		$this->_end_block();
 	}
@@ -1007,10 +1007,10 @@ class DiffFormatter
 	}
 
 	function _added($lines) {
-		$this->_lines($lines, ">");
+		$this->_lines($lines, '>');
 	}
 	function _deleted($lines) {
-		$this->_lines($lines, "<");
+		$this->_lines($lines, '<');
 	}
 
 	function _changed($orig, $closing) {
@@ -1137,8 +1137,8 @@ class TableDiffFormatter extends DiffFormatter
 	}
 
 	function _block_header( $xbeg, $xlen, $ybeg, $ylen ) {
-		$l1 = wfMsg( "lineno", $xbeg );
-		$l2 = wfMsg( "lineno", $ybeg );
+		$l1 = wfMsg( 'lineno', $xbeg );
+		$l2 = wfMsg( 'lineno', $ybeg );
 
 		$r = '<tr><td colspan="2" align="left"><strong>'.$l1."</strong></td>\n" .
 		  '<td colspan="2" align="left"><strong>'.$l2."</strong></td></tr>\n";
@@ -1153,7 +1153,7 @@ class TableDiffFormatter extends DiffFormatter
 	function _end_block() {
 	}
 
-	function _lines( $lines, $prefix=' ', $color="white" ) {
+	function _lines( $lines, $prefix=' ', $color='white' ) {
 	}
 
 	function addedLine( $line ) {

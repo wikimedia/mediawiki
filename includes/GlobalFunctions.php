@@ -90,10 +90,10 @@ function wfLocalUrl( $a, $q = '' )
 		if( '' == $q ) {
 			$a = $wgScript;
 		} else {
-			$a = "{$wgScript}?{$q}";
+			$a = $wgScript.'?'.$q;
 		}
 	} else if ( '' == $q ) {
-		$a = str_replace( "$1", $a, $wgArticlePath );
+		$a = str_replace( '$1', $a, $wgArticlePath );
 	} else if ($wgScript != '' ) {
 		$a = "{$wgScript}?title={$a}&{$q}";
 	} else { //XXX hackish solution for toplevel wikis
@@ -202,7 +202,7 @@ function wfDebug( $text, $logonly = false )
 	if ( isset( $wgOut ) && $wgDebugComments && !$logonly ) {
 		$wgOut->debug( $text );
 	}
-	if ( "" != $wgDebugLogFile && !$wgProfileOnly ) {
+	if ( '' != $wgDebugLogFile && !$wgProfileOnly ) {
 		error_log( $text, 3, $wgDebugLogFile );
 	}
 }
@@ -211,7 +211,7 @@ function wfDebug( $text, $logonly = false )
 function wfLogDBError( $text ) {
 	global $wgDBerrorLog;
 	if ( $wgDBerrorLog ) {
-		$text = date("D M j G:i:s T Y") . "\t$text";
+		$text = date('D M j G:i:s T Y') . "\t".$text;
 		error_log( $text, 3, $wgDBerrorLog );
 	}
 }
@@ -222,7 +222,7 @@ function logProfilingData()
 	global $wgProfiling, $wgProfileStack, $wgProfileLimit, $wgUser;
 	$now = wfTime();
 
-	list( $usec, $sec ) = explode( " ", $wgRequestTime );
+	list( $usec, $sec ) = explode( ' ', $wgRequestTime );
 	$start = (float)$sec + (float)$usec;
 	$elapsed = $now - $start;
 	if ( $wgProfiling ) {
@@ -252,13 +252,13 @@ function logProfilingData()
 function wfReadOnly() {
 	global $wgReadOnlyFile;
 
-	if ( "" == $wgReadOnlyFile ) {
+	if ( '' == $wgReadOnlyFile ) {
 		return false;
 	}
 	return is_file( $wgReadOnlyFile );
 }
 
-$wgReplacementKeys = array( "$1", "$2", "$3", "$4", "$5", "$6", "$7", "$8", "$9" );
+$wgReplacementKeys = array( '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9' );
 
 # Get a message from anywhere
 function wfMsg( $key ) {
@@ -357,10 +357,10 @@ function wfDebugDieBacktrace( $msg = '' ) {
 			if ( $wgCommandLineMode ) {
 				$msg .= "$file line {$call['line']} calls ";
 			} else {
-				$msg .= '<li>' . $file . " line " . $call['line'] . ' calls ';
+				$msg .= '<li>' . $file . ' line ' . $call['line'] . ' calls ';
 			}
 			if( !empty( $call['class'] ) ) $msg .= $call['class'] . '::';
-			$msg .= $call['function'] . "()";
+			$msg .= $call['function'] . '()';
 
 			if ( $wgCommandLineMode ) {
 				$msg .= "\n";
@@ -400,13 +400,13 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false )
 		$po = $offset - $limit;
 		if ( $po < 0 ) { $po = 0; }
 		$q = "limit={$limit}&offset={$po}";
-		if ( '' != $query ) { $q .= "&{$query}"; }
+		if ( '' != $query ) { $q .= '&'.$query; }
 		$plink = '<a href="' . wfLocalUrlE( $link, $q ) . "\">{$prev}</a>";
 	} else { $plink = $prev; }
 
 	$no = $offset + $limit;
-	$q = "limit={$limit}&offset={$no}";
-	if ( "" != $query ) { $q .= "&{$query}"; }
+	$q = 'limit='.$limit.'&offset='.$no;
+	if ( '' != $query ) { $q .= '&'.$query; }
 
 	if ( $atend ) {
 		$nlink = $next;
@@ -426,8 +426,8 @@ function wfNumLink( $offset, $limit, $link, $query = '' )
 {
 	global $wgUser, $wgLang;
 	if ( '' == $query ) { $q = ''; }
-	else { $q = "{$query}&"; }
-	$q .= "limit={$limit}&offset={$offset}";
+	else { $q = $query.'&'; }
+	$q .= 'limit='.$limit.'&offset='.$offset;
 
 	$fmtLimit = $wgLang->formatNum( $limit );
 	$s = '<a href="' . wfLocalUrlE( $link, $q ) . "\">{$fmtLimit}</a>";
@@ -553,7 +553,7 @@ function wfArrayToCGI( $array1, $array2 = NULL )
 			if ( '' != $cgi ) {
 				$cgi .= '&';
 			}
-			$cgi .= "{$key}={$value}";
+			$cgi .= $key.'='.$value;
 		}
 	}
 	return $cgi;
@@ -762,20 +762,20 @@ function wfTimestamp2Unix( $ts ) {
 }
 
 function wfUnix2Timestamp( $unixtime ) {
-	return gmdate( "YmdHis", $unixtime );
+	return gmdate( 'YmdHis', $unixtime );
 }
 
 function wfTimestampNow() {
 	# return NOW
-	return gmdate( "YmdHis" );
+	return gmdate( 'YmdHis' );
 }
 
 # Sorting hack for MySQL 3, which doesn't use index sorts for DESC
 function wfInvertTimestamp( $ts ) {
 	return strtr(
 		$ts,
-		"0123456789",
-		"9876543210"
+		'0123456789',
+		'9876543210'
 	);
 }
 
@@ -805,9 +805,9 @@ function wfRestoreWarnings() {
 }
 
 # Autodetect, convert and provide timestamps of various types
-define("TS_UNIX",0);	# Standard unix timestamp (number of seconds since 1 Jan 1970)
-define("TS_MW",1);	# Mediawiki concatenated string timestamp (yyyymmddhhmmss)
-define("TS_DB",2);	# Standard database timestamp (yyyy-mm-dd hh:mm:ss)
+define('TS_UNIX',0);	# Standard unix timestamp (number of seconds since 1 Jan 1970)
+define('TS_MW',1);	# Mediawiki concatenated string timestamp (yyyymmddhhmmss)
+define('TS_DB',2);	# Standard database timestamp (yyyy-mm-dd hh:mm:ss)
 
 function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 	if (preg_match("/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/",$ts,$da)) {
@@ -830,10 +830,10 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 		return $uts;
 		break;
 	case TS_MW:
-		return gmdate( "YmdHis", $uts );
+		return gmdate( 'YmdHis', $uts );
 		break;
 	case TS_DB:
-		return gmdate( "Y-m-d H:i:s", $uts );
+		return gmdate( 'Y-m-d H:i:s', $uts );
 		break;
 	default:
 		return;

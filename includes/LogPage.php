@@ -11,7 +11,7 @@ class LogPage {
 	{
 		# For now, assume title is correct dbkey
 		# and log pages always go in Wikipedia namespace
-		$this->mTitle = str_replace( " ", "_", $title );
+		$this->mTitle = str_replace( ' ', '_', $title );
 		$this->mId = 0;
 		$this->mUpdateRecentChanges = true ;
 		$this->mContentLoaded = false;
@@ -56,7 +56,7 @@ class LogPage {
 		if( wfReadOnly() ) return;
 
 		global $wgUser;
-		$fname = "LogPage::saveContent";
+		$fname = 'LogPage::saveContent';
 
 		$dbw =& wfGetDB( DB_MASTER );
 		$uid = $wgUser->getID();
@@ -110,7 +110,7 @@ class LogPage {
 		return true;
 	}
 
-	function addEntry( $action, $comment, $textaction = "" )
+	function addEntry( $action, $comment, $textaction = '' )
 	{
 		global $wgLang, $wgUser;
 
@@ -121,7 +121,7 @@ class LogPage {
 		$ut = $wgUser->getName();
 		$uid = $wgUser->getID();
 		if( $uid ) {
-			$ul = "[[" .
+			$ul = '[[' .
 			  $wgLang->getNsText( Namespace::getUser() ) .
 			  ":{$ut}|{$ut}]]";
 		} else {
@@ -135,8 +135,8 @@ class LogPage {
 			$before = $m[1];
 			$after = $m[2];
 		} else {
-			$before = "";
-			$after = "";
+			$before = '';
+			$after = '';
 		}
 		
 		if($textaction)
@@ -144,12 +144,12 @@ class LogPage {
 		else
 			$this->mComment = $action;
 		
-		if ( "" == $comment ) {
-			$inline = "";
+		if ( '' == $comment ) {
+			$inline = '';
 		} else {
 			$inline = " <em>({$comment_esc})</em>";
 			# comment gets escaped again, so we use the unescaped version
-			$this->mComment .= ": {$comment}";
+			$this->mComment .= ': '.$comment;
 		}
 		$this->mContent = "{$before}<ul><li>{$d} {$ul} {$action}{$inline}</li>\n{$after}";
 		
@@ -158,7 +158,7 @@ class LogPage {
 		return $this->saveContent();
 	}
 	
-	function replaceContent( $text, $comment = "" )
+	function replaceContent( $text, $comment = '' )
 	{
 		$this->mContent = $text;
 		$this->mComment = $comment;
@@ -173,10 +173,10 @@ class LogPage {
 			# Client cache fresh and headers sent, nothing more to do.
 			return;
 		}
-		$func = ( $rawhtml ? "addHTML" : "addWikiText" );
+		$func = ( $rawhtml ? 'addHTML' : 'addWikiText' );
 		$wgOut->$func(
-			"<p>" . wfMsg( "perfdisabled" ) . "</p>\n\n" .
-			"<p>" . wfMsg( "perfdisabledsub", $wgLang->timeanddate( $this->getTimestamp() ) ) . "</p>\n\n" .
+			"<p>" . wfMsg( 'perfdisabled' ) . "</p>\n\n" .
+			"<p>" . wfMsg( 'perfdisabledsub', $wgLang->timeanddate( $this->getTimestamp() ) ) . "</p>\n\n" .
 			"<hr />\n\n" .
 			$this->getContent()
 			);

@@ -6,7 +6,7 @@ function wfProfileIn( $functionname )
 	$wgProfiler->profileIn( $functionname );
 }
 
-function wfProfileOut( $functionname = "missing" ) 
+function wfProfileOut( $functionname = 'missing' ) 
 {
 	global $wgProfiler;
 	$wgProfiler->profileOut( $functionname );
@@ -46,8 +46,8 @@ class Profiler
 	function profileIn( $functionname )
 	{
 		global $wgDebugFunctionEntry;
-		if ( $wgDebugFunctionEntry && function_exists( "wfDebug" ) ) {
-			wfDebug( str_repeat( " ", count( $this->mWorkStack ) ) . "Entering $functionname\n" );
+		if ( $wgDebugFunctionEntry && function_exists( 'wfDebug' ) ) {
+			wfDebug( str_repeat( ' ', count( $this->mWorkStack ) ) . 'Entering '.$functionname."\n" );
 		}
 		array_push( $this->mWorkStack, array($functionname, count( $this->mWorkStack ), microtime(), memory_get_usage() ) );
 	}
@@ -57,8 +57,8 @@ class Profiler
 		$memory = memory_get_usage();
 		global $wgDebugProfiling, $wgDebugFunctionEntry;
 
-		if ( $wgDebugFunctionEntry && function_exists( "wfDebug" ) ) {
-			wfDebug( str_repeat( " ", count( $this->mWorkStack ) - 1 ) . "Exiting $functionname\n" );
+		if ( $wgDebugFunctionEntry && function_exists( 'wfDebug' ) ) {
+			wfDebug( str_repeat( ' ', count( $this->mWorkStack ) - 1 ) . 'Exiting '.$functionname."\n" );
 		}
 		
 		$bit = array_pop( $this->mWorkStack );
@@ -67,7 +67,7 @@ class Profiler
 			wfDebug( "Profiling error, !\$bit: $functionname\n" );
 		} else {
 			if ( $wgDebugProfiling ) {
-				if ( $functionname == "close" ) {
+				if ( $functionname == 'close' ) {
 					wfDebug( "Profile section ended by close(): {$bit[0]}\n" );
 				} elseif ( $bit[0] != $functionname ) {
 					wfDebug( "Profiling error: in({$bit[0]}), out($functionname)\n" );
@@ -82,7 +82,7 @@ class Profiler
 	function close() 
 	{
 		while ( count( $this->mWorkStack ) ) {
-			$this->profileOut( "close" );
+			$this->profileOut( 'close' );
 		}
 	}
 
@@ -99,27 +99,27 @@ class Profiler
 		$format = "%-" . ($width - 34) . "s %6d %6.3f %6.3f %6.3f%% %6d\n";
 		$titleFormat = "%-" . ($width - 34) . "s %9s %9s %9s %9s %6s\n";
 		$prof = "\nProfiling data\n";
-		$prof .= sprintf( $titleFormat, "Name", "Calls", "Total", "Each", "%", "Mem" );
+		$prof .= sprintf( $titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 'Mem' );
 		$this->mCollated = array();
 		$this->mCalls = array();
 		$this->mMemory = array();
 		
 		# Estimate profiling overhead
 		$profileCount = count( $this->mStack );
-		wfProfileIn( "-overhead-total" );
+		wfProfileIn( '-overhead-total' );
 		for ($i=0; $i<$profileCount ; $i++) {
-			wfProfileIn( "-overhead-internal" );
-			wfProfileOut( "-overhead-internal" );
+			wfProfileIn( '-overhead-internal' );
+			wfProfileOut( '-overhead-internal' );
 		}
-		wfProfileOut( "-overhead-total" );
+		wfProfileOut( '-overhead-total' );
 		
 		# Collate
 		foreach ( $this->mStack as $entry ) {
 			$fname = $entry[0];
 			$thislevel = $entry[1];
-			$start = explode( " ", $entry[2]);
+			$start = explode( ' ', $entry[2]);
 			$start = (float)$start[0] + (float)$start[1];
-			$end = explode( " ", $entry[4]);
+			$end = explode( ' ', $entry[4]);
 			$end = (float)$end[0] + (float)$end[1];
 			$elapsed = $end - $start;
 			
@@ -136,16 +136,16 @@ class Profiler
 			$this->mMemory[$fname] += $memory;
 		}
 
-		$total = @$this->mCollated["-total"];
-		$overhead = $this->mCollated["-overhead-internal"] / $profileCount;
-		$this->mCalls["-overhead-total"] = $profileCount;
+		$total = @$this->mCollated['-total'];
+		$overhead = $this->mCollated['-overhead-internal'] / $profileCount;
+		$this->mCalls['-overhead-total'] = $profileCount;
 
 		# Output
 		arsort( $this->mCollated, SORT_NUMERIC );
 		foreach ( $this->mCollated as $fname => $elapsed ) {
 			$calls = $this->mCalls[$fname];
 			# Adjust for overhead
-			if ( $fname[0] != "-" ) {
+			if ( $fname[0] != '-' ) {
 				$elapsed -= $overhead * $calls;
 			}
 
@@ -194,5 +194,5 @@ class Profiler
 
 
 $wgProfiler = new Profiler();
-$wgProfiler->profileIn( "-total" );
+$wgProfiler->profileIn( '-total' );
 ?>

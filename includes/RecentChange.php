@@ -1,11 +1,11 @@
 <?php
 # Utility class for creating new RC entries
 
-define( "RC_EDIT", 0);
-define( "RC_NEW", 1);
-define( "RC_MOVE", 2);
-define( "RC_LOG", 3);
-define( "RC_MOVE_OVER_REDIRECT", 4);
+define( 'RC_EDIT', 0);
+define( 'RC_NEW', 1);
+define( 'RC_MOVE', 2);
+define( 'RC_LOG', 3);
+define( 'RC_MOVE_OVER_REDIRECT', 4);
 
 
 /*
@@ -88,7 +88,7 @@ class RecentChange
 	function save()
 	{
 		global $wgUseRCQueue, $wgRCQueueID, $wgLocalInterwiki, $wgPutIPinRC;
-		$fname = "RecentChange::save";
+		$fname = 'RecentChange::save';
 
 		$dbw =& wfGetDB( DB_MASTER );
 		if ( !is_array($this->mExtra) ) {
@@ -105,7 +105,7 @@ class RecentChange
 		$this->mAttribs['rc_cur_time']=$dbw->timestamp($this->mAttribs['rc_cur_time']);
 
 		# Insert new row
-		$dbw->insertArray( "recentchanges", $this->mAttribs, $fname );
+		$dbw->insertArray( 'recentchanges', $this->mAttribs, $fname );
 
 		# Update old rows, if necessary
 		if ( $this->mAttribs['rc_type'] == RC_EDIT ) {
@@ -146,7 +146,7 @@ class RecentChange
 	# Marks a certain row as patrolled
 	function markPatrolled( $rcid )
 	{
-		$fname = "RecentChange::markPatrolled";
+		$fname = 'RecentChange::markPatrolled';
 
 		$dbw =& wfGetDB( DB_MASTER );
 
@@ -163,7 +163,7 @@ class RecentChange
 	/*static*/ function notifyEdit( $timestamp, &$title, $minor, &$user, $comment,
 		$oldId, $lastTimestamp, $bot = "default", $ip = '' )
 	{
-		if ( $bot == "default " ) {
+		if ( $bot == 'default ' ) {
 			$bot = $user->isBot();
 		}
 
@@ -208,7 +208,7 @@ class RecentChange
 			global $wgIP;
 			$ip = empty( $wgIP ) ? '' : $wgIP;
 		}
-		if ( $bot == "default" ) {
+		if ( $bot == 'default' ) {
 			$bot = $user->isBot();
 		}
 
@@ -332,16 +332,16 @@ class RecentChange
 	function loadFromCurRow( $row )
 	{
 		$this->mAttribs = array(
-			"rc_timestamp" => $row->cur_timestamp,
-			"rc_cur_time" => $row->cur_timestamp,
-			"rc_user" => $row->cur_user,
-			"rc_user_text" => $row->cur_user_text,
-			"rc_namespace" => $row->cur_namespace,
-			"rc_title" => $row->cur_title,
-			"rc_comment" => $row->cur_comment,
-			"rc_minor" => !!$row->cur_minor_edit,
-			"rc_type" => $row->cur_is_new ? RC_NEW : RC_EDIT,
-			"rc_cur_id" => $row->cur_id,
+			'rc_timestamp' => $row->cur_timestamp,
+			'rc_cur_time' => $row->cur_timestamp,
+			'rc_user' => $row->cur_user,
+			'rc_user_text' => $row->cur_user_text,
+			'rc_namespace' => $row->cur_namespace,
+			'rc_title' => $row->cur_title,
+			'rc_comment' => $row->cur_comment,
+			'rc_minor' => !!$row->cur_minor_edit,
+			'rc_type' => $row->cur_is_new ? RC_NEW : RC_EDIT,
+			'rc_cur_id' => $row->cur_id,
 			'rc_this_oldid'	=> 0,
 			'rc_last_oldid'	=> 0,
 			'rc_bot'	=> 0,
@@ -365,12 +365,12 @@ class RecentChange
 			$trail = "curid=" . (int)($this->mAttribs['rc_cur_id']) .
 				"&oldid=" . (int)($this->mAttribs['rc_last_oldid']);
 			if ( $forceCur ) {
-				$trail .= "&diff=0" ;
+				$trail .= '&diff=0' ;
 			} else {
-				$trail .= "&diff=" . (int)($this->mAttribs['rc_this_oldid']);
+				$trail .= '&diff=' . (int)($this->mAttribs['rc_this_oldid']);
 			}
 		} else {
-			$trail = "";
+			$trail = '';
 		}
 		return $trail;
 	}

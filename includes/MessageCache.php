@@ -3,9 +3,9 @@
 # Message cache
 # Performs various useful MediaWiki namespace-related functions
 
-define( "MSG_LOAD_TIMEOUT", 60);
-define( "MSG_LOCK_TIMEOUT", 10);
-define( "MSG_WAIT_TIMEOUT", 10);
+define( 'MSG_LOAD_TIMEOUT', 60);
+define( 'MSG_LOCK_TIMEOUT', 10);
+define( 'MSG_WAIT_TIMEOUT', 10);
 
 class MessageCache
 {
@@ -16,22 +16,22 @@ class MessageCache
 	var $mInitialised = false;
 
 	function initialise( &$memCached, $useDB, $expiry, $memcPrefix ) {
-		$fname = "MessageCache::initialise";
+		$fname = 'MessageCache::initialise';
 		wfProfileIn( $fname );
 		$this->mUseCache = !is_null( $memCached );
 		$this->mMemc = &$memCached;
 		$this->mDisable = !$useDB;
 		$this->mExpiry = $expiry;
 		$this->mDisableTransform = false;
-		$this->mMemcKey = "$memcPrefix:messages";
+		$this->mMemcKey = $memcPrefix.':messages';
 		$this->mKeys = false; # initialised on demand
 		$this->mInitialised = true;
-		wfProfileIn( "$fname-parseropt" );
+		wfProfileIn( $fname.'-parseropt' );
 		$this->mParserOptions = ParserOptions::newFromUser( $u=NULL );
-		wfProfileOut( "$fname-parseropt" );
-		wfProfileIn( "$fname-parser" );
+		wfProfileOut( $fname.'-parseropt' );
+		wfProfileIn( $fname.'-parser' );
 		$this->mParser = new Parser;
-		wfProfileOut( "$fname-parser" );
+		wfProfileOut( $fname.'-parser' );
 		
 		$this->load();
 		wfProfileOut( $fname );
@@ -47,14 +47,14 @@ class MessageCache
 			wfDebug( "MessageCache::load(): disabled\n" );
 			return true;
 		}
-		$fname = "MessageCache::load";
+		$fname = 'MessageCache::load';
 		wfProfileIn( $fname );
 		$success = true;
 		
 		if ( $this->mUseCache ) {
-			wfProfileIn( "$fname-fromcache" );
+			wfProfileIn( $fname.'-fromcache' );
 			$this->mCache = $this->mMemc->get( $this->mMemcKey );
-			wfProfileOut( "$fname-fromcache" );
+			wfProfileOut( $fname.'-fromcache' );
 			
 			# If there's nothing in memcached, load all the messages from the database
 			if ( !$this->mCache ) {
@@ -63,18 +63,18 @@ class MessageCache
 				# Other threads don't need to load the messages if another thread is doing it.
 				$success = $this->mMemc->set( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT );
 				if ( $success ) {
-					wfProfileIn( "$fname-load" );
+					wfProfileIn( $fname.'-load' );
 					$this->loadFromDB();
-					wfProfileOut( "$fname-load" );
+					wfProfileOut( $fname.'-load' );
 					# Save in memcached
 					# Keep trying if it fails, this is kind of important
-					wfProfileIn( "$fname-save" );
+					wfProfileIn( $fname.'-save' );
 					for ( $i=0; $i<20 && !$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry ); $i++ ) {
 						usleep(mt_rand(500000,1500000));
 					}
-					wfProfileOut( "$fname-save" );
+					wfProfileOut( $fname.'-save' );
 					if ( $i == 20 ) {
-						$this->mMemc->set( $this->mMemcKey, "error", 86400 );
+						$this->mMemc->set( $this->mMemcKey, 'error', 86400 );
 						wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
 					}
 				}
@@ -106,7 +106,7 @@ class MessageCache
 	# Loads all cacheable messages from the database
 	function loadFromDB()
 	{
-	        $fname = "MessageCache::loadFromDB";
+	        $fname = 'MessageCache::loadFromDB';
 		$dbr =& wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cur', 
 			array( 'cur_title', 'cur_text' ), 
@@ -161,7 +161,7 @@ class MessageCache
 			return true;
 		}
 
-		$lockKey = $this->mMemcKey . "lock";
+		$lockKey = $this->mMemcKey . 'lock';
 		for ($i=0; $i < MSG_WAIT_TIMEOUT && !$this->mMemc->add( $lockKey, 1, MSG_LOCK_TIMEOUT ); $i++ ) {
 			sleep(1);
 		}
@@ -174,7 +174,7 @@ class MessageCache
 			return;
 		}
 
-		$lockKey = $this->mMemcKey . "lock";
+		$lockKey = $this->mMemcKey . 'lock';
 		$this->mMemc->delete( $lockKey );
 	}
 	
@@ -199,9 +199,9 @@ class MessageCache
 			# If it wasn't in the cache, load each message from the DB individually
 			if ( !$message && $useDB) {
 				$dbr =& wfGetDB( DB_SLAVE );
-				$result = $dbr->getArray( "cur", array("cur_text"), 
-				  array( "cur_namespace" => NS_MEDIAWIKI, "cur_title" => $title ),
-				  "MessageCache::get" );
+				$result = $dbr->getArray( 'cur', array('cur_text'), 
+				  array( 'cur_namespace' => NS_MEDIAWIKI, 'cur_title' => $title ),
+				  'MessageCache::get' );
 				if ( $result ) {
 					$message = $result->cur_text;
 				}
@@ -218,7 +218,7 @@ class MessageCache
 		} 
 
 		# Try the English array
-		if ( !$message && $wgLanguageCode != "en" ) {
+		if ( !$message && $wgLanguageCode != 'en' ) {
 			$message = Language::getMessage( $key );
 		}
 		
@@ -234,7 +234,7 @@ class MessageCache
 
 	function transform( $message ) {
 		if( !$this->mDisableTransform ) { 
-			if ( strstr( $message, "{{" ) !== false ) {
+			if ( strstr( $message, '{{' ) !== false ) {
 				$message = $this->mParser->transformMsg( $message, $this->mParserOptions );
 			}
 		}

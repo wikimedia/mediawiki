@@ -24,18 +24,18 @@ function showCreditsPage($article)
 {
     global $wgOut;
 
-    $fname = "showCreditsPage";
+    $fname = 'showCreditsPage';
     
     wfProfileIn( $fname );
 
     $wgOut->setPageTitle( $article->mTitle->getPrefixedText() );
-    $wgOut->setSubtitle( wfMsg( "creditspage" ) );
+    $wgOut->setSubtitle( wfMsg( 'creditspage' ) );
     $wgOut->setArticleFlag( false );
     $wgOut->setArticleRelated( true );
-    $wgOut->setRobotpolicy( "noindex,nofollow" );
+    $wgOut->setRobotpolicy( 'noindex,nofollow' );
 
     if( $article->mTitle->getArticleID() == 0 ) {
-	$s = wfMsg( "nocredits" );
+	$s = wfMsg( 'nocredits' );
     } else {
 	$s = getCredits($article, -1);
     }
@@ -159,14 +159,14 @@ function getContributorCredits($article, $cnt, $showIfMax) {
 function creditLink($user_name, $link_text = '') {
     global $wgUser, $wgLang;
     $skin = $wgUser->getSkin();
-    return $skin->makeLink($wgLang->getNsText(NS_USER) . ":" . $user_name,
+    return $skin->makeLink($wgLang->getNsText(NS_USER) . ':' . $user_name,
 			   (empty($link_text)) ? $user_name : $link_text);
 }
 
 function creditOthersLink($article) {
     global $wgUser, $wgLang;
     $skin = $wgUser->getSkin();
-    return $skin->makeKnownLink($article->mTitle->getPrefixedText(), wfMsg('others'), "action=credits");
+    return $skin->makeKnownLink($article->mTitle->getPrefixedText(), wfMsg('others'), 'action=credits');
 }
 
 ?>

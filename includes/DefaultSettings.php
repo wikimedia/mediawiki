@@ -10,7 +10,7 @@
 # depends on it.
 
 # This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined
-if( defined( "MEDIAWIKI" ) ) {
+if( defined( 'MEDIAWIKI' ) ) {
 
 $wgVersion			= '1.4-prealpha';
 

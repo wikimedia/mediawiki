@@ -12,7 +12,7 @@ class ParserCache
 	
 	function get( &$article, &$user ) {
 		global $wgMemc, $wgCacheEpoch;
-		$fname = "ParserCache::get";
+		$fname = 'ParserCache::get';
 		wfProfileIn( $fname );
 
 		$hash = $user->getPageRenderingHash();

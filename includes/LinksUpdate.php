@@ -20,7 +20,7 @@ class LinksUpdate {
 		/* Update link tables with outgoing links from an updated article */
 		/* Relies on the 'link cache' to be filled out */
 
-		$fname = "LinksUpdate::doUpdate";
+		$fname = 'LinksUpdate::doUpdate';
 		wfProfileIn( $fname );
 
 		$del = array();
@@ -39,7 +39,7 @@ class LinksUpdate {
 			# Delete where necessary
 			if ( count( $del ) ) {
 				$sql = "DELETE FROM $links WHERE l_from={$this->mId} AND l_to IN(".
-					implode( ",", $del ) . ")";
+					implode( ',', $del ) . ')';
 				$dbw->query( $sql, $fname );
 			}
 		} else {
@@ -51,7 +51,7 @@ class LinksUpdate {
 		}
 
 		# Do the insertion
-		$sql = "";
+		$sql = '';
 		if ( 0 != count( $add ) ) {
 			$arr=array();
 			foreach($add as $lt=>$lid) 
@@ -76,11 +76,11 @@ class LinksUpdate {
 					if ( $first ) {
 						$first = false;
 					} else {
-						$sql .= ",";
+						$sql .= ',';
 					}
 					$sql .= $dbw->addQuotes( $badTitle );
 				}
-				$sql .= ")";
+				$sql .= ')';
 				$dbw->query( $sql, $fname );
 			}
 		} else {
@@ -92,7 +92,7 @@ class LinksUpdate {
 		}
 
 		# Do additions
-		$sql = "";
+		$sql = '';
 		if ( 0 != count ( $add ) ) {
 			$arr=array();
 			foreach( $add as $blt ) {
@@ -114,7 +114,7 @@ class LinksUpdate {
 		$add = $wgLinkCache->getImageLinks();
 		
 		# Do the insertion
-		$sql = "";
+		$sql = '';
 		$image = Namespace::getImage();
 		if ( 0 != count ( $add ) ) {
 			$sql = "INSERT IGNORE INTO $imagelinks (il_from,il_to) VALUES ";
@@ -126,13 +126,13 @@ class LinksUpdate {
 				$nt->invalidateCache();
 
 				$iname = $dbw->strencode( $iname );
-				if ( ! $first ) { $sql .= ","; }
+				if ( ! $first ) { $sql .= ','; }
 				$first = false;
 
 				$sql .= "({$this->mId},'{$iname}')";
 			}
 		}
-		if ( "" != $sql ) { 
+		if ( '' != $sql ) { 
 			$dbw->query( $sql, $fname ); 
 		}
 
@@ -146,7 +146,7 @@ class LinksUpdate {
 			$add = $wgLinkCache->getCategoryLinks();
 			
 			# Do the insertion
-			$sql = "";
+			$sql = '';
 			if ( 0 != count ( $add ) ) {
 				$sql = "INSERT IGNORE INTO $categorylinks (cl_from,cl_to,cl_sortkey) VALUES ";
 				$first = true;
@@ -156,14 +156,14 @@ class LinksUpdate {
 					if( !$nt ) continue;
 					$nt->invalidateCache();
 	
-					if ( ! $first ) { $sql .= ","; }
+					if ( ! $first ) { $sql .= ','; }
 					$first = false;
 	
 					$sql .= "({$this->mId},'" . $dbw->strencode( $cname ) .
 						"','" . $dbw->strencode( $sortkey ) . "')";
 				}
 			}
-			if ( "" != $sql ) { 
+			if ( '' != $sql ) {
 				$dbw->query( $sql, $fname ); 
 			}
 		}
@@ -178,7 +178,7 @@ class LinksUpdate {
 		# Old inefficient update function
 		# Used for rebuilding the link table
 		global $wgLinkCache, $wgDBtransactions, $wgUseCategoryMagic;
-		$fname = "LinksUpdate::doDumbUpdate";
+		$fname = 'LinksUpdate::doDumbUpdate';
 		wfProfileIn( $fname );
 		
 		
@@ -192,7 +192,7 @@ class LinksUpdate {
 		$dbw->query( $sql, $fname );
 
 		$a = $wgLinkCache->getGoodLinks();
-		$sql = "";
+		$sql = '';
 		if ( 0 != count( $a ) ) {
 			$sql = "INSERT IGNORE INTO $links (l_from,l_to) VALUES ";
 			$first = true;
@@ -203,7 +203,7 @@ class LinksUpdate {
 				$sql .= "({$this->mId},{$lid})";
 			}
 		}
-		if ( "" != $sql ) { 
+		if ( '' != $sql ) { 
 			$dbw->query( $sql, $fname ); 
 		}
 
@@ -211,7 +211,7 @@ class LinksUpdate {
 		$dbw->query( $sql, $fname );
 
 		$a = $wgLinkCache->getBadLinks();
-		$sql = "";
+		$sql = '';
 		if ( 0 != count ( $a ) ) {
 			$sql = "INSERT IGNORE INTO $brokenlinks (bl_from,bl_to) VALUES ";
 			$first = true;
@@ -223,7 +223,7 @@ class LinksUpdate {
 				$sql .= "({$this->mId},'{$blt}')";
 			}
 		}
-		if ( "" != $sql ) { 
+		if ( '' != $sql ) { 
 			$dbw->query( $sql, $fname ); 
 		}
 		
@@ -231,7 +231,7 @@ class LinksUpdate {
 		$dbw->query( $sql, $fname );
 
 		$a = $wgLinkCache->getImageLinks();
-		$sql = "";
+		$sql = '';
 		if ( 0 != count ( $a ) ) {
 			$sql = "INSERT IGNORE INTO $imagelinks (il_from,il_to) VALUES ";
 			$first = true;
@@ -243,7 +243,7 @@ class LinksUpdate {
 				$sql .= "({$this->mId},'{$iname}')";
 			}
 		}
-		if ( "" != $sql ) { 
+		if ( '' != $sql ) { 
 			$dbw->query( $sql, $fname ); 
 		}
 
@@ -255,7 +255,7 @@ class LinksUpdate {
 			$add = $wgLinkCache->getCategoryLinks();
 			
 			# Do the insertion
-			$sql = "";
+			$sql = '';
 			if ( 0 != count ( $add ) ) {
 				$sql = "INSERT IGNORE INTO $categorylinks (cl_from,cl_to,cl_sortkey) VALUES ";
 				$first = true;
@@ -272,7 +272,7 @@ class LinksUpdate {
 						"','" . $dbw->strencode( $sortkey ) . "')";
 				}
 			}
-			if ( "" != $sql ) { 
+			if ( '' != $sql ) { 
 				$dbw->query( $sql, $fname ); 
 			}
 		}
@@ -283,7 +283,7 @@ class LinksUpdate {
 	function fixBrokenLinks() {
 		/* Update any brokenlinks *to* this page */
 		/* Call for a newly created page, or just to make sure state is consistent */
-		$fname = "LinksUpdate::fixBrokenLinks";
+		$fname = 'LinksUpdate::fixBrokenLinks';
 
 		$dbw =& wfGetDB( DB_MASTER );
 		$cur = $dbw->tableName( 'cur' );
@@ -306,7 +306,7 @@ class LinksUpdate {
 			$sql .= "({$row->bl_from},{$this->mId})";
 			$sql2 .= $row->bl_from;
 		}
-		$sql2 .= ")";
+		$sql2 .= ')';
 		$dbw->query( $sql, $fname );
 		$dbw->query( $sql2, $fname );
 

@@ -196,7 +196,7 @@ CREATE TABLE objectcache (
 */
 class /* abstract */ SqlBagOStuff extends BagOStuff {
 	var $table;
-	function SqlBagOStuff($tablename = "objectcache") {
+	function SqlBagOStuff($tablename = 'objectcache') {
 		$this->table = $tablename;
 	}
 	
@@ -214,7 +214,7 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 			$this->_debug("get: retrieved data; exp time is " . $row->exptime);
 			return unserialize($row->value);
 		} else {
-			$this->_debug("get: no matching rows");
+			$this->_debug('get: no matching rows');
 		}
 		return false;
 	}
@@ -248,13 +248,13 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 		// ewwww
 		for($i=0;$i<count($reps);$i++) {
 			$sql = str_replace(
-				"$" . $i,
+				'$' . $i,
 				$this->_strencode($reps[$i]),
 				$sql);
 		}
 		$res = $this->_doquery($sql);
 		if($res == false) {
-			$this->_debug("query failed: " . $this->_dberror($res));
+			$this->_debug('query failed: ' . $this->_dberror($res));
 		}
 		return $res;
 	}
@@ -265,11 +265,11 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 	}
 	
 	function _doquery($sql) {
-		die( "abstract function SqlBagOStuff::_doquery() must be defined" );
+		die( 'abstract function SqlBagOStuff::_doquery() must be defined' );
 	}
 	
 	function _fetchrow($res) {
-		die( "abstract function SqlBagOStuff::_fetchrow() must be defined" );
+		die( 'abstract function SqlBagOStuff::_fetchrow() must be defined' );
 	}
 	
 	function _freeresult($result) {
@@ -279,15 +279,15 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 	
 	function _dberror($result) {
 		/* stub */
-		return "unknown error";
+		return 'unknown error';
 	}
 	
 	function _maxdatetime() {
-		die( "abstract function SqlBagOStuff::_maxdatetime() must be defined" );
+		die( 'abstract function SqlBagOStuff::_maxdatetime() must be defined' );
 	}
 	
 	function _fromunixtime() {
-		die( "abstract function SqlBagOStuff::_fromunixtime() must be defined" );
+		die( 'abstract function SqlBagOStuff::_fromunixtime() must be defined' );
 	}
 	
 	function expireall() {
@@ -305,7 +305,7 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 class MediaWikiBagOStuff extends SqlBagOStuff {
 	function _doquery($sql) {
 		$dbw =& wfGetDB( DB_MASTER );
-		return $dbw->query($sql, "MediaWikiBagOStuff:_doquery");
+		return $dbw->query($sql, 'MediaWikiBagOStuff:_doquery');
 	}
 	function _fetchobject($result) {
 		$dbw =& wfGetDB( DB_MASTER );
@@ -320,10 +320,10 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 		return $dbw->lastError();
 	}
 	function _maxdatetime() {
-		return "9999-12-31 12:59:59";
+		return '9999-12-31 12:59:59';
 	}
 	function _fromunixtime($ts) {
-		return gmdate( "Y-m-d H:i:s", $ts );
+		return gmdate( 'Y-m-d H:i:s', $ts );
 	}
 	function _strencode($s) {
 		$dbw =& wfGetDB( DB_MASTER );

@@ -29,7 +29,7 @@ class Image
 		$this->title     = Title::makeTitle( Namespace::getImage(), $this->name );
 		//$this->imagePath = wfImagePath( $name );
 		$hash 		 = md5( $this->title->getDBkey() );
-		$this->imagePath = $wgUploadDirectory . "/" . $hash{0} . "/" .substr( $hash, 0, 2 ) . "/{$name}";
+		$this->imagePath = $wgUploadDirectory . '/' . $hash{0} . '/' .substr( $hash, 0, 2 ) . "/{$name}";
 
 		$this->url       = $this->wfImageUrl( $name );
 
@@ -41,8 +41,8 @@ class Image
 				$this->height = $gis[1];
 				$this->type = $gis[2];
 				$this->attr = $gis[3];
-				if ( isset( $gis["bits"] ) )  {
-					$this->bits = $gis["bits"];
+				if ( isset( $gis['bits'] ) )  {
+					$this->bits = $gis['bits'];
 				} else {
 					$this->bits = 0;
 				}
@@ -109,7 +109,7 @@ class Image
 		return $this->fileExists;
 	}
 
-	function thumbUrl( $width, $subdir="thumb" ) {
+	function thumbUrl( $width, $subdir='thumb' ) {
 		global $wgUploadPath;
 
 		$name = $this->thumbName( $width );
@@ -139,19 +139,19 @@ class Image
 		$width = IntVal( $width );
 
 		$thumbName = $this->thumbName( $width );
-		$thumbPath = wfImageThumbDir( $thumbName )."/".$thumbName;
+		$thumbPath = wfImageThumbDir( $thumbName ).'/'.$thumbName;
 		$thumbUrl  = $this->thumbUrl( $width );
 
 		if ( ! $this->exists() )
 		{
 			# If there is no image, there will be no thumbnail
-			return "";
+			return '';
 		}
 		
 		# Sanity check $width
 		if( $width <= 0 ) {
 			# BZZZT
-			return "";
+			return '';
 		}
 
 		if( $width > $this->width ) {
@@ -196,7 +196,7 @@ class Image
 						$src_image = imagecreatefromxbm( $this->imagePath );
 						break;
 					default:
-						return "Image type not supported";
+						return 'Image type not supported';
 						break;
 				}
 				$height = floor( $this->height * ( $width/$this->width ) );
@@ -236,7 +236,7 @@ class Image
 			# no disk space is available or some other error occurs
 			#
 			$thumbstat = stat( $thumbPath );
-			if( $thumbstat["size"] == 0 )
+			if( $thumbstat['size'] == 0 )
 			{
 				unlink( $thumbPath );
 			}
@@ -263,7 +263,7 @@ class Image
 	//  2, ... return next old version from above query
 	function nextHistoryLine()
 	{
-		$fname = "Image::nextHistoryLine()";
+		$fname = 'Image::nextHistoryLine()';
 		$dbr =& wfGetDB( DB_SLAVE );
 		if ( $this->historyLine == 0 ) {// called for the first time, return line from cur 
 			$this->historyRes = $dbr->select( 'image', 
@@ -324,7 +324,7 @@ function wfImageArchiveDir( $fname , $subdir='archive')
 
 	# Suppress warning messages here; if the file itself can't
 	# be written we'll worry about it then.
-	$archive = "{$wgUploadDirectory}/{$subdir}";
+	$archive = $wgUploadDirectory.'/'.$subdir;
 	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
 	$archive .= '/' . $hash{0};
 	if ( ! is_dir( $archive ) ) { @mkdir( $archive, 0777 ); }
@@ -455,8 +455,8 @@ function wfImageArchiveUrl( $name )
 	global $wgUploadPath;
 
 	$hash = md5( substr( $name, 15) );
-	$url = "{$wgUploadPath}/archive/" . $hash{0} . "/" .
-	  substr( $hash, 0, 2 ) . "/{$name}";
+	$url = $wgUploadPath.'/archive/' . $hash{0} . '/' .
+	  substr( $hash, 0, 2 ) . '/'.$name;
 	return wfUrlencode($url);
 }
 

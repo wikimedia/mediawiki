@@ -17,7 +17,7 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-define("RDF_TYPE_PREFS", "application/rdf+xml,text/xml;q=0.7,application/xml;q=0.5,text/rdf;q=0.1");
+define('RDF_TYPE_PREFS', "application/rdf+xml,text/xml;q=0.7,application/xml;q=0.5,text/rdf;q=0.1");
 
 function wfDublinCoreRdf($article) {
 	
@@ -151,21 +151,21 @@ function wfCreativeCommonsRdf($article) {
 	foreach ($terms as $term) {
 		switch ($term) {
 		case 're':
-			ccTerm('permits', "Reproduction"); break;
+			ccTerm('permits', 'Reproduction'); break;
 		case 'di':
-			ccTerm('permits', "Distribution"); break;
+			ccTerm('permits', 'Distribution'); break;
 		case 'de':
-			ccTerm('permits', "DerivativeWorks"); break;
+			ccTerm('permits', 'DerivativeWorks'); break;
 		case 'nc':
-			ccTerm('prohibits', "CommercialUse"); break;
+			ccTerm('prohibits', 'CommercialUse'); break;
 		case 'no':
-			ccTerm('requires', "Notice"); break;
+			ccTerm('requires', 'Notice'); break;
 		case 'by':
-			ccTerm('requires', "Attribution"); break;
+			ccTerm('requires', 'Attribution'); break;
 		case 'sa':
-			ccTerm('requires', "ShareAlike"); break;
+			ccTerm('requires', 'ShareAlike'); break;
 		case 'sc':
-			ccTerm('requires', "SourceCode"); break;		
+			ccTerm('requires', 'SourceCode'); break;		
 		}
 	}
 }
@@ -184,8 +184,8 @@ function wfCreativeCommonsRdf($article) {
 }
 
 /* private */ function dcDate($timestamp) {
-	return substr($timestamp, 0, 4) . "-" 
-		. substr($timestamp, 4, 2) . "-" 
+	return substr($timestamp, 0, 4) . '-'
+		. substr($timestamp, 4, 2) . '-'
 		. substr($timestamp, 6, 2);
 }
 
@@ -212,11 +212,11 @@ function wfCreativeCommonsRdf($article) {
 	print "    <dc:{$name} rdf:resource=\"{$url}\" />\n";
 }
 
-/* private */ function dcPerson($name, $id, $user_name="", $user_real_name="") {
+/* private */ function dcPerson($name, $id, $user_name='', $user_real_name='') {
 	global $wgLang;
 
 	if ($id == 0) {
-		dcElement($name, wfMsg("anonymous"));
+		dcElement($name, wfMsg('anonymous'));
 	} else if ( !empty($user_real_name) ) {
 		dcElement($name, $user_real_name);
 	} else {
@@ -224,7 +224,7 @@ function wfCreativeCommonsRdf($article) {
 		if( empty( $user_name ) ) {
 			$user_name = User::whoIs($id);
 		}
-		dcPageOrString($name, $wgLang->getNsText(NS_USER) . ":" . $user_name, wfMsg("siteuser", $user_name));
+		dcPageOrString($name, $wgLang->getNsText(NS_USER) . ':' . $user_name, wfMsg('siteuser', $user_name));
 	}
 }
 
@@ -283,11 +283,11 @@ function wfCreativeCommonsRdf($article) {
 	
 	/* Handle the GPL and LGPL, too. */
 	
-	$knownLicenses["http://creativecommons.org/licenses/GPL/2.0/"] =
+	$knownLicenses['http://creativecommons.org/licenses/GPL/2.0/'] =
 		array('de', 're', 'di', 'no', 'sa', 'sc');
-	$knownLicenses["http://creativecommons.org/licenses/LGPL/2.1/"] = 
+	$knownLicenses['http://creativecommons.org/licenses/LGPL/2.1/'] = 
 		array('de', 're', 'di', 'no', 'sa', 'sc');
-	$knownLicenses["http://www.gnu.org/copyleft/fdl.html"] = 
+	$knownLicenses['http://www.gnu.org/copyleft/fdl.html'] = 
 		array('de', 're', 'di', 'no', 'sa', 'sc');
 	
 	return $knownLicenses;

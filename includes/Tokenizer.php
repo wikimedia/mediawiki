@@ -67,7 +67,7 @@ class Tokenizer {
 			// still one token from the last round around. Return that one first.
 			$token = array_shift( $this->mQueuedToken );
 		} else if ( $this->mPos > $this->mTextLength ) {
-		 	// If no text is left, return "false".
+		 	// If no text is left, return 'false'.
 			$token = false;
 		} else {
 
@@ -185,7 +185,7 @@ class Tokenizer {
 							// strip blank from Token
 							$token['text'] = substr( $token['text'], 0, -1 );
 							$queueToken['type'] = 'blank';
-							$queueToken['text'] = " {$ch}";
+							$queueToken['text'] = ' '.$ch;
 							$this->mQueuedToken[] = $queueToken;
 							$this->mPos ++;
 							break 2; // switch + while
@@ -202,7 +202,7 @@ class Tokenizer {
 					case '8':
 					case '9':
 						if (    ($this->mTextLength >= $this->mPos +2)
-						     && ($this->mText[$this->mPos+1] == " ")
+						     && ($this->mText[$this->mPos+1] == ' ')
 						     && ctype_digit( $this->mText[$this->mPos+2] ) )
 						{
 							$queueToken['type'] = 'blank';
@@ -235,10 +235,10 @@ class Tokenizer {
 						break;
 					case '&': //extensions like <timeline>, since HTML stripping has already been done, 
 					 	  //those look like &lt;timeline&gt;
-						if ( $this->continues( "lt;timeline&gt;" ) )
+						if ( $this->continues( 'lt;timeline&gt;' ) )
 						{
-							$queueToken['type'] = "<timeline>";
-							$queueToken['text'] = "&lt;timeline&gt;";
+							$queueToken['type'] = '<timeline>';
+							$queueToken['text'] = '&lt;timeline&gt;';
 							$this->mQueuedToken[] = $queueToken;
 							$this->mPos += 16;
 							break 2; // switch + while

@@ -14,7 +14,7 @@
 #
 # Hashar
 
-require_once( "Database.php" );
+require_once( 'Database.php' );
 
 class DatabasePgsql extends Database {
 	var $mInsertId = NULL;
@@ -49,7 +49,7 @@ class DatabasePgsql extends Database {
 		
 		$success = false;
 		
-		if ( "" != $dbName ) {
+		if ( '' != $dbName ) {
 			# start a database connection
 			@$this->mConn = pg_connect("host=$server dbname=$dbName user=$user password=$password");
 			if ( $this->mConn == false ) {
@@ -79,7 +79,7 @@ class DatabasePgsql extends Database {
 		return $this->mLastResult=pg_query( $this->mConn , $sql);
 	}
 		
-	function queryIgnore( $sql, $fname = "" ) {
+	function queryIgnore( $sql, $fname = '' ) {
 		return $this->query( $sql, $fname, true );
 	}
 	
@@ -96,7 +96,7 @@ class DatabasePgsql extends Database {
 		# hashar : not sure if the following test really trigger if the object
 		#          fetching failled.
 		if( pg_last_error($this->mConn) ) {
-			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( pg_last_error($this->mConn) ) );
+			wfDebugDieBacktrace( 'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
 		}
 		return $row;
 	}
@@ -104,7 +104,7 @@ class DatabasePgsql extends Database {
 	function fetchRow( $res ) {
 		@$row = pg_fetch_array( $res );
                 if( pg_last_error($this->mConn) ) {
-                        wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( pg_last_error($this->mConn) ) );
+                        wfDebugDieBacktrace( 'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
                 }
 		return $row;
 	}
@@ -112,7 +112,7 @@ class DatabasePgsql extends Database {
 	function numRows( $res ) {
 		@$n = pg_num_rows( $res ); 
 		if( pg_last_error($this->mConn) ) {
-			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( pg_last_error($this->mConn) ) );
+			wfDebugDieBacktrace( 'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
 		}
 		return $n;
 	}
@@ -134,7 +134,7 @@ class DatabasePgsql extends Database {
 	
 	# Returns information about an index
 	# If errors are explicitly ignored, returns NULL on failure
-	function indexInfo( $table, $index, $fname = "Database::indexExists" ) 
+	function indexInfo( $table, $index, $fname = 'Database::indexExists' ) 
 	{
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='$table'";
 		$res = $this->query( $sql, $fname );
@@ -152,7 +152,7 @@ class DatabasePgsql extends Database {
 
 	function fieldInfo( $table, $field )
 	{
-		wfDebugDieBacktrace( "Database::fieldInfo() error : mysql_fetch_field() not implemented for postgre" );
+		wfDebugDieBacktrace( 'Database::fieldInfo() error : mysql_fetch_field() not implemented for postgre' );
 		/*
 		$res = $this->query( "SELECT * FROM '$table' LIMIT 1" );
 		$n = pg_num_fields( $res );
@@ -167,7 +167,7 @@ class DatabasePgsql extends Database {
 		return false;*/
 	}
 
-	function insertArray( $table, $a, $fname = "Database::insertArray", $options = array() ) {
+	function insertArray( $table, $a, $fname = 'Database::insertArray', $options = array() ) {
 		# PostgreSQL doesn't support options
 		# We have a go at faking one of them
 		# TODO: DELAYED, LOW_PRIORITY 
@@ -193,7 +193,7 @@ class DatabasePgsql extends Database {
 	function startTimer( $timeout )
 	{
 		global $IP;
-		wfDebugDieBacktrace( "Database::startTimer() error : mysql_thread_id() not implemented for postgre" );
+		wfDebugDieBacktrace( 'Database::startTimer() error : mysql_thread_id() not implemented for postgre' );
 		/*$tid = mysql_thread_id( $this->mConn );
 		exec( "php $IP/killthread.php $timeout $tid &>/dev/null &" );*/
 	}
@@ -219,7 +219,7 @@ class DatabasePgsql extends Database {
 
 	# Return the next in a sequence, save the value for retrieval via insertId()
 	function nextSequenceValue( $seqName ) {
-		$value = $this->getField(""," nextval('" . $seqName . "')");
+		$value = $this->getField(''," nextval('" . $seqName . "')");
 		$this->mInsertId = $value;
 		return $value;
 	}
@@ -239,7 +239,7 @@ class DatabasePgsql extends Database {
 	# It may be more efficient to leave off unique indexes which are unlikely to collide. 
 	# However if you do this, you run the risk of encountering errors which wouldn't have 
 	# occurred in MySQL
-	function replace( $table, $uniqueIndexes, $rows, $fname = "Database::replace" ) {
+	function replace( $table, $uniqueIndexes, $rows, $fname = 'Database::replace' ) {
 		$table = $this->tableName( $table );
 
 		# Single row case
@@ -256,7 +256,7 @@ class DatabasePgsql extends Database {
 					if ( $first ) {
 						$first = false;
 					} else {
-						$sql .= ") OR (";
+						$sql .= ') OR (';
 					}
 					if ( is_array( $index ) ) {
 						$first2 = true;
@@ -265,15 +265,15 @@ class DatabasePgsql extends Database {
 							if ( $first2 ) { 
 								$first2 = false;
 							} else {
-								$sql .= " AND ";
+								$sql .= ' AND ';
 							}
-							$sql .= "$col=" . $this->addQuotes( $row[$col] );
+							$sql .= $col.'=' . $this->addQuotes( $row[$col] );
 						}
 				} else {
-						$sql .= "$index=" . $this->addQuotes( $row[$index] );
+						$sql .= $index.'=' . $this->addQuotes( $row[$index] );
 				}
 				}
-				$sql .= ")";
+				$sql .= ')';
 				$this->query( $sql, $fname );
 			}
 
@@ -294,9 +294,9 @@ class DatabasePgsql extends Database {
 		$joinTable = $this->tableName( $joinTable );
 		$sql = "DELETE FROM $delTable WHERE $delVar IN (SELECT $joinVar FROM $joinTable ";
 		if ( $conds != '*' ) {
-			$sql .= "WHERE " . $this->makeList( $conds, LIST_AND );
+			$sql .= 'WHERE ' . $this->makeList( $conds, LIST_AND );
 		}
-		$sql .= ")";
+		$sql .= ')';
 
 		$this->query( $sql, $fname );
 	}

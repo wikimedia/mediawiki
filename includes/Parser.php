@@ -32,13 +32,13 @@
 # the generated page would be proportional to the square of the input size.
 # Hence, we limit the number of inclusions of any given page, thus bringing any
 # attack back to O(N).
-define( "MAX_INCLUDE_REPEAT", 100 );
-define( "MAX_INCLUDE_SIZE", 1000000 ); // 1 Million
+define( 'MAX_INCLUDE_REPEAT', 100 );
+define( 'MAX_INCLUDE_SIZE', 1000000 ); // 1 Million
 
 # Allowed values for $mOutputType
-define( "OT_HTML", 1 );
-define( "OT_WIKI", 2 );
-define( "OT_MSG" , 3 );
+define( 'OT_HTML', 1 );
+define( 'OT_WIKI', 2 );
+define( 'OT_MSG' , 3 );
 
 # string parameter for extractTags which will cause it
 # to strip HTML comments in addition to regular
@@ -108,7 +108,7 @@ class Parser
 	#
 	function parse( $text, &$title, $options, $linestart = true, $clearState = true ) {
 		global $wgUseTidy;
-		$fname = "Parser::parse";
+		$fname = 'Parser::parse';
 		wfProfileIn( $fname );
 
 		if ( $clearState ) {
@@ -176,7 +176,7 @@ class Parser
 	# If $tag is set to STRIP_COMMENTS, the function will extract
 	# <!-- HTML comments -->
 
-	/* static */ function extractTags($tag, $text, &$content, $uniq_prefix = ""){
+	/* static */ function extractTags($tag, $text, &$content, $uniq_prefix = ''){
 		$rnd = $uniq_prefix . '-' . $tag . Parser::getRandomString();
 		if ( !$content ) {
 			$content = array( );
@@ -239,7 +239,7 @@ class Parser
 					# Raw and unchecked for validity.
 					$html_content[$marker] = $content;
 				} else {
-					$html_content[$marker] = "<html>$content</html>";
+					$html_content[$marker] = '<html>'.$content.'</html>';
 				}
 			}
 		}
@@ -250,7 +250,7 @@ class Parser
 			if( $render ){
 				$nowiki_content[$marker] = wfEscapeHTMLTagsOnly( $content );
 			} else {
-				$nowiki_content[$marker] = "<nowiki>$content</nowiki>";
+				$nowiki_content[$marker] = '<nowiki>'.$content.'</nowiki>';
 			}
 		}
 
@@ -261,10 +261,10 @@ class Parser
 				if( $this->mOptions->getUseTeX() ) {
 					$math_content[$marker] = renderMath( $content );
 				} else {
-					$math_content[$marker] = "&lt;math&gt;$content&lt;math&gt;";
+					$math_content[$marker] = '&lt;math&gt;'.$content.'&lt;math&gt;';
 				}
 			} else {
-				$math_content[$marker] = "<math>$content</math>";
+				$math_content[$marker] = '<math>'.$content.'</math>';
 			}
 		}
 
@@ -274,7 +274,7 @@ class Parser
 			if( $render ){
 				$pre_content[$marker] = '<pre>' . wfEscapeHTMLTagsOnly( $content ) . '</pre>';
 			} else {
-				$pre_content[$marker] = "<pre>$content</pre>";
+				$pre_content[$marker] = '<pre>'.$content.'</pre>';
 			}
 		}
 
@@ -282,7 +282,7 @@ class Parser
 		if($stripcomments) {
 			$text = Parser::extractTags(STRIP_COMMENTS, $text, $comment_content, $uniq_prefix);
 			foreach( $comment_content as $marker => $content ){
-				$comment_content[$marker] = "<!--$content-->";
+				$comment_content[$marker] = '<!--'.$content.'-->';
 			}
 		}
 
@@ -400,7 +400,7 @@ class Parser
 			"(in_array(strtolower(\"\$1\"),\$htmlattrs)?(\"\$1\".((\"x\$3\" != \"x\")?\"=\$3\":'')):'')",
 			$t);
 
-		$t = str_replace ( "<></>" , "" , $t ) ; # This should fix bug 980557
+		$t = str_replace ( '<></>' , '' , $t ) ; # This should fix bug 980557
 
 		# Strip javascript "expression" from stylesheets. Brute force approach:
 		# If anythin offensive is found, all attributes of the HTML tag are dropped
@@ -481,8 +481,8 @@ class Parser
 			if ( preg_match( '/^(:*)\{\|(.*)$/', $x, $matches ) ) {
 				$indent_level = strlen( $matches[1] );
 				$t[$k] = "\n" .
-					str_repeat( "<dl><dd>", $indent_level ) .
-					"<table " . $this->fixTagAttributes ( $matches[2] ) . '>' ;
+					str_repeat( '<dl><dd>', $indent_level ) .
+					'<table ' . $this->fixTagAttributes ( $matches[2] ) . '>' ;
 				array_push ( $td , false ) ;
 				array_push ( $ltd , '' ) ;
 				array_push ( $tr , false ) ;
@@ -495,7 +495,7 @@ class Parser
 				if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
 				if ( array_pop ( $td ) ) $z = '</'.$l.'>' . $z ;
 				array_pop ( $ltr ) ;
-				$t[$k] = $z . str_repeat( "</dd></dl>", $indent_level );
+				$t[$k] = $z . str_repeat( '</dd></dl>', $indent_level );
 			}
 			else if ( '|-' == substr ( $x , 0 , 2 ) ) { # Allows for |---------------
 				$x = substr ( $x , 1 ) ;
@@ -706,9 +706,9 @@ class Parser
 					{
 						$x1 = substr ($arr[$i-1], -1);
 						$x2 = substr ($arr[$i-1], -2, 1);
-						if ($x1 == " ") {
+						if ($x1 == ' ') {
 							if ($firstspace == -1) $firstspace = $i;
-						} else if ($x2 == " ") {
+						} else if ($x2 == ' ') {
 							if ($firstsingleletterword == -1) $firstsingleletterword = $i;
 						} else {
 							if ($firstmultiletterword == -1) $firstmultiletterword = $i;
@@ -758,41 +758,41 @@ class Parser
 					if (strlen ($r) == 2)
 					{
 						if ($state == 'em')
-						{ $output .= "</em>"; $state = ''; }
+						{ $output .= '</em>'; $state = ''; }
 						else if ($state == 'strongem')
-						{ $output .= "</em>"; $state = 'strong'; }
+						{ $output .= '</em>'; $state = 'strong'; }
 						else if ($state == 'emstrong')
-						{ $output .= "</strong></em><strong>"; $state = 'strong'; }
+						{ $output .= '</strong></em><strong>'; $state = 'strong'; }
 						else if ($state == 'both')
-						{ $output .= "<strong><em>{$buffer}</em>"; $state = 'strong'; }
+						{ $output .= '<strong><em>'.$buffer.'</em>'; $state = 'strong'; }
 						else # $state can be 'strong' or ''
-						{ $output .= "<em>"; $state .= 'em'; }
+						{ $output .= '<em>'; $state .= 'em'; }
 					}
 					else if (strlen ($r) == 3)
 					{
 						if ($state == 'strong')
-						{ $output .= "</strong>"; $state = ''; }
+						{ $output .= '</strong>'; $state = ''; }
 						else if ($state == 'strongem')
-						{ $output .= "</em></strong><em>"; $state = 'em'; }
+						{ $output .= '</em></strong><em>'; $state = 'em'; }
 						else if ($state == 'emstrong')
-						{ $output .= "</strong>"; $state = 'em'; }
+						{ $output .= '</strong>'; $state = 'em'; }
 						else if ($state == 'both')
-						{ $output .= "<em><strong>{$buffer}</strong>"; $state = 'em'; }
+						{ $output .= '<em><strong>'.$buffer.'</strong>'; $state = 'em'; }
 						else # $state can be 'em' or ''
-						{ $output .= "<strong>"; $state .= 'strong'; }
+						{ $output .= '<strong>'; $state .= 'strong'; }
 					}
 					else if (strlen ($r) == 5)
 					{
 						if ($state == 'strong')
-						{ $output .= "</strong><em>"; $state = 'em'; }
+						{ $output .= '</strong><em>'; $state = 'em'; }
 						else if ($state == 'em')
-						{ $output .= "</em><strong>"; $state = 'strong'; }
+						{ $output .= '</em><strong>'; $state = 'strong'; }
 						else if ($state == 'strongem')
-						{ $output .= "</em></strong>"; $state = ''; }
+						{ $output .= '</em></strong>'; $state = ''; }
 						else if ($state == 'emstrong')
-						{ $output .= "</strong></em>"; $state = ''; }
+						{ $output .= '</strong></em>'; $state = ''; }
 						else if ($state == 'both')
-						{ $output .= "<em><strong>{$buffer}</strong></em>"; $state = ''; }
+						{ $output .= '<em><strong>'.$buffer.'</strong></em>'; $state = ''; }
 						else # ($state == '')
 						{ $buffer = ''; $state = 'both'; }
 					}
@@ -807,7 +807,7 @@ class Parser
 			if ($state == 'strongem')
 				$output .= '</strong>';
 			if ($state == 'both')
-				$output .= "<strong><em>{$buffer}</em></strong>";
+				$output .= '<strong><em>'.$buffer.'</em></strong>';
 			return $output;
 		}
 	}
@@ -846,7 +846,7 @@ class Parser
 			if ( $text == '' ) {
 				# Autonumber if allowed
 				if ( strpos( HTTP_PROTOCOLS, $protocol ) !== false ) {
-					$text = "[" . ++$this->mAutonumber . "]";
+					$text = '[' . ++$this->mAutonumber . ']';
 				} else {
 					# Otherwise just use the URL
 					$text = htmlspecialchars( $url );
@@ -862,7 +862,7 @@ class Parser
 
 			$encUrl = htmlspecialchars( $url );
 			# Bit in parentheses showing the URL for the printable version
-			if( $url == $text || preg_match( "!$protocol://" . preg_quote( $text, "/" ) . "/?$!", $url ) ) {
+			if( $url == $text || preg_match( "!$protocol://" . preg_quote( $text, '/' ) . "/?$!", $url ) ) {
 				$paren = '';
 			} else {
 				# Expand the URL for printable version
@@ -1092,7 +1092,7 @@ class Parser
 				
 				if ( $ns == NS_CATEGORY ) {
 					$t = $nt->getText() ;
-					$nnt = Title::newFromText ( Namespace::getCanonicalName(NS_CATEGORY).":".$t ) ;
+					$nnt = Title::newFromText ( Namespace::getCanonicalName(NS_CATEGORY).':'.$t ) ;
 
 					$wgLinkCache->suspend(); # Don't save in links/brokenlinks
 					$pPLC=$sk->postParseLinkColour();
@@ -1279,7 +1279,7 @@ class Parser
 						# FIXME: This is dupe of code above
 						if( preg_match( '/^(.*?(?:\s|&nbsp;)):(.*)$/', $t, $match ) ) {
 							$term = $match[1];
-							$output .= $term . $this->nextItem( ":" );
+							$output .= $term . $this->nextItem( ':' );
 							$t = $match[2];
 						}
 					}
@@ -1307,7 +1307,7 @@ class Parser
 						$inBlockElem = true;
 					}
 				} else if ( !$inBlockElem && !$this->mInPre ) {
-					if ( " " == $t{0} and ( $this->mLastSection == 'pre' or trim($t) != '' ) ) {
+					if ( ' ' == $t{0} and ( $this->mLastSection == 'pre' or trim($t) != '' ) ) {
 						// pre
 						if ($this->mLastSection != 'pre') {
 							$paragraphStack = false;
@@ -1472,8 +1472,8 @@ class Parser
 		$argc = count($args);
 		$i = 0;
 		for ( $i = 0; $i < $argc-1; $i++ ) {
-			if ( substr_count ( $args[$i], "[[" ) != substr_count ( $args[$i], "]]" ) ) {
-				$args[$i] .= "|".$args[$i+1];
+			if ( substr_count ( $args[$i], '[[' ) != substr_count ( $args[$i], ']]' ) ) {
+				$args[$i] .= '|'.$args[$i+1];
 				array_splice($args, $i+1, 1);
 				$i--;
 				$argc--;
@@ -2007,7 +2007,7 @@ class Parser
 			}
 
 			# give headline the correct <h#> tag
-			@$head[$headlineCount] .= "<a name=\"$anchor\"></a><h".$level.$matches[2][$headlineCount] .$headline."</h".$level.">";
+			@$head[$headlineCount] .= "<a name=\"$anchor\"></a><h".$level.$matches[2][$headlineCount] .$headline.'</h'.$level.'>';
 
 			$headlineCount++;
 		}
@@ -2057,7 +2057,7 @@ class Parser
 		$fname = 'Parser::magicISBN';
 		wfProfileIn( $fname );
 
-		$a = split( 'ISBN ', " $text" );
+		$a = split( 'ISBN ', ' '.$text );
 		if ( count ( $a ) < 2 ) {
 			wfProfileOut( $fname );
 			return $text;
@@ -2083,7 +2083,7 @@ class Parser
 			} else {
 				$titleObj = Title::makeTitle( NS_SPECIAL, 'Booksources' );
 				$text .= '<a href="' .
-				$titleObj->escapeLocalUrl( "isbn={$num}" ) .
+				$titleObj->escapeLocalUrl( 'isbn='.$num ) .
 					"\" class=\"internal\">ISBN $isbn</a>";
 				$text .= $x;
 			}
@@ -2099,13 +2099,13 @@ class Parser
 		wfProfileIn( $fname );
 
 		# These next five lines are only for the ~35000 U.S. Census Rambot pages...
-		$directions = array ( "N" => "North" , "S" => "South" , "E" => "East" , "W" => "West" ) ;
+		$directions = array ( 'N' => 'North' , 'S' => 'South' , 'E' => 'East' , 'W' => 'West' ) ;
 		$text = preg_replace ( "/(\d+)&deg;(\d+)'(\d+)\" {$directions['N']}, (\d+)&deg;(\d+)'(\d+)\" {$directions['W']}/" , "(GEO +\$1.\$2.\$3:-\$4.\$5.\$6)" , $text ) ;
 		$text = preg_replace ( "/(\d+)&deg;(\d+)'(\d+)\" {$directions['N']}, (\d+)&deg;(\d+)'(\d+)\" {$directions['E']}/" , "(GEO +\$1.\$2.\$3:+\$4.\$5.\$6)" , $text ) ;
 		$text = preg_replace ( "/(\d+)&deg;(\d+)'(\d+)\" {$directions['S']}, (\d+)&deg;(\d+)'(\d+)\" {$directions['W']}/" , "(GEO +\$1.\$2.\$3:-\$4.\$5.\$6)" , $text ) ;
 		$text = preg_replace ( "/(\d+)&deg;(\d+)'(\d+)\" {$directions['S']}, (\d+)&deg;(\d+)'(\d+)\" {$directions['E']}/" , "(GEO +\$1.\$2.\$3:+\$4.\$5.\$6)" , $text ) ;
 
-		$a = split( 'GEO ', " $text" );
+		$a = split( 'GEO ', ' '.$text );
 		if ( count ( $a ) < 2 ) {
 			wfProfileOut( $fname );
 			return $text;
@@ -2126,12 +2126,12 @@ class Parser
 			$num = str_replace( '+', '', $geo );
 			$num = str_replace( ' ', '', $num );
 
-			if ( '' == $num || count ( explode ( ":" , $num , 3 ) ) < 2 ) {
+			if ( '' == $num || count ( explode ( ':' , $num , 3 ) ) < 2 ) {
 				$text .= "GEO $blank$x";
 			} else {
 				$titleObj = Title::makeTitle( NS_SPECIAL, 'Geo' );
 				$text .= '<a href="' .
-				$titleObj->escapeLocalUrl( "coordinates={$num}" ) .
+				$titleObj->escapeLocalUrl( 'coordinates='.$num ) .
 					"\" class=\"internal\">GEO $geo</a>";
 				$text .= $x;
 			}
@@ -2166,7 +2166,7 @@ class Parser
 				$url = wfmsg( 'rfcurl' );
 				$url = str_replace( '$1', $rfc, $url);
 				$sk =& $this->mOptions->getSkin();
-				$la = $sk->getExternalLinkAttributes( $url, "RFC {$rfc}" );
+				$la = $sk->getExternalLinkAttributes( $url, 'RFC '.$rfc );
 				$text .= "<a href='{$url}'{$la}>RFC {$rfc}</a>{$x}";
 			}
 		}
@@ -2316,14 +2316,14 @@ class ParserOutput
 	var $mText, $mLanguageLinks, $mCategoryLinks, $mContainsOldMagic;
 	var $mCacheTime; # Used in ParserCache
 
-	function ParserOutput( $text = "", $languageLinks = array(), $categoryLinks = array(),
+	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false )
 	{
 		$this->mText = $text;
 		$this->mLanguageLinks = $languageLinks;
 		$this->mCategoryLinks = $categoryLinks;
 		$this->mContainsOldMagic = $containsOldMagic;
-		$this->mCacheTime = "";
+		$this->mCacheTime = '';
 	}
 
 	function getText() { return $this->mText; }
@@ -2396,7 +2396,7 @@ class ParserOptions
 	function initialiseFromUser( &$userInput ) {
 		global $wgUseTeX, $wgUseCategoryMagic, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
 		
-		$fname = "ParserOptions::initialiseFromUser";
+		$fname = 'ParserOptions::initialiseFromUser';
 		wfProfileIn( $fname );
 		if ( !$userInput ) {
 			$user = new User;
@@ -2410,9 +2410,9 @@ class ParserOptions
 		$this->mUseDynamicDates = $wgUseDynamicDates;
 		$this->mInterwikiMagic = $wgInterwikiMagic;
 		$this->mAllowExternalImages = $wgAllowExternalImages;
-		wfProfileIn( "$fname-skin" );
+		wfProfileIn( $fname.'-skin' );
 		$this->mSkin =& $user->getSkin();
-		wfProfileOut( "$fname-skin" );
+		wfProfileOut( $fname.'-skin' );
 		$this->mDateFormat = $user->getOption( 'date' );
 		$this->mEditSection = $user->getOption( 'editsection' );
 		$this->mEditSectionOnRightClick = $user->getOption( 'editsectiononrightclick' );

@@ -13,40 +13,40 @@
 
 /*private*/ $wgMagicFound = false;
 
-define("MAG_REDIRECT", 0);
-define("MAG_NOTOC", 1);
-define("MAG_START", 2);
-define("MAG_CURRENTMONTH", 3);
-define("MAG_CURRENTMONTHNAME", 4);
-define("MAG_CURRENTDAY", 5);
-define("MAG_CURRENTDAYNAME", 6);
-define("MAG_CURRENTYEAR", 7);
-define("MAG_CURRENTTIME", 8);
-define("MAG_NUMBEROFARTICLES", 9);
-define("MAG_CURRENTMONTHNAMEGEN", 10);
-define("MAG_MSG", 11);
-define("MAG_SUBST", 12);
-define("MAG_MSGNW", 13);
-define("MAG_NOEDITSECTION", 14);
-define("MAG_END", 15);
-define("MAG_IMG_THUMBNAIL",  16);
-define("MAG_IMG_RIGHT",      17);
-define("MAG_IMG_LEFT",       18);
-define("MAG_IMG_NONE",       19);
-define("MAG_IMG_WIDTH",      20);
-define("MAG_IMG_CENTER",      21);
-define("MAG_INT", 22);
-define("MAG_FORCETOC", 23);
-define("MAG_SITENAME", 24);
-define("MAG_NS", 25);
-define("MAG_LOCALURL", 26);
-define("MAG_LOCALURLE", 27);
-define("MAG_SERVER", 28);
-define("MAG_IMG_FRAMED", 29);
-define("MAG_PAGENAME", 30);
-define("MAG_PAGENAMEE", 31);
-define("MAG_NAMESPACE", 32);
-define("MAG_TOC", 33);
+define('MAG_REDIRECT', 0);
+define('MAG_NOTOC', 1);
+define('MAG_START', 2);
+define('MAG_CURRENTMONTH', 3);
+define('MAG_CURRENTMONTHNAME', 4);
+define('MAG_CURRENTDAY', 5);
+define('MAG_CURRENTDAYNAME', 6);
+define('MAG_CURRENTYEAR', 7);
+define('MAG_CURRENTTIME', 8);
+define('MAG_NUMBEROFARTICLES', 9);
+define('MAG_CURRENTMONTHNAMEGEN', 10);
+define('MAG_MSG', 11);
+define('MAG_SUBST', 12);
+define('MAG_MSGNW', 13);
+define('MAG_NOEDITSECTION', 14);
+define('MAG_END', 15);
+define('MAG_IMG_THUMBNAIL',  16);
+define('MAG_IMG_RIGHT',      17);
+define('MAG_IMG_LEFT',       18);
+define('MAG_IMG_NONE',       19);
+define('MAG_IMG_WIDTH',      20);
+define('MAG_IMG_CENTER',      21);
+define('MAG_INT', 22);
+define('MAG_FORCETOC', 23);
+define('MAG_SITENAME', 24);
+define('MAG_NS', 25);
+define('MAG_LOCALURL', 26);
+define('MAG_LOCALURLE', 27);
+define('MAG_SERVER', 28);
+define('MAG_IMG_FRAMED', 29);
+define('MAG_PAGENAME', 30);
+define('MAG_PAGENAMEE', 31);
+define('MAG_NAMESPACE', 32);
+define('MAG_TOC', 33);
 
 $wgVariableIDs = array(
 	MAG_CURRENTMONTH,
@@ -105,9 +105,9 @@ class MagicWord {
 	# Preliminary initialisation
 	/* private */ function initRegex() {
 		$variableClass = Title::legalChars();
-		$escSyn = array_map( "preg_quote", $this->mSynonyms );
-		$this->mBaseRegex = implode( "|", $escSyn );
-		$case = $this->mCaseSensitive ? "" : "i";
+		$escSyn = array_map( 'preg_quote', $this->mSynonyms );
+		$this->mBaseRegex = implode( '|', $escSyn );
+		$case = $this->mCaseSensitive ? '' : 'i';
 		$this->mRegex = "/{$this->mBaseRegex}/{$case}";
 		$this->mRegexStart = "/^{$this->mBaseRegex}/{$case}";
 		$this->mVariableRegex = str_replace( "\\$1", "([$variableClass]*?)", $this->mRegex );
