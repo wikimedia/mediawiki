@@ -580,7 +580,7 @@ class Title {
 	#
 	/* private */ function secureAndSplit()
 	{
-		global $wgLang, $wgLocalInterwiki;
+		global $wgLang, $wgLocalInterwiki, $wgCapitalLinks;
 		$fname = "Title::secureAndSplit";
  		wfProfileIn( $fname );
 		
@@ -674,8 +674,10 @@ class Title {
 		}
 
 		# Initial capital letter
-		if( $this->mInterwiki == "") $t = $wgLang->ucfirst( $r );
-
+		if( $wgCapitalLinks && $this->mInterwiki == "") {
+			$t = $wgLang->ucfirst( $r );
+		}
+		
 		# Fill fields
 		$this->mDbkeyform = $t;
 		$this->mUrlform = wfUrlencode( $t );
