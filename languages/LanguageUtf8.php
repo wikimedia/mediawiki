@@ -67,7 +67,7 @@ class LanguageUtf8 extends Language {
 
 	function firstChar( $s ) {
 		preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-		'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})', $s, $matches);
+		'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})/', $s, $matches);
 		
 		return isset( $matches[1] ) ? $matches[1] : "";
 	}
