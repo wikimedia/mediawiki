@@ -95,7 +95,11 @@ function wfEmergencyAbort( $msg = "" ) {
 function wfQuery( $sql, $db, $fname = "" )
 {
 	global $wgLastDatabaseQuery, $wgOut, $wgDebugDumpSql;
-	$profName = "wfQuery(\"" . strtr( substr($sql, 0, 80 ), "\t\n\r", "   " ) . "...\")";
+
+        # wfGeneralizeSQL will probably cut down the query to reasonable
+        # logging size most of the time. The substr is really just a sanity check.
+        $profName = "wfQuery: " . substr( wfGeneralizeSQL( $sql ), 0, 255 ); 
+	
 	wfProfileIn( $profName );
 
 	if ( !is_numeric( $db ) ) {
@@ -189,6 +193,18 @@ function wfInvertTimestamp( $ts ) {
 		"0123456789",
 		"9876543210"
 	);
+}
+
+# Removes most variables from an SQL query and replaces them with X or N for numbers.
+# It's only slightly flawed. Don't use for anything important.
+function wfGeneralizeSQL( $sql )
+{
+        # This could be done faster with some arrays and a single preg_replace,
+        # but this show more clearly what's going on. 
+        $sql = preg_replace ( "/-?\d+/" , "N", $sql);
+        $sql = preg_replace ( "/([\'\"]).+?[^\\\\]\\1/", "\\1X\\1", $sql);
+        $sql = preg_replace ( "/\s+/", " ", $sql);
+        return $sql;
 }
 
 function wfFieldExists( $table, $field )
