@@ -56,7 +56,7 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgDateFormatsTa = array(
-	"முன்னுரிமை இல்லை",
+#	"முன்னுரிமை இல்லை",
 );
 
 

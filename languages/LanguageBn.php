@@ -42,7 +42,7 @@
 
 
 /* private */ $wgDateFormatsBn = array(
-  "No preference",
+#  "No preference",
 );
 
 

@@ -49,7 +49,7 @@ require_once("LanguageUtf8.php");
 
 
 /* private */ $wgDateFormatsRo = array(
-	"Nici o preferinţă",
+#	"Nici o preferinţă",
 );
 
 /* private */ $wgBookstoreListRo = array(

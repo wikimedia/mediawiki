@@ -59,7 +59,7 @@
 );
 
 /* private */ $wgDateFormatsPt = array(
-    "Sem preferência",
+#    "Sem preferência",
 );
 
 

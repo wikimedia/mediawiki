@@ -45,7 +45,7 @@
 );
 
 /* private */ $wgDateFormatsCa = array(
-	"No preference",
+#	"No preference",
 );
 
 

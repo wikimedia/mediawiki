@@ -39,7 +39,7 @@
 );
 
 /* private */ $wgDateFormatsTh = array(
-	"No preference",
+#	"No preference",
 );
 
 

@@ -45,7 +45,7 @@
 );
 
 /* private */ $wgDateFormatsMs = array(
-	"Tiada pilihan", # "No preference",
+#	"Tiada pilihan", # "No preference",
 );
 
 

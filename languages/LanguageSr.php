@@ -33,7 +33,7 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgDateFormatsSr = array(
- "Без посебних жеља",
+# "Без посебних жеља",
 );
 
 

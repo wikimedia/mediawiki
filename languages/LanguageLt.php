@@ -26,7 +26,7 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgDateFormatsLt = array(
-        "Nesvarbu",
+#        "Nesvarbu",
 );
 
 /* private */ $wgWeekdayNamesLt = array(

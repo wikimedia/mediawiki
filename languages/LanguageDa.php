@@ -56,7 +56,7 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgDateFormatsDa = array(
-	"Ingen foretrukken",
+#	"Ingen foretrukken",
 );
 
 

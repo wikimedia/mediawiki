@@ -116,7 +116,7 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgDateFormatsSl = array(
-        'No preference',
+#        'No preference',
 );
 
 
