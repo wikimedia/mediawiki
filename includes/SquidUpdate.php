@@ -245,13 +245,13 @@ class SquidUpdate {
 					$htcpTransID, $htcpSpecifier, 2);
 
 				// Send out
-				debug( "Purging URL $url via HTCP\n" );
+				wfDebug( "Purging URL $url via HTCP\n" );
 				socket_sendto( $conn, $htcpPacket, $htcpLen, 0,
 					$wgHTCPMulticastAddress, $wgHTCPPort );
 			}
 		} else {
 			$errstr = socket_strerror( socket_last_error() );
-			debug( "SquidUpdate::HTCPPurge(): Error opening UDP socket: $errstr\n" );
+			wfDebug( "SquidUpdate::HTCPPurge(): Error opening UDP socket: $errstr\n" );
 		}
 		wfProfileOut( $fname );
 	}
