@@ -8,11 +8,17 @@
 	  Updated limited version to get something working temporarily
 	  2003-10-09
 	  Be sure to run the link & index rebuilding scripts!
+	  
+	  Some more munging for charsets etc
+	  2003-11-28
 
   */
 
+/* Set these correctly! */
+$wgImportEncoding = "CP1252"; /* We convert all to UTF-8 */
+$wgRootDirectory = "/home/usemod/wiki-fi/lib-http/db/wiki";
+
 /* globals */
-$wgRootDirectory = "/Users/brion/src/wiki/convert/wiki-fy/lib-http/db/wiki";
 $wgFieldSeparator = "\xb3"; # Some wikis may use different char
 	$FS = $wgFieldSeparator ;
 	$FS1 = $FS."1" ;
@@ -211,6 +217,7 @@ function importPage( $title )
 	
 	# Current revision:
 	$text = wfStrencode( recodeText( $page->text ) );
+	$comment = wfStrencode( recodeText( $page->summary ) );
 	$minor = ($page->minor ? 1 : 0);
 	list( $userid, $username ) = checkUserCache( $page->username, $page->host );
 	$timestamp = wfUnix2Timestamp( $page->ts );
@@ -238,7 +245,7 @@ INSERT
 		$username = wfStrencode( recodeText( $username ) );
 		$timestamp = wfUnix2Timestamp( $rev->ts );
 		$inverse = wfInvertTimestamp( $timestamp );
-		$comment = wfStrencode( recodeText( $rev->text ) );
+		$comment = wfStrencode( recodeText( $rev->summary ) );
 		
 		if($any) $sql .= ",";
 		$sql .= "\n\t($namespace,'$newtitle','$text','$comment',$userid,'$username','$timestamp','$inverse',$minor)";
@@ -250,12 +257,35 @@ INSERT
 
 # Whee!
 function recodeText( $string ) {
+	global $wgImportEncoding;
 	# For currently latin-1 wikis
 	$string = str_replace( "\r\n", "\n", $string );
-	# return iconv( "CP1252", "UTF-8", $string );
-	return utf8_encode( $string );
+	$string = iconv( $wgImportEncoding, "UTF-8", $string );
+	$string = wfMungeToUtf8( $string ); # Any old &#1234; stuff
+	return $string;
 }
 
+function wfUtf8Sequence($codepoint) {
+	if($codepoint <     0x80) return chr($codepoint);
+	if($codepoint <    0x800) return chr($codepoint >>  6 & 0x3f | 0xc0) .
+                                     chr($codepoint       & 0x3f | 0x80);
+    if($codepoint <  0x10000) return chr($codepoint >> 12 & 0x0f | 0xe0) .
+                                     chr($codepoint >>  6 & 0x3f | 0x80) .
+                                     chr($codepoint       & 0x3f | 0x80);
+	if($codepoint < 0x100000) return chr($codepoint >> 18 & 0x07 | 0xf0) . # Double-check this
+	                                 chr($codepoint >> 12 & 0x3f | 0x80) .
+                                     chr($codepoint >>  6 & 0x3f | 0x80) .
+                                     chr($codepoint       & 0x3f | 0x80);
+	# Doesn't yet handle outside the BMP
+	return "&#$codepoint;";
+}
+
+function wfMungeToUtf8($string) {
+	$string = preg_replace ( '/&#([0-9]+);/e', 'wfUtf8Sequence($1)', $string );
+	$string = preg_replace ( '/&#x([0-9a-f]+);/ie', 'wfUtf8Sequence(0x$1)', $string );
+	# Should also do named entities here
+	return $string;
+}
 
 function wfStrencode( $string ) {
 	return mysql_escape_string( $string );
