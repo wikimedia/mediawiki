@@ -299,11 +299,11 @@ class Skin {
 		  (!$wgTitle->isProtected() || $wgUser->isSysop()) ) {
 			$t = wfMsg( 'editthispage' );
 			$oid = $red = '';
-			if ( !empty($redirect) ) {
+			if ( !empty($redirect) && $redirect == 'no' ) {
 				$red = "&redirect={$redirect}";
 			}
 			if ( !empty($oldid) && ! isset( $diff ) ) {
-				$oid = "&oldid={$oldid}";
+				$oid = "&oldid=" . IntVal( $oldid );
 			}
 			$s = $wgTitle->getFullURL( "action=edit{$oid}{$red}" );
 			$s = 'document.location = "' .$s .'";';
