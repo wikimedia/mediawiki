@@ -83,15 +83,15 @@ td.diff-otitle { background:#cccccc; }
 td.diff-ntitle { background:#cccccc; }
 td.diff-addedline { 
     background:#ccffcc;
-    font-size: smaller;
+    font-size: 94%;
 }
 td.diff-deletedline { 
     background:#ffffaa;
-    font-size: smaller;
+    font-size: 94%;
 }
 td.diff-context {
     background:#eeeeee;
-    font-size: smaller;
+    font-size: 94%;
 }
 span.diffchange { color: red; }
 
@@ -109,7 +109,7 @@ span.texhtml { font-family: serif; }
 #toc .tocindent { margin-left: 2em; }
 #toc .tocline { margin-bottom: 0px; }
 #toc p { margin: 0 }
-#toc .toctoggle { font-size: 94%; }
+#toc .toctoggle { font-size: 95%; }
 #toc .editsection { 
     margin-top: 0.7em; 
     font-size: 94%;
@@ -157,6 +157,9 @@ fieldset.operaprefsection { margin-left: 15em }
     margin-left: auto;
     margin-right: auto;
 }
+/* small for tables and similar */
+.small, .small * { font-size: 94%; }
+table.small { font-size: 100% }
 
 div.townBox {
     position:relative;
