@@ -612,26 +612,15 @@ class EditPage {
 		}
 		# Prepare a list of templates used by this page
 		$templates = '';
-		$id = $this->mTitle->getArticleID();
-		if ( 0 !== $id ) {
-			$db =& wfGetDB( DB_SLAVE );
-			$page = $db->tableName( 'page' );
-			$links = $db->tableName( 'links' );
-			$sql = "SELECT page_namespace,page_title,page_id ".
-				"FROM $page,$links WHERE l_to=page_id AND l_from={$id} and page_namespace=".NS_TEMPLATE;
-			$res = $db->query( $sql, "EditPage::editform" );
-			if ( false !== $res ) {
-				if ( $db->numRows( $res ) ) {
-					$templates = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
-					while ( $row = $db->fetchObject( $res ) ) {
-						if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
-							$templates .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
-						}
-					}
-					$templates .= '</ul>';
+		$articleTemplates = $this->mArticle->getUsedTemplates();
+		if ( count( $articleTemplates ) > 0 ) {
+			$templates = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
+			foreach ( $articleTemplates as $tpl ) {
+				if ( $titleObj = Title::makeTitle( NS_TEMPLATE, $tpl ) ) {
+					$templates .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
 				}
-				$db->freeResult( $res );
 			}
+			$templates .= '</ul>';
 		}
 		
 		global $wgLivePreview, $wgStylePath;
