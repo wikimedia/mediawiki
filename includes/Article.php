@@ -357,7 +357,8 @@ class Article {
 				if ( preg_match( '/\\[\\[([^\\]\\|]+)[\\]\\|]/',
 				  $s->cur_text, $m ) ) {
 					$rt = Title::newFromText( $m[1] );
-					if( $rt ) {
+					# Don't follow redirects pointing to Special:Userlogin
+					if( $rt && ! ( $rt->getNamespace() == NS_SPECIAL && $rt->getText() == 'Userlogout' ) ) {
 						# Gotta hand redirects to special pages differently:
 						# Fill the HTTP response "Location" header and ignore
 						# the rest of the page we're on.
