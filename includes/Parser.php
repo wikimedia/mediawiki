@@ -1216,7 +1216,7 @@ cl_sortkey" ;
 	/* private */ function doBlockLevels( $text, $linestart ) {
 		$fname = 'Parser::doBlockLevels';
 		wfProfileIn( $fname );
-		
+
 		# Parsing through the text line by line.  The main thing
 		# happening here is handling of block-level elements p, pre,
 		# and making lists from lines starting with * # : etc.
@@ -1235,17 +1235,15 @@ cl_sortkey" ;
 			$lastPrefixLength = strlen( $lastPrefix );
 			$preCloseMatch = preg_match("/<\\/pre/i", $oLine );
 			$preOpenMatch = preg_match("/<pre/i", $oLine );
-			if (!$this->mInPre) {
-				$this->mInPre = !empty($preOpenMatch);
-			}
 			if ( !$this->mInPre ) {
 				# Multiple prefixes may abut each other for nested lists.
 				$prefixLength = strspn( $oLine, '*#:;' );
 				$pref = substr( $oLine, 0, $prefixLength );
-				
+
 				# eh?
 				$pref2 = str_replace( ';', ':', $pref );
 				$t = substr( $oLine, $prefixLength );
+				$this->mInPre = !empty($preOpenMatch);
 			} else {
 				# Don't interpret any other prefixes in preformatted text
 				$prefixLength = 0;
