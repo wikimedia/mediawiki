@@ -175,6 +175,7 @@ If upgrading from an older release, see the file UPGRADING.
 * Allow user customization of the zh conversion tables through 
   Mediawiki:zhconversiontable
 * Add zh-min-man (back) to language names list
+* Ported $wgCopyrightIcon setting from REL1_3A
 
 === Caveats ===
 
