@@ -1586,7 +1586,7 @@ class Parser
 			$text = preg_replace_callback( "/{{{([$titleChars]*?)}}}/", 'wfArgSubstitution', $text );
 		}
 		# Template substitution
-		$regex = '/{{(['.$titleChars.']*)(\\|.*?|)}}/s';
+		$regex = '/(\\n|{)?{{(['.$titleChars.']*)(\\|.*?|)}}/s';
 		$text = preg_replace_callback( $regex, 'wfBraceSubstitution', $text );
 
 		array_pop( $this->mArgStack );
@@ -1663,21 +1663,25 @@ class Parser
 		$found = false;
 		$nowiki = false;
 		$noparse = false;
-		$itcamefromthedatabase = false;
 
 		$title = NULL;
+
+		# Need to know if the template comes at the start of a line,
+		# to treat the beginning of the template like the beginning
+		# of a line for tables and block-level elements.
+		$linestart = $matches[1];
 
 		# $part1 is the bit before the first |, and must contain only title characters
 		# $args is a list of arguments, starting from index 0, not including $part1
 
-		$part1 = $matches[1];
-		# If the second subpattern matched anything, it will start with |
+		$part1 = $matches[2];
+		# If the third subpattern matched anything, it will start with |
 
-		$args = $this->getTemplateArgs($matches[2]);
+		$args = $this->getTemplateArgs($matches[3]);
 		$argc = count( $args );
 
-		# {{{}}}
-		if ( strpos( $matches[0], '{{{' ) !== false ) {
+		# Don't parse {{{}}} because that's only for template arguments
+		if ( $linestart === '{' ) {
 			$text = $matches[0];
 			$found = true;
 			$noparse = true;
@@ -1713,7 +1717,7 @@ class Parser
 			$mwInt =& MagicWord::get( MAG_INT );
 			if ( $mwInt->matchStartAndRemove( $part1 ) ) {
 				if ( $this->incrementIncludeCount( 'int:'.$part1 ) ) {
-					$text = wfMsgReal( $part1, $args, true );
+					$text = $linestart . wfMsgReal( $part1, $args, true );
 					$found = true;
 				}
 			}
@@ -1725,12 +1729,12 @@ class Parser
 			$mwNs = MagicWord::get( MAG_NS );
 			if ( $mwNs->matchStartAndRemove( $part1 ) ) {
 				if ( intval( $part1 ) ) {
-					$text = $wgContLang->getNsText( intval( $part1 ) );
+					$text = $linestart . $wgContLang->getNsText( intval( $part1 ) );
 					$found = true;
 				} else {
 					$index = Namespace::getCanonicalIndex( strtolower( $part1 ) );
 					if ( !is_null( $index ) ) {
-						$text = $wgContLang->getNsText( $index );
+						$text = $linestart . $wgContLang->getNsText( $index );
 						$found = true;
 					}
 				}
@@ -1754,9 +1758,9 @@ class Parser
 				$title = Title::newFromText( $part1 );
 				if ( !is_null( $title ) ) {
 					if ( $argc > 0 ) {
-						$text = $title->$func( $args[0] );
+						$text = $linestart . $title->$func( $args[0] );
 					} else {
-						$text = $title->$func();
+						$text = $linestart . $title->$func();
 					}
 					$found = true;
 				}
@@ -1767,7 +1771,7 @@ class Parser
 		if ( !$found && $argc == 1 ) {
 			$mwGrammar =& MagicWord::get( MAG_GRAMMAR );
 			if ( $mwGrammar->matchStartAndRemove( $part1 ) ) {
-				$text = $wgContLang->convertGrammar( $args[0], $part1 );
+				$text = $linestart . $wgContLang->convertGrammar( $args[0], $part1 );
 				$found = true;
 			}
 		}
@@ -1778,7 +1782,7 @@ class Parser
 		# and we need to check for loops.
 		if ( !$found && isset( $this->mTemplates[$part1] ) ) {
 			# set $text to cached message.
-			$text = $this->mTemplates[$part1];
+			$text = $linestart . $this->mTemplates[$part1];
 			$found = true;
 
 			# Infinite loop test
@@ -1801,14 +1805,13 @@ class Parser
 					$articleContent = $article->getContentWithoutUsingSoManyDamnGlobals();
 					if ( $articleContent !== false ) {
 						$found = true;
-						$text = $articleContent;
-						$itcamefromthedatabase = true;
+						$text = $linestart . $articleContent;
 					}
 				}
 
 				# If the title is valid but undisplayable, make a link to it
 				if ( $this->mOutputType == OT_HTML && !$found ) {
-					$text = '[['.$title->getPrefixedText().']]';
+					$text = $linestart . '[['.$title->getPrefixedText().']]';
 					$found = true;
 				}
 
@@ -1852,28 +1855,22 @@ class Parser
 			if ( $this->mOutputType == OT_HTML && !is_null( $title ) ) {
 				$wgLinkCache->addLinkObj( $title );
 			}
-		}
 
-		# Empties the template path
-		$this->mTemplatePath = array();
-		if ( !$found ) {
-			return $matches[0];
-		} else {
 			# replace ==section headers==
 			# XXX this needs to go away once we have a better parser.
-			if ( $this->mOutputType != OT_WIKI && $itcamefromthedatabase ) {
+			if ( $this->mOutputType == OT_HTML ) {
 				if( !is_null( $title ) )
 					$encodedname = base64_encode($title->getPrefixedDBkey());
 				else
 					$encodedname = base64_encode("");
-				$matches = preg_split('/(^={1,6}.*?={1,6}\s*?$)/m', $text, -1,
+				$m = preg_split('/(^={1,6}.*?={1,6}\s*?$)/m', $text, -1,
 					PREG_SPLIT_DELIM_CAPTURE);
 				$text = '';
 				$nsec = 0;
-				for( $i = 0; $i < count($matches); $i += 2 ) {
-					$text .= $matches[$i];
-					if (!isset($matches[$i + 1]) || $matches[$i + 1] == "") continue;
-					$hl = $matches[$i + 1];
+				for( $i = 0; $i < count($m); $i += 2 ) {
+					$text .= $m[$i];
+					if (!isset($m[$i + 1]) || $m[$i + 1] == "") continue;
+					$hl = $m[$i + 1];
 					if( strstr($hl, "<!--MWTEMPLATESECTION") ) {
 						$text .= $hl;
 						continue;
@@ -1885,6 +1882,19 @@ class Parser
 					$nsec++;
 				}
 			}
+
+			# If the template begins with a table or block-level
+			# element, it should be treated as beginning a new line.
+			if ($linestart !== '\n' && preg_match('/^({\\||:|;|#|\*)/', $text)) {
+				$text = "\n" . $text;
+			}
+		}
+
+		# Empties the template path
+		$this->mTemplatePath = array();
+		if ( !$found ) {
+			return $matches[0];
+		} else {
 			return $text;
 		}
 	}
