@@ -9,10 +9,10 @@ define ('LINKCACHE_IMAGE', 2);
 class LinkCache {	
 	// Increment $mClassVer whenever old serialized versions of this class
 	// becomes incompatible with the new version.
-	/* private */ var $mClassVer = 1; 
+	/* private */ var $mClassVer = 2;
 
 	/* private */ var $mGoodLinks, $mBadLinks, $mActive;
-	/* private */ var $mImageLinks; 
+	/* private */ var $mImageLinks, $mCategoryLinks;
 	/* private */ var $mPreFilled, $mOldGoodLinks, $mOldBadLinks;
 	
 	/* private */ function getKey( $title ) {
@@ -27,6 +27,7 @@ class LinkCache {
 		$this->mGoodLinks = array();
 		$this->mBadLinks = array();
 		$this->mImageLinks = array();
+		$this->mCategoryLinks = array();
 		$this->mOldGoodLinks = array();
 		$this->mOldBadLinks = array();
 	}
@@ -68,6 +69,14 @@ class LinkCache {
 	{
 		if ( $this->mActive ) { $this->mImageLinks[$nt->getDBkey()] = 1; }
 	}
+	
+	function addCategoryLink( $title, $sortkey ) {
+		if ( $this->mActive ) { $this->mCategoryLinks[$title] = $sortkey; }
+	}
+	
+	function addCategoryLinkObj( &$nt, $sortkey ) {
+		$this->addCategoryLink( $nt->getDBkey(), $sortkey );
+	}
 
 	function clearBadLink( $title )
 	{
@@ -87,6 +96,7 @@ class LinkCache {
 	function getGoodLinks() { return $this->mGoodLinks; }
 	function getBadLinks() { return array_keys( $this->mBadLinks ); }
 	function getImageLinks() { return $this->mImageLinks; }
+	function getCategoryLinks() { return $this->mCategoryLinks; }
 
 	function addLink( $title )
 	{

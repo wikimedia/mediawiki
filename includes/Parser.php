@@ -316,18 +316,11 @@ class Parser
 		$data = array () ;
 		$id = $this->mTitle->getArticleID() ;
 
-		# For existing categories
-		if( $id ) {
-			$sql = "SELECT DISTINCT cur_title,cur_namespace FROM cur,links WHERE l_to={$id} AND l_from=cur_id";
-			$res = wfQuery ( $sql, DB_READ ) ;
-			while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
-		} else {
-			# For non-existing categories
-			$t = wfStrencode( $this->mTitle->getPrefixedDBKey() );
-			$sql = "SELECT DISTINCT cur_title,cur_namespace FROM cur,brokenlinks WHERE bl_to='$t' AND bl_from=cur_id" ;
-			$res = wfQuery ( $sql, DB_READ ) ;
-			while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
-		}
+		# FIXME: add limits
+		$t = wfStrencode( $this->mTitle->getDBKey() );
+		$sql = "SELECT DISTINCT cur_title,cur_namespace FROM cur,categorylinks WHERE cl_to='$t' AND cl_from=cur_id ORDER BY cl_sortkey" ;
+		$res = wfQuery ( $sql, DB_READ ) ;
+		while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
 
 		# For all pages that link to this category
 		foreach ( $data AS $x )
@@ -345,18 +338,14 @@ class Parser
 		wfFreeResult ( $res ) ;
 
 		# Showing subcategories
-		if ( count ( $children ) > 0 )
-		{
-			asort ( $children ) ;
+		if ( count ( $children ) > 0 ) {
 			$r .= "<h2>".wfMsg("subcategories")."</h2>\n" ;
 			$r .= implode ( ", " , $children ) ;
 		}
 
 		# Showing pages in this category
-		if ( count ( $articles ) > 0 )
-		{
+		if ( count ( $articles ) > 0 ) {
 			$ti = $this->mTitle->getText() ;
-			asort ( $articles ) ;
 			$h =  wfMsg( "category_header", $ti );
 			$r .= "<h2>{$h}</h2>\n" ;
 			$r .= implode ( ", " , $articles ) ;
@@ -570,9 +559,9 @@ class Parser
 		$text = $sk->transformContent( $text );
 
 		if ( !isset ( $this->categoryMagicDone ) ) {
-		   $text .= $this->categoryMagic () ;
-		   $this->categoryMagicDone = true ;
-		   }
+			$text .= $this->categoryMagic () ;
+			$this->categoryMagicDone = true ;
+		}
 
 		wfProfileOut( $fname );
 		return $text;
@@ -1021,7 +1010,8 @@ class Parser
 		} else {
 			$link = substr( $m[1], 1 );
 		}
-		if( "" == $text )
+		$wasblank = ( "" == $text );
+		if( $wasblank )
 			$text = $link;
 
 		$nt = Title::newFromText( $link );
@@ -1045,7 +1035,13 @@ class Parser
 			if ( $ns == $category ) {
 				$t = $nt->getText() ;
 				$nnt = Title::newFromText ( Namespace::getCanonicalName($category).":".$t ) ;
+				
+				$wgLinkCache->suspend(); # Don't save in links/brokenlinks
 				$t = $sk->makeLinkObj( $nnt, $t, "", "" , $prefix );
+				$wgLinkCache->resume();
+				
+				$sortkey = $wasblank ? $this->mTitle->getPrefixedText() : $text;
+				$wgLinkCache->addCategoryLinkObj( $nt, $sortkey );
 				$this->mOutput->mCategoryLinks[] = $t ;
 				$s .= $prefix . $trail ;
 				return $s ;

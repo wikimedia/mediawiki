@@ -177,3 +177,6 @@ patch-user-realname.sql
 	object cache to cover some slow operations w/o memcached.
 patch-querycache.sql
 patch-objectcache.sql
+
+* 2004-05-14: Add categorylinks table for handling category membership
+patch-categorylinks.sql
