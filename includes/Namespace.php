@@ -51,18 +51,6 @@ if( defined( 'MEDIAWIKI' ) && is_array( $wgExtraNamespaces ) ) {
  */
 class Namespace {
 
-	/**#@+
-	 * These functions are deprecated
-	 * @deprecated
-	 */
-	function getSpecial() { return NS_SPECIAL; }
-	function getUser() { return NS_USER; }
-	function getWikipedia() { return NS_PROJECT; }
-	function getImage() { return NS_IMAGE; }
-	function getMedia() { return NS_MEDIA; }
-	function getCategory() { return NS_CATEGORY; }
-	/**#@-*/
-
 	/**
 	 * Check if the given namespace might be moved
 	 * @return bool
