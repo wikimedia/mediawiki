@@ -1,9 +1,39 @@
 = MediaWiki release notes =
 
-Stable branch snapshot, release 2003-11-18. This is the version of MediaWiki
-that we're running on Wikipedia as of this date.
+== Version 1.1.0, 2003-12-08 ==
 
-== Overview of changes from mediawiki-20031117 release: ==
+This is the new production release. Any following 1.1.x releases are expected
+to contain only bug fixes; developments of new features will go towards a 1.2.0
+release.
+
+New features in 1.1:
+* New wiki table syntax:
+  http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide:_Using_tables
+* User-editable interface messages:
+  http://meta.wikipedia.org/wiki/MediaWiki_namespace
+* XML-wrapped page source export with optional history:
+  http://meta.wikipedia.org/wiki/XML_import_and_export
+  (There is not yet an import function!)
+
+Fixes and tweaks:
+* linkscc table caches link data for rendering; faster rebuildlinks.php
+* Numerous bugs in Cologne Blue skin fixed
+* Login gives warning about missing cookies
+* Block log, protection log added; deletion log now includes undeletions
+* Deletion & upload logs now escape comment text properly
+* Problems with <nowiki> segments in section titles etc mitigated
+* Contributions offset and minor edit bugs fixed
+* Whatlinkshere now sorted alphabetically
+* Various small bugs fixed.
+
+=== Database changes ===
+
+"linkscc" table added. If upgrading manually (rather than with update.php),
+run maintenance/archives/patch-linkscc.sql to create the table.
+
+Older releases were dated snapshots from the old 'stable' branch:
+
+== mediawiki-20031118 ==
 
 * Image deletion fixed.
 * Deletion of image old revisions now restricted to sysops
@@ -11,7 +41,7 @@ that we're running on Wikipedia as of this date.
 * Fixed maintenance scripts broken by last release's security fix
 * Many errors in rebuildlinks script fixed.
 
-== Overview of changes from mediawiki-20031107 release: ==
+== mediawiki-20031117 ==
 
 * SECURITY FIX: stricter checking of include path
 * Fixed user contributions next/prev bug
@@ -33,7 +63,7 @@ that we're running on Wikipedia as of this date.
 No database changes since 20031107; upgrading should be clean.
 
 
-== Overview of changes from mediawiki-20030829 release: ==
+== mediawiki-20031107 ==
 
 * Fixed various bugs!
 * Some speed improvements from tweaks to the table indexes
@@ -47,7 +77,7 @@ No database changes since 20031107; upgrading should be clean.
 * Uploads disabled by default (see below)
 
 
-== Security note ==
+=== Security note ===
 
 Uploads are now disabled by default. If you've set up a secure configuration
 you can reenable uploads by putting:
@@ -78,7 +108,7 @@ stealing JavaScript attacks. Example Apache config fragment:
   </Directory>
 
 
-== Database updates ==
+=== Database updates ===
 
 If you're using update.php, the necessary database changes should
 be made automatically.
@@ -96,7 +126,7 @@ To copy in the Wikipedia language-prefix interwikis as well, add:
   wikipedia-interwiki.sql
 
 
-== Translations ==
+=== Translations ===
 
 New interface localization files are included for:
   fy Frisian
@@ -106,7 +136,7 @@ New interface localization files are included for:
   sr Serbian
 
 
-== Memcached ==
+=== Memcached ===
 
 Memcached is a distributed cache system. See http://www.danga.com/memcached/
 MediaWiki can optionally use memcached to store some data between calls
@@ -132,7 +162,7 @@ volatile; login sessions will fail dramatically if memcached is unavailable
 when this option is turned on.
 
 
-== Online documentation ==
+=== Online documentation ===
 
 Documentation for both end-users and site administrators is currently being
 built up on Meta-Wikipedia, and is covered under the GNU Free Documentation
@@ -141,7 +171,7 @@ License:
   http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide
 
 
-== Mailing list ==
+=== Mailing list ===
 
 A MediaWiki-l mailing list has been set up distinct from the Wikipedia
 wikitech-l list:
@@ -149,15 +179,19 @@ wikitech-l list:
   http://mail.wikipedia.org/mailman/listinfo/mediawiki-l
 
 
-== UseModWiki import script ==
+=== UseModWiki import script ===
 
 A stripped-down UseModWiki import script is available in the maintenance
 subdirectory. It is incomplete and requires a lot of manual clean-up, but
 does function for the brave and pure of heart.
 
 
-== Test suite removed ==
+=== Test suite removed ===
 
 The unmaintained Java-based test suite has been removed from the tarball
 release. If you really want it you can check it out from CVS.
 
+
+== mediawiki-20030829 ==
+
+First release under MediaWiki name.
