@@ -183,7 +183,7 @@ class Article {
 	# Load the revision (including cur_text) into this object
 	function loadContent( $noredir = false )
 	{
-		global $wgOut, $wgMwRedir, $wgRequest;
+		global $wgOut, $wgMwRedir, $wgRequest, $wgIsPg;
 
 		# Query variables :P
 		$oldid = $wgRequest->getVal( 'oldid' );
@@ -267,8 +267,10 @@ class Article {
 			$this->mTitle->mRestrictionsLoaded = true;
 			wfFreeResult( $res );
 		} else { # oldid set, retrieve historical version
-			$sql = 'SELECT old_namespace,old_title,old_text,old_timestamp,old_user,old_user_text,old_comment,old_flags FROM old ' .
-			  "WHERE old_id={$oldid}";
+			$oldtable=$wgIsPg?'"old"':'old';
+			$sql = "SELECT old_namespace,old_title,old_text,old_timestamp,".
+				"old_user,old_user_text,old_comment,old_flags FROM old ".
+			  	"WHERE old_id={$oldid}";
 			$res = wfQuery( $sql, DB_READ, $fname );
 			if ( 0 == wfNumRows( $res ) ) {
 				return;
@@ -296,7 +298,7 @@ class Article {
 	# Gets the article text without using so many damn globals
 	# Returns false on error
 	function getContentWithoutUsingSoManyDamnGlobals( $oldid = 0, $noredir = false ) {
-		global $wgMwRedir;
+		global $wgMwRedir, $wgIsPg;
 
 		if ( $this->mContentLoaded ) {
 			return $this->mContent;
@@ -352,7 +354,8 @@ class Article {
 			$this->mTitle->mRestrictionsLoaded = true;
 			wfFreeResult( $res );
 		} else { # oldid set, retrieve historical version
-			$sql = 'SELECT old_text,old_timestamp,old_user,old_flags FROM old ' .
+			$oldtable=$wgIsPg?'"old"':'old';
+			$sql = "SELECT old_text,old_timestamp,old_user,old_flags FROM $oldtable " .
 			  "WHERE old_id={$oldid}";
 			$res = wfQuery( $sql, DB_READ, $fname );
 			if ( 0 == wfNumRows( $res ) ) { 
@@ -616,7 +619,7 @@ class Article {
 	/* private */ function insertNewArticle( $text, $summary, $isminor, $watchthis )
 	{
 		global $wgOut, $wgUser, $wgLinkCache, $wgMwRedir;
-		global $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
+		global $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer, $wgIsPg, $wgIsMySQL;
 		
 		$fname = 'Article::insertNewArticle';
 
@@ -632,11 +635,22 @@ class Article {
 		$won = wfInvertTimestamp( $now );
 		wfSeedRandom();
 		$rand = number_format( mt_rand() / mt_getrandmax(), 12, '.', '' );
+		
+		if ($wgIsPg) {
+			$cur_id_column="cur_id,";
+			$cur_id=wfGetSQL(""," nextval('cur_cur_id_seq')");
+			$cur_id_value="{$cur_id},";
+		} else {
+			$cur_id_column="";
+			$cur_id="";
+			$cur_id_value="";
+		}
+
 		$isminor = ( $isminor && $wgUser->getID() ) ? 1 : 0;
-		$sql = 'INSERT INTO cur (cur_namespace,cur_title,cur_text,' .
+		$sql = "INSERT INTO cur ({$cur_id_column}cur_namespace,cur_title,cur_text," .
 		  'cur_comment,cur_user,cur_timestamp,cur_minor_edit,cur_counter,' .
 		  'cur_restrictions,cur_user_text,cur_is_redirect,' .
-		  "cur_is_new,cur_random,cur_touched,inverse_timestamp) VALUES ({$ns},'" . wfStrencode( $ttl ) . "', '" .
+		  "cur_is_new,cur_random,cur_touched,inverse_timestamp) VALUES ({$cur_id_value}{$ns},'" . wfStrencode( $ttl ) . "', '" .
 		  wfStrencode( $text ) . "', '" .
 		  wfStrencode( $summary ) . "', '" .
 		  $wgUser->getID() . "', '{$now}', " .
@@ -644,7 +658,7 @@ class Article {
 		  wfStrencode( $wgUser->getName() ) . "', $redir, 1, $rand, '{$now}', '{$won}')";
 		$res = wfQuery( $sql, DB_WRITE, $fname );
 
-		$newid = wfInsertId();
+		$newid = $wgIsPg?$cur_id:wfInsertId();
 		$this->mTitle->resetArticleID( $newid );
 
 		Article::onArticleCreate( $this->mTitle );
@@ -751,6 +765,7 @@ class Article {
 		global $wgOut, $wgUser, $wgLinkCache;
 		global $wgDBtransactions, $wgMwRedir;
 		global $wgUseSquid, $wgInternalServer;
+		global $wgIsPg;
 		$fname = 'Article::updateArticle';
 
 		if ( $this->mMinorEdit ) { $me1 = 1; } else { $me1 = 0; }
@@ -795,9 +810,22 @@ class Article {
 			# This overwrites $oldtext if revision compression is on
 			$flags = Article::compressRevisionText( $oldtext );
 			
-			$sql = 'INSERT INTO old (old_namespace,old_title,old_text,' .
+			$oldtable=$wgIsPg?'"old"':'old';
+			if ($wgIsPg) {
+				$oldtable='"old"';
+				$old_id_column='old_id,';
+				$old_id=wfGetSQL(""," nextval('old_old_id_seq')");
+				$old_id_value=$old_id.',';
+			} else {
+				$oldtable='old';
+				$old_id_column='';
+				$old_id_value='';
+			}
+
+			$sql = "INSERT INTO $oldtable ({$old_id_column}old_namespace,old_title,old_text," .
 			  'old_comment,old_user,old_user_text,old_timestamp,' .
 			  'old_minor_edit,inverse_timestamp,old_flags) VALUES (' .
+			  $old_id_value.
 			  $this->mTitle->getNamespace() . ", '" .
 			  wfStrencode( $this->mTitle->getDBkey() ) . "', '" .
 			  wfStrencode( $oldtext ) . "', '" .
@@ -807,7 +835,8 @@ class Article {
 			  $this->getTimestamp() . "', " . $me1 . ", '" .
 			  wfInvertTimestamp( $this->getTimestamp() ) . "','$flags')";
 			$res = wfQuery( $sql, DB_WRITE, $fname );
-			$oldid = wfInsertID( $res );
+
+			$oldid = $wgIsPg?$old_id:wfInsertId( $res );
 
 			$bot = (int)($wgUser->isBot() || $forceBot);
 			RecentChange::notifyEdit( $now, $this->mTitle, $me2, $wgUser, $summary, 
@@ -1035,7 +1064,7 @@ class Article {
 	# UI entry point for page deletion 
 	function delete()
 	{
-		global $wgUser, $wgOut, $wgMessageCache, $wgRequest;
+		global $wgUser, $wgOut, $wgMessageCache, $wgRequest, $wgIsPg;
 		$fname = 'Article::delete';
 		$confirm = $wgRequest->getBool( 'wpConfirm' ) && $wgRequest->wasPosted();
 		$reason = $wgRequest->getText( 'wpReason' );
@@ -1071,7 +1100,8 @@ class Article {
 		$ns = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getDBkey();
 		$etitle = wfStrencode( $title );
-		$sql = "SELECT old_text,old_flags FROM old WHERE old_namespace=$ns and old_title='$etitle' ORDER BY inverse_timestamp LIMIT 1";
+		$oldtable=$wgIsPg?'"old"':'old';
+		$sql = "SELECT old_text,old_flags FROM $oldtable WHERE old_namespace=$ns and old_title='$etitle' ORDER BY inverse_timestamp LIMIT 1";
 		$res = wfQuery( $sql, DB_READ, $fname );
 		if( ($old=wfFetchObject($res)) && !$confirm ) {
 			$skin=$wgUser->getSkin();
@@ -1324,7 +1354,7 @@ class Article {
 
 	function rollback()
 	{
-		global $wgUser, $wgLang, $wgOut, $wgRequest, $wgIsMySQL;
+		global $wgUser, $wgLang, $wgOut, $wgRequest, $wgIsMySQL, $wgIsPg;
 
 		if ( ! $wgUser->isSysop() ) {
 			$wgOut->sysopRequired();
@@ -1374,8 +1404,9 @@ class Article {
 		# Get the last edit not by this guy
 
 		$use_index=$wgIsMySQL?"USE INDEX (name_title_timestamp)":"";
+		$oldtable=$wgIsPg?'"old"':'old';
 		$sql = 'SELECT old_text,old_user,old_user_text,old_timestamp,old_flags ' .
-		"FROM old {$use_index}" .
+		"FROM $oldtable {$use_index}" .
 		"WHERE old_namespace={$n} AND old_title='{$tt}'" .
 		"AND (old_user <> {$uid} OR old_user_text <> '{$ut}')" .
 		'ORDER BY inverse_timestamp LIMIT 1';
@@ -1546,7 +1577,7 @@ class Article {
 
 	# Edit an article without doing all that other stuff
 	function quickEdit( $text, $comment = '', $minor = 0 ) {
-		global $wgUser, $wgMwRedir;
+		global $wgUser, $wgMwRedir, $wgIsPg;
 		$fname = 'Article::quickEdit';
 		wfProfileIn( $fname );
 
@@ -1556,7 +1587,8 @@ class Article {
 		$timestamp = wfTimestampNow();
 		
 		# Save to history
-		$sql = 'INSERT INTO old (old_namespace,old_title,old_text,old_comment,old_user,old_user_text,old_timestamp,inverse_timestamp)' .
+                $oldtable=$wgIsPg?'"old"':'old';
+		$sql = "INSERT INTO $oldtable (old_namespace,old_title,old_text,old_comment,old_user,old_user_text,old_timestamp,inverse_timestamp)" .
 		  'SELECT cur_namespace,cur_title,cur_text,cur_comment,cur_user,cur_user_text,cur_timestamp,99999999999999-cur_timestamp' .
 		  "FROM cur WHERE cur_namespace=$ns AND cur_title='$encDbKey'";
 		wfQuery( $sql, DB_WRITE );
