@@ -66,4 +66,7 @@ textarea {
     text-align: left;
     overflow: hidden;
 }
+div.editsection {
+    position: relative;
+}
 /*{ border:1px solid Red !important;}*/
