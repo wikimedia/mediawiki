@@ -69,8 +69,8 @@ function getAuthorCredits($article) {
 	$author_credit = wfMsg('anonymous');
     } else {
 	
-	$real_name = User::whoIsReal($last_author);
-	$user_name = User::whoIs($last_author);
+	$real_name = htmlspecialchars( User::whoIsReal($last_author) );
+	$user_name = htmlspecialchars( User::whoIs($last_author) );
 	
 	if (!empty($real_name)) {
 	    $author_credit = creditLink($user_name, $real_name);
@@ -117,9 +117,9 @@ function getContributorCredits($article, $cnt, $showIfMax) {
     foreach ($contributors as $user_parts) {
 	if ($user_parts[0] != 0) {
 	    if ($wgAllowRealName && !empty($user_parts[2])) {
-		$real_names[] = creditLink($user_parts[1], $user_parts[2]);
+		$real_names[] = htmlspecialchars( creditLink($user_parts[1], $user_parts[2]) );
 	    } else {
-		$user_names[] = creditLink($user_parts[1]);
+		$user_names[] = htmlspecialchars( creditLink($user_parts[1]) );
 	    }
 	} else {
 	    $anon = wfMsg('anonymous');
