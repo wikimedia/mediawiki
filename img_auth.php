@@ -5,7 +5,9 @@
 # everyone to be able to access. Your server must support PATH_INFO, CGI-based configurations
 # generally don't. 
 
+# Valid web server entry point, enable includes
 define( "MEDIAWIKI", true );
+
 require_once( "./LocalSettings.php" );
 require_once( "includes/Setup.php" );
 

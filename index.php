@@ -10,7 +10,9 @@ if(!file_exists("LocalSettings.php")) {
 	die( "You'll have to <a href='config/index.php'>set the wiki up</a> first!" );
 }
 
+# Valid web server entry point, enable includes
 define( "MEDIAWIKI", true );
+
 require_once( "./includes/Defines.php" );
 require_once( "./LocalSettings.php" );
 require_once( "includes/Setup.php" );
