@@ -186,7 +186,7 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		var cPos=startPos+(tagOpen.length+myText.length+tagClose.length);
 		txtarea.selectionStart=cPos;
 		txtarea.selectionEnd=cPos;
-		txtarea.scrollTop=scrollTop
+		txtarea.scrollTop=scrollTop;
 
 	// All others
 	} else {
