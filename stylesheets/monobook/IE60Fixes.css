@@ -1,6 +1,7 @@
 /* 6.0 - only fixes */
 /* content area */ 
-body { font-family: Verdana, Arial, sans-serif; }
+/* Bitstream Vera fonts are sometimes defective */
+body, h1, h2, h3, h4, h5, h6 { font-family: Verdana, Arial, sans-serif; }
 /* workaround for various ie float bugs */
 #column-content { 
     float: none; 

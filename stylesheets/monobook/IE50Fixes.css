@@ -23,6 +23,8 @@
 
 /* IE 5 & 5.5 interpret keyword sizes one off */
 body { font: xx-small Verdana, Arial, sans-serif; }
+/* and Bitstream Vera fonts are sometimes defective */
+h1, h2, h3, h4, h5, h6 { font-family: Verdana, Arial, sans-serif; }
 /*
 ** the edit tabs
 */

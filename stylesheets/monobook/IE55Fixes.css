@@ -30,6 +30,9 @@
 #p-personal { padding-bottom: 0.1em; }
 
 body { font: xx-small Verdana, Arial, sans-serif; }
+/* Bitstream Vera fonts are sometimes defective */
+h1, h2, h3, h4, h5, h6 { font-family: Verdana, Arial, sans-serif; }
+
 #p-cactions {
     width: 76% !important;
     z-index: 3 !important;
