@@ -171,33 +171,34 @@ $conf = new ConfigData;
 install_version_checks();
 print "<li>PHP " . phpversion() . " ok</li>\n";
 
-/*
 $conf->zlib = function_exists( "gzencode" );
-$z = $conf->zlib ? "Have" : "No";
-print "<li>$z zlib support</li>\n";
-*/
+if( $conf->zlib ) {
+	print "<li>Have zlib support; enabling output compression.</li>\n";
+} else {
+	print "<li>No zlib support.</li>\n";
+}
+
+$conf->ImageMagick = false;
 
 $conf->HaveGD = function_exists( "imagejpeg" );
 if( $conf->HaveGD ) {
 	print "<li>Found GD graphics library built-in, image thumbnailing will be enabled if you enable uploads.</li>\n";
 } else {
-	print "<li>No built-in GD library, image thumbnailing disabled.</li>\n";
+	$imcheck = array( "/usr/bin", "/usr/local/bin", "/sw/bin" );
+	foreach( $imcheck as $dir ) {
+		$im = "$dir/convert";
+		if( file_exists( $im ) ) {
+			print "<li>Found ImageMagick: <tt>$im</tt>; image thumbnailing will be enabled if you enable uploads.</li>\n";
+			$conf->ImageMagick = $im;
+			break;
+		}
+	}
+	if( !$conf->ImageMagick ) {
+		print "<li>Couldn't find GD library or ImageMagick; image thumbnailing disabled.</li>\n";
+	}
 }
 
-/*
-if( file_exists( "/usr/bin/convert" ) ) {
-	$conf->ImageMagick = "/usr/bin/convert";
-	print "<li>Found ImageMagick: /usr/bin/convert</li>\n";
-} elseif( file_exists( "/usr/local/bin/convert" ) ) {
-	$conf->ImageMagick = "/usr/local/bin/convert";
-	print "<li>Found ImageMagick: /usr/local/bin/convert</li>\n";
-} else {
-	$conf->ImageMagick = false;
-	print "<li>No ImageMagick.</li>\n";
-}
-*/
-
-$conf->UseImageResize = $conf->HaveGD;
+$conf->UseImageResize = $conf->HaveGD || $conf->ImageMagick;
 
 # $conf->IP = "/Users/brion/Sites/inplace";
 chdir( ".." );
@@ -411,9 +412,9 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			  wfStrencode( wfMsg( "mainpagetext" ) ) . "','$now','$won','$now')";
 			$wgDatabase->query( $sql, $fname );
 			
-			print "<li>";
+			print "<li><pre>";
 			initialiseMessages();
-			print "</li>\n";
+			print "</pre></li>\n";
 			
 			if( $conf->Root ) {
 				# Grant user permissions
@@ -600,6 +601,10 @@ function writeLocalSettings( $conf ) {
 		$conf->LanguageCode = "en";
 		$conf->Encoding = "UTF-8";
 	}
+	$zlib = ($conf->zlib ? "" : "# ");
+	$magic = ($conf->ImageMagick ? "" : "# ");
+	$convert = ($conf->ImageMagick ? $conf->ImageMagick : "/usr/bin/convert" );
+	
 	$sep = (DIRECTORY_SEPARATOR == "\\") ? ";" : ":";
 	return "
 # This file was automatically generated. Don't touch unless you
@@ -612,6 +617,9 @@ include_once( \"DefaultSettings.php\" );
 
 if( \$wgCommandLineMode ) {
 	die( \"Can't use command-line utils with in-place install yet, sorry.\" );
+} else {
+	## Compress output if the browser supports it
+	{$zlib}if( !ini_get( 'zlib.output_compression' ) ) ob_start( 'ob_gzhandler' );
 }
 
 \$wgSitename         = \"{$conf->Sitename}\";
@@ -645,6 +653,8 @@ if( \$wgCommandLineMode ) {
 ## is writable, then uncomment this:
 # \$wgDisableUploads		= false;
 \$wgUseImageResize		= {$conf->UseImageResize};
+{$magic}\$wgUseImageMagick = true;
+{$magic}\$wgImageMagickConvertCommand = \"{$convert}\";
 
 ## If you have the appropriate support software installed
 ## you can enable inline LaTeX equations:
