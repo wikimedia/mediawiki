@@ -1783,10 +1783,10 @@ class Skin {
 			$thumbUrl  = $url;
 		} else {
 			$boxheight  = intval( $height/($width/$boxwidth) );
-			if ( $boxwidth > $width ) {
-				$boxwidth  = $width;
-				$boxheight = $height;
-			}
+			# if ( $boxwidth > $width ) {
+			# 	$boxwidth  = $width;
+			#	$boxheight = $height;
+			#}
 			$thumbUrl = $img->createThumb( $boxwidth );
 		}
 		$oboxwidth = $boxwidth + 2;
