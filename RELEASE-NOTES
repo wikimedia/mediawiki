@@ -270,6 +270,7 @@ If upgrading from an older release, see the file UPGRADE;
 * Add fur/Furlan/Friulian to language names list
 * Add TitleMoveComplete hook on page renames
 * Allow simple comments for each translation rules in MW:Zhconversiontable
+* (bug 1402) Make link color of tab subject page link on talk page indicate whether article exists
 
 === Caveats ===
 
