@@ -227,8 +227,8 @@ function setupLangObj(&$langclass, $langcode) {
 	global $wgUseLatin1;
 
 
-	if( ! class_exists( $langclass ) || ($langcode == 'en' && !$wgUseLatin1) ) {
-# Default to English/UTF-8
+	if( ! class_exists( $langclass ) ) {
+		# Default to English/UTF-8
 		require_once( 'languages/LanguageUtf8.php' );
 		$langclass = 'LanguageUtf8';
 	}
@@ -238,8 +238,8 @@ function setupLangObj(&$langclass, $langcode) {
 		print "No language class ($wgLang)\N";
 	}
 
-	if( $wgUseLatin1 && $langcode != 'en' ) {
-# For non-UTF-8 non-English.
+	if( $wgUseLatin1 ) {
+		# For non-UTF-8 latin-1 downconversion
 		require_once( 'languages/LanguageLatin1.php' );
 		$xxx = new LanguageLatin1( $lang );
 		unset( $lang );

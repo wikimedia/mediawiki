@@ -1,7 +1,9 @@
 <?php
 # See language.doc
 
-class LanguageEn extends Language {
+require_once( 'LanguageUtf8.php' );
+
+class LanguageEn extends LanguageUtf8 {
 	# Inherit everything
 }
 
