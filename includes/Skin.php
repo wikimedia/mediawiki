@@ -1164,21 +1164,42 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 	#
 	function makeLink( $title, $text = "", $query = "", $trail = "" ) {
 		wfProfileIn( "Skin::makeLink" );
-		$result = $this->makeLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+	 	$nt = Title::newFromText( $title );
+		if ($nt) {		
+			$result = $this->makeLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+		} else {
+			$result = $text == "" ? $title : $text;
+		}	
+		
 		wfProfileOut( "Skin::makeLink" );
 		return $result;
 	}
 
 	function makeKnownLink( $title, $text = "", $query = "", $trail = "" ) {
-		return $this->makeKnownLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+		$nt = Title::newFromText( $title );
+		if ($nt) {		
+			return $this->makeKnownLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+		} else {
+			return $text == "" ? $title : $text;
+		}
 	}
 
 	function makeBrokenLink( $title, $text = "", $query = "", $trail = "" ) {
-		return $this->makeBrokenLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+		$nt = Title::newFromText( $title );
+		if ($nt) {		
+			return $this->makeBrokenLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+		} else {
+			return $text == "" ? $title : $text;
+		}
 	}
 	
 	function makeStubLink( $title, $text = "", $query = "", $trail = "" ) {
-		return $this->makeStubLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+		$nt = Title::newFromText( $title );
+		if ($nt) {		
+			return $this->makeStubLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+		} else {
+			return $text == "" ? $title : $text;
+		}
 	}
 
 	# Pass a title object, not a title string
