@@ -292,9 +292,8 @@ class ImagePage extends Article {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
 		$sk = $wgUser->getSkin();
-		$loglink = $sk->makeKnownLink( $wgContLang->getNsText(
-		  Namespace::getWikipedia() ) .
-		  ':' . wfMsg( 'dellogpage' ), wfMsg( 'deletionlog' ) );
+		$loglink = $sk->makeKnownLink( $wgContLang->getNsText( NS_SPECIAL ) .
+		  ':Log/delete', wfMsg( 'deletionlog' ) );
 
 		$text = wfMsg( 'deletedtext', $deleted, $loglink );
 
