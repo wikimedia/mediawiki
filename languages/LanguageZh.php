@@ -1,7 +1,8 @@
 <?php
 require_once( "LanguageZh_cn.php");
 require_once( "LanguageZh_tw.php");
-
+require_once( "LanguageZh_sg.php");
+require_once( "LanguageZh_hk.php");
 /* caching the conversion tables */
 $zh2TW = $wgMemc->get($key1 = "$wgDBname:zhConvert:tw");
 $zh2CN = $wgMemc->get($key2 = "$wgDBname:zhConvert:cn");
