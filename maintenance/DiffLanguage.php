@@ -79,7 +79,7 @@ if ( isset($args[0]) ) {
 # include the language if it's not the already loaded one
 if($lang != $wgLanguageCode) {
 	print "Including language file for $lang.\n";
-	include("Language{$lang}.php");
+	include_once("Language{$lang}.php");
 }
 
 /* ugly hack to load the correct array, if you have a better way

@@ -1,6 +1,6 @@
 <?php
 
-include( "LanguageUtf8.php" );
+include_once( "LanguageUtf8.php" );
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"

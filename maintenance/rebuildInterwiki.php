@@ -5,7 +5,7 @@
 $oldCwd = getcwd();
 
 $optionsWithArgs = array( "o" );
-include( "commandLine.inc" );
+include_once( "commandLine.inc" );
 
 class Site {
 	var $suffix, $lateral, $url;
