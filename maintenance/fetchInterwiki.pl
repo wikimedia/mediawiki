@@ -35,6 +35,9 @@ print IW <<arrgghsomanyofthem
 	"PMEG"	=>	"http://www.bertilow.com/pmeg/\$1.php",
 		# ekz [[PMEG:gramatiko/kunligaj vortetoj/au]]
 	"EnciclopediaLibre" => "http://enciclopedia.us.es/wiki.phtml?title=\$1",
+	"PageHistory" => "http://www.wikipedia.org/w/wiki.phtml?title=\$1&action=history",
+	"UserContributions" => "http://www.wikipedia.org/w/wiki.phtml?title=Special:Contributions&target=\$1",
+	"BackLinks" => "http://www.wikipedia.org/w/wiki.phtml?title=Special:Whatlinkshere&target=\$1",
 
 	# Wikipedia-specific stuff:
 	# Special cases
