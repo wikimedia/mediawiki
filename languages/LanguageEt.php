@@ -1342,36 +1342,6 @@ class LanguageEt extends LanguageUtf8 {
 		return $wgSkinNamesEt;
 	}
 
-	function getMathNames() {
-		global $wgMathNamesEt;
-		return $wgMathNamesEt;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesEt;
-		return $wgMonthNamesEt[$key-1];
-	}
-
-	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
-		global $wgMonthNamesEt;
-		return $wgMonthNamesEt[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsEt;
-		return $wgMonthAbbreviationsEt[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesEt;
-		return $wgWeekdayNamesEt[$key-1];
-	}
-
 	function getValidSpecialPages()
 	{
 		global $wgValidSpecialPagesEt;
@@ -1390,11 +1360,15 @@ class LanguageEt extends LanguageUtf8 {
 		return $wgDeveloperSpecialPagesEt;
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesEt;
-		return $wgAllMessagesEt[$key];
+		if( isset( $wgAllMessagesEt[$key] ) ) {
+			return $wgAllMessagesEt[$key];
+		} else {
+			return Language::getMessage( $key );
+		}
 	}
+
 }
 /*
  </nowiki>
