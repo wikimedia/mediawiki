@@ -3,7 +3,8 @@
 function openXMLHttpRequest() {
 	if( window.XMLHttpRequest ) {
 		return new XMLHttpRequest();
-	} else if( window.ActiveXObject ) {
+	} else if( window.ActiveXObject && navigator.platform != 'MacPPC' ) {
+		// IE/Mac has an ActiveXObject but it doesn't work.
 		return new ActiveXObject("Microsoft.XMLHTTP");
 	} else {
 		return null;
