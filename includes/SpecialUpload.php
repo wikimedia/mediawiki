@@ -356,7 +356,7 @@ class UploadForm {
 		$fd = wfMsg( 'filedesc' );
 		$ulb = wfMsg( 'uploadbtn' );
 
-		$clink = $sk->makeKnownLink( wfMsg( 'copyrightpage' ),
+		$clink = $sk->makeKnownLink( wfMsgForContent( 'copyrightpage' ),
 		  wfMsg( 'copyrightpagename' ) );
 		$ca = wfMsg( 'affirmation', $clink );
 		$iw = wfMsg( 'ignorewarning' );

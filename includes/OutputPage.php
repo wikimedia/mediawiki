@@ -529,7 +529,7 @@ class OutputPage {
 		$this->mBodytext = '';
 
 		$sk = $wgUser->getSkin();
-		$ap = $sk->makeKnownLink( wfMsg( 'administrators' ), '' );
+		$ap = $sk->makeKnownLink( wfMsgForContent( 'administrators' ), '' );
 		$this->addHTML( wfMsg( 'sysoptext', $ap ) );
 		$this->returnToMain();
 	}
@@ -544,7 +544,7 @@ class OutputPage {
 		$this->mBodytext = '';
 
 		$sk = $wgUser->getSkin();
-		$ap = $sk->makeKnownLink( wfMsg( 'administrators' ), '' );
+		$ap = $sk->makeKnownLink( wfMsgForContent( 'administrators' ), '' );
 		$this->addHTML( wfMsg( 'developertext', $ap ) );
 		$this->returnToMain();
 	}
@@ -669,7 +669,7 @@ class OutputPage {
 
 		$sk = $wgUser->getSkin();
 		if ( '' == $returnto ) {
-			$returnto = wfMsg( 'mainpage' );
+			$returnto = wfMsgForContent( 'mainpage' );
 		}
 		$link = $sk->makeKnownLink( $returnto, '' );
 

@@ -585,7 +585,10 @@ class Skin {
 		$action = $wgRequest->getText( 'action' );
 
 		$s = $this->printableLink();
-		if ( wfMsg ( 'disclaimers' ) != '-' ) $s .= ' | ' . $this->makeKnownLink( wfMsg( 'disclaimerpage' ), wfMsg( 'disclaimers' ) ) ;
+		if ( wfMsg ( 'disclaimers' ) != '-' )
+			$s .= ' | ' . $this->makeKnownLink( 
+				wfMsgForContent( 'disclaimerpage' ), 
+				wfMsg( 'disclaimers' ) ) ;
 
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->getNamespace() == Namespace::getImage() ) {
@@ -761,7 +764,7 @@ class Skin {
 			  "returnto={$rt}" ) . ' | ' .
 			  $this->specialLink( 'preferences' );
 		}
-		$s .= ' | ' . $this->makeKnownLink( wfMsg( 'helppage' ),
+		$s .= ' | ' . $this->makeKnownLink( wfMsgForContent( 'helppage' ),
 		  wfMsg( 'help' ) );
 
 		return $s;
@@ -981,7 +984,8 @@ class Skin {
 
 		}
 		// only show watchlist link if logged in
-		if ( wfMsg ( 'currentevents' ) != '-' ) $s .= $sep . $this->makeKnownLink( wfMsg( 'currentevents' ), '' ) ;
+		if ( wfMsg ( 'currentevents' ) != '-' ) 
+			$s .= $sep . $this->makeKnownLink( wfMsgForContent( 'currentevents' ), '' ) ;
 		$s .= "\n<br /><hr class='sep' />";
 		$articleExists = $wgTitle->getArticleId();
 		if ( $wgOut->isArticle() || $action =='edit' || $action =='history' || $wpPreview) {
@@ -1142,26 +1146,27 @@ class Skin {
 	}
 
 	function mainPageLink() {
-		$mp = wfMsg( 'mainpage' );
-		$s = $this->makeKnownLink( $mp, $mp );
+		$mp = wfMsgForContent( 'mainpage' );
+		$mptxt = wfMsg( 'mainpage');
+		$s = $this->makeKnownLink( $mp, $mptxt );
 		return $s;
 	}
 
 	function copyrightLink() {
-		$s = $this->makeKnownLink( wfMsg( 'copyrightpage' ),
+		$s = $this->makeKnownLink( wfMsgForContent( 'copyrightpage' ),
 		  wfMsg( 'copyrightpagename' ) );
 		return $s;
 	}
 
 	function aboutLink() {
-		$s = $this->makeKnownLink( wfMsg( 'aboutpage' ),
+		$s = $this->makeKnownLink( wfMsgForContent( 'aboutpage' ),
 		  wfMsg( 'aboutsite' ) );
 		return $s;
 	}
 
 
 	function disclaimerLink() {
-		$s = $this->makeKnownLink( wfMsg( 'disclaimerpage' ),
+		$s = $this->makeKnownLink( wfMsgForContent( 'disclaimerpage' ),
 		  wfMsg( 'disclaimers' ) );
 		return $s;
 	}
@@ -1349,7 +1354,7 @@ class Skin {
 	}
 
 	function bugReportsLink() {
-		$s = $this->makeKnownLink( wfMsg( 'bugreportspage' ),
+		$s = $this->makeKnownLink( wfMsgForContent( 'bugreportspage' ),
 		  wfMsg( 'bugreports' ) );
 		return $s;
 	}
@@ -2629,7 +2634,7 @@ class Skin {
 				$thelink = $this->makeMediaLink( $submatch[1], "", $text );
 			} else {
 				# Other kind of link
-				if( preg_match( wfMsg( "linktrail" ), $match[4], $submatch ) ) {
+				if( preg_match( wfMsgForContent( "linktrail" ), $match[4], $submatch ) ) {
 					$trail = $submatch[1];
 				} else {
 					$trail = "";

@@ -168,9 +168,9 @@ function getContributorCredits($article, $cnt, $showIfMax) {
  *
  */
 function creditLink($user_name, $link_text = '') {
-    global $wgUser, $wgLang;
+    global $wgUser, $wgContLang;
     $skin = $wgUser->getSkin();
-    return $skin->makeLink($wgLang->getNsText(NS_USER) . ':' . $user_name,
+    return $skin->makeLink($wgContLang->getNsText(NS_USER) . ':' . $user_name,
 			   (empty($link_text)) ? $user_name : $link_text);
 }
 
