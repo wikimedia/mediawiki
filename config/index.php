@@ -466,6 +466,11 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			print "<li>Initializing data...";
 			$wgDatabase->query( "INSERT INTO site_stats (ss_row_id,ss_total_views," .
 				"ss_total_edits,ss_good_articles) VALUES (1,0,0,0)" );
+			# setting up the db user	
+			if( $conf->Root ) {
+				print "<li>Granting user permissions...</li>\n";
+				dbsource( "../maintenance/users.sql", $wgDatabase );
+			}
 			
 			if( $conf->SysopName ) {
 				$u = User::newFromName( $conf->getSysopName() );
@@ -513,11 +518,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			print "<li><pre>";
 			initialiseMessages();
 			print "</pre></li>\n";
-			
-			if( $conf->Root ) {
-				print "<li>Granting user permissions...</li>\n";
-				dbsource( "../maintenance/users.sql", $wgDatabase );
-			}
 		}
 
 		/* Write out the config file now that all is well */
