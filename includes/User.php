@@ -15,16 +15,21 @@ require_once( 'WatchedItem.php' );
  * @package MediaWiki
  */
 class User {
-	/* private */ var $mId, $mName, $mPassword, $mEmail, $mNewtalk;
-	/* private */ var $mRights, $mOptions;
-	/* private */ var $mDataLoaded, $mNewpassword;
-	/* private */ var $mSkin;
-	/* private */ var $mBlockedby, $mBlockreason;
-	/* private */ var $mTouched;
-	/* private */ var $mCookiePassword;
-	/* private */ var $mRealName;
-	/* private */ var $mHash;
+	/**#@+
+	 * @access private
+	 */
+	var $mId, $mName, $mPassword, $mEmail, $mNewtalk;
+	var $mRights, $mOptions;
+	var $mDataLoaded, $mNewpassword;
+	var $mSkin;
+	var $mBlockedby, $mBlockreason;
+	var $mTouched;
+	var $mCookiePassword;
+	var $mRealName;
+	var $mHash;
+	/**#@-*/
 
+	/** Construct using User:loadDefaults() */
 	function User()	{
 		$this->loadDefaults();
 	}
@@ -32,6 +37,7 @@ class User {
 	/**
 	 * Static factory method
 	 * @static
+	 * @param string $name Username, validated by Title:newFromText()
 	 */
 	function newFromName( $name ) {
 		$u = new User();
@@ -44,6 +50,9 @@ class User {
 	}
 
 	/**
+	 * Get username given an id.
+	 * @param integer $id Database user id
+	 * @return string Nickname of a user
 	 * @static
 	 */
 	function whoIs( $id )	{
@@ -52,6 +61,9 @@ class User {
 	}
 
 	/**
+	 * Get real username given an id.
+	 * @param integer $id Database user id
+	 * @return string Realname of a user
 	 * @static
 	 */
 	function whoIsReal( $id )	{
@@ -60,6 +72,9 @@ class User {
 	}
 
 	/**
+	 * Get database id given a user name
+	 * @param string $name Nickname of a user
+	 * @return integer|null Database user id (null: if non existent
 	 * @static
 	 */
 	function idFromName( $name ) {
@@ -82,6 +97,7 @@ class User {
 
 	/**
 	 * does the string match an anonymous user IP address?
+	 * @param string $name Nickname of a user
 	 * @static
 	 */
 	function isIP( $name ) {
@@ -89,7 +105,10 @@ class User {
 	}
 
 	/**
-	 * static
+	 * probably return a random password
+	 * @return string probably a random password
+	 * @static
+	 * @todo Check what is doing really [AV]
 	 */
 	function randomPassword() {
 		$pwchars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz';
@@ -103,7 +122,8 @@ class User {
 	}
 
 	/**
-	 *
+	 * Set properties to default
+	 * Used at construction.
 	 */
 	function loadDefaults() {
 		global $wgLang, $wgIP;
@@ -130,6 +150,7 @@ class User {
 	}
 
 	/**
+	 * Get blocking information
 	 * @access private
 	 */
 	function getBlockedStatus() {
@@ -166,22 +187,37 @@ class User {
 		}
 	}
 
+	/**
+	 * Check if user is blocked
+	 * @return bool True if blocked, false otherwise
+	 */
 	function isBlocked() {
 		$this->getBlockedStatus();
 		if ( 0 === $this->mBlockedby ) { return false; }
 		return true;
 	}
-
+	
+	/**
+	 * Get name of blocker
+	 * @return string name of blocker
+	 */
 	function blockedBy() {
 		$this->getBlockedStatus();
 		return $this->mBlockedby;
 	}
-
+	
+	/**
+	 * Get blocking reason
+	 * @return string Blocking reason
+	 */
 	function blockedFor() {
 		$this->getBlockedStatus();
 		return $this->mBlockreason;
 	}
 
+	/**
+	 * Initialise php session
+	 */
 	function SetupSession() {
 		global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain;
 		if( $wgSessionsInMemcached ) {
@@ -197,6 +233,7 @@ class User {
 	}
 
 	/**
+	 * Read datas from session
 	 * @static
 	 */
 	function loadFromSession() {
@@ -258,7 +295,7 @@ class User {
 	}
 
 	/**
-	 *
+	 * Load a user from the database
 	 */
 	function loadFromDatabase() {
 		global $wgCommandLineMode;
@@ -360,6 +397,12 @@ class User {
 		return ($timestamp >= $this->mTouched);
 	}
 
+	/**
+	 * Salt a password.
+	 * Will only be salted if $wgPasswordSalt is true
+	 * @param string Password.
+	 * @return string Salted password or clear password.
+	 */
 	function addSalt( $p ) {
 		global $wgPasswordSalt;
 		if($wgPasswordSalt)
@@ -368,6 +411,12 @@ class User {
 			return $p;
 	}
 
+	/**
+	 * Encrypt a password.
+	 * It can eventuall salt a password @see User::addSalt()
+	 * @param string $p clear Password.
+	 * @param string Encrypted password.
+	 */
 	function encryptPassword( $p ) {
 		return $this->addSalt( md5( $p ) );
 	}
@@ -460,6 +509,9 @@ class User {
 		return in_array( 'bureaucrat', $this->mRights );
 	}
 
+	/**
+	 * Wheter user is a bot
+	 */
 	function isBot() {
 		$this->loadFromDatabase();
 
@@ -521,26 +573,41 @@ class User {
 		return $this->mSkin;
 	}
 
+	/**#@+
+	 * @param string $title Article title to look at
+	 */
+	
+	/**
+	 * Check watched status of an article
+	 * @return bool Wheter article is watched
+	 */
 	function isWatched( $title ) {
 		$wl = WatchedItem::fromUserTitle( $this, $title );
 		return $wl->isWatched();
 	}
 
+	/**
+	 * Watch an article
+	 */
 	function addWatch( $title ) {
 		$wl = WatchedItem::fromUserTitle( $this, $title );
 		$wl->addWatch();
 		$this->invalidateCache();
 	}
 
+	/**
+	 * Stop watching an article
+	 */
 	function removeWatch( $title ) {
 		$wl = WatchedItem::fromUserTitle( $this, $title );
 		$wl->removeWatch();
 		$this->invalidateCache();
 	}
-
+	/**#@-*/
 
 	/**
 	 * @access private
+	 * @return string Encoding options
 	 */
 	function encodeOptions() {
 		$a = array();
@@ -583,6 +650,10 @@ class User {
 		}
 	}
 
+	/**
+	 * Logout user
+	 * It will clean the session cookie
+	 */
 	function logout() {
 		global $wgCookiePath, $wgCookieDomain, $wgDBname;
 		$this->mId = 0;
@@ -593,6 +664,9 @@ class User {
 		setcookie( $wgDBname.'Password', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
 	}
 
+	/**
+	 * Save object settings into database
+	 */
 	function saveSettings() {
 		global $wgMemc, $wgDBname;
 		$fname = 'User::saveSettings';
@@ -645,6 +719,9 @@ class User {
 		return $id;
 	}
 
+	/**
+	 * Add user object to the database
+	 */
 	function addToDatabase() {
 		$fname = 'User::addToDatabase';
 		$dbw =& wfGetDB( DB_MASTER );
@@ -768,12 +845,19 @@ class User {
 		return $dbr->selectField( 'user', 'max(user_id)', false );
 	}
 
+	/**
+	 * Wheter the user is newbie
+	 * @document how are defined newbies.
+	 * @return bool True if it is a newbie.
+	 */
 	function isNewbie() {
 		return $this->mId > User::getMaxID() * 0.99 && !$this->isSysop() && !$this->isBot() || $this->getID() == 0;
 	}
 
 	/**
 	 * Check to see if the given clear-text password is one of the accepted passwords
+	 * @param string $password User password.
+	 * @return bool True if the given password is correct otherwise False.
 	 */
 	function checkPassword( $password ) {
 		$this->loadFromDatabase();
