@@ -2773,7 +2773,6 @@ class Parser
 						$query =  "SELECT page_id, page_namespace, page_title";
 						if ( $threshold > 0 ) {
 							$query .= ', page_len, page_is_redirect';
-							$join = 'page_latest=old_id AND';
 						}
 						$query .= " FROM $page WHERE (page_namespace=$val AND page_title IN(";
 					} elseif ( $current != $val ) {
