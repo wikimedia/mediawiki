@@ -100,12 +100,13 @@ class LinkCache {
 	
 	function addLinkObj( &$nt )
 	{
+		global $wgMemc, $wgLinkCacheMemcached;
+
 		$title = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $title ) ) { return 0; }		
 		$id = $this->getGoodLinkID( $title );
 		if ( 0 != $id ) { return $id; }
 
-		global $wgMemc;
 		$fname = "LinkCache::addLinkObj";
 		wfProfileIn( $fname );
 
