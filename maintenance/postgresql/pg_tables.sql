@@ -275,7 +275,8 @@ CREATE INDEX log_page_time ON logging USING btree (log_namespace, log_title, log
 CREATE TABLE "group" (
   group_id integer PRIMARY KEY,
   group_name varchar(50) NOT NULL,
-  group_description varchar(255) NOT NULL
+  group_description varchar(255) NOT NULL,
+  group_rights text NOT NULL
 );
 
 -- Relation table between user and groups
