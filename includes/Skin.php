@@ -1785,7 +1785,7 @@ class Skin {
 		$magnifyalign = $wgLang->isRTL() ? "left" : "right";
 		$textalign = $wgLang->isRTL() ? ' style="text-align:right"' : "";
 
-		$s = "<div class=\"thumbnail-{$align}\" style=\"width:{$oboxwidth}px;\"><div style=\"width:{$boxwidth}px;\">";
+		$s = "<div class=\"thumb t{$align}\"\"><div style=\"width:{$oboxwidth}px;\">";
 		if ( $thumbUrl == "" ) {
 			$s .= str_replace( "$1", $name, wfMsg("missingimage") );
 			$zoomicon = '';

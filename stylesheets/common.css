@@ -26,40 +26,42 @@ table.rimage {
 }
 
 /* thumbnails */
-div.thumbnail-none, div.thumbnail-right, div.thumbnail-left {
-        border: 1px solid #8888aa;
-        background-color: #f7f8ff;
-        padding: 2px;
-        margin: 10px;
-        font-size: smaller;
-        text-align: center;
+div.thumb {
+    margin: 10px;
+    text-align: center;
+    width: auto;
 }
-
-
-div.thumbnail-none img, div.thumbnail-right img, div.thumbnail-left img {
-	border:1px solid #8888AA;
-	margin-bottom:3px;
-	background:#FFFFFF;
+div.thumb div {
+    border: 1px solid #8888aa;
+    background-color: #f7f8ff;
+    padding: 2px;
+    font-size: 94%;
 }
-
-div.magnify img {
-	border: 0px;
-	background: none;
+div.thumb div * { 
+    border: none;
+    background: none;
 }
-
+div.thumb img {
+    border:1px solid #8888AA;
+    margin-bottom:3px;
+    background:#FFFFFF;
+}
+div.thumbcaption,
+div.thumbcaption * {
+    border: none !important;
+    background: none !important;
+}
 div.thumbcaption {
-        margin-top:3px; margin-bottom:3px;
-        text-align: left;
+    padding: 0.2em 0 0.2em 0 !important;
+    text-align: left !important;
 }
-
-div.thumbnail-right {
-        float: right;
-        margin-left:0.5em;
+div.tright {
+    float: right;
+    margin-left:0.5em;
 }
-
-div.thumbnail-left {
-        float: left;
-        margin-right:0.5em;
+div.tleft {
+    float: left;
+    margin-right:0.5em;
 }
 
 table.diff {
