@@ -168,6 +168,8 @@ if($wgMetaNamespace === FALSE)
 # hyphen (-). If you need more characters, you may be able to change
 # the regex in MagicWord::initRegex
 $wgAllMessagesIs = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User Toggles
 
 "tog-hover"		=> "Sýna hjálpartexta á wiki hlekkjum",

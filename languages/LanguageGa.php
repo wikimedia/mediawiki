@@ -170,6 +170,8 @@ Sourceforge (when that gets added.)
 # the regex in MagicWord::initRegex
 
 /* private */ $wgAllMessagesGa = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User Toggles
 #
 

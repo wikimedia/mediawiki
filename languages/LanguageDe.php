@@ -108,6 +108,8 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgAllMessagesDe = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User toggles
 "tog-hover"	            => "Hinweis über interne Verweise",
 "tog-underline"               => "Verweise unterstreichen",

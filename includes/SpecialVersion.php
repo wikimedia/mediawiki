@@ -5,7 +5,7 @@ function wfSpecialVersion()
 	global $wgUser, $wgOut, $wgVersion;
 	$fname = "wfSpecialVersion";
 
-	$wgOut->addHTML( '
+	$wgOut->addHTML( wfMsg( 'special_version_prefix' ) . '
  <p>This wiki is powered by <b><a href="http://www.mediawiki.org/">MediaWiki</a></b>,  
  copyright (C) 2001-2004 by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
  Tim Starling, Erik M&ouml;ller, and others.</p>
@@ -24,7 +24,7 @@ function wfSpecialVersion()
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  or <a href="http://www.gnu.org/copyleft/gpl.html">read it online</a></p>
-	');
+	'.wfMsg( 'special_version_postfix' ) );
 	$versions = array(
 		"[http://wikipedia.sf.net/ MediaWiki]" => $wgVersion,
 		"[http://www.php.net/ PHP]" => phpversion() . " (" . php_sapi_name() . ")",

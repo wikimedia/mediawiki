@@ -119,6 +119,8 @@ if( $wgMetaNamespace == "Wikipedia" ) {
 );
 
 /* private */ $wgAllMessagesPl = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User Toggles
 
 "tog-hover" => "Pokazuj okienko podpowiedzi ponad linkami",

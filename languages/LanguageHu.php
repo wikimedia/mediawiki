@@ -116,6 +116,8 @@ require_once("LanguageUtf8.php");
 );
 
 /* private */ $wgAllMessagesHu = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 
 # User Toggles
 #

@@ -127,6 +127,8 @@
 );
 
 /* private */ $wgAllMessagesPt = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User Toggles
 "tog-hover"     => "Mostra caixa flutante sobre os links wiki",
 "tog-underline" => "Sublinha links",

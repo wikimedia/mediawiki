@@ -220,6 +220,8 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 
 
 /* private */ $wgAllMessagesEn = array(
+'special_version_prefix' => '',
+'special_version_postfix' => '',
 # User preference toggles
 'tog-hover'		=> 'Show hoverbox over wiki links',
 'tog-underline' => 'Underline links',
