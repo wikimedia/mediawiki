@@ -248,6 +248,26 @@ function do_group_update() {
 	}
 }
 
+/**
+ * 1.4 betas were missing the 'binary' marker from logging.log_title,
+ * which causes a collation mismatch error on joins in MySQL 4.1.
+ */
+function do_logging_encoding() {
+	global $wgDatabase;
+	$logging = $wgDatabase->tableName( 'logging' );
+	$res = $wgDatabase->query( "SELECT log_title FROM $logging LIMIT 0" );
+	$flags = explode( ' ', mysql_field_flags( $res, 0 ) );
+	$wgDatabase->freeResult( $res );
+	
+	if( in_array( 'binary', $flags ) ) {
+		echo "Logging table has correct title encoding.\n";
+	} else {
+		echo "Fixing title encoding on logging table... ";
+		dbsource( 'maintenance/archives/patch-logging-title.sql', $wgDatabase );
+		echo "ok\n";
+	}
+}
+
 function do_schema_restructuring() {
 	global $wgDatabase;
 	$fname="do_schema_restructuring";
@@ -413,7 +433,8 @@ function do_all_updates() {
 	do_watchlist_update(); flush();
 	do_user_update(); flush();
 	do_copy_newtalk_to_watchlist(); flush();
-
+	do_logging_encoding(); flush();
+	
 	do_schema_restructuring(); flush();
 
 	if ( isTemplateInitialised() ) {
