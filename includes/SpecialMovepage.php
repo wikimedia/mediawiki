@@ -53,13 +53,19 @@ class MovePageForm {
 
 		$wgOut->setPagetitle( wfMsg( 'movepage' ) );
 
-		if ( empty( $this->oldTitle ) ) {
+		if ( $this->oldTitle == "" ) {
 			$wgOut->errorpage( 'notargettitle', 'notargettext' );
 			return;
 		}
 		
 		$encOldTitle = htmlspecialchars( $this->oldTitle );
-		$encNewTitle = htmlspecialchars( $this->newTitle );
+		if( $this->newTitle == "" ) {
+			# Show the current title as a default
+			# when the form is first opened.
+			$encNewTitle = $encOldTitle;
+		} else {
+			$encNewTitle = htmlspecialchars( $this->newTitle );
+		}
 		$ot = Title::newFromURL( $this->oldTitle );
 		$ott = $ot->getPrefixedText();
 
@@ -200,7 +206,7 @@ class MovePageForm {
 	}
 
 	function showSuccess() {
-		global $wgOut, $wgUser, $wgRequest;
+		global $wgOut, $wgUser, $wgRequest, $wgRawHtml;
 
 		$wgOut->setPagetitle( wfMsg( 'movepage' ) );
 		$wgOut->setSubtitle( wfMsg( 'pagemovedsub' ) );
@@ -209,6 +215,8 @@ class MovePageForm {
 		$talkmoved = $wgRequest->getVal('talkmoved');
 
 		$text = wfMsg( 'pagemovedtext', $oldtitle, $newtitle );
+		
+		# Temporarily disable raw html wikitext option out of XSS paranoia
 		$marchingantofdoom = $wgRawHtml;
 		$wgRawHtml = false;
 		$wgOut->addWikiText( $text );
