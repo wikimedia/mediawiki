@@ -410,6 +410,7 @@ If upgrading from an older release, see the file UPGRADE;
     'bn', 'bo', 'dv', 'dz', 'ht', 'ii', 'li', 'lo', 'ng', 'or', 'pa', 'si',
     'ti', 've' 
 * Fix editing on non-Esperanto wiki with user language pref set to Esperanto
+* Make conversion table for zh-sg default to zh-cn, and zh-hk default to zh-tw
 
 
 === Caveats ===
