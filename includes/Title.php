@@ -911,7 +911,6 @@ class Title {
 			$this->moveToNewTitle( $nt, $newid );
 		}
 
-
 		# Fixing category links (those without piped 'alternate' names) to be sorted under the new title
 		
 		$dbw =& wfGetDB( DB_MASTER );
@@ -919,7 +918,6 @@ class Title {
 			" WHERE cl_from=" . $dbw->addQuotes( $this->getArticleID() ) .
 			" AND cl_sortkey=" . $dbw->addQuotes( $this->getPrefixedText() );
 		$dbw->query( $sql, "SpecialMovepage::doSubmit" );
-		
 
 		# Update watchlists
 		
@@ -928,7 +926,7 @@ class Title {
 		$oldtitle = $this->getDBkey();
 		$newtitle = $nt->getDBkey();
 
-		if( $oldnamespace != $newnamespace && $oldtitle != $newtitle ) {
+		if( $oldnamespace != $newnamespace || $oldtitle != $newtitle ) {
 			WatchedItem::duplicateEntries( $this, $nt );
 		}
 
