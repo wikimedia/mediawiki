@@ -1572,13 +1572,14 @@ class Parser
 				$lastPrefix = $pref2;
 			}
 			if( 0 == $prefixLength ) {
+				wfProfileIn( "$fname-paragraph" );
 				# No prefix (not in list)--go to paragraph mode
 				$uniq_prefix = UNIQ_PREFIX;
 				// XXX: use a stack for nestable elements like span, table and div
-				$openmatch = preg_match('/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<li|<\\/tr|<\\/td|<\\/th)/i', $t );
+				$openmatch = preg_match('/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<li|<\\/tr|<\\/td|<\\/th)/iS', $t );
 				$closematch = preg_match(
 					'/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|'.
-					'<td|<th|<div|<\\/div|<hr|<\\/pre|<\\/p|'.$uniq_prefix.'-pre|<\\/li|<\\/ul)/i', $t );
+					'<td|<th|<div|<\\/div|<hr|<\\/pre|<\\/p|'.$uniq_prefix.'-pre|<\\/li|<\\/ul)/iS', $t );
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
 					$output .= $this->closeParagraph();
@@ -1627,6 +1628,7 @@ class Parser
 						}
 					}
 				}
+				wfProfileOut( "$fname-paragraph" );
 			}
 			if ($paragraphStack === false) {
 				$output .= $t."\n";
