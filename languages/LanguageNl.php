@@ -397,9 +397,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 # Search results
 # Zoekresultaten
 "searchresults" => "Zoekresultaten",
-"searchhelppage" => "{{ns:4}}:Zoeken",
-"searchingwikipedia" => "Zoeken op {{SITENAME}}",
-"searchresulttext" => "Voor meer informatie over zoeken op {{SITENAME}}: zie $1.",
+"searchresulttext" => "Voor meer informatie over zoeken op {{SITENAME}}: zie [[Project:Zoeken|Zoeken op {{SITENAME}}]].",
 "searchquery" => "Voor zoekopdracht \"$1\"",
 "badquery"  => "Slecht geformuleerde zoekopdracht",
 "badquerytext" => "Uw zoekopdracht kon niet worden uitgevoerd. Dit kan komen doordat u geprobeerd hebt om een 'woord' van 1 letter te zoeken, of 1 van de <a HREF=\"http://nl.wikipedia.org/wiki/{{ns:4}}:Verboden_woorden\">Verboden woorden</a>.",

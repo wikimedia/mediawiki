@@ -527,9 +527,7 @@ Verifyîz l'&nbsp;hårdêye ki vs avoz eployî po-z ariver sol pådje s'&nbsp;i 
 # Search results
 #
 "searchresults" => "Rizultats do cweraedje",
-"searchhelppage" => "Wikipedia:Cweraedje",
-"searchingwikipedia" => "Cweraedje so Wikipedia",
-"searchresulttext" => "Po pus di racsegnes sol manire di fé des cweraedjes so Wikipedia, loukîz $1.",
+"searchresulttext" => "Po pus di racsegnes sol manire di fé des cweraedjes so {{SITENAME}}, loukîz [[Project:Cweraedje|Cweraedje so {{SITENAME}}]].",
 "searchquery"	=> "Pol cweraedje «$1»",
 "badquery"		=> "Badly formed search query", # co a fé
 "badquerytext"	=> "We could not process your query.

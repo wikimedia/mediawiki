@@ -394,9 +394,7 @@ het om toegang te kry tot hierdie bladsy, reg is.\n",
 # Search results
 #
 "searchresults" => "soekresultate",
-"searchhelppage" => "{{ns:4}}:Soek",
-"searchingwikipedia" => "Soek in {{SITENAME}}",
-"searchresulttext" => "Vir meer inligting oor {{SITENAME}} soekresultate, lees $1.",
+"searchresulttext" => "Vir meer inligting oor {{SITENAME}} soekresultate, lees [[Project:Soek|Soek in {{SITENAME}}]].",
 "searchquery"	=> "Vir navraag \"$1\"",
 "badquery"		=> "Verkeerd gestelde navraag",
 "badquerytext"	=> "Ons kon nie jou naavraag prosesseer nie.

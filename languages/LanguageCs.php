@@ -348,8 +348,6 @@ která popsala příčinu takto:<br><p>Máte právo se spojit se správcem syst�
 # Search results
 #
 "searchresults" => "Výsledek hledání",
-"searchhelppage" => "Wikipedie:Hledání",
-"searchingwikipedia" => "Hledání ve Wikipedii",
 "searchresulttext" => "Nápovědu, jak účinně hledat ve Wikipedii, čtěte na  .",
 "searchquery"	=> "Zadání pro vyhledávání \"$1\"",
 "badquery"		=> "Zkreslené zadání pro vyhledávání",

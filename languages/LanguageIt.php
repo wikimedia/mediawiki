@@ -375,9 +375,7 @@ Controlla per favore la URL che hai usato per accedere a questa pagina.\n",
 # Search results
 #
 "searchresults" => "Risultato della ricerca",
-"searchhelppage" => "Wikipedia:Ricerca",
-"searchingwikipedia" => "Ricerca in Wikipedia",
-"searchresulttext" => "Per maggiori informazioni sulla ricerca interna di Wikipedia, vedi $1.",
+"searchresulttext" => "Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[Project:Ricerca|Ricerca in {{SITENAME}}]].",
 "searchquery"	=> "Richiesta \"$1\"",
 "badquery"		=> "Richiesta mal inoltrata ",
 "badquerytext"	=> "La tua richiesta non ha potuto essere processata.

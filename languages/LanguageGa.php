@@ -647,9 +647,7 @@ Eochair: (rth) = difrí­ocht leis an eagrán reatha,
 # Search results
 #
 "searchresults" => "Toraidh an cuardaigh",
-"searchhelppage" => "Vicipéid:Cuardach",
-"searchingwikipedia" => "Ag cuardach sa Vicipéid",
-"searchresulttext" => "Féach ar $1 chun a thuilleadh eolais a fháil faoi chuardach Vicipéide.",
+"searchresulttext" => "Féach ar [[Vicipéid:Cuardach|Ag cuardach sa Vicipéid]] chun a thuilleadh eolais a fháil faoi chuardach Vicipéide.",
 "searchquery"   => "Don órdú \"$1\"",
 "badquery"      => "Órdú fiosraithe neamhbhailí­",
 "badquerytext"  => "Nior éirigh linn d'órdú a phróiseáil.

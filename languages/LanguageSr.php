@@ -466,9 +466,7 @@ Sada biste trebali da se ulogujete i promenite svoju sifru.",
 # Search results
 #
 "searchresults" => "Резултати претраге",
-"searchhelppage" => "Википедија:Тражење",
-"searchingwikipedia" => "Претраживање Википедије",
-"searchresulttext" => "За више информација о претраживању Википедије, погледајте $1.",
+"searchresulttext" => "За више информација о претраживању Википедије, погледајте [[Википедија:Тражење|Претраживање Википедије]].",
 "searchquery" => "За упит \"$1\"",
 "badquery"  => "Лоше обликован упит за претрагу",
 "badquerytext" => "Нисмо могли да обрадимо ваш упит.

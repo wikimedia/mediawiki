@@ -375,9 +375,7 @@ Tarkista URL, jolla hait tätä sivua.\n",
 # Search results
 #
 "searchresults" => "Hakutulokset",
-"searchhelppage" => "Wikipedia:Haku",
-"searchingwikipedia" => "Etsitään Wikipediasta",
-"searchresulttext" => "Lisätietoja Wikipedian hakutoiminnoista, katso $1.",
+"searchresulttext" => "Lisätietoja {{SITENAME}}n hakutoiminnoista, katso [[Project:Haku|Etsitään {{SITENAME}}sta]].",
 "searchquery"	=> "Haku \"$1\"",
 "badquery"	=> "Huonosti muotoiltu haku",
 "badquerytext"	=> "Tekemääsi kyselyä ei voida prosessoida.

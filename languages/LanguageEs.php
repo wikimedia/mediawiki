@@ -452,9 +452,7 @@ Por favor revisa el URL que usaste para acceder a esta página.\n",
 # Search results
 #
 "searchresults" => "Resultados de búsqueda",
-"searchhelppage" => "$wgMetaNamespace:Búsqueda",
-"searchingwikipedia" => "Buscando en $wgSitename",
-"searchresulttext" => "Para más información acerca de búsquedas en $wgSitename, ve a $1.",
+"searchresulttext" => "Para más información acerca de búsquedas en {{SITENAME}}, ve a [[Project:Búsqueda|Buscando en {{SITENAME}}]].",
 "searchquery"	=> "Para consulta \"$1\"",
 
 "badquery"		=> "Consulta de búsqueda formateada en forma incorrecta",

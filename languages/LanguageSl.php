@@ -394,9 +394,7 @@ Prosimo preverite URL, ki ste ga uporabili za dostop do te strani.\n",
 # Search results
 #
 "searchresults"         => "Izidi iskanja",
-"searchhelppage"        => "Wikipedija:Iskanje",
-"searchingwikipedia"    => "Iščem v Wikipediji",
-"searchresulttext"      => "Za več sporočil o iskanju v Wikipediji glej $1.",
+"searchresulttext"      => "Za več sporočil o iskanju v Wikipediji glej [[Wikipedija:Iskanje|Iščem v Wikipediji]].",
 "searchquery"	        => "Za povpraševanje \"$1\"",
 "badquery"		=> "Slabo oblikovano iskalno povpraševanje",
 "badquerytext"	        => "Ne moremo obdelati vašega povpraševanja.

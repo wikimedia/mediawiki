@@ -413,9 +413,7 @@ text editing area as it will appear if you choose to save.",
 # Search results
 #
 "searchresults" => "찾아본 결과",
-"searchhelppage" => "{{ns:4}}:찾기",
-"searchingwikipedia" => "{{SITENAME}} 찾기",
-"searchresulttext" => "{{SITENAME}} 찾기에 대해 자세한 정보는 $1 를 보세요.",
+"searchresulttext" => "{{SITENAME}} 찾기에 대해 자세한 정보는 [[Project:찾기|{{SITENAME}} 찾기]] 를 보세요.",
 "searchquery"	=> "열쇠말 \"$1\"",
 "badquery"		=> "좋지 않은 열쇠말",
 

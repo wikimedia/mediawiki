@@ -484,9 +484,7 @@ cu privilegii de administrator o pot edita. Vă rugăm urmaţi sugestiile
 # Search results
 #
 "searchresults" => "Rezultatele căutării",
-"searchhelppage" => "Wikipedia:Searching",
-"searchingwikipedia" => "Căutare în Wikipedia",
-"searchresulttext" => "Pentru mai multe detalii despre căutarea în Wikipedia, vezi $1.",
+"searchresulttext" => "Pentru mai multe detalii despre căutarea în {{SITENAME}}, vezi [[Project:Searching|Căutare în {{SITENAME}}]].",
 "searchquery"	=> "Pentru căutarea \"$1\"",
 "badquery"		=> "Căutare invalidă",
 "badquerytext"	=> "Căutarea Dvs. nu a putut fi procesată.

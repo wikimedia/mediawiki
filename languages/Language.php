@@ -687,8 +687,6 @@ Legend: (cur) = difference with current version,
 # Search results
 #
 'searchresults' => 'Search results',
-#'searchhelppage' => "{{ns:4}}:Searching",
-#'searchingwikipedia' => "Searching {{SITENAME}}",
 'searchresulttext' => "For more information about searching {{SITENAME}}, see [[Project:Searching|Searching {{SITENAME}}]].",
 'searchquery'	=> "For query \"$1\"",
 'badquery'		=> 'Badly formed search query',

@@ -432,9 +432,7 @@ GNU Free Documentation License без неизменяемых секций
 # Search results
 #
 "searchresults" => "Результаты поиска",
-"searchhelppage" => "$wgMetaNamespace:Поиск",
-"searchingwikipedia" => "Поиск в Википедии",
-"searchresulttext" => "Для получения более подробной информации о поиске в Википедии, см. $1.",
+"searchresulttext" => "Для получения более подробной информации о поиске в Википедии, см. [[Project:Поиск|Поиск в Википедии]].",
 "searchquery"	=> "По запросу \"$1\"",
 "badquery"		=> "Неправильно сформированный запрос",
 "badquerytext"	=> "Невозможно обработать ваш запрос.

@@ -456,9 +456,7 @@ Gean nei of de keppeling dy jo brûkt hawwe wol goed is.\n",
 # Search results
 #
 "searchresults" => "Sykresultaat",
-"searchhelppage" => "$wgMetaNamespace:Syk-rie|Ynformaasje oer it sykjen",
-"searchingwikipedia" => "Sykje troch de $wgSitename",
-"searchresulttext" => "\"$1\" troch de $wgSitename.",
+"searchresulttext" => "\"[[Project:Syk-rie|Ynformaasje oer it sykjen|Sykje troch de {{SITENAME}}]]\" troch de {{SITENAME}}.",
 "searchquery"	=> "Foar fraach \"$1\"",
 "badquery"		=> "Misfoarme sykfraach",
 "badquerytext"	=> "Jo fraach koe net ferwurke wurde.

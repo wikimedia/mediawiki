@@ -504,9 +504,7 @@ M = Kleine Änderung",
 # Search results
 #
 "searchresults" => "Suchergebnisse",
-"searchhelppage" => "{$wgMetaNamespace}:Suche",
-"searchingwikipedia" => "{$wgSitename} durchsuchen",
-"searchresulttext" => "Für mehr Information über {$wgSitename}, siehe $1.",
+"searchresulttext" => "Für mehr Information über {{SITENAME}}, siehe [[Project:Suche|{{SITENAME}} durchsuchen]].",
 "searchquery"	=> "Für die Suchanfrage \"$1\"",
 "badquery"		=> "Falsche Suchanfrage",
 "badquerytext"	=> "Wir konnten Ihre Suchanfrage nicht verarbeiten.

@@ -442,10 +442,7 @@ Sila semak URL yang digunakan untuk mengakses halaman ini.\n", #"The old revisio
 # Search results
 #
 "searchresults" => "Hasil Carian",
-"searchhelppage" => "Wikipedia:Carian", #"Wikipedia:Searching",
-"searchingwikipedia" => "Carian Dalam Wikipedia", #"Searching Wikipedia",
-"searchresulttext" => "Untuk maklumat lanjut tentang carian dalam Wikipedia, lihat $1.", #"For more information about searching Wikipedia, see $1.",
-"searchquery"	=> "Untuk kueri \"$1\"", #"For query \"$1\"",
+"searchresulttext" => "Untuk maklumat lanjut tentang carian dalam {{SITENAME}}, lihat [[Project:Carian|Carian Dalam {{SITENAME}}]].", "searchquery"	=> "Untuk kueri \"$1\"", #"For query \"$1\"",
 "badquery"		=> "Format kueri carian salah", #"Badly formed search query",
 "badquerytext"	=> "Kami tidak dapat memproses kueri anda.
 Ini mungkin disebabkan anda cuba mencari perkataan yang kurang

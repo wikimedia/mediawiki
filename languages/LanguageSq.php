@@ -465,9 +465,7 @@ Të lutem kontrollo URL-in që përdore për të ardhur tek kjo faqe.\n",
 
 #
 "searchresults" => "Rezultatet e kërkimit",
-"searchhelppage" => "$wgMetaNamespace:Kërkim",
-"searchingwikipedia" => "Duke kërkuar $wgSitename",
-"searchresulttext" => "Për më shumë informacion për kërkimin e $wgSitename, shiko $1.",
+"searchresulttext" => "Për më shumë informacion për kërkimin e {{SITENAME}}, shiko [[Project:Kërkim|Duke kërkuar {{SITENAME}}]].",
 "searchquery"	=> "Për pyetjen \"$1\"",
 "badquery"		=> "Pyetje kërkese e formuluar gabim",
 "badquerytext"	=> "Nuk mundi t'i pergjigjet pyetjes tende.

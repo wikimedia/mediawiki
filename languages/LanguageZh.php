@@ -436,9 +436,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 # Search results
 #
 "searchresults" => "搜索结果",
-"searchhelppage" => "Wikipedia:搜索",
-"searchingwikipedia" => "搜索Wikipedia",
-"searchresulttext" => "有关搜索Wikipedia的更多详情,参见$1。",
+"searchresulttext" => "有关搜索{{SITENAME}}的更多详情,参见[[Project:搜索|搜索{{SITENAME}}]]。",
 "searchquery"	=> "查询\"$1\"",
 "badquery"		=> "搜索查询不正确",
 "badquerytext"	=> "我们无法处理您的查询。

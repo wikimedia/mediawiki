@@ -409,9 +409,7 @@ vous suivez les <a href='$wgScriptPath/$wgMetaNamespace:Page protégée'>directi
 # Search results
 #
 "searchresults" => "Résultat de la recherche",
-"searchhelppage" => "Wikipédia:Recherche",
-"searchingwikipedia" => "Chercher dans Wikipédia",
-"searchresulttext" => "Pour plus d'informations sur la recherche dans Wikipédia, voir $1.",
+"searchresulttext" => "Pour plus d'informations sur la recherche dans {{SITENAME}}, voir [[Project:Recherche|Chercher dans {{SITENAME}}]].",
 "searchquery" => "Pour la requête \"$1\"",
 "badquery"  => "Requête mal formulée",
 "badquerytext" => "Nous n'avons pas pu traiter votre requête.

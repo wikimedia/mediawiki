@@ -480,9 +480,7 @@ Försäkra dig om att du följer rekommendationerna för <a href='$wgScriptPath/
 // Search results
 //
 "searchresults"         => "Sökresultat",
-"searchhelppage"        => "Wikipedia:Sökning",
-"searchingwikipedia"    => "Sökning på Wikipedia",
-"searchresulttext"      => "För mer information om sökning på Wikipedia, se $1.",
+"searchresulttext"      => "För mer information om sökning på {{SITENAME}}, se [[Project:Sökning|Sökning på {{SITENAME}}]].",
 "searchquery"           => "For query \"$1\"",
 "badquery"              => "Felaktigt utformat sökbegrepp",
 "badquerytext"          => "Vi kunde inte utföra din sökning.

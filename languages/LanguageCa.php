@@ -394,9 +394,7 @@ Revidseu l'URL que heu emprat per accedir-hi.\n",
 # Search results
 #
 "searchresults" => "Resultats de la recerca",
-"searchhelppage" => "{{ns:4}}:Recerca",
-"searchingwikipedia" => "S'està cercant a la {{SITENAME}}",
-"searchresulttext" => "Per a més informació sobre les recerques de la {{SITENAME}}, aneu a $1.",
+"searchresulttext" => "Per a més informació sobre les recerques de la {{SITENAME}}, aneu a [[Project:Recerca|S'està cercant a la {{SITENAME}}]].",
 "searchquery"	=> "Per consulta \"$1\"",
 "badquery"		=> "Consulta de recerca formulada de manera incorrecta",
 "badquerytext"	=> "No s'ha pogut processar la recerca.

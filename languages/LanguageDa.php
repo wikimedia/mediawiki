@@ -506,9 +506,7 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring",
 # Search results
 #
 "searchresults" => "Søgeresultater",
-"searchhelppage" => "Wikipedia:Søgning",
-"searchingwikipedia" => "Søgning på Wikipedia",
-"searchresulttext" => "For mere information om søgning på Wikipedia, se $1.",
+"searchresulttext" => "For mere information om søgning på {{SITENAME}}, se [[Project:Søgning|Søgning på {{SITENAME}}]].",
 "searchquery"	=> "For forespørgsel \"$1\"",
 "badquery"		=> "Forkert udformet forespørgsel",
 "badquerytext"	=> "Vi kunne ikke udføre din forespørgsel.
