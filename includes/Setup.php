@@ -47,7 +47,7 @@ global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
 global $wgMsgCacheExpiry, $wgDBname, $wgCommandLineMode;
 
 class MemCachedClientforWiki extends memcached {
-	function _debug( $text ) {
+	function _debugprint( $text ) {
 		wfDebug( "memcached: $text\n" );
 	}
 }
