@@ -38,7 +38,7 @@ define( 'UNIQ_PREFIX', 'NaodW29');
 define( 'URL_PROTOCOLS', 'http|https|ftp|irc|gopher|news|mailto' );
 define( 'HTTP_PROTOCOLS', 'http|https' );
 # Everything except bracket, space, or control characters
-define( 'EXT_LINK_URL_CLASS', '[^]<>\\x00-\\x20\\x7F]' );
+define( 'EXT_LINK_URL_CLASS', '[^]<>"\\x00-\\x20\\x7F]' );
 # Including space
 define( 'EXT_LINK_TEXT_CLASS', '[^\]\\x00-\\x1F\\x7F]' );
 define( 'EXT_IMAGE_FNAME_CLASS', '[A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]' );
