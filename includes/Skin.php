@@ -1923,6 +1923,98 @@ class Skin {
 		return "<div style=\"float:right;margin-left:5px;\"><small>[".$url."]</small></div>";
 
 	}
+
+	// This function is called by EditPage.php and shows a bulletin board style
+	// toolbar for common editing functions. It can be disabled in the user preferences.
+	// The necsesary JavaScript code can be found in style/wikibits.js.
+	function getEditToolbar() {
+
+		global $wgUploadPath;
+
+		// toolarray an array of arrays which each include the filename of
+		// the button image (without path), the opening tag, the closing tag,
+		// and optionally a sample text that is inserted between the two when no
+		// selection is highlighted.
+		// The tip text is shown when the user moves the mouse over the button.
+		$toolarray=array(
+			array(	"image"=>"button_bold.gif",
+				"open"=>"\\'\\'\\'",
+				"close"=>"\\'\\'\\'",
+				"sample"=>wfMsg("bold_sample"),
+				"tip"=>wfMsg("bold_tip")),
+			array(	"image"=>"button_italic.gif",
+				"open"=>"\\'\\'",
+				"close"=>"\\'\\'",
+				"sample"=>wfMsg("italic_sample"),
+				"tip"=>wfMsg("italic_tip")),
+			array(	"image"=>"button_link.gif",
+				"open"=>"[[",
+				"close"=>"]]",
+				"sample"=>wfMsg("link_sample"),
+				"tip"=>wfMsg("link_tip")),
+			array(	"image"=>"button_extlink.gif",
+				"open"=>"[",
+				"close"=>"]",
+				"sample"=>wfMsg("extlink_sample"),
+				"tip"=>wfMsg("extlink_tip")),
+			array(	"image"=>"button_headline.gif",
+				"open"=>"\\n== ",
+				"close"=>" ==\\n",
+				"sample"=>wfMsg("headline_sample"),
+				"tip"=>wfMsg("headline_tip")),
+			array(	"image"=>"button_math.gif",
+				"open"=>"\\<math\\>",
+				"close"=>"\\</math\\>",
+				"sample"=>wfMsg("math_sample"),
+				"tip"=>wfMsg("math_tip")),
+			array(	"image"=>"button_image.gif",
+				"open"=>"[[Image:",
+				"close"=>"]]",
+				"sample"=>wfMsg("image_sample"),
+				"tip"=>wfMsg("image_tip")),
+			array(	"image"=>"button_media.gif",
+				"open"=>"[[Media:",
+				"close"=>"]]",
+				"sample"=>wfMsg("media_sample"),
+				"tip"=>wfMsg("media_tip")),
+			array(	"image"=>"button_sig.gif",
+				"open"=>"--~~~~",
+				"close"=>"",
+				"sample"=>"",
+				"tip"=>wfMsg("sig_tip")),
+			array(	"image"=>"button_hr.gif",
+				"open"=>"\\n----\\n",
+				"close"=>"",
+				"sample"=>"",
+				"tip"=>wfMsg("hr_tip"))
+		);
+		$toolbar.="
+		<div id=\"toolbar\">";
+		foreach($toolarray as $tool) {
+
+			$image=$tool["image"];
+			$open=$tool["open"];
+			$close=$tool["close"];
+			$sample=$tool["sample"];
+
+			// Note that we use the tip both for the ALT tag and the TITLE tag of the image.
+			// Older browsers show a "speedtip" type message only for ALT.
+			// Ideally these should be different, realistically they
+			// probably don't need to be.
+			$tip=$tool["tip"];
+
+			$toolbar.=
+			"<a href=\"#\"".
+			"onclick=\"javascript:insertTags('$open','$close','$sample');\">".
+			"<img src=\"$wgUploadPath/$image\" border=\"0\" ALT=\"$tip\" TITLE=\"$tip\">".
+			"</a>";
+
+		}
+
+		$toolbar.="</div>";
+		return $toolbar;
+
+	}
 }
 
 include_once( "SkinStandard.php" );

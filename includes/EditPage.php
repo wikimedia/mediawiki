@@ -116,10 +116,10 @@ class EditPage {
 				return;
 			}
 			# If article is new, insert it.
-			
-			$aid = $this->mTitle->getArticleID();			
+
+			$aid = $this->mTitle->getArticleID();
 			if ( 0 == $aid ) {
-				# we need to strip Windoze linebreaks because some browsers 
+				# we need to strip Windoze linebreaks because some browsers
 				# append them and the string comparison fails
 				if ( ( "" == $wpTextbox1 ) ||
 				  ( wfMsg( "newarticletext" ) == rtrim( preg_replace("/\r/","",$wpTextbox1) ) ) ) {
@@ -134,8 +134,8 @@ class EditPage {
 			# Don't check for conflict when appending a comment - this should always work
 
 			$this->mArticle->clear(); # Force reload of dates, etc.
-			if ( $section!="new" && ( $this->mArticle->getTimestamp() != $wpEdittime ) ) { 
-				$isConflict = true;		
+			if ( $section!="new" && ( $this->mArticle->getTimestamp() != $wpEdittime ) ) {
+				$isConflict = true;
 			}
 			$u = $wgUser->getID();
 
@@ -180,7 +180,7 @@ class EditPage {
 		} else {
 			$s = wfMsg( "editing", $this->mTitle->getPrefixedText() );
 
-			if($section!="") { 
+			if($section!="") {
 				if($section=="new") {
 					$s.=wfMsg("commentedit");
 				} else {
@@ -206,11 +206,11 @@ class EditPage {
 
 		$kblength = (int)(strlen( $wpTextbox1 ) / 1024);
 		if( $kblength > 29 ) {
-			$wgOut->addHTML( "<strong>" . 
+			$wgOut->addHTML( "<strong>" .
 				wfMsg( "longpagewarning", $kblength )
 				. "</strong>" );
 		}
-		
+
 		$rows = $wgUser->getOption( "rows" );
 		$cols = $wgUser->getOption( "cols" );
 
@@ -222,7 +222,7 @@ class EditPage {
 		if ( "no" == $redirect ) { $q .= "&redirect=no"; }
 		$action = wfEscapeHTML( wfLocalUrl( $this->mTitle->getPrefixedURL(), $q ) );
 
-		$summary = wfMsg( "summary" );		
+		$summary = wfMsg( "summary" );
 		$subject = wfMsg("subject");
 		$minor = wfMsg( "minoredit" );
 		$watchthis = wfMsg ("watchthis");
@@ -239,38 +239,44 @@ class EditPage {
 		$wpTextbox1 = wfEscapeHTML( $wpTextbox1 );
 		$wpTextbox2 = wfEscapeHTML( $wpTextbox2 );
 		$wpSummary = wfEscapeHTML( $wpSummary );
-		
+
+
+		if($wgUser->getOption("showtoolbar")) {
+			// prepare toolbar for edit buttons
+			$toolbar=$sk->getEditToolbar();
+		}
+
 		// activate checkboxes if user wants them to be always active
 		if (!$wpPreview && $wgUser->getOption("watchdefault")) $wpWatchthis=1;
-		if (!$wpPreview && $wgUser->getOption("minordefault")) $wpMinoredit=1;		
-		
+		if (!$wpPreview && $wgUser->getOption("minordefault")) $wpMinoredit=1;
+
 		// activate checkbox also if user is already watching the page,
 		// require wpWatchthis to be unset so that second condition is not
 		// checked unnecessarily
 		if (!$wpWatchthis && !$wpPreview && $this->mTitle->userIsWatching()) $wpWatchthis=1;
-		
+
 		if ( 0 != $wgUser->getID() ) {
 			$checkboxhtml=
 			"<input tabindex=3 type=checkbox value=1 name='wpMinoredit'".($wpMinoredit?" checked":"")." id='wpMinoredit'>".
 			"<label for='wpMinoredit'>{$minor}</label>".
 			"<input tabindex=4 type=checkbox name='wpWatchthis'".($wpWatchthis?" checked":"")." id='wpWatchthis'>".
 			"<label for='wpWatchthis'>{$watchthis}</label><br>";
-			
+
 		} else {
 			$checkboxhtml="";
 		}
 
 
 		if ( "preview" == $formtype) {
-		
-			$previewhead="<h2>" . wfMsg( "preview" ) . "</h2>\n<p><large><center><font color=\"#cc0000\">" . 
+
+			$previewhead="<h2>" . wfMsg( "preview" ) . "</h2>\n<p><large><center><font color=\"#cc0000\">" .
 			wfMsg( "note" ) . wfMsg( "previewnote" ) . "</font></center></large><P>\n";
 			if ( $isConflict ) {
 				$previewhead.="<h2>" . wfMsg( "previewconflict" ) .
 				  "</h2>\n";
 			}
 			$previewtext = wfUnescapeHTML( $wpTextbox1 );
-			
+
 			if($wgUser->getOption("previewontop")) {
 				$wgOut->addHTML($previewhead);
 				$wgOut->addWikiText( $this->mArticle->preSaveTransform( $previewtext ) ."\n\n");
@@ -293,6 +299,7 @@ class EditPage {
 			$wgOut->setOnloadHandler( "document.editform.wpTextbox1.focus()" );
 		}
 		$wgOut->addHTML( "
+{$toolbar}
 <form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
 enctype=\"application/x-www-form-urlencoded\">
 {$commentsubject}
@@ -303,8 +310,8 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 </textarea>
 <br>{$editsummary}
 {$checkboxhtml}
-<input tabindex=5 type=submit value=\"{$save}\" name=\"wpSave\">
-<input tabindex=6 type=submit value=\"{$prev}\" name=\"wpPreview\">
+<input tabindex=5 type=submit value=\"{$save}\" name=\"wpSave\" accesskey=\"s\">
+<input tabindex=6 type=submit value=\"{$prev}\" name=\"wpPreview\" accesskey=\"p\">
 <em>{$cancel}</em> | <em>{$edithelp}</em>
 <br><br>{$copywarn}
 <input type=hidden value=\"{$section}\" name=\"wpSection\">
