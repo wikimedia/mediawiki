@@ -22,12 +22,13 @@ class MessageCache
 	var $mCache, $mUseCache, $mDisable, $mExpiry;
 	var $mMemcKey, $mKeys, $mParserOptions, $mParser;
 	var $mExtensionMessages;
-    var $mIsForContent; //whether this is for content messages or ui messages
 	var $mInitialised = false;
-
-	function initialise( &$memCached, $useDB, $expiry, $memcPrefix, $forContent=false ) {
+    var $mLang, $mLangCode;
+	function initialise( &$memCached, $useDB, $expiry, $memcPrefix, $langobj, $langcode) {
 		$fname = 'MessageCache::initialise';
 		wfProfileIn( $fname );
+        $this->mLang = $langobj;
+        $this->mLangCode = $langcode;
 		$this->mUseCache = !is_null( $memCached );
 		$this->mMemc = &$memCached;
 		$this->mDisable = !$useDB;
@@ -141,19 +142,10 @@ class MessageCache
 	 */
 	function getKeys() {
 		global $wgAllMessagesEn;
-        if($this->mIsForContent) {
-            global $wgContLang;
-            $langobj = $wgContLang;
-        }
-        else {
-            global $wgLang;
-            $langobj = $wgLang;
-        }
-
 		if ( !$this->mKeys ) {
 			$this->mKeys = array();
 			foreach ( $wgAllMessagesEn as $key => $value ) {
-				array_push( $this->mKeys, $langobj->ucfirst( $key ) );
+				array_push( $this->mKeys, $this->mLang->ucfirst( $key ) );
 			}
 		}
 		return $this->mKeys;
@@ -208,16 +200,6 @@ class MessageCache
 	}
 
 	function get( $key, $useDB ) {
-        if($this->mIsForContent) {
-            global $wgContLang, $wgContLanguageCode;
-            $langobj = $wgContLang;
-            $langcode=$wgContLanguageCode;
-        }
-        else {
-            global $wgLang, $wgLanguageCode;
-            $langobj=$wgLang;
-            $langcode = $wgLanguageCode;
-        }
 
 		# If uninitialised, someone is trying to call this halfway through Setup.php
 		if ( !$this->mInitialised ) {
@@ -226,7 +208,7 @@ class MessageCache
 
 		$message = false;
 		if ( !$this->mDisable && $useDB ) {
-			$title = $langobj->ucfirst( $key );
+			$title = $this->mLang->ucfirst( $key );
 
 
 			# Try the cache
@@ -250,15 +232,15 @@ class MessageCache
 			$message = @$this->mExtensionMessages[$key];
 		}
 
-		# Try the array in $wgLang
+		# Try the array in the language object
 		if ( !$message ) {
 			wfSuppressWarnings();
-			$message = $langobj->getMessage( $key );
+			$message = $this->mLang->getMessage( $key );
 			wfRestoreWarnings();
 		}
 
 		# Try the English array
-		if ( !$message && $langcode != 'en' ) {
+		if ( !$message && $this->mLangCode != 'en' ) {
 			wfSuppressWarnings();
 			$message = Language::getMessage( $key );
 			wfRestoreWarnings();
