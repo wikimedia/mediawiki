@@ -403,6 +403,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 /* private */ $wgSysopSpecialPagesEn = array(
 	"Blockip"		=> "Block a user/IP address",
 	"Asksql"		=> "Query the database",
+	"Allmessages"	=> "All system messages",
 	"Undelete"		=> "Restore deleted pages",
 	"Makesysop"		=> "Turn a user into a sysop"
 );
