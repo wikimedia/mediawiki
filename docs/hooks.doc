@@ -33,7 +33,7 @@ write extensions. Hooks are a principled alternative to local patches.
 Consider, for example, two options in MediaWiki. One reverses the
 order of a title before displaying the article; the other converts the
 title to all uppercase letters. Currently, in MediaWiki code, we
-handle this as follows:
+would handle this as follows (note: not real code, here):
 
     function showAnArticle($article) {
         global $wgReverseTitle, $wgCapitalizeTitle;
@@ -76,9 +76,12 @@ option-specific stuff in our mainline code. Using hooks, the function
 becomes:
 
     function showAnArticle($article) {
-    	if (wfRunHooks('ArticleShow', $article)) {
+
+    	if (wfRunHooks('ArticleShow', array(&$article))) {
+	
 	    # code to actually show the article goes here
-	    wfRunHooks('ArticleShowComplete', $article);
+	    
+	    wfRunHooks('ArticleShowComplete', array(&$article));
 	}
     }
 
@@ -89,7 +92,7 @@ on, and make changes or fix bugs.
 
 In addition, we can take all the code that deals with the little-used
 title-reversing options (say) and put it in one place. Instead of
-having a little title-reversing if-block spread all over the codebase
+having little title-reversing if-blocks spread all over the codebase
 in showAnArticle, deleteAnArticle, exportArticle, etc., we can
 concentrate it all in an extension file:
 
@@ -117,8 +120,9 @@ place means that it's easier to read and understand; you don't have to
 do a grep-find to see where the $wgReverseTitle variable is used, say.
 
 If the code is well enough isolated, it can even be excluded when not
-used -- making for some slight savings in memory and time at runtime.
-Admins who want to have all the reversed titles can add:
+used -- making for some slight savings in memory and load-up
+performance at runtime. Admins who want to have all the reversed
+titles can add:
 
     require_once('extensions/ReverseTitle.php');
     
@@ -179,6 +183,7 @@ This code would result in ircNotify being run twice when an article is
 saved: once for 'TimStarling', and once for 'brion'.
 
 Hooks can return three possible values:
+
   * true: the hook has operated successfully
   * "some string": an error occurred; processing should
     	  stop and the error should be shown to the user
@@ -198,7 +203,7 @@ could do:
     }
 
 Returning false makes less sense for events where the action is
-complete, and will probably be ignored.
+complete, and will normally be ignored.
 
 ==Using hooks==
 
@@ -209,9 +214,9 @@ the hooks related to a particular event, like so:
         # ...
 	function protect() {
 	    global $wgUser;
-	    if (wfRunHooks('ArticleProtect', $this, $wgUser)) {
+	    if (wfRunHooks('ArticleProtect', array(&$this, &$wgUser))) {
 	        # protect the article
-		wfRunHooks('ArticleProtectComplete', $this, $wgUser);
+		wfRunHooks('ArticleProtectComplete', array(&$this, &$wgUser));
 	    }
 	}
 						    
@@ -220,6 +225,12 @@ processing (the hooks ran OK, or there are no hooks to run), or false
 if it shouldn't (an error occurred, or one of the hooks handled the
 action already). Checking the return value matters more for "before"
 hooks than for "complete" hooks.
+
+Note that hook parameters are passed in an array; this is a necessary
+inconvenience to make it possible to pass reference values (that can
+be changed) into the hook code. Also note that earlier versions of
+wfRunHooks took a variable number of arguments; the array() calling
+protocol came about after MediaWiki 1.4rc1.
 
 ==Events and parameters==
 
@@ -287,6 +298,13 @@ $to: address of receiving user
 $from: address of sending user
 $subject: subject of the mail
 $text: text of the mail
+
+'TitleMoveComplete': after moving an article (title)
+$old: old title
+$nt: new title
+$user: user who did the move
+$oldid: old article database ID
+$newid: new article database ID
 
 'UnknownAction': An unknown "action" has occured (useful for defining
 		 your own actions)

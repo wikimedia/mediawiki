@@ -1257,13 +1257,13 @@ class Article {
 			return;
 		}
 
-		if (wfRunHooks('WatchArticle', $wgUser, $this)) {
+		if (wfRunHooks('WatchArticle', array(&$wgUser, &$this))) {
 			
 			$wgUser->addWatch( $this->mTitle );
 			$wgUser->saveSettings();
 
-			wfRunHooks('WatchArticleComplete', $wgUser, $this);
-			
+			wfRunHooks('WatchArticleComplete', array(&$wgUser, &$this));
+
 			$wgOut->setPagetitle( wfMsg( 'addedwatch' ) );
 			$wgOut->setRobotpolicy( 'noindex,follow' );
 			
@@ -1292,12 +1292,12 @@ class Article {
 			return;
 		}
 
-		if (wfRunHooks('UnwatchArticle', $wgUser, $this)) {
+		if (wfRunHooks('UnwatchArticle', array(&$wgUser, &$this))) {
 			
 			$wgUser->removeWatch( $this->mTitle );
 			$wgUser->saveSettings();
 			
-			wfRunHooks('UnwatchArticleComplete', $wgUser, $this);
+			wfRunHooks('UnwatchArticleComplete', array(&$wgUser, &$this));
 			
 			$wgOut->setPagetitle( wfMsg( 'removedwatch' ) );
 			$wgOut->setRobotpolicy( 'noindex,follow' );
@@ -1342,7 +1342,7 @@ class Article {
 			if( !$moveonly ) {
 				$restrictions .= ":edit=" . $limit;
 			}
-			if (wfRunHooks('ArticleProtect', $this, $wgUser, $limit == 'sysop', $reason, $moveonly)) {
+			if (wfRunHooks('ArticleProtect', array(&$this, &$wgUser, $limit == 'sysop', $reason, $moveonly))) {
 				
 				$dbw =& wfGetDB( DB_MASTER );
 				$dbw->update( 'cur',
@@ -1354,7 +1354,7 @@ class Article {
 											   ), 'Article::protect'
 							  );
 				
-				wfRunHooks('ArticleProtectComplete', $this, $wgUser, $limit == 'sysop', $reason, $moveonly);
+				wfRunHooks('ArticleProtectComplete', array(&$this, &$wgUser, $limit == 'sysop', $reason, $moveonly));
 				
 				$log = new LogPage( 'protect' );
 				if ( $limit === '' ) {
@@ -1651,7 +1651,7 @@ class Article {
 		$fname = 'Article::doDelete';
 		wfDebug( $fname."\n" );
 
-		if (wfRunHooks('ArticleDelete', $this, $wgUser, $reason)) {
+		if (wfRunHooks('ArticleDelete', array(&$this, &$wgUser, &$reason))) {
 			if ( $this->doDeleteArticle( $reason ) ) {
 				$deleted = $this->mTitle->getPrefixedText();
 				
@@ -1667,7 +1667,7 @@ class Article {
 				
 				$wgOut->addHTML( '<p>' . $text . "</p>\n" );
 				$wgOut->returnToMain( false );
-				wfRunHooks('ArticleDeleteComplete', $this, $wgUser, $reason);
+				wfRunHooks('ArticleDeleteComplete', array(&$this, &$wgUser, $reason));
 			} else {
 				$wgOut->fatalError( wfMsg( 'cannotdelete' ) );
 			}
