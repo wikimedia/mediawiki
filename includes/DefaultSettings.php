@@ -1183,6 +1183,10 @@ $wgNoFollowLinks = true;
  */
 $wgMinimalPasswordLength = 0;
 
+/** Whether or not to sort special pages in Special:Specialpages */
+
+$wgSortSpecialPages = true;
+
 } else {
 	die();
 }

@@ -41,7 +41,7 @@ function wfSpecialSpecialpages() {
  * @param $sk skin object ???
  */
 function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
-	global $wgLang, $wgOut;
+	global $wgLang, $wgOut, $wgSortSpecialPages;
 
 	/** Put them into a sortable array */
 	$sortedPages = array();
@@ -52,7 +52,9 @@ function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 	}
 	
 	/** Sort */
-	ksort( $sortedPages );
+	if ( $wgSortSpecialPages ) {
+		ksort( $sortedPages );
+	}
 
 	/** Now output the HTML */
 	$wgOut->addHTML( '<h2>' . wfMsg( $heading ) . "</h2>\n<ul>" );
