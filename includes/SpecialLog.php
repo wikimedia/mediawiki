@@ -45,11 +45,19 @@ class LogReader {
 	var $db, $joinClauses, $whereClauses;
 	var $type = '', $user = '', $title = null;
 	
+	/**
+	 * @param WebRequest $request For internal use use a FauxRequest object to pass arbitrary parameters.
+	 */
 	function LogReader( $request ) {
 		$this->db =& wfGetDB( DB_SLAVE );
 		$this->setupQuery( $request );
 	}
 	
+	/**
+	 * Basic setup and applies the limiting factors from the WebRequest object.
+	 * @param WebRequest $request
+	 * @private
+	 */
 	function setupQuery( $request ) {
 		$cur = $this->db->tableName( 'cur' );
 		$user = $this->db->tableName( 'user' );
@@ -65,6 +73,11 @@ class LogReader {
 		list( $this->limit, $this->offset ) = $request->getLimitOffset();
 	}
 	
+	/**
+	 * Set the log reader to return only entries of the given type.
+	 * @param string $type A log type ('upload', 'delete', etc)
+	 * @private
+	 */
 	function limitType( $type ) {
 		if( empty( $type ) ) {
 			return false;
@@ -74,8 +87,13 @@ class LogReader {
 		$this->whereClauses[] = "log_type='$safetype'";
 	}
 	
+	/**
+	 * Set the log reader to return only entries by the given user.
+	 * @param string $name Valid user name
+	 * @private
+	 */
 	function limitUser( $name ) {
-		$title = Title::makeTitleSafe( NS_USER, $name );
+		$title = Title::makeTitle( NS_USER, $name );
 		if( empty( $name ) || is_null( $title ) ) {
 			return false;
 		}
@@ -85,6 +103,12 @@ class LogReader {
 		$this->whereClauses[] = "user_name='$safename'";
 	}
 	
+	/**
+	 * Set the log reader to return only entries affecting the given page.
+	 * (For the block and rights logs, this is a user page.)
+	 * @param string $page Title name as text
+	 * @private
+	 */
 	function limitTitle( $page ) {
 		$title = Title::newFromText( $page );
 		if( empty( $page ) || is_null( $title )  ) {
@@ -96,6 +120,12 @@ class LogReader {
 		$this->whereClauses[] = "log_namespace=$ns AND log_title='$safetitle'";
 	}
 	
+	/**
+	 * Set the log reader to return only entries in a given time range.
+	 * @param string $time Timestamp of one endpoint
+	 * @param string $direction either ">=" or "<=" operators
+	 * @private
+	 */
 	function limitTime( $time, $direction ) {
 		# Direction should be a comparison operator
 		if( empty( $time ) ) {
@@ -105,6 +135,11 @@ class LogReader {
 		$this->whereClauses[] = "log_timestamp $direction '$safetime'";
 	}
 	
+	/**
+	 * Build an SQL query from all the set parameters.
+	 * @return string the SQL query
+	 * @private
+	 */
 	function getQuery() {
 		$logging = $this->db->tableName( "logging" );
 		$user = $this->db->tableName( 'user' );
@@ -123,18 +158,31 @@ class LogReader {
 		return $sql;
 	}
 	
+	/**
+	 * Execute the query and start returning results.
+	 * @return ResultWrapper result object to return the relevant rows
+	 */
 	function getRows() {
 		return $this->db->resultObject( $this->db->query( $this->getQuery() ) );
 	}
 	
+	/**
+	 * @return string The query type that this LogReader has been limited to.
+	 */
 	function queryType() {
 		return $this->type;
 	}
 	
+	/**
+	 * @return string The username type that this LogReader has been limited to, if any.
+	 */
 	function queryUser() {
 		return $this->user;
 	}
 	
+	/**
+	 * @return string The text of the title that this LogReader has been limited to.
+	 */
 	function queryTitle() {
 		if( is_null( $this->title ) ) {
 			return '';
@@ -150,14 +198,23 @@ class LogReader {
  * @subpackage SpecialPage
  */
 class LogViewer {
-	var $reader, $skin;
+	/**
+	 * @var LogReader $reader
+	 */
+	var $reader;
 	
+	/**
+	 * @param LogReader &$reader where to get our data from
+	 */
 	function LogViewer( &$reader ) {
 		global $wgUser;
 		$this->skin =& $wgUser->getSkin();
 		$this->reader =& $reader;
 	}
 	
+	/**
+	 * Take over the whole output page in $wgOut with the log display.
+	 */
 	function show() {
 		global $wgOut;
 		$this->showHeader( $wgOut );
@@ -167,6 +224,12 @@ class LogViewer {
 		$this->showPrevNext( $wgOut );
 	}
 	
+	/**
+	 * Output just the list of entries given by the linked LogReader,
+	 * with extraneous UI elements. Use for displaying log fragments in
+	 * another page (eg at Special:Undelete)
+	 * @param OutputPage $out where to send output
+	 */
 	function showList( &$out ) {
 		$html = "";
 		$result = $this->reader->getRows();
@@ -177,13 +240,11 @@ class LogViewer {
 		$out->addHTML( $html );
 	}
 	
-	# wfMsg( unprotectedarticle, $text )
-	# wfMsg( 'protectedarticle', $text )
-	# wfMsg( 'deletedarticle', $text )
-	# wfMsg( 'uploadedimage', $text )
-	# wfMsg( "blocklogentry", $this->BlockAddress, $this->BlockExpiry );
-	# wfMsg( "bureaucratlogentry", $this->mUser, implode( " ", $rightsNotation ) );
-	# wfMsg( "undeletedarticle", $this->mTarget ),
+	/**
+	 * @param Object $s a single row from the result set
+	 * @return string Formatted HTML list item
+	 * @private
+	 */
 	function logLine( $s ) {
 		global $wgLang;
 		$title = Title::makeTitle( $s->log_namespace, $s->log_title );
@@ -206,6 +267,10 @@ class LogViewer {
 		return $out;
 	}
 	
+	/**
+	 * @param OutputPage &$out where to send output
+	 * @private
+	 */
 	function showHeader( &$out ) {
 		$type = $this->reader->queryType();
 		if( LogPage::isLogType( $type ) ) {
@@ -214,6 +279,10 @@ class LogViewer {
 		}
 	}
 	
+	/**
+	 * @param OutputPage &$out where to send output
+	 * @private
+	 */
 	function showOptions( &$out ) {
 		global $wgScript;
 		$action = htmlspecialchars( $wgScript );
@@ -228,6 +297,10 @@ class LogViewer {
 			"</form>" );
 	}
 	
+	/**
+	 * @return string Formatted HTML
+	 * @private
+	 */
 	function getTypeMenu() {
 		$out = "<select name='type'>\n";
 		foreach( LogPage::validTypes() as $type ) {
@@ -239,16 +312,28 @@ class LogViewer {
 		return $out;
 	}
 	
+	/**
+	 * @return string Formatted HTML
+	 * @private
+	 */
 	function getUserInput() {
 		$user = htmlspecialchars( $this->reader->queryUser() );
 		return "User: <input type='text' name='user' size='12' value=\"$user\" />\n";
 	}
 	
+	/**
+	 * @return string Formatted HTML
+	 * @private
+	 */
 	function getTitleInput() {
 		$title = htmlspecialchars( $this->reader->queryTitle() );
 		return "Title: <input type='text' name='page' size='20' value=\"$title\" />\n";
 	}
 	
+	/**
+	 * @param OutputPage &$out where to send output
+	 * @private
+	 */
 	function showPrevNext( &$out ) {
 		global $wgLang;
 		$pieces = array();
