@@ -85,7 +85,6 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 	'Allmessages'	=> new SpecialPage( 'Allmessages' ),
 	'Log'           => new SpecialPage( 'Log' ),
 	'Blockip'		=> new SpecialPage( 'Blockip', 'block' ),
-	'Asksql'		=> new SpecialPage( 'Asksql', 'asksql' ),
 	'Undelete'		=> new SpecialPage( 'Undelete', 'delete' ),
 	// Makesysop is obsolete, replaced by Special:Userlevels [av]
 	# 'Makesysop'		=> new SpecialPage( 'Makesysop', 'userrights' ),

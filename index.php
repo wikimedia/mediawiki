@@ -87,7 +87,6 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 } else if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
 	# actions that need to be made when we have a special pages
 	require_once( 'includes/SpecialPage.php' );
-	if ( !$wgAllowSysopQueries ) {SpecialPage::removePage( 'Asksql' ); }
 	SpecialPage::executePath( $wgTitle );
 } else {
 	if ( Namespace::getMedia() == $wgTitle->getNamespace() ) {
