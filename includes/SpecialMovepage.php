@@ -122,6 +122,12 @@ class MovePageForm {
 		global  $wgUseSquid, $wgRequest;
 		$fname = "MovePageForm::doSubmit";
 		
+                # don't allow moving to pages with # in
+                if ( strchr( $this->newTitle, '#') !== FALSE ) {
+                        $this->showForm( wfMsg( "badtitletext" ) );
+                        return;
+                }
+
 		# Variables beginning with 'o' for old article 'n' for new article
 
 		# Attempt to move the article
