@@ -12,7 +12,6 @@ body { margin: 0px; padding: 0px; }
 #article, #article td, #article th, #article p {
  font-family: Verdana, Arial, sans-serif;
  font-size: 10pt; color: black;
- padding: 0;
 }
 #article p {
  padding-top: 0; padding-bottom: 0;
