@@ -302,34 +302,51 @@ class LinkCache {
 	}
 
 	/* private */ function saveToLinkscc( $pid ){
-		global $wgCompressedPersistentLC;
+		global $wgCompressedPersistentLC, $wgIsMySQL;
 		if( $wgCompressedPersistentLC and function_exists( "gzcompress" ) ) {
 			$ser = wfStrencode( gzcompress( serialize( $this ), 3 ));
 		} else {
 			$ser = wfStrencode( serialize( $this ) );
 		}
-		wfQuery("REPLACE INTO linkscc(lcc_pageid,lcc_cacheobj) " .
-			"VALUES({$pid}, '{$ser}')", DB_WRITE);
+		if ($isMySQL) {
+			wfQuery("REPLACE INTO linkscc(lcc_pageid,lcc_cacheobj) " .
+				"VALUES({$pid}, '{$ser}')", DB_WRITE);
+		} else {
+			wfQuery("DELETE FROM linkscc WHERE lcc_pageid={$pid}",DB_WRITE);
+			wfQuery("INSERT INTO linkscc(lcc_pageid,lcc_cacheobj) " .
+				"VALUES({$pid}, '{$ser}')", DB_WRITE);
+		}
 	}
 
 	# $pid is a page id
 	/* static */ function linksccClearLinksTo( $pid ){
-		global $wgEnablePersistentLC;
+		global $wgEnablePersistentLC, $wgIsMySQL;
 		if ( $wgEnablePersistentLC ) {
 			$pid = intval( $pid );
-			wfQuery("DELETE linkscc FROM linkscc,links ".
-				"WHERE lcc_pageid=links.l_from AND l_to={$pid}", DB_WRITE);
-			wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
+			if ($wgIsMySQL) {
+				wfQuery("DELETE linkscc FROM linkscc,links ".
+					"WHERE lcc_pageid=links.l_from AND l_to={$pid}", DB_WRITE);
+			} else {
+				wfQuery("DELETE FROM linkscc WHERE lcc_pageid IN ".
+					"(SELECT l_from FROM links WHERE l_to={$pid}", DB_WRITE);
+			}
+			wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}')", DB_WRITE);
 		}
 	}
 
 	# $title is a prefixed db title, for example like Title->getPrefixedDBkey() returns.
 	/* static */ function linksccClearBrokenLinksTo( $title ){
-		global $wgEnablePersistentLC;
+		global $wgEnablePersistentLC,$wgIsMySQL;
 		if ( $wgEnablePersistentLC ) {
 			$title = wfStrencode( $title );
-			wfQuery("DELETE linkscc FROM linkscc,brokenlinks ".
-				"WHERE lcc_pageid=bl_from AND bl_to='{$title}'", DB_WRITE);
+			if ($wgIsMySQL) {
+				wfQuery("DELETE linkscc FROM linkscc,brokenlinks ".
+					"WHERE lcc_pageid=bl_from AND bl_to='{$title}'", DB_WRITE);
+			} else {
+				wfQuery("DELETE FROM linkscc WHERE lcc_pageid IN ".
+					"(SELECT bl_from FROM brokenlinks ".
+					"WHERE bl_to='{$title}')",DB_WRITE);
+			}
 		}
 	}
 
