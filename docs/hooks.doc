@@ -1,0 +1,228 @@
+HOOKS.DOC
+
+This document describes how event hooks work in MediaWiki; how to add
+hooks for an event; and how to run hooks for an event.
+
+==Glossary==
+
+event
+     Something that happens with the wiki. For example: a user logs
+     in. A wiki page is saved. A wiki page is deleted. Often there are
+     two events associated with a single action: one before the code
+     is run to make the event happen, and one after. Each event has a
+     name, preferably in CamelCase. For example, 'UserLogin',
+     'ArticleSave', 'ArticleSaveComplete', 'ArticleDelete'.
+
+hook
+     A clump of code and data that should be run when an event
+     happens. This can be either a function and a chunk of data, or an
+     object and a method.
+     
+hook function
+     The function part of a hook.
+     
+==Rationale==
+
+Hooks allow us to decouple optionally-run code from code that is run
+for everyone. It allows MediaWiki hackers, third-party developers and
+local administrators to define code that will be run at certain points
+in the mainline code, and to modify the data run by that mainline
+code. Hooks can keep mainline code simple, and make it easier to
+write extensions. Hooks are a principled alternative to local patches.
+
+Consider, for example, two options in MediaWiki. One reverses the
+order of a title before displaying the article; the other converts the
+title to all uppercase letters. Currently, in MediaWiki code, we
+handle this as follows:
+
+    function showAnArticle($article) {
+        global $wgReverseTitle, $wgCapitalizeTitle;
+	
+	if ($wgReverseTitle) {
+	    wfReverseTitle($article);
+        }
+	
+	if ($wgCapitalizeTitle) {
+	   wfCapitalizeTitle($article);
+        }
+	
+	# code to actually show the article goes here
+    }
+    
+An extension writer, or a local admin, will often add custom code to
+the function -- with or without a global variable. For example,
+someone wanting email notification when an article is shown may add:
+
+    function showAnArticle($article) {
+        global $wgReverseTitle, $wgCapitalizeTitle;
+	
+	if ($wgReverseTitle) {
+	    wfReverseTitle($article);
+        }
+	
+	if ($wgCapitalizeTitle) {
+	   wfCapitalizeTitle($article);
+        }
+
+	# code to actually show the article goes here
+	
+	if ($wgNotifyArticle) {
+	   wfNotifyArticleShow($article));
+        }
+    }
+
+Using a hook-running strategy, we can avoid having all this
+option-specific stuff in our mainline code. Using hooks, the function
+becomes:
+
+    function showAnArticle($article) {
+    	if (wfRunHooks('ArticleShow', $article)) {
+	    # code to actually show the article goes here
+	    wfRunHooks('ArticleShowComplete', $article);
+	}
+    }
+
+We've cleaned up the code here by removing clumps of weird,
+infrequently used code and moving them off somewhere else. It's much
+easier for someone working with this code to see what's _really_ going
+on, and make changes or fix bugs.
+
+In addition, we can take all the code that deals with the little-used
+title-reversing options (say) and put it in one place. Instead of
+having a little title-reversing if-block spread all over the codebase
+in showAnArticle, deleteAnArticle, exportArticle, etc., we can
+concentrate it all in an extension file:
+
+    function reverseArticleTitle($article) {
+        # ...
+    }
+
+    function reverseForExport($article) {
+        # ...
+    }
+
+The setup function for the extension just has to add its hook
+functions to the appropriate events:
+
+    setupTitleReversingExtension() {
+        global $wgHooks;
+	
+	$wgHooks['ArticleShow'][] = reverseArticleTitle;
+	$wgHooks['ArticleDelete'][] = reverseArticleTitle;
+	$wgHooks['ArticleExport'][] = reverseForExport;
+    }
+
+Having all this code related to the title-reversion option in one
+place means that it's easier to read and understand; you don't have to
+do a grep-find to see where the $wgReverseTitle variable is used, say.
+
+If the code is well enough isolated, it can even be excluded when not
+used -- making for some slight savings in memory and time at runtime.
+Admins who want to have all the reversed titles can add:
+
+    require_once('extensions/ReverseTitle.php');
+    
+...to their LocalSettings.php file; those of us who don't want or need
+it can just leave it out.
+
+The extensions don't even have to be shipped with MediaWiki; they
+could be provided by a third-party developer or written by the admin
+him/herself.
+
+==Writing hooks==
+
+A hook is a chunk of code run at some particular event. It consists of:
+
+  * a function with some optional accompanying data, or
+  * an object with a method and some optional accompanying data.
+
+Hooks are registered by adding them to the global $wgHooks array for a
+given event. All the following are valid ways to define hooks:
+
+      $wgHooks['EventName'][] = someFunction; # function, no data
+      $wgHooks['EventName'][] = array(someFunction, $someData);
+      $wgHooks['EventName'][] = array(someFunction); # weird, but OK
+      
+      $wgHooks['EventName'][] = $object; # object only
+      $wgHooks['EventName'][] = array($object, 'someMethod');
+      $wgHooks['EventName'][] = array($object, 'someMethod', $someData);
+      $wgHooks['EventName'][] = array($object); # weird but OK
+
+When an event occurs, the function (or object method) will be called
+with the optional data provided as well as event-specific parameters.
+The above examples would result in the following code being executed
+when 'EventName' happened:
+
+      # function, no data
+      someFunction($param1, $param2)
+      # function with data
+      someFunction($someData, $param1, $param2)
+
+      # object only
+      $object->onEventName($param1, $param2)
+      # object with method
+      $object->someMethod($param1, $param2)
+      # object with method and data
+      $object->someMethod($someData, $param1, $param2)
+      
+Note that when an object is the hook, and there's no specified method,
+the default method called is 'onEventName'. For different events this
+would be different: 'onArticleSave', 'onUserLogin', etc.
+
+The extra data is useful if we want to use the same function or object
+for different purposes. For example:
+
+      $wgHooks['ArticleSaveComplete'][] = array(ircNotify, 'TimStarling');
+      $wgHooks['ArticleSaveComplete'][] = array(ircNotify, 'brion');
+
+This code would result in ircNotify being run twice when an article is
+saved: once for 'TimStarling', and once for 'brion'.
+
+Hooks can return three possible values:
+  * true: the hook has operated successfully
+  * "some string": an error occurred; processing should
+    	  stop and the error should be shown to the user
+  * false: the hook has successfully done the work
+    	   necessary and the calling function should skip
+	
+The last result would be for cases where the hook function replaces
+the main functionality. For example, if you wanted to authenticate
+users to a custom system (LDAP, another PHP program, whatever), you
+could do:
+
+    $wgHooks['UserLogin'][] = array(ldapLogin, $ldapServer);
+			        
+    function ldapLogin($username, $password) {
+        # log user into LDAP
+	return false;
+    }
+
+Returning false makes less sense for events where the action is
+complete, and will probably be ignored.
+
+==Using hooks==
+
+A calling function or method uses the wfRunHooks() function to run
+the hooks related to a particular event, like so:
+
+    class Article { 
+        # ...
+	function protect() {
+	    global $wgUser;
+	    if (wfRunHooks('ArticleProtect', $this, $wgUser)) {
+	        # protect the article
+		wfRunHooks('ArticleProtectComplete', $this, $wgUser);
+	    }
+	}
+						    
+wfRunHooks() returns true if the calling function should continue
+processing (the hooks ran OK, or there are no hooks to run), or false
+if it shouldn't (an error occurred, or one of the hooks handled the
+action already). Checking the return value matters more for "before"
+hooks than for "complete" hooks.
+
+==Existing hooks==
+
+The following list of hooks exist in the code right now:
+
+TBD

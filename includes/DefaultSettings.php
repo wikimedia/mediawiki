@@ -857,6 +857,18 @@ $wgWhitelistRead = array ( ':Accueil', ':Main_Page');
  */
 $wgAuth = null;
 
+/**
+ * Global list of hooks.
+ * Add a hook by doing:
+ *     $wgHooks['event_name'][] = $function;
+ * or:
+ *     $wgHooks['event_name'][] = array($function, $data);
+ * or:
+ *     $wgHooks['event_name'][] = array($object, 'method');
+ */
+	
+$wgHooks = array();
+	
 } else {
 	die();
 }

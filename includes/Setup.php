@@ -58,6 +58,7 @@ global $wgUseDynamicDates;
 wfProfileIn( $fname.'-includes' );
 
 require_once( 'GlobalFunctions.php' );
+require_once( 'Hooks.php' );
 require_once( 'Namespace.php' );
 require_once( 'RecentChange.php' ); 
 require_once( 'User.php' );
@@ -76,7 +77,7 @@ require_once( 'ParserCache.php' );
 require_once( 'WebRequest.php' );
 require_once( 'LoadBalancer.php' );
 require_once( 'HistoryBlob.php' );
-
+	
 $wgRequest = new WebRequest();
 
 
