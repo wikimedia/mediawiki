@@ -22,7 +22,7 @@ function wfGetDB( $altuser = "", $altpassword = "", $altserver = "", $altdb = ""
 		$db = ($altdb ? $altdb : $wgDBname );
 		$wgDBconnection = mysql_connect( $serve, $altuser, $altpassword )
 			or die( "bad sql user" );
-		mysql_select_db( $wgDBname, $wgDBconnection ) or die(
+		mysql_select_db( $db, $wgDBconnection ) or die(
 		  htmlspecialchars(mysql_error()) );
 	}
 
@@ -37,7 +37,7 @@ function wfGetDB( $altuser = "", $altpassword = "", $altserver = "", $altdb = ""
 			@$wgDBconnection = mysql_connect( $wgDBserver, $wgDBuser, $wgDBpassword )
 				or wfEmergencyAbort();
 			
-			@mysql_select_db( $db, $wgDBconnection )
+			@mysql_select_db( $wgDBname, $wgDBconnection )
 				or wfEmergencyAbort();
 		}
 	}
