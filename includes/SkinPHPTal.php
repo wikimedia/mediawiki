@@ -41,11 +41,11 @@
 			global $wgUseDatabaseMessages, $action;
 
 			$this->initPage();
-			$tpl = new PHPTAL($this->skinname . '.pt', '/usr/local/lib/wikipedia/templates');
-			if ( $wgUseDatabaseMessages ) {
+			$tpl = new PHPTAL($this->skinname . '.pt', 'templates');
+			#if ( $wgUseDatabaseMessages ) { // uncomment this to fall back to GetText
 
-				$tpl->setTranslator(new MediaWiki_I18N());
-			}
+			$tpl->setTranslator(new MediaWiki_I18N());
+			#}
 
 			$title = $wgTitle->getPrefixedText();
 			$tpl->setRef( "title", &$title ); // ?
@@ -53,156 +53,22 @@
 			$tpl->setRef( "thispage", &$thispage );
 			$tpl->set( "subtitle", $out->getSubtitle() );
 
+			$loggedin = $wgUser->getID() != 0;
+			$tpl->setRef( "loggedin", &$loggedin );
 			$tpl->set( "editable", ($wgTitle->getNamespace != Namespace::getSpecial() ) );
 			$tpl->set( "exists", $wgTitle->getArticleID() != 0 );
 			$tpl->set( "watch", $wgTitle->userIsWatching() ? "unwatch" : "watch" );
 			$tpl->set( "protect", count($wgTitle->getRestrictions()) ? "unprotect" : "protect" );
 			$tpl->set( "helppage", wfMsg('helppage'));
-
-			$language_urls = array();
-			foreach( $wgOut->getLanguageLinks() as $l ) {
-				$nt = Title::newFromText( $l );
-				$language_urls[] = array('href' => $nt->getFullURL(),
-				'text' => ($wgLang->getLanguageName( $nt->getInterwiki()) != ''?$wgLang->getLanguageName( $nt->getInterwiki()) : $l),
-				'class' => $wgLang->isRTL() ? 'rtl' : 'ltr');
-			}
-			if(count($language_urls) != 0 ) {
-				$tpl->setRef( 'language_urls', &$language_urls);
-			} else {
-				$tpl->set('language_urls', false);
-			}
-
-
-			/* set up the content actions */
-			$iscontent = ($wgTitle->getNamespace() != Namespace::getSpecial() );
-
-			$content_actions = array();
-			/*$content_actions['view'] = array('class' => ($action == 'view' and !Namespace::isTalk( $wgTitle->getNamespace())) ? 'selected' : '',*/
-			$content_actions['view'] = array('class' => (!Namespace::isTalk( $wgTitle->getNamespace())) ? 'selected' : '',
-			'i18n_key' => 'view',
-			'href' => $this->makeArticleUrl($wgTitle->getPrefixedDbKey()),
-			'akey' => wfMsg('accesskeyview'));
-
-
-			/* the edit tab */
-			if( $iscontent) {
-
-				$content_actions['talk'] = array('class' => (Namespace::isTalk( $wgTitle->getNamespace()) ? 'selected' : ''),
-				'i18n_key' => 'talk',
-				'href' => $this->makeTalkUrl($title),
-				'akey' => wfMsg('accesskeytalk'));
-
-				if ( $wgTitle->userCanEdit() ) {
-					$content_actions['edit'] = array('class' => ($action == 'edit' or $action == 'submit') ? 'selected' : '',
-					'i18n_key' => 'edit',
-					'href' => $this->makeUrl($thispage, 'action=edit'),
-					'akey' => wfMsg('accesskeyedit'));
-				} else {
-					$content_actions['edit'] = array('class' => ($action == 'edit') ? 'selected' : '',
-					'i18n_key' => 'viewsource',
-					'href' => $this->makeUrl($thispage, 'action=edit'),
-					'akey' => wfMsg('accesskeyedit'));
-				}
-				$content_actions['history'] = array('class' => ($action == 'history') ? 'selected' : '',
-				'i18n_key' => 'history',
-				'href' => $this->makeUrl($thispage, 'action=history'),
-				'akey' => wfMsg('accesskeyhistory'));
-
-				/*
-				$content_actions['revert'] = array('class' => ($action == 'revert') ? 'selected' : '',
-				'i18n_key' => 'revert',
-				'href' => $this->makeUrl($wgTitle->getPrefixedDbKey(), 'action=revert'),
-				'akey' => wfMsg('accesskeyrevert'));
-				*/
-				if( $wgUser->getNewtalk() ) {
-					$content_actions['rollback'] = array('class' => ($action == 'rollback') ? 'selected' : '',
-					'i18n_key' => 'rollback',
-					'href' => $this->makeUrl($thispage, 'action=rollback'),
-					'akey' => wfMsg('accesskeyrollback'));
-				}
-				if($wgUser->isSysop()){
-					if(!$wgTitle->isProtected()){
-						$content_actions['protect'] = array('class' => ($action == 'protect') ? 'selected' : '',
-						'i18n_key' => 'protect',
-						'href' => $this->makeUrl($thispage, 'action=protect'),
-						'akey' => wfMsg('accesskeyprotect'));
-
-					} else {
-						$content_actions['unprotect'] = array('class' => ($action == 'unprotect') ? 'selected' : '',
-						'i18n_key' => 'unprotect',
-						'href' => $this->makeUrl($thispage, 'action=unprotect'),
-						'akey' => wfMsg('accesskeyprotect'));
-					}
-					$content_actions['delete'] = array('class' => ($action == 'delete') ? 'selected' : '',
-					'i18n_key' => 'delete',
-					'href' => $this->makeUrl($thispage, 'action=delete'),
-					'akey' => wfMsg('accesskeydelete'));
-				}
-				if ( $wgUser->getID() != 0 ) {
-					if ( $wgTitle->userCanEdit()) {
-						$content_actions['move'] = array('class' => ($wgTitle->getDbKey() == 'Movepage' and $wgTitle->getNamespace == Namespace::getSpecial()) ? 'selected' : '',
-						'i18n_key' => 'move',
-						'href' => $this->makeSpecialUrl('Movepage', 'target='.$thispage),
-						'akey' => wfMsg('accesskeymove'));
-					} else {
-						$content_actions['move'] = array('class' => 'inactive',
-						'i18n_key' => 'move',
-						'href' => '',
-						'akey' => '');
-
-					}
-				}
-				if ( $wgUser->getID() != 0 and $action != 'edit' and $action != 'submit' ) {
-					if( !$wgTitle->userIsWatching()) {
-						$content_actions['watch'] = array('class' => ($action == 'watch' or $action == 'unwatch') ? 'selected' : '',
-						'i18n_key' => 'watch',
-						'href' => $this->makeUrl($thispage, 'action=watch'),
-						'akey' => wfMsg('accesskey-watch'));
-					} else {
-						$content_actions['watch'] = array('class' => ($action == 'unwatch' or $action == 'watch') ? 'selected' : '',
-						'i18n_key' => 'unwatch',
-						'href' => $this->makeUrl($thispage, 'action=unwatch'),
-						'akey' => wfMsg('accesskey-watch'));
-
-					}
-				}
-			} else {
-				/* show special page actions */
-
-				if ($wgTitle->getDbKey() == 'Movepage') {
-					$content_actions['move'] = array('class' => 'selected',
-					'i18n_key' => 'move',
-					'href' => '',
-					'akey' => '');
-				}
-			}
-			$tpl->setRef('content_actions', &$content_actions);
-
-
-			/* prepare an array of common navigation links */
-
-			$urls = array();
-			$urls['mainpage'] = array('href' => $this->makeI18nUrl('mainpage'));
-			$urls['randompage'] = array('href' => $this->makeSpecialUrl('Randompage'));
-			$urls['recentchanges'] = array('href' => $this->makeSpecialUrl('Recentchanges'));
-			$urls['whatlinkshere'] = array('href' => $this->makeSpecialUrl('Whatlinkshere', 'target='.$thispage));
-			$urls['currentevents'] = array('href' => $this->makeI18nUrl('currentevents'));
-			$urls['recentchangeslinked'] = array('href' => $this->makeSpecialUrl('Recentchangeslinked', 'target='.$thispage));
-			$urls['bugreports'] = array('href' => $this->makeI18nUrl('bugreportspage'));
-			$urls['sitesupport'] = array('href' => $this->makeI18nUrl('sitesupportpage'));
-			$urls['help'] = array('href' => $this->makeI18nUrl('helppage'));
-			$urls['upload'] = array('href' => $this->makeSpecialUrl('Upload'));
-			$urls['specialpages'] = array('href' => $this->makeSpecialUrl('Specialpages'));
-			$tpl->setRef( "urls", &$urls );
-
 			$tpl->setRef( "searchaction", &$wgScriptPath );
 			$tpl->setRef( "stylepath", &$wgStyleSheetPath );
 			$tpl->setRef( "lang", &$wgLanguageCode );
 			$tpl->set( "langname", $wgLang->getLanguageName( $wgLanguageCode ) );
 
-			$tpl->set( "username", $wgUser->getName() );
-			$tpl->set( "userpage", $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName() );
-			$tpl->set( "loggedin", $wgUser->getID() != 0 );
+			$username = $wgUser->getName();
+			$tpl->setRef( "username", &$username );
+			$userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
+			$tpl->setRef( "userpage", &$userpage);
 			$tpl->set( "sysop", $wgUser->isSysop() );
 			if( $wgUser->getNewtalk() ) {
 				$ntl = wfMsg( "newmessages",
@@ -223,6 +89,196 @@
 			$tpl->set( "reporttime", $out->reportTime() );
 
 			$tpl->setRef( "bodytext", &$out->mBodytext );
+
+			$language_urls = array();
+			foreach( $wgOut->getLanguageLinks() as $l ) {
+				$nt = Title::newFromText( $l );
+				$language_urls[] = array('href' => $nt->getFullURL(),
+				'text' => ($wgLang->getLanguageName( $nt->getInterwiki()) != ''?$wgLang->getLanguageName( $nt->getInterwiki()) : $l),
+				'class' => $wgLang->isRTL() ? 'rtl' : 'ltr');
+			}
+			if(count($language_urls) != 0 ) {
+				$tpl->setRef( 'language_urls', &$language_urls);
+			} else {
+				$tpl->set('language_urls', false);
+			}
+
+			/* set up the default links for the personal toolbar */
+			$personal_urls = array();
+			if ($loggedin) {
+				$personal_urls['userpage'] = array('text' => $username,
+					'href' => $this->makeUrl($userpage),
+					'ttip' => wfMsg('tooltip-userpage'),
+					'akey' => wfMsg('accesskey-userpage'));
+				$personal_urls['mytalk'] = array('text' => wfMsg('mytalk'),
+					'href' => $this->makeTalkUrl($userpage),
+					'ttip' => wfMsg('tooltip-mytalk'),
+					'akey' => wfMsg('accesskey-mytalk'));
+				$personal_urls['preferences'] = array('text' => wfMsg('preferences'),
+					'href' => $this->makeSpecialUrl('Preferences'),
+					'ttip' => wfMsg('tooltip-preferences'),
+					'akey' => wfMsg('accesskey-preferences'));
+				$personal_urls['watchlist'] = array('text' => wfMsg('watchlist'),
+					'href' => $this->makeSpecialUrl('Watchlist'),
+					'ttip' => wfMsg('tooltip-watchlist'),
+					'akey' => wfMsg('accesskey-watchlist'));
+				$personal_urls['mycontris'] = array('text' => wfMsg('mycontris'),
+					'href' => $this->makeSpecialUrl('Contributions','target=' . $username),
+					'ttip' => wfMsg('tooltip-mycontris'),
+					'akey' => wfMsg('accesskey-mycontris'));
+				$personal_urls['logout'] = array('text' => wfMsg('userlogout'),
+					'href' => $this->makeSpecialUrl('Userlogout','returnpage=' . thispage),
+					'ttip' => wfMsg('tooltip-logout'),
+					'akey' => wfMsg('accesskey-logout'));
+			} else {
+				$personal_urls['login'] = array('text' => wfMsg('userlogin'),
+					'href' => $this->makeSpecialUrl('Userlogin'),
+					'ttip' => wfMsg('tooltip-login'),
+					'akey' => wfMsg('accesskey-login'));
+			}
+			$tpl->setRef('personal_urls', &$personal_urls);
+
+			/* set up the content actions */
+			$iscontent = ($wgTitle->getNamespace() != Namespace::getSpecial() );
+
+			$content_actions = array();
+			/*$content_actions['view'] = array('class' => ($action == 'view' and !Namespace::isTalk( $wgTitle->getNamespace())) ? 'selected' : '',*/
+
+
+			/* the edit tab */
+			if( $iscontent) {
+			
+				$content_actions['article'] = array('class' => (!Namespace::isTalk( $wgTitle->getNamespace())) ? 'selected' : '',
+				'text' => wfMsg('article'),
+				'href' => $this->makeArticleUrl($wgTitle->getPrefixedDbKey()),
+				'ttip' => wfMsg('tooltip-article'),
+				'akey' => wfMsg('accesskey-article'));
+
+				$content_actions['talk'] = array('class' => (Namespace::isTalk( $wgTitle->getNamespace()) ? 'selected' : ''),
+				'text' => wfMsg('talk'),
+				'href' => $this->makeTalkUrl($title),
+				'ttip' => wfMsg('tooltip-talk'),
+				'akey' => wfMsg('accesskey-talk'));
+
+				if ( $wgTitle->userCanEdit() ) {
+					$content_actions['edit'] = array('class' => ($action == 'edit' or $action == 'submit') ? 'selected' : '',
+					'text' => wfMsg('edit'),
+					'href' => $this->makeUrl($thispage, 'action=edit'),
+					'ttip' => wfMsg('tooltip-edit'),
+					'akey' => wfMsg('accesskey-edit'));
+				} else {
+					$content_actions['edit'] = array('class' => ($action == 'edit') ? 'selected' : '',
+					'text' => wfMsg('viewsource'),
+					'href' => $this->makeUrl($thispage, 'action=edit'),
+					'ttip' => wfMsg('tooltip-edit'),
+					'akey' => wfMsg('accesskey-edit'));
+				}
+				$content_actions['history'] = array('class' => ($action == 'history') ? 'selected' : '',
+				'text' => wfMsg('history_short'),
+				'href' => $this->makeUrl($thispage, 'action=history'),
+				'ttip' => wfMsg('tooltip-history'),
+				'akey' => wfMsg('accesskey-history'));
+
+				/*
+				$content_actions['revert'] = array('class' => ($action == 'revert') ? 'selected' : '',
+				'i18n_key' => 'revert',
+				'href' => $this->makeUrl($wgTitle->getPrefixedDbKey(), 'action=revert'),
+				'akey' => wfMsg('accesskeyrevert'));
+				*/
+				if( $wgUser->getNewtalk() ) {
+					$content_actions['rollback'] = array('class' => ($action == 'rollback') ? 'selected' : '',
+					'text' => wfMsg('rollback_short'),
+					'href' => $this->makeUrl($thispage, 'action=rollback'),
+					'ttip' => wfMsg('tooltip-rollback'),
+					'akey' => wfMsg('accesskey-rollback'));
+				}
+				if($wgUser->isSysop()){
+					if(!$wgTitle->isProtected()){
+						$content_actions['protect'] = array('class' => ($action == 'protect') ? 'selected' : '',
+						'text' => wfMsg('protect'),
+						'href' => $this->makeUrl($thispage, 'action=protect'),
+						'ttip' => wfMsg('tooltip-protect'),
+						'akey' => wfMsg('accesskey-protect'));
+
+					} else {
+						$content_actions['unprotect'] = array('class' => ($action == 'unprotect') ? 'selected' : '',
+						'text' => wfMsg('unprotect'),
+						'href' => $this->makeUrl($thispage, 'action=unprotect'),
+						'ttip' => wfMsg('tooltip-protect'),
+						'akey' => wfMsg('accesskey-protect'));
+					}
+					$content_actions['delete'] = array('class' => ($action == 'delete') ? 'selected' : '',
+					'text' => wfMsg('delete'),
+					'href' => $this->makeUrl($thispage, 'action=delete'),
+					'ttip' => wfMsg('tooltip-delete'),
+					'akey' => wfMsg('accesskey-delete'));
+				}
+				if ( $wgUser->getID() != 0 ) {
+					if ( $wgTitle->userCanEdit()) {
+						$content_actions['move'] = array('class' => ($wgTitle->getDbKey() == 'Movepage' and $wgTitle->getNamespace == Namespace::getSpecial()) ? 'selected' : '',
+						'text' => wfMsg('move'),
+						'href' => $this->makeSpecialUrl('Movepage', 'target='.$thispage),
+						'ttip' => wfMsg('tooltip-move'),
+						'akey' => wfMsg('accesskey-move'));
+					} else {
+						$content_actions['move'] = array('class' => 'inactive',
+						'text' => wfMsg('move'),
+						'href' => '',
+						'akey' => '');
+
+					}
+				}
+				if ( $wgUser->getID() != 0 and $action != 'edit' and $action != 'submit' ) {
+					if( !$wgTitle->userIsWatching()) {
+						$content_actions['watch'] = array('class' => ($action == 'watch' or $action == 'unwatch') ? 'selected' : '',
+						'text' => wfMsg('watch'),
+						'href' => $this->makeUrl($thispage, 'action=watch'),
+						'ttip' => wfMsg('tooltip-watch'),
+						'akey' => wfMsg('accesskey-watch'));
+					} else {
+						$content_actions['watch'] = array('class' => ($action == 'unwatch' or $action == 'watch') ? 'selected' : '',
+						'text' => wfMsg('unwatch'),
+						'href' => $this->makeUrl($thispage, 'action=unwatch'),
+						'ttip' => wfMsg('tooltip-unwatch'),
+						'akey' => wfMsg('accesskey-unwatch'));
+
+					}
+				}
+			} else {
+				/* show special page actions */
+
+				$content_actions['article'] = array('class' => 'selected',
+				'text' => 'Special Page',
+				'href' => 'javascript:void()',
+				'ttip' => wfMsg('tooltip-special'),
+				'akey' => '');
+				
+				/*if ($wgTitle->getDbKey() == 'Movepage') {
+					$content_actions['move'] = array('class' => 'selected',
+					'i18n_key' => 'move',
+					'href' => '',
+					'akey' => '');
+				}*/
+			}
+			$tpl->setRef('content_actions', &$content_actions);
+
+
+			/* prepare an array of common navigation links */
+
+			$nav_urls = array();
+			$nav_urls['mainpage'] = array('href' => $this->makeI18nUrl('mainpage'));
+			$nav_urls['randompage'] = array('href' => $this->makeSpecialUrl('Randompage'));
+			$nav_urls['recentchanges'] = array('href' => $this->makeSpecialUrl('Recentchanges'));
+			$nav_urls['whatlinkshere'] = array('href' => $this->makeSpecialUrl('Whatlinkshere', 'target='.$thispage));
+			$nav_urls['currentevents'] = array('href' => $this->makeI18nUrl('currentevents'));
+			$nav_urls['recentchangeslinked'] = array('href' => $this->makeSpecialUrl('Recentchangeslinked', 'target='.$thispage));
+			$nav_urls['bugreports'] = array('href' => $this->makeI18nUrl('bugreportspage'));
+			$nav_urls['sitesupport'] = array('href' => $this->makeI18nUrl('sitesupportpage'));
+			$nav_urls['help'] = array('href' => $this->makeI18nUrl('helppage'));
+			$nav_urls['upload'] = array('href' => $this->makeSpecialUrl('Upload'));
+			$nav_urls['specialpages'] = array('href' => $this->makeSpecialUrl('Specialpages'));
+			$tpl->setRef( "nav_urls", &$nav_urls );
+
 
 			// execute template
 			$res = $tpl->execute();
@@ -255,8 +311,9 @@
 		}
 		/*static*/ function makeI18nUrl ( $name, $urlaction='' ) {
 			$title = Title::newFromText( wfMsg($name) );
-			#$title->setNamespace(0);
-			#$title = Title::makeTitle( Namespace::getSubject( $wgTitle->getNamespace() ), $wgTitle->getDbKey() );
+			if(!is_object($title)) {
+				$title = Title::newFromText( $name );
+			}
 			return $title->escapeLocalURL( $urlaction );
 		}
 		/*static*/ function makeUrl ( $name, $urlaction='' ) {
