@@ -299,8 +299,11 @@ class UploadForm {
 
 		if( is_file( $this->mSavedFile ) ) {
 			$this->mUploadOldVersion = gmdate( 'YmdHis' ) . "!{$saveName}";
+			wfSuppressWarnings();
+			$success = rename( $this->mSavedFile, "${archive}/{$this->mUploadOldVersion}" );
+			wfRestoreWarnings();
 
-			if( @!rename( $this->mSavedFile, "${archive}/{$this->mUploadOldVersion}" ) ) { 
+			if( ! $success ) { 
 				$wgOut->fileRenameError( $this->mSavedFile,
 				  "${archive}/{$this->mUploadOldVersion}" );
 				return false;
@@ -310,12 +313,20 @@ class UploadForm {
 		}
 		
 		if( $useRename ) {
-			if( @!rename( $tempName, $this->mSavedFile ) ) {
+			wfSuppressWarnings();
+			$success = rename( $tempName, $this->mSavedFile );
+			wfRestoreWarnings();
+
+			if( ! $success ) ) {
 				$wgOut->fileCopyError( $tempName, $this->mSavedFile );
 				return false;
 			}
 		} else {
-			if( @!move_uploaded_file( $tempName, $this->mSavedFile ) ) {
+			wfSuppressWarnings();
+			$success = move_uploaded_file( $tempName, $this->mSavedFile );
+			wfRestoreWarnings();
+
+			if( ! $success ) {
 				$wgOut->fileCopyError( $tempName, $this->mSavedFile );
 				return false;
 			}
@@ -380,7 +391,10 @@ class UploadForm {
 	 * @access private
 	 */
 	function unsaveUploadedFile() {
-		if ( ! @unlink( $this->mUploadTempName ) ) {
+		wfSuppressWarnings();
+		$success = unlink( $this->mUploadTempName );
+		wfRestoreWarnings();
+		if ( ! $success ) {
 			$wgOut->fileDeleteError( $this->mUploadTempName );
 		}
 	}
@@ -640,7 +654,9 @@ class UploadForm {
 			return true;
 		}
 		
-		$data = @getimagesize( $tmpfile );
+		wfSuppressWarnings();
+		$data = getimagesize( $tmpfile );
+		wfRestoreWarnings();
 		if( false === $data ) {
 			# Didn't recognize the image type.
 			# Either the image is corrupt or someone's slipping us some
