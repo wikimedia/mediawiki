@@ -362,7 +362,7 @@ function insertTags(tagOpen, tagClose, sampleText) {
 function akeytt() {
     if(!ta) return;
     pref = 'alt-';
-    if(is_safari || navigator.userAgent.toLowerCase().indexOf( 'mac' ) + 1 ) pref = 'cmd-';
+    if(is_safari || navigator.userAgent.toLowerCase().indexOf( 'mac' ) + 1 ) pref = 'control-';
     if(is_opera) pref = 'shift-esc-';
     for(id in ta) {
         n = document.getElementById(id);
