@@ -181,6 +181,16 @@ class SearchEngine {
 	function queryLimit() {
 		return $this->db->limitResult( $this->limit, $this->offset );
 	}
+
+	/**
+	 * Does not do anything for generic search engine
+	 * subclasses may define this though
+	 * @return string
+	 * @access private
+	 */
+	function queryRanking($filteredTerm,$fulltext) {
+		return "";
+	}
 	
 	/**
 	 * Construct the full SQL query to do the search.
@@ -193,6 +203,7 @@ class SearchEngine {
 		return $this->queryMain( $filteredTerm, $fulltext ) . ' ' .
 			$this->queryRedirect() . ' ' .
 			$this->queryNamespaces() . ' ' .
+			$this->queryRanking($filteredTerm, $fulltext) . ' ' .
 			$this->queryLimit();
 	}
 
