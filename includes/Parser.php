@@ -2191,7 +2191,7 @@ class Parser
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
-				'ruby', 'rt' , 'rb' , 'rp', 'p', 'abbr', 'acronym'
+				'ruby', 'rt' , 'rb' , 'rp', 'p'
 			);
 			$htmlsingle = array(
 				'br', 'hr', 'li', 'dt', 'dd'
