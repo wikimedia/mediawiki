@@ -46,6 +46,8 @@ if (defined('MEDIAWIKI')) {
 		return true;
 	}
 
+	# Hook for IP & user blocks
+	
 	function syslogBlockIp(&$block, &$user) {
 		syslog(LOG_NOTICE, "User '" . $user->getName() . 
 			   "' blocked '" . (($block->mUser) ? $block->mUser : $block->mAddress) .
@@ -53,6 +55,8 @@ if (defined('MEDIAWIKI')) {
 		return true;
 	}
 
+	# Hook for article protection
+	
 	function syslogArticleProtect(&$article, &$user, $protect, &$reason, &$moveonly) {
 		$title = $article->mTitle;
 		syslog(LOG_NOTICE, "User '" . $user->getName() . "' " .
@@ -62,6 +66,8 @@ if (defined('MEDIAWIKI')) {
 		return true;
 	}
 
+	# Hook for article deletion
+	
 	function syslogArticleDelete(&$article, &$user, &$reason) {
 		$title = $article->mTitle;
 		syslog(LOG_NOTICE, "User '" . $user->getName() . "' deleted '" .
@@ -69,7 +75,16 @@ if (defined('MEDIAWIKI')) {
 			   "' for '" . $reason . "' ");
 		return true;
 	}
+
+	# Hook for article save
 	
+	function syslogArticleSave(&$article, &$user, &$text, $summary, $isminor, $iswatch, $section) {
+		$title = $article->mTitle;
+		syslog(LOG_NOTICE, "User '" . $user->getName() . "' saved '" .
+			   $title->getPrefixedText() .
+			   "' with comment '" . $summary . "' ");
+		return true;
+	}
 
 	# Setup -- called once environment is configured
 	
@@ -85,6 +100,7 @@ if (defined('MEDIAWIKI')) {
 		$wgHooks['BlockIpComplete'][] = 'syslogBlockIp';
 		$wgHooks['ArticleProtectComplete'][] = 'syslogArticleProtect';
 		$wgHooks['ArticleDeleteComplete'][] = 'syslogArticleDelete';
+		$wgHooks['ArticleSaveComplete'][] = 'syslogArticleSave';
 		
 		return true;
 	}

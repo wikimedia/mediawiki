@@ -250,6 +250,24 @@ $protect: boolean whether it was a protect or an unprotect
 $reason: Reason for protect
 $moveonly: boolean whether it was for move only or not
 
+'ArticleSave': before an article is saved
+$article: the article (object) being saved
+$user: the user (object) saving the article
+$text: the new article text
+$summary: the article summary (comment)
+$isminor: minor flag
+$iswatch: watch flag
+$section: section #
+
+'ArticleSaveComplete': after an article is saved
+$article: the article (object) saved
+$user: the user (object) who saved the article
+$text: the new article text
+$summary: the article summary (comment)
+$isminor: minor flag
+$iswatch: watch flag
+$section: section #
+
 'BlockIp': before an IP address or user is blocked
 $block: the Block object about to be saved
 $user: the user _doing_ the block (not the one being blocked)
