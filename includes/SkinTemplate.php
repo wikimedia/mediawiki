@@ -488,7 +488,7 @@ class SkinTemplate extends Skin {
 	 * @access private
 	 */
 	function buildContentActionUrls () {
-		global $wgContLang;
+		global $wgContLang, $wgUseValidation;
 		$fname = 'SkinTemplate::buildContentActionUrls';
 		wfProfileIn( $fname );
 		
@@ -583,6 +583,7 @@ class SkinTemplate extends Skin {
 						);
 					}
 				}
+				}
 			} else {
 				//article doesn't exist or is deleted
 				if($wgUser->isAllowed('delete')){
@@ -611,6 +612,14 @@ class SkinTemplate extends Skin {
 						'href' => $this->mTitle->getLocalUrl( 'action=unwatch' )
 					);
 				}
+
+			# Validate tab. TODO: add validation to logged-in user rights 
+			if($wgUseValidation){ # && $wgUser->isAllowed('validate')){
+				$content_actions['validate'] = array(
+					'class' => ($action == 'validate') ? 'selected' : false,
+					'text' => wfMsg('val_tab'),
+					'href' => $this->mTitle->getLocalUrl( 'action=validate' )
+				);
 			}
 
 		} else {

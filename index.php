@@ -135,6 +135,7 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 		case 'unprotect':
 		case 'info':
 		case 'markpatrolled':
+		case 'validate':
 			$wgArticle->$action();
 			break;
 		case 'print':
