@@ -500,11 +500,6 @@ class SkinPHPTal extends Skin {
 						'text' => wfMsg('move'),
 						'href' => $this->makeSpecialUrl('Movepage', 'target='. urlencode( $this->thispage ))
 					);
-					} else {
-						$content_actions['move'] = array('class' => 'inactive',
-						'text' => wfMsg('move'),
-						'href' => false);
-
 					}
 				}
 			} else {
