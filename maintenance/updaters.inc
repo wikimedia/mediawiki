@@ -6,6 +6,10 @@
  
  /** */
 
+require_once 'convertLinks.inc';
+require_once 'InitialiseMessages.inc';
+require_once 'archives/moveCustomMessages.inc';
+
 $wgNewTables = array(
 #            table          patch file (in maintenance/archives)
 	array( 'linkscc',       'patch-linkscc.sql' ),
@@ -135,6 +139,39 @@ function do_image_name_unique_update() {
 		dbsource( "maintenance/archives/patch-image_name_primary.sql", $wgDatabase );
 		echo "ok\n";
 	}
+}
+
+function do_all_updates() {
+	global $wgNewTables, $wgNewFields;
+	
+	# Add missing tables
+	foreach ( $wgNewTables as $tableRecord ) {
+		add_table( $tableRecord[0], $tableRecord[1] );
+		flush();
+	}
+
+	# Add missing fields
+	foreach ( $wgNewFields as $fieldRecord ) {
+		add_table( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2] );
+		flush();
+	}
+
+	# Do schema updates which require special handling
+	do_interwiki_update(); flush();
+	do_index_update(); flush();
+	do_linkscc_1_3_update(); flush();
+	convertLinks(); flush();
+	do_image_name_unique_update(); flush();
+
+	if ( isTemplateInitialised() ) {
+		print "Template namespace already initialised\n";
+	} else {
+		moveCustomMessages( 1 ); flush();
+		moveCustomMessages( 2 ); flush();
+		moveCustomMessages( 3 ); flush();
+	}
+
+	initialiseMessages(); flush();
 }
 
 ?>
