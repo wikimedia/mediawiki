@@ -50,7 +50,7 @@ function wfSpecialExport( $page = '' ) {
 	
 	$wgOut->addWikiText( wfMsg( "exporttext" ) );
 	$titleObj = Title::makeTitle( NS_SPECIAL, "Export" );
-	$action = $titleObj->escapeLocalURL();
+	$action = $titleObj->escapeLocalURL( 'action=submit' );
 	$wgOut->addHTML( "
 <form method='post' action=\"$action\">
 <input type='hidden' name='action' value='submit' />
