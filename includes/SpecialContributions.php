@@ -26,6 +26,10 @@ function wfSpecialContributions( $par = "" )
 	$userCond = "";
 
 	$nt = Title::newFromURL( $target );
+	if ( !$nt ) {
+		$wgOut->errorpage( "notargettitle", "notargettext" );
+		return;
+	}
 	$nt->setNamespace( Namespace::getUser() );
 
 	$id = User::idFromName( $nt->getText() );
