@@ -232,6 +232,13 @@ class MessageCache
 				$message = $this->mCache[$title];
 			}
 
+			if ( !$message && $this->mUseCache ) {
+				$message = $this->mMemc->get($this->mMemcKey.':'.$title);
+				if ($message) {
+					$this->mCache[$title]=$message;
+				}
+			}
+
 			# If it wasn't in the cache, load each message from the DB individually
 			if ( !$message ) {
 				$dbr =& wfGetDB( DB_SLAVE );
@@ -240,6 +247,13 @@ class MessageCache
 				  'MessageCache::get' );
 				if ( $result ) {
 					$message = $result->cur_text;
+					if ($this->mUseCache) {
+						$this->mCache[$title]=$message;
+						/* individual messages may be often 
+						   recached until proper purge code exists 
+						*/
+						$this->mMemc->set($this->mMemcKey.':'.$title,$message,300);
+					}
 				}
 			}
 		}
