@@ -195,7 +195,7 @@ function wfSpecialPreferences()
 	global $wpQuickbar, $wpOldpass, $wpNewpass, $wpRetype;
 	global $wpSkin, $wpMath, $wpDate, $wpEmail, $wpEmailFlag, $wpNick, $wpSearch, $wpRecent;
 	global $wpRows, $wpCols, $wpSaveprefs, $wpReset, $wpHourDiff;
-	global $wpSearchLines, $wpSearchChars, $wpStubs;
+	global $wpSearchLines, $wpSearchChars, $wpStubs, $wgValidSkinNames;
 
 	$wgOut->setPageTitle( wfMsg( "preferences" ) );
 	$wgOut->setArticleFlag( false );
@@ -273,9 +273,15 @@ value=\"$i\"$checked> {$qbs[$i]}</label><br>\n" );
 	# Skin setting
 	#
 	$wgOut->addHTML( "<tr><td valign=top nowrap><b>$sk:</b><br>\n" );
-	for ( $i = 0; $i < count( $skins ); ++$i ) {
-		if ( $i == $wpSkin ) { $checked = " checked"; }
-		else { $checked = ""; }
+	# Only count up to count($wgValidSkinNames) rather than 
+	# count($skins), to allow global disabling of experimental 
+	# skins.
+	for ( $i = 0; $i < count( $wgValidSkinNames ); ++$i ) {
+		if ( $i == $wpSkin ) { 
+			$checked = " checked"; 
+		} else { 
+			$checked = ""; 
+		}
 		$wgOut->addHTML( "<label><input type=radio name=\"wpSkin\"
 value=\"$i\"$checked> {$skins[$i]}</label><br>\n" );
 	}
