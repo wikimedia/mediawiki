@@ -83,11 +83,11 @@ wfProfileOut( "main-misc-setup" );
 # If the user is not logged in, the Namespace:title of the article must be in the Read array in
 # order for the user to see it.
 if ( !$wgUser->getID() && is_array( $wgWhitelistRead ) && $wgTitle) {
-        if ( !in_array( $wgLang->getNsText( $wgTitle->getNamespace() ) . ":" . $wgTitle->getDBkey(), $wgWhitelistRead ) ) {
-                $wgOut->loginToUse();
-                $wgOut->output();
-                exit;
-        }
+	if ( !in_array( $wgLang->getNsText( $wgTitle->getNamespace() ) . ":" . $wgTitle->getDBkey(), $wgWhitelistRead ) ) {
+		$wgOut->loginToUse();
+		$wgOut->output();
+		exit;
+	}
 }
 
 
@@ -97,9 +97,18 @@ if ( "" != $search ) {
 	} else {
 		wfGo( $search );
 	}
-} else if( !$wgTitle or $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" ) {
+} else if ( !$wgTitle or $wgTitle->getDBkey() == "" ) {
 	$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 	$wgOut->errorpage( "badtitle", "badtitletext" );
+} else if ( $wgTitle->getInterwiki() != "" ) {
+	$url = $wgTitle->getFullUrl();
+	# Check for a redirect loop
+	if ( !preg_match( "/^" . preg_quote( $wgServer ) . "/", $url ) && $wgTitle->isLocal() ) {
+		$wgOut->redirect( $url );
+	} else {
+		$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
+		$wgOut->errorpage( "badtitle", "badtitletext" );
+	}
 } else if ( ( $action == "view" ) && $wgTitle->getPrefixedDBKey() != $title ) {
 	/* redirect to canonical url, make it a 301 to allow caching */
 	$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ), '301');
