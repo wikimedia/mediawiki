@@ -237,6 +237,11 @@ class OutputPage {
 		header( "Content-language: {$wgLanguageCode}" );
 		
 		if ( "" != $this->mRedirect ) {
+			if( substr( $this->mRedirect, 0, 4 ) != "http" ) {
+				# Standards require redirect URLs to be absolute
+				global $wgServer;
+				$this->mRedirect = $wgServer . $this->mRedirect;
+			}
 			header( "Location: {$this->mRedirect}" );
 			return;
 		}
@@ -1446,7 +1451,7 @@ $t[] = "</table>" ;
 			// The canonized header is a version of the header text safe to use for links
 			
 			$canonized_headline=preg_replace("/<.*?>/","",$headline); // strip out HTML
-			$tocline=$canonized_headline;
+			$tocline = trim( $canonized_headline );
 			$canonized_headline=str_replace('"',"",$canonized_headline);
 			$canonized_headline=str_replace(" ","_",trim($canonized_headline));			
 			$refer[$c]=$canonized_headline;

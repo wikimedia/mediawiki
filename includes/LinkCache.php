@@ -178,6 +178,12 @@ class LinkCache {
 		$id = $fromtitle->getArticleID();
 		$this->resume();
 		
+		if( $id == 0 ) {
+			wfDebug( "$fname - got id 0 for title '" . $fromtitle->getPrefixedDBkey() . "'\n" );
+			wfProfileOut( $fname );
+			return;
+		}
+		
 		$sql = "SELECT bl_to
 			FROM brokenlinks
 			WHERE bl_from='{$id}'";
@@ -197,9 +203,9 @@ class LinkCache {
 			} else {
 				$ser = wfStrencode( serialize( $this ) );
 			}
-			wfQuery("REPLACE INTO linkscc VALUES({$id}, '{$dbkeyfrom}', '{$ser}')", 
+			wfQuery("REPLACE INTO linkscc(lcc_pageid,lcc_title,lcc_cacheobj) VALUES({$id}, '{$dbkeyfrom}', '{$ser}')", 
 				DB_WRITE);
-				wfDebug( "LinkCache::preFill - saved to linkscc\n" );
+				wfDebug( "$fname - saved to linkscc\n" );
 		}
 
 		wfProfileOut( $fname );
