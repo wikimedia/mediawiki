@@ -2202,12 +2202,6 @@ class Parser
 			$doShowToc = 0;
 		}
 
-		# never add the TOC to the Main Page. This is an entry page that should not
-		# be more than 1-2 screens large anyway
-		if( $this->mTitle->getPrefixedText() == wfMsg('mainpage') ) {
-			$doShowToc = 0;
-		}
-
 		# Get all headlines for numbering them and adding funky stuff like [edit]
 		# links - this is for later, but we need the number of headlines right now
 		$numMatches = preg_match_all( '/<H([1-6])(.*?'.'>)(.*?)<\/H[1-6] *>/i', $text, $matches );
