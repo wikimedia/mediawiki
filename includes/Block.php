@@ -191,17 +191,19 @@ class Block
 		return $this->mAddress != "";
 	}
 	
-	function updateTimestamp() {
-		
-		$this->mTimestamp = wfTimestampNow();
-		$this->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
+	function updateTimestamp() 
+	{
+		if ( $this->mAuto ) {
+			$this->mTimestamp = wfTimestampNow();
+			$this->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
 
-		wfQuery( "UPDATE ipblocks SET " .
-			"ipb_timestamp='" . $this->mTimestamp . "', " .
-			"ipb_expiry='" . $this->mExpiry . "' " .
-			"WHERE ipb_address='" . wfStrencode( $this->mAddress ) . "'", DB_WRITE, "Block::updateTimestamp" );
-		
-		$this->clearCache();
+			wfQuery( "UPDATE ipblocks SET " .
+				"ipb_timestamp='" . $this->mTimestamp . "', " .
+				"ipb_expiry='" . $this->mExpiry . "' " .
+				"WHERE ipb_address='" . wfStrencode( $this->mAddress ) . "'", DB_WRITE, "Block::updateTimestamp" );
+			
+			$this->clearCache();
+		}
 	}
 
 	/* private */ function clearCache()
