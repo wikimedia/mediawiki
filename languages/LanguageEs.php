@@ -139,7 +139,8 @@
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
-	"Booksources"   => "Fuentes externas de libros"
+	"Booksources"   => "Fuentes externas de libros",
+	"Export"		=> "XML export",
 );
 
 /* private */ $wgSysopSpecialPagesEs = array(
