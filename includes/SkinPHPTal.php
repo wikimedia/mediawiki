@@ -253,7 +253,7 @@
 				);
 				$personal_urls['logout'] = array(
 					'text' => wfMsg('userlogout'),
-					'href' => $this->makeSpecialUrl('Userlogout','returnpage=' . $this->thisurle),
+					'href' => $this->makeSpecialUrl('Userlogout','returnto=' . $this->thisurle),
 					'ttip' => wfMsg('tooltip-logout'),
 					'akey' => wfMsg('accesskey-logout')
 				);
@@ -273,7 +273,7 @@
 					);
 					$personal_urls['anonlogin'] = array(
 						'text' => wfMsg('userlogin'),
-						'href' => $this->makeSpecialUrl('Userlogin', 'return='.$this->thisurle),
+						'href' => $this->makeSpecialUrl('Userlogin', 'returnto='.$this->thisurle),
 						'ttip' => wfMsg('tooltip-login'),
 						'akey' => wfMsg('accesskey-login')
 					);
@@ -281,7 +281,7 @@
 
 					$personal_urls['login'] = array(
 						'text' => wfMsg('userlogin'),
-						'href' => $this->makeSpecialUrl('Userlogin', 'return='.$this->thisurle),
+						'href' => $this->makeSpecialUrl('Userlogin', 'returnto='.$this->thisurle),
 						'ttip' => wfMsg('tooltip-login'),
 						'akey' => wfMsg('accesskey-login')
 					);
