@@ -1080,7 +1080,7 @@ class Article {
 					$messageCache = wfLoadAllMessages();
 				}
 				$messageCache[$title] = $text;
-				$wgMemc->set( "$wgDBname:messages" );
+				$wgMemc->set( "$wgDBname:messages", $messageCache, 86400 );
 			}
 		}
 	}
