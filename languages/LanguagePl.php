@@ -1150,20 +1150,7 @@ class LanguagePl extends LanguageUtf8 {
                 return $wgWeekdayNamesPl[$key-1];
         }
 
-        function userAdjust( $ts )
-        {
-                global $wgUser;
-
-                $diff = $wgUser->getOption( "timecorrection" );
-                if ( ! $diff ) { $diff = 0; }
-                if ( 0 == $diff ) { return $ts; }
-
-                $t = mktime( ( (int)substr( $ts, 8, 2) ) + $diff,
-                  (int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
-                  (int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
-                  (int)substr( $ts, 0, 4 ) );
-                return date( "YmdHis", $t );
-        }
+        # inherit function userAdjust( $ts )
 
         function date( $ts, $adj = false )
         {

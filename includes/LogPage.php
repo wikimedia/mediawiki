@@ -104,7 +104,7 @@ class LogPage {
 		} else {
 			$ul = $ut;
 		}
-		$d = $wgLang->timeanddate( date( "YmdHis" ), false );
+		$d = $wgLang->timeanddate( wfTimestampNow(), false );
 
 		preg_match( "/^(.*?)<ul>(.*)$/sD", $this->mContent, $m );
 

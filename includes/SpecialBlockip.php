@@ -74,7 +74,7 @@ class IPBlockForm {
 		$sql = "INSERT INTO ipblocks (ipb_address, ipb_user, ipb_by, " .
 		  "ipb_reason, ipb_timestamp ) VALUES ('{$wpBlockAddress}', 0, " .
 		  $wgUser->getID() . ", '" . wfStrencode( $wpBlockReason ) . "','" .
-		  date( "YmdHis" ) . "')";
+		  wfTimestampNow() . "')";
 		wfQuery( $sql, $fname );
 
 		$success = wfLocalUrl( $wgLang->specialPage( "Blockip" ),

@@ -938,8 +938,8 @@ class Skin {
 	function dateLink()
 	{
 		global $wgLinkCache;
-		$t1 = Title::newFromText( date( "F j" ) );
-		$t2 = Title::newFromText( date( "Y" ) );
+		$t1 = Title::newFromText( gmdate( "F j" ) );
+		$t2 = Title::newFromText( gmdate( "Y" ) );
 
 		$wgLinkCache->suspend();
 		$id = $t1->getArticleID();

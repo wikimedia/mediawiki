@@ -107,19 +107,19 @@ function wfStrencode( $s )
 
 # Ideally we'd be using actual time fields in the db
 function wfTimestamp2Unix( $ts ) {
-	return mktime( ( (int)substr( $ts, 8, 2) ),
+	return gmmktime( ( (int)substr( $ts, 8, 2) ),
 		  (int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
 		  (int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
 		  (int)substr( $ts, 0, 4 ) );
 }
 
 function wfUnix2Timestamp( $unixtime ) {
-	return date( "YmdHis", $unixtime );
+	return gmdate( "YmdHis", $unixtime );
 }
 
 function wfTimestampNow() {
 	# return NOW
-	return date( "YmdHis" );
+	return gmdate( "YmdHis" );
 }
 
 # Sorting hack for MySQL 3, which doesn't use index sorts for DESC

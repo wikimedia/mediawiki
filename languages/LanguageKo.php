@@ -1051,10 +1051,7 @@ class LanguageKo extends LanguageUtf8 {
 		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
 	}
 
-	function rfc1123( $ts )
-	{
-		return date( "D, d M Y H:i:s T", $ts );
-	}
+	# inherit function rfc1123( $ts )
 
 	function getValidSpecialPages()
 	{

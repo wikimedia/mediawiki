@@ -24,7 +24,7 @@ function wfSpecialWatchlist()
 		$docutoff = '';
 	} else {
 		$docutoff = "cur_timestamp > '" .
-		  date( "YmdHis", time() - ( $days * 86400 ) )
+		  wfUnix2Timestamp( time() - ( $days * 86400 ) )
 		  . "' AND";
 	}
 	if ( $limit == 0 ) {

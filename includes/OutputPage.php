@@ -152,14 +152,17 @@ class OutputPage {
 		if( !$wgCachePages ) return;
 		if( preg_match( '/MSIE ([1-4]|5\.0)/', $_SERVER["HTTP_USER_AGENT"] ) ) {
 			# IE 5.0 has probs with our caching
+			#wfDebug( "-- bad client, not caching\n", false );
 			return;
 		}
 		if( $wgUser->getOption( "nocache" ) ) return;
 
 		if( $_SERVER["HTTP_IF_MODIFIED_SINCE"] != "" ) {
 			$ismodsince = wfUnix2Timestamp( strtotime( $_SERVER["HTTP_IF_MODIFIED_SINCE"] ) );
+			#wfDebug( "-- client send If-Modified-Since: " . $_SERVER["HTTP_IF_MODIFIED_SINCE"] . "\n", false );
 			$lastmod = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix(
 				max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
+			#wfDebug( "--  we might send Last-Modified : $lastmod\n", false ); 
 		
 			if( ($ismodsince >= $timestamp ) and $wgUser->validateCache( $ismodsince ) ) {
 				# Make sure you're in a place you can leave when you call us!
@@ -468,7 +471,7 @@ class OutputPage {
 			if($wgUser->getId() == 0)
 				$forward .= " anon";
 			$log = sprintf( "%s\t%04.3f\t%s\n",
-			  date( "YmdHis" ), $elapsed,
+			  gmdate( "YmdHis" ), $elapsed,
 			  urldecode( $HTTP_SERVER_VARS['REQUEST_URI'] . $forward ) );
 			error_log( $log . $prof, 3, $wgDebugLogFile );
 		}
@@ -1063,6 +1066,8 @@ class OutputPage {
 		global $wgLang;
 		wfProfileIn( "OutputPage:replaceVariables" );
 
+		/* As with sigs, use server's local time --
+		   ensure this is appropriate for your audience! */
 		$v = date( "m" );
 		$text = str_replace( "{{CURRENTMONTH}}", $v, $text );
 		$v = $wgLang->getMonthName( date( "n" ) );
@@ -1075,7 +1080,7 @@ class OutputPage {
 		$text = str_replace( "{{CURRENTDAYNAME}}", $v, $text );
 		$v = date( "Y" );
 		$text = str_replace( "{{CURRENTYEAR}}", $v, $text );
-		$v = $wgLang->time( date( "YmdHis" ), false );
+		$v = $wgLang->time( wfTimestampNow(), false );
 		$text = str_replace( "{{CURRENTTIME}}", $v, $text );
 
 		if ( false !== strstr( $text, "{{NUMBEROFARTICLES}}" ) ) {

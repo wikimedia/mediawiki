@@ -73,7 +73,7 @@ class DBLockForm {
 		}
 		fwrite( $fp, $wpLockReason );
 		fwrite( $fp, "\n<p>(by " . $wgUser->getName() . " at " .
-		  $wgLang->timeanddate( date( "YmdHis" ) ) . ")\n" );
+		  $wgLang->timeanddate( wfTimestampNow() ) . ")\n" );
 		fclose( $fp );
 
 		$success = wfLocalUrl( $wgLang->specialPage( "Lockdb" ),

@@ -25,7 +25,7 @@ function wfSpecialRecentchangeslinked()
 	}
 	$days = (int)$days;
 	list( $limit, $offset ) = wfCheckLimits( 100, "rclimit" );
-	$cutoff = date( "YmdHis", time() - ( $days * 86400 ) );
+	$cutoff = wfUnix2Timestamp( time() - ( $days * 86400 ) );
 
 	if ( ! isset( $hideminor ) ) {
 		$hideminor = $wgUser->getOption( "hideminor" );
