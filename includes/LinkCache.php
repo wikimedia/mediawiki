@@ -308,7 +308,7 @@ class LinkCache {
 		} else {
 			$ser = wfStrencode( serialize( $this ) );
 		}
-		if ($isMySQL) {
+		if ($wgIsMySQL) {
 			wfQuery("REPLACE INTO linkscc(lcc_pageid,lcc_cacheobj) " .
 				"VALUES({$pid}, '{$ser}')", DB_WRITE);
 		} else {
