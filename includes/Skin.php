@@ -2137,10 +2137,10 @@ class Skin {
 		$rci = 'RCI'.$this->rcCacheIndex ;
 		$rcl = 'RCL'.$this->rcCacheIndex ;
 		$rcm = 'RCM'.$this->rcCacheIndex ;
-		$toggleLink = 'javascript:toggleVisibility("'.$rci.'","'.$rcm.'","'.$rcl.'")' ;
+		$toggleLink = "javascript:toggleVisibility('$rci','$rcm','$rcl')" ;
 		$arrowdir = $wgLang->isRTL() ? 'l' : 'r';
-		$tl  = '<span id="'.$rcm.'"><a href=\''.$toggleLink.'\'><img src="'.$wgStylePath.'/images/Arr_'.$arrowdir.'.png" width="12" height="12" /></a></span>' ;
-		$tl .= '<span id="'.$rcl.'" style="display:none"><a href=\''.$toggleLink.'\'><img src="'.$wgStylePath.'/images/Arr_d.png" width="12" height="12" /></a></span>' ;
+		$tl  = '<span id="'.$rcm.'"><a href="'.$toggleLink.'"><img src="'.$wgStylePath.'/images/Arr_'.$arrowdir.'.png" width="12" height="12" /></a></span>' ;
+		$tl .= '<span id="'.$rcl.'" style="display:none"><a href="'.$toggleLink.'"><img src="'.$wgStylePath.'/images/Arr_d.png" width="12" height="12" /></a></span>' ;
 		$r .= $tl ;
 
 		# Main line
