@@ -25,7 +25,6 @@ function wfSpecialLog( $par = '' ) {
 	}
 	$logViewer =& new LogViewer( $logReader );
 	$logViewer->show();
-	$logReader->cleanUp();
 }
 
 class LogReader {
@@ -110,16 +109,8 @@ class LogReader {
 		return $sql;
 	}
 	
-	function initQuery() {
-		$this->result = $this->db->query( $this->getQuery() );
-	}
-	
-	function fetchObject() {
-		return $this->db->fetchObject( $this->result );
-	}
-	
-	function cleanUp() {
-		$this->db->freeResult( $this->result );
+	function getRows() {
+		return $this->db->resultObject( $this->db->query( $this->getQuery() ) );
 	}
 	
 	function queryType() {
@@ -159,10 +150,11 @@ class LogViewer {
 	
 	function showList( &$out ) {
 		$html = "";
-		$this->reader->initQuery();
-		while( $s = $this->reader->fetchObject() ) {
+		$result = $this->reader->getRows();
+		while( $s = $result->fetchObject() ) {
 			$html .= $this->logLine( $s );
 		}
+		$result->free();
 		$out->addHTML( $html );
 	}
 	
