@@ -239,10 +239,8 @@ class OutputPage {
 	{
 		global $wgUser, $wgLang, $wgDebugComments, $wgCookieExpiration;
 		global $wgInputEncoding, $wgOutputEncoding, $wgLanguageCode;
-		wfProfileIn( "OutputPage::output" );
 		$sk = $wgUser->getSkin();
 
-		wfProfileIn( "OutputPage::output-headers" );
 		$this->sendCacheControl();
 
 		header( "Content-type: text/html; charset={$wgOutputEncoding}" );
@@ -250,7 +248,6 @@ class OutputPage {
 		
 		if ( "" != $this->mRedirect ) {
 			header( "Location: {$this->mRedirect}" );
-			wfProfileOut();
 			return;
 		}
 
@@ -258,36 +255,8 @@ class OutputPage {
 		foreach( $this->mCookies as $name => $val ) {
 			setcookie( $name, $val, $exp, "/" );
 		}
-		wfProfileOut();
 
-		wfProfileIn( "OutputPage::output-middle" );
-		$sk->initPage();
-		$this->out( $this->headElement() );
-
-		$this->out( "\n<body" );
-		$ops = $sk->getBodyOptions();
-		foreach ( $ops as $name => $val ) {
-			$this->out( " $name='$val'" );
-		}
-		$this->out( ">\n" );
-		if ( $wgDebugComments ) {
-			$this->out( "<!-- Wiki debugging output:\n" .
-			  $this->mDebugtext . "-->\n" );
-		}
-		$this->out( $sk->beforeContent() );
-		wfProfileOut();
-		
-		wfProfileIn( "OutputPage::output-bodytext" );
-		$this->out( $this->mBodytext );
-		wfProfileOut();
-		wfProfileIn( "OutputPage::output-after" );
-		$this->out( $sk->afterContent() );
-		wfProfileOut();
-
-		wfProfileOut(); # A hack - we can't report after here
-		$this->out( $this->reportTime() );
-
-		$this->out( "\n</body></html>" );
+		$sk->outputPage( $this );
 		flush();
 	}
 

@@ -66,7 +66,7 @@ define("MAG_CURRENTMONTHNAMEGEN", 10);
 );
 
 /* private */ $wgSkinNamesEn = array(
-	"Standard", "Nostalgia", "Cologne Blue"
+	"Standard", "Nostalgia", "Cologne Blue", "Paddington", "Montparnasse"
 );
 
 /* private */ $wgMathNamesEn = array(

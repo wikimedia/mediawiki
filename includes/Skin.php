@@ -6,7 +6,7 @@
 # Language class has internationalized names
 #
 /* private */ $wgValidSkinNames = array(
-	"Standard", "Nostalgia", "CologneBlue"
+	"Standard", "Nostalgia", "CologneBlue", "Smarty", "Montparnasse"
 );
 
 # For some odd PHP bug, this function can't be part of a class
@@ -77,6 +77,33 @@ class Skin {
 		else { $ss = $this->getStylesheet(); }
 		$wgOut->addLink( "stylesheet", "", "{$wgStyleSheetPath}/{$ss}" );
 		wfProfileOut();
+	}
+	
+	function outputPage( &$out ) {
+		$this->initPage();
+		$out->out( $out->headElement() );
+
+		$out->out( "\n<body" );
+		$ops = $this->getBodyOptions();
+		foreach ( $ops as $name => $val ) {
+			$out->out( " $name='$val'" );
+		}
+		$out->out( ">\n" );
+		if ( $wgDebugComments ) {
+			$out->out( "<!-- Wiki debugging output:\n" .
+			  $out->mDebugtext . "-->\n" );
+		}
+		$out->out( $this->beforeContent() );
+
+		$out->out( $out->mBodytext );
+
+		$out->out( $this->afterContent() );
+		wfProfileOut();
+
+		wfProfileOut(); # A hack - we can't report after here
+		$out->out( $out->reportTime() );
+
+		$out->out( "\n</body></html>" );
 	}
 
 	function getHeadScripts() {
@@ -1785,5 +1812,6 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 include_once( "SkinStandard.php" );
 include_once( "SkinNostalgia.php" );
 include_once( "SkinCologneBlue.php" );
+include_once( "SkinSmarty.php" );
 
 ?>

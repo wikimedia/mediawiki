@@ -1,0 +1,152 @@
+body.encyclopedia { background: white; }
+body.meta    { background: #ffffdd; }
+body {
+	margin: 0px;
+	padding:0px;
+	}
+/* ================= masthead */
+#topbar {
+	background: #6688AA; /* from ColBlue */
+	background: #8ad;	/* light blue */
+	color:white;
+	color:#fff;
+	border:none; /* for NN4 */
+	width:100%;
+	margin: 0px;
+	}
+	
+#topbar h1 {
+	font-size: 160%;
+	margin: 0px;
+	padding:1px 2px;
+	}
+#topbar h1 span {
+	font-size: 65%;
+	}
+#topbar span#alert {
+	color:#f08;
+	font-weight:bold;
+	}
+#topbar div {
+	background: #ddd;		
+	font-size: 90%;
+	color:black;
+	padding:1px;
+}
+#topbar div a {
+	text-decoration:none;
+}
+#topbar div a:hover {
+	text-decoration:underline;
+}
+
+/* ================= article */
+#article {
+	padding:0.5em;
+	margin-left:0.5em;
+	margin-right:15em; /* sidebar margin */
+}
+h1.pagetitle {
+	font-size: 150%;
+	padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0; 
+	}
+p.subtitle , p.languages , p.actions {
+	padding: 0em 1em;
+	margin: 0em ; 
+	font-size: 90%;
+	color:#723; 
+	}
+/* ================= sidebar */
+#main {
+	position:relative;
+	/* only needed if sidebar sits below masthead */
+}
+
+#sidebar {
+	position:absolute;
+	top:0px;
+	right:0px;
+	width:11em;
+	padding:0.5em;
+}
+#dummylogo {
+	width:100px;
+	height:100px;
+	background: #ddd;
+	margin:0px auto;
+	font-size:75%;
+	
+}
+#sidebar h2 {
+	margin: 4px 0px 0px;
+	padding: 0px 0.5em;
+	font-size:100%;
+	background: #8ad;
+	color:white;
+	}
+#sidebar div {
+	border: solid 2px #8ad;
+	padding: 0.5em ;
+	margin: 0em ; 
+	font-size: 90%;
+	background: #def;
+}
+#sidebar #search {
+	text-align:center;
+}
+#sidebar #dummylogo {
+	margin:0px auto ;
+	width:100px;
+	height:100px;
+	background: #eee;
+}
+
+/* ================= footer */
+#footer {
+	padding:2px;
+	margin-left:0.5em;
+	margin-right:12em; /* sidebar margin */
+	/* 
+	border-top: solid 2px #8ad;	/* light blue */;
+	
+}
+#footer div {
+	
+	border: solid 2px #8ad;
+	padding: 0.5em ;
+	margin: 0em ; 
+	font-size: 90%;
+	background: #def;
+	
+}
+#footer h2 {
+	margin: 4px 0px 0px;
+	padding: 0px 0.5em;
+	font-size:100%;
+	background: #8ad;
+	color:white;
+}
+#footer #pagestats {
+	margin: 4px 0px 0px;
+	background: #8ad;
+	color:white;
+	font-weight:bold;
+}
+
+/* ================= hacks */	
+	/* Feed these styles only to NS4.... */
+	/*/*/ /*/
+	h1.pagetitle {
+		margin-top: -30px;
+		color:red;
+	}
+	p.actions {
+		margin-top: -20px;
+	}
+	/* Okay, we can let the others back in.... */	
+	
+	
+	
+	
+	
+
