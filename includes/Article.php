@@ -427,7 +427,8 @@ class Article {
 		# Squid purging
 		if ( $wgUseSquid ) {
 			$urlArr = Array( 
-				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL())
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL()),
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL(), 'action=history')
 			);			
 			wfPurgeSquidServers($urlArr);
 			/* this needs to be done after LinksUpdate */
@@ -497,7 +498,12 @@ class Article {
 			$res = wfQuery( $sql, DB_WRITE, $fname );
 			
 			if( wfAffectedRows() == 0 ) {
-				/* Belated edit conflict! Run away!! */
+				# This is *not* the main edit conflict check. The main edit conflict
+				# check is done in the EditPage user interface. This here is a check
+				# for a race condition where simultaneous edits partially go through
+				# and we end up stepping on each other. If the last save turns out
+				# not to be what we just checked against a millisecond ago, we abort
+				# now instead of stepping all over it.
 				return false;
 			}
 
@@ -543,7 +549,8 @@ class Article {
 		
 		if ( $wgUseSquid ) {
 			$urlArr = Array( 
-				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL())
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL()),
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL(), 'action=history')
 			);			
 			wfPurgeSquidServers($urlArr);
 		}
@@ -833,7 +840,8 @@ class Article {
 		# Squid purging
 		if ( $wgUseSquid ) {
 			$urlArr = Array(
-				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL())
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL()),
+				$wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL(), 'action=history')
 			);
 			wfPurgeSquidServers($urlArr);
 
@@ -842,8 +850,10 @@ class Article {
 			$res = wfQuery ( $sql, DB_READ ) ;
 			while ( $BL = wfFetchObject ( $res ) )
 			{
-				$tobj = Title::newFromDBkey( $BL->l_from) ; 
-				$blurlArr[] = $wgInternalServer.wfLocalUrl( $tobj->getPrefixedURL() );
+				$tobj = Title::newFromDBkey( $BL->l_from) ;
+				if( $tobj ) {
+					$blurlArr[] = $wgInternalServer.wfLocalUrl( $tobj->getPrefixedURL() );
+				}
 			}
 			wfFreeResult ( $res ) ;
 			$u = new SquidUpdate( $this->mTitle, $blurlArr );
@@ -900,12 +910,14 @@ class Article {
 
 			while ( $s = wfFetchObject( $res ) ) {
 				$nt = Title::newFromDBkey( $s->l_from );
-				$lid = $nt->getArticleID();
+				if( $nt ) {
+					$lid = $nt->getArticleID();
 
-				if ( ! $first ) { $sql .= ","; $sql2 .= ","; }
-				$first = false;
-				$sql .= "({$lid},'{$t}')";
-				$sql2 .= "{$lid}";
+					if ( ! $first ) { $sql .= ","; $sql2 .= ","; }
+					$first = false;
+					$sql .= "({$lid},'{$t}')";
+					$sql2 .= "{$lid}";
+				}
 			}
 			$sql2 .= ")";
 			if ( ! $first ) {

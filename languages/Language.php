@@ -1,4 +1,16 @@
 <?php
+#
+# In general you should not make customizations in these language files
+# directly, but should use the MediaWiki: special namespace to customize
+# user interface messages through the wiki.
+# See http://meta.wikipedia.org/wiki/MediaWiki_namespace
+#
+# NOTE TO TRANSLATORS: Do not copy this whole file when making translations!
+# A lot of common constants and a base class with inheritable methods are
+# defined here, which should not be redefined. See the other LanguageXx.php
+# files for examples.
+#
+
 #--------------------------------------------------------------------------
 # Constants
 #--------------------------------------------------------------------------
@@ -105,7 +117,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"hideminor" => "Hide minor edits in recent changes",
 	"usenewrc" => "Enhanced recent changes (not for all browsers)",
 	"numberheadings" => "Auto-number headings",
-	"showtoolbar"=>"Show edit box toolbar",
+	"showtoolbar"=>"Show edit toolbar",
 	"editondblclick" => "Edit pages on double click (JavaScript)",
 	"editsection"=>"Enable section editing via [edit] links",
 	"editsectiononrightclick"=>"Enable section editing by right clicking<br> on section titles (JavaScript)",
@@ -131,7 +143,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"ab" => "Abkhazian",	# Abkhazian - FIXME
 	"af" => "Afrikaans",	# Afrikaans
 	"ak" => "Akana",		# Akan
-	"als" => "Els&auml;ssische",	# Alsatian
+	"als" => "Els&auml;ssisch",	# Alsatian
 	"am" => "&#4768;&#4635;&#4653;&#4763;",	# Amharic
 	"ar" => "&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;",	# Arabic
 	"arc" => "&#1813;&#1829;&#1810;&#1834;&#1848;&#1821;&#1819;",	# Aramaic
@@ -140,8 +152,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"ay" => "Aymar",		# Aymara
 	"az" => "Az&#601;rbaycan",	# Azerbaijani
 	"ba" => "&#1041;&#1072;&#1096;&#1185;&#1086;&#1088;&#1090;",	# Bashkir
-	"be" => "&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1072;&#1103; - (Belaruskaya)",	# Belarusian ''or'' Byelarussian
-	"bg" => "&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080; - (Bülgarski)",	# Bulgarian
+	"be" => "&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1072;&#1103;",	# Belarusian ''or'' Byelarussian
+	"bg" => "&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;",	# Bulgarian
 	"bh"	=> "Bihara",
 	"bi" => "Bislama",		# Bislama
 	"bn" => "&#2476;&#2494;&#2434;&#2482;&#2494; - (Bangla)",	# Bengali
@@ -149,12 +161,13 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"br" => "Brezhoneg",	# Breton 
 	"bs" => "Bosanski",		# Bosnian
 	"ca" => "Catal&agrave;",	# Catalan
-	"ce" => "&#1053;&#1086;&#1093;&#1095;&#1080;&#1081;&#1085; - (Noxçiyn)",	# Chechen
+	"ce" => "&#1053;&#1086;&#1093;&#1095;&#1080;&#1081;&#1085;",	# Chechen
 	"ch" => "Chamoru",		# Chamorro
 	"chy" => "Tsets&ecirc;hest&acirc;hese",	# Cheyenne
 	"co" => "Corsu",		# Corsican
 	"cr" => "Nehiyaw",		# Cree
 	"cs" => "&#268;esky",	# Czech
+	"csb" => "Cassubian",	# Cassubian - FIXME
 	"cv" => "&#1063;&#1233;&#1074;&#1072;&#1096; - (&#264;&#259;va&#349;)",	# Chuvash 
 	"cy" => "Cymraeg",		# Welsh
 	"da" => "Dansk",		# Danish
@@ -283,6 +296,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"tl" => "Tagalog",		# Tagalog (Filipino)
 	"tn" => "Setswana",		# Setswana
 	"to" => "Tonga",		# Tonga - FIXME
+	"tpi" => "Tok Pisin",	# Tok Pisin
 	"tr" => "T&uuml;rk&ccedil;e",	# Turkish
 	"ts" => "Xitsonga",		# Tsonga
 	"tt" => "Tatar",		# Tatar
@@ -389,6 +403,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
+        "Blockme"       => "",
 	"Booksources"	=> "External book sources",
 #	"Categories"	=> "Page categories",
 	"Export"		=> "XML page export",
@@ -426,6 +441,8 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Main Page",
 "mainpagetext"	=> "Wiki software successfully installed.",
+"mainpagedocfooter" => "Please see [http://meta.wikipedia.org/wiki/MediaWiki_i18n documentation on customizing the interface]
+and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] for usage and configuration help.",
 "about"			=> "About",
 "aboutwikipedia" => "About $wgSitename",
 "aboutpage"		=> "$wgMetaNamespace:About",
@@ -434,8 +451,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 "wikititlesuffix" => "$wgSitename",
 "bugreports"	=> "Bug reports",
 "bugreportspage" => "$wgMetaNamespace:Bug_reports",
-"sitesupport"   => "Donations",
-"sitesupportpage" => "", # If not set, won't appear. Can be wiki page or URL
+"sitesupport"   => "Donations", # Set a URL in $wgSiteSupportPage in LocalSettings.php
 "faq"			=> "FAQ",
 "faqpage"		=> "$wgMetaNamespace:FAQ",
 "edithelp"		=> "Editing help",
@@ -637,7 +653,7 @@ You should log in and change your password now.",
 "passwordsent"	=> "A new password has been sent to the e-mail address
 registered for \"$1\".
 Please log in again after you receive it.",
-"loginend"		=> "",
+"loginend"		=> "&nbsp;",
 
 # Edit page toolbar
 "bold_sample"=>"Bold text",
@@ -686,6 +702,8 @@ Your IP address is $3. Please include this address in any queries you make.
 "whitelistreadtext" => "You have to [[Special:Userlogin|login]] to read articles.",
 "whitelistacctitle" => "You are not allowed to create an account",
 "whitelistacctext" => "To be allowed to create accounts in this Wiki you have to [[Special:Userlogin|log]] in and have the appropriate permissions.",
+"loginreqtitle" => "Login Required",
+"loginreqtext"  => "You must [[special:Userlogin|login]] to view other pages.",
 "accmailtitle" => "Password sent.",
 "accmailtext" => "The Password for '$1' has been sent to $2.",
 "newarticle"	=> "(New)",
@@ -841,7 +859,10 @@ See [[$wgMetaNamespace:User preferences help]] for help deciphering the options.
 "math_unknown_function"	=> "unknown function ",
 "math_lexing_error"	=> "lexing error",
 "math_syntax_error"	=> "syntax error",
-"math_image_error"	=> "PNG conversion failed",
+"math_image_error"	=> "PNG conversion failed; check for correct installation of latex, dvips, gs, and convert",
+"math_bad_tmpdir"	=> "Can't write to or create math temp directory",
+"math_bad_output"	=> "Can't write to or create math output directory",
+"math_notexvc"	=> "Missing texvc executable; please see math/README to configure.",
 "saveprefs"		=> "Save preferences",
 "resetprefs"	=> "Reset preferences",
 "oldpassword"	=> "Old password",
@@ -1266,6 +1287,9 @@ the list of currently operational bans and blocks.",
 "range_block_disabled"	=> "The sysop ability to create range blocks is disabled.",
 "ipb_expiry_invalid"	=> "Expiry time invalid.",
 "ip_range_invalid"	=> "Invalid IP range.\n",
+"proxyblocker"  => "Proxy blocker",
+"proxyblockreason"      => "Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.",
+"proxyblocksuccess"     => "Done.\n",
 
 # Developer tools
 #
@@ -1381,7 +1405,8 @@ amusement.",
 
 # Thumbnails
 
-"thumbnail-more"      => "Enlarge"
+"thumbnail-more"	=> "Enlarge",
+"missingimage"		=> "<b>Missing image</b><br><i>$1</i>\n"
 
 );
 

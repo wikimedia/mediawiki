@@ -192,8 +192,8 @@ class Database {
 	function fieldName( $res, $n ) { return mysql_field_name( $res, $n ); }
 	function insertId() { return mysql_insert_id( $this->mConn ); }
 	function dataSeek( $res, $row ) { return mysql_data_seek( $res, $row ); }
-	function lastErrno() { return mysql_errno( $this->mConn ); }
-	function lastError() { return mysql_error(  $this->mConn ); }
+	function lastErrno() { return mysql_errno(); }
+	function lastError() { return mysql_error(); }
 	function affectedRows() { return mysql_affected_rows( $this->mConn ); }
 	
 	# Simple UPDATE wrapper
@@ -308,15 +308,17 @@ class Database {
 	
 	function tableExists( $table )
 	{
-		$res = mysql_list_tables( $this->mDBname );
-		if( !$res ) {
-			echo "** " . $this->lastError() . "\n";
+		$old = $this->setIgnoreErrors( true );
+		$res = $this->query( "SELECT 1 FROM $table LIMIT 1" );
+		$this->setIgnoreErrors( $old );
+		if( $res ) {
+			$this->freeResult( $res );
+			return true;
+		} else {
+			# Clear error flag
+			wfLastError();
 			return false;
 		}
-		for( $i = $this->numRows( $res ) - 1; $i--; $i > 0 ) {
-			if( mysql_tablename( $res, $i ) == $table ) return true;
-		}
-		return false;
 	}
 
 	function fieldInfo( $table, $field )

@@ -2,6 +2,13 @@
 
 include_once( "LanguageUtf8.php" );
 
+if ( $wgSitename == "Wikipedia" ) {
+	$wgSitename = "Wikipédia";
+}
+if ( $wgMetaNamespace = "Wikipedia" ) {
+	$wgMetaNamespace = "Wikipédia";
+}
+
 // The names of the namespaces can be set here, but the numbers
 // are magical, so don't change or move them!  The Namespace class
 // encapsulates some of the magic-ness.
@@ -12,8 +19,8 @@ include_once( "LanguageUtf8.php" );
 	1 => "Discutir",
 	2 => "Utilisator",
 	3 => "Discutida_Utilisator",
-	4 => "Oiquipedià",
-	5 => "Discutida_Oiquipedià",
+	4 => $wgMetaNamespace,
+	5 => "Discutida_".$wgMetaNamespace,
 	6 => "Image",
 	7 => "Discutida_Image",
 	8	=> "MediaWiki",
@@ -119,6 +126,7 @@ include_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgSysopSpecialPagesOc = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"       => "Bloquer une adresse IP",
 	"Asksql"        => "Accès SQL",
 	"Undelete"      => "Gérer les pages effacées"
@@ -144,19 +152,19 @@ include_once( "LanguageUtf8.php" );
 "mainpagetext"	=> "Logiciel Wikipédia installé.",
 "about"         => "À propos",
 "aboutwikipedia" => "À propos de Wikipédia",
-"aboutpage"     => "Wikipédia:À propos",
+"aboutpage"     => "{$wgMetaNamespace}:À propos",
 "help"          => "Aide",
-"helppage"      => "Wikipédia:Aide",
+"helppage"      => "{$wgMetaNamespace}:Aide",
 "wikititlesuffix" => "Wikipédia",
 "bugreports"    => "Rapport d'erreurs",
-"bugreportspage" => "Wikipédia:Rapport d'erreurs",
+"bugreportspage" => "{$wgMetaNamespace}:Rapport d'erreurs",
 "sitesupport"	=> "Participer en faisant un don",
-"sitesupportpage"	=> "Wikipédia:Donations",
+"sitesupportpage"	=> "{$wgMetaNamespace}:Donations",
 
 "faq"           => "FAQ",
-"faqpage"       => "Wikipédia:FAQ",
+"faqpage"       => "{$wgMetaNamespace}:FAQ",
 "edithelp"      => "Aide",
-"edithelppage"  => "Wikipédia:Comment éditer une page",
+"edithelppage"  => "{$wgMetaNamespace}:Comment éditer une page",
 "cancel"        => "Annuler",
 "qbfind"        => "Rechercher",
 "qbbrowse"      => "Défiler",
@@ -195,7 +203,7 @@ include_once( "LanguageUtf8.php" );
 "gnunote"       => "Tous les textes sont disponibles sous les termes de la <a class=internal href='/wiki/GFDL'>Licence de documentation libre GNU</a>.",
 "printsubtitle" => "(de http://www.wikipedia.org)",
 "protectedpage" => "Page protégée",
-"administrators" => "Wikipédia:Administrateurs",
+"administrators" => "{$wgMetaNamespace}:Administrateurs",
 "sysoptitle"    => "Accès administrateur requis",
 "sysoptext"     => "L'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut d'\"administrateur\".
 Voir $1.",
@@ -259,7 +267,7 @@ car elle ralentit la base de données à un point tel que plus personne
 ne peut utiliser le wiki.", // Looxix 
 "perfdisabledsub" => "Ceci est une copie de sauvegarde de $1:", // Looxix 
 "viewsource"	=> "Voir le texte source",
-"protectedtext"	=> "Cette page a été bloquée pour empêcher sa modification. Consultez [[Wikipédia:Page protégée]] pour voir les différentes raisons possibles.", // Looxix
+"protectedtext"	=> "Cette page a été bloquée pour empêcher sa modification. Consultez [[{$wgMetaNamespace}:Page protégée]] pour voir les différentes raisons possibles.", // Looxix
 
 # Login and logout pages
 #
@@ -352,7 +360,7 @@ Peut-être serait-il mieux que vous divisiez la page en sections plus petites.",
 vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.", // Looxix 
 "protectedpagewarning" => "AVERTISSEMENT : cette page a été bloquée.
 Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier. Soyez certain que
-vous suivez les <a href='/wiki/Wikipédia:Page protégée'>directives concernant les pages protégées</a>.", // Looxix
+vous suivez les <a href='/wiki/{$wgMetaNamespace}:Page protégée'>directives concernant les pages protégées</a>.", // Looxix
 
 # History pages
 #
@@ -382,7 +390,7 @@ vous suivez les <a href='/wiki/Wikipédia:Page protégée'>directives concernant
 # Search results
 #
 "searchresults" => "Résultat de la recherche",
-"searchhelppage" => "Wikipédia:Recherche",
+"searchhelppage" => "{$wgMetaNamespace}:Recherche",
 "searchingwikipedia" => "Chercher dans Wikipédia",
 "searchresulttext" => "Pour plus d'informations sur la recherche dans Wikipédia, voir $1.",
 "searchquery" => "Pour la requête \"$1\"",
@@ -424,7 +432,7 @@ $2 Inclure les page de redirections   Rechercher $3 $9",
 pour modifier vos préférences d'utilisateur.",
 "prefslogintext" => "Je suis connecté(e) en tant que $1 avec le numéro d'utilisateur $2.
 
-Voir [[Wikipédia:Aide pour les préférences]] pour les explications concernant les options.", // Looxix
+Voir [[{$wgMetaNamespace}:Aide pour les préférences]] pour les explications concernant les options.", // Looxix
 "prefsreset"        => "Les préférences ont été rétablies à partir de la version enregistrée.",
 "qbsettings"        => "Personnalisation de la barre outils",
 "changepassword"    => "Modification du mot de passe",
@@ -464,14 +472,14 @@ Voir [[Wikipédia:Aide pour les préférences]] pour les explications concernant
 "changes"	=> "modifications",
 "recentchanges" => "Modifications récentes",
 "recentchangestext" => "Suivez sur cette page les dernières modifications de Wikipédia.
-[[Wikipédia:Bienvenue|Bienvenue]] aux nouveaux participants !
-Jetez un coup d'\x{0153}il sur ces pages : [[Wikipédia:FAQ|foire aux questions]],
-[[Wikipédia:Recommandations et règles à suivre|recommandations et règles à suivre]]
-(notamment [[Wikipédia:Règles de nommage|conventions de nommage]],
-[[Wikipédia:La neutralité de point de vue|la neutralité de point de vue]]),
-et [[Wikipédia:Les faux-pas les plus courants|les faux-pas les plus courants]].
+[[{$wgMetaNamespace}:Bienvenue|Bienvenue]] aux nouveaux participants !
+Jetez un coup d'\x{0153}il sur ces pages : [[{$wgMetaNamespace}:FAQ|foire aux questions]],
+[[{$wgMetaNamespace}:Recommandations et règles à suivre|recommandations et règles à suivre]]
+(notamment [[{$wgMetaNamespace}:Règles de nommage|conventions de nommage]],
+[[{$wgMetaNamespace}:La neutralité de point de vue|la neutralité de point de vue]]),
+et [[{$wgMetaNamespace}:Les faux-pas les plus courants|les faux-pas les plus courants]].
 
-Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[Wikipédia:Copyright|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet. ",
+Si vous voulez que Wikipédia connaisse le succès, merci de ne pas y inclure pas de matériaux protégés par des [[{$wgMetaNamespace}:Copyright|copyrights]]. La responsabilité juridique pourrait en effet compromettre le projet. ",
 "rcloaderr"  => "Chargement des dernières modifications",
 "rcnote"  => "Voici les <strong>$1</strong> dernières modifications effectuées au cours des <strong>$2</strong> derniers jours.",
 "rcnotefrom"	=> "Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).",
@@ -505,10 +513,10 @@ pour copier des fichiers sur le serveur.",
 "uploadfile"   => "Copier un fichier",
 "uploaderror"  => "Erreur",
 "uploadtext"   => "<strong>STOP !</strong> Avant de copier votre fichier sur le serveur,
-prenez connaissance des <a href=\"" .wfLocalUrlE( "Wikipédia:règles d'utilisation des images" ) . "\">règles d'utilisation des images</a> de Wikipédia et assurez-vous que vous les respectez.<br>N'oubliez pas de remplir la <a href=\"" .wfLocalUrlE( "Wikipédia:Page de description d'une image" ). "\">page de description de l'image</a> quand celle-ci sera sur le serveur.
+prenez connaissance des <a href=\"" .wfLocalUrlE( "{$wgMetaNamespace}:règles d'utilisation des images" ) . "\">règles d'utilisation des images</a> de Wikipédia et assurez-vous que vous les respectez.<br>N'oubliez pas de remplir la <a href=\"" .wfLocalUrlE( "{$wgMetaNamespace}:Page de description d'une image" ). "\">page de description de l'image</a> quand celle-ci sera sur le serveur.
 <p>Pour voir les images déjà placées sur le serveur ou pour effectuer une recherche parmi celles-ci,
 allez à la <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) ."\">liste des images</a>.
-Les uploads et les suppressions sont listés dans le <a href=\"" .wfLocalUrlE( "Wikipédia:Journal_des_uploads" ) . "\">journal des uploads</a>.
+Les uploads et les suppressions sont listés dans le <a href=\"" .wfLocalUrlE( "{$wgMetaNamespace}:Journal_des_uploads" ) . "\">journal des uploads</a>.
 <p>Utilisez le formulaire ci-dessous pour copier sur le serveur de nouvelles images destinées à illustrer vos articles.
 Sur la plupart des navigateurs, vous verrez un bouton \"Browse...\" qui ouvre la fenêtre de dialogue standard de votre système d'exploitation pour l'ouverture des fichiers.
 Sélectionnez un fichier, son nom apparaîtra dans le champ situé à côté du bouton.
@@ -532,7 +540,7 @@ L'heure indiquée est celle du serveur (UTC).
 "filename"  => "Nom",
 "filedesc"  => "Description",
 "affirmation" => "Je déclare que le détenteur du copyright de ce fichier accepte de le diffuser selon les termes de la $1.",
-"copyrightpage" => "Wikipédia:Copyright",
+"copyrightpage" => "{$wgMetaNamespace}:Copyright",
 "copyrightpagename" => "licence Wikipédia",
 "uploadedfiles" => "Fichiers copiés",
 "noaffirmation" => "Vous devez confirmer que la copie de ce fichier ne viole aucun copyright.",
@@ -596,7 +604,7 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "maintnancepagetext"	=> "Cette page inclut plusieurs utilitaires pour la maintenance quotidienne. Certains de ces outils ont tendance à charger la base de données; ne rechargez pas la page a chaque modification.",
 "maintenancebacklink"	=> "Retour à la page de maintenance",
 "disambiguations"	=> "Pages d'homonymie",
-"disambiguationspage"	=> "Wikipédia:Liens_aux_pages_d'homonymie",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Liens_aux_pages_d'homonymie",
 "disambiguationstext"	=> "Les articles suivants sont liés à une <i>page d'homonymie</i>. Or, ils devraient être liés au sujet.<br>Une page est considérée comme page d'homonymie si elle est liée à partir de $1.<br>Les liens à partir d'autres <i>espaces</i> ne sont pas pris en compte.",
 "doubleredirects"	=> "Double redirection",
 "doubleredirectstext"	=> "<b>Attention:</b> cette liste peut contenir des \"faux positifs\". Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br>Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la \"vraie\" destination. Le premier #REDIRECT devrait lier vers cette destination.",
@@ -714,7 +722,7 @@ Les prochaines modifications de cette page et de la page discussion associée se
 "historywarning" => "Attention: La page que vous êtes sur le point de supprimer à un historique: ",
 "confirmdeletetext" => "Vous êtes sur le point de supprimer définitivement de la base de données une page
 ou une image, ainsi que toutes ses versions antérieures.
-Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[Wikipédia:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].",
+Veuillez confirmer que c'est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{$wgMetaNamespace}:Recommandations Et Règles à  Suivre|recommandations et règles à suivre]].",
 "confirmcheck"	=> "Oui, je confirme la suppression.",
 "actioncomplete" => "Suppression effectuée",
 "deletedtext"	=> "\"$1\" a été supprimé.
@@ -759,7 +767,7 @@ les révisions restaurées apparaîtront dans l'historique antérieur et la vers
 "undeletebtn"	=> "Restaurer !", // Looxix "Restore!",
 "undeletedarticle" => "restauré \"$1\"",	// FvdP "restored \"$1\""
 "undeletedtext"   => "L'article [[$1]] a été restauré avec succès.
-Voir [[Wikipedia:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.", // Looxix 
+Voir [[{$wgMetaNamespace}:Trace des effacements]] pour la liste des suppressions et des restaurations récentes.", // Looxix 
 # Contributions
 #
 "contributions"	=> "Contributions",
@@ -784,7 +792,7 @@ Voir [[Wikipedia:Trace des effacements]] pour la liste des suppressions et des r
 #
 "blockip"	=> "Bloquer une adresse IP",
 "blockiptext"	=> "Utilisez le formulaire ci-dessous pour bloquer l'accès en écriture à partir d'une adresse IP donnée.
-Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[Wikipédia:Recommandations et règles à suivre|recommandations et règles à suivre]].
+Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec [[{$wgMetaNamespace}:Recommandations et règles à suivre|recommandations et règles à suivre]].
 Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont été vandalisées).",
 "ipaddress"	=> "Adresse IP",
 "ipbreason"	=> "Motif",

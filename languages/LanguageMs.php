@@ -17,8 +17,8 @@
 	1	=> "Perbualan",#Talk
 	2	=> "Pengguna",#User
 	3	=> "Perbualan_Pengguna",#User_talk
-	4	=> "Wikipedia",#Wikipedia
-	5	=> "Perbualan_Wikipedia",#Wikipedia_talk
+	4	=> $wgMetaNamespace,#Wikipedia
+	5	=> "Perbualan_".$wgMetaNamespace,#Wikipedia_talk
 	6	=> "Imej",#Image
 	7	=> "Imej_Perbualan",#Image_talk
 	8	=> "MediaWiki",
@@ -133,6 +133,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesMs = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Sekat IP dan pengguna", #"Block IP or user",
 	"Asksql"		=> "Kueri terhadap pangkalan data", #"Query the database",
 	"Undelete"		=> "Papar dan masukkan semula halaman yang telah dibuang", #"View and restore deleted pages",
@@ -152,16 +153,16 @@
 "mainpagetext"	        => "Aturcara Wiki berjaya dipasang.",
 "about"			=> "Maklumat",
 "aboutwikipedia"        => "Maklumat Wikipedia",
-"aboutpage"		=> "Wikipedia:Perihal", #"Wikipedia:About",
+"aboutpage"		=> "{$wgMetaNamespace}:Perihal", #"{$wgMetaNamespace}:About",
 "help"			=> "Bantuan",
-"helppage"		=> "Wikipedia:Bantuan",
+"helppage"		=> "{$wgMetaNamespace}:Bantuan",
 "wikititlesuffix"       => "Wikipedia",
 "bugreports"	        => "Laporan Pepijat",
-"bugreportspage"        => "Wikipedia:Laporan Pepijat",
+"bugreportspage"        => "{$wgMetaNamespace}:Laporan Pepijat",
 "faq"			=> "FAQ",
-"faqpage"		=> "Wikipedia:FAQ",
+"faqpage"		=> "{$wgMetaNamespace}:FAQ",
 "edithelp"		=> "Menyunting bantuan",
-"edithelppage"	        => "Wikipedia:Cara menyunting halaman",
+"edithelppage"	        => "{$wgMetaNamespace}:Cara menyunting halaman",
 "cancel"		=> "Batal",
 "qbfind"		=> "Cari",
 "qbbrowse"		=> "Baca sepintas lalu", #"Browse",
@@ -387,7 +388,7 @@ so you will not be able to save your edits right now. You may wish to cut-n-past
 the text into a text file and save it for later.",
 "protectedpagewarning" => "WARNING:  This page has been locked so that only
 users with sysop privileges can edit it. Be sure you are following the
-<a href='/wiki/Wikipedia:Protected_page_guidelines'>protected page
+<a href='/wiki/{$wgMetaNamespace}:Protected_page_guidelines'>protected page
 guidelines</a>.",
 
 # History pages
@@ -417,7 +418,7 @@ Sila semak URL yang digunakan untuk mengakses halaman ini.\n", #"The old revisio
 # Search results
 #
 "searchresults" => "Hasil Carian",
-"searchhelppage" => "Wikipedia:Carian", #"Wikipedia:Searching",
+"searchhelppage" => "{$wgMetaNamespace}:Carian", #"{$wgMetaNamespace}:Searching",
 "searchingwikipedia" => "Carian Dalam Wikipedia", #"Searching Wikipedia",
 "searchresulttext" => "Untuk maklumat lanjut tentang carian dalam Wikipedia, lihat $1.", #"For more information about searching Wikipedia, see $1.",
 "searchquery"	=> "Untuk kueri \"$1\"", #"For query \"$1\"",
@@ -502,15 +503,15 @@ tempatan anda dengan waktu pelayan (UTC).", #"Enter number of hours your local t
 "changes" => "perubahan",
 "recentchanges" => "Perubahan Terkini",
 "recentchangestext" => "Kenalpasti perubahan terkini dalam Wikipedia di halaman ini.
-[[Wikipedia:Selamat datang,_pengguna baru|Selamat datang, pengguna baru]]!
-Sila lihat halaman-halaman ini: [[Wikipedia:FAQ|Wikipedia FAQ]],
-[[Wikipedia:Polisi dan garis panduan|Polisi Wikipedia]]
-(terutamanya [[Wikipedia:Konvensyen penamaan|konvensyen penamaan]],
-[[Wikipedia:Pandangan semulajadi|pandangan semulajadi]]),
-dan [[Wikipedia: Kesalahan biasa Wikipedia|kesalahan biasa Wikipedia]].
+[[{$wgMetaNamespace}:Selamat datang,_pengguna baru|Selamat datang, pengguna baru]]!
+Sila lihat halaman-halaman ini: [[{$wgMetaNamespace}:FAQ|Wikipedia FAQ]],
+[[{$wgMetaNamespace}:Polisi dan garis panduan|Polisi Wikipedia]]
+(terutamanya [[{$wgMetaNamespace}:Konvensyen penamaan|konvensyen penamaan]],
+[[{$wgMetaNamespace}:Pandangan semulajadi|pandangan semulajadi]]),
+dan [[{$wgMetaNamespace}: Kesalahan biasa Wikipedia|kesalahan biasa Wikipedia]].
 
 Jika anda mahu melihat Wikipedia berjaya, adalah sangat penting anda 
-tidak memasukkan material [[Wikipedia:Hak cipta|hak cipta]] orang lain.
+tidak memasukkan material [[{$wgMetaNamespace}:Hak cipta|hak cipta]] orang lain.
 Perkara ini boleh memusnahkan laman web ini, 
 jadi sila patuhi amaran ini.",
 "rcloaderr"		=> "Muatturun perubahan terkini", #"Loading recent changes",
@@ -547,12 +548,12 @@ untuk muatnaik fail.",
 "uploaderror"	=> "Muatnaik ralat", #"Upload error",
 "uploadtext"	=> "<strong>STOP!</strong> Before you upload here,
 make sure to read and follow Wikipedia's <a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">image use policy</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Image_use_policy" ) . "\">image use policy</a>.
 <p>To view or search previously uploaded images,
 go to the <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
 "\">list of uploaded images</a>.
 Uploads and deletions are logged on the <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">upload log</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_log" ) . "\">upload log</a>.
 <p>Use the form below to upload new image files for use in
 illustrating your articles.
 On most browsers, you will see a \"Browse...\" button, which will
@@ -583,7 +584,7 @@ Semua waktu yang ditunjukkan adalah waktu pelayan (UTC).
 "filedesc"		=> "Ringkasan", #"Summary",
 "affirmation"	=> "Saya berikrar bahawa pemilik hak cipta fail ini 
 telah bersetuju untuk melesenkannya di bawah terma $1.", #"I affirm that the copyright holder of this file agrees to license it under the terms of the $1.",
-"copyrightpage" => "Wikipedia:Hak cipta",
+"copyrightpage" => "{$wgMetaNamespace}:Hak cipta",
 "copyrightpagename" => "Hak cipta Wikipedia",
 "uploadedfiles"	=> "Fail yang telah dimuatnaik", #"Uploaded files",
 "noaffirmation" => "Anda mesti berikrar bahawa fail yang dimuatnaik tidak 
@@ -649,7 +650,7 @@ Ini menjadikan <b>$5</b> purata halaman yang disunting, dan <b>$6</b> paparan ya
 "maintnancepagetext"	=> "Halaman ini termasuk beberapa peralatan untuk penyelenggaraan setiap hari.  Terdapat sesetengah fungsi yang berkecenderungan untuk mengganggu pangkalan data, jadi tolong jangan tekan kekunci 'reload' selepas membuat pembetulan;-)", 
 "maintenancebacklink"	=> "Kembali ke halaman penyelenggaran", #"Back to Maintenance Page",
 "disambiguations"	=> "Halaman yang tidak samar", #"Disambiguation pages",
-"disambiguationspage"	=> "Wikipedia:Pautan_ke_halaman_yang_tidak_samar",    #"Wikipedia:Links_to_disambiguating_pages",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Pautan_ke_halaman_yang_tidak_samar",    #"{$wgMetaNamespace}:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "Halaman-halaman yang berikutnya bersambung ke satu <i>halaman yang tidak samar</i>. Halaman-halaman tersebut sepatutnya bersambung ke topik-topik yang berkenaan.<br>Satu halaman dianggap sebagai tidak samar jika ia disambung dari $1.<br>Pautan dari ruang nama yang lain <i>tidak</i> tersenarai di sini.", 
 "doubleredirects"	=> "Peralihan Halaman Berganda", #"Double Redirects",
 "doubleredirectstext"	=> "<b>Perhatian:</b> Senarai ini mungkin tidak tepat. Ini biasanya bermaksud terdapat tambahan teks dengan pautan di bawah #REDIRECT yang pertama.<br>\nSetiap baris mengandungi pautan kepada peralihan halaman yang pertama dan kedua, sebagaimana baris pertama bagi teks peralihan halaman kedua, biasanya memberikan halaman sasaran \"sebenar\" yang sepatutnya peralihan pertama disambungkan.",
@@ -767,7 +768,7 @@ akan disenaraikan di sini, dan halaman itu akan muncul <b>bolded</b> dalam <a hr
 imej ini dengan semua sejarahnya dari pangkalan data.  Sila pastikan 
 yang anda memang mahu berbuat demikian, bahawa anda faham segala 
 akibatnya, dan apa yang anda lakukan ini adalah mengikut 
-[[Wikipedia:Polisi]].",
+[[{$wgMetaNamespace}:Polisi]].",
 "confirmcheck"	=> "Ya, saya mahu keluarkan halaman ini", #"Yes, I really want to delete this.",
 "actioncomplete" => "Proses selesai", #"Action complete",
 "deletedtext"	=> "\"$1\" telah dikeluarkan.
@@ -810,7 +811,7 @@ dan revisi terkini bagi halaman baru tidak akan digantikan secara automatik.", #
 "undeletebtn" => "Masukkan semula!", #"Restore!",
 "undeletedarticle" => "telah dimasukkan", #"restored \"$1\"",
 "undeletedtext"   => "Halaman [[$1]] telah berjaya dimasukkan semula.
-Lihat [[Wikipedia:Log_penghapusan]] untuk rekod terkini penghapusan dan kemasukan semula halaman.",
+Lihat [[{$wgMetaNamespace}:Log_penghapusan]] untuk rekod terkini penghapusan dan kemasukan semula halaman.",
 
 # Contributions
 #
@@ -839,7 +840,7 @@ atau pengguna sasaran untuk melaksanakan fungsi ini.",
 "blockiptext"	=> "Gunakan borang di bawah untuk blok 
 capaian kemaskini daripada alamat IP atau pengguna tertentu. 
 Ini perlu dilakukan untuk mencegah vandalisme, 
-dan mengikut [[Wikipedia:Polisi|Polisi Wikipedia]]. 
+dan mengikut [[{$wgMetaNamespace}:Polisi|Polisi Wikipedia]]. 
 Masukkan alasan anda di bawah (contohnya mengambil 
 halaman tertentu yang telah dirosakkan).", 
 "ipaddress"		=> "Alamat IP atau pengguna", #"IP Address or Username",

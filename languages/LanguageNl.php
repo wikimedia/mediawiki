@@ -13,8 +13,8 @@
  1 => "Overleg",
  2 => "Gebruiker",
  3 => "Overleg_gebruiker",
- 4 => "Wikipedia",
- 5 => "Overleg_Wikipedia",
+ 4 => $wgMetaNamespace,
+ 5 => "Overleg_".$wgMetaNamespace,
  6 => "Afbeelding",
  7 => "Overleg_afbeelding",
  8 => "MediaWiki",
@@ -116,6 +116,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesNl = array(
+	"Makesysop" => "Turn a user into a sysop",
  "Blockip"  => "Blokkeer een IP-adres of gebruiker",
  "Asksql"  => "Raadpleeg de database",
  "Undelete" => "Verwijderde pagina's herstellen"
@@ -139,17 +140,17 @@
 "mainpagetext" => "Installatie van de Wiki software geslaagd.",
 "about"   => "Info",
 "aboutwikipedia" => "Over Wikipedia",
-"aboutpage"  => "Wikipedia:info",
+"aboutpage"  => "{$wgMetaNamespace}:info",
 "help"   => "Help",
-"helppage"  => "Wikipedia:Help",
+"helppage"  => "{$wgMetaNamespace}:Help",
 "wikititlesuffix" => "Wikipedia NL",
 "bugreports" => "Foutenrapportage",
 "sitesupport" => "Financieel bijdragen",
-"bugreportspage" => "Wikipedia:Foutenrapportage",
+"bugreportspage" => "{$wgMetaNamespace}:Foutenrapportage",
 "faq"   => "FAQ",
-"faqpage"  => "Wikipedia:Veel gestelde vragen",
+"faqpage"  => "{$wgMetaNamespace}:Veel gestelde vragen",
 "edithelp"  => "Hulp bij bewerken",
-"edithelppage" => "Wikipedia:Instructies",
+"edithelppage" => "{$wgMetaNamespace}:Instructies",
 "cancel"  => "Annuleren",
 "qbfind"  => "Zoeken",
 "qbbrowse"  => "Bladeren",
@@ -189,7 +190,7 @@
 "gnunote" => "Alle tekst op deze pagina valt onder de  <a class=internal href='/wiki/Gnu_Vrije_Documentatie_Licentie'>GNU FDL</a>.",
 "printsubtitle" => "(Uit http://nl.wikipedia.org)",
 "protectedpage" => "Beveiligde pagina",
-"administrators" => "Wikipedia:Systeembeheerders",
+"administrators" => "{$wgMetaNamespace}:Systeembeheerders",
 "sysoptitle" => "Toegang alleen voor systeembeheerders",
 "sysoptext"  => "De gevraagde handeling kan enkel uitgevoerd worden door systeembeheerders. Zie $1.",
 "developertitle" => "Toegang alleen voor systeemontwikkelaars",
@@ -306,7 +307,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "preview"  => "Nakijken",
 "showpreview" => "Toon bewerking ter controle",
 "blockedtitle" => "Gebruiker is geblokkeerd",
-"blockedtext" => "Uw gebruikersnaam of IP-adres is door $1 geblokkeerd. De opgegeven reden:<br>$2<p>. Elke computer die verbonden is met het internet krijgt een [[ip-adres]] toegewezen van zijn [[internetprovider]]. In veel gevallen krijgt een gebruiker regelmatig een ander ip-adres toegewezen. Het het door u gebruikte ip-adres is recent gebruikt door u of iemand anders voor bewerkingen die in overtreding zijn van de [[Wikipedia:Toch een paar regels|regels]] van Wikipedia.<p>U kunt voor overleg contact opnemen met de [[Wikipedia:Systeembeheerders|systeembeheerders]] via [http://wikinl.sol3.info/wikinl_info.html#email wikinl-l-owner@wikipedia.org een formulier].",
+"blockedtext" => "Uw gebruikersnaam of IP-adres is door $1 geblokkeerd. De opgegeven reden:<br>$2<p>. Elke computer die verbonden is met het internet krijgt een [[ip-adres]] toegewezen van zijn [[internetprovider]]. In veel gevallen krijgt een gebruiker regelmatig een ander ip-adres toegewezen. Het het door u gebruikte ip-adres is recent gebruikt door u of iemand anders voor bewerkingen die in overtreding zijn van de [[{$wgMetaNamespace}:Toch een paar regels|regels]] van Wikipedia.<p>U kunt voor overleg contact opnemen met de [[{$wgMetaNamespace}:Systeembeheerders|systeembeheerders]] via [http://wikinl.sol3.info/wikinl_info.html#email wikinl-l-owner@wikipedia.org een formulier].",
 "whitelistedittitle" => "Aanmelden verplicht",
 "whitelistedittext" => "Om dit artikel te kunnen wijzigen, moet u [[Speciaal:Userlogin|ingelogd]] zijn.",
 "whitelistreadtitle" => "Aanmelden verplicht",
@@ -362,12 +363,12 @@ Gelieve na ontvangst opnieuw aan te melden.",
 # Search results
 # Zoekresultaten
 "searchresults" => "Zoekresultaten",
-"searchhelppage" => "Wikipedia:Zoeken",
+"searchhelppage" => "{$wgMetaNamespace}:Zoeken",
 "searchingwikipedia" => "Zoeken op Wikipedia",
-"searchresulttext" => "Voor meer informatie over zoeken op Wikipedia: zie $1.",
+"searchresulttext" => "Voor meer informatie over zoeken op {$wgMetaNamespace}: zie $1.",
 "searchquery" => "Voor zoekopdracht \"$1\"",
 "badquery"  => "Slecht geformuleerde zoekopdracht",
-"badquerytext" => "Uw zoekopdracht kon niet worden uitgevoerd. Dit kan komen doordat u geprobeerd hebt om een 'woord' van 1 letter te zoeken, of 1 van de <a HREF=\"http://nl.wikipedia.org/wiki/Wikipedia:Verboden_woorden\">Verboden woorden</a>.",
+"badquerytext" => "Uw zoekopdracht kon niet worden uitgevoerd. Dit kan komen doordat u geprobeerd hebt om een 'woord' van 1 letter te zoeken, of 1 van de <a HREF=\"http://nl.wikipedia.org/wiki/{$wgMetaNamespace}:Verboden_woorden\">Verboden woorden</a>.",
 "matchtotals" => "De zoekterm \"$1\" is gevonden in $2 paginatitels en in de tekst van $3 pagina's.",
 "nogomatch" => "Er bestaat geen pagina met deze titel, op zoek naar pagina's waarin de tekst voorkomt.",
 "titlematches" => "Overeenkomst met volgende titels",
@@ -407,7 +408,7 @@ Via google kunt u zoeken op Wikipedia. <br>
 <p> U zal niet alle artikels kunnen vinden maar het zal niet veel schelen. 
 Als u zoekt via google op Wikipedia zal u ook treffers vinden op Wikipedia die geen artikels zijn. 
 Wikipedia heeft bij de meeste artikels ook een \"overlegpagina\" en diverse soorten dienstpagina's. 
-Enkel de pagina's die geen prefix (zoals Wikipedia:, Gebruiker: of Overleg:) hebben zijn artikels.
+Enkel de pagina's die geen prefix (zoals {$wgMetaNamespace}:, Gebruiker: of Overleg:) hebben zijn artikels.
 ",
 "blanknamespace" => "(encyclopedie)",
 
@@ -419,7 +420,7 @@ Enkel de pagina's die geen prefix (zoals Wikipedia:, Gebruiker: of Overleg:) heb
   wfLocalUrl( "Special:Userlogin" ) . "\">aangemeld</a> te zijn om voorkeuren te kunnen instellen.",
 "prefslogintext" => "U bent aangemeld als \"$1\". Uw interne identificatienummer is $2.
 
-Een beschrijving van de verschillende opties staat op [[Wikipedia:Voorkeuren]].",
+Een beschrijving van de verschillende opties staat op [[{$wgMetaNamespace}:Voorkeuren]].",
 "prefsreset" => "Standaardvoorkeuren hersteld.",
 "qbsettings" => "Menubalkinstellingen", 
 "changepassword" => "Wachtwoord wijzigen",
@@ -460,7 +461,7 @@ Een beschrijving van de verschillende opties staat op [[Wikipedia:Voorkeuren]]."
 "changes" => "wijzigingen",
 "recentchanges" => "Recente wijzigingen",
 "recentchangestext" => "Deze pagina toont de laatste aanpassingen aan artikelen van Wikipedia NL. <br>
-Ben je hier nieuw? Lees dan ook [[Wikipedia:Welkom voor nieuwelingen|Welkom voor nieuwelingen]] -- Wil je een pagina verwijderd hebben? Ga dan naar [[Wikipedia:Te verwijderen pagina's|Te verwijderen pagina's]] -- Wil je iets met andere gebruikers overleggen? Ga naar [[Wikipedia:Overleg gewenst|Overleg gewenst]] of meld je aan voor de discussielijst [http://mail.wikipedia.org/mailman/listinfo/wikinl-l WikiNL-l] -- Zin in een gezellige babbel? Kom naar de [[Wikipedia:De kroeg|De kroeg]] of doe mee op ons nieuwe [http://chat.wikipedia.be Wiki-chatkanaal].<p>
+Ben je hier nieuw? Lees dan ook [[{$wgMetaNamespace}:Welkom voor nieuwelingen|Welkom voor nieuwelingen]] -- Wil je een pagina verwijderd hebben? Ga dan naar [[{$wgMetaNamespace}:Te verwijderen pagina's|Te verwijderen pagina's]] -- Wil je iets met andere gebruikers overleggen? Ga naar [[{$wgMetaNamespace}:Overleg gewenst|Overleg gewenst]] of meld je aan voor de discussielijst [http://mail.wikipedia.org/mailman/listinfo/wikinl-l WikiNL-l] -- Zin in een gezellige babbel? Kom naar de [[{$wgMetaNamespace}:De kroeg|De kroeg]] of doe mee op ons nieuwe [http://chat.wikipedia.be Wiki-chatkanaal].<p>
 Om Wikipedia te laten slagen is het erg belangrijk geen materiaal toe te voegen waarop iemand anders auteursrechten heeft, tenzij je daartoe toestemming hebt. De wettelijke gevolgen van inbreuk op de rechten van anderen zouden de hele onderneming grote schade kunnen toebrengen.",
 "rcloaderr"  => "Meest recente wijzigingen laden",
 "rcnote"  => "Hieronder zijn de <strong>$1</strong> laatste wijzigingen gedaan in de laatste <strong>$2</strong> dagen.",
@@ -494,11 +495,11 @@ om bestanden te uploaden.",
 "uploaderror" => "upload fout",
 "uploadtext" => "<strong>STOP!</strong> Voor u iets hier upload,
 wees zeker dat het in overeenkomst is met het Wikipedia NL <a href=\"" .
-wfLocalUrlE( "Wikipedia:Beleid_voor_gebruik_van_afbeeldingen" ) . "\">afbeeldingsbeleid</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Beleid_voor_gebruik_van_afbeeldingen" ) . "\">afbeeldingsbeleid</a>.
 <p>Om de reeds ge-uploade bestanden te bekijken of te zoeken ga naar de <a href=\"" . wfLocalUrlE( "Speciaal:Imagelist" ) .
 "\">lijst van ge-uploade bestanden</a>.
 Uploads en verwijderingen worden bijgehouden in het <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_logboek" ) . "\">upload logboek</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_logboek" ) . "\">upload logboek</a>.
 <p>Gebruik het onderstaande formulier om bestanden zoals afbeeldingen en geluidsbestanden die relevant zijn voor uw artikel te u-loaden. Bij de meeste browers zoals 'Internet Explorer' en 'Mozilla' zult u een \"Bladeren...\" of \"Browse..\" knop zien die een standaard dialoogscherm van uw bestuuringssysteem oproept. Kiest u een bestand, dan zal het ingevuld worden in het veld naast de \"Bladeren...\" knop. U dient ook het vakje aan te vinken waarmee u bevestigt dat er geen schending van auteursrechten plaatsvindt door het gebruik van dat bestand. Vul het veld \"Omschrijving\" in. Druk op de \"Upload\" knop om het uploaden te voltooien. Dit kan even duren als u een langzame internetverbinding gebruikt.
 <p>Gebruik bij voorkeur JPEG voor foto's, PNG voor tekeningen en dergelijke en OGG voor geluid. 
 Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. Om het bestand in een pagina te laten verschijnen, kunt u het volgende doen;  <b>[[afbeelding:uw_foto.jpg]]</b> of <b>[[afbeelding:uw_logo.png|alt text]]</b> of <b>[[media:uw_geluid.ogg]]</b> voor audio.
@@ -514,7 +515,7 @@ Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. O
 "filestatus" => "Auteursrechtensituatie",
 "filesource" => "Auteur/bron",
 "affirmation" => "Ik verklaar dat de eigenaar van de rechten op dit bestand toestemt om het onder de voorwaarden van $1 te verspreiden.",
-"copyrightpage" => "Wikipedia:Auteursrechten",
+"copyrightpage" => "{$wgMetaNamespace}:Auteursrechten",
 "copyrightpagename" => "Wikipedia NL auteursrechten",
 "uploadedfiles" => "Ge-uploade bestanden",
 "noaffirmation" => "U dient te bevestigen dat deze handeling geen inbreuk maakt op auteursrechten.",
@@ -569,8 +570,8 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 "maintnancepagetext"    => "Op deze pagina vindt u een aantal handige zoekopdrachten om kleine alledaagse problemen in de Wikipedia te verhelpen. Sommige van deze zoekopdrachten vormen een grote belasting voor de database; ga dus niet na elke paar pagina's die u hersteld heeft, de pagina opnieuw laden.",
 "maintenancebacklink"   => "Terug naar de Onderhoudspagina",
 "disambiguations"       => "Doorverwijspagina's",
-"disambiguationspage"   => "Wikipedia:Doorverwijspagina",
-"disambiguationstext"   => "De onderstaande artikelen verwijzen naar een [[Wikipedia:Doorverwijspagina|doorverwijspagina]]. Deze zouden waarschijnlijk direct naar de onderwerpspagina moeten verwijzen. <br>Als doorverwijspagina's worden die pagina's beschouwd waar vanaf $1 naar verwezen wordt.<br>Opmerking: Deze lijst toont alleen pagina's vanuit de hoofdnaamruimte, en dus niet Overlegpagina's, Wikipedia:pagina's en dergelijke.",
+"disambiguationspage"   => "{$wgMetaNamespace}:Doorverwijspagina",
+"disambiguationstext"   => "De onderstaande artikelen verwijzen naar een [[{$wgMetaNamespace}:Doorverwijspagina|doorverwijspagina]]. Deze zouden waarschijnlijk direct naar de onderwerpspagina moeten verwijzen. <br>Als doorverwijspagina's worden die pagina's beschouwd waar vanaf $1 naar verwezen wordt.<br>Opmerking: Deze lijst toont alleen pagina's vanuit de hoofdnaamruimte, en dus niet Overlegpagina's, {$wgMetaNamespace}:pagina's en dergelijke.",
 "doubleredirects"       => "Dubbele redirects",
 "doubleredirectstext"   => "<b>Let op:</b> Er kunnen in deze lijst redirects staan die er niet in thuishoren. Dat komt over het algemeen doordat er na de #REDIRECT nog andere links op de pagina staan.<br>\nOp elke regel vindt u de eerste redirectpagina, de tweede redirectpagina en de eerste regel van de tweede redirectpagina. Normaal gesproken bevat deze laatste de pagina waar de eerste redirect naartoe zou moeten verwijzen.",
 "brokenredirects"       => "Gebroken redirects",
@@ -685,7 +686,7 @@ op 'Verwijderen' onderaan deze pagina.",
 "confirmdelete" => "Bevestig verwijdering",
 "deletesub"  => "(Verwijderen \"$1\")",
 "historywarning" => "Waarschuwing: Deze pagina heeft een voorgeschiedenis. Overtuig uzelf ervan dat geen van de oudere versies een te behouden pagina is.",
-"confirmdeletetext" => "U bent staat op het punt een pagina of afbeelding voorgoed te verwijderen. Dit verwijdert alle inhoud en geschiedenis van de database. Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt, en dat uw verwijdering overeenkomt met de [[Wikipedia:Instructies]].",
+"confirmdeletetext" => "U bent staat op het punt een pagina of afbeelding voorgoed te verwijderen. Dit verwijdert alle inhoud en geschiedenis van de database. Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt, en dat uw verwijdering overeenkomt met de [[{$wgMetaNamespace}:Instructies]].",
 "confirmcheck" => "Ja, ik wil dit voorgoed verwijderen.",
 "actioncomplete" => "Actie voltooid",
 "deletedtext" => "\"$1\" is verwijderd. Zie $2 voor een overzicht van recente verwijderingen.",
@@ -714,7 +715,7 @@ op 'Verwijderen' onderaan deze pagina.",
 "undeleterevision" => "Verwijderde versie van $1",
 "undeletebtn" => "Terugplaatsen!",
 "undeletedarticle" => "\"$1\" is teruggeplaatst.",
-"undeletedtext" =>"Het artikel [[$1]] is teruggeplaatst. Zie [[Wikipedia:Logboek verwijderde pagina's]] voor een lijst van de meest recente verwijderingen en terugplaatsingen.",
+"undeletedtext" =>"Het artikel [[$1]] is teruggeplaatst. Zie [[{$wgMetaNamespace}:Logboek verwijderde pagina's]] voor een lijst van de meest recente verwijderingen en terugplaatsingen.",
 
 # Contributions
 # Bijdragen
@@ -779,7 +780,7 @@ Vergeet niet de database opnieuw te de-blokkeren zodra u klaar bent met uw onder
 # SQL query
 # SQL raadplegen
 "asksql"  => "SQL raadplegen",
-"asksqltext" => "Gebruik het onderstaande formulier om een direct verzoek naar de database van Wikipedia NL te zenden. Gebruik enkelvoudige aanhalingstekens ('zoals hier') voor letterlijke teksten. Een ingewikkelde aanvraag kan de sever vaak extra belasten. Gelieve deze mogelijkheid daarom spaarzaam te gebruiken. Zie ook: [[Wikipedia:SQL opdrachten]].",
+"asksqltext" => "Gebruik het onderstaande formulier om een direct verzoek naar de database van Wikipedia NL te zenden. Gebruik enkelvoudige aanhalingstekens ('zoals hier') voor letterlijke teksten. Een ingewikkelde aanvraag kan de sever vaak extra belasten. Gelieve deze mogelijkheid daarom spaarzaam te gebruiken. Zie ook: [[{$wgMetaNamespace}:SQL opdrachten]].",
 "sqlislogged" => "Alle SQL Queries worden gelogd.",
 "sqlquery"  => "Voer opdracht in",
 "querybtn"  => "Verstuur opdracht",

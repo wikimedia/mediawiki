@@ -132,6 +132,7 @@ include_once("LanguageUtf8.php");
 );
 
 /* private */ $wgSysopSpecialPagesPl = array(
+	"Makesysop" => "Turn a user into a sysop",
         "Blockip"       => "Zablokuj adres IP",
         "Asksql"        => "Zapytanie SQL",
         "Undelete"      => "Odtwarzanie skasowanych stron"
@@ -156,18 +157,18 @@ include_once("LanguageUtf8.php");
 "mainpagetext" => "Instalacja oprogramowania powiodła się.",
 "about" => "O Wikipedii",
 "aboutwikipedia" => "O Wikipedii",
-"aboutpage" => "Wikipedia:O_Wikipedii",
+"aboutpage" => "{$wgMetaNamespace}:O_Wikipedii",
 "help" => "Pomoc",
-"helppage" => "Wikipedia:Pomoc",
+"helppage" => "{$wgMetaNamespace}:Pomoc",
 "wikititlesuffix" => "Wikipedia",
 "bugreports" => "Raport o błędach",
-"bugreportspage" => "Wikipedia:Błędy",
+"bugreportspage" => "{$wgMetaNamespace}:Błędy",
 "sitesupport" => "Dary pieniężne",
 "sitesupportpage" => "http://wikimediafoundation.org/fundraising", # If not set, won't appear. Can be wiki page or URL
 "faq" => "FAQ",
-"faqpage" => "Wikipedia:FAQ",
+"faqpage" => "{$wgMetaNamespace}:FAQ",
 "edithelp" => "Pomoc w edycji",
-"edithelppage" => "Wikipedia:Jak_edytować_stronę",
+"edithelppage" => "{$wgMetaNamespace}:Jak_edytować_stronę",
 "cancel" => "Anuluj",
 "qbfind" => "Znajdź",
 "qbbrowse" => "Przeglądanie",
@@ -207,7 +208,7 @@ include_once("LanguageUtf8.php");
 "gnunote" => "udostępniana jest w oparciu o licencję <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>; możesz ją samodzielnie uzupełnić lub poprawić.",
 "printsubtitle" => "(z http://pl.wikipedia.org)",
 "protectedpage" => "Strona zabezpieczona",
-"administrators" => "Wikipedia:Administratorzy",
+"administrators" => "{$wgMetaNamespace}:Administratorzy",
 "sysoptitle" => "Wymagane prawa dostępu administratora",
 "sysoptext" => "Ta operacja może być wykonana tylko przez
 użytkowania o statusie \"administrator\".
@@ -293,7 +294,7 @@ czasu UTC. Przepraszamy!",
 "perfdisabledstub" => "Oto ostatnia zapisana wersja strony z $1",
 "viewsource" => "Tekst źródłowy",
 "protectedtext" => "Wyłączono możliwość edycji tej strony; istnieje kilka powodów
-dla których jest to robione - zobacz [[Wikipedia:Strona_zabezpieczona]]
+dla których jest to robione - zobacz [[{$wgMetaNamespace}:Strona_zabezpieczona]]
 
 Tekst źródłowy strony można w dalszym ciągu podejrzeć i skopiować.",
 
@@ -356,7 +357,7 @@ Po otrzymaniu go zaloguj się ponownie.",
 "blockedtitle" => "Użytkownik jest zablokowany",
 "blockedtext" => "Twoje konto lub adres IP zostały zablokowane przez $1.
 Podany powód to:<br>$2.<p>W celu wyjaśnienia sprawy zablokowania możesz się skontaktować z $1 lub innym
-[[Wikipedia:Administratorzy|administratorem]].",
+[[{$wgMetaNamespace}:Administratorzy|administratorem]].",
 "newarticle" => "(Nowy)",
 "newarticletext" => "Nie ma jeszcze artykułu o tym tytule. W poniższym polu można wpisać pierwszy jego fragment. Jeśli nie to było Twoim zamiarem, wciśnij po prostu ''Wstecz''.",
 "anontalkpagetext" => "---- ''To jest strona dyskusyjna dla użytkowników
@@ -403,7 +404,7 @@ artykułu. Proponujemy przenieść jej tekst do prywatnego pliku
 "protectedpagewarning" => "UWAGA: Modyfikacja tej strony została zablokowana.
 Mogą ją edytować jedynie użytkownicy z prawami administracyjnymi.
 Upewnij się, że postępujesz zgodnie z
-<a href='/wiki/Wikipedia:Blokowanie_stron'>zasadami dotyczącymi
+<a href='/wiki/{$wgMetaNamespace}:Blokowanie_stron'>zasadami dotyczącymi
 zablokowanych stron</a>.",
 
 
@@ -435,7 +436,7 @@ Sprawdź proszę URL użyty przez Ciebie by uzyskać dostęp do tej strony.\n",
 # Search results
 #
 "searchresults" => "Wyniki wyszukiwania",
-"searchhelppage" => "Wikipedia:Przeszukiwanie",
+"searchhelppage" => "{$wgMetaNamespace}:Przeszukiwanie",
 "searchingwikipedia" => "Przeszukiwanie Wikipedii",
 "searchresulttext" => "Aby dowiedzieć się więcej o przeszukiwaniu Wikipedii, zobacz $1.",
 "searchquery" => "Dla zapytania \"$1\"",
@@ -504,7 +505,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br>
 przez zmianą swoich preferencji.",
 "prefslogintext" => "Zalogowano Cię jako \"$1\". Twój numer identyfikacyjny to $2.
 
-Zobacz [[Wikipedia:Preferencje]], aby poznać znaczenie poszczególnych opcji.",
+Zobacz [[{$wgMetaNamespace}:Preferencje]], aby poznać znaczenie poszczególnych opcji.",
 "prefsreset" => "Preferencje domyślne zostały odtworzone.",
 "qbsettings" => "Pasek szybkiego dostępu", 
 "changepassword" => "Zmiana hasła",
@@ -546,7 +547,7 @@ lub \"1\" (czas zimowy).",
 "recentchanges" => "Ostatnie zmiany",
 "recentchangestext" => "Ta strona przedstawia historię ostatnich zmian w polskiej Wikipedii.
 
-[[Wikipedia:Powitanie nowicjuszy|Witaj]]! Jeśli jesteś tu po raz pierwszy, zapoznaj się, proszę, z tymi stronami: [[wikipedia:FAQ|Wikipedia FAQ]], [[Wikipedia:Zasady i wskazówki|polityka Wikipedii]] (a zwłaszcza [[Wikipedia:Nazewnictwo|konwencje nazywania stron]], [[Wikipedia:Neutralny punkt widzenia|neutralny punkt widzenia]]) oraz [[Wikipedia:Najczęstsze nieporozumienia|najczęstsze nieporozumienia]].
+[[{$wgMetaNamespace}:Powitanie nowicjuszy|Witaj]]! Jeśli jesteś tu po raz pierwszy, zapoznaj się, proszę, z tymi stronami: [[{$wgMetaNamespace}:FAQ|Wikipedia FAQ]], [[{$wgMetaNamespace}:Zasady i wskazówki|polityka Wikipedii]] (a zwłaszcza [[{$wgMetaNamespace}:Nazewnictwo|konwencje nazywania stron]], [[{$wgMetaNamespace}:Neutralny punkt widzenia|neutralny punkt widzenia]]) oraz [[{$wgMetaNamespace}:Najczęstsze nieporozumienia|najczęstsze nieporozumienia]].
 
 Jeśli zależy Ci na dalszym rozwoju Wikipedii, nie dodawaj materiałów zastrzeżonych prawami autorskimi. Złamanie tej zasady mogłyby narazić projekt Wikipedii na poważne konsekwencje prawne.  Zobacz także [http://meta.wikipedia.org/wiki/Special:Recentchanges ostatnie zmiany na stronach dyskusyjnych projektu].",
 "rcloaderr" => "Ładuję ostatnie zmiany",
@@ -579,15 +580,15 @@ przed przesłaniem pików.",
 "uploadfile" => "Prześlij plik",
 "uploaderror" => "Błąd przesyłki",
 "uploadtext" => "<strong>STOP!</strong> Zanim prześlesz plik,
-przeczytaj <a href=\"" . wfLocalUrlE( "Wikipedia:Zasady_dołączania_plików" ) .
+przeczytaj <a href=\"" . wfLocalUrlE( "{$wgMetaNamespace}:Zasady_dołączania_plików" ) .
 "\">zasady dołączania plików</a> i upewnij się, że przesyłając pozostaniesz z
 nimi w zgodzie.
 <p>Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki,
 przejdź do <a href=\"" . wfLocalUrlE( "Specjalna:Imagelist" ) .
 "\">listy dołączonych plików</a>.
 Wszystkie przesyłki i skasowania są odnotowane na
-specjalnych wykazach (<a href=\"" .  wfLocalUrlE( "Wikipedia:Dołączone" ) .
-"\">dołączone</a>, <a href=\"" . wfLocalUrlE( "Wikipedia:Usunięte" ) .
+specjalnych wykazach (<a href=\"" .  wfLocalUrlE( "{$wgMetaNamespace}:Dołączone" ) .
+"\">dołączone</a>, <a href=\"" . wfLocalUrlE( "{$wgMetaNamespace}:Usunięte" ) .
 "\">usunięte</a>).
 <p>By przesłać nowy plik mający zilustrować Twój artykuł skorzystaj
 z poniższego formularza.
@@ -620,7 +621,7 @@ Wszystkie czasy odnoszą się do strefy czasu uniwersalnego (UTC).
 "filedesc" => "Opis",
 "affirmation" => "Potwierdzam, że właściciel praw autorskich do tego pliku
 zgadza się udzielić licencji zgodnie z $1.",
-"copyrightpage" => "Wikipedia:Prawa_autorskie",
+"copyrightpage" => "{$wgMetaNamespace}:Prawa_autorskie",
 "copyrightpagename" => "prawami autorskimi Wikipedii",
 "uploadedfiles" => "Przesłane pliki",
 "noaffirmation" => "Musisz potwierdzić, że Twoja przesyłka nie narusza żadnych
@@ -689,7 +690,7 @@ pomagających w prostej administracji. Niektóre z nich obciążają bazę danyc
 więc, by ich nie nadużywać.",
 "maintenancebacklink" => "Powrót do strony prostej administracji",
 "disambiguations" => "Strony ujednoznaczniające",
-"disambiguationspage" => "Wikipedia:Strony_ujednoznaczniające",
+"disambiguationspage" => "{$wgMetaNamespace}:Strony_ujednoznaczniające",
 "disambiguationstext" => "Poniższe artykuły odwołują się do <i>stron
 ujednoznaczniających</i>, a powinny odwoływać się bezpośrednio do hasła
 związanego z treścią artykułu.<br>Strona uznawana jest za ujednoznaczniającą
@@ -840,7 +841,7 @@ Zaznacz, które z nich mamy usunąć z listy i kliknij przycisk
 lub plik z bazy danych razem z dotyczącą ich historią.
 Potwierdź, proszę, swoje zamiary, tzn., że rozumiesz konsekwencje,
 i że robisz to w zgodzie z
-[[Wikipedia:Zasady i wskazówki|zasadami Wikipedii]].",
+[[{$wgMetaNamespace}:Zasady i wskazówki|zasadami Wikipedii]].",
 "confirmcheck" => "Tak, naprawdę chcę usunąć.",
 "actioncomplete" => "Operacja wykonana",
 
@@ -885,7 +886,7 @@ pozostanie bez zmian.",
 "undeletebtn" => "Odtwórz!",
 "undeletedarticle" => "odtworzono \"$1\"",
 "undeletedtext" => "Pomyślnie odtworzono stronę [[$1]].
-Zobacz [[Wikipedia:Usunięte]], jeśli chcesz przejrzeć rejestr ostatnio
+Zobacz [[{$wgMetaNamespace}:Usunięte]], jeśli chcesz przejrzeć rejestr ostatnio
 skasowanych i odtworzonych stron.",
 
 # Contributions
@@ -917,7 +918,7 @@ ta operacja ma być wykonana.",
 "blockiptext" => "Użyj poniższego formularza aby zablokować prawo
 zapisu spod określonego adresu IP.
 Powinno się to robić jedynie by zapobiec wandalizmowi, a zarazem
-w zgodzie z [[Wikipedia:Zasady i wskazówki|zasadami Wikipedii]].
+w zgodzie z [[{$wgMetaNamespace}:Zasady i wskazówki|zasadami Wikipedii]].
 Podaj powód (np. umieszczając nazwy stron, na których dopuszczono
 się wandalizmu).",
 "ipaddress" => "Adres IP",

@@ -14,8 +14,8 @@
 	1	=> "Diskusjon",
 	2	=> "Bruker",
 	3	=> "Brukerdiskusjon",
-	4	=> "Wikipedia",
-	5	=> "Wikipedia-diskusjon",
+	4	=> $wgMetaNamespace,
+	5	=> $wgMetaNamespace."-diskusjon",
 	6	=> "Bilde",
 	7	=> "Bildediskusjon",
 	8	=> "MediaWiki",
@@ -124,6 +124,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesNo = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Blokker IP-adresse",
 	"Asksql"		=> "Søk i databasen",
 	"Undelete"		=> "Vis og gjenopprett slettede sider"
@@ -148,18 +149,18 @@
 "mainpagetext"	=> "Wiki-programvare er nå installert.",
 "about"			=> "Om",
 "aboutwikipedia" => "Om Wikipedia",
-"aboutpage"		=> "Wikipedia:Om",
+"aboutpage"		=> "{$wgMetaNamespace}:Om",
 "help"			=> "Hjelp",
-"helppage"		=> "Wikipedia:Hjelp",
+"helppage"		=> "{$wgMetaNamespace}:Hjelp",
 "wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "Feilmeldinger",
-"bugreportspage" => "Wikipedia:Feilmeldinger",
+"bugreportspage" => "{$wgMetaNamespace}:Feilmeldinger",
 "sitesupport"   => "Donasjoner",
 "sitesupportpage" => "", # If not set, won't appear. Can be wiki page or URL
 "faq"			=> "OSS",
-"faqpage"		=> "Wikipedia:OSS",
+"faqpage"		=> "{$wgMetaNamespace}:OSS",
 "edithelp"		=> "Hjelp til redigering",
-"edithelppage"	=> "Wikipedia:Hvordan_redigere",
+"edithelppage"	=> "{$wgMetaNamespace}:Hvordan_redigere",
 "cancel"		=> "Avbryt",
 "qbfind"		=> "Finn",
 "qbbrowse"		=> "Søk",
@@ -199,7 +200,7 @@
 "gnunote" => "Artikkelen er utgitt under <a class=internal href='/wiki/GNU_FDL'>GNU fri dokumentasjonslisens</a>.",
 "printsubtitle" => "(fra http://no.wikipedia.org)",
 "protectedpage" => "Beskyttet side",
-"administrators" => "Wikipedia:Administratorer",
+"administrators" => "{$wgMetaNamespace}:Administratorer",
 "sysoptitle"	=> "Sysop-rettigheter kreves",
 "sysoptext"		=> "Funksjonen kan kun utføres av brukere med \"sysop\"-status.
 Se $1.",
@@ -272,7 +273,7 @@ Send en rapport om dette til en administrator, oppgi adresse til siden.",
 "viewsource" => "Vis kildekode",
 "protectedtext" => "Denne siden er sperret for å hindre redigering; det
 kan være flere grunner til dette, se
-[[Wikipedia:Beskyttet side]].
+[[{$wgMetaNamespace}:Beskyttet side]].
 
 Du kan se og kopiere kildekoden til denne siden:",
 
@@ -338,12 +339,12 @@ Logg inn når du har mottatt det nye passordet.",
 "blockedtitle"	=> "Brukeren er blokkert",
 "blockedtext"	=> "Ditt brukernavn eller din IP-adresse er blokkert av $1.
 Følgende begrunnelse ble gitt:<br>''$2''<p>Du kan kontakte $1 eller en annen
-[[Wikipedia:Administratorer|administrator]] for å diskutere utestengelsen.",
+[[{$wgMetaNamespace}:Administratorer|administrator]] for å diskutere utestengelsen.",
 "newarticle"	=> "(Ny)",
 "newarticletext" =>
 "Artikkelen inneholder ingen tekst.
 Du kan begynne på en artikkel ved å skrive i boksen under
-(se [[Wikipedia:Hjelp|hjelpsiden]] for mere informasjon).
+(se [[{$wgMetaNamespace}:Hjelp|hjelpsiden]] for mere informasjon).
 Hvis du ikke vil redigere siden, klikk på '''tilbake''' i nettleseren.",
 "anontalkpagetext" => "---- ''Dette er en diskusjonsside for en anonym bruker som ikke har opprettet en konto eller ikke bruker den. Vi er derfor nødt til å bruke den numeriske IP-adressen til å identifisere ham eller henne. En IP-adresse kan være delt mellom flere brukere. Hvis du er en anonym bruker og synes at du har fått irrelevante kommentarer på en slik side, [[Spesial:Innlogging|logg på]] så vi unngår fremtidige forvekslinger med andre anonyme brukere.'' ",
 "noarticletext" => "(Det er for øyeblikket ingen tekst på denne siden.)",
@@ -386,7 +387,7 @@ så du kan ikke lagre dine endringer akkurat nå. Det kan være en god idé å
 kopiere teksten din til en tekstfil, så du kan lagre den til senere.",
 "protectedpagewarning" => "ADVARSEL: Denne siden er låst, så kun administratorer
 kan redigere den. Sørg for at du følger 
-<a href='/wiki/Wikipedia:Retningslinjer_for_beskyttede_sider'>retningslinjer for 
+<a href='/wiki/{$wgMetaNamespace}:Retningslinjer_for_beskyttede_sider'>retningslinjer for 
 beskyttede sider</a>.",
 
 # History pages
@@ -415,7 +416,7 @@ versjonen, (forrige) = forskjell fra den forrige versjonen, M = mindre endring",
 # Search results
 #
 "searchresults" => "Søkeresultater",
-"searchhelppage" => "Wikipedia:Søking",
+"searchhelppage" => "{$wgMetaNamespace}:Søking",
 "searchingwikipedia" => "Søking i Wikipedia",
 "searchresulttext" => "For mer informasjon om søking i Wikipedia, se 
 $1.",
@@ -487,7 +488,7 @@ for å endre brukerinnstillingene.",
 "prefslogintext" => "Du logget inn som \"$1\".
 Ditt interne ID-nummer er $2.
 
-Se [[Wikipedia:Hvordan stille inn brukerinnstillinger]] for en forklaring på de forskjellige brukerinnstillingene.",
+Se [[{$wgMetaNamespace}:Hvordan stille inn brukerinnstillinger]] for en forklaring på de forskjellige brukerinnstillingene.",
 "prefsreset"	=> "Brukerinnstillingene er tilbakestilt.",
 "qbsettings"	=> "Brukerinnstillinger for hurtigmeny",
 "changepassword" => "Skift passord",
@@ -527,7 +528,7 @@ fra tjenerens tid.",
 #
 "changes" => "endringer",
 "recentchanges" => "Siste endringer",
-# This is the default text, and can be overriden by editing [[Wikipedia::Recentchanges]]
+# This is the default text, and can be overriden by editing [[{$wgMetaNamespace}::Recentchanges]]
 "recentchangestext" => "Se de sist endrede sider i Wikipedia på denne siden.",
 "rcloaderr"		=> "Laster sist endrede sider",
 "rcnote"		=> "Nedenfor er de siste <strong>$1</strong> endringer i de 
@@ -562,12 +563,12 @@ for å kunne laste opp filer.",
 "uploaderror"	=> "Feil under opplasting av fil",
 "uploadtext"	=> "<strong>STOPP!</strong> Før du laster opp filer her,
 vær sikker på du har lest og følger Wikipedias <a href=\"" .
-wfLocalUrlE( "Wikipedia:Retningslinjer for billedbruk" ) . "\">retningslinjer for billedbruk</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Retningslinjer for billedbruk" ) . "\">retningslinjer for billedbruk</a>.
 <p>For å se eller søke i bilder som tidligere er lastet opp,
 gå til <a href=\"" . wfLocalUrlE( "Spesial:Imagelist" ) .
 "\">listen over bilder</a>.
 Opplasting og slettinger er registrert i <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">loggen over opplastede filer</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_log" ) . "\">loggen over opplastede filer</a>.
 <p>Bruk skjemaet nedenunder til å laste opp nye bilder som kan brukes
 til å illustrere dine artikler.
 På de fleste nettlesere vil du se en \"Browse...\"-knapp eller en 
@@ -601,7 +602,7 @@ opp sist. Alle de viste tidene er tjenerens tid (UTC).
 "filedesc"		=> "Beskrivelse",
 "affirmation"	=> "Jeg bekrefter at opphavsrettsinnehaveren til denne filen
 samtykker i at filen utgis under betingelsene for $1.",
-"copyrightpage" => "Wikipedia:Opphavsrett",
+"copyrightpage" => "{$wgMetaNamespace}:Opphavsrett",
 "copyrightpagename" => "Wikipedia opphavsrett",
 "uploadedfiles"	=> "Filer som er lastet opp",
 "noaffirmation" => "Du må bekrefte at du ikke bryter noens opphavsrett
@@ -672,7 +673,7 @@ harde for databasen (de tar lang tid), så la være å oppdatere siden
 hver gang du har rettet en enkelt ting",
 "maintenancebacklink"	=> "Tilbake til vedlikeholdssiden",
 "disambiguations"	=> "Artikler med flertydige titler",
-"disambiguationspage"	=> "Wikipedia:Lenker til artikler med flertydige titler",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Lenker til artikler med flertydige titler",
 "disambiguationstext"	=> "De følgende artikler har lenker til 
 <i>artikler med flertydige titler</i>. De burde ha lenke til en ikke-flertydig 
 tittel i stedet.<br>En artikkel blir behandlet som flertydig hvis den har
@@ -824,7 +825,7 @@ i bunnen av skjermen.",
 eller et bilde sammen med hele den tilhørende historikken fra databasen.
 Bekreft at du virkelig vil gjøre dette, at du forstår
 konsekvensene, og at du gjør dette i overensstemmelse med
-[[Wikipedia:Retningslinjer]].",
+[[{$wgMetaNamespace}:Retningslinjer]].",
 "confirmcheck"	=> "Ja, jeg vil virkelig slette.",
 "actioncomplete" => "Gjennomført",
 "deletedtext"	=> "\"$1\" er slettet.
@@ -855,7 +856,7 @@ Den siste redigeringen er foretatt av [[Bruker:$3|$3]] ([[Brukerdiskusjon:$3|dis
 "revertpage"	=> "Gjenopprettet siden til tidligere versjon redigert av $1",
 "protectlogpage" => "Beskyttelseslogg",
 "protectlogtext" => "Her er en liste over sider som er blitt beskyttet eller har fått fjernet beskyttelsen.
-Se [[Wikipedia:Beskyttet side]] for mer informasjon.",
+Se [[{$wgMetaNamespace}:Beskyttet side]] for mer informasjon.",
 "protectedarticle" => "beskyttet [[$1]]",
 "unprotectedarticle" => "fjernet beskyttelse for [[$1]]",
 
@@ -875,7 +876,7 @@ på siden.",
 "undeletebtn" => "Gjenopprett!",
 "undeletedarticle" => "gjenopprettet \"$1\"",
 "undeletedtext"   => "Artikkelen [[$1]] er gjenopprettet.
-Se [[Wikipedia:Slettingslogg]] for en oversikt over nylige 
+Se [[{$wgMetaNamespace}:Slettingslogg]] for en oversikt over nylige 
 slettinger og gjenopprettelser.",
 
 # Contributions
@@ -907,7 +908,7 @@ siste <b>$2</b> dagene.",
 "blockiptext"	=> "Bruk skjemaet nedenunder for å blokkere skriveadgangen
 fra en spesifikk IP-adresse.
 Dette må kun gjøres for at forhindre vandalisme, og i
-overensstemmelse med [[Wikipedia:Retningslinjer|retningslinjene]].
+overensstemmelse med [[{$wgMetaNamespace}:Retningslinjer|retningslinjene]].
 Fyll ut en spesiell begrunnelse nedenunder (for eksempel med et sitat fra
 sider som har vært utsatt for vandalisme).",
 "ipaddress"		=> "IP-adresse",

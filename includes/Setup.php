@@ -21,11 +21,25 @@ if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
 
 /* collect the originating ips */
 $wgIP = getenv("REMOTE_ADDR");
-if( $wgUseSquid && isset( $_SERVER["HTTP_X_FORWARDED_FOR"] ) ) {
-	# If the web server is behind a reverse proxy, we need to find
-	# out where our requests are really coming from.
-	$wgIP = trim( preg_replace( "/^(.*, )?([^,]+)$/", "$2",
-		$_SERVER['HTTP_X_FORWARDED_FOR'] ) );
+if( $wgUseSquid ) {
+	if( function_exists( "apache_request_headers" ) ) {
+		$head = apache_request_headers();
+		$fwd = $head["X-Forwarded-For"];
+		# Some broken proxies produce "X-Forwarded_For" headers which
+		# interfere with the fallback method:
+	} else {
+		$fwd = $_SERVER["HTTP_X_FORWARDED_FOR"];
+	}
+	if( !empty( $fwd ) ) {
+		# If the web server is behind a reverse proxy, we need to find
+		# out where our requests are really coming from.
+		$hopips = split(', ', $fwd );
+	
+		while(in_array(trim(end($hopips)), $wgSquidServers)){
+			array_pop($hopips);
+		}
+		$wgIP = trim(end($hopips));
+	}
 }
 
 $fname = "Setup.php";
@@ -59,19 +73,20 @@ global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
 global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
 global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
 global $wgMsgCacheExpiry, $wgDBname, $wgCommandLineMode;
-global $wgBlockCache, $wgParserCache, $wgParser;
+global $wgBlockCache, $wgParserCache, $wgParser, $wgStockPath;
+global $wgUploadPath;
 
 # Useful debug output
 if ( function_exists( "getallheaders" ) ) {
 	wfDebug( "\nStart request\n" );
-	wfDebug( "$REQUEST_METHOD $REQUEST_URI\n" );
+	wfDebug( "{$_SERVER['REQUEST_METHOD']} {$_SERVER['REQUEST_URI']}\n" );
 	$headers = getallheaders();
 	foreach ($headers as $name => $value) {
 		wfDebug( "$name: $value\n" );
 	}
 	wfDebug( "\n" );
 } else {
-	wfDebug( "$REQUEST_METHOD $REQUEST_URI\n" );
+	wfDebug( "{$_SERVER['REQUEST_METHOD']} {$_SERVER['REQUEST_URI']}\n" );
 }
 
 
@@ -131,7 +146,7 @@ $wgOut = new OutputPage();
 wfDebug( "\n\n" );
 
 $wgLangClass = "Language" . ucfirst( $wgLanguageCode );
-if( ! class_exists( $wgLangClass ) ) {
+if( ! class_exists( $wgLangClass ) || ($wgLanguageCode == "en" && strcasecmp( $wgInputEncoding, "utf-8" ) == 0 ) ) {
 	include_once( "LanguageUtf8.php" );
 	$wgLangClass = "LanguageUtf8";
 }
@@ -148,18 +163,31 @@ if ( $wgUseDynamicDates ) {
 	$wgDateFormatter = new DateFormatter;
 }
 
-if( !$wgCommandLineMode && isset( $_COOKIE[ini_get("session.name")] )  ) {
+if( !$wgCommandLineMode && ( isset( $_COOKIE[ini_get("session.name")] ) || isset( $_COOKIE["{$wgDBname}Password"] ) ) ) {
 	User::SetupSession();
 }
 
+if ( $wgStockPath === false ) {
+	$wgStockPath = $wgUploadPath;
+}
+
 $wgBlockCache = new BlockCache( true );
-$wgUser = User::loadFromSession();
+if( $wgCommandLineMode ) {
+	# Used for some maintenance scripts; user session cookies can screw things up
+	# when the database is in an in-between state.
+	$wgUser = new User();
+} else {
+	$wgUser = User::loadFromSession();
+}
 $wgDeferredUpdateList = array();
 $wgLinkCache = new LinkCache();
 $wgMagicWords = array();
 $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
 $wgParserCache = new ParserCache();
 $wgParser = new Parser();
+
+# Disable known broken features
+$wgUseCategoryMagic = false;
 
 wfProfileOut( "$fname-misc" );
 wfProfileOut( $fname );

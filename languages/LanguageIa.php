@@ -14,8 +14,8 @@
 	1	=> "Discussion",
 	2	=> "Usator",
 	3	=> "Discussion_Usator",
-	4	=> "Wikipedia",
-	5	=> "Discussion_Wikipedia",
+	4	=> $wgMetaNamespace,
+	5	=> "Discussion_".$wgMetaNamespace,
 	6	=> "Imagine",
 	7	=> "Discussion_Imagine",
 	8	=> "MediaWiki",
@@ -121,6 +121,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesIa = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Blocar un adresse de IP",
 	"Asksql"		=> "Consultar base de datos",
 	"Undelete"		=> "Vider e restaurar paginas eliminate"
@@ -139,16 +140,16 @@
 "mainpage"		=> "Frontispicio",
 "about"			=> "A proposito",
 "aboutwikipedia" => "A proposito de Wikipedia",
-"aboutpage"		=> "Wikipedia:A_proposito",
+"aboutpage"		=> "{$wgMetaNamespace}:A_proposito",
 "help"			=> "Adjuta",
-"helppage"		=> "Wikipedia:Adjuta",
+"helppage"		=> "{$wgMetaNamespace}:Adjuta",
 "wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "Reportos de disfunctiones",
-"bugreportspage" => "Wikipedia:Reportos_de_disfunctiones",
+"bugreportspage" => "{$wgMetaNamespace}:Reportos_de_disfunctiones",
 "faq"			=> "Questiones frequente",
-"faqpage"		=> "Wikipedia:Questiones_frequente",
+"faqpage"		=> "{$wgMetaNamespace}:Questiones_frequente",
 "edithelp"		=> "Adjuta al edition",
-"edithelppage"	=> "Wikipedia:Como_editar_un_pagina",
+"edithelppage"	=> "{$wgMetaNamespace}:Como_editar_un_pagina",
 "cancel"		=> "Cancellar",
 "qbfind"		=> "Trovar",
 "qbbrowse"		=> "Foliar",
@@ -187,7 +188,7 @@
 "gnunote" => "Tote le texto es disponibile sub le terminos del <a class=internal href='/wiki/GNU_FDL'>Licentia de documentation libere GNU</a>.",
 "printsubtitle" => "(De http://ia.wikipedia.org)",
 "protectedpage" => "Pagina protegite",
-"administrators" => "Wikipedia:Administratores",
+"administrators" => "{$wgMetaNamespace}:Administratores",
 "sysoptitle"	=> "Reservate a Sysops",
 "sysoptext"		=> "Solo usatores con status de \"sysop\"
 pote effectuar iste action.
@@ -318,12 +319,12 @@ Per favor initia un session post reciper lo.",
 "blockedtitle"	=> "Le usator es blocate",
 "blockedtext"	=> "Tu nomine de usator o adresse de IP ha essite blocate per $1.
 Le motivo presentate es iste:<br>''$2''<p>Tu pote contactar $1 o un del altere
-[[Wikipedia:administratores|administratores]] pro discuter le bloco.",
+[[{$wgMetaNamespace}:administratores|administratores]] pro discuter le bloco.",
 "newarticle"	=> "(Nove)",
 "newarticletext" =>
 "Tu ha sequite un ligamine a un pagina que ancora non existe.
 Pro crear un nove pagina, comencia a scriber in le cassa infra.
-(Vide le [[Wikipedia:Adjuta|pagina de adjuta]] pro plus information.)
+(Vide le [[{$wgMetaNamespace}:Adjuta|pagina de adjuta]] pro plus information.)
 Si tu es hic per error, simplemente clicca le button '''Retornar''' de tu navigator.",
 "anontalkpagetext" => "---- ''Iste es le pagina de discussion pro un usator anonyme qui ancora non ha create un conto o qui non lo usa. Consequentemente nos debe usar le [[adresse de IP]] numeric pro identificar le/la. Un tal adresse de IP pote esser usate in commun per varie personas. Si tu es un usator anonyme e senti que commentarios irrelevante ha essite dirigite a te, per favor [[Special:Userlogin|crea un conto o aperi un session]] pro evitar futur confusiones con altere usatores anonyme.'' ",
 "noarticletext" => "(Actualmente il non ha texto in iste pagina)",
@@ -387,7 +388,7 @@ Verifica le URL que tu ha usate pro accessar iste pagina.\n",
 # Search results
 #
 "searchresults" => "Resultatos del recerca",
-"searchhelppage" => "Wikipedia:Recerca",
+"searchhelppage" => "{$wgMetaNamespace}:Recerca",
 "searchingwikipedia" => "Recerca in Wikipedia",
 "searchresulttext" => "Pro plus information super le recerca de Wikipedia, vide $1.",
 "searchquery"	=> "Pro le consulta \"$1\"",
@@ -467,15 +468,15 @@ e illo del servitor (UTC).",
 "changes" => "modificationes",
 "recentchanges" => "Modificationes recente",
 "recentchangestext" => "Seque le plus recente modificationes a Wikipedia in iste pagina.
-[[Wikipedia:Benvenite,_novicios|Benvenite, novicios]]!
-Per favor lege equalmente iste paginas: [[wikipedia:Questiones_frequente|Questiones frequente super Wikipedia]],
-[[Wikipedia:Politicas e directivas|Politica de Wikipedia]]
-(specialmente [[wikipedia:Conventiones de nomenclatura|conventiones de nomenclatura]],
-[[wikipedia:Neutralitate e objectivitate|neutralitate e objectivitate]]),
-e [[wikipedia:Le passos false plus commun|le passos false plus commun]].
+[[{$wgMetaNamespace}:Benvenite,_novicios|Benvenite, novicios]]!
+Per favor lege equalmente iste paginas: [[{$wgMetaNamespace}:Questiones_frequente|Questiones frequente super Wikipedia]],
+[[{$wgMetaNamespace}:Politicas e directivas|Politica de Wikipedia]]
+(specialmente [[{$wgMetaNamespace}:Conventiones de nomenclatura|conventiones de nomenclatura]],
+[[{$wgMetaNamespace}:Neutralitate e objectivitate|neutralitate e objectivitate]]),
+e [[{$wgMetaNamespace}:Le passos false plus commun|le passos false plus commun]].
 
 Si tu vole que Wikipedia habe successo, es multo importante que tu non
-include material protegite per [[wikipedia:Copyright|derectos de autor]].
+include material protegite per [[{$wgMetaNamespace}:Copyright|derectos de autor]].
 Le aspectos legal connexe poterea prejudicar gravemente le projecto,
 alora per favor non lo face.
 In ultra, lege iste [http://meta.wikipedia.org/wiki/Special:Recentchanges recente discussion] in meta.Wikipedia.",
@@ -511,13 +512,13 @@ pro poter cargar files.",
 "uploaderror"	=> "Error de carga",
 "uploadtext"	=> "<strong>STOP!</strong> Ante cargar files al servitor,
 prende cognoscentia del <a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">politica de Wikipedia super le uso de imagines</a>,
+wfLocalUrlE( "{$wgMetaNamespace}:Image_use_policy" ) . "\">politica de Wikipedia super le uso de imagines</a>,
 e assecura te de respectar lo.
 <p>Pro vider o recercar imagines cargate previemente,
 vade al <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
 "\">lista de imagines cargate</a>.
 Cargas e eliminationes es registrate in le <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">registro de cargas</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_log" ) . "\">registro de cargas</a>.
 <p>Usa le formulario infra pro cargar nove files de imagine pro
 illustrar tu articulos.
 In le major parte del navigatores, tu videra un button \"Browse...\",
@@ -552,7 +553,7 @@ Tote le tempores monstrate es in le fuso horari del servitor (UCT).
 "filedesc"		=> "Description",
 "affirmation"	=> "Io declara que le detentor del derecto de autor de iste file
 consenti in licentiar lo sub le terminos del $1.",
-"copyrightpage" => "Wikipedia:Copyright",
+"copyrightpage" => "{$wgMetaNamespace}:Copyright",
 "copyrightpagename" => "Wikipedia e derectos de autor (copyright)",
 "uploadedfiles"	=> "Files cargate",
 "noaffirmation" => "Tu debe declarar que le files cargate per te non viola
@@ -621,7 +622,7 @@ Alcunes del functiones tende a tensionar le base de datos, pro isto per favor
 non preme \"Reload\" post cata item reparate. ;-)",
 "maintenancebacklink"	=> "Retornar al pagina de mantenentia",
 "disambiguations"	=> "Paginas de disambiguation",
-"disambiguationspage"	=> "Wikipedia:Ligamines_a_paginas_de_disambiguation",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Ligamines_a_paginas_de_disambiguation",
 "disambiguationstext"	=> "Le articulos sequente se liga a un <i>pagina de disambiguation</i>.
 Illos deberea ligar se directemente al topico appropriate.<br>
 Un pagina es tractate como un pagina de disambiguation si existe un ligamine
@@ -738,7 +739,7 @@ facilitar su identification.</p>
 "confirmdeletetext" => "Tu es a puncto de eliminar permanentemente un pagina
 o imagine del base de datos, conjunctemente con tote su chronologia de versiones.
 Per favor, confirma que, si tu intende facer lo, tu comprende le consequentias,
-e tu lo face de accordo con [[Wikipedia:Policy]].",
+e tu lo face de accordo con [[{$wgMetaNamespace}:Policy]].",
 "confirmcheck"	=> "Si, io realmente desira eliminar isto.",
 "actioncomplete" => "Action complete",
 "deletedtext"	=> "\"$1\" ha essite eliminate.
@@ -774,7 +775,7 @@ non essera automaticamente substituite.",
 "undeletebtn" => "Restautar!",
 "undeletedarticle" => "\"$1\" restaurate",
 "undeletedtext"   => "Le articulo [[$1]] ha essite restaurate con successo.
-Vide [[Wikipedia:Registro_de_eliminationes]] pro un registro de eliminationes e restaurationes recente.",
+Vide [[{$wgMetaNamespace}:Registro_de_eliminationes]] pro un registro de eliminationes e restaurationes recente.",
 
 # Contributions
 #
@@ -803,7 +804,7 @@ executar iste function.",
 "blockiptext"	=> "Usa le formulario infra pro blocar le accesso de scriptura
 a partir de un adresse IP specific.
 Isto debe esser facite solmente pro impedir vandalismo, e de
-accordo con le [[Wikipedia:Policy|politica de Wikipedia]].
+accordo con le [[{$wgMetaNamespace}:Policy|politica de Wikipedia]].
 Scribe un motivo specific infra (per exemplo, citante paginas
 specific que ha essite vandalisate).",
 "ipaddress"		=> "Adresse IP",

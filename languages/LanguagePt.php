@@ -16,8 +16,8 @@
     1   => "Discussão",
     2   => "Usuário",
     3   => "Usuário_Discussão",
-    4   => "Wikipedia",
-    5   => "Wikipedia_Discussão",
+    4   => $wgMetaNamespace,
+    5   => $wgMetaNamespace."_Discussão",
     6   => "Imagem",
     7   => "Imagem_Discussão",
     8   => "MediaWiki",
@@ -144,6 +144,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesPt = array(
+	"Makesysop" => "Turn a user into a sysop",
     "Blockip"       => "Bloquear um endereço IP",
     "Asksql"        => "Busca o banco-de-dados",
     "Undelete"      => "Ver e restaura páginas apagadas"
@@ -170,16 +171,16 @@
 "mainpagetext"  => "Software Wiki instalado com sucesso.",
 "about"         => "Sobre",
 "aboutwikipedia" => "Sobre a Wikipedia",
-"aboutpage"     => "Wikipedia:Sobre",
+"aboutpage"     => "{$wgMetaNamespace}:Sobre",
 "help"          => "Ajuda",
-"helppage"      => "Wikipedia:Ajuda",
+"helppage"      => "{$wgMetaNamespace}:Ajuda",
 "wikititlesuffix" => "Wikipedia",
 "bugreports"    => "Reportagem de 'bugs'",
-"bugreportspage" => "Wikipedia:Reportag_Bug",
+"bugreportspage" => "{$wgMetaNamespace}:Reportag_Bug",
 "faq"           => "FAQ",
-"faqpage"       => "Wikipedia:FAQ",
+"faqpage"       => "{$wgMetaNamespace}:FAQ",
 "edithelp"      => "Ajuda de edição",
-"edithelppage"  => "Wikipedia:Como_editar_uma_página",
+"edithelppage"  => "{$wgMetaNamespace}:Como_editar_uma_página",
 "cancel"        => "Cancela",
 "qbfind"        => "Procura",
 "qbbrowse"      => "Folhear",
@@ -219,7 +220,7 @@
 "gnunote" => "Todo o texto é disponível sob os termos da <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(De http://www.wikipedia.org/pt)",
 "protectedpage" => "Página protegida",
-"administrators" => "Wikipedia:Administradores",
+"administrators" => "{$wgMetaNamespace}:Administradores",
 "sysoptitle"    => "Acesso de OpSys necessário",
 "sysoptext"     => "A ação que você requisitou só pode ser
 executada por usuários com status de \"opsys\".
@@ -366,7 +367,7 @@ Por favor, reconecte-se ao recebê-lo.",
 "blockedtitle"  => "Usuário está bloqueado",
 "blockedtext"   => "Seu nome de usuário ou numero de IP foi bloqueado por $1.
 O motivo é:<br>''$2''<p>Você pode contactar $1 ou outro
-[[Wikipedia:administradores|administrador]] para discutir sobre o bloqueio.",
+[[{$wgMetaNamespace}:administradores|administrador]] para discutir sobre o bloqueio.",
 "whitelistedittitle" => "Login necessário para edição",
 "whitelistedittext" => "Você precisa se [[Especial:Userlogin|logar]] para editar artigos.",
 "whitelistreadtitle" => "Login necessário para leitura",
@@ -379,7 +380,7 @@ O motivo é:<br>''$2''<p>Você pode contactar $1 ou outro
 "newarticletext" =>
 "Você seguiu um link para um artigo que não existe mais.
 Para criar a página, começe escrevendo na caixa a baixo 
-(veja [[Wikipedia:Ajuda| a página de ajuda]] para mais informações).
+(veja [[{$wgMetaNamespace}:Ajuda| a página de ajuda]] para mais informações).
 Se você chegou aqui por engano, apenas clique no botão  '''volta''' do seu navegador.",
 
 "anontalkpagetext" => "---- ''Esta é a página de discussão para um usuário anônimo que não criou uma conta ainda ou que não a usa. Então nós temos que usar o endereço numérico de IP para identificá-lo(la). Um endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha irrelevante que os comentários sejam direcionados a você, por favor [[Especial:Userlogin|crie uma conta ou autentifique-se]] para evitar futuras confusões com outros usuários anônimos.'' ",
@@ -411,7 +412,7 @@ Você também promete que está nos enviando um artigo escrito por você mesmo, 
 Por favor considere quebrar a página em sessões menores.",
 "readonlywarning" => "CUIDADO: O banco de dados está sendo bloqueado para manutenção,
 você não está habilitado a salvar suas edições. Você pode copiar e colar o texto em um arquivo de texto e salvá-lo em seu computador para adicioná-lo mais tarde.",
-"protectedpagewarning" => "CUIDADO:  Está página foi bloqueada então apenas os usuários com privilégios de sysop podem editá-la. Certifique-se de que você está seguindo o <a href='/wiki/Wikipedia:Guia_de_páginas_protegidas'>guia de páginas protegidas</a>.",
+"protectedpagewarning" => "CUIDADO:  Está página foi bloqueada então apenas os usuários com privilégios de sysop podem editá-la. Certifique-se de que você está seguindo o <a href='/wiki/{$wgMetaNamespace}:Guia_de_páginas_protegidas'>guia de páginas protegidas</a>.",
 
 # History pages
 #
@@ -440,7 +441,7 @@ Por favor verifique a URL que você usou para acessar esta página.\n",
 # Resultados da Busca
 #
 "searchresults" => "Buscar resultados",
-"searchhelppage" => "Wikipedia:Procurando",
+"searchhelppage" => "{$wgMetaNamespace}:Procurando",
 "searchingwikipedia" => "Busca na Wikipedia",
 "searchresulttext" => "Para mais informações sobre busca na Wikipedia, veja $1.",
 "searchquery"   => "Para pedido de busca \"$1\"",
@@ -480,7 +481,7 @@ para definir suas preferências.",
 "prefslogintext" => "Você está autenticado como \"$1\".
 Seu número identificador interno é $2.
 
-veja [[Wikipedia:Ajuda_preferências_de_usuários]] para aprender a decifrar as opções.",
+veja [[{$wgMetaNamespace}:Ajuda_preferências_de_usuários]] para aprender a decifrar as opções.",
 "prefsreset"    => "Preferências foram reconfiguradas.",
 "qbsettings"    => "Configurações da Barra Rápida", 
 "changepassword" => "Mudar senha",
@@ -520,14 +521,14 @@ veja [[Wikipedia:Ajuda_preferências_de_usuários]] para aprender a decifrar as 
 "changes" => "mudanças",
 "recentchanges" => "Mudanças Recentes",
 "recentchangestext" => "Veja as mais novas mudanças na Wikipedia nesta página.
-[[Wikipedia:Bem Vindo,_novatos|Bem Vindo, novatos]]!
-Por favor, dê uma olhada nestas páginas: [[wikipedia:FAQ|FAQ da Wikipedia]],
-[[Wikipedia:Políticas e Normas| Política da Wikipedia]]
-(especialmente [[wikipedia:Convenções de nomenclatura|convenções de nomenclatura]],
-[[wikipedia:Ponto de vista neutro|Ponto de vista neutro]]),
-e [[wikipedia:Most common Wikipedia faux pas|most common Wikipedia faux pas]].
+[[{$wgMetaNamespace}:Bem Vindo,_novatos|Bem Vindo, novatos]]!
+Por favor, dê uma olhada nestas páginas: [[{$wgMetaNamespace}:FAQ|FAQ da Wikipedia]],
+[[{$wgMetaNamespace}:Políticas e Normas| Política da Wikipedia]]
+(especialmente [[{$wgMetaNamespace}:Convenções de nomenclatura|convenções de nomenclatura]],
+[[{$wgMetaNamespace}:Ponto de vista neutro|Ponto de vista neutro]]),
+e [[{$wgMetaNamespace}:Most common Wikipedia faux pas|most common Wikipedia faux pas]].
 
-Se você quer ver a Wikipedia crescer, é muito importante que você não adicione material restrito por outras [[wikipedia:Copyrights|copyrights]].
+Se você quer ver a Wikipedia crescer, é muito importante que você não adicione material restrito por outras [[{$wgMetaNamespace}:Copyrights|copyrights]].
 Um problema legal poderia realmente prejudicar o projeto de maneira que pedimos, por avor, não faça isso. 
 Veja também [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
 "rcloaderr"     => "Carregando alterações recentes",
@@ -564,12 +565,12 @@ para carregar arquivos.",
 "uploaderror"   => "Erro ao Carregar",
 "uploadtext"    => "<strong>PARE!</strong> Antes de você carregar arquivos aqui,
 tenha certeza de ter lido e estar em acordo com a <a href=\"" .
-wfLocalUrlE( "Wikipedia:Política_de_imagens" ) . "\">política de uso de imagens da Wikipedia</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Política_de_imagens" ) . "\">política de uso de imagens da Wikipedia</a>.
 <p>Para ver ou procurar imagens carregadas,
 vá �  <a href=\"" . wfLocalUrlE( "Especial:ListadeImagens" ) .
 "\">lista de imagens carregadas</a>.
 Uploads e deleções são armazenados no <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">log de uploads</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_log" ) . "\">log de uploads</a>.
 <p>Use o formulário a seguir para carregar arquivos de imagens para ilustrar seus artigos. Na maioria dos navegadores, você verá um botão \"Browse...\" , que trárá o diálogo padrão de abertura de arquivo padrão do seu Sistema Operacional.
 Ao escolher um arquivo, o campo de texto próximo ao botão será preenchido.
 Você tembém deve confirmar  que não está carregando nenhum arquivo protegido por Diretos Autorais.
@@ -591,7 +592,7 @@ Todas as datas mostradas são do servidor (UTC).
 "filename"      => "Nome do arquivo",
 "filedesc"      => "Sumário",
 "affirmation"   => "Eu afirmo que o proprietário deste arquivo concorda em licenciá-lo sob os termos da $1.",
-"copyrightpage" => "Wikipedia:Copyrights",
+"copyrightpage" => "{$wgMetaNamespace}:Copyrights",
 "copyrightpagename" => "Direitos Autorais da Wikipedia",
 
 "uploadedfiles" => "Arquivos carregados",
@@ -653,7 +654,7 @@ Destes, <b>$2</b> são administradores (veja $3).",
 "maintnancepagetext"    => "Esta página possui diversas ferramentas úteis para a manutenção diária da Wikipedia. Algumas destas funções costumam estressar o banco de dados, então, por favor, não pressione o botão de Recarregar para cada item que você consertar ;-)",
 "maintenancebacklink"   => "Voltar para a página de Manutenção",
 "disambiguations"   => "Páginas de desambiguamento",
-"disambiguationspage"   => "Wikipedia:Links_para_desambiguar_páginas",
+"disambiguationspage"   => "{$wgMetaNamespace}:Links_para_desambiguar_páginas",
 "disambiguationstext"   => "Os artigos a seguir apontam para uma <i>página de desambiguamento</i>. Ao invés disso, eles deveriam apontar para um tópico apropriado.<br> Uma página é tratada como disambiguamento se ela é por $1.<br>Links de outros namespaces <i>não</i> estão listados aqui.",
 "doubleredirects"   => "Double Redirects",
 "doubleredirectstext"   => "<b>Atenção:</b> Esta lista pode conter positivos falsos. O que usualmente significa que há texto adicional com links depois do primeiro #REDIRECT.<br>\nCada linha contem links para o primeiro e segundo redirecionamento, bem como a primeira linha do segundo texto redirecionado , geralmente dando o artigo alvo \"real\" , para onde o primeiro redirecionamento deveria apontar.",
@@ -775,7 +776,7 @@ $3...
 "deletesub"     => "(Apagando \"$1\")",
 "historywarning" => "Atenção: A página que você quer deletar tem um histório: ",
 "confirmdeletetext" => "Você está  prestes a deletar permanentemente uma página ou imagem junto com todo seu histórico do banco de dados.
-Por favor, confirme que você realmente pretende fazer isto, que você compreende as consequências, e que você está fazendo isto em acordo com a [[Wikipedia:Policy| Política da Wkipedia]].",
+Por favor, confirme que você realmente pretende fazer isto, que você compreende as consequências, e que você está fazendo isto em acordo com a [[{$wgMetaNamespace}:Policy| Política da Wkipedia]].",
 "confirmcheck"  => "Sim, eu realmente desejo apagar este arquivo.",
 "actioncomplete" => "Ação efetuada com sucesso",
 "deletedtext"   => "\"$1\" foi deletada.
@@ -815,7 +816,7 @@ Se uma nova página foi criada com o mesmo nome desde a deleção, as revisões 
 "undeletebtn" => "Restaurar!",
 "undeletedarticle" => " \"$1\" restaurado",
 "undeletedtext"   => "O artigo [[$1]] foi restaurado com sucesso.
-Veja [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations.",
+Veja [[{$wgMetaNamespace}:Deletion_log]] for a record of recent deletions and restorations.",
 
 # Contributions
 #
@@ -841,7 +842,7 @@ Veja [[Wikipedia:Deletion_log]] for a record of recent deletions and restoration
 #
 "blockip"       => "Bloquear endereço de IP",
 "blockiptext"   => "Utilize o formulário de e-mail �  seguir para bloquear o acesso a escrita de um endereço específico de IP.
-Isto só pode ser feito para previnir vandalismo , e em acordo com a  [[Wikipedia:Policy|política da Wikipedia]].
+Isto só pode ser feito para previnir vandalismo , e em acordo com a  [[{$wgMetaNamespace}:Policy|política da Wikipedia]].
 Preencha com um motivo específico (por exemplo, citando páginas que sofreram vandalismo).",
 "ipaddress"     => "Endereço de IP",
 "ipbreason"     => "Motivo",

@@ -133,6 +133,7 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgSysopSpecialPagesFy = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Utsletten brûker/Ynternet-adres",
 	"Asksql"		=> "Freegje de databank",
 	"Undelete"		=> "Set wisse siden wer teplak"

@@ -6,6 +6,8 @@
 function initialiseMessages( $overwrite = false) {
 	global $wgLang, $wgScript, $wgServer, $wgAllMessagesEn;
 	global $wgOut, $wgArticle, $wgUser;
+	global $wgMessageCache, $wgMemc, $wgDBname, $wgDatabaseMessages;
+	$wgMessageCache->disable();
 
 	$fname = "initialiseMessages";
 	$ns = NS_MEDIAWIKI;
@@ -131,6 +133,14 @@ function initialiseMessages( $overwrite = false) {
 	} else {
 		$wgArticle->insertNewArticle( $navText, '', 0, 0 );
 	}
+	
+	if( $wgDatabaseMessages ) {
+		print "Clearing message cache...";
+		$wgMemc->delete( "$wgDBname:messages" );
+		print "Done.\n";
+	}
+	
 	print "Finished\n";
 }
 
+?>

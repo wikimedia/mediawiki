@@ -2,8 +2,7 @@
 
 require_once('UserMailer.php');
 
-function wfSpecialEmailuser()
-{
+function wfSpecialEmailuser( $par ) {
 	global $wgUser, $wgOut, $action, $target;
 
 	if ( 0 == $wgUser->getID() ||
@@ -11,7 +10,11 @@ function wfSpecialEmailuser()
 		$wgOut->errorpage( "mailnologin", "mailnologintext" );
 		return;
 	}
-	$target = wfCleanQueryVar( $target );
+	if( empty( $par ) ) {
+		$target = wfCleanQueryVar( $target );
+	} else {
+		$target = $par;
+	}
 	if ( "" == $target ) {
 		$wgOut->errorpage( "notargettitle", "notargettext" );
 		return;

@@ -6,6 +6,13 @@ $wgEditEncoding		= "x";
 
 # See language.doc
 
+if ( $wgSitename == "Wikipedia" ) {
+	$wgSitename = "Vikipedio";
+}
+if ( $wgMetaNamespace == "Wikipedia" ) {
+	$wgMetaNamespace = "Vikipedio";
+}
+
 # The names of the namespaces can be set here, but the numbers
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
@@ -17,8 +24,8 @@ $wgEditEncoding		= "x";
 	1	=> "Diskuto",
 	2	=> "Vikipediisto",
 	3	=> "Vikipediista_diskuto",
-	4	=> "Vikipedio", # FIXME: Generalize v-isto kaj v-io
-	5	=> "Vikipedia_diskuto",
+	4	=> $wgMetaNamespace, # FIXME: Generalize v-isto kaj v-io
+	5	=> $wgMetaNamespace."_diskuto",
 	6	=> "Dosiero", #FIXME: Check the magic for Image: and Media:
 	7	=> "Dosiera_diskuto",
 	8	=> "MediaWiki",
@@ -131,6 +138,7 @@ $wgEditEncoding		= "x";
 );
 
 /* private */ $wgSysopSpecialPagesEo = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Forbaru fi-IP-adreson",
 	"Asksql"		=> "Informomendu je la datumbazo",
 	"Undelete"		=> "Restarigu forigitan paĝon"
@@ -151,18 +159,18 @@ $wgEditEncoding		= "x";
 "mainpage"		=> "Ĉefpaĝo",
 "about"			=> "Enkonduko",
 "aboutwikipedia" => "Pri Vikipedio", #FIXME
-"aboutpage"		=> "Vikipedio:Enkonduko",
+"aboutpage"		=> "{$wgMetaNamespace}:Enkonduko",
 "help"			=> "Helpo",
-"helppage"		=> "Vikipedio:Helpo",
+"helppage"		=> "{$wgMetaNamespace}:Helpo",
 "wikititlesuffix" => "Vikipedio",
 "bugreports"	=> "Raportu cimojn",
-"bugreportspage" => "Vikipedio:Raportu_cimojn",
+"bugreportspage" => "{$wgMetaNamespace}:Raportu_cimojn",
 "sitesupport"   => "Subteno",
 "sitesupportpage" => "", # FIXME
 "faq"			=> "Oftaj demandoj",
-"faqpage"		=> "Vikipedio:Oftaj demandoj",
+"faqpage"		=> "{$wgMetaNamespace}:Oftaj demandoj",
 "edithelp"		=> "Helpo pri redaktado",
-"edithelppage"	=> "Vikipedio:Kiel_redakti_paĝon", #FIXME: Kontrolu
+"edithelppage"	=> "{$wgMetaNamespace}:Kiel_redakti_paĝon", #FIXME: Kontrolu
 "cancel"		=> "Nuligu",
 "qbfind"		=> "Trovu",
 "qbbrowse"		=> "Foliumado", # FIXME
@@ -204,7 +212,7 @@ $wgEditEncoding		= "x";
 "gnunote"		=> "La enhavo de Vikipedio disponeblas laŭ permesilo <a class='internal' href='/wiki/GFDL'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(El http://eo.wikipedia.org)",
 "protectedpage" => "Protektita paĝo", #FIXME: ĉu "gardita" ktp?
-"administrators" => "Vikipedio:Administrantoj", # FIXME?
+"administrators" => "{$wgMetaNamespace}:Administrantoj", # FIXME?
 "sysoptitle"	=> "Konto de administranto bezonatas",
 "sysoptext"		=> "La ago kiun vi petis fari estas
 farebla nur de uzuloj agnoskitaj kiel \"sistemestroj\".
@@ -281,7 +289,7 @@ provizore por konservi la rapidecon de la servilo.",
 "viewsource" => "Vidu vikitekston",
 "protectedtext" => "Tiu ĉi paĝon estas ŝlosita kontraŭ redaktado;
 estas diversaj eblaj kialoj por tio.
-Bv legi [[Vikipedio:Ŝlositaj paĝoj]].
+Bv legi [[{$wgMetaNamespace}:Ŝlositaj paĝoj]].
 
 Vi ja rajtas vidi kaj kopii la fontotekston de la vikipaĝo:",
 
@@ -347,7 +355,7 @@ kiu priskribis la kialon jene:<br>$2
 <p>Vi rajtas kontakti tiun administranton por pridiskuti la forbaradon.", #FIXME - sistemestro?
 "newarticle"	=> "(Nova)",
 "newarticletext" => "Vi sekvis ligilon al paĝo jam ne ekzistanta.
-Se vi volas krei ĝin, ektajpu sube (vidu la [[Vikipedio:Helpo|helpopaĝo]] por klarigoj.)
+Se vi volas krei ĝin, ektajpu sube (vidu la [[{$wgMetaNamespace}:Helpo|helpopaĝo]] por klarigoj.)
 Se vi malintence alvenis ĉi tien, simple alklaku la \"reen\" butonon de via retumilo.",
 "anontalkpagetext" => "---- ''Jen diskutopaĝo por iu anonima kontribuanto kiu ne jam kreis
 konton aŭ ne uzas ĝin. Ni tial devas uzi la cifran [[IP-adreso]] por tiun identigi.
@@ -389,7 +397,7 @@ pro tio neeblas nun konservi vian redaktadon. Vi povas elkopii kaj englui
 la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.",
 "protectedpagewarning" => "AVERTO: Tiu ĉi paĝo estas ŝlosita kontraŭ redaktado
 krom per administrantoj (t.e., vi). Bv certiĝi, ke vi sekvas la normojn de
-la komunumo per via redaktado. Vidu [[Vikipedio:Ŝlositaj paĝoj]].",
+la komunumo per via redaktado. Vidu [[{$wgMetaNamespace}:Ŝlositaj paĝoj]].",
 
 # History pages
 #
@@ -421,7 +429,7 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\b",
 # Search results
 #
 "searchresults" => "Serĉrezultoj",
-"searchhelppage" => "Vikipedio:Serĉado",
+"searchhelppage" => "{$wgMetaNamespace}:Serĉado",
 "searchingwikipedia" => "Priserĉante la Vikipedion",
 "searchresulttext" => "Por pliaj informoj kiel priserĉi la Vikipedion, vidu .",
 "searchquery"	=> "Serĉmendo \"$1\"",
@@ -561,7 +569,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku \"1\" vintre aŭ \"2\" dum somer
 aliru la <a href=\"" . wfLocalUrl( "Special:Imagelist" ) .
 "\">liston de alŝutaĵoj</a>.
 Ĉiuj alŝutoj kaj forigoj estas registrataj en la <a href=\"" .
-wfLocalUrl( "Vikipedio:Loglibro de alŝutaĵoj" ) ."\">alŝuta loglibro</a>.</p>
+wfLocalUrl( "{$wgMetaNamespace}:Loglibro de alŝutaĵoj" ) ."\">alŝuta loglibro</a>.</p>
 
 <p>Uzu ĉi tiun formularon por alŝuti novajn bildojn kaj aliajn dosierojn
 por ilustrado de viaj artikoloj.
@@ -595,7 +603,7 @@ forbarita.</p>",
 "filedesc"		=> "Priskribo",
 "affirmation"	=> "Mi asertas, ke la laŭleĝa posedanto de la kopirajto
 de ĉi tiu dosiero konsentas eldoni ĝin laŭ la $1.",
-"copyrightpage" => "Vikipedio:Kopirajto",
+"copyrightpage" => "{$wgMetaNamespace}:Kopirajto",
 "copyrightpagename" => "permesilo GFDL uzata por la Vikipedio",
 "uploadedfiles"	=> "Alŝutitaj dosieroj",
 "noaffirmation" => "Vi nepre devas aserti, ke via alŝutaĵo ne malobeas la leĝojn de kopirajto.",
@@ -660,7 +668,7 @@ Tio estas meznombre po unu paĝo por <b>$5</b> paĝoj viditaj, kaj por <b>$6</b>
 Kelkaj funkcioj povas streĉi la datumbazon, do bonvolu ne reŝuti post ĉiu riparita ero!",
 "maintenancebacklink"	=> "Revenu al la ilaro",
 "disambiguations"	=> "Misligitaj apartigiloj",
-"disambiguationspage"	=> "Vikipedio:Apartigiloj",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Apartigiloj",
 "disambiguationstext"	=> "La jenaj paĝoj alligas <i>paĝon-apartigilon</i>. Ili devus anstataŭe alligi la ĝustan temon.<br>Oni konsideras tiujn paĝojn, kiujn alligas $1 apartigiloj.<br>Ligado el ne-artikolaj sekcioj <i>ne</i> listiĝas ĉi tie.",
 "doubleredirects"	=> "Duoblaj alidirektadoj",
 "doubleredirectstext"	=> "<b>Atentu:</b> Eblas, ke la jena listo enhavas falsajn rezultojn. Ĝenerale, tio signifas, ke estas plua teksto kun ligiloj post la #REDIRECT.<br>
@@ -790,7 +798,7 @@ Elektu forigotajn paĝojn kaj alklaku 'forprenu elektitajn' sube.",
 "confirmdeletetext" => "Vi forigos la artikolon aŭ dosieron kaj
 forviŝos ĝian tutan historion el la datumaro.<br>
 Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas
-la sekvojn, kaj ke vi ja sekvas la [[Vikipedio:Reguloj pri forigado|regulojn pri forigado]].",
+la sekvojn, kaj ke vi ja sekvas la [[{$wgMetaNamespace}:Reguloj pri forigado|regulojn pri forigado]].",
 "confirmcheck"	=> "Jes, mi tutkore certas ke mi volas forigi tiun artikolon/dosieron.",
 "actioncomplete" => "Ago farita",
 "deletedtext"	=> "\"$1\" estas forigita.
@@ -832,7 +840,7 @@ versioj aperos antaŭe en la historio, kaj la aktuala versio ne estos anstataŭi
 "undeletebtn" => "Restarigu!",
 "undeletedarticle" => "restarigis \"$1\"",
 "undeletedtext"   => "La artikolo [[$1]] estas sukcese restarigita.
-Vidu [[Vikipedio:Loglibro de forigoj]] por registro de lastatempaj forigoj kaj restarigoj.",
+Vidu [[{$wgMetaNamespace}:Loglibro de forigoj]] por registro de lastatempaj forigoj kaj restarigoj.",
 
 # Contributions
 #
@@ -860,7 +868,7 @@ Vidu [[Vikipedio:Loglibro de forigoj]] por registro de lastatempaj forigoj kaj r
 "blockiptext"	=> "Per la jena formularo vi povas forbari iun nomon aŭ
 IP-adreson de la rajto enskribiĝi en la vikion.
 Oni tion faru ''nur'' por eviti vandalismon, kaj sekvante la
-[[Vikipedio:Reguloj pri forbarado|regulojn pri forbarado]].
+[[{$wgMetaNamespace}:Reguloj pri forbarado|regulojn pri forbarado]].
 Klarigu la precizan kialon malsupre (ekzemple, citu paĝojn, kiuj estis
 vandalumitaj).",
 "ipaddress"		=> "IP-adreso/nomo",

@@ -2,6 +2,13 @@
 
 # See language.doc
 
+if ( $wgSitename == "Wikipedia" ) {
+	$wgSitename = "Wikipedie";
+}
+if ( $wgMetaNamespace == "Wikipedia" ) {
+	$wgMetaNamespace = "Wikipedie";
+}
+
 # The names of the namespaces can be set here, but the numbers
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
@@ -13,8 +20,8 @@
 	1	=> "Diskuse", # neb diskutuj?
 	2	=> "Wikipedista",
 	3	=> "Wikipedista_diskuse",
-	4	=> "Wikipedie",
-	5	=> "Wikipedie_diskuse",
+	4	=> $wgMetaNamespace,
+	5	=> "{$wgMetaNamespace}_diskuse",
 	6	=> "Soubor", #FIXME: Check the magic for Image: and Media:
 	7	=> "Soubor_diskuse",
 	8	=> "MediaWiki",
@@ -110,6 +117,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesCs = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Zablokuj adresu IP",
 	"Asksql"		=> "Objednávka z databáze",
 	"Undelete"		=> "Obnov odstraněnou stránku"
@@ -130,16 +138,16 @@
 "mainpage"		=> "Hlavní strana",
 "about"			=> "Úvod",
 "aboutwikipedia" => "O Wikipedii", #FIXME
-"aboutpage"		=> "Wikipedie:Úvod",
+"aboutpage"		=> "{$wgMetaNamespace}:Úvod",
 "help"			=> "Nápověda",
-"helppage"		=> "Wikipedie:Nápověda",
+"helppage"		=> "{$wgMetaNamespace}:Nápověda",
 "wikititlesuffix" => "Wikipedie",
 "bugreports"	=> "Oznam mouchy",
-"bugreportspage" => "Wikipedie:Oznam_mouchy",
+"bugreportspage" => "{$wgMetaNamespace}:Oznam_mouchy",
 "faq"			=> "Časté otázky",
-"faqpage"		=> "Wikipedie:Časté otázky",
+"faqpage"		=> "{$wgMetaNamespace}:Časté otázky",
 "edithelp"		=> "Pomoc při redigování",
-"edithelppage"	=> "Wikipedie:Jak_redigovat_stránku", #FIXME: Kontroluj
+"edithelppage"	=> "{$wgMetaNamespace}:Jak_redigovat_stránku", #FIXME: Kontroluj
 "cancel"		=> "Rezignuj",
 "qbfind"		=> "Hledej",
 "qbbrowse"		=> "Listování", # FIXME
@@ -170,7 +178,7 @@
 "viewcount"		=> "Stránka se ukázala $1-krát.",
 "printsubtitle" => "(Z http://cs.wikipedia.org)",
 "protectedpage" => "Chráněná stránka", #FIXME: cu "gardita" ktp?
-"administrators" => "Wikipedie:Správci", # FIXME?
+"administrators" => "{$wgMetaNamespace}:Správci", # FIXME?
 "sysoptitle"	=> "Účet správce nutný",
 "sysoptext"		=> "Žádaný úkon je proveditelný pouze  \"správci\".
 Čtěte prosím $1.", #FIXME
@@ -181,7 +189,7 @@
 "go"			=> "Do toho!", #FIXME
 "ok"			=> "OK", #FIXME
 "sitetitle"		=> "Wikipedie", # Wikipedia
-"sitesubtitle"	=> "Wikipedie: Otevřená Encyklopedie",
+"sitesubtitle"	=> "{$wgMetaNamespace}: Otevřená Encyklopedie",
 "retrievedfrom" => "Citováno z \"$1\"", #FIXME: Ukazuje se po tisku strany
 
 # Main script and global functions
@@ -315,7 +323,7 @@ která popsala příčinu takto:<br><p>Máte právo se spojit se správcem syst�
 # Search results
 #
 "searchresults" => "Výsledek hledání",
-"searchhelppage" => "Wikipedie:Hledání",
+"searchhelppage" => "{$wgMetaNamespace}:Hledání",
 "searchingwikipedia" => "Hledání ve Wikipedii",
 "searchresulttext" => "Nápovědu, jak účinně hledat ve Wikipedii, čtěte na  .",
 "searchquery"	=> "Zadání pro vyhledávání \"$1\"",
@@ -377,11 +385,11 @@ Například, pro Střední Evropu Časové pásmo, označte \"1\" v zimě nebo \
 "recentchanges" => "Poslední změny",
 "recentchangestext" => "Sledujte poslední změny ve Wikipedii na této stránce.
 [[Vítejte, nováčci]]!
-Přečtěte prosím tuto stránku: [[wikipedie:Časté otázky|Časté otázky]],
-[[wikipedie:Drobné rady|Drobné rady]]
-(zvláště [[wikipedie:Názvy titulů|Názvy titulů]]
-a [[wikipedie:Neutrální hledisko|Neutrální hledisko]]),
-a [[wikipedie:Časté chyby|Časté chyby ve Wikipedii]].
+Přečtěte prosím tuto stránku: [[{$wgMetaNamespace}:Časté otázky|Časté otázky]],
+[[{$wgMetaNamespace}:Drobné rady|Drobné rady]]
+(zvláště [[{$wgMetaNamespace}:Názvy titulů|Názvy titulů]]
+a [[{$wgMetaNamespace}:Neutrální hledisko|Neutrální hledisko]]),
+a [[{$wgMetaNamespace}:Časté chyby|Časté chyby ve Wikipedii]].
 
 Pokud chcete, aby Wikipedie uspěla, je velice důležité, abyste nevkládali články vázané na  [[copyright]] někoho jiného. Zákonná odpovědnost by skutečně mohla ohrozit celý projekt, proto to prosím nedělejte.
 
@@ -418,7 +426,7 @@ pro načtení souboru.",
 "uploadtext"	=> "Pro prohlížení a hledání již načtených souborů, jděte na  <a href=\"" . wfLocalUrl( "Special:Imagelist" ) .
 "\">seznam načteného</a>.
 Každé načtení a odstranění je registrováno u  <a href=\"" .
-wfLocalUrl( "Wikipedie:Načtení_log" ) ."\">Načtení_log</a>.</p>
+wfLocalUrl( "{$wgMetaNamespace}:Načtení_log" ) ."\">Načtení_log</a>.</p>
 
 
 <p>Použij tento formulář pro načtení nového obrázku nebo jiných souborů jako ilustrací ke svým článkům. U běžných prohlížečů se dole objeví buton \"Procházet...\" apod; tím se otevřou adresáře tvého pevného disku, kde si vybereš svůj soubor, jehož název vyplní pole vedle butonu; musíš také potvrdit prohlášení, že neporušuješ ničí copyright. Vlastní načtení provedeš kliknutím na buton \"Načti\". Může to trvat i delší dobu, pokud je soubor velký a počítač pomalý.</p>
@@ -441,7 +449,7 @@ může mu být zablokován přístup k redigování.</p>",
 "filename"		=> "Soubor",
 "filedesc"		=> "Popis",
 "affirmation"	=> "Potvrzuji, že zákonný vlastník copyrightu na tento soubor souhlasí se zveřejněním podle $1.",
-"copyrightpage" => "Wikipedie:Copyright",
+"copyrightpage" => "{$wgMetaNamespace}:Copyright",
 "copyrightpagename" => "povolenka GFDL používaná ve Wikipedii ",
 "uploadedfiles"	=> "Načtené soubory ",
 "noaffirmation" => "Bezpodmínečně musíte potvrdit, že váš příspěvek neporušuje zákony o copyrightu.",
@@ -501,7 +509,7 @@ To je v průměru jedna stránka na <b></b> návštěv, a na <b></b> redakcí.",
 "maintnancepagetext"	=> "Zde jsou různé nástroje pro opravy a všeobecnou údržbu dat. Některé funkce mohou otřást databází, nenačítejte proto po každé drobné opravě!",
 "maintenancebacklink"	=> "Návrat k nástrojům",
 "disambiguations"	=> "Špatně odkázané oddělovače ",
-"disambiguationspage"	=> "Wikipedie:Oddělovače",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Oddělovače",
 "disambiguationstext"	=> "Tyto stránky odkazují na <i>stránkový oddělovač</i>. Měly by místo toho odkazovat na správný subjekt.<br>Bereme do úvahy stránky, které odkazují na oddělovač.<br>Odkazy na sekci nečlánkových souborů <i>ne</i> se zapisují zde.",
 "doubleredirects"	=> "Dvojité přesměrování",
 "doubleredirectstext"	=> "<b>Pozor:</b> Může se stát, že tento seznam bude obsahovat falešné pozitivy. Všeobecně to znamená, že existuje další text s odkazy po #REDIERCT.<br>
@@ -599,7 +607,7 @@ a bude počítány v seznamu tvých Oblíbených.
 "confirmdelete" => "Potvrdit odstranění",
 "deletesub"		=> "(Odstraňuje se \"$1\")",
 "confirmdeletetext" => "Odstraníš článek nebo soubor a smažeš celou jeho historii z databáze.<br>
-Potvrď prosím, že to opravdu chceš, že si uvědomuješ důsledky a že dodržuješ [[Wikipedie:Pravidla o odstraňování]].",
+Potvrď prosím, že to opravdu chceš, že si uvědomuješ důsledky a že dodržuješ [[{$wgMetaNamespace}:Pravidla o odstraňování]].",
 "confirmcheck"	=> "Ano, jsem naprosto jist, že chci toto odstranit.",
 "actioncomplete" => "Provedeno",
 "deletedtext"	=> "\"$1\" je odstraněno.
@@ -627,7 +635,7 @@ Všechny časové údaje uvedeny podle časového pásma serveru. (UTC)
 "undeletebtn" => "Obnovit!",
 "undeletedarticle" => "obnoveno \"$1\"",
 "undeletedtext"   => "Článek [[]] je úspěšně obnoven.
-Pohleď do [[Wikipedie:Kniha odstranění]] pro záznam posledních odstranění a obnovení.",
+Pohleď do [[{$wgMetaNamespace}:Kniha odstranění]] pro záznam posledních odstranění a obnovení.",
 
 # Contributions
 #
@@ -650,7 +658,7 @@ Pohleď do [[Wikipedie:Kniha odstranění]] pro záznam posledních odstranění
 # Block/unblock IP
 #
 "blockip"		=> "Zablokuj adresu IP",
-"blockiptext"	=> "Tímto formulářem můžeš zablokovat adresu IP a zbavit ji práva přispívat do wikie. To lze učinit ''pouze'' v případě vandalizmu, a při dodržení [[Wikipedie:Pravidla pro zablokování|pravidel pro zablokování]].
+"blockiptext"	=> "Tímto formulářem můžeš zablokovat adresu IP a zbavit ji práva přispívat do wikie. To lze učinit ''pouze'' v případě vandalizmu, a při dodržení [[{$wgMetaNamespace}:Pravidla pro zablokování|pravidel pro zablokování]].
 Níže objasni přesný důvod (např. uveď stránku, která se stala terčem vandalského útoku).",
 "ipaddress"		=> "Adresa IP",
 "ipbreason"		=> "Důvod",

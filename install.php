@@ -1,5 +1,7 @@
 <?php
 
+die( "The command-line installer is not recommended, please read INSTALL.\n\n" );
+
 # Install software and create new empty database.
 #
 
@@ -18,6 +20,10 @@ $DP = "./includes";
 include_once( "./LocalSettings.php" );
 include_once( "./AdminSettings.php" );
 include_once( "./maintenance/InitialiseMessages.inc" );
+
+if( $wgSitename == "MediaWiki" ) {
+	die( "You must set the site name in \$wgSitename before installation.\n\n" );
+}
 
 if ( $wgUseTeX && ( ! is_executable( "./math/texvc" ) ) ) {
 	print "To use math functions, you must first compile texvc by\n" .
@@ -72,6 +78,11 @@ copyfile( "./images", "button_media.png", $wgUploadDirectory );
 copyfile( "./images", "button_nowiki.png", $wgUploadDirectory );
 copyfile( "./images", "button_sig.png", $wgUploadDirectory );
 copyfile( "./images", "button_template.png", $wgUploadDirectory );
+copyfile( "./images", "magnify-clip.png", $wgUploadDirectory );
+copyfile( "./images", "Arr_.png", $wgUploadDirectory );
+copyfile( "./images", "Arr_r.png", $wgUploadDirectory );
+copyfile( "./images", "Arr_d.png", $wgUploadDirectory );
+copyfile( "./images", "Arr_l.png", $wgUploadDirectory );
 
 copyfile( "./languages", "Language.php", $IP );
 copyfile( "./languages", "LanguageUtf8.php", $IP );
@@ -204,7 +215,8 @@ function populatedata() {
 	}
 	print "Do you want to create a sysop+developer account? A developer\n";
 	print "can switch the database to read-only mode and run any type of\n";
-	print "query through a web interface. [Y/n] ";
+	print "query through a web interface. This account can also assign\n";
+	print "sysop access to other accounts. [Y/n] ";
 	$response=readconsole();
 	if(strtolower($response)!="n") {
 		print "Enter the username [Developer]: ";
@@ -220,6 +232,7 @@ function populatedata() {
 			$u->setPassword( $developer_password );
 			$u->addRight( "sysop" );
 			$u->addRight( "developer" );
+			$u->addRight( "bureaucrat" );
 			$u->saveSettings();
 		} else {
 			print "Could not create user - already exists!\n";

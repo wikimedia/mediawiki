@@ -1,5 +1,13 @@
 <?php
 
+if ( $wgSitename == "Wikipedia" ) {
+	$wgSitename = "Vikipeedia";
+}
+if ( $wgMetaNamespace = "Wikipedia" ) {
+	$wgMetaNamespace = "Vikipeedia";
+}
+
+
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
 
@@ -13,8 +21,8 @@
 	1	=> "Arutelu",
 	2	=> "Kasutaja",
 	3	=> "Kasutaja_arutelu",
-	4	=> "Vikipeedia",
-	5	=> "Vikipeedia_arutelu",
+	4	=> $wgMetaNamespace,
+	5	=> $wgMetaNamespace."_arutelu",
 	6	=> "Pilt",
 	7	=> "Pildi_arutelu",
 	8	=> "MediaWiki",
@@ -117,6 +125,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesEt = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Blokeeri IP-aadress",
 	"Asksql"		=> "Otsi andmebaasist",
 	"Undelete"		=> "Taasta kustutatud leheküljed"
@@ -136,16 +145,16 @@
 "mainpagetext"	=> "Wiki tarkvara installeeritud.",
 "about"			=> "Tiitelandmed",
 "aboutwikipedia" => "Vikipeedia tiitelandmed",
-"aboutpage"		=> "Vikipeedia:Tiitelandmed",
+"aboutpage"		=> "{$wgMetaNamespace}:Tiitelandmed",
 "help"			=> "Spikker",
-"helppage"		=> "Vikipeedia:Spikker",
+"helppage"		=> "{$wgMetaNamespace}:Spikker",
 "wikititlesuffix" => "Vikipeedia",
 "bugreports"	=> "Teated programmivigadest",
-"bugreportspage" => "Vikipeedia:Teated_programmivigadest",
+"bugreportspage" => "{$wgMetaNamespace}:Teated_programmivigadest",
 "faq"			=> "KKK",
-"faqpage"		=> "Vikipeedia:KKK",
+"faqpage"		=> "{$wgMetaNamespace}:KKK",
 "edithelp"		=> "Redigeerimisspikker",
-"edithelppage"	=> "Vikipeedia:Kuidas_artiklit_redigeerida",
+"edithelppage"	=> "{$wgMetaNamespace}:Kuidas_artiklit_redigeerida",
 "cancel"		=> "Tühista",
 "qbfind"		=> "Otsi",
 "qbbrowse"		=> "Sirvi",
@@ -184,7 +193,7 @@
 "gnunote" => "Kogu tekst on kasutatav litsentsi <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a> tingimustel.",
 "printsubtitle" => "(Pärineb veebisaidilt http://et.wikipedia.org)",
 "protectedpage" => "Kaitstud artikkel",
-"administrators" => "Vikipeedia:Administraatorid",
+"administrators" => "{$wgMetaNamespace}:Administraatorid",
 "sysoptitle"	=> "Nõutav süsteemi operaatori staatus",
 "sysoptext"		=> "Seda toimingut saavad sooritada ainult süsteemi operaatori staatusega kasutajad. Vaata $1.",
 "developertitle" => "Nõutav väljatöötaja staatus",
@@ -307,14 +316,14 @@ Pärast parooli saamist palun logige sisse.",
 "blockedtitle"	=> "Kasutaja on blokeeritud",
 "blockedtext"	=> "Teie kasutajanime või IP-aadressi blokeeris $1.
 Tema põhjendus on järgmine:<br>''$2''<p>Küsimuse arutamiseks võite pöörduda $1 või mõne teise
-[[Vikipeedia:administraatorid|administraatori]] poole.",
+[[{$wgMetaNamespace}:administraatorid|administraatori]] poole.",
 "newarticle"	=> "(Uus)",
 "newarticletext" =>
 "Seda lehekülge veel ei ole.
 Lehekülje loomiseks hakake kirjutama all olevasse boksi 
-(lisainfo saamiseks vaadake [[Vikipeedia:Spikker|spikrit]]).
+(lisainfo saamiseks vaadake [[{$wgMetaNamespace}:Spikker|spikrit]]).
 Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''back''-nupule.",
-"anontalkpagetext" => "---- ''See on arutelulehekülg anonüümse kasutaja kohta, kes ei ole loonud kontot või ei kasuta seda. Sellepärast tuleb meil kasutaja identifitseerimiseks kasutada tema [[IP-aadress]]i. See IP-aadress võib olla mitmele kasutajale ühine. Kui olete anonüümne kasutaja ning leiate, et kommentaarid sellel leheküljel ei ole mõeldud Teile, siis palun [[Vikipeedia:Kasutaja sisselogimine|looge konto või logige sisse]], et edaspidi arusaamatusi vältida.'' ",
+"anontalkpagetext" => "---- ''See on arutelulehekülg anonüümse kasutaja kohta, kes ei ole loonud kontot või ei kasuta seda. Sellepärast tuleb meil kasutaja identifitseerimiseks kasutada tema [[IP-aadress]]i. See IP-aadress võib olla mitmele kasutajale ühine. Kui olete anonüümne kasutaja ning leiate, et kommentaarid sellel leheküljel ei ole mõeldud Teile, siis palun [[{$wgMetaNamespace}:Kasutaja sisselogimine|looge konto või logige sisse]], et edaspidi arusaamatusi vältida.'' ",
 "noarticletext" => "(See lehekülg on praegu tühi)",
 "updated"		=> "(Värskendatud)",
 "note"			=> "<strong>Meeldetuletus:</strong> ",
@@ -341,7 +350,7 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 "longpagewarning" => "HOIATUS: Selle lehekülje pikkus ületab $1 kilobaiti. Mõne brauseri puhul valmistab raskusi 32 kilobaidile läheneva pikkusega lehekülgede redigeerimine. Palun kaaluge selle lehekülje sisu jaotamist lühemate lehekülgede vahel.",
 "readonlywarning" => "HOIATUS: Andmebaas on lukustatud hooldustöödeks, nii et praegu ei saa parandusi salvestada. Võite teksti alal hoida tekstifailina ning salvestada hiljem.",
 "protectedpagewarning" => "HOIATUS:  See lehekülg on lukustatud, nii et seda saavad redigeerida ainult süsteemi operaatori õigustega kasutajad. Järgige juhtnööre leheküljel 
-<a href='/wiki/Vikipeedia:Juhtnöörid_kaitstud_lehekülje_kohta'>
+<a href='/wiki/{$wgMetaNamespace}:Juhtnöörid_kaitstud_lehekülje_kohta'>
 </a>.",
 
 # History pages
@@ -370,7 +379,7 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 # Search results
 #
 "searchresults" => "Otsingu tulemid",
-"searchhelppage" => "Vikipeedia:Otsing",
+"searchhelppage" => "{$wgMetaNamespace}:Otsing",
 "searchingwikipedia" => "Otsimine Vikipeediast",
 "searchresulttext" => "Lisainfot Vikipeediast otsimise kohta vaata $1.",
 "searchquery"	=> "Päring \"$1\"",
@@ -442,14 +451,14 @@ Teie sisemine ID-number on $2.",
 "changes" => "muudatused",
 "recentchanges" => "Viimased muudatused",
 "recentchangestext" => "Jälgige sellel leheküljel Vikipeedia viimaseid muudatusi.
-[[Vikipeedia:Tere tulemast|Tere tulemast]]!
-Palun vaadake järgmisi lehekülgi: [[Vikipeedia:KKK|Vikipeedia KKK]],
-[[Vikipeedia:Ideoloogia ja juhtnöörid|Vikipeedia ideoloogia]]
-(eriti [[Vikipeedia:Nomenklatuur|Nomenklatuur]],
-[[Vikipeedia:Neutraalne vaatekoht|Neutraalne vaatekoht]]),
-and [[Vikipeedia:Levinumad eksisammud Vikipeedias|levinumad eksisammud Vikipeedias]].
+[[{$wgMetaNamespace}:Tere tulemast|Tere tulemast]]!
+Palun vaadake järgmisi lehekülgi: [[{$wgMetaNamespace}:KKK|Vikipeedia KKK]],
+[[{$wgMetaNamespace}:Ideoloogia ja juhtnöörid|Vikipeedia ideoloogia]]
+(eriti [[{$wgMetaNamespace}:Nomenklatuur|Nomenklatuur]],
+[[{$wgMetaNamespace}:Neutraalne vaatekoht|Neutraalne vaatekoht]]),
+and [[{$wgMetaNamespace}:Levinumad eksisammud Vikipeedias|levinumad eksisammud Vikipeedias]].
 
-Et Vikipeedia projekt õnnestuks, on väga tähtis, et Te ei paigutaks siia kasutuspiirangutega materjali' [[Vikipeedia:Autoriõigused|autoriõigused]].
+Et Vikipeedia projekt õnnestuks, on väga tähtis, et Te ei paigutaks siia kasutuspiirangutega materjali' [[{$wgMetaNamespace}:Autoriõigused|autoriõigused]].
 Palun ärge tehke seda, et vältida Vikipeedia kohtusse kaebamist.
 Vaata ka [http://meta.wikipedia.org/wiki/Special:Recentchanges hiljutist ingliskeelset arutelu].",
 "rcloaderr"		=> "Viimaste muudatuste laadimine",
@@ -484,12 +493,12 @@ Vaata ka [http://meta.wikipedia.org/wiki/Special:Recentchanges hiljutist inglisk
 "uploaderror"	=> "Upload error",
 "uploadtext"	=> "<strong>STOP!</strong> Before you upload here,
 make sure to read and follow Wikipedia's <a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">image use policy</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Image_use_policy" ) . "\">image use policy</a>.
 <p>To view or search previously uploaded images,
 go to the <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
 "\">list of uploaded images</a>.
 Uploads and deletions are logged on the <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">upload log</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_log" ) . "\">upload log</a>.
 <p>Use the form below to upload new image files for use in
 illustrating your articles.
 On most browsers, you will see a \"Browse...\" button, which will
@@ -520,7 +529,7 @@ All times shown are server time (UTC).
 "filedesc"		=> "Lühikirjeldus",
 "affirmation"	=> "I affirm that the copyright holder of this file
 agrees to license it under the terms of the $1.",
-"copyrightpage" => "Vikipeedia:Copyrights",
+"copyrightpage" => "{$wgMetaNamespace}:Copyrights",
 "copyrightpagename" => "Vikipeedia copyright",
 "uploadedfiles"	=> "Uploaded files",
 "noaffirmation" => "You must affirm that your upload does not violate
@@ -586,7 +595,7 @@ Nende hulgas on <b>$2</b> administraatorit (vt $3).",
 "maintnancepagetext"	=> "This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)",
 "maintenancebacklink"	=> "Tagasi hooldusleheküljele",
 "disambiguations"	=> "Disambiguation pages",
-"disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
 "doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
@@ -698,7 +707,7 @@ make it easier to pick out.</p>
 or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
-[[Wikipedia:Policy]].",
+[[{$wgMetaNamespace}:Policy]].",
 "confirmcheck"	=> "Yes, I really want to delete this.",
 "actioncomplete" => "Toiming sooritatud",
 "deletedtext"	=> "\"$1\" on kustutatud.
@@ -734,7 +743,7 @@ will not be automatically replaced.",
 "undeletebtn" => "Taasta!",
 "undeletedarticle" => "\"$1\" taastatud",
 "undeletedtext"   => "Artikkel [[$1]] on taastatud.
-See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations.",
+See [[{$wgMetaNamespace}:Deletion_log]] for a record of recent deletions and restorations.",
 
 # Contributions
 #
@@ -763,7 +772,7 @@ to perform this function on.",
 "blockiptext"	=> "Use the form below to block write access
 from a specific IP address.
 This should be done only only to prevent vandalism, and in
-accordance with [[Wikipedia:Policy|Wikipedia policy]].
+accordance with [[{$wgMetaNamespace}:Policy|Wikipedia policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 "ipaddress"		=> "IP-aadress",

@@ -124,6 +124,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesTh = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "กั้นผู้ใช้ หรือ IP address",
 	"Asksql"		=> "ค้นหาในฐานข้อมูล",
 	"Undelete"		=> "คืนหน้าที่ถูกลบไป"

@@ -1,6 +1,91 @@
+---
+Installing MediaWiki
+---
+
+Starting with MediaWiki 1.2.0, it's possible to install
+and configure the wiki "in-place", as long as you have
+the necessary prerequesites available.
+
+Required software:
+* Web server with PHP 4.1.2 or higher (4.3.x is preferred)
+* A MySQL server. 4.0.x is preferred, but 3.2.x should
+  work as well.
+
+MediaWiki is developed and tested mainly on Unix/Linux
+platforms, but should work on Windows as well.
+
+If your PHP is configured as a CGI plug-in rather than
+an Apache module you may experience problems, as this
+configuration is not well tested.
+
+Don't forget to check the RELEASE-NOTES file...
+
+********************** WARNING **************************
+
+The web-based install is still somewhat experimental. It
+doesn't yet support updating the format of an existing
+MediaWiki database, the maintenance scripts aren't available,
+and there may be all kinds of horrible bugs or security
+problems that haven't been worked out yet.
+
+HOWEVER it is much easier, safer, and more reliable than
+the old install.php, and does not require root access
+if you already have a database and user access to it.
+
+REMEMBER: ALWAYS BACK UP YOUR DATABASE BEFORE ATTEMPTING
+TO INSTALL OR UPGRADE!!!
+
 ----
-Installing Wikipedia Phase III Software
+In-place web install
 ----
+
+Decompress the MediaWiki installation archive either on
+your server, or on your local machine and upload the
+directory tree. Rename it from "mediawiki-1.x.x" to
+something nice, like "wiki", since it'll be in your URL.
+
+To run the install script, you'll need to temporarily make
+the 'config' subdirectory writable by the web server. The
+simplest way to do this on a Unix/Linux system is to make
+it world-writable:
+
+  chmod a+w config
+
+Hop into your browser and surf into the wiki directory.
+It'll direct you into the config script. Fill out the form...
+remember you're probably not on an encrypted connection.
+Gaaah! :)
+
+If all goes well, you should soon be told that it's set up
+your wiki database and written a configuration file. There
+should now be a 'LocalSettings.php' in the config directory;
+move it back up to the main wiki directory, and the wiki
+should now be working.
+
+Once the wiki is set up, you should remove the config
+directory, or at least make it not world-writable (though
+it will refuse to config again if the wiki is set up).
+
+
+----
+"Classic" install instructions:
+----
+
+THE INSTRUCTIONS BELOW ARE OLD AND MAY BE INACCURATE.
+THIS INSTALL METHOD IS NOT RECOMMENDED, IT MAY RUN
+OVER YOUR DOG.
+
+If you use the command-line install, you MUST NOT make the
+source directory web-accessible, as it will expose maintenance
+scripts to the public internet. You MUST NOT install to the
+same directory as your are installing from, this WILL
+overwrite and destroy files.
+
+Because install.php and update.php are unsafe, they have
+been disabled as of 1.2.4. If you wish to use them, remove
+the "die()" call at the top of the file.
+
+--
 
 The Wikipedia software was developed collaboratively by
 many people, so it's something of a hodgepodge. The
@@ -133,8 +218,7 @@ Or for Apache 2.0 module:
   ./configure --enable-shmop --with-zlib --with-zlib-dir=/usr/lib --with-mysql=/usr/local/mysql --with-iconv --with-apxs2filter=/usr/local/apache/bin/apxs --with-readline --enable-sockets
 
   (using your own local paths, of course). Build and install as
-  instructed. Set "register_globals" on in the config file, and
-  "warnings" to 
+  instructed.
 
 8. Finish building Apache. Configure with something like:
 

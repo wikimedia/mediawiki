@@ -1,5 +1,12 @@
 <?php
 
+if ( $wgSitename == "Wikipedia" ) {
+	$wgSitename = "Viquipèdia";
+}
+if ( $wgMetaNamespace = "Wikipedia" ) {
+	$wgMetaNamespace = "Viquipèdia";
+}
+
 # The names of the namespaces can be set here, but the numbers
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
@@ -11,8 +18,8 @@
 	1	=> "Discussió",
 	2	=> "Usuari",
 	3	=> "Usuari_Discussió",
-	4	=> "Viquipèdia",
-	5	=> "Viquipèdia_Discussió",
+	4	=> $wgMetaNamespace,
+	5	=> "{$wgMetaNamepace}_Discussió",
 	6	=> "Imatge",
 	7	=> "Imatge_Discussió",
 	8	=> "MediaWiki",
@@ -130,6 +137,7 @@
 );
 
 /* private */ $wgSysopSpecialPagesCa = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "Bloqueja una direcció IP",
 	"Asksql"		=> "Recerca en la base de dades",
 	"Undelete"      => "Mostra i restaura les pàgines esborrades"
@@ -148,16 +156,16 @@
 "mainpage"		=> "Portada",
 "about"			=> "Quant a...",
 "aboutwikipedia" => "Quant a la Viquipèdia",
-"aboutpage"		=> "Viquipèdia: Quant a",
+"aboutpage"		=> "{$wgMetaNamespace}: Quant a",
 "help"			=> "Ajuda",
-"helppage"		=> "Viquipèdia:Ajuda",
+"helppage"		=> "{$wgMetaNamespace}:Ajuda",
 "wikititlesuffix"		=>"Viquipèdia",
 "bugreports"	=> "Informes d'error del programari",
-"bugreportspage" => "Viquipèdia:Informes_d'error",
+"bugreportspage" => "{$wgMetaNamespace}:Informes_d'error",
 "faq"			=> "PMF",
-"faqpage"		=> "Viquipèdia:PMF",
+"faqpage"		=> "{$wgMetaNamespace}:PMF",
 "edithelp"		=> "Ajuda d'edició",
-"edithelppage"	=> "Viquipèdia:Com_s'edita_una_pàgina",
+"edithelppage"	=> "{$wgMetaNamespace}:Com_s'edita_una_pàgina",
 "cancel"		=> "Anul·la",
 "qbfind"		=> "Troba",
 "qbbrowse"		=> "Fulleja",
@@ -193,7 +201,7 @@
 "gnunote" => "Aquesta pàgina es fa disponible sota la <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>.",
 "printsubtitle" => "(De http://ca.wikipedia.org)",
 "protectedpage" => "Pàgina protegida",
-"administrators" => "Viquipèdia:Administradors",
+"administrators" => "{$wgMetaNamespace}:Administradors",
 "sysoptitle"	=> "Accés requerit de Sysop",
 "sysoptext"		=> "L'acció que heu requerit només pot ser duta a terme per usuaris amb estatus de \"sysop\".
 Ver $1.",
@@ -366,7 +374,7 @@ Revidseu l'URL que heu emprat per accedir-hi.\n",
 # Search results
 #
 "searchresults" => "Resultats de la recerca",
-"searchhelppage" => "Viquipèdia:Recerca",
+"searchhelppage" => "{$wgMetaNamespace}:Recerca",
 "searchingwikipedia" => "S'està cercant a la Viquipèdia",
 "searchresulttext" => "Per a més informació sobre les recerques de la Viquipèdia, aneu a $1.",
 "searchquery"	=> "Per consulta \"$1\"",
@@ -439,14 +447,14 @@ i l'hora del servidor (UTC).",
 #
 "recentchanges" => "Canvis recents",
 "recentchangestext" => "Seguiu els canvis més recentes de la Viquipèdia en aquesta pàgina.
-[[Viquipèdia:Benvingut]]!
-Mireu aquestes pàgines, si us plau: [[viquipèdia:PMF|PMF de la Viquipèdia]],
-[[Viquipèdia:Polítiques i guies|polítiques de la Viquipèdia]]
-(especialment [[viquipèdia:Convencions de noms|les convencions per anomenar articles]]i
-[[viquipèdia:Punt de vista neutral|punt de vista neutral]]).
+[[{$wgMetaNamespace}:Benvingut]]!
+Mireu aquestes pàgines, si us plau: [[{$wgMetaNamespace}:PMF|PMF de la Viquipèdia]],
+[[{$wgMetaNamespace}:Polítiques i guies|polítiques de la Viquipèdia]]
+(especialment [[{$wgMetaNamespace}:Convencions de noms|les convencions per anomenar articles]]i
+[[{$wgMetaNamespace}:Punt de vista neutral|punt de vista neutral]]).
 
 Si voleu que la Viquipèdia tingui èxit, és molt important que no hi afegiu
-material restringit per [[viquipèdia:Copyrights|drets d'autor]].
+material restringit per [[{$wgMetaNamespace}:Copyrights|drets d'autor]].
 La responsabilitat legal podria realment malmetre un projecte com aquest, així que si us plau, no ho feu.
 
 Vegeu també [http://meta.wikipedia.org/wiki/Special:Recentchanges discussió recent en Meta (multilingüe)].",
@@ -484,8 +492,8 @@ per carregar arxius.",
 previament, aneu al <a href=\"" . wfLocalUrlE( "Especial:Imagelist" ) .
 "\">llistat d'imatges carregades</a>.
 Le càrregues i els esborrats són registrats en el <a href=\"" .
-wfLocalUrlE( "Viquipèdia:Registre de càrregues" ) . "\">registre de càrregues</a>.
-Aneu també a <a href=\"" . wfLocalUrlE( "Viquipèdia:Política d'ús d'imatges" ) .
+wfLocalUrlE( "{$wgMetaNamespace}:Registre de càrregues" ) . "\">registre de càrregues</a>.
+Aneu també a <a href=\"" . wfLocalUrlE( "{$wgMetaNamespace}:Política d'ús d'imatges" ) .
 "\">política d'ús d'imatges</a>.
 <p>Empreu la forma de sota per carregar nous arxius d'imatges per il·lustrar els articles.
 Amb la majoria dels navegadors, veureu un botó \"Browse...\", que
@@ -516,7 +524,7 @@ carregat més recentement. Totes les hores són les del servidor (UTC).
 "filedesc"		=> "Sumari",
 "affirmation"	=> "Afirmo que el propietari del copyright d'aquest arxiu
 està d'acord en llicenciar-lo sota els termes de $1.",
-"copyrightpage" => "Viquipèdia:Copyrights",
+"copyrightpage" => "{$wgMetaNamespace}:Copyrights",
 "copyrightpagename" => "Viquipèdia copyright",
 "uploadedfiles"	=> "Arxius carregats",
 "noaffirmation" => "Heu d'afirmar que les carregues d'arxius no violen cap copyright.",
@@ -583,7 +591,7 @@ dels quals <b>$2</b> són administradors (vegeu $3).",
 sobrecarregar la base de dades, així que si us plau, no torneu a carregar la pàgina després de cada element que arregleu ;-)",
 "maintenancebacklink"	=> "Torna a la pàgina de manteniment",
 "disambiguations"	=> "Pàgines de desambiguació",
-"disambiguationspage"	=> "Viquipèdia:Enllaços a pàgines de desambiguació",
+"disambiguationspage"	=> "{$wgMetaNamespace}:Enllaços a pàgines de desambiguació",
 "disambiguationstext"	=> "Els següents articles enllacen a una<i>pàgina de desambiguació</i>. Haurien d'enllaçar al tema apropiat.
 
 <br>Una pàgina és considerada una pàgina de desambiguació si és enllaçada des de $1.<br>Enllaços des d'altres espais de nom (Com Viquipè
@@ -705,7 +713,7 @@ Canvis futurs a aquesta pàgina i a la vostra pàgina de discussió associada hi
 "confirmdeletetext" => "Esteu a punt d'esborrar una pàgina o imatge 
 de forma permanent, així com tota la seva història de la base de dades.
 Confirmeu que realment ho voleu fer, que enteneu les
-conseqüències, i que el esteu fent està d'acord amb [[Viquipèdia:Polítiques]].",
+conseqüències, i que el esteu fent està d'acord amb [[{$wgMetaNamespace}:Polítiques]].",
 "confirmcheck"	=> "Sí, realment ho vull esborrar.",
 "actioncomplete" => "Acció completa",
 "deletedtext"	=> "\"$1\" ha estat esborrat.
@@ -742,7 +750,7 @@ revisió actual del la pàgina \"viva\" no serà substituïda automàticament.",
 "undeletebtn" => "Restaura!",
 "undeletedarticle" => "restaurat \"$1\"",
 "undeletedtext"   => "L'article [[$1]] ha estat restaurat amb èxit.
-Vegeu [[Viquipèdia:Registre_d'esborrats]] per un llistat d'esborrats i restauracions recents.",
+Vegeu [[{$wgMetaNamespace}:Registre_d'esborrats]] per un llistat d'esborrats i restauracions recents.",
 
 # Contributions
 #
@@ -769,7 +777,7 @@ Vegeu [[Viquipèdia:Registre_d'esborrats]] per un llistat d'esborrats i restaura
 "blockiptext"	=> "Empreu el següent formulari per bloquejar l'accés
 d'escriptura des d'una direcció IP específica.
 això hauria de fer-se només per prevenir el vandalisme, i
-d'acord a la [[Viquipèdia:Política| política de la Viquipèdia]].
+d'acord a la [[{$wgMetaNamespace}:Política| política de la Viquipèdia]].
 Empleneu el diàleg d'avall amb una raó específica (per exemple, citant
 quines pàgines en concret estan sent vandalitzades).",
 "ipaddress"		=> "Direcció IP",

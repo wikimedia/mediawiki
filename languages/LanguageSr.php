@@ -147,6 +147,7 @@ include( "LanguageUtf8.php" );
 );
 
 /* private */ $wgSysopSpecialPagesSr = array(
+	"Makesysop" => "Turn a user into a sysop",
  "Blockip"  => "Блокирај корисника/ИП адресу",
  "Asksql"  => "Постави упит бази података",
  "Undelete"  => "Поврати обрисане странице"
@@ -565,7 +566,7 @@ border=\"0\" ALT=\"Google\"></A>
 "recentchanges" => "Скорашње измене",
 "recentchangestext" =>
 "Пратите најскорије измене на Википедији овде.
-[[Wikipedia:Добродошли|Добродошли]]!
+[[{$wgMetaNamespace}:Добродошли|Добродошли]]!
 Погледајте такође и: [[Википедија:FAQ|Википедија FAQ]],
 [[Википедија:Смернице|Википедијине смернице]]
 (посебно [[Википедија:Правила именовања|правила именовања]],
@@ -610,12 +611,12 @@ border=\"0\" ALT=\"Google\"></A>
 "uploaderror" => "Грешка при слању",
 "uploadtext" => "<strong>СТОП!</strong> Пре него што шаљете овде,
 обавезно прочитајте и пратите Википедијина <a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">правила коришћења слика</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Image_use_policy" ) . "\">правила коришћења слика</a>.
 <p>Да бисте прегледали или претраживали раније послате слике,
 идите на <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
 "\">списак послатих слика</a>.
 Слања и брисања су логована на <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">логу слања</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_log" ) . "\">логу слања</a>.
 <p>Употребите доњи упитник да бисте послали нове слике за
 илустровање својих чланака.
 На већини бровсера, видећете \"Browse...\" дугме, које ће вам

@@ -15,8 +15,8 @@
         1       => "Diskussion",
         2       => "Användare",
         3       => "Användare_diskussion",
-        4       => "Wikipedia",
-        5       => "Wikipedia_diskussion",
+        4       => $wgMetaNamespace,
+        5       => $wgMetaNamespace."_diskussion",
         6       => "Bild",
         7       => "Bild_diskussion",
 	8	=> "MediaWiki",
@@ -124,6 +124,7 @@ $wgValidSpecialPagesSv = array(
 );
 
 /* private */ $wgSysopSpecialPagesSv = array(
+	"Makesysop" => "Turn a user into a sysop",
         "Blockip"       => "Blockera en IP-adress",
         "Asksql"        => "Gör en sökning i databasen",
         "Undelete"      => "Se och återställ raderade sidor"
@@ -142,19 +143,19 @@ $wgValidSpecialPagesSv = array(
 "mainpage"              => "Huvudsida",
 "about"                 => "Om",
 "aboutwikipedia"        => "Om Wikipedia",
-"aboutpage"             => "Wikipedia:Om",
+"aboutpage"             => "{$wgMetaNamespace}:Om",
 
 "help"                  => "Hjälp",
-"helppage"              => "Wikipedia:Hjälp",
+"helppage"              => "{$wgMetaNamespace}:Hjälp",
 "wikititlesuffix"       => "Wikipedia",
 "bugreports"            => "Felrapporter",
-"bugreportspage"        => "Wikipedia:Felrapporter",
+"bugreportspage"        => "{$wgMetaNamespace}:Felrapporter",
 "sitesupport"           => "Donationer",
 "sitesupportpage"       => "", # If not set, won't appear. Can be wiki page or URL
 "faq"                   => "FAQ",
-"faqpage"               => "Wikipedia:FAQ",
+"faqpage"               => "{$wgMetaNamespace}:FAQ",
 "edithelp"              => "Redigeringshjälp",
-"edithelppage"          => "Wikipedia:Hur_redigerar_jag_en_sida",
+"edithelppage"          => "{$wgMetaNamespace}:Hur_redigerar_jag_en_sida",
 "cancel"                => "Avbryt",
 "qbfind"                => "SnabbSök",
 "qbbrowse"              => "Genomsök",
@@ -192,7 +193,7 @@ $wgValidSpecialPagesSv = array(
 "gnunote"               => "Denna sida är publicerad under <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>.",
 "printsubtitle"         => "(Från http://sv.wikipedia.org)",
 "protectedpage"         => "Skyddad sida",
-"administrators"        => "Wikipedia:Administratörer",
+"administrators"        => "{$wgMetaNamespace}:Administratörer",
 "sysoptitle"            => "Sysop-behörighet krävs",
 "sysoptext"             => "Denna funktion kan bara utföras av användare med \"sysop\" status.
 Se $1.",
@@ -319,7 +320,7 @@ Var snäll och logga in igen när du fått meddelandet.",
 "blockedtitle"          => "Användaren är spärrad",
 "blockedtext"           => "Ditt användarnamn har blivit spärrat av $1.
 Anledning är att:<br>''$2''<p>Ta kontakt med $1 eller en av de andra
-[[Wikipedia:Administratörer|administratörerna]] för att diskutera varför du blivit spärrad", // "
+[[{$wgMetaNamespace}:Administratörer|administratörerna]] för att diskutera varför du blivit spärrad", // "
 "newarticle"            => "(Ny)",
 "newarticletext"        => "Du har klickat på en röd länk, en sida som inte finns ännu. Du kan hjälpa till genom att själv skriva vad du vet om ämnet i fältet nedan. Om du inte vill skriva något kan du bara trycka på \"tillbaka\" i din webbläsare.",
 "anontalkpagetext"      => "---- ''Detta är en diskussionssida för en anonym användare, en användare som inte har skapat sig ett konto, eller som inte har loggat in på det. Vi måste därför använda personens numeriska [[IP-adress]] för identifiera honom eller henne. En sådan IP-adress kan ibland användas av flera olika personer. Om du är en anonym användare och ser meddelanden på den här sidan som inte tycks vara riktade till dig, var vänlig [[Special:Userlogin|logga in]] så du undviker förväxling med andra anonyma användare i framtiden.'' ",
@@ -356,7 +357,7 @@ Du kanske vill överväga att dela upp artikeln i mindre delar.",
 dina ändringar just nu. För säkerhets skull kanske du vill överväga att kopiera över texten till din egen dator tills
 databasen är upplåst igen.",
 "protectedpagewarning"  => "VARNING:  Den här sidan har låsts så att bara administratörer kan redigera den. 
-Försäkra dig om att du följer rekommendationerna för <a href='/wiki/Wikipedia:Skyddade sidor'>skyddade sidor</a>",
+Försäkra dig om att du följer rekommendationerna för <a href='/wiki/{$wgMetaNamespace}:Skyddade sidor'>skyddade sidor</a>",
 
 // History pages
 //
@@ -385,7 +386,7 @@ Försäkra dig om att du följer rekommendationerna för <a href='/wiki/Wikipedia:Sk
 // Search results
 //
 "searchresults"         => "Sökresultat",
-"searchhelppage"        => "Wikipedia:Sökning",
+"searchhelppage"        => "{$wgMetaNamespace}:Sökning",
 "searchingwikipedia"    => "Sökning på Wikipedia",
 "searchresulttext"      => "För mer information om sökning på Wikipedia, se $1.",
 "searchquery"           => "For query \"$1\"",
@@ -486,13 +487,13 @@ för att kunna ladda upp filer.",
 "uploaderror"           => "Uppladdnings fel",
 "uploadtext"            => "<strong>STOPP!</strong> Innan du laddar upp här,
 så måste du ha läst och följa Wikipedias <a href=\"" .
-wfLocalUrlE( "Wikipedia:Policy om bruk av bilder" ) . "\">policy om hur 
+wfLocalUrlE( "{$wgMetaNamespace}:Policy om bruk av bilder" ) . "\">policy om hur 
 bilder får användas</a>.
 <p>För att visa eller söka tidigare uppladdade bilder gå till
 <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
 "\">lista över uppladdade bilder</a>.
 Uppladdningar och borttagningar loggas i <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">uppladdnings logg</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_log" ) . "\">uppladdnings logg</a>.
 <p>Använd formuläret nedan för att ladda upp nya filer, som 
 du kan illustrera dina artiklar med.
 På de flesta webbläsare kommer du att se en \"Browse...\" knapp eller en 
@@ -515,7 +516,7 @@ Alla tider visas efter serverns tid (UTC).
 "filename"              => "Filnamn",
 "filedesc"              => "Beskrivning",
 "affirmation"           => "Jag bekräftar att ägaren till upphovsrätten accepterar att licensiera enligt följande avtal $1.",
-"copyrightpage"         => "Wikipedia:copyright",
+"copyrightpage"         => "{$wgMetaNamespace}:copyright",
 "copyrightpagename"     => "Wikipedia copyright",
 "uploadedfiles"         => "Uppladdade filer",
 "noaffirmation"         => "Du måste bekräfta att uppladdningen inte kränker någon copyright",
@@ -580,7 +581,7 @@ och <b>$6</b> sidvisningar per ändring.",
 "maintnancepagetext"    => "Den här sidan innehåller flera verktyg för att sköta sidan. Vissa av dessa funktioner tenderar att stressa databasen (allt tar lång tid), så var snäll och  tryck inte på reloadknappen varje gång du gjort en liten ändring.",
 "maintenancebacklink"   => "Tillbaka till underhållssidorna",
 "disambiguations"       => "Sidor med tvetydiga länkar",
-"disambiguationspage"   => "Wikipedia:Länkar till sidor med tvetydiga titlar",
+"disambiguationspage"   => "{$wgMetaNamespace}:Länkar till sidor med tvetydiga titlar",
 "disambiguationstext"   => "Följande artiklar länkar till en <i>sidor med tvetydliga titlar</i>. De ska länka till en sidor med en korrekt titel.<br>En sida behandlar som tvetydig om den länkar från $1. <br>Länkar från andra namngrupper är <i>inte</i> listade här.",
 "doubleredirects"       => "Dubbla omdirigeringar",
 "doubleredirectstext"   => "<b>OBS:</b> Denna lista kan innehålla falska resultat. Detta betyder normalt att det finns ytterligare text under den första #REDIRECT.<br>\n Varje rad innehåller en länk till den första och andra omdirigering och den första raden av den andra omdirigeringen ger oftast den \"riktiga\" artikeln, vilket egentligen den första omdirigeringen ska peka på.",
@@ -692,7 +693,7 @@ och sidan kommer att markeras med <b>fet stil</b> i <a href=\"" .
 eller bild med all dess historia från databasen.
 Bekräfta att du förstår vad du håller på med och vilka konsekvenser
 detta leder till, och att det följer 
-[[Wikipedia:Policy]].", 
+[[{$wgMetaNamespace}:Policy]].", 
 "confirmcheck"          => "Ja, jag vill verkligen ta bort det här.", //"
 "actioncomplete"        => "Genomfört",
 "deletedtext"           => "\"$1\" har blivit borttagen.
@@ -724,7 +725,7 @@ hamna i den äldre versionshanteraren och den senaste versionen av sidan kommer i
 "undeletebtn"           => "Återställd!",
 "undeletedarticle"      => "återställd \"$1\"",
 "undeletedtext"         => "Artikeln [[$1]] har blivit återställd
-Se [[Wikipedia:Borttagningslogg]] för en lista över nyligen gjorda borttagningar och återställningar",
+Se [[{$wgMetaNamespace}:Borttagningslogg]] för en lista över nyligen gjorda borttagningar och återställningar",
 
 // Contributions
 //
@@ -753,7 +754,7 @@ för att genomföra den här funktionen.",
 "blockiptext"           => "Använd formuläret nedan för att blockera skrivåtkomst 
 från en viss IP-adress
 Detta ska bara genomföras för att stoppa klotter och
-överstämma med [[Wikipedia:Politik|Wikipedia politik]].
+överstämma med [[{$wgMetaNamespace}:Politik|Wikipedia politik]].
 Fyll i anledningen till blockering nedan (till exempel vilka artiklar som klottrats ner).",
 "ipaddress"             => "IP-adress",
 "ipbreason"             => "Anledning",

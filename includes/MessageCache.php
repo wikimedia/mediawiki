@@ -154,6 +154,8 @@ class MessageCache
 	function get( $key, $useDB ) {
 		global $wgLang, $wgLanguageCode;
 		
+		$fname = "MessageCache::get";
+		
 		# If uninitialised, someone is trying to call this halfway through Setup.php
 		if ( !$this->mInitialised ) {
 			return "&lt;$key&gt;";
@@ -200,5 +202,9 @@ class MessageCache
 		}
 		return $message;
 	}
+
+	function disable() { $this->mDisable = true; }
+	function enable() { $this->mDisable = false; }
+
 }
 ?>

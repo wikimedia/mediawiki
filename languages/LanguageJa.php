@@ -16,8 +16,8 @@ include_once( "LanguageUtf8.php" );
 	1	=> "ノート" /* "Talk" */,
 	2	=> "利用者" /* "User" */,
 	3	=> "利用者‐会話" /* "User_talk" */,
-	4	=> "Wikipedia" /* "Wikipedia" */,
-	5	=> "Wikipedia‐ノート" /* "Wikipedia_talk" */,
+	4	=> $wgMetaNamespace /* "Wikipedia" */,
+	5	=> $wgMetaNamespace."‐ノート" /* "Wikipedia_talk" */,
 	6	=> "画像" /* "Image" */,
 	7	=> "画像‐ノート" /* "Image_talk" */,
 	8	=> "MediaWiki",
@@ -107,6 +107,7 @@ include_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgSysopSpecialPagesJa = array(
+	"Makesysop" => "Turn a user into a sysop",
 	"Blockip"		=> "IPアドレスをブロック",
 	"Asksql"		=> "データベースに問い合わせ",
 	"Undelete"		=> "消去されたページを閲覧し、復帰させる"
@@ -124,16 +125,16 @@ include_once( "LanguageUtf8.php" );
 "mainpage"		=> "メインページ",
 "about"			=> "About",
 "aboutwikipedia" => "Wikipediaについて",
-"aboutpage"		=> "Wikipedia:About",
+"aboutpage"		=> "{$wgMetaNamespace}:About",
 "help"			=> "ヘルプ",
-"helppage"		=> "Wikipedia:Help",
+"helppage"		=> "{$wgMetaNamespace}:Help",
 "wikititlesuffix" => "Wikipedia",
 "bugreports"	=> "バグの報告",
-"bugreportspage" => "Wikipedia:バグの報告",
+"bugreportspage" => "{$wgMetaNamespace}:バグの報告",
 "faq"			=> "FAQ",
-"faqpage"		=> "Wikipedia:FAQ",
+"faqpage"		=> "{$wgMetaNamespace}:FAQ",
 "edithelp"		=> "ヘルプを編集",
-"edithelppage"	=> "Wikipedia:編集の仕方",
+"edithelppage"	=> "{$wgMetaNamespace}:編集の仕方",
 "cancel"		=> "中止",
 "qbfind"		=> "検索",
 "qbbrowse"		=> "閲覧",
@@ -164,7 +165,7 @@ include_once( "LanguageUtf8.php" );
 "viewcount"		=> "このページは $1 回アクセスされました。",
 "printsubtitle" => "(From http://www.wikipedia.org)",
 "protectedpage" => "保護されたページ",
-"administrators" => "Wikipedia:Administrators",
+"administrators" => "{$wgMetaNamespace}:Administrators",
 "sysoptitle"	=> "シスオペによるアクセスが必要",
 "sysoptext"		=> "あなたの要求した処理は \"sysop\" のみが実行できます。
  $1を参照してください。",
@@ -354,7 +355,7 @@ Please check the URL you used to access this page.\n",
 # 検索結果（Search results）
 #
 "searchresults" => "検索結果" /* "Search results" */,
-"searchhelppage" => "Wikipedia:Searching",
+"searchhelppage" => "{$wgMetaNamespace}:Searching",
 "searchingwikipedia" => "Wikipedia を検索中" /* "Searching Wikipedia" */,
 "searchresulttext" => "Wikipedia の検索についての詳しい情報は、 $1 をご覧下さい。" /* "For more information about searching Wikipedia, see $1." */ ,
 "searchquery"	=> "問い合わせ \"$1\" について、" /* "For query \"$1\"" */,
@@ -420,27 +421,27 @@ from server time (UTC)." */,
 #
 "recentchanges" => "最近更新したページ",
 "recentchangestext" => "最近付け加えられた変更はこのページで確認することができます。
-[[Wikipedia:新規参加者の方、ようこそ]]！
+[[{$wgMetaNamespace}:新規参加者の方、ようこそ]]！
 以下のページも参照して下さい:
-[[wikipedia:ウィキペディア　よくある質問集]],
-[[Wikipedia:ウィキペディアの基本方針とガイドライン]]
-（特に[[Wikipedia:記事名のつけ方]],
-[[Wikipedia:中立的な観点]]）,
-[[Wikipedia:ウィキペディアで起こしがちな間違い]].
+[[{$wgMetaNamespace}:ウィキペディア　よくある質問集]],
+[[{$wgMetaNamespace}:ウィキペディアの基本方針とガイドライン]]
+（特に[[{$wgMetaNamespace}:記事名のつけ方]],
+[[{$wgMetaNamespace}:中立的な観点]]）,
+[[{$wgMetaNamespace}:ウィキペディアで起こしがちな間違い]].
 
-ウィキペディアが成功するためには、あなたの投稿する内容が他人の著作権などによって束縛されていないことがとても重要です。[[Wikipedia:著作権]]
+ウィキペディアが成功するためには、あなたの投稿する内容が他人の著作権などによって束縛されていないことがとても重要です。[[{$wgMetaNamespace}:著作権]]
 法的責任問題は、プロジェクトに致命傷を与えることもある問題です。他人の著作物などを流用することは絶対に避けてください。また次のページも参照して下さい。[http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion]"
 
 /* Track the most recent changes to Wikipedia on this page.
-[[Wikipedia:Welcome,_newcomers|Welcome, newcomers]]!
-Please have a look at these pages: [[wikipedia:FAQ|Wikipedia FAQ]],
-[[Wikipedia:Policies and guidelines|Wikipedia policy]]
-(especially [[wikipedia:Naming conventions|naming conventions]],
-[[wikipedia:Neutral point of view|neutral point of view]]),
-and [[wikipedia:Most common Wikipedia faux pas|most common Wikipedia faux pas]].
+[[{$wgMetaNamespace}:Welcome,_newcomers|Welcome, newcomers]]!
+Please have a look at these pages: [[{$wgMetaNamespace}:FAQ|Wikipedia FAQ]],
+[[{$wgMetaNamespace}:Policies and guidelines|Wikipedia policy]]
+(especially [[{$wgMetaNamespace}:Naming conventions|naming conventions]],
+[[{$wgMetaNamespace}:Neutral point of view|neutral point of view]]),
+and [[{$wgMetaNamespace}:Most common Wikipedia faux pas|most common Wikipedia faux pas]].
 
 If you want to see Wikipedia succeed, it's very important that you don't add
-material restricted by others' [[wikipedia:Copyrights|copyrights]].
+material restricted by others' [[{$wgMetaNamespace}:Copyrights|copyrights]].
 The legal liability could really hurt the project, so please don't do it.
 See also the [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion]. */,
 "rcloaderr"		=> "最近の更新情報をダウンロード中" /* "Loading recent changes" */,
@@ -475,14 +476,14 @@ to upload files.",
 "uploaderror"	=> "アップロード エラー  Upload error",
 "uploadtext"	=> "<strong>ご注意！</strong> 
 ここにファイルをアップロードする前に、ウィキペディアの<a href=\"" .
-wfLocalUrlE( "Wikipedia:画像利用の方針" ) . "\">画像利用の方針</a>を
+wfLocalUrlE( "{$wgMetaNamespace}:画像利用の方針" ) . "\">画像利用の方針</a>を
 よく読んで、方針に反することのないようにして下さい。.
 <p>
 これまでにアップロードされたイメージの一覧や検索には、
 <a href=\"" . wfLocalUrlE( "特別:Imagelist" ) .
 "\">画像リスト</a>が便利です。
 アップロードと削除の記録は<a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">にあります。</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_log" ) . "\">にあります。</a>.
 <p>記事に必要な画像を新しくアップロードする場合には、以下のフォームを利用して下さい。
 
 ほとんどのブラウザーでは、\"Browse\"というボタンが表示されます。そのボタンを押すと、
@@ -511,12 +512,12 @@ wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">にあります。</a>.
 
 /* <strong>STOP!</strong> Before you upload here,
 make sure to read and follow Wikipedia's <a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">image use policy</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Image_use_policy" ) . "\">image use policy</a>.
 <p>To view or search previously uploaded images,
 go to the <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
 "\">list of uploaded images</a>.
 Uploads and deletions are logged on the <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">upload log</a>.
+wfLocalUrlE( "{$wgMetaNamespace}:Upload_log" ) . "\">upload log</a>.
 <p>Use the form below to upload new image files for use in
 illustrating your articles.
 On most browsers, you will see a \"Browse...\" button, which will
@@ -554,7 +555,7 @@ All times shown are server time (UTC). */,
 
 I affirm that the copyright holder of this file
 agrees to license it under the terms of the $1.",
-"copyrightpage" => "Wikipedia:Copyrights",
+"copyrightpage" => "{$wgMetaNamespace}:Copyrights",
 
 "copyrightpagename" => "ウィキペディアの著作権",
 "uploadedfiles"	=> "アップロードされたファイル",
@@ -731,13 +732,13 @@ make it easier to pick out.</p>
 "confirmdeletetext" => "指定されたページまたはイメージは、その更新履歴と共に
 データベースから永久に削除されようとしています。
 あなたが削除を望んでおり、それがもたらす帰結を理解しており、かつあなたの
-しようとしていることが[[Wikipedia:Policy|ウィキペディアの基本方針]]に即したものであることを確認して下さい。
+しようとしていることが[[{$wgMetaNamespace}:Policy|ウィキペディアの基本方針]]に即したものであることを確認して下さい。
 
 You are about to permanently delete a page
 or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
-[[Wikipedia:Policy]].",
+[[{$wgMetaNamespace}:Policy]].",
 "confirmcheck"	=> "はい。上記の通りです。　Yes, I really want to delete this.",
 "actioncomplete" => "削除を完了しました。　Action complete",
 "deletedtext"	=> "\"$1\" は削除されました。　\"$1\" has been deleted.
@@ -784,7 +785,7 @@ to perform this function on." */,
 "blockiptext"	=> "Use the form below to block write access
 from a specific IP address.
 This should be done only only to prevent valndalism, and in
-accordance with [[Wikipedia:Policy|Wikipedia policy]].
+accordance with [[{$wgMetaNamespace}:Policy|Wikipedia policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 "ipaddress"		=> "IP Address",
