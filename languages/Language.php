@@ -702,6 +702,7 @@ Your IP address is $3. Please include this address in any queries you make.
 To create the page, start typing in the box below 
 (see the [[$wgMetaNamespace:Help|help page]] for more info).
 If you are here by mistake, just click your browser's '''back''' button.",
+"talkpagetext" => "<!-- MediaWiki:talkpagetext -->",
 "anontalkpagetext" => "---- ''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.'' ",
 "noarticletext" => "(There is currently no text in this page)",
 "updated"		=> "(Updated)",
