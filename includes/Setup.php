@@ -127,9 +127,6 @@ include_once( "Language.php" );
 
 $wgMessageCache = new MessageCache; 
 
-$wgOut = new OutputPage();
-wfDebug( "\n\n" );
-
 $wgLangClass = "Language" . ucfirst( $wgLanguageCode );
 if( ! class_exists( $wgLangClass ) ) {
 	include_once( "LanguageUtf8.php" );
@@ -141,6 +138,9 @@ if ( !is_object($wgLang) ) {
 	print "No language class ($wgLang)\N";
 }
 $wgMessageCache->initialise( $wgUseMemCached, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname );
+
+$wgOut = new OutputPage();
+wfDebug( "\n\n" );
 
 if ( $wgUseDynamicDates ) {
 	include_once( "DateFormatter.php" );
@@ -160,6 +160,7 @@ $wgMagicWords = array();
 $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
 $wgParserCache = new ParserCache();
 $wgParser = new Parser();
+$wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
 
 wfProfileOut( "$fname-misc" );
 wfProfileOut( $fname );

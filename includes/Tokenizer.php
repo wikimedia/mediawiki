@@ -1,7 +1,7 @@
 <?php
 class Tokenizer {
 	/* private */ var $mText, $mPos, $mTextLength;
-	/* private */ var $mCount, $mM, $mMPos;
+	/* private */ var $mCount, $mM, $mMPos; # What is M meant to stand for?
 
 	/* private */ function Tokenizer()
 	{

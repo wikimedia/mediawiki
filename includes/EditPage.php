@@ -85,8 +85,8 @@ class EditPage {
 		global $wpSave, $wpPreview;
 		global $wpMinoredit, $wpEdittime, $wpTextbox2, $wpSection;
 		global $oldid, $redirect, $section;
-		global $wgLang;
-	        global $wgAllowAnonymousMinor;
+		global $wgLang, $wgParser, $wgTitle;
+	    global $wgAllowAnonymousMinor;
 
 		if(isset($wpSection)) { $section=$wpSection; } else { $wpSection=$section; }
 
@@ -288,9 +288,17 @@ class EditPage {
 			}
 			$previewtext = wfUnescapeHTML( $wpTextbox1 );
 
+			$parserOptions = ParserOptions::newFromUser( $wgUser );
+			$parserOptions->setUseCategoryMagic( false );
+			$parserOptions->setEditSection( false );
+			$parserOptions->setEditSectionOnRightClick( false );
+			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $previewtext ) ."\n\n",
+				$wgTitle, $parserOptions );
+			$previewHTML = $parserOutput->mText;
+			
 			if($wgUser->getOption("previewontop")) {
 				$wgOut->addHTML($previewhead);
-				$wgOut->addWikiText( $this->mArticle->preSaveTransform( $previewtext ) ."\n\n");
+				$wgOut->addHTML($previewHTML);
 			}
 			$wgOut->addHTML( "<br clear=\"all\" />\n" );
 		}
@@ -342,7 +350,7 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		$wgOut->addHTML( "</form>\n" );
 		if($formtype =="preview" && !$wgUser->getOption("previewontop")) {
 			$wgOut->addHTML($previewhead);
-			$wgOut->addWikiText( $this->mArticle->preSaveTransform( $previewtext ) );
+			$wgOut->addHTML($previewHTML);
 		}
 
 	}
