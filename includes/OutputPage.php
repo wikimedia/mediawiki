@@ -763,7 +763,7 @@ class OutputPage {
 		return $ret;
 	}
 	
-	# Parse <tmp=> link placeholders to avoid using linkcache
+	# Parse <!--LINK--> link placeholders to avoid using linkcache
 	# Placeholders created in Skin::makeLinkObj()
 	function parseLinkHolders()
 	{
@@ -773,7 +773,7 @@ class OutputPage {
 		wfProfileIn( $fname );
 		
 		# Get placeholders from body
-		preg_match_all( "/<tmp=(.*?) (.*?) (.*?) (.*?)>/", $this->mBodytext, $tmpLinks );
+		preg_match_all( "/<!--LINK (.*?) (.*?) (.*?) (.*?)-->/", $this->mBodytext, $tmpLinks );
 		
 		if ( !empty( $tmpLinks[0] ) ) {
 			$dbr =& wfGetDB( DB_SLAVE );
