@@ -38,10 +38,10 @@ class DBUnlockForm {
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
-			$wgOut->addHTML( "<p><font color='red' size='+1'>{$err}</font>\n" );
+			$wgOut->addHTML( '<p class="error">' . htmlspecialchars( $err ) . "</p>\n" );
 		}
-		$lc = wfMsg( "unlockconfirm" );
-		$lb = wfMsg( "unlockbtn" );
+		$lc = htmlspecialchars( wfMsg( "unlockconfirm" ) );
+		$lb = htmlspecialchars( wfMsg( "unlockbtn" ) );
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Unlockdb" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 
