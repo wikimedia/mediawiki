@@ -4,6 +4,9 @@ function wfSpecialUnusedimages()
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle;
 	global $limit, $offset; # From query string
+	$limit  = $_REQUEST["limit"];
+	$offset = $_REQUEST["offset"];
+
 	$fname = "wfSpecialUnusedimages";
 
 	list( $limit, $offset ) = wfCheckLimits();

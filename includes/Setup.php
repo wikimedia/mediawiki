@@ -91,10 +91,15 @@ if( !$wgCommandLineMode ) {
 	session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain );
 	session_cache_limiter( "private, must-revalidate" );
 	session_start();
-	session_register( "wsUserID" );
-	session_register( "wsUserName" );
-	session_register( "wsUserPassword" );
-	session_register( "wsUploadFiles" );
+	global $wsUserID, $wsUserName, $wsUserPassword, $wsUploadFiles;
+	# Reaad back session variables
+	$wsUserID       = $_SESSION["wsUserID"];
+	$wsUserName     = $_SESSION["wsUserName"];
+	$wsUserPassword = $_SESSION["wsUserPassword"];
+	$wsUploadFiles  = $_SESSION["wsUploadFiles"];
+
+
+
 }
 
 $wgUser = User::loadFromSession();
