@@ -540,12 +540,15 @@ class Database {
 	 */
 	function lastError() { 
 		if ( $this->mConn ) {
-			return mysql_error( $this->mConn ); 
+			$error = mysql_error( $this->mConn ); 
 		} else {
-			return mysql_error();
+			$error = mysql_error();
 		}
-	}
-	
+		if( $error ) {
+			$error .= ' (' . $this->mServer . ')';
+		}
+		return $error;
+	}	
 	/**
 	 * Get the number of rows affected by the last write query
 	 * See mysql_affected_rows() for more details
