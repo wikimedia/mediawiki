@@ -1,6 +1,6 @@
 <?
 global $IP;
-include_once("{$IP}/Utf8Case.php");
+include_once("{$IP}/LanguageUtf8.php");
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
