@@ -1712,6 +1712,8 @@ class Parser
 				return $varCache[$index] = $wgContLang->getMonthName( date('n') );
 			case MAG_CURRENTMONTHNAMEGEN:
 				return $varCache[$index] = $wgContLang->getMonthNameGen( date('n') );
+			case MAG_CURRENTMONTHABBREV:
+				return $varCache[$index] = $wgContLang->getMonthAbbreviation( date('n') );
 			case MAG_CURRENTDAY:
 				return $varCache[$index] = $wgContLang->formatNum( date('j') );
 			case MAG_PAGENAME:
