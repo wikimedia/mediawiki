@@ -42,9 +42,12 @@ $wgDBmysql4			= false; # Set to true to use enhanced fulltext search
 # memcached settings
 # See docs/memcached.doc
 #
-$wgUseMemCached     = false; # Will be set to false in Setup.php, if the server isn't working
+$wgMemCachedDebug   = false; # Will be set to false in Setup.php, if the server isn't working
+$wgUseMemCached     = false;
 $wgMemCachedServers = array( "127.0.0.1:11000" );
 $wgMemCachedDebug   = false;
+$wgSessionsInMemcached = false;
+$wgLinkCacheMemcached = false; # Not fully tested
 
 # Language settings
 #
@@ -105,6 +108,11 @@ $wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
 
 $wgCookieExpiration = 2592000;
 
+# Set to set an explicit domain on the login cookies
+# eg, "justthis.domain.org" or ".any.subdomain.net"
+$wgCookieDomain = "";
+$wgCookiePath = "/";
+
 $wgAllowExternalImages = true;
 $wgMiserMode = false; # Disable database-intensive features
 $wgUseTeX = false;
@@ -120,7 +128,7 @@ $wgDebugFunctionEntry = 0; # Output debug message on every wfProfileIn/wfProfile
 $wgDisableCounters = false;
 $wgDisableTextSearch = false;
 $wgDisableSearchUpdate = false; # If you've disabled search semi-permanently, this also disables updates to the table. If you ever re-enable, be sure to rebuild the search table.
-$wgDisableUploads = false;
+$wgDisableUploads = true; # Uploads have to be specially set up to be secure
 $wgDisableAnonTalk = false;
 
 # We can serve pages compressed in order to save bandwidth,

@@ -108,14 +108,18 @@ ORDER BY cur_title
 LIMIT {$indexMaxperpage}";
 	$res = wfQuery( $sql, DB_READ, "indexShowChunk" );
 
-	# FIXME: Dynamic column widths, backlink to main list,
-	# side links to next and previous
+# FIXME: Dynamic column widths, backlink to main list,
+# side links to next and previous
 	$n = 0;
-	$out = "<table border=\"0\">\n";
+	$out = "<table border=\"0\">\n<tr>";
 	while( $s = wfFetchObject( $res ) ) {
-		$out .= "<td width=\"33%\">" .
-			$sk->makeKnownLink( $s->cur_title ) .
-			"</td>";
+		$t = Title::makeTitle( 0, $s->cur_title );
+		if( $t ) {
+			$link = $sk->makeKnownLinkObj( $t );
+		} else {
+			$link = "[[" . htmlspecialchars( $s->cur_title ) . "]]";
+		}
+		$out .= "<td width=\"33%\">$link</td>";
 		$n = ++$n % 3;
 		if( $n == 0 ) {
 			$out .= "</tr>\n<tr>";
@@ -125,7 +129,7 @@ LIMIT {$indexMaxperpage}";
 		$out .= "</tr>\n";
 	}
 	$out .= "</table>";
-	#return $out;
+#return $out;
 	$wgOut->addHtml( $out );
 }
 
