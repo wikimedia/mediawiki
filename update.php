@@ -72,11 +72,14 @@ exit();
 
 function do_update_files() {
 	global $IP, $wgStyleSheetDirectory, $wgUploadDirectory, $wgLanguageCode, $wgDebugLogFile;
-	global $wgScriptExtension;
 	print "Copying files... ";
 	
-	copyfileto( ".", "wiki.phtml", $IP, "wiki.$wgScriptExtension" );
-	copyfileto( ".", "redirect.phtml", $IP, "redirect.$wgScriptExtension" );
+	copyfile( ".", "index.php", $IP );
+	copyfile( ".", "redirect.php", $IP );
+	# compatibility with older versions, can be removed in a year or so
+	# (written in Feb 2004)
+	copyfile( ".", "wiki.phtml", $IP );
+	copyfile( ".", "redirect.phtml", $IP );
 	
 	copydirectory( "./includes", $IP );
 	copydirectory( "./stylesheets", $wgStyleSheetDirectory );

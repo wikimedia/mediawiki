@@ -1,0 +1,6 @@
+<?php
+include_once( "./LocalSettings.php" );
+global $wpDropdown, $wgArticlePath;
+$url = str_replace( "$1", $wpDropdown, $wgArticlePath );
+header( "Location: {$url}" );
+?>

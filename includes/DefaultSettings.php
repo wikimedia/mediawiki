@@ -14,10 +14,10 @@ $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
 $wgServer           = "http://" . getenv( "SERVER_NAME" );
 $wgScriptPath	    = "/wiki";
 
-# Change this and the next two to use "phtml" for compatibility with old installations
-$wgScriptExtension	= "php";
-$wgScript           = "{$wgScriptPath}/wiki.{$wgScriptExtension}";
-$wgRedirectScript   = "{$wgScriptPath}/redirect.{$wgScriptExtension}";
+# ATTN: Old installations used wiki.phtml and redirect.phtml -
+# make sure that LocalSettings.php is correctly set!
+$wgScript           = "{$wgScriptPath}/index.php";
+$wgRedirectScript   = "{$wgScriptPath}/redirect.php";
 
 $wgStyleSheetPath   = "{$wgScriptPath}/style";
 $wgStyleSheetDirectory = "{$IP}/style";
