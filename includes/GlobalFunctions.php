@@ -342,9 +342,14 @@ function wfMsg( $key ) {
  * Get a message from anywhere, for the content
  */
 function wfMsgForContent( $key ) {
+	global $wgForceUIMsgAsContentMsg;
 	$args = func_get_args();
 	array_shift( $args );
-	return wfMsgReal( $key, $args, true, true );
+	$forcontent = true;
+	if( is_array( $wgForceUIMsgAsContentMsg ) &&
+		in_array( $key, $wgForceUIMsgAsContentMsg ) )
+		$forcontent = false;
+	return wfMsgReal( $key, $args, true, $forcontent );
 }
 
 /**
@@ -360,9 +365,14 @@ function wfMsgNoDB( $key ) {
  * Get a message from the language file, for the content
  */
 function wfMsgNoDBForContent( $key ) {
+	global $wgForceUIMsgAsContentMsg;
 	$args = func_get_args();
 	array_shift( $args );
-	return wfMsgReal( $key, $args, false, true );
+	$forcontent = true;
+	if( is_array( $wgForceUIMsgAsContentMsg ) &&
+		in_array( $key,	$wgForceUIMsgAsContentMsg ) )
+		$forcontent = false;
+	return wfMsgReal( $key, $args, false, $forcontent );
 }
 
 
