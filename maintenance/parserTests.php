@@ -232,6 +232,7 @@ class ParserTest {
 			}
 
 			if ($GLOBALS['wgUseTidy']) {
+				$out = Parser::tidy($out);
 				$result = Parser::tidy($result);
 			}
 		}
@@ -265,7 +266,7 @@ class ParserTest {
 			
 			'wgLoadBalancer' => LoadBalancer::newFromParams( $GLOBALS['wgDBservers'] ),
 			'wgLang' => new LanguageUtf8(),
-			'wgNamespacesWithSubpages' => array( 0 => preg_match('/subpage/i', $opts)),
+			'wgNamespacesWithSubpages' => array( 0 => preg_match('/\\bsubpage\\b/i', $opts)),
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {

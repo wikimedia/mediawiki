@@ -5,9 +5,14 @@
 # The syntax should be fairly self-explanatory.
 #
 # Currently supported test options:
+#	One of the following three:
+#
 #	(default)	generate HTML output
 # 	pst 		apply pre-save transform
 #	msg 		apply message transform
+#
+#	Plus any combination of these:
+#
 #	cat		add category links
 #	ill		add inter-language links
 #	subpage		enable subpages (disabled by default)
@@ -1016,6 +1021,14 @@ Template infinite loop
 </p>
 !! end
 
+!! test
+Template from main namespace
+!! input
+{{:Main Page}}
+!! result
+<p>blah blah
+</p>
+!! end
 
 !! article
 Template:table
@@ -1068,6 +1081,38 @@ BUG 41: Template parameters shown as broken links
 {{{parameter}}}
 !! result
 <p>{{{parameter}}}
+</p>
+!! end
+
+
+!! article
+Template:MSGNW test
+!! text
+''None'' of '''this''' should be 
+* interepreted
+ but rather passed unmodified
+{{test}}
+!! endarticle
+
+# hmm, fix this or just disable/deprecate msgnw?
+!! test
+msgnw keyword
+!! input
+{{msgnw:MSGNW test}}
+!! result
+<p>''None'' of '''this''' should be 
+* interepreted
+ but rather passed unmodified
+{{test}}
+</p>
+!! end
+
+!! test
+int keyword
+!! input
+{{int:newmessages|lots of money}}
+!! result
+<p>You have lots of money.
 </p>
 !! end
 
@@ -1228,20 +1273,19 @@ subpage title=[[Subpage test]]
 </p>
 !! end
 
-# bug 561: it would be nice if this linked to /subpage -- wtm
 !! test
 Disabled subpages
 !! input
 [[/subpage]]
 !! result
-<p><a href="/index.php?title=Subpage&amp;action=edit" class="new" title="Subpage">subpage</a>
+<p><a href="/index.php?title=/subpage&amp;action=edit" class="new" title="/subpage">/subpage</a>
 </p>
 !! end
 
 !! test
 BUG 561: {{/Subpage}}
 !! options
-title=[[Page]]
+subpage title=[[Page]]
 !! input
 {{/Subpage}}
 !! result
@@ -1371,6 +1415,41 @@ Resolving duplicate section names
 !! result
 <div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Parser test script">edit</a>]</div><a name="Foo_bar"></a><h2> Foo bar </h2>
 <div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Parser test script">edit</a>]</div><a name="Foo_bar_2"></a><h2>Foo bar</h2>
+
+!! end
+
+!! article
+Template:sections
+!! text
+===Section 1===
+==Section 2==
+!! endarticle
+
+!! test
+Template with sections, __NOTOC__
+!! options title=[[Parser test script]]
+!! input
+__NOTOC__
+==Section 0==
+{{sections}}
+==Section 4==
+!! result
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Parser test script">edit</a>]</div><a name="Section_0"></a><h2>Section 0</h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=1" title="Template:Sections">edit</a>]</div><a name="Section_1"></a><h3>Section 1</h3>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=2" title="Template:Sections">edit</a>]</div><a name="Section_2"></a><h2>Section 2</h2>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Parser test script">edit</a>]</div><a name="Section_4"></a><h2>Section 4</h2>
+
+!! end
+
+!! test
+__NOEDITSECTION__ keyword
+!! input
+__NOEDITSECTION__
+==Section 1==
+==Section 2==
+!! result
+<a name="Section_1"></a><h2>Section 1</h2>
+<a name="Section_2"></a><h2>Section 2</h2>
 
 !! end
 
