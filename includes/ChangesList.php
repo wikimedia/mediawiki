@@ -47,7 +47,7 @@ class ChangesList {
 		$r .= '<tt>' ;
 
 		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
-			$r .= '&nbsp;&nbsp;';
+			$r .= '&nbsp;&nbsp;&nbsp;';
 		} else {
 			# M, N and !
 			$M = wfMsg( 'minoreditletter' );
