@@ -67,6 +67,7 @@ if ( "" != $search ) {
 		$wgArticle = new Article( $wgTitle );
 	}
 
+	wfQuery("BEGIN", DB_WRITE);
 	switch( $action ) {
 		case "view":
 		case "watch":
@@ -98,6 +99,7 @@ if ( "" != $search ) {
 		default:
 			$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
 	}
+	wfQuery("COMMIT", DB_WRITE);
 }
 
 $wgOut->output();
