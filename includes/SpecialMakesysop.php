@@ -6,7 +6,7 @@
  * @deprecated
  */
 
-wfDebugDieBacktrace('Use SpecialUserlevels instead !!'); // [av]
+die('Use SpecialUserlevels instead !!'); // [av]
 
 
 /**
