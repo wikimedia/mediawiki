@@ -697,7 +697,7 @@ class Article {
 		$dbr =& $this->getDB();
 		$oldTable = $dbr->tableName( 'old' );
 		$userTable = $dbr->tableName( 'user' );
-		$encDBkey = $dbr->strencode( $title->getDBkey() );
+		$encDBkey = $dbr->addQuotes( $title->getDBkey() );
 		$ns = $title->getNamespace();
 		$user = $this->getUser();
 
