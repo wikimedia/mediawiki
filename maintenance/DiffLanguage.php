@@ -45,7 +45,8 @@ require_once( 'commandLine.inc' );
 $wgLanguageCode = ucfirstlcrest($wgLanguageCode);
 /** Language messages we will use as reference. By default 'en' */
 $referenceMessages = $wgAllMessagesEn;
-$referenceLanguage = 'en';
+$referenceLanguage = 'En';
+$referenceFilename = 'Language'.$referenceLanguage.'.php';
 /** Language messages we will test. */ 
 $testMessages = array();
 $testLanguage = '';
@@ -110,6 +111,7 @@ if ( isset($args[0]) ) {
 		// lang we are testing
 		$referenceMessages = getExternalMessages( $args[1], $lang );
 		$referenceLanguage = $lang;
+		$referenceFilename = $args[1];
 		$externalRef = true;
 	}
 
@@ -126,17 +128,16 @@ if ( isset($args[0]) ) {
 $i = 0;
 
 $msg = "$testLanguage MediaWiki file against ";
-if($externalRef) { $msg .= 'external file "'.$args[1].'" assuming it provides '; }
+if($externalRef) { $msg .= 'external file '; }
 else { $msg .= 'internal file '; }
-$msg .= $referenceLanguage.":\n----\n";
+$msg .= $referenceFilename.' ('.$referenceLanguage."):\n----\n";
 
 echo $msg;
 foreach($referenceMessages as $index => $localized)
 {
 	if(!(isset($testMessages[$index]))) {
 		$i++;
-		print "\nLanguage$testLanguage.php is missing: $index :\n";
-		print $localized;
+		print "'$index' => \"$localized\",\n";
 	}
 }
 echo "\n----\n".$msg;
