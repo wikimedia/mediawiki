@@ -13,7 +13,7 @@ class CategoriesPage extends QueryPage {
 	}
 
 	function getSQL() {
-		$NScat = Namespace::getCategory();
+		$NScat = NS_CATEGORY;
 		return "SELECT DISTINCT 'Categories' as type, 
 				{$NScat} as namespace,
 				cl_to as title,
@@ -27,7 +27,8 @@ class CategoriesPage extends QueryPage {
 
 	function formatResult( $skin, $result ) {
 		global $wgLang;
-		return $skin->makeLink( $wgLang->getNsText( NS_CATEGORY ).":".$result->title, $result->title );
+		$title = Title::makeTitle( NS_CATEGORY, $result->title );
+		return $skin->makeLinkObj( $title, $title->getText() );
 	}
 }
 
