@@ -16,7 +16,7 @@ if( defined( 'MEDIAWIKI' ) ) {
 # setting up a few globals.
 #
 
-global $wgProfiling, $wgProfileSampleRate, $wgIP, $wgUseSquid;
+global $wgProfiling, $wgProfileSampleRate, $wgIP, $wgUseSquid, $IP;
 
 if( !isset( $wgProfiling ) )
 	$wgProfiling = false;
@@ -227,7 +227,7 @@ wfProfileOut( $fname.'-User' );
 wfProfileIn( $fname.'-language' );
 
 function setupLangObj(&$langclass, $langcode) {
-	global $wgUseLatin1;
+	global $wgUseLatin1, $IP;
 
 
 	if( ! class_exists( $langclass ) ) {
