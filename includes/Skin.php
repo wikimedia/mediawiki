@@ -104,7 +104,7 @@ class Skin {
 	function getStylesheet() {
 		return 'wikistandard.css';
 	}
-	
+
 	function getSkinName() {
 		return 'standard';
 	}
@@ -230,7 +230,7 @@ class Skin {
 		$s .= $this->doGetUserStyles();
 		return $s."\n";
 	}
-	
+
 	/**
 	 * placeholder, returns generated js in monobook
 	 */
@@ -457,7 +457,7 @@ class Skin {
 		# of categories an article belong to
 		if($wgUseCategoryBrowser) {
 			$s .= '<br/><hr/>';
-			
+
 			# get a big array of the parents tree
 			$parenttree = $wgTitle->getCategorieBrowser();
 
@@ -481,7 +481,7 @@ class Skin {
 				}
 				return $return;
 			}
-			
+
 			$s .= walkThrough($parenttree);
 		}
 
@@ -2553,10 +2553,10 @@ class Skin {
 	 * comments. It escapes any HTML in the comment, but adds some CSS to format
 	 * auto-generated comments (from section editing) and formats [[wikilinks]].
 	 *
-	 * The &$title parameter must be a title OBJECT. It is used to generate a 
+	 * The &$title parameter must be a title OBJECT. It is used to generate a
 	 * direct link to the section in the autocomment.
 	 * @author Erik Moeller <moeller@scireview.de>
-	 * 
+	 *
 	 * Note: there's not always a title to pass to this function.
 	 * Since you can't set a default parameter for a reference, I've turned it
 	 * temporarily to a value pass. Should be adjusted further. --brion
@@ -2576,7 +2576,7 @@ class Skin {
 			$link='';
 			if($title) {
 				$section=$auto;
-				
+
 				# This is hackish but should work in most cases.
 				$section=str_replace('[[','',$section);
 				$section=str_replace(']]','',$section);

@@ -15,7 +15,7 @@ require_once ( 'Feed.php' );
  *
  */
 class QueryPage {
-	
+
 	/**
 	 * Subclasses return their name here. Make sure the name is also
 	 * specified in SpecialPage.php and in Language.php as a language message
@@ -27,7 +27,7 @@ class QueryPage {
 
 	/**
 	 * Subclasses return an SQL query here.
-	 * 
+	 *
 	 * Note that the query itself should return the following four columns:
 	 * 'type' (your special page's name), 'namespace', 'title', and 'value'
 	 * *in that order*. 'value' is used for sorting.
@@ -74,7 +74,7 @@ class QueryPage {
 	function formatResult( $skin, $result ) {
 		return '';
 	}
-		
+
 	/**
 	 * The content returned by this function will be output before any result
 	*/
@@ -152,14 +152,14 @@ class QueryPage {
 			}
 		}
 		if ( $res === false ) {
-			$res = $dbr->query( $sql . $this->getOrder() . 
+			$res = $dbr->query( $sql . $this->getOrder() .
 					    $dbr->limitResult( $limit,$offset ), $fname );
 			$num = $dbr->numRows($res);
 		}
 
 
 		$sk = $wgUser->getSkin( );
-		
+
 		$wgOut->addHTML( $this->getPageHeader() );
 
 		$top = wfShowingResults( $offset, $num);
