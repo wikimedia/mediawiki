@@ -55,7 +55,15 @@ div.visualClear {
     line-height: 0;
 }
 textarea {
-    overflow: scroll;
-    overflow-x: hidden;
+    overflow: auto;
+    width: 99%;
+    /* same negative margin as on #portal-column-content
+    don't ask why..*/
+    margin-left: -12.2em;
+}
+#tawrapper {
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
 }
 /*{ border:1px solid Red !important;}*/

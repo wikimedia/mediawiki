@@ -8,13 +8,8 @@ function hookit() {
     // replaced by special indexed logo for now
     //fixalpha();
     if(version == 6) {
-        relativeforfloats();
-        fixtextarea();
         var wrapper = document.getElementById('tawrapper');
-        if(wrapper) {
-            //wrapper.attachEvent("onclick", fixtextarea);
-            window.onresize = refixtextarea;
-        }
+        if (!wrapper) relativeforfloats();
     }
 }
 
@@ -29,36 +24,7 @@ function fixalpha(){
             logoa.style.backgroundImage = "none";
             logoa.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+mypng+"', sizingMethod='image')";
         }
-
-
-    
-    /*
-        for (i=0; i<document.all.length; i++){
-            if(document.all[i].currentStyle && document.all[i].currentStyle.backgroundImage) {
-                var bg = document.all[i].currentStyle.backgroundImage;
-            } else {
-                bg = false;
-            }
-            if (bg){
-                if (bg.match(/\.png/i) != null){
-                    var mypng = bg.substring(5,bg.length-2);
-                    document.all[i].style.backgroundImage = "none";
-                    document.all[i].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+mypng+"', sizingMethod='image')";
-                }
-            }
-        }*/
     }
-}
-
-function fixtextarea() {
-    var wrapper = document.getElementById('tawrapper');
-    if(wrapper) {
-            wrapper.style.width = 'auto';
-            wrapper.style.width = (wrapper.offsetWidth - 4)  + 'px';
-    }
-}
-function refixtextarea () {
-    setTimeout("fixtextarea()",10);
 }
 
 // fix ie6 disappering float bug
