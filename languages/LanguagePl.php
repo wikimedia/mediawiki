@@ -8,21 +8,26 @@ require_once("LanguageUtf8.php");
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
 #
+
 /* private */ $wgNamespaceNamesPl = array(
-        -2      => "Media",
-        -1      => "Specjalna",
-        0       => "",
-        1       => "Dyskusja",
-        2       => "Wikipedysta",
-        3       => "Dyskusja_wikipedysty",
-        4       => "Wikipedia",
-        5       => "Dyskusja_Wikipedii",
-        6       => "Grafika",
-        7       => "Dyskusja_grafiki",
-        8       => "MediaWiki",
-        9       => "Dyskusja_MediaWiki",
-	10	=> "Źródła",
-	11	=> "Dyskusja źródeł"
+    NS_MEDIA            => "Media",
+    NS_SPECIAL          => "Specjalna",
+    NS_MAIN             => "",
+    NS_TALK             => "Dyskusja",
+    NS_USER             => "Wikipedysta",
+    NS_USER_TALK        => "Dyskusja_Wikipedysty",
+    NS_WIKIPEDIA        => "Wikipedia",
+    NS_WIKIPEDIA_TALK   => "Dyskusja_Wikipedii",
+    NS_IMAGE            => "Grafika",
+    NS_IMAGE_TALK       => "Dyskusja_grafiki",
+    NS_MEDIAWIKI        => "MediaWiki",
+    NS_MEDIAWIKI_TALK   => "Dyskusja_MediaWiki",
+    NS_TEMPLATE         => "Szablon",
+    NS_TEMPLATE_TALK    => "Dyskusja_szablonu",
+    NS_HELP             => "Pomoc",
+    NS_HELP_TALK        => "Dyskusja_pomocy",
+    NS_CATEGORY         => "Kategoria",
+    NS_CATEGORY_TALK    => "Dyskusja_kategorii"
 );
 
 /* private */ $wgQuickbarSettingsPl = array(
