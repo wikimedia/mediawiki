@@ -43,60 +43,103 @@
 require_once( 'commandLine.inc' );
 
 $wgLanguageCode = ucfirstlcrest($wgLanguageCode);
+/** Language messages we will use as reference. By default 'en' */
+$referenceMessages = $wgAllMessagesEn;
+$referenceLanguage = 'en';
+/** Language messages we will test. */ 
+$testMessages = array();
+$testLanguage = '';
+/** whereas we use an external language file */
+$externalRef = false;
 
 # FUNCTIONS
+/** @todo more informations !! */
+function usage() {
+	echo "php DiffLanguage.php [lang [file]]\n";	
+}
+
 /** Return a given string with first letter upper case, the rest lowercase */
 function ucfirstlcrest($string) {
 	return strtoupper(substr($string,0,1)).strtolower(substr($string,1));
 }
 
-/** Ask user a language code */
-function askLanguageCode() {
-	global $wgLanguageCode;
+/**
+ * Return a $wgAllmessages array shipped in MediaWiki
+ * @param string $languageCode Formated language code
+ * @return array The MediaWiki default $wgAllMessages array requested
+ */
+function getMediawikiMessages($languageCode = 'En') {
 
-	print "Enter the language you want to check [$wgLanguageCode]:";
-	$input = ucfirstlcrest( readconsole() );
-	if($input == '') $input = $wgLanguageCode;
-	return $input;	
+	$foo = "wgAllMessages$languageCode";
+	global $$foo;
+
+	// it might already be loaded in LocalSettings.php
+	if(!isset($$foo)) {
+		global $IP;
+		$langFile = $IP.'/languages/Language'.$languageCode.'.php';
+		if (file_exists( $langFile ) ) {
+			print "Including $langFile\n";
+			include($langFile);
+		} else die("ERROR: The file $langFile does not exist !\n");
+	}
+	return $$foo;
 }
 
+/**
+ * Return a $wgAllmessages array in a given file. Language of the array
+ * need to be given cause we can not detect which language it provides
+ * @param string $filename Filename of the file containing a message array
+ * @param string $languageCode Language of the external array
+ * @return array A $wgAllMessages array from an external file.
+ */
+function getExternalMessages($filename, $languageCode) {
+	print "Including external file $filename.\n";
+	include($filename);
+	$foo = "wgAllMessages$languageCode";
+	return $$foo;
+}
 
 # MAIN ENTRY
 if ( isset($args[0]) ) {
 	$lang = ucfirstlcrest($args[0],1);
-	// eventually against another language file
-	if( isset($args[1])) include($args[1]) or die("File {$args[1]} not found.\n");
+
+	// eventually against another language file we will use as reference instead
+	// of the default english language.
+	if( isset($args[1])) {
+		// we assume the external file contain an array of messages for the
+		// lang we are testing
+		$referenceMessages = getExternalMessages( $args[1], $lang );
+		$referenceLanguage = $lang;
+		$externalRef = true;
+	}
+
+	// Load datas from MediaWiki
+	$testMessages = getMediawikiMessages($lang);
+	$testLanguage = $lang;		
 } else {
-	// no lang given, prompt
-	$lang = askLanguageCode();
+	usage();
+	die();
 }
 
-if($lang != $wgLanguageCode) {
-	$langFile = "$IP/languages/Language$lang.php";
-	if (file_exists( $langFile ) ) {
-		print "Including $langFile\n";
-		include($langFile);
-	} else die("ERROR: The file $langFile does not exist !\n");
-}
-
-/* ugly hack to load the correct array, if you have a better way
-to achieve the same goal, recode it ! */
-$foo = "wgAllMessages$lang";
-$testme = &$$foo;
-/* end of ugly hack */
 
 # Get all references messages and check if they exist in the tested language
 $i = 0;
-print "\nChecking $lang localisation file against reference (en):\n----\n";
-foreach($wgAllMessagesEn as $index => $localized)
+
+$msg = "$testLanguage MediaWiki file against ";
+if($externalRef) { $msg .= 'external file "'.$args[1].'" assuming it provides '; }
+else { $msg .= 'internal file '; }
+$msg .= $referenceLanguage.":\n----\n";
+
+echo $msg;
+foreach($referenceMessages as $index => $localized)
 {
-	if(!(isset($testme[$index]))) {
+	if(!(isset($testMessages[$index]))) {
 		$i++;
-		print "$lang: $index\n";
+		print "Language$testLanguage.php is missing: $index\n";
 	}
 }
-
-echo "----\n";
-echo "$lang language is complete at ".number_format((100 - $i/count($wgAllMessagesEn) * 100),2)."%\n";
+echo "----\n".$msg;
+echo "$referenceLanguage language is complete at ".number_format((100 - $i/count($wgAllMessagesEn) * 100),2)."%\n";
 echo "$i unlocalised messages of the ".count($wgAllMessagesEn)." messages available.\n";
 print_r($time);
+?>
