@@ -42,14 +42,22 @@ $wgMetaNamespace    = FALSE;
  * @global string $wgServer
  */
 $wgServer = '';
+
+if( isset( $_SERVER['SERVER_NAME'] ) ) {
+	$wgServerName = $_SERVER['SERVER_NAME'];
+} elseif( isset( $_SERVER['HOSTNAME'] ) ) {
+	$wgServerName = $_SERVER['HOSTNAME'];
+} else {
+	# FIXME: Fall back on... something else?
+	$wgServerName = 'localhost';
+}
+
 # check if server use https:
 $wgProto = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
 
-if ( @$wgCommandLineMode ) {
-	$wgServer = $wgProto.'://localhost';
-} else {
-	$wgServer           = $wgProto.'://' . $_SERVER['SERVER_NAME'];
-	if( $_SERVER['SERVER_PORT'] != 80 ) $wgServer .= ":" . $_SERVER['SERVER_PORT'];
+$wgServer = $wgProto.'://' . $wgServerName;
+if( isset( $_SERVER['SERVER_PORT'] ) && $_SERVER['SERVER_PORT'] != 80 ) {
+	$wgServer .= ":" . $_SERVER['SERVER_PORT'];
 }
 unset($wgProto);
 
@@ -118,7 +126,7 @@ $wgUploadBaseUrl    = "";
  * Default to wikiadmin@SERVER_NAME
  * @global string $wgEmergencyContact
  */
-$wgEmergencyContact = 'wikiadmin@' . $_SERVER['SERVER_NAME'];
+$wgEmergencyContact = 'wikiadmin@' . $wgServerName;
 
 /**
  * Password reminder email address
@@ -126,7 +134,7 @@ $wgEmergencyContact = 'wikiadmin@' . $_SERVER['SERVER_NAME'];
  * Default to apache@SERVER_NAME
  * @global string $wgPasswordSender
  */
-$wgPasswordSender	= 'Wikipedia Mail <apache@' . $_SERVER['SERVER_NAME'] . '>';
+$wgPasswordSender	= 'Wikipedia Mail <apache@' . $wgServerName . '>';
 
 
 /**
