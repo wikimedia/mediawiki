@@ -273,8 +273,13 @@ class ImagePage extends Article {
 
 	function revert()
 	{
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgUser;
 		global $wgUseSquid, $wgInternalServer, $wgDeferredUpdateList;
+
+		if ( $wgUser->isBlocked() ) {
+			$wgOut->blockedIPpage();
+			return;
+		}
 
 		$oldimage = $wgRequest->getText( 'oldimage' );
 		if ( strlen( $oldimage ) < 16 ) {

@@ -37,7 +37,7 @@ class EditPage {
 			return;
 		}
 		if ( $wgUser->isBlocked() ) {
-			$this->blockedIPpage();
+			$wgOut->blockedIPpage();
 			return;
 		}
 		if ( !$wgUser->getID() && $wgWhitelistEdit ) {
@@ -139,7 +139,7 @@ class EditPage {
 				return;
 			}
 			if ( $wgUser->isBlocked() ) {
-				$this->blockedIPpage();
+				$wgOut->blockedIPpage();
 				return;
 			}
 			if ( !$wgUser->getID() && $wgWhitelistEdit ) {
@@ -441,32 +441,6 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		}
 
 	}
-
-	function blockedIPpage()
-	{
-		global $wgOut, $wgUser, $wgLang, $wgIP;
-
-		$wgOut->setPageTitle( wfMsg( "blockedtitle" ) );
-		$wgOut->setRobotpolicy( "noindex,nofollow" );
-		$wgOut->setArticleRelated( false );
-
-		$id = $wgUser->blockedBy();
-		$reason = $wgUser->blockedFor();
-                $ip = $wgIP;
-		
-		if ( is_numeric( $id ) ) {
-	                $name = User::whoIs( $id );
-		} else {
-			$name = $id;
-		}
-		$link = "[[" . $wgLang->getNsText( Namespace::getUser() ) .
-		  ":{$name}|{$name}]]";
-
-		$wgOut->addWikiText( wfMsg( "blockedtext", $link, $reason, $ip, $name ) );
-		$wgOut->returnToMain( false );
-	}
-
-
 
 	function userNotLoggedInPage()
 	{

@@ -757,6 +757,31 @@ class OutputPage {
 		# $ret .= "<!--[if gte IE 5.5000]><script type='text/javascript' src='$fix'></script><![endif]-->";
 		return $ret;
 	}
+
+	function blockedIPpage()
+	{
+		global $wgUser, $wgLang, $wgIP;
+
+		$this->setPageTitle( wfMsg( "blockedtitle" ) );
+		$this->setRobotpolicy( "noindex,nofollow" );
+		$this->setArticleRelated( false );
+
+		$id = $wgUser->blockedBy();
+		$reason = $wgUser->blockedFor();
+                $ip = $wgIP;
+		
+		if ( is_numeric( $id ) ) {
+	                $name = User::whoIs( $id );
+		} else {
+			$name = $id;
+		}
+		$link = "[[" . $wgLang->getNsText( Namespace::getUser() ) .
+		  ":{$name}|{$name}]]";
+
+		$this->addWikiText( wfMsg( "blockedtext", $link, $reason, $ip, $name ) );
+		$this->returnToMain( false );
+	}
+	
 }
 
 }
