@@ -1458,7 +1458,9 @@ Type the name of the user in the box and press the button to make the user an ad
 'makesysop'         => 'Make a user into a sysop',
 
 # Validation
-'val_clear_old' => 'Clear my other validation data for $1',
+'val_yes' => 'Yes',
+'val_no' => 'No',
+'val_clear_old' => 'Clear my older validation data',
 'val_merge_old' => 'Use my previous assessment where selected \'No opinion\'',
 'val_form_note' => '<b>Hint:</b> Merging your data means that for the article
 revision you select, all options where you have specified <i>no opinion</i>
