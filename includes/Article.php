@@ -706,7 +706,7 @@ class Article {
 			WHERE old_namespace = $user
 			AND old_title = $encDBkey
 			AND old_user != $user
-			GROUP BY old_user
+			GROUP BY old_user, old_user_text
 			ORDER BY timestamp DESC";
 
 		if ($limit > 0) { $sql .= ' LIMIT '.$limit; }
