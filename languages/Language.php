@@ -394,6 +394,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	"Whatlinkshere" => "",
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
+	"Blockme"       => "",
 	"Booksources"	=> "External book sources",
 #	"Categories"	=> "Page categories",
 	"Export"		=> "XML page export",
@@ -1277,6 +1278,9 @@ the list of currently operational bans and blocks.",
 "range_block_disabled"	=> "The sysop ability to create range blocks is disabled.",
 "ipb_expiry_invalid"	=> "Expiry time invalid.",
 "ip_range_invalid"	=> "Invalid IP range.\n",
+"proxyblocker"	=> "Proxy blocker",
+"proxyblockreason"	=> "Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.",
+"proxyblocksuccess"	=> "Done.\n",
 
 # Developer tools
 #

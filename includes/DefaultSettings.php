@@ -129,6 +129,10 @@ $wgSysopRangeBans		= false; # Allow sysops to ban IP ranges
 $wgDefaultBlockExpiry	= "24 hours"; # default expiry time
                                 # strtotime format, or "infinite" for an infinite block
 $wgAutoblockExpiry		= 86400; # Number of seconds before autoblock entries expire
+$wgBlockOpenProxies = false; # Automatic open proxy test on edit
+$wgProxyPorts = array( 80, 81, 1080, 3128, 8080 );
+$wgProxyScriptPath = "$IP/proxy_check.php";
+$wgProxyMemcExpiry = 86400;
 
 # Client-side caching:
 $wgCachePages       = true; # Allow client-side caching of pages
