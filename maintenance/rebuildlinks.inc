@@ -1,5 +1,7 @@
 <?php
 
+die( "rebuildLinks.inc needs to be updated for the new schema\n" );
+
 # Functions for rebuilding the link tracking tables; must
 # be included within a script that also includes the Setup.
 # See rebuildlinks.php, for example.

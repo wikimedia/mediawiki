@@ -95,7 +95,9 @@ function wfSpecialDisambiguations()
 	list( $limit, $offset ) = wfCheckLimits();
 
 	$dp = wfStrencode( wfMsg("disambiguationspage") );
-
+	
+	die( "wfSpecialDisambiguation is broken. Link tables have changed...\n" );
+	
 	$sql = "SELECT la.l_from,la.l_to,"
 		. " lb.l_from AS source,lb.l_to AS dest,"
 		. " c.cur_id, c.cur_title AS dt"
@@ -142,6 +144,7 @@ function wfSpecialDoubleRedirects()
 
 	list( $limit, $offset ) = wfCheckLimits();
 
+	die( "wfSpecialDoubleRedirects() is broken for now; link tables are changed." );
 	$sql = "SELECT l_from,l_to,cb.cur_text AS rt,cb.cur_title AS ti FROM links,cur AS ca, cur AS cb WHERE ca.cur_is_redirect=1 AND cb.cur_is_redirect=1 AND l_to=cb.cur_id AND l_from=ca.cur_title AND ca.cur_namespace=0 LIMIT {$offset}, {$limit}" ;
 
 	$res = wfQuery( $sql, DB_READ, $fname );

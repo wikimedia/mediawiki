@@ -95,8 +95,8 @@ class ImagePage extends Article {
 
 		$wgOut->addHTML( "<h2>" . wfMsg( "imagelinks" ) . "</h2>\n" );
 
-		$sql = "SELECT il_from FROM imagelinks WHERE il_to='" .
-		  wfStrencode( $this->mTitle->getDBkey() ) . "'";
+		$sql = "SELECT cur_namespace,cur_title FROM imagelinks,cur WHERE il_to='" .
+		  wfStrencode( $this->mTitle->getDBkey() ) . "' AND il_from=cur_id";
 		$res = wfQuery( $sql, DB_READ, "Article::imageLinks" );
 
 		if ( 0 == wfNumRows( $res ) ) {
@@ -107,8 +107,8 @@ class ImagePage extends Article {
 
 		$sk = $wgUser->getSkin();
 		while ( $s = wfFetchObject( $res ) ) {
-			$name = $s->il_from;
-			$link = $sk->makeKnownLink( $name, "" );
+			$name = Title::MakeTitle( $s->cur_namespace, $s->cur_title );
+			$link = $sk->makeKnownLinkObj( $name, "" );
 			$wgOut->addHTML( "<li>{$link}</li>\n" );
 		}
 		$wgOut->addHTML( "</ul>\n" );

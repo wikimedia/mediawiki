@@ -186,8 +186,21 @@ class Database {
 	}
 	
 	function freeResult( $res ) { mysql_free_result( $res ); }
-	function fetchObject( $res ) { return mysql_fetch_object( $res ); }
-	function numRows( $res ) { return mysql_num_rows( $res ); }
+	function fetchObject( $res ) {
+		@$row = mysql_fetch_object( $res );
+		# FIXME: HACK HACK HACK HACK debug
+		if( mysql_errno() ) {
+			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( mysql_error() ) );
+		}
+		return $row;
+	}
+	function numRows( $res ) {
+		@$n = mysql_num_rows( $res ); 
+		if( mysql_errno() ) {
+			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( mysql_error() ) );
+		}
+		return $n;
+	}
 	function numFields( $res ) { return mysql_num_fields( $res ); }
 	function fieldName( $res, $n ) { return mysql_field_name( $res, $n ); }
 	function insertId() { return mysql_insert_id( $this->mConn ); }

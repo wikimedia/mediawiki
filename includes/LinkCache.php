@@ -148,24 +148,7 @@ class LinkCache {
 		$fname = "LinkCache::preFill";
 		wfProfileIn( $fname );
 		# Note -- $fromtitle is a Title *object*
-		$dbkeyfrom = wfStrencode( $fromtitle->getPrefixedDBKey() );
 
-		if ( $wgEnablePersistentLC ) {
-			if( $this->fillFromLinkscc( $dbkeyfrom ) ){
-				return;
-			}
-		}
-
-		$sql = "SELECT cur_id,cur_namespace,cur_title
-			FROM cur,links
-			WHERE cur_id=l_to AND l_from='{$dbkeyfrom}'";
-		$res = wfQuery( $sql, DB_READ, $fname );
-		while( $s = wfFetchObject( $res ) ) {
-			$this->addGoodLink( $s->cur_id,
-				Title::makeName( $s->cur_namespace, $s->cur_title )
-				);
-		}
-		
 		$this->suspend();
 		$id = $fromtitle->getArticleID();
 		$this->resume();
@@ -174,6 +157,22 @@ class LinkCache {
 			wfDebug( "$fname - got id 0 for title '" . $fromtitle->getPrefixedDBkey() . "'\n" );
 			wfProfileOut( $fname );
 			return;
+		}
+		
+		if ( $wgEnablePersistentLC ) {
+			if( $this->fillFromLinkscc( $id ) ){
+				return;
+			}
+		}
+
+		$sql = "SELECT cur_id,cur_namespace,cur_title
+			FROM cur,links
+			WHERE cur_id=l_to AND l_from=$id";
+		$res = wfQuery( $sql, DB_READ, $fname );
+		while( $s = wfFetchObject( $res ) ) {
+			$this->addGoodLink( $s->cur_id,
+				Title::makeName( $s->cur_namespace, $s->cur_title )
+				);
 		}
 		
 		$sql = "SELECT bl_to
@@ -264,8 +263,9 @@ class LinkCache {
 		$this->mImageLinks = array();
 	}
 
-	/* private */ function fillFromLinkscc( $dbkeyfrom ){ 
-		$res = wfQuery("SELECT lcc_cacheobj FROM linkscc WHERE lcc_title = '{$dbkeyfrom}'", 
+	/* private */ function fillFromLinkscc( $id ){ 
+		$id = IntVal( $id );
+		$res = wfQuery("SELECT lcc_cacheobj FROM linkscc WHERE lcc_pageid = $id", 
 			DB_READ);
 		$row = wfFetchObject( $res );
 		if( $row == FALSE)
@@ -297,15 +297,15 @@ class LinkCache {
 		} else {
 			$ser = wfStrencode( serialize( $this ) );
 		}
-		wfQuery("REPLACE INTO linkscc(lcc_pageid,lcc_title,lcc_cacheobj) " .
-			"VALUES({$pid}, '{$dbkeyfrom}', '{$ser}')", DB_WRITE);
+		wfQuery("REPLACE INTO linkscc(lcc_pageid,lcc_cacheobj) " .
+			"VALUES({$pid}, '{$ser}')", DB_WRITE);
 	}
 
 	# $pid is a page id
 	/* static */ function linksccClearLinksTo( $pid ){
 		$pid = intval( $pid );
 		wfQuery("DELETE linkscc FROM linkscc,links ".
-			"WHERE lcc_title=links.l_from AND l_to={$pid}", DB_WRITE);
+			"WHERE lcc_pageid=links.l_from AND l_to={$pid}", DB_WRITE);
 		wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
 	}
 

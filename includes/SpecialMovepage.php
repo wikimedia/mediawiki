@@ -340,32 +340,29 @@ class MovePageForm {
 		
 		RecentChange::notifyMove( $now, $this->ot, $this->nt, $wgUser, $mt );
 
-		# The only link from here should be the old redirect
-
-		$sql = "DELETE FROM links WHERE l_from='{$this->nft}'";
-		wfQuery( $sql, DB_WRITE, $fname );
-
-		$sql = "UPDATE links SET l_from='{$this->nft}' WHERE l_from='{$this->oft}'";
-		wfQuery( $sql, DB_WRITE, $fname );
-
 		# Swap links.  Using MAXINT as a temp; if there's ever an article
 		# with id 4294967295, this will fail, but I think that's pretty safe
 
+		# FIXME: LOCK TABLE
+		# Reassign links to the old title to LIMBO
 		$sql = "UPDATE links SET l_to=4294967295 WHERE l_to={$this->oldid}";
 		wfQuery( $sql, DB_WRITE, $fname );
 
+		# Reassign links to the new title to the old title
 		$sql = "UPDATE links SET l_to={$this->oldid} WHERE l_to={$this->newid}";
 		wfQuery( $sql, DB_WRITE, $fname );
 
+		# Reassign links from LIMBO to the new title. Ah, clear as mud!
 		$sql = "UPDATE links SET l_to={$this->newid} WHERE l_to=4294967295";
 		wfQuery( $sql, DB_WRITE, $fname );
 
 		# Note: the insert below must be after the updates above!
 
-		$sql = "INSERT INTO links (l_from,l_to) VALUES ('{$this->oft}',{$this->oldid})";
+		# Now, we record the link from the redirect to the new title.
+		# It should have no other outgoing links...
+		$sql = "DELETE FROM links WHERE l_from={$this->newid}";
 		wfQuery( $sql, DB_WRITE, $fname );
-
-		$sql = "UPDATE imagelinks SET il_from='{$this->nft}' WHERE il_from='{$this->oft}'";
+		$sql = "INSERT INTO links (l_from,l_to) VALUES ({$this->newid},{$this->oldid})";
 		wfQuery( $sql, DB_WRITE, $fname );
 	}
 
@@ -406,22 +403,18 @@ class MovePageForm {
 		RecentChange::notifyMove( $now, $this->ot, $this->nt, $wgUser, $comment );
 		Article::onArticleCreate( $this->nt );
 
-		$sql = "UPDATE links SET l_from='{$this->nft}' WHERE l_from='{$this->oft}'";
-		wfQuery( $sql, DB_WRITE, $fname );
-
+		# Any text links to the old title must be reassigned to the redirect
 		$sql = "UPDATE links SET l_to={$this->newid} WHERE l_to={$this->oldid}";
 		wfQuery( $sql, DB_WRITE, $fname );
 
-		$sql = "INSERT INTO links (l_from,l_to) VALUES ('{$this->oft}',{$this->oldid})";
+		# Record the just-created redirect's linking to the page
+		$sql = "INSERT INTO links (l_from,l_to) VALUES ({$this->newid},{$this->oldid})";
 		wfQuery( $sql, DB_WRITE, $fname );
 
 		# Non-existent target may have had broken links to it; these must
 		# now be removed and made into good links.
 		$update = new LinksUpdate( $this->oldid, $this->nft );
 		$update->fixBrokenLinks();
-
-		$sql = "UPDATE imagelinks SET il_from='{$this->nft}' WHERE il_from='{$this->oft}'";
-		wfQuery( $sql, DB_WRITE, $fname );
 	}
 
 	function updateWatchlists()

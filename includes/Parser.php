@@ -200,7 +200,7 @@ class Parser
 
 		$doesexist = false ;
 		if ( $doesexist ) {
-			$sql = "SELECT l_from FROM links WHERE l_to={$id}" ;
+			$sql = "SELECT cur_title,cur_namespace FROM cur,links WHERE l_to={$id} AND l_from=cur_id";
 		} else {
 			$sql = "SELECT cur_title,cur_namespace FROM cur,brokenlinks WHERE bl_to={$id} AND bl_from=cur_id" ;
 		}
@@ -211,13 +211,9 @@ class Parser
 		#  $t = new Title ; 
 		#  $t->newFromDBkey ( $x->l_from ) ;
 		#  $t = $t->getText() ;
-			if ( $doesexist ) {
-				$t = $x->l_from ;
-			} else {
-				$t = $wgLang->getNsText ( $x->cur_namespace ) ;
-				if ( $t != "" ) $t .= ":" ;
-				$t .= $x->cur_title ;
-			}
+			$t = $wgLang->getNsText ( $x->cur_namespace ) ;
+			if ( $t != "" ) $t .= ":" ;
+			$t .= $x->cur_title ;
 
 			$y = explode ( ":" , $t , 2 ) ;
 			if ( count ( $y ) == 2 && $y[0] == $cat ) {

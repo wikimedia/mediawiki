@@ -18,6 +18,12 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 		return;
 	}
 	$nt = Title::newFromURL( $target );
+	if( !$nt ) {
+		$wgOut->errorpage( "notargettitle", "notargettext" );
+		return;
+	}
+	$id = $nt->getArticleId();
+	
 	$wgOut->setSubtitle( wfMsg( "rclsub", $nt->getPrefixedText() ) );
 
 	if ( ! $days ) {
@@ -44,9 +50,8 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 
 	$sql = "SELECT cur_id,cur_namespace,cur_title,cur_user,cur_comment," .
 	  "cur_user_text,cur_timestamp,cur_minor_edit,cur_is_new FROM links, cur " .
-	  "WHERE cur_timestamp > '{$cutoff}' {$cmq} AND l_to=cur_id AND l_from='" .
-      wfStrencode( $nt->getPrefixedDBkey() ) . "' GROUP BY cur_id " .
-	  "ORDER BY inverse_timestamp LIMIT {$limit}";
+	  "WHERE cur_timestamp > '{$cutoff}' {$cmq} AND l_to=cur_id AND l_from=$id " .
+      "GROUP BY cur_id ORDER BY inverse_timestamp LIMIT {$limit}";
 	$res = wfQuery( $sql, DB_READ, $fname );
 
 	$note = wfMsg( "rcnote", $limit, $days );
