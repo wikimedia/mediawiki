@@ -250,7 +250,7 @@ class UserlevelsForm extends HTMLForm {
 		$selectname = $this->mName.'-'.$selectname;
 		$dbr =& wfGetDB( DB_SLAVE );
 		$group = $dbr->tableName( 'group' );
-		$sql = 'SELECT group_id, group_name FROM $group';
+		$sql = "SELECT group_id, group_name FROM $group";
 		$res = $dbr->query($sql,'wfSpecialAdmin');
 		
 		$out = wfMsg($selectname);
