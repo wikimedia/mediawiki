@@ -414,7 +414,7 @@ car elle ralentit la base de données à un point tel que plus personne
 ne peut utiliser le wiki.", // Looxix 
 "perfdisabledsub" => "Ceci est une copie de sauvegarde de $1:", // Looxix 
 "viewsource"	=> "Voir le texte source",
-"protectedtext"	=> "Cette page a été bloquée pour empêcher sa modification. Consultez [[Wikipédia:Page protégée]] pour voir les différentes raisons possible.", // Looxix
+"protectedtext"	=> "Cette page a été bloquée pour empêcher sa modification. Consultez [[Wikipédia:Page protégée]] pour voir les différentes raisons possibles.", // Looxix
 
 # Login and logout pages
 #
