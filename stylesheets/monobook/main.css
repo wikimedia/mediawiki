@@ -329,7 +329,6 @@ div.thumb {
     margin-bottom: 0.5em;
     border-style: solid; border-color: White;
     width: auto;
-    overflow: hidden;
 }
 div.thumb div {
     border:1px solid #cccccc;
@@ -337,6 +336,7 @@ div.thumb div {
     background-color:#f9f9f9;
     font-size: 94%;
     text-align: center;
+    overflow: hidden;
 }
 div.thumb div a img {
     border:1px solid #cccccc;
