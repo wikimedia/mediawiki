@@ -213,7 +213,7 @@ class /* abstract */ SqlBagOStuff extends BagOStuff {
 		$this->delete( $key );
 		$this->_query(
 			"INSERT INTO $0 (keyname,value,exptime) VALUES('$1','$2','$exp')",
-			$key, serialize(&$value));
+			$key, serialize($value));
 		return true; /* ? */
 	}
 	

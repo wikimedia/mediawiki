@@ -1243,7 +1243,7 @@ class Title {
 				# add it to the stack
 				$stack[$this->getText()] = $tpar->getText();
 				# grab its parents
-				$result .= $tpar->getAllParentCategories(&$stack);
+				$result .= $tpar->getAllParentCategories($stack);
 			}
 		}
 

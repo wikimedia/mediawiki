@@ -402,7 +402,7 @@ class Skin {
 		if($wgUseCategoryBrowser) {
 			$s .= '<br/><hr/>';
 			$catstack = array();
-			$s.= $wgTitle->getAllParentCategories(&$catstack);
+			$s.= $wgTitle->getAllParentCategories($catstack);
 		}
 		
 		return $s;
