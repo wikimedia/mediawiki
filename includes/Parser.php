@@ -1263,7 +1263,7 @@ class Parser
 					} else {
 						$inBlockElem = true;
 					}
-				} else if ( !$inBlockElem ) {
+				} else if ( !$inBlockElem && !$this->mInPre ) {
 					if ( " " == $t{0} and trim($t) != '' ) {
 						// pre
 						if ($this->mLastSection != 'pre') {
