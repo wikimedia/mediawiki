@@ -13,18 +13,22 @@ CREATE TABLE user (
   user_email tinytext NOT NULL default '',
   user_options blob NOT NULL default '',
   user_touched char(14) binary NOT NULL default '',
-  UNIQUE KEY user_id (user_id)
-) PACK_KEYS=1;
+  PRIMARY KEY user_id (user_id),
+  INDEX user_name (user_name(10))
+);
 
+-- TODO: de-blob this; it should be a property table
 CREATE TABLE user_rights (
   user_id int(5) unsigned NOT NULL,
   user_rights tinyblob NOT NULL default '',
   UNIQUE KEY user_id (user_id)
-) PACK_KEYS=1;
+);
 
 CREATE TABLE user_newtalk (
   user_id int(5) NOT NULL default '0',
-  user_ip varchar(40) NOT NULL default ''
+  user_ip varchar(40) NOT NULL default '',
+  INDEX user_id (user_id),
+  INDEX user_ip (user_ip)
 );
 
 CREATE TABLE cur (
@@ -44,8 +48,19 @@ CREATE TABLE cur (
   cur_random real unsigned NOT NULL,
   cur_touched char(14) binary NOT NULL default '',
   inverse_timestamp char(14) binary NOT NULL default '',
-  UNIQUE KEY cur_id (cur_id)
-) PACK_KEYS=1;
+  PRIMARY KEY cur_id (cur_id),
+  UNIQUE INDEX name_title (cur_namespace,cur_title),
+  
+  -- Is this one necessary?
+  INDEX cur_title (cur_title(20)),
+  
+  INDEX cur_timestamp (cur_timestamp),
+  INDEX (cur_random),
+  INDEX name_title_timestamp (cur_namespace,cur_title,inverse_timestamp),
+  INDEX user_timestamp (cur_user,inverse_timestamp),
+  INDEX usertext_timestamp (cur_user_text,inverse_timestamp),
+  INDEX namespace_redirect_timestamp(cur_namespace,cur_is_redirect,cur_timestamp)
+);
 
 CREATE TABLE old (
   old_id int(8) unsigned NOT NULL auto_increment,
@@ -59,8 +74,13 @@ CREATE TABLE old (
   old_minor_edit tinyint(1) NOT NULL default '0',
   old_flags tinyblob NOT NULL default '',
   inverse_timestamp char(14) binary NOT NULL default '',
-  UNIQUE KEY old_id (old_id)
-) PACK_KEYS=1;
+  
+  PRIMARY KEY old_id (old_id),
+  INDEX old_timestamp (old_timestamp),
+  INDEX name_title_timestamp (old_namespace,old_title,inverse_timestamp),
+  INDEX user_timestamp (old_user,inverse_timestamp),
+  INDEX usertext_timestamp (old_user_text,inverse_timestamp)
+);
 
 CREATE TABLE archive (
   ar_namespace tinyint(2) unsigned NOT NULL default '0',
@@ -71,8 +91,10 @@ CREATE TABLE archive (
   ar_user_text varchar(255) binary NOT NULL,
   ar_timestamp char(14) binary NOT NULL default '',
   ar_minor_edit tinyint(1) NOT NULL default '0',
-  ar_flags tinyblob NOT NULL default ''
-) PACK_KEYS=1;
+  ar_flags tinyblob NOT NULL default '',
+  
+  KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
+);
 
 --
 -- Track links that do exist
@@ -156,8 +178,11 @@ CREATE TABLE ipblocks (
   ipb_timestamp char(14) binary NOT NULL default '',
   ipb_auto tinyint(1) NOT NULL default '0',
   ipb_expiry char(14) binary NOT NULL default '',
-  UNIQUE KEY ipb_id (ipb_id)
-) PACK_KEYS=1;
+
+  PRIMARY KEY ipb_id (ipb_id),
+  INDEX ipb_address (ipb_address),
+  INDEX ipb_user (ipb_user)
+);
 
 CREATE TABLE image (
   img_name varchar(255) binary NOT NULL default '',
@@ -166,8 +191,10 @@ CREATE TABLE image (
   img_user int(5) unsigned NOT NULL default '0',
   img_user_text varchar(255) binary NOT NULL default '',
   img_timestamp char(14) binary NOT NULL default '',
-  UNIQUE KEY img_name (img_name)
-) PACK_KEYS=1;
+  PRIMARY KEY img_name (img_name),
+  INDEX img_size (img_size),
+  INDEX img_timestamp (img_timestamp)
+);
 
 CREATE TABLE oldimage (
   oi_name varchar(255) binary NOT NULL default '',
@@ -176,8 +203,9 @@ CREATE TABLE oldimage (
   oi_description tinyblob NOT NULL default '',
   oi_user int(5) unsigned NOT NULL default '0',
   oi_user_text varchar(255) binary NOT NULL default '',
-  oi_timestamp char(14) binary NOT NULL default ''
-) PACK_KEYS=1;
+  oi_timestamp char(14) binary NOT NULL default '',
+  INDEX oi_name (oi_name(10))
+);
 
 CREATE TABLE recentchanges (
   rc_id int(8) NOT NULL auto_increment,
@@ -199,15 +227,22 @@ CREATE TABLE recentchanges (
   rc_moved_to_title varchar(255) binary NOT NULL default '',
   rc_patrolled tinyint(3) unsigned NOT NULL default '0',
   rc_ip char(15) NOT NULL default '',
-  PRIMARY KEY rc_id (rc_id)
-) PACK_KEYS=1;
+  
+  PRIMARY KEY rc_id (rc_id),
+  INDEX rc_timestamp (rc_timestamp),
+  INDEX rc_namespace_title (rc_namespace, rc_title),
+  INDEX rc_cur_id (rc_cur_id),
+  INDEX new_name_timestamp(rc_new,rc_namespace,rc_timestamp),
+  INDEX rc_ip (rc_ip)
+);
 
 CREATE TABLE watchlist (
   wl_user int(5) unsigned NOT NULL,
   wl_namespace tinyint(2) unsigned NOT NULL default '0',
   wl_title varchar(255) binary NOT NULL default '',
-  UNIQUE KEY (wl_user, wl_namespace, wl_title)
-) PACK_KEYS=1;
+  UNIQUE KEY (wl_user, wl_namespace, wl_title),
+  KEY namespace_title (wl_namespace,wl_title)
+);
 
 CREATE TABLE math (
   math_inputhash varchar(16) NOT NULL,
@@ -225,8 +260,11 @@ CREATE TABLE searchindex (
   si_page int(8) unsigned NOT NULL,
   si_title varchar(255) NOT NULL default '',
   si_text mediumtext NOT NULL default '',
-  UNIQUE KEY (si_page)
-) TYPE=MyISAM PACK_KEYS=1;
+  UNIQUE KEY (si_page),
+  FULLTEXT si_title (si_title),
+  FULLTEXT si_text (si_text)
+
+) TYPE=MyISAM;
 
 CREATE TABLE interwiki (
   iw_prefix char(32) NOT NULL,
