@@ -56,6 +56,7 @@ include( "LanguageUtf8.php" );
  "hideminor" => "Сакриј мале измене у списку скорашњих променама",
  "usenewrc" => "Побољшана списку скорашњих промена (не за све бровсере)",
  "numberheadings" => "Аутоматски нумериши поднаслове",
+	"showtoolbar" => "Show edit toolbar",
  "editondblclick" => "Мењај странице двоструким кликом (захтева JavaScript)",
  "editsection"=>"Омогући измену делова [мењај] везама",
  "editsectiononrightclick"=>"Омогући измену делова десним кликом<br> на њихове наслове (захтева JavaScript)",

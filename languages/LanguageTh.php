@@ -52,6 +52,7 @@
 	"hideminor" => "ไม่แสดงการแก้ไขย่อยใน recent changes",
 	"usenewrc" => "Enhanced recent changes (ไม่สามารถใช้ได้กับทุกเว็บบราวเซอร์)",
 	"numberheadings" => "ใส่ตัวเลขหน้าหัวข้อโดยอัตโนมัติ",
+	"showtoolbar" => "Show edit toolbar",
 	"editondblclick" => "แก้ไขหน้าโดยใช้ double click (ผ่าน JavaScript)",
 	"editsection"=>"สามารถแก้ไขเฉพาะส่วนโดยใช้ลิงก์ [แก้ไข]",
 	"editsectiononrightclick"=>"สามารถแก้ไขเฉพาะส่วนโดยใช้ right click<br> บนชื่อส่วนย่อย (ผ่าน JavaScript)",

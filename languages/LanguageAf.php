@@ -45,6 +45,7 @@
 	"hideminor" => "Moenie klein wysigings in die nuwe wysigingslys wys nie.",
 	"usenewrc" => "Verbeterde nuwe wysigingslys (vir moderne blaaiers).",
 	"numberheadings" => "Automatiese nommer opskrifte.",
+	"showtoolbar" => "Show edit toolbar",
 	"rememberpassword" => "Onthou wagwoord oor sessies.",
 	"editwidth" => "Wysigingsboks met volle wydte.",
 	"editondblclick" => "Wysig blaaie met dubbelkliek (JavaScript).",

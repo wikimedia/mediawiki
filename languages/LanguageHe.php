@@ -57,6 +57,7 @@ include_once("LanguageUtf8.php");
 	"hideminor" => "הסתר שינויים משניים ברשימת השינויים האחרונים",
 	"usenewrc" => "רשימת שינויים אחרונים משופרת (לא מתאים לכל דפדפן)",
 	"numberheadings" => "מספר ראשי-פרקים אוטומטית",
+	"showtoolbar" => "Show edit toolbar",
 	"rememberpassword" => "זכור את הסיסמא שלי בפעמים הבאות",
 	"editwidth" => "תיבת העריכה ברוחב מלא",
 	"editondblclick" => "ערוך דפים בלחיצה כפולה (דורש ג'אווה סקריפט)",

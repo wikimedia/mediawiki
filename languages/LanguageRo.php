@@ -55,6 +55,7 @@ include_once("LanguageUtf8.php");
 	"hideminor" => "Ascunde schimbările minore în pagina de schimbări recente",
 	"usenewrc" => "Îmbunătăţeşte structura paginii de schimbări minore<br>(nu merge în toate browserele)",
 	"numberheadings" => "Auto-numerotează titlurile",
+	"showtoolbar" => "Show edit toolbar",
 	"editondblclick" => "Editează paginile cu dublu clic (JavaScript)",
         "editsection" => "Permite editarea secţiunilor folosind legături [editează] pe pagină",
 	"editsectiononrightclick"=>"Permite editarea secţiunilor la apăsarea<br>butonului din dreapta al mouse-ului pe titlu<br>(necesită JavaScript)",

@@ -44,6 +44,7 @@ include_once("LanguageUtf8.php");
 	"hideminor" => "V posledných úpravách neukazuj drobné úpravy",
 	"usenewrc" => "Špeciálne zobrazenie posledných úprav (vyžaduje JavaScript)",
 	"numberheadings" => "Automaticky čísluj odstavce",
+	"showtoolbar" => "Show edit toolbar",
 	"rememberpassword" => "Pamätaj si heslo aj nabudúce",
 	"editwidth" => "Maximálna šírka editovacieho okna",
 	"editondblclick" => "Edituj stránky po dvojkliku (JavaScript)",

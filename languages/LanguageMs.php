@@ -56,6 +56,7 @@
 	"hideminor" => "Sembunyi perubahan minor dalam perubahan terkini", #"Hide minor edits in recent changes",
 	"usenewrc" => "Peningkatan terbaru (bukan untuk semua pelayar)",
 	"numberheadings" => "Auto-number headings",
+	"showtoolbar" => "Show edit toolbar",
 	"editsection"=>"Papar pautan untuk sunting seksyen individu",
 	"showtoc"=>"Papar jadual kandungan bagi rencana melebihi 3 tajuk",# "Show table of contents for articles with more than 3 headings",
 

@@ -41,6 +41,7 @@
         "hideminor"        => "Göm små redigeringar vid senaste ändring",
 	"usenewrc"         => "Avancerad 'Senaste ändringar'",
         "numberheadings"   => "Automatisk numrering av överskrifter",
+	"showtoolbar" => "Show edit toolbar",
         "rememberpassword" => "Kom ihåg lösenord till nästa besök",
         "editwidth"        => "Redigeringsboxen har full bredd",
         "editondblclick"   => "Redigera sidor med dubbelklick (JavaScript)",

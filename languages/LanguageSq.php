@@ -57,6 +57,7 @@ include_once("LanguageUtf8.php");
 	"hideminor" => "Fshih redaktimet e vogla në ndryshimet e fundit",
 	"usenewrc" => "Ndryshimet e fundit me formatin e ri (jo për të gjithë shfletuesit)",
 	"numberheadings" => "Numëro automatikish mbishkrimet",
+	"showtoolbar" => "Show edit toolbar",
 	"editondblclick" => "Redakto faqet me dopjo-shtypje (JavaScript)",
 	"editsection"=>"Lejo redaktimin e seksioneve me [redakto] lidhje",
 	"editsectiononrightclick"=>"Lejo redaktimin e seksioneve me djathtas-shtypje<br> mbi emrin e seksionit (JavaScript)",

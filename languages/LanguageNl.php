@@ -56,6 +56,7 @@
  "hideminor" => "Kleine wijzigingen verbergen in recente wijzigingen",
  "usenewrc" => "Gebruik de uitgebreide Recente Wijzigingen-pagina (niet op alle browsers mogelijk)",
  "numberheadings" => "Koppen automatisch nummeren",
+	"showtoolbar" => "Show edit toolbar",
 "editondblclick" => "Dubbelklikken levert bewerkingspagina (vereist JavaScript)",
  "editsection" => "Maak het bewerken van deelpagina's mogelijk",
  "editsectionondblclick" => "Edit deelpagina's met rechtermuisklik (vereist JavaScript)",

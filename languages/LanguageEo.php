@@ -51,6 +51,7 @@ $wgEditEncoding		= "x";
 	"hideminor" => "Kaŝu malgrandajn redaktetojn ĉe <i>Lastaj ŝanĝoj</i>",
 	"usenewrc"  => "Novstila Lastaj Ŝanĝoj (bezonas JavaSkripton)",
 	"numberheadings" => "Aŭtomate numeru sekciojn",
+	"showtoolbar" => "Show edit toolbar",
 	"editondblclick" => "Redaktu per duobla alklako (JavaScript)",
 	"editsection" => "Montru [redaktu]-ligiloj por sekcioj",
 	"editsectiononrightclick" => "Redaktu sekciojn per dekstra musklako",

@@ -58,6 +58,7 @@ include_once("LanguageUtf8.php");
         "hideminor" => "Ukryj drobne zmiany w \"Ostatnich zmianach\"",
         "usenewrc" => "Konsolidacja ostatnich zmian (JavaScript)",
         "numberheadings" => "Automatyczna numeracja nagłówków",
+	"showtoolbar" => "Show edit toolbar",
         "editondblclick" => "Podwójne kliknięcie rozpoczyna edycję (JavaScript)",
                 "editsection" => "Możliwość edycji poszczególnych sekcji strony",
                 "editsectiononrightclick" => "Kliknięcie prawym klawiszem na tytule sekcji<br>rozpoczyna jej edycję (JavaScript)",

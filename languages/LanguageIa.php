@@ -47,6 +47,7 @@
 	"hideminor" => "Occultar modificationes recente minor",
 	"usenewrc" => "Modificationes recente meliorate (non functiona in tote le navigatores)",
 	"numberheadings" => "Numerar titulos automaticamente",
+	"showtoolbar" => "Show edit toolbar",
 	"rememberpassword" => "Recordar contrasigno inter sessiones (usa cookies)",
 	"editwidth" => "Cassa de redaction occupa tote le largor del fenestra",
 	"editondblclick" => "Duple clic pro modificar un pagina (usa JavaScript)",

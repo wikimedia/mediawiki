@@ -65,6 +65,7 @@
 	"hideminor" => "Esconder ediciones menores en Cambios Recientes",
 	"usenewrc" => "Cambios Recientes realzados (no para todos los navegadores)",
 	"numberheadings" => "Auto-numerar encabezados",        
+	"showtoolbar" => "Show edit toolbar",
 	"rememberpassword" => "Recordar la contraseña entre sesiones",
 	"editwidth" => "La caja de edición tiene el ancho máximo",
 	"editondblclick" => "Editar páginas con doble click (JavaScript)",

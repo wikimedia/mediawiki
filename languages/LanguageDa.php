@@ -63,6 +63,7 @@
 	"hideminor" => "Skjul mindre ændringer i seneste ændringer listen",
 	"usenewrc" => "Udvidet seneste ændringer liste<br>(ikke for alle browsere)",
 	"numberheadings" => "Automatisk nummerering af overskrifter",
+	"showtoolbar" => "Show edit toolbar",
 	"editondblclick" => "Redigér sider med dobbeltklik (JavaScript)",
 	"editsection"=>"Redigér afsnit ved hjælp af [redigér]-henvisning",
 	"editsectiononrightclick"=>"Redigér afsnit ved at højreklikke<br> på afsnittets titel (JavaScript)",

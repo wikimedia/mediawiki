@@ -60,6 +60,7 @@ if($wgMetaNamespace === FALSE)
 	"hideminor"		=> "Tekstwizigings wei litte út 'Koarts feroare'",
 	"usenewrc"		=> "Utwreide ferzje fan 'Koarts feroare' brûke (net mei alle blêdzjers mooglik)",
 	"numberheadings"	=> "Koppen fansels nûmerje",
+	"showtoolbar" => "Show edit toolbar",
 	"editondblclick"	=> "Dûbelklik jout bewurkingsside (freget JavaScript)",
 	"editsection"	=> "Jou [bewurk]-keppelings foar seksjebewurking",
 	"editsectiononrightclick" => "Rjochtsklik op sekjsetitels jout seksjebewurking (freget JavaScript)",

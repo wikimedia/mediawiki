@@ -68,6 +68,7 @@ include_once( "LanguageUtf8.php" );
 	"hideminor"        => "Skrij manjše popravke v trenutnih spremembah",
 	"usenewrc"         => "Izbolšane trenutne spremembe (ni za vse brskljalnike)",
 	"numberheadings"   => "Samodejno oštevilči poglavja",
+	"showtoolbar" => "Show edit toolbar",
 	"rememberpassword" => "Zapomni si geslo v vseh urejevanjih",
 	"editwidth"        => "Urejevalna škatla ima celo širino",
 	"editondblclick"   => "Urejuj strani z dvojnih klikom (JavaScript)",

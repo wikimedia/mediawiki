@@ -68,6 +68,7 @@ include_once( "LanguageUtf8.php" );
 	"hideminor" => "Amagar las <i>Cambiadas recentas</i> minoras",
 	"usenewrc" => "Cambiadas recentas melhorats<br> (non per tots los navigaires)",
 	"numberheadings" => "Numerotacion automatica de los títols",
+	"showtoolbar" => "Show edit toolbar",
 	"editondblclick" => "Editar paginas amb un doble clic (JavaScript)",
 	"editsection"	=> "Éditer une section via les liens [éditer]", //Looxix (Enable section editing via [edit] links)
 	"editsectiononrightclick"	=> "Éditer une section en cliquant à droite<br> sur le titre de la section", // Looxix 
