@@ -29,9 +29,10 @@ class ShortPagesPage extends QueryPage {
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$cur = $dbr->tableName( 'cur' );
+		$name = $dbr->addQuotes( $this->getName() );
 		
 		return
-			"SELECT 'Shortpages' as type,
+			"SELECT $name as type,
 					cur_namespace as namespace,
 			        cur_title as title,
 			        LENGTH(cur_text) AS value
