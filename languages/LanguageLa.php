@@ -42,14 +42,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesLa = array(
-	"Semper vertere PNG",
-	"HTML si admodum simplex, alioqui PNG",
-	"HTML si fieri potest, alioqui PNG",
-	"Stet ut TeX (pro navigatri texti)",
-	"Commendatum pro navigatri recentes"
-);
-
 /* private */ $wgUserTogglesLa = array(
 	"hover"		=> "Monstrare capsam impensam super wikinexos",
 	"underline" => "Subscribere nexi",
@@ -142,6 +134,15 @@
 	"Debug"			=> "Nuntii de refectis"
 );
 
+$wgAllMessagesLa = array(
+# Math
+	'mw_math_png' => "Semper vertere PNG",
+	'mw_math_simple' => "HTML si admodum simplex, alioqui PNG",
+	'mw_math_html' => "HTML si fieri potest, alioqui PNG",
+	'mw_math_source' => "Stet ut TeX (pro navigatri texti)",
+	'mw_math_modern' => "Commendatum pro navigatri recentes",
+	'mw_math_mathml' => 'MathML',
+);
 
 require_once( "LanguageUtf8.php" );
 
@@ -174,11 +175,6 @@ class LanguageLa extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesLa;
 		return $wgSkinNamesLa;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesLa;
-		return $wgMathNamesLa;
 	}
 
 	function getUserToggles() {

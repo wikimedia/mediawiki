@@ -57,14 +57,6 @@ if( $wgMetaNamespace == "Wikipedia" ) {
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesPl = array( 
-    "Zawsze jako PNG",
-        "HTML dla prostych, dla reszty PNG",
-        "Spróbuj HTML; jeśli zawiedzie, to PNG",
-        "Pozostaw w TeXu (tekst)",
-        "HTML, dla nowszych przeglądarek"
-); 
-
 /* private */ $wgUserTogglesPl = array(
         "hover" => "Pokazuj okienko podpowiedzi ponad linkami",
         "underline" => "Podkreślenie linków",
@@ -1044,6 +1036,13 @@ Wybierz, proszę, nową nazwę.",
 "movetalk" => "Przenieś także stronę <i>Dyskusji</i>, jeśli to możliwe.",
 "talkpagemoved" => "Odpowiednia strona z <i>Dyskusją</i> także została przeniesiona.",
 "talkpagenotmoved" => "Odpowiednia strona z <i>Dyskusją</i> <strong>nie</strong> została przeniesiona.",
+# Math
+    	'mw_math_png' => "Zawsze jako PNG",
+        'mw_math_simple' => "HTML dla prostych, dla reszty PNG",
+        'mw_math_html' => "Spróbuj HTML; jeśli zawiedzie, to PNG",
+        'mw_math_source' => "Pozostaw w TeXu (tekst)",
+        'mw_math_modern' => "HTML, dla nowszych przeglądarek",
+	'mw_math_mathml' => 'MathML'
 
 );
 
@@ -1082,11 +1081,6 @@ class LanguagePl extends LanguageUtf8 {
                 global $wgSkinNamesPl;
                 return $wgSkinNamesPl;
         }
-
-        function getMathNames() { 
-                global $wgMathNamesPl; 
-                return $wgMathNamesPl; 
-    }
 
         function getUserToggles() {
                 global $wgUserTogglesPl;

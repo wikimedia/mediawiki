@@ -40,13 +40,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesEt = array(
-	"Alati PNG",
-	"Kui väga lihtne, siis HTML, muidu PNG",
-	"Võimaluse korral HTML, muidu PNG",
-	"Säilitada TeX (tekstibrauserite puhul)",
-	"Soovitatav moodsate brauserite puhul"
-);
 
 /* private */ $wgUserTogglesEt = array(
 	"hover"		=> "Näita tekstimulli siselinkide peale",
@@ -875,6 +868,13 @@ to move a page.",
 "movetalk"		=> "Teisalda ka \"arutelu\", kui saab.",
 "talkpagemoved" => "Ka vastav arutelulehekülg on teisaldatud.",
 "talkpagenotmoved" => "Vastav arutelulehekülg jäi teisaldamata.",
+# Math
+	'mw_math_png' => "Alati PNG",
+	'mw_math_simple' => "Kui väga lihtne, siis HTML, muidu PNG",
+	'mw_math_html' => "Võimaluse korral HTML, muidu PNG",
+	'mw_math_source' => "Säilitada TeX (tekstibrauserite puhul)",
+	'mw_math_modern' => "Soovitatav moodsate brauserite puhul",
+	'mw_math_mathml' => 'MathML',
 
 );
 
@@ -914,11 +914,6 @@ class LanguageEt extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesEt;
 		return $wgSkinNamesEt;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesEt;
-		return $wgMathNamesEt;
 	}
 
 	function getUserToggles() {

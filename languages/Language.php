@@ -77,12 +77,12 @@ define( "MW_MATH_MODERN", 4 );
 define( "MW_MATH_MATHML", 5 );
 
 /* private */ $wgMathNamesEn = array(
-	MW_MATH_PNG => 'Always render PNG',
-	MW_MATH_SIMPLE => 'HTML if very simple or else PNG',
-	MW_MATH_HTML => 'HTML if possible or else PNG',
-	MW_MATH_SOURCE => 'Leave it as TeX (for text browsers)',
-	MW_MATH_MODERN => 'Recommended for modern browsers',
-	MW_MATH_MATHML => 'MathML if possible (experimental)',
+	MW_MATH_PNG => 'mw_math_png',
+	MW_MATH_SIMPLE => 'mw_math_simple',
+	MW_MATH_HTML => 'mw_math_html',
+	MW_MATH_SOURCE => 'mw_math_source',
+	MW_MATH_MODERN => 'mw_math_modern',
+	MW_MATH_MATHML => 'mw_math_mathml'
 );
 
 /* private */ $wgDateFormatsEn = array(
@@ -1316,6 +1316,13 @@ You might want to check the following regular expression for patterns that are c
 "numwatchers" => "Number of watchers: ",
 "numauthors" => "Number of distinct authors (article): ",
 "numtalkauthors" => "Number of distinct authors (discussion page): ",
+# Math options
+	'mw_math_png' => 'Always render PNG',
+	'mw_math_simple' => 'HTML if very simple or else PNG',
+	'mw_math_html' => 'HTML if possible or else PNG',
+	'mw_math_source' => 'Leave it as TeX (for text browsers)',
+	'mw_math_modern' => 'Recommended for modern browsers',
+	'mw_math_mathml' => 'MathML if possible (experimental)',
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* tooltips and access keys */

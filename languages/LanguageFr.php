@@ -44,14 +44,6 @@ require_once( "LanguageUtf8.php" );
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesFr = array(
-	"Toujours produire une image PNG",  
-	"HTML si très simple, autrement PNG", 
-	"HTML si possible, autrement PNG", 
-	"Laisser le code TeX original",
-	"Pour les navigateurs modernes"
-);
-
 /* private */ $wgUserTogglesFr = array(
 	"hover"  => "Afficher des info-bulles sur les liens wiki",
 	"underline" => "Liens soulignés",
@@ -1147,7 +1139,14 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 "lastmodifiedby" => "Cette page a été modifiée pour la dernière fois le $1 par $2",
 "and"	=> "et",
 "contributions" => "Basé sur le travail de $1.",
-"siteusers"	=> "Utilisateur(s) $1 de {{SITENAME}}"
+"siteusers"	=> "Utilisateur(s) $1 de {{SITENAME}}",
+# Math
+	'mw_math_png' => "Toujours produire une image PNG",  
+	'mw_math_simple' => "HTML si très simple, autrement PNG", 
+	'mw_math_html' => "HTML si possible, autrement PNG", 
+	'mw_math_source' => "Laisser le code TeX original",
+	'mw_math_modern' => "Pour les navigateurs modernes",
+	'mw_math_mathml' => 'MathML',
 );
 
 class LanguageFr extends LanguageUtf8
@@ -1207,11 +1206,6 @@ class LanguageFr extends LanguageUtf8
 	{
 		global $wgSkinNamesFr;
 		return $wgSkinNamesFr;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesFr;
-		return $wgMathNamesFr;
 	}
 
 

@@ -44,13 +44,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesCa = array(
-	"Produeix sempre PNG",
-	"HTML si és molt simple, si no PNG",
-	"HTML si és possible, si no PNG",
-	"Deixa com a TeX (per a navegadors de text)"
-);
-
 /* private */ $wgDateFormatsCa = array(
 	"No preference",
 	"January 15, 2001",
@@ -890,6 +883,11 @@ Incorporeu-les manualment, si us plau.",
 "movetalk"	=> "Reanomena també la pàgina de discussió si és aplicable.",
 "talkpagemoved" =>  "També ha estat reanomenada la pàgina de discussió corresponent.",
 "talkpagenotmoved" => "La pàgina de discussió corresponent <strong>no</strong> ha estat reanomenada.",
+#Math
+	'mw_math_png' => "Produeix sempre PNG",
+	'mw_math_simple' =>"HTML si és molt simple, si no PNG",
+	'mw_math_html' => "HTML si és possible, si no PNG",
+	'mw_math_source' => "Deixa com a TeX (per a navegadors de text)",
 
 );
 
@@ -931,12 +929,6 @@ class LanguageCa extends LanguageUtf8 {
 		global $wgSkinNamesCa;
 		return $wgSkinNamesCa;
 	}
-
-	function getMathNames() {
-		global $wgMathNamesCa;
-		return $wgMathNamesCa;
-	}
-
 
 	function getUserToggles() {
 		global $wgUserTogglesCa;

@@ -44,14 +44,6 @@
  "myskin" => "MySkin"
 );
 
-/* private */ $wgMathNamesMs = array(
-	"Sentiasa lakar PNG", # "Always render PNG",
-	"HTML jika ringkas atau PNG", # "HTML if very simple or else PNG",
-	"HTML jika boleh atau PNG", # "HTML if possible or else PNG",
-	"Biarkan sebagai TeX (untuk pelayar teks)", # "Leave it as TeX (for text browsers)",
-	"Dicadang untuk pelayar moden", # "Recommended for modern browsers"
-);
-
 /* private */ $wgDateFormatsMs = array(
 	"Tiada pilihan", # "No preference",
 	"15 Januari 2001", # "Januari 15, 2001",
@@ -957,6 +949,13 @@ title. Please merge them manually.",
 "movetalk"		=> "Tukar halaman \"perbualan\", sekiranya sesuai.",   #"Move \"talk\" page as well, if applicable.",
 "talkpagemoved" => "Halaman perbualan yang sama turut dialihkan.",    #"The corresponding talk page was also moved.",
 "talkpagenotmoved" => "Halaman perbualan yang sama <strong>not</strong> turut dialihkan.",
+# Math
+	'mw_math_png' => "Sentiasa lakar PNG", # "Always render PNG",
+	'mw_math_simple' => "HTML jika ringkas atau PNG", # "HTML if very simple or else PNG",
+	'mw_math_html' => "HTML jika boleh atau PNG", # "HTML if possible or else PNG",
+	'mw_math_source' => "Biarkan sebagai TeX (untuk pelayar teks)", # "Leave it as TeX (for text browsers)",
+	'mw_math_modern' => "Dicadang untuk pelayar moden", # "Recommended for modern browsers"
+	'mw_math_mathml' => 'MathML',
 
 );
 
@@ -1001,11 +1000,6 @@ class LanguageMs extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesMs;
 		return $wgSkinNamesMs;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesMs;
-		return $wgMathNamesMs;
 	}
 
 	function getDateFormats() {

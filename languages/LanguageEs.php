@@ -54,14 +54,6 @@ require_once( "LanguageUtf8.php" );
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesEs = array(
-	"Producir siempre PNG",
-	"HTML si es muy simple, si no PNG",
-	"HTML si es posible, si no PNG",
-	"Dejar como TeX (para navegadores de texto)",
-        "Recomendado para navegadores modernos"
-);
-
 /* private */ $wgDateFormatsEs = array(
 	"Sin preferencia",
 	"enero 15, 2001",
@@ -983,6 +975,13 @@ Por favor, elije otro nombre.",
 "movetalk"	=> "Renombrar la página de discusión también, si es aplicable.",
 "talkpagemoved" =>  "La página de discusión correspondiente también fue renombrada.",
 "talkpagenotmoved" => "La página de discusión correspondiente <strong>no</strong> fue renombrada.",
+# Math
+	'mw_math_png' => "Producir siempre PNG",
+	'mw_math_simple' => "HTML si es muy simple, si no PNG",
+	'mw_math_html' => "HTML si es posible, si no PNG",
+	'mw_math_source' => "Dejar como TeX (para navegadores de texto)",
+        'mw_math_modern' => "Recomendado para navegadores modernos",
+	'mw_math_mathml' => 'MathML',
 
 );
 
@@ -1015,11 +1014,6 @@ class LanguageEs extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesEs;
 		return $wgSkinNamesEs;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesEn;
-		return $wgMathNamesEn;
 	}
 
 

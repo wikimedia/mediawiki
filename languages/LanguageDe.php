@@ -50,15 +50,6 @@ if($wgMetaNamespace === FALSE)
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesDe = array(
-	"Immer als PNG darstellen",
-	"Einfaches TeX als HTML darstellen, sonst PNG",
-	"Wenn möglich als HTML darstellen, sonst PNG",
-	"Als TeX belassen (für Textbrowser)",
-	"Empfehlenswert für moderne Browser"
-);
-
-
 /* private */ $wgUserTogglesDe = array(
   "hover"	            => "Hinweis über interne Verweise",
   "underline"               => "Verweise unterstreichen",
@@ -1158,7 +1149,14 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "nocookiesnew" => "Der Benutzerzugang wurde erstellt, aber Sie sind nicht eingeloggt. {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktivieren Sie diese und loggen sich dann mit Ihrem neuen Benutzernamen und dem Passwort ein.",
 "nocookieslogin" => "{{SITENAME}} benutzt Cookies zum Einloggen der Benutzer. Sie haben Cookies deaktiviert, bitte aktivieren Sie diese und versuchen es erneut.",
 "subcategorycount" => "Diese Kategorie hat $1 Unterkategorien.",
-"categoryarticlecount" => "Dieser Kategorie gehören $1 Artikel an."
+"categoryarticlecount" => "Dieser Kategorie gehören $1 Artikel an.",
+# math
+	'mw_math_png' => "Immer als PNG darstellen",
+	'mw_math_simple' => "Einfaches TeX als HTML darstellen, sonst PNG",
+	'mw_math_html' => "Wenn möglich als HTML darstellen, sonst PNG",
+	'mw_math_source' =>"Als TeX belassen (für Textbrowser)",
+	'mw_math_modern' => "Empfehlenswert für moderne Browser",
+	'mw_math_mathml' => 'MathML (experimentell)',
 
 
 );
@@ -1205,11 +1203,6 @@ class LanguageDe extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesDe;
 		return $wgSkinNamesDe;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesDe;
-		return $wgMathNamesDe;
 	}
 
 	function getUserToggles() {

@@ -53,13 +53,6 @@ require_once("LanguageUtf8.php");
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesFa = array(
-	"همیشه PNG کشیده شود",
-	"اگر خیلی ساده بودHTML وگرنه PNG",
-	"اگر ممکن بود HTML وگرنه PNG",
-	"در قالب TeX باقی بماند (برای مرورگرهای متنی)",
-	"توصیه برای مرورگرهای امروزی"
-);
 
 /* private */ $wgUserTogglesFa = array(
 	"hover"		=> "نمایش جعبه‌ی hover روی پیوندهای ویکی",
@@ -1081,7 +1074,15 @@ In those cases, you will have to move or merge the page manually if desired.",
 
 # Thumbnails
 
-"thumbnail-more"      => "بزرگ شود"
+"thumbnail-more"      => "بزرگ شود",
+
+# Math
+
+	'mw_math_png' => "همیشه PNG کشیده شود",
+	'mw_math_simple' => "اگر خیلی ساده بودHTML وگرنه PNG",
+	'mw_math_html' => "اگر ممکن بود HTML وگرنه PNG",
+	'mw_math_source' => "در قالب TeX باقی بماند (برای مرورگرهای متنی)",
+	'mw_math_modern' => "توصیه برای مرورگرهای امروزی",
 
 );
 
@@ -1131,11 +1132,6 @@ class LanguageFa extends LanguageUtf8 {
 		return $wgSkinNamesFa;
 	}
 
-	function getMathNames() {
-		global $wgMathNamesFa;
-		return $wgMathNamesFa;
-	}
-	
 	function getUserToggles() {
 		global $wgUserTogglesFa;
 		return $wgUserTogglesFa;

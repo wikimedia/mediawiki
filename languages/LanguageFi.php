@@ -45,14 +45,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesFi = array(
-	"Näytä aina PNG:nä",
-	"Näytä HTML:nä, jos yksinkertainen, muuten PNG:nä",
-	"Näytä HTML:nä, jos mahdollista, muuten PNG:nä",
-	"Näytä TeX-muotoon (tekstiselaimille)",
-	"Suositus nykyselaimille"
-);
-
 /* private */ $wgUserTogglesFi = array(
 	"hover"		=> "Näytä vinkki wiki-linkkien päällä",
 	"underline" => "Alleviivaa linkit",
@@ -811,6 +803,12 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 "movetalk"		=> "Siirrä myös sen \"keskustelu\"-sivu, jos mahdollista.",
 "talkpagemoved" => "Myös vastaava keskustelusivu siirrettiin.",
 "talkpagenotmoved" => "Artikkelin keskustelusivua <strong>ei</strong> siirretty.",
+# Math
+	'mw_math_png' => "Näytä aina PNG:nä",
+	'mw_math_simple' => "Näytä HTML:nä, jos yksinkertainen, muuten PNG:nä",
+	'mw_math_html' => "Näytä HTML:nä, jos mahdollista, muuten PNG:nä",
+	'mw_math_source' => "Näytä TeX-muotoon (tekstiselaimille)",
+	'mw_math_modern' => "Suositus nykyselaimille",
 );
 
 require_once( "LanguageUtf8.php" );
@@ -848,11 +846,6 @@ class LanguageFi extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesFi;
 		return $wgSkinNamesFi;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesFi;
-		return $wgMathNamesFi;
 	}
 
 	function getUserToggles() {

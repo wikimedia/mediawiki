@@ -47,14 +47,6 @@ if($wgMetaNamespace === FALSE)
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesRu = array(
-	"Всегда генерировать PNG",
-	"HTML в простых случаях, иначе PNG",
-	"HTML если возможно, иначе PNG",
-	"Оставить в виде ТеХ (для текстовых браузеров)",
-	"Рекомендовано для современных браузеров"
-);
-
 /* Non-std date formats are only enabled for English, which is idiosyncratic that way */
 /* private */ $wgDateFormatsRu = array(
 	"Нет предпочтения",
@@ -919,6 +911,12 @@ IP-адреса.",
 "movetalk"		=> "Переместить также и страницу \"обсуждения\" , если это возможно.",
 "talkpagemoved" => "Соответствующая страница обсуждения также перемещена.",
 "talkpagenotmoved" => "Соответствующая страница обсуждения <strong>не</strong> была перемещена.",
+# Math
+	'mw_math_png' => "Всегда генерировать PNG",
+	'mw_math_simple' => "HTML в простых случаях, иначе PNG",
+	'mw_math_html' => "HTML если возможно, иначе PNG",
+	'mw_math_source' => "Оставить в виде ТеХ (для текстовых браузеров)",
+	'mw_math_modern' => "Рекомендовано для современных браузеров",
 
 );
 
@@ -957,11 +955,6 @@ class LanguageRu extends LanguageUtf8 {
 		return $wgSkinNamesRu;
 	}
 
-	function getMathNames() {
-		global $wgMathNamesRu;
-		return $wgMathNamesRu;
-	}
-	
 	function getDateFormats() {
 		global $wgDateFormatsRu;
 		return $wgDateFormatsRu;
