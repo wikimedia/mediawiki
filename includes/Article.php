@@ -433,7 +433,7 @@ class Article {
 
 		if ( "initial" == $formtype ) {
 			$wpEdittime = $this->getTimestamp();
-			$wpTextbox1 = $this->getContent();
+			$wpTextbox1 = $this->getContent(true);
 			$wpSummary = "";
 		}
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
@@ -446,7 +446,7 @@ class Article {
 			$wgOut->addHTML( wfMsg( "explainconflict" ) );
 
 			$wpTextbox2 = $wpTextbox1;
-			$wpTextbox1 = $this->getContent();
+			$wpTextbox1 = $this->getContent(true);
 			$wpEdittime = $this->getTimestamp();
 		} else {
 			$s = str_replace( "$1", $wgTitle->getPrefixedText(),
