@@ -109,7 +109,7 @@
 	'ln' => 'Lingala',		# Lingala
 	'lo' => 'ລາວ',# Laotian
 	'lt' => 'Lietuvių',	# Lithuanian
-	'lv' => 'Latvie&scaron;u',	# Latvian
+	'lv' => 'Latviešu',	# Latvian
 	'mg' => 'Malagasy',		# Malagasy
 	'mh' => 'Ebon',			# Marshallese
 	'mi' => 'Māori',	# Maori
@@ -161,7 +161,7 @@
 	'si' => 'සිංහල',	# Sinhalese
 	'simple' => 'Simple English',	# Simple English
 	'sk' => 'Slovenčina',	# Slovak
-	'sl' => 'Sloven&scaron;čina',	# Slovenian
+	'sl' => 'Slovenščina',	# Slovenian
 	'sm' => 'Gagana Samoa',	# Samoan
 	'sn' => 'chiShona',		# Shona
 	'so' => 'Soomaaliga',	# Somali
