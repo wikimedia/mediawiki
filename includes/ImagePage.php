@@ -272,11 +272,15 @@ class ImagePage extends Article {
 		global $wgUseSquid, $wgInternalServer, $wgDeferredUpdateList;
 
 		$oldimage = $wgRequest->getText( 'oldimage' );
-		
 		if ( strlen( $oldimage ) < 16 ) {
-			$wgOut->unexpectedValueError( "oldimage", $oldimage );
+			$wgOut->unexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
 			return;
 		}
+		if ( strstr( $oldimage, "/" ) || strstr( $oldimage, "\\" ) ) {
+			$wgOut->unexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
+			return;
+		}
+
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return;
@@ -292,7 +296,7 @@ class ImagePage extends Article {
 		$curfile = "{$dest}/{$name}";
 
 		if ( ! is_file( $curfile ) ) {
-			$wgOut->fileNotFoundError( $curfile );
+			$wgOut->fileNotFoundError( htmlspecialchars( $curfile ) );
 			return;
 		}
 		$oldver = wfTimestampNow() . "!{$name}";

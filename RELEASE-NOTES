@@ -24,6 +24,8 @@ Changes from 1.3.5:
 * (bug 704) Removed misleading LocalSettings.sample
 * Fix cross site scripting bugs in SpecialIpblocklist, SpecialEmailuser
 * Fix SQL injection and cross site scripting bugs in SpecialMaintenance
+* Fix cross site scripting bugs and possible filename validation vulnerability
+  in ImagePage.
 
 
 == Version 1.3.5, 2004-09-30 ==
