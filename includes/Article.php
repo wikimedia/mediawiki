@@ -732,6 +732,8 @@ class Article {
 		), $fname );
 		$newid = $dbw->insertId();
 		
+		$this->mTitle->resetArticleId( $newid );
+		
 		wfProfileOut( $fname );
 		return $newid;
 	}

@@ -1487,32 +1487,14 @@ class Title {
 
 		# Recreate the redirect, this time in the other direction.
 		$redirectText = $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
-		$dbw->insert( 'revision', array(
-			'rev_id' => $dbw->nextSequenceValue('rev_rev_id_seq'),
-			'rev_comment' => $comment,
-			'rev_user' => $wgUser->getID(),
-			'rev_user_text' => $wgUser->getName(),
-			'rev_timestamp' => $now
-			), $fname
-		);
-		$revid = $dbw->insertId();
-		$dbw->insert( 'text', array(
-			'old_id' => $revid,
-			'old_flags' => '',
-			'old_text' => $redirectText,
-			), $fname
-		);
-		$dbw->insert( 'page', array(
-			'page_id' => $dbw->nextSequenceValue('page_page_id_seq'),
-			'page_namespace' => $this->getNamespace(),
-			'page_title' => $this->getDBkey(),
-			'page_touched' => $now,
-			'page_is_redirect' => 1,
-			'page_random' => $rand,
-			'page_is_new' => 1,
-			'page_latest' => $revid), $fname
-		);
-		$newid = $dbw->insertId();
+		$redirectArticle = new Article( $this );
+		$newid = $redirectArticle->insertOn( $dbw );
+		$redirectRevision = new Revision( array(
+			'page'    => $newid, 
+			'comment' => $comment,
+			'text'    => $redirectText ) );
+		$revid = $redirectRevision->insertOn( $dbw );
+		$redirectArticle->updateRevisionOn( $dbw, $revid, $redirectText, 0 );
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
 
 		# Record in RC
@@ -1614,32 +1596,14 @@ class Title {
 
 		# Insert redirect
 		$redirectText = $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
-		$dbw->insert( 'revision', array(
-			'rev_id' => $dbw->nextSequenceValue('rev_rev_id_seq'),
-			'rev_comment' => $comment,
-			'rev_user' => $wgUser->getID(),
-			'rev_user_text' => $wgUser->getName(),
-			'rev_timestamp' => $now
-			), $fname
-		);
-		$revid = $dbw->insertId();
-		$dbw->insert( 'text', array(
-			'old_id' => $revid,
-			'old_flags' => '',
-			'old_text' => $redirectText
-			), $fname
-		);
-		$dbw->insert( 'page', array(
-			'page_id' => $dbw->nextSequenceValue('page_page_id_seq'),
-			'page_namespace' => $this->getNamespace(),
-			'page_title' => $this->getDBkey(),
-			'page_touched' => $now,
-			'page_is_redirect' => 1,
-			'page_random' => $rand,
-			'page_is_new' => 1,
-			'page_latest' => $revid), $fname
-		);
-		$newid = $dbw->insertId();
+		$redirectArticle = new Article( $this );
+		$newid = $redirectArticle->insertOn( $dbw );
+		$redirectRevision = new Revision( array(
+			'page'    => $newid, 
+			'comment' => $comment,
+			'text'    => $redirectText ) );
+		$revid = $redirectRevision->insertOn( $dbw );
+		$redirectArticle->updateRevisionOn( $dbw, $revid, $redirectText, 0 );
 		$wgLinkCache->clearLink( $this->getPrefixedDBkey() );
 
 		// attach revision to the new page
