@@ -33,7 +33,7 @@ class AncientPagesPage extends QueryPage {
 			"SELECT 'Ancientpages' as type,
 					cur_namespace as namespace,
 			        cur_title as title,
-			        UNIX_TIMESTAMP(cur_timestamp) as value
+			        cur_timestamp as value
 			FROM $cur $use_index
 			WHERE cur_namespace=0 AND cur_is_redirect=0";
 	}
@@ -45,7 +45,7 @@ class AncientPagesPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgLang;
 
-		$d = $wgLang->timeanddate( wfUnix2Timestamp( $result->value ), true );
+		$d = $wgLang->timeanddate( wfTimestamp( $result->value ), true );
 		$link = $skin->makeKnownLink( $result->title, "" );
 		return "{$link} ({$d})";
 	}
