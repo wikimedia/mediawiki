@@ -609,7 +609,7 @@ containing all of the search terms will appear in the result).",
 Search in namespaces :<br>
 $1<br>
 $2 List redirects &nbsp; Search for $3 $9",
-
+"blanknamespace" => "(Main)",
 
 # Preferences page
 #
