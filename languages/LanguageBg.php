@@ -669,29 +669,6 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'searchdisabled' => "<p>Пълнотекстовото търсене бе временно изключено поради
 голямото натоварване на сървъра.
 Междувременно може да търсите чрез Google:</p>",
-'googlesearch' => "
-<!-- претърсване на сайта чрез Google -->
-<form method='GET' action='http://www.google.com/search'>
-<table bgcolor='#FFFFFF'><tr><td>
-<a href='http://www.google.com/'>
-<img src='http://www.google.com/logos/Logo_40wht.gif'
-border='0' alt='Google'/></a>
-</td>
-<td>
-<input type='text' name='q' size='31' maxlength='255' value='$1'/>
-<input type='submit' name='btnG' value='Google Search'/>
-<small>
-<input type='hidden' name='domains' value='{{SERVER}}'/><br />
-<input type='radio' name='sitesearch' value=''/> WWW
-<input type='radio' name='sitesearch' value='{{SERVER}}' checked='checked'/> {{SERVER}} <br />
-<input type='hidden' name='ie' value='$2'/>
-<input type='hidden' name='oe' value='$2'/>
-</small>
-</td></tr></table>
-</form>
-<!-- претърсване на сайта чрез  Google -->
-
-Може да използвате следната препратка, за да създадете или редактирате страницата: <a href='{{localurl:$1|action=edit}}'>$1</a>",
 'blanknamespace' => '(Основно)',
 
 # Preferences page

@@ -483,7 +483,6 @@ Haku nimiavaruuksista:<br />
 $1<br />
 $2 Luettele uudelleenohjauksista   Etsi $3 $9',
 "searchdisabled"       => '<p style="margin: 1.5em 2em 1em">Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön.<span style="font-size: 89%; display: block; margin-left: .2em">Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</span></p>',
-'googlesearch'         => "<!-- SiteSearch Google --> <FORM method=GET action=\"http://www.google.com/search\"> <TABLE bgcolor=\"#FFFFFF\"><tr><td> <A HREF=\"http://www.google.com/\"> <IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\" border=\"0\" ALT=\"Google\"></A> </td> <td> <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\"> <INPUT type=submit name=btnG VALUE=\"Google Search\"> <font size=-1> <input type=hidden name=domains value=\"{{SERVER}}\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{{SERVER}}\" checked> {{SERVER}} <br /> <input type='hidden' name='ie' value='$2'> <input type='hidden' name='oe' value='$2'> </font> </td></tr></TABLE> </FORM> <!-- SiteSearch Google -->",
 'blanknamespace' => '(Tietosanakirja-artikkelit)', //HOX? -F (eng. Main, saks. Haupt-, ransk. Principal   -TJ)
 
 # Preferences page

@@ -498,25 +498,6 @@ created and by whom, and anything else you may know about it.",
 'fundraising_notice' => "Ef þú vilt styðja wikipedia getur þú gert það í verki með að <a href=\"http://wikimediafoundation.org/fundraising\">láta fé af hendi rakna</a>. Verið er að safna fyrir <a href=\"http://meta.wikimedia.org/wiki/What_we_use_the_money_for\">ýmsum hlutum</a>.",
 #'getimagelist' => "fetching image list",
 'go' => "Áfram",
-'googlesearch' => "
-<!-- SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.com/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.com/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
-<INPUT type=submit name=btnG VALUE=\"Google Search\">
-<font size=-1>
-<input type=hidden name=domains value=\"http://is.wikipedia.org\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"http://is.wikipedia.org\" checked> http://is.wikipedia.org <br />
-<input type='hidden' name='ie' value='$2'>
-<input type='hidden' name='oe' value='$2'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->",
 #'guesstimezone' => "Fill in from browser",
 #'headline_sample' => "Headline text",
 #'headline_tip' => "Level 2 headline",

@@ -588,48 +588,6 @@ Du kan <b><a href="$1" class="new">laga ei side med denne tittelen</a></b>.
 'powersearch'             => 'Søk',
 'powersearchtext'         => 'Søk i namnerom:<br />$1<br />$2<br />List omdirigeringar &nbsp; Søk etter: $3 $9',
 'searchdisabled'          => '<p style="margin: 1.5em 2em 1em">Søkefunksjonen på {{SITENAME}} er deaktivert på grunn av for stort press på tenaren akkurat no. I mellomtida kan du leite gjennom Google eller Yahoo! <span style="font-size: 89%; display: block; margin-left: .2em">Ver oppmerksam på at registra deira kan vera utdaterte.</span></p>',
-'googlesearch'            => '<div style="margin-left: 2em">
-
-<!-- Google search -->
-<div style="width:130px;float:left;text-align:center;position:relative;top:-8px"><a href="http://www.google.com/" style="padding:0;background-image:none"><img src="http://www.google.com/logos/Logo_40wht.gif" alt="Google" style="border:none" /></a></div>
-
-<form method="get" action="http://www.google.com/search" style="margin-left:135px">
-  <div>
-    <input type="hidden" name="domains" value="{{SERVER}}" />
-    <input type="hidden" name="num" value="50" />
-    <input type="hidden" name="ie" value="$2" />
-    <input type="hidden" name="oe" value="$2" />
-    
-    <input type="text" name="q" size="31" maxlength="255" value="$1" />
-    <input type="submit" name="btnG" value="Google Search" />
-  </div>
-  <div style="font-size:90%">
-    <input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked="checked" /><label for="gwiki">{{SITENAME}}</label>
-    <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
-  </div>
-</form>
-
-<div style="clear:left;margin-top:10px">
-
-<!-- Yahoo! search -->
-<div style="width:130px;float:left;text-align:center;clear:left"><a href="http://search.yahoo.com/" style="padding:0;background-image:none"><img src="http://us.i1.yimg.com/us.yimg.com/i/us/search/ysan/ysanlogo.gif" alt="Yahoo!" style="border:none" /></a></div>
-
-<form method="get" action="http://search.yahoo.com/search" style="margin-left:135px">
-  <div>
-    <input type="hidden" name="x" value="op" />
-    <input type="hidden" name="va_vt" value="any" />
-    <input type="text" name="va" size="31" value="$1" />
-    <input type="submit" value="Yahoo! Search" />
-  </div>
-  <div style="font-size:90%">
-    <input type="radio" name="vs" id="ywiki" value="{{SERVER}}" checked="checked" /><label for="ywiki">{{SITENAME}}</label>
-    <input type="radio" name="vs" id="yWWW" value="" /><label for="yWWW">WWW</label>
-  </div>
-</form>
-
-</div>
-
-</div>',
 'blanknamespace'        => '(Hovud)',
 
 # Preferences page
