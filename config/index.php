@@ -99,6 +99,7 @@ header( "Content-type: text/html; charset=utf-8" );
 </div>
 
 <?php
+
 $IP = ".."; # Just to suppress notices, not for anything useful
 include( "../includes/DefaultSettings.php" );
 ?>
@@ -307,7 +308,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 						$errs["RootPW"] = "Got root?";
 						print " need password.</li>\n";
 					} else {
-						$conf->Root = true;
+						$conf->Root = false;
 						$conf->RootPW = "";
 						print " ok.</li>\n";
 						# And keep going...
