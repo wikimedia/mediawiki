@@ -418,9 +418,9 @@ function wfMsgReal( $key, $args, $useDB, $convert=true ) {
 
 	$fname = 'wfMsg';
 	wfProfileIn( $fname );
-	if ( $wgMessageCache ) {
+	if ( is_object($wgMessageCache) ) {
 		$message = $wgMessageCache->get( $key, $useDB );
-	} elseif ( $wgLang ) {
+	} elseif ( is_object($wgLang) ) {
 		$message = $wgLang->getMessage( $key );
 	} else {
 		wfDebug( "No language object when getting $key\n" );
