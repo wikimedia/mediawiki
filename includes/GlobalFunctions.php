@@ -332,47 +332,6 @@ function wfCleanQueryVar( $var )
 	wfDebugDieBacktrace( "Call to obsolete function wfCleanQueryVar(); use wgRequest instead" );
 }
 
-function wfSpecialPage()
-{
-	global $wgUser, $wgOut, $wgTitle, $wgLang;
-
-	/* FIXME: this list probably shouldn't be language-specific, per se */
-	$validSP = $wgLang->getValidSpecialPages();
-	$sysopSP = $wgLang->getSysopSpecialPages();
-	$devSP = $wgLang->getDeveloperSpecialPages();
-
-	$wgOut->setArticleRelated( false );
-	$wgOut->setRobotpolicy( "noindex,follow" );
-
-	$bits = split( "/", $wgTitle->getDBkey(), 2 );
-	$t = $bits[0];
-	if( empty( $bits[1] ) ) {
-		$par = NULL;
-	} else {
-		$par = $bits[1];
-	}
-
-	if ( array_key_exists( $t, $validSP ) ||
-	  ( $wgUser->isSysop() && array_key_exists( $t, $sysopSP ) ) ||
-	  ( $wgUser->isDeveloper() && array_key_exists( $t, $devSP ) ) ) {
-	  	if($par !== NULL)
-			$wgTitle = Title::makeTitle( Namespace::getSpecial(), $t );
-
-		$wgOut->setPageTitle( wfMsg( strtolower( $wgTitle->getText() ) ) );
-
-		$inc = "Special" . $t . ".php";
-		require_once( $inc );
-		$call = "wfSpecial" . $t;
-		$call( $par );
-	} else if ( array_key_exists( $t, $sysopSP ) ) {
-		$wgOut->sysopRequired();
-	} else if ( array_key_exists( $t, $devSP ) ) {
-		$wgOut->developerRequired();
-	} else {
-		$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
-	}
-}
-
 function wfSearch( $s )
 {
 	$se = new SearchEngine( $s );

@@ -11,7 +11,8 @@ class MessageCache
 {
 	var $mCache, $mUseCache, $mDisable, $mExpiry;
 	var $mMemcKey, $mKeys, $mParserOptions, $mParser;
-	
+	var $mExtensionMessages;
+
 	var $mInitialised = false;
 
 	function initialise( &$memCached, $useDB, $expiry, $memcPrefix ) {
@@ -155,26 +156,29 @@ class MessageCache
 			return "&lt;$key&gt;";
 		}
 		
-		if ( $this->mDisable ) {
-			return $this->transform( $wgLang->getMessage( $key ) );
-		}
-		$title = $wgLang->ucfirst( $key );
-		
 		$message = false;
+		if ( !$this->mDisable ) {
+			$title = $wgLang->ucfirst( $key );
+			
 
-		# Try the cache
-		if ( $this->mUseCache && $this->mCache && array_key_exists( $title, $this->mCache ) ) {
-			$message = $this->mCache[$title];
-		}
-		
-		# If it wasn't in the cache, load each message from the DB individually
-		if ( !$message && $useDB) {
-			$result = wfGetArray( "cur", array("cur_text"), 
-			  array( "cur_namespace" => NS_MEDIAWIKI, "cur_title" => $title ),
-			  "MessageCache::get" );
-			if ( $result ) {
-				$message = $result->cur_text;
+			# Try the cache
+			if ( $this->mUseCache && $this->mCache && array_key_exists( $title, $this->mCache ) ) {
+				$message = $this->mCache[$title];
 			}
+			
+			# If it wasn't in the cache, load each message from the DB individually
+			if ( !$message && $useDB) {
+				$result = wfGetArray( "cur", array("cur_text"), 
+				  array( "cur_namespace" => NS_MEDIAWIKI, "cur_title" => $title ),
+				  "MessageCache::get" );
+				if ( $result ) {
+					$message = $result->cur_text;
+				}
+			}
+		}
+		# Try the extension array
+		if ( !$message ) {
+			$message = @$this->mExtensionMessages[$key];
 		}
 
 		# Try the array in $wgLang
@@ -210,5 +214,14 @@ class MessageCache
 	function enable() { $this->mDisable = false; }
 	function disableTransform() { $this->mDisableTransform = true; }
 
+	function addMessage( $key, $value ) {
+		$this->mExtensionMessages[$key] = $value;
+	}
+
+	function addMessages( $messages ) {
+		foreach ( $messages as $key => $value ) {
+			$this->mExtensionMessages[$key] = $value;
+		}
+	}
 }
 ?>

@@ -381,65 +381,6 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	MAG_SERVER               => array( 0,    "SERVER"                 )
 );
 
-# All special pages have to be listed here: a description of ""
-# will make them not show up on the "Special Pages" page, which
-# is the right thing for some of them (such as the "targeted" ones).
-#
-/* private */ $wgValidSpecialPagesEn = array(
-	"Userlogin"		=> "",
-	"Userlogout"	=> "",
-	"Preferences"	=> "Set my user preferences",
-	"Watchlist"		=> "My watchlist",
-	"Recentchanges" => "Recently updated pages",
-	"Upload"		=> "Upload image files",
-	"Imagelist"		=> "Image list",
-	"Listusers"		=> "Registered users",
-	"Statistics"	=> "Site statistics",
-	"Randompage"	=> "Random article",
-
-	"Lonelypages"	=> "Orphaned articles",
-	"Unusedimages"	=> "Orphaned images",
-	"Popularpages"	=> "Popular articles",
-	"Wantedpages"	=> "Most wanted articles",
-	"Shortpages"	=> "Short articles",
-	"Longpages"		=> "Long articles",
-	"Newpages"		=> "Newly created articles",
-	"Ancientpages"	=> "Oldest articles",
-	"Deadendpages"  => "Dead-end pages",
-#	"Intl"                => "Interlanguage Links",
-	"Allpages"		=> "All pages by title",
-
-	"Ipblocklist"	=> "Blocked users/IP addresses",
-	"Maintenance"	=> "Maintenance page",
-	"Specialpages"  => "",
-	"Contributions" => "",
-	"Emailuser"		=> "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage"		=> "",
-	"Blockme"       => "",
-	"Booksources"	=> "External book sources",
-	"Categories"	=> "Page categories",
-	"Export"		=> "XML page export",
-	"Version"		=> "Show MediaWiki version",
-	"Allmessages"	=> "All system messages",
-	"Search"		=> ""
-#	"Boardvote"     => "Wikimedia Foundation Board of Trustees election"
-);
-
-/* private */ $wgSysopSpecialPagesEn = array(
-	"Blockip"		=> "Block a user/IP address",
-	"Asksql"		=> "Query the database",
-	"Undelete"		=> "Restore deleted pages",
-	"Makesysop"		=> "Turn a user into a sysop",
-	"Import"		=> "Import a page with history",
-);
-
-/* private */ $wgDeveloperSpecialPagesEn = array(
-	"Lockdb"		=> "Make database read-only",
-	"Unlockdb"		=> "Restore DB write access"
-);
-
 #-------------------------------------------------------------------
 # Default messages
 #-------------------------------------------------------------------
@@ -1594,42 +1535,8 @@ amusement.",
 "lastmodifiedby" => "This page was last modified $1 by $2.",
 "and" => "and",
 "othercontribs" => "Based on work by $1.",
-"siteusers" => "$wgSitename user(s) $1",
+"siteusers" => "$wgSitename user(s) $1"
 
-# Board vote
-"boardvote" => "Wikimedia Board of Trustees election",
-"boardvote_entry" => 
-"* [[Special:Boardvote/vote|Vote]]
-* [[Special:Boardvote/list|List votes to date]]
-* [[Special:Boardvote/dump|Dump encrypted election record]]",
-"boardvote_intro" => "<p>Please choose your preferred candidate for both the 
-Contributing Representative and the Volunteer Representative.</p>",
-"boardvote_intro_change" => "<p>You have voted before. However you may change 
-your vote using the form below.</p>",
-"boardvote_abstain" => "Abstain",
-"boardvote_footer" => "&nbsp;",
-"boardvote_entered" => "Thank you, your vote has been recorded.
-
-Following is your encrypted vote record. It will appear publicly at [[Special:Boardvote/dump]]. 
-
-<pre>$1</pre>
-
-[[Special:Boardvote/entry|Back]]",
-"boardvote_notloggedin" => "You are not logged in. To vote, you must use an account
-which has existed for at least 90 days.",
-"boardvote_notqualified" => "Sorry, your first contribution was only $1 days ago. 
-You need to have been contributing for at least 90 days to vote in this election.",
-"boardvote_novotes" => "Nobody has voted yet.",
-"boardvote_contributing" => "Contributing candidate",
-"boardvote_volunteer" => "Volunteer candidate",
-"boardvote_time" => "Time",
-"boardvote_user" => "User",
-"boardvote_listintro" => "<p>This is a list of all votes which have been recorded 
-to date. $1 for the full encrypted election record.</p>",
-"boardvote_dumplink" => "Click here",
-"boardvote_dumpheader" => "<caption><strong>Election administrator private dump</strong></caption>
-<tr><th>Time</th><th>User</th><th>Edits</th><th>Days</th>
-<th>IP</th><th>User agent</th><th>Record</th></tr>"
 );
 
 #--------------------------------------------------------------------------
