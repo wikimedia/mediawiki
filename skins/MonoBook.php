@@ -70,24 +70,25 @@ function MonoBookTemplate( &$data, &$translator ) {
 	<div id="p-cactions" class="portlet">
 	  <h5>Views</h5>
 	  <ul>
-	    <?php foreach($data['content_actions'] as $key => $action) { ?>
-	    <li id="ca-<?php echo htmlspecialchars($key) ?>"
+	    <?php foreach($data['content_actions'] as $key => $action) {
+	       ?><li id="ca-<?php echo htmlspecialchars($key) ?>"
 	       <?php if($action['class']) { ?>class="<?php echo htmlspecialchars($action['class']) ?>"<?php } ?>
 	       ><a href="<?php echo htmlspecialchars($action['href']) ?>"><?php
-	       echo htmlspecialchars($action['text']) ?></a></li>
-	    <?php } ?>
+	       echo htmlspecialchars($action['text']) ?></a></li><?php
+	     } ?>
 	  </ul>
 	</div>
 	<div class="portlet" id="p-personal">
 	  <h5><?php echo htmlspecialchars($translator->translate('personaltools')) ?></h5>
 	  <div class="pBody">
 	    <ul>
-	    <?php foreach($data['personal_urls'] as $key => $item) { ?>
-	    <li id="pt-<?php echo htmlspecialchars($key) ?>"
-	       <?php if(!empty($item['class'])) { ?>class="<?php echo htmlspecialchars($item['class']) ?>"<?php } ?>
-	       ><a href="<?php echo htmlspecialchars($item['href']) ?>"><?php
-	       echo htmlspecialchars($item['text']) ?></a></li>
-	    <?php } ?>
+	    <?php foreach($data['personal_urls'] as $key => $item) {
+	       ?><li id="pt-<?php echo htmlspecialchars($key) ?>"><a href="<?php
+	       echo htmlspecialchars($item['href']) ?>"<?php
+	       if(!empty($item['class'])) { ?> class="<?php
+	       echo htmlspecialchars($item['class']) ?>"<?php } ?>><?php
+	       echo htmlspecialchars($item['text']) ?></a></li><?php
+	    } ?>
 	    </ul>
 	  </div>
 	</div>
@@ -101,11 +102,9 @@ function MonoBookTemplate( &$data, &$translator ) {
 	  <div class="pBody">
 	    <ul>
 	      <?php foreach($data['navigation_urls'] as $navlink) { ?>
-	      <li id="<?php echo htmlspecialchars($navlink['id']) ?>">
-	        <a href="<?php echo htmlspecialchars($navlink['href']) ?>"><?php 
-	        echo htmlspecialchars($navlink['text']) ?></a>
-	      </li>
-	      <?php } ?>
+	      <li id="<?php echo htmlspecialchars($navlink['id'])
+	        ?>"><a href="<?php echo htmlspecialchars($navlink['href']) ?>"><?php 
+	        echo htmlspecialchars($navlink['text']) ?></a></li><?php } ?>
 	    </ul>
 	  </div>
 	</div>
@@ -157,8 +156,8 @@ function MonoBookTemplate( &$data, &$translator ) {
 	      <?php } ?>
 	    </ul>
 	  </div>
-	<?php } ?>
 	</div>
+	<?php } ?>
       </div><!-- end of the left (by default at least) column -->
       <div class="visualClear"></div>
       <div id="footer">
