@@ -34,7 +34,7 @@ if( !file_exists( 'LocalSettings.php' ) ) {
 		
 		<h1>MediaWiki <?php echo $wgVersion ?></h1>
 		<div class='error'>
-		<?
+		<?php
 		if ( file_exists( 'config/LocalSettings.php' ) ) {
 			echo( "To complete the installation, move <tt>config/LocalSettings.php</tt> to the parent directory." );
 		} else {
@@ -45,7 +45,7 @@ if( !file_exists( 'LocalSettings.php' ) ) {
 		</div>
 	</body>
 </html>
-<?
+<?php
 	die();
 }
 
