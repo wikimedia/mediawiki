@@ -33,7 +33,7 @@ class EditPage {
 		$this->importFormData( $wgRequest );
 
 		if ( ! $this->mTitle->userCanEdit() ) {
-			$wgOut->readOnlyPage( $this->mArticle->getContent(), true );
+			$wgOut->readOnlyPage( $this->mArticle->getContent( true ), true );
 			return;
 		}
 		if ( $wgUser->isBlocked() ) {
@@ -48,7 +48,7 @@ class EditPage {
 			if( $this->save || $this->preview ) {
 				$this->editForm( "preview" );
 			} else {
-				$wgOut->readOnlyPage( $this->mArticle->getContent() );
+				$wgOut->readOnlyPage( $this->mArticle->getContent( true ) );
 			}
 			return;
 		}
@@ -194,7 +194,7 @@ class EditPage {
 
 		if ( "initial" == $formtype ) {
 			$this->edittime = $this->mArticle->getTimestamp();
-			$this->textbox1 = $this->mArticle->getContent(true);
+			$this->textbox1 = $this->mArticle->getContent( true );
 			$this->summary = "";
 			$this->proxyCheck();
 		}
@@ -209,7 +209,7 @@ class EditPage {
 			$wgOut->addHTML( wfMsg( "explainconflict" ) );
 
 			$this->textbox2 = $this->textbox1;
-			$this->textbox1 = $this->mArticle->getContent(true);
+			$this->textbox1 = $this->mArticle->getContent( true );
 			$this->edittime = $this->mArticle->getTimestamp();
 		} else {
 			$s = wfMsg( "editing", $this->mTitle->getPrefixedText() );
