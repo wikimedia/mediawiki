@@ -281,4 +281,11 @@ $wgProxyPorts = array( 80, 81, 1080, 3128, 8080 );
 $wgProxyScriptPath = "$IP/proxy_check.php";
 $wgProxyMemcExpiry = 86400;
 
+# Set this to false to avoid forcing the first letter of links
+# to capitals. WARNING: may break links! This makes links
+# COMPLETELY case-sensitive. Links appearing with a capital at
+# the beginning of a sentence will *not* go to the same place
+# as links in the middle of a sentence using a lowercase initial.
+$wgCapitalLinks = true;
+
 ?>
