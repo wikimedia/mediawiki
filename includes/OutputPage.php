@@ -36,14 +36,17 @@ class OutputPage {
 	var $mShowFeedLinks = false;
 	var $mEnableClientCache = true;
 
-	function OutputPage()
-	{
+	/**
+	 * Constructor
+	 * Initialise private variables
+	 */
+	function OutputPage() {
 		$this->mHeaders = $this->mCookies = $this->mMetatags =
 		$this->mKeywords = $this->mLinktags = array();
 		$this->mHTMLtitle = $this->mPagetitle = $this->mBodytext =
 		$this->mRedirect = $this->mLastModified =
 		$this->mSubtitle = $this->mDebugtext = $this->mRobotpolicy =
-		$this->mOnloadHandler = "";
+		$this->mOnloadHandler = '';
 		$this->mIsArticleRelated = $this->mIsarticle = $this->mPrintable = true;
 		$this->mSuppressQuickbar = $this->mPrintable = false;
 		$this->mLanguageLinks = array();
@@ -52,10 +55,10 @@ class OutputPage {
 		$this->mContainsOldMagic = $this->mContainsNewMagic = 0;
 		$this->mParserOptions = ParserOptions::newFromUser( $temp = NULL );
 		$this->mSquidMaxage = 0;
-		$this->mScripts = "";
+		$this->mScripts = '';
 	}
 
-	function addHeader( $name, $val ) { array_push( $this->mHeaders, "$name: $val" ) ; }
+	function addHeader( $name, $val ) { array_push( $this->mHeaders, $name.': '.$val ) ; }
 	function addCookie( $name, $val ) { array_push( $this->mCookies, array( $name, $val ) ); }
 	function redirect( $url, $responsecode = '302' ) { $this->mRedirect = $url; $this->mRedirectCode = $responsecode; }
 
@@ -84,8 +87,7 @@ class OutputPage {
 	 * any future call to OutputPage->output() have no effect. The method
 	 * returns true iff cache-ok headers was sent.
 	 */
-	function checkLastModified ( $timestamp )
-	{
+	function checkLastModified ( $timestamp ) {
 		global $wgLang, $wgCachePages, $wgUser;
 		$timestamp=wfTimestamp(TS_MW,$timestamp);
 		if( !$wgCachePages ) {
@@ -102,7 +104,7 @@ class OutputPage {
 			return;
 		}
 
-		$lastmod = gmdate( "D, j M Y H:i:s", wfTimestamp(TS_UNIX, max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
+		$lastmod = gmdate( 'D, j M Y H:i:s', wfTimestamp(TS_UNIX, max( $timestamp, $wgUser->mTouched ) ) ) . ' GMT';
 
 		if( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
 			# IE sends sizes after the date like this:
@@ -155,6 +157,7 @@ class OutputPage {
 				return '';
 		}
 	}
+
 	function setRobotpolicy( $str ) { $this->mRobotpolicy = $str; }
 	function setHTMLTitle( $name ) {$this->mHTMLtitle = $name; }
 	function setPageTitle( $name ) {
@@ -181,8 +184,7 @@ class OutputPage {
 	function getOnloadHandler() { return $this->mOnloadHandler; }
 	function disable() { $this->mDoNothing = true; }
 
-	function setArticleRelated( $v )
-	{
+	function setArticleRelated( $v ) {
 		$this->mIsArticleRelated = $v;
 		if ( !$v ) {
 			$this->mIsarticle = false;
@@ -195,20 +197,16 @@ class OutputPage {
 		}
 	}
 
-	function isArticleRelated()
-	{
-		return $this->mIsArticleRelated;
-	}
+	function isArticleRelated() { return $this->mIsArticleRelated; }
 
-	function getLanguageLinks() {
-		return $this->mLanguageLinks;
-	}
+	function getLanguageLinks() { return $this->mLanguageLinks; }
 	function addLanguageLinks($newLinkArray) {
 		$this->mLanguageLinks += $newLinkArray;
 	}
 	function setLanguageLinks($newLinkArray) {
 		$this->mLanguageLinks = $newLinkArray;
 	}
+
 	function getCategoryLinks() {
 		return $this->mCategoryLinks;
 	}
@@ -226,16 +224,14 @@ class OutputPage {
 	function clearHTML() { $this->mBodytext = ''; }
 	function debug( $text ) { $this->mDebugtext .= $text; }
 
-	function setParserOptions( $options )
-	{
+	function setParserOptions( $options ) {
 		return wfSetVar( $this->mParserOptions, $options );
 	}
 
 	/**
 	 * Convert wikitext to HTML and add it to the buffer
 	 */
-	function addWikiText( $text, $linestart = true )
-	{
+	function addWikiText( $text, $linestart = true ) {
 		global $wgParser, $wgTitle;
 
 		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
@@ -266,7 +262,11 @@ class OutputPage {
 		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
 		$this->addHTML( $text );
 	}
-	
+
+	/**
+	 * @param $article
+	 * @param $user
+	 */
 	function tryParserCache( $article, $user ) {
 		global $wgParserCache;
 		$parserOutput = $wgParserCache->get( $article, $user );
@@ -282,6 +282,7 @@ class OutputPage {
 
 	/**
 	 * Set the maximum cache time on the Squid in seconds
+	 * @param $maxage
 	 */
 	function setSquidMaxage( $maxage ) {
 		$this->mSquidMaxage = $maxage;
@@ -289,6 +290,7 @@ class OutputPage {
 
 	/**
 	 * Use enableClientCache(false) to force it to send nocache headers
+	 * @param $state
 	 */
 	function enableClientCache( $state ) {
 		return wfSetVar( $this->mEnableClientCache, $state );
@@ -344,8 +346,7 @@ class OutputPage {
 	 * Finally, all the text has been munged and accumulated into
 	 * the object, let's actually output it:
 	 */
-	function output()
-	{
+	function output() {
 		global $wgUser, $wgLang, $wgDebugComments, $wgCookieExpiration;
 		global $wgInputEncoding, $wgOutputEncoding, $wgLanguageCode;
 		global $wgDebugRedirects, $wgMimeType, $wgProfiler;
