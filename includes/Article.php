@@ -1020,7 +1020,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 			# we select the text because it might be useful below
 			$sql="SELECT old_text FROM old WHERE old_namespace=0 and old_title='" . wfStrencode($wgTitle->getPrefixedDBkey())."' ORDER BY inverse_timestamp LIMIT 1";
 			$res=wfQuery($sql,$fname);
-			if( $old=wfFetchObject($res)) {
+			if( ($old=wfFetchObject($res)) && !$wpConfirm ) {
 				$skin=$wgUser->getSkin();
 				$wgOut->addHTML("<B>".wfMsg("historywarning"));
 				$wgOut->addHTML( $skin->historyLink() ."</B><P>");
@@ -1047,10 +1047,10 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 				
 				# this should not happen, since it is not possible to store an empty, new
 				# page. Let's insert a standard text in case it does, though
-				if($length==0) { $wpreason=wfmsg("exblank");}
+				if($length==0 && !$wpReason) { $wpReason=wfmsg("exblank");}
 				
 				
-				if($length < 500) {
+				if($length < 500 && !$wpReason) {
 										
 					# comment field=255, let's grep the first 150 to have some user
 					# space left
