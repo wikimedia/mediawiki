@@ -7,20 +7,24 @@
 # wysig of beweeg nie.
 # Afrikaanse 2003-07-06t11:04z
 /* private */ $wgNamespaceNamesAf = array(
-	-2	=> "Media",
-	-1	=> "Spesiaal",
-	0	=> "",
-	1	=> "BronnemateriaalEnBespreking",
-	2	=> "Gebruiker",
-	3	=> "GebruikerBespreking",
-	4	=> "Wikipedia",
-	5	=> "WikipediaBespreking",
-	6	=> "Beeld",
-	7	=> "BeeldBespreking",
-	8	=> "MediaWiki",
-	9	=> "MediaWikiBespreking",
-	10  => "Template",
-	11  => "Template_talk"
+	NS_MEDIA			=> "Media",
+	NS_SPECIAL			=> "Spesiaal",
+	NS_MAIN				=> "",
+	NS_TALK				=> "BronnemateriaalEnBespreking",
+	NS_USER				=> "Gebruiker",
+	NS_USER_TALK		=> "GebruikerBespreking",
+	NS_WIKIPEDIA		=> $wgMetaNamespace,
+	NS_WIKIPEDIA_TALK	=> $wgMetaNamespace."Bespreking",
+	NS_IMAGE			=> "Beeld",
+	NS_IMAGE_TALK		=> "BeeldBespreking",
+	NS_MEDIAWIKI		=> "MediaWiki",
+	NS_MEDIAWIKI_TALK	=> "MediaWikiBespreking",
+	NS_TEMPLATE			=> "Template",
+	NS_TEMPLATE_TALK	=> "Template_talk",
+	NS_HELP				=> "Help",
+	NS_HELP_TALK		=> "Help_talk",
+	NS_CATEGORY			=> "Category",
+	NS_CATEGORY_TALK	=> "Category_talk"
 
 ) + $wgNamespaceNamesEn;
 
@@ -159,17 +163,17 @@
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Tuisblad",
 "about"			=> "Omtrent",
-"aboutwikipedia" => "Inligting oor Wikipedia",
-"aboutpage"		=> "Wikipedia:Omtrent",
+"aboutwikipedia" => "Inligting oor {{ns:4}}",
+"aboutpage"		=> "{{ns:4}}:Omtrent",
 "help"			=> "Help",
-"helppage"		=> "Wikipedia:Hulp",
-"wikititlesuffix" => "Wikipedia",
+"helppage"		=> "{{ns:4}}:Hulp",
+"wikititlesuffix" => "{{ns:4}}",
 "bugreports"	=> "Foutrapporte",
-"bugreportspage" => "Wikipedia:FoutRapporte",
+"bugreportspage" => "{{ns:4}}:FoutRapporte",
 "faq"			=> "Gewilde vrae",
-"faqpage"		=> "Wikipedia:GewildeVrae",
+"faqpage"		=> "{{ns:4}}:GewildeVrae",
 "edithelp"		=> "Wysighulp",
-"edithelppage"	=> "Wikipedia:Hoe_word_'n_bladsy_gewysig",
+"edithelppage"	=> "{{ns:4}}:Hoe_word_'n_bladsy_gewysig",
 "cancel"		=> "Kanselleer",
 "qbfind"		=> "Vind",
 "qbbrowse"		=> "Snuffel", 
@@ -182,7 +186,7 @@
 "currentevents" => "Huidige gebeure",
 "errorpagetitle" => "Fout",
 "returnto"		=> "Keer terug na $1.",
-"fromwikipedia"	=> "Van Wikipedia &#8212; die gratis ensiklopedie.",
+"fromwikipedia"	=> "Van {{SITENAME}} &#8212; die gratis ensiklopedie.",
 "whatlinkshere"	=> "Bladsye wat hierheen skakel",
 "help"			=> "Hulp",
 "search"		=> "Soek",
@@ -206,9 +210,9 @@
 "lastmodified"	=> "Laaste wysiging op $1.",
 "viewcount"		=> "Hierdie bladsy is al $1 keer aangevra.",
 "gnunote" => "Alle teks is beskikbaar onder die terme van die <a class=internal href='http://en.wikipedia.org/wiki/GNU_FDL'>GNU gratis dokumentasielisensie</a>.",
-"printsubtitle" => "(Van http://af.wikipedia.org)",
+"printsubtitle" => "(Van {{SERVER}})",
 "protectedpage" => "Beskermde bladsy",
-"administrators" => "Wikipedia:Administreerders",
+"administrators" => "{{ns:4}}:Administreerders",
 "sysoptitle"	=> "Sisopregte verlang",
 
 
@@ -218,8 +222,8 @@
 "nbytes"		=> "$1 grepe",
 "go"			=> "Doen",
 "ok"			=> "Aanvaar", #fixMe
-"sitetitle"		=> "Wikipedia",
-"sitesubtitle"	=> "Die gratis ensiklopedie",
+"sitetitle"		=> "{{SITENAME}}",
+"sitesubtitle"	=> "Die gratis ensiklopedie", #fixme
 "retrievedfrom" => "Ontsluit van \"$1\"",
 "newmessages" => "Jy het $1.",
 "newmessageslink" => "nuwe boodskappe", 
@@ -247,7 +251,7 @@ MySQL foutboodskap \"<tt>$3: $4</tt>\".",
 "readonly"		=> "Databasis gesluit",
 "enterlockreason" => "Rede vir die sluiting, 
 en beraming van wanneer ontsluiting sal plaas vind",
-"readonlytext"	=> "Die Wikipedia databasis is tans gesluit vir nuwe
+"readonlytext"	=> "Die {{SITENAME}} databasis is tans gesluit vir nuwe
 artikelwysigings, waarskynlik vir roetine databasisonderhoud,
 waarna dit terug sal wees na normaal.
 Die administreerder wat dit gesluit het se verduideliking:
@@ -273,7 +277,7 @@ Raporteer die adres asseblief aan enige administrateur.",
 #
 "logouttitle"	=> "Teken uit",
 "logouttext"	=> "Jy is nou uitgeteken, en kan aanhou om
-Wikipedia anoniem te gebruik; of jy kan inteken as dieselfde of 'n ander gebruiker.\n",
+{{SITENAME}} anoniem te gebruik; of jy kan inteken as dieselfde of 'n ander gebruiker.\n",
 
 "welcomecreation" => "<h2>Welkom, $1.</h2><p>Jou rekening is geskep; 
 moenie vergeet om jou persoonlike voorkeure te stel nie.",
@@ -287,7 +291,7 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.",
 "loginproblem"	=> "<b>Daar was probleme met jou intekening.</b><br>Probeer weer.",
 "alreadyloggedin" => "<font color=red><b>Gebruiker $1, jy is reeds ingeteken.</b></font><br>\n",
 
-"areyounew"		=> "Indien jy nuut is by Wikipedia, en ingeteken,
+"areyounew"		=> "Indien jy nuut is by {{SITENAME}}, en ingeteken,
 voer jou gebruikersnaam en wagwoord in.
 Jou e-pos is opsioneel; indien jy jou wagwoord vergeet, kan jy vra dat dit na
 die e-pos adres gestuur word.<br>\n",
@@ -305,14 +309,14 @@ die e-pos adres gestuur word.<br>\n",
 "loginerror"	=> "Intekenfout",
 "noname"		=> "Ongeldige gebruikersnaam.",
 "loginsuccesstitle" => "Suksesvolle intekening",
-"loginsuccess"	=> "Jy is ingeteken by Wikipedia as \"$1\".",
+"loginsuccess"	=> "Jy is ingeteken by {{SITENAME}} as \"$1\".",
 "nosuchuser"	=> "Daar is geen \"$1\" gebruikersnaam nie.
 Maak seker dit is reg gespel, of gebruik die vorm hier onder om 'n nuwe rekening te skep.",
 "wrongpassword"	=> "Ongeldige wagwoord, probeer weer.",
 "mailmypassword" => "Stuur my wagwword na my e-pos adres.",
-"passwordremindertitle" => "Wagwoordwenk van Wikipedia",
+"passwordremindertitle" => "Wagwoordwenk van {{SITENAME}}",
 "passwordremindertext" => "Iemand (waarskynlik jy, van IP-adres $1)
-het gevra dat ons vir jou 'n nuwe Wikipedia wagwoord stuur. 
+het gevra dat ons vir jou 'n nuwe {{SITENAME}} wagwoord stuur. 
 Die wagwoord vir gebruiker \"$2\" is nou \"$3\".
 Teken asseblief in en verander jou wagwoord.",
 "noemail"		=> "Daar is geen e-pos adres vir gebruiker \"$1\" nie.",
@@ -329,12 +333,12 @@ Teken asseblief in na jy dit ontvang het.",
 "showpreview"	=> "Wys voorskou",
 "blockedtitle"	=> "Gebruiker is geblokkeer",
 "blockedtext"	=> "Jou gebruikersnaam of IP-adres is deur $1 geblokkeer:
-<br>''$2''<p>Jy mag $1 of een van die ander [[Wikipedia:administreerders|administreerders]] kontak 
+<br>''$2''<p>Jy mag $1 of een van die ander [[{{ns:4}}:administreerders|administreerders]] kontak 
 om dit te bespreek.",
 "newarticle"	=> "(Nuut)", 
 "newarticletext" => 
 "Die bladsy waarna geskakel is, bestaan nie.
-Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[Wikipedia:Help|hulp bladsy]] 
+Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{{ns:4}}:Help|hulp bladsy]] 
 vir meer inligting.
 Indien jy per ongeluk hier is, gebruik jou blaaier se '''terug''' knop.",
 "anontalkpagetext" => "---- ''Dit is die besprekingsbladsy vir 'n anonieme gebruiker wat nie 'n rekening geskep het nie. Ons moet dus hul [[IP-adres]] gebruik om hulle te identifiseer. So 'n IP-adres kan deur verskeie gebruikers gedeel word. Indien jy 'n anonieme gebruiker is wat voel dat oneerbiedige komentaar aan jou gerig is, [[Special:Userlogin|skep 'n rekening of teken in]] om verwarring te voorkom met ander anonieme gebruikers.'' ", 
@@ -355,7 +359,7 @@ Jy sal jou wysigings moet saamsmelt met die huidige teks.
 "editingold"	=> "<strong>Waarskuwing: jy is besig om 'n ou weergawe van hierdie bladsy te wysig.
 As jy dit stoor, sal enige wysigings sedert hierdie wysiging verloor word.</strong>\n",
 "yourdiff"		=> "Wysigings",
-"copyrightwarning" => "Alle bydraes aan Wikipedia word beskou as beskikbaar gestel onder 
+"copyrightwarning" => "Alle bydraes aan {{SITENAME}} word beskou as beskikbaar gestel onder 
 die ''GNU Free Documentation License'' (lees $1 vir meer inligting).
 As jy nie wil hê dat jou werk ongemagtig gewysig of versprei mag word nie, moet jy dit nie hier indien nie.<br>
 Jy belowe ons ook dat jy dit self geskryf het, of verkry het van 'n bron wat toelaat dat dit hier mag wees.<br />
@@ -390,9 +394,9 @@ het om toegang te kry tot hierdie bladsy, reg is.\n",
 # Search results
 #
 "searchresults" => "soekresultate",
-"searchhelppage" => "Wikipedia:Soek",
-"searchingwikipedia" => "Soek in Wikipedia",
-"searchresulttext" => "Vir meer inligting oor Wikipedia soekresultate, lees $1.",
+"searchhelppage" => "{{ns:4}}:Soek",
+"searchingwikipedia" => "Soek in {{SITENAME}}",
+"searchresulttext" => "Vir meer inligting oor {{SITENAME}} soekresultate, lees $1.",
 "searchquery"	=> "Vir navraag \"$1\"",
 "badquery"		=> "Verkeerd gestelde navraag",
 "badquerytext"	=> "Ons kon nie jou naavraag prosesseer nie.
@@ -462,15 +466,15 @@ Jou internet ID-nommer is $2.",
 "changes" => "wysigings",
 "recentchanges" => "Onlangse wysigings",
 "recentchangestext" => "Volg wysigings wat onlangs verander het, op 
-[[Wikipedia:Welkom nuwelinge|Welkom nuwelinge]]!
-Kyk asb. ook na hierdie bladsye: [[wikipedia:FAQ|Wikipedia FAQ]],
-[[Wikipedia:beleid|beleid]]
-(veral [[wikipedia:styl|styl]],
-[[wikipedia:neutrale standpunt|neutrale standpunt]]),
-en [[wikipedia:mees algemene Wikipedia foute|mees algemene Wikipedia foute]].
+[[{{ns:4}}:Welkom nuwelinge|Welkom nuwelinge]]!
+Kyk asb. ook na hierdie bladsye: [[{{ns:4}}:FAQ|{{ns:4}} FAQ]],
+[[{{ns:4}}:beleid|beleid]]
+(veral [[{{ns:4}}:styl|styl]],
+[[{{ns:4}}:neutrale standpunt|neutrale standpunt]]),
+en [[{{ns:4}}:mees algemene Wikipedia foute|mees algemene Wikipedia foute]].
 
 As jy wil hê dat Wikipedia suksesvol moet wees, is dit belangrik dat jy nie 
-materiaal byvoeg wat deur [[wikipedia:kopiereg|kopiereg]] beperk word nie.
+materiaal byvoeg wat deur [[{{ns:4}}:kopiereg|kopiereg]] beperk word nie.
 Die wetlike onderhewigheid kan die projek skade aandoen.
 Kyk ook na [http://meta.wikipedia.org/wiki/Special:Recentchanges|onlangse metabesprekings].", #fixMeContinue
 "rcloaderr"		=> "Laai onlangse wysigings",
@@ -503,7 +507,7 @@ Kyk ook na [http://meta.wikipedia.org/wiki/Special:Recentchanges|onlangse metabe
 om lêers te laai.",
 "uploadfile"	=> "Laai lêer",
 "uploaderror"	=> "Laaifout",
-"uploadtext"	=> "'''STOP!''' Voor jy hier laai, lees en volg Wikipedia se
+"uploadtext"	=> "'''STOP!''' Voor jy hier laai, lees en volg {{SITENAME}} se
 [[Project:Image_use_policy|beleid oor prentgebruik]].
 
 Om prente wat voorheen gelaai is te sien of te soek, gaan na die
@@ -524,7 +528,7 @@ Om die prent in 'n artikel te gebruik, gebruik 'n skakel met die formaat '''<now
 '''<nowiki>[[image:file.png|alt text]]</nowiki>''' of
 '''<nowiki>[[media:file.ogg]]</nowiki>''' vir klanklêers.
 
-Let asseblief op dat, soos met Wikipedia bladsye, mag ander jou gelaaide lêers redigeer as hulle dink dit dien die ensiklopedie, en jy kan verhoed word om lêers te laai as jy die stelsel misbruik.",
+Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêers redigeer as hulle dink dit dien die ensiklopedie, en jy kan verhoed word om lêers te laai as jy die stelsel misbruik.",
 "uploadlog"		=> "laailog",
 "uploadlogpage" => "laai_log",
 "uploadlogpagetext" => "Hier onder is 'n lys van die mees onlangse lêers wat gelaai is.
@@ -535,8 +539,8 @@ Alle tye is bedienertyd (UGT).
 "filename"		=> "Lêernaam",
 "filedesc"		=> "Opsomming",
 "affirmation"	=> "Ek bevestig dat die kopiereghouer van hierdie lêer toestem om dit te lisensieer volgens die terme van die $1.",
-"copyrightpage" => "Wikipedia:kopiereg",
-"copyrightpagename" => "Wikipedia kopiereg",
+"copyrightpage" => "{{ns:4}}:kopiereg",
+"copyrightpagename" => "{{ns:4}} kopiereg",
 "uploadedfiles"	=> "Gelaaide lêers",
 "noaffirmation" => "Jy moet bevestig dat die laai van jou lêer geen kopieregte skend nie.",
 "ignorewarning"	=> "Ignoreer waarskuwing en stoor lêer.",
@@ -582,7 +586,7 @@ Volg asseblief hierdie skakel: ($2) na die beskrywingsbladsy en vul inligting in
 "sitestats"		=> "Werfstatistiek",
 "userstats"		=> "Gebruikerstatistiek",
 "sitestatstext" => "Daar is 'n totaal van <b>$1</b> bladsye in die databasis.
-Dit sluit \"bespreek\" bladsye in, bladsye oor Wikipedia, minimale \"verkorte\"
+Dit sluit \"bespreek\" bladsye in, bladsye oor {{SITENAME}}, minimale \"verkorte\"
 bladsye, wegwysbladsye, en ander wat waarskynlik nie as artikels kwalifiseer nie.
 Uitsluitend bogenoemde, is daar <b>$2</b> bladsye wat waarskynlik ware artikels is.<p>
 Bladsye is al <b>$3</b> kere aangevra, en <b>$4</b> keer verander sedert die sagteware opgegradeer is (July 20, 2002).
@@ -596,7 +600,7 @@ Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>
 "maintnancepagetext"	=> "Hierdie bladsy bevat handige gereedskap vir alledaagse instandhouding. Party van hierdie funksies gebruik die databasis, so moet asseblief nie die bladsy herlaai na elke item wat jy verander het nie ;-)",
 "maintenancebacklink"	=> "Terug na die instandhoudingsbladsy",
 "disambiguations"	=> "Bladsye wat onduidelikhede opklaar",
-"disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
+"disambiguationspage"	=> "{{ns:4}}:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "Die volgende artikels skakel na 'n <i>bladsy wat onduidelikhede opklaar</i>. Hulle behoort eerder na die relevante onderwerp te skakel.<br>'n Bladsy word gesien as een wat onduidelikhede opklaar as $1 daarna toe skakel.<br>Skakels van ander naamkontekste is <i>nie</i> hier gelys nie.",
 "doubleredirects"	=> "Dubbele aansture",
 "doubleredirectstext"	=> "<b>Let op:</b> Hierdie lys bevat moontlik false positiewe. Dit beteken gewoonlik dat daar nog teks met skakels onder die eerste #REDIRECT is.<br>\nElke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reël van van die tweede aanstuurteks, wat gewoonlik die \"regte\" teikenbladsy gee waarna die eerste aanstuur behoort te wys.",
@@ -639,7 +643,7 @@ Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>
 "unusedimagestext" => "<p>Let asseblief op dat ander webwerwe, soos die internasionale Wikipedias, dalk met 'n direkte URL na 'n prent skakel, so die prent sal dus hier verskyn al word dit aktief gebruik.",
 "booksources"	=> "Boekbronne",
 "booksourcetext" => "Hier onder is 'n lys van skakels na ander werwe wat nuwe en tweede handse boeke verkoop, en wat dalk ook verdere inligting het oor boeke waarna jy soek.
-Wikipedia is nie geaffilieer aan enige van hierdie besighede nie en die lys moet nie as 'n aanbeveling gesien word nie.",
+{{SITENAME}} is nie geaffilieer aan enige van hierdie besighede nie en die lys moet nie as 'n aanbeveling gesien word nie.",
 
 # Email this user
 #
@@ -692,7 +696,7 @@ Toekomstige veranderinge aan hierdie bladsye en sy geassosieerde Bespreekbladsy 
 "confirmdelete" => "Bevestig skrapping",
 "deletesub"		=> "(Besig om \"$1\" te skrap)",
 "confirmdeletetext" => "Jy staan op die punt om 'n bladsy of prent asook al hulle geskiedenis uit die databasis te skrap.
-Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [Wikipedia:Policy]].",
+Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [[{{ns:4}}:Policy]].",
 "confirmcheck"	=> "Ja, ek wil dit regtig skrap.",
 "actioncomplete" => "Aksie uitgevoer",
 "deletedtext"	=> "\"$1\" is geskrap.
@@ -724,7 +728,7 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 "undeletebtn" => "Herstel!",
 "undeletedarticle" => "het \"$1\" herstel",
 "undeletedtext"   => "Die bladsy [[$1]] is sukselsvol herstel.
-Kyk na [[Wikipedia:Deletion_log]] vir 'n rekord van onlangse skrappings en herstellings.",
+Kyk na [[{{ns:4}}:Deletion_log]] vir 'n rekord van onlangse skrappings en herstellings.",
 
 # Contributions
 #
@@ -751,7 +755,7 @@ Kyk na [[Wikipedia:Deletion_log]] vir 'n rekord van onlangse skrappings en herst
 #
 "blockip"		=> "Blok IP-adres",
 "blockiptext"	=> "Gebruik die vorm hier onder om skryftoegang van 'n sekere IP-adres te blok.
-Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [Wikipedia:Policy|Wikipedia policy]].
+Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [[{{ns:4}}:Policy|{{ns:4}} policy]].
 Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat gevandaliseer is, aan).",
 "ipaddress"		=> "IP-Adres",
 "ipbreason"		=> "Rede",
@@ -786,19 +790,19 @@ Bevestig asseblief dat dit is wat jy wil doen.",
 "locknoconfirm" => "Jy het nie die bevestigblokkie gemerk nie.",
 "lockdbsuccesssub" => "Databasissluit het geslaag",
 "unlockdbsuccesssub" => "Databasisslot is verwyder",
-"lockdbsuccesstext" => "Die Wikipedia databasis is gesluit.
+"lockdbsuccesstext" => "Die {{SITENAME}} databasis is gesluit.
 <br>Onthou om dit te ontsluit wanneer jou onderhoud afgehandel is.",
-"unlockdbsuccesstext" => "Die Wikipedia databasis is ontsluit.",
+"unlockdbsuccesstext" => "Die {{SITENAME}} databasis is ontsluit.",
 
 # SQL query
 #
 "asksql"		=> "SQL navraag",
-"asksqltext"	=> "Gebruik die vorm hier onder om 'n navraag direk op die Wikipedia databasis te doen.
+"asksqltext"	=> "Gebruik die vorm hier onder om 'n navraag direk op die {{SITENAME}} databasis te doen.
 Gebruik enkel aanhaligstekens ('soos hier') om karkaterkonstantes te begrens.
 Dit kan dikwels 'n groot lading op die bediener plaas, so gebruik hierdie funksie asseblief so min as moontlik.",
 "sqlquery"		=> "Tik navraag in",
 "querybtn"		=> "Stuur navraag",
-"selectonly"	=> "Net Wikipedia prgrammeerders mag navrae doen wat SQL-sleutelwoorde anders as \"SELECT\" bevat.",
+"selectonly"	=> "Net {{SITENAME}} prgrammeerders mag navrae doen wat SQL-sleutelwoorde anders as \"SELECT\" bevat.",
 "querysuccessful" => "Navraag suksesvol",
 
 # Move page
