@@ -111,11 +111,11 @@ function wfSpecialRecentchanges( $par )
 	} else {
 		$note = wfMsg( "rcnote", $wgLang->formatNum( $limit ), $wgLang->formatNum( $days ) );
 	}
-	$wgOut->addHTML( "\n<hr/>\n{$note}\n<br/>" );
+	$wgOut->addHTML( "\n<hr />\n{$note}\n<br />" );
 
 	$note = rcDayLimitLinks( $days, $limit, "Recentchanges", $hideparams, false, $minorLink, $botLink, $liuLink );
 
-	$note .= "<br/>\n" . wfMsg( "rclistfrom",
+	$note .= "<br />\n" . wfMsg( "rclistfrom",
 	  $sk->makeKnownLink( $wgLang->specialPage( "Recentchanges" ),
 	  $wgLang->timeanddate( $now, true ), "{$hideparams}&from=$now" ) );
 

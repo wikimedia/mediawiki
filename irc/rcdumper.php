@@ -1,12 +1,13 @@
 <?php
-
+ini_set( "display_errors", 1 );
 $wgCommandLineMode = true;
 $fmB = chr(2);
 $fmU = chr(31);
-
+/*
 $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
 if ( $argv[1] ) {
 	$lang = $argv[1];
+	$site = "wikipedia";
 	putenv( "wikilang=$lang");
 	$settingsFile = "/apache/htdocs/{$argv[1]}/w/LocalSettings.php";
 	$newpath = "/apache/common/php$sep";
@@ -31,8 +32,11 @@ ini_set( "include_path", "$newpath$IP$sep$include_path" );
 
 $wgCommandLineMode = true;
 $DP = "../includes";
-require_once( $settingsFile );
-require_once( "Setup.php" );
+include_once( $settingsFile );
+include_once( "Setup.php" );*/
+
+require_once("../maintenance/liveCmdLine.inc" );
+
 $wgTitle = Title::newFromText( "RC dumper" );
 $wgCommandLineMode = true;
 set_time_limit(0);
@@ -42,11 +46,15 @@ sleep(30);
 $res = wfQuery( "SELECT rc_timestamp FROM recentchanges ORDER BY rc_timestamp DESC LIMIT 1", DB_READ ); 
 $row = wfFetchObject( $res );
 $oldTimestamp = $row->rc_timestamp;
+$serverCount = 0;
 
 while (1) {
 	$res = wfQuery( "SELECT * FROM recentchanges WHERE rc_timestamp>'$oldTimestamp' ORDER BY rc_timestamp", DB_READ );
 	$rowIndex = 0;
 	while ( $row = wfFetchObject( $res ) ) {
+		if ( ++$serverCount % 20 == 0 ) {
+			print "/server irc.freenode.net\n";
+		}
 		$ns = $wgLang->getNsText( $row->rc_namespace ) ;
 		if ( $ns ) {
 			$title = "$ns:{$row->rc_title}";

@@ -12,6 +12,9 @@ class SkinNostalgia extends Skin {
 	{
 		return "nostalgia.css";
 	}
+	function getSkinName() {
+		return "nostalgia";
+	}
 
 	function doBeforeContent()
 	{
@@ -28,6 +31,9 @@ class SkinNostalgia extends Skin {
 
 		$ol = $this->otherLanguages();
 		if($ol) $s .= "<br />" . $ol;
+		
+		$cat = $this->getCategoryLinks();
+		if($cat) $s .= "<br />" . $cat;
 
 		$s .= "<br clear='all' /><hr />\n</div>\n";
 		$s .= "\n<div id='article'>";

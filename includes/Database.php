@@ -1,5 +1,8 @@
 <?php
-require_once( "FulltextStoplist.php" );
+# $Id$
+# This file deals with MySQL interface functions 
+# and query specifics/optimisations
+#
 require_once( "CacheManager.php" );
 
 define( "DB_READ", -1 );
@@ -36,7 +39,7 @@ class Database {
 	
 	# Output page, used for reporting errors
 	# FALSE means discard output
-	function &setOutputPage( &$out ) { return wfSetRef( $this->mOut, $out ); }
+	function &setOutputPage( &$out ) { $this->mOut =& $out; }
 	
 	# Boolean, controls output of large amounts of debug information 
 	function setDebug( $debug ) { return wfSetVar( $this->mDebug, $debug ); }
@@ -174,13 +177,15 @@ class Database {
 		}
 	
 		if ( false === $ret ) {
+			$error = mysql_error( $this->mConn );
+			$errno = mysql_errno( $this->mConn );
 			if( $this->mIgnoreErrors ) {
-				wfDebug("SQL ERROR (ignored): " . mysql_error( $this->mConn ) . "\n");
+				wfDebug("SQL ERROR (ignored): " . $error . "\n");
 			} else {
-				wfDebug("SQL ERROR: " . mysql_error( $this->mConn ) . "\n");
+				wfDebug("SQL ERROR: " . $error . "\n");
 				if ( $this->mOut ) {
 					// this calls wfAbruptExit()
-					$this->mOut->databaseError( $fname, $this ); 				
+					$this->mOut->databaseError( $fname, $sql, $error, $errno ); 				
 				}
 			}
 		}
@@ -204,6 +209,15 @@ class Database {
 		}
 		return $row;
 	}
+	
+ 	function fetchRow( $res ) {
+		@$row = mysql_fetch_array( $res );
+		if (mysql_errno() ) {
+			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( mysql_error() ) );
+		}
+		return $row;
+	}	
+
 	function numRows( $res ) {
 		@$n = mysql_num_rows( $res ); 
 		if( mysql_errno() ) {
@@ -314,7 +328,10 @@ class Database {
 	# If errors are explicitly ignored, returns NULL on failure
 	function indexExists( $table, $index, $fname = "Database::indexExists" ) 
 	{
-		$sql = "SHOW INDEXES FROM $table";
+		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
+		# SHOW INDEX should work for 3.x and up:
+		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
+		$sql = "SHOW INDEX FROM $table";
 		$res = $this->query( $sql, DB_READ, $fname );
 		if ( !$res ) {
 			return NULL;
@@ -334,6 +351,7 @@ class Database {
 	function tableExists( $table )
 	{
 		$old = $this->mIgnoreErrors;
+		$this->mIgnoreErrors = true;
 		$res = $this->query( "SELECT 1 FROM $table LIMIT 1" );
 		$this->mIgnoreErrors = $old;
 		if( $res ) {
@@ -444,7 +462,13 @@ class Database {
 function wfEmergencyAbort( &$conn ) {
 	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgSiteNotice, $wgOutputEncoding;
 	
-	header( "Content-type: text/html; charset=$wgOutputEncoding" );
+	if( !headers_sent() ) {
+		header( "HTTP/1.0 500 Internal Server Error" );
+		header( "Content-type: text/html; charset=$wgOutputEncoding" );
+		/* Don't cache error pages!  They cause no end of trouble... */
+		header( "Cache-control: none" );
+		header( "Pragma: nocache" );
+	}
 	$msg = $wgSiteNotice;
 	if($msg == "") $msg = wfMsgNoDB( "noconnect" );
 	$text = $msg;
@@ -478,9 +502,6 @@ function wfEmergencyAbort( &$conn ) {
 		}
 	}
 	
-	/* Don't cache error pages!  They cause no end of trouble... */
-	header( "Cache-control: none" );
-	header( "Pragma: nocache" );
 	echo $text;
 	wfAbruptExit();
 }
@@ -515,4 +536,9 @@ function wfInvertTimestamp( $ts ) {
 		"9876543210"
 	);
 }
+
+function wfLimitResult( $limit, $offset ) {
+	return " LIMIT ".(is_numeric($offset)?"{$offset},":"")."{$limit} ";
+}
+
 ?>

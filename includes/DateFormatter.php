@@ -18,7 +18,7 @@ define("DF_LAST", 8);
 class DateFormatter
 {
 	var $mSource, $mTarget;
-	var $monthNames = "", $rxDM, $rxMD, $rxDMY, $rxYDM, $rxMDY, $rxYMD;
+	var $monthNames = '', $rxDM, $rxMD, $rxDMY, $rxYDM, $rxMDY, $rxYMD;
 	
 	var $regexes, $pDays, $pMonths, $pYears;
 	var $rules, $xMonths;
@@ -58,24 +58,24 @@ class DateFormatter
 		
 		# Extraction keys
 		# See the comments in replace() for the meaning of the letters
-		$this->keys[DF_DMY] = "jFY";
-		$this->keys[DF_YDM] = "Y jF";
-		$this->keys[DF_MDY] = "FjY";
-		$this->keys[DF_YMD] = "Y Fj";
-		$this->keys[DF_DM] = "jF";
-		$this->keys[DF_MD] = "Fj";
-		$this->keys[DF_ISO1] = "ymd"; # y means ISO year
-		$this->keys[DF_ISO2] = "ymd";
+		$this->keys[DF_DMY] = 'jFY';
+		$this->keys[DF_YDM] = 'Y jF';
+		$this->keys[DF_MDY] = 'FjY';
+		$this->keys[DF_YMD] = 'Y Fj';
+		$this->keys[DF_DM] = 'jF';
+		$this->keys[DF_MD] = 'Fj';
+		$this->keys[DF_ISO1] = 'ymd'; # y means ISO year
+		$this->keys[DF_ISO2] = 'ymd';
 
 		# Target date formats
-		$this->targets[DF_DMY] = "[[F j|j F]] [[Y]]";
-		$this->targets[DF_YDM] = "[[Y]], [[F j|j F]]";
-		$this->targets[DF_MDY] = "[[F j]], [[Y]]";
-		$this->targets[DF_YMD] = "[[Y]] [[F j]]";
-		$this->targets[DF_DM] = "[[F j|j F]]";
-		$this->targets[DF_MD] = "[[F j]]";
-		$this->targets[DF_ISO1] = "[[Y|y]]-[[F j|m-d]]";
-		$this->targets[DF_ISO2] = "[[y-m-d]]";
+		$this->targets[DF_DMY] = '[[F j|j F]] [[Y]]';
+		$this->targets[DF_YDM] = '[[Y]], [[F j|j F]]';
+		$this->targets[DF_MDY] = '[[F j]], [[Y]]';
+		$this->targets[DF_YMD] = '[[Y]] [[F j]]';
+		$this->targets[DF_DM] = '[[F j|j F]]';
+		$this->targets[DF_MD] = '[[F j]]';
+		$this->targets[DF_ISO1] = '[[Y|y]]-[[F j|m-d]]';
+		$this->targets[DF_ISO2] = '[[y-m-d]]';
 
 		# Rules
 		#            pref    source 	  target
@@ -103,7 +103,7 @@ class DateFormatter
 				# Default
 				$this->mTarget = $i;
 			}
-			$text = preg_replace_callback( $this->regexes[$i], "wfMainDateReplace", $text );
+			$text = preg_replace_callback( $this->regexes[$i], 'wfMainDateReplace', $text );
 		}
 		return $text;
 	}
@@ -123,7 +123,7 @@ class DateFormatter
 		$format = $this->targets[$this->mTarget];
 		
 		# Construct new date
-		$text = "";
+		$text = '';
 		$fail = false;
 		
 		for ( $p=0; $p < strlen( $format ); $p++ ) {
@@ -131,7 +131,7 @@ class DateFormatter
 			switch ( $char ) {
 				case 'd': # ISO day of month
 					if ( is_null($bits['d']) ) {
-						$text .= sprintf( "%02d", $bits['j'] );
+						$text .= sprintf( '%02d', $bits['j'] );
 					} else {
 						$text .= $bits['d'];
 					}
@@ -139,7 +139,7 @@ class DateFormatter
 				case 'm': # ISO month
 					if ( is_null($bits['m']) ) {
 						$m = $this->makeIsoMonth( $bits['F'] );
-						if ( !$m || $m == "00" ) {
+						if ( !$m || $m == '00' ) {
 							$fail = true;
 						} else {
 							$text .= $m;
@@ -194,14 +194,14 @@ class DateFormatter
 	function getMonthRegex()
 	{
 		global $wgMonthNamesEn;
-		return implode( "|", $wgMonthNamesEn );
+		return implode( '|', $wgMonthNamesEn );
 	}
 
 	# Makes an ISO month, e.g. 02, from a month name
 	function makeIsoMonth( $monthName )
 	{
 		$n = $this->xMonths[strtolower( $monthName )];
-		return sprintf( "%02d", $n );
+		return sprintf( '%02d', $n );
 	}
 
 	function makeIsoYear( $year )
@@ -210,10 +210,10 @@ class DateFormatter
 		if ( substr( $year, -2 ) == 'BC' ) {
 			$num = IntVal(substr( $year, 0, -3 )) - 1;
 			# PHP bug note: sprintf( "%04d", -1 ) fails poorly
-			$text = sprintf( "-%04d", $num );
+			$text = sprintf( '-%04d', $num );
 
 		} else {
-			$text = sprintf( "%04d", $year );
+			$text = sprintf( '%04d', $year );
 		}
 		return $text;
 	}
@@ -221,7 +221,7 @@ class DateFormatter
 	function makeNormalYear( $iso ) 
 	{
 		if ( $iso{0} == '-' ) {
-			$text = (IntVal( substr( $iso, 1 ) ) - 1) . " BC";
+			$text = (IntVal( substr( $iso, 1 ) ) - 1) . ' BC';
 		} else {
 			$text = IntVal( $iso );
 		}

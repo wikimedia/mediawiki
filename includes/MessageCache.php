@@ -81,7 +81,7 @@ class MessageCache
 	function loadFromDB()
 	{
 		$fname = "MessageCache::loadFromDB";
-		$sql = "SELECT cur_title,cur_text FROM cur WHERE cur_namespace=" . NS_MEDIAWIKI;
+		$sql = "SELECT cur_title,cur_text FROM cur WHERE cur_is_redirect=0 AND cur_namespace=" . NS_MEDIAWIKI;
 		$res = wfQuery( $sql, DB_READ, $fname );
 		
 		$this->mCache = array();

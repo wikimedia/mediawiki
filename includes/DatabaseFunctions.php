@@ -1,4 +1,5 @@
 <?php
+# $Id$
 
 # Backwards compatibility wrapper for Database.php
 
@@ -11,7 +12,16 @@
 # not access the $wgDatabase variable directly unless
 # you intend to set it. Use wfGetDB().
 
-require_once( "Database.php" );
+$wgIsMySQL=false;
+$wgIsPg=false;
+
+if ($wgDBtype=="mysql") {
+    require_once( "Database.php" );
+    $wgIsMySQL=true;
+} elseif ($wgDBtype=="pgsql") {
+    require_once( "DatabasePostgreSQL.php" );
+    $wgIsPg=true;
+} 
 
 # Query the database
 # $db: DB_READ  = -1    read from slave (or only server)
@@ -81,6 +91,12 @@ function wfFetchObject( $res )
 	return $db->fetchObject( $res ); 
 }
 
+function wfFetchRow( $res )
+{
+	$db =& wfGetDB();
+	return $db->fetchRow ( $res );
+}
+
 function wfNumRows( $res ) 
 { 
 	$db =& wfGetDB();
@@ -140,7 +156,7 @@ function wfSetSQL( $table, $var, $value, $cond )
 	return $db->set( $table, $var, $value, $cond );
 }
 
-function wfGetSQL( $table, $var, $cond )
+function wfGetSQL( $table, $var, $cond="" )
 {
 	$db =& wfGetDB();
 	return $db->get( $table, $var, $cond );

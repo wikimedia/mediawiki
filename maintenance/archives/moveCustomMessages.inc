@@ -1,11 +1,21 @@
-<?
+<?php
+
+function isTemplateInitialised() {
+	$sql = "SELECT 1 FROM cur WHERE cur_namespace=" . NS_TEMPLATE . " LIMIT 1";
+	$res = wfQuery( $sql, DB_READ );
+	return wfNumRows( $res ) ? true : false;
+}
 
 function moveCustomMessages( $phase ) {
-	global $wgUser, $wgAllMessagesEn, $wgDeferredUpdateList, $wgLang ;
+	global $wgUser, $wgAllMessagesEn, $wgDeferredUpdateList, $wgLang;
+	global $targets, $template, $replaceCount;
+
 	$wgUser = new User;
 	$wgUser->setLoaded( true ); # Don't load from DB
 	$wgUser->setName( "Template namespace initialisation script" );
 	$wgUser->addRight( "bot" );
+
+	wfIgnoreSQLErrors( true );
 
 	# Compose DB key array
 	$dbkeys = array();
@@ -29,6 +39,7 @@ function moveCustomMessages( $phase ) {
 
 	# Create redirects from destination to source
 	if ( $phase == 0 || $phase == 1 ) {
+		print "Creating redirects\n";
 		foreach ( $targets as $partial => $dummy ) {
 			print "$partial...";
 			$nt = Title::makeTitle( NS_TEMPLATE, $partial );
@@ -48,8 +59,9 @@ function moveCustomMessages( $phase ) {
 
 	# Move pages
 	if ( $phase == 0 || $phase == 2 ) {
-		print "\n";
+		print "\nMoving pages...\n";
 		foreach ( $targets as $partial => $dummy ) {
+			wfQuery( "BEGIN", DB_WRITE );
 			$ot = Title::makeTitle( NS_MEDIAWIKI, $partial );
 			$nt = Title::makeTitle( NS_TEMPLATE, $partial );
 			print "$partial...";
@@ -64,12 +76,13 @@ function moveCustomMessages( $phase ) {
 				$up = array_pop( $wgDeferredUpdateList );
 				$up->doUpdate();
 			}
+			wfQuery( "COMMIT", DB_WRITE );
 		}
 	}
 
 	# Convert text
 	if ( $phase == 0 || $phase == 3 ) {
-		print "\n";
+		print "\nConverting text...\n";
 		
 		$parser = new Parser;
 		$options = ParserOptions::newFromUser( $wgUser );
@@ -81,11 +94,11 @@ function moveCustomMessages( $phase ) {
 		$msgRegex = "/{{msg:([$titleChars]*?)}}/";
 
 		foreach ( $targets as $partial => $dummy ) {
-			$dest = Title::makeTitle( NS_TEMPLATE, $partial );
+			$dest = Title::makeTitle( NS_MEDIAWIKI, $partial );
 			$linksTo = $dest->getLinksTo();
 			foreach( $linksTo as $source ) {
+				wfQuery( "BEGIN", DB_WRITE );
 				$pdbk = $source->getPrefixedDBkey();
-				print "$pdbk...";
 				if ( !array_key_exists( $pdbk, $completedTitles ) ) {	
 					$completedTitles[$pdbk] = 1;
 					$id = $source->getArticleID();
@@ -98,13 +111,21 @@ function moveCustomMessages( $phase ) {
 					# [[MediaWiki:]] -> [[Template:]]
 					$text = preg_replace_callback( $linkRegex, "wfReplaceMediaWiki", $text );
 					$text = $parser->unstrip( $text, $stripState );
+					$text = $parser->unstripNoWiki( $text, $stripState );
 					if ( $text != $row->cur_text ) {
-						wfUpdateArray( 'cur', array( 'cur_text' => $text ), array( 'cur_id' => $id ) );
-						print "modified\n";
+						print "$pdbk\n";
+						$art = new Article( $source );
+						$art->updateArticle( $text, "", false, false );
+						# Do deferred updates
+						while ( count( $wgDeferredUpdateList ) ) {
+							$up = array_pop( $wgDeferredUpdateList );
+							$up->doUpdate();
+						}
 					} else {
-						print "not modified\n";
+						print "($pdbk)\n";
 					}
-				}
+				} 
+				wfQuery( "COMMIT", DB_WRITE );
 			}
 		}
 	}
@@ -125,3 +146,4 @@ function wfReplaceMediaWiki( $m ) {
 	return $text;
 }
 
+?>
