@@ -622,7 +622,6 @@ alt=\"Google\" align=\"middle\"></a>
 "ilshowmatch"	=> "顯示所有匹對的圖像",
 "ilsubmit"		=> "搜索",
 "showlast"		=> "顯示按$2排列的最後$1幅圖像。",
-"all"			=> "全部",
 "byname"		=> "名字",
 "bydate"		=> "日期",
 "bysize"		=> "大小",

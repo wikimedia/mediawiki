@@ -1027,7 +1027,6 @@ created and by whom, and anything else you may know about it. If this is an imag
 'ilshowmatch'	=> 'Show all images with names matching',
 'ilsubmit'		=> 'Search',
 'showlast'		=> "Show last $1 images sorted $2.",
-'all'			=> 'all',
 'byname'		=> 'by name',
 'bydate'		=> 'by date',
 'bysize'		=> 'by size',
@@ -1795,6 +1794,13 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 # external editor support
 'edit-externally' => 'Edit this file using an external application',
 'edit-externally-help' => 'See the [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] for more information.',
+
+# 'all' in various places, this might be different for inflicted languages
+'recentchangesall' => 'all',
+'imagelistall' => 'all',
+'watchlistall1' => 'all',
+'watchlistall2' => 'all',
+'contributionsall' => 'all',
 );
 
 #--------------------------------------------------------------------------

@@ -469,7 +469,6 @@ Vergeet neet dat net als met andere pagina's op Wikipedia anderen de ge-uploade 
 "ilshowmatch" => "Toon alle afbeeldingen waarvan de naam voldoet aan",
 "ilsubmit"  => "Zoek",
 "showlast"  => "Toon de laatste $1 afbeeldingen geordend $2.",
-"all"   => "alle",
 "byname"  => "op naam",
 "bydate"  => "op datum",
 "bysize"  => "op grootte",

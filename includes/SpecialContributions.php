@@ -227,7 +227,7 @@ function namespaceForm ( $target, $hideminor, $namespace ) {
 	global $wgContLang, $wgScript;
 
 	$namespaceselect = '<select name="namespace">';
-	$namespaceselect .= '<option value="" '.(is_null($namespace) ? ' selected="selected"' : '').'>'.wfMsg( 'all' ).'</option>';
+	$namespaceselect .= '<option value="" '.(is_null($namespace) ? ' selected="selected"' : '').'>'.wfMsg( 'contributionsall' ).'</option>';
 	$arr = $wgContLang->getNamespaces();
 	foreach( array_keys( $arr ) as $i ) {
 		if( $i < 0 ) {

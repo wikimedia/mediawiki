@@ -585,7 +585,6 @@ Suivez ce lien: ($2) pour accéder à la page de description, et donner des info
 "ilshowmatch" => "Afficher toutes les images dont le nom contient ",
 "ilsubmit"  => "Chercher",
 "showlast"  => "Afficher les $1 dernières images classées $2.",
-"all"   => "toutes",
 "byname"  => "par nom",
 "bydate"  => "par date",
 "bysize"  => "par taille",

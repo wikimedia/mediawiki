@@ -757,7 +757,6 @@ Disse ($2) Link föhrt to de Bildsiet. Dor kann indregen warrn, woneem dat Bild 
 'ilshowmatch'           => 'Wies alle Biller mit Naam',
 'ilsubmit'                        => 'Söök',
 'showlast'                      => 'Wies de letzten $1 Biller, sorteert $2.',
-'all'                           => 'all',
 'byname'                        => 'no Naam',
 'bydate'                        => 'no Datum',
 'bysize'                        => 'no Grött',

@@ -495,7 +495,6 @@ Věnuj pozornost následujícímu odkazu: ($2) na stránku popisu a napiš pár 
 "ilshowmatch"	=> "Ukaž soubory, jejich jména vyhovují",
 "ilsubmit"		=> "Hledej",
 "showlast"		=> "Ukaž poslední soubor dle .",
-"all"			=> "všichni",
 "byname"		=> "jméno",
 "bydate"		=> "datum",
 "bysize"		=> "velikost",

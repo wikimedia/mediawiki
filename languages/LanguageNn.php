@@ -789,7 +789,6 @@ For å laste opp ei fil bruker du "Browse..." eller "Bla gjennom..."-knappen som
 'ilshowmatch'	        => 'Vis alle treff på filer med namn',
 'ilsubmit'		=> 'Søk',
 'showlast'		=> 'Vis dei siste $1 filene sorterte $2.',
-'all'			=> 'alle',
 'byname'		=> 'etter namn',
 'bydate'		=> 'etter dato',
 'bysize'		=> 'etter storleik',

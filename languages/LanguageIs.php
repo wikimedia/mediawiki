@@ -153,7 +153,6 @@ svo auðveldara sé að sjá hana þar meðal fjöldans.
 <p>Til að fjarlægja síðu þessa af vaktlistanum þarft þú að ýta á tengilinn er merktur er „afvakta“.",
 'administrators' => 'Project:Stjórnendur',
 'affirmation' => 'Ég staðfesti að rétthafi þessa efnis veitir leyfi fyrir notkun þess<!-- undir $1-->. Eða að efni þetta er ekki verndað af höfundalögum.',
-'all' => 'öll',
 'allmessages' => 'Kerfismeldingar',
 'allmessagestext' => 'Listi yfir meldingar í kerfismeldingarýminu.',
 'allpages' => 'Allar síður',

@@ -704,7 +704,6 @@ Bitte verwenden Sie diesen ($2) Link zur Beschreibungsseite und füllen Sie die 
 "ilshowmatch"	=> "Zeige alle Bilder mit Namen",
 "ilsubmit"		=> "Suche",
 "showlast"		=> "Zeige die letzten $1 Bilder, sortiert nach $2.",
-"all"			=> "alle",
 "byname"		=> "nach Name",
 "bydate"		=> "nach Datum",
 "bysize"		=> "nach Grösse",

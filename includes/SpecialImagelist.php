@@ -44,7 +44,7 @@ function wfSpecialImagelist() {
 	}
 	list( $limit, $offset ) = wfCheckLimits( 50 );
 	if ( 0 == $limit ) {
-		$lt = wfMsg( "all" );
+		$lt = wfMsg( 'imagelistall' );
 	} else {
 		$lt = $wgLang->formatNum( "${limit}" );
 		$sql .= " LIMIT {$limit}";

@@ -532,7 +532,6 @@ Segui questo link: ($2) per modificare la pagina di descrizione del file che hai
 "ilshowmatch"	=> "Mostra tutte le immagini con nomi di file corrispondenti alla ricerca",
 "ilsubmit"		=> "Cerca",
 "showlast"		=> "Lista di $1, fra le ultime immagini, ordinate per $2.",
-"all"			=> "tutte",
 "byname"		=> "nome",
 "bydate"		=> "data",
 "bysize"		=> "peso",
