@@ -75,6 +75,8 @@
 			$this->thispage = $wgTitle->getPrefixedDbKey();
 			$this->thisurl = $wgTitle->getPrefixedURL();
 			$this->loggedin = $wgUser->getID() != 0;
+			$this->iscontent = ($wgTitle->getNamespace() != Namespace::getSpecial() );
+			$this->iseditable = ($this->iscontent and !($action == 'edit' or $action == 'submit'));
 			$this->username = $wgUser->getName();
 			$this->userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
 			$this->userpageurl = $this->makeUrl($this->userpage);
@@ -191,13 +193,11 @@
 			$content_actions = $this->buildContentActionUrls();
 			$tpl->setRef('content_actions', &$content_actions);
 			// XXX: attach this from javascript, same with section editing
-			if(isset($content_actions['edit']['href']) && 
-			!(isset($content_actions['edit']['class']) && $content_actions['edit']['class'] != '') &&
-			$wgUser->getOption("editondblclick") ) 
+			if($this->iseditable &&	$wgUser->getOption("editondblclick") ) 
 			{
 				$tpl->set('body-ondblclick', 'document.location = "' .$content_actions['edit']['href'] .'";');
 			} else {
-				$tpl->set('body-ondblclick', '');
+				$tpl->set('body-ondblclick', false);
 			}
 			$tpl->set( "nav_urls", $this->buildNavUrls() );
 
@@ -297,17 +297,16 @@
 			$diff = $wgRequest->getVal( 'diff' );
 			$content_actions = array();
 			
-			$iscontent = ($wgTitle->getNamespace() != Namespace::getSpecial() );
-			if( $iscontent) {
+			if( $this->iscontent ) {
 
-				$content_actions['article'] = array('class' => (!Namespace::isTalk( $wgTitle->getNamespace())) ? 'selected' : '',
+				$content_actions['article'] = array('class' => (!Namespace::isTalk( $wgTitle->getNamespace())) ? 'selected' : false,
 				'text' => wfMsg('article'),
 				'href' => $this->makeArticleUrl($this->thispage),
 				'ttip' => wfMsg('tooltip-article'),
 				'akey' => wfMsg('accesskey-article'));
 
 				/* set up the classes for the talk link */
-				$talk_class = (Namespace::isTalk( $wgTitle->getNamespace()) ? 'selected' : '');				
+				$talk_class = (Namespace::isTalk( $wgTitle->getNamespace()) ? 'selected' : false);				
 				$talktitle = Title::newFromText( $this->titletxt );
 				$talktitle = $talktitle->getTalkPage();
 				$this->checkTitle(&$talktitle, &$this->titletxt);	
@@ -330,11 +329,11 @@
 				}
 
 				if ( $wgTitle->userCanEdit() ) {
-					$oid = ( $oldid && ! isset( $diff ) ) ? "&oldid={$oldid}" : '';
+					$oid = ( $oldid && ! isset( $diff ) ) ? "&oldid={$oldid}" : false;
 					$istalk = ( Namespace::isTalk( $wgTitle->getNamespace()) );
 					$istalkclass = $istalk?' istalk':'';
 					$content_actions['edit'] = array(
-						'class' => ((($action == 'edit' or $action == 'submit') and $section != 'new') ? 'selected' : '').$istalkclass,
+						'class' => (($this->iseditable and $section != 'new') ? 'selected' : '').$istalkclass,
 						'text' => wfMsg('edit'),
 						'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid),
 						'ttip' => wfMsg('tooltip-edit'),
@@ -342,7 +341,7 @@
 					);
 					if ( $istalk ) {
 						$content_actions['addsection'] = array(
-							'class' => $section == 'new'?'selected':'',
+							'class' => $section == 'new'?'selected':false,
 							'text' => wfMsg('addsection'),
 							'href' => $this->makeUrl($this->thispage, 'action=edit&section=new'),
 							'ttip' => wfMsg('tooltip-addsection'),
@@ -351,7 +350,7 @@
 					}
 				} else {
 				        $oid = ( $oldid && ! isset( $diff ) ) ? "&oldid={$oldid}" : '';
-					$content_actions['edit'] = array('class' => ($action == 'edit') ? 'selected' : '',
+					$content_actions['edit'] = array('class' => ($action == 'edit') ? 'selected' : false,
 					'text' => wfMsg('viewsource'),
 					'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid),
 					'ttip' => wfMsg('tooltip-viewsource'),
@@ -360,7 +359,7 @@
 
 				if ( $wgTitle->getArticleId() ) {
 
-					$content_actions['history'] = array('class' => ($action == 'history') ? 'selected' : '',
+					$content_actions['history'] = array('class' => ($action == 'history') ? 'selected' : false,
 					'text' => wfMsg('history_short'),
 					'href' => $this->makeUrl($this->thispage, 'action=history'),
 					'ttip' => wfMsg('tooltip-history'),
@@ -369,7 +368,7 @@
 					# XXX: is there a rollback action anywhere or is it planned?
 					# Don't recall where i got this from...
 					/*if( $wgUser->getNewtalk() ) {
-						$content_actions['rollback'] = array('class' => ($action == 'rollback') ? 'selected' : '',
+						$content_actions['rollback'] = array('class' => ($action == 'rollback') ? 'selected' : false,
 						'text' => wfMsg('rollback_short'),
 						'href' => $this->makeUrl($this->thispage, 'action=rollback'),
 						'ttip' => wfMsg('tooltip-rollback'),
@@ -379,7 +378,7 @@
 					if($wgUser->isSysop()){
 						if(!$wgTitle->isProtected()){
 							$content_actions['protect'] = array(
-								'class' => ($action == 'protect') ? 'selected' : '',
+								'class' => ($action == 'protect') ? 'selected' : false,
 								'text' => wfMsg('protect'),
 								'href' => $this->makeUrl($this->thispage, 'action=protect'),
 								'ttip' => wfMsg('tooltip-protect'),
@@ -388,7 +387,7 @@
 
 						} else {
 							$content_actions['unprotect'] = array(
-								'class' => ($action == 'unprotect') ? 'selected' : '',
+								'class' => ($action == 'unprotect') ? 'selected' : false,
 								'text' => wfMsg('unprotect'),
 								'href' => $this->makeUrl($this->thispage, 'action=unprotect'),
 								'ttip' => wfMsg('tooltip-protect'),
@@ -396,7 +395,7 @@
 							);
 						}
 						$content_actions['delete'] = array(
-							'class' => ($action == 'delete') ? 'selected' : '',
+							'class' => ($action == 'delete') ? 'selected' : false,
 							'text' => wfMsg('delete'),
 							'href' => $this->makeUrl($this->thispage, 'action=delete'),
 							'ttip' => wfMsg('tooltip-delete'),
@@ -405,7 +404,7 @@
 					}
 					if ( $wgUser->getID() != 0 ) {
 						if ( $wgTitle->userCanEdit()) {
-							$content_actions['move'] = array('class' => ($wgTitle->getDbKey() == 'Movepage' and $wgTitle->getNamespace == Namespace::getSpecial()) ? 'selected' : '',
+							$content_actions['move'] = array('class' => ($wgTitle->getDbKey() == 'Movepage' and $wgTitle->getNamespace == Namespace::getSpecial()) ? 'selected' : false,
 							'text' => wfMsg('move'),
 							'href' => $this->makeSpecialUrl('Movepage', 'target='.$this->thispage),
 							'ttip' => wfMsg('tooltip-move'),
@@ -424,7 +423,7 @@
 					if($wgUser->isSysop()){
 						if( $n = $wgTitle->isDeleted() ) {
 							$content_actions['delete'] = array(
-								'class' => '',
+								'class' => false,
 								'text' => wfMsg( "undelete_short", $n ),
 								'href' => $this->makeSpecialUrl('Undelete/'.$this->thispage),
 								'ttip' => wfMsg('tooltip-undelete', $n),
@@ -436,13 +435,13 @@
 
 				if ( $wgUser->getID() != 0 and $action != 'edit' and $action != 'submit' ) {
 					if( !$wgTitle->userIsWatching()) {
-						$content_actions['watch'] = array('class' => ($action == 'watch' or $action == 'unwatch') ? 'selected' : '',
+						$content_actions['watch'] = array('class' => ($action == 'watch' or $action == 'unwatch') ? 'selected' : false,
 						'text' => wfMsg('watch'),
 						'href' => $this->makeUrl($this->thispage, 'action=watch'),
 						'ttip' => wfMsg('tooltip-watch'),
 						'akey' => wfMsg('accesskey-watch'));
 					} else {
-						$content_actions['watch'] = array('class' => ($action == 'unwatch' or $action == 'watch') ? 'selected' : '',
+						$content_actions['watch'] = array('class' => ($action == 'unwatch' or $action == 'watch') ? 'selected' : false,
 						'text' => wfMsg('unwatch'),
 						'href' => $this->makeUrl($this->thispage, 'action=unwatch'),
 						'ttip' => wfMsg('tooltip-unwatch'),
@@ -477,8 +476,8 @@
 			$nav_urls['randompage'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Randompage')));
 			$nav_urls['recentchanges'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchanges')));
 			$nav_urls['whatlinkshere'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Whatlinkshere', 'target='.$this->thispage)));
-			$nav_urls['currentevents'] = (wfMsg('currentevents') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('currentevents'))) : '';
-			$nav_urls['portal'] = (wfMsg('portal') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('portal-url'))) : '';
+			$nav_urls['currentevents'] = (wfMsg('currentevents') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('currentevents'))) : false;
+			$nav_urls['portal'] = (wfMsg('portal') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('portal-url'))) : false;
 			$nav_urls['recentchangeslinked'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchangeslinked', 'target='.$this->thispage)));
 			$nav_urls['bugreports'] = array('href' => htmlspecialchars( $this->makeI18nUrl('bugreportspage')));
 			// $nav_urls['sitesupport'] = array('href' => htmlspecialchars( $this->makeI18nUrl('sitesupportpage')));
