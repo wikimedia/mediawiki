@@ -452,6 +452,9 @@ class _DiffOp_Change extends _DiffOp {
 class _DiffEngine
 {
 	function diff ($from_lines, $to_lines) {
+		$fname = '_DiffEngine::diff';
+		wfProfileIn( $fname );
+		
 		$n_from = sizeof($from_lines);
 		$n_to = sizeof($to_lines);
 
@@ -535,6 +538,7 @@ class _DiffEngine
 			elseif ($add)
 				$edits[] = new _DiffOp_Add($add);
 		}
+		wfProfileOut( $fname );
 		return $edits;
 	}
 
@@ -556,102 +560,109 @@ class _DiffEngine
 	 * of the portions it is going to specify.
 	 */
 	function _diag ($xoff, $xlim, $yoff, $ylim, $nchunks) {
-	$flip = false;
+		$fname = '_DiffEngine::_diag';
+		wfProfileIn( $fname );
+		$flip = false;
 
-	if ($xlim - $xoff > $ylim - $yoff) {
-		// Things seems faster (I'm not sure I understand why)
-			// when the shortest sequence in X.
-			$flip = true;
-		list ($xoff, $xlim, $yoff, $ylim)
-		= array( $yoff, $ylim, $xoff, $xlim);
+		if ($xlim - $xoff > $ylim - $yoff) {
+			// Things seems faster (I'm not sure I understand why)
+				// when the shortest sequence in X.
+				$flip = true;
+			list ($xoff, $xlim, $yoff, $ylim)
+			= array( $yoff, $ylim, $xoff, $xlim);
 		}
 
-	if ($flip)
-		for ($i = $ylim - 1; $i >= $yoff; $i--)
-		$ymatches[$this->xv[$i]][] = $i;
-	else
-		for ($i = $ylim - 1; $i >= $yoff; $i--)
-		$ymatches[$this->yv[$i]][] = $i;
-
-	$this->lcs = 0;
-	$this->seq[0]= $yoff - 1;
-	$this->in_seq = array();
-	$ymids[0] = array();
-
-	$numer = $xlim - $xoff + $nchunks - 1;
-	$x = $xoff;
-	for ($chunk = 0; $chunk < $nchunks; $chunk++) {
-		if ($chunk > 0)
-		for ($i = 0; $i <= $this->lcs; $i++)
-			$ymids[$i][$chunk-1] = $this->seq[$i];
-
-		$x1 = $xoff + (int)(($numer + ($xlim-$xoff)*$chunk) / $nchunks);
-		for ( ; $x < $x1; $x++) {
+		if ($flip)
+			for ($i = $ylim - 1; $i >= $yoff; $i--)
+				$ymatches[$this->xv[$i]][] = $i;
+		else
+			for ($i = $ylim - 1; $i >= $yoff; $i--)
+				$ymatches[$this->yv[$i]][] = $i;
+	
+		$this->lcs = 0;
+		$this->seq[0]= $yoff - 1;
+		$this->in_seq = array();
+		$ymids[0] = array();
+	
+		$numer = $xlim - $xoff + $nchunks - 1;
+		$x = $xoff;
+		for ($chunk = 0; $chunk < $nchunks; $chunk++) {
+			if ($chunk > 0)
+				for ($i = 0; $i <= $this->lcs; $i++)
+					$ymids[$i][$chunk-1] = $this->seq[$i];
+	
+			$x1 = $xoff + (int)(($numer + ($xlim-$xoff)*$chunk) / $nchunks);
+			for ( ; $x < $x1; $x++) {
 				$line = $flip ? $this->yv[$x] : $this->xv[$x];
-				if (empty($ymatches[$line]))
-			continue;
-		$matches = $ymatches[$line];
+					if (empty($ymatches[$line]))
+						continue;
+				$matches = $ymatches[$line];
 				reset($matches);
-		while (list ($junk, $y) = each($matches))
-			if (empty($this->in_seq[$y])) {
-			$k = $this->_lcs_pos($y);
-			USE_ASSERTS && assert($k > 0);
-			$ymids[$k] = $ymids[$k-1];
-			break;
+				while (list ($junk, $y) = each($matches))
+					if (empty($this->in_seq[$y])) {
+						$k = $this->_lcs_pos($y);
+						USE_ASSERTS && assert($k > 0);
+						$ymids[$k] = $ymids[$k-1];
+						break;
 					}
-		while (list ($junk, $y) = each($matches)) {
-			if ($y > $this->seq[$k-1]) {
-			USE_ASSERTS && assert($y < $this->seq[$k]);
-			// Optimization: this is a common case:
-			//	next match is just replacing previous match.
-			$this->in_seq[$this->seq[$k]] = false;
-			$this->seq[$k] = $y;
-			$this->in_seq[$y] = 1;
-					}
-			else if (empty($this->in_seq[$y])) {
-			$k = $this->_lcs_pos($y);
-			USE_ASSERTS && assert($k > 0);
-			$ymids[$k] = $ymids[$k-1];
+				while (list ($junk, $y) = each($matches)) {
+					if ($y > $this->seq[$k-1]) {
+						USE_ASSERTS && assert($y < $this->seq[$k]);
+						// Optimization: this is a common case:
+						//	next match is just replacing previous match.
+						$this->in_seq[$this->seq[$k]] = false;
+						$this->seq[$k] = $y;
+						$this->in_seq[$y] = 1;
+					} else if (empty($this->in_seq[$y])) {
+						$k = $this->_lcs_pos($y);
+						USE_ASSERTS && assert($k > 0);
+						$ymids[$k] = $ymids[$k-1];
 					}
 				}
 			}
 		}
-
-	$seps[] = $flip ? array($yoff, $xoff) : array($xoff, $yoff);
-	$ymid = $ymids[$this->lcs];
-	for ($n = 0; $n < $nchunks - 1; $n++) {
-		$x1 = $xoff + (int)(($numer + ($xlim - $xoff) * $n) / $nchunks);
-		$y1 = $ymid[$n] + 1;
-		$seps[] = $flip ? array($y1, $x1) : array($x1, $y1);
+	
+		$seps[] = $flip ? array($yoff, $xoff) : array($xoff, $yoff);
+		$ymid = $ymids[$this->lcs];
+		for ($n = 0; $n < $nchunks - 1; $n++) {
+			$x1 = $xoff + (int)(($numer + ($xlim - $xoff) * $n) / $nchunks);
+			$y1 = $ymid[$n] + 1;
+			$seps[] = $flip ? array($y1, $x1) : array($x1, $y1);
 		}
-	$seps[] = $flip ? array($ylim, $xlim) : array($xlim, $ylim);
-
-	return array($this->lcs, $seps);
+		$seps[] = $flip ? array($ylim, $xlim) : array($xlim, $ylim);
+	
+		wfProfileOut( $fname );
+		return array($this->lcs, $seps);
 	}
 
 	function _lcs_pos ($ypos) {
-	$end = $this->lcs;
-	if ($end == 0 || $ypos > $this->seq[$end]) {
-		$this->seq[++$this->lcs] = $ypos;
+		$fname = '_DiffEngine::_lcs_pos';
+		wfProfileIn( $fname );
+		
+		$end = $this->lcs;
+		if ($end == 0 || $ypos > $this->seq[$end]) {
+			$this->seq[++$this->lcs] = $ypos;
+			$this->in_seq[$ypos] = 1;
+			wfProfileOut( $fname );
+			return $this->lcs;
+		}
+
+		$beg = 1;
+		while ($beg < $end) {
+			$mid = (int)(($beg + $end) / 2);
+			if ( $ypos > $this->seq[$mid] )
+				$beg = $mid + 1;
+			else
+				$end = $mid;
+		}
+	
+		USE_ASSERTS && assert($ypos != $this->seq[$end]);
+	
+		$this->in_seq[$this->seq[$end]] = false;
+		$this->seq[$end] = $ypos;
 		$this->in_seq[$ypos] = 1;
-		return $this->lcs;
-		}
-
-	$beg = 1;
-	while ($beg < $end) {
-		$mid = (int)(($beg + $end) / 2);
-		if ( $ypos > $this->seq[$mid] )
-		$beg = $mid + 1;
-		else
-		$end = $mid;
-		}
-
-	USE_ASSERTS && assert($ypos != $this->seq[$end]);
-
-	$this->in_seq[$this->seq[$end]] = false;
-	$this->seq[$end] = $ypos;
-	$this->in_seq[$ypos] = 1;
-	return $end;
+		wfProfileOut( $fname );
+		return $end;
 	}
 
 	/* Find LCS of two sequences.
@@ -666,48 +677,51 @@ class _DiffEngine
 	 * All line numbers are origin-0 and discarded lines are not counted.
 	 */
 	function _compareseq ($xoff, $xlim, $yoff, $ylim) {
-	// Slide down the bottom initial diagonal.
-	while ($xoff < $xlim && $yoff < $ylim
+		$fname = '_DiffEngine::_compareseq';
+		wfProfileIn( $fname );
+		
+		// Slide down the bottom initial diagonal.
+		while ($xoff < $xlim && $yoff < $ylim
 			   && $this->xv[$xoff] == $this->yv[$yoff]) {
-		++$xoff;
-		++$yoff;
+			++$xoff;
+			++$yoff;
 		}
 
-	// Slide up the top initial diagonal.
-	while ($xlim > $xoff && $ylim > $yoff
+		// Slide up the top initial diagonal.
+		while ($xlim > $xoff && $ylim > $yoff
 			   && $this->xv[$xlim - 1] == $this->yv[$ylim - 1]) {
-		--$xlim;
-		--$ylim;
+			--$xlim;
+			--$ylim;
 		}
 
-	if ($xoff == $xlim || $yoff == $ylim)
-		$lcs = 0;
-	else {
-		// This is ad hoc but seems to work well.
-		//$nchunks = sqrt(min($xlim - $xoff, $ylim - $yoff) / 2.5);
-		//$nchunks = max(2,min(8,(int)$nchunks));
-		$nchunks = min(7, $xlim - $xoff, $ylim - $yoff) + 1;
-		list ($lcs, $seps)
-		= $this->_diag($xoff,$xlim,$yoff, $ylim,$nchunks);
+		if ($xoff == $xlim || $yoff == $ylim)
+			$lcs = 0;
+		else {
+			// This is ad hoc but seems to work well.
+			//$nchunks = sqrt(min($xlim - $xoff, $ylim - $yoff) / 2.5);
+			//$nchunks = max(2,min(8,(int)$nchunks));
+			$nchunks = min(7, $xlim - $xoff, $ylim - $yoff) + 1;
+			list ($lcs, $seps)
+			= $this->_diag($xoff,$xlim,$yoff, $ylim,$nchunks);
 		}
 
-	if ($lcs == 0) {
-		// X and Y sequences have no common subsequence:
-		// mark all changed.
-		while ($yoff < $ylim)
-		$this->ychanged[$this->yind[$yoff++]] = 1;
-		while ($xoff < $xlim)
-		$this->xchanged[$this->xind[$xoff++]] = 1;
-		}
-	else {
-		// Use the partitions to split this problem into subproblems.
-		reset($seps);
-		$pt1 = $seps[0];
-		while ($pt2 = next($seps)) {
-		$this->_compareseq ($pt1[0], $pt2[0], $pt1[1], $pt2[1]);
-		$pt1 = $pt2;
+		if ($lcs == 0) {
+			// X and Y sequences have no common subsequence:
+			// mark all changed.
+			while ($yoff < $ylim)
+				$this->ychanged[$this->yind[$yoff++]] = 1;
+			while ($xoff < $xlim)
+				$this->xchanged[$this->xind[$xoff++]] = 1;
+		} else {
+			// Use the partitions to split this problem into subproblems.
+			reset($seps);
+			$pt1 = $seps[0];
+			while ($pt2 = next($seps)) {
+				$this->_compareseq ($pt1[0], $pt2[0], $pt1[1], $pt2[1]);
+				$pt1 = $pt2;
 			}
 		}
+		wfProfileOut( $fname );
 	}
 
 	/* Adjust inserts/deletes of identical lines to join changes
@@ -723,110 +737,113 @@ class _DiffEngine
 	 * This is extracted verbatim from analyze.c (GNU diffutils-2.7).
 	 */
 	function _shift_boundaries ($lines, &$changed, $other_changed) {
-	$i = 0;
-	$j = 0;
-
-	USE_ASSERTS && assert('sizeof($lines) == sizeof($changed)');
-	$len = sizeof($lines);
-	$other_len = sizeof($other_changed);
-
-	while (1) {
-		/*
-		 * Scan forwards to find beginning of another run of changes.
-		 * Also keep track of the corresponding point in the other file.
-		 *
-		 * Throughout this code, $i and $j are adjusted together so that
-		 * the first $i elements of $changed and the first $j elements
-		 * of $other_changed both contain the same number of zeros
-		 * (unchanged lines).
-		 * Furthermore, $j is always kept so that $j == $other_len or
-		 * $other_changed[$j] == false.
-		 */
-		while ($j < $other_len && $other_changed[$j])
-		$j++;
-
-		while ($i < $len && ! $changed[$i]) {
-		USE_ASSERTS && assert('$j < $other_len && ! $other_changed[$j]');
-		$i++; $j++;
-		while ($j < $other_len && $other_changed[$j])
-			$j++;
-			}
-
-		if ($i == $len)
-		break;
-
-		$start = $i;
-
-		// Find the end of this run of changes.
-		while (++$i < $len && $changed[$i])
-		continue;
-
-		do {
-		/*
-		 * Record the length of this run of changes, so that
-		 * we can later determine whether the run has grown.
-		 */
-		$runlength = $i - $start;
-
-		/*
-		 * Move the changed region back, so long as the
-		 * previous unchanged line matches the last changed one.
-		 * This merges with previous changed regions.
-		 */
-		while ($start > 0 && $lines[$start - 1] == $lines[$i - 1]) {
-			$changed[--$start] = 1;
-			$changed[--$i] = false;
-			while ($start > 0 && $changed[$start - 1])
-			$start--;
-			USE_ASSERTS && assert('$j > 0');
-			while ($other_changed[--$j])
-			continue;
-			USE_ASSERTS && assert('$j >= 0 && !$other_changed[$j]');
-				}
-
-		/*
-		 * Set CORRESPONDING to the end of the changed run, at the last
-		 * point where it corresponds to a changed run in the other file.
-		 * CORRESPONDING == LEN means no such point has been found.
-		 */
-		$corresponding = $j < $other_len ? $i : $len;
-
-		/*
-		 * Move the changed region forward, so long as the
-		 * first changed line matches the following unchanged one.
-		 * This merges with following changed regions.
-		 * Do this second, so that if there are no merges,
-		 * the changed region is moved forward as far as possible.
-		 */
-		while ($i < $len && $lines[$start] == $lines[$i]) {
-			$changed[$start++] = false;
-			$changed[$i++] = 1;
-			while ($i < $len && $changed[$i])
-			$i++;
-
-			USE_ASSERTS && assert('$j < $other_len && ! $other_changed[$j]');
-			$j++;
-			if ($j < $other_len && $other_changed[$j]) {
-			$corresponding = $i;
+		$fname = '_DiffEngine::_shift_boundaries';
+		wfProfileIn( $fname );
+		$i = 0;
+		$j = 0;
+	
+		USE_ASSERTS && assert('sizeof($lines) == sizeof($changed)');
+		$len = sizeof($lines);
+		$other_len = sizeof($other_changed);
+	
+		while (1) {
+			/*
+			 * Scan forwards to find beginning of another run of changes.
+			 * Also keep track of the corresponding point in the other file.
+			 *
+			 * Throughout this code, $i and $j are adjusted together so that
+			 * the first $i elements of $changed and the first $j elements
+			 * of $other_changed both contain the same number of zeros
+			 * (unchanged lines).
+			 * Furthermore, $j is always kept so that $j == $other_len or
+			 * $other_changed[$j] == false.
+			 */
 			while ($j < $other_len && $other_changed[$j])
 				$j++;
+	
+			while ($i < $len && ! $changed[$i]) {
+				USE_ASSERTS && assert('$j < $other_len && ! $other_changed[$j]');
+				$i++; $j++;
+				while ($j < $other_len && $other_changed[$j])
+					$j++;
+			}
+			
+			if ($i == $len)
+				break;
+			
+			$start = $i;
+			
+			// Find the end of this run of changes.
+			while (++$i < $len && $changed[$i])
+				continue;
+			
+			do {
+				/*
+				 * Record the length of this run of changes, so that
+				 * we can later determine whether the run has grown.
+				 */
+				$runlength = $i - $start;
+				
+				/*
+				 * Move the changed region back, so long as the
+				 * previous unchanged line matches the last changed one.
+				 * This merges with previous changed regions.
+				 */
+				while ($start > 0 && $lines[$start - 1] == $lines[$i - 1]) {
+					$changed[--$start] = 1;
+					$changed[--$i] = false;
+					while ($start > 0 && $changed[$start - 1])
+						$start--;
+					USE_ASSERTS && assert('$j > 0');
+					while ($other_changed[--$j])
+						continue;
+					USE_ASSERTS && assert('$j >= 0 && !$other_changed[$j]');
+				}
+	
+				/*
+				 * Set CORRESPONDING to the end of the changed run, at the last
+				 * point where it corresponds to a changed run in the other file.
+				 * CORRESPONDING == LEN means no such point has been found.
+				 */
+				$corresponding = $j < $other_len ? $i : $len;
+		
+				/*
+				 * Move the changed region forward, so long as the
+				 * first changed line matches the following unchanged one.
+				 * This merges with following changed regions.
+				 * Do this second, so that if there are no merges,
+				 * the changed region is moved forward as far as possible.
+				 */
+				while ($i < $len && $lines[$start] == $lines[$i]) {
+					$changed[$start++] = false;
+					$changed[$i++] = 1;
+					while ($i < $len && $changed[$i])
+						$i++;
+		
+					USE_ASSERTS && assert('$j < $other_len && ! $other_changed[$j]');
+					$j++;
+					if ($j < $other_len && $other_changed[$j]) {
+						$corresponding = $i;
+						while ($j < $other_len && $other_changed[$j])
+							$j++;
 					}
 				}
 			} while ($runlength != $i - $start);
-
-		/*
-		 * If possible, move the fully-merged run of changes
-		 * back to a corresponding run in the other file.
-		 */
-		while ($corresponding < $i) {
-		$changed[--$start] = 1;
-		$changed[--$i] = 0;
-		USE_ASSERTS && assert('$j > 0');
-		while ($other_changed[--$j])
-			continue;
-		USE_ASSERTS && assert('$j >= 0 && !$other_changed[$j]');
+	
+			/*
+			 * If possible, move the fully-merged run of changes
+			 * back to a corresponding run in the other file.
+			 */
+			while ($corresponding < $i) {
+				$changed[--$start] = 1;
+				$changed[--$i] = 0;
+				USE_ASSERTS && assert('$j > 0');
+				while ($other_changed[--$j])
+					continue;
+				USE_ASSERTS && assert('$j >= 0 && !$other_changed[$j]');
 			}
 		}
+		wfProfileOut( $fname );
 	}
 }
 
@@ -864,12 +881,12 @@ class Diff
 	 *				  original diff.
 	 */
 	function reverse () {
-	$rev = $this;
+		$rev = $this;
 		$rev->edits = array();
 		foreach ($this->edits as $edit) {
 			$rev->edits[] = $edit->reverse();
 		}
-	return $rev;
+		return $rev;
 	}
 
 	/**
@@ -893,12 +910,12 @@ class Diff
 	 * @return int The length of the LCS.
 	 */
 	function lcs () {
-	$lcs = 0;
+		$lcs = 0;
 		foreach ($this->edits as $edit) {
 			if ($edit->type == 'copy')
 				$lcs += sizeof($edit->orig);
 		}
-	return $lcs;
+		return $lcs;
 	}
 
 	/**
@@ -943,6 +960,8 @@ class Diff
 	 * This is here only for debugging purposes.
 	 */
 	function _check ($from_lines, $to_lines) {
+		$fname = 'Diff::_check';
+		wfProfileIn( $fname );
 		if (serialize($from_lines) != serialize($this->orig()))
 			trigger_error("Reconstructed original doesn't match", E_USER_ERROR);
 		if (serialize($to_lines) != serialize($this->closing()))
@@ -964,6 +983,7 @@ class Diff
 
 		$lcs = $this->lcs();
 		trigger_error('Diff okay: LCS = '.$lcs, E_USER_NOTICE);
+		wfProfileOut( $fname );
 	}
 }
 
@@ -999,7 +1019,9 @@ class MappedDiff extends Diff
 	 */
 	function MappedDiff($from_lines, $to_lines,
 						$mapped_from_lines, $mapped_to_lines) {
-
+		$fname = 'MappedDiff::MappedDiff';
+		wfProfileIn( $fname );
+		
 		assert(sizeof($from_lines) == sizeof($mapped_from_lines));
 		assert(sizeof($to_lines) == sizeof($mapped_to_lines));
 
@@ -1019,6 +1041,7 @@ class MappedDiff extends Diff
 				$yi += sizeof($closing);
 			}
 		}
+		wfProfileOut( $fname );
 	}
 }
 
@@ -1056,6 +1079,8 @@ class DiffFormatter
 	 * @return string The formatted output.
 	 */
 	function format($diff) {
+		$fname = 'DiffFormatter::format';
+		wfProfileIn( $fname );
 
 		$xi = $yi = 1;
 		$block = false;
@@ -1108,10 +1133,14 @@ class DiffFormatter
 						  $y0, $yi - $y0,
 						  $block);
 
-		return $this->_end_diff();
+		$end = $this->_end_diff();
+		wfProfileOut( $fname );
+		return $end;
 	}
 
 	function _block($xbeg, $xlen, $ybeg, $ylen, &$edits) {
+		$fname = 'DiffFormatter::_block';
+		wfProfileIn( $fname );
 		$this->_start_block($this->_block_header($xbeg, $xlen, $ybeg, $ylen));
 		foreach ($edits as $edit) {
 			if ($edit->type == 'copy')
@@ -1126,6 +1155,7 @@ class DiffFormatter
 				trigger_error('Unknown edit type', E_USER_ERROR);
 		}
 		$this->_end_block();
+		wfProfileOut( $fname );
 	}
 
 	function _start_diff() {
@@ -1249,24 +1279,34 @@ class _HWLDF_WordAccumulator {
 class WordLevelDiff extends MappedDiff
 {
 	function WordLevelDiff ($orig_lines, $closing_lines) {
+		$fname = 'WordLevelDiff::WordLevelDiff';
+		wfProfileIn( $fname );
+		
 		list ($orig_words, $orig_stripped) = $this->_split($orig_lines);
 		list ($closing_words, $closing_stripped) = $this->_split($closing_lines);
 
 
 		$this->MappedDiff($orig_words, $closing_words,
 						  $orig_stripped, $closing_stripped);
+		wfProfileOut( $fname );
 	}
 
 	function _split($lines) {
+		$fname = 'WordLevelDiff::_split';
+		wfProfileIn( $fname );
 		if (!preg_match_all('/ ( [^\S\n]+ | [0-9_A-Za-z\x80-\xff]+ | . ) (?: (?!< \n) [^\S\n])? /xs',
 							implode("\n", $lines),
 							$m)) {
+			wfProfileOut( $fname );
 			return array(array(''), array(''));
 		}
+		wfProfileOut( $fname );
 		return array($m[0], $m[1]);
 	}
 
 	function orig () {
+		$fname = 'WordLevelDiff::orig';
+		wfProfileIn( $fname );
 		$orig = new _HWLDF_WordAccumulator;
 
 		foreach ($this->edits as $edit) {
@@ -1275,10 +1315,14 @@ class WordLevelDiff extends MappedDiff
 			elseif ($edit->orig)
 				$orig->addWords($edit->orig, 'mark');
 		}
-		return $orig->getLines();
+		$lines = $orig->getLines();
+		wfProfileOut( $fname );
+		return $lines;
 	}
 
 	function closing () {
+		$fname = 'WordLevelDiff::closing';
+		wfProfileIn( $fname );
 		$closing = new _HWLDF_WordAccumulator;
 
 		foreach ($this->edits as $edit) {
@@ -1287,7 +1331,9 @@ class WordLevelDiff extends MappedDiff
 			elseif ($edit->closing)
 				$closing->addWords($edit->closing, 'mark');
 		}
-		return $closing->getLines();
+		$lines = $closing->getLines();
+		wfProfileOut( $fname );
+		return $lines;
 	}
 }
 
@@ -1365,6 +1411,9 @@ class TableDiffFormatter extends DiffFormatter
 	}
 
 	function _changed( $orig, $closing ) {
+		$fname = 'TableDiffFormatter::_changed';
+		wfProfileIn( $fname );
+		
 		$diff = new WordLevelDiff( $orig, $closing );
 		$del = $diff->orig();
 		$add = $diff->closing();
@@ -1381,6 +1430,7 @@ class TableDiffFormatter extends DiffFormatter
 			echo '<tr>' . $this->emptyLine() .
 				$this->addedLine( $line ) . "</tr>\n";
 		}
+		wfProfileOut( $fname );
 	}
 }
 
