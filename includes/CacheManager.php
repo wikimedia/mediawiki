@@ -83,12 +83,15 @@ class CacheManager {
 	
 	/* Working directory to/from output */
 	function loadFromFileCache() {
-		global $wgOut;
+		global $wgOut, $wgMimeType, $wgOutputEncoding, $wgContLanguageCode;
 		wfDebug(" loadFromFileCache()\n");
 		
 		$filename=$this->fileCacheName();
 		$wgOut->sendCacheControl();
 		
+		header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
+		header( "Content-language: $wgContLanguageCode" );
+
 		if( $this->useGzip() ) {
 			if( wfClientAcceptsGzip() ) {
 				header( 'Content-Encoding: gzip' );
