@@ -275,14 +275,8 @@ class LanguageLatin1 {
 		return utf8_decode( $this->lang->convert( utf8_encode( $text ), $isTitle ) );
 	}
 	
-	function autoConvert($text, $toVariant=false) {
-		return utf8_decode( $this->lang->autoConvert( utf8_encode( $text ), $toVariant ) );
-	}
-
-	/* hook for converting the title, which may needs special treatment
-	*/
-	function convertTitle($text) {
-		return utf8_decode( $this->lang->convertTitle( utf8_encode( $text ) ) );
+	function getVariantname( $code ) {
+		return utf8_decode( $this->lang->getVariantname( $code ) );
 	}
 
 	function getVariants() {
@@ -294,9 +288,16 @@ class LanguageLatin1 {
 	}	
 
 	function getExtraHashOptions() {
-		return array();
+		return '';
+	}
+	
+	function linkTrail() {
+		return $this->lang->linkTrail();
 	}
 
+	function getLangObj() {
+		return $this->lang;
+	}
 }
 
 ?>
