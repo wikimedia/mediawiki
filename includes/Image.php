@@ -78,9 +78,10 @@ class Image
 			}			
 			$this->fileExists = file_exists( $this->imagePath);
 			$this->fromSharedDirectory = true;			
+			$name=$sharedname;
 		}		
-		if($this->fileExists) {
-			$this->url       = $this->wfImageUrl( $sharedname, $this->fromSharedDirectory );
+		if($this->fileExists) {			
+			$this->url       = $this->wfImageUrl( $name, $this->fromSharedDirectory );
 		} else {
 			$this->url='';
 		}
@@ -245,8 +246,7 @@ class Image
 	function wfImageUrl( $name, $fromSharedDirectory = false )
 	{
 		global $wgUploadPath,$wgUploadBaseUrl,$wgHashedUploadDirectory,
-		       $wgHashedSharedUploadDirectory,$wgSharedUploadPath,
-		       $wgUseLatin1, $wgSharedLatin1;		
+		       $wgHashedSharedUploadDirectory,$wgSharedUploadPath;
 		if($fromSharedDirectory) {
 			$hash = $wgHashedSharedUploadDirectory;
 			$base = '';
