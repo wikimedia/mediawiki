@@ -84,7 +84,7 @@
 			$tpl->setRef( 'charset', $wgOutputEncoding);
 			$tpl->setRef( 'skinname', $this->skinname );
 			$tpl->setRef( "loggedin", &$this->loggedin );
-			$tpl->set( "editable", ($wgTitle->getNamespace != Namespace::getSpecial() ) );
+			$tpl->set( "editable", ($wgTitle->getNamespace() != NS_SPECIAL ) );
 			$tpl->set( "exists", $wgTitle->getArticleID() != 0 );
 			$tpl->set( "watch", $wgTitle->userIsWatching() ? "unwatch" : "watch" );
 			$tpl->set( "protect", count($wgTitle->getRestrictions()) ? "unprotect" : "protect" );
