@@ -146,7 +146,7 @@ REPLACE INTO interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('uz','http://uz.wikipedia.org/wiki/$1',1),
 ('vi','http://vi.wikipedia.org/wiki/$1',1),
 ('vo','http://vo.wikipedia.org/wiki/$1',1),
-('wa','http://wikipedia.walon.org/wiki/$1',1),
+('wa','http://wa.wikipedia.org/wiki/$1',1),
 ('wo','http://wo.wikipedia.org/wiki/$1',1),
 ('xh','http://xh.wikipedia.org/wiki/$1',1),
 ('yi','http://yi.wikipedia.org/wiki/$1',1),
