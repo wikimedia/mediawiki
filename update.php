@@ -79,10 +79,12 @@ function do_update_files() {
 	copyfile( "./languages", "Language.php", $IP );
 	copyfile( "./languages", "Language" . ucfirst( $wgLanguageCode ) . ".php", $IP );
 	
-	$fp = fopen( $wgDebugLogFile, "w" );
-	if ( false === $fp ) {
-		print "Could not create log file \"{$wgDebugLogFile}\".\n";
-		exit();
+	if( !empty( $wgDebugLogFile ) ) {
+		$fp = fopen( $wgDebugLogFile, "w" );
+		if ( false === $fp ) {
+			print "Could not create log file \"{$wgDebugLogFile}\".\n";
+			exit();
+		}
 	}
 	$d = date( "Y-m-d H:i:s" );
 	fwrite( $fp, "Wiki debug log file created {$d}\n\n" );
