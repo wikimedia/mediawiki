@@ -50,7 +50,7 @@ class SearchEngine {
 			return $wgUser->getOption( "searchNs".$i );
 		} else {
 			// User is not logged in so we give him the global default namespaces
-			return isset($wgNamespacesToBeSearchedDefault[ $i ]) ? $wgNamespacesToBeSearchedDefault[ $i ] : 0;
+			return !empty($wgNamespacesToBeSearchedDefault[ $i ]);
 		}
 	}
 
