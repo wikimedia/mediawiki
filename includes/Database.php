@@ -818,9 +818,9 @@ class Database {
 	}
 
 	# Do a SELECT MASTER_POS_WAIT()
-	function masterPosWait( $file, $pos ) {
+	function masterPosWait( $file, $pos, $timeout ) {
 		$encFile = $this->strencode( $file );
-		$sql = "SELECT MASTER_POS_WAIT('$encFile', $pos)";
+		$sql = "SELECT MASTER_POS_WAIT('$encFile', $pos, $timeout)";
 		$res = $this->query( $sql, "Database::masterPosWait" );
 		if ( $res && $row = $this->fetchRow( $res ) ) {
 			$this->freeResult( $res );
