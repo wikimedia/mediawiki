@@ -35,15 +35,14 @@ class Image
 
 		if ( $this->fileExists = file_exists( $this->imagePath ) ) // Sic!, "=" is intended
 		{
-			list($this->width, $this->height, $this->type, $this->attr) = getimagesize( $this->imagePath );
-			$gid = getimagesize( $this->imagePath );
-			$this->width = $gid["width"];
-			$this->height = $gid["height"];
-			$this->type = $gid["type"];
-			$this->attr = $gid["attr"];
-			if ( defined( $gid["bits"] ) ) 
+			$gis = getimagesize( $this->imagePath );
+			$this->width = $gis[0];
+			$this->height = $gis[1];
+			$this->type = $gis[2];
+			$this->attr = $gis[3];
+			if ( isset( $gis["bits"] ) ) 
 			{
-				$this->bits = $gid["bits"];
+				$this->bits = $gis["bits"];
 			} else {
 				$this->bits = 0;
 			}
