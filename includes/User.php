@@ -468,10 +468,14 @@ class User {
 
 			if ( !isset( $skinNames[$s] ) ) {
 				$fallback = array(
-					'standard' => "Standard",
-					'nostalgia' => "Nostalgia",
-					'cologneblue' => "Cologne Blue");
-				if(is_int($s) && isset( $fallback[$s]) ){
+					0 => "SkinStandard",
+					1 => "SkinNostalgia",
+					2 => "SkinCologneBlue");
+				if ( isset( $skinNames['monobook'] ) ) {
+					$fallback[0] = "SkinMonoBook";
+				}
+				
+				if(is_numeric($s) && isset( $fallback[$s]) ){
 					$sn = $fallback[$s];
 				} else {
 					$sn = "SkinStandard";
