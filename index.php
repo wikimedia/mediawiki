@@ -93,6 +93,9 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 	wfQuery("BEGIN", DB_WRITE);
 	switch( $action ) {
 		case "view":
+			$wgOut->setSquidMaxage( $wgSquidMaxage );
+			$wgArticle->$action();
+			break;
 		case "watch":
 		case "unwatch":
 		case "delete":
@@ -115,6 +118,9 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 			$editor->$action();
 			break;
 		case "history":
+			if ($_SERVER["REQUEST_URI"] == $wgTitle->getInternalURL('action=history')) {
+				$wgOut->setSquidMaxage( $wgSquidMaxage );
+			}
 			include_once( "PageHistory.php" );
 			$history = new PageHistory( $wgArticle );
 			$history->history();
@@ -126,6 +132,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 }
 
 $wgOut->output();
+
 foreach ( $wgDeferredUpdateList as $up ) { $up->doUpdate(); }
 logProfilingData();
 wfDebug( "Request ended normally\n" );
