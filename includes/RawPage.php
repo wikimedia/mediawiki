@@ -23,8 +23,11 @@ class RawPage {
 		$this->mTitle =& $article->mTitle;
 			
 		$ctype = $wgRequest->getText( 'ctype' );
-		$smaxage = $wgRequest->getInt( 'smaxage', $wgSquidMaxage );
-		$maxage = $wgRequest->getInt( 'maxage', $wgSquidMaxage );
+		# getInt eats the zero, breaks caching
+		$smaxage= $wgRequest->getText( 'smaxage' ) == '0') ? 0 : 
+		          $smaxage = $wgRequest->getInt( 'smaxage', $wgSquidMaxage );
+		$maxage= $wgRequest->getText( 'maxage' ) == '0') ? 0 : 
+		          $smaxage = $wgRequest->getInt( 'maxage', $wgSquidMaxage );
 		$this->mOldId = $wgRequest->getInt( 'oldid' );
 		# special case for 'generated' raw things: user css/js
 		$gen = $wgRequest->getText( 'gen' );
@@ -52,6 +55,7 @@ class RawPage {
 	function view() {
 		global $wgUser, $wgOut, $wgScript;
 
+		/* XXX: breaks toplevel wikis */
 		if( strcmp( $wgScript, $_SERVER['PHP_SELF'] ) ) {
 			# Internet Explorer will ignore the Content-Type header if it
 			# thinks it sees a file extension it recognizes. Make sure that
