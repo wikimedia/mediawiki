@@ -75,8 +75,8 @@ require_once( "LanguageUtf8.php" );
 /* private */ $wgBookstoreListFr = array(
 	"Amazon.fr" => "http://www.amazon.fr/exec/obidos/ISBN=$1",
 	"alapage.fr"	=> "http://www.alapage.com/mx/?tp=F&type=101&l_isbn=$1&donnee_appel=ALASQ&devise=&",
-	"fnac.com"	=> "http://www3.fnac.com/advanced/book.do?isbn=$isbn",
-	"chapitre.com"	=> "http://www.chapitre.com/frame_rec.asp?isbn=$isbn",
+	"fnac.com"	=> "http://www3.fnac.com/advanced/book.do?isbn=$1",
+	"chapitre.com"	=> "http://www.chapitre.com/frame_rec.asp?isbn=$1",
 );
 
 /* private */ $wgWeekdayNamesFr = array(
@@ -639,7 +639,7 @@ L'heure indiquée est celle du serveur (UTC).
 "filestatus"	=> "Statut du copyright",
 "filesource"	=> "Source",	
 "affirmation"	=> "Je déclare que le détenteur du copyright de ce fichier accepte de le diffuser selon les termes de la $1.",
-"copyrightpage" => "$wgNamespace:Copyright",
+"copyrightpage" => "{{ns:4}}:Copyright",
 "copyrightpagename" => "licence {{SITENAME}}",
 "uploadedfiles" => "Fichiers copiés",
 "noaffirmation" => "Vous devez confirmer que la copie de ce fichier ne viole aucun copyright.",
@@ -1284,11 +1284,11 @@ class LanguageFr extends LanguageUtf8
 	function getMessage( $key )
 	{
 		global $wgAllMessagesFr, $wgAllMessagesEn;
-		$m = $wgAllMessagesFr[$key];
-
-		if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
-		else return $m;
-
+		if( isset( $wgAllMessagesFr[$key] ) ) {
+			return $wgAllMessagesFr[$key];
+		} else {
+			return $wgAllMessagesEn[$key];
+		}
 	}
 }
 
