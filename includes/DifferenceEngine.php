@@ -587,6 +587,7 @@ class _DiffEngine
 		$numer = $xlim - $xoff + $nchunks - 1;
 		$x = $xoff;
 		for ($chunk = 0; $chunk < $nchunks; $chunk++) {
+			wfProfileIn( "$fname-chunk" );
 			if ($chunk > 0)
 				for ($i = 0; $i <= $this->lcs; $i++)
 					$ymids[$i][$chunk-1] = $this->seq[$i];
@@ -620,6 +621,7 @@ class _DiffEngine
 					}
 				}
 			}
+			wfProfileOut( "$fname-chunk" );
 		}
 	
 		$seps[] = $flip ? array($yoff, $xoff) : array($xoff, $yoff);
