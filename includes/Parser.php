@@ -1841,11 +1841,6 @@ class Parser
 				}
 			}
 
-			# Do not enter included links in link table
-			if ( !is_null( $title ) ) {
-				$wgLinkCache->suspend();
-			}
-
 			# Add a new element to the templace recursion path
 			$this->mTemplatePath[$part1] = 1;
 
@@ -1855,7 +1850,6 @@ class Parser
 
 			# Resume the link cache and register the inclusion as a link
 			if ( !is_null( $title ) ) {
-				$wgLinkCache->resume();
 				$wgLinkCache->addLinkObj( $title );
 			}
 		}
@@ -1905,9 +1899,7 @@ class Parser
 		$inputArgs = end( $this->mArgStack );
 
 		if ( array_key_exists( $arg, $inputArgs ) ) {
-			$text = $this->strip( $inputArgs[$arg], $this->mStripState );
-			$text = $this->removeHTMLtags( $text );
-			$text = $this->replaceVariables( $text, array() );
+			$text = $inputArgs[$arg];
 		}
 
 		return $text;
