@@ -1050,81 +1050,94 @@ class Parser
 		return $text."\n";
 	}
 
-	/* private */ function doBlockLevels( $text, $linestart )
-	{
+	/* private */ function doBlockLevels( $text, $linestart ) {
 		$fname = "Parser::doBlockLevels";
 		wfProfileIn( $fname );
+		
 		# Parsing through the text line by line.  The main thing
 		# happening here is handling of block-level elements p, pre,
 		# and making lists from lines starting with * # : etc.
 		#
-		$a = explode( "\n", $text );
+		$textLines = explode( "\n", $text );
 
-		$lastPref = $text = $lastLine = '';
+		$lastPrefix = $output = $lastLine = '';
 		$this->mDTopen = $inBlockElem = false;
-		$npl = 0;
-		$pstack = false;
+		$prefixLength = 0;
+		$paragraphStack = false;
 
-		if ( ! $linestart ) { $text .= array_shift( $a ); }
-		foreach ( $a as $t ) {
-			$oLine = $t;
-			$opl = strlen( $lastPref );
-			$preCloseMatch = preg_match("/<\\/pre/i", $t );
-			$preOpenMatch = preg_match("/<pre/i", $t );
+		if ( !$linestart ) {
+			$output .= array_shift( $textLines );
+		}
+		foreach ( $textLines as $oLine ) {
+			$lastPrefixLength = strlen( $lastPrefix );
+			$preCloseMatch = preg_match("/<\\/pre/i", $oLine );
+			$preOpenMatch = preg_match("/<pre/i", $oLine );
 			if (!$this->mInPre) {
 				$this->mInPre = !empty($preOpenMatch);
 			}
 			if ( !$this->mInPre ) {
-				$npl = strspn( $t, "*#:;" );
-				$pref = substr( $t, 0, $npl );
+				# Multiple prefixes may abut each other for nested lists.
+				$prefixLength = strspn( $oLine, "*#:;" );
+				$pref = substr( $oLine, 0, $prefixLength );
+				
+				# eh?
 				$pref2 = str_replace( ";", ":", $pref );
-				$t = substr( $t, $npl );
+				$t = substr( $oLine, $prefixLength );
 			} else {
-				$npl = 0;
+				# Don't interpret any other prefixes in preformatted text
+				$prefixLength = 0;
 				$pref = $pref2 = '';
+				$t = $oLine;
 			}
 
-			// list generation
-			if ( 0 != $npl && 0 == strcmp( $lastPref, $pref2 ) ) {
-				$text .= $this->nextItem( substr( $pref, -1 ) );
-				if ( $pstack ) { $pstack = false; }
+			# List generation
+			if( $prefixLength && 0 == strcmp( $lastPrefix, $pref2 ) ) {
+				# Same as the last item, so no need to deal with nesting or opening stuff
+				$output .= $this->nextItem( substr( $pref, -1 ) );
+				$paragraphStack = false;
 
 				if ( ";" == substr( $pref, -1 ) ) {
-					$cpos = strpos( $t, ":" );
-					if ( false !== $cpos ) {
-						$term = substr( $t, 0, $cpos );
-						$text .= $term . $this->nextItem( ":" );
-						$t = substr( $t, $cpos + 1 );
+					# The one nasty exception: definition lists work like this:
+					# ; title : definition text
+					# So we check for : in the remainder text to split up the
+					# title and definition, without b0rking links.
+					# FIXME: This is not foolproof. Something better in Tokenizer might help.
+					if( preg_match( '/^(.*?(?:\s|&nbsp;)):(.*)$/', $t, $match ) ) {
+						$term = $match[1];
+						$output .= $term . $this->nextItem( ":" );
+						$t = $match[2];
 					}
 				}
-			} else if (0 != $npl || 0 != $opl) {
-				$cpl = $this->getCommon( $pref, $lastPref );
-				if ( $pstack ) { $pstack = false; }
+			} elseif( $prefixLength || $lastPrefixLength ) {
+				# Either open or close a level...
+				$commonPrefixLength = $this->getCommon( $pref, $lastPrefix );
+				$paragraphStack = false;
 
-				while ( $cpl < $opl ) {
-					$text .= $this->closeList( $lastPref{$opl-1} );
-					--$opl;
+				while( $commonPrefixLength < $lastPrefixLength ) {
+					$output .= $this->closeList( $lastPrefix{$lastPrefixLength-1} );
+					--$lastPrefixLength;
 				}
-				if ( $npl <= $cpl && $cpl > 0 ) {
-					$text .= $this->nextItem( $pref{$cpl-1} );
+				if ( $prefixLength <= $commonPrefixLength && $commonPrefixLength > 0 ) {
+					$output .= $this->nextItem( $pref{$commonPrefixLength-1} );
 				}
-				while ( $npl > $cpl ) {
-					$char = substr( $pref, $cpl, 1 );
-					$text .= $this->openList( $char );
+				while ( $prefixLength > $commonPrefixLength ) {
+					$char = substr( $pref, $commonPrefixLength, 1 );
+					$output .= $this->openList( $char );
 
 					if ( ";" == $char ) {
-						$cpos = strpos( $t, ":" );
-						if ( ! ( false === $cpos ) ) {
-							$term = substr( $t, 0, $cpos );
-							$text .= $term . $this->nextItem( ":" );
-							$t = substr( $t, $cpos + 1 );
+						# FIXME: This is dupe of code above
+						if( preg_match( '/^(.*?(?:\s|&nbsp;)):(.*)$/', $t, $match ) ) {
+							$term = $match[1];
+							$output .= $term . $this->nextItem( ":" );
+							$t = $match[2];
 						}
 					}
-					++$cpl;
+					++$commonPrefixLength;
 				}
-				$lastPref = $pref2;
+				$lastPrefix = $pref2;
 			}
-			if ( 0 == $npl ) { # No prefix (not in list)--go to paragraph mode
+			if( 0 == $prefixLength ) {
+				# No prefix (not in list)--go to paragraph mode
 				$uniq_prefix = UNIQ_PREFIX;
 				// XXX: use a stack for nestable elements like span, table and div
 				$openmatch = preg_match("/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<div|<pre|<tr|<td|<p|<ul|<li)/i", $t );
@@ -1132,8 +1145,8 @@ class Parser
 					"/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|".
 					"<\\/div|<hr|<\\/td|<\\/pre|<\\/p|".$uniq_prefix."-pre|<\\/li|<\\/ul)/i", $t );
 				if ( $openmatch or $closematch ) {
-					if ( $pstack ) { $pstack = false; }
-					$text .= $this->closeParagraph();
+					$paragraphStack = false;
+					$output .= $this->closeParagraph();
 					if($preOpenMatch and !$preCloseMatch) {
 						$this->mInPre = true;	
 					}
@@ -1146,54 +1159,54 @@ class Parser
 					if ( " " == $t{0} ) {
 						// pre
 						if ($this->mLastSection != 'pre') {
-							$pstack = false;
-							$text .= $this->closeParagraph().'<pre>';
+							$paragraphStack = false;
+							$output .= $this->closeParagraph().'<pre>';
 							$this->mLastSection = 'pre';
 						}
 					} else {
 						// paragraph
 						if ( '' == trim($t) ) {
-							if ( $pstack ) {
-								$text .= $pstack.'<br/>';
-								$pstack = false;
+							if ( $paragraphStack ) {
+								$output .= $paragraphStack.'<br/>';
+								$paragraphStack = false;
 								$this->mLastSection = 'p';
 							} else {
 								if ($this->mLastSection != 'p' ) {
-									$text .= $this->closeParagraph();
+									$output .= $this->closeParagraph();
 									$this->mLastSection = '';
-									$pstack = "<p>";
+									$paragraphStack = "<p>";
 								} else {
-									$pstack = '</p><p>';
+									$paragraphStack = '</p><p>';
 								}
 							}
 						} else {
-							if ( $pstack ) {
-								$text .= $pstack;
-								$pstack = false;
+							if ( $paragraphStack ) {
+								$output .= $paragraphStack;
+								$paragraphStack = false;
 								$this->mLastSection = 'p';
 							} else if ($this->mLastSection != 'p') {
-								$text .= $this->closeParagraph().'<p>';
+								$output .= $this->closeParagraph().'<p>';
 								$this->mLastSection = 'p';
 							}
 						}
 					}
 				}
 			}
-			if ($pstack === false) {
-				$text .= $t."\n";
+			if ($paragraphStack === false) {
+				$output .= $t."\n";
 			}
 		}
-		while ( $npl ) {
-			$text .= $this->closeList( $pref2{$npl-1} );
-			--$npl;
+		while ( $prefixLength ) {
+			$output .= $this->closeList( $pref2{$prefixLength-1} );
+			--$prefixLength;
 		}
 		if ( "" != $this->mLastSection ) {
-			$text .= "</" . $this->mLastSection . ">";
+			$output .= "</" . $this->mLastSection . ">";
 			$this->mLastSection = "";
 		}
 
 		wfProfileOut( $fname );
-		return $text;
+		return $output;
 	}
 
 	function getVariableValue( $index ) {
