@@ -39,6 +39,11 @@ $wgDBminWordLen     = 4;
 $wgDBtransactions	= false; # Set to true if using InnoDB tables
 $wgDBmysql4			= false; # Set to true to use enhanced fulltext search
 
+# Database load balancer
+$wgDBservers		= false; # e.g. array("larousse", "pliny")
+$wgDBloads			= false; # e.g. array(0.6, 0.4);
+
+
 # memcached settings
 # See docs/memcached.doc
 #
@@ -141,6 +146,9 @@ $wgDisableCookieCheck = false;
 
 $wgAllowExternalImages = true;
 $wgMiserMode = false; # Disable database-intensive features
+$wgDisableQueryPages = false; # Disable all query pages if miser mode is on, not just some
+$wgUseWatchlistCache = false; # Generate a watchlist once every hour or so
+$wgWLCacheTimeout = 3600;	# The hour or so mentioned above
 
 # To use inline TeX, you need to compile 'texvc' (in the 'math' subdirectory
 # of the MediaWiki package and have latex, dvips, gs (ghostscript), and
