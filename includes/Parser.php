@@ -405,7 +405,19 @@ class Parser
 	/* interface with html tidy, used if $wgUseTidy = true */
 	function tidy ( $text ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
+		global $wgInputEncoding, $wgOutputEncoding;
 		$cleansource = '';
+		switch(strtoupper($wgOutputEncoding)) {
+			case 'ISO-8859-1':
+				$wgTidyOpts .= ($wgInputEncoding == $wgOutputEncoding)? ' -latin1':' -raw';
+				break;
+			case 'UTF-8':
+				$wgTidyOpts .= ($wgInputEncoding == $wgOutputEncoding)? ' -utf8':' -raw';
+				break;
+			default:
+				$wgTidyOpts .= ' -raw';
+			}
+
 		$text = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'.
 ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>'.
 '<head><title>test</title></head><body>'.$text.'</body></html>';
