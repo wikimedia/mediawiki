@@ -51,6 +51,10 @@ END
 			$matches[] = IntVal( $row->cur_id );
 		}
 		$results->free();
+		# Search is not guaranteed to return results in a certain order;
+		# sort them numerically so we will compare simply that we received
+		# the expected matches.
+		sort( $matches );
 		return $matches;
 	}
 	
