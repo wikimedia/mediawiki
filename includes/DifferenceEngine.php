@@ -3,7 +3,7 @@
 
 class DifferenceEngine {
 	/* private */ var $mOldid, $mNewid;
-	/* private */ var $mOldtitle, $mNewtitle;
+	/* private */ var $mOldtitle, $mNewtitle, $mPagetitle;
 	/* private */ var $mOldtext, $mNewtext;
 	/* private */ var $mOldUser, $mNewUser;
 	/* private */ var $mOldComment, $mNewComment;
@@ -90,7 +90,7 @@ class DifferenceEngine {
 
 		DifferenceEngine::showDiff( $this->mOldtext, $this->mNewtext,
 		  $oldHeader, $newHeader );
-		$wgOut->addHTML( "<hr /><h2>{$this->mNewtitle}</h2>\n" );
+		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
 		$wgOut->addWikiText( $this->mNewtext );
 
 		wfProfileOut( $fname );
@@ -137,7 +137,9 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 		$dbr =& wfGetDB( DB_SLAVE );
 		if ( 0 == $this->mNewid || 0 == $this->mOldid ) {
 			$wgOut->setArticleFlag( true );
-			$this->mNewtitle = wfMsg( 'currentrev' );
+			$newLink = $wgTitle->getLocalUrl();
+			$this->mPagetitle = wfMsg( 'currentrev' );
+			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
 			$id = $wgTitle->getArticleID();
 
 			$s = $dbr->getArray( 'cur', array( 'cur_text', 'cur_user_text', 'cur_comment' ),
@@ -162,7 +164,9 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 
 			$t = $wgLang->timeanddate( $s->old_timestamp, true );
 			$this->mNewPage = Title::MakeTitle( $s->old_namespace, $s->old_title );
-			$this->mNewtitle = wfMsg( 'revisionasof', $t );
+			$newLink = $wgTitle->getLocalUrl ('oldid=' . $this->mNewid);
+			$this->mPagetitle = wfMsg( 'revisionasof', $t );
+			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
 			$this->mNewUser = $s->old_user_text;
 			$this->mNewComment = $s->old_comment;
 		}
@@ -188,7 +192,8 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 		$this->mOldtext = Article::getRevisionText( $s );
 
 		$t = $wgLang->timeanddate( $s->old_timestamp, true );
-		$this->mOldtitle = wfMsg( 'revisionasof', $t );
+		$oldLink = $this->mOldPage->getLocalUrl ('oldid=' . $this->mOldid);
+		$this->mOldtitle = "<a href='$oldLink'>" . wfMsg( 'revisionasof', $t ) . '</a>';
 		$this->mOldUser = $s->old_user_text;
 		$this->mOldComment = $s->old_comment;
 
