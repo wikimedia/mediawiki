@@ -115,4 +115,9 @@ class SearchUpdate {
 	}
 }
 
+/* Placeholder class */
+class SearchUpdateMyISAM extends SearchUpdate {
+	# Inherits everything
+}
+
 ?>
