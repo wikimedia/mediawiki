@@ -32,7 +32,7 @@
  * @package MediaWiki
  */
 class LogPage {
-	/* private */ var $type, $action, $comment;
+	/* private */ var $type, $action, $comment, $params;
 	var $updateRecentChanges = true;
 
 	function LogPage( $type ) {
@@ -58,7 +58,8 @@ class LogPage {
 				'log_user' => $uid,
 				'log_namespace' => $this->target->getNamespace(),
 				'log_title' => $this->target->getDBkey(),
-				'log_comment' => $this->comment
+				'log_comment' => $this->comment,
+				'log_params' => $this->params
 			), $fname
 		);
 		
@@ -137,7 +138,7 @@ class LogPage {
 	/**
 	 * @static
 	 */
-	function actionText( $type, $action, $titleLink = NULL ) {
+	function actionText( $type, $action, $titleLink = NULL, $params = array() ) {
 		static $actions = array(
 			'block/block' => 'blocklogentry',
 			'block/unblock' => 'unblocklogentry',
@@ -152,9 +153,12 @@ class LogPage {
 		$key = "$type/$action";
 		if( isset( $actions[$key] ) ) {
 			if( is_null( $titleLink ) ) {
-				return wfMsg( $actions[$key] );
+				return wfMsgForContent( $actions[$key] );
+			} elseif ( count( $params ) == 0 ) {
+				return wfMsgForContent( $actions[$key], $titleLink );
 			} else {
-				return wfMsg( $actions[$key], $titleLink );
+				array_unshift( $params, $titleLink );
+				return wfMsgReal( $actions[$key], $params, true, true );
 			}
 		} else {
 			wfDebug( "LogPage::actionText - unknown action $key\n" );
@@ -168,16 +172,43 @@ class LogPage {
 	 * @param &$target
 	 * @param string $comment Description associated
 	 */
-	function addEntry( $action, &$target, $comment ) {
+	function addEntry( $action, &$target, $comment, $params = array() ) {
 		global $wgLang, $wgUser;
+		
+		if ( !is_array( $params ) ) {
+			$params = array( $params );
+		}
 		
 		$this->action = $action;
 		$this->target =& $target;
 		$this->comment = $comment;
-		$this->actionText = LogPage::actionText( $this->type, $action,
-			$target->getPrefixedText() );
-				
+		$this->params = LogPage::makeParamBlob( $params );
+		
+		$this->actionText = LogPage::actionText( $this->type, $action, 
+		  $target->getPrefixedText(), $params );
 		return $this->saveContent();
+	}
+
+	/** 
+	 * Create a blob from a parameter array
+	 * @static
+	 */
+	function makeParamBlob( $params )
+	{
+		return implode( "\n", $params );
+	}
+
+	/**
+	 * Extract a parameter array from a blob
+	 * @static
+	 */
+	function extractParams( $blob )
+	{
+		if ( $blob === '' ) {
+			return array();
+		} else {
+			return explode( "\n", $blob );
+		}
 	}
 }
 

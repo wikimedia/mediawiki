@@ -146,7 +146,7 @@ class LogReader {
 		$sql = "SELECT log_type, log_action, log_timestamp,
 			log_user, user_name,
 			log_namespace, log_title, page_id,
-			log_comment FROM $user, $logging ";
+			log_comment, log_params FROM $user, $logging ";
 		if( !empty( $this->joinClauses ) ) {
 			$sql .= implode( ',', $this->joinClauses );
 		}
@@ -261,8 +261,9 @@ class LogViewer {
 		} else {
 			$comment = '(<em>' . $this->skin->formatComment( $s->log_comment ) . '</em>)';
 		}
+		$paramArray = LogPage::extractParams( $s->log_params );
 		
-		$action = LogPage::actionText( $s->log_type, $s->log_action, $titleLink );
+		$action = LogPage::actionText( $s->log_type, $s->log_action, $titleLink, $paramArray );
 		$out = "<li>$time $userLink $action $comment</li>\n";
 		return $out;
 	}
