@@ -768,16 +768,16 @@ Ook zullen deze pagina's in het <b>vet</b> verschijnen in de <a href=\"" .
 "unwatchthispage" => "Niet meer volgen",
 "notanarticle" => "Is geen artikel",
 "watchnochange" => "Geen van de pagina's op uw volglijst is in deze periode gewijzigd",
-"watchdetails" => "($1 pagina's op uw volglijst (overlegpagina's niet meegeteld);
-in de aangegeven periode zijn $2 pagina's gewijzigd;
-$3. <a href='$4'>toon mijn volledige volglijst</a>.)",
-"watchmethod-recent" => "pagina's op volglijst in recente wijzigingen bekeken",
-"watchmethod-list" => "recent gewijzigde pagina's bekeken en naar volglijstpagina's gezocht",
-"removechecked" => "Aangevinkte pagina's van uw volglijst verwijderen",
+"watchdetails" => "Er staan $1 pagina's op uw volglijst (overlegpagina's niet meegeteld.
+In de aangegeven periode zijn $2 pagina's gewijzigd.
+$3. (<a href='$4'>Toon mijn volledige volglijst</a>.)",
+"watchmethod-recent" => "Bij de recent gewijzigde pagina's gezocht naar gevolgde pagina's",
+"watchmethod-list" => "Bij de gevolgde pagina's naar wijzigingen bekeken",
+"removechecked" => "Verwijderen",
 "watchlistcontains" => "U heeft $1 pagina's op uw volglijst",
 "watcheditlist" => "Hier is een lijst van alle pagina's op uw volglijst.
 Vink de vakjes aan voor de pagina's die u wilt verwijderen, en druk dan
-op 'pagina's verwijderen' onderaan deze pagina.",
+op 'Verwijderen' onderaan deze pagina.",
 "removingchecked" => "De aangegeven pagina's worden van uw volglijst verwijderd.",
 "couldntremove" => "Verwijdering van '$1' onmogelijk.",
 "iteminvalidname" => "Incorrecte naam '$1'",
