@@ -1247,7 +1247,12 @@ class LanguageAr extends LanguageUtf8 {
 	}
 
 	function formatNum( $number ) {
-		return strtr( $number, $this->digitTransTable );
+		global $wgTranslateNumerals;
+		if( $wgTranslateNumerals ) {
+			return strtr( $number, $this->digitTransTable );
+		} else {
+			return $number;
+		}
 	}
 }
 
