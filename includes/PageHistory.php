@@ -78,22 +78,26 @@ class PageHistory {
 			"action=history", $atend );
 		$s = $numbar;
 		$s .= $this->beginHistoryList();
-
+		$counter = 1;
 		if( $offset == 0 ){
 			$this->linesonpage++;
 			$s .= $this->historyLine( 
 				$this->mArticle->getTimestamp(), 
 				$this->mArticle->getUser(),
 				$this->mArticle->getUserText(), $namespace,
-		  		$title, 0, $this->mArticle->getComment(),
-				( $this->mArticle->getMinorEdit() > 0 ) 
+				$title, 0, $this->mArticle->getComment(),
+				( $this->mArticle->getMinorEdit() > 0 ),
+				$counter++
 			);
 		}
 		while ( $line = wfFetchObject( $res ) ) {
-			$s .= $this->historyLine( $line->old_timestamp, $line->old_user,
-			  $line->old_user_text, $namespace,
-			  $title, $line->old_id,
-			  $line->old_comment, ( $line->old_minor_edit > 0 ) );
+			$s .= $this->historyLine( 
+				$line->old_timestamp, $line->old_user,
+				$line->old_user_text, $namespace,
+				$title, $line->old_id,
+				$line->old_comment, ( $line->old_minor_edit > 0 ),
+				$counter++
+			);
 		}
 		$s .= $this->endHistoryList( !$atend );
 		$s .= $numbar;
@@ -149,7 +153,7 @@ class PageHistory {
 		return $s;
 	}
 
-	function historyLine( $ts, $u, $ut, $ns, $ttl, $oid, $c, $isminor )
+	function historyLine( $ts, $u, $ut, $ns, $ttl, $oid, $c, $isminor, $counter = '' )
 	{
 		global $wgLang;
 
@@ -160,7 +164,7 @@ class PageHistory {
 
 		if ( $oid && $this->lastline ) {
 			$ret = preg_replace( "/!OLDID!([0-9]+)!/", $this->mSkin->makeKnownLink(
-			  $artname, $last, "diff=\\1&oldid={$oid}" ), $this->lastline );
+			  $artname, $last, "diff=\\1&oldid={$oid}",'' ,'' ,' tabindex="'.$counter.'"' ), $this->lastline );
 		} else {
 			$ret = "";
 		}
