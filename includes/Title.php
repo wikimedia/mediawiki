@@ -672,18 +672,22 @@ class Title {
 
 		# Initialisation
 		if ( $imgpre === false ) {
-			$imgpre = ":" . $wgLang->getNsText( Namespace::getImage() ) . ":";
-			# % is needed as well
-			$rxTc = "/[^" . Title::legalChars() . "]/";
+			$imgpre = ":" . $wgLang->getNsText( NS_IMAGE ) . ":";
+			
+			# Disallow non-breaking space, except from interwiki links
+			if ( $wgInputEncoding == 'utf-8' ) {
+				$rxTc = '/\\xc2\\xa0|[^' . Title::legalChars() . ']/';
+			} else {
+				$rxTc = "/[^" . Title::legalChars() . "]|\\xa0/";
+			}
 		}
-
+		
 		$this->mInterwiki = $this->mFragment = "";
 		$this->mNamespace = $this->mDefaultNamespace; # Usually NS_MAIN
 
 		# Clean up whitespace
 		#
-		$white = $wgLang->getWhiteCharRegex();
-		$t = preg_replace( "/$white+/", "_", $this->mDbkeyform );
+		$t = preg_replace( "/[ _]+/", "_", $this->mDbkeyform );
 		$t = preg_replace( '/^_*(.*?)_*$/', '$1', $t );
 
 		if ( "" == $t ) {
@@ -706,7 +710,6 @@ class Title {
 		} else {
 			# Namespace or interwiki prefix
 	 		if ( preg_match( "/^(.+?)_*:_*(.*)$/", $t, $m ) ) {
-				#$p = strtolower( $m[1] );
 				$p = $m[1];
 				$lowerNs = strtolower( $p );
 				if ( $ns = Namespace::getCanonicalIndex( $lowerNs ) ) {
@@ -736,24 +739,25 @@ class Title {
 		if ( 0 == strcmp( $this->mInterwiki, $wgLocalInterwiki ) ) {
 			$this->mInterwiki = "";
 		}
-		# We already know that some pages won't be in the database!
-		#
+		
+		# Set the article ID to zero if this is not an article, to prevent unnecessary later lookups
 		if ( "" != $this->mInterwiki || -1 == $this->mNamespace ) {
 			$this->mArticleID = 0;
 		}
+
+		# Process fragments
 		$f = strstr( $r, "#" );
 		if ( false !== $f ) {
 			$this->mFragment = substr( $f, 1 );
 			$r = substr( $r, 0, strlen( $r ) - strlen( $f ) );
 		}
 
-		# Reject illegal characters.
-		#
-		if( preg_match( $rxTc, $r ) ) {
+		# Reject illegal characters
+		if( $this->mInterwiki == '' && preg_match( $rxTc, $r ) ) {
 			return false;
 		}
 		
-		# "." and ".." conflict with the directories of those namesa
+		# "." and ".." conflict with the directories of those names
 		if ( strpos( $r, "." ) !== false &&
 		     ( $r === "." || $r === ".." ||
 		       strpos( $r, "./" ) === 0  ||
