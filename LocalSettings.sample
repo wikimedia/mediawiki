@@ -44,7 +44,9 @@ $wgEmergencyContact = "wikiadmin@myhost.com";
 # It is created by the installation script.
 #
 # $wgDBsqluser is used for queries through the 
-# web interface.
+# web interface. It is also created by the script.
+# Unlike the regular user, it has no write 
+# permissions and can not access passwords.
 #
 $wgDBserver         = "localhost";
 $wgDBname           = "wikidb";
