@@ -174,7 +174,8 @@ function wfMungeToUtf8($string) {
 }
 
 # Converts a single UTF-8 character into the corresponding HTML character entity
-function wfUtf8Entity( $char ) {
+function wfUtf8Entity( $matches ) {
+	$char = $matches[0];
 	# Find the length
 	$z = ord( $char{0} );
 	if ( $z & 0x80 ) {
