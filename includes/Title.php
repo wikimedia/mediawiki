@@ -1705,42 +1705,16 @@ class Title {
 		
 		$fname = 'Title::createRedirect';
 		$dbw =& wfGetDB( DB_MASTER );
-		$now = wfTimestampNow();
 		
-		$seqVal = $dbw->nextSequenceValue( 'page_page_id_seq' );
-		$dbw->insert( 'page', array(
-			'page_id' => $seqVal,
-			'page_namespace' => $this->getNamespace(),
-			'page_title' => $this->getDBkey(),
-			'page_touched' => $now,
-			'page_is_redirect' => 1,
-			'page_is_new' => 1,
-			'page_latest' => NULL,
-		), $fname );
-		$newid = $dbw->insertId();
-
-		$seqVal = $dbw->nextSequenceValue( 'text_old_id_seq' );
-		$dbw->insert( 'text', array(
-			'old_id' => $seqVal,
-			'old_flags' => '',
-			'old_text' => "#REDIRECT [[" . $dest->getPrefixedText() . "]]\n"
-		), $fname );
-		$revisionId = $dbw->insertId();
-		
-		$dbw->insert( 'revision', array(
-			'rev_id' => $seqVal,
-			'rev_page' => $newid,
-			'rev_comment' => $comment,
-			'rev_user' => $wgUser->getID(),
-			'rev_user_text' => $wgUser->getName(),
-			'rev_timestamp' => $now,
-		), $fname );
-		
-		$dbw->update( 'page',
-			/* SET */   array( 'page_latest' => $revisionId ),
-			/* WHERE */ array( 'page_id' => $newid ),
-			$fname );
-		$this->resetArticleID( $newid );
+		$article = new Article( $this );
+		$newid = $article->insertOn( $dbw );
+		$revision = new Revision( array(
+			'page'      => $newid,
+			'comment'   => $comment,
+			'text'      => "#REDIRECT [[" . $dest->getPrefixedText() . "]]\n",
+			) );
+		$revisionId = $revision->insertOn( $dbw );
+		$article->updateRevisionOn( $dbw, $revision, 0 );
 		
 		# Link table
 		if ( $dest->getArticleID() ) {
