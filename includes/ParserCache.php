@@ -39,7 +39,7 @@ class ParserCache
 		$key = $this->getKey( $article, $user );
 		$touched = $article->getTouched();
 		$parserOutput->setTouched( $touched );
-		$parserOutput->mText .= "\n<-- Saved in parser cache with key $key and timestamp $touched -->\n";
+		$parserOutput->mText .= "\n<!-- Saved in parser cache with key $key and timestamp $touched -->\n";
 
 		if( $parserOutput->containsOldMagic() ){
 			$expire = 3600; # 1 hour
