@@ -658,7 +658,6 @@ creado y por quién, y cualquier otra cosa que puedas saber al respecto.",
 
 "ilsubmit"		=> "Búsqueda",
 "showlast"		=> "Mostrar las últimas $1 imágenes ordenadas  $2.",
-"all"			=> "todas",
 "byname"		=> "por nombre",
 "bydate"		=> "por fecha",
 "bysize"		=> "por tamaño",

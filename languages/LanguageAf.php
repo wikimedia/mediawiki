@@ -558,7 +558,6 @@ Volg asseblief hierdie skakel: ($2) na die beskrywingsbladsy en vul inligting in
 "ilshowmatch"	=> "Wys alle prente met name wat pas",
 "ilsubmit"		=> "Soek",
 "showlast"		=> "Wys laaste $1 prente gesorteer $2.",
-"all"			=> "alles",
 "byname"		=> "volgens naam",
 "bydate"		=> "volgens datum",
 "bysize"		=> "volgens grootte",

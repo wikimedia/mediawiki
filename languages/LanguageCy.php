@@ -671,7 +671,6 @@ Dilynwch y cyswllt hon: ($2) i'r tudalen disgrifiad a llenwch gwybodaeth amdano'
 "ilshowmatch" => "Dangos pob delwedd gyda enwau yn cyfateb",
 "ilsubmit" => "Chwilio",
 "showlast" => "Dangos y $1 delweddau olaf wedi trefnu $2.",
-"all" => "holl",
 "byname" => "gan enw",
 "bydate" => "gan dyddiad",
 "bysize" => "gan maint",

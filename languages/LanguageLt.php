@@ -161,7 +161,6 @@ taip pat bus '''paryškinti''' [[Special:Recentchanges|naujausių keitimų sąra
 'administrators' => "Wikipedia:Administrators",
 'affirmation' => "Aš patvirtinu, kad šio failo autorius ar teisių turėtojas
 sutinka jog failas bus viešinamas $1 licenzijos sąlygomis.",
-'all' => "visus",
 'allmessages' => "Visi sistemos tekstai bei pranešimai",
 'allmessagestext' => "Čia pateikiami visi sisteminiai tekstai bei pranešimai, esantys MediaWiki: vardų ervėje.",
 'allpages' => "Visi straipsniai",

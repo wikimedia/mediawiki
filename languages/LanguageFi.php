@@ -612,7 +612,6 @@ Katso myös [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta di
 'ilshowmatch' => 'Haku kuvista: ',
 'ilsubmit'            => 'Hae',
 'showlast'            => 'Näytä viimeiset $1 kuvaa lajiteltuna $2.',
-'all'                 => 'kaikki',
 'byname'              => 'nimen mukaan',
 'bydate'              => 'päiväyksen mukaan',
 'bysize'              => 'koon mukaan',

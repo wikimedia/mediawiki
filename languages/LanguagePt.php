@@ -636,7 +636,6 @@ Por favor, siga este link : ($2) para ir �  página de descrição e preencha-
 "ilshowmatch"   => "Mostrar todas as imagens com semelhança no nome",
 "ilsubmit"      => "Procura",
 "showlast"      => "Mostrar as  $1 imagens organizadas $2.",
-"all"           => "todas",
 "byname"        => "por nome",
 "bydate"        => "por data",
 "bysize"        => "por tamanho",

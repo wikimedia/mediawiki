@@ -295,7 +295,7 @@ function rcCountLink( $lim, $d, $page='Recentchanges', $more='' ) {
 	global $wgUser, $wgLang, $wgContLang;
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink( $wgContLang->specialPage( $page ),
-	  ($lim ? $wgLang->formatNum( "{$lim}" ) : wfMsg( 'all' ) ), "{$more}" .
+	  ($lim ? $wgLang->formatNum( "{$lim}" ) : wfMsg( 'recentchangesall' ) ), "{$more}" .
 	  ($d ? "days={$d}&" : '') . 'limit='.$lim );
 	return $s;
 }
@@ -307,7 +307,7 @@ function rcDaysLink( $lim, $d, $page='Recentchanges', $more='' ) {
 	global $wgUser, $wgLang, $wgContLang;
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink( $wgContLang->specialPage( $page ),
-	  ($d ? $wgLang->formatNum( "{$d}" ) : wfMsg( "all" ) ), $more.'days='.$d .
+	  ($d ? $wgLang->formatNum( "{$d}" ) : wfMsg( 'recentchangesall' ) ), $more.'days='.$d .
 	  ($lim ? '&limit='.$lim : '') );
 	return $s;
 }

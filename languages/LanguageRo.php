@@ -353,7 +353,6 @@ vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b
 #'addsection' => "+",
 'administrators' => "Project:Administratori",
 'affirmation' => "Afirm că persoana care deţine drepturile de autor asupra acestui fişier este de acord cu termenii licenţei $1.",
-'all' => "toate",
 'allmessages' => "Toate_mesajele",
 'allmessagestext' => "Aceasta este lista completă a mesajelor disponibile în domeniul \"MediaWiki:\"",
 'allpages' => "Toate paginile",

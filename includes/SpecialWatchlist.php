@@ -119,7 +119,7 @@ function wfSpecialWatchlist() {
 	if ( $days <= 0 ) {
 		$docutoff = '';
 		$cutoff = false;
-		$npages = wfMsg( 'all' );
+		$npages = wfMsg( 'watchlistall1' );
 	} else {
 	        $docutoff = "AND rev_timestamp > '" .
 		  ( $cutoff = $dbr->timestamp( time() - intval( $days * 86400 ) ) )
@@ -297,7 +297,7 @@ function wlDaysLink( $d, $page ) {
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink(
 	  $wgContLang->specialPage( $page ),
-	  ($d ? $wgLang->formatNum( $d ) : wfMsg( 'all' ) ), "days=$d" );
+	  ($d ? $wgLang->formatNum( $d ) : wfMsg( 'watchlistall2' ) ), "days=$d" );
 	return $s;
 }
 

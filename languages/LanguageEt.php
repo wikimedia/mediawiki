@@ -904,7 +904,6 @@ ja kelle poolt ta loodi, jne.",
 "ilshowmatch"	=> "Näita kõiki pilte, mille nimi klapib",
 "ilsubmit"		=> "Otsi",
 "showlast"		=> "Näita viimast $1 pilti sorteerituna $2.", # $2 nt. "nime järgi"
-"all"			=> "kõik",
 "byname"		=> "nime järgi",
 "bydate"		=> "kuupäeva järgi",
 "bysize"		=> "suuruse järgi",
