@@ -1237,10 +1237,29 @@ class Article {
 	 * Validate function
 	 */
 	function validate() {
-		global $wgOut, $wgUser;
-		$wgOut->setRobotpolicy( 'noindex,follow' );
+		global $wgOut, $wgUser, $wgRequest, $wgUseValidation;
 		
-		$wgOut->addWikiText ( "Not implemented yet" ) ;
+		if ( !$wgUseValidation ) # Are we using article validation at all?
+		{
+			$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
+			return ;
+		}
+		
+		$wgOut->setRobotpolicy( 'noindex,follow' );
+		$revision = $wgRequest->getVal( 'revision' );
+		
+		include_once ( "SpecialValidate.php" ) ; # The "Validation" class
+		
+		$v = new Validation ;
+		$t = $v->validatePageForm ( $this , $revision ) ;
+/*		$a = $v->getTopicList () ;
+		$t = "" ;
+		foreach ( $a AS $x => $y ) {
+			$t .= $x . " : " . $y->val_comment . " (1-" . $y->val_value . ")<br>" ;
+			}
+		$t .= "Revision {$revision}" ;*/
+		
+		$wgOut->addHTML ( $t ) ;
 	}
 
 	/**
