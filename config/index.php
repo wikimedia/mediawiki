@@ -595,11 +595,16 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			"<p>Here's the file that would have been written, try to paste it into place manually:</p>\n" .
 			"<pre>\n" . htmlspecialchars( $localSettings ) . "</pre>\n" );
 		}
-		fwrite( $f, $localSettings );
-		fclose( $f );
+		if(fwrite( $f, $localSettings ) ) {
+			fclose( $f );
 
-		print "<p>Success! Move the config/LocalSettings.php file into the parent directory, then follow
-		<a href='{$conf->ScriptPath}/index.php'>this link</a> to your wiki.</p>\n";
+			print "<p>Success! Move the config/LocalSettings.php file into the parent directory, then follow
+			<a href='{$conf->ScriptPath}/index.php'>this link</a> to your wiki.</p>\n";
+		} else {
+			fclose( $f );
+			die("<p class='error'>An error occured while writing the config/LocalSettings.php file. Check user rights and disk space then try again.</p>\n");
+			 
+		}
 
 	} while( false );
 }
