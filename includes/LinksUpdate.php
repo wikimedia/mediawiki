@@ -85,6 +85,7 @@ class LinksUpdate {
 					}
 					$sql .= $dbw->addQuotes( $badTitle );
 				}
+				$sql .= ")";
 				$dbw->query( $sql, $fname );
 			}
 		} else {

@@ -70,6 +70,13 @@ $wgDBprefix         = ''; # Table name prefix
 #   password:  DB password
 #   type:      "mysql" or "pgsql"
 #   load:      ratio of DB_SLAVE load, must be >=0, the sum of all loads must be >0
+#   flags:     bit field
+#                 DBO_DEFAULT -- turns on DBO_TRX only if !$wgCommandLineMode (recommended)
+#                 DBO_DEBUG -- equivalent of $wgDebugDumpSql
+#                 DBO_TRX -- wrap entire request in a transaction
+#                 DBO_IGNORE -- ignore errors (not useful in LocalSettings.php)
+#                 DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
+#
 # Leave at false to use the single-server variables above
 $wgDBservers		= false; 
 
@@ -139,6 +146,7 @@ $wgReadOnlyFile         = "{$wgUploadDirectory}/lock_yBgMBwiR";
 # used, as it may contain private data.
 $wgDebugLogFile         = '';
 $wgDebugRedirects		= false;
+$wgDebugRawPage         = false; # Avoid overlapping debug entries by leaving out CSS
 
 $wgDebugComments        = false;
 $wgReadOnly             = false;
@@ -160,7 +168,7 @@ $wgUseCategoryMagic		= true;
 # FIXME: need fixing
 $wgUseCategoryBrowser   = false;
 
-$wgEnablePersistentLC	= false;	# Persistent link cache in linkscc table; FAILS on MySQL 3.x
+$wgEnablePersistentLC	= false;	# Obsolete, do not use
 $wgCompressedPersistentLC = true; # use gzcompressed blobs
 
 $wgEnableParserCache = false; # requires that php was compiled --with-zlib
@@ -445,4 +453,8 @@ $wgAllowPageInfo = false;
 
 # Maximum indent level of toc.
 $wgMaxTocLevel = 999;
+
+# Recognise longitude/latitude coordinates
+$wgUseGeoMode = false;
+
 ?>

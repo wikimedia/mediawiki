@@ -153,7 +153,7 @@ class Article {
 							# Try to open, return false on failure
 							$params = $wgKnownDBServers[$machineId];
 							$db = Database::newFromParams( $params['server'], $params['user'], $params['password'],
-								$dbName, 1, false, true, true );
+								$dbName, 1, DBO_IGNORE );
 						}
 					}
 					if ( $db->isOpen() ) {
@@ -711,8 +711,6 @@ class Article {
 				$pcache = false;
 			}
 
-			$wgLinkCache->preFill( $this->mTitle );
-
 			# wrap user css and user js in pre and don't parse
 			# XXX: use $this->mTitle->usCssJsSubpage() when php is fixed/ a workaround is found
 			if (
@@ -743,7 +741,7 @@ class Article {
 
 	/* private */ function insertNewArticle( $text, $summary, $isminor, $watchthis )
 	{
-		global $wgOut, $wgUser, $wgLinkCache, $wgMwRedir;
+		global $wgOut, $wgUser, $wgMwRedir;
 		global $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
 
 		$fname = 'Article::insertNewArticle';
@@ -888,7 +886,7 @@ class Article {
 
 	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' )
 	{
-		global $wgOut, $wgUser, $wgLinkCache;
+		global $wgOut, $wgUser;
 		global $wgDBtransactions, $wgMwRedir;
 		global $wgUseSquid, $wgInternalServer;
 		
@@ -1036,7 +1034,11 @@ class Article {
 		# Get old version of link table to allow incremental link updates
 		$wgLinkCache->preFill( $this->mTitle );
 		$wgLinkCache->clear();
-
+		
+		# Switch on use of link cache in the skin
+		$sk =& $wgUser->getSkin();
+		$sk->postParseLinkColour( false );
+		
 		# Now update the link cache by parsing the text
 		$wgOut = new OutputPage();
 		$wgOut->addWikiText( $text );
@@ -1509,7 +1511,7 @@ class Article {
 			$linkID = $titleObj->getArticleID();
 			$brokenLinks[] = array( 'bl_from' => $linkID, 'bl_to' => $t );
 		}
-		$dbw->insertArray( 'brokenlinks', $brokenLinks, $fname );
+		$dbw->insert( 'brokenlinks', $brokenLinks, $fname, 'IGNORE' );
 		
 		# Delete live links
 		$dbw->delete( 'links', array( 'l_to' => $id ) );
