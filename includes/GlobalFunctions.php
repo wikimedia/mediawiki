@@ -667,5 +667,12 @@ function wfQuotedPrintable( $string, $charset = "" )
 	return $out;
 }
 
+# Changes the first character to an HTML entity
+function wfHtmlEscapeFirst( $text ) {
+	$ord = ord($text);
+	$newText = substr($text, 1);
+	return "&#$ord;$newText";
+}
+
 
 ?>
