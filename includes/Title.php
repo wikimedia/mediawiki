@@ -754,28 +754,37 @@ class Title {
 	 */
 	function userCanEdit() {
 		global $wgUser;
-		if ( -1 == $this->mNamespace ) { return false; }
-		if ( NS_MEDIAWIKI == $this->mNamespace && !$wgUser->isAllowed('editinterface') ) { return false; }
-		# if ( 0 == $this->getArticleID() ) { return false; }
-		if ( $this->mDbkeyform == '_' ) { return false; }
+		if( NS_SPECIAL == $this->mNamespace ) {
+			return false;
+		}
+		if( NS_MEDIAWIKI == $this->mNamespace &&
+		    !$wgUser->isAllowed('editinterface') ) {
+			return false;
+		}
+		if( $this->mDbkeyform == '_' ) {
+			# FIXME: Is this necessary? Shouldn't be allowed anyway...
+			return false;
+		}
+		
 		# protect global styles and js
 		if ( NS_MEDIAWIKI == $this->mNamespace 
-	             && preg_match("/\\.(css|js)$/", $this->mTextform )
-		     && !$wgUser->isAllowed('editinterface') )
-		{ return false; }
-		//if ( $this->isCssJsSubpage() and !$this->userCanEditCssJsSubpage() ) { return false; }
+	         && preg_match("/\\.(css|js)$/", $this->mTextform )
+		     && !$wgUser->isAllowed('editinterface') ) {
+			return false;
+		}
+		
 		# protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
 		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssJsSubpage() from working
-		if( Namespace::getUser() == $this->mNamespace
-			and preg_match("/\\.(css|js)$/", $this->mTextform )
-			and !$wgUser->isAllowed('editinterface')
-			and !preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) )
-		{ return false; }
-		$ur = $wgUser->getRights();
+		if( NS_USER == $this->mNamespace
+			&& preg_match("/\\.(css|js)$/", $this->mTextform )
+			&& !$wgUser->isAllowed('editinterface')
+			&& !preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) ) {
+			return false;
+		}
 
-		foreach ( $this->getRestrictions() as $r ) {
-			if ( '' != $r && ( ! in_array( $r, $ur ) ) ) {
+		foreach( $this->getRestrictions() as $right ) {
+			if( '' != $right && !$wgUser->isAllowed( $right ) ) {
 				return false;
 			}
 		}
@@ -789,26 +798,31 @@ class Title {
 	 */
 	function userCanRead() {
 		global $wgUser;
-		global $wgWhitelistRead;
 		
-		if($wgUser->isAllowed('read')) {
+		if( $wgUser->isAllowed('read') ) {
 			return true;
 		} else {
-			$name = $this->getPrefixedText();
-
-			/** user can create an account */
-			if($wgUser->isAllowed('createaccount')
-			   && $name == 'Special:Userlogin') { return true; }
-			 else { 
-			 echo $name;
-			 print_r($wgUser->getRights());
-			 }
+			global $wgWhitelistRead;
+			
+			/** If anon users can create an account,
+			    they need to reach the login page first! */
+			if( $wgUser->isAllowed( 'createaccount' )
+			    && $this->mId == NS_SPECIAL
+			    && $this->getText() == 'Userlogin' ) {
+				return true;
+			}
 
 			/** some pages are explicitly allowed */
-			if( in_array( $name, $wgWhitelistRead ) ) return true;
+			$name = $this->getPrefixedText();
+			if( in_array( $name, $wgWhitelistRead ) ) {
+				return true;
+			}
+			
 			# Compatibility with old settings
 			if( $this->getNamespace() == NS_MAIN ) {
-				if( in_array( ':' . $name, $wgWhitelistRead ) ) return true;
+				if( in_array( ':' . $name, $wgWhitelistRead ) ) {
+					return true;
+				}
 			}
 		}
 		return false;
