@@ -288,6 +288,7 @@ class EditPage {
 			$editsummary="{$summary}: <input tabindex=3 type=text value=\"{$wpSummary}\" name=\"wpSummary\" maxlength=200 size=60><br>";
 		}
 
+		$wgOut->setOnloadHandler( "document.editform.wpTextbox1.focus()" );
 		$wgOut->addHTML( "
 <form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
 enctype=\"application/x-www-form-urlencoded\">

@@ -12,6 +12,7 @@ class OutputPage {
 
 	var $mDTopen, $mLastSection; # Used for processing DL, PRE
 	var $mLanguageLinks, $mSupressQuickbar;
+	var $mOnloadHandler;
 
 	function OutputPage()
 	{
@@ -19,7 +20,8 @@ class OutputPage {
 		$this->mKeywords = $this->mLinktags = array();
 		$this->mHTMLtitle = $this->mPagetitle = $this->mBodytext =
 		$this->mLastSection = $this->mRedirect = $this->mLastModified =
-		$this->mSubtitle = $this->mDebugtext = $this->mRobotpolicy = "";
+		$this->mSubtitle = $this->mDebugtext = $this->mRobotpolicy = 
+		$this->mOnloadHandler = "";
 		$this->mIsarticle = $this->mPrintable = true;
 		$this->mSupressQuickbar = $this->mDTopen = $this->mPrintable = false;
 		$this->mLanguageLinks = array();
@@ -94,6 +96,8 @@ class OutputPage {
 	function isArticle() { return $this->mIsarticle; }
 	function setPrintable() { $this->mPrintable = true; }
 	function isPrintable() { return $this->mPrintable; }
+	function setOnloadHandler( $js ) { $this->mOnloadHandler = $js; }
+	function getOnloadHandler() { return $this->mOnloadHandler; }
 
 	function getLanguageLinks() {
 		global $wgTitle, $wgLanguageCode;
