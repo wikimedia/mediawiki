@@ -2,17 +2,19 @@
 
 function wfSpecialWhatlinkshere($par = NULL)
 {
-	global $wgUser, $wgOut, $target;
+	global $wgUser, $wgOut, $wgRequest;
 	$fname = "wfSpecialWhatlinkshere";
 
+	$target = $wgRequest->getVal( 'target' );
+	$limit = $wgRequest->getInt( 'limit', 500 );
+	
 	if(!empty($par)) {
 		$target = $par;
-	} else if (!empty($_REQUEST['target'])) {
-		$target = $_REQUEST['target'] ;
-	} else {
+	} else if ( is_null( $target ) ) {
 		$wgOut->errorpage( "notargettitle", "notargettext" );
 		return;
 	}
+
 	$nt = Title::newFromURL( $target );
 	if( !$nt ) {
 		$wgOut->errorpage( "notargettitle", "notargettext" );
@@ -29,7 +31,7 @@ function wfSpecialWhatlinkshere($par = NULL)
 	
 	if ( 0 == $id ) {
 		$sql = "SELECT cur_id,cur_namespace,cur_title,cur_is_redirect FROM brokenlinks,cur WHERE bl_to='" .
-		  wfStrencode( $nt->getPrefixedDBkey() ) . "' AND bl_from=cur_id LIMIT 500";
+		  wfStrencode( $nt->getPrefixedDBkey() ) . "' AND bl_from=cur_id LIMIT $limit";
 		$res = wfQuery( $sql, DB_READ, $fname );
 
 		if ( 0 == wfNumRows( $res ) ) {
@@ -48,7 +50,7 @@ function wfSpecialWhatlinkshere($par = NULL)
 
 				if ( $row->cur_is_redirect ) {
 					$wgOut->addHTML( $isredir );
-					wfShowIndirectLinks( 1, $row->cur_id );
+					wfShowIndirectLinks( 1, $row->cur_id, $limit );
 				}
 				$wgOut->addHTML( "</li>\n" );
 			}
@@ -56,16 +58,16 @@ function wfSpecialWhatlinkshere($par = NULL)
 			wfFreeResult( $res );
 		}
 	} else {
-		wfShowIndirectLinks( 0, $id );
+		wfShowIndirectLinks( 0, $id, $limit );
 	}
 }
 
-function wfShowIndirectLinks( $level, $lid )
+function wfShowIndirectLinks( $level, $lid, $limit )
 {
 	global $wgOut, $wgUser;
 	$fname = "wfShowIndirectLinks";
 
-	$sql = "SELECT cur_id,cur_namespace,cur_title,cur_is_redirect FROM links,cur WHERE l_to={$lid} AND l_from=cur_id LIMIT 500";
+	$sql = "SELECT cur_id,cur_namespace,cur_title,cur_is_redirect FROM links,cur WHERE l_to={$lid} AND l_from=cur_id LIMIT $limit";
 	$res = wfQuery( $sql, DB_READ, $fname );
 
 	if ( 0 == wfNumRows( $res ) ) {
@@ -100,7 +102,7 @@ function wfShowIndirectLinks( $level, $lid )
 		if ( $row->cur_is_redirect ) {
 		    $wgOut->addHTML( $isredir );
 		    if ( $level < 2 ) {
-			wfShowIndirectLinks( $level + 1, $row->cur_id );
+			wfShowIndirectLinks( $level + 1, $row->cur_id, $limit );
 		    }
 		}
 		$wgOut->addHTML( "</li>\n" );
