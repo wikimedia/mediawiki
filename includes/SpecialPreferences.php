@@ -12,7 +12,7 @@ class PreferencesForm {
 	var $mQuickbar, $mOldpass, $mNewpass, $mRetypePass, $mStubs;
 	var $mRows, $mCols, $mSkin, $mMath, $mDate, $mUserEmail, $mEmailFlag, $mNick;
 	var $mSearch, $mRecent, $mHourDiff, $mSearchLines, $mSearchChars, $mAction;
-	var $mReset, $mPosted, $mToggles, $mSearchNs;
+	var $mReset, $mPosted, $mToggles, $mSearchNs, $mRealName;
 
 	function PreferencesForm( &$request ) {	
 		global $wgLang;
@@ -28,6 +28,7 @@ class PreferencesForm {
 		$this->mMath = $request->getVal( 'wpMath' );
 		$this->mDate = $request->getVal( 'wpDate' );
 		$this->mUserEmail = $request->getVal( 'wpUserEmail' );
+		$this->mRealName = $request->getVal( 'wpRealName' );
 		$this->mEmailFlag = $request->getCheck( 'wpEmailFlag' ) ? 1 : 0;
 		$this->mNick = $request->getVal( 'wpNick' );
 		$this->mSearch = $request->getVal( 'wpSearch' );
@@ -144,6 +145,7 @@ class PreferencesForm {
 			$wgUser->setPassword( $this->mNewpass );
 		}
 		$wgUser->setEmail( $this->mUserEmail );
+		$wgUser->setRealName( $this->mRealName );
 		$wgUser->setOption( "nickname", $this->mNick );
 		$wgUser->setOption( "quickbar", $this->mQuickbar );
 		$wgUser->setOption( "skin", $this->mSkin );
@@ -183,6 +185,7 @@ class PreferencesForm {
 
 		$this->mOldpass = $this->mNewpass = $this->mRetypePass = "";
 		$this->mUserEmail = $wgUser->getEmail();
+		$this->mRealName = $wgUser->getRealName();
 		if ( 1 == $wgUser->getOption( "disablemail" ) ) { $this->mEmailFlag = 1; }
 		else { $this->mEmailFlag = 0; }
 		$this->mNick = $wgUser->getOption( "nickname" );
@@ -304,6 +307,7 @@ class PreferencesForm {
 		$tzGuess = wfMsg( "guesstimezone" );
 		$tzServerTime = wfMsg( "servertime" );
 		$yem = wfMsg( "youremail" );
+		$yrn = wfMsg( "yourrealname" );
 		$emf = wfMsg( "emailflag" );
 		$ynn = wfMsg( "yournick" );
 		$stt = wfMsg ( "stubthreshold" ) ;
@@ -413,6 +417,7 @@ class PreferencesForm {
 		# Email, etc.
 		#
 		$this->mUserEmail = wfEscapeHTML( $this->mUserEmail );
+		$this->mRealName = wfEscapeHTML( $this->mRealName );
 		$this->mNick = wfEscapeHTML( $this->mNick );
 		if ( $this->mEmailFlag ) { $emfc = 'checked="checked"'; }
 		else { $emfc = ""; }
@@ -420,6 +425,7 @@ class PreferencesForm {
 		$ps = $this->namespacesCheckboxes();
 
 		$wgOut->addHTML( "<fieldset>
+		<div><label>$yrn: <input type='text' name=\"wpRealName\" value=\"{$this->mRealName}\" size='20' /></label></div>
 		<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>
 		<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" /> $emf</label></div>
 		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>

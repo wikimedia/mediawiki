@@ -655,11 +655,10 @@ Don't forget to change your {{SITENAME}} preferences.",
 "badretype"		=> "The passwords you entered do not match.",
 "userexists"	=> "The user name you entered is already in use. Please choose a different name.",
 "youremail"		=> "Your email*",
+"yourrealname"		=> "Your real name*",
 "yournick"		=> "Your nickname (for signatures)",
-"emailforlost"	=> "* Entering an email address is optional.  But it enables people to
-contact you through the website without you having to reveal your 
-email address to them, and it also helps you if you forget your   
-password.",
+"emailforlost"	=> "Fields marked with a star (*) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your 
+email address to them, and it can be used to send you a new password if you forget it.<br /><br />Your real name, if you choose to provide it, will be used for giving you attribution for your work.",
 "loginerror"	=> "Login error",
 "nocookiesnew"	=> "The user account was created, but you are not logged in. {{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.",
 "nocookieslogin"	=> "{{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them and try again.",

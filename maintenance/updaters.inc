@@ -123,4 +123,15 @@ function do_recentchanges_update() {
 	}
 }
 
+function do_user_real_name_update() {
+	global $wgDatabase;
+	if ( $wgDatabase->fieldExists( "user", "user_real_name" ) ) {
+		echo "...have user_real_name field in user table.\n";
+        } else {
+		echo "Adding user_real_name field to table user...";
+		dbsource( "maintenance/archives/patch-user-realname.sql" , $wgDatabase );
+		echo "ok\n";
+	}
+}
+
 ?>

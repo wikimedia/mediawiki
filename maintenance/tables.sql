@@ -7,6 +7,7 @@
 CREATE TABLE user (
   user_id int(5) unsigned NOT NULL auto_increment,
   user_name varchar(255) binary NOT NULL default '',
+  user_real_name varchar(255) binary NOT NULL default '',
   user_rights tinyblob NOT NULL default '',
   user_password tinyblob NOT NULL default '',
   user_newpassword tinyblob NOT NULL default '',
