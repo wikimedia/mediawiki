@@ -291,87 +291,90 @@ class UtfNormal {
 			}
 		}
 		
-		$len = strlen( $string );
-		$out = '';
-		$tail = false;
-		$looksNormal = true;
-		$head = 0;
+		# Chop the text into pure-ASCII and non-ASCII areas;
+		# large ASCII parts can be handled much more quickly.
+		# Don't chop up for little newlines or spaces, though,
+		# that wastes energy.
+		preg_match_all( '/([\x00-\x7f]+|[\x80-\xff][\x0a\x20\x80-\xff]*)/', $string, $matches );
 		
-		for( $i = 0; $i < $len; $i++ ) {
-			$c = $string{$i};
-			$n = ord( $c );
-			if( $tail ) {
-				if( $n >= 0x80 && $n < 0xc0 ) {
-					$sequence .= $c;
-					if( --$remaining ) {
-						# Keep adding bytes...
-						continue;
-					}
-
-					if( isset( $checkit[$head] ) ) {
-						# Do some more detailed validity checks, for
-						# invalid characters and illegal sequences.
-						if( ( $head == 0xed && $sequence >= UTF8_SURROGATE_FIRST
-								&& $sequence <= UTF8_SURROGATE_LAST)
-							|| ($head  < 0xc2 && $sequence <= UTF8_OVERLONG_A)
-							|| ($head == 0xe0 && $sequence <= UTF8_OVERLONG_B)
-							|| ($head == 0xef && 
-								($sequence >= UTF8_FDD0 && $sequence <= UTF8_FDEF)
-								|| ($sequence == UTF8_FFFE)
-								|| ($sequence == UTF8_FFFF) )
-							|| ($head == 0xf0 && $sequence <= UTF8_OVERLONG_C)
-							|| ($head >= 0xf0 && $sequence > UTF8_MAX) ) {
-							$out .= UTF8_REPLACEMENT;
-							$tail = false;
+		$out = '';
+		$looksNormal = true;
+		foreach( $matches[1] as $str ) {
+			if( $str{0} < "\x80" ) {
+				$out .= $str;
+				continue;
+			}
+			$len = strlen( $str );
+			$tail = false;
+			$head = 0;
+			
+			for( $i = 0; $i < $len; $i++ ) {
+				$c = $str{$i};
+				$n = ord( $c );
+				if( $tail ) {
+					if( $n >= 0x80 && $n < 0xc0 ) {
+						$sequence .= $c;
+						if( --$remaining ) {
+							# Keep adding bytes...
 							continue;
 						}
+	
+						if( isset( $checkit[$head] ) ) {
+							# Do some more detailed validity checks, for
+							# invalid characters and illegal sequences.
+							if( ( $head == 0xed && $sequence >= UTF8_SURROGATE_FIRST
+									&& $sequence <= UTF8_SURROGATE_LAST)
+								|| ($head  < 0xc2 && $sequence <= UTF8_OVERLONG_A)
+								|| ($head == 0xe0 && $sequence <= UTF8_OVERLONG_B)
+								|| ($head == 0xef && 
+									($sequence >= UTF8_FDD0 && $sequence <= UTF8_FDEF)
+									|| ($sequence == UTF8_FFFE)
+									|| ($sequence == UTF8_FFFF) )
+								|| ($head == 0xf0 && $sequence <= UTF8_OVERLONG_C)
+								|| ($head >= 0xf0 && $sequence > UTF8_MAX) ) {
+								$out .= UTF8_REPLACEMENT;
+								$tail = false;
+								continue;
+							}
+						}
+						
+						if( isset( $utfCheckNFC[$sequence] ) ||
+							isset( $utfCombiningClass[$sequence] ) ) {
+							# If it's NO or MAYBE, we'll have to do the slow check.
+							$looksNormal = false;
+						}
+						
+						# The sequence is legal!
+						$out .= $sequence;
+						$tail = false;
+						$head = 0;
+						continue;
 					}
-					
-					if( isset( $utfCheckNFC[$sequence] ) ||
-						isset( $utfCombiningClass[$sequence] ) ) {
-						# If it's NO or MAYBE, we'll have to do the slow check.
-						$looksNormal = false;
-					}
-					
-					# The sequence is legal!
-					$out .= $sequence;
+					# Not a valid tail byte! DIscard the char we've been building.
+					#printf ("Invalid '%x' in tail with %d remaining bytes\n", $n, $remaining );
 					$tail = false;
-					$head = 0;
-					continue;
-				}
-				# Not a valid tail byte! DIscard the char we've been building.
-				#printf ("Invalid '%x' in tail with %d remaining bytes\n", $n, $remaining );
-				$tail = false;
-				$out .= UTF8_REPLACEMENT;
-			}
-			if( $n < 0x80 ) {
-				# Friendly ASCII chars.
-				# We can speed things up a bit for latin-based scripts
-				# where they tend to come in groups:
-				$out .= $c;
-				$i++;
-				while( $i < $len && ( $c = $string{$i} ) < "\x80" ) {
-					$out .= $c;
-					$i++;
-				}
-				$i--;
-			} elseif( $n < 0xc0 ) {
-				# illegal tail bytes or head byte of overlong sequence
-				if( $head == 0 ) {
-					# Don't add if we're continuing a too-long sequence
 					$out .= UTF8_REPLACEMENT;
 				}
-			} elseif( $n < 0xfe ) {
-				$tail = true;
-				$remaining = $tailBytes[$n];
-				$sequence = $c;
-				$head = $n;
-			} else {
+				if( $n < 0x80 ) {
+					$out .= $c;
+				} elseif( $n < 0xc0 ) {
+					# illegal tail bytes or head byte of overlong sequence
+					if( $head == 0 ) {
+						# Don't add if we're continuing a too-long sequence
+						$out .= UTF8_REPLACEMENT;
+					}
+				} elseif( $n < 0xfe ) {
+					$tail = true;
+					$remaining = $tailBytes[$n];
+					$sequence = $c;
+					$head = $n;
+				} else {
+					$out .= UTF8_REPLACEMENT;
+				}
+			}
+			if( $tail ) {
 				$out .= UTF8_REPLACEMENT;
 			}
-		}
-		if( $tail ) {
-			$out .= UTF8_REPLACEMENT;
 		}
 		$string = $out;
 		return $looksNormal;
