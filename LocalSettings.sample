@@ -30,6 +30,7 @@ $wgEmergencyContact = "wikiadmin@myhost.com";
 # MySQL settings
 #
 $wgDBserver         = "localhost";
+$wgDBuser           = "wikiuser";
 $wgDBname           = "wikidb";
 $wgDBpassword       = "userpass";
 $wgDBsqlpassword	= "sqlpass";
