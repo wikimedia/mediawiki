@@ -189,43 +189,44 @@ function wfSpecialContributions( $par = '' ) {
 function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $target, $oldid ) {
 	global $wgLang, $wgOut, $wgUser, $wgRequest;
 	$page = Title::makeName( $ns, $t );
-	$link = $sk->makeKnownLink( $page, "" );
-	$topmarktext="";
+	$link = $sk->makeKnownLink( $page, '' );
+	$difftext = $topmarktext = '';
 	if($topmark) {
+		$topmarktext .= '<strong>' . wfMsg('uctop') . '</strong>';
 		if(!$isnew) {
-			$topmarktext .= $sk->makeKnownLink( $page, wfMsg("uctop"), "diff=0" );
+			$difftext .= $sk->makeKnownLink( $page, '(' . wfMsg('diff') . ')', 'diff=0' );
 		} else {
-			$topmarktext .= wfMsg("newarticle");
+			$difftext .= wfMsg('newarticle');
 		}
 		$sysop = $wgUser->isSysop();
 		if($sysop ) {
-			$extraRollback = $wgRequest->getBool( "bot" ) ? '&bot=1' : '';
+			$extraRollback = $wgRequest->getBool( 'bot' ) ? '&bot=1' : '';
 			# $target = $wgRequest->getText( 'target' );
-			$topmarktext .= " [". $sk->makeKnownLink( $page,
-		  	wfMsg( "rollbacklink" ),
-		  	"action=rollback&from=" . urlencode( $target ) . $extraRollback ) ."]";
+			$topmarktext .= ' ['. $sk->makeKnownLink( $page,
+		  	wfMsg( 'rollbacklink' ),
+		  	'action=rollback&from=' . urlencode( $target ) . $extraRollback ) .']';
 		}
 
 	}
 	if ( $oldid ) {
-		$oldtext= $sk->makeKnownLink( $page, '('.wfMsg('diff').')', 'diff=prev&oldid='.$oldid );
-	} else { $oldtext=''; }
-	$histlink="(".$sk->makeKnownLink($page,wfMsg("hist"),"action=history").")";
+		$difftext= $sk->makeKnownLink( $page, '('.wfMsg('diff').')', 'diff=prev&oldid='.$oldid );
+	} 
+	$histlink='('.$sk->makeKnownLink($page,wfMsg('hist'),'action=history').')';
 
 	if($comment) {
 
-		$comment="<em>(". $sk->formatComment($comment, Title::newFromText($t) ) .")</em> ";
+		$comment='<em>('. $sk->formatComment($comment, Title::newFromText($t) ) .')</em> ';
 
 	}
 	$d = $wgLang->timeanddate( $ts, true );
 
 	if ($isminor) {
-		$mflag = '<span class="minor">'.wfMsg( "minoreditletter" ).'</span> ';
+		$mflag = '<span class="minor">'.wfMsg( 'minoreditletter' ).'</span> ';
 	} else {
-		$mflag = "";
+		$mflag = '';
 	}
 
-	$wgOut->addHTML( "<li>{$d} {$histlink} {$mflag} {$link} {$comment}{$topmarktext}{$oldtext}</li>\n" );
+	$wgOut->addHTML( "<li>{$d} {$histlink} {$difftext} {$mflag} {$link} {$comment} {$topmarktext}</li>\n" );
 }
 
 /**
