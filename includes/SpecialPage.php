@@ -146,6 +146,7 @@ class SpecialPage
 	}
 
 	function displayRestrictionError() {
+		global $wgOut;
 		if ( $this->mRestriction == "developer" ) {
 			$wgOut->developerRequired();
 		} else {
