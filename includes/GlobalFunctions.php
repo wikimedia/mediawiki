@@ -173,37 +173,82 @@ function wfReadOnly()
 }
 
 $wgReplacementKeys = array( "$1", "$2", "$3", "$4", "$5", "$6", "$7", "$8", "$9" );
-function wfMsg( $key )
-{
-	global $wgLang, $wgReplacementKeys;
-	$message = $wgLang->getMessage( $key );
-	
-	if ( $message{0} == ":" ) {
-		# Get message from the database
-		$message = substr( $message, 1 );
-		$title = Title::newFromText( $message );
-		$dbKey = $title->getDBkey();
-		$ns = $title->getNamespace();
-		$sql = "SELECT cur_text FROM cur WHERE cur_namespace=$ns AND cur_title='$dbKey'";
-		$res = wfQuery( $sql, DB_READ, $fname );
-		if( ( $s = wfFetchObject( $res ) ) and ( $s->cur_text != "" ) ) {
-			$message = $s->cur_text;
-			# filter out a comment at the top if there is one
-			$commentPos = strpos( $message, "__START__" );
-			if ( $commentPos !== false ) {
-				$message = substr( $message, $commentPos + strlen( "__START__" ) );
-				wfDebug( "Comment filtered at pos $commentPos, \"$message\"\n" );
-			}
-		} else {
-			# if the page doesn't exist, just make a link to where it should be
-			$message = "[[$message]]";
-		}	
-		wfFreeResult( $res );
+
+function wfMsg( $key ) {
+	$args = func_get_args();
+	if ( count( $args ) ) {
+		array_shift( $args );
 	}
-	if( func_num_args() > 1 ) {
-		$reps = func_get_args();
-		array_shift( $reps );
-		$message = str_replace( $wgReplacementKeys, $reps, $message );
+	return wfMsgReal( $key, $args, true );
+}
+
+function wfMsgNoDB( $key ) {
+	$args = func_get_args();
+	if ( count( $args ) ) {
+		array_shift( $args );
+	}
+	return wfMsgReal( $key, $args, false );
+}
+
+function wfMsgReal( $key, $args, $useDB ) {
+	global $wgLang, $wgReplacementKeys, $wgMemc, $wgDBname;
+	global $wgUseDatabaseMessages;
+		
+	static $l1cache = array();
+	$fname = "wfMsg";
+	$message = false;
+	$l1hit = false;
+	
+	# Check for DB suppression
+	if ( !$wgUseDatabaseMessages || !$useDB ) {
+		$message = $wgLang->getMessage( $key );
+	}
+
+	# Try L1 cache
+	if ( $message === false && array_key_exists( $key, $l1cache ) ) {
+		$message  = $l1cache[$key];
+		if ( $message === false ) {
+			$message = $wgLang->getMessage( $key );
+		}
+		$l1hit = true;
+	}
+
+	# Try memcached
+	if ( $message === false ) {
+		$titleObj = Title::newFromText( $key );
+		$title = $titleObj->getDBkey();
+		$mcKey = "$wgDBname:MediaWiki:title:$title";
+		$message = $wgMemc->get( $mcKey );
+	}
+
+	# Try database
+	if ( $message === false) {
+		if ( $useDB ) {
+			$sql = "SELECT cur_text FROM cur WHERE cur_namespace=" . NS_MEDIAWIKI . 
+				" AND cur_title='$title'";
+			$res = wfQuery( $sql, DB_READ, $fname );
+
+			if ( wfNumRows( $res ) ) {
+				# Got it from the database, now store in MemCached
+				$obj = wfFetchObject( $res );
+				$message = $obj->cur_text;
+				wfFreeResult( $res );
+				$wgMemc->set( $key, $message, time() + 1800 );
+			}
+		}
+	}
+
+	# Finally, try the array in $wgLang
+	if ( $message === false ) {
+		$message = $wgLang->getMessage( $key );
+		$l1cache[$key] = false;
+	} elseif ( !$l1hit && $wgUseDatabaseMessages) {
+		$l1cache[$key] = $message;
+	}
+	
+	# Replace arguments
+	if( count( $args ) ) {
+		$message = str_replace( $wgReplacementKeys, $args, $message );
 	}
 
 	if ( "" == $message ) {
@@ -588,6 +633,16 @@ function wfCheckLimits( $deflimit = 50, $optionname = "rclimit" ) {
 	if( $offset > 65000 ) $offset = 65000; # do we need a max? what?
 	
 	return array( $limit, $offset );
+}
+
+# Used in OutputPage::replaceVariables and Article:pstPass2
+function replaceMsgVar( $matches ) {
+	return wfMsg( $matches[1] );
+}
+
+function replaceMsgVarNw( $matches ) {
+	$text = htmlspecialchars( wfMsg( $matches[1] ) );
+	return $text;
 }
 
 ?>

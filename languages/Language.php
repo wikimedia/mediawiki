@@ -14,6 +14,8 @@ define("NS_WP", 4);
 define("NS_WP_TALK", 5);
 define("NS_IMAGE", 6);
 define("NS_IMAGE_TALK", 7);
+define("NS_MEDIAWIKI", 8);
+define("NS_MEDIAWIKI_TALK", 9);
 
 # Magic words
 define("MAG_REDIRECT", 0);
@@ -27,6 +29,9 @@ define("MAG_CURRENTYEAR", 7);
 define("MAG_CURRENTTIME", 8);
 define("MAG_NUMBEROFARTICLES", 9);
 define("MAG_CURRENTMONTHNAMEGEN", 10);
+define("MAG_MSG", 11);
+define("MAG_SUBST", 12);
+define("MAG_MSGNW", 13);
 
 #--------------------------------------------------------------------------
 # Language-specific text
@@ -48,7 +53,9 @@ define("MAG_CURRENTMONTHNAMEGEN", 10);
 	4	=> "Wikipedia",
 	5	=> "Wikipedia_talk",
 	6	=> "Image",
-	7	=> "Image_talk"
+	7	=> "Image_talk",
+	8	=> "MediaWiki",
+	9	=> "MediaWiki_talk"
 );
 
 /* private */ $wgDefaultUserOptionsEn = array(
@@ -285,6 +292,9 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
     MAG_CURRENTTIME          => array( 1,    "{{CURRENTTIME}}"        ),
     MAG_NUMBEROFARTICLES     => array( 1,    "{{NUMBEROFARTICLES}}"   ),
     MAG_CURRENTMONTHNAMEGEN  => array( 1,    "{{CURRENTMONTHNAMEGEN}}"),
+	MAG_MSG                  => array( 1,    "{{MSG:$1}}"             ),
+	MAG_SUBST                => array( 1,    "{{SUBST:$1}}"           ),
+    MAG_MSGNW                => array( 1,    "{{MSGNW:$1}}"           )
 );
 	
 # All special pages have to be listed here: a description of ""
@@ -1223,6 +1233,10 @@ wiki running MediaWiki software, transformed, or just kept for your private
 amusement.",
 "exportcuronly"	=> "Include only the current revision, not the full history",
 
+# Namespace 8 related
+
+"allmessages"	=> "All_messages",
+"allmessagestext"	=> "This is a list of all messages available in the MediaWiki: namespace"
 );
 
 #--------------------------------------------------------------------------
@@ -1426,6 +1440,12 @@ class Language {
 		return $wgAllMessagesEn[$key];
 	}
 	
+	function getAllMessages()
+	{
+		global $wgAllMessagesEn;
+		return $wgAllMessagesEn;
+	}
+
 	function iconv( $in, $out, $string ) {
 		# For most languages, this is a wrapper for iconv
 		return iconv( $in, $out, $string );

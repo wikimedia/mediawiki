@@ -25,13 +25,15 @@ set_time_limit( 0 );
 
 include_once( "Version.php" );
 include_once( "{$IP}/Setup.php" );
+include_once( "./maintenance/InitialiseMessages.php" );
+
 $wgTitle = Title::newFromText( "Update script" );
 $wgCommandLineMode = true;
 $wgAlterSpecs = array();
 
 do_revision_updates();
-
 alter_ipblocks();
+initialiseMessages();
 
 #
 # Run ALTER TABLE queries.

@@ -953,7 +953,7 @@ class Article {
 
 	/* private */ function editUpdates( $text )
 	{
-		global $wgDeferredUpdateList;
+		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
 
 		wfSeedRandom();
 		if ( 0 == mt_rand( 0, 999 ) ) {
@@ -976,6 +976,11 @@ class Article {
 			$u = new UserTalkUpdate( 1, $this->mTitle->getNamespace(),
 			  $this->mTitle->getDBkey() );
 			array_push( $wgDeferredUpdateList, $u );
+
+			if ( $this->getNamespace == NS_MEDIAWIKI ) {
+				$key = "$wgDBname:MediaWiki:title:" . $this->mTitle->getDBkey();
+				$wgMemc->delete( $key );
+			}
 		}
 	}
 
@@ -1055,6 +1060,11 @@ class Article {
 		} else {
 			$text = preg_replace( $p2, "[[\\1 ({$context})|\\1]]", $text );
 		}
+		
+		# {{SUBST:xxx}} variables
+		#
+		$mw =& MagicWord::get( MAG_SUBST );
+		$text = $mw->substituteCallback( $text, "replaceMsgVar" );
 
 		return $text;
 	}

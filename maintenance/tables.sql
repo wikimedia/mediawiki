@@ -114,7 +114,7 @@ CREATE TABLE ipblocks (
   ipb_reason tinyblob NOT NULL default '',
   ipb_timestamp char(14) binary NOT NULL default '',
   ipb_auto tinyint(1) NOT NULL default '0',
-  UNIQUE KEY ipb_id
+  UNIQUE KEY ipb_id (ipb_id)
 ) TYPE=MyISAM PACK_KEYS=1;
 
 DROP TABLE IF EXISTS image;

@@ -15,7 +15,7 @@
 
 class MagicWord {
 	/*private*/ var $mId, $mSynonyms, $mCaseSensitive, $mRegex;
-	/*private*/ var $mRegexStart, $mBaseRegex;
+	/*private*/ var $mRegexStart, $mBaseRegex, $mVariableRegex;
 	
 	function MagicWord($id = 0, $syn = "", $cs = false) 
 	{
@@ -24,6 +24,7 @@ class MagicWord {
 		$this->mCaseSensitive = $cs;
 		$this->mRegex = "";
 		$this->mRegexStart = "";
+		$this->mVariableRegex = "";
 	}
 
 	/*static*/ function &get( $id )
@@ -53,6 +54,8 @@ class MagicWord {
 		$case = $this->mCaseSensitive ? "" : "i";
 		$this->mRegex = "/{$this->mBaseRegex}/{$case}";
 		$this->mRegexStart = "/^{$this->mBaseRegex}/{$case}";
+		$this->mVariableRegex = str_replace( "\\$1", "([A-Za-z0-9]*)", $this->mRegex );
+		wfDebug( "{$this->mVariableRegex}\n" );
 	}
 	
 	function getRegex()
@@ -99,6 +102,23 @@ class MagicWord {
 	function replace( $replacement, $subject )
 	{
 		return preg_replace( $this->getRegex(), $replacement, $subject );
+	}
+
+	function substituteCallback( $text, $callback ) {
+		$regex = $this->getVariableRegex();
+		return preg_replace_callback( $this->getVariableRegex(), $callback, $text );
+	}
+
+	function getVariableRegex()
+	{
+		if ( $this->mVariableRegex == "" ) {
+			$this->initRegex();
+		} 
+		return $this->mVariableRegex;
+	}
+
+	function getSynonym( $i ) {
+		return $this->mSynonyms[$i];
 	}
 }
 

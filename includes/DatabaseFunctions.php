@@ -13,9 +13,9 @@ function wfGetDB( $altuser = "", $altpassword = "", $altserver = "", $altdb = ""
 {
 	global $wgDBserver, $wgDBuser, $wgDBpassword;
 	global $wgDBname, $wgDBconnection, $wgEmergencyContact;
-
-	$noconn = str_replace( "$1", $wgDBserver, wfMsg( "noconnect" ) );
-	$nodb = str_replace( "$1", $wgDBname, wfMsg( "nodb" ) );
+	
+	$noconn = str_replace( "$1", $wgDBserver, wfMsgNoDB( "noconnect" ) );
+	$nodb = str_replace( "$1", $wgDBname, wfMsgNoDB( "nodb" ) );
 
 	$helpme = "\n<p>If this error persists after reloading and clearing " .
 	  "your browser cache, please notify the <a href=\"mailto:" .
@@ -55,7 +55,7 @@ function wfEmergencyAbort( $msg = "" ) {
 	global $wgTitle, $wgUseFileCache, $title, $wgOutputEncoding;
 	
 	header( "Content-type: text/html; charset=$wgOutputEncoding" );
-	if($msg == "") $msg = wfMsg( "noconnect" );
+	if($msg == "") $msg = wfMsgNoDB( "noconnect" );
 	$text = $msg;
 
 	if($wgUseFileCache) {
@@ -65,14 +65,14 @@ function wfEmergencyAbort( $msg = "" ) {
 			if($title) {
 				$t = Title::newFromURL( $title );
 			} else {
-				$t = Title::newFromText( wfMsg("mainpage") );
+				$t = Title::newFromText( wfMsgNoDB( "mainpage" ) );
 			}
 		}
 
 		$cache = new CacheManager( $t );
 		if( $cache->isFileCached() ) {
 			$msg = "<p style='color: red'><b>$msg<br>\n" .
-				wfMsg( "cachederror" ) . "</b></p>\n";
+				wfMsgNoDB( "cachederror" ) . "</b></p>\n";
 			
 			$tag = "<div id='article'>";
 			$text = str_replace(
@@ -98,7 +98,6 @@ function wfQuery( $sql, $db, $fname = "" )
 	global $wgLastDatabaseQuery, $wgOut;
 ##	wfProfileIn( "wfQuery" );
 	$wgLastDatabaseQuery = $sql;
-
 	$conn = wfGetDB();
 	$ret = mysql_query( $sql, $conn );
 

@@ -21,6 +21,7 @@ if ( ! ( is_readable( "./LocalSettings.php" )
 $DP = "./includes";
 include_once( "./LocalSettings.php" );
 include_once( "./AdminSettings.php" );
+include_once( "./maintenance/InitialiseMessages.php" );
 
 if ( $wgUseTeX && ( ! is_executable( "./math/texvc" ) ) ) {
 	print "To use math functions, you must first compile texvc by\n" .
@@ -272,26 +273,30 @@ function populatedata() {
 	}
 	
 	$wns = Namespace::getWikipedia();
-	$ulp = addslashes( wfMsg( "uploadlogpage" ) );
-	$dlp = addslashes( wfMsg( "dellogpage" ) );
+	$ulp = addslashes( wfMsgNoDB( "uploadlogpage" ) );
+	$dlp = addslashes( wfMsgNoDB( "dellogpage" ) );
 
 	$sql = "DELETE FROM cur";
 	wfQuery( $sql, DB_WRITE, $fname );
 
 	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
 	  "cur_restrictions) VALUES ({$wns},'{$ulp}','" .
-	  wfStrencode( wfMsg( "uploadlogpagetext" ) ) . "','sysop')";
+	  wfStrencode( wfMsgNoDB( "uploadlogpagetext" ) ) . "','sysop')";
 	wfQuery( $sql, DB_WRITE, $fname );
 
 	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
 	  "cur_restrictions) VALUES ({$wns},'{$dlp}','" .
-	  wfStrencode( wfMsg( "dellogpagetext" ) ) . "','sysop')";
+	  wfStrencode( wfMsgNoDB( "dellogpagetext" ) ) . "','sysop')";
 	wfQuery( $sql, DB_WRITE, $fname );
-
+	
+	$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
+	$title = $titleobj->getDBkey();
 	$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text) " .
-	  "VALUES (0,'" . wfStrencode( wfMsg( "mainpage" ) ) . "','" .
-	  wfStrencode( wfMsg( "mainpagetext" ) ) . "')";
+	  "VALUES (0,'$title','" .
+	  wfStrencode( wfMsgNoDB( "mainpagetext" ) ) . "')";
 	wfQuery( $sql, DB_WRITE, $fname );
+	
+	initialiseMessages();
 }
 
 ?>
