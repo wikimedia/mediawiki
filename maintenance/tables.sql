@@ -175,6 +175,7 @@ CREATE TABLE oldimage (
 ) PACK_KEYS=1;
 
 CREATE TABLE recentchanges (
+  rc_id int(8) NOT NULL auto_increment,
   rc_timestamp varchar(14) binary NOT NULL default '',
   rc_cur_time varchar(14) binary NOT NULL default '',
   rc_user int(10) unsigned NOT NULL default '0',
@@ -191,7 +192,8 @@ CREATE TABLE recentchanges (
   rc_type tinyint(3) unsigned NOT NULL default '0',
   rc_moved_to_ns tinyint(3) unsigned NOT NULL default '0',
   rc_moved_to_title varchar(255) binary NOT NULL default '',
-  rc_ip char(15) NOT NULL default ''
+  rc_ip char(15) NOT NULL default '',
+  UNIQUE KEY rc_id (rc_id)
 ) PACK_KEYS=1;
 
 CREATE TABLE watchlist (
