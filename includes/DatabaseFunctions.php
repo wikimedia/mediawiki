@@ -39,6 +39,15 @@ function wfQuery( $sql, $db, $fname = "" )
 	}
 }
 
+function wfSingleQuery( $sql, $db, $fname = "" )
+{
+	$res = wfQuery($sql, $db, $fname );
+	$row = wfFetchRow( $res );
+	$ret = $row[0];
+	wfFreeResult( $res );
+	return $ret;
+}
+
 function &wfGetDB( $db = DB_LAST )
 {
 	global $wgLoadBalancer;

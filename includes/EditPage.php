@@ -62,7 +62,6 @@ class EditPage {
 	}
 
 	function importFormData( &$request ) {
-		global $wgIsMySQL, $wgIsPg;
 		# These fields need to be checked for encoding.
 		# Also remove trailing whitespace, but don't remove _initial_
 		# whitespace from the text boxes. This may be significant formatting.
@@ -71,12 +70,7 @@ class EditPage {
 		$this->summary = trim( $request->getText( "wpSummary" ) );
 
 		$this->edittime = $request->getVal( 'wpEdittime' );
-		if ($wgIsMySQL) 
-			if( !preg_match( '/^\d{14}$/', $this->edittime )) $this->edittime = "";
-		if ($wgIsPg)
-			if ( !preg_match( '/^\d{4}-\d\d-\d\d \d\d:\d\d:\d\d$/', 
-				$this->edittime ))
-				$this->edittime = "";
+		if( !preg_match( '/^\d{14}$/', $this->edittime )) $this->edittime = "";
 
 		$this->preview = $request->getCheck( 'wpPreview' );
 		$this->save = $request->wasPosted() && !$this->preview;
@@ -363,8 +357,8 @@ class EditPage {
 		$checkboxhtml = $minoredithtml . $watchhtml . "<br />";
 
 		if ( "preview" == $formtype) {
-			$previewhead="<h2>" . wfMsg( "preview" ) . "</h2>\n<p><large><center><font color=\"#cc0000\">" .
-			wfMsg( "note" ) . wfMsg( "previewnote" ) . "</font></center></large></p>\n";
+			$previewhead="<h2>" . wfMsg( "preview" ) . "</h2>\n<p><center><font color=\"#cc0000\">" .
+			wfMsg( "note" ) . wfMsg( "previewnote" ) . "</font></center></p>\n";
 			if ( $isConflict ) {
 				$previewhead.="<h2>" . wfMsg( "previewconflict" ) .
 				  "</h2>\n";
@@ -428,7 +422,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 {$checkboxhtml}
 <input tabindex='5' id='wpSave' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
 " title=\"".wfMsg('tooltip-save')."\"/>
-<input tabindex='6' id='wpSave' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
+<input tabindex='6' id='wpPreview' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
 " title=\"".wfMsg('tooltip-preview')."\"/>
 <em>{$cancel}</em> | <em>{$edithelp}</em>
 <br /><div id=\"editpage-copywarn\">{$copywarn}</div>

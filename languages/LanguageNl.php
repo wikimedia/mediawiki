@@ -33,7 +33,7 @@ require_once( "LanguageUtf8.php" );
  NS_CATEGORY => "Categorie",
  NS_CATEGORY_TALK => "Overleg_categorie"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsNl = array(
  "Uitgeschakeld", "Links vast", "Rechts vast", "Links zwevend"

@@ -29,7 +29,7 @@ require_once("LanguageUtf8.php");
 	14	=> "Category",
 	15	=> "Category_talk",
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsHe = array(
 	"ללא", "קבוע משמאל", "קבוע מימין", "צף משמאל"

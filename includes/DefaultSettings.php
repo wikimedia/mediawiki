@@ -70,6 +70,7 @@ $wgDBsqluser		= 'sqluser';
 $wgDBsqlpassword	= 'sqlpass';
 $wgDBpassword       = 'userpass';
 $wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
+$wgDBerrorLog		= false; # File to log MySQL errors to
 
 $wgDBminWordLen     = 4;
 $wgDBtransactions	= false; # Set to true if using InnoDB tables
@@ -217,6 +218,10 @@ $wgCookieExpiration = 2592000;
 # don't specify ports here (80 is default)
 # $wgSquidServers = array('127.0.0.1');
 
+# Maximum number of titles to purge in any one client operation
+$wgMaxSquidPurgeTitles = 400;
+
+
 # Set to set an explicit domain on the login cookies
 # eg, "justthis.domain.org" or ".any.subdomain.net"
 $wgCookieDomain = '';
@@ -244,6 +249,7 @@ $wgProfileToDatabase = false; # Log sums from profiling into "profiling" table i
 $wgProfileSampleRate = 1; # Only profile every n requests when profiling is turned on
 $wgDebugProfiling = false; # Detects non-matching wfProfileIn/wfProfileOut calls
 $wgDebugFunctionEntry = 0; # Output debug message on every wfProfileIn/wfProfileOut
+$wgDebugSquid = false; # Lots of debugging output from SquidUpdate.php
 
 $wgDisableCounters = false;
 $wgDisableTextSearch = false;
@@ -372,11 +378,16 @@ $wgCapitalLinks = true;
 # can be imported, these should be 'trusted'.
 $wgImportSources = array();
 
-# Set this to the number of authors that you want to be credited
-# below an article text. Set it to zero to hide the attribution block.
-# Note that this will require checking the table of old revisions,
-# which can have a significant impact on performance for large wikis.
+# Set this to the number of authors that you want to be credited below an
+# article text. Set it to zero to hide the attribution block, and a
+# negative number (like -1) to show all authors. Note that this will
+# require 2-3 extra database hits, which can have a not insignificant
+# impact on performance for large wikis.
 $wgMaxCredits = 0;
+
+# If there are more than $wgMaxCredits authors, show $wgMaxCredits of them.
+# Otherwise, link to a separate credits page.
+$wgShowCreditsIfMax = true;
 
 # Text matching this regular expression will be recognised as spam
 # See http://en.wikipedia.org/wiki/Regular_expression
@@ -414,5 +425,14 @@ $wgAllowRealName = true;
 
 # Extensions
 $wgExtensionFunctions = array();
+
+# Allow user Javascript page?
+$wgAllowUserJs = true;
+
+# Allow user Cascading Style Sheets (CSS)?
+$wgAllowUserCss = true;
+
+# Allow the "info" action, very inefficient at the moment
+$wgAllowPageInfo = false;
 
 ?>

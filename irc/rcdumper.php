@@ -1,41 +1,33 @@
 <?php
+
+/*
+Example command-line:
+	php rcdumper.php | irc -d -c \#channel-to-join nick-of-bot some.irc.server
+where irc is the name of the ircII executable.
+The name of the the IRC should match $ircServer below.
+*/
+
+$ircServer = "irc.freenode.net";
+
+# Set the below if this is running on a non-Wikimedia site:
+#$serverName="your.site.here";
+
+
 ini_set( "display_errors", 1 );
 $wgCommandLineMode = true;
 $fmB = chr(2);
 $fmU = chr(31);
-/*
-$sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
-if ( $argv[1] ) {
-	$lang = $argv[1];
-	$site = "wikipedia";
-	putenv( "wikilang=$lang");
-	$settingsFile = "/apache/htdocs/{$argv[1]}/w/LocalSettings.php";
-	$newpath = "/apache/common/php$sep";
+
+require_once("../maintenance/commandLine.inc" );
+
+if ($wgWikiFarm) {
+	$serverName="$lang.wikipedia.org";
+	$newPageURLFirstPart="http://$serverName/wiki/";
+	$URLFirstPart="http://$serverName/w/wiki.phtml?title=";
 } else {
-	$settingsFile = "../LocalSettings.php";
-	$newpath = "";
+	$newPageURLFirstPart="http://$serverName$wgScript/";
+	$URLFirstPart="http://$serverName$wgScript?title=";
 }
-
-if ( $argv[2] ) {
-	$patterns = explode( ",", $argv[2]);
-} else {
-	$patterns = false;
-}
-
-if ( ! is_readable( $settingsFile ) ) {
-	print "A copy of your installation's LocalSettings.php\n" .
-	  "must exist in the source directory.\n";
-	exit();
-}
-
-ini_set( "include_path", "$newpath$IP$sep$include_path" );
-
-$wgCommandLineMode = true;
-$DP = "../includes";
-include_once( $settingsFile );
-include_once( "Setup.php" );*/
-
-require_once("../maintenance/liveCmdLine.inc" );
 
 $wgTitle = Title::newFromText( "RC dumper" );
 $wgCommandLineMode = true;
@@ -53,7 +45,7 @@ while (1) {
 	$rowIndex = 0;
 	while ( $row = wfFetchObject( $res ) ) {
 		if ( ++$serverCount % 20 == 0 ) {
-			print "/server irc.freenode.net\n";
+			print "/server $ircServer\n";
 		}
 		$ns = $wgLang->getNsText( $row->rc_namespace ) ;
 		if ( $ns ) {
@@ -74,21 +66,13 @@ while (1) {
 		$lastid = IntVal($row->rc_last_oldid);
 		$flag = ($row->rc_minor ? "M" : "") . ($row->rc_new ? "N" : "");
 		if ( $row->rc_new ) {
-			$url = "http://$lang.wikipedia.org/wiki/" . urlencode($title);
+			$url = $newPageURLFirstPart . urlencode($title);
 		} else {
-			$url = "http://$lang.wikipedia.org/w/wiki.phtml?title=" . urlencode($title) .
+			$url = $URLFirstPart . urlencode($title) .
 				"&diff=0&oldid=$lastid";
 		}
 		$boldTitle = $fmB . str_replace("_", " ", $title) . $fmB;
 
-		if ( $patterns ) {
-			foreach ( $patterns as $pattern ) {
-				if ( preg_match( $pattern, $comment ) ) {
-					print chr(7);
-					break;
-				}
-			}
-		}
 		if ( $comment !== "" ) {
 			$comment = "($comment)";
 		}

@@ -2,9 +2,18 @@
 # See deferred.doc
 
 class SquidUpdate {
-	var $urlArr;
+	var $urlArr, $mMaxTitles;
 
-	function SquidUpdate( $urlArr = Array() ) {
+	function SquidUpdate( $urlArr = Array(), $maxTitles = false ) {
+		global $wgMaxSquidPurgeTitles;
+		if ( $maxTitles === false ) {
+			$this->mMaxTitles = $wgMaxSquidPurgeTitles;
+		} else {
+			$this->mMaxTitles = $maxTitles;
+		}
+		if ( count( $urlArr ) > $this->mMaxTitles ) {
+			$urlArr = array_slice( $urlArr, 0, $this->mMaxTitles );
+		}
 		$this->urlArr = $urlArr;
 	}
 
@@ -14,10 +23,12 @@ class SquidUpdate {
 		$sql = "SELECT cur_namespace,cur_title FROM links,cur WHERE l_to={$id} and l_from=cur_id" ;
 		$res = wfQuery ( $sql, DB_READ ) ;
 		$blurlArr = $title->getSquidURLs();
-		while ( $BL = wfFetchObject ( $res ) )
-		{
-			$tobj = Title::makeTitle( $BL->cur_namespace, $BL->cur_title ) ; 
-			$blurlArr[] = $tobj->getInternalURL();
+		if ( wfNumRows( $res ) <= $this->mMaxTitles ) {
+			while ( $BL = wfFetchObject ( $res ) )
+			{
+				$tobj = Title::makeTitle( $BL->cur_namespace, $BL->cur_title ) ; 
+				$blurlArr[] = $tobj->getInternalURL();
+			}
 		}
 		wfFreeResult ( $res ) ;
 		return new SquidUpdate( $blurlArr );
@@ -29,10 +40,12 @@ class SquidUpdate {
 		$sql = "SELECT cur_namespace,cur_title FROM brokenlinks,cur WHERE bl_to={$encTitle} AND bl_from=cur_id";
 		$res = wfQuery( $sql, DB_READ );
 		$blurlArr = array();
-		while ( $BL = wfFetchObject( $res ) )
-		{
-			$tobj = Title::makeTitle( $BL->cur_namespace, $BL->cur_title );
-			$blurlArr[] = $tobj->getInternalURL();
+		if ( wfNumRows( $res ) <= $this->mMaxTitles ) {
+			while ( $BL = wfFetchObject( $res ) )
+			{
+				$tobj = Title::makeTitle( $BL->cur_namespace, $BL->cur_title );
+				$blurlArr[] = $tobj->getInternalURL();
+			}
 		}
 		wfFreeResult( $res );
 		return new SquidUpdate( $blurlArr );
@@ -85,14 +98,20 @@ class SquidUpdate {
 					/* first socket for this server, do the tests */
 					@list($server, $port) = explode(':', $wgSquidServers[$ss]);
 					if(!isset($port)) $port = 80;
+					#$this->debug("Opening socket to $server:$port");
 					$socket = @fsockopen($server, $port, $error, $errstr, 3);
+					#$this->debug("\n");
 					if (!$socket) {
 						$failed = true;
 						$totalsockets -= $sockspersq;
 					} else {
-						@fputs($socket,"PURGE " . $firsturl . " HTTP/1.0\r\n".
-						"Connection: Keep-Alive\r\n\r\n");
+						$msg ="PURGE " . $firsturl . " HTTP/1.0\r\n".
+						"Connection: Keep-Alive\r\n\r\n";
+						#$this->debug($msg);
+						@fputs($socket,$msg);
+						#$this->debug("...");
 						$res = @fread($socket,512);
+						#$this->debug("\n");
 						/* Squid only returns http headers with 200 or 404 status, 
 						if there's more returned something's wrong */
 						if (strlen($res) > 250) {
@@ -129,12 +148,15 @@ class SquidUpdate {
 						}
 					}
 					$urindex = $r + $urlspersocket * ($s - $sockspersq * floor($s / $sockspersq));
-					@fputs($sockets[$s],"PURGE " . $urlArr[$urindex] . " HTTP/1.0\r\n".
-					"Connection: Keep-Alive\r\n\r\n");
+					$msg = "PURGE " . $urlArr[$urindex] . " HTTP/1.0\r\n".
+					"Connection: Keep-Alive\r\n\r\n";
+					#$this->debug($msg);
+					@fputs($sockets[$s],$msg);
+					#$this->debug("\n");
 				}
 			}
 		}
-
+		#$this->debug("Reading response...");
 		foreach ($sockets as $socket) {
 			$res = '';
 			$esc = 0;
@@ -145,6 +167,14 @@ class SquidUpdate {
 			}
 
 			@fclose($socket);
+		}
+		#$this->debug("\n");
+	}
+
+	function debug( $text ) {
+		global $wgDebugSquid;
+		if ( $wgDebugSquid ) {
+			wfDebug( $text );
 		}
 	}
 }

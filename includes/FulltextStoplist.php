@@ -4,6 +4,7 @@
 # source file "myisam/ft_static.c" in the MySQL source distribution.
 # If you use a new version of MySQL, this might have to be changed.
 
+global $wgFulltextStoplist;
 /* private */ $wgFulltextStoplist = array(
 
   "a",

@@ -25,7 +25,7 @@ require_once("LanguageUtf8.php");
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsRo = array(
 	"Fără", "Fixă, în stânga", "Fixă, în dreapta", "Liberă"

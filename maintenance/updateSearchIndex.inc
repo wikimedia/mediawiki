@@ -68,7 +68,7 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 }
 
 function lockSearchindex() {
-	wfQuery( "LOCK TABLES searchindex LOW_PRIORITY WRITE, cur READ", DB_WRITE );
+	wfQuery( "LOCK TABLES searchindex LOW_PRIORITY WRITE, cur READ, interwiki READ", DB_WRITE );
 }
 
 function unlockSearchindex() {

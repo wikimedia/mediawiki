@@ -24,7 +24,7 @@
 	11  => "Template_talk"
 
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsLa = array(
 	"Nullus", "Constituere a sinistra", "Constituere a dextra", "Innens a sinistra"

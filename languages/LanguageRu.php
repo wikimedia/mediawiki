@@ -29,7 +29,7 @@ if($wgMetaNamespace === FALSE)
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsRu = array(
 	"Убрать", "Фиксированный слева", "Фиксированный справа", "Плавающий слева"

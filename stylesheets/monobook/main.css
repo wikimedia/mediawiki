@@ -2,7 +2,7 @@
 ** Mediawiki 'monobook' style sheet for CSS2-capable browsers.
 ** Copyright Gabriel Wicke - http://www.aulinx.de/
 **
-** Based on http://www.positioniseverything.net/ordered-floats.html by Big John
+** Loosely based on http://www.positioniseverything.net/ordered-floats.html by Big John
 ** and the Plone 2.0 styles, see http://plone.org/.
 ** Alexander Limi - http://www.plonesolutions.com
 ** additional plone work:
@@ -229,12 +229,11 @@ pre {
 span.subpages { display: block; }
 
 /* Some space under the headers in the content area */
-#bodyContent h1,
-#bodyContent h2,
+#bodyContent h1, #bodyContent h2 { margin-bottom:0.6em; }
 #bodyContent h3,
 #bodyContent h4,
 #bodyContent h5 {
-    margin-bottom:0.8em;
+    margin-bottom: 0.3em;
 }
 .firstHeading { margin-bottom:0.1em; }
 
@@ -285,7 +284,9 @@ in the bottom-right corner of the content area */
     margin-left: auto;
     margin-right: auto;
 }
-
+/* small for tables and similar */
+.small, .small * { font-size: 94%; }
+table.small { font-size: 100% }
 
 /*
 ** content styles
@@ -368,13 +369,13 @@ div.tleft {
     margin-right:0.5em;
     border-width: 0.5em 1.4em 0.8em 0;
 }
-
 .urlexpansion,
 .hiddenStructure {
     display: none;
 }
 img.tex { vertical-align: middle; }
 span.texhtml { font-family: serif; }
+
 /*
 ** classes for special content elements like town boxes
 ** intended to be referenced directly from the wiki src
@@ -383,7 +384,6 @@ span.texhtml { font-family: serif; }
 /*
 ** User styles
 */
-
 /* table standards */
 table.rimage {
     float:right; 
@@ -426,13 +426,11 @@ div.townBox dl dd {
 /*
 ** edit views etc
 */
-
 .special li {
     line-height: 1.4em;
     margin: 0;
     padding: 0;
 }
-
 
 /* Page history styling */
 /* the auto-generated edit comments */
@@ -633,19 +631,15 @@ input.searchButton {
     background-color: White;
     border: 1px solid #2f6fab;  
 }
-
 #searchInput {
     border: 1px solid #2f6fab;  
     width:10.9em;
     margin: 0 0 0 0;
     font-size: 95%;
 }
-
-
 #p-search .pBody {
     padding: 0.5em 0.4em 0.4em 0.4em;
 }
-
 
 /* 
 ** the personal toolbar
@@ -727,7 +721,6 @@ li#pt-login {
 /*
 ** the page-related actions- page/talk, edit etc 
 */
-
 #p-cactions {
     position:absolute;
     top: 1.3em;
@@ -862,7 +855,6 @@ fieldset.operaprefsection { margin-left: 15em }
 ** to a separate stylesheet. This would work but doesn't validate: 
 ** @import("IEMacFixes.css");
 */
-
 /* tabs: border on the a, not the div */
 * > html #p-cactions li { border:none; }
 * > html #p-cactions li a {
@@ -896,7 +888,6 @@ fieldset.operaprefsection { margin-left: 15em }
 #siteNotice {
     border: 1px solid red;
 }
-
 
 /* Mac IE 5.0 fix; floated content turns invisible */
 * > html #column-content {

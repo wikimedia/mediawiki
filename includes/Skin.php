@@ -154,9 +154,9 @@ class Skin {
 	}
 
 	function getHeadScripts() {
-		global $wgStylePath, $wgUser, $wgLang;
+		global $wgStylePath, $wgUser, $wgLang, $wgAllowUserJs;
 		$r = "<script type=\"text/javascript\" src=\"{$wgStylePath}/wikibits.js\"></script>\n";
-		if( $wgUser->getID() != 0 ) { # logged in	
+		if( $wgAllowUserJs && $wgUser->getID() != 0 ) { # logged in
 			$userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
 			$userjs = htmlspecialchars($this->makeUrl($userpage.'/'.$this->getSkinName().'.js', 'action=raw&ctype=text/javascript'));
 			$r .= '<script type="text/javascript" src="'.$userjs."\"></script>\n";
@@ -166,12 +166,12 @@ class Skin {
 
 	# get the user/site-specific stylesheet, SkinPHPTal called from RawPage.php (settings are cached that way)
 	function getUserStylesheet() {
-		global $wgOut, $wgStylePath, $wgLang, $wgUser, $wgRequest, $wgTitle;
+		global $wgOut, $wgStylePath, $wgLang, $wgUser, $wgRequest, $wgTitle, $wgAllowUserCss;
 		$sheet = $this->getStylesheet();
 		$action = $wgRequest->getText('action');
 		$s = "@import \"$wgStylePath/$sheet\";\n";
 		if($wgLang->isRTL()) $s .= "@import \"$wgStylePath/common_rtl.css\";\n";
-		if( $wgUser->getID() != 0 ) { # logged in	
+		if( $wgAllowUserCss && $wgUser->getID() != 0 ) { # logged in
 			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
 				$s .= $wgRequest->getText('wpTextbox1');
 			} else {
@@ -768,7 +768,7 @@ class Skin {
 	function pageStats()
 	{
 		global $wgOut, $wgLang, $wgArticle, $wgRequest;
-		global $wgDisableCounters;
+		global $wgDisableCounters, $wgMaxCredits, $wgShowCreditsIfMax;
 
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 		if ( ! $wgOut->isArticle() ) { return ''; }
@@ -783,92 +783,14 @@ class Skin {
 			}
 		}
 
-		$s .= ' ' . $this->getCredits();
+	        if (isset($wgMaxCredits) && $wgMaxCredits != 0) {
+		    require_once("Credits.php");
+		    $s .= ' ' . getCredits($wgArticle, $wgMaxCredits, $wgShowCreditsIfMax);
+		} else {
+		    $s .= $this->lastModified();
+		}
 	    
 		return $s . ' ' .  $this->getCopyright();
-	}
-
-        function getCredits() {
-	       global $wgMaxCredits;
-	       
-	       $s = '';
-	    
-	       if (!isset($wgMaxCredits) || $wgMaxCredits == 0) {
-		        $s = $this->lastModified();
-	       } else {
-		        $s = $this->getAuthorCredits();
-		        if ($wgMaxCredits > 1) {
-			    $s .= ' ' . $this->getContributorCredits();
-			}
-	       }
-	    
-	       return $s;
-	}
-
-        function getAuthorCredits() {
-		global $wgLang, $wgArticle;
-
-	        $last_author = $wgArticle->getUser();
-	    
-	        if ($last_author == 0) {
-		    $author_credit = wfMsg('anonymous');
-		} else {
-		    $real_name = User::whoIsReal($last_author);
-		    if (!empty($real_name)) {
-			$author_credit = $real_name;
-		    } else {
-			$author_credit = wfMsg('siteuser', User::whoIs($last_author));
-		    }
-		}
-	    
-		$timestamp = $wgArticle->getTimestamp();
-		if ( $timestamp ) {
-			$d = $wgLang->timeanddate( $wgArticle->getTimestamp(), true );
-		} else {
-			$d = '';
-		}
-		return wfMsg('lastmodifiedby', $d, $author_credit);
-	}
-
-        function getContributorCredits() {
-	    
-		global $wgArticle, $wgMaxCredits, $wgLang;
-
-                # don't count last editor
-
-	        $contributors = $wgArticle->getContributors($wgMaxCredits - 1);
-	    
-	        $real_names = array();
-	        $user_names = array();
-
-	        # Sift for real versus user names
-		
-	        foreach ($contributors as $user_id => $user_parts) {
-		    if ($user_id != 0) {
-			if (!empty($user_parts[1])) {
-			    $real_names[$user_id] = $user_parts[1];
-			} else {
-			    $user_names[$user_id] = $user_parts[0];
-			}
-		    }
-		}
-	    
-                $real = $wgLang->listToText(array_values($real_names));
-	        $user = $wgLang->listToText(array_values($user_names));
-
-	        if (!empty($user)) {
-		    $user = wfMsg('siteusers', $user);
-		}
-	    
-	        if ($contributors[0] && $contributors[0][0] > 0) {
-		    $anon = wfMsg('anonymous');
-		} else {
-		    $anon = '';
-		}
-	    
-	        $creds = $wgLang->listToText(array($real, $user, $anon));
-	    
-	        return wfMsg('othercontribs', $creds);
 	}
     
 	function getCopyright() {

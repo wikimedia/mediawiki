@@ -29,7 +29,7 @@ require_once( "LanguageUtf8.php" );
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsTa = array(
 	"எதுவுமில்லை", "இடம் நிலைத்த", "வலம் நிலைத்த", "இடம் மிதப்பு"

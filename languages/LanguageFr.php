@@ -26,7 +26,7 @@ require_once( "LanguageUtf8.php" );
 	NS_HELP_TALK		=> "Discussion_Aide",
 	NS_CATEGORY		=> "Catégorie",
 	NS_CATEGORY_TALK	=> "Discussion_Catégorie"
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsFr = array(
 	"Aucune", "Gauche", "Droite", "Flottante à gauche"

@@ -188,8 +188,16 @@ class Title {
 		# Missing characters:
 		#  * []|# Needed for link syntax
 		#  * % and + are corrupted by Apache when they appear in the path
-		#  * % seems to work though
-		# 
+		#
+		# % seems to work though
+		#
+		# The problem with % is that URLs are double-unescaped: once by Apache's 
+		# path conversion code, and again by PHP. So %253F, for example, becomes "?".
+		# Our code does not double-escape to compensate for this, indeed double escaping
+		# would break if the double-escaped title was passed in the query string
+		# rather than the path. This is a minor security issue because articles can be
+		# created such that they are hard to view or edit. -- TS
+		#
 		# Theoretically 0x80-0x9F of ISO 8859-1 should be disallowed, but
 		# this breaks interlanguage links
 		
@@ -762,10 +770,10 @@ class Title {
 
 	# Get an array of Title objects linking to this title
 	# Also stores the IDs in the link cache
-	function getLinksTo() {
+	function getLinksTo( $options = '' ) {
 		global $wgLinkCache;
 		$id = $this->getArticleID();
-		$sql = "SELECT cur_namespace,cur_title,cur_id FROM cur,links WHERE l_from=cur_id AND l_to={$id}";
+		$sql = "SELECT cur_namespace,cur_title,cur_id FROM cur,links WHERE l_from=cur_id AND l_to={$id} $options";
 		$res = wfQuery( $sql, DB_READ, "Title::getLinksTo" );
 		$retVal = array();
 		if ( wfNumRows( $res ) ) {
@@ -782,11 +790,11 @@ class Title {
 
 	# Get an array of Title objects linking to this non-existent title
 	# Also stores the IDs in the link cache
-	function getBrokenLinksTo() {
+	function getBrokenLinksTo( $options = '' ) {
 		global $wgLinkCache;
 		$encTitle = wfStrencode( $this->getPrefixedDBkey() );
 		$sql = "SELECT cur_namespace,cur_title,cur_id FROM brokenlinks,cur " .
-		  "WHERE bl_from=cur_id AND bl_to='$encTitle'";
+		  "WHERE bl_from=cur_id AND bl_to='$encTitle' $options";
 		$res = wfQuery( $sql, DB_READ, "Title::getBrokenLinksTo" );
 		$retVal = array();
 		if ( wfNumRows( $res ) ) {
@@ -947,8 +955,8 @@ class Title {
 		# Swap links
 		
 		# Load titles and IDs
-		$linksToOld = $this->getLinksTo();
-		$linksToNew = $nt->getLinksTo();
+		$linksToOld = $this->getLinksTo( 'FOR UPDATE' );
+		$linksToNew = $nt->getLinksTo( 'FOR UPDATE' );
 		
 		# Delete them all
 		$sql = "DELETE FROM links WHERE l_to=$oldid OR l_to=$newid";

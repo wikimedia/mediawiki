@@ -22,7 +22,7 @@ require_once( "LanguageUtf8.php" );
  7 => "Разговор_о_слици",
  8 => "МедијаВики",
  9 => "Разговор_о_МедијаВикију"
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsSr = array(
  "Никаква", "Причвршћена лево", "Причвршћена десно", "Плутајућа лево"

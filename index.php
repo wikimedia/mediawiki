@@ -108,6 +108,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		case "rollback":
 		case "protect":
 		case "unprotect":
+		case "info":
 			$wgArticle->$action();
 			break;
 		case "print":
@@ -129,6 +130,10 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 				wfCreativeCommonsRdf( $wgArticle );
 			}
 			break;
+  	        case "credits":
+	                require_once( "includes/Credits.php" );
+			showCreditsPage( $wgArticle );
+	                break;
 		case "edit":
 		case "submit":
 			if( !$wgCommandLineMode && !$wgRequest->checkSessionCookie() ) {
