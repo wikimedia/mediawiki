@@ -877,6 +877,7 @@ Unselected groups will not be changed. You can unselect a group by using CTRL + 
 'minoreditletter' => 'm',
 'newpageletter' => 'N',
 'sectionlink' => '&rarr;',
+'undo'          => 'undo',
 
 # Upload
 #

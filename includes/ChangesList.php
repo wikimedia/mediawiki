@@ -292,7 +292,7 @@ class ChangesList {
 
 		static $message;
 		if( !isset( $message ) ) {
-			foreach( explode(' ', 'diff hist minoreditletter newpageletter blocklink' ) as $msg ) {
+			foreach( explode(' ', 'diff hist minoreditletter newpageletter blocklink undo' ) as $msg ) {
 				$message[$msg] = wfMsg( $msg );
 			}
 		}
@@ -318,8 +318,14 @@ class ChangesList {
 		$s .= '<li>';
 
 		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
-			# Diff
-			$s .= '(' . $message['diff'] . ') (';
+			# Undo
+			$movePageTitle = Title::makeTitle( NS_SPECIAL, 'Movepage' );
+			$movedToTitle = $rc->getMovedToTitle();
+			$movedFromTitle = $rc->getTitle();
+			$s .= '(' . $this->skin->makeKnownLinkObj( $movePageTitle, $message['undo'], 
+				'target=' . wfUrlencode( $movedToTitle->getPrefixedDBkey() ) .
+				'&wpNewTitle=' . wfUrlencode( $movedFromTitle->getPrefixedDBkey() ) ) . ') (';
+
 			# Hist
 			$s .= $this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), $message['hist'], 'action=history' ) .
 				') . . ';
@@ -429,7 +435,7 @@ class ChangesList {
 		
 		static $message;
 		if( !isset( $message ) ) {
-			foreach( explode(' ', 'cur diff hist minoreditletter newpageletter last blocklink' ) as $msg ) {
+			foreach( explode(' ', 'cur diff hist minoreditletter newpageletter last blocklink undo' ) as $msg ) {
 				$message[$msg] = wfMsg( $msg );
 			}
 		}
@@ -489,7 +495,15 @@ class ChangesList {
 		} else {
 			$rcIdQuery = '';
 		}
-		if ( ( $rc_type == RC_NEW && $rc_this_oldid == 0 ) || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
+		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
+			$curLink = $message['cur'];
+			$movePageTitle = Title::makeTitle( NS_SPECIAL, 'Movepage' );
+			$movedToTitle = $rc->getMovedToTitle();
+			$movedFromTitle = $rc->getTitle();
+			$diffLink = $this->skin->makeKnownLinkObj( $movePageTitle, $message['undo'], 
+				'target=' . wfUrlencode( $movedToTitle->getPrefixedDBkey() ) .
+				'&wpNewTitle=' . wfUrlencode( $movedFromTitle->getPrefixedDBkey() ) );
+		} elseif ( ( $rc_type == RC_NEW && $rc_this_oldid == 0 ) || $rc_type == RC_LOG ) {
 			$curLink = $message['cur'];
 			$diffLink = $message['diff'];
 		} else {
@@ -500,7 +514,7 @@ class ChangesList {
 		}
 
 		# Make "last" link
-		if ( $rc_last_oldid == 0 || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
+		if ( $rc_last_oldid == 0 || $rc_type == RC_LOG ) {
 			$lastLink = $message['last'];
 		} else {
 			$lastLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $message['last'],
