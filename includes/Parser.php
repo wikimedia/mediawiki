@@ -3021,7 +3021,7 @@ class Parser
 					
 					if ( $threshold >  0 ) {
 						$size = $s->cur_len;
-						if ( $s->cur_is_redirect || $s->cur_namespace != 0 || $length < $threshold ) {
+						if ( $s->cur_is_redirect || $s->cur_namespace != 0 || $size >= $threshold ) {
 							$colours[$pdbk] = 1;
 						} else {
 							$colours[$pdbk] = 2;
