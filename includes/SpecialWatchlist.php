@@ -128,8 +128,8 @@ function wfSpecialWatchlist() {
 			}
 		}
 		$wgOut->addHTML( "</ul>\n" .
-			"<input type='submit' name='remove' value='" .
-			wfMsg( "removechecked" ) . "' />\n" .
+			"<input type='submit' name='remove' value=\"" .
+			htmlspecialchars( wfMsg( "removechecked" ) ) . "\" />\n" .
 			"</form>\n" );
 
 		return;
