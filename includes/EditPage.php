@@ -192,8 +192,14 @@ class EditPage {
 			}
 			$userid = $wgUser->getID();
 
-			$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
-				$this->section, $this->textbox1, $this->summary);
+			if ( $isConflict) {
+				$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
+					$this->section, $this->textbox1, $this->summary, $this->edittime);
+			}
+			else {
+				$text = $this->mArticle->getTextOfLastEditWithSectionReplacedOrAdded(
+					$this->section, $this->textbox1, $this->summary);
+			}
 			# Suppress edit conflict with self
 
 			if ( ( 0 != $userid ) && ( $this->mArticle->getUser() == $userid ) ) {
