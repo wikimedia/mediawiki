@@ -117,7 +117,7 @@ class Title {
 	}
 
 
-	function legalChars()
+	/* static */ function legalChars()
 	{
 		global $wgInputEncoding;
 		if( $wgInputEncoding == "utf-8" ) {
