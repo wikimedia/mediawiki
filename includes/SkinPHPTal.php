@@ -172,6 +172,7 @@ class SkinPHPTal extends Skin {
 		$tpl->setRef( 'stylename', $this->stylename );
 		$tpl->setRef( 'loggedin', $this->loggedin );
 		$tpl->set('nsclass', 'ns-'.$wgTitle->getNamespace());
+		$tpl->set('notspecialpage', $wgTitle->getNamespace() != NS_SPECIAL);
 		/* XXX currently unused, might get useful later
 		$tpl->set( "editable", ($wgTitle->getNamespace() != NS_SPECIAL ) );
 		$tpl->set( "exists", $wgTitle->getArticleID() != 0 );
@@ -526,10 +527,8 @@ class SkinPHPTal extends Skin {
 		$nav_urls['mainpage'] = array('href' => htmlspecialchars( $this->makeI18nUrl('mainpage')));
 		$nav_urls['randompage'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Randompage')));
 		$nav_urls['recentchanges'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchanges')));
-		$nav_urls['whatlinkshere'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Whatlinkshere', 'target='.urlencode( $this->thispage ))));
 		$nav_urls['currentevents'] = (wfMsg('currentevents') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('currentevents'))) : false;
 		$nav_urls['portal'] = (wfMsg('portal') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('portal-url'))) : false;
-		$nav_urls['recentchangeslinked'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchangeslinked', 'target='.urlencode( $this->thispage ))));
 		$nav_urls['bugreports'] = array('href' => htmlspecialchars( $this->makeI18nUrl('bugreportspage')));
 		// $nav_urls['sitesupport'] = array('href' => htmlspecialchars( $this->makeI18nUrl('sitesupportpage')));
 		$nav_urls['sitesupport'] = array('href' => htmlspecialchars( $wgSiteSupportPage));
@@ -538,6 +537,11 @@ class SkinPHPTal extends Skin {
 			$nav_urls['upload'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Upload')));
 		}
 		$nav_urls['specialpages'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Specialpages')));
+
+		if( $wgTitle->getNamespace() != NS_SPECIAL) {
+		$nav_urls['whatlinkshere'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Whatlinkshere', 'target='.urlencode( $this->thispage ))));
+		$nav_urls['recentchangeslinked'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchangeslinked', 'target='.urlencode( $this->thispage ))));
+		}
 
 		if( $wgTitle->getNamespace() == NS_USER || $wgTitle->getNamespace() == NS_USER_TALK ) {
 			$id = User::idFromName($wgTitle->getText());
@@ -559,7 +563,6 @@ class SkinPHPTal extends Skin {
 				);
 			}
 		}
-
 
 		return $nav_urls;
 	}
