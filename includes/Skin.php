@@ -174,10 +174,8 @@ class Skin {
 		if($wgLang->isRTL()) $s .= "@import url(\"$wgStylePath/common_rtl.css\");\n";
 		if( $wgUser->getID() != 0 ) { # logged in	
 			if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
-				$s .= '@import url('.$this->makeUrl('-','action=raw&gen=css&smaxage=0&maxage=0').');'."\n";
 				$s .= $wgRequest->getText('wpTextbox1');
 			} else {
-				$s .= '@import url('.$this->makeUrl('-','action=raw&gen=css&smaxage=0&maxage=0').');'."\n";
 				$userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
 				$s.= '@import url("'.$this->makeUrl($userpage.'/'.$this->getSkinName(), 'action=raw&ctype=text/css').'");'."\n";
 			}
