@@ -835,13 +835,16 @@ class SkinTemplate extends Skin {
 		# If we use the site's dynamic CSS, throw that in, too
 		
 		if ( $wgUseSiteCss ) {
-			$sitecss = '@import "'.$this->makeUrl('-','action=raw&gen=css' . $siteargs).'";'."\n";
+			$sitecss = '';
+			if($wgContLang->isRTL()) $s .= '@import "' . $wgStylePath . '/' . $this->stylename . '/rtl.css";' . "\n";
+			$sitecss .= '@import "' . $this->makeNSUrl(ucfirst($this->skinname) . '.css', 'action=raw&ctype=text/css&smaxage=' . $wgSquidMaxage, NS_MEDIAWIKI) . '";' . "\n";
+			$sitecss .= '@import "' . $this->makeUrl('-','action=raw&gen=css' . $siteargs) . '";' . "\n";
 		}
 		
 		# If we use any dynamic CSS, make a little CDATA block out of it.
 		
 		if ( !empty($sitecss) || !empty($usercss) ) {
-			$this->usercss = '/*<![CDATA[*/ ' . $sitecss . ' ' . $usercss . ' /*]]>*/';
+			$this->usercss = "/*<![CDATA[*/\n" . $sitecss . $usercss . '/*]]>*/';
 		}
 		wfProfileOut( $fname );
 	}
@@ -879,9 +882,7 @@ class SkinTemplate extends Skin {
 		$action = $wgRequest->getText('action');
 		$maxage = $wgRequest->getText('maxage');
 		$s = "/* generated user stylesheet */\n";
-		if($wgContLang->isRTL()) $s .= '@import "'.$wgStylePath.'/'.$this->stylename.'/rtl.css";'."\n";
-		$s .= '@import "'.
-		$this->makeNSUrl(ucfirst($this->skinname).'.css', 'action=raw&ctype=text/css&smaxage='.$wgSquidMaxage, NS_MEDIAWIKI)."\";\n";
+
 		if($wgUser->getID() != 0) {
 			if ( 1 == $wgUser->getOption( "underline" ) ) {
 				$s .= "a { text-decoration: underline; }\n";
