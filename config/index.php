@@ -99,6 +99,9 @@ header( "Content-type: text/html; charset=utf-8" );
 </div>
 
 <?php
+
+$errorParanoia = ( (error_reporting() & E_NOTICE) != 0 );
+
 $IP = ".."; # Just to suppress notices, not for anything useful
 include( "../includes/DefaultSettings.php" );
 ?>
@@ -189,6 +192,10 @@ default:
 	print "unknown; using pretty URLs (<tt>index.php/Page_Title</tt>), if you have trouble change this in <tt>LocalSettings.php</tt>";
 }
 print "</li>\n";
+
+if( $errorParanoia ) {
+	print "<li>Error reporting includes E_NOTICE level; this will be ignored.</li>\n";
+}
 
 $conf->zlib = function_exists( "gzencode" );
 if( $conf->zlib ) {

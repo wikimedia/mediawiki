@@ -6,7 +6,13 @@
 # like $wgScriptPath, you must also localize everything that
 # depends on it.
 
-$wgVersion			= "1.2.2";
+# Disable reporting of 'notices'. 1.3.x should run clean with it on,
+# but 1.2.x relies on traditional behavior and doesn't appreciate
+# the output being replaced with a screenfull of paranoid _notices_
+# that our code is sloppy. We know it's sloppy.
+error_reporting( E_ALL & ~E_NOTICE );
+
+$wgVersion			= "1.2.3";
 
 $wgSitename         = "MediaWiki"; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
