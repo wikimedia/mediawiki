@@ -595,6 +595,7 @@ You should log in and change your password now.",
 "passwordsent"	=> "A new password has been sent to the e-mail address
 registered for \"$1\".
 Please log in again after you receive it.",
+"loginend"		=> "",
 
 # Edit page toolbar
 "bold_sample"=>"Bold text",

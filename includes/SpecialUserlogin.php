@@ -286,6 +286,8 @@ function userNotPrivilegedMessage()
 	$ye = wfMsg( "youremail" );
 	$efl = wfMsg( "emailforlost" );
 	$mmp = wfMsg( "mailmypassword" );
+	$endText = wfMsg( "loginend" );
+
 
 	$name = $wpName;
 	if ( "" == $name ) {
@@ -302,7 +304,7 @@ function userNotPrivilegedMessage()
 	$wgOut->setArticleRelated( false );
 
 	if ( "" == $err ) {
-                $lp = wfMsg( "loginprompt" );
+		$lp = wfMsg( "loginprompt" );
 		$wgOut->addHTML( "<h2>$li:</h2>\n<p>$lp</p>" );
 	} else {
 		$wgOut->addHTML( "<h2>$le:</h2>\n<font size='+1' 
@@ -372,9 +374,7 @@ $cambutton
 <input tabindex=8 type=submit name=\"wpMailmypassword\" value=\"{$mmp}\">
 </td></tr></table>
 </form>\n" );
-
-
-
+	$wgOut->addHTML( $endText );
 }
 
 /* private */ function hasSessionCookie()
