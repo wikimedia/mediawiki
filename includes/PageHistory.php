@@ -7,7 +7,7 @@
 class PageHistory {
 	var $mArticle, $mTitle, $mSkin;
 	var $lastline, $lastdate;
-	
+	var $linesonpage;
 	function PageHistory( $article ) {
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
@@ -63,6 +63,12 @@ class PageHistory {
 		$res = wfQuery( $sql, DB_READ, $fname );
 
 		$revs = wfNumRows( $res );
+		
+		if( $revs < $limitplus ) // the sql above tries to fetch one extra
+			$this->linesonpage = $revs;
+		else
+			$this->linesonpage = $revs - 1;
+
 		$atend = ($revs < $limitplus);
 		
 		$this->mSkin = $wgUser->getSkin();
@@ -73,12 +79,16 @@ class PageHistory {
 		$s = $numbar;
 		$s .= $this->beginHistoryList();
 
-		if( $offset == 0 )
-		$s .= $this->historyLine( $this->mArticle->getTimestamp(), $this->mArticle->getUser(),
-		  $this->mArticle->getUserText(), $namespace,
-		  $title, 0, $this->mArticle->getComment(),
-		  ( $this->mArticle->getMinorEdit() > 0 ) );
-
+		if( $offset == 0 ){
+			$this->linesonpage++;
+			$s .= $this->historyLine( 
+				$this->mArticle->getTimestamp(), 
+				$this->mArticle->getUser(),
+				$this->mArticle->getUserText(), $namespace,
+		  		$title, 0, $this->mArticle->getComment(),
+				( $this->mArticle->getMinorEdit() > 0 ) 
+			);
+		}
 		while ( $line = wfFetchObject( $res ) ) {
 			$s .= $this->historyLine( $line->old_timestamp, $line->old_user,
 			  $line->old_user_text, $namespace,
@@ -117,9 +127,11 @@ class PageHistory {
 				}
 				return false; 
 			} 
-			function dodiff(v1, v2){
-				if(v2 > v1 && v1 != 0){ tmp = v1; v1 = v2; v2 = tmp; }
-				u = \"{$url}&diff=\" + v1 + \"&oldid=\" + v2;
+			function dodiff(oldid, diff){
+				if( (diff < oldid && diff != 0) || oldid == 0 ){ 
+					tmp = oldid; oldid = diff; diff = tmp; 
+				}
+				u = \"{$url}&diff=\" + diff + \"&oldid=\" + oldid;
 				location.href=u;
 			}
 		</SCRIPT>";
@@ -174,8 +186,10 @@ class PageHistory {
 		} else {
 			$curlink = $cur;
 		}
-		$any .= "<INPUT TYPE=CHECKBOX onClick='anysel($oid)' TITLE='Select any two versions to diff them'>";
-		$s .= "({$curlink}) (!OLDID!{$oid}!) $any. .";
+		$arbitrary = "";
+		if( $this->linesonpage > 1)
+			$arbitrary = "<INPUT TYPE=CHECKBOX onClick='anysel($oid)' TITLE='Select any two versions to diff them'>";
+		$s .= "({$curlink}) (!OLDID!{$oid}!) $arbitrary . .";
 		$M = wfMsg( "minoreditletter" );
 		if ( $isminor ) {
 			$s .= " <strong>{$M}</strong>";
