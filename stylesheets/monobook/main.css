@@ -61,7 +61,8 @@ table {
 }
 a {
     text-decoration: none;
-    color: #004ba6;
+    color: #002dbf;
+    color: #002bb8;
     background: none;
 }
 a:visited { color: #5a3696; }
@@ -750,7 +751,7 @@ li#pt-login {
 }
 #p-cactions li a {
     background-color: White;
-    color: #0014a6;
+    color: #002bb8;
     border: none;
     padding: 0 0.8em 0.3em 0.8em;
     text-decoration: none;
