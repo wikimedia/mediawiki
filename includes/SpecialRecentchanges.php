@@ -83,7 +83,8 @@ function wfSpecialRecentchanges( $par ) {
 	$hidem .= ( $hidepatrolled )? ' AND rc_patrolled=0' : '';
 
 	$urlparams = array( 'hideminor' => $hideminor,  'hideliu'       => $hideliu,
-	                    'hidebots'  => $hidebots,   'hidepatrolled' => $hidepatrolled);
+	                    'hidebots'  => $hidebots,   'hidepatrolled' => $hidepatrolled,
+	                    'limit'     => $limit );
 	$hideparams = wfArrayToCGI( $urlparams );
 
 	$minorLink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
