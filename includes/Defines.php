@@ -16,10 +16,8 @@ define('NS_MAIN', 0);
 define('NS_TALK', 1);
 define('NS_USER', 2);
 define('NS_USER_TALK', 3);
-define('NS_WP', 4);
-define('NS_WIKIPEDIA', 4);
-define('NS_WP_TALK', 5);
-define('NS_WIKIPEDIA_TALK', 5);
+define('NS_PROJECT', 4);
+define('NS_PROJECT_TALK', 5);
 define('NS_IMAGE', 6);
 define('NS_IMAGE_TALK', 7);
 define('NS_MEDIAWIKI', 8);
@@ -30,5 +28,11 @@ define('NS_HELP', 12);
 define('NS_HELP_TALK', 13);
 define('NS_CATEGORY', 14);
 define('NS_CATEGORY_TALK', 15);
+
+# Fix the code and remove these...
+define('NS_WP', NS_PROJECT);
+define('NS_WIKIPEDIA', NS_PROJECT);
+define('NS_WP_TALK', NS_PROJECT_TALK);
+define('NS_WIKIPEDIA_TALK', NS_PROJECT_TALK);
 
 ?>
