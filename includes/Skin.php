@@ -2235,7 +2235,7 @@ class Skin {
 			if(preg_match("/^".$medians."/i",$match[1])) {
 				$func="makeMediaLink";
 			}
-			if($match[3]) {
+			if(isset($match[3]) ) {
 				$comment=
 				preg_replace("/\[\[(.*?)\]\]/",
 				$this->$func($match[1],$match[3]),$comment,1);
