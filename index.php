@@ -115,92 +115,96 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 		$wgArticle = new Article( $wgTitle );
 	}
 
-	switch( $action ) {
-		case 'view':
-			$wgOut->setSquidMaxage( $wgSquidMaxage );
-			$wgArticle->view();
-			break;
-		case 'watch':
-		case 'unwatch':
-		case 'delete':
-		case 'revert':
-		case 'rollback':
-		case 'protect':
-		case 'unprotect':
-		case 'info':
-		case 'markpatrolled':
-		case 'validate':
-			$wgArticle->$action();
-			break;
-		case 'print':
-			$wgArticle->view();
-			break;
-		case 'dublincore':
-			if( !$wgEnableDublinCoreRdf ) {
-				wfHttpError( 403, 'Forbidden', wfMsg( 'nodublincore' ) );
-			} else {
-				require_once( 'includes/Metadata.php' );
-				wfDublinCoreRdf( $wgArticle );
-			}
-			break;
-		case 'creativecommons':
-			if( !$wgEnableCreativeCommonsRdf ) {
-				wfHttpError( 403, 'Forbidden', wfMsg('nocreativecommons') );
-			} else {
-				require_once( 'includes/Metadata.php' );
-				wfCreativeCommonsRdf( $wgArticle );
-			}
-			break;
-		case 'credits':
-			require_once( 'includes/Credits.php' );
-			showCreditsPage( $wgArticle );
-			break;
-		case 'submit':
-			if( !$wgCommandLineMode && !$wgRequest->checkSessionCookie() ) {
-				# Send a cookie so anons get talk message notifications
-				User::SetupSession();
-			}
-			# Continue...
-		case 'edit':			
-			$internal = $wgRequest->getVal( 'internaledit' );
-			$external = $wgRequest->getVal( 'externaledit' );
-			$section = $wgRequest->getVal( 'section' );
-			$oldid = $wgRequest->getVal( 'oldid' );						
-			if(!$wgUseExternalEditor || $action=='submit' || $internal || 
-			   $section || $oldid || (!$wgUser->getOption('externaleditor') && !$external)) {
-				require_once( 'includes/EditPage.php' );
-				$editor = new EditPage( $wgArticle );
-				$editor->submit();				
-			} elseif($wgUseExternalEditor && ($external || $wgUser->getOption('externaleditor'))) {
-				require_once( 'includes/ExternalEdit.php' );
-				$mode = $wgRequest->getVal( 'mode' );
-				$extedit = new ExternalEdit( $wgArticle, $mode );				
-				$extedit->edit();
-			}
-			break;
-		case 'history':
-			if ($_SERVER['REQUEST_URI'] == $wgTitle->getInternalURL('action=history')) {
+	if ( in_array( $action, $wgDisabledActions ) ) {
+		$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
+	} else {
+		switch( $action ) {
+			case 'view':
 				$wgOut->setSquidMaxage( $wgSquidMaxage );
-			}
-			require_once( 'includes/PageHistory.php' );
-			$history = new PageHistory( $wgArticle );
-			$history->history();
-			break;
-		case 'raw':
-			require_once( 'includes/RawPage.php' );
-			$raw = new RawPage( $wgArticle );
-			$raw->view();
-			break;
-		case 'purge':
-			wfPurgeSquidServers(array($wgTitle->getInternalURL()));
-			$wgOut->setSquidMaxage( $wgSquidMaxage );
-			$wgTitle->invalidateCache();
-			$wgArticle->view();
-			break;
-		default:
-		    if (wfRunHooks('UnknownAction', $action, $wgArticle)) {
-				$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
-			}
+				$wgArticle->view();
+				break;
+			case 'watch':
+			case 'unwatch':
+			case 'delete':
+			case 'revert':
+			case 'rollback':
+			case 'protect':
+			case 'unprotect':
+			case 'info':
+			case 'markpatrolled':
+			case 'validate':
+				$wgArticle->$action();
+				break;
+			case 'print':
+				$wgArticle->view();
+				break;
+			case 'dublincore':
+				if( !$wgEnableDublinCoreRdf ) {
+					wfHttpError( 403, 'Forbidden', wfMsg( 'nodublincore' ) );
+				} else {
+					require_once( 'includes/Metadata.php' );
+					wfDublinCoreRdf( $wgArticle );
+				}
+				break;
+			case 'creativecommons':
+				if( !$wgEnableCreativeCommonsRdf ) {
+					wfHttpError( 403, 'Forbidden', wfMsg('nocreativecommons') );
+				} else {
+					require_once( 'includes/Metadata.php' );
+					wfCreativeCommonsRdf( $wgArticle );
+				}
+				break;
+			case 'credits':
+				require_once( 'includes/Credits.php' );
+				showCreditsPage( $wgArticle );
+				break;
+			case 'submit':
+				if( !$wgCommandLineMode && !$wgRequest->checkSessionCookie() ) {
+					# Send a cookie so anons get talk message notifications
+					User::SetupSession();
+				}
+				# Continue...
+			case 'edit':			
+				$internal = $wgRequest->getVal( 'internaledit' );
+				$external = $wgRequest->getVal( 'externaledit' );
+				$section = $wgRequest->getVal( 'section' );
+				$oldid = $wgRequest->getVal( 'oldid' );						
+				if(!$wgUseExternalEditor || $action=='submit' || $internal || 
+				   $section || $oldid || (!$wgUser->getOption('externaleditor') && !$external)) {
+					require_once( 'includes/EditPage.php' );
+					$editor = new EditPage( $wgArticle );
+					$editor->submit();				
+				} elseif($wgUseExternalEditor && ($external || $wgUser->getOption('externaleditor'))) {
+					require_once( 'includes/ExternalEdit.php' );
+					$mode = $wgRequest->getVal( 'mode' );
+					$extedit = new ExternalEdit( $wgArticle, $mode );				
+					$extedit->edit();
+				}
+				break;
+			case 'history':
+				if ($_SERVER['REQUEST_URI'] == $wgTitle->getInternalURL('action=history')) {
+					$wgOut->setSquidMaxage( $wgSquidMaxage );
+				}
+				require_once( 'includes/PageHistory.php' );
+				$history = new PageHistory( $wgArticle );
+				$history->history();
+				break;
+			case 'raw':
+				require_once( 'includes/RawPage.php' );
+				$raw = new RawPage( $wgArticle );
+				$raw->view();
+				break;
+			case 'purge':
+				wfPurgeSquidServers(array($wgTitle->getInternalURL()));
+				$wgOut->setSquidMaxage( $wgSquidMaxage );
+				$wgTitle->invalidateCache();
+				$wgArticle->view();
+				break;
+			default:
+				if (wfRunHooks('UnknownAction', $action, $wgArticle)) {
+					$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
+				}
+		}
 	}
 }
 wfProfileOut( 'main-action' );
