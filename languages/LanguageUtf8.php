@@ -1,4 +1,5 @@
 <?php
+#$Id$
 if( defined( "MEDIAWIKI" ) ) {
 
 $wgInputEncoding    = "UTF-8";
@@ -20,9 +21,12 @@ if(empty( $wikiUpperChars) || empty($wikiLowerChars )) {
 # Base stuff useful to all UTF-8 based language files
 class LanguageUtf8 extends Language {
 
+	# These two functions use mbstring library, if it is loaded
+	# or compiled and character mapping arrays otherwise. 
+	# In case of language-specific character mismatch
+	# it should be dealt with in Language classes.
+
 	function ucfirst( $string ) {
-		# For most languages, this is a wrapper for ucfirst()
-		# But that doesn't work right in a UTF-8 locale
 		if (function_exists('mb_strtoupper')) {
 			return mb_strtoupper(mb_substr($string,0,1)).mb_substr($string,1);
 		} else {
