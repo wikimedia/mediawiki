@@ -22,17 +22,40 @@
 # Variables / Configuration
 #
 
+if( php_sapi_name() != 'cli' ) {
+	die( "Run me from the command line." );
+}
+
 /** Phpdoc script with full path */
-$pdExec	= '/usr/bin/phpdoc';
+#$pdExec	= '/usr/bin/phpdoc';
+$pdExec = 'phpdoc';
+
+/** Figure out the base directory. This is harder than it should be. */
+/** Since we're on the command line, don't trust the PWD! */
+$here = null;
+$self = $_SERVER['SCRIPT_FILENAME'];
+$sep = DIRECTORY_SEPARATOR;
+foreach( get_included_files() as $f ) {
+	if( preg_match( "!^(.*)maintenance$sep$self\$!", $f, $matches ) ) {
+		$here = $matches[1];
+	}
+}
+if( is_null( $here ) ) {
+	die( "Couldn't determine current directory.\n" );
+}
+
 /** where Phpdoc should output documentation */
-$pdOutput = '/var/www/mwdoc/';
+#$pdOutput = '/var/www/mwdoc/';
+$pdOutput = "{$here}{$sep}docs{$sep}html";
 
 /** Some more Phpdoc settings */
+$pdOthers = '';
 //$pdOthers = ' -dn \'MediaWiki\' ';
 $pdOthers .= ' --title \'MediaWiki generated documentation\' -o \'HTML:frames:DOM/earthli\' ';
 
-/** MediaWiki location */
-$mwPath = '/var/www/mediawiki/';
+/** Mediawiki location */
+#$mwPath = '/var/www/mediawiki/';
+$mwPath = "{$here}{$sep}";
 
 /** MediaWiki subpaths */
 $mwPathI = $mwPath.'includes/';
@@ -62,7 +85,11 @@ function readaline( $prompt = '') {
 # Main !
 #
 
-print <<<END
+if( is_array( $argv ) && isset( $argv[1] ) && $argv[1] == '--all' ) {
+	# Quick option
+	$input = 0;
+} else {
+	print <<<END
 Several documentation possibilities:
  0 : whole documentation (1 + 2 + 3)
  1 : only includes
@@ -70,12 +97,13 @@ Several documentation possibilities:
  3 : only skins
  4 : only a given file
 END;
-
-while ( !is_numeric($input) )
-{
-	$input = readaline( "\nEnter your choice [0]:" );
-	if($input == '') {
-		$input = 0;
+	
+	while ( !is_numeric($input) )
+	{
+		$input = readaline( "\nEnter your choice [0]:" );
+		if($input == '') {
+			$input = 0;
+		}
 	}
 }
 
