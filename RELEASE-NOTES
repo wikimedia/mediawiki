@@ -157,7 +157,7 @@ If upgrading from an older release, see the file UPGRADING.
 * Undo overly bright, difficult to read colors in Cologne Blue
 * (bug 1162) fix five-tilde date inserter
 * Add raw signatures option for those who simply must have cute sigs
-
+* (bug 1164) Let wikitext be used in Loginprompt and Loginend messages
 
 === Caveats ===
 

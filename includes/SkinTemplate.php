@@ -964,6 +964,19 @@ class QuickTemplate {
 	}
 	
 	/**
+	 * An ugly, ugly hack.
+	 * @access private
+	 */
+	function msgWiki( $str ) {
+		global $wgParser, $wgTitle, $wgOut, $wgUseTidy;
+
+		$text = $this->translator->translate( $str );
+		$parserOutput = $wgParser->parse( $text, $wgTitle,
+			$wgOut->mParserOptions, true );
+		echo $parserOutput->getText();
+	}
+	
+	/**
 	 * @access private
 	 */
 	function haveData( $str ) {
