@@ -73,7 +73,9 @@ class Title {
 			return "-,.()' &;%!?_0-9A-Za-z\\/:\\x80-\\xFF";
 		} else {
 			# ISO 8859-* don't allow 0x80-0x9F
-			return "-,.()' &;%!?_0-9A-Za-z\\/:\\xA0-\\xFF";
+			#return "-,.()' &;%!?_0-9A-Za-z\\/:\\xA0-\\xFF";
+			# But that breaks interlanguage links at the moment. Temporary:
+			return "-,.()' &;%!?_0-9A-Za-z\\/:\\x80-\\xFF";
 		}
 	}
 
@@ -324,7 +326,7 @@ class Title {
 		if ( ":" == $t{0} ) {
 			$r = substr( $t, 1 );
 		} else {
-	 		if ( preg_match( "/^([A-Za-z0-9_\\x80-\\xff]+):(.*)$/", $t, $m ) ) {
+	 		if ( preg_match( "/^((?:i|x|[a-z]{2,3})(?:-[a-z0-9]+)?|[A-Za-z0-9_\\x80-\\xff]+):(.*)$/", $t, $m ) ) {
 				#$p = strtolower( $m[1] );
 				$p = $m[1];
 				if ( array_key_exists( $p, $wgValidInterwikis ) ) {

@@ -217,6 +217,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"yo"	=> "Yoruba",
 	"za"	=> "Zhuang",
 	"zh" => "&#20013;&#25991; (Zhongwen)",
+	"zh-cn" => "&#20013;&#25991;(&#31616;&#20307;) (Simplified Chinese)",
+	"zh-tw" => "&#20013;&#25991;(&#32321;&#20307;) (Traditional Chinese)",
 	"zu"	=> "Zulu"
 );
 
