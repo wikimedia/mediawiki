@@ -1,4 +1,4 @@
-<?
+<?php
 
 $ircNick = "wikipedia_rc";
 $rooms = array("en" => 1, "fr" => 1, "de" => 1);
