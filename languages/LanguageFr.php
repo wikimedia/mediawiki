@@ -843,10 +843,8 @@ Les prochaines modifications de cette page et de la page discussion associée ser
 "unwatchthispage" => "Ne plus suivre",
 "notanarticle"	=> "Aucun article",
 "watchnochange" => "Aucune des pages que vous suivez n'ont été modifiées pendant la période affichée", // Looxix 
-"watchdetails" => "Vous suivez $1 pages, sans compter les pages de discussion. L
-$2 pages en total modifiées depuis la limite;
-$3...
-<a href='$4'>afficher et modifier la liste complète</a>.)", // Looxix 
+// "watchdetails" => "($1 pages suivies, sans compter les pages de discussion; $2 pages en total modifiées depuis la limite; $3...  <a href='$4'>afficher et modifier la liste complète</a>.)", // Looxix 
+"watchdetails" => "Vous suivez $1 pages, sans compter les pages de discussion.  <a href='$4'>Afficher et modifier la liste complète</a>.", // Looxix 
 "watchmethod-recent" => "vérification des modifications récentes des pages suivies", // Looxix 
 "watchmethod-list" => "vérification des pages suivies pour des modifications récentes", // Looxix 
 "removechecked" => "Retirer de la liste de suivi les articles sélectionnés", // Looxix 
