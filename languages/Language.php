@@ -1460,6 +1460,12 @@ Type the name of the user in the box and press the button to make the user an ad
 # Validation
 'val_yes' => 'Yes',
 'val_no' => 'No',
+'val_list_header' => '<th>#</th><th>Topic</th><th>Range</th><th>Action</th>',
+'val_add' => 'Add',
+'val_del' => 'Delete',
+'val_warning' => '<b>Never, <i>ever</i>, change something here without <i>explicit</i> community consensus!</b>',
+'val_ref_for' => 'Revisions for ',
+'val_iamsure' => 'Check this box if you really mean it!',
 'val_clear_old' => 'Clear my older validation data',
 'val_merge_old' => 'Use my previous assessment where selected \'No opinion\'',
 'val_form_note' => '<b>Hint:</b> Merging your data means that for the article

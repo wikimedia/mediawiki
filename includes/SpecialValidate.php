@@ -711,13 +711,81 @@ class Validation {
 		$ret = "" ;
 		$title = $article->getTitle();
 		$title = $title->getPrefixedText() ;
-		$wgOut->setPageTitle ( "Revisions for " . $title ) ;
+		$wgOut->setPageTitle ( wfMsg ( 'val_rev_for' ) . $title ) ;
 		foreach ( $this->voteCache AS $x => $y )
 			{
 			$ret .= $this->getRevisionForm ( $article , $x , $y , $x == $revision ) ;
 			$ret .= "<br/>\n" ;
 			}
 		return $ret ;	
+	}
+	
+	# This functions adds a topic to the database
+	function addTopic ( $topic , $limit ) {
+		$a = 1 ;
+		while ( isset ( $this->topicList[$a] ) ) $a++ ;
+		$sql = "INSERT INTO validate (val_user,val_page,val_revision,val_type,val_value,val_comment) VALUES (" ;
+		$sql .= "'0','0','0','{$a}','{$limit}','" ;
+		$sql .= Database::strencode ( $topic ) . "')" ;
+		$res = wfQuery( $sql, DB_WRITE );
+		$x->val_user = $x->val_page = $x->val_revision = 0 ;
+		$x->val_type = $a ;
+		$x->val_value = $limit ;
+		$x->val_comment = $topic ;
+		$this->topicList[$a] = $x ;
+		ksort ( $this->topicList ) ;
+	}
+
+	# This functions adds a topic to the database
+	function deleteTopic ( $id ) {
+		$sql = "DELETE FROM validate WHERE val_type='{$id}'" ;
+		$res = wfQuery( $sql, DB_WRITE );
+		unset ( $this->topicList[$id] ) ;
+	}
+	
+	# This function performs the "management" mode on Special:Validate
+	function manageTopics () {
+		global $wgRequest ;
+		$this->topicList = $this->getTopicList() ;
+		
+		$iamsure = $wgRequest->getVal ( "iamsure" , "0" ) == 1 ;
+		
+		if ( $iamsure && $wgRequest->getVal ( "m_add" , "--" ) != "--" ) {
+			$new_topic = $wgRequest->getVal ( "m_topic" ) ;
+			$new_limit = $wgRequest->getVal ( "m_limit" ) ;
+			if ( $new_topic != "" && $new_limit > 1 )
+				$this->addTopic ( $new_topic , $new_limit ) ;
+		}
+
+		$da = $wgRequest->getArray ( "m_del" ) ;
+		if ( $iamsure && isset ( $da ) && count ( $da ) > 0 ) {
+			$id = array_keys ( $da ) ;
+			$id = array_shift ( $id ) ;
+			$this->deleteTopic ( $id ) ;
+		}
+		
+		$r = "<p>" . wfMsg ( 'val_warning' ) . "</p>\n" ;
+		$r .= "<form method='post'>\n" ;
+		$r .= "<table border='1' cellspacing='0' cellpadding='2'>\n" ;
+		$r .= "<tr>" . wfMsg ( 'val_list_header' ) . "</tr>\n" ;
+		foreach ( $this->topicList AS $x => $y ) {
+			$r .= "<tr>\n" ;
+			$r .= "<th>" . $y->val_type . "</th>\n" ;
+			$r .= "<td>{$y->val_comment}</td>\n" ;
+			$r .= "<td>1 .. <b>{$y->val_value}</b></td>\n" ;
+			$r .= "<td><input type='submit' name='m_del[{$x}]' value='" . wfMsg ( 'val_del' ) . "'/></td>\n" ;
+			$r .= "</tr>\n" ;
+		}
+		$r .= "<tr>\n" ;
+		$r .= "<td/>\n" ;
+		$r .= "<td><input type='text' name='m_topic' value=''/></td>\n" ;
+		$r .= "<td><input type='text' name='m_limit' value=''/></td>\n" ;
+		$r .= "<td><input type='submit' name='m_add' value='" . wfMsg ( 'val_add' ) . "'/></td>\n" ;
+		$r .= "</tr>\n" ;
+		$r .= "</table>\n" ;
+		$r .= "<input type='checkbox' name='iamsure' value='1'/>" . wfMsg ( 'val_iamsure' ) . "\n" ;
+		$r .= "</form>\n" ;
+		return $r ;
 	}
 
 }
@@ -726,22 +794,31 @@ class Validation {
  * constructor
  */
 function wfSpecialValidate( $page = '' ) {
-	global $wgOut, $wgRequest, $wgUseValidation;
+	global $wgOut, $wgRequest, $wgUseValidation, $wgUser, $wgContLang;
 	
 	if( !$wgUseValidation ) {
 		$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
 		return;
 	}
+
+	$mode = $wgRequest->getVal ( "mode" ) ;
+	$skin = $wgUser->getSkin() ;
+
 	
-	$mode = $wgRequest->getVal( 'mode', 'form' );
-	$v = new Validation;
-	$html = "" ;
-	if( $mode == "stat_page" ) {
-		$html = $v->getPageStatistics();
-	} else if( $mode == "list_page" ) {
-		$html = $v->getArticleList();
+	if ( $mode == "manage" ) {
+		$v = new Validation ;
+		$html = $v->manageTopics () ;
+	} else {
+		$t = Title::newFromText ( "Special:Validate" ) ;
+		$url = $t->getLocalURL ( "mode=manage" ) ;
+		$html = "$mode" ;
+		$html .= "<ul>\n" ;
+		$html .= "<li><a href=\"" . $url . "\">Manage</a></li>\n" ;
+		$html .= "<li></li>\n" ;
+		$html .= "<li></li>\n" ;
+		$html .= "</ul>\n" ;
 	}
-	
+
 	$wgOut->addHTML( $html );
 }
 
