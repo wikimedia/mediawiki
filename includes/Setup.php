@@ -288,13 +288,13 @@ wfProfileOut( $fname.'-language' );
 wfProfileIn( $fname.'-MessageCache' );
 
 $wgContMessageCache = new MessageCache;
-$wgContMessageCache->initialise( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname, true );
+$wgContMessageCache->initialise( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname, $wgContLang, $wgContLanguageCode );
 if($wgLangClass == $wgContLangClass) {
     $wgMessageCache = &$wgContMessageCache;
 }
 else {
     $wgMessageCache = new MessageCache;
-    $wgMessageCache->initialise( $messageMemc,false , $wgMsgCacheExpiry, $wgDBname.":$wgLangClass", false);
+    $wgMessageCache->initialise( $messageMemc,false , $wgMsgCacheExpiry, $wgDBname.":$wgLangClass", $wgLang, $wgLanguageCode);
 }
 
 wfProfileOut( $fname.'-MessageCache' );
