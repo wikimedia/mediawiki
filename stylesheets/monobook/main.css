@@ -669,7 +669,7 @@ div.townBox dl dd {
     height: 155px;
     width: 12.2em;
     background-repeat: no-repeat;
-    background-position: center !important;
+    background-position: 35% 50% !important;
     text-decoration: none;
 }
 
