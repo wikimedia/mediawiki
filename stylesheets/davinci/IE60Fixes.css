@@ -1,0 +1,61 @@
+/* 6.0 - only fixes */
+
+/* slightly smaller top margin for the content area */
+#portlet-contentViews {
+    left: 11.4em;
+    top: 1.7em;
+    width: 76% !important;
+}
+                                                                                                                                                                       
+#portlet-contentViews ul {
+    display: block;
+    float: left;
+}
+#portlet-contentViews li {
+    display: block;
+    float: left;
+}
+#portlet-contentViews li a {
+    display: block;
+    float: left;
+    padding-bottom: 0.2em;
+}
+#portlet-contentViews .selected a,
+#portlet-contentViews li a:hover {
+    padding-bottom: 0.2em;
+}
+
+#portal-column-content {
+    margin: 1.9em 0 0 -11.9em;
+}
+
+#portal-column-content #content {
+    margin: 0 0 0 11.9em;
+}
+
+#portal-personaltools {
+    padding-bottom: 0.1em;
+}
+
+
+/* height on everything... */
+#content,
+#content p,
+div.comment,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.description,
+.portalMessage {
+    height: 100%;    
+}
+
+p {
+    margin: 0.2em 0em 0.4em 0em;
+    line-height: 1.5em;
+}
+
+/*{ border:1px solid Red !important;}*/
