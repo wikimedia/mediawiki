@@ -88,15 +88,14 @@ function indexShowToplevel ( $namespace = NS_MAIN, $invert ) {
 	global $wgOut, $indexMaxperpage, $toplevelMaxperpage, $wgContLang, $wgRequest, $wgUser;
 	$sk = $wgUser->getSkin();
 	$fname = "indexShowToplevel";
-	$namespace = intval ($namespace);
 
 	# TODO: Either make this *much* faster or cache the title index points
 	# in the querycache table.
 
 	$dbr =& wfGetDB( DB_SLAVE );
 	$page = $dbr->tableName( 'page' );
-	$invsql = ($invert) ? '!' : '';
-	$fromwhere = "FROM $page WHERE page_namespace$invsql=$namespace";
+	$fromwhere = "FROM $page WHERE page_namespace" .
+	($invert ? '!' : '') . "=$namespace";
 	$order_arr = array ( 'ORDER BY' => 'page_title' );
 	$order_str = 'ORDER BY page_title';
 	$out = "";
@@ -199,7 +198,7 @@ function indexShowline( $inpoint, $outpoint, $namespace = NS_MAIN, $invert ) {
 
 	$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
 	$outpointf = htmlspecialchars( str_replace( '_', ' ', $outpoint ) );
-	$queryparams = ($namespace ? ('namespace='.intval($namespace)) : '') . ($invert ? "&invert=$invert" : '');
+	$queryparams = ($namespace ? "namespace=$namespace" : '') . ($invert ? "&invert=$invert" : '');
 	$special = Title::makeTitle( NS_SPECIAL, 'Allpages/' . $inpoint );
 	$link = $special->escapeLocalUrl( $queryparams );
 	
@@ -220,7 +219,6 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $invert ) {
 	global $wgOut, $wgUser, $indexMaxperpage, $wgContLang;
 	$sk = $wgUser->getSkin();
 	$maxPlusOne = $indexMaxperpage + 1;
-	$namespacee = intval($namespace);
 
 	$out = '';
 	$dbr =& wfGetDB( DB_SLAVE );
@@ -229,8 +227,8 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $invert ) {
 	$fromTitle = Title::newFromURL( $from );
 	$fromKey = is_null( $fromTitle ) ? '' : $fromTitle->getDBkey();
 	
-	$invsql = ($invert) ? '!' : '';
-	$sql = "SELECT page_title FROM $page WHERE page_namespace$invsql=$namespacee" .
+	$sql = "SELECT page_namespace, page_title FROM $page WHERE page_namespace" .
+		($invert ? '!' : '') . "=$namespace" .
 		" AND page_title >= ".  $dbr->addQuotes( $fromKey ) .
 		" ORDER BY page_title LIMIT " . $maxPlusOne;
 	$res = $dbr->query( $sql, 'indexShowChunk' );
@@ -240,7 +238,7 @@ function indexShowChunk( $namespace = NS_MAIN, $from, $invert ) {
 	$n = 0;
 	$out = '<table style="background: inherit;" border="0" width="100%">';
 	while( ($n < $indexMaxperpage) && ($s = $dbr->fetchObject( $res )) ) {
-		$t = Title::makeTitle( $namespacee, $s->page_title );
+		$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 		if( $t ) {
 			$link = $sk->makeKnownLinkObj( $t, $t->getText() );
 		} else {
