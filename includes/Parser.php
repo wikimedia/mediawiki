@@ -583,6 +583,7 @@ class Parser
 							$lastToken = array_pop( $tokenStack );
 						}
 						$txt = $linkText ."]]";
+						$prefix = $lastToken["text"];
 						$nextToken = $tokenizer->previewToken();
 						if ( $nextToken["type"] == "text" ) 
 						{
@@ -590,8 +591,7 @@ class Parser
 							$nextToken = $tokenizer->nextToken();
 							$txt .= $nextToken["text"];
 						}
-						$txt = $this->handleInternalLink( $txt );
-						#$txt = "<font color=\"#00FF00\"><b>&lt;" . $txt . "&gt;</b></font>";
+						$txt = $this->handleInternalLink( $txt, $prefix );
 					}
 					$tagIsOpen = (count( $tokenStack ) != 0);
 					break;
@@ -643,7 +643,7 @@ class Parser
 		return $s;
 	}
 
-	/* private */ function handleInternalLink( $line )
+	/* private */ function handleInternalLink( $line, $prefix )
 	{
 		global $wgLang, $wgLinkCache;
 		global $wgNamespacesWithSubpages, $wgLanguageCode;
@@ -679,13 +679,6 @@ class Parser
 
 		wfProfileOut( "$fname-setup" );
 
-		$prefix = $new_prefix;
-		if ( $wgLang->linkPrefixExtension() && preg_match( $e2, $line, $m ) ) {
-			$new_prefix = $m[2];
-			$line = $m[1];
-		} else {
-			$new_prefix = "";
-		}
 		if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 			$text = $m[2];
 			$trail = $m[3];				
