@@ -165,6 +165,11 @@ textarea {
         vertical-align: middle;
         padding: 0.2em;
     }
+    head:first-child+body input.historysubmit {
+        height: 1.9em !important;
+        padding: none !important;
+        vertical-align: middle;
+    }
 }
 input[type="radio"],
 input[type="checkbox"] { border:none; }
@@ -416,6 +421,7 @@ div.townBox dl dd {
     background-color:#f9f9f9;
     border:1px dashed #aaaaaa;
 }
+#pagehistory li.histsubmitli { list-style: none }
 /*
 ** Diff rendering
 */

@@ -77,6 +77,10 @@ class PageHistory {
 			$this->mTitle->getPrefixedText(),
 			"action=history", $atend );
 		$s = $numbar;
+		$this->submitbuttonhtml = ( $this->linesonpage > 1) ? '<li class="histsubmitli">
+		<input class="historysubmit" type="submit" accesskey="'.wfMsg('accesskey-compareselectedversions').
+			'" title="'.wfMsg('tooltip-compareselectedversions').'" value="'.wfMsg('compareselectedversions')."\" /></li>" :
+			'';
 		$s .= $this->beginHistoryList();
 		$counter = 1;
 		if( $offset == 0 ){
@@ -113,6 +117,7 @@ class PageHistory {
 		$s .="\n<form id=\"pagehistory\" name=\"pagehistory\" action=\"" . $wgTitle->getFullURL("-") . "\" method=\"get\">";
 		$s .= "<input type=\"hidden\" name=\"title\" value=\"".htmlspecialchars($wgTitle->getPrefixedDbKey())."\"/>\n";
 		$s .= "" . "\n<ul>";
+		$s .= !empty($this->submitbuttonhtml) ? $this->submitbuttonhtml."\n":'';
 		return $s;
 	}
 
@@ -121,12 +126,8 @@ class PageHistory {
 		$last = wfMsg( "last" );
 
 		$s = $skip ? "" : preg_replace( "/!OLDID![0-9]+!/", $last, $this->lastline );
-		$s .= "</ul>\n";
-		if( $this->linesonpage > 1) {
-			$s .= '<button type="submit" accesskey="'.wfMsg('accesskey-compareselectedversions').
-			'" title="'.wfMsg('tooltip-compareselectedversions').'">'.wfMsg('compareselectedversions')."</button><br/><br/>\n";
-		}
-		$s .= "</form>\n";
+		$s .= !empty($this->submitbuttonhtml) ? $this->submitbuttonhtml."\n":'';
+		$s .= "</ul></form>\n";
 		return $s;
 	}
 
