@@ -514,7 +514,8 @@ class Skin {
 		if ( $wgOut->isArticle() ) {
 			$s .= "<strong>" . $this->editThisPage() . "</strong>";
 			if ( 0 != $wgUser->getID() ) {
-				$s .= $sep . $this->watchThisPage();
+				$s .= $sep . $this->watchThisPage() .
+					$sep . $this->moveThisPage();
 			}
 			$s .= $sep . $this->talkLink()
 			  . $sep . $this->historyLink()
@@ -539,8 +540,7 @@ class Skin {
 			}
 			if ( $wgUser->isSysop() && $wgTitle->getArticleId() ) {
 				$s .= "\n<br>" . $this->deleteThisPage() .
-				$sep . $this->protectThisPage() .
-				$sep . $this->moveThisPage();
+				$sep . $this->protectThisPage();
 			}
 			$s .= "<br>\n" . $this->otherLanguages();
 		}
