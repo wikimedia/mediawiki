@@ -182,9 +182,7 @@ function wfSpecialUndelete( $par )
 			global $wgEnablePersistentLC;
 			if ( $wgEnablePersistentLC ) {
 				// Purge related entries in links cache on undelete, to heal broken links
-				$ptitle = wfStrencode( $to->getPrefixedDBkey() );
-				wfQuery("DELETE linkscc FROM linkscc,brokenlinks ".
-					"WHERE lcc_pageid=bl_from AND bl_to='{$ptitle}'", DB_WRITE);
+				LinkCache::linksccClearBrokenLinksTo( $to->getPrefixedDBkey() );
 			}
 			#TODO: SearchUpdate, etc.
 		}

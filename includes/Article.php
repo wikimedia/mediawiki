@@ -401,9 +401,7 @@ class Article {
 
 		if ( $wgEnablePersistentLC ) {
 			// Purge related entries in links cache on new page, to heal broken links
-			$ptitle = wfStrencode( $ttl );
-			wfQuery("DELETE linkscc FROM linkscc,brokenlinks ".
-				"WHERE lcc_pageid=bl_from AND bl_to='{$ptitle}'", DB_WRITE);
+			LinkCache::linksccClearBrokenLinksTo( $ttl );
 		}
 		
 		$sql = "INSERT INTO recentchanges (rc_timestamp,rc_cur_time," .
@@ -535,9 +533,8 @@ class Article {
 			global $wgEnablePersistentLC;
 			if ( $wgEnablePersistentLC ) {
 				// Purge link cache for this page
-				$pageid=$this->getID();
-				wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pageid}'", DB_WRITE);
-			}			
+				LinkCache::linksccClearPage( $this->getID() );
+			}
 		}
 
 		if( $wgDBtransactions ) {
@@ -873,9 +870,7 @@ class Article {
 
 			if ( $wgEnablePersistentLC ) {
 	                        // Purge related entries in links cache on delete,
-				wfQuery("DELETE linkscc FROM linkscc,links ".
-                                	"WHERE lcc_title=links.l_from AND l_to={$id}", DB_WRITE);
-                        	wfQuery("DELETE FROM linkscc WHERE lcc_title='{$t}'", DB_WRITE);
+				LinkCache::linksccClearLinksTo( $id );
 			}
 
 			$sql = "SELECT l_from FROM links WHERE l_to={$id}";
@@ -1004,10 +999,9 @@ class Article {
 
 		global $wgEnablePersistentLC;
 		if ( $wgEnablePersistentLC ) {
-			wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
+			LinkCache::linksccClearPage( $pid );
 		}
-		
-			
+					
 		$wgOut->returnToMain( false );
 	}
 	

@@ -391,9 +391,7 @@ class MovePageForm {
 		global $wgEnablePersistentLC;
 		if ( $wgEnablePersistentLC ) {
 			// Purge related entries in links cache on new page, to heal broken links
-			$ptitle = wfStrencode( $this->nft );
-			wfQuery("DELETE linkscc FROM linkscc,brokenlinks ".
-				"WHERE lcc_pageid=bl_from AND bl_to='{$ptitle}'", DB_WRITE);
+			LinkCache::linksccClearBrokenLinksTo( $this->nft );
 		}
 
 		$sql = "UPDATE links SET l_from='{$this->nft}' WHERE l_from='{$this->oft}'";
