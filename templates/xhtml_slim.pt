@@ -6,6 +6,7 @@
     ${headlinks}
     <title tal:content="pagetitle">Exciting xhtml slimfast</title>
     <style type="text/css" media="screen">/*<![CDATA[*/ @import "${stylepath}/${skinname}/main.css"; /*]]>*/</style>
+    <style type="text/css" media="projection">/*<![CDATA[*/ @import "${stylepath}/${skinname}/main.css"; /*]]>*/</style>
     <link rel="stylesheet" type="text/css" media="print" href="${stylepath}/commonPrint.css" />
     <!--[if IE]><style type="text/css" media="all">@import "${stylepath}/${skinname}/IEFixes.css";</style>
     <script type="text/javascript" src="${stylepath}/IEFixes.js"></script>
