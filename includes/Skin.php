@@ -2569,7 +2569,7 @@ class Skin {
 		$hideline = ' <script type="text/javascript">showTocToggle("' . addslashes( wfMsg('showtoc') ) . '","' . addslashes( wfMsg('hidetoc') ) . '")</script>';
 		return
 		'<table border="0" id="toc"><tr id="toctitle"><td align="center">'."\n".
-		'<b>'.wfMsg('toc').'</b>' .
+		'<b>'.wfMsgForContent('toc').'</b>' .
 		$hideline .
 		'</td></tr><tr id="tocinside"><td>'."\n".
 		$toc."</td></tr></table>\n";
