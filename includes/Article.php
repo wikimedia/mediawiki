@@ -444,11 +444,13 @@ class Article {
 	/**
 	 * Would the given text make this article a "good" article (i.e.,
 	 * suitable for including in the article count)?
+	 * @param string $text Text to analyze
+	 * @return integer 1 if it can be counted else 0
 	 */
 	function isCountable( $text ) {
 		global $wgUseCommaCount;
 
-		if ( 0 != $this->mTitle->getNamespace() ) { return 0; }
+		if ( NS_MAIN != $this->mTitle->getNamespace() ) { return 0; }
 		if ( $this->isRedirect( $text ) ) { return 0; }
 		$token = ($wgUseCommaCount ? ',' : '[[' );
 		if ( false === strstr( $text, $token ) ) { return 0; }

@@ -120,7 +120,7 @@ class SearchEngine {
 		global $wgContLang;
 		$arr = array();
 		foreach( $wgContLang->getNamespaces() as $ns => $name ) {
-			if( $ns >= 0 ) {
+			if( $ns >= NS_MAIN ) {
 				$arr[$ns] = $name;
 			}
 		}
