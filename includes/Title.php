@@ -495,7 +495,7 @@ class Title {
 		# protect global styles and js
 		if ( NS_MEDIAWIKI == $this->mNamespace 
 	             && preg_match("/\\.(css|js)$/", $this->mTextform )
-		     && !$wgUser->isBureaucrat() )
+		     && !$wgUser->isSysop() )
 		{ return false; }
 		//if ( $this->isCssJsSubpage() and !$this->userCanEditCssJsSubpage() ) { return false; }
 		# protect css/js subpages of user pages
