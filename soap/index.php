@@ -39,7 +39,7 @@ require_once( '../LocalSettings.php' );
 
 ini_set( "include_path", "$IP:" . ini_get("include_path") );
 
-require_once( 'Setup.php' );
+require_once( '../includes/Setup.php' );
 
 #
 # SOAP must be activated in the Configuration. Else, exit.
