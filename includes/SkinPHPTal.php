@@ -85,6 +85,7 @@
 			$tpl->set( "pagetitle", wfMsg( "pagetitle", $this->titletxt ) );
 			$tpl->setRef( "thispage", &$this->thispage );
 			$tpl->set( "subtitle", $out->getSubtitle() );
+			$tpl->set( 'catlinks', getCategories());
 			$tpl->setRef( 'mimetype', &$wgMimeType );
 			$tpl->setRef( 'charset', &$wgOutputEncoding );
 			$tpl->set( 'headlinks', $out->getHeadLinks() );
