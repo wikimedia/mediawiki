@@ -27,14 +27,25 @@ table.rimage {
 
 /* thumbnails */
 div.thumbnail-none, div.thumbnail-right, div.thumbnail-left {
+        border: 1px solid #8888aa;
+        background-color: #f7f8ff;
         padding: 2px;
-        border:1px solid #8888aa;
-        background:#CCCCCC;
-        margin: 0.3em 0 0.5em;
-        font-size: 85%;
+        margin: 10px;
+        font-size: smaller;
         text-align: center;
 }
 
+
+div.thumbnail-none img, div.thumbnail-right img, div.thumbnail-left img {
+	border:1px solid #8888AA;
+	margin-bottom:3px;
+	background:#FFFFFF;
+}
+
+div.magnify img {
+	border: 0px;
+	background: none;
+}
 
 div.thumbcaption {
         margin-top:3px; margin-bottom:3px;
