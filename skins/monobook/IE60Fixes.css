@@ -1,0 +1,75 @@
+/* 6.0 - only fixes */
+/* content area */ 
+/* workaround for various ie float bugs */
+#column-content { 
+    float: none; 
+    margin-left: 0;
+    height: 1%;
+}
+#column-content #content {
+    margin-left: 12.2em;
+    margin-top: 3em;
+    height: 1%;
+}
+#column-one {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+}
+#footer {
+    margin-left: 13.6em;
+    border-left: 1px solid #fabd23;
+}
+
+/* the tabs */
+
+#p-cactions {
+    z-index: 3;
+}
+
+#p-cactions li {
+    float: left;
+    padding-top: 0;
+    padding-bottom: 0 !important;
+    height: 0.9em;
+}
+#p-cactions li a {
+    display: block;
+    padding-bottom: 0.045em;
+}
+#p-cactions li.selected a {
+    padding-bottom: 0.17em;
+}
+#p-cactions li a:hover {
+    padding-bottom: 0.17em;
+}
+#portal-personaltools {
+    padding-bottom: 0.1em;
+}
+#bodyContent a.external {
+    background: url(external.png) center right no-repeat;
+    padding-right: 13px;
+}
+
+/* show the hand */
+#p-logo a,
+#p-logo a:hover {
+    cursor: pointer;
+}
+div.visualClear {
+    width:100%;
+    line-height: 0;
+}
+textarea {
+    overflow: auto;
+    width: 96%;
+}
+
+div.editsection,
+#catlinks,
+div.tright,
+div.tleft {
+    position: relative;
+}
+/*{ border:1px solid Red !important;}*/

@@ -1,0 +1,128 @@
+/*
+** IE5.0 Fix Stylesheet
+*/
+
+/* IE 4&5 interpret keyword sizes one off */
+body {
+    font-size: xx-small;
+}
+
+* html #visual-portal-wrapper {
+  width: 100%;
+}
+* html*#visual-portal-wrapper {
+    width: auto;
+}
+
+input {
+    margin-bottom: 1px; /* bug fix */
+}
+
+table.listing td.top {
+    /* insane IE row bug workaround */
+    position: relative;
+    left: -1px;
+    top: -1px;
+}
+
+/* 5.0 doesn't like the background icon for external links and user */
+.link-external,
+.external {
+    background: none;
+    padding: 0;
+}
+li#personaltools-userpage,
+li#personaltools-login,
+li#personaltools-logout {
+    background: none;
+    padding-left: none;
+}
+
+/* try to prevent the sidebar from getting pushed to the bottom */
+
+.portlet {
+    width: 13.5em;
+    overflow: hidden;
+}
+
+#portal-column-one {
+    position: absolute;
+    overflow: visible;
+    top: 0px;
+}
+
+textarea {
+    width: 78% !important;
+}
+
+
+#portal-column-content {
+    margin: 0 0 0 -12.2em !important;
+}
+#portal-column-content #content {
+    margin-left: 12.2em;    
+    margin-top: 2.8em;
+/*    padding-top: 0.3em;*/
+    position: relative;
+}
+/* slightly smaller top margin for the content area */
+
+
+#portlet-contentViews {
+    background: transparent;
+    width: 76% !important;
+    line-height: 1.1em;
+}
+
+#portlet-contentViews li a,
+#portlet-contentViews .selected a,
+#portlet-contentViews li a:hover {
+    padding-bottom: 0.1em;
+    margin-top: 1px;
+    padding-top: -1px;
+}
+
+#portlet-contentViews li.selected {
+    background-color: White;
+    padding-top: -1px;
+}
+#portlet-contentViews li {
+    padding-top: 0;
+}
+#portlet-personal {
+    position: absolute;
+    text-align: right;
+    top: 0px;
+    left: 0px;
+    /*width: 760px !important;*/
+    width: 100% !important;
+    white-space: nowrap !important;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+}
+
+#portal-personaltools {
+    padding-bottom: 0;
+    background: transparent;
+}
+
+#portal-personaltools li a {
+    padding-left: 2em !important;
+    margin-left: 2em !important;
+}
+
+
+#portal-footer {
+    margin: 0 0 0 15em;
+}
+
+.urlexpansion {
+    display: none !important;
+}
+#documentSubtitle {
+    margin: -1em 0 0.6em 1em;
+}
+
+/*div{ border:1px solid Red !important;}*/
