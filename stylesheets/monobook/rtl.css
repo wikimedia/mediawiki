@@ -129,6 +129,18 @@ dd {
 	margin-left: 0;
 	margin-right: 2em;
 }
+div.tright {
+    clear: none;
+}
+div.tleft {
+    clear: left;
+}
+div.floatright {
+    clear: none;
+}
+div.floatleft {
+    clear: left;
+}
 div.townBox {
 	margin-left: 0;
 	margin-right: 1em;
