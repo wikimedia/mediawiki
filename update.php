@@ -94,6 +94,13 @@ function copydirectory( $source, $dest ) {
 	}
 }
 
+function readconsole() {
+	$fp = fopen( "php://stdin", "r" );
+	$resp = trim( fgets( $fp ) );
+	fclose( $fp );
+	return $resp;
+}
+
 function do_revision_updates() {
 	global $wgSoftwareRevision;
 
@@ -102,7 +109,14 @@ function do_revision_updates() {
 
 function update_passwords() {
 	$fname = "Update scripte: update_passwords()";
-	print "Updating passwords...\n";
+	print "\nIt appears that you need to update the user passwords in your\n" .
+	  "database. If you have already done this (if you've run this update\n" .
+	  "script once before, for example), doing so again will make all your\n" .
+	  "user accounts inaccessible, so be sure you only do this once.\n" .
+	  "Update user passwords? (yes/no) ";
+
+	$resp = readconsole();
+    if ( ! ( "Y" == $resp{0} || "y" == $resp{0} ) ) { return; }
 
 	$sql = "SELECT user_id,user_password FROM user";
 	$source = wfQuery( $sql, fname );

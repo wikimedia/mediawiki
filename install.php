@@ -76,6 +76,8 @@ if ( $wgUseTeX ) {
 	copyfile( "./math", "texvc_tex", "{$IP}/math", 0775 );
 }
 
+copyfile( ".", "Version.php", $IP );
+
 #
 # Make and initialize database
 #
@@ -116,8 +118,6 @@ populatedata(); # Needs internationalized messages
 
 print "Adding indexes...\n";
 dbsource( $rconn, "./maintenance/indexes.sql" );
-
-copyfile( ".", "Version.php", $IP );
 
 print "Done.\nBrowse \"{$wgServer}{$wgScript}\" to test,\n" .
   "or \"run WikiSuite -b -o\" in test suite.\n";
