@@ -42,7 +42,7 @@ class MessageCache
 		wfProfileIn( $fname.'-parser' );
 		$this->mParser = new Parser;
 		wfProfileOut( $fname.'-parser' );
-		
+
 		$this->load();
 		wfProfileOut( $fname );
 	}
@@ -54,7 +54,7 @@ class MessageCache
 	 */
 	function load() {
 		global $wgAllMessagesEn;
-		
+
 		if ( $this->mDisable ) {
 			wfDebug( "MessageCache::load(): disabled\n" );
 			return true;
@@ -62,12 +62,12 @@ class MessageCache
 		$fname = 'MessageCache::load';
 		wfProfileIn( $fname );
 		$success = true;
-		
+
 		if ( $this->mUseCache ) {
 			wfProfileIn( $fname.'-fromcache' );
 			$this->mCache = $this->mMemc->get( $this->mMemcKey );
 			wfProfileOut( $fname.'-fromcache' );
-			
+
 			# If there's nothing in memcached, load all the messages from the database
 			if ( !$this->mCache ) {
 				wfDebug( "MessageCache::load(): loading all messages\n" );
@@ -92,11 +92,11 @@ class MessageCache
 				}
 				$this->unlock();
 			}
-			
+
 			if ( !is_array( $this->mCache ) ) {
 				wfMsg( "MessageCache::load(): individual message mode\n" );
 				# If it is 'loading' or 'error', switch to individual message mode, otherwise disable
-				# Causing too much DB load, disabling -- TS 
+				# Causing too much DB load, disabling -- TS
 				$this->mDisable = true;
 				/*
 				if ( $this->mCache == "loading" ) {
@@ -119,14 +119,14 @@ class MessageCache
 	 * Loads all cacheable messages from the database
 	 */
 	function loadFromDB() {
-	        $fname = 'MessageCache::loadFromDB';
+			$fname = 'MessageCache::loadFromDB';
 		$dbr =& wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'cur', 
-			array( 'cur_title', 'cur_text' ), 
+		$res = $dbr->select( 'cur',
+			array( 'cur_title', 'cur_text' ),
 			array( 'cur_is_redirect' => 0, 'cur_namespace' => NS_MEDIAWIKI ),
 			$fname
 		);
-		
+
 		$this->mCache = array();
 		for ( $row = $dbr->fetchObject( $res ); $row; $row = $dbr->fetchObject( $res ) ) {
 			$this->mCache[$row->cur_title] = $row->cur_text;
@@ -134,7 +134,7 @@ class MessageCache
 
 		$dbr->freeResult( $res );
 	}
-	
+
 	/**
 	 * Not really needed anymore
 	 */
@@ -148,7 +148,7 @@ class MessageCache
 		}
 		return $this->mKeys;
 	}
-	
+
 	/**
 	 * Obsolete
 	 */
@@ -156,7 +156,7 @@ class MessageCache
 		return true;
 		/*
 		global $wgAllMessagesEn, $wgLang;
-		return array_key_exists( $wgLang->lcfirst( $key ), $wgAllMessagesEn ) || 
+		return array_key_exists( $wgLang->lcfirst( $key ), $wgAllMessagesEn ) ||
 			array_key_exists( $key, $wgAllMessagesEn );
 		*/
 	}
@@ -184,10 +184,10 @@ class MessageCache
 		for ($i=0; $i < MSG_WAIT_TIMEOUT && !$this->mMemc->add( $lockKey, 1, MSG_LOCK_TIMEOUT ); $i++ ) {
 			sleep(1);
 		}
-		
+
 		return $i >= MSG_WAIT_TIMEOUT;
 	}
-	
+
 	function unlock() {
 		if ( !$this->mUseCache ) {
 			return;
@@ -196,29 +196,29 @@ class MessageCache
 		$lockKey = $this->mMemcKey . 'lock';
 		$this->mMemc->delete( $lockKey );
 	}
-	
+
 	function get( $key, $useDB ) {
 		global $wgLang, $wgLanguageCode;
-		
+
 		# If uninitialised, someone is trying to call this halfway through Setup.php
 		if ( !$this->mInitialised ) {
 			return "&lt;$key&gt;";
 		}
-		
+
 		$message = false;
 		if ( !$this->mDisable && $useDB ) {
 			$title = $wgLang->ucfirst( $key );
-			
+
 
 			# Try the cache
 			if ( $this->mUseCache && $this->mCache && array_key_exists( $title, $this->mCache ) ) {
 				$message = $this->mCache[$title];
 			}
-			
+
 			# If it wasn't in the cache, load each message from the DB individually
 			if ( !$message ) {
 				$dbr =& wfGetDB( DB_SLAVE );
-				$result = $dbr->getArray( 'cur', array('cur_text'), 
+				$result = $dbr->getArray( 'cur', array('cur_text'),
 				  array( 'cur_namespace' => NS_MEDIAWIKI, 'cur_title' => $title ),
 				  'MessageCache::get' );
 				if ( $result ) {
@@ -233,37 +233,37 @@ class MessageCache
 
 		# Try the array in $wgLang
 		if ( !$message ) {
-            wfSuppressWarnings();
+			wfSuppressWarnings();
 			$message = $wgLang->getMessage( $key );
-            wfRestoreWarnings();
-		} 
+			wfRestoreWarnings();
+		}
 
 		# Try the English array
 		if ( !$message && $wgLanguageCode != 'en' ) {
-            wfSuppressWarnings();
+			wfSuppressWarnings();
 			$message = Language::getMessage( $key );
-            wfRestoreWarnings();
+			wfRestoreWarnings();
 		}
-		
+
 		# Final fallback
 		if ( !$message ) {
 			$message = "&lt;$key&gt;";
 		}
-		
+
 		# Replace brace tags
 		$message = $this->transform( $message );
 		return $message;
 	}
 
 	function transform( $message ) {
-		if( !$this->mDisableTransform ) { 
+		if( !$this->mDisableTransform ) {
 			if ( strstr( $message, '{{' ) !== false ) {
 				$message = $this->mParser->transformMsg( $message, $this->mParserOptions );
 			}
 		}
 		return $message;
 	}
-	
+
 	function disable() { $this->mDisable = true; }
 	function enable() { $this->mDisable = false; }
 	function disableTransform() { $this->mDisableTransform = true; }
@@ -278,7 +278,7 @@ class MessageCache
 			$this->mExtensionMessages[$key] = $value;
 		}
 	}
-	
+
 	/**
 	 * Clear all stored messages. Mainly used after a mass rebuild.
 	 */
