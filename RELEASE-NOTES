@@ -1,5 +1,48 @@
 = MediaWiki release notes =
 
+== Version 1.2.0rc1, 2004-02-27 ==
+
+This is a RELEASE CANDIDATE for the new production release. It is more or
+less in sync with what is running on Wikipedia right now. There may be
+some interesting bugs, it may eat all your data, and documentation may
+not be up to date. If you use this on a production site, BE CAREFUL.
+
+New features in 1.2:
+* Image resizing/thumbnail generation
+* Stricter upload file extension blacklist and whitelist options
+* More flexible blocking system; time period may be set
+* Handier sysop account management. An account marked "bureaucrat"
+  may assign sysop access to other accounts via Special:Makesysop.
+  (The exact details of this may change in the future)
+* Support for a squid cache with explicit purging of cached anon pages
+* Optional compression of old revision text (requires zlib support)
+* Fuzzy title search (experimental, requires memcached)
+* Page rendering cache (experimental)
+
+Fixes and tweaks:
+* Should work out of the box on MySQL 3.2.x again. On 4.x set
+  $wgEnablePersistentLC = true; to turn on the link cache table
+  for a slight rendering speed boost.
+* Various bug fixes.
+* Other stuff we forgot.
+* Documentation more out of date than ever before!
+
+=== IMPORTANT BEHAVIOR CHANGES: ===
+
+* wiki.phtml and redirect.phtml are now installed as wiki.php and redirect.php
+  by default. If upgrading from an old installation or doing a manual install,
+  do check $wgScriptExtension and the $wgScript variables to make sure
+  everything's correct one way or the other.
+
+=== Database changes ===
+
+An index was added to recentchanges table to speed up Newpages
+(patch-rc-newindex.sql for manual updaters).
+
+Expiration date field has been added to ipblocks table
+(patch-ipb_expiry.sql for manual updaters).
+
+
 == Version 1.1.0, 2003-12-08 ==
 
 This is the new production release. Any following 1.1.x releases are expected
