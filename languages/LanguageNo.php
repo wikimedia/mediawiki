@@ -8,21 +8,24 @@
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesNo = array(
-	-2	=> "Medium",
-	-1	=> "Spesial",
-	0	=> "",
-	1	=> "Diskusjon",
-	2	=> "Bruker",
-	3	=> "Brukerdiskusjon",
-	4	=> "Wikipedia",
-	5	=> "Wikipedia-diskusjon",
-	6	=> "Bilde",
-	7	=> "Bildediskusjon",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki-diskusjon",
-	10  => "Template",
-	11  => "Template_talk"
-
+	NS_MEDIA          => "Medium",
+	NS_SPECIAL        => "Spesial",
+	NS_MAIN           => "",
+	NS_TALK           => "Diskusjon",
+	NS_USER           => "Bruker",
+	NS_USER_TALK      => "Brukerdiskusjon",
+	NS_WIKIPEDIA      => "Wikipedia",
+	NS_WIKIPEDIA_TALK => "Wikipedia-diskusjon",
+	NS_IMAGE          => "Bilde",
+	NS_IMAGE_TALK     => "Bildediskusjon",
+	NS_MEDIAWIKI      => "MediaWiki",
+	NS_MEDIAWIKI_TALK => "MediaWiki-diskusjon",
+	NS_TEMPLATE       => "Mal",
+	NS_TEMPLATE_TALK  => "Maldiskusjon",
+	NS_HELP           => "Hjelp",
+	NS_HELP_TALK      => "Hjelpdiskusjon",
+	NS_CATEGORY       => "Kategori",
+	NS_CATEGORY_TALK  => "Kategoridiskusjon",
 );
 
 /* private */ $wgQuickbarSettingsNo = array(
@@ -1159,8 +1162,12 @@ class LanguageNo extends LanguageUtf8 {
 
 	function getMessage( $key )
 	{
-            global $wgAllMessagesNo;
-            return $wgAllMessagesNo[$key];
+		global $wgAllMessagesNo;
+		if( isset( $wgAllMessagesNo[$key] ) ) {
+			return $wgAllMessagesNo[$key];
+		} else {
+			return ""; # ??
+		}
 	}
 
 	# Inherit ucfirst()
