@@ -498,7 +498,7 @@ class Title {
 		if( Namespace::getUser() == $this->mNamespace
 			and preg_match("/\\.(css|js)$/", $this->mTextform )
 			and !$wgUser->isSysop()
-			and !preg_match("/^".$wgUser->getName()."/", $this->mTextform) )
+			and !preg_match("/^".preg_quote($wgUser->getName(), '/')."/", $this->mTextform) )
 		{ return false; }
 		$ur = $wgUser->getRights();
 		foreach ( $this->getRestrictions() as $r ) {
