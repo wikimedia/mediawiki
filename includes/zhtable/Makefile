@@ -178,33 +178,51 @@ simp2trad.php: simp2trad1to1.t simpphrases.t
 	cat simpphrases.t >> simp2trad.php
 	printf '";\n$$t=strtr($$str, $$simp2trad);\necho $$t;\n?>' >> simp2trad.php
 
-simp2trad.phrases.t: trad2simp.php tradphrases.t simp2tradPhrases.manual
+simp2trad.phrases.t: trad2simp.php tradphrases.t toTW.manual
 	php -f trad2simp.php | sed  's/\(.*\)/"\1" => /' > tmp1
 	cat tradphrases.t | sed  's/\(.*\)/"\1",/' > tmp2
 	paste tmp1 tmp2 > simp2trad.phrases.t
-	sed 's/\(.*\)\t\(.*\)/"\1"=>"\2",/' simp2tradPhrases.manual >> simp2trad.phrases.t
+	sed 's/\(.*\)\t\(.*\)/"\1"=>"\2",/' toTW.manual >> simp2trad.phrases.t
 
-trad2simp.phrases.t: simp2trad.php simpphrases.t trad2simpPhrases.manual
+trad2simp.phrases.t: simp2trad.php simpphrases.t toCN.manual
 	php -f simp2trad.php | sed  's/\(.*\)/"\1" => /' > tmp1
 	cat simpphrases.t | sed  's/\(.*\)/"\1",/' > tmp2
 	paste tmp1 tmp2 > trad2simp.phrases.t
-	sed 's/\(.*\)\t\(.*\)/"\1"=>"\2",/' trad2simpPhrases.manual >> trad2simp.phrases.t
+	sed 's/\(.*\)\t\(.*\)/"\1"=>"\2",/' toCN.manual >> trad2simp.phrases.t
 
-ZhConversion.php: simp2trad1to1.t simp2trad.phrases.t trad2simp1to1.t trad2simp.phrases.t
+ZhConversion.php: simp2trad1to1.t simp2trad.phrases.t trad2simp1to1.t trad2simp.phrases.t toHK.manual toSG.manual
 	printf '<?php\n/**\n * Simplified/Traditional Chinese conversion tables\n' > ZhConversion.php
 	printf ' *\n * Automatically generated using code and data in includes/zhtable/\n' >> ZhConversion.php
 	printf ' * Do not modify directly! \n *\n * @package MediaWiki\n*/\n\n' >> ZhConversion.php
-	printf '$$zhSimp2Trad=array(\n' >> ZhConversion.php
+	printf '$$zh2TW=array(\n' >> ZhConversion.php
 	cat simp2trad1to1.t >> ZhConversion.php
 	echo >> ZhConversion.php
 	cat simp2trad.phrases.t >> ZhConversion.php
+	echo >> ZhConversion.php
 	echo ');' >> ZhConversion.php
 	echo >> ZhConversion.php
-	printf '$$zhTrad2Simp=array(\n' >> ZhConversion.php
+	echo >> ZhConversion.php
+	printf '$$zh2CN=array(\n' >> ZhConversion.php
 	cat trad2simp1to1.t >> ZhConversion.php
 	echo >> ZhConversion.php
 	cat trad2simp.phrases.t >> ZhConversion.php
-	printf ');\n?>' >> ZhConversion.php
+	echo >> ZhConversion.php
+	printf ');' >> ZhConversion.php
+	echo >> ZhConversion.php
+	echo >> ZhConversion.php
+	printf '$$zh2HK=array(\n' >> ZhConversion.php
+	sed 's/\(.*\)\t\(.*\)/"\1" => "\2",/' toHK.manual >> ZhConversion.php
+	echo >> ZhConversion.php
+	printf ');' >> ZhConversion.php
+	echo >> ZhConversion.php
+	echo >> ZhConversion.php
+	printf '$$zh2SG=array(\n' >> ZhConversion.php
+	sed 's/\(.*\)\t\(.*\)/"\1" => "\2",/' toSG.manual >> ZhConversion.php
+	echo >> ZhConversion.php
+	printf ');' >> ZhConversion.php
+	echo >> ZhConversion.php
+	printf '?>' >> ZhConversion.php
+
 
 clean:
 	rm -f ZhConversion.php tmp1 tmp2 tmp3 t3 *.t trad2simp.php simp2trad.php
