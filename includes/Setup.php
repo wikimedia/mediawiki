@@ -313,7 +313,7 @@ if( $wgLangClass == $wgContLangClass ) {
 	$wgLang = setupLangObj( $wgLangClass );
 }
 
-wfProfileOut( $fname.'-language' );
+wfProfileOut( $fname.'-language2' );
 wfProfileIn( $fname.'-MessageCache' );
 
 $wgMessageCache = new MessageCache;
