@@ -42,7 +42,7 @@ If something goes wrong, you want to be able to start again.
 
 Your image files, configuration, etc can simply be copied or archived as
 you would any other files. (Make sure that the contents of your
-LocalSettings.php are not accidentally make public, as this contains
+LocalSettings.php are not accidentally made public, as this contains
 a database password.)
 
 To back up the database, use the tools provided by your service provider
