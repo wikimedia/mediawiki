@@ -327,16 +327,26 @@ class Article {
 		if( $oldid ) {
 			$revision = Revision::newFromId( $oldid );
 			if( is_null( $revision ) ) {
+				wfDebug( "$fname failed to retrieve specified revision, id $oldid\n" );
 				return false;
 			}
 			$data = $this->pageDataFromId( $dbr, $revision->getPage() );
 			if( !$data ) {
+				wfDebug( "$fname failed to get page data linked to revision id $oldid\n" );
 				return false;
 			}
 			$this->mTitle = Title::makeTitle( $data->page_namespace, $data->page_title );
 		} else {
 			$data = $this->pageDataFromTitle( $dbr, $this->mTitle );
+			if( !$data ) {
+				wfDebug( "$fname failed to find page data for title " . $this->mTitle->getPrefixedText() . "\n" );
+				return false;
+			}
 			$revision = Revision::newFromId( $data->page_latest );
+			if( is_null( $revision ) ) {
+				wfDebug( "$fname failed to retrieve current page, rev_id $data->page_latest\n" );
+				return false;
+			}
 		}
 
 		# If we got a redirect, follow it (unless we've been told
