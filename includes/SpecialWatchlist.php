@@ -95,14 +95,18 @@ function wfSpecialWatchlist() {
 		$cutoff = false;
 		$npages = wfMsg( "all" );
 	} else {
-	        $docutoff = "AND cur_timestamp > '" .
-		  ( $cutoff = $dbr->timestamp( time() - intval( $days * 86400 ) ) )
-		  . "'";
-	        $sql = "SELECT COUNT(*) AS n FROM $cur WHERE cur_timestamp>'$cutoff'";
+		$cutoff = $dbr->timestamp( time() - intval( $days * 86400 ) );
+
+		// Excessively expensive query removed and replace with an estimate that's roughly the same on en.wikipedia.org
+		// Query below was more expensive than the real watchlist queries
+		/*
+		$docutoff = "AND cur_timestamp > '$cutoff'";
+		$sql = "SELECT COUNT(*) AS n FROM $cur WHERE cur_timestamp>'$cutoff'";
 		$res = $dbr->query( $sql, $fname );
 		$s = $dbr->fetchObject( $res );
 		$npages = $s->n;
-
+		*/
+		$npages = 40000 * $days;
 	}
 
 	if(isset($_REQUEST['magic'])) {
