@@ -220,6 +220,7 @@ class OutputPage {
 	}
 
 	function tryParserCache( $article, $user ) {
+		global $wgParserCache;
 		$parserOutput = $wgParserCache->get( $article, $user );
 		if ( $parserOutput !== false ) {
 			$this->mLanguageLinks += $parserOutput->getLanguageLinks();
