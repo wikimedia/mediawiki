@@ -13,7 +13,7 @@ CREATE TABLE `group` (
 
 -- Relation table between user and groups
 CREATE TABLE user_groups (
-	ug_uid int(5) unsigned NOT NULL default '0',
-	ug_gid int(5) unsigned NOT NULL default '0',
-	PRIMARY KEY  (ug_uid,ug_gid)
+	ug_user int(5) unsigned NOT NULL default '0',
+	ug_group int(5) unsigned NOT NULL default '0',
+	PRIMARY KEY  (ug_user,ug_group)
 );

@@ -6,7 +6,7 @@
 -- database but keep user rights local to the wiki.
 
 CREATE TABLE user_rights (
-	ur_uid int(5) unsigned NOT NULL,
+	ur_user int(5) unsigned NOT NULL,
 	ur_rights tinyblob NOT NULL default '',
 	UNIQUE KEY user_id (user_id)
 ) PACK_KEYS=1;

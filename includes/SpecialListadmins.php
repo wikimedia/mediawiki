@@ -33,7 +33,7 @@ class ListAdminsPage extends PageQueryPage {
 		$userspace = Namespace::getUser();
 		return "SELECT ur_rights as type,{$userspace} as namespace,".
 		       "user_name as title, user_name as value ".
-		       "FROM {$user} ,{$user_rights} WHERE user_id=ur_uid AND ur_rights LIKE '%sysop%'";
+		       "FROM {$user} ,{$user_rights} WHERE user_id=ur_user AND ur_rights LIKE '%sysop%'";
 	}
 }
 

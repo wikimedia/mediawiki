@@ -160,10 +160,10 @@ class MakesysopForm {
 		}
 		if ( $username{0} == "#" ) {
 			$id = intval( substr( $username, 1 ) );
-			$sql = "SELECT ur_uid,ur_rights FROM $user_rights WHERE ur_uid=$id FOR UPDATE";
+			$sql = "SELECT ur_user,ur_rights FROM $user_rights WHERE ur_user=$id FOR UPDATE";
 		} else {
 			$encName = $dbw->strencode( $username );
-			$sql = "SELECT ur_uid, ur_rights FROM $usertable LEFT JOIN $user_rights ON user_id=ur_uid WHERE user_name = '{$username}' FOR UPDATE";
+			$sql = "SELECT ur_user, ur_rights FROM $usertable LEFT JOIN $user_rights ON user_id=ur_user WHERE user_name = '{$username}' FOR UPDATE";
 		}
 		
 		$prev = $dbw->ignoreErrors( TRUE );
@@ -176,7 +176,7 @@ class MakesysopForm {
 		}
 
 		$row = $dbw->fetchObject( $res );
-		$id = intval( $row->ur_uid );
+		$id = intval( $row->ur_user );
 		$rightsNotation = array();
 
 		if ( $wgUser->isDeveloper() ) {
@@ -209,8 +209,8 @@ class MakesysopForm {
 		} else {
 			#$sql = "UPDATE $user_rights SET user_rights = '{$newrights}' WHERE user_id = $id LIMIT 1";
 			#$dbw->query($sql);
-			$dbw->replace( $user_rights, array( array( 'ur_uid', 'ur_rights' )),
-				array( 'ur_uid' => $id, 'ur_rights' => $newrights ) , $fname );
+			$dbw->replace( $user_rights, array( array( 'ur_user', 'ur_rights' )),
+				array( 'ur_user' => $id, 'ur_rights' => $newrights ) , $fname );
 			$wgMemc->delete( "$dbName:user:id:$id" );
 			
 			$log = new LogPage( 'rights' );
