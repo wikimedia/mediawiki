@@ -43,7 +43,7 @@ class ParserCache {
 			$canCache = $article->checkTouched();
 			$cacheTime = $value->getCacheTime();
 			$touched = $article->mTouched;
-			if ( !$canCache || $value->getCacheTime() <= $touched || $cacheTime < $wgCacheEpoch ) {
+			if ( !$canCache || $value->expired( $touched ) ) {
 				if ( !$canCache ) {
 					wfDebug( "Invalid cached redirect, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
 				} else {
