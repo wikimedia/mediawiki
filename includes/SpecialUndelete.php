@@ -110,6 +110,7 @@ function wfSpecialUndelete( $par )
 /* private */ function doUndeleteArticle( $namespace, $title )
 	{
 		global $wgUser, $wgOut, $wgLang, $target, $wgDeferredUpdateList;
+		global  $wgUseSquid, $wgInternalServer;
 
 		$fname = "doUndeleteArticle";
 
@@ -180,6 +181,13 @@ function wfSpecialUndelete( $par )
 			array_push( $wgDeferredUpdateList, $u );
 				
 			Article::onArticleCreate( $to );
+
+			# Squid purging
+			if ( $wgUseSquid ) {
+				/* this needs to be done after LinksUpdate */
+				$u = new SquidUpdate($to);
+				array_push( $wgDeferredUpdateList, $u );
+			}
 
 			#TODO: SearchUpdate, etc.
 		}

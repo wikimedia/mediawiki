@@ -102,6 +102,7 @@ class MovePageForm {
 		global $wgOut, $wgUser, $wgLang;
 		global $wpNewTitle, $wpOldTitle, $wpMovetalk, $target;
 		global $wgDeferredUpdateList, $wgMessageCache;
+		global  $wgUseSquid, $wgInternalServer;
 		$fname = "MovePageForm::doSubmit";
 
 		$this->ot = Title::newFromText( $wpOldTitle );
@@ -159,6 +160,26 @@ class MovePageForm {
 		$u->doUpdate();
 		$u = new SearchUpdate( $this->newid, $this->ot->getPrefixedDBkey(), "" );
 		$u->doUpdate();
+		
+		# Squid purging
+		if ( $wgUseSquid ) {
+			/* this needs to be done after LinksUpdate */
+			$urlArr = Array(				
+				# purge new title
+				$wgInternalServer.wfLocalUrl( $this->nt->getPrefixedURL()),
+				# purge old title
+				$wgInternalServer.wfLocalUrl( $this->ot->getPrefixedURL())
+			);			
+			wfPurgeSquidServers($urlArr);	
+			# purge pages linking to new title
+			$u = new SquidUpdate($this->nt);
+			array_push( $wgDeferredUpdateList, $u );
+			# purge pages linking to old title
+			$u = new SquidUpdate($this->ot);
+			array_push( $wgDeferredUpdateList, $u );
+			
+			
+		}
 
 		# Move talk page if (1) the checkbox says to, (2) the source
 		# and target namespaces are identical, (3) the namespaces are not
@@ -196,6 +217,26 @@ class MovePageForm {
 				$u->doUpdate();
 				$u = new SearchUpdate( $this->newid, $this->ot->getPrefixedDBkey(), "" );
 				$u->doUpdate();
+				
+				# Squid purging
+				if ( $wgUseSquid ) {
+					/* this needs to be done after LinksUpdate */
+					$urlArr = Array(				
+						# purge new title
+						$wgInternalServer.wfLocalUrl( $this->nt->getPrefixedURL()),
+						# purge old title
+						$wgInternalServer.wfLocalUrl( $this->ot->getPrefixedURL())
+					);			
+					wfPurgeSquidServers($urlArr);	
+					# purge pages linking to new title
+					$u = new SquidUpdate($this->nt);
+					array_push( $wgDeferredUpdateList, $u );
+					# purge pages linking to old title
+					$u = new SquidUpdate($this->ot);
+					array_push( $wgDeferredUpdateList, $u );
+
+
+				}
 			}
 		}
 		$success = wfLocalUrl( $wgLang->specialPage( "Movepage" ),

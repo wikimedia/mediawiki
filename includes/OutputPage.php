@@ -254,7 +254,7 @@ class OutputPage {
 		if( $this->mLastModified != "" ) {
 			if( $wgUseSquid && ! isset( $_COOKIE[ini_get( "session.name") ] ) ) {
 				if ( $wgUseESI ) {
-					# We'll purge the proxy cache for anons explicitly, but require end user agents
+					# We'll purge the proxy cache explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
 					# Surrogate-Control controls our Squid, Cache-Control downstream caches
 					wfDebug( "** proxy caching with ESI; {$this->mLastModified} **\n", false );
