@@ -42,13 +42,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesIa = array(
-	"Sempre produce PNG",
-	"HTML si multo simple, alteremente PNG",
-	"HTML si possibile, alteremente PNG",
-	"Lassa lo como TeX (pro navigatores in modo texto)",
-	"Recommendate pro navigatores moderne"
-);
 
 /* private */ $wgUserTogglesIa = array(
 	"hover"		=> "Evidentiar wikiligamines sub le ratto",
@@ -917,7 +910,16 @@ nove titulo. Per favor fusiona los manualmente.",
 "movedto"		=> "movite a",
 "movetalk"		=> "Mover le pagina de \"discussion\" tamben, si applicabile.",
 "talkpagemoved" => "Le pagina de discussion correspondente tamben ha essite movite.",
-"talkpagenotmoved" => "Le pagina de discussion correspondente <strong>non</strong> ha essite movite."
+"talkpagenotmoved" => "Le pagina de discussion correspondente <strong>non</strong> ha essite movite.",
+
+# Math
+
+	'mw_math_png' => "Sempre produce PNG",
+	'mw_math_simple' => "HTML si multo simple, alteremente PNG",
+	'mw_math_html' => "HTML si possibile, alteremente PNG",
+	'mw_math_source' => "Lassa lo como TeX (pro navigatores in modo texto)",
+	'mw_math_modern' => "Recommendate pro navigatores moderne",
+	'mw_math_mathml' => 'MathML',
 
 );
 
@@ -957,11 +959,6 @@ class LanguageIa extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesIa;
 		return $wgSkinNamesIa;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesIa;
-		return $wgMathNamesIa;
 	}
 
 	function getUserToggles() {

@@ -41,13 +41,6 @@ require_once( "LanguageUtf8.php" );
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesUk = array(
-	"Завжди генерувати PNG",
-	"HTML в простих випадках, інакше PNG",
-	"HTML якщо можливо, інакше PNG",
-	"Залишити в вигляді ТеХ (для текстових браузерів)",
-	"Рекомендовано для сучасних браузерів"
-);
 
 /* Non-std date formats are only enabled for English, which is idiosyncratic that way */
 /* private */ $wgDateFormatsUk = array(
@@ -955,6 +948,14 @@ IP-адреси.",
 "talkpagemoved" => "Відповідна сторінка обговорення також переміщена.",
 "talkpagenotmoved" => "Відповідна сторінка обговорення <strong>не</strong> переміщена.",
 
+# Math
+
+'mw_math_png' => "Завжди генерувати PNG",
+'mw_math_simple' => "HTML в простих випадках, інакше PNG",
+'mw_math_html' => "HTML якщо можливо, інакше PNG",
+'mw_math_source' => "Залишити в вигляді ТеХ (для текстових браузерів)",
+'mw_math_modern' => "Рекомендовано для сучасних браузерів",
+
 );
 
 class LanguageUk extends LanguageUtf8 {
@@ -990,11 +991,6 @@ class LanguageUk extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesUk;
 		return $wgSkinNamesUk;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesUk;
-		return $wgMathNamesUk;
 	}
 
 	function getDateFormats() {

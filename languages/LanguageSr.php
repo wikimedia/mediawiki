@@ -32,14 +32,6 @@ require_once( "LanguageUtf8.php" );
  "Обична", "Носталгија", "Келнско плаво", "Педингтон", "Монпарнас"
 );
 
-/* private */ $wgMathNamesSr = array(
- "Увек прикажи PNG",
- "HTML ако је врло једноставно, иначе PNG",
- "HTML ако је могуће, иначе PNG",
- "Остави као ТеХ (за текстуалне бровсере)",
- "Препоручено за савремене бровсере"
-);
-
 /* private */ $wgDateFormatsSr = array(
  "Без посебних жеља",
  "Јануар 15, 2001",
@@ -1046,7 +1038,16 @@ $3...
 # Namespace 8 related
 
 "allmessages" => "Све_поруке",
-"allmessagestext" => "Ово је списак свих порука које су у МедијаВики: именском простору"
+"allmessagestext" => "Ово је списак свих порука које су у МедијаВики: именском простору",
+
+# Math
+
+ 'mw_math_png' => "Увек прикажи PNG",
+ 'mw_math_simple' => "HTML ако је врло једноставно, иначе PNG",
+ 'mw_math_html' => "HTML ако је могуће, иначе PNG",
+ 'mw_math_source' => "Остави као ТеХ (за текстуалне бровсере)",
+ 'mw_math_modern' => "Препоручено за савремене бровсере",
+
 );
 
 #--------------------------------------------------------------------------
@@ -1087,11 +1088,6 @@ class LanguageSr extends LanguageUtf8 {
   return $wgSkinNamesSr;
  }
 
- function getMathNames() {
-  global $wgMathNamesSr;
-  return $wgMathNamesSr;
- }
- 
  function getDateFormats() {
   global $wgDateFormatsSr;
   return $wgDateFormatsSr;

@@ -46,13 +46,6 @@ require_once( "LanguageUtf8.php" );
 	'myskin' => "MySkin"
 );
 
-/* private */ $wgMathNamesJa = array(
-	"常にPNG",
-	"シンプルな数式はHTML、それ以外はPNG",
-	"できる限りHTML、さもなければPNG",
-	"TeXのままにする (テキストブラウザ向け)",
-        "可能ならばMathMLを使う (実験中の機能)"
-);
 
 /* private */ $wgUserTogglesJa = array(
 	"hover" => "ウィキリンクにツールチップを表示する",
@@ -918,6 +911,15 @@ Please choose another name." */,
 "talkpagemoved" => "付随のノートのページも移動しました。" /* "The corresponding talk page was also moved." */,
 "talkpagenotmoved" => "付随のノートのページは<b>移動されませんでした。</b>" /* "The corresponding talk page was <strong>not</strong> moved." */,
 
+# Math
+
+	'mw_math_png' => "常にPNG",
+	'mw_math_simple' => "シンプルな数式はHTML、それ以外はPNG",
+	'mw_math_html' => "できる限りHTML、さもなければPNG",
+	'mw_math_source' => "TeXのままにする (テキストブラウザ向け)",
+        'mw_math_modern' => "可能ならばMathMLを使う (実験中の機能)",
+	'mw_math_mathml' => 'MathML',
+
 );
 
 class LanguageJa extends LanguageUtf8 {
@@ -949,11 +951,6 @@ class LanguageJa extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesJa;
 		return $wgSkinNamesJa;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesJa;
-		return $wgMathNamesJa;
 	}
 
 	function getUserToggles() {

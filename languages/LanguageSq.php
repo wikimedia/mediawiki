@@ -44,13 +44,6 @@ require_once("LanguageUtf8.php");
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesSq = array(
-	"Gjithmonë PNG",
-	"HTML në qoftë se është e thjeshtë ose ndryshe PNG",
-	"HTML në qoftë se është e mundur ose ndryshe PNG",
-	"Lëre si TeX (për shfletuesit tekst)",
-	"E rekomanduar për shfletuesit modern"
-);
 
 /* private */ $wgDateFormatsSq = array(
 	"Pa preferencë",
@@ -1017,6 +1010,15 @@ Të lutem, përpuqi vetë.",
 "talkpagemoved" => "Faqja e diskutimit korrespondente u zhvendos gjithashtu.",
 "talkpagenotmoved" => "Faqja e diskutimit korrespondente <strong>nuk</strong> u zhvendos.",
 
+# Math
+
+	'mw_math_png' => "Gjithmonë PNG",
+	'mw_math_simple' => "HTML në qoftë se është e thjeshtë ose ndryshe PNG",
+	'mw_math_html' => "HTML në qoftë se është e mundur ose ndryshe PNG",
+	'mw_math_source' => "Lëre si TeX (për shfletuesit tekst)",
+	'mw_math_modern' => "E rekomanduar për shfletuesit modern",
+	'mw_math_mathml' => 'MathML',
+
 );
 
 class LanguageSq extends LanguageUtf8 {
@@ -1052,11 +1054,6 @@ class LanguageSq extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesSq;
 		return $wgSkinNamesSq;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesSq;
-		return $wgMathNamesSq;
 	}
 
 	function getDateFormats() {

@@ -47,14 +47,6 @@ require_once("LanguageUtf8.php");
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesHe = array(
-	"תמיד הצג כ-PNG",
-	"HTML אם פשוט, אחרת PNG",
-	"HTML אם אפשר, אחרת PNG",
-	"השאר כקוד TeX",
-	"מומלץ לדפדפנים עדכניים"
-
-);
 
 /* private */ $wgUserTogglesHe = array(
 	"hover"		=> "הצג טיפ כאשר מצביעים על קישור",
@@ -785,6 +777,15 @@ $3 $9",
 "talkpagemoved" => "דף השיחה המשוייך הועבר גם כן.",
 "talkpagenotmoved" => "דף השיחה המשוייך <strong>לא</strong> הועבר.",
 
+# Math
+
+	'mw_math_png' =>  "תמיד הצג כ-PNG",
+	'mw_math_simple' => "HTML אם פשוט, אחרת PNG",
+	'mw_math_html' => "HTML אם אפשר, אחרת PNG",
+	'mw_math_source' => "השאר כקוד TeX",
+	'mw_math_modern' => "מומלץ לדפדפנים עדכניים",
+	'mw_math_mathml' => 'MathML',
+
 );
 
 class LanguageHe extends LanguageUtf8 {
@@ -829,16 +830,10 @@ class LanguageHe extends LanguageUtf8 {
 		return $wgSkinNamesHe;
 	}
 
-	function getMathNames() {
-		global $wgMathNamesHe;
-		return $wgMathNamesHe;
-	}
-
 	function getUserToggles() {
 		global $wgUserTogglesHe;
 		return $wgUserTogglesHe;
 	}
-
 
 	function getMonthName( $key )
 	{
