@@ -457,9 +457,11 @@ class Database {
 	function startTimer( $timeout )
 	{
 		global $IP;
-
-		$tid = mysql_thread_id( $this->mConn );
-		exec( "php $IP/killthread.php $timeout $tid &>/dev/null &" );
+		if( function_exists( "mysql_thread_id" ) ) {
+			# This will kill the query if it's still running after $timeout seconds.
+			$tid = mysql_thread_id( $this->mConn );
+			exec( "php $IP/killthread.php $timeout $tid &>/dev/null &" );
+		}
 	}
 
 	function stopTimer()
