@@ -24,10 +24,9 @@
  * to the computations individual esi snippets need. Most importantly no body
  * parsing for most of those of course.
  * 
- * PHPTAL support has been moved to a subclass in SkinPHPTal.php
- * Set this in LocalSettings to enable phptal:
- * set_include_path(get_include_path() . ":" . $IP.'/PHPTAL-NP-0.7.0/libs');
- * $wgUsePHPTal = true;
+ * PHPTAL support has been moved to a subclass in SkinPHPTal.php,
+ * and is optional. You'll need to install PHPTAL manually to use
+ * skins that depend on it.
  *
  * @package MediaWiki
  * @subpackage Skins
