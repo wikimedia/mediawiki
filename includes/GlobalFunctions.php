@@ -290,7 +290,12 @@ $wgReplacementKeys = array( "$1", "$2", "$3", "$4", "$5", "$6", "$7", "$8", "$9"
 function wfMsg( $key ) {
 	global $wgRequest;
 	if ( $wgRequest->getVal( 'debugmsg' ) )
-		return $key;
+	{
+		if ( $key == 'linktrail' /* a special case where we want to return something specific */ )
+			return "/^()(.*)$/sD";
+		else
+			return $key;
+	}
 	$args = func_get_args();
 	if ( count( $args ) ) {
 		array_shift( $args );
