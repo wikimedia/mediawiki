@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
@@ -30,8 +30,8 @@ if($wgMetaNamespace === FALSE)
 	11  => "Berjocht_oerlis",
             12  => "Hulp",
             13  => "Hulp_oerlis",
-            14  => "Kategorie",
-            15  => "Kategorie_oerlis"
+            14  => "Kategory",
+            15  => "Kategory_oerlis"
 
 ) + $wgNamespaceNamesEn;
 
