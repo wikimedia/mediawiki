@@ -44,6 +44,11 @@ class RCCacheEntry extends RecentChange
 	}
 } ;
 
+
+# The main skin class that provide methods and properties for all other skins
+# including PHPTal skins.
+# This base class is also the "Standard" skin.
+
 class Skin {
 
 	/* private */ var $lastdate, $lastline;
@@ -53,25 +58,23 @@ class Skin {
 	var $rcMoveIndex;
 	var $postParseLinkColour = true;
 
-	function Skin()
-	{
+	function Skin() {
 		global $wgUseOldExistenceCheck;
 		$postParseLinkColour = !$wgUseOldExistenceCheck;
 		$this->linktrail = wfMsg('linktrail');
 	}
 
-	function getSkinNames()
-	{
+	function getSkinNames() {
 		global $wgValidSkinNames;
 		return $wgValidSkinNames;
 	}
 
-	function getStylesheet()
-	{
+	function getStylesheet() {
 		return 'wikistandard.css';
 	}
+	
 	function getSkinName() {
-		return "standard";
+		return 'standard';
 	}
 
 	# Get/set accessor for delayed link colouring
@@ -79,8 +82,7 @@ class Skin {
 		return wfSetVar( $this->postParseLinkColour, $setting );
 	}
 
-	function qbSetting()
-	{
+	function qbSetting() {
 		global $wgOut, $wgUser;
 
 		if ( $wgOut->isQuickbarSuppressed() ) { return 0; }
@@ -89,8 +91,7 @@ class Skin {
 		return $q;
 	}
 
-	function initPage( &$out )
-	{
+	function initPage( &$out ) {
 		$fname = 'Skin::initPage';
 		wfProfileIn( $fname );
 
@@ -195,13 +196,12 @@ class Skin {
 		$s .= $this->doGetUserStyles();
 		return $s."\n";
 	}
+	
 	# placeholder, returns generated js in monobook
-	function getUserJs() {
-		return;
-	}
+	function getUserJs() { return; }
 
-	function getUserStyles()
-	{
+	# Return html code that include User stylesheets
+	function getUserStyles() {
 		global $wgOut, $wgStylePath, $wgLang;
 		$s = "<style type='text/css'>\n";
 		$s .= "/*/*/ /*<![CDATA[*/\n"; # <-- Hide the styles from Netscape 4 without hiding them from IE/Mac
@@ -211,11 +211,11 @@ class Skin {
 		return $s;
 	}
 
-	function doGetUserStyles()
-	{
+	# Some styles that are set by user through the user settings interface.
+	function doGetUserStyles() {
 		global $wgUser, $wgLang;
 
-		$csspage = $wgLang->getNsText( NS_MEDIAWIKI ) . ":" . $this->getSkinName() . ".css";
+		$csspage = $wgLang->getNsText( NS_MEDIAWIKI ) . ':' . $this->getSkinName() . '.css';
 		$s = '@import "'.$this->makeUrl($csspage, 'action=raw&ctype=text/css')."\";\n";
 
 		if ( 1 == $wgUser->getOption( 'underline' ) ) {
@@ -320,8 +320,8 @@ class Skin {
 		return $r;
 	}
 
-	function getLogo()
-	{
+	# URL to the logo
+	function getLogo() {
 		global $wgLogo;
 		return $wgLogo;
 	}
@@ -455,15 +455,13 @@ class Skin {
 		}
 	}
 
-	function getQuickbarCompensator( $rows = 1 )
-	{
+	function getQuickbarCompensator( $rows = 1 ) {
 		return "<td width='152' rowspan='{$rows}'>&nbsp;</td>";
 	}
 
 	# This gets called immediately before the </body> tag.
 	#
-	function afterContent()
-	{
+	function afterContent() {
 		global $wgUser, $wgOut, $wgServer;
 		global $wgTitle, $wgLang;
 
@@ -482,8 +480,7 @@ class Skin {
 			"</p>\n\n<p>" . $this->pageStats() . "</p>\n";
 	}
 
-	function doAfterContent()
-	{
+	function doAfterContent() {
 		global $wgUser, $wgOut, $wgLang;
 		$fname =  'Skin::doAfterContent';
 		wfProfileIn( $fname );
@@ -530,8 +527,7 @@ class Skin {
 		return $s;
 	}
 
-	function pageTitleLinks()
-	{
+	function pageTitleLinks() {
 		global $wgOut, $wgTitle, $wgUser, $wgLang, $wgUseApproval, $wgRequest;
 
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
@@ -597,8 +593,7 @@ class Skin {
 		return '';
 	}
 
-	function printableLink()
-	{
+	function printableLink() {
 		global $wgOut, $wgFeedClasses, $wgRequest;
 
 		$baseurl = $_SERVER['REQUEST_URI'];
@@ -620,8 +615,7 @@ class Skin {
 		return $s;
 	}
 
-	function pageTitle()
-	{
+	function pageTitle() {
 		global $wgOut, $wgTitle, $wgUser;
 
 		$s = '<h1 class="pagetitle">' . htmlspecialchars( $wgOut->getPageTitle() ) . '</h1>';
@@ -629,8 +623,7 @@ class Skin {
 		return $s;
 	}
 
-	function pageSubtitle()
-	{
+	function pageSubtitle() {
 		global $wgOut;
 
 		$sub = $wgOut->getSubtitle();
@@ -644,8 +637,7 @@ class Skin {
 		return $s;
 	}
 
-	function subPageSubtitle()
-	{
+	function subPageSubtitle() {
 		global $wgOut,$wgTitle,$wgNamespacesWithSubpages;
 		$subpages = '';
 		if($wgOut->isArticle() && !empty($wgNamespacesWithSubpages[$wgTitle->getNamespace()])) {
@@ -674,8 +666,7 @@ class Skin {
 		return $subpages;
 	}
 
-	function nameAndLogin()
-	{
+	function nameAndLogin() {
 		global $wgUser, $wgTitle, $wgLang, $wgShowIPinHeader, $wgIP;
 
 		$li = $wgLang->specialPage( 'Userlogin' );
@@ -732,8 +723,7 @@ class Skin {
 		return htmlspecialchars( $this->getSearchLink() );
 	}
 
-	function searchForm()
-	{
+	function searchForm() {
 		global $wgRequest;
 		$search = $wgRequest->getText( 'search' );
 
@@ -747,8 +737,7 @@ class Skin {
 		return $s;
 	}
 
-	function topLinks()
-	{
+	function topLinks() {
 		global $wgOut;
 		$sep = " |\n";
 
@@ -765,8 +754,7 @@ class Skin {
 		return $s;
 	}
 
-	function bottomLinks()
-	{
+	function bottomLinks() {
 		global $wgOut, $wgUser, $wgTitle;
 		$sep = " |\n";
 
@@ -807,8 +795,7 @@ class Skin {
 		return $s;
 	}
 
-	function pageStats()
-	{
+	function pageStats() {
 		global $wgOut, $wgLang, $wgArticle, $wgRequest;
 		global $wgDisableCounters, $wgMaxCredits, $wgShowCreditsIfMax;
 
@@ -886,8 +873,7 @@ class Skin {
 		return $img;
 	}
 
-	function lastModified()
-	{
+	function lastModified() {
 		global $wgLang, $wgArticle;
 
 		$timestamp = $wgArticle->getTimestamp();
@@ -900,8 +886,7 @@ class Skin {
 		return $s;
 	}
 
-	function logoText( $align = '' )
-	{
+	function logoText( $align = '' ) {
 		if ( '' != $align ) { $a = " align='{$align}'"; }
 		else { $a = ''; }
 
@@ -918,8 +903,7 @@ class Skin {
 		return $s;
 	}
 
-	function quickBar()
-	{
+	function quickBar() {
 		global $wgOut, $wgTitle, $wgUser, $wgRequest, $wgLang;
 		global $wgDisableUploads, $wgRemoteUploads;
 
@@ -1064,8 +1048,7 @@ class Skin {
 		return $s;
 	}
 
-	function specialPagesList()
-	{
+	function specialPagesList() {
 		global $wgUser, $wgOut, $wgLang, $wgServer, $wgRedirectScript;
 		require_once('SpecialPage.php');
 		$a = array();
@@ -1105,37 +1088,32 @@ class Skin {
 		return $s;
 	}
 
-	function mainPageLink()
-	{
+	function mainPageLink() {
 		$mp = wfMsg( 'mainpage' );
 		$s = $this->makeKnownLink( $mp, $mp );
 		return $s;
 	}
 
-	function copyrightLink()
-	{
+	function copyrightLink() {
 		$s = $this->makeKnownLink( wfMsg( 'copyrightpage' ),
 		  wfMsg( 'copyrightpagename' ) );
 		return $s;
 	}
 
-	function aboutLink()
-	{
+	function aboutLink() {
 		$s = $this->makeKnownLink( wfMsg( 'aboutpage' ),
 		  wfMsg( 'aboutwikipedia' ) );
 		return $s;
 	}
 
 
-      function disclaimerLink()
-	{
+	function disclaimerLink() {
 		$s = $this->makeKnownLink( wfMsg( 'disclaimerpage' ),
 		  wfMsg( 'disclaimers' ) );
 		return $s;
 	}
 
-	function editThisPage()
-	{
+	function editThisPage() {
 		global $wgOut, $wgTitle, $wgRequest;
 
 		$oldid = $wgRequest->getVal( 'oldid' );
@@ -1156,15 +1134,14 @@ class Skin {
 
 			if ( !is_null( $redirect ) ) { $red = "&redirect={$redirect}"; }
 			if ( $oldid && ! isset( $diff ) ) {
-				$oid = "&oldid={$oldid}";
+				$oid = '&oldid='.$oldid;
 			}
 			$s = $this->makeKnownLink( $n, $t, "action=edit{$oid}{$red}" );
 		}
 		return $s;
 	}
 
-	function deleteThisPage()
-	{
+	function deleteThisPage() {
 		global $wgUser, $wgOut, $wgTitle, $wgRequest;
 
 		$diff = $wgRequest->getVal( 'diff' );
@@ -1179,8 +1156,7 @@ class Skin {
 		return $s;
 	}
 
-	function protectThisPage()
-	{
+	function protectThisPage() {
 		global $wgUser, $wgOut, $wgTitle, $wgRequest;
 
 		$diff = $wgRequest->getVal( 'diff' );
@@ -1201,8 +1177,7 @@ class Skin {
 		return $s;
 	}
 
-	function watchThisPage()
-	{
+	function watchThisPage() {
 		global $wgUser, $wgOut, $wgTitle;
 
 		if ( $wgOut->isArticleRelated() ) {
@@ -1222,8 +1197,7 @@ class Skin {
 		return $s;
 	}
 
-	function moveThisPage()
-	{
+	function moveThisPage() {
 		global $wgTitle, $wgLang;
 
 		if ( $wgTitle->userCanEdit() ) {
@@ -1233,8 +1207,7 @@ class Skin {
 		return $s;
 	}
 
-	function historyLink()
-	{
+	function historyLink() {
 		global $wgTitle;
 
 		$s = $this->makeKnownLink( $wgTitle->getPrefixedText(),
@@ -1242,8 +1215,7 @@ class Skin {
 		return $s;
 	}
 
-	function whatLinksHere()
-	{
+	function whatLinksHere() {
 		global $wgTitle, $wgLang;
 
 		$s = $this->makeKnownLink( $wgLang->specialPage( 'Whatlinkshere' ),
@@ -1251,8 +1223,7 @@ class Skin {
 		return $s;
 	}
 
-	function userContribsLink()
-	{
+	function userContribsLink() {
 		global $wgTitle, $wgLang;
 
 		$s = $this->makeKnownLink( $wgLang->specialPage( 'Contributions' ),
@@ -1260,8 +1231,7 @@ class Skin {
 		return $s;
 	}
 
-	function emailUserLink()
-	{
+	function emailUserLink() {
 		global $wgTitle, $wgLang;
 
 		$s = $this->makeKnownLink( $wgLang->specialPage( 'Emailuser' ),
@@ -1269,8 +1239,7 @@ class Skin {
 		return $s;
 	}
 
-	function watchPageLinksLink()
-	{
+	function watchPageLinksLink() {
 		global $wgOut, $wgTitle, $wgLang;
 
 		if ( ! $wgOut->isArticleRelated() ) {
@@ -1283,8 +1252,7 @@ class Skin {
 		return $s;
 	}
 
-	function otherLanguages()
-	{
+	function otherLanguages() {
 		global $wgOut, $wgLang, $wgTitle, $wgUseNewInterlanguage;
 
 		$a = $wgOut->getLanguageLinks();
@@ -1327,15 +1295,13 @@ class Skin {
 		return $s;
 	}
 
-	function bugReportsLink()
-	{
+	function bugReportsLink() {
 		$s = $this->makeKnownLink( wfMsg( 'bugreportspage' ),
 		  wfMsg( 'bugreports' ) );
 		return $s;
 	}
 
-	function dateLink()
-	{
+	function dateLink() {
 		global $wgLinkCache;
 		$t1 = Title::newFromText( gmdate( 'F j' ) );
 		$t2 = Title::newFromText( gmdate( 'Y' ) );
@@ -1363,8 +1329,7 @@ class Skin {
 		return $s;
 	}
 
-	function talkLink()
-	{
+	function talkLink() {
 		global $wgLang, $wgTitle, $wgLinkCache;
 
 		$tns = $wgTitle->getNamespace();
@@ -1406,8 +1371,7 @@ class Skin {
 		return $s;
 	}
 
-	function commentLink()
-	{
+	function commentLink() {
 		global $wgLang, $wgTitle, $wgLinkCache;
 
 		$tns = $wgTitle->getNamespace();
@@ -1432,8 +1396,7 @@ class Skin {
 	# After all the page content is transformed into HTML, it makes
 	# a final pass through here for things like table backgrounds.
 	#
-	function transformContent( $text )
-	{
+	function transformContent( $text ) {
 		return $text;
 	}
 
@@ -1485,8 +1448,7 @@ class Skin {
 	}
 
 	# Pass a title object, not a title string
-	function makeLinkObj( &$nt, $text= '', $query = '', $trail = '', $prefix = '' )
-	{
+	function makeLinkObj( &$nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgOut, $wgUser;
 		$fname = 'Skin::makeLinkObj';
 
@@ -1561,8 +1523,7 @@ class Skin {
 	}
 
 	# Pass a title object, not a title string
-	function makeKnownLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '' )
-	{
+	function makeKnownLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '' ) {
 		global $wgOut, $wgTitle, $wgInputEncoding;
 
 		$fname = 'Skin::makeKnownLinkObj';
@@ -1609,8 +1570,7 @@ class Skin {
 	}
 
 	# Pass a title object, not a title string
-	function makeBrokenLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' )
-	{
+	function makeBrokenLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgOut, $wgUser;
 
 		# Fail gracefully
@@ -1650,8 +1610,7 @@ class Skin {
 	}
 
 	# Pass a title object, not a title string
-	function makeStubLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' )
-	{
+	function makeStubLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgOut, $wgUser;
 
 		$link = $nt->getPrefixedURL();
@@ -1678,8 +1637,7 @@ class Skin {
 		return $s;
 	}
 
-	function makeSelfLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' )
-	{
+	function makeSelfLinkObj( &$nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		$u = $nt->escapeLocalURL( $query );
 		if ( '' == $text ) {
 			$text = htmlspecialchars( $nt->getPrefixedText() );
@@ -1775,8 +1733,7 @@ class Skin {
 		}
 	}
 
-	function fnamePart( $url )
-	{
+	function fnamePart( $url ) {
 		$basename = strrchr( $url, '/' );
 		if ( false === $basename ) {
 			$basename = $url;
@@ -1786,8 +1743,7 @@ class Skin {
 		return htmlspecialchars( $basename );
 	}
 
-	function makeImage( $url, $alt = '' )
-	{
+	function makeImage( $url, $alt = '' ) {
 		global $wgOut;
 
 		if ( '' == $alt ) {
@@ -2013,13 +1969,12 @@ class Skin {
 		return str_replace("\n", ' ', $s);
 	}
 
-	function makeMediaLink( $name, $url, $alt = "" ) {
+	function makeMediaLink( $name, $url, $alt = '' ) {
 		$nt = Title::makeTitleSafe( Namespace::getMedia(), $name );
 		return $this->makeMediaLinkObj( $nt, $alt );
 	}
 
-	function makeMediaLinkObj( $nt, $alt = "" )
-	{
+	function makeMediaLinkObj( $nt, $alt = '' ) {
 		if ( ! isset( $nt ) )
 		{
 			### HOTFIX. Instead of breaking, return empty string.
@@ -2037,8 +1992,7 @@ class Skin {
 		return $s;
 	}
 
-	function specialLink( $name, $key = "" )
-	{
+	function specialLink( $name, $key = '' ) {
 		global $wgLang;
 
 		if ( '' == $key ) { $key = strtolower( $name ); }
@@ -2060,8 +2014,7 @@ class Skin {
 	#
 
 	# Returns text for the start of the tabular part of RC
-	function beginRecentChangesList()
-	{
+	function beginRecentChangesList() {
 		$this->rc_cache = array() ;
 		$this->rcMoveIndex = 0;
 		$this->rcCacheIndex = 0 ;
@@ -2070,8 +2023,7 @@ class Skin {
 		return '';
 	}
 
-	function beginImageHistoryList()
-	{
+	function beginImageHistoryList() {
 		$s = "\n<h2>" . wfMsg( 'imghistory' ) . "</h2>\n" .
 		  "<p>" . wfMsg( 'imghistlegend' ) . "</p>\n".'<ul class="special">';
 		return $s;
@@ -2079,8 +2031,7 @@ class Skin {
 
 	# Returns text for the end of RC
 	# If enhanced RC is in use, returns pretty much all the text
-	function endRecentChangesList()
-	{
+	function endRecentChangesList() {
 		$s = $this->recentChangesBlock() ;
 		if( $this->rclistOpen ) {
 			$s .= "</ul>\n";
@@ -2089,8 +2040,7 @@ class Skin {
 	}
 
 	# Enhanced RC ungrouped line
-	function recentChangesBlockLine ( $rcObj )
-	{
+	function recentChangesBlockLine ( $rcObj ) {
 		global $wgStylePath, $wgLang ;
 
 		# Get rc_xxxx variables
@@ -2154,8 +2104,7 @@ class Skin {
 	}
 
 	# Enhanced RC group
-	function recentChangesBlockGroup ( $block )
-	{
+	function recentChangesBlockGroup ( $block ) {
 		global $wgStylePath, $wgLang ;
 
 		$r = '' ;
@@ -2273,8 +2222,7 @@ class Skin {
 
 	# If enhanced RC is in use, this function takes the previously cached
 	# RC lines, arranges them, and outputs the HTML
-	function recentChangesBlock ()
-	{
+	function recentChangesBlock () {
 		global $wgStylePath ;
 		if ( count ( $this->rc_cache ) == 0 ) return '' ;
 		$blockOut = '';
@@ -2291,8 +2239,7 @@ class Skin {
 
 	# Called in a loop over all displayed RC entries
 	# Either returns the line, or caches it for later use
-	function recentChangesLine( &$rc, $watched = false )
-	{
+	function recentChangesLine( &$rc, $watched = false ) {
 		global $wgUser ;
 		$usenew = $wgUser->getOption( 'usenewrc' );
 		if ( $usenew )
@@ -2302,8 +2249,7 @@ class Skin {
 		return $line ;
 	}
 
-	function recentChangesLineOld( &$rc, $watched = false )
-	{
+	function recentChangesLineOld( &$rc, $watched = false ) {
 		global $wgTitle, $wgLang, $wgUser, $wgRCSeconds, $wgUseRCPatrol, $wgOnlySysopsCanPatrol;
 
 		# Extract DB fields into local scope
@@ -2423,8 +2369,7 @@ class Skin {
 		return $s;
 	}
 
-	function recentChangesLineNew( &$baseRC, $watched = false )
-	{
+	function recentChangesLineNew( &$baseRC, $watched = false ) {
 		global $wgTitle, $wgLang, $wgUser, $wgRCSeconds;
 
 		# Create a specialised object
@@ -2532,8 +2477,7 @@ class Skin {
 		return $ret;
 	}
 
-	function endImageHistoryList()
-	{
+	function endImageHistoryList() {
 		$s = "</ul>\n";
 		return $s;
 	}
@@ -2550,8 +2494,7 @@ class Skin {
 	# Note: there's not always a title to pass to this function.
 	# Since you can't set a default parameter for a reference, I've turned it
 	# temporarily to a value pass. Should be adjusted further. --brion
-	function formatComment($comment, $title = NULL)
-	{
+	function formatComment($comment, $title = NULL) {
 		global $wgLang;
 		$comment = htmlspecialchars( $comment );
 
@@ -2612,8 +2555,7 @@ class Skin {
 		return $comment;
 	}
 
-	function imageHistoryLine( $iscur, $timestamp, $img, $user, $usertext, $size, $description )
-	{
+	function imageHistoryLine( $iscur, $timestamp, $img, $user, $usertext, $size, $description ) {
 		global $wgUser, $wgLang, $wgTitle;
 
 		$datetime = $wgLang->timeanddate( $timestamp, true );
@@ -2752,81 +2694,81 @@ class Skin {
 		// sure these keys are not defined on the edit page.
 		$toolarray=array(
 			array(	'image'=>'button_bold.png',
-				'open'=>"\'\'\'",
-				'close'=>"\'\'\'",
-				'sample'=>wfMsg('bold_sample'),
-				'tip'=>wfMsg('bold_tip'),
-				'key'=>'B'
+					'open'	=>	"\'\'\'",
+					'close'	=>	"\'\'\'",
+					'sample'=>	wfMsg('bold_sample'),
+					'tip'	=>	wfMsg('bold_tip'),
+					'key'	=>	'B'
 				),
-			array(	"image"=>"button_italic.png",
-				"open"=>"\'\'",
-				"close"=>"\'\'",
-				"sample"=>wfMsg("italic_sample"),
-				"tip"=>wfMsg("italic_tip"),
-				"key"=>"I"
+			array(	'image'=>'button_italic.png',
+					'open'	=>	"\'\'",
+					'close'	=>	"\'\'",
+					'sample'=>	wfMsg('italic_sample'),
+					'tip'	=>	wfMsg('italic_tip'),
+					'key'	=>	'I'
 				),
-			array(	"image"=>"button_link.png",
-				"open"=>"[[",
-				"close"=>"]]",
-				"sample"=>wfMsg("link_sample"),
-				"tip"=>wfMsg("link_tip"),
-				"key"=>"L"
+			array(	'image'=>'button_link.png',
+					'open'	=>	'[[',
+					'close'	=>	']]',
+					'sample'=>	wfMsg('link_sample'),
+					'tip'	=>	wfMsg('link_tip'),
+					'key'	=>	'L'
 				),
-			array(	"image"=>"button_extlink.png",
-				"open"=>"[",
-				"close"=>"]",
-				"sample"=>wfMsg("extlink_sample"),
-				"tip"=>wfMsg("extlink_tip"),
-				"key"=>"X"
+			array(	'image'=>'button_extlink.png',
+					'open'	=>	'[',
+					'close'	=>	']',
+					'sample'=>	wfMsg('extlink_sample'),
+					'tip'	=>	wfMsg('extlink_tip'),
+					'key'	=>	'X'
 				),
-			array(	"image"=>"button_headline.png",
-				"open"=>"\\n== ",
-				"close"=>" ==\\n",
-				"sample"=>wfMsg("headline_sample"),
-				"tip"=>wfMsg("headline_tip"),
-				"key"=>"H"
+			array(	'image'=>'button_headline.png',
+					'open'	=>	"\\n== ",
+					'close'	=>	" ==\\n",
+					'sample'=>	wfMsg('headline_sample'),
+					'tip'	=>	wfMsg('headline_tip'),
+					'key'	=>	'H'
 				),
-			array(	"image"=>"button_image.png",
-				"open"=>"[[".$wgLang->getNsText(NS_IMAGE).":",
-				"close"=>"]]",
-				"sample"=>wfMsg("image_sample"),
-				"tip"=>wfMsg("image_tip"),
-				"key"=>"D"
+			array(	'image'=>'button_image.png',
+					'open'	=>	'[['.$wgLang->getNsText(NS_IMAGE).":",
+					'close'	=>	']]',
+					'sample'=>	wfMsg('image_sample'),
+					'tip'	=>	wfMsg('image_tip'),
+					'key'	=>	'D'
 				),
-			array(	"image"=>"button_media.png",
-				"open"=>"[[".$wgLang->getNsText(NS_MEDIA).":",
-				"close"=>"]]",
-				"sample"=>wfMsg("media_sample"),
-				"tip"=>wfMsg("media_tip"),
-				"key"=>"M"
+			array(	'image'	=>	'button_media.png',
+					'open'	=>	'[['.$wgLang->getNsText(NS_MEDIA).':',
+					'close'	=>	']]',
+					'sample'=>	wfMsg('media_sample'),
+					'tip'	=>	wfMsg('media_tip'),
+					'key'	=>	'M'
 				),
-			array(	"image"=>"button_math.png",
-				"open"=>"\\<math\\>",
-				"close"=>"\\</math\\>",
-				"sample"=>wfMsg("math_sample"),
-				"tip"=>wfMsg("math_tip"),
-				"key"=>"C"
+			array(	'image'	=>	'button_math.png',
+					'open'	=>	"\\<math\\>",
+					'close'	=>	"\\</math\\>",
+					'sample'=>	wfMsg('math_sample'),
+					'tip'	=>	wfMsg('math_tip'),
+					'key'	=>	'C'
 				),
-			array(	"image"=>"button_nowiki.png",
-				"open"=>"\\<nowiki\\>",
-				"close"=>"\\</nowiki\\>",
-				"sample"=>wfMsg("nowiki_sample"),
-				"tip"=>wfMsg("nowiki_tip"),
-				"key"=>"N"
+			array(	'image'	=>	'button_nowiki.png',
+					'open'	=>	"\\<nowiki\\>",
+					'close'	=>	"\\</nowiki\\>",
+					'sample'=>	wfMsg('nowiki_sample'),
+					'tip'	=>	wfMsg('nowiki_tip'),
+					'key'	=>	'N'
 				),
-			array(	"image"=>"button_sig.png",
-				"open"=>"--~~~~",
-				"close"=>"",
-				"sample"=>"",
-				"tip"=>wfMsg("sig_tip"),
-				"key"=>"Y"
+			array(	'image'	=>	'button_sig.png',
+					'open'	=>	'--~~~~',
+					'close'	=>	'',
+					'sample'=>	'',
+					'tip'	=>	wfMsg('sig_tip'),
+					'key'	=>	'Y'
 				),
-			array(	"image"=>"button_hr.png",
-				"open"=>"\\n----\\n",
-				"close"=>"",
-				"sample"=>"",
-				"tip"=>wfMsg("hr_tip"),
-				"key"=>"R"
+			array(	'image'	=>	'button_hr.png',
+					'open'	=>	"\\n----\\n",
+					'close'	=>	'',
+					'sample'=>	'',
+					'tip'	=>	wfMsg('hr_tip'),
+					'key'	=>	'R'
 				)
 		);
 		$toolbar ="<script type='text/javascript'>\n/*<![CDATA[*/\n";
