@@ -1398,6 +1398,7 @@ article [[Train]].
 
 'allmessages'	=> 'All system messages',
 'allmessagestext'	=> 'This is a list of all system messages available in the MediaWiki: namespace.',
+'allmessagesnotsupported' => 'Your current interface language is not supported by Special:AllMessages at this site',
 
 # Thumbnails
 

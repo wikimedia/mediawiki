@@ -12,8 +12,50 @@
  * @subpackage Maintenance
  */
 
-/** */
+
+
 function initialiseMessages( $overwrite = false, $messageArray = false ) {
+	global $wgContLang, $wgContLanguageCode;
+	global $wgContLangClass, $wgAllMessagesEn;
+
+	$langclass = 'Language'. str_replace( '-', '_', ucfirst( $wgContLanguageCode ) );
+	require_once("languages/$langclass.php");
+
+	$variants = $wgContLang->getVariants();
+	if(!in_array($wgContLanguageCode, $variants))
+		$variants[]=$wgContLanguageCode;
+
+	if ( $messageArray ) {
+		$sortedArray = $messageArray;
+	} else {
+		$sortedArray = $wgAllMessagesEn;
+	}
+	
+	ksort( $sortedArray );
+	
+	$messages=array();
+	foreach ($variants as $v) {
+		$langclass = 'Language'. str_replace( '-', '_', ucfirst( $v ) );
+		$lang = new $langclass;
+		if(!is_object($lang)) {
+			die ("class $langclass not defined. perhaps you need to include the file $langclass.php in $wgContLangClass.php?");
+		}
+		foreach ($sortedArray as $key => $msg) {
+			$messages[$key."/$v"] = $lang->getMessage($key);
+		}
+	}	
+
+	initialiseMessagesReal( $overwrite, $messages );
+}
+
+
+
+
+
+
+
+/** */
+function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 	global $wgContLang, $wgScript, $wgServer, $wgAllMessagesEn;
 	global $wgOut, $wgArticle, $wgUser;
 	global $wgMessageCache, $wgMemc, $wgDBname, $wgUseMemCached;

@@ -198,8 +198,17 @@ class MessageCache
 		$this->mMemc->delete( $lockKey );
 	}
 
-	function get( $key, $useDB ) {
-		global $wgContLang, $wgContLanguageCode;
+	function get( $key, $useDB, $forcontent=true ) {
+		if($forcontent) {
+			global $wgContLang, $wgContLanguageCode;
+			$lang = $wgContLang;
+			$langcode = $wgContLanguageCode;
+		}
+		else {
+			global $wgLang, $wgLanguageCode;
+			$lang = $wgLang;
+			$langcode = $wgLanguageCode;
+		}
 		# If uninitialised, someone is trying to call this halfway through Setup.php
 		if ( !$this->mInitialised ) {
 			return "&lt;$key&gt;";
@@ -207,7 +216,7 @@ class MessageCache
 
 		$message = false;
 		if ( !$this->mDisable && $useDB ) {
-			$title = $wgContLang->ucfirst( $key );
+			$title = $lang->ucfirst( $key )."/$langcode";
 
 
 			# Try the cache
@@ -234,12 +243,12 @@ class MessageCache
 		# Try the array in the language object
 		if ( !$message ) {
 			wfSuppressWarnings();
-			$message = $wgContLang->getMessage( $key );
+			$message = $lang->getMessage( $key );
 			wfRestoreWarnings();
 		}
 
 		# Try the English array
-		if ( !$message && $wgContLanguageCode != 'en' ) {
+		if ( !$message && $langcode != 'en' ) {
 			wfSuppressWarnings();
 			$message = Language::getMessage( $key );
 			wfRestoreWarnings();

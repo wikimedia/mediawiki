@@ -1,5 +1,6 @@
 <?php
 require_once( "LanguageZh_cn.php");
+require_once( "LanguageZh_tw.php");
 
 /* caching the conversion tables */
 $zhSimp2Trad = $wgMemc->get($key1 = "$wgDBname:zhConvert:s2t");
