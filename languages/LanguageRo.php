@@ -181,13 +181,13 @@ include_once("Utf8Case.php");
 "go"		=> "Du-te",
 "history"		=> "Versiuni mai vechi",
 "printableversion" => "Versiune tipărire",
-"editthispage"	=> "Editează această pagină",
+"editthispage"	=> "Editează pagina",
 "deletethispage" => "Şterge pagina",
 "protectthispage" => "Protejează pagina",
 "unprotectthispage" => "Deprotejează pagina",
 "newpage" => "Pagină nouă",
 "talkpage"		=> "Discută pagina",
-"postcomment"	=> "Agaugă comentariu",
+"postcomment"	=> "Adaugă comentariu",
 "articlepage"	=> "Vezi articolul",
 "subjectpage"	=> "Vezi subiectul", # For compatibility
 "userpage" => "Vezi pagina utilizatorului",
@@ -220,6 +220,8 @@ Vezi $1.",
 "toc" => "Cuprins",
 "showtoc" => "arată",
 "hidetoc" => "ascunde",
+"thisisdeleted" => "Arată sau recuperează $1?",
+"restorelink" => "$1 editări şterse",
 
 # Main script and global functions
 #
@@ -826,6 +828,7 @@ drepturile de scriere pentru o adresă IP blocată anterior..",
 "blocklink"		=> "blochează",
 "unblocklink"	=> "deblochează",
 "contribslink"	=> "contribuţii",
+"autoblocker"	=> "Blocat automat deoarece aveţi acelaşi IP ca şi \"$1\". Motivul este \"$2\".",
 
 # Developer tools
 #
