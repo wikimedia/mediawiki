@@ -150,21 +150,21 @@ class UserlevelsForm extends HTMLForm {
 		global $wgOut;
 		
 		// group selection		
-		$wgOut->addHTML( "<form name=\"ulgroup\" action=\"$this->action\" method=\"post\">" );
+		$wgOut->addHTML( "<form name=\"ulgroup\" action=\"$this->action\" method=\"post\">\n" );
 		$wgOut->addHTML( $this->fieldset( 'lookup-group',
 				$this->HTMLSelectGroups('group-edit', array(0 => $this->mRequest->getVal($this->mName.'-group-edit')) ) .
-				' <input type="submit" name="seditgroup" value="'.wfMsg('editgroup').'">' .
-				'<br /><input type="submit" name="saddgroup" value="'.wfMsg('addgroup').'">'
+				' <input type="submit" name="seditgroup" value="'.wfMsg('editgroup').'" />' .
+				'<br /><input type="submit" name="saddgroup" value="'.wfMsg('addgroup').'" />'
 			));
-		$wgOut->addHTML( "</form>" );
+		$wgOut->addHTML( "</form>\n" );
 		
 		// user selection
-		$wgOut->addHTML( "<form name=\"uluser\" action=\"$this->action\" method=\"post\">" );
+		$wgOut->addHTML( "<form name=\"uluser\" action=\"$this->action\" method=\"post\">\n" );
 		$wgOut->addHTML( $this->fieldset( 'lookup-user',
 				$this->textbox( 'user-editname' ) .
-				'<input type="submit" name="ssearchuser" value="'.wfMsg('editusergroup').'">'
+				'<input type="submit" name="ssearchuser" value="'.wfMsg('editusergroup').'" />'
 		));
-		$wgOut->addHTML( '</form>' );
+		$wgOut->addHTML( "</form>\n" );
 	}
 
 	/**
@@ -188,15 +188,15 @@ class UserlevelsForm extends HTMLForm {
 		$gDescription = $g->getDescription();
 
 
-		$wgOut->addHTML( "<form name=\"editGroup\" action=\"$this->action\" method=\"post\">".
-		                '<input type="hidden" name="editgroup-oldname" value="'.$gName.'">');
+		$wgOut->addHTML( "<form name=\"editGroup\" action=\"$this->action\" method=\"post\">\n".
+		                '<input type="hidden" name="editgroup-oldname" value="'.$gName.'" />');
 		$wgOut->addHTML( $this->fieldset( $fieldname,
 			$this->textbox( 'editgroup-name', $gName ) .
 			$this->textareabox( 'editgroup-description', $gDescription ) .
 			'<br /><table border="0" align="center"><tr><td>'.
 			$this->HTMLSelectRights($g->getRights()).
-			'</td></table>'.			
-			'<input type="submit" name="savegroup" value="'.wfMsg('savegroup').'">'
+			'</td></tr></table>'."\n".
+			'<input type="submit" name="savegroup" value="'.wfMsg('savegroup').'" />'
 			));
 
 		$wgOut->addHTML( "</form>\n" );
@@ -223,17 +223,17 @@ class UserlevelsForm extends HTMLForm {
 		
 		$groups = $user->getGroups();
 
-		$wgOut->addHTML( "<form name=\"editGroup\" action=\"$this->action\" method=\"post\">".
-						 '<input type="hidden" name="user-editname" value="'.$username.'">');
+		$wgOut->addHTML( "<form name=\"editGroup\" action=\"$this->action\" method=\"post\">\n".
+						 '<input type="hidden" name="user-editname" value="'.$username.'" />');
 		$wgOut->addHTML( $this->fieldset( 'editusergroup',
-			wfMsg('editing', $this->mRequest->getVal('user-editname')).'.<br />' .
+			wfMsg('editing', $this->mRequest->getVal('user-editname')).".<br />\n" .
 			'<table border="0" align="center"><tr><td>'.
 			$this->HTMLSelectGroups('groupsmember', $groups,true,6).
 			'</td><td>'.
 			$this->HTMLSelectGroups('groupsavailable', $groups,true,6,true).
-			'</td></tr></table>'.
-			'<p>'.wfMsg('userlevels-groupshelp').'</p>'.
-			'<input type="submit" name="saveusergroups" value="'.wfMsg('saveusergroups').'">'
+			'</td></tr></table>'."\n".
+			'<p>'.wfMsg('userlevels-groupshelp').'</p>'."\n".
+			'<input type="submit" name="saveusergroups" value="'.wfMsg('saveusergroups').'" />'
 			));
 		$wgOut->addHTML( "</form>\n" );
 	}
@@ -254,39 +254,39 @@ class UserlevelsForm extends HTMLForm {
 		
 		$out = wfMsg($selectname);
 		$out .= '<select name="'.$selectname;
-		if($multiple) {	$out.='[]" multiple size="'.$size; }
-		$out.='">';
+		if($multiple) {	$out.='[]" multiple="multiple" size="'.$size; }
+		$out.= "\">\n";
 		
 		while($g = $dbr->fetchObject( $res ) ) {
 			if($multiple) {
 				// for multiple will only show the things we want
 				if(in_array($g->group_id, $selected) xor $reverse) { 
-					$out .= '<option value="'.$g->group_id.'">'.$g->group_name.'</option>';
+					$out .= '<option value="'.$g->group_id.'">'.$g->group_name."</option>\n";
 				}
 			} else {
 				$out .= '<option ';
-				if(in_array($g->group_id, $selected)) { $out .= 'selected '; }
-				$out .= 'value="'.$g->group_id.'">'.$g->group_name.'</option>';
+				if(in_array($g->group_id, $selected)) { $out .= 'selected="selected" '; }
+				$out .= 'value="'.$g->group_id.'">'.$g->group_name."</option>\n";
 			}
 		}
-		$out .= '</select>';
+		$out .= "</select>\n";
 		return $out;
 	}
 	
 	function HTMLSelectRights($selected='') {
 		global $wgAvailableRights;
-		$out = '<select name="editgroup-getrights[]" multiple>';
+		$out = '<select name="editgroup-getrights[]" multiple="multiple">';
 		$groupRights = explode(',',$selected);
 		
 		foreach($wgAvailableRights as $right) {
 		
 			// check box when right exist
-			if(in_array($right, $groupRights)) { $selected = 'selected'; }
+			if(in_array($right, $groupRights)) { $selected = 'selected="selected" '; }
 			else { $selected = ''; }
 						
-			$out .= '<option  '.$selected.' value="'.$right.'">'.$right.'</option>';
+			$out .= '<option value="'.$right.'" '.$selected.'>'.$right."</option>\n";
 		}
-		$out .= '</fieldset>';
+		$out .= "</select>\n";
 		return $out;
 	}
 }
