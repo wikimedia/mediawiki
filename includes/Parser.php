@@ -1264,7 +1264,7 @@ class Parser
 			if (!$this->mInPre) {
 				$this->mInPre = !empty($preOpenMatch);
 			}
-			if ( !$this->mInPre ) {
+			if ( $preOpenMatch || !$this->mInPre ) {
 				# Multiple prefixes may abut each other for nested lists.
 				$prefixLength = strspn( $oLine, '*#:;' );
 				$pref = substr( $oLine, 0, $prefixLength );
