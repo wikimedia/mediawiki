@@ -649,9 +649,9 @@ class OutputPage {
 	#
 	function doWikiPass2( $text, $linestart )
 	{
-		global $wgUser;
+		global $wgUser, $wgLang;
 		wfProfileIn( "OutputPage::doWikiPass2" );
-
+		
 		$text = $this->removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text );
 
@@ -661,7 +661,8 @@ class OutputPage {
 		$text = $this->doQuotes( $text );
 		$text = $this->doHeadings( $text );
 		$text = $this->doBlockLevels( $text, $linestart );
-
+		
+		$text = $wgLang->replaceDates( $text );
 		$text = $this->replaceExternalLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
 
@@ -709,7 +710,7 @@ class OutputPage {
 		wfProfileOut();
 		return $text;
 	}
-
+	
 	/* private */ function subReplaceExternalLinks( $s, $protocol, $autonumber )
 	{
 		global $wgUser, $printable;
