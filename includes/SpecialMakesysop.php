@@ -151,7 +151,7 @@ class MakesysopForm {
 		
 		$prev = $dbw->ignoreErrors( TRUE );
 		$res = $dbw->query( $sql );
-		$dbw->setIgnoreSQLErrors( $prev );
+		$dbw->ignoreErrors( $prev );
 
 		if( $dbw->lastErrno() || ! $username || $dbw->numRows( $res ) == 0 ){
 			$this->showFail();
