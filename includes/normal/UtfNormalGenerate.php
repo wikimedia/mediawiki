@@ -21,7 +21,8 @@
  * This script generates UniNormalData.inc from the Unicode Character Database
  * and supplementary files.
  *
- * @package MediaWiki 
+ * @package UtfNormal
+ * @access private
  */
 
 /** */

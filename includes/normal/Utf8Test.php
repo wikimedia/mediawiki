@@ -21,7 +21,8 @@
  * Runs the UTF-8 decoder test at:
  * http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt
  *
- * @package MediaWiki
+ * @package UtfNormal
+ * @access private
  */
 
 /** */

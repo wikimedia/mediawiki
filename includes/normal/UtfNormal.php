@@ -29,7 +29,7 @@
  *
  * See description of forms at http://www.unicode.org/reports/tr15/
  *
- * @package MediaWiki
+ * @package UtfNormal
  */
 
 /** */
