@@ -93,7 +93,7 @@ function renderMath( $tex )
 
 	$outmd5_sql = mysql_escape_string(pack("H32", $outmd5));
 
-	$sql = "INSERT INTO math VALUES ('".$md5_sql."', '".$outmd5_sql."', ".$conservativeness.", ".$sql_html.", ".$sql_mathml.")";
+	$sql = "REPLACE INTO math VALUES ('".$md5_sql."', '".$outmd5_sql."', ".$conservativeness.", ".$sql_html.", ".$sql_mathml.")";
 	
 	$res = wfQuery( $sql, $fname );
 	# we don't really care if it fails
