@@ -681,6 +681,48 @@ class Validation {
 		return $r ;
 	}
 	
+	# This functions adds a topic to the database
+	function addTopic ( $topic , $limit ) {
+		$a = 1 ;
+		while ( isset ( $this->topicList[$a] ) ) $a++ ;
+		$sql = "INSERT INTO validate (val_user,val_page,val_revision,val_type,val_value,val_comment) VALUES (" ;
+		$sql .= "'0','0','0','{$a}','{$limit}','" ;
+		$sql .= Database::strencode ( $topic ) . "')" ;
+		$res = wfQuery( $sql, DB_WRITE );
+		$x->val_user = $x->val_page = $x->val_revision = 0 ;
+		$x->val_type = $a ;
+		$x->val_value = $limit ;
+		$x->val_comment = $topic ;
+		$this->topicList[$a] = $x ;
+		ksort ( $this->topicList ) ;
+	}
+
+	# This functions adds a topic to the database
+	function deleteTopic ( $id ) {
+		$sql = "DELETE FROM validate WHERE val_type='{$id}'" ;
+		$res = wfQuery( $sql, DB_WRITE );
+		unset ( $this->topicList[$id] ) ;
+	}
+	
+	# This function returns a link text to the page validation statistics
+	function link2statistics ( &$article ) {
+		$ret = wfMsg ( 'val_rev_stats_link' ) ;
+		$nt = $article->getTitle() ;
+		$ret = str_replace ( "$1" , $nt->getPrefixedText() , $ret ) ;
+
+#		$t = Title::newFromText ( "Special:Validate" ) ;
+#		$url = $t->getLocalURL ( "mode=list&id=" . $article->getID() ) ;
+		$url = $nt->getLocalURL ( "action=validate&mode=list" ) ;
+		$ret = str_replace ( "$2" , $url , $ret ) ;
+
+		return $ret ;
+	}
+	
+
+
+	# HTML generation functions from this point on
+
+
 	# Generates the page from the validation tab
 	function validatePageForm ( &$article , $revision ) {
 		global $wgOut, $wgRequest ;
@@ -717,30 +759,8 @@ class Validation {
 			$ret .= $this->getRevisionForm ( $article , $x , $y , $x == $revision ) ;
 			$ret .= "<br/>\n" ;
 			}
+		$ret .= $this->link2statistics ( $article ) ;
 		return $ret ;	
-	}
-	
-	# This functions adds a topic to the database
-	function addTopic ( $topic , $limit ) {
-		$a = 1 ;
-		while ( isset ( $this->topicList[$a] ) ) $a++ ;
-		$sql = "INSERT INTO validate (val_user,val_page,val_revision,val_type,val_value,val_comment) VALUES (" ;
-		$sql .= "'0','0','0','{$a}','{$limit}','" ;
-		$sql .= Database::strencode ( $topic ) . "')" ;
-		$res = wfQuery( $sql, DB_WRITE );
-		$x->val_user = $x->val_page = $x->val_revision = 0 ;
-		$x->val_type = $a ;
-		$x->val_value = $limit ;
-		$x->val_comment = $topic ;
-		$this->topicList[$a] = $x ;
-		ksort ( $this->topicList ) ;
-	}
-
-	# This functions adds a topic to the database
-	function deleteTopic ( $id ) {
-		$sql = "DELETE FROM validate WHERE val_type='{$id}'" ;
-		$res = wfQuery( $sql, DB_WRITE );
-		unset ( $this->topicList[$id] ) ;
 	}
 	
 	# This function performs the "management" mode on Special:Validate
@@ -787,6 +807,48 @@ class Validation {
 		$r .= "</form>\n" ;
 		return $r ;
 	}
+	
+	function showList ( &$article ) {
+		$this->topicList = $this->getTopicList() ;
+		
+		# Collecting statistic data
+		$id = $article->getID() ;
+		$sql = "SELECT * FROM validate WHERE val_page='{$id}'" ;
+		$res = wfQuery( $sql, DB_READ );
+		$data = array () ;
+		while( $x = wfFetchObject( $res ) ) {
+			if ( !isset ( $data[$x->val_revision] ) )
+				$data[$x->val_revision] = array () ;
+			if ( !isset ( $data[$x->val_revision][$x->val_type] ) ) {
+				$data[$x->val_revision][$x->val_type]->count = 0 ;
+				$data[$x->val_revision][$x->val_type]->sum = 0 ;
+			}
+			$data[$x->val_revision][$x->val_type]->count++ ;
+			$data[$x->val_revision][$x->val_type]->sum += $x->val_value ;
+		}
+		
+		$ret = "" ;
+		$ret .= "<table border='1' cellspacing='0' cellpadding='2'>\n" ;
+		$ret .= "<tr><th>Revision</th>" ;
+		foreach ( $this->topicList AS $x => $y )
+			$ret .= "<th>{$y->val_comment}</th>" ;
+		$ret .= "</tr>\n" ;
+		foreach ( $data AS $revision => $y ) {
+			$url = $this->getVersionLink ( $article , $revision , $revision ) ;
+			$ret .= "<tr><th>{$url}</th>" ;
+			foreach ( $this->topicList AS $topicID => $dummy ) {
+				if ( isset ( $y[$topicID] ) ) {
+					$z = $y[$topicID] ;
+					if ( $z->count == 0 ) $a = 0 ;
+					else $a = $z->sum / $z->count ;
+					$ret .= sprintf ( "<td><b>%1.1f</b> (%d)</td>" , $a , $z->count ) ;
+				} else $ret .= "<td/>" ;
+				}
+			$ret .= "</tr>\n" ;
+		}
+		$ret .= "</table>\n" ;
+		return $ret ;
+	}
 
 }
 
@@ -801,6 +863,14 @@ function wfSpecialValidate( $page = '' ) {
 		return;
 	}
 
+/*
+	# Can do?
+	if ( ! $wgUser->isAllowed('change_validation') ) {
+		$wgOut->sysopRequired();
+		return;
+	}
+*/	
+
 	$mode = $wgRequest->getVal ( "mode" ) ;
 	$skin = $wgUser->getSkin() ;
 
@@ -808,14 +878,17 @@ function wfSpecialValidate( $page = '' ) {
 	if ( $mode == "manage" ) {
 		$v = new Validation ;
 		$html = $v->manageTopics () ;
+#	} else if ( $mode == "list" ) {
+#		$v = new Validation ;
+#		$html = $v->showList ( $wgRequest->getVal ( "id" ) ) ;
 	} else {
-		$t = Title::newFromText ( "Special:Validate" ) ;
-		$url = $t->getLocalURL ( "mode=manage" ) ;
 		$html = "$mode" ;
 		$html .= "<ul>\n" ;
+
+		$t = Title::newFromText ( "Special:Validate" ) ;
+		$url = $t->getLocalURL ( "mode=manage" ) ;
 		$html .= "<li><a href=\"" . $url . "\">Manage</a></li>\n" ;
-		$html .= "<li></li>\n" ;
-		$html .= "<li></li>\n" ;
+
 		$html .= "</ul>\n" ;
 	}
 
