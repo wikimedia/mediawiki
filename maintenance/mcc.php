@@ -1,5 +1,7 @@
 <?php
 
+# memcached diagnostic tool
+
 require_once( "commandLine.inc" );
 
 $mcc = new memcached( array('persistant' => true) );
@@ -65,4 +67,3 @@ do {
 } while ( !$quit );
 
 ?>
-
