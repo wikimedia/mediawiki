@@ -547,7 +547,9 @@ class Parser
 		return $t ;
 	}
 
-	function internalParse( $text, $linestart, $args = array() )
+	// set isMain=false if you call from a template etc. and don't want to do stuff
+	// like TOC insertion for that content
+	function internalParse( $text, $linestart, $args = array(), $isMain=true )
 	{
 		$fname = "Parser::internalParse";
 		wfProfileIn( $fname );
@@ -565,7 +567,7 @@ class Parser
 		$text = $this->replaceExternalLinks( $text );
 		$text = $this->doTokenizedParser ( $text );
 		$text = $this->doTableStuff ( $text ) ;
-		$text = $this->formatHeadings( $text );
+		$text = $this->formatHeadings( $text, $isMain );
 		$sk =& $this->mOptions->getSkin();
 		$text = $sk->transformContent( $text );
 
@@ -729,7 +731,7 @@ class Parser
 		} elseif ( $state["strong"] !== false ) {
 			$s .= "</strong><em>";
 			$state["strong"] = FALSE;
-			$state["em"] = @$token["pos"];
+			$state["em"] = $token["pos"];
 		} else { # not $em and not $strong
 			$s .= "<strong><em>";
 			$state["strong"] = $state["em"] = isset($token["pos"]) ? $token["pos"] : true;
@@ -1507,7 +1509,8 @@ class Parser
 
 			# Run full parser on the included text
 			$text = $this->strip( $text, $this->mStripState );
-			$text = $this->internalParse( $text, (bool)$newline, $assocArgs );
+			$text = $this->internalParse( $text, (bool)$newline, $assocArgs, false );
+			if(!empty($newline)) $text = "\n".$text;
 
 			# Add the result to the strip state for re-inclusion after
 			# the rest of the processing
@@ -1672,10 +1675,12 @@ class Parser
  *
  */
 
-	/* private */ function formatHeadings( $text )
+	/* private */ function formatHeadings( $text, $isMain=true )
 	{
-		global $wgInputEncoding;
+		global $wgInputEncoding,$wgRequest,$wgOut;
 		
+		$startsection=$wgRequest->getVal('section');	
+		if($startsection) { $startsection--;}
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
 		if( !$this->mTitle->userCanEdit() ) {
@@ -1807,12 +1812,12 @@ class Parser
 				if ( empty( $head[$headlineCount] ) ) {
 					$head[$headlineCount] = "";
 				}
-				$head[$headlineCount] .= $sk->editSectionLink($headlineCount+1);
+				$head[$headlineCount] .= $sk->editSectionLink($startsection+$headlineCount+1);
 			}
 
 			# Add the edit section span
 			if( $rightClickHack ) {
-				$headline = $sk->editSectionScript($headlineCount+1,$headline);
+				$headline = $sk->editSectionScript($startsection+$headlineCount+1,$headline);
 			}
 
 			# give headline the correct <h#> tag
@@ -1846,6 +1851,14 @@ class Parser
 			# Top anchor now in skin
 				$full = $full.$toc;
 			}
+			
+			# If a page is viewed in collapsed mode, a TOC generated
+			# from the wikisource is stored in the title object.
+			# This TOC is now fetched and inserted here if it exists.
+			$collapsedtoc=$wgOut->getToc();
+			if ($collapsedtoc && !$i && $isMain) {
+				$full = $full.$collapsedtoc;		
+			}			
 
 			if( !empty( $head[$i] ) ) {
 				$full .= $head[$i];
@@ -1856,6 +1869,115 @@ class Parser
 		return $full;
 	}
 
+	/* Generates a HTML-formatted table of contents which links to individual sections 
+	   from the wikisource. Used for collapsing long pages.
+	 */	   
+	/* static */ function getTocFromSource( $text ) {		
+		
+		global $wgUser,$wgInputEncoding,$wgTitle,$wgOut,$wgParser;		
+		$sk = $wgUser->getSkin();		
+		
+		$striparray=array();
+		$oldtype=$wgParser->mOutputType;
+		$wgParser->mOutputType=OT_WIKI;
+		$text=$wgParser->strip($text, $striparray, true);
+		$wgParser->mOutputType=$oldtype;	
+		
+		$numMatches = preg_match_all( "/^(=+)(.*?)=+|^<h([1-6]).*?>(.*?)<\/h[1-6].*?>/mi",$text,$matches);
+		
+		# no headings: text cannot be collapsed
+		if( $numMatches == 0 ) {
+			return "";
+		}
+		
+		# We combine the headlines into a bundle and convert them to HTML
+		# in order to make stripping out the wikicrap easier.
+		$combined=implode("!@@@!",$matches[2]);
+		$myout=$wgParser->parse($combined,$wgTitle,$wgOut->mParserOptions);			
+		$combined_html=$myout->getText();		
+		$headlines=array();
+		$headlines=explode("!@@@!",$combined_html);
+		
+		# headline counter
+		$headlineCount = 0;		
+		$toclevel = 0;
+		$toc = "";
+		$full = "";
+		$head = array();
+		$sublevelCount = array();
+		$level = 0;
+		$prevlevel = 0;
+		foreach( $headlines as $headline ) {			
+			$headline=trim($headline);
+			$numbering = "";
+			if( $level ) {
+				$prevlevel = $level;
+			}
+			$level = $matches[1][$headlineCount];
+			
+			# wikisource headings need to be converted into numbers
+			# =foo= equals <h1>foo</h1>, ==foo== equals <h2>foo</h2> etc.
+			if(strpos($level,"=")!==false) {
+				$level=strlen($level);			
+			}
+			
+			if(  $prevlevel && $level > $prevlevel ) {
+				# reset when we enter a new level
+				$sublevelCount[$level] = 0;
+				$toc .= $sk->tocIndent( $level - $prevlevel );
+				$toclevel += $level - $prevlevel;
+			}
+			if( $level < $prevlevel ) {
+				# reset when we step back a level
+				$sublevelCount[$level+1]=0;
+				$toc .= $sk->tocUnindent( $prevlevel - $level );
+				$toclevel -= $prevlevel - $level;
+			}
+			# count number of headlines for each level
+			@$sublevelCount[$level]++;			
+			$dot = 0;
+			for( $i = 1; $i <= $level; $i++ ) {
+				if( !empty( $sublevelCount[$i] ) ) {
+					if( $dot ) {
+						$numbering .= ".";
+					}
+					$numbering .= $sublevelCount[$i];
+					$dot = 1;
+				}
+			}
+			
+
+			# The canonized header is a version of the header text safe to use for links
+			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
+			$state=array();
+			$canonized_headline = Parser::unstrip( $headline, $state);			
+			
+			# strip out HTML
+			$canonized_headline = preg_replace( "/<.*?" . ">/","",$canonized_headline );
+			$tocline = trim( $canonized_headline );
+			$canonized_headline = preg_replace("/[ \\?&\\/<>\\(\\)\\[\\]=,+']+/", '_', urlencode( do_html_entity_decode( $tocline, ENT_COMPAT, $wgInputEncoding ) ) );
+			$refer[$headlineCount] = $canonized_headline;
+
+			# count how many in assoc. array so we can track dupes in anchors
+			@$refers[$canonized_headline]++;
+			$refcount[$headlineCount]=$refers[$canonized_headline];
+			$tocline = $numbering . " " . $tocline;
+
+			# Create the anchor for linking from the TOC to the section
+			$anchor = trim($canonized_headline);
+			
+			if($refcount[$headlineCount] > 1 ) {
+				$anchor .= "_" . $refcount[$headlineCount];
+			}			
+			$headlineCount++;
+			$toc .= $sk->tocLine($anchor,$tocline,$toclevel,$headlineCount);
+		}
+		$toclines = $headlineCount;
+		$toc .= $sk->tocUnindent( $toclevel );
+		$toc = $sk->tocTable( $toc );
+		return $toc;
+	
+	}
 	/* private */ function doMagicISBN( &$tokenizer )
 	{
 		global $wgLang;

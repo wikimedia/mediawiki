@@ -87,7 +87,12 @@
 
 			$this->titletxt = $wgTitle->getPrefixedText();
 			
-			$tpl->set( "title", $wgOut->getPageTitle() );
+			$title=$wgOut->getPageTitle();			
+			$section=$wgRequest->getVal('section');			
+			if ($section && $action=="view") {	
+				$title .= " " . wfMsg("sectionedit");
+			}
+			$tpl->set( "title", $title );
 			$tpl->set( "pagetitle", $wgOut->getHTMLTitle() );
 			
 			$tpl->setRef( "thispage", &$this->thispage );
@@ -287,10 +292,13 @@
 		
 		# an array of edit links by default used for the tabs
 		function buildContentActionUrls () {
-			global $wgTitle, $wgUser, $wgRequest;
+			global $wgTitle, $wgUser, $wgRequest,$wgOut;
 			$action = $wgRequest->getText( 'action' );
 			$section = $wgRequest->getText( 'section' );
 			$oldid = $wgRequest->getVal( 'oldid' );
+			$section = $wgRequest->getVal( 'section' );
+			$sectiontitle = $wgRequest->getVal( 'sectiontitle' );
+			$collapse = $wgOut->getCollapse();
 			$diff = $wgRequest->getVal( 'diff' );
 			$content_actions = array();
 			
@@ -327,12 +335,16 @@
 
 				if ( $wgTitle->userCanEdit() ) {
 					$oid = ( $oldid && ! isset( $diff ) ) ? "&oldid={$oldid}" : false;
+					
+					$sid = $section ? "&section={$section}" : false;
+					$stl = $sectiontitle ? "&sectiontitle={$sectiontitle}" : false;
+					if($collapse && !$sid) { $sid="&section=0";}
 					$istalk = ( Namespace::isTalk( $wgTitle->getNamespace()) );
 					$istalkclass = $istalk?' istalk':'';
 					$content_actions['edit'] = array(
 						'class' => ((($action == 'edit' or $action == 'submit') and $section != 'new') ? 'selected' : '').$istalkclass,
 						'text' => wfMsg('edit'),
-						'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid),
+						'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid.$sid.$stl),
 						'ttip' => wfMsg('tooltip-edit'),
 						'akey' => wfMsg('accesskey-edit')
 					);
@@ -347,9 +359,12 @@
 					}
 				} else {
 				        $oid = ( $oldid && ! isset( $diff ) ) ? "&oldid={$oldid}" : '';
+					$sid = $section ? "&section={$section}" : false;
+					$stl = $sectiontitle ? "&sectiontitle={$sectiontitle}" : false;			
+					if($collapse && !$sid) { $sid="&section=0";}
 					$content_actions['edit'] = array('class' => ($action == 'edit') ? 'selected' : false,
 					'text' => wfMsg('viewsource'),
-					'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid),
+					'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid.$sid.$stl),
 					'ttip' => wfMsg('tooltip-viewsource'),
 					'akey' => wfMsg('accesskey-viewsource'));
 				}
