@@ -12,9 +12,19 @@ function wfSpecialRandompage() {
 	global $wgOut, $wgTitle, $wgArticle, $wgExtraRandompageSQL;
 	$fname = 'wfSpecialRandompage';
 
+	# NOTE! We use a literal constant in the SQL instead of the RAND()
+	# function because RAND() will return a different value for every row
+	# in the table. That's both very slow and returns results heavily
+	# biased towards low values, as rows later in the table will likely
+	# never be reached for comparison.
+	#
+	# Using a literal constant means the whole thing gets optimized on
+	# the index, and the comparison is both fast and fair.
 	$rand = mt_rand() / mt_getrandmax();
+	
 	# interpolation and sprintf() can muck up with locale-specific decimal separator
 	$randstr = number_format( $rand, 12, ".", "" );
+	
 	$db =& wfGetDB( DB_SLAVE );
 	$use_index = $db->useIndexClause( 'cur_random' );
 	$cur = $db->tableName( 'cur' );
@@ -31,15 +41,17 @@ function wfSpecialRandompage() {
 		ORDER BY cur_random
 		LIMIT 1";
 	$res = $db->query( $sqlget, $fname );
+	
+	$title = null;
 	if( $s = $db->fetchObject( $res ) ) {
-		$rt = wfUrlEncode( $s->cur_title );
-	} else {
-		# No articles?!
-		$rt = "";
+		$title =& Title::makeTitle( NS_MAIN, $s->cur_title );
+	}	
+	if( is_null( $title ) ) {
+		# That's not supposed to happen :)
+		$title =& Title::newFromText( wfMsg( 'mainpage' ) );
 	}
-
 	$wgOut->reportTime(); # for logfile
-	$wgOut->redirect( wfLocalUrl( $rt ) );
+	$wgOut->redirect( $title->getFullUrl() );
 }
 
 ?>
