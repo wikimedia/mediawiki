@@ -314,8 +314,6 @@ class Article {
 			$s = wfMsg( "redirectedfrom", $redir );
 			$wgOut->setSubtitle( $s );
 		}
-		$wgOut->checkLastModified( $this->mTouched );
-		$this->tryFileCache();
 		$wgLinkCache->preFill( $this->mTitle );
 		$wgOut->addWikiText( $text );
 
@@ -720,7 +718,7 @@ class Article {
 			return;
 		}
 
-		if ( $wpConfirm ) {
+		if ( $_POST["wpConfirm"] ) {
 			$this->doDelete();
 			return;
 		}
@@ -728,15 +726,18 @@ class Article {
 		# determine whether this page has earlier revisions
 		# and insert a warning if it does
 		# we select the text because it might be useful below
-		$sql="SELECT old_text FROM old WHERE old_namespace=0 and old_title='" . wfStrencode($this->mTitle->getPrefixedDBkey())."' ORDER BY inverse_timestamp LIMIT 1";
-		$res=wfQuery($sql, DB_READ, $fname);
+		$ns = $this->mTitle->getNamespace();
+		$title = $this->mTitle->getDBkey();
+		$etitle = wfStrencode( $title );
+		$sql = "SELECT old_text FROM old WHERE old_namespace=$ns and old_title='$etitle' ORDER BY inverse_timestamp LIMIT 1";
+		$res = wfQuery( $sql, DB_READ, $fname );
 		if( ($old=wfFetchObject($res)) && !$wpConfirm ) {
 			$skin=$wgUser->getSkin();
 			$wgOut->addHTML("<B>".wfMsg("historywarning"));
 			$wgOut->addHTML( $skin->historyLink() ."</B><P>");
 		}
 
-		$sql="SELECT cur_text FROM cur WHERE cur_namespace=0 and cur_title='" . wfStrencode($this->mTitle->getPrefixedDBkey())."'";
+		$sql="SELECT cur_text FROM cur WHERE cur_namespace=$ns and cur_title='$etitle'";
 		$res=wfQuery($sql, DB_READ, $fname);
 		if( ($s=wfFetchObject($res))) {
 
@@ -786,6 +787,7 @@ class Article {
 	function confirmDelete( $par = "" )
 	{
 		global $wgOut;
+		global $wpReason;
 
 		wfDebug( "Article::confirmDelete\n" );
 		
@@ -805,7 +807,7 @@ class Article {
 <form id=\"deleteconfirm\" method=\"post\" action=\"{$formaction}\">
 <table border=0><tr><td align=right>
 {$delcom}:</td><td align=left>
-<input type=text size=60 name=\"wpReason\" value=\"{$wpReason}\">
+<input type=text size=60 name=\"wpReason\" value=\"" . htmlspecialchars( $wpReason ) . "\">
 </td></tr><tr><td>&nbsp;</td></tr>
 <tr><td align=right>
 <input type=checkbox name=\"wpConfirm\" value='1' id=\"wpConfirm\">
@@ -1165,6 +1167,12 @@ class Article {
 	/* Caching functions */
 	
 	function tryFileCache() {
+		static $called = false;
+		if( $called ) {
+			wfDebug( " tryFileCache() -- called twice!?\n" );
+			return;
+		}
+		$called = true;
 		if($this->isFileCacheable()) {
 			$touched = $this->mTouched;
 			if( strpos( $this->mContent, "{{" ) !== false ) {
