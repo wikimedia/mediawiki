@@ -715,7 +715,7 @@ and the text of $3 pages.",
 'prevn'			=> "previous $1",
 'nextn'			=> "next $1",
 'viewprevnext'	=> "View ($1) ($2) ($3).",
-'showingresults' => "Showing below <b>$1</b> results starting with #<b>$2</b>.",
+'showingresults' => "Showing below up to <b>$1</b> results starting with #<b>$2</b>.",
 'showingresultsnum' => "Showing below <b>$3</b> results starting with #<b>$2</b>.",
 'nonefound'		=> "'''Note''': unsuccessful searches are
 often caused by searching for common words like \"have\" and \"from\",
