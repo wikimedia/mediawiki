@@ -9,6 +9,7 @@
 #topbar { padding: 4px;font-size:95%; }
 #toc { border:1px solid #8888aa; background-color:#f7f8ff;padding:5px;font-size:95%; }
 #toolbar { border-width:2px;border-style:groove;border-color:black;padding:0px;width:230px;}
+#editform { margin-top:1px; }
 .bodytext { }
 a.interwiki, a.external { color: #3366BB; }
 a.printable { text-decoration: underline; }
