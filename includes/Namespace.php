@@ -1,4 +1,6 @@
 <?php
+if( defined( "MEDIAWIKI" ) ) {
+
 # This is a utility class with only static functions
 # for dealing with namespaces that encodes all the
 # "magic" behaviors of them based on index.  The textual
@@ -105,4 +107,5 @@ class Namespace {
 	}
 }
 
+}
 ?>

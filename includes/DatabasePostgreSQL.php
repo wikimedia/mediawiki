@@ -14,6 +14,8 @@
 #
 # Hashar
 
+require_once( "Database.php" );
+
 class DatabasePgsql extends Database {
 	var $mInsertId = NULL;
 

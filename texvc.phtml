@@ -13,7 +13,7 @@ print ">";
 <?php
 print "<form method=\"post\" action=\"{$wgServer}{$wgScriptPath}/texvc_cgi.phtml\">"
 ?>
-<textarea name='math' rows='10' cols='80'><?
+<textarea name='math' rows='10' cols='80'><?php
 	global $math;
 	$math = preg_replace ("/\\\\\\\\/", '\\', $math);
 	print $math;
