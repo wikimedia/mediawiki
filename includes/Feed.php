@@ -84,7 +84,8 @@ class ChannelFeed extends FeedItem {
 
 class RSSFeed extends ChannelFeed {
 	function formatTime( $ts ) {
-		return gmdate( "D, d M Y H:i:s T", wfTimestamp2Unix( $ts ) );
+		// need to use RFC 822 time format
+		return gmdate( "r", wfTimestamp2Unix( $ts ) );
 	}
 	
 	function outHeader() {
