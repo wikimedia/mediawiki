@@ -276,8 +276,9 @@ class Parser
 		$sk =& $wgUser->getSkin() ;
 
 		$data = array () ;
-		$sql1 = "SELECT DISTINCT cur_title,cur_namespace FROM cur,links WHERE l_to={$id} AND l_from=cur_id";
-		$sql2 = "SELECT DISTINCT cur_title,cur_namespace FROM cur,brokenlinks WHERE bl_to={$id} AND bl_from=cur_id" ;
+		$cns = 14 ;
+		$sql1 = "SELECT DISTINCT cur_title,cur_namespace FROM cur,links WHERE cur_namespace={$cns} l_to={$id} AND l_from=cur_id";
+		$sql2 = "SELECT DISTINCT cur_title,cur_namespace FROM cur,brokenlinks cur_namespace={$cns} WHERE bl_to={$id} AND bl_from=cur_id" ;
 
 		$res = wfQuery ( $sql1, DB_READ ) ;
 		while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
@@ -892,28 +893,19 @@ class Parser
 				$wgLinkCache->addImageLinkObj( $nt );
 				return $s;
 			}
+			if ( $ns == 14 ) {
+				$t = $nt->getText() ;
+				$nnt = Title::newFromText ( $category.":".$t ) ;
+				$t = $sk->makeLinkObj( $nnt, $t, "", "" , $prefix );
+				$this->mOutput->mCategoryLinks[] = $t ;
+				$s .= $prefix . $trail ;
+				return $s ;
+			}
 		}
 		if( ( $nt->getPrefixedText() == $this->mTitle->getPrefixedText() ) &&
 		    ( strpos( $link, "#" ) == FALSE ) ) {
 			$s .= $prefix . "<strong>" . $text . "</strong>" . $trail;
 			return $s;
-		}
-
-		# Category feature
-		$catns = strtoupper ( $nt->getDBkey () ) ;
-		$catns = explode ( ":" , $catns ) ;
-		if ( count ( $catns ) > 1 ) $catns = array_shift ( $catns ) ;
-		else $catns = "" ;
- 		if ( $catns == strtoupper($category) && $this->mOptions->getUseCategoryMagic() ) {
-		  	$t = explode ( ":" , $nt->getText() ) ;
- 			array_shift ( $t ) ;
- 			$t = implode ( ":" , $t ) ;
- 			$t = $wgLang->ucFirst ( $t ) ;
-			$nnt = Title::newFromText ( $category.":".$t ) ;
-			$t = $sk->makeLinkObj( $nnt, $t, "", $trail , $prefix );
- 			$this->mOutput->mCategoryLinks[] = $t ;
- 			$s .= $prefix . $trail ;
-			return $s ;
 		}
 
 		if( $ns == $media ) {
