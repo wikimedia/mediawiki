@@ -64,7 +64,7 @@
 			global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgOut;
 			global $wgScript, $wgStyleSheetPath, $wgLanguageCode, $wgUseNewInterlanguage;
 			global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
-			global $wgDisableCounters, $wgLogo, $action;
+			global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses;
 			
 			extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 
@@ -92,6 +92,17 @@
 			$tpl->setRef( "thispage", &$this->thispage );
 			$tpl->set( "subtitle", $out->getSubtitle() );
 			$tpl->set( 'catlinks', getCategories());
+			if( $wgOut->isSyndicated() ) {
+				$feeds = array();
+				foreach( $wgFeedClasses as $format => $class ) {
+					$feeds[$format] = array(
+						'text' => $format,
+						'href' => $wgRequest->escapeAppendQuery( "feed=$format" ),
+						'ttip' => wfMsg('tooltip-'.$format)
+					);
+				}
+				$tpl->setRef( 'feeds', &$feeds );
+			}
 			$tpl->setRef( 'mimetype', &$wgMimeType );
 			$tpl->setRef( 'charset', &$wgOutputEncoding );
 			$tpl->set( 'headlinks', $out->getHeadLinks() );

@@ -466,7 +466,8 @@ class PreferencesForm {
 
 		$wgOut->addHTML( "
 	<div>
-		<input type='submit' name=\"wpSaveprefs\" value=\"$svp\" />
+		<input type='submit' name=\"wpSaveprefs\" value=\"$svp\" accesskey=\"".
+		wfMsg('accesskey-save')."\" title=\"[alt-".wfMsg('accesskey-save')."]\" />
 		<input type='submit' name=\"wpReset\" value=\"$rsp\" />
 	</div>
 	

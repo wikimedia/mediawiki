@@ -563,6 +563,7 @@ performed by sysops with  \"bureaucrat\" status.",
 "hidetoc" => "hide",
 "thisisdeleted" => "View or restore $1?",
 "restorelink" => "$1 deleted edits",
+'feedlinks' => 'Feeds:',
 
 # Main script and global functions
 #
@@ -1549,6 +1550,7 @@ amusement.",
 'tooltip-preview' => 'Preview your changes, please use this before saving! [alt-p]',
 'tooltip-contributions' => 'View the list of contributions of this user',
 'tooltip-emailuser' => 'Send a mail to this user',
+'tooltip-rss' => 'RSS feed for this page',
 
 # Metadata
 "nodublincore" => "Dublin Core RDF metadata disabled for this server.",
