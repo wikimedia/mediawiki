@@ -74,7 +74,9 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 		$wgOut->errorpage( "badtitle", "badtitletext" );
 	}
-} else if ( ( $action == "view" ) && $wgTitle->getPrefixedDBKey() != $title ) {
+} else if ( ( $action == "view" ) && $wgTitle->getPrefixedDBKey() != $title &&
+  !count( array_diff( array_keys( $_GET ), array( 'action', 'title' ) ) ) )
+{
 	/* redirect to canonical url, make it a 301 to allow caching */
 	$wgOut->redirect( $wgTitle->getFullURL(), '301');
 } else if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
