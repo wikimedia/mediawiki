@@ -1,6 +1,23 @@
 # MediaWiki Parser test cases
-# see also http://meta.wikimedia.org/wiki/Parser_testing
+# Some taken from http://meta.wikimedia.org/wiki/Parser_testing
+# All (C) their respective authors and released under the GPL
+#
+# The syntax should be fairly self-explanatory.
+#
+# Currently supported test options:
+#	(default)	generate HTML output
+# 	pst 		apply pre-save transform
+#	msg 		apply message transform
+#
+# Tests can be disabled with the '!!disabled' flag.
+#
+# For testing purposes, temporary articles can created:
+# !!article / NAMESPACE:TITLE / !!text / ARTICLE TEXT / !!endarticle
+# where '/' denotes a newline.
 
+###
+### Basic tests
+###
 !! test
 Blank input
 !! input
@@ -25,6 +42,7 @@ Simple list
 <ul><li> Item 1
 </li><li> Item 2
 </li></ul>
+
 !! end
 
 !! test
@@ -60,6 +78,7 @@ Italics and bold
 </li><li> plain<b>bold<i>bold-italic</i></b>plain
 </li><li> plain l'<i>italic</i>plain
 </li></ul>
+
 !! end
 
 ###
@@ -117,6 +136,7 @@ nowiki 3
 <ul><li>There is not nowiki.
 </li><li>There is nowiki.
 </li></ul>
+
 !! end
 
 ###
@@ -130,6 +150,7 @@ comment test 1
 !! result
 <pre>asdf
 </pre>
+
 !! end
 
 !! test
@@ -374,6 +395,138 @@ Normal text.
 !! end
 
 ###
+### Tables
+###
+### content taken from http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide:_Using_tables
+###
+!! test
+Simple table
+!! input
+{| 
+| 1 || 2
+|- 
+| 3 || 4
+|}
+!! result
+<table >
+<tr >
+<td> 1 </td><td> 2
+</td></tr>
+<tr >
+<td> 3 </td><td> 4
+</td></tr></table>
+
+!! end
+
+!! test
+Multiplication table
+!! input
+{| border="1" cellpadding="2"
+|+Multiplication table
+|-
+! &times; !! 1 !! 2 !! 3
+|-
+! 1
+| 1 || 2 || 3
+|-
+! 2
+| 2 || 4 || 6
+|-
+! 3
+| 3 || 6 || 9
+|-
+! 4
+| 4 || 8 || 12
+|-
+! 5
+| 5 || 10 || 15
+|}
+!! result
+<table border="1" cellpadding="2">
+<caption>Multiplication table
+</caption>
+<tr >
+<th> &times; </th><th> 1 </th><th> 2 </th><th> 3
+</th></tr>
+<tr >
+<th> 1
+</th><td> 1 </td><td> 2 </td><td> 3
+</td></tr>
+<tr >
+<th> 2
+</th><td> 2 </td><td> 4 </td><td> 6
+</td></tr>
+<tr >
+<th> 3
+</th><td> 3 </td><td> 6 </td><td> 9
+</td></tr>
+<tr >
+<th> 4
+</th><td> 4 </td><td> 8 </td><td> 12
+</td></tr>
+<tr >
+<th> 5
+</th><td> 5 </td><td> 10 </td><td> 15
+</td></tr></table>
+
+!! end
+
+!! test
+Table rowspan
+!! input
+{| align=right border=1
+| Cell 1, row 1 
+|rowspan=2| Cell 2, row 1 (and 2) 
+| Cell 3, row 1 
+|- 
+| Cell 1, row 2 
+| Cell 3, row 2 
+|}
+!! result
+<table align=right border=1>
+<tr >
+<td> Cell 1, row 1
+</td><td rowspan=2> Cell 2, row 1 (and 2)
+</td><td> Cell 3, row 1
+</td></tr>
+<tr >
+<td> Cell 1, row 2
+</td><td> Cell 3, row 2
+</td></tr></table>
+
+!! end
+
+!! test
+Nested table
+!! input
+{| border=1
+| &alpha;
+|
+{| bgcolor=#ABCDEF border=2
+|nested
+|-
+|table
+|}
+|the original table again
+|}
+!! result
+<table border=1>
+<tr >
+<td> &alpha;
+</td><td>
+<table bgcolor=#ABCDEF border=2>
+<tr >
+<td>nested
+</td></tr>
+<tr >
+<td>table
+</td></tr></table>
+</td><td>the original table again
+</td></tr></table>
+
+!! end
+
+###
 ### Internal links
 ###
 !! article
@@ -572,6 +725,7 @@ Common list
 </li><li> item 2
 </li><li>item 3
 </li></ul>
+
 !! end
 
 !! test
@@ -585,6 +739,7 @@ Numbered list
 </li><li>item 2
 </li><li> item 3
 </li></ol>
+
 !! end
 
 !! test
@@ -626,6 +781,7 @@ Mixed list
 </li></ol>
 </li><li>Level 1
 </li></ul>
+
 !! end
 
 ###
@@ -728,19 +884,55 @@ Magic variable as template parameter
 !! article
 Template:linktest
 !! text
-[[{{{param}}}|foo]]
+[[{{{param}}}|link]]
 !! endarticle
 
-XXX this works outside of parser testing
 !! test
-!! disabled
 Template parameter as link source
 !! input
 {{linktest|param=Main Page}}
 !! result
+<p><a href="/wiki/Main_Page" title="Main Page">link</a>
+</p>
+!! end
+
+
+!! article
+Template:Linktest2
+!! text
+Main Page
+!! endarticle
+
+!! test
+Template as link source
+!! input
+[[{{linktest2}}]]
+!! result
 <p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 </p>
 !! end
+
+!! article
+Template:loop1
+!! text
+{{loop2}}
+!! endarticle
+
+!! article
+Template:loop2
+!! text
+{{loop1}}
+!! endarticle
+
+!! test
+Template infinite loop
+!! input
+{{loop1}}
+!! result
+<p>{{loop2}}<!-- WARNING: template loop detected -->
+</p>
+!! end
+
 
 ###
 ### Pre-save transform tests
@@ -766,9 +958,19 @@ PST
 !! end
 
 !! test
+pre-save transform: nonexistant template
+!! options
+PST
+!! input
+{{thistemplatedoesnotexist}}
+!! result
+{{thistemplatedoesnotexist}}
+!! end
+
+!! test
 pre-save transform: subst magic variables
 !! options
-pst
+PST
 !! input
 {{subst:SITENAME}}
 !! result
@@ -789,7 +991,7 @@ MediaWiki
 !! end
 
 !! test
-message transform: should transform wiki markup
+message transform: should not transform wiki markup
 !! options
 msg
 !! input
@@ -803,6 +1005,6 @@ more templates
 tables
 images
 subpages
-pre-save transform and message transform checking
+character entities
 and much more
 
