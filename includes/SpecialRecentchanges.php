@@ -78,7 +78,7 @@ function wfSpecialRecentchanges( $par ) {
 	}
 
 	# Output header
-	$rctext = wfMsg( "recentchangestext" );
+	$rctext = wfMsgForContent( "recentchangestext" );
 	$wgOut->addWikiText( $rctext );
 
 	
