@@ -118,7 +118,7 @@ class Profiler
 			$this->mCalls[$fname] ++;
 		}
 
-		$total = $this->mCollated["-total"];
+		$total = @$this->mCollated["-total"];
 		$overhead = $this->mCollated["-overhead-internal"] / $profileCount;
 		$this->mCalls["-overhead-total"] = $profileCount;
 
