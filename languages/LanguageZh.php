@@ -55,8 +55,19 @@ class LanguageZh extends LanguageZh_cn {
 		return $this->mZhLanguageCode;
 	}
 	
-	
-	
+	# this should give much better diff info
+	function segmentForDiff( $text ) {
+		return preg_replace(
+			"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
+			"' ' .\"$1\"", $text);
+	}
+
+	function unsegmentForDiff( $text ) {
+		return preg_replace(
+			"/ ([\\xc0-\\xff][\\x80-\\xbf]*)/e",
+			"\"$1\"", $text);
+	}
+
 	function autoConvert($text, $toVariant=false) {
 		if(!$toVariant) 
 			$toVariant = $this->getPreferredVariant();
