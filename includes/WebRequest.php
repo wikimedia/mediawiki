@@ -23,14 +23,10 @@
 # self-contained request.
 
 ## Enable this to debug total elimination of register_globals
-#define( "DEBUG_GLOBALS", 1 );
 
 class WebRequest {
 	function WebRequest() {
-		if( defined('DEBUG_GLOBALS') ) error_reporting(E_ALL);
-
 		$this->checkMagicQuotes();
-		$this->checkRegisterGlobals();
 	}
 
 	function &fix_magic_quotes( &$arr ) {
@@ -52,25 +48,7 @@ class WebRequest {
 			$this->fix_magic_quotes( $_POST );
 			$this->fix_magic_quotes( $_REQUEST );
 			$this->fix_magic_quotes( $_SERVER );
-		} elseif( defined('DEBUG_GLOBALS') ) {
-			die("DEBUG_GLOBALS: turn on magic_quotes_gpc" );
 		}
-	}
-
-	function checkRegisterGlobals() {
-		if( ini_get( "register_globals" ) ) {
-			if( defined( "DEBUG_GLOBALS" ) ) {
-				die( "DEBUG_GLOBALS: Turn register_globals off!" );
-			}
-		}
-		/*
-		else {
-			if( !defined( "DEBUG_GLOBALS" ) ) {
-				# Insecure, but at least it'll run
-				import_request_variables( "GPC" );
-			}
-		}
-		*/
 	}
 	
 	function getGPCVal( &$arr, $name, $default ) {
