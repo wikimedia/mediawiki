@@ -243,3 +243,10 @@ CREATE TABLE objectcache (
   unique key (keyname),
   key (exptime)
 );
+
+-- For storing revision text
+CREATE TABLE blobs (
+  blob_index char(255) binary NOT NULL default '',
+  blob_data longblob NOT NULL default '',
+  UNIQUE key blob_index (blob_index),
+);

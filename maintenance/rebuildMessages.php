@@ -1,11 +1,11 @@
 <?php
 require_once( "commandLine.inc" );
-include_once( "./InitialiseMessages.inc" );
+include_once( "InitialiseMessages.inc" );
 
 $wgTitle = Title::newFromText( "Rebuild messages script" );
 
-if ( isset( $argv[0] ) ) {
-	$response = array_shift( $argv );
+if ( isset( $args[0] ) ) {
+	$response = array_shift( $args );
 	if ( $response == "update" ) {
 		$response = 1;
 	} elseif ( $response == "rebuild" ) {
@@ -14,8 +14,8 @@ if ( isset( $argv[0] ) ) {
 } else {
 	$response = 0;
 }
-if ( isset( $argv[0] ) ) {
-	$messages = loadLanguageFile( array_shift( $argv ) );
+if ( isset( $args[0] ) ) {
+	$messages = loadLanguageFile( array_shift( $args ) );
 } else {
 	$messages = false;
 }

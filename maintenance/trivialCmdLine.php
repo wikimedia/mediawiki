@@ -1,5 +1,5 @@
 <?php
-require_once( "liveCmdLine.inc" );
+require_once( "commandLine.inc" );
 print "DB name: $wgDBname\n";
 print "DB user: $wgDBuser\n";
 print "DB password: $wgDBpassword\n";

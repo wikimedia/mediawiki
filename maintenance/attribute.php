@@ -1,31 +1,20 @@
 <?php
+# Script for re-attributing edits
+require_once( "commandLine.inc" );
 
 # Parameters
-
-if ($argc < 4) {
+if ( count( $args ) < 2 ) {
 	print "Not enough parameters\n";
-	print "Usage: php attribute.php <lang> <source> <destination>\n";
+	if ( $wgWikiFarm ) {
+		print "Usage: php attribute.php <language> <site> <source> <destination>\n";
+	} else {
+		print "Usage: php attribute.php <source> <destination>\n";
+	}
 	exit;
 }
 
-$lang = $argv[1];
-$source = $argv[2];
-$dest = $argv[3];
-
-# Initialisation
-
-$wgCommandLineMode = true;
-$DP = "../includes";
-
-$sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
-ini_set( "include_path", "$IP$sep$include_path" );
-
-require_once( "/apache/htdocs/$lang/w/LocalSettings.php" );
-require_once( "Setup.php" );
-
-$wgTitle = Title::newFromText( "Changing attribution script" );
-set_time_limit(0);
-$wgCommandLineMode = true;
+$source = $args[0];
+$dest = $args[1];
 
 $eSource = wfStrencode( $source );
 $eDest = wfStrencode( $dest );
