@@ -392,6 +392,10 @@ $wgSiteNotice = "";
 # 
 $wgUseImageResize		= false;
 
+## Set maximum width of images on image description pages.
+## Images bigger than this will be rendered down.
+$wgMaxImageWidth = 800;
+
 ## Resizing can be done using PHP's internal image libraries
 ## or using ImageMagick. The later supports more file formats
 ## than PHP, which only supports PNG, GIF, JPG, XBM and WBMP.
