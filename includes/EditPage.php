@@ -149,7 +149,7 @@ class EditPage {
 		if ( 'save' == $formtype ) {
 			# Check for spam
 			if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1, $matches ) ) {
-				$this->spamPage ( $matches );
+				$this->spamPage ( $matches[0] );
 				return;
 			}
 			if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section ) ) {
@@ -563,7 +563,7 @@ htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 	/**
 	 * @todo document
 	 */
-	function spamPage ( $matches = array() )
+	function spamPage ( $match = false )
 	{
 		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( 'spamprotectiontitle' ) );
@@ -571,8 +571,8 @@ htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikiText( wfMsg( 'spamprotectiontext' ) );
-		if ( isset ( $matches[0] ) ) {
-			$wgOut->addWikiText( wfMsg( 'spamprotectionmatch', "<nowiki>{$matches[0]}</nowiki>" ) );
+		if ( $match ) {
+			$wgOut->addWikiText( wfMsg( 'spamprotectionmatch', "<nowiki>{$match}</nowiki>" ) );
 		}
 		$wgOut->returnToMain( false );
 	}
