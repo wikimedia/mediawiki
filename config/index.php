@@ -223,6 +223,7 @@ $conf->UseImageResize = $conf->HaveGD || $conf->ImageMagick;
 # $conf->IP = "/Users/brion/Sites/inplace";
 chdir( ".." );
 $conf->IP = getcwd();
+$conf->IP = preg_replace( "/\\\\/","\\\\\\\\",$conf->IP );  // For Windows, \ -> \\ 
 chdir( "config" );
 print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt></li>\n";
 
