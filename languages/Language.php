@@ -1639,6 +1639,12 @@ class Language {
 		$mw->mCaseSensitive = $rawEntry[0];
 		$mw->mSynonyms = array_slice( $rawEntry, 1 );
 	}
+
+	# Italic is unsuitable for some languages
+	function emphasize( $text )
+	{
+		return "<em>$text</em>";
+	}
 }
 
 @include_once( "Language" . ucfirst( $wgLanguageCode ) . ".php" );
