@@ -2299,6 +2299,7 @@ class Skin {
 			$toolbar.="addButton('$image','$tip','$open','$close','$sample');\n";
 		}
 
+		$toolbar.="addInfobox('".wfMsg("infobox")."');\n";
 		$toolbar.="document.writeln(\"</div>\");\n</script>";
 		return $toolbar;
 	}
