@@ -16,7 +16,7 @@ require_once( "QueryPage.php" );
  * @subpackage SpecialPage
  */
 class UncategorizedPagesPage extends PageQueryPage {
-	var $requestedNamespace = 0;
+	var $requestedNamespace = NS_MAIN;
 	
 	function getName() {
 		return "Uncategorizedpages";

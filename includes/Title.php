@@ -59,7 +59,7 @@ class Title {
 		$this->mInterwiki = $this->mUrlform =
 		$this->mTextform = $this->mDbkeyform = '';
 		$this->mArticleID = -1;
-		$this->mNamespace = 0;
+		$this->mNamespace = NS_MAIN;
 		$this->mRestrictionsLoaded = false;
 		$this->mRestrictions = array();
 		# Dont change the following, NS_MAIN is hardcoded in several place
@@ -98,7 +98,7 @@ class Title {
 	 * @static
 	 * @access public
 	 */
-	/* static */ function &newFromText( $text, $defaultNamespace = 0 ) {	
+	function &newFromText( $text, $defaultNamespace = NS_MAIN ) {	
 		$fname = 'Title::newFromText';
 		wfProfileIn( $fname );
 		
@@ -111,7 +111,7 @@ class Title {
 		 * In theory these are value objects and won't get changed...
 		 */
 		static $titleCache = array();
-		if( $defaultNamespace == 0 && isset( $titleCache[$text] ) ) {
+		if( $defaultNamespace == NS_MAIN && isset( $titleCache[$text] ) ) {
 			wfProfileOut( $fname );
 			return $titleCache[$text];
 		}
@@ -136,7 +136,7 @@ class Title {
 		$t->mDefaultNamespace = $defaultNamespace;
 
 		if( $t->secureAndSplit() ) {
-			if( $defaultNamespace == 0 ) {
+			if( $defaultNamespace == NS_MAIN ) {
 				if( count( $titleCache ) >= MW_TITLECACHE_MAX ) {
 					# Avoid memory leaks on mass operations...
 					$titleCache = array();
