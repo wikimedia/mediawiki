@@ -70,7 +70,6 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 	'Deadendpages'  => new SpecialPage( 'Deadendpages' ),
 	'Allpages'		=> new SpecialPage( 'Allpages' ),
 	'Ipblocklist'	=> new SpecialPage( 'Ipblocklist' ),
-	'Maintenance'	=> new SpecialPage( 'Maintenance' ),
 	'Specialpages'  => new UnlistedSpecialPage( 'Specialpages' ),
 	'Contributions' => new UnlistedSpecialPage( 'Contributions' ),
 	'Emailuser'		=> new UnlistedSpecialPage( 'Emailuser' ),
