@@ -38,11 +38,12 @@ function wfSpecialExport( $page = '' ) {
 	}
 	
 	if( $page != '' ) {
+		$wgOut->disable();
 		header( "Content-type: application/xml; charset=utf-8" );
 		$pages = explode( "\n", $page );
 		$xml = pages2xml( $pages, $curonly );
 		echo $xml;
-		wfAbruptExit();
+		return;
 	}
 	
 	$wgOut->addWikiText( wfMsg( "exporttext" ) );
@@ -60,6 +61,9 @@ function wfSpecialExport( $page = '' ) {
 }
 
 function pages2xml( $pages, $curonly = false ) {
+	$fname = 'pages2xml';
+	wfProfileIn( $fname );
+	
 	global $wgContLanguageCode, $wgInputEncoding, $wgContLang;
 	$xml = "<" . "?xml version=\"1.0\" encoding=\"UTF-8\" ?" . ">\n" .
 		"<mediawiki version=\"0.1\" xml:lang=\"$wgContLanguageCode\">\n";
@@ -69,15 +73,21 @@ function pages2xml( $pages, $curonly = false ) {
 	$xml .= "</mediawiki>\n";
 	if($wgInputEncoding != "utf-8")
 		$xml = $wgContLang->iconv( $wgInputEncoding, "utf-8", $xml );
+	
+	wfProfileOut( $fname );
 	return $xml;
 }
 
 function page2xml( $page, $curonly, $full = false ) {
 	global $wgLang;
 	$fname = 'page2xml';
+	wfProfileIn( $fname );
 	
 	$title = Title::NewFromText( $page );
-	if( !$title ) return "";
+	if( !$title ) {
+		wfProfileOut( $fname );
+		return "";
+	}
 
 	$dbr =& wfGetDB( DB_SLAVE );
 	$s = $dbr->selectRow( 'cur', array( 'cur_id as id','cur_timestamp as timestamp','cur_user as user',
@@ -106,13 +116,18 @@ function page2xml( $page, $curonly, $full = false ) {
 		}
 		$xml .= revision2xml( $s, $full, true );
 		$xml .= "  </page>\n";
+		wfProfileOut( $fname );
 		return $xml;
 	} else {
+		wfProfileOut( $fname );
 		return "";
 	}
 }
 
 function revision2xml( $s, $full, $cur ) {
+	$fname = 'revision2xml';
+	wfProfileIn( $fname );
+	
 	$ts = wfTimestamp2ISO8601( $s->timestamp );
 	$xml = "    <revision>\n";
 	if($full && !$cur)
@@ -136,6 +151,7 @@ function revision2xml( $s, $full, $cur ) {
 	$t = xmlsafe( Article::getRevisionText( $s, "" ) );
 	$xml .= "      <text>$t</text>\n";
 	$xml .= "    </revision>\n";
+	wfProfileOut( $fname );
 	return $xml;
 }
 
@@ -145,14 +161,28 @@ function wfTimestamp2ISO8601( $ts ) {
 }
 
 function xmlsafe( $string ) {
-	# May contain old data which has not been properly normalized.
+	$fname = 'xmlsafe';
+	wfProfileIn( $fname );
+	
+	/**
+	 * The page may contain old data which has not been properly normalized.
+	 * Invalid UTF-8 sequences or forbidden control characters will make our
+	 * XML output invalid, so be sure to strip them out.
+	 */
 	global $wgUseLatin1;
 	if( $wgUseLatin1 ) {
+		/**
+		 * We know the UTF-8 is valid since we converted outselves.
+		 * Just check for forbidden controls...
+		 */
 		$string = preg_replace( '/[\x00-\x08\x0b-\x1f]/', '', $string );
 	} else {
 		$string = UtfNormal::cleanUp( $string );
 	}
-	return htmlspecialchars( $string );
+	
+	$string = htmlspecialchars( $string );
+	wfProfileOut( $fname );
+	return $string;
 }
 
 ?>
