@@ -225,7 +225,7 @@ class SkinCologneBlue extends Skin {
 			$s .= $sep . $this->specialLink( "upload" );
 		}
 
-		$s .= $sep . $this->makeKnownLink( wfMsg("specialpages" ), wfMsg("moredotdotdot") );
+		$s .= $sep . $this->makeKnownLink( $wgLang->specialPage( "Specialpages" ), wfMsg("moredotdotdot") );
 
 		$s .= $sep . "\n</div>\n";
 		return $s;
