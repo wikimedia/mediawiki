@@ -732,6 +732,10 @@ $wgNavigationLinks = array (
 	array( 'text'=>'sitesupport',	'href'=>'sitesupport-url' ),
 );
 
+# On category pages, show thumbnail gallery for images belonging to that category
+# instead of listing them as articles.
+$wgCategoryMagicGallery = true;
+
 
 } else {
 	die();

@@ -6,6 +6,9 @@
  * @package MediaWiki
  */
 
+if ( $wgCategoryMagicGallery ) 
+	require_once('ImageGallery.php');
+
 /**
  * @package MediaWiki 
  */
@@ -103,7 +106,7 @@ class CategoryPage extends Article {
 	}
 
         function newCategoryMagic () {
-                global $wgContLang,$wgUser;
+                global $wgContLang,$wgUser, $wgCategoryMagicGallery;
 
 		$sk =& $wgUser->getSkin();
 
@@ -115,6 +118,10 @@ class CategoryPage extends Article {
                 $children_start_char = array();
                 $data = array () ;
                 $id = $this->mTitle->getArticleID() ;
+
+		if ( $wgCategoryMagicGallery ) {
+			$ig = new ImageGallery();
+		}
 
                 # FIXME: add limits
                 $dbr =& wfGetDB( DB_SLAVE );
@@ -130,9 +137,9 @@ class CategoryPage extends Article {
                         $t = $ns = $wgContLang->getNsText ( $x->cur_namespace ) ;
                         if ( $t != '' ) $t .= ':' ;
                         $t .= $x->cur_title ;
+			$ctitle = str_replace( '_',' ',$x->cur_title );
 
                         if ( $x->cur_namespace == NS_CATEGORY ) {
-                                $ctitle = str_replace( '_',' ',$x->cur_title );
                                 array_push ( $children, $sk->makeKnownLink ( $t, $ctitle ) ) ; # Subcategory
 
                                 // If there's a link from Category:A to Category:B, the sortkey of the resulting
@@ -144,7 +151,9 @@ class CategoryPage extends Article {
                                 } else {
                                         array_push ( $children_start_char, $wgContLang->firstChar( $x->cl_sortkey ) ) ;
                                 }
-                        } else {
+                        } elseif ( $wgCategoryMagicGallery && $x->cur_namespace == NS_IMAGE ) {
+				$ig->add( new Image( $x->cur_title ) );
+			} else {
                                 array_push ( $articles , $sk->makeKnownLink ( $t ) ) ; # Page in this category
                                 array_push ( $articles_start_char, $wgContLang->firstChar( $x->cl_sortkey ) ) ;
                         }
@@ -286,6 +295,11 @@ class CategoryPage extends Article {
                         }
                         $r .= '</ul>';
                 }
+
+		if ( $wgCategoryMagicGallery && ! $ig->isEmpty() ) {
+			$r.= $ig->toHTML();
+		}
+
                 return $r ;
         }
 }
