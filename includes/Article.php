@@ -5,6 +5,8 @@
 # Note: edit user interface and cache support functions have been
 # moved to separate EditPage and CacheManager classes.
 
+include_once( "CacheManager.php" );
+
 class Article {
 	/* private */ var $mContent, $mContentLoaded;
 	/* private */ var $mUser, $mTimestamp, $mUserText;
@@ -1314,7 +1316,7 @@ class Article {
 				exit;
 			} else {
 				wfDebug( " tryFileCache() - starting buffer\n" );			
-				if($cache->useGzip()) {
+				if($cache->useGzip() && wfClientAcceptsGzip()) {
 					/* For some reason, adding this header line over in
 					   CacheManager::saveToFileCache() fails on my test
 					   setup at home, though it works on the live install.
