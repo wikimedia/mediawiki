@@ -942,9 +942,21 @@ class Article {
 	/**
 	 * Side effects: loads last edit
 	 */
-	function getTextOfLastEditWithSectionReplacedOrAdded($section, $text, $summary = '') {
-		$this->loadLastEdit();
-		$oldtext = $this->getContent( true );
+	function getTextOfLastEditWithSectionReplacedOrAdded($section, $text, $summary = '', $edittime = NULL) {
+		if(is_null($edittime)) {
+			$this->loadLastEdit();
+			$oldtext = $this->getContent( true );
+		} else {
+			$dbw =& wfGetDB( DB_MASTER );
+			$ns = $this->mTitle->getNamespace();
+			$title = $this->mTitle->getDBkey();
+			$obj = $dbw->getArray( 'old', 
+				array( 'old_text','old_flags'), 
+				array( 'old_namespace' => $ns, 'old_title' => $title, 
+					'old_timestamp' => $dbw->timestamp($edittime)),
+				$fname );
+			$oldtext = Article::getRevisionText( $obj );
+		}
 		if ($section != '') {
 			if($section=='new') {
 				if($summary) $subject="== {$summary} ==\n\n";
