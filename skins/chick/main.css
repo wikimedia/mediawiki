@@ -418,7 +418,7 @@ div.portlet { margin: 0.5em 0; }
 	margin:5px;
 }
 
-ul.special li.not_patrolled, ol.special li.not_patrolled {
+ul.special li.not-patrolled, ol.special li.not-patrolled {
 	background-color: #ffa;
 }
 div.patrollink {
