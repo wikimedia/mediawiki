@@ -57,9 +57,14 @@ function wfSpecialEmailuser( $par ) {
 
 	$f = new EmailUserForm( $nu->getName() . " <{$address}>", $target );
 
-	if ( "success" == $action ) { $f->showSuccess(); }
-	else if ( "submit" == $action && $wgRequest->wasPosted() ) { $f->doSubmit(); }
-	else { $f->showForm(); }
+	if ( "success" == $action ) {
+		$f->showSuccess();
+	} else if ( "submit" == $action && $wgRequest->wasPosted() &&
+		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
+		$f->doSubmit();
+	} else {
+		$f->showForm();
+	}
 }
 
 /**
@@ -103,6 +108,7 @@ class EmailUserForm {
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
 		$action = $titleObj->escapeLocalURL( "target=" .
 			urlencode( $this->target ) . "&action=submit" );
+		$token = $wgUser->editToken();
 
 		$wgOut->addHTML( "
 <form id=\"emailuser\" method=\"post\" action=\"{$action}\">
@@ -126,6 +132,7 @@ class EmailUserForm {
 <td>&nbsp;</td><td align='left'>
 <input type='submit' name=\"wpSend\" value=\"{$ems}\" />
 </td></tr></table>
+<input type='hidden' name='wpEditToken' value=\"$token\" />
 </form>\n" );
 
 	}

@@ -20,7 +20,8 @@ function wfSpecialIpblocklist() {
 	if ( "success" == $action ) {
 		$msg = wfMsg( "ipusuccess", htmlspecialchars( $ip ) );
 		$ipu->showList( $msg );
-	} else if ( "submit" == $action && $wgRequest->wasPosted() ) {
+	} else if ( "submit" == $action && $wgRequest->wasPosted() &&
+		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
 		if ( ! $wgUser->isAllowed('block') ) {
 			$wgOut->sysopRequired();
 			return;
@@ -63,6 +64,7 @@ class IPUnblockForm {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
 			$wgOut->addHTML( "<p class='error'>{$err}</p>\n" );
 		}
+		$token = htmlspecialchars( $wgUser->editToken() );
 		
 		$wgOut->addHTML( "
 <form id=\"unblockip\" method=\"post\" action=\"{$action}\">
@@ -86,6 +88,7 @@ class IPUnblockForm {
 			</td>
 		</tr>
 	</table>
+	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 </form>\n" );
 
 	}

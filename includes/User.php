@@ -1210,15 +1210,22 @@ class User {
 	 * login credentials aren't being hijacked with a foreign form
 	 * submission.
 	 *
+	 * @param mixed $salt - Optional function-specific data for hash.
+	 *                      Use a string or an array of strings.
 	 * @return string
 	 * @access public
 	 */
-	function editToken() {
+	function editToken( $salt = '' ) {
 		if( !isset( $_SESSION['wsEditToken'] ) ) {
 			$token = dechex( mt_rand() ) . dechex( mt_rand() );
 			$_SESSION['wsEditToken'] = $token;
+		} else {
+			$token = $_SESSION['wsEditToken'];
 		}
-		return $_SESSION['wsEditToken'];
+		if( is_array( $salt ) ) {
+			$salt = implode( '|', $salt );
+		}
+		return md5( $token . $salt );
 	}
 	
 	/**
@@ -1227,14 +1234,13 @@ class User {
 	 * user's own login session, not a form submission from a third-party
 	 * site.
 	 *
-	 * @param string $val
+	 * @param string $val - the input value to compare
+	 * @param string $salt - Optional function-specific data for hash
 	 * @return bool
 	 * @access public
 	 */
-	function matchEditToken( $val ) {
-		if( !isset( $_SESSION['wsEditToken'] ) ) 
-			return false;
-		return $_SESSION['wsEditToken'] == $val;
+	function matchEditToken( $val, $salt = '' ) {
+		return ( $val == $this->editToken( $salt ) );
 	}
 }
 

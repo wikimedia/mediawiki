@@ -1300,6 +1300,9 @@ Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
 #   only shown if there is an edit comment
 'editcomment' => "The edit comment was: \"<i>$1</i>\".",
 'revertpage'	=> "Reverted edit of $2, changed back to last version by $1",
+'sessionfailure' => 'There seems to be a problem with your login session;
+this action has been canceled as a precaution against session hijacking.
+Please hit "back" and reload the page you came from, then try again.',
 'protectlogpage' => 'Protection_log',
 'protectlogtext' => "Below is a list of page locks/unlocks.
 See [[Project:Protected page]] for more information.",

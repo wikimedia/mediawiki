@@ -29,9 +29,14 @@ function wfSpecialMovepage() {
 
 	$f = new MovePageForm();
 
-	if ( 'success' == $action ) { $f->showSuccess(); }
-	else if ( 'submit' == $action && $wgRequest->wasPosted() ) { $f->doSubmit(); }
-	else { $f->showForm( '' ); }
+	if ( 'success' == $action ) {
+		$f->showSuccess();
+	} else if ( 'submit' == $action && $wgRequest->wasPosted()
+		&& $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
+		$f->doSubmit();
+	} else {
+		$f->showForm( '' );
+	}
 }
 
 /**
@@ -82,6 +87,7 @@ class MovePageForm {
 
 		$titleObj = Title::makeTitle( NS_SPECIAL, 'Movepage' );
 		$action = $titleObj->escapeLocalURL( 'action=submit' );
+		$token = htmlspecialchars( $wgUser->editToken() );
 
 		if ( $err != '' ) {
 			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
@@ -119,6 +125,7 @@ class MovePageForm {
 			</td>
 		</tr>
 	</table>
+	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 </form>\n" );
 
 	}
