@@ -181,6 +181,7 @@ $wgProxyPorts = array( 80, 81, 1080, 3128, 6588, 8000, 8080, 8888, 65506 );
 $wgProxyScriptPath = "$IP/proxy_check.php";
 $wgProxyMemcExpiry = 86400;
 $wgProxyKey = 'W1svekXc5u6lZllTZOwnzEk1nbs';
+$wgProxyList = array();  # big list of banned IP addresses, in the keys not the values
 
 # Client-side caching:
 $wgCachePages       = true; # Allow client-side caching of pages
@@ -371,6 +372,8 @@ $wgMaxCredits = 0;
 # Text matching this regular expression will be recognised as spam
 # See http://en.wikipedia.org/wiki/Regular_expression
 $wgSpamRegex = false; 
+# Similarly if this function returns true
+$wgFilterCallback = false;
 
 # Go button goes straight to the edit screen if the article doesn't exist
 $wgGoToEdit = false;

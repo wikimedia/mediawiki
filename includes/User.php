@@ -99,7 +99,7 @@ class User {
 
 	/* private */ function getBlockedStatus()
 	{
-		global $wgIP, $wgBlockCache;
+		global $wgIP, $wgBlockCache, $wgProxyList;
 
 		if ( -1 != $this->mBlockedby ) { return; }
 	
@@ -122,12 +122,20 @@ class User {
 				$this->mBlockreason = $block->mReason;
 			}
 		}
+
+		# Proxy blocking
+		if ( !$this->mBlockedby ) {
+			if ( array_key_exists( $wgIP, $wgProxyList ) ) {
+				$this->mBlockreason = wfMsg( 'proxyblockreason' );
+				$this->mBlockedby = "Proxy blocker";
+			}
+		}
 	}
 
 	function isBlocked()
 	{
 		$this->getBlockedStatus();
-		if ( 0 == $this->mBlockedby ) { return false; }
+		if ( 0 === $this->mBlockedby ) { return false; }
 		return true;
 	}
 
