@@ -1,0 +1,8 @@
+Some quickie unit tests done with the PHPUnit testing framework. To run the
+test suite, run 'make test' in this dir or 'php RunTests.php'
+
+You can install PHPUnit via pear like this:
+# pear install PHPUnit
+
+Or fetch and install it manually:
+http://pear.php.net/package/PHPUnit

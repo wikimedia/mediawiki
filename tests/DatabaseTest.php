@@ -20,6 +20,39 @@ class DatabaseTest extends PHPUnit_TestCase {
 		unset( $this->db );
 	}
 	
+	function testAddQuotesNull() {
+		$this->assertEquals(
+			'NULL',
+			$this->db->addQuotes( NULL ) );
+	}
+	
+	function testAddQuotesInt() {
+		# returning just "1234" should be ok too, though...
+		# maybe
+		$this->assertEquals(
+			"'1234'",
+			$this->db->addQuotes( 1234 ) );
+	}
+	
+	function testAddQuotesFloat() {
+		# returning just "1234.5678" would be ok too, though
+		$this->assertEquals(
+			"'1234.5678'",
+			$this->db->addQuotes( 1234.5678 ) );
+	}
+
+	function testAddQuotesString() {
+		$this->assertEquals(
+			"'string'",
+			$this->db->addQuotes( 'string' ) );
+	}
+	
+	function testAddQuotesStringQuote() {
+		$this->assertEquals(
+			"'string\'s cause trouble'",
+			$this->db->addQuotes( "string's cause trouble" ) );
+	}
+
 	function testFillPreparedEmpty() {
 		$sql = $this->db->fillPrepared(
 			'SELECT * FROM interwiki', array() );
