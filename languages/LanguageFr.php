@@ -1066,6 +1066,32 @@ class LanguageFr extends Language
 		else return $m;
 
 	}
+
+	# returns additional Regex for the tokenizer.
+	function tokenizerRegex()
+	{
+		return "| [:»!?]|« |[0-9] [0-9]";
+	}
+
+	# Process the token generated from the tokenizer by the above regex. Return
+	# NULL if the token is unknown, and the text to be added to the output otherwise
+	function processToken( &$token , &$tokenStack)
+	{
+		if ( preg_match( "/ ([:»!?])/", $token["type"], $m ) )
+		{
+			$txt = "&nbsp;" . $m[1];
+		} elseif ( "« " == $token["type"] )
+		{
+			$txt = "«&nbsp;";
+		} elseif ( preg_match( "/([0-9]) ([0-9])/", $token["type"], $m ) )
+		{
+			$txt = $m[1] . "&nbsp;" . $m[2];
+		} else
+		{
+			$txt = NULL;
+		}
+		return $txt;
+	}
 }
 
 ?>

@@ -26,22 +26,27 @@ class Tokenizer {
 	function preParse()
 	{
 		global $wgLang;
-		if (  $wgLang->linkPrefixExtension() ) {
-			$regex = "/(([a-zA-Z\x80-\xff]+)\[\[|\]\]|\'\'\'\'\'|\'\'\'|\'\')/";
-			#          000000000000000000000000000000000000000000000000000000
-			#           1111111111111111111111111111111111111111111111111111
-			#            222222222222222222
-			# which $this->mMatch[...] will contain the match.
-		} else {
-			$regex = "/(\[\[|\]\]|\'\'\'\'\'|\'\'\'|\'\')/";
-		}
 
+		# build up the regex, step by step.
+		# Basic features: Quotes for <em>/<strong> and hyphens for <hr>
+		$regex = "\'\'\'\'\'|\'\'\'|\'\'|\n-----*";
+		# Append regex for linkPrefixExtension 
+		if (  $wgLang->linkPrefixExtension() ) {
+			$regex .= "|([a-zA-Z\x80-\xff]+)\[\[";
+		} else {
+			$regex .= "|\[\[";
+		}
+		# Closing link
+		$regex .= "|\]\]";
+		# Language-specific additions
+		$regex .= $wgLang->tokenizerRegex();
+		# Finalize regex
+		$regex = "/(" . $regex . ")/";
+
+		# Apply the regex to the text
 		$this->mCount = preg_match_all( $regex, $this->mText, $this->mMatch,
 						PREG_PATTERN_ORDER|PREG_OFFSET_CAPTURE);
 		$this->mMatchPos=0;
-		# print( "<pre>" );
-		# print_r( $this->mMatch );
-		# print( "</pre>" );
 	}
 
 	function nextToken()
@@ -76,6 +81,12 @@ class Tokenizer {
 					$token["text"] = $this->mMatch[2][$this->mMatchPos][0]; # the prefix
 				} else {
 					$token["type"] = $this->mMatch[0][$this->mMatchPos][0];
+					if ( substr($token["type"],1,4) == "----" )
+					{
+						# any number of hyphens bigger than four is a <HR>. 
+						# strip down to four.
+						$token["type"]="----";
+					}
 				}
 				# What the pointers would change to if this would not just be a preview
 				$token["mPos"] = $this->mPos + strlen( $this->mMatch[0][$this->mMatchPos][0] );

@@ -1732,6 +1732,20 @@ class Language {
 	{
 		return "<em>$text</em>";
 	}
+
+	# returns additional Regex for the tokenizer. See LanguageFr.php for an example
+	function tokenizerRegex()
+	{
+		return "";
+	}
+
+	# Process the token generated from the tokenizer by the above regex. Return
+	# NULL if the token is unknown, and the text to be added to the output otherwise
+	function processToken( &$token , &$tokenStack)
+	{
+		return NULL;
+	}
+
 }
 
 @include_once( "Language" . ucfirst( $wgLanguageCode ) . ".php" );
