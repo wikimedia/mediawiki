@@ -1,0 +1,34 @@
+
+#visual-portal-wrapper {
+    font-size:118%
+}
+body {
+    font-size: xx-small;
+}
+
+/* slightly smaller top margin for the content area */
+#portlet-contentViews {
+  /*  margin:2.1em 0 0 15.7em;*/
+    top: 2em;
+    left: 14em;
+}
+
+
+#portal-column-content {
+    width: 100%;
+    float: right;
+    margin: 2.1em 0 0 -13.4em;
+}
+
+#portal-personaltools {
+    padding-bottom: 0.1em;
+}
+
+
+body {
+    font-size: xx-small;
+}
+
+.portlet {
+    overflow:hidden;
+}
