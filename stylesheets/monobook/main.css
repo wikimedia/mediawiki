@@ -398,6 +398,20 @@ div.townBox dl dd {
 }
 /* the auto-generated edit comments */
 .autocomment { color: gray; }
+
+#pagehistory span.hlinedesc { margin-left: 1.4em }
+#pagehistory span.min { 
+    margin-left: -1em;
+    font-weight: bold;
+}
+#pagehistory li { 
+    border: 1px solid White;
+    padding-left: 1em;
+}
+#pagehistory li.selected { 
+    background-color:#f9f9f9;
+    border:1px dashed #aaaaaa;
+}
 /*
 ** Diff rendering
 */
@@ -646,7 +660,7 @@ in bg url to hide it from iemac */
 li#pt-userpage,
 li#pt-anonuserpage,
 li#pt-login {
-    background:  url('user.gif') center left no-repeat;
+    background:  url('user.gif') top left no-repeat;
     background-repeat: no-repeat;
     padding-left: 20px;
     text-transform: none;
