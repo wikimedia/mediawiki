@@ -1178,7 +1178,7 @@ class LanguageJa extends LanguageUtf8 {
 	# Unfortunately most browsers do not recognise this, and render <em> as italic
 	function emphasize( $text )
 	{
-		return "<b>$text</b>";
+		return $text;
 	}
 }
 
