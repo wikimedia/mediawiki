@@ -397,6 +397,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$ok = false;
 			switch( $err ) {
 			case 1045:
+			case 2000:
 				if( $conf->Root ) {
 					$errs["RootPW"] = "Check password";
 				} else {
