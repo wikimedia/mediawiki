@@ -41,7 +41,9 @@ function wfSpecialRecentchanges( $par )
 	$days = (int)$days;
 	list( $limit, $offset ) = wfCheckLimits( 100, "rclimit" );
 	$now = wfTimestampNow();
-	$cutoff = wfUnix2Timestamp( time() - ( $days * 86400 ) );
+	$cutoff_unixtime = time() - ( $days * 86400 );
+	$cutoff_unixtime = $cutoff_unixtime - ($cutoff_unixtime % 86400);
+	$cutoff = wfUnix2Timestamp( $cutoff_unixtime );
 	if(preg_match('/^[0-9]{14}$/', $from) and $from > $cutoff) {
 		$cutoff = $from;
 	} else {
