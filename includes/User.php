@@ -45,8 +45,12 @@ class User {
 		# Clean up name according to title rules
 
 		$t = Title::newFromText( $name );
-		$u->setName( $t->getText() );
-		return $u;
+		if( is_null( $t ) ) {
+			return NULL;
+		} else {
+			$u->setName( $t->getText() );
+			return $u;
+		}
 	}
 
 	/**
