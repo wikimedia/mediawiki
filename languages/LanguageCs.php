@@ -7,21 +7,24 @@
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesCs = array(
-	-2	=> "Media",
-	-1	=> "Speciální", # FIXME Is it safe to change this?
-	0	=> "",
-	1	=> "Diskuse", # neb diskutuj?
-	2	=> "Wikipedista",
-	3	=> "Wikipedista_diskuse",
-	4	=> "Wikipedie",
-	5	=> "Wikipedie_diskuse",
-	6	=> "Soubor", #FIXME: Check the magic for Image: and Media:
-	7	=> "Soubor_diskuse",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_diskuse",
-	10  => "Template",
-	11  => "Template_talk"
-
+	NS_MEDIA			=> "Media",
+	NS_SPECIAL			=> "Speciální",
+	NS_MAIN				=> "",
+	NS_TALK				=> "Diskuse", # neb diskutuj?
+	NS_USER				=> "Wikipedista",
+	NS_USER_TALK		=> "Wikipedista_diskuse",
+	NS_WIKIPEDIA		=> "Wikipedie",
+	NS_WIKIPEDIA_TALK	=> "Wikipedie_diskuse",
+	NS_IMAGE			=> "Soubor",
+	NS_IMAGE_TALK		=> "Soubor_diskuse",
+	NS_MEDIAWIKI		=> "MediaWiki",
+	NS_MEDIAWIKI_TALK	=> "MediaWiki_diskuse",
+	NS_TEMPLATE  		=> "Šablona",
+	NS_TEMPLATE_TALK  	=> "Šablona_diskuse",
+	NS_HELP				=> "Nápověda",
+	NS_HELP_TALK		=> "Nápověda_diskuse",
+	NS_CATEGORY			=> "Kategorie",
+	NS_CATEGORY_TALK	=> "Kategorie_diskuse",
 ) + $wgNamespaceNamesEn;
 
 # Zdědit apriorní preference: wgDefaultUserOptionsEn
