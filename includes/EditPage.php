@@ -459,6 +459,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 <input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n" );
 
 		if ( $isConflict ) {
+			require_once( "DifferenceEngine.php" );
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourdiff" ) . "</h2>\n" );
 			DifferenceEngine::showDiff( $this->textbox2, $this->textbox1,
 			  wfMsg( "yourtext" ), wfMsg( "storedversion" ) );

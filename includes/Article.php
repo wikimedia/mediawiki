@@ -661,6 +661,7 @@ class Article {
 		# diff page instead of the article.
 
 		if ( !is_null( $diff ) ) {
+			require_once( 'DifferenceEngine.php' );
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 			$de = new DifferenceEngine( intval($oldid), intval($diff), intval($rcid) );
 			$de->showDiffPage();
