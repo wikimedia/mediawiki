@@ -15,8 +15,8 @@ if ( $wgMetaNamespace == "Wikipedia" ) {
         NS_TALK             => "ja'chuq",
         NS_USER             => "lo'wI'",
         NS_USER_TALK        => "lo'wI'_ja'chuq",
-        NS_WIKIPEDIA        => $wgMetaNamespace,
-        NS_WIKIPEDIA_TALK   => $wgMetaNamespace . "_ja'chuq",
+        NS_PROJECT          => $wgMetaNamespace,
+        NS_PROJECT_TALK     => $wgMetaNamespace . "_ja'chuq",
         NS_IMAGE            => "nagh_beQ",
         NS_IMAGE_TALK       => "nagh_beQ_ja'chuq",
         NS_MEDIAWIKI        => "MediaWiki",
@@ -52,5 +52,3 @@ class LanguageTlh extends LanguageUtf8
 }
 
 ?>
-
-

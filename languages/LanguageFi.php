@@ -20,8 +20,8 @@ $wgNamespaceNamesFi = array(
 	NS_TALK				=> 'Keskustelu',
 	NS_USER				=> 'Käyttäjä',
 	NS_USER_TALK		=> 'Keskustelu_käyttäjästä',
-	NS_WIKIPEDIA		=> $wgMetaNamespace,
-	NS_WIKIPEDIA_TALK	=> FALSE,  # Set in constructor
+	NS_PROJECT			=> $wgMetaNamespace,
+	NS_PROJECT_TALK		=> FALSE,  # Set in constructor
 	NS_IMAGE			=> 'Kuva',
 	NS_IMAGE_TALK		=> 'Keskustelu_kuvasta',
 	NS_MEDIAWIKI		=> 'MediaWiki',
@@ -842,7 +842,7 @@ require_once( "LanguageUtf8.php" );
 class LanguageFi extends LanguageUtf8 {
 	function LanguageFi() {
 		global $wgNamespaceNamesFi, $wgMetaNamespace;
-		$wgNamespaceNamesFi[NS_WP_TALK] = 'Keskustelu_' . $this->convertGrammar( $wgMetaNamespace, 'elative' );
+		$wgNamespaceNamesFi[NS_PROJECT_TALK] = 'Keskustelu_' . $this->convertGrammar( $wgMetaNamespace, 'elative' );
 	}
 
 	function getNamespaces() {

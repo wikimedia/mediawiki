@@ -19,8 +19,8 @@ require_once( "LanguageUtf8.php" );
 	NS_TALK           => "Copene", /* Talk */
 	NS_USER	          => "Uzeu", /* User */
 	NS_USER_TALK      => "Uzeu_copene", /* User_talk */
-	NS_WIKIPEDIA      => "Wikipedia", /* Wikipedia */ 
-	NS_WIKIPEDIA_TALK => "Wikipedia_copene", /* Wikipedia_talk */
+	NS_PROJECT        => "Wikipedia", /* Wikipedia */ 
+	NS_PROJECT_TALK => "Wikipedia_copene", /* Wikipedia_talk */
 	NS_IMAGE          => "Imådje", /* Image */
 	NS_IMAGE_TALK     => "Imådje_copene", /* Image_talk */
 	NS_MEDIAWIKI      => "MediaWiki", /* MediaWiki */

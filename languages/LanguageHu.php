@@ -10,24 +10,24 @@ require_once("LanguageUtf8.php");
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesHu = array(
-	NS_MEDIA	=> "Média",
-	NS_SPECIAL	=> "Speciális",
-	NS_MAIN		=> "",
-	NS_TALK		=> "Vita",
-	NS_USER		=> "User",
-	NS_USER_TALK	=> "User_vita",
-	NS_WIKIPEDIA	=> "Wikipédia",
-	NS_WIKIPEDIA_TALK => "Wikipédia_vita",
-	NS_IMAGE	=> "Kép",
-	NS_IMAGE_TALK	=> "Kép_vita",
-	NS_MEDIAWIKI	=> "MediaWiki",
-	NS_MEDIAWIKI_TALK => "MediaWiki_vita",
-	NS_TEMPLATE	=> "Sablon",
-	NS_TEMPLATE_TALK => "Sablon_vita",
-	NS_HELP		=> "Segítség",
-	NS_HELP_TALK	=> "Segítség_vita",
-	NS_CATEGORY	=> "Kategória",
-	NS_CATEGORY_TALK => "Kategória_vita"
+	NS_MEDIA			=> "Média",
+	NS_SPECIAL			=> "Speciális",
+	NS_MAIN				=> "",
+	NS_TALK				=> "Vita",
+	NS_USER				=> "User",
+	NS_USER_TALK		=> "User_vita",
+	NS_PROJECT			=> "Wikipédia",
+	NS_PROJECT_TALK		=> "Wikipédia_vita",
+	NS_IMAGE			=> "Kép",
+	NS_IMAGE_TALK		=> "Kép_vita",
+	NS_MEDIAWIKI		=> "MediaWiki",
+	NS_MEDIAWIKI_TALK 	=> "MediaWiki_vita",
+	NS_TEMPLATE			=> "Sablon",
+	NS_TEMPLATE_TALK 	=> "Sablon_vita",
+	NS_HELP				=> "Segítség",
+	NS_HELP_TALK		=> "Segítség_vita",
+	NS_CATEGORY			=> "Kategória",
+	NS_CATEGORY_TALK	=> "Kategória_vita"
 ) + $wgNamespaceNamesEn;
 
 /* Inherit default options; make specific changes via 

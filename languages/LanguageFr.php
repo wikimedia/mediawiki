@@ -8,23 +8,23 @@
 require_once( "LanguageUtf8.php" );
 
 /* private */ $wgNamespaceNamesFr = array(
-	NS_MEDIA		=> "Media",
-	NS_SPECIAL		=> "Special",
-	NS_MAIN			=> "",
-	NS_TALK			=> "Discuter",
-	NS_USER			=> "Utilisateur",
+	NS_MEDIA			=> "Media",
+	NS_SPECIAL			=> "Special",
+	NS_MAIN				=> "",
+	NS_TALK				=> "Discuter",
+	NS_USER				=> "Utilisateur",
 	NS_USER_TALK		=> "Discussion_Utilisateur",
-	NS_WIKIPEDIA		=> $wgMetaNamespace,
-	NS_WIKIPEDIA_TALK	=> "Discussion_".$wgMetaNamespace,
-	NS_IMAGE		=> "Image",
+	NS_PROJECT			=> $wgMetaNamespace,
+	NS_PROJECT_TALK		=> "Discussion_".$wgMetaNamespace,
+	NS_IMAGE			=> "Image",
 	NS_IMAGE_TALK		=> "Discussion_Image",
 	NS_MEDIAWIKI		=> "MediaWiki",
 	NS_MEDIAWIKI_TALK	=> "Discussion_MediaWiki",
-	NS_TEMPLATE		=> "Modèle",
+	NS_TEMPLATE			=> "Modèle",
 	NS_TEMPLATE_TALK	=> "Discussion_Modèle",
-	NS_HELP			=> "Aide",
+	NS_HELP				=> "Aide",
 	NS_HELP_TALK		=> "Discussion_Aide",
-	NS_CATEGORY		=> "Catégorie",
+	NS_CATEGORY			=> "Catégorie",
 	NS_CATEGORY_TALK	=> "Discussion_Catégorie"
 ) + $wgNamespaceNamesEn;
 
