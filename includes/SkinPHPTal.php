@@ -63,6 +63,9 @@ class MediaWiki_I18N {
 	}
 
 	function translate($value) {
+		// Hack for i18n:attributes in PHPTAL 1.0.0 dev version as of 2004-10-23
+		$value = preg_replace( '/^string:/', '', $value );
+		
 		$value = wfMsg( $value );
 		// interpolate variables
 		while (preg_match('/\$([0-9]*?)/sm', $value, $m)) {
