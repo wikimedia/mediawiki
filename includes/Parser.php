@@ -44,6 +44,12 @@ define( "OT_HTML", 1 );
 define( "OT_WIKI", 2 );
 define( "OT_MSG", 3 );
 
+# string parameter for extractTags which will cause it
+# to strip HTML comments in addition to regular
+# <XML>-style tags. This should not be anything we
+# may want to use in wikisyntax
+define( "STRIP_COMMENTS", "HTMLCommentStrip" );
+
 # prefix for escaping, used in two functions at least
 define( "UNIQ_PREFIX", "NaodW29");
 
@@ -127,6 +133,9 @@ class Parser
 
 	# If $content is already set, the additional entries will be appended
 
+	# If $tag is set to STRIP_COMMENTS, the function will extract
+	# <!-- HTML comments -->
+
 	/* static */ function extractTags($tag, $text, &$content, $uniq_prefix = ""){
 		$rnd = $uniq_prefix . '-' . $tag . Parser::getRandomString();
 		if ( !$content ) {
@@ -136,12 +145,20 @@ class Parser
 		$stripped = "";
 
 		while ( "" != $text ) {
-			$p = preg_split( "/<\\s*$tag\\s*>/i", $text, 2 );
+			if($tag==STRIP_COMMENTS) {
+				$p = preg_split( "/<!--/i", $text, 2 );
+			} else {
+				$p = preg_split( "/<\\s*$tag\\s*>/i", $text, 2 );
+			}
 			$stripped .= $p[0];
 			if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) {
 				$text = "";
 			} else {
-				$q = preg_split( "/<\\/\\s*$tag\\s*>/i", $p[1], 2 );
+				if($tag==STRIP_COMMENTS) {
+					$q = preg_split( "/-->/i", $p[1], 2 );
+				} else {
+					$q = preg_split( "/<\\/\\s*$tag\\s*>/i", $p[1], 2 );
+				}
 				$marker = $rnd . sprintf("%08X", $n++);
 				$content[$marker] = $q[0];
 				$stripped .= $marker;
@@ -151,18 +168,23 @@ class Parser
 		return $stripped;
 	}
 
-	# Strips <nowiki>, <pre> and <math>
+	# Strips and renders <nowiki>, <pre>, <math>, <hiero>
+	# If $render is set, performs necessary rendering operations on plugins
 	# Returns the text, and fills an array with data needed in unstrip()
 	# If the $state is already a valid strip state, it adds to the state
-	#
-	function strip( $text, &$state )
+
+	# When $stripcomments is set, HTML comments <!-- like this -->
+	# will be stripped in addition to other tags. This is important
+	# for section editing, where these comments cause confusion when
+	# counting the sections in the wikisource
+	function strip( $text, &$state, $stripcomments = false )
 	{
 		$render = ($this->mOutputType == OT_HTML);
 		$nowiki_content = array();
 		$hiero_content = array();
 		$math_content = array();
 		$pre_content = array();
-		$item_content = array();
+		$comment_content = array();
 
 		# Replace any instances of the placeholders
 		$uniq_prefix = UNIQ_PREFIX;
@@ -177,25 +199,21 @@ class Parser
 			}
 		}
 
-		if( $GLOBALS['wgUseWikiHiero'] ){
-			$text = Parser::extractTags("hiero", $text, $hiero_content, $uniq_prefix);
-			foreach( $hiero_content as $marker => $content ){
-				if( $render ){
-					$hiero_content[$marker] = WikiHiero( $content, WH_MODE_HTML);
-				} else {
-					$hiero_content[$marker] = "<hiero>$content</hiero>";
-				}
+		$text = Parser::extractTags("hiero", $text, $hiero_content, $uniq_prefix);
+		foreach( $hiero_content as $marker => $content ){
+			if( $render && $GLOBALS['wgUseWikiHiero']){
+				$hiero_content[$marker] = WikiHiero( $content, WH_MODE_HTML);
+			} else {
+				$hiero_content[$marker] = "<hiero>$content</hiero>";
 			}
 		}
 
-		if( $this->mOptions->getUseTeX() ){
-			$text = Parser::extractTags("math", $text, $math_content, $uniq_prefix);
-			foreach( $math_content as $marker => $content ){
-				if( $render ){
-					$math_content[$marker] = renderMath( $content );
-				} else {
-					$math_content[$marker] = "<math>$content</math>";
-				}
+		$text = Parser::extractTags("math", $text, $math_content, $uniq_prefix);
+		foreach( $math_content as $marker => $content ){
+			if( $render && $this->mOptions->getUseTeX() ){
+				$math_content[$marker] = renderMath( $content );
+			} else {
+				$math_content[$marker] = "<math>$content</math>";
 			}
 		}
 
@@ -207,6 +225,12 @@ class Parser
 				$pre_content[$marker] = "<pre>$content</pre>";
 			}
 		}
+		if($stripcomments) {
+			$text = Parser::extractTags(STRIP_COMMENTS, $text, $comment_content, $uniq_prefix);
+			foreach( $comment_content as $marker => $content ){
+				$comment_content[$marker] = "<!--$content-->";
+			}
+		}
 
 		# Merge state with the pre-existing state, if there is one
 		if ( $state ) {
@@ -214,13 +238,14 @@ class Parser
 			$state['hiero'] = $state['hiero'] + $hiero_content;
 			$state['math'] = $state['math'] + $math_content;
 			$state['pre'] = $state['pre'] + $pre_content;
+			$state['comment'] = $state['comment'] + $comment_content;
 		} else {
 			$state = array(
 			  'nowiki' => $nowiki_content,
 			  'hiero' => $hiero_content,
 			  'math' => $math_content,
 			  'pre' => $pre_content,
-			  'item' => $item_content
+			  'comment' => $comment_content
 			);
 		}
 		return $text;
@@ -251,8 +276,7 @@ class Parser
 			  'nowiki' => array(),
 			  'hiero' => array(),
 			  'math' => array(),
-			  'pre' => array(),
-			  'item' => array()
+			  'pre' => array()
 			);
 		}
 		$state['item'][$rnd] = $text;
