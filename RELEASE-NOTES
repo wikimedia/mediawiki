@@ -261,6 +261,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1130) Show actual title when moving page instead of encoded one.
 * (bug 925) Fix headings containing <math>
 * (bug 1131) Fix headings containing interwiki links
+* (bug 1380) Update Nynorsk language file
 
 === Caveats ===
 
