@@ -1321,7 +1321,7 @@ class Article {
 
 			#if this is empty, an earlier revision may contain "useful" text
 			$blanked = false;
-			if($s->cur_text!="") {
+			if($s->cur_text != '') {
 				$text=$s->cur_text;
 			} else {
 				if($old) {
@@ -1456,7 +1456,7 @@ class Article {
 		$t = $this->mTitle->getDBkey();
 		$id = $this->mTitle->getArticleID();
 
-		if ( '' == $t || $id == 0 ) {
+		if ( $t == '' || $id == 0 ) {
 			return false;
 		}
 
