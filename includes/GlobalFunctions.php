@@ -1104,7 +1104,7 @@ function swap( &$x, &$y ) {
 }
 
 function wfGetSiteNotice() {
-	global $wgSiteNotice;
+	global $wgSiteNotice, $wgTitle, $wgOut;
 	$fname = 'wfGetSiteNotice';
 	wfProfileIn( $fname );
 

@@ -693,6 +693,9 @@ class Parser
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
 
 		$text = $this->doHeadings( $text );
+		if ( !$this->mOptions ) {
+			wfDebugDieBacktrace( "Error, parser options is undefined\n" );
+		}
 		if($this->mOptions->getUseDynamicDates()) {
 			global $wgDateFormatter;
 			$text = $wgDateFormatter->reformat( $this->mOptions->getDateFormat(), $text );
