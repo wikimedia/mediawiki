@@ -1,7 +1,6 @@
 <?
 # See title.doc
 
-/* private static */ $title_html_translation_table = array_flip( get_html_translation_table( HTML_ENTITIES ) );
 /* private static */ $title_interwiki_cache = array();
 
 class Title {
@@ -34,13 +33,19 @@ class Title {
 	
 	function newFromText( $text )
 	{	
-		global $title_html_translation_table;
+		static $trans;
 		$fname = "Title::newFromText";
 		wfProfileIn( $fname );
 		
 		# Note - mixing latin1 named entities and unicode numbered
 		# ones will result in a bad link.
-		$trans =& $title_html_translation_table;
+		if( !isset( $trans ) ) {
+			global $wgInputEncoding;
+			$trans = array_flip( get_html_translation_table( HTML_ENTITIES ) );
+			if( strcasecmp( "utf-8", $wgInputEncoding ) == 0 ) {
+			    $trans = array_map( "utf8_encode", $trans );
+			}
+		}
 
 		$text = strtr( $text, $trans );
 		
