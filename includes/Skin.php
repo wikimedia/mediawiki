@@ -1,6 +1,7 @@
 <?php
 
 include_once( "Feed.php" );
+include_once( "Image.php" );
 
 # See skin.doc
 
@@ -1563,8 +1564,9 @@ class Skin {
 
 	function makeImageLinkObj( $nt, $alt = "" ) {
 		global $wgLang, $wgUseImageResize;
-		$name  = $nt->getDBKey();
-		$url   = wfImageUrl( $name );
+		$img   = Image::newFromTitle( $nt );
+		$url   = $img->getURL();
+
 		$align = "";
 		$prefix = $postfix = "";
 
@@ -1636,25 +1638,26 @@ class Skin {
 				if ( ! isset($width) ) {
 					$width = 180;
 				}
-				return $prefix.$this->makeThumbLinkObj( $nt, $alt, $align, $width, $framed ).$postfix;
+				return $prefix.$this->makeThumbLinkObj( $img, $alt, $align, $width, $framed ).$postfix;
 	
 			} elseif ( isset($width) ) {
 				
 				# Create a resized image, without the additional thumbnail
 				# features
-				$url = $this->createThumb( $name, $width );
+				$url = $img->createThumb( $width );
 			}
 		} # endif $wgUseImageResize
 			
 		if ( empty( $alt ) ) {
-			$alt = preg_replace( '/\.(.+?)^/', '', $name );
+			$alt = preg_replace( '/\.(.+?)^/', '', $img->getName() );
 		}
 		$alt = htmlspecialchars( $alt );
 
 		$u = $nt->escapeLocalURL();
 		if ( $url == "" )
 		{
-			$s = str_replace( "$1", $name, wfMsg("missingimage") );
+			$s = str_replace( "$1", $img->getName(), wfMsg("missingimage") );
+			$s .= "<br>{$alt}<br>{$url}<br>\n";
 		} else {
 			$s = "<a href=\"{$u}\" class='image' title=\"{$alt}\">" .
 				"<img src=\"{$url}\" alt=\"{$alt}\" /></a>";
@@ -1665,114 +1668,12 @@ class Skin {
 		return $prefix.$s.$postfix;
 	}
 
-	function createThumb( $name, $width ) {
-		global $wgUploadDirectory;
-		global $wgImageMagickConvertCommand;
-		global $wgUseImageMagick;
-		global $wgUseSquid, $wgInternalServer;
-		$imgPath   = wfImagePath( $name );
-		$thumbName = $width."px-".$name;
-		$thumbPath = wfImageThumbDir( $thumbName )."/".$thumbName;
-		$thumbUrl  = wfImageThumbUrl( $thumbName );
 
-		if ( ! file_exists( $imgPath ) )
-		{
-			# If there is no image, there will be no thumbnail
-			return "";
-		}
-
-		if (     (! file_exists( $thumbPath ) )
-		||  ( filemtime($thumbPath) < filemtime($imgPath) ) ) {
-			# Squid purging
-			if ( $wgUseSquid ) {
-				$urlArr = Array(
-					$wgInternalServer.$thumbUrl
-				);
-				wfPurgeSquidServers($urlArr);
-			}
-
-			if ( $wgUseImageMagick ) {
-				# use ImageMagick
-				$cmd  =  $wgImageMagickConvertCommand .
-					" -quality 85 -geometry {$width} ".
-					escapeshellarg($imgPath) . " " .
-					escapeshellarg($thumbPath);
-				$conv = shell_exec( $cmd );
-			} else {
-				# Use PHP's builtin GD library functions.
-				#
-				# First find out what kind of file this is, and select the correct
-				# input routine for this.
-				list($src_width, $src_height, $src_type, $src_attr) = getimagesize( $imgPath );
-				switch( $src_type ) {
-					case 1: # GIF
-						$src_image = imagecreatefromgif( $imgPath );
-						break;
-					case 2: # JPG
-						$src_image = imagecreatefromjpeg( $imgPath );
-						break;
-					case 3: # PNG
-						$src_image = imagecreatefrompng( $imgPath );
-						break;
-					case 15: # WBMP for WML
-						$src_image = imagecreatefromwbmp( $imgPath );
-						break;
-					case 16: # XBM
-						$src_image = imagecreatefromxbm( $imgPath );
-						break;
-					default:
-						return "Image type not supported";
-						break;
-				}
-				$height = floor( $src_height * ( $width/$src_width ) );
-				$dst_image = imagecreatetruecolor( $width, $height );
-				imagecopyresampled( $dst_image, $src_image, 
-							0,0,0,0,
-							$width, $height, $src_width, $src_height );
-				switch( $src_type ) {
-					case 1:  # GIF
-					case 3:  # PNG
-					case 15: # WBMP
-					case 16: # XBM
-						#$thumbUrl .= ".png";
-						#$thumbPath .= ".png";
-						imagepng( $dst_image, $thumbPath );
-						break;
-					case 2:  # JPEG
-						#$thumbUrl .= ".jpg";
-						#$thumbPath .= ".jpg";
-						imageinterlace( $dst_image );
-						imagejpeg( $dst_image, $thumbPath, 95 );
-						break;
-					default:
-						break;
-				}
-				imagedestroy( $dst_image );
-				imagedestroy( $src_image );
-
-
-			}
-			#
-			# Check for zero-sized thumbnails. Those can be generated when 
-			# no disk space is available or some other error occurs
-			#
-			$thumbstat = stat( $thumbPath );
-			$imgstat   = stat( $imgPath );
-			if( $thumbstat["size"] == 0 )
-			{
-				unlink( $thumbPath );
-			}
-
-		}
-		return $thumbUrl;
-	}
-
-	function makeThumbLinkObj( $nt, $label = "", $align = "right", $boxwidth = 180, $framed=false ) {
+	function makeThumbLinkObj( $img, $label = "", $align = "right", $boxwidth = 180, $framed=false ) {
 		global $wgUploadPath, $wgLang;
-		$name = $nt->getDBKey();
-		$image = Title::makeTitle( Namespace::getImage(), $name );
-		$url  = wfImageUrl( $name );
-		$path = wfImagePath( $name );
+		# $image = Title::makeTitle( Namespace::getImage(), $name );
+		$url  = $img->getURL();
+		$path = $img->getImagePath();
 		
 		#$label = htmlspecialchars( $label );
 		$alt = preg_replace( "/<[^>]*>/", "", $label);
@@ -1796,11 +1697,11 @@ class Skin {
 				$boxwidth  = $width;
 				$boxheight = $height;
 			}
-			$thumbUrl = $this->createThumb( $name, $boxwidth );
+			$thumbUrl = $img->createThumb( $boxwidth );
 		}
 		$oboxwidth = $boxwidth + 2;
 
-		$u = $nt->escapeLocalURL();
+		$u = $img->getEscapeLocalURL();
 
 		$more = htmlspecialchars( wfMsg( "thumbnail-more" ) );
 		$magnifyalign = $wgLang->isRTL() ? "left" : "right";
@@ -1808,7 +1709,7 @@ class Skin {
 
 		$s = "<div class=\"thumb t{$align}\"\"><div style=\"width:{$oboxwidth}px;\">";
 		if ( $thumbUrl == "" ) {
-			$s .= str_replace( "$1", $name, wfMsg("missingimage") );
+			$s .= str_replace( "$1", $img->getName(), wfMsg("missingimage") );
 			$zoomicon = '';
 		} else {
 			$s .= '<a href="'.$u.'" class="internal" title="'.$alt.'">'.
