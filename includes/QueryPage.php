@@ -94,8 +94,6 @@ class QueryPage {
 		global $wgFeedClasses;
 		global $wgOut, $wgLanguageCode, $wgLang;
 		if( $class == "rss" ) {
-			$wgOut->disable();
-			
 			$feed = new RSSFeed(
 				$this->feedTitle(),
 				$this->feedDesc(),
