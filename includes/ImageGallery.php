@@ -93,7 +93,7 @@ class ImageGallery
 			// Not an image. Just print the name and skip.
 			if ( $nt->getNamespace() != NS_IMAGE ) {
 				$s .= '<td valign="top" width="150px" style="background-color:#F0F0F0;">' .
-					$nt->getText() . '</td>' .  (($i%4==3) ? "</tr>\n" : '');
+					htmlspecialchars( $nt->getText() ) . '</td>' .  (($i%4==3) ? "</tr>\n" : '');
 				$i++;
 
 				continue;
