@@ -60,7 +60,11 @@ class Image
 
 		if ( $this->fileExists = file_exists( $this->imagePath ) ) // Sic!, "=" is intended
 		{
-			@$gis = getimagesize( $this->imagePath );
+			if( $this->extension == 'svg' ) {
+				@$gis = getSVGsize( $this->imagePath );
+			} else {
+				@$gis = getimagesize( $this->imagePath );
+			}
 			if( $gis !== false ) {
 				$this->width = $gis[0];
 				$this->height = $gis[1];
@@ -71,10 +75,6 @@ class Image
 				} else {
 					$this->bits = 0;
 				}
-			} elseif( $this->extension == 'svg' ) {
-				$this->width = 512;
-				$this->height = 512;
-				$this->type = 'svg';
 			}
 		}
 		$this->historyLine = 0;
@@ -685,6 +685,69 @@ function wfImageArchiveUrl( $name, $subdir='archive' )
 		$url = $wgUploadPath.'/'.$subdir.'/'.$name;
 	}
 	return wfUrlencode($url);
+}
+
+/**
+ * Return a rounded pixel equivalent for a labeled CSS/SVG length.
+ * http://www.w3.org/TR/SVG11/coords.html#UnitIdentifiers
+ *
+ * @param string $length
+ * @return int Length in pixels
+ */
+function scaleSVGUnit( $length ) {
+	static $unitLength = array(
+		'px' => 1.0,
+		'pt' => 1.25,
+		'pc' => 15.0,
+		'mm' => 3.543307,
+		'cm' => 35.43307,
+		'in' => 90.0,
+		''   => 1.0, // "User units" pixels by default
+		'%'  => 2.0, // Fake it!
+		);
+	if( preg_match( '/^(\d+)(em|ex|px|pt|pc|cm|mm|in|%|)$/', $length, $matches ) ) {
+		$length = FloatVal( $matches[1] );
+		$unit = $matches[2];
+		return round( $length * $unitLength[$unit] );
+	} else {
+		// Assume pixels
+		return round( FloatVal( $length ) );
+	}
+}
+
+/**
+ * Compatible with PHP getimagesize()
+ * @todo support gzipped SVGZ
+ * @todo check XML more carefully
+ * @todo sensible defaults
+ *
+ * @param string $filename
+ * @return array
+ */
+function getSVGsize( $filename ) {
+	$width = 256;
+	$height = 256;
+	
+	// Read a chunk of the file
+	$f = fopen( $filename, "rt" );
+	if( !$f ) return false;
+	$chunk = fread( $f, 4096 );
+	fclose( $f );
+	
+	// Uber-crappy hack! Run through a real XML parser.
+	if( !preg_match( '/<svg\s*([^>]*)\s*>/s', $chunk, $matches ) ) {
+		return false;
+	}
+	$tag = $matches[1];
+	if( preg_match( '/\bwidth\s*=\s*("[^"]+"|\'[^\']+\')/s', $tag, $matches ) ) {
+		$width = scaleSVGUnit( trim( substr( $matches[1], 1, -1 ) ) );
+	}
+	if( preg_match( '/\bheight\s*=\s*("[^"]+"|\'[^\']+\')/s', $tag, $matches ) ) {
+		$height = scaleSVGUnit( trim( substr( $matches[1], 1, -1 ) ) );
+	}
+	
+	return array( $width, $height, 'SVG',
+		"width=\"$width\" height=\"$height\"" );
 }
 
 ?>
