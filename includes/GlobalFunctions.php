@@ -188,7 +188,7 @@ function wfDebug( $text, $logonly = false )
 {
 	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly;
 
-	if ( $wgDebugComments && !$logonly ) {
+	if ( isset( $wgOut ) && $wgDebugComments && !$logonly ) {
 		$wgOut->debug( $text );
 	}
 	if ( "" != $wgDebugLogFile && !$wgProfileOnly ) {
