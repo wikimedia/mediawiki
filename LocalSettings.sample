@@ -147,6 +147,9 @@ $wgLocalInterwiki   = $wgSitename;
 ## If you want a non-English wiki, add a line like this
 # $wgLanguageCode = "de";
 
+## If you want a different default time zone than UTC, add a line like this
+# $wgLocalTZoffset = -5;	# (EST, for example)
+
 ## Character encoding: normally auto-selected by the language.
 ## English, German, Danish, Dutch, French, Spanish, and Swedish
 ## will be in ISO-8859-1 by default, all other languages in
