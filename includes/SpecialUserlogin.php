@@ -261,6 +261,7 @@ class LoginForm {
 		$u->setPassword( $this->mPassword );
 		$u->setEmail( $this->mEmail );
 		$u->setRealName( $this->mRealName );
+		$u->setToken();
 		
 		global $wgAuth;
 		$wgAuth->initUser( $u );
