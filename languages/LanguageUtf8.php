@@ -19,7 +19,7 @@ class LanguageUtf8 extends Language {
 	function ucfirst( $string ) {
 		# For most languages, this is a wrapper for ucfirst()
 		# But that doesn't work right in a UTF-8 locale
-		global $wikiUpperChars, $wikiLowerChars;
+		global $wikiUpperChars;
 		return preg_replace (
         	"/^([\\x00-\\x7f]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
         	"strtr ( \"\$1\" , \$wikiUpperChars )",
@@ -27,7 +27,7 @@ class LanguageUtf8 extends Language {
 	}
 	
 	function lcfirst( $string ) {
-		global $wikiUpperChars, $wikiLowerChars;
+		global $wikiLowerChars;
 		return preg_replace (
         	"/^([\\x00-\\x7f]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
         	"strtr ( \"\$1\" , \$wikiLowerChars )",
