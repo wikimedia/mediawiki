@@ -1428,12 +1428,19 @@ You might want to check the following regular expression for patterns that are c
 "numtalkauthors" => "Number of distinct authors (discussion page): $1",
 
 # Math options
-	'mw_math_png' => 'Always render PNG',
-	'mw_math_simple' => 'HTML if very simple or else PNG',
-	'mw_math_html' => 'HTML if possible or else PNG',
-	'mw_math_source' => 'Leave it as TeX (for text browsers)',
-	'mw_math_modern' => 'Recommended for modern browsers',
-	'mw_math_mathml' => 'MathML if possible (experimental)',
+'mw_math_png' => 'Always render PNG',
+'mw_math_simple' => 'HTML if very simple or else PNG',
+'mw_math_html' => 'HTML if possible or else PNG',
+'mw_math_source' => 'Leave it as TeX (for text browsers)',
+'mw_math_modern' => 'Recommended for modern browsers',
+'mw_math_mathml' => 'MathML if possible (experimental)',
+
+# Patrolling
+'markaspatrolleddiff'   => "Mark as patrolled",
+'markaspatrolledlink'   => "<div class='patrollink'>[$1]</div>",
+'markaspatrolledtext'   => "Mark this article as patrolled",
+'markedaspatrolled'     => "Marked as patrolled",
+'markedaspatrolledtext' => "The selected revision has been marked as patrolled.",
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* tooltips and access keys */
@@ -1870,7 +1877,7 @@ class Language {
 		}
 		return $s;
 	}
-	
+
 	# Crop a string from the beginning or end to a certain number of bytes.
 	# (Bytes are used because our storage has limited byte lengths for some
 	# columns in the database.) Multibyte charsets will need to make sure that

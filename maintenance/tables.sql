@@ -12,11 +12,11 @@ CREATE TABLE user (
   user_password tinyblob NOT NULL default '',
   user_newpassword tinyblob NOT NULL default '',
   user_email tinytext NOT NULL default '',
-  user_options blob NOT NULL default '',  
+  user_options blob NOT NULL default '',
   user_touched char(14) binary NOT NULL default '',
   UNIQUE KEY user_id (user_id)
 ) PACK_KEYS=1;
-	
+
 CREATE TABLE user_newtalk (
   user_id int(5) NOT NULL default '0',
   user_ip varchar(40) NOT NULL default ''
@@ -192,6 +192,7 @@ CREATE TABLE recentchanges (
   rc_type tinyint(3) unsigned NOT NULL default '0',
   rc_moved_to_ns tinyint(3) unsigned NOT NULL default '0',
   rc_moved_to_title varchar(255) binary NOT NULL default '',
+  rc_patrolled tinyint(3) unsigned NOT NULL default '0',
   rc_ip char(15) NOT NULL default '',
   PRIMARY KEY rc_id (rc_id)
 ) PACK_KEYS=1;

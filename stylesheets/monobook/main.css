@@ -906,3 +906,11 @@ fieldset.operaprefsection { margin-left: 15em }
 .printfooter {
         display: none;
 }
+
+ul.special li.not_patrolled, ol.special li.not_patrolled {
+	background-color: #ffa;
+}
+div.patrollink {
+	font-size: 75%;
+	text-align: right;
+}

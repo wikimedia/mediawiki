@@ -224,7 +224,7 @@ class Article {
 			  $action=='view'
 			) {
 				wfProfileOut( $fname );
-				return $this->mContent . "\n" .wfMsg('anontalkpagetext'); 
+				return $this->mContent . "\n" .wfMsg('anontalkpagetext');
 			} else {
 				if($action=='edit') {
 					if($section!='') {
@@ -324,12 +324,12 @@ class Article {
 	function &getOldContentFields() {
 		global $wgArticleOldContentFields;
 		if ( !$wgArticleOldContentFields ) {
-			$wgArticleOldContentFields = array( 'old_namespace','old_title','old_text','old_timestamp', 
+			$wgArticleOldContentFields = array( 'old_namespace','old_title','old_text','old_timestamp',
 			  'old_user','old_user_text','old_comment','old_flags' );
 		}
 		return $wgArticleOldContentFields;
 	}
-				
+
 	# Load the revision (including cur_text) into this object
 	function loadContent( $noredir = false )
 	{
@@ -362,7 +362,7 @@ class Article {
 			if ( 0 == $id ) return;
 
 			$s = $dbr->getArray( 'cur', $this->getCurContentFields(), array( 'cur_id' => $id ), $fname );
-			if ( $s === false ) { 
+			if ( $s === false ) {
 				return;
 			}
 
@@ -448,7 +448,7 @@ class Article {
 			}
 
 			$s = $dbr->getArray( 'cur', $this->getCurContentFields(), array( 'cur_id' => $id ), $fname );
-			if ( $s === false ) { 
+			if ( $s === false ) {
 				return false;
 			}
 
@@ -481,7 +481,7 @@ class Article {
 			$this->mTitle->mRestrictionsLoaded = true;
 		} else { # oldid set, retrieve historical version
 			$s = $dbr->getArray( 'old', $this->getOldContentFields(), array( 'old_id' => $oldid ) );
-			if ( $s === false ) { 
+			if ( $s === false ) {
 				return false;
 			}
 			$this->mContent = Article::getRevisionText( $s );
@@ -534,11 +534,11 @@ class Article {
 	{
 		global $wgOut;
 		if ( -1 != $this->mUser ) return;
-		
+
 		$fname = 'Article::loadLastEdit';
 
 		$dbr =& wfGetDB( DB_SLAVE );
-		$s = $dbr->getArray( 'cur', 
+		$s = $dbr->getArray( 'cur',
 		  array( 'cur_user','cur_user_text','cur_timestamp', 'cur_comment','cur_minor_edit' ),
 		  array( 'cur_id' => $this->getID() ), $fname );
 
@@ -597,11 +597,11 @@ class Article {
 		$user = $this->getUser();
 
 		$sql = "SELECT old_user, old_user_text, user_real_name, MAX(old_timestamp) as timestamp
-			FROM $oldTable LEFT JOIN $userTable ON old_user = user_id 
+			FROM $oldTable LEFT JOIN $userTable ON old_user = user_id
 			WHERE old_namespace = $user
 			AND old_title = $encDBkey
 			AND old_user != $user
-			GROUP BY old_user 
+			GROUP BY old_user
 			ORDER BY timestamp DESC";
 
                 if ($limit > 0) {
@@ -624,15 +624,17 @@ class Article {
 
 	function view()
 	{
-		global $wgUser, $wgOut, $wgLang, $wgRequest, $wgMwRedir;
+		global $wgUser, $wgOut, $wgLang, $wgRequest, $wgMwRedir, $wgOnlySysopsCanPatrol;
 		global $wgLinkCache, $IP, $wgEnableParserCache, $wgStylePath;
+		$sk = $wgUser->getSkin();
 
 		$fname = 'Article::view';
 		wfProfileIn( $fname );
 
-		# Get variables from query string :P
+		# Get variables from query string
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$diff = $wgRequest->getVal( 'diff' );
+		$rcid = $wgRequest->getVal( 'rcid' );
 
 		$wgOut->setArticleFlag( true );
 		$wgOut->setRobotpolicy( 'index,follow' );
@@ -642,7 +644,7 @@ class Article {
 
 		if ( !is_null( $diff ) ) {
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-			$de = new DifferenceEngine( intval($oldid), intval($diff) );
+			$de = new DifferenceEngine( intval($oldid), intval($diff), intval($rcid) );
 			$de->showDiffPage();
 			wfProfileOut( $fname );
 			if( $diff == 0 ) {
@@ -715,7 +717,6 @@ class Article {
 				$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
 			} else if ( $rt = Title::newFromRedirect( $text ) ) {
 				# Display redirect
-				$sk = $wgUser->getSkin();
 				$imageUrl = "$wgStylePath/images/redirect.png";
 				$targetUrl = $rt->escapeLocalURL();
 				$titleText = htmlspecialchars( $rt->getPrefixedText() );
@@ -731,6 +732,17 @@ class Article {
 			}
 		}
 		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+
+		# If we have been passed an &rcid= parameter, we want to give the user a
+		# chance to mark this new article as patrolled.
+		if ( !is_null ( $rcid ) && $rcid != 0 && $wgUser->getID() != 0 &&
+		     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
+		{
+			$wgOut->addHTML( wfMsg ( 'markaspatrolledlink',
+				$sk->makeKnownLinkObj ( $this->mTitle, wfMsg ( 'markaspatrolledtext' ),
+					"action=markpatrolled&rcid={$rcid}" )
+			 ) );
+		}
 
 		# Add link titles as META keywords
 		$wgOut->addMetaTags() ;
@@ -765,7 +777,7 @@ class Article {
 		$rand = number_format( mt_rand() / mt_getrandmax(), 12, '.', '' );
 		$dbw =& wfGetDB( DB_MASTER );
 
-		$cur_id = $dbw->nextSequenceValue( 'cur_cur_id_seq' ); 
+		$cur_id = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
 
 		$isminor = ( $isminor && $wgUser->getID() ) ? 1 : 0;
 
@@ -894,10 +906,10 @@ class Article {
 		global $wgOut, $wgUser;
 		global $wgDBtransactions, $wgMwRedir;
 		global $wgUseSquid, $wgInternalServer;
-		
+
 		$fname = 'Article::updateArticle';
 		$good = true;
-		
+
 		if ( $this->mMinorEdit ) { $me1 = 1; } else { $me1 = 0; }
 		if ( $minor && $wgUser->getID() ) { $me2 = 1; } else { $me2 = 0; }
 		if ( preg_match( "/^((" . $wgMwRedir->getBaseRegex() . ')[^\\n]+)/i', $text, $m ) ) {
@@ -911,15 +923,15 @@ class Article {
 
 		# Update article, but only if changed.
 
-		# It's important that we either rollback or complete, otherwise an attacker could 
-		# overwrite cur entries by sending precisely timed user aborts. Random bored users 
+		# It's important that we either rollback or complete, otherwise an attacker could
+		# overwrite cur entries by sending precisely timed user aborts. Random bored users
 		# could conceivably have the same effect, especially if cur is locked for long periods.
 		if( $wgDBtransactions ) {
 			$dbw->query( 'BEGIN', $fname );
 		} else {
 			$userAbort = ignore_user_abort( true );
 		}
-		
+
 		$oldtext = $this->getContent( true );
 
 		if ( 0 != strcmp( $text, $oldtext ) ) {
@@ -929,24 +941,24 @@ class Article {
 			$won = wfInvertTimestamp( $now );
 
 			# First update the cur row
-			$dbw->updateArray( 'cur', 
-				array( /* SET */ 
+			$dbw->updateArray( 'cur',
+				array( /* SET */
 					'cur_text' => $text,
 					'cur_comment' => $summary,
-					'cur_minor_edit' => $me2, 
+					'cur_minor_edit' => $me2,
 					'cur_user' => $wgUser->getID(),
 					'cur_timestamp' => $now,
 					'cur_user_text' => $wgUser->getName(),
-					'cur_is_redirect' => $redir, 
+					'cur_is_redirect' => $redir,
 					'cur_is_new' => 0,
-					'cur_touched' => $now, 
+					'cur_touched' => $now,
 					'inverse_timestamp' => $won
 				), array( /* WHERE */
-					'cur_id' => $this->getID(), 
-					'cur_timestamp' => $this->getTimestamp() 
-				), $fname 
+					'cur_id' => $this->getID(),
+					'cur_timestamp' => $this->getTimestamp()
+				), $fname
 			);
-			
+
 			if( $dbw->affectedRows() == 0 ) {
 				/* Belated edit conflict! Run away!! */
 				$good = false;
@@ -955,8 +967,8 @@ class Article {
 
 				# This overwrites $oldtext if revision compression is on
 				$flags = Article::compressRevisionText( $oldtext );
-				
-				$dbw->insertArray( 'old', 
+
+				$dbw->insertArray( 'old',
 					array(
 						'old_id' => $dbw->nextSequenceValue( 'old_old_id_seq' ),
 						'old_namespace' => $this->mTitle->getNamespace(),
@@ -969,13 +981,13 @@ class Article {
 						'old_minor_edit' => $me1,
 						'inverse_timestamp' => wfInvertTimestamp( $this->getTimestamp() ),
 						'old_flags' => $flags,
-					), $fname 
+					), $fname
 				);
-				
+
 				$oldid = $dbw->insertId();
 
 				$bot = (int)($wgUser->isBot() || $forceBot);
-				RecentChange::notifyEdit( $now, $this->mTitle, $me2, $wgUser, $summary, 
+				RecentChange::notifyEdit( $now, $this->mTitle, $me2, $wgUser, $summary,
 					$oldid, $this->getTimestamp(), $bot );
 				Article::onArticleEdit( $this->mTitle );
 			}
@@ -1035,15 +1047,15 @@ class Article {
 		$wgLinkCache = new LinkCache();
 		# Select for update
 		$wgLinkCache->forUpdate( true );
-		
+
 		# Get old version of link table to allow incremental link updates
 		$wgLinkCache->preFill( $this->mTitle );
 		$wgLinkCache->clear();
-		
+
 		# Switch on use of link cache in the skin
 		$sk =& $wgUser->getSkin();
 		$sk->postParseLinkColour( false );
-		
+
 		# Now update the link cache by parsing the text
 		$wgOut = new OutputPage();
 		$wgOut->addWikiText( $text );
@@ -1056,7 +1068,7 @@ class Article {
 	}
 
 	# Validate article
-	
+
 	function validate ()
 	{
 		global $wgOut ;
@@ -1068,11 +1080,35 @@ class Article {
 			return ;
 			}
 		$v = new Validation ;
-		$v->validate_form ( $this->mTitle->getDBkey() ) ;		
+		$v->validate_form ( $this->mTitle->getDBkey() ) ;
 	}
 
-	# Add this page to my watchlist
+	# Mark this particular edit as patrolled
+	function markpatrolled()
+	{
+		global $wgOut, $wgRequest, $wgOnlySysopsCanPatrol;
+		$wgOut->setRobotpolicy( 'noindex,follow' );
+		if( $wgOnlySysopsCanPatrol && !$wgUser->isSysop() )
+		{
+			$wgOut->sysopRequired();
+			return;
+		}
+		$rcid = $wgRequest->getVal( 'rcid' );
+		if ( !is_null ( $rcid ) )
+		{
+			RecentChange::markPatrolled( $rcid );
+			$wgOut->setPagetitle( wfMsg( 'markedaspatrolled' ) );
+			$wgOut->addWikiText( wfMsg( 'markedaspatrolledtext' ) );
+			$wgOut->returnToMain( true, $this->mTitle->getPrefixedText() );
+		}
+		else
+		{
+			$wgOut->errorpage( 'markedaspatrollederror', 'markedaspatrollederrortext' );
+		}
+	}
 
+
+	# Add this page to my watchlist
 	function watch( $add = true )
 	{
 		global $wgUser, $wgOut, $wgLang;
@@ -1137,13 +1173,13 @@ class Article {
 
 		if ( $confirm ) {
 			$dbw =& wfGetDB( DB_MASTER );
-			$dbw->updateArray( 'cur', 
+			$dbw->updateArray( 'cur',
 				array( /* SET */
 					'cur_touched' => wfTimestampNow(),
 					'cur_restrictions' => (string)$limit
 				), array( /* WHERE */
-					'cur_id' => $id 
-				), 'Article::protect' 
+					'cur_id' => $id
+				), 'Article::protect'
 			);
 
 			$log = new LogPage( wfMsg( 'protectlogpage' ), wfMsg( 'protectlogtext' ) );
@@ -1269,29 +1305,29 @@ class Article {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$ns = $this->mTitle->getNamespace();
 		$title = $this->mTitle->getDBkey();
-		$old = $dbr->getArray( 'old', 
-			array( 'old_text', 'old_flags' ), 
+		$old = $dbr->getArray( 'old',
+			array( 'old_text', 'old_flags' ),
 			array(
 				'old_namespace' => $ns,
 				'old_title' => $title,
-			), $fname, array( 'ORDER BY' => 'inverse_timestamp' ) 
+			), $fname, array( 'ORDER BY' => 'inverse_timestamp' )
 		);
-		
+
 		if( $old !== false && !$confirm ) {
 			$skin=$wgUser->getSkin();
 			$wgOut->addHTML('<b>'.wfMsg('historywarning'));
 			$wgOut->addHTML( $skin->historyLink() .'</b>');
 		}
-		
+
 		# Fetch cur_text
-		$s = $dbr->getArray( 'cur', 
-			array( 'cur_text' ), 
-			array( 
-				'cur_namespace' => $ns, 
+		$s = $dbr->getArray( 'cur',
+			array( 'cur_text' ),
+			array(
+				'cur_namespace' => $ns,
 				'cur_title' => $title,
 			), $fname
 		);
-		
+
 		if( $s !== false ) {
 			# if this is a mini-text, we can paste part of it into the deletion reason
 
@@ -1426,7 +1462,7 @@ class Article {
 
 		$fname = 'Article::doDeleteArticle';
 		wfDebug( $fname."\n" );
-		
+
 		$dbw =& wfGetDB( DB_MASTER );
 		$ns = $this->mTitle->getNamespace();
 		$t = $this->mTitle->getDBkey();
@@ -1466,8 +1502,8 @@ class Article {
 		$recentchangesTable = $dbw->tableName( 'recentchanges' );
 		$linksTable = $dbw->tableName( 'links' );
 		$brokenlinksTable = $dbw->tableName( 'brokenlinks' );
-		
-		$dbw->insertSelect( 'archive', 'cur', 
+
+		$dbw->insertSelect( 'archive', 'cur',
 			array(
 				'ar_namespace' => 'cur_namespace',
 				'ar_title' => 'cur_title',
@@ -1481,9 +1517,9 @@ class Article {
 			), array(
 				'cur_namespace' => $ns,
 				'cur_title' => $t,
-			), $fname 
+			), $fname
 		);
-		
+
 		$dbw->insertSelect( 'archive', 'old',
 			array(
 				'ar_namespace' => 'old_namespace',
@@ -1500,7 +1536,7 @@ class Article {
 				'old_title' => $t,
 			), $fname
 		);
-		
+
 		# Now that it's safely backed up, delete it
 
 		$dbw->delete( 'cur', array( 'cur_namespace' => $ns, 'cur_title' => $t ), $fname );
@@ -1520,7 +1556,7 @@ class Article {
 			$brokenLinks[] = array( 'bl_from' => $linkID, 'bl_to' => $t );
 		}
 		$dbw->insert( 'brokenlinks', $brokenLinks, $fname, 'IGNORE' );
-		
+
 		# Delete live links
 		$dbw->delete( 'links', array( 'l_to' => $id ) );
 		$dbw->delete( 'links', array( 'l_from' => $id ) );
@@ -1543,7 +1579,7 @@ class Article {
 	{
 		global $wgUser, $wgLang, $wgOut, $wgRequest;
 		$fname = "Article::rollback";
-		
+
 		if ( ! $wgUser->isSysop() ) {
 			$wgOut->sysopRequired();
 			return;
@@ -1562,7 +1598,7 @@ class Article {
 		$n = $this->mTitle->getNamespace();
 
 		# Get the last editor, lock table exclusively
-		$s = $dbw->getArray( 'cur', 
+		$s = $dbw->getArray( 'cur',
 			array( 'cur_id','cur_user','cur_user_text','cur_comment' ),
 			array( 'cur_title' => $tt, 'cur_namespace' => $n ),
 			$fname, 'FOR UPDATE'
@@ -1592,10 +1628,10 @@ class Article {
 		}
 
 		# Get the last edit not by this guy
-		$s = $dbw->getArray( 'old', 
+		$s = $dbw->getArray( 'old',
 			array( 'old_text','old_user','old_user_text','old_timestamp','old_flags' ),
-			array( 
-				'old_namespace' => $n, 
+			array(
+				'old_namespace' => $n,
 				'old_title' => $tt,
 				"old_user <> {$uid} OR old_user_text <> '{$ut}'"
 			), $fname, array( 'FOR UPDATE', 'USE INDEX' => 'name_title_timestamp' )
@@ -1609,13 +1645,13 @@ class Article {
 
 		if ( $bot ) {
 			# Mark all reverted edits as bot
-			$dbw->updateArray( 'recentchanges', 
-				array( /* SET */ 
-					'rc_bot' => 1 
+			$dbw->updateArray( 'recentchanges',
+				array( /* SET */
+					'rc_bot' => 1
 				), array( /* WHERE */
 					'rc_user' => $uid,
 					"rc_timestamp > '{$s->old_timestamp}'",
-				), $fname 
+				), $fname
 			);
 		}
 
@@ -1655,7 +1691,7 @@ class Article {
 	{
 		global $wgDeferredUpdateList, $wgDBname, $wgMemc;
 		global $wgMessageCache;
-		
+
 		wfSeedRandom();
 		if ( 0 == mt_rand( 0, 999 ) ) {
 			$dbw =& wfGetDB( DB_MASTER );
@@ -1762,7 +1798,7 @@ class Article {
 
 		$id = $this->getID();
 		$dbr =& wfGetDB( DB_SLAVE );
-		$s = $dbr->getArray( 'cur', array( 'cur_touched', 'cur_is_redirect' ), 
+		$s = $dbr->getArray( 'cur', array( 'cur_touched', 'cur_is_redirect' ),
 			array( 'cur_id' => $id ), $fname );
 		if( $s !== false ) {
 			$this->mTouched = $s->cur_touched;
@@ -1798,7 +1834,7 @@ class Article {
 			), array(
 				'cur_namespace' => $ns,
 				'cur_title' => $dbkey,
-			), $fname 
+			), $fname
 		);
 
 		# Use the affected row count to determine if the article is new
@@ -1841,14 +1877,14 @@ class Article {
 		$curTable = $dbw->tableName( 'cur' );
 		$hitcounterTable = $dbw->tableName( 'hitcounter' );
 		$acchitsTable = $dbw->tableName( 'acchits' );
-		
+
 		if( $wgHitcounterUpdateFreq <= 1 ){ //
 			$dbw->query( "UPDATE $curTable SET cur_counter = cur_counter + 1 WHERE cur_id = $id" );
 			return;
 		}
 
 		# Not important enough to warrant an error page in case of failure
-		$oldignore = $dbw->ignoreErrors( true ); 
+		$oldignore = $dbw->ignoreErrors( true );
 
 		$dbw->query( "INSERT INTO $hitcounterTable (hc_id) VALUES ({$id})" );
 
@@ -1922,12 +1958,12 @@ class Article {
 	{
 		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgAllowPageInfo;
 		$fname = 'Article::info';
-	
+
 		if ( !$wgAllowPageInfo ) {
 			$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
 			return;
 		}
-		
+
 		$dbr =& wfGetDB( DB_SLAVE );
 
 		$basenamespace = $wgTitle->getNamespace() & (~1);
@@ -1957,7 +1993,7 @@ class Article {
 			$cur_author = $dbr->selectField( 'cur', 'cur_user_text', $cur_clause, $fname );
 
 			# find number of 'old' authors excluding 'cur' author
-			$authors = $dbr->selectField( 'old', 'COUNT(DISTINCT old_user_text)', 
+			$authors = $dbr->selectField( 'old', 'COUNT(DISTINCT old_user_text)',
 				$old_clause + array( 'old_user_text<>' . $dbr->addQuotes( $cur_author ) ), $fname ) + 1;
 
 			# now for the Talk page ...
@@ -1977,7 +2013,7 @@ class Article {
 			# number of authors
 			if ($exists > 0) {
 				$cur_author = $dbr->selectField( 'cur', 'cur_user_text', $cur_clause, $fname );
-				$authors = $dbr->selectField( 'cur', 'COUNT(DISTINCT old_user_text)', 
+				$authors = $dbr->selectField( 'cur', 'COUNT(DISTINCT old_user_text)',
 					$old_clause + array( 'old_user_text<>' . $dbr->addQuotes( $cur_author ) ), $fname );
 
 				$wgOut->addHTML( "<li>" . wfMsg("numtalkauthors", $authors) . "</li></ul>" );

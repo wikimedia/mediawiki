@@ -7,7 +7,7 @@ class NewPagesPage extends QueryPage {
 	function getName() {
 		return "Newpages";
 	}
-	
+
 	function isExpensive() {
 		# Indexed on RC, and will *not* work with querycache yet.
 		return false;
@@ -15,6 +15,8 @@ class NewPagesPage extends QueryPage {
 	}
 
 	function getSQL() {
+		global $wgUser, $wgOnlySysopsCanPatrol;
+		$usepatrol = ( $wgUser->getID() != 0 && ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) ) ? 1 : 0;
 		$dbr =& wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'recentchanges', 'cur' ) );
 
@@ -23,11 +25,13 @@ class NewPagesPage extends QueryPage {
 			        rc_namespace AS namespace,
 			        rc_title AS title,
 			        rc_cur_id AS value,
-			        
 			        rc_user AS user,
 			        rc_user_text AS user_text,
 			        rc_comment as comment,
 			        rc_timestamp AS timestamp,
+			        '{$usepatrol}' as usepatrol,
+			        rc_patrolled AS patrolled,
+			        rc_id AS rcid,
 			        length(cur_text) as length,
 			        cur_text as text
 			FROM $recentchanges,$cur
@@ -36,7 +40,7 @@ class NewPagesPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		global $wgLang;
+		global $wgLang, $wgUser, $wgOnlySysopsCanPatrol;
 		$u = $result->user;
 		$ut = $result->user_text;
 
@@ -51,7 +55,15 @@ class NewPagesPage extends QueryPage {
 		}
 
 		$d = $wgLang->timeanddate( $result->timestamp, true );
-		$link = $skin->makeKnownLink( $result->title, "" );
+
+		# If it's a new article, there is no diff link, but if it hasn't been
+		# patrolled yet, we need to give users a way to do so
+		if ( $result->usepatrol && $result->patrolled == 0 && $wgUser->getID() != 0 &&
+		     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
+			$link = $skin->makeKnownLink( $result->title, '', "rcid={$result->rcid}" );
+		else
+			$link = $skin->makeKnownLink( $result->title, '' );
+
 		$s = "{$d} {$link} ({$length}) . . {$ul}";
 
 		if ( "" != $c && "*" != $c ) {
@@ -66,7 +78,7 @@ function wfSpecialNewpages()
 {
 	global $wgRequest;
     list( $limit, $offset ) = wfCheckLimits();
-    
+
     $npp = new NewPagesPage();
 
     if( !$npp->doFeed( $wgRequest->getVal( 'feed' ) ) ) {

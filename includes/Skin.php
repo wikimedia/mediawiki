@@ -439,13 +439,13 @@ class Skin {
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printFooter() . "</div>\n";
 		return $printfooter . $this->doAfterContent();
 	}
-	
+
 	function printSource() {
 		global $wgTitle;
 		$url = htmlspecialchars( $wgTitle->getFullURL() );
 		return wfMsg( "retrievedfrom", "<a href=\"$url\">$url</a>" );
 	}
-	
+
 	function printFooter() {
 		return "<p>" .  $this->printSource() .
 			"</p>\n\n<p>" . $this->pageStats() . "</p>\n";
@@ -2265,7 +2265,9 @@ class Skin {
 			$this->lastdate = $date;
 			$this->rclistOpen = true;
 		}
-		$s .= '<li> ';
+
+		# If this edit has not yet been patrolled, make it stick out
+		$s .= ( $rc_patrolled ) ? '<li> ' : '<li class="not_patrolled"> ';
 
 		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			# Diff
@@ -2275,11 +2277,7 @@ class Skin {
 				') . . ';
 
 			# "[[x]] moved to [[y]]"
-			if ( $rc_type == RC_MOVE ) {
-				$msg = '1movedto2';
-			} else {
-				$msg = '1movedto2_redir';
-			}
+			$msg = ( $rc_type == RC_MOVE ) ? '1movedto2' : '1movedto2_redir';
 			$s .= wfMsg( $msg, $this->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
 				$this->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
 		} else {
@@ -2287,8 +2285,14 @@ class Skin {
 			if ( $rc_type == RC_NEW || $rc_type == RC_LOG ) {
 				$diffLink = wfMsg( 'diff' );
 			} else {
+				if ( $rc_patrolled == 0 && $wgUser->getID() != 0 &&
+				     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
+					$rcidparam = "&rcid={$rc_id}";
+				else
+					$rcidparam = "";
 				$diffLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'diff' ),
-				  $curIdEq.'&diff='.$rc_this_oldid.'&oldid='.$rc_last_oldid  ,'' ,'' , ' tabindex="'.$rc->counter.'"');
+				  "{$curIdEq}&diff={$rc_this_oldid}&oldid={$rc_last_oldid}{$rcidparam}",
+				  '', '', ' tabindex="'.$rc->counter.'"');
 			}
 			$s .= '('.$diffLink.') (';
 
@@ -2303,7 +2307,13 @@ class Skin {
 			if ( $rc_type == RC_NEW ) { $s .= '<strong>'.$N.'</strong>'; }
 
 			# Article link
-			$articleLink = $this->makeKnownLinkObj( $rc->getTitle(), '' );
+			# If it's a new article, there is no diff link, but if it hasn't been
+			# patrolled yet, we need to give users a way to do so
+			if ( $rc_type == RC_NEW && $rc_patrolled == 0 && $wgUser->getID() != 0 &&
+			     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
+				$articleLink = $this->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
+			else
+				$articleLink = $this->makeKnownLinkObj( $rc->getTitle(), '' );
 
 			if ( $watched ) {
 				$articleLink = '<strong>'.$articleLink.'</strong>';
@@ -2370,7 +2380,7 @@ class Skin {
 
 		# If it's a new day, add the headline and flush the cache
 		$date = $wgLang->date( $rc_timestamp, true);
-		$ret = '' ;
+		$ret = '';
 		if ( $date != $this->lastdate ) {
 			# Process current cache
 			$ret = $this->recentChangesBlock () ;
@@ -2381,11 +2391,7 @@ class Skin {
 
 		# Make article link
 		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
-			if ( $rc_type == RC_MOVE ) {
-				$msg = "1movedto2";
-			} else {
-				$msg = "1movedto2_redir";
-			}
+			$msg = ( $rc_type == RC_MOVE ) ? "1movedto2" : "1movedto2_redir";
 			$clink = wfMsg( $msg, $this->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
 			  $this->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
 		} else {
@@ -2418,7 +2424,7 @@ class Skin {
 		}
 
 		# Make user link (or user contributions for unregistered users)
-		if ( 0 == $rc_user ) {
+		if ( $rc_user == 0 ) {
 			$userLink = $this->makeKnownLink( $wgLang->specialPage( 'Contributions' ),
 			$rc_user_text, 'target=' . $rc_user_text );
 		} else {
@@ -2426,11 +2432,10 @@ class Skin {
 			  Namespace::getUser() ) . ':'.$rc_user_text, $rc_user_text );
 		}
 
-		$rc->userlink = $userLink ;
-		$rc->lastlink = $lastLink ;
-		$rc->curlink = $curLink ;
+		$rc->userlink = $userLink;
+		$rc->lastlink = $lastLink;
+		$rc->curlink  = $curLink;
 		$rc->difflink = $diffLink;
-
 
 		# Make user talk link
 		$utns=$wgLang->getNsText(NS_USER_TALK);

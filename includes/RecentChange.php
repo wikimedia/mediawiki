@@ -10,11 +10,12 @@ define( "RC_MOVE_OVER_REDIRECT", 4);
 
 /*
 mAttributes:
+	rc_id           id of the row in the recentchanges table
 	rc_timestamp    time the entry was made
 	rc_cur_time     timestamp on the cur row
 	rc_namespace    namespace #
 	rc_title        non-prefixed db key
-	rc_type          is new entry, used to determine whether updating is necessary
+	rc_type         is new entry, used to determine whether updating is necessary
 	rc_minor        is minor
 	rc_cur_id       id of associated cur entry
 	rc_user	        user id who made the entry
@@ -25,6 +26,7 @@ mAttributes:
 	rc_bot          is bot, hidden
 	rc_ip           IP address of the user in dotted quad notation
 	rc_new          obsolete, use rc_type==RC_NEW
+	rc_patrolled    boolean whether or not someone has marked this edit as patrolled
 
 mExtra:
 	prefixedDBkey   prefixed db key, used by external app via msg queue
@@ -38,14 +40,14 @@ class RecentChange
 	var $mTitle = false, $mMovedToTitle = false;
 
 	# Factory methods
-	
-	/* static */ function newFromRow( $row ) 
+
+	/* static */ function newFromRow( $row )
 	{
 		$rc = new RecentChange;
 		$rc->loadFromRow( $row );
 		return $rc;
 	}
-	
+
 	/* static */ function newFromCurRow( $row )
 	{
 		$rc = new RecentChange;
@@ -54,17 +56,17 @@ class RecentChange
 	}
 
 	# Accessors
-	
-	function setAttribs( $attribs ) 
+
+	function setAttribs( $attribs )
 	{
 		$this->mAttribs = $attribs;
 	}
-	
+
 	function setExtra( $extra )
 	{
 		$this->mExtra = $extra;
 	}
-	
+
 	function getTitle()
 	{
 		if ( $this->mTitle === false ) {
@@ -76,31 +78,31 @@ class RecentChange
 	function getMovedToTitle()
 	{
 		if ( $this->mMovedToTitle === false ) {
-			$this->mMovedToTitle = Title::makeTitle( $this->mAttribs['rc_moved_to_ns'], 
+			$this->mMovedToTitle = Title::makeTitle( $this->mAttribs['rc_moved_to_ns'],
 				$this->mAttribs['rc_moved_to_title'] );
 		}
 		return $this->mMovedToTitle;
 	}
 
 	# Writes the data in this object to the database
-	function save() 
+	function save()
 	{
 		global $wgUseRCQueue, $wgRCQueueID, $wgLocalInterwiki, $wgPutIPinRC;
 		$fname = "RecentChange::save";
-		
+
 		$dbw =& wfGetDB( DB_MASTER );
 		if ( !is_array($this->mExtra) ) {
 			$this->mExtra = array();
 		}
 		$this->mExtra['lang'] = $wgLocalInterwiki;
-		
+
 		if ( !$wgPutIPinRC ) {
 			$this->mAttribs['rc_ip'] = '';
 		}
-		
+
 		# Insert new row
 		$dbw->insertArray( "recentchanges", $this->mAttribs, $fname );
-		
+
 		# Update old rows, if necessary
 		if ( $this->mAttribs['rc_type'] == RC_EDIT ) {
 			$oldid = $this->mAttribs['rc_last_oldid'];
@@ -109,12 +111,12 @@ class RecentChange
 			$lastTime = $this->mExtra['lastTimestamp'];
 			$now = $this->mAttribs['rc_timestamp'];
 			$curId = $this->mAttribs['rc_cur_id'];
-			
+
 			# Update rc_this_oldid for the entries which were current
-			$dbw->updateArray( 'recentchanges', 
+			$dbw->updateArray( 'recentchanges',
 				array( /* SET */
 					'rc_this_oldid' => $oldid
-				), array( /* WHERE */ 
+				), array( /* WHERE */
 					'rc_namespace' => $ns,
 					'rc_title' => $title,
 					'rc_timestamp' => $lastTime
@@ -122,24 +124,40 @@ class RecentChange
 			);
 
 			# Update rc_cur_time
-			$dbw->updateArray( 'recentchanges', array( 'rc_cur_time' => $now ), 
+			$dbw->updateArray( 'recentchanges', array( 'rc_cur_time' => $now ),
 				array( 'rc_cur_id' => $curId ), $fname );
 		}
-		
+
 		# Notify external application
 		if ( $wgUseRCQueue ) {
 			$queue = msg_get_queue( $wgRCQueueID );
-			if (!msg_send( $queue, array_merge( $this->mAttribs, 1, $this->mExtra ), 
-				true, false, $error )) 
+			if (!msg_send( $queue, array_merge( $this->mAttribs, 1, $this->mExtra ),
+				true, false, $error ))
 			{
 				wfDebug( "Error sending message to RC queue, code $error\n" );
 			}
 		}
 	}
-	
+
+	# Marks a certain row as patrolled
+	function markPatrolled( $rcid )
+	{
+		$fname = "RecentChange::markPatrolled";
+
+		$dbw =& wfGetDB( DB_MASTER );
+
+		$dbw->updateArray( 'recentchanges',
+			array( /* SET */
+				'rc_patrolled' => 1
+			), array( /* WHERE */
+				'rc_id' => $rcid
+			), $fname
+		);
+	}
+
 	# Makes an entry in the database corresponding to an edit
-	/*static*/ function notifyEdit( $timestamp, &$title, $minor, &$user, $comment, 
-		$oldId, $lastTimestamp, $bot = "default", $ip = '' ) 
+	/*static*/ function notifyEdit( $timestamp, &$title, $minor, &$user, $comment,
+		$oldId, $lastTimestamp, $bot = "default", $ip = '' )
 	{
 		if ( $bot == "default " ) {
 			$bot = $user->isBot();
@@ -149,7 +167,7 @@ class RecentChange
 			global $wgIP;
 			$ip = empty( $wgIP ) ? '' : $wgIP;
 		}
-		
+
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_timestamp'	=> $timestamp,
@@ -170,14 +188,14 @@ class RecentChange
 			'rc_ip'	=> $ip,
 			'rc_new'	=> 0 # obsolete
 		);
-		
+
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
 			'lastTimestamp' => $lastTimestamp
 		);
 		$rc->save();
 	}
-	
+
 	# Makes an entry in the database corresponding to page creation
 	# Note: the title object must be loaded with the new id using resetArticleID()
 	/*static*/ function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default", $ip='' )
@@ -210,14 +228,14 @@ class RecentChange
 			'rc_ip'             => $ip,
 			'rc_new'	=> 1 # obsolete
 		);
-		
+
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
 			'lastTimestamp' => 0
 		);
 		$rc->save();
 	}
-	
+
 	# Makes an entry in the database corresponding to a rename
 	/*static*/ function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='', $overRedir = false )
 	{
@@ -243,9 +261,10 @@ class RecentChange
 			'rc_moved_to_ns'	=> $newTitle->getNamespace(),
 			'rc_moved_to_title'	=> $newTitle->getDBkey(),
 			'rc_ip'		=> $ip,
-			'rc_new'	=> 0 # obsolete
+			'rc_new'	=> 0, # obsolete
+			'rc_patrolled' => 1
 		);
-		
+
 		$rc->mExtra = array(
 			'prefixedDBkey'	=> $oldTitle->getPrefixedDBkey(),
 			'lastTimestamp' => 0,
@@ -253,7 +272,7 @@ class RecentChange
 		);
 		$rc->save();
 	}
-	
+
 	/* static */ function notifyMoveToNew( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='' ) {
 		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip, false );
 	}
@@ -262,7 +281,7 @@ class RecentChange
 		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip='', true );
 	}
 
-	# A log entry is different to an edit in that previous revisions are 
+	# A log entry is different to an edit in that previous revisions are
 	# not kept
 	/*static*/ function notifyLog( $timestamp, &$title, &$user, $comment, $ip='' )
 	{
@@ -288,6 +307,7 @@ class RecentChange
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
 			'rc_ip'	=> $ip,
+			'rc_patrolled' => 1,
 			'rc_new'	=> 0 # obsolete
 		);
 		$rc->mExtra =  array(
@@ -303,7 +323,7 @@ class RecentChange
 		$this->mAttribs = get_object_vars( $row );
 		$this->mExtra = array();
 	}
-	
+
 	# Makes a pseudo-RC entry from a cur row, for watchlists and things
 	function loadFromCurRow( $row )
 	{
