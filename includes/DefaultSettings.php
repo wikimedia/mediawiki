@@ -143,7 +143,7 @@ $wgCookieExpiration = 2592000;
 # Enable/disable Squid
  $wgUseSquid = false;
 # Internal server name as known to Squid, if different
-# $wgInternalServer = 'http://yourinternal.tld.:8000';
+# $wgInternalServer = 'http://yourinternal.tld:8000';
  $wgInternalServer = $wgServer;
 # A list of proxy servers (ips if possible) to purge on changes
 # don't specify ports here (80 is default)
