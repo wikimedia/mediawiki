@@ -561,7 +561,7 @@ cl_sortkey" ;
 	
 			}
 			$r .= "</tr></table>";
-		} else {
+		} elseif ( count ( $articles )  > 0) {
 			// for short lists of articles in categories.
 			$ti = $this->mTitle->getText() ;
 			
