@@ -19,6 +19,7 @@ function onloadhook () {
     // don't run anything below this for non-dom browsers
     if(!(document.getElementById && document.getElementsByTagName)) return;
     histrowinit();
+    tabbedprefs();
 }
 if (window.addEventListener) window.addEventListener("load",onloadhook,false);
 else if (window.attachEvent) window.attachEvent("onload",onloadhook);
@@ -104,6 +105,67 @@ function diffcheck() {
             }
         }
     }
+}
+
+// generate toc from prefs form, fold sections
+// XXX: needs testing on IE/Mac and safari
+// more comments to follow
+function tabbedprefs() {
+    prefform = document.getElementById('preferences');
+    if(!prefform || !document.createElement) return;
+    prefform.className = prefform.className + 'jsprefs';
+    var sections = new Array();
+    children = prefform.childNodes;
+    var seci = 0;
+    for(i=0;i<children.length;i++) {
+        if(children[i].nodeName.indexOf('FIELDSET') != -1) {
+            children[i].id = 'prefsection-' + i;
+            children[i].style.marginLeft = 'auto';
+            if(is_opera) children[i].className = 'operaprefsection';
+            legends = children[i].getElementsByTagName('LEGEND');
+            sections[seci] = new Object();
+            if(legends[0] && legends[0].firstChild.nodeValue)
+                sections[seci].text = legends[0].firstChild.nodeValue;
+            else
+                sections[seci].text = '# ' + seci;
+            sections[seci].secid = children[i].id;
+            seci++;
+            if(sections.length != 1) children[i].style.display = 'none';
+            else var selectedid = children[i].id;
+        }
+    }
+    var toc = document.createElement('UL');
+    toc.id = 'preftoc';
+    toc.selectedid = selectedid;
+    for(i=0;i<sections.length;i++) {
+        var li = document.createElement('LI');
+        if(i == 0) li.className = 'selected';
+        var a =  document.createElement('A');
+        a.href = '#' + sections[i].secid;
+        a.onclick = uncoversection;
+        a.innerHTML = sections[i].text;
+        a.secid = sections[i].secid;
+        li.appendChild(a);
+        toc.appendChild(li);
+    }
+    prefform.insertBefore(toc, children[0]);
+    document.getElementById('prefsubmit').id = 'prefcontrol';
+}
+function uncoversection() {
+    oldsecid = this.parentNode.parentNode.selectedid;
+    newsec = document.getElementById(this.secid);
+    if(oldsecid != this.secid) {
+        ul = document.getElementById('preftoc');
+        document.getElementById(oldsecid).style.display = 'none';
+        newsec.style.display = 'block';
+        ul.selectedid = this.secid;
+        lis = ul.getElementsByTagName('LI');
+        for(i=0;i< lis.length;i++) {
+            lis[i].className = '';
+        }
+        this.parentNode.className = 'selected';
+    }
+    return false;
 }
 
 // Timezone stuff
