@@ -311,7 +311,7 @@ class EditPage {
 		$prev = wfMsg( "showpreview" );
 
 		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedText(),
-		  wfMsg( "cancel" ) );
+				wfMsg( "cancel" ) );
 		$edithelpurl = $sk->makeUrl( wfMsg( 'edithelppage' ));
 		$edithelp = '<a target="helpwindow" href="'.$edithelpurl.'">'.
 			htmlspecialchars( wfMsg( 'edithelp' ) ).'</a> '.
@@ -324,7 +324,7 @@ class EditPage {
 				$wgRightsText ) . "\n</div>";
 
 		if( $wgUser->getOption("showtoolbar") and !$isCssJsSubpage ) {
-			# prepare toolbar for edit buttons
+# prepare toolbar for edit buttons
 			$toolbar = $sk->getEditToolbar();
 		} else {
 			$toolbar = "";
@@ -345,35 +345,35 @@ class EditPage {
 
 		if ( 0 != $wgUser->getID() || $wgAllowAnonymousMinor ) {
 			$minoredithtml =
-			"<input tabindex='3' type='checkbox' value='1' name='wpMinoredit'".($this->minoredit?" checked='checked'":"").
-			" accesskey='".wfMsg('accesskey-minoredit')."' id='wpMinoredit' />".
-			"<label for='wpMinoredit' title='".wfMsg('tooltip-minoredit')."'>{$minor}</label>";
+				"<input tabindex='3' type='checkbox' value='1' name='wpMinoredit'".($this->minoredit?" checked='checked'":"").
+				" accesskey='".wfMsg('accesskey-minoredit')."' id='wpMinoredit' />".
+				"<label for='wpMinoredit' title='".wfMsg('tooltip-minoredit')."'>{$minor}</label>";
 		}
 
 		$watchhtml = "";
 
 		if ( 0 != $wgUser->getID() ) {
 			$watchhtml = "<input tabindex='4' type='checkbox' name='wpWatchthis'".($this->watchthis?" checked='checked'":"").
-			" accesskey='".wfMsg('accesskey-watch')."' id='wpWatchthis'  />".
-			"<label for='wpWatchthis' title='".wfMsg('tooltip-watch')."'>{$watchthis}</label>";
+				" accesskey='".wfMsg('accesskey-watch')."' id='wpWatchthis'  />".
+				"<label for='wpWatchthis' title='".wfMsg('tooltip-watch')."'>{$watchthis}</label>";
 		}
 
 		$checkboxhtml = $minoredithtml . $watchhtml . "<br />";
 
 		if ( "preview" == $formtype) {
 			$previewhead="<h2>" . wfMsg( "preview" ) . "</h2>\n<p><center><font color=\"#cc0000\">" .
-			wfMsg( "note" ) . wfMsg( "previewnote" ) . "</font></center></p>\n";
+				wfMsg( "note" ) . wfMsg( "previewnote" ) . "</font></center></p>\n";
 			if ( $isConflict ) {
 				$previewhead.="<h2>" . wfMsg( "previewconflict" ) .
-				  "</h2>\n";
+					"</h2>\n";
 			}
 
 			$parserOptions = ParserOptions::newFromUser( $wgUser );
 			$parserOptions->setUseCategoryMagic( false );
 			$parserOptions->setEditSection( false );
 			$parserOptions->setEditSectionOnRightClick( false );
-			# don't parse user css/js, show message about preview
-			# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here
+# don't parse user css/js, show message about preview
+# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here
 			if ( $isCssJsSubpage ) {
 				if(preg_match("/\\.css$/", $wgTitle->getText() ) ) {
 					$previewtext = wfMsg('usercsspreview');
@@ -384,7 +384,7 @@ class EditPage {
 				$wgOut->addHTML( $parserOutput->mText );
 			} else {
 				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $this->textbox1 ) ."\n\n",
-				$wgTitle, $parserOptions );
+						$wgTitle, $parserOptions );
 				$previewHTML = $parserOutput->mText;
 
 				if($wgUser->getOption("previewontop")) {
@@ -397,20 +397,38 @@ class EditPage {
 			}
 		}
 
-		# if this is a comment, show a subject line at the top, which is also the edit summary.
-		# Otherwise, show a summary field at the bottom
+# if this is a comment, show a subject line at the top, which is also the edit summary.
+# Otherwise, show a summary field at the bottom
 		$summarytext = htmlspecialchars( $wgLang->recodeForEdit( $this->summary ) ); # FIXME
-		if( $this->section == "new" ) {
-			$commentsubject="{$subject}: <input tabindex='1' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
-			$editsummary = "";
-		} else {
-			$commentsubject = "";
-			$editsummary="{$summary}: <input tabindex='3' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
-		}
+			if( $this->section == "new" ) {
+				$commentsubject="{$subject}: <input tabindex='1' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
+				$editsummary = "";
+			} else {
+				$commentsubject = "";
+				$editsummary="{$summary}: <input tabindex='3' type='text' value=\"$summarytext\" name=\"wpSummary\" maxlength='200' size='60' /><br />";
+			}
 
 		if( !$this->preview ) {
-			# Don't select the edit box on preview; this interferes with seeing what's going on.
+		# Don't select the edit box on preview; this interferes with seeing what's going on.
 			$wgOut->setOnloadHandler( "document.editform.wpTextbox1.focus()" );
+		}
+		# Prepare a list of templates used by this page
+		$db =& wfGetDB( DB_SLAVE );
+		$cur = $db->tableName( 'cur' );
+		$links = $db->tableName( 'links' );
+		$id = $this->mTitle->getArticleID();
+		$sql = "SELECT cur_namespace,cur_title,cur_id ".
+			"FROM $cur,$links WHERE l_to=cur_id AND l_from={$id} and cur_namespace=".NS_TEMPLATE;
+		$res = $db->query( $sql, "EditPage::editform" );
+
+		if ( $db->numRows( $res ) ) {
+			$templates = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
+			while ( $row = $db->fetchObject( $res ) ) {
+				if ( $titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title ) ) {
+					$templates .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
+				}
+			}
+			$templates .= '</ul>';
 		}
 		$wgOut->addHTML( "
 {$toolbar}
@@ -428,7 +446,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 " title=\"".wfMsg('tooltip-save')."\"/>
 <input tabindex='6' id='wpPreview' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
 " title=\"".wfMsg('tooltip-preview')."\"/>
-<em>{$cancel}</em> | <em>{$edithelp}</em>" );
+<em>{$cancel}</em> | <em>{$edithelp}</em>{$templates}" );
 		$wgOut->addWikiText( $copywarn );
 		$wgOut->addHTML( "
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
