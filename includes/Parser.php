@@ -2,6 +2,10 @@
 
 include_once('Tokenizer.php');
 
+if( $GLOBALS['wgUseWikiHiero'] ){
+	include_once('wikihiero.php');
+}
+
 # PHP Parser 
 # 
 # Processes wiki markup
@@ -147,6 +151,16 @@ class Parser
 			}
 		}
 
+		if( $GLOBALS['wgUseWikiHiero'] ){
+			$text = Parser::extractTags("hiero", $text, $hiero_content, $uniq_prefix);
+			foreach( $hiero_content as $marker => $content ){
+				if( $render ){
+					$hiero_content[$marker] = WikiHiero( $content, WH_MODE_HTML);
+				} else {
+					$hiero_content[$marker] = "<hiero>$content</hiero>";
+				}
+			}
+		}
 
 		if( $this->mOptions->getUseTeX() ){
 			$text = Parser::extractTags("math", $text, $math_content, $uniq_prefix);
@@ -168,7 +182,7 @@ class Parser
 			}
 		}
 
-		$state = array( $nowiki_content, $math_content, $pre_content );
+		$state = array( $nowiki_content, $hiero_content, $math_content, $pre_content );
 		
 		return $text;
 	}
@@ -1077,7 +1091,6 @@ class Parser
 	{
 		global $wgVariableIDs;
 		$this->mVariables = array();
-
 		foreach ( $wgVariableIDs as $id ) {
 			$mw =& MagicWord::get( $id );
 			$mw->addToArray( $this->mVariables, $this->getVariableValue( $id ) );
