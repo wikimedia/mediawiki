@@ -175,7 +175,8 @@ class SearchEngine {
 		$redircond = $this->searchRedirects();
 
 		if ( $wgDisableTextSearch ) {
-			$wgOut->addHTML( wfMsg( "searchdisabled", htmlspecialchars( $search ), $wgInputEncoding ) );
+			$wgOut->addHTML( wfMsg( "searchdisabled" ) );
+			$wgOut->addHTML( wfMsg( "googlesearch", htmlspecialchars( $search ), $GLOBALS['wgInputEncoding'] ) );
 		} else {
 			$sql = "SELECT cur_id,cur_namespace,cur_title," .
 			  "cur_text FROM cur,searchindex " .
@@ -472,8 +473,9 @@ class SearchEngine {
 			}
 		} 
 		if( ! $anyhit ){
-			$wgOut->addHTML( wfMsg("notitlematches") );		
+			$wgOut->addHTML( wfMsg("notitlematches") );
 		}
+		$wgOut->addHTML( wfMsg( "googlesearch", htmlspecialchars( $search ), $GLOBALS['wgInputEncoding'] ) );
 	}
 
 	/* static */ function doFuzzyTitleSearch( $search, $namespace ){
