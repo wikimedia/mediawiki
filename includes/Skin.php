@@ -1367,12 +1367,16 @@ class Skin {
 					$trail = $m[2];
 				}
 			}
-			# Assume $this->postParseLinkColour(). This prevents
-			# interwiki links from being parsed as external links.
-			global $wgInterwikiLinkHolders;
 			$t = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>";
-			$nr = array_push($wgInterwikiLinkHolders, $t);
-			$retVal = '<!--IWLINK '. ($nr-1) ."-->{$trail}";
+			if( $this->postParseLinkColour ) {
+				# There's no existence check, but this will prevent
+				# interwiki links from being parsed as external links.
+				global $wgInterwikiLinkHolders;
+				$nr = array_push($wgInterwikiLinkHolders, $t);
+				$retVal = '<!--IWLINK '. ($nr-1) ."-->{$trail}";
+			} else {
+				return $t;
+			}
 		} elseif ( 0 == $ns && "" == $dbkey ) {
 			# A self-link with a fragment; skip existence check.
 			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
