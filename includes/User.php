@@ -265,6 +265,7 @@ class User {
  			if ( $block->load( $wgIP , $this->mId ) ) {
 				$this->mBlockedby = $block->mBy;
 				$this->mBlockreason = $block->mReason;
+				$this->spreadBlock();
 			}
 		}
 
@@ -392,7 +393,6 @@ class User {
 				else
 					wfDebug( "User::loadFromSession() unable to save to memcached\n" );
 			}
-			$user->spreadBlock();
 			return $user;
 		}
 		return new User(); # Can't log in from session
