@@ -104,6 +104,9 @@ function do_update_files() {
 	copyfile( "./images", "button_sig.png", $wgUploadDirectory );
 	copyfile( "./images", "button_template.png", $wgUploadDirectory );
 	copyfile( "./images", "magnify-clip.png", $wgUploadDirectory );
+	copyfile( "./images", "Arr_.png", $wgUploadDirectory );
+	copyfile( "./images", "Arr_r.png", $wgUploadDirectory );
+	copyfile( "./images", "Arr_d.png", $wgUploadDirectory );
 
 	copyfile( "./languages", "Language.php", $IP );
 	copyfile( "./languages", "LanguageUtf8.php", $IP );
