@@ -41,7 +41,8 @@ class Image
 	 */
 	function Image( $name, $recache = false ) {
 
-		global $wgUseSharedUploads, $wgUseLatin1, $wgSharedLatin1, $wgLang, $wgMemc, $wgDBname;
+		global $wgUseSharedUploads, $wgUseLatin1, $wgSharedLatin1, $wgLang, $wgMemc, $wgDBname,
+		       $wgSharedUploadDBname;
 
 		$this->name      = $name;
 		$this->title     = Title::makeTitleSafe( NS_IMAGE, $this->name );
@@ -811,7 +812,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = '', $source
 
 		if ( $id == 0 ) {
 			$article = new Article( $descTitle );
-			$article->insertNewArticle( $textdesc, $desc, false, false );
+			$article->insertNewArticle( $textdesc, $desc, false, false, true );
 		}
 	} else {
 		# Collision, this is an update of an image

@@ -260,7 +260,7 @@ class LogViewer {
 		$comment = $this->skin->commentBlock( $s->log_comment );
 		$paramArray = LogPage::extractParams( $s->log_params );
 		
-		$action = LogPage::actionText( $s->log_type, $s->log_action, $titleLink, $paramArray );
+		$action = LogPage::actionText( $s->log_type, $s->log_action, $titleLink, $paramArray, true );
 		$out = "<li>$time $userLink $action $comment</li>\n";
 		return $out;
 	}
