@@ -74,6 +74,28 @@ function toggleToc() {
 	}
 }
 
+// this function generates the actual toolbar buttons with localized text
+// we use it to avoid creating the toolbar where javascript is not enabled
+function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
+
+	speedTip=escapeQuotes(speedTip);
+	tagOpen=escapeQuotes(tagOpen);
+	tagClose=escapeQuotes(tagClose);
+	sampleText=escapeQuotes(sampleText);
+	document.write("<a href=\"#\" onclick=\"javascript:insertTags");
+	document.write("('"+tagOpen+"','"+tagClose+"','"+sampleText+"');\">");
+	document.write("<img width=\"23\" height=\"22\" src=\""+imageFile+"\" border=\"0\" ALT=\""+speedTip+"\" TITLE=\""+speedTip+"\">");
+	document.write("</a>");
+	return;
+}
+
+function escapeQuotes(text) {
+
+	text=text.replace(/'/g,"\\'");
+	text=text.replace(/\n/g,"\\n");
+	return text;
+}
+
 // apply tagOpen/tagClose to selection in textarea,
 // use sampleText instead of selection if there is none
 // copied and adapted from phpBB
