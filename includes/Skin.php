@@ -2278,7 +2278,7 @@ class Skin {
 				"tip"=>wfMsg("hr_tip"))
 		);
 		$toolbar.="<script type='text/javascript'>\n";
-		$toolbar.="document.writeln(\"</p><div id='toolbar'>\");\n";
+		$toolbar.="document.writeln(\"<div id='toolbar'>\");\n";
 		foreach($toolarray as $tool) {
 
 			$image=$wgUploadPath."/".$tool["image"];
