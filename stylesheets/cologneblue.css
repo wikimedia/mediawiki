@@ -21,7 +21,7 @@ p, pre, td, th, li, dd, dt { line-height: 12pt; }
 
 #footer { padding: 4px; }
 #footer form { display: inline; }
-
+#autocomment { color: gray; }
 #sitetitle {
  font-family: Times, serif;
  color: white;
