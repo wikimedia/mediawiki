@@ -1375,7 +1375,7 @@ class Article {
 
 		$use_index=$wgIsMySQL?"USE INDEX (name_title_timestamp)":"";
 		$sql = 'SELECT old_text,old_user,old_user_text,old_timestamp,old_flags ' .
-		'FROM old {$use_index}' .
+		"FROM old {$use_index}" .
 		"WHERE old_namespace={$n} AND old_title='{$tt}'" .
 		"AND (old_user <> {$uid} OR old_user_text <> '{$ut}')" .
 		'ORDER BY inverse_timestamp LIMIT 1';
