@@ -74,8 +74,8 @@ $wgLogo				= "{$wgStylePath}/images/wiki.png";
 
 ## Preferably these addresses should be able to receive mail asking for help
 #
-$wgEmergencyContact = "wikiadmin@" . getenv( "SERVER_NAME" );
-$wgPasswordSender	= "Wikipedia Mail <apache@" . getenv( "SERVER_NAME" ) . ">";
+$wgEmergencyContact = "wikiadmin@" . $_SERVER['SERVER_NAME'];
+$wgPasswordSender	= "Wikipedia Mail <apache@" . $_SERVER['SERVER_NAME'] . ">";
 
 # MySQL settings
 #
