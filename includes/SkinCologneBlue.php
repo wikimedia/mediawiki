@@ -3,11 +3,6 @@
 
 class SkinCologneBlue extends Skin {
 
-	function initPage()
-	{
-		global $wgOut, $wgStyleSheetPath;
-	}
-
 	function getStylesheet()
 	{
 		return "cologneblue.css";
