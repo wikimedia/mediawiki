@@ -1758,10 +1758,17 @@ class Skin {
 			$alt = $part[count($part)-1];
 
 			$height = $framed = $thumb = false;
+			$manual_thumb = "" ;
 
 			foreach( $part as $key => $val ) {
+				$val_parts = explode ( "=" , $val , 2 ) ;
+				$left_part = array_shift ( $val_parts ) ;
 				if ( ! is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
 					$thumb=true;
+				} elseif ( count ( $val_parts ) == 1 && ! is_null( $mwThumb->matchVariableStartToEnd($left_part) ) ) {
+					# use manually specified thumbnail
+					$thumb=true;
+					$manual_thumb = array_shift ( $val_parts ) ;
 				} elseif ( ! is_null( $mwRight->matchVariableStartToEnd($val) ) ) {
 					# remember to set an alignment, don't render immediately
 					$align = 'right';
@@ -1808,7 +1815,7 @@ class Skin {
 				if ( ! isset($width) ) {
 					$width = 180;
 				}
-				return $prefix.$this->makeThumbLinkObj( $img, $alt, $align, $width, $height, $framed ).$postfix;
+				return $prefix.$this->makeThumbLinkObj( $img, $alt, $align, $width, $height, $framed, $manual_thumb ).$postfix;
 	
 			} elseif ( isset($width) ) {
 				
@@ -1846,7 +1853,7 @@ class Skin {
 	}
 
 
-	function makeThumbLinkObj( $img, $label = '', $align = 'right', $boxwidth = 180, $boxheight=false, $framed=false ) {
+	function makeThumbLinkObj( $img, $label = '', $align = 'right', $boxwidth = 180, $boxheight=false, $framed=false , $manual_thumb = "" ) {
 		global $wgStylePath, $wgLang;
 		# $image = Title::makeTitle( Namespace::getImage(), $name );
 		$url  = $img->getURL();
@@ -1879,6 +1886,21 @@ class Skin {
 				$boxheight = $h;
 			}
 			$thumbUrl = $img->createThumb( $boxwidth );
+		}
+
+		if ( $manual_thumb != '' ) # Use manually specified thumbnail
+		{
+			$manual_title = Title::makeTitle( Namespace::getImage(), $manual_thumb ); #new Title ( $manual_thumb ) ;
+			$manual_img = Image::newFromTitle( $manual_title );
+			$thumbUrl = $manual_img->getURL();
+			if ( $manual_img->exists() )
+			{
+				$width  = $manual_img->getWidth();
+				$height = $manual_img->getHeight();
+				$boxwidth = $width ;
+				$boxheight = $height ;
+				$oboxwidth = $boxwidth + 2 ;
+			}
 		}
 
 		$u = $img->getEscapeLocalURL();
