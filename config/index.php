@@ -565,7 +565,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 			$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
 			$now = wfTimestampNow();
-			$won = wfInvertTimestamp( $now );
 			
 			extract( $wgDatabase->tableNames( 'text', 'page', 'revision' ) );
 			$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
