@@ -27,6 +27,7 @@
 	'ca' => 'Catal&agrave;',	# Catalan
 	'ce' => '&#1053;&#1086;&#1093;&#1095;&#1080;&#1081;&#1085;',	# Chechen
 	'ch' => 'Chamoru',		# Chamorro
+	'cho' => 'Choctaw',
 	'chr' => '&#5091;&#5043;&#5033;', # Cherokee
 	'chy' => 'Tsets&ecirc;hest&acirc;hese',	# Cheyenne
 	'co' => 'Corsu',		# Corsican
@@ -115,6 +116,7 @@
 	'mr' => '&#2350;&#2352;&#2366;&#2336;&#2368;',	# Marathi
 	'ms' => 'Bahasa Melayu',	# Malay
 	'mt' => 'bil-Malti',	# Maltese
+	'mus' => 'Muscogee',
 	'my' => 'Myanmasa',	# Burmese
 	'na' => 'Nauru',		# Nauruan
 	'nb' => 'Bokm&aring;l',		# Norwegian (Bokmal)
