@@ -345,6 +345,8 @@ class OutputPage {
 
 
 		$this->sendCacheControl();
+		
+		$this->mBodytext = $this->parseLinkHolders();
 
 		header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
 		header( "Content-language: {$wgLanguageCode}" );
@@ -753,6 +755,92 @@ class OutputPage {
 		# $fix = htmlspecialchars( $wgStylePath . "/ie-png-fix.js" );
 		# $ret .= "<!--[if gte IE 5.5000]><script type='text/javascript' src='$fix'></script><![endif]-->";
 		return $ret;
+	}
+	
+	# Parse <tmp=> link placeholders to avoid using linkcache
+	# $wgInternalLinks populated in Skin::makeLinkObj()
+	function parseLinkHolders()
+	{
+		global $wgUser, $wgInternalLinks;
+		
+		$fname = 'OutputPage::parseLinkHolders';
+		wfProfileIn( $fname );
+		
+		# Get placeholders from body
+		preg_match_all( "/<tmp=(.*?)>/", $this->mBodytext, $tmpLinks );
+		
+		if ( !empty( $tmpLinks[0] ) ) {
+			$dbr =& wfGetDB( DB_READ );
+			$sk = $wgUser->getSkin();
+			
+			# Index the DB key along with other information
+			foreach ( $tmpLinks[1] as $key => $val ) {
+				$wgInternalLinks['dbkey'][$key] = $wgInternalLinks['obj'][$key]->getDBkey();
+			}
+			
+			# Sort according to namespace
+			asort($wgInternalLinks['ns']);
+			
+			# Generate query
+			foreach ( $wgInternalLinks['ns'] as $key => $val ) {
+				if ( !isset( $current ) ) {
+					$current = $val;
+					$query =  "SELECT cur_title, LENGTH(cur_text) AS cur_len, cur_is_redirect FROM cur ";
+					$query .= "WHERE (cur_namespace=$val AND cur_title IN(";
+				} elseif ( $current != $val ) {
+					$current = $val;
+					$query .= ")) OR (cur_namespace=$val AND cur_title IN(";
+				} else {
+					$query .= ", ";
+				}
+				
+				$query .= $dbr->addQuotes( $wgInternalLinks['dbkey'][$key] );
+			}
+
+			$query .= "))";
+			
+			$res = $dbr->query( $query );
+			
+			# Fetch data and pass to appropriate make*LinkObj()
+			# Index search and replace strings to substitute placeholders for actual links
+			while ( $s = $dbr->fetchRow($res) ) {
+				$i = array_search($s['cur_title'], $wgInternalLinks['dbkey']);
+				$threshold = $wgUser->getOption('stubthreshold');
+				if ( $threshold > 0 ) {
+					$size = $s['cur_len'];
+					if ( $s['cur_is_redirect'] || ( $wgInternalLinks['ns'][$i] != 0 ) ) {
+						$size = $threshold * 2; # Really big
+					}
+				} else {
+					$size = 1;
+				}
+				
+				if ( $size < $threshold ) {
+					$wgInternalLinks['replace'][$i] = $sk->makeStubLinkObj( $wgInternalLinks['obj'][$i],
+						$wgInternalLinks['text'][$i], $wgInternalLinks['query'][$i], '',
+						$wgInternalLinks['prefix'][$i]);
+				} else {
+					$wgInternalLinks['replace'][$i] = $sk->makeKnownLinkObj( $wgInternalLinks['obj'][$i],
+						$wgInternalLinks['text'][$i], $wgInternalLinks['query'][$i], '',
+						$wgInternalLinks['prefix'][$i]);
+				}
+			}
+			
+			# Finish populating search and replace arrays for broken links
+			foreach ( $wgInternalLinks['ns'] as $key => $val ) {
+				$search[]  = $tmpLinks[0][$key];
+				$replace[] = ( empty ( $wgInternalLinks['replace'][$key] ) ) ?
+					$sk->makeBrokenLinkObj( $wgInternalLinks['obj'][$key],
+						$wgInternalLinks['text'][$key], $wgInternalLinks['query'][$key], '',
+						$wgInternalLinks['prefix'][$key])
+					: $wgInternalLinks['replace'][$key];
+			}
+			
+			$out = str_replace( $search, $replace, $this->mBodytext );
+		}
+		
+		wfProfileOut( $fname );
+		return ( $out );
 	}
 }
 ?>
