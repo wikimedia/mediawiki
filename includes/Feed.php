@@ -9,11 +9,13 @@ class FeedItem {
 	var $Title = "Wiki";
 	var $Description = "";
 	var $Url = "";
+	var $Date = "";
 	
-	function FeedItem( $Title, $Description, $Url ) {
+	function FeedItem( $Title, $Description, $Url, $Date = "" ) {
 		$this->Title = $Title;
 		$this->Description = $Description;
 		$this->Url = $Url;
+		$this->Date = $Date;
 	}
 	
 	/* Static... */
@@ -38,6 +40,9 @@ class FeedItem {
 		global $wgLanguageCode;
 		return $wgLanguageCode;
 	}
+	function getDate() {
+		return $this->Date;
+	}
 }
 
 class ChannelFeed extends FeedItem {
@@ -54,15 +59,22 @@ class ChannelFeed extends FeedItem {
 }
 
 class RSSFeed extends ChannelFeed {
+	function formatTime( $ts ) {
+		return gmdate( "D, d M Y H:i:s T", wfTimestamp2Unix( $ts ) );
+	}
+	
 	function outHeader() {
+		global $wgVersion;
+		
 		print '<' . '?xml version="1.0" encoding="utf-8"?' . ">\n";
-		?><!DOCTYPE rss PUBLIC "-//Netscape Communications//DTD RSS 0.91//EN" "http://my.netscape.com/publish/formats/rss-0.91.dtd">
-<rss version="0.91">
+		?><rss version="2.0">
 	<channel>
 		<title><?php print $this->getTitle() ?></title>
 		<link><?php print $this->getUrl() ?></link>
 		<description><?php print $this->getDescription() ?></description>
 		<language><?php print $this->getLanguage() ?></language>
+		<generator>MediaWiki <?php print $wgVersion ?></generator>
+		<lastBuildDate><?php print $this->formatTime( wfTimestampNow() ) ?></lastBuildDate>
 <?php
 	}
 	
@@ -72,6 +84,8 @@ class RSSFeed extends ChannelFeed {
 			<title><?php print $item->getTitle() ?></title>
 			<link><?php print $item->getUrl() ?></link>
 			<description><?php print $item->getDescription() ?></description>
+			<?php if( $item->getDate() ) { ?><pubDate><?php print $this->formatTime( $item->getDate() ) ?></pubDate><?php } ?>
+
 		</item>
 <?php
 	}

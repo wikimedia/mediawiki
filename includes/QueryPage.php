@@ -118,21 +118,30 @@ class QueryPage {
 	}
 
 	# Override for custom handling. If the titles/links are ok, just do feedItemDesc()
-	function feedResult( $result ) {
-		if( isset( $result->cur_title ) ) {
-			$title = Title::MakeTitle( $result->cur_namespace, $result->cur_title );
-		} elseif( isset( $result->old_title ) ) {
-			$title = Title::MakeTitle( $result->old_namespace, $result->old_title );
-		} elseif( isset( $result->rc_title ) ) {
-			$title = Title::MakeTitle( $result->rc_namespace, $result->rc_title );
+	function feedResult( $row ) {
+		if( isset( $row->cur_title ) ) {
+			$title = Title::MakeTitle( $row->cur_namespace, $row->cur_title );
+		} elseif( isset( $row->old_title ) ) {
+			$title = Title::MakeTitle( $row->old_namespace, $row->old_title );
+		} elseif( isset( $row->rc_title ) ) {
+			$title = Title::MakeTitle( $row->rc_namespace, $row->rc_title );
 		} else {
 			return NULL;
 		}
 		if( $title ) {
+			$date = "";
+			if( isset( $row->cur_timestamp ) ) {
+				$date = $row->cur_timestamp;
+			} elseif( isset( $row->old_timestamp ) ) {
+				$date = $row->old_timestamp;
+			} elseif( isset( $row->rc_cur_timestamp ) ) {
+				$date = $row->rc_cur_timestamp;
+			}
 			return new FeedItem(
 				$title->getText(),
-				$this->feedItemDesc( $result ),
-				wfFullUrl( $title->getUrl() ) );
+				$this->feedItemDesc( $row ),
+				wfFullUrl( $title->getUrl() ) ,
+				$date);
 		} else {
 			return NULL;
 		}
