@@ -20,6 +20,8 @@
 require_once 'UtfNormalUtil.php';
 require_once 'UtfNormal.php';
 
+define( 'BENCH_CYCLES', 3 );
+
 if( php_sapi_name() != 'cli' ) {
 	die( "Run me from the command line please.\n" );
 }
@@ -41,9 +43,16 @@ function benchmarkTest( &$u, $filename, $desc ) {
 	print "Testing $filename ($desc)...\n";
 	$data = file_get_contents( $filename );
 	$forms = array( 'placebo',
-		'fastDecompose', 'fastCombiningSort', 'fastCompose',
-		'toNFD', 'toNFKD', 'toNFC', 'toNFKC',
-		'NFD', 'NFKD', 'NFC', 'NFKC' );
+		'cleanUp',
+		'toNFC',
+#		'toNFKC',
+#		'toNFD', 'toNFKD',
+		'NFC',
+#		'NFKC',
+#		'NFD', 'NFKD',
+#		'fastDecompose', 'fastCombiningSort', 'fastCompose',
+		'quickIsNFC', 'quickIsNFCVerify',
+		);
 	foreach( $forms as $form ) {
 		benchmarkForm( $u, $data, $form );
 	}
@@ -57,11 +66,14 @@ function benchTime(){
 function benchmarkForm( &$u, &$data, $form ) {
 	global $utfCanonicalDecomp;
 	$start = benchTime();
-	$out = $u->$form( $data, $utfCanonicalDecomp );
-	$delta = benchTime() - $start;
+	for( $i = 0; $i < BENCH_CYCLES; $i++ ) {
+		$out = $u->$form( $data, $utfCanonicalDecomp );
+	}
+	$delta = (benchTime() - $start) / BENCH_CYCLES;
+	$rate = IntVal( strlen( $data ) / $delta );
 	$same = (0 == strcmp( $data, $out ) );
 	
-	printf( " %4s %1.4fs (%s)\n", $form, $delta, ($same ? 'no change' : 'changed' ) );
+	printf( " %20s %1.4fs %8d bytes/s (%s)\n", $form, $delta, $rate, ($same ? 'no change' : 'changed' ) );
 }
 
 ?>
