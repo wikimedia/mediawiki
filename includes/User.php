@@ -546,7 +546,8 @@ class User {
 
 	function logout() {
 		global $wgCookiePath, $wgCookieDomain, $wgDBname;
-		$this->mId = 0;
+		$this->loadDefaults();
+		$this->setLoaded( true );
 
 		$_SESSION['wsUserID'] = 0;
 
