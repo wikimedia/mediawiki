@@ -336,13 +336,13 @@ class LogViewer {
 	 * @private
 	 */
 	function showPrevNext( &$out ) {
-		global $wgContLang;
+		global $wgContLang,$wgRequest;
 		$pieces = array();
 		$pieces[] = 'type=' . htmlspecialchars( $this->reader->queryType() );
 		$pieces[] = 'user=' . htmlspecialchars( $this->reader->queryUser() );
 		$pieces[] = 'page=' . htmlspecialchars( $this->reader->queryTitle() );
 		$bits = implode( '&', $pieces );
-		$offset = 0; $limit = 50;
+		list( $limit, $offset ) = $wgRequest->getLimitOffset();
 		
 		# TODO: use timestamps instead of offsets to make it more natural
 		# to go huge distances in time
