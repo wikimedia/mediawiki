@@ -317,7 +317,7 @@ class Parser
 				$fc = substr ( $x , 0 , 1 ) ;
 				if ( "{|" == substr ( $x , 0 , 2 ) )
 				{
-					$t[$k] = "<table " . $this->fixTagAttributes ( substr ( $x , 3 ) ) . ">" ;
+					$t[$k] = "\n<table " . $this->fixTagAttributes ( substr ( $x , 3 ) ) . ">" ;
 					array_push ( $td , false ) ;
 					array_push ( $ltd , "" ) ;
 					array_push ( $tr , false ) ;
@@ -420,7 +420,6 @@ class Parser
 		$text = str_replace ( "<HR>", "<hr />", $text );
 
 		$text = $this->doHeadings( $text );
-		$text = $this->doBlockLevels( $text, $linestart );
 		
 		if($this->mOptions->getUseDynamicDates()) {
 			global $wgDateFormatter;
@@ -435,6 +434,7 @@ class Parser
 
 		$sk =& $this->mOptions->getSkin();
 		$text = $sk->transformContent( $text );
+		$text = $this->doBlockLevels( $text, $linestart );
 		$text .= $this->categoryMagic () ;
 
 		wfProfileOut( $fname );
@@ -887,7 +887,7 @@ class Parser
 	/* private */ function closeParagraph()
 	{
 		$result = "";
-		if ( 0 != strcmp( "", $this->mLastSection ) ) {
+		if ( '' != $this->mLastSection ) {
 			$result = "</" . $this->mLastSection  . ">";
 		}
 		$this->mLastSection = "";
@@ -968,8 +968,8 @@ class Parser
 		# and making lists from lines starting with * # : etc.
 		#
 		$a = explode( "\n", $text );
-		$text = "<p>"; # ??
-		$lastPref = "";
+		$a[0] = "\n".$a[0];
+		$lastPref = $text = '';
 		$this->mDTopen = $inBlockElem = false;
 
 		if ( ! $linestart ) { $text .= array_shift( $a ); }
@@ -1022,32 +1022,36 @@ class Parser
 			}
 			if ( 0 == $npl ) { # No prefix--go to paragraph mode
 				if ( preg_match(
-				  "/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<p)/i", $t ) ) {
+				  "/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<div|<pre)/i", $t ) ) {
 					$text .= $this->closeParagraph();
 					$inBlockElem = true;
+				} else if ( preg_match("/(<hr)/i", $t ) ) {
+					$text .= $this->closeParagraph();
+					$inBlockElem = false;
 				}
 				if ( ! $inBlockElem ) {
 					if ( " " == $t{0} ) {
 						$newSection = "pre";
 						# $t = wfEscapeHTML( $t );
-					} else {
-						$newSection = "p";
 					}
+					else { $newSection = "p"; }
 
-					if ( 0 == strcmp( "", trim( $oLine ) ) ) {
+					if ( '' == trim( $oLine ) ) {
+						if ( $this->mLastSection != 'p') {
+							$text .= $this->closeParagraph();
+							$text .= "<" . $newSection . ">";
+							$this->mLastSection = $newSection;
+						} else if ( $this->mLastSection == 'p') {
+							$text .= '<br />';
+						}
+					} else if ( $this->mLastSection == $newSection and $newSection != 'p' ) {
 						$text .= $this->closeParagraph();
 						$text .= "<" . $newSection . ">";
-					} else if ( 0 != strcmp( $this->mLastSection,
-					  $newSection ) ) {
-						$text .= $this->closeParagraph();
-						if ( 0 != strcmp( "p", $newSection ) ) {
-							$text .= "<" . $newSection . ">";
-						}
+						$this->mLastSection = $newSection;
 					}
-					$this->mLastSection = $newSection;
 				}
 				if ( $inBlockElem &&
-				  preg_match( "/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|<\\/p)/i", $t ) ) {
+				  preg_match( "/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|<\\/p<\\/div|<\\/pre)/i", $t ) ) {
 					$inBlockElem = false;
 				}
 			}
@@ -1269,7 +1273,7 @@ class Parser
 			"ruby", "rt" , "rb" , "rp", "p"
 		);
 		$htmlsingle = array(
-			"br", "hr", "li", "dt", "dd", "hr/"
+			"br", "hr", "li", "dt", "dd"
 		);
 		$htmlnest = array( # Tags that can be nested--??
 			"table", "tr", "td", "th", "div", "blockquote", "ol", "ul",
@@ -1465,8 +1469,7 @@ class Parser
 			$canonized_headline = preg_replace( "/<.*?" . ">/","",$canonized_headline );
 			
 			$tocline = trim( $canonized_headline );
-			$canonized_headline = str_replace( '"', "", $canonized_headline );
-			$canonized_headline = str_replace( " ", "_", trim( $canonized_headline) );
+			$canonized_headline = preg_replace( "/[^a-z0-9]/i", "_", trim( $canonized_headline ) );
 			$refer[$headlineCount] = $canonized_headline;
 			
 			# count how many in assoc. array so we can track dupes in anchors
@@ -1499,25 +1502,14 @@ class Parser
 				}
 				$head[$headlineCount] .= $sk->editSectionLink($headlineCount+1);
 			}
-			
-			
-			# the headline might have a link
-			if( preg_match( "/(.*)<a(.*)/", $headline, $headlinematches ) ) { 
-				# if so give an anchor name to the already existent link
-				$headline = $headlinematches[1]
-				            . "<a name=\"$anchor\" " . $headlinematches[2];
-			} else {
-				# else create an anchor link for the headline
-				$headline = "<a name=\"$anchor\">$headline</a>";
-			}
 				
-			# give headline the correct <h#> tag
-			@$head[$headlineCount] .= "<h".$level.$matches[2][$headlineCount] .$headline."</h".$level.">";
-			
-			# Add the edit section link
+			# Add the edit section span
 			if( $rightClickHack ) {
-				$head[$headlineCount] = $sk->editSectionScript($headlineCount+1,$head[$headlineCount]);	
+				$headline = $sk->editSectionScript($headlineCount+1,$headline);	
 			}
+
+			# give headline the correct <h#> tag
+			@$head[$headlineCount] .= "<a name=\"$anchor\"></a><h".$level.$matches[2][$headlineCount] .$headline."</h".$level.">";
 			
 			$headlineCount++;
 		}		
