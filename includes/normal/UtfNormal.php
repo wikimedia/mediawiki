@@ -652,6 +652,7 @@ class UtfNormal {
 		$len = strlen( $string );
 		$out = '';
 		$lastClass = -1;
+		$lastHangul = 0;
 		$startChar = '';
 		$combining = '';
 		$x1 = ord(substr(UTF8_HANGUL_VBASE,0,1));
@@ -692,6 +693,7 @@ class UtfNormal {
 						$combining .= $c;
 					}
 					$lastClass = $class;
+					$lastHangul = 0;
 					continue;
 				}
 			}
@@ -699,6 +701,7 @@ class UtfNormal {
 			if( $lastClass == 0 ) {
 				if( isset( $utfCanonicalComp[$pair] ) ) {
 					$startChar = $utfCanonicalComp[$pair];
+					$lastHangul = 0;
 					continue;
 				}
 				if( $n >= $x1 && $n <= $x2 ) {
@@ -726,11 +729,13 @@ class UtfNormal {
 						$startChar = chr( $hangulPoint >> 12 & 0x0f | 0xe0 ) .
 									 chr( $hangulPoint >>  6 & 0x3f | 0x80 ) .
 									 chr( $hangulPoint       & 0x3f | 0x80 );
+						$lastHangul = 0;
 						continue;
 					} elseif( $c >= UTF8_HANGUL_TBASE &&
 							  $c <= UTF8_HANGUL_TEND &&
 							  $startChar >= UTF8_HANGUL_FIRST &&
-							  $startChar <= UTF8_HANGUL_LAST ) {
+							  $startChar <= UTF8_HANGUL_LAST &&
+							  !$lastHangul ) {
 						# $tIndex = utf8ToCodepoint( $c ) - UNICODE_HANGUL_TBASE;
 						$tIndex = ord( $c{2} ) - 0xa7;
 						if( $tIndex < 0 ) $tIndex = ord( $c{2} ) - 0x80 + (0x11c0 - 0x11a7);
@@ -749,6 +754,9 @@ class UtfNormal {
 							$startChar{1} = chr( $mid );
 						}
 						$startChar{2} = chr( $tail );
+						
+						# If there's another jamo char after this, *don't* try to merge it.
+						$lastHangul = 1;
 						continue;
 					}
 				}
@@ -758,6 +766,7 @@ class UtfNormal {
 			$startChar = $c;
 			$combining = '';
 			$lastClass = 0;
+			$lastHangul = 0;
 		}
 		$out .= $startChar . $combining;
 		return $out;
