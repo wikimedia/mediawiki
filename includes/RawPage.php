@@ -25,9 +25,9 @@ class RawPage {
 		$ctype = $wgRequest->getText( 'ctype' );
 		# getInt eats the zero, breaks caching
 		$smaxage= $wgRequest->getText( 'smaxage' ) == '0') ? 0 : 
-		          $smaxage = $wgRequest->getInt( 'smaxage', $wgSquidMaxage );
+		          $wgRequest->getInt( 'smaxage', $wgSquidMaxage );
 		$maxage= $wgRequest->getText( 'maxage' ) == '0') ? 0 : 
-		          $smaxage = $wgRequest->getInt( 'maxage', $wgSquidMaxage );
+		          $wgRequest->getInt( 'maxage', $wgSquidMaxage );
 		$this->mOldId = $wgRequest->getInt( 'oldid' );
 		# special case for 'generated' raw things: user css/js
 		$gen = $wgRequest->getText( 'gen' );
