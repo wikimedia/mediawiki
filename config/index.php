@@ -1044,11 +1044,16 @@ function getLanguageList() {
 	while( false !== ($f = readdir( $d ) ) ) {
 		if( preg_match( '/Language([A-Z][a-z_]+)\.php$/', $f, $m ) ) {
 			$code = str_replace( '_', '-', strtolower( $m[1] ) );
-			if( in_array( $code, $latin1 ) ) {
-				$codes[$code] = "$code - " . $wgLanguageNames[$code] . " - Unicode";
-				$codes[$code.'-latin1'] = "$code - " . $wgLanguageNames[$code] . " - Latin-1";
+			if( isset( $wgLanguageNames[$code] ) ) {
+				$name = $code . ' - ' . $wgLanguageNames[$code];
 			} else {
-				$codes[$code] = "$code - " . $wgLanguageNames[$code];
+				$name = $code;
+			}
+			if( in_array( $code, $latin1 ) ) {
+				$codes[$code] = $name . " - Unicode";
+				$codes[$code.'-latin1'] = $name . " - Latin-1";
+			} else {
+				$codes[$code] = $name;
 			}
 		}
 	}
