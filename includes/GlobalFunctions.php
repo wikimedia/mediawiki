@@ -355,7 +355,7 @@ $wgReplacementKeys = array( '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9'
 /**
  * Get a message from anywhere
  */
-function wfMsg( $key, $convert=true ) {
+function wfMsg( $key ) {
 	global $wgRequest;
 	if ( $wgRequest->getVal( 'debugmsg' ) ) {
 		if ( $key == 'linktrail' /* a special case where we want to return something specific */ )
@@ -367,18 +367,47 @@ function wfMsg( $key, $convert=true ) {
 	if ( count( $args ) ) {
 		array_shift( $args );
 	}
-	return wfMsgReal( $key, $args, true, $convert );
+	return wfMsgReal( $key, $args, true );
+}
+
+/**
+ * Get a message from anywhere, but don't call Language::convert
+ */
+function wfMsgNoConvert( $key ) {
+	global $wgRequest;
+	if ( $wgRequest->getVal( 'debugmsg' ) ) {
+		if ( $key == 'linktrail' /* a special case where we want to return something specific */ )
+			return "/^()(.*)$/sD";
+		else
+			return $key;
+	}
+	$args = func_get_args();
+	if ( count( $args ) ) {
+		array_shift( $args );
+	}
+	return wfMsgReal( $key, $args, true, false );
 }
 
 /**
  * Get a message from the language file
  */
-function wfMsgNoDB( $key, $convert=true ) {
+function wfMsgNoDB( $key ) {
 	$args = func_get_args();
 	if ( count( $args ) ) {
 		array_shift( $args );
 	}
-	return wfMsgReal( $key, $args, false, $convert );
+	return wfMsgReal( $key, $args, false );
+}
+
+/**
+ * Get a message from the language file, but don't call Language::convert
+ */
+function wfMsgNoDBNoConvert( $key ) {
+	$args = func_get_args();
+	if ( count( $args ) ) {
+		array_shift( $args );
+	}
+	return wfMsgReal( $key, $args, false, false );
 }
 
 /**
