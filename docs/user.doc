@@ -1,0 +1,77 @@
+
+USER.DOC
+
+Documenting the Wikipedia User object.
+
+(DISCLAIMER: The documentation is not guaranteed to be in sync with
+the code at all times. If in doubt, check the table definitions
+and User.php.)
+
+Database fields:
+
+  user_id
+    Unique integer identifier; primary key. Sent to user in
+    cookie "$WikiUserOpts".
+
+  user_name
+    Text of full user name; title of "user:" page.  Displayed
+    on change lists, etc.  Sent to user as cookie "$WikiUserName".
+    Note that user names can contain spaces, while these are
+    converted to underscores in page titles.
+
+  user_rights
+    Comma-separated list of rights. Right now, only "sysop",
+    "developer", and "bot".
+
+  user_password
+    md5 has of user login password.  If user option to
+    remember password is set, this is stored in cookie
+    "$WikiUserPassword".
+
+  user_email
+    User's e-mail address. (Optional, used for user-to-user
+    e-mail and password recovery.)
+
+  user_options
+    A urlencoded string of name=value pairs to set various
+    user options. Some of these (but not all) are encoded into
+    the cookie "$WikiUserOpts".
+
+The user object encapsulates all of the settings, and clients
+classes use the getXXX() functions to access them. These functions
+do all the work of determining whether the user is logged in,
+whether the requested option can be satisfied from cookies or
+whether a database query is needed. Most of the settings needed
+for rendering normal pages are set in the cookie to minimize use
+of the database.
+
+Options
+  The user_options field is a list of name-value pairs.  The
+  following option names are used at various points in the system:
+
+
+Cookies
+
+  $WikiUserName
+    Plain text user name directly from database
+
+  $WikiUserPassword
+    From the database; only set if the user's options are set
+    to remember passwords.
+
+  $WikiUserOpts
+    User ID and various options encoded into a compact string;
+    for example, "12e0q0s2h0u1j0n1f0y0".  The first string of digits
+    is the ID; the rest of the string a flag-letter plus number
+    pairs representing a few important options:
+
+      e = "encoding" (index into array)
+      q = "quickBar" (0=none, 1=left, 2=right)
+      s = "skin" (0=standard, 1=startrek, 2=nostalgia, 3=cologneblue)
+      h = "showHover" (1=true)
+      u = "underlineLinks" (1=true)
+      j = "justify" (1=true)
+      n = "numberHeadings" (1=true)
+      f = "viewFrames" (1=true)
+      y = 1 if user_rights include "is_sysop"
+

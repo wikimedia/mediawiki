@@ -1,0 +1,14 @@
+This is a first pass at a unit test and timing suite
+for the Wikipedia software. It is all in Java, using
+"httpunit" (http://httpunit.sourceforge.net/). The
+jars in the jars directory need to be in your classpath
+for compiling and running (it may require others as
+well depending on your JVM, but if you're a Java coder
+you know about all that). Apache's "ant" tool is used
+for building.
+
+I'm personally using generic Sun JDK 1.4 for Linux.
+
+--Lee Daniel Crocker <lee@piclab.com>
+March 4, 2003
+

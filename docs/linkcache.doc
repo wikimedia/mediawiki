@@ -1,0 +1,31 @@
+LINKCACHE.DOC
+
+The LinkCache class maintains a list of article titles and
+the information about whether or not the article exists in
+the database. This is used to mark up links when displaying
+a page. If the same link appears more than once on any page,
+then it only has to be looked up once.
+
+In practice, what happens is that the global cache object
+$wgLinkCache is consulted and updated every time the function
+getArticleID() from Title is called.
+
+This has a side benefit that we take advantage of. We have
+tables "links" and "brokenlinks" which we use to do things
+like the Orphans page and Whatlinkshere page. It just so
+happens that after we update a page, we display it--and as
+we're displaying it, we look up all the links on that page,
+causing them to be put into the cache. That information is
+exactly what we need to update those two tables. So, we do
+something tricky when we update pages: just after the update
+and before we display, we clear the cache. Then we display
+the updated page. Finally, we put a LinksUpdate object onto
+the deferred updates list, which fetches its information from
+the cache.
+
+There's a minor complication: displaying a page also looks up
+a few things like the talk page link in the quick bar and the
+date links. Since we don't want those in the link tables, we
+must take care to suspend the cache while we look those up.
+Skin.php does exactly that--see dateLink(), for example.
+

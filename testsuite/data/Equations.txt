@@ -1,0 +1,14 @@
+Some equations for testing TeX function:
+
+(1) <math>\phi = \frac{1}{1 + \frac{1}{1 + \frac{1}{1 + \frac{1}{1 + ...}}}}</math>
+
+(2) <math>\phi = \frac{1}{1 + \phi}</math>
+
+(3) <math>\phi + \phi^2 = 1</math>
+
+(4) <math>\phi^2 + \phi - 1 = 0</math>
+
+(5) <math>\phi = \frac{1 \plusmn \sqrt{5}}{2}</math>
+
+(6) <math>\phi \approx 1.61804, -0.61804 </math>
+

@@ -1,0 +1,45 @@
+2003-04-14
+
+This is the "Phase III" codebase for the Wikipedia project
+(http://www.wikipedia.org). It is possibly usable as a
+general-purpose wiki, but it was not intended as such and
+there is little or no support available for using it as such
+from the developers, who are busy full time supporting the
+Wikipedia project. There are many good general-purpose Wikis
+in the world. I personally recommend UseMod
+(http://www.usemod.com/).
+
+The code as a whole is Copyright 2002-3 by Lee Daniel Crocker,
+Magnus Manske, Jan Hidders, Brion Vibber, Axel Boldt,
+Geoffrey T. Dairiki, Tomasz Wegrzanowski, and others,
+licensed under the terms of the GNU General Public License,
+version 2 (see http://www.fsf.org/licenses/gpl.html).
+Derivative works and later versions of the code will also be
+considered free software licensed under the same terms.
+
+Many thanks to the Wikipedia regulars for testing and
+suggestions.
+
+Sections of code written exclusively by Lee Crocker are also
+released into the public domain, wich does not impair the
+obligations of users under the GPL for use of the whole code
+or other sections thereof.
+
+The code is currently maintained at Sourceforge under the
+project "wikipedia", module name "phase3".  You can view the
+code in CVS, report bugs and make feature requests there:
+
+  http://wikipedia.sourceforge.net
+
+The code is written in PHP. It was tested mainly on version
+4.06, but it is known to run in later versions.  I requires
+MySQL 3.23 or later, and PHP-MySQL. It is now running with
+PHP 4.2.2 and MySQL 3.23.49 at http://www.wikipedia.org .
+The code was written on and for Linux, and no attempt has
+been made to make it portable to other OSs, though it may
+happen to run on some.  The math support in particular has
+run-time dependencies on things like TeTeX and GhostScript
+that are generally found in Linux but not other OSs.
+
+-- Lee Daniel Crocker <lee@piclab.com>
+

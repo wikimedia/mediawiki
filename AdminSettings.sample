@@ -1,0 +1,19 @@
+<?
+# This file should be copied to AdminSettings.php, and modified
+# to reflect local settings.  Unlike LocalSettings.php, it is
+# not copied to the installation directory for security reasons;
+# it is used by the maintenance scripts only.  Do not check
+# AdminSettings.php into CVS!
+
+$wgDBadminuser      = "wikiadmin";
+$wgDBadminpassword  = "adminpass";
+
+# Define these if you want the installed files to be owned
+# by a specific user or group for ease of maintenance.  You
+# must run the install script as root to change owners, or
+# as a member of the group to change groups.
+#
+# $wgInstallOwner = "apache";
+# $wgInstallGroup = "apache";
+
+?>

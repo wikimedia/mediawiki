@@ -1,0 +1,29 @@
+GLOBALS.DOC
+
+PHP loves globals. I hate them. This is not a great
+combination, but I manage. I could get rid of most of
+them by having a single "HTTP request" object, and using
+it to hold everything that's now global (which is exactly
+what I'd do in a Java servlet). But that's really
+awkward in PHP, and wouldn't really provide much benefit
+in readability or maintainability, so I go with the flow
+of PHP and use globals.  Here's documentation on the
+important globals used by the system.
+
+$wgOut
+	OutputPage object for HTTP response.
+
+$wgTitle
+	Title object created from the request URL.
+
+$wgLang
+	Language object for this request.
+
+$wgArticle
+	Article object corresponsing to $wgTitle.
+
+$wgLinkCache
+	LinkCache object.
+
+...
+

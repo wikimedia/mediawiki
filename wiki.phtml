@@ -1,0 +1,74 @@
+<?
+# Main wiki script; see design.doc
+#
+$wgRequestTime = microtime();
+
+session_cache_limiter( "public" );
+session_start();
+session_register( "wsUserID" );
+session_register( "wsUserName" );
+session_register( "wsUserPassword" );
+
+global $IP;
+include_once( "./LocalSettings.php" );
+include_once( "$IP/Setup.php" );
+
+wfProfileIn( "main-misc-setup" );
+OutputPage::setEncodings(); # Not really used yet
+
+# Query string fields
+#
+global $action, $title, $search, $go, $target, $printable;
+global $returnto, $diff, $oldid;
+
+$action = strtolower( trim( $action ) );
+if ( "" == $action ) { $action = "view"; }
+if ( "yes" == $printable ) { $wgOut->setPrintable(); }
+
+if ( "" == $title && "delete" != $action ) {
+	$wgTitle = Title::newFromText( wfMsg( "mainpage" ) );
+} else {
+	$wgTitle = Title::newFromURL( $title );
+#	if( $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" or strncmp($wgTitle->getDBkey(),"_",1) == 0 ) {
+	if( $wgTitle->getInterwiki() != "" or $wgTitle->getDBkey() == "" ) {
+		$wgOut->errorpage( "badtitle", "badtitletext" );
+		$wgOut->output();
+		exit;
+	}
+}
+wfProfileOut();
+if ( -1 == $wgTitle->getNamespace() ) {
+	wfSpecialPage();
+} else if ( "" != $search ) {
+	if($go) {
+	
+		wfGo ($search);
+	
+	} else {
+	
+		wfSearch( $search );
+		
+	}
+		
+} else {
+	$wgArticle = new Article();
+
+	if ( "view" == $action ) { $wgArticle->view(); }
+	else if ( "edit" == $action ) { $wgArticle->edit(); }
+	else if ( "submit" == $action ) { $wgArticle->submit(); }
+	else if ( "print" == $action ) { $wgArticle->view(); }
+	else if ( "watch" == $action ) { $wgArticle->watch(); }
+	else if ( "unwatch" == $action ) { $wgArticle->unwatch(); }
+	else if ( "history" == $action ) { $wgArticle->history(); }
+	else if ( "delete" == $action ) { $wgArticle->delete(); }
+	else if ( "revert" == $action ) { $wgArticle->revert(); }
+	else if ( "rollback" == $action ) { $wgArticle->rollback(); }
+	else if ( "protect" == $action ) { $wgArticle->protect(); }
+	else if ( "unprotect" == $action ) { $wgArticle->unprotect(); }
+	else { $wgOut->errorpage( "nosuchaction", "nosuchactiontext" ); }
+}
+
+$wgOut->output();
+foreach ( $wgDeferredUpdateList as $up ) { $up->doUpdate(); }
+
+?>

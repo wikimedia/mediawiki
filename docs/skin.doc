@@ -1,0 +1,8 @@
+
+SKIN.DOC
+
+This document describes the overall architecture of Wikipedia's
+HTML rendering code. It is placed here rather than in comments
+in the code itself to help reduce the code size.
+
+

@@ -1,0 +1,18 @@
+texvc output format is like that:
+    +%5		ok, but not html or mathml
+    c%5%h	ok, conservative html, no mathml
+    m%5%h	ok, moderate html, no mathml
+    l%5%h	ok, liberal html, no mathml
+    C%5%h\0%m	ok, conservative html, with mathml
+    M%5%h\0%m	ok, moderate html, with mathml
+    L%5%h\0%m	ok, liberal html, with mathml
+    X%5%m	ok, no html, with mathml
+    S		syntax error
+    E		lexing error
+    F%s		unknown function %s
+    -		other error
+
+\0 - null character
+%5 - md5, 32 hex characters
+%h - html code, without \0 characters
+%m - mathml code, without \0 characters

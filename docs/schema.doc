@@ -1,0 +1,224 @@
+SCHEMA.DOC
+
+The most up-to-date schema for the tables in the database
+should always be "tables.sql" in the maintenance directory,
+which is called from the installation script. Here are a
+few highlight that may be out of date:
+
+user    (Wikipedia users)
+
+  user_id
+    integer, primary key, autoincrement
+  user_name
+    Usernames must be unique, must not be in the form of
+    an IP address. _Shouldn't_ allow slashes or case
+    conflicts. Spaces are allowed, and are _not_ converted
+    to underscores like titles. (Conflicts?)
+  user_rights
+    Comma-separated list of textual flags.
+  user_password
+    Hash of current password.
+  user_newpassword
+    Generated for mail-a-new-password feature
+  user_email
+    Note -- email should be restricted, not public info.
+    Same with passwords. ;)
+  user_options
+    Newline-separated list of name=value pairs.
+
+
+
+cur     (Wikipedia "current" articles)
+
+  cur_id
+    integer, primary key, autoincrement
+  cur_namespace
+    integer index into list of namespaces.  See the
+    Namespace class for more details.
+  cur_title
+    Title of article (in dbkey form--see Title), without
+    namespace.  The combination of namespace,title should
+    be unique in this table.
+  cur_text
+    Wikitext of the article.
+  cur_comment
+    The summary of the last change.
+  cur_user
+    User id who made the last change, or 0 if unknown.
+  cur_user_text
+    Name of the user above, or IP address.
+  cur_timestamp
+    Time of the last change.
+  cur_minor_edit
+    Flag: 0 or 1 is last change was a "minor" edit.
+  cur_restrictions
+    Who may or may not edit the article.
+  cur_counter
+    Number of times this page has been viewed.
+  cur_ind_title
+    Text version of title for fulltext searches.
+  cur_ind_text
+    Plaintext version of text for fulltext searches.
+  cur_is_redirect
+    1 indicates the article is a redirect.
+  cur_minor_edit
+    1 indicates this was a minor edit.
+  cur_is_new
+    1 indicates this is the first revision of a new entry.
+
+
+
+old     (Historical versions articles. Most fields
+        correspond to the same fields in "cur")
+
+  old_id
+  old_namespace
+  old_title
+  old_text
+  old_comment
+  old_user
+  old_user_text
+  old_timestamp
+  old_minor_edit
+  old_flags
+    This last is currently unused.
+
+
+
+archive	(Temporary storage of deleted articles which may be restored.
+		Fields correspond to those of "cur" and "old")
+  ar_namespace
+  ar_title
+  ar_text
+  ar_comment
+  ar_user
+  ar_user_text
+  ar_timestamp
+  ar_minor_edit
+  ar_flags
+    This last is currently unused.
+
+
+
+links   (Internal links to existing articles)
+
+  l_from
+    ID of source article. (currently title, may be changed)
+  l_to
+    ID of target article.
+
+
+
+brokenlinks (Internal links to non-existent articles)
+
+  bl_from
+    ID of source link.
+  bl_to
+    Title of target link.
+
+
+
+imagelinks (Internal links to images via [[Image:filename]] syntax)
+
+  il_from
+    Title of target article.
+  il_to
+    Filename of target image.
+
+
+
+image (Uploaded images and other files)
+
+  img_name
+    Filename.
+  img_size
+    File size in bytes.
+  img_description
+    Description field given during upload.
+  img_user
+    User ID who uploaded the file.
+  img_user_text
+    User name who uploaded the file.
+  img_timestamp
+    Timestamp when upload took place.
+
+
+
+oldimage (Old versions of images stored for potential revert)
+
+  oi_name
+    Original filename.
+  oi_archive_name
+    Filename of stored old revision; timestamp and
+    exclaimation point prepended to oi_name
+  oi_size
+    File size in bytes.
+  oi_description
+    Description field given during upload.
+  oi_user
+    User ID who uploaded the file.
+  oi_user_text
+    User name who uploaded the file.
+  oi_timestamp
+    Timestamp when upload took place.
+
+
+
+ipblocks (IP addresses and users blocked from editing)
+
+  ipb_address
+    Blocked IP address in dotted-quad form or ""
+  ipb_user
+    Blocked user ID or 0.
+  ipb_by
+    User ID who made the block.
+  ipb_reason
+    Text comment made by blocker.
+
+
+
+random (Random page queue)
+
+  ra_current
+    1 = hasn't come up on a random page view yet.
+    >1 = has been viewed, will be ignored for a few
+  ra_title
+    Title of an article.
+
+
+
+site_stats (Site-wide statistics)
+
+  ss_row_id
+    Token for where clauses.  There's only one row in
+    this table.  At some point we might want to use a
+    date here so we can get stats-by-date.
+  ss_total_views
+    Number of total views of all pages.
+  ss_total_edits
+    Number of total page edits.
+  ss_good_articles
+    Number of "countable" articles.
+
+
+
+recentchanges
+
+  (Will document further when working)
+
+
+
+watchlist
+
+  wl_user
+    Foreign key -> user_id
+  wl_namespace
+    Namespace -> cur_namespace
+    Note that these should only include even-numbered
+    namespaces for regular pages; associated talk pages
+    (odd numbered namespaces) are folded in.
+  wl_title
+    Page title -> cur_title
+    Note also that the linked page may not exist in page
+    or talk namespace, or at all.
+

@@ -1,0 +1,53 @@
+<?
+# Local settings work like this: the file LocalSettings.sample
+# should be copied to LocalSettings.php in the source directory
+# and edited for your local file system settings and software
+# configuration preferences. The install script will copy it to
+# the installation path, but a copy should also remain in the
+# source tree so that maintenance scripts can refer to it (you
+# may want to make it a symbolic link after installation).  Do
+# not check LocalSettings.php into CVS!  It is different for
+# every installation, and must not be overridden.
+
+# The most important setting is here: $IP is the installation
+# path for the software.
+#
+
+$IP = "/usr/local/apache/htdocs/wiki";
+
+# This workaround is for the maintenance scripts:
+#
+if ( ! isset( $DP ) ) { $DP = $IP; }
+include_once( "$DP/DefaultSettings.php" );
+
+# You can customize a lot of URLs and paths, but you will
+# almost certainly want to customize the following.  The
+# ArticlePath one is especially useful if you want to use
+# mod_redirect to make page-viewing URLs look static.
+#
+$wgServer           = "http://www.myhost.com";
+$wgArticlePath      = "{$wgScript}?title=$1";
+$wgEmergencyContact = "wikiadmin@myhost.com";
+
+# MySQL settings
+#
+$wgDBserver         = "127.0.0.1";
+$wgDBname           = "wikidb";
+$wgDBpassword       = "userpass";
+#wgDBsqlpassword	= "sqlpass";
+$wgDBminWordLen		= 3;	 # Match this to your MySQL fulltext
+$wgDBtransactions   = false; # Set to true if using InnoDB tables
+
+# Turn this on during database maintenance
+# $wgReadOnly = true;
+
+# Turn this on to get HTML debug comments
+# $wgDebugComments	= true;
+
+$wgUseTeX			= false;
+$wgLocalInterwiki   = "w";
+
+$wgInputEncoding	= "ISO-8859-1";
+$wgOutputEncoding	= "ISO-8859-1";
+
+?>

@@ -1,0 +1,10 @@
+The .sql scripts in this directory are not meant to be run
+standalone, although they can be in some cases if you know
+what you're doing.  Most of the time you'll want to run the
+.php scripts from the command line.  You must run them from
+this directory, and the LocalSettings.php file in the
+directory above must point to the installation.
+
+The scripts in archive are for updating databases from
+older versions of the software.
+

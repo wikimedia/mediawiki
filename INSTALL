@@ -1,0 +1,159 @@
+The Wikipedia software was developed collabortively by
+many people, so it's something of a hodgepodge. The
+main wiki software itself is written in PHP, and requires
+the Apache web server and MySQL database. The optional
+math rendering functions are written in Objective CAML,
+which is required to compile them. The test suite is
+written in Java, using several external libraries.
+
+Recommended versions are: Apache 1.3.26 or later; MySQL
+2.23.51 or later; PHP 4.2.2 or later. The installation at
+wikipedia.org also uses the APC caching software, but
+that's entirely optional and doesn't affect anything else.
+
+The math rendering functions are more complex, and will
+probably only work on Linux. Objective CAML (probably
+3.06 or later) is required to compile texvc, but produces
+static binaries. TeTeX and ImageMagick are required at
+runtime, and ImageMagick requires GhostScript. These are
+present in most Linux distributions.
+
+Before installing the software, you must copy the file
+"LocalSettings.sample" to "LocalSettings.php", and
+"AdminSettings.sample" to "AdminSettings.php", and
+customize both of the php files to your local setup
+(things like installation parh, passwords, etc.) The
+script install.php in the maintenance directory can then
+be run to install the software.
+
+Here are some more notes on building a system from scratch
+the way it was done for the Wikipedia server:
+
+Downloads:
+
+  gcc-2.95.3.tar.gz
+  mysql-3.23.51.tar.gz
+  libiconv-1.8.tar.gz
+  apache_1.3.26.tar.gz
+  php-4.2.1.tar.gz
+  apc-cvs.tar.gz
+
+And for math support:
+  ocaml-3.06.tar.gz
+  (TeTeX, ImageMagick, and GhostScript come with most Linux distros)
+
+1. MySQL strongly recommends using gcc 2.95 to compile MySQL.
+  RedHat Linux comes with 2.96 by default, so you'll have to install
+  2.95 first.  Use "../gcc*/configure --enable-shared"  If your Linux
+  installation doesn't use gcc 2.96 you can skip this step.
+
+2. Install MySQL source; add "mysql" user and group. Make sure the
+  directory into which you installed gcc 2.95 appears before the
+  directory of gcc 2.96 in your path.  Configure with:
+
+  FLAGS="-O3 -mpentiumpro" CXX=gcc CXXFLAGS="-O3 -mpentiumpro -felide-constructors -fno-exceptions -fno-rtti" ./configure --prefix=/usr/local/mysql --enable-assembler --with-mysqld-ldflags=-all-static --disable-shared --with-extra-charset=complex
+
+  Edit the file myisam/ftdefs.h, changing the define for minimum word
+  length for fulltext indexing: #define MIN_WORD_LEN 2.  Update
+  $wgDBminWordLen in LocalSettings.php to reflect this.  Build and
+  install according to instructions.  Make root user as recommended;
+  the root password will be required for the wiki installation script.
+
+3. Unpack the phase3.zip source distribution, or check out the "phase3"
+  module from CVS. Copy LocalSettings.sample to LocalSettings.php,
+  AdminSettings.sample to AdminSettings.php, and customize them for
+  things like local paths and passwords.  If desired, update
+  FulltextStoplist.php from the MySQL sources if you have customized
+  MySQL's stop list.
+
+4. Optionally, install libiconv (http://www.gnu.org/software/libiconv/).
+  This will be used by some language packages for converting
+  native-charset URLs to and from UTF-8. If you're running an
+  English-only wiki, this won't be necessary.
+
+5. Unpack Apache distribution and begin configuring, but don't finish
+  build yet. Configure with something like:
+
+   OPTIM='-O2 -mpentiumpro' ./configure --with-layout=Apache
+
+6. If you'll want to use Apache's mod_rewrite to make page-viewing URLs
+  look like static links (as wikipedia.org does), install the included
+  patch "apache-ampersand.diff" which is needed to support page titles
+  with ampersands in them:
+
+   patch -p0 < /path/to/maintenance/apache-ampersand.diff
+
+7. Unpack and configure PHP. Configure with something like:
+
+  ./configure --enable-apc --with-mysql=/usr/local/mysql --with-iconv=/usr/local/lib --with-apache=/home/lee/src/apache_1.3.26
+
+  (using your own local paths, of course). Build and install as
+  instructed. Set "register_globals" on in the config file.
+
+8. Finish building Apache. Configure with something like:
+
+  OPTIM='-O2 -mpentiumpro' ./configure --with-layout=Apache --enable-module=rewrite --activate-module=src/modules/php4/libphp4.a
+
+  Update httpd.conf as needed for your site.  For example:
+
+  <IfModule mod_php4.c>
+    AddType application/x-httpd-php .php .php4 .phtml
+    AddType application/x-httpd-php-source .phps
+  </IfModule>
+  <IfModule mod_php4.c>
+    php_admin_flag engine off
+  </IfModule>
+  <Directory "DIRECTORY_OF_WIKI_SCRIPTS">
+    <IfModule mod_php4.c>
+      php_admin_flag engine on
+    </IfModule>
+  </Directory>
+  RewriteEngine On
+  RewriteMap ampescape int:ampescape
+  RewriteRule ^/wiki/(.*)$ /wiki.phtml?title=${ampescape:$1} [L]
+
+  It is *seriously* recommended that you configure the webserver
+  to disable running of PHP scripts except in the script directories
+  (the "php_admin_flag engine off/on" directives above) to prevent
+  the uploading and running of malicious scripts.
+
+9. Optionally, install APC, following standard instructions for
+  installing as a Zend extension.
+
+10. If using embedded TeX support, be sure TeX and ImageMagick are
+  installed (they are common on most Linux distros and freely
+  downloadable). Also get and install OCaml according to its
+  instructions.
+
+  You'll need to compile the texvc helper script; enter the math
+  subdirectory of the source tree and run "make".
+
+  If you don't want embedded TeX support, disable it by setting
+
+   $wgUseTex = false;
+
+  in LocalSettings.php
+
+11. You should now be able to run the install.php script. Use PHP in
+  command-line mode, i.e., type "php install.php". Should be run as
+  root, or as a user or group able to create files and directories
+  in the installation tree.
+
+12. If you have Java installed and running, install the "ant" package
+  from Apache (http://ant.apache.org/) and run ant in the testsuite
+  directory to build the tests. Copy wikitest.prefs.sample to
+  wikitest.prefs, and edit to reflect your local settings.  Then
+  "./run WikiSuite -o -b" will run the whole test suite and report.
+
+----
+
+Don't forget that this is pre-release software under development!
+Chances are good there's a crucial step that hasn't made it
+into the documentation. You should probably sign up for the
+Wikipedia developers' mailing list; you can ask for help (please
+provide enough information to work with, and preferably be aware
+of what you're doing!) and keep track of major changes to the
+software, including performance improvements and security patches.
+
+http://www.wikipedia.org/mailman/listinfo/wikitech-l
+

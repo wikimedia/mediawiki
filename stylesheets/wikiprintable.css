@@ -1,0 +1,7 @@
+.bodytext { }
+a.CBlink { color: #0000AA; text-decoration: none; font-size: 12pt; }
+a.interwiki, a.external { color: #3333BB; text-decoration: none; }
+body { color: #000000; background: #ffffff; }
+h1.pagetitle { padding-bottom: 0; margin-bottom: 0; }
+i.link, u.link { color: #000066; }
+p.subtitle { padding-top: 0; margin-top: 0; }
