@@ -106,7 +106,7 @@
 	  <h5 i18n:translate="string:search">Search</h5>
 	  <div class="pBody">
 	    <form name="searchform" action="${searchaction}" id="searchform">
-	      <input id="searchInput" name="search" type="text" tabindex="30001"
+	      <input id="searchInput" name="search" type="text"
 	      i18n:attributes="accesskey string:accesskey-search | default"/>
 	      <input type='submit' name="go" value="Go" class="searchButton" 
 	      i18n:attributes="value string:go"/>&nbsp;<input type='submit'
