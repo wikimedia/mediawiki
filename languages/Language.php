@@ -1374,7 +1374,8 @@ This should be done only only to prevent vandalism, and in
 accordance with [[Project:Policy|policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
-'ipaddress'		=> 'IP Address/username',
+'ipaddress'		=> 'IP Address',
+'ipadressorusername' => 'IP Address or username',
 'ipbexpiry'		=> 'Expiry',
 'ipbreason'		=> 'Reason',
 'ipbsubmit'		=> 'Block this user',
