@@ -1450,9 +1450,6 @@ class Parser
 		wfProfileIn( $fname );
 
 		$bail = false;
-		if ( !$this->mVariables ) {
-			$this->initialiseVariables();
-		}
 		$titleChars = Title::legalChars();
 		$nonBraceChars = str_replace( array( '{', '}' ), array( '', '' ), $titleChars );
 
@@ -1481,6 +1478,9 @@ class Parser
 	}
 
 	function variableSubstitution( $matches ) {
+		if ( !$this->mVariables ) {
+			$this->initialiseVariables();
+		}
 		if ( array_key_exists( $matches[1], $this->mVariables ) ) {
 			$text = $this->mVariables[$matches[1]];
 			$this->mOutput->mContainsOldMagic = true;
@@ -1605,6 +1605,9 @@ class Parser
 		}
 
 		# Internal variables
+		if ( !$this->mVariables ) {
+			$this->initialiseVariables();
+		}
 		if ( !$found && array_key_exists( $part1, $this->mVariables ) ) {
 			$text = $this->mVariables[$part1];
 			$found = true;
