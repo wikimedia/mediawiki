@@ -108,6 +108,12 @@ class Profiler
 			$end = explode( " ", $entry[3]);
 			$end = (float)$end[0] + (float)$end[1];
 			$elapsed = $end - $start;
+			
+			if ( !array_key_exists( $fname, $this->mCollated ) ) {
+				$this->mCollated[$fname] = 0;
+				$this->mCalls[$fname] = 0;
+			}
+
 			$this->mCollated[$fname] += $elapsed;
 			$this->mCalls[$fname] ++;
 		}
