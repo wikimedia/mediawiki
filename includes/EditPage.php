@@ -171,8 +171,7 @@ class EditPage {
 		$wgOut->setArticleFlag( false );
 
 		if ( $isConflict ) {
-			$s = str_replace( "$1", $this->mTitle->getPrefixedText(),
-			  wfMsg( "editconflict" ) );
+			$s = wfMsg( "editconflict", $this->mTitle->getPrefixedText() );
 			$wgOut->setPageTitle( $s );
 			$wgOut->addHTML( wfMsg( "explainconflict" ) );
 
@@ -180,8 +179,7 @@ class EditPage {
 			$wpTextbox1 = $this->mArticle->getContent(true);
 			$wpEdittime = $this->mArticle->getTimestamp();
 		} else {
-			$s = str_replace( "$1", $this->mTitle->getPrefixedText(),
-			  wfMsg( "editing" ) );
+			$s = wfMsg( "editing", $this->mTitle->getPrefixedText() );
 
 			if($section!="") { 
 				if($section=="new") {
@@ -210,7 +208,7 @@ class EditPage {
 		$kblength = (int)(strlen( $wpTextbox1 ) / 1024);
 		if( $kblength > 29 ) {
 			$wgOut->addHTML( "<strong>" . 
-				str_replace( '$1', $kblength , wfMsg( "longpagewarning" ) )
+				wfMsg( "longpagewarning", $kblength )
 				. "</strong>" );
 		}
 		
@@ -236,8 +234,8 @@ class EditPage {
 		  wfMsg( "cancel" ) );
 		$edithelp = $sk->makeKnownLink( wfMsg( "edithelppage" ),
 		  wfMsg( "edithelp" ) );
-		$copywarn = str_replace( "$1", $sk->makeKnownLink(
-		  wfMsg( "copyrightpage" ) ), wfMsg( "copyrightwarning" ) );
+		$copywarn = wfMsg( "copyrightwarning", $sk->makeKnownLink(
+		  wfMsg( "copyrightpage" ) ) );
 
 		$wpTextbox1 = wfEscapeHTML( $wpTextbox1 );
 		$wpTextbox2 = wfEscapeHTML( $wpTextbox2 );
@@ -343,9 +341,7 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		$link = "[[" . $wgLang->getNsText( Namespace::getUser() ) .
 		  ":{$name}|{$name}]]";
 
-		$text = str_replace( "$1", $link, wfMsg( "blockedtext" ) );
-		$text = str_replace( "$2", $reason, $text );
-		$wgOut->addWikiText( $text );
+		$wgOut->addWikiText( wfMsg( "blockedtext", $link, $reason ) );
 		$wgOut->returnToMain( false );
 	}
 
