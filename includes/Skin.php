@@ -1781,13 +1781,14 @@ class Skin {
 		$alt = str_replace( array('<', '>', '"'), array('&lt;', '&gt;', '&quot;'), $alt );
 
 		$u = $nt->escapeLocalURL();
+		$uf = $nt->escapeFullURL();
 		if ( $url == '' )
 		{
 			$s = wfMsg( 'missingimage', $img->getName() );
 			$s .= "<br>{$alt}<br>{$url}<br>\n";
 		} else {
 			$s = '<a href="'.$u.'" class="image" title="'.$alt.'">' .
-				 '<img src="'.$url.'" alt="'.$alt.'" /></a>';
+				 '<img src="'.$url.'" alt="'.$alt.'" longdesc="'.$uf.'" /></a>';
 		}
 		if ( '' != $align ) {
 			$s = "<div class=\"float{$align}\"><span>{$s}</span></div>";
@@ -1858,6 +1859,7 @@ class Skin {
 		}
 
 		$u = $img->getEscapeLocalURL();
+		$uf = $img->getEscapeFullURL();
 
 		$more = htmlspecialchars( wfMsg( 'thumbnail-more' ) );
 		$magnifyalign = $wgContLang->isRTL() ? 'left' : 'right';
@@ -1870,7 +1872,8 @@ class Skin {
 		} else {
 			$s .= '<a href="'.$u.'" class="internal" title="'.$alt.'">'.
 				'<img src="'.$thumbUrl.'" alt="'.$alt.'" ' .
-				'width="'.$boxwidth.'" height="'.$boxheight.'" /></a>';
+				'width="'.$boxwidth.'" height="'.$boxheight.'" ' .
+				'longdesc="'.$uf.'" /></a>';
 			if ( $framed ) {
 				$zoomicon="";
 			} else {

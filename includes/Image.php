@@ -196,6 +196,15 @@ class Image
 	}
 
 	/**
+	 * Return the escapeFullURL of this image
+	 * @access public
+	 */
+	function getEscapeFullURL()
+	{
+		return $this->title->escapeFullURL();
+	}
+
+	/**
 	 * Return the URL of an image, provided its name.
 	 *
 	 * @param string $name	Name of the image, without the leading Image:
