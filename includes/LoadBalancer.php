@@ -130,6 +130,7 @@ class LoadBalancer {
 	# If a DB_SLAVE connection has been opened already, waits
 	# Otherwise sets a variable telling it to wait if such a connection is opened
 	function waitFor( $file, $pos ) {
+		wfDebug( "User master pos: $file $pos\n" );
 		$this->mWaitForFile = false;
 		$this->mWaitForPos = false;
 
@@ -160,14 +161,19 @@ class LoadBalancer {
 		}
 
 		$conn =& $this->getConnection( $index );
+		wfDebug( "Waiting for slave #$index to catch up...\n" );
 		$result = $conn->masterPosWait( $this->mWaitForFile, $this->mWaitForPos, MASTER_WAIT_TIMEOUT );
-		if ( $result == -1 ) {
+
+		if ( $result == -1 || is_null( $result ) ) {
 			# Timed out waiting for slave, use master instead
 			# This is not the ideal solution. If there are a large number of slaves, a slow
 			# replicated write query will cause the master to be swamped with reads. However
 			# that's a relatively graceful failure mode, so it will do for now.
+			wfDebug( "Timed out waiting for slave #$index pos {$this->mWaitForFile} {$this->mWaitForPos}\n" );
 			$this->mReadIndex = 0;
-		} 
+		} else {
+			wfDebug( "Done\n" );
+		}
 	}		
 
 	function &getConnection( $i, $fail = false )
@@ -275,9 +281,11 @@ class LoadBalancer {
 			if ( empty( $this->mConnections[0] ) ) {
 				$conn =& $this->getConnection( DB_SLAVE );
 				list( $file, $pos ) = $conn->getSlavePos();
+				wfDebug( "Saving master pos fetched from slave: $file $pos\n" );
 			} else {
 				$conn =& $this->getConnection( 0 );
 				list( $file, $pos ) = $conn->getMasterPos();
+				wfDebug( "Saving master pos: $file $pos\n" );
 			}
 			if ( $file !== false ) {
 				$_SESSION['master_log_file'] = $file;
