@@ -1332,7 +1332,10 @@ class TableDiffFormatter extends DiffFormatter
 			$wgOut->addHTML( '<tr>' . $this->deletedLine( $line ) .
 				$this->addedLine( $aline ) . "</tr>\n" );
 		}
-		$this->_added( $add ); # If any leftovers
+		foreach ($add as $line) {	# If any leftovers
+			$wgOut->addHTML( '<tr>' . $this->emptyLine() .
+				$this->addedLine( $line ) . "</tr>\n" );
+		}
 	}
 }
 
