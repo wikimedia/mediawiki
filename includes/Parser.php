@@ -1220,7 +1220,7 @@ class Parser
 		}
 
 		# Double brace substitution
-		$regex = "/(\\n?){{([$titleChars]*?({{[$titleChars]+}})?)(\\|.*?|)}}/s";
+		$regex = "/(\\n?){{([$titleChars{}_]*)(\\|.*?|)}}/s";
 		$text = preg_replace_callback( $regex, "wfBraceSubstitution", $text );
 
 		array_pop( $this->mArgStack );
