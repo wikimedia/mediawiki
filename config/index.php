@@ -1,4 +1,26 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+<?php
+# MediaWiki web-based config/installation
+# Copyright (C) 2004 Brion Vibber <brion@pobox.com>
+# http://www.mediawiki.org/
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or 
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+# http://www.gnu.org/copyleft/gpl.html
+
+header( "Content-type: text/html; charset=utf-8" );
+
+?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,11 +40,12 @@
 	}
 	
 	dl.setup dd {
+		margin-left: 0;
 	}
 	dl.setup dd label {
 		clear: left;
 		font-weight: bold;
-		width: 10em;
+		width: 12em;
 		float: left;
 		text-align: right;
 		padding-right: 1em;
@@ -104,7 +127,20 @@ if( file_exists( "./LocalSettings.php" ) || file_exists( "./AdminSettings.php" )
 
 
 include( "../install-utils.inc" );
-class ConfigData {}
+class ConfigData {
+	function getEncoded( $data ) {
+		# Hackish
+		global $wgInputEncoding;
+		if( strcasecmp( $wgInputEncoding, "utf-8" ) == 0 ) {
+			return $data;
+		} else {
+			return utf8_decode( $data ); /* to latin1 wikis */
+		}
+	}
+	function getSitename() { return $this->getEncoded( $this->Sitename ); }
+	function getSysopName() { return $this->getEncoded( $this->SysopName ); }
+	function getSysopPass() { return $this->getEncoded( $this->SysopPass ); }
+}
 
 ?>
 
@@ -163,6 +199,9 @@ print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</t
 	$conf->DBpassword2 = importPost( "DBpassword2" );
 	$conf->RootPW = importPost( "RootPW" );
 	$conf->LanguageCode = importPost( "LanguageCode", "en-utf8" );
+	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
+	$conf->SysopPass = importPost( "SysopPass" );
+	$conf->SysopPass2 = importPost( "SysopPass2" );
 
 /* Check for validity */
 $errs = array();
@@ -175,6 +214,13 @@ if( $conf->DBpassword == "" ) {
 }
 if( $conf->DBpassword != $conf->DBpassword2 ) {
 	$errs["DBpassword2"] = "Passwords don't match!";
+}
+
+if( $conf->SysopPass == "" ) {
+	$errs["SysopPass"] = "Must not be blank";
+}
+if( $conf->SysopPass != $conf->SysopPass2 ) {
+	$errs["SysopPass2"] = "Passwords don't match!";
 }
 
 if( $conf->posted && ( 0 == count( $errs ) ) ) {
@@ -267,7 +313,23 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$wgDatabase->query( "INSERT INTO site_stats (ss_row_id,ss_total_views," .
 				"ss_total_edits,ss_good_articles) VALUES (1,0,0,0)" );
 			
-			# FIXME: Initial sysop account
+			if( $conf->SysopName ) {
+				$u = User::newFromName( $conf->getSysopName() );
+				if ( 0 == $u->idForName() ) {
+					$u->addToDatabase();
+					$u->setPassword( $conf->getSysopPass() );
+					$u->addRight( "sysop" );
+					$u->addRight( "developer" ); /* ?? */
+					$u->saveSettings();
+					print "<li>Created sysop account <tt>" .
+						htmlspecialchars( $conf->SysopName ) . "</tt>.</li>\n";
+				} else {
+					print "<li>Could not create user - already exists!</li>\n";
+				}
+			} else {
+				print "<li>Skipped sysop account creation, no name given.</li>\n";
+			}
+			
 			# FIXME: Main page, logs
 			# FIXME: Initialize messages
 			print "<li>(NYI: accounts, pages, messages)</li>\n";
@@ -305,9 +367,75 @@ if( count( $errs ) ) {
 		echo "<p class='error'>Something's not quite right yet; make sure everything below is filled out correctly.</p>\n";
 	}
 ?>
-<h2>Database config</h2>
 
 <form name="config" method="post">
+
+
+<h2>Site config</h2>
+
+<dl class="setup">
+	<dd>
+		<?php
+		aField( $conf, "Sitename", "Site name:" );
+		?>
+	</dd>
+	<dt>
+		Your site name should be a relatively short word. It'll appear as the namespace
+		name for 'meta' pages as well as throughout the user interface. Good site names
+		are things like "<a href="http://www.wikipedia.org/">Wikipedia</a>" and
+		"<a href="http://openfacts.berlios.de/">OpenFacts</a>"; avoid punctuation,
+		which may cause problems.
+	</dt>
+
+	<dd>
+		<?php
+		aField( $conf, "EmergencyContact", "Contact e-mail" );
+		?>
+	</dd>
+	<dt>
+		This will be used as the return address for password reminders and
+		may be displayed in some error conditions so visitors can get in
+		touch with you.
+	</dt>
+
+	<dd>
+		<label for="LanguageCode">Language</label>
+		<select id="LanguageCode" name="LanguageCode">
+		<?php
+			$list = getLanguageList();
+			foreach( $list as $code => $name ) {
+				$sel = ($code == $conf->LanguageCode) ? "selected" : "";
+				echo "\t\t<option value=\"$code\" $sel>$name</option>\n";
+			}
+		?>
+		</select>
+	</dd>
+	<dt>
+		You may select the language for the user interface of the wiki...
+		Some localizations are less complete than others. This also controls
+		the character encoding; Unicode is more flexible, but Latin-1 may be
+		more compatible with older browsers for some languages. Unicode will
+		be used where not specified otherwise.
+	</dt>
+	
+	<dd>
+		<?php aField( $conf, "SysopName", "Sysop account name:", "" ) ?>
+	</dd>
+	<dd>
+		<?php aField( $conf, "SysopPass", "password:", "password" ) ?>
+	</dd>
+	<dd>
+		<?php aField( $conf, "SysopPass2", "again:", "password" ) ?>
+	</dd>
+	<dt>
+		A sysop user account can lock or delete pages, block problematic IP
+		addresses from editing, and other maintenance tasks. If creating a new
+		wiki database, a sysop account will be created with the given name
+		and password.
+	</dt>
+</dl>
+
+<h2>Database config</h2>
 
 <dl class="setup">
 	<dd><?php
@@ -349,58 +477,13 @@ if( count( $errs ) ) {
 		has its own "root" user with a separate password. (It might
 		even be blank, depending on your configuration.)
 	</dt>
-</dl>
 
-<h2>Site config</h2>
-
-<dl class="setup">
-	<dd>
-		<?php
-		aField( $conf, "Sitename", "Site name:" );
-		?>
-	</dd>
-	<dt>
-		Your site name should be a relatively short word. It'll appear as the namespace
-		name for 'meta' pages as well as throughout the user interface. Good site names
-		are things like "<a href="http://www.wikipedia.org/">Wikipedia</a>" and
-		"<a href="http://openfacts.berlios.de/">OpenFacts</a>"; avoid punctuation,
-		which may cause problems.
-	</dt>
-
-	<dd>
-		<?php
-		aField( $conf, "EmergencyContact", "Contact e-mail" );
-		?>
-	</dd>
-	<dt>
-		If the wiki breaks terribly, it may display this contact address.
-	</dt>
-
-	<dd>
-		<label for="LanguageCode">Language</label>
-		<select id="LanguageCode" name="LanguageCode">
-		<?php
-			$list = getLanguageList();
-			foreach( $list as $code => $name ) {
-				$sel = ($code == $conf->LanguageCode) ? "selected" : "";
-				echo "\t\t<option value=\"$code\" $sel>$name</option>\n";
-			}
-		?>
-		</select>
-	</dd>
-	<dt>
-		You may select the language for the user interface of the wiki...
-		Some localizations are less complete than others. This also controls
-		the character encoding; Unicode is more flexible, but Latin-1 may be
-		more compatible with older browsers for some languages. The default
-		for most languages is Unicode.
-	</dt>
-	
 	<dd>
 		<label>&nbsp;</label>
 		<input type="submit" value="Install!" />
 	</dd>
 </dl>
+
 
 </form>
 
