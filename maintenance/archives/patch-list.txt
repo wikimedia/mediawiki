@@ -104,4 +104,8 @@ Run patch-cache.sql on the database to set these fields up. This is
 required for changes to OutputPage.php and elsewhere to continue
 working on an older database.
 
+* 2003-05-23: Index for "Oldest articles"
+"Oldest articles" needs an index on namespace, redirect and timestamp
+to be reasonably fast. (patch-oldestindex.sql)
+
 OutputPage.php User.php maintenance/buildTables.inc maintenance/patch-cache.sql maintenance/patch-list.txt
