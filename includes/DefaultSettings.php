@@ -70,6 +70,7 @@ $wgDBsqluser		= 'sqluser';
 $wgDBsqlpassword	= 'sqlpass';
 $wgDBpassword       = 'userpass';
 $wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
+$wgDBerrorLog		= false; # File to log MySQL errors to
 
 $wgDBminWordLen     = 4;
 $wgDBtransactions	= false; # Set to true if using InnoDB tables
