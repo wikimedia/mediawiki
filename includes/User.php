@@ -183,6 +183,7 @@ class User {
 				else
 					wfDebug( "User::loadFromSession() unable to save to memcached\n" );
 			}
+			$user->spreadBlock();
 			return $user;
 		}
 		return new User(); # Can't log in from session
@@ -569,6 +570,44 @@ class User {
 		  $this->encodeOptions() . "')";
 		wfQuery( $sql, "User::addToDatabase" );
 		$this->mId = $this->idForName();
+	}
+
+	function spreadBlock()
+	{
+		# If the (non-anonymous) user is blocked, this function will block any IP address
+		# that they successfully log on from.
+		$fname = "User::spreadBlock";
+		
+		if ( $this->mId == 0 || !$this->isBlocked()) {
+			return;
+		}
+		
+		$sql = "SELECT * FROM ipblocks WHERE ipb_user={$this->mId}";
+		$res = wfQuery( $sql, $fname );
+		if ( wfNumRows( $res ) == 0 ) {
+			return;
+		}
+		
+		# Check if this IP address is already blocked
+		$addr = getenv( "REMOTE_ADDR" );
+		$sql = "SELECT * FROM ipblocks WHERE ipb_address='{$addr}'";
+		$res2 = wfQuery( $sql, $fname );
+		if ( wfNumRows( $res2 ) != 0 ) {
+			return;
+		}
+		
+		$row = wfFetchObject( $res );
+		$reason = str_replace( "$1", $this->getName(), wfMsg( "autoblocker" ) );
+		$reason = str_replace( "$2", $row->ipb_reason, $reason );
+		
+		$addr = getenv( "REMOTE_ADDR" );
+		$sql = "INSERT INTO ipblocks(ipb_address, ipb_user, ipb_by, " .
+		  "ipb_reason, ipb_timestamp) VALUES ('{$addr}', 0, {$row->ipb_by}," . 
+		  "'{$reason}', '" . wfTimestampNow() . "')";
+		wfQuery( $sql, $fname );
+		
+		wfFreeResult( $res );
+		wfFreeResult( $res2 );
 	}
 }
 

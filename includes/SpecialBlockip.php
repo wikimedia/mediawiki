@@ -61,18 +61,26 @@ class IPBlockForm {
 		global $wgOut, $wgUser, $wgLang;
 		global $ip, $wpBlockAddress, $wpBlockReason;
 		$fname = "IPBlockForm::doSubmit";
-
+		
+		$userId = 0;
 		if ( ! preg_match( "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/",
-		  $wpBlockAddress ) ) {
-			$this->showForm( wfMsg( "badipaddress" ) );
-			return;
+		  $wpBlockAddress ) ) 
+		{
+		  	$userId = User::idFromName( $wpBlockAddress );
+			if ( $userId == 0 ) {
+				$this->showForm( wfMsg( "badipaddress" ) );
+				return;
+			}
 		}
 		if ( "" == $wpBlockReason ) {
 			$this->showForm( wfMsg( "noblockreason" ) );
 			return;
 		}
+		
+		# Note: for a user block, ipb_address is only for display purposes
+		
 		$sql = "INSERT INTO ipblocks (ipb_address, ipb_user, ipb_by, " .
-		  "ipb_reason, ipb_timestamp ) VALUES ('{$wpBlockAddress}', 0, " .
+		  "ipb_reason, ipb_timestamp ) VALUES ('{$wpBlockAddress}', {$userId}, " .
 		  $wgUser->getID() . ", '" . wfStrencode( $wpBlockReason ) . "','" .
 		  wfTimestampNow() . "')";
 		wfQuery( $sql, $fname );

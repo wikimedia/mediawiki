@@ -64,11 +64,6 @@ class IPUnblockForm {
 		global $ip, $wpUnblockAddress;
 		$fname = "IPUnblockForm::doSubmit";
 
-		if ( ! preg_match( "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/",
-		  $wpUnblockAddress ) ) {
-			$this->showForm( wfMsg( "badipaddress" ) );
-			return;
-		}
 		$sql = "DELETE FROM ipblocks WHERE ipb_address='{$wpUnblockAddress}'";
 		wfQuery( $sql, $fname );
 

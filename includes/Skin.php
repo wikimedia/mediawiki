@@ -1086,31 +1086,31 @@ class Skin {
 			return $this->makeKnownLink( $title, $text, $query, $trail );
 		}
 		if ( ( -1 == $nt->getNamespace() ) ||
-          ( Namespace::getImage() == $nt->getNamespace() ) ) {
+				( Namespace::getImage() == $nt->getNamespace() ) ) {
 			return $this->makeKnownLink( $title, $text, $query, $trail );
 		}
-                $aid = $nt->getArticleID() ;
-                if ( 0 == $aid ) {
-                        return $this->makeBrokenLink( $title, $text, $query, $trail );
-                } else {
-                        $threshold = $wgUser->getOption("stubthreshold") ;
-                        if ( $threshold > 0 ) {
-                                $res = wfQuery ( "SELECT HIGH_PRIORITY length(cur_text) AS x, cur_namespace, cur_is_redirect FROM cur WHERE cur_id='{$aid}'" ) ;
+		$aid = $nt->getArticleID() ;
+		if ( 0 == $aid ) {
+			return $this->makeBrokenLink( $title, $text, $query, $trail );
+		} else {
+			$threshold = $wgUser->getOption("stubthreshold") ;
+			if ( $threshold > 0 ) {
+				$res = wfQuery ( "SELECT HIGH_PRIORITY length(cur_text) AS x, cur_namespace, cur_is_redirect FROM cur WHERE cur_id='{$aid}'" ) ;
 
-                                if ( wfNumRows( $res ) > 0 ) {
-                                        $s = wfFetchObject( $res );
-                                        $size = $s->x;
-                                        if ( $s->cur_is_redirect OR $s->cur_namespace != 0 )
-                                                $size = $threshold*2 ; # Really big
-                                        wfFreeResult( $res );
-                                } else $size = $threshold*2 ; # Really big
-                        } else $size = 1 ;
+				if ( wfNumRows( $res ) > 0 ) {
+					$s = wfFetchObject( $res );
+					$size = $s->x;
+					if ( $s->cur_is_redirect OR $s->cur_namespace != 0 )
+						$size = $threshold*2 ; # Really big
+							wfFreeResult( $res );
+				} else $size = $threshold*2 ; # Really big
+			} else $size = 1 ;
 
-                        if ( $size < $threshold )
-                                return $this->makeStubLink( $title, $text, $query, $trail );
-                        return $this->makeKnownLink( $title, $text, $query, $trail );
-                }
-        }
+			if ( $size < $threshold )
+				return $this->makeStubLink( $title, $text, $query, $trail );
+			return $this->makeKnownLink( $title, $text, $query, $trail );
+		}
+	}
 
 	function makeKnownLink( $title, $text = "", $query = "", $trail = "" )
 	{
