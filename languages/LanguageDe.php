@@ -259,7 +259,8 @@
   "Whatlinkshere"       => "",
   "Recentchangeslinked" => "",
   "Booksources"         => "Externe Buchhandlungen",
-  "Categories"          => "Seiten Kategorien"
+  "Categories"          => "Seiten Kategorien",
+  "Export"              => ""
 );
 
 /* private */ $wgSysopSpecialPagesDe = array(
@@ -1023,6 +1024,9 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "talkpagemoved" => "Die \"Diskussions\"-Seite wurde ebenfalls verschoben.",
 "talkpagenotmoved" => "Die \"Diskussions\"-Seite wurde <strong>nicht</strong> verschoben.",
 
+"export"        => "Seiten exportieren",
+"exporttext"    => "Sie können den Text und die Bearbeitungshistorie einer bestimmten oder einer Auswahl von Seiten nach XML exportieren. Das Ergebnis kann in ein anderes Wiki mit WikiMedia Software eingespielt werden, bearbeitet oder archiviert werden.",
+"exportcuronly" => "Nur die aktuelle Version der Seite exportieren",
 );
 
 class LanguageDe extends Language {
