@@ -173,7 +173,8 @@ class Database {
 			} else {
 				wfDebug("SQL ERROR: " . mysql_error( $this->mConn ) . "\n");
 				if ( $this->mOut ) {
-					$this->mOut->databaseError( $fname ); // calls wfAbruptExit()
+					// this calls wfAbruptExit()
+					$this->mOut->databaseError( $fname, $this ); 				
 				}
 			}
 		}
@@ -385,6 +386,21 @@ class Database {
 		$this->mDatabase = $db;
 		mysql_select_db( $db, $this->mConn );
 	}
+
+	function startTimer( $timeout )
+	{
+		$thisdir = dirname( getenv( "SCRIPT_FILENAME" ) );
+		$tid = mysql_thread_id( $this->mConn );
+		$this->mTimerProc = popen( "php $thisdir/killthread.php $timeout $tid &", "w" );
+	}
+
+	function stopTimer()
+	{
+		if ( $this->mTimerProc ) {
+			pclose( $this->mTimerProc );
+		}
+	}
+
 }
 
 #------------------------------------------------------------------------------

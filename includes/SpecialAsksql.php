@@ -60,7 +60,7 @@ class SqlQueryForm {
 	{
 		global $wgOut, $wgUser, $wgServer, $wgScript, $wgArticlePath, $wgLang;
 		global $wpSqlQuery;
-		global $wgDBsqluser, $wgDBsqlpassword;
+		global $wgDBserver, $wgDBsqluser, $wgDBsqlpassword, $wgDBname, $wgSqlTimeout;
 
 		# Use a limit, folks!
 		$wpSqlQuery = trim( $wpSqlQuery );
@@ -68,19 +68,24 @@ class SqlQueryForm {
 			and !preg_match( "/LIMIT/i", $wpSqlQuery ) ) {
 			$wpSqlQuery .= " LIMIT 100";
 		}
-		$connection = wfGetDB( $wgDBsqluser, $wgDBsqlpassword );
+		$conn = Database::newFromParams( $wgDBserver, $wgDBsqluser, $wgDBsqlpassword, $wgDBname );
+
 		$this->logQuery( $wpSqlQuery );
-		$res = wfQuery( $wpSqlQuery, DB_WRITE, "SpecialAsksql::doSubmit" );
+
+		# Start timer, will kill the DB thread in $wgSqlTimeout seconds
+		$conn->startTimer( $wgSqlTimeout );
+		$res = $conn->query( $wpSqlQuery, "SpecialAsksql::doSubmit" );
+		$conn->stopTimer();
 		$this->logFinishedQuery();
 
 		$n = 0;
-		@$n = wfNumFields( $res );
+		@$n = $conn->numFields( $res );
 		$titleList = false;
 
 		if ( $n ) {
 			$k = array();
 			for ( $x = 0; $x < $n; ++$x ) {
-				array_push( $k, wfFieldName( $res, $x ) );
+				array_push( $k, $conn->fieldName( $res, $x ) );
 			}
 
 			if ( $n == 2 && in_array( "cur_title", $k ) && in_array( "cur_namespace", $k ) ) {
@@ -88,10 +93,10 @@ class SqlQueryForm {
 			}
 
 			$a = array();
-			while ( $s = wfFetchObject( $res ) ) {
+			while ( $s = $conn->fetchObject( $res ) ) {
 				array_push( $a, $s );
 			}
-			wfFreeResult( $res );
+			$conn->freeResult( $res );
 
 			if ( $titleList ) {
 				$r = "";

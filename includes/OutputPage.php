@@ -465,7 +465,7 @@ class OutputPage {
 		$this->returnToMain();
 	}
 
-	function databaseError( $fname )
+	function databaseError( $fname, &$conn )
 	{
 		global $wgUser, $wgCommandLineMode;
 
@@ -479,10 +479,10 @@ class OutputPage {
 			$msg = wfMsgNoDB( "dberrortext" );
 		}
 
-		$msg = str_replace( "$1", htmlspecialchars( wfLastDBquery() ), $msg );
+		$msg = str_replace( "$1", htmlspecialchars( $conn->lastQuery() ), $msg );
 		$msg = str_replace( "$2", htmlspecialchars( $fname ), $msg );
-		$msg = str_replace( "$3", wfLastErrno(), $msg );
-		$msg = str_replace( "$4", htmlspecialchars( wfLastError() ), $msg );
+		$msg = str_replace( "$3", $conn->lastErrno(), $msg );
+		$msg = str_replace( "$4", htmlspecialchars( $conn->lastError() ), $msg );
 		
 		if ( $wgCommandLineMode || !is_object( $wgUser )) {
 			print "$msg\n";

@@ -40,6 +40,7 @@ $wgDBsqlpassword	= "sqlpass";
 $wgDBminWordLen     = 4;
 $wgDBtransactions	= false; # Set to true if using InnoDB tables
 $wgDBmysql4			= false; # Set to true to use enhanced fulltext search
+$wgSqlTimeout		= 30;
 
 # Database load balancer
 $wgDBservers		= false; # e.g. array("larousse", "pliny")
