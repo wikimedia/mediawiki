@@ -706,39 +706,6 @@ border=\"0\" ALT=\"Google\"></A>
 <input type=hidden name=sitesearch value=\"{{SERVER}}\"><input type='hidden' name='ie' value='UTF-8'> <input type='hidden' name='oe' value='UTF-8'>
 </td></tr></TABLE></FORM>
 <!-- SiteSearch Google -->",
-'googlesearch' => "
-<!-- SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.com/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td width=130 align=\"right\">
-<A HREF=\"http://www.google.com/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
-<INPUT type=submit name=btnG VALUE=\"Поиск по сайту\">
-<input type=hidden name=domains value=\"{{SERVER}}\"><br /><input type=hidden name=sitesearch value=\"{{SERVER}}\"><input type='hidden' name='ie' value='$2'>
-<input type='hidden' name='oe' value='$2'>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->
-
-<!-- Поиск через Яндекс (ya.ru) -->
-<form NAME=\"web\" METHOD=\"get\" ACTION=\"http://www.yandex.ru/yandsearch\">
-<input type=\"hidden\" name=\"serverurl\" value=\"http://ru.wikipedia.org\">
-<input type=\"hidden\" name=\"server_name\" value=\"{{SITENAME}} на русском языке\">
-<INPUT type=hidden value=rad name=rpt><input type=\"hidden\" name=\"referrer1\" value=\"http://ru.wikipedia.org\">
-<input type=\"hidden\" name=\"referrer2\" value=\"{{SITENAME}} на русском языке\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td width=130 align=\"right\">
-<a href=\"http://www.yandex.ru\">
-<IMG SRC=\"http://www.ya.ru/logo.gif\"
-border=\"0\" ALT=\"Яндекс\"></A>
-</td><td>
-<input TYPE=\"text\" NAME=\"text\" SIZE=\"31\" VALUE=\"$1\" MAXLENGTH=\"160\">
-</td><td><input TYPE=\"SUBMIT\" VALUE=\"Поиск по сайту\">
-</td></tr></table>
-</form>
-<!-- Поиск через Яндекс (ya.ru) -->",
 'blanknamespace' => 'Статьи',
 
 # Preferences page

@@ -475,30 +475,7 @@ $1<br />
 $2 List opp omdirigeringer   Søk etter $3 $9",
 "searchdisabled" => "<p>Søkefunksjonen er midlertidig avbrutt på grunn av
 for stort press på tjeneren; vi håper vi kan sette den på igjen når vi har
-oppgradert programvaren. I mellomtiden kan du søke via Google:</p>
-                                                                                                                                                        
-",
-"googlesearch" => "<!-- SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.com/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.com/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
-<INPUT type=submit name=btnG VALUE=\"Google Search\">
-<font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio
-name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> {$wgServer} <br />
-<input type='hidden' name='ie' value='$2'>
-<input type='hidden' name='oe' value='$2'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->
-",
+oppgradert programvaren. I mellomtiden kan du søke via Google:</p>",
 "blanknamespace" => "(Hoved)",
 
 # Preferences page

@@ -584,26 +584,6 @@ Cari dalam namespace :<br />
 $1<br /> 
 $2 List redirects   Search for $3 $9",
 "searchdisabled" => "<p>Maaf! pencarian full text sementara dimatikan karena masalah performa. Dalam pada itu, Anda dapat menggunakan pencarian Google berikut ini, yang mungkin hasilnya out-of-date.</p>", #"<p>Sorry! Full text search has been disabled temporarily, for performance reasons. In the meantime, you can use the Google search below, which may be out of date.</p>",
-"googlesearch" => " 
-<!-- SiteSearch Google --> 
-<FORM method=GET action=\"http://www.google.com/search\"> 
-<TABLE bgcolor=\"#FFFFFF\"><tr><td> 
-<A HREF=\"http://www.google.com/webhp?hl=id\"> 
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\" 
-border=\"0\" ALT=\"Google\"></A> 
-</td> 
-<td> 
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\"> 
-<INPUT type=submit name=btnG VALUE=\"Mesin Cari Google\"> 
-<font size=-1> 
-<input type=hidden name=domains value=\"{{SERVER}}\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{{SERVER}}\" checked> {{SERVER}} <br /> 
-<input type='hidden' name='hl' value='id'> 
-<input type='hidden' name='ie' value='$2'> 
-<input type='hidden' name='oe' value='$2'> 
-</font> 
-</td></tr></TABLE> 
-</FORM> 
-<!-- SiteSearch Google -->",
 "blanknamespace" => "(Utama)",
 
 # Preferences page 

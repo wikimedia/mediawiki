@@ -586,60 +586,6 @@ Te rugăm să vizitezi această legătură: ($2) pentru a descrie fişierul şi 
 'fromwikipedia' => "De la {{SITENAME}}, enciclopedia liberă.",
 'getimagelist' => "încarc lista de imagini",
 'go' => "Du-te",
-'googlesearch' => "<p>
-<table border=\"0\" bgcolor=\"#FFFFFF\">
-
-<!-- SiteSearch Google -->
-<tr><td valign=\"top\" align=\"center\">
-<a href=\"http://www.google.ro/\">
-<img src=\"http://www.google.ro/logos/Logo_40wht.gif\" border=\"0\" alt=\"Google\" title=\"Google\">
-</a>
-</td>
-<td width=\"100%\">
-<form method=get action=\"http://www.google.ro/search\">
-<input type=\"text\" name=\"q\" size=31 maxlength=255 value=\"$1\">
-<input type=\"submit\" name=\"btnG\" value=\"Căutare în Google\">
-<input type=\"hidden\" name=\"domains\" value=\"{{SERVER}}\">
-<input type=\"hidden\" name=\"ie\" value=\"$2\">
-<input type=\"hidden\" name=\"oe\" value=\"$2\">
-<br>
-<font size=-1>
-<input type=\"radio\" name=\"sitesearch\" value=\"\">WWW
-<input type=\"radio\" name=\"sitesearch\" value=\"{{SERVER}}\" checked>{{SERVER}}
-</font>
-</form>
-</td></tr>
-<!-- SiteSearch Google -->
-
-<!-- Spacing -->
-<tr><td colspan=2>&nbsp;</td></tr>
-<!-- Spacing -->
-
-<!-- Yahoo search -->
-<tr><td valign=\"top\" align=\"center\">
-<a href=\"http://search.yahoo.com/\">
-<img src=\"http://us.i1.yimg.com/us.yimg.com/i/us/search/ysan/ysanlogo.gif\" border=\"0\" alt=\"Yahoo!\"vspace=\"5\">
-</a>
-</td>
-<td width=\"100%\">
-<form method=get action=\"http://search.yahoo.com/search\">
-<input type=\"hidden\" name=\"x\" value=\"op\">
-<input type=\"hidden\" name=\"va_vt\" value=\"any\">
-<input type=\"text\" name=\"va\" size=\"31\" value=\"$1\">
-<input type=\"submit\" value=\"Căutare în Yahoo!\">
-<br>
-<font size=-1>
-<input type=\"radio\" name=\"vs\" value=\"\">WWW
-<input type=\"radio\" name=\"vs\" value=\"{{SERVER}}\" checked>{{SERVER}}
-</font>
-</form>
-</td>
-
-</table>
-
-Poţi folosi următoarea legătură pentru a crea un articol cu acest titlu, sau pentru a edita respectivul articol în caz că există: <a href=\"/w/wiki.phtml?title=$1&action=edit\">$1</a>
-<br><br>
-<b>Notă</b>: Îţi recomandăm să cauţi în {{SITENAME}} înainte de a crea un articol, pentru a evita duplicarea unuia existent, care ar putea avea alt nume.",
 'guesstimezone' => "Încearcă determinarea automată a diferenţei",
 'headline_sample' => "Text de titlu",
 'headline_tip' => "Titlu de nivel 2",

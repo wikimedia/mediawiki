@@ -446,25 +446,6 @@ require_once("LanguageUtf8.php");
 	$1<br />
 	$2 List redirects &nbsp; Search for $3 $9",
 	"searchdisabled" => "<p>Sorry! Full text search has been disabled temporarily, for performance reasons. In the meantime, you can use the Google search below, which may be out of date.</p>",
-	"googlesearch" => "
-	<!-- SiteSearch Google -->
-	<FORM method=GET action=\"http://www.google.com/search\">
-	<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-	<A HREF=\"http://www.google.com/\">
-	<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-	border=\"0\" ALT=\"Google\"></A>
-	</td>
-	<td>
-	<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
-	<INPUT type=submit name=btnG VALUE=\"Google Search\">
-	<font size=-1>
-	<input type=hidden name=domains value=\"{{SERVER}}\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{{SERVER}}\" checked> {{SERVER}} <br />
-	<input type='hidden' name='ie' value='$2'>
-	<input type='hidden' name='oe' value='$2'>
-	</font>
-	</td></tr></TABLE>
-	</FORM>
-	<!-- SiteSearch Google -->",
 	"blanknamespace" => "(Main)",
 
 	# Preferences page
