@@ -71,7 +71,8 @@ class LanguageLatin1 {
 	}
 	
 	function specialPage( $name ) {
-		return utf8_decode( $this->lang->specialPage( $name ) );
+        # At least one function calls this with Special:Undelete/Article_title, so it needs encoding
+		return utf8_decode( $this->lang->specialPage( utf8_encode( $name ) ) );
 	}
 	
 	function getQuickbarSettings() {
