@@ -208,6 +208,84 @@ class Article {
 			wfFreeResult( $res );
 		}
 		$this->mContentLoaded = true;
+		return $this->mContent;
+	}
+
+	# Gets the article text without using so many damn globals
+	# Returns false on error
+	function getContentWithoutUsingSoManyDamnGlobals( $oldid = 0, $noredir = false ) {
+		global $wgMwRedir;
+
+		if ( $this->mContentLoaded ) {
+			return $this->mContent;
+		}
+		$this->mContent = false;
+		
+		$fname = "Article::loadContent";
+		
+		if ( ! $oldid ) {	# Retrieve current version
+			$id = $this->getID();
+			if ( 0 == $id ) {
+				return false;
+			}
+
+			$sql = "SELECT " .
+			  "cur_text,cur_timestamp,cur_user,cur_counter,cur_restrictions,cur_touched " .
+			  "FROM cur WHERE cur_id={$id}";
+			$res = wfQuery( $sql, DB_READ, $fname );
+			if ( 0 == wfNumRows( $res ) ) { 
+				return false; 
+			}
+
+			$s = wfFetchObject( $res );
+			# If we got a redirect, follow it (unless we've been told
+			# not to by either the function parameter or the query
+			if ( !$noredir && $wgMwRedir->matchStart( $s->cur_text ) ) {
+				if ( preg_match( "/\\[\\[([^\\]\\|]+)[\\]\\|]/",
+				  $s->cur_text, $m ) ) {
+					$rt = Title::newFromText( $m[1] );
+					if( $rt &&  $rt->getInterwiki() == "" && $rt->getNamespace() != Namespace::getSpecial() ) {
+						$rid = $rt->getArticleID();
+						if ( 0 != $rid ) {
+							$sql = "SELECT cur_text,cur_timestamp,cur_user," .
+							  "cur_counter,cur_restrictions,cur_touched FROM cur WHERE cur_id={$rid}";
+							$res = wfQuery( $sql, DB_READ, $fname );
+	
+							if ( 0 != wfNumRows( $res ) ) {
+								$this->mRedirectedFrom = $this->mTitle->getPrefixedText();
+								$this->mTitle = $rt;
+								$s = wfFetchObject( $res );
+							}
+						}
+					}
+				}
+			}
+
+			$this->mContent = $s->cur_text;
+			$this->mUser = $s->cur_user;
+			$this->mCounter = $s->cur_counter;
+			$this->mTimestamp = $s->cur_timestamp;
+			$this->mTouched = $s->cur_touched;
+			$this->mTitle->mRestrictions = explode( ",", trim( $s->cur_restrictions ) );
+			$this->mTitle->mRestrictionsLoaded = true;
+			wfFreeResult( $res );
+		} else { # oldid set, retrieve historical version
+			$sql = "SELECT old_text,old_timestamp,old_user,old_flags FROM old " .
+			  "WHERE old_id={$oldid}";
+			$res = wfQuery( $sql, DB_READ, $fname );
+			if ( 0 == wfNumRows( $res ) ) { 
+				return false; 
+			}
+
+			$s = wfFetchObject( $res );
+			$this->mContent = Article::getRevisionText( $s );
+			$this->mUser = $s->old_user;
+			$this->mCounter = 0;
+			$this->mTimestamp = $s->old_timestamp;
+			wfFreeResult( $res );
+		}
+		$this->mContentLoaded = true;
+		return $this->mContent;
 	}
 
 	function getID() {
@@ -672,12 +750,6 @@ class Article {
 		}
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
-			return;
-		}
-
-		# Can't delete MediaWiki namespace 
-		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			$wgOut->fatalError( wfMsg( "cannotdelete" ) );
 			return;
 		}
 
