@@ -143,6 +143,15 @@ class SearchEngine {
 		return $ret;
 	}
 
+	function setupPage() {
+		global $wgOut;
+		$wgOut->setPageTitle( wfMsg( "searchresults" ) );
+		$q = wfMsg( "searchquery", htmlspecialchars( $this->mUsertext ) );
+		$wgOut->setSubtitle( $q );
+		$wgOut->setArticleRelated( false );
+		$wgOut->setRobotpolicy( "noindex,nofollow" );
+	}
+
 	# Perform the search and construct the results page
 	function showResults()
 	{
@@ -154,12 +163,8 @@ class SearchEngine {
 
 		$powersearch = $this->powersearch(); /* Need side-effects here? */
 
-		$wgOut->setPageTitle( wfMsg( "searchresults" ) );
-		$q = wfMsg( "searchquery", htmlspecialchars( $this->mUsertext ) );
-		$wgOut->setSubtitle( $q );
-		$wgOut->setArticleRelated( false );
-		$wgOut->setRobotpolicy( "noindex,nofollow" );
-
+		$this->setupPage();
+		
 		$sk = $wgUser->getSkin();
 		$header = wfMsg( "searchresulttext", $sk->makeKnownLink(
 		  wfMsg( "searchhelppage" ), wfMsg( "searchingwikipedia" ) ) );
@@ -485,6 +490,9 @@ class SearchEngine {
 
 	/* static */ function doFuzzyTitleSearch( $search, $namespace ){
 		global $wgLang, $wgOut;
+		
+		$this->setupPage();
+		
 		$sstr = ucfirst($search);
 		$sstr = str_replace(" ", "_", $sstr);
 		$fuzzymatches = SearchEngine::fuzzyTitles( $sstr, $namespace );
