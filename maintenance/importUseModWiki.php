@@ -12,14 +12,22 @@
  * Some more munging for charsets etc
  * 2003-11-28
  *
+ * Partial fix for pages starting with lowercase letters (??)
+ * and CamelCase and /Subpage link conversion
+ * 2004-11-17
+ *
  * @todo document
  * @package MediaWiki
  * @subpackage Maintenance
  */
 
+
 /** Set these correctly! */
 $wgImportEncoding = "CP1252"; /* We convert all to UTF-8 */
-$wgRootDirectory = "/home/usemod/wiki-ia/lib-http/db/wiki";
+$wgRootDirectory = "/kalman/Projects/wiki2002/wiki/lib-http/db/wiki";
+
+/* On a large wiki, you might run out of memory */
+@ini_set( 'memory_limit', '40M' );
 
 /* globals */
 $wgFieldSeparator = "\xb3"; # Some wikis may use different char
@@ -93,8 +101,8 @@ function fetchUser( $uid )
 
 function useModFilename( $title ) {
 	$c = substr( $title, 0, 1 );
-	if(preg_match( '/[A-Z]/', $c ) ) {
-		return "$c/$title";
+	if(preg_match( '/[A-Z]/i', $c ) ) {
+		return strtoupper( $c ) . "/$title";
 	}
 	return "other/$title";
 }
@@ -218,23 +226,46 @@ function importPage( $title )
 	$newtitle = wfStrencode( recodeText( $title ) );
 	$namespace = 0;
 	
-	# Current revision:
-	$text = wfStrencode( recodeText( $page->text ) );
-	$comment = wfStrencode( recodeText( $page->summary ) );
-	$minor = ($page->minor ? 1 : 0);
-	list( $userid, $username ) = checkUserCache( $page->username, $page->host );
-	$username = wfStrencode( recodeText( $username ) );
-	$timestamp = wfUnix2Timestamp( $page->ts );
-	$redirect = ( preg_match( '/^#REDIRECT/', $page->text ) ? 1 : 0 );
-	$random = mt_rand() / mt_getrandmax();
-	$inverse = wfInvertTimestamp( $timestamp );
+	$munged = mungeFormat( $page->text );
+	if( $munged != $page->text ) {
+		/**
+		 * Save a *new* revision with the conversion, and put the
+		 * previous last version into the history.
+		 */
+		$text = wfStrencode( recodeText( $munged ) );
+		$comment = "link fix";
+		$minor = 1;
+		$userid = 0;
+		$username = "Conversion script";
+		$timestamp = wfUnix2Timestamp( time() );
+		$redirect = ( preg_match( '/^#REDIRECT/', $page->text ) ? 1 : 0 );
+		$random = mt_rand() / mt_getrandmax();
+		$inverse = wfInvertTimestamp( $timestamp );
+		
+		$revisions = array( $page );
+	} else {
+		/**
+		 * Current revision:
+		 */
+		$text = wfStrencode( recodeText( $page->text ) );
+		$comment = wfStrencode( recodeText( $page->summary ) );
+		$minor = ($page->minor ? 1 : 0);
+		list( $userid, $username ) = checkUserCache( $page->username, $page->host );
+		$username = wfStrencode( recodeText( $username ) );
+		$timestamp = wfUnix2Timestamp( $page->ts );
+		$redirect = ( preg_match( '/^#REDIRECT/', $page->text ) ? 1 : 0 );
+		$random = mt_rand() / mt_getrandmax();
+		$inverse = wfInvertTimestamp( $timestamp );
+
+		$revisions = array();
+	}
 	$sql = "
 INSERT
 	INTO cur (cur_namespace,cur_title,cur_text,cur_comment,cur_user,cur_user_text,cur_timestamp,inverse_timestamp,cur_touched,cur_minor_edit,cur_is_redirect,cur_random) VALUES
 	($namespace,'$newtitle','$text','$comment',$userid,'$username','$timestamp','$inverse','$conversiontime',$minor,$redirect,$random);\n";
 
 	# History
-	$revisions = fetchKeptPages( $title );
+	$revisions = array_merge( $revisions, fetchKeptPages( $title ) );
 	if(count( $revisions ) == 0 ) {
 		return $sql;
 	}
@@ -264,7 +295,7 @@ function recodeText( $string ) {
 	global $wgImportEncoding;
 	# For currently latin-1 wikis
 	$string = str_replace( "\r\n", "\n", $string );
-	$string = iconv( $wgImportEncoding, "UTF-8", $string );
+	$string = @iconv( $wgImportEncoding, "UTF-8", $string );
 	$string = wfMungeToUtf8( $string ); # Any old &#1234; stuff
 	return $string;
 }
@@ -334,6 +365,45 @@ function array2object( $arr ) {
 		$o->$x = $y;
 	}
 	return $o;
+}
+
+
+/**
+ * Make CamelCase and /Talk links work
+ */
+function mungeFormat( $text ) {
+	global $nowiki;
+	$nowiki = array();
+	$staged = preg_replace_callback(
+		'/(<nowiki>.*?<\\/nowiki>|(?:http|https|ftp):\\S+|\[\[[^]\\n]+]])/s',
+		'nowikiPlaceholder', $text );
+	
+	# This is probably not  100% correct, I'm just
+	# glancing at the UseModWiki code.
+	$upper   = "[A-Z]";
+	$lower   = "[a-z_0-9]";
+	$any     = "[A-Za-z_0-9]";
+	$camel   = "(?:$upper+$lower+$upper+$any*)";
+	$subpage = "(?:\\/$any+)";
+	$substart = "(?:\\/$upper$any*)";
+	
+	$munged = preg_replace( "/(?!\\[\\[)($camel$subpage*|$substart$subpage*)\\b(?!\\]\\]|>)/",
+		'[[$1]]', $staged );
+	
+	$final = preg_replace( '/' . preg_quote( placeholder() ) . '/es',
+		'array_shift( $nowiki )', $munged );
+	return $final;
+}
+
+
+function placeholder( $x = null ) {
+	return '\xffplaceholder\xff';
+}
+
+function nowikiPlaceholder( $matches ) {
+	global $nowiki;
+	$nowiki[] = $matches[1];
+	return placeholder();
 }
 
 ?>
