@@ -501,7 +501,7 @@ class Article {
 	 */
 	function loadLastEdit() {
 		global $wgOut;
-
+		
 		if ( -1 != $this->mUser )
 			return;
 
@@ -509,19 +509,13 @@ class Article {
 		$id = $this->getID();
 		if ( 0 == $id ) return;
 
-		$fname = 'Article::loadLastEdit';
-
-		$dbr =& $this->getDB();
-		$s = $dbr->selectRow( array( 'revision', 'page') ,
-		  array( 'rev_user','rev_user_text','rev_timestamp', 'rev_comment','rev_minor_edit' ),
-		  array( 'page_id' => $id, 'page_latest=rev_id' ), $fname, $this->getSelectOptions() );
-
-		if ( $s !== false ) {
-			$this->mUser = $s->rev_user;
-			$this->mUserText = $s->rev_user_text;
-			$this->mTimestamp = wfTimestamp(TS_MW,$s->rev_timestamp);
-			$this->mComment = $s->rev_comment;
-			$this->mMinorEdit = $s->rev_minor_edit;
+		$this->mLastRevision = Revision::loadFromPageId( $this->getDB(), $id );
+		if( !is_null( $this->mLastRevision ) ) {
+			$this->mUser      = $this->mLastRevision->getUser();
+			$this->mUserText  = $this->mLastRevision->getUserText();
+			$this->mTimestamp = $this->mLastRevision->getTimestamp();
+			$this->mComment   = $this->mLastRevision->getComment();
+			$this->mMinorEdit = $this->mLastRevision->isMinor();
 		}
 	}
 

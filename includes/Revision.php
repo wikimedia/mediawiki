@@ -24,8 +24,7 @@ class Revision {
 	function &newFromId( $id ) {
 		return Revision::newFromConds(
 			array( 'page_id=rev_page',
-			       'rev_id' => IntVal( $id ),
-			       'rev_id=old_id' ) );
+			       'rev_id' => IntVal( $id ) ) );
 	}
 	
 	/**
@@ -48,8 +47,31 @@ class Revision {
 			array( "rev_id=$matchId",
 			       'page_id=rev_page',
 			       'page_namespace' => $title->getNamespace(),
-			       'page_title'     => $title->getDbkey(),
-			       'rev_id=old_id' ) );
+			       'page_title'     => $title->getDbkey() ) );
+	}
+	
+	/**
+	 * Load either the current, or a specified, revision
+	 * that's attached to a given page. If not attached
+	 * to that page, will return null.
+	 *
+	 * @param Database $db
+	 * @param int $pageid
+	 * @param int $id
+	 * @return Revision
+	 * @access public
+	 */
+	function &loadFromPageId( &$db, $pageid, $id = 0 ) {
+		if( $id ) {
+			$matchId = IntVal( $id );
+		} else {
+			$matchId = 'page_latest';
+		}
+		return Revision::loadFromConds(
+			$db,
+			array( "rev_id=$matchId",
+			       'rev_page' => IntVal( $pageid ),
+			       'page_id=rev_page' ) );
 	}
 	
 	/**
@@ -61,7 +83,22 @@ class Revision {
 	 * @access private
 	 */
 	function &newFromConds( $conditions ) {
-		$res =& Revision::fetchFromConds( $conditions );
+		$db =& wfGetDB( DB_SLAVE );
+		return Revision::loadFromConds( $db, $conditions );
+	}
+	
+	/**
+	 * Given a set of conditions, fetch a revision from
+	 * the given database connection.
+	 *
+	 * @param Database $db
+	 * @param array $conditions
+	 * @return Revision
+	 * @static
+	 * @access private
+	 */
+	function &loadFromConds( &$db, $conditions ) {
+		$res =& Revision::fetchFromConds( $db, $conditions );
 		if( $res ) {
 			$row = $res->fetchObject();
 			$res->free();
@@ -84,10 +121,10 @@ class Revision {
 	 */
 	function &fetchAllRevisions( &$title ) {
 		return Revision::fetchFromConds(
+			wfGetDB( DB_SLAVE ),
 			array( 'page_namespace' => $title->getNamespace(),
 			       'page_title'     => $title->getDbkey(),
-			       'page_id=rev_page',
-			       'rev_id=old_id' ) );		
+			       'page_id=rev_page' ) );		
 	}
 	
 	/**
@@ -102,26 +139,27 @@ class Revision {
 	 */
 	function &fetchRevision( &$title ) {
 		return Revision::fetchFromConds(
+			wfGetDB( DB_SLAVE ),
 			array( 'rev_id=page_latest',
 			       'page_namespace' => $title->getNamespace(),
 			       'page_title'     => $title->getDbkey(),
-			       'page_id=rev_page',
-			       'rev_id=old_id' ) );		
+			       'page_id=rev_page' ) );		
 	}
-		/**
+	
+	/**
 	 * Given a set of conditions, return a ResultWrapper
 	 * which will return matching database rows with the
 	 * fields necessary to build Revision objects.
 	 *
+	 * @param Database $db
 	 * @param array $conditions
 	 * @return ResultWrapper
 	 * @static
 	 * @access private
 	 */
-	function &fetchFromConds( $conditions ) {
-		$dbr =& wfGetDB( DB_SLAVE );
-		$res = $dbr->select(
-			array( 'page', 'revision', 'text' ),
+	function &fetchFromConds( &$db, $conditions ) {
+		$res = $db->select(
+			array( 'page', 'revision' ),
 			array( 'page_namespace',
 			       'page_title',
 			       'page_latest',
@@ -131,12 +169,10 @@ class Revision {
 			       'rev_user_text',
 			       'rev_user',
 			       'rev_minor_edit',
-			       'rev_timestamp',
-			       'old_flags',
-			       'old_text' ),
+			       'rev_timestamp' ),
 			$conditions,
 			'Revision::fetchRow' );
-		return $dbr->resultObject( $res );
+		return $db->resultObject( $res );
 	}
 	
 	/**
@@ -156,7 +192,12 @@ class Revision {
 			$this->mCurrent   = ( $row->rev_id == $row->page_latest );
 			$this->mTitle     = Title::makeTitle( $row->page_namespace,
 			                                      $row->page_title );
-			$this->mText      = $this->getRevisionText( $row );
+			
+			if( isset( $row->old_text ) ) {
+				$this->mText  = $this->getRevisionText( $row );
+			} else {
+				$this->mText  = null;
+			}
 		} elseif( is_array( $row ) ) {
 			// Build a new revision to be saved...
 			global $wgUser;
@@ -168,7 +209,7 @@ class Revision {
 			$this->mUser      = isset( $row['user']       ) ? IntVal( $row['user']       ) : $wgUser->getId();
 			$this->mMinorEdit = isset( $row['minor_edit'] ) ? IntVal( $row['minor_edit'] ) : 0;
 			$this->mTimestamp = isset( $row['timestamp']  ) ? StrVal( $row['timestamp']  ) : wfTimestamp( TS_MW );
-			$this->mText      = isset( $row['text']       ) ? StrVal( $row['text']       ) : '';
+			$this->mText      = isset( $row['text']       ) ? StrVal( $row['text']       ) : null;
 			
 			$this->mTitle     = null; # Load on demand if needed
 			$this->mCurrent   = false;
@@ -249,6 +290,10 @@ class Revision {
 	 * @return string
 	 */
 	function getText() {
+		if( is_null( $this->mText ) ) {
+			// Revision text is immutable. Load on demand:
+			$this->mText = $this->loadText();
+		}
 		return $this->mText;
 	}
 	
@@ -393,8 +438,8 @@ class Revision {
 			: $dbw->nextSequenceValue( 'text_old_id_val' );
 		$dbw->insert( 'text',
 			array(
-				'old_id' => $old_id,
-				'old_text' => $mungedText,
+				'old_id'    => $old_id,
+				'old_text'  => $mungedText,
 				'old_flags' => $flags,
 			), $fname
 		);
@@ -417,6 +462,29 @@ class Revision {
 		
 		wfProfileOut( $fname );
 		return $revisionId;
+	}
+	
+	/**
+	 * Lazy-load the revision's text.
+	 * Currently hardcoded to the 'text' table storage engine.
+	 *
+	 * @return string
+	 * @access private
+	 */
+	function loadText() {
+		$fname = 'Revision::loadText';
+		wfProfileIn( $fname );
+		
+		$dbr =& wfGetDB( DB_SLAVE );
+		$row = $dbr->selectRow( 'text',
+			array( 'old_text', 'old_flags' ),
+			array( 'old_id' => $this->getId() ),
+			$fname);
+		
+		$text = Revision::getRevisionText( $row );
+		wfProfileOut( $fname );
+		
+		return $text;
 	}
 }
 ?>

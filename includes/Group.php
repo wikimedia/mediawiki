@@ -50,7 +50,10 @@ class Group {
 		
 		if($this->id) {
 			$dbr =& wfGetDB( DB_SLAVE );
-			$r = $dbr->selectRow('group', array('group_id', 'group_name', 'group_description', 'group_rights'), array( 'group_id' => $this->id ), $fname );
+			$r = $dbr->selectRow('group',
+				array('group_id', 'group_name', 'group_description', 'group_rights'),
+				array( 'group_id' => $this->id ),
+				$fname );
 			$this->id = $r->group_id;
 			$this->name = $r->group_name;
 			$this->description = $r->group_description;
@@ -58,7 +61,10 @@ class Group {
 			$this->dataLoaded = true;
 		} else {
 			$dbr =& wfGetDB( DB_SLAVE );
-			$r = $dbr->selectRow('group', array('group_id', 'group_name', 'group_description', 'group_rights'), array( 'group_name' => $this->name ), $fname );
+			$r = $dbr->selectRow('group',
+				array('group_id', 'group_name', 'group_description', 'group_rights'),
+				array( 'group_name' => $this->name ),
+				$fname );
 			$this->id = $r->group_id;
 			$this->name = $r->group_name;
 			$this->description = $r->group_description;
@@ -100,14 +106,37 @@ class Group {
 	}
 	
 // Factories
-	/** @param integer $id Group database id */
+	/**
+	 * Uses Memcached if available.
+	 * @param integer $id Group database id
+	 */
 	function newFromId($id) {
+		global $wgMemc, $wgDBname;
 		$fname = 'Group::newFromId';
+		
+		$key = "$wgDBname:groups:id:$id";
+		if( $group = $wgMemc->get( $key ) ) {
+			wfDebug( "$fname loaded group $id from cache\n" );
+			return $group;
+		}
+		
 		$g = new Group();
 		$name = $g->nameFromId(IntVal($id));
 
-		if($name == '') { return; }
-		else { return $g->newFromName($name); }
+		if($name == '') {
+			wfDebug( "$fname can't find group $id\n" );
+			return null;
+		} else {
+			$group = $g->newFromName($name);
+			if( $group ) {
+				wfDebug( "$fname caching group $id (name $name)\n" );
+				$group->loadFromDatabase();
+				$wgMemc->add( $key, $group, 3600 );
+			} else {
+				wfDebug( "$fname failed to laod group id $d (name $name)\n" );
+			}
+			return $group;
+		}
 	}
 
 
