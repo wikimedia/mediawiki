@@ -91,10 +91,6 @@ $wgBufferSQLResults     = true; # use buffered queries by default
 # Array, interwiki prefix => database name
 $wgLocalDatabases   = array();
 
-# Database load balancer
-$wgDBservers		= false; # e.g. array("larousse", "pliny")
-$wgDBloads			= false; # e.g. array(0.6, 0.4);
-
 # memcached settings
 # See docs/memcached.doc
 #
