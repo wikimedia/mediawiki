@@ -188,6 +188,7 @@ class EditPage {
 			$this->edittime = $this->mArticle->getTimestamp();
 			$this->textbox1 = $this->mArticle->getContent(true);
 			$this->summary = "";
+			$this->proxyCheck();
 		}
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		
@@ -405,7 +406,46 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$wgOut->returnToMain( false );
 	}
 
+	# Forks processes to scan the originating IP for an open proxy server
+	# MemCached can be used to skip IPs that have already been scanned
+	function proxyCheck()
+	{
+		global $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath;
+		global $wgIP, $wgUseMemCached, $wgMemc, $wgDBname, $wgProxyMemcExpiry;
+		
+		if ( !$wgBlockOpenProxies ) {
+			return;
+		}
+		
+		# Get MemCached key
+		$skip = false;
+		if ( !$wgUseMemCached ) {
+			$mcKey = "$wgDBname:proxy:ip:$wgIP";
+			$mcValue = $wgMemc->get( $mcKey );
+			if ( $mcValue ) {
+				$skip = true;
+			}
+		}
 
+		# Fork the processes
+		if ( !$skip ) {
+			$title = Title::makeTitle( NS_SPECIAL, "Blockme" );
+			$url = $title->getFullURL();
+			foreach ( $wgProxyPorts as $port ) {
+				$params = implode( " ", array(
+				  escapeshellarg( $wgProxyScriptPath ),
+				  escapeshellarg( $wgIP ),
+				  escapeshellarg( $port ),
+				  escapeshellarg( $url )
+				));
+				exec( "php $params &>/dev/null &" );
+			}
+			# Set MemCached key
+			if ( $wgUseMemCached ) {
+				$wgMemc->set( $mcKey, 1, $wgProxyMemcExpiry );
+			}
+		}
+	}
 }
 
 ?>
