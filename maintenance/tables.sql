@@ -217,3 +217,12 @@ CREATE TABLE querycache (
   qc_title char(255) binary NOT NULL default '',
   KEY (qc_type,qc_value)
 );
+
+-- For a few generic cache operations if not using Memcached
+CREATE TABLE objectcache (
+  keyname char(255) binary not null default '',
+  value mediumblob,
+  exptime datetime,
+  unique key (keyname),
+  key (exptime)
+);

@@ -14,8 +14,9 @@ class MessageCache
 	
 	var $mInitialised = false;
 
-	function initialise( $useMemCached, $useDB, $expiry, $memcPrefix ) {
-		$this->mUseCache = $useMemCached;
+	function initialise( &$memCached, $useDB, $expiry, $memcPrefix ) {
+		$this->mUseCache = !is_null( $memCached );
+		$this->mMemc = &$memCached;
 		$this->mDisable = !$useDB;
 		$this->mExpiry = $expiry;
 		$this->mDisableTransform = false;
@@ -32,7 +33,7 @@ class MessageCache
 	# On error, quietly switches to a fallback mode
 	# Returns false for a reportable error, true otherwise
 	function load() {
-		global $wgAllMessagesEn, $wgMemc;
+		global $wgAllMessagesEn;
 		
 		if ( $this->mDisable ) {
 			return true;
@@ -41,18 +42,18 @@ class MessageCache
 		$success = true;
 		
 		if ( $this->mUseCache ) {
-			$this->mCache = $wgMemc->get( $this->mMemcKey );
+			$this->mCache = $this->mMemc->get( $this->mMemcKey );
 			
 			# If there's nothing in memcached, load all the messages from the database
 			if ( !$this->mCache ) {
 				$this->lock();
 				# Other threads don't need to load the messages if another thread is doing it.
-				$wgMemc->set( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT );
+				$this->mMemc->set( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT );
 				$this->loadFromDB();
 				# Save in memcached
-				if ( !$wgMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry ) ) {
+				if ( !$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry ) ) {
 					# Hack for slabs reassignment problem
-					$wgMemc->set( $this->mMemcKey, "error" );
+					$this->mMemc->set( $this->mMemcKey, "error" );
 					wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
 				}
 				$this->unlock();
@@ -113,12 +114,11 @@ class MessageCache
 	}
 
 	function replace( $title, $text ) {
-		global $wgMemc;
 		$this->lock();
 		$this->load();
 		if ( is_array( $this->mCache ) ) {
 			$this->mCache[$title] = $text;
-			$wgMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry );
+			$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry );
 		}
 		$this->unlock();
 	}
@@ -126,14 +126,12 @@ class MessageCache
 	# Returns success
 	# Represents a write lock on the messages key
 	function lock() {
-		global $wgMemc;
-
 		if ( !$this->mUseCache ) {
 			return true;
 		}
 
 		$lockKey = $this->mMemcKey . "lock";
-		for ($i=0; $i < MSG_WAIT_TIMEOUT && !$wgMemc->add( $lockKey, 1, MSG_LOCK_TIMEOUT ); $i++ ) {
+		for ($i=0; $i < MSG_WAIT_TIMEOUT && !$this->mMemc->add( $lockKey, 1, MSG_LOCK_TIMEOUT ); $i++ ) {
 			sleep(1);
 		}
 		
@@ -141,14 +139,12 @@ class MessageCache
 	}
 	
 	function unlock() {
-		global $wgMemc;
-		
 		if ( !$this->mUseCache ) {
 			return;
 		}
 
 		$lockKey = $this->mMemcKey . "lock";
-		$wgMemc->delete( $lockKey );
+		$this->mMemc->delete( $lockKey );
 	}
 	
 	function get( $key, $useDB ) {
