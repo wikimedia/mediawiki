@@ -4,7 +4,10 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 
-== MediaWiki 1.4 BETA 2 ==
+== MediaWiki 1.4 BETA 3 ==
+
+Users of earlier betas, take note that there is a security fix for
+uploads in this release.
 
 ''''' Thinking of using MySQL 4.1? Please read this first! '''''
 ''''' Your PHP installation probably uses the OLD protocol '''''
@@ -133,6 +136,8 @@ If upgrading from an older release, see the file UPGRADING.
 * Caching and load limiting options for Recentchanges RSS/Atom feed
 * (bug 1074) Add stock icons for non-image files in gallery/Newimages
 * Add width and height attributes on thumbs in gallery/Newimages
+* Enhance upload extension blacklist to protect against vulnerable
+  Apache configurations
 
 === Caveats ===
 
