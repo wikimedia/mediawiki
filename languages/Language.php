@@ -1554,8 +1554,6 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
 
 'newimages' => 'New images gallery',
-'mormo' => 'mormo.org',
-'mormo-url' => 'http://mormo.org',
 
 
 );
