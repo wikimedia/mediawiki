@@ -372,8 +372,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgCommandLineMode = false;
 		chdir( ".." );
 		eval($local);
-		$wgDBadminuser = $wgDBuser;
-		$wgDBadminpassword = $wgDBpassword;
+		$wgDBadminuser = "root";
+		$wgDBadminpassword = $conf->RootPW;
 		$wgCommandLineMode = true;
 		$wgUseDatabaseMessages = false;	/* FIXME: For database failure */
 		require_once( "includes/Setup.php" );
@@ -400,6 +400,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				} else {
 					print "<li>Trying regular user...\n";
 					/* Try the regular user... */
+					$wgDBadminuser = $wgDBuser;
+					$wgDBadminpassword = $wgDBpassword;
 					$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, "", 1 );
 					$wgDatabase->isOpen();
 					$wgDatabase->mIgnoreErrors = true;
