@@ -1356,7 +1356,7 @@ class Skin {
 		} elseif ( 0 == $nt->getNamespace() && "" == $nt->getText() ) {
 			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
 		} elseif ( ( -1 == $nt->getNamespace() ) ||
-				( Namespace::getImage() == $nt->getNamespace() ) ) {
+				( NS_IMAGE == $nt->getNamespace() ) ) {
 			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
 		} else {
 			if ( $this->postParseLinkColour() ) {
@@ -1773,6 +1773,7 @@ class Skin {
 		if ( empty( $alt ) ) {
 			$alt = preg_replace( '/\.(.+?)^/', '', $img->getName() );
 		}
+		$alt = preg_replace( '/<[^>]*>/', '', $alt );
 		$alt = htmlspecialchars( $alt );
 
 		$u = $nt->escapeLocalURL();
