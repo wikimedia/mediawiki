@@ -377,22 +377,18 @@ class MovePageForm {
 		  "old_namespace={$this->ons} AND old_title='{$this->odt}'";
 		wfQuery( $sql, DB_WRITE, $fname );
 
-        $sql = "UPDATE recentchanges SET ".
+		$sql = "UPDATE recentchanges SET ".
 			"rc_namespace={$this->nns}, rc_title='{$this->ndt}' WHERE ".
 			"rc_namespace={$this->ons} AND rc_title='{$this->odt}'";
-        wfQuery( $sql, DB_WRITE, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$sql = "INSERT INTO recentchanges (rc_namespace,rc_title,
 			rc_comment,rc_user,rc_user_text,rc_timestamp,
 			rc_cur_time,rc_cur_id,rc_new)
 			VALUES ({$common},'{$now}',{$this->newid},1)";
-        wfQuery( $sql, DB_WRITE, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
-		global $wgEnablePersistentLC;
-		if ( $wgEnablePersistentLC ) {
-			// Purge related entries in links cache on new page, to heal broken links
-			LinkCache::linksccClearBrokenLinksTo( $this->nft );
-		}
+		Article::onArticleCreate( $this->nt );
 
 		$sql = "UPDATE links SET l_from='{$this->nft}' WHERE l_from='{$this->oft}'";
 		wfQuery( $sql, DB_WRITE, $fname );

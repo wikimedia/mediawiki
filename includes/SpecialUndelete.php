@@ -178,12 +178,9 @@ function wfSpecialUndelete( $par )
 
 			$u = new LinksUpdate( $newid, $to->getPrefixedDBkey() );
 			array_push( $wgDeferredUpdateList, $u );
-			
-			global $wgEnablePersistentLC;
-			if ( $wgEnablePersistentLC ) {
-				// Purge related entries in links cache on undelete, to heal broken links
-				LinkCache::linksccClearBrokenLinksTo( $to->getPrefixedDBkey() );
-			}
+				
+			Article::onArticleCreate( $to );
+
 			#TODO: SearchUpdate, etc.
 		}
 
