@@ -400,6 +400,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 1478) Punjabi localization
 * (bug 1667) Update script 5 second countdown.
 * (bug 1057) Fix logging table encoding (error on MySQL 4.1)
+* (bug 1680) Fix linktrail for fo
 
 
 === Caveats ===
