@@ -1,7 +1,7 @@
 <?php
 # See user.doc
 
-require_once( "WatchedItem.php" );
+require_once( 'WatchedItem.php' );
 
 class User {
 	/* private */ var $mId, $mName, $mPassword, $mEmail, $mNewtalk;
@@ -13,15 +13,13 @@ class User {
 	/* private */ var $mCookiePassword;
         /* private */ var $mRealName;
 
-	function User()
-	{
+	function User()	{
 		$this->loadDefaults();
 	}
 
 	# Static factory method
 	#
-	function newFromName( $name )
-	{
+	function newFromName( $name ) {
 		$u = new User();
 
 		# Clean up name according to title rules
@@ -31,18 +29,15 @@ class User {
 		return $u;
 	}
 
-	/* static */ function whoIs( $id )
-	{
-		return wfGetSQL( "user", "user_name", "user_id=$id" );
+	/* static */ function whoIs( $id )	{
+		return wfGetSQL( 'user', 'user_name', 'user_id='.$id );
 	}
 
-	/* static */ function whoIsReal( $id )
-	{
-		return wfGetSQL( "user", "user_real_name", "user_id=$id" );
+	/* static */ function whoIsReal( $id )	{
+		return wfGetSQL( 'user', 'user_real_name', 'user_id='.$id );
 	}
 
-	/* static */ function idFromName( $name )
-	{
+	/* static */ function idFromName( $name ) {
 		$nt = Title::newFromText( $name );
 		if( is_null( $nt ) ) {
 			# Illegal name
@@ -50,7 +45,7 @@ class User {
 		}
 		$sql = "SELECT user_id FROM user WHERE user_name='" .
 		  wfStrencode( $nt->getText() ) . "'";
-		$res = wfQuery( $sql, DB_READ, "User::idFromName" );
+		$res = wfQuery( $sql, DB_READ, 'User::idFromName' );
 
 		if ( 0 == wfNumRows( $res ) ) {
 			return 0;
@@ -67,9 +62,8 @@ class User {
 
 	}
 
-	/* static */ function randomPassword()
-	{
-		$pwchars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz";
+	/* static */ function randomPassword() {
+		$pwchars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz';
 		$l = strlen( $pwchars ) - 1;
 
 		wfSeedRandom();
@@ -80,28 +74,27 @@ class User {
 		return $np;
 	}
 
-	function loadDefaults()
-	{
+	function loadDefaults() {
 		global $wgLang, $wgIP;
 		global $wgNamespacesToBeSearchedDefault;
 
 		$this->mId = $this->mNewtalk = 0;
 		$this->mName = $wgIP;
-		$this->mEmail = "";
-		$this->mPassword = $this->mNewpassword = "";
+		$this->mEmail = '';
+		$this->mPassword = $this->mNewpassword = '';
 		$this->mRights = array();
 		$defOpt = $wgLang->getDefaultUserOptions() ;
 		foreach ( $defOpt as $oname => $val ) {
 			$this->mOptions[$oname] = $val;
 		}
 		foreach ($wgNamespacesToBeSearchedDefault as $nsnum => $val) {
-			$this->mOptions["searchNs".$nsnum] = $val;
+			$this->mOptions['searchNs'.$nsnum] = $val;
 		}
 		unset( $this->mSkin );
 		$this->mDataLoaded = false;
 		$this->mBlockedby = -1; # Unset
 		$this->mTouched = '0'; # Allow any pages to be cached
-		$this->cookiePassword = "";
+		$this->cookiePassword = '';
 	}
 
 	/* private */ function getBlockedStatus()
@@ -151,10 +144,10 @@ class User {
 	function SetupSession() {
 		global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain;
 		if( $wgSessionsInMemcached ) {
-			require_once( "MemcachedSessions.php" );
+			require_once( 'MemcachedSessions.php' );
 		}
 		session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain );
-		session_cache_limiter( "private, must-revalidate" );
+		session_cache_limiter( 'private, must-revalidate' );
 		@session_start();
 	}
 
@@ -290,14 +283,12 @@ class User {
 		return $this->mName;
 	}
 
-	function setName( $str )
-	{
+	function setName( $str ) {
 		$this->loadFromDatabase();
 		$this->mName = $str;
 	}
 
-	function getNewtalk()
-	{
+	function getNewtalk() {
 		$this->loadFromDatabase();
 		return ( 0 != $this->mNewtalk );
 	}
@@ -321,20 +312,17 @@ class User {
 		return ($timestamp >= $this->mTouched);
 	}
 
-	function getPassword()
-	{
+	function getPassword() {
 		$this->loadFromDatabase();
 		return $this->mPassword;
 	}
 
-	function getNewpassword()
-	{
+	function getNewpassword() {
 		$this->loadFromDatabase();
 		return $this->mNewpassword;
 	}
 
-	function addSalt( $p )
-	{
+	function addSalt( $p ) {
 		global $wgPasswordSalt;
 		if($wgPasswordSalt)
 			return md5( "{$this->mId}-{$p}" );
@@ -342,67 +330,57 @@ class User {
 			return $p;
 	}
 
-	function encryptPassword( $p )
-	{
+	function encryptPassword( $p ) {
 		return $this->addSalt( md5( $p ) );
 	}
 
-	function setPassword( $str )
-	{
+	function setPassword( $str ) {
 		$this->loadFromDatabase();
 		$this->setCookiePassword( $str );
 		$this->mPassword = $this->encryptPassword( $str );
-		$this->mNewpassword = "";
+		$this->mNewpassword = '';
 	}
 
-	function setCookiePassword( $str )
-	{
+	function setCookiePassword( $str ) {
 		$this->loadFromDatabase();
 		$this->mCookiePassword = md5( $str );
 	}
 
-	function setNewpassword( $str )
-	{
+	function setNewpassword( $str ) {
 		$this->loadFromDatabase();
 		$this->mNewpassword = $this->encryptPassword( $str );
 	}
 
-	function getEmail()
-	{
+	function getEmail() {
 		$this->loadFromDatabase();
 		return $this->mEmail;
 	}
 
-	function setEmail( $str )
-	{
+	function setEmail( $str ) {
 		$this->loadFromDatabase();
 		$this->mEmail = $str;
 	}
 
-	function getRealName()
-	{
+	function getRealName() {
 		$this->loadFromDatabase();
 		return $this->mRealName;
 	}
 
-	function setRealName( $str )
-	{
+	function setRealName( $str ) {
 		$this->loadFromDatabase();
 		$this->mRealName = $str;
 	}
 
-	function getOption( $oname )
-	{
+	function getOption( $oname ) {
 		$this->loadFromDatabase();
 		if ( array_key_exists( $oname, $this->mOptions ) ) {
 			return $this->mOptions[$oname];
 		} else {
-			return "";
+			return '';
 		}
 	}
 
-	function setOption( $oname, $val )
-	{
+	function setOption( $oname, $val ) {
 		$this->loadFromDatabase();
 		if ( $oname == 'skin' ) {
 			# Clear cached skin, so the new one displays immediately in Special:Preferences
@@ -412,76 +390,69 @@ class User {
 		$this->invalidateCache();
 	}
 
-	function getRights()
-	{
+	function getRights() {
 		$this->loadFromDatabase();
 		return $this->mRights;
 	}
 
-	function addRight( $rname )
-	{
+	function addRight( $rname )	{
 		$this->loadFromDatabase();
 		array_push( $this->mRights, $rname );
 		$this->invalidateCache();
 	}
 
-	function isSysop()
-	{
+	function isSysop() {
 		$this->loadFromDatabase();
 		if ( 0 == $this->mId ) { return false; }
 
-		return in_array( "sysop", $this->mRights );
+		return in_array( 'sysop', $this->mRights );
 	}
 
-	function isDeveloper()
-	{
+	function isDeveloper() {
 		$this->loadFromDatabase();
 		if ( 0 == $this->mId ) { return false; }
 
-		return in_array( "developer", $this->mRights );
+		return in_array( 'developer', $this->mRights );
 	}
 
-	function isBureaucrat()
-	{
+	function isBureaucrat() {
 		$this->loadFromDatabase();
 		if ( 0 == $this->mId ) { return false; }
 
-		return in_array( "bureaucrat", $this->mRights );
+		return in_array( 'bureaucrat', $this->mRights );
 	}
 
-	function isBot()
-	{
+	function isBot() {
 		$this->loadFromDatabase();
 
 		# Why was this here? I need a UID=0 conversion script [TS]
 		# if ( 0 == $this->mId ) { return false; }
 
-		return in_array( "bot", $this->mRights );
+		return in_array( 'bot', $this->mRights );
 	}
 
-	function &getSkin()
-	{
+	function &getSkin() {
 		if ( ! isset( $this->mSkin ) ) {
 			$skinNames = Skin::getSkinNames();
-			$s = $this->getOption( "skin" );
-			if ( "" == $s ) { $s = 'standard'; }
+			$s = $this->getOption( 'skin' );
+			if ( '' == $s ) { $s = 'standard'; }
 
 			if ( !isset( $skinNames[$s] ) ) {
 				$fallback = array(
-					0 => "SkinStandard",
-					1 => "SkinNostalgia",
-					2 => "SkinCologneBlue");
+					0 => 'SkinStandard',
+					1 => 'SkinNostalgia',
+					2 => 'SkinCologneBlue');
 				if ( isset( $skinNames['monobook'] ) ) {
-					$fallback[0] = "SkinMonoBook";
+					$fallback[0] = 'SkinMonoBook';
 				}
 				
 				if(is_numeric($s) && isset( $fallback[$s]) ){
 					$sn = $fallback[$s];
 				} else {
-					$sn = "SkinStandard";
+					$sn = 'SkinStandard';
 				}
 			} else {
-				$sn = "Skin" . $skinNames[$s];
+				$sn = 'Skin' . $skinNames[$s];
 			}
 			$this->mSkin = new $sn;
 		}
@@ -506,18 +477,16 @@ class User {
 	}
 
 
-	/* private */ function encodeOptions()
-	{
+	/* private */ function encodeOptions() {
 		$a = array();
 		foreach ( $this->mOptions as $oname => $oval ) {
-			array_push( $a, "{$oname}={$oval}" );
+			array_push( $a, $oname.'='.$oval );
 		}
 		$s = implode( "\n", $a );
 		return wfStrencode( $s );
 	}
 
-	/* private */ function decodeOptions( $str )
-	{
+	/* private */ function decodeOptions( $str ) {
 		$a = explode( "\n", $str );
 		foreach ( $a as $s ) {
 			if ( preg_match( "/^(.[^=]*)=(.*)$/", $s, $m ) ) {
@@ -526,40 +495,37 @@ class User {
 		}
 	}
 
-	function setCookies()
-	{
+	function setCookies() {
 		global $wgCookieExpiration, $wgCookiePath, $wgCookieDomain, $wgDBname;
 		if ( 0 == $this->mId ) return;
 		$this->loadFromDatabase();
 		$exp = time() + $wgCookieExpiration;
 
 		$_SESSION['wsUserID'] = $this->mId;
-		setcookie( "{$wgDBname}UserID", $this->mId, $exp, $wgCookiePath, $wgCookieDomain );
+		setcookie( $wgDBname.'UserID', $this->mId, $exp, $wgCookiePath, $wgCookieDomain );
 
 		$_SESSION['wsUserName'] = $this->mName;
-		setcookie( "{$wgDBname}UserName", $this->mName, $exp, $wgCookiePath, $wgCookieDomain );
+		setcookie( $wgDBname.'UserName', $this->mName, $exp, $wgCookiePath, $wgCookieDomain );
 
 		$_SESSION['wsUserPassword'] = $this->mPassword;
-		if ( 1 == $this->getOption( "rememberpassword" ) ) {
-			setcookie( "{$wgDBname}Password", $this->mCookiePassword, $exp, $wgCookiePath, $wgCookieDomain );
+		if ( 1 == $this->getOption( 'rememberpassword' ) ) {
+			setcookie( $wgDBname.'Password', $this->mCookiePassword, $exp, $wgCookiePath, $wgCookieDomain );
 		} else {
-			setcookie( "{$wgDBname}Password", "", time() - 3600 );
+			setcookie( $wgDBname.'Password', '', time() - 3600 );
 		}
 	}
 
-	function logout()
-	{
+	function logout() {
 		global $wgCookiePath, $wgCookieDomain, $wgDBname;
 		$this->mId = 0;
 
 		$_SESSION['wsUserID'] = 0;
 
-		setcookie( "{$wgDBname}UserID", "", time() - 3600, $wgCookiePath, $wgCookieDomain );
-		setcookie( "{$wgDBname}Password", "", time() - 3600, $wgCookiePath, $wgCookieDomain );
+		setcookie( $wgDBname.'UserID', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
+		setcookie( $wgDBname.'Password', '', time() - 3600, $wgCookiePath, $wgCookieDomain );
 	}
 
-	function saveSettings()
-	{
+	function saveSettings() {
 		global $wgMemc, $wgDBname;
 
 		if ( ! $this->mNewtalk ) {
@@ -590,11 +556,10 @@ class User {
 
 	# Checks if a user with the given name exists
 	#
-	function idForName()
-	{
+	function idForName() {
 		$gotid = 0;
 		$s = trim( $this->mName );
-		if ( 0 == strcmp( "", $s ) ) return 0;
+		if ( 0 == strcmp( '', $s ) ) return 0;
 
 		$sql = "SELECT user_id FROM user WHERE user_name='" .
 		  wfStrencode( $s ) . "'";
@@ -602,15 +567,14 @@ class User {
 		if ( 0 == wfNumRows( $res ) ) { return 0; }
 
 		$s = wfFetchObject( $res );
-		if ( "" == $s ) return 0;
+		if ( '' == $s ) return 0;
 
 		$gotid = $s->user_id;
 		wfFreeResult( $res );
 		return $gotid;
 	}
 
-	function addToDatabase()
-	{
+	function addToDatabase() {
 		$sql = "INSERT INTO user (user_name,user_password,user_newpassword," .
 		  "user_email, user_real_name, user_rights, user_options) " .
 		  " VALUES ('" . wfStrencode( $this->mName ) . "', '" .
@@ -618,7 +582,7 @@ class User {
 		  wfStrencode( $this->mNewpassword ) . "', '" .
 		  wfStrencode( $this->mEmail ) . "', '" .
 		  wfStrencode( $this->mRealName ) . "', '" .
-		  wfStrencode( implode( ",", $this->mRights ) ) . "', '" .
+		  wfStrencode( implode( ',', $this->mRights ) ) . "', '" .
 		  $this->encodeOptions() . "')";
 		wfQuery( $sql, DB_WRITE, "User::addToDatabase" );
 		$this->mId = $this->idForName();
@@ -629,14 +593,14 @@ class User {
           	global $wgIP;
 		# If the (non-anonymous) user is blocked, this function will block any IP address
 		# that they successfully log on from.
-		$fname = "User::spreadBlock";
+		$fname = 'User::spreadBlock';
 		
 		wfDebug( "User:spreadBlock()\n" );
 		if ( $this->mId == 0 ) {
 			return;
 		}
 		
-		$userblock = Block::newFromDB( "", $this->mId );
+		$userblock = Block::newFromDB( '', $this->mId );
 		if ( !$userblock->isValid() ) {
 			return;
 		}
@@ -654,7 +618,7 @@ class User {
 		$ipblock->mAddress = $wgIP;
 		$ipblock->mUser = 0;
 		$ipblock->mBy = $userblock->mBy;
-		$ipblock->mReason = wfMsg( "autoblocker", $this->getName(), $userblock->mReason );
+		$ipblock->mReason = wfMsg( 'autoblocker', $this->getName(), $userblock->mReason );
 		$ipblock->mTimestamp = wfTimestampNow();
 		$ipblock->mAuto = 1;
 		# If the user is already blocked with an expiry date, we don't 
@@ -679,17 +643,17 @@ class User {
 		// stubthreshold is only included below for completeness, 
 		// it will always be 0 when this function is called by parsercache.
 
-		$confstr = 	  $this->getOption( "quickbar" );
-		$confstr .= "!" . $this->getOption( "underline" );
-		$confstr .= "!" . $this->getOption( "hover" );
-		$confstr .= "!" . $this->getOption( "skin" );
-		$confstr .= "!" . $this->getOption( "math" );
-		$confstr .= "!" . $this->getOption( "highlightbroken" );
-		$confstr .= "!" . $this->getOption( "stubthreshold" ); 
-		$confstr .= "!" . $this->getOption( "editsection" );
-		$confstr .= "!" . $this->getOption( "editsectiononrightclick" );
-		$confstr .= "!" . $this->getOption( "showtoc" );
-		$confstr .= "!" . $this->getOption( "date" );
+		$confstr = 	  $this->getOption( 'quickbar' );
+		$confstr .= '!' . $this->getOption( 'underline' );
+		$confstr .= '!' . $this->getOption( 'hover' );
+		$confstr .= '!' . $this->getOption( 'skin' );
+		$confstr .= '!' . $this->getOption( 'math' );
+		$confstr .= '!' . $this->getOption( 'highlightbroken' );
+		$confstr .= '!' . $this->getOption( 'stubthreshold' ); 
+		$confstr .= '!' . $this->getOption( 'editsection' );
+		$confstr .= '!' . $this->getOption( 'editsectiononrightclick' );
+		$confstr .= '!' . $this->getOption( 'showtoc' );
+		$confstr .= '!' . $this->getOption( 'date' );
 
 		if(strlen($confstr) > 32)
 			$hash = md5($confstr);
@@ -698,14 +662,13 @@ class User {
 		return $hash;
 	}
 
-	function isAllowedToCreateAccount() 
-	{
+	function isAllowedToCreateAccount() {
 		global $wgWhitelistAccount;
 		$allowed = false;
 		
 		if (!$wgWhitelistAccount) { return 1; }; // default behaviour
 		foreach ($wgWhitelistAccount as $right => $ok) {
-			$userHasRight = (!strcmp($right, "user") || in_array($right, $this->getRights()));
+			$userHasRight = (!strcmp($right, 'user') || in_array($right, $this->getRights()));
 			$allowed |= ($ok && $userHasRight);
 		}
 		return $allowed;
