@@ -462,7 +462,13 @@ class Database {
 function wfEmergencyAbort( &$conn ) {
 	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgSiteNotice, $wgOutputEncoding;
 	
-	header( "Content-type: text/html; charset=$wgOutputEncoding" );
+	if( !headers_sent() ) {
+		header( "HTTP/1.0 500 Internal Server Error" );
+		header( "Content-type: text/html; charset=$wgOutputEncoding" );
+		/* Don't cache error pages!  They cause no end of trouble... */
+		header( "Cache-control: none" );
+		header( "Pragma: nocache" );
+	}
 	$msg = $wgSiteNotice;
 	if($msg == "") $msg = wfMsgNoDB( "noconnect" );
 	$text = $msg;
@@ -496,9 +502,6 @@ function wfEmergencyAbort( &$conn ) {
 		}
 	}
 	
-	/* Don't cache error pages!  They cause no end of trouble... */
-	header( "Cache-control: none" );
-	header( "Pragma: nocache" );
 	echo $text;
 	wfAbruptExit();
 }
