@@ -22,7 +22,7 @@ CREATE TABLE user (
 CREATE TABLE user_rights (
   ur_user int(5) unsigned NOT NULL,
   ur_rights tinyblob NOT NULL default '',
-  UNIQUE KEY user_id (user_id)
+  UNIQUE KEY ur_user (ur_user)
 );
 
 CREATE TABLE user_newtalk (
