@@ -94,22 +94,14 @@ class User {
 	{
 		if ( -1 != $this->mBlockedby ) { return; }
 
-		$remaddr = getenv( "REMOTE_ADDR" );
-		if ( 0 == $this->mId ) {
-			$sql = "SELECT ipb_by,ipb_reason FROM ipblocks WHERE " .
-			  "ipb_address='$remaddr'";
-		} else {
-			$sql = "SELECT ipb_by,ipb_reason FROM ipblocks WHERE " .
-			  "(ipb_address='$remaddr' OR ipb_user={$this->mId})";
-		}
-		$res = wfQuery( $sql, "User::getBlockedStatus" );
-		if ( 0 == wfNumRows( $res ) ) {
+		$ban = new Ban();
+		if ( $ban->load( getenv( "REMOTE_ADDR" ), $this->mId ) ) {
 			$this->mBlockedby = 0;
 			return;
 		}
-		$s = wfFetchObject( $res );
-		$this->mBlockedby = $s->ipb_by;
-		$this->mBlockreason = $s->ipb_reason;
+		
+		$this->mBlockedby = $ban->by;
+		$this->mBlockreason = $ban->reason;
 	}
 
 	function isBlocked()
@@ -528,8 +520,7 @@ class User {
 		  "user_newpassword= '" . wfStrencode( $this->mNewpassword ) . "', " .
 		  "user_email= '" . wfStrencode( $this->mEmail ) . "', " .
 		  "user_options= '" . $this->encodeOptions() . "', " .
-		  "user_rights= '" . wfStrencode( implode( ",", $this->mRights ) ) . "', " 
-.
+		  "user_rights= '" . wfStrencode( implode( ",", $this->mRights ) ) . "', " .
 		  "user_touched= '" . wfStrencode( $this->mTouched ) .
 		  "' WHERE user_id={$this->mId}";
 		wfQuery( $sql, "User::saveSettings" );
@@ -578,36 +569,37 @@ class User {
 		# that they successfully log on from.
 		$fname = "User::spreadBlock";
 		
-		if ( $this->mId == 0 || !$this->isBlocked()) {
+		wfDebug( "User:spreadBlock()\n" );
+		if ( $this->mId == 0 ) {
 			return;
 		}
 		
-		$sql = "SELECT * FROM ipblocks WHERE ipb_user={$this->mId}";
-		$res = wfQuery( $sql, $fname );
-		if ( wfNumRows( $res ) == 0 ) {
+		$userblock = Block::newFromDB( "", $this->mId );
+		if ( !$userblock->isValid() ) {
 			return;
 		}
 		
 		# Check if this IP address is already blocked
 		$addr = getenv( "REMOTE_ADDR" );
-		$sql = "SELECT * FROM ipblocks WHERE ipb_address='{$addr}'";
-		$res2 = wfQuery( $sql, $fname );
-		if ( wfNumRows( $res2 ) != 0 ) {
+		$ipblock = Block::newFromDB( $addr );
+		if ( $ipblock->isValid() ) {
+			# Just update the timestamp
+			$ipblock->updateTimestamp();
 			return;
 		}
 		
-		$row = wfFetchObject( $res );
-		$reason = str_replace( "$1", $this->getName(), wfMsg( "autoblocker" ) );
-		$reason = str_replace( "$2", $row->ipb_reason, $reason );
-		
-		$addr = getenv( "REMOTE_ADDR" );
-		$sql = "INSERT INTO ipblocks(ipb_address, ipb_user, ipb_by, " .
-		  "ipb_reason, ipb_timestamp) VALUES ('{$addr}', 0, {$row->ipb_by}," . 
-		  "'{$reason}', '" . wfTimestampNow() . "')";
-		wfQuery( $sql, $fname );
-		
-		wfFreeResult( $res );
-		wfFreeResult( $res2 );
+		# Make a new ban object with the desired properties
+		wfDebug( "Autoblocking {$this->mUserName}@{$addr}\n" );
+		$ipblock->mAddress = $addr;
+		$ipblock->mUser = 0;
+		$ipblock->mBy = $userblock->mBy;
+		$ipblock->mReason = str_replace( "$1", $this->getName(), wfMsg( "autoblocker" ) );
+		$ipblock->mReason = str_replace( "$2", $userblock->mReason, $ipblock->mReason );
+		$ipblock->mTimestamp = wfTimestampNow();
+
+		# Insert it
+		$ipblock->insert();
+	
 	}
 }
 
