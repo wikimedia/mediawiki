@@ -30,6 +30,7 @@ Major changes from 1.3.x:
 * Adding filter and username exact search match for Special:Listusers (bug #770)
 * Special:Listadmins outdated, use Special:Listusers instead (bug #857)
 * Traditional/Simplified Chinese conversion
+* New tag "<gallery>" to generate a table of image thumbnails
 * ... and more!
 
 === Caveats ===
