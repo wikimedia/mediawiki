@@ -1,13 +1,14 @@
 <?php
 # SpecialPage: handling special pages and lists thereof
 
-# $wgSpecialPages is a list of all SpecialPage objects. These objects should be derived from
-# SpecialPage. At a minimum, they must have an execute() method, which sends the HTML for the 
-# special page to $wgOut. The parent object has an execute() method which distributes the call 
-# to the historical global functions.
+# $wgSpecialPages is a list of all SpecialPage objects. These objects are either instances of
+# SpecialPage or a sub-class thereof. They have an execute() method, which sends the HTML for the
+# special page to $wgOut. The parent class has an execute() method which distributes the call to
+# the historical global functions. Additionally, execute() also checks if the user has the
+# necessary access privileges and bails out if not.
 
-# To add a special page at run-time, use SpecialPage::addPage(). DO NOT add objects directly to 
-# this list.
+# To add a special page at run-time, use SpecialPage::addPage().
+# DO NOT manipulate this array at run-time.
 
 global $wgSpecialPages;
 
@@ -72,15 +73,15 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 # Parent special page class, also static functions for handling the special page list
 class SpecialPage
 {
-	/* private */ var $mName; # The name of the class, used in the URL. Also used for the default 
+	/* private */ var $mName; # The name of the class, used in the URL. Also used for the default
 	                          # <h1> heading, see getDescription()
-	/* private */ var $mRestriction; # Minimum user level required to access this page, or "" 
-	                                 # for anyone. Also used to categorise the pages in 
+	/* private */ var $mRestriction; # Minimum user level required to access this page, or ""
+	                                 # for anyone. Also used to categorise the pages in
 									 # Special:Specialpages
 	/* private */ var $mListed; # Listed in Special:Specialpages?
 	/* private */ var $mFunction; # Function name called by the default execute()
 	/* private */ var $mFile; # File which needs to be included before the function above can be called
-	
+
 	# Add a page to the list of valid special pages
 	# $obj->execute() must send HTML to $wgOut then return
 	# Use this for a special page extension
@@ -157,15 +158,15 @@ class SpecialPage
 	# Default constructor for special pages
 	# Derivative classes should call this from their constructor
 	#   $name - the name of the special page, as seen in links and URLs
-	#   $restriction - the minimum user level required, e.g. "sysop" or "developer". 
+	#   $restriction - the minimum user level required, e.g. "sysop" or "developer".
 	#
-	#       Note that if the user does not have the required level, an error message will 
-	#       be displayed by the default execute() method, without the global function ever 
-	#       being called. 
+	#       Note that if the user does not have the required level, an error message will
+	#       be displayed by the default execute() method, without the global function ever
+	#       being called.
 	#
 	#       If you override execute(), you can recover the default behaviour with userCanExecute()
 	#       and displayRestrictionError()
-	#       
+	#
 	#   $listed - whether the page is listed in Special:Specialpages
 	#   $function - the function called by execute(). By default it is constructed from $name
 	#   $file - the file which is included by execute(). It is also constructed from $name by default
@@ -179,7 +180,7 @@ class SpecialPage
 		} else {
 			$this->mFunction = $function;
 		}
-		if ( $file === "default" ) { 
+		if ( $file === "default" ) {
 			$this->mFile = "Special{$name}.php";
 		} else {
 			$this->mFile = $file;
@@ -191,7 +192,7 @@ class SpecialPage
 	function getRestriction() { return $this->mRestriction; }
 	function isListed() { return $this->mListed; }
 
-	# Checks if the given user (identified by an object) can execute this special page (as 
+	# Checks if the given user (identified by an object) can execute this special page (as
 	# defined by $mRestriction)
 	function userCanExecute( &$user ) {
 		if ( $this->mRestriction == "" ) {
@@ -204,7 +205,7 @@ class SpecialPage
 			}
 		}
 	}
-	
+
 	# Output an error message telling the user what access level they have to have
 	function displayRestrictionError() {
 		global $wgOut;
@@ -214,7 +215,7 @@ class SpecialPage
 			$wgOut->sysopRequired();
 		}
 	}
-	
+
 	# Sets headers - this should be called from the execute() method of all derived classes!
 	function setHeaders() {
 		global $wgOut;
@@ -229,11 +230,11 @@ class SpecialPage
 		global $wgUser, $wgOut, $wgTitle;
 
 		$this->setHeaders();
-		
+
 		if ( $this->userCanExecute( $wgUser ) ) {
 			if ( $this->mFile ) {
 				require_once( $this->mFile );
-			}		
+			}
 			$func = $this->mFunction;
 			$func( $par );
 		} else {
@@ -241,10 +242,10 @@ class SpecialPage
 		}
 	}
 
-	# Returns the name that goes in the <h1> in the special page itself, and also the name that 
+	# Returns the name that goes in the <h1> in the special page itself, and also the name that
 	# will be listed in Special:Specialpages
 	#
-	# Derived classes can override this, but usually it is easier to keep the default behaviour. 
+	# Derived classes can override this, but usually it is easier to keep the default behaviour.
 	# Messages can be added at run-time, see MessageCache.php
 	function getDescription() {
 		return wfMsg( strtolower( $this->mName ) );
