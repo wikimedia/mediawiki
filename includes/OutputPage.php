@@ -1368,10 +1368,14 @@ $t[] = "</table>" ;
 			$es=$wgUser->getID() && $wgUser->getOption( "editsection" );
 			$esr=$wgUser->getID() && $wgUser->getOption( "editsectiononrightclick" );
 		}
-		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML, do not 
-		# add TOC
+
+		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML, 
+		# do not add TOC
 		$mw =& MagicWord::get( MAG_NOTOC );
-		$st = ! $mw->matchAndRemove( $text );
+		if ($mw->matchAndRemove( $text ))
+		{
+			$st = 0;
+		}
 
 		# never add the TOC to the Main Page. This is an entry page that should not
 		# be more than 1-2 screens large anyway
