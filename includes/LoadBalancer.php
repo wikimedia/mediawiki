@@ -177,7 +177,7 @@ class LoadBalancer {
 	{
 		$c =& $this->getConnection( 0 );
 		if ( $c === false || !$c->isOpen() ) {
-			reportConnectionError( $conn );
+			$this->reportConnectionError( $c );
 			$c = false;
 		}
 		return $c;
