@@ -1827,7 +1827,12 @@ class Article {
 
 	function info()
 	{
-		global $wgUser, $wgTitle, $wgOut, $wgLang;
+		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgAllowPageInfo;
+
+		if ( !$wgAllowPageInfo ) {
+			$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
+			return;
+		}
 
 		$basenamespace = $wgTitle->getNamespace() & (~1);
 		$cur_clause = "cur_title='".$wgTitle->getDBkey()."' AND cur_namespace=".$basenamespace;
