@@ -46,14 +46,14 @@ function wfLocalUrl( $a, $q = "" )
 
 	if ( "" == $a ) {
 		if( "" == $q ) {
-			$a = $wgServer . $wgScript;
+			$a = $wgScript;
 		} else {
-			$a = "{$wgServer}{$wgScript}?{$q}";
+			$a = "{$wgScript}?{$q}";
 		}	
 	} else if ( "" == $q ) {
 		$a = str_replace( "$1", $a, $wgArticlePath );
 	} else {
-		$a = "{$wgServer}{$wgScript}?title={$a}&{$q}";	
+		$a = "{$wgScript}?title={$a}&{$q}";	
 	}
 	return $a;
 }
