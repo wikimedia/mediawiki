@@ -264,7 +264,7 @@ class DatabasePgsql extends Database {
 							} else {
 								$sql .= " AND ";
 							}
-							$sql .= "$col=" . $this->addQuotes( $row[$col] )
+							$sql .= "$col=" . $this->addQuotes( $row[$col] );
 						}
 				} else {
 						$sql .= "$index=" . $this->addQuotes( $row[$index] );
