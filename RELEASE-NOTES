@@ -1,6 +1,6 @@
 = MediaWiki release notes =
 
-== Version 1.2.0rc2, 2004-03-01 ==
+== Version 1.2.0rc2, 2004-03-03 ==
 
 This is a RELEASE CANDIDATE for the new production release. It is more or
 less in sync with what is running on Wikipedia right now. There may be
@@ -8,6 +8,9 @@ some interesting bugs, it may eat all your data, and documentation may
 not be up to date. If you use this on a production site, BE CAREFUL.
 
 New features in 1.2:
+* In-place web-based installation [experimental!]
+  Note that maintenance functionss and database update are not yet
+  available through the web install script.
 * Image resizing/thumbnail generation
 * Stricter upload file extension blacklist and whitelist options
 * More flexible blocking system; time period may be set
@@ -29,6 +32,7 @@ Fixes and tweaks:
 * Should work out of the box on MySQL 3.2.x again. On 4.x set
   $wgEnablePersistentLC = true; to turn on the link cache table
   for a slight rendering speed boost.
+* Should work on PHP 5.0 beta, but there may still be some problems
 * rebuildMessages.php can now selectively update new messages, or
   overwrite everything.
 * Works with short tags disabled.
