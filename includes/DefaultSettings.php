@@ -432,4 +432,7 @@ $wgAllowUserJs = true;
 # Allow user Cascading Style Sheets (CSS)?
 $wgAllowUserCss = true;
 
+# Allow the "info" action, very inefficient at the moment
+$wgAllowPageInfo = false;
+
 ?>
