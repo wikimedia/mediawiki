@@ -36,20 +36,29 @@ CREATE TABLE /*$wgDBprefix*/user_rights (
 -- );
 
 CREATE TABLE /*$wgDBprefix*/page (
+  -- Identifiers:
   page_id int(8) unsigned NOT NULL auto_increment,
   page_namespace tinyint NOT NULL,
   page_title varchar(255) binary NOT NULL,
+  
+  -- Mutable information
   page_restrictions tinyblob NOT NULL default '',
   page_counter bigint(20) unsigned NOT NULL default '0',
   page_is_redirect tinyint(1) unsigned NOT NULL default '0',
   page_is_new tinyint(1) unsigned NOT NULL default '0',
   page_random real unsigned NOT NULL,
   page_touched char(14) binary NOT NULL default '',
+  
+  -- Handy key to revision.rev_id of the current revision
   page_latest int(8) unsigned NOT NULL,
+  page_len int(8) unsigned NOT NULL,
 
   PRIMARY KEY page_id (page_id),
   UNIQUE INDEX name_title (page_namespace,page_title),
-  INDEX (page_random)
+  
+  -- Special-purpose indexes
+  INDEX (page_random),
+  INDEX (page_len)
 );
 
 CREATE TABLE /*$wgDBprefix*/revision (

@@ -36,6 +36,7 @@ $wgNewFields = array(
 	array( 'group',         'group_rights',     'patch-userlevels-rights.sql' ),
  	array( 'logging',       'log_params',       'patch-log_params.sql' ),
  	array( 'archive',       'ar_rev_id',        'patch-archive-rev_id.sql' ),
+ 	array( 'page',          'page_len',         'patch-page_len.sql' ),
 );
 
 function add_table( $name, $patch ) {
@@ -347,10 +348,12 @@ function do_schema_restructuring() {
   			page_random real unsigned NOT NULL,
   			page_touched char(14) binary NOT NULL default '',
   			page_latest int(8) unsigned NOT NULL,
+  			page_len int(8) unsigned NOT NULL,
 
   			PRIMARY KEY page_id (page_id),
   			UNIQUE INDEX name_title (page_namespace,page_title),
-  			INDEX (page_random)
+  			INDEX (page_random),
+  			INDEX (page_len)
 			)", $fname );
 		$wgDatabase->query("CREATE TABLE $revision (
   			rev_id int(8) unsigned NOT NULL auto_increment,
@@ -390,9 +393,9 @@ function do_schema_restructuring() {
 
 		echo "......Setting up page table.\n";
 		$wgDatabase->query( "INSERT INTO $page (page_id, page_namespace, page_title, page_restrictions, page_counter,
-    				page_is_redirect, page_is_new, page_random, page_touched, page_latest)
+    				page_is_redirect, page_is_new, page_random, page_touched, page_latest, page_len)
   			SELECT cur_id, cur_namespace, cur_title, cur_restrictions, cur_counter, cur_is_redirect, cur_is_new,
-    				cur_random, cur_touched, rev_id
+    				cur_random, cur_touched, rev_id, LENGTH(cur_text)
   			FROM $cur,$revision
   			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}", $fname );
 

@@ -227,14 +227,14 @@ class Linker {
 				if ( $threshold > 0 ) {
 					$dbr =& wfGetDB( DB_SLAVE );
 					$s = $dbr->selectRow(
-						array( 'page', 'text' ),
-						array( 'LENGTH(old_text) AS x',
+						array( 'page' ),
+						array( 'page_len',
 							'page_namespace',
 							'page_is_redirect' ),
 						array( 'page_id' => $aid,
 							'old_id = page_latest' ), $fname ) ;
 					if ( $s !== false ) {
-						$size = $s->x;
+						$size = $s->page_len;
 						if ( $s->page_is_redirect OR $s->page_namespace != NS_MAIN ) {
 							$size = $threshold*2 ; # Really big
 						}

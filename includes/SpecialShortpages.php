@@ -22,28 +22,29 @@ class ShortPagesPage extends QueryPage {
 		return "Shortpages";
 	}
 
+	/**
+	 * This query is indexed as of 1.5
+	 */
 	function isExpensive() {
-		return true;
+		return false;
 	}
-	function isSyndicated() { return false; }
+	
+	function isSyndicated() {
+		return false;
+	}
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );
 		$page = $dbr->tableName( 'page' );
-		$text = $dbr->tableName( 'text' );
 		$name = $dbr->addQuotes( $this->getName() );
 		
-		# FIXME: Not only is this teh suck, it will fail
-		# if we compress revisions on save as it will return
-		# the compressed size.
 		return
 			"SELECT $name as type,
 					page_namespace as namespace,
 			        page_title as title,
-			        LENGTH(old_text) AS value
-			FROM $page, $text
-			WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0
-			  AND page_latest=old_id";
+			        page_len AS value
+			FROM $page
+			WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0";
 	}
 	
 	function sortDescending() {
@@ -52,8 +53,9 @@ class ShortPagesPage extends QueryPage {
 
 	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang;
-		$nb = wfMsg( "nbytes", $wgLang->formatNum( $result->value ) );
-		$link = $skin->makeKnownLink( $result->title, $wgContLang->convert( $result->title ) );
+		$nb = htmlspecialchars( wfMsg( "nbytes", $wgLang->formatNum( $result->value ) ) );
+		$title = Title::makeTitle( $result->namespace, $result->title );
+		$link = $skin->makeKnownLinkObj( $title, $wgContLang->convert( $title->getPrefixedText() ) );
 		return "{$link} ({$nb})";
 	}
 }

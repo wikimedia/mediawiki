@@ -741,12 +741,15 @@ class Article {
 	 *
 	 * @param Database $dbw
 	 * @param int $revId
-	 * @param int $lastRevision
-	 * @param bool $isRedirect
+	 * @param string $text -- used to set length and redirect status if given
+	 * @param int $lastRevision -- if given, will not overwrite the page field
+	 *                             when different from the currently set value.
+	 *                             Giving 0 indicates the new page flag should
+	 *                             be set on.
 	 * @return bool true on success, false on failure
 	 * @access private
 	 */
-	function updateRevisionOn( &$dbw, $revId, $lastRevision = null, $isRedirect = false ) {
+	function updateRevisionOn( &$dbw, $revId, $text = '', $lastRevision = null ) {
 		$fname = 'Article::updateToRevision';
 		wfProfileIn( $fname );
 		
@@ -760,7 +763,8 @@ class Article {
 				'page_latest'      => $revId,
 				'page_touched'     => $dbw->timestamp(),
 				'page_is_new'      => ($lastRevision === 0) ? 0 : 1,
-				'page_is_redirect' => $isRedirect ? 1 : 0,
+				'page_is_redirect' => Article::isRedirect( $text ),
+				'page_len'         => strlen( $text ),
 			),
 			$conditions,
 			$fname );
@@ -806,7 +810,7 @@ class Article {
 		$this->mTitle->resetArticleID( $newid );
 		
 		# Update the page record with revision data
-		$this->updateRevisionOn( $dbw, $revisionId, 0, $this->isRedirect( $text ) );
+		$this->updateRevisionOn( $dbw, $revisionId, $text, 0 );
 
 		Article::onArticleCreate( $this->mTitle );
 		RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary );
@@ -1004,7 +1008,7 @@ class Article {
 			$revisionId = $revision->insertOn( $dbw );
 			
 			# Update page
-			$ok = $this->updateRevisionOn( $dbw, $revisionId, $lastRevision, $redir );
+			$ok = $this->updateRevisionOn( $dbw, $revisionId, $text, $lastRevision );
 
 			if( !$ok ) {
 				/* Belated edit conflict! Run away!! */
@@ -1945,8 +1949,7 @@ class Article {
 			'minor_edit' => $minor ? 1 : 0,
 			) );
 		$revisionId = $revision->insertOn( $dbw );
-		$this->updateRevisionOn( $dbw, $revisionId, null,
-			Article::isRedirect( $text ) );
+		$this->updateRevisionOn( $dbw, $revisionId, $text );
 		$dbw->commit();
 		
 		wfProfileOut( $fname );
@@ -2136,32 +2139,5 @@ class Article {
 	}
 }
 
-/**
- * Check whether an article is a stub
- *
- * @public
- * @param integer $articleID	ID of the article that is to be checked
- */
-function wfArticleIsStub( $articleID ) {
-	global $wgUser;
-	$fname = 'wfArticleIsStub';
-
-	wfDebugDieBacktrace( 'This function seems to be unused. Pending removal.' );
-
-	$threshold = $wgUser->getOption('stubthreshold') ;
-	if ( $threshold > 0 ) {
-		$dbr =& wfGetDB( DB_SLAVE );
-		$s = $dbr->selectRow( array('page', 'text'),
-			array( 'LENGTH(old_text) AS len', 'page_namespace', 'page_is_redirect' ),
-			array( 'page_id' => $articleID, "page.page_latest=text.old_id" ),
-			$fname ) ;
-		if ( $s == false OR $s->page_is_redirect OR $s->page_namespace != NS_MAIN ) {
-			return false;
-		}
-		$size = $s->len;
-		return ( $size < $threshold );
-	}
-	return false;
-}
 
 ?>

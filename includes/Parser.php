@@ -2770,16 +2770,12 @@ class Parser
 					# Not in the link cache, add it to the query
 					if ( !isset( $current ) ) {
 						$current = $val;
-						$tables = $page;
-						$join = '';
 						$query =  "SELECT page_id, page_namespace, page_title";
 						if ( $threshold > 0 ) {
-							$textTable = $dbr->tableName( 'text' );
-							$query .= ', LENGTH(old_text) AS page_len, page_is_redirect';
-							$tables .= ", $textTable";
+							$query .= ', page_len, page_is_redirect';
 							$join = 'page_latest=old_id AND';
 						}
-						$query .= " FROM $tables WHERE $join (page_namespace=$val AND page_title IN(";
+						$query .= " FROM $page WHERE (page_namespace=$val AND page_title IN(";
 					} elseif ( $current != $val ) {
 						$current = $val;
 						$query .= ")) OR (page_namespace=$val AND page_title IN(";
