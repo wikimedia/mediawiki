@@ -53,6 +53,15 @@ unset($matches);
 
 require_once( 'RecentChange.php' );
 
+global $wgLinkHolders;
+$wgLinkHolders = array(
+	'namespaces' => array(),
+	'dbkeys' => array(),
+	'queries' => array(),
+	'texts' => array(),
+	'titles' => array()
+);
+
 /**
  * @todo document
  * @package MediaWiki
@@ -1497,7 +1506,7 @@ class Skin {
 	 * Pass a title object, not a title string
 	 */
 	function makeLinkObj( &$nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgLinkHolders;
 		$fname = 'Skin::makeLinkObj';
 
 		# Fail gracefully
@@ -1534,8 +1543,13 @@ class Skin {
 				}
 
 				# Allows wiki to bypass using linkcache, see OutputPage::parseLinkHolders()
-				$retVal = '<!--LINK ' . implode( ' ', array( $nt->getNamespace(), $nt->getDBkey(),
-					$query, $prefix . $text . $inside ) ) . "-->{$trail}";
+				$nr = array_push( $wgLinkHolders['namespaces'], $nt->getNamespace() );
+				$wgLinkHolders['dbkeys'][] = $nt->getDBkey();
+				$wgLinkHolders['queries'][] = $query;
+				$wgLinkHolders['texts'][] = $prefix.$text.$inside;
+				$wgLinkHolders['titles'][] = $nt;
+
+				$retVal = '<!--LINK '. ($nr-1) ."-->{$trail}";
 			} else {
 				# Work out link colour immediately
 				$aid = $nt->getArticleID() ;
