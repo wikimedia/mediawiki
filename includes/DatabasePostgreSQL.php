@@ -280,7 +280,7 @@ class DatabasePgsql extends Database {
 		foreach( $rows as $row ) {
 			# Delete rows which collide
 			if ( $uniqueIndexes ) {
-				$sql = "DELETE FROM $table WHERE (";
+				$sql = "DELETE FROM $table WHERE ";
 				$first = true;
 				foreach ( $uniqueIndexes as $index ) {
 					if ( $first ) {
@@ -308,7 +308,7 @@ class DatabasePgsql extends Database {
 			}
 
 			# Now insert the row
-			$sql = "INSERT INTO $table (" . $this->makeList( array_flip( $row ) ) .') VALUES (' .
+			$sql = "INSERT INTO $table (" . $this->makeList( array_flip( $row ), LIST_NAMES ) .') VALUES (' .
 				$this->makeList( $row, LIST_COMMA ) . ')';
 			$this->query( $sql, $fname );
 		}
