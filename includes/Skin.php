@@ -805,17 +805,19 @@ class Skin extends Linker {
 	}
 
 	function getCopyrightIcon() {
-		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgRightsIcon;
+		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgRightsIcon, $wgCopyrightIcon;
 		$out = '';
-		if( $wgRightsIcon ) {
+		if ( isset( $wgCopyrightIcon ) && $wgCopyrightIcon ) {
+			$out = $wgCopyrightIcon;
+		} else if ( $wgRightsIcon ) {
 			$icon = htmlspecialchars( $wgRightsIcon );
-			if( $wgRightsUrl ) {
+			if ( $wgRightsUrl ) {
 				$url = htmlspecialchars( $wgRightsUrl );
 				$out .= '<a href="'.$url.'">';
 			}
 			$text = htmlspecialchars( $wgRightsText );
 			$out .= "<img src=\"$icon\" alt='$text' />";
-			if( $wgRightsUrl ) {
+			if ( $wgRightsUrl ) {
 				$out .= '</a>';
 			}
 		}
