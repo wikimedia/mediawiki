@@ -2,7 +2,7 @@
  * common.css
  * This file contains CSS settings common to Wikistandard, Nostalgia and CologneBlue
  */
-
+#footer { clear: both }
 /* images */
 div.floatright { float: right; margin: 0 0 1em 1em; }
 div.floatright p { font-style: italic; }
@@ -137,4 +137,5 @@ img.tex { vertical-align: middle; }
     float: left;
     margin-top: 1em;
 }
+fieldset.prefsection { margin-top: 1em }
 fieldset.operaprefsection { margin-left: 15em }
