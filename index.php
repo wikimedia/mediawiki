@@ -46,14 +46,13 @@ if ( "" == $title && "delete" != $action ) {
 }
 wfProfileOut( "main-misc-setup" );
 
-# If the user is not logged in, the Namespace:title of the article must be in the Read array in
-#  order for the user to see it.
-if ( !$wgUser->getID() && is_array( $wgWhitelistRead ) && $wgTitle) {
-	if ( !in_array( $wgLang->getNsText( $wgTitle->getNamespace() ) . ":" . $wgTitle->getDBkey(), $wgWhitelistRead ) ) {
-		$wgOut->loginToUse();
-		$wgOut->output();
-		exit;
-	}
+# If the user is not logged in, the Namespace:title of the article must be in
+# the Read array in order for the user to see it. (We have to check here to
+# catch special pages etc. We check again in Article::view())
+if ( !$wgTitle->userCanRead() ) {
+	$wgOut->loginToUse();
+	$wgOut->output();
+	exit;
 }
 
 if ( $search = $wgRequest->getText( 'search' ) ) {

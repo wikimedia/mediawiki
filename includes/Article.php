@@ -219,12 +219,20 @@ class Article {
 			$this->mTitle->mRestrictionsLoaded = true;
 			wfFreeResult( $res );
 		} else { # oldid set, retrieve historical version
-			$sql = "SELECT old_text,old_timestamp,old_user,old_flags FROM old " .
+			$sql = "SELECT old_namespace,old_title,old_text,old_timestamp,old_user,old_flags FROM old " .
 			  "WHERE old_id={$oldid}";
 			$res = wfQuery( $sql, DB_READ, $fname );
-			if ( 0 == wfNumRows( $res ) ) { return; }
+			if ( 0 == wfNumRows( $res ) ) {
+				return;
+			}
 
 			$s = wfFetchObject( $res );
+			if( $this->mTitle->getNamespace() != $s->old_namespace ||
+				$this->mTitle->getDBkey() != $s->old_title ) {
+				$oldTitle = Title::makeTitle( $s->old_namesapce, $s->old_title );
+				$this->mTitle = $oldTitle;
+				$wgTitle = $oldTitle;
+			}
 			$this->mContent = Article::getRevisionText( $s );
 			$this->mUser = $s->old_user;
 			$this->mCounter = 0;
@@ -484,6 +492,14 @@ class Article {
 		}
 
 		$text = $this->getContent( false ); # May change mTitle by following a redirect
+		
+		# Another whitelist check in case oldid or redirects are altering the title
+		if ( !$this->mTitle->userCanRead() ) {
+			$wgOut->loginToUse();
+			$wgOut->output();
+			exit;
+		}
+		
 		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 
 		# We're looking at an old revision

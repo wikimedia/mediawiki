@@ -508,7 +508,24 @@ class Title {
 		}
 		return true;
 	}
-
+	
+	function userCanRead() {
+		global $wgUser;
+		global $wgWhitelistRead;
+		
+		if( 0 != $wgUser->getID() ) return true;
+		if( !is_array( $wgWhitelistRead ) ) return true;
+		
+		$name = $this->getPrefixedText();
+		if( in_array( $name, $wgWhitelistRead ) ) return true;
+		
+		# Compatibility with old settings
+		if( $this->getNamespace() == NS_ARTICLE ) {
+			if( in_array( ":" . $name, $wgWhitelistRead ) ) return true;
+		}
+		return false;
+	}
+	
 	function isCssJsSubpage() {
 		return ( Namespace::getUser() == $this->mNamespace and preg_match("/\\.(css|js)$/", $this->mTextform ) );
 	}
@@ -1122,5 +1139,6 @@ class Title {
 		Article::onArticleCreate( $this );
 		return true;
 	}
+	
 }
 ?>
