@@ -91,7 +91,20 @@ class Parser
 		$stripState = NULL;
 		$text = $this->strip( $text, $this->mStripState );
 		$text = $this->internalParse( $text, $linestart );
+		# only once and next-to-last
+		$text = $this->doBlockLevels( $text, $linestart );		
 		$text = $this->unstrip( $text, $this->mStripState );
+		# Clean up special characters, only run once and last
+		$fixtags = array(
+			"/<hr *>/i" => '<hr/>',
+			"/<br *>/i" => '<br/>', 
+			"/<center *>/i"=>'<span style="text-align:center;">',
+			"/<\\/center *>/i" => '</span>',
+			# Clean up spare ampersands; note that we probably ought to be
+			# more careful about named entities.
+			'/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/' => '&amp;'
+		);
+		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
 		
 		$this->mOutput->setText( $text );
 		wfProfileOut( $fname );
@@ -469,26 +482,9 @@ class Parser
 		$text = $this->formatHeadings( $text );
 		$sk =& $this->mOptions->getSkin();
 		$text = $sk->transformContent( $text );
-		
-		$fixtags = array(
-			"/<hr *>/i" => '<hr/>',
-			"/<br *>/i" => '<br/>', 
-			"/<center *>/i"=>'<span style="text-align:center;">',
-			"/<\\/center *>/i" => '</span>'
-		);
-		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
-		// another round, but without regex
-		$fixtags = array(
-			'& ' => '&amp;',
-			'&<' => '&amp;<',
-		);
-		$text = str_replace( array_keys($fixtags), array_values($fixtags), $text );
-		
+
 		$text .= $this->categoryMagic () ;
 		
-		# needs to be called last
-		$text = $this->doBlockLevels( $text, $linestart );		
-
 		wfProfileOut( $fname );
 		return $text;
 	}
@@ -1621,7 +1617,7 @@ class Parser
 			# strip out HTML
 			$canonized_headline = preg_replace( "/<.*?" . ">/","",$canonized_headline );
 			$tocline = trim( $canonized_headline );	
-			$canonized_headline = preg_replace("/[ &\\/<>\\(\\)\\[\\]=,+']+/", '_', html_entity_decode( $tocline));
+			$canonized_headline = preg_replace("/[ \\?&\\/<>\\(\\)\\[\\]=,+']+/", '_', html_entity_decode( $tocline));
 			$refer[$headlineCount] = $canonized_headline;
 			
 			# count how many in assoc. array so we can track dupes in anchors
