@@ -335,7 +335,7 @@ class EditPage {
 				$previewhead.="<h2>" . wfMsg( "previewconflict" ) .
 				  "</h2>\n";
 			}
-			$previewtext = wfUnescapeHTML( $this->textbox1 );
+			$previewtext = $this->textbox1;
 
 			$parserOptions = ParserOptions::newFromUser( $wgUser );
 			$parserOptions->setUseCategoryMagic( false );
