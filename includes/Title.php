@@ -726,7 +726,12 @@ class Title {
 		}
 		
 		# "." and ".." conflict with the directories of those namesa
-		if ( $r === "." || $r === ".." || strpos( $r, "./" ) !== false ) {
+		if ( strpos( $r, "." ) !== false &&
+		     ( $r === "." || $r === ".." ||
+		       strpos( $r, "./" ) === 0 ||
+		       strpos( $r, "/./" !== false ) ||
+		       strpos( $r, "/../" !== false ) ) )
+		{
 			return false;
 		}
 
