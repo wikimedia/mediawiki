@@ -1,6 +1,6 @@
 <?php
 
-require_once('Tokenizer.php');
+// require_once('Tokenizer.php');
 
 if( $GLOBALS['wgUseWikiHiero'] ){
 	require_once('extensions/wikihiero/wikihiero.php');
@@ -556,16 +556,20 @@ class Parser
 		$text = $this->removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text, $args );
 
-		# $text = preg_replace( "/(^|\n)-----*/", "\\1<hr>", $text );
+		$text = preg_replace( "/(^|\n)-----*/", "\\1<hr/>", $text );
 
 		$text = $this->doHeadings( $text );
 		if($this->mOptions->getUseDynamicDates()) {
 			global $wgDateFormatter;
 			$text = $wgDateFormatter->reformat( $this->mOptions->getDateFormat(), $text );
 		}
+		$text = $this->doAllQuotes( $text );
 		$text = $this->replaceExternalLinks( $text );
-		$text = $this->doTokenizedParser ( $text );
+		$text = $this->replaceInternalLinks ( $text );
+		//$text = $this->doTokenizedParser ( $text );
 		$text = $this->doTableStuff ( $text ) ;
+		$text = $this->magicISBN( $text );
+		$text = $this->magicRFC( $text );
 		$text = $this->formatHeadings( $text, $isMain );
 		$sk =& $this->mOptions->getSkin();
 		$text = $sk->transformContent( $text );
@@ -588,6 +592,64 @@ class Parser
 			  "<h{$i}>\\1</h{$i}>\\2", $text );
 		}
 		return $text;
+	}
+
+	/* private */ function doAllQuotes( $text )
+	{
+		$outtext = "";
+		$lines = explode( "\r\n", $text );
+		foreach ( $lines as $line ) {
+			$outtext .= $this->doQuotes ( "", $line, "" ) . "\r\n";
+		}
+		return $outtext;
+	}
+
+	/* private */ function doQuotes( $pre, $text, $mode )
+	{
+		if ( preg_match( "/^(.*)''(.*)$/sU", $text, $m ) ) {
+			$m1_strong = ($m[1] == "") ? "" : "<strong>{$m[1]}</strong>";
+			$m1_em = ($m[1] == "") ? "" : "<em>{$m[1]}</em>";
+			if ( substr ($m[2], 0, 1) == "'" ) {
+				$m[2] = substr ($m[2], 1);
+				if ($mode == "em") {
+					return $this->doQuotes ( $m[1], $m[2], ($m[1] == "") ? "both" : "emstrong" );
+				} else if ($mode == "strong") {
+					return $m1_strong . $this->doQuotes ( "", $m[2], "" );
+				} else if (($mode == "emstrong") || ($mode == "both")) {
+					return $this->doQuotes ( "", $pre.$m1_strong.$m[2], "em" );
+				} else if ($mode == "strongem") {
+					return "<strong>{$pre}{$m1_em}</strong>" . $this->doQuotes ( "", $m[2], "em" );
+				} else {
+					return $m[1] . $this->doQuotes ( "", $m[2], "strong" );
+				}
+			} else {
+				if ($mode == "strong") {
+					return $this->doQuotes ( $m[1], $m[2], ($m[1] == "") ? "both" : "strongem" );
+				} else if ($mode == "em") {
+					return $m1_em . $this->doQuotes ( "", $m[2], "" );
+				} else if ($mode == "emstrong") {
+					return "<em>{$pre}{$m1_strong}</em>" . $this->doQuotes ( "", $m[2], "strong" );
+				} else if (($mode == "strongem") || ($mode == "both")) {
+					return $this->doQuotes ( "", $pre.$m1_em.$m[2], "strong" );
+				} else {
+					return $m[1] . $this->doQuotes ( "", $m[2], "em" );
+				}
+			}
+		} else {
+			$text_strong = ($text == "") ? "" : "<strong>{$text}</strong>";
+			$text_em = ($text == "") ? "" : "<em>{$text}</em>";
+			if ($mode == "") {
+				return $pre . $text;
+			} else if ($mode == "em") {
+				return $pre . $text_em;
+			} else if ($mode == "strong") {
+				return $pre . $text_strong;
+			} else if ($mode == "strongem") {
+				return (($pre == "") && ($text == "")) ? "" : "<strong>{$pre}{$text_em}</strong>";
+			} else {
+				return (($pre == "") && ($text == "")) ? "" : "<em>{$pre}{$text_strong}</em>";
+			}
+		}
 	}
 
 	# Note: we have to do external links before the internal ones,
@@ -676,284 +738,12 @@ class Parser
 		return $s;
 	}
 
-	/* private */ function handle4Quotes( &$state, $token )
-	{
-		/* This one makes some assumptions. 
-		 * '''Caesar''''s army  => <strong>Caesar</strong>'s army
-		 * ''''Caesar'''' was a roman emperor => '<strong>Caesar</strong>' was a roman emperor
-		 * These assumptions might be wrong, but any other assumption might be wrong, too.
-		 * So here we go */
-		if ( $state["strong"] !== false ) {
-			return $this->handle3Quotes( $state, $token ) . "'";
-		} else {
-			return "'" . $this->handle3Quotes( $state, $token );
-		}
-	}
 
-
-	/* private */ function handle3Quotes( &$state, $token )
-	{
-		if ( $state["strong"] !== false ) {
-			if ( $state["em"] !== false && $state["em"] > $state["strong"] )
-			{
-				# ''' lala ''lala '''
-				$s = "</em></strong><em>";
-			} else {
-				$s = "</strong>";
-			}
-			$state["strong"] = FALSE;
-		} else {
-			$s = "<strong>";
-			$state["strong"] = $token["pos"];
-		}
-		return $s;
-	}
-
-	/* private */ function handle2Quotes( &$state, $token )
-	{
-		if ( $state["em"] !== false ) {
-			if ( $state["strong"] !== false && $state["strong"] > $state["em"] )
-			{
-				# ''lala'''lala'' ....'''
-				$s = "</strong></em><strong>";
-			} else {
-				$s = "</em>";
-			}
-			$state["em"] = FALSE;
-		} else {
-			$s = "<em>";
-			$state["em"] = $token["pos"];
-
-		}
-		return $s;
-	}
-
-	/* private */ function handle5Quotes( &$state, $token )
-	{
-		$s = "";
-		if ( $state["em"] !== false && $state["strong"] !== false ) {
-			if ( $state["em"] < $state["strong"] ) {
-				$s .= "</strong></em>";
-			} else {
-				$s .= "</em></strong>";
-			}
-			$state["strong"] = $state["em"] = FALSE;
-		} elseif ( $state["em"] !== false ) {
-			$s .= "</em><strong>";
-			$state["em"] = FALSE;
-			$state["strong"] = $token["pos"];
-		} elseif ( $state["strong"] !== false ) {
-			$s .= "</strong><em>";
-			$state["strong"] = FALSE;
-			$state["em"] = $token["pos"];
-		} else { # not $em and not $strong
-			$s .= "<strong><em>";
-			$state["strong"] = $state["em"] = $token["pos"];
-		}
-		return $s;
-	}
-
-	/* private */ function doTokenizedParser( $str )
-	{
-		global $wgLang;	# for language specific parser hook
-		global $wgUploadDirectory, $wgUseTimeline;
-
-		$tokenizer=Tokenizer::newFromString( $str );
-		$tokenStack = array();
-
-		$s="";
-		$state["em"]      = FALSE;
-		$state["strong"]  = FALSE;
-		$tagIsOpen = FALSE;
-		$threeopen = false;
-
-		# The tokenizer splits the text into tokens and returns them one by one.
-		# Every call to the tokenizer returns a new token.
-		while ( $token = $tokenizer->nextToken() )
-		{
-			switch ( $token["type"] )
-			{
-				case "text":
-					# simple text with no further markup
-					$txt = $token["text"];
-					break;
-				case "blank":
-					# Text that contains blanks that have to be converted to
-					# non-breakable spaces for French.
-					# U+202F NARROW NO-BREAK SPACE might be a better choice, but
-					# browser support for Unicode spacing is poor.
-					$txt = str_replace( " ", "&nbsp;", $token["text"] );
-					break;
-				case "[[[":
-					# remember the tag opened with 3 [
-					$threeopen = true;
-				case "[[":
-					# link opening tag.
-					# FIXME : Treat orphaned open tags (stack not empty when text is over)
-					$tagIsOpen = TRUE;
-					array_push( $tokenStack, $token );
-					$txt="";
-					break;
-
-				case "]]]":
-				case "]]":
-					# link close tag.
-					# get text from stack, glue it together, and call the code to handle a
-					# link
-
-					if ( count( $tokenStack ) == 0 )
-					{
-						# stack empty. Found a ]] without an opening [[
-						$txt = "]]";
-					} else {
-						$linkText = "";
-						$lastToken = array_pop( $tokenStack );
-						while ( !(($lastToken["type"] == "[[[") or ($lastToken["type"] == "[[")) )
-						{
-							if( !empty( $lastToken["text"] ) ) {
-								$linkText = $lastToken["text"] . $linkText;
-							}
-							$lastToken = array_pop( $tokenStack );
-						}
-
-						$txt = $linkText ."]]";
-
-						if( isset( $lastToken["text"] ) ) {
-							$prefix = $lastToken["text"];
-						} else {
-							$prefix = "";
-						}
-						$nextToken = $tokenizer->previewToken();
-						if ( $nextToken["type"] == "text" )
-						{
-							# Preview just looks at it. Now we have to fetch it.
-							$nextToken = $tokenizer->nextToken();
-							$txt .= $nextToken["text"];
-						}
-						$txt = $this->handleInternalLink( $this->unstrip($txt,$this->mStripState), $prefix );
-
-						# did the tag start with 3 [ ?
-						if($threeopen) {
-							# show the first as text
-							$txt = "[".$txt;
-							$threeopen=false;
-						}
-
-					}
-					$tagIsOpen = (count( $tokenStack ) != 0);
-					break;
-				case "----":
-					$txt = "\n<hr />\n";
-					break;
-				case "'''":
-					# This and the four next ones handle quotes
-					$txt = $this->handle3Quotes( $state, $token );
-					break;
-				case "''":
-					$txt = $this->handle2Quotes( $state, $token );
-					break;
-				case "'''''":
-					$txt = $this->handle5Quotes( $state, $token );
-					break;
-				case "''''":
-					$txt = $this->handle4Quotes( $state, $token );
-					break;
-				case "":
-					# empty token
-					$txt="";
-					break;
-				case "h": 
-					#heading- used to close all unbalanced bold or em tags in this section
-					$txt = '';
-					if( $state['em'] !== false and 
-					( $state['strong'] === false or $state['em'] > $state['strong'] ) )
-					{ 
-						$s .= '</em>';
-						$state['em'] = false;
-					}
-					if ( $state['strong'] !== false ) $txt .= '</strong>';
-					if ( $state['em'] !== false ) $txt .= '</em>';
-					$state['strong'] = $state['em'] = false;
-					break;
-				case "RFC ":
-					if ( $tagIsOpen ) {
-						$txt = "RFC ";
-					} else {
-						$txt = $this->doMagicRFC( $tokenizer );
-					}
-					break;
-				case "ISBN ":
-					if ( $tagIsOpen ) {
-						$txt = "ISBN ";
-					} else {
-						$txt = $this->doMagicISBN( $tokenizer );
-					}
-					break;
-				case "<timeline>":
-					if ( $wgUseTimeline && 
-					     "" != ( $timelinesrc = $tokenizer->readAllUntil("&lt;/timeline&gt;") ) )
-					{
-						$txt = renderTimeline( $timelinesrc );
-					} else {
-						$txt=$token["text"];
-					}
-					break;
-				default:
-					# Call language specific Hook.
-					$txt = $wgLang->processToken( $token, $tokenStack );
-					if ( NULL == $txt ) {
-						# An unkown token. Highlight.
-						$txt = "<font color=\"#FF0000\"><b>".$token["type"]."</b></font>";
-						$txt .= "<font color=\"#FFFF00\"><b>".$token["text"]."</b></font>";
-					}
-					break;
-			}
-			# If we're parsing the interior of a link, don't append the interior to $s,
-			# but push it to the stack so it can be processed when a ]] token is found.
-			if ( $tagIsOpen  && $txt != "" ) {
-				$token["type"] = "text";
-				$token["text"] = $txt;
-				array_push( $tokenStack, $token );
-			} else {
-				$s .= $txt;
-			}
-		} #end while
-
-		# make 100% sure all strong and em tags are closed
-		# doBlockLevels often messes the last bit up though, but invalid nesting is better than unclosed tags
-		# tidy solves this though
-		if( $state['em'] !== false and 
-		( $state['strong'] === false or $state['em'] > $state['strong'] ) )
-		{ 
-			$s .= '</em>';
-			$state['em'] = false;
-		}
-		if ( $state['strong'] !== false ) $s .= '</strong>';
-		if ( $state['em'] !== false ) $s .= '</em>';
-
-		if ( count( $tokenStack ) != 0 )
-		{
-			# still objects on stack. opened [[ tag without closing ]] tag.
-			$txt = "";
-			while ( $lastToken = array_pop( $tokenStack ) )
-			{
-				if ( $lastToken["type"] == "text" )
-				{
-					$txt = $lastToken["text"] . $txt;
-				} else {
-					$txt = $lastToken["type"] . $txt;
-				}
-			}
-			$s .= $txt;
-		}
-		return $s;
-	}
-
-	/* private */ function handleInternalLink( $line, $prefix )
+	/* private */ function replaceInternalLinks( $s )
 	{
 		global $wgLang, $wgLinkCache;
 		global $wgNamespacesWithSubpages, $wgLanguageCode;
-		static $fname = "Parser::handleInternalLink" ;
+		static $fname = "Parser::replaceInternalLink" ;
 		wfProfileIn( $fname );
 
 		wfProfileIn( "$fname-setup" );
@@ -961,6 +751,10 @@ class Parser
 		# the % is needed to support urlencoded titles as well
 		if ( !$tc ) { $tc = Title::legalChars() . "#%"; }
 		$sk =& $this->mOptions->getSkin();
+
+		$a = explode( "[[", " " . $s );
+		$s = array_shift( $a );
+		$s = substr( $s, 1 );
 
 		# Match a link having the form [[namespace:link|alternate]]trail
 		static $e1 = FALSE;
@@ -984,109 +778,118 @@ class Parser
 
 		$nottalk = !Namespace::isTalk( $this->mTitle->getNamespace() );
 
-		wfProfileOut( "$fname-setup" );
-		$s = "";
-
-		if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
-			$text = $m[2];
-			# fix up urlencoded title texts
-			if(preg_match("/%/", $m[1] )) $m[1] = urldecode($m[1]);
-			$trail = $m[3];
-		} else { # Invalid form; output directly
-			$s .= $prefix . "[[" . $line ;
-			wfProfileOut( $fname );
-			return $s;
-		}
-
-		/* Valid link forms:
-		Foobar -- normal
-		:Foobar -- override special treatment of prefix (images, language links)
-		/Foobar -- convert to CurrentPage/Foobar
-		/Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
-		*/
-		$c = substr($m[1],0,1);
-		$noforce = ($c != ":");
-		if( $c == "/" ) { # subpage
-			if(substr($m[1],-1,1)=="/") {                 # / at end means we don't want the slash to be shown
-				$m[1]=substr($m[1],1,strlen($m[1])-2);
-				$noslash=$m[1];
-			} else {
-				$noslash=substr($m[1],1);
-			}
-			if(!empty($wgNamespacesWithSubpages[$this->mTitle->getNamespace()])) { # subpages allowed here
-				$link = $this->mTitle->getPrefixedText(). "/" . trim($noslash);
-				if( "" == $text ) {
-					$text= $m[1];
-				} # this might be changed for ugliness reasons
-			} else {
-				$link = $noslash; # no subpage allowed, use standard link
-			}
-		} elseif( $noforce ) { # no subpage
-			$link = $m[1];
+		if ( $wgLang->linkPrefixExtension() && preg_match( $e2, $s, $m ) ) {
+			$new_prefix = $m[2];
+			$s = $m[1];
 		} else {
-			$link = substr( $m[1], 1 );
+			$new_prefix="";
 		}
-		$wasblank = ( "" == $text );
-		if( $wasblank )
+
+		wfProfileOut( "$fname-setup" );
+
+		foreach ( $a as $line ) {
+			$prefix = $new_prefix;
+
+			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
+				$text = $m[2];
+				# fix up urlencoded title texts
+				if(preg_match("/%/", $m[1] )) $m[1] = urldecode($m[1]);
+				$trail = $m[3];
+			} else { # Invalid form; output directly
+				$s .= $prefix . "[[" . $line ;
+				wfProfileOut( $fname );
+				continue;
+			}
+
+			/* Valid link forms:
+			Foobar -- normal
+			:Foobar -- override special treatment of prefix (images, language links)
+			/Foobar -- convert to CurrentPage/Foobar
+			/Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
+			*/
+			$c = substr($m[1],0,1);
+			$noforce = ($c != ":");
+			if( $c == "/" ) { # subpage
+				if(substr($m[1],-1,1)=="/") {                 # / at end means we don't want the slash to be shown
+					$m[1]=substr($m[1],1,strlen($m[1])-2);
+					$noslash=$m[1];
+				} else {
+					$noslash=substr($m[1],1);
+				}
+				if(!empty($wgNamespacesWithSubpages[$this->mTitle->getNamespace()])) { # subpages allowed here
+					$link = $this->mTitle->getPrefixedText(). "/" . trim($noslash);
+					if( "" == $text ) {
+						$text= $m[1];
+					} # this might be changed for ugliness reasons
+				} else {
+					$link = $noslash; # no subpage allowed, use standard link
+				}
+			} elseif( $noforce ) { # no subpage
+				$link = $m[1];
+			} else {
+				$link = substr( $m[1], 1 );
+			}
+			$wasblank = ( "" == $text );
+			if( $wasblank )
 			$text = $link;
 
-		$nt = Title::newFromText( $link );
-		if( !$nt ) {
-			$s .= $prefix . "[[" . $line;
-			wfProfileOut( $fname );
-			return $s;
-		}
-		$ns = $nt->getNamespace();
-		$iw = $nt->getInterWiki();
-		if( $noforce ) {
-			if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgLang->getLanguageName( $iw ) ) {
-				array_push( $this->mOutput->mLanguageLinks, $nt->getPrefixedText() );
-				$s .= $prefix . $trail ;
+			$nt = Title::newFromText( $link );
+			if( !$nt ) {
+				$s .= $prefix . "[[" . $line;
 				wfProfileOut( $fname );
-				return (trim($s) == '')? '': $s;
+				continue;
 			}
-			if( $ns == $image ) {
-				$s .= $prefix . $sk->makeImageLinkObj( $nt, $text ) . $trail;
+			$ns = $nt->getNamespace();
+			$iw = $nt->getInterWiki();
+			if( $noforce ) {
+				if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgLang->getLanguageName( $iw ) ) {
+					array_push( $this->mOutput->mLanguageLinks, $nt->getPrefixedText() );
+					$s .= $prefix . $trail ;
+					wfProfileOut( $fname );
+					return (trim($s) == '')? '': $s;
+					continue;
+				}
+				if ( $ns == $image ) {
+					$s .= $prefix . $sk->makeImageLinkObj( $nt, $text ) . $trail;
+					$wgLinkCache->addImageLinkObj( $nt );
+					wfProfileOut( $fname );
+					continue;
+				} else if ( $ns == $category ) {
+					$t = $nt->getText() ;
+					$nnt = Title::newFromText ( Namespace::getCanonicalName($category).":".$t ) ;
+
+					$wgLinkCache->suspend(); # Don't save in links/brokenlinks
+					$t = $sk->makeLinkObj( $nnt, $t, "", "" , $prefix );
+					$wgLinkCache->resume();
+
+					$sortkey = $wasblank ? $this->mTitle->getPrefixedText() : $text;
+					$wgLinkCache->addCategoryLinkObj( $nt, $sortkey );
+					$this->mOutput->mCategoryLinks[] = $t ;
+					$s .= $prefix . $trail ;
+					wfProfileOut( $fname );
+					continue;
+				}
+			}
+			if( ( $nt->getPrefixedText() == $this->mTitle->getPrefixedText() ) &&
+			( strpos( $link, "#" ) == FALSE ) ) {
+				# Self-links are handled specially; generally de-link and change to bold.
+				$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, "", $trail );
+				wfProfileOut( $fname );
+				continue;
+			}
+
+			if( $ns == $media ) {
+				$s .= $prefix . $sk->makeMediaLinkObj( $nt, $text ) . $trail;
 				$wgLinkCache->addImageLinkObj( $nt );
 				wfProfileOut( $fname );
-				return $s;
-			}
-			if ( $ns == $category ) {
-				$t = $nt->getText() ;
-				$nnt = Title::newFromText ( Namespace::getCanonicalName($category).":".$t ) ;
-				
-				$wgLinkCache->suspend(); # Don't save in links/brokenlinks
-				$t = $sk->makeLinkObj( $nnt, $t, "", "" , $prefix );
-				$wgLinkCache->resume();
-				
-				$sortkey = $wasblank ? $this->mTitle->getPrefixedText() : $text;
-				$wgLinkCache->addCategoryLinkObj( $nt, $sortkey );
-				$this->mOutput->mCategoryLinks[] = $t ;
-				$s .= $prefix . $trail ;
+			        continue;
+			} elseif( $ns == $special ) {
+				$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, "", $trail );
 				wfProfileOut( $fname );
-				return $s ;
+				continue;
 			}
+			$s .= $sk->makeLinkObj( $nt, $text, "", $trail , $prefix );
 		}
-		if( ( $nt->getPrefixedText() == $this->mTitle->getPrefixedText() ) &&
-		    ( strpos( $link, "#" ) == FALSE ) ) {
-			# Self-links are handled specially; generally de-link and change to bold.
-			$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, "", $trail );
-			wfProfileOut( $fname );
-			return $s;
-		}
-
-		if( $ns == $media ) {
-			$s .= $prefix . $sk->makeMediaLinkObj( $nt, $text ) . $trail;
-			$wgLinkCache->addImageLinkObj( $nt );
-			wfProfileOut( $fname );
-			return $s;
-		} elseif( $ns == $special ) {
-			$s .= $prefix . $sk->makeKnownLinkObj( $nt, $text, "", $trail );
-			wfProfileOut( $fname );
-			return $s;
-		}
-		$s .= $sk->makeLinkObj( $nt, $text, "", $trail , $prefix );
-
 		wfProfileOut( $fname );
 		return $s;
 	}
@@ -1951,25 +1754,16 @@ class Parser
 		return $full;
 	}
 
-	/* private */ function doMagicISBN( &$tokenizer )
+	/* private */ function magicISBN( $text )
 	{
 		global $wgLang;
 
-		# Check whether next token is a text token
-		# If yes, fetch it and convert the text into a
-		# Special::BookSources link
-		$token = $tokenizer->previewToken();
-		while ( $token["type"] == "" )
-		{
-			$tokenizer->nextToken();
-			$token = $tokenizer->previewToken();
-		}
-		if ( $token["type"] == "text" )
-		{
-			$token = $tokenizer->nextToken();
-			$x = $token["text"];
-			$valid = "0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$a = split( "ISBN ", " $text" );
+		if ( count ( $a ) < 2 ) return $text;
+		$text = substr( array_shift( $a ), 1);
+		$valid = "0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+		foreach ( $a as $x ) {
 			$isbn = $blank = "" ;
 			while ( " " == $x{0} ) {
 				$blank .= " ";
@@ -1983,38 +1777,27 @@ class Parser
 			$num = str_replace( " ", "", $num );
 
 			if ( "" == $num ) {
-				$text = "ISBN $blank$x";
+				$text .= "ISBN $blank$x";
 			} else {
 				$titleObj = Title::makeTitle( NS_SPECIAL, "Booksources" );
-				$text = "<a href=\"" .
+				$text .= "<a href=\"" .
 				$titleObj->escapeLocalUrl( "isbn={$num}" ) .
 					"\" class=\"internal\">ISBN $isbn</a>";
 				$text .= $x;
 			}
-		} else {
-			$text = "ISBN ";
 		}
 		return $text;
 	}
-	/* private */ function doMagicRFC( &$tokenizer )
+	/* private */ function magicRFC( $text )
 	{
 		global $wgLang;
 
-		# Check whether next token is a text token
-		# If yes, fetch it and convert the text into a
-		# link to an RFC source
-		$token = $tokenizer->previewToken();
-		while ( $token["type"] == "" )
-		{
-			$tokenizer->nextToken();
-			$token = $tokenizer->previewToken();
-		}
-		if ( $token["type"] == "text" )
-		{
-			$token = $tokenizer->nextToken();
-			$x = $token["text"];
-			$valid = "0123456789";
+		$a = split( "ISBN ", " $text" );
+		if ( count ( $a ) < 2 ) return $text;
+		$text = substr( array_shift( $a ), 1);
+		$valid = "0123456789";
 
+		foreach ( $a as $x ) {
 			$rfc = $blank = "" ;
 			while ( " " == $x{0} ) {
 				$blank .= " ";
@@ -2032,10 +1815,8 @@ class Parser
 				$url = str_replace( "$1", $rfc, $url);
 				$sk =& $this->mOptions->getSkin();
 				$la = $sk->getExternalLinkAttributes( $url, "RFC {$rfc}" );
-                            	$text = "<a href='{$url}'{$la}>RFC {$rfc}</a>{$x}";
+                            	$text .= "<a href='{$url}'{$la}>RFC {$rfc}</a>{$x}";
 			}
-		} else {
-			$text = "RFC ";
 		}
 		return $text;
 	}
