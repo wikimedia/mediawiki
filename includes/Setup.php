@@ -34,7 +34,7 @@ class MemCachedClientforWiki extends MemCachedClient {
 $wgMemc = new MemCachedClientforWiki();
 if( $wgUseMemCached ) {
 	$wgMemc->set_servers( $wgMemCachedServers );
-	$wgMemc->set_debug( $wgMemcachedDebug );
+	$wgMemc->set_debug( $wgMemCachedDebug );
 }
 
 $wgOut = new OutputPage();
