@@ -98,20 +98,20 @@ class SquidUpdate {
 					/* first socket for this server, do the tests */
 					@list($server, $port) = explode(':', $wgSquidServers[$ss]);
 					if(!isset($port)) $port = 80;
-					$this->debug("Opening socket to $server:$port");
+					#$this->debug("Opening socket to $server:$port");
 					$socket = @fsockopen($server, $port, $error, $errstr, 3);
-					$this->debug("\n");
+					#$this->debug("\n");
 					if (!$socket) {
 						$failed = true;
 						$totalsockets -= $sockspersq;
 					} else {
 						$msg ="PURGE " . $firsturl . " HTTP/1.0\r\n".
 						"Connection: Keep-Alive\r\n\r\n";
-						$this->debug($msg);
+						#$this->debug($msg);
 						@fputs($socket,$msg);
-						$this->debug("...");
+						#$this->debug("...");
 						$res = @fread($socket,512);
-						$this->debug("\n");
+						#$this->debug("\n");
 						/* Squid only returns http headers with 200 or 404 status, 
 						if there's more returned something's wrong */
 						if (strlen($res) > 250) {
@@ -150,13 +150,13 @@ class SquidUpdate {
 					$urindex = $r + $urlspersocket * ($s - $sockspersq * floor($s / $sockspersq));
 					$msg = "PURGE " . $urlArr[$urindex] . " HTTP/1.0\r\n".
 					"Connection: Keep-Alive\r\n\r\n";
-					$this->debug($msg);
+					#$this->debug($msg);
 					@fputs($sockets[$s],$msg);
-					$this->debug("\n");
+					#$this->debug("\n");
 				}
 			}
 		}
-		$this->debug("Reading response...");
+		#$this->debug("Reading response...");
 		foreach ($sockets as $socket) {
 			$res = '';
 			$esc = 0;
@@ -168,7 +168,7 @@ class SquidUpdate {
 
 			@fclose($socket);
 		}
-		$this->debug("\n");
+		#$this->debug("\n");
 	}
 
 	function debug( $text ) {
