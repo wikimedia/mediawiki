@@ -592,8 +592,7 @@ if( \$wgCommandLineMode ) {
 \$wgScript           = \"\$wgScriptPath/index.php\";
 \$wgRedirectScript   = \"\$wgScriptPath/redirect.php\";
 
-\$wgArticlePath      = \"\$wgScript?title=\$1\";
-# \$wgArticlePath     = \"\$wgScript/\$1\"; # Prettier if you're setup for it
+\$wgArticlePath      = \"\$wgScript/\$1\";
 
 \$wgStyleSheetPath   = \"\$wgScriptPath/stylesheets\";
 \$wgStyleSheetDirectory = \"\$IP/stylesheets\";

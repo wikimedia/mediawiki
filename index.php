@@ -29,7 +29,11 @@ OutputPage::setEncodings(); # Not really used yet
 #global $returnto, $diff, $oldid, $curid;
 
 $action = $_REQUEST['action'];
-$title = $_REQUEST['title'];
+if( isset( $_SERVER['PATH_INFO'] ) ) {
+	$title = substr( $_SERVER['PATH_INFO'], 1 );
+} else {
+	$title = $_REQUEST['title'];
+}
 
 # Placeholders in case of DB error
 $wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
