@@ -165,12 +165,12 @@ CREATE TABLE watchlist (
 
 DROP TABLE IF EXISTS math;
 CREATE TABLE math (
-    math_inputhash varchar(16) NOT NULL,
-    math_outputhash varchar(16) NOT NULL,
-    math_html_conservativeness tinyint(1) NOT NULL,
-    math_html text,
-    math_mathml text,
-    UNIQUE KEY math_inputhash (math_inputhash)
+  math_inputhash varchar(16) NOT NULL,
+  math_outputhash varchar(16) NOT NULL,
+  math_html_conservativeness tinyint(1) NOT NULL,
+  math_html text,
+  math_mathml text,
+  UNIQUE KEY math_inputhash (math_inputhash)
 ) TYPE=MyISAM;
 
 -- Table searchindex must be MyISAM for fulltext support

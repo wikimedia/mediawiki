@@ -2,7 +2,7 @@
 
 # Functions for rebuilding the link tracking tables; must
 # be included within a script that also includes the Setup.
-# See convertdb.php, for example.
+# See rebuildlinks.php, for example.
 #
 
 function rebuildLinkTablesPass1()
