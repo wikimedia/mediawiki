@@ -52,6 +52,8 @@ define( 'EXT_IMAGE_REGEX',
 	'('.EXT_IMAGE_FNAME_CLASS.'+)\\.((?i)'.EXT_IMAGE_EXTENSIONS.')$/S' # Filename
 );
 
+$wgCurrentSectionNumber = 0; # XXX
+
 /**
  * PHP Parser
  * 
@@ -99,6 +101,7 @@ class Parser
 		                // multiple SQL queries for the same string
 	    $mTemplatePath;	// stores an unsorted hash of all the templates already loaded
 		                // in this path. Used for loop detection.
+
 	/**#@-*/
 
 	/**
@@ -1846,10 +1849,15 @@ class Parser
 			# replace ==section headers==
 			# XXX this needs to go away once we have a better parser.
 			if ( $this->mOutputType != OT_WIKI ) {
+				$encodedname = base64_encode($title->getPrefixedDBkey());
+				$wfCurrentSectionNumber = 0;
 				for ( $i = 1; $i <= 6; ++$i ) {
 					$h = substr( '======', 0, $i );
-					$text = preg_replace( "/^{$h}([^=].*){$h}\\s?$/m",
-					  "${h}\\1 __MWTEMPLATESECTION__${h}\\2", $text );
+					$text = preg_replace_callback( "/^({$h})([^=].*){$h}\\s?$/m",
+					create_function('$matches',
+'return "${matches[1]}$matches[2] __MWTEMPLATESECTION='.$encodedname.
+'&" . wfGetSectionNumber() . "__${matches[1]}";'
+					), $text);
 				}
 			}
 			return $text;
@@ -2141,10 +2149,16 @@ class Parser
 		$prevlevel = 0;
 		foreach( $matches[3] as $headline ) {
 			$istemplate = 0;
-			if (strstr($headline, "__MWTEMPLATESECTION__")) {
+			$templatetitle = "";
+			$templatesection = 0;
+
+			if (preg_match("/__MWTEMPLATESECTION=([^&]+)&([^_]+)__/", $headline, $mat)) {
 				$istemplate = 1;
-				$headline = str_replace("__MWTEMPLATESECTION__", "", $headline);
+				$templatetitle = base64_decode($mat[1]);
+				$templatesection = 1 + (int)base64_decode($mat[2]);
+				$headline = preg_replace("/__MWTEMPLATESECTION=([^&]+)&([^_]+)__/", "", $headline);
 			}
+
 			$numbering = '';
 			if( $level ) {
 				$prevlevel = $level;
@@ -2225,11 +2239,14 @@ class Parser
 			if( $doShowToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
 				$toc .= $sk->tocLine($anchor,$tocline,$toclevel);
 			}
-			if( $showEditLink && !$istemplate ) {
+			if( $showEditLink ) {
 				if ( empty( $head[$headlineCount] ) ) {
 					$head[$headlineCount] = '';
 				}
-				$head[$headlineCount] .= $sk->editSectionLink($sectionCount+1);
+				if( $istemplate )
+					$head[$headlineCount] .= $sk->editSectionLinkForOther($templatetitle, $templatesection);
+				else
+					$head[$headlineCount] .= $sk->editSectionLink($sectionCount+1);
 			}
 
 			# Add the edit section span
@@ -2783,5 +2800,10 @@ function wfEscapeHTMLTagsOnly( $in ) {
 		$in );
 }
 
-
+function wfGetSectionNumber() {
+	global $wgCurrentSectionNumber;
+	$str = base64_encode("$wgCurrentSectionNumber");
+	$wgCurrentSectionNumber++;
+	return $str;
+}
 ?>
