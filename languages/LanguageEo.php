@@ -45,7 +45,7 @@ $wgEditEncoding		= "x";
 	'davinci' => "DaVinci",
 	'mono' => "Senkolora",
 	'monobook' => "Librejo",
- "myskin" => "MySkin" 
+	'myskin' => 'MySkin'
 );
 
 
@@ -474,7 +474,7 @@ kaj $3 artikolojn laŭ enhavo.",
 "nextn"			=> "$1 sekvajn",
 "viewprevnext"	=> "Montru ($1) ($2) ($3).",
 "showingresults" => "Montras <b>$1</b> trovitajn ekde la <b>$2</b>-a.",
-"showingresultsnum" => "Montras <b>$3</b> trovitajn ekde la<b>$2</b>-a.",
+"showingresultsnum" => "Montras <b>$3</b> trovitajn ekde la <b>$2</b>-a.",
 "nonefound"		=> "<strong>Noto</strong>: malsukcesaj serĉoj ofte
 okazas ĉar oni serĉas tro da ofte uzataj vortoj, kiujn ne enhavas la indekso,
 aŭ ĉar oni petas tro da serĉvortoj (nur paĝoj kiuj enhavas ĉiun serĉvorton
