@@ -147,9 +147,9 @@ class ImagePage extends Article {
 		}
 		
 		if ( $image ) {
-			$q = "&image={$image}";
+			$q = "&image=" . urlencode( $image );
 		} else if ( $oldimage ) {
-			$q = "&oldimage={$oldimage}";
+			$q = "&oldimage=" . urlencode( $oldimage );
 		}
 		return $this->confirmDelete( $q );
 	}
