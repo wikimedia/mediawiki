@@ -283,7 +283,8 @@ function wfSpecialMissingLanguageLinks() {
 	$wgOut->addHTML( "<p>{$top}\n" );
 
 	$sl = wfViewPrevNext( $offset, $limit, 'REPLACETHIS' ) ;
-	$sl = str_replace ( 'REPLACETHIS' , sns().":Maintenance&subfunction=missinglanguagelinks&thelang={$thelang}" , $sl ) ;
+	$sl = str_replace ( 'REPLACETHIS' , sns().":Maintenance&subfunction=missinglanguagelinks&thelang=".
+						htmlspecialchars($thelang), $sl ) ;
 	$wgOut->addHTML( "<br>{$sl}\n" );
 
 	$sk = $wgUser->getSkin();
