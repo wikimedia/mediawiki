@@ -754,7 +754,7 @@ $wgUseRCPatrol = true;
 # PLEASE NOTE: Once you delete a namespace, the pages in that namespace will no longer be accessible.
 # If you rename it, then you can access them through the new namespace name.
 #
-# Custom namespaces should start at 100.
+# Custom namespaces should start at 100 and stop at 255 (hard limit set by database)
 #$wgExtraNamespaces =
 #	array(100 => "Hilfe",
 #	      101 => "Hilfe_Diskussion",
