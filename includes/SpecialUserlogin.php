@@ -151,10 +151,12 @@ class LoginForm {
 		}
 		
 		$name = trim( $this->mName );
+		$u = User::newFromName( $name );
 		if ( ( "" == $name ) ||
 		  preg_match( "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/", $name ) ||
 		  (strpos( $name, "/" ) !== false) ||
-		  (strlen( $name ) > $wgMaxNameChars) ) 
+		  (strlen( $name ) > $wgMaxNameChars) ||
+		  ucFirst($name) != $u->getName() ) 
 		{
 			$this->mainLoginForm( wfMsg( "noname" ) );
 			return;
@@ -163,7 +165,6 @@ class LoginForm {
 			$wgOut->readOnlyPage();
 			return;
 		}
-		$u = User::newFromName( $name );
 		
 		if ( 0 != $u->idForName() ) {
 			$this->mainLoginForm( wfMsg( "userexists" ) );
