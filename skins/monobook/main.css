@@ -282,21 +282,63 @@ table.small { font-size: 100% }
 ** content styles
 */
 
+/* IE/mac fixes */
 #toc {
-    /*border:1px solid #2f6fab;*/
-    border:1px solid #aaaaaa;
-    background-color:#f9f9f9;
-    padding:5px;
+  display: inline-table;
+}
+#toc div, #toc h2, #toc ul, #toc li, #toc a {
+  float: left;
+  clear: left;
+}
+#toc .toctoggle * {
+  float: none;
+  clear: none;
+}
+#toc h2 {
+  margin-right: .3em;
+}
+@media all {
+  #toc {
+    display: block;
+    text-align: center;
+  }
+  #toc * {
+    float: none!important;
+  }
+  #toc h2 {
+    margin-right: 0;
+  }
+}
+/* end IE/mac fixes */
+
+#toc {
+    border: 1px solid #aaa;
+    background-color: #f9f9f9;
+    padding: 5px;
     font-size: 95%;
+    float: left;
 }
-#toc .tocindent { margin-left: 2em; }
-#toc .tocline { margin-bottom: 0px; }
-#toc p { margin: 0 }
-#toc .toctoggle { font-size: 94%; }
-#toc .editsection {
-    margin-top: 0.7em;
-    font-size: 94%;
+#toc h2 {
+    display: inline;
+    border: none;
+    padding: 0;
+    font-size: 100%;
+    font-weight: bold;
 }
+#toc ul {
+    list-style-type: none;
+    list-style-image: none;
+    margin-left: 0;
+    padding-left: 0;
+    text-align: left;
+}
+#toc ul ul {
+    margin: 0 0 0 2em;
+}
+#toc .toctoggle {
+     font-size: 94%;
+ }
+
 
 /* images */
 div.floatright, table.floatright {

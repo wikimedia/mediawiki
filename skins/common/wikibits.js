@@ -205,33 +205,55 @@ function guessTimezone(box) {
 	document.preferences.wpHourDiff.value = fetchTimezone();
 }
 
-function showTocToggle(show,hide) {
-	if(document.getElementById) {
-		document.writeln('<span class=\'toctoggle\'>[<a href="javascript:toggleToc()" class="internal">' +
-		'<span id="showlink" style="display:none;">' + show + '</span>' +
-		'<span id="hidelink">' + hide + '</span>'
-		+ '</a>]</span>');
-	}
+function showTocToggle() {
+  if (document.createTextNode) {
+    // Uses DOM calls to avoid document.write + XHTML issues
+
+    var linkHolder = document.getElementById('toctitle')
+    if (!linkHolder) return;
+
+    var outerSpan = document.createElement('span');
+    outerSpan.className = 'toctoggle';
+
+    var toggleLink = document.createElement('a');
+    toggleLink.id = 'togglelink';
+    toggleLink.className = 'internal';
+    toggleLink.href = 'javascript:toggleToc()';
+    toggleLink.appendChild(document.createTextNode(tocHideText));
+
+    outerSpan.appendChild(document.createTextNode('['));
+    outerSpan.appendChild(toggleLink);
+    outerSpan.appendChild(document.createTextNode(']'));
+
+    linkHolder.appendChild(document.createTextNode(' '));
+    linkHolder.appendChild(outerSpan);
+
+    var cookiePos = document.cookie.indexOf("hidetoc=");
+    if (cookiePos > -1 && document.cookie.charAt(cookiePos + 8) == 1)
+     toggleToc();
+  }
 }
 
-
+function changeText(el, newText) {
+  // Safari work around
+  if (el.innerText)
+    el.innerText = newText;
+  else if (el.firstChild && el.firstChild.nodeValue)
+    el.firstChild.nodeValue = newText;
+}
+  
 function toggleToc() {
-	var tocmain = document.getElementById('toc');
-	var toc = document.getElementById('tocinside');
-	var showlink=document.getElementById('showlink');
-	var hidelink=document.getElementById('hidelink');
-	if(toc.style.display == 'none') {
-		toc.style.display = tocWas;
-		hidelink.style.display='';
-		showlink.style.display='none';
-		tocmain.className = '';
-
+ 	var toc = document.getElementById('toc').getElementsByTagName('ul')[0];
+  var toggleLink = document.getElementById('togglelink')
+  
+ 	if(toc && toggleLink && toc.style.display == 'none') {
+     changeText(toggleLink, tocHideText);
+ 		toc.style.display = 'block';
+     document.cookie = "hidetoc=0";
 	} else {
-		tocWas = toc.style.display;
+    changeText(toggleLink, tocShowText);
 		toc.style.display = 'none';
-		hidelink.style.display='none';
-		showlink.style.display='';
-		tocmain.className = 'tochidden';
+    document.cookie = "hidetoc=1";
 	}
 }
 
