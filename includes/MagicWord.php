@@ -131,7 +131,7 @@ class MagicWord {
 		$this->mBaseRegex = implode( '|', $escSyn );
 		$case = $this->mCaseSensitive ? '' : 'i';
 		$this->mRegex = "/{$this->mBaseRegex}/{$case}";
-		$this->mRegexStart = "/^{$this->mBaseRegex}/{$case}";
+		$this->mRegexStart = "/^({$this->mBaseRegex})/{$case}";
 		$this->mVariableRegex = str_replace( "\\$1", "([$variableClass]*?)", $this->mRegex );
 		$this->mVariableStartToEndRegex = str_replace( "\\$1", "([$variableClass]*?)", 
 			"/^({$this->mBaseRegex})$/{$case}" );
