@@ -1,24 +1,8 @@
 <?php
 global $wgSpecialPages, $wgWhitelistAccount;
 
-# Special:Userlogin is a peculiar case: If the site options tell us to allow only sysops to
-# create new accounts, we want it displayed under "For sysop use only". If it's for developers
-# only, display it there. If anyone can create an account, we don't want it listed at all,
-# because there would already be a "create account or login" link in the top-right corner of
-# the page. If nobody can create an account, we don't want it listed either.
-
-$userlogin_listed = true;
-$userlogin_restr = '';
-if ( $wgWhitelistAccount && $wgWhitelistAccount['sysop'] && !$wgWhitelistAccount['user'] )
-	$userlogin_restr = 'sysop';
-else if ( $wgWhitelistAccount && $wgWhitelistAccount['developer'] &&
-          !$wgWhitelistAccount['sysop'] && !$wgWhitelistAccount['user'] )
-	$userlogin_restr = 'developer';
-else
-	$userlogin_listed = false;
-
 $wgSpecialPages = array(
-	"Userlogin"         => new SpecialPage( "Userlogin", $userlogin_restr, $userlogin_listed ),
+	"Userlogin"         => new SpecialPage( "Userlogin" ),
 	"Userlogout"        => new UnlistedSpecialPage( "Userlogout" ),
 	"Preferences"       => new SpecialPage( "Preferences" ),
 	"Watchlist"         => new SpecialPage( "Watchlist" ),
