@@ -1,28 +1,39 @@
 <?php
+#
+# Nederlands localisation for MediaWiki
+#
+# This file is encoded in UTF-8, no byte order mark.
+# For compatibility with Latin-1 installations, please
+# don't add literal characters above U+00ff.
+#
 
-/* WARNING: This file is still in ISO-8859-1. */
+require_once( "LanguageUtf8.php" );
 
 # The names of the namespaces can be set here, but the numbers
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
 
 /* private */ $wgNamespaceNamesNl = array(
- -2 => "Media",
- -1 => "Speciaal",
- 0 => "",
- 1 => "Overleg",
- 2 => "Gebruiker",
- 3 => "Overleg_gebruiker",
- 4 => "Wikipedia",
- 5 => "Overleg_Wikipedia",
- 6 => "Afbeelding",
- 7 => "Overleg_afbeelding",
- 8 => "MediaWiki",
- 9 => "Overleg_MediaWiki",
-	10  => "Template",
-	11  => "Template_talk"
+ NS_MEDIA => "Media",
+ NS_SPECIAL => "Speciaal",
+ NS_MAIN => "",
+ NS_TALK => "Overleg",
+ NS_USER => "Gebruiker",
+ NS_USER_TALK => "Overleg_gebruiker",
+ NS_WIKIPEDIA => $wgMetaNamespace,
+ NS_WIKIPEDIA_TALK => "Overleg_$wgMetaNamespace",
+ NS_IMAGE => "Afbeelding",
+ NS_IMAGE_TALK => "Overleg_afbeelding",
+ NS_MEDIAWIKI => "MediaWiki",
+ NS_MEDIAWIKI_TALK => "Overleg_MediaWiki",
+ NS_TEMPLATE => "Sjabloon",
+ NS_TEMPLATE_TALK => "Overleg_sjabloon",
+ NS_HELP => "Help",
+ NS_HELP_TALK => "Overleg_help",
+ NS_CATEGORY => "Categorie",
+ NS_CATEGORY_TALK => "Overleg_categorie"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsNl = array(
  "Uitgeschakeld", "Links vast", "Rechts vast", "Links zwevend"
@@ -36,7 +47,8 @@
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesNl = array(
@@ -144,22 +156,22 @@
 "category" => "rubriek",
 "category_header" => "Artikelen in rubriek \"$1\"",
 "subcategories" => "Onderrubrieken",
-"linktrail" => "/^([‰ˆ¸ÔÎÈË‡a-z]+)(.*)\$/sD",
+"linktrail" => "/^((?:[a-z]|√§|√∂|√º|√Ø|√´|√©|√®|√†)+)(.*)\$/sD",
 "mainpage"  => "Hoofdpagina",
 "mainpagetext" => "Installatie van de Wiki software geslaagd.",
 "about"   => "Info",
-"aboutwikipedia" => "Over Wikipedia",
-"aboutpage"  => "Wikipedia:info",
+"aboutwikipedia" => "Over {{SITENAME}}",
+"aboutpage"  => "{{ns:4}}:info",
 "help"   => "Help",
-"helppage"  => "Wikipedia:Help",
-"wikititlesuffix" => "Wikipedia NL",
+"helppage"  => "{{ns:4}}:Help",
+"wikititlesuffix" => "{{SITENAME}} NL",
 "bugreports" => "Foutenrapportage",
 "sitesupport" => "Financieel bijdragen",
-"bugreportspage" => "Wikipedia:Foutenrapportage",
+"bugreportspage" => "{{ns:4}}:Foutenrapportage",
 "faq"   => "FAQ",
-"faqpage"  => "Wikipedia:Veel gestelde vragen",
+"faqpage"  => "{{ns:4}}:Veel gestelde vragen",
 "edithelp"  => "Hulp bij bewerken",
-"edithelppage" => "Wikipedia:Instructies",
+"edithelppage" => "{{ns:4}}:Instructies",
 "cancel"  => "Annuleren",
 "qbfind"  => "Zoeken",
 "qbbrowse"  => "Bladeren",
@@ -199,7 +211,7 @@
 "gnunote" => "Alle tekst op deze pagina valt onder de  <a class=internal href='/wiki/Gnu_Vrije_Documentatie_Licentie'>GNU FDL</a>.",
 "printsubtitle" => "(Uit http://nl.wikipedia.org)",
 "protectedpage" => "Beveiligde pagina",
-"administrators" => "Wikipedia:Systeembeheerders",
+"administrators" => "{{ns:4}}:Systeembeheerders",
 "sysoptitle" => "Toegang alleen voor systeembeheerders",
 "sysoptext"  => "De gevraagde handeling kan enkel uitgevoerd worden door systeembeheerders. Zie $1.",
 "developertitle" => "Toegang alleen voor systeemontwikkelaars",
@@ -207,9 +219,9 @@
 "nbytes"  => "$1 bytes",
 "go"   => "OK",
 "ok"   => "OK",
-"sitetitle"  => "<span style=\"text-transform: none\">Wikipedia NL</span>", # Okay, HERE's an ugly hack. There should be a cleaner way to do this.
+"sitetitle"  => "<span style=\"text-transform: none\">{{SITENAME}} NL</span>", # Okay, HERE's an ugly hack. There should be a cleaner way to do this.
 "sitesubtitle" => "De vrije encyclopedie",
-"retrievedfrom" => "Afkomstig van Wikipedia NL, de Vrije Encyclopedie. \"$1\"",
+"retrievedfrom" => "Afkomstig van {{SITENAME}} NL, de Vrije Encyclopedie. \"$1\"",
 "newmessages" => "U heeft $1.",
 "newmessageslink" => "een nieuw bericht",
 "editsection" => "bewerken",
@@ -222,9 +234,9 @@
 # Main script and global functions
 # Algemene functies
 "nosuchaction" => "Gevraagde handeling bestaat niet",
-"nosuchactiontext" => "De door de URL gespecifieerde handeling wordt niet herkend door de Wikipedia software",
+"nosuchactiontext" => "De door de URL gespecifieerde handeling wordt niet herkend door de {{SITENAME}} software",
 "nosuchspecialpage" => "De gevraagde speciale pagina is onvindbaar",
-"nospecialpagetext" => "U heeft een speciale pagina aangevraagd die niet wordt herkend door de Wikipedia software",
+"nospecialpagetext" => "U heeft een speciale pagina aangevraagd die niet wordt herkend door de {{SITENAME}} software",
 
 # General errors
 # Algemene foutmeldingen
@@ -246,12 +258,12 @@ MySQL gaf de volgende foutmelding: \"$3: $4\".\n",
 "cachederror" => "Hieronder wordt een versie uit de cache getoond. Dit is mogelijk niet de meest recente versie.",
 "readonly"  => "Database geblokeerd",
 "enterlockreason" => "Geef een reden voor de blokkering en hoelang het waarschijnlijk gaat duren. De ingegeven reden zal aan de gebruikers getoond worden.",
-"readonlytext" => "De database van Wikipedia is momenteel gesloten voor nieuwe bewerkingen en wijzigingen, waarschijnlijk voor bestandsonderhoud.
+"readonlytext" => "De database van {{SITENAME}} is momenteel gesloten voor nieuwe bewerkingen en wijzigingen, waarschijnlijk voor bestandsonderhoud.
 De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
 <p>$1",
 "missingarticle" => "De database heeft een paginatekst (\"$1\") die het zou moeten vinden niet gevonden. Dit kan betekenen dat u een oude versie hebt proberen op te halen van een pagina die inmiddels verdwenen is. Indien dit niet het geval is, dan is er waarschijnlijk een fout in de software. Meld dit a.u.b. aan een beheerder, met vermelding van de URL.",
 "internalerror" => "Interne fout",
-"filecopyerror" => "Bestand \"$1\" naar \"$2\" kopiÎren niet mogelijk.",
+"filecopyerror" => "Bestand \"$1\" naar \"$2\" kopi√´ren niet mogelijk.",
 "filerenameerror" => "Wijziging titel bestand \"$1\" in \"$2\" niet mogelijk.",
 "filedeleteerror" => "Kon bestand \"$1\" niet verwijderen.",
 "filenotfound" => "Kon bestand \"$1\" niet vinden.",
@@ -268,7 +280,7 @@ De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
 # Aanmelden en afmelden
 "logouttitle" => "Afmelden gebruiker",
 "logouttext" => "U bent nu afgemeld.
-U kunt Wikipedia anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde of onder een andere naam.\n",
+U kunt {{SITENAME}} anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfde of onder een andere naam.\n",
 
 "welcomecreation" => "<h2>Welkom, $1!</h2><p>Uw gebruikersprofiel is aangemaakt. U kunt nu uw persoonlijke voorkeuren instellen.",
 
@@ -296,12 +308,12 @@ U kunt Wikipedia anoniem blijven gebruiken, of u opnieuw aanmelden onder dezelfd
 "loginerror" => "Inlogfout",
 "noname"  => "U dient een gebruikersnaam op te geven.",
 "loginsuccesstitle" => "Aanmelden gelukt.",
-"loginsuccess" => "U bent nu aangemeld bij Wikipedia NL als \"$1\".",
+"loginsuccess" => "U bent nu aangemeld bij {{SITENAME}} NL als \"$1\".",
 "nosuchuser" => "Er bestaat geen gebruiker met de naam \"$1\". Controleer uw spelling, of gebruik onderstaand formulier om een nieuw gebruikersprofiel aan te maken.",
 "wrongpassword" => "Het ingegeven wachtwoord is niet juist. Probeer het opnieuw.",
 "mailmypassword" => "Stuur mij een nieuw wachtwoord op",
-"passwordremindertitle" => "Herinnering wachtwoord Wikipedia NL",
-"passwordremindertext" => "Iemand (waarschijnlijk uzelf) vanaf IP-adres $1 heeft verzocht u een nieuw wachtwoord voor Wikipedia NL toe te zenden. Het nieuwe wachtwoord voor gebruiker \"$2\" is \"$3\". Advies: nu aanmelden en uw wachtwoord wijzigigen.",
+"passwordremindertitle" => "Herinnering wachtwoord {{SITENAME}} NL",
+"passwordremindertext" => "Iemand (waarschijnlijk uzelf) vanaf IP-adres $1 heeft verzocht u een nieuw wachtwoord voor {{SITENAME}} NL toe te zenden. Het nieuwe wachtwoord voor gebruiker \"$2\" is \"$3\". Advies: nu aanmelden en uw wachtwoord wijzigigen.",
 "noemail"  => "Er is geen e-mailadres geregistreerd voor \"$1\".",
 "passwordsent" => "Er is een nieuw wachtwoord verzonden naar het e-mailadres wat geregistreerd staat voor \"$1\".
 Gelieve na ontvangst opnieuw aan te melden.",
@@ -316,7 +328,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "preview"  => "Nakijken",
 "showpreview" => "Toon bewerking ter controle",
 "blockedtitle" => "Gebruiker is geblokkeerd",
-"blockedtext" => "Uw gebruikersnaam of IP-adres is door $1 geblokkeerd. De opgegeven reden:<br>$2<p>. Elke computer die verbonden is met het internet krijgt een [[ip-adres]] toegewezen van zijn [[internetprovider]]. In veel gevallen krijgt een gebruiker regelmatig een ander ip-adres toegewezen. Het het door u gebruikte ip-adres is recent gebruikt door u of iemand anders voor bewerkingen die in overtreding zijn van de [[Wikipedia:Toch een paar regels|regels]] van Wikipedia.<p>U kunt voor overleg contact opnemen met de [[Wikipedia:Systeembeheerders|systeembeheerders]] via [http://wikinl.sol3.info/wikinl_info.html#email wikinl-l-owner@wikipedia.org een formulier].",
+"blockedtext" => "Uw gebruikersnaam of IP-adres is door $1 geblokkeerd. De opgegeven reden:<br>$2<p>. Elke computer die verbonden is met het internet krijgt een [[ip-adres]] toegewezen van zijn [[internetprovider]]. In veel gevallen krijgt een gebruiker regelmatig een ander ip-adres toegewezen. Het het door u gebruikte ip-adres is recent gebruikt door u of iemand anders voor bewerkingen die in overtreding zijn van de [[{{ns:4}}:Toch een paar regels|regels]] van {{SITENAME}}.<p>U kunt voor overleg contact opnemen met de [[{{ns:4}}:Systeembeheerders|systeembeheerders]] via [http://wikinl.sol3.info/wikinl_info.html#email wikinl-l-owner@wikipedia.org een formulier].",
 "whitelistedittitle" => "Aanmelden verplicht",
 "whitelistedittext" => "Om dit artikel te kunnen wijzigen, moet u [[Speciaal:Userlogin|ingelogd]] zijn.",
 "whitelistreadtitle" => "Aanmelden verplicht",
@@ -342,7 +354,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "storedversion" => "Opgeslagen versie",
 "editingold" => "<strong>WAARSCHUWING: U bent bezig een oude versie van deze pagina te bewerken. Wanneer u uw bewerking opslaat, gaan alle wijzigingen die na deze versie gedaan zijn verloren.\n.</strong>\n",
 "yourdiff"  => "Wijzigingen",
-"copyrightwarning" => "Opgelet: Alle bijdragen aan Wikipedia worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u niet wil dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor 'Pagina Opslaan'.<br> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>",
+"copyrightwarning" => "Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de GNU Free Documentation License. Als u niet wil dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor 'Pagina Opslaan'.<br> Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br> <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ JE DAARTOE TOESTEMMING HEBT!</strong>",
 "longpagewarning" => "Waarschuwing! Deze pagina is $1 kilobyte lang. Pagina's langer dan 32 kb zorgen voor problemen op sommige browsers. Het is daarom waarschijnlijk een goed idee deze pagina in meerdere pagina's te splitsen.",
 "readonlywarning" => "Waarschuwing! De database is op dit moment in onderhoud; het is daarom niet mogelijk op dit moment pagina's te wijzigen. Wij adviseren u de tekst op uw eigen computer op te slaan en later opnieuw te proberen deze pagina te bewerken.",
 "protectedpagewarning" => "Waarschuwing! U staat op het punt een beveiligde pagina te wijzigen. Gewone gebruikers kunnen deze pagina niet bewerken.",
@@ -372,12 +384,12 @@ Gelieve na ontvangst opnieuw aan te melden.",
 # Search results
 # Zoekresultaten
 "searchresults" => "Zoekresultaten",
-"searchhelppage" => "Wikipedia:Zoeken",
-"searchingwikipedia" => "Zoeken op Wikipedia",
-"searchresulttext" => "Voor meer informatie over zoeken op Wikipedia: zie $1.",
+"searchhelppage" => "{{ns:4}}:Zoeken",
+"searchingwikipedia" => "Zoeken op {{SITENAME}}",
+"searchresulttext" => "Voor meer informatie over zoeken op {{SITENAME}}: zie $1.",
 "searchquery" => "Voor zoekopdracht \"$1\"",
 "badquery"  => "Slecht geformuleerde zoekopdracht",
-"badquerytext" => "Uw zoekopdracht kon niet worden uitgevoerd. Dit kan komen doordat u geprobeerd hebt om een 'woord' van 1 letter te zoeken, of 1 van de <a HREF=\"http://nl.wikipedia.org/wiki/Wikipedia:Verboden_woorden\">Verboden woorden</a>.",
+"badquerytext" => "Uw zoekopdracht kon niet worden uitgevoerd. Dit kan komen doordat u geprobeerd hebt om een 'woord' van 1 letter te zoeken, of 1 van de <a HREF=\"http://nl.wikipedia.org/wiki/{{ns:4}}:Verboden_woorden\">Verboden woorden</a>.",
 "matchtotals" => "De zoekterm \"$1\" is gevonden in $2 paginatitels en in de tekst van $3 pagina's.",
 "nogomatch" => "Er bestaat geen pagina met deze titel, op zoek naar pagina's waarin de tekst voorkomt.",
 "titlematches" => "Overeenkomst met volgende titels",
@@ -389,9 +401,9 @@ Gelieve na ontvangst opnieuw aan te melden.",
 "viewprevnext" => "($1) ($2) ($3) bekijken.",
 "showingresults" => "Hieronder <b>$1</b> resultaten vanaf nummer <b>$2</b>.",
 "showingresultsnum" => "Hieronder <b>$3</b> resultaten vanaf nummer <b>$2</b>.",
-"nonefound"  => "<strong>Merk op:</strong> wanneer een zoekopdracht mislukt komt dat vaak door gebruik van veel voorkomende woorden zoals \"de\" en \"het\", die niet geÔndexeerd zijn, of door verschillende zoektermen tegelijk op te geven (u krijgt dan alleen in pagina's waaarin alle opgegeven termen voorkomen).
+"nonefound"  => "<strong>Merk op:</strong> wanneer een zoekopdracht mislukt komt dat vaak door gebruik van veel voorkomende woorden zoals \"de\" en \"het\", die niet ge√Øndexeerd zijn, of door verschillende zoektermen tegelijk op te geven (u krijgt dan alleen in pagina's waaarin alle opgegeven termen voorkomen).
 
-Het kan natuurlijk dat er gewoon nog geen artikel aanwezig op Wikipedia NL over dit onderwerp. Mogelijk is het aanwezig in een andere taal. Zoek met de <a HREF=\"http://pliny.wikipedia.org/tools/wikisearch.php\">multi-wikipedia zoeker</a> in de andere Wikipedia's, of buiten Wikipedia in een <a href=\"http://encyclopedie.zoekhulp.nl/?refer=Wikipedia.nl\">andere encyclopedie</a>. Wanneer u gevonden heeft wat u zocht, kunt u wellicht daarover een artikel schrijven op Wikipedia NL, zodat de volgende die zoekt wat u zocht het wel kan vinden. 
+Het kan natuurlijk dat er gewoon nog geen artikel aanwezig op {{SITENAME}} NL over dit onderwerp. Mogelijk is het aanwezig in een andere taal. Zoek met de <a HREF=\"http://pliny.wikipedia.org/tools/wikisearch.php\">multi-wikipedia zoeker</a> in de andere {{SITENAME}}'s, of buiten {{SITENAME}} in een <a href=\"http://encyclopedie.zoekhulp.nl/?refer=Wikipedia.nl\">andere encyclopedie</a>. Wanneer u gevonden heeft wat u zocht, kunt u wellicht daarover een artikel schrijven op {{SITENAME}} NL, zodat de volgende die zoekt wat u zocht het wel kan vinden. 
 ",
 "powersearch" => "Zoeken",
 "powersearchtext" => "   
@@ -399,8 +411,8 @@ Het kan natuurlijk dat er gewoon nog geen artikel aanwezig op Wikipedia NL over 
 $1<br>
 $2 Toon redirects &nbsp; Zoek: $3 $9",   
 "searchdisabled" => "Wegens een overbelasting van de server zijn sommige functies die het systeem extra belasten tijdelijk niet beschikbaar.
- Hierdoor is in de interne zoekfunctie van Wikipedia (vermoedelijk) niet beschikbaar voor onbepaalde duur.<p>
-Via google kunt u zoeken op Wikipedia. <br>
+ Hierdoor is in de interne zoekfunctie van {{SITENAME}} (vermoedelijk) niet beschikbaar voor onbepaalde duur.<p>
+Via google kunt u zoeken op {{SITENAME}}. <br>
 <form method=\"get\" action=\"http://www.google.com/search\">
 <table bgcolor=\"#ffffff\" style=\"width: 752px; height: 76px;\"><tbody><tr><td>
 <a href=\"http://www.google.com/\">
@@ -408,16 +420,16 @@ Via google kunt u zoeken op Wikipedia. <br>
 </td>
 <td>
 <input type=\"text\" name=\"q\" size=\"31\" maxlength=\"255\" value=\"\">
-<input type=\"submit\" name=\"btnG\" value=\"Met Google zoeken in Wikipedia\">
+<input type=\"submit\" name=\"btnG\" value=\"Met Google zoeken in {{SITENAME}}\">
 <font size=\"-1\">
-<input type=\"hidden\" name=\"domains\" value=\"http://nl.wikipedia.org\"><br><input type=\"radio\" name=\"sitesearch\" value=\"\">Het volledige internet<input type=\"radio\" name=\"sitesearch\" value=\"http://nl.wikipedia.org\" checked=\"checked\">Wikipedia NL<br>
+<input type=\"hidden\" name=\"domains\" value=\"http://nl.wikipedia.org\"><br><input type=\"radio\" name=\"sitesearch\" value=\"\">Het volledige internet<input type=\"radio\" name=\"sitesearch\" value=\"http://nl.wikipedia.org\" checked=\"checked\">{{SITENAME}} NL<br>
 </font>
 </td></tr></tbody></table>
 </form>
 <p> U zal niet alle artikels kunnen vinden maar het zal niet veel schelen. 
-Als u zoekt via google op Wikipedia zal u ook treffers vinden op Wikipedia die geen artikels zijn. 
-Wikipedia heeft bij de meeste artikels ook een \"overlegpagina\" en diverse soorten dienstpagina's. 
-Enkel de pagina's die geen prefix (zoals Wikipedia:, Gebruiker: of Overleg:) hebben zijn artikels.
+Als u zoekt via google op {{SITENAME}} zal u ook treffers vinden op {{SITENAME}} die geen artikels zijn. 
+{{SITENAME}} heeft bij de meeste artikels ook een \"overlegpagina\" en diverse soorten dienstpagina's. 
+Enkel de pagina's die geen prefix (zoals {{ns:4}}:, Gebruiker: of Overleg:) hebben zijn artikels.
 ",
 "blanknamespace" => "(encyclopedie)",
 
@@ -429,11 +441,11 @@ Enkel de pagina's die geen prefix (zoals Wikipedia:, Gebruiker: of Overleg:) heb
   wfLocalUrl( "Special:Userlogin" ) . "\">aangemeld</a> te zijn om voorkeuren te kunnen instellen.",
 "prefslogintext" => "U bent aangemeld als \"$1\". Uw interne identificatienummer is $2.
 
-Een beschrijving van de verschillende opties staat op [[Wikipedia:Voorkeuren]].",
+Een beschrijving van de verschillende opties staat op [[{{ns:4}}:Voorkeuren]].",
 "prefsreset" => "Standaardvoorkeuren hersteld.",
 "qbsettings" => "Menubalkinstellingen", 
 "changepassword" => "Wachtwoord wijzigen",
-"skin" => "Wikipedia-Uiterlijk",
+"skin" => "{{SITENAME}}-Uiterlijk",
 "math" => "Wiskundige formules",
 "math_failure" => "Wiskundige formule niet begrijpelijk",
 "math_unknown_error" => "Onbekende fout in formule",
@@ -457,10 +469,10 @@ Een beschrijving van de verschillende opties staat op [[Wikipedia:Voorkeuren]]."
 "stubthreshold" => "Grootte waaronder een pagina als 'stub' wordt aangegeven",
 "recentchangescount" => "Aantal titels in lijst recente wijzigingen",
 "savedprefs" => "Uw voorkeuren zijn opgeslagen.",
-"timezonetext" => "De tijd van de server is UTC (Coordinated Universal Time) Geef aan hoeveel uur de plaatselijke tijd in uw woonplaats verschilt met die van de server. Voor o.a. BelgiÎ en Nederland: +1 (+2 zomertijd); voor Suriname en voor de Nederlandse Antillen: -4; voor Zuid-Afrika: +2.",
+"timezonetext" => "De tijd van de server is UTC (Coordinated Universal Time) Geef aan hoeveel uur de plaatselijke tijd in uw woonplaats verschilt met die van de server. Voor o.a. Belgi√´ en Nederland: +1 (+2 zomertijd); voor Suriname en voor de Nederlandse Antillen: -4; voor Zuid-Afrika: +2.",
 "localtime" => "Plaatselijke tijd",
 "timezoneoffset" => "Tijdsverschil",
-"servertime" => "De locale tijd van de Wikipedia-server:",
+"servertime" => "De locale tijd van de {{SITENAME}}-server:",
 "guesstimezone" => "Vanuit de browser toe te voegen",
 "emailflag" => "E-mail ontvangen van andere gebruikers uitschakelen",
 "defaultns" => "Naamruimten om direct in te zoeken:",
@@ -469,9 +481,9 @@ Een beschrijving van de verschillende opties staat op [[Wikipedia:Voorkeuren]]."
 # Recente wijzigingen
 "changes" => "wijzigingen",
 "recentchanges" => "Recente wijzigingen",
-"recentchangestext" => "Deze pagina toont de laatste aanpassingen aan artikelen van Wikipedia NL. <br>
-Ben je hier nieuw? Lees dan ook [[Wikipedia:Welkom voor nieuwelingen|Welkom voor nieuwelingen]] -- Wil je een pagina verwijderd hebben? Ga dan naar [[Wikipedia:Te verwijderen pagina's|Te verwijderen pagina's]] -- Wil je iets met andere gebruikers overleggen? Ga naar [[Wikipedia:Overleg gewenst|Overleg gewenst]] of meld je aan voor de discussielijst [http://mail.wikipedia.org/mailman/listinfo/wikinl-l WikiNL-l] -- Zin in een gezellige babbel? Kom naar de [[Wikipedia:De kroeg|De kroeg]] of doe mee op ons nieuwe [http://chat.wikipedia.be Wiki-chatkanaal].<p>
-Om Wikipedia te laten slagen is het erg belangrijk geen materiaal toe te voegen waarop iemand anders auteursrechten heeft, tenzij je daartoe toestemming hebt. De wettelijke gevolgen van inbreuk op de rechten van anderen zouden de hele onderneming grote schade kunnen toebrengen.",
+"recentchangestext" => "Deze pagina toont de laatste aanpassingen aan artikelen van {{SITENAME}} NL. <br>
+Ben je hier nieuw? Lees dan ook [[{{ns:4}}:Welkom voor nieuwelingen|Welkom voor nieuwelingen]] -- Wil je een pagina verwijderd hebben? Ga dan naar [[{{ns:4}}:Te verwijderen pagina's|Te verwijderen pagina's]] -- Wil je iets met andere gebruikers overleggen? Ga naar [[{{ns:4}}:Overleg gewenst|Overleg gewenst]] of meld je aan voor de discussielijst [http://mail.wikipedia.org/mailman/listinfo/wikinl-l WikiNL-l] -- Zin in een gezellige babbel? Kom naar de [[{{ns:4}}:De kroeg|De kroeg]] of doe mee op ons nieuwe [http://chat.wikipedia.be Wiki-chatkanaal].<p>
+Om {{SITENAME}} te laten slagen is het erg belangrijk geen materiaal toe te voegen waarop iemand anders auteursrechten heeft, tenzij je daartoe toestemming hebt. De wettelijke gevolgen van inbreuk op de rechten van anderen zouden de hele onderneming grote schade kunnen toebrengen.",
 "rcloaderr"  => "Meest recente wijzigingen laden",
 "rcnote"  => "Hieronder zijn de <strong>$1</strong> laatste wijzigingen gedaan in de laatste <strong>$2</strong> dagen.",
 "rcnotefrom"  => "Veranderingen sinds <b>$2</b> (met een maximum van <b>$1</b> veranderingen).",
@@ -503,16 +515,16 @@ om bestanden te uploaden.",
 "uploadfile" => "upload bestand",
 "uploaderror" => "upload fout",
 "uploadtext" => "<strong>STOP!</strong> Voor u iets hier upload,
-wees zeker dat het in overeenkomst is met het Wikipedia NL <a href=\"" .
-wfLocalUrlE( "Wikipedia:Beleid_voor_gebruik_van_afbeeldingen" ) . "\">afbeeldingsbeleid</a>.
+wees zeker dat het in overeenkomst is met het {{SITENAME}} NL <a href=\"" .
+wfLocalUrlE( "{{ns:4}}:Beleid_voor_gebruik_van_afbeeldingen" ) . "\">afbeeldingsbeleid</a>.
 <p>Om de reeds ge-uploade bestanden te bekijken of te zoeken ga naar de <a href=\"" . wfLocalUrlE( "Speciaal:Imagelist" ) .
 "\">lijst van ge-uploade bestanden</a>.
 Uploads en verwijderingen worden bijgehouden in het <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_logboek" ) . "\">upload logboek</a>.
+wfLocalUrlE( "{{ns:4}}:Upload_logboek" ) . "\">upload logboek</a>.
 <p>Gebruik het onderstaande formulier om bestanden zoals afbeeldingen en geluidsbestanden die relevant zijn voor uw artikel te u-loaden. Bij de meeste browers zoals 'Internet Explorer' en 'Mozilla' zult u een \"Bladeren...\" of \"Browse..\" knop zien die een standaard dialoogscherm van uw bestuuringssysteem oproept. Kiest u een bestand, dan zal het ingevuld worden in het veld naast de \"Bladeren...\" knop. U dient ook het vakje aan te vinken waarmee u bevestigt dat er geen schending van auteursrechten plaatsvindt door het gebruik van dat bestand. Vul het veld \"Omschrijving\" in. Druk op de \"Upload\" knop om het uploaden te voltooien. Dit kan even duren als u een langzame internetverbinding gebruikt.
 <p>Gebruik bij voorkeur JPEG voor foto's, PNG voor tekeningen en dergelijke en OGG voor geluid. 
 Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. Om het bestand in een pagina te laten verschijnen, kunt u het volgende doen;  <b>[[afbeelding:uw_foto.jpg]]</b> of <b>[[afbeelding:uw_logo.png|alt text]]</b> of <b>[[media:uw_geluid.ogg]]</b> voor audio.
-<p>Vergeet niet dat net als met andere pagina's op Wikipedia anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot Wikipedia NL ontzegd worden.",
+<p>Vergeet niet dat net als met andere pagina's op {{SITENAME}} anderen de ge-uploade bestanden kunnen verwijderen indien men denkt dat dat in het voordeel van het project is. Bij misbruik van dit systeem kan u de toegang tot {{SITENAME}} NL ontzegd worden.",
 "uploadlog"  => "upload logboek",
 "uploadlogpage" => "Upload_logboek",
 "uploadlogpagetext" => "Hieronder de lijst met de meest recent ge-uploade bestanden. Alle tijden zijn servertijd (UTC).
@@ -524,8 +536,8 @@ Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. O
 "filestatus" => "Auteursrechtensituatie",
 "filesource" => "Auteur/bron",
 "affirmation" => "Ik verklaar dat de eigenaar van de rechten op dit bestand toestemt om het onder de voorwaarden van $1 te verspreiden.",
-"copyrightpage" => "Wikipedia:Auteursrechten",
-"copyrightpagename" => "Wikipedia NL auteursrechten",
+"copyrightpage" => "{{ns:4}}:Auteursrechten",
+"copyrightpagename" => "{{SITENAME}} NL auteursrechten",
 "uploadedfiles" => "Ge-uploade bestanden",
 "noaffirmation" => "U dient te bevestigen dat deze handeling geen inbreuk maakt op auteursrechten.",
 "ignorewarning" => "Negeer de waarschuwing en sla het bestand op.",
@@ -558,6 +570,7 @@ Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. O
 "imghistory" => "Geschiedenis van de afbeelding",
 "revertimg"  => "rev",
 "deleteimg"  => "verw",
+"deleteimgcompletely"  => "verw",
 "imghistlegend" => "Verklaring: (cur)= huidige afbeelding, (verw) = verwijder de oude versie, (rev) = breng oude versie terug.<br>
 <i>Klik op de datum om de afbeeldingen die ge-upload zijn op die datum te zien</i>.",
 "imagelinks" => "Afbeeldingsverwijzingen",
@@ -567,20 +580,20 @@ Geef uw bestanden een duidelijk omschrijvende naam om verwarring te voorkomen. O
 # Statistics
 # Statistieken
 "statistics" => "Statistieken",
-"sitestats"  => "Statistieken betreffende Wikipedia NL",
+"sitestats"  => "Statistieken betreffende {{SITENAME}} NL",
 "userstats"  => "Statistieken betreffende gebruikers",
-"sitestatstext" => "Er zijn <b>$1</b> pagina's in de database. Hierbij zijn inbegrepen \"Overleg\" pagina's, pagina's over Wikipedia, extreem korte \"stub\" pagina's, redirects, en diverse andere pagina's die waarschijnlijk niet als artikel moeten worden geteld. Na uitsluiting daarvan, is er een geschat aantal van <b>$2</b> artikels.<p>
+"sitestatstext" => "Er zijn <b>$1</b> pagina's in de database. Hierbij zijn inbegrepen \"Overleg\" pagina's, pagina's over {{SITENAME}}, extreem korte \"stub\" pagina's, redirects, en diverse andere pagina's die waarschijnlijk niet als artikel moeten worden geteld. Na uitsluiting daarvan, is er een geschat aantal van <b>$2</b> artikels.<p>
 Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat geeft een gemiddelde van $5 bewerkingen per pagina, en $6 paginabezoeken per wijziging.",
 "userstatstext" => "Er zijn momenteel $1 geregistreerde gebruikers; hiervan zijn er $2 systeembeheerders (zie $3).",
 
 # Maintenance Page   
 #
 "maintenance"           => "Onderhoudspagina",
-"maintnancepagetext"    => "Op deze pagina vindt u een aantal handige zoekopdrachten om kleine alledaagse problemen in de Wikipedia te verhelpen. Sommige van deze zoekopdrachten vormen een grote belasting voor de database; ga dus niet na elke paar pagina's die u hersteld heeft, de pagina opnieuw laden.",
+"maintnancepagetext"    => "Op deze pagina vindt u een aantal handige zoekopdrachten om kleine alledaagse problemen in de {{SITENAME}} te verhelpen. Sommige van deze zoekopdrachten vormen een grote belasting voor de database; ga dus niet na elke paar pagina's die u hersteld heeft, de pagina opnieuw laden.",
 "maintenancebacklink"   => "Terug naar de Onderhoudspagina",
 "disambiguations"       => "Doorverwijspagina's",
-"disambiguationspage"   => "Wikipedia:Doorverwijspagina",
-"disambiguationstext"   => "De onderstaande artikelen verwijzen naar een [[Wikipedia:Doorverwijspagina|doorverwijspagina]]. Deze zouden waarschijnlijk direct naar de onderwerpspagina moeten verwijzen. <br>Als doorverwijspagina's worden die pagina's beschouwd waar vanaf $1 naar verwezen wordt.<br>Opmerking: Deze lijst toont alleen pagina's vanuit de hoofdnaamruimte, en dus niet Overlegpagina's, Wikipedia:pagina's en dergelijke.",
+"disambiguationspage"   => "{{ns:4}}:Doorverwijspagina",
+"disambiguationstext"   => "De onderstaande artikelen verwijzen naar een [[{{ns:4}}:Doorverwijspagina|doorverwijspagina]]. Deze zouden waarschijnlijk direct naar de onderwerpspagina moeten verwijzen. <br>Als doorverwijspagina's worden die pagina's beschouwd waar vanaf $1 naar verwezen wordt.<br>Opmerking: Deze lijst toont alleen pagina's vanuit de hoofdnaamruimte, en dus niet Overlegpagina's, {{ns:4}}:pagina's en dergelijke.",
 "doubleredirects"       => "Dubbele redirects",
 "doubleredirectstext"   => "<b>Let op:</b> Er kunnen in deze lijst redirects staan die er niet in thuishoren. Dat komt over het algemeen doordat er na de #REDIRECT nog andere links op de pagina staan.<br>\nOp elke regel vindt u de eerste redirectpagina, de tweede redirectpagina en de eerste regel van de tweede redirectpagina. Normaal gesproken bevat deze laatste de pagina waar de eerste redirect naartoe zou moeten verwijzen.",
 "brokenredirects"       => "Gebroken redirects",
@@ -620,9 +633,9 @@ Er is in totaal $3 maal een pagina bekeken, en $4 maal een pagina bewerkt. Dat g
 "ancientpages" => "Oudste artikels",
 #"intl" => "Taallinks",  -  not active yet
 "movethispage" => "Verplaats deze pagina",
-"unusedimagestext" => "<p>Let op! Het zou kunnen dat er via een directe link verwezen wordt naar een afbeelding, bijvoorbeeld vanuit een anderstalige Wikipedia. Het is daarom mogelijk dat een afbeelding hier vermeld staat terwijl het wel degelijk gebruikt wordt.",
+"unusedimagestext" => "<p>Let op! Het zou kunnen dat er via een directe link verwezen wordt naar een afbeelding, bijvoorbeeld vanuit een anderstalige {{SITENAME}}. Het is daarom mogelijk dat een afbeelding hier vermeld staat terwijl het wel degelijk gebruikt wordt.",
 "booksources" => "Boekhandels",
-"booksourcetext" => "Hieronder is een lijst van externe websites die boeken verkopen en ook verdere informatie hierover kunnen verstekken. Via een ISBN-nummer in een artikel kunt u via deze pagina een werk opzoeken. <p>Deze dienst is enkel ter uwer informatie. Wikipedia NL heeft <u>geen enkele</u> relatie met deze websites.",
+"booksourcetext" => "Hieronder is een lijst van externe websites die boeken verkopen en ook verdere informatie hierover kunnen verstekken. Via een ISBN-nummer in een artikel kunt u via deze pagina een werk opzoeken. <p>Deze dienst is enkel ter uwer informatie. {{SITENAME}} NL heeft <u>geen enkele</u> relatie met deze websites.",
 "alphaindexline" => "$1 tot $2",
 
 # Email this user
@@ -695,7 +708,7 @@ op 'Verwijderen' onderaan deze pagina.",
 "confirmdelete" => "Bevestig verwijdering",
 "deletesub"  => "(Verwijderen \"$1\")",
 "historywarning" => "Waarschuwing: Deze pagina heeft een voorgeschiedenis. Overtuig uzelf ervan dat geen van de oudere versies een te behouden pagina is.",
-"confirmdeletetext" => "U bent staat op het punt een pagina of afbeelding voorgoed te verwijderen. Dit verwijdert alle inhoud en geschiedenis van de database. Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt, en dat uw verwijdering overeenkomt met de [[Wikipedia:Instructies]].",
+"confirmdeletetext" => "U bent staat op het punt een pagina of afbeelding voorgoed te verwijderen. Dit verwijdert alle inhoud en geschiedenis van de database. Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt, en dat uw verwijdering overeenkomt met de [[{{ns:4}}:Instructies]].",
 "confirmcheck" => "Ja, ik wil dit voorgoed verwijderen.",
 "actioncomplete" => "Actie voltooid",
 "deletedtext" => "\"$1\" is verwijderd. Zie $2 voor een overzicht van recente verwijderingen.",
@@ -724,7 +737,7 @@ op 'Verwijderen' onderaan deze pagina.",
 "undeleterevision" => "Verwijderde versie van $1",
 "undeletebtn" => "Terugplaatsen!",
 "undeletedarticle" => "\"$1\" is teruggeplaatst.",
-"undeletedtext" =>"Het artikel [[$1]] is teruggeplaatst. Zie [[Wikipedia:Logboek verwijderde pagina's]] voor een lijst van de meest recente verwijderingen en terugplaatsingen.",
+"undeletedtext" =>"Het artikel [[$1]] is teruggeplaatst. Zie [[{{ns:4}}:Logboek verwijderde pagina's]] voor een lijst van de meest recente verwijderingen en terugplaatsingen.",
 
 # Contributions
 # Bijdragen
@@ -782,18 +795,18 @@ Zie de [[speciaal:Ipblocklist|Lijst van geblokkeerde IP-adressen]].",
 "locknoconfirm" => "U heeft niet het vakje aangevinkt om uw keuze te bevestigen.",
 "lockdbsuccesssub" => "Blokkering database succesvol",
 "unlockdbsuccesssub" => "Blokkering van de database opgeheven",
-"lockdbsuccesstext" => "De database van Wikipedia NL is geblokkeerd.
+"lockdbsuccesstext" => "De database van {{SITENAME}} NL is geblokkeerd.
 Vergeet niet de database opnieuw te de-blokkeren zodra u klaar bent met uw onderhoud.",
-"unlockdbsuccesstext" => "Blokkering van de database van Wikipedia NL is opgeheven.",
+"unlockdbsuccesstext" => "Blokkering van de database van {{SITENAME}} NL is opgeheven.",
 
 # SQL query
 # SQL raadplegen
 "asksql"  => "SQL raadplegen",
-"asksqltext" => "Gebruik het onderstaande formulier om een direct verzoek naar de database van Wikipedia NL te zenden. Gebruik enkelvoudige aanhalingstekens ('zoals hier') voor letterlijke teksten. Een ingewikkelde aanvraag kan de sever vaak extra belasten. Gelieve deze mogelijkheid daarom spaarzaam te gebruiken. Zie ook: [[Wikipedia:SQL opdrachten]].",
+"asksqltext" => "Gebruik het onderstaande formulier om een direct verzoek naar de database van {{SITENAME}} NL te zenden. Gebruik enkelvoudige aanhalingstekens ('zoals hier') voor letterlijke teksten. Een ingewikkelde aanvraag kan de sever vaak extra belasten. Gelieve deze mogelijkheid daarom spaarzaam te gebruiken. Zie ook: [[{{ns:4}}:SQL opdrachten]].",
 "sqlislogged" => "Alle SQL Queries worden gelogd.",
 "sqlquery"  => "Voer opdracht in",
 "querybtn"  => "Verstuur opdracht",
-"selectonly" => "Opdrachten anders dan \"SELECT\" zijn voorbehouden aan Wikipedia ontwikkelaars.",
+"selectonly" => "Opdrachten anders dan \"SELECT\" zijn voorbehouden aan {{SITENAME}} ontwikkelaars.",
 "querysuccessful" => "Opdracht succesvol",
 
 # Move page
@@ -822,157 +835,128 @@ te zijn om een pagina te verplaatsen.",
 
 );
 
-class LanguageNl extends Language {
-
-  function getDefaultUserOptions () {
-    $opt = Language::getDefaultUserOptions();
-    $opt["date"]=2;
-    return $opt;
-  }
-
- function getBookstoreList () {
-  global $wgBookstoreListEn ; # No locals defined... yet
-  return $wgBookstoreListEn ;
- }
-
- function getNamespaces() {
-  global $wgNamespaceNamesNl;
-  return $wgNamespaceNamesNl;
- }
-
- function getNsText( $index ) {
-  global $wgNamespaceNamesNl;
-  return $wgNamespaceNamesNl[$index];
- }
-
- function getNsIndex( $text ) {
-  global $wgNamespaceNamesNl;
-
-  foreach ( $wgNamespaceNamesNl as $i => $n ) {
-   if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-  }
-  return false;
- }
-
- # Inherit specialPage()
-
- function getQuickbarSettings() {
-  global $wgQuickbarSettingsNl;
-  return $wgQuickbarSettingsNl;
- }
-
- function getSkinNames() {
-  global $wgSkinNamesNl;
-  return $wgSkinNamesNl;
- }
-
- function getMathNames() {
-  global $wgMathNamesNl;
-  return $wgMathNamesNl;
- }
-
- function getDateFormats(){
-  global $wgDateFormatsNl;
-  return $wgDateFormatsNl;
- } 
-
- function getUserToggles() {
-  global $wgUserTogglesNl;
-  return $wgUserTogglesNl;
- }
-
- function getMonthName( $key )
- {
-  global $wgMonthNamesNl;
-  return $wgMonthNamesNl[$key-1];
- }
-
- /* by default we just return base form; this should be ok for Nl */
-
- function getMonthNameGen( $key )
- {
-  global $wgMonthNamesNl;
-  return $wgMonthNamesNl[$key-1];
- }
-
- function getMonthRegex()
- {
-  global $wgMonthNamesNl;
-
-  return implode( "|", $wgMonthNamesNl );
- }
-
-
- function getMonthAbbreviation( $key )
- {
-  global $wgMonthAbbreviationsNl;
-
-  return $wgMonthAbbreviationsNl[$key-1];
- }
-
- function getWeekdayName( $key )
- {
-  global $wgWeekdayNamesNl;
-  return $wgWeekdayNamesNl[$key-1];
- }
-
- # Inherit userAdjust()
- 
- function date( $ts, $adj = false )
- {
-  if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-  $d = (0 + substr( $ts, 6, 2 )) . " " .
-    $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " . 
-    substr( $ts, 0, 4 );
-  return $d;
- }
-
- function time( $ts, $adj = false )
- {
-  if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-  $t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-  return $t;
- }
-
- function timeanddate( $ts, $adj = false )
- {
-  return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
- }
-
- function getValidSpecialPages()
- {
-  global $wgValidSpecialPagesNl;
-  return $wgValidSpecialPagesNl;
- }
-
-
- function getSysopSpecialPages()
- {
-  global $wgSysopSpecialPagesNl;
-  return $wgSysopSpecialPagesNl;
- }
-
- function getDeveloperSpecialPages()
- {
-  global $wgDeveloperSpecialPagesNl;
-  return $wgDeveloperSpecialPagesNl;
- }
-
- function getMessage( $key )
- {
-                global $wgAllMessagesNl, $wgAllMessagesEn;
-                $m = $wgAllMessagesNl[$key];
-
-                if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
-                else return $m;
- }
-
- function isRTL() { return false; }
-
- # Inherit iconv(), ucfirst(), stripForSearch(), recodeForEdit(), recodeInput()
- # since they are same as English/Latin1
+class LanguageNl extends LanguageUtf8 {
+	
+	function getDefaultUserOptions () {
+		$opt = Language::getDefaultUserOptions();
+		$opt["date"]=2;
+		return $opt;
+	}
+	
+	function getNamespaces() {
+		global $wgNamespaceNamesNl;
+		return $wgNamespaceNamesNl;
+	}
+	
+	function getNsText( $index ) {
+		global $wgNamespaceNamesNl;
+		return $wgNamespaceNamesNl[$index];
+	}
+	
+	function getNsIndex( $text ) {
+		global $wgNamespaceNamesNl;
+		
+		foreach ( $wgNamespaceNamesNl as $i => $n ) {
+			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+		}
+		return false;
+	}
+	
+	# Inherit specialPage()
+	
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsNl;
+		return $wgQuickbarSettingsNl;
+	}
+	
+	function getSkinNames() {
+		global $wgSkinNamesNl;
+		return $wgSkinNamesNl;
+	}
+	
+	function getMathNames() {
+		global $wgMathNamesNl;
+		return $wgMathNamesNl;
+	}
+	
+	function getUserToggles() {
+		global $wgUserTogglesNl;
+		return $wgUserTogglesNl;
+	}
+	
+	function getMonthName( $key ) {
+		global $wgMonthNamesNl;
+		return $wgMonthNamesNl[$key-1];
+	}
+	
+	function getMonthRegex() {
+		global $wgMonthNamesNl;
+		return implode( "|", $wgMonthNamesNl );
+	}
+	
+	
+	function getMonthAbbreviation( $key ) {
+		global $wgMonthAbbreviationsNl;
+		return $wgMonthAbbreviationsNl[$key-1];
+	}
+	
+	function getWeekdayName( $key ) {
+		global $wgWeekdayNamesNl;
+		return $wgWeekdayNamesNl[$key-1];
+	}
+	
+	# Inherit userAdjust()
+	
+	function date( $ts, $adj = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+		
+		$d = (0 + substr( $ts, 6, 2 )) . " " .
+		$this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " . 
+		substr( $ts, 0, 4 );
+		return $d;
+	}
+	
+	function time( $ts, $adj = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+		
+		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
+		return $t;
+	}
+	
+	function timeanddate( $ts, $adj = false ) {
+		return $this->date( $ts, $adj ) . " " . $this->time( $ts, $adj );
+	}
+	
+	function getValidSpecialPages() {
+		global $wgValidSpecialPagesNl;
+		return $wgValidSpecialPagesNl;
+	}
+	
+	
+	function getSysopSpecialPages() {
+		global $wgSysopSpecialPagesNl;
+		return $wgSysopSpecialPagesNl;
+	}
+	
+	function getDeveloperSpecialPages() {
+		global $wgDeveloperSpecialPagesNl;
+		return $wgDeveloperSpecialPagesNl;
+	}
+	
+	function getMessage( $key ) {
+		global $wgAllMessagesNl;
+		if( isset( $wgAllMessagesNl[$key] ) ) {
+			return $wgAllMessagesNl[$key];
+		} else {
+			return "";
+		}
+	}
+	
+	function isRTL() { return false; }
+	
+	# Inherit iconv(), ucfirst(), stripForSearch(), recodeForEdit(), recodeInput()
+	# since they are same as English/Latin1
 
 }
+
 ?>

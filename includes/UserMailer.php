@@ -48,7 +48,6 @@ function userMailer( $to, $from, $subject, $body )
 			"Content-type: text/plain; charset={$wgOutputEncoding}\r\n" .
 			"Content-transfer-encoding: 8bit\r\n" .
 			"From: {$from}\r\n" .
-			"Reply-To: {$from}\r\n" .
 			"X-Mailer: MediaWiki interuser e-mailer";
 
 		$wgErrorString = "";

@@ -1,8 +1,9 @@
 <?php
 
 function install_version_checks() {
-	# Turn off output buffering if it's on
-	@ob_end_flush();
+	# We dare not turn output buffer _off_ since this will break completely
+	# if PHP is globally configured to run through a gzip filter.
+	@ob_implicit_flush( true );
 	
 	if( !function_exists( "version_compare" ) ) {
 		# version_compare was introduced in 4.1.0
@@ -55,13 +56,17 @@ function copydirectory( $source, $dest ) {
 	}
 }
 
-function readconsole() {
-	$fp = fopen( "php://stdin", "r" );
-	$resp = trim( fgets( $fp, 1024 ) );
-	fclose( $fp );
-	return $resp;
+function readconsole( $prompt = "" ) {
+	if ( function_exists( "readline" ) ) {
+		return readline( $prompt );
+	} else {
+		print $prompt;
+		$fp = fopen( "php://stdin", "r" );
+		$resp = trim( fgets( $fp, 1024 ) );
+		fclose( $fp );
+		return $resp;
+	}
 }
-
 
 function replacevars( $ins ) {
 	$varnames = array(

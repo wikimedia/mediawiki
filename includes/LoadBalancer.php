@@ -1,10 +1,29 @@
 <?php
 # Database load balancing object
 
+require_once( "Database.php" );
+
+# Valid database indexes
+# Operation-based indexes
+define( "DB_READ", -1 );     # Read from the slave (or only server)
+define( "DB_WRITE", -2 );    # Write to master (or only server)
+define( "DB_LAST", -3 );     # Whatever database was used last
+
+# Task-based indexes
+# ***NOT USED YET, EXPERIMENTAL***
+# These may be defined in $wgDBservers. If they aren't, the default reader or writer will be used
+# Even numbers are always readers, odd numbers are writers
+define( "DB_TASK_FIRST", 1000 );  # First in list
+define( "DB_SEARCH_R", 1000 );    # Search read
+define( "DB_SEARCH_W", 1001 );    # Search write
+define( "DB_ASKSQL_R", 1002 );    # Special:Asksql read
+define( "DB_WATCHLIST_R", 1004 ); # Watchlist read
+define( "DB_TASK_LAST", 1004) ;   # Last in list
+
 class LoadBalancer {
 	/* private */ var $mServers, $mConnections, $mLoads;
 	/* private */ var $mUser, $mPassword, $mDbName, $mFailFunction;
-	/* private */ var $mForce, $mReadIndex;
+	/* private */ var $mForce, $mReadIndex, $mLastConn;
 
 	function LoadBalancer()
 	{
@@ -17,6 +36,7 @@ class LoadBalancer {
 		$this->mFailFunction = false;
 		$this->mReadIndex = -1;
 		$this->mForce = -1;
+		$this->mLastConn = false;
 	}
 
 	function newFromParams( $servers, $loads, $user, $password, $dbName, $failFunction = false )
@@ -38,6 +58,7 @@ class LoadBalancer {
 		$this->mWriteIndex = -1;
 		$this->mForce = -1;
 		$this->mConnections = array();
+		$this->mLastConn = false;
 		wfSeedRandom();
 	}
 	
@@ -53,7 +74,8 @@ class LoadBalancer {
 		foreach ( $weights as $w ) {
 			$sum += $w;
 		}
-		$rand = mt_rand() / RAND_MAX * $sum;
+		$max = mt_getrandmax();
+		$rand = mt_rand(0, $max) / $max * $sum;
 		
 		$sum = 0;
 		foreach ( $weights as $i => $w ) {
@@ -77,8 +99,10 @@ class LoadBalancer {
 				# don't work
 				$loads = $this->mLoads;
 				do {
-					$i = pickRandom( $loads );
+					$i = $this->pickRandom( $loads );
 					if ( $i !== false ) {
+						wfDebug( "Using reader #$i: {$this->mServers[$i]}\n" );
+
 						$conn =& $this->getConnection( $i );
 						if ( !$conn->isOpen() ) {
 							unset( $loads[$i] );
@@ -96,21 +120,49 @@ class LoadBalancer {
 		}
 		return $conn;
 	}
-	
+
 	function &getConnection( $i, $fail = false )
 	{
-		if ( !array_key_exists( $i, $this->mConnections) || !$this->mConnections[$i]->isOpen() ) {
-			$this->mConnections[$i] = Database::newFromParams( $this->mServers[$i], $this->mUser, 
-			  $this->mPassword, $this->mDbName, 1 );
-		}
-		if ( !$this->mConnections[$i]->isOpen() ) {
-			wfDebug( "Failed to connect to database $i at {$this->mServers[$i]}\n" );
-			if ( $fail ) {
-				$this->reportConnectionError( $this->mConnections[$i] );
+		/*
+		# Task-based index
+		if ( $i >= DB_TASK_FIRST && $i < DB_TASK_LAST ) {
+			if ( $i % 2 ) {
+				# Odd index use writer
+				$i = DB_WRITE;
+			} else {
+				# Even index use reader
+				$i = DB_READ;
 			}
-			$this->mConnections[$i] = false;
+		}*/
+
+		# Operation-based index
+		# Note, getReader() and getWriter() will re-enter this function
+		if ( $i == DB_READ ) {
+			$this->mLastConn =& $this->getReader();
+		} elseif ( $i == DB_WRITE ) {
+			$this->mLastConn =& $this->getWriter();
+		} elseif ( $i == DB_LAST ) {
+			# Just use $this->mLastConn, which should already be set
+			if ( $this->mLastConn === false ) {
+				# Oh dear, not set, best to use the writer for safety
+				$this->mLastConn =& $this->getWriter();
+			}
+		} else {
+			# Explicit index
+			if ( !array_key_exists( $i, $this->mConnections) || !$this->mConnections[$i]->isOpen() ) {
+				$this->mConnections[$i] = Database::newFromParams( $this->mServers[$i], $this->mUser, 
+				  $this->mPassword, $this->mDbName, 1 );
+			}
+			if ( !$this->mConnections[$i]->isOpen() ) {
+				wfDebug( "Failed to connect to database $i at {$this->mServers[$i]}\n" );
+				if ( $fail ) {
+					$this->reportConnectionError( $this->mConnections[$i] );
+				}
+				$this->mConnections[$i] = false;
+			}
+			$this->mLastConn =& $this->mConnections[$i];
 		}
-		return $this->mConnections[$i];
+		return $this->mLastConn;
 	}
 
 	function reportConnectionError( &$conn )
@@ -129,8 +181,8 @@ class LoadBalancer {
 	function &getWriter()
 	{
 		$c =& $this->getConnection( 0 );
-		if ( !$c->isOpen() ) {
-			reportConnectionError( $conn );
+		if ( $c === false || !$c->isOpen() ) {
+			$this->reportConnectionError( $c );
 			$c = false;
 		}
 		return $c;
@@ -139,5 +191,10 @@ class LoadBalancer {
 	function force( $i )
 	{
 		$this->mForce = $i;
+	}
+
+	function haveIndex( $i )
+	{
+		return array_key_exists( $i, $this->mServers );
 	}
 }

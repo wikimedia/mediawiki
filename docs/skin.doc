@@ -6,3 +6,6 @@ HTML rendering code. It is placed here rather than in comments
 in the code itself to help reduce the code size.
 
 
+Unfortunately there isn't any documentation, and the code's in
+a bit of a mess right now during the transition from the old skin
+code to the new template-based skin code in 1.3.

@@ -26,7 +26,7 @@ require_once("LanguageUtf8.php");
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsSq = array(
 	"Asgjë", "Lidhur majtas", "Lidhur djathtas", "Fluturo majtas"
@@ -40,7 +40,8 @@ require_once("LanguageUtf8.php");
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesSq = array(
@@ -666,6 +667,7 @@ tjetër që na duhet të dimë për të.",
 "imghistory"	=> "Historia e skedarit",
 "revertimg"		=> "ktheje",
 "deleteimg"		=> "gris",
+"deleteimgcompletely"		=> "gris",
 "imghistlegend" => "Legjendë: (tani) = ky është skedari i tanishëm, (gris) = grise
 këtë version të vjetër, (ktheje) = ktheje në këtë version të vjetër.
 <br><i>Shtyp datën për të parë skedarin e dhënë në atë ditë</i>.",

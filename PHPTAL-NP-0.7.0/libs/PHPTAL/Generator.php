@@ -82,7 +82,7 @@ class PHPTAL_Generator
             }
             if ($this->_gettext_required) {
                 $this->_code = preg_replace('/^<\?php/sm', 
-                                            '<?php require_once "' . PT_IP . '/GetText.php";', 
+                                            '<?php require_once "' . addslashes( PT_IP ) . '/GetText.php";', 
                                            $this->_code, 
                                            1);
             }

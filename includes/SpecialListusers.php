@@ -1,38 +1,48 @@
 <?php
+#
+# This class is used to get a list of user. The ones with specials
+# rights (sysop, bureaucrat, developer) will have them displayed
+# next to their names.
 
-function wfSpecialListusers()
-{
-	global $wgUser, $wgOut, $wgLang;
+require_once("QueryPage.php");
+
+class ListUsersPage extends QueryPage {
+
+	function getName() {
+		return "Listusers";
+	}
+
+	function getSQL() {
+		global $wgIsPg;
+		$usertable = $wgIsPg?'"user"':'user';
+		$userspace = Namespace::getUser();
+		return "SELECT user_rights as type, $userspace as namespace, user_name as title, user_name as value FROM $usertable";
+	}
+	
+	function sortDescending() {
+		return false;
+	}
+
+	function formatResult( $skin, $result ) {
+		global $wgLang;
+		$name = $skin->makeLink( $wgLang->getNsText($result->namespace) . ':' . $result->title, $result->title );
+		if( '' != $result->type ) {
+			$name .= ' (' .
+			$skin->makeLink( wfMsg( "administrators" ), $result->type) .
+			')';
+		}
+		return $name;
+	}
+}
+
+function wfSpecialListusers() {
+	global $wgUser, $wgOut, $wgLang, $wgIsPg;
 
 	list( $limit, $offset ) = wfCheckLimits();
 
-	$top = wfShowingResults( $offset, $limit );
-	$wgOut->addHTML( "<p>{$top}\n" );
+	$slu = new ListUsersPage();
 
-	$sl = wfViewPrevNext( $offset, $limit,
-	  $wgLang->specialPage( "Listusers" ) );
-	$wgOut->addHTML( "<br />{$sl}</p>\n<ol start='" . ( $offset + 1 ) . "'>" );
-
-	$sql = "SELECT user_name,user_rights FROM user ORDER BY " .
-	  "user_name LIMIT {$offset}, {$limit}";
-	$res = wfQuery( $sql, DB_READ, "wfSpecialListusers" );
-
-	$sk = $wgUser->getSkin();
-	while ( $s = wfFetchObject( $res ) ) {
-		$n = $s->user_name;
-		$r = $s->user_rights;
-
-		$l = $sk->makeLink( $wgLang->getNsText(
-		  Namespace::getUser() ) . ":{$n}", $n );
-
-		if ( "" != $r ) {
-			$link = $sk->makeKnownLink( wfMsg( "administrators" ), $r );
-			$l .= " ({$link})";
-		}
-		$wgOut->addHTML( "<li>{$l}</li>\n" );
-	}
-	wfFreeResult( $res );
-	$wgOut->addHTML( "</ol>\n<p>{$sl}</p>\n" );
+	return $slu->doQuery( $offset, $limit );
 }
 
 ?>

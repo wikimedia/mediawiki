@@ -15,8 +15,8 @@ class Block
 	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry;
 	/* private */ var $mNetworkBits, $mIntegerAddr;
 	
-	function Block( $address = "", $user = "", $by = 0, $reason = "", 
-		$timestamp = "" , $auto = 0, $expiry = "" ) 
+	function Block( $address = '', $user = '', $by = 0, $reason = '', 
+		$timestamp = '' , $auto = 0, $expiry = '' ) 
 	{
 		$this->mAddress = $address;
 		$this->mUser = $user;
@@ -38,26 +38,33 @@ class Block
 	
 	function clear() 
 	{
-		$mAddress = $mReason = $mTimestamp = "";
+		$mAddress = $mReason = $mTimestamp = '';
 		$mUser = $mBy = 0;
 	}
 
 	# Get a ban from the DB, with either the given address or the given username
-	function load( $address, $user = 0, $killExpired = true ) 
+	function load( $address = "", $user = 0, $killExpired = true ) 
 	{
-		$fname = "Block::load";
+		global $wgLoadBalancer;
+                $fname = 'Block::load';
 		$ret = false;
 		$killed = false;
 		
-		if ( 0 == $user ) {
+		if ( 0 == $user && $address=="" ) {
+			$sql = "SELECT * from ipblocks";
+		} elseif ($address=="") {
+			$sql = "SELECT * FROM ipblocks WHERE ipb_user={$user}";
+		} elseif ($user=="") {
 			$sql = "SELECT * FROM ipblocks WHERE ipb_address='" . wfStrencode( $address ) . "'";
 		} else {
 			$sql = "SELECT * FROM ipblocks WHERE (ipb_address='" . wfStrencode( $address ) . 
 				"' OR ipb_user={$user})";
 		}
 
-		$res = wfQuery( $sql, DB_READ, $fname );
-		if ( 0 == wfNumRows( $res ) ) {
+		$wgLoadBalancer->force(-1);
+                $res = wfQuery( $sql, DB_READ, $fname );
+		$wgLoadBalancer->force(0);
+                if ( 0 == wfNumRows( $res ) ) {
 			# User is not blocked
 			$this->clear();
 		} else {
@@ -109,7 +116,7 @@ class Block
 	function initialiseRange()
 	{
 		if ( $this->mUser == 0 ) {
-			$rangeParts = explode( "/", $this->mAddress );
+			$rangeParts = explode( '/', $this->mAddress );
 			if ( count( $rangeParts ) == 2 ) {
 				$this->mNetworkBits = $rangeParts[1];
 			} else {
@@ -125,8 +132,8 @@ class Block
 	# Callback with a Block object for every block
 	/*static*/ function enumBlocks( $callback, $tag, $killExpired = true ) 
 	{
-		$sql = "SELECT * FROM ipblocks ORDER BY ipb_timestamp DESC";
-		$res = wfQuery( $sql, DB_READ, "Block::enumBans" );
+		$sql = 'SELECT * FROM ipblocks ORDER BY ipb_timestamp DESC';
+		$res = wfQuery( $sql, DB_READ, 'Block::enumBans' );
 		$block = new Block();
 
 		while ( $row = wfFetchObject( $res ) ) {
@@ -144,25 +151,25 @@ class Block
 
 	function delete() 
 	{
-		$fname = "Block::delete";
+		$fname = 'Block::delete';
 		if ( $this->mAddress == "" ) {
 			$sql = "DELETE FROM ipblocks WHERE ipb_id={$this->mId}";
 		} else {
 			$sql = "DELETE FROM ipblocks WHERE ipb_address='" .
 				wfStrencode( $this->mAddress ) . "'";
 		}
-		wfQuery( $sql, DB_WRITE, "Block::delete" );
+		wfQuery( $sql, DB_WRITE, 'Block::delete' );
 
 		$this->clearCache();
 	}
 
 	function insert() 
 	{
-		$sql = "INSERT INTO ipblocks 
-		  (ipb_address, ipb_user, ipb_by, ipb_reason, ipb_timestamp, ipb_auto, ipb_expiry ) 
-		  VALUES ('" . wfStrencode( $this->mAddress ) . "', {$this->mUser}, {$this->mBy}, '" . 
+		$sql = 'INSERT INTO ipblocks ' .
+		  '(ipb_address, ipb_user, ipb_by, ipb_reason, ipb_timestamp, ipb_auto, ipb_expiry )' . 
+		  "VALUES ('" . wfStrencode( $this->mAddress ) . "', {$this->mUser}, {$this->mBy}, '" . 
 		  wfStrencode( $this->mReason ) . "','{$this->mTimestamp}', {$this->mAuto}, '{$this->mExpiry}')";
-		wfQuery( $sql, DB_WRITE, "Block::insert" );
+		wfQuery( $sql, DB_WRITE, 'Block::insert' );
 
 		$this->clearCache();
 	}
@@ -188,7 +195,7 @@ class Block
 
 	function isValid() 
 	{
-		return $this->mAddress != "";
+		return $this->mAddress != '';
 	}
 	
 	function updateTimestamp() 
@@ -197,10 +204,10 @@ class Block
 			$this->mTimestamp = wfTimestampNow();
 			$this->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
 
-			wfQuery( "UPDATE ipblocks SET " .
+			wfQuery( 'UPDATE ipblocks SET ' .
 				"ipb_timestamp='" . $this->mTimestamp . "', " .
 				"ipb_expiry='" . $this->mExpiry . "' " .
-				"WHERE ipb_address='" . wfStrencode( $this->mAddress ) . "'", DB_WRITE, "Block::updateTimestamp" );
+				"WHERE ipb_address='" . wfStrencode( $this->mAddress ) . "'", DB_WRITE, 'Block::updateTimestamp' );
 			
 			$this->clearCache();
 		}
@@ -232,7 +239,7 @@ class Block
 
 	/* static */ function normaliseRange( $range )
 	{
-		$parts = explode( "/", $range );
+		$parts = explode( '/', $range );
 		if ( count( $parts ) == 2 ) {
 			$shift = 32 - $parts[1];
 			$ipint = ip2long( $parts[0] );

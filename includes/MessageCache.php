@@ -11,11 +11,13 @@ class MessageCache
 {
 	var $mCache, $mUseCache, $mDisable, $mExpiry;
 	var $mMemcKey, $mKeys, $mParserOptions, $mParser;
-	var $mExtensionMessages;
+	var $mExtensionMessages, $mSecondaryDB;
 
 	var $mInitialised = false;
 
-	function initialise( &$memCached, $useDB, $expiry, $memcPrefix ) {
+	function initialise( &$memCached, $useDB, $expiry, $memcPrefix, $secondaryDB = false) {
+		$fname = "MessageCache::initialise";
+		wfProfileIn( $fname );
 		$this->mUseCache = !is_null( $memCached );
 		$this->mMemc = &$memCached;
 		$this->mDisable = !$useDB;
@@ -24,10 +26,16 @@ class MessageCache
 		$this->mMemcKey = "$memcPrefix:messages";
 		$this->mKeys = false; # initialised on demand
 		$this->mInitialised = true;
+		wfProfileIn( "$fname-parseropt" );
 		$this->mParserOptions = ParserOptions::newFromUser( $u=NULL );
+		wfProfileIn( "$fname-parseropt" );
+		wfProfileOut( "$fname-parser" );
 		$this->mParser = new Parser;
+		wfProfileOut( "$fname-parser" );
+		$this->mSecondaryDB = $secondaryDB;
 		
 		$this->load();
+		wfProfileOut( $fname );
 	}
 
 	# Loads messages either from memcached or the database, if not disabled
@@ -39,29 +47,43 @@ class MessageCache
 		if ( $this->mDisable ) {
 			return true;
 		}
-		
+		$fname = "MessageCache::load";
+		wfProfileIn( $fname );
 		$success = true;
 		
 		if ( $this->mUseCache ) {
+			wfProfileIn( "$fname-fromcache" );
 			$this->mCache = $this->mMemc->get( $this->mMemcKey );
+			wfProfileOut( "$fname-fromcache" );
 			
 			# If there's nothing in memcached, load all the messages from the database
 			if ( !$this->mCache ) {
 				$this->lock();
 				# Other threads don't need to load the messages if another thread is doing it.
-				$this->mMemc->set( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT );
-				$this->loadFromDB();
-				# Save in memcached
-				if ( !$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry ) ) {
-					# Hack for slabs reassignment problem
-					$this->mMemc->set( $this->mMemcKey, "error" );
-					wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
+				if ( $this->mMemc->set( $this->mMemcKey, "loading", MSG_LOAD_TIMEOUT ) ) {
+					wfProfileIn( "$fname-load" );
+					$this->loadFromDB();
+					wfProfileOut( "$fname-load" );
+					# Save in memcached
+					# Keep trying if it fails, this is kind of important
+					wfProfileIn( "$fname-save" );
+					for ( $i=0; $i<20 && !$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry ); $i++ ) {
+						usleep(mt_rand(500000,1500000));
+					}
+					wfProfileOut( "$fname-save" );
+					if ( $i == 20 ) {
+						$this->mMemc->set( $this->mMemcKey, "error", 3600 );
+						wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
+					}
+					$this->unlock();
 				}
-				$this->unlock();
 			}
 			
 			if ( !is_array( $this->mCache ) ) {
 				# If it is 'loading' or 'error', switch to individual message mode, otherwise disable
+				# Causing too much DB load, disabling -- TS 
+				$this->mDisable = true;
+				/*
 				if ( $this->mCache == "loading" ) {
 					$this->mUseCache = false;
 				} elseif ( $this->mCache == "error" ) {
@@ -70,25 +92,37 @@ class MessageCache
 				} else {
 					$this->mDisable = true;
 					$success = false;
-				}
+				}*/
 				$this->mCache = false;
 			}
 		}
+		wfProfileOut( $fname );
 		return $success;
 	}
 
 	# Loads all cacheable messages from the database
 	function loadFromDB()
 	{
+		global $wgLoadBalancer;
 		$fname = "MessageCache::loadFromDB";
-		$sql = "SELECT cur_title,cur_text FROM cur WHERE cur_namespace=" . NS_MEDIAWIKI;
-		$res = wfQuery( $sql, DB_READ, $fname );
-		
+		$wgLoadBalancer->force(-1);
 		$this->mCache = array();
+		if ( $this->mSecondaryDB ) {
+			# Load from fallback
+			$sql = "SELECT cur_title,cur_text FROM {$this->mSecondaryDB}.cur WHERE cur_is_redirect=0 AND cur_namespace=" . NS_MEDIAWIKI;
+			$res = wfQuery( $sql, DB_READ, $fname );
+			$this->mCache = array();
+			for ( $row = wfFetchObject( $res ); $row; $row = wfFetchObject( $res ) ) {
+				$this->mCache[$row->cur_title] = $row->cur_text;
+			}
+		}
+		$sql = "SELECT cur_title,cur_text FROM cur WHERE cur_is_redirect=0 AND cur_namespace=" . NS_MEDIAWIKI;
+		$res = wfQuery( $sql, DB_READ, $fname );
 		for ( $row = wfFetchObject( $res ); $row; $row = wfFetchObject( $res ) ) {
 			$this->mCache[$row->cur_title] = $row->cur_text;
 		}
 
+		$wgLoadBalancer->force(0);
 		wfFreeResult( $res );
 	}
 	
@@ -157,7 +191,7 @@ class MessageCache
 		}
 		
 		$message = false;
-		if ( !$this->mDisable ) {
+		if ( !$this->mDisable && $useDB ) {
 			$title = $wgLang->ucfirst( $key );
 			
 
@@ -167,7 +201,7 @@ class MessageCache
 			}
 			
 			# If it wasn't in the cache, load each message from the DB individually
-			if ( !$message && $useDB) {
+			if ( !$message ) {
 				$result = wfGetArray( "cur", array("cur_text"), 
 				  array( "cur_namespace" => NS_MEDIAWIKI, "cur_title" => $title ),
 				  "MessageCache::get" );
@@ -221,6 +255,13 @@ class MessageCache
 	function addMessages( $messages ) {
 		foreach ( $messages as $key => $value ) {
 			$this->mExtensionMessages[$key] = $value;
+		}
+	}
+	
+	# Clear all stored messages. Mainly used after a mass rebuild.
+	function clear() {
+		if( $this->mUseCache ) {
+			$this->mMemc->delete( $this->mMemcKey );
 		}
 	}
 }

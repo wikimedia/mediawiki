@@ -1,4 +1,5 @@
 <?php
+# $Id$
 
 # Backwards compatibility wrapper for Database.php
 
@@ -7,53 +8,64 @@
 # the load balancer will finally call Database, which will
 # represent a single connection
 
-# NB: This file follows a connect on demand scheme. Do 
-# not access the $wgDatabase variable directly unless
-# you intend to set it. Use wfGetDB().
+# Note: $wgDatabase has ceased to exist. Destroy all references.
 
-require_once( "Database.php" );
+$wgIsMySQL=false;
+$wgIsPg=false;
 
-# Query the database
-# $db: DB_READ  = -1    read from slave (or only server)
-#      DB_WRITE = -2    write to master (or only server)
-#      0,1,2,...        query a database with a specific index
-# Replication is not actually implemented just yet
+if ($wgDBtype=="mysql") {
+    require_once( "Database.php" );
+    $wgIsMySQL=true;
+} elseif ($wgDBtype=="pgsql") {
+    require_once( "DatabasePostgreSQL.php" );
+    $wgIsPg=true;
+} 
+
+
 # Usually aborts on failure
 # If errors are explicitly ignored, returns success
 function wfQuery( $sql, $db, $fname = "" )
 {
-	global $wgDatabase, $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 
-		$wgDebugDumpSql, $wgBufferSQLResults, $wgIgnoreSQLErrors;
-	
+	global $wgOut;
 	if ( !is_numeric( $db ) ) {
 		# Someone has tried to call this the old way
 		$wgOut->fatalError( wfMsgNoDB( "wrong_wfQuery_params", $db, $sql ) );
 	}
-
-	$db =&  wfGetDB();
-	return $db->query( $sql, $fname );
+	$c =& wfGetDB( $db );
+	if ( $c !== false ) {
+		return $c->query( $sql, $fname );
+	} else {	
+		return false;
+	}
 }
 
-# Connect on demand
-function &wfGetDB()
+function wfSingleQuery( $sql, $db, $fname = "" )
 {
-	global $wgDatabase, $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 
-		$wgDebugDumpSql, $wgBufferSQLResults, $wgIgnoreSQLErrors;
-	if ( !$wgDatabase ) {
-		$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, 
-			$wgDBname, false, $wgDebugDumpSql, $wgBufferSQLResults, $wgIgnoreSQLErrors );
-	}
-	return $wgDatabase;
+	$res = wfQuery($sql, $db, $fname );
+	$row = wfFetchRow( $res );
+	$ret = $row[0];
+	wfFreeResult( $res );
+	return $ret;
+}
+
+function &wfGetDB( $db = DB_LAST )
+{
+	global $wgLoadBalancer;
+	return $wgLoadBalancer->getConnection( $db );
 }
 	
 # Turns buffering of SQL result sets on (true) or off (false). Default is
 # "on" and it should not be changed without good reasons. 
 # Returns the previous state.
 
-function wfBufferSQLResults( $newstate )
+function wfBufferSQLResults( $newstate, $dbi = DB_LAST )
 {
-	$db =& wfGetDB();
-	return $db->setBufferResults( $newstate );
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->setBufferResults( $newstate );
+	} else {
+		return NULL;
+	}
 }
 
 # Turns on (false) or off (true) the automatic generation and sending
@@ -63,117 +75,206 @@ function wfBufferSQLResults( $newstate )
 # situation as appropriate.
 # Returns the previous state.
 
-function wfIgnoreSQLErrors( $newstate )
+function wfIgnoreSQLErrors( $newstate, $dbi = DB_LAST )
 {
-	$db =& wfGetDB();
-	return $db->setIgnoreErrors( $newstate );
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->setIgnoreErrors( $newstate );
+	} else {
+		return NULL;
+	}
 }
 
-function wfFreeResult( $res ) 
+function wfFreeResult( $res, $dbi = DB_LAST ) 
 { 
-	$db =& wfGetDB();
-	$db->freeResult( $res ); 
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		$db->freeResult( $res ); 
+		return true;
+	} else {	
+		return false;
+	}
 }
 
-function wfFetchObject( $res ) 
+function wfFetchObject( $res, $dbi = DB_LAST ) 
 { 
-	$db =& wfGetDB();
-	return $db->fetchObject( $res ); 
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->fetchObject( $res, $dbi = DB_LAST ); 
+	} else {	
+		return false;
+	}
 }
 
-function wfNumRows( $res ) 
-{ 
-	$db =& wfGetDB();
-	return $db->numRows( $res ); 
-}
-
-function wfNumFields( $res ) 
-{ 
-	$db =& wfGetDB();
-	return $db->numFields( $res ); 
-}
-
-function wfFieldName( $res, $n ) 
-{ 
-	$db =& wfGetDB();
-	return $db->fieldName( $res, $n ); 
-}
-
-function wfInsertId() 
-{ 
-	$db =& wfGetDB();
-	return $db->insertId(); 
-}
-function wfDataSeek( $res, $row ) 
-{ 
-	$db =& wfGetDB();
-	return $db->dataSeek( $res, $row ); 
-}
-
-function wfLastErrno()  
-{ 
-	$db =& wfGetDB();
-	return $db->lastErrno(); 
-}
-
-function wfLastError()  
-{ 
-	$db =& wfGetDB();
-	return $db->lastError(); 
-}
-
-function wfAffectedRows()
-{ 
-	$db =& wfGetDB();
-	return $db->affectedRows(); 
-}
-
-function wfLastDBquery()
+function wfFetchRow( $res, $dbi = DB_LAST )
 {
-	$db =& wfGetDB();
-	return $db->lastQuery();
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->fetchRow ( $res, $dbi = DB_LAST );
+	} else {	
+		return false;
+	}
 }
 
-function wfSetSQL( $table, $var, $value, $cond )
-{
-	$db =& wfGetDB();
-	return $db->set( $table, $var, $value, $cond );
+function wfNumRows( $res, $dbi = DB_LAST ) 
+{ 
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->numRows( $res, $dbi = DB_LAST ); 
+	} else {	
+		return false;
+	}
 }
 
-function wfGetSQL( $table, $var, $cond )
-{
-	$db =& wfGetDB();
-	return $db->get( $table, $var, $cond );
+function wfNumFields( $res, $dbi = DB_LAST ) 
+{ 
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->numFields( $res ); 
+	} else {	
+		return false;
+	}
 }
 
-function wfFieldExists( $table, $field )
-{
-	$db =& wfGetDB();
-	return $db->fieldExists( $table, $field );
+function wfFieldName( $res, $n, $dbi = DB_LAST ) 
+{ 
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->fieldName( $res, $n, $dbi = DB_LAST ); 
+	} else {	
+		return false;
+	}
 }
 
-function wfIndexExists( $table, $index ) 
-{
-	$db =& wfGetDB();
-	return $db->indexExists( $table, $index );
+function wfInsertId( $dbi = DB_LAST ) 
+{ 
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->insertId(); 
+	} else {	
+		return false;
+	}
 }
 
-function wfInsertArray( $table, $array ) 
-{
-	$db =& wfGetDB();
-	return $db->insertArray( $table, $array );
+function wfDataSeek( $res, $row, $dbi = DB_LAST ) 
+{ 
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->dataSeek( $res, $row ); 
+	} else {	
+		return false;
+	}
 }
 
-function wfGetArray( $table, $vars, $conds, $fname = "wfGetArray" )
-{
-	$db =& wfGetDB();
-	return $db->getArray( $table, $vars, $conds, $fname );
+function wfLastErrno( $dbi = DB_LAST )  
+{ 
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->lastErrno(); 
+	} else {	
+		return false;
+	}
 }
 
-function wfUpdateArray( $table, $values, $conds, $fname = "wfUpdateArray" )
+function wfLastError( $dbi = DB_LAST )  
+{ 
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->lastError(); 
+	} else {	
+		return false;
+	}
+}
+
+function wfAffectedRows( $dbi = DB_LAST )
+{ 
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->affectedRows(); 
+	} else {	
+		return false;
+	}
+}
+
+function wfLastDBquery( $dbi = DB_LAST )
 {
-	$db =& wfGetDB();
-	$db->updateArray( $table, $values, $conds, $fname );
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->lastQuery();
+	} else {	
+		return false;
+	}
+}
+
+function wfSetSQL( $table, $var, $value, $cond, $dbi = DB_WRITE )
+{
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->set( $table, $var, $value, $cond );
+	} else {	
+		return false;
+	}
+}
+
+function wfGetSQL( $table, $var, $cond="", $dbi = DB_LAST )
+{
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->get( $table, $var, $cond );
+	} else {	
+		return false;
+	}
+}
+
+function wfFieldExists( $table, $field, $dbi = DB_LAST )
+{
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->fieldExists( $table, $field );
+	} else {	
+		return false;
+	}
+}
+
+function wfIndexExists( $table, $index, $dbi = DB_LAST ) 
+{
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->indexExists( $table, $index );
+	} else {	
+		return false;
+	}
+}
+
+function wfInsertArray( $table, $array, $fname = "wfInsertArray", $dbi = DB_WRITE ) 
+{
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->insertArray( $table, $array, $fname );
+	} else {	
+		return false;
+	}
+}
+
+function wfGetArray( $table, $vars, $conds, $fname = "wfGetArray", $dbi = DB_LAST )
+{
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		return $db->getArray( $table, $vars, $conds, $fname );
+	} else {	
+		return false;
+	}
+}
+
+function wfUpdateArray( $table, $values, $conds, $fname = "wfUpdateArray", $dbi = DB_WRITE )
+{
+	$db =& wfGetDB( $dbi );
+	if ( $db !== false ) {
+		$db->updateArray( $table, $values, $conds, $fname );
+		return true;
+	} else {
+		return false;
+	}
 }
 
 ?>

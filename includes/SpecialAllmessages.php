@@ -2,12 +2,16 @@
 
 	function wfSpecialAllmessages()
 	{
-		global $wgOut, $wgAllMessagesEn, $wgRequest, $wgMessageCache;
-		$ot = $wgRequest->getText('ot');
+		global $wgOut, $wgAllMessagesEn, $wgRequest, $wgMessageCache, $wgTitle;
+		
+		$fname = "wfSpecialAllMessages";
+		wfProfileIn( $fname );
+		
+		wfProfileIn( "$fname-setup");
+		$ot = $wgRequest->getText( 'ot' );
 		$mwMsg =& MagicWord::get( MAG_MSG );
-		set_time_limit(0);
-		$navText = str_replace( "$1", $mwMsg->getSynonym( 0 ), wfMsg("allmessagestext" ) );
-
+		
+		$navText = wfMsg( 'allmessagestext', $mwMsg->getSynonym( 0 ) );
 		$first = true;
 		$sortedArray = $wgAllMessagesEn;
 		ksort( $sortedArray );
@@ -18,21 +22,34 @@
 			$messages[$key]['statmsg'] = wfMsgNoDb( $key );
 			$messages[$key]['msg'] = wfMsg ( $key );
 		}
+		wfProfileOut( "$fname-setup" );
+		
+		wfProfileIn( "$fname-output" );
 		if ($ot == 'php') {
 			$navText .= makePhp($messages);
-			$wgOut->addHTML('<pre>'.htmlspecialchars($navText).'</pre>');
+			$wgOut->addHTML('PHP | <a href="'.$wgTitle->escapeLocalUrl('ot=html').'">HTML</a><pre>'.htmlspecialchars($navText).'</pre>');
 		} else {
-			$navText .= makeWikiText($messages);
+			$wgOut->addHTML( '<a href="'.$wgTitle->escapeLocalUrl('ot=php').'">PHP</a> | HTML' );
 			$wgOut->addWikiText( $navText );
+			$wgOut->addHTML( makeHTMLText( $messages ) );
 		}
-		return;
+		wfProfileOut( "$fname-output" );
+		
+		wfProfileOut( $fname );
 	}
+	
 	function makePhp($messages) {
 		global $wgLanguageCode;
 		$txt = "\n\n".'$wgAllMessages'.ucfirst($wgLanguageCode).' = array('."\n";
 		foreach( $messages as $key => $m ) {
 			if(strtolower($wgLanguageCode) != 'en' and $m['msg'] == $m['enmsg'] ) {
-				$txt .= '#';
+				if (strstr($m['msg'],"\n")) {
+					$txt.='/* ';
+					$comment=' */';
+				} else {
+					$txt .= '#';
+					$comment = '';
+				}
 			} elseif ($m['msg'] == '&lt;'.$key.'&gt;'){
 				$m['msg'] = '';
 				$comment = ' #empty';
@@ -45,33 +62,66 @@
 		return $txt;
 	}
 
-
-	function makeWikiText($messages) {
-		global $wgLang;
+	function makeHTMLText( $messages ) {
+		global $wgLang, $wgUser;
+		$fname = "makeHTMLText";
+		wfProfileIn( $fname );
+		
+		$sk =& $wgUser->getSkin();
 		$talk = $wgLang->getNsText( NS_TALK );
 		$mwnspace = $wgLang->getNsText( NS_MEDIAWIKI );
 		$mwtalk = $wgLang->getNsText( NS_MEDIAWIKI_TALK );
 		$txt = "
 
-		<table border=1 cellspacing=0 width=100%><tr bgcolor=#b2b2ff><td>
-		'''Name'''
-		</td><td>
-		'''Default text'''
-		</td><td>
-		'''Current text'''
-		</td></tr>";
+		<table border='1' cellspacing='0' width='100%'>
+		<tr bgcolor='#b2b2ff'>
+			<th>Name</th>
+			<th>Default text</th>
+			<th>Current text</th>
+		</tr>";
+		
+		wfProfileIn( "$fname-check" );
+		# This is a nasty hack to avoid doing independent existence checks
+		# without sending the links and table through the slow wiki parser.
+		$pageExists = array(
+			NS_MEDIAWIKI => array(),
+			NS_MEDIAWIKI_TALK => array()
+		);
+		$sql = "SELECT cur_namespace,cur_title FROM cur WHERE cur_namespace IN (" . NS_MEDIAWIKI . ", " . NS_MEDIAWIKI_TALK . ")";
+		$res = wfQuery( $sql, DB_READ );
+		while( $s = wfFetchObject( $res ) ) {
+			$pageExists[$s->cur_namespace][$s->cur_title] = true;
+		}
+		wfFreeResult( $res );
+		wfProfileOut( "$fname-check" );
+
+		wfProfileIn( "$fname-output" );
 		foreach( $messages as $key => $m ) {
-			$titleObj = Title::newFromText( $key );
-			$title = $titleObj->getDBkey();
+			$title = $wgLang->ucfirst( $key );
+			$titleObj =& Title::makeTitle( NS_MEDIAWIKI, $title );
+			$talkPage =& Title::makeTitle( NS_MEDIAWIKI_TALK, $title );
 
 			$colorIt = ($m['statmsg'] == $m['msg']) ? " bgcolor=\"#f0f0ff\"" : " bgcolor=\"#ffe2e2\"";
-			$message = wfEscapeWikiText( $m['statmsg'] );
-			$mw = wfEscapeWikiText( $m['msg'] );
+			$message = htmlspecialchars( $m['statmsg'] );
+			$mw = htmlspecialchars( $m['msg'] );
+			
+			#$pageLink = $sk->makeLinkObj( $titleObj, htmlspecialchars( $key ) );
+			#$talkLink = $sk->makeLinkObj( $talkPage, htmlspecialchars( $talk ) );
+			if( isset( $pageExists[NS_MEDIAWIKI][$title] ) ) {
+				$pageLink = $sk->makeKnownLinkObj( $titleObj, htmlspecialchars( $key ) );
+			} else {
+				$pageLink = $sk->makeBrokenLinkObj( $titleObj, htmlspecialchars( $key ) );
+			}
+			if( isset( $pageExists[NS_MEDIAWIKI_TALK][$title] ) ) {
+				$talkLink = $sk->makeKnownLinkObj( $talkPage, htmlspecialchars( $talk ) );
+			} else {
+				$talkLink = $sk->makeBrokenLinkObj( $talkPage, htmlspecialchars( $talk ) );
+			}
 
 			$txt .= 
 			"<tr$colorIt><td>
-			[[$mwnspace:$title|$key]]<br>
-			[[$mwtalk:$title|$talk]]
+			$pageLink<br />
+			$talkLink
 			</td><td>
 			$message
 			</td><td>
@@ -79,8 +129,10 @@
 			</td></tr>";
 		}
 		$txt .= "</table>";
+		wfProfileOut( "$fname-output" );
 
+		wfProfileOut( $fname );
 		return $txt;
 	}
 
-	?>
+?>

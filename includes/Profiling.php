@@ -26,7 +26,7 @@ function wfProfileClose()
 class Profiler
 {
 	var $mStack = array(), $mWorkStack = array(), $mCollated = array();
-	var $mCalls = array(), $mTotals = array();
+	var $mCalls = array(), $mTotals = array(), $mDone = false;
 	/*
 	function Profiler()
 	{
@@ -79,9 +79,12 @@ class Profiler
 
 	function getOutput( $scriptStart, $scriptElapsed )
 	{
-		if( !count( $this->mStack ) ) {
+		if ( $this->mDone ) {
+			return '';
+		} elseif( !count( $this->mStack ) ) {
 			return "No profiling output\n";
 		}
+		$this->close();
 		$width = 125;
 		$format = "%-" . ($width - 28) . "s %6d %6.3f %6.3f %6.3f%%\n";
 		$titleFormat = "%-" . ($width - 28) . "s %9s %9s %9s %9s\n";
@@ -140,7 +143,8 @@ class Profiler
 			}
 		}
 		$prof .= "\nTotal: $total\n\n";
-
+		
+		$this->mDone = true;
 		return $prof;
 	}
 
@@ -173,5 +177,4 @@ class Profiler
 
 $wgProfiler = new Profiler();
 $wgProfiler->profileIn( "-total" );
-
 ?>

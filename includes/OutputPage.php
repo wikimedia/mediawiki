@@ -1,4 +1,6 @@
 <?php
+if( defined( "MEDIAWIKI" ) ) {
+
 # See design.doc
 
 if($wgUseTeX) require_once( "Math.php" );
@@ -14,19 +16,19 @@ class OutputPage {
 	var $mSuppressQuickbar;
 	var $mOnloadHandler;
 	var $mDoNothing;
-	var $mContainsOldMagic, $mContainsNewMagic; 
+	var $mContainsOldMagic, $mContainsNewMagic;
 	var $mIsArticleRelated;
 	var $mParserOptions;
 	var $mShowFeedLinks = false;
 	var $mEnableClientCache = true;
-	
+
 	function OutputPage()
 	{
 		$this->mHeaders = $this->mCookies = $this->mMetatags =
 		$this->mKeywords = $this->mLinktags = array();
 		$this->mHTMLtitle = $this->mPagetitle = $this->mBodytext =
 		$this->mRedirect = $this->mLastModified =
-		$this->mSubtitle = $this->mDebugtext = $this->mRobotpolicy = 
+		$this->mSubtitle = $this->mDebugtext = $this->mRobotpolicy =
 		$this->mOnloadHandler = "";
 		$this->mIsArticleRelated = $this->mIsarticle = $this->mPrintable = true;
 		$this->mSuppressQuickbar = $this->mPrintable = false;
@@ -48,7 +50,7 @@ class OutputPage {
 	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
 	function addScript( $script ) { $this->mScripts .= $script; }
 	function getScript() { return $this->mScripts; }
-	
+
 	function addLink( $linkarr ) {
 		# $linkarr should be an associative array of attributes. We'll escape on output.
 		array_push( $this->mLinktags, $linkarr );
@@ -65,7 +67,7 @@ class OutputPage {
 	# checkLastModified tells the client to use the client-cached page if
 	# possible. If sucessful, the OutputPage is disabled so that
 	# any future call to OutputPage->output() have no effect. The method
-	# returns true iff cache-ok headers was sent. 
+	# returns true iff cache-ok headers was sent.
 	function checkLastModified ( $timestamp )
 	{
 		global $wgLang, $wgCachePages, $wgUser;
@@ -92,7 +94,7 @@ class OutputPage {
 			$modsince = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
 			$ismodsince = wfUnix2Timestamp( strtotime( $modsince ) );
 			wfDebug( "-- client send If-Modified-Since: " . $modsince . "\n", false );
-			wfDebug( "--  we might send Last-Modified : $lastmod\n", false ); 
+			wfDebug( "--  we might send Last-Modified : $lastmod\n", false );
 
 			if( ($ismodsince >= $timestamp ) and $wgUser->validateCache( $ismodsince ) ) {
 				# Make sure you're in a place you can leave when you call us!
@@ -116,11 +118,11 @@ class OutputPage {
 		global $action;
 		switch($action) {
 			case 'edit':
-				return 	wfMsg('edit');
+				return wfMsg('edit');
 			case 'history':
 				return wfMsg('history_short');
 			case 'protect':
-				return wfMsg('unprotect');
+				return wfMsg('protect');
 			case 'unprotect':
 				return wfMsg('unprotect');
 			case 'delete':
@@ -131,6 +133,8 @@ class OutputPage {
 				return wfMsg('unwatch');
 			case 'submit':
 				return wfMsg('preview');
+			case 'info':
+				return wfMsg('info_short');
 			default:
 				return '';
 		}
@@ -168,8 +172,8 @@ class OutputPage {
 			$this->mIsarticle = false;
 		}
 	}
-	function setArticleFlag( $v ) { 
-		$this->mIsarticle = $v; 
+	function setArticleFlag( $v ) {
+		$this->mIsarticle = $v;
 		if ( $v ) {
 			$this->mIsArticleRelated = $v;
 		}
@@ -179,12 +183,26 @@ class OutputPage {
 	{
 		return $this->mIsArticleRelated;
 	}
-	
+
 	function getLanguageLinks() {
-		global $wgTitle, $wgLanguageCode;
-		global $wgDBconnection, $wgDBname;
 		return $this->mLanguageLinks;
 	}
+	function addLanguageLinks($newLinkArray) {
+		$this->mLanguageLinks += $newLinkArray;
+	}
+	function setLanguageLinks($newLinkArray) {
+		$this->mLanguageLinks = $newLinkArray;
+	}
+	function getCategoryLinks() {
+		return $this->mCategoryLinks;
+	}
+	function addCategoryLinks($newLinkArray) {
+		$this->mCategoryLinks += $newLinkArray;
+	}
+	function setCategoryLinks($newLinkArray) {
+		$this->mCategoryLinks += $newLinkArray;
+	}
+
 	function suppressQuickbar() { $this->mSuppressQuickbar = true; }
 	function isQuickbarSuppressed() { return $this->mSuppressQuickbar; }
 
@@ -205,42 +223,46 @@ class OutputPage {
 	{
 		global $wgParser, $wgParserCache, $wgUser, $wgTitle;
 
-		$parserOutput = false;
+		$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
 		if ( $cacheArticle ) {
-			$parserOutput = $wgParserCache->get( $cacheArticle, $wgUser );
+			$wgParserCache->save( $parserOutput, $cacheArticle, $wgUser );
 		}
 
-		if ( $parserOutput === false ) {
-			$parserOutput = $wgParser->parse( $text, $wgTitle, $this->mParserOptions, $linestart );
-			if ( $cacheArticle ) {
-				$wgParserCache->save( $parserOutput, $cacheArticle, $wgUser );
-			}
-		}
-		
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->mCategoryLinks += $parserOutput->getCategoryLinks();
-		
 		$this->addHTML( $parserOutput->getText() );
-		
+	}
+
+	function tryParserCache( $article, $user ) {
+		global $wgParserCache;
+		$parserOutput = $wgParserCache->get( $article, $user );
+		if ( $parserOutput !== false ) {
+			$this->mLanguageLinks += $parserOutput->getLanguageLinks();
+			$this->mCategoryLinks += $parserOutput->getCategoryLinks();
+			$this->addHTML( $parserOutput->getText() );
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	# Set the maximum cache time on the Squid in seconds
 	function setSquidMaxage( $maxage ) {
 		$this->mSquidMaxage = $maxage;
 	}
-	
+
 	# Use enableClientCache(false) to force it to send nocache headers
 	function enableClientCache( $state ) {
 		return wfSetVar( $this->mEnableClientCache, $state );
 	}
-	
+
 	function sendCacheControl() {
 		global $wgUseSquid, $wgUseESI;
 		# FIXME: This header may cause trouble with some versions of Internet Explorer
 		header( "Vary: Accept-Encoding, Cookie" );
 		if( $this->mEnableClientCache ) {
-			if( $wgUseSquid && ! isset( $_COOKIE[ini_get( "session.name") ] ) && 
-			  ! $this->isPrintable() && $this->mSquidMaxage != 0 ) 
+			if( $wgUseSquid && ! isset( $_COOKIE[ini_get( "session.name") ] ) &&
+			  ! $this->isPrintable() && $this->mSquidMaxage != 0 )
 			{
 				if ( $wgUseESI ) {
 					# We'll purge the proxy cache explicitly, but require end user agents
@@ -254,7 +276,7 @@ class OutputPage {
 				} else {
 					# We'll purge the proxy cache for anons explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
-					# IMPORTANT! The Squid needs to replace the Cache-Control header with 
+					# IMPORTANT! The Squid needs to replace the Cache-Control header with
 					# Cache-Control: s-maxage=0, must-revalidate, max-age=0
 					wfDebug( "** local proxy caching; {$this->mLastModified} **\n", false );
 					# start with a shorter timeout for initial testing
@@ -279,7 +301,7 @@ class OutputPage {
 			header( "Pragma: no-cache" );
 		}
 	}
-	
+
 	# Finally, all the text has been munged and accumulated into
 	# the object, let's actually output it:
 	#
@@ -287,13 +309,13 @@ class OutputPage {
 	{
 		global $wgUser, $wgLang, $wgDebugComments, $wgCookieExpiration;
 		global $wgInputEncoding, $wgOutputEncoding, $wgLanguageCode;
-		global $wgDebugRedirects, $wgMimeType;
+		global $wgDebugRedirects, $wgMimeType, $wgProfiler;
 		if( $this->mDoNothing ){
 			return;
 		}
 		$fname = "OutputPage::output";
 		wfProfileIn( $fname );
-		
+
 		$sk = $wgUser->getSkin();
 
 		if ( "" != $this->mRedirect ) {
@@ -308,9 +330,9 @@ class OutputPage {
 				}
 				$this->mLastModified = gmdate( "D, j M Y H:i:s" ) . " GMT";
 			}
-                        
+
 			$this->sendCacheControl();
-			
+
 			if( $wgDebugRedirects ) {
 				$url = htmlspecialchars( $this->mRedirect );
 				print "<html>\n<head>\n<title>Redirect</title>\n</head>\n<body>\n";
@@ -319,12 +341,13 @@ class OutputPage {
 			} else {
 				header( "Location: {$this->mRedirect}" );
 			}
+			if ( isset( $wgProfiler ) ) { wfDebug( $wgProfiler->getOutput() ); }
 			return;
 		}
-		
-		
+
+
 		$this->sendCacheControl();
-		
+
 		header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
 		header( "Content-language: {$wgLanguageCode}" );
 
@@ -332,7 +355,7 @@ class OutputPage {
 		foreach( $this->mCookies as $name => $val ) {
 			setcookie( $name, $val, $exp, "/" );
 		}
-		
+
 		$sk->outputPage( $this );
 		# flush();
 	}
@@ -355,7 +378,7 @@ class OutputPage {
 		global $wgUser, $wgLang;
 
 		$wgInputEncoding = strtolower( $wgInputEncoding );
-		
+
 		if( $wgUser->getOption( 'altencoding' ) ) {
 			$wgLang->setAltEncoding();
 			return;
@@ -365,11 +388,11 @@ class OutputPage {
 			$wgOutputEncoding = strtolower( $wgOutputEncoding );
 			return;
 		}
-		
+
 		/*
 		# This code is unused anyway!
 		# Commenting out. --bv 2003-11-15
-		
+
 		$a = explode( ",", $_SERVER['HTTP_ACCEPT_CHARSET'] );
 		$best = 0.0;
 		$bestset = "*";
@@ -397,7 +420,7 @@ class OutputPage {
 		$wgOutputEncoding = $wgInputEncoding;
 	}
 
-	# Returns a HTML comment with the elapsed time since request. 
+	# Returns a HTML comment with the elapsed time since request.
 	# This method has no side effects.
 	function reportTime()
 	{
@@ -407,8 +430,22 @@ class OutputPage {
 		list( $usec, $sec ) = explode( " ", $wgRequestTime );
 		$start = (float)$sec + (float)$usec;
 		$elapsed = $now - $start;
-		$com = sprintf( "<!-- Time since request: %01.2f secs. -->",
-		  $elapsed );
+
+		# Use real server name if available, so we know which machine
+		# in a server farm generated the current page.
+		if ( function_exists( "posix_uname" ) ) {
+			$uname = @posix_uname();
+		} else {
+			$uname = false;
+		}
+		if( is_array( $uname ) && isset( $uname['nodename'] ) ) {
+			$hostname = $uname['nodename'];
+		} else {
+			# This may be a virtual server.
+			$hostname = $_SERVER['SERVER_NAME'];
+		}
+		$com = sprintf( "<!-- Served by %s in %01.2f secs. -->",
+		  $hostname, $elapsed );
 		return $com;
 	}
 
@@ -445,7 +482,7 @@ class OutputPage {
 		$this->mBodytext = "";
 
 		$sk = $wgUser->getSkin();
-		$ap = $sk->makeKnownLink( wfMsg( "administrators" ), "" );	
+		$ap = $sk->makeKnownLink( wfMsg( "administrators" ), "" );
 		$this->addHTML( wfMsg( "sysoptext", $ap ) );
 		$this->returnToMain();
 	}
@@ -461,7 +498,7 @@ class OutputPage {
 		$this->mBodytext = "";
 
 		$sk = $wgUser->getSkin();
-		$ap = $sk->makeKnownLink( wfMsg( "administrators" ), "" );	
+		$ap = $sk->makeKnownLink( wfMsg( "administrators" ), "" );
 		$this->addHTML( wfMsg( "developertext", $ap ) );
 		$this->returnToMain();
 	}
@@ -479,14 +516,14 @@ class OutputPage {
 
 		# We put a comment in the .html file so a Sysop can diagnose the page the
 		# user can't see.
-		$this->addHTML( "\n<!--" . 
-						$wgLang->getNsText( $wgTitle->getNamespace() ) . 
-						":" . 
+		$this->addHTML( "\n<!--" .
+						$wgLang->getNsText( $wgTitle->getNamespace() ) .
+						":" .
 						$wgTitle->getDBkey() . "-->" );
 		$this->returnToMain();		# Flip back to the main page after 10 seconds.
 	}
 
-	function databaseError( $fname, &$conn )
+	function databaseError( $fname, $sql, $error, $errno )
 	{
 		global $wgUser, $wgCommandLineMode;
 
@@ -501,11 +538,11 @@ class OutputPage {
 			$msg = wfMsgNoDB( "dberrortext" );
 		}
 
-		$msg = str_replace( "$1", htmlspecialchars( $conn->lastQuery() ), $msg );
+		$msg = str_replace( "$1", htmlspecialchars( $sql ), $msg );
 		$msg = str_replace( "$2", htmlspecialchars( $fname ), $msg );
-		$msg = str_replace( "$3", $conn->lastErrno(), $msg );
-		$msg = str_replace( "$4", htmlspecialchars( $conn->lastError() ), $msg );
-		
+		$msg = str_replace( "$3", $errno, $msg );
+		$msg = str_replace( "$4", htmlspecialchars( $error ), $msg );
+
 		if ( $wgCommandLineMode || !is_object( $wgUser )) {
 			print "$msg\n";
 			wfAbruptExit();
@@ -534,7 +571,7 @@ class OutputPage {
 			$reason = file_get_contents( $wgReadOnlyFile );
 			$this->addWikiText( wfMsg( "readonlytext", $reason ) );
 		}
-		
+
 		if( is_string( $source ) ) {
 			if( strcmp( $source, "" ) == 0 ) {
 				$source = wfMsg( "noarticletext" );
@@ -545,7 +582,7 @@ class OutputPage {
 				htmlspecialchars( $source ) . "\n</textarea>";
 			$this->addHTML( $text );
 		}
-		
+
 		$this->returnToMain( false );
 	}
 
@@ -586,10 +623,13 @@ class OutputPage {
 		$this->fatalError( wfMsg( "filenotfound", $name ) );
 	}
 
+	// return from error messages or notes
+	//   auto: 	automatically redirect the user after 10 seconds
+	//   returnto:	page title to return to. Default is Main Page.
 	function returnToMain( $auto = true, $returnto = NULL )
 	{
 		global $wgUser, $wgOut, $wgRequest;
-		
+
 		if ( $returnto == NULL ) {
 			$returnto = $wgRequest->getText( 'returnto' );
 		}
@@ -623,7 +663,7 @@ class OutputPage {
 			"/[_]/" => ' '
 		);
 		$a = htmlspecialchars(preg_replace(array_keys($strip), array_values($strip),$a ));
-		
+
 		$wgOut->addMeta ( "KEYWORDS" , $a ) ;
 	}
 
@@ -638,7 +678,7 @@ class OutputPage {
 		} else {
 			$ret = "";
 		}
-		
+
 		$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\"\n        \"$wgDTD\">\n";
 
 		if ( "" == $this->mHTMLtitle ) {
@@ -653,7 +693,7 @@ class OutputPage {
 		$ret .= "<html $xmlbits lang=\"$wgLanguageCode\" $rtl>\n";
 		$ret .= "<head>\n<title>" . htmlspecialchars( $this->mHTMLtitle ) . "</title>\n";
 		array_push( $this->mMetatags, array( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" ) );
-		
+
 		$ret .= $this->getHeadLinks();
 		global $wgStylePath;
 		if( $this->isPrintable() ) {
@@ -672,7 +712,7 @@ class OutputPage {
 		$ret .= "</head>\n";
 		return $ret;
 	}
-	
+
 	function getHeadLinks() {
 		global $wgRequest, $wgStylePath;
 		$ret = "";
@@ -716,5 +756,7 @@ class OutputPage {
 		# $ret .= "<!--[if gte IE 5.5000]><script type='text/javascript' src='$fix'></script><![endif]-->";
 		return $ret;
 	}
+}
+
 }
 ?>

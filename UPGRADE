@@ -1,0 +1,52 @@
+== Upgrading from 1.3.x betas ==
+
+Should generally go smoothly.
+
+Note that the 1.3 beta releases included a potential vulnerability if PHP
+is configured with register_globals on and the includes directory is
+served to the web. For general safety, turn register_globals *off* if you
+don't _really_ need it for another package.
+
+If your hosting provider turns it on and you can't turn it off yourself,
+send them a kind note explaining that it can expose their servers and their
+customers to attacks.
+
+
+== Upgrading from 1.2.x ==
+
+If you've been using the MediaWiki: namespace for custom page templates,
+note that things are a little different. The Template: namespace has been
+added which is more powerful -- templates can include parameters for
+instance.
+
+Any MediaWiki: entries that are not used by the software will be automatically
+moved to Template: entries at upgrade time. Be sure to go through and check
+that everything is working properly.
+
+Also, be sure to pick the correct character encoding -- some languages were
+only available in Latin-1 on 1.2.x and are now available for Unicode as well.
+If you want to upgrade an existing wiki from Latin-1 to Unicode you'll have
+to dump the database to SQL, run it through iconv or another conversion tool,
+and restore it. Sorry.
+
+
+== Upgrading from 1.1.x or earlier ==
+
+This is less thoroughly tested, but should work.
+
+You need to specify the *admin* database username and password to the
+installer in order for it to successfully upgrade the database structure.
+You may wish to manually change the GRANTs later.
+
+
+== Upgrading from UseModWiki or old "phase 2" Wikipedia code ==
+
+There is an unmaintained UseModWiki to MediaWiki conversion script at
+maintenance/importUseModWiki.php; it may require tweaking and customization
+to work for you.
+
+Install a new MediaWiki first, then use the conversion script which will
+output SQL statements; direct these to a file and then run that into your
+database.
+
+You will have to rebuild the links tables etc after importing.

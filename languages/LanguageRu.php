@@ -29,7 +29,7 @@ if($wgMetaNamespace === FALSE)
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsRu = array(
 	"Убрать", "Фиксированный слева", "Фиксированный справа", "Плавающий слева"
@@ -43,7 +43,8 @@ if($wgMetaNamespace === FALSE)
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesRu = array(
@@ -595,6 +596,7 @@ wfLocalUrlE( "$wgMetaNamespace:Журнал закачек" ) . "\">журнал
 "imghistory"	=> "Журнал изображения",
 "revertimg"		=> "откат.",
 "deleteimg"		=> "удал.",
+"deleteimgcompletely"		=> "удал.",
 "imghistlegend" => "Пояснения: (тек.) = это - текущее изображение, (удал.) = удалить эту старую версию, (откат.) = откатиться на эту старую версию.
 <br><i>Выберите дату, чтобы посмотреть список изображений, загруженных на эту дату</i>.",
 "imagelinks"	=> "Ссылки изображения",

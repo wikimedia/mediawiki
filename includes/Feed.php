@@ -20,18 +20,18 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 $wgFeedClasses = array(
-	"rss" => "RSSFeed",
-	"atom" => "AtomFeed",
+	'rss' => 'RSSFeed',
+	'atom' => 'AtomFeed',
 	);
 
 class FeedItem {
-	var $Title = "Wiki";
-	var $Description = "";
-	var $Url = "";
-	var $Date = "";
-	var $Author = "";
+	var $Title = 'Wiki';
+	var $Description = '';
+	var $Url = '';
+	var $Date = '';
+	var $Author = '';
 	
-	function FeedItem( $Title, $Description, $Url, $Date = "", $Author = "", $Comments = "" ) {
+	function FeedItem( $Title, $Description, $Url, $Date = '', $Author = '', $Comments = '' ) {
 		$this->Title = $Title;
 		$this->Description = $Description;
 		$this->Url = $Url;
@@ -44,8 +44,8 @@ class FeedItem {
 	function xmlEncode( $string ) {
 		global $wgInputEncoding, $wgLang;
 		$string = str_replace( "\r\n", "\n", $string );
-		if( strcasecmp( $wgInputEncoding, "utf-8" ) != 0 ) {
-			$string = $wgLang->iconv( $wgInputEncoding, "utf-8", $string );
+		if( strcasecmp( $wgInputEncoding, 'utf-8' ) != 0 ) {
+			$string = $wgLang->iconv( $wgInputEncoding, 'utf-8', $string );
 		}
 		return htmlspecialchars( $string );
 	}
@@ -85,7 +85,7 @@ class ChannelFeed extends FeedItem {
 		# print "</feed>";
 	}
 	
-	function outXmlHeader( $mimetype="application/xml" ) {
+	function outXmlHeader( $mimetype='application/xml' ) {
 		global $wgServer, $wgStylePath, $wgOut;
 		
 		# We take over from $wgOut, excepting its cache header info
@@ -102,7 +102,7 @@ class ChannelFeed extends FeedItem {
 class RSSFeed extends ChannelFeed {
 
 	function formatTime( $ts ) {
-		return gmdate( "D, d M Y H:i:s \G\M\T", wfTimestamp2Unix( $ts ) );
+		return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp2Unix( $ts ) );
 	}
 	
 	function outHeader() {
@@ -143,7 +143,7 @@ class RSSFeed extends ChannelFeed {
 class AtomFeed extends ChannelFeed {
 	function formatTime( $ts ) {
 		// need to use RFC 822 time format at least for rss2.0
-		return gmdate( "Y-m-d\TH:i:s", wfTimestamp2Unix( $ts ) );
+		return gmdate( 'Y-m-d\TH:i:s', wfTimestamp2Unix( $ts ) );
 	}
 
 	function outHeader() {

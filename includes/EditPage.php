@@ -70,7 +70,7 @@ class EditPage {
 		$this->summary = trim( $request->getText( "wpSummary" ) );
 
 		$this->edittime = $request->getVal( 'wpEdittime' );
-		if( !preg_match( '/^\d{14}$/', $this->edittime ) ) $this->edittime = "";
+		if( !preg_match( '/^\d{14}$/', $this->edittime )) $this->edittime = "";
 
 		$this->preview = $request->getCheck( 'wpPreview' );
 		$this->save = $request->wasPosted() && !$this->preview;
@@ -108,7 +108,7 @@ class EditPage {
 		global $wgLang, $wgParser, $wgTitle;
 		global $wgAllowAnonymousMinor;
 		global $wgWhitelistEdit;
-		global $wgSpamRegex;
+		global $wgSpamRegex, $wgFilterCallback;
 
 		$sk = $wgUser->getSkin();
 		$isConflict = false;
@@ -131,9 +131,12 @@ class EditPage {
 		if ( "save" == $formtype ) {
 			# Check for spam
 			if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1 ) ) {
-					sleep(10);
-					$wgOut->redirect( $this->mTitle->getFullURL() );
-					return;
+				$this->spamPage();
+				return;
+			}
+			if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section ) ) {
+				# Error messages or other handling should be performed by the filter function
+				return;
 			}
 			if ( $wgUser->isBlocked() ) {
 				$this->blockedIPpage();
@@ -200,13 +203,19 @@ class EditPage {
 					$hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $this->textbox1, $matches );
 					# we can't deal with anchors, includes, html etc in the header for now, 
 					# headline would need to be parsed to improve this
-					if($hasmatch and strlen($matches[2]) > 0 and !preg_match( "/[\\['{<>]/", $matches[2])) {
+					#if($hasmatch and strlen($matches[2]) > 0 and !preg_match( "/[\\['{<>]/", $matches[2])) {
+					if($hasmatch and strlen($matches[2]) > 0) {
 						global $wgInputEncoding;
 						$headline = do_html_entity_decode( $matches[2], ENT_COMPAT, $wgInputEncoding );
-						# strip out HTML, will be useful when 
-						# $headline = preg_replace( "/<.*?" . ">/","",$headline );
+						# strip out HTML 
+						$headline = preg_replace( "/<.*?" . ">/","",$headline );
 						$headline = trim( $headline );
-						$sectionanchor = '#'.preg_replace("/[ \\?&\\/<>\\(\\)\\[\\]=,+']+/", '_', urlencode( $headline ) );
+						$sectionanchor = '#'.urlencode( str_replace(' ', '_', $headline ) );
+						$replacearray = array(
+							'%3A' => ':',
+							'%' => '.'
+						);
+						$sectionanchor = str_replace(array_keys($replacearray),array_values($replacearray),$sectionanchor);
 					}
 				}
 	
@@ -279,7 +288,7 @@ class EditPage {
 		$kblength = (int)(strlen( $this->textbox1 ) / 1024);
 		if( $kblength > 29 ) {
 			$wgOut->addHTML( "<strong>" .
-				wfMsg( "longpagewarning", $kblength )
+				wfMsg( "longpagewarning", $wgLang->formatNum( $kblength ) )
 				. "</strong>" );
 		}
 
@@ -301,12 +310,12 @@ class EditPage {
 		$save = wfMsg( "savearticle" );
 		$prev = wfMsg( "showpreview" );
 
-		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedURL(),
+		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedText(),
 		  wfMsg( "cancel" ) );
-		$edithelpurl = $sk->makeUrl( wfMsg( "edithelppage" ));
-		$edithelp = '<a onclick="window.open('.
-		"'$edithelpurl', 'helpwindow', 'width=610,height=400,left=10,top=10'".'); return false;" href="'.$edithelpurl.'">'.
-		wfMsg( "edithelp" ).'</a>';
+		$edithelpurl = $sk->makeUrl( wfMsg( 'edithelppage' ));
+		$edithelp = '<a target="helpwindow" href="'.$edithelpurl.'">'.
+			htmlspecialchars( wfMsg( 'edithelp' ) ).'</a> '.
+			htmlspecialchars( wfMsg( 'newwindow' ) );
 		$copywarn = wfMsg( "copyrightwarning", $sk->makeKnownLink(
 		  wfMsg( "copyrightpage" ) ) );
 
@@ -348,13 +357,12 @@ class EditPage {
 		$checkboxhtml = $minoredithtml . $watchhtml . "<br />";
 
 		if ( "preview" == $formtype) {
-			$previewhead="<h2>" . wfMsg( "preview" ) . "</h2>\n<p><large><center><font color=\"#cc0000\">" .
-			wfMsg( "note" ) . wfMsg( "previewnote" ) . "</font></center></large></p>\n";
+			$previewhead="<h2>" . wfMsg( "preview" ) . "</h2>\n<p><center><font color=\"#cc0000\">" .
+			wfMsg( "note" ) . wfMsg( "previewnote" ) . "</font></center></p>\n";
 			if ( $isConflict ) {
 				$previewhead.="<h2>" . wfMsg( "previewconflict" ) .
 				  "</h2>\n";
 			}
-			$previewtext = wfUnescapeHTML( $this->textbox1 );
 
 			$parserOptions = ParserOptions::newFromUser( $wgUser );
 			$parserOptions->setUseCategoryMagic( false );
@@ -371,7 +379,7 @@ class EditPage {
 				$parserOutput = $wgParser->parse( $previewtext , $wgTitle, $parserOptions );
 				$wgOut->addHTML( $parserOutput->mText );
 			} else {
-				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $previewtext ) ."\n\n",
+				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $this->textbox1 ) ."\n\n",
 				$wgTitle, $parserOptions );
 				$previewHTML = $parserOutput->mText;
 
@@ -379,6 +387,8 @@ class EditPage {
 					$wgOut->addHTML($previewhead);
 					$wgOut->addHTML($previewHTML);
 				}
+				$wgOut->addCategoryLinks($parserOutput->getCategoryLinks());
+				$wgOut->addLanguageLinks($parserOutput->getLanguageLinks());
 				$wgOut->addHTML( "<br style=\"clear:both;\" />\n" );
 			}
 		}
@@ -410,12 +420,12 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 </textarea>
 <br />{$editsummary}
 {$checkboxhtml}
-<input tabindex='5' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
+<input tabindex='5' id='wpSave' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
 " title=\"".wfMsg('tooltip-save')."\"/>
-<input tabindex='6' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
+<input tabindex='6' id='wpPreview' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
 " title=\"".wfMsg('tooltip-preview')."\"/>
 <em>{$cancel}</em> | <em>{$edithelp}</em>
-<br /><br />{$copywarn}
+<br /><div id=\"editpage-copywarn\">{$copywarn}</div>
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
 <input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n" );
 
@@ -425,7 +435,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 			  wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
 
 			$wgOut->addHTML( "<h2>" . wfMsg( "yourtext" ) . "</h2>
-<textarea tabindex=6 name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
+<textarea tabindex=6 id='wpTextbox2' name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}' wrap='virtual'>"
 . htmlspecialchars( $wgLang->recodeForEdit( $this->textbox2 ) ) .
 "
 </textarea>" );
@@ -450,7 +460,11 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$reason = $wgUser->blockedFor();
                 $ip = $wgIP;
 		
-                $name = User::whoIs( $id );
+		if ( is_numeric( $id ) ) {
+	                $name = User::whoIs( $id );
+		} else {
+			$name = $id;
+		}
 		$link = "[[" . $wgLang->getNsText( Namespace::getUser() ) .
 		  ":{$name}|{$name}]]";
 
@@ -469,6 +483,17 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikiText( wfMsg( "whitelistedittext" ) );
+		$wgOut->returnToMain( false );
+	}
+
+	function spamPage()
+	{
+		global $wgOut;
+		$wgOut->setPageTitle( wfMsg( "spamprotectiontitle" ) );
+		$wgOut->setRobotpolicy( "noindex,nofollow" );
+		$wgOut->setArticleRelated( false );
+
+		$wgOut->addWikiText( wfMsg( "spamprotectiontext" ) );
 		$wgOut->returnToMain( false );
 	}
 
@@ -516,6 +541,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 	}
 
 	/* private */ function mergeChangesInto( &$text ){
+		global $wgIsPg;
 		$oldDate = $this->edittime;
 		$res = wfQuery("SELECT cur_text FROM cur WHERE cur_id=" .
 			$this->mTitle->getArticleID() . " FOR UPDATE", DB_WRITE);
@@ -524,10 +550,13 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$yourtext = $obj->cur_text;
 		$ns = $this->mTitle->getNamespace();
 		$title = wfStrencode( $this->mTitle->getDBkey() );
-		$res = wfQuery("SELECT old_text FROM old WHERE old_namespace = $ns AND ".
+		$oldtable=$wgIsPg?'"old"':'old';
+		$res = wfQuery("SELECT old_text,old_flags FROM $oldtable WHERE old_namespace = $ns AND ".
 		  "old_title = '{$title}' AND old_timestamp = '{$oldDate}'", DB_WRITE);
 		$obj = wfFetchObject($res);
-		if(wfMerge($obj->old_text, $text, $yourtext, $result)){
+		$oldText = Article::getRevisionText( $obj );
+		
+		if(wfMerge($oldText, $text, $yourtext, $result)){
 			$text = $result;
 			return true;
 		} else {

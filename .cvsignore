@@ -1,2 +1,7 @@
 LocalSettings.php
 AdminSettings.php
+*~
+bin
+.classpath
+.project
+project.index

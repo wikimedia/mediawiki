@@ -18,7 +18,9 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+error_reporting( E_ALL );
 header( "Content-type: text/html; charset=utf-8" );
+@ini_set( "display_errors", true );
 
 ?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
@@ -78,7 +80,7 @@ header( "Content-type: text/html; charset=utf-8" );
  
  <b><a href="http://www.mediawiki.org/">MediaWiki</a></b> is
  Copyright (C) 2001-2004 by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
- Tim Starling, Erik M&ouml;ller, and others.</p>
+ Tim Starling, Erik M&ouml;ller, Gabriel Wicke and others.</p>
  
  <ul>
  <li><a href="../README">Readme</a></li>
@@ -108,7 +110,9 @@ header( "Content-type: text/html; charset=utf-8" );
 $IP = ".."; # Just to suppress notices, not for anything useful
 define( "MEDIAWIKI", true );
 define( "MEDIAWIKI_INSTALL", true );
-require( "../includes/DefaultSettings.php" );
+require_once( "../includes/DefaultSettings.php" );
+require_once( "../includes/MagicWord.php" );
+require_once( "../includes/Namespace.php" );
 ?>
 
 <h1>MediaWiki <?php print $wgVersion ?> installation</h1>
@@ -151,16 +155,19 @@ if( !is_writable( "." ) ) {
 }
 
 
-require( "../install-utils.inc" );
-require( "../maintenance/updaters.inc" );
+require_once( "../install-utils.inc" );
+require_once( "../maintenance/updaters.inc" );
+require_once( "../maintenance/convertLinks.inc" );
+require_once( "../maintenance/archives/moveCustomMessages.inc" );
+
 class ConfigData {
 	function getEncoded( $data ) {
 		# Hackish
-		global $wgInputEncoding;
-		if( strcasecmp( $wgInputEncoding, "utf-8" ) == 0 ) {
-			return $data;
-		} else {
+		global $wgUseLatin1;
+		if( $wgUseLatin1 ) {
 			return utf8_decode( $data ); /* to latin1 wikis */
+		} else {
+			return $data;
 		}
 	}
 	function getSitename() { return $this->getEncoded( $this->Sitename ); }
@@ -180,7 +187,37 @@ $endl = "
 $conf = new ConfigData;
 
 install_version_checks();
-print "<li>PHP " . phpversion() . " ok</li>\n";
+
+print "<li>PHP " . phpversion() . ": ";
+if( version_compare( phpversion(), "5.0", "lt" ) ) {
+ 	print "ok";
+} else {
+	print " <b>the MonoBook skin will be disabled due to an incompatibility
+		between the PHPTAL template library and PHP 5</b>. The wiki should
+		function normally, but with the older look and feel.";
+}
+print "</li>\n";
+
+if( ini_get( "register_globals" ) ) {
+	?>
+	<li><b class='error'>Warning:</b> <b>PHP's
+	<tt><a href="http://php.net/register_globals">register_globals</a></tt>
+	option is enabled.</b> MediaWiki will work correctly, but this setting
+	increases your exposure to potential security vulnerabilities in PHP-based
+	software running on your server. <b>You should disable it if you are able.</b></li>
+	<?php
+}
+
+if( ini_get( "safe_mode" ) ) {
+	?>
+	<li class='error'><b>Warning: PHP's
+	<a href='http://www.php.net/features.safe-mode'>safe mode</a> is active!</b>
+	You will likely have problems caused by this. You may need to make the
+	'images' subdirectory writable or specify a TMP environment variable pointing to
+	a writable temporary directory owned by you, since safe mode breaks the system
+	temporary directory.</li>
+	<?php
+}
 
 $sapi = php_sapi_name();
 $conf->prettyURLs = true;
@@ -200,6 +237,37 @@ default:
 	print "unknown; using pretty URLs (<tt>index.php/Page_Title</tt>), if you have trouble change this in <tt>LocalSettings.php</tt>";
 }
 print "</li>\n";
+
+$conf->xml = function_exists( "utf8_encode" );
+if( $conf->xml ) {
+	print "<li>Have XML / Latin1-UTF-8 conversion support.</li>\n";
+} else {
+	dieout( "PHP's XML module is missing; the wiki requires functions in
+		this module and won't work in this configuration.
+		If you're running Mandrake, install the php-xml package." );
+}
+
+$memlimit = ini_get( "memory_limit" );
+$conf->raiseMemory = false;
+if( empty( $memlimit ) ) {
+	print "<li>PHP is configured with no <tt>memory_limit</tt>.</li>\n";
+} else {
+	print "<li>PHP's <tt>memory_limit</tt> is " . htmlspecialchars( $memlimit ) . ". <b>If this is too low, installation may fail!</b> ";
+	$n = IntVal( $memlimit );
+	if( preg_match( '/^([0-9]+)[Mm]$/', trim( $memlimit ), $m ) ) {
+		$n = IntVal( $m[1] * (1024*1024) );
+	}
+	if( $n < 20*1024*1024 ) {
+		print "Attempting to raise limit to 20M... ";
+		if( false === ini_set( "memory_limit", "20M" ) ) {
+			print "failed.";
+		} else {
+			$conf->raiseMemory = true;
+			print "ok.";
+		}
+	}
+	print "</li>\n";
+}
 
 $conf->zlib = function_exists( "gzencode" );
 if( $conf->zlib ) {
@@ -251,7 +319,7 @@ print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</t
 	$conf->DBpassword = importPost( "DBpassword" );
 	$conf->DBpassword2 = importPost( "DBpassword2" );
 	$conf->RootPW = importPost( "RootPW" );
-	$conf->LanguageCode = importPost( "LanguageCode", "en-utf8" );
+	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 	$conf->SysopName = importPost( "SysopName", "WikiSysop" );
 	$conf->SysopPass = importPost( "SysopPass" );
 	$conf->SysopPass2 = importPost( "SysopPass2" );
@@ -261,6 +329,9 @@ $errs = array();
 
 if( $conf->Sitename == "" || $conf->Sitename == "MediaWiki" || $conf->Sitename == "Mediawiki" ) {
 	$errs["Sitename"] = "Must not be blank or \"MediaWiki\".";
+}
+if( $conf->DBuser == "" ) {
+	$errs["DBuser"] = "Must not be blank";
 }
 if( $conf->DBpassword == "" ) {
 	$errs["DBpassword"] = "Must not be blank";
@@ -276,19 +347,19 @@ if( $conf->SysopPass != $conf->SysopPass2 ) {
 	$errs["SysopPass2"] = "Passwords don't match!";
 }
 
-$conf->License = importPost( "License", "none" );
+$conf->License = importRequest( "License", "none" );
 if( $conf->License == "gfdl" ) {
 	$conf->RightsUrl = "http://www.gnu.org/copyleft/fdl.html";
 	$conf->RightsText = "GNU Free Documentation License 1.2";
 	$conf->RightsCode = "gfdl";
-	$conf->RightsIcon = "{$conf->ScriptPath}/stylesheets/images/gnu-fdl.png";
+	$conf->RightsIcon = '${wgStylePath}/images/gnu-fdl.png';
 } elseif( $conf->License == "none" ) {
 	$conf->RightsUrl = $conf->RightsText = $conf->RightsCode = $conf->RightsIcon = "";
 } else {
-	$conf->RightsUrl = importPost( "RightsUrl", "" );
-	$conf->RightsText = importPost( "RightsText", "" );
-	$conf->RightsCode = importPost( "RightsCode", "" );
-	$conf->RightsIcon = importPost( "RightsIcon", "" );
+	$conf->RightsUrl = importRequest( "RightsUrl", "" );
+	$conf->RightsText = importRequest( "RightsText", "" );
+	$conf->RightsCode = importRequest( "RightsCode", "" );
+	$conf->RightsIcon = importRequest( "RightsIcon", "" );
 }
 
 if( $conf->posted && ( 0 == count( $errs ) ) ) {
@@ -397,13 +468,23 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			do_interwiki_update(); flush();
 			do_index_update(); flush();
 			do_linkscc_update(); flush();
+			do_linkscc_1_3_update(); flush();
 			do_hitcounter_update(); flush();
 			do_recentchanges_update(); flush();
-			echo "FIXME: need the link table change here\n";
+			convertLinks(); flush();
 			do_user_real_name_update(); flush();
 			do_querycache_update(); flush();
 			do_objectcache_update(); flush();
 			do_categorylinks_update(); flush();
+			
+			if ( isTemplateInitialised() ) {
+				print "Template namespace already initialised\n";
+			} else {
+				moveCustomMessages( 1 ); flush();
+				moveCustomMessages( 2 ); flush();
+				moveCustomMessages( 3 ); flush();
+			}
+
 			initialiseMessages(); flush();
 			chdir( "config" );
 			
@@ -420,6 +501,11 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			print "<li>Initializing data...";
 			$wgDatabase->query( "INSERT INTO site_stats (ss_row_id,ss_total_views," .
 				"ss_total_edits,ss_good_articles) VALUES (1,0,0,0)" );
+			# setting up the db user	
+			if( $conf->Root ) {
+				print "<li>Granting user permissions...</li>\n";
+				dbsource( "../maintenance/users.sql", $wgDatabase );
+			}
 			
 			if( $conf->SysopName ) {
 				$u = User::newFromName( $conf->getSysopName() );
@@ -467,11 +553,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			print "<li><pre>";
 			initialiseMessages();
 			print "</pre></li>\n";
-			
-			if( $conf->Root ) {
-				print "<li>Granting user permissions...</li>\n";
-				dbsource( "../maintenance/users.sql", $wgDatabase );
-			}
 		}
 
 		/* Write out the config file now that all is well */
@@ -576,11 +657,16 @@ if( count( $errs ) ) {
 			$icon = urlencode( "$wgServer$wgUploadPath/wiki.png" );
 			$ccApp = htmlspecialchars( "http://creativecommons.org/license/?partner=$partner&exit_url=$exit&partner_icon_url=$icon" );
 			print "<a href=\"$ccApp\">choose</a>";
-			?></li>
-		<li><?php aField( $conf, "RightsUrl", $conf->RightsUrl, "hidden" ); ?></li>
-		<li><?php aField( $conf, "RightsText", $conf->RightsText, "hidden" ); ?></li>
-		<li><?php aField( $conf, "RightsCode", $conf->RightsCode, "hidden" ); ?></li>
-		<li><?php aField( $conf, "RightsIcon", $conf->RightsIcon, "hidden" ); ?></li>
+			?> (link will wipe out any other data in this form!)
+		<?php if( $conf->License == "cc" ) { ?>
+			<ul>
+				<li><?php aField( $conf, "RightsIcon", "<img src=\"" . htmlspecialchars( $conf->RightsIcon ) . "\" alt='icon' />", "hidden" ); ?></li>
+				<li><?php aField( $conf, "RightsText", htmlspecialchars( $conf->RightsText ), "hidden" ); ?></li>
+				<li><?php aField( $conf, "RightsCode", "code: " . htmlspecialchars( $conf->RightsCode ), "hidden" ); ?></li>
+				<li><?php aField( $conf, "RightsUrl", "<a href=\"" . htmlspecialchars( $conf->RightsUrl ) . "\">" . htmlspecialchars( $conf->RightsUrl ) . "</a>", "hidden" ); ?></li>
+			</ul>
+		<?php } ?>
+			</li>
 		</ul>
 	</dd>
 	<dt>
@@ -672,13 +758,27 @@ function writeAdminSettings( $conf ) {
 ";
 }
 
+function escapePhpString( $string ) {
+	return strtr( $string,
+		array(
+			"\n" => "\\n",
+			"\r" => "\\r",
+			"\t" => "\\t",
+			"\\" => "\\\\",
+			"\$" => "\\\$",
+			"\"" => "\\\""
+		));
+}
+
 function writeLocalSettings( $conf ) {
 	$conf->DBmysql4 = @$conf->DBmysql4 ? 'true' : 'false';
 	$conf->UseImageResize = $conf->UseImageResize ? 'true' : 'false';
 	$conf->PasswordSender = $conf->EmergencyContact;
-	if( $conf->LanguageCode == "en-utf8" ) {
-		$conf->LanguageCode = "en";
-		$conf->Encoding = "UTF-8";
+	if( preg_match( '/^([a-z]+)-latin1$/', $conf->LanguageCode, $m ) ) {
+		$conf->LanguageCode = $m[1];
+		$conf->Latin1 = true;
+	} else {
+		$conf->Latin1 = false;
 	}
 	$zlib = ($conf->zlib ? "" : "# ");
 	$magic = ($conf->ImageMagick ? "" : "# ");
@@ -686,10 +786,21 @@ function writeLocalSettings( $conf ) {
 	$pretty = ($conf->prettyURLs ? "" : "# ");
 	$ugly = ($conf->prettyURLs ? "# " : "");
 	$rights = ($conf->RightsUrl) ? "" : "# ";
+	
+	$file = @fopen( "/dev/urandom", "r" );
+	if ( $file ) {
+		$proxyKey = bin2hex( fread( $file, 32 ) );
+		fclose( $file );
+	} else {
+		$proxyKey = "";
+		for ( $i=0; $i<8; $i++ ) {
+			$proxyKey .= dechex(mt_rand(0, 0x7fffffff));
+		}
+		print "Warning: \$wgProxyKey is insecure\n";
+	}
 
-#	$proxyKey = Parser::getRandomString() . Parser::getRandomString();
 	# Add slashes to strings for double quoting
-	$slconf = array_map( "addslashes", get_object_vars( $conf ) );
+	$slconf = array_map( "escapePhpString", get_object_vars( $conf ) );
 
 	
 	$sep = (DIRECTORY_SEPARATOR == "\\") ? ";" : ":";
@@ -698,9 +809,12 @@ function writeLocalSettings( $conf ) {
 # If you make manual changes, please keep track in case you need to
 # recreate them later.
 
-\$IP = \"{$slconf[IP]}\";
-ini_set( \"include_path\", \"\$IP/includes$sep\$IP/languages$sep\" . ini_get(\"include_path\") );
+\$IP = \"{$slconf['IP']}\";
+ini_set( \"include_path\", \".$sep\$IP$sep\$IP/includes$sep\$IP/languages\" );
 include_once( \"DefaultSettings.php\" );
+
+# If PHP's memory limit is very low, some operations may fail.
+" . ($conf->raiseMemory ? '' : '# ' ) . "ini_set( 'memory_limit', '20M' );" . "
 
 if ( \$wgCommandLineMode ) {
 	if ( isset( \$_SERVER ) && array_key_exists( 'REQUEST_METHOD', \$_SERVER ) ) {
@@ -708,12 +822,12 @@ if ( \$wgCommandLineMode ) {
 	}
 } else {
 	## Compress output if the browser supports it
-	{$zlib}if( !ini_get( 'zlib.output_compression' ) ) ob_start( 'ob_gzhandler' );
+	{$zlib}if( !ini_get( 'zlib.output_compression' ) ) @ob_start( 'ob_gzhandler' );
 }
 
-\$wgSitename         = \"{$slconf[Sitename]}\";
+\$wgSitename         = \"{$slconf['Sitename']}\";
 
-\$wgScriptPath	    = \"{$slconf[ScriptPath]}\";
+\$wgScriptPath	    = \"{$slconf['ScriptPath']}\";
 \$wgScript           = \"\$wgScriptPath/index.php\";
 \$wgRedirectScript   = \"\$wgScriptPath/redirect.php\";
 
@@ -728,13 +842,13 @@ if ( \$wgCommandLineMode ) {
 \$wgUploadPath       = \"\$wgScriptPath/images\";
 \$wgUploadDirectory  = \"\$IP/images\";
 
-\$wgEmergencyContact = \"{$slconf[EmergencyContact]}\";
-\$wgPasswordSender	= \"{$slconf[PasswordSender]}\";
+\$wgEmergencyContact = \"{$slconf['EmergencyContact']}\";
+\$wgPasswordSender	= \"{$slconf['PasswordSender']}\";
 
-\$wgDBserver         = \"{$slconf[DBserver]}\";
-\$wgDBname           = \"{$slconf[DBname]}\";
-\$wgDBuser           = \"{$slconf[DBuser]}\";
-\$wgDBpassword       = \"{$slconf[DBpassword]}\";
+\$wgDBserver         = \"{$slconf['DBserver']}\";
+\$wgDBname           = \"{$slconf['DBname']}\";
+\$wgDBuser           = \"{$slconf['DBuser']}\";
+\$wgDBpassword       = \"{$slconf['DBpassword']}\";
 
 ## To allow SQL queries through the wiki's Special:Askaql page,
 ## uncomment the next lines. THIS IS VERY INSECURE. If you want
@@ -764,15 +878,14 @@ if ( \$wgCommandLineMode ) {
 
 \$wgLocalInterwiki   = \$wgSitename;
 
-\$wgLanguageCode = \"{$slconf[LanguageCode]}\";
-" . ($conf->Encoding ? "\$wgInputEncoding = \$wgOutputEncoding = \"{$slconf[Encoding]}\";" : "" ) . "
+\$wgLanguageCode = \"{$slconf['LanguageCode']}\";
+\$wgUseLatin1 = " . ($conf->Latin1 ? 'true' : 'false') . ";\n
+
+\$wgProxyKey = \"$proxyKey\";
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
 # \$wgDefaultSkin = 'monobook';
-
-## This is incomplete, ignore it:
-#\$wgProxyKey = $proxyKey;
 
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
@@ -790,9 +903,9 @@ function dieout( $text ) {
 	die( $text . "\n\n</body>\n</html>" );
 }
 
-function importPost( $name, $default = "" ) {
-	if( isset( $_POST[$name] ) ) {
-		$retval = $_POST[$name];
+function importVar( &$var, $name, $default = "" ) {
+	if( isset( $var[$name] ) ) {
+		$retval = $var[$name];
 		if ( get_magic_quotes_gpc() ) {
 			$retval = stripslashes( $retval );
 		}
@@ -800,6 +913,14 @@ function importPost( $name, $default = "" ) {
 		$retval = $default;
 	}
 	return $retval;
+}
+
+function importPost( $name, $default = "" ) {
+	return importVar( $_POST, $name, $default );
+}
+
+function importRequest( $name, $default = "" ) {
+	return importVar( $_REQUEST, $name, $default );
 }
 
 function aField( &$conf, $field, $text, $type = "", $value = "" ) {
@@ -843,23 +964,26 @@ function getLanguageList() {
 		$wgLanguageCode = "xxx";
 		function wfLocalUrl( $x ) { return $x; }
 		function wfLocalUrlE( $x ) { return $x; }
-		require( "../languages/Language.php" );
+		require_once( "../languages/Names.php" );
 	}
 	
 	$codes = array();
-	$latin1 = array( "da", "de", "en", "es", "nl", "sv" );
+	$latin1 = array( "da", "de", "en", "es", "fr", "nl", "sv" );
 	
 	$d = opendir( "../languages" );
 	while( false !== ($f = readdir( $d ) ) ) {
 		if( preg_match( '/Language([A-Z][a-z]+)\.php$/', $f, $m ) ) {
 			$code = strtolower( $m[1] );
-			$codes[$code] = "$code - " . $wgLanguageNames[$code];
-			if( in_array( $code, $latin1 ) ) {
-				$codes[$code] .= " - Latin-1";
+			if ( array_key_exists( $code, $wgLanguageNames ) ) {
+				if( in_array( $code, $latin1 ) ) {
+					$codes[$code] = "$code - " . $wgLanguageNames[$code] . " - Unicode";
+					$codes[$code.'-latin1'] = "$code - " . $wgLanguageNames[$code] . " - Latin-1";
+				} else {
+					$codes[$code] = "$code - " . $wgLanguageNames[$code];
+				}
 			}
 		}
 	}
-	$codes["en-utf8"] = "en - English - Unicode";
 	closedir( $d );
 	ksort( $codes );
 	return $codes;

@@ -30,7 +30,7 @@ $wgEditEncoding		= "x";
 	NS_CATEGORY       => "Kategorio",
 	NS_CATEGORY_TALK  => "Kategoria_diskuto",
 
-);
+) + $wgNamespaceNamesEn;
 
 # Heredu apriorajn preferojn: wgDefaultUserOptionsEn
 
@@ -44,7 +44,8 @@ $wgEditEncoding		= "x";
 	'cologneblue' => "Kolonja Bluo",
 	'davinci' => "DaVinci",
 	'mono' => "Senkolora",
-	'monobook' => "Librejo"
+	'monobook' => "Librejo",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesEo = array(
@@ -181,6 +182,7 @@ $wgEditEncoding		= "x";
 "faq"			=> "Oftaj demandoj",
 "faqpage"		=> "{{ns:4}}:Oftaj demandoj",
 "edithelp"		=> "Helpo pri redaktado",
+"newwindow"		=> "(en nova fenestro)",
 "edithelppage"	=> "{{ns:4}}:Kiel_redakti_paĝon", #FIXME: Kontrolu
 "cancel"		=> "Nuligu",
 "qbfind"		=> "Trovu",
@@ -446,7 +448,7 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\b",
 "searchresults" => "Serĉrezultoj",
 "searchhelppage" => "{{ns:4}}:Serĉado",
 "searchingwikipedia" => "Priserĉante la {{SITENAME}}n",
-"searchresulttext" => "Por pliaj informoj kiel priserĉi la {{SITENAME}}n, vidu .",
+"searchresulttext" => "Por pliaj informoj kiel priserĉi la {{SITENAME}}n, vidu $1.",
 "searchquery"	=> "Serĉmendo \"$1\"",
 "badquery"		=> "Misformita serĉmendo",
 "badquerytext"	=> "Via serĉmendo ne estis plenumebla.
@@ -655,6 +657,7 @@ kiam ĝi estis kreita, kaj kiu kreis ĝin; kaj ion ajn, kion vi scias pri ĝi.",
 "imghistory"	=> "Historio de alŝutoj",
 "revertimg"		=> "res",
 "deleteimg"		=> "for",
+"deleteimgcompletely"		=> "for",
 "imghistlegend" => "(nun) = ĉi tiu estas la nuna versio de la dosiero, (for) = forigu
 ĉi tiun malnovan version, (res) = restarigu ĉi tiun malnovan version.
 <br /><i>Por vidi la dosieron laŭdate, alklaku la daton</i>.",

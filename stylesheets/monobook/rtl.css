@@ -13,10 +13,6 @@ Opera bugs (7.23 linux):
 IE/mac bugs:
 * The thing barfs on Hebrew and Arabic anyway, so no point testing.
 
-IE6 bug:
-* right padding of content area disappears somewhere during load, workaround is a margin on the body for now
-  (weird, isn't it?) IE5.5 is caught by this fix as well currently, it doesn't need it though
-
 Missing features due to lack of support:
 * external link icons, icon next to user name
 
@@ -57,7 +53,6 @@ html>body .portlet {
 }
 
 /* Fix alignment */
-#catlinks,
 .documentByLine,
 .portletDetails,
 .portletMore,
@@ -69,7 +64,6 @@ div div.thumbcaption {
 	text-align: right;
 }
 
-#catlinks,
 div.magnify,
 #div.townBox,
 #p-logo {
@@ -104,7 +98,7 @@ li#ca-talk {
     margin-right: auto;
     margin-left: 1.6em;
 }
-li#ca-watch {
+li#ca-watch,li#ca-unwatch {
     margin-right: 1.6em !important;
 }
 
@@ -130,6 +124,18 @@ dd {
 .tocindent {
 	margin-left: 0;
 	margin-right: 2em;
+}
+div.tright {
+    clear: none;
+}
+div.tleft {
+    clear: left;
+}
+div.floatright, table.floatright {
+    clear: none;
+}
+div.floatleft, table.floatleft {
+    clear: left;
 }
 div.townBox {
 	margin-left: 0;
@@ -167,6 +173,23 @@ li#pt-login {
 #footer {
     clear: both;
 }
+* html #footer {
+    margin-left: 0;
+    margin-right: 13.6em;
+    border-left: 0;
+    border-right: 1px solid #fabd23;
+} 
+* html #column-content { 
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+}
+* html #column-content #content {
+    margin-left: 0;
+    margin-top: 3em;
+}
+* html #column-one { right: 0; }
+
 /* js pref toc */
 #preftoc { float: right; }
 /* workaround for moz bug, displayed bullets on left side */
@@ -174,6 +197,6 @@ li#pt-login {
 #prefcontrol { float: right; }
 fieldset.prefsection,
 fieldset.operaprefsection { 
+    margin-left: 0 !important;
     margin-right: 15em;
-    margin-left: 0;
 }

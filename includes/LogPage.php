@@ -104,7 +104,9 @@ class LogPage {
 		} else {
 			$ul = $ut;
 		}
-		$d = $wgLang->timeanddate( wfTimestampNow(), false );
+		
+		# Use the wiki-wide default date format instead of the user's setting
+		$d = $wgLang->timeanddate( wfTimestampNow(), false, MW_DATE_DEFAULT );
 
 		if( preg_match( "/^(.*?)<ul>(.*)$/sD", $this->mContent, $m ) ) {
 			$before = $m[1];

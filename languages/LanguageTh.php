@@ -20,7 +20,7 @@
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsTh = array(
 	"ไม่มี", "อยู่ทางซ้าย", "อยู่ทางขวา", "ลอยทางซ้าย"
@@ -34,7 +34,8 @@
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin"
 );
 
 /* private */ $wgMathNamesTh = array(
@@ -147,7 +148,7 @@
 #-------------------------------------------------------------------
 # Default messages
 #-------------------------------------------------------------------
-# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and 
+# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
 # hyphen (-). If you need more characters, you may be able to change
 # the regex in MagicWord::initRegex
 
@@ -293,7 +294,7 @@ Please report this to an administrator, making note of the URL.",
 "filedeleteerror" => "Could not delete file \"$1\".",
 "filenotfound"	=> "Could not find file \"$1\".",
 "unexpected"	=> "Unexpected value: \"$1\"=\"$2\".",
-"formerror"		=> "Error: could not submit form",	
+"formerror"		=> "Error: could not submit form",
 "badarticleerror" => "This action cannot be performed on this page.",
 "cannotdelete"	=> "Could not delete the page or image specified. (It may have already been deleted by someone else.)",
 "badtitle"		=> "Bad title",
@@ -348,8 +349,8 @@ Don't forget to personalize your wikipedia preferences.",
 "youremail"		=> "อีเมล์ของคุณ*",
 "yournick"		=> "Your nickname (for signatures)",
 "emailforlost"	=> "* Entering an email address is optional.  But it enables people to
-contact you through the website without you having to reveal your 
-email address to them, and it also helps you if you forget your   
+contact you through the website without you having to reveal your
+email address to them, and it also helps you if you forget your
 password.",
 "loginerror"	=> "Login error",
 "nocookiesnew"	=> "The user account was created, but you are not logged in. $wgSitename uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.",
@@ -383,14 +384,14 @@ Please log in again after you receive it.",
 "blockedtitle"	=> "User is blocked",
 "blockedtext"	=> "Your user name or IP address has been blocked by $1.
 The reason given is this:<br>''$2''<p>You may contact $1 or one of the other
-[[$wgMetaNamespace:Administrators|administrators]] to discuss the block. 
+[[$wgMetaNamespace:Administrators|administrators]] to discuss the block.
 
-Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]]. 
+Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]].
 
 Your IP address is $3. Please include this address in any queries you make.
 
 ==Note to AOL users==
-Due to continuing acts of vandalism by one particular AOL user, Wikipedia often blocks AOL proxies. Unfortunately, a single proxy server may be used by a large number of AOL users, and hence innocent AOL users are often inadvertently blocked. We apologise for any inconvenience caused. 
+Due to continuing acts of vandalism by one particular AOL user, Wikipedia often blocks AOL proxies. Unfortunately, a single proxy server may be used by a large number of AOL users, and hence innocent AOL users are often inadvertently blocked. We apologise for any inconvenience caused.
 
 If this happens to you, please email an administrator, using an AOL email address. Be sure to include the IP address given above.
 ",
@@ -405,7 +406,7 @@ If this happens to you, please email an administrator, using an AOL email addres
 "newarticle"	=> "(New)",
 "newarticletext" =>
 "คุณได้ตามลิงก์ที่นำไปยังหน้าที่ยังไม่ปรากฏอยู่
-เพื่อเริ่มสร้างหน้าใหม่ พิมพ์ลงในกล่องข้างล่างนี้ 
+เพื่อเริ่มสร้างหน้าใหม่ พิมพ์ลงในกล่องข้างล่างนี้
 (ดู[[$wgMetaNamespace:ความช่วยเหลือ|หน้าความช่วยเหลือ]]สำหรับข้อมูลเพิ่มเติม)
 If you are here by mistake, just click your browser's '''back''' button.",
 "anontalkpagetext" => "---- ''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.'' ",
@@ -546,7 +547,7 @@ Your internal ID number is $2.
 
 See [[$wgMetaNamespace:User preferences help]] for help deciphering the options.",
 "prefsreset"	=> "Preferences have been reset from storage.",
-"qbsettings"	=> "Quickbar settings", 
+"qbsettings"	=> "Quickbar settings",
 "changepassword" => "Change password",
 "skin"			=> "Skin",
 "math"			=> "Rendering math",
@@ -561,7 +562,7 @@ See [[$wgMetaNamespace:User preferences help]] for help deciphering the options.
 "oldpassword"	=> "Old password",
 "newpassword"	=> "New password",
 "retypenew"		=> "Retype new password",
-"textboxsize"	=> "Textbox dimensions",
+"textboxsize"	=> "Editing",
 "rows"			=> "Rows",
 "columns"		=> "Columns",
 "searchresultshead" => "Search result settings",
@@ -700,6 +701,7 @@ created and by whom, and anything else you may know about it.",
 "imghistory"	=> "Image history",
 "revertimg"		=> "rev",
 "deleteimg"		=> "del",
+"deleteimgcompletely"		=> "del",
 "imghistlegend" => "Legend: (cur) = this is the current image, (del) = delete
 this old version, (rev) = revert to this old version.
 <br><i>Click on date to see image uploaded on that date</i>.",
@@ -758,7 +760,7 @@ That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.",
 "randompage"	=> "Random page",
 "shortpages"	=> "Short pages",
 "longpages"		=> "Long pages",
-"deadendpages"  => "Dead-end pages",				       
+"deadendpages"  => "Dead-end pages",
 "listusers"		=> "User list",
 "specialpages"	=> "Special pages",
 "spheading"		=> "Special pages for all users",
@@ -888,11 +890,11 @@ All times shown are server time (UTC).
 "rollbackfailed" => "Rollback failed",
 "cantrollback"	=> "Cannot revert edit; last contributor is only author of this article.",
 "alreadyrolled"	=> "Cannot rollback last edit of [[$1]]
-by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already. 
+by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already.
 
 Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
 #   only shown if there is an edit comment
-"editcomment" => "The edit comment was: \"<i>$1</i>\".", 
+"editcomment" => "The edit comment was: \"<i>$1</i>\".",
 "revertpage"	=> "Reverted to last edit by $1",
 "protectlogpage" => "Protection_log",
 "protectlogtext" => "Below is a list of page locks/unlocks.
@@ -968,7 +970,7 @@ to a previously blocked IP address or username.",
 "autoblocker"	=> "Autoblocked because you share an IP address with \"$1\". Reason \"$2\".",
 "blocklogpage"	=> "Block_log",
 "blocklogentry"	=> 'blocked "$1"',
-"blocklogtext"	=> "This is a log of user blocking and unblocking actions. Automatically 
+"blocklogtext"	=> "This is a log of user blocking and unblocking actions. Automatically
 blocked IP addresses are not be listed. See the [[Special:Ipblocklist|IP block list]] for
 the list of currently operational bans and blocks.",
 "unblocklogentry"	=> 'unblocked "$1"',
@@ -1112,7 +1114,7 @@ class LanguageTh extends LanguageUtf8 {
 		global $wgMathNamesTh;
 		return $wgMathNamesTh;
 	}
-	
+
 	function getDateFormats() {
 		global $wgDateFormatsTh;
 		return $wgDateFormatsTh;
@@ -1164,7 +1166,7 @@ class LanguageTh extends LanguageUtf8 {
 		global $wgAllMessagesTh;
 		return $wgAllMessagesTh[$key];
 	}
-	
+
 	function getAllMessages()
 	{
 		global $wgAllMessagesTh;

@@ -11,21 +11,26 @@
 # and Rodrigo Calanca Nishino from Portuguese Wikipedia
 #
 /* private */ $wgNamespaceNamesPt = array(
-    -1  => "Especial",
-    0   => "",
-    1   => "Discussão",
-    2   => "Usuário",
-    3   => "Usuário_Discussão",
-    4   => "Wikipedia",
-    5   => "Wikipedia_Discussão",
-    6   => "Imagem",
-    7   => "Imagem_Discussão",
-    8   => "MediaWiki",
-    9   => "MediaWiki_Discussão",
-	10  => "Template",
-	11  => "Template_talk"
+    NS_MEDIA		=> "Media",
+    NS_SPECIAL		=> "Especial",
+    NS_MAIN 		=> "",
+    NS_TALK  		=> "Discussão",
+    NS_USER   		=> "Usuário",
+    NS_USER_TALK   	=> "Usuário_Discussão",
+    NS_WIKIPEDIA   	=> $wgMetaNamespace,
+    NS_WIKIPEDIA_TALK   => "{$wgMetaNamespace}_Discussão",
+    NS_IMAGE   		=> "Imagem",
+    NS_IMAGE_TALK   	=> "Imagem_Discussão",
+    NS_MEDIAWIKI   	=> "MediaWiki",
+    NS_MEDIAWIKI_TALK   => "MediaWiki_Discussão",
+    NS_TEMPLATE  	=> "Predefinição",
+    NS_TEMPLATE_TALK  	=> "Predefinição_Discussão",
+    NS_HELP		=> "Ajuda",
+    NS_HELP_TALK	=> "Ajuda_Discussão",
+    NS_CATEGORY		=> "Categoria",
+    NS_CATEGORY_TALK	=> "Categoria_Discussão"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgDefaultUserOptionsPt = array(
     "quickbar" => 1, "underline" => 1, "hover" => 1,
@@ -38,7 +43,7 @@
 );
 
 /* private */ $wgQuickbarSettingsPt = array(
-    "Nada", "Fixado �  esquerda", "Fixado �  direita", "Flutuando �  Esquerda"
+    "Nada", "Fixado �  esquerda", "Fixado �  direita", "Flutuando �  Esquerda"
 );
 
 /* private */ $wgSkinNamesPt = array(
@@ -49,7 +54,8 @@
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesPt = array(
@@ -161,7 +167,7 @@
 
 /* private */ $wgDeveloperSpecialPagesPt = array(
     "Lockdb"        => "Torna o banco de dados como apenas leitura",
-    "Unlockdb"      => "Restaura o acesso �  escrita no banco de dados",
+    "Unlockdb"      => "Restaura o acesso �  escrita no banco de dados",
     "Debug"         => "\'Debugar\' informações"
 );
 
@@ -179,17 +185,17 @@
 "mainpage"      => "Página principal",
 "mainpagetext"  => "Software Wiki instalado com sucesso.",
 "about"         => "Sobre",
-"aboutwikipedia" => "Sobre a Wikipedia",
-"aboutpage"     => "Wikipedia:Sobre",
+"aboutwikipedia" => "Sobre a {{SITENAME}}",
+"aboutpage"     => "{{ns:4}}:Sobre",
 "help"          => "Ajuda",
-"helppage"      => "Wikipedia:Ajuda",
-"wikititlesuffix" => "Wikipedia",
+"helppage"      => "{{ns:4}}:Ajuda",
+"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"    => "Reportagem de 'bugs'",
-"bugreportspage" => "Wikipedia:Reportag_Bug",
+"bugreportspage" => "{{ns:4}}:Reportag_Bug",
 "faq"           => "FAQ",
-"faqpage"       => "Wikipedia:FAQ",
+"faqpage"       => "{{ns:4}}:FAQ",
 "edithelp"      => "Ajuda de edição",
-"edithelppage"  => "Wikipedia:Como_editar_uma_página",
+"edithelppage"  => "{{ns:4}}:Como_editar_uma_página",
 "cancel"        => "Cancela",
 "qbfind"        => "Procura",
 "qbbrowse"      => "Folhear",
@@ -202,7 +208,7 @@
 "currentevents" => "Eventos atuais",
 "errorpagetitle" => "Erro",
 "returnto"      => "Retorna para $1.",
-"fromwikipedia" => "Origem: Wikipedia, a enciclopédia livre.",
+"fromwikipedia" => "Origem: {{SITENAME}}, a enciclopédia livre.",
 "whatlinkshere" => "Páginas que se ligam a essa",
 "help"          => "Ajuda",
 "search"        => "Busca",
@@ -229,7 +235,7 @@
 "gnunote" => "Todo o texto é disponível sob os termos da <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(De http://www.wikipedia.org/pt)",
 "protectedpage" => "Página protegida",
-"administrators" => "Wikipedia:Administradores",
+"administrators" => "{{ns:4}}:Administradores",
 "sysoptitle"    => "Acesso de OpSys necessário",
 "sysoptext"     => "A ação que você requisitou só pode ser
 executada por usuários com status de \"opsys\".
@@ -241,7 +247,7 @@ Veja $1.",
 "nbytes"        => "$1 bytes",
 "go"            => "vai",
 "ok"            => "OK",
-"sitetitle"     => "Wikipedia",
+"sitetitle"     => "{{SITENAME}}",
 "sitesubtitle"  => "A enciclopédia livre",
 "retrievedfrom" => "Retirado de  \"$1\"",
 "newmessages" => "You have $1.",
@@ -255,10 +261,10 @@ Veja $1.",
 #
 "nosuchaction"  => "Ação não existente",
 "nosuchactiontext" => "A ação especificada pela URL não é
-reconhecida pelo programa da Wikipedia",
+reconhecida pelo programa da {{SITENAME}}",
 "nosuchspecialpage" => "Não exista esta página especial",
 "nospecialpagetext" => "Você requisitou uma página especial que não é
-reconhecida pelo software da Wikipedia.",
+reconhecida pelo software da {{SITENAME}}.",
 
 # General errors
 #
@@ -284,7 +290,7 @@ dificuldades técnicas, e não pode contatar o servidor de bando de dados.",
 solicitada, e pode não estar atualizada.",
 "readonly"      => "Banco de dados somente para leitura",
 "enterlockreason" => "Entre com um motivo para trancá-lo, incluindo uma estimativa de quando poderá novamente ser escrito",
-"readonlytext"  => "O Banco-de-dados da Wikipedia está atualmente bloqueado para novos
+"readonlytext"  => "O Banco-de-dados da {{SITENAME}} está atualmente bloqueado para novos
 artigos e outras modificações, provávelmente por uma manutenção rotineira no Bando de Dados,
 mais tarde voltará ao normal.
 
@@ -317,11 +323,11 @@ porque tornava o banco de dados lento demais a ponto de impossibilitar o wiki.",
 #
 "logouttitle"   => "Saída de utilizador",
 "logouttext"    => "Você agora não está mais autenticado.
-Você pode continuar a usar a Wikipedia anonimamente, ou pode se autenticar
+Você pode continuar a usar a {{SITENAME}} anonimamente, ou pode se autenticar
 novamente como o mesmo utilizador ou como um utilizador diferente.\n",
 
 "welcomecreation" => "<h2>Bem-vindo, $1!</h2><p>Sua conta foi criada.
-Não se esqueça de personalizar suas preferências na Wikipedia.",
+Não se esqueça de personalizar suas preferências na {{SITENAME}}.",
 
 "loginpagetitle" => "Login de usuário",
 "yourname"      => "Seu nome de usuário",
@@ -332,7 +338,7 @@ Não se esqueça de personalizar suas preferências na Wikipedia.",
 "loginproblem"  => "<b>Houve um problema com a sua autenticação.</b><br>Tente novamente!",
 "alreadyloggedin" => "<font color=red><b>Utilizador $1, você já está autenticado!</b></font><br>\n",
 
-"areyounew"     => "Se você é novo(a) na Wikipedia e quer fazer uma conta de utilizador, entre com um nome de utilizador e depois digite e re-digite uma senha. Seu e-mail é opcional - se você perder a sua senha, você pode requisitar para que ela seja enviada para o endereço que você informou.<br>\n",
+"areyounew"     => "Se você é novo(a) na {{SITENAME}} e quer fazer uma conta de utilizador, entre com um nome de utilizador e depois digite e re-digite uma senha. Seu e-mail é opcional - se você perder a sua senha, você pode requisitar para que ela seja enviada para o endereço que você informou.<br>\n",
 
 "login"         => "Entrar",
 "userlogin"     => "Entrar",
@@ -345,16 +351,16 @@ Não se esqueça de personalizar suas preferências na Wikipedia.",
 "userexists"    => "O nome de usuário que você digitou já existe. Por favor, escolha um nome diferente.",
 "youremail"     => "Seu e-mail*",
 "yournick"      => "Seu apelido (para assinaturas)",
-"emailforlost"  => "* Colocar o endereço de e-mail é opcional.  Mas permite que as pessoas entrem em contato com você sem que você tenha que revelar seu e-mail �  elas, e também é útil se você se esquecer da sua senha.",
+"emailforlost"  => "* Colocar o endereço de e-mail é opcional.  Mas permite que as pessoas entrem em contato com você sem que você tenha que revelar seu e-mail �  elas, e também é útil se você se esquecer da sua senha.",
 "loginerror"    => "Erro de autenticação",
 "noname"        => "Você não colocou um nome de usuário válido.",
 "loginsuccesstitle" => "Login bem sucedido",
-"loginsuccess"  => "Agora você está logado na Wikipedia como \"$1\".",
+"loginsuccess"  => "Agora você está logado na {{SITENAME}} como \"$1\".",
 "nosuchuser"    => "Não há nenhum usuário com o nome \"$1\".
 Verifique sua grafia, ou utilize o formulário a baixo para criar uma nova conta de usuário.",
 "wrongpassword" => "A senha que você entrou é inválida. Por favor tente novamente.",
 "mailmypassword" => "Envie uma nova senha por e-mail",
-"passwordremindertitle" => "Lembrador de senhas da Wikipedia",
+"passwordremindertitle" => "Lembrador de senhas da {{SITENAME}}",
 "passwordremindertext" => "Alguém (provavelmente você, do endereço de IP $1)
 solicitou que nós lhe enviássemos uma nova senha para login.
 A senha para o usuário \"$2\" é a partir de agora \"$3\".
@@ -376,7 +382,7 @@ Por favor, reconecte-se ao recebê-lo.",
 "blockedtitle"  => "Usuário está bloqueado",
 "blockedtext"   => "Seu nome de usuário ou numero de IP foi bloqueado por $1.
 O motivo é:<br>''$2''<p>Você pode contactar $1 ou outro
-[[Wikipedia:administradores|administrador]] para discutir sobre o bloqueio.",
+[[{{ns:4}}:administradores|administrador]] para discutir sobre o bloqueio.",
 "whitelistedittitle" => "Login necessário para edição",
 "whitelistedittext" => "Você precisa se [[Especial:Userlogin|logar]] para editar artigos.",
 "whitelistreadtitle" => "Login necessário para leitura",
@@ -389,7 +395,7 @@ O motivo é:<br>''$2''<p>Você pode contactar $1 ou outro
 "newarticletext" =>
 "Você seguiu um link para um artigo que não existe mais.
 Para criar a página, começe escrevendo na caixa a baixo 
-(veja [[Wikipedia:Ajuda| a página de ajuda]] para mais informações).
+(veja [[{{ns:4}}:Ajuda| a página de ajuda]] para mais informações).
 Se você chegou aqui por engano, apenas clique no botão  '''volta''' do seu navegador.",
 
 "anontalkpagetext" => "---- ''Esta é a página de discussão para um usuário anônimo que não criou uma conta ainda ou que não a usa. Então nós temos que usar o endereço numérico de IP para identificá-lo(la). Um endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha irrelevante que os comentários sejam direcionados a você, por favor [[Especial:Userlogin|crie uma conta ou autentifique-se]] para evitar futuras confusões com outros usuários anônimos.'' ",
@@ -412,7 +418,7 @@ Você terá que mesclar suas modificações no texto existente.
 "editingold"    => "<strong>CUIDADO: Você está editando uma revisão desatualizada deste artigo.
 Se você salvá-lo, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>\n",
 "yourdiff"      => "Diferenças",
-"copyrightwarning" => "Por favor note que todas as contribuições �  Wikipedia são consideradas lançadas sobre a GNU Free Documentation License
+"copyrightwarning" => "Por favor note que todas as contribuições �  {{SITENAME}} são consideradas lançadas sobre a GNU Free Documentation License
 (veja $1 para detalhes).
 Se você não quer que seu texto esteja sobre estes termos, então não os envie.<br>
 Você também promete que está nos enviando um artigo escrito por você mesmo, ou extraindo de uma fonte de domínio público similar.
@@ -450,9 +456,9 @@ Por favor verifique a URL que você usou para acessar esta página.\n",
 # Resultados da Busca
 #
 "searchresults" => "Buscar resultados",
-"searchhelppage" => "Wikipedia:Procurando",
-"searchingwikipedia" => "Busca na Wikipedia",
-"searchresulttext" => "Para mais informações sobre busca na Wikipedia, veja $1.",
+"searchhelppage" => "{{ns:4}}:Procurando",
+"searchingwikipedia" => "Busca na {{SITENAME}}",
+"searchresulttext" => "Para mais informações sobre busca na {{SITENAME}}, veja $1.",
 "searchquery"   => "Para pedido de busca \"$1\"",
 "badquery"      => "Linha de busca incorretamente formada",
 "badquerytext"  => "Nós não pudemos processar seu pedido de busca.
@@ -484,13 +490,12 @@ $2 Lista redireciona &nbsp; Procura por $3 $9",
 #
 "preferences"   => "Preferências",
 "prefsnologin" => "Não autenticado",
-"prefsnologintext"  => "Você precisa estar <a href=\"" .
-  wfLocalUrl( "Especial:Userlogin" ) . "\">autenticado</a>
+"prefsnologintext"  => "Você precisa estar <a href=\"{{localurle:Special:Userlogin}}\">autenticado</a>
 para definir suas preferências.",
 "prefslogintext" => "Você está autenticado como \"$1\".
 Seu número identificador interno é $2.
 
-veja [[Wikipedia:Ajuda_preferências_de_usuários]] para aprender a decifrar as opções.",
+veja [[{{ns:4}}:Ajuda_preferências_de_usuários]] para aprender a decifrar as opções.",
 "prefsreset"    => "Preferências foram reconfiguradas.",
 "qbsettings"    => "Configurações da Barra Rápida", 
 "changepassword" => "Mudar senha",
@@ -529,15 +534,15 @@ veja [[Wikipedia:Ajuda_preferências_de_usuários]] para aprender a decifrar as 
 #
 "changes" => "mudanças",
 "recentchanges" => "Mudanças Recentes",
-"recentchangestext" => "Veja as mais novas mudanças na Wikipedia nesta página.
-[[Wikipedia:Bem Vindo,_novatos|Bem Vindo, novatos]]!
-Por favor, dê uma olhada nestas páginas: [[wikipedia:FAQ|FAQ da Wikipedia]],
-[[Wikipedia:Políticas e Normas| Política da Wikipedia]]
-(especialmente [[wikipedia:Convenções de nomenclatura|convenções de nomenclatura]],
-[[wikipedia:Ponto de vista neutro|Ponto de vista neutro]]),
-e [[wikipedia:Most common Wikipedia faux pas|most common Wikipedia faux pas]].
+"recentchangestext" => "Veja as mais novas mudanças na {{SITENAME}} nesta página.
+[[{{ns:4}}:Bem Vindo,_novatos|Bem Vindo, novatos]]!
+Por favor, dê uma olhada nestas páginas: [[{{ns:4}}:FAQ|FAQ da {{SITENAME}}]],
+[[{{ns:4}}:Políticas e Normas| Política da {{SITENAME}}]]
+(especialmente [[{{ns:4}}:Convenções de nomenclatura|convenções de nomenclatura]],
+[[{{ns:4}}:Ponto de vista neutro|Ponto de vista neutro]]),
+e [[{{ns:4}}:Most common {{SITENAME}} faux pas|most common {{SITENAME}} faux pas]].
 
-Se você quer ver a Wikipedia crescer, é muito importante que você não adicione material restrito por outras [[wikipedia:Copyrights|copyrights]].
+Se você quer ver a {{SITENAME}} crescer, é muito importante que você não adicione material restrito por outras [[{{ns:4}}:Copyrights|copyrights]].
 Um problema legal poderia realmente prejudicar o projeto de maneira que pedimos, por avor, não faça isso. 
 Veja também [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
 "rcloaderr"     => "Carregando alterações recentes",
@@ -567,19 +572,15 @@ Veja também [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta d
 "reupload"      => "Re-carregar",
 "reuploaddesc"  => "Retornar ao formulário de Uploads.",
 "uploadnologin" => "Não autenticado",
-"uploadnologintext" => "Você deve estar<a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">autenticado</a>
+"uploadnologintext" => "Você deve estar<a href=\"{{localurle:Special:Userlogin}}\">autenticado</a>
 para carregar arquivos.",
 "uploadfile"    => "Carregar imagens, sons, documentos etc.",
 "uploaderror"   => "Erro ao Carregar",
 "uploadtext"    => "<strong>PARE!</strong> Antes de você carregar arquivos aqui,
-tenha certeza de ter lido e estar em acordo com a <a href=\"" .
-wfLocalUrlE( "Wikipedia:Política_de_imagens" ) . "\">política de uso de imagens da Wikipedia</a>.
+tenha certeza de ter lido e estar em acordo com a <a href=\"{{localurle:Project:Política_de_imagens}}\">política de uso de imagens da {{SITENAME}}</a>.
 <p>Para ver ou procurar imagens carregadas,
-vá �  <a href=\"" . wfLocalUrlE( "Especial:ListadeImagens" ) .
-"\">lista de imagens carregadas</a>.
-Uploads e deleções são armazenados no <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">log de uploads</a>.
+vá �  <a href=\"{{localurle:Special:Imagelist}}\">lista de imagens carregadas</a>.
+Uploads e deleções são armazenados no <a href=\"{{localurle:Project:Upload_log}}\">log de uploads</a>.
 <p>Use o formulário a seguir para carregar arquivos de imagens para ilustrar seus artigos. Na maioria dos navegadores, você verá um botão \"Browse...\" , que trárá o diálogo padrão de abertura de arquivo padrão do seu Sistema Operacional.
 Ao escolher um arquivo, o campo de texto próximo ao botão será preenchido.
 Você tembém deve confirmar  que não está carregando nenhum arquivo protegido por Diretos Autorais.
@@ -590,7 +591,7 @@ para ilustrações, e OGG para sons.
 Por favor, nomeie seus arquivos de forma descritiva para evitar confusões.
 Para incluir uma imagem em um artigo, use um link na forma <b>[[image:arquivo.jpg]]</b> ou <b>[[image:arquivo.png|texto descritivo]]</b>
 ou <b>[[media:audio.ogg]]</b> para sons.
-<p>Por favor, note que com as páginas da Wikipedia, outros usuários podem modificar ou deletar seus uploads se eles acharem que isto seja útil �  wikipedia, e você possa estar bloqueado para uploads devido a abusos do sistema.",
+<p>Por favor, note que com as páginas da {{SITENAME}}, outros usuários podem modificar ou deletar seus uploads se eles acharem que isto seja útil �  {{SITENAME}}, e você possa estar bloqueado para uploads devido a abusos do sistema.",
 "uploadlog"     => "log de uploads",
 "uploadlogpage" => "Log_de_Uploads",
 "uploadlogpagetext" => "Segue uma lista dos uploads mais recentes.
@@ -601,8 +602,8 @@ Todas as datas mostradas são do servidor (UTC).
 "filename"      => "Nome do arquivo",
 "filedesc"      => "Sumário",
 "affirmation"   => "Eu afirmo que o proprietário deste arquivo concorda em licenciá-lo sob os termos da $1.",
-"copyrightpage" => "Wikipedia:Copyrights",
-"copyrightpagename" => "Direitos Autorais da Wikipedia",
+"copyrightpage" => "{{ns:4}}:Copyrights",
+"copyrightpagename" => "Direitos Autorais da {{SITENAME}}",
 
 "uploadedfiles" => "Arquivos carregados",
 "noaffirmation" => "Você tem que afirmar que o carregamento deste arquivo não fere nenhum direito autoral.",
@@ -613,7 +614,7 @@ Todas as datas mostradas são do servidor (UTC).
 "largefile"     => "É recomendado que as imagens não tenham mais que 100k de tamanho.",
 "successfulupload" => "Carregamento efetuado com sucesso",
 "fileuploaded"  => "Arquivo \"$1\" carregado com sucesso.
-Por favor, siga este link : ($2) para ir �  página de descrição e preencha-a com informações sobre o arquivo, como de onde veio , quando e por quem foi criada, e qualquer outra coisa a mais que você saiba.",
+Por favor, siga este link : ($2) para ir �  página de descrição e preencha-a com informações sobre o arquivo, como de onde veio , quando e por quem foi criada, e qualquer outra coisa a mais que você saiba.",
 "uploadwarning" => "Aviso de Upload",
 "savefile"      => "Salvar arquivo",
 "uploadedimage" => "\"$1\" carregado",
@@ -636,6 +637,7 @@ Por favor, siga este link : ($2) para ir �  página de descrição e preencha-a 
 "imghistory"    => "Histórico das imagens",
 "revertimg"     => "rev",
 "deleteimg"     => "del",
+"deleteimgcompletely"     => "del",
 "imghistlegend" => "Legenda: (cur) = esta é a imagem atual, (del) = deletar
 esta versão antiga, (rev) = reverter para esta versão antiga.
 <br><i>Clique em data para ver das imagens carregadas nesta data</i>.",
@@ -649,7 +651,7 @@ esta versão antiga, (rev) = reverter para esta versão antiga.
 "sitestats"     => "Estatísticas do Site",
 "userstats"     => "Estatística dos usuários",
 "sitestatstext" => "Há atualmente um total de <b>$1</b> páginas em nosso banco de dados.
-Isto inclui páginas  \"talk\", páginas sobre a Wikipedia, páginas de rascunho, redirecionamentos, e outras que provavelmente não são qualificadas como artigos.
+Isto inclui páginas  \"talk\", páginas sobre a {{SITENAME}}, páginas de rascunho, redirecionamentos, e outras que provavelmente não são qualificadas como artigos.
 Excluindo estas, há <b>$2</b> páginas que provavelmente são artigos legitimos .<p>
 Há um total de <b>$3</b> páginas vistas, e <b>$4</b> edições de página
 desde a última atualização do software (Janeiro de 2004).
@@ -660,10 +662,10 @@ Destes, <b>$2</b> são administradores (veja $3).",
 # Maintenance Page
 #
 "maintenance"       => "Página de Manutenção",
-"maintnancepagetext"    => "Esta página possui diversas ferramentas úteis para a manutenção diária da Wikipedia. Algumas destas funções costumam estressar o banco de dados, então, por favor, não pressione o botão de Recarregar para cada item que você consertar ;-)",
+"maintnancepagetext"    => "Esta página possui diversas ferramentas úteis para a manutenção diária da {{SITENAME}}. Algumas destas funções costumam estressar o banco de dados, então, por favor, não pressione o botão de Recarregar para cada item que você consertar ;-)",
 "maintenancebacklink"   => "Voltar para a página de Manutenção",
 "disambiguations"   => "Páginas de desambiguamento",
-"disambiguationspage"   => "Wikipedia:Links_para_desambiguar_páginas",
+"disambiguationspage"   => "{{ns:4}}:Links_para_desambiguar_páginas",
 "disambiguationstext"   => "Os artigos a seguir apontam para uma <i>página de desambiguamento</i>. Ao invés disso, eles deveriam apontar para um tópico apropriado.<br> Uma página é tratada como disambiguamento se ela é por $1.<br>Links de outros namespaces <i>não</i> estão listados aqui.",
 "doubleredirects"   => "Double Redirects",
 "doubleredirectstext"   => "<b>Atenção:</b> Esta lista pode conter positivos falsos. O que usualmente significa que há texto adicional com links depois do primeiro #REDIRECT.<br>\nCada linha contem links para o primeiro e segundo redirecionamento, bem como a primeira linha do segundo texto redirecionado , geralmente dando o artigo alvo \"real\" , para onde o primeiro redirecionamento deveria apontar.",
@@ -709,17 +711,14 @@ Destes, <b>$2</b> são administradores (veja $3).",
 as Wikipedias internacionais podem apontar para uma imagem com uma URL direta, e por isto pode estar aparecendo aqui mesmo estando em uso ativo.",
 "booksources"   => "Fontes de livros",
 "booksourcetext" => "Segue uma lista de links para outros sites que vendem livros novos e usados , e podem ter informações adicionais sobre livros que você esteja procurando.
-A Wikipedia não é afiliada a nenhum destes empreendimentos, e a lista não deve ser construída  como apoio.",
+A {{SITENAME}} não é afiliada a nenhum destes empreendimentos, e a lista não deve ser construída  como apoio.",
 "alphaindexline" => "$1 para $2",
 
 # Email this user
 #
 "mailnologin"   => "No send address",
-"mailnologintext" => "Você deve estar <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">autenticado</a>
-e ter um e-mail válido em suas <a href=\"" .
-
-  wfLocalUrl( "Special:Preferences" ) . "\">preferências</a>
+"mailnologintext" => "Você deve estar <a href=\"{{localurle:Special:Userlogin}}\">autenticado</a>
+e ter um e-mail válido em suas <a href=\"{{localurle:Special:Preferences}}\">preferências</a>
 para poder enviar e-mails para outros usuários.",
 "emailuser"     => "Contactar usuário",
 "emailpage"     => "Enviar e-mail ao usuário",
@@ -741,15 +740,12 @@ O endereço de e-mail que você disponibilizou em suas preferências aparecerá 
 "watchlistsub"  => "(do usuário \"$1\")",
 "nowatchlist"   => "Você não está monitorando nenhum artigo.",
 "watchnologin"  => "Não está autenticado",
-"watchnologintext"  => "Você deve estar <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">autenticado</a>
+"watchnologintext"  => "Você deve estar <a href=\"{{localurle:Special:Userlogin}}\">autenticado</a>
 para modificar sua lista de artigos interessantes.",
-"addedwatch"    => "Adicionados �  lista",
-"addedwatchtext" => "A página \"$1\" foi adicionada a sua <a href=\"" .
-  wfLocalUrl( "Especial:Watchlist" ) . "\">lista de artigos de vosso interesse</a>.
+"addedwatch"    => "Adicionados �  lista",
+"addedwatchtext" => "A página \"$1\" foi adicionada a sua <a href=\"{{localurle:Special:Watchlist}}\">lista de artigos de vosso interesse</a>.
 Modificações futuras neste artigo e páginas Talk associadas serão listadas aqui,
-e a página aparecerá <b>negritada</b> na <a href=\"" .
-  wfLocalUrl( "Especial:Recentchanges" ) . "\">lista de mudanças recentes</a> para que
+e a página aparecerá <b>negritada</b> na <a href=\"{{localurle:Special:Recentchanges}}\">lista de mudanças recentes</a> para que
 possa pegá-lo com maior facilidade.</p>
 
 <p>Se você quiser remover futuramente o artigo da sua lista monitoramento, clique em  \"Desinteressar-se\" na barra lateral.",
@@ -785,7 +781,7 @@ $3...
 "deletesub"     => "(Apagando \"$1\")",
 "historywarning" => "Atenção: A página que você quer deletar tem um histório: ",
 "confirmdeletetext" => "Você está  prestes a deletar permanentemente uma página ou imagem junto com todo seu histórico do banco de dados.
-Por favor, confirme que você realmente pretende fazer isto, que você compreende as consequências, e que você está fazendo isto em acordo com a [[Wikipedia:Policy| Política da Wkipedia]].",
+Por favor, confirme que você realmente pretende fazer isto, que você compreende as consequências, e que você está fazendo isto em acordo com a [[{{ns:4}}:Policy| Política da Wkipedia]].",
 "confirmcheck"  => "Sim, eu realmente desejo apagar este arquivo.",
 "actioncomplete" => "Ação efetuada com sucesso",
 "deletedtext"   => "\"$1\" foi deletada.
@@ -825,7 +821,7 @@ Se uma nova página foi criada com o mesmo nome desde a deleção, as revisões 
 "undeletebtn" => "Restaurar!",
 "undeletedarticle" => " \"$1\" restaurado",
 "undeletedtext"   => "O artigo [[$1]] foi restaurado com sucesso.
-Veja [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations.",
+Veja [[{{ns:4}}:Deletion_log]] for a record of recent deletions and restorations.",
 
 # Contributions
 #
@@ -844,14 +840,14 @@ Veja [[Wikipedia:Deletion_log]] for a record of recent deletions and restoration
 "notargettext"  => "Você não especificou um alvo ou usuário para performar esta função.",
 "linklistsub"   => "(Lista de ligações)",
 "linkshere"     => "Os seguintes artigos contém ligações que apontam para cá:",
-"nolinkshere"   => "Nenhuma página relaciona-se �  esta.",
+"nolinkshere"   => "Nenhuma página relaciona-se �  esta.",
 "isredirect"    => "página de redirecionamento",
 
 # Block/unblock IP
 #
 "blockip"       => "Bloquear endereço de IP",
-"blockiptext"   => "Utilize o formulário de e-mail �  seguir para bloquear o acesso a escrita de um endereço específico de IP.
-Isto só pode ser feito para previnir vandalismo , e em acordo com a  [[Wikipedia:Policy|política da Wikipedia]].
+"blockiptext"   => "Utilize o formulário de e-mail �  seguir para bloquear o acesso a escrita de um endereço específico de IP.
+Isto só pode ser feito para previnir vandalismo , e em acordo com a  [[{{ns:4}}:Policy|política da {{SITENAME}}]].
 Preencha com um motivo específico (por exemplo, citando páginas que sofreram vandalismo).",
 "ipaddress"     => "Endereço de IP",
 "ipbreason"     => "Motivo",
@@ -885,9 +881,9 @@ Por favor confirme que você realmente pretende fazer isto, e que você vai desb
 "locknoconfirm" => "Você não checou a caixa de confirmação.",
 "lockdbsuccesssub" => "Tranca bem sucedida",
 "unlockdbsuccesssub" => "Destranca bem sucedida",
-"lockdbsuccesstext" => "O banco de dados da Wikipedia foi trancado.
+"lockdbsuccesstext" => "O banco de dados da {{SITENAME}} foi trancado.
 <br>Lembre-se de remover a tranca após a manutenção.",
-"unlockdbsuccesstext" => "O bando de dados da Wikipedia foi destrancado.",
+"unlockdbsuccesstext" => "O bando de dados da {{SITENAME}} foi destrancado.",
 
 # SQL query
 #
@@ -898,7 +894,7 @@ Isto pode frequentemente sobrecarregar o servidor , sendo assim, por favor use e
 "sqlislogged"   => "Por favor, note de todas as pesquisas são registradas (log).",
 "sqlquery"      => "Entrar com pesquisa",
 "querybtn"      => "Enviar pesquisa",
-"selectonly"    => "Pesquisas diferentes de  \"SELECT\" são restritas a desenvolvedores da Wikipedia.",
+"selectonly"    => "Pesquisas diferentes de  \"SELECT\" são restritas a desenvolvedores da {{SITENAME}}.",
 "querysuccessful" => "Pesquisa bem sucedida",
 
 # Move page
@@ -922,8 +918,7 @@ por favor tenha certeza de que compreende as consequencias disto antes de proced
 Nestes casos, você terá que mover ou mesclar a página manualmente se desejar .",
 "movearticle"   => "Mover página",
 "movenologin"   => "Não Autenticado",
-"movenologintext" => "Você deve ser um usuário registrado e <a href=\"" .
-  wfLocalUrl( "Especial:Userlogin" ) . "\">autenticado</a>
+"movenologintext" => "Você deve ser um usuário registrado e <a href=\"{{localurle:Special:Userlogin}}\">autenticado</a>
 para mover uma página.",
 "newtitle"      => "Pata novo título",
 "movepagebtn"   => "Mover página",

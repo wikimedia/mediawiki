@@ -62,20 +62,21 @@ class ImagePage extends Article {
 		global $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
-		$s = $sk->beginImageHistoryList();		
 
 		$line = $this->img->nextHistoryLine();
+		if ( $line ) {
+			$s = $sk->beginImageHistoryList() .
+				$sk->imageHistoryLine( true, $line->img_timestamp,
+					$this->mTitle->getDBkey(),  $line->img_user,
+					$line->img_user_text, $line->img_size, $line->img_description );
+			while ( $line = $this->img->nextHistoryLine() ) {
+				$s .= $sk->imageHistoryLine( false, $line->img_timestamp,
+					$line->oi_archive_name, $line->img_user,
+					$line->img_user_text, $line->img_size, $line->img_description );
+			}
+			$s .= $sk->endImageHistoryList();
+		} else { $s=""; }
 
-		$s .= $sk->imageHistoryLine( true, $line->img_timestamp,
-		  $this->mTitle->getText(),  $line->img_user,
-		  $line->img_user_text, $line->img_size, $line->img_description );
-
-		while ( $line = $this->img->nextHistoryLine() ) {
-			$s .= $sk->imageHistoryLine( false, $line->img_timestamp,
-			  $line->oi_archive_name, $line->img_user,
-			  $line->img_user_text, $line->img_size, $line->img_description );
-		}
-		$s .= $sk->endImageHistoryList();
 		$wgOut->addHTML( $s );
 	}
 
@@ -139,9 +140,9 @@ class ImagePage extends Article {
 		}
 		
 		if ( !is_null( $image ) ) {
-			$q = "&image={$image}";
+			$q = "&image=" . urlencode( $image );
 		} else if ( !is_null( $oldimage ) ) {
-			$q = "&oldimage={$oldimage}";
+			$q = "&oldimage=" . urlencode( $oldimage );
 		} else {
 			$q = "";
 		}
@@ -158,7 +159,24 @@ class ImagePage extends Article {
 		$image = $wgRequest->getVal( 'image' );
 		$oldimage = $wgRequest->getVal( 'oldimage' );
 
-		if ( !is_null( $image ) ) {
+		if ( !is_null( $oldimage ) ) {
+			# Squid purging
+			if ( $wgUseSquid ) {
+				$urlArr = Array(
+					$wgInternalServer.wfImageArchiveUrl( $oldimage )
+				);
+				wfPurgeSquidServers($urlArr);
+			}
+			$this->doDeleteOldImage( $oldimage );
+			$sql = "DELETE FROM oldimage WHERE oi_archive_name='" .
+			  wfStrencode( $oldimage ) . "'";
+			wfQuery( $sql, DB_WRITE, $fname );
+
+			$deleted = $oldimage;
+		} else {
+			if ( is_null ( $image ) ) {
+				$image = $this->mTitle->getDBkey();
+			}
 			$dest = wfImageDir( $image );
 			$archive = wfImageDir( $image );
 			if ( ! @unlink( "{$dest}/{$image}" ) ) {
@@ -207,24 +225,7 @@ class ImagePage extends Article {
 			$article->doDeleteArticle( $reason ); # ignore errors
 
 			$deleted = $image;
-		} else if ( !is_null( $oldimage ) ) {
-			# Squid purging
-			if ( $wgUseSquid ) {
-				$urlArr = Array(
-					$wgInternalServer.wfImageArchiveUrl( $oldimage )
-				);
-				wfPurgeSquidServers($urlArr);
-			}
-			$this->doDeleteOldImage( $oldimage );
-			$sql = "DELETE FROM oldimage WHERE oi_archive_name='" .
-			  wfStrencode( $oldimage ) . "'";
-			wfQuery( $sql, DB_WRITE, $fname );
-
-			$deleted = $oldimage;
-		} else {
-			$this->doDeleteArticle( $reason ); # ignore errors
-			$deleted = $this->mTitle->getPrefixedText();
-		}
+		} 
 		$wgOut->setPagetitle( wfMsg( "actioncomplete" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 
@@ -263,6 +264,10 @@ class ImagePage extends Article {
 		}
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
+			return;
+		}
+		if ( ! $this->mTitle->userCanEdit() ) {
+			$wgOut->sysopRequired();
 			return;
 		}
 		$name = substr( $oldimage, 15 );

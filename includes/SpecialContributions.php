@@ -2,7 +2,7 @@
 
 function wfSpecialContributions( $par = "" )
 {
-	global $wgUser, $wgOut, $wgLang, $wgRequest;
+	global $wgUser, $wgOut, $wgLang, $wgRequest, $wgIsPg;
 	$fname = "wfSpecialContributions";
 	$sysop = $wgUser->isSysop();
 
@@ -21,23 +21,39 @@ function wfSpecialContributions( $par = "" )
 	$offlimit = $limit + $offset;
 	$querylimit = $offlimit + 1;
 	$hideminor = ($wgRequest->getVal( 'hideminor' ) ? 1 : 0);
+	$sk = $wgUser->getSkin();
+
+	$userCond = "";
 
 	$nt = Title::newFromURL( $target );
+	if ( !$nt ) {
+		$wgOut->errorpage( "notargettitle", "notargettext" );
+		return;
+	}
 	$nt->setNamespace( Namespace::getUser() );
 
-	$sk = $wgUser->getSkin();
 	$id = User::idFromName( $nt->getText() );
 
 	if ( 0 == $id ) {
 		$ul = $nt->getText();
 	} else {
-		$ul = $sk->makeLinkObj( $nt, $nt->getText() );
+		$ul = $sk->makeLinkObj( $nt, htmlspecialchars( $nt->getText() ) );
+		$userCond = "=" . $id;
 	}
 	$talk = $nt->getTalkPage();
 	if( $talk )
 		$ul .= " (" . $sk->makeLinkObj( $talk, $wgLang->getNsText(Namespace::getTalk(0)) ) . ")";
 	else
 		$ul .= "brrrp";
+
+	if ( $target == 'newbies' ) {
+		# View the contributions of all recently created accounts
+		$row = wfGetArray("user",array("max(user_id) as m"),false);
+		$userCond = ">" . ($row->m - $row->m / 100);
+		$ul = "";
+		$id = 0;
+	}
+
 	$wgOut->setSubtitle( wfMsg( "contribsub", $ul ) );
 
 	if ( $hideminor ) {
@@ -53,23 +69,24 @@ function wfSpecialContributions( $par = "" )
 		  "&offset={$offset}&limit={$limit}&hideminor=1" );
 	}
 
-	if ( 0 == $id ) {
-		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new FROM cur " .
+	$oldtable=$wgIsPg?'"old"':'old';
+	if ( $userCond == "" ) {
+		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM cur " .
 		  "WHERE cur_user_text='" . wfStrencode( $nt->getText() ) . "' {$cmq} " .
 		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res1 = wfQuery( $sql, DB_READ, $fname );
 
-		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit FROM old " .
+		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit,old_user_text FROM $oldtable " .
 		  "WHERE old_user_text='" . wfStrencode( $nt->getText() ) . "' {$omq} " .
 		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res2 = wfQuery( $sql, DB_READ, $fname );
 	} else {
-		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new FROM cur " .
-		  "WHERE cur_user={$id} {$cmq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
+		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit,cur_is_new,cur_user_text FROM cur " .
+		  "WHERE cur_user {$userCond} {$cmq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res1 = wfQuery( $sql, DB_READ, $fname );
 
-		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit FROM old " .
-		  "WHERE old_user={$id} {$omq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
+		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit,old_user_text FROM $oldtable " .
+		  "WHERE old_user {$userCond} {$omq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res2 = wfQuery( $sql, DB_READ, $fname );
 	}
 	$nCur = wfNumRows( $res1 );
@@ -107,6 +124,8 @@ function wfSpecialContributions( $par = "" )
 			$comment =$obj1->cur_comment;
 			$me = $obj1->cur_minor_edit;
 			$isnew = $obj1->cur_is_new;
+			$usertext = $obj1->cur_user_text;
+			
 			$obj1 = wfFetchObject( $res1 );
 			$topmark = true;
 			--$nCur;
@@ -116,6 +135,7 @@ function wfSpecialContributions( $par = "" )
 			$ts = $obj2->old_timestamp;
 			$comment =$obj2->old_comment;
 			$me = $obj2->old_minor_edit;
+			$usertext = $obj2->old_user_text;
 
 			$obj2 = wfFetchObject( $res2 );
 			$topmark = false;
@@ -123,7 +143,7 @@ function wfSpecialContributions( $par = "" )
 			--$nOld;
 		}
 		if( $n >= $offset )
-			ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, ( $me > 0), $isnew );
+			ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, ( $me > 0), $isnew, $usertext );
 	}
 	$wgOut->addHTML( "</ul>\n" );
 }
@@ -147,7 +167,7 @@ other users.
 TODO: This would probably look a lot nicer in a table.
 
 */
-function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew )
+function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew, $target )
 {
 	global $wgLang, $wgOut, $wgUser, $wgRequest;
 	$page = Title::makeName( $ns, $t );
@@ -162,7 +182,7 @@ function ucListEdit( $sk, $ns, $t, $ts, $topmark, $comment, $isminor, $isnew )
 		$sysop = $wgUser->isSysop();
 		if($sysop ) {
 			$extraRollback = $wgRequest->getBool( "bot" ) ? '&bot=1' : '';
-			$target = $wgRequest->getText( 'target' );
+			# $target = $wgRequest->getText( 'target' );
 			$topmarktext .= " [". $sk->makeKnownLink( $page,
 		  	wfMsg( "rollbacklink" ),
 		  	"action=rollback&from=" . urlencode( $target ) . $extraRollback ) ."]";

@@ -18,7 +18,9 @@ class DifferenceEngine {
 	function showDiffPage()
 	{
 		global $wgUser, $wgTitle, $wgOut, $wgLang;
-
+		$fname = "DifferenceEngine::showDiffPage";
+		wfProfileIn( $fname );
+		
 		$t = $wgTitle->getPrefixedText() . " (Diff: {$this->mOldid}, " .
 		  "{$this->mNewid})";
 		$mtext = wfMsg( "missingarticle", $t );
@@ -27,6 +29,7 @@ class DifferenceEngine {
 		if ( ! $this->loadText() ) {
 			$wgOut->setPagetitle( wfMsg( "errorpagetitle" ) );
 			$wgOut->addHTML( $mtext );
+			wfProfileOut( $fname );
 			return;
 		}
 		$wgOut->suppressQuickbar();
@@ -44,6 +47,7 @@ class DifferenceEngine {
 		if ( !( $this->mOldPage->userCanRead() && $this->mNewPage->userCanRead() ) ) {
 			$wgOut->loginToUse();
 			$wgOut->output();
+			wfProfileOut( $fname );
 			exit;
 		}
 
@@ -80,6 +84,8 @@ class DifferenceEngine {
 		  $oldHeader, $newHeader );
 		$wgOut->addHTML( "<hr /><h2>{$this->mNewtitle}</h2>\n" );
 		$wgOut->addWikiText( $this->mNewtext );
+		
+		wfProfileOut( $fname );
 	}
 
 	function showDiff( $otext, $ntext, $otitle, $ntitle )
@@ -112,9 +118,10 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 	#
 	function loadText()
 	{
-		global $wgTitle, $wgOut, $wgLang;
+		global $wgTitle, $wgOut, $wgLang, $wgIsMySQL, $wgIsPg;
 		$fname = "DifferenceEngine::loadText";
 		
+		$oldtable=$wgIsPg?'"old"':'old';
 		if ( 0 == $this->mNewid || 0 == $this->mOldid ) {
 			$wgOut->setArticleFlag( true );
 			$this->mNewtitle = wfMsg( "currentrev" );
@@ -130,7 +137,7 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 			$this->mNewUser = $s->cur_user_text;
 			$this->mNewComment = $s->cur_comment;
 		} else {
-			$sql = "SELECT old_namespace,old_title,old_timestamp,old_text,old_flags,old_user_text,old_comment FROM old WHERE " .
+			$sql = "SELECT old_namespace,old_title,old_timestamp,old_text,old_flags,old_user_text,old_comment FROM $oldtable WHERE " .
 			  "old_id={$this->mNewid}";
 
 			$res = wfQuery( $sql, DB_READ, $fname );
@@ -146,14 +153,15 @@ cellpadding='0' cellspacing='4px' class='diff'><tr>
 			$this->mNewComment = $s->old_comment;
 		}
 		if ( 0 == $this->mOldid ) {
+			$use_index=$wgIsMySQL?"USE INDEX (name_title_timestamp)":"";
 			$sql = "SELECT old_namespace,old_title,old_timestamp,old_text,old_flags,old_user_text,old_comment " .
-			  "FROM old USE INDEX (name_title_timestamp) WHERE " .
+			  "FROM $oldtable $use_index WHERE " .
 			  "old_namespace=" . $this->mNewPage->getNamespace() . " AND " .
 			  "old_title='" . wfStrencode( $this->mNewPage->getDBkey() ) .
 			  "' ORDER BY inverse_timestamp LIMIT 1";
 			$res = wfQuery( $sql, DB_READ, $fname );
 		} else {
-			$sql = "SELECT old_namespace,old_title,old_timestamp,old_text,old_flags,old_user_text,old_comment FROM old WHERE " .
+			$sql = "SELECT old_namespace,old_title,old_timestamp,old_text,old_flags,old_user_text,old_comment FROM $oldtable WHERE " .
 			  "old_id={$this->mOldid}";
 			$res = wfQuery( $sql, DB_READ, $fname );
 		}
@@ -1002,7 +1010,7 @@ class DiffFormatter
  * 
  */
 
-define('NBSP', "\xA0");			// iso-8859-x non-breaking space.
+define('NBSP', '&#160;');			// iso-8859-x non-breaking space.
 
 class _HWLDF_WordAccumulator {
 	function _HWLDF_WordAccumulator () {
@@ -1015,7 +1023,7 @@ class _HWLDF_WordAccumulator {
 	function _flushGroup ($new_tag) {
 		if ($this->_group !== '') {
 	  if ($this->_tag == 'mark') 
-			$this->_line .= "<font color=\"red\">$this->_group</font>";
+			$this->_line .= '<span class="diffchange">'.$this->_group.'</span>';
 	  else
 		$this->_line .= $this->_group;
 	}
@@ -1116,8 +1124,8 @@ class TableDiffFormatter extends DiffFormatter
 		$l1 = wfMsg( "lineno", $xbeg );
 		$l2 = wfMsg( "lineno", $ybeg );
 
-		$r = "<tr><td colspan='2' align='left'><strong>{$l1}</strong></td>\n" .
-		  "<td colspan='2' align='left'><strong>{$l2}</strong></td></tr>\n";
+		$r = '<tr><td colspan="2" align="left"><strong>'.$l1."</strong></td>\n" .
+		  '<td colspan="2" align="left"><strong>'.$l2."</strong></td></tr>\n";
 		return $r;
 	}
 
@@ -1133,27 +1141,27 @@ class TableDiffFormatter extends DiffFormatter
 	}
 
 	function addedLine( $line ) {
-		return "<td>+</td><td class='diff-addedline'>" .
-		  "<small>{$line}</small></td>";
+		return '<td>+</td><td class="diff-addedline">' .
+		  $line.'</td>';
 	}
 
 	function deletedLine( $line ) {
-		return "<td>-</td><td class='diff-deletedline'>" .
-		  "<small>{$line}</small></td>";
+		return '<td>-</td><td class="diff-deletedline">' .
+		  $line.'</td>';
 	}
 
 	function emptyLine() {
-		return "<td colspan='2'>&nbsp;</td>";
+		return '<td colspan="2">&nbsp;</td>';
 	}
 
 	function contextLine( $line ) {
-		return "<td> </td><td class='diff-context'><small>{$line}</small></td>";
+		return '<td> </td><td class="diff-context">'.$line.'</td>';
 	}
 	
 	function _added($lines) {
 		global $wgOut;
 		foreach ($lines as $line) {
-			$wgOut->addHTML( "<tr>" . $this->emptyLine() .
+			$wgOut->addHTML( '<tr>' . $this->emptyLine() .
 			  $this->addedLine( $line ) . "</tr>\n" );
 		}
 	}
@@ -1161,7 +1169,7 @@ class TableDiffFormatter extends DiffFormatter
 	function _deleted($lines) {
 		global $wgOut;
 		foreach ($lines as $line) {
-			$wgOut->addHTML( "<tr>" . $this->deletedLine( $line ) .
+			$wgOut->addHTML( '<tr>' . $this->deletedLine( $line ) .
 			  $this->emptyLine() . "</tr>\n" );
 		}
 	}
@@ -1169,7 +1177,7 @@ class TableDiffFormatter extends DiffFormatter
 	function _context( $lines ) {
 		global $wgOut;
 		foreach ($lines as $line) {
-			$wgOut->addHTML( "<tr>" . $this->contextLine( $line ) .
+			$wgOut->addHTML( '<tr>' . $this->contextLine( $line ) .
 			  $this->contextLine( $line ) . "</tr>\n" );
 		}
 	}
@@ -1182,7 +1190,7 @@ class TableDiffFormatter extends DiffFormatter
 
 		while ( $line = array_shift( $del ) ) {
 			$aline = array_shift( $add );
-			$wgOut->addHTML( "<tr>" . $this->deletedLine( $line ) .
+			$wgOut->addHTML( '<tr>' . $this->deletedLine( $line ) .
 			  $this->addedLine( $aline ) . "</tr>\n" );
 		}
 		$this->_added( $add ); # If any leftovers

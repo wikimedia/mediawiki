@@ -1,10 +1,9 @@
 <?php
-require_once( "FulltextStoplist.php" );
+# $Id$
+# This file deals with MySQL interface functions 
+# and query specifics/optimisations
+#
 require_once( "CacheManager.php" );
-
-define( "DB_READ", -1 );
-define( "DB_WRITE", -2 );
-define( "DB_LAST", -3 );
 
 define( "LIST_COMMA", 0 );
 define( "LIST_AND", 1 );
@@ -36,7 +35,7 @@ class Database {
 	
 	# Output page, used for reporting errors
 	# FALSE means discard output
-	function &setOutputPage( &$out ) { return wfSetRef( $this->mOut, $out ); }
+	function &setOutputPage( &$out ) { $this->mOut =& $out; }
 	
 	# Boolean, controls output of large amounts of debug information 
 	function setDebug( $debug ) { return wfSetVar( $this->mDebug, $debug ); }
@@ -90,6 +89,12 @@ class Database {
 	{
 		global $wgEmergencyContact;
 		
+		# Test for missing mysql.so
+		# Otherwise we get a suppressed fatal error, which is very hard to track down
+		if ( !function_exists( 'mysql_connect' ) ) {
+			die( "MySQL functions missing, have you compiled PHP with the --with-mysql option?\n" );
+		}
+		
 		$this->close();
 		$this->mServer = $server;
 		$this->mUser = $user;
@@ -140,10 +145,11 @@ class Database {
 	{
 		if ( $this->mFailFunction ) {
 			if ( !is_int( $this->mFailFunction ) ) {
-				$this->$mFailFunction( $this );
+				$ff = $this->mFailFunction;
+				$ff( $this, mysql_error() );
 			}
 		} else {
-			wfEmergencyAbort( $this );
+			wfEmergencyAbort( $this, mysql_error() );
 		}
 	}
 	
@@ -151,7 +157,7 @@ class Database {
 	# If errors are explicitly ignored, returns success
 	function query( $sql, $fname = "" )
 	{
-		global $wgProfiling;
+		global $wgProfiling, $wgCommandLineMode;
 		
 		if ( $wgProfiling ) {
 			# generalizeSQL will probably cut down the query to reasonable
@@ -174,13 +180,23 @@ class Database {
 		}
 	
 		if ( false === $ret ) {
+			$error = mysql_error( $this->mConn );
+			$errno = mysql_errno( $this->mConn );
 			if( $this->mIgnoreErrors ) {
-				wfDebug("SQL ERROR (ignored): " . mysql_error( $this->mConn ) . "\n");
+				wfDebug("SQL ERROR (ignored): " . $error . "\n");
 			} else {
-				wfDebug("SQL ERROR: " . mysql_error( $this->mConn ) . "\n");
-				if ( $this->mOut ) {
+				$sql1line = str_replace( "\n", "\\n", $sql );
+				wfLogDBError("$fname\t$errno\t$error\t$sql1line\n");
+				wfDebug("SQL ERROR: " . $error . "\n");
+				if ( $wgCommandLineMode ) {
+					wfDebugDieBacktrace( "A database error has occurred\n" .
+					  "Query: $sql\n" .
+					  "Function: $fname\n" .
+					  "Error: $errno $error\n"
+					);
+				} elseif ( $this->mOut ) {
 					// this calls wfAbruptExit()
-					$this->mOut->databaseError( $fname, $this ); 				
+					$this->mOut->databaseError( $fname, $sql, $error, $errno ); 				
 				}
 			}
 		}
@@ -204,6 +220,15 @@ class Database {
 		}
 		return $row;
 	}
+	
+ 	function fetchRow( $res ) {
+		@$row = mysql_fetch_array( $res );
+		if (mysql_errno() ) {
+			wfDebugDieBacktrace( "SQL error: " . htmlspecialchars( mysql_error() ) );
+		}
+		return $row;
+	}	
+
 	function numRows( $res ) {
 		@$n = mysql_num_rows( $res ); 
 		if( mysql_errno() ) {
@@ -254,8 +279,12 @@ class Database {
 	function getArray( $table, $vars, $conds, $fname = "Database::getArray" )
 	{
 		$vars = implode( ",", $vars );
-		$where = Database::makeList( $conds, LIST_AND );
-		$sql = "SELECT $vars FROM $table WHERE $where LIMIT 1";
+		if ( $conds !== false ) {
+			$where = Database::makeList( $conds, LIST_AND );
+			$sql = "SELECT $vars FROM $table WHERE $where LIMIT 1";
+		} else {
+			$sql = "SELECT $vars FROM $table LIMIT 1";
+		}
 		$res = $this->query( $sql, $fname );
 		if ( $res === false || !$this->numRows( $res ) ) {
 			return false;
@@ -314,7 +343,10 @@ class Database {
 	# If errors are explicitly ignored, returns NULL on failure
 	function indexExists( $table, $index, $fname = "Database::indexExists" ) 
 	{
-		$sql = "SHOW INDEXES FROM $table";
+		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
+		# SHOW INDEX should work for 3.x and up:
+		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
+		$sql = "SHOW INDEX FROM $table";
 		$res = $this->query( $sql, DB_READ, $fname );
 		if ( !$res ) {
 			return NULL;
@@ -334,6 +366,7 @@ class Database {
 	function tableExists( $table )
 	{
 		$old = $this->mIgnoreErrors;
+		$this->mIgnoreErrors = true;
 		$res = $this->query( "SELECT 1 FROM $table LIMIT 1" );
 		$this->mIgnoreErrors = $old;
 		if( $res ) {
@@ -424,16 +457,17 @@ class Database {
 	function startTimer( $timeout )
 	{
 		global $IP;
-
-		$tid = mysql_thread_id( $this->mConn );
-		exec( "php $IP/killthread.php $timeout $tid &>/dev/null &" );
+		if( function_exists( "mysql_thread_id" ) ) {
+			# This will kill the query if it's still running after $timeout seconds.
+			$tid = mysql_thread_id( $this->mConn );
+			exec( "php $IP/killthread.php $timeout $tid &>/dev/null &" );
+		}
 	}
 
 	function stopTimer()
 	{
 	}
-
-}
+} 
 
 #------------------------------------------------------------------------------
 # Global functions
@@ -441,12 +475,18 @@ class Database {
 
 /* Standard fail function, called by default when a connection cannot be established
    Displays the file cache if possible */
-function wfEmergencyAbort( &$conn ) {
+function wfEmergencyAbort( &$conn, $error ) {
 	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgSiteNotice, $wgOutputEncoding;
 	
-	header( "Content-type: text/html; charset=$wgOutputEncoding" );
+	if( !headers_sent() ) {
+		header( "HTTP/1.0 500 Internal Server Error" );
+		header( "Content-type: text/html; charset=$wgOutputEncoding" );
+		/* Don't cache error pages!  They cause no end of trouble... */
+		header( "Cache-control: none" );
+		header( "Pragma: nocache" );
+	}
 	$msg = $wgSiteNotice;
-	if($msg == "") $msg = wfMsgNoDB( "noconnect" );
+	if($msg == "") $msg = wfMsgNoDB( "noconnect", $error );
 	$text = $msg;
 
 	if($wgUseFileCache) {
@@ -478,9 +518,6 @@ function wfEmergencyAbort( &$conn ) {
 		}
 	}
 	
-	/* Don't cache error pages!  They cause no end of trouble... */
-	header( "Cache-control: none" );
-	header( "Pragma: nocache" );
 	echo $text;
 	wfAbruptExit();
 }
@@ -490,29 +527,9 @@ function wfStrencode( $s )
 	return addslashes( $s );
 }
 
-# Ideally we'd be using actual time fields in the db
-function wfTimestamp2Unix( $ts ) {
-	return gmmktime( ( (int)substr( $ts, 8, 2) ),
-		  (int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
-		  (int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
-		  (int)substr( $ts, 0, 4 ) );
+function wfLimitResult( $limit, $offset ) {
+	return " LIMIT ".(is_numeric($offset)?"{$offset},":"")."{$limit} ";
 }
 
-function wfUnix2Timestamp( $unixtime ) {
-	return gmdate( "YmdHis", $unixtime );
-}
 
-function wfTimestampNow() {
-	# return NOW
-	return gmdate( "YmdHis" );
-}
-
-# Sorting hack for MySQL 3, which doesn't use index sorts for DESC
-function wfInvertTimestamp( $ts ) {
-	return strtr(
-		$ts,
-		"0123456789",
-		"9876543210"
-	);
-}
 ?>

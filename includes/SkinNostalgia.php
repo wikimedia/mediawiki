@@ -12,10 +12,13 @@ class SkinNostalgia extends Skin {
 	{
 		return "nostalgia.css";
 	}
+	function getSkinName() {
+		return "nostalgia";
+	}
 
 	function doBeforeContent()
 	{
-		global $wgUser, $wgOut, $wgTitle;
+		global $wgUser, $wgOut, $wgTitle, $wgSiteNotice;
 
 		$s = "\n<div id='content'>\n<div id='topbar'>";
 		$s .= $this->logoText( "right" );
@@ -24,10 +27,16 @@ class SkinNostalgia extends Skin {
 		$s .= $this->pageSubtitle() . "\n";
 
 		$s .= $this->topLinks() . "\n<br />";
+		if( $wgSiteNotice ) {
+			$s .= "\n<div id='siteNotice'>$wgSiteNotice</div>\n";
+		}
 		$s .= $this->pageTitleLinks();
 
 		$ol = $this->otherLanguages();
 		if($ol) $s .= "<br />" . $ol;
+		
+		$cat = $this->getCategoryLinks();
+		if($cat) $s .= "<br />" . $cat;
 
 		$s .= "<br clear='all' /><hr />\n</div>\n";
 		$s .= "\n<div id='article'>";

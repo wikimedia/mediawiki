@@ -1,6 +1,8 @@
 <?php
 require_once("LanguageUtf8.php");
 
+# FIXME: Lots of hardcoded Wikipedia-related text needs to be cleaned up.
+
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
 
@@ -8,22 +10,36 @@ require_once("LanguageUtf8.php");
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
 #
+
+# Yucky hardcoding hack:
+if( $wgMetaNamespace == "Wikipedia" ) {
+	$wgMetaTalkNamespace = "Dyskusja_Wikipedii";
+} elseif( $wgMetaNamespace == "Wikisłownik" ) {
+	$wgMetaTalkNamespace = "Wikidyskusja";
+} else {
+	$wgMetaTalkNamespace = "Dyskusja_$wgMetaNamespace";
+}
+
 /* private */ $wgNamespaceNamesPl = array(
-        -2      => "Media",
-        -1      => "Specjalna",
-        0       => "",
-        1       => "Dyskusja",
-        2       => "Wikipedysta",
-        3       => "Dyskusja_wikipedysty",
-        4       => "Wikipedia",
-        5       => "Dyskusja_Wikipedii",
-        6       => "Grafika",
-        7       => "Dyskusja_grafiki",
-        8       => "MediaWiki",
-        9       => "Dyskusja_MediaWiki",
-	10	=> "Źródła",
-	11	=> "Dyskusja źródeł"
-);
+    NS_MEDIA            => "Media",
+    NS_SPECIAL          => "Specjalna",
+    NS_MAIN             => "",
+    NS_TALK             => "Dyskusja",
+    NS_USER             => "Wikipedysta",
+    NS_USER_TALK        => "Dyskusja_Wikipedysty",
+    NS_WIKIPEDIA        => $wgMetaNamespace,
+    NS_WIKIPEDIA_TALK   => $wgMetaTalkNamespace,
+    NS_IMAGE            => "Grafika",
+    NS_IMAGE_TALK       => "Dyskusja_grafiki",
+    NS_MEDIAWIKI        => "MediaWiki",
+    NS_MEDIAWIKI_TALK   => "Dyskusja_MediaWiki",
+    NS_TEMPLATE         => "Szablon",
+    NS_TEMPLATE_TALK    => "Dyskusja_szablonu",
+    NS_HELP             => "Pomoc",
+    NS_HELP_TALK        => "Dyskusja_pomocy",
+    NS_CATEGORY         => "Kategoria",
+    NS_CATEGORY_TALK    => "Dyskusja_kategorii"
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsPl = array(
         "Brak", "Stały, z lewej", "Stały, z prawej", "Unoszący się, z lewej"
@@ -37,7 +53,8 @@ require_once("LanguageUtf8.php");
 	'montparnasse' => "Montparnasse",
 	'davinci' => "DaVinci",
 	'mono' => "Mono",
-	'monobook' => "MonoBook"
+	'monobook' => "MonoBook",
+ "myskin" => "MySkin" 
 );
 
 /* private */ $wgMathNamesPl = array( 
@@ -163,18 +180,18 @@ require_once("LanguageUtf8.php");
 "mainpagetext" => "Instalacja oprogramowania powiodła się.",
 "about" => "O Wikipedii",
 "aboutwikipedia" => "O Wikipedii",
-"aboutpage" => "Wikipedia:O_Wikipedii",
+"aboutpage" => "{{ns:4}}:O_Wikipedii",
 "help" => "Pomoc",
-"helppage" => "Wikipedia:Pomoc",
-"wikititlesuffix" => "Wikipedia",
+"helppage" => "{{ns:4}}:Pomoc",
+"wikititlesuffix" => "{{SITENAME}}",
 "bugreports" => "Raport o błędach",
-"bugreportspage" => "Wikipedia:Błędy",
+"bugreportspage" => "{{ns:4}}:Błędy",
 "sitesupport" => "Dary pieniężne",
 "sitesupportpage" => "http://wikimediafoundation.org/fundraising", # If not set, won't appear. Can be wiki page or URL
 "faq" => "FAQ",
-"faqpage" => "Wikipedia:FAQ",
+"faqpage" => "{{ns:4}}:FAQ",
 "edithelp" => "Pomoc w edycji",
-"edithelppage" => "Wikipedia:Jak_edytować_stronę",
+"edithelppage" => "{{ns:4}}:Jak_edytować_stronę",
 "cancel" => "Anuluj",
 "qbfind" => "Znajdź",
 "qbbrowse" => "Przeglądanie",
@@ -214,7 +231,7 @@ require_once("LanguageUtf8.php");
 "gnunote" => "udostępniana jest w oparciu o licencję <a class=internal href='/wiki/GNU_FDL'>GNU FDL</a>; możesz ją samodzielnie uzupełnić lub poprawić.",
 "printsubtitle" => "(z http://pl.wikipedia.org)",
 "protectedpage" => "Strona zabezpieczona",
-"administrators" => "Wikipedia:Administratorzy",
+"administrators" => "{{ns:4}}:Administratorzy",
 "sysoptitle" => "Wymagane prawa dostępu administratora",
 "sysoptext" => "Ta operacja może być wykonana tylko przez
 użytkowania o statusie \"administrator\".
@@ -226,7 +243,7 @@ Zobacz $1.",
 "nbytes" => "$1 bajtów",
 "go" => "OK",
 "ok" => "OK",
-"sitetitle" => "Wikipedia",
+"sitetitle" => "{{SITENAME}}",
 "sitesubtitle" => "Wolna Encyklopedia",
 "retrievedfrom" => "Źródło: \"$1\"",
 "newmessages" => "Masz $1.",
@@ -263,7 +280,7 @@ Ostatnie, nieudane zapytanie to:
 \"$1\"
 wywołane zostało przez funkcję \"$2\".
 MySQL zgłosił błąd \"$3: $4\".\n",
-"noconnect" => "Wikipedia ma chwilowo problemy techniczne. Nie można połączyć się z serwerem bazy danych. Przepraszamy!",
+"noconnect" => "{{SITENAME}} ma chwilowo problemy techniczne. Nie można połączyć się z serwerem bazy danych. Przepraszamy!",
 "nodb" => "Nie można odnaleźć bazy danych $1",
 "cachederror" => "Poniższy tekst strony jest kopią znajdującą się w pamięci podręcznej i może być już niekatualny.",
 "readonly" => "Baza danych jest zablokowana",
@@ -300,7 +317,7 @@ czasu UTC. Przepraszamy!",
 "perfdisabledstub" => "Oto ostatnia zapisana wersja strony z $1",
 "viewsource" => "Tekst źródłowy",
 "protectedtext" => "Wyłączono możliwość edycji tej strony; istnieje kilka powodów
-dla których jest to robione - zobacz [[Wikipedia:Strona_zabezpieczona]]
+dla których jest to robione - zobacz [[{{ns:4}}:Strona_zabezpieczona]]
 
 Tekst źródłowy strony można w dalszym ciągu podejrzeć i skopiować.",
 
@@ -342,7 +359,7 @@ Nie zapomnij dostosować <i>preferencji</i>.",
 Sprawdź pisownię lub użyj poniższego formularza by utworzyć nowe konto.",
 "wrongpassword" => "Podane przez Ciebie hasło jest nieprawidłowe. Spróbuj jeszcze raz.",
 "mailmypassword" => "Wyślij mi nowe hasło",
-"passwordremindertitle" => "Wikipedia przypomina o haśle",
+"passwordremindertitle" => "{{SITENAME}} przypomina o haśle",
 "passwordremindertext" => "Ktoś (prawdopodobnie Ty, spod adresu $1)
 poprosił od nas o wysłanie nowego hasła dostępu do Wikipedii.
 Aktualne hasło dla użytkownika \"$2\" to \"$3\". 
@@ -363,7 +380,7 @@ Po otrzymaniu go zaloguj się ponownie.",
 "blockedtitle" => "Użytkownik jest zablokowany",
 "blockedtext" => "Twoje konto lub adres IP zostały zablokowane przez $1.
 Podany powód to:<br>$2.<p>W celu wyjaśnienia sprawy zablokowania możesz się skontaktować z $1 lub innym
-[[Wikipedia:Administratorzy|administratorem]].",
+[[{{ns:4}}:Administratorzy|administratorem]].",
 "newarticle" => "(Nowy)",
 "newarticletext" => "Nie ma jeszcze artykułu o tym tytule. W poniższym polu można wpisać pierwszy jego fragment. Jeśli nie to było Twoim zamiarem, wciśnij po prostu ''Wstecz''.",
 "anontalkpagetext" => "---- ''To jest strona dyskusyjna dla użytkowników
@@ -410,7 +427,7 @@ artykułu. Proponujemy przenieść jej tekst do prywatnego pliku
 "protectedpagewarning" => "UWAGA: Modyfikacja tej strony została zablokowana.
 Mogą ją edytować jedynie użytkownicy z prawami administracyjnymi.
 Upewnij się, że postępujesz zgodnie z
-<a href='/wiki/Wikipedia:Blokowanie_stron'>zasadami dotyczącymi
+<a href='/wiki/{{ns:4}}:Blokowanie_stron'>zasadami dotyczącymi
 zablokowanych stron</a>.",
 
 
@@ -442,7 +459,7 @@ Sprawdź proszę URL użyty przez Ciebie by uzyskać dostęp do tej strony.\n",
 # Search results
 #
 "searchresults" => "Wyniki wyszukiwania",
-"searchhelppage" => "Wikipedia:Przeszukiwanie",
+"searchhelppage" => "{{ns:4}}:Przeszukiwanie",
 "searchingwikipedia" => "Przeszukiwanie Wikipedii",
 "searchresulttext" => "Aby dowiedzieć się więcej o przeszukiwaniu Wikipedii, zobacz $1.",
 "searchquery" => "Dla zapytania \"$1\"",
@@ -511,7 +528,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br>
 przez zmianą swoich preferencji.",
 "prefslogintext" => "Zalogowano Cię jako \"$1\". Twój numer identyfikacyjny to $2.
 
-Zobacz [[Wikipedia:Preferencje]], aby poznać znaczenie poszczególnych opcji.",
+Zobacz [[{{ns:4}}:Preferencje]], aby poznać znaczenie poszczególnych opcji.",
 "prefsreset" => "Preferencje domyślne zostały odtworzone.",
 "qbsettings" => "Pasek szybkiego dostępu", 
 "changepassword" => "Zmiana hasła",
@@ -553,7 +570,7 @@ lub \"1\" (czas zimowy).",
 "recentchanges" => "Ostatnie zmiany",
 "recentchangestext" => "Ta strona przedstawia historię ostatnich zmian w polskiej Wikipedii.
 
-[[Wikipedia:Powitanie nowicjuszy|Witaj]]! Jeśli jesteś tu po raz pierwszy, zapoznaj się, proszę, z tymi stronami: [[wikipedia:FAQ|Wikipedia FAQ]], [[Wikipedia:Zasady i wskazówki|polityka Wikipedii]] (a zwłaszcza [[Wikipedia:Nazewnictwo|konwencje nazywania stron]], [[Wikipedia:Neutralny punkt widzenia|neutralny punkt widzenia]]) oraz [[Wikipedia:Najczęstsze nieporozumienia|najczęstsze nieporozumienia]].
+[[{{ns:4}}:Powitanie nowicjuszy|Witaj]]! Jeśli jesteś tu po raz pierwszy, zapoznaj się, proszę, z tymi stronami: [[{{ns:4}}:FAQ|{{SITENAME}} FAQ]], [[{{ns:4}}:Zasady i wskazówki|polityka Wikipedii]] (a zwłaszcza [[{{ns:4}}:Nazewnictwo|konwencje nazywania stron]], [[{{ns:4}}:Neutralny punkt widzenia|neutralny punkt widzenia]]) oraz [[{{ns:4}}:Najczęstsze nieporozumienia|najczęstsze nieporozumienia]].
 
 Jeśli zależy Ci na dalszym rozwoju Wikipedii, nie dodawaj materiałów zastrzeżonych prawami autorskimi. Złamanie tej zasady mogłyby narazić projekt Wikipedii na poważne konsekwencje prawne.  Zobacz także [http://meta.wikipedia.org/wiki/Special:Recentchanges ostatnie zmiany na stronach dyskusyjnych projektu].",
 "rcloaderr" => "Ładuję ostatnie zmiany",
@@ -586,15 +603,15 @@ przed przesłaniem pików.",
 "uploadfile" => "Prześlij plik",
 "uploaderror" => "Błąd przesyłki",
 "uploadtext" => "<strong>STOP!</strong> Zanim prześlesz plik,
-przeczytaj <a href=\"" . wfLocalUrlE( "Wikipedia:Zasady_dołączania_plików" ) .
+przeczytaj <a href=\"" . wfLocalUrlE( "{{ns:4}}:Zasady_dołączania_plików" ) .
 "\">zasady dołączania plików</a> i upewnij się, że przesyłając pozostaniesz z
 nimi w zgodzie.
 <p>Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki,
 przejdź do <a href=\"" . wfLocalUrlE( "Specjalna:Imagelist" ) .
 "\">listy dołączonych plików</a>.
 Wszystkie przesyłki i skasowania są odnotowane na
-specjalnych wykazach (<a href=\"" .  wfLocalUrlE( "Wikipedia:Dołączone" ) .
-"\">dołączone</a>, <a href=\"" . wfLocalUrlE( "Wikipedia:Usunięte" ) .
+specjalnych wykazach (<a href=\"" .  wfLocalUrlE( "{{ns:4}}:Dołączone" ) .
+"\">dołączone</a>, <a href=\"" . wfLocalUrlE( "{{ns:4}}:Usunięte" ) .
 "\">usunięte</a>).
 <p>By przesłać nowy plik mający zilustrować Twój artykuł skorzystaj
 z poniższego formularza.
@@ -627,7 +644,7 @@ Wszystkie czasy odnoszą się do strefy czasu uniwersalnego (UTC).
 "filedesc" => "Opis",
 "affirmation" => "Potwierdzam, że właściciel praw autorskich do tego pliku
 zgadza się udzielić licencji zgodnie z $1.",
-"copyrightpage" => "Wikipedia:Prawa_autorskie",
+"copyrightpage" => "{{ns:4}}:Prawa_autorskie",
 "copyrightpagename" => "prawami autorskimi Wikipedii",
 "uploadedfiles" => "Przesłane pliki",
 "noaffirmation" => "Musisz potwierdzić, że Twoja przesyłka nie narusza żadnych
@@ -665,6 +682,7 @@ i cokolwiek co wiesz o pliku, a wydaje Ci się ważne.",
 "imghistory" => "Historia pliku",
 "revertimg" => "przywróć",
 "deleteimg" => "usuń",
+"deleteimgcompletely" => "usuń",
 "imghistlegend" => "Legenda: (bież) = to jest obecny plik, (usuń) = usuń
 tę starszą wersję, (przywróć) = przywróć tę starszą wersję.
 <br><i>Kliknij na datę aby zobaczyć jakie pliki przesłano tego dnia</i>.",
@@ -696,7 +714,7 @@ pomagających w prostej administracji. Niektóre z nich obciążają bazę danyc
 więc, by ich nie nadużywać.",
 "maintenancebacklink" => "Powrót do strony prostej administracji",
 "disambiguations" => "Strony ujednoznaczniające",
-"disambiguationspage" => "Wikipedia:Strony_ujednoznaczniające",
+"disambiguationspage" => "{{ns:4}}:Strony_ujednoznaczniające",
 "disambiguationstext" => "Poniższe artykuły odwołują się do <i>stron
 ujednoznaczniających</i>, a powinny odwoływać się bezpośrednio do hasła
 związanego z treścią artykułu.<br>Strona uznawana jest za ujednoznaczniającą
@@ -760,7 +778,7 @@ na tej liście mimo, że żadna strona tej Wikipedii nie odwołuje się do nich.
 "booksourcetext" => "Oto lista linków do innych witryn,
 które pośredniczą w sprzedaży nowych i używanych książek i mogą podać
 informacje o książkach, których szukasz.
-Wikipedia nie jest stowarzyszona z żadnym ze sprzedawców,
+{{SITENAME}} nie jest stowarzyszona z żadnym ze sprzedawców,
 
 a ta lista nie powinna być interpretowana jako świadectwo udziału w zyskach.",
 "alphaindexline" => "$1 --> $2",
@@ -847,7 +865,7 @@ Zaznacz, które z nich mamy usunąć z listy i kliknij przycisk
 lub plik z bazy danych razem z dotyczącą ich historią.
 Potwierdź, proszę, swoje zamiary, tzn., że rozumiesz konsekwencje,
 i że robisz to w zgodzie z
-[[Wikipedia:Zasady i wskazówki|zasadami Wikipedii]].",
+[[{{ns:4}}:Zasady i wskazówki|zasadami Wikipedii]].",
 "confirmcheck" => "Tak, naprawdę chcę usunąć.",
 "actioncomplete" => "Operacja wykonana",
 
@@ -892,7 +910,7 @@ pozostanie bez zmian.",
 "undeletebtn" => "Odtwórz!",
 "undeletedarticle" => "odtworzono \"$1\"",
 "undeletedtext" => "Pomyślnie odtworzono stronę [[$1]].
-Zobacz [[Wikipedia:Usunięte]], jeśli chcesz przejrzeć rejestr ostatnio
+Zobacz [[{{ns:4}}:Usunięte]], jeśli chcesz przejrzeć rejestr ostatnio
 skasowanych i odtworzonych stron.",
 
 # Contributions
@@ -924,7 +942,7 @@ ta operacja ma być wykonana.",
 "blockiptext" => "Użyj poniższego formularza aby zablokować prawo
 zapisu spod określonego adresu IP.
 Powinno się to robić jedynie by zapobiec wandalizmowi, a zarazem
-w zgodzie z [[Wikipedia:Zasady i wskazówki|zasadami Wikipedii]].
+w zgodzie z [[{{ns:4}}:Zasady i wskazówki|zasadami Wikipedii]].
 Podaj powód (np. umieszczając nazwy stron, na których dopuszczono
 się wandalizmu).",
 "ipaddress" => "Adres IP",
