@@ -53,6 +53,8 @@ class DatabasePgsql extends Database {
 			die( "PostgreSQL functions missing, have you compiled PHP with the --with-pgsql option?\n" );
 		}
 
+		global $wgDBschema;
+
 		$this->close();
 		$this->mServer = $server;
 		$this->mUser = $user;
@@ -75,6 +77,7 @@ class DatabasePgsql extends Database {
 			} else { 
 				$this->mOpened = true;
 			}
+			$this->query("SET search_path = $wgDBschema,public");
 		}
 		return $this->mConn;
 	}
