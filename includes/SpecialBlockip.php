@@ -62,7 +62,7 @@ class IPBlockForm {
 		global $ip, $wpBlockAddress, $wpBlockReason, $wgSysopUserBans;
 		
 		$userId = 0;
-		if ( ! preg_match( "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/",
+		if ( ! preg_match( "/^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$/",
 		  $wpBlockAddress ) ) 
 		{
 		  	if ( $wgSysopUserBans ) {	
