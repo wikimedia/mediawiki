@@ -170,9 +170,9 @@ class CategoryPage extends Article {
 
                         $numchild = count( $children );
                         if($numchild == 1) {
-                                $r .= wfMsg( 'subcategorycount1', 1 );
+                                $r .= wfMsg( 'subcategorycount1', $wgContLang->formatNum( 1 ) );
                         } else {
-                                $r .= wfMsg( 'subcategorycount' , $numchild );
+                                $r .= wfMsg( 'subcategorycount' , $wgContLang->formatNum( $numchild ) );
                         }
                         unset($numchild);
 
@@ -234,9 +234,9 @@ class CategoryPage extends Article {
 
                 $numart = count( $articles );
                 if($numart == 1) {
-                        $r .= wfMsg( 'categoryarticlecount1', 1 );
+                        $r .= wfMsg( 'categoryarticlecount1', $wgContLang->formatNum( 1 ) );
                 } else {
-                        $r .= wfMsg( 'categoryarticlecount' , $numart );
+                        $r .= wfMsg( 'categoryarticlecount' , $wgContLang->formatNum( $numart ) );
                 }
                 unset($numart);
 
