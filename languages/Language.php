@@ -77,7 +77,7 @@ if($wgMetaNamespace === FALSE)
 	"quickbar" => 1, "underline" => 1, "hover" => 1,
 	"cols" => 80, "rows" => 25, "searchlimit" => 20,
 	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
+	"skin" => 2, "math" => 1, "rcdays" => 7, "rclimit" => 50,
 	"highlightbroken" => 1, "stubthreshold" => 0,
 	"previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, "showtoc"=>1,
 	"showtoolbar" =>1,
@@ -143,7 +143,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"ab" => "Abkhazian",	# Abkhazian - FIXME
 	"af" => "Afrikaans",	# Afrikaans
 	"ak" => "Akana",		# Akan
-	"als" => "Els&auml;ssische",	# Alsatian
+	"als" => "Els&auml;ssisch",	# Alsatian
 	"am" => "&#4768;&#4635;&#4653;&#4763;",	# Amharic
 	"ar" => "&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;",	# Arabic
 	"arc" => "&#1813;&#1829;&#1810;&#1834;&#1848;&#1821;&#1819;",	# Aramaic
