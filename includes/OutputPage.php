@@ -1438,7 +1438,7 @@ $t[] = "</table>" ;
 			// The canonized header is a version of the header text safe to use for links
 			
 			$canonized_headline=preg_replace("/<.*?>/","",$headline); // strip out HTML
-			$tocline=$canonized_headline;
+			$tocline = trim( $canonized_headline );
 			$canonized_headline=str_replace('"',"",$canonized_headline);
 			$canonized_headline=str_replace(" ","_",trim($canonized_headline));			
 			$refer[$c]=$canonized_headline;
