@@ -70,7 +70,7 @@ class Article {
 		$action = $wgRequest->getText( 'action', 'view' );
 		$section = $wgRequest->getText( 'section' );
 
-		$fname =  "Article::getContent"; 
+		$fname =  "Article::getContent";
 		wfProfileIn( $fname );
 
 		if ( 0 == $this->getID() ) {
@@ -82,34 +82,50 @@ class Article {
 			return wfMsg( "noarticletext" );
 		} else {
 			$this->loadContent( $noredir );
-						
+
 			if(
 				# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
 				( $this->mTitle->getNamespace() == Namespace::getTalk( Namespace::getUser()) ) &&
 				  preg_match("/^\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}$/",$this->mTitle->getText()) &&
 				  $action=="view"
-				) 
+				)
 				{
 				wfProfileOut( $fname );
 				return $this->mContent . "\n" .wfMsg("anontalkpagetext"); }
-			else {				
+			else {
 				if($action=="edit") {
 					if($section!="") {
-						if($section=="new") { 
+						if($section=="new") {
 							wfProfileOut( $fname );
-							return ""; 
+							return "";
 						}
 
-						$secs=preg_split("/(^=+.*?=+|^<h[1-6].*?>.*?<\/h[1-6].*?>)/mi",
-						 $this->mContent, -1,
-						 PREG_SPLIT_DELIM_CAPTURE);
+						# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
+						# comments to be stripped as well)
+						$striparray=array();
+						$parser=new Parser();
+						$parser->mOutputType=OT_WIKI;
+						$striptext=$parser->strip($this->mContent, $striparray, true);
+
+						# now that we can be sure that no pseudo-sections are in the source,
+						# split it up by section
+						$secs =
+						  preg_split(
+						  "/(^=+.*?=+|^<h[1-6].*?>.*?<\/h[1-6].*?>)/mi",
+						  $striptext, -1,
+						  PREG_SPLIT_DELIM_CAPTURE);
+
 						if($section==0) {
-							wfProfileOut( $fname );
-							return trim($secs[0]);
+							$rv=$secs[0];
 						} else {
-							wfProfileOut( $fname );
-							return trim($secs[$section*2-1] . $secs[$section*2]);
+							$rv=$secs[$section*2-1] . $secs[$section*2];
 						}
+
+						# reinsert stripped tags
+						$rv=$parser->unstrip($rv,$striparray);
+						$rv=trim($rv);
+						wfProfileOut( $fname );
+						return $rv;
 					}
 				}
 				wfProfileOut( $fname );
@@ -117,12 +133,12 @@ class Article {
 			}
 		}
 	}
-	
+
 	# Load the revision (including cur_text) into this object
 	function loadContent( $noredir = false )
 	{
 		global $wgOut, $wgMwRedir, $wgRequest;
-		
+
 		# Query variables :P
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$redirect = $wgRequest->getVal( 'redirect' );
@@ -131,12 +147,12 @@ class Article {
 		$fname = "Article::loadContent";
 		
 		# Pre-fill content with error message so that if something 	 
-		# fails we'll have something telling us what we intended. 	 
+		# fails we'll have something telling us what we intended.
 
 		$t = $this->mTitle->getPrefixedText(); 	 
 		if ( isset( $oldid ) ) { 	 
 			$oldid = IntVal( $oldid ); 	 
-			$t .= ",oldid={$oldid}"; 	 
+			$t .= ",oldid={$oldid}";
 		} 	 
 		if ( isset( $redirect ) ) { 	 
 			$redirect = ($redirect == "no") ? "no" : "yes"; 	 
@@ -558,11 +574,24 @@ class Article {
 				if($summary) $subject="== {$summary} ==\n\n";
 				$text=$oldtext."\n\n".$subject.$text;
 			} else {
+
+				# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
+				# comments to be stripped as well)
+				$striparray=array();
+				$parser=new Parser();
+				$parser->mOutputType=OT_WIKI;
+				$oldtext=$parser->strip($oldtext, $striparray, true);
+
+				# now that we can be sure that no pseudo-sections are in the source,
+				# split it up
 				$secs=preg_split("/(^=+.*?=+|^<h[1-6].*?>.*?<\/h[1-6].*?>)/mi",
 				  $oldtext,-1,PREG_SPLIT_DELIM_CAPTURE);
 				$secs[$section*2]=$text."\n\n"; // replace with edited
 				if($section) { $secs[$section*2-1]=""; } // erase old headline
-				$text=join("",$secs);		
+				$text=join("",$secs);
+
+				# reinsert the stuff that we stripped out earlier
+				$text=$parser->unstrip($text,$striparray,true);
 			}
 		}
 		return $text;
