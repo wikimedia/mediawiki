@@ -1,20 +1,26 @@
 <?php
-
 # Image download authorisation script
+# To use, in LocalSettings.php set $wgUploadDirectory to point to a non-public directory, and
+# $wgUploadPath to point to this file. Also set $wgWhitelistRead to an array of pages you want
+# everyone to be able to access. Your server must support PATH_INFO, CGI-based configurations
+# generally don't. 
+
 define( "MEDIAWIKI", true );
 require_once( "./LocalSettings.php" );
 require_once( "includes/Setup.php" );
-if ( $wgWhitelistRead && !$wgUser->getID() ) {
-	header( "HTTP/1.0 403 Forbidden" );
-	exit;
-}
 
-# Check if the filename is in the correct directory
+# Get filenames/directories
 $filename = realpath( $wgUploadDirectory . $_SERVER['PATH_INFO'] );
 $realUploadDirectory = realpath( $wgUploadDirectory );
+$imageName = $wgLang->getNsText( NS_IMAGE ) . ":" . basename( $_SERVER['PATH_INFO'] );
+
+# Check if the filename is in the correct directory
 if ( substr( $filename, 0, strlen( $realUploadDirectory ) ) != $realUploadDirectory ) {
-	header( "HTTP/1.0 403 Forbidden" );
-	exit;
+	wfForbidden();
+}
+
+if ( is_array( $wgWhitelistRead ) && !in_array( $imageName, $wgWhitelistRead ) && !$wgUser->getID() ) {
+	wfForbidden();
 }
 
 # Write file
@@ -27,7 +33,8 @@ readfile( $filename );
 
 function wfGetType( $filename ) {
 	# There's probably a better way to do this
-	$types = "application/andrew-inset ez
+	$types = <<<END_STRING
+application/andrew-inset ez
 application/mac-binhex40 hqx
 application/mac-compactpro cpt
 application/mathml+xml mathml
@@ -134,8 +141,10 @@ video/vnd.mpegurl mxu
 video/x-msvideo avi
 video/x-sgi-movie movie
 x-conference/x-cooltalk ice";
-
-	$types = explode( "\n", $types );
+END_STRING;
+	$endl = "
+";
+	$types = explode( $endl, $types );
 	if ( !preg_match( "/\.(.*?)$/", $filename, $matches ) ) {
 		return false;
 	}
@@ -150,4 +159,15 @@ x-conference/x-cooltalk ice";
 	}
 	return false;
 }
+
+function wfForbidden() {
+	header( "HTTP/1.0 403 Forbidden" );
+	print 
+"<html><body>
+<h1>Access denied</h1>
+<p>You need to log in to access files on this server</p>
+</body></html>";
+	exit;
+}
+
 ?>
