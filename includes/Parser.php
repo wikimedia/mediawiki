@@ -1812,7 +1812,7 @@ class Parser
 	{
 		global $wgLang;
 
-		$a = split( "ISBN ", " $text" );
+		$a = split( "RFC ", " $text" );
 		if ( count ( $a ) < 2 ) return $text;
 		$text = substr( array_shift( $a ), 1);
 		$valid = "0123456789";
