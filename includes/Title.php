@@ -1167,5 +1167,55 @@ class Title {
 		return true;
 	}
 	
+	# Get categories to wich belong this title and return an array of
+	# categories names.
+	function getParentCategories( )
+	{
+		global $wgLang,$wgUser;
+		
+		#$titlekey = wfStrencode( $this->getArticleID() );
+		$titlekey = $this->getArticleId();
+		$cns = Namespace::getCategory();
+		$sk =& $wgUser->getSkin();
+		$parents = array();
+		
+		# get the parents categories of this title from the database
+		$sql = "SELECT DISTINCT cl_from,cur_namespace,cur_title,cur_id FROM cur,categorylinks
+		        WHERE cl_from='$titlekey' AND cl_to=cur_title AND cur_namespace='$cns'
+				ORDER BY cl_sortkey" ;
+		$res = wfQuery ( $sql, DB_READ ) ;
+		
+		if(wfNumRows($res) > 0) {
+			while ( $x = wfFetchObject ( $res ) ) $data[] = $x ;
+			wfFreeResult ( $res ) ;
+		} else {
+			$data = array();
+		}
+		return $data;
+	}
+	
+	# will get the parents and grand-parents
+	function getAllParentCategories(&$stack)
+	{
+		# getting parents
+		$parents = $this->getParentCategories( );
+				
+		foreach($parents as $parent)
+		{
+			# create a title object for the parent
+			$tpar = Title::newFromID($parent->cur_id);
+			
+			$stack[$tpar->getText()] = $this->getText();
+			if(isset($stack[$this->getText()]))
+			{
+				$stack[$tpar->getText()] .= " &gt; ".$stack[$this->getText()];
+			}
+			
+			unset( $stack[$this->getText()] );
+			$tpar->getAllParentCategories(&$stack);
+		}
+	}
+	
+	
 }
 ?>
