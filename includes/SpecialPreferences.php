@@ -310,7 +310,7 @@ class PreferencesForm {
 	 * @access private
 	 */
 	function mainPrefsForm( $err ) {
-		global $wgUser, $wgOut, $wgLang, $wgUseDynamicDates, $wgValidSkinNames;
+		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgUseDynamicDates, $wgValidSkinNames;
 	        global $wgAllowRealName, $wgImageLimits;
         
 	    global $wgLanguageNames;
@@ -402,7 +402,7 @@ class PreferencesForm {
         $wgOut->addHtml("</label></div>\n" );
 
         /* see if there are multiple language variants to choose from*/
-        $variants = $wgLang->getVariants();
+        $variants = $wgContLang->getVariants();
         $size=sizeof($variants);
 
         $variantArray=array();
