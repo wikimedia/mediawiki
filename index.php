@@ -3,9 +3,21 @@
 #
 $wgRequestTime = microtime();
 
+if( !ini_get( "register_globals" ) ) {
+	# Insecure, but at least it'll run
+	import_request_variables( "GPC" );
+}
+
 unset( $IP );
 ini_set( "allow_url_fopen", 0 ); # For security...
+if(!file_exists("LocalSettings.php")) {
+	die( "You'll have to <a href='config/index.php'>set the wiki up</a> first!" );
+}
 include_once( "./LocalSettings.php" );
+
+if( $wgSitename == "MediaWiki" ) {
+	die( "You must set the site name in \$wgSitename before installation.\n\n" );
+}
 
 # Windows requires ';' as separator, ':' for Unix
 $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
@@ -20,6 +32,12 @@ OutputPage::setEncodings(); # Not really used yet
 #
 global $action, $title, $search, $go, $target, $printable;
 global $returnto, $diff, $oldid, $curid;
+
+if( isset( $_SERVER['PATH_INFO'] ) ) {
+	$title = substr( $_SERVER['PATH_INFO'], 1 );
+} else {
+	$title = $_REQUEST['title'];
+}
 
 # Placeholders in case of DB error
 $wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
@@ -49,8 +67,8 @@ if ( "" != $search ) {
 	$wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
 	$wgOut->errorpage( "badtitle", "badtitletext" );
 } else if ( ( $action == "view" ) && $wgTitle->getPrefixedDBKey() != $title ) {
-	/* redirect to canonical url */
-	$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ) );
+	/* redirect to canonical url, make it a 301 to allow caching */
+	$wgOut->redirect( wfLocalUrl( $wgTitle->getPrefixedURL() ), '301');
 } else if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
 	wfSpecialPage();
 } else {

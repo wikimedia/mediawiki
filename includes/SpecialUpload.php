@@ -157,9 +157,9 @@ function saveUploadedFile()
 function unsaveUploadedFile()
 {
 	global $wpSessionKey, $wpUploadOldVersion;
-	global $wgUploadDirectory, $wgOut, $wsUploadFiles;
+	global $wgUploadDirectory, $wgOut;
 	
-	$wgSavedFile = $wsUploadFiles[$wpSessionKey];
+	$wgSavedFile = $_SESSION['wsUploadFiles'][$wpSessionKey];
 	$wgUploadOldVersion = $wpUploadOldVersion;
 
 	if ( ! @unlink( $wgSavedFile ) ) {
@@ -193,12 +193,12 @@ function uploadWarning( $warning )
 	global $wpUploadDescription, $wpIgnoreWarning;
 	global $wpUploadSaveName, $wpUploadTempName, $wpUploadSize;
 	global $wgSavedFile, $wgUploadOldVersion;
-	global $wpSessionKey, $wpUploadOldVersion, $wsUploadFiles;
+	global $wpSessionKey, $wpUploadOldVersion;
 	global $wgUseCopyrightUpload , $wpUploadCopyStatus , $wpUploadSource ;
 
 	# wgSavedFile is stored in the session not the form, for security
 	$wpSessionKey = mt_rand( 0, 0x7fffffff );
-	$wsUploadFiles[$wpSessionKey] = $wgSavedFile;
+	$_SESSION['wsUploadFiles'][$wpSessionKey] = $wgSavedFile;
 
 	$sub = wfMsg( "uploadwarning" );
 	$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
