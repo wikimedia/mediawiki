@@ -177,7 +177,10 @@
 				}
 				$tpl->set('lastmod', $this->lastModified());
 			        $tpl->set('copyright',$this->getCopyright());
+			} elseif ( isset( $oldid ) && !isset( $diff ) ) {
+				$tpl->set('copyright', $this->getCopyright());
 			}
+
 			$tpl->set( "copyrightico", $this->getCopyrightIcon() );
 			$tpl->set( "poweredbyico", $this->getPoweredBy() );
 			$tpl->set( "disclaimer", $this->disclaimerLink() );

@@ -74,16 +74,11 @@ class PageHistory {
 		$atend = ($revs < $limitplus);
 		
 		$this->mSkin = $wgUser->getSkin();
-		$s = wfMsg( "history_copyright" );
-		if ( $s == "&nbsp;" ) {
-			$s = "";
-		}
-			
 		$numbar = wfViewPrevNext(
 			$offset, $limit,
 			$this->mTitle->getPrefixedText(),
 			"action=history", $atend );
-		$s .= $numbar;
+		$s = $numbar;
 		if($this->linesonpage > 0) {
 			$submitpart1 = '<input class="historysubmit" type="submit" accesskey="'.wfMsg('accesskey-compareselectedversions').
 			'" title="'.wfMsg('tooltip-compareselectedversions').'" value="'.wfMsg('compareselectedversions').'"';

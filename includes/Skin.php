@@ -27,7 +27,7 @@ require_once( 'RecentChange.php' );
 class RCCacheEntry extends RecentChange
 {
 	var $secureName, $link;
-	var $curlink , $lastlink , $usertalklink , $versionlink ;
+	var $curlink , $difflink, $lastlink , $usertalklink , $versionlink ;
 	var $userlink, $timestamp, $watched;
 
 	function newFromParent( $rc )
@@ -872,7 +872,18 @@ class Skin {
 	}
     
 	function getCopyright() {
-		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
+		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgRequest;
+		
+		
+		$oldid = $wgRequest->getVal( 'oldid' );
+		$diff = $wgRequest->getVal( 'diff' );
+	
+		if ( !is_null( $oldid ) && is_null( $diff ) && wfMsg( 'history_copyright' ) !== '-' ) {
+			$msg = 'history_copyright';
+		} else {
+			$msg = 'copyright';
+		}
+		
 		$out = '';
 		if( $wgRightsPage ) {
 			$link = $this->makeKnownLink( $wgRightsPage, $wgRightsText );
@@ -882,7 +893,7 @@ class Skin {
 			# Give up now
 			return $out;
 		}
-		$out .= wfMsg( 'copyright', $link );
+		$out .= wfMsg( $msg, $link );
 		return $out;
 	}
 	
@@ -1567,6 +1578,9 @@ class Skin {
 		$fname = 'Skin::makeKnownLinkObj';
 		wfProfileIn( $fname );
 
+		if ( !is_object( $nt ) ) {
+			return $text;
+		}
 		$link = $nt->getPrefixedURL();
 
 		if ( '' == $link ) {
@@ -2086,9 +2100,9 @@ class Skin {
 		if ( $rcObj->watched ) $link = '<strong>'.$link.'</strong>' ;
 		$r .= $link ;
 
-		# Cur
+		# Diff
 		$r .= ' (' ;
-		$r .= $rcObj->curlink ;
+		$r .= $rcObj->difflink ;
 		$r .= '; ' ;
 
 		# Hist
@@ -2402,12 +2416,15 @@ class Skin {
 		$rc->link = $clink ;
 		$rc->timestamp = $time;
 		
-		# Make "cur" link
+		# Make "cur" and "diff" links
 		if ( ( $rc_type == RC_NEW && $rc_this_oldid == 0 ) || $rc_type == RC_LOG || $rc_type == RC_MOVE) {
 			$curLink = wfMsg( 'cur' );
-		} else {
-			$curLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'cur' ),
-			  $curIdEq.'&diff=0&oldid='.$rc_this_oldid ,'' ,'' , ' tabindex="'.$baseRC->counter.'"' );
+			$diffLink = wfMsg( 'diff' );
+		} else {	
+			$query = $curIdEq.'&diff=0&oldid='.$rc_this_oldid;
+			$aprops = ' tabindex="'.$baseRC->counter.'"';
+			$curLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'cur' ), $query, '' ,'' , $aprops );
+			$diffLink = $this->makeKnownLinkObj( $rc->getTitle(), wfMsg( 'diff'), $query, '' ,'' , $aprops );
 		}
 
 		# Make "last" link
@@ -2431,6 +2448,8 @@ class Skin {
 		$rc->userlink = $userLink ;
 		$rc->lastlink = $lastLink ;
 		$rc->curlink = $curLink ;
+		$rc->difflink = $diffLink;
+
 
 		# Make user talk link		
 		$utns=$wgLang->getNsText(NS_USER_TALK);
