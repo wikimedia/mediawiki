@@ -339,7 +339,7 @@ function wfSpecialPage()
 
 	$par = NULL;
 	list($t, $par) = split( "/", $wgTitle->getDBkey(), 2 );
-	
+
 	if ( array_key_exists( $t, $validSP ) ||
 	  ( $wgUser->isSysop() && array_key_exists( $t, $sysopSP ) ) ||
 	  ( $wgUser->isDeveloper() && array_key_exists( $t, $devSP ) ) ) {
@@ -371,6 +371,24 @@ function wfGo( $s )
 { # pick the nearest match
 	$se = new SearchEngine( wfCleanQueryVar( $s ) );
 	$se->goResult();
+}
+
+/* private */ $wgAbruptExitCalled = false;
+
+# Just like exit() but makes a note of it.
+function wfAbruptExit(){
+	// Safety to avoid infinite recursion in case of (unlikely) bugs somewhere
+	global $wgAbruptExitCalled;
+	if ( $wgAbruptExitCalled ){
+		exit();
+	}
+	$wgAbruptExitCalled = true;
+
+	$bt = debug_backtrace();
+	$file = $bt[0]["file"];
+	$line = $bt[0]["line"];
+	wfDebug("WARNING: Abrupt exit in $file at line $line\n");
+	exit();
 }
 
 function wfNumberOfArticles()
