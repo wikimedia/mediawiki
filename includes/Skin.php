@@ -427,8 +427,8 @@ class Skin extends Linker {
 					}
 					# add our current element to the list
 					$eltitle = Title::NewFromText($element);
-					# FIXME : should be makeLink() [AV]
-					$return .= $skin->makeLinkObj( $eltitle, $eltitle->getText() ) . ' &gt; ';
+					if(!empty($parent)) $return .= ' &gt; ';
+					$return .=  $skin->makeLinkObj( $eltitle, $eltitle->getText() ) ;
 				}
 				return $return;
 			}
