@@ -618,15 +618,23 @@ class Skin {
 
 		return $s;
 	}
-
+	
+	function getSearchLink() {
+		$searchPage =& Title::makeTitle( NS_SPECIAL, "Search" );
+		return $searchPage->getLocalURL();
+	}
+	
+	function escapeSearchLink() {
+		return htmlspecialchars( $this->getSearchLink() );
+	}
+	
 	function searchForm()
 	{
 		global $wgRequest;
-
-		$search = $wgRequest->getText( 'search' );;
-
+		$search = $wgRequest->getText( 'search' );
+		
 		$s = "<form name='search' class='inline' method='post' action=\""
-		  . wfLocalUrl( "" ) . "\">\n"
+		  . $this->escapeSearchLink() . "\">\n"
 		  . "<input type='text' name=\"search\" size='19' value=\""
 		  . htmlspecialchars(substr($search,0,256)) . "\" />\n"
 		  . "<input type='submit' name=\"go\" value=\"" . wfMsg ("go") . "\" />&nbsp;"

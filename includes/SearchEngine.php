@@ -59,7 +59,8 @@ class SearchEngine {
 	function powersearch()
 	{
 		global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest;
-
+		$sk =& $wgUser->getSkin();
+		
 		$search			= $wgRequest->getText( 'search' );
 		$searchx		= $wgRequest->getVal( 'searchx' );
 		$listredirs		= $wgRequest->getVal( 'redirs' );
@@ -86,7 +87,7 @@ class SearchEngine {
 			if ( !isset( $searchx ) ) {
 				$checkboxValue = $this->initNamespaceCheckbox( $i );
 			} else {
-				$checkboxValue = $_REQUEST[$formVar];
+				$checkboxValue = $wgRequest->getVal( $formVar );
 			}
 
 			$checked = "";
@@ -130,9 +131,9 @@ class SearchEngine {
 		  wfMsg("powersearch") . "\" />\n";
 		$ret = str_replace( "$9", $tempText, $ret );
 
-		global $wgScript;
+		$action = $sk->escapeSearchLink();
 		$ret = "<br /><br />\n<form id=\"powersearch\" method=\"get\" " .
-		  "action=\"$wgScript\">\n{$ret}\n</form>\n";
+		  "action=\"$action\">\n{$ret}\n</form>\n";
 
 		if ( isset ( $searchx ) ) {
 			if ( ! $listredirs ) { 
