@@ -167,7 +167,7 @@ class Title {
  	}
 
 	/* static */ function newMainPage() {
-		return Title::newFromText( wfMsg( 'mainpage' ) );
+		return Title::newFromText( wfMsgForContent( 'mainpage' ) );
 	}
 
 	# Get the title object for a redirect

@@ -1739,7 +1739,7 @@ class Skin {
 		return $title->getLocalURL( $urlaction );
 	}
 	/*static*/ function makeI18nUrl ( $name, $urlaction='' ) {
-		$title = Title::newFromText( wfMsg($name) );
+		$title = Title::newFromText( wfMsgForContent($name) );
 		$this->checkTitle($title, $name);
 		return $title->getLocalURL( $urlaction );
 	}
@@ -1783,7 +1783,7 @@ class Skin {
 		);
 	}
 	/*static*/ function makeI18nUrlDetails ( $name, $urlaction='' ) {
-		$title = Title::newFromText( wfMsg($name) );
+		$title = Title::newFromText( wfMsgForContent($name) );
 		$this->checkTitle($title, $name);
 		return array(
 			'href' => $title->getLocalURL( $urlaction ),
