@@ -69,11 +69,10 @@ class EditPage {
 		} else if ( $this->preview ) {
 			$this->editForm( 'preview' );
 		} else { # First time through
-			$this->initForm();
 			if( $wgUser->getOption('previewonfirst') ) {
-				$this->editForm( 'preview' );
+				$this->editForm( 'preview', true );
 			} else {
-				$this->editForm( 'initial' );
+				$this->editForm( 'initial', true );
 			}
 		}
 	}
@@ -124,8 +123,9 @@ class EditPage {
 	 * the newly-edited page.
 	 *
 	 * @param string $formtype Type of form either : save, initial or preview
+	 * @param bool $firsttime True to load form data from db
 	 */
-	function editForm( $formtype ) {
+	function editForm( $formtype, $firsttime = false ) {
 		global $wgOut, $wgUser;
 		global $wgLang, $wgContLang, $wgParser, $wgTitle;
 		global $wgAllowAnonymousMinor;
@@ -269,8 +269,11 @@ class EditPage {
 		# First time through: get contents, set time for conflict
 		# checking, etc.
 
-		if ( 'initial' == $formtype ) {
-			$this->initForm();
+		if ( 'initial' == $formtype || $firsttime ) {
+			$this->edittime = $this->mArticle->getTimestamp();
+			$this->textbox1 = $this->mArticle->getContent( true );
+			$this->summary = '';
+			$this->proxyCheck();
 		}
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
@@ -515,16 +518,6 @@ htmlspecialchars( $wgContLang->recodeForEdit( $this->textbox1 ) ) .
 			$wgOut->addHTML($previewhead);
 			$wgOut->addHTML($previewHTML);
 		}
-	}
-	
-	/**
-	 * @todo document
-	 */
-	function initForm() {
-		$this->edittime = $this->mArticle->getTimestamp();
-		$this->textbox1 = $this->mArticle->getContent( true );
-		$this->summary = '';
-		$this->proxyCheck();
 	}
 
 	/**
