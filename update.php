@@ -19,6 +19,10 @@ include_once( "./AdminSettings.php" );
 
 include( "$IP/Version.php" );
 
+if( $wgSitename == "MediaWiki" ) {
+	die( "You must set the site name in \$wgSitename before installation.\n\n" );
+}
+
 if ( $wgUseTeX && ( ! is_executable( "./math/texvc" ) ) ) {
 	print "To use math functions, you must first compile texvc by\n" .
 	  "running \"make\" in the math directory.\n";
