@@ -1529,7 +1529,7 @@ class Skin {
 		        if ( $wgUseImageMagick ) {
 				# use ImageMagick
 				$cmd  =  $wgImageMagickConvertCommand .
-					" -quality 95 -geometry {$width}x ".
+					" -quality 95 -geometry {$width} ".
 					escapeshellarg($imgPath) . " " .
 					escapeshellarg($thumbPath);
 				$conv = shell_exec( $cmd );
