@@ -191,6 +191,17 @@ $conf = new ConfigData;
 install_version_checks();
 print "<li>PHP " . phpversion() . " ok</li>\n";
 
+if( ini_get( "safe_mode" ) ) {
+	?>
+	<li class='error'><b>Warning: PHP's
+	<a href='http://www.php.net/features.safe-mode'>safe mode</a> is active!</b>
+	You will likely have problems caused by this. You may need to make the
+	'images' subdirectory writable or specify a TMP environment variable pointing to
+	a writable temporary directory owned by you, since safe mode breaks the system
+	temporary directory.</li>
+	<?php
+}
+
 $sapi = php_sapi_name();
 $conf->prettyURLs = true;
 print "<li>PHP server API is $sapi; ";
