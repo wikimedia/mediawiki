@@ -58,6 +58,7 @@ class Block
 	function load( $address = '', $user = 0, $killExpired = true ) 
 	{
 		$fname = 'Block::load';
+		wfDebug( "Block::load: '$address', '$user', $killExpired\n" );
 
 		$ret = false;
 		$killed = false;
@@ -219,19 +220,22 @@ class Block
 	function deleteIfExpired() 
 	{
 		if ( $this->isExpired() ) {
+			wfDebug( "Block::deleteIfExpired() -- deleting\n" );
 			$this->delete();
 			return true;
 		} else {
+			wfDebug( "Block::deleteIfExpired() -- not expired\n" );
 			return false;
 		}
 	}
 
 	function isExpired() 
 	{	
+		wfDebug( "Block::isExpired() checking current " . wfTimestampNow() . " vs $this->mExpiry\n" );
 		if ( !$this->mExpiry ) {
 			return false;
 		} else {
-			return wfTimestamp() > $this->mExpiry;
+			return wfTimestampNow() > $this->mExpiry;
 		}
 	}
 
