@@ -24,7 +24,7 @@ $source = $args[0];
 $dest = $args[1];
 
 $dbr =& wfGetDB( DB_SLAVE );
-extract( $dbr->tableNames( 'cur','old','user' );
+extract( $dbr->tableNames( 'cur','old','user' ));
 $eSource = $dbr->strencode( $source );
 $eDest = $dbr->strencode( $dest );
 
