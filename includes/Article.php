@@ -2269,6 +2269,35 @@ class Article {
 		
 		return array( 'edits' => $edits, 'authors' => $authors );
 	}
+
+	/**
+	 * Return a list of templates used by this article.
+	 * Uses the links table to find the templates
+	 *
+	 * @return array
+	 */
+	function getUsedTemplates() {
+		$result = array();
+		$id = $this->mTitle->getArticleID();
+
+		$db =& wfGetDB( DB_SLAVE );
+		$page = $db->tableName( 'page' );
+		$links = $db->tableName( 'links' );
+		$sql = "SELECT page_title ".
+			"FROM $page,$links WHERE l_to=page_id AND l_from={$id} and page_namespace=".NS_TEMPLATE;
+		$res = $db->query( $sql, "Article:getUsedTemplates" );
+		if ( false !== $res ) {
+			if ( $db->numRows( $res ) ) {
+				while ( $row = $db->fetchObject( $res ) ) {
+					$result[] = $row->page_title;
+				}
+			}
+		}
+		$db->freeResult( $res );
+		return $result;
+	}
+
+
 }
 
 
