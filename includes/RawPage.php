@@ -23,11 +23,11 @@ class RawPage {
 		if($gen == 'css') {
 			$this->mGen = $gen;
 			if($smaxage == '') $smaxage = $wgSquidMaxage;
-			if(empty($ctype)) $ctype = 'text/css';
+			if($ctype == '') $ctype = 'text/css';
 		} else if ($gen == 'js') {
 			$this->mGen = $gen;
 			if($smaxage == '') $smaxage = $wgSquidMaxage;
-			if(empty($ctype)) $ctype = 'text/javascript';
+			if($ctype == '') $ctype = 'text/javascript';
 		} else {
 			$this->mGen = false;
 		}
