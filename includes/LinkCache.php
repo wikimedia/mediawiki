@@ -389,4 +389,93 @@ class LinkCache {
 		}
 	}
 }
+
+/**
+ * Class representing a list of titles
+ * The execute() method checks them all for existence and adds them to a LinkCache object
+ */
+class LinkBatch {
+	/** 
+	 * 2-d array, first index namespace, second index dbkey, value arbitrary
+	 */
+	var $data = array();
+
+	function addObj( $title ) {
+		$this->add( $title->getNamespace(), $title->getDBkey() );
+	}
+
+	function add( $ns, $dbkey ) {
+		if ( !array_key_exists( $ns, $this->data ) ) {
+			$this->data[$ns] = array();
+		}
+
+		$this->data[$ns][$dbkey] = 1;
+	}
+
+	function execute( &$cache ) {
+		$fname = 'LinkBatch::execute';
+		$namespaces = array();
+
+		if ( !count( $this->data ) ) {
+			return;
+		}
+
+		wfProfileIn( $fname );
+
+		// Construct query
+		// This is very similar to Parser::replaceLinkHolders
+		$dbr = wfGetDB( DB_SLAVE );
+		$page = $dbr->tableName( 'page' );
+		$sql = "SELECT page_id, page_namespace, page_title FROM $page WHERE ";
+		$first = true;
+		
+		foreach ( $this->data as $ns => $dbkeys ) {
+			if ( !count( $dbkeys ) ) {
+				continue;
+			}
+
+			if ( $first ) {
+				$first = false;
+			} else {
+				$sql .= ' OR ';
+			}
+			$sql .= "(page_namespace=$ns AND page_title IN (";
+
+			$firstTitle = true;
+			foreach( $dbkeys as $dbkey => $nothing ) {
+				if ( $firstTitle ) {
+					$firstTitle = false;
+				} else {
+					$sql .= ',';
+				}
+				$sql .= $dbr->addQuotes( $dbkey );
+			}
+
+			$sql .= '))';
+		}
+		
+		// Do query
+		$res = $dbr->query( $sql, $fname );
+
+		// Process results
+		// For each returned entry, add it to the list of good links, and remove it from $data
+		while ( $row = $dbr->fetchObject( $res ) ) {
+			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+			$cache->addGoodLink( $row->page_id, $title->getPrefixedDBkey() );
+			unset( $this->data[$row->page_namespace][$row->page_title] );
+		}
+		$dbr->freeResult( $res );
+
+		// The remaining links in $data are bad links, register them as such
+		foreach ( $this->data as $ns => $dbkeys ) {
+			foreach ( $dbkeys as $dbkey => $nothing ) {
+				$title = Title::makeTitle( $ns, $dbkey );
+				$cache->addBadLink( $title->getPrefixedText() );
+			}
+		}
+
+		wfProfileOut( $fname );
+	}
+}
+
 ?>
