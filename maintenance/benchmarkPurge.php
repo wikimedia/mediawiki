@@ -42,11 +42,15 @@ if( !$wgUseSquid ) {
 	die( "Squid purge benchmark doesn't do much without squid support on.\n" );
 } else {
 	printf( "There are %d defined squid servers:\n", count( $wgSquidServers ) );
-	echo implode( "\n", $wgSquidServers ) . "\n";
-	$lengths = array( 1, 10, 100 );
+	#echo implode( "\n", $wgSquidServers ) . "\n";
+	if( isset( $options['count'] ) ) {
+		$lengths = array( IntVal( $options['count'] ) );
+	} else {
+		$lengths = array( 1, 10, 100 );
+	}
 	foreach( $lengths as $length ) {
 		$urls = randomUrlList( $length );
-		$trial = benchSquid( $urls, 4 );
+		$trial = benchSquid( $urls );
 		print "$trial\n";
 	}
 }
