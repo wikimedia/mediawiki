@@ -98,7 +98,7 @@ class SearchMySQL3 extends SearchEngine {
 		$searchindex = $dbw->tableName( 'searchindex' );
 
 		$sql = "UPDATE $lowpri $searchindex SET si_title='" .
-                          $db->strencode( $title ) .
+                          $dbw->strencode( $title ) .
                           "' WHERE si_page={$id}";
 
 		$dbw->query( $sql, "SearchMySQL3::updateTitle" );
