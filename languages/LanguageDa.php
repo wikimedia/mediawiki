@@ -24,7 +24,8 @@
 	"cols" => 80, "rows" => 25, "searchlimit" => 20,
 	"contextlines" => 5, "contextchars" => 50,
 	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0
+	"highlightbroken" => 1, "stubthreshold" => 0,
+	"previewontop" => 1
 );
 
 /* private */ $wgQuickbarSettingsDa = array(
@@ -57,7 +58,7 @@
 	"watchdefault" => "Overvåg nye og ændrede artikler",
 	"minordefault" => "Marker som standard alle ændringer som mindre",
 	"previewontop" => "Vis forhåndsvisning før redigeringsboksen"
-	
+	"nocache" => "Husk ikke siderne til næste besøg"
 );
 
 /* private */ $wgBookstoreListDa = array(
@@ -215,8 +216,8 @@
 );
 
 /* private */ $wgWeekdayNamesDa = array(
-	"Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag",
-	"Fredag", "Lørdag"
+	"søndag", "mandag", "tirsdag", "onsdag", "torsdag",
+	"fredag", "lørdag"
 );
 
 /* private */ $wgMonthNamesDa = array(
@@ -226,8 +227,8 @@
 );
 
 /* private */ $wgMonthAbbreviationsDa = array(
-	"Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug",
-	"Sep", "Okt", "Nov", "Dec"
+	"jan", "feb", "mar", "apr", "maj", "jun", "jul", "aug",
+	"sep", "okt", "nov", "dec"
 );
 
 # All special pages have to be listed here: a description of ""
@@ -235,7 +236,7 @@
 # is the right thing for some of them (such as the "targeted" ones).
 #
 /* private */ $wgValidSpecialPagesDa = array(
-	"Userlogin"	=> "",
+	"Userlogin"		=> "",
 	"Userlogout"	=> "",
 	"Preferences"	=> "Mine brugerindstillinger",
 	"Watchlist"	=> "Min overvågningsliste",
@@ -252,7 +253,8 @@
 	"Wantedpages"	=> "Mest ønskede artikler",
 	"Shortpages"	=> "Korte artikler",
 	"Longpages"	=> "Lange artikler",
-	"Newpages"	=> "De nyeste artikler",
+	"Newpages"	=> "Nyeste artikler",
+	"Ancientpages"	=> "Ældste artikler",
 	"Intl"		=> "Sproglinks",
 	"Allpages"	=> "Alle sider efter titel",
 
@@ -285,6 +287,7 @@
 #
 "linktrail"		=> "/^([a-z|æ|ø|å]+)(.*)\$/sD",
 "mainpage"		=> "Forside",
+"mainpagetext"	=> "Wiki software er nu installeret.",
 "about"			=> "Om",
 "aboutwikipedia" => "Om Wikipedia",
 "aboutpage"		=> "Wikipedia:Om",
@@ -364,13 +367,18 @@ kan genkendes af Wikipedia softwaren.",
 #
 "error"			=> "Fejl",
 "databaseerror" => "Database fejl",
-"dberrortext"	=> "Der er sket en database query syntax fejl.
-Dette kan være på grund af en illegal søge query (se $5),
+"dberrortext"	=> "Der er sket en database forespørgsel syntaks fejl.
+Dette kan være på grund af en illegal forespørgsel (se $5),
 eller det kan betyde en fejl i softwaren.
-Den sidst forsøgte database query var:
+Den sidst forsøgte database forespørgsel var:
 <blockquote><tt>$1</tt></blockquote>
 fra funktionen \"<tt>$2</tt>\".
 MySQL returnerede fejlen \"<tt>$3: $4</tt>\".",
+"dberrortextcl" => "Der er sket en database forespørgsel syntaks fejl.
+Den sidst forsøgte database forespørgsel var:
+\"$1\"
+fra funktionen \"$2\".
+MySQL returnerede fejlen \"$3: $4\".\n",
 "noconnect"		=> "Kunne ikke forbinde til databasen på $1",
 "nodb"			=> "Kunne ikke vælge databasen $1",
 "readonly"		=> "Databasen er skrivebeskyttet",
@@ -383,8 +391,10 @@ Den administrator der skrivebeskyttede den har denne forklaring:
 <p>$1",
 "missingarticle" => "Databasen fandt ikke teksten på en side
 som den skulle have fundet, med navnet \"$1\".
-Dette er ikke en database fejl, men sandsynligvis en fejl i softwaren.
-Send venligst en rapport om dette til en administrator, 
+
+<p>Dette er ikke en database fejl, men sandsynligvis en fejl i softwaren.
+
+<p>Send venligst en rapport om dette til en administrator, 
 hvor du også nævner URL'en.",
 "internalerror" => "Intern fejl",
 "filecopyerror" => "Kunne ikke kopiere filen \"$1\" til \"$2\".",
@@ -403,6 +413,7 @@ er forkert linket fra en Wikipedia på et andet sprog.",
 fordi den belaster databasen meget hårdt, i en sådan grad at siden 
 bliver meget langsom. Funktionen bliver forhåbentlig omskrevet i den 
 nærmeste fremtid (måske af dig, vi er jo open source!!).",
+"perfdisabledsub" => "Her er en gemt kopi fra $1:",
 
 # Login and logout pages
 #
@@ -524,6 +535,13 @@ DERES TILLADELSE!</strong>",
 "longpagewarning" => "ADVARSEL: Denne side er $1 kilobytes lang; nogle
 browsere kan have problemer med at redigerer sider der nærmer sig eller 
 er længere end 32kb. Overvej om ikke siden kan splittes op i mindre dele.",
+"readonlywarning" => "ADVARSEL: Databasen er låst på grund af vedligeholdelse,
+så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at 
+klippe og klistre din tekst til en tekst fil, så du kan gemme den til senere.",
+"protectedpagewarning" => "ADVARSEL: Denne side er låst så kun administratorer
+kan redigere den. Sørg for at du følger 
+<a href='/wiki/Wikipedia:Politik_for_beskyttede_sider'>politiken for 
+beskyttede sider</a>.",
 
 # History pages
 #
@@ -551,13 +569,13 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring",
 
 # Search results
 #
-"searchresults" => "Søge resultater",
+"searchresults" => "Søgeresultater",
 "searchhelppage" => "Wikipedia:Søgning",
 "searchingwikipedia" => "Søgning på Wikipedia",
 "searchresulttext" => "For mere information om søgning på Wikipedia, se 
 $1.",
-"searchquery"	=> "For query \"$1\"",
-"badquery"		=> "Forkert udformet søge forespørgsel",
+"searchquery"	=> "For forespørgsel \"$1\"",
+"badquery"		=> "Forkert udformet forespørgsel",
 "badquerytext"	=> "Vi kunne ikke udføre din forespørgsel.
 Det er sandsynligvis fordi du har forsøgt at søge efter et ord med
 færre end tre bogstaver, hvilket ikke understøttes endnu.
@@ -615,10 +633,10 @@ Dit interne ID nummer er $2.",
 "textboxsize"	=> "Tekstboks dimensioner",
 "rows"			=> "Rækker",
 "columns"		=> "Kolonner",
-"searchresultshead" => "Søge resultat indstillinger",
+"searchresultshead" => "Indstillinger for søgeresultater",
 "resultsperpage" => "Resultater pr. side",
 "contextlines"	=> "Linjer pr. resultat",
-"contextchars"	=> "Karakterer pr. linje i resultatet",
+"contextchars"	=> "Tegn pr. linje i resultatet",
 "stubthreshold" => "Grænse for visning af stubs",
 "recentchangescount" => "Antallet af titler på \"seneste ændringer\" 
 siden",
@@ -646,24 +664,7 @@ Kig venligst på disse sider: [[Wikipedia:Hjælp|Hjælp]],
 Det er meget vigtigt for Wikipedias success, at du ikke lægger materiale på 
 Wikipedia som andre har ophavsret til. De retslige konsekvenser kan blive 
 meget kostbare og besværlige
-for projektet, så lad venligst være med det.
-
-Se også seneste ændringer for andre sprog: 
-[http://meta.wikipedia.org/wiki/Special:Recentchanges meta], 
-[http://de.wikipedia.org/wiki/Spezial:Recentchanges de], 
-[http://www.wikipedia.org/wiki/Special:Recentchanges en], 
-[http://eo.wikipedia.org/wiki/Speciala:Recentchanges eo], 
-[http://es.wikipedia.org/wiki/Especial:Recentchanges es], 
-[http://et.wikipedia.com/wiki.cgi?Recent_Changes et], 
-[http://fr.wikipedia.org/wiki/Special:Recentchanges fr], 
-[http://it.wikipedia.com/wiki.cgi?RecentChanges it], 
-[http://la.wikipedia.com/wiki.cgi?Recent_Changes la], 
-[http://nl.wikipedia.org/wiki/Speciaal:Recentchanges nl], 
-[http://no.wikipedia.com/wiki.cgi?Recent_Changes no], 
-[http://pl.wikipedia.org/wiki/Specjalna:Recentchanges pl], 
-[http://pt.wikipedia.com/wiki.cgi?RecentChanges pt], 
-[http://ru.wikipedia.org/wiki/Special:Recentchanges ru] og 
-[http://sv.wikipedia.org/wiki/Special:Recentchanges sv].",
+for projektet, så lad venligst være med det.",
 "rcloaderr"		=> "Læser seneste ændrede sider",
 "rcnote"		=> "Nedenfor er de seneste <strong>$1</strong> ændringer i de 
 sidste <strong>$2</strong> dage.",
@@ -840,17 +841,17 @@ link til den samme artikel i $1. Omdirigeringer og underartikler er
 
 # Miscellaneous special pages
 #
-"orphans"		=> "Forældreløse sider",
-"lonelypages"	=> "Forældreløse sider",
+"orphans"		=> "Forældreløse artikler",
+"lonelypages"	=> "Forældreløse artikler",
 "unusedimages"	=> "Ubrugte billeder",
-"popularpages"	=> "Populære sider",
+"popularpages"	=> "Populære artikler",
 "nviews"		=> "$1 visninger",
-"wantedpages"	=> "Ønskede sider",
+"wantedpages"	=> "Ønskede artikler",
 "nlinks"		=> "$1 links",
-"allpages"		=> "Alle sider",
+"allpages"		=> "Alle artikler",
 "randompage"	=> "Tilfældig artikel",
-"shortpages"	=> "Korte sider",
-"longpages"		=> "Lange sider",
+"shortpages"	=> "Korte artikler",
+"longpages"		=> "Lange artikler",
 "listusers"		=> "Brugerliste",
 "specialpages"	=> "Specielle sider",
 "spheading"		=> "Specielle sider",
@@ -860,7 +861,8 @@ link til den samme artikel i $1. Omdirigeringer og underartikler er
 "recentchangeslinked" => "Relaterede ændringer",
 "rclsub"		=> "(til sider linket fra \"$1\")",
 "debug"			=> "Debug",
-"newpages"		=> "Nye sider",
+"newpages"		=> "Nye artikler",
+"ancientpages"		=> "Ældste artikler",
 "intl"		=> "Sproglinks",
 "movethispage"	=> "Flyt side",
 "unusedimagestext" => "<p>Læg mærke til at andre web sider
@@ -931,8 +933,12 @@ overvågningsliste.",
 #
 "deletepage"	=> "Slet side",
 "confirm"		=> "Bekræft",
+"excontent" => "indholdet var:",
+"exbeforeblank" => "indholdet før siden blev tømt var:",
+"exblank" => "siden var tom",
 "confirmdelete" => "Bekræft sletning",
 "deletesub"		=> "(Sletter \"$1\")",
+"historywarning" => "Advarsel: Siden du er ved at slette har en historie: ",
 "confirmdeletetext" => "Du er ved permanent at slette en side
 eller et billede sammen med hele den tilhørende historie fra databasen.
 Bekræft venligst at du virkelig vil gøre dette, at du forstår
@@ -956,8 +962,17 @@ Alle tider er server (UTC) tider.
 success.",
 "rollback"		=> "Fjern redigeringer",
 "rollbacklink"	=> "fjern redigering",
-"cantrollback"	=> "Kan ikke fjerne redigering; den sidste bruger er den eneste forfatter.",
-"revertpage"	=> "Fjernet den seneste redigering lavet af $1",
+"rollbackfailed" => "Kunne ikke fjerne redigeringen",
+"cantrollback"	=> "Kan ikke fjerne redigering; 
+den sidste bruger er den eneste forfatter.",
+"alreadyrolled"	=> "Kan ikke fjerne den seneste redigering af [[$1]]
+lavet af [[Bruger:$2|$2]] ([[Bruger diskussion:$2|diskussion]]); 
+en anden har allerede redigeret siden eller fjernet redigeringen. 
+
+Den seneste redigering er af [[Bruger:$3|$3]] ([[Bruger diskussion:$3|diskussion]]). ",
+#   only shown if there is an edit comment
+"editcomment" => "Kommentaren til redigeringen var: \"<i>$1</i>\".", 
+"revertpage"	=> "Gendannet siden til tidligere version lavet af $1",
 
 # Undelete
 "undelete" => "Gendan en slettet side",
@@ -1034,15 +1049,12 @@ for en tidligere blokeret IP adresse.",
 "unlockdb"		=> "Lås database op",
 "lockdbtext"	=> "At låse databasen vil afbryde alle brugere fra at kunne
 redigerer sider, ændre deres indstillinger, redigerer deres 
-overvågningsliste, og
-andre ting der kræver ændringer i databasen.
+overvågningsliste, og andre ting der kræver ændringer i databasen.
 Bekræft venligst at du har til hensigt at gøre dette, og at du vil
 låse databasen op når din vedligeholdelse er overstået.",
 "unlockdbtext"	=> "At låse databasen op vil vil gøre at alle brugere igen 
-kan
-redigerer sider, ændre deres indstillinger, redigerer deres 
-overvågningsliste, og
-andre ting der kræver ændringer i databasen.
+kan redigerer sider, ændre deres indstillinger, redigerer deres 
+overvågningsliste, og andre ting der kræver ændringer i databasen.
 Bekræft venligst at du har til hensigt at gøre dette.",
 "lockconfirm"	=> "Ja, jeg vil virkelig låse databasen.",
 "unlockconfirm"	=> "Ja, jeg vil virkelig låse databasen op.",
@@ -1187,6 +1199,13 @@ class LanguageDa extends Language {
 	}
 
 	function getMonthName( $key )
+	{
+		global $wgMonthNamesDa;
+		return $wgMonthNamesDa[$key-1];
+	}
+
+	/* by default we just return base form */
+	function getMonthNameGen( $key )
 	{
 		global $wgMonthNamesDa;
 		return $wgMonthNamesDa[$key-1];
