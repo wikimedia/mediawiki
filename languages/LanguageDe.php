@@ -38,9 +38,9 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgMathNamesDe = array(
-	"Immer als PNG",
-	"Einfaches TeX als HTML, sonst PNG",
-	"HTML wenn möglich, sonst PNG",
+	"Immer als PNG darstellen",
+	"Einfaches TeX als HTML darstellen, sonst PNG",
+	"Wenn möglich als HTML darstellen, sonst PNG",
 	"Als TeX belassen (für Textbrowser)",
 	"Empfehlenswert für moderne Browser"
 );
@@ -507,7 +507,7 @@ Ihre interne ID-Nummer ist $2.",
 "qbsettings"	=> "Seitenleiste", 
 "changepassword" => "Passwort ändern",
 "skin"			=> "Skin",
-"math"			=> "TeX darstellen",
+"math"			=> "TeX",
 "dateformat" => "Datumsformat",
 "math_failure"		=> "Parser-Fehler",
 "math_unknown_error"	=> "Unbekannter Fehler",

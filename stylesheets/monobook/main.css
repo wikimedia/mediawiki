@@ -686,6 +686,8 @@ li#pt-login {
     list-style: none;
     font-size: 95%;
 }
+
+
 #p-cactions .hiddenStructure { display: none; }
 #p-cactions ul {
     list-style: none;
@@ -714,6 +716,10 @@ li#pt-login {
     z-index: 0;
     margin: 0;
 }
+#bar #p-cactions {
+    top: 8.0em;
+    left: 5em;
+}
 #p-cactions .selected a { z-index: 3; }
 #p-cactions .new a { color:#ba0000; }
 #p-cactions li a:hover {
@@ -731,6 +737,9 @@ li#pt-login {
 li#ca-talk { margin-right: 1.6em; }
 li#ca-watch { margin-left: 1.6em; }
 
+form #content {
+   left: -8em;
+}
 
 /*
 ** the remaining portlets
