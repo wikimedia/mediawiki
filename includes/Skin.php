@@ -1435,6 +1435,7 @@ class Skin {
 		$name  = $nt->getDBKey();
 		$url   = wfImageUrl( $name );
 		$align = "";
+		$prefix = $postfix = "";
 
 		if ( $wgUseImageResize ) {
 			# Check if the alt text is of the form "options|alt text"
@@ -1447,11 +1448,12 @@ class Skin {
 	
 			$part = explode( "|", $alt);
 	
-			$mwThumb =& MagicWord::get( MAG_IMG_THUMBNAIL );
-			$mwLeft  =& MagicWord::get( MAG_IMG_LEFT );
-			$mwRight =& MagicWord::get( MAG_IMG_RIGHT );
-			$mwNone  =& MagicWord::get( MAG_IMG_NONE );
-			$mwWidth =& MagicWord::get( MAG_IMG_WIDTH );
+			$mwThumb  =& MagicWord::get( MAG_IMG_THUMBNAIL );
+			$mwLeft   =& MagicWord::get( MAG_IMG_LEFT );
+			$mwRight  =& MagicWord::get( MAG_IMG_RIGHT );
+			$mwNone   =& MagicWord::get( MAG_IMG_NONE );
+			$mwWidth  =& MagicWord::get( MAG_IMG_WIDTH );
+			$mwCenter =& MagicWord::get( MAG_IMG_CENTER );
 			$alt = $part[count($part)-1];
 
 			$thumb=false;
@@ -1465,6 +1467,9 @@ class Skin {
 				} elseif ( ! is_null( $mwLeft->matchVariableStartToEnd($val) ) ) {
 					# remember to set an alignment, don't render immediately
 					$align = "left";
+				} elseif ( ! is_null( $mwCenter->matchVariableStartToEnd($val) ) ) {
+					# remember to set an alignment, don't render immediately
+					$align = "center";
 				} elseif ( ! is_null( $mwNone->matchVariableStartToEnd($val) ) ) {
 					# remember to set an alignment, don't render immediately
 					$align = "none";
@@ -1472,6 +1477,12 @@ class Skin {
 					# $match is the image width in pixels
 					$width = intval($match);
 				}
+			}
+			if ( "center" == $align )
+			{
+				$prefix  = "<center>";
+				$postfix = "</center>";
+				$align   = "none";
 			}
 	
 			if ( $thumb ) {
@@ -1489,7 +1500,7 @@ class Skin {
 				if ( ! isset($width) ) {
 					$width = 180;
 				}
-				return $this->makeThumbLinkObj( $nt, $alt, $align, $width );
+				return $prefix.$this->makeThumbLinkObj( $nt, $alt, $align, $width ).$postfix;
 	
 			} elseif ( isset($width) ) {
 				
@@ -1510,7 +1521,7 @@ class Skin {
 		if ( "" != $align ) {
 			$s = "<div class=\"float{$align}\">{$s}</div>";
 		}
-		return $s;
+		return $prefix.$s.$postfix;
 	}
 
 	function createThumb( $name, $width ) {

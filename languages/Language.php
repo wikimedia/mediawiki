@@ -25,6 +25,7 @@ define("MAG_IMG_RIGHT",      17);
 define("MAG_IMG_LEFT",       18);
 define("MAG_IMG_NONE",       19);
 define("MAG_IMG_WIDTH",      20);
+define("MAG_IMG_CENTER",      21);
 
 
 #--------------------------------------------------------------------------
@@ -313,7 +314,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
     MAG_IMG_RIGHT            => array( 1,    "right"                  ),
     MAG_IMG_LEFT             => array( 1,    "left"                   ),
     MAG_IMG_NONE             => array( 1,    "none"                   ),
-    MAG_IMG_WIDTH            => array( 1,    "$1px"                   )
+    MAG_IMG_WIDTH            => array( 1,    "$1px"                   ),
+    MAG_IMG_CENTER           => array( 1,    "center", "centre"       )
 
 );
 
