@@ -72,7 +72,7 @@ class SqlQueryForm {
 			$connection = wfGetDB( $wgDBsqluser, $wgDBsqlpassword );
 		}
 		$this->logQuery( $wpSqlQuery );
-		$res = wfQuery( $wpSqlQuery, DB_READ, "SpecialAsksql::doSubmit" );
+		$res = wfQuery( $wpSqlQuery, DB_WRITE, "SpecialAsksql::doSubmit" );
 		$this->logFinishedQuery();
 
 		$n = 0;

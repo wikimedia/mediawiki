@@ -5,6 +5,7 @@ include_once( "$IP/CacheManager.php" );
 
 define( "DB_READ", -1 );
 define( "DB_WRITE", -2 );
+define( "DB_LAST", -3 );
 
 $wgLastDatabaseQuery = "";
 
@@ -141,7 +142,7 @@ function wfSetSQL( $table, $var, $value, $cond )
 function wfGetSQL( $table, $var, $cond )
 {
 	$sql = "SELECT $var FROM $table WHERE ($cond)";
-	$result = wfQuery( $sql, DB_WRITE, "wfGetSQL" );
+	$result = wfQuery( $sql, DB_READ, "wfGetSQL" );
 
 	$ret = "";
 	if ( mysql_num_rows( $result ) > 0 ) {

@@ -817,7 +817,7 @@ class Article {
 		if ( 0 != $id ) {
 			$t = wfStrencode( $title->getPrefixedDBkey() );
 			$sql = "SELECT l_from FROM links WHERE l_to={$id}";
-			$res = wfQuery( $sql, DB_WRITE, $fname );
+			$res = wfQuery( $sql, DB_READ, $fname );
 
 			$sql = "INSERT INTO brokenlinks (bl_from,bl_to) VALUES ";
             $now = wfTimestampNow();

@@ -42,7 +42,7 @@ function texvc_cgi_renderMath( $tex )
     $md5_sql = mysql_escape_string(pack("H32", $md5));
     $sql = "SELECT math_outputhash,math_html_conservativeness,math_html,math_mathml FROM math WHERE math_inputhash = '".$md5_sql."'";
 
-    $res = wfQuery( $sql, $fname );
+    $res = wfQuery( $sql, 0, $fname );
     if ( wfNumRows( $res ) == 0 )
     {
 	$cmd = "./math/texvc ".escapeshellarg($wgTmpDirectory)." ".
@@ -112,7 +112,7 @@ function texvc_cgi_renderMath( $tex )
 
 	$sql = "INSERT INTO math VALUES ('".$md5_sql."', '".$outmd5_sql."', ".$conservativeness.", ".$sql_html.", ".$sql_mathml.")";
 
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, 0, $fname );
 // we don't really care if it fails
     } else {
 	$rpage = wfFetchObject ( $res );
