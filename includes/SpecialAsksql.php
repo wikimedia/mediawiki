@@ -68,9 +68,7 @@ class SqlQueryForm {
 			and !preg_match( "/LIMIT/i", $wpSqlQuery ) ) {
 			$wpSqlQuery .= " LIMIT 100";
 		}
-		if ( ! $wgUser->isDeveloper() ) {
-			$connection = wfGetDB( $wgDBsqluser, $wgDBsqlpassword );
-		}
+		$connection = wfGetDB( $wgDBsqluser, $wgDBsqlpassword );
 		$this->logQuery( $wpSqlQuery );
 		$res = wfQuery( $wpSqlQuery, DB_WRITE, "SpecialAsksql::doSubmit" );
 		$this->logFinishedQuery();
