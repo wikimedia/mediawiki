@@ -70,3 +70,7 @@ body { font-size: xx-small; }
     padding:0;
     margin:0;
 }
+
+#editform {
+    width: 100%;
+}
