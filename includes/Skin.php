@@ -9,7 +9,7 @@ include_once( "Feed.php" );
 # Language class has internationalized names
 #
 /* private */ $wgValidSkinNames = array(
-	'standard' => "Standard", 
+	'standard' => "Standard",
 	'nostalgia' => "Nostalgia",
 	'cologneblue' => "CologneBlue"
 );
@@ -36,12 +36,11 @@ function getCategories ()
   if ( !$wgOut->isArticle() ) return "" ;
   $sk = $wgUser->getSkin() ;
   $s = "" ;
-  $s .=  "\n<br />\n";
   $s .= $sk->makeKnownLink ( "Special:Categories" , "Categories" , "article=".$wgTitle->getDBkey() ) ;
   $t = implode ( " | " , $wgOut->mCategoryLinks ) ;
-  if ( $t != "" ) $s .= " : " ;
+  if ( $t != "" ) $s .= ": " ;
   $s .= $t ;
-  return $s ;
+  return "<p class='catlinks'>$s</p>";
 }
 
 class RCCacheEntry extends RecentChange
