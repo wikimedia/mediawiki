@@ -2,6 +2,8 @@
 define( "REPORTING_INTERVAL", 500 );
 
 include_once( "commandLine.inc" );
+error_reporting( E_ALL & (~E_NOTICE) );
+
 
 if ($argv[2]) {
 	$start = (int)$argv[2];
@@ -15,20 +17,21 @@ $end = $row->m;
 
 print("Refreshing link table. Starting from cur_id $start of $end.\n");
 
-for ($id = start; $id <= $end; $id++) {
+$wgUser->setOption("math", 3);
+for ($id = $start; $id <= $end; $id++) {
 	if ( !($id % REPORTING_INTERVAL) ) {
-		print $id;
+		print "$id\n";
 	}
 	
 	$wgTitle = Title::newFromID( $id );
-	if ( $wgTitle == NULL ) {
+	if ( is_null( $wgTitle ) ) {
 		continue;
 	}
 	
 	$wgLinkCache = new LinkCache;
 	$wgArticle = new Article( $wgTitle );
 	$text = $wgArticle->getContent( true );
-	$wgOut->addWikiText( $text );
+	@$wgOut->addWikiText( $text );
 	
 	$linksUpdate = new LinksUpdate( $id, $wgTitle );
 	$linksUpdate->doDumbUpdate();
