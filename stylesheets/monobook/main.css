@@ -957,7 +957,7 @@ head:first-child+body #portal-footer li {
 * html #bodyContent div.fullImage {
     overflow: auto;
     overflow-y: hidden;
-    width: 98%;
+    width: 96%;
     margin-bottom: 25px;
     margin-right: 0;
 }
