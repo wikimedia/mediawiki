@@ -311,9 +311,8 @@ class PreferencesForm {
 	 */
 	function mainPrefsForm( $err ) {
 		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgUseDynamicDates, $wgValidSkinNames;
-	        global $wgAllowRealName, $wgImageLimits;
-        
-	    global $wgLanguageNames;
+		global $wgAllowRealName, $wgImageLimits;
+		global $wgLanguageNames;
 
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
@@ -359,7 +358,7 @@ class PreferencesForm {
 		$yem = wfMsg( 'youremail' );
 		$yrn = ($wgAllowRealName) ? wfMsg( 'yourrealname' ) : '';
 		$yl  = wfMsg( 'yourlanguage' );
-        $yv  = wfMsg( 'yourvariant' );
+		$yv  = wfMsg( 'yourvariant' );
 		$emf = wfMsg( 'emailflag' );
 		$ynn = wfMsg( 'yournick' );
 		$stt = wfMsg ( 'stubthreshold' ) ;
@@ -386,48 +385,48 @@ class PreferencesForm {
 
 		$wgOut->addHTML( "<fieldset>
 		<legend>".wfMsg('prefs-personal')."</legend>");
-	        if ($wgAllowRealName) {
-		    $wgOut->addHTML("<div><label>$yrn: <input type='text' name=\"wpRealName\" value=\"{$this->mRealName}\" size='20' /></label></div>");
+			if ($wgAllowRealName) {
+			$wgOut->addHTML("<div><label>$yrn: <input type='text' name=\"wpRealName\" value=\"{$this->mRealName}\" size='20' /></label></div>");
 		}
-	        $wgOut->addHTML("
+		$wgOut->addHTML("
 		<div><label>$yem: <input type='text' name=\"wpUserEmail\" value=\"{$this->mUserEmail}\" size='20' /></label></div>
 		<div><label><input type='checkbox' $emfc value=\"1\" name=\"wpEmailFlag\" /> $emf</label></div>
 		<div><label>$ynn: <input type='text' name=\"wpNick\" value=\"{$this->mNick}\" size='12' /></label></div>
 		<div><label>$yl: <select name=\"wpUserLanguage\" />\n");
 
-        foreach($wgLanguageNames as $code => $name) {
-           global $IP;
-            /* only add languages that have a file */
-           $langfile="$IP/languages/Language".str_replace('-', '_', ucfirst($code)).".php";
-           if(file_exists($langfile)) {
-               $sel = ($code == $this->mUserLanguage)? "selected" : "";
-               $wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
-           }
-        }
-        $wgOut->addHtml("</select></label></div>\n" );
+		foreach($wgLanguageNames as $code => $name) {
+			global $IP;
+			/* only add languages that have a file */
+			$langfile="$IP/languages/Language".str_replace('-', '_', ucfirst($code)).".php";
+			if(file_exists($langfile)) {
+				$sel = ($code == $this->mUserLanguage)? "selected" : "";
+				$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
+			}
+		}
+		$wgOut->addHtml("</select></label></div>\n" );
 
-        /* see if there are multiple language variants to choose from*/
-        $variants = $wgContLang->getVariants();
-        $size=sizeof($variants);
-
-        $variantArray=array();
-        foreach($variants as $v) {
-            $v = str_replace( '_', '-', strtolower($v));
-            if($name=$wgLanguageNames[$v]) {
-                $variantArray[$v] = $name;
-            }
-        }
-        $size=sizeof($variantArray);
-
-        if(sizeof($variantArray) > 1) {
-		    $wgOut->addHtml("
-              <div><label>$yv: <select name=\"wpUserVariant\" />\n");
-            foreach($variantArray as $code => $name) {
-              $sel = ($code==$this->mUserVariant)? "selected" : "";
-              $wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
-            }
-            $wgOut->addHtml("</select></label></div>\n");
-        }
+		/* see if there are multiple language variants to choose from*/
+		$variants = $wgContLang->getVariants();
+		$size=sizeof($variants);
+		
+		$variantArray=array();
+		foreach($variants as $v) {
+			$v = str_replace( '_', '-', strtolower($v));
+			if($name=$wgLanguageNames[$v]) {
+				$variantArray[$v] = $name;
+			}
+		}
+		$size=sizeof($variantArray);
+		
+		if(sizeof($variantArray) > 1) {
+			$wgOut->addHtml("
+				<div><label>$yv: <select name=\"wpUserVariant\" />\n");
+			foreach($variantArray as $code => $name) {
+				$sel = ($code==$this->mUserVariant)? "selected" : "";
+				$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
+			}
+			$wgOut->addHtml("</select></label></div>\n");
+		}
 
 		# Fields for changing password
 		#
