@@ -358,7 +358,7 @@ class Skin {
 		return $s;
 	}
 	
-	function getCategories () {
+	function getCategoryLinks () {
 		global $wgOut, $wgTitle, $wgUser, $wgParser;
 		global $wgUseCategoryMagic;
 		if( !$wgUseCategoryMagic ) return "" ;
@@ -369,7 +369,11 @@ class Skin {
 		$s = $this->makeKnownLink( "Special:Categories",
 			wfMsg( "categories" ), "article=" . urlencode( $wgTitle->getPrefixedDBkey() ) )
 			. ": " . $t;
-		return "<p class='catlinks'>$s</p>";
+		return $s;
+	}
+	
+	function getCategories() {
+		return "<p class='catlinks'>" . $this->getCategoryLinks() . "</p>";
 	}
 
 	function getQuickbarCompensator( $rows = 1 )
