@@ -1,1 +1,139 @@
-<?php/** * Blocks and bans object * @package MediaWiki *//** * Some globals */define ( 'EB_KEEP_EXPIRED', 1 );define ( 'EB_FOR_UPDATE', 2 );/** * The block class * All the functions in this class assume the object is either explicitly  * loaded or filled. It is not load-on-demand. There are no accessors. *  * To use delete(), you only need to fill $mAddress * Globals used: $wgBlockCache, $wgAutoblockExpiry * * @todo This could be used everywhere, but it isn't. * @package MediaWiki */class Block{	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry;	/* private */ var $mNetworkBits, $mIntegerAddr, $mForUpdate;		function Block( $address = '', $user = '', $by = 0, $reason = '', 		$timestamp = '' , $auto = 0, $expiry = '' ) 	{		$this->mAddress = $address;		$this->mUser = $user;		$this->mBy = $by;		$this->mReason = $reason;		$this->mTimestamp = wfTimestamp(TS_MW,$timestamp);		$this->mAuto = $auto;		if( empty( $expiry ) ) {			$this->mExpiry = $expiry;		} else {			$this->mExpiry = wfTimestamp( TS_MW, $expiry );		}				$this->mForUpdate = false;		$this->initialiseRange();	}		/*static*/ function newFromDB( $address, $user = 0, $killExpired = true ) 	{		$ban = new Block();		$ban->load( $address, $user, $killExpired );		return $ban;	}		function clear() 	{		$mAddress = $mReason = $mTimestamp = '';		$mUser = $mBy = 0;	}	/**	 * Get a ban from the DB, with either the given address or the given username	 */	function load( $address = '', $user = 0, $killExpired = true ) 	{		$fname = 'Block::load';		wfDebug( "Block::load: '$address', '$user', $killExpired\n" );		$ret = false;		$killed = false;		if ( $this->forUpdate() ) {			$db =& wfGetDB( DB_MASTER );			$options = 'FOR UPDATE';		} else {			$db =& wfGetDB( DB_SLAVE );			$options = '';		}		$ipblocks = $db->tableName( 'ipblocks' );		if ( 0 == $user && $address=='' ) {			$sql = "SELECT * from $ipblocks $options";		} elseif ($address=="") {			$sql = "SELECT * FROM $ipblocks WHERE ipb_user={$user} $options";		} elseif ($user=="") {			$sql = "SELECT * FROM $ipblocks WHERE ipb_address='" . $db->strencode( $address ) . "' $options";		} elseif ( $options=='' ) {			# If there are no optiones (e.g. FOR UPDATE), use a UNION			# so that the query can make efficient use of indices			$sql = "SELECT * FROM $ipblocks WHERE ipb_address='" . $db->strencode( $address ) .				"' UNION SELECT * FROM $ipblocks WHERE ipb_user={$user}";		} else {			# If there are options, a UNION can not be used, use one			# SELECT instead. Will do a full table scan.			$sql = "SELECT * FROM $ipblocks WHERE (ipb_address='" . $db->strencode( $address ) . 				"' OR ipb_user={$user}) $options";		}		$res = $db->query( $sql, $fname );		if ( 0 == $db->numRows( $res ) ) {			# User is not blocked			$this->clear();		} else {			# Get first block			$row = $db->fetchObject( $res );			$this->initFromRow( $row );			if ( $killExpired ) {				# If requested, delete expired rows				do {					$killed = $this->deleteIfExpired();					if ( $killed ) {						$row = $db->fetchObject( $res );						if ( $row ) {							$this->initFromRow( $row );						}					}				} while ( $killed && $row );								# If there were any left after the killing finished, return true				if ( !$row ) {					$ret = false;					$this->clear();				} else {					$ret = true;				}			} else {				$ret = true;			}		}		$db->freeResult( $res );		return $ret;	}		function initFromRow( $row ) 	{		$this->mAddress = $row->ipb_address;		$this->mReason = $row->ipb_reason;		$this->mTimestamp = wfTimestamp(TS_MW,$row->ipb_timestamp);		$this->mUser = $row->ipb_user;		$this->mBy = $row->ipb_by;		$this->mAuto = $row->ipb_auto;		$this->mId = $row->ipb_id;		$this->mExpiry = $row->ipb_expiry ?			wfTimestamp(TS_MW,$row->ipb_expiry) :			$row->ipb_expiry;		$this->initialiseRange();	}		function initialiseRange()	{		if ( $this->mUser == 0 ) {			$rangeParts = explode( '/', $this->mAddress );			if ( count( $rangeParts ) == 2 ) {				$this->mNetworkBits = $rangeParts[1];			} else {				$this->mNetworkBits = 32;			}			$this->mIntegerAddr = ip2long( $rangeParts[0] );		} else {			$this->mNetworkBits = false;			$this->mIntegerAddr = false;		}	}		/**	 * Callback with a Block object for every block	 */	/*static*/ function enumBlocks( $callback, $tag, $flags = 0 ) 	{		$block = new Block();		if ( $flags & EB_FOR_UPDATE ) {			$db =& wfGetDB( DB_MASTER );			$options = 'FOR UPDATE';			$block->forUpdate( true );		} else {			$db =& wfGetDB( DB_SLAVE );			$options = '';		}			$ipblocks = $db->tableName( 'ipblocks' );				$sql = "SELECT * FROM $ipblocks ORDER BY ipb_timestamp DESC $options";		$res = $db->query( $sql, 'Block::enumBans' );		while ( $row = $db->fetchObject( $res ) ) {			$block->initFromRow( $row );			if ( !( $flags & EB_KEEP_EXPIRED ) ) {				if ( !$block->deleteIfExpired() ) {					$callback( $block, $tag );				}			} else {				$callback( $block, $tag );			}		}		wfFreeResult( $res );	}	function delete() 	{		$fname = 'Block::delete';		$dbw =& wfGetDB( DB_MASTER );		if ( $this->mAddress == '' ) {			$condition = array( 'ipb_id' => $this->mId );		} else {			$condition = array( 'ipb_address' => $this->mAddress );		}		$dbw->delete( 'ipblocks', $condition, $fname );		$this->clearCache();	}	function insert() 	{		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );		$dbw =& wfGetDB( DB_MASTER );		$dbw->insert( 'ipblocks',			array(				'ipb_address' => $this->mAddress,				'ipb_user' => $this->mUser,				'ipb_by' => $this->mBy,				'ipb_reason' => $this->mReason,				'ipb_timestamp' => $dbw->timestamp($this->mTimestamp),				'ipb_auto' => $this->mAuto,				'ipb_expiry' => $this->mExpiry ?					$dbw->timestamp($this->mExpiry) :					$this->mExpiry,			), 'Block::insert' 		);		$this->clearCache();	}	function deleteIfExpired() 	{		if ( $this->isExpired() ) {			wfDebug( "Block::deleteIfExpired() -- deleting\n" );			$this->delete();			return true;		} else {			wfDebug( "Block::deleteIfExpired() -- not expired\n" );			return false;		}	}	function isExpired() 	{			wfDebug( "Block::isExpired() checking current " . wfTimestampNow() . " vs $this->mExpiry\n" );		if ( !$this->mExpiry ) {			return false;		} else {			return wfTimestampNow() > $this->mExpiry;		}	}	function isValid() 	{		return $this->mAddress != '';	}		function updateTimestamp() 	{		if ( $this->mAuto ) {			$this->mTimestamp = wfTimestamp();			$this->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );			$dbw =& wfGetDB( DB_MASTER );			$dbw->update( 'ipblocks', 				array( /* SET */ 					'ipb_timestamp' => $dbw->timestamp($this->mTimestamp),					'ipb_expiry' => $dbw->timestamp($this->mExpiry),				), array( /* WHERE */					'ipb_address' => $this->mAddress				), 'Block::updateTimestamp' 			);						$this->clearCache();		}	}	/* private */ function clearCache()	{		global $wgBlockCache;		if ( is_object( $wgBlockCache ) ) {			$wgBlockCache->loadFromDB();		}	}		function getIntegerAddr()	{		return $this->mIntegerAddr;	}		function getNetworkBits()	{		return $this->mNetworkBits;	}	function forUpdate( $x = NULL ) {		return wfSetVar( $this->mForUpdate, $x );	}	/* static */ function getAutoblockExpiry( $timestamp )	{		global $wgAutoblockExpiry;		return wfTimestamp( TS_MW, wfTimestamp( TS_UNIX, $timestamp ) + $wgAutoblockExpiry );	}	/* static */ function normaliseRange( $range )	{		$parts = explode( '/', $range );		if ( count( $parts ) == 2 ) {			$shift = 32 - $parts[1];			$ipint = ip2long( $parts[0] );			$ipint = $ipint >> $shift << $shift;			$newip = long2ip( $ipint );			$range = "$newip/{$parts[1]}";		}		return $range;	}}?>
+<?php
+/**
+ * Contain the blockcache class
+ * @package MediaWiki
+ */
+
+/**
+ * Object for fast lookup of IP blocks
+ * Represents a memcached value, and in some sense, the entire ipblocks table
+ * @package MediaWiki
+ */
+class BlockCache
+{
+	var $mData = false, $mMemcKey;
+
+	/**
+	 * Constructor
+	 * Create a new BlockCache object
+	 *
+	 * @param Boolean $deferLoad   specifies whether to immediately load the data from memcached.
+	 * @param String $dbName       specifies the memcached dbName prefix to be used. Defaults to $wgDBname.
+	 */
+	function BlockCache( $deferLoad = false, $dbName = '' ) {
+		global $wgDBname;
+
+		if ( $dbName == '' ) {
+			$dbName = $wgDBname;
+		}
+
+		$this->mMemcKey = $dbName.':ipblocks';
+
+		if ( !$deferLoad ) {
+			$this->load();
+		}
+	}
+
+	/**
+	 * Load the blocks from the database and save them to memcached
+	 */
+	function loadFromDB() {
+		global $wgUseMemCached, $wgMemc;
+		$this->mData = array();
+		# Selecting FOR UPDATE is a convenient way to serialise the memcached and DB operations,
+		# which is necessary even though we don't update the DB
+		if ( $wgUseMemCached ) {
+			Block::enumBlocks( 'wfBlockCacheInsert', '', EB_FOR_UPDATE );
+			$wgMemc->set( $this->mMemcKey, $this->mData, 0 );
+		} else {
+			Block::enumBlocks( 'wfBlockCacheInsert', '' );
+		}
+	}
+		
+	/**
+	 * Load the cache from memcached or, if that's not possible, from the DB
+	 */
+	function load() {
+		global $wgUseMemCached, $wgMemc;
+
+		if ( $this->mData === false) {
+			# Try memcached
+			if ( $wgUseMemCached ) {
+				$this->mData = $wgMemc->get( $this->mMemcKey );
+			}
+
+			if ( !is_array( $this->mData ) ) {
+				$this->loadFromDB();
+			}
+		}
+	}
+
+	/**
+	 * Add a block to the cache
+	 *
+	 * @param Object &$block   Reference to a "Block" object.
+	 */
+	function insert( &$block ) {
+		if ( $block->mUser == 0 ) {
+			$nb = $block->getNetworkBits();
+			$ipint = $block->getIntegerAddr();
+			$index = $ipint >> ( 32 - $nb );
+
+			if ( !array_key_exists( $nb, $this->mData ) ) {
+				$this->mData[$nb] = array();
+			}
+		
+			$this->mData[$nb][$index] = 1;
+		}
+	}
+	
+	/**
+	 * Find out if a given IP address is blocked
+	 *
+	 * @param String $ip   IP address
+	 */
+	function get( $ip ) {
+		$this->load();
+		$ipint = ip2long( $ip );
+		$blocked = false;
+
+		foreach ( $this->mData as $networkBits => $blockInts ) {
+			if ( array_key_exists( $ipint >> ( 32 - $networkBits ), $blockInts ) ) {
+				$blocked = true;
+				break;
+			}
+		}
+		if ( $blocked ) {
+			# Clear low order bits
+			if ( $networkBits != 32 ) {
+				$ip .= '/'.$networkBits;
+				$ip = Block::normaliseRange( $ip );
+			}
+			$block = new Block();
+			$block->load( $ip );
+		} else {
+			$block = false;
+		}
+
+		return $block;
+	}
+
+	/**
+	 * Clear the local cache
+	 * There was once a clear() to clear memcached too, but I deleted it
+	 */
+	function clearLocal() {
+		$this->mData = false;
+	}
+}
+
+/**
+ * Add a block to the global $wgBlockCache
+ *
+ * @param Object $block  A "Block"-object
+ * @param Any    $tag    unused
+ */
+function wfBlockCacheInsert( $block, $tag ) {
+	global $wgBlockCache;
+	$wgBlockCache->insert( $block );
+}
