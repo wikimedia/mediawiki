@@ -767,10 +767,11 @@ class Article {
 	 * Best if all done inside a transaction.
 	 *
 	 * @param Database $dbw
-	 * @return int The newly created page_id key
+	 * @param string   $restrictions
+	 * @return int     The newly created page_id key
 	 * @access private
 	 */
-	function insertOn( &$dbw ) {
+	function insertOn( &$dbw, $restrictions = '' ) {
 		$fname = 'Article::insertOn';
 		wfProfileIn( $fname );
 		
@@ -780,7 +781,7 @@ class Article {
 			'page_namespace'    => $this->mTitle->getNamespace(),
 			'page_title'        => $this->mTitle->getDBkey(),
 			'page_counter'      => 0,
-			'page_restrictions' => '',
+			'page_restrictions' => $restrictions,
 			'page_is_redirect'  => 0, # Will set this shortly...
 			'page_is_new'       => 1,
 			'page_random'       => wfRandom(),
