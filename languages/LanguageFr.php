@@ -367,7 +367,7 @@ Peut-être serait-il mieux que vous divisiez la page en sections plus petites.",
 vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.",
 "protectedpagewarning" => "AVERTISSEMENT : cette page a été bloquée.
 Seuls les utilisateurs ayant le statut d'administrateur peuvent la modifier. Soyez certain que
-vous suivez les <a href='/wiki/$wgMetaNamespace:Page_protégée'>directives concernant les pages protégées</a>.",
+vous suivez les <a href='$wgScript/{{ns:4}}:Page_protégée'>directives concernant les pages protégées</a>.",
 
 # History pages
 #

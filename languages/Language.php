@@ -827,7 +827,7 @@ so you will not be able to save your edits right now. You may wish to cut-n-past
 the text into a text file and save it for later.",
 "protectedpagewarning" => "WARNING:  This page has been locked so that only
 users with sysop privileges can edit it. Be sure you are following the
-<a href='$wgScriptPath/{{ns:4}}:Protected_page_guidelines'>protected page
+<a href='$wgScript/{{ns:4}}:Protected_page_guidelines'>protected page
 guidelines</a>.",
 
 # History pages

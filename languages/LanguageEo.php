@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include("LanguageUtf8.php");
 $wgInputEncoding	= "utf-8";
 $wgOutputEncoding	= "utf-8";
@@ -211,7 +211,7 @@ $wgEditEncoding		= "x";
 "redirectedfrom" => "(Alidirektita el $1)",
 "lastmodified"	=> "Laste redaktita je $1.",
 "viewcount"		=> "Montrita $1-foje.",
-"gnunote"		=> "La enhavo de Vikipedio disponeblas laŭ permesilo <a class='internal' href='/wiki/GFDL'>GNU Free Documentation License</a>.",
+"gnunote"		=> "La enhavo de Vikipedio disponeblas laŭ permesilo <a class='internal' href='$wgScript/GFDL'>GNU Free Documentation License</a>.",
 "printsubtitle" => "(El http://eo.wikipedia.org)",
 "protectedpage" => "Protektita paĝo", #FIXME: ĉu "gardita" ktp?
 "administrators" => "Vikipedio:Administrantoj", # FIXME?
