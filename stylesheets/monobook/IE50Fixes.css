@@ -18,7 +18,7 @@
 }
 
 #portal-footer {
-    margin: 0 0 0 14.5em;
+    margin: 0 0 0 13.6em;
 }
 
 /* IE 4&5 interpret keyword sizes one off */
@@ -107,15 +107,13 @@ div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
 textarea {
     width: 78% !important;
 }
-#documentSubtitle {
-    margin: -1em 0 0.6em 1em;
-}
-
-
 .visualClear {
     width:100%;
     height: 0px;
     padding:0;
     margin:0;
+}
+.documentFirstHeading {
+    margin-bottom: 0.3em;
 }
 /*div{ border:1px solid Red !important;}*/

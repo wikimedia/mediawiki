@@ -35,7 +35,7 @@
             <div id="bodyContent">
               <div tal:condition="catlinks" id="catlinks" tal:content="structure catlinks"></div>
               <h3 id="siteSubtitle" i18n:translate="string:fromwikipedia">From Wikipedia, the free encyclopedia.</h3>
-              <div tal:condition="subtitle"  id="documentSubtitle" tal:content="structure subtitle"></div>
+              <div id="documentSubtitle" tal:content="structure subtitle"></div>
               <!-- <esi:include src="userxy/message"/> cached per user, purged on new message-->
               <div tal:condition="newtalk" class="portalMessage" tal:content="structure newtalk"></div>
               <!-- the content area is cached with the remaining inexpensive sceleton, one version for all.
