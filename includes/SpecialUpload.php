@@ -401,7 +401,21 @@ class UploadForm {
 	</td></tr></table></form>\n" );
 	}
 	
+	/**
+	 * Returns false if the file is of a known type but can't be recognized,
+	 * indicating a corrupt file.
+	 * Returns true otherwise; unknown file types are not checked if given
+	 * with an unrecognized extension.
+	 *
+	 * @param string $tmpfile Pathname to the temporary upload file
+	 * @param string $extension The filename extension that the file is to be served with
+	 * @return bool
+	 */
 	function verify( $tmpfile, $extension ) {
+		if( $this->triggersIEbug( $tmpfile ) ) {
+			return false;
+		}
+		
 		$fname = 'SpecialUpload::verify';
 		$mergeExtensions = array(
 			'jpg' => 'jpeg',
@@ -469,6 +483,31 @@ class UploadForm {
 		
 		wfDebug( "$fname: all clear; passing.\n" );
 		return true;
+	}
+	
+	/**
+	 * Internet Explorer for Windows performs some really stupid file type
+	 * autodetection which can cause it to interpret valid image files as HTML
+	 * and potentially execute JavaScript, creating a cross-site scripting
+	 * attack vectors.
+	 *
+	 * Returns true if IE is likely to mistake the given file for HTML.
+	 *
+	 * @param string $filename
+	 * @return bool
+	 */
+	function triggersIEbug( $filename ) {
+		$file = fopen( $filename, 'rb' );
+		$chunk = strtolower( fread( $file, 200 ) );
+		fclose( $file );
+		
+		$tags = array( '<html', '<head', '<body', '<script' );
+		foreach( $tags as $tag ) {
+			if( false !== strpos( $chunk, $tag ) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
 ?>
