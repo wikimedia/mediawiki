@@ -92,8 +92,8 @@ class Parser
 		$text = $this->strip( $text, $this->mStripState );
 		$text = $this->internalParse( $text, $linestart );
 		# only once and next-to-last
-		$text = $this->doBlockLevels( $text, $linestart );		
 		$text = $this->unstrip( $text, $this->mStripState );
+		$text = $this->doBlockLevels( $text, $linestart );		
 		# Clean up special characters, only run once and last
 		$fixtags = array(
 			"/<hr *>/i" => '<hr/>',
