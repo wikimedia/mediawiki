@@ -547,7 +547,7 @@ class Parser
 		return $t ;
 	}
 
-	function internalParse( $text, $linestart, $args = array() )
+	function internalParse( $text, $linestart, $args = array(), $isMain=true )
 	{
 		$fname = "Parser::internalParse";
 		wfProfileIn( $fname );
@@ -565,7 +565,7 @@ class Parser
 		$text = $this->replaceExternalLinks( $text );
 		$text = $this->doTokenizedParser ( $text );
 		$text = $this->doTableStuff ( $text ) ;
-		$text = $this->formatHeadings( $text );
+		$text = $this->formatHeadings( $text, $isMain );
 		$sk =& $this->mOptions->getSkin();
 		$text = $sk->transformContent( $text );
 
@@ -1507,7 +1507,7 @@ class Parser
 
 			# Run full parser on the included text
 			$text = $this->strip( $text, $this->mStripState );
-			$text = $this->internalParse( $text, (bool)$newline, $assocArgs );
+			$text = $this->internalParse( $text, (bool)$newline, $assocArgs, false );
 
 			# Add the result to the strip state for re-inclusion after
 			# the rest of the processing
@@ -1672,7 +1672,7 @@ class Parser
  *
  */
 
-	/* private */ function formatHeadings( $text )
+	/* private */ function formatHeadings( $text, $isMain=true )
 	{
 		global $wgInputEncoding;
 		
@@ -1842,7 +1842,7 @@ class Parser
 				# $full .= $sk->editSectionLink(0);
 			}
 			$full .= $block;
-			if( $doShowToc && !$i) {
+			if( $doShowToc && !$i && $isMain) {
 			# Top anchor now in skin
 				$full = $full.$toc;
 			}
