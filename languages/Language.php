@@ -2106,6 +2106,25 @@ class Language {
 		return $text;
 	}
 
+	/* returns all possible variants of the given text
+
+	   normally we will just call autoConvert() for each variant, but
+	   in case of zh where the conversion is performed by zhdaemon, 
+	   possibily over the network, we want to 
+	   cut down the number of connections to save time. 
+	*/
+	function autoConvertToAllVariants($text) {
+		$ret = array();
+		$variants = $this->getVariants();
+		if(sizeof($variants)==1) {
+			return $false;
+		}
+		foreach( $variants as $lang=>$v ) {
+			$ret[$v] = $this->autoConvert( $text, $v );
+		}
+		return $ret;
+	}
+
 	/* hook for converting the title, which may needs special treatment
 	*/
 	function convertTitle( $text ) {
@@ -2155,28 +2174,26 @@ class Language {
 	*/
 	function findVariantLink( &$link, &$nt ) {
 		static $count=0; //used to limit this operation
-		global $wgDisableLangConversion, $wgContLang;
-		if( $wgDisableLangConversion )
+		static $cache=array();
+		global $wgDisableLangConversion;
+		$count++;
+		if( $wgDisableLangConversion || $count > 50)
 			return;
-		$variants = $wgContLang->getVariants();
-		if( sizeof( $variants ) > 1 && $count++ < 200 ) {
-			if( $nt->getArticleID() == 0 ) {
-				foreach( $variants as $v ) {
-					if( $v == $wgContLang->getPreferredVariant() )
-						continue;
-					$varlink = $wgContLang->autoConvert( $link, $v );
-					$varnt = Title::newFromText( $varlink );
-					if( $varnt && $varnt->getArticleID() > 0 ) {
-						$nt = $varnt;
-						$link = $varlink;
-						break;
-					}
-				}
+		$variants = $this->autoConvertToAllVariants($link);
+		if($variants == false) //give up
+			return;
+		foreach( $variants as $v ) {
+			if(isset($cache[$v]))
+				continue;
+			$cache[$v] = 1;
+			$varnt = Title::newFromText( $v );
+			if( $varnt && $varnt->getArticleID() > 0 ) {
+				$nt = $varnt;
+				$link = $varlink;
+				break;
 			}
 		}
 	}
-
-
 }
 
 # This should fail gracefully if there's not a localization available
