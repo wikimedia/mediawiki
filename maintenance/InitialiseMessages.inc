@@ -17,9 +17,10 @@
 function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	global $wgContLang, $wgContLanguageCode;
 	global $wgContLangClass, $wgAllMessagesEn;
-
+	global $IP;
+	
 	$langclass = 'Language'. str_replace( '-', '_', ucfirst( $wgContLanguageCode ) );
-	require_once("languages/$langclass.php");
+	require_once("$IP/languages/$langclass.php");
 
 	$variants = $wgContLang->getVariants();
 	if(!in_array($wgContLanguageCode, $variants))
