@@ -35,12 +35,12 @@ class ImagePage extends Article {
 			list($width, $height, $type, $attr) = getimagesize( $path );
 
 			$sk = $wgUser->getSkin();
-
+			
 			if ( $type != "" ) {
 				# image
-				$s .= "<center><img src=\"{$url}\" width=\"{$width}\" height=\"{$height}\"></center>";
+				$s = "<center><img src=\"{$url}\" width=\"{$width}\" height=\"{$height}\"></center>";
 			} else {
-				$s .= "<center>".$sk->makeMediaLink($name,"")."</center>";
+				$s = "<center>".$sk->makeMediaLink($name,"")."</center>";
 			}
 			$wgOut->addHTML( $s );
 		}
@@ -152,8 +152,10 @@ class ImagePage extends Article {
 			$q = "&image={$image}";
 		} else if ( !is_null( $oldimage ) ) {
 			$q = "&oldimage={$oldimage}";
+		} else {
+			$q = "";
 		}
-		return $this->confirmDelete( $q );
+		return $this->confirmDelete( $q, $wgRequest->getText( 'wpReason' ) );
 	}
 
 	function doDelete()
@@ -169,7 +171,7 @@ class ImagePage extends Article {
 		if ( !is_null( $image ) ) {
 			$dest = wfImageDir( $image );
 			$archive = wfImageDir( $image );
-			if ( ! unlink( "{$dest}/{$image}" ) ) {
+			if ( ! @unlink( "{$dest}/{$image}" ) ) {
 				$wgOut->fileDeleteError( "{$dest}/{$image}" );
 				return;
 			}
