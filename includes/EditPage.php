@@ -446,7 +446,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		if ( !$skip ) {
 			$title = Title::makeTitle( NS_SPECIAL, "Blockme" );
 			$iphash = md5( $wgIP . $wgProxyKey );
-			$url = wfFullUrl( $title->getPrefixedURL(), "ip=$iphash" );
+			$url = $title->getFullURL( "ip=$iphash" );
 
 			foreach ( $wgProxyPorts as $port ) {
 				$params = implode( " ", array(
