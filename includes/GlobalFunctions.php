@@ -26,6 +26,12 @@ $wgTotalViews = -1;
  */
 $wgTotalEdits = -1;
 
+
+/**
+ * in "zh", whether conversion of messages should take place
+ */
+$wgDoZhMessageConversion = true;
+
 require_once( 'DatabaseFunctions.php' );
 require_once( 'UpdateClasses.php' );
 require_once( 'LogPage.php' );
@@ -384,8 +390,8 @@ function wfMsgNoDB( $key ) {
  * Really get a message
  */
 function wfMsgReal( $key, $args, $useDB ) {
-	global $wgReplacementKeys, $wgMessageCache, $wgLang;
-
+	global $wgReplacementKeys, $wgMessageCache, $wgLang, $wgLanguageCode;
+    global $wgDoZhMessageConversion;
 	$fname = 'wfMsg';
 	wfProfileIn( $fname );
 	if ( $wgMessageCache ) {
@@ -397,6 +403,9 @@ function wfMsgReal( $key, $args, $useDB ) {
 		$message = "&lt;$key&gt;";
 	}
 
+    if(strtolower($wgLanguageCode) == "zh" && $wgDoZhMessageConversion) {
+        $message = $wgLang->convert($message);
+    }
 	# Replace arguments
 	if( count( $args ) ) {
 		$message = str_replace( $wgReplacementKeys, $args, $message );
@@ -404,6 +413,8 @@ function wfMsgReal( $key, $args, $useDB ) {
 	wfProfileOut( $fname );
 	return $message;
 }
+
+
 
 /**
  * Just like exit() but makes a note of it.
