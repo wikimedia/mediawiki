@@ -1,5 +1,7 @@
 <?php
 
+if( !defined( 'MEDIAWIKI' ) ) die();
+
 /**
  * HTML template for Special:Userlogin form
  * @package MediaWiki

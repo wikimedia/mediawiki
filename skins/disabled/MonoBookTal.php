@@ -14,6 +14,9 @@
  * @subpackage Skins
  */
 
+if( !defined( 'MEDIAWIKI' ) )
+	die();
+
 /** */
 require_once('includes/SkinPHPTal.php');
 
