@@ -669,6 +669,18 @@ function doTableStuff ( $t )
     }
 
 
+# Closing open td, tr && table
+while ( count ( $td ) > 0 )
+{
+if ( array_pop ( $td ) ) $t[] = "</td>" ;
+if ( array_pop ( $tr ) ) $t[] = "</tr>" ;
+$t[] = "</table>" ;
+}
+
+  $t = implode ( "\n" , $t ) ;
+  return $t ;
+}
+
 	# Well, OK, it's actually about 14 passes.  But since all the
 	# hard lifting is done inside PHP's regex code, it probably
 	# wouldn't speed things up much to add a real parser.
