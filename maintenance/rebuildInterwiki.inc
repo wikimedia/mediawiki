@@ -51,6 +51,7 @@ function getRebuildInterwikiSQL() {
 	$languageAliases = array(
 		'zh-cn' => 'zh',
 		'zh-tw' => 'zh',
+		'dk' => 'da',
 	);
 
 	# Construct a list of reserved prefixes
