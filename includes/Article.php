@@ -256,7 +256,8 @@ class Article {
 
 		$t = $this->mTitle->getPrefixedText();
 
-		$noredir = $noredir || ($wgRequest->getVal( 'redirect' ) == 'no');
+		$noredir = $noredir || ($wgRequest->getVal( 'redirect' ) == 'no')
+			|| $wgRequest->getCheck( 'rdfrom' );
 		$this->mOldId = $oldid;
 		$this->fetchContent( $oldid, $noredir, true );
 	}
@@ -350,7 +351,8 @@ class Article {
 				if( $globalTitle ) {
 					global $wgOut;
 					if ( $rt->getInterwiki() != '' && $rt->isLocal() ) {
-						$wgOut->redirect( $rt->getFullURL() ) ;
+						$source = $this->mTitle->getFullURL( 'redirect=no' );
+						$wgOut->redirect( $rt->getFullURL( 'rdfrom=' . urlencode( $source ) ) ) ;
 						return false;
 					}
 					if ( $rt->getNamespace() == NS_SPECIAL ) {
@@ -670,10 +672,13 @@ class Article {
 				# Can't cache redirects
 				$pcache = false;
 			} elseif ( !empty( $rdfrom ) ) {
-				$sk = $wgUser->getSkin();
-				$redir = $sk->makeExternalLink( $rdfrom, $rdfrom );
-				$s = wfMsg( 'redirectedfrom', $redir );
-				$wgOut->setSubtitle( $s );
+				global $wgRedirectSources;
+				if( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
+					$sk = $wgUser->getSkin();
+					$redir = $sk->makeExternalLink( $rdfrom, $rdfrom );
+					$s = wfMsg( 'redirectedfrom', $redir );
+					$wgOut->setSubtitle( $s );
+				}
 			}
 
 			# wrap user css and user js in pre and don't parse
