@@ -336,8 +336,7 @@ class Parser
 		foreach( $gallery_content as $marker => $content ) {
 			require_once( 'ImageGallery.php' );
 			if ( $render ) {
-				$ig = ImageGallery::newFromTextList( $content );
-				$gallery_content[$marker] = $ig->toHTML();
+				$gallery_content[$marker] = Parser::renderImageGallery( $content );
 			} else {
 				$gallery_content[$marker] = '<gallery>'.$content.'</gallery>';
 			}
@@ -2990,6 +2989,38 @@ class Parser
 
 		wfProfileOut( $fname );
 		return $colours;
+	}
+	/**
+	 * Renders an image gallery from a text with one line per image.
+	 * text labels may be given by using |-style alternative text. E.g.
+	 *   Image:one.jpg|The number "1"
+	 *   Image:tree.jpg|A tree
+	 * given as text will return the HTML of a gallery with two images,
+	 * labeled 'The number "1"' and
+	 * 'A tree'.
+	 */
+	function renderImageGallery( $text ) {
+		global $wgLinkCache;
+		$ig = new ImageGallery();
+		$ig->setShowBytes( false );
+		$ig->setShowFilename( false );
+		$lines = explode( "\n", $text );
+		foreach ( $lines as $line ) {
+			preg_match( "/^([^|]+)(\\|(.*))?$/", $line, $matches );
+			# Skip empty lines
+			if ( count( $matches ) == 0 ) {
+				continue;
+			}
+			$nt = Title::newFromURL( $matches[1] );
+			if ( isset( $matches[3] ) ) {
+				$label = $matches[3];
+			} else {
+				$label = '';
+			}
+			$ig->add( Image::newFromTitle( $nt ), $label );
+			$wgLinkCache->addImageLinkObj( $nt );
+		}
+		return $ig->toHTML();
 	}
 }
 

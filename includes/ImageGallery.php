@@ -117,37 +117,6 @@ class ImageGallery
 		return $s;
 	}
 
-	/**
-	 * Transparently generates an image gallery from a text with one line per image.
-	 * text labels may be given by using |-style alternative text. E.g.
-	 *   Image:one.jpg|The number "1"
-	 *   Image:tree.jpg|A tree
-	 * given as text will return a gallery with two images, labeled 'The number "1"' and
-	 * 'A tree'.
-	 */
-	function newFromTextList( $text ) {
-		$ig = new ImageGallery();
-		$ig->setShowBytes( false );
-		$ig->setShowFilename( false );
-		$lines = explode( "\n", $text );
-		foreach ( $lines as $line ) {
-			preg_match( "/^([^|]+)(\\|(.*))?$/", $line, $matches );
-			# Skip empty lines
-			if ( count( $matches ) == 0 ) {
-				continue;
-			}
-			$nt = Title::newFromURL( $matches[1] );
-			if ( isset( $matches[3] ) ) {
-				$label = $matches[3];
-			} else {
-				$label = '';
-			}
-			$ig->add( Image::newFromTitle( $nt ), $label );
-		}
-		return $ig;
-	}
-		
-
 } //class
 
 
