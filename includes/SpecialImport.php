@@ -21,6 +21,11 @@ function wfSpecialImport( $page = "" ) {
 	global $wgOut, $wgLang, $wgRequest, $wgTitle;
 	global $wgImportSources;
 	
+	###
+	$wgOut->addWikiText( "Special:Import is not ready for this beta release, sorry." );
+	return;
+	###
+	
 	if( $wgRequest->wasPosted() && $wgRequest->getVal( 'action' ) == 'submit') {
 		$importer = new WikiImporter();
 		
