@@ -5,6 +5,7 @@
 #portal-column-content #content {
     margin-top: 3em;
     overflow: auto;
+    height: 1%;
 }
 
 #portal-column-content {
