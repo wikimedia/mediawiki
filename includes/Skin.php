@@ -1305,6 +1305,7 @@ class Skin {
 		global $wgOut, $wgUser;
 		if ( $nt->isExternal() ) {
 			$u = $nt->getFullURL();
+			$link = $nt->getPrefixedURL();
 			if ( "" == $text ) { $text = $nt->getPrefixedText(); }
 			$style = $this->getExternalLinkAttributes( $link, $text );
 
