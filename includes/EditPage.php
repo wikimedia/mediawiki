@@ -298,7 +298,8 @@ class EditPage {
 
 		if ( 0 != $wgUser->getID() || $wgAllowAnonymousMinor ) {
 			$minoredithtml =
-			"<input tabindex='3' type='checkbox' value='1' name='wpMinoredit'".($this->minoredit?" checked":"")." id='wpMinoredit' />".
+			"<input tabindex='3' type='checkbox' value='1' name='wpMinoredit'".($this->minoredit?" checked='checked'":"").
+			" accesskey='i' id='wpMinoredit' />".
 			"<label for='wpMinoredit'>{$minor}</label>";
 		}
 
