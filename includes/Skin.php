@@ -241,6 +241,8 @@ class Skin {
 		$action = $wgRequest->getText('action');
 		$s = "@import \"$wgStylePath/$sheet\";\n";
 		if($wgContLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css\";\n";
+		$csspage = $wgContLang->getNsText( NS_MEDIAWIKI ) . ':' . $this->getSkinName() . '.css';
+		$s .= '@import "'.$this->makeUrl($csspage, 'action=raw&ctype=text/css')."\";\n";
 		if( $wgAllowUserCss && $wgUser->getID() != 0 ) { # logged in
 			if($wgTitle->isCssSubpage() && $this->userCanPreview( $action ) ) {
 				$s .= $wgRequest->getText('wpTextbox1');
@@ -277,9 +279,7 @@ class Skin {
 	function doGetUserStyles() {
 		global $wgUser, $wgContLang;
 
-		$csspage = $wgContLang->getNsText( NS_MEDIAWIKI ) . ':' . $this->getSkinName() . '.css';
-		$s = '@import "'.$this->makeUrl($csspage, 'action=raw&ctype=text/css')."\";\n";
-
+		$s = '';
 		if ( 1 == $wgUser->getOption( 'underline' ) ) {
 			# Don't override browser settings
 		} else {
