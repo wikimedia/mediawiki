@@ -648,6 +648,7 @@ You will have to merge your changes into the existing text.
 press \"Save page\".\n<p>",
 'yourtext'		=> 'Your text',
 'storedversion' => 'Stored version',
+'nonunicodebrowser' => "<strong>WARNING: Your browser is not unicode compliant, please change it before editing an article.</strong>",
 'editingold'	=> "<strong>WARNING: You are editing an out-of-date
 revision of this page.
 If you save it, any changes made since this revision will be lost.</strong>\n",
