@@ -223,15 +223,24 @@
 				$talk_class = (Namespace::isTalk( $wgTitle->getNamespace()) ? 'selected' : '');				
 				$talktitle = Title::newFromText( $this->titletxt );
 				$talktitle = $talktitle->getTalkPage();
-				$this->checkTitle(&$title, &$name);	
-				$talk_class .= ($talktitle->getArticleId() != 0 ? '':' new'); 
-				$content_actions['talk'] = array(
-					'class' => $talk_class,
-					'text' => wfMsg('talk'),
-					'href' => $this->makeTalkUrl($this->titletxt),
-					'ttip' => wfMsg('tooltip-talk'),
-					'akey' => wfMsg('accesskey-talk')
-				);
+				$this->checkTitle(&$talktitle, &$this->titletxt);	
+				if($talktitle->getArticleId() != 0) { 
+					$content_actions['talk'] = array(
+						'class' => $talk_class,
+						'text' => wfMsg('talk'),
+						'href' => $this->makeTalkUrl($this->titletxt),
+						'ttip' => wfMsg('tooltip-talk'),
+						'akey' => wfMsg('accesskey-talk')
+					);
+				} else {
+					$content_actions['talk'] = array(
+						'class' => $talk_class.' new',
+						'text' => wfMsg('talk'),
+						'href' => $this->makeTalkUrl($this->titletxt,'action=edit'),
+						'ttip' => wfMsg('tooltip-talk'),
+						'akey' => wfMsg('accesskey-talk')
+					);
+				}
 
 				if ( $wgTitle->userCanEdit() ) {
 					$oid = ( $oldid && ! isset( $diff ) ) ? "&oldid={$oldid}" : '';
