@@ -27,8 +27,6 @@ class BlockCache
 		global $wgUseMemCached, $wgMemc;
 
 		if ( $this->mData === false) {
-			$this->mData = array();
-
 			$saveMemc = false;
 			# Try memcached
 			if ( $wgUseMemCached ) {
