@@ -1822,6 +1822,8 @@ class Parser
 			$canonized_headline = preg_replace( "/<.*?" . ">/","",$canonized_headline );
 			$tocline = trim( $canonized_headline );
 			$canonized_headline = preg_replace("/[ \\?&\\/<>\\(\\)\\[\\]=,+']+/", '_', urlencode( do_html_entity_decode( $tocline, ENT_COMPAT, $wgInputEncoding ) ) );
+			# strip out urlencoded &nbsp; (inserted for french spaces, e.g. first space in 'something : something')
+			$canonized_headline = str_replace('%C2%A0','_', $canonized_headline);
 			$refer[$headlineCount] = $canonized_headline;
 
 			# count how many in assoc. array so we can track dupes in anchors
