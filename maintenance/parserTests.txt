@@ -1356,7 +1356,7 @@ Link to image page
 !! end
 
 !! test
-Image caption with a free URL
+Frameless image caption with a free URL
 !! input
 [[Image:foo|http://example.com]]
 !! result
@@ -1373,12 +1373,22 @@ Thumbnail image caption with a free URL
 
 !! end
 
+# Pending resolution to bug 368
 !! test
-Image caption with a link
+BUG 648: Frameless image caption with a link
 !! input
 [[Image:foo|text with a [[link]] in it]]
 !! result
 <p><a href="/wiki/Image:Foo" class="image" title="text with a link in it"><img src="/images/1/13/Foo" alt="text with a link in it" /></a>
+</p>
+!! end
+
+!! test
+Escape HTML special chars in image alt text
+!! input
+[[Image:example.jpg|& < > "]]
+!! result
+<p><a href="/wiki/Image:Example.jpg" class="image" title="&amp; &lt; &gt; &quot;"><img src="/images/a/a9/Example.jpg" alt="&amp; &lt; &gt; &quot;" /></a>
 </p>
 !! end
 
@@ -1389,6 +1399,24 @@ BUG 499: Alt text should have &#1234;, not &amp;1234;
 !! result
 <p><a href="/wiki/Image:Image.jpg" class="image" title="&#9792;"><img src="/images/7/78/Image.jpg" alt="&#9792;" /></a>
 </p>
+!! end
+
+!! test
+Broken image caption with link
+!! input
+[[Image:Rowan.jpeg|thumb|This is a broken caption. But [[Main Page|this]] is just an ordinary link.
+!! result
+<p>[[Image:Rowan.jpeg|thumb|This is a broken caption. But <a href="/wiki/Main_Page" title="Main Page">this</a> is just an ordinary link.
+</p>
+!! end
+
+!! test
+Image caption containing another image
+!! input
+[[Image:Bar.jpeg|thumb|This is a caption with another [[Image:icon.png|image]] inside it!]]
+!! result
+<div class="thumb tright"><div style="width:182px;"><b>Missing image</b><br /><i>Bar.jpeg</i>   <div class="thumbcaption" >This is a caption with another <a href="/wiki/Image:Icon.png" class="image" title="image"><img src="/images/9/96/Icon.png" alt="image" /></a> inside it!</div></div></div>
+
 !! end
 
 ###
