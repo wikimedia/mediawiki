@@ -403,9 +403,15 @@ class SearchEngine {
 		
 		$search		= $_REQUEST['search'];
 
-		# First try to go to page as entered		
+		# First try to go to page as entered.
 		#
 		$t = Title::newFromText( $search );
+
+		# If the string cannot be used to create a title
+		if( false == $t ){ 
+			$this->showResults();
+			return;
+		}
 
 		if ( 0 != $t->getArticleID() ) {
 			$wgOut->redirect( wfLocalUrl( $t->getPrefixedURL() ) );
