@@ -158,25 +158,42 @@ if( $out ) {
 	$serCombining = escapeSingleString( serialize( $combiningClass ) );
 	$serComp = escapeSingleString( serialize( $canonicalComp ) );
 	$serCanon = escapeSingleString( serialize( $canonicalDecomp ) );
-	$serCompat = escapeSingleString( serialize( $compatibilityDecomp ) );
 	$serCheckNFC = escapeSingleString( serialize( $checkNFC ) );
 	$outdata = "<" . "?php
 # This file was automatically generated -- do not edit!
 # Run UtfNormalGenerate.php to create this file again (make clean && make)
 
-global \$utfCombiningClass, \$utfCanonicalComp, \$utfCanonicalDecomp, \$utfCompatibilityDecomp;
+global \$utfCombiningClass, \$utfCanonicalComp, \$utfCanonicalDecomp;
 \$utfCombiningClass = unserialize( '$serCombining' );
 \$utfCanonicalComp = unserialize( '$serComp' );
 \$utfCanonicalDecomp = unserialize( '$serCanon' );
-\$utfCompatibilityDecomp = unserialize( '$serCompat' );
 \$utfCheckNFC = unserialize( '$serCheckNFC' );
 ?" . ">\n";
 	fputs( $out, $outdata );
 	fclose( $out );
 	print "Wrote out UtfNormalData.inc\n";
-	exit(0);
 } else {
 	print "Can't create file UtfNormalData.inc\n";
+	exit(-1);
+}
+
+
+$out = fopen("UtfNormalDataK.inc", "wt");
+if( $out ) {
+	$serCompat = escapeSingleString( serialize( $compatibilityDecomp ) );
+	$outdata = "<" . "?php
+# This file was automatically generated -- do not edit!
+# Run UtfNormalGenerate.php to create this file again (make clean && make)
+
+global \$utfCompatibilityDecomp;
+\$utfCompatibilityDecomp = unserialize( '$serCompat' );
+?" . ">\n";
+	fputs( $out, $outdata );
+	fclose( $out );
+	print "Wrote out UtfNormalDataK.inc\n";
+	exit(0);
+} else {
+	print "Can't create file UtfNormalDataK.inc\n";
 	exit(-1);
 }
 

@@ -32,7 +32,7 @@ if( defined( 'PRETTY_UTF8' ) ) {
 } else {
 	function pretty( $string ) {
 		return trim( preg_replace( '/(.)/use',
-			'sprintf("%04X ", uniUtf8ToCodepoint("$1"))',
+			'sprintf("%04X ", utf8ToCodepoint("$1"))',
 			$string ) );
 	}	
 }
@@ -81,6 +81,7 @@ while( false !== ( $line = fgets( $in ) ) ) {
 		$failure++;
 		# print "FAILED: $comment";
 	}
+	if( $total % 100 == 0 ) print "$total ";
 }
 fclose( $in );
 
@@ -105,6 +106,7 @@ while( false !== ($line = fgets( $in ) ) ) {
 		} else {
 			$failure++;
 		}
+		if( $total % 100 == 0 ) print "$total ";
 	}
 }
 fclose( $in );
@@ -124,6 +126,7 @@ if( $ok ) {
 function reportResults( &$total, &$success, &$failure ) {
 	$percSucc = IntVal( $success * 100 / $total );
 	$percFail = IntVal( $failure * 100 / $total );
+	print "\n";
 	print "$success tests successful ($percSucc%)\n";
 	print "$failure tests failed ($percFail%)\n\n";
 	$ok = ($success > 0 && $failure == 0);

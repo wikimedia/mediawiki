@@ -31,6 +31,10 @@
 require_once 'UtfNormalUtil.php';
 require_once 'UtfNormalData.inc';
 
+# Load compatibility decompositions on demand if they are needed.
+global $utfCompatibilityDecomp;
+$utfCompatibilityDecomp = NULL;
+
 define( 'UNICODE_HANGUL_FIRST', 0xac00 );
 define( 'UNICODE_HANGUL_LAST',  0xd7a3 );
 
@@ -142,6 +146,9 @@ class UtfNormal {
 	
 	function NFKD( $string ) {
 		global $utfCompatibilityDecomp;
+		if( !isset( $utfCompatibilityDecomp ) ) {
+			require_once( 'UtfNormalDataK.inc' );
+		}
 		return UtfNormal::fastCombiningSort(
 			UtfNormal::fastDecompose( $string, $utfCompatibilityDecomp ) );
 	}
