@@ -31,8 +31,11 @@ if( isset( $_SERVER['SERVER_NAME'] ) ) {
 	$wgServerName = $_SERVER['SERVER_NAME'];
 } elseif( isset( $_SERVER['HOSTNAME'] ) ) {
 	$wgServerName = $_SERVER['HOSTNAME'];
+} elseif( isset( $_SERVER['HTTP_HOST'] ) ) {
+	$wgServerName = $_SERVER['HTTP_HOST'];
+} elseif( isset( $_SERVER['SERVER_ADDR'] ) ) {
+	$wgServerName = $_SERVER['SERVER_ADDR'];
 } else {
-	# FIXME: Fall back on... something else?
 	$wgServerName = 'localhost';
 }
 
