@@ -311,10 +311,6 @@ pre {
     padding: 0.5em 1em;
     vertical-align: middle;
 }
-.portalMessage a {
-    color: Black;
-    text-decoration: none;
-}
 .documentDescription {
     /* The summary text describing the document */
     font-weight: bold;
@@ -338,7 +334,7 @@ pre {
 */
 
 a.stub,
-a.new{ color:#ba0000; text-decoration:none; }
+a.new { color:#ba0000; text-decoration:none; }
 
 #toc { 
     /*border:1px solid #2f6fab;*/
@@ -625,12 +621,14 @@ div.townBox dl dd {
     overflow: visible;
 }
 #portlet-logo h5 { display: none; }
-#portlet-logo a {
+#portlet-logo a,
+#portlet-logo a:hover {
     display: block;
     height: 155px;
     width: 135px;
     background: url(wiki.png) no-repeat;
     background-repeat: no-repeat;
+    text-decoration: none;
 }
 
 /*
@@ -833,6 +831,9 @@ li#personaltools-login {
 
 #portlet-contentViews .selected a {
     z-index: 3;
+}
+#portlet-contentViews .new a {
+    color:#ba0000;
 }
 #portlet-contentViews li a:hover {
     z-index: 3;
