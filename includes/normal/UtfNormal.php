@@ -97,9 +97,16 @@ define( 'UTF8_TAIL', true );
  * @package MediaWiki
  */
 class UtfNormal {
-	# The ultimate convenience function! Clean up invalid UTF-8 sequences,
-	# and convert to normal form C. Faster on pure ASCII strings, or
-	# secondarily on strings which are already definitely normalized.
+	/**
+	 * The ultimate convenience function! Clean up invalid UTF-8 sequences,
+	 * and convert to normal form C, canonical composition.
+	 *
+	 * Fast return for pure ASCII strings; some lesser optimizations for
+	 * strings containing only known-good characters. Not as fast as toNFC().
+	 *
+	 * @param string $string a UTF-8 string
+	 * @return string a clean, shiny, normalized UTF-8 string
+	 */
 	function cleanUp( $string ) {
 		if( UtfNormal::quickIsNFCVerify( $string ) )
 			return $string;
@@ -107,8 +114,14 @@ class UtfNormal {
 			return UtfNormal::NFC( $string );
 	}
 
-	# These functions try to skip the conversion if it won't be necessary.
-	# An all ASCII string for instance doesn't need conversion.
+	/**
+	 * Convert a UTF-8 string to normal form C, canonical composition.
+	 * Fast return for pure ASCII strings; some lesser optimizations for
+	 * strings containing only known-good characters.
+	 *
+	 * @param string $string a valid UTF-8 string. Input is not validated.
+	 * @return string a UTF-8 string in normal form C
+	 */
 	function toNFC( $string ) {
 		if( UtfNormal::quickIsNFC( $string ) )
 			return $string;
@@ -116,6 +129,13 @@ class UtfNormal {
 			return UtfNormal::NFC( $string );
 	}
 	
+	/**
+	 * Convert a UTF-8 string to normal form D, canonical decomposition.
+	 * Fast return for pure ASCII strings.
+	 *
+	 * @param string $string a valid UTF-8 string. Input is not validated.
+	 * @return string a UTF-8 string in normal form D
+	 */
 	function toNFD( $string ) {
 		if( preg_match( '/[\x80-\xff]/', $string ) )
 			return UtfNormal::NFD( $string );
@@ -123,6 +143,14 @@ class UtfNormal {
 			return $string;
 	}
 	
+	/**
+	 * Convert a UTF-8 string to normal form KC, compatibility composition.
+	 * This may cause irreversible information loss, use judiciously.
+	 * Fast return for pure ASCII strings.
+	 *
+	 * @param string $string a valid UTF-8 string. Input is not validated.
+	 * @return string a UTF-8 string in normal form KC
+	 */
 	function toNFKC( $string ) {
 		if( preg_match( '/[\x80-\xff]/', $string ) )
 			return UtfNormal::NFKC( $string );
@@ -130,6 +158,14 @@ class UtfNormal {
 			return $string;
 	}
 	
+	/**
+	 * Convert a UTF-8 string to normal form KD, compatibility decomposition.
+	 * This may cause irreversible information loss, use judiciously.
+	 * Fast return for pure ASCII strings.
+	 *
+	 * @param string $string a valid UTF-8 string. Input is not validated.
+	 * @return string a UTF-8 string in normal form KD
+	 */
 	function toNFKD( $string ) {
 		if( preg_match( '/[\x80-\xff]/', $string ) )
 			return UtfNormal::NFKD( $string );
@@ -137,12 +173,16 @@ class UtfNormal {
 			return $string;
 	}
 	
-	# Returns true if the string is _definitely_ in NFC.
-	# Returns false if not or uncertain.
+	/**
+	 * Returns true if the string is _definitely_ in NFC.
+	 * Returns false if not or uncertain.
+	 * @param string $string a valid UTF-8 string. Input is not validated.
+	 * @return bool
+	 */
 	function quickIsNFC( $string ) {
 		# ASCII is always valid NFC!
-		# If it's pure ASCII and doesn't contain any XML-forbidden chars, let it through.
-		if( !preg_match( '/[\x00-\x08\x0b\x0c\x0f-\x1f\x80-\xff]/', $string ) ) return true;
+		# If it's pure ASCII, let it through.
+		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
 		
 		global $utfCheckNFC, $utfCombiningClass;
 		$len = strlen( $string );
@@ -173,7 +213,12 @@ class UtfNormal {
 		return true;
 	}
 
-	# As above, but also *alter the string* to strip invalid UTF-8 sequences.
+	/**
+	 * Returns true if the string is _definitely_ in NFC.
+	 * Returns false if not or uncertain.
+	 * @param string $string a UTF-8 string, altered on output to be valid UTF-8 safe for XML.
+	 * @return bool
+	 */
 	function quickIsNFCVerify( &$string ) {
 		# ASCII is always valid NFC!
 		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
@@ -301,10 +346,15 @@ class UtfNormal {
 	}
 	
 	
-	/* Private */
-	# Perform decomposition of a UTF-8 string into either D or KD form
-	# (depending on which decomposition map is passed to us).
-	# Input is assumed to be *valid* UTF-8. Invalid code will break.
+	/**
+	 * Perform decomposition of a UTF-8 string into either D or KD form
+	 * (depending on which decomposition map is passed to us).
+	 * Input is assumed to be *valid* UTF-8. Invalid code will break.
+	 * @private
+	 * @param string &$string Valid UTF-8 string
+	 * @param array &$map hash of expanded decomposition map
+	 * @return string a UTF-8 string decomposed, not yet normalized (needs sorting)
+	 */
 	function fastDecompose( &$string, &$map ) {
 		$len = strlen( $string );
 		$out = '';
@@ -339,6 +389,11 @@ class UtfNormal {
 		return $out;
 	}
 
+	/**
+	 * Decompose a Hangul syllable character into its constituent jamo.
+	 * @param int $c Unicode code point of the character
+	 * @return string a UTF-8 string containing a sequence of jamo
+	 */
 	function decomposeHangul( $c ) {
 		$codepoint = utf8ToCodepoint( $c );
 		$index = $codepoint - UNICODE_HANGUL_FIRST;
@@ -351,8 +406,12 @@ class UtfNormal {
 		return $out;
 	}
 	
-	# Sorts combining characters into canonical order. This is the
-	# final step in creating decomposed normal forms D and KD.
+	/**
+	 * Sorts combining characters into canonical order. This is the
+	 * final step in creating decomposed normal forms D and KD.
+	 * @param string $string a valid, decomposed UTF-8 string. Input is not validated.
+	 * @return string a UTF-8 string with combining characters sorted in canonical order
+	 */
 	function fastCombiningSort( $string ) {
 		global $utfCombiningClass;
 		$replacedCount = 1;
@@ -396,8 +455,12 @@ class UtfNormal {
 		return $string;
 	}
 
-	# Produces canonically composed sequences, i.e. normal form C or KC.
-	# Input must be valid UTF-8 in sorted normal form D or KD.
+	/**
+	 * Produces canonically composed sequences, i.e. normal form C or KC.
+	 *
+	 * @param string $string a valid UTF-8 string in sorted normal form D or KD. Input is not validated.
+	 * @return string a UTF-8 string with canonical precomposed characters used where possible
+	 */
 	function fastCompose( $string ) {
 		global $utfCanonicalComp, $utfCombiningClass;
 		$len = strlen( $string );
@@ -467,8 +530,12 @@ class UtfNormal {
 		return $out;
 	}
 
-	# This is just used for the benchmark, comparing how long it takes to
-	# interate through a string without really doing anything of substance.
+	/**
+	 * This is just used for the benchmark, comparing how long it takes to
+	 * interate through a string without really doing anything of substance.
+	 * @param string $string
+	 * @return string
+	 */
 	function placebo( $string ) {
 		$len = strlen( $string );
 		$out = '';
