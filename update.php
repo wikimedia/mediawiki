@@ -174,10 +174,6 @@ function do_linkscc_update() {
 	global $rconn;
 	if( table_exists( "linkscc" ) ) {
 		echo "...have linkscc table.\n";
-		echo "Deleting entries from linkscc to avoid potential compatability problems...";
-		$sql = "DELETE FROM linkscc";
-		wfQuery( $sql, DB_WRITE, "Update script: do_linkscc_update()" );
-		echo "ok\n";
 	} else {
 		echo "Adding linkscc table... ";
 		dbsource( "maintenance/archives/patch-linkscc.sql" );
