@@ -679,7 +679,7 @@ class OutputPage {
 		$text = preg_replace( "/(^|\n)-----*/", "\\1<hr>", $text );
 		$text = str_replace ( "<HR>", "<hr>", $text );
 
-		$text = $this->doQuotes( $text );
+		$text = $this->doAllQuotes( $text );
 		$text = $this->doHeadings( $text );
 		$text = $this->doBlockLevels( $text, $linestart );
 		
@@ -701,11 +701,62 @@ class OutputPage {
 		return $text;
 	}
 
-	/* private */ function doQuotes( $text )
+	/* private */ function doAllQuotes( $text )
 	{
-		$text = preg_replace( "/'''(.+)'''/mU", "<strong>\$1</strong>", $text );
-		$text = preg_replace( "/''(.+)''/mU", "<em>\$1</em>", $text );
-		return $text;
+		$outtext = "";
+		$lines = explode( "\r\n", $text );
+		foreach ( $lines as $line ) {
+			$outtext .= $this->doQuotes ( "", $line, "" ) . "\r\n";
+		}
+		return $outtext;
+	}
+
+	/* private */ function doQuotes( $pre, $text, $mode )
+	{
+		if ( preg_match( "/^(.*)''(.*)$/sU", $text, $m ) ) {
+			$m1_strong = ($m[1] == "") ? "" : "<strong>{$m[1]}</strong>";
+			$m1_em = ($m[1] == "") ? "" : "<em>{$m[1]}</em>";
+			if ( substr ($m[2], 0, 1) == "'" ) {
+				$m[2] = substr ($m[2], 1);
+				if ($mode == "em") {
+					return $this->doQuotes ( $m[1], $m[2], ($m[1] == "") ? "both" : "emstrong" );
+				} else if ($mode == "strong") {
+					return $m1_strong . $this->doQuotes ( "", $m[2], "" );
+				} else if (($mode == "emstrong") || ($mode == "both")) {
+					return $this->doQuotes ( "", $pre.$m1_strong.$m[2], "em" );
+				} else if ($mode == "strongem") {
+					return "<strong>{$pre}{$m1_em}</strong>" . $this->doQuotes ( "", $m[2], "em" );
+				} else {
+					return $m[1] . $this->doQuotes ( "", $m[2], "strong" );
+				}
+			} else {
+				if ($mode == "strong") {
+					return $this->doQuotes ( $m[1], $m[2], ($m[1] == "") ? "both" : "strongem" );
+				} else if ($mode == "em") {
+					return $m1_em . $this->doQuotes ( "", $m[2], "" );
+				} else if ($mode == "emstrong") {
+					return "<em>{$pre}{$m1_strong}</em>" . $this->doQuotes ( "", $m[2], "strong" );
+				} else if (($mode == "strongem") || ($mode == "both")) {
+					return $this->doQuotes ( "", $pre.$m1_em.$m[2], "strong" );
+				} else {
+					return $m[1] . $this->doQuotes ( "", $m[2], "em" );
+				}
+			}
+		} else {
+			$text_strong = ($text == "") ? "" : "<strong>{$text}</strong>";
+			$text_em = ($text == "") ? "" : "<em>{$text}</em>";
+			if ($mode == "") {
+				return $pre . $text;
+			} else if ($mode == "em") {
+				return $pre . $text_em;
+			} else if ($mode == "strong") {
+				return $pre . $text_strong;
+			} else if ($mode == "strongem") {
+				return (($pre == "") && ($text == "")) ? "" : "<strong>{$pre}{$text_em}</strong>";
+			} else {
+				return (($pre == "") && ($text == "")) ? "" : "<em>{$pre}{$text_strong}</em>";
+			}
+		}
 	}
 
 	/* private */ function doHeadings( $text )
