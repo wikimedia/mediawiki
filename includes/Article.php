@@ -7,7 +7,7 @@ class Article {
 	/* private */ var $mUser, $mTimestamp, $mUserText;
 	/* private */ var $mCounter, $mComment, $mCountAdjustment;
 	/* private */ var $mMinorEdit, $mRedirectedFrom;
-	/* private */ var $mTouched;
+	/* private */ var $mTouched, $mFileCache;
 
 	function Article() { $this->clear(); }
 
@@ -16,7 +16,7 @@ class Article {
 		$this->mContentLoaded = false;
 		$this->mUser = $this->mCounter = -1; # Not loaded
 		$this->mRedirectedFrom = $this->mUserText =
-		$this->mTimestamp = $this->mComment = "";
+		$this->mTimestamp = $this->mComment = $this->mFileCache = "";
 		$this->mCountAdjustment = 0;
 		$this->mTouched = "19700101000000";
 	}
@@ -1512,15 +1512,17 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 	
 	function fileCacheName() {
 		global $wgTitle, $wgFileCacheDirectory, $wgLang;
-		$hash = md5( $key = $wgTitle->getDbkey() );
-		if( $wgTitle->getNamespace() )
-			$key = $wgLang->getNsText( $wgTitle->getNamespace() ) . ":" . $key;
-		$key = urlencode( $key );
-		$hash1 = substr( $hash, 0, 1 );
-		$hash2 = substr( $hash, 0, 2 );
-		$fn = "{$wgFileCacheDirectory}/{$hash1}/{$hash2}/{$key}.html";
-		wfDebug( " fileCacheName() - $fn\n" );
-		return $fn;
+		if( !$this->mFileCache ) {
+			$hash = md5( $key = $wgTitle->getDbkey() );
+			if( $wgTitle->getNamespace() )
+				$key = $wgLang->getNsText( $wgTitle->getNamespace() ) . ":" . $key;
+			$key = str_replace( ".", "%2E", urlencode( $key ) );
+			$hash1 = substr( $hash, 0, 1 );
+			$hash2 = substr( $hash, 0, 2 );
+			$this->mFileCache = "{$wgFileCacheDirectory}/{$hash1}/{$hash2}/{$key}.html";
+			wfDebug( " fileCacheName() - {$this->mFileCache}\n" );
+		}
+		return $this->mFileCache;
 	}
 
 	function isFileCacheGood() {
