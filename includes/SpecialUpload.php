@@ -231,7 +231,9 @@ class UploadForm {
 	
 			global $wgUploadSizeWarning;
 			if ( $wgUploadSizeWarning && ( $this->mUploadSize > $wgUploadSizeWarning ) ) {
-				$warning .= '<li>'.wfMsg( 'largefile' ).'</li>';
+				# TODO: Format $wgUploadSizeWarning to something that looks better than the raw byte
+				# value, perhaps add GB,MB and KB suffixes?
+				$warning .= '<li>'.wfMsg( 'largefile', $wgUploadSizeWarning  ).'</li>';
 			}
 			if ( $this->mUploadSize == 0 ) {
 				$warning .= '<li>'.wfMsg( 'emptyfile' ).'</li>';
