@@ -10,8 +10,8 @@
 	-1	=> "Speciální", # FIXME Is it safe to change this?
 	0	=> "",
 	1	=> "Diskuse", # neb diskutuj?
-	2	=> "Wikipediista",
-	3	=> "Wikipediista_diskuse",
+	2	=> "Wikipedista",
+	3	=> "Wikipedista_diskuse",
 	4	=> "Wikipedie",
 	5	=> "Wikipedie_diskuse",
 	6	=> "Soubor", #FIXME: Check the magic for Image: and Media:
@@ -881,6 +881,8 @@ class LanguageCs extends LanguageUtf8 {
 		}
 		if( 0 == strcasecmp( "Special", $text ) ) return -1;
 		if( 0 == strcasecmp( "Wikipedia", $text ) ) return 4;
+		if( 0 == strcasecmp( "Wikipediista", $text ) ) return 2;
+		if( 0 == strcasecmp( "Wikipediista_diskuse", $text ) ) return 3;
 		return false;
 	}
 
