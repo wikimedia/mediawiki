@@ -212,6 +212,7 @@ class EditPage {
 						$headline = preg_replace( "/<.*?" . ">/","",$headline );
 						$headline = trim( $headline );
 						$sectionanchor = '#'.preg_replace("/[ \\?&\\/<>\\(\\)\\[\\]=,+']+/", '_', urlencode( $headline ) );
+						$sectionanchor = str_replace('%','.',$sectionanchor);
 					}
 				}
 	
