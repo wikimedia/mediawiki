@@ -30,6 +30,7 @@ $DP = "../includes";
 include_once( $settingsFile );
 ini_set( "include_path", "../includes$sep../languages$sep$newpath$IP$sep$include_path" );
 
+$wgUsePHPTal = false;
 include_once( "Setup.php" );
 include_once( "./InitialiseMessages.inc" );
 include_once( "../install-utils.inc" );

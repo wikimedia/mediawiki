@@ -633,8 +633,10 @@ function writeLocalSettings( $conf ) {
 ini_set( \"include_path\", \"\$IP/includes$sep\$IP/languages$sep\" . ini_get(\"include_path\") );
 include_once( \"DefaultSettings.php\" );
 
-if( \$wgCommandLineMode ) {
-	die( \"Can't use command-line utils with in-place install yet, sorry.\" );
+if ( \$wgCommandLineMode ) {
+	if ( isset( \$_SERVER ) && array_key_exists( 'REQUEST_METHOD', \$_SERVER ) ) {
+		die( \"This script must be run from the command line\\n\" );
+	}
 } else {
 	## Compress output if the browser supports it
 	{$zlib}if( !ini_get( 'zlib.output_compression' ) ) ob_start( 'ob_gzhandler' );
