@@ -157,7 +157,6 @@ textarea {
 /* hide this from ie/mac and konq2.2 */
 @media All {
     head:first-child+body input {
-        font-family: "Bitstream Vera Sans", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
         visibility: visible;
         border: 1px solid #2f6fab;  
         color: Black;
@@ -165,11 +164,13 @@ textarea {
         vertical-align: middle;
         padding: 0.2em;
     }
-    head:first-child+body input.historysubmit {
-        height: 1.9em !important;
-        padding: none !important;
-        vertical-align: middle;
-    }
+}
+input.historysubmit {
+    padding: 0 0.3em 0.3em 0.3em !important;
+    font-size: 94%;
+    cursor: pointer;
+    height: 1.7em !important;
+    margin-left: 1.6em;
 }
 input[type="radio"],
 input[type="checkbox"] { border:none; }
@@ -421,7 +422,6 @@ div.townBox dl dd {
     background-color:#f9f9f9;
     border:1px dashed #aaaaaa;
 }
-#pagehistory li.histsubmitli { list-style: none }
 /*
 ** Diff rendering
 */
@@ -822,17 +822,17 @@ fieldset.operaprefsection { margin-left: 15em }
 */
 
 /* tabs: border on the a, not the div */
-*>html #p-cactions li { border:none; }
-*>html #p-cactions li a {
+* > html #p-cactions li { border:none; }
+* > html #p-cactions li a {
     border: 1px solid #aaaaaa;
     border-bottom: none;
 }
-*>html #p-cactions li.selected a { border-color: #fabd23; }
+* > html #p-cactions li.selected a { border-color: #fabd23; }
 /* footer icons need a fixed width */
-*>html #f-poweredbyico,
-*>html #f-copyrightico { width: 88px; }
-*>html #bodyContent,
-*>html #bodyContent pre {
+* > html #f-poweredbyico,
+* > html #f-copyrightico { width: 88px; }
+* > html #bodyContent,
+* > html #bodyContent pre {
     overflow-x: auto;
     width: 100%;
     padding-bottom: 25px;
@@ -846,6 +846,7 @@ fieldset.operaprefsection { margin-left: 15em }
     margin-bottom: 0;
 }
 * html div.editsection { font-size: smaller; }
+#pagehistory li.selected { position: relative; }
 
 /* debugging tool.. */
 /*div{ border:1px solid #000000;}*/
