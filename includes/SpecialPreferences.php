@@ -145,7 +145,13 @@ class PreferencesForm {
 	}
 
 	/**
+	 * Used to validate the user inputed timezone before saving it as
+	 * 'timeciorrection', will return '00:00' if fed bogus data.
+	 * Note: It's not a 100% correct implementation timezone-wise, it will
+	 * accept stuff like '14:30',
 	 * @access private
+	 * @param string $s the user input
+	 * @return string
 	 */
 	function validateTimeZone( $s ) {
 		if ( $s !== '' ) {
@@ -159,8 +165,10 @@ class PreferencesForm {
 				$hour = intval( $minute / 60 );
 				$minute = abs( $minute ) % 60;
 			}
-			$hour = min( $hour, 15 );
-			$hour = max( $hour, -15 );
+			# Max is +14:00 and min is -12:00, see:
+			# http://en.wikipedia.org/wiki/Timezone
+			$hour = min( $hour, 14 );
+			$hour = max( $hour, -12 );
 			$minute = min( $minute, 59 );
 			$minute = max( $minute, 0 );
 			$s = sprintf( "%02d:%02d", $hour, $minute );
@@ -175,7 +183,6 @@ class PreferencesForm {
 		global $wgUser, $wgLang, $wgOut;
 		global $wgEnableUserEmail, $wgEnableEmail;
 		global $wgEmailAuthentication, $wgMinimalPasswordLength;
-;
 
 		if ( '' != $this->mNewpass ) {
 			if ( $this->mNewpass != $this->mRetypePass ) {
@@ -605,7 +612,6 @@ class PreferencesForm {
 		
 		# Date format
 		#
-
 		if ($dateopts) {
 			$wgOut->addHTML( "<fieldset>\n<legend>$dateFormat</legend>\n" );
 			foreach($dateopts as $key => $option) {
