@@ -1016,6 +1016,9 @@ at the bottom of the screen.",
 "couldntremove" => "Couldn't remove item '$1'...",
 "iteminvalidname" => "Problem with item '$1', invalid name...",
 "wlnote" => "Below are the last $1 changes in the last <b>$2</b> hours.",
+"wlshowlast" => "Show last ",
+"wlhours"    => " hours",
+"wldays"     => " days",
                                                                                                                                        
 
 # Delete/protect/revert
