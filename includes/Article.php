@@ -1243,12 +1243,12 @@ class Article {
 			if (wfRunHooks('ArticleProtect', $this, $wgUser, $limit == 'sysop', $reason, $moveonly)) {
 				
 				$dbw =& wfGetDB( DB_MASTER );
-				$dbw->update( 'cur',
+				$dbw->update( 'page',
 							  array( /* SET */
-									 'cur_touched' => $dbw->timestamp(),
-									 'cur_restrictions' => $restrictions
+									 'page_touched' => $dbw->timestamp(),
+									 'page_restrictions' => $restrictions
 									 ), array( /* WHERE */
-											   'cur_id' => $id
+											   'page_id' => $id
 											   ), 'Article::protect'
 							  );
 				

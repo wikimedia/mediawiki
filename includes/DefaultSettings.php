@@ -939,6 +939,8 @@ $wgLocaltimezone = null;
 # default. A better interface should be coded [av]
 $wgAnonGroupId = 1;
 $wgLoggedInGroupId = 2;
+$wgSysopGroupId = 3;
+$wgBureaucratGroupId = 4;
 
 /*
 When translating messages with wfMsg(), it is not always clear what should
