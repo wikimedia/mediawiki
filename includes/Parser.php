@@ -1188,7 +1188,7 @@ class Parser
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
-			if (preg_match('/((?:'.URL_PROTOCOLS.'):)/', $m[1])) {
+			if (preg_match('/^((?:'.URL_PROTOCOLS.'):)/', $m[1])) {
 				$s .= $prefix . '[[' . $line ;
 				continue;
 			}
