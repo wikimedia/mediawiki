@@ -116,7 +116,7 @@ class Article {
 	}
 
 	/* static */ function fetchFromLocation( $location, $hash ) {
-		global $wgDatabase, $wgKnownDBServers;
+		global $wgLoadBalancer;
 		$fname = 'fetchFromLocation';
 		wfProfileIn( $fname );
 		
