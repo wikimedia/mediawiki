@@ -19,13 +19,12 @@
 	NS_IMAGE_TALK		=> "Soubor_diskuse",
 	NS_MEDIAWIKI		=> "MediaWiki",
 	NS_MEDIAWIKI_TALK	=> "MediaWiki_diskuse",
-	NS_TEMPLATE  		=> "Template",
-	NS_TEMPLATE_TALK  	=> "Template_talk",
-	NS_HELP				=> "Help",
-	NS_HELP_TALK		=> "Help_talk",
+	NS_TEMPLATE  		=> "Šablona",
+	NS_TEMPLATE_TALK  	=> "Šablona_diskuse",
+	NS_HELP				=> "Nápoveda",
+	NS_HELP_TALK		=> "Nápoveda_diskuse",
 	NS_CATEGORY			=> "Kategorie",
 	NS_CATEGORY_TALK	=> "Kategorie_diskuse",
-
 ) + $wgNamespaceNamesEn;
 
 # Zdědit apriorní preference: wgDefaultUserOptionsEn
