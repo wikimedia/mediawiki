@@ -19,6 +19,7 @@ define("MAG_MSG", 11);
 define("MAG_SUBST", 12);
 define("MAG_MSGNW", 13);
 define("MAG_NOEDITSECTION", 14);
+define("MAG_END", 15);
 
 #--------------------------------------------------------------------------
 # Language-specific text
@@ -291,9 +292,10 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
     MAG_CURRENTTIME          => array( 1,    "{{CURRENTTIME}}"        ),
     MAG_NUMBEROFARTICLES     => array( 1,    "{{NUMBEROFARTICLES}}"   ),
     MAG_CURRENTMONTHNAMEGEN  => array( 1,    "{{CURRENTMONTHNAMEGEN}}"),
-	MAG_MSG                  => array( 1,    "{{MSG:$1}}"             ),
-	MAG_SUBST                => array( 1,    "{{SUBST:$1}}"           ),
-    MAG_MSGNW                => array( 1,    "{{MSGNW:$1}}"           )
+	MAG_MSG                  => array( 0,    "{{MSG:$1}}"             ),
+	MAG_SUBST                => array( 0,    "{{SUBST:$1}}"           ),
+    MAG_MSGNW                => array( 0,    "{{MSGNW:$1}}"           ),
+	MAG_END                  => array( 0,    "__END__"                )
 );
 	
 # All special pages have to be listed here: a description of ""
