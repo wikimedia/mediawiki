@@ -64,6 +64,17 @@ function wfSpecialUndelete( $par )
     
     $sk = $wgUser->getSkin();
     $wgOut->setPagetitle( wfMsg( "undeletepage" ) );
+
+    $sql = "SELECT ar_minor_edit,ar_timestamp,ar_user,ar_user_text,ar_comment
+      FROM archive WHERE ar_namespace={$namespace} AND ar_title=\"{$title}\"
+      ORDER BY ar_timestamp DESC";
+    $ret = wfQuery( $sql, DB_READ );
+
+	if( wfNumRows( $ret ) == 0 ) {
+		$wgOut->addWikiText( wfMsg( "nohistory" ) );
+		return 0;
+	}
+	
     $wgOut->addWikiText( wfMsg( "undeletehistory" ) . "\n<hr>\n" . $row->ar_text );
 
 	$action = wfLocalUrlE( $wgLang->specialPage( "Undelete" ), "action=submit" );
@@ -79,11 +90,6 @@ function wfSpecialUndelete( $par )
     	. str_replace("_", " ", $title), "/" ).".*)$/m", $log, $m)) {
     	$wgOut->addWikiText( $m[1] );
     }
-    
-    $sql = "SELECT ar_minor_edit,ar_timestamp,ar_user,ar_user_text,ar_comment
-      FROM archive WHERE ar_namespace={$namespace} AND ar_title=\"{$title}\"
-      ORDER BY ar_timestamp DESC";
-    $ret = wfQuery( $sql, DB_READ );
     
     $special = $wgLang->getNsText( Namespace::getSpecial() );
     $wgOut->addHTML("<ul>");
