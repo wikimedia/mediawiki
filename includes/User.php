@@ -1148,8 +1148,25 @@ class User {
 		return wfSetVar( $this->mDataLoaded, $loaded );
 	}
 
+	/**
+	 * Get this user's personal page title.
+	 *
+	 * @return Title
+	 * @access public
+	 */
 	function getUserPage() {
 		return Title::makeTitle( NS_USER, $this->mName );
+	}
+	
+	/**
+	 * Get this user's talk page title.
+	 *
+	 * @return Title
+	 * @access public
+	 */
+	function getTalkPage() {
+		$title = $this->getUserPage();
+		return $title->getTalkPage();
 	}
 
 	/**
