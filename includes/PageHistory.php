@@ -22,7 +22,8 @@ class PageHistory {
 	# This shares a lot of issues (and code) with Recent Changes
 
 	function history() {
-		global $wgUser, $wgOut, $wgLang, $wgShowUpdatedMarker;
+		global $wgUser, $wgOut, $wgLang, $wgShowUpdatedMarker, $wgRequest,
+			$wgTitle;
 
 		# If page hasn't changed, client can cache this
 
@@ -46,7 +47,10 @@ class PageHistory {
 			return;
 		}
 
-		list( $limit, $offset ) = wfCheckLimits();
+		$limit = $wgRequest->getInt('limit');
+		if (!$limit) $limit = 50;
+		$offset = $wgRequest->getText('offset');
+		if (!isset($offset) || !preg_match("/^[0-9]+$/", $offset)) $offset = 0;
 
 		/* Check one extra row to see whether we need to show 'next' and diff links */
 		$limitplus = $limit + 1;
@@ -62,14 +66,31 @@ class PageHistory {
 				$fname );
 		else $notificationtimestamp = false;
 
-		$use_index = $db->useIndexClause( 'page_timestamp' );
+		$use_index = $db->useIndexClause( 'rev_timestamp' );
 		$revision = $db->tableName( 'revision' );
+
+		$limits = $offsets = "";
+		$dir = 0;
+		if ($wgRequest->getText("dir") == "prev")
+			$dir = 1;
+
+		list($dirs, $oper) = array("DESC", "<");
+		if ($dir) {
+			list($dirs, $oper) = array("ASC", ">");
+		}
+
+		if ($offset)
+			$offsets .= " AND rev_timestamp $oper '$offset' ";
+		if ($limit)
+			$limits .= " LIMIT $limitplus ";
 
 		$sql = "SELECT rev_id,rev_user," .
 		  "rev_comment,rev_user_text,rev_timestamp,rev_minor_edit ".
 		  "FROM $revision $use_index " .
 		  "WHERE rev_page=$id " .
-		  "ORDER BY rev_timestamp DESC ".$db->limitResult($limitplus,$offset);
+		  $offsets .
+		  "ORDER BY rev_timestamp $dirs " .
+		  $limits;
 		$res = $db->query( $sql, $fname );
 
 		$revs = $db->numRows( $res );
@@ -82,10 +103,32 @@ class PageHistory {
 		$atend = ($revs < $limitplus);
 
 		$this->mSkin = $wgUser->getSkin();
-		$numbar = wfViewPrevNext(
-			$offset, $limit,
-			$this->mTitle->getPrefixedText(),
-			'action=history', $atend );
+
+		$pages = array();
+		$lowts = 0;
+		while ($line = $db->fetchObject($res)) {
+			$pages[] = $line;
+		}
+		if ($dir) $pages = array_reverse($pages);
+		if (count($pages) > 1)
+			$lowts = $pages[count($pages) - 2]->rev_timestamp;
+		else
+			$lowts = $pages[count($pages) - 1]->rev_timestamp;
+
+
+		$myurl = $wgTitle->getLocalURL('action=history');
+		$prevurl = "{$myurl}&dir=prev&offset={$offset}&limit={$limit}";
+		$nexturl = "{$myurl}&offset={$lowts}&limit={$limit}";
+		$urls = array();
+		foreach (array(20, 50, 100, 250, 500) as $num) {
+			$urls[] = "<a href=\"{$myurl}&offset={$offset}&limit={$num}\">".$wgLang->formatNum($num)."</a>";
+		}
+		$bits = implode($urls, ' | ');
+		$numbar = wfMsg("viewprevnext", 
+				"<a href=\"$prevurl\">".wfMsg("prevn", $limit)."</a>", 
+				"<a href=\"$nexturl\">".wfMsg("nextn", $limit)."</a>", 
+				$bits);
+
 		$s = $numbar;
 		if($this->linesonpage > 0) {
 			$submitpart1 = '<input class="historysubmit" type="submit" accesskey="'.wfMsg('accesskey-compareselectedversions').
@@ -95,7 +138,7 @@ class PageHistory {
 		}
 		$s .= $this->beginHistoryList();
 		$counter = 1;
-		while ( $line = $db->fetchObject( $res ) ) {
+		foreach($pages as $line) {
 			$s .= $this->historyLine(
 				$line->rev_timestamp, $line->rev_user,
 				$line->rev_user_text, $namespace,
