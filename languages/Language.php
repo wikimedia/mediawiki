@@ -1,4 +1,6 @@
 <?php
+if( defined( "MEDIAWIKI" ) ) {
+
 #
 # In general you should not make customizations in these language files
 # directly, but should use the MediaWiki: special namespace to customize
@@ -1774,4 +1776,6 @@ class Language {
 
 # This should fail gracefully if there's not a localization available
 @include_once( 'Language' . ucfirst( $wgLanguageCode ) . '.php' );
+
+}
 ?>
