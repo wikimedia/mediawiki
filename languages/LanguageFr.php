@@ -131,15 +131,19 @@ include_once( "LanguageUtf8.php" );
 	"Recentchangeslinked" => "",
 	"Movepage"      => "",
 	"Booksources"   => "Librairies en ligne",
-//	"Categories"	=> "Page des catégories"	// Looxix "Page categories"
+	"Categories"	=> "Page des catégories",
 	"Export"	=> "Exporter par XML",
 	"Version"	=> "Version",
+	"Allmessages"	=> "Messages système"
 );
 
 /* private */ $wgSysopSpecialPagesFr = array(
 	"Blockip"       => "Bloquer une adresse IP",
 	"Asksql"        => "Accès SQL",
-	"Undelete"      => "Gérer les pages effacées"
+	"Makesysop"	=> "Donner les droits d'administrateur",
+
+	"Undelete"      => "Gérer les pages effacées",
+	"Import"	=> "Importer une page avec l'historique"
 );
 
 /* private */ $wgDeveloperSpecialPagesFr = array(
@@ -221,6 +225,8 @@ Voir $1.",
 "developertitle" => "Accès développeur requis",
 "developertext" => "L'action que vous avez tentée ne peut être effectuée que par un utilisateur ayant le statut de \"développeur\".
 Voir $1.",
+"bureaucrattitle"	=> "Un accès de 'Bureaucrate' est requis",
+"bureaucrattext"	=> "Cette action ne peut être réalisée que par des administrateurs ayant le statut de 'Bureaucrate'.",
 "nbytes"        => "$1 octets",
 "go"            => "Consulter",
 "ok"            => "OK",
@@ -308,6 +314,7 @@ N'oubliez pas de personnaliser votre $wgSitename en consultant la page Préfére
 "userexists"    => "Le nom d'utilisateur que vous avez saisi est déjà utilisé. Veuillez en choisir un autre.",
 "youremail"     => "Mon adresse électronique",
 "yournick"      => "Mon surnom (pour les signatures)",
+"yourrealname"	=> "Votre nom réél*",
 "emailforlost"  => "Si vous égarez votre mot de passe, vous pouvez demander à ce qu'un nouveau vous soit envoyé à votre adresse électronique.",
 "loginerror"    => "Problème d'identification",
 "noname"        => "Vous n'avez pas saisi de nom d'utilisateur.",
@@ -896,6 +903,20 @@ avec modération.",
 "selectonly"	=> "Les requêtes autres que \"SELECT\" sont réservées aux développeurs du wiki.",
 "querysuccessful" => "Requête réussie",
 
+# Make sysop
+"makesysoptitle"	=> "Donne les droits d'adminitrateur.",
+"makesysoptext"		=> "Ce formulaire est utilisé par les bureaucrates pour donner les droits d'adminitrateur.
+Tapez le nom de l'utilisateur dans la boite et pressez le bouton pour lui donner les droits.",
+"makesysopname"		=> "Nom de l'utilisateur:",
+"makesysopsubmit"	=> "Donner les droits d'adminitrateur à cet utilisateur",
+"makesysopok"		=> "<b>L'utilisateur \"$1\" est maintenant administrateur</b>",
+"makesysopfail"		=> "<b>L'utilisateur \"$1\" n'a pas pu recevoir les droits d'adminitrateurs. (Avez vous entré le nom correctement?)</b>",
+"rights"			=> "Droits:",
+"user_rights_set"	=> "<b>Les droits de l'utilisateur \"$1\" sont mis à jour</b>",
+"set_rights_fail"	=> "<b>Les droits de l'utilisateur \"$1\" n'ont pas pu être mis en place. (Avez vous entré le nom correctement?)</b>",
+"makesysop"         => "Donner les droits d'adminitrateur à un utilisateur",
+
+
 # Move page
 #
 "movepage"  => "Déplacer un article",
@@ -948,6 +969,14 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 "thumbnail-more"	=> "Agrandir",
 "missingimage"		=> "<b>Image manquante</b><br /><i>$1</i>\n",
 
+# Special:Import
+"import"	=> "Importer des pages",
+"importtext"	=> "Exportez un fichier depuis le wiki source en utilisant la fonction Special:Export, sauvez
+la page sur votre disque puis envoyez là ici.",
+"importfailed"	=> "L'import a échoué: $1",
+"importnotext"	=> "Vide ou sans texte",
+"importsuccess"	=> "L'import à réussi!",
+"importhistoryconflict" => "Des révisions dans l'historique existent et sont en conflits (cette page à peut être déjà été importée avant)",
 
 # Keyboard access keys for power users
 'accesskey-article' => 'a',
@@ -984,6 +1013,8 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
+'accesskey-contributions' => '',
+'accesskey-emailuser' => '',
 
 # tooltip help for the main actions
 'tooltip-article' => 'Voir l\'article [alt-a]',
@@ -1015,7 +1046,19 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'tooltip-specialpages' => 'Liste de toutes les pages spéciales',
 'tooltip-upload' => 'Copier sur le serveur des fichiers [alt-u]',
 'tooltip-specialpage' => 'Ceci est une page spéciale, vous ne pouvez pas l\'éditer.',
+'tooltip-emailuser' => 'Envoyer un mail à cet utilisateur',
+'tooltip-contributions' => 'Voir la liste des contributions de cet utilisateur',
+'tooltip-logout' => 'Le bouton démarrer [alt-o]',
+'tooltip-minoredit' => 'Marquer cette modification comme mineur [alt-i]',
+'tooltip-preview' => 'Prévisualiser les changements, merci de l\'utiliser avant de sauvegarder! [alt-p]',
 
+# Metadata
+"nodublincore" => "Les données méta 'Dublin Core RDF' sont désactivées sur ce serveur.",
+"nocreativecommons" => "Les données méta 'Creative Commons RDF' sont désactivées sur ce serveur.",
+"notacceptable" => "Ce serveur wiki ne peut pas fournir les données dans un format que votre client est capable de lire.",
+
+# Attribution
+"anonymous"	=> "Utilisateur(s) anonyme(s) de $wgSitename"
 );
 
 class LanguageFr extends LanguageUtf8
