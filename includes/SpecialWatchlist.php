@@ -168,10 +168,11 @@ function wfSpecialWatchlist()
 
 	$sk = $wgUser->getSkin();
 	$s = $sk->beginRecentChangesList();
-
+	$counter = 1;
 	while ( $obj = wfFetchObject( $res ) ) {
 		# Make fake RC entry
 		$rc = RecentChange::newFromCurRow( $obj );
+		$rc->counter = $counter++;
 		$s .= $sk->recentChangesLine( $rc, true );
 	}
 	$s .= $sk->endRecentChangesList();
