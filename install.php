@@ -108,16 +108,16 @@ print "\nYou should have already created a root password for the database.\n" .
 
 $rootpw = readconsole();
 
+# Include rest of code to get things like internationalized messages.
+#
+include_once( "{$IP}/Setup.php" );
+$wgTitle = Title::newFromText( "Installation script" );
+
 $wgDatabase = Database::newFromParams( $wgDBserver, "root", $rootpw, "", 1 );
 if ( !$wgDatabase->isOpen() ) {
 	print "Could not connect to database on \"{$wgDBserver}\" as root.\n";
 	exit();
 }
-
-# Include rest of code to get things like internationalized messages.
-#
-include_once( "{$IP}/Setup.php" );
-$wgTitle = Title::newFromText( "Installation script" );
 
 # Now do the actual database creation
 #
