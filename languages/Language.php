@@ -699,6 +699,8 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT type=submit name=btnG VALUE=\"Google Search\">
 <font size=-1>
 <input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br>
+<input type='hidden' name='ie' value='$2'>
+<input type='hidden' name='oe' value='$2'>
 </font>
 </td></tr></TABLE>
 </FORM>
