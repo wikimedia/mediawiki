@@ -167,7 +167,7 @@ class User {
         /* so that new user will have a default 
            language variant set using info from the http header 
         */
-        $this->setOption('variant', $wgLang->getPreferredLanguage());
+        $this->setOption('variant', $wgLang->getPreferredVariant());
 	}
 
 	/**
