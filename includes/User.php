@@ -55,6 +55,7 @@ class User {
 			return NULL;
 		} else {
 			$u->setName( $t->getText() );
+			$u->setId( $u->idFromName( $t->getText() ) );
 			return $u;
 		}
 	}
