@@ -1182,6 +1182,7 @@ will not be automatically replaced.',
 'undeleterevision' => "Deleted revision as of $1",
 'undeletebtn' => 'Restore!',
 'undeletedarticle' => "restored \"$1\"",
+'undeletedrevisions' => "$1 revisions restored",
 'undeletedtext'   => "[[$1]] has been successfully restored.
 See [[{{ns:4}}:Deletion_log]] for a record of recent deletions and restorations.",
 
