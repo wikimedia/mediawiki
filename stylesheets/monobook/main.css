@@ -998,3 +998,7 @@ head:first-child+body #portlet-personal {
 /* debugging tool.. */
 /*div{ border:1px solid #000000;}*/
 
+.error {
+	color: red;
+	font-size: larger;
+}

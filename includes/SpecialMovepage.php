@@ -61,7 +61,7 @@ class MovePageForm {
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
-			$wgOut->addHTML( "<p><font color='red' size='+1'>{$err}</font>\n" );
+			$wgOut->addHTML( "<p class='error'>{$err}</p>\n" );
 		}
 		$wgOut->addHTML( "
 <form id=\"movepage\" method=\"post\" action=\"{$action}\">
