@@ -803,7 +803,7 @@ function wfPurgeSquidServers ($urlArr) {
 		if($r != 0) {
 		    $res = '';
 		    $esc = 0;
-		    while (strlen($res) < 230 && $esc < 4  ) {
+		    while (strlen($res) < 100 && $esc < 20  ) {
 			$res .= @fread($sockets[$s],512);
 			$esc++;
 		    }
