@@ -171,7 +171,7 @@ if($wgMetaNamespace === FALSE)
 
 # Bits of text used by many pages:
 #
-"linktrail"		=> "/^([a-z]+)(.*)\$/sD",
+"linktrail"		=> "/^((?:[a-z]|а|б|в|г|д|е|ё|ж|з|и|й|к|л|м|н|о|п|р|с|т|у|ф|х|ц|ч|ш|щ|ъ|ы|ь|э|ю|я)+)(.*)$/sD",
 "mainpage"		=> "Заглавная Страница",
 "mainpagetext"	=> "Программное обеспечение вики установлено.",
 "about"			=> "Описание",
