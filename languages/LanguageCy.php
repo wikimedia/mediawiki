@@ -117,7 +117,7 @@
 	"Booksources" => "Ffynnonellau llyfrau allanol",
         "Categories" => "Categorïau tudalennau",
         "Export" => "",
-        "Version" => "Dangos fersiwn Mediawiki"
+        "Version" => "Dangos fersiwn MediaWiki"
 );
 
 /* private */ $wgSysopSpecialPagesCy = array(

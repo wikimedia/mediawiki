@@ -66,7 +66,7 @@
 	      <li id="n-mainpage"><a href="${nav_urls/mainpage/href}"
 		i18n:translate="string:mainpage">Home</a></li>
 	      <li id="n-aboutmediawiki"><a href="${nav_urls/aboutmediawiki/href}"
-		i18n:translate="string:aboutmediawiki">About Mediawiki</a></li>
+		i18n:translate="string:aboutmediawiki">About MediaWiki</a></li>
 	      <li id="n-portal" tal:condition="nav_urls/portal/href"><a href="${nav_urls/portal/href}"
 		i18n:translate="string:portal">Community Portal</a></li>
 	      <li id="n-currentevents" tal:condition="nav_urls/currentevents/href"><a href="${nav_urls/currentevents/href}"

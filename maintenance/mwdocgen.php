@@ -29,12 +29,12 @@ $pdOutput = '/var/www/mwdoc/';
 
 /** Some more Phpdoc settings */
 //$pdOthers = ' -dn \'MediaWiki\' ';
-$pdOthers .= ' --title \'Mediawiki generated documentation\' -o \'HTML:frames:DOM/earthli\' ';
+$pdOthers .= ' --title \'MediaWiki generated documentation\' -o \'HTML:frames:DOM/earthli\' ';
 
-/** Mediawiki location */
+/** MediaWiki location */
 $mwPath = '/var/www/mediawiki/';
 
-/** Mediawiki subpaths */
+/** MediaWiki subpaths */
 $mwPathI = $mwPath.'includes/';
 $mwPathM = $mwPath.'maintenance/';
 $mwPathS = $mwPath.'skins/';
@@ -117,8 +117,8 @@ Check above for possible errors.
 END;
 
 
-# phpdoc -d ./mediawiki/includes/ ./mediawiki/maintenance/ -f ./mediawiki/*php -t ./mwdoc/ -dn 'MediaWiki' --title 'Mediawiki generated documentation' -o 'HTML:frames:DOM/earthli'
+# phpdoc -d ./mediawiki/includes/ ./mediawiki/maintenance/ -f ./mediawiki/*php -t ./mwdoc/ -dn 'MediaWiki' --title 'MediaWiki generated documentation' -o 'HTML:frames:DOM/earthli'
 
-# phpdoc -f ./mediawiki/includes/GlobalFunctions.php -t ./mwdoc/ -dn 'MediaWiki' --title 'Mediawiki generated documentation' -o 'HTML:frames:DOM/earthli'
+# phpdoc -f ./mediawiki/includes/GlobalFunctions.php -t ./mwdoc/ -dn 'MediaWiki' --title 'MediaWiki generated documentation' -o 'HTML:frames:DOM/earthli'
 
 ?>
