@@ -80,9 +80,17 @@ class MakesysopForm {
 	{
 		global $wgOut, $wgUser, $wgLang, $wpMakesysopUser, $wpSetBureaucrat;
 		global $wgDBname, $wgMemc;
-		
+		/*
+		$parts = explode( "@", $wpMakesysopUser );
+		if( count( $parts ) == 2){
+			$username = addslashes( $parts[0] );
+			$usertable = $parts[1] . "wiki.user";
+			$dbName = $parts[1] . "wiki";
+		} else {*/
 		$username = addslashes( $wpMakesysopUser );
-
+			$usertable = "user";
+			$dbName = $wgDBname;
+		#}
 		$prev = wfIgnoreSQLErrors( TRUE );
 		$res = wfQuery("SELECT user_id, user_rights FROM user WHERE user_name = '{$username}'", DB_WRITE);
 		wfIgnoreSQLErrors( $prev );
