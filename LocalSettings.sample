@@ -102,6 +102,13 @@ $wgDBminWordLen		= 3;	 # Match this to your MySQL fulltext
 # $wgDBmysql4			= true;
 # $wgEnablePersistentLC	= true;
 
+## You can customize the interface messages through the wiki;
+## see [[MediaWiki:All pages]]. (This requires a sysop account.)
+## This causes a performance hit, though; if you don't need it,
+## feel free to turn it off:
+#
+# $wgUseDatabaseMessages = false;
+
 ## Set $wgUseImageResize to true if you want to enable dynamic
 ## server side image resizing ("Thumbnails")
 # 
