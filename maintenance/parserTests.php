@@ -286,11 +286,13 @@ class ParserTest {
 			'wgStyleSheetPath' => '/skins',
 			'wgSitename' => 'MediaWiki',
 			'wgLanguageCode' => 'en',
+			'wgContLanguageCode' => 'en',
 			'wgUseLatin1' => false,
 			'wgDBprefix' => 'parsertest',
 			
 			'wgLoadBalancer' => LoadBalancer::newFromParams( $GLOBALS['wgDBservers'] ),
 			'wgLang' => new LanguageUtf8(),
+			'wgContLang' => new LanguageUtf8(),
 			'wgNamespacesWithSubpages' => array( 0 => preg_match('/\\bsubpage\\b/i', $opts)),
 			'wgMaxTocLevel' => 999,
 			);
@@ -300,6 +302,7 @@ class ParserTest {
 			$GLOBALS[$var] = $val;
 		}
 		$GLOBALS['wgLoadBalancer']->loadMasterPos();
+		$GLOBALS['wgMessageCache']->initialise( new BagOStuff(), false, 0, $GLOBALS['wgDBname'] );
 		$this->setupDatabase();
 	}
 	
