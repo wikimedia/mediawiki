@@ -1452,6 +1452,7 @@ article [[Train]].
 
 'thumbnail-more'	=> 'Enlarge',
 'missingimage'		=> "<b>Missing image</b><br /><i>$1</i>\n",
+'filemissing'		=> 'File missing',
 
 # Special:Import
 'import'	=> 'Import pages',
