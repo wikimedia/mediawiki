@@ -95,7 +95,7 @@ class Block
 
 	# Callback with a Block object for every block
 	/*static*/ function enumBlocks( $callback, $tag, $killExpired = true ) {
-		$sql = "SELECT * FROM ipblocks ORDER BY ipb_timestamp";
+		$sql = "SELECT * FROM ipblocks ORDER BY ipb_timestamp DESC";
 		$res = wfQuery( $sql, DB_READ, "Block::enumBans" );
 		$block = new Block();
 
