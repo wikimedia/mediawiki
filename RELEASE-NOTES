@@ -25,6 +25,8 @@ Fixes and tweaks:
 * Problems with <nowiki> segments in section titles etc mitigated
 * Contributions offset and minor edit bugs fixed
 * Whatlinkshere now sorted alphabetically
+* Various exciting new profiling options.
+* Debug log is off by default.
 * Various small bugs fixed.
 
 Internal changes:
