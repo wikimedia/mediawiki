@@ -184,21 +184,45 @@ class EditPage {
 	 * @todo document
 	 */
 	function importFormData( &$request ) {
-		# These fields need to be checked for encoding.
-		# Also remove trailing whitespace, but don't remove _initial_
-		# whitespace from the text boxes. This may be significant formatting.
-		$this->textbox1 = rtrim( $request->getText( 'wpTextbox1' ) );
-		$this->textbox2 = rtrim( $request->getText( 'wpTextbox2' ) );
-		$this->mMetaData = rtrim( $request->getText( 'metadata' ) );
-		$this->summary = trim( $request->getText( 'wpSummary' ) );
-
-		$this->edittime = $request->getVal( 'wpEdittime' );
-		if( !preg_match( '/^\d{14}$/', $this->edittime )) $this->edittime = '';
-
-		$this->preview = $request->getCheck( 'wpPreview' );
-		$this->save = $request->wasPosted() && !$this->preview;
-		$this->minoredit = $request->getCheck( 'wpMinoredit' );
-		$this->watchthis = $request->getCheck( 'wpWatchthis' );
+		if( $request->wasPosted() ) {
+			# These fields need to be checked for encoding.
+			# Also remove trailing whitespace, but don't remove _initial_
+			# whitespace from the text boxes. This may be significant formatting.
+			$this->textbox1  = rtrim( $request->getText( 'wpTextbox1' ) );
+			$this->textbox2  = rtrim( $request->getText( 'wpTextbox2' ) );
+			$this->mMetaData = rtrim( $request->getText( 'metadata'   ) );
+			$this->summary   =  trim( $request->getText( 'wpSummary'  ) );
+	
+			$this->edittime = $request->getVal( 'wpEdittime' );
+			if( is_null( $this->edittime ) ) {
+				# If the form is incomplete, force to preview.
+				$this->preview  = true;
+			} else {
+				# Some browsers will not report any submit button
+				# if the user hits enter in the comment box.
+				# The unmarked state will be assumed to be a save,
+				# if the form seems otherwise complete.
+				$this->preview = $request->getCheck( 'wpPreview' );
+			}
+			$this->save    = !$this->preview;
+			if( !preg_match( '/^\d{14}$/', $this->edittime )) {
+				$this->edittime = null;
+			}
+	
+			$this->minoredit = $request->getCheck( 'wpMinoredit' );
+			$this->watchthis = $request->getCheck( 'wpWatchthis' );
+		} else {
+			# Not a posted form? Start with nothing.
+			$this->textbox1  = '';
+			$this->textbox2  = '';
+			$this->mMetaData = '';
+			$this->summary   = '';
+			$this->edittime  = '';
+			$this->preview   = false;
+			$this->save      = false;
+			$this->minoredit = false;
+			$this->watchthis = false;
+		}
 
 		$this->oldid = $request->getInt( 'oldid' );
 
@@ -208,16 +232,7 @@ class EditPage {
 		$this->live = $request->getCheck( 'live' );
 	}
 
-	/**
-	 * Since there is only one text field on the edit form,
-	 * pressing <enter> will cause the form to be submitted, but
-	 * the submit button value won't appear in the query, so we
-	 * Fake it here before going back to edit().  This is kind of
-	 * ugly, but it helps some old URLs to still work.
-	 */
 	function submit() {
-		if( !$this->preview ) $this->save = true;
-
 		$this->edit();
 	}
 
@@ -659,6 +674,7 @@ END
 			}
 			$parserOutput = $wgParser->parse( $previewtext , $wgTitle, $parserOptions );
 			$wgOut->addHTML( $parserOutput->mText );
+			return $previewhead;
 		} else {
 			# if user want to see preview when he edit an article
 			if( $wgUser->getOption('previewonfirst') and ($this->textbox1 == '')) {
@@ -674,8 +690,8 @@ END
 			$previewHTML = $parserOutput->mText;
 			$wgOut->addCategoryLinks($parserOutput->getCategoryLinks());
 			$wgOut->addLanguageLinks($parserOutput->getLanguageLinks());
+			return $previewhead . $previewHTML;
 		}
-		return $previewhead . $previewHTML;
 	}
 	
 	/**
