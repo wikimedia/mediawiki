@@ -2,9 +2,13 @@
 
 function wfSpecialAsksql()
 {
-	global $wgUser, $wgOut, $action;
+	global $wgUser, $wgOut, $wgAllowSysopQueries, $action;
 
-	if ( ! $wgUser->isSysop() ) {
+	if( !$wgAllowSysopQueries ) {
+		$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
+		return;
+	}
+	if( !$wgUser->isSysop() ) {
 		$wgOut->sysopRequired();
 		return;
 	}
@@ -12,8 +16,11 @@ function wfSpecialAsksql()
 	wfCleanFormFields( $fields );
 	$f = new SqlQueryForm();
 
-	if ( "submit" == $action ) { $f->doSubmit(); }
-	else { $f->showForm( "" ); }
+	if ( "submit" == $action ) {
+		$f->doSubmit();
+	} else {
+		$f->showForm( "" );
+	}
 }
 
 class SqlQueryForm {

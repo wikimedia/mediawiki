@@ -6,7 +6,7 @@
 # like $wgScriptPath, you must also localize everything that
 # depends on it.
 
-$wgVersion			= "1.2.0";
+$wgVersion			= "1.2.1pre1";
 
 $wgSitename         = "MediaWiki"; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
@@ -20,6 +20,9 @@ $wgScriptPath	    = "/wiki";
 # make sure that LocalSettings.php is correctly set!
 $wgScript           = "{$wgScriptPath}/index.php";
 $wgRedirectScript   = "{$wgScriptPath}/redirect.php";
+
+# Whether to support URLs like index.php/Page_title
+$wgUsePathInfo		= ( strpos( php_sapi_name(), "cgi" ) === false );
 
 $wgStyleSheetPath   = "{$wgScriptPath}/style";
 $wgStyleSheetDirectory = "{$IP}/style";
@@ -44,12 +47,16 @@ $wgDBname           = "wikidb";
 $wgDBconnection     = "";
 $wgDBuser           = "wikiuser";
 $wgDBpassword       = "userpass";
-$wgDBsqluser		= "sqluser";
-$wgDBsqlpassword	= "sqlpass";
 $wgDBminWordLen     = 4;
 $wgDBtransactions	= false; # Set to true if using InnoDB tables
 $wgDBmysql4			= false; # Set to true to use enhanced fulltext search
+
+# Sysop SQL queries
+$wgAllowSysopQueries = false; # Dangerous if not configured properly.
+$wgDBsqluser		= "sqluser";
+$wgDBsqlpassword	= "sqlpass";
 $wgSqlTimeout		= 30;
+$wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
 
 # Database load balancer
 $wgDBservers		= false; # e.g. array("larousse", "pliny")
@@ -101,7 +108,6 @@ $wgDebugLogFile         = "";
 
 $wgDebugComments        = false;
 $wgReadOnly             = false;
-$wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
 $wgLogQueries           = false;
 $wgUseCategoryMagic		= false;
 $wgEnablePersistentLC	= false;	# Persistent link cache in linkscc table; FAILS on MySQL 3.x

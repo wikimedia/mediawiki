@@ -33,7 +33,7 @@ OutputPage::setEncodings(); # Not really used yet
 global $action, $title, $search, $go, $target, $printable;
 global $returnto, $diff, $oldid, $curid;
 
-if( isset( $_SERVER['PATH_INFO'] ) ) {
+if( isset( $_SERVER['PATH_INFO'] ) && $wgUsePathInfo ) {
 	$title = substr( $_SERVER['PATH_INFO'], 1 );
 } else {
 	$title = $_REQUEST['title'];
