@@ -826,6 +826,8 @@ All times shown are server time (UTC).
 ",
 "filename"		=> "Filename",
 "filedesc"		=> "Summary",
+"filestatus" => "Copyright status",
+"filesource" => "Source",
 "affirmation"	=> "I affirm that the copyright holder of this file
 agrees to license it under the terms of the $1.",
 "copyrightpage" => "Wikipedia:Copyrights",

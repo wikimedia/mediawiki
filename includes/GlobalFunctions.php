@@ -406,6 +406,8 @@ function wfImageArchiveDir( $fname )
 function wfRecordUpload( $name, $oldver, $size, $desc )
 {
 	global $wgUser, $wgLang, $wgTitle, $wgOut, $wgDeferredUpdateList;
+	global $wgUseCopyrightUpload , $wpUploadCopyStatus , $wpUploadSource ;
+	
 	$fname = "wfRecordUpload";
 
 	$sql = "SELECT img_name,img_size,img_timestamp,img_description,img_user," .
@@ -415,6 +417,14 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 	$now = wfTimestampNow();
 	$won = wfInvertTimestamp( $now );
 	
+	if ( $wgUseCopyrightUpload )
+	  {
+	    $textdesc = "== " . wfMsg ( "filedesc" ) . " ==\n" . $desc . "\n" .
+	      "== " . wfMsg ( "filestatus" ) . " ==\n" . $wpUploadCopyStatus . "\n" .
+	      "== " . wfMsg ( "filesource" ) . " ==\n" . $wpUploadSource ;
+	  }
+	else $textdesc = $desc ;
+
 	if ( 0 == wfNumRows( $res ) ) {
 		$sql = "INSERT INTO image (img_name,img_size,img_timestamp," .
 		  "img_description,img_user,img_user_text) VALUES ('" .
@@ -438,7 +448,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 			  "cur_comment,cur_user,cur_user_text,cur_timestamp,cur_is_new," .
 			  "cur_text,inverse_timestamp,cur_touched) VALUES (" .
 			  $common .
-			  ",'" . wfStrencode( $desc ) . "','{$won}','{$now}')";
+			  ",'" . wfStrencode( $textdesc ) . "','{$won}','{$now}')";
 			wfQuery( $sql, $fname );
 			$id = wfInsertId() or 0; # We should throw an error instead
 			$sql = "INSERT INTO recentchanges (rc_namespace,rc_title,
