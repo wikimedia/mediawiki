@@ -63,7 +63,10 @@ class DatabasePgsql extends Database {
 		
 		if ( '' != $dbName ) {
 			# start a database connection
-			@$this->mConn = pg_connect("host=$server dbname=$dbName user=$user password=$password");
+			if ($server!=false && $server!="") {
+				$hstring="host=$server ";
+			}
+			@$this->mConn = pg_connect("$hstring dbname=$dbName user=$user password=$password");
 			if ( $this->mConn == false ) {
 				wfDebug( "DB connection error\n" );
 				wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
