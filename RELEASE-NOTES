@@ -121,6 +121,7 @@ If upgrading from an older release, see the file UPGRADING.
 * Defer message cache initialization, shaving a few ms off file cache hits
 * Fixed Special:Allmessages when using table prefixes
 * (bug 996) Fix $wgWhitelistRead to work again
+* (bug 1028) fix page move over redirect to not fail on the unique index
 
 
 === Caveats ===

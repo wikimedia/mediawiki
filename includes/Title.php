@@ -1405,6 +1405,12 @@ class Title {
 		$dbw =& wfGetDB( DB_MASTER );
 		$links = $dbw->tableName( 'links' );
 
+		# Delete the old redirect. We don't save it to history since
+		# by definition if we've got here it's rather uninteresting.
+		# We have to remove it so that the next step doesn't trigger
+		# a conflict on the unique namespace+title index...
+		$dbw->delete( 'cur', array( 'cur_id' => $newid ), $fname );
+		
 		# Change the name of the target page:
 		$dbw->update( 'cur',
 			/* SET */ array( 
@@ -1417,12 +1423,11 @@ class Title {
 		);
 		$wgLinkCache->clearLink( $nt->getPrefixedDBkey() );
 
-		# Repurpose the old redirect. We don't save it to history since
-		# by definition if we've got here it's rather uninteresting.
-		
+		# Recreate the redirect, this time in the other direction.
 		$redirectText = $wgMwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
-		$dbw->update( 'cur',
+		$dbw->insert( 'cur',
 			/* SET */ array(
+				'cur_id' => $newid,
 				'cur_touched' => $dbw->timestamp($now),
 				'cur_timestamp' => $dbw->timestamp($now),
 				'inverse_timestamp' => $won,
@@ -1438,7 +1443,6 @@ class Title {
 				'cur_is_redirect' => 1,
 				'cur_is_new' => 1
 			),
-			/* WHERE */ array( 'cur_id' => $newid ),
 			$fname
 		);
 		
