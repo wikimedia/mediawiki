@@ -167,6 +167,23 @@ li#pt-login {
 #footer {
     clear: both;
 }
+* html #footer {
+    margin-left: 0;
+    margin-right: 13.6em;
+    border-left: 0;
+    border-right: 1px solid #fabd23;
+} 
+* html #column-content { 
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+}
+* html #column-content #content {
+    margin-left: 0;
+    margin-top: 3em;
+}
+* html #column-one { right: 0; }
+
 /* js pref toc */
 #preftoc { float: right; }
 /* workaround for moz bug, displayed bullets on left side */
@@ -174,6 +191,6 @@ li#pt-login {
 #prefcontrol { float: right; }
 fieldset.prefsection,
 fieldset.operaprefsection { 
+    margin-left: 0 !important;
     margin-right: 15em;
-    margin-left: 0;
 }
