@@ -1968,6 +1968,10 @@ class Language {
     function getVariants() {
         return array();
     }
+
+    function getPreferredVariant() {
+        return false;
+    }
 }
 
 # This should fail gracefully if there's not a localization available
