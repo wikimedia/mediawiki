@@ -1,5 +1,12 @@
 <?
 
+if (!extension_loaded('mysql')) {
+    if (!dl('mysql.so')) {
+        print "Could not load MySQL driver! Please compile ".
+              "php --with-mysql or install the mysql.so module.\n";
+	exit;
+    }
+}
 # Install software and create new empty database.
 #
 
