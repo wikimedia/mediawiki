@@ -25,6 +25,8 @@
  */
 
 /** */
+$optionsWithArgs = array('regex');
+
 require_once( 'commandLine.inc' );
 require_once( 'languages/LanguageUtf8.php' );
 
@@ -37,6 +39,7 @@ class ParserTest {
 	 * @access public
 	 */
 	function ParserTest() {
+		global $options;
 		if( isset( $_SERVER['argv'] ) && in_array( '--color', $_SERVER['argv'] ) ) {
 			$this->color = true;
 		} elseif( isset( $_SERVER['argv'] ) && in_array( '--color=yes', $_SERVER['argv'] ) ) {
@@ -54,6 +57,14 @@ class ParserTest {
 			$this->showDiffs = false;
 		} else {
 			$this->showDiffs = true;
+		}
+
+		if (isset($options['regex'])) {
+			$this->regex = $options['regex'];
+		}
+		else {
+			# Matches anything
+			$this->regex = '';
 		}
 	}
 
@@ -110,12 +121,6 @@ class ParserTest {
 					continue;
 				}
 				if( $section == 'end' ) {
-					if  (isset ($data['disabled'])) {
-						# disabled test
-						$data = array();
-						$section = null;
-						continue;
-					}
 					if( !isset( $data['test'] ) ) {
 						die( "'end' without 'test' at line $n\n" );
 					}
@@ -130,6 +135,13 @@ class ParserTest {
 					}
 					else {
 						$data['options'] = $this->chomp( $data['options'] );
+					}
+					if (preg_match('/\\bdisabled\\b/i', $data['options'])
+						|| !preg_match("/{$this->regex}/i", $data['test'])) {
+						# disabled test
+						$data = array();
+						$section = null;
+						continue;
 					}
 					if( $this->runTest(
 						$this->chomp( $data['test'] ),
@@ -182,7 +194,7 @@ class ParserTest {
 		$user =& new User();
 		$options =& ParserOptions::newFromUser( $user );
 
-		if (preg_match('/math/i', $opts)) {
+		if (preg_match('/\\bmath\\b/i', $opts)) {
 			# XXX this should probably be done by the ParserOptions
 			require_once('Math.php');
 
@@ -199,10 +211,10 @@ class ParserTest {
 		$parser =& new Parser();
 		$title =& Title::makeTitle( NS_MAIN, $titleText );
 
-		if (preg_match('/pst/i', $opts)) {
+		if (preg_match('/\\bpst\\b/i', $opts)) {
 			$out = $parser->preSaveTransform( $input, $title, $user, $options );
 		}
-		else if (preg_match('/msg/i', $opts)) {
+		else if (preg_match('/\\bmsg\\b/i', $opts)) {
 			$out = $parser->transformMsg( $input, $options );
 		}
 		else {
@@ -212,10 +224,10 @@ class ParserTest {
 			$op = new OutputPage();
 			$op->replaceLinkHolders($out);
 
-			if (preg_match('/ill/i', $opts)) {
+			if (preg_match('/\\bill\\b/i', $opts)) {
 				$out .= implode( ' ', $output->getLanguageLinks() );
 			}	
-			if (preg_match('/cat/i', $opts)) {
+			if (preg_match('/\\bcat\\b/i', $opts)) {
 				$out .= implode( ' ', $output->getCategoryLinks() );
 			}
 
