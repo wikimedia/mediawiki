@@ -356,14 +356,14 @@ class EditPage {
 		}
 		$wgOut->addHTML( "
 {$toolbar}
-<form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
+<div id=\"tawrapper\"><form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
 enctype=\"application/x-www-form-urlencoded\">
 {$commentsubject}
 <textarea tabindex='1' accesskey=\",\" name=\"wpTextbox1\" rows='{$rows}'
 cols='{$cols}'{$ew}>" .
 htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 "
-</textarea>
+</textarea></div>
 <br />{$editsummary}
 {$checkboxhtml}
 <input tabindex='5' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
