@@ -118,7 +118,7 @@
 	'mt' => 'bil-Malti',	# Maltese
 	'mus' => 'Muscogee',
 	'my' => 'Myanmasa',	# Burmese
-	'na' => 'Nauri',		# Nauruan
+	'na' => 'Ekakair&#361; Naoero',		# Nauruan
 	'nb' => 'norsk (bokm&aring;l)',		# Norwegian (Bokmal)
 	'nah' => 'Nahuatl',
 	'nds' => 'Plattd&uuml;&uuml;tsch',	# Low German ''or'' Low Saxon
