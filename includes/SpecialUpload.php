@@ -138,6 +138,9 @@ class UploadForm {
 				if ( $wgUploadSizeWarning && ( $this->mUploadSize > $wgUploadSizeWarning ) ) {
 					$warning .= '<li>'.wfMsg( "largefile" ).'</li>';
 				}
+				if ( $this->mUploadSize == 0 ) {
+					$warning .= '<li>'.wfMsg( "emptyfile" ).'</li>';
+				}
 				if( $nt->getArticleID() ) {
 					$sk = $wgUser->getSkin();
 					$dname = $wgLang->getNsText( Namespace::getImage() ) . ":{$this->mUploadSaveName}";
