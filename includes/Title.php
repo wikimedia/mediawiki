@@ -1698,5 +1698,34 @@ class Title {
 	function oldCond() {
 		return array( 'old_namespace' => $this->mNamespace, 'old_title' => $this->mDbkeyform );
 	}
+
+	/**
+	 * Get the revision ID of the previous revision
+	 *
+	 * @param integer $revision  Revision ID. Get the revision that was before this one.
+	 * @return interger $oldrevision|false
+	 */
+	function getPreviousRevisionID( $revision ) {
+		$dbr =& wfGetDB( DB_SLAVE );
+		return $dbr->selectField( 'old', 'old_id',
+			"old_title='" . $this->getDBkey() . "'" .
+			' AND old_namespace=' . $this->getNamespace() .
+			" AND old_id<{$revision} ORDER BY old_id DESC" );
+	}
+
+	/**
+	 * Get the revision ID of the next revision
+	 *
+	 * @param integer $revision  Revision ID. Get the revision that was after this one.
+	 * @return interger $oldrevision|false
+	 */
+	function getNextRevisionID( $revision ) {
+		$dbr =& wfGetDB( DB_SLAVE );
+		return $dbr->selectField( 'old', 'old_id',
+			"old_title='" . $this->getDBkey() . "'" .
+			' AND old_namespace=' . $this->getNamespace() .
+			" AND old_id>{$revision} ORDER BY old_id" );
+	}
+
 }
 ?>
