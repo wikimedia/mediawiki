@@ -804,7 +804,6 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	fwrite( $yourtextFile, $yours ); fclose( $yourtextFile );
 
 	# Check for a conflict
-	#$cmd = "{$wgDiff3} -a --overlap-only $mytextName $oldtextName $yourtextName";
     $cmd = wfEscapeShellArg( $wgDiff3 ) . " -a --overlap-only " .
       wfEscapeShellArg( $mytextName ) . " " .
       wfEscapeShellArg( $oldtextName ) . " " .
@@ -819,7 +818,6 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	pclose( $handle );
 
 	# Merge differences
-	#$cmd = "{$wgDiff3} -a -e --merge $mytextName $oldtextName $yourtextName";
 	$cmd = wfEscapeShellArg( $wgDiff3 ) . " -a -e --merge " . 
 	  wfEscapeShellArg( $mytextName, $oldtextName, $yourtextName );
 	$handle = popen( $cmd, "r" );
@@ -832,7 +830,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 		$result .= $data;
 	} while ( true );
 	pclose( $handle );
-	#unlink( $mytextName ); unlink( $oldtextName ); unlink( $yourtextName );
+	unlink( $mytextName ); unlink( $oldtextName ); unlink( $yourtextName );
 	return ! $conflict;
 }
 
