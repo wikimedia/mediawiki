@@ -114,6 +114,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		case "unprotect":
 		case "validate":
 		case "info":
+		case "markpatrolled":
 			$wgArticle->$action();
 			break;
 		case "print":
@@ -146,7 +147,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 			}
 			require_once( "includes/EditPage.php" );
 			$editor = new EditPage( $wgArticle );
-			$editor->$action();
+			$editor->submit();
 			break;
 		case "history":
 			if ($_SERVER["REQUEST_URI"] == $wgTitle->getInternalURL('action=history')) {
@@ -173,7 +174,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 }
 
 # Deferred updates aren't really deferred anymore. It's important to report errors to the
-# user, and that means doing this before OutputPage::output(). Note that for page saves, 
+# user, and that means doing this before OutputPage::output(). Note that for page saves,
 # the client will wait until the script exits anyway before following the redirect.
 foreach ( $wgDeferredUpdateList as $up ) {
 	$up->doUpdate();
