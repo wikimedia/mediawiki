@@ -344,6 +344,15 @@ class Title {
 		}
 		return $this->mPrefixedText;
 	}
+	
+	# As getPrefixedText(), plus fragment.
+	function getFullText() {
+		$text = $this->getPrefixedText();
+		if( '' != $this->mFragment ) {
+			$text .= '#' . $this->mFragment;
+		}
+		return $text;
+	}
 
 	# Get a URL-encoded title (not an actual URL) including interwiki
 	function getPrefixedURL()
@@ -370,13 +379,19 @@ class Title {
 		if ( "" == $this->mInterwiki ) {
 			$p = $wgArticlePath;
 			return $wgServer . $this->getLocalUrl( $query );
+		} else {
+			$baseUrl = $this->getInterwikiLink( $this->mInterwiki );
+			$namespace = $wgLang->getNsText( $this->mNamespace );
+			if ( "" != $namespace ) {
+				# Can this actually happen? Interwikis shouldn't be parsed.
+				$namepace .= ":";
+			}
+			$url = str_replace( "$1", $namespace . $this->mUrlform, $baseUrl );
+			if ( '' != $this->mFragment ) {
+				$url .= '#' . $this->mFragment;
+			}
+			return $url;
 		}
-		
-		$p = $this->getInterwikiLink( $this->mInterwiki );
-		$n = $wgLang->getNsText( $this->mNamespace );
-		if ( "" != $n ) { $n .= ":"; }
-		$u = str_replace( "$1", $n . $this->mUrlform, $p );
-		return $u;
 	}
 
 	# Get a URL with an optional query string, no fragment
@@ -746,6 +761,8 @@ class Title {
 		# Initial capital letter
 		if( $wgCapitalLinks && $this->mInterwiki == "") {
 			$t = $wgLang->ucfirst( $r );
+		} else {
+			$t = $r;
 		}
 		
 		# Fill fields
