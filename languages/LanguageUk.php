@@ -821,8 +821,8 @@ $3...
 "protectlogpage" => "Журнал_захисту",
 "protectlogtext" => "Нижче наведено список установок й зняття захисту з сторінки.
 Додаткова інформація: [[$wgMetaNamespace:Захищена стаття]].",
-"protectedarticle" => "захист на [[$1]] встановлено",
-"unprotectedarticle" => "захист з [[$1]] знято",
+"protectedarticle" => "захист на $1 встановлено",
+"unprotectedarticle" => "захист з $1 знято",
 
 # Undelete
 "undelete" => "Відновити вилучену статтю",

@@ -824,7 +824,7 @@ to set user preferences.",
 'printsubtitle' => "(From http://is.wikipedia.org)",
 'protect' => "Vernda",
 #'protectcomment' => "Reason for protecting",
-#'protectedarticle' => "protected [[$1]]",
+#'protectedarticle' => "protected $1",
 #'protectedpage' => "Protected page",
 'protectedpagewarning' => "WARNING:  This page has been locked so that only
 users with sysop privileges can edit it. Be sure you are following the
@@ -1018,7 +1018,7 @@ See [[Wikipedia:Deletion_log]] for a record of recent deletions and restorations
 #'unlockdbtext' => "Unlocking the database will restore the ability of all users to edit pages, change their preferences, edit their watchlists, and other things requiring changes in the database.  Please confirm that this is what you intend to do.",
 'unprotect' => "Afvernda",
 #'unprotectcomment' => "Reason for unprotecting",
-#'unprotectedarticle' => "unprotected [[$1]]",
+#'unprotectedarticle' => "unprotected $1",
 #'unprotectsub' => "(Unprotecting \"$1\")",
 #'unprotectthispage' => "Unprotect this page",
 'unusedimages' => "Ónotaðar skrár",
