@@ -2,16 +2,17 @@
 # Tentative to make a skin for wikimedia.org
 # $Id$
 
-require_once( 'Skin.php' );
 require_once($IP.'/includes/SkinPHPTal.php');
 
 $wgExtraSkins['wikimediawiki'] = 'Wikimediawiki';
 
+require_once('MonoBook.php');
+
 class SkinWikimediawiki extends SkinMonoBook {
 	function initPage( &$out ) {
 		SkinPHPTal::initPage( $out );
-		$this->skinname = "wikimediawiki";
-		$this->template = "xhtml_slim_wikimediawiki";
+		$this->skinname = 'wikimediawiki';
+		$this->template = 'WikimediaWiki';
 	}
 
 	# build array of common navigation links
