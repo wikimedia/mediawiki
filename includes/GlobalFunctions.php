@@ -703,7 +703,7 @@ function wfClientAcceptsGzip() {
 			'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
 			$_SERVER['HTTP_ACCEPT_ENCODING'],
 			$m ) ) {
-			if( ( $m[1] == 'q' ) && ( $m[2] == 0 ) ) return false;
+			if( isset( $m[2] ) && ( $m[1] == 'q' ) && ( $m[2] == 0 ) ) return false;
 			wfDebug( " accepts gzip\n" );
 			return true;
 		}
