@@ -1093,7 +1093,7 @@ cl_sortkey" ;
 			$iw = $nt->getInterWiki();
 			if( $noforce ) {
 				if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgLang->getLanguageName( $iw ) ) {
-					array_push( $this->mOutput->mLanguageLinks, $nt->getPrefixedText() );
+					array_push( $this->mOutput->mLanguageLinks, $nt->getFullText() );
 					$tmp = $prefix . $trail ;
 					$s .= (trim($tmp) == '')? '': $tmp;
 					continue;
