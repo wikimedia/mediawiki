@@ -167,13 +167,10 @@ class MovePageForm {
 		if ( ( 1 == $wpMovetalk ) &&
 			 ( ! Namespace::isTalk( $this->ons ) ) &&
 			 ( $this->ons == $this->nns ) ) {
-
+			
 			$this->ons = $this->nns = Namespace::getTalk( $this->ons );
-
-			$this->ot = Title::newFromText( Title::makeName(
-			  $this->ons, $wpOldTitle ) );
-			$this->nt = Title::newFromText( Title::makeName(
-			  $this->nns, $wpNewTitle ) );
+			$this->ot = Title::makeTitle( $this->ons, $this->ot->getDBkey() );
+			$this->nt = Title::makeTitle( $this->nns, $this->nt->getDBkey() );
 
 			# odt, ndt, ofx, nfx remain the same
 
