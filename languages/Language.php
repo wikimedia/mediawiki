@@ -526,6 +526,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'userexists'	=> 'The user name you entered is already in use. Please choose a different name.',
 'youremail'		=> 'Your email*',
 'yourrealname'		=> 'Your real name*',
+'yourlanguage'	=> 'Interface language',
 'yournick'		=> 'Your nickname (for signatures)',
 'emailforlost'	=> "Fields marked with a star (*) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.<br /><br />Your real name, if you choose to provide it, will be used for giving you attribution for your work.",
