@@ -5,10 +5,12 @@ class SkinNostalgia extends Skin {
 
 	function initPage()
 	{
-		global $wgOut, $wgStyleSheetPath;
+		# ...
+	}
 
-		$wgOut->addLink( "stylesheet", "",
-		  "$wgStyleSheetPath/nostalgia.css" );
+	function getStylesheet()
+	{
+		return "nostalgia.css";
 	}
 
 	function doBeforeContent()
