@@ -97,7 +97,7 @@ function rebuildLinkTables()
 		$numlinks = preg_match_all( "/\\[\\[([{$tc}]+)(]|\\|)/", $text,
 		  $m, PREG_PATTERN_ORDER );
 
-		$seen_links = array(); // seen links in this article
+		$seen_dbtitles = array(); // seen links (normalized and with ns, see below) 
 		$titles_ready_for_insertion = array();
 		$titles_needing_curdata = array();
 		$titles_needing_curdata_pos = array();
@@ -105,12 +105,6 @@ function rebuildLinkTables()
 
 		for ( $i = 0 ; $i < $numlinks; ++$i ) {
 			$link = $m[1][$i];
-
-			// We're only interested in the link once per article
-			if( isset( $seen_links[$link] ) )
-				continue;
-			$seen_links[$link] = 1;
-
 			if( preg_match( '/^(http|https|ftp|mailto|news):/', $m[1][$i] ) ) {
 				# an URL link; not for us!
 				continue;
@@ -119,13 +113,26 @@ function rebuildLinkTables()
 			# FIXME: Handle subpage links
 			$nt = $titleCache->get( $link );
 			if( $nt != false ){
-				$titles_ready_for_insertion[] = $nt;				
+				// Only process each unique link once per page
+				$nt_key = $nt->getDBkey() . $nt->getNamespace();
+				if( isset( $seen_dbtitles[$nt_key] ) )
+					continue;
+				$seen_dbtitles[$nt_key] = 1;
+
+				$titles_ready_for_insertion[] = $nt;
 			} else {
 				$nt = Title::newFromText( $link );
 				if (! $nt) {
-					print "\nerror in '$ns:{$from_full_title}': '$link'\n";
+					print "\nInvalid link in page '$ns:{$from_full_title}': '$link'\n";
 					continue;
 				}
+				
+				// Only process each unique link once per page
+				$nt_key = $nt->getDBkey() . $nt->getNamespace();
+				if( isset( $seen_dbtitles[$nt_key] ) )
+					continue;
+				$seen_dbtitles[$nt_key] = 1;
+
 				if( $nt->getInterwiki() != "" ) {
 					# Interwiki links are not stored in the link tables
 					continue;
@@ -152,8 +159,7 @@ function rebuildLinkTables()
 			$parts = array();
 			foreach ($titles_needing_curdata as $nt ) {
 				$parts[] = " (cur_namespace = " . $nt->getNamespace() . " AND " .
-					"cur_title='" . wfStrencode( $nt->getDBkey() ) . "' AND ".
-					"cur_namespace=" . intval( $nt->getNamespace() ) . ")";
+					"cur_title='" . wfStrencode( $nt->getDBkey() ) . "')";
 			}
 			$sql = "SELECT cur_title, cur_id FROM cur WHERE " . implode(" OR ", $parts);
 			$res = wfQuery( $sql, DB_WRITE );
@@ -169,13 +175,15 @@ function rebuildLinkTables()
 		}
 
 		foreach ( $titles_ready_for_insertion as $nt ) {
-			$dest = addslashes( $nt->getPrefixedDBkey() );
+			$dest_noslashes = $nt->getPrefixedDBkey();
+			$dest = addslashes( $dest_noslashes ); 
 			$dest_id = $nt->getArticleID();
 			$from = $from_full_title_with_slashes;
 
 			# print "\nLINK '$from_full_title' ($from_id) -> '$dest' ($dest_id)\n";
-			if ( 0 == strncmp( "$ins:", $from_full_title, $inslen ) ) { 
-				$iname = addslashes( substr( $from_full_title, $inslen ) );
+
+			if ( 0 == strncmp( "$ins:", $dest_noslashes, $inslen ) ) { 
+				$iname = addslashes( substr( $dest_noslashes, $inslen ) );
 				$imagelinks_inserter->insert( "('{$from}','{$iname}')" );
 			} else if ( 0 == $dest_id ) {
 				$brokenlinks_inserter->insert( "({$from_id},'{$dest}')" );
