@@ -143,7 +143,7 @@ Or for Apache 2.0 module:
   Update httpd.conf as needed for your site.  For example:
 
   <IfModule mod_php4.c>
-    AddType application/x-httpd-php .php .php4 .phtml
+    AddType application/x-httpd-php .php .php4
     AddType application/x-httpd-php-source .phps
   </IfModule>
   <IfModule mod_php4.c>
@@ -156,7 +156,7 @@ Or for Apache 2.0 module:
   </Directory>
   RewriteEngine On
   RewriteMap ampescape int:ampescape
-  RewriteRule ^/wiki/(.*)$ /wiki.phtml?title=${ampescape:$1} [L]
+  RewriteRule ^/wiki/(.*)$ /index.php?title=${ampescape:$1} [L]
 
   It is *seriously* recommended that you configure the webserver
   to disable running of PHP scripts except in the script directories

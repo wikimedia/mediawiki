@@ -2,7 +2,7 @@ This is a brief overview of the new design.
 
 Primary source files/objects:
 
-  wiki.phtml
+  index.php
     Main script. It creates the necessary global objects and parses
     the URL to determine what to do, which it then generally passes
     off to somebody else (depending on the action to be taken).

@@ -591,7 +591,7 @@ continue to be displayed as if you were still logged in, until you clear
 your browser cache\n",
 
 "welcomecreation" => "<h2>Welcome, $1!</h2><p>Your account has been created.
-Don't forget to personalize your wikipedia preferences.",
+Don't forget to change your wikipedia preferences.",
 
 "loginpagetitle" => "User login",
 "yourname"		=> "Your user name",

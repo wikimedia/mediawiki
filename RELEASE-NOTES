@@ -18,6 +18,7 @@ New features in 1.2:
 * Optional compression of old revision text (requires zlib support)
 * Fuzzy title search (experimental, requires memcached)
 * Page rendering cache (experimental)
+* JavaScript editing toolbar (off by default in user preferences)
 
 Fixes and tweaks:
 * Should work out of the box on MySQL 3.2.x again. On 4.x set
@@ -29,10 +30,10 @@ Fixes and tweaks:
 
 === IMPORTANT BEHAVIOR CHANGES: ===
 
-* wiki.phtml and redirect.phtml are now installed as wiki.php and redirect.php
-  by default. If upgrading from an old installation or doing a manual install,
-  do check $wgScriptExtension and the $wgScript variables to make sure
-  everything's correct one way or the other.
+* wiki.phtml and redirect.phtml are now installed as index.php and redirect.php
+  by default. If you are upgrading from an older version, you will have to
+  change $wgScript in LocalSettings.php to point to index.php and
+  redirect.php.
 
 === Database changes ===
 
