@@ -198,6 +198,16 @@ if( version_compare( phpversion(), "5.0", "lt" ) ) {
 }
 print "</li>\n";
 
+if( ini_get( "register_globals" ) ) {
+	?>
+	<li><b class='error'>Warning:</b> <b>PHP's
+	<tt><a href="http://php.net/register_globals">register_globals</a></tt>
+	option is enabled.</b> MediaWiki will work correctly, but this setting
+	increases your exposure to potential security vulnerabilities in PHP-based
+	software running on your server. <b>You should disable it if you are able.</b></li>
+	<?php
+}
+
 if( ini_get( "safe_mode" ) ) {
 	?>
 	<li class='error'><b>Warning: PHP's
@@ -332,7 +342,7 @@ if( $conf->SysopPass != $conf->SysopPass2 ) {
 	$errs["SysopPass2"] = "Passwords don't match!";
 }
 
-$conf->License = importPost( "License", "none" );
+$conf->License = importRequest( "License", "none" );
 if( $conf->License == "gfdl" ) {
 	$conf->RightsUrl = "http://www.gnu.org/copyleft/fdl.html";
 	$conf->RightsText = "GNU Free Documentation License 1.2";
@@ -341,10 +351,10 @@ if( $conf->License == "gfdl" ) {
 } elseif( $conf->License == "none" ) {
 	$conf->RightsUrl = $conf->RightsText = $conf->RightsCode = $conf->RightsIcon = "";
 } else {
-	$conf->RightsUrl = importPost( "RightsUrl", "" );
-	$conf->RightsText = importPost( "RightsText", "" );
-	$conf->RightsCode = importPost( "RightsCode", "" );
-	$conf->RightsIcon = importPost( "RightsIcon", "" );
+	$conf->RightsUrl = importRequest( "RightsUrl", "" );
+	$conf->RightsText = importRequest( "RightsText", "" );
+	$conf->RightsCode = importRequest( "RightsCode", "" );
+	$conf->RightsIcon = importRequest( "RightsIcon", "" );
 }
 
 if( $conf->posted && ( 0 == count( $errs ) ) ) {
@@ -642,11 +652,16 @@ if( count( $errs ) ) {
 			$icon = urlencode( "$wgServer$wgUploadPath/wiki.png" );
 			$ccApp = htmlspecialchars( "http://creativecommons.org/license/?partner=$partner&exit_url=$exit&partner_icon_url=$icon" );
 			print "<a href=\"$ccApp\">choose</a>";
-			?></li>
-		<li><?php aField( $conf, "RightsUrl", $conf->RightsUrl, "hidden" ); ?></li>
-		<li><?php aField( $conf, "RightsText", $conf->RightsText, "hidden" ); ?></li>
-		<li><?php aField( $conf, "RightsCode", $conf->RightsCode, "hidden" ); ?></li>
-		<li><?php aField( $conf, "RightsIcon", $conf->RightsIcon, "hidden" ); ?></li>
+			?> (link will wipe out any other data in this form!)
+		<?php if( $conf->License == "cc" ) { ?>
+			<ul>
+				<li><?php aField( $conf, "RightsIcon", "<img src=\"" . htmlspecialchars( $conf->RightsIcon ) . "\" alt='icon' />", "hidden" ); ?></li>
+				<li><?php aField( $conf, "RightsText", htmlspecialchars( $conf->RightsText ), "hidden" ); ?></li>
+				<li><?php aField( $conf, "RightsCode", "code: " . htmlspecialchars( $conf->RightsCode ), "hidden" ); ?></li>
+				<li><?php aField( $conf, "RightsUrl", "<a href=\"" . htmlspecialchars( $conf->RightsUrl ) . "\">" . htmlspecialchars( $conf->RightsUrl ) . "</a>", "hidden" ); ?></li>
+			</ul>
+		<?php } ?>
+			</li>
 		</ul>
 	</dd>
 	<dt>
@@ -883,9 +898,9 @@ function dieout( $text ) {
 	die( $text . "\n\n</body>\n</html>" );
 }
 
-function importPost( $name, $default = "" ) {
-	if( isset( $_POST[$name] ) ) {
-		$retval = $_POST[$name];
+function importVar( &$var, $name, $default = "" ) {
+	if( isset( $var[$name] ) ) {
+		$retval = $var[$name];
 		if ( get_magic_quotes_gpc() ) {
 			$retval = stripslashes( $retval );
 		}
@@ -893,6 +908,14 @@ function importPost( $name, $default = "" ) {
 		$retval = $default;
 	}
 	return $retval;
+}
+
+function importPost( $name, $default = "" ) {
+	return importVar( $_POST, $name, $default );
+}
+
+function importRequest( $name, $default = "" ) {
+	return importVar( $_REQUEST, $name, $default );
 }
 
 function aField( &$conf, $field, $text, $type = "", $value = "" ) {
