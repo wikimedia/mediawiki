@@ -73,7 +73,7 @@
 		i18n:translate="string:currentevents">Last News</a></li>
 	      <li id="n-projects" tal:condition="nav_urls/projects/href"><a href="${nav_urls/projects/href}"
 		i18n:translate="string:projects">Our projects</a></li>
-	      <li id="n-recentchanges"tal:condition="nav_urls/recentchanges/href"><a href="${nav_urls/recentchanges/href}"
+	      <li id="n-recentchanges" tal:condition="nav_urls/recentchanges/href"><a href="${nav_urls/recentchanges/href}"
 		i18n:translate="string:recentchanges">Recent Changes</a></li>
 	      <li id="n-randompage" tal:condition="nav_urls/randompage/href"><a href="${nav_urls/randompage/href}"
 		i18n:translate="string:randompage">Random Page</a></li>
