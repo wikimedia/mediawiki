@@ -326,7 +326,7 @@ class Database {
 		return !!$this->query( $sql, DB_MASTER, $fname );
 	}
 	
-	function getField( $table, $var, $cond='', $fname = 'Database::get', $options = array() ) {
+	function getField( $table, $var, $cond='', $fname = 'Database::getField', $options = array() ) {
 		return $this->selectField( $table, $var, $cond, $fname = 'Database::get', $options = array() );
 	}
 

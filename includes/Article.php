@@ -663,7 +663,7 @@ class Article {
 		if ( !is_null( $diff ) ) {
 			require_once( 'DifferenceEngine.php' );
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-			$de = new DifferenceEngine( intval($oldid), intval($diff), intval($rcid) );
+			$de = new DifferenceEngine( $oldid, $diff, $rcid );
 			$de->showDiffPage();
 			wfProfileOut( $fname );
 			if( $diff == 0 ) {
