@@ -191,7 +191,11 @@ class Image
 	function getSize()
 	{
 		$st = stat( $this->getImagePath() );
-		return $st['size'];
+		if( $st ) {
+			return $st['size'];
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -554,7 +558,8 @@ class Image
 	function getFullPath( $fromSharedRepository = false )
 	{
 		global $wgUploadDirectory, $wgSharedUploadDirectory;
-	
+		global $wgHashedUploadDirectory, $wgHashedSharedUploadDirectory;
+		
 		$dir      = $fromSharedRepository ? $wgSharedUploadDirectory :
 		                                    $wgUploadDirectory;
 		$ishashed = $fromSharedRepository ? $wgHashedSharedUploadDirectory : 

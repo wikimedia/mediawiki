@@ -177,9 +177,18 @@ class User {
 	 * a language object.
 	 */	
 	function loadDefaultFromLanguage(){
-		$fname = 'User::loadDefaultFromLanguage';
-		wfProfileIn( $fname );
-		
+		$this->mOptions = User::getDefaultOptions();
+	}
+	
+	/**
+	 * Combine the language default options with any site-specific options
+	 * and add the default language variants.
+	 *
+	 * @return array
+	 * @static
+	 * @access private
+	 */
+	function getDefaultOptions() {
 		/**
 		 * Site defaults will override the global/language defaults
 		 */
@@ -193,9 +202,24 @@ class User {
 		$defOpt['variant'] = $variant;
 		$defOpt['language'] = $variant;
 		
-		$this->mOptions = $defOpt;
-		
-		wfProfileOut();
+		return $defOpt;
+	}
+	
+	/**
+	 * Get a given default option value.
+	 *
+	 * @param string $opt
+	 * @return string
+	 * @static
+	 * @access public
+	 */
+	function getDefaultOption( $opt ) {
+		$defOpts = User::getDefaultOptions();
+		if( isset( $defOpts[$opt] ) ) {
+			return $defOpts[$opt];
+		} else {
+			return '';
+		}
 	}
 
 	/**
