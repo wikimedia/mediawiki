@@ -842,14 +842,7 @@ $wgBrowserBlackList = array(
 # $wgLocaltimezone = 'PST8PDT';
 # $wgLocaltimezone = 'Europe/Sweden';
 # $wgLocaltimezone = 'CET';
-
-# User level management
-# The number is the database id of a group you want users to be attached by
-# default. A better interface should be coded [av]
-$wgAnonGroupId = 1;
-$wgLoggedInGroupId = 2;
-
-$wgWhitelistRead = array ( ':Accueil', ':Main_Page');
+$wgLocaltimezone = null;
 
 /*
 When translating messages with wfMsg(), it is not always clear what should
