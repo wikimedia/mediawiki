@@ -11,6 +11,7 @@
 # encapsulates some of the magic-ness.
 #
 /* private */ $wgNamespaceNamesMs = array(
+	-2	=> "Media",
 	-1	=> "Istimewa", #Special
 	0	=> "",
 	1	=> "Perbualan",#Talk
