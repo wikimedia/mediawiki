@@ -513,8 +513,16 @@ class Parser
 		if ( count ( $children ) > 0 )
 		{
 			# Showing subcategories
-			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n"
-				. wfMsg( 'subcategorycount', count( $children ) );
+			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n";
+			
+			$numchild = count( $children );
+			if($numchild == 1) {
+				$r .= wfMsg( 'subcategorycount1', 1 );
+			} else {
+				$r .= wfMsg( 'subcategorycount' , $numchild );
+			}
+			unset($numchild);
+						
 			if ( count ( $children ) > 6 ) {
 
 				// divide list into three equal chunks
@@ -569,9 +577,16 @@ class Parser
 				$r .= '</ul>';
 			}
 		} # END of if ( count($children) > 0 )
+		
+		$r .= '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n";
 
-		$r .= '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n" .
-			wfMsg( 'categoryarticlecount', count( $articles ) );
+		$numart = count( $articles );
+		if($numart == 1) {
+			$r .= wfMsg( 'categoryarticlecount1', 1 );
+		} else {
+			$r .= wfMsg( 'categoryarticlecount' , $numart );
+		}
+		unset($numart);
 
 		# Showing articles in this category
 		if ( count ( $articles ) > 6) {
