@@ -92,12 +92,12 @@ $wgRedirectScript   = "{$wgScriptPath}/redirect.php";
  * style path as seen by users
  * @global string $wgStylePath
  */
-$wgStylePath   = "{$wgScriptPath}/style";
+$wgStylePath   = "{$wgScriptPath}/skins";
 /**
  * filesystem stylesheets directory
  * @global string $wgStyleDirectory
  */
-$wgStyleDirectory = "{$IP}/style";
+$wgStyleDirectory = "{$IP}/skins";
 $wgStyleSheetPath = &$wgStylePath;
 $wgStyleSheetDirectory = &$wgStyleDirectory;
 $wgArticlePath      = "{$wgScript}?title=$1";
