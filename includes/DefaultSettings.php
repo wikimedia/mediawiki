@@ -19,7 +19,7 @@ if( defined( 'MEDIAWIKI' ) ) {
  * MediaWiki version number
  * @global string $wgVersion
  */
-$wgVersion			= '1.4.0';
+$wgVersion			= '1.4.1';
 
 /** 
  * Name of the site.
