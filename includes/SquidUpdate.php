@@ -205,19 +205,27 @@ class SquidUpdate {
 		wfProfileOut( $fname );
 	}
 
-	function fastPurge( $urlArr ) {
+	/*static*/ function fastPurge( $urlArr ) {
 		global $wgSquidServers;
 		foreach ( $wgSquidServers as $server ) {
-			list($server, $port) = explode(':', $server)
+			list($server, $port) = explode(':', $server);
+			if(!isset($port)) $port = 80;
+			
 			$conn = @pfsockopen( $server, $port, $error, $errstr, 3 );
 			if ( $conn ) {
+				wfDebug( 'Purging ' . count($urlArr) . " URL(s) on server $server:$port..." );
 				$msg = '';
-				foreach ( $this->urlArr as $url ) {
-					$msg .= 'PURGE ' . $firsturl . " HTTP/1.0\r\n".
+				foreach ( $urlArr as $url ) {
+					$msg .= 'PURGE ' . $url . " HTTP/1.0\r\n".
 					"Connection: Keep-Alive\r\n\r\n";
 				}
-				@fputs( $msg );
+				wfDebug( "\n$msg" );
+				@fputs( $conn, $msg );
+				wfDebug( "done\n" );
+			} else {
+				wfDebug( "SquidUpdate::fastPurge(): Error connecting to $server:$port\n" );
 			}
+
 		}
 	}
 
