@@ -1586,6 +1586,7 @@ title. Please merge them manually.',
 '1movedto2_redir' => '[[$1]] moved to [[$2]] over redirect',
 'movelogpage' => 'Move log',
 'movelogpagetext' => 'Below is a list of page moved.',
+'movereason'	=> 'Reason',
 
 # Export
 
