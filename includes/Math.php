@@ -182,7 +182,7 @@ class MathRenderer {
 		   (($this->mode == MW_MATH_MODERN || $this->mode == MW_MATH_MATHML) && ($this->conservativeness == 0))) {
 			return $this->_linkToMathImage();
 		} else {
-			return $this->html;
+			return '<span class="texhtml">'.$this->html.'</span>';
 		}
 	}
 
