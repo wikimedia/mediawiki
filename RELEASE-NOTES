@@ -142,7 +142,7 @@ If upgrading from an older release, see the file UPGRADING.
 === Beta 4 fixes ===
 
 * (bug 1090) Fix sitesupport links in CB/classic skins
-
+* Gracefully ignore non-legal titles in a <gallery>
 
 === Caveats ===
 

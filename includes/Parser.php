@@ -3080,6 +3080,10 @@ class Parser
 				continue;
 			}
 			$nt = Title::newFromURL( $matches[1] );
+			if( is_null( $nt ) ) {
+				# Bogus title. Ignore these so we don't bomb out later.
+				continue;
+			}
 			if ( isset( $matches[3] ) ) {
 				$label = $matches[3];
 			} else {
