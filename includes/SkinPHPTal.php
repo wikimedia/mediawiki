@@ -13,14 +13,14 @@
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or 
+# the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -67,16 +67,16 @@
 			global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
 			global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgSiteNotice;
 		        global $wgMaxCredits, $wgShowCreditsIfMax;
-		    
+
 			extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 
 			$this->initPage( $out );
 			$tpl = new PHPTAL($this->template . '.pt', 'templates');
-			
+
 			#if ( $wgUseDatabaseMessages ) { // uncomment this to fall back to GetText
 			$tpl->setTranslator(new MediaWiki_I18N());
 			#}
-			
+
 			$this->thispage = $wgTitle->getPrefixedDbKey();
 			$this->thisurl = $wgTitle->getPrefixedURL();
 			$this->loggedin = $wgUser->getID() != 0;
@@ -85,21 +85,21 @@
 			$this->username = $wgUser->getName();
 			$this->userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
 			$this->userpageUrlDetails = $this->makeUrlDetails($this->userpage);
-			
+
 			$this->usercss =  $this->userjs = $this->userjsprev = false;
 			$this->setupUserCssJs();
 
 			$this->titletxt = $wgTitle->getPrefixedText();
-			
+
 			$tpl->set( "title", $wgOut->getPageTitle() );
 			$tpl->set( "pagetitle", $wgOut->getHTMLTitle() );
-			
+
 			$tpl->setRef( "thispage", $this->thispage );
 			$subpagestr = $this->subPageSubtitle();
-			$tpl->set( 
+			$tpl->set(
 				"subtitle",  !empty($subpagestr)?
 				'<span class="subpages">'.$subpagestr.'</span>'.$out->getSubtitle():
-				$out->getSubtitle()  
+				$out->getSubtitle()
 			);
 			$undelete = $this->getUndeleteLink();
 			$tpl->set(
@@ -156,12 +156,12 @@
 				$usertitle = Title::newFromText( $this->userpage );
 				$usertalktitle = $usertitle->getTalkPage();
 				if($usertalktitle->getPrefixedDbKey() != $this->thispage){
-					
+
 					$ntl = wfMsg( "newmessages",
-					$this->makeKnownLink( 
+					$this->makeKnownLink(
 						$wgLang->getNsText( Namespace::getTalk( Namespace::getUser() ) )
 						. ":" . $this->username,
-						wfMsg("newmessageslink") ) 
+						wfMsg("newmessageslink") )
 					);
 				}
 			} else {
@@ -180,16 +180,16 @@
 				}
 				$tpl->set('lastmod', $this->lastModified());
 			        $tpl->set('copyright',$this->getCopyright());
-			    
+
 			        $this->credits = false;
-		    
+
 			        if (isset($wgMaxCredits) && $wgMaxCredits != 0) {
    			            require_once("Credits.php");
 			            $this->credits = getCredits($wgArticle, $wgMaxCredits, $wgShowCreditsIfMax);
 			        }
-		    
+
  		                $tpl->setRef( "credits", $this->credits );
-			    
+
 			} elseif ( isset( $oldid ) && !isset( $diff ) ) {
 				$tpl->set('copyright', $this->getCopyright());
 			}
@@ -202,7 +202,7 @@
 			$tpl->setRef( "debug", $out->mDebugtext );
 			$tpl->set( "reporttime", $out->reportTime() );
 			$tpl->set( "sitenotice", $wgSiteNotice );
-		    
+
 			$tpl->setRef( "bodytext", $out->mBodytext );
 
 			$language_urls = array();
@@ -221,7 +221,7 @@
 			$content_actions = $this->buildContentActionUrls();
 			$tpl->setRef('content_actions', $content_actions);
 			// XXX: attach this from javascript, same with section editing
-			if($this->iseditable &&	$wgUser->getOption("editondblclick") ) 
+			if($this->iseditable &&	$wgUser->getOption("editondblclick") )
 			{
 				$tpl->set('body-ondblclick', 'document.location = "' .$content_actions['edit']['href'] .'";');
 			} else {
@@ -259,26 +259,26 @@
 				);
 				$personal_urls['preferences'] = array(
 					'text' => wfMsg('preferences'),
-					'href' => $this->makeSpecialUrl('Preferences')		
+					'href' => $this->makeSpecialUrl('Preferences')
 				);
 				$personal_urls['watchlist'] = array(
 					'text' => wfMsg('watchlist'),
-					'href' => $this->makeSpecialUrl('Watchlist')	
+					'href' => $this->makeSpecialUrl('Watchlist')
 				);
 				$personal_urls['mycontris'] = array(
 					'text' => wfMsg('mycontris'),
-					'href' => $this->makeSpecialUrl('Contributions','target=' . urlencode( $this->username ) )		
+					'href' => $this->makeSpecialUrl('Contributions','target=' . urlencode( $this->username ) )
 				);
 				$personal_urls['logout'] = array(
 					'text' => wfMsg('userlogout'),
-					'href' => $this->makeSpecialUrl('Userlogout','returnto=' . $this->thisurl )		
+					'href' => $this->makeSpecialUrl('Userlogout','returnto=' . $this->thisurl )
 				);
 			} else {
 				if( $wgShowIPinHeader && isset(  $_COOKIE[ini_get("session.name")] ) ) {
 					$personal_urls['anonuserpage'] = array(
 						'text' => $this->username,
 						'href' => &$this->userpageUrlDetails['href'],
-						'class' => $this->userpageUrlDetails['exists']?false:'new'			
+						'class' => $this->userpageUrlDetails['exists']?false:'new'
 					);
 					$usertalkUrlDetails = $this->makeTalkUrlDetails($this->userpage);
 					$personal_urls['anontalk'] = array(
@@ -301,7 +301,7 @@
 
 			return $personal_urls;
 		}
-		
+
 		# an array of edit links by default used for the tabs
 		function buildContentActionUrls () {
 			global $wgTitle, $wgUser, $wgRequest;
@@ -310,7 +310,7 @@
 			$oldid = $wgRequest->getVal( 'oldid' );
 			$diff = $wgRequest->getVal( 'diff' );
 			$content_actions = array();
-			
+
 			if( $this->iscontent ) {
 
 				$nskey = $this->getNameSpaceKey();
@@ -319,11 +319,11 @@
 				'href' => $this->makeArticleUrl($this->thispage));
 
 				/* set up the classes for the talk link */
-				$talk_class = (Namespace::isTalk( $wgTitle->getNamespace()) ? 'selected' : false);				
+				$talk_class = (Namespace::isTalk( $wgTitle->getNamespace()) ? 'selected' : false);
 				$talktitle = Title::newFromText( $this->titletxt );
 				$talktitle = $talktitle->getTalkPage();
-				$this->checkTitle($talktitle, $this->titletxt);	
-				if($talktitle->getArticleId() != 0) { 
+				$this->checkTitle($talktitle, $this->titletxt);
+				if($talktitle->getArticleId() != 0) {
 					$content_actions['talk'] = array(
 						'class' => $talk_class,
 						'text' => wfMsg('talk'),
@@ -388,7 +388,7 @@
 							$content_actions['unprotect'] = array(
 								'class' => ($action == 'unprotect') ? 'selected' : false,
 								'text' => wfMsg('unprotect'),
-								'href' => $this->makeUrl($this->thispage, 'action=unprotect')					    
+								'href' => $this->makeUrl($this->thispage, 'action=unprotect')
 							);
 						}
 						$content_actions['delete'] = array(
@@ -410,7 +410,7 @@
 
 						}
 					}
-				} else { 
+				} else {
 					//article doesn't exist or is deleted
 					if($wgUser->isSysop()){
 						if( $n = $wgTitle->isDeleted() ) {
@@ -449,7 +449,7 @@
 		function buildNavUrls () {
 			global $wgTitle, $wgUser, $wgRequest;
 			global $wgSiteSupportPage;
-			
+
 			$action = $wgRequest->getText( 'action' );
 			$oldid = $wgRequest->getVal( 'oldid' );
 			$diff = $wgRequest->getVal( 'diff' );
@@ -468,7 +468,7 @@
 			$nav_urls['help'] = array('href' => htmlspecialchars( $this->makeI18nUrl('helppage')));
 			$nav_urls['upload'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Upload')));
 			$nav_urls['specialpages'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Specialpages')));
-			
+
 			if( $wgTitle->getNamespace() == NS_USER || $wgTitle->getNamespace() == NS_USER_TALK ) {
 				$id = User::idFromName($wgTitle->getText());
 				$ip = User::isIP($wgTitle->getText());
@@ -496,7 +496,7 @@
 
 		function getNameSpaceKey () {
 			global $wgTitle;
-			switch ($wgTitle->getNamespace()) { 
+			switch ($wgTitle->getNamespace()) {
 				case NS_MAIN:
 				case NS_TALK:
 					return 'nstab-main';
@@ -534,11 +534,11 @@
 			$action = $wgRequest->getText('action');
 			# generated css
 			$this->usercss = '@import "'.$this->makeUrl('-','action=raw&gen=css').'";'."\n";
-			
+
 			if( $this->loggedin ) {
 				if($wgTitle->isCssSubpage() and $action == 'submit' and  $wgTitle->userCanEditCssJsSubpage()) {
 					# generated css
-					$this->usercss = '@import "'.$this->makeUrl('-','action=raw&gen=css&smaxage=0&maxage=0').');'."\n";
+					$this->usercss = '@import "'.$this->makeUrl('-','action=raw&gen=css&smaxage=0&maxage=0').'";'."\n";
 					// css preview
 					$this->usercss .= $wgRequest->getText('wpTextbox1');
 				} else {
@@ -597,14 +597,14 @@
 			$this->skinname = "davinci";
 		}
 	}
-	
+
 	class SkinMono extends SkinPHPTal {
 		function initPage( &$out ) {
 			SkinPHPTal::initPage( $out );
 			$this->skinname = "mono";
 		}
 	}
-	
+
 	class SkinMonoBook extends SkinPHPTal {
 		function initPage( &$out ) {
 			SkinPHPTal::initPage( $out );
@@ -618,5 +618,5 @@
 			$this->skinname = "myskin";
 		}
 	}
-	
+
 ?>
