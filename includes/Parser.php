@@ -261,7 +261,8 @@ class Parser
 		global $wgLang , $wgUser ;
 		if ( !$this->mOptions->getUseCategoryMagic() ) return ;
 		$id = $this->mTitle->getArticleID() ;
-		if ( $this->mTitle->getNamespace() != Namespace::getCategory() ) return "" ;
+		$cns = Namespace::getCategory() ;
+		if ( $this->mTitle->getNamespace() != $cns ) return "" ;
 		$ti = $this->mTitle->getText() ;
 		$r = "<br style=\"clear:both;\"/>\n";
 
@@ -287,9 +288,8 @@ class Parser
 			if ( $t != "" ) $t .= ":" ;
 			$t .= $x->cur_title ;
 
-			$y = explode ( ":" , $t , 2 ) ;
-			if ( count ( $y ) == 2 && $y[0] == $cat ) {
-				array_push ( $children , $sk->makeLink ( $t , $y[1] ) ) ;
+			if ( $x->cur_namespace == $cns ) {
+				array_push ( $children , $sk->makeLink ( $t ) ) ;
 			} else {
 				array_push ( $articles , $sk->makeLink ( $t ) ) ;
 			}
