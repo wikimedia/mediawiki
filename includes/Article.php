@@ -369,7 +369,6 @@ class Article {
 	/* private */ function insertNewArticle( $text, $summary, $isminor, $watchthis )
 	{
 		global $wgOut, $wgUser, $wgLinkCache, $wgMwRedir;
-		global $wgEnablePersistentLC;
 		
 		$fname = "Article::insertNewArticle";
 
@@ -399,10 +398,7 @@ class Article {
 		$newid = wfInsertId();
 		$this->mTitle->resetArticleID( $newid );
 
-		if ( $wgEnablePersistentLC ) {
-			// Purge related entries in links cache on new page, to heal broken links
-			LinkCache::linksccClearBrokenLinksTo( $ttl );
-		}
+		Article::onArticleCreate( $this->mTitle );
 		
 		$sql = "INSERT INTO recentchanges (rc_timestamp,rc_cur_time," .
 		  "rc_namespace,rc_title,rc_new,rc_minor,rc_cur_id,rc_user," .
@@ -530,11 +526,7 @@ class Article {
 			  "WHERE rc_cur_id=" . $this->getID();
 			wfQuery( $sql, DB_WRITE, $fname );
 
-			global $wgEnablePersistentLC;
-			if ( $wgEnablePersistentLC ) {
-				// Purge link cache for this page
-				LinkCache::linksccClearPage( $this->getID() );
-			}
+			Article::onArticleEdit( $this->mTitle );
 		}
 
 		if( $wgDBtransactions ) {
@@ -815,8 +807,7 @@ class Article {
 
 	function doDeleteArticle( $title )
 	{
-		global $wgUser, $wgOut, $wgLang, $wpReason, $wgDeferredUpdateList, 
-			$wgEnablePersistentLC;
+		global $wgUser, $wgOut, $wgLang, $wpReason, $wgDeferredUpdateList;
 
 		$fname = "Article::doDeleteArticle";
 		wfDebug( "$fname\n" );
@@ -868,10 +859,7 @@ class Article {
 
 			$t = wfStrencode( $title->getPrefixedDBkey() );
 
-			if ( $wgEnablePersistentLC ) {
-	                        // Purge related entries in links cache on delete,
-				LinkCache::linksccClearLinksTo( $id );
-			}
+			Article::onArticleDelete( $title );
 
 			$sql = "SELECT l_from FROM links WHERE l_to={$id}";
 			$res = wfQuery( $sql, DB_READ, $fname );
@@ -996,12 +984,8 @@ class Article {
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->addHTML( "<h2>" . $newcomment . "</h2>\n<hr>\n" );
 		$this->updateArticle( Article::getRevisionText( $s ), $newcomment, 1, $this->mTitle->userIsWatching(), "", $bot );
-
-		global $wgEnablePersistentLC;
-		if ( $wgEnablePersistentLC ) {
-			LinkCache::linksccClearPage( $pid );
-		}
-					
+		
+		Article::onArticleEdit( $this->mTitle );
 		$wgOut->returnToMain( false );
 	}
 	
@@ -1261,6 +1245,33 @@ class Article {
 			wfProfileOut( "Article::incViewCount-collect" );
 		}
 		wfIgnoreSQLErrors( $oldignore );
+	}
+
+	# The onArticle*() functions are supposed to be a kind of hooks
+	# which should be called whenever any of the specified actions 
+	# are done. 
+	#
+	# This is a good place to put code to clear caches, for instance. 
+
+	/* static */ function onArticleCreate($title_obj){
+		global $wgEnablePersistentLC;
+		if ( $wgEnablePersistentLC ) {
+			LinkCache::linksccClearBrokenLinksTo( $title_obj->getPrefixedDBkey() );
+		}
+	}
+
+	/* static */ function onArticleDelete($title_obj){
+		global $wgEnablePersistentLC;
+		if ( $wgEnablePersistentLC ) {
+			LinkCache::linksccClearLinksTo( $title_obj->getArticleID() );
+		}
+	}
+
+	/* static */ function onArticleEdit($title_obj){
+		global $wgEnablePersistentLC;
+		if ( $wgEnablePersistentLC ) {
+			LinkCache::linksccClearPage( $title_obj->getArticleID() );
+		}
 	}
 }
 
