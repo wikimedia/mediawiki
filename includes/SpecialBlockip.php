@@ -91,7 +91,7 @@ class IPBlockForm {
 
 		# Make log entry
 		$log = new LogPage( wfMsg( "blocklogpage" ), wfMsg( "blocklogtext" ) );
-		$action = str_replace( "$1", $wpBlockAddress, wfMsg( "blocklogentry" ) );
+		$action = wfMsg( "blocklogentry", $wgBlockAddress );
 		$log->addEntry( $action, $wpBlockReason );
 
 		# Report to the user
@@ -107,7 +107,7 @@ class IPBlockForm {
 
 		$wgOut->setPagetitle( wfMsg( "blockip" ) );
 		$wgOut->setSubtitle( wfMsg( "blockipsuccesssub" ) );
-		$text = str_replace( "$1", $ip, wfMsg( "blockipsuccesstext" ) );
+		$text = wfMsg( "blockipsuccesstext", $ip );
 		$wgOut->addWikiText( $text );
 	}
 }

@@ -28,8 +28,7 @@ function wfSpecialContributions( $par = "" )
 	else {
 		$ul = $sk->makeKnownLink( $nt->getPrefixedText(), $nt->getText() );
 	}
-	$sub = str_replace( "$1", $ul, wfMsg( "contribsub" ) );
-	$wgOut->setSubtitle( $sub );
+	$wgOut->setSubtitle( wfMsg( "contribsub", $ul ) );
 
 	if ( ! isset( $hideminor ) ) {
 		$hideminor = $wgUser->getOption( "hideminor" );

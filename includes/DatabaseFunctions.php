@@ -14,8 +14,8 @@ function wfGetDB( $altuser = "", $altpassword = "", $altserver = "", $altdb = ""
 	global $wgDBserver, $wgDBuser, $wgDBpassword;
 	global $wgDBname, $wgDBconnection, $wgEmergencyContact;
 	
-	$noconn = str_replace( "$1", $wgDBserver, wfMsgNoDB( "noconnect" ) );
-	$nodb = str_replace( "$1", $wgDBname, wfMsgNoDB( "nodb" ) );
+	$noconn = wfMsgNoDB( "noconnect", $wgDBserver );
+	$nodb = wfMsgNoDB( "nodb", $wgDBname );
 
 	$helpme = "\n<p>If this error persists after reloading and clearing " .
 	  "your browser cache, please notify the <a href=\"mailto:" .

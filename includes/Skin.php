@@ -437,7 +437,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 				$tl = $this->makeKnownLink( $wgLang->getNsText(
 				Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
 				wfMsg("newmessageslink") );
-				$s.=" | <strong>". str_replace( "$1", $tl, wfMsg("newmessages") ) . "</strong>";
+				$s.=" | <strong>". wfMsg( "newmessages", $tl ) . "</strong>";
 			}
 		}
 		if( $wgUser->isSysop() &&
@@ -646,7 +646,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 			$s = "";
 		} else {
 			$count = $wgArticle->getCount();
-			$s = str_replace( "$1", $count, wfMsg( "viewcount" ) );
+			$s = wfMsg( "viewcount", $count );
 		}
 		$s .= $this->lastModified();
 		$s .= " " . wfMsg( "gnunote" );
@@ -658,7 +658,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		global $wgLang, $wgArticle;
 
 		$d = $wgLang->timeanddate( $wgArticle->getTimestamp(), true );
-		$s = " " . str_replace( "$1", $d, wfMsg( "lastmodified" ) );
+		$s = " " . wfMsg( "lastmodified", $d );
 		return $s;
 	}
 
@@ -1840,7 +1840,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		else { $ul = $this->makeLink( $wgLang->getNsText(
 		  Namespace::getUser() ) . ":{$ut}", $ut ); }
 
-		$nb = str_replace( "$1", $size, wfMsg( "nbytes" ) );
+		$nb = wfMsg( "nbytes", $size );
 		$style = $this->getInternalLinkAttributes( $url, $dt );
 
 		$s = "<li> ({$dlink}) ({$rlink}) <a href=\"{$url}\"{$style}>{$dt}</a>"
