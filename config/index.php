@@ -451,7 +451,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$title = $titleobj->getDBkey();
 			$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text,cur_timestamp,inverse_timestamp,cur_touched) " .
 			  "VALUES (0,'$title','" .
-			  wfStrencode( wfMsg( "mainpagetext" ) ) . "','$now','$won','$now')";
+			  wfStrencode( wfMsg( "mainpagetext" ) . "\n\n" . wfMsg( "mainpagedocfooter" ) ) . "','$now','$won','$now')";
 			$wgDatabase->query( $sql, $fname );
 			
 			print "<li><pre>";
