@@ -674,11 +674,7 @@ class User {
 		// stubthreshold is only included below for completeness, 
 		// it will always be 0 when this function is called by parsercache.
 
-		$confstr = 	  $this->getOption( 'quickbar' );
-		$confstr .= '!' . $this->getOption( 'underline' );
-		$confstr .= '!' . $this->getOption( 'hover' );
-		$confstr .= '!' . $this->getOption( 'skin' );
-		$confstr .= '!' . $this->getOption( 'math' );
+		$confstr =        $this->getOption( 'math' );
 		$confstr .= '!' . $this->getOption( 'highlightbroken' );
 		$confstr .= '!' . $this->getOption( 'stubthreshold' ); 
 		$confstr .= '!' . $this->getOption( 'editsection' );
