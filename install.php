@@ -10,16 +10,16 @@ if ( ! ( is_readable( "./LocalSettings.php" )
 	  "source directory before running this install script.\n";
 	exit();
 }
-if ( $wgUseTeX && ( ! is_executable( "./math/texvc" ) ) ) {
-	print "To use math functions, you must first compile texvc by\n" .
-	  "running \"make\" in the math directory.\n";
-	exit();
-}
 
 $DP = "./includes";
 include_once( "./LocalSettings.php" );
 include_once( "./AdminSettings.php" );
 
+if ( $wgUseTeX && ( ! is_executable( "./math/texvc" ) ) ) {
+	print "To use math functions, you must first compile texvc by\n" .
+	  "running \"make\" in the math directory.\n";
+	exit();
+}
 if ( is_file( "{$IP}/Version.php" ) ) {
 	print "There appears to be an installation of the software\n" .
 	  "already present on \"{$IP}\". You may want to run the update\n" .
