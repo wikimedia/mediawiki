@@ -379,7 +379,8 @@ halaman baru.",
 "previewconflict" => "Paparan ini ada kaitan dengan teks pada bahagian atas dan
 akan terpapar apabila anda memilih untuk menyimpannya.",
 "editing"		=> "Menyunting $1", #"Editing $1",
-"sectionedit"	=> " (section)",
+"editingsection"	=> "Menyunting $1 (section)",
+"editingcomment"	=> "Menyunting $1 (comment)",
 "editconflict"	=> "Sunting konflik", #"Edit conflict: $1",
 "explainconflict" => "Orang lain telah mengemaskini halaman ini sejak anda
 mula mengemaskininya.

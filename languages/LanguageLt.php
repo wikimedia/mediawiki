@@ -344,6 +344,8 @@ Each row contains links to the first and second redirect, as well as the first l
 'edithelp' => "Kaip Redaguoti",
 'edithelppage' => "Help:Editing",
 'editing' => "Taisomas straipsnis - $1",
+'editingsection' => "Taisomas straipsnis - $1 (skyrius)",
+'editingcomment' => "Taisomas straipsnis - $1 (comment)",
 'editingold' => "<strong>ĮSPĖJIMAS: Jūs keičiate ne naujausią puslapio versiją.
 Jei išsaugosite savo keitimus, prieš tai daryti pakeitimai pradings.</strong>",
 'editsection' => "taisyti",
@@ -863,7 +865,6 @@ Please check the URL you used to access this page.
 #'searchresults' => "Search results",
 #'searchresultshead' => "Search result settings",
 'searchresulttext' => "For more information about searching {{SITENAME}}, see [[Project:Searching|Searching {{SITENAME}}]].",
-'sectionedit' => " (skyrius)",
 #'selectnewerversionfordiff' => "Select a newer version for comparison",
 #'selectolderversionfordiff' => "Select an older version for comparison",
 #'selectonly' => "Only read-only queries are allowed.",

@@ -430,8 +430,8 @@ Dacă aţi ajuns aici din greşeală, întoarceţi-vă folosind controalele brow
 "previewnote"	=> "Reţineţi că aceasta este doar o previzualizare - articolul încă nu este salvat! Trebuie să apăsaţi butonul \"Salvează pagina\" de sub caseta de editare pentru a salva. Nu uitaţi să introduceţi şi o descriere sumară a modificărilor!",
 "previewconflict" => "Această pre-vizualizare reflectă textul din caseta de sus, respectiv felul în care va arăta articolul dacă alegeţi să salvaţi acum.",
 "editing"		=> "Editare $1",
-"sectionedit"	=> " (secţiune)",
-"commentedit"	=> " (comentariu)",
+"editingsection"	=> "Editare $1 (secţiune)",
+"editingcomment"	=> "Editare $1 (comentariu)",
 "editconflict"	=> "Conflict de editare: $1",
 "explainconflict" => "Altcineva a modificat această pagină de când aţi început s-o editaţi.
 Caseta de text de sus conţine pagina aşa cum este ea acum (după editarea celeilalte persoane).

@@ -400,8 +400,8 @@ u ngatarruar me përdorues të tjerë anonim.'' ",
 "previewconflict" => "Ky parashikim reflekton tekstin sipër
 kutisë së redaktimit siç do të duket kur ta ruani.",
 "editing"		=> "Duke redaktuar $1",
-"sectionedit"	=> " (seksion)",
-"commentedit"	=> " (koment)",
+"editingsection"	=> "Duke redaktuar $1 (seksion)",
+"editingcomment"	=> "Duke redaktuar $1 (koment)",
 "editconflict"	=> "Konflikt redaktimi: $1",
 "explainconflict" => "Dikush tjetër ka ndryshuar këtë faqe kur ti po e
 redaktoje.

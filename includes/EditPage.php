@@ -269,13 +269,12 @@ class EditPage {
 			$this->textbox1 = $this->mArticle->getContent( true );
 			$this->edittime = $this->mArticle->getTimestamp();
 		} else {
-			$s = wfMsg( 'editing', $this->mTitle->getPrefixedText() );
 
 			if( $this->section != '' ) {
 				if( $this->section == 'new' ) {
-					$s.=wfMsg('commentedit');
+					$s.=wfMsg('editingcomment', $this->mTitle->getPrefixedText() );
 				} else {
-					$s.=wfMsg('sectionedit');
+					$s.=wfMsg('editingsection', $this->mTitle->getPrefixedText() );
 				}
 				if(!$this->preview) {
 					$sectitle=preg_match("/^=+(.*?)=+/mi",
@@ -285,6 +284,8 @@ class EditPage {
 						$this->summary = "/* ". trim($matches[1])." */ ";
 					}
 				}
+			} else {
+				$s = wfMsg( 'editing', $this->mTitle->getPrefixedText() );
 			}
 			$wgOut->setPageTitle( $s );
 			if ( !$wgUseLatin1 && !$this->checkUnicodeCompliantBrowser() ) {

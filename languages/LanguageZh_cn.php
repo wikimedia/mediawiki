@@ -385,8 +385,8 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "previewnote"	=> "请记住这只是预览，内容还未保存！",
 "previewconflict" => "这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。",
 "editing"		=> "正在编辑$1",
- "sectionedit"   => " (段落)",
- "commentedit"   => " (评论)",
+"editingsection"	=> "正在编辑$1 (段落)",
+"editingcomment"	=> "正在编辑$1 (评论)",
 "editconflict"	=> "编辑冲突：$1",
 "explainconflict" => "有人在你开始编辑后更改了页面。
 上面的文字框内显示的是目前本页的内容。
