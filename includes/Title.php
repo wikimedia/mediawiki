@@ -137,15 +137,19 @@ class Title {
 		return $title;
 	}
 	
-	# From a namespace index and a DB key
-	/* static */ function makeTitle( $ns, $title ) {
-		$t = new Title();
-		$t->mDbkeyform = Title::makeName( $ns, $title );
-		if( $t->secureAndSplit() ) {
-			return $t;
-		} else {
-			return NULL;
-		}
+	# From a namespace index and a DB key.
+	# It's assumed that $ns and $title are *valid*, for instance
+	# when they came directly from the database.
+	/* static */ function &makeTitle( $ns, $title ) {
+		$t =& new Title();
+		$t->mInterwiki = '';
+		$t->mFragment = '';
+		$t->mNamespace = $ns;
+		$t->mDbkeyform = $title;
+		$t->mArticleID = ( $ns >= 0 ) ? 0 : -1;
+		$t->mUrlform = wfUrlencode( $title );
+		$t->mTextform = str_replace( '_', ' ', $title );
+		return $t;
 	}
 
 	/* static */ function newMainPage() {
