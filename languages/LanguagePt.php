@@ -280,8 +280,6 @@ reconhecida pelo software da {{SITENAME}}.",
 "error"         => "Erro",
 "databaseerror" => "Erro no banco de dados",
 "dberrortext"   => "Um erro de sintaxe de busca no banco de dados ocorreu.
-Isto pode ser devido a uma busca incorreta (veja $5),
-ou pode indicar um erro no programa.
 A última tentativa de busca no banco de dados foi:
 <blockquote><tt>$1</tt></blockquote>
 na função \"<tt>$2</tt>\".

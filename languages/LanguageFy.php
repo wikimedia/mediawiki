@@ -256,8 +256,6 @@ if($wgMetaNamespace === FALSE)
 "error"			=> "Fout",
 "databaseerror" 		=> "Databankfout",
 "dberrortext"		=> "Sinboufout in databankfraach.
-Dit soe troch in ferkearde sykfraach komme kinne (sjoch \"$5\"),
-of it soe in brek yn it programma wêze kinne.
 De lêst besochte databankfraach wie:
 <blockquote><tt>$1</tt></blockquote>
 fan funksje \"<tt>$2</tt>\" út.

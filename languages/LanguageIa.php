@@ -248,8 +248,6 @@ recognoscite per le systema de Wikipedia.",
 "error"			=> "Error",
 "databaseerror" => "Error de base de datos",
 "dberrortext"	=> "Occurreva un error de syntaxe in le consulta al base de datos.
-Isto pote deber se a un consulta non permittite (vide $5),
-o a un disfunction in le systema.
 Le ultime demanda inviate al base de datos esseva:
 <blockquote><tt>$1</tt></blockquote>
 de intra le function \"<tt>$2</tt>\".

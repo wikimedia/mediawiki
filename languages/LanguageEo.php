@@ -275,8 +275,6 @@ ne agnoskas la programaro de {{SITENAME}}",
 "error"         => "Eraro", #FIXME: Fuŝo
 "databaseerror" => "Datumbaza eraro",
 "dberrortext"	=> "Sintakseraro okazis en informpeto al la datumaro.
-Eble kaŭzis tion malpermesita serĉomendo (vidu je $5),
-aŭ eble tio indikas cimon en la programaro.
 Jen la plej laste provita informmendo:
 <blockquote><tt><nowiki>$1</nowiki></tt></blockquote>
 el la funkcio \"<tt>$2</tt>\". 

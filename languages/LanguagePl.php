@@ -287,8 +287,6 @@ specjalnej strony.",
 "error" => "Błąd",
 "databaseerror" => "Błąd bazy danych",
 "dberrortext" => "Wystąpił błąd składni w zapytaniu do bazy danych.
-Mogło to być spowodowane przez złe sformułowanie zapytania (zobacz $5)
-albo przez błąd w oprogramowaniu.
 Ostatnie, nieudane zapytanie to:
 <blockquote><tt>$1</tt></blockquote>
 wysłane przez funkcję \"<tt>$2</tt>\".

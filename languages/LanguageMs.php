@@ -258,8 +258,6 @@ Lihat $1.", # "The action you have requested can only be performed by users with
 "error"			=> "Ralat",
 "databaseerror"         => "Ralat pangkalan data", #"Database error",
 "dberrortext"	        => "Berlaku ralat sintaksis pada permintaan pangkalan data.
-Ini kerana berlaku permintaan carian yang tidak dibenarkan (lihat $5),
-atau mungkin menunjukkan ralat di dalam perisian.
 Percubaan terakhir permintaan pangkalan data ialah :
 <blockquote><tt>$1</tt></blockquote>
 from within function \"<tt>$2</tt>\".

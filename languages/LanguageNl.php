@@ -256,8 +256,6 @@ require_once( "LanguageUtf8.php" );
 "error"   => "Fout",
 "databaseerror" => "Database fout",
 "dberrortext" => "Bij het zoeken is een syntaxfout in de database opgetreden.
-Dit kan zijn veroorzaakt door een illegale zoekactie (zie $5),
- of het duidt op een fout in de software. 
 De laatste zoekpoging in de database was:
 <blockquote><tt>$1</tt></blockquote>
 vanuit de functie \"<tt>$2</tt>\".

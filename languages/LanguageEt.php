@@ -237,8 +237,6 @@ Vaata $1.",
 "error"			=> "Viga",
 "databaseerror" => "Andmebaasi viga",
 "dberrortext"	=> "Andmebaasipäringus oli süntaksiviga.
-Kas otsingupäring oli ebakorrektne (vaata $5)
-või tarkvaras on viga.
 Viimane andmebaasipäring oli:
 <blockquote><tt>$1</tt></blockquote>
 funktsioonist \"<tt>$2</tt>\".

@@ -218,8 +218,7 @@ Vedi $1.",
 #
 "error"			=> "Errore",
 "databaseerror" => "Errore del database ",
-"dberrortext"	=> "Errore di sintassi nella richiesta inoltrata al database. Potrebbe trattarsi di una richiesta non consentita (vedi $5),
-oppure potrebbe esserci un errore software.
+"dberrortext"	=> "Errore di sintassi nella richiesta inoltrata al database.
 L'ultima richiesta inoltrata al database è stata:
 <blockquote><tt>$1</tt></blockquote>
 dalla funzione \"<tt>$2</tt>\".

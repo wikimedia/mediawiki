@@ -304,8 +304,6 @@ Vezi $1.",
 "error"			=> "Eroare",
 "databaseerror" => "Eroare la baza de date",
 "dberrortext"	=> "A apărut o eroare în execuţia query-ului.
-Aceasta se poate datora unui query ilegal (vezi $5),
-sau poate indica o problemă în program.
 Ultimul query încercat a fost:
 <blockquote><tt>$1</tt></blockquote>
 în cadrul funcţiei \"<tt>$2</tt>\".

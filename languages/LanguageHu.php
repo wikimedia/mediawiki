@@ -274,8 +274,6 @@ software nem ismer fel.",
 "error"	=> "Hiba",
 "databaseerror" => "Adatbázis hiba",
 "dberrortext"	=> "Adatbázis formai hiba történt.
-Ennek lehet oka egy illegális keresési parancs (lásd $5),
-vagy okozhatta egy programozási hiba.
 Az utolsó lekérési próbálkozás az alábbi volt:
 <blockquote><tt>$1</tt></blockquote>
 a \"<tt>$2</tt>\" függvényből.

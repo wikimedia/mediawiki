@@ -555,10 +555,6 @@ class OutputPage {
 			print "$msg\n";
 			wfErrorExit();
 		}
-		$sk = $wgUser->getSkin();
-		$shlink = $sk->makeKnownLink( wfMsgNoDB( "searchhelppage" ),
-		  wfMsgNoDB( "searchingwikipedia" ) );
-		$msg = str_replace( "$5", $shlink, $msg );
 		$this->mBodytext = $msg;
 		$this->output();
 		wfErrorExit();

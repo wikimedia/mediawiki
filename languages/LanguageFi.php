@@ -231,8 +231,6 @@ ei tunnista pyytämääsi toimintosivua.",
 "error"			=> "Virhe",
 "databaseerror" => "Tietokantavirhe",
 "dberrortext"	=> "Tietokantakyselyssä tapahtui syntaksivirhe.
-Syynä saattaa olla virheellinen kysely (katso $5), tai se saattaa
-johtua ohjelmointivirheestä.
 Viimeinen tietokantakysely, jota yritettiin, oli: 
 <blockquote><tt>$1</tt></blockquote>.
 Se tehtiin funktiosta \"<tt>$2</tt>\".

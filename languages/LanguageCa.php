@@ -246,9 +246,8 @@ Vegeu $1.",
 #
 "error"			=> "Error",
 "databaseerror" => "Error de la base de dades",
-"dberrortext"	=> "Ha ocorregut un error de sintaxi en una consulta a la base de dades. Això pot ser degut a una recerca il·legal (vegeu $5)
-
-,o pot indicar un error en el programari. L'última consulta que s'ha intentat ha estat:
+"dberrortext"	=> "Ha ocorregut un error de sintaxi en una consulta a la base de dades. 
+L'última consulta que s'ha intentat ha estat:
 <blockquote><tt>$1</tt></blockquote>L'error de retorn de MySQL ha estat\"<tt>$3: $4</tt>\".",
 "noconnect"		=> "No s'ha pogut connectar a la base de dades a $1",
 "nodb"			=> "No s'ha pogut seleccionar la base de dades$1",

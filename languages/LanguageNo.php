@@ -264,8 +264,6 @@ klarer å gjenkjenne.",
 "error"			=> "Feil",
 "databaseerror" => "Databasefeil",
 "dberrortext"	=> "Det har skjedd en syntaksfeil i databasen.
-Dette kan skyldes en illegal forespørsel (se $5),
-eller det kan bety feil i programvaren.
 Den sist forsøkte forespørsel var:
 <blockquote><tt>$1</tt></blockquote>
 fra funksjonen \"<tt>$2</tt>\".

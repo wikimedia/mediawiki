@@ -233,8 +233,6 @@ Viď $1.",
 "error"			=> "Chyba",
 "databaseerror" => "Chyba v databáze",
 "dberrortext"	=> "Nastala syntaktická chyba v dotaze do databázy.
-Znamená to chybnú dotaz (viď $5),
-alebo chybu v softvéri.
 Posledný pokus o dotaz bol:
 <blockquote><tt>$1</tt></blockquote>
 z funkcie \"<tt>$2</tt>\".

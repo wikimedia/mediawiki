@@ -273,13 +273,6 @@ See $1.",
 #
 "error"			=> "Error",
 "databaseerror" => "Database error",
-"dberrortext"	=> "A database query syntax error has occurred.
-This could be because of an illegal search query (see $5),
-or it may indicate a bug in the software.
-The last attempted database query was:
-<blockquote><tt>$1</tt></blockquote>
-from within function \"<tt>$2</tt>\".
-MySQL returned error \"<tt>$3: $4</tt>\".",
 "dberrortextcl" => "A database query syntax error has occurred.
 The last attempted database query was:
 \"$1\"

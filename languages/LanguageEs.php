@@ -279,8 +279,6 @@ Ver $1.",
 "databaseerror" => "Error de la base de datos",
 "dberrortext"	=> "Ha ocurrido un error de sintaxis en una consulta
 a la base de datos. 
-Esto puede ser debido a una búsqueda ilegal (ver $5),
-o puede indicar un error en el software.
 La última consulta que se intentó fue:
 <blockquote><tt>$1</tt></blockquote>El error de retorno de 
 MySQL fue\"<tt>$3: $4</tt>\".",
