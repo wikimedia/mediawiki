@@ -270,7 +270,7 @@
 
 # Bits of text used by many pages:
 # Diverse stukjes tekst
-"linktrail" => "/^([ה|צ|ü|ן|כ|י|ט|א|a-z]+)(.*)\$/sD",
+"linktrail" => "/^([הצüןכיטאa-z]+)(.*)\$/sD",
 "mainpage"  => "Hoofdpagina",
 "mainpagetext" => "Installatie van de Wiki software geslaagd.",
 "about"   => "Info",
@@ -379,7 +379,7 @@ De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
 "badtitle"              => "Ongeldige paginatitel", 
 "badtitletext"  => "De opgevraagde pagina is niet beschikbaar of leeg.",
 "perfdisabled" => "Om overbelasting van het systeem te voorkomen, is deze optie momenteel niet bruikbaar.",
-"perfdisabledsub" => "We kunnen u wel onderstaande kopie van $1 tonen; deze is echter mogelijk niet up-to-date."
+"perfdisabledsub" => "We kunnen u wel onderstaande kopie van $1 tonen; deze is echter mogelijk niet up-to-date.",
 
 # Login and logout pages
 # Aanmelden en afmelden
@@ -503,7 +503,7 @@ Gelieve na ontvangst opnieuw aan te melden.",
  Zoek in naamruimten :<br>
 $1<br>
 $2 Toon redirects &nbsp; Zoek: $3 $9",   
-"searchdisabled" => "Om overbelasting van het systeem te voorkomen, is de zoekfunctie momenteel buiten gebruik gesteld."
+"searchdisabled" => "Om overbelasting van het systeem te voorkomen, is de zoekfunctie momenteel buiten gebruik gesteld.",
 
 # Preferences page
 # Voorkeuren
