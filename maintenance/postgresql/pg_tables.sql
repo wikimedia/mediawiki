@@ -182,8 +182,8 @@ CREATE TABLE recentchanges (
     rc_this_oldid integer NOT NULL,
     rc_last_oldid integer NOT NULL,
     rc_type smallint NOT NULL,
-    rc_moved_to_ns smallint NOT NULL,
-    rc_moved_to_title varchar NOT NULL,
+    rc_moved_to_ns smallint,
+    rc_moved_to_title varchar,
     rc_ip inet,
     rc_patrolled smallint
 );

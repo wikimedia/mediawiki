@@ -351,6 +351,19 @@ class DatabasePgsql extends Database {
 	function limitResult($limit,$offset) {
         	return " LIMIT $limit ".(is_numeric($offset)?" OFFSET {$offset} ":"");
 	}
+	
+	/**
+	 * Returns an SQL expression for a simple conditional.
+	 * Uses CASE on PostgreSQL.
+	 *
+	 * @param string $cond SQL expression which will result in a boolean value
+	 * @param string $trueVal SQL expression to return if true
+	 * @param string $falseVal SQL expression to return if false
+	 * @return string SQL fragment
+	 */
+	function conditional( $cond, $trueVal, $falseVal ) {
+		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
+	}
 
 	# FIXME: actually detecting deadlocks might be nice
 	function wasDeadlock() {
