@@ -135,10 +135,10 @@ div.tright {
 div.tleft {
     clear: left;
 }
-div.floatright {
+div.floatright table.floatright {
     clear: none;
 }
-div.floatleft {
+div.floatleft table.floatleft {
     clear: left;
 }
 div.townBox {
