@@ -14,6 +14,16 @@ if (clientPC.indexOf('opera')!=-1) {
     var is_opera_seven = (window.opera && document.childNodes);
 }
 
+// add any onload functions in this hook (please don't hard-code any events in the xhtml source)
+function onloadhook () {
+    // don't run anything below this for non-dom browsers
+    if(!(document.getElementById && document.getElementsByTagName)) return;
+    histrowinit();
+}
+if (window.addEventListener) window.addEventListener("load",onloadhook,false);
+else if (window.attachEvent) window.attachEvent("onload",onloadhook);
+
+
 // document.write special stylesheet links
 function addcss ( stylepath ) {
     if (is_opera_preseven) {
@@ -43,6 +53,57 @@ function toggleVisibility( _levelId, _otherId, _linkId) {
 		otherLevel.style.display = 'inline';
 		linkLevel.style.display = 'none';
 		}
+}
+
+// page history stuff
+// attach event handlers to the input elements on history page
+function histrowinit () {
+    hf = document.getElementById('pagehistory');
+    if(!hf) return;
+    lis = hf.getElementsByTagName('li');
+    for (i=0;i<lis.length;i++) {
+        inputs=lis[i].getElementsByTagName('INPUT');
+        if(inputs[0] && inputs[1]) {
+                inputs[0].onclick = diffcheck;
+                inputs[1].onclick = diffcheck;
+        }
+    }
+    diffcheck();
+}
+// check selection and tweak visibility/class onclick
+function diffcheck() { 
+    var dli = false; // the li where the diff radio is checked
+    var oli = false; // the li where the oldid radio is checked
+    hf = document.getElementById('pagehistory');
+    if(!hf) return;
+    lis = hf.getElementsByTagName('li');
+    for (i=0;i<lis.length;i++) {
+        inputs=lis[i].getElementsByTagName('INPUT');
+        if(inputs[1] && inputs[0]) {
+            if(inputs[1].checked || inputs[0].checked) { // this row has a checked radio button
+                if(inputs[1].checked && inputs[0].checked && inputs[0].value == inputs[1].value) return false;
+                if(oli) { // it's the second checked radio
+                    if(inputs[1].checked) {
+                    oli.className = "selected";
+                    return false 
+                    }
+                } else if (inputs[0].checked) {
+                    return false;
+                }
+                if(inputs[0].checked) dli = lis[i];
+                if(!oli) inputs[0].style.visibility = 'hidden';
+                if(dli) inputs[1].style.visibility = 'hidden';
+                lis[i].className = "selected";
+                oli = lis[i];
+            }  else { // no radio is checked in this row
+                if(!oli) inputs[0].style.visibility = 'hidden';
+                else inputs[0].style.visibility = 'visible';
+                if(dli) inputs[1].style.visibility = 'hidden';
+                else inputs[1].style.visibility = 'visible';
+                lis[i].className = "";
+            }
+        }
+    }
 }
 
 // Timezone stuff
@@ -86,6 +147,7 @@ function showTocToggle(show,hide) {
 		+ '</a>]</span>');
 	}
 }
+
 
 function toggleToc() {
 	var toc = document.getElementById('tocinside');

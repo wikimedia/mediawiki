@@ -781,7 +781,7 @@ Please check the URL you used to access this page.\n",
 "last"			=> "last",
 "orig"			=> "orig",
 "histlegend"	=> "Legend: (cur) = difference with current version,
-(last) = difference with preceding version, M = minor edit",
+(last) = difference with preceding version, M = minor edit.<br/>Select any two versions and hit enter or the button at the bottom.",
 
 # Diffs
 #
@@ -789,6 +789,9 @@ Please check the URL you used to access this page.\n",
 "loadingrev"	=> "loading revision for diff",
 "lineno"		=> "Line $1:",
 "editcurrent"	=> "Edit the current version of this page",
+'selectnewerversionfordiff' => 'Select a newer version for comparison',
+'selectolderversionfordiff' => 'Select an older version for comparison',
+'compareselectedversions' => 'Compare selected versions',
 
 # Search results
 #
