@@ -129,11 +129,11 @@ class ImagePage extends Article {
 	{
 		global $wgUser,$wgOut;
 		$sk = $wgUser->getSkin();
-		$wgOut->addHTML("<div class=\"editExternally\">");
-		$wgOut->addHTML($sk->makeKnownLink($this->mTitle->getPrefixedDBkey(),wfMsg("edit-externally"),
+		$wgOut->addHTML('<div class="editExternally">');
+		$wgOut->addHTML($sk->makeKnownLink($this->mTitle->getPrefixedDBkey(),wfMsg('edit-externally'),
 		"action=edit&externaledit=true&mode=file"));
-		$wgOut->addWikiText("<div class=\"editExternallyHelp\">".wfMsg("edit-externally-help"));
-		$wgOut->addHTML("</div><br clear=\"all\"/>");
+		$wgOut->addWikiText('<div class="editExternallyHelp">'.wfMsg('edit-externally-help'));
+		$wgOut->addHTML('</div><br clear="all"/>');
 			
 	}
 	function closeShowImage()

@@ -1090,19 +1090,17 @@ span.changedby {
 	color: #cc0000;
 }
 .editExternally {
-        border-style:solid;
-	border-width:1px;
-	border-color:gray;
-	background: #ffffff;
-	padding:3px;
-	margin-top:0.5em;
-	float:left;
-	font-size:small;
-	text-align:center;
+	border: 1px solid gray;
+	background-color: #ffffff;
+	padding: 3px;
+	margin-top: 0.5em;
+	float: left;
+	font-size: small;
+	text-align: center;
 }    
 .editExternallyHelp {
-	font-style:italic;
-	color:gray;
+	font-style: italic;
+	color: gray;
 }
 
 li span.deleted {
