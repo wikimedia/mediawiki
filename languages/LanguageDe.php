@@ -378,7 +378,7 @@ MySQL meldete den Fehler: \"<tt>$3: $4</tt>\".\n",
 "noconnect"		=> "Konnte keine Verbindung zur Datenbank auf $1 herstellen",
 "nodb"			=> "Konnte Datenbank $1 nicht auswählen",
 "cachederror" => "Das folgende ist eine Kopie aus dem Cache und möglicherweise nicht aktuell.",
-"readonly"		=> "Datenbank ist geperrt",
+"readonly"		=> "Datenbank ist gesperrt",
 "enterlockreason" => "Bitte geben Sie einen Grund ein, warum die Datenbank
 gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
 "readonlytext"	=> "Die Datenbank der Wikipedia ist vorübergehend gesperrt, z.B. für Wartungsarbeiten. Bitte versuchen Sie es später noch einmal.\n",
