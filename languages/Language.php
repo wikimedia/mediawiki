@@ -44,6 +44,13 @@
 	"Recommended for modern browsers"
 );
 
+/* private */ $wgDateFormatsEn = array(
+	"No preference",
+	"January 15, 2001",
+	"15 January, 2001",
+	"2001 January 15"
+);
+
 /* private */ $wgUserTogglesEn = array(
 	"hover"		=> "Show hoverbox over wiki links",
 	"underline" => "Underline links",
@@ -607,6 +614,7 @@ Your internal ID number is $2.",
 "changepassword" => "Change password",
 "skin"			=> "Skin",
 "math"			=> "Rendering math",
+"dateformat"	=> "Date format",
 "math_failure"		=> "Failed to parse",
 "math_unknown_error"	=> "unknown error",
 "math_unknown_function"	=> "unknown function ",
@@ -657,8 +665,10 @@ See also the [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta d
 "rcnotefrom"	=> "Below are the changes since <b>$2</b> (up to <b>$1</b> shown).",
 "rclistfrom"	=> "Show new changes starting from $1",
 # "rclinks"		=> "Show last $1 changes in last $2 hours / last $3 days",
-"rclinks"		=> "Show last $1 changes in last $2 days.",
+# "rclinks"		=> "Show last $1 changes in last $2 days.",
+"rclinks"		=> "Show last $1 changes in last $2 days; $3 minor edits",
 "rchide"		=> "in $4 form; $1 minor edits; $2 secondary namespaces; $3 multiple edits.",
+"rcliu"			=> "; $1 edits from logged in users",
 "diff"			=> "diff",
 "hist"			=> "hist",
 "hide"			=> "hide",
@@ -1135,6 +1145,11 @@ class Language {
 		global $wgMathNamesEn;
 		return $wgMathNamesEn;
 	}
+	
+	function getDateFormats() {
+		global $wgDateFormatsEn;
+		return $wgDateFormatsEn;
+	}
 
 	function getUserToggles() {
 		global $wgUserTogglesEn;
@@ -1159,12 +1174,18 @@ class Language {
 		global $wgMonthNamesEn;
 		return $wgMonthNamesEn[$key-1];
 	}
-
+	
 	/* by default we just return base form */
 	function getMonthNameGen( $key )
 	{
 		global $wgMonthNamesEn;
 		return $wgMonthNamesEn[$key-1];
+	}
+	
+	function getMonthRegex()
+	{
+		global $wgMonthNamesEn;
+		return implode( "|", $wgMonthNamesEn );
 	}
 
 	function getMonthAbbreviation( $key )
@@ -1198,18 +1219,31 @@ class Language {
  
 	function date( $ts, $adj = false )
 	{
-		global $wgAmericanDates;
+		global $wgAmericanDates, $wgUser;
+
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-		if( $wgAmericanDates ) {
+		$datePreference = $wgUser->getOption('date');		
+		if ( $datePrefernce == 0 ) {
+			$datePreference = $wgAmericanDates ? 1 : 2;
+		}
+		
+		if ( $datePreference == 1 ) {
+			# MDY
 			$d = $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
 			  " " . (0 + substr( $ts, 6, 2 )) . ", " .
 			  substr( $ts, 0, 4 );
-		} else {
+		} else if ( $datePreference == 2 ) {
+			#DMY
 			$d = (0 + substr( $ts, 6, 2 )) . " " .
 			  $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . " " .
 			  substr( $ts, 0, 4 );
+		} else {
+			#YMD
+			$d = substr( $ts, 0, 4 ) . " " . $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
+				" " . (0 + substr( $ts, 6, 2 ));
 		}
+
 		return $d;
 	}
 
@@ -1332,6 +1366,60 @@ class Language {
 		}
 	}
 
+	function replaceDates( $text )
+	{
+		global $wgUser;
+		
+		# Setup
+		
+		$datePreference = $wgUser->getOption('date');
+		static $monthNames = "", $rxDM, $rxMD, $rxY, $rxDMY, $rxYMD, $rxMDY, $rxYMD;
+		if ( $monthNames == "" ) {
+			$monthNames = $this->getMonthRegex();
+			$rxDM = '\[\[(\d{1,2})[ _](' . $monthNames . ')]](?![a-z])';
+			$rxMD = '\[\[(' . $monthNames . ')[ _](\d{1,2})]](?![a-z])';
+			$rxY = '\[\[(\d{1,4}([ _]BC|))]](?![a-z])';
+			
+			$rxDMY = "/{$rxDM} *, *{$rxY}/i";	
+			$rxYDM = "/{$rxY} *, *{$rxDM}/i";
+			$rxMDY = "/{$rxMD} *, *{$rxY}/i";
+			$rxYMD = "/{$rxY} *, *{$rxMD}/i";
+		}
+		
+		# Do replacements
+		# TODO: month capitalisation?
+		if ( $datePreference == 0 ) { 
+			# no preference
+			$text = preg_replace( $rxDMY, '[[$2 $1|$1 $2]], [[$3]]', $text);
+			$text = preg_replace( $rxYDM, '[[$1]] [[$4 $3]]', $text);
+			$text = preg_replace( $rxMDY, '[[$1 $2]], [[$3]]', $text);
+			$text = preg_replace( $rxYMD, '[[$1]] [[$3 $4]]', $text);
+			$text = preg_replace ( "/$rxDM/i", '[[$2 $1|$1 $2]]', $text);
+		} else if ( $datePreference == 1 ) {
+			# MDY preferred
+			$text = preg_replace( $rxDMY, '[[$2 $1]], [[$3]]', $text);
+			$text = preg_replace( $rxYDM, '[[$4 $3]], [[$1]]', $text);
+			$text = preg_replace( $rxMDY, '[[$1 $2]], [[$3]]', $text);
+			$text = preg_replace( $rxYMD, '[[$3 $4]], [[$1]]', $text);
+			$text = preg_replace ( "/$rxDM/i", '[[$2 $1]]', $text);
+		} else if ( $datePreference == 2 ) {
+			# DMY preferred
+			$text = preg_replace( $rxDMY, '[[$2 $1|$1 $2]], [[$3]]', $text);
+			$text = preg_replace( $rxYDM, '[[$4 $3|$3 $4]], [[$1]]', $text);
+			$text = preg_replace( $rxMDY, '[[$1 $2|$2 $1]], [[$3]]', $text);
+			$text = preg_replace( $rxYMD, '[[$3 $4|$4 $3]], [[$1]]', $text);
+			$text = preg_replace ( "/$rxDM/i", '[[$2 $1|$1 $2]]', $text);
+			$text = preg_replace ( "/$rxMD/i", '[[$1 $2|$2 $1]]', $text);
+		} else if ( $datePreference == 3 ) {
+			# YMD preferred
+			$text = preg_replace( $rxDMY, '[[$3]] [[$2 $1]]', $text);
+			$text = preg_replace( $rxYDM, '[[$1]] [[$4 $3]]', $text);
+			$text = preg_replace( $rxMDY, '[[$3]] [[$1 $2]]', $text);
+			$text = preg_replace( $rxYMD, '[[$1]] [[$3 $4]]', $text);
+			$text = preg_replace ( "/$rxDM/i", '[[$2 $1]]', $text);
+		}
+		return $text;
+	}
 }
 
 global $IP;
