@@ -246,6 +246,7 @@ span.subpages { display: block; }
     vertical-align: middle;
 }
 #siteNotice {
+    text-align: center;
     font-size: 95%;
     padding: 0 0.9em 0 0.9em;
 }
