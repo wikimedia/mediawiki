@@ -540,7 +540,6 @@ class Article {
 		$wgOut->addHTML( "
 <form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
 enctype=\"application/x-www-form-urlencoded\">
-<br clear=\"all\" />
 <textarea tabindex=1 name=\"wpTextbox1\" rows={$rows}
 cols={$cols}{$ew} wrap=\"virtual\">" .
 $wgLang->recodeForEdit( $wpTextbox1 ) .
@@ -1003,15 +1002,73 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 				$wgOut->fatalError( wfMsg( "cannotdelete" ) );
 				return;
 			}
-			$sub = str_replace( "$1", $image, wfMsg( "deletesub" ) );
+			$sub = str_replace( "$1", $image, wfMsg( "deletesub" ) );			
 		} else {
+
 			if ( ( "" == trim( $wgTitle->getText() ) )
 			  or ( $wgTitle->getArticleId() == 0 ) ) {
 				$wgOut->fatalError( wfMsg( "cannotdelete" ) );
 				return;
 			}
 			$sub = str_replace( "$1", $wgTitle->getPrefixedText(),
-			  wfMsg( "deletesub" ) );
+			  wfMsg( "deletesub" ) );			
+
+			# determine whether this page has earlier revisions
+			# and insert a warning if it does
+			# we select the text because it might be useful below
+			$sql="SELECT old_text FROM old WHERE old_namespace=0 and old_title='" . wfStrencode($wgTitle->getPrefixedDBkey())."' ORDER BY inverse_timestamp LIMIT 1";
+			$res=wfQuery($sql,$fname);
+			if( $old=wfFetchObject($res)) {
+
+				$skin=new Skin();
+				$wgOut->addHTML("<B>".wfMsg("historywarning"));
+				$wgOut->addHTML( $skin->historyLink() ."</B><P>");
+			}
+
+			$sql="SELECT cur_text FROM cur WHERE cur_namespace=0 and cur_title='" . wfStrencode($wgTitle->getPrefixedDBkey())."'";
+			$res=wfQuery($sql,$fname);
+			if( ($s=wfFetchObject($res))) {
+
+				# if this is a mini-text, we can paste part of it into the deletion reason
+
+				#if this is empty, an earlier revision may contain "useful" text
+				if($s->cur_text!="") {
+					$text=$s->cur_text;
+				} else {
+					if($old) {
+						$text=$old->old_text;
+						$blanked=1;
+					}
+					
+				}
+				
+				$length=strlen($text);				
+				
+				# this should not happen, since it is not possible to store an empty, new
+				# page. Let's insert a standard text in case it does, though
+				if($length==0) { $wpreason=wfmsg("exblank");}
+				
+				
+				if($length < 500) {
+										
+					# comment field=255, let's grep the first 150 to have some user
+					# space left
+					$text=substr($text,0,150);
+					# let's strip out newlines and HTML tags
+					$text=preg_replace("/\"/","'",$text);
+					$text=preg_replace("/\</","&lt;",$text);
+					$text=preg_replace("/\>/","&gt;",$text);
+					$text=preg_replace("/[\n\r]/","",$text);
+					if(!$blanked) {
+						$wpReason=wfMsg("excontent"). " '".$text;
+					} else {
+						$wpReason=wfMsg("exbeforeblank") . " '".$text;
+					}
+					if($length>150) { $wpReason .= "..."; } # we've only pasted part of the text
+					$wpReason.="'"; 
+				}
+			}
+
 		}
 
 		# Likewise, deleting old images doesn't require confirmation
@@ -1043,7 +1100,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 <form id=\"deleteconfirm\" method=\"post\" action=\"{$formaction}\">
 <table border=0><tr><td align=right>
 {$delcom}:</td><td align=left>
-<input type=text size=20 name=\"wpReason\" value=\"{$wpReason}\">
+<input type=text size=60 name=\"wpReason\" value=\"{$wpReason}\">
 </td></tr><tr><td>&nbsp;</td></tr>
 <tr><td align=right>
 <input type=checkbox name=\"wpConfirm\" value='1'>
@@ -1558,7 +1615,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 		
         wfDebug(" saveToFileCache()\n");
 		$filename=$this->fileCacheName();
-		$mydir2=substr($filename,0,strrpos($filename,"/")); # subdirectory level 2
+                $mydir2=substr($filename,0,strrpos($filename,"/")); # subdirectory level 2
 		$mydir1=substr($mydir2,0,strrpos($mydir2,"/")); # subdirectory level 1
 		if(!file_exists($mydir1)) { mkdir($mydir1,0777); } # create if necessary
 		if(!file_exists($mydir2)) { mkdir($mydir2,0777); }			

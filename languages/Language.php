@@ -888,8 +888,12 @@ make it easier to pick out.</p>
 #
 "deletepage"	=> "Delete page",
 "confirm"		=> "Confirm",
+"excontent" => "content was:",
+"exbeforeblank" => "content before blanking was:",
+"exblank" => "page was empty",
 "confirmdelete" => "Confirm delete",
 "deletesub"		=> "(Deleting \"$1\")",
+"historywarning" => "Warning: The page you are about to delete has a history: ",
 "confirmdeletetext" => "You are about to permanently delete a page
 or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
