@@ -1,18 +1,10 @@
 <?
 
-if( !function_exists( "version_compare" ) ) {
-	# version_compare was introduced in 4.1.0
-	die( "Your PHP version is much too old; 4.0.x will _not_ work. 4.3.2 or higher is recommended. ABORTING.\n" );
-}
-if( version_compare( phpversion(), "4.3.2" ) < 0 ) {
-	echo "WARNING: PHP 4.3.2 or higher is recommended. Older versions from 4.1.x up may work but are not actively supported.\n\n";
-}
-if( !ini_get( "register_globals" ) ) {
-	echo "WARNING: register_globals is not on; MediaWiki currently relies on this option.\n\n";
-}
-
 # Update already-installed software
 #
+
+include( "./install-utils.inc" );
+install_version_checks();
 
 if ( ! ( is_readable( "./LocalSettings.php" )
   && is_readable( "./AdminSettings.php" ) ) ) {
@@ -25,97 +17,45 @@ $IP = "./includes";
 include_once( "./LocalSettings.php" );
 include_once( "./AdminSettings.php" );
 
+include( "$IP/Version.php" );
+
 if ( $wgUseTeX && ( ! is_executable( "./math/texvc" ) ) ) {
 	print "To use math functions, you must first compile texvc by\n" .
 	  "running \"make\" in the math directory.\n";
 	exit();
 }
 
-umask( 000 );
-set_time_limit( 0 );
+#
+# Copy files into installation directories
+#
+do_update_files();
 
-include_once( "Version.php" );
+$wgDBuser			= $wgDBadminuser;
+$wgDBpassword		= $wgDBadminpassword;
+
 include_once( "{$IP}/Setup.php" );
 include_once( "./maintenance/InitialiseMessages.inc" );
 
 $wgTitle = Title::newFromText( "Update script" );
-$wgCommandLineMode = true;
-$wgAlterSpecs = array();
-
-do_revision_updates();
-alter_ipblocks();
-initialiseMessages();
 
 #
-# Run ALTER TABLE queries.
+# Check the database for things that need to be fixed...
 #
-if ( count( $wgAlterSpecs ) ) {
+	print "Checking database for necessary updates...\n";
+
 	$rconn = mysql_connect( $wgDBserver, $wgDBadminuser, $wgDBadminpassword );
 	mysql_select_db( $wgDBname );
-	print "\n";
-	foreach ( $wgAlterSpecs as $table => $specs ) {
-		$sql = "ALTER TABLE $table $specs";
-		print "$sql;\n";
-		$res = mysql_query( $sql, $rconn );
-		if ( $res === false ) {
-			print "MySQL error: " . mysql_error( $rconn ) . "\n";
-		}
-	}
+
+	do_revision_updates();
+	
+	do_ipblocks_update();
+	do_interwiki_update();
+	do_index_update();
+	do_linkscc_update();
+
+	initialiseMessages();
+
 	mysql_close( $rconn );
-}
-
-{ // Create linkscc if necessary
-        $sql = "CREATE TABLE IF NOT EXISTS linkscc (".
-               "  lcc_pageid INT UNSIGNED NOT NULL UNIQUE KEY, ".
-               "  lcc_title VARCHAR(255) NOT NULL UNIQUE KEY,".
-               "  lcc_cacheobj MEDIUMBLOB NOT NULL)";
-        // Should it be created as InnoDB?
-        $rconn = mysql_connect( $wgDBserver, $wgDBadminuser, $wgDBadminpassword );
-        mysql_select_db( $wgDBname );
-        print "\n$sql;\n";
-        $res = mysql_query( $sql, $rconn );
-        if ( $res === false ) {
-		print "MySQL error: " . mysql_error( $rconn ) . "\n";
-        }
-        mysql_close( $rconn );
-}
-
-
-
-
-
-#
-# Copy files into installation directories
-#
-print "Copying files...\n";
-
-copyfile( ".", "wiki.phtml", $IP );
-copyfile( ".", "redirect.phtml", $IP );
-copyfile( ".", "texvc.phtml", $IP );
-
-copydirectory( "./includes", $IP );
-copydirectory( "./stylesheets", $wgStyleSheetDirectory );
-
-copyfile( "./images", "wiki.png", $wgUploadDirectory );
-copyfile( "./languages", "Language.php", $IP );
-copyfile( "./languages", "Language" . ucfirst( $wgLanguageCode ) . ".php", $IP );
-
-$fp = fopen( $wgDebugLogFile, "w" );
-if ( false === $fp ) {
-	print "Could not create log file \"{$wgDebugLogFile}\".\n";
-	exit();
-}
-$d = date( "Y-m-d H:i:s" );
-fwrite( $fp, "Wiki debug log file created {$d}\n\n" );
-fclose( $fp );
-
-if ( $wgUseTeX ) {
-	copyfile( "./math", "texvc", "{$IP}/math", 0775 );
-	copyfile( "./math", "texvc_test", "{$IP}/math", 0775 );
-	copyfile( "./math", "texvc_tex", "{$IP}/math", 0775 );
-}
-
-copyfile( ".", "Version.php", $IP );
 
 print "Done.\n";
 exit();
@@ -124,41 +64,46 @@ exit();
 #
 #
 
-function copyfile( $sdir, $name, $ddir, $perms = 0664 ) {
-	global $wgInstallOwner, $wgInstallGroup;
-
-	$d = "{$ddir}/{$name}";
-	if ( copy( "{$sdir}/{$name}", $d ) ) {
-		if ( isset( $wgInstallOwner ) ) { chown( $d, $wgInstallOwner ); }
-		if ( isset( $wgInstallGroup ) ) { chgrp( $d, $wgInstallGroup ); }
-		chmod( $d, $perms );
-		# print "Copied \"{$name}\" to \"{$ddir}\".\n";
-	} else {
-		print "Failed to copy file \"{$name}\" to \"{$ddir}\".\n";
+function do_update_files() {
+	global $IP, $wgStyleSheetDirectory, $wgUploadDirectory, $wgLanguageCode, $wgDebugLogFile;
+	print "Copying files... ";
+	
+	copyfile( ".", "wiki.phtml", $IP );
+	copyfile( ".", "redirect.phtml", $IP );
+	copyfile( ".", "texvc.phtml", $IP );
+	
+	copydirectory( "./includes", $IP );
+	copydirectory( "./stylesheets", $wgStyleSheetDirectory );
+	
+	copyfile( "./images", "wiki.png", $wgUploadDirectory );
+	copyfile( "./languages", "Language.php", $IP );
+	copyfile( "./languages", "Language" . ucfirst( $wgLanguageCode ) . ".php", $IP );
+	
+	$fp = fopen( $wgDebugLogFile, "w" );
+	if ( false === $fp ) {
+		print "Could not create log file \"{$wgDebugLogFile}\".\n";
 		exit();
 	}
-}
-
-function copydirectory( $source, $dest ) {
-	$handle = opendir( $source );
-	while ( false !== ( $f = readdir( $handle ) ) ) {
-		if ( "." == $f{0} ) continue;
-		# Windows turned all my CVS->cvs :(
-		if ( !strcasecmp ( "CVS", $f ) ) continue;
-		copyfile( $source, $f, $dest );
-	}
-}
-
-function readconsole() {
-	$fp = fopen( "php://stdin", "r" );
-	$resp = trim( fgets( $fp, 1024 ) );
+	$d = date( "Y-m-d H:i:s" );
+	fwrite( $fp, "Wiki debug log file created {$d}\n\n" );
 	fclose( $fp );
-	return $resp;
+	
+	if ( $wgUseTeX ) {
+		copyfile( "./math", "texvc", "{$IP}/math", 0775 );
+		copyfile( "./math", "texvc_test", "{$IP}/math", 0775 );
+		copyfile( "./math", "texvc_tex", "{$IP}/math", 0775 );
+	}
+	
+	copyfile( ".", "Version.php", $IP );
+
+	print "ok\n";
 }
 
 function do_revision_updates() {
 	global $wgSoftwareRevision;
-	if ( $wgSoftwareRevision < 1001 ) { update_passwords(); }
+	if ( $wgSoftwareRevision < 1001 ) {
+		update_passwords();
+	}
 }
 
 function update_passwords() {
@@ -186,21 +131,55 @@ function update_passwords() {
 	}
 }
 
-function alter_ipblocks() {
-	global $wgAlterSpecs;
-	
+function do_ipblocks_update() {
 	if ( wfFieldExists( "ipblocks", "ipb_id" ) ) {
-		return;
+		echo "...ipblocks table is up to date.\n";
+	} else {
+		echo "Updating ipblocks table... ";
+		dbsource( "maintenance/archives/patch-ipblocks.sql" );
+		echo "ok\n";
 	}
-	
-	if ( array_key_exists( "ipblocks", $wgAlterSpecs ) ) {
-		$wgAlterSpecs["ipblocks"] .= ",";
-	}
-
-	$wgAlterSpecs["ipblocks"] .=
-		"ADD ipb_auto tinyint(1) NOT NULL default '0', ".
-		"ADD ipb_id int(8) NOT NULL auto_increment,".
-		"ADD PRIMARY KEY (ipb_id)";
 }
+
+
+function do_interwiki_update() {
+	# Check that interwiki table exists; if it doesn't source it
+	if( table_exists( "interwiki" ) ) {
+		echo "...already have interwiki table\n";
+		return true;
+	}
+	echo "Creating interwiki table: ";
+	dbsource( "maintenance/archives/patch-interwiki.sql" );
+	echo "ok\n";
+	echo "Adding default interwiki definitions: ";
+	dbsource( "maintenance/interwiki.sql" );
+	echo "ok\n";
+}
+
+function do_index_update() {
+	# Check that proper indexes are in place
+	$meta = field_info( "recentchanges", "rc_timestamp" );
+	if( $meta->multiple_key == 0 ) {
+		echo "Updating indexes to 20031107: ";
+		dbsource( "maintenance/archives/patch-indexes.sql" );
+		echo "ok\n";
+		return true;
+	}
+	echo "...indexes seem up to 20031107 standards\n";
+	return false;
+}
+
+function do_linkscc_update() {
+	// Create linkscc if necessary
+	global $rconn;
+	if( table_exists( "linkscc" ) ) {
+		echo "...have linkscc table.\n";
+	} else {
+		echo "Adding linkscc table... ";
+		dbsource( "maintenance/archives/patch-linkscc.sql" );
+		echo "ok\n";
+	}
+}
+
 
 ?>
