@@ -86,7 +86,7 @@ $wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
 $wgLogQueries           = false;
 $wgUseBetterLinksUpdate = true;
 $wgUseCategoryMagic		= false;
-$wgEnablePersistentLC	= true;	# Persistent link cache, needs the linkscc table
+$wgEnablePersistentLC	= false;	# Persistent link cache in linkscc table; FAILS on MySQL 3.x
 $wgCompressedPersistentLC = true; # use gzcompressed blobs
 
 # User rights 
