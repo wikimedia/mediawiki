@@ -333,7 +333,7 @@
 					$istalk = ( Namespace::isTalk( $wgTitle->getNamespace()) );
 					$istalkclass = $istalk?' istalk':'';
 					$content_actions['edit'] = array(
-						'class' => (($this->iseditable and $section != 'new') ? 'selected' : '').$istalkclass,
+						'class' => ((($action == 'edit' or $action == 'submit') and $section != 'new') ? 'selected' : '').$istalkclass,
 						'text' => wfMsg('edit'),
 						'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid),
 						'ttip' => wfMsg('tooltip-edit'),
