@@ -2834,7 +2834,7 @@ class Parser
 			putenv( 'TZ='.$oldtzs );
 		}
 
-		$text = preg_replace( '/~~~~~~/', $d, $text );
+		$text = preg_replace( '/~~~~~/', $d, $text );
 		$text = preg_replace( '/~~~~/', '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]] $d", $text );
 		$text = preg_replace( '/~~~/', '[[' . $wgContLang->getNsText( NS_USER ) . ":$n|$k]]", $text );
 
