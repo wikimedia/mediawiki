@@ -551,6 +551,20 @@ $wgUseImageResize		= false;
 $wgUseImageMagick		= false;
 $wgImageMagickConvertCommand    = '/usr/bin/convert';
 
+# Scalable Vector Graphics (SVG) may be uploaded as images.
+# Since SVG support is not yet standard in browsers, it is
+# necessary to rasterize SVGs to PNG as a fallback format.
+#
+# An external program is required to perform this conversion:
+$wgSVGConverters = array(
+	'ImageMagick' => '$path/convert -background white -geometry $width $input $output',
+	'sodipodi' => '$path/sodipodi -z -w $width -f $input -e $output',
+	'inkscape' => '$path/inkscape -z -w $width -f $input -e $output',
+	'batik' => 'java -Djava.awt.headless=true -jar $path/batik-rasterizer.jar -w $width -d $output $input',
+	);
+$wgSVGConverter = 'ImageMagick'; # Pick one of the above
+$wgSVGConverterPath = ''; # If not in the executable PATH, specify
+
 # PHPTal is a library for page templates. MediaWiki includes
 # a recent PHPTal distribution. It is required to use the
 # Monobook (default) skin.
