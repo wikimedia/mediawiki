@@ -1771,7 +1771,7 @@ class Parser
 
 		# Did we encounter this template already? If yes, it is in the cache
 		# and we need to check for loops.
-		if ( isset( $this->mTemplates[$part1] ) ) {
+		if ( !$found && isset( $this->mTemplates[$part1] ) ) {
 			# Infinite loop test
 			if ( isset( $this->mTemplatePath[$part1] ) ) {
 				$noparse = true;
