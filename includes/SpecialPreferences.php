@@ -310,7 +310,7 @@ value=\"$i\"$checked> {$qbs[$i]}</label><br>\n" );
 			$checked = ""; 
 		}
 		$wgOut->addHTML( "<label><input type=radio name=\"wpSkin\"
-value=\"$i\"$checked> {$skins[$i]}</label><br>\n" );
+value=\"$i\"$checked> {$wgValidSkinNames[$i]}</label><br>\n" );
 	}
 
 	# Various checkbox options
