@@ -190,7 +190,7 @@ class LoadBalancer {
 	}		
 
 	# Get a connection by index
-	function &getConnection( $i, $fail = false )
+	function &getConnection( $i, $fail = true )
 	{
 		$fname = "LoadBalancer::getConnection";
 		wfProfileIn( $fname );
@@ -260,6 +260,9 @@ class LoadBalancer {
 
 	# Test if the specified index represents an open connection
 	/* private */ function isOpen( $index ) {
+		if( !is_integer( $index ) ) {
+			return false;
+		}
 		if ( array_key_exists( $index, $this->mConnections ) && is_object( $this->mConnections[$index] ) && 
 		  $this->mConnections[$index]->isOpen() ) 
 		{
@@ -295,9 +298,9 @@ class LoadBalancer {
 				$conn = new Database;
 			}
 			if ( $this->mFailFunction ) {
-				$conn->setFailFunction( $this->mFailFunction );
+				$conn->failFunction( $this->mFailFunction );
 			} else {
-				$conn->setFailFunction( "wfEmergencyAbort" );
+				$conn->failFunction( "wfEmergencyAbort" );
 			}
 			$conn->reportConnectionError();
 			$reporting = false;
