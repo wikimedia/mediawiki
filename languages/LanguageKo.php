@@ -296,8 +296,8 @@ Please report this to an administrator, making note of the URL.",
 "yourpasswordagain" => "암호 또 한번",
 "newusersonly"	=> " (새내기 사용자)",
 "remembermypassword" => "세쎤동안 암호를 기억합니다.",
-"loginproblem"	=> "<b>들어가는 데 문제가 있습니다.</b><br>다시 해 보세요!",
-"alreadyloggedin" => "<font color=red><b>$1 님, 벌써 들어와 있습니다!</b></font><br>\n",
+"loginproblem"	=> "<b>들어가는 데 문제가 있습니다.</b><br />다시 해 보세요!",
+"alreadyloggedin" => "<font color=red><b>$1 님, 벌써 들어와 있습니다!</b></font><br />\n",
 
 "login"			=> "들어가기",
 "userlogin"		=> "들어가기",
@@ -335,7 +335,7 @@ Please report this to an administrator, making note of the URL.",
 "showpreview"	=> "미리보기",
 "blockedtitle"	=> "사용자 접근금지",
 "blockedtext"	=> "$1 가 당신의 또이름이나 IP를 막았습니다.
-이유는 다음과 같습니다:<br>$2<p> 접근금지에 대해선 관리자와 상의하십시오.",
+이유는 다음과 같습니다:<br />$2<p> 접근금지에 대해선 관리자와 상의하십시오.",
 "newarticle"	=> "(새문서)",
 "newarticletext" => "새문서에 내용을 써 넣으세요.",
 "noarticletext" => "(현재 문서는 비어 있습니다.)",
@@ -364,7 +364,7 @@ text editing area as it will appear if you choose to save.",
 "yourdiff"		=> "차이",
 "copyrightwarning" => "{{SITENAME}}에 당신이 기여한 것은 모두 GNU 자유 문서 사용허가서(GFDL)
 ($1참조)에 따라 배포됩니다.
-당신이 써 넣은 내용이 제한없이 고쳐지고, 재배포되는 것이 싫다면, 저장하지 마십시오.에 반대할 때에는, 여기에 쓰지 마시길 바랍니다.<br>
+당신이 써 넣은 내용이 제한없이 고쳐지고, 재배포되는 것이 싫다면, 저장하지 마십시오.에 반대할 때에는, 여기에 쓰지 마시길 바랍니다.<br />
 또한, 여기 써 넣은 내용을 스스로 썼음을, 혹은 모두에게 공개된 자료에서 빌어왔음을
 같이 약속해야 합니다.
 <strong>저작권의 보호를 받는 내용을 저작권자의 허가없이 보내지 마십시오!</strong>",
@@ -437,8 +437,8 @@ which are not indexed, or by specifying more than one search term (only pages
 containing all of the search terms will appear in the result).",
 "powersearch" => "찾기",
 "powersearchtext" => "
-Search in namespaces :<br>
-$1<br>
+Search in namespaces :<br />
+$1<br />
 $2 List redirects &nbsp; Search for $3 $9",
 
 
@@ -602,7 +602,7 @@ $1의 조건으로 사용을 허가했음을 확인합니다.",
 "deleteimg"		=> "지우기",
 "deleteimgcompletely"		=> "지우기",
 "imghistlegend" => "상세설명: (현재) = 현재의 그림입니다, (지움) = 옛 버젼을 지웁니다, (돌림) = 옛 버젼으로 되돌려 놓습니다.
-<br><i>특정 날짜에 올라온 그림을 보려면, 날짜를 찍어 주세요</i>.",
+<br /><i>특정 날짜에 올라온 그림을 보려면, 날짜를 찍어 주세요</i>.",
 "imagelinks"	=> "그림고리",
 "linkstoimage"	=> "다음 문서들이 이 그림을 담고 있습니다:",
 "nolinkstoimage" => "이 그림을 담고 있는 문서는 없습니다.",
@@ -631,9 +631,9 @@ $1의 조건으로 사용을 허가했음을 확인합니다.",
 "maintenancebacklink"	=> "Back to Maintenance Page",
 "disambiguations"	=> "Disambiguation pages",
 "disambiguationspage"	=> "{{ns:4}}:Links_to_disambiguating_pages",
-"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
+"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
-"doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br>\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
+"doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
 "selflinks"		=> "Pages with Self Links",
 "selflinkstext"		=> "The following pages contain a link to themselves, which they should not.",
 "missinglanguagelinks"  => "Missing Language Links",
@@ -795,7 +795,7 @@ pages that were vandalized).",
 "noblockreason" => "You must supply a reason for the block.",
 "blockipsuccesssub" => "Block succeeded",
 "blockipsuccesstext" => "The IP address \"$1\" has been blocked.
-<br>See [[특수기능:Ipblocklist|IP block list]] to review blocks.",
+<br />See [[특수기능:Ipblocklist|IP block list]] to review blocks.",
 "unblockip"		=> "Unblock IP address",
 "unblockiptext"	=> "Use the form below to restore write access
 to a previously blocked IP address.",
@@ -828,7 +828,7 @@ Please confirm that this is what you intend to do.",
 "lockdbsuccesssub" => "Database lock succeeded",
 "unlockdbsuccesssub" => "Database lock removed",
 "lockdbsuccesstext" => "The Wikipedia database has been locked.
-<br>Remember to remove the lock after your maintenance is complete.",
+<br />Remember to remove the lock after your maintenance is complete.",
 "unlockdbsuccesstext" => "The Wikipedia database has been unlocked.",
 
 # SQL query

@@ -530,7 +530,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yournick'		=> 'Your nickname (for signatures)',
 'emailforlost'	=> "Fields marked with a star (*) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.<br /><br />Your real name, if you choose to provide it, will be used for giving you attribution for your work.",
-'prefs-help-userdata' => '* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br/>
+'prefs-help-userdata' => '* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />
 * <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your
 email address to them, and it can be used to send you a new password if you forget it.',
 'loginerror'	=> 'Login error',
@@ -689,7 +689,7 @@ Please check the URL you used to access this page.\n",
 'next'			=> 'next',
 'last'			=> 'last',
 'orig'			=> 'orig',
-'histlegend'	=> 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br/>
+'histlegend'	=> 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />
 Legend: (cur) = difference with current version,
 (last) = difference with preceding version, M = minor edit.',
 'history_copyright'    => '-',
@@ -1358,8 +1358,8 @@ for a newer revision, but also keep your other settings for this article in
 this revision, just select which option you intend to <i>change</i>, and
 merging will fill in the other options with your previous settings.',
 'val_noop' => 'No opinion',
-'val_percent' => '<b>$1%</b><br>($2 of $3 points<br>by $4 users)',
-'val_percent_single' => '<b>$1%</b><br>($2 of $3 points<br>by one user)',
+'val_percent' => '<b>$1%</b><br />($2 of $3 points<br />by $4 users)',
+'val_percent_single' => '<b>$1%</b><br />($2 of $3 points<br />by one user)',
 'val_total' => 'Total',
 'val_version' => 'Version',
 'val_tab' => 'Validate',

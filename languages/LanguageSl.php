@@ -293,8 +293,8 @@ Lahko nadaljujete z uporabo Wikipedije nepodpisani, ali pa se lahko ponovno vpi�
 "yourpasswordagain"     => "Ponovno vpišite geslo",
 "newusersonly"	        => " (Samo novi uporabniki)",
 "remembermypassword"    => "Zapomni si moje geslo vseskozi.",
-"loginproblem"	        => "<b>Nastala je tažava z vašim vpisom.</b><br>Poskusite znova!",
-"alreadyloggedin"       => "<font color=red><b>Uporabnik $1, ste že vpisani!</b></font><br>\n",
+"loginproblem"	        => "<b>Nastala je tažava z vašim vpisom.</b><br />Poskusite znova!",
+"alreadyloggedin"       => "<font color=red><b>Uporabnik $1, ste že vpisani!</b></font><br />\n",
 
 "login"			=> "Vpis",
 "userlogin"		=> "Vpis",
@@ -331,7 +331,7 @@ Sedaj se lahko vpišete in spremenite vaše geslo.",
 "showpreview"	        => "Pokaži predpregled",
 "blockedtitle"	        => "Uporabnik je zaprt",
 "blockedtext"	        => "Vaše uporabniško ime ali IP naslov je zaprl $1.
-Vzrok za to je naslednji:<br>''$2''<p>Lahko pokličete $1 ali katerega drugega
+Vzrok za to je naslednji:<br />''$2''<p>Lahko pokličete $1 ali katerega drugega
 [[Wikipedija:Administratorji|administratorja]] za pogovor o zaprtju.",
 "newarticle"	        => "(Nov)",
 "newarticletext" =>
@@ -358,7 +358,7 @@ Morali boste spojiti vaše spremembe v obstoječe besedilo.
 Če jo boste shranili, bodo vse spremembe, narejene od tedaj, izgubljene.</strong>\n",
 "yourdiff"		=> "Razlike",
 "copyrightwarning"      => "Prosimo upoštevajte, da se vsi doprinosi k Wikipediji smatrajo kot objave pod GNU licenco proste dokumentacije (glej $1 za podrobnosti).
-Če ne želite, da se vaša pisanja neusmiljeno urejujejo ali ponovno razdeljujejo prostovoljno, potem jih ne predlagajte tukaj.<br>
+Če ne želite, da se vaša pisanja neusmiljeno urejujejo ali ponovno razdeljujejo prostovoljno, potem jih ne predlagajte tukaj.<br />
 Poleg tega nam obljubljate, da ste to napisali samo ali pa prepisali iz javno dostopnega ali podobnega prostega vira.
 <strong>NE PREDLAGAJTE AVTORSKO ZAŠČITENEGA DELA BREZ DOVOLJENJA!</strong>",
 "longpagewarning" => "OPOZORILO: Ta stran je dolga $1 kilobitov; nekateri brskalniki s težavo urejujejo strani, ki so daljše kot 32 kB. Prosimo, da upoštevate delitev strani na manjše dele.",
@@ -413,8 +413,8 @@ Prosimo poskusite z drugim povpraševanjem.",
 "nonefound"		=> "<strong>Opomba</strong>: neuspešna iskanja velikokrat povzročijo iskanja vsakdanjih besed kot sta \"imeti\" in \"iz\", katera niso vnešena v seznam, ali navajanja več iskalnih izrazov (v izidu se bodo pojavile samo strani, ki vsebujejo iskalne izraze).",
 "powersearch"           => "Iskanje",
 "powersearchtext" => "
-Iskanje v imenskem prostoru :<br>
-$1<br>
+Iskanje v imenskem prostoru :<br />
+$1<br />
 $2 Seznam se preusmerja   Iskanje za $3 $9",
 "searchdisabled" => "<p>Oprostite! Iskanje po celotni bazi je zaradi hitrejšega delovanja Wikipedije trenutno onomogočena. Lahko pa se poslužite z Googlovim iskalnikom.</p>
 
@@ -433,7 +433,7 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Iskanje z Googlom\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br>
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br />
 </font>
 </td></tr></TABLE>
 </FORM>
@@ -607,7 +607,7 @@ izdelana in kdo jo je izdelal ali karkoli bi še vedeli o njej.",
 "deleteimgcompletely"		=> "bri",
 "imghistlegend"         => "Napotek: (tre) = trenutna slika, (bri) = briši
 zadnjo inačico, (vrn) = vrni sliko na to zadnjo inačico.
-<br><i>Klikni na datum, da vidiš katera slika je bila tedaj naložena</i>.",
+<br /><i>Klikni na datum, da vidiš katera slika je bila tedaj naložena</i>.",
 "imagelinks"	=> "Povezave slike",
 "linkstoimage"	=> "Naslednje strani so vezane s to sliko:",
 "nolinkstoimage" => "Nobena stran ni vezana s to sliko.",
@@ -634,9 +634,9 @@ na eno urejevanje.",
 "maintenancebacklink"	=> "Nazaj na vzdrževalno stran",
 "disambiguations"	=> "Razjasnjevalne strani",
 "disambiguationspage"	=> "Wikipedija:Povezave_na_razjasnjevalne_strani",
-"disambiguationstext"	=> "Naslednji članki so povezani na <i>razjasnjevalno stran</i>. Morajo biti povezani na pripadajočo vsebino.<br>Stran je razjasnjevalna, če je povezana iz $1.<br>Povezave iz drugih imenskih področij tukaj <i>niso</i> prikazane.",
+"disambiguationstext"	=> "Naslednji članki so povezani na <i>razjasnjevalno stran</i>. Morajo biti povezani na pripadajočo vsebino.<br />Stran je razjasnjevalna, če je povezana iz $1.<br />Povezave iz drugih imenskih področij tukaj <i>niso</i> prikazane.",
 "doubleredirects"	=> "Dvojne preusmeritve",
-"doubleredirectstext"	=> "<b>Pozor:</b> ta seznam lahko vsebuje nepravilne člene. To ponavadi pomeni, da obstaja dodatno besedilo s povezavami pod prvim ukazom #REDIRECT.<br>\nVsaka vrsta vsebuje povezave k prvi in drugi preusmeritvi, kot tudi prvo vrstico drugega preusmerjenega besedila, kar ponavadi da \"resnični\" ciljni članek, na katerega mora kazati prva preusmeritev.",
+"doubleredirectstext"	=> "<b>Pozor:</b> ta seznam lahko vsebuje nepravilne člene. To ponavadi pomeni, da obstaja dodatno besedilo s povezavami pod prvim ukazom #REDIRECT.<br />\nVsaka vrsta vsebuje povezave k prvi in drugi preusmeritvi, kot tudi prvo vrstico drugega preusmerjenega besedila, kar ponavadi da \"resnični\" ciljni članek, na katerega mora kazati prva preusmeritev.",
 "brokenredirects"	=> "Polomljene preusmeritve",
 "brokenredirectstext"	=> "Naslednje preusmeritve kažejo na neobstoječe članke.",
 "selflinks"		=> "strani z lastnimi povezavami",
@@ -808,7 +808,7 @@ Vnesi razloge spodaj (na primer z navedbo določenih strani, ki so jih po nepotr
 "noblockreason" => "Morate navesti razlog prekinitve.",
 "blockipsuccesssub" => "Prekinitev je uspela",
 "blockipsuccesstext" => "IP naslov \"$1\" je prekinjen.
-<br>Glej [[Posebno:Ipseznamprekinitev|seznam prekinitev IP]] za pregled prekinitev.",
+<br />Glej [[Posebno:Ipseznamprekinitev|seznam prekinitev IP]] za pregled prekinitev.",
 "unblockip"	=> "Poveži IP naslov",
 "unblockiptext"	=> "Uporabi spodnjo obliko za obnovitev dostopa zapisa prejšnjega prekinjenega IP naslova.",
 "ipusubmit"	=> "Poveži ta naslov",
@@ -837,7 +837,7 @@ Prosimo potrdite vaš resnični namen.",
 "lockdbsuccesssub" => "Zaklenitev podatkovne baze je uspela",
 "unlockdbsuccesssub" => "Podatkovna baza je odklenjena",
 "lockdbsuccesstext" => "Podatkovna baza Wikipedije je bila zaklenjena.
-<br>Ne pozabite odkleniti, ko boste končali z vzdrževanjem.",
+<br />Ne pozabite odkleniti, ko boste končali z vzdrževanjem.",
 "unlockdbsuccesstext" => "Podatkovna baza Wikipedije je bila odklenjena.",
 
 # SQL query

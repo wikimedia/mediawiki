@@ -252,7 +252,7 @@ Per favore, segnalate l'accaduto ad un administrator, segnalando la URL e l'ora 
 "logouttext"	=> "Logout effettuato.
 Ora puoi continuare ad usare Wikipedia come utente anonimo (ma il tuo indirizzo IP resterà riconoscibile), oppure puoi nuovamente richiedere il login con il precedente username, oppure come uno diverso.\n",
 
-"welcomecreation" => "<h2>Benvenuto, $1!</h2><p>Il tuo account è stato creato con successo.<br>Grazie per aver scelto di far crescere Wikipedia con il tuo aiuto.<br>Per rendere Wikipedia più tua, e per usarla più scorrevolmente, non dimenticare di personalizzare le tue preferenze.",
+"welcomecreation" => "<h2>Benvenuto, $1!</h2><p>Il tuo account è stato creato con successo.<br />Grazie per aver scelto di far crescere Wikipedia con il tuo aiuto.<br />Per rendere Wikipedia più tua, e per usarla più scorrevolmente, non dimenticare di personalizzare le tue preferenze.",
 
 "loginpagetitle" => "Login",
 "yourname"		=> "Il tuo  user name",
@@ -260,11 +260,11 @@ Ora puoi continuare ad usare Wikipedia come utente anonimo (ma il tuo indirizzo 
 "yourpasswordagain" => "Ripeti la password",
 "newusersonly"	=> " (solo per nuovi Utenti)",
 "remembermypassword" => "Ricorda la mia password per più sessioni (richiede uso dei cookies).",
-"loginproblem"	=> "<b>Si è verificato un errore durante il tuo tentativo di login.</b><br>Riprova, sarai più fortunato!",
-"alreadyloggedin" => "<font color=red><b>Ehi, Utente $1, hai già fatto il login, sei già connesso al nostro server!</b></font><br>\n",
+"loginproblem"	=> "<b>Si è verificato un errore durante il tuo tentativo di login.</b><br />Riprova, sarai più fortunato!",
+"alreadyloggedin" => "<font color=red><b>Ehi, Utente $1, hai già fatto il login, sei già connesso al nostro server!</b></font><br />\n",
 
-"areyounew"		=> "Se sei nuovo in Wikipedia e desideri creare un nuovo user account, immetti uno user name (che sarà il tuo nome per Wikipedia, poi digita una password e ripetila nella casella successiva.<br> 
-Indicare un indirizzo e-mail non è obbligatorio, solo facoltativo (sebbene consigliato).<br>Se per caso perdessi la tua password, potrai richiedere che ti sia rispedita alla casella di posta elettronica che ci fornirai.<br>\n",
+"areyounew"		=> "Se sei nuovo in Wikipedia e desideri creare un nuovo user account, immetti uno user name (che sarà il tuo nome per Wikipedia, poi digita una password e ripetila nella casella successiva.<br /> 
+Indicare un indirizzo e-mail non è obbligatorio, solo facoltativo (sebbene consigliato).<br />Se per caso perdessi la tua password, potrai richiedere che ti sia rispedita alla casella di posta elettronica che ci fornirai.<br />\n",
 
 "login"			=> "Log in",
 "userlogin"		=> "Log in",
@@ -280,9 +280,9 @@ Indicare un indirizzo e-mail non è obbligatorio, solo facoltativo (sebbene cons
 "noname"		=> "Lo user name indicato non è valido, non è possibile creare un account a questo nome.",
 "loginsuccesstitle" => "Login effettuato con successo!",
 "loginsuccess"	=> "Sei stato ammesso alla connessione al server di Wikipedia con il nome utente di \"$1\".",
-"nosuchuser"	=> "Attenzione<br><br>a seguito di verifica, non ci risulta alcun Utente con il nome di  \"$1\".<br><br>
+"nosuchuser"	=> "Attenzione<br /><br />a seguito di verifica, non ci risulta alcun Utente con il nome di  \"$1\".<br /><br />
 Controlla per favore il nome digitato, oppure usa il modulo qui sotto per creare un nuovo user account.",
-"wrongpassword"	=> "La password immessa non è corretta.<br><br>Riprova, per favore.",
+"wrongpassword"	=> "La password immessa non è corretta.<br /><br />Riprova, per favore.",
 "mailmypassword" => "Spediscimi una nuova password in posta elettronica",
 "passwordremindertitle" => "Servizio Password Reminder di Wikipedia",
 "passwordremindertext" => "Qualcuno (probabilmente tu, con indirizzo IP $1)
@@ -302,8 +302,8 @@ Per favore, fai subito un log in non appena la ricevi.",
 "preview"		=> "Anteprima",
 "showpreview"	=> "Visualizza Anteprima",
 "blockedtitle"	=> "Questo User name corrisponde purtroppo ad un Utente che è stato disabilitato alla modifica degli articoli.",
-"blockedtext"	=> "Il tuo User name o il tuo indirizzo IP sono stati bloccati da $1.<br>
-La motivazione del blocco è la seguente:<br>:''$2''<p>Se lo desideri, puoi contattare $1, o uno degli altri 
+"blockedtext"	=> "Il tuo User name o il tuo indirizzo IP sono stati bloccati da $1.<br />
+La motivazione del blocco è la seguente:<br />:''$2''<p>Se lo desideri, puoi contattare $1, o uno degli altri 
 [[Wikipedia:administrators|administrators]] per discutere del blocco.",
 "newarticle"	=> "(Nuovo)",
 "newarticletext" => "Scrivi qui il tuo testo.",
@@ -314,7 +314,7 @@ La motivazione del blocco è la seguente:<br>:''$2''<p>Se lo desideri, puoi cont
 "previewconflict" => "Questa anteprima rappresenta il testo nella casella di edizione di sopra, l'articolo apparirà n questa forma se sceglierai di salvare la pagina.",
 "editing"		=> "Modifica di $1",
 "editconflict"	=> "Conflitto di edizione: $1",
-"explainconflict" => "Qualcun altro ha salvato una sua versione dell'articolo nel tempo in cui tu stavi preparando la tua versione.<br>
+"explainconflict" => "Qualcun altro ha salvato una sua versione dell'articolo nel tempo in cui tu stavi preparando la tua versione.<br />
 La casella di modifica di sopra contiene il testo dell'articolo nella sua forma attuale (cioè il testo attualmente online). Le tue modifiche sono invece contenute nella casella di modifica inferiore. 
 Dovrai inserire, se lo desideri, le tue modifiche nel testo esistente, e perciò scriverle nella casella di sopra. 
 <b>Soltanto</b> il testo nella casella di sopra sarà sakvato se premerai il bottone \"Salva\".\n<p>",
@@ -325,7 +325,7 @@ Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno 
 "yourdiff"		=> "Differenze",
 "copyrightwarning" => "Nota, per favore, che tutti i contributi a Wikipedia si considerano rilasciati sotto licenza di tipo GNU Free Documentation License
 (vedi $1 per maggiori dettagli).
-Se non vuoi che il tuo testo possa essere modificato e ridistribuito da chiunque senza pietà e senza altri limiti, allora non inviarlo a Wikipedia, ma realizza piuttosto un tuo sito web personale.<br>
+Se non vuoi che il tuo testo possa essere modificato e ridistribuito da chiunque senza pietà e senza altri limiti, allora non inviarlo a Wikipedia, ma realizza piuttosto un tuo sito web personale.<br />
 Con l'invio di questo testo stai garantendo, a tua responsabilità, che il testo è stato scritto da te personalmente ed originalmente, oppure che è stato copiato da una fonte di publico dominio, o una simile fonte, oppure che hai ottenuto espressa autorizzazione ad usare questo testo e che puoi dimostrarlo.
 <strong>NON USARE MATERIALE COPERTO DA DIRITTO DI AUTORE (COPYRIGHT - (c)) IN MANCANZA DI ESPRESSA AUTORIZZAZIONE!!!</strong>",
 
@@ -364,7 +364,7 @@ Controlla per favore la URL che hai usato per accedere a questa pagina.\n",
 Questo potrebbe dipendere dall'aver ricercato una parola di meno di tre caratteri.
 Oppure potresti aver scritto male la richiesta, per esempio \"pesce and and azzurro\".
 Per favore, riprova.",
-"matchtotals"	=> "La ricerca per la voce \"$1\" ha trovato<br>$2 riscontri nei titoli degli articoli e<br>$3 riscontri nei testi degli articoli.",
+"matchtotals"	=> "La ricerca per la voce \"$1\" ha trovato<br />$2 riscontri nei titoli degli articoli e<br />$3 riscontri nei testi degli articoli.",
 "titlematches"	=> "Nei titoli degli articoli",
 "notitlematches" => "Voce richiesta non trovata in titoli di articolo",
 "textmatches"	=> "Nel testo degli articoli ",
@@ -376,8 +376,8 @@ Per favore, riprova.",
 "nonefound"		=> "<strong>Nota</strong>: la ricerca di parole troppo comuni, come \"avere\" o \"essere\", che non sono indicizzate, può causare un esito negativo, così come indicare più di un termine da ricercare (solo le pagine che contengano tutti i termini ricercati verrebbero infatti visualizzate fra i risultati).",
 "powersearch" => "Ricerca",
 "powersearchtext" => "
-Cerca fra i campi :<br>
-$1<br>
+Cerca fra i campi :<br />
+$1<br />
 $2 Elenca i redirects &nbsp; cerca per $3 $9",
 
 
@@ -526,7 +526,7 @@ Segui questo link: ($2) per modificare la pagina di descrizione del file che hai
 "deleteimg"		=> "canc",
 "deleteimgcompletely"		=> "canc",
 "imghistlegend" => "Legenda: (cur) = immagine corrente, (canc) = cancella questa vecchia versione, (ripr) = ripristina questa vecchia versione come versione attuale.
-<br><i>Clicca su una data per vedere tutte le immagini che sono state caricate in quella data </i>.",
+<br /><i>Clicca su una data per vedere tutte le immagini che sono state caricate in quella data </i>.",
 "imagelinks"	=> "Link alle immagini",
 "linkstoimage"	=> "Le pagine seguenti linkano questa immagine:",
 "nolinkstoimage" => "Nessuna pagina linka questa immagine.",
@@ -551,9 +551,9 @@ Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per cias
 "maintenancebacklink"	=> "Torna alla pagina manutenzione",
 "disambiguations"	=> "Disambiguation pages",
 "disambiguationspage"	=> "Wikipedia:Links_to_disambiguating_pages",
-"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br>A page is treated as dismbiguation if it is linked from $1.<br>Links from other namespaces are <i>not</i> listed here.",
+"disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Doppi Redirects",
-"doubleredirectstext"	=> "<b>Attenzione:</b> Questa lista può talvolta contenere dei risultati non corretti. Ciò potrebbe magari accadere perchè vi sono del testo aggiuntivo o dei link dopo il tag #REDIRECT.<br>\nOgni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene il \"reale\" articolo di destinazione, quello al quale anche il primo redirect dovrebbe puntare.",
+"doubleredirectstext"	=> "<b>Attenzione:</b> Questa lista può talvolta contenere dei risultati non corretti. Ciò potrebbe magari accadere perchè vi sono del testo aggiuntivo o dei link dopo il tag #REDIRECT.<br />\nOgni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene il \"reale\" articolo di destinazione, quello al quale anche il primo redirect dovrebbe puntare.",
 "brokenredirects"	=> "Redirects errati",
 "brokenredirectstext"	=> "I seguenti redirects puntano ad articoli non ancora creati.",
 "selflinks"		=> "Pagine con Auto-Links",
@@ -717,7 +717,7 @@ Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avvis
 "noblockreason" => "Devi obbligatoriamente fornire una motivazione per il blocco.",
 "blockipsuccesssub" => "Blocco eseguito",
 "blockipsuccesstext" => " L'indirizzo IP \"$1\" è stato bloccato.
-<br>Vedi [[Special:Ipblocklist|lista IP bloccati]].",
+<br />Vedi [[Special:Ipblocklist|lista IP bloccati]].",
 "unblockip"		=> " Sblocca indirizzo IP",
 "unblockiptext"	=> "Usa il modulo sottostante per restituire il diritto di scrittura ad un indirizzo IP precedentemente bloccato.",
 "ipusubmit"		=> "Sblocca questo indirizzo IP",
@@ -732,7 +732,7 @@ Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avvis
 #
 "lockdb"		=> "Blocca il database",
 "unlockdb"		=> "Sblocca il database",
-"lockdbtext"	=> "Bloccare il database sospenderà la possibilità per tutti gli Utenti di modificare le pagine o di crearne di nuove, di cambiare le loro preferenze, di modificare le loro liste di Osservati Speciali, ed in genere non consentirà a nessuno di eseguire operazioni che richiedano modifiche del database.<br><br>
+"lockdbtext"	=> "Bloccare il database sospenderà la possibilità per tutti gli Utenti di modificare le pagine o di crearne di nuove, di cambiare le loro preferenze, di modificare le loro liste di Osservati Speciali, ed in genere non consentirà a nessuno di eseguire operazioni che richiedano modifiche del database.<br /><br />
 Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effettuare e, soprattutto, che il prima possibile sbloccherai nuovamente il database, ripristinandone la corretta funzionalità, non appena avrai terminato le tue manutenzioni.",
 "unlockdbtext"	=> "Sbloccare il database ripristinerà la possibilità per tutti gli Utenti di modificare le pagine o di crearne di nuove, di cambiare le loro preferenze, di modificare le loro liste di Osservati Speciali, ed in genere di eseguire operazioni che richiedano modifiche del database.
 Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effettuare.",
@@ -744,7 +744,7 @@ Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effett
 "lockdbsuccesssub" => "Blocco del database eseguito",
 "unlockdbsuccesssub" => "Sblocco del database eseguito, rimosso blocco",
 "lockdbsuccesstext" => "Il database di Wikipedia è stato bloccato.
-<br>Ricordati di rimuovere il blocco non appena avrai terminatoi le tue manutenzioni.",
+<br />Ricordati di rimuovere il blocco non appena avrai terminatoi le tue manutenzioni.",
 "unlockdbsuccesstext" => " Il database di Wikipedia è stato sbloccato.",
 
 # SQL query
@@ -785,7 +785,7 @@ per poter spostare una pagina.",
 "movepagebtn"	=> "Sposta questa pagina",
 "pagemovedsub"	=> "Spostamento effettuato con successo",
 "pagemovedtext" => "Pagina \"[[$1]]\" rinominata in \"[[$2]]\".",
-"articleexists" => "Una pagina con questo nome esiste già, oppure il nome che hai scelto non è valido.<br>
+"articleexists" => "Una pagina con questo nome esiste già, oppure il nome che hai scelto non è valido.<br />
 Scegli, per cortesia, un titolo diverso per l'articolo.",
 "talkexists"	=> "La pagina è stata spostata correttamente, ma la pagina di dicussione non poteva essere spostata perché ne esiste già un'altra con il nuovo titolo. Per favore, modifica manualmente i contenuti delle due pagine discussione, così da mantenerle entrambe per non perdere potenzialmente interessanti riflessioni.",
 "movedto"		=> "spostata a ",

@@ -319,8 +319,8 @@ Ferjit net se oan jo foarkar oan te passen.",
 "yourpasswordagain" => "Jo wachtwurd (nochris)",
 "newusersonly" 	=> " (allinnich foar nije brûkers)",
 "remembermypassword" => "Oare kear fansels oanmelde.",
-"loginproblem" 	=> "<b>Der wie wat mis mei jo oanmelden.</b><br>Besykje it nochris, a.j.w.",
-"alreadyloggedin" => "<font color=red><b>Brûker $1, jo binne al oanmeld!</b></font><br>\n",
+"loginproblem" 	=> "<b>Der wie wat mis mei jo oanmelden.</b><br />Besykje it nochris, a.j.w.",
+"alreadyloggedin" => "<font color=red><b>Brûker $1, jo binne al oanmeld!</b></font><br />\n",
 "login"		=> "Oanmelde",
 "userlogin"		=> "Oanmelde",
 "logout"		=> "Ofmelde",
@@ -331,7 +331,7 @@ Ferjit net se oan jo foarkar oan te passen.",
 "userexists"	=> "Dy brûkersname wurdt al brûkt. Besykje in oarenien.",
 "youremail"		=> "Jo e-postadres (*).",
 "yournick"		=> "Jo alias (foar sinjaturen)",
-"emailforlost"	=> "* In e-postadres hoecht net.<br>
+"emailforlost"	=> "* In e-postadres hoecht net.<br />
 Mar it helpt, soenen jo jo wachtwurd ferjitte.
 En mei in e-postadres kinne oaren fan de web siden contact mei jo krije,
 sûnder dat se dat adres witte. (Dat leste kin ek wer útset by de instellings.)",
@@ -367,7 +367,7 @@ Please log in again after you receive it.",
 "showpreview"	=> "Oerlêze foar de side fêstlein is",
 "blockedtitle"	=> "Brûker is útsletten troch",
 "blockedtext"	=> "Jo brûkersname of Ynternet-adres is útsletten.
-As reden is opjûn:<br>''$2''<p>As jo wolle, kinne jo hjiroer kontakt op nimme meid de behearder. 
+As reden is opjûn:<br />''$2''<p>As jo wolle, kinne jo hjiroer kontakt op nimme meid de behearder. 
 
 (Om't in Ynternet-adressen faak mar foar ien sessie tawiisd wurde, kin it wêze
 dat it eins gjit om in oar dy't deselde tagongferskaffer hat as jo hawwe. As it jo
@@ -416,7 +416,7 @@ Soenen jo dizze fêstlizze, dan is al wat sûnt dy tiid feroare is kwyt.</strong
 as fallend ûnder de GNU Iepen Dokumentaasje Lisinsje
 (sjoch fierders: \"$1\").
 As jo net wolle dat jo skriuwen ûnferbidlik oanpast en frij ferspraat wurdt,
-dan is it baas, en set it net op de $wgSitename.<br>
+dan is it baas, en set it net op de $wgSitename.<br />
 Jo ferklare ek dat jo dit sels skreaun hawwe, of it oernaam hawwe út in
 publyk eigendom of in oare iepen boarne.
 <strong><big>Foeg gjin wurk ûnder auteursrjocht ta sûnder tastimming!</big></strong>",
@@ -481,8 +481,8 @@ wurden syke wurde, allinnich siden fûn wurde wêr't <b>alle</b> worden op fûn 
 
 "powersearch" => "Sykje",
 "powersearchtext" => "
-Sykje in nammeromten :<br>
-$1<br>
+Sykje in nammeromten :<br />
+$1<br />
 $2 List trochferwizings &nbsp; Sykje nei \"$3\" \"$9\"",
 
 "searchdisabled" => "<p>Op it stuit stjit it trochsykjen fan tekst net oan, om't de 
@@ -501,9 +501,9 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Sykje mei Google\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio
 name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> $wgSitename <br>
+value=\"{$wgServer}\" checked> $wgSitename <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -679,7 +679,7 @@ en wat jo fierder mar oan ynformaasje hawwe.",
 "deleteimgcompletely"		=> "wisk",
 "imghistlegend"	=> "Utlis: (no) = dit is it hjoeddeiske ôfbyld,
 (wisk) = wiskje dizze âldere ferzje, (tebek) = set ôfbyld tebek nei dizze âldere ferzje.
-<br><i>Fia de datum kinne jo it ôfbyld dat doe oanbean besjen</i>.",
+<br /><i>Fia de datum kinne jo it ôfbyld dat doe oanbean besjen</i>.",
 
 "imagelinks"	=> "Ofbyldkeppelings",
 "linkstoimage"	=> "Dizze siden binne keppele oan it ôfbyld:",
@@ -690,9 +690,9 @@ en wat jo fierder mar oan ynformaasje hawwe.",
 "statistics"	=> "Statistyk",
 "sitestats"		=> "Side statistyk",
 "userstats"		=> "Brûker statistyk",
-"sitestatstext" => "It tal fan siden in de $wgSitename is: <b>$2</b>.<br>
+"sitestatstext" => "It tal fan siden in de $wgSitename is: <b>$2</b>.<br />
 (Oerlissiden, siden oer de $wgSitename, oare bysûndere siden,  stobben en
-trochferwizings yn de databank binne dêrby net meiteld.)<br>
+trochferwizings yn de databank binne dêrby net meiteld.)<br />
 It tal fan siden in de databank is: <b>$1</b>.
 <p>
 Der is <b>$3</b> kear in side opfrege, en <b>$4</b> kear in side bewurke,
@@ -715,12 +715,12 @@ eltse oanpassing daalks in fernijde side op.",
 "disambiguationspage"	=> "$wgMetaNamespace:trochferwizing",
 "disambiguationstext"	=> "Dizze siden binne keppele fia in
 [[$wgMetaNamespace:trochferwizing]]. 
-Se soenen mei de side sels keppele wurde moatte.<br>
+Se soenen mei de side sels keppele wurde moatte.<br />
 (Allinnich siden út deselde nammeromte binne oanjûn.)",
 
 "doubleredirects"	=> "Dûbele trochverwizings",
 "doubleredirectstext"	=> "<b>Let op!</b> Der kinne missen yn dizze list stean!
-Dat komt dan ornaris troch oare keppelings ûnder de \"#REDIRECT\".<br>
+Dat komt dan ornaris troch oare keppelings ûnder de \"#REDIRECT\".<br />
 Eltse rigel jout keppelings nei de earste en twadde trochverwizing, en dan de earste regel fan
 de twadde trochferwizing, wat it \"echte\" doel wêze moat.",
 
@@ -932,7 +932,7 @@ Meld de krekte reden! Begelyk, neam de siden dy't oantaaste waarden.",
 "badipaddress"	=> "Dy brûker bestiet net",
 "noblockreason"	=> "Jo moatte de krekte reden opjaan.",
 "blockipsuccesssub" => "Utsluting slagge",
-"blockipsuccesstext" => "Brûker \"$1\" is útsletten.<br>
+"blockipsuccesstext" => "Brûker \"$1\" is útsletten.<br />
 (List fan [[Wiki:Ipblocklist|útslette brûkers]].)",
 "unblockip"		=> "Lit brûker der wer yn",
 "unblockiptext"	=> "Brûk dizze fjilden om in brûker wer skriuwtagong te jaan.",
@@ -965,7 +965,7 @@ Befêstigje dat dit is wat jo wolle.",
 "lockdbsuccesssub" => "Databank is 'Net-skriuwe'",
 "unlockdbsuccesssub" => "Database is skriuwber",
 "lockdbsuccesstext" => "De $wgSitename databank is 'Net-skriuwe' makke.
-<br>Tink derom en meitsje de databank skriuwber as jo ûnderhâld ree is.",
+<br />Tink derom en meitsje de databank skriuwber as jo ûnderhâld ree is.",
 "unlockdbsuccesstext" => "De $wgSitename databank is skriuwber makke.",
 
 # SQL query

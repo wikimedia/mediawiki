@@ -122,8 +122,8 @@ require_once("LanguageUtf8.php");
 "tog-showtoolbar" => "Show edit toolbar",
 "tog-editondblclick" => "Redakto faqet me dopjo-shtypje (JavaScript)",
 "tog-editsection"=>"Lejo redaktimin e seksioneve me [redakto] lidhje",
-"tog-editsectiononrightclick"=>"Lejo redaktimin e seksioneve me djathtas-shtypje<br> mbi emrin e seksionit (JavaScript)",
-"tog-showtoc"=>"Trego tabelën e përmbajtjeve<br>(për faqet me më shume se 3 tituj)",
+"tog-editsectiononrightclick"=>"Lejo redaktimin e seksioneve me djathtas-shtypje<br /> mbi emrin e seksionit (JavaScript)",
+"tog-showtoc"=>"Trego tabelën e përmbajtjeve<br />(për faqet me më shume se 3 tituj)",
 "tog-rememberpassword" => "Mbaj mënd fjalëkalimin për vizitën e ardhshme",
 "tog-editwidth" => "Kutija e redaktimit ka gjerësi te plotë",
 "tog-watchdefault" => "Shto faqet që redakton tek lista mbikqyrëse",
@@ -324,13 +324,13 @@ Mos harro të vendosësh preferimet e tua të uikipedias.",
 "yourpasswordagain" => "Fut fjalëkalimin përsëri",
 "newusersonly"	=> " (përdoruesit e rinj vetëm)",
 "remembermypassword" => "Mbaj mënd fjalëkalimin tim për tërë vizitat e ardhshme.",
-"loginproblem"	=> "<b>Kishte një problem me hyrjen tënde.</b><br>Provoje përsëri!",
-"alreadyloggedin" => "<font color=red><b>Përdorues $1, ti ke hyrë brënda më parë!</b></font><br>\n",
+"loginproblem"	=> "<b>Kishte një problem me hyrjen tënde.</b><br />Provoje përsëri!",
+"alreadyloggedin" => "<font color=red><b>Përdorues $1, ti ke hyrë brënda më parë!</b></font><br />\n",
 
 "areyounew"		=> "N.q.s. je një përdorues i ri i $wgSitename dhe do të hapësh një llogari,
 fut një emër, pastaj fut një fjalëkalim dy herë.
 Adresa jote e email-it nuk është e detyrueshme; n.q.s. ti harron fjalëkalimin mund të kërkosh që
-ta dergojme tek adresa që na dhe.<br>\n",
+ta dergojme tek adresa që na dhe.<br />\n",
 
 "login"			=> "Hyrje",
 "userlogin"		=> "Hyrje",
@@ -373,7 +373,7 @@ Hyni përsëri mbasi ta kesh marrë.",
 "showpreview"	=> "Trego parashikimin",
 "blockedtitle"	=> "Përdoruesi është bllokuar",
 "blockedtext"	=> "Emri yt ose adresa e IP-së është bllokuar nga $1.
-Arsyeja e dhënë është kjo:<br>''$2''<p>Mund të kontaktosh $1 ose një nga
+Arsyeja e dhënë është kjo:<br />''$2''<p>Mund të kontaktosh $1 ose një nga
 [[$wgMetaNamespace:Administruesit|administruesit]] e tjerë për të diskutuar bllokimin.
 
 Vë re, nuk mund të përdorësh \"dërgoji email këtij përdoruesi\" n.q.s. nuk ke një adresë të saktë
@@ -420,7 +420,7 @@ Në qoftë se e ruan, çdo ndryshim i bërë deri tani do të humbet.</strong>\n
 të konsideruara të dhëna nën liçensën GNU Free Documentation License
 (shiko $1 për detaje).
 Në qoftë se nuk dëshiron që kontributet e tua të redaktohen pa mëshirë dhe të jepen
-kudo, atëherë mos i jep këtu.<br>
+kudo, atëherë mos i jep këtu.<br />
 Gjithashtu, ti po na premton që i ke shkruajtur vetë këto, ose i ke kopjuar nga një
 vënd public (public domain) ose diçka e ngjashme e lirë.
 <strong>MOS JEPNI PUNIME QE JANE NEN COPYRIGHT PA PASUR LEJE!</strong>",
@@ -490,8 +490,8 @@ të cilat nuk janë të futura në rregjistër, ose duke dhënë më shumë se n
 që i kanë të gjitha ato fjalë do të tregohen si rezultate).",
 "powersearch" => "Kërko",
 "powersearchtext" => "
-Kërko në hapësirën:<br>
-$1<br>
+Kërko në hapësirën:<br />
+$1<br />
 $2 Lidhje ridrejtuese &nbsp; Kërko për $3 $9",
 "searchdisabled" => "<p>Kërkim me tekst të plotë është bllokuar tani për tani ngaqë
 shërbyesi është shumë i ngarkuar; shpresojmë ta nxjerrim prapë në gjëndje normale mbas disa punimeve.
@@ -509,9 +509,9 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Kërkim me Google\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio
 name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> {$wgServer} <br>
+value=\"{$wgServer}\" checked> {$wgServer} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -684,7 +684,7 @@ tjetër që na duhet të dimë për të.",
 "deleteimgcompletely"		=> "gris",
 "imghistlegend" => "Legjendë: (tani) = ky është skedari i tanishëm, (gris) = grise
 këtë version të vjetër, (ktheje) = ktheje në këtë version të vjetër.
-<br><i>Shtyp datën për të parë skedarin e dhënë në atë ditë</i>.",
+<br /><i>Shtyp datën për të parë skedarin e dhënë në atë ditë</i>.",
 "imagelinks"	=> "Lidhje skedarësh",
 "linkstoimage"	=> "Këto faqe lidhen tek ky skedar:",
 "nolinkstoimage" => "Nuk ka asnjë faqe që të lidhet tek ky skedar.",
@@ -715,11 +715,11 @@ rregjistrin, kështuqë mos e fresko faqen mbas çdo ndryshimi ;-)",
 "disambiguationspage"	=> "$wgMetaNamespace:Lidhje_tek_faqe_qartësuese",
 "disambiguationstext"	=> "Artikujt që vijojnë lidhen tek një <i>faqe qartësuese</i>. Ato duhet të lidhen tek tema e përshtatshme
 
-<br>Një faqe trajtohet si qartësuese lidhet nga $1.<br>Lidhje nga hapësira të tjera <i>nuk</i> jepen këtu.",
+<br />Një faqe trajtohet si qartësuese lidhet nga $1.<br />Lidhje nga hapësira të tjera <i>nuk</i> jepen këtu.",
 "doubleredirects"	=> "Dopjo ridrejtime",
 "doubleredirectstext"	=> "<b>Kujdes:</b> Kjo listë mund të ketë lidhje gabim. D.m.th. ka tekst dhe lidhje mbas #REDIRECT-it të parë.
 
-<br>\nÇdo rresht ka lidhje tek ridrejtimi i parë dhe i dytë, gjithashtu ka edhe rreshtin e parë të tekstit të ridrejtimit të dytë,
+<br />\nÇdo rresht ka lidhje tek ridrejtimi i parë dhe i dytë, gjithashtu ka edhe rreshtin e parë të tekstit të ridrejtimit të dytë,
 
 duke dhënë dhe  artikullin e \"vërtetë\", me të cilin ridrejtimi i parë duhet të lidhet.",
 "brokenredirects"	=> "Ridrejtime të prishura",
@@ -938,7 +938,7 @@ vandalizuan).",
 "noblockreason" => "Duhet të japësh një arsye për bllokimin.",
 "blockipsuccesssub" => "Bllokimi u bë me sukses",
 "blockipsuccesstext" => "\"$1\" është bllokuar.
-<br>Shiko [[Speciale:Ipblocklist|IP blloko listë]] për të parë bllokimet.",
+<br />Shiko [[Speciale:Ipblocklist|IP blloko listë]] për të parë bllokimet.",
 "unblockip"		=> "Ç'blloko përdoruesin",
 "unblockiptext"	=> "Përdor formularin e më poshtëm për t'i ridhënë leje shkrimi
 një përdoruesi ose IP adreseje të bllokuar.",
@@ -972,7 +972,7 @@ Të lutem konfirmo që me vërte do të kryesh këtë veprim.",
 "lockdbsuccesssub" => "Rregjistri u bllokua me sukses",
 "unlockdbsuccesssub" => "Rregjistri u ç'bllokua me sukses",
 "lockdbsuccesstext" => "Rregjistri i $wgSitename është bllokuar.
-<br>Kujtohu ta ç'bllokosh mbasi të kesh mbaruar mirëmbajtjen.",
+<br />Kujtohu ta ç'bllokosh mbasi të kesh mbaruar mirëmbajtjen.",
 "unlockdbsuccesstext" => "Rregjistri i $wgSitename është ç'bllokuar.",
 
 # SQL query
