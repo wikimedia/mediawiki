@@ -167,7 +167,7 @@ require_once( "LanguageUtf8.php" );
 #
 "mainpage"		=> "メインページ",
 "about"			=> "About",
-"aboutwikipedia" => "{{SITENAME}}について",
+"aboutsite"      => "{{SITENAME}}について",
 "aboutpage"		=> "{{ns:4}}:About",
 "help"			=> "ヘルプ",
 "helppage"		=> "{{ns:4}}:Help",
@@ -190,7 +190,7 @@ require_once( "LanguageUtf8.php" );
 "currentevents" => "最近の出来事",
 "errorpagetitle" => "エラー",
 "returnto"		=> "$1 に戻る。",
-"fromwikipedia"	=> "出典: フリー百科事典『ウィキペディア（{{SITENAME}}）』",
+"tagline"      	=> "出典: フリー百科事典『ウィキペディア（{{SITENAME}}）』",
 "whatlinkshere"	=> "ここにリンクしているページ",
 "help"			=> "ヘルプ",
 "search"		=> "検索",

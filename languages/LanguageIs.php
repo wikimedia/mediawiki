@@ -280,7 +280,7 @@ ta['ca-nstab-help'] = new Array('c','Sýna hjálparsíðuna');
 ta['ca-nstab-category'] = new Array('c','Sýna efnisflokkasíðuna');",
 'about' => "Um",
 'aboutpage' => "Wikipedia:Um",
-'aboutwikipedia' => "Um Wikipedia",
+'aboutsite'      => "Um Wikipedia",
 #'accesskey-compareselectedversions' => "v",
 #'accesskey-minoredit' => "i",
 #'accesskey-preview' => "p",
@@ -487,7 +487,7 @@ Please follow this link: $2 to the description page and fill
 in information about the file, such as where it came from, when it was
 created and by whom, and anything else you may know about it.",
 #'formerror' => "Error: could not submit form",
-'fromwikipedia' => "Úr Wikipedia, frjálsu alfræðiorðabókinni",
+'tagline'       => "Úr Wikipedia, frjálsu alfræðiorðabókinni",
 'fundraising_notice' => "Ef þú vilt styðja wikipedia getur þú gert það í verki með að <a href=\"http://wikimediafoundation.org/fundraising\">láta fé af hendi rakna</a>. Verið er að safna fyrir <a href=\"http://meta.wikimedia.org/wiki/What_we_use_the_money_for\">ýmsum hlutum</a>.",
 #'getimagelist' => "fetching image list",
 'go' => "Áfram",

@@ -172,7 +172,7 @@ require_once("LanguageUtf8.php");
 "mainpage"		=> "Faqja Kryesore",
 "mainpagetext"	=> "Wiki software u instalua me sukses.",
 "about"			=> "Rreth",
-"aboutwikipedia" => "Rreth $wgSitename",
+"aboutsite"      => "Rreth $wgSitename",
 "aboutpage"		=> "$wgMetaNamespace:Rreth",
 "help"			=> "Ndihmë",
 "helppage"		=> "$wgMetaNamespace:Ndihmë",
@@ -197,7 +197,7 @@ require_once("LanguageUtf8.php");
 "currentevents" => "Evenimente",
 "errorpagetitle" => "Gabim",
 "returnto"		=> "Kthehu tek $1.",
-"fromwikipedia"	=> "Nga $wgSitename, Enciklopedia e Lirë.", # FIXME
+"tagline"      	=> "Nga $wgSitename, Enciklopedia e Lirë.", # FIXME
 "whatlinkshere"	=> "Lidhjet këtu ",
 "help"			=> "Ndihmë",
 "search"		=> "Kërko",

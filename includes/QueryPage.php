@@ -279,7 +279,7 @@ class QueryPage {
 	}
 
 	function feedDesc() {
-		return wfMsg( 'fromwikipedia' );
+		return wfMsg( 'tagline' );
 	}
 
 	function feedUrl() {

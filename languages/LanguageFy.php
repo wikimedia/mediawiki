@@ -173,7 +173,7 @@ if($wgMetaNamespace === FALSE)
 "mainpage"		=> "Haadside",
 "mainpagetext"	=> "Wiki-programma goed installearre.",
 "about"		=> "Ynfo",
-"aboutwikipedia" 	=> "Oer de $wgSitename",
+"aboutsite"      	=> "Oer de $wgSitename",
 "aboutpage"		=> "$wgMetaNamespace:Ynfo",
 "help"		=> "Help",
 "helppage"		=> "$wgMetaNamespace:Help",
@@ -196,7 +196,7 @@ if($wgMetaNamespace === FALSE)
 "currentevents" 	=> "Hjoeddeis",
 "errorpagetitle" 	=> "Fout",
 "returnto"		=> "Werom nei \"$1\".",
-"fromwikipedia"	=> "Fan $wgSitename, de frije ensyklopedy.", # FIXME
+"tagline"      	=> "Fan $wgSitename, de frije ensyklopedy.", # FIXME
 "whatlinkshere"	=> "Siden mei in keppeling hjirhinne",
 "help"		=> "Help",
 "search"		=> "Sykje",
