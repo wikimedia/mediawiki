@@ -140,8 +140,6 @@ function revision2xml( $rev, $full ) {
 	$fname = 'revision2xml';
 	wfProfileIn( $fname );
 	
-	global $wgParser , $wgUseXMLparser ; # So we can return *real* XML
-
 	$xml = "    <revision>\n";
 	if( $full )
 		$xml .= "    <id>" . $rev->getId() . "</id>\n";
@@ -166,12 +164,7 @@ function revision2xml( $rev, $full ) {
 		$xml .= "      <comment>$c</comment>\n";
 	}
 
-	$t = $rev->getText() ;
-	if ( $wgUseXMLparser )
-	   {
-	   $wgParser->runXMLparser ( $t ) ;
-	   }
-	$t = xmlsafe( $t ) ;
+	$t = xmlsafe( $rev->getText() );
 
 	$xml .= "      <text>$t</text>\n";
 	$xml .= "    </revision>\n";
