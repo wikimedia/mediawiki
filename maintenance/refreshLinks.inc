@@ -40,7 +40,7 @@ function refreshLinks( $start ) {
 		$wgOut->addWikiText( $text );
 		
 		# Look up the links in the DB and add them to the link cache
-		$wgOut->replaceLinkHolders( RLH_FOR_UPDATE );
+		$wgOut->transformBuffer( RLH_FOR_UPDATE );
 
 		if ( $wgEnablePersistentLC ) {
 			$wgLinkCache->saveToLinkscc( $id, $dbw->strencode( $wgTitle->getPrefixedDBkey() ) );
