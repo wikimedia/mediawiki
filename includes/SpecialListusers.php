@@ -2,7 +2,7 @@
 
 function wfSpecialListusers()
 {
-	global $wgUser, $wgOut, $wgLang;
+	global $wgUser, $wgOut, $wgLang, $wgIsPg;
 
 	list( $limit, $offset ) = wfCheckLimits();
 
@@ -13,8 +13,9 @@ function wfSpecialListusers()
 	  $wgLang->specialPage( "Listusers" ) );
 	$wgOut->addHTML( "<br />{$sl}</p>\n<ol start='" . ( $offset + 1 ) . "'>" );
 
-	$sql = "SELECT user_name,user_rights FROM user ORDER BY " .
-	  "user_name LIMIT {$offset}, {$limit}";
+	$usertable=$wgIsPg?'"user"':'user';
+	$sql = "SELECT user_name,user_rights FROM $usertable ORDER BY user_name" .
+		wfLimitResult($limit,$offset);
 	$res = wfQuery( $sql, DB_READ, "wfSpecialListusers" );
 
 	$sk = $wgUser->getSkin();
