@@ -768,7 +768,7 @@ class Skin {
 	function pageStats()
 	{
 		global $wgOut, $wgLang, $wgArticle, $wgRequest;
-		global $wgDisableCounters, $wgMaxCredits;
+		global $wgDisableCounters, $wgMaxCredits, $wgShowCreditsIfMax;
 
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 		if ( ! $wgOut->isArticle() ) { return ''; }
@@ -785,7 +785,7 @@ class Skin {
 
 	        if (isset($wgMaxCredits) && $wgMaxCredits != 0) {
 		    require_once("Credits.php");
-		    $s .= ' ' . getCredits($wgArticle, $wgMaxCredits);
+		    $s .= ' ' . getCredits($wgArticle, $wgMaxCredits, $wgShowCreditsIfMax);
 		} else {
 		    $s .= $this->lastModified();
 		}

@@ -375,9 +375,13 @@ $wgImportSources = array();
 # Set this to the number of authors that you want to be credited below an
 # article text. Set it to zero to hide the attribution block, and a
 # negative number (like -1) to show all authors. Note that this will
-# require checking the table of old revisions, which can have a significant
+# require 2-3 extra database hits, which can have a not insignificant
 # impact on performance for large wikis.
 $wgMaxCredits = 0;
+
+# If there are more than $wgMaxCredits authors, show $wgMaxCredits of them.
+# Otherwise, link to a separate credits page.
+$wgShowCreditsIfMax = true;
 
 # Text matching this regular expression will be recognised as spam
 # See http://en.wikipedia.org/wiki/Regular_expression

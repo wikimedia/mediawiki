@@ -597,13 +597,11 @@ class Article {
 
 	        $contribs = array();
 
-                $sql = 'SELECT old.old_user, old.old_user_text, ' .
-                       '  user.user_real_name, MAX(old.old_timestamp) as timestamp' .
-                       ' FROM old, user ' .
-                       ' WHERE old.old_user = user.user_id ' .
-		       ' AND old.old_namespace = ' . $title->getNamespace() .
+                $sql = 'SELECT old_user, old_user_text, ' .
+                       '  user_real_name, MAX(old_timestamp) as timestamp' .
+                       ' FROM old LEFT JOIN user ON old.old_user = user.user_id ' .
+	               ' WHERE old.old_namespace = ' . $title->getNamespace() .
                        ' AND old.old_title = "' . $title->getDBkey() . '"' .
-                       ' AND old.old_user != 0 ' .
                        ' AND old.old_user != ' . $this->getUser() . 
                        ' GROUP BY old.old_user ' . 
                        ' ORDER BY timestamp DESC ';
@@ -615,22 +613,11 @@ class Article {
 	        $res = wfQuery($sql, DB_READ, $fname);
 	
         	while ( $line = wfFetchObject( $res ) ) {
-	 	        $contribs[$line->old_user] = 
-                                array($line->old_user_text, $line->user_real_name);
-  	        }    
-
-                # Count anonymous users
-
-        	$res = wfQuery('SELECT COUNT(*) AS cnt ' .
-  	                       ' FROM old ' .
-	                       ' WHERE old_namespace = ' . $title->getNamespace() .
-	                       " AND old_title = '" . $title->getDBkey() . "'" .
-                               ' AND old_user = 0 ', DB_READ, $fname);
-	
-   	        while ( $line = wfFetchObject( $res ) ) {
-                        $contribs[0] = array($line->cnt, 'Anonymous');
-	        }    
-
+	 	        $contribs[] = array($line->old_user, $line->old_user_text, $line->user_real_name);
+  	        }
+	        
+	        wfFreeResult($res);
+	    
 	        return $contribs;
 	}
     

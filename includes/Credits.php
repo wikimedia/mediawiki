@@ -45,14 +45,14 @@ function showCreditsPage($article)
     wfProfileOut( $fname );
 }
 
-function getCredits($article, $cnt) {
+function getCredits($article, $cnt, $showIfMax=true) {
     
     $s = '';
     
     if (isset($cnt) && $cnt != 0) {
 	$s = getAuthorCredits($article);
 	if ($cnt > 1 || $cnt < 0) {
-	    $s .= ' ' . getContributorCredits($article, $cnt - 1);
+	    $s .= ' ' . getContributorCredits($article, $cnt - 1, $showIfMax);
 	}
     }
     
@@ -88,41 +88,70 @@ function getAuthorCredits($article) {
     return wfMsg('lastmodifiedby', $d, $author_credit);
 }
 
-function getContributorCredits($article, $cnt) {
+function getContributorCredits($article, $cnt, $showIfMax) {
 	    
     global $wgLang, $wgAllowRealName;
     
-    $contributors = $article->getContributors($cnt);
+    $contributors = $article->getContributors();
+
+    $others_link = '';
     
+    # Hmm... too many to fit!
+
+    if ($cnt > 0 && count($contributors) > $cnt) {
+	$others_link = creditOthersLink($article);
+	if (!$showIfMax) {
+	    return wfMsg('othercontribs', $others_link);
+	} else {
+	    $contributors = array_slice($contributors, 0, $cnt);
+	}
+    }
+	
     $real_names = array();
     $user_names = array();
 
+    $anon = '';
+    
     # Sift for real versus user names
     
-    foreach ($contributors as $user_id => $user_parts) {
-	if ($user_id != 0) {
-	    if ($wgAllowRealName && !empty($user_parts[1])) {
-		$real_names[$user_id] = creditLink($user_parts[0], $user_parts[1]);
+    foreach ($contributors as $user_parts) {
+	if ($user_parts[0] != 0) {
+	    if ($wgAllowRealName && !empty($user_parts[2])) {
+		$real_names[$user_id] = creditLink($user_parts[1], $user_parts[2]);
 	    } else {
-		$user_names[$user_id] = creditLink($user_parts[0]);
+		$user_names[$user_id] = creditLink($user_parts[1]);
 	    }
+	} else {
+	    $anon = wfMsg('anonymous');
 	}
     }
+	
+    # Two strings: real names, and user names
     
     $real = $wgLang->listToText(array_values($real_names));
     $user = $wgLang->listToText(array_values($user_names));
+
+    # "ThisSite user(s) A, B and C"
     
     if (!empty($user)) {
-	$user = wfMsg('siteusers', $user);
+        $user = wfMsg('siteusers', $user);
     }
+
+    # This is the big list, all mooshed together. We sift for blank strings
     
-    if ($contributors[0] && $contributors[0][0] > 0) {
-	$anon = wfMsg('anonymous');
-    } else {
-	$anon = '';
+    $fulllist = array();
+      
+    foreach (array($real, $user, $anon, $others_link) as $s) {
+	if (!empty($s)) {
+	    array_push($fulllist, $s);
+	}
     }
+
+    # Make the list into text...
     
-    $creds = $wgLang->listToText(array($real, $user, $anon));
+    $creds = $wgLang->listToText($fulllist);
+
+    # "Based on work by ..."
     
     return wfMsg('othercontribs', $creds);
 }
@@ -132,6 +161,12 @@ function creditLink($user_name, $link_text = '') {
     $skin = $wgUser->getSkin();
     return $skin->makeKnownLink($wgLang->getNsText(NS_USER) . ":" . $user_name,
 				(empty($link_text)) ? $user_name : $link_text);
+}
+
+function creditOthersLink($article) {
+    global $wgUser, $wgLang;
+    $skin = $wgUser->getSkin();
+    return $skin->makeKnownLink($article->mTitle->getPrefixedText(), wfMsg('others'), "action=credits");
 }
 
 ?>
