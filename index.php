@@ -151,6 +151,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		case "purge":
 			wfPurgeSquidServers(array($wgTitle->getInternalURL()));
 			$wgOut->setSquidMaxage( $wgSquidMaxage );
+			$wgTitle->invalidateCache();
 			$wgArticle->view();
 			break;
 		default:
