@@ -25,7 +25,8 @@ function wfSpecialAsksql() {
 		return;
 	}
 	
-	if( $wgRequest->wasPosted() ) {
+	if( $wgRequest->wasPosted() &&
+		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
 		$query = $wgRequest->getVal( 'wpSqlQuery' );
 		$action = $wgRequest->getVal( 'action' );
 	} else {
@@ -71,6 +72,7 @@ class SqlQueryForm {
 		$qb = wfMsg( "querybtn" );
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Asksql" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
+		$token = htmlspecialchars( $wgUser->editToken() );
 
 		$wgOut->addHTML( "<p>
 <form id=\"asksql\" method=\"post\" action=\"{$action}\">
@@ -85,6 +87,7 @@ class SqlQueryForm {
 <td>&nbsp;</td><td align=\"left\">
 <input type=submit name=\"wpQueryBtn\" value=\"{$qb}\">
 </td></tr></table>
+<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 </form>\n" );
 
 	}

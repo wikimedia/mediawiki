@@ -209,7 +209,11 @@ class ImagePage extends Article {
 		
 		# Deleting old images doesn't require confirmation
 		if ( !is_null( $oldimage ) || $confirm ) {
-			$this->doDelete();
+			if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
+				$this->doDelete();
+			} else {
+				$wgOut->fatalError( wfMsg( 'sessionfailure' ) );
+			}
 			return;
 		}
 		
@@ -230,12 +234,19 @@ class ImagePage extends Article {
 		$fname = 'ImagePage::doDelete';
 
 		$reason = $wgRequest->getVal( 'wpReason' );
-		$image = $wgRequest->getVal( 'image' );
 		$oldimage = $wgRequest->getVal( 'oldimage' );
 		
 		$dbw =& wfGetDB( DB_MASTER );
 
 		if ( !is_null( $oldimage ) ) {
+			if ( strlen( $oldimage ) < 16 ) {
+				$wgOut->unexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
+				return;
+			}
+			if ( strstr( $oldimage, "/" ) || strstr( $oldimage, "\\" ) ) {
+				$wgOut->unexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
+				return;
+			}
 			# Squid purging
 			if ( $wgUseSquid ) {
 				$archUrl = wfImageArchiveUrl( $oldimage );
@@ -250,9 +261,7 @@ class ImagePage extends Article {
 			$dbw->delete( 'oldimage', array( 'oi_archive_name' => $oldimage ) );
 			$deleted = $oldimage;
 		} else {
-			if ( is_null ( $image ) ) {
-				$image = $this->mTitle->getDBkey();
-			}
+			$image = $this->mTitle->getDBkey();
 			$dest = wfImageDir( $image );
 			$archive = wfImageDir( $image );
 			
@@ -372,6 +381,10 @@ class ImagePage extends Article {
 		if ( $wgUser->isBlocked() ) {
 			return $this->blockedIPpage();
 		}
+		if( !$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
+			$wgOut->errorpage( 'internalerror', 'sessionfailure' );
+			return;
+		}		
 		$name = substr( $oldimage, 15 );
 
 		$dest = wfImageDir( $name );
@@ -462,11 +475,13 @@ class ImageHistoryList {
 		} else {
 			$url = htmlspecialchars( wfImageArchiveUrl( $img ) );
 			if( $wgUser->getID() != 0 && $wgTitle->userCanEdit() ) {
+				$token = urlencode( $wgUser->editToken( $img ) );
 				$rlink = $this->skin->makeKnownLink( $wgTitle->getPrefixedText(),
 				           wfMsg( 'revertimg' ), 'action=revert&oldimage=' .
-				           urlencode( $img ) );
+				           urlencode( $img ) . "&wpEditToken=$token" );
 				$dlink = $this->skin->makeKnownLink( $wgTitle->getPrefixedText(),
-				           $del, 'action=delete&oldimage=' . urlencode( $img ) );
+				           $del, 'action=delete&oldimage=' . urlencode( $img ) .
+				           "&wpEditToken=$token" );
 			} else {
 				# Having live active links for non-logged in users
 				# means that bots and spiders crawling our site can

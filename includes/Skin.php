@@ -1934,27 +1934,36 @@ class Skin {
 		return $this->makeMediaLinkObj( $nt, $alt );
 	}
 
-	function makeMediaLinkObj( $nt, $alt = '', $nourl=false ) {		
-		if ( ! isset( $nt ) )
-		{
+	/**
+	 * Create a direct link to a given uploaded file.
+	 *
+	 * @param Title  $title
+	 * @param string $text   pre-sanitized HTML
+	 * @param bool   $nourl  Mask absolute URLs, so the parser doesn't
+	 *                       linkify them (it is currently not context-aware)
+	 * @return string HTML
+	 *
+	 * @access public
+	 * @todo Handle invalid or missing images better.
+	 */
+	function makeMediaLinkObj( $title, $text = '', $nourl=false ) {
+		if( is_null( $title ) ) {
 			### HOTFIX. Instead of breaking, return empty string.
-			$s = $alt;
+			return $text;
 		} else {
-			$name = $nt->getDBKey();	
-			$img   = Image::newFromTitle( $nt );
-			$url = $img->getURL();
-			# $nourl can be set by the parser
-			# this is a hack to mask absolute URLs, so the parser doesn't
-			# linkify them (it is currently not context-aware)
-			# 2004-10-25
-			if ($nourl) { $url=str_replace("http://","http-noparse://",$url) ; }
-			if ( empty( $alt ) ) {
-				$alt = preg_replace( '/\.(.+?)^/', '', $name );
+			$name = $title->getDBKey();	
+			$img  = Image::newFromTitle( $title );
+			$url  = $img->getURL();
+			if( $nourl ) {
+				$url = str_replace( "http://", "http-noparse://", $url );
+			}
+			$alt = htmlspecialchars( $title->getText() );
+			if( $text == '' ) {
+				$text = $alt;
 			}
 			$u = htmlspecialchars( $url );
-			$s = "<a href=\"{$u}\" class='internal' title=\"{$alt}\">{$alt}</a>";			
+			return "<a href=\"{$u}\" class='internal' title=\"{$alt}\">{$text}</a>";			
 		}
-		return $s;
 	}
 
 	function specialLink( $name, $key = '' ) {
