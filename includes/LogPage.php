@@ -141,7 +141,7 @@ class LogPage {
 	/**
 	 * @static
 	 */
-	function actionText( $type, $action, $titleLink = NULL, $params = array() ) {
+	function actionText( $type, $action, $titleLink = NULL, $params = array(), $filterWikilinks=false ) {
 		static $actions = array(
 			'block/block' => 'blocklogentry',
 			'block/unblock' => 'unblocklogentry',
@@ -158,17 +158,22 @@ class LogPage {
 		$key = "$type/$action";
 		if( isset( $actions[$key] ) ) {
 			if( is_null( $titleLink ) ) {
-				return wfMsgForContent( $actions[$key] );
+				$rv=wfMsgForContent( $actions[$key] );
 			} elseif ( count( $params ) == 0 ) {
-				return wfMsgForContent( $actions[$key], $titleLink );
+				$rv=wfMsgForContent( $actions[$key], $titleLink );
 			} else {
 				array_unshift( $params, $titleLink );
-				return wfMsgReal( $actions[$key], $params, true, true );
+				$rv=wfMsgReal( $actions[$key], $params, true, true );
 			}
 		} else {
 			wfDebug( "LogPage::actionText - unknown action $key\n" );
-			return "$action $titleLink";
+			$rv="$action $titleLink";
 		}
+		if($filterWikilinks) {
+			$rv=str_replace("[[","",$rv);
+			$rv=str_replace("]]","",$rv);
+		}
+		return $rv;
 	}
 
 	/**
