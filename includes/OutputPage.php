@@ -1358,7 +1358,7 @@ return $r ;
 		}
 		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML, do not 
 		# add TOC
-		if($st && preg_match("/__NOTOC__/i",$text)) { 
+		if(preg_match("/__NOTOC__/i",$text)) { 
 			$text=preg_replace("/__NOTOC__/i","",$text);
 			$st=0; 
 		}
