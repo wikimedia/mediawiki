@@ -912,7 +912,7 @@ from server time (UTC).',
 'userlevels-groupsmember' => 'Member of:',
 'userlevels-groupsavailable' => 'Available groups:',
 'userlevels-groupshelp' => 'Select groups you want the user to be removed from or added to.
-Unselected groups will not be changed. You can unselect a group by using CTRL + Left Click',
+Unselected groups will not be changed. You can deselect a group with CTRL + Left Click',
 
 # Recent changes
 #
@@ -1135,8 +1135,8 @@ in active use.</p>',
 'booksources'	=> 'Book sources',
 'categoriespagetext' => 'The following categories exist in the wiki.',
 'data'	=> 'Data',
-'userlevels' => 'User levels management',
-'grouplevels' => 'Group levels management',
+'userlevels' => 'User rights management',
+'grouplevels' => 'User group management',
 
 # FIXME: Other sites, of course, may have affiliate relations with the booksellers list
 'booksourcetext' => "Below is a list of links to other sites that
@@ -1461,6 +1461,8 @@ Type the name of the user in the box and press the button to make the user an ad
 'user_rights_set'	=> "<b>User rights for \"$1\" updated</b>",
 'set_rights_fail'	=> "<b>User rights for \"$1\" could not be set. (Did you enter the name correctly?)</b>",
 'makesysop'         => 'Make a user into a sysop',
+'already_sysop'     => 'This user is already an administrator',
+'already_bureaucrat' => 'This user is already a bureaucrat',
 
 # Validation
 'val_yes' => 'Yes',
