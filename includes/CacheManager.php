@@ -55,7 +55,7 @@ class CacheManager {
 	}
 	
 	function fileCacheTime() {
-		return wfUnix2Timestamp( filemtime( $this->fileCacheName() ) );
+		return wfTimestamp( MW_TS, filemtime( $this->fileCacheName() ) );
 	}
 	
 	function isFileCacheGood( $timestamp ) {
