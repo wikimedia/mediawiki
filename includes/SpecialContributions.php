@@ -9,7 +9,7 @@ function wfSpecialContributions( $par = "" )
 	if( $par )
 		$target = $par;
 	else
-		$target = $wgResult->getVal( 'target' );
+		$target = $wgRequest->getVal( 'target' );
 
 	if ( "" == $target ) {
 		$wgOut->errorpage( "notargettitle", "notargettext" );
