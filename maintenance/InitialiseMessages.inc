@@ -52,7 +52,7 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		}
 	}
 
-	require_once('$IP/languages/Names.php');
+	require_once('languages/Names.php');
 
     /*
 	  initialize all messages in $wgForceUIMsgAsContentMsg for all
