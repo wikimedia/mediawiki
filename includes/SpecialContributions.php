@@ -17,6 +17,7 @@ function wfSpecialContributions( $par = "" )
 	}
 	list( $limit, $offset ) = wfCheckLimits( 50, "" );
 	$offlimit = $limit + $offset;
+	$querylimit = $offlimit + 1;
 	$hideminor = ($hideminor ? 1 : 0);
 
 	$nt = Title::newFromURL( $target );
@@ -50,37 +51,39 @@ function wfSpecialContributions( $par = "" )
 		  "&offset={$offset}&limit={$limit}&hideminor=1" );
 	}
 
-	$top = wfShowingResults( $offset, $limit );
-	$wgOut->addHTML( "<p>{$top}\n" );
-
-	$sl = wfViewPrevNext( $offset, $limit,
-	  $wgLang->specialpage( "Contributions" ), "hideminor={$hideminor}&target=" . wfUrlEncode( $target ) );
-
-        $shm = wfMsg( "showhideminor", $mlink );
-	$wgOut->addHTML( "<br>{$sl} ($shm) \n");
-	
 	if ( 0 == $id ) {
 		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit FROM cur " .
 		  "WHERE cur_user_text='" . wfStrencode( $nt->getText() ) . "' {$cmq} " .
-		  "ORDER BY inverse_timestamp LIMIT {$offlimit}";
+		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res1 = wfQuery( $sql, DB_READ, $fname );
 
 		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit FROM old " .
 		  "WHERE old_user_text='" . wfStrencode( $nt->getText() ) . "' {$omq} " .
-		  "ORDER BY inverse_timestamp LIMIT {$offlimit}";
+		  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res2 = wfQuery( $sql, DB_READ, $fname );
 	} else {
 		$sql = "SELECT cur_namespace,cur_title,cur_timestamp,cur_comment,cur_minor_edit FROM cur " .
-		  "WHERE cur_user={$id} {$cmq} ORDER BY inverse_timestamp LIMIT {$offlimit}";
+		  "WHERE cur_user={$id} {$cmq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res1 = wfQuery( $sql, DB_READ, $fname );
 
 		$sql = "SELECT old_namespace,old_title,old_timestamp,old_comment,old_minor_edit FROM old " .
-		  "WHERE old_user={$id} {$omq} ORDER BY inverse_timestamp LIMIT {$offlimit}";
+		  "WHERE old_user={$id} {$omq} ORDER BY inverse_timestamp LIMIT {$querylimit}";
 		$res2 = wfQuery( $sql, DB_READ, $fname );
 	}
 	$nCur = wfNumRows( $res1 );
 	$nOld = wfNumRows( $res2 );
 
+	$top = wfShowingResults( $offset, $limit );
+	$wgOut->addHTML( "<p>{$top}\n" );
+
+	$sl = wfViewPrevNext( $offset, $limit,
+	  $wgLang->specialpage( "Contributions" ),
+	  "hideminor={$hideminor}&target=" . wfUrlEncode( $target ),
+	  ($nCur + $nOld) <= $offlimit);
+
+        $shm = wfMsg( "showhideminor", $mlink );
+	$wgOut->addHTML( "<br>{$sl} ($shm) \n");
+	
 
 	if ( 0 == $nCur && 0 == $nOld ) {
 		$wgOut->addHTML( "\n<p>" . wfMsg( "nocontribs" ) . "</p>\n" );

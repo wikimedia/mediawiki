@@ -583,7 +583,7 @@ function wfShowingResultsNum( $offset, $limit, $num )
 	return wfMsg( "showingresultsnum", $limit, $offset+1, $num );
 }
 
-function wfViewPrevNext( $offset, $limit, $link, $query = "" )
+function wfViewPrevNext( $offset, $limit, $link, $query = "", $atend = false )
 {
 	global $wgUser;
 	$prev = wfMsg( "prevn", $limit );
@@ -602,7 +602,11 @@ function wfViewPrevNext( $offset, $limit, $link, $query = "" )
 	$q = "limit={$limit}&offset={$no}";
 	if ( "" != $query ) { $q .= "&{$query}"; }
 
-	$nlink = "<a href=\"" . wfLocalUrlE( $link, $q ) . "\">{$next}</a>";
+	if ( $atend ) {
+		$nlink = $next;
+	} else {
+		$nlink = "<a href=\"" . wfLocalUrlE( $link, $q ) . "\">{$next}</a>";
+	}
 	$nums = wfNumLink( $offset, 20, $link , $query ) . " | " .
 	  wfNumLink( $offset, 50, $link, $query ) . " | " .
 	  wfNumLink( $offset, 100, $link, $query ) . " | " .

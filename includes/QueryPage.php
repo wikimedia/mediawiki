@@ -60,7 +60,7 @@ class QueryPage {
 	    }
 	}
 
-	$sql = $this->getSQL( $offset, $limit );
+	$sql = $this->getSQL( $offset, $limit+1 );
 
 	$res = wfQuery( $sql, DB_READ, $fname );
 
@@ -69,13 +69,16 @@ class QueryPage {
 	$top = wfShowingResults( $offset, $limit );
 	$wgOut->addHTML( "<p>{$top}\n" );
 
-	$sl = wfViewPrevNext( $offset, $limit, $wgLang->specialPage( $sname ) );
+	$sl = wfViewPrevNext( $offset, $limit, $wgLang->specialPage( $sname ), "",
+				wfNumRows( $res ) < ($limit+1) );
 	$wgOut->addHTML( "<br>{$sl}\n" );
 
 	$s = "<ol start=" . ( $offset + 1 ) . ">";
-	while ( $obj = wfFetchObject( $res ) ) {
+	$i = 0;
+	while ( ($i<$limit) && ($obj = wfFetchObject( $res )) ) {
 	    $format = $this->formatResult( $sk, $obj );
 	    $s .= "<li>{$format}</li>\n";
+	    $i++;
 	}
 	wfFreeResult( $res );
 	$s .= "</ol>";
