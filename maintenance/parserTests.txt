@@ -276,7 +276,7 @@ Definition list with URL link
 !! input
 ; http://example.com/ : definition
 !! result
-<dl><dt> <a href="http://example.com/" class='external'>http://example.com/</a>&nbsp;</dt><dd> definition
+<dl><dt> <a href="http://example.com/" class='external free'>http://example.com/</a>&nbsp;</dt><dd> definition
 </dd></dl>
 
 !! end
@@ -286,7 +286,7 @@ Definition list with bracketed URL link
 !! input
 ;[http://www.google.com/ Google]:Number one search engine
 !! result
-<dl><dt><a href="http://www.google.com/" class='external' title="http://www.google.com/">Google</a><span class='urlexpansion'>&nbsp;(<i>http://www.google.com/</i>)</span></dt><dd>Number one search engine
+<dl><dt><a href="http://www.google.com/" class='external text' title="http://www.google.com/">Google</a></dt><dd>Number one search engine
 </dd></dl>
 
 !! end
@@ -307,7 +307,7 @@ Definition list with wikilink containing colon
 !! input
 ;  news:alt.wikipedia.rox: This isn't even a real newsgroup!
 !! result
-<dl><dt>  <a href="news:alt.wikipedia.rox" class='external'>news:alt.wikipedia.rox</a></dt><dd> This isn't even a real newsgroup!
+<dl><dt>  <a href="news:alt.wikipedia.rox" class='external free'>news:alt.wikipedia.rox</a></dt><dd> This isn't even a real newsgroup!
 </dd></dl>
 
 !! end
@@ -317,7 +317,7 @@ Malformed definition list with colon
 !! input
 ;  news:alt.wikipedia.rox -- don't crash or enter an infinite loop
 !! result
-<dl><dt>  <a href="news:alt.wikipedia.rox" class='external'>news:alt.wikipedia.rox</a> -- don't crash or enter an infinite loop
+<dl><dt>  <a href="news:alt.wikipedia.rox" class='external free'>news:alt.wikipedia.rox</a> -- don't crash or enter an infinite loop
 </dt></dl>
 
 !! end
@@ -327,7 +327,7 @@ Definition lists: colon in external link text
 !! input
 ; [http://www.wikipedia2.org/ Wikipedia : The Next Generation]: OK, I made that up
 !! result
-<dl><dt> <a href="http://www.wikipedia2.org/" class='external' title="http://www.wikipedia2.org/">Wikipedia&nbsp;: The Next Generation</a><span class='urlexpansion'>&nbsp;(<i>http://www.wikipedia2.org/</i>)</span></dt><dd> OK, I made that up
+<dl><dt> <a href="http://www.wikipedia2.org/" class='external text' title="http://www.wikipedia2.org/">Wikipedia&nbsp;: The Next Generation</a></dt><dd> OK, I made that up
 </dd></dl>
 
 !! end
@@ -341,7 +341,7 @@ External links: non-bracketed
 !! input
 Non-bracketed: http://example.com
 !! result
-<p>Non-bracketed: <a href="http://example.com" class='external'>http://example.com</a>
+<p>Non-bracketed: <a href="http://example.com" class='external free'>http://example.com</a>
 </p>
 !! end
 
@@ -350,7 +350,7 @@ External links: numbered
 !! input
 Numbered: [http://example.com]
 !! result
-<p>Numbered: <a href="http://example.com" class='external' title="http://example.com">[1]</a><span class='urlexpansion'>&nbsp;(<i>http://example.com</i>)</span>
+<p>Numbered: <a href="http://example.com" class='external autonumber' title="http://example.com">[1]</a>
 </p>
 !!end
 
@@ -359,7 +359,7 @@ External links: specified text
 !! input
 Specified text: [http://example.com link]
 !! result
-<p>Specified text: <a href="http://example.com" class='external' title="http://example.com">link</a><span class='urlexpansion'>&nbsp;(<i>http://example.com</i>)</span>
+<p>Specified text: <a href="http://example.com" class='external text' title="http://example.com">link</a>
 </p>
 !!end
 
@@ -368,7 +368,7 @@ External links: trail
 !! input
 Trail (not sure if this is meant to work): [http://example.com link]s
 !! result
-<p>Trail (not sure if this is meant to work): <a href="http://example.com" class='external' title="http://example.com">link</a>s<span class='urlexpansion'>&nbsp;(<i>http://example.com</i>)</span>
+<p>Trail (not sure if this is meant to work): <a href="http://example.com" class='external text' title="http://example.com">link</a>s
 </p>
 !! end
 
@@ -377,7 +377,7 @@ External links: dollar sign in URL
 !! input
 http://example.com/1$2345
 !! result
-<p><a href="http://example.com/1$2345" class='external'>http://example.com/1$2345</a>
+<p><a href="http://example.com/1$2345" class='external free'>http://example.com/1$2345</a>
 </p>
 !! end
 
@@ -386,7 +386,7 @@ External links: dollar sign in URL (named)
 !! input
 [http://example.com/1$2345]
 !! result
-<p><a href="http://example.com/1$2345" class='external' title="http://example.com/1$2345">[1]</a><span class='urlexpansion'>&nbsp;(<i>http://example.com/1$2345</i>)</span>
+<p><a href="http://example.com/1$2345" class='external autonumber' title="http://example.com/1$2345">[1]</a>
 </p>
 !!end
 
@@ -413,7 +413,7 @@ Link to non-http image, no img tag
 !! input
 Link to non-http image, no img tag: ftp://example.com/test.jpg
 !! result
-<p>Link to non-http image, no img tag: <a href="ftp://example.com/test.jpg" class='external'>ftp://example.com/test.jpg</a>
+<p>Link to non-http image, no img tag: <a href="ftp://example.com/test.jpg" class='external free'>ftp://example.com/test.jpg</a>
 </p>
 !! end
 
@@ -422,7 +422,7 @@ External links: terminating separator
 !! input
 Terminating separator: http://example.com/thing,
 !! result
-<p>Terminating separator: <a href="http://example.com/thing" class='external'>http://example.com/thing</a>,
+<p>Terminating separator: <a href="http://example.com/thing" class='external free'>http://example.com/thing</a>,
 </p>
 !! end
 
@@ -431,7 +431,7 @@ External links: intervening separator
 !! input
 Intervening separator: http://example.com/1,2,3
 !! result
-<p>Intervening separator: <a href="http://example.com/1,2,3" class='external'>http://example.com/1,2,3</a>
+<p>Intervening separator: <a href="http://example.com/1,2,3" class='external free'>http://example.com/1,2,3</a>
 </p>
 !! end
 
@@ -440,7 +440,7 @@ External links: old bug with URL in query
 !! input
 Old bug with URL in query: [http://example.com/thing?url=http://example.com link]
 !! result
-<p>Old bug with URL in query: <a href="http://example.com/thing?url=http://example.com" class='external' title="http://example.com/thing?url=http://example.com">link</a><span class='urlexpansion'>&nbsp;(<i>http://example.com/thing?url=http://example.com</i>)</span>
+<p>Old bug with URL in query: <a href="http://example.com/thing?url=http://example.com" class='external text' title="http://example.com/thing?url=http://example.com">link</a>
 </p>
 !! end
 
@@ -449,7 +449,7 @@ External links: old URL-in-URL bug, mixed protocols
 !! input
 And again with mixed protocols: [ftp://example.com?url=http://example.com link]
 !! result
-<p>And again with mixed protocols: <a href="ftp://example.com?url=http://example.com" class='external' title="ftp://example.com?url=http://example.com">link</a><span class='urlexpansion'>&nbsp;(<i>ftp://example.com?url=http://example.com</i>)</span>
+<p>And again with mixed protocols: <a href="ftp://example.com?url=http://example.com" class='external text' title="ftp://example.com?url=http://example.com">link</a>
 </p>
 !!end
 
@@ -458,7 +458,7 @@ External links: URL in text
 !! input
 URL in text: [http://example.com http://example.com]
 !! result
-<p>URL in text: <a href="http://example.com" class='external'>http://example.com</a>
+<p>URL in text: <a href="http://example.com" class='external free'>http://example.com</a>
 </p>
 !! end
 
@@ -467,7 +467,7 @@ External links: Clickable images
 !! input
 ja-style clickable images: [http://example.com http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png]
 !! result
-<p>ja-style clickable images: <a href="http://example.com" class='external' title="http://example.com"><img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" /></a><span class='urlexpansion'>&nbsp;(<i>http://example.com</i>)</span>
+<p>ja-style clickable images: <a href="http://example.com" class='external text' title="http://example.com"><img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" /></a>
 </p>
 !!end
 
@@ -476,7 +476,7 @@ External links: raw ampersand
 !! input
 Old &amp; use: http://x&y
 !! result
-<p>Old &amp; use: <a href="http://x&amp;y" class='external'>http://x&amp;y</a>
+<p>Old &amp; use: <a href="http://x&amp;y" class='external free'>http://x&amp;y</a>
 </p>
 !! end
 
@@ -485,7 +485,7 @@ External links: www.jpeg.org (bug 554)
 !! input
 http://www.jpeg.org
 !!result
-<p><a href="http://www.jpeg.org" class='external'>http://www.jpeg.org</a>
+<p><a href="http://www.jpeg.org" class='external free'>http://www.jpeg.org</a>
 </p>
 !! end
 
@@ -494,7 +494,7 @@ External links: URL within URL (original bug 2)
 !! input
 [http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp]
 !! result
-<p><a href="http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp" class='external' title="http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp">[1]</a><span class='urlexpansion'>&nbsp;(<i>http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp</i>)</span>
+<p><a href="http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp" class='external autonumber' title="http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp">[1]</a>
 </p>
 !! end
 
@@ -503,7 +503,7 @@ BUG 361: URL inside bracketed URL
 !! input
 [http://www.example.com/foo http://www.example.com/bar]
 !! result
-<p><a href="http://www.example.com/foo" class='external' title="http://www.example.com/foo">http://www.example.com/bar</a><span class='urlexpansion'>&nbsp;(<i>http://www.example.com/foo</i>)</span>
+<p><a href="http://www.example.com/foo" class='external text' title="http://www.example.com/foo">http://www.example.com/bar</a>
 </p>
 !! end
 
@@ -512,7 +512,7 @@ BUG 289: ">"-token in URL-tail
 !! input
 http://www.example.com/<hello>
 !! result
-<p><a href="http://www.example.com/" class='external'>http://www.example.com/</a>&lt;hello&gt;
+<p><a href="http://www.example.com/" class='external free'>http://www.example.com/</a>&lt;hello&gt;
 </p>
 !!end
 
@@ -521,7 +521,7 @@ BUG 289: literal ">"-token in URL-tail
 !! input
 http://www.example.com/<b>html</b>
 !! result
-<p><a href="http://www.example.com/" class='external'>http://www.example.com/</a><b >html</b >
+<p><a href="http://www.example.com/" class='external free'>http://www.example.com/</a><b >html</b >
 </p>
 !!end
 
@@ -530,7 +530,7 @@ BUG 289: ">"-token in bracketed URL
 !! input
 [http://www.example.com/<hello> stuff]
 !! result
-<p><a href="http://www.example.com/" class='external' title="http://www.example.com/">&lt;hello&gt; stuff</a><span class='urlexpansion'>&nbsp;(<i>http://www.example.com/</i>)</span>
+<p><a href="http://www.example.com/" class='external text' title="http://www.example.com/">&lt;hello&gt; stuff</a>
 </p>
 !!end
 
@@ -539,7 +539,7 @@ BUG 289: literal ">"-token in bracketed URL
 !! input
 [http://www.example.com/<b>html</b> stuff]
 !! result
-<p><a href="http://www.example.com/" class='external' title="http://www.example.com/"><b >html</b > stuff</a><span class='urlexpansion'>&nbsp;(<i>http://www.example.com/</i>)</span>
+<p><a href="http://www.example.com/" class='external text' title="http://www.example.com/"><b >html</b > stuff</a>
 </p>
 !!end
 
@@ -548,7 +548,7 @@ BUG 289: literal double quote at end of URL
 !! input
 http://www.example.com/"hello"
 !! result
-<p><a href="http://www.example.com/" class='external'>http://www.example.com/</a>"hello"
+<p><a href="http://www.example.com/" class='external free'>http://www.example.com/</a>"hello"
 </p>
 !!end
 
@@ -557,7 +557,7 @@ BUG 289: literal double quote in bracketed URL
 !! input
 [http://www.example.com/"hello" stuff]
 !! result
-<p><a href="http://www.example.com/" class='external' title="http://www.example.com/">"hello" stuff</a><span class='urlexpansion'>&nbsp;(<i>http://www.example.com/</i>)</span>
+<p><a href="http://www.example.com/" class='external text' title="http://www.example.com/">"hello" stuff</a>
 </p>
 !!end
 
@@ -566,7 +566,7 @@ External links: invalid character
 !! input
 [http://www.example.com  test]
 !! result
-<p>[<a href="http://www.example.com" class='external'>http://www.example.com</a>  test]
+<p>[<a href="http://www.example.com" class='external free'>http://www.example.com</a>  test]
 </p>
 !! end
 
@@ -887,7 +887,7 @@ Plain link to URL
 !! input
 [[http://www.example.org]]
 !! result
-<p>[<a href="http://www.example.org" class='external' title="http://www.example.org">[1]</a><span class='urlexpansion'>&nbsp;(<i>http://www.example.org</i>)</span>]
+<p>[<a href="http://www.example.org" class='external autonumber' title="http://www.example.org">[1]</a>]
 </p>
 !! end
 
@@ -907,7 +907,7 @@ Piped link to URL
 !! input
 Piped link to URL: [[http://www.example.org|an example URL]]
 !! result
-<p>Piped link to URL: [<a href="http://www.example.org|an" class='external' title="http://www.example.org|an">example URL</a><span class='urlexpansion'>&nbsp;(<i>http://www.example.org|an</i>)</span>]
+<p>Piped link to URL: [<a href="http://www.example.org|an" class='external text' title="http://www.example.org|an">example URL</a>]
 </p>
 !! end
 
@@ -1488,7 +1488,7 @@ Thumbnail image caption with a free URL
 !! input
 [[Image:foobar.jpg|thumb|http://example.com]]
 !! result
-<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="http://example.com"><img src="/images/3/3a/Foobar.jpg" alt="http://example.com" width="180" height="180" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" ><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div><a href="http://example.com" class='external'>http://example.com</a></div></div></div>
+<div class="thumb tright"><div style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="http://example.com"><img src="/images/3/3a/Foobar.jpg" alt="http://example.com" width="180" height="180" longdesc="/wiki/Image:Foobar.jpg" /></a>  <div class="thumbcaption" ><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div><a href="http://example.com" class='external free'>http://example.com</a></div></div></div>
 
 !! end
 
@@ -1673,29 +1673,30 @@ title=[[Parser test script]]
 Some text
 ===Another headline===
 !! result
-<table border="0" id="toc"><tr id="toctitle"><td align="center">
-<b>Table of contents</b> <script type="text/javascript">showTocToggle("show","hide")</script></td></tr><tr id="tocinside"><td>
-<div class="tocline"><a href="#Headline_1">1 Headline 1</a><br /></div>
-<div class="tocindent">
-<p><a href="#Subheadline_1">1.1 Subheadline 1</a><br />
-</p>
-<div class="tocindent">
-<div class="tocindent">
-<p><a href="#Skipping_a_level">1.1.1 Skipping a level</a><br />
-</p>
-<div class="tocindent">
-<p><a href="#Skipping_a_level_2">1.1.1.1 Skipping a level</a><br />
-</p>
+<div id='toc'>
+<div id='toctitle'><h2>Table of contents</h2></div>
+<ul>
+<li class='toclevel-1'><a href="#Headline_1"><span class="tocnumber">1</span> <span class="toctext">Headline 1</span></a>
+<ul>
+<li class='toclevel-2'><a href="#Subheadline_1"><span class="tocnumber">1.1</span> <span class="toctext">Subheadline 1</span></a>
+<ul>
+<li class='toclevel-3'><a href="#Skipping_a_level"><span class="tocnumber">1.1.1</span> <span class="toctext">Skipping a level</span></a>
+<ul>
+<li class='toclevel-4'><a href="#Skipping_a_level_2"><span class="tocnumber">1.1.1.1</span> <span class="toctext">Skipping a level</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class='toclevel-1'><a href="#Headline_2"><span class="tocnumber">2</span> <span class="toctext">Headline 2</span></a>
+<ul>
+<li class='toclevel-2'><a href="#Another_headline"><span class="tocnumber">2.1</span> <span class="toctext">Another headline</span></a></li>
+</ul>
+</li>
+</ul>
 </div>
-</div>
-</div>
-</div>
-<div class="tocline"><a href="#Headline_2">2 Headline 2</a><br /></div>
-<div class="tocindent">
-<p><a href="#Another_headline">2.1 Another headline</a><br />
-</p>
-</div>
-</td></tr></table>
+<script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide";  showTocToggle(); } </script><div class='visualClear'></div>
 <div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=1" title="Parser test script">edit</a>]</div><a name="Headline_1"></a><h2> Headline 1 </h2>
 <div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=2" title="Parser test script">edit</a>]</div><a name="Subheadline_1"></a><h3> Subheadline 1 </h3>
 <div class="editsection" style="float:right;margin-left:5px;">[<a href="/index.php?title=Parser_test_script&amp;action=edit&amp;section=3" title="Parser test script">edit</a>]</div><a name="Skipping_a_level"></a><h5> Skipping a level </h5>
@@ -1773,7 +1774,7 @@ Bug 1219 URL next to image (good)
 !! input
 http://example.com [[Image:foobar.jpg]]
 !! result
-<p><a href="http://example.com" class='external'>http://example.com</a> <a href="/wiki/Image:Foobar.jpg" class="image" title="Image:foobar.jpg"><img src="/images/3/3a/Foobar.jpg" alt="Image:foobar.jpg" longdesc="/wiki/Image:Foobar.jpg" /></a>
+<p><a href="http://example.com" class='external free'>http://example.com</a> <a href="/wiki/Image:Foobar.jpg" class="image" title="Image:foobar.jpg"><img src="/images/3/3a/Foobar.jpg" alt="Image:foobar.jpg" longdesc="/wiki/Image:Foobar.jpg" /></a>
 </p>
 !!end
 
@@ -1782,7 +1783,7 @@ Bug 1219 URL next to image (broken)
 !! input
 http://example.com[[Image:foobar.jpg]]
 !! result
-<p><a href="http://example.com" class='external'>http://example.com</a><a href="/wiki/Image:Foobar.jpg" class="image" title="Image:foobar.jpg"><img src="/images/3/3a/Foobar.jpg" alt="Image:foobar.jpg" longdesc="/wiki/Image:Foobar.jpg" /></a>
+<p><a href="http://example.com" class='external free'>http://example.com</a><a href="/wiki/Image:Foobar.jpg" class="image" title="Image:foobar.jpg"><img src="/images/3/3a/Foobar.jpg" alt="Image:foobar.jpg" longdesc="/wiki/Image:Foobar.jpg" /></a>
 </p>
 !!end
 
@@ -1791,7 +1792,7 @@ Bug 1186 news: in the middle of text
 !! input
 http://en.wikinews.org/wiki/Wikinews:Workplace
 !! result
-<p><a href="http://en.wikinews.org/wiki/Wikinews:Workplace" class='external'>http://en.wikinews.org/wiki/Wikinews:Workplace</a>
+<p><a href="http://en.wikinews.org/wiki/Wikinews:Workplace" class='external free'>http://en.wikinews.org/wiki/Wikinews:Workplace</a>
 </p>
 !!end
 
