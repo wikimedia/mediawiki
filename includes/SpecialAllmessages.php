@@ -94,7 +94,7 @@ function makePhp($messages) {
  *
  */
 function makeHTMLText( $messages ) {
-	global $wgLang, $wgUser, $wgLanguageCode;
+	global $wgLang, $wgUser, $wgLanguageCode, $wgContLanguageCode;
 	$fname = "makeHTMLText";
 	wfProfileIn( $fname );
 	
@@ -130,7 +130,9 @@ function makeHTMLText( $messages ) {
 	wfProfileIn( "$fname-output" );
 	foreach( $messages as $key => $m ) {
 
-		$title = $wgLang->ucfirst( $key )."/$wgLanguageCode";
+		$title = $wgLang->ucfirst( $key );
+		if($wgLanguageCode != $wgContLanguageCode)
+			$title.="/$wgLanguageCode";
 		$titleObj =& Title::makeTitle( NS_MEDIAWIKI, $title );
 		$talkPage =& Title::makeTitle( NS_MEDIAWIKI_TALK, $title );
 
