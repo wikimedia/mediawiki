@@ -83,7 +83,7 @@ class Skin {
 	/**#@-*/
 
 	function Skin() {
-		$this->linktrail = wfMsg('linktrail');
+		$this->linktrail = wfMsgForContent('linktrail');
 	}
 
 	function getSkinNames() {
