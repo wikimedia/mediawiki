@@ -71,7 +71,10 @@ class QueryPage {
 		$top = wfShowingResults( $offset, $num);
 		$wgOut->addHTML( "<p>{$top}\n" );
 
-		$sl = wfViewPrevNext( $offset, $limit , $wgLang->specialPage( $sname ) );
+		# often disable 'next' link when we reach the end
+		if($num < $limit) { $atend = true; } else { $atend = false; }
+		
+		$sl = wfViewPrevNext( $offset, $limit , $wgLang->specialPage( $sname ), "" ,$atend );
 		$wgOut->addHTML( "<br />{$sl}</p>\n" );
 
 		$s = "<ol start='" . ( $offset + 1 ) . "'>";
