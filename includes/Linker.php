@@ -688,6 +688,7 @@ class Linker {
 		wfProfileIn( $fname );
 		
 		global $wgContLang;
+		$comment = str_replace( "\n", " ", $comment );
 		$comment = htmlspecialchars( $comment );
 
 		# The pattern for autogen comments is / * foo * /, which makes for
