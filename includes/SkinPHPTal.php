@@ -84,18 +84,20 @@
 			$tpl->setRef( 'charset', $wgOutputEncoding);
 			$tpl->setRef( 'skinname', $this->skinname );
 			$tpl->setRef( "loggedin", &$this->loggedin );
+			/* XXX currently unused, might get useful later
 			$tpl->set( "editable", ($wgTitle->getNamespace() != NS_SPECIAL ) );
 			$tpl->set( "exists", $wgTitle->getArticleID() != 0 );
 			$tpl->set( "watch", $wgTitle->userIsWatching() ? "unwatch" : "watch" );
 			$tpl->set( "protect", count($wgTitle->getRestrictions()) ? "unprotect" : "protect" );
 			$tpl->set( "helppage", wfMsg('helppage'));
+			$tpl->set( "sysop", $wgUser->isSysop() );
+			*/
 			$tpl->setRef( "searchaction", &$wgScriptPath );
 			$tpl->setRef( "stylepath", &$wgStyleSheetPath );
 			$tpl->setRef( "lang", &$wgLanguageCode );
 			$tpl->set( "langname", $wgLang->getLanguageName( $wgLanguageCode ) );
 			$tpl->setRef( "username", &$this->username );
 			$tpl->setRef( "userpage", &$this->userpage);
-			$tpl->set( "sysop", $wgUser->isSysop() );
 			if( $wgUser->getNewtalk() ) {
 				$usertitle = Title::newFromText( $this->userpage );
 				$usertalktitle = $usertitle->getTalkPage();
@@ -111,6 +113,7 @@
 			} else {
 				$ntl = "";
 			}
+
 			$tpl->setRef( "newtalk", &$ntl );
 			$tpl->setRef( "skin", &$this);
 			$tpl->set( "logo", $this->logoText() );
@@ -136,7 +139,13 @@
 				$tpl->set('language_urls', false);
 			}
 			$tpl->set('personal_urls', $this->buildPersonalUrls());
-			$tpl->set('content_actions', $this->buildContentActionUrls());
+			$content_actions = $this->buildContentActionUrls();
+			$tpl->setRef('content_actions', &$content_actions);
+			if($content_actions['edit']['href'] && $wgUser->getOption("editondblclick") ) {
+				$tpl->set('body-ondblclick', 'document.location = "' .$content_actions['edit']['href'] .'";');
+			} else {
+				$tpl->set('body-ondblclick', '');
+			}
 			$tpl->set( "nav_urls", $this->buildNavUrls() );
 
 			// execute template
