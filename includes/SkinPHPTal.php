@@ -229,9 +229,7 @@
 				);
 
 				if ( $wgTitle->userCanEdit() ) {
-					if ( $oldid && ! isset( $diff ) ) {
-						$oid = "&oldid={$oldid}";
-					}
+					$oid = ( $oldid && ! isset( $diff ) ) ? "&oldid={$oldid}" : '';
 					$content_actions['edit'] = array(
 						'class' => ($action == 'edit' or $action == 'submit') ? 'selected' : '',
 						'text' => wfMsg('edit'),
@@ -240,9 +238,7 @@
 						'akey' => wfMsg('accesskey-edit')
 					);
 				} else {
-					if ( $oldid && ! isset( $diff ) ) {
-						$oid = "&oldid={$oldid}";
-					}
+				        $oid = ( $oldid && ! isset( $diff ) ) ? "&oldid={$oldid}" : '';
 					$content_actions['edit'] = array('class' => ($action == 'edit') ? 'selected' : '',
 					'text' => wfMsg('viewsource'),
 					'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid),
