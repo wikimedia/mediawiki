@@ -42,7 +42,6 @@ class Image
 		if (!$this->fileExists && $wgUseSharedUploads) {
 			
 			if($wgHashedSharedUploadDirectory) {				
-				$hash = md5( $this->title->getDBkey() );
 				$this->imagePath = $wgSharedUploadDirectory . '/' . $hash{0} . '/' .
 					substr( $hash, 0, 2 ) . "/{$name}";
 			} else {
