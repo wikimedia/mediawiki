@@ -25,7 +25,7 @@ class DateFormatter
 	
 	function DateFormatter()
 	{
-		global $wgMonthNamesEn;
+		global $wgMonthNamesEn, $wgInputEncoding;
 		
 		$this->monthNames = $this->getMonthRegex();
 		for ( $i=1; $i<=12; $i++ ) {

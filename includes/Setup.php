@@ -43,7 +43,7 @@ global $wgUser, $wgLang, $wgOut, $wgTitle;
 global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
 global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
 global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
-global $wgMsgCacheExpiry, $wgDBname;
+global $wgMsgCacheExpiry, $wgDBname, $wgCommandLineMode;
 
 class MemCachedClientforWiki extends MemCachedClient {
 	function _debug( $text ) {

@@ -81,6 +81,8 @@ class Skin {
 	}
 	
 	function outputPage( &$out ) {
+		global $wgDebugComments;
+		
 		wfProfileIn( "Skin::outputPage" );
 		$this->initPage();
 		$out->out( $out->headElement() );
@@ -1045,7 +1047,7 @@ class Skin {
 
 	function otherLanguages()
 	{
-		global $wgOut, $wgLang, $wgTitle;
+		global $wgOut, $wgLang, $wgTitle, $wgUseNewInterlanguage;
 
 		$a = $wgOut->getLanguageLinks();
 		# TEST THIS @@@
@@ -1866,6 +1868,7 @@ class Skin {
 	}
 
 	function tocUnindent($level) {
+		$rv = "";
 		while($level-->0) $rv.="</div>\n";
 		return $rv;
 	}
