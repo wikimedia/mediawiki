@@ -301,6 +301,7 @@ class Article {
 			} else if ( $this->tryFileCache() ) {
 				# tell wgOut that output is taken care of
 				$wgOut->disable();
+				$this->viewUpdates();
 				return;
 			}
 		}
@@ -1041,12 +1042,10 @@ class Article {
 	/* private */ function viewUpdates()
 	{
 		global $wgDeferredUpdateList;
-		
 		if ( 0 != $this->getID() ) {
 			global $wgDisableCounters;
 			if( !$wgDisableCounters ) {
-				$u = new ViewCountUpdate( $this->getID() );
-				array_push( $wgDeferredUpdateList, $u );
+				Article::incViewCount( $this->getID() );
 				$u = new SiteStatsUpdate( 1, 0, 0 );
 				array_push( $wgDeferredUpdateList, $u );
 			}
@@ -1265,6 +1264,44 @@ class Article {
 		} else {
 			return false;
 		}
+	}
+	
+	/* static */ function incViewCount( $id )
+	{
+		$id = intval( $id );
+
+		# Not important enough to warrant an error page in case of failure
+		$oldignore = wfIgnoreSQLErrors( true ); 
+
+		wfQuery("INSERT INTO hitcounter (hc_id) VALUES ({$id})", DB_WRITE);
+
+		if( (rand() % 23 != 0) or (wfLastErrno() != 0) ){
+			# Most of the time (or on SQL errors), skip row count check
+			wfIgnoreSQLErrors( $oldignore );
+			return;
+		}
+
+		$res = wfQuery("SELECT COUNT(*) as n FROM hitcounter", DB_WRITE);
+		$row = wfFetchObject( $res );
+		$rown = intval( $row->n );
+		if( $rown > 1000 ){ // update counters after ~1000 hits
+			wfProfileIn( "Article::incViewCount-collect" );
+			$old_user_abort = ignore_user_abort( true );
+
+			wfQuery("LOCK TABLES hitcounter WRITE", DB_WRITE);
+			wfQuery("CREATE TEMPORARY TABLE acchits TYPE=HEAP ".
+				"SELECT hc_id,COUNT(*) AS hc_n FROM hitcounter ".
+				"GROUP BY hc_id", DB_WRITE);
+			wfQuery("DELETE FROM hitcounter", DB_WRITE);
+			wfQuery("UNLOCK TABLES", DB_WRITE);
+			wfQuery("UPDATE cur,acchits SET cur_counter=cur_counter + hc_n ".
+				"WHERE cur_id = hc_id", DB_WRITE);
+			wfQuery("DROP TABLE acchits", DB_WRITE);
+
+			ignore_user_abort( $old_user_abort );
+			wfProfileOut( "Article::incViewCount-collect" );
+		}
+		wfIgnoreSQLErrors( $oldignore );
 	}
 }
 
