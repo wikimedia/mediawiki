@@ -76,9 +76,6 @@ while (1) {
 		# no colour (\003) switches back to the term default
 		$fullString = "\0033 $title\0037 $flag\00310 $url \0037*\003 $user \0037*\003 $comment\n";
 
-		if ( $fullString{0} == "/" ) {
-			$fullString = " $fullString";
-		}
 		print( $fullString );
 		$oldTimestamp = $row->rc_timestamp;
 		sleep(2);
