@@ -359,6 +359,10 @@ class ImagePage extends Article {
 			$wgOut->readOnlyPage();
 			return;
 		}
+		if( $wgUser->getId() == 0 ) {
+			$wgOut->errorpage( 'uploadnologin', 'uploadnologintext' );
+			return;
+		}
 		if ( ! $this->mTitle->userCanEdit() ) {
 			$wgOut->sysopRequired();
 			return;
