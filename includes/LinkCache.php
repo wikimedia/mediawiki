@@ -318,7 +318,7 @@ class LinkCache {
 
 	# $pid is a page id
 	/* static */ function linksccClearPage( $pid ){
-		$id = intval( $pid );
+		$pid = intval( $pid );
 		wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
 	}
 }
