@@ -65,12 +65,6 @@ $wgVariableIDs = array(
 # Language-specific text
 #--------------------------------------------------------------------------
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
-
-# NOTE: To turn off "Disclaimers" in the title links,
-# set "disclaimers" => "-"
-
 # The names of the namespaces can be set here, but the numbers
 # are magical, so don't change or move them!  The Namespace class
 # encapsulates some of the magic-ness.
@@ -489,6 +483,16 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 # hyphen (-). If you need more characters, you may be able to change
 # the regex in MagicWord::initRegex
 
+# NOTE: To turn off "Current Events" in the sidebar,
+# set "currentevents" => ""
+
+# NOTE: To turn off "Disclaimers" in the title links,
+# set "disclaimers" => ""
+
+# NOTE: To turn off "Community portal" in the title links,
+# set "portal" => ""
+
+
 /* private */ $wgAllMessagesEn = array(
 
 # Bits of text used by many pages:
@@ -502,6 +506,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 "linktrail"		=> "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Main Page",
 "mainpagetext"	=> "Wiki software successfully installed.",
+'portal'		=> 'Community portal',
 "about"			=> "About",
 "aboutwikipedia" => "About {{SITENAME}}",
 "aboutpage"		=> "{{ns:4}}:About",
@@ -1508,6 +1513,7 @@ amusement.",
 'accesskey-login' => 'l',
 'accesskey-search' => 's',
 'accesskey-mainpage' => '',
+'accesskey-portal' => '',
 'accesskey-randompage' => 'x',
 'accesskey-currentevents' => '',
 'accesskey-sitesupport' => '',
@@ -1539,6 +1545,7 @@ amusement.",
 'tooltip-logout' => 'The start button',
 'tooltip-search' => 'Search this wiki',
 'tooltip-mainpage' => 'Visit the Main Page',
+'tooltip-portal' => 'About the project, what you can do, where to find things',
 'tooltip-randompage' => 'Load a random page [alt-x]',
 'tooltip-currentevents' => 'Find background information on current events',
 'tooltip-sitesupport' => 'Support {{SITENAME}}',
