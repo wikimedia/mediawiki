@@ -374,11 +374,7 @@ class Skin {
 		if($wgUseCategoryBrowser) {
 			$s .= "<br/><hr/>";
 			$catstack = array();
-			$wgTitle->getAllParentCategories(&$catstack);
-			foreach ($catstack as $key => $cat)
-			{
-				$s .= $this->makeLink($wgLang->getNSText( Namespace::getCategory() ).":".$key, $key )." &gt; ".$cat."<br/>\n";
-			}
+			$s.= $wgTitle->getAllParentCategories(&$catstack);
 		}
 		
 		return $s;
