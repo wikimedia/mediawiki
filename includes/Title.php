@@ -93,30 +93,48 @@ class Title {
 	/* static */ function &newFromText( $text, $defaultNamespace = 0 ) {	
 		$fname = 'Title::newFromText';
 		wfProfileIn( $fname );
+		
+		/**
+		 * Wiki pages often contain multiple links to the same page.
+		 * Title normalization and parsing can become expensive on
+		 * pages with many links, so we can save a little time by
+		 * caching them.
+		 *
+		 * In theory these are value objects and won't get changed...
+		 */
+		static $titleCache = array();
+		if( $defaultNamespace == 0 && isset( $titleCache[$text] ) ) {
+			wfProfileOut( $fname );
+			return $titleCache[$text];
+		}
 
 		/**
 		 * Convert things like &eacute; into real text...
 		 */
 		global $wgInputEncoding;
-		$text = do_html_entity_decode( $text, ENT_COMPAT, $wgInputEncoding );
+		$filteredText = do_html_entity_decode( $text, ENT_COMPAT, $wgInputEncoding );
 
 		/**
 		 * Convert things like &#257; or &#x3017; into real text...
 		 * WARNING: Not friendly to internal links on a latin-1 wiki.
 		 */
-		$text = wfMungeToUtf8( $text );
+		$filteredText = wfMungeToUtf8( $filteredText );
 		
 		# What was this for? TS 2004-03-03
 		# $text = urldecode( $text );
 
 		$t =& new Title();
-		$t->mDbkeyform = str_replace( ' ', '_', $text );
+		$t->mDbkeyform = str_replace( ' ', '_', $filteredText );
 		$t->mDefaultNamespace = $defaultNamespace;
 
 		if( $t->secureAndSplit() ) {
+			if( $defaultNamespace == 0 ) {
+				$titleCache[$text] =& $t;
+			}
 			wfProfileOut( $fname );
 			return $t;
 		} else {
+			$titleCache[$text] = null;
 			wfProfileOut( $fname );
 			return NULL;
 		}
