@@ -643,7 +643,7 @@ class Parser
 	 * @access private
 	 */
 	function internalParse( $text, $linestart, $args = array(), $isMain=true ) {
-        global $wgLang;
+        global $wgContLang;
 
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
@@ -651,7 +651,7 @@ class Parser
 		$text = $this->removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text, $args );
 
-		$text = $wgLang->convert($text);
+		$text = $wgContLang->convert($text);
 
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
 
