@@ -253,7 +253,7 @@ class OutputPage {
 	}
 	
 	function sendCacheControl() {
-		global $wgUseSquid, $wgUseESI, $wgSquidMaxage, $wgOut;
+		global $wgUseSquid, $wgUseESI, $wgSquidMaxage;
 		# FIXME: This header may cause trouble with some versions of Internet Explorer
 		header( "Vary: Accept-Encoding, Cookie" );
 		if( $this->mLastModified != "" ) {
