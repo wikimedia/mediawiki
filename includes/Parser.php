@@ -1786,7 +1786,16 @@ class Parser
 		}
 		
 		$stripState = false;
-		$text = str_replace("\r\n", "\n", $text);
+		$pairs = array(
+			"\r\n" => "\n",
+			);
+		$text = str_replace(array_keys($pairs), array_values($pairs), $text);
+		// now with regexes
+		$pairs = array(
+			"/<br.+(clear|break)=[\"']?(all|both)[\"']?\\/?>/i" => '<br style="clear:both;"/>',
+			"/<br *?>/i" => "<br/>",
+		);
+		$text = preg_replace(array_keys($pairs), array_values($pairs), $text);
 		$text = $this->strip( $text, $stripState, false );
 		$text = $this->pstPass2( $text, $user );
 		$text = $this->unstrip( $text, $stripState );
