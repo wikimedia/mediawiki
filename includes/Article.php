@@ -150,7 +150,7 @@ class Article {
 					$rid = $rt->getArticleID();
 					if ( 0 != $rid ) {
 						$sql = "SELECT cur_text,cur_timestamp,cur_user," .
-						  "cur_counter,cur_touched FROM cur WHERE cur_id={$rid}";
+						  "cur_counter,cur_restrictions,cur_touched FROM cur WHERE cur_id={$rid}";
 						$res = wfQuery( $sql, DB_READ, $fname );
 
 						if ( 0 != wfNumRows( $res ) ) {
