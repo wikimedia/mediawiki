@@ -129,6 +129,7 @@ class Image
 	// image's width. Let the browser do the scaling in this case.
 	// The thumbnail is stored on disk and is only computed if the thumbnail
 	// file does not exist OR if it is older than the image.
+	// Returns the URL.
 	function createThumb( $width ) {
 		global $wgUploadDirectory;
 		global $wgImageMagickConvertCommand;
@@ -158,16 +159,7 @@ class Image
 			return $this->getURL();
 		}
 
-		if (    (! file_exists( $thumbPath ) )
-		     || ( filemtime($thumbPath) < filemtime($this->imagePath) ) ) {
-			# Squid purging
-			if ( $wgUseSquid ) {
-				$urlArr = Array(
-					$wgInternalServer.$thumbUrl
-				);
-				wfPurgeSquidServers($urlArr);
-			}
-
+		if ( (! file_exists( $thumbPath ) ) || ( filemtime($thumbPath) < filemtime($this->imagePath) ) ) {
 			if ( $wgUseImageMagick ) {
 				# use ImageMagick
 				$cmd  =  $wgImageMagickConvertCommand .
@@ -247,6 +239,15 @@ class Image
 				unlink( $thumbPath );
 			}
 
+			# Purge squid
+			# This has to be done after the image is updated and present for all machines on NFS, 
+			# or else the old version might be stored into the squid again
+			if ( $wgUseSquid ) {
+				$urlArr = Array(
+					$wgInternalServer.$thumbUrl
+				);
+				wfPurgeSquidServers($urlArr);
+			}
 		}
 		return $thumbUrl;
 	} // END OF function createThumb
