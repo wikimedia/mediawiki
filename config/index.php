@@ -125,6 +125,22 @@ if( file_exists( "./LocalSettings.php" ) || file_exists( "./AdminSettings.php" )
 	(You should remove this config directory for added security once you're done.)</p>" );
 }
 
+if( !is_writable( "." ) ) {
+	dieout( "<h2>Can't write config file, aborting</h2>
+	
+	<p>In order to configure the wiki you have to make the <tt>config</tt> subdirectory
+	writable by the web server. Once configuration is done you'll move the created
+	<tt>LocalSettings.php</tt> to the parent directory, and for added safety you can
+	then remove the <tt>config</tt> subdirectory entirely.</p>
+	
+	<p>To make the directory writable on a Unix/Linux system:</p>
+	
+	<pre>
+	cd <i>/path/to/wiki</i>
+	chmod a+w config
+	</pre>" );
+}
+
 
 include( "../install-utils.inc" );
 class ConfigData {
@@ -333,9 +349,31 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				print "<li>Skipped sysop account creation, no name given.</li>\n";
 			}
 			
-			# FIXME: Main page, logs
-			# FIXME: Initialize messages
-			print "<li>(NYI: pages)</li>\n";
+			print "<li>Initialising log pages...";
+			$logs = array(
+				"uploadlogpage" => "uploadlogpagetext",
+				"dellogpage" => "dellogpagetext",
+				"protectlogpage" => "protectlogtext",
+				"blocklogpage" => "bloglogtext"
+			);
+			$metaNamespace = Namespace::getWikipedia();
+			$now = wfTimestampNow();
+			$won = wfInvertTimestamp( $now );
+			foreach( $logs as $page => $text ) {
+				$logTitle = wfStrencode( $wgLang->ucfirst( str_replace( " ", "_", wfMsgNoDB( $page ) ) ) );
+				$logText = wfStrencode( wfMsgNoDB( $text ) );
+				$wgDatabase->query( "INSERT INTO cur (cur_namespace,cur_title,cur_text," .
+				  "cur_restrictions,cur_timestamp,inverse_timestamp,cur_touched) " .
+				  "VALUES ($metaNamespace,'$logTitle','$logText','sysop','$now','$won','$now')" );
+			}
+			print "</li>\n";
+			
+			$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
+			$title = $titleobj->getDBkey();
+			$sql = "INSERT INTO cur (cur_namespace,cur_title,cur_text,cur_timestamp,inverse_timestamp,cur_touched) " .
+			  "VALUES (0,'$title','" .
+			  wfStrencode( wfMsg( "mainpagetext" ) ) . "','$now','$won','$now')";
+			$wgDatabase->query( $sql, $fname );
 			
 			print "<li>";
 			initialiseMessages();
