@@ -592,6 +592,7 @@ Please check the URL you used to access this page.\n",
 'histlegend'	=> 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br/>
 Legend: (cur) = difference with current version,
 (last) = difference with preceding version, M = minor edit.',
+'history_copyright'    => '&nbsp;',
 
 # Diffs
 #
