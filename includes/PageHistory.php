@@ -105,7 +105,7 @@ class PageHistory {
 	{
 		global $wgTitle;
 		$this->lastdate = $this->lastline = "";
-		$s = "\n<p>" . wfMsg( "histlegend" ) . "\n<ul>";
+		$s = "\n<p>" . wfMsg( "histlegend" ) . "\n<ul class='special'>";
 		$url = $wgTitle->getLocalURL("-");
 		$s .= "<SCRIPT>
 			var sel = -1;
