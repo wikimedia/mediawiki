@@ -152,12 +152,14 @@ class ParserTest {
 	}
 	
 	function setupGlobals() {
-		static $settings = array(
+		$settings = array(
 			'wgServer' => 'http://localhost',
 			'wgScript' => '/index.php',
 			'wgScriptPath' => '/',
 			'wgArticlePath' => '/wiki/$1',
 			'wgSitename' => 'MediaWiki',
+			'wgLanguageCode' => 'en',
+			'wgLang' => new LanguageUtf8(),
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
