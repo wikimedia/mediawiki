@@ -1956,7 +1956,7 @@ class Article {
 		$ns = $this->mTitle->getNamespace();
 		$dbkey = $this->mTitle->getDBkey();
 		$encDbKey = $dbw->strencode( $dbkey );
-		$timestamp = wfTimestampNow();
+		$timestamp = $dbw->timestamp();
 		# insert new text
 		$dbw->insert( 'text', array(
 				'old_text' => $text,
