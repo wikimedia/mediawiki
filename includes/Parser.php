@@ -2460,7 +2460,7 @@ class Parser
 				if( $istemplate )
 					$headline = $sk->editSectionScriptForOther($templatetitle, $templatesection, $headline);
 				else
-					$headline = $sk->editSectionScript($this->title, $sectionCount+1,$headline);
+					$headline = $sk->editSectionScript($this->mTitle, $sectionCount+1,$headline);
 			}
 
 			# give headline the correct <h#> tag

@@ -46,7 +46,7 @@ function wfSpecialStatistics() {
 	$row = $dbr->fetchObject( $res );
 	$total = $row->total;
 
-	$sql = "SELECT COUNT(user_id) AS total FROM $user_rights WHERE user_rights LIKE '%sysop%'";
+	$sql = "SELECT COUNT(ur_uid) AS total FROM $user_rights WHERE ur_rights LIKE '%sysop%'";
 	$res = $dbr->query( $sql, $fname );
 	$row = $dbr->fetchObject( $res );
 	$admins = $row->total;
