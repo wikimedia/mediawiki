@@ -1441,7 +1441,7 @@ class Title {
 		$now = $dbw->timestamp();
 		$won = wfInvertTimestamp( wfTimestamp(TS_MW,$now) );
 		wfSeedRandom();
-		$rand = number_format( mt_rand() / mt_getrandmax(), 12, '.', '' );
+		$rand = wfRandom();
 
 		# Rename cur entry
 		$dbw->updateArray( 'cur',
