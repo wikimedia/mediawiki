@@ -19,7 +19,7 @@ class EditPage {
 
 	function edit()
 	{
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgWhitelistEdit;
 		global $wpTextbox1, $wpSummary, $wpSave, $wpPreview;
 		global $wpMinoredit, $wpEdittime, $wpTextbox2;
 
@@ -32,6 +32,10 @@ class EditPage {
 		}
 		if ( $wgUser->isBlocked() ) {
 			$this->blockedIPpage();
+			return;
+		}
+		if ( !$wgUser->getID() && $wgWhitelistEdit ) {
+			$this->userNotLoggedInPage();
 			return;
 		}
 		if ( wfReadOnly() ) {
@@ -101,6 +105,10 @@ class EditPage {
 		if ( "save" == $formtype ) {
 			if ( $wgUser->isBlocked() ) {
 				$this->blockedIPpage();
+				return;
+			}
+			if ( !$wgUser->getID() && $wgWhitelistEdit ) {
+				$this->userNotLoggedInPage();
 				return;
 			}
 			if ( wfReadOnly() ) {
@@ -334,6 +342,20 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		$text = str_replace( "$1", $link, wfMsg( "blockedtext" ) );
 		$text = str_replace( "$2", $reason, $text );
 		$wgOut->addWikiText( $text );
+		$wgOut->returnToMain( false );
+	}
+
+
+
+	function userNotLoggedInPage()
+	{
+		global $wgOut, $wgUser, $wgLang;
+
+		$wgOut->setPageTitle( wfMsg( "whitelistedittitle" ) );
+		$wgOut->setRobotpolicy( "noindex,nofollow" );
+		$wgOut->setArticleFlag( false );
+
+		$wgOut->addWikiText( wfMsg( "whitelistedittext" ) );
 		$wgOut->returnToMain( false );
 	}
 
