@@ -63,7 +63,7 @@ class LinkCache {
 			unset( $this->mBadLinks[$index] );
 		}
 		global $wgMemc, $wgDBname;
-		$wgMemc->delete( "$wgDBname:linkcache:title:$title" );
+		$wgMemc->delete( "$wgDBname:lc:title:$title" );
 	}
 
 	function suspend() { $this->mActive = false; }
@@ -87,7 +87,7 @@ class LinkCache {
 
 		if ( "" == $t ) { return 0; }
 
-		$id = $wgMemc->get( $key = "$wgDBname:linkcache:title:$title" );
+		$id = $wgMemc->get( $key = "$wgDBname:lc:title:$title" );
 		if( $id === FALSE ) {
 			$sql = "SELECT HIGH_PRIORITY cur_id FROM cur WHERE cur_namespace=" .
 			  "{$ns} AND cur_title='" . wfStrencode( $t ) . "'";
