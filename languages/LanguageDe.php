@@ -231,6 +231,8 @@
 "sitetitle"		=> "Wikipedia",
 "sitesubtitle"	=> "Die freie Enzyklopädie",
 "retrievedfrom" => "Von \"$1\"",
+"newmessages" => "Sie haben $1.",
+"newmessageslink" => "neue Nachrichten",
 
 # Main script and global functions
 #
