@@ -1684,70 +1684,76 @@ class Article {
 		$n = $this->mTitle->getNamespace();
 
 		# Get the last editor, lock table exclusively
-		$s = $dbw->selectRow( array( 'page', 'revision' ),
-			array( 'page_id','rev_user','rev_user_text','rev_comment' ),
-			array( 'page_title' => $tt, 'page_namespace' => $n ),
-			$fname, 'FOR UPDATE'
-		);
-		if( $s === false ) {
-			# Something wrong
+		$dbw->begin();
+		$current = Revision::newFromTitle( $this->mTitle );
+		if( is_null( $current ) ) {
+			# Something wrong... no page?
+			$dbw->rollback();
 			$wgOut->addHTML( wfMsg( 'notanarticle' ) );
 			return;
 		}
-		$ut = $dbw->strencode( $s->cur_user_text );
-		$uid = $s->rev_user;
-		$pid = $s->page_id;
 
 		$from = str_replace( '_', ' ', $wgRequest->getVal( 'from' ) );
-		if( $from != $s->rev_user_text ) {
+		if( $from != $current->getUserText() ) {
 			$wgOut->setPageTitle(wfmsg('rollbackfailed'));
 			$wgOut->addWikiText( wfMsg( 'alreadyrolled',
 				htmlspecialchars( $this->mTitle->getPrefixedText()),
 				htmlspecialchars( $from ),
-				htmlspecialchars( $s->rev_user_text ) ) );
-			if($s->rev_comment != '') {
+				htmlspecialchars( $current->getUserText() ) ) );
+			if( $current->getComment() != '') {
 				$wgOut->addHTML(
-					wfMsg('editcomment',
-					htmlspecialchars( $s->rev_comment ) ) );
+					wfMsg( 'editcomment',
+					htmlspecialchars( $current->getComment() ) ) );
 			}
 			return;
 		}
 
 		# Get the last edit not by this guy
-		$s = $dbw->selectRow( 'old',
-			array( 'old_text','old_user','old_user_text','old_timestamp','old_flags' ),
+		$user = IntVal( $current->getUser() );
+		$user_text = $dbw->addQuotes( $current->getUserText() );
+		$s = $dbw->selectRow( 'revision',
+			array( 'rev_id', 'rev_timestamp' ),
 			array(
-				'old_namespace' => $n,
-				'old_title' => $tt,
-				"old_user <> {$uid} OR old_user_text <> '{$ut}'"
-			), $fname, array( 'FOR UPDATE', 'USE INDEX' => 'name_title_timestamp' )
-		);
+				'rev_page' => $current->getPage(),
+				"rev_user <> {$user} OR rev_user_text <> {$user_text}"
+			), $fname,
+			array(
+				'USE INDEX' => 'page_timestamp',
+				'ORDER BY'  => 'rev_timestamp DESC' )
+			);
 		if( $s === false ) {
 			# Something wrong
+			$dbw->rollback();
 			$wgOut->setPageTitle(wfMsg('rollbackfailed'));
 			$wgOut->addHTML( wfMsg( 'cantrollback' ) );
 			return;
 		}
-
+		
 		if ( $bot ) {
 			# Mark all reverted edits as bot
 			$dbw->update( 'recentchanges',
 				array( /* SET */
 					'rc_bot' => 1
 				), array( /* WHERE */
-					'rc_user' => $uid,
-					"rc_timestamp > '{$s->old_timestamp}'",
+					'rc_cur_id'    => $current->getPage(),
+					'rc_user_text' => $current->getUserText(),
+					"rc_timestamp > '{$s->rev_timestamp}'",
 				), $fname
 			);
 		}
 
 		# Save it!
-		$newcomment = wfMsg( 'revertpage', $s->old_user_text, $from );
+		$target = Revision::newFromId( $s->rev_id );
+		$newcomment = wfMsg( 'revertpage', $target->getUserText(), $from );
+		
 		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->addHTML( '<h2>' . htmlspecialchars( $newcomment ) . "</h2>\n<hr />\n" );
-		$this->updateArticle( Revision::getRevisionText( $s ), $newcomment, 1, $this->mTitle->userIsWatching(), $bot );
+		
+		$this->updateArticle( $target->getText(), $newcomment, 1, $this->mTitle->userIsWatching(), $bot );
 		Article::onArticleEdit( $this->mTitle );
+		
+		$dbw->commit();
 		$wgOut->returnToMain( false );
 	}
 

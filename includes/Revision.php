@@ -213,6 +213,13 @@ class Revision {
 	/**
 	 * @return int
 	 */
+	function getPage() {
+		return $this->mPage;
+	}
+	
+	/**
+	 * @return int
+	 */
 	function getUser() {
 		return $this->mUser;
 	}
