@@ -49,12 +49,14 @@ function wfSeedRandom()
 	}
 }
 
+# Generates a URL from a URL-encoded title and a query string
+# Title::getURL() is preferred in most cases
+#
 function wfLocalUrl( $a, $q = "" )
 {
 	global $wgServer, $wgScript, $wgArticlePath;
 
 	$a = str_replace( " ", "_", $a );
-	#$a = wfUrlencode( $a ); # This stuff is _already_ URL-encoded.
 
 	if ( "" == $a ) {
 		if( "" == $q ) {
@@ -78,12 +80,14 @@ function wfLocalUrlE( $a, $q = "" )
 }
 
 function wfFullUrl( $a, $q = "" ) {
-	global $wgServer;
-	return $wgServer . wfLocalUrl( $a, $q );
+	$titleObj = Title::newFromURL( $a );
+	return $titleObj->getURL( $q, false, true );
 }
 
 function wfFullUrlE( $a, $q = "" ) {
-	return wfEscapeHTML( wfFullUrl( $a, $q ) );
+	$titleObj = Title::newFromURL( $a );
+	return $titleObj->getURL( $q, true, true );
+
 }
 
 function wfImageUrl( $img )
@@ -154,10 +158,11 @@ function wfImageArchiveUrl( $name )
 
 function wfUrlencode ( $s )
 {
-	$ulink = urlencode( $s );
-	$ulink = preg_replace( "/%3[Aa]/", ":", $ulink );
-	$ulink = preg_replace( "/%2[Ff]/", "/", $ulink );
-	return $ulink;
+	$s = urlencode( $s );
+	$s = preg_replace( "/%3[Aa]/", ":", $s );
+	$s = preg_replace( "/%2[Ff]/", "/", $s );
+
+	return $s;
 }
 
 function wfUtf8Sequence($codepoint) {
@@ -604,6 +609,7 @@ function wfViewPrevNext( $offset, $limit, $link, $query = "", $atend = false )
 	global $wgUser;
 	$prev = wfMsg( "prevn", $limit );
 	$next = wfMsg( "nextn", $limit );
+	$link = wfUrlencode( $link );
 
 	$sk = $wgUser->getSkin();
 	if ( 0 != $offset ) {
@@ -725,6 +731,7 @@ function wfHtmlEscapeFirst( $text ) {
 	return "&#$ord;$newText";
 }
 
+# Sets dest to source and returns the original value of dest
 function wfSetVar( &$dest, $source )
 {
 	$temp = $dest;
@@ -732,7 +739,8 @@ function wfSetVar( &$dest, $source )
 	return $temp;
 }
 
-function &wfSetRef( &$dest, $source )
+# Sets dest to a reference to source and returns the original dest
+function &wfSetRef( &$dest, &$source )
 {
 	$temp =& $dest;
 	$dest =& $source;

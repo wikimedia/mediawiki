@@ -19,12 +19,13 @@ class SkinCologneBlue extends Skin {
 
 		$s = "";
 		$qb = $this->qbSetting();
-
+		$mainPageObj = Title::newMainPage();
+		
 		$s .= "\n<div id='content'>\n<div id='topbar'>" .
 		  "<table width='100%' border=0 cellspacing=0 cellpadding=8><tr>";
 
 		$s .= "<td class='top' align=left valign=middle nowrap>";
-		$s .= "<a href=\"" . wfLocalUrlE( urlencode( wfMsg( "mainpage" ) ) ) . "\">";
+		$s .= "<a href=\"" . $mainPageObj->getURL("", true) . "\">";
 		$s .= "<span id='sitetitle'>" . wfMsg( "sitetitle" ) . "</span></a>";
 
 		$s .= "</td><td class='top' align=right valign=bottom width='100%'>";

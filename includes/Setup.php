@@ -74,7 +74,16 @@ if ( function_exists( "getallheaders" ) ) {
 	wfDebug( "$REQUEST_METHOD $REQUEST_URI\n" );
 }
 
+# Fix "magic" quotes
+if ( get_magic_quotes_gpc() ) {
+	foreach ( $_REQUEST as $field => $value ) {
+		$_REQUEST[$field] = stripslashes( $value );
+		print "$field: $value -> {$_REQUEST[$field]}<br>\n";
+	}
+}
 
+# Set up Memcached
+#
 class MemCachedClientforWiki extends memcached {
 	function _debugprint( $text ) {
 		wfDebug( "memcached: $text\n" );

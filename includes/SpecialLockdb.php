@@ -35,8 +35,8 @@ class DBLockForm {
 		$lc = wfMsg( "lockconfirm" );
 		$lb = wfMsg( "lockbtn" );
 		$elr = wfMsg( "enterlockreason" );
-		$action = wfLocalUrlE( $wgLang->specialPage( "Lockdb" ),
-		  "action=submit" );
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Lockdb" );
+		$action = $titleObj->getURL( "action=submit", true );
 
 		$wgOut->addHTML( "<p>
 <form id=\"lockdb\" method=\"post\" action=\"{$action}\">
@@ -76,9 +76,8 @@ class DBLockForm {
 		  $wgLang->timeanddate( wfTimestampNow() ) . ")\n" );
 		fclose( $fp );
 
-		$success = wfLocalUrl( $wgLang->specialPage( "Lockdb" ),
-		  "action=success" );
-		$wgOut->redirect( $success );
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Lockdb" );
+		$wgOut->redirect( $titleObj->getURL( "action=success" ) );
 	}
 
 	function showSuccess()

@@ -4,9 +4,7 @@ require_once('UserMailer.php');
 
 function wfSpecialUserlogin()
 {
-	global $wpCreateaccount, $wpCreateaccountMail;
-	global $wpLoginattempt, $wpMailmypassword;
-	global $action, $_REQUEST, $wgCommandLineMode;
+	global $wgCommandLineMode;
 	if( !$wgCommandLineMode && !isset( $_COOKIE[ini_get("session.name")] )  ) {
 		User::SetupSession();
 	}
@@ -16,20 +14,20 @@ function wfSpecialUserlogin()
 	wfCleanFormFields( $fields );
 
 	# When switching accounts, it sucks to get automatically logged out
-	global $returnto, $wgLang;
-	if( $returnto == $wgLang->specialPage( "Userlogout" ) ) $returnto = "";
+	global $wgLang;
+	if( $_REQUEST['returnto'] == $wgLang->specialPage( "Userlogout" ) ) $_REQUEST['returnto'] = "";
 
 	$wpCookieCheck = $_REQUEST[ "wpCookieCheck" ];
 
 	if ( isset( $wpCookieCheck ) ) {
 		onCookieRedirectCheck( $wpCookieCheck );
-	} else if ( isset( $wpCreateaccount ) ) {
+	} else if ( isset( $_REQUEST['wpCreateaccount'] ) ) {
 		addNewAccount();
-	} else if ( isset( $wpCreateaccountMail ) ) {
+	} else if ( isset( $_REQUEST['wpCreateaccountMail'] ) ) {
 		addNewAccountMailPassword();
-	} else if ( isset( $wpMailmypassword ) ) {
+	} else if ( isset( $_REQUEST['wpMailmypassword'] ) ) {
 		mailPassword();
-	} else if ( "submit" == $action || isset( $wpLoginattempt ) ) {
+	} else if ( "submit" == $_REQUEST['action'] || array_key_exists('wpLoginattempt', $_REQUEST) ) {
 		processLogin();
 	} else {
 		mainLoginForm( "" );
@@ -39,10 +37,10 @@ function wfSpecialUserlogin()
 
 /* private */ function addNewAccountMailPassword()
 {
-	global $wgOut, $wpEmail, $wpName;
+	global $wgOut;
 	
-	if ("" == $wpEmail) {
-		mainLoginForm( wfMsg( "noemail", $wpName ) );
+	if ("" == $_REQUEST['wpEmail']) {
+		mainLoginForm( wfMsg( "noemail", $_REQUEST['wpName'] ) );
 		return;
 	}
 
@@ -70,8 +68,8 @@ function wfSpecialUserlogin()
 
 /* private */ function addNewAccount()
 {
-	global $wgUser, $wgOut, $wpPassword, $wpRetype, $wpName, $wpRemember;
-	global $wpEmail, $wgDeferredUpdateList;
+	global $wgUser, $wgOut;
+	global $wgDeferredUpdateList;
 
 	$u = addNewAccountInternal();
 
@@ -95,23 +93,24 @@ function wfSpecialUserlogin()
 
 /* private */ function addNewAccountInternal()
 {
-	global $wgUser, $wgOut, $wpPassword, $wpRetype, $wpName, $wpRemember;
-	global $wpEmail, $wgMaxNameChars;
+	global $wgUser, $wgOut;
+	global $wgMaxNameChars;
 
 	if (!$wgUser->isAllowedToCreateAccount()) {
 		userNotPrivilegedMessage();
 		return;
 	}
 
-	if ( 0 != strcmp( $wpPassword, $wpRetype ) ) {
+	if ( 0 != strcmp( $_REQUEST['wpPassword'], $_REQUEST['wpRetype'] ) ) {
 		mainLoginForm( wfMsg( "badretype" ) );
 		return;
 	}
-	$wpName = trim( $wpName );
-	if ( ( "" == $wpName ) ||
-	  preg_match( "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/", $wpName ) ||
-	  (strpos( $wpName, "/" ) !== false) ||
-	  (strlen( $wpName ) > $wgMaxNameChars) ) 
+	
+	$name = trim( $_REQUEST['wpName'] );
+	if ( ( "" == $name ) ||
+	  preg_match( "/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/", $name ) ||
+	  (strpos( $name, "/" ) !== false) ||
+	  (strlen( $name ) > $wgMaxNameChars) ) 
 	{
 		mainLoginForm( wfMsg( "noname" ) );
 		return;
@@ -120,16 +119,16 @@ function wfSpecialUserlogin()
 		$wgOut->readOnlyPage();
 		return;
 	}
-	$u = User::newFromName( $wpName );
+	$u = User::newFromName( $name );
 	
 	if ( 0 != $u->idForName() ) {
 		mainLoginForm( wfMsg( "userexists" ) );
 		return;
 	}
 	$u->addToDatabase();
-	$u->setPassword( $wpPassword );
-	$u->setEmail( $wpEmail );
-	if ( 1 == $wpRemember ) { $r = 1; }
+	$u->setPassword( $_REQUEST['wpPassword'] );
+	$u->setEmail( $_REQUEST['wpEmail'] );
+	if ( 1 == $_REQUEST['wpRemember'] ) { $r = 1; }
 	else { $r = 0; }
 	$u->setOption( "rememberpassword", $r );
 	
@@ -141,15 +140,14 @@ function wfSpecialUserlogin()
 
 /* private */ function processLogin()
 {
-	global $wgUser, $wpName, $wpPassword, $wpRemember;
+	global $wgUser;
 	global $wgDeferredUpdateList;
-	global $returnto;
 
-	if ( "" == $wpName ) {
+	if ( "" == $_REQUEST['wpName'] ) {
 		mainLoginForm( wfMsg( "noname" ) );
 		return;
 	}
-	$u = User::newFromName( $wpName );
+	$u = User::newFromName( $_REQUEST['wpName'] );
 	$id = $u->idForName();
 	if ( 0 == $id ) {
 		mainLoginForm( wfMsg( "nosuchuser", $u->getName() ) );
@@ -157,7 +155,7 @@ function wfSpecialUserlogin()
 	}
 	$u->setId( $id );
 	$u->loadFromDatabase();
-	$ep = $u->encryptPassword( $wpPassword );
+	$ep = $u->encryptPassword( $_REQUEST['wpPassword'] );
 	if ( 0 != strcmp( $ep, $u->getPassword() ) ) {
 		if ( 0 != strcmp( $ep, $u->getNewpassword() ) ) {
 			mainLoginForm( wfMsg( "wrongpassword" ) );
@@ -167,9 +165,9 @@ function wfSpecialUserlogin()
 
 	# We've verified now, update the real record
 	#
-	if ( 1 == $wpRemember ) {
+	if ( 1 == $_REQUEST['wpRemember'] ) {
 		$r = 1;
-		$u->setCookiePassword( $wpPassword );
+		$u->setCookiePassword( $_REQUEST['wpPassword'] );
 	} else {
 		$r = 0;
 	}
@@ -190,14 +188,14 @@ function wfSpecialUserlogin()
 
 /* private */ function mailPassword()
 {
-	global $wgUser, $wpName, $wgDeferredUpdateList, $wgOutputEncoding;
+	global $wgUser, $wgDeferredUpdateList, $wgOutputEncoding;
 	global $wgCookiePath, $wgCookieDomain, $wgDBname;
 
-	if ( "" == $wpName ) {
+	if ( "" == $_REQUEST['wpName'] ) {
 		mainLoginForm( wfMsg( "noname" ) );
 		return;
 	}
-	$u = User::newFromName( $wpName );
+	$u = User::newFromName( $_REQUEST['wpName'] );
 	$id = $u->idForName();
 	if ( 0 == $id ) {
 		mainLoginForm( wfMsg( "nosuchuser", $u->getName() ) );
@@ -216,7 +214,7 @@ function wfSpecialUserlogin()
 
 /* private */ function mailPasswordInternal( $u )
 {
-	global $wpName, $wgDeferredUpdateList, $wgOutputEncoding;
+	global $wgDeferredUpdateList, $wgOutputEncoding;
 	global $wgPasswordSender, $wgDBname, $wgIP;
 
 	if ( "" == $u->getEmail() ) {
@@ -271,9 +269,8 @@ function userNotPrivilegedMessage()
 
 /* private */ function mainLoginForm( $err )
 {
-	global $wgUser, $wgOut, $wgLang, $returnto;
-	global $wpName, $wpPassword, $wpRetype, $wpRemember;
-	global $wpEmail, $HTTP_COOKIE_VARS, $wgDBname;
+	global $wgUser, $wgOut, $wgLang;
+	global $HTTP_COOKIE_VARS, $wgDBname;
 
 	$le = wfMsg( "loginerror" );
 	$yn = wfMsg( "yourname" );
@@ -289,8 +286,11 @@ function userNotPrivilegedMessage()
 	$mmp = wfMsg( "mailmypassword" );
 	$endText = wfMsg( "loginend" );
 
+	if ( $endText = "&lt;loginend&gt;" ) {
+		$endText = "";
+	}
 
-	$name = $wpName;
+	$name = $_REQUEST['wpName'];
 	if ( "" == $name ) {
 		if ( 0 != $wgUser->getID() ) {
 			$name = $wgUser->getName();
@@ -298,7 +298,7 @@ function userNotPrivilegedMessage()
 			$name = $HTTP_COOKIE_VARS["{$wgDBname}UserName"];
 		}
 	}
-	$pwd = $wpPassword;
+	$pwd = $_REQUEST['wpPassword'];
 
 	$wgOut->setPageTitle( wfMsg( "userlogin" ) );
 	$wgOut->setRobotpolicy( "noindex,nofollow" );
@@ -317,13 +317,14 @@ color='red'>$err</font>\n" );
 		$checked = "";
 	}
 	$q = "action=submit";
-	if ( "" != $returnto ) { $q .= "&returnto=" . wfUrlencode($returnto); }
-	$action = wfLocalUrlE( $wgLang->specialPage( "Userlogin" ), $q );
+	if ( "" != $_REQUEST['returnto'] ) { $q .= "&returnto=" . wfUrlencode($_REQUEST['returnto']); }
+	$titleObj = Title::makeTitle( NS_SPECIAL, "Userlogin" );
+	$action = $titleObj->getURL( $q, true );
 
-	$wpName = wfEscapeHTML( $wpName );
-	$wpPassword = wfEscapeHTML( $wpPassword );
-	$wpRetype = wfEscapeHTML( $wpRetype );
-	$wpEmail = wfEscapeHTML( $wpEmail );
+	$encName = wfEscapeHTML( $name );
+	$encPassword = wfEscapeHTML( $pwd );
+	$encRetype = wfEscapeHTML( $_REQUEST['wpRetype'] );
+	$encEmail = wfEscapeHTML( $_REQUEST['wpEmail'] );
 
 	if ($wgUser->getID() != 0) {
 		$cambutton = "<input tabindex=6 type=submit name=\"wpCreateaccountMail\" value=\"{$cam}\">";
@@ -334,7 +335,7 @@ color='red'>$err</font>\n" );
 <table border=0><tr>
 <td align=right>$yn:</td>
 <td align=left>
-<input tabindex=1 type=text name=\"wpName\" value=\"{$name}\" size=20>
+<input tabindex=1 type=text name=\"wpName\" value=\"{$encName}\" size=20>
 </td>
 <td align=left>
 <input tabindex=3 type=submit name=\"wpLoginattempt\" value=\"{$li}\">
@@ -343,7 +344,7 @@ color='red'>$err</font>\n" );
 <tr>
 <td align=right>$yp:</td>
 <td align=left>
-<input tabindex=2 type=password name=\"wpPassword\" value=\"{$pwd}\" size=20>
+<input tabindex=2 type=password name=\"wpPassword\" value=\"{$encPassword}\" size=20>
 </td>
 <td align=left>
 <input tabindex=7 type=checkbox name=\"wpRemember\" value=\"1\" id=\"wpRemember\"$checked><label for=\"wpRemember\">$rmp</label>
@@ -351,17 +352,18 @@ color='red'>$err</font>\n" );
 </tr>");
 
 	if ($wgUser->isAllowedToCreateAccount()) {
-
+		$encRetype = htmlspecialchars( $_REQUEST['wpRetype'] );
+		$encEmail = htmlspecialchars( $_REQUEST['wpCreateAccount'] );
 $wgOut->addHTML("<tr><td colspan=3>&nbsp;</td></tr><tr>
 <td align=right>$ypa:</td>
 <td align=left>
-<input tabindex=4 type=password name=\"wpRetype\" value=\"{$wpRetype}\" 
+<input tabindex=4 type=password name=\"wpRetype\" value=\"{$encRetype}\" 
 size=20>
 </td><td>$nuo</td></tr>
 <tr>
 <td align=right>$ye:</td>
 <td align=left>
-<input tabindex=5 type=text name=\"wpEmail\" value=\"{$wpEmail}\" size=20>
+<input tabindex=5 type=text name=\"wpEmail\" value=\"{$encEmail}\" size=20>
 </td><td align=left>
 <input tabindex=6 type=submit name=\"wpCreateaccount\" value=\"{$ca}\">
 $cambutton
@@ -388,8 +390,8 @@ $cambutton
 {
 	global $wgOut, $wgLang;
 
-	$check = wfLocalUrl( wfUrlEncode( $wgLang->specialPage( "Userlogin" ) ),
-			 "wpCookieCheck=$type" );
+	$titleObj = Title::makeTitle( NS_SPECIAL, "Userlogin" );
+	$check = $titleObj->getURL( "wpCookieCheck=$type" );
 
 	return $wgOut->redirect( $check );
 }

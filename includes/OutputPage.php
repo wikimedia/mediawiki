@@ -534,8 +534,8 @@ class OutputPage {
 
 		$r = wfMsg( "returnto", $link );
 		if ( $auto ) {
-			$wgOut->addMeta( "http:Refresh", "10;url=" .
-			  wfLocalUrlE( wfUrlencode( $returnto ) ) );
+			$titleObj = Title::newFromText( $returnto );
+			$wgOut->addMeta( "http:Refresh", "10;url=" . $titleObj->getUrl( "", true, true ));
 		}
 		$wgOut->addHTML( "\n<p>$r\n" );
 	}

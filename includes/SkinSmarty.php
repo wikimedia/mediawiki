@@ -75,12 +75,12 @@ class SkinSmarty extends Skin {
 		global $wgLang;
 		$action = "";
 		$popup = "";
-		$page = "";
+		$title = NULL;
 		
 		if($params['action']) $action = "action=" . $params['action'];
 		
 		if($params['special']) {
-			$page = $wgLang->specialPage( $params['special'] );
+			$title = Title::makeTitle( NS_SPECIAL, $params['special'] );
 			#$text = $wgLang->getSpecialPageName( $params['special'] );
 			$text = $popup = $params['special'];
 			if($params['target']) $action .= "target=" . urlencode( $params['target'] );
@@ -93,10 +93,9 @@ class SkinSmarty extends Skin {
 				$title = Title::makeTitle( $title->getNamespace() ^ 1, $title->getDbKey() );
 			}
 			$text = $popup = $title->getPrefixedText();
-			$page = urlencode( $title->getPrefixedUrl() );
 		}
 		
-		$url = wfLocalUrlE( $page, $action );
+		$url = $title->getURL( $action, true );
 		
 		if($params['text']) $text = $params['text'];
 		if($params['key']) $text = wfMsg( $params['key'] );

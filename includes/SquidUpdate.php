@@ -21,7 +21,7 @@ class SquidUpdate {
                         while ( $BL = wfFetchObject ( $res ) )
                         {
                                 $t = Title::newFromDBkey( $BL->l_from) ; 
-                                $this->urlArr[] = $wgInternalServer.wfLocalUrl( $t->getPrefixedURL() );
+                                $this->urlArr[] = $wgInternalServer.$t->getURL() ;
                         }
                         wfFreeResult ( $res ) ;
 

@@ -69,8 +69,8 @@ class EmailUserForm {
 		$emm = wfMsg( "emailmessage" );
 		$ems = wfMsg( "emailsend" );
 
-		$action = wfLocalUrlE( $wgLang->specialPage( "Emailuser" ),
-		  "target={$target}&action=submit" );
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
+		$action = $titleObj->getURL( "target={$target}&action=submit", true );
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
@@ -114,9 +114,8 @@ class EmailUserForm {
 
 		if (! $mailResult)
 		{
-			$success = wfLocalUrl( $wgLang->specialPage( "Emailuser" ),
-		  		"target={$target}&action=success" );
-			$wgOut->redirect( $success );
+			$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
+			$wgOut->redirect( $titleObj->getURL( "target={$target}&action=success" ) );
 		}
 		else
 			$wgOut->addHTML( wfMsg( "usermailererror" ) . $mailResult);

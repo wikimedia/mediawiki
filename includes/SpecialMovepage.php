@@ -3,7 +3,7 @@ include_once( "LinksUpdate.php" );
 
 function wfSpecialMovepage()
 {
-	global $wgUser, $wgOut, $action, $target;
+	global $wgUser, $wgOut;
 
 	if ( 0 == $wgUser->getID() or $wgUser->isBlocked() ) {
 		$wgOut->errorpage( "movenologin", "movenologintext" );
@@ -18,8 +18,8 @@ function wfSpecialMovepage()
 
 	$f = new MovePageForm();
 
-	if ( "success" == $action ) { $f->showSuccess(); }
-	else if ( "submit" == $action ) { $f->doSubmit(); }
+	if ( "success" == $_REQUEST['action'] ) { $f->showSuccess(); }
+	else if ( "submit" == $_REQUEST['action'] ) { $f->doSubmit(); }
 	else { $f->showForm( "" ); }
 }
 
@@ -36,19 +36,22 @@ class MovePageForm {
 	function showForm( $err )
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $wpNewTitle, $wpOldTitle, $wpMovetalk, $target;
 
 		$wgOut->setPagetitle( wfMsg( "movepage" ) );
 
-		if ( ! $wpOldTitle ) {
-			$target = wfCleanQueryVar( $target );
-			if ( "" == $target ) {
+		if ( ! $_REQUEST['wpOldTitle'] ) {
+			if ( "" == $_REQUEST['target'] ) {
 				$wgOut->errorpage( "notargettitle", "notargettext" );
 				return;
 			}
-			$wpOldTitle = $target;
+			$oldTitle = htmlspecialchars( $_REQUEST['target'] );
+		} else {
+			$oldTitle = htmlspecialchars( $_REQUEST['wpOldTitle'] );
 		}
-		$ot = Title::newFromURL( $wpOldTitle );
+		
+		$encOldTitle = htmlspecialchars( $oldTitle );
+		$encNewTitle = htmlspecialchars( $_REQUEST['wpNewTitle'] );
+		$ot = Title::newFromURL( $oldTitle );
 		$ott = $ot->getPrefixedText();
 
 		$wgOut->addWikiText( wfMsg( "movepagetext" ) );
@@ -60,8 +63,8 @@ class MovePageForm {
 		$mpb = wfMsg( "movepagebtn" );
 		$movetalk = wfMsg( "movetalk" );
 
-		$action = wfLocalUrlE( $wgLang->specialPage( "Movepage" ),
-		  "action=submit" );
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Movepage" );
+		$action = $titleObj->getURL( "action=submit", true );
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
@@ -75,8 +78,8 @@ class MovePageForm {
 </tr><tr>
 <td align=right>{$newt}:</td>
 <td align=left>
-<input type=text size=40 name=\"wpNewTitle\" value=\"{$wpNewTitle}\">
-<input type=hidden name=\"wpOldTitle\" value=\"{$wpOldTitle}\">
+<input type=text size=40 name=\"wpNewTitle\" value=\"{$encNewTitle}\">
+<input type=hidden name=\"wpOldTitle\" value=\"{$encOldTitle}\">
 </td>
 </tr>" );
 
@@ -100,13 +103,12 @@ class MovePageForm {
 	function doSubmit()
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $wpNewTitle, $wpOldTitle, $wpMovetalk, $target;
 		global $wgDeferredUpdateList, $wgMessageCache;
 		global  $wgUseSquid, $wgInternalServer;
 		$fname = "MovePageForm::doSubmit";
 
-		$this->ot = Title::newFromText( $wpOldTitle );
-		$this->nt = Title::newFromText( $wpNewTitle );
+		$this->ot = Title::newFromText( $_REQUEST['wpOldTitle'] );
+		$this->nt = Title::newFromText( $_REQUEST['wpNewTitle'] );
 		if( !$this->ot or !$this->nt ) {
 			$this->showForm( wfMsg( "badtitletext" ) );
 			return;
@@ -166,9 +168,9 @@ class MovePageForm {
 			/* this needs to be done after LinksUpdate */
 			$urlArr = Array(				
 				# purge new title
-				$wgInternalServer.wfLocalUrl( $this->nt->getPrefixedURL()),
+				$wgInternalServer.$this->nt->getURL(),
 				# purge old title
-				$wgInternalServer.wfLocalUrl( $this->ot->getPrefixedURL())
+				$wgInternalServer.$this->ot->getURL())
 			);			
 			wfPurgeSquidServers($urlArr);	
 			# purge pages linking to new title
@@ -185,7 +187,7 @@ class MovePageForm {
 		# and target namespaces are identical, (3) the namespaces are not
 		# themselves talk namespaces, and of course (4) it exists.
 
-		if ( ( 1 == $wpMovetalk ) &&
+		if ( ( 1 == $_REQUEST['wpMovetalk'] ) &&
 			 ( ! Namespace::isTalk( $this->ons ) ) &&
 			 ( $this->ons == $this->nns ) ) {
 			
@@ -223,9 +225,9 @@ class MovePageForm {
 					/* this needs to be done after LinksUpdate */
 					$urlArr = Array(				
 						# purge new title
-						$wgInternalServer.wfLocalUrl( $this->nt->getPrefixedURL()),
+						$wgInternalServer.$nt->getURL()),
 						# purge old title
-						$wgInternalServer.wfLocalUrl( $this->ot->getPrefixedURL())
+						$wgInternalServer.$ot->getURL())
 					);			
 					wfPurgeSquidServers($urlArr);	
 					# purge pages linking to new title
@@ -239,7 +241,8 @@ class MovePageForm {
 				}
 			}
 		}
-		$success = wfLocalUrl( $wgLang->specialPage( "Movepage" ),
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Movepage" );
+		$success = $titleObj->getURL( 
 		  "action=success&oldtitle=" . wfUrlencode( $this->ofx ) .
 		  "&newtitle=" . wfUrlencode( $this->nfx ) .
 		  "&talkmoved={$this->talkmoved}" );
@@ -250,23 +253,19 @@ class MovePageForm {
 	function showSuccess()
 	{
 		global $wgOut, $wgUser;
-		global $newtitle, $oldtitle, $talkmoved;
 
 		$wgOut->setPagetitle( wfMsg( "movepage" ) );
 		$wgOut->setSubtitle( wfMsg( "pagemovedsub" ) );
-
-		$fields = array( "oldtitle", "newtitle" );
-		wfCleanFormFields( $fields );
-
-		$text = wfMsg( "pagemovedtext", $oldtitle, $newtitle );
+	
+		$text = wfMsg( "pagemovedtext", $_REQUEST['oldtitle'], $_REQUEST['newtitle'] );
 		$wgOut->addWikiText( $text );
 
-		if ( 1 == $talkmoved ) {
+		if ( 1 == $_REQUEST['talkmoved'] ) {
 			$wgOut->addHTML( "\n<p>" . wfMsg( "talkpagemoved" ) );
-		} elseif( 'invalid' == $talkmoved ) {
+		} elseif( 'invalid' == $_REQUEST['talkmoved'] ) {
 			$wgOut->addHTML( "\n<p><strong>" . wfMsg( "talkexists" ) . "</strong>" );
 		} else {
-			$ot = Title::newFromURL( $oldtitle );
+			$ot = Title::newFromURL( $_REQUEST['oldtitle'] );
 			if ( ! Namespace::isTalk( $ot->getNamespace() ) ) {
 				$wgOut->addHTML( "\n<p>" . wfMsg( "talkpagenotmoved" ) );
 			}

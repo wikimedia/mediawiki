@@ -48,8 +48,8 @@ function wfSpecialImagelist()
 	$sk = $wgUser->getSkin();
 	$cap = wfMsg( "ilshowmatch" );
 	$sub = wfMsg( "ilsubmit" );
-	$action = wfLocalUrlE( $wgLang->specialPage( "Imagelist" ),
-	  "sort=byname&limit={$limit}" );
+	$titleObj = Title::makeTitle( NS_SPECIAL, "Imagelist" );
+	$action = $titleObj->getURL(  "sort=byname&limit={$limit}", true );
 
 	$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
 	  "{$action}\">" .

@@ -38,8 +38,8 @@ class IPUnblockForm {
 		$ipa = wfMsg( "ipaddress" );
 		$ipr = wfMsg( "ipbreason" );
 		$ipus = wfMsg( "ipusubmit" );
-		$action = wfLocalUrlE( $wgLang->specialPage( "Ipblocklist" ),
-		  "action=submit" );
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Ipblocklist" );
+		$action = $titleObj->getURL( "action=submit", true );
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
@@ -87,8 +87,8 @@ class IPUnblockForm {
 		$log->addEntry( $action, $wpUnblockReason );
 
 		# Report to the user
-		$success = wfLocalUrl( $wgLang->specialPage( "Ipblocklist" ),
-		  "action=success&ip=" . urlencode($wpUnblockAddress) );
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Ipblocklist" );
+		$success = $titleObj->getURL( "action=success&ip=" . urlencode($wpUnblockAddress) );
 		$wgOut->redirect( $success );
 	}
 
@@ -130,15 +130,16 @@ function wfAddRow( $block, $tag ) {
 	$wgOut->addHTML( "<li>{$line}" );
 	
 	if ( !$block->mAuto ) {
-		$clink = "<a href=\"" . wfLocalUrlE( $wgLang->specialPage(
-		  "Contributions" ), "target={$block->mAddress}" ) . "\">" .
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Contributions" );
+		$clink = "<a href=\"" . $titleObj->getURL( "target={$block->mAddress}", true ) . "\">" .
 		  wfMsg( "contribslink" ) . "</a>";
 		$wgOut->addHTML( " ({$clink})" );
 	}
 
 	if ( $wgUser->isSysop() ) {
-		$ublink = "<a href=\"" . wfLocalUrlE( $wgLang->specialPage(
-		  "Ipblocklist" ), "action=unblock&ip=" . urlencode( $addr ) ) . "\">" .
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Ipblocklist" );
+		$ublink = "<a href=\"" . 
+		  $titleObj->getURL( "action=unblock&ip=" . urlencode( $addr ), true ) . "\">" .
 		  wfMsg( "unblocklink" ) . "</a>";
 		$wgOut->addHTML( " ({$ublink})" );
 	}

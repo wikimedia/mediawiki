@@ -39,8 +39,8 @@ class IPBlockForm {
 		$mIpbexpiry = wfMsg( "ipbexpiry" );
 		$mIpbreason = wfMsg( "ipbreason" );
 		$mIpbsubmit = wfMsg( "ipbsubmit" );
-		$action = wfLocalUrlE( $wgLang->specialPage( "Blockip" ),
-		  "action=submit" );
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Blockip" );
+		$action = $titleObj->getURL( "action=submit", true );
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
@@ -145,9 +145,8 @@ class IPBlockForm {
 		$log->addEntry( $action, $wpBlockReason );
 
 		# Report to the user
-		$success = wfLocalUrl( $wgLang->specialPage( "Blockip" ),
-		  "action=success&ip={$wpBlockAddress}" );
-		$wgOut->redirect( $success );
+		$titleObj = Title::makeTitle( NS_SPECIAL, "Blockip" );
+		$wgOut->redirect( $titleObj->getURL( "action=success&ip={$wpBlockAddress}" ) );
 	}
 
 	function showSuccess()
