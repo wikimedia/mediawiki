@@ -133,7 +133,7 @@ class ImagePage extends Article {
 		$wgOut->addHTML($sk->makeKnownLink($this->mTitle->getPrefixedDBkey(),wfMsg("edit-externally"),
 		"action=edit&externaledit=true&mode=file"));
 		$wgOut->addWikiText("<div class=\"editExternallyHelp\">".wfMsg("edit-externally-help"));
-		$wgOut->addHTML("</div><br clear=\"all\">");
+		$wgOut->addHTML("</div><br clear=\"all\"/>");
 			
 	}
 	function closeShowImage()
