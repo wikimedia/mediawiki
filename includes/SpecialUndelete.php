@@ -217,8 +217,8 @@ class PageArchive {
 			# FIXME: Update latest if newer as well...
 			if( $newid ) {
 				# FIXME: update article count if changed...
-				$article->updateRevisionOn( $dbw, $revision->getId(), $previousRevId,
-					Article::isRedirect( $revision->getText() ) );
+				$article->updateRevisionOn( $dbw, $revision->getId(),
+					$revision->getText(), $previousRevId );
 				
 				# Finally, clean up the link tables
 				$wgLinkCache = new LinkCache();
