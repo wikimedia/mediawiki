@@ -244,6 +244,9 @@ class DatabasePgsql extends Database {
 		# First run any transformations from the parent object
 		$name = parent::tableName( $name );
 
+		# Replace backticks into double quotes
+		$name = strtr($name,'`','"');
+
 		# Now quote PG reserved keywords
 		switch( $name ) {
 			case 'user':
