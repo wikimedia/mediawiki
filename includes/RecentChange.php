@@ -24,12 +24,12 @@ define( 'RC_MOVE_OVER_REDIRECT', 4);
  * 	rc_title        non-prefixed db key
  * 	rc_type         is new entry, used to determine whether updating is necessary
  * 	rc_minor        is minor
- * 	rc_cur_id       id of associated cur entry
+ * 	rc_cur_id       page_id of associated page entry
  * 	rc_user	        user id who made the entry
  * 	rc_user_text    user name who made the entry
  * 	rc_comment      edit summary
- * 	rc_this_oldid   old_id associated with this entry (or zero)
- * 	rc_last_oldid   old_id associated with the entry before this one (or zero)
+ * 	rc_this_oldid   rev_id associated with this entry (or zero)
+ * 	rc_last_oldid   rev_id associated with the entry before this one (or zero)
  * 	rc_bot          is bot, hidden
  * 	rc_ip           IP address of the user in dotted quad notation
  * 	rc_new          obsolete, use rc_type==RC_NEW
