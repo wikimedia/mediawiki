@@ -856,6 +856,32 @@ Link containing }
 </p>
 !! end
 
+!! test
+Link containing % (not as a hex sequence)
+!! input
+[[7% Solution]]
+!! result
+<p><a href="/index.php?title=7%25_Solution&amp;action=edit" class="new" title="7% Solution">7% Solution</a>
+</p>
+!! end
+
+!! test
+Link containing % as a single hex sequence interpreted to char
+!! input
+[[7%25 Solution]]
+!! result
+<p><a href="/index.php?title=7%25_Solution&amp;action=edit" class="new" title="7% Solution">7% Solution</a>
+</p>
+!!end
+
+!! test
+Link containing % as a double hex sequence interpreted to hex sequence
+!! input
+[[7%2525 Solution]]
+!! result
+<p>[[7%2525 Solution]]
+</p>
+!!end
 
 !! test
 Plain link to URL
