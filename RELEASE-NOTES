@@ -4,7 +4,7 @@
 
 Changes from 1.3.0:
 * Watchlist parameters now work with register_globals off
-
+* Special:Allpages display is more sensible on smaller wikis
 
 == Version 1.3.0, 2004-08-11 ==
 

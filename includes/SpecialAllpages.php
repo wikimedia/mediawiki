@@ -45,6 +45,13 @@ function indexShowToplevel()
 	$count = $s->count;
 	$sections = ceil( $count / $indexMaxperpage );
 
+	if ( $sections < 3 ) {
+		# If there are only two or less sections, don't even display them.
+		# Instead, display the first section directly.
+		indexShowChunk( '' );
+		return;
+	}
+
 	$sql = "SELECT cur_title $fromwhere $order LIMIT 1";
 	$res = wfQuery( $sql, DB_READ, $fname );
 	$s = wfFetchObject( $res );
