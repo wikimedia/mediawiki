@@ -1641,8 +1641,8 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 		global $wgUser, $wgCacheEpoch;
 		if(!file_exists( $fn = $this->fileCacheName() ) ) return false;
 		$cachetime = wfUnix2Timestamp( filemtime( $fn ) );
-		$good = ( $this->mTouched <= $cachetime ) &&
-			($wgCacheEpoch <= $cachetime );
+		$good = (( $this->mTouched <= $cachetime ) &&
+			($wgCacheEpoch <= $cachetime ));
         wfDebug(" isFileCacheGood() - cachetime $cachetime, touched {$this->mTouched} epoch {$wgCacheEpoch}, good $good\n");
 		return $good;
 	}
@@ -1652,6 +1652,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 		wfDebug(" loadFromFileCache()\n");
 		$filename=$this->fileCacheName();
 		$filenamegz = "{$filename}.gz";
+		$wgOut->sendCacheControl();
 		if( $wgUseGzip
 			&& wfClientAcceptsGzip()
 			&& file_exists( $filenamegz)
@@ -1661,19 +1662,19 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 			header( "Vary: Accept-Encoding" );
 			$filename = $filenamegz;
 		}
-		$wgOut->sendCacheControl();
 		readfile( $filename );
 	}
 	
 	function saveToFileCache( $text ) {
 		global $wgUseGzip, $wgCompressByDefault;
 		
-        wfDebug(" saveToFileCache()\n");
+        wfDebug(" saveToFileCache()\n", false);
 		$filename=$this->fileCacheName();
                 $mydir2=substr($filename,0,strrpos($filename,"/")); # subdirectory level 2
 		$mydir1=substr($mydir2,0,strrpos($mydir2,"/")); # subdirectory level 1
-		if(!file_exists($mydir1)) { mkdir($mydir1,0777); } # create if necessary
-		if(!file_exists($mydir2)) { mkdir($mydir2,0777); }			
+		if(!file_exists($mydir1)) { mkdir($mydir1,0775); } # create if necessary
+		if(!file_exists($mydir2)) { mkdir($mydir2,0775); }
+		
 		$f = fopen( $filename, "w" );
 		if($f) {
 			$now = wfTimestampNow();
@@ -1707,6 +1708,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 				if(wfClientAcceptsGzip()) {
 					header( "Content-Encoding: gzip" );
 					header( "Vary: Accept-Encoding" );
+					wfDebug("  sending NEW gzip now...\n" );
 					return $gzout;
 				}
 			}
