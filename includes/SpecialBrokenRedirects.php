@@ -22,6 +22,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 	}
 	
 	function isExpensive( ) { return true; }
+	function isSyndicated() { return false; }
 
 	function getPageHeader( ) {
 		#FIXME : probably need to add a backlink to the maintenance page.

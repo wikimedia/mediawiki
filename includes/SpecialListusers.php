@@ -44,6 +44,7 @@ class ListUsersPage extends QueryPage {
 	function getName() {
 		return "Listusers";
 	}
+	function isSyndicated() { return false; }
 
 	/**
 	 * Show a drop down list to select a group as well as a user name

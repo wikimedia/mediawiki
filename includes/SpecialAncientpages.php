@@ -24,6 +24,8 @@ class AncientPagesPage extends QueryPage {
 	function isExpensive() {
 		return parent::isExpensive() ;
 	}
+	
+	function isSyndicated() { return false; }
 
 	function getSQL() {
 		$db =& wfGetDB( DB_SLAVE );

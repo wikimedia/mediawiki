@@ -20,6 +20,7 @@ class UnusedimagesPage extends QueryPage {
 	function sortDescending() {
 		return false;
 	}
+	function isSyndicated() { return false; }
 
 	function getSQL() {
 		$dbr =& wfGetDB( DB_SLAVE );

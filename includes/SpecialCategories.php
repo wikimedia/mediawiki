@@ -25,6 +25,8 @@ class CategoriesPage extends QueryPage {
 		return false;
 	}
 
+	function isSyndicated() { return false; }
+
 	function getPageHeader() {
 		return '<p>'.wfMsg('categoriespagetext')."</p><br />\n";
 	}
