@@ -1600,6 +1600,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
 
 'newimages' => 'New images gallery',
+'noimages'  => 'Nothing to see.',
 
 'sitesettings'                  => 'Site Settings',
 'sitesettings-features'         => 'Features',
