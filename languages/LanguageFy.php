@@ -1196,5 +1196,3 @@ class LanguageFy extends LanguageUtf8 {
 }
 
 ?>
-
-
