@@ -4,6 +4,8 @@
  *
  */
 
+require_once( 'normal/UtfNormal.php' );
+
 /**
  *
  */
@@ -706,6 +708,13 @@ class Title {
 		$t = preg_replace( '/^_*(.*?)_*$/', '$1', $t );
 
 		if ( '' == $t ) {
+			wfProfileOut( $fname );
+			return false;
+		}
+		
+		global $wgUseLatin1;
+		if( !$wgUseLatin1 &&  false !== strpos( $t, UTF8_REPLACEMENT, $t ) ) {
+			# Contained illegal UTF-8 sequences or forbidden Unicode chars.
 			wfProfileOut( $fname );
 			return false;
 		}

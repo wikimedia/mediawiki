@@ -25,16 +25,7 @@ OutputPage::setEncodings(); # Not really used yet
 
 # Query string fields
 $action = $wgRequest->getVal( "action", "view" );
-
-if( isset( $_SERVER['PATH_INFO'] ) && $wgUsePathInfo ) {
-	$title = substr( $_SERVER['PATH_INFO'], 1 );
-	if( !$wgUseLatin1 ) {
-		require_once( 'includes/normal/UtfNormal.php' );
-		$title = UtfNormal::toNFC( $title );
-	}
-} else {
-	$title = $wgRequest->getVal( "title" );
-}
+$title = $wgRequest->getVal( "title" );
 
 # Placeholders in case of DB error
 $wgTitle = Title::newFromText( wfMsg( "badtitle" ) );
