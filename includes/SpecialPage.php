@@ -1,5 +1,5 @@
 <?php
-
+global $wgSpecialPages;
 $wgSpecialPages = array(
 	"Userlogin"		=> new UnlistedSpecialPage( "Userlogin" ),
 	"Userlogout"	=> new UnlistedSpecialPage( "Userlogout" ),
@@ -15,6 +15,7 @@ $wgSpecialPages = array(
 	"Lonelypages"	=> new SpecialPage( "Lonelypages" ),
 	"Unusedimages"	=> new SpecialPage( "Unusedimages" )
 );
+global $wgDisableCounters;
 if( !$wgDisableCounters )
 {
 	$wgSpecialPages["Popularpages"] = new SpecialPage( "Popularpages" );
