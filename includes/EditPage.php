@@ -249,7 +249,7 @@ class EditPage {
 			$wgOut->addHTML( "<strong>" .
 			wfMsg( "readonlywarning" ) .
 			"</strong>" );
-		} else if ( $isCssJsSubpage and "preview" != $formtype)) {
+		} else if ( $isCssJsSubpage and "preview" != $formtype) {
 			$wgOut->addHTML( wfMsg( "usercssjsyoucanpreview" ));
 		}
 		if( $this->mTitle->isProtected() ) {
