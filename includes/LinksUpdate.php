@@ -1,10 +1,12 @@
 <?php
 /**
  * See deferred.doc
+ * @package MediaWiki
  */
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class LinksUpdate {
 

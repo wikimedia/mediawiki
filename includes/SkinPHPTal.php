@@ -27,6 +27,7 @@
  * set_include_path(get_include_path() . ":" . $IP.'/PHPTAL-NP-0.7.0/libs');
  * $wgUsePHPTal = true;
  *
+ * @package MediaWiki
  */
 
 /**
@@ -41,6 +42,7 @@ require_once $IP.'/PHPTAL-NP-0.7.0/libs/PHPTAL.php';
 
 /**
  *
+ * @package MediaWiki
  */
 class MediaWiki_I18N extends PHPTAL_I18N {
 	var $_context = array();
@@ -65,6 +67,7 @@ class MediaWiki_I18N extends PHPTAL_I18N {
 
 /**
  *
+ * @package MediaWiki
  */
 class SkinPHPTal extends Skin {
 	var $template;

@@ -1,6 +1,7 @@
 <?php
 /**
  *
+ * @package MediaWiki
  */
 
 /**
@@ -16,6 +17,7 @@ define( 'RLH_FOR_UPDATE', 1 );
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class OutputPage {
 	var $mHeaders, $mCookies, $mMetatags, $mKeywords;

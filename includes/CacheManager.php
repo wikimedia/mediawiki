@@ -1,6 +1,7 @@
 <?php
 /**
  * Contain the CacheManager class
+ * @package MediaWiki
  */
 
 /**
@@ -19,6 +20,7 @@ require_once( 'Title.php' );
  * $wgUseFileCache
  * $wgFileCacheDirectory
  * $wgUseGzip
+ * @package MediaWiki 
  */
 class CacheManager {
 	var $mTitle, $mFileCache;

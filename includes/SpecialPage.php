@@ -10,6 +10,8 @@
  *
  * To add a special page at run-time, use SpecialPage::addPage().
  * DO NOT manipulate this array at run-time.
+ *
+ * @package MediaWiki
  */
 
 /**
@@ -85,6 +87,7 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 /**
  * Parent special page class, also static functions for handling the special
  * page list
+ * @package MediaWiki
  */
 class SpecialPage
 {
@@ -279,6 +282,7 @@ class SpecialPage
 
 /**
  * Shortcut to construct a special page which is unlisted by default
+ * @package MediaWiki
  */
 class UnlistedSpecialPage extends SpecialPage
 {

@@ -2,6 +2,7 @@
 /**
  * Contain site class
  * See search.doc
+ * @package MediaWiki
  */
 
 /**
@@ -12,6 +13,7 @@ define( 'MW_SEARCH_BAD_QUERY', false );
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class SearchEngine {
 	/* private */ var $rawText, $filteredText, $searchTerms;

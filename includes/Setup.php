@@ -1,6 +1,7 @@
 <?php
 /**
  * Include most things that's need to customize the site
+ * @package MediaWiki
  */
 
 /**
@@ -120,6 +121,7 @@ if( $wgUseMemCached ) {
 	
 	/**
 	 *
+	 * @package MediaWiki
 	 */
 	class MemCachedClientforWiki extends memcached {
 		function _debugprint( $text ) {
@@ -141,6 +143,7 @@ if( $wgUseMemCached ) {
 } else {
 	/**
 	 * No shared memory
+	 * @package MediaWiki
 	 */
 	class FakeMemCachedClient {
 		function add ($key, $val, $exp = 0) { return true; }

@@ -3,10 +3,11 @@
  * Special handling for category description pages
  * Modelled after ImagePage.php
  *
-*/
+ * @package MediaWiki
+ */
 
 /**
- *
+ * @package MediaWiki 
  */
 class CategoryPage extends Article {
 
@@ -285,13 +286,7 @@ class CategoryPage extends Article {
                         }
                         $r .= '</ul>';
                 }
-
-
                 return $r ;
         }
-
-
 }
-
-
 ?>

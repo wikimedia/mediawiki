@@ -7,6 +7,7 @@
  *
  * These are pulled from memcached if possible, as this is faster than filling
  * up a big array manually. See also languages/LanguageUtf8.php
+ * @package MediaWiki
  */
 
 /*

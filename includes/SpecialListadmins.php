@@ -1,6 +1,8 @@
 <?php
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -11,6 +13,8 @@ require_once("QueryPage.php");
 /**
  * This class is used to get a list of users flagged with "sysop" right.
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class ListAdminsPage extends PageQueryPage {
 

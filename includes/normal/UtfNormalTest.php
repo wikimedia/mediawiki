@@ -17,9 +17,13 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-# Implements the conformance test at:
-# http://www.unicode.org/Public/UNIDATA/NormalizationTest.txt
+/**
+ * Implements the conformance test at:
+ * http://www.unicode.org/Public/UNIDATA/NormalizationTest.txt
+ * @package MediaWiki
+ */
 
+/** */
 $verbose = true;
 #define( 'PRETTY_UTF8', true );
 
@@ -30,6 +34,9 @@ if( defined( 'PRETTY_UTF8' ) ) {
 			$string );
 	}	
 } else {
+	/**
+	 * @ignore
+	 */
 	function pretty( $string ) {
 		return trim( preg_replace( '/(.)/use',
 			'sprintf("%04X ", utf8ToCodepoint("$1"))',

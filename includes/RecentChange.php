@@ -1,6 +1,7 @@
 <?php
 /**
  *
+ * @package MediaWiki
  */
 
 /**
@@ -40,6 +41,7 @@ define( 'RC_MOVE_OVER_REDIRECT', 4);
  * 	lang            the interwiki prefix, automatically set in save()
  * 
  * @todo document functions and variables
+ * @package MediaWiki
  */
 class RecentChange
 {

@@ -1,6 +1,8 @@
 <?php
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -23,6 +25,8 @@ function wfSpecialUnlockdb() {
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class DBUnlockForm {
 	function showForm( $err )

@@ -1,6 +1,8 @@
 <?php
 /**
  * Provide functions to generate a special page
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**

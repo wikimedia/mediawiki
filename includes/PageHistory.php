@@ -3,10 +3,12 @@
  * Page history
  * 
  * Split off from Article.php and Skin.php, 2003-12-22
+ * @package MediaWiki
  */
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class PageHistory {
 	var $mArticle, $mTitle, $mSkin;

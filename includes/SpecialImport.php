@@ -19,6 +19,8 @@
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -108,6 +110,8 @@ function wfImportOldRevision( &$revision ) {
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class WikiRevision {
 	var $title = NULL;
@@ -176,6 +180,8 @@ class WikiRevision {
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class WikiImporter {
 	var $mSource = NULL;

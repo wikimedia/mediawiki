@@ -1,6 +1,8 @@
 <?php
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -33,6 +35,8 @@ function wfSpecialIpblocklist() {
 
 /**
  * 
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class IPUnblockForm {
 	var $ip, $reason;

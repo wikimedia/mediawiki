@@ -1,6 +1,7 @@
 <?php
 /**
  * File for magic words
+ * @package MediaWiki
  */
 
 /**
@@ -72,11 +73,17 @@ $wgVariableIDs = array(
  *
  * Please avoid reading the data out of one of these objects and then writing 
  * special case code. If possible, add another match()-like function here.
+ *
+ * @package MediaWiki
  */
 class MagicWord {
-	/*private*/ var $mId, $mSynonyms, $mCaseSensitive, $mRegex;
-	/*private*/ var $mRegexStart, $mBaseRegex, $mVariableRegex;
-	/*private*/ var $mModified;	
+	/**#@+
+	 * @access private
+	 */
+	var $mId, $mSynonyms, $mCaseSensitive, $mRegex;
+	var $mRegexStart, $mBaseRegex, $mVariableRegex;
+	var $mModified;	
+	/**#@-*/
 
 	function MagicWord($id = 0, $syn = '', $cs = false) {
 		$this->mId = $id;

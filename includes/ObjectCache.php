@@ -20,6 +20,7 @@
 # http://www.gnu.org/copyleft/gpl.html
 /**
  *
+ * @package MediaWiki
  */
  
 /**
@@ -32,6 +33,7 @@
  * $bag = new HashBagOStuff();
  * $bag = new MysqlBagOStuff($tablename); # connect to db first
  *
+ * @package MediaWiki
  * @abstract
  */
 class BagOStuff {
@@ -152,6 +154,7 @@ class BagOStuff {
 /**
  * Functional versions!
  * @todo document
+ * @package MediaWiki
  */
 class HashBagOStuff extends BagOStuff {
 	/*
@@ -208,6 +211,7 @@ CREATE TABLE objectcache (
 /**
  * @todo document
  * @abstract
+ * @package MediaWiki
  */
 class SqlBagOStuff extends BagOStuff {
 	var $table;
@@ -324,6 +328,7 @@ class SqlBagOStuff extends BagOStuff {
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class MediaWikiBagOStuff extends SqlBagOStuff {
 	var $tableInitialised = false;
@@ -366,6 +371,7 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class TurckBagOStuff extends BagOStuff {
 	function get($key) {

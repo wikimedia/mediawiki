@@ -3,10 +3,13 @@
  *This file is used to configure the live Wikimedia wikis. The file that
  * includes it contains passwords and other sensitive data, and there's
  * currently no public equivalent.
+ *
+ * @package MediaWiki
  */
 
 /**
  *
+ * @package MediaWiki
  */
 class SiteConfiguration {
 	var $suffixes, $wikis, $settings;

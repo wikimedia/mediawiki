@@ -1,10 +1,12 @@
 <?php
 /**
  * See diff.doc
+ * @package MediaWiki 
  */
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class DifferenceEngine {
 	/* private */ var $mOldid, $mNewid;
@@ -328,6 +330,7 @@ define('USE_ASSERTS', function_exists('assert'));
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class _DiffOp {
 	var $type;
@@ -349,6 +352,7 @@ class _DiffOp {
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class _DiffOp_Copy extends _DiffOp {
 	var $type = 'copy';
@@ -367,6 +371,7 @@ class _DiffOp_Copy extends _DiffOp {
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class _DiffOp_Delete extends _DiffOp {
 	var $type = 'delete';
@@ -383,6 +388,7 @@ class _DiffOp_Delete extends _DiffOp {
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class _DiffOp_Add extends _DiffOp {
 	var $type = 'add';
@@ -399,6 +405,7 @@ class _DiffOp_Add extends _DiffOp {
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class _DiffOp_Change extends _DiffOp {
 	var $type = 'change';
@@ -432,6 +439,7 @@ class _DiffOp_Change extends _DiffOp {
  * are my own.
  *
  * @author Geoffrey T. Dairiki
+ * @package MediaWiki
  * @access private
  */
 class _DiffEngine
@@ -818,6 +826,7 @@ class _DiffEngine
 /**
  * Class representing a 'diff' between two sequences of strings.
  * @todo document
+ * @package MediaWiki
  */
 class Diff
 {
@@ -954,6 +963,7 @@ class Diff
 /**
  * FIXME: bad name.
  * @todo document
+ * @package MediaWiki
  */
 class MappedDiff extends Diff
 {
@@ -1012,6 +1022,7 @@ class MappedDiff extends Diff
  * It is intended that this class be customized via inheritance,
  * to obtain fancier outputs.
  * @todo document
+ * @package MediaWiki
  */
 class DiffFormatter
 {
@@ -1169,6 +1180,7 @@ define('NBSP', '&#160;');			// iso-8859-x non-breaking space.
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class _HWLDF_WordAccumulator {
 	function _HWLDF_WordAccumulator () {
@@ -1225,6 +1237,7 @@ class _HWLDF_WordAccumulator {
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class WordLevelDiff extends MappedDiff
 {
@@ -1274,6 +1287,7 @@ class WordLevelDiff extends MappedDiff
 /**
  *	Wikipedia Table style diff formatter.
  * @todo document
+ * @package MediaWiki
  */
 class TableDiffFormatter extends DiffFormatter
 {

@@ -1,6 +1,7 @@
 <?php
 /**
  * Script to kill a MySQL thread after a specified timeout
+ * @package MediaWiki
  */
 
 /**

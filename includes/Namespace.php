@@ -1,6 +1,7 @@
 <?php
 /**
  * Provide things related to namespaces
+ * @package MediaWiki
  */
  
 /**
@@ -45,7 +46,9 @@ if(isset($wgExtraNamespaces)) {
  *
  * These are synonyms for the names given in the language file
  * Users and translators should not change them
-*/
+ *
+ * @package MediaWiki
+ */
 class Namespace {
 
 	/**#@+

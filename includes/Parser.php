@@ -25,6 +25,7 @@
  *
  *  * only within ParserOptions
  *
+ * @package MediaWiki
  */
 
 /**
@@ -72,6 +73,7 @@ define( 'EXT_IMAGE_REGEX',
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class Parser
 {
@@ -2330,6 +2332,7 @@ class Parser
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class ParserOutput
 {
@@ -2368,6 +2371,7 @@ class ParserOutput
 /**
  * Set options of the Parser
  * @todo document
+ * @package MediaWiki
  */
 class ParserOptions
 {

@@ -6,6 +6,8 @@
  * Heavy queries could slow down the database specially for the
  * biggest wikis.
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -41,6 +43,8 @@ function wfSpecialAsksql() {
 
 /**
  * @access private
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class SqlQueryForm {
 	var $query = '';

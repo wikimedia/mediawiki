@@ -2,6 +2,7 @@
 /**
  * See deferred.doc
  *
+ * @package MediaWiki
  */
 
 /**

@@ -2,6 +2,7 @@
 /**
  * Provide mail capabilities
  *
+ * @package MediaWiki
  */
 
 /**

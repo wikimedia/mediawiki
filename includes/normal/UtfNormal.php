@@ -17,17 +17,22 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-# Unicode normalization routines for working with UTF-8 strings.
-# Currently assumes that input strings are valid UTF-8!
-#
-# Not as fast as I'd like, but should be usable for most purposes.
-# UtfNormal::toNFC() will bail early if given ASCII text or text
-# it can quickly deterimine is already normalized.
-#
-# All functions can be called static.
-#
-# See description of forms at http://www.unicode.org/reports/tr15/
+/**
+ * Unicode normalization routines for working with UTF-8 strings.
+ * Currently assumes that input strings are valid UTF-8!
+ *
+ * Not as fast as I'd like, but should be usable for most purposes.
+ * UtfNormal::toNFC() will bail early if given ASCII text or text
+ * it can quickly deterimine is already normalized.
+ *
+ * All functions can be called static.
+ *
+ * See description of forms at http://www.unicode.org/reports/tr15/
+ *
+ * @package MediaWiki
+ */
 
+/** */
 require_once 'UtfNormalUtil.php';
 require_once 'UtfNormalData.inc';
 
@@ -87,7 +92,10 @@ define( 'UTF8_FFFF', codepointToUtf8( 0xffff ) );
 define( 'UTF8_HEAD', false );
 define( 'UTF8_TAIL', true );
 
-
+/**
+ *
+ * @package MediaWiki
+ */
 class UtfNormal {
 	# The ultimate convenience function! Clean up invalid UTF-8 sequences,
 	# and convert to normal form C. Faster on pure ASCII strings, or

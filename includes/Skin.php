@@ -2,6 +2,7 @@
 
 /**
  *
+ * @package MediaWiki
  */
 
 /**
@@ -56,6 +57,7 @@ require_once( 'RecentChange.php' );
 
 /**
  * @todo document
+ * @package MediaWiki
  */
 class RCCacheEntry extends RecentChange
 {
@@ -77,6 +79,7 @@ class RCCacheEntry extends RecentChange
  * The main skin class that provide methods and properties for all other skins
  * including PHPTal skins.
  * This base class is also the "Standard" skin.
+ * @package MediaWiki
  */
 class Skin {
 	/**#@+

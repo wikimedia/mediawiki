@@ -1,11 +1,13 @@
 <?php
 /**
  * Contain the blockcache class
+ * @package MediaWiki
  */
 
 /**
  * Object for fast lookup of IP blocks
  * Represents a memcached value, and in some sense, the entire ipblocks table
+ * @package MediaWiki
  */
 class BlockCache
 {

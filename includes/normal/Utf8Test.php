@@ -17,9 +17,14 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-# Runs the UTF-8 decoder test at:
-# http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt
+/**
+ * Runs the UTF-8 decoder test at:
+ * http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt
+ *
+ * @package MediaWiki
+ */
 
+/** */
 require_once 'UtfNormalUtil.php';
 require_once 'UtfNormal.php';
 mb_internal_encoding( "utf-8" );

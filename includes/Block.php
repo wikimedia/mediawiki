@@ -1,6 +1,7 @@
 <?php
 /**
  * Blocks and bans object
+ * @package MediaWiki
  */
 
 /**
@@ -16,7 +17,9 @@ define ( 'EB_FOR_UPDATE', 2 );
  * 
  * To use delete(), you only need to fill $mAddress
  * Globals used: $wgBlockCache, $wgAutoblockExpiry
+ *
  * @todo This could be used everywhere, but it isn't.
+ * @package MediaWiki
  */
 class Block
 {

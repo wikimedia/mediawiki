@@ -1,11 +1,14 @@
 <?php
-# $Id$
 /**
  * See deferred.doc
+ * @version # $Id$
+ * @package MediaWiki
  */
 
 /**
  *
+ * @version # $Id$ 
+ * @package MediaWiki
  */
 class ViewCountUpdate {
 

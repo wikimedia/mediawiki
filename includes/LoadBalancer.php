@@ -1,6 +1,7 @@
 <?php
 /**
  *
+ * @package MediaWiki
  */
 
 /**
@@ -33,7 +34,9 @@ define( 'MASTER_WAIT_TIMEOUT', 15 ); # Time to wait for a slave to synchronise
 
 /**
  * Database load balancing object
+ *
  * @todo document
+ * @package MediaWiki
  */
 class LoadBalancer {
 	/* private */ var $mServers, $mConnections, $mLoads;

@@ -1,10 +1,12 @@
 <?php
 /**
  *
+ * @package MediaWiki
  */
 
 /**
  *
+ * @package MediaWiki
  */
 class ParserCache
 {

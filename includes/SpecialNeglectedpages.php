@@ -3,6 +3,8 @@
  * Suggestion from mailing list: lists pages in order
  * least recently reviewed.
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  * @todo code it !
  */
 

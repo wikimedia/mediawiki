@@ -3,6 +3,7 @@
  * This file deals with MySQL interface functions 
  * and query specifics/optimisations
  * @version # $Id$
+ * @package MediaWiki
  */
 
 /**
@@ -26,7 +27,7 @@ define( 'DEADLOCK_DELAY_MAX', 1500000 );
 
 /**
  * Database abstraction object
- * @category database
+ * @package MediaWiki
  * @version # $Id$
  */
 class Database {
@@ -1197,7 +1198,8 @@ class Database {
 /**
  * Database abstraction object for mySQL
  * Inherit all methods and properties of Database::Database()
- * @category database
+ *
+ * @package MediaWiki
  * @see Database
  * @version # $Id$
  */
@@ -1208,7 +1210,8 @@ class DatabaseMysql extends Database {
 
 /**
  * Result wrapper for grabbing data queried by someone else
- * @category database
+ *
+ * @package MediaWiki
  * @version # $Id$ 
  */
 class ResultWrapper {

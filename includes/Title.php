@@ -2,8 +2,10 @@
 /**
  * See title.doc
  *
+ * @package MediaWiki
  */
 
+/** */
 require_once( 'normal/UtfNormal.php' );
 
 /**
@@ -18,7 +20,8 @@ define ( 'GAID_FOR_UPDATE', 1 );
  * - Can fetch various kinds of data from the database, albeit inefficiently. 
  *
  * @todo migrate comments to phpdoc format
-*/
+ * @package MediaWiki
+ */
 class Title {
 	# All member variables should be considered private
 	# Please use the accessor functions

@@ -1,6 +1,8 @@
 <?php
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 
 /**
@@ -15,6 +17,8 @@ function wfSpecialUndelete( $par ) {
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class PageArchive {
 	var $title;
@@ -175,6 +179,8 @@ class PageArchive {
 
 /**
  *
+ * @package MediaWiki
+ * @subpackage SpecialPage
  */
 class UndeleteForm {
 	var $mAction, $mTarget, $mTimestamp, $mRestore, $mTargetObj;

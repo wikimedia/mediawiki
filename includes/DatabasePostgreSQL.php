@@ -15,6 +15,7 @@
  *
  * Hashar
  *
+ * @package MediaWiki
  */
 
 /**
@@ -24,6 +25,7 @@ require_once( 'Database.php' );
 
 /**
  *
+ * @package MediaWiki
  */
 class DatabasePgsql extends Database {
 	var $mInsertId = NULL;
@@ -363,6 +365,7 @@ class DatabasePgsql extends Database {
 
 /**
  * Just an alias.
+ * @package MediaWiki
  */
 class DatabasePostgreSQL extends DatabasePgsql {
 }
