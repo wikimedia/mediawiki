@@ -1063,7 +1063,7 @@ class Article {
 
 	# Mark this particular edit as patrolled
 	function markpatrolled() {
-		global $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgUseRCPatrol;
+		global $wgOut, $wgRequest, $wgOnlySysopsCanPatrol, $wgUseRCPatrol, $wgUser;
 		$wgOut->setRobotpolicy( 'noindex,follow' );
 
 		if ( !$wgUseRCPatrol )
