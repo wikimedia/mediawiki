@@ -696,6 +696,10 @@ class Database {
 		}
 		return $this->query( $sql, $fname );
 	}
+
+	function limitResult($limit,$offset) {
+		return " LIMIT ".(is_numeric($offset)?"{$offset},":"")."{$limit} ";
+	}
 } 
 
 class DatabaseMysql extends Database {
@@ -758,6 +762,5 @@ function wfEmergencyAbort( &$conn, $error ) {
 function wfLimitResult( $limit, $offset ) {
 	return " LIMIT ".(is_numeric($offset)?"{$offset},":"")."{$limit} ";
 }
-
 
 ?>
