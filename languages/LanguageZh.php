@@ -37,7 +37,7 @@ class LanguageZh extends LanguageUtf8 {
 		array_shift($zh);
 		$l = array_shift($zh);
 		if($l != NULL) {
-            $this->mZhLanguageCode = substr($l,0,2);
+            $this->mZhLanguageCode = strtolower(substr($l,0,2));
 		}
         
         return $this->mZhLanguageCode;
@@ -60,11 +60,10 @@ class LanguageZh extends LanguageUtf8 {
 		
 		// no conversion if redirecting
 		if(substr($text,0,9) == "#REDIRECT") {
-			return "Debug: is a redirect, no conversion<br>".$text;
+			return $text;
 		}
 		// determine the preferred language from the request header
 		$tolang = $this->getPreferredLanguage();
-		$debug = "Debug: Detected language preference: ".$tolang."<br>\n";
 	
 		$ltext = explode("-{", $text);
 		$lfirst = array_shift($ltext);
@@ -97,7 +96,7 @@ class LanguageZh extends LanguageUtf8 {
 				$text = $text.$this->simp2trad($a{1});
 			}
 		}
-		return $debug.$text;
+		return $text;
 	}
 	
 
