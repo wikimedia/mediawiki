@@ -370,10 +370,11 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 	static $replacementKeys = array( '$1', '$2', '$3', '$4', '$5', '$6', '$7', '$8', '$9' );
 	global $wgParser, $wgMsgParserOptions;
 	global $wgContLang, $wgLanguageCode;
+	global $wgMessageCache, $wgLang;
 	
 	$fname = 'wfMsgReal';
 	wfProfileIn( $fname );
-	
+
 	if( $forContent ) {
 		/**
 		 * Message is needed for page content, and needs
@@ -383,7 +384,6 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 		 * parser cache and be served back to other 
 		 * visitors.
 		 */
-		global $wgMessageCache;
 		$cache = &$wgMessageCache;
 		$lang = &$wgContLang;
 	} else {
@@ -393,21 +393,28 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 		 * language variant or a separate user interface
 		 * language; if so use that.
 		 */
-		if( in_array( $wgLanguageCode, $wgContLang->getVariants() ) ) {
-			global $wgLang, $wgMessageCache;
-			$cache = &$wgMessageCache;
-			$lang = &$wgLang;
+		if ( is_object( $wgContLang ) ) {
+			if( in_array( $wgLanguageCode, $wgContLang->getVariants() ) ) {
+				$cache = &$wgMessageCache;
+				$lang = &$wgLang;
+			} else {
+				$cache = false;
+				$lang = &$wgLang;
+			}
 		} else {
-			global $wgLang;
 			$cache = false;
-			$lang = &$wgLang;
+			$lang = false;
 		}
 	}
 
 
 	if( is_object( $cache ) ) {
 		$message = $cache->get( $key, $useDB, $forContent );
-	} elseif( is_object( $lang ) ) {
+	} else {
+		if ( !is_object( $lang ) ) {
+			$lang = new Language;
+		}
+	
 		wfSuppressWarnings();
 		$message = $lang->getMessage( $key );
 		wfRestoreWarnings();
@@ -416,9 +423,6 @@ function wfMsgReal( $key, $args, $useDB, $forContent=false ) {
 		if(strstr($message, '{{' ) !== false) {
 			$message = $wgParser->transformMsg($message, $wgMsgParserOptions);
 		}
-	} else {
-		wfDebug( "No language object when getting $key\n" );
-		$message = "&lt;$key&gt;";
 	}
 
 	# Replace arguments

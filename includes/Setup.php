@@ -209,6 +209,11 @@ $wgLoadBalancer = LoadBalancer::newFromParams( $wgDBservers );
 $wgLoadBalancer->loadMasterPos();
 
 wfProfileOut( $fname.'-database' );
+wfProfileIn( $fname.'-language1' );
+
+require_once( "$IP/languages/Language.php" );
+
+wfProfileOut( $fname.'-language1' );
 wfProfileIn( $fname.'-User' );
 
 # Skin setup functions
@@ -232,7 +237,7 @@ if( $wgCommandLineMode ) {
 }
 
 wfProfileOut( $fname.'-User' );
-wfProfileIn( $fname.'-language' );
+wfProfileIn( $fname.'-language2' );
 
 function setupLangObj(&$langclass, $langcode) {
 	global $wgUseLatin1, $IP;
@@ -259,8 +264,6 @@ function setupLangObj(&$langclass, $langcode) {
 	return $lang;
 }
 
-require_once( "$IP/languages/Language.php" );
-
 # $wgLanguageCode may be changed later to fit with user preference.
 # The content language will remain fixed as per the configuration,
 # so let's keep it.
@@ -276,7 +279,7 @@ if( !$wgUser->mDataLoaded ) {
 }
 
 // wgLanguageCode now specifically means the UI language
-$wgLanguageCode = $wgUser->getOption('language');
+$wgLanguageCode = $wgUser->getOption('language2');
 
 $wgLangClass = 'Language'. str_replace( '-', '_', ucfirst( $wgLanguageCode ) );
 
