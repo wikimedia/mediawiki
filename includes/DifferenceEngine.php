@@ -68,7 +68,7 @@ class DifferenceEngine {
 		$nta = explode( "\n", str_replace( "\r\n", "\n",
 		  htmlspecialchars( $ntext ) ) );
 
-		$wgOut->addHTML( "<table border=0
+		$wgOut->addHTML( "<table border=0 width='98%'
 cellpadding=0 cellspacing='4px' class='special'><tr>
 <td colspan=2 width='50%' align=center bgcolor='#cccccc'>
 {$otitle}</td>
