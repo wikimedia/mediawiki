@@ -114,9 +114,8 @@ class EmailUserForm {
 </tr><tr>
 <td align=right>{$emm}:</td>
 <td align=left>
-<textarea name=\"wpText\" rows=10 cols=60 wrap=virtual>
-{$this->text}
-</textarea>
+<textarea name=\"wpText\" rows=10 cols=60 wrap=virtual>" . htmlspecialchars( $this->text ) .
+"</textarea>
 </td></tr><tr>
 <td>&nbsp;</td><td align=left>
 <input type=submit name=\"wpSend\" value=\"{$ems}\">
