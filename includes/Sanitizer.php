@@ -795,6 +795,31 @@ class Sanitizer {
 			);
 		return $whitelist;
 	}
+	
+	/**
+	 * Take a fragment of (potentially invalid) HTML and return
+	 * a version with any tags removed, encoded suitably for literal
+	 * inclusion in an attribute value.
+	 *
+	 * @param string $text HTML fragment
+	 * @return string
+	 */
+	function stripAllTags( $text ) {
+		# Actual <tags>
+		$text = preg_replace( '/<[^>]*>/', '', $text );
+		
+		# Normalize &entities and whitespace
+		$text = Sanitizer::normalizeAttributeValue( $text );
+		
+		# Will be placed into "double-quoted" attributes,
+		# make sure remaining bits are safe.
+		$text = str_replace(
+			array('<', '>', '"'),
+			array('&lt;', '&gt;', '&quot;'),
+			$text );
+		
+		return $text;
+	}
 
 }
 

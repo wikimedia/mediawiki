@@ -519,9 +519,13 @@ class Linker {
 			if ( '' == $manual_thumb ) $url = $img->createThumb( $width );
 		}
 
-		$alt = preg_replace( '/<[^>]*>/', '', $alt );
-		$alt = preg_replace('/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/', '&amp;', $alt);
-		$alt = str_replace( array('<', '>', '"'), array('&lt;', '&gt;', '&quot;'), $alt );
+		# FIXME: This is a gross hack using a global.
+		# Replace link color holders in the caption text so the
+		# text portion can be placed int the alt/title attributes.
+		global $wgParser;
+		$wgParser->replaceLinkHolders( $alt );
+		
+		$alt = Sanitizer::stripAllTags( $alt );
 
 		$u = $nt->escapeLocalURL();
 		if ( $url == '' ) {
