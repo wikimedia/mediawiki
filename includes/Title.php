@@ -11,6 +11,13 @@ require_once( 'normal/UtfNormal.php' );
 $wgTitleInterwikiCache = array();
 define ( 'GAID_FOR_UPDATE', 1 );
 
+# Title::newFromTitle maintains a cache to avoid
+# expensive re-normalization of commonly used titles.
+# On a batch operation this can become a memory leak
+# if not bounded. After hitting this many titles,
+# reset the cache.
+define( 'MW_TITLECACHE_MAX', 1000 );
+
 /**
  * Title class
  * - Represents a title, which may contain an interwiki designation or namespace
@@ -130,6 +137,10 @@ class Title {
 
 		if( $t->secureAndSplit() ) {
 			if( $defaultNamespace == 0 ) {
+				if( count( $titleCache ) >= MW_TITLECACHE_MAX ) {
+					# Avoid memory leaks on mass operations...
+					$titleCache = array();
+				}
 				$titleCache[$text] =& $t;
 			}
 			wfProfileOut( $fname );
