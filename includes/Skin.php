@@ -297,7 +297,7 @@ class Skin {
 		}
 
 		$s .= "\n<div id='content'>\n<div id='topbar'>" .
-		  "<table border=0 cellspacing=0><tr>";
+		  "<table border=0 cellspacing=0 width='98%'><tr>";
 
 		$shove = ($qb != 0);
 		$left = ($qb == 1 || $qb == 3);
