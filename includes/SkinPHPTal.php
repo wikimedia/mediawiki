@@ -26,6 +26,7 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+	require_once "GlobalFunctions.php";
 	require_once "PHPTAL.php";
 
 	class MediaWiki_I18N extends PHPTAL_I18N

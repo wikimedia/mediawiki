@@ -46,6 +46,8 @@ Code and compatibility:
 * Bundled PHPTAL 0.7.0 from http://phptal.sourceforge.net/
   (with some patches)
 * Most image-related code moved to Image.php
+* More fixes for PHP 4.1.2 (thanks to Asheesh Laroia)
+* URL encoding fix for anchors
 
 === Caveats ===
 
