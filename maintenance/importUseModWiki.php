@@ -16,7 +16,7 @@
 
 /* Set these correctly! */
 $wgImportEncoding = "CP1252"; /* We convert all to UTF-8 */
-$wgRootDirectory = "/home/usemod/wiki-fi/lib-http/db/wiki";
+$wgRootDirectory = "/home/usemod/wiki-ia/lib-http/db/wiki";
 
 /* globals */
 $wgFieldSeparator = "\xb3"; # Some wikis may use different char
@@ -220,6 +220,7 @@ function importPage( $title )
 	$comment = wfStrencode( recodeText( $page->summary ) );
 	$minor = ($page->minor ? 1 : 0);
 	list( $userid, $username ) = checkUserCache( $page->username, $page->host );
+	$username = wfStrencode( recodeText( $username ) );
 	$timestamp = wfUnix2Timestamp( $page->ts );
 	$redirect = ( preg_match( '/^#REDIRECT/', $page->text ) ? 1 : 0 );
 	$random = mt_rand() / mt_getrandmax();
