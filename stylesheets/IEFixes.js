@@ -1,13 +1,20 @@
 // IE fix javascript
+var rslt = navigator.appVersion.match(/MSIE (\d+\.\d+)/, '');
+if (rslt != null ) var version = Number(rslt[1]);
+else var version = 0;
+
+window.attachEvent("onload", hookit);
+function hookit() {
+    fixalpha();
+    fixtextarea();
+    var wrapper = document.getElementById('tawrapper');
+    if(wrapper) wrapper.attachEvent("onclick", fixtextarea);
+}
 
 // png alpha transparency fixes
-window.attachEvent("onload", fixalpha);
-
 function fixalpha(){
     // bg
-    var rslt = navigator.appVersion.match(/MSIE (\d+\.\d+)/, '');
-    if (rslt != null && Number(rslt[1]) >= 5.5)
-    {
+    if(version >= 5.5) {
         var logoa = document.getElementById('portlet-logo').firstChild;
         var bg = logoa.currentStyle.backgroundImage;
         if (bg.match(/\.png/i) != null){
@@ -33,5 +40,13 @@ function fixalpha(){
                 }
             }
         }*/
+    }
+}
+
+function fixtextarea() {
+    var wrapper = document.getElementById('tawrapper');
+    if(wrapper) {
+            wrapper.style.width = 'auto';
+            wrapper.style.width = (wrapper.offsetWidth - 4)  + 'px';
     }
 }
