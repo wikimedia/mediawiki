@@ -9,6 +9,7 @@ class SearchEngine {
 	var $addtoquery = array();
 	var $namespacesToSearch = array();
 	var $alternateTitle;
+	var $all_titles = false;
 
 	function SearchEngine( $text )
 	{
@@ -529,6 +530,15 @@ class SearchEngine {
 	/* static */ function getTitlesByLength($aLength, $aNamespace = 0){
 		global $wgMemc, $wgDBname;
 
+		// to avoid multiple costly SELECTs in case of no memcached
+		if( $this->all_titles ){ 
+			if( isset( $this->all_titles[$aLength][$aNamespace] ) ){
+				return $this->all_titles[$aLength][$aNamespace];
+			} else {
+				return array();
+			}
+		}
+
 		$mkey = "$wgDBname:titlesbylength:$aLength:$aNamespace";
 		$mkeyts = "$wgDBname:titlesbylength:createtime";
 		$ts = $wgMemc->get( $mkeyts );
@@ -541,6 +551,7 @@ class SearchEngine {
 		}
 
 		$wgMemc->set( $mkeyts, time() );
+
 		$res = wfQuery("SELECT cur_title, cur_namespace FROM cur", DB_READ);
 		$titles = array(); // length, ns, [titles]
 		while( $obj = wfFetchObject( $res ) ){
@@ -555,12 +566,14 @@ class SearchEngine {
 				$wgMemc->set( $mkey, $title_arr, 3600 * 24 );
 			}
 		}
-		return $titles[$aLength][$aNamespace];
+		$this->all_titles = $titles;
+		if( isset( $titles[$aLength][$aNamespace] ) )
+			return $titles[$aLength][$aNamespace];
+		else
+			return array();
 	}
 }
 
 /* private static */ function SearchEngine_pcmp($a, $b){ return $a[0] - $b[0]; }
-
-
 
 ?>
