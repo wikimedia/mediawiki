@@ -199,7 +199,7 @@ class User {
 			global $wgDBname, $wgMemc;
 			$key = "$wgDBname:newtalk:ip:{$this->mName}";
 			$newtalk = $wgMemc->get( $key );
-			if($newtalk === false) {
+/*			if($newtalk === false) {
 				$sql = "SELECT 1 FROM user_newtalk WHERE user_ip='{$this->mName}'";
 				$res = wfQuery ($sql, DB_READ, "User::loadFromDatabase" );
 
@@ -207,9 +207,9 @@ class User {
 				wfFreeResult( $res );
 
 				$wgMemc->set( $key, $this->mNewtalk, time() ); // + 1800 );
-			} else {
+			} else {*/
 				$this->mNewtalk = $newtalk ? 1 : 0;
-			}
+#			}
 		}
 		if(!$this->mId) {
 			$this->mDataLoaded = true;
