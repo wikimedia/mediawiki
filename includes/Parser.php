@@ -579,11 +579,17 @@ class Parser
 	}
 
 	function internalParse( $text, $linestart, $args = array(), $isMain=true ) {
+        global $wgLanguageCode, $wgLang;
+
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
 
 		$text = $this->removeHTMLtags( $text );
 		$text = $this->replaceVariables( $text, $args );
+
+        if($wgLanguageCode == "zh") {
+             $text = $wgLang->convert($text);
+        }
 
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
 
