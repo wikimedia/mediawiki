@@ -115,3 +115,25 @@ img.tex { vertical-align: middle; }
 	color: red;
 	font-size: larger;
 }
+/* preference page with js-genrated toc */
+
+#preftoc { 
+    float: left;
+    margin: 1em 1em 1em 1em;
+    width: 13em;
+}
+#preftoc li { border: 1px solid White; }
+#preftoc li.selected { 
+    background-color:#f9f9f9;
+    border:1px dashed #aaaaaa;
+}
+#preftoc a,
+#preftoc a:active {
+    display: block;
+    color: #005189;
+}
+#prefcontrol { 
+    clear: left;
+    float: left;
+    margin-top: 1em;
+}
