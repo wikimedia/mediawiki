@@ -19,18 +19,28 @@ require_once("LanguageUtf8.php");
 	11  => "Template_talk"
 ) + $wgNamespaceNamesEn;
 
-/* private */ $wgWeekdayNamesAr = array(
-	"الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس",
-	"الجمعة", "السبت"
-);
-
-/* private */ $wgMonthNamesAr = array(
-	"يناير", "فبراير", "مارس", "ابريل", "مايو", "يونيو",
-	"يوليو", "أغسطس", "سبتمبر", "اكتوبر", "نوفمبر",
-	"ديسمبر"
-);
 
 /* private */ $wgAllMessagesAr = array(
+	# Dates
+	'sunday' => "الأحد",
+	'monday' => "الإثنين",
+	'tuesday' => "الثلاثاء",
+	'wednesday' => "الأربعاء",
+	'thursday' => "الخميس",
+	'friday' => "الجمعة",
+	'saturday' => "السبت",
+	'january' => "يناير",
+	'february' => "فبراير",
+	'march' => "مارس",
+	'april' => "ابريل",
+	'may_long' => "مايو",
+	'june' => "يونيو",
+	'july' => "يوليو",
+	'august' => "أغسطس",
+	'september' => "سبتمبر",
+	'october' => "اكتوبر",
+	'november' => "نوفمبر",
+	'december' => "ديسمبر",
 
 	# Bits of text used by many pages:
 	#
@@ -1191,24 +1201,11 @@ class LanguageAr extends LanguageUtf8 {
 		return LanguageUtf8::getNsIndex( $text );
 	}
 
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesAr;
-		return $wgMonthNamesAr[$key-1];
-	}
-
 	function getMonthAbbreviation( $key )
 	{
 		/* No abbreviations in Arabic */
 		return $this->getMonthName( $key );
 	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesAr;
-		return $wgWeekdayNamesAr[$key-1];
-	}
-
 
 	function isRTL() { return true; }
 

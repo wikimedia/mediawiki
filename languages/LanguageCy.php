@@ -74,21 +74,6 @@
         "Amazon.co.uk" => "http://www.amazon.co.uk/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesCy = array(
-	"Dydd Sul", "Dydd Llun", "Dydd Mawrth", "Dydd Mercher", "Dydd Iau",
-	"Dydd Gwener", "Dydd Sadwrn"
-);
-
-/* private */ $wgMonthNamesCy = array(
-	"Ionawr", "Chwefror", "Mawrth", "Ebrill", "Mai", "Mehefin",
-	"Gorffenaf", "Awst", "Medi", "Hydref", "Tachwedd",
-	"Rhagfyr"
-);
-
-/* private */ $wgMonthAbbreviationsCy = array(
-	"Ion", "Chwe", "Maw", "Ebr", "Mai", "Meh", "Gor", "Aws",
-	"Med", "Hyd", "Tach", "Rhag"
-);
 
 /* private */ $wgMagicWordsCy = array(
 #   ID                                 CASE  SYNONYMS
@@ -171,6 +156,39 @@
 );
 
 /* private */ $wgAllMessagesCy = array(
+# Dates
+'sunday' => 'Dydd Sul',
+'monday' => 'Dydd Llun',
+'tuesday' => 'Dydd Mawrth',
+'wednesday' => 'Dydd Mercher',
+'thursday' => 'Dydd Iau',
+'friday' => 'Dydd Gwener',
+'saturday' => 'Dydd Sadwrn',
+'january' => 'Ionawr',
+'february' => 'Chwefror',
+'march' => 'Mawrth',
+'april' => 'Ebrill',
+'may_long' => 'Mai',
+'june' => 'Mehefin',
+'july' => 'Gorffenaf',
+'august' => 'Awst',
+'september' => 'Medi',
+'october' => 'Hydref',
+'november' => 'Tachwedd',
+'december' => 'Rhagfyr',
+'jan' => 'Ion',
+'feb' => 'Chwe',
+'mar' => 'Maw',
+'apr' => 'Ebr',
+'may' => 'Mai',
+'jun' => 'Meh',
+'jul' => 'Gor',
+'aug' => 'Aws',
+'sep' => 'Med',
+'oct' => 'Hyd',
+'nov' => 'Tach',
+'dec' => 'Rhag',
+
 
 # Bits of text used by many pages:
 #
@@ -1074,24 +1092,6 @@ class LanguageCy extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesCy;
 		return $wgUserTogglesCy;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesCy;
-		return $wgMonthNamesCy[$key-1];
-	}
-	
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsCy;
-		return $wgMonthAbbreviationsCy[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesCy;
-		return $wgWeekdayNamesCy[$key-1];
 	}
 
 	function getValidSpecialPages()
