@@ -14,7 +14,7 @@ class NewPagesPage extends QueryPage {
 		#return parent::isExpensive();
 	}
 
-	function getSQL( $offset, $limit ) {
+	function getSQL() {
 		return
 			"SELECT 'Newpages' as type,
 			        rc_namespace AS namespace,
