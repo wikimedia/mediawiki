@@ -31,6 +31,7 @@ function wfSpecialImagelist()
 		$sql .= " ORDER BY img_name";
 		$st = $byname;
 	} else {
+		$sort = "bydate";
 		$sql .= " ORDER BY img_timestamp DESC";
 		$st = $bydate;
 	}
