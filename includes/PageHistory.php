@@ -123,7 +123,8 @@ class PageHistory {
 		$s = $skip ? "" : preg_replace( "/!OLDID![0-9]+!/", $last, $this->lastline );
 		$s .= "</ul>\n";
 		if( $this->linesonpage > 1) {
-			$s .= '<button type="submit">'.wfMsg('compareselectedversions')."</button><br/><br/>\n";
+			$s .= '<button type="submit" accesskey="'.wfMsg('accesskey-compareselectedversions').
+			'" title="'.wfMsg('tooltip-compareselectedversions').'">'.wfMsg('compareselectedversions')."</button><br/><br/>\n";
 		}
 		$s .= "</form>\n";
 		return $s;
