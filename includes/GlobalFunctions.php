@@ -769,7 +769,10 @@ function wfPurgeSquidServers ($urlArr) {
 	global  $wgSquidServers;
 	$maxsocketspersquid = 8; //  socket cap per Squid
 	$urlspersocket = 400; // 400 seems to be a good tradeoff, opening a socket takes a while
-	$sockspersq =  ceil(count($urlArr) / $urlspersocket );
+	$firsturl = $urlArr[0];
+	unset($urlArr[0]);
+	$urlArr = array_values($urlArr);
+	$sockspersq =  max(ceil(count($urlArr) / $urlspersocket ),1);
 	if ($sockspersq == 1) {
 		/* the most common case */
 		$urlspersocket = count($urlArr);
@@ -794,7 +797,7 @@ function wfPurgeSquidServers ($urlArr) {
 					$failed = true;
 					$totalsockets -= $sockspersq;
 				} else {
-					@fputs($socket,"PURGE " . $urlArr[0] . " HTTP/1.0\r\n".
+					@fputs($socket,"PURGE " . $firsturl . " HTTP/1.0\r\n".
 					"Connection: Keep-Alive\r\n\r\n");
 					$res = @fread($socket,512);
 					/* Squid only returns http headers with 200 or 404 status, 
@@ -819,7 +822,7 @@ function wfPurgeSquidServers ($urlArr) {
 		}
 	}
 
-	if ($urlspersocket > 1) {
+	if ($urlspersocket > 0) {
 		/* now do the heavy lifting. The fread() relies on Squid returning only the headers */
 		for ($r=0;$r < $urlspersocket;$r++) {
 			for ($s=0;$s < $totalsockets;$s++) {
