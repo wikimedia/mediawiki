@@ -1416,7 +1416,9 @@ amusement.',
 
 You might want to check the following regular expression for patterns that are currently blocked:',
 'subcategorycount' => "There are $1 subcategories to this category.",
+'subcategorycount1' => "There is $1 subcategorie to this category.",
 'categoryarticlecount' => "There are $1 articles in this category.",
+'categoryarticlecount1' => "There is $1 article in this category.",
 'usenewcategorypage' => "1\n\nSet first character to \"0\" to disable the new category page layout.",
 
 # Info page
