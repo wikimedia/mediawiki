@@ -283,9 +283,21 @@ class LogViewer {
 		$userLink = $this->skin->makeLinkObj( $user, htmlspecialchars( $s->user_name ) );
 		$comment = $this->skin->commentBlock( $s->log_comment );
 		$paramArray = LogPage::extractParams( $s->log_params );
-		
+		$revert = '';
+		if ( $s->log_type == 'move' && isset( $paramArray[0] ) ) {
+			$specialTitle = Title::makeTitle( NS_SPECIAL, 'Movepage' );
+			$destTitle = Title::newFromText( $paramArray[0] );
+			if ( $destTitle ) {
+				$revert = '(' . $this->skin->makeKnownLinkObj( $specialTitle, wfMsg( 'revertmove' ),
+					'wpOldTitle=' . urlencode( $destTitle->getPrefixedDBkey() ) . 
+					'&wpNewTitle=' . urlencode( $title->getPrefixedDBkey() ) .
+					'&wpReason=' . urlencode( wfMsgForContent( 'revertmove' ) ) .
+					'&wpMovetalk=0' ) . ')';
+			}
+		}
+
 		$action = LogPage::actionText( $s->log_type, $s->log_action, $title, $this->skin, $paramArray, true );
-		$out = "<li>$time $userLink $action $comment</li>\n";
+		$out = "<li>$time $userLink $action $comment $revert</li>\n";
 		return $out;
 	}
 	

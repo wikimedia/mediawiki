@@ -1587,6 +1587,7 @@ title. Please merge them manually.',
 'movelogpage' => 'Move log',
 'movelogpagetext' => 'Below is a list of page moved.',
 'movereason'	=> 'Reason',
+'revertmove'	=> 'revert',
 
 # Export
 

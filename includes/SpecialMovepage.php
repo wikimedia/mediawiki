@@ -46,12 +46,14 @@ function wfSpecialMovepage() {
  */
 class MovePageForm {
 	var $oldTitle, $newTitle, $reason; # Text input
+	var $moveTalk;
 		
 	function MovePageForm() {
 		global $wgRequest;
 		$this->oldTitle = $wgRequest->getText( 'wpOldTitle', $wgRequest->getVal( 'target' ) );
 		$this->newTitle = $wgRequest->getText( 'wpNewTitle' );
 		$this->reason = $wgRequest->getText( 'wpReason' );
+		$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', true );
 	}
 	
 	function showForm( $err ) {
@@ -96,6 +98,13 @@ class MovePageForm {
 			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
 			$wgOut->addHTML( '<p class="error">'.$err."</p>\n" );
 		}
+
+		if ( $this->moveTalk ) {
+			$moveTalkChecked = " checked='checked'";
+		} else {
+			$moveTalkChecked = '';
+		}
+		
 		$wgOut->addHTML( "
 <form id=\"movepage\" method=\"post\" action=\"{$action}\">
 	<table border='0'>
@@ -121,7 +130,7 @@ class MovePageForm {
 			$wgOut->addHTML( "
 		<tr>
 			<td align='right'>
-				<input type='checkbox' name=\"wpMovetalk\" checked='checked' value=\"1\" />
+				<input type='checkbox' name=\"wpMovetalk\"{$moveTalkChecked} value=\"1\" />
 			</td>
 			<td>{$movetalk}</td>
 		</tr>" );
