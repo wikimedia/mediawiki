@@ -939,7 +939,7 @@ agrees to license it under the terms of the $1.",
 'emptyfile'		=> 'The file you uploaded seems to be empty. This might be due to a typo in the file name. Please check whether you really want to upload this file.',
 'fileexists'		=> 'A file with this name exists already, please check $1 if you are not sure if you want to change it.',
 'successfulupload' => 'Successful upload',
-'fileuploaded'	=> "File uploaded successfully.
+'fileuploaded'	=> "File $1 uploaded successfully.
 Please follow this link: $2 to the description page and fill
 in information about the file, such as where it came from, when it was
 created and by whom, and anything else you may know about it. If this is an image, you can insert it like this: <tt><nowiki>[[Image:$1|thumb|Description]]</nowiki></tt>",
@@ -974,6 +974,7 @@ this old version, (rev) = revert to this old version.
 'imagelinks'	=> 'Image links',
 'linkstoimage'	=> 'The following pages link to this image:',
 'nolinkstoimage' => 'There are no pages that link to this image.',
+'sharedupload' => 'This file is a shared upload and may be used by other projects.',
 
 # Statistics
 #

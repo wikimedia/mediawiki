@@ -920,3 +920,6 @@ span.newpage, span.minor, span.searchmatch {
 span.searchmatch {
 	color: red;
 }
+.sharedUploadNotice {
+        font-style: italic;
+}

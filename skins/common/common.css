@@ -204,3 +204,7 @@ div.townBox dl dd {
 	color: red;
 	font-weight: bold;
 }
+
+.sharedUploadNotice {
+	font-style: italic;
+}

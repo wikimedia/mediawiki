@@ -377,7 +377,7 @@ class Parser
 	}
 
 	/**
-	 * restores pre, math, and heiro removed by strip()
+	 * restores pre, math, and hiero removed by strip()
 	 *
 	 * always call unstripNoWiki() after this one
 	 * @access private
@@ -679,8 +679,8 @@ class Parser
 			$text = $wgDateFormatter->reformat( $this->mOptions->getDateFormat(), $text );
 		}
 		$text = $this->doAllQuotes( $text );
+		$text = $this->replaceExternalLinks( $text );		
 		$text = $this->replaceInternalLinks ( $text );
-		$text = $this->replaceExternalLinks( $text );
 		$text = $this->doMagicLinks( $text );
 		$text = $this->doTableStuff( $text );
 		$text = $this->formatHeadings( $text, $isMain );
