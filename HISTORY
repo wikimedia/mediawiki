@@ -448,7 +448,7 @@ No database changes since 20031107; upgrading should be clean.
 Uploads are now disabled by default. If you've set up a secure configuration
 you can reenable uploads by putting:
 
-  $wgDisableUploads = false;
+  $wgEnableUploads = true;
 
 into LocalSettings.php.
 
