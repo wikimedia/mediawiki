@@ -538,9 +538,10 @@ class Image
 			# This has to be done after the image is updated and present for all machines on NFS, 
 			# or else the old version might be stored into the squid again
 			if ( $wgUseSquid ) {
+				# don't prefix with internal server if we share one (-> Commons)
+				$prefix = preg_match("/^http:\/\//",$thumbUrl) ? '' : $wgInternalServer;
 				$urlArr = Array(
-					# don't prefix with internal server if we share one (-> Commons)
-					(preg_match("/^http:\/\//",$thumbUrl) ? $thumbUrl : $wgInternalServer.$thumbUrl)
+					$prefix.$thumbUrl
 				);
 				wfPurgeSquidServers($urlArr);
 			}
