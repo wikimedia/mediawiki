@@ -94,8 +94,8 @@ function page2xml( $page, $curonly, $full = false ) {
 		if( !$curonly ) {
 			$res = $dbr->select( 'old', array( 'old_id as id','old_timestamp as timestamp', 
 				'old_user as user', 'old_user_text as user_text', 'old_comment as comment', 
-				'old_text as text', 'old_flags as flags' ), $title->curCond(), 
-				array( 'ORDER BY' => 'old_timestamp' ), $fname
+				'old_text as text', 'old_flags as flags' ), $title->oldCond(), 
+				$fname, array( 'ORDER BY' => 'old_timestamp' )
 			);
 
 			while( $s2 = $dbr->fetchObject( $res ) ) {
