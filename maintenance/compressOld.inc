@@ -6,7 +6,8 @@ function compressOldPages( $start = 0 ) {
 	$chunksize = 50;
 	print "Starting from old_id $start...\n";
 	do {
-		$sql = "SELECT old_id,old_flags,old_namespace,old_title,old_text FROM old WHERE old_id>=$start ORDER BY old_id LIMIT $chunksize";
+		$end = $start + $chunksize;
+		$sql = "SELECT old_id,old_flags,old_namespace,old_title,old_text FROM old WHERE old_id>=$start AND old_id<$end ORDER BY old_id LIMIT $chunksize";
 		$res = wfQuery( $sql, DB_READ, "compressOldPages" );
 		if( wfNumRows( $res ) == 0 ) {
 			break;
