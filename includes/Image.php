@@ -138,6 +138,7 @@ class Image
 			# BZZZT
 			return "";
 		}
+
 		if( $width > $this->width ) {
 			# Don't make an image bigger than the source
 			return $this->getURL();
