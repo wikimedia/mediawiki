@@ -792,7 +792,7 @@ class Parser
 		$ns = $nt->getNamespace();
 		$iw = $nt->getInterWiki();
 		if( $noforce ) {
-			if( $iw && $wgInterwikiMagic && $nottalk && $wgLang->getLanguageName( $iw ) ) {
+			if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgLang->getLanguageName( $iw ) ) {
 				array_push( $this->mOutput->mLanguageLinks, $nt->getPrefixedText() );
 				$s .= $prefix . $trail;
 				return $s;
