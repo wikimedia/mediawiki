@@ -31,6 +31,7 @@
 #
 
 define( "MAX_INCLUDE_REPEAT", 5 );
+define( "MAX_INCLUDE_SIZE", 1000000 ); // 1 Million
 
 # Allowed values for $mOutputType
 define( "OT_HTML", 1 );
@@ -56,9 +57,15 @@ class Parser
 	var $mVariables, $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
 
 	# Temporary:
-	var $mOptions, $mTitle, $mOutputType;
+	var $mOptions, $mTitle, $mOutputType,
+	    $mTemplates,	// cache of already loaded templates, avoids
+	    			// multiple SQL queries for the same string
+	    $mTemplatePath;	// stores an unsorted hash of all the templates already loaded
+	    			// in this path. Used for loop detection.
 
 	function Parser() {
+ 		$this->mTemplates = array();
+ 		$this->mTemplatePath = array();
 		$this->mTagHooks = array();
 		$this->clearState();
 	}
@@ -1445,6 +1452,10 @@ class Parser
 	/* private */ function replaceVariables( $text, $args = array() ) {
 		global $wgLang, $wgScript, $wgArticlePath;
 
+                # Prevent to big inclusions
+                if(strlen($text)> MAX_INCLUDE_SIZE)
+                   return $text;
+
 		$fname = 'Parser::replaceVariables';
 		wfProfileIn( $fname );
 
@@ -1612,14 +1623,22 @@ class Parser
 			$found = true;
 			$this->mOutput->mContainsOldMagic = true;
 		}
-/*
-		# Arguments input from the caller
-		$inputArgs = end( $this->mArgStack );
-		if ( !$found && array_key_exists( $part1, $inputArgs ) ) {
-			$text = $inputArgs[$part1];
+
+                # Template table test
+
+		# Did we encounter this template already? If yes, it is in the cache
+		# and we need to check for loops.
+		if ( isset( $this->mTemplates[$part1] ) ) {
+			# Infinite loop test
+			if ( isset( $this->mTemplatePath[$part1] ) ) {
+				$noparse = true;
+				$found = true;
+			}                  
+			# set $text to cached message.
+			$text = $this->mTemplates[$part1];
 			$found = true;
 		}
-*/
+
 		# Load from database
 		if ( !$found ) {
 			$title = Title::newFromText( $part1, NS_TEMPLATE );
@@ -1627,6 +1646,7 @@ class Parser
 				# Check for excessive inclusion
 				$dbk = $title->getPrefixedDBkey();
 				if ( $this->incrementIncludeCount( $dbk ) ) {
+					# This should never be reached.
 					$article = new Article( $title );
 					$articleContent = $article->getContentWithoutUsingSoManyDamnGlobals();
 					if ( $articleContent !== false ) {
@@ -1641,6 +1661,9 @@ class Parser
 					$text = '[[' . $title->getPrefixedText() . ']]';
 					$found = true;
 				}
+
+                                # Template cache array insertion
+				$this->mTemplates[$part1] = $text;
 			}
 		}
 
@@ -1673,6 +1696,9 @@ class Parser
 				$wgLinkCache->suspend();
 			}
 
+                        # Add a new element to the templace recursion path
+			$this->mTemplatePath[$part1] = 1;
+
 			# Run full parser on the included text
 			$text = $this->stripParse( $text, $newline, $assocArgs );
 
@@ -1682,6 +1708,8 @@ class Parser
 				$wgLinkCache->addLinkObj( $title );
 			}
 		}
+                # Empties the template path
+                $this->mTemplatePath = array();
 
 		if ( !$found ) {
 			return $matches[0];
