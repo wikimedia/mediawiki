@@ -1465,7 +1465,7 @@ class Article {
 			array(
 				'old_namespace' => $ns,
 				'old_title' => $title,
-				'old_flags' => 'object',
+				"old_flags LIKE '%object%'",
 			), $fname, $this->getSelectOptions()
 		);
 		if ( $row ) {
