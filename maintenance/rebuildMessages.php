@@ -33,7 +33,7 @@ if( isset( $options['rebuild'] ) ) $response = 2;
 
 if ( $response == 0 ) {
 	$dbr =& wfGetDB( DB_SLAVE );
-	$row = $dbr->selectRow( "cur", array("count(*) as c"), array("cur_namespace" => NS_MEDIAWIKI) );
+	$row = $dbr->selectRow( "page", array("count(*) as c"), array("page_namespace" => NS_MEDIAWIKI) );
 	print "Current namespace size: {$row->c}\n";
 
 	print <<<END

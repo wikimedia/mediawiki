@@ -1,4 +1,5 @@
 <?php
+#### FIXME THIS FILE IS BADLY BROKEN FOR NEW SCHEMA
 /**
  * @deprecated
  * @package MediaWiki
@@ -11,7 +12,7 @@ function isTemplateInitialised() {
 	$fname = 'isTemplateInitialised';
 
 	$dbw =& wfGetDB( DB_MASTER );
-	$n = $dbw->selectField( 'cur', 'count(*)', array( 'cur_namespace' => NS_MEDIAWIKI ) );
+	$n = $dbw->selectField( 'page', 'count(*)', array( 'page_namespace' => NS_MEDIAWIKI ) );
 	return $n > count( $wgAllMessagesEn ) ? false : true;
 }
 
@@ -36,7 +37,7 @@ function moveCustomMessages( $phase ) {
 		$dbkeys[$title->getDBkey()] = 1;
 	}
 
-	$res = $dbw->select( 'cur', array( 'cur_id', 'cur_title' ), array( 'cur_namespace' => NS_MEDIAWIKI ) );
+	$res = $dbw->select( 'page', array( 'page_id', 'page_title' ), array( 'page_namespace' => NS_MEDIAWIKI ) );
 
 	# Compile target array
 	$targets = array();
