@@ -57,7 +57,7 @@ class User {
 	 */
 	function whoIs( $id )	{
 		$dbr =& wfGetDB( DB_SLAVE );
-		return $dbr->getField( 'user', 'user_name', array( 'user_id' => $id ) );
+		return $dbr->selectField( 'user', 'user_name', array( 'user_id' => $id ) );
 	}
 
 	/**
@@ -68,7 +68,7 @@ class User {
 	 */
 	function whoIsReal( $id )	{
 		$dbr =& wfGetDB( DB_SLAVE );
-		return $dbr->getField( 'user', 'user_real_name', array( 'user_id' => $id ) );
+		return $dbr->selectField( 'user', 'user_real_name', array( 'user_id' => $id ) );
 	}
 
 	/**
@@ -86,7 +86,7 @@ class User {
 			return null;
 		}
 		$dbr =& wfGetDB( DB_SLAVE );
-		$s = $dbr->getArray( 'user', array( 'user_id' ), array( 'user_name' => $nt->getText() ), $fname );
+		$s = $dbr->selectRow( 'user', array( 'user_id' ), array( 'user_name' => $nt->getText() ), $fname );
 
 		if ( $s === false ) {
 			return 0;
@@ -350,7 +350,7 @@ class User {
 			return;
 		} # the following stuff is for non-anonymous users only
 
-		$s = $dbr->getArray( 'user', array( 'user_name','user_password','user_newpassword','user_email',
+		$s = $dbr->selectRow( 'user', array( 'user_name','user_password','user_newpassword','user_email',
 		  'user_real_name','user_options','user_touched' ),
 		  array( 'user_id' => $this->mId ), $fname );
 
@@ -363,7 +363,7 @@ class User {
 			$this->decodeOptions( $s->user_options );
 			$this->mTouched = wfTimestamp(TS_MW,$s->user_touched);
 			$this->mRights = explode( ",", strtolower( 
-				$dbr->getField( 'user_rights', 'user_rights', array( 'user_id' => $this->mId ) )
+				$dbr->selectField( 'user_rights', 'user_rights', array( 'user_id' => $this->mId ) )
 			) );
 		}
 
