@@ -126,6 +126,8 @@ $rootpw=readconsole();
 
 # Include rest of code to get things like internationalized messages.
 #
+$wgUseDatabaseMessages = false; # no DB yet
+
 include_once( "{$IP}/Setup.php" );
 $wgTitle = Title::newFromText( "Installation script" );
 
