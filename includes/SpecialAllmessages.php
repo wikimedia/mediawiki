@@ -32,7 +32,12 @@
 		$txt = "\n\n".'$wgAllMessages'.ucfirst($wgLanguageCode).' = array('."\n";
 		foreach( $messages as $key => $m ) {
 			if(strtolower($wgLanguageCode) != 'en' and $m['msg'] == $m['enmsg'] ) {
-				$txt .= '#';
+				if (strstr($m['msg'],"\n")) {
+					$txt.='/* ';
+					$comment=' */';
+				} else {
+					$txt .= '#';
+				}
 			} elseif ($m['msg'] == '&lt;'.$key.'&gt;'){
 				$m['msg'] = '';
 				$comment = ' #empty';
