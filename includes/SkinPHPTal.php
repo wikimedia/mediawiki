@@ -27,6 +27,7 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 	require_once "GlobalFunctions.php";
+	global $IP;
 	require_once $IP."/PHPTAL-NP-0.7.0/libs/PHPTAL.php";
 
 	class MediaWiki_I18N extends PHPTAL_I18N
