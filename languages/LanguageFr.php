@@ -388,7 +388,7 @@ Voir $1.",
 <blockquote><tt>$1</tt></blockquote>
 depuis la fonction \"<tt>$2</tt>\".
 MySQL a renvoyé l'erreur \"<tt>$3: $4</tt>\".",
-"noconnect"	=> "Désolé! Suite à des problèmes techniques, il est impossible de se connecter à la base de donées pour le moment.", //"Connexion impossible à la base de données sur $1",
+"noconnect"	=> "Désolé! Suite à des problèmes techniques, il est impossible de se connecter à la base de données pour le moment.", //"Connexion impossible à la base de données sur $1",
 "nodb"		=> "Sélection impossible de la base de données $1",
 "cachederror"	=> "Ceci est une copie de la page demandée et peut ne pas être à jour", // Looxix 
 "readonly"	=> "Mises à jour bloquées sur la base de données",
