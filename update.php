@@ -78,6 +78,7 @@ function do_update_files() {
 	global $IP, $wgStyleSheetDirectory, $wgUploadDirectory, $wgLanguageCode, $wgDebugLogFile;
 	print "Copying files... ";
 	
+	copyfile( ".", "LocalSettings.php", $IP );
 	copyfile( ".", "index.php", $IP );
 	copyfile( ".", "redirect.php", $IP );
 	# compatibility with older versions, can be removed in a year or so
@@ -104,6 +105,7 @@ function do_update_files() {
 	copyfile( "./images", "magnify-clip.png", $wgUploadDirectory );
 
 	copyfile( "./languages", "Language.php", $IP );
+	copyfile( "./languages", "LanguageUtf8.php", $IP );
 	copyfile( "./languages", "Language" . ucfirst( $wgLanguageCode ) . ".php", $IP );
 	
 	if( !empty( $wgDebugLogFile ) ) {
