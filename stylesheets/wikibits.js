@@ -112,6 +112,7 @@ function diffcheck() {
 function tabbedprefs() {
     prefform = document.getElementById('preferences');
     if(!prefform || !document.createElement) return;
+    if(prefform.nodeName == 'A') return; // Occasional IE problem
     prefform.className = prefform.className + 'jsprefs';
     var sections = new Array();
     children = prefform.childNodes;
