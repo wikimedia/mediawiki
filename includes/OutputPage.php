@@ -486,7 +486,7 @@ class OutputPage {
 		$this->returnToMain();		# Flip back to the main page after 10 seconds.
 	}
 
-	function databaseError( $fname, &$conn )
+	function databaseError( $fname, $sql, $error, $errno )
 	{
 		global $wgUser, $wgCommandLineMode;
 
@@ -501,10 +501,10 @@ class OutputPage {
 			$msg = wfMsgNoDB( "dberrortext" );
 		}
 
-		$msg = str_replace( "$1", htmlspecialchars( $conn->lastQuery() ), $msg );
+		$msg = str_replace( "$1", htmlspecialchars( $sql ), $msg );
 		$msg = str_replace( "$2", htmlspecialchars( $fname ), $msg );
-		$msg = str_replace( "$3", $conn->lastErrno(), $msg );
-		$msg = str_replace( "$4", htmlspecialchars( $conn->lastError() ), $msg );
+		$msg = str_replace( "$3", $errno, $msg );
+		$msg = str_replace( "$4", htmlspecialchars( $error ), $msg );
 		
 		if ( $wgCommandLineMode || !is_object( $wgUser )) {
 			print "$msg\n";

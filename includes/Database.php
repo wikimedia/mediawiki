@@ -174,13 +174,15 @@ class Database {
 		}
 	
 		if ( false === $ret ) {
+			$error = mysql_error( $this->mConn );
+			$errno = mysql_errno( $this->mConn );
 			if( $this->mIgnoreErrors ) {
-				wfDebug("SQL ERROR (ignored): " . mysql_error( $this->mConn ) . "\n");
+				wfDebug("SQL ERROR (ignored): " . $error . "\n");
 			} else {
-				wfDebug("SQL ERROR: " . mysql_error( $this->mConn ) . "\n");
+				wfDebug("SQL ERROR: " . $error . "\n");
 				if ( $this->mOut ) {
 					// this calls wfAbruptExit()
-					$this->mOut->databaseError( $fname, $this ); 				
+					$this->mOut->databaseError( $fname, $sql, $error, $errno ); 				
 				}
 			}
 		}
