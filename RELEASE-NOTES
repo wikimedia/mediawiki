@@ -12,6 +12,7 @@ Changes from 1.3.1:
 * Fixed bug that caused long Japanese pages to time out with Tidy active
 * When session.handler is set incorrectly, try automatic override to 'files'
 * Watch/Unwatch links back to the affected page instead of Main Page
+* Upload link no longer displayed on Monobook if uploading is disabled
 
 == Version 1.3.1, 2004-08-14 ==
 
