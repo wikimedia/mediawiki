@@ -971,7 +971,6 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 'wantedpages'	=> 'Wanted pages',
 'nlinks'		=> '$1 links',
 'allpages'		=> 'All pages',
-'nextpage'		=> 'Next page ($1)',
 'randompage'	=> 'Random page',
 'shortpages'	=> 'Short pages',
 'longpages'		=> 'Long pages',
@@ -1005,6 +1004,15 @@ this list should not be construed as an endorsement.",
 'rfcurl' =>  "http://www.faqs.org/rfcs/rfc$1.html",
 'alphaindexline' => "$1 to $2",
 'version'		=> 'Version',
+
+# Specific to All pages
+'nextpage'          => 'Next page ($1)',
+'articlenamespace'  => '(articles)',
+'allpagesformtext'  => 'Display pages starting at: $1 Choose namespace: $2 $3',
+'allarticles'       => 'All articles',
+'allpagesprev'      => 'Previous',
+'allpagesnext'      => 'Next',
+'allpagesnamespace' => 'All pages ($1 namespace)',
 
 # Email this user
 #
