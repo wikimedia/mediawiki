@@ -452,8 +452,6 @@ class Parser
 		return $r ;
 	}
 
-
-
 	function newCategoryMagic () {
 		global $wgLang;
 		if ( !$this->mOptions->getUseCategoryMagic() ) return ; # Doesn't use categories at all
@@ -843,8 +841,7 @@ class Parser
 
 	# Parses the text and adds the result to the strip state
 	# Returns the strip tag
-	function stripParse( $text, $newline, $args )
-	{
+	function stripParse( $text, $newline, $args ) {
 		$text = $this->strip( $text, $this->mStripState );
 		$text = $this->internalParse( $text, (bool)$newline, $args, false );
 		return $newline.$this->insertStripItem( $text, $this->mStripState );
@@ -1082,11 +1079,11 @@ class Parser
 			}
 			# Now close all remaining tags.  Notice that the order is important.
 			if ($state == 'strong' || $state == 'emstrong')
-				$output .= "</strong>";
+				$output .= '</strong>';
 			if ($state == 'em' || $state == 'strongem' || $state == 'emstrong')
-				$output .= "</em>";
+				$output .= '</em>';
 			if ($state == 'strongem')
-				$output .= "</strong>";
+				$output .= '</strong>';
 			if ($state == 'both')
 				$output .= "<strong><em>{$buffer}</em></strong>";
 			return $output;
@@ -1436,7 +1433,7 @@ class Parser
 	/* private */ function nextItem( $char ) {
 		if ( '*' == $char || '#' == $char ) { return '</li><li>'; }
 		else if ( ':' == $char || ';' == $char ) {
-			$close = "</dd>";
+			$close = '</dd>';
 			if ( $this->mDTopen ) { $close = '</dt>'; }
 			if ( ';' == $char ) {
 				$this->mDTopen = true;
@@ -1484,8 +1481,8 @@ class Parser
 		}
 		foreach ( $textLines as $oLine ) {
 			$lastPrefixLength = strlen( $lastPrefix );
-			$preCloseMatch = preg_match("/<\\/pre/i", $oLine );
-			$preOpenMatch = preg_match("/<pre/i", $oLine );
+			$preCloseMatch = preg_match('/<\\/pre/i', $oLine );
+			$preOpenMatch = preg_match('/<pre/i', $oLine );
 			if ( !$this->mInPre ) {
 				# Multiple prefixes may abut each other for nested lists.
 				$prefixLength = strspn( $oLine, '*#:;' );
@@ -1508,7 +1505,7 @@ class Parser
 				$output .= $this->nextItem( substr( $pref, -1 ) );
 				$paragraphStack = false;
 
-				if ( ";" == substr( $pref, -1 ) ) {
+				if ( substr( $pref, -1 ) == ';') {
 					# The one nasty exception: definition lists work like this:
 					# ; title : definition text
 					# So we check for : in the remainder text to split up the
