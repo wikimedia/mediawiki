@@ -1083,9 +1083,11 @@ class LanguageEs extends LanguageUtf8 {
 
 	function getMessage( $key ) {
 		global $wgAllMessagesEs;
-		if( isset( $wgAllMessagesEs[$key] ) )
+		if( isset( $wgAllMessagesEs[$key] ) ) {
 			return $wgAllMessagesEs[$key];
-		return "";
+		} else {
+			return Language::getMessage( $key );
+		}
 	}
 }
 ?>

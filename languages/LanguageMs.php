@@ -1019,7 +1019,11 @@ class LanguageMs extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesMs;
-		return $wgAllMessagesMs[$key];
+		if( isset( $wgAllMessagesMs[$key] ) ) {
+			return $wgAllMessagesMs[$key];
+		} else {
+			return Language::getMessage( $key );
+		}
 	}
 }
 

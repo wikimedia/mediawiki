@@ -929,7 +929,11 @@ class LanguageEt extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesEt;
-		return $wgAllMessagesEt[$key];
+		if( isset( $wgAllMessagesEt[$key] ) ) {
+			return $wgAllMessagesEt[$key];
+		} else {
+			return Language::getMessage( $key );
+		}
 	}
 }
 

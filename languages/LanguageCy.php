@@ -1112,7 +1112,11 @@ class LanguageCy extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesCy;
-		return @$wgAllMessagesCy[$key];
+		if( isset( $wgAllMessagesCy[$key] ) ) {
+			return $wgAllMessagesCy[$key];
+		} else {
+			return Language::getMessage( $key );
+		}
 	}
 	
 	function getAllMessages()

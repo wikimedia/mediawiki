@@ -1459,7 +1459,7 @@ class LanguageBg extends LanguageUtf8 {
 		if( isset( $wgAllMessagesBg[$key] ) ) {
 			return $wgAllMessagesBg[$key];
 		} else {
-			return "";
+			return Language::getMessage( $key );
 		}
 	}
 

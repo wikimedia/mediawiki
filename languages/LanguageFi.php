@@ -924,7 +924,11 @@ class LanguageFi extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesFi;
-		return @$wgAllMessagesFi[$key];
+		if( isset( $wgAllMessagesFi[$key] ) ) {
+			return $wgAllMessagesFi[$key];
+		} else {
+			return Language::getMessage( $key );
+		}
 	}
 
 	# Convert from the nominative form of a noun to some other case

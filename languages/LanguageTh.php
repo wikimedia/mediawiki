@@ -1121,7 +1121,11 @@ class LanguageTh extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesTh;
-		return $wgAllMessagesTh[$key];
+		if( isset( $wgAllMessagesTh[$key] ) ) {
+			return $wgAllMessagesTh[$key];
+		} else {
+			return Language::getMessage( $key );
+		}
 	}
 
 	function getAllMessages()

@@ -1211,9 +1211,11 @@ class LanguageDa extends LanguageUtf8 {
 
 	function getMessage( $key ) {
 		global $wgAllMessagesDa;
-		if( isset( $wgAllMessagesDa[$key] ) )
+		if( isset( $wgAllMessagesDa[$key] ) ) {
 			return $wgAllMessagesDa[$key];
-		return "";
+		} else {
+			return Language::getMessage( $key );
+		}
 	}
 
 	# Inherit iconv()

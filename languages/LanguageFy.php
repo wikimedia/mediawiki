@@ -1144,7 +1144,11 @@ class LanguageFy extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesFy;
-		return $wgAllMessagesFy[$key];
+		if( isset( $wgAllMessagesFy[$key] ) ) {
+			return $wgAllMessagesFy[$key];
+		} else {
+			return Language::getMessage( $key );
+		}
 	}
 	
 # Inherit iconv()

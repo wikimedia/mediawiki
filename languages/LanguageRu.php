@@ -1001,7 +1001,11 @@ class LanguageRu extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesRu;
-		return $wgAllMessagesRu[$key];
+		if( isset( $wgAllMessagesRu[$key] ) ) {
+			return $wgAllMessagesRu[$key];
+		} else {
+			return Language::getMessage( $key );
+		}
 	}
 
 	function fallback8bitEncoding() {

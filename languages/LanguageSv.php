@@ -53,13 +53,6 @@ require_once( "LanguageUtf8.php" );
  "myskin" => "MySkin" 
 );
 
-define( "MW_MATH_PNG",    0 );
-define( "MW_MATH_SIMPLE", 1 );
-define( "MW_MATH_HTML",   2 );
-define( "MW_MATH_SOURCE", 3 );
-define( "MW_MATH_MODERN", 4 );
-define( "MW_MATH_MATHML", 5 );
-
 /* private */ $wgMathNamesSv = array(
 	MW_MATH_PNG    => "Rendera alltid PNG",
 	MW_MATH_SIMPLE => "HTML om den är väldigt enkel, annars PNG",
@@ -1137,9 +1130,11 @@ class LanguageSv extends LanguageUtf8 {
 	
 	function getMessage( $key ) {
 		global $wgAllMessagesSv;
-		if( array_key_exists( $key, $wgAllMessagesSv ) )
+		if( isset( $wgAllMessagesSv[$key] ) ) {
 			return $wgAllMessagesSv[$key];
-		return "";
+		} else {
+			return Language::getMessage( $key );
+		}
 	}
 	
 }

@@ -1188,7 +1188,7 @@ class LanguageIs extends LanguageUtf8 {
 		if( isset( $wgAllMessagesIs[$key] ) ) {
 			return $wgAllMessagesIs[$key];
 		} else {
-			return "";
+			return Language::getMessage( $key );
 		}
 	}
 	

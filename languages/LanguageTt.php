@@ -280,12 +280,14 @@ class LanguageTt extends LanguageUtf8 {
                 return $wgDeveloperSpecialPagesTt;
         }
 
-        function getMessage( $key ) {
-                global $wgAllMessagesTt;
-                if( isset( $wgAllMessagesTt[$key] ) )
-                        return $wgAllMessagesTt[$key];
-                return "";
-        }
+	function getMessage( $key ) {
+		global $wgAllMessagesTt;
+		if( isset( $wgAllMessagesTt[$key] ) ) {
+			return $wgAllMessagesTt[$key];
+		} else {
+			return Language::getMessage( $key );
+		}
+	}
 
         # Inherit iconv()
 

@@ -1043,7 +1043,11 @@ class LanguageUk extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesUk;
-		return $wgAllMessagesUk[$key];
+		if( isset( $wgAllMessagesUk[$key] ) ) {
+			return $wgAllMessagesUk[$key];
+		} else {
+			return Language::getMessage( $key );
+		}
 	}
 
 	function fallback8bitEncoding() {
