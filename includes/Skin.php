@@ -2058,7 +2058,7 @@ class Skin {
 		$r .= '<img src="'.$wgStylePath.'/images/Arr_.png" width="12" height="12" border="0" />' ;
 		$r .= '<tt>' ;
 
-		if ( $rc_type == RC_MOVE ) {
+		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&nbsp;&nbsp;';
 		} else {
 			# M & N (minor & new)
@@ -2099,7 +2099,7 @@ class Skin {
 		$r .= $rcObj->usertalklink ;
 
 		# Comment
-		if ( $rc_comment != '' && $rc_type != RC_MOVE ) {
+		 if ( $rc_comment != '' && $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
 			$rc_comment=$this->formatComment($rc_comment);
 			$r .= $wgLang->emphasize( ' ('.$rc_comment.')' );
 		}
@@ -2276,7 +2276,7 @@ class Skin {
 		}
 		$s .= '<li> ';
 
-		if ( $rc_type == RC_MOVE ) {
+		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			# Diff
 			$s .= '(' . wfMsg( 'diff' ) . ') (';
 			# Hist
@@ -2284,10 +2284,13 @@ class Skin {
 				') . . ';
 			
 			# "[[x]] moved to [[y]]"
-
-			$s .= wfMsg( '1movedto2', $this->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
+			if ( $rc_type == RC_MOVE ) {
+				$msg = '1movedto2';
+			} else {
+				$msg = '1movedto2_redir';
+			}
+			$s .= wfMsg( $msg, $this->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
 				$this->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
-
 		} else {
 			# Diff link
 			if ( $rc_type == RC_NEW || $rc_type == RC_LOG ) {
