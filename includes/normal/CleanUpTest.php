@@ -1,4 +1,8 @@
 <?php
+/** */
+if( isset( $_SERVER['argv'] ) && in_array( '--icu', $_SERVER['argv'] ) ) {
+	dl( 'php_utfnormal.so' );
+}
 
 #ini_set( 'memory_limit', '40M' );
 
@@ -213,6 +217,28 @@ class CleanUpTest extends PHPUnit_TestCase {
 				}
 			}
 		}
+	}
+	
+	function testChunkRegression() {
+		# Check for regression against a chunking bug
+		$text   = "\x46\x55\xb8" .
+		          "\xdc\x96" . 
+		          "\xee" .
+		          "\xe7" .
+		          "\x44" .
+		          "\xaa" .
+		          "\x2f\x25";
+		$expect = "\x46\x55\xef\xbf\xbd" .
+		          "\xdc\x96" . 
+		          "\xef\xbf\xbd" .
+		          "\xef\xbf\xbd" .
+		          "\x44" .
+		          "\xef\xbf\xbd" .
+		          "\x2f\x25";
+
+		$this->assertEquals(
+			bin2hex( $expect ),
+			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
 
 }

@@ -350,7 +350,6 @@ class UtfNormal {
 								$replace[] = array( UTF8_REPLACEMENT,
 													$base + $i + 1 - strlen( $sequence ),
 													strlen( $sequence ) );
-								$base += $chunk;
 								break 2;
 							} else {
 								# Illegal tail byte; abandon the sequence.
