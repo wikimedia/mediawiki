@@ -104,7 +104,7 @@ class Profiler
 		}
 		$this->close();
 		$width = 125;
-		$format = "%-" . ($width - 34) . "s %6d %6.3f %6.3f %7.3f%% %6d (%6.3f-%6.3f)\n";
+		$format = "%-" . ($width - 34) . "s %6d %6.3f %6.3f %7.3f%% %6d (%6.3f-%6.3f) [%d]\n";
 		$titleFormat = "%-" . ($width - 34) . "s %9s %9s %9s %9s %6s\n";
 		$prof = "\nProfiling data\n";
 		$prof .= sprintf( $titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 'Mem' );
@@ -121,8 +121,26 @@ class Profiler
 		}
 		wfProfileOut( '-overhead-total' );
 		
+		# First, subtract the overhead!
+		foreach( $this->mStack as $entry ) {
+			$fname = $entry[0];
+			$thislevel = $entry[1];
+			$start = explode( ' ', $entry[2]);
+			$start = (float)$start[0] + (float)$start[1];
+			$end = explode( ' ', $entry[4]);
+			$end = (float)$end[0] + (float)$end[1];
+			$elapsed = $end - $start;
+			if( $fname == '-overhead-total' ) {
+				$overheadTotal[] = $elapsed;
+			} elseif( $fname == '-overhead-internal' ) {
+				$overheadInternal[] = $elapsed;
+			}
+		}
+		$overheadTotal = array_sum( $overheadTotal ) / count( $overheadInternal );
+		$overheadInternal = array_sum( $overheadInternal ) / count( $overheadInternal );
+		
 		# Collate
-		foreach ( $this->mStack as $entry ) {
+		foreach ( $this->mStack as $index => $entry ) {
 			$fname = $entry[0];
 			$thislevel = $entry[1];
 			$start = explode( ' ', $entry[2]);
@@ -132,6 +150,13 @@ class Profiler
 			$elapsed = $end - $start;
 			
 			$memory = $entry[5] - $entry[3];
+			$subcalls = $this->calltreeCount( $this->mStack, $index );
+			
+			if( !preg_match( '/^-overhead/', $fname ) ) {
+				# Adjust for profiling overhead
+				$elapsed -= $overheadInternal;
+				$elapsed -= ($subcalls * $overheadTotal);
+			}
 			
 			if ( !array_key_exists( $fname, $this->mCollated ) ) {
 				$this->mCollated[$fname] = 0;
@@ -139,6 +164,7 @@ class Profiler
 				$this->mMemory[$fname] = 0;
 				$this->mMin[$fname] = 1 << 24;
 				$this->mMax[$fname] = 0;
+				$this->mOverhead[$fname] = $subcalls;
 			}
 
 			$this->mCollated[$fname] += $elapsed;
@@ -146,27 +172,23 @@ class Profiler
 			$this->mMemory[$fname] += $memory;
 			$this->mMin[$fname] = min( $this->mMin[$fname], $elapsed );
 			$this->mMax[$fname] = max( $this->mMax[$fname], $elapsed );
+			$this->mOverhead[$fname] += $subcalls;
 		}
 
 		$total = @$this->mCollated['-total'];
-		$overhead = $this->mCollated['-overhead-internal'] / $profileCount;
 		$this->mCalls['-overhead-total'] = $profileCount;
 
 		# Output
 		asort( $this->mCollated, SORT_NUMERIC );
 		foreach ( $this->mCollated as $fname => $elapsed ) {
 			$calls = $this->mCalls[$fname];
-			# Adjust for overhead
-			if ( $fname[0] != '-' ) {
-				$elapsed -= $overhead * $calls;
-			}
-
 			$percent = $total ? 100. * $elapsed / $total : 0;
 			$memory = $this->mMemory[$fname];
 			$prof .= sprintf( $format, $fname, $calls, (float)($elapsed * 1000), 
 					(float)($elapsed * 1000) / $calls, $percent, $memory,
 					($this->mMin[$fname] * 1000.0),
-					($this->mMax[$fname] * 1000.0));
+					($this->mMax[$fname] * 1000.0),
+					$this->mOverhead[$fname] );
 
 			global $wgProfileToDatabase;
 			if( $wgProfileToDatabase ) {
@@ -178,6 +200,23 @@ class Profiler
 		return $prof;
 	}
 
+	/**
+	 * Counts the number of profiled function calls sitting under
+	 * the given point in the call graph. Not the most efficient algo.
+	 *
+	 * @param array $stack
+	 * @param int $start
+	 * @return int
+	 * @access private
+	 */
+	function calltreeCount( &$stack, $start ) {
+		$level = $stack[$start][1];
+		$count = 0;
+		for( $i = $start - 1; $i >= 0 && $stack[$i][1] > $level; $i-- ) {
+			$count++;
+		}
+		return $count;
+	}
 
 	/**
 	 * @static
