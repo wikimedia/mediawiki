@@ -288,7 +288,7 @@ class EditPage {
 		$kblength = (int)(strlen( $this->textbox1 ) / 1024);
 		if( $kblength > 29 ) {
 			$wgOut->addHTML( "<strong>" .
-				wfMsg( "longpagewarning", $kblength )
+				wfMsg( "longpagewarning", $wgLang->formatNum( $kblength ) )
 				. "</strong>" );
 		}
 
