@@ -129,13 +129,15 @@ class ImagePage extends Article {
 	{
 		global $wgUser,$wgOut;
 		$sk = $wgUser->getSkin();
-		$wgOut->addHTML('<div class="editExternally">');
-		$wgOut->addHTML($sk->makeKnownLink($this->mTitle->getPrefixedDBkey(),wfMsg('edit-externally'),
-		"action=edit&externaledit=true&mode=file"));
-		$wgOut->addWikiText('<div class="editExternallyHelp">'.wfMsg('edit-externally-help'));
-		$wgOut->addHTML('</div><br clear="all"/>');
-			
+		$wgOut->addHTML( '<div class="editExternally">' );
+		$wgOut->addHTML( $sk->makeKnownLinkObj( $this->mTitle,
+			wfMsg( 'edit-externally' ),
+			"action=edit&externaledit=true&mode=file" ) );
+		$wgOut->addWikiText( '<div class="editExternallyHelp">' .
+			wfMsg('edit-externally-help') . '</div>' );
+		$wgOut->addHTML( '</div><br clear="all" />' );
 	}
+	
 	function closeShowImage()
 	{
 		# For overloading
@@ -489,10 +491,10 @@ class ImageHistoryList {
 			$url = htmlspecialchars( wfImageArchiveUrl( $img ) );
 			if( $wgUser->getID() != 0 && $wgTitle->userCanEdit() ) {
 				$token = urlencode( $wgUser->editToken( $img ) );
-				$rlink = $this->skin->makeKnownLink( $wgTitle->getPrefixedText(),
+				$rlink = $this->skin->makeKnownLinkObj( $wgTitle,
 				           wfMsg( 'revertimg' ), 'action=revert&oldimage=' .
 				           urlencode( $img ) . "&wpEditToken=$token" );
-				$dlink = $this->skin->makeKnownLink( $wgTitle->getPrefixedText(),
+				$dlink = $this->skin->makeKnownLinkObj( $wgTitle,
 				           $del, 'action=delete&oldimage=' . urlencode( $img ) .
 				           "&wpEditToken=$token" );
 			} else {
