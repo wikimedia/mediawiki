@@ -28,8 +28,8 @@ function getRebuildInterwikiSQL() {
 	$sites = array( 
 		'wiki' => new Site( 'wiki', 'w', 'wikipedia.org' ),
 		'wiktionary' => new Site( 'wiktionary', 'wikt', 'wiktionary.org' ),
-		'wikiquote' => new Site( 'wikiquote', 'wikiquote', 'wikiquote.org' ),
-		'wikibooks' => new Site( 'wikibooks', 'wikibooks', 'wikibooks.org' )
+		'wikiquote' => new Site( 'wikiquote', 'q', 'wikiquote.org' ),
+		'wikibooks' => new Site( 'wikibooks', 'b', 'wikibooks.org' )
 	);
 	$langlist = array_map( "trim", file( "/home/wikipedia/common/langlist" ) );
 	$dblist = array_map( "trim", file( "/home/wikipedia/common/all.dblist" ) );
@@ -51,6 +51,7 @@ function getRebuildInterwikiSQL() {
 	$languageAliases = array(
 		'zh-cn' => 'zh',
 		'zh-tw' => 'zh',
+		'dk' => 'da',
 	);
 
 	# Construct a list of reserved prefixes
@@ -123,7 +124,7 @@ function getRebuildInterwikiSQL() {
 
 			# Extra links
 			foreach ( $extraLinks as $link ) {
-					$sql .= makeLink( $link, $first );
+				$sql .= makeLink( $link, $first );
 			}
 			
 			$sql .= ";\n";
@@ -152,7 +153,12 @@ function getRebuildInterwikiSQL() {
 
 			# Intermap links
 			foreach ( $iwArray as $iwEntry ) {
-				$sql .= makeLink( $iwEntry, $first );
+				# Suppress links with the same name as the site
+				if ( ( $suffix == 'wiki' && $iwEntry['iw_prefix'] != 'wikipedia' ) || 
+				  ( $suffix != 'wiki' && $suffix != $iwEntry['iw_prefix'] ) ) 
+				{
+					$sql .= makeLink( $iwEntry, $first );
+				}
 			}
 
 			# Lateral links
