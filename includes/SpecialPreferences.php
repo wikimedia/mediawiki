@@ -19,7 +19,7 @@ function wfSpecialPreferences()
 	if ( isset( $wpReset ) ) {
 		resetPrefs();
 		mainPrefsForm( WfMsg( "prefsreset" ) );
-	} else if ( "submit" == $action || isset( $wpSaveprefs ) ) {
+	} else if ( isset( $_POST['wpSaveprefs'] ) ) {
 		savePreferences();
 	} else {
 		resetPrefs();
@@ -215,8 +215,8 @@ function wfSpecialPreferences()
 	$dateopts = $wgLang->getDateFormats();
 	$togs = $wgLang->getUserToggles();
 
-	$action = wfLocalUrlE( $wgLang->specialPage( "Preferences" ),
-	  "action=submit" );
+	$action = wfLocalUrlE( $wgLang->specialPage( "Preferences" ));
+
 	$qb = wfMsg( "qbsettings" );
 	$cp = wfMsg( "changepassword" );
 	$sk = wfMsg( "skin" );
