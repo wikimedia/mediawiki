@@ -490,9 +490,13 @@
 			$nav_urls['upload'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Upload')));
 			$nav_urls['specialpages'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Specialpages')));
 			
-			
-			$id=User::idFromName($wgTitle->getText());
-			$ip=User::isIP($wgTitle->getText());
+			if( $wgTitle->getNamespace() == NS_USER || $wgTitle->getNamespace() == NS_USER_TALK ) {
+				$id = User::idFromName($wgTitle->getText());
+				$ip = User::isIP($wgTitle->getText());
+			} else {
+				$id = 0;
+				$ip = false;
+			}
 
 			if($id || $ip) { # both anons and non-anons have contri list
 				$nav_urls['contributions'] = array(
