@@ -15,9 +15,7 @@
 		$wgMessageCache->disableTransform();
 		foreach ( $sortedArray as $key => $enMsg ) {
 			$messages[$key]['enmsg'] = $enMsg;
-		$wgMessageCache->disable();
-			$messages[$key]['statmsg'] = wfMsg( $key );
-		$wgMessageCache->enable();
+			$messages[$key]['statmsg'] = wfMsgNoDb( $key );
 			$messages[$key]['msg'] = wfMsg ( $key );
 		}
 		if ($ot == 'php') {
@@ -34,7 +32,7 @@
 		$txt = "\n\n".'$wgAllMessages'.ucfirst($wgLanguageCode).' = array('."\n";
 		foreach( $messages as $key => $m ) {
 			if(strtolower($wgLanguageCode) != 'en' and $m['msg'] == $m['enmsg'] ) {
-				$comment = ' #default';
+				$txt .= '#';
 			} elseif ($m['msg'] == '&lt;'.$key.'&gt;'){
 				$m['msg'] = '';
 				$comment = ' #empty';
