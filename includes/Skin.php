@@ -1673,12 +1673,14 @@ class Skin {
 	}
 	/*static*/ function makeTalkUrl ( $name, $urlaction='' ) {
 		$title = Title::newFromText( $name );
+		$this->checkTitle($title, $name);	
 		$title = $title->getTalkPage();
 		$this->checkTitle($title, $name);	
 		return $title->getLocalURL( $urlaction );
 	}
 	/*static*/ function makeArticleUrl ( $name, $urlaction='' ) {
 		$title = Title::newFromText( $name );
+		$this->checkTitle($title, $name);	
 		$title= $title->getSubjectPage();
 		$this->checkTitle($title, $name);	
 		return $title->getLocalURL( $urlaction );
