@@ -113,6 +113,6 @@ MediaWiki namespace:
 	key: $wgDBname:messages
 	ex: wikidb:messages
 	stores: an array where the keys are DB keys and the values are messages
-	set in: wfMsg()
-	cleared by: Article::editUpdates()
+	set in: wfMsg(), Article::editUpdates() both call wfLoadAllMessages()
+	cleared by: nothing
 ... more to come ...

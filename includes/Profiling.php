@@ -48,15 +48,19 @@ class Profiler
 		global $wgDebugProfiling;
 		$bit = array_pop( $this->mWorkStack );
 		
-		if ( $wgDebugProfiling ) {
-			if ( $functionname == "close" ) {
-				wfDebug( "Profile section ended by close(): {$bit[0]}\n" );
-			} elseif ( $bit[0] != $functionname ) {
-				wfDebug( "Profiling error: in({$bit[0]}), out($functionname)\n" );
+		if ( !$bit ) {
+			wfDebug( "Profiling error, !\$bit: $functionname\n" );
+		} else {
+			if ( $wgDebugProfiling ) {
+				if ( $functionname == "close" ) {
+					wfDebug( "Profile section ended by close(): {$bit[0]}\n" );
+				} elseif ( $bit[0] != $functionname ) {
+					wfDebug( "Profiling error: in({$bit[0]}), out($functionname)\n" );
+				}
 			}
+			array_push( $bit, microtime() );
+			array_push( $this->mStack, $bit );
 		}
-		array_push( $bit, microtime() );
-		array_push( $this->mStack, $bit );
 	}
 	
 	function close() 

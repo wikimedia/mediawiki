@@ -97,6 +97,7 @@ class Article {
 		$t = $this->mTitle->getPrefixedText();
 		if ( $oldid ) { $t .= ",oldid={$oldid}"; }
 		if ( $redirect ) { $t .= ",redirect={$redirect}"; }
+
 		$this->mContent = str_replace( "$1", $t, wfMsg( "missingarticle" ) );
 
 		if ( ! $oldid ) {	# Retrieve current version
@@ -106,11 +107,13 @@ class Article {
 			$sql = "SELECT " .
 			  "cur_text,cur_timestamp,cur_user,cur_counter,cur_restrictions,cur_touched " .
 			  "FROM cur WHERE cur_id={$id}";
+			wfDebug( "$sql\n" );
 			$res = wfQuery( $sql, DB_READ, $fname );
-			if ( 0 == wfNumRows( $res ) ) { return; }
+			if ( 0 == wfNumRows( $res ) ) { 
+				return; 
+			}
 
 			$s = wfFetchObject( $res );
-
 			# If we got a redirect, follow it (unless we've been told
 			# not to by either the function parameter or the query
 			if ( ( "no" != $redirect ) && ( false == $noredir ) &&
@@ -146,6 +149,7 @@ class Article {
 					}
 				}
 			}
+
 			$this->mContent = $s->cur_text;
 			$this->mUser = $s->cur_user;
 			$this->mCounter = $s->cur_counter;
@@ -989,7 +993,12 @@ class Article {
 			array_push( $wgDeferredUpdateList, $u );
 
 			if ( $this->getNamespace == NS_MEDIAWIKI ) {
-				$wgMemc->delete( "$wgDBname:messages" );
+				$messageCache = $wgMemc->get( "$wgDBname:messages" );
+				if (!$messageCache) {
+					$messageCache = wfLoadAllMessages();
+				}
+				$messageCache[$title] = $text;
+				$wgMemc->set( "$wgDBname:messages" );
 			}
 		}
 	}
@@ -1074,7 +1083,7 @@ class Article {
 		# {{SUBST:xxx}} variables
 		#
 		$mw =& MagicWord::get( MAG_SUBST );
-		$text = $mw->substituteCallback( $text, "replaceMsgVar" );
+		$text = $mw->substituteCallback( $text, "wfReplaceSubstVar" );
 
 		return $text;
 	}
@@ -1129,6 +1138,10 @@ class Article {
 	}
 	
 
+}
+
+function wfReplaceSubstVar( $matches ) {
+	return wfMsg( $matches[1] );
 }
 
 ?>

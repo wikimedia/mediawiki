@@ -97,6 +97,12 @@ function wfQuery( $sql, $db, $fname = "" )
 {
 	global $wgLastDatabaseQuery, $wgOut;
 ##	wfProfileIn( "wfQuery" );
+
+	if ( !is_numeric( $db ) ) {
+		# Someone has tried to call this the old way
+		$wgOut->fatalError( wfMsgNoDB( "wrong_wfQuery_params" ) );
+	}
+	
 	$wgLastDatabaseQuery = $sql;
 	$conn = wfGetDB();
 	$ret = mysql_query( $sql, $conn );
