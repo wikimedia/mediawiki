@@ -68,7 +68,7 @@ class WatchedItem {
 		$enewtitle = wfStrencode( $newtitle );
 
 		$sql = "SELECT wl_user FROM watchlist
-			WHERE wl_namespace={$oldnamespace} AND wl_title='{$oldtitle}'";
+			WHERE wl_namespace={$oldnamespace} AND wl_title='{$eoldtitle}'";
 		$res = wfQuery( $sql, DB_READ, $fname );
 		if( $s = wfFetchObject( $res ) ) {
 			$sql = "REPLACE INTO watchlist (wl_user,wl_namespace,wl_title)
