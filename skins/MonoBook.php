@@ -111,6 +111,7 @@ class MonoBookTemplate extends QuickTemplate {
 	    href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href'])?>"
 	    title="<?php $this->msg('mainpage') ?>"></a>
 	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
 	<div class="portlet" id="p-nav">
 	  <h5><?php $this->msg('navigation') ?></h5>
 	  <div class="pBody">

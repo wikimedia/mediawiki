@@ -2,6 +2,7 @@
 
 var isMSIE55 = (window.showModalDialog && window.clipboardData && window.createPopup);
 var doneIETransform;
+var doneIEAlphaFix;
 
 if (document.attachEvent)
   document.attachEvent('onreadystatechange', hookit);
@@ -9,33 +10,45 @@ if (document.attachEvent)
 function hookit() {
     if (!doneIETransform && document.getElementById && document.getElementById('bodyContent')) {
         doneIETransform = true;
-        fixalpha();
         relativeforfloats();
+        fixalpha();
     }
 }
 
 // png alpha transparency fixes
 function fixalpha() {
     // bg
-    if (isMSIE55) {
-        var plogo = document.getElementById('p-logo');
-        var logoa = plogo.getElementsByTagName('a')[0];
-        var bg = logoa.currentStyle.backgroundImage;
-        var imageUrl = bg.substring(5, bg.length-2);
+    if (!doneIEAlphaFix)
+    {
+      doneIEAlphaFix = true;
+      var plogo = document.getElementById('p-logo');
+      var logoa = plogo.getElementsByTagName('a')[0];
+      var bg = logoa.currentStyle.backgroundImage;
+      var imageUrl = bg.substring(5, bg.length-2);
 
-        if (imageUrl.substr(imageUrl.length-4).toLowerCase() == '.png') {
-            var logospan = logoa.appendChild(document.createElement('span'));
-           
-            logoa.style.backgroundImage = 'none';
-            logospan.style.filter = 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='+imageUrl+')';
-            logospan.style.height = '100%';
-            logospan.style.position = 'absolute';
-            logospan.style.width = '100%';
-            logospan.style.cursor = 'hand';
-            // Center image with hack for IE5.5
+      if (imageUrl.substr(imageUrl.length-4).toLowerCase() == '.png') {
+          var logospan = logoa.appendChild(document.createElement('span'));
+         
+          logoa.style.backgroundImage = 'none';
+          logospan.style.filter = 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src=' + imageUrl + ')';
+          logospan.style.height = '100%';
+          logospan.style.position = 'absolute';
+          logospan.style.width = logoa.currentStyle.width;
+          logospan.style.cursor = 'hand';
+          // Center image with hack for IE5.5
+          if (document.documentElement.dir == "rtl") 
+          {
+            logospan.style.right = '50%';
+            logospan.style.setExpression('marginRight', '"-" + (this.offsetWidth / 2) + "px"');
+          }
+          else
+          {
             logospan.style.left = '50%';
             logospan.style.setExpression('marginLeft', '"-" + (this.offsetWidth / 2) + "px"');
-        }
+          }
+          logospan.style.top = '50%';
+          logospan.style.setExpression('marginTop', '"-" + (this.offsetHeight / 2) + "px"');
+      }
     }
 }
 
