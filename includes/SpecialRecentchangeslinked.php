@@ -65,6 +65,8 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		$cmq = 'AND rev_minor_edit=0';
 	} else { $cmq = ''; }
 
+	extract( $dbr->tableNames( 'categorylinks', 'links', 'revision', 'page' ) );
+	
 	// If target is a Category, use categorylinks and invert from and to
 	if( $nt->getNamespace() == NS_CATEGORY ) {
 		$catkey = $dbr->addQuotes( $nt->getDBKey() );
