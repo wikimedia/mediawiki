@@ -1641,6 +1641,7 @@ cl_sortkey" ;
 		$found = false;
 		$nowiki = false;
 		$noparse = false;
+		$brokenlink = false;
 
 		$title = NULL;
 
@@ -1786,6 +1787,7 @@ cl_sortkey" ;
 				# If the title is valid but undisplayable, make a link to it
 				if ( $this->mOutputType == OT_HTML && !$found ) {
 					$text = '[[' . $title->getPrefixedText() . ']]';
+					$brokenlink = true;
 					$found = true;
 				}
 			}
@@ -1837,13 +1839,30 @@ cl_sortkey" ;
 		} else {
 			# replace ==section headers==
 			# XXX this needs to go away once we have a better parser.
-			if ( $this->mOutputType != OT_WIKI ) {
-				for ( $i = 1; $i <= 6; ++$i ) {
-					$h = substr( '======', 0, $i );
-					$text = preg_replace( "/^{$h}([^=].*){$h}\\s?$/m",
-					  "${h}\\1 __MWTEMPLATESECTION__${h}\\2", $text );
+                       if ( $this->mOutputType != OT_WIKI && !$brokenlink ) {
+                               if( !is_null( $title ) )
+                                       $encodedname = base64_encode($title->getPrefixedDBkey());
+                               else
+                                       $encodedname = base64_encode("");
+                               $matches = preg_split('/(^={1,6}.*?={1,6}\s*?$)/m', $text, -1,
+                                       PREG_SPLIT_DELIM_CAPTURE);
+                               $text = '';
+                               $nsec = 0;
+                               for( $i = 0; $i < count($matches); $i += 2 ) {
+                                       if ($matches[$i] == "" && $matches[$i + 1] == "") break;
+                                       $text .= $matches[$i];
+                                       $hl = $matches[$i + 1];
+                                       if( strstr($hl, "__MWTEMPLATESECTION") ) {
+                                               $text .= $hl;
+                                               continue;
+                                       }
+                                       preg_match('/^(={1,6})(.*?)(={1,6})\s*?$/m', $hl, $m2);
+                                       $text .= $m2[1] . $m2[2] . "__MWTEMPLATESECTION="
+                                               . $encodedname . "&" . base64_encode("$nsec") . "__" . $m2[3];
+
+                                       $nsec++;
 				}
-			}
+                        }
 			return $text;
 		}
 	}
@@ -2082,9 +2101,14 @@ cl_sortkey" ;
 		$prevlevel = 0;
 		foreach( $matches[3] as $headline ) {
 			$istemplate = 0;
-			if (strstr($headline, "__MWTEMPLATESECTION__")) {
+			$templatetitle = "";
+			$templatesection = 0;
+
+			if (preg_match("/__MWTEMPLATESECTION=([^&]+)&([^_]+)__/", $headline, $mat)) {
 				$istemplate = 1;
-				$headline = str_replace("__MWTEMPLATESECTION__", "", $headline);
+				$templatetitle = base64_decode($mat[1]);
+				$templatesection = 1 + (int)base64_decode($mat[2]);
+				$headline = preg_replace("/__MWTEMPLATESECTION=([^&]+)&([^_]+)__/", "", $headline);
 			}
 			$numbering = '';
 			if( $level ) {
@@ -2158,11 +2182,15 @@ cl_sortkey" ;
 			if( $doShowToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
 				$toc .= $sk->tocLine($anchor,$tocline,$toclevel);
 			}
-			if( $showEditLink && !$istemplate ) {
+			if( $showEditLink && ( !$istemplate || $templatetitle !== "" ) ) {
 				if ( empty( $head[$headlineCount] ) ) {
 					$head[$headlineCount] = '';
 				}
-				$head[$headlineCount] .= $sk->editSectionLink($sectionCount+1);
+                                if( $istemplate )
+                                        $head[$headlineCount] .= $sk->editSectionLinkForOther($templatetitle, $templatesection);
+                                else
+                                        $head[$headlineCount] .= $sk->editSectionLink($sectionCount+1);
+
 			}
 
 			# Add the edit section span

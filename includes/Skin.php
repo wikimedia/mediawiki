@@ -2597,6 +2597,24 @@ class Skin {
 		return '<span oncontextmenu=\'document.location="'.$url.'";return false;\'>'.$head.'</span>';
 	}
 
+        function editSectionLinkForOther( $title, $section ) {
+                global $wgRequest;
+                global $wgUser, $wgLang;
+                                                                                                                             
+                $title = Title::newFromText($title);
+                $editurl = '&section='.$section;
+                $url = $this->makeKnownLink($title->getPrefixedText(),wfMsg('editsection'),'action=edit'.$editurl);
+                                                                                                                             
+                if( $wgLang->isRTL() ) {
+                        $farside = 'left';
+                        $nearside = 'right';
+                } else {
+                        $farside = 'right';
+                        $nearside = 'left';                 }
+                return "<div class=\"editsection\" style=\"float:$farside;margin-$nearside:5px;\">[".$url."]</div>";
+                                                                                                                             
+        }
+
 	function editSectionLink( $section ) {
 		global $wgRequest;
 		global $wgTitle, $wgUser, $wgLang;
