@@ -1,4 +1,5 @@
 <?php
+# $Id$
 # Basic support for outputting syndication feeds in RSS, other formats
 # 
 # Copyright (C) 2004 Brion Vibber <brion@pobox.com>
@@ -170,7 +171,7 @@ class RSSFeed extends ChannelFeed {
 	 * @return string Date string
 	 */
 	function formatTime( $ts ) {
-		return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp2Unix( $ts ) );
+		return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp( TS_UNIX, $ts ) );
 	}
 	
 	/**
@@ -229,7 +230,7 @@ class AtomFeed extends ChannelFeed {
 	 */
 	function formatTime( $ts ) {
 		// need to use RFC 822 time format at least for rss2.0
-		return gmdate( 'Y-m-d\TH:i:s', wfTimestamp2Unix( $ts ) );
+		return gmdate( 'Y-m-d\TH:i:s', wfTimestamp( TS_UNIX, $ts ) );
 	}
 
 	/**
