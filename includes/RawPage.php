@@ -30,8 +30,6 @@ class RawPage {
 		echo $this->getrawtext();
 		wfAbruptExit();
 	}
-
-
 	
 	function getrawtext () {
 		global $wgInputEncoding, $wgLang;

@@ -536,8 +536,8 @@ class OutputPage {
 		if($source) {
 			$rows = $wgUser->getOption( "rows" );
 			$cols = $wgUser->getOption( "cols" );
-			$text = "</p>\n<textarea cols='$cols' rows='$rows' readonly>" .
-				htmlspecialchars( $source ) . "\n</textarea>";
+			$text = "</p>\n<div class='tawrapper'><textarea cols='$cols' rows='$rows' readonly>" .
+				htmlspecialchars( $source ) . "\n</textarea></div>";
 			$this->addHTML( $text );
 		}
 		
