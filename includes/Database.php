@@ -8,6 +8,7 @@ define( "DB_LAST", -3 );
 
 define( "LIST_COMMA", 0 );
 define( "LIST_AND", 1 );
+define( "LIST_SET", 2 );
 
 class Database {
 
@@ -63,7 +64,11 @@ class Database {
 	function Database()
 	{
 		global $wgOut;
-		$this->mOut = $wgOut;
+		# Can't get a reference if it hasn't been set yet
+		if ( !isset( $wgOut ) ) {
+			$wgOut = NULL;
+		}
+		$this->mOut =& $wgOut;
 	
 	}
 	
@@ -100,7 +105,7 @@ class Database {
 					wfDebug( "Error selecting database \"$dbName\": " . $this->lastError() . "\n" );
 				}
 			} else {
-				wfDebug( "DB connect error: " . $this->lastError() . "\n" );
+				wfDebug( "DB connection error\n" );
 				wfDebug( "Server: $server, User: $user, Password: " . 
 					substr( $password, 0, 3 ) . "...\n" );
 				$success = false;
@@ -223,7 +228,7 @@ class Database {
 		return !!$this->query( $sql, DB_WRITE, $fname );
 	}
 	
-	# Simple SELECT wrapper
+	# Simple SELECT wrapper, returns a single field, input must be encoded
 	# Usually aborts on failure
 	# If errors are explicitly ignored, returns FALSE on failure
 	function get( $table, $var, $cond, $fname = "Database::get" )
@@ -249,7 +254,7 @@ class Database {
 	{
 		$vars = implode( ",", $vars );
 		$where = Database::makeList( $conds, LIST_AND );
-		$sql = "SELECT $vars FROM $table WHERE $where";
+		$sql = "SELECT $vars FROM $table WHERE $where LIMIT 1";
 		$res = $this->query( $sql, $fname );
 		if ( $res === false || !$this->numRows( $res ) ) {
 			return false;
@@ -372,10 +377,19 @@ class Database {
 		return !!$this->query( $sql, $fname );
 	}
 	
+	# A cross between insertArray and getArray, takes a condition array and a SET array
+	function updateArray( $table, $values, $conds, $fname = "Database::updateArray" )
+	{
+		$sql = "UPDATE $table SET " . $this->makeList( $values, LIST_SET );
+		$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
+		$this->query( $sql, $fname );
+	}
+	
 	# Makes a wfStrencoded list from an array
-	# $mode: LIST_COMMA - comma separated
+	# $mode: LIST_COMMA - comma separated, no field names
 	#        LIST_AND   - ANDed WHERE clause (without the WHERE)
-	/* static */ function makeList( $a, $mode = LIST_COMMA)
+	#        LIST_SET   - comma separated with field names, like a SET clause
+	/* static */ function makeList( $a, $mode = LIST_COMMA )
 	{
 		$first = true;
 		$list = "";
@@ -389,10 +403,10 @@ class Database {
 			} else {
 				$first = false;
 			}
-			if ( $mode == LIST_AND ) {
+			if ( $mode == LIST_AND || $mode == LIST_SET ) {
 				$list .= "$field=";
 			}
-			if ( is_string( $value ) ) {
+			if ( !is_numeric( $value ) ) {
 				$list .= "'" . wfStrencode( $value ) . "'";
 			} else {
 				$list .= $value;
@@ -441,7 +455,7 @@ function wfEmergencyAbort( &$conn ) {
 		} else {
 			if($title) {
 				$t = Title::newFromURL( $title );
-			} elseif ($_REQUEST['search']) {
+			} elseif (@$_REQUEST['search']) {
 				$search = $_REQUEST['search'];
 				echo wfMsgNoDB( "searchdisabled" );
 				echo wfMsgNoDB( "googlesearch", htmlspecialchars( $search ), $wgInputEncoding );
