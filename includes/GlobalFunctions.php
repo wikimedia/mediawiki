@@ -5,10 +5,9 @@ $wgNumberOfArticles = -1; # Unset
 $wgTotalViews = -1;
 $wgTotalEdits = -1;
 
-global $IP;
-include_once( "$IP/DatabaseFunctions.php" );
-include_once( "$IP/UpdateClasses.php" );
-include_once( "$IP/LogPage.php" );
+include_once( "DatabaseFunctions.php" );
+include_once( "UpdateClasses.php" );
+include_once( "LogPage.php" );
 
 /*
  * Compatibility functions

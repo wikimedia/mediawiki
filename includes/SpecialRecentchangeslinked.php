@@ -1,6 +1,5 @@
 <?
-global $IP;
-include_once( "$IP/SpecialRecentchanges.php" );
+include_once( "SpecialRecentchanges.php" );
 
 function wfSpecialRecentchangeslinked( $par = NULL )
 {

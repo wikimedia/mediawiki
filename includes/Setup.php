@@ -5,13 +5,11 @@
 # setting up a few globals.
 #
 
-global $IP;
-
 if( !isset( $wgProfiling ) )
 	$wgProfiling = false;
 
 if ( $wgProfiling ) {
-	include_once( "$IP/Profiling.php" );
+	include_once( "Profiling.php" );
 } else {
 	function wfProfileIn( $fn ) {}
 	function wfProfileOut( $fn = "" ) {}
@@ -25,19 +23,19 @@ wfProfileIn( "$fname-includes" );
 
 # Only files which are used on every invocation should be included here
 # Otherwise, include them conditionally [TS]
-include_once( "$IP/GlobalFunctions.php" );
-include_once( "$IP/Namespace.php" );
-include_once( "$IP/Skin.php" );
-include_once( "$IP/OutputPage.php" );
-include_once( "$IP/User.php" );
-include_once( "$IP/LinkCache.php" );
-include_once( "$IP/Title.php" );
-include_once( "$IP/Article.php" );
-include_once( "$IP/MagicWord.php" );
-include_once( "$IP/MemCachedClient.inc.php" );
-include_once( "$IP/Block.php" );
-include_once( "$IP/SearchEngine.php" );
-include_once( "$IP/DifferenceEngine.php" );
+include_once( "GlobalFunctions.php" );
+include_once( "Namespace.php" );
+include_once( "Skin.php" );
+include_once( "OutputPage.php" );
+include_once( "User.php" );
+include_once( "LinkCache.php" );
+include_once( "Title.php" );
+include_once( "Article.php" );
+include_once( "MagicWord.php" );
+include_once( "MemCachedClient.inc.php" );
+include_once( "Block.php" );
+include_once( "SearchEngine.php" );
+include_once( "DifferenceEngine.php" );
 
 wfProfileOut( "$fname-includes" );
 wfProfileIn( "$fname-memcached" );
@@ -66,21 +64,21 @@ if( $wgUseMemCached ) {
 wfProfileOut( "$fname-memcached" );
 wfProfileIn( "$fname-misc" );
 
-include_once( "$IP/Language.php" );
+include_once( "Language.php" );
 
 $wgOut = new OutputPage();
 wfDebug( "\n\n" );
 
 $wgLangClass = "Language" . ucfirst( $wgLanguageCode );
 if( ! class_exists( $wgLangClass ) ) {
-	include_once( "$IP/LanguageUtf8.php" );
+	include_once( "LanguageUtf8.php" );
 	$wgLangClass = "LanguageUtf8";
 }
 $wgLang = new $wgLangClass();
 
 if( !$wgCommandLineMode ) {
 	if( $wgSessionsInMemcached ) {
-		include_once( "$IP/MemcachedSessions.php" );
+		include_once( "MemcachedSessions.php" );
 	}
 	session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain );
 	session_cache_limiter( "private, must-revalidate" );
