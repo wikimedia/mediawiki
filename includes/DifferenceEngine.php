@@ -19,7 +19,7 @@ class DifferenceEngine {
 
 	function showDiffPage()
 	{
-		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgOnlySysopsCanPatrol;
+		global $wgUser, $wgTitle, $wgOut, $wgLang, $wgOnlySysopsCanPatrol, $wgUseRCPatrol;
 		$fname = "DifferenceEngine::showDiffPage";
 		wfProfileIn( $fname );
 
@@ -74,8 +74,9 @@ class DifferenceEngine {
 		} else {
 			$rollback = "";
 		}
-		if ( $this->mRcidMarkPatrolled != 0 && $wgUser->getID() != 0 &&
-		     ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) )
+		if ( $wgUseRCPatrol && 
+		       ($this->mRcidMarkPatrolled != 0 && $wgUser->getID() != 0 &&
+		       ( $wgUser->isSysop() || !$wgOnlySysopsCanPatrol ) ) )
 		{
 			$patrol = " [" . $sk->makeKnownLinkObj( $wgTitle, wfMsg( 'markaspatrolleddiff' ),
 				"action=markpatrolled&rcid={$this->mRcidMarkPatrolled}" ) . "]";

@@ -477,6 +477,9 @@ $wgUseValidation = false;
 # extensions package)
 $wgUseExternalDiffEngine = false;
 
+# Use RC Patrolling to check for vandalism
+$wgUseRCPatrol = true;
+
 } else {
 	die();
 }
