@@ -35,42 +35,41 @@ include_once("Utf8Case.php");
 );
 
 /* private */ $wgSkinNamesHu = array(
-	"Standard", "Nostalgia", "Cologne Blue"
+	"Alap", "Nosztalgia", "Kölni kék"
 );
 
 /* private */ $wgMathNamesHu = array(
-	"Always render PNG",
-	"HTML if very simple or else PNG",
-	"HTML if possible or else PNG",
-	"Leave it as TeX (for text browsers)",
-	"Recommended for modern browsers"
+	"Mindig készítsen PNG-t",
+	"HTML ha nagyon egyszerű, egyébként PNG",
+	"HTML ha lehetséges, egyébként PNG",
+	"Hagyja TeX formában (szöveges böngészőknek)",
+	"Modern böngészőknek ajánlott beállítás"
 );
 
 /* private */ $wgDateFormatsHu = array(
 	"Mindegy",
-	"January 15, 2001",
-	"15 January, 2001",
-	"2001 January 15"
+	"Július 8, 2003",
+	"8 Július, 2003",
+	"2003 Július 8"
 );
 
 /* private */ $wgUserTogglesHu = array(
-	"hover"		=> "Show hoverbox over wiki links",
-	"underline" => "Underline links",
-	"highlightbroken" => "Format broken links <a href=\"\" class=\"new\">like
-this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "Justify paragraphs",
-	"hideminor" => "Hide minor edits in recent changes",
-	"usenewrc" => "Enhanced recent changes (not for all browsers)",
-	"numberheadings" => "Auto-number headings",
-	"editsection"=>"Show links for editing individual sections",
-	"showtoc"=>"Show table of contents for articles with more than 3 headings",
-	"rememberpassword" => "Remember password across sessions",
-	"editwidth" => "Edit box has full width",
-	"editondblclick" => "Edit pages on double click (JavaScript)",
-	"watchdefault" => "Watch new and modified articles",
-	"minordefault" => "Mark all edits minor by default",
-	"previewontop" => "Show preview before edit box and not after it",
-	"nocache" => "Disable page caching"
+	"hover"		=> "Mutassa a címdobozt a linkek fölött",
+	"underline" => "Linkek aláhúzása",
+	"highlightbroken" => "Törött linkek <a href=\"\" class=\"new\">így</a> (alternatíva: így<a href=\"\" class=\"internal\">?</a>).",
+	"justify"	=> "Bekezdések teljes szélességű tördelése",
+	"hideminor" => "Apró változtatások elrejtése a recent changes-ben",
+	"usenewrc" => "Modern változások listája (nem minden böngészőre)",
+	"numberheadings" => "Címsorok automatikus számozása",
+	"editsection"=>"Linkek az egyes szakaszok szerkesztéséhez",
+	"showtoc"=>"Három fejezetnél többel rendelkező cikkeknél mutasson tartalomjegyzéket",
+	"rememberpassword" => "Jelszó megjegyzése a használatok között",
+	"editwidth" => "Teljes szélességű szerkesztőterület",
+	"editondblclick" => "Lapon duplakattintásra szerkesztés (JavaScript)",
+	"watchdefault" => "Figyelje az új és a megváltoztatott cikkeket",
+	"minordefault" => "Alapból minden szerkesztést jelöljön aprónak",
+	"previewontop" => "Előnézet a szerkesztőterület előtt és nem utána",
+	"nocache" => "Lapok gyorstárazásának letiltása"
 );
 
 /* private */ $wgBookstoreListHu = array(
@@ -80,164 +79,22 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgLanguageNamesHu = array(
-	"aa"    => "Afar",
-	"ab"    => "Abkhazian",
-	"af"	=> "Afrikaans",
-	"am"	=> "Amharic",
-	"ar" => "&#8238;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;&#8236; (Araby)",
-	"as"	=> "Assamese",
-	"ay"	=> "Aymara",
-	"az"	=> "Azerbaijani",
-	"ba"	=> "Bashkir",
-	"be" => "&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1080;",
-	"bh"	=> "Bihara",
-	"bi"	=> "Bislama",
-	"bn"	=> "Bengalese",
-	"bo"	=> "Tibetian",
-	"br" => "Brezhoneg",
-	"bs" => "Bosnian",
-	"ca" => "Catal&#224;",
-	"ch" => "Chamoru",
-	"co"	=> "Corsican",
-	"cs" => "&#268;esk&#225;",
-	"cy" => "Cymraeg",
-	"da" => "Dansk", # Note two different subdomains.
-	"dk" => "Dansk", # 'da' is correct for the language.
-	"de" => "Deutsch",
-	"dz"	=> "Bhutani",
-	"el" => "&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940; (Ellenika)",
-	"en"	=> "English",
-	"eo"	=> "Esperanto",
-	"es" => "Espa&#241;ol",
-	"et" => "Eesti",
-	"eu" => "Euskara",
-	"fa" => "&#8238;&#1601;&#1585;&#1587;&#1609;&#8236; (Farsi)",
-	"fi" => "Suomi",
-	"fj"	=> "Fijian",
-	"fo"	=> "Faeroese",
-	"fr" => "Fran&#231;ais",
-	"fy" => "Frysk",
-	"ga" => "Gaelige",
-	"gl"	=> "Galician",
-	"gn"	=> "Guarani",
-	"gu" => "&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752; (Gujarati)",
-	"ha"	=> "Hausa",
-	"he" => "&#1506;&#1489;&#1512;&#1497;&#1514; (Ivrit)",
-	"hi" => "&#2361;&#2367;&#2344;&#2381;&#2342;&#2368; (Hindi)",
-	"hr" => "Hrvatski",
-	"hu" => "Magyar",
-	"hy"	=> "Armenian",
-	"ia"	=> "Interlingua",
-	"id"	=> "Indonesia",
-	"ik"	=> "Inupiak",
-	"is" => "&#205;slenska",
-	"it" => "Italiano",
-	"iu"	=> "Inuktitut",
-	"ja" => "&#26085;&#26412;&#35486; (Nihongo)",
-	"jv"	=> "Javanese",
-	"ka" => "&#4325;&#4304;&#4320;&#4311;&#4309;&#4308;&#4314;&#4312; (Kartuli)",
-	"kk"	=> "Kazakh",
-	"kl"	=> "Greenlandic",
-	"km"	=> "Cambodian",
-	"kn"	=> "Kannada",
-	"ko" => "&#54620;&#44397;&#50612; (Hangukeo)",
-	"ks"	=> "Kashmiri",
-	"kw" => "Kernewek",
-	"ky"	=> "Kirghiz",
-	"la" => "Latina",
-	"ln"	=> "Lingala",
-	"lo"	=> "Laotian",
-	"lt" => "Lietuvi&#371;",
-	"lv"	=> "Latvian",
-	"mg" => "Malagasy",
-	"mi"	=> "Maori",
-	"mk"	=> "Macedonian",
-	"ml"	=> "Malayalam",
-	"mn"	=> "Mongolian",
-	"mo"	=> "Moldavian",
-	"mr"	=> "Marathi",
-	"ms" => "Bahasa Melayu",
-	"my"	=> "Burmese",
-	"na"	=> "Nauru",
-	"ne" => "&#2344;&#2375;&#2346;&#2366;&#2354;&#2368; (Nepali)",
-	"nl" => "Nederlands",
-	"no" => "Norsk",
-	"oc"	=> "Occitan",
-	"om"	=> "Oromo",
-	"or"	=> "Oriya",
-	"pa"	=> "Punjabi",
-	"pl" => "Polski",
-	"ps"	=> "Pashto",
-	"pt" => "Portugu&#234;s",
-	"qu"	=> "Quechua",
-	"rm"	=> "Rhaeto-Romance",
-	"rn"	=> "Kirundi",
-	"ro" => "Rom&#226;n&#259;",
-	"ru" => "&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081; (Russkij)",
-	"rw"	=> "Kinyarwanda",
-	"sa" => "&#2360;&#2306;&#2360;&#2381;&#2325;&#2371;&#2340; (Samskrta)",
-	"sd"	=> "Sindhi",
-	"sg"	=> "Sangro",
-	"sh"	=> "Serbocroatian",
-	"si"	=> "Sinhalese",
-	"simple" => "Simple English",
-	"sk"	=> "Slovak",
-	"sl"	=> "Slovensko",
-	"sm"	=> "Samoan",
-	"sn"	=> "Shona",
-	"so" => "Soomaali",
-	"sq" => "Shqiptare",
-	"sr" => "Srpski",
-	"ss"	=> "Siswati",
-	"st"	=> "Sesotho",
-	"su"	=> "Sudanese",
-	"sv" => "Svenska",
-	"sw" => "Kiswahili",
-	"ta"	=> "Tamil",
-	"te"	=> "Telugu",
-	"tg"	=> "Tajik",
-	"th"	=> "Thai",
-	"ti"	=> "Tigrinya",
-	"tk"	=> "Turkmen",
-	"tl"	=> "Tagalog",
-	"tn"	=> "Setswana",
-	"to"	=> "Tonga",
-	"tr" => "T&#252;rk&#231;e",
-	"ts"	=> "Tsonga",
-	"tt"	=> "Tatar",
-	"tw"	=> "Twi",
-	"ug"	=> "Uighur",
-	"uk" => "&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072; (Ukrayins`ka)",
-	"ur"	=> "Urdu",
-	"uz"	=> "Uzbek",
-	"vi"	=> "Vietnamese",
-	"vo" => "Volap&#252;k",
-	"wo"	=> "Wolof",
-	"xh" => "isiXhosa",
-	"yi"	=> "Yiddish",
-	"yo"	=> "Yoruba",
-	"za"	=> "Zhuang",
-	"zh" => "&#20013;&#25991; (Zhongwen)",
-	"zh-cn" => "&#20013;&#25991;(&#31616;&#20307;) (Simplified Chinese)",
-	"zh-tw" => "&#20013;&#25991;(&#32321;&#20307;) (Traditional Chinese)",
-	"zu"	=> "Zulu"
-);
+/* Language names should be the native names. Inherit common array from Language.php */
 
 /* private */ $wgWeekdayNamesHu = array(
-	"Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök",
-	"Péntek", "Szombat"
+	"vasárnap", "hétfő", "kedd", "szerda", "csütörtök",
+	"péntek", "szombat"
 );
 
 /* private */ $wgMonthNamesHu = array(
-	"January", "February", "March", "April", "May", "June",
-	"July", "August", "September", "October", "November",
-	"December"
+	"január", "február", "március", "április", "május", "június",
+	"július", "augusztus", "szeptember", "október", "november",
+	"december"
 );
 
 /* private */ $wgMonthAbbreviationsHu = array(
-	"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
-	"Sep", "Oct", "Nov", "Dec"
+	"Jan", "Feb", "Már", "Ápr", "Máj", "Jún", "Júl", "Aug",
+	"Sep", "Okt", "Nov", "Dec"
 );
 
 # All special pages have to be listed here: a description of ""
@@ -250,7 +107,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"Preferences"	=> "Beállításaim",
 	"Watchlist"		=> "Figyelőlistám",
 	"Recentchanges" => "Frissen változtatott oldalak",
-	"Upload"		=> "Képek felküldése",
+	"Upload"		=> "Képek feltöltése",
 	"Imagelist"		=> "Képek listája",
 	"Listusers"		=> "Regisztrált felhasználók",
 	"Statistics"	=> "Weblap statisztika",
@@ -267,15 +124,15 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"Intl"		=> "Nyelvek közötti linkek",
 	"Allpages"		=> "Az összes lap cím szerint",
 
-	"Ipblocklist"	=> "Blocked IP addresses",
-	"Maintenance" => "Maintenance page",
-	"Specialpages"  => "",
-	"Contributions" => "",
-	"Emailuser"		=> "",
-	"Whatlinkshere" => "",
-	"Recentchangeslinked" => "",
-	"Movepage"		=> "",
-	"Booksources"	=> "External book sources"
+	"Ipblocklist"	=> "Blokkolt IP címek",
+	"Maintenance" => "Karbantartási lap",
+	"Specialpages"  => "Speciális lapok",
+	"Contributions" => "Hozzájárulások",
+	"Emailuser"		=> "Email írása",
+	"Whatlinkshere" => "Mi mutat ide",
+	"Recentchangeslinked" => "Kapcsolódó változások",
+	"Movepage"		=> "Lap mozgatása",
+	"Booksources"	=> "Külső könyvinformációk"
 );
 
 /* private */ $wgSysopSpecialPagesHu = array(
@@ -294,254 +151,261 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 
 # Bits of text used by many pages:
 #
-"linktrail"		=> "/^([a-z]+)(.*)\$/sD",
-"mainpage"		=> "Main Page",
-"mainpagetext"	=> "Wiki software successfully installed.",
-"about"			=> "About",
-"aboutwikipedia" => "About Wikipedia",
-"aboutpage"		=> "Wikipedia:About",
-"help"			=> "Help",
-"helppage"		=> "Wikipedia:Help",
-"wikititlesuffix" => "Wikipedia",
-"bugreports"	=> "Bug reports",
-"bugreportspage" => "Wikipedia:Bug_reports",
-"faq"			=> "FAQ",
-"faqpage"		=> "Wikipedia:FAQ",
-"edithelp"		=> "Editing help",
-"edithelppage"	=> "Wikipedia:How_does_one_edit_a_page",
-"cancel"		=> "Cancel",
-"qbfind"		=> "Find",
-"qbbrowse"		=> "Browse",
-"qbedit"		=> "Edit",
-"qbpageoptions" => "Page options",
-"qbpageinfo"	=> "Page info",
-"qbmyoptions"	=> "My options",
-"mypage"		=> "My page",
-"mytalk"		=> "My talk",
-"currentevents" => "Current events",
-"errorpagetitle" => "Error",
-"returnto"		=> "Return to $1.",
-"fromwikipedia"	=> "From Wikipedia, the free encyclopedia.",
-"whatlinkshere"	=> "Pages that link here",
-"help"			=> "Help",
-"search"		=> "Search",
-"go"		=> "Go",
-"history"		=> "Page history",
-"printableversion" => "Printable version",
-"editthispage"	=> "Edit this page",
-"deletethispage" => "Delete this page",
-"protectthispage" => "Protect this page",
-"unprotectthispage" => "Unprotect this page",
-"newpage" => "New page",
-"talkpage"		=> "Discuss this page",
-"articlepage"	=> "View article",
-"subjectpage"	=> "View subject", # For compatibility
-"userpage" => "View user page",
-"wikipediapage" => "View meta page",
-"imagepage" => 	"View image page",
-"viewtalkpage" => "View discussion",
-"otherlanguages" => "Other languages",
-"redirectedfrom" => "(Redirected from $1)",
-"lastmodified"	=> "This page was last modified $1.",
-"viewcount"		=> "This page has been accessed $1 times.",
-"gnunote" => "All text is available under the terms of the <a class=internal href='/wiki/GNU_FDL'>GNU Free Documentation License</a>.",
+"linktrail"		=> "/^((?:[a-z]|á|é|í|ú|ó|ö|ü|ő|ű|Á|É|Í|Ó|Ú|Ö|Ü|Ő|Ű)+)(.*)\$/sD",
+"mainpage"		=> "Kezdőlap",
+"mainpagetext"	=> "Wiki szoftver sikeresen telepítve.",
+"about"			=> "Névjegy",
+"aboutwikipedia" => "A Wikipédiáról",
+"aboutpage"		=> "Wikipedia:Névjegy",
+"help"			=> "Segítség",
+"helppage"		=> "Wikipedia:Segítség",
+"wikititlesuffix" => "Wikipédia",
+"bugreports"	=> "Hibajelentés",
+"bugreportspage" => "Wikipedia:Hibajelentések",
+"faq"			=> "GyIK",
+"faqpage"		=> "Wikipedia:GyIK",
+"edithelp"		=> "Segítség a szerkesztéshez",
+"edithelppage"	=> "Wikipedia:Hogyan_szerkessz_egy_lapot",
+"cancel"		=> "Vissza",
+"qbfind"		=> "Keresés",
+"qbbrowse"		=> "Böngészés",
+"qbedit"		=> "Szerkeszt",
+"qbpageoptions" => "Lapbeállítások",
+"qbpageinfo"	=> "Lapinformáció",
+"qbmyoptions"	=> "Beállításaim",
+"mypage"		=> "Lapom",
+"mytalk"		=> "Vitám",
+"currentevents" => "Friss események",
+"errorpagetitle" => "Hiba",
+"returnto"		=> "Vissza a $1 cikkhez.",
+"fromwikipedia"	=> "A Wikipediából, a szabad enciklopédiából.",
+"whatlinkshere"	=> "Lapok, melyek ide mutatnak",
+"help"			=> "Segítség",
+"search"		=> "Keresés",
+"go"		=> "Menj!",
+"history"		=> "Laptörténet",
+"printableversion" => "Nyomtatható változat",
+"editthispage"	=> "Szerkeszd ezt a lapot",
+"deletethispage" => "Lap törlése",
+"protectthispage" => "Védelem a lapnak",
+"unprotectthispage" => "Védelem megszüntetése",
+"newpage" => "Új lap",
+"talkpage"		=> "Lap megbeszélése",
+"articlepage"	=> "Szócikk megtekintése",
+"subjectpage"	=> "Témalap megtekintése", # For compatibility
+"userpage" => "Felhasználói lap",
+"wikipediapage" => "Metalap",
+"imagepage" => 	"Képlap",
+"viewtalkpage" => "Beszélgetés megtekintése",
+"otherlanguages" => "Egyéb nyelvek",
+"redirectedfrom" => "(Átirányítva $1 cikkből)",
+"lastmodified"	=> "A lap utolsó módosítása $1.",
+"viewcount"		=> "Ezt a lapot eddig $1 alkalommal látogatták.",
+"gnunote" => "Minden szöveg a <a class=internal href='/wiki/GNU_FDL'>GNU Szabad Dokumentációk Liszensze</a> feltételei mellett érhető el.",
 "printsubtitle" => "(From http://www.wikipedia.org)",
-"protectedpage" => "Protected page",
-"administrators" => "Wikipedia:Administrators",
-"sysoptitle"	=> "Sysop access required",
-"sysoptext"		=> "The action you have requested can only be
-performed by users with \"sysop\" status.
-See $1.",
+"protectedpage" => "Védett lap",
+"administrators" => "Wikipedia:Adminisztrátorok",
+"sysoptitle"	=> "Sysop hozzáférés szükséges",
+"sysoptext"		=> "Az általad kért tevékenységet csak \"sysopok\" végezhetik el.
+Lásd $1.",
 "developertitle" => "Developer access required",
 "developertext"	=> "The action you have requested can only be
 performed by users with \"developer\" status.
 See $1.",
-"nbytes"		=> "$1 bytes",
-"go"			=> "Go",
+"nbytes"		=> "$1 byte",
+"go"			=> "Menj",
 "ok"			=> "OK",
-"sitetitle"		=> "Wikipedia",
-"sitesubtitle"	=> "The Free Encyclopedia",
+"sitetitle"		=> "Wikipédia",
+"sitesubtitle"	=> "A szabad enciklopédia",
 "retrievedfrom" => "Retrieved from \"$1\"",
-"newmessages" => "You have $1.",
-"newmessageslink" => "new messages",
-"editsection"=>"edit",
-"toc" => "Table of contents",
+"newmessages" => "$1 van.",
+"newmessageslink" => "Új üzeneted",
+"editsection"=>"szerkesztés",
+"toc" => "Tartalomjegyzék",
 
 # Main script and global functions
 #
-"nosuchaction"	=> "No such action",
-"nosuchactiontext" => "The action specified by the URL is not
-recognized by the Wikipedia software",
-"nosuchspecialpage" => "No such special page",
-"nospecialpagetext" => "You have requested a special page that is not
-recognized by the Wikipedia software.",
+"nosuchaction"	=> "Nincs ilyen tevékenység",
+"nosuchactiontext" => "Az URL által megadott tevékenységet a Wikipédia
+software nem ismeri fel",
+"nosuchspecialpage" => "Nincs ilyen speciális lap",
+"nospecialpagetext" => "Olyan speciális lapot kértél amit a Wikipédia
+software nem ismer fel.",
 
 # General errors
 #
-"error"			=> "Error",
-"databaseerror" => "Database error",
-"dberrortext"	=> "A database query syntax error has occurred.
-This could be because of an illegal search query (see $5),
-or it may indicate a bug in the software.
-The last attempted database query was:
+"error"			=> "Hiba",
+"databaseerror" => "Adatbázis hiba",
+"dberrortext"	=> "Adatbázis formai hiba történt.
+Ennek lehet oka egy illegális keresési parancs (lásd $5),
+vagy okozhatta egy programozási hiba.
+Az utolsó lekérési próbálkozás az alábbi volt:
 <blockquote><tt>$1</tt></blockquote>
-from within function \"<tt>$2</tt>\".
-MySQL returned error \"<tt>$3: $4</tt>\".",
-"dberrortextcl" => "A database query syntax error has occurred.
-The last attempted database query was:
+a \"<tt>$2</tt>\" függvényből.
+A MySQL hiba \"<tt>$3: $4</tt>\".",
+"dberrortextcl" => "Egy adatbázis lekérés formai hiba történt.
+Az utolsó lekérési próbálkozás:
 \"$1\"
-from within function \"$2\".
-MySQL returned error \"$3: $4\".\n",
-"noconnect"		=> "Could not connect to DB on $1",
-"nodb"			=> "Could not select database $1",
-"readonly"		=> "Database locked",
-"enterlockreason" => "Enter a reason for the lock, including an estimate
-of when the lock will be released",
-"readonlytext"	=> "The Wikipedia database is currently locked to new
-entries and other modifications, probably for routine database maintenance,
-after which it will be back to normal.
-The administrator who locked it offered this explanation:
+a \"$2\" függvényből történt.
+A MySQL hiba \"$3: $4\".\n",
+"noconnect"		=> "Nem tudok a $1 adatbázis gépre csatlakozni",
+"nodb"			=> "Nem tudom elérni a $1 adatbázist",
+"readonly"		=> "Adatbázis lezárva",
+"enterlockreason" => "Add meg a lezárás indoklását valamint egy becslést,
+hogy mikor kerül a lezárás feloldásra",
+"readonlytext"	=> "A Wikipédia adatbázis jelenleg le van zárva az új
+szócikkek és módosítások elől, valószínűleg adatbázis karbantartás miatt, 
+aminek a végén minden visszaáll a régi kerékvágásba.
+Az adminisztrátor aki a lezárást elvégezte az alábbi magyarázatot adta:
 <p>$1",
-"missingarticle" => "The database did not find the text of a page
-that it should have found, named \"$1\".
+"missingarticle" => "Az adatbázis nem találta meg egy létező lap szövegét,
+aminek a neve \"$1\".
 
-<p>This is usually caused by following an outdated diff or history link to a
-page that has been deleted.
+<p>Ennek oka általában egy olyan régi link kiválasztása, ami egy
+már törölt lap történetére hivatkozik.
 
-<p>If this is not the case, you may have found a bug in the software.
-Please report this to an administrator, making note of the URL.",
-"internalerror" => "Internal error",
-"filecopyerror" => "Could not copy file \"$1\" to \"$2\".",
-"filerenameerror" => "Could not rename file \"$1\" to \"$2\".",
-"filedeleteerror" => "Could not delete file \"$1\".",
-"filenotfound"	=> "Could not find file \"$1\".",
-"unexpected"	=> "Unexpected value: \"$1\"=\"$2\".",
-"formerror"		=> "Error: could not submit form",	
-"badarticleerror" => "This action cannot be performed on this page.",
-"cannotdelete"	=> "Could not delete the page or image specified. (It may have already been deleted by someone else.)",
-"badtitle"		=> "Bad title",
-"badtitletext"	=> "The requested page title was invalid, empty, or
-an incorrectly linked inter-language or inter-wiki title.",
-"perfdisabled" => "Sorry! This feature has been temporarily disabled
-because it slows the database down to the point that no one can use
-the wiki.",
-"perfdisabledsub" => "Here's a saved copy from $1:",
+<p>Ha nem erről van szó akkor lehetséges, hogy programozási hibát
+találtál a software-ben. Kérlek értesíts erről egy adminisztrátort,
+és jegyezd fel neki az URL-t (pontos webcímet) is.",
+"internalerror" => "Belső hiba",
+"filecopyerror" => "Nem tudom a \"$1\" file-t a \"$2\" névre másolni.",
+"filerenameerror" => "Nem tudom a \"$1\" file-t \"$2\" névre átnevezni.",
+"filedeleteerror" => "Nem tudom a \"$1\" file-t letörölni.",
+"filenotfound"	=> "Nem találom a \"$1\" file-t.",
+"unexpected"	=> "Váratlan érték: \"$1\"=\"$2\".",
+"formerror"		=> "Hiba: nem tudom a formot elküldeni",	
+"badarticleerror" => "Ez a tevékenység nem végezhető ezen a lapon.",
+"cannotdelete"	=> "Nem tudom a megadott lapot vagy képet törölni. (Talán már valaki más törölte.)",
+"badtitle"		=> "Hibás cím",
+"badtitletext"	=> "A kért cím helytelen, üres vagy hibásan hivatkozik
+egy nyelvek közötti vagy wikik közötti címre.",
+"perfdisabled" => "Bocsánat! Ez a lehetőség időszakosan nem elérhető
+mert annyira lelassítja az adatbázist, hogy senki nem tudja a 
+wikit használni.",
+"perfdisabledsub" => "Íme $1 egy elmentett másolata:",
 
 # Login and logout pages
 #
-"logouttitle"	=> "User logout",
-"logouttext"	=> "You are now logged out.
-You can continue to use Wikipedia anonymously, or you can log in
-again as the same or as a different user.\n",
+"logouttitle"	=> "Kilépés",
+"logouttext"	=> "Kiléptél.
+Folytathatod a Wikipédia használatát név nélkül, vagy beléphetsz
+újra vagy másik felhasználóként.\n",
 
-"welcomecreation" => "<h2>Welcome, $1!</h2><p>Your account has been created.
-Don't forget to personalize your wikipedia preferences.",
+"welcomecreation" => "<h2>Üdvözöllek, $1!</h2><p>A felhasználói környezeted
+létrehoztam.
+Ne felejtsd el átnézni a személyes Wikipédia beállításaidat.",
 
-"loginpagetitle" => "User login",
-"yourname"		=> "Your user name",
-"yourpassword"	=> "Your password",
-"yourpasswordagain" => "Retype password",
-"newusersonly"	=> " (new users only)",
-"remembermypassword" => "Remember my password across sessions.",
-"loginproblem"	=> "<b>There has been a problem with your login.</b><br>Try again!",
-"alreadyloggedin" => "<font color=red><b>User $1, you are already logged in!</b></font><br>\n",
+"loginpagetitle" => "Belépés",
+"yourname"		=> "A felhasználói neved",
+"yourpassword"	=> "Jelszavad",
+"yourpasswordagain" => "Jelszavad ismét",
+"newusersonly"	=> " (csak új felhasználóknak)",
+"remembermypassword" => "Jelszó megjegyzése a használatok között.",
+"loginproblem"	=> "<b>Valami probléma van a belépéseddel.</b><br>Kérlek próbáld ismét!",
+"alreadyloggedin" => "<font color=red><b>Kedves $1, már be vagy lépve!</b></font><br>\n",
 
-"areyounew"		=> "If you are new to Wikipedia and want to get a user account,
-enter a user name, then type and re-type a password.
-Your e-mail address is optional; if you lose your password you can request
-that it be to the address you give.<br>\n",
+"areyounew"		=> "Ha új látogató vagy és szeretnél magadnak felhasználói nevet,
+akkor adj meg egyet, és adj meg egy jelszót (kétszer).
+Az email cím megadása nem kötelező; ha elveszíted a jelszavad, akkor
+újat a megadott email címre tudsz kérni.<br>\n",
 
-"login"			=> "Log in",
-"userlogin"		=> "Log in",
-"logout"		=> "Log out",
-"userlogout"	=> "Log out",
-"notloggedin"	=> "Not logged in",
-"createaccount"	=> "Create new account",
-"badretype"		=> "The passwords you entered do not match.",
-"userexists"	=> "The user name you entered is already in use. Please choose a different name.",
-"youremail"		=> "Your e-mail*",
-"yournick"		=> "Your nickname (for signatures)",
-"emailforlost"	=> "* Entering an email address is optional.  But it enables people to
-contact you through the website without you having to reveal your 
-email address to them, and it also helps you if you forget your   
-password.",
-"loginerror"	=> "Login error",
-"noname"		=> "You have not specified a valid user name.",
-"loginsuccesstitle" => "Login successful",
-"loginsuccess"	=> "You are now logged in to Wikipedia as \"$1\".",
-"nosuchuser"	=> "There is no user by the name \"$1\".
-Check your spelling, or use the form below to create a new user account.",
-"wrongpassword"	=> "The password you entered is incorrect. Please try again.",
-"mailmypassword" => "Mail me a new password",
-"passwordremindertitle" => "Password reminder from Wikipedia",
-"passwordremindertext" => "Someone (probably you, from IP address $1)
-requested that we send you a new Wikipedia login password.
-The password for user \"$2\" is now \"$3\".
-You should log in and change your password now.",
-"noemail"		=> "There is no e-mail address recorded for user \"$1\".",
-"passwordsent"	=> "A new password has been sent to the e-mail address
-registered for \"$1\".
-Please log in again after you receive it.",
+"login"			=> "Belépés",
+"userlogin"		=> "Belépés",
+"logout"		=> "Kilépés",
+"userlogout"	=> "Kilépés",
+"notloggedin"	=> "Nincs belépve",
+"createaccount"	=> "Új felhasználó készítése",
+"badretype"		=> "A két jelszó eltér egymástól.",
+"userexists"	=> "A név amit megadtál már létezik. Kérlek, adj meg más nevet.",
+"youremail"		=> "Az emailed*",
+"yournick"		=> "A beceneved (aláírásokhoz)",
+"emailforlost"	=> "* Az email cím megadása nem kötelező, viszont lehetővé
+teszi másoknak, hogy kapcsolatba lépjenek veled a weblapon keresztül
+anélkül, hogy a címedet megtudnák. Segítségedre lehet akkor is, ha
+elfelejted a jelszavadat.",
+"loginerror"	=> "Belépési hiba.",
+"noname"		=> "Nem adtál meg érvényes felhasználói nevet.",
+"loginsuccesstitle" => "Sikeres belépés",
+"loginsuccess"	=> "Beléptél a Wikipédiába \"$1\"-ként.",
+"nosuchuser"	=> "Nincs olyan felhasználó hogy \"$1\".
+Ellenőrizd a gépelést, vagy készíts új nevet a fent látható űrlappal.",
+"wrongpassword"	=> "A megadott jelszó helytelen.",
+"mailmypassword" => "Küldd el nekem a jelszavamat emailben",
+"passwordremindertitle" => "Wikipédia jelszó emlékeztető",
+"passwordremindertext" => "Valaki (vélhetően te, a $1 IP számról)
+azt kérte, hogy küldjük el a jelszavadat.
+A jelszavad a \"$2\" felhasználóhoz most \"$3\".
+Lépj be, és változtasd meg a jelszavad.",
+"noemail"		=> "Nincs a \"$1\" felhasználóhoz email felvéve.",
+"passwordsent"	=> "Az új jelszót elküldtük \"$1\" email címére.
+Lépj be a levélben található adatokkal.",
 
 # Edit pages
 #
-"summary"		=> "Summary",
-"minoredit"		=> "This is a minor edit",
-"watchthis"		=> "Watch this article",
-"savearticle"	=> "Save page",
-"preview"		=> "Preview",
-"showpreview"	=> "Show preview",
-"blockedtitle"	=> "User is blocked",
-"blockedtext"	=> "Your user name or IP address has been blocked by $1.
-The reason given is this:<br>''$2''<p>You may contact $1 or one of the other
-[[Wikipedia:administrators|administrators]] to discuss the block.",
-"newarticle"	=> "(New)",
+"summary"		=> "Összefoglaló",
+"minoredit"		=> "Ez egy apró változtatás",
+"watchthis"		=> "Figyeld a szócikket",
+"savearticle"	=> "Lap mentése",
+"preview"		=> "Előnézet",
+"showpreview"	=> "Előnézet megtekintése",
+"blockedtitle"	=> "A felhasználó le van tiltva",
+"blockedtext"	=> "A felhasználói neved vagy IP számod $1 letiltotta.
+Az indoklás:<br>''$2''
+<p>Felveheted a kapcsolatot $1 adminnal vagy bármely más
+[[Wikipedia:adminisztrátorok|adminisztrátorral]] hogy megvitasd a letiltást.",
+"newarticle"	=> "(Új)",
 "newarticletext" =>
-"You've followed a link to a page that doesn't exist yet.
-To create the page, start typing in the box below 
-(see the [[Wikipedia:Help|help page]] for more info).
-If you are here by mistake, just click your browser's '''back''' button.",
-"anontalkpagetext" => "---- ''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.'' ",
-"noarticletext" => "(There is currently no text in this page)",
-"updated"		=> "(Updated)",
-"note"			=> "<strong>Note:</strong> ",
-"previewnote"	=> "Remember that this is only a preview, and has not yet been saved!",
-"previewconflict" => "This preview reflects the text in the upper
-text editing area as it will appear if you choose to save.",
-"editing"		=> "Editing $1",
-"sectionedit"	=> " (section)",
-"editconflict"	=> "Edit conflict: $1",
-"explainconflict" => "Someone else has changed this page since you
-started editing it.
-The upper text area contains the page text as it currently exists.
-Your changes are shown in the lower text area.
-You will have to merge your changes into the existing text.
-<b>Only</b> the text in the upper text area will be saved when you
-press \"Save page\".\n<p>",
-"yourtext"		=> "Your text",
-"storedversion" => "Stored version",
-"editingold"	=> "<strong>WARNING: You are editing an out-of-date
-revision of this page.
-If you save it, any changes made since this revision will be lost.</strong>\n",
-"yourdiff"		=> "Differences",
-"copyrightwarning" => "Please note that all contributions to Wikipedia are
-considered to be released under the GNU Free Documentation License
-(see $1 for details).
-If you don't want your writing to be edited mercilessly and redistributed
-at will, then don't submit it here.<br>
-You are also promising us that you wrote this yourself, or copied it from a
-public domain or similar free resource.
-<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
-"longpagewarning" => "WARNING: This page is $1 kilobytes long; some
-browsers may have problems editing pages approaching or longer than 32kb.
-Please consider breaking the page into smaller sections.",
-"readonlywarning" => "WARNING: The database has been locked for maintenance,
-so you will not be able to save your edits right now. You may wish to cut-n-paste
-the text into a text file and save it for later.",
-"protectedpagewarning" => "WARNING:  This page has been locked so that only
-users with sysop privileges can edit it. Be sure you are following the
-<a href='/wiki/Wikipedia:Protected_page_guidelines'>protected page
-guidelines</a>.",
+"Egy olyan lapra jutottál ami még nem létezik.
+A lap létrehozásához kezdd el írni a szövegét lenti keretbe
+(a [[Wikipedia:Segítség|segítség]] lapon lelsz további 
+információkat).
+Ha tévedésből jöttél ide, csak nyomd meg a böngésző '''Vissza/Back'''
+gombját.",
+"anontalkpagetext" => "
+---- ''Ez egy olyan anonim felhasználó vitalapja, aki még nem készített magának nevet vagy azt nem használta. Ezért az [[IP szám]]át használjuk az azonosítására. Az IP számokon számos felhasználó osztozhat az idők folyamán. Ha anonim felhasználó vagy és úgy érzed, hogy értelmetlen megjegyzéseket írnak neked akkor [[Special:Userlogin|készíts magadnak egy nevet vagy lépj be]] hogy megakadályozd más anonim felhasználókkal való keveredést.'' ",
+"noarticletext" => "(Ez a lap jelenleg nem tartalmaz szöveget)",
+"updated"		=> "(Frissítve)",
+"note"			=> "<strong>Megjegyzés:</strong> ",
+"previewnote"	=> "Ne felejtsd el, hogy ez csak egy előnézet, és nincs elmentve!",
+"previewconflict" => "Ez az előnézet a felső szerkesztőablakban levő
+szövegnek megfelelő képet mutatja, ahogy az elmentés után kinézne.",
+"editing"		=> "$1 szerkesztés alatt",
+"sectionedit"	=> " (szakasz)",
+"editconflict"	=> "Szerkesztési ütközés: $1",
+"explainconflict" => "Valaki megváltoztatta a lapot azóta,
+mióta szerkeszteni kezdted.
+A felső szövegablak tartalmazza a szöveget, ahogy az jelenleg létezik.
+A módosításaid az alsó ablakban láthatóak.
+Át kell vezetned a módosításaidat a felső szövegbe.
+<b>Csak</b> a felső ablakban levő szöveg kerül elmentésre akkor, mikor
+a \"Lap mentését\" választod.\n<p>",
+"yourtext"		=> "A te szöveged",
+"storedversion" => "A tárolt változat",
+"editingold"	=> "<strong>VIGYÁZAT! A lap egy elavult 
+változatát szerkeszted.
+Ha elmented, akkor az ezen változat után végzett összes 
+módosítás elvész.</strong>\n",
+"yourdiff"		=> "Eltérések",
+"copyrightwarning" => "Kérlek vedd figyelembe hogy minden
+Wikipédiába küldött anyag a GNU Szabad Dokumentum Licenc alatti
+publikálásnak számít (lásd $1 a részletekért).
+Ha nem akarod, hogy az írásod könyörtelenül módosíthassák vagy
+tetszés szerint terjesszék, akkor ne küldd be ide.<br>
+A beküldéssel együtt azt is garantálod hogy mindezt saját
+magad írtad, vagy másoltad be egy szabadon elérhető vagy 
+közkincs (public domain) forrásból.
+<strong>ENGEDÉLY NÉLKÜL NE KÜLDJ BE JOGVÉDETT ANYAGOKAT!</strong>",
+"longpagewarning" => "FIGYELEM: Ez a lap $1 kilobyte hosszú;
+néhány böngészőnek problémái vannak a 32KB körüli vagy nagyobb lapok
+szerkesztésével.
+Fontold meg a lap kisebb szakaszokra bontását.",
+"readonlywarning" => "FIGYELEM: Az adatbázis karbantartás miatt le van zárva,
+ezért a módosításaidat most nem lehetséges elmenteni. Érdemes a szöveget
+kimásolni és elmenteni egy szövegszerkesztőben a későbbi mentéshez.",
+"protectedpagewarning" => "FIGYELEM: A lap lezárásra került és ilyenkor
+csak a Sysop jogú adminisztrátorok tudják szerkeszteni. Ellenőrizd, hogy
+betartod a <a href='/wiki/Wikipedia:Zart_lapok_iranyelve'>zárt lapok 
+irányelvét</a>.",
 
 # History pages
 #
@@ -708,6 +572,7 @@ wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">upload log</a>.
 illustrating your articles.
 On most browsers, you will see a \"Browse...\" button, which will
 bring up your operating system's standard file open dialog.
+
 Choosing a file will fill the name of that file into the text
 field next to the button.
 You must also check the box affirming that you are not
@@ -1031,6 +896,7 @@ Please confirm that this is what you intend to do.",
 "unlockbtn"		=> "Unlock database",
 "locknoconfirm" => "You did not check the confirmation box.",
 "lockdbsuccesssub" => "Database lock succeeded",
+
 "unlockdbsuccesssub" => "Database lock removed",
 "lockdbsuccesstext" => "The Wikipedia database has been locked.
 <br>Remember to remove the lock after your maintenance is complete.",
@@ -1156,18 +1022,7 @@ class LanguageHu extends LanguageUtf8 {
 		return $wgUserTogglesHu;
 	}
 
-	function getLanguageNames() {
-		global $wgLanguageNamesHu;
-		return $wgLanguageNamesHu;
-	}
-
-	function getLanguageName( $code ) {
-		global $wgLanguageNamesHu;
-		if ( ! array_key_exists( $code, $wgLanguageNamesHu ) ) {
-			return "";
-		}
-		return $wgLanguageNamesHu[$code];
-	}
+	/* inherit common getLanguageNames() */
 
 	function getMonthName( $key )
 	{
