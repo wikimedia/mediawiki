@@ -655,7 +655,11 @@ class Parser
 					$txt="";
 					break;
 				case "RFC ":
-					$txt = $this->doMagicRFC( $tokenizer );
+					if ( $tagIsOpen ) {
+						$txt = "RFC ";
+					} else {
+						$txt = $this->doMagicRFC( $tokenizer );
+					}
 					break;
 				case "ISBN ":
 					$txt = $this->doMagicISBN( $tokenizer );
