@@ -571,7 +571,7 @@ class SkinPHPTal extends Skin {
 		foreach ( $wgNavigationLinks as $link ) {
 			$result[] = array(
 				'text' => wfMsg( $link['text'] ),
-				'href' => $this->makeInternalOrExternalUrl( wfMsg( $link['href'] ) ),
+				'href' => $this->makeInternalOrExternalUrl( wfMsgForContent( $link['href'] ) ),
 				'id' => 'n-'.$link['text']
 			);
 		}
