@@ -308,10 +308,10 @@ class EditPage {
 		# if this is a comment, show a subject line at the top, which is also the edit summary.
 		# Otherwise, show a summary field at the bottom
 		if($section=="new") {
-
 			$commentsubject="{$subject}: <input tabindex=1 type=text value=\"{$wpSummary}\" name=\"wpSummary\" maxlength=200 size=60><br>";
+			$editsummary = "";
 		} else {
-
+			$commentsubject = "";
 			$editsummary="{$summary}: <input tabindex=3 type=text value=\"{$wpSummary}\" name=\"wpSummary\" maxlength=200 size=60><br>";
 		}
 

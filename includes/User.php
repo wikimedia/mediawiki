@@ -138,41 +138,35 @@ class User {
 
 	function SetupSession() {
 		global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain;
-		global $wsUserID, $wsUserName, $wsUserPassword, $wsUploadFiles;
 		if( $wgSessionsInMemcached ) {
 			include_once( "MemcachedSessions.php" );
 		}
 		session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain );
 		session_cache_limiter( "private, must-revalidate" );
 		session_start();
-		session_register( "wsUserID" );
-		session_register( "wsUserName" );
-		session_register( "wsUserPassword" );
-		session_register( "wsUploadFiles" );
 	}
 
 	/* static */ function loadFromSession()
 	{
-		global $HTTP_COOKIE_VARS, $wsUserID, $wsUserName, $wsUserPassword;
 		global $wgMemc, $wgDBname;
 
-		if ( isset( $wsUserID ) ) {
-			if ( 0 != $wsUserID ) {
-				$sId = $wsUserID;
+		if ( isset( $_SESSION['wsUserID'] ) ) {
+			if ( 0 != $_SESSION['wsUserID'] ) {
+				$sId = $_SESSION['wsUserID'];
 			} else {
 				return new User();
 			}
-		} else if ( isset( $HTTP_COOKIE_VARS["{$wgDBname}UserID"] ) ) {
-			$sId = IntVal( $HTTP_COOKIE_VARS["{$wgDBname}UserID"] );
-			$wsUserID = $sId;
+		} else if ( isset( $_COOKIE["{$wgDBname}UserID"] ) ) {
+			$sId = IntVal( $_COOKIE["{$wgDBname}UserID"] );
+			$_SESSION['wsUserID'] = $sId;
 		} else {
 			return new User();
 		}
-		if ( isset( $wsUserName ) ) {
-			$sName = $wsUserName;
+		if ( isset( $_SESSION['wsUserName'] ) ) {
+			$sName = $_SESSION['wsUserName'];
 		} else if ( isset( $HTTP_COOKIE_VARS["{$wgDBname}UserName"] ) ) {
 			$sName = $HTTP_COOKIE_VARS["{$wgDBname}UserName"];
-			$wsUserName = $sName;
+			$_SESSION['wsUserName'] = $sName;
 		} else {
 			return new User();
 		}
@@ -188,12 +182,12 @@ class User {
 			wfDebug( "User::loadFromSession() got from cache!\n" );
 		}
 
-		if ( isset( $wsUserPassword ) ) {
-			$passwordCorrect = $wsUserPassword == $user->mPassword;
+		if ( isset( $_SESSION['wsUserPassword'] ) ) {
+			$passwordCorrect = $_SESSION['wsUserPassword'] == $user->mPassword;
 		} else if ( isset( $HTTP_COOKIE_VARS["{$wgDBname}Password"] ) ) {
 			$user->mCookiePassword = $HTTP_COOKIE_VARS["{$wgDBname}Password"];
-			$wsUserPassword = $user->addSalt( $user->mCookiePassword );
-			$passwordCorrect = $wsUserPassword == $user->mPassword;
+			$_SESSION['wsUserPassword'] = $user->addSalt( $user->mCookiePassword );
+			$passwordCorrect = $_SESSION['wsUserPassword'] == $user->mPassword;
 		} else {
 			return new User(); # Can't log in from session
 		}
@@ -489,19 +483,18 @@ class User {
 
 	function setCookies()
 	{
-		global $wsUserID, $wsUserName, $wsUserPassword;
 		global $wgCookieExpiration, $wgCookiePath, $wgCookieDomain, $wgDBname;
 		if ( 0 == $this->mId ) return;
 		$this->loadFromDatabase();
 		$exp = time() + $wgCookieExpiration;
 
-		$wsUserID = $this->mId;
+		$_SESSION['wsUserID'] = $this->mId;
 		setcookie( "{$wgDBname}UserID", $this->mId, $exp, $wgCookiePath, $wgCookieDomain );
 
-		$wsUserName = $this->mName;
+		$_SESSION['wsUserName'] = $this->mName;
 		setcookie( "{$wgDBname}UserName", $this->mName, $exp, $wgCookiePath, $wgCookieDomain );
 
-		$wsUserPassword = $this->mPassword;
+		$_SESSION['wsUserPassword'] = $this->mPassword;
 		if ( 1 == $this->getOption( "rememberpassword" ) ) {
 			setcookie( "{$wgDBname}Password", $this->mCookiePassword, $exp, $wgCookiePath, $wgCookieDomain );
 		} else {
@@ -511,10 +504,9 @@ class User {
 
 	function logout()
 	{
-		global $wsUserID, $wgCookiePath, $wgCookieDomain, $wgDBname;
 		$this->mId = 0;
 
-		$wsUserID = 0;
+		$_SESSION['wsUserID'] = 0;
 
 		setcookie( "{$wgDBname}UserID", "", time() - 3600, $wgCookiePath, $wgCookieDomain );
 		setcookie( "{$wgDBname}Password", "", time() - 3600, $wgCookiePath, $wgCookieDomain );

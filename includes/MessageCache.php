@@ -175,7 +175,7 @@ class MessageCache
 		if ( !$message && $useDB) {
 			$sql = "SELECT cur_text FROM cur WHERE cur_namespace=" . NS_MEDIAWIKI . 
 				" AND cur_title='$title'";
-			$res = wfQuery( $sql, DB_READ, $fname );
+			$res = wfQuery( $sql, DB_READ, "MessageCache::get" );
 
 			if ( wfNumRows( $res ) ) {
 				$obj = wfFetchObject( $res );

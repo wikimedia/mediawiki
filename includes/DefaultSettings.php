@@ -251,4 +251,9 @@ $wgSiteNotice = "";
 # Whether to allow anonymous users to set changes to 'minor'
 
 $wgAllowAnonymousMinor = false;
+
+if( !isset( $wgCommandLineMode ) ) {
+	$wgCommandLineMode = false;
+}
+
 ?>

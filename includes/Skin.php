@@ -2354,7 +2354,7 @@ class Skin {
 				"sample"=>"",
 				"tip"=>wfMsg("hr_tip"))
 		);
-		$toolbar.="<script type='text/javascript'>\n";
+		$toolbar ="<script type='text/javascript'>\n";
 		$toolbar.="document.writeln(\"<div id='toolbar'>\");\n";
 		foreach($toolarray as $tool) {
 
