@@ -57,13 +57,6 @@ Sourceforge (when that gets added.)
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesGa = array(
-    "Déan PNG-íomhá gach uair",
-    "Déan HTML má tá sin an-easca, nó PNG ar mhodh eile",
-    "Déan HTML más féidir, nó PNG ar mhodh eile",
-    "Fág mar cló TeX (do teacsleitheoirí)",
-    "Inmholta do líonleitheoirí nua"
-);
 
 /* private */ $wgDateFormatsGa = array(
     "Is cuma liom",
@@ -1123,7 +1116,16 @@ air, nó is féidir leat é a coinnigh do do siamsa féin.",
 # Namespace 8 related
 
 "allmessages"   => "Teachtaireachtaí_go_léir",
-"allmessagestext"   => "Seo é liosta de na teachtaireachtaí go léir atá le fáil san roinn MediaWiki: ."
+"allmessagestext"   => "Seo é liosta de na teachtaireachtaí go léir atá le fáil san roinn MediaWiki: .",
+
+# Math
+
+    'mw_math_png' => "Déan PNG-íomhá gach uair",
+    'mw_math_simple' => "Déan HTML má tá sin an-easca, nó PNG ar mhodh eile",
+    'mw_math_html' => "Déan HTML más féidir, nó PNG ar mhodh eile",
+    'mw_math_source' => "Fág mar cló TeX (do teacsleitheoirí)",
+    'mw_math_modern' => "Inmholta do líonleitheoirí nua",
+    'mw_math_mathml' => 'MathML',
 );
 
 require_once( "LanguageUtf8.php" );
@@ -1170,11 +1172,6 @@ class LanguageGa extends LanguageUtf8 {
         return $wgSkinNamesGa;
     }
 
-    function getMathNames() {
-        global $wgMathNamesGa;
-        return $wgMathNamesGa;
-    }
-    
     function getDateFormats() {
         global $wgDateFormatsGa;
         return $wgDateFormatsGa;

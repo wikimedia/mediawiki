@@ -48,14 +48,6 @@ $wgEditEncoding		= "x";
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesEo = array(
-	"Ĉiam krei PNG-bildon",
-	"HTMLigu se simple, aŭ PNG",
-	"HTMLigu se eble, aŭ PNG",
-	"Lasu TeX-fonton (por tekstfoliumiloj)",
-	"Rekomendita por modernaj foliumiloj",
-	"MathML seeble (provizora)",
-);
 
 /* private */ $wgUserTogglesEo = array(
 	"hover"		=> "Montru helpilon super viki-ligiloj",
@@ -988,7 +980,14 @@ Bonvolu permane kunigi ilin.",
 "movedto"		=> "movis al",
 "movetalk"		=> "Movu ankaŭ la \"diskuto\"-paĝon, se ĝi ekzistas.",
 "talkpagemoved" => "Ankaŭ la diskutpaĝo estas movita.",
-"talkpagenotmoved" => "La diskutpaĝo <strong>ne</strong> estas movita."
+"talkpagenotmoved" => "La diskutpaĝo <strong>ne</strong> estas movita.",
+# Math
+	'mw_math_png' => "Ĉiam krei PNG-bildon",
+	'mw_math_simple' => "HTMLigu se simple, aŭ PNG",
+	'mw_math_html' => "HTMLigu se eble, aŭ PNG",
+	'mw_math_source' => "Lasu TeX-fonton (por tekstfoliumiloj)",
+	'mw_math_modern' => "Rekomendita por modernaj foliumiloj",
+	'mw_math_mathml' => "MathML seeble (provizora)",
 
 );
 
@@ -1030,11 +1029,6 @@ class LanguageEo extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesEo;
 		return $wgSkinNamesEo;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesEo;
-		return $wgMathNamesEo;
 	}
 
 	function getUserToggles() {

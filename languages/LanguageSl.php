@@ -55,13 +55,6 @@ require_once( "LanguageUtf8.php" );
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesSl = array(
-	"Vedno prikaži PNG",
-	"Če je dovolj preprosto, uporabi HTML, drugače pa PNG",
-	"Uporabi HTML, če je možno, drugače pa PNG",
-	"Pusti v TeX-ovi obliki (za tekstovne brskljalnike)",
-	"Priporočeno za sodobne brskljalnike"
-);
 
 /* private */ $wgUserTogglesSl = array(
 	"hover"		   => "Prikaži lebdečo škatlo nad wikijevimi povezavami",
@@ -867,6 +860,13 @@ V teh primerih boste morali prestaviti ali povezati stran ročno, če to želite
 "movetalk"	=> "Prestavite tudi \"pogovorno\" stran, če je mogoče.",
 "talkpagemoved" => "Pripadajoča pogovorna stran je tudi prestavljena.",
 "talkpagenotmoved" => "Pripadajoča pogovorna stran <strong>ni</strong> prestavljena.",
+# Math
+	'mw_math_png' => "Vedno prikaži PNG",
+	'mw_math_simple' => "Če je dovolj preprosto, uporabi HTML, drugače pa PNG",
+	'mw_math_html' => "Uporabi HTML, če je možno, drugače pa PNG",
+	'mw_math_source' => "Pusti v TeX-ovi obliki (za tekstovne brskljalnike)",
+	'mw_math_modern' => "Priporočeno za sodobne brskljalnike",
+	'mw_math_mathml' => 'MathML',
 
 );
 
@@ -911,11 +911,6 @@ class LanguageSl extends LanguageUtf8 {
  function getSkinNames() {
   global $wgSkinNamesSl;
   return $wgSkinNamesSl;
- }
-
- function getMathNames() {
-  global $wgMathNamesSl;
-  return $wgMathNamesSl;
  }
 
  function getDateFormats() {

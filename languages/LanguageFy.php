@@ -47,13 +47,6 @@ if($wgMetaNamespace === FALSE)
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesFy = array(
-           "Altiten as PNG ôfbyldzje",
-           "HTML foar ienfâldiche formules, oars PNG",
-           "HTML as mooglik, oars PNG",
-           "Lit de TeX ferzje stean (foar tekstblêdzjers)",
-           "Oanbefelle foar resinte blêdzjers"
-);
 
 /* private */ $wgDateFormatsFy = array(
 	"Gjin foarkar",
@@ -1009,6 +1002,13 @@ Gearfoegje de oerlissiden hânmjittig.",
 "moveoerlis"	=> "De oerlisside, as dy der is, moat oan de side keppele bliuwe.",
 "talkpagemoved"	=> "De oerlisside is al noch keppele.",
 "talkpagenotmoved" => "De oerlisside is <strong>net</strong> mear keppele.",
+# Math
+           'mw_math_png' => "Altiten as PNG ôfbyldzje",
+           'mw_math_simple' => "HTML foar ienfâldiche formules, oars PNG",
+           'mw_math_html' => "HTML as mooglik, oars PNG",
+           'mw_math_source' => "Lit de TeX ferzje stean (foar tekstblêdzjers)",
+           'mw_math_modern' => "Oanbefelle foar resinte blêdzjers",
+	   'mw_math_mathml' => 'MathML',
 
 );
 
@@ -1052,11 +1052,6 @@ class LanguageFy extends LanguageUtf8 {
 		return $wgSkinNamesFy;
 	}
 
-	function getMathNames() {
-		global $wgMathNamesFy;
-		return $wgMathNamesFy;
-	}
-	
 	function getDateFormats() {
 		global $wgDateFormatsFy;
 		return $wgDateFormatsFy;

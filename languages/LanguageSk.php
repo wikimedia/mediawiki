@@ -39,14 +39,6 @@ require_once("LanguageUtf8.php");
  "myskin" => "MySkin"
 );
 
-/* private */ $wgMathNamesSk = array(
-	"Vždy vytvor PNG",
-	"Na jednoduché použi HTML, inak PNG",
-	"Ak sa dá, použi HTML, inak PNG",
-	"Ponechaj TeX (pre textové prehliadače)",
-	"Odporúčame pre moderné prehliadače"
-);
-
 /* private */ $wgUserTogglesSk = array(
 	"hover"		=> "Zobrazuj text nad linkami do wiki",
 	"underline" => "Podčiarkuj linky",
@@ -877,6 +869,13 @@ title. Please merge them manually.",
 "movetalk"		=> "Move \"talk\" page as well, if applicable.",
 "talkpagemoved" => "The corresponding talk page was also moved.",
 "talkpagenotmoved" => "The corresponding talk page was <strong>not</strong> moved.",
+# Math
+	'mw_math_png' => "Vždy vytvor PNG",
+	'mw_math_simple' => "Na jednoduché použi HTML, inak PNG",
+	'mw_math_html' => "Ak sa dá, použi HTML, inak PNG",
+	'mw_math_source' => "Ponechaj TeX (pre textové prehliadače)",
+	'mw_math_modern' => "Odporúčame pre moderné prehliadače",
+	'mw_math_mathml' => 'MathML',
 
 );
 
@@ -911,11 +910,6 @@ class LanguageSk extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesSk;
 		return $wgSkinNamesSk;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesSk;
-		return $wgMathNamesSk;
 	}
 
 	function getUserToggles() {

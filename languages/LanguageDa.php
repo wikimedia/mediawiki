@@ -55,15 +55,6 @@ require_once( "LanguageUtf8.php" );
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesDa = array(
-	MW_MATH_PNG => "Vis altid som PNG",
-	MW_MATH_SIMPLE => "HTML hvis meget simpel ellers PNG",
-	MW_MATH_HTML => "HTML hvis muligt ellers PNG",
-	MW_MATH_SOURCE => "Lad være som TeX (for tekstbrowsere)",
-    MW_MATH_MODERN => "Anbefalet til moderne browsere",
-	MW_MATH_MATHML => "MathML hvis muligt",
-);
-
 /* private */ $wgDateFormatsDa = array(
 	"Ingen foretrukken",
 	"januar 15, 2001",
@@ -1098,6 +1089,13 @@ med den nye titel. Du er nødt til at flette dem sammen manuelt.",
 "talkpagemoved" => "Den tilhørende diskussionsside blev også flyttet.",
 "talkpagenotmoved" => "Den tilhørende diskussionsside blev 
 <strong>ikke</strong> flyttet.",
+# Math
+	'mw_math_png' => "Vis altid som PNG",
+	'mw_math_simple' => "HTML hvis meget simpel ellers PNG",
+	'mw_math_html' => "HTML hvis muligt ellers PNG",
+	'mw_math_source' => "Lad være som TeX (for tekstbrowsere)",
+        'mw_math_modern' => "Anbefalet til moderne browsere",
+	'mw_math_mathml' => "MathML hvis muligt",
 
 );
 
@@ -1144,11 +1142,6 @@ class LanguageDa extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesDa;
 		return $wgSkinNamesDa;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesDa;
-		return $wgMathNamesDa;
 	}
 
 	function getDateFormats() {

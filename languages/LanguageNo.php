@@ -44,14 +44,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesNo = array(
-	"Vis alltid som PNG",
-	"HTML hvis veldig enkel, ellers PNG",
-	"HTML hvis mulig, ellers PNG",
-	"Behold som TeX (for tekst-nettlesere)",
-	"Anbefalt for moderne nettlesere"
-);
-
 /* private */ $wgUserTogglesNo = array(
 	"hover"		=> "Vis svevetekst over wiki-lenker",
 	"underline" => "Strek under lenker",
@@ -1029,6 +1021,13 @@ med den nye tittelen. Du er nødt til å flette dem sammen manuelt.",
 "talkpagemoved" => "Den tilhørende diskusjonssiden ble også flyttet.",
 "talkpagenotmoved" => "Den tilhørende diskusjonssiden ble 
 <strong>ikke</strong> flyttet.",
+# Math
+	'mw_math_png' => "Vis alltid som PNG",
+	'mw_math_simple' => "HTML hvis veldig enkel, ellers PNG",
+	'mw_math_html' => "HTML hvis mulig, ellers PNG",
+	'mw_math_source' => "Behold som TeX (for tekst-nettlesere)",
+	'mw_math_modern' => "Anbefalt for moderne nettlesere",
+	'mw_math_mathml' => 'MathML',
 
 );
 
@@ -1068,11 +1067,6 @@ class LanguageNo extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesNo;
 		return $wgSkinNamesNo;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesNo;
-		return $wgMathNamesNo;
 	}
 
 	function getDateFormats() {

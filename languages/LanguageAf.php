@@ -40,13 +40,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesAf = array(
-	"Gebruik altyd PNG.",
-	"Gebruik HTML indien dit eenvoudig is, andersins PNG.",
-	"Gebruik HTML wanneer moontlik, andersins PNG.",
-	"Los as TeX (vir teks blaaiers).",
-	"Moderne blaaiers."
-);
 
 /* private */ $wgUserTogglesAf = array(
 	"hover"		=> "Wys drywende inligting oor wiki skakels.",
@@ -819,6 +812,14 @@ Kies asseblief 'n ander naam.",
 "talkpagemoved" => "Die ooreenkomstige bespreekbladsy is ook geskuif.",
 "talkpagenotmoved" => "Die ooreenkomstige bespreekbladsy is <strong>nie</strong> geskuif nie.",
 
+#Math
+	'mw_math_png' => "Gebruik altyd PNG.",
+	'mw_math_simple' => "Gebruik HTML indien dit eenvoudig is, andersins PNG.",
+	'mw_math_html' => "Gebruik HTML wanneer moontlik, andersins PNG.",
+	'mw_math_source' => "Los as TeX (vir teks blaaiers).",
+	'mw_math_modern' => "Moderne blaaiers.",
+	'mw_math_mathml' => 'MathML',
+
 );
 
 require_once( "LanguageUtf8.php" );
@@ -857,11 +858,6 @@ class LanguageAf extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesAf;
 		return $wgSkinNamesAf;
-	}
-
-	function getMathNames() {
-		global $wgMathNamesAf;
-		return $wgMathNamesAf;
 	}
 
 	function getUserToggles() {

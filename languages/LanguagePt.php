@@ -58,14 +58,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesPt = array(
-    "Sempre renderizar PNG",
-    "HTML se for bem simples e PNG",
-    "HTML se possível ou então PNG",
-    "Deixar como TeX (para navegadores em modo texto)",
-    "Recomendado para navegadores modernos"
-);
-
 /* private */ $wgDateFormatsPt = array(
     "Sem preferência",
     "Janeiro 15, 2001",
@@ -930,6 +922,13 @@ Por favor, escolha outro nome.",
 "movetalk"      => "Mover página  \"talk\" também, se aplicável.",
 "talkpagemoved" => "A página talk correspondente foi movida com sucesso.",
 "talkpagenotmoved" => "A página talk correspondente  <strong>não</strong> foi movida.",
+# Math
+    'mw_math_png' => "Sempre renderizar PNG",
+    'mw_math_simple' => "HTML se for bem simples e PNG",
+    'mw_math_html' => "HTML se possível ou então PNG",
+    'mw_math_source' => "Deixar como TeX (para navegadores em modo texto)",
+    'mw_math_modern' => "Recomendado para navegadores modernos",
+    'mw_math_mathml' => 'MathML',
 
 );
 
@@ -971,11 +970,6 @@ class LanguagePt extends LanguageUtf8 {
         return $wgSkinNamesPt;
     }
 
-    function getMathNames() {
-        global $wgMathNamesPt;
-        return $wgMathNamesPt;
-    }
-    
     function getDateFormats() {
         global $wgDateFormatsPt;
         return $wgDateFormatsPt;

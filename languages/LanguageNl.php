@@ -51,14 +51,6 @@ require_once( "LanguageUtf8.php" );
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesNl = array(
-           "Altijd als PNG weergeven",
-           "HTML voor eenvoudige formules, anders PNG",
-           "HTML indien mogelijk, anders PNG",
-           "Laat de TeX broncode staan (voor tekstbrowsers)",
-           "Aanbevolen methode voor recente browsers"
-);
-
 /* private */ $wgUserTogglesNl = array(
  "hover"  => "Wikilinks in zwevend tekstvak tonen",
  "underline" => "Links onderstrepen",
@@ -832,6 +824,13 @@ te zijn om een pagina te verplaatsen.",
 "talkpagemoved" => "De bijhorende overlegpagina is ook verplaatst.",
 "talkpagenotmoved" => "De bijhorende overlegpagina is <strong>niet</strong> verplaatst.",
 
+# Math
+           'mw_math_png' => "Altijd als PNG weergeven",
+           'mw_math_simple' => "HTML voor eenvoudige formules, anders PNG",
+           'mw_math_html' => "HTML indien mogelijk, anders PNG",
+           'mw_math_source' => "Laat de TeX broncode staan (voor tekstbrowsers)",
+           'mw_math_modern' => "Aanbevolen methode voor recente browsers",
+	   'mw_math_mathml' => 'MathML',
 );
 
 class LanguageNl extends LanguageUtf8 {
@@ -871,11 +870,6 @@ class LanguageNl extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesNl;
 		return $wgSkinNamesNl;
-	}
-	
-	function getMathNames() {
-		global $wgMathNamesNl;
-		return $wgMathNamesNl;
 	}
 	
 	function getUserToggles() {

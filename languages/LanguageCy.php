@@ -36,14 +36,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesCy = array(
-	"Rendrwch PNG o hyd",
-	"HTML os yn syml iawn, PNG fel arall",
-	"HTML os bosibl, PNG fel arall",
-	"Gadewch fel TeX (am porwyr testun)",
-	"Cymeradwedig am porwyr modern"
-);
-
 /* private */ $wgDateFormatsCy = array(
 	"Dim dewis",
 	"Ionawr 15, 2001",
@@ -1022,7 +1014,15 @@ amusement.",
 
 # Thumbnails
 
-"thumbnail-more" => "Helaethwch"
+"thumbnail-more" => "Helaethwch",
+
+#Math
+	'mw_math_png' => "Rendrwch PNG o hyd",
+	'mw_math_simple' => "HTML os yn syml iawn, PNG fel arall",
+	'mw_math_html' => "HTML os bosibl, PNG fel arall",
+	'mw_math_source' => "Gadewch fel TeX (am porwyr testun)",
+	'mw_math_modern' => "Cymeradwedig am porwyr modern",
+	'mw_math_mathml' => 'MathML',
 
 );
 
@@ -1066,11 +1066,6 @@ class LanguageCy extends LanguageUtf8 {
 		return $wgSkinNamesCy;
 	}
 
-	function getMathNames() {
-		global $wgMathNamesCy;
-		return $wgMathNamesCy;
-	}
-	
 	function getDateFormats() {
 		global $wgDateFormatsCy;
 		return $wgDateFormatsCy;

@@ -45,14 +45,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgMathNamesBg = array(
-  MW_MATH_PNG    => 'Използване винаги на PNG',
-  MW_MATH_SIMPLE => 'HTML при опростен TeX, иначе PNG',
-  MW_MATH_HTML   => 'HTML по възможност, иначе PNG',
-  MW_MATH_SOURCE => 'Оставяне като TeX (за текстови браузъри)',
-  MW_MATH_MODERN => 'Препоръчително за нови браузъри',
-  MW_MATH_MATHML => 'MathML по възможност (експериментално)'
-);
 
 /* private */ $wgDateFormatsBg = array(
   'Без предпочитание',
@@ -1369,6 +1361,14 @@ $3...
 'and' => 'и',
 "othercontribs" => "Основано върху работа на $1.",
 "siteusers" => "потребителите на {{SITENAME}} $1",
+
+# Math
+  'mw_math_png'    => 'Използване винаги на PNG',
+  'mw_math_simple' => 'HTML при опростен TeX, иначе PNG',
+  'mw_math_html'   => 'HTML по възможност, иначе PNG',
+  'mw_math_source' => 'Оставяне като TeX (за текстови браузъри)',
+  'mw_math_modern' => 'Препоръчително за нови браузъри',
+  'mw_math_mathml' => 'MathML по възможност (експериментално)'
 );
 
 require_once( 'LanguageUtf8.php' );
@@ -1411,11 +1411,6 @@ class LanguageBg extends LanguageUtf8 {
   function getSkinNames() {
     global $wgSkinNamesBg;
     return $wgSkinNamesBg;
-  }
-
-  function getMathNames() {
-    global $wgMathNamesBg;
-    return $wgMathNamesBg;
   }
 
   function getDateFormats() {

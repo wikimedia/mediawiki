@@ -395,7 +395,7 @@ class PreferencesForm {
 			if ( $i == $this->mMath ) { $checked = ' checked="checked"'; }
 			else { $checked = ""; }
 			$wgOut->addHTML( "<div><label><input type='radio' name=\"wpMath\"
-	value=\"$i\"$checked /> {$mathopts[$i]}</label></div>\n" );
+	value=\"$i\"$checked /> ".wfMsg($mathopts[$i])."</label></div>\n" );
 		}
 		$wgOut->addHTML( "</fieldset>\n\n" );
 		
