@@ -47,7 +47,7 @@ function find_this_version ( $article_title , &$article_time , &$id , &$tab )
 function get_prev_data ( $user_id , $article_title , $article_timestamp = "" )
 	{
 	$ret = array () ;
-	$sql = "SELECT * FROM validate WHERE val_user={$user_id} AND val_title='{$article_title}'" ;
+	$sql = "SELECT * FROM validate WHERE val_user='{$user_id}' AND val_title='{$article_title}'" ;
 	if ( $article_timestamp != "" ) $sql .= " AND val_timestamp='{$article_timestamp}'" ;
 	$res = wfQuery( $sql, DB_READ );
 	while( $s = wfFetchObject( $res ) ) $ret[$s->val_timestamp][$s->val_type] = $s ;
@@ -78,9 +78,9 @@ function wfSpecialValidate( $page = "" ) {
 	
 	# Now we get all the "votes" for the different versions of this article for this user
 	$val = get_prev_data ( $wgUser->getID() , $article_title ) ;
-	if ( !isset ( $val[$article_time] ) ) $val["{$article_time}"] = array () ;
+#	if ( !isset ( $val[$article_time] ) ) $val["{$article_time}"] = array () ;
 	
-	# User has clicked "Doit" before, so evaluating form
+	# User has clicked "Doit" before, so evaluate form
 	if ( isset ( $_POST['doit'] ) )
 		{
 		$oldtime = $_POST['oldtime'] ;
@@ -102,13 +102,17 @@ function wfSpecialValidate( $page = "" ) {
 
 		for ( $idx = 0 ; $idx < count ( $types) ; $idx++ ) # Changes
 			{
+			$comment = $_POST["comment{$idx}"] ;
+			$comment_sql = str_replace ( "'" , "\'" , $comment ) ;
 			$rad = $_POST["rad{$idx}"] ;
 			if ( !isset ( $val["{$oldtime}"][$idx] ) ) $val["{$oldtime}"][$idx] = "" ;
-			$val["{$oldtime}"][$idx]->value = $rad ;
+			$val["{$oldtime}"][$idx]->val_value = $rad ;
+			$val["{$oldtime}"][$idx]->val_comment = $comment ;
 			if ( $rad != -1 )
 				{
 				# Store it in the database
-				$sql = "INSERT INTO validate VALUES ( '" . $wgUser->getID() . "','{$article_title}','{$oldtime}','{$idx}','{$rad}')" ;
+				$sql = "INSERT INTO validate (val_user,val_title,val_timestamp,val_type,val_value,val_comment) " . 
+					 "VALUES ( '" . $wgUser->getID() . "','{$article_title}','{$oldtime}','{$idx}','{$rad}','{$comment_sql}')" ;
 				if ( $rad != -1 ) wfQuery( $sql, DB_WRITE );
 				}
 			}
@@ -123,12 +127,15 @@ function wfSpecialValidate( $page = "" ) {
 		$html .= "<form method=post>\n" ;
 		$html .= "<input type=hidden name=oldtime value='{$time}'>" ;
 		$html .= "<table>\n" ;
+		$html .= "<tr><th>Class</th><th colspan=4>Opinion</th><th>Comment</th></tr>\n" ;
 		for ( $idx = 0 ; $idx < count ( $types) ; $idx++ )
 			{
 			$x = explode ( "|" , $types[$idx] , 4 ) ;
-			if ( isset ( $stuff[$idx] ) ) $choice = $stuff[$idx]->value ;
+			if ( isset ( $stuff[$idx] ) ) $choice = $stuff[$idx]->val_value ;
 			else $choice = -1 ;
-			$html .= "<tr><th align=left>{$x[0]}</th><td align=right>{$x[1]}</td><td>" ;
+			if ( isset ( $stuff[$idx] ) ) $comment = $stuff[$idx]->val_comment ;
+			else $comment = "" ;
+			$html .= "<tr><th align=left>{$x[0]}</th><td align=right>{$x[1]}</td><td align=center>" ;			
 			for ( $cnt = 0 ; $cnt < $x[3] ; $cnt++)
 				{
 				$html .= "<input type=radio name='rad{$idx}' value='{$cnt}'" ;
@@ -138,7 +145,9 @@ function wfSpecialValidate( $page = "" ) {
 			$html .= "</td><td>{$x[2]}</td>" ;
 			$html .= "<td><input type=radio name='rad{$idx}' value='-1'" ;
 			if ( $choice == -1 ) $html .= " checked" ;
-			$html .= "> {$noop}</td></tr>\n" ;
+			$html .= "> {$noop}</td>" ;
+			$html .= "<td><input type=text name='comment{$idx}' value='{$comment}'></td>" ;
+			$html .= "</tr>\n" ;
 			}
 		$html .= "<tr><td></td><td colspan=3><input type=checkbox name=clear_other value=1 checked>" ;
 		$html .= str_replace ( "$1" , $article->getFullURL() , $clear_old ) ;
