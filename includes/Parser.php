@@ -1239,8 +1239,8 @@ cl_sortkey" ;
 					continue;
 				}
 			}
-			if( ( $nt->getPrefixedText() == $this->mTitle->getPrefixedText() ) &&
-			( strpos( $link, '#' ) == FALSE ) ) {
+			if( ( $nt->getPrefixedText() === $this->mTitle->getPrefixedText() ) &&
+			( strpos( $link, '#' ) === FALSE ) ) {
 				# Self-links are handled specially; generally de-link and change to bold.
 				$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, '', $trail );
 				continue;

@@ -7,6 +7,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 Changes from 1.3.2:
 * Fix for long numeric page titles
+* Fix Go search for "0", numeric almost-self-links
 
 == Version 1.3.2, 2004-08-30 ==
 
