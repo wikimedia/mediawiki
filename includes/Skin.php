@@ -1727,11 +1727,16 @@ class Skin {
 	}
 
 	function tocTable($toc) {
-	// note to CSS fanatics: putting this in a div does not works -- div won't auto-expand
+	// note to CSS fanatics: putting this in a div does not work -- div won't auto-expand
+	global $printable;
+
+	if (!$printable) {
+		$hideline = " <script type='text/javascript'>showTocToggle(\"" . wfMsg("showtoc") . "\",\"" . wfMsg("hidetoc") . "\")</script>";
+	}
 	return
 	"<p><table border=\"0\" id=\"toc\"><tr><td align=\"center\">\n".
 	"<b>".wfMsg("toc")."</b>" .
-	" <script type='text/javascript'>showTocToggle(\"" . wfMsg("showtoc") . "\",\"" . wfMsg("hidetoc") . "\")</script>" .
+	$hideline .
 	"</td></tr><tr id='tocinside'><td align=\"left\">\n".
 	$toc."</td></tr></table><P>\n";
 	}
@@ -1747,8 +1752,10 @@ class Skin {
 
 	function editSectionLink($section) {
 
+		global $printable;
 		global $wgTitle,$wgUser,$oldid;
 		if($oldid) return "";
+		if ($printable) return "";
 		$editurl="&section={$section}";
 		$url=$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg("editsection"),"action=edit".$editurl);
 		return "<div style=\"float:right;margin-left:5px;\"><small>[".$url."]</small></div>";
