@@ -1528,7 +1528,8 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 		if(isset($wgLocaltimezone)) {
 			$oldtz = getenv("TZ"); putenv("TZ=$wgLocaltimezone");
 		}
-		$d = $wgLang->timeanddate( wfTimestampNow(), false ) .
+		/* Note: this is an ugly timezone hack for the European wikis */
+		$d = $wgLang->timeanddate( date( "YmdHis" ), false ) .
 		  " (" . date( "T" ) . ")";
 		if(isset($wgLocaltimezone)) putenv("TZ=$oldtz");
 

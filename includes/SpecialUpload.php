@@ -115,7 +115,7 @@ function saveUploadedFile()
 	$wgSavedFile = "{$dest}/{$wpUploadSaveName}";
 
 	if ( is_file( $wgSavedFile ) ) {
-		$wgUploadOldVersion = date( "YmdHis" ) . "!{$wpUploadSaveName}";
+		$wgUploadOldVersion = gmdate( "YmdHis" ) . "!{$wpUploadSaveName}";
 
 		if ( ! rename( $wgSavedFile, "${archive}/{$wgUploadOldVersion}" ) ) { 
 			$wgOut->fileRenameError( $wgSavedFile,

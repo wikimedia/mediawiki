@@ -25,7 +25,8 @@ function wfSpecialRecentchanges()
 	}
 	$days = (int)$days;
 	list( $limit, $offset ) = wfCheckLimits( 100, "rclimit" );
-	$cutoff = date( "YmdHis", time() - ( $days * 86400 ) );
+	$now = wfTimestampNow();
+	$cutoff = wfUnix2Timestamp( time() - ( $days * 86400 ) );
 	if(preg_match('/^[0-9]{14}$/', $from) and $from > $cutoff) {
 		$cutoff = $from;
 	} else {
@@ -72,7 +73,6 @@ function wfSpecialRecentchanges()
 
 	$note = rcDayLimitLinks( $days, $limit );
 
-	$now = date( "YmdHis" );
 	$note .= "<br>\n" . wfMsg( "rclistfrom",
 	  $sk->makeKnownLink( $wgLang->specialPage( "Recentchanges" ),
 	  $wgLang->timeanddate( $now, true ), "from=$now" ) );

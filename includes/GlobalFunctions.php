@@ -386,7 +386,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 	if ( 0 == wfNumRows( $res ) ) {
 		$sql = "INSERT INTO image (img_name,img_size,img_timestamp," .
 		  "img_description,img_user,img_user_text) VALUES ('" .
-		  wfStrencode( $name ) . "',{$size},'" . date( "YmdHis" ) . "','" .
+		  wfStrencode( $name ) . "',{$size},'" . wfTimestampNow() . "','" .
 		  wfStrencode( $desc ) . "', '" . $wgUser->getID() .
 		  "', '" . wfStrencode( $wgUser->getName() ) . "')";
 		wfQuery( $sql, $fname );
@@ -432,7 +432,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc )
 		wfQuery( $sql, $fname );
 
 		$sql = "UPDATE image SET img_size={$size}," .
-		  "img_timestamp='" . date( "YmdHis" ) . "',img_user='" .
+		  "img_timestamp='" . wfTimestampNow() . "',img_user='" .
 		  $wgUser->getID() . "',img_user_text='" .
 		  wfStrencode( $wgUser->getName() ) . "', img_description='" .
 		  wfStrencode( $desc ) . "' WHERE img_name='" .
