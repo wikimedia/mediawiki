@@ -947,7 +947,7 @@ alt=\"Google\" align=\"middle\"></a>
 'allmessagesnotsupportedDB' => "系統界面功能處於關閉狀態 (wgUseDatabaseMessages)。", //"Special:AllMessages not supported because wgUseDatabaseMessages is off.",
 'allmessagestext' => "這裡列出所有可定製的系統界面。", //"This is a list of all system messages available in the MediaWiki: namespace.",
 'allpagesformtext1' => "列出從 $1 起的條目", //"Display pages starting at: $1",
-'allpagesformtext2' => "選定名字空間： $1 $1", //"Choose namespace: $1 $2",
+'allpagesformtext2' => "選定名字空間： $1 $2", //"Choose namespace: $1 $2",
 'allpagesnamespace' => "所有 $1 名字空間的條目", //"All pages ($1 namespace)",
 'allpagesnext' => "下一頁", //"Next",
 'allpagesprev' => "上一頁", //"Previous",
