@@ -1086,27 +1086,6 @@ class Article {
 	}
 
 	/**
-	 * Validate article
-	 * @todo document this function a bit more
-	 */
-	function validate () {
-		global $wgOut, $wgUseValidation;
-		if( $wgUseValidation ) {
-			require_once ( 'SpecialValidate.php' ) ;
-			$wgOut->setPagetitle( wfMsg( 'validate' ) . ': ' . $this->mTitle->getPrefixedText() );
-			$wgOut->setRobotpolicy( 'noindex,follow' );
-			if( $this->mTitle->getNamespace() != 0 ) {
-				$wgOut->addHTML( wfMsg( 'val_validate_article_namespace_only' ) );
-				return;
-			}
-			$v = new Validation;
-			$v->validate_form( $this->mTitle->getDBkey() );
-		} else {
-			$wgOut->errorpage( 'nosuchaction', 'nosuchactiontext' );
-		}
-	}
-
-	/**
 	 * Mark this particular edit as patrolled
 	 */
 	function markpatrolled() {

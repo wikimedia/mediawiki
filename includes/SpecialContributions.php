@@ -142,15 +142,6 @@ function wfSpecialContributions( $par = '' ) {
 	}
 	$wgOut->addHTML( "</ul>\n" );
 
-	# Validations
-	global $wgUseValidation;
-	if( $wgUseValidation ) {
-		require_once( 'SpecialValidate.php' );
-		$val = new Validation ;
-		$val = $val->countUserValidations ( $id ) ;
-		$wgOut->addHTML( wfMsg ( 'val_user_validations', $val ) );
-	}
-
 	$wgOut->addHTML( "<br />{$sl} ($shm)\n");
 }
 
