@@ -379,6 +379,11 @@ If upgrading from an older release, see the file UPGRADE;
 * Stub threshold displays correctly again
 
 
+=== RC2 fixes ===
+
+* (bug 65) Fix broken interwiki link encoding on Latin-1 wikis; force to UTF-8
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
