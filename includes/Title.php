@@ -770,10 +770,10 @@ class Title {
 
 	# Get an array of Title objects linking to this title
 	# Also stores the IDs in the link cache
-	function getLinksTo() {
+	function getLinksTo( $options = '' ) {
 		global $wgLinkCache;
 		$id = $this->getArticleID();
-		$sql = "SELECT cur_namespace,cur_title,cur_id FROM cur,links WHERE l_from=cur_id AND l_to={$id}";
+		$sql = "SELECT cur_namespace,cur_title,cur_id FROM cur,links WHERE l_from=cur_id AND l_to={$id} $options";
 		$res = wfQuery( $sql, DB_READ, "Title::getLinksTo" );
 		$retVal = array();
 		if ( wfNumRows( $res ) ) {
@@ -790,11 +790,11 @@ class Title {
 
 	# Get an array of Title objects linking to this non-existent title
 	# Also stores the IDs in the link cache
-	function getBrokenLinksTo() {
+	function getBrokenLinksTo( $options = '' ) {
 		global $wgLinkCache;
 		$encTitle = wfStrencode( $this->getPrefixedDBkey() );
 		$sql = "SELECT cur_namespace,cur_title,cur_id FROM brokenlinks,cur " .
-		  "WHERE bl_from=cur_id AND bl_to='$encTitle'";
+		  "WHERE bl_from=cur_id AND bl_to='$encTitle' $options";
 		$res = wfQuery( $sql, DB_READ, "Title::getBrokenLinksTo" );
 		$retVal = array();
 		if ( wfNumRows( $res ) ) {
@@ -955,8 +955,8 @@ class Title {
 		# Swap links
 		
 		# Load titles and IDs
-		$linksToOld = $this->getLinksTo();
-		$linksToNew = $nt->getLinksTo();
+		$linksToOld = $this->getLinksTo( 'FOR UPDATE' );
+		$linksToNew = $nt->getLinksTo( 'FOR UPDATE' );
 		
 		# Delete them all
 		$sql = "DELETE FROM links WHERE l_to=$oldid OR l_to=$newid";
