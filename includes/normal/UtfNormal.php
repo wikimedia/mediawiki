@@ -258,7 +258,7 @@ class UtfNormal {
 	 */
 	function quickIsNFCVerify( &$string ) {
 		# Screen out some characters that eg won't be allowed in XML
-		preg_replace( '/[\x00-\x08\x0b\x0c\x0e-\x1f]/', UTF8_REPLACEMENT, $string );
+		$string = preg_replace( '/[\x00-\x08\x0b\x0c\x0e-\x1f]/', UTF8_REPLACEMENT, $string );
 		
 		# ASCII is always valid NFC!
 		# If we're only ever given plain ASCII, we can avoid the overhead
