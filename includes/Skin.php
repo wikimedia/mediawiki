@@ -815,7 +815,7 @@ class Skin {
 		global $wgSiteSupportPage;
 		if( $wgSiteSupportPage ) {
 			$s .= "\n<br><a href=\"" . htmlspecialchars( $wgSiteSupportPage ) .
-			  "\">" . wfMsg( "sitesupport" ) . "</a>";
+			  "\" class=\"internal\">" . wfMsg( "sitesupport" ) . "</a>";
 		}
 	
 		$s .= "\n<br></div>\n";
