@@ -396,7 +396,7 @@ If upgrading from an older release, see the file UPGRADE;
 * Respect read-only mode on block removals
 * Trim old illegal characters from syndication feeds
 * Reduce message cache outage recovery delay from 1 day to 5 minutes
-
+* (bug 1403) Update Finnish localization
 
 === Caveats ===
 
