@@ -676,6 +676,7 @@ Alle Zeiten sind UTC.
 "badfilename"	=> "Der Bildname wurde in \"$1\" geändert.",
 "badfiletype"	=> "\".$1\" ist kein empfohlenes Dateiformat.",
 "largefile"		=> "Bitte keine Bilder über 100 KByte hochladen.",
+'emptyfile'		=> "Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.",
 "successfulupload" => "Erfolgreich hochgeladen",
 "fileuploaded"	=> "Die Datei \"$1\" wurde erfolgreich hochgeladen. Bitte 
 verwenden Sie diesen ($2) Link zur Beschreibungsseite und füllen Sie die 
