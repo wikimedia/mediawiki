@@ -37,6 +37,26 @@ class element {
       return $ret ;
     	}
     
+    function makeInternalLink ( &$parser )
+    	{
+    	$target = "" ;
+    	$option = array () ;
+      foreach ($this->children as $child) {
+            if ( is_string($child) ) {
+            	# This shouldn't be the case!
+            } else {
+                if ( $child->name == "LINKTARGET" )
+                	$target = trim ( $child->makeXHTML ( $parser ) ) ;
+		    else
+		    	$option[] = trim ( $child->makeXHTML ( $parser ) ) ;
+            }
+           }
+           
+      $ret = "" ;
+      $ret .= "\n[[" . $target . "|" . implode ( "|" , $option ) . "]]\n" ;
+      return $ret ;
+    	}
+    	
     function makeXHTML ( &$parser )
     	{
     	$ret = "" ;
@@ -52,11 +72,20 @@ class element {
     	else if ( $n == "ITALICS" )
     		$ret .= $this->sub_makeXHTML ( $parser , "em" ) ;
 
-    	else if ( $n == "EXTENSION" )
+    	else if ( $n == "LINK" )
+    		$ret .= $this->makeInternalLink ( $parser ) ;
+    	else if ( $n == "LINKTARGET" )
+    		$ret .= $this->sub_makeXHTML ( $parser ) ;
+    	else if ( $n == "LINKOPTION" )
+    		$ret .= $this->sub_makeXHTML ( $parser ) ;
+    		
+    	else if ( $n == "EXTENSION" ) # This is currently a dummy!!!
     		{
     		$ext = $this->attrs["NAME"] ;
     		
-#    		$ret .= $this->sub_makeXHTML ( $parser , "em" ) ;
+    		$ret .= "&lt;" . $ext . "&gt;" ;
+    		$ret .= $this->sub_makeXHTML ( $parser ) ;
+    		$ret .= "&lt;/" . $ext . "&gt; " ;
     		}
 
     	else if ( $n == "TABLE" )
@@ -86,7 +115,7 @@ class element {
     		{
     		$ret .= "&lt;" . $n . "&gt;" ;
     		$ret .= $this->sub_makeXHTML ( $parser ) ;
-    		$ret .= "&lt;/" . $n . "&gt;" ;
+    		$ret .= "&lt;/" . $n . "&gt; " ;
     		}
     	return $ret ;
     	}
