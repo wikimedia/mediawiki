@@ -707,7 +707,7 @@ class Skin {
 		$mp = wfMsg( "mainpage" );
 		$titleObj = Title::newFromText( $mp );
 		$s = "<a href=\"" . $titleObj->escapeLocalURL()
-		  . "\"><img{$a} border='0' src=\""
+		  . "\"><img{$a} src=\""
 		  . $this->getLogo() . "\" alt=\"" . "[{$mp}]\" /></a>";
 		return $s;
 	}
@@ -1507,8 +1507,8 @@ class Skin {
 			}
 			if ( "center" == $align )
 			{
-				$prefix  = "<center>";
-				$postfix = "</center>";
+				$prefix  = '<span style="text-align: center">';
+				$postfix = '</span>';
 				$align   = "none";
 			}
 	
@@ -1548,7 +1548,7 @@ class Skin {
 			$s = str_replace( "$1", $name, wfMsg("missingimage") );
 		} else {
 			$s = "\n  <a href=\"{$u}\" class='image' title=\"{$alt}\">\n" .
-				"  <img border=\"0\" src=\"{$url}\" alt=\"{$alt}\" />\n  </a>";
+				"  <img src=\"{$url}\" alt=\"{$alt}\" />\n  </a>";
 		}
 		if ( "" != $align ) {
 			$s = "<div class=\"float{$align}\"><span>{$s}\n</span></div>";
@@ -1694,10 +1694,10 @@ class Skin {
 			$s .= str_replace( "$1", $name, wfMsg("missingimage") );
 		} else {
 		  	$s .= "\n".'  <a href="'.$u.'" class="internal" title="'.$alt.'">'."\n".
-		  		'  <img border="0" src="'.$thumbUrl.'" alt="'.$alt.'" ' .
+		  		'  <img src="'.$thumbUrl.'" alt="'.$alt.'" ' .
 				'  width="'.$boxwidth.'" height="'.$boxheight.'" /></a>' ."\n".
 		  		'  <a href="'.$u.'" class="internal" title="'.$more.'"> ' ."\n".
-		    		'  <img border="0" src="'.$wgUploadPath.'/magnify-clip.png" ' .
+		    		'  <img src="'.$wgUploadPath.'/magnify-clip.png" ' .
 				'width="26" height="24" align="'.$magnifyalign.'" alt="'.$more.'" /> </a>'."\n";
 		}
 		$s .= '  <p'.$textalign.'>'.$label."</p>\n</div></div>";
@@ -1862,8 +1862,8 @@ class Skin {
 		$rcm = "RCM{$this->rcCacheIndex}" ;
 		$toggleLink = "javascript:toggleVisibility(\"{$rci}\",\"{$rcm}\",\"{$rcl}\")" ;
 		$arrowdir = $wgLang->isRTL() ? "l" : "r";
-		$tl  = "<span id='{$rcm}'><a href='$toggleLink'><img src='{$wgUploadPath}/Arr_{$arrowdir}.png' width='12' height='12' border='0' /></a></span>" ;
-		$tl .= "<span id='{$rcl}' style='display:none'><a href='$toggleLink'><img src='{$wgUploadPath}/Arr_d.png' width='12' height='12' border='0' /></a></span>" ;
+		$tl  = "<span id='{$rcm}'><a href='$toggleLink'><img src='{$wgUploadPath}/Arr_{$arrowdir}.png' width='12' height='12' /></a></span>" ;
+		$tl .= "<span id='{$rcl}' style='display:none'><a href='$toggleLink'><img src='{$wgUploadPath}/Arr_d.png' width='12' height='12' /></a></span>" ;
 		$r .= $tl ;
 
 		# Main line
@@ -1905,7 +1905,7 @@ class Skin {
 			# Get rc_xxxx variables
 			extract( $rcObj->mAttribs );
 			
-			$r .= "<img src='{$wgUploadPath}/Arr_.png' width=12 height=12 border=0 />";
+			$r .= "<img src='{$wgUploadPath}/Arr_.png' width=12 height=12 />";
 			$r .= "<tt>&nbsp; &nbsp; &nbsp; &nbsp;" ;
 			if ( $rc_new ) $r .= $N ;
 			else $r .= "&nbsp;" ;
@@ -2196,7 +2196,7 @@ class Skin {
 		
 		# format text between /* .. */ with autocomment CSS class
 		$comment=preg_replace("/\/\*\s*(.*?)\s*\*\//i",
-		"<span id=\"autocomment\">$1</span>",$comment);
+		"<span class=\"autocomment\">$1</span>",$comment);
 		return $comment;
 	}
 

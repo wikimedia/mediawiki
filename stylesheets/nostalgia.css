@@ -13,6 +13,7 @@ a.printable { text-decoration: underline; }
 a.stub { color:#772233; text-decoration:none; }
 h1.pagetitle { padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0; }
 h2, h3, h4, h5, h6 { margin-bottom: 0; }
+img { border: none; }
 p.subtitle { padding-top: 0; margin-top: 0; }
 #toc { border:1px solid #8888aa; background-color:#f7f8ff;padding:5px;font-size:95%; }
 
@@ -56,6 +57,9 @@ table.rimage {
         text-align:center;
         font-size:smaller;
         }
+
+/* automatically generated edit summaries */
+.autocomment { color: gray; }
 
 /* Print-specific things to hide */
 .urlexpansion, .printfooter {

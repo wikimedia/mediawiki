@@ -9,7 +9,7 @@
 #topbar { padding: 4px;font-size:95%; }
 
 /* automatically generated edit summaries */
-#autocomment { color: gray; }
+.autocomment { color: gray; }
 
 /* Table of contents */
 #toc {
@@ -54,6 +54,7 @@ p.subtitle { padding-top: 0; margin-top: 0;}
 td { empty-cells:show; }
 td.bottom { border-top: 1px solid gray; }
 td.top { border-bottom: 1px solid gray; }
+img { border: none; }
 /* images */
 div.floatright { float: right; margin: 0 0 1em 1em; }
 div.floatright p { font-style: italic; } 
