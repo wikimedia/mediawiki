@@ -13,6 +13,7 @@ New exciting things! Need further work and testing...
 * e-mail change notifications
 * 'live preview' reduces preview reload burden on supported browsers
 * Schema reworking: http://meta.wikimedia.org/wiki/Proposed_Database_Schema_Changes/October_2004
+* New WikiSyntax: -- turns into &emdash; or &ndash; depending on context
 * ...and more!
 
 Need to merge:
