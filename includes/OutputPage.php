@@ -711,6 +711,7 @@ $t[] = "</table>" ;
 
 		$text = $this->doAllQuotes( $text );
 		$text = $this->doHeadings( $text );
+		$text = $this->doTableStuff ( $text ) ;
 		$text = $this->doBlockLevels( $text, $linestart );
 		
 		if($wgUseDynamicDates) {
@@ -720,7 +721,6 @@ $t[] = "</table>" ;
 
 		$text = $this->replaceExternalLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
-		$text = $this->doTableStuff ( $text ) ;
 
 		$text = $this->magicISBN( $text );
 		$text = $this->magicRFC( $text );
