@@ -79,6 +79,7 @@ WARNED, CAUSE WE WARNED YOU.
 
 === Misc bugs fixed ===
 
+* (bug 95) Templates no longer limited to 5 inclusions per page
 * New user preference for limiting the image size for images on image description
   pages
 * (bug 502) Error pages no more offer edit / talk / watch links
