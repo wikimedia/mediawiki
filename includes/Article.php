@@ -746,21 +746,24 @@ class Article {
 	 * @return bool true on success, false on failure
 	 * @access private
 	 */
-	function updateRevisionOn( &$dbw, $revId, $lastRevision, $isRedirect = false ) {
+	function updateRevisionOn( &$dbw, $revId, $lastRevision = null, $isRedirect = false ) {
 		$fname = 'Article::updateToRevision';
 		wfProfileIn( $fname );
 		
+		$conditions = array( 'page_id' => $this->getId() );
+		if( !is_null( $lastRevision ) ) {
+			# An extra check against threads stepping on each other
+			$conditions['page_latest'] = $lastRevision;
+		}
 		$dbw->update( 'page',
 			array( /* SET */
 				'page_latest'      => $revId,
 				'page_touched'     => $dbw->timestamp(),
-				'page_is_new'      => ($lastRevision == 0),
-				'page_is_redirect' => $isRedirect,
-			), array( /* WHERE */
-				'page_id'          => $this->getId(),
-				'page_latest'      => $lastRevision, # Paranoia
-			), $fname
-		);
+				'page_is_new'      => ($lastRevision === 0) ? 0 : 1,
+				'page_is_redirect' => $isRedirect ? 1 : 0,
+			),
+			$conditions,
+			$fname );
 		
 		wfProfileOut( $fname );
 		return ( $dbw->affectedRows() != 0 );
@@ -1922,50 +1925,30 @@ class Article {
 
 	/**
 	 * Edit an article without doing all that other stuff
+	 * The article must already exist; link tables etc
+	 * are not updated, caches are not flushed.
 	 *
 	 * @param string $text text submitted
 	 * @param string $comment comment submitted
-	 * @param integer $minor whereas it's a minor modification
+	 * @param bool $minor whereas it's a minor modification
 	 */
 	function quickEdit( $text, $comment = '', $minor = 0 ) {
-		global $wgUser;
 		$fname = 'Article::quickEdit';
-
-		#wfDebugDieBacktrace( "$fname called." );
-
 		wfProfileIn( $fname );
 
 		$dbw =& wfGetDB( DB_MASTER );
-		$ns = $this->mTitle->getNamespace();
-		$dbkey = $this->mTitle->getDBkey();
-		$encDbKey = $dbw->strencode( $dbkey );
-		$timestamp = $dbw->timestamp();
-		# insert new text
-		$dbw->insert( 'text', array(
-				'old_text' => $text,
-				'old_flags' => "" ), $fname );
-		$text_id = $dbw->insertID();
-
-		# update page
-		$dbw->update( 'page', array(
-			'page_is_new' => 0,
-			'page_touched' => $timestamp,
-			'page_is_redirect' => $this->isRedirect( $text ) ? 1 : 0,
-			'page_latest' => $text_id ),
-			array( 'page_namespace' => $ns, 'page_title' => $dbkey ), $fname );
-		# Retrieve page ID
-		$page_id = $dbw->selectField( 'page', 'page_id', array( 'page_namespace' => $ns, 'page_title' => $dbkey ), $fname );
-
-		# update revision
-		$dbw->insert( 'revision', array(
-			'rev_id' => $text_id,
-			'rev_page' => $page_id,
-			'rev_comment' => $comment,
-			'rev_user' => $wgUser->getID(),
-			'rev_user_text' => $wgUser->getName(),
-			'rev_timestamp' => $timestamp,
-			'rev_minor_edit' => intval($minor) ),
-			$fname );
+		$dbw->begin();
+		$revision = new Revision( array(
+			'page'       => $this->getId(),
+			'text'       => $text,
+			'comment'    => $comment,
+			'minor_edit' => $minor ? 1 : 0,
+			) );
+		$revisionId = $revision->insertOn( $dbw );
+		$this->updateRevisionOn( $dbw, $revisionId, null,
+			Article::isRedirect( $text ) );
+		$dbw->commit();
+		
 		wfProfileOut( $fname );
 	}
 
