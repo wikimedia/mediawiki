@@ -184,8 +184,8 @@ DISCUSSION!
 "tog-numberheadings" => "Uimhrigh ceannteidil go huathoibrí­och",
 "tog-editondblclick" => "Cuir leathanaigh in eagar le roghna dúbailte (JavaScript)",
 "tog-editsection"=>"Cumasaigh eagarthóireacht mí­r le lúibí­ní­ [athraithe]",
-"tog-editsectiononrightclick"=>"Cumasaigh eagarthóireacht mí­r le deas-roghna<br> ar ceannteidil (JavaScript)",
-"tog-showtoc"=>"Déan liosta na ceannteideal<br>(do ailt le ní­os mó ná 3 ceannteidil)",
+"tog-editsectiononrightclick"=>"Cumasaigh eagarthóireacht mí­r le deas-roghna<br /> ar ceannteidil (JavaScript)",
+"tog-showtoc"=>"Déan liosta na ceannteideal<br />(do ailt le ní­os mó ná 3 ceannteidil)",
 "tog-rememberpassword" => "Cuimhnigh mo focal faire",
 "tog-editwidth" => "Cuir uasméid ar an mbosca eagair",
 "tog-watchdefault" => "Breathnaigh ar leathanaigh a d'athraigh tú",
@@ -416,8 +416,8 @@ san oideasra MediaWiki. De ghnáth, tarlaí­onn sé sin nuair a leantar nasc st
 teideal idirtheangach no idir-Wiki nasctha go mí­cheart.",
 "perfdisabled" => "Tá brón orainnn! Mhí­chumasaí­odh an gné seo go sealadach chun luas an bunachair sonraí­ a chosaint.",
 "perfdisabledsub" => "Seo cóip i dtaisce ó $1:",
-"wrong_wfQuery_params" => "Paraiméadair mí­chearta don wfQuery()<br>
-Feidhm: $1<br>
+"wrong_wfQuery_params" => "Paraiméadair mí­chearta don wfQuery()<br />
+Feidhm: $1<br />
 Órdú: $2
 ",
 'perfcached' => 'Fuarthas na sonraí seo as dtaisce, agus is dócha nach bhfuil siad reatha:',
@@ -446,13 +446,13 @@ Ná déan dearmad do sainroghanna phearsanta a athrú.",
 "yourpasswordagain" => "Athiontráil d'fhocal faire",
 "newusersonly"  => " (D'úsáideoirí­ úrnua amháin)",
 "remembermypassword" => "Cuimhnigh m'fhocal faire.",
-"loginproblem"  => "<b>Bhí­ fadhb leis an logáil isteach.</b><br>Déan iarracht eile!",
-"alreadyloggedin" => "<font color=red><b>A húsáideoir $1, tá tú logáilte isteach cheana féin!</b></font><br>\n",
+"loginproblem"  => "<b>Bhí­ fadhb leis an logáil isteach.</b><br />Déan iarracht eile!",
+"alreadyloggedin" => "<font color=red><b>A húsáideoir $1, tá tú logáilte isteach cheana féin!</b></font><br />\n",
 
 "areyounew"     => "Má tá tú i do núí­osach chuig an Vicipéid agus tá cuntas úsáideora ag teastáil uait,
 iontráil ainm úsáideora, agus ansin iontráil agus athiontráil focal faire.
 Níl an seoladh rí­omhphoist ach rud roghnach; dá scríobhfá d'fhocal faire, is feidir leat a iarradh
-go seolfar é chuig an seoladh rí­omhphoist a thug tú.<br>\n",
+go seolfar é chuig an seoladh rí­omhphoist a thug tú.<br />\n",
 
 "login"     => "Log ann",
 'loginprompt'   => "Tá chomhaid aithintáin (<i>cookies</i>) riachtanach chun logáil isteach san {{SITENAME}} a dhéanamh.",
@@ -470,7 +470,7 @@ go seolfar é chuig an seoladh rí­omhphoist a thug tú.<br>\n",
 "emailforlost"  => "* Níl na boscaí le réalt (*) ach roghnach.  Le seoladh ríomhphoist i dtaisce, ba féidir le daoine teagmhail a dhéanamh leat
 trí­d an suí­omh gan do sheoladh rí­omhphoist a nochtaigh dóibh. Ina theannta sin,
 is cabhair é má dheanfá dearmad ar d'fhocal faire.<br /><br />Má toghaíonn tú d'ainm ceart a chur isteach, úsáidfear é chun do chuid dreachtaí a chur i leith tusa",
-'prefs-help-userdata' => '* <strong>Ainm ceart</strong> (roghnach): má toghaíonn tú é sin a chur ar fáil, úsáidfear é chun do chuid dreachtaí a chur i leith tusa.<br/>
+'prefs-help-userdata' => '* <strong>Ainm ceart</strong> (roghnach): má toghaíonn tú é sin a chur ar fáil, úsáidfear é chun do chuid dreachtaí a chur i leith tusa.<br />
 * <strong>Ríomhphost</strong> (roghnach): Ba féidir le daoine teagmháil a dhéanamh leat gan do sheoladh ríomhphoist
 a thaispeáint dóibh, agus ba féidir focal faire nua a sheol chugat má dhéanfá dearmad air.',
 "loginerror"    => "Earráid leis an logáil isteach",
@@ -531,7 +531,7 @@ Agus atá sé agat, logáil isteach arí­s leis le do thoil.",
 "showpreview"   => "Reamhspléach",
 "blockedtitle"  => "Tá an úsáideoir seo faoi chosc",
 "blockedtext"   => "Chuir $1 cosc ar d'ainm úsáideora nó do seoladh IP.
-Seo é an cúis a thugadh:<br>''$2''<p>Is féidir leat teagmháil a dhéanamh le $1 nó le ceann eile de na
+Seo é an cúis a thugadh:<br />''$2''<p>Is féidir leat teagmháil a dhéanamh le $1 nó le ceann eile de na
 [[$wgMetaNamespace:Riarthóirí­|riarthóirí­]] chun an cosc a phléigh.
 
 Tabhair faoi deara nach bhfuil cead agat an gné \"cuir rí­omhphost chuig an úsáideoir seo\" a úsáid
@@ -590,7 +590,7 @@ Dá shábhálfá é, caillfear aon athrú a rinneadh ó shin an eagrán seo.</st
 "copyrightwarning" => "Tabhair faoi deara go scaoilí­tear gach dréacht chuig an Vicipéid maidir lena tearmaí­ an <i>GNU Free Documentation License</i>
 (tuilleadh eolais ag $1).
 Muna aontaíonn tú go cuirfear do chuid scrí­bhinn in eagar go héadrócaireach agus go athdálfar é gan teorainn,
-ná tabhair isteach é anseo.<br>
+ná tabhair isteach é anseo.<br />
 Ina theannta sin, geallann tú duinn go scrí­obh tusa féin an rud seo, nó go chóipeáil tú é as
 fhoinse atá gan chóipcheart.
 <strong>NÁ TABHAIR ISTEACH OBAIR ATÁ FAOI CHÓIPCHEART GAN CEAD!</strong>",
@@ -617,7 +617,7 @@ Cinntigh an URL a d'úsáid tú chun an leathanach seo a rochtain.\n",
 "next"          => "lns",
 "last"          => "rmh",
 "orig"          => "bun",
-'histlegend'	=> "Difríochtaí a roghnú: marcáil na boscaí de na eagráin atá ag teastail uait á cuir i gcomparáid, agus brúigh Iontráil nó an cnaipe ag bun an leathanaigh.<br/>
+'histlegend'	=> "Difríochtaí a roghnú: marcáil na boscaí de na eagráin atá ag teastail uait á cuir i gcomparáid, agus brúigh Iontráil nó an cnaipe ag bun an leathanaigh.<br />
 Eochair: (rth) = difrí­ocht leis an eagrán reatha,
 (rmh) = difrí­ocht leis an eagrán roimhe, M = mionathrú",
 
@@ -660,8 +660,8 @@ a nach bhfuil innéacsaí­tear, nó nuair a ceisteann tú ní­os mó ná téar
 taispeáintear sna toraidh ach na leathanaigh ina bhfuil go leoir na téarmaí­ cuardaigh).",
 "powersearch" => "Cuardaigh",
 "powersearchtext" => "
-Cuardaigh sna hainmranna :<br>
-$1<br>
+Cuardaigh sna hainmranna :<br />
+$1<br />
 $2 Cuir athsheolaidh in áireamh &nbsp; Cuardaigh ar $3 $9",
 "searchdisabled" => "<p>Tá brón orainn! Mhí­chumasaí­odh an cuardach téacs iomlán go sealadach chun luas an suí­mh
 a chosaint. Idir an dá linn, is féidir leat an cuardach Google anseo thí­os a úsáid - b'fhéidir go bhfuil sé as dáta.</p>",
@@ -680,7 +680,7 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT type=submit name=btnG VALUE=\"Google Search\">
 <font size=-1>
 <input type=hidden name=domains value=\"{$wgServer}\">
-<br><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br>
+<br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -870,7 +870,7 @@ chruthaí­odh é agus rud eile ar bith tá 'fhios agat faoi.",
 "deleteimgcompletely"     => "scr",
 "imghistlegend" => "Eochair: (rth) = seo é an eagrán reatha, (scr) = scrios an
 sean-eagrán seo, (ath) = athúsáid an sean-eagrán seo.
-<br><i>Bruigh an dáta chun feach ar an í­omhá mar a suaslódálaí­odh é ar an dáta sin</i>.",
+<br /><i>Bruigh an dáta chun feach ar an í­omhá mar a suaslódálaí­odh é ar an dáta sin</i>.",
 "imagelinks"    => "Naisc í­omhá",
 "linkstoimage"  => "Is iad na leathanaigh seo a leanas a nascaí­onn chuig an í­omhá seo:",
 "nolinkstoimage" => "Ní­l aon leathanach ann a nascaí­onn chuig an í­omhá seo.",
@@ -901,11 +901,11 @@ chrí­ochnaí­onn tú ;-)",
 "disambiguations"   => "Leathanaigh easathbhrí­ochais",
 "disambiguationspage"   => "Vicipéid:Naisc_go_leathanaigh_easathbhrí­ochais",
 "disambiguationstext"   => "Nascaí­onn na ailt seo a leanas go <i>leathanach easathbhrí­ochais</i>. Ba chóir dóibh nasc a
-dhéanamh leis an ábhar oiriúnach ina áit.<br>Tugtar an teideal easathbhrí­ochais ar leathanach má bhfuil násc aige
-ó $1.<br><i>Ní­</i> cuirtear naisc ó ranna eile ar an liosta seo.",
+dhéanamh leis an ábhar oiriúnach ina áit.<br />Tugtar an teideal easathbhrí­ochais ar leathanach má bhfuil násc aige
+ó $1.<br /><i>Ní­</i> cuirtear naisc ó ranna eile ar an liosta seo.",
 "doubleredirects"   => "Athsheolaidh Dúbailte",
 "doubleredirectstext"   => "<b>Tabhair faoi deara:</b> B'fheidir go bhfuil toraidh bréagacha ar an liosta seo.
-De ghnáth cí­allaí­onn sé sin go bhfuil téacs breise le naisc thí­os sa chéad #REDIRECT no #ATHSHEOLADH.<br>\n Sa gach
+De ghnáth cí­allaí­onn sé sin go bhfuil téacs breise le naisc thí­os sa chéad #REDIRECT no #ATHSHEOLADH.<br />\n Sa gach
 sraith tá náisc chuig an chéad is an dara athsheoladh, chomh maith le chéad lí­ne an dara téacs athsheolaidh. De ghnáth
 tugann sé sin an sprioc-alt \"fí­or\".",
 "brokenredirects"   => "Athsheolaidh Briste",
@@ -1149,7 +1149,7 @@ leathanaigh áirithe a rinne an duine damáiste ar).",
 "noblockreason" => "Ní mór duit cúis a thabhairt don cosc.",
 "blockipsuccesssub" => "D'éirigh leis an cosc",
 "blockipsuccesstext" => "Choisceadh \"$1\".
-<br>Féach ar [[Speisialta:Ipblocklist|Liosta coisc IP]] chun coisc a athbhreithnigh.",
+<br />Féach ar [[Speisialta:Ipblocklist|Liosta coisc IP]] chun coisc a athbhreithnigh.",
 "unblockip"     => "Bain an cosc den úsáideoir",
 "unblockiptext" => "Úsáid an foirm anseo thí­os chun bealach scrí­ofa a thabhairt ar ais go seoladh
 IP nó ainm úsáideora a raibh coiscthe roimhe seo.",
@@ -1238,8 +1238,8 @@ hathrú, ach ba mhaith leat do roghanna eile don alt a chosaint, ná roghnaigh
 rud ar bith ach amháin an rogha ba mhaith leat a <i>athrú</i>, agus le
 cumaisc líonfar na roghanna eile de réir na roghanna a raibh agat roimhe ré.',
 'val_noop' => 'Gan tuairim',
-'val_percent' => '<b>$1%</b><br>($2 de $3 pointí<br>a rinne $4 úsáideoirí)',
-'val_percent_single' => '<b>$1%</b><br>($2 de $3 pointí<br>a rinne aon úsáideoir)',
+'val_percent' => '<b>$1%</b><br />($2 de $3 pointí<br />a rinne $4 úsáideoirí)',
+'val_percent_single' => '<b>$1%</b><br />($2 de $3 pointí<br />a rinne aon úsáideoir)',
 'val_total' => 'Iomlán',
 'val_version' => 'Leagan',
 'val_tab' => 'Seiceáil an bhailíocht',

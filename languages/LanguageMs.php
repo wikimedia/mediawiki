@@ -313,13 +313,13 @@ Sila kemaskini konfigurasi butir-butir diri anda.", #"<h2>Welcome, $1!</h2><p>Yo
 "yourpasswordagain" => "Ulang Kata Laluan", #Retype password",
 "newusersonly"	 => "(Hanya pengguna baru)", # (new users only)",
 "remembermypassword" => "Sentiasa ingatan kata laluan.", # Remember my password across sessions.",
-"loginproblem"	=> "<b>Terdapat masalah dengan data kemasukan.</b><br>Cuba semula!", # There has been a problem with your login.</b><br>Try again!",
-"alreadyloggedin" => "<font color=red><b>Pengguna $1, anda telah berjaya masuk!</b></font><br>\n",
+"loginproblem"	=> "<b>Terdapat masalah dengan data kemasukan.</b><br />Cuba semula!", # There has been a problem with your login.</b><br />Try again!",
+"alreadyloggedin" => "<font color=red><b>Pengguna $1, anda telah berjaya masuk!</b></font><br />\n",
 
 "areyounew"		=>"Sekiranya anda baru dalam Wikipedia dan ingin mendapatkan akaun pengguna,
 masukan nama pengguna, kemudia taip kata laluan dan ulang semula kata laluan.
 Alamat email anda adalah tidak diwajibkan;sekiranya kehilangan kata laluan
-boleh diminta melalui email yg diberikan.<br>\n",
+boleh diminta melalui email yg diberikan.<br />\n",
 
 "login"			=> "Masuk", #Log in
 "userlogin"		=> "Laluan masuk", #Log in
@@ -363,7 +363,7 @@ Sila masuk setelah menerima email tersebut.", #Please log in again after you rec
 "showpreview"	=> "Tunjuk Paparan", #"Show preview",
 "blockedtitle"	=> "Pengguna diblok", #"User is blocked",
 "blockedtext"	=> "Kata nama anda atau alamat IP telah diblok oleh $1.
-Alasannya kerana :<br>$2<p>Anda boleh menghubungi sistem admin untuk
+Alasannya kerana :<br />$2<p>Anda boleh menghubungi sistem admin untuk
 membincangkan sebab-sebabnya.",
 "newarticle"	=> "(Baru)", #"(New)",
 "newarticletext" =>
@@ -467,8 +467,8 @@ yang mana bukan dalam senarai indeks atau dengan dikhususkan lebih dari
 satu istilah carian(hanya halaman).", # "<strong>Note</strong>: unsuccessful searches are often caused by searching for common words like \"have\" and \"from\",which are not indexed, or by specifying more than one search term (only pages containing all of the search terms will appear in the result).",
 "powersearch" => "Cari", #"Search",
 "powersearchtext" => "
-Search in namespaces :<br>
-$1<br>
+Search in namespaces :<br />
+$1<br />
 $2 List redirects &nbsp; Search for $3 $9",
 
 
@@ -617,7 +617,7 @@ oleh siapa, dan lain-lain yang anda ketahui.",
 "deleteimgcompletely"		=> "del",
 "imghistlegend" => "Legend: (cur) = this is the current image, (del) = delete
 this old version, (rev) = revert to this old version.
-<br><i>Click on date to see image uploaded on that date</i>.",
+<br /><i>Click on date to see image uploaded on that date</i>.",
 "imagelinks"	=> "Pautan imej",  #"Image links",
 "linkstoimage"	=> "Halaman berikut berpaut pada imej ini:", #"The following pages link to this image:",
 "nolinkstoimage" => "Tiada halaman yang berpaut pada imej ini.",   #"There are no pages that link to this image.",
@@ -645,9 +645,9 @@ Ini menjadikan <b>$5</b> purata halaman yang disunting, dan <b>$6</b> paparan ya
 "maintenancebacklink"	=> "Kembali ke halaman penyelenggaran", #"Back to Maintenance Page",
 "disambiguations"	=> "Halaman yang tidak samar", #"Disambiguation pages",
 "disambiguationspage"	=> "Wikipedia:Pautan_ke_halaman_yang_tidak_samar",    #"Wikipedia:Links_to_disambiguating_pages",
-"disambiguationstext"	=> "Halaman-halaman yang berikutnya bersambung ke satu <i>halaman yang tidak samar</i>. Halaman-halaman tersebut sepatutnya bersambung ke topik-topik yang berkenaan.<br>Satu halaman dianggap sebagai tidak samar jika ia disambung dari $1.<br>Pautan dari ruang nama yang lain <i>tidak</i> tersenarai di sini.",
+"disambiguationstext"	=> "Halaman-halaman yang berikutnya bersambung ke satu <i>halaman yang tidak samar</i>. Halaman-halaman tersebut sepatutnya bersambung ke topik-topik yang berkenaan.<br />Satu halaman dianggap sebagai tidak samar jika ia disambung dari $1.<br />Pautan dari ruang nama yang lain <i>tidak</i> tersenarai di sini.",
 "doubleredirects"	=> "Peralihan Halaman Berganda", #"Double Redirects",
-"doubleredirectstext"	=> "<b>Perhatian:</b> Senarai ini mungkin tidak tepat. Ini biasanya bermaksud terdapat tambahan teks dengan pautan di bawah #REDIRECT yang pertama.<br>\nSetiap baris mengandungi pautan kepada peralihan halaman yang pertama dan kedua, sebagaimana baris pertama bagi teks peralihan halaman kedua, biasanya memberikan halaman sasaran \"sebenar\" yang sepatutnya peralihan pertama disambungkan.",
+"doubleredirectstext"	=> "<b>Perhatian:</b> Senarai ini mungkin tidak tepat. Ini biasanya bermaksud terdapat tambahan teks dengan pautan di bawah #REDIRECT yang pertama.<br />\nSetiap baris mengandungi pautan kepada peralihan halaman yang pertama dan kedua, sebagaimana baris pertama bagi teks peralihan halaman kedua, biasanya memberikan halaman sasaran \"sebenar\" yang sepatutnya peralihan pertama disambungkan.",
 "brokenredirects"	=> "Peralihan Halaman Rosak", #"Broken Redirects",
 "brokenredirectstext"	=> "Peralihan halaman berikut bersambung ke satu halaman yang tidak wujud", #"The following redirects link to a non-existing page.",
 "selflinks"		=> "Halaman-halaman dengan pautan sendiri", #"Pages with Self Links",
@@ -844,7 +844,7 @@ halaman tertentu yang telah dirosakkan).",
 "noblockreason" => "Anda mesti sediakan alasan untuk pemblokan tersebut.", #"You must supply a reason for the block.",
 "blockipsuccesssub" => "Pemblokan berjaya", #"Block succeeded",
 "blockipsuccesstext" => "Alamat IP atau pengguna \"$1\" telah diblok.
-<br>Lihat [[Istimewa:Ipblocklist|IP and user block list]] untuk semak pemblokan.", #"The IP address or username \"$1\" has been blocked.
+<br />Lihat [[Istimewa:Ipblocklist|IP and user block list]] untuk semak pemblokan.", #"The IP address or username \"$1\" has been blocked.
 "unblockip"		=> "Lepaskan semula alamat IP atau pengguna dari diblok", #"Unblock IP address or user",
 "unblockiptext"	=> "Gunakan borang di bawah untuk masukkan semula
 capaian kemaskini ke alamat IP atau pengguna yang telah diblok sebelumnya.",
@@ -877,7 +877,7 @@ kemaskini terhadap pangkalan data.  Sila pastikan anda mahu berbuat demikian.",
 "lockdbsuccesssub" => "Penguncian pangkalan data berjaya", #"Database lock succeeded",
 "unlockdbsuccesssub" => "Kunci pangkalan data telah dihapuskan", #"Database lock removed",
 "lockdbsuccesstext" => "Pangkalan data Wikipedia telah dikunci.
-<br>Pastikan anda membukanya semula dari dikunci setelah penyelenggaraan selesai.",
+<br />Pastikan anda membukanya semula dari dikunci setelah penyelenggaraan selesai.",
 "unlockdbsuccesstext" => "Pangkalan data Wikipedia telah dibuka semula dari dikunci.", #"The Wikipedia database has been unlocked.",
 
 # SQL query

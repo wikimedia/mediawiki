@@ -289,7 +289,7 @@ ir kad jūs tai darote nenusižengdamas
 'copyrightpagename' => "Wikipedia copyright",
 'copyrightwarning' => "Atkreipkite dėmesį, kad viskam, kas patenka į Wikipediją, yra taikoma GNU Laisvos Documentacijos Licenzija
 (detaliau - $1).
-Jei nepageidaujate, kad jūsų įvestas turinys būtų negailestingai redaguojamas ir platinamas, nerašykite čia.<br>
+Jei nepageidaujate, kad jūsų įvestas turinys būtų negailestingai redaguojamas ir platinamas, nerašykite čia.<br />
 Jūs taip pat pasižadate, kad tai jūsų pačių rašytas turinys arba kopijuotas iš viešų ar panašių nemokamų šaltinių.
 <strong>NEKOPIJUOKITE AUTORINĖMIS TEISĖMIS APSAUGOTŲ DARBŲ BE LEIDIMO!</strong>",
 #'couldntremove' => "Couldn't remove item '$1'...",
@@ -436,7 +436,7 @@ border=\"0\" ALT=\"Google\"></A>
 'hide' => "paslėpti",
 'hidetoc' => "slėpti",
 'hist' => "ist",
-/*#'histlegend' => "Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br/>
+/*#'histlegend' => "Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />
 Legend: (cur) = difference with current version,
 (last) = difference with preceding version, M = minor edit.",*/
 'history' => "Straipsnio istorija",
@@ -529,7 +529,7 @@ unlock the database when your maintenance is done.",*/
 'loginsuccesstitle' => "Sėkmingai prisijungėte",
 'logout' => "Atsijungti",
 'logouttext' => "Jūs atsijungėte nuo Wikipedijos.
-Galite toliau naudoti Wikipediją anonimiškai arba prisijunkite iš naujo tuo pačiu ar kitu vartotoju.<br>
+Galite toliau naudoti Wikipediją anonimiškai arba prisijunkite iš naujo tuo pačiu ar kitu vartotoju.<br />
 P.S.:  kai kuriuose puslapiuose ir toliau gali rodyti lyg būtumėte prisijungęs iki tol, kol išvalysite savo naršyklės išsaugotas puslapių kopijas",
 #'logouttitle' => "User logout",
 'lonelypages' => "Vieniši straipsniai",
@@ -746,7 +746,7 @@ Search in namespaces :<br />
 $1<br />
 $2 List redirects &nbsp; Search for $3 $9",*/
 'preferences' => "Nustatymai",
-'prefs-help-userdata' => "* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br/>
+'prefs-help-userdata' => "* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br />
 * <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your 
 email address to them, and it can be used to send you a new password if you forget it.",
 #'prefs-misc' => "Misc settings",

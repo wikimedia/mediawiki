@@ -129,8 +129,8 @@
 "tog-editwidth" => "La caixa d'edició té l'ample màxim",
 "tog-editondblclick" => "Edita pàgines amb un doble clic (JavaScript)",
 "tog-editsection"=>"Enable section editing via [edit] links",
-"tog-editsectiononrightclick"=>"Enable section editing by right clicking<br> on section titles (JavaScript)",
-"tog-showtoc"=>"Show table of contents<br>(for articles with more than 3 headings)",
+"tog-editsectiononrightclick"=>"Enable section editing by right clicking<br /> on section titles (JavaScript)",
+"tog-showtoc"=>"Show table of contents<br />(for articles with more than 3 headings)",
 "tog-watchdefault" => "Vigila articles nous i modificats",
 "tog-minordefault" => "Marca totes les edicions com menors per defecte",
 "tog-previewontop" => "Show preview before edit box and not after it",
@@ -291,14 +291,14 @@ Recordeu personalitzar les vostres preferències del {{SITENAME}}.",
 "yourpasswordagain" => "Repetiu la contrasenya",
 "newusersonly"	=> " (només usuaris nous)",
 "remembermypassword" => "Vull que recordis la meva contrasenya entre sessions.",
-"loginproblem"	=> "<b>Hi ha hagut un problema amb l'entrada.</b><br>Proveu-ho de nou!",
-"alreadyloggedin" => "<font color=red><b>Benvingut, usuari $1!</b></font><br>\n",
+"loginproblem"	=> "<b>Hi ha hagut un problema amb l'entrada.</b><br />Proveu-ho de nou!",
+"alreadyloggedin" => "<font color=red><b>Benvingut, usuari $1!</b></font><br />\n",
 
 "areyounew"		=> "Si sou nou a la {{SITENAME}} en català, i
 voleu tenir un compte d'usuari, ingresseu un nom d'usuari,
 i teclegeu i repetiu una contrasenya.
 La vostra direcció electrònica és opcional: si perdeu o oblideu la
-contrasenya, podeu demanar que s'enviï a la direcció que vulgueu<br>\n",
+contrasenya, podeu demanar que s'enviï a la direcció que vulgueu<br />\n",
 "login"			=> "Registre/Entrada",
 "userlogin"		=> "Registre/Entrada",
 "logout"		=> "Sortida",
@@ -336,7 +336,7 @@ Entreu-hi de nou després de rebre-la.cibas.",
 "showpreview"	=> "Mostra previsualizació",
 "blockedtitle"	=> "L'usuari està bloquejat",
 "blockedtext"	=> "El vostre nombre d'usuari o direcció IP ha estat bloquejada per $1.
-La raó és la que segueix:<br>$2<p>Podeu contactar amb l'administrador per discutir el bloqueig.",
+La raó és la que segueix:<br />$2<p>Podeu contactar amb l'administrador per discutir el bloqueig.",
 "newarticle"	=> "(Nou)",
 "newarticletext" => "Poseu el text per la pàgina nova ací.",
 "noarticletext" => "(En aquest moment, a aquesta pàgina, no hi ha text)",
@@ -361,7 +361,7 @@ Si la graveu, els canvis fets des d'eixa revisió es perdran.</strong>\n",
 es consideren fetes públiques sota la llicència de documentació lliure GNU 
 (mostra detalls a $1). 
  Si no desitgeu que la gent corregeixi els vostres escrits sense pietat 
-i els distribueixi lliurement, llavors no els poseu ací. <br>
+i els distribueixi lliurement, llavors no els poseu ací. <br />
 També ens heu d'assegurar que tot plegat és obra vostra i que sou l'amo dels drets d'autor, o els heu copiat des del domini públic 
 o una altra font lliura.
  <strong>NO EMPREU ESCRITS AMB COPYRIGHT SENSE PERMÍS!</strong>",
@@ -416,8 +416,8 @@ que no es troben a l'índex, o per especificar més d'una paraula a cercar( nom�
 que contenen tots els termes d'una recerca apareixeran en el resultat).",
 "powersearch" => "Recerca",
 "powersearchtext" => "
-Cerca en espais de nom :<br>
-$1<br>
+Cerca en espais de nom :<br />
+$1<br />
 $2 Llista redireccions   Cerca $3 $9",
 
 # Preferences page
@@ -582,7 +582,7 @@ i l'autor, i qualsevol altra cosa que pugueu saber al respecte.",
 "deleteimgcompletely"		=> "borr",
 "imghistlegend" => "Simbologia: (act) = aquesta és la imatge actual, (esb) = esborra
 aquesta versió antiga, (rev) = reverteix a aquesta versió antiga.
-<br><i>Cliqueu a la data per veure la imatge carregada en aquesta data</i>.",
+<br /><i>Cliqueu a la data per veure la imatge carregada en aquesta data</i>.",
 "imagelinks"	=> "Enllaços a la imatge",
 "linkstoimage"	=> "Les següents pàgines enllacen a aquesta imatge:",
 "nolinkstoimage" => "No hi ha pàgines que enllacen aquesta imatge.",
@@ -614,13 +614,13 @@ sobrecarregar la base de dades, així que si us plau, no torneu a carregar la p�
 "disambiguationspage"	=> "{{ns:4}}:Enllaços a pàgines de desambiguació",
 "disambiguationstext"	=> "Els següents articles enllacen a una<i>pàgina de desambiguació</i>. Haurien d'enllaçar al tema apropiat.
 
-<br>Una pàgina és considerada una pàgina de desambiguació si és enllaçada des de $1.<br>Enllaços des d'altres espais de nom (Com Viquipè
+<br />Una pàgina és considerada una pàgina de desambiguació si és enllaçada des de $1.<br />Enllaços des d'altres espais de nom (Com Viquipè
 
 dia: o usuari:) <i>no</i> són  llistats ací.",
 "doubleredirects"	=> "Redireccions Dobles",
 "doubleredirectstext"	=> "<b>Atenció:</b> aquest llistat pot contenir falsos positius. Això normalment significa que hi ha text 
 
-addicional amb enllaços sota el primer #REDIRECT.<br>\nCada fila conté enllaços al segon i tercer redireccionament, així com la primera línia del 
+addicional amb enllaços sota el primer #REDIRECT.<br />\nCada fila conté enllaços al segon i tercer redireccionament, així com la primera línia del 
 
 segon redireccionament, la qual cosa dóna normalment l'article \"real\", al que el primer redireccionamet hauria d'apuntar.",
 "selflinks"		=> "Pàgines amb autoenllaços",
@@ -807,7 +807,7 @@ quines pàgines en concret estan sent vandalitzades).",
 "noblockreason" => "Heu de donar un motiu per al bloqueig.",
 "blockipsuccesssub" => "S'ha bloquejat amb èxit",
 "blockipsuccesstext" => "La direcció IP  \"$1\" ha estat bloquejada.
-<br>Vegeu [[Especial:llistat d'IP bloquejades|llistat d'IPs bloquejades]] per revisar bloquejos.",
+<br />Vegeu [[Especial:llistat d'IP bloquejades|llistat d'IPs bloquejades]] per revisar bloquejos.",
 "unblockip"		=> "Desbloqueja direcció IP",
 "unblockiptext"	=> "Empreu el següent formulari per restaurar 
 l'accés a l'escriptura a una direcció IP prèviament bloquejada.",
@@ -840,7 +840,7 @@ Confirmeu que això és el que voleu fer.",
 "lockdbsuccesssub" => "S'ha assolit el bloqueig de la base de dades",
 "unlockdbsuccesssub" => "S'ha extret el bloqueig de la base de dades",
 "lockdbsuccesstext" => "S'ha bloquejat la base de dades de la {{SITENAME}}.
-<br>Recordeu-vos-en d'extreure el bloqueig havent acabant el manteniment.",
+<br />Recordeu-vos-en d'extreure el bloqueig havent acabant el manteniment.",
 "unlockdbsuccesstext" => "La base de dades de la {{SITENAME}} ha estat desbloquejada.",
 
 # SQL query

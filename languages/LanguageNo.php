@@ -121,8 +121,8 @@
 "tog-showtoolbar" => "Show edit toolbar",
 "tog-editondblclick" => "Rediger sider med dobbeltklikk (JavaScript)",
 "tog-editsection"=>"Rediger avsnitt ved hjelp av [rediger]-lenke",
-"tog-editsectiononrightclick"=>"Rediger avsnitt ved å høyreklikke<br> på avsnittsoverskrift (JavaScript)",
-"tog-showtoc"=>"Vis innholdsfortegnelse<br>(for artikler med mer enn tre avsnitt)",
+"tog-editsectiononrightclick"=>"Rediger avsnitt ved å høyreklikke<br /> på avsnittsoverskrift (JavaScript)",
+"tog-showtoc"=>"Vis innholdsfortegnelse<br />(for artikler med mer enn tre avsnitt)",
 "tog-rememberpassword" => "Husk passordet til neste gang",
 "tog-editwidth" => "Redigeringsboksen har full bredde",
 "tog-watchdefault" => "Overvåk nye og endrede artikler",
@@ -319,11 +319,11 @@ Hvis du vil, kan du personliggjøre brukerinnstillingene.",
 "yourpasswordagain" => "Gjenta passord",
 "newusersonly"	=> " (kun nye brukere)",
 "remembermypassword" => "Husk passordet til neste gang.",
-"loginproblem"	=> "<b>Du ble ikke logget inn.</b><br>Prøv igjen!",
-"alreadyloggedin" => "<font color=red><b>Bruker $1 er allerede logget inn!</b></font><br>\n",
+"loginproblem"	=> "<b>Du ble ikke logget inn.</b><br />Prøv igjen!",
+"alreadyloggedin" => "<font color=red><b>Bruker $1 er allerede logget inn!</b></font><br />\n",
 
 "areyounew"		=> "Hvis du er ny på Wikipedia og vil ha en brukerkonto, skriv inn et brukernavn og et passord, og bekreft passordet ved å skrive det inn en gang til.
-E-postadresse er frivillig; hvis du oppgir det, kan du få passordet tilsendt om du glemmer det.<br>\n",
+E-postadresse er frivillig; hvis du oppgir det, kan du få passordet tilsendt om du glemmer det.<br />\n",
 
 "login"			=> "Logg inn",
 "userlogin"		=> "Logg inn",
@@ -364,7 +364,7 @@ Logg inn når du har mottatt det nye passordet.",
 "showpreview"	=> "Forhåndsvisning",
 "blockedtitle"	=> "Brukeren er blokkert",
 "blockedtext"	=> "Ditt brukernavn eller din IP-adresse er blokkert av $1.
-Følgende begrunnelse ble gitt:<br>''$2''<p>Du kan kontakte $1 eller en annen
+Følgende begrunnelse ble gitt:<br />''$2''<p>Du kan kontakte $1 eller en annen
 [[Wikipedia:Administratorer|administrator]] for å diskutere utestengelsen.",
 "newarticle"	=> "(Ny)",
 "newarticletext" =>
@@ -399,7 +399,7 @@ overskrevet.</strong>\n",
 å betrakte som utgitt under GNU fri dokumentasjonslisens
 (se $1 for detaljer).
 Hvis du ikke vil ha teksten redigert uten nåde og kopiert etter
-forgodtbefinnende, kan du ikke legge den her.<br>
+forgodtbefinnende, kan du ikke legge den her.<br />
 Du lover oss også at du skrev teksten selv eller kopierte fra en
 ressurs som ikke er beskyttet av opphavsrett.
 
@@ -471,8 +471,8 @@ som ikke er indeksert, eller ved å spesifisere mer enn et søkeord (da kun
 sider som inneholder alle søkeordene vil bli funnet).",
 "powersearch" => "Søk",
 "powersearchtext" => "
-Søk i navnerom :<br>
-$1<br>
+Søk i navnerom :<br />
+$1<br />
 $2 List opp omdirigeringer   Søk etter $3 $9",
 "searchdisabled" => "<p>Søkefunksjonen er midlertidig avbrutt på grunn av
 for stort press på tjeneren; vi håper vi kan sette den på igjen når vi har
@@ -490,9 +490,9 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Google Search\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br><input type=radio
+<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio
 name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> {$wgServer} <br>
+value=\"{$wgServer}\" checked> {$wgServer} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -672,7 +672,7 @@ og av hvem, og andre ting du vet om filen.",
 "deleteimgcompletely"		=> "slett",
 "imghistlegend" => "Forklaring: (nå) = dette er det nåværende bilde, 
 (slett) = slett denne gamle versjonen, (gjenopprett) = gjenopprett en gammel versjon.
-<br><i>Klikk på en dato for å se bildet som ble lastet opp da</i>.",
+<br /><i>Klikk på en dato for å se bildet som ble lastet opp da</i>.",
 "imagelinks"	=> "Billedlenker",
 "linkstoimage"	=> "De følgende sider har lenker til dette bildet:",
 "nolinkstoimage" => "Det er ingen sider som har lenker til dette bildet.",
@@ -706,12 +706,12 @@ hver gang du har rettet en enkelt ting",
 "disambiguationspage"	=> "Wikipedia:Lenker til artikler med flertydige titler",
 "disambiguationstext"	=> "De følgende artikler har lenker til 
 <i>artikler med flertydige titler</i>. De burde ha lenke til en ikke-flertydig 
-tittel i stedet.<br>En artikkel blir behandlet som flertydig hvis den har
-lenker fra $1.<br>Lenker fra andre navnerom er <i>ikke</i> listet her.",
+tittel i stedet.<br />En artikkel blir behandlet som flertydig hvis den har
+lenker fra $1.<br />Lenker fra andre navnerom er <i>ikke</i> listet her.",
 "doubleredirects"	=> "Dobbelte omdirigeringer",
 "doubleredirectstext"	=> "<b>NB:</b> Denne listen kan inneholde gale 
 resultater. Det er som regel fordi siden inneholder ekstra tekst under den
-første #REDIRECT.<br>\nHver linje inneholder lenker til den første og den 
+første #REDIRECT.<br />\nHver linje inneholder lenker til den første og den 
 anden omdirigeringen, og den første linjen fra den andre omdirigeringsteksten. 
 Det gir som regel den \"riktige\" målartikkelen, som den første omdirigeringen 
 skulle ha pekt på.",
@@ -948,7 +948,7 @@ sider som har vært utsatt for vandalisme).",
 "noblockreason" => "Du må angi en begrunnelse for denne blokkeringen.",
 "blockipsuccesssub" => "Blokkering utført",
 "blockipsuccesstext" => "IP-adressen \"$1\" er blokkert.
-<br>Se [[Spesial:Ipblocklist|IP-blokkeringslisten]] for alle blokkeringer.",
+<br />Se [[Spesial:Ipblocklist|IP-blokkeringslisten]] for alle blokkeringer.",
 "unblockip"		=> "Opphev blokkeringen av IP-adresse",
 "unblockiptext"	=> "Bruk skjemaet nedenunder for å gjenopprette skriveadgangen
 for en tidligere blokkert IP-adresse.",
@@ -982,7 +982,7 @@ Bekreft at du har til hensikt å gjøre dette.",
 "lockdbsuccesssub" => "Databasen er nå låst",
 "unlockdbsuccesssub" => "Databasen er nå låst opp",
 "lockdbsuccesstext" => "Wikipedia-databasen er låst.
-<br>Husk å fjerne låsen når du er ferdig med vedlikeholdet.",
+<br />Husk å fjerne låsen når du er ferdig med vedlikeholdet.",
 "unlockdbsuccesstext" => "Wikipedia-databasen er låst opp.",
 
 # SQL query
