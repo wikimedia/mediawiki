@@ -137,6 +137,7 @@ class Tokenizer {
 							       && $this->mText[$this->mPos+1] == "'" )
 							{
 								$queueToken["type"] .= "'";
+								$queueToken["pos"] = $this->mPos;
 								$this->mPos ++;
 							}
 							
