@@ -73,6 +73,7 @@ REPLACE INTO interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('ky','http://ky.wikipedia.org/wiki/$1',1),
 ('la','http://la.wikipedia.org/wiki/$1',1),
 ('lo','http://lo.wikipedia.org/wiki/$1',1),
+('lt','http://lt.wikipedia.org/wiki/$1',1),
 ('lv','http://lv.wikipedia.org/wiki/$1',1),
 ('mg','http://mg.wikipedia.org/wiki/$1',1),
 ('mi','http://mi.wikipedia.org/wiki/$1',1),
