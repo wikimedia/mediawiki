@@ -91,26 +91,45 @@ require_once( "LanguageUtf8.php" );
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesEs = array(
-"Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" 
-);
-
-/* private */ $wgMonthNamesEs = array(
-	"enero", "febrero", "marzo", "abril", "mayo", "junio",
-	"julio", "agosto", "septiembre", "octubre", "noviembre",
-	"diciembre"
-);
-
-/* private */ $wgMonthAbbreviationsEs = array(
-	"ene", "feb", "mar", "abr", "may", "jun", "jul", "ago",
-	"sep", "oct", "nov", "dic"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).
 #
 /* private */ $wgValidSpecialPagesEs = array(
+	# Dates
+	'sunday' => 'Domingo',
+	'monday' => 'Lunes',
+	'tuesday' => 'Martes',
+	'wednesday' => 'Miércoles',
+	'thursday' => 'Jueves',
+	'friday' => 'Viernes',
+	'saturday' => 'Sábado',
+	'january' => 'enero',
+	'february' => 'febrero',
+	'march' => 'marzo',
+	'april' => 'abril',
+	'may_long' => 'mayo',
+	'june' => 'junio',
+	'july' => 'julio',
+	'august' => 'agosto',
+	'september' => 'septiembre',
+	'october' => 'octubre',
+	'november' => 'noviembre',
+	'december' => 'diciembre',
+	'jan' => 'ene',
+	'feb' => 'feb',
+	'mar' => 'mar',
+	'apr' => 'abr',
+	'may' => 'may',
+	'jun' => 'jun',
+	'jul' => 'jul',
+	'aug' => 'ago',
+	'sep' => 'sep',
+	'oct' => 'oct',
+	'nov' => 'nov',
+	'dec' => 'dic',
+
 	"Userlogin"		=> "",
 	"Userlogout"	=> "",
 	"Preferences"	=> "Preferencias de usuario",
@@ -1022,21 +1041,6 @@ class LanguageEs extends LanguageUtf8 {
 		return $wgUserTogglesEs;
 	}
 
-
-	function getMonthName( $key ) {
-		global $wgMonthNamesEs;
-		return $wgMonthNamesEs[$key-1];
-	}
-
-	function getMonthAbbreviation( $key ) {
-		global $wgMonthAbbreviationsEs;
-		return $wgMonthAbbreviationsEs[$key-1];
-	}
-
-	function getWeekdayName( $key ) {
-		global $wgWeekdayNamesEs;
-		return $wgWeekdayNamesEs[$key-1];
-	}
 
 	# Inherit userAdjust()
         

@@ -80,22 +80,6 @@ if($wgMetaNamespace === FALSE)
 /* private */ $wgBookstoreListFy = array(
 );
 
-/* private */ $wgWeekdayNamesFy = array(
-	"snein", "moandei", "tiisdei", "woansdei", "tongersdei",
-      "freed", "sneon"
-);
-
-/* private */ $wgMonthNamesFy = array(
-	 "jannewaris", "febrewaris", "maart", "april", "maaie", "juny",
-       "july", "augustus", "septimber", "oktober", "novimber",
-       "decimber"
-);
-
-/* private */ $wgMonthAbbreviationsFy = array(
-       "jan", "feb", "mar", "apr", "mai", "jun", "jul", "aug",
-       "sep", "okt", "nov", "dec"
-);
-
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).
@@ -148,6 +132,39 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgAllMessagesFy = array(
+# Dates
+'sunday' => 'snein',
+'monday' => 'moandei',
+'tuesday' => 'tiisdei',
+'wednesday' => 'woansdei',
+'thursday' => 'tongersdei',
+'friday' => 'freed',
+'saturday' => 'sneon',
+'january' => 'jannewaris',
+'february' => 'febrewaris',
+'march' => 'maart',
+'april' => 'april',
+'may_long' => 'maaie',
+'june' => 'juny',
+'july' => 'july',
+'august' => 'augustus',
+'september' => 'septimber',
+'october' => 'oktober',
+'november' => 'novimber',
+'december' => 'decimber',
+'jan' => 'jan',
+'feb' => 'feb',
+'mar' => 'mar',
+'apr' => 'apr',
+'may' => 'mai',
+'jun' => 'jun',
+'jul' => 'jul',
+'aug' => 'aug',
+'sep' => 'sep',
+'oct' => 'okt',
+'nov' => 'nov',
+'dec' => 'dec',
+
 
 # Bits of text used by many pages:
 #
@@ -1060,37 +1077,6 @@ class LanguageFy extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesFy;
 		return $wgUserTogglesFy;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesFy;
-		return $wgMonthNamesFy[$key-1];
-	}
-	
-	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
-		global $wgMonthNamesFy;
-		return $wgMonthNamesFy[$key-1];
-	}
-	
-	function getMonthRegex()
-	{
-		global $wgMonthNamesFy;
-		return implode( "|", $wgMonthNamesFy );
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsFy;
-		return $wgMonthAbbreviationsFy[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesFy;
-		return $wgWeekdayNamesFy[$key-1];
 	}
 
  # Inherit userAdjust()
