@@ -395,7 +395,16 @@ $wgEnablePersistentLC	= false;	# Obsolete, do not use
 $wgCompressedPersistentLC = true; # use gzcompressed blobs
 $wgUseOldExistenceCheck = false;  # use old prefill link method, for debugging only
 
-$wgEnableParserCache = false; # requires that php was compiled --with-zlib
+/**
+ * Keep parsed pages in a cache (objectcache table, turck, or memcached)
+ * to speed up output of the same page viewed by another user with the
+ * same options.
+ *
+ * This can provide a significant speedup for medium to large pages,
+ * so you probably want to keep it on.
+ */
+$wgEnableParserCache = true;
+
 /**#@-*/
 
 # wgHitcounterUpdateFreq sets how often page counters should be
