@@ -128,6 +128,8 @@ If upgrading from an older release, see the file UPGRADING.
 * Hide RC patrol markers when patrol is disabled or not allowed to patrol.
 * Fix language selection for upgraded accounts
 * (bug 1076) navigation links in QueryPage should be translated by wgContLang.
+* (bug 922) bogus DOS line endings in LanguageEl.php
+
 
 === Caveats ===
 
