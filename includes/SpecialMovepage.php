@@ -170,7 +170,7 @@ class MovePageForm {
 				# purge new title
 				$wgInternalServer.$this->nt->getLocalURL(),
 				# purge old title
-				$wgInternalServer.$this->ot->getLocalURL())
+				$wgInternalServer.$this->ot->getLocalURL(),
 			);			
 			wfPurgeSquidServers($urlArr);	
 			# purge pages linking to new title
@@ -225,9 +225,9 @@ class MovePageForm {
 					/* this needs to be done after LinksUpdate */
 					$urlArr = Array(				
 						# purge new title
-						$nt->getInternalURL()),
+						$nt->getInternalURL(),
 						# purge old title
-						$ot->getInternalURL())
+						$ot->getInternalURL(),
 					);			
 					wfPurgeSquidServers($urlArr);	
 					# purge pages linking to new title
