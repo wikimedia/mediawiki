@@ -46,7 +46,8 @@ class ParserTest {
 		} elseif( wfIsWindows() ) {
 			$this->color = false;
 		} else {
-			$this->color = true;
+			# Only colorize output if stdout is a terminal.
+			$this->color = posix_isatty(1);
 		}
 		
 		if( isset( $_SERVER['argv'] ) && in_array( '--quick', $_SERVER['argv'] ) ) {
@@ -55,7 +56,19 @@ class ParserTest {
 			$this->showDiffs = true;
 		}
 	}
-	
+
+	/**
+	 * Remove last character if it is a newline
+	 * @access private
+	 */
+	function chomp($s) {
+		if (substr($s, -1) === "\n") {
+			return substr($s, 0, -1);
+		}
+		else {
+			return $s;
+		}
+	}
 	
 	/**
 	 * Run a series of tests listed in the given text file.
@@ -91,7 +104,7 @@ class ParserTest {
 					if( !isset( $data['article'] ) ) {
 						die( "'endarticle' without 'article' at line $n\n" );
 					}
-					$this->addArticle(rtrim($data['article']), rtrim($data['text']));
+					$this->addArticle($this->chomp($data['article']), $this->chomp($data['text']));
 					$data = array();
 					$section = null;
 					continue;
@@ -115,11 +128,14 @@ class ParserTest {
 					if( !isset( $data['options'] ) ) {
 						$data['options'] = '';
 					}
+					else {
+						$data['options'] = $this->chomp( $data['options'] );
+					}
 					if( $this->runTest(
-						rtrim( $data['test'] ),
-						rtrim( $data['input'] ),
-						rtrim( $data['result'] ),
-						rtrim( $data['options'] ) ) ) {
+						$this->chomp( $data['test'] ),
+						$this->chomp( $data['input'] ),
+						$this->chomp( $data['result'] ),
+						$this->chomp( $data['options'] ) ) ) {
 						$success++;
 					}
 					$total++;
@@ -181,20 +197,15 @@ class ParserTest {
 			#if (preg_match('/cat/i', $opts)) {
 			#	$out .= $output->getCategoryLinks();
 			#}
-		}
 
-		global $wgUseTidy;
-		if ($wgUseTidy) {
-			# Using Parser here is probably theoretically
-			# wrong, because we shouldn't use Parser to
-			# validate itself, but this should be safe
-			# in practice.
-			$result = Parser::tidy($result);
+			if ($GLOBALS['wgUseTidy']) {
+				$result = Parser::tidy($result);
+			}
 		}
 		
 		$this->teardownGlobals();
 		
-		if( rtrim($result) === rtrim($out) ) {
+		if( $result === $out ) {
 			return $this->showSuccess( $desc );
 		} else {
 			return $this->showFailure( $desc, $result, $out );
@@ -337,7 +348,7 @@ class ParserTest {
 	 */
 	function dumpToFile( $data, $filename ) {
 		$file = fopen( $filename, "wt" );
-		fwrite( $file, rtrim( $data ) . "\n" );
+		fwrite( $file, $data . "\n" );
 		fclose( $file );
 	}
 	
@@ -388,6 +399,8 @@ class ParserTest {
 	 * @access private
 	 */
 	function addArticle($name, $text) {
+		# TODO: check if article exists and die gracefully
+		# if we are trying to insert a duplicate
 		$this->setupGlobals();
 		$title = Title::newFromText( $name );
 		$art = new Article($title);

@@ -1,6 +1,6 @@
 -- HACK: this should go away when there is a better way
 
-CREATE TEMPORARY TEMPORARY TABLE parsertestuser (
+CREATE TEMPORARY TABLE parsertestuser (
   user_id int(5) unsigned NOT NULL auto_increment,
   user_name varchar(255) binary NOT NULL default '',
   user_real_name varchar(255) binary NOT NULL default '',
@@ -13,7 +13,7 @@ CREATE TEMPORARY TEMPORARY TABLE parsertestuser (
   INDEX user_name (user_name(10))
 );
 
-CREATE TEMPORARY TEMPORARY TABLE parsertestcur (
+CREATE TEMPORARY TABLE parsertestcur (
   cur_id int(8) unsigned NOT NULL auto_increment,
   cur_namespace tinyint(2) unsigned NOT NULL default '0',
   cur_title varchar(255) binary NOT NULL default '',
@@ -71,14 +71,14 @@ CREATE TEMPORARY TABLE parsertestlinks (
   KEY (l_to)
 );
 
-CREATE TEMPORARY TEMPORARY TABLE parsertestbrokenlinks (
+CREATE TEMPORARY TABLE parsertestbrokenlinks (
   bl_from int(8) unsigned NOT NULL default '0',
   bl_to varchar(255) binary NOT NULL default '',
   UNIQUE KEY bl_from(bl_from,bl_to),
   KEY (bl_to)
 );
 
-CREATE TEMPORARY TEMPORARY TABLE parsertestimagelinks (
+CREATE TEMPORARY TABLE parsertestimagelinks (
   il_from int(8) unsigned NOT NULL default '0',
   il_to varchar(255) binary NOT NULL default '',
   UNIQUE KEY il_from(il_from,il_to),
