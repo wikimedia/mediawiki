@@ -73,7 +73,9 @@ if($wgMetaNamespace === FALSE)
 	NS_MEDIAWIKI        => "MediaWiki",
 	NS_MEDIAWIKI_TALK   => "MediaWiki_talk",
 	NS_TEMPLATE         => "Template",
-	NS_TEMPLATE_TALK    => "Template_talk"
+	NS_TEMPLATE_TALK    => "Template_talk",
+	NS_HELP             => "Help",
+	NS_HELP_TALK        => "Help_talk"
 );
 
 /* private */ $wgDefaultUserOptionsEn = array(
@@ -453,7 +455,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 "aboutwikipedia" => "About $wgSitename",
 "aboutpage"		=> "$wgMetaNamespace:About",
 "help"			=> "Help",
-"helppage"		=> "$wgMetaNamespace:Help",
+"helppage"		=> $wgNamespaceNamesEn[NS_HELP].":Contents",
 "wikititlesuffix" => "$wgSitename",
 "bugreports"	=> "Bug reports",
 "bugreportspage" => "$wgMetaNamespace:Bug_reports",
@@ -462,7 +464,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 "faq"			=> "FAQ",
 "faqpage"		=> "$wgMetaNamespace:FAQ",
 "edithelp"		=> "Editing help",
-"edithelppage"	=> "$wgMetaNamespace:How_does_one_edit_a_page",
+"edithelppage"	=> $wgNamespaceNamesEn[NS_HELP].":Editing",
 "cancel"		=> "Cancel",
 "qbfind"		=> "Find",
 "qbbrowse"		=> "Browse",
