@@ -331,7 +331,7 @@ $conf->IP = dirname( dirname( __FILE__ ) );
 print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt></li>\n";
 
 # $conf->ScriptPath = "/~brion/inplace";
-$conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $_SERVER["SCRIPT_NAME"] );
+$conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $_SERVER["PHP_SELF"] ); # was SCRIPT_NAME
 print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</tt></li>\n";
 
 	$conf->posted = ($_SERVER["REQUEST_METHOD"] == "POST");
