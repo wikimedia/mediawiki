@@ -1180,7 +1180,7 @@ class Title {
 		$parents = array();
 		
 		# get the parents categories of this title from the database
-		$sql = "SELECT DISTINCT cl_from,cur_namespace,cur_title,cur_id FROM cur,categorylinks
+		$sql = "SELECT DISTINCT cur_id FROM cur,categorylinks
 		        WHERE cl_from='$titlekey' AND cl_to=cur_title AND cur_namespace='$cns'
 				ORDER BY cl_sortkey" ;
 		$res = wfQuery ( $sql, DB_READ ) ;
