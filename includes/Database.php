@@ -93,16 +93,21 @@ class Database {
 		$success = false;
 		
 		@$this->mConn = mysql_connect( $server, $user, $password );
-		if ( $this->mConn !== false && $dbName != "" ) {
-			$success = @mysql_select_db( $dbName, $this->mConn );
-			if ( !$success ) {
-				wfDebug( "Error selecting database \"$dbName\": " . $this->lastError() . "\n" );
+		if ( $dbName != "" ) {
+			if ( $this->mConn !== false ) {
+				$success = @mysql_select_db( $dbName, $this->mConn );
+				if ( !$success ) {
+					wfDebug( "Error selecting database \"$dbName\": " . $this->lastError() . "\n" );
+				}
+			} else {
+				wfDebug( "DB connect error: " . $this->lastError() . "\n" );
+				wfDebug( "Server: $server, User: $user, Password: " . 
+					substr( $password, 0, 3 ) . "...\n" );
+				$success = false;
 			}
 		} else {
-			wfDebug( "DB connect error: " . $this->lastError() . "\n" );
-			wfDebug( "Server: $server, User: $user, Password: " . 
-				substr( $password, 0, 3 ) . "...\n" );
-			$success = false;
+			# Delay USE
+			$success = true;
 		}
 		
 		if ( !$success ) {
