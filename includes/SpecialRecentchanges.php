@@ -28,22 +28,34 @@ function wfSpecialRecentchanges( $par ) {
 
 	$days = $wgRequest->getInt( 'days', $defaultDays );
 	$hideminor = $wgRequest->getBool( 'hideminor', $wgUser->getOption( 'hideminor' ) ) ? 1 : 0;
-	$from = $wgRequest->getText( 'from' );
-	$hidebots = $wgRequest->getBool( 'hidebots', true ) ? 1 : 0;
-	$hideliu = $wgRequest->getBool( 'hideliu', false ) ? 1 : 0;
-	$hidepatrolled = $wgRequest->getBool( 'hidepatrolled', false ) ? 1 : 0;
-
 	list( $limit, $offset ) = wfCheckLimits( 100, 'rclimit' );
-
-	# Get query parameters from path
-	if( $par ) {
-		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
-		if( in_array( 'hidebots', $bits ) ) $hidebots = 1;
-		if( in_array( 'bots', $bits ) ) $hidebots = 0;
-		if( in_array( 'hideminor', $bits ) ) $hideminor = 1;
-		if( in_array( 'minor', $bits ) ) $hideminor = 0;
-		if( in_array( 'hideliu', $bits) ) $hideliu = 1;
-		if( in_array( 'hidepatrolled', $bits) ) $hidepatrolled = 1;
+	
+	# As a feed, use limited settings only
+	if( $feedFormat ) {
+		$from = null;
+		$hidebots = 1;
+		$hideliu = 0;
+		$hidepatrolled = 0;
+		global $wgFeedLimit;
+		if( $limit > $wgFeedLimit ) {
+			$limit = $wgFeedLimit;
+		}
+	} else {
+		$from = $wgRequest->getText( 'from' );
+		$hidebots = $wgRequest->getBool( 'hidebots', true ) ? 1 : 0;
+		$hideliu = $wgRequest->getBool( 'hideliu', false ) ? 1 : 0;
+		$hidepatrolled = $wgRequest->getBool( 'hidepatrolled', false ) ? 1 : 0;
+	
+		# Get query parameters from path
+		if( $par ) {
+			$bits = preg_split( '/\s*,\s*/', trim( $par ) );
+			if( in_array( 'hidebots', $bits ) ) $hidebots = 1;
+			if( in_array( 'bots', $bits ) ) $hidebots = 0;
+			if( in_array( 'hideminor', $bits ) ) $hideminor = 1;
+			if( in_array( 'minor', $bits ) ) $hideminor = 0;
+			if( in_array( 'hideliu', $bits) ) $hideliu = 1;
+			if( in_array( 'hidepatrolled', $bits) ) $hidepatrolled = 1;
+		}
 	}
 
 
@@ -57,8 +69,8 @@ function wfSpecialRecentchanges( $par ) {
 
 	# Get last modified date, for client caching
 	# Don't use this if we are using the patrol feature, patrol changes don't update the timestamp
-	if ( !$wgUseRCPatrol ) {
-		$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, $fname );
+	$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, $fname );
+	if ( $feedFormat || !$wgUseRCPatrol ) {
 		if( $lastmod && $wgOut->checkLastModified( $lastmod ) ){
 			# Client cache fresh and headers sent, nothing more to do.
 			return;
@@ -132,44 +144,10 @@ function wfSpecialRecentchanges( $par ) {
 
 	$wgOut->addHTML( $note."\n" );
 
-	if( isset($wgFeedClasses[$feedFormat]) ) {
-		$feed = new $wgFeedClasses[$feedFormat](
-			$wgSitename . ' - ' . wfMsg( 'recentchanges' ) . ' [' . $wgContLanguageCode . ']',
-			htmlspecialchars( wfMsg( 'recentchangestext' ) ),
-			$wgTitle->getFullUrl() );
-		$feed->outHeader();
-		
-		# Merge adjacent edits by one user
-		$sorted = array();
-		$n = 0;
-		foreach( $rows as $obj ) {
-			if( $n > 0 &&
-				$obj->rc_namespace >= 0 &&
-			    $obj->rc_cur_id == $sorted[$n-1]->rc_cur_id &&
-			    $obj->rc_user_text == $sorted[$n-1]->rc_user_text ) {
-				$sorted[$n-1]->rc_last_oldid = $obj->rc_last_oldid;
-			} else {
-				$sorted[$n] = $obj;
-				$n++;
-			}
-			$first = false;
-		}
-		
-		foreach( $sorted as $obj ) {
-			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
-			$talkpage = $title->getTalkPage();
-			$item = new FeedItem(
-				$title->getPrefixedText(),
-				rcFormatDiff( $obj ),
-				$title->getFullURL(),
-				$obj->rc_timestamp,
-				$obj->rc_user_text,
-				$talkpage->getFullURL()
-				);
-			$feed->outItem( $item );
-		}
-		$feed->outFooter();
+	if( $feedFormat ) {
+		rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod );
 	} else {
+		# Web output...
 		$wgOut->setSyndicated( true );
 		$list =& new ChangesList( $sk );
 		$s = $list->beginRecentChangesList();
@@ -190,6 +168,103 @@ function wfSpecialRecentchanges( $par ) {
 		$s .= $list->endRecentChangesList();
 		$wgOut->addHTML( $s );
 	}
+}
+
+function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
+	global $messageMemc, $wgDBname, $wgFeedCacheTimeout;
+	global $wgFeedClasses, $wgTitle, $wgSitename, $wgContLanguageCode;
+	
+	if( !isset( $wgFeedClasses[$feedFormat] ) ) {
+		wfHttpError( 500, "Internal Server Error", "Unsupported feed type." );
+		return false;
+	}
+	
+	$timekey = "$wgDBname:rcfeed:timestamp";
+	$key = "$wgDBname:rcfeed:$feedFormat:limit:$limit:minor:$hideminor";
+	
+	$feedTitle = $wgSitename . ' - ' . wfMsgForContent( 'recentchanges' ) .
+		' [' . $wgContLanguageCode . ']';
+	$feed = new $wgFeedClasses[$feedFormat](
+		$feedTitle,
+		htmlspecialchars( wfMsgForContent( 'recentchangestext' ) ),
+		$wgTitle->getFullUrl() );
+
+	/**
+	 * Bumping around loading up diffs can be pretty slow, so where
+	 * possible we want to cache the feed output so the next visitor
+	 * gets it quick too.
+	 */
+	$cachedFeed = false;
+	if( $feedLastmod = $messageMemc->get( $timekey ) ) {
+		/**
+		 * If the cached feed was rendered very recently, we may
+		 * go ahead and use it even if there have been edits made
+		 * since it was rendered. This keeps a swarm of requests
+		 * from being too bad on a super-frequently edited wiki.
+		 */
+		if( time() - wfTimestamp( TS_UNIX, $feedLastmod )
+				< $wgFeedCacheTimeout
+			|| wfTimestamp( TS_UNIX, $feedLastmod )
+				> wfTimestamp( TS_UNIX, $lastmod ) ) {
+			wfDebug( "RC: loading feed from cache ($key; $feedLastmod; $lastmod)...\n" );
+			$cachedFeed = $messageMemc->get( $key );
+		} else {
+			wfDebug( "RC: cached feed timestamp check failed ($feedLastmod; $lastmod)\n" );
+		}
+	}
+	if( is_string( $cachedFeed ) ) {
+		wfDebug( "RC: Outputting cached feed\n" );
+		$feed->httpHeaders();
+		echo $cachedFeed;
+	} else {
+		wfDebug( "RC: rendering new feed and caching it\n" );
+		ob_start();
+		rcDoOutputFeed( $rows, $feed );
+		$cachedFeed = ob_get_contents();
+		ob_end_flush();
+		
+		$expire = 3600 * 24; # One day
+		$messageMemc->set( $key, $cachedFeed );
+		$messageMemc->set( $timekey, wfTimestamp( TS_MW ), $expire );
+	}
+	return true;
+}
+
+function rcDoOutputFeed( $rows, &$feed ) {
+	global $wgSitename, $wgFeedClasses, $wgContLanguageCode;
+	
+	$feed->outHeader();
+	
+	# Merge adjacent edits by one user
+	$sorted = array();
+	$n = 0;
+	foreach( $rows as $obj ) {
+		if( $n > 0 &&
+			$obj->rc_namespace >= 0 &&
+			$obj->rc_cur_id == $sorted[$n-1]->rc_cur_id &&
+			$obj->rc_user_text == $sorted[$n-1]->rc_user_text ) {
+			$sorted[$n-1]->rc_last_oldid = $obj->rc_last_oldid;
+		} else {
+			$sorted[$n] = $obj;
+			$n++;
+		}
+		$first = false;
+	}
+	
+	foreach( $sorted as $obj ) {
+		$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
+		$talkpage = $title->getTalkPage();
+		$item = new FeedItem(
+			$title->getPrefixedText(),
+			rcFormatDiff( $obj ),
+			$title->getFullURL(),
+			$obj->rc_timestamp,
+			$obj->rc_user_text,
+			$talkpage->getFullURL()
+			);
+		$feed->outItem( $item );
+	}
+	$feed->outFooter();
 }
 
 /**
@@ -217,7 +292,7 @@ function rcDaysLink( $lim, $d, $page='Recentchanges', $more='' ) {
 }
 
 /**
- *
+ * Used also by Recentchangeslinked
  */
 function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall = false, $minorLink = '',
 	$botLink = '', $liuLink = '', $patrLink = '' ) {
@@ -239,19 +314,8 @@ function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall
 }
 
 /**
- * Obsolete? Isn't called from anywhere and $mlink isn't defined
+ * Format a diff for the newsfeed
  */
-function rcLimitLinks( $page='Recentchanges', $more='', $doall = false ) {
-	if ($more != '') $more .= '&';
-	$cl = rcCountLink( 50, 0, $page, $more ) . ' | ' .
-	  rcCountLink( 100, 0, $page, $more  ) . ' | ' .
-	  rcCountLink( 250, 0, $page, $more  ) . ' | ' .
-	  rcCountLink( 500, 0, $page, $more  ) .
-	  ( $doall ? ( ' | ' . rcCountLink( 0, $days, $page, $more ) ) : '' );
-	$note = wfMsg( 'rclinks', $cl, '', $mlink );
-	return $note;
-}
-
 function rcFormatDiff( $row ) {
 	$fname = 'rcFormatDiff';
 	wfProfileIn( $fname );
@@ -283,9 +347,24 @@ function rcFormatDiff( $row ) {
 				array( 'old_flags', 'old_text' ),
 				array( 'old_id' => $row->rc_last_oldid ) );
 			$oldtext = Article::getRevisionText( $oldrow );
-			$diffText = DifferenceEngine::getDiff( $oldtext, $newtext,
-			  wfMsg( 'revisionasof', $wgContLang->timeanddate( $row->rc_timestamp ) ),
-			  wfMsg( 'currentrev' ) );
+			
+			global $wgFeedDiffCutoff;
+			if( strlen( $newtext ) > $wgFeedDiffCutoff ||
+			    strlen( $oldtext ) > $wgFeedDiffCutoff ) {
+			    $titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
+				$diffLink = $titleObj->escapeFullUrl(
+					'diff=' . $row->rc_this_oldid .
+					'&oldid=' . $row->rc_last_oldid );
+			    $diffText = '<a href="' .
+			    	$diffLink .
+			    	'">' .
+			    	htmlspecialchars( wfMsgForContent( 'difference' ) ) .
+			    	'</a>';
+			} else {
+				$diffText = DifferenceEngine::getDiff( $oldtext, $newtext,
+				  wfMsg( 'revisionasof', $wgContLang->timeanddate( $row->rc_timestamp ) ),
+				  wfMsg( 'currentrev' ) );
+			}
 			wfProfileOut( "$fname-dodiff" );
 		} else {
 			$diffText = '<p><b>' . wfMsg( 'newpage' ) . '</b></p>' . 
