@@ -332,6 +332,7 @@ div.thumb div a img {
 div.thumb div div.thumbcaption {
     border: none;
     text-align: left;
+    line-height: 1.3;
     padding: 0.3em 0 0.1em 0;
 }
 div.magnify {
@@ -477,7 +478,8 @@ td.diff-context { background:#eeeeee; }
     padding-right: 18px;
 }
 /* disable interwiki styling */
-#bodyContent a.extiw {
+#bodyContent a.extiw,
+#bodyContent a.extiw:active {
     color: #3366bb;
     background: none;
     padding: 0;
