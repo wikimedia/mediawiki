@@ -231,6 +231,7 @@ require_once( 'LanguageUtf8.php' );
 'delete'	=> 'supprimer',
 'deletethispage' => 'Supprimer cette page',
 'undelete_short' => 'Restaurer',
+'undelete_short1' => 'Restaurer',
 'protect' => 'Protéger',
 'protectthispage' => 'Protéger cette page',
 'unprotect' => 'Déprotéger',

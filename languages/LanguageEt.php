@@ -347,6 +347,7 @@ ning [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit]."
 "delete" => "Kustuta",
 "deletethispage" => "Kustuta see artikkel",
 "undelete_short" => "Taasta $1 muudatust",
+"undelete_short1" => "Taasta 1 muudatust",
 "protect" => "Kaitse",
 "protectthispage" => "Kaitse seda artiklit",
 "unprotect" => "Ära kaitse",

@@ -296,6 +296,7 @@
 'delete' => 'Изтриване',
 'deletethispage' => 'Изтриване',
 'undelete_short' => 'Възстановяване',
+'undelete_short1' => 'Възстановяване',
 'protect' => 'Защита',
 'protectthispage' => 'Защита',
 'unprotect' => 'Сваляне на защитата',

@@ -146,6 +146,7 @@ require_once('LanguageUtf8.php');
 'delete'		=> 'ਹਟਾਓ',
 'deletethispage'	=> 'ਇਸ ਪੰਨੇ ਨੂੰ ਹਟਾਓ',
 'undelete_short'	=> '$1 ਬਦਲਾਵ ਮੁੜ ਵਾਪਿਸ ਲਿਆਓ',
+'undelete_short1'	=> '1 ਬਦਲਾਵ ਮੁੜ ਵਾਪਿਸ ਲਿਆਓ',
 'protect'		=> 'ਰੱਖਿਆ ਕਰੋ',
 'protectthispage'	=> 'ਇਸ ਪੰਨੇ ਦੀ ਰੱਖਿਆ ਕਰੋ',
 'unprotect'		=> 'ਅਸੁਰੱਖਿਅਤ ਕਰੋ',

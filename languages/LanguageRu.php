@@ -311,6 +311,7 @@ if(isset($wgExtraNamespaces)) {
 'delete' => 'Удалить',
 "deletethispage" => "Стереть её",
 "undelete_short" => "Восстановить",
+"undelete_short1" => "Восстановить",
 'protect' => 'Защитить',
 'protectthispage' => 'Защитить',
 'unprotect' => 'Снять защиту',
