@@ -113,8 +113,7 @@ if ( "" != $search ) {
 			$editor->$action();
 			break;
 		case "history":
-			if ($_SERVER["REQUEST_URI"] == $wgInternalServer.wfLocalUrl( $this->mTitle->getPrefixedURL(), 'action=history')
-) {
+			if ($_SERVER["REQUEST_URI"] == $wgInternalServer.wfLocalUrl( $wgTitle->getPrefixedURL(), 'action=history')) {
 				$wgOut->setSquidMaxage( $wgSquidMaxage );
 			}
 			include_once( "PageHistory.php" );
