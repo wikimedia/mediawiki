@@ -152,17 +152,10 @@ class LinkCache {
 		$dbkeyfrom = wfStrencode( $fromtitle->getPrefixedDBKey() );
 
 		if ( $wgEnablePersistentLC ) {
-			$cc =& $this->getFromLinkscc( $dbkeyfrom );
-			if( $cc != FALSE ){
-				$this->mOldGoodLinks = $this->mGoodLinks = $cc->mGoodLinks;
-				$this->mOldBadLinks = $this->mBadLinks = $cc->mBadLinks;
-				$this->mPreFilled = true;
-				wfProfileOut( $fname );
-				wfDebug( "LinkCache::preFill - got from linkscc\n" );
+			if( $this->fillFromLinkscc( $dbkeyfrom ) ){
 				return;
-			} 
+			}
 		}
-
 
 		$sql = "SELECT cur_id,cur_namespace,cur_title
 			FROM cur,links
@@ -197,17 +190,8 @@ class LinkCache {
 		$this->mPreFilled = true;
 
 		if ( $wgEnablePersistentLC ) {
-			// put fetched link data into cache
-			if( $wgCompressedPersistentLC and function_exists( "gzcompress" ) ) {
-				$ser = wfStrencode( gzcompress( serialize( $this ), 3 ));
-			} else {
-				$ser = wfStrencode( serialize( $this ) );
-			}
-			wfQuery("REPLACE INTO linkscc(lcc_pageid,lcc_title,lcc_cacheobj) VALUES({$id}, '{$dbkeyfrom}', '{$ser}')", 
-				DB_WRITE);
-				wfDebug( "$fname - saved to linkscc\n" );
+			$this->saveToLinkscc( $id, $dbkeyfrom );
 		}
-
 		wfProfileOut( $fname );
 	}
 
@@ -281,8 +265,7 @@ class LinkCache {
 		$this->mImageLinks = array();
 	}
 
-
-	function &getFromLinkscc( $dbkeyfrom ){
+	/* private */ function fillFromLinkscc( $dbkeyfrom ){ 
 		$res = wfQuery("SELECT lcc_cacheobj FROM linkscc WHERE lcc_title = '{$dbkeyfrom}'", 
 			DB_READ);
 		$row = wfFetchObject( $res );
@@ -298,10 +281,45 @@ class LinkCache {
 		}
 		$cc = @unserialize( $cacheobj );
 		if( isset( $cc->mClassVer ) and ($cc->mClassVer == $this->mClassVer ) ){
-			return $cc;
+			$this->mOldGoodLinks = $this->mGoodLinks = $cc->mGoodLinks;
+			$this->mOldBadLinks = $this->mBadLinks = $cc->mBadLinks;
+			$this->mPreFilled = true;
+			return TRUE;
 		} else {
 			return FALSE;
 		}
+
+	}
+
+	/* private */ function saveToLinkscc( $pid, $dbkeyfrom ){
+		if( $wgCompressedPersistentLC and function_exists( "gzcompress" ) ) {
+			$ser = wfStrencode( gzcompress( serialize( $this ), 3 ));
+		} else {
+			$ser = wfStrencode( serialize( $this ) );
+		}
+		wfQuery("REPLACE INTO linkscc(lcc_pageid,lcc_title,lcc_cacheobj) " .
+			"VALUES({$pid}, '{$dbkeyfrom}', '{$ser}')", DB_WRITE);
+	}
+
+	# $pid is a page id
+	/* static */ function linksccClearLinksTo( $pid ){
+		$pid = intval( $pid );
+		wfQuery("DELETE linkscc FROM linkscc,links ".
+			"WHERE lcc_title=links.l_from AND l_to={$pid}", DB_WRITE);
+		wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
+	}
+
+	# $title is a prefixed db title, for example like Title->getPrefixedDBkey() returns.
+	/* static */ function linksccClearBrokenLinksTo( $title ){
+		$title = wfStrencode( $title );
+		wfQuery("DELETE linkscc FROM linkscc,brokenlinks ".
+			"WHERE lcc_pageid=bl_from AND bl_to='{$title}'", DB_WRITE);
+	}
+
+	# $pid is a page id
+	/* static */ function linksccClearPage( $pid ){
+		$id = intval( $pid );
+		wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pid}'", DB_WRITE);
 	}
 }
 ?>
