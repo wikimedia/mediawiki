@@ -142,10 +142,10 @@ class Database {
 		
 		$success = false;
 		
-		@$this->mConn = mysql_connect( $server, $user, $password );
+		@/**/$this->mConn = mysql_connect( $server, $user, $password );
 		if ( $dbName != "" ) {
 			if ( $this->mConn !== false ) {
-				$success = @mysql_select_db( $dbName, $this->mConn );
+				$success = @/**/mysql_select_db( $dbName, $this->mConn );
 				if ( !$success ) {
 					wfDebug( "Error selecting database \"$dbName\": " . $this->lastError() . "\n" );
 				}
@@ -279,12 +279,12 @@ class Database {
 	}
 
 	function freeResult( $res ) {
-		if ( !@mysql_free_result( $res ) ) {
+		if ( !@/**/mysql_free_result( $res ) ) {
 			wfDebugDieBacktrace( "Unable to free MySQL result\n" );
 		}
 	}
 	function fetchObject( $res ) {
-		@$row = mysql_fetch_object( $res );
+		@/**/$row = mysql_fetch_object( $res );
 		# FIXME: HACK HACK HACK HACK debug
 		if( mysql_errno() ) {
 			wfDebugDieBacktrace( "Error in fetchObject(): " . htmlspecialchars( mysql_error() ) );
@@ -293,7 +293,7 @@ class Database {
 	}
 	
  	function fetchRow( $res ) {
-		@$row = mysql_fetch_array( $res );
+		@/**/$row = mysql_fetch_array( $res );
 		if (mysql_errno() ) {
 			wfDebugDieBacktrace( "Error in fetchRow(): " . htmlspecialchars( mysql_error() ) );
 		}
@@ -301,7 +301,7 @@ class Database {
 	}	
 
 	function numRows( $res ) {
-		@$n = mysql_num_rows( $res ); 
+		@/**/$n = mysql_num_rows( $res ); 
 		if( mysql_errno() ) {
 			wfDebugDieBacktrace( "Error in numRows(): " . htmlspecialchars( mysql_error() ) );
 		}
@@ -964,7 +964,7 @@ function wfEmergencyAbort( &$conn, $error ) {
 		} else {
 			if($title) {
 				$t = Title::newFromURL( $title );
-			} elseif (@$_REQUEST['search']) {
+			} elseif (@/**/$_REQUEST['search']) {
 				$search = $_REQUEST['search'];
 				echo wfMsgNoDB( "searchdisabled" );
 				echo wfMsgNoDB( "googlesearch", htmlspecialchars( $search ), $wgInputEncoding );
