@@ -1000,8 +1000,4 @@ function wfEmergencyAbort( &$conn, $error ) {
 	wfErrorExit();
 }
 
-function wfLimitResult( $limit, $offset ) {
-	return " LIMIT ".(is_numeric($offset)?"{$offset},":"")."{$limit} ";
-}
-
 ?>
