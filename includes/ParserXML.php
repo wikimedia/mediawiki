@@ -525,15 +525,37 @@ class ParserXML EXTENDS Parser
 	* Turns the wikitext into XML by calling the external parser
 	*
 	*/
-	function runXMLparser ( &$text ) {
+	function html2xml ( &$text ) {
 		global $wgWiki2xml ;
+
+		# generating html2xml command path
+		$a = $wgWiki2xml ;
+		$a = explode ( "/" , $a ) ;
+		array_pop ( $a ) ;
+		$a[] = "html2xml" ;
+		$html2xml = implode ( "/" , $a ) ;
+		$a = array () ;
 
 		$tmpfname = tempnam("/tmp", "FOO");
 		$handle = fopen($tmpfname, "w");
-		fwrite($handle, $text);
+		fwrite($handle, utf8_encode ( $text ) );
+		fclose($handle);
+		exec ( $html2xml . " < " . $tmpfname , $a ) ;
+		$text = utf8_decode ( implode ( "\n" , $a ) ) ;
+		unlink($tmpfname);		 
+	}
+
+	function runXMLparser ( &$text ) {
+		global $wgWiki2xml ;
+
+		$this->html2xml ( $text ) ;
+
+		$tmpfname = tempnam("/tmp", "FOO");
+		$handle = fopen($tmpfname, "w");
+		fwrite($handle, $text ) ;
 		fclose($handle);
 		exec ( $wgWiki2xml . " < " . $tmpfname , $a ) ;
-		$text = implode ( "\n" , $a ) ;
+		$text = utf8_decode ( implode ( "\n" , $a ) ) ;
 		unlink($tmpfname);		 
 	}
 
