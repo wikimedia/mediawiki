@@ -1770,7 +1770,7 @@ class Language {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesEn;
-		return $wgAllMessagesEn[$key];
+		return @$wgAllMessagesEn[$key];
 	}
 	
 	function getAllMessages()
@@ -1877,7 +1877,7 @@ class Language {
 	function getMagic( &$mw )
 	{
 		$raw =& $this->getMagicWords(); 
-		if( !isset( $raw[$mw->mld] ) ) {
+		if( !isset( $raw[$mw->mId] ) ) {
 			# Fall back to English if local list is incomplete
 			$raw =& Language::getMagicWords();
 		}
