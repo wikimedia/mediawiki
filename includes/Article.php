@@ -538,7 +538,7 @@ class Article {
 			}
 		}
 		$wgOut->addHTML( "
-<form id=\"editform\" method=\"post\" action=\"$action\"
+<form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
 enctype=\"application/x-www-form-urlencoded\">
 <br clear=\"all\" />
 <textarea tabindex=1 name=\"wpTextbox1\" rows={$rows}
