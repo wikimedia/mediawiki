@@ -272,9 +272,9 @@ class EditPage {
 
 			if( $this->section != '' ) {
 				if( $this->section == 'new' ) {
-					$s.=wfMsg('editingcomment', $this->mTitle->getPrefixedText() );
+					$s = wfMsg('editingcomment', $this->mTitle->getPrefixedText() );
 				} else {
-					$s.=wfMsg('editingsection', $this->mTitle->getPrefixedText() );
+					$s = wfMsg('editingsection', $this->mTitle->getPrefixedText() );
 				}
 				if(!$this->preview) {
 					$sectitle=preg_match("/^=+(.*?)=+/mi",
