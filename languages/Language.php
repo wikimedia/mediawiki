@@ -295,7 +295,8 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"tlh" => "tlhIngan-Hol",	# Klingon
 	"tn" => "Setswana",		# Setswana
 	"to" => "Tonga",		# Tonga - FIXME
-	"tp" => "Toki Pona",		# Toki Pona
+	"tokipona" => "Toki Pona",      # Toki Pona
+	"tp" => "Toki Pona",		# Toki Pona - non-standard language code
 	"tpi" => "Tok Pisin",	# Tok Pisin 
 	"tr" => "T&uuml;rk&ccedil;e",	# Turkish
 	"ts" => "Xitsonga",		# Tsonga
