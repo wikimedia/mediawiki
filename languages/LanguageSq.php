@@ -1026,6 +1026,8 @@ class LanguageSq extends LanguageUtf8 {
 		}
 		# Compatbility with alt names:
 		if( 0 == strcasecmp( "Special", $text ) ) { return -1; } # So both Speciale: and Special: work
+		if( 0 == strcasecmp( "Perdoruesi", $text ) ) return 2;
+		if( 0 == strcasecmp( "Perdoruesi_diskutim", $text ) ) return 3;
 		return false;
 	}
 
