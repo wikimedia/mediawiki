@@ -100,6 +100,7 @@ $wgReadOnlyFile         = "{$wgUploadDirectory}/lock_yBgMBwiR";
 # The debug log file should be not be publically accessible if it is
 # used, as it may contain private data.
 $wgDebugLogFile         = "";
+$wgDebugRedirects		= false;
 
 $wgDebugComments        = false;
 $wgReadOnly             = false;
