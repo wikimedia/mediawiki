@@ -287,6 +287,8 @@ class SkinTemplate extends Skin {
 				} else {
 					$tpl->set('viewcount', false);
 				}
+			} else {
+				$tpl->set('viewcount', false);
 			}
 
 			if ($wgPageShowWatchingUsers) {
