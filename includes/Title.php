@@ -680,7 +680,7 @@ class Title {
 			$this->mNamespace = NS_MAIN;
 		} else {
 			# Namespace or interwiki prefix
-	 		if ( preg_match( "/^((?:i|x|[a-z]{2,3})(?:-[a-z0-9]+)?|[A-Za-z0-9_\\x80-\\xff]+?)_*:_*(.*)$/", $t, $m ) ) {
+	 		if ( preg_match( "/^(.+?)_*:_*(.*)$/", $t, $m ) ) {
 				#$p = strtolower( $m[1] );
 				$p = $m[1];
 				$lowerNs = strtolower( $p );
