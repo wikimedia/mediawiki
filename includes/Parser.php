@@ -552,7 +552,7 @@ class Parser
 			}
 			else if ( count ( $td ) == 0 ) { } # Don't do any of the following
 			else if ( '|}' == substr ( $x , 0 , 2 ) ) {
-				$z = "</table>\n" ;
+				$z = "</table>" . substr ( $x , 2) . "\n";
 				$l = array_pop ( $ltd ) ;
 				if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
 				if ( array_pop ( $td ) ) $z = '</'.$l.'>' . $z ;
