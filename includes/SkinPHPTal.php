@@ -81,10 +81,10 @@
 			$tpl->setRef( "title", &$this->titletxt ); // ?
 			$tpl->setRef( "thispage", &$this->thispage );
 			$tpl->set( "subtitle", $out->getSubtitle() );
-			$tpl->setRef( 'mimetype', $wgMimeType );
-			$tpl->setRef( 'charset', $wgOutputEncoding );
+			$tpl->setRef( 'mimetype', &$wgMimeType );
+			$tpl->setRef( 'charset', &$wgOutputEncoding );
 			$tpl->set( 'headlinks', $out->getHeadLinks() );
-			$tpl->setRef( 'skinname', $this->skinname );
+			$tpl->setRef( 'skinname', &$this->skinname );
 			$tpl->setRef( "loggedin", &$this->loggedin );
 			/* XXX currently unused, might get useful later
 			$tpl->set( "editable", ($wgTitle->getNamespace() != NS_SPECIAL ) );
@@ -349,7 +349,7 @@
 			$nav_urls['recentchanges'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchanges')));
 			$nav_urls['whatlinkshere'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Whatlinkshere', 'target='.$this->thispage)));
 			$nav_urls['currentevents'] = (wfMsg('currentevents') != '') ? array('href' => htmlspecialchars( $this->makeI18nUrl('currentevents'))) : '';
-			$nav_urls['portal'] = (wfMsg('portal') != '') ? array('href' => htmlspecialchars( $this->makeI18nUrl('portal'))) : '';
+			$nav_urls['portal'] = (wfMsg('portal') != '') ? array('href' => htmlspecialchars( $this->makeI18nUrl('portal-url'))) : '';
 			$nav_urls['recentchangeslinked'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchangeslinked', 'target='.$this->thispage)));
 			$nav_urls['bugreports'] = array('href' => htmlspecialchars( $this->makeI18nUrl('bugreportspage')));
 			// $nav_urls['sitesupport'] = array('href' => htmlspecialchars( $this->makeI18nUrl('sitesupportpage')));
