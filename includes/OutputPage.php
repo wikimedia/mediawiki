@@ -1109,23 +1109,37 @@ return $r ;
 		/* As with sigs, use server's local time --
 		   ensure this is appropriate for your audience! */
 		$v = date( "m" );
-		$text = str_replace( "{{CURRENTMONTH}}", $v, $text );
+		$mw =& MagicWord::get( MAG_CURRENTMONTH );
+		$text = $mw->replace( $v, $text );
+		
 		$v = $wgLang->getMonthName( date( "n" ) );
-		$text = str_replace( "{{CURRENTMONTHNAME}}", $v, $text );
+		$mw =& MagicWord::get( MAG_CURRENTMONTHNAME );
+		$text = $mw->replace( $v, $text );
+		
 		$v = $wgLang->getMonthNameGen( date( "n" ) );
-		$text = str_replace( "{{CURRENTMONTHNAMEGEN}}", $v, $text );
+		$mw =& MagicWord::get( MAG_CURRENTMONTHNAMEGEN );
+		$text = $mw->replace( $v, $text );
+		
 		$v = date( "j" );
-		$text = str_replace( "{{CURRENTDAY}}", $v, $text );
+		$mw = MagicWord::get( MAG_CURRENTDAY );
+		$text = $mw->replace( $v, $text );
+		
 		$v = $wgLang->getWeekdayName( date( "w" )+1 );
-		$text = str_replace( "{{CURRENTDAYNAME}}", $v, $text );
+		$mw =& MagicWord::get( MAG_CURRENTDAYNAME );
+		$text = $mw->replace( $v, $text );
+		
 		$v = date( "Y" );
-		$text = str_replace( "{{CURRENTYEAR}}", $v, $text );
+		$mw =& MagicWord::get( MAG_CURRENTYEAR );
+		$text = $mw->replace( $v, $text );
+	
 		$v = $wgLang->time( wfTimestampNow(), false );
-		$text = str_replace( "{{CURRENTTIME}}", $v, $text );
+		$mw =& MagicWord::get( MAG_CURRENTTIME );
+		$text = $mw->replace( $v, $text );
 
-		if ( false !== strstr( $text, "{{NUMBEROFARTICLES}}" ) ) {
+		$mw =& MagicWord::get( MAG_NUMBEROFARTICLES );
+		if ( $mw->match( $text ) ) {
 			$v = wfNumberOfArticles();
-			$text = str_replace( "{{NUMBEROFARTICLES}}", $v, $text );
+			$text = $mw->replace( $v, $text );
 		}
 		wfProfileOut();
 		return $text;
@@ -1262,10 +1276,8 @@ return $r ;
 		}
 		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML, do not 
 		# add TOC
-		if(preg_match("/__NOTOC__/i",$text)) { 
-			$text=preg_replace("/__NOTOC__/i","",$text);
-			$st=0; 
-		}
+		$mw =& MagicWord::get( MAG_NOTOC );
+		$st = ! $mw->matchAndRemove( $text );
 
 		# never add the TOC to the Main Page. This is an entry page that should not
 		# be more than 1-2 screens large anyway

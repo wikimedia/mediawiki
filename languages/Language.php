@@ -1,5 +1,37 @@
 <?
 
+#--------------------------------------------------------------------------
+# Constants
+#--------------------------------------------------------------------------
+
+# Namespaces
+define("NS_SPECIAL", -1);
+define("NS_MAIN", 0);
+define("NS_TALK", 1);
+define("NS_USER", 2);
+define("NS_USER_TALK", 3);
+define("NS_WP", 4);
+define("NS_WP_TALK", 5);
+define("NS_IMAGE", 6);
+define("NS_IMAGE_TALK", 7);
+
+# Magic words
+define("MAG_REDIRECT", 0);
+define("MAG_NOTOC", 1);
+define("MAG_START", 2);
+define("MAG_CURRENTMONTH", 3);
+define("MAG_CURRENTMONTHNAME", 4);
+define("MAG_CURRENTDAY", 5);
+define("MAG_CURRENTDAYNAME", 6);
+define("MAG_CURRENTYEAR", 7);
+define("MAG_CURRENTTIME", 8);
+define("MAG_NUMBEROFARTICLES", 9);
+define("MAG_CURRENTMONTHNAMEGEN", 10);
+
+#--------------------------------------------------------------------------
+# Language-specific text
+#--------------------------------------------------------------------------
+
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
 
@@ -240,6 +272,21 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"Sep", "Oct", "Nov", "Dec"
 );
 
+/* private */ $wgMagicWordsEn = array(
+#   ID                                 CASE  SYNONYMS
+    MAG_REDIRECT             => array( 0,    "#redirect"              ),
+    MAG_NOTOC                => array( 0,    "__NOTOC__"              ),
+    MAG_START                => array( 0,    "__START__"              ),
+    MAG_CURRENTMONTH         => array( 1,    "{{CURRENTMONTH}}"       ),
+    MAG_CURRENTMONTHNAME     => array( 1,    "{{CURRENTMONTHNAME}}"   ),
+    MAG_CURRENTDAY           => array( 1,    "{{CURRENTDAY}}"         ),   
+    MAG_CURRENTDAYNAME       => array( 1,    "{{CURRENTDAYNAME}}"     ),
+    MAG_CURRENTYEAR          => array( 1,    "{{CURRENTYEAR}}"        ),
+    MAG_CURRENTTIME          => array( 1,    "{{CURRENTTIME}}"        ),
+    MAG_NUMBEROFARTICLES     => array( 1,    "{{NUMBEROFARTICLES}}"   ),
+    MAG_CURRENTMONTHNAMEGEN  => array( 1,    "{{CURRENTMONTHNAMEGEN}}"),
+);
+	
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).
@@ -1144,6 +1191,10 @@ title. Please merge them manually.",
 
 );
 
+#--------------------------------------------------------------------------
+# Internationalisation code
+#--------------------------------------------------------------------------
+
 class Language {
 
 	function getDefaultUserOptions () {
@@ -1494,6 +1545,21 @@ class Language {
 
 	# For right-to-left language support
 	function isRTL() { return false; }
+
+	function getMagicWords() 
+	{
+		global $wgMagicWordsEn;
+		return $wgMagicWordsEn;
+	}
+
+	# Fill a MagicWord object with data from here
+	function getMagic( &$mw )
+	{
+		$raw = $this->getMagicWords(); # don't worry, it's reference counted not deep copy
+		$rawEntry = $raw[$mw->mId];
+		$mw->mCaseSensitive = $rawEntry[0];
+		$mw->mSynonyms = array_slice( $rawEntry, 1 );
+	}
 }
 
 global $IP;
