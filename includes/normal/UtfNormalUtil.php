@@ -21,10 +21,20 @@
  * Some of these functions are adapted from places in MediaWiki.
  * Should probably merge them for consistency.
  *
- * @package MediaWiki
+ * @package UtfNormal
+ * @access public
  */
 
 /** */
+
+/**
+ * Return UTF-8 sequence for a given Unicode code point.
+ * May die if fed out of range data.
+ *
+ * @param int $codepoint
+ * @return string
+ * @access public
+ */
 function codepointToUtf8( $codepoint ) {
 	if($codepoint <		0x80) return chr($codepoint);
 	if($codepoint <    0x800) return chr($codepoint >>	6 & 0x3f | 0xc0) .
@@ -40,6 +50,15 @@ function codepointToUtf8( $codepoint ) {
 	die("Asked for code outside of range ($codepoint)\n");
 }
 
+/**
+ * Take a series of space-separated hexadecimal numbers representing
+ * Unicode code points and return a UTF-8 string composed of those
+ * characters. Used by UTF-8 data generation and testing routines.
+ *
+ * @param string $sequence
+ * @return string
+ * @access private
+ */
 function hexSequenceToUtf8( $sequence ) {
 	$utf = '';
 	foreach( explode( ' ', $sequence ) as $hex ) {
@@ -49,6 +68,14 @@ function hexSequenceToUtf8( $sequence ) {
 	return $utf;
 }
 
+/**
+ * Determine the Unicode codepoint of a single-character UTF-8 sequence.
+ * Does not check for invalid input data.
+ *
+ * @param string $char
+ * @return int
+ * @access public
+ */
 function utf8ToCodepoint( $char ) {
 	# Find the length
 	$z = ord( $char{0} );
@@ -79,10 +106,16 @@ function utf8ToCodepoint( $char ) {
 		$z |= ord( $char{$i} ) & 0x3f;
 	}
 
-	# Make entity
 	return $z;
 }
 
+/**
+ * Escape a string for inclusion in a PHP single-quoted string literal.
+ *
+ * @param string $string
+ * @return string
+ * @access public
+ */
 function escapeSingleString( $string ) {
 	return strtr( $string,
 		array(

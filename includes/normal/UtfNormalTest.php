@@ -20,7 +20,7 @@
 /**
  * Implements the conformance test at:
  * http://www.unicode.org/Public/UNIDATA/NormalizationTest.txt
- * @package MediaWiki
+ * @package UtfNormal
  */
 
 /** */

@@ -18,8 +18,10 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
- *
- * @package MediaWiki
+ * Approximate benchmark for some basic operations.
+ * 
+ * @package UtfNormal
+ * @access private
  */
 
 /** */
