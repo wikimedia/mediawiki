@@ -36,8 +36,16 @@ function fixalpha() {
           logospan.style.width = logoa.currentStyle.width;
           logospan.style.cursor = 'hand';
           // Center image with hack for IE5.5
-          logospan.style.left = '50%';
-          logospan.style.setExpression('marginLeft', '"-" + (this.offsetWidth / 2) + "px"');
+          if (document.documentElement.dir == "rtl") 
+          {
+            logospan.style.right = '50%';
+            logospan.style.setExpression('marginRight', '"-" + (this.offsetWidth / 2) + "px"');
+          }
+          else
+          {
+            logospan.style.left = '50%';
+            logospan.style.setExpression('marginLeft', '"-" + (this.offsetWidth / 2) + "px"');
+          }
           logospan.style.top = '50%';
           logospan.style.setExpression('marginTop', '"-" + (this.offsetHeight / 2) + "px"');
       }
