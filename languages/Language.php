@@ -40,6 +40,11 @@ define("MAG_IMG_WIDTH",      20);
 define("MAG_IMG_CENTER",      21);
 define("MAG_INT", 22);
 define("MAG_FORCETOC", 23);
+define("MAG_SITENAME", 24);
+define("MAG_NS", 25);
+define("MAG_LOCALURL", 26);
+define("MAG_LOCALURLE", 27);
+define("MAG_SERVER", 28);
 
 $wgVariableIDs = array(
 	MAG_CURRENTMONTH,
@@ -49,7 +54,9 @@ $wgVariableIDs = array(
 	MAG_CURRENTYEAR,
 	MAG_CURRENTTIME,
 	MAG_NUMBEROFARTICLES,
-	MAG_CURRENTMONTHNAMEGEN
+	MAG_CURRENTMONTHNAMEGEN,
+    MAG_SITENAME,
+	MAG_SERVER
 );
 
 
@@ -410,8 +417,12 @@ $wgLanguageNamesEn =& $wgLanguageNames;
     MAG_IMG_NONE             => array( 1,    "none"                   ),
     MAG_IMG_WIDTH            => array( 1,    "$1px"                   ),
     MAG_IMG_CENTER           => array( 1,    "center", "centre"       ),
-    MAG_INT                  => array( 0,    "INT:"                   )
-    
+    MAG_INT                  => array( 0,    "INT:"                   ),
+    MAG_SITENAME             => array( 1,    "SITENAME"               ),
+    MAG_NS                   => array( 0,    "NS:"                    ),
+	MAG_LOCALURL             => array( 0,    "LOCALURL:"              ),
+	MAG_LOCALURLE            => array( 0,    "LOCALURLE:"             ),
+	MAG_SERVER               => array( 0,    "SERVER"                 )
 );
 
 # All special pages have to be listed here: a description of ""
@@ -438,7 +449,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 	"Longpages"		=> "Long articles",
 	"Newpages"		=> "Newly created articles",
 	"Ancientpages"	=> "Oldest articles",
-        "Deadendpages"  => "Dead-end pages",
+	"Deadendpages"  => "Dead-end pages",
 #	"Intl"                => "Interlanguage Links",
 	"Allpages"		=> "All pages by title",
 
@@ -492,19 +503,19 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 "mainpage"		=> "Main Page",
 "mainpagetext"	=> "Wiki software successfully installed.",
 "about"			=> "About",
-"aboutwikipedia" => "About $wgSitename",
-"aboutpage"		=> "$wgMetaNamespace:About",
+"aboutwikipedia" => "About {{SITENAME}}",
+"aboutpage"		=> "{{ns:4}}:About",
 'article' => 'Article',
 "help"			=> "Help",
-"helppage"		=> $wgNamespaceNamesEn[NS_HELP].":Contents",
-"wikititlesuffix" => "$wgSitename",
+"helppage"		=> "{{ns:12}}:Contents",
+"wikititlesuffix" => "{{SITENAME}}",
 "bugreports"	=> "Bug reports",
-"bugreportspage" => "$wgMetaNamespace:Bug_reports",
+"bugreportspage" => "{{ns:4}}:Bug_reports",
 "sitesupport"   => "Donations", # Set a URL in $wgSiteSupportPage in LocalSettings.php
 "faq"			=> "FAQ",
-"faqpage"		=> "$wgMetaNamespace:FAQ",
+"faqpage"		=> "{{ns:4}}:FAQ",
 "edithelp"		=> "Editing help",
-"edithelppage"	=> $wgNamespaceNamesEn[NS_HELP].":Editing",
+"edithelppage"	=> "{{ns:12}}:Editing",
 "cancel"		=> "Cancel",
 "qbfind"		=> "Find",
 "qbbrowse"		=> "Browse",
@@ -519,10 +530,10 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 'navigation' => 'Navigation',
 "currentevents" => "Current events",
 "disclaimers" => "Disclaimers",
-"disclaimerpage"		=> "$wgMetaNamespace:General_disclaimer",
+"disclaimerpage"		=> "{{ns:4}}:General_disclaimer",
 "errorpagetitle" => "Error",
 "returnto"		=> "Return to $1.",
-"fromwikipedia"	=> "From $wgSitename, the free encyclopedia.",
+"fromwikipedia"	=> "From {{SITENAME}}, the free encyclopedia.",
 "whatlinkshere"	=> "Pages that link here",
 "help"			=> "Help",
 "search"		=> "Search",
@@ -555,10 +566,10 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 "redirectedfrom" => "(Redirected from $1)",
 "lastmodified"	=> "This page was last modified $1.",
 "viewcount"		=> "This page has been accessed $1 times.",
-"gnunote" => "All text is available under the terms of the <a class='internal' href='$wgScriptPath/index.php/GNU_Free_Documentation_License'>GNU Free Documentation License</a>. $wgSitename is powered by <a href='http://www.mediawiki.org/' class='external'>MediaWiki</a>, an open source wiki engine.",
-"printsubtitle" => "(From $wgServer)",
+"gnunote" => "All text is available under the terms of the <a class='internal' href='{{localurl:GNU_Free_Documentation_License}}'>GNU Free Documentation License</a>. $wgSitename is powered by <a href='http://www.mediawiki.org/' class='external'>MediaWiki</a>, an open source wiki engine.",
+"printsubtitle" => "(From {{SERVER}})",
 "protectedpage" => "Protected page",
-"administrators" => "$wgMetaNamespace:Administrators",
+"administrators" => "{{ns:4}}:Administrators",
 "sysoptitle"	=> "Sysop access required",
 "sysoptext"		=> "The action you have requested can only be
 performed by users with \"sysop\" status.
@@ -573,7 +584,7 @@ performed by sysops with  \"bureaucrat\" status.",
 "nbytes"		=> "$1 bytes",
 "go"			=> "Go",
 "ok"			=> "OK",
-"sitetitle"		=> "$wgSitename",
+"sitetitle"		=> "{{SITENAME}}",
 "sitesubtitle"	=> "The Free Encyclopedia",
 "retrievedfrom" => "Retrieved from \"$1\"",
 "newmessages" => "You have $1.",
@@ -652,7 +663,7 @@ Query: $2
 "viewsource" => "View source",
 "protectedtext" => "This page has been locked to prevent editing; there are
 a number of reasons why this may be so, please see
-[[$wgMetaNamespace:Protected page]].
+[[{{ns:4}}:Protected page]].
 
 You can view and copy the source of this page:",
 
@@ -660,13 +671,13 @@ You can view and copy the source of this page:",
 #
 "logouttitle"	=> "User logout",
 "logouttext" => "You are now logged out.
-You can continue to use $wgSitename anonymously, or you can log in
+You can continue to use {{SITENAME}} anonymously, or you can log in
 again as the same or as a different user. Note that some pages may
 continue to be displayed as if you were still logged in, until you clear
 your browser cache\n",
 
 "welcomecreation" => "<h2>Welcome, $1!</h2><p>Your account has been created.
-Don't forget to change your $wgSitename preferences.",
+Don't forget to change your {{SITENAME}} preferences.",
 
 "loginpagetitle" => "User login",
 "yourname"		=> "Your user name",
@@ -678,7 +689,7 @@ Don't forget to change your $wgSitename preferences.",
 "alreadyloggedin" => "<font color=red><b>User $1, you are already logged in!</b></font><br />\n",
 
 "login"			=> "Log in",
-"loginprompt"           => "You must have cookies enabled to log in to $wgSitename.",
+"loginprompt"           => "You must have cookies enabled to log in to {{SITENAME}}.",
 "userlogin"		=> "Log in",
 "logout"		=> "Log out",
 "userlogout"	=> "Log out",
@@ -694,18 +705,18 @@ contact you through the website without you having to reveal your
 email address to them, and it also helps you if you forget your   
 password.",
 "loginerror"	=> "Login error",
-"nocookiesnew"	=> "The user account was created, but you are not logged in. $wgSitename uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.",
-"nocookieslogin"	=> "$wgSitename uses cookies to log in users. You have cookies disabled. Please enable them and try again.",
+"nocookiesnew"	=> "The user account was created, but you are not logged in. {{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.",
+"nocookieslogin"	=> "{{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them and try again.",
 "noname"		=> "You have not specified a valid user name.",
 "loginsuccesstitle" => "Login successful",
-"loginsuccess"	=> "You are now logged in to $wgSitename as \"$1\".",
+"loginsuccess"	=> "You are now logged in to {{SITENAME}} as \"$1\".",
 "nosuchuser"	=> "There is no user by the name \"$1\".
 Check your spelling, or use the form below to create a new user account.",
 "wrongpassword"	=> "The password you entered is incorrect. Please try again.",
 "mailmypassword" => "Mail me a new password",
-"passwordremindertitle" => "Password reminder from $wgSitename",
+"passwordremindertitle" => "Password reminder from {{SITENAME}}",
 "passwordremindertext" => "Someone (probably you, from IP address $1)
-requested that we send you a new $wgSitename login password.
+requested that we send you a new {{SITENAME}} login password.
 The password for user \"$2\" is now \"$3\".
 You should log in and change your password now.",
 "noemail"		=> "There is no e-mail address recorded for user \"$1\".",
@@ -752,7 +763,7 @@ Please log in again after you receive it.",
 "blockedtitle"	=> "User is blocked",
 "blockedtext"	=> "Your user name or IP address has been blocked by $1.
 The reason given is this:<br />''$2''<p>You may contact $1 or one of the other
-[[$wgMetaNamespace:Administrators|administrators]] to discuss the block.
+[[{{ns4}}:Administrators|administrators]] to discuss the block.
 
 Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]].
 
@@ -772,7 +783,7 @@ Your IP address is $3. Please include this address in any queries you make.
 "newarticletext" =>
 "You've followed a link to a page that doesn't exist yet.
 To create the page, start typing in the box below 
-(see the [[$wgMetaNamespace:Help|help page]] for more info).
+(see the [[{{ns:4}}:Help|help page]] for more info).
 If you are here by mistake, just click your browser's '''back''' button.",
 "talkpagetext" => "<!-- MediaWiki:talkpagetext -->",
 "anontalkpagetext" => "---- ''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical [[IP address]] to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.'' ",
@@ -800,7 +811,7 @@ revision of this page.
 If you save it, any changes made since this revision will be lost.</strong>\n",
 "yourdiff"		=> "Differences",
 # FIXME: This is inappropriate for third-party use!
-"copyrightwarning" => "Please note that all contributions to $wgSitename are
+"copyrightwarning" => "Please note that all contributions to {{SITENAME}} are
 considered to be released under the GNU Free Documentation License
 (see $1 for details).
 If you don't want your writing to be edited mercilessly and redistributed
@@ -816,7 +827,7 @@ so you will not be able to save your edits right now. You may wish to cut-n-past
 the text into a text file and save it for later.",
 "protectedpagewarning" => "WARNING:  This page has been locked so that only
 users with sysop privileges can edit it. Be sure you are following the
-<a href='$wgScriptPath/$wgMetaNamespace:Protected_page_guidelines'>protected page
+<a href='$wgScriptPath/{{ns:4}}:Protected_page_guidelines'>protected page
 guidelines</a>.",
 
 # History pages
@@ -846,9 +857,9 @@ Please check the URL you used to access this page.\n",
 # Search results
 #
 "searchresults" => "Search results",
-"searchhelppage" => "$wgMetaNamespace:Searching",
-"searchingwikipedia" => "Searching $wgSitename",
-"searchresulttext" => "For more information about searching $wgSitename, see $1.",
+"searchhelppage" => "{{ns:4}}:Searching",
+"searchingwikipedia" => "Searching {{SITENAME}}",
+"searchresulttext" => "For more information about searching {{SITENAME}}, see $1.",
 "searchquery"	=> "For query \"$1\"",
 "badquery"		=> "Badly formed search query",
 "badquerytext"	=> "We could not process your query.
@@ -891,7 +902,7 @@ border=\"0\" ALT=\"Google\"></A>
 <INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
 <INPUT type=submit name=btnG VALUE=\"Google Search\">
 <font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br />
+<input type=hidden name=domains value=\"{{SERVER}}\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{{SERVER}}\" checked> {{SERVER}} <br />
 <input type='hidden' name='ie' value='$2'>
 <input type='hidden' name='oe' value='$2'>
 </font>
@@ -904,13 +915,12 @@ border=\"0\" ALT=\"Google\"></A>
 #
 "preferences"	=> "Preferences",
 "prefsnologin" => "Not logged in",
-"prefsnologintext"	=> "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+"prefsnologintext"	=> "You must be <a href=\"{{localurl:Special:Userlogin}}\">logged in</a>
 to set user preferences.",
 "prefslogintext" => "You are logged in as \"$1\".
 Your internal ID number is $2.
 
-See [[$wgMetaNamespace:User preferences help]] for help deciphering the options.",
+See [[{{ns:4}}:User preferences help]] for help deciphering the options.",
 "prefsreset"	=> "Preferences have been reset from storage.",
 "qbsettings"	=> "Quickbar settings", 
 "changepassword" => "Change password",
@@ -983,23 +993,20 @@ from server time (UTC).",
 "reupload"		=> "Re-upload",
 "reuploaddesc"	=> "Return to the upload form.",
 "uploadnologin" => "Not logged in",
-"uploadnologintext"	=> "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+"uploadnologintext"	=> "You must be <a href=\"{{localurl:Special:Userlogin}}\">logged in</a>
 to upload files.",
 "uploadfile"	=> "Upload images, sounds, documents etc.",
 "uploaderror"	=> "Upload error",
 "uploadtext"	=> "<strong>STOP!</strong> Before you upload here,
-make sure to read and follow the <a href=\"" .
-wfLocalUrlE( "$wgMetaNamespace:Image_use_policy" ) . "\">image use policy</a>.
+make sure to read and follow the <a href=\"{{localurle:Special:Image_use_policy}}\">image use policy</a>.
 <p>If a file with the name you are specifying already
 exists on the wiki, it'll be replaced without warning.
 So unless you mean to update a file, it's a good idea
 to first check if such a file exists.
 <p>To view or search previously uploaded images,
-go to the <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
-"\">list of uploaded images</a>.
-Uploads and deletions are logged on the <a href=\"" .
-wfLocalUrlE( "$wgMetaNamespace:Upload_log" ) . "\">upload log</a>.
+go to the <a href=\"{{localurle:Special:Imagelist}}\">list of uploaded images</a>.
+Uploads and deletions are logged on the " .
+"<a href=\"{{localurle:Wikipedia:Upload_log}}\">upload log</a>.
 <p>Use the form below to upload new image files for use in
 illustrating your articles.
 On most browsers, you will see a \"Browse...\" button, which will
@@ -1033,8 +1040,8 @@ All times shown are server time (UTC).
 "filesource" => "Source",
 "affirmation"	=> "I affirm that the copyright holder of this file
 agrees to license it under the terms of the $1.",
-"copyrightpage" => "$wgMetaNamespace:Copyrights",
-"copyrightpagename" => "$wgSitename copyright",
+"copyrightpage" => "{{ns:4}}:Copyrights",
+"copyrightpagename" => "{{SITENAME}} copyright",
 "uploadedfiles"	=> "Uploaded files",
 "noaffirmation" => "You must affirm that your upload does not violate
 any copyrights.",
@@ -1084,7 +1091,7 @@ this old version, (rev) = revert to this old version.
 "sitestats"		=> "Site statistics",
 "userstats"		=> "User statistics",
 "sitestatstext" => "There are <b>$1</b> total pages in the database.
-This includes \"talk\" pages, pages about $wgSitename, minimal \"stub\"
+This includes \"talk\" pages, pages about {{SITENAME}}, minimal \"stub\"
 pages, redirects, and others that probably don't qualify as articles.
 Excluding those, there are <b>$2</b> pages that are probably legitimate
 articles.<p>
@@ -1100,7 +1107,7 @@ That comes to <b>$5</b> average edits per page, and <b>$6</b> views per edit.",
 "maintnancepagetext"	=> "This page includes several handy tools for everyday maintenance. Some of these functions tend to stress the database, so please do not hit reload after every item you fixed ;-)",
 "maintenancebacklink"	=> "Back to Maintenance Page",
 "disambiguations"	=> "Disambiguation pages",
-"disambiguationspage"	=> "$wgMetaNamespace:Links_to_disambiguating_pages",
+"disambiguationspage"	=> "{{ns:4}}:Links_to_disambiguating_pages",
 "disambiguationstext"	=> "The following articles link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as dismbiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
 "doubleredirects"	=> "Double Redirects",
 "doubleredirectstext"	=> "<b>Attention:</b> This list may contain false positives. That usually means there is additional text with links below the first #REDIRECT.<br />\nEach row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the \"real\" taget article, which the first redirect should point to.",
@@ -1152,7 +1159,7 @@ in active use.",
 "booksourcetext" => "Below is a list of links to other sites that
 sell new and used books, and may also have further information
 about books you are looking for.
-$wgSitename is not affiliated with any of these businesses, and
+{{SITENAME}} is not affiliated with any of these businesses, and
 this list should not be construed as an endorsement.",
 "rfcurl" =>  "http://www.faqs.org/rfcs/rfc$1.html",
 "alphaindexline" => "$1 to $2",
@@ -1161,10 +1168,8 @@ this list should not be construed as an endorsement.",
 # Email this user
 #
 "mailnologin"	=> "No send address",
-"mailnologintext" => "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
-and have a valid e-mail address in your <a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">preferences</a>
+"mailnologintext" => "You must be <a href=\"{{localurl:Special:Userlogin\">logged in</a>
+and have a valid e-mail address in your <a href=\"{{localurl:Special:Preferences}}\">preferences</a>
 to send e-mail to other users.",
 "emailuser"		=> "E-mail this user",
 "emailpage"		=> "E-mail user",
@@ -1174,7 +1179,7 @@ The e-mail address you entered in your user preferences will appear
 as the \"From\" address of the mail, so the recipient will be able
 to reply.",
 "usermailererror" => "Mail object returned error: ",
-"defemailsubject"  => "$wgSitename e-mail",				       
+"defemailsubject"  => "{{SITENAME}} e-mail",				       
 "noemailtitle"	=> "No e-mail address",
 "noemailtext"	=> "This user has not specified a valid e-mail address,
 or has chosen not to receive e-mail from other users.",
@@ -1192,15 +1197,12 @@ or has chosen not to receive e-mail from other users.",
 "watchlistsub"		=> "(for user \"$1\")",
 "nowatchlist"		=> "You have no items on your watchlist.",
 "watchnologin"		=> "Not logged in",
-"watchnologintext"	=> "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+"watchnologintext"	=> "You must be <a href=\"{{localurl:Special:Userlogin}}\">logged in</a>
 to modify your watchlist.",
 "addedwatch"		=> "Added to watchlist",
-"addedwatchtext"	=> "The page \"$1\" has been added to your <a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\">watchlist</a>.
+"addedwatchtext"	=> "The page \"$1\" has been added to your <a href=\"{{localurl:Special:Watchlist}}\">watchlist</a>.
 Future changes to this page and its associated Talk page will be listed there,
-and the page will appear <b>bolded</b> in the <a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">list of recent changes</a> to
+and the page will appear <b>bolded</b> in the <a href=\"{{localurl:Special:Recentchanges}}\">list of recent changes</a> to
 make it easier to pick out.</p>
 
 <p>If you want to remove the page from your watchlist later, click \"Stop watching\" in the sidebar.",
@@ -1246,7 +1248,7 @@ at the bottom of the screen.",
 or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
-[[$wgMetaNamespace:Policy]].",
+[[{{ns:4}}:Policy]].",
 "confirmcheck"	=> "Yes, I really want to delete this.",
 "actioncomplete" => "Action complete",
 "deletedtext"	=> "\"$1\" has been deleted.
@@ -1276,7 +1278,7 @@ Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
 "revertpage"	=> "Reverted edit of $2, changed back to last version by $1",
 "protectlogpage" => "Protection_log",
 "protectlogtext" => "Below is a list of page locks/unlocks.
-See [[$wgMetaNamespace:Protected page]] for more information.",
+See [[{{ns:4}}:Protected page]] for more information.",
 "protectedarticle" => "protected [[$1]]",
 "unprotectedarticle" => "unprotected [[$1]]",
 
@@ -1295,7 +1297,7 @@ will not be automatically replaced.",
 "undeletebtn" => "Restore!",
 "undeletedarticle" => "restored \"$1\"",
 "undeletedtext"   => "The article [[$1]] has been successfully restored.
-See [[$wgMetaNamespace:Deletion_log]] for a record of recent deletions and restorations.",
+See [[{{ns:4}}:Deletion_log]] for a record of recent deletions and restorations.",
 
 # Contributions
 #
@@ -1324,7 +1326,7 @@ to perform this function on.",
 "blockiptext"	=> "Use the form below to block write access
 from a specific IP address or username.
 This should be done only only to prevent vandalism, and in
-accordance with [[$wgMetaNamespace:Policy|policy]].
+accordance with [[{{ns:4}}:Policy|policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 "ipaddress"		=> "IP Address/username",
@@ -1444,8 +1446,7 @@ proceeding.",
 In those cases, you will have to move or merge the page manually if desired.",
 "movearticle"	=> "Move page",
 "movenologin"	=> "Not logged in",
-"movenologintext" => "You must be a registered user and <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+"movenologintext" => "You must be a registered user and <a href=\"{{localurl:Special:Userlogin}}\">logged in</a>
 to move a page.",
 "newtitle"		=> "To new title",
 "movepagebtn"	=> "Move page",
@@ -1540,7 +1541,7 @@ amusement.",
 'tooltip-mainpage' => 'Visit the Main Page',
 'tooltip-randompage' => 'Load a random page [alt-x]',
 'tooltip-currentevents' => 'Find background information on current events',
-'tooltip-sitesupport' => 'Support '.$wgSitename,
+'tooltip-sitesupport' => 'Support {{SITENAME}}',
 'tooltip-help' => 'The place to find out.',
 'tooltip-recentchanges' => 'The list of recent changes in the wiki. [alt-r]',
 'tooltip-recentchangeslinked' => 'Recent changes in pages linking to this page [alt-c]',

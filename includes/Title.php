@@ -85,6 +85,9 @@ class Title {
         $t->mDefaultNamespace = $defaultNamespace;
         
 		wfProfileOut( $fname );
+		if ( !is_object( $t ) ) {
+			var_dump( debug_backtrace() );
+		}
 		if( $t->secureAndSplit() ) {
 			return $t;
 		} else {
@@ -628,7 +631,12 @@ class Title {
 	 		if ( preg_match( "/^((?:i|x|[a-z]{2,3})(?:-[a-z0-9]+)?|[A-Za-z0-9_\\x80-\\xff]+?)_*:_*(.*)$/", $t, $m ) ) {
 				#$p = strtolower( $m[1] );
 				$p = $m[1];
-				if ( $ns = $wgLang->getNsIndex( strtolower( $p ) )) {
+				$lowerNs = strtolower( $p );
+				if ( $ns = Namespace::getCanonicalIndex( $lowerNs ) ) {
+					# Canonical namespace
+					$t = $m[2];
+					$this->mNamespace = $ns;
+				} elseif ( $ns = $wgLang->getNsIndex( $lowerNs )) {
 					# Ordinary namespace
 					$t = $m[2];
 					$this->mNamespace = $ns;
