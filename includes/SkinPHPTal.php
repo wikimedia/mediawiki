@@ -72,7 +72,7 @@
 			$this->username = $wgUser->getName();
 			$this->userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
 			$this->userpageurl = $this->makeUrl($this->userpage);
-			$this->userpageurle = htmlspecialchars($this->$this->userpageurl);
+			$this->userpageurle = htmlspecialchars($this->userpageurl);
 			$this->titletxt = $wgTitle->getPrefixedText();
 			
 			$this->initPage( $out );
