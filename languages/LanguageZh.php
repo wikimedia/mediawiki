@@ -50,10 +50,9 @@ class LanguageZh extends LanguageZh_cn {
 			return;
 		if(!is_array($table))
 			return;
-		if(!$this->mTablesLoaded)
-			$this->loadTables();
-		$this->mTables[$code] = array_merge($this->mTables[$code], $table);
-		$wgMemc->set($this->mCacheKey, $this->mTables, 43200);
+		$wgMemc->delete($this->mCacheKey);
+		$this->mTablesLoaded=false;
+		$this->loadTables();
 	}
 
 	// load conversion tables either from the cache or the disk
