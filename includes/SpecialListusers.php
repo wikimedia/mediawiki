@@ -42,7 +42,7 @@ class ListUsersPage extends QueryPage {
 		$name = $skin->makeLink( $wgContLang->getNsText($result->namespace) . ':' . $result->title, $result->title );
 		if( '' != $result->type ) {
 			$name .= ' (' .
-			$skin->makeLink( wfMsg( "administrators" ), $result->type) .
+			$skin->makeLink( wfMsgForContent( "administrators" ), $result->type) .
 			')';
 		}
 		return $name;
