@@ -216,7 +216,7 @@ CREATE TABLE searchindex (
   si_title varchar(255) NOT NULL default '',
   si_text mediumtext NOT NULL default '',
   UNIQUE KEY (si_page)
-) PACK_KEYS=1;
+) TYPE=MyISAM PACK_KEYS=1;
 
 CREATE TABLE interwiki (
   iw_prefix char(32) NOT NULL,
