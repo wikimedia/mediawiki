@@ -1567,6 +1567,6 @@ class Language {
 	}
 }
 
-include_once( "Language" . ucfirst( $wgLanguageCode ) . ".php" );
+@include_once( "Language" . ucfirst( $wgLanguageCode ) . ".php" );
 
 ?>
