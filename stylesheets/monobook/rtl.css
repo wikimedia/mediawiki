@@ -2,31 +2,27 @@
 Right-to-left fixes for MonoBook.
 Places sidebar on right, tweaks various alignment issues.
 
-Works mostly ok nicely on Safari 1.2.1; broken in Mozilla.
-Not well tested on other browers yet.
+Works mostly ok nicely on Safari 1.2.1; fine in Mozilla.
 
 Safari bugs (1.2.1):
 * Tabs are still appearing in left-to-right order. (Try after localizing)
 
-Mozilla bugs (Firefox 0.8):
-* Tabs are LTR
-* Tabs and personal links are missing their left/right borders/margins
-* The boxes in the sidebar appear waaaaay off screen right on some pages
-* Padding fixes on links-with-icons are not taking.
-
-Opera bugs (7.5 beta/mac):
-* Tabs are horribly munged together
-* The order of the individual letters is reversed in the tabs ("yrotsih")
-* Some bits of text (sidebar box titles, username) have forward and backward versions overlapping each other
-* Link icons don't move to the left side, end up overlapping text
-* Sidebar boxes are pushed down below the content area
+Opera bugs (7.23 linux):
+* Some bits of ltr text (sidebar box titles) have forward and backward versions overlapping each other
 
 IE/mac bugs:
 * The thing barfs on Hebrew and Arabic anyway, so no point testing.
 
+IE6 bug:
+* right padding of content area disappears somewhere during load, workaround is a margin on the body for now
+  (weird, isn't it?) IE5.5 is caught by this fix as well currently, it doesn't need it though
+
+Missing features due to lack of support:
+* external link icons, icon next to user name
+
 To test:
-* Opera
-* IE
+* Opera6
+* IE 5.0
 * etc
 
 */
@@ -35,27 +31,31 @@ body * {
     direction: rtl;
 /*    unicode-bidi: bidi-override;*/
     unicode-bidi: embed;
-    moz-box-direction: rtl;
 }
-*:root {
-    width: 100%;
+/* very ugly IE6 bug workaround (disappearing right padding on #documentContent) */
+* html body {
+    padding-left: 19px;
 }
 #portal-column-content {
 	margin: 0 -12.2em 0 0;
         float: left;
 }
-
 #portal-column-content #content{
 	margin-left: 0;
-	margin-right: 12.5em;
+	margin-right: 12.2em;
 }
 #documentContent {
     border-right: 1px solid #aaaaaa;
     border-left: none;
 }
-head:first-child+body .portlet {
+html>body .portlet {
     float: right;
     clear: right;
+}
+/* recover IEMac (might be fine with the float, but usually it's close to IE */
+*>body .portlet {
+    float: none;
+    clear: none;
 }
 .portletContent {
     padding-right: 0.8em;
@@ -94,12 +94,20 @@ div.magnify,
 #portlet-contentViews {
 	left: auto;
 	right: 11.5em;
-        padding-left: auto;
+        padding-left: 0;
         padding-right: 1em;
 }
 #portlet-contentViews li {
-    margin: 0 0 0 0.3em;
+    margin-left: 0.3em;
+    margin-right: 0;
     float: right;
+}
+* html #portlet-contentViews li a {
+    display: block;
+    padding-bottom: 0;
+}
+* html #portlet-contentViews li a:hover {
+    padding-bottom: 0.2em;
 }
 /* offsets to distinguish the tab groups */
 li#contentaction-talk {
@@ -107,8 +115,7 @@ li#contentaction-talk {
     margin-left: 1.6em;
 }
 li#contentaction-watch {
-    margin-left: auto;
-    margin-right: 1.6em;
+    margin-right: 1.6em !important;
 }
 
 /* Fix margins */
@@ -129,9 +136,6 @@ dd {
 #documentSubtitle {
 	margin-right: 1em;
 	margin-left: 0;
-}
-#documentContent {
-    padding-right 1.8em;
 }
 .tocindent {
 	margin-left: 0;
