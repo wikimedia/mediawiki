@@ -69,6 +69,13 @@ class QueryPage {
 	}
 
 	/**
+	 * Sometime we dont want to build rss / atom feeds.
+	 */
+	function isSyndicated() {
+		return true;
+	}
+
+	/**
 	 * Formats the results of the query for display. The skin is the current
 	 * skin; you can use it for making links. The result is a single row of
 	 * result data. You should be able to grab SQL results off of it.
@@ -102,7 +109,7 @@ class QueryPage {
 		$dbw =& wfGetDB( DB_MASTER );
 		$querycache = $dbr->tableName( 'querycache' );
 
-		$wgOut->setSyndicated( true );
+		$wgOut->setSyndicated( $this->isSyndicated() );
 		$res = false;
 
 		if ( $this->isExpensive() ) {
