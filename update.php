@@ -52,6 +52,7 @@ $wgTitle = Title::newFromText( "Update script" );
 	do_interwiki_update();
 	do_index_update();
 	do_linkscc_update();
+	do_hitcounter_update();
 
 	initialiseMessages();
 
@@ -179,6 +180,18 @@ function do_linkscc_update() {
 	} else {
 		echo "Adding linkscc table... ";
 		dbsource( "maintenance/archives/patch-linkscc.sql" );
+		echo "ok\n";
+	}
+}
+
+function do_hitcounter_update() {
+	// Create hitcounter if necessary
+	global $rconn;
+	if( table_exists( "hitcounter" ) ) {
+		echo "...have hitcounter table.\n";
+	} else {
+		echo "Adding hitcounter table... ";
+		dbsource( "maintenance/archives/patch-hitcounter.sql" );
 		echo "ok\n";
 	}
 }

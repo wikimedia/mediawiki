@@ -112,6 +112,11 @@ CREATE TABLE site_stats (
   UNIQUE KEY ss_row_id (ss_row_id)
 ) TYPE=MyISAM;
 
+DROP TABLE IF EXISTS hitcounter;
+CREATE TABLE hitcounter (
+  hc_id INTEGER UNSIGNED NOT NULL
+) TYPE=HEAP MAX_ROWS=25000;
+
 DROP TABLE IF EXISTS ipblocks;
 CREATE TABLE ipblocks (
   ipb_id int(8) NOT NULL auto_increment,
