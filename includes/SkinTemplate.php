@@ -229,6 +229,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( "helppage", wfMsg('helppage'));
 		*/
 		$tpl->set( 'searchaction', $this->escapeSearchLink() );
+		$tpl->set( 'search', trim( $wgRequest->getVal( 'search' ) ) );
 		$tpl->setRef( 'stylepath', $wgStylePath );
 		$tpl->setRef( 'logopath', $wgLogo );
 		$tpl->setRef( "lang", $wgContLanguageCode );
