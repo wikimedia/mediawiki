@@ -77,7 +77,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 	/* redirect to canonical url, make it a 301 to allow caching */
 	$wgOut->redirect( $wgTitle->getFullURL(), '301');
 } else if ( Namespace::getSpecial() == $wgTitle->getNamespace() ) {
-	wfSpecialPage();
+	SpecialPage::executePath( $wgTitle );
 } else {
 	if ( Namespace::getMedia() == $wgTitle->getNamespace() ) {
 		$wgTitle = Title::makeTitle( Namespace::getImage(), $wgTitle->getDBkey() );

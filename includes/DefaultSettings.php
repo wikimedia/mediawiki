@@ -398,4 +398,7 @@ $wgVolunteerCandidates = array();
 $wgGPGCommand = "gpg";
 $wgGPGRecipient = "boardvote";
 $wgGPGHomedir = false;
+
+# Extensions
+$wgExtensionFunctions = array();
 ?>

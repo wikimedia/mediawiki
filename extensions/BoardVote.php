@@ -1,34 +1,42 @@
 <?php
 
-function wfSpecialBoardvote( $par = "" ) {
-	global $wgRequest, $wgBoardVoteDB;
+# Wikimedia Foundation Board of Trustees Election
 
-	$form = new BoardVoteForm( $wgRequest, $wgBoardVoteDB );
-	if ( $par ) {
-		$form->mAction = $par;
-	}
-	
-	$form->execute();
-}
+# Register extension
+$wgExtensionFunctions[] = "wfBoardvoteSetup";
 
-class BoardVoteForm {
+
+function wfBoardvoteSetup()
+{
+# Look out, freaky indenting
+# All this happens after SpecialPage.php has been included in Setup.php
+
+class BoardVotePage extends SpecialPage {
 	var $mPosted, $mContributing, $mVolunteer, $mDBname, $mUserDays, $mUserEdits;
 	var $mHasVoted, $mAction, $mUserKey;
 
-	function BoardVoteForm( &$request, $dbName ) {
-		global $wgUser, $wgDBname, $wgInputEncoding;
-
-		$this->mUserKey = iconv( $wgInputEncoding, "UTF-8", $wgUser->getName() ) . "@$wgDBname";
-		$this->mPosted = $request->wasPosted();
-		$this->mContributing = $request->getInt( "contributing" );
-		$this->mVolunteer = $request->getInt( "volunteer" );
-		$this->mDBname = $dbName;
-		$this->mHasVoted = $this->hasVoted( $wgUser );
-		$this->mAction = $request->getText( "action" );
+	function BoardVotePage() {
+		SpecialPage::SpecialPage( "Boardvote" );
 	}
 
-	function execute() {
-		global $wgUser;
+	function execute( $par ) {
+		global $wgUser, $wgDBname, $wgInputEncoding, $wgRequest, $wgBoardVoteDB;
+
+		$this->mUserKey = iconv( $wgInputEncoding, "UTF-8", $wgUser->getName() ) . "@$wgDBname";
+		$this->mPosted = $wgRequest->wasPosted();
+		$this->mContributing = $wgRequest->getInt( "contributing" );
+		$this->mVolunteer = $wgRequest->getInt( "volunteer" );
+		$this->mDBname = $wgBoardVoteDB;
+		$this->mHasVoted = $this->hasVoted( $wgUser );
+		
+		if ( $par ) {
+			$this->mAction = $par;
+		} else {
+			$this->mAction = $wgRequest->getText( "action" );
+		}
+
+		$this->setHeaders();
+
 		if ( $this->mAction == "list" ) {
 			$this->displayList();
 		} elseif ( $this->mAction == "dump" ) {
@@ -58,8 +66,8 @@ class BoardVoteForm {
 
 	function hasVoted( &$user ) {
 		global $wgDBname;
-		$row = wfGetArray( $this->mDBname . ".vote", array( "1" ), 
-		  array( "vote_key" => $this->mUserKey ), "BoardVoteForm::getUserVote" );
+		$row = wfGetArray( $this->mDBname . ".log", array( "1" ), 
+		  array( "log_user_key" => $this->mUserKey ), "BoardVotePage::getUserVote" );
 		if ( $row === false ) {
 			return false;
 		} else {
@@ -69,10 +77,17 @@ class BoardVoteForm {
 
 	function logVote() {
 		global $wgUser, $wgDBname, $wgIP, $wgOut;
+		$fname = "BoardVotePage::logVote";
+		
 		$now = wfTimestampNow();
 		$record = $this->encrypt( $this->mContributing, $this->mVolunteer );
 		$db = $this->mDBname;
-
+		
+		# Mark previous votes as old
+		$encKey = wfStrencode( $this->mUserKey );
+		$sql = "UPDATE $db.log SET log_current=0 WHERE log_user_key='$encKey'";
+		wfQuery( $sql, DB_WRITE, $fname );
+		
 		# Add vote to log
 		wfInsertArray( "$db.log", array(
 			"log_user" => $wgUser->getID(),
@@ -85,13 +100,9 @@ class BoardVoteForm {
 			"log_ip" => $wgIP,
 			"log_xff" => @$_SERVER['HTTP_X_FORWARDED_FOR'],
 			"log_ua" => $_SERVER['HTTP_USER_AGENT'],
-			"log_timestamp" => $now
-		));
-
-		# Record vote in non-duplicating vote table
-		$sql = "REPLACE INTO $db.vote (vote_key,vote_record) " .
-		  "VALUES ('". wfStrencode( $this->mUserKey ) . "','" . wfStrencode( $record ) . "')";
-		wfQuery( $sql, DB_WRITE );
+			"log_timestamp" => $now,
+			"log_current" => 1
+		), $fname );
 
 		$wgOut->addWikiText( wfMsg( "boardvote_entered", $record ) );
 	}
@@ -226,7 +237,7 @@ class BoardVoteForm {
 		# Count contributions and find earliest edit
 		# First cur
 		$sql = "SELECT COUNT(*) as n, MIN(cur_timestamp) as t FROM cur WHERE cur_user=$id";
-		$res = wfQuery( $sql, DB_READ, "BoardVoteForm::getQualifications" );
+		$res = wfQuery( $sql, DB_READ, "BoardVotePage::getQualifications" );
 		$cur = wfFetchObject( $res );
 		wfFreeResult( $res );
 
@@ -247,7 +258,7 @@ class BoardVoteForm {
 
 		# Now check old
 		$sql = "SELECT COUNT(*) as n, MIN(old_timestamp) as t FROM old WHERE old_user=$id";
-		$res = wfQuery( $sql, DB_READ, "BoardVoteForm::getQualifications" );
+		$res = wfQuery( $sql, DB_READ, "BoardVotePage::getQualifications" );
 		$old = wfFetchObject( $res );
 		wfFreeResult( $res );
 		
@@ -260,8 +271,8 @@ class BoardVoteForm {
 	
 	function displayList() {
 		global $wgOut, $wgOutputEncoding, $wgLang, $wgUser;
-		$sql = "SELECT log_timestamp,log_user_key FROM {$this->mDBname}.log";
-		$res = wfQuery( $sql, DB_READ, "BoardVoteForm::list" );
+		$sql = "SELECT log_timestamp,log_user_key FROM {$this->mDBname}.log ORDER BY log_user_key";
+		$res = wfQuery( $sql, DB_READ, "BoardVotePage::list" );
 		if ( wfNumRows( $res ) == 0 ) {
 			$wgOut->addWikiText( wfMsg( "boardvote_novotes" ) );
 			return;
@@ -276,10 +287,10 @@ class BoardVoteForm {
 		$hContributing = wfMsg( "boardvote_contributing" );
 		$hVolunteer = wfMsg( "boardvote_volunteer" );
 
-		$s = "$intro <table border=0><tr><th>
-		    $hTime
-		  </th><th>
+		$s = "$intro <table border=1><tr><th>
 		    $hUser
+		  </th><th>
+		    $hTime
 		  </th></tr>";
 
 		while ( $row = wfFetchObject( $res ) ) {
@@ -290,9 +301,9 @@ class BoardVoteForm {
 			}
 			$time = $wgLang->timeanddate( $row->log_timestamp );
 			$s .= "<tr><td>
-			    $time
-			  </td><td>
 			    $user
+			  </td><td>
+			    $time
 			  </td></tr>";
 		}
 		$s .= "</table>";
@@ -310,7 +321,7 @@ class BoardVoteForm {
 		}
 		
 		$sql = "SELECT * FROM {$this->mDBname}.log";
-		$res = wfQuery( $sql, DB_READ, "BoardVoteForm::list" );
+		$res = wfQuery( $sql, DB_READ, "BoardVotePage::list" );
 		if ( wfNumRows( $res ) == 0 ) {
 			$wgOut->addWikiText( wfMsg( "boardvote_novotes" ) );
 			return;
@@ -354,4 +365,48 @@ class BoardVoteForm {
 		$wgOut->addHTML( $s );
 	}
 }
+
+SpecialPage::addPage( new BoardVotePage );
+
+global $wgMessageCache;
+$wgMessageCache->addMessages( array(
+# Board vote
+"boardvote"               => "Wikimedia Board of Trustees election",
+"boardvote_entry"         => 
+"* [[Special:Boardvote/vote|Vote]]
+* [[Special:Boardvote/list|List votes to date]]
+* [[Special:Boardvote/dump|Dump encrypted election record]]",
+"boardvote_intro"         => "<p>Please choose your preferred candidate for both the 
+Contributing Representative and the Volunteer Representative.</p>",
+"boardvote_intro_change"  => "<p>You have voted before. However you may change 
+your vote using the form below.</p>",
+"boardvote_abstain"       => "Abstain",
+"boardvote_footer"        => "&nbsp;",
+"boardvote_entered"       => "Thank you, your vote has been recorded.
+
+Following is your encrypted vote record. It will appear publicly at [[Special:Boardvote/dump]]. 
+
+<pre>$1</pre>
+
+[[Special:Boardvote/entry|Back]]",
+"boardvote_notloggedin"   => "You are not logged in. To vote, you must use an account
+which has existed for at least 90 days.",
+"boardvote_notqualified"  => "Sorry, your first contribution was only $1 days ago. 
+You need to have been contributing for at least 90 days to vote in this election.",
+"boardvote_novotes"       => "Nobody has voted yet.",
+"boardvote_contributing"  => "Contributing candidate",
+"boardvote_volunteer"     => "Volunteer candidate",
+"boardvote_time"          => "Time",
+"boardvote_user"          => "User",
+"boardvote_listintro"     => "<p>This is a list of all votes which have been recorded 
+to date. $1 for the full encrypted election record.</p>",
+"boardvote_dumplink"      => "Click here",
+"boardvote_dumpheader"    => "<caption><strong>Election administrator private dump</strong></caption>
+<tr><th>Time</th><th>User</th><th>Edits</th><th>Days</th>
+<th>IP</th><th>User agent</th><th>Record</th></tr>"
+
+));
+
+} # End of extension function
+
 ?>

@@ -13,15 +13,9 @@ CREATE TABLE log (
 	log_xff varchar(255) not null default '',
 	log_ua varchar(255) not null default '',
 	log_timestamp char(14) not null default '',
-	unique key log_id (log_id)
-);
-
-CREATE TABLE vote (
-	vote_key varchar(255) not null default '',
-	vote_record blob not null default '',
-	vote_contributing text not null default '',
-	vote_volunteer text not null default '',
-	unique key vote_key (vote_key)
+	log_current tinyint(1) not null default 0,
+	unique index log_id (log_id),
+	index log_user_key (log_user_key)
 );
 
 

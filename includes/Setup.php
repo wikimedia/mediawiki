@@ -58,6 +58,8 @@ require_once( "BlockCache.php" );
 require_once( "Parser.php" );
 require_once( "ParserCache.php" );
 require_once( "WebRequest.php" );
+require_once( "SpecialPage.php" );
+
 $wgRequest = new WebRequest();
 
 
@@ -186,6 +188,18 @@ $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
 $wgParserCache = new ParserCache();
 $wgParser = new Parser();
 $wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
+
+if ( !$wgAllowSysopQueries ) {
+	SpecialPage::removePage( "Asksql" );
+}
+
+# Extension setup functions
+# Entries should be added to this variable during the inclusion 
+# of the extension file. This allows the extension to perform 
+# any necessary initialisation in the fully initialised environment
+foreach ( $wgExtensionFunctions as $func ) {
+	$func();
+}
 
 wfProfileOut( "$fname-misc" );
 wfProfileOut( $fname );
