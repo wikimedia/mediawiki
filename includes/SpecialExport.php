@@ -64,7 +64,7 @@ function pages2xml( $pages, $curonly = false ) {
 }
 
 function page2xml( $page, $curonly, $full = false ) {
-	global $wgInputCharset, $wgLang;
+	global $wgLang;
 	$title = Title::NewFromText( $page );
 	if( !$title ) return "";
 	$t = wfStrencode( $title->getDBKey() );
