@@ -109,15 +109,15 @@ class LoadBalancer {
 					if ( $i !== false ) {
 						wfDebug( "Using reader #$i: {$this->mServers[$i]['host']}\n" );
 
-						$conn =& $this->getConnection( $i );
-						$this->mConnections[$i] =& $conn;
+						$this->getConnection( $i );
 
-						if ( !$conn->isOpen() ) {
+						if ( !$this->isOpen( $i ) ) {
 							unset( $loads[$i] );
 						}
 					}
-				} while ( $i !== false && !$conn->isOpen() );
-				if ( $conn->isOpen() ) {
+				} while ( $i !== false && !$this->isOpen( $i ) );
+
+				if ( $this->isOpen( $i ) ) {
 					$this->mReadIndex = $i;
 				} else {
 					$i = false;
@@ -237,7 +237,9 @@ class LoadBalancer {
 	}
 
 	/* private */ function isOpen( $index ) {
-		if ( array_key_exists( $index, $this->mConnections ) && $this->mConnections[$index]->isOpen() ) {
+		if ( array_key_exists( $index, $this->mConnections ) && is_object( $this->mConnections[$index] ) && 
+		  $this->mConnections[$index]->isOpen() ) 
+		{
 			return true;
 		} else {
 			return false;
