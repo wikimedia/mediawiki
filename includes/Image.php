@@ -583,10 +583,8 @@ class Image
 		
 		$dir      = $fromSharedRepository ? $wgSharedUploadDirectory :
 		                                    $wgUploadDirectory;
-		$ishashed = $fromSharedRepository ? $wgHashedSharedUploadDirectory : 
-		                                    $wgHashedUploadDirectory;
 		$name     = $this->name;							
-		$fullpath = $dir . wfGetHashPath($name) . $name;		
+		$fullpath = $dir . wfGetHashPath($name, $fromSharedRepository) . $name;		
 		return $fullpath;
 	}
 	
@@ -675,7 +673,7 @@ function wfGetHashPath ( $dbkey, $fromSharedDirectory = false ) {
 	global $wgHashedSharedUploadDirectory, $wgSharedUploadDirectory;
 	
 	$ishashed = $fromSharedDirectory ? $wgHashedSharedUploadDirectory :
-	                                   $wgSharedUploadDirectory;
+	                                   $wgHashedUploadDirectory;
 	if($ishashed) {
 		$hash = md5($dbkey);
 		return '/' . $hash{0} . '/' . substr( $hash, 0, 2 ) . '/';
