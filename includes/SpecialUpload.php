@@ -477,7 +477,12 @@ class UploadForm {
 	function mainUploadForm( $msg='' ) {
 		global $wgOut, $wgUser, $wgLang, $wgUploadDirectory, $wgRequest;
 		global $wgUseCopyrightUpload;
-
+		
+		$cols = intval($wgUser->getOption( 'cols' ));
+		$ew = $wgUser->getOption( 'editwidth' );
+		if ( $ew ) $ew = " style=\"width:100%\"";
+		else $ew = '';
+		
 		if ( '' != $msg ) {
 			$sub = wfMsg( 'uploaderror' );
 			$wgOut->addHTML( "<h2>{$sub}</h2>\n" .
@@ -527,8 +532,9 @@ class UploadForm {
 	<input tabindex='1' type='file' name=\"wpUploadFile\" size='40' />
 	</td></tr><tr>
 	<td align='right'>{$fd}:</td><td align='left'>
-	<input tabindex='2' type='text' name=\"wpUploadDescription\" value=\""
-	  . htmlspecialchars( $this->mUploadDescription ) . "\" size='40' />
+	<textarea tabindex='2' name=\"wpUploadDescription\" rows='6' cols='{$cols}'{$ew}>"	
+	  . htmlspecialchars( $this->mUploadDescription ) .
+	"</textarea>	
 	</td></tr><tr>
 	{$source}
 	</tr>
