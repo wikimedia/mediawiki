@@ -60,7 +60,7 @@ if ( isset($args[0]) ) {
 		$input = strtoupper(substr($input,0,1)).strtolower(substr($input,1));
 		
 		# try to get the file		
-		if( file_exists("../languages/Language$input.php") ) {
+		if( file_exists("$IP/languages/Language$input.php") ) {
 			$loop = false;
 			$lang = $input;
 		} else {
