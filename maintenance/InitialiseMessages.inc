@@ -26,11 +26,11 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	$navText .= "
 
 <table border=1 width=100%><tr><td>
-  '''Name'''
+'''Name'''
 </td><td>
-  '''Default text'''
+'''Default text'''
 </td><td>
-  '''Current text'''
+'''Current text'''
 </td></tr>";
 	
 	print "Initialising \"MediaWiki\" namespace...\n";
@@ -144,12 +144,12 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		$message = wfEscapeWikiText( $message );
 		$navText .= 
 "<tr><td>
-  [$wgServer$wgScript?title=MediaWiki:$title&action=edit $key]<br>
-  [[$mwtalk:$title|$talk]]
+[$wgServer$wgScript?title=MediaWiki:$title&action=edit $key]<br>
+[[$mwtalk:$title|$talk]]
 </td><td>
-  $message
+$message
 </td><td>
-  $mw
+$mw
 </td></tr>";
 	}
 
