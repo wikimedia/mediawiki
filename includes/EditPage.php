@@ -110,6 +110,7 @@ class EditPage {
 		global $wgWhitelistEdit;
 		global $wgSpamRegex, $wgFilterCallback;
 
+		$fname = 'EditPage::editForm';
 		$sk = $wgUser->getSkin();
 		$isConflict = false;
 		// css / js subpages of user pages get a special treatment
@@ -402,6 +403,23 @@ class EditPage {
 			# Don't select the edit box on preview; this interferes with seeing what's going on.
 			$wgOut->setOnloadHandler( "document.editform.wpTextbox1.focus()" );
 		}
+		# Retrieve used templates from the DB
+		$id = $this->mTitle->getArticleID();
+		$res = wfQuery( "SELECT cur_namespace,cur_title,cur_id ".
+			"FROM cur, links WHERE l_to=cur_id AND l_from={$id} and cur_namespace=".NS_TEMPLATE,
+			DB_READ, $fname );
+		if ( wfNumRows( $res ) ) {
+			$templates = '<br />'. wfMsg( 'templatesused' ) . '<ul>';
+			while ( $row = wfFetchObject( $res ) ) {
+				if ( $titleObj = Title::makeTitle( $row->cur_namespace, $row->cur_title ) ) {
+					$templates .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
+				}
+			}
+			$templates .= '</ul>';
+		} else {
+			$templates = '';
+		}
+
 		$wgOut->addHTML( "
 {$toolbar}
 <form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
@@ -418,7 +436,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 " title=\"".wfMsg('tooltip-save')."\"/>
 <input tabindex='6' id='wpPreview' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
 " title=\"".wfMsg('tooltip-preview')."\"/>
-<em>{$cancel}</em> | <em>{$edithelp}</em>
+<em>{$cancel}</em> | <em>{$edithelp}</em>{$templates}
 <br /><div id=\"editpage-copywarn\">{$copywarn}</div>
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
 <input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n" );
