@@ -181,7 +181,7 @@ function wfSpecialPreferences()
 			$checked = " checked";
 		}
 		$name = str_replace( "_", " ", $ns[$i] );
-		if ( "" == $name ) { $name = "(Main)"; }
+		if ( "" == $name ) { $name = wfMsg( "blanknamespace" ); }
 
 		if ( 0 != $i ) { $r1 .= " "; }
 		$r1 .= "<label><input type=checkbox value=\"1\" name=\"" .
