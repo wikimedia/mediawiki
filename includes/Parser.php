@@ -430,6 +430,7 @@ class Parser
 		}
 
 		$text = $this->replaceExternalLinks( $text );
+		$text = $this->doBlockLevels( $text, $linestart );
 		$text = $this->doTokenizedParser ( $text );
 		$text = $this->doTableStuff ( $text ) ;
 
@@ -444,7 +445,7 @@ class Parser
 			"/<\\/center *>/i" => '</span>'
 		);
 		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
-		$text = $this->doBlockLevels( $text, $linestart );
+
 		$text .= $this->categoryMagic () ;
 
 		wfProfileOut( $fname );
@@ -1052,7 +1053,7 @@ class Parser
 							$text .= "<" . $newSection . ">";
 							$this->mLastSection = $newSection;
 						} else if ( $this->mLastSection == 'p' and '' == $oLine) {
-							$text .= '<br />';
+							$text .= '<p>';
 						}
 					} else if ( $this->mLastSection == $newSection and $newSection != 'p' ) {
 						$text .= $this->closeParagraph();
