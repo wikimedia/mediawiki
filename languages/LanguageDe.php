@@ -151,7 +151,7 @@ if($wgMetaNamespace === FALSE)
 "mainpage"		=> "Hauptseite",
 "mainpagetext"          => "Die Wiki Software wurde erfolgreich installiert.",
 "mainpagedocfooter" => "Siehe die [http://meta.wikipedia.org/wiki/MediaWiki_i18n Dokumentation zur Anpassung der Benutzeroberfläche]
-und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzrhandbuch] für Hilfe zur Benutzung und Konfiguration.",
+und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuch] für Hilfe zur Benutzung und Konfiguration.",
 "portal"		=> "Wikipedia-Portal",
 "portal-url"		=> "{{ns:4}}:Portal",
 "about"			=> "Über",
@@ -218,6 +218,8 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzrhandbuch
 "lastmodified"	=> "Diese Seite wurde zuletzt geändert um $1.",
 "viewcount"		=> "Diese Seite wurde bisher $1 mal abgerufen.",
 "copyright"	=> "Inhalt ist verfügbar unter der $1.",
+"poweredby"	=> "{{SITENAME}} benutzt [http://www.mediawiki.org/ MediaWiki], eine Open Source Wiki-Engine.",
+"printsubtitle" => "(Von {{SERVER}})",
 "gnunote" => "Diese Seite ist unter der <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a> verfügbar.",
 "protectedpage" => "Geschützte Seite",
 "administrators" => "{$wgMetaNamespace}:Administratoren",
@@ -225,11 +227,15 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzrhandbuch
 "sysoptext"		=> "Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit \"Sysop\"-Status durchgeführt werden. Siehe auch $1.",
 "developertitle" => "Entwickler-Zugang notwendig",
 "developertext"	=> "Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit \"Entwickler\"-Status durchgeführt werden. Siehe auch $1.",
+"bureaucrattitle"	=> "Bürokraten-Rechte notwendig",
+"bureaucrattext"	=> "Dieser Vorgang kann nur von Benutzern mit \"Bürokrat\"-Status durchgeführt werden.",
 "nbytes"		=> "$1 Byte",
 "go"			=> "Los",
 "ok"			=> "OK",
 "sitetitle"		=> "{$wgSitename}",
 "sitesubtitle"	=> "Die freie Enzyklopädie",
+"pagetitle"		=> "$1 - {{SITENAME}}",
+"sitesubtitle"	=> "Die freie Wissensdatenbank",
 "retrievedfrom" => "Von \"$1\"",
 "newmessages" => "Sie haben $1.",
 "newmessageslink" => "neue Nachrichten",
@@ -239,6 +245,16 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzrhandbuch
 "hidetoc" => "Verbergen",
 "thisisdeleted" => "Ansehen oder wiederherstellen von $1?",
 "restorelink" => "$1 gelöschte Bearbeitungsvorgänge",
+"feedlinks" => "Feed:",
+
+# Kurzworte für jeden Namespace, u.a. von MonoBook verwendet
+'nstab-main' => 'Artikel',
+'nstab-user' => 'Benutzerseite',
+'nstab-media' => 'Media',
+'nstab-special' => 'Spezial',
+'nstab-image' => 'Bild',
+'nstab-help' => 'Hilfe',
+'nstab-category' => 'Kategorie',
 
 # Editier-Werkzeugleiste
 "bold_sample"=>"Fetter Text",
@@ -303,6 +319,16 @@ gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
 "badtitletext"	=> "Der Titel der angeforderten Seite war ungültig, leer, oder ein ungültiger Sprachlink von einem anderen Wiki.",
 "perfdisabled" => "Diese Funktion wurde wegen Überlastung des Servers vorübergehend deaktiviert. Versuchen Sie es bitte zwischen 02:00 und 14:00 UTC noch einmal<br>(Aktuelle Serverzeit : ".date("H:i:s")." UTC).",
 "perfdisabledsub" => "Hier ist eine gespeicherte Kopie von $1:",
+"perfcached" => "Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:",
+"wrong_wfQuery_params" => "Falsche Parameter für wfQuery()<br />
+Funktion: $1<br />
+Query: $2
+",
+"viewsource" => "Quelltext betrachten",
+"protectedtext" => "Diese Seite ist für das Bearbeiten gesperrt, dafür kann es diverse Gründe geben, siehe [[{[ns:4}}:Geschützte Seiten]].
+
+Sie können den Quelltext dieser Seite betrachten und kopieren:",
+'seriousxhtmlerrors' => 'Tidy entdeckte schwere Fehler im XHTML-Markup.',
 
 
 # Login and logout pages
@@ -324,6 +350,7 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "alreadyloggedin" => "<font color=red><b>Benutzer $1, Sie sind bereits angemeldet!</b></font><br>\n",
 
 "login"			=> "Anmelden",
+"loginprompt"           => "Um sich bei {{SITENAME}} anmelden zu können, müssen Cookies aktiviert sein.",
 "userlogin"		=> "Anmelden",
 "logout"		=> "Abmelden",
 "userlogout"	=> "Abmelden",
@@ -334,6 +361,7 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "userexists"	=> "Dieser Benutzername ist schon vergeben. Bitte wählen Sie einen anderen.",
 "youremail"		=> "Ihre E-Mail",
 "yournick"		=> "Ihr \"Spitzname\" (zum \"Unterschreiben\")",
+"yourrealname"		=> "Ihr echter Name (keine Pflicht)",
 "emailforlost"	=> "Falls Sie Ihr Passwort vergessen haben, kann Ihnen ein neues an Ihre E-Mail-Adresse gesendet werden.",
 "loginerror"	=> "Fehler bei der Anmeldung",
 "noname"		=> "Sie müssen einen Benutzernamen angeben.",
@@ -351,6 +379,8 @@ Sie sollten sich jetzt anmelden und Ihr Passwort ändern.",
 "noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Adresse angegeben.",
 "passwordsent"	=> "Ein neues Passwort wurde an die E-Mail-Adresse von Benutzer \"$1\" gesendet.
 Bitte melden Sie sich an, sobald Sie es erhalten.",
+"loginend"		=> "&nbsp;",
+"mailerror" => "Fehler beim Senden von Mail: $1",
 
 # Edit pages
 #
@@ -371,6 +401,8 @@ Als Grund wurde angegeben:<br>$2<p>Bitte kontaktieren Sie den Administrator, um 
 "whitelistreadtext" => "Sie müssen sich [[Spezial:Userlogin|hier anmelden]] um Artikel lesen zu können.",
 "whitelistacctitle" => "Sie sind nicht berechtigt einen Account zu erzeugen",
 "whitelistacctext" => "Um in diesem Wiki Accounts anlegen zu dürfen müssen Sie sich [[Spezial:Userlogin|hier anmelden]] und die nötigen Berechtigungen haben.",
+"loginreqtitle"	=> "Anmeldung erforderlich",
+"loginreqtext"	=> "Sie müssen sich [[Spezial:Userlogin|anmelden]], um andere Seiten betrachten zu können.",
 "accmailtitle" => "Passwort wurde verschickt.",
 "accmailtext" => "Das Passwort von $1 wurde an $2 geschickt.",
 "newarticle"	=> "(Neu)",
@@ -378,6 +410,12 @@ Als Grund wurde angegeben:<br>$2<p>Bitte kontaktieren Sie den Administrator, um 
 "anontalkpagetext" => "---- ''Dies ist die Diskussions-Seite eines nicht angemeldeten Benutzers. Wir müssen hier die numerische [[IP-Adresse]] zur Identifizierung verwenden. Eine solche Adresse kann nacheinander von mehreren Benutzern verwendet werden. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[Spezial:Userlogin|melden Sie sich bitte
  an]], um zukünftige Verwirrung zu vermeiden. ''",
 "noarticletext" => "(Dieser Artikel enthält momentan keinen Text)",
+'usercssjs' => "'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' Klick auf ''Neu laden''(oder ''Strg-R''), '''IE / Opera:''' ''Strg-F5'', '''Safari:''' ''Cmd-r'', '''Konqueror''' ''Strg-R''.",
+'usercsspreview' => "== Vorschau ihres Benutzer-CSS. ==
+'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' Klick auf ''Neu laden''(oder ''Strg-R''), '''IE / Opera:''' ''Strg-F5'', '''Safari:''' ''Cmd-r'', '''Konqueror''' ''Strg-R''.",
+'userjspreview' => "== Vorschau Ihres Benutzer-Javascript. ==
+'''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' Klick auf ''Neu laden''(oder ''Strg-R''), '''IE / Opera:''' ''Strg-F5'', '''Safari:''' ''Cmd-r'', '''Konqueror''' ''Strg-R''.",
+'usercssjsyoucanpreview' => "<strong>Tipp:</strong> Benutzen Sie den Vorschau-Button, um Ihr neues css/js vor dem Speichern zu testen.",
 "updated"		=> "(Geändert)",
 "note"			=> "<strong>Hinweis:</strong> ",
 "previewnote"	=> "Dies ist nur eine Vorschau, der Artikel wurde noch nicht gespeichert!",
@@ -423,7 +461,9 @@ Benutzer mit Sysop-Rechten bearbeitet werden kann. Beachten Sie bitte die
 "next"			=> "Nächste",
 "last"			=> "Letzte",
 "orig"			=> "Original",
-"histlegend"	=> "Legende:
+"histlegend"	=> "Diff Auswahl: Die Boxen der gewünschten 
+Versionen markieren und 'Enter' drücken oder den Button unten klicken/alt-v.<br/>
+Legende:
 (Aktuell) = Unterschied zur aktuellen Version,
 (Letzte) = Unterschied zur vorherigen Version,
 M = Kleine Änderung",
@@ -434,6 +474,9 @@ M = Kleine Änderung",
 "loadingrev"	=> "lage Versionen zur Unterscheidung",
 "lineno"		=> "Zeile $1:",
 "editcurrent"	=> "Die aktuelle Version dieses Artikels bearbeiten",
+'selectnewerversionfordiff' => 'Eine neuere Version zum Vergleich auswählen',
+'selectolderversionfordiff' => 'Eine ältere Version zum Vergleich auswählen',
+'compareselectedversions' => 'Gewählte Versionen vergleichen',
 
 # Search results
 #
@@ -719,6 +762,8 @@ und eine gültige E-Mail-Adresse haben, um anderen Benutzern E-Mail zu schicken."
 "emailuser"		=> "E-Mail an diesen Benutzer",
 "emailpage"		=> "E-Mail an Benutzer",
 "emailpagetext"	=> "Wenn dieser Benutzer eine gültige E-Mail-Adresse angegeben hat, können Sie ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Adresse aus Ihren Einstellungen eingetragen, damit der Benutzer Ihnen antworten kann.",
+"usermailererror" => "Das Mail-Objekt gab einen Fehler zurück: ",
+"defemailsubject"  => "{{SITENAME}} e-mail",
 "noemailtitle"	=> "Keine E-Mail-Adresse",
 "noemailtext"	=> "Dieser Benutzer hat keine gültige E-Mail-Adresse angegeben, oder möchte keine E-Mail von anderen Benutzern empfangen.",
 "emailfrom"		=> "Von",
@@ -767,6 +812,7 @@ $3... <a href='$4'>komplette Liste zeigen und bearbeiten</a>.)",
 "iteminvalidname" => "Ploblem mit dem Eintrag '$1', ungültiger Name...",
 "wlnote" => "Es folgen die letzten $1 Änderungen der letzten <b>$2</b> Stunden.",
 "wlshowlast" => "Zeige die letzen $1 Stunden $2 Tage $3",
+"wlsaved"			=> "Dies ist eine gespeicherte Version Ihrer Beobachtungsliste.",
 
 # Delete/protect/revert
 #
@@ -795,7 +841,8 @@ Im $2 finden Sie eine Liste der letzten Löschungen.",
 "reverted"		=> "Auf eine alte Version zurückgesetzt",
 "deletecomment"	=> "Grund der Löschung",
 "imagereverted" => "Auf eine alte Version zurückgesetzt.",
-"rollback" => "Zurücknahme der Aenderungen",
+"rollback" => "Zurücknahme der Änderungen",
+'rollback_short' => 'Rollback',
 "rollbacklink" => "Rollback",
 "rollbackfailed" => "Zurücknahme gescheitert",
 "cantrollback" => "Die Änderung kann nicht zurückgenommen werden; der
@@ -934,6 +981,10 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "exporttext"    => "Sie können den Text und die Bearbeitungshistorie einer bestimmten oder einer Auswahl von Seiten nach XML exportieren. Das Ergebnis kann in ein anderes Wiki mit WikiMedia Software eingespielt werden, bearbeitet oder archiviert werden.",
 "exportcuronly" => "Nur die aktuelle Version der Seite exportieren",
 "missingimage"          => "<b>Fehlendes Bild</b><br><i>$1</i>\n",
+
+#Tooltips:
+'tooltip-atom'	=> 'Atom-Feed von dieser Seite',
+'tooltip-addsection' => 'Einen Kommentar zu dieser Seite hinzufügen. [alt-+]',
 'tooltip-article' => 'Artikel betrachten [alt-a]',
 'tooltip-talk' => 'Diesen Artikel diskutieren [alt-t]',
 'tooltip-edit' => 'Sie können diesen Artikel bearbeiten. Benutzen Sie die Vorschau, bevor Sie die Seite speichern. [alt-e]',
@@ -974,7 +1025,11 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'tooltip-contributions' => 'Liste der beiträge dieses Benutzers.',
 'tooltip-emailuser' => 'Senden Sie eine Mail an diesen Benutzer',
 'tooltip-rss' => 'RSS-Feed von dieser Seite.',
+'tooltip-compareselectedversions' => 'Unterschiede zwischen zwei ausgewählten Versionen dieser Seite vergleichen. [alt-v]',
+
+#Tastatur-Shortcuts
 'accesskey-article' => 'a',
+'accesskey-addsection' => '+',
 'accesskey-talk' => 't',
 'accesskey-edit' => 'e',
 'accesskey-viewsource' => 'e',
@@ -1012,6 +1067,8 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 'accesskey-preview' => 'p',
 'accesskey-contributions' => '',
 'accesskey-emailuser' => '',
+'accesskey-compareselectedversions' => 'v',
+
 "makesysoptitle"        => "Mache einen Benutzer zum Administrator",
 "makesysoptext"         => "Diese Maske wird von Bürokraten benutzt, um normale Benutzer zu Administratoren zu machen.",
 "makesysopname"         => "Name des Benutzers:",
@@ -1019,6 +1076,11 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "makesysopok"           => "<b>Benutzer \"$1\" ist nun ein Administrator.</b>",
 "makesysopfail"         => "<b>Benutzer \"$1\" konnte nicht zu einem Administrator gemacht werden. (Haben Sie den Namen richtig geschrieben?)</b>",
 "makesysop"         => "Mache einen Benutzer zum Administrator",
+"bureaucratlogentry"	=> "Rechte für Benutzer \"$1\" auf \"$2\" gesetzt",
+"rights"		=> "Rechte:",
+"set_user_rights"	=> "Benutzerrechte setzen",
+"user_rights_set"	=> "<b>Benutzerrechte für \"$1\" aktualisiert</b>",
+"set_rights_fail"	=> "<b>Benutzerrechte für \"$1\" konnten nicht gesetzt werden. (Haben Sie den Namen korrekt eingegeben?)</b>",
 "1movedto2"		=> "$1 wurde nach $2 verschoben",
 "allmessages"		=> "Alle MediaWiki-Meldungen",
 "allmessagestext"	=> "Dies ist eine Liste aller möglichen Meldungen im MediaWiki-Namensraum.",
@@ -1033,6 +1095,10 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "version"		=> "Version",
 "protectlogpage"	=> "Seitenschutz-Logbuch",
 "protectlogtext"	=> "Dies ist eine Liste der blockierten Seiten. Siehe [[Wikipedia:Geschützte Seiten]] für mehr Informationen.",
+"protectedarticle" => "Artikel [[$1]] geschützt",
+"unprotectedarticle" => "Artikel [[$1]] freigegeben",
+"protectsub" =>"(Sperren von \"$1\")",
+"confirmprotecttext" => "Soll diese Seite wirklich geschützt werden?",
 "ipbexpiry"		=> "Ablaufzeit",
 "blocklogpage"		=> "Benutzerblockaden-Logbuch",
 "blocklogentry"		=> "blockiert [[Benutzer:$1]] - ([[Spezial:Contributions/$1|Beiträge]]) für einen Zeitraum von: $2",
@@ -1055,6 +1121,9 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "math_bad_tmpdir"	=> "Kann das Temporärverzeichnis für mathematische Formeln nicht anlegen oder beschreiben.",
 "math_bad_output"	=> "Kann das Zielverzeichnis für mathematische Formeln nicht anlegen oder beschreiben.",
 "math_notexvc"		=> "Das texvc-Programm kann nicht gefunden werden. Bitte beachten Sie math/README.",
+'prefs-personal' => 'Benutzerdaten',
+'prefs-rc' => 'Letzte Änderungen und Anzeige kurzer Artikel',
+'prefs-misc' => 'Verschiedene Einstellungen',
 "import"        	=> "Seiten importieren",
 "importtext"    	=> "Bitte exportieren Sie die Seite vom Quellwiki mittels Spezial:Export und laden Sie die Datei dann über diese Seite wieder hoch.",
 "importfailed"  	=> "Import fehlgeschlagen: $1",
