@@ -71,7 +71,7 @@ class CategoryPage extends Article {
 
                 $t = $dbr->strencode( $this->mTitle->getDBKey() );
                 $sql = "SELECT DISTINCT cur_title,cur_namespace FROM $cur,$categorylinks " .
-                        "WHERE cl_to='$t' AND cl_from=cur_id ORDER BY cl_sortkey" ;
+                        "WHERE cl_to='$t' AND cl_from=cur_id AND cur_is_redirect=0 ORDER BY cl_sortkey" ;
                 $res = $dbr->query( $sql, $fname ) ;
                 # For all pages that link to this category
                 while ( $x = $dbr->fetchObject ( $res ) )
@@ -130,7 +130,7 @@ class CategoryPage extends Article {
 
                 $t = $dbr->strencode( $this->mTitle->getDBKey() );
                 $sql = "SELECT DISTINCT cur_title,cur_namespace,cl_sortkey FROM " .
-                        "$cur,$categorylinks WHERE cl_to='$t' AND cl_from=cur_id ORDER BY cl_sortkey" ;
+                        "$cur,$categorylinks WHERE cl_to='$t' AND cl_from=cur_id AND cur_is_redirect=0 ORDER BY cl_sortkey" ;
                 $res = $dbr->query ( $sql ) ;
                 while ( $x = $dbr->fetchObject ( $res ) )
                 {
