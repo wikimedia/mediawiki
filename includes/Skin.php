@@ -2366,7 +2366,6 @@ class Skin {
 		return $s;
 	}
 
-#	function recentChangesLineNew( $ts, $u, $ut, $ns, $ttl, $c, $isminor, $isnew, $watched = false, $oldid = 0 , $diffid = 0 )
 	function recentChangesLineNew( &$baseRC, $watched = false )
 	{
 		global $wgTitle, $wgLang, $wgUser, $wgRCSeconds;
