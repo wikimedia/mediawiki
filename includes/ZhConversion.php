@@ -1,21 +1,24 @@
 <?php
-/* Simplified/Traditional Chinese conversion tables
-
-   The character-to-character mappings are mainly extracted from the
-   Unihan database from the 4.0.1 version of the Unicode standard,
-   with some modification adapted from the following paper published
-   in China:
-   冯寿忠,“非对称繁简字”对照表, 《语文建设通讯》1997-9第53期.
-   The paper is available from
-   /http://www.yywzw.com/jt/feng/fengb01.htm
-
-   The phrases are extracted from various phrase tables in the SCIM
-   package (http://www.freedesktop.org/Software/scim), and the mappings
-   of the phrases are computed using the character-to-character
-   mappings. Only phrases that contains one-to-many
-   character-to-character mappings are included, and the length of the
-   phrases are limited to below 5 characters.
-*/
+/**
+ * Simplified/Traditional Chinese conversion tables
+ *
+ * The character-to-character mappings are mainly extracted from the
+ * Unihan database from the 4.0.1 version of the Unicode standard,
+ * with some modification adapted from the following paper published
+ * in China:
+ * 冯寿忠,“非对称繁简字”对照表, 《语文建设通讯》1997-9第53期.
+ * The paper is available from
+ * /http://www.yywzw.com/jt/feng/fengb01.htm
+ *
+ * The phrases are extracted from various phrase tables in the SCIM
+ * package (http://www.freedesktop.org/Software/scim), and the mappings
+ * of the phrases are computed using the character-to-character
+ * mappings. Only phrases that contains one-to-many
+ * character-to-character mappings are included, and the length of the
+ * phrases are limited to below 5 characters.
+ *
+ * @package MediaWiki
+ */
 
 $zhSimp2Trad=array(
 "万"=>"萬",
