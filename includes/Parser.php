@@ -1024,8 +1024,9 @@ class Parser
 			$lastPrefixLength = strlen( $lastPrefix );
 			$preOpenMatch = preg_match("/<pre/i", $oLine );
 			$preCloseMatch = preg_match("/<\\/pre/i", $oLine );
-			$nowikiOpenMatch = preg_match("/(.*|)<span class=\"nowiki\"/s", $oLine, $nowikiOpenMatches );
+			$nowikiOpenMatch = preg_match("/<span class=\"nowiki\"/", $oLine );
 			$nowikiCloseMatch = preg_match("/<\\/span  >/", $oLine );
+			if($nowikiOpenMatch) $nowikiFullMatch = preg_match("/^(.*)<span class=\"nowiki\"/", $oLine, $nowikiOpenMatches );
 			if (!$this->mInPre) {
 				$this->mInPre = !empty($preOpenMatch);
 			}
