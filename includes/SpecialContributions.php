@@ -100,7 +100,7 @@ function wfSpecialContributions( $par = "" )
 			$t = $obj1->cur_title;
 			$ts = $obj1->cur_timestamp;
 			$comment =$obj1->cur_comment;
-                        $me = $obj1->cur_minor_edit;
+			$me = $obj1->cur_minor_edit;
 
 			$obj1 = wfFetchObject( $res1 );
 			$topmark = true;			
@@ -110,7 +110,7 @@ function wfSpecialContributions( $par = "" )
 			$t = $obj2->old_title;
 			$ts = $obj2->old_timestamp;
 			$comment =$obj2->old_comment;
-                        $me = $obj1->old_minor_edit;
+			$me = $obj2->old_minor_edit;
 
 			$obj2 = wfFetchObject( $res2 );
 			$topmark = false;
