@@ -1000,6 +1000,12 @@ class LanguageUk extends LanguageUtf8 {
 	function fallback8bitEncoding() {
 		return "windows-1251";
 	}
+
+	function formatNum( $number ) {
+		global $wgTranslateNumerals;
+		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	}
+
 }
 
 ?>

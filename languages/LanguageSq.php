@@ -1111,6 +1111,11 @@ class LanguageSq extends LanguageUtf8 {
 		else
 			return Language::getMessage($key);
 	}
+	
+	function formatNum( $number ) {
+		global $wgTranslateNumerals;
+		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	}
 
 }
 

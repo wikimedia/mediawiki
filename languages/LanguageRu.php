@@ -1727,6 +1727,12 @@ class LanguageRu extends LanguageUtf8 {
                 
                 return $word;
         }
+
+	function formatNum( $number ) {
+		global $wgTranslateNumerals;
+		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	}
+	
 }
 
 ?>
