@@ -7,6 +7,10 @@
 class ImagePage extends Article {
 
 	function view() {
+		if ( Namespace::getImage() == $this->mTitle->getNamespace() ) {
+			$this->openShowImage();
+		}
+
 		Article::view();
 		
 		# If the article we've just shown is in the "Image" namespace,
@@ -14,11 +18,40 @@ class ImagePage extends Article {
 		# it describes.
 
 		if ( Namespace::getImage() == $this->mTitle->getNamespace() ) {
+			$this->closeShowImage();
 			$this->imageHistory();
 			$this->imageLinks();
 		}
 	}
+
+	function openShowImage()
+	{
+		global $wgOut, $wgUser;
+		$name = $this->mTitle->getText();
+		$path = wfImagePath( $name );
+		$url   = wfImageUrl( $name );
+		
+		list($width, $height, $type, $attr) = getimagesize( $path );
+
+		$sk = $wgUser->getSkin();
+
+		if ( $type != "" ) {
+			# image
+			$s .= "<center><img src=\"{$url}\" width=\"{$width}\" height=\"{$height}\"></center>";
+		} else {
+			$s .= "<center>".$sk->makeMediaLink($name,"")."</center>";
+		}
+		$wgOut->AddHTML( $s );
+	}
 	
+	function closeShowImage()
+	{
+		global $wgOut, $wgUser;
+		$sk = $wgUser->getSkin();
+		$s = "</center>";
+		$wgOut->AddHTML( $s );
+	}
+
 	# If the page we've just displayed is in the "Image" namespace,
 	# we follow it with an upload history of the image and its usage.
 

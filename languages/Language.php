@@ -20,6 +20,12 @@ define("MAG_SUBST", 12);
 define("MAG_MSGNW", 13);
 define("MAG_NOEDITSECTION", 14);
 define("MAG_END", 15);
+define("MAG_IMG_THUMBNAIL",  16);
+define("MAG_IMG_RIGHT",      17);
+define("MAG_IMG_LEFT",       18);
+define("MAG_IMG_NONE",       19);
+define("MAG_IMG_WIDTH",      20);
+
 
 #--------------------------------------------------------------------------
 # Language-specific text
@@ -300,7 +306,13 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	MAG_MSG                  => array( 0,    "{{MSG:$1}}"             ),
 	MAG_SUBST                => array( 0,    "{{SUBST:$1}}"           ),
     MAG_MSGNW                => array( 0,    "{{MSGNW:$1}}"           ),
-	MAG_END                  => array( 0,    "__END__"                )
+	MAG_END                  => array( 0,    "__END__"                ),
+    MAG_IMG_THUMBNAIL         => array( 1, "thumbnail", "thumb"),
+    MAG_IMG_RIGHT             => array( 1, "right" ),
+    MAG_IMG_LEFT              => array( 1, "left" ),
+    MAG_IMG_NONE              => array( 1, "none" ),
+    MAG_IMG_WIDTH             => array( 1, "$1px" )
+
 );
 
 # All special pages have to be listed here: a description of ""
@@ -1302,7 +1314,12 @@ amusement.",
 # Namespace 8 related
 
 "allmessages"	=> "All_messages",
-"allmessagestext"	=> "This is a list of all messages available in the MediaWiki: namespace"
+"allmessagestext"	=> "This is a list of all messages available in the MediaWiki: namespace",
+
+# Thumbnails
+
+"thumbnail-more"      => "Enlarge"
+
 );
 
 #--------------------------------------------------------------------------
