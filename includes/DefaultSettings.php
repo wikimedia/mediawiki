@@ -600,6 +600,7 @@ $wgSquidMaxage = 18000;
  * ports here (80 is default)
  */
 # $wgSquidServers = array('127.0.0.1');
+$wgSquidServers = array();
 $wgSquidServersNoPurge = array();
 
 /** Maximum number of titles to purge in any one client operation */
