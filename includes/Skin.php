@@ -33,6 +33,14 @@ class RCCacheEntry extends RecentChange
 	var $secureName, $link;
 	var $curlink , $lastlink , $usertalklink , $versionlink ;
 	var $userlink, $timestamp, $watched;
+
+	function newFromParent( $rc )
+	{
+		$rc2 = new RCCacheEntry;
+		$rc2->mAttribs = $rc->mAttribs;
+		$rc2->mExtra = $rc->mExtra;
+		return $rc2;
+	}
 } ;
 
 class Skin {
@@ -408,7 +416,7 @@ class Skin {
 		$s = $this->printableLink();
 		if ( wfMsg ( "disclaimers" ) != "-" ) $s .= " | " . $this->makeKnownLink( wfMsg( "disclaimerpage" ), wfMsg( "disclaimers" ) ) ;
 
-		if ( $wgOut->isArticle() ) {
+		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->getNamespace() == Namespace::getImage() ) {
 				$name = $wgTitle->getDBkey();
 				$link = wfEscapeHTML( wfImageUrl( $name ) );
@@ -424,33 +432,34 @@ class Skin {
 				#wfEscapeHTML( wfImageUrl( $name ) );
 				$style = $this->getExternalLinkAttributes( $link, $name );
 				$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>" ;
-			}		}
-			if ( "history" == $action || isset( $diff ) || isset( $oldid ) ) {
-				$s .= " | " . $this->makeKnownLink( $wgTitle->getPrefixedText(),
-						wfMsg( "currentrev" ) );
-			}
+			}		
+		}
+		if ( "history" == $action || isset( $diff ) || isset( $oldid ) ) {
+			$s .= " | " . $this->makeKnownLink( $wgTitle->getPrefixedText(),
+					wfMsg( "currentrev" ) );
+		}
 
-			if ( $wgUser->getNewtalk() ) {
-			# do not show "You have new messages" text when we are viewing our 
-			# own talk page 
+		if ( $wgUser->getNewtalk() ) {
+		# do not show "You have new messages" text when we are viewing our 
+		# own talk page 
 
-				if(!(strcmp($wgTitle->getText(),$wgUser->getName()) == 0 &&
-							$wgTitle->getNamespace()==Namespace::getTalk(Namespace::getUser()))) {
-					$n =$wgUser->getName();
-					$tl = $this->makeKnownLink( $wgLang->getNsText(
-								Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
-							wfMsg("newmessageslink") );
-					$s.=" | <strong>". wfMsg( "newmessages", $tl ) . "</strong>";
-				}
+			if(!(strcmp($wgTitle->getText(),$wgUser->getName()) == 0 &&
+						$wgTitle->getNamespace()==Namespace::getTalk(Namespace::getUser()))) {
+				$n =$wgUser->getName();
+				$tl = $this->makeKnownLink( $wgLang->getNsText(
+							Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
+						wfMsg("newmessageslink") );
+				$s.=" | <strong>". wfMsg( "newmessages", $tl ) . "</strong>";
 			}
-			if( $wgUser->isSysop() &&
-					(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
-					($n = $wgTitle->isDeleted() ) ) {
-				$s .= " | " . wfMsg( "thisisdeleted",
-						$this->makeKnownLink(
-							$wgLang->SpecialPage( "Undelete/" . $wgTitle->getPrefixedDBkey() ),
-							wfMsg( "restorelink", $n ) ) );
-			}
+		}
+		if( $wgUser->isSysop() &&
+				(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
+				($n = $wgTitle->isDeleted() ) ) {
+			$s .= " | " . wfMsg( "thisisdeleted",
+					$this->makeKnownLink(
+						$wgLang->SpecialPage( "Undelete/" . $wgTitle->getPrefixedDBkey() ),
+						wfMsg( "restorelink", $n ) ) );
+		}
 		return $s;
 	}
 
@@ -588,7 +597,7 @@ class Skin {
 		$s = $this->mainPageLink() . $sep
 		  . $this->specialLink( "recentchanges" );
 
-		if ( $wgOut->isArticle() ) {
+		if ( $wgOut->isArticleRelated() ) {
 			$s .=  $sep . $this->editThisPage()
 			  . $sep . $this->historyLink();
 		}
@@ -604,7 +613,7 @@ class Skin {
 		$sep = " |\n";
 
 		$s = "";
-		if ( $wgOut->isArticle() ) {
+		if ( $wgOut->isArticleRelated() ) {
 			$s .= "<strong>" . $this->editThisPage() . "</strong>";
 			if ( 0 != $wgUser->getID() ) {
 				$s .= $sep . $this->watchThisPage();
@@ -768,8 +777,7 @@ class Skin {
 			unwatched. Therefore we do not show the "Watch this page" link in edit mode
 			*/			
 			if ( 0 != $wgUser->getID() && $articleExists) {
-				if($action!="edit" && $action!="history" && 
-					$action != "submit" ) 
+				if($action!="edit" && $action != "submit" ) 
 				{
 					$s .= $sep . $this->watchThisPage(); 
 				}
@@ -786,7 +794,7 @@ class Skin {
 			}
 			$s.=$sep . $this->whatLinksHere();
 			
-			if($wgOut->isArticle()) {
+			if($wgOut->isArticleRelated()) {
 				$s .= $sep . $this->watchPageLinksLink();
 			}
 
@@ -907,7 +915,7 @@ class Skin {
 	{
 		global $wgOut, $wgTitle, $oldid, $redirect, $diff;
 
-		if ( ! $wgOut->isArticle() || $diff ) {
+		if ( ! $wgOut->isArticleRelated() ) {
 			$s = wfMsg( "protectedpage" );
 		} else {
 			$n = $wgTitle->getPrefixedText();
@@ -968,7 +976,7 @@ class Skin {
 	{
 		global $wgUser, $wgOut, $wgTitle, $diff;
 
-		if ( $wgOut->isArticle() && ( ! $diff ) ) {
+		if ( $wgOut->isArticleRelated() ) {
 			$n = $wgTitle->getPrefixedText();
 
 			if ( $wgTitle->userIsWatching() ) {
@@ -1036,7 +1044,7 @@ class Skin {
 	{
 		global $wgOut, $wgTitle, $wgLang;
 
-		if ( ! $wgOut->isArticle() ) {
+		if ( ! $wgOut->isArticleRelated() ) {
 			$s = "(" . wfMsg( "notanarticle" ) . ")";
 		} else {
 			$s = $this->makeKnownLink( $wgLang->specialPage(
@@ -1871,24 +1879,23 @@ class Skin {
 
 	# Called in a loop over all displayed RC entries
 	# Either returns the line, or caches it for later use
-	function recentChangesLine( $row, $watched = false )
+	function recentChangesLine( &$rc, $watched = false )
 	{
 		global $wgUser ;
 		$usenew = $wgUser->getOption( "usenewrc" );
 		if ( $usenew )
-			$line = $this->recentChangesLineNew ( $row, $watched ) ;
+			$line = $this->recentChangesLineNew ( $rc, $watched ) ;
 		else
-			$line = $this->recentChangesLineOld ( $row, $watched ) ;
+			$line = $this->recentChangesLineOld ( $rc, $watched ) ;
 		return $line ;
 	}
 	
-	function recentChangesLineOld( $row, $watched = false )
+	function recentChangesLineOld( &$rc, $watched = false )
 	{
 		global $wgTitle, $wgLang, $wgUser;
 		
 		# Extract DB fields into local scope
-		extract( get_object_vars( $row ) );
-		$rc = RecentChange::newFromRow( $row );
+		extract( $rc->mAttribs );
 		$curIdEq = "curid=" . $rc_cur_id;
 		
 		# Make date header if necessary
@@ -1986,13 +1993,12 @@ class Skin {
 	}
 	
 #	function recentChangesLineNew( $ts, $u, $ut, $ns, $ttl, $c, $isminor, $isnew, $watched = false, $oldid = 0 , $diffid = 0 )
-	function recentChangesLineNew( $row, $watched = false )
+	function recentChangesLineNew( &$baseRC, $watched = false )
 	{
 		global $wgTitle, $wgLang, $wgUser;
 
-		# Fill $rc with all the information from the row
-		$rc = new RCCacheEntry ;
-		$rc->loadFromRow( $row );
+		# Create a specialised object
+		$rc = RCCacheEntry::newFromParent( $baseRC ) ;
 
 		# Extract fields from DB into the function scope (rc_xxxx variables)
 		extract( $rc->mAttribs );

@@ -111,7 +111,8 @@ function wfSpecialRecentchanges( $par )
 			break; 
 		}
 		if ( ! ( $hideminor && $obj1->rc_minor ) ) {
-			$s .= $sk->recentChangesLine( $obj1, $obj1->wl_user );
+			$rc = RecentChange::newFromRow( $obj1 );
+			$s .= $sk->recentChangesLine( $rc, $obj1->wl_user );
 			--$limit;
 		}
 		$obj1 = wfFetchObject( $res );

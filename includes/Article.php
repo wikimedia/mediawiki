@@ -503,7 +503,7 @@ class Article {
 			$oldid = wfInsertID( $res );
 
 			$bot = (int)($wgUser->isBot() || $forceBot);
-			RecentChange::notifyEdit( $now, $this->mTitle, $me2, $wgUser, $this->getComment(), 
+			RecentChange::notifyEdit( $now, $this->mTitle, $me2, $wgUser, $summary, 
 				$oldid, $this->getTimestamp() );
 			Article::onArticleEdit( $this->mTitle );
 		}

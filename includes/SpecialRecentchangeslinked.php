@@ -66,16 +66,8 @@ function wfSpecialRecentchangeslinked( $par = NULL )
 		$obj = wfFetchObject( $res );
 		--$count;
 
-		$ts = $obj->cur_timestamp;
-		$u = $obj->cur_user;
-		$ut = $obj->cur_user_text;
-		$ns = $obj->cur_namespace;
-		$ttl = $obj->cur_title;
-		$com = $obj->cur_comment;
-		$me = ( $obj->cur_minor_edit > 0 );
-		$new = ( $obj->cur_is_new > 0 );
-
-		$s .= $sk->recentChangesLine( $ts, $u, $ut, $ns, $ttl, $com, $me, $new );
+		$rc = RecentChange::newFromCurRow( $obj );
+		$s .= $sk->recentChangesLine( $rc );
 		--$limit;
 	}
 	$s .= $sk->endRecentChangesList();

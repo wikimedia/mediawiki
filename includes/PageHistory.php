@@ -31,6 +31,7 @@ class PageHistory {
 		$wgOut->setPageTitle( $this->mTitle->getPRefixedText() );
 		$wgOut->setSubtitle( wfMsg( "revhistory" ) );
 		$wgOut->setArticleFlag( false );
+		$wgOut->setArticleRelated( true );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 
 		if( $this->mTitle->getArticleID() == 0 ) {
