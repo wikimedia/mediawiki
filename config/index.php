@@ -184,6 +184,7 @@ $conf->prettyURLs = true;
 print "<li>PHP server API is $sapi; ";
 switch( $sapi ) {
 case "apache":
+case "apache2handler":
 	print "ok, using pretty URLs (<tt>index.php/Page_Title</tt>)";
 	break;
 case "cgi":
@@ -308,7 +309,10 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgDatabase->mIgnoreErrors = true;
 		
 		@$myver = mysql_get_server_info( $wgDatabase->mConn );
-		if( !$myver ) {
+		if( $myver ) {
+			$conf->Root = true;
+			print "<li>Connected as root (automatic)</li>\n";
+		} else {
 			print "<li>MySQL error " . ($err = mysql_errno() ) .
 				": " . htmlspecialchars( mysql_error() );
 			$ok = false;
@@ -455,7 +459,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			print "</pre></li>\n";
 			
 			if( $conf->Root ) {
-				# Grant user permissions
+				print "<li>Granting user permissions...</li>\n";
 				dbsource( "../maintenance/users.sql", $wgDatabase );
 			}
 		}
