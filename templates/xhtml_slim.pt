@@ -21,7 +21,7 @@
     </script>
   </head>
 
-  <body>
+  <body tal:attributes="ondblclick body-ondblclick|default">
     <div id="visual-portal-wrapper">
 
       <div id="portal-column-content">
