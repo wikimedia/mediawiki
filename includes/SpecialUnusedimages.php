@@ -10,7 +10,7 @@ function wfSpecialUnusedimages() {
 
 	$sql = "SELECT img_name,img_user,img_user_text,img_timestamp,img_description " .
 	  "FROM $image LEFT JOIN $imagelinks ON img_name=il_to WHERE il_to IS NULL " .
-	  "ORDER BY img_timestamp ".wfLimitResult($limit,$offset);
+	  "ORDER BY img_timestamp ".$dbr->limitResult($limit,$offset);
 	$res = $dbr->query( $sql, $fname );
 
 	$sk = $wgUser->getSkin();
