@@ -5,6 +5,9 @@ include_once('Tokenizer.php');
 if( $GLOBALS['wgUseWikiHiero'] ){
 	include_once('wikihiero.php');
 }
+if( $GLOBALS['wgUseTimeline'] ){
+	include_once('extensions/timeline/Timeline.php');
+}
 
 # PHP Parser
 #
@@ -658,6 +661,7 @@ class Parser
 	/* private */ function doTokenizedParser( $str )
 	{
 		global $wgLang;	# for language specific parser hook
+		global $wgUploadDirectory, $wgUseTimeline;
 
 		$tokenizer=Tokenizer::newFromString( $str );
 		$tokenStack = array();
@@ -772,6 +776,15 @@ class Parser
 						$txt = "ISBN ";
 					} else {
 						$txt = $this->doMagicISBN( $tokenizer );
+					}
+					break;
+				case "<timeline>":
+					if ( $wgUseTimeline && 
+					     "" != ( $timelinesrc = $tokenizer->readAllUntil("&lt;/timeline&gt;") ) )
+					{
+						$txt = renderTimeline( $timelinesrc );
+					} else {
+						$txt=$token["text"];
 					}
 					break;
 				default:
@@ -1174,7 +1187,8 @@ class Parser
 			case MAG_PAGENAME:
 				return $this->mTitle->getText();
 			case MAG_NAMESPACE:
-				return Namespace::getCanonicalName($this->mTitle->getNamespace());
+				# return Namespace::getCanonicalName($this->mTitle->getNamespace());
+				return $wgLang->getNsText($this->mTitle->getNamespace()); // Patch  by Dori
 			case MAG_CURRENTDAYNAME:
 				return $wgLang->getWeekdayName( date("w")+1 );
 			case MAG_CURRENTYEAR:

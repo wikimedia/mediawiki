@@ -221,6 +221,11 @@ $wgTexvc = "./math/texvc"; # Location of the texvc binary
 # with the correct image locations.
 $wgUseWikiHiero = false;
 
+# Support for inline timelines, see http://members.chello.nl/epzachte/Wikipedia/EasyTimeline/Introduction.htm
+# The Timeline php files must be present in the extension directory and you must have the
+# ploticus tool available, see http://ploticus.sourceforge.net/
+$wgUseTimeline = false;
+
 # Profiling / debugging
 $wgProfiling = false; # Enable for more detailed by-function times in debug log
 $wgProfileLimit = 0.0; # Only record profiling info for pages that took longer than this

@@ -217,6 +217,17 @@ class Tokenizer {
 							break 2; // switch + while
 						}
 						break;
+					case "&": //extensions like <timeline>, since HTML stripping has already been done, 
+					 	  //those look like &lt;timeline&gt;
+						if ( $this->continues( "lt;timeline&gt;" ) )
+						{
+							$queueToken["type"] = "<timeline>";
+							$queueToken["text"] = "&lt;timeline&gt;";
+							$this->mQueuedToken[] = $queueToken;
+							$this->mPos += 16;
+							break 2; // switch + while
+						}
+						break;
 
 				} /* switch */
 				$token["text"].=$ch;
@@ -254,5 +265,16 @@ class Tokenizer {
 			return false;
 		return ( 0 == strcmp( $prec, substr($this->mText, $this->mPos-$len, $len) ) );
 	}
+
+	function readAllUntil( $border )
+	{
+		$n = strpos( $this->mText, $border, $this->mPos );
+		if ( $n === false )
+			return "";
+		$ret = substr( $this->mText, $this->mPos, $n - $this->mPos );
+		$this->mPos = $n + strlen( $border ) + 1;
+		return $ret;
+	}
+
 }
 		
