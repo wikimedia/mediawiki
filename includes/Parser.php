@@ -981,7 +981,7 @@ class Parser
 			# This means that users can paste URLs directly into the text
 			# Funny characters like &ouml; aren't valid in URLs anyway
 			# This was changed in August 2004
-			$s .= "<a href=\"{$url}\" {$la}>{$text}</a>{$dtrail}{$paren}{$trail}";
+			$s .= "<a href=\"{$url}\"{$la}>{$text}</a>{$dtrail}{$paren}{$trail}";
 		}
 
 		wfProfileOut( $fname );
