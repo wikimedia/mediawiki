@@ -44,13 +44,19 @@ class User {
 	/* static */ function idFromName( $name )
 	{
 		$nt = Title::newFromText( $name );
+		if( is_null( $nt ) ) {
+			# Illegal name
+			return null;
+		}
 		$sql = "SELECT user_id FROM user WHERE user_name='" .
 		  wfStrencode( $nt->getText() ) . "'";
 		$res = wfQuery( $sql, DB_READ, "User::idFromName" );
 
-		if ( 0 == wfNumRows( $res ) ) { return 0; }
-		else {
+		if ( 0 == wfNumRows( $res ) ) {
+			return 0;
+		} else {
 			$s = wfFetchObject( $res );
+			wfFreeResult( $res );
 			return $s->user_id;
 		}
 	}
