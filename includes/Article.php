@@ -714,7 +714,7 @@ class Article {
 
 	function protect( $limit = "sysop" )
 	{
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgRequest;
 
 		if ( ! $wgUser->isSysop() ) {
 			$wgOut->sysopRequired();
@@ -729,17 +729,91 @@ class Article {
 			$wgOut->fatalEror( wfMsg( "badarticleerror" ) );
 			return;
 		}
+
+		$confirm = $wgRequest->getBool( 'wpConfirmProtect' ) && $wgRequest->wasPosted();
+		$reason = $wgRequest->getText( 'wpReasonProtect' );
+
+		if ( $confirm ) {
+
         $sql = "UPDATE cur SET cur_touched='" . wfTimestampNow() . "'," .
 			"cur_restrictions='{$limit}' WHERE cur_id={$id}";
 		wfQuery( $sql, DB_WRITE, "Article::protect" );
 
 		$log = new LogPage( wfMsg( "protectlogpage" ), wfMsg( "protectlogtext" ) );
 		if ( $limit === "" ) {
-	 		$log->addEntry( wfMsg( "unprotectedarticle", $this->mTitle->getPrefixedText() ), "" );		
+				$log->addEntry( wfMsg( "unprotectedarticle", $this->mTitle->getPrefixedText() ), $reason );
 		} else {
-			$log->addEntry( wfMsg( "protectedarticle", $this->mTitle->getPrefixedText() ), "" );
+				$log->addEntry( wfMsg( "protectedarticle", $this->mTitle->getPrefixedText() ), $reason );
 		}
 		$wgOut->redirect( $this->mTitle->getFullURL() );
+			return;
+		} else {
+			$reason = htmlspecialchars( wfMsg( "protectreason" ) );
+			return $this->confirmProtect( "", $reason, $limit );
+		}
+	}
+
+		# Output protection confirmation dialog
+	function confirmProtect( $par, $reason, $limit = "sysop"  )
+	{
+		global $wgOut;
+
+		wfDebug( "Article::confirmProtect\n" );
+
+		$sub = htmlspecialchars( $this->mTitle->getPrefixedText() );
+		$wgOut->setRobotpolicy( "noindex,nofollow" );
+
+		$check = "";
+		$protcom = "";
+
+		if ( $limit === "" ) {
+			$wgOut->setSubtitle( wfMsg( "unprotectsub", $sub ) );
+			$wgOut->addWikiText( wfMsg( "confirmunprotecttext" ) );
+			$check = htmlspecialchars( wfMsg( "confirmunprotect" ) );
+			$protcom = htmlspecialchars( wfMsg( "unprotectcomment" ) );
+			$formaction = $this->mTitle->escapeLocalURL( "action=unprotect" . $par );
+		} else {
+			$wgOut->setSubtitle( wfMsg( "protectsub", $sub ) );
+			$wgOut->addWikiText( wfMsg( "confirmprotecttext" ) );
+			$check = htmlspecialchars( wfMsg( "confirmprotect" ) );
+			$protcom = htmlspecialchars( wfMsg( "protectcomment" ) );
+			$formaction = $this->mTitle->escapeLocalURL( "action=protect" . $par );
+		}
+
+		$confirm = htmlspecialchars( wfMsg( "confirm" ) );
+
+		$wgOut->addHTML( "
+<form id='protectconfirm' method='post' action=\"{$formaction}\">
+	<table border='0'>
+		<tr>
+			<td align='right'>
+				<label for='wpReasonProtect'>{$protcom}:</label>
+			</td>
+			<td align='left'>
+				<input type='text' size='60' name='wpReasonProtect' id='wpReasonProtect' value=\"" . htmlspecialchars( $reason ) . "\" />
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td align='right'>
+				<input type='checkbox' name='wpConfirmProtect' value='1' id='wpConfirmProtect' />
+			</td>
+			<td>
+				<label for='wpConfirmProtect'>{$check}</label>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<input type='submit' name='wpConfirmProtectB' value=\"{$confirm}\" />
+			</td>
+		</tr>
+	</table>
+</form>\n" );
+
+		$wgOut->returnToMain( false );
 	}
 
 	function unprotect()
