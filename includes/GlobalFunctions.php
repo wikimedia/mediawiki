@@ -675,5 +675,18 @@ function wfHtmlEscapeFirst( $text ) {
 	return "&#$ord;$newText";
 }
 
+function wfSetVar( &$dest, $source )
+{
+	$temp = $dest;
+	$dest = $source;
+	return $temp;
+}
+
+function &wfSetRef( &$dest, $source )
+{
+	$temp =& $dest;
+	$dest =& $source;
+	return $temp;
+}
 
 ?>
