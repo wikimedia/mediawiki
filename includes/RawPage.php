@@ -78,7 +78,7 @@ class RawPage {
 		# allow the client to cache this for 24 hours
 		header( 'Cache-Control: s-maxage='.$this->mSmaxage.', max-age='.$this->mMaxage );
 		# Make sure each logged-in user gets his/her own stylesheet
-		header( 'Vary: Cookie' );
+		header( 'Last-modified: '.gmdate( "D, j M Y H:i:s", time() - 3600).' GMT' );
 		if($this->mGen) {
 			$sk = $wgUser->getSkin();
 			$sk->initPage($wgOut);
@@ -106,6 +106,7 @@ class RawPage {
 		# special case
 		if($ns == NS_MEDIAWIKI) {
 			$rawtext = wfMsg($t);
+			header( 'Last-modified: '.gmdate( "D, j M Y H:i:s", time() - 3600).' GMT' );
 			return $rawtext;
 		}
 		# else get it from the DB
