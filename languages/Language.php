@@ -780,10 +780,8 @@ If you are here by mistake, just click your browser's '''back''' button.",
 "noarticletext" => "(There is currently no text in this page)",
 'usercssjs' => "'''Note:''' After saving, you have to tell your bowser to get the new version: '''Mozilla:''' click ''reload''(or ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
 'usercssjsyoucanpreview' => "You can preview your style/js tweaks without reload by pressing 'Show preview'. Remember to reload after <em>saving</em> your changes.",
-'usercsspreview' => "== Previewing your user css. ==
-'''Note:''' After saving, you have to tell your bowser to get the new version: '''Mozilla:''' click ''reload''(or ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
-'userjspreview' => "== Previewing your user javascript. ==
-'''Note:''' After saving, you have to tell your bowser to get the new version: '''Mozilla:''' click ''reload''(or ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
+'usercsspreview' => "'''Remember that you are only previewing your user css, it has not yet been saved!'''",
+'userjspreview' => "'''Remember that you are only testing/previewing your user javascript, it has not yet been saved!'''",
 "updated"		=> "(Updated)",
 "note"			=> "<strong>Note:</strong> ",
 "previewnote"	=> "Remember that this is only a preview, and has not yet been saved!",
