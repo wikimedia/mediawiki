@@ -18,7 +18,7 @@ function hookit() {
 // png alpha transparency fixes
 function fixalpha() {
     // bg
-    if (!doneIEAlphaFix)
+    if (isMSIE55 && !doneIEAlphaFix)
     {
         doneIEAlphaFix = true;
         var plogo = document.getElementById('p-logo');
