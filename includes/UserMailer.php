@@ -335,40 +335,5 @@ function ComposeAndSendPersonalisedMail( $watchingUser, $mail, $article) {
 	return (userMailer($to, $mail->from, $mail->subject, $body, $mail->replyto) == '');
 }
 
-function Clear($currentUser, $currentPage, $currentNs) {
-	$dbw =& wfGetDB( DB_MASTER );
-	$success = $dbw->update( 'watchlist',
-			array( /* SET */
-				'wl_notificationtimestamp' => 0
-			), array( /* WHERE */
-				'wl_title' => $currentPage,
-				'wl_namespace' => $currentNs,
-				'wl_user' => $currentUser
-			), 'UserMailer::Clear'
-	);
-}
-
-function ClearAll($currentUser) {
-	global $_REQUEST;
-
-	if ($currentUser != 0)  {
-
-		if( $_REQUEST['reset'] == 'all') {
-
-			$dbw =& wfGetDB( DB_MASTER );
-			$success = $dbw->update( 'watchlist',
-				array( /* SET */
-					'wl_notificationtimestamp' => 0
-				), array( /* WHERE */
-					'wl_user' => $currentUser
-				), 'UserMailer::ClearAll'
-			);
-
-		# 	we also need to clear here the "you have new message" notification for the own user_talk page
-		#	This is cleared one page view later in Article::viewUpdates();
-		}
-	}
-}
-
 } # end of class EmailNotification
 ?>

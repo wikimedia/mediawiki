@@ -41,9 +41,9 @@ function wfSpecialWatchlist() {
 
 	$wgOut->addHTML( wfMsg( "email_notification_infotext" ) );
 
-	include_once( "UserMailer.php" );
-	$wgEnotif = new EmailNotification ();
-	$wgEnotif->ClearAll($wgUser->getID());
+	if( $wgRequest->getVal( 'reset' ) == 'all' ) {
+		$wgUser->clearAllNotifications();
+	}
 
 	if(($action == "submit") && isset($remove) && is_array($id)) {
 		$wgOut->addHTML( wfMsg( "removingchecked" ) );
