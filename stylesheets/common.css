@@ -140,3 +140,14 @@ div.prefsectiontip {
 }
 fieldset.prefsection { margin-top: 1em }
 fieldset.operaprefsection { margin-left: 15em }
+
+/* emulate center */
+.center {
+    width: 100%;
+    text-align: center;
+}
+*.center * {
+    margin-left: auto;
+    margin-right: auto;
+}
+
