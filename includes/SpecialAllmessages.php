@@ -15,7 +15,7 @@ function wfSpecialAllmessages() {
 
 	if($wgLanguageCode != $wgContLanguageCode &&
 		!in_array($wgLanguageCode, $wgContLang->getVariants())) {
-		$err = wfMsg('allmessagesnotsupportedUI');
+		$err = wfMsg('allmessagesnotsupportedUI', $wgLanguageCode);
 		$wgOut->addHTML( $err );
 		return;
 	}
