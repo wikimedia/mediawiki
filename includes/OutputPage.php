@@ -654,6 +654,15 @@ $t[$k] = "<caption>{$z}</caption\n" ;
              }
 	}
     }
+
+# Closing open td, tr && table
+while ( count ( $td ) > 0 )
+{
+if ( array_pop ( $td ) ) $t[] = "</td>" ;
+if ( array_pop ( $tr ) ) $t[] = "</tr>" ;
+$t[] = "</table>" ;
+}
+
   $t = implode ( "\n" , $t ) ;
   return $t ;
 }
