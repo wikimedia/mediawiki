@@ -3,6 +3,7 @@
   * @package MediaWiki
   * @subpackage Language
   */
+
 # Nynorsk version translated by Olve Utne, Guttorm Flatabø and others
 # see:
 # <http://meta.wikimedia.org/w/wiki.phtml?title=LanguageNn.php&action=history>
@@ -10,16 +11,6 @@
 # To be included in the MediaWiki software.
 # This file is dual-licensed under GFDL and GPL.
 
-#--------------------------------------------------------------------------
-# Language-specific text
-#--------------------------------------------------------------------------
-
-# The names of the namespaces can be set here, but the numbers
-# are magical, so don't change or move them!  The Namespace class
-# encapsulates some of the magic-ness.
-#
-
-# Use UTF-8
 require_once( 'LanguageUtf8.php' );
 
 if($wgMetaNamespace === FALSE)
@@ -45,11 +36,6 @@ if($wgMetaNamespace === FALSE)
 	NS_CATEGORY       => 'Kategori',
 	NS_CATEGORY_TALK  => 'Kategoridiskusjon'
 ) + $wgNamespaceNamesEn;
-
-/* private */ $wgDefaultUserOptionsNn = array(
-        /* Just change the date format to "DD Month Year" and inherit the rest */
-        'date' => 2
-) + $wgDefaultUserOptionsEn;
 
 /* private */ $wgQuickbarSettingsNn = array(
 	'Ingen', 'Venstre', 'Høgre', 'Fast venstre'
@@ -81,9 +67,12 @@ $wgValidationTypesNn = array (
 );
 
 /* private */ $wgBookstoreListNn = array(
-	'Bibsys'       => 'http://wgate.bibsys.no/gate1/FIND?bibl=BIBSYS&sn=$1',
+	'Bibsys'       => 'http://ask.bibsys.no/ask/action/result?cmd=&kilde=biblio&fid=isbn&term=$1',
+	'BokBerit'     => 'http://www.bokberit.no/annet_sted/bocker/$1.html',
 	'Bokkilden'    => 'http://www.bokkilden.no/ProductDetails.aspx?ProductId=$1',
 	'Haugenbok'    => 'http://www.haugenbok.no/searchresults.cfm?searchtype=simple&isbn=$1',
+	'Akademika'    => 'http://www.akademika.no/sok.php?isbn=$1',
+	'Gnist'        => 'http://www.gnist.no/sok.php?isbn=$1',
 	'Amazon.co.uk' => 'http://www.amazon.co.uk/exec/obidos/ISBN=$1',
 	'Amazon.de'    => 'http://www.amazon.de/exec/obidos/ISBN=$1',
 	'Amazon.com'   => 'http://www.amazon.com/exec/obidos/ISBN=$1'
@@ -95,45 +84,45 @@ $wgValidationTypesNn = array (
 #
 /* private */ $wgMagicWordsNn = array(
 #   ID                                 CASE  SYNONYMS
-    MAG_REDIRECT             => array( 0,    '#redirect', '#omdiriger'                                 ),
-    MAG_NOTOC                => array( 0,    '__NOTOC__', '__INGAINNHALDSLISTE__'                      ),
-    MAG_FORCETOC             => array( 0,    '__FORCETOC__', '__ALLTIDINNHALDSLISTE__'                 ),
-    MAG_TOC                  => array( 0,    '__TOC__', '__INNHALDSLISTE__'                            ),
-    MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__', '__INGADELREDIGERING__'              ),
-    MAG_START                => array( 0,    '__START__'                                               ),
-    MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH', 'MÅNADNO', 'MÅNEDNÅ'                      ),
-    MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME', 'MÅNADNONAMN', 'MÅNEDNÅNAVN'          ),
-    MAG_CURRENTDAY           => array( 1,    'CURRENTDAY', 'DAGNO', 'DAGNÅ'                            ),
-    MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME', 'DAGNONAMN', 'DAGNÅNAVN'                ),
-    MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR', 'ÅRNO', 'ÅRNÅ'                             ),
-    MAG_CURRENTTIME          => array( 1,    'CURRENTTIME', 'TIDNO', 'TIDNÅ'                           ),
-    MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES', 'INNHALDSSIDETAL', 'INNHOLDSSIDETALL' ),
-    MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN', 'MÅNADNONAMNGEN', 'MÅNEDNÅNAVNGEN' ),
-    MAG_PAGENAME             => array( 1,    'PAGENAME', 'SIDENAMN', 'SIDENAVN'                        ),
-    MAG_PAGENAMEE            => array( 1,    'PAGENAMEE', 'SIDENAMNE', 'SIDENAVNE'                     ),
-    MAG_NAMESPACE            => array( 1,    'NAMESPACE', 'NAMNEROM', 'NAVNEROM'                       ),
-    MAG_MSG                  => array( 0,    'MSG:'                                                    ),
-    MAG_SUBST                => array( 0,    'SUBST:', 'LIMINN:'                                       ),
-    MAG_MSGNW                => array( 0,    'MSGNW:', 'IKWIKMELD:'                                    ),
-    MAG_END                  => array( 0,    '__END__', '__SLUTT__'                                    ),
-    MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb', 'mini', 'miniatyr'                  ),
-    MAG_IMG_RIGHT            => array( 1,    'right', 'høgre', 'høyre'                                 ),
-    MAG_IMG_LEFT             => array( 1,    'left', 'venstre'                                         ),
-    MAG_IMG_NONE             => array( 1,    'none', 'ingen'                                           ),
-    MAG_IMG_WIDTH            => array( 1,    '$1px', '$1pk'                                            ),
-    MAG_IMG_CENTER           => array( 1,    'center', 'centre', 'sentrum'                             ),
-    MAG_IMG_FRAMED	     => array( 1,    'framed', 'enframed', 'frame', 'ramme'                    ),
-    MAG_INT                  => array( 0,    'INT:'                                                    ),
-    MAG_SITENAME             => array( 1,    'SITENAME', 'NETTSTADNAMN'                                ),
-    MAG_NS                   => array( 0,    'NS:', 'NR:'                                              ),
-    MAG_LOCALURL             => array( 0,    'LOCALURL:', 'LOKALLENKJE:', 'LOKALLENKE:'                ),
-    MAG_LOCALURLE            => array( 0,    'LOCALURLE:', 'LOKALLENKJEE:', 'LOKALLENKEE:'             ),
-    MAG_SERVER               => array( 0,    'SERVER', 'TENAR', 'TJENER'                               ),
-    MAG_GRAMMAR              => array( 0,    'GRAMMAR:', 'GRAMMATIKK:'                                 ),
-    MAG_NOTITLECONVERT       => array( 0,    '__NOTITLECONVERT__', '__NOTC__'                          ),
-    MAG_NOCONTENTCONVERT     => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__'                        ),
-    MAG_CURRENTWEEK          => array( 1,    'CURRENTWEEK', 'VEKENRNO', 'UKENRNÅ'                      ),
-    MAG_CURRENTDOW           => array( 1,    'CURRENTDOW', 'VEKEDAGNRNO', 'UKEDAGNRNÅ'                 )
+    MAG_REDIRECT             => array( 0,    '#redirect', '#omdiriger'                                              ),
+    MAG_NOTOC                => array( 0,    '__NOTOC__', '__INGAINNHALDSLISTE__', '__INGENINNHOLDSLISTE__'         ),
+    MAG_FORCETOC             => array( 0,    '__FORCETOC__', '__ALLTIDINNHALDSLISTE__', '__ALLTIDINNHOLDSLISTE__'   ),
+    MAG_TOC                  => array( 0,    '__TOC__', '__INNHALDSLISTE__', '__INNHOLDSLISTE__'                    ),
+    MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__', '__INGABOLKREDIGERING__', '__INGENDELREDIGERING__'),
+    MAG_START                => array( 0,    '__START__'                                                            ),
+    MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH', 'MÅNADNO', 'MÅNEDNÅ'                                   ),
+    MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME', 'MÅNADNONAMN', 'MÅNEDNÅNAVN'                       ),
+    MAG_CURRENTDAY           => array( 1,    'CURRENTDAY', 'DAGNO', 'DAGNÅ'                                         ),
+    MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME', 'DAGNONAMN', 'DAGNÅNAVN'                             ),
+    MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR', 'ÅRNO', 'ÅRNÅ'                                          ),
+    MAG_CURRENTTIME          => array( 1,    'CURRENTTIME', 'TIDNO', 'TIDNÅ'                                        ),
+    MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES', 'INNHALDSSIDETAL', 'INNHOLDSSIDETALL'              ),
+    MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN', 'MÅNADNONAMNGEN', 'MÅNEDNÅNAVNGEN'              ),
+    MAG_PAGENAME             => array( 1,    'PAGENAME', 'SIDENAMN', 'SIDENAVN'                                     ),
+    MAG_PAGENAMEE            => array( 1,    'PAGENAMEE', 'SIDENAMNE', 'SIDENAVNE'                                  ),
+    MAG_NAMESPACE            => array( 1,    'NAMESPACE', 'NAMNEROM', 'NAVNEROM'                                    ),
+    MAG_MSG                  => array( 0,    'MSG:'                                                                 ),
+    MAG_SUBST                => array( 0,    'SUBST:', 'LIMINN:'                                                    ),
+    MAG_MSGNW                => array( 0,    'MSGNW:', 'IKWIKMELD:'                                                 ),
+    MAG_END                  => array( 0,    '__END__', '__SLUTT__'                                                 ),
+    MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb', 'mini', 'miniatyr'                               ),
+    MAG_IMG_RIGHT            => array( 1,    'right', 'høgre', 'høyre'                                              ),
+    MAG_IMG_LEFT             => array( 1,    'left', 'venstre'                                                      ),
+    MAG_IMG_NONE             => array( 1,    'none', 'ingen'                                                        ),
+    MAG_IMG_WIDTH            => array( 1,    '$1px', '$1pk'                                                         ),
+    MAG_IMG_CENTER           => array( 1,    'center', 'centre', 'sentrum'                                          ),
+    MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame', 'ramme'                                 ),
+    MAG_INT                  => array( 0,    'INT:'                                                                 ),
+    MAG_SITENAME             => array( 1,    'SITENAME', 'NETTSTADNAMN'                                             ),
+    MAG_NS                   => array( 0,    'NS:', 'NR:'                                                           ),
+    MAG_LOCALURL             => array( 0,    'LOCALURL:', 'LOKALLENKJE:', 'LOKALLENKE:'                             ),
+    MAG_LOCALURLE            => array( 0,    'LOCALURLE:', 'LOKALLENKJEE:', 'LOKALLENKEE:'                          ),
+    MAG_SERVER               => array( 0,    'SERVER', 'TENAR', 'TJENER'                                            ),
+    MAG_GRAMMAR              => array( 0,    'GRAMMAR:', 'GRAMMATIKK:'                                              ),
+    MAG_NOTITLECONVERT       => array( 0,    '__NOTITLECONVERT__', '__NOTC__'                                       ),
+    MAG_NOCONTENTCONVERT     => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__'                                     ),
+    MAG_CURRENTWEEK          => array( 1,    'CURRENTWEEK', 'VEKENRNO', 'UKENRNÅ'                                   ),
+    MAG_CURRENTDOW           => array( 1,    'CURRENTDOW', 'VEKEDAGNRNO', 'UKEDAGNRNÅ'                              )
 );
 
 #-------------------------------------------------------------------
@@ -148,6 +137,7 @@ $wgValidationTypesNn = array (
 'special_version_postfix' => '&nbsp;',
 
 # User preference toggles
+'tog-hover'               => 'Vis svevetekst over wikilenkjer',
 'tog-underline'           => 'Understrek lenkjer',
 'tog-highlightbroken'     => 'Formatér lenkjer til tomme sider <a href="" class="new">slik</a> (alternativt slik<a href="" class="internal">?</a>)',
 'tog-justify'	          => 'Blokkjusterte avsnitt',
@@ -225,8 +215,8 @@ $wgValidationTypesNn = array (
 'wikititlesuffix'         => '{{SITENAME}}',
 'bugreports'	          => 'Feilmeldingar',
 'bugreportspage'          => 'Project:Feilmeldingar',
-'sitesupport'             => 'Donering',
-'sitesupport-url'         => 'Project:Donering',
+'sitesupport'             => 'Gåver',
+'sitesupport-url'         => 'Project:Gåver',
 'faq'			  => 'OSS',
 'faqpage'		  => 'Project:OSS',
 'edithelp'		  => 'Hjelp til redigering',
@@ -352,8 +342,8 @@ MySQL returnerte feilen "$3: $4".',
 'noconnect'		  => 'Wikien har tekniske problem og kunne ikkje kople til databasen.<br />$1',
 'nodb'			  => 'Kunne ikkje velje databasen $1',
 'cachederror'	          => 'Det følgjande er ein lagra kopi av den ønska sida, og er ikkje nødvendigvis oppdatert.',
-'laggedslavemode'             => 'Åtvaring: Det er mogleg at sida ikkje er heilt oppdatert.',
-'readonly'		  => 'Databasen er skriveverna',
+'laggedslavemode'          => 'Åtvaring: Det er mogleg at sida ikkje er heilt oppdatert.',
+'readonly'		          => 'Databasen er skriveverna',
 'enterlockreason'         => 'Skriv ein grunn for vernet, inkludert eit overslag for kva tid det vil bli oppheva',
 'readonlytext'	          => 'Databasen er akkurat no skriveverna, truleg for rutinemessig vedlikehald. Administratoren som verna han har gjeve denne forklaringa:<p>$1',
 'missingarticle'          => 'Databasen fann ikkje teksten til ei side han skulle ha funne, med namnet "$1".
@@ -376,7 +366,7 @@ Sletta oppføringar kan vanlegvis attopprettast.
 'badtitletext'	          => 'Den ønska tittelen var ulovleg, tom, eller er feil lenka frå ei anna wiki.',
 'perfdisabled'            => 'Beklagar! Denne funksjonen er mellombels deaktivert for å spare tenarkapasitet.',
 'perfdisabledsub'         => 'Her er ein lagra kopi frå $1:',
-'perfcached'              => 'Det følgjande er frå tenaren sitt mellomlager og er ikkje nødvendigvis oppdatert:',
+'perfcached'              => 'Det følgjande er frå tenaren sitt mellomlager og er ikkje nødvendigvis oppdatert.',
 'wrong_wfQuery_params'    => 'Feil parameter gjevne til wfQuery()<br />Funksjon: $1<br />Førespurnad: $2',
 'viewsource'              => 'Vis kjeldetekst',
 'protectedtext'           => 'Denne sida er verna for redigering. Det kan vera fleire grunnar til dette, sjå [[{{ns:4}}:Verna side]].
@@ -402,7 +392,7 @@ Brukarkontoen din har blitt oppretta. Det er tilrådd at du ser gjennom brukarin
 'alreadyloggedin'         => '<div class="alreadyloggedin">Brukar $1, du er allereie innlogga!</div>',
 'login'			  => 'Logg inn',
 'loginprompt'             => 'Nettlesaren din må akseptere informasjonskapslar for at du skal kunna logge inn.',
-'userlogin'		  => 'Lag brukarkonto eller logg inn',
+'userlogin'		  => 'Lag brukarkonto / logg inn',
 'logout'		  => 'Logg ut',
 'userlogout'	          => 'Logg ut',
 'notloggedin'	          => 'Ikkje innlogga',
@@ -497,8 +487,7 @@ IP-adressa di er $3. Legg henne ved eventuelle førespurnader.',
 </div>',
 'talkpagetext'            => '<!-- MediaWiki:talkpagetext -->',
 'anontalkpagetext'        => '---- \'\'Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[{{ns:-1}}:Userlogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.\'\'',
-'noarticletext'           => '<div style="border: 1px solid #ccc; padding: 7px; background: white;">\'\'\'{{SITENAME}} har ikkje noka side med namnet {{PAGENAME}} enno.\'\'\'
-* Klikk på \'\'\'[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} redigér]\'\'\' for å laga ei slik side.</div>',
+'noarticletext'           => '({{SITENAME}} har ikkje noka side med namnet {{PAGENAME}} enno.)',
 'clearyourcache'          => '\'\'\'Merk:\'\'\' Etter lagring bør du tømme nettlesaren sitt mellomlager for å sjå endringane. \'\'\'Mozilla og Konqueror:\'\'\' trykk \'\'Ctrl-R\'\', \'\'\'Internet Explorer:\'\'\' \'\'Ctrl-F5\'\', \'\'\'Opera:\'\'\' \'\'F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-R\'\'.',
 'usercssjsyoucanpreview'  => '<strong>Tip:</strong> Bruk "Førehandsvis"-knappen for å teste den nye CSS- eller JS-koden din føre du lagrar.',
 'usercsspreview'          => '\'\'\'Hugs at du berre testar ditt eige CSS, det har ikkje vorte lagra enno!\'\'\'',
@@ -569,12 +558,12 @@ er lengre enn 32KB. Du bør vurdere å dele opp sida i mindre bolkar.<br />',
 'badquery'		  => 'Feil utforma førespurnad',
 'badquerytext'	          => 'Vi kunne ikkje svara på denne førespurnaden &#8212; Truleg fordi du prøvde å søkje etter eit ord med færre enn tre bokstavar, noko som ikkje er mogleg enno. Det kan òg vera du skreiv feil... Prøv om att.',
 'matchtotals'	          => 'Førespurnaden "$1" gav treff på $2 sidetitlar og på teksten i $3 sider.',
-'nogomatch'               => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Inga side med akkurat denne tittelen finst</span>
+'nogomatch'               => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Det vart ikkje funne noko side med dette namnet</span>
 
 <span style="display: block; margin: 1.5em 2em">
-Du kan <b><a href="$1" class="new">laga ei side med denne tittelen</a></b>.
+Du kan <b><a href="$1" class="new">laga ei side med denne namnet</a></b>.
 
-<span style="display:block; font-size: 89%; margin-left:.2em">Søk {{SITENAME}} før du lagar ei side for å unngå dobling av eksisterande sider som kan ha eit anna namn eller ein annan stavemåte.</span></span>',
+<span style="display:block; font-size: 89%; margin-left:.2em">Du bør søke etter andre namnevariasjonar først, slik at du ikkje opprettar ei side som allereie eksisterar under eit anna namn.</span></span>',
 'titlematches'	          => 'Sidetitlar med treff på førespurnaden',
 'notitlematches'          => 'Ingen sidetitlar hadde treff på førespurnaden',
 'textmatches'	          => 'Sider med treff på førespurnaden',
@@ -584,52 +573,10 @@ Du kan <b><a href="$1" class="new">laga ei side med denne tittelen</a></b>.
 'viewprevnext'	          => 'Vis ($1) ($2) ($3).',
 'showingresults'          => 'Nedanfor er opp til <strong>$1</strong> resultat som byrjar med nummer <strong>$2</strong> viste.',
 'showingresultsnum'       => 'Nedanfor er <strong>$3</strong> resultat som byrjar med nummer <strong>$2</strong> viste.',
-'nonefound'		  => '\'\'\'Merk\'\'\': søk utan resultat kjem ofte av at ein leitar etter alminnelege engelske ord som "have" og "from", som ikkje er indekserte, eller ved å spesifisere meir enn eitt søkjeord (ettersom berre sider som inneheld alle søkjeorda vil bli funne).',
+'nonefound'               => '\'\'\'Merk\'\'\': søk utan resultat kjem ofte av at ein leitar etter alminnelege engelske ord som "have" og "from", som ikkje er indekserte, eller ved å spesifisere meir enn eitt søkjeord (ettersom berre sider som inneheld alle søkjeorda vil bli funne).',
 'powersearch'             => 'Søk',
 'powersearchtext'         => 'Søk i namnerom:<br />$1<br />$2<br />List omdirigeringar &nbsp; Søk etter: $3 $9',
 'searchdisabled'          => '<p style="margin: 1.5em 2em 1em">Søkefunksjonen på {{SITENAME}} er deaktivert på grunn av for stort press på tenaren akkurat no. I mellomtida kan du leite gjennom Google eller Yahoo! <span style="font-size: 89%; display: block; margin-left: .2em">Ver oppmerksam på at registra deira kan vera utdaterte.</span></p>',
-'googlesearch'            => '<div style="margin-left: 2em">
-
-<!-- Google search -->
-<div style="width:130px;float:left;text-align:center;position:relative;top:-8px"><a href="http://www.google.com/" style="padding:0;background-image:none"><img src="http://www.google.com/logos/Logo_40wht.gif" alt="Google" style="border:none" /></a></div>
-
-<form method="get" action="http://www.google.com/search" style="margin-left:135px">
-  <div>
-    <input type="hidden" name="domains" value="{{SERVER}}" />
-    <input type="hidden" name="num" value="50" />
-    <input type="hidden" name="ie" value="$2" />
-    <input type="hidden" name="oe" value="$2" />
-    
-    <input type="text" name="q" size="31" maxlength="255" value="$1" />
-    <input type="submit" name="btnG" value="Google Search" />
-  </div>
-  <div style="font-size:90%">
-    <input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked="checked" /><label for="gwiki">{{SITENAME}}</label>
-    <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
-  </div>
-</form>
-
-<div style="clear:left;margin-top:10px">
-
-<!-- Yahoo! search -->
-<div style="width:130px;float:left;text-align:center;clear:left"><a href="http://search.yahoo.com/" style="padding:0;background-image:none"><img src="http://us.i1.yimg.com/us.yimg.com/i/us/search/ysan/ysanlogo.gif" alt="Yahoo!" style="border:none" /></a></div>
-
-<form method="get" action="http://search.yahoo.com/search" style="margin-left:135px">
-  <div>
-    <input type="hidden" name="x" value="op" />
-    <input type="hidden" name="va_vt" value="any" />
-    <input type="text" name="va" size="31" value="$1" />
-    <input type="submit" value="Yahoo! Search" />
-  </div>
-  <div style="font-size:90%">
-    <input type="radio" name="vs" id="ywiki" value="{{SERVER}}" checked="checked" /><label for="ywiki">{{SITENAME}}</label>
-    <input type="radio" name="vs" id="yWWW" value="" /><label for="yWWW">WWW</label>
-  </div>
-</form>
-
-</div>
-
-</div>',
 'blanknamespace'        => '(Hovud)',
 
 # Preferences page
@@ -640,7 +587,7 @@ Du kan <b><a href="$1" class="new">laga ei side med denne tittelen</a></b>.
 'prefslogintext'        => 'Du er innlogga som "$1". Det interne ID-nummeret ditt er $2.
 
 Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstillingane.',
-'prefsreset'	        => 'Innstillingane er tilbakestilte.',
+'prefsreset'	        => 'Innstillingane er tilbakestilte til siste lagra versjon.',
 'qbsettings'	        => 'Snøggmeny',
 'qbsettingsnote'	=> 'Denne innstillinga har berre effekt på "Klassisk" og "Kölnerblå" draktene.',
 'changepassword'        => 'Skift passord',
@@ -657,7 +604,7 @@ Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstill
 'math_bad_output'	=> 'Kan ikkje skriva til eller laga mattemappe',
 'math_notexvc'	        => 'Manglar texvc-program; sjå math/README for konfigurasjon.',
 'prefs-personal'        => 'Brukaropplysningar',
-'prefs-rc'              => 'Siste endringar og vising av stubb',
+'prefs-rc'              => 'Siste endringar og grenseverdiar',
 'prefs-misc'            => 'Øvrige innstillingar',
 'saveprefs'		=> 'Lagre innstillingane',
 'resetprefs'	        => 'Tilbakestill innstillingane',
@@ -671,7 +618,7 @@ Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstill
 'resultsperpage'        => 'Resultat per side',
 'contextlines'	        => 'Liner per resultat',
 'contextchars'	        => 'Teikn per line i resultatet',
-'stubthreshold'         => 'Grense for vising av småartiklar',
+'stubthreshold'         => 'Grense (byte) for vising av spirer',
 'recentchangescount'    => 'Tal titlar på sida "siste endringar"',
 'savedprefs'	        => 'Brukarinnstillingane er lagra.',
 'timezonelegend'        => 'Tidssone',
@@ -735,6 +682,7 @@ Sjå [[Help:Brukarinnstillingar|Hjelp]] for ei forklaring på dei ulike innstill
 'minoreditletter'       => 'u',
 'newpageletter'         => 'n',
 'sectionlink'           => '&rarr;',
+'undo'                  => 'attende',
 
 # Upload
 #
@@ -778,7 +726,7 @@ For å laste opp ei fil bruker du "Browse..." eller "Bla gjennom..."-knappen som
 'emptyfile'		=> 'Det ser ut til at fila du lasta opp er tom. Dette kan komma av ein skrivefeil i filnamnet. Sjekk og vurdér om du verkeleg vil laste opp fila.',
 'fileexists'		=> 'Ei fil med dette namnet eksisterer allereie, sjekk $1 om du ikkje er sikker på om du vil endre namnet.',
 'successfulupload'      => 'Opplastinga er ferdig',
-'fileuploaded'	        => 'Fila "$1" er lasta opp. Følg denne lenkja: ($2) åt sida med skildring og fyll ut informasjon om fila, slik som kvar ho kom frå, kva tid ho vart laga og av kven, og andre ting du veit om fila.',
+'fileuploaded'	        => 'Fila "$1" er lasta opp. Følg denne lenkja: $2 åt sida med skildring og fyll ut informasjon om fila, slik som kvar ho kom frå, kva tid ho vart laga og av kven, og andre ting du veit om fila.',
 'uploadwarning'         => 'Opplastingsåtvaring',
 'savefile'		=> 'Lagre fil',
 'uploadedimage'         => 'Lasta opp "[[$1]]"',
@@ -934,7 +882,7 @@ Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den f�
 'watchlistsub'	        => '(for brukar "$1")',
 'nowatchlist'	        => 'Du har ikkje noko i overvakingslista di.',
 'watchnologin'	        => 'Ikkje innlogga',
-'watchnologintext'	=> 'Du lyt vera [[Special:Userlogin|innlogga]] for å kunna endre overvakingslista.',
+'watchnologintext'	=> 'Du lyt vera <a href="{{localurl:Spesial:Userlogin}}">innlogga</a> for å kunna endre overvakingslista.',
 'addedwatch'	        => 'Lagt til overvakingslista',
 'addedwatchtext'        => 'Sida "$1" er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera \'\'\'utheva\'\'\' i [[Special:Recentchanges|siste endringar]] lista for å gjera deg merksam på henne.
 
@@ -947,7 +895,7 @@ Om du seinere vil fjerne sida frå overvakingslista, klikk "Fjern overvaking" p�
 'unwatchthispage'       => 'Fjern overvaking',
 'notanarticle'	        => 'Ikkje innhaldsside',
 'watchnochange'         => 'Ingen av sidene i overvakingslista er endra i den valde perioden.',
-'watchdetails'          => 'Du har $1 sider i overvakingslista di (diskusjonssider ikkje medrekna); du kan <a href="$4">vise og redigere den fullstendige lista</a>. I perioden vald under har brukarar gjort alt i alt $2 endringar på {{SITENAME}}',
+'watchdetails'          => 'Du har $1 sider i overvakingslista di (diskusjonssider ikkje medrekna). Du kan <a href="$4">vise og redigere den fullstendige lista</a>.',
 'watchmethod-recent'    => 'sjekkar om siste endringar for dei overvaka sidene',
 'watchmethod-list'      => 'sjekkar om dei overvaka sidene er vortne endra i det siste',
 'removechecked'         => 'Fjern dei valde sidene frå overvakingslista',
@@ -992,6 +940,7 @@ Den siste redigeringa vart gjort av [[{{ns:2}}:$3|$3]] ([[{{ns:3}}:$3|brukardisk
 #   only shown if there is an edit comment
 'editcomment'           => 'Samandraget for redigeringa var: "<i>$1</i>".',
 'revertpage'	        => 'Tilbakerulla redigering gjort av $2 til tidlegare versjon redigert av $1',
+'sessionfailure'        => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga har blitt avbroten for å vera føre var mot kidnapping av økta. Bruk tilbakeknappen i nettlesaren din og prøv om att.',
 'protectlogpage'        => 'Vernelogg',
 'protectlogtext'        => 'Dette er ei liste over sider som har blitt verna eller har fått fjerna vern. Sjå [[{{ns:4}}:Verna side]] for meir info.',
 'protectedarticle'      => 'verna "[[$1]]"',
@@ -1076,6 +1025,8 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[{{ns:-1}}:I
 'proxyblocker'	        => 'Proxy-blokkerar',
 'proxyblockreason'	=> 'Du er blokkert frå å redigere fordi IP-adressa di tilhøyrer ein open mellomtenar (proxy). Du bør kontakte internettleverandøren din eller kundesørvis og gje dei beskjed, ettersom dette er eit alvorleg sikkerheitsproblem.',
 'proxyblocksuccess'	=> 'Utført.',
+'sorbs'         => 'SORBS DNSBL',
+'sorbsreason'   => '[[IP]]-adressa di er lista som ein open [[mellomtenar]] i [[SORBS DNSBL]] [http://www.sorbs.net].',
 
 # Developer tools
 #
@@ -1166,7 +1117,7 @@ I desse falla lyt du flytte eller flette saman sida manuelt. Om det ikkje er mog
 'pagemovedsub'	        => 'Flyttinga er gjennomført',
 'pagemovedtext'         => 'Sida "[[$1]]" er flytt til "[[$2]]".',
 'articleexists'         => 'Ei side med det namnet finst allereie, eller det namnet du har valt er ikkje gyldig. Vel eit anna namn.',
-'talkexists'	        => 'Innhaldssida vart flytt, men diskusjonssida som høyrer til kunne ikkje flyttast fordi det allereie finst ei side med den nye tittelen. Du lyt flette dei saman manuelt. Dersom det ikkje er mogleg for deg å gjera dette kan du kontakte ein [[{{ns:4}}:Administratorar|administrator]] &#8212; men <b>ikkje</b> bruk klipp-og-lim metoden sidan dette ikkje tek vare på redigeringshistorikken.',
+'talkexists'	        => 'Innhaldssida vart flytt, men diskusjonssida som høyrer til kunne ikkje flyttast fordi det allereie finst ei side med den nye tittelen. Du lyt flette dei saman manuelt. Dersom det ikkje er mogleg for deg å gjera dette kan du kontakte ein <a href="{{localurl:Project:Administratorar}}">administrator</a> &#8212; men <b>ikkje</b> bruk klipp-og-lim metoden sidan dette ikkje tek vare på redigeringshistorikken.',
 'movedto'		=> 'flytta til',
 'movetalk'		=> 'Flytt diskusjonssida òg om ho finst.',
 'talkpagemoved'         => 'Diskusjonssida som høyrer til vart òg flytt.',
@@ -1185,7 +1136,10 @@ Dersom du berre vil ha den siste versjonen kan du òg bruke ei lenkje, t.d. [[{{
 
 # Namespace 8 related
 'allmessages'	        => 'Alle systemmeldingar',
-'allmessagestext'	=> 'Dette er ei liste over alle systemmeldingar som er tilgjengelege i MediaWiki: namnerommet.',
+'allmessagesname' => 'Namn',
+'allmessagesdefault' => 'Standardtekst',
+'allmessagescurrent' => 'Noverande tekst',
+'allmessagestext'	=> 'Dette er ei liste over alle systemmeldingar som er tilgjengelege i MediaWiki-namnerommet.',
 'allmessagesnotsupportedUI' => 'Det gjeldande språket for grensesnittet <b>$1</b>, støttar ikkje {{ns:-1}}:Allmessages.',
 'allmessagesnotsupportedDB' => '{{ns:-1}}:Allmessages er ikkje støtta fordi "wgUseDatabaseMessages" ikkje er aktivert på tenaren.',
 
@@ -1273,107 +1227,6 @@ Skriv "0" som første bokstav for å slå av den nye kategoriutsjånaden.',
 'rcpatroldisabledtext'  => 'Patruljeringsfunksjonen er deaktivert.',
 
 # stylesheets
-'Monobook.css'          => '/*
-<pre>
-*/
-
-a { text-decoration: underline }
-
-/* Donations link to be uncommented during fundraising drives  */
-#siteNotice {
-    margin-top:5px;
-    padding-left: 4px;
-    font-style: italic;
-    text-align: center;
-}
-
-/* Make all non-namespace pages have a light blue content area. This is done by
-   setting the background color for all #content areas to light blue and then
-   overriding it for any #content enclosed in a .ns-0 (main namespace). I then
-   do the same for the "tab" background colors. --Lupo */
-
-#content {
-    background: #F8FCFF; /* a light blue */
-}
-
-.ns-0 * #content {
-    background: white;
-}
-
-#mytabs li {
-    background: #F8FCFF;
-}
-
-.ns-0 * #mytabs li {
-    background: white;
-}
-
-#mytabs li a {
-    background-color: #F8FCFF;
-}
-
-.ns-0 * #mytabs li a {
-    background-color: white;
-}
-
-#p-cactions li {
-    background: #F8FCFF;
-}
-
-.ns-0 * #p-cactions li {
-    background: white;
-}
-
-#p-cactions li a {
-    background-color: #F8FCFF;
-}
-
-.ns-0 * #p-cactions li a {
-    background-color: white;
-}
-
-#bodyContent #siteSub a {
-    color: #000;
-    text-decoration: none;
-    background-color: transparent;
-    background-image: none;
-    padding-right: 0;
-}
-
-/* Bold edit this page link to encourage newcomers */
-#ca-edit a { font-weight: bold !important; }
-
-/* Display ([[MediaWiki:Alreadyloggedin]]) in red and bold */
-div.alreadyloggedin { color: red; font-weight: bold; }
-
-@media print {
-    /* Do not print edit link in templates using Template:Ed
-       Do not print certain classes that shouldnt appear on paper */
-    .editlink, .noprint, .metadata, .dablink { display: none }
-}
-
-/* Temp IE fix to stop it re-fetching the logo */
-#p-logo a {
-  background-image: url(http://upload.wikimedia.org/wikipedia/nn/b/bc/Wiki.png)!important;
-}
-
-/* Style for "notices" */
-.notice {
-    text-align: justify;
-    margin: 1em 0.5em;
-    padding: 0.5em;
-}
-
-#disambig {
-    border-top: 3px double #cccccc; 
-    border-bottom: 3px double #cccccc;
-}
-
-/*
-</pre>
-*/
-',
-
 'Monobook.js'           => '/*
 <pre>
 */
@@ -1390,7 +1243,7 @@ ta[\'pt-login\']                = new Array(\'o\',\'Du er oppfordra til å logge
 ta[\'pt-anonlogin\']            = new Array(\'o\',\'Du er oppfordra til å logge inn, men det er ikkje obligatorisk.\'); 
 ta[\'pt-logout\']               = new Array(\'o\',\'Logg ut\'); 
 ta[\'ca-talk\']                 = new Array(\'t\',\'Diskusjon om innhaldssida\'); 
-ta[\'ca-edit\']                 = new Array(\'e\',\'Du kan redigere denne sida. Ver venleg og bruk førehandsvisings-knappen før du lagrar.\'); 
+ta[\'ca-edit\']                 = new Array(\'e\',\'Du kan redigere denne sida. Bruk førehandsvisings-knappen før du lagrar.\'); 
 ta[\'ca-addsection\']           = new Array(\'+\',\'Legg til ein bolk på denne diskusjonssida.\'); 
 ta[\'ca-viewsource\']           = new Array(\'e\',\'Denne sida er verna, men du kan sjå kjeldeteksten.\'); 
 ta[\'ca-history\']              = new Array(\'h\',\'Eldre versjonar av denne sida.\'); 
@@ -1439,7 +1292,7 @@ ta[\'ca-nstab-category\']       = new Array(\'c\',\'Vis kategoriside\');
 # browsing diffs
 'previousdiff'         => '&larr; Gå til førre skilnad',
 'nextdiff'             => 'Gå til neste skilnad &rarr;',
-'imagemaxsize'         => 'Begrens bilete på filsider til: ',
+'imagemaxsize'         => 'Begrens bilete på filsider til (pikslar): ',
 'showbigimage'         => 'Last ned høgoppløysingsversjon ($1x$2, $3 KB)',
 'newimages'            => 'Nytt biletgalleri',
 
@@ -1502,11 +1355,6 @@ class LanguageNn extends LanguageUtf8 {
 		return $wgNamespaceNamesNn;
 	}
 
-	function getDefaultUserOptions () {
-		global $wgDefaultUserOptionsNn;
-		return $wgDefaultUserOptionsNn;
-		}
-
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsNn;
 		return $wgQuickbarSettingsNn;
@@ -1552,8 +1400,6 @@ class LanguageNn extends LanguageUtf8 {
 		return false;
 	}
 
-	# Inherit userAdjust()
-
 	function date( $ts, $adj = false )
 	{
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
@@ -1576,8 +1422,11 @@ class LanguageNn extends LanguageUtf8 {
 	{
 		return $this->date( $ts, $adj ) . ' kl. ' . $this->time( $ts, $adj );
 	}
-
-	# Inherit rfc1123()
+	
+	function formatNum( $number ) {
+		global $wgTranslateNumerals;
+		return $wgTranslateNumerals ? strtr($number, '.,', ',.' ) : $number;
+	}
 
 	function getMessage( $key )
 	{
@@ -1585,25 +1434,9 @@ class LanguageNn extends LanguageUtf8 {
 		if( isset( $wgAllMessagesNn[$key] ) ) {
 			return $wgAllMessagesNn[$key];
 		} else {
-			return ''; # ??
+			return parent::getMessage( $key );
 		}
 	}
-
-	# Inherit ucfirst()
-	
-	# Inherit checkTitleEncoding()
-	
-	# Inherit stripForSearch()
-	
-	# Inherit setAltEncoding()
-	
-	# Inherit recodeForEdit()
-	
-	# Inherit recodeInput()
-	
-	# Inherit replaceDates()
-	
-	# Inherit isRTL()
 
 }
 
