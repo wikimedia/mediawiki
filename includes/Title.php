@@ -413,12 +413,7 @@ class Title {
 			if ( $query == "-" ) {
 				$query = "";
 			}
-			if ( $wgScript != "" ) {
-				$url = "{$wgScript}?title={$dbkey}&{$query}";
-			} else {
-				# Top level wiki
-				$url = "/{$dbkey}?{$query}";
-			}
+			$url = "{$wgScript}?title={$dbkey}&{$query}";
 		}
 		return $url;
 	}
