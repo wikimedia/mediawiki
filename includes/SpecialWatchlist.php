@@ -11,25 +11,8 @@ function wfSpecialWatchlist()
 	$wgOut->setPagetitle( wfMsg( "watchlist" ) );
 	$sub = str_replace( "$1", $wgUser->getName(), wfMsg( "watchlistsub" ) );
 	$wgOut->setSubtitle( $sub );
-	$wgOut->setRobotpolicy( "index,follow" );
+	$wgOut->setRobotpolicy( "noindex,nofollow" );
 
-	if ( ! isset( $days ) ) {
-		/*
-		$days = $wgUser->getOption( "rcdays" );
-		if ( ! $days ) { $days = 3; }
-		*/
-		$days = (1.0 / 24.0); # 1 hour...
-	}
-	$days = floatval($days);
-	
-	if ( $days <= 0 ) {
-		$docutoff = '';
-	} else {
-		$docutoff = "cur_timestamp > '" .
-		  ( $cutoff = wfUnix2Timestamp( time() - intval( $days * 86400 ) ) )
-		  . "' AND";
-	}
-	
 	$uid = $wgUser->getID();
 	if( $uid == 0 ) {
 		$wgOut->addHTML( wfMsg( "nowatchlist" ) );
@@ -67,13 +50,33 @@ function wfSpecialWatchlist()
         $wgOut->addHTML( wfMsg( "nowatchlist" ) );
         return;
 	}
-	
-	$sql = "SELECT COUNT(*) AS n FROM cur WHERE cur_timestamp>'$cutoff'";
-	$res = wfQuery( $sql );
-	$s = wfFetchObject( $res );
-	$npages = $s->n;
-						
 
+	if ( ! isset( $days ) ) {
+		$big = 250;
+		if($nitems > $big) {
+			# Set default cutoff shorter
+			$days = (1.0 / 24.0); # 1 hour...
+		} else {
+			$days = 0; # no time cutoff for shortlisters
+		}
+	} else {
+		$days = floatval($days);
+	}
+	
+	if ( $days <= 0 ) {
+		$docutoff = '';
+		$cutoff = false;
+		$npages = wfMsg( "all" );
+	} else {
+		$docutoff = "AND cur_timestamp > '" .
+		  ( $cutoff = wfUnix2Timestamp( time() - intval( $days * 86400 ) ) )
+		  . "'";
+		$sql = "SELECT COUNT(*) AS n FROM cur WHERE cur_timestamp>'$cutoff'";
+		$res = wfQuery( $sql );
+		$s = wfFetchObject( $res );
+		$npages = $s->n;
+	}
+	
 	if(isset($_REQUEST['magic'])) {
 		$wgOut->addHTML( wfMsg( "watchlistcontains", $nitems ) .
 			"<p>" . wfMsg( "watcheditlist" ) . "</p>\n" );
@@ -105,10 +108,10 @@ function wfSpecialWatchlist()
 	# down its entirety and then sort the results.
 	
 	# If it's relatively long, it may be worth our while to zip
-	# through the time-sorted page list checking for 
+	# through the time-sorted page list checking for watched items.
 	
 	# Up estimate of watched items by 15% to compensate for talk pages...
-	if( ( $nitems*1.15 > $npages ) ) {
+	if( $cutoff && ( $nitems*1.15 > $npages ) ) {
 		$x = "cur_timestamp";
 		$y = wfMsg( "watchmethod-recent" );
 		$z = "wl_namespace=cur_namespace&65534";
@@ -129,7 +132,7 @@ function wfSpecialWatchlist()
   WHERE wl_user=$uid
   AND $z
   AND wl_title=cur_title
-  AND cur_timestamp>'$cutoff'
+  $docutoff
   ORDER BY cur_timestamp DESC";
 
 
@@ -137,8 +140,10 @@ function wfSpecialWatchlist()
 
 	if($days >= 1)
 		$note = wfMsg( "rcnote", $limit, $days );
-	else
+	elseif($days > 0)
 		$note = wfMsg( "wlnote", $limit, round($days*24) );
+	else
+		$note = "";
 	$wgOut->addHTML( "\n<hr>\n{$note}\n<br>" );
 	$note = wlCutoffLinks( $days, $limit );
 	$wgOut->addHTML( "{$note}\n" );
@@ -186,7 +191,7 @@ function wlDaysLink( $d, $page ) {
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink(
 	  $wgLang->specialPage( $page ),
-	  $d, "days=$d" );
+	  ($d ? $d : wfMsg( "all" ) ), "days=$d" );
 	return $s;
 }
 
@@ -206,7 +211,8 @@ function wlCutoffLinks( $days, $limit, $page = "Watchlist" )
 	return
 		"Show last " .
 		implode(" | ", $hours) . " hours " .
-		implode(" | ", $days) . " days";
+		implode(" | ", $days) . " days " .
+		wlDaysLink( 0, $page );
 #	$note = wfMsg( "rclinks", $cl, $dl, $mlink );
 }
 
