@@ -3,7 +3,7 @@
 # $Id$
 
 if($wgUsePHPTal) {
-require_once($IP.'/includes/SkinPHPTal.php');
+require_once('includes/SkinPHPTal.php');
 
 $wgExtraSkins['wikimediawiki'] = 'Wikimediawiki';
 

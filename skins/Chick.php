@@ -1,6 +1,6 @@
 <?php
 if ($wgUsePHPTal) {
-require_once($IP.'/includes/SkinPHPTal.php');
+require_once('includes/SkinPHPTal.php');
 
 class SkinChick extends SkinPHPTal {
 	function initPage( &$out ) {
