@@ -139,8 +139,8 @@ class EditPage {
 				$wgOut->readOnlyPage();
 				return;
 			}
-			# If article is new, insert it.
 
+			# If article is new, insert it.
 			$aid = $this->mTitle->getArticleID();
 			if ( 0 == $aid ) {
 				# Don't save a new article if it's blank.
@@ -226,7 +226,7 @@ class EditPage {
 					$sectitle=preg_match("/^=+(.*?)=+/mi",
 				  	$this->textbox1,
 				  	$matches);
-					if($matches[1]) { $this->summary = "(".trim($matches[1]).")"; }
+					if($matches[1]) { $this->summary = "=". trim($matches[1])."= "; }
 				}
 			}
 			$wgOut->setPageTitle( $s );
@@ -465,7 +465,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 
 	/* private */ function mergeChangesInto( &$text ){
 		$oldDate = $this->edittime;
-		$res = wfQuery("SELECT cur_text FROM cur WHERE cur_id=" . 
+		$res = wfQuery("SELECT cur_text FROM cur WHERE cur_id=" .
 			$this->mTitle->getArticleID() . " FOR UPDATE", DB_WRITE);
 		$obj = wfFetchObject($res);
 
