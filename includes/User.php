@@ -462,43 +462,51 @@ class User {
 		$this->mName = $str;
 	}
 
+	
+	/**
+	 * Return the title dbkey form of the name, for eg user pages.
+	 * @return string
+	 * @access public
+	 */
+	function getTitleKey() {
+		return str_replace( ' ', '_', $this->getName() );
+	}
+	
 	function getNewtalk() {
 		$fname = 'User::getNewtalk';
 		$this->loadFromDatabase();
 		
 		# Load the newtalk status if it is unloaded (mNewtalk=-1)
-		if ( $this->mNewtalk == -1 ) {
-			$this->mNewtalk=0; # reset talk page status
-			$dbr =& wfGetDB( DB_SLAVE );
-			extract( $dbr->tableNames( 'watchlist' ) );
-			if($this->mId) {
-				$sql = "SELECT wl_user FROM $watchlist
-					WHERE wl_title='" . $dbr->strencode( str_replace( ' ', '_', $this->mName) )."'  AND wl_namespace = " . NS_USER_TALK .
-					" AND wl_user=" . $this->mId . " AND wl_notificationtimestamp != 0";
-				$res = $dbr->query( $sql,'User::get:Newtalk');
+		if( $this->mNewtalk == -1 ) {
+			$this->mNewtalk = 0; # reset talk page status
 
-				if ( $dbr->numRows($res)>0 ) {
-					$this->mNewtalk= 1;
-				}
-				$dbr->freeResult( $res );
-			} else {
+			# Check memcached separately for anons, who have no
+			# entire User object stored in there.
+			if( !$this->mId ) {
 				global $wgDBname, $wgMemc;
 				$key = "$wgDBname:newtalk:ip:{$this->mName}";
 				$newtalk = $wgMemc->get( $key );
-				if( ! is_integer( $newtalk ) ){
-					extract( $dbr->tableNames( 'watchlist' ) );
-					$sql = "SELECT wl_user FROM $watchlist
-						WHERE wl_title='" . $dbr->strencode( str_replace( ' ', '_', $this->mName) )."'  AND wl_namespace = " . NS_USER_TALK .
-						" AND wl_user =" . 0 . " AND wl_notificationtimestamp != 0";
-					$res = $dbr->query( $sql,'User::getNewtalk');
-
-					$this->mNewtalk = $dbr->numRows( $res ) > 0 ? 1 : 0;
-					$dbr->freeResult( $res );
-
-					$wgMemc->set( $key, $this->mNewtalk, time() ); // + 1800 );
-				} else {
+				if( is_integer( $newtalk ) ) {
 					$this->mNewtalk = $newtalk ? 1 : 0;
+					return (bool)$this->mNewtalk;
 				}
+			}
+			
+			$dbr =& wfGetDB( DB_SLAVE );
+			$res = $dbr->select( 'watchlist',
+				array( 'wl_user' ),
+				array( 'wl_title'     => $this->getTitleKey(),
+					   'wl_namespace' => NS_USER_TALK,
+					   'wl_user'      => $this->mId,
+					   'wl_notificationtimestamp != 0' ),
+				'User::getNewtalk' );
+			if( $dbr->numRows($res) > 0 ) {
+				$this->mNewtalk = 1;
+			}
+			$dbr->freeResult( $res );
+			
+			if( !$this->mId ) {
+				$wgMemc->set( $key, $this->mNewtalk, time() ); // + 1800 );
 			}
 		}
 
@@ -911,10 +919,14 @@ class User {
 		$dbw =& wfGetDB( DB_MASTER );
 		if ( ! $this->getNewtalk() ) {
 			# Delete the watchlist entry for user_talk page X watched by user X
-			if( $this->mId ) {
-				$dbw->delete( 'watchlist', array( 'wl_user' => $this->mId, 'wl_title' => str_replace('_', ' ', $this->mName) ,'wl_namespace' => NS_USER_TALK ), $fname );
-			} else {
-				$dbw->delete( 'watchlist', array( 'wl_user' => 0, 'wl_title' => $this->mName, 'wl_namespace' => NS_USER_TALK ), $fname );
+			$dbw->delete( 'watchlist',
+				array( 'wl_user'      => $this->mId,
+					   'wl_title'     => $this->getTitleKey(),
+					   'wl_namespace' => NS_USER_TALK ),
+				$fname );
+			if( !$this->mId ) {
+				# Anon users have a separate memcache space for newtalk
+				# since they don't store their own info. Trim...
 				$wgMemc->delete( "$wgDBname:newtalk:ip:{$this->mName}" );
 			}
 		}
