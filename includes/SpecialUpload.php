@@ -595,7 +595,8 @@ class UploadForm {
 	 * @return bool
 	 */
 	function verify( $tmpfile, $extension ) {
-		if( $this->triggersIEbug( $tmpfile ) ) {
+		if( $this->triggersIEbug( $tmpfile ) ||
+		    $this->triggersSafariBug( $tmpfile ) ) {
 			return false;
 		}
 		
@@ -681,10 +682,18 @@ class UploadForm {
 	 */
 	function triggersIEbug( $filename ) {
 		$file = fopen( $filename, 'rb' );
-		$chunk = strtolower( fread( $file, 200 ) );
+		$chunk = strtolower( fread( $file, 256 ) );
 		fclose( $file );
 		
-		$tags = array( '<html', '<head', '<body', '<script' );
+		$tags = array(
+			'<body',
+			'<head',
+			'<html',
+			'<img',
+			'<pre',
+			'<script',
+			'<table',
+			'<title' );
 		foreach( $tags as $tag ) {
 			if( false !== strpos( $chunk, $tag ) ) {
 				return true;
@@ -692,5 +701,35 @@ class UploadForm {
 		}
 		return false;
 	}
+
+	/**
+	 * Apple's Safari browser performs some unsafe file type autodetection
+	 * which can cause legitimate files to be interpreted as HTML if the
+	 * web server is not correctly configured to send the right content-type
+	 * (or if you're really uploading plain text and octet streams!)
+	 *
+	 * Returns true if Safari would mistake the given file for HTML
+	 * when served with a generic content-type.
+	 *
+	 * @param string $filename
+	 * @return bool
+	 */
+	function triggersSafariBug( $filename ) {
+		$file = fopen( $filename, 'rb' );
+		$chunk = strtolower( fread( $file, 1024 ) );
+		fclose( $file );
+		
+		$tags = array(
+			'<html',
+			'<script',
+			'<title' );
+		foreach( $tags as $tag ) {
+			if( false !== strpos( $chunk, $tag ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }
 ?>

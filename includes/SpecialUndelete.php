@@ -275,10 +275,13 @@ class UndeleteForm {
 	var $mTargetTimestamp;
 
 	function UndeleteForm( &$request, $par = "" ) {
+		global $wgUser;
 		$this->mAction = $request->getText( 'action' );
 		$this->mTarget = $request->getText( 'target' );
 		$this->mTimestamp = $request->getText( 'timestamp' );
-		$this->mRestore = $request->getCheck( 'restore' ) && $request->wasPosted();
+		$this->mRestore = $request->getCheck( 'restore' ) &&
+			$request->wasPosted() &&
+			$wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		if( $par != "" ) {
 			$this->mTarget = $par;
 		}
@@ -376,11 +379,13 @@ class UndeleteForm {
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 		$encTarget = htmlspecialchars( $this->mTarget );
 		$button = htmlspecialchars( wfMsg("undeletebtn") );
+		$token = htmlspecialchars( $wgUser->editToken() );
 		
 		$wgOut->addHTML("
 	<form id=\"undelete\" method=\"post\" action=\"{$action}\">
 	<input type=\"hidden\" name=\"target\" value=\"{$encTarget}\" />
 	<input type=\"submit\" name=\"restore\" value=\"{$button}\" />
+	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 	");
 
 		# Show relevant lines from the deletion log:

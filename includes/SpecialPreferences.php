@@ -39,7 +39,7 @@ class PreferencesForm {
 	 * Load some values
 	 */
 	function PreferencesForm( &$request ) {	
-		global $wgLang, $wgContLang, $wgAllowRealName;
+		global $wgLang, $wgContLang, $wgUser, $wgAllowRealName;
 		
 		$this->mQuickbar = $request->getVal( 'wpQuickbar' );
 		$this->mOldpass = $request->getVal( 'wpOldpass' );
@@ -67,7 +67,9 @@ class PreferencesForm {
 		$this->mAction = $request->getVal( 'action' );
 		$this->mReset = $request->getCheck( 'wpReset' );
 		$this->mPosted = $request->wasPosted();
-		$this->mSaveprefs = $request->getCheck( 'wpSaveprefs' ) && $this->mPosted;
+		$this->mSaveprefs = $request->getCheck( 'wpSaveprefs' ) &&
+			$this->mPosted &&
+			$wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
 
 		# User toggles  (the big ugly unsorted list of checkboxes)
 		$this->mToggles = array();
@@ -686,6 +688,7 @@ class PreferencesForm {
 		}
 		$wgOut->addHTML( "</fieldset>\n\n" );
 
+		$token = htmlspecialchars( $wgUser->editToken() );
 		$wgOut->addHTML( "
 	<div id='prefsubmit'>
 	<div>
@@ -696,6 +699,7 @@ class PreferencesForm {
 	
 	</div>
 	
+	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 	</form>\n" );
 	}
 }

@@ -19,9 +19,14 @@ function wfSpecialLockdb()
 	$action = $wgRequest->getVal( 'action' );
 	$f = new DBLockForm();
 
-	if ( "success" == $action ) { $f->showSuccess(); }
-	else if ( "submit" == $action && $wgRequest->wasPosted() ) { $f->doSubmit(); }
-	else { $f->showForm( "" ); }
+	if ( "success" == $action ) {
+		$f->showSuccess();
+	} else if ( "submit" == $action && $wgRequest->wasPosted() &&
+		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
+		$f->doSubmit();
+	} else {
+		$f->showForm( "" );
+	}
 }
 
 /**
@@ -53,6 +58,7 @@ class DBLockForm {
 		$elr = htmlspecialchars( wfMsg( "enterlockreason" ) );
 		$titleObj = Title::makeTitle( NS_SPECIAL, "Lockdb" );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
+		$token = htmlspecialchars( $wgUser->editToken() );
 
 		$wgOut->addHTML( <<<END
 <form id="lockdb" method="post" action="{$action}">
@@ -72,6 +78,7 @@ class DBLockForm {
 		</td>
 	</tr>
 </table>
+<input type="hidden" name="wpEditToken" value="{$token}" />
 </form>
 END
 );

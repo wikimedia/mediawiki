@@ -19,9 +19,14 @@ function wfSpecialBlockip() {
 	$ipb = new IPBlockForm();
 
 	$action = $wgRequest->getVal( 'action' );
-	if ( 'success' == $action ) { $ipb->showSuccess(); }
-	else if ( $wgRequest->wasPosted() && 'submit' == $action ) { $ipb->doSubmit(); }
-	else { $ipb->showForm( '' ); }
+	if ( 'success' == $action ) {
+		$ipb->showSuccess();
+	} else if ( $wgRequest->wasPosted() && 'submit' == $action &&
+		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
+		$ipb->doSubmit();
+	} else {
+		$ipb->showForm( '' );
+	}
 }
 
 /**
@@ -66,6 +71,7 @@ class IPBlockForm {
 		$scBlockAddress = htmlspecialchars( $this->BlockAddress );
 		$scBlockExpiry = htmlspecialchars( $this->BlockExpiry );
 		$scBlockReason = htmlspecialchars( $this->BlockReason );
+		$token = htmlspecialchars( $wgUser->editToken() );
 		
 		$wgOut->addHTML( "
 <form id=\"blockip\" method=\"post\" action=\"{$action}\">
@@ -106,6 +112,7 @@ class IPBlockForm {
 			</td>
 		</tr>
 	</table>
+	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 </form>\n" );
 
 	}
