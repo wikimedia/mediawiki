@@ -255,7 +255,7 @@ class Article {
 	{
 		global $wgUser, $wgOut, $wgLang;
 		global $oldid, $diff; # From query
-		global $wgLinkCache;
+		global $wgLinkCache, $IP;
 		$fname = "Article::view";
 		wfProfileIn( $fname );
 
@@ -266,6 +266,7 @@ class Article {
 		# diff page instead of the article.
 
 		if ( isset( $diff ) ) {
+			include_once( "$IP/DifferenceEngine.php" );
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 			$de = new DifferenceEngine( $oldid, $diff );
 			$de->showDiffPage();

@@ -78,14 +78,15 @@ class Profiler
 		$prof .= sprintf( $titleFormat, "Name", "Calls", "Total", "Each", "%" );
 		$this->mCollated = array();
 		$this->mCalls = array();
-		$total = 0;
 		
 		# Estimate profiling overhead
 		$profileCount = count( $this->mStack );
+		wfProfileIn( "-overhead-total" );
 		for ($i=0; $i<$profileCount ; $i++) {
-			wfProfileIn( "--profiling overhead--" );
-			wfProfileOut( "--profiling overhead--" );
+			wfProfileIn( "-overhead-internal" );
+			wfProfileOut( "-overhead-internal" );
 		}
+		wfProfileOut( "-overhead-total" );
 		
 		# Collate
 		foreach ( $this->mStack as $entry ) {
@@ -98,19 +99,17 @@ class Profiler
 			$elapsed = $end - $start;
 			$this->mCollated[$fname] += $elapsed;
 			$this->mCalls[$fname] ++;
-			
-			if ( $fname != "--profiling overhead--" ) {
-				$total += $elapsed;
-			}
 		}
-		
-		$overhead = $this->mCollated["--profiling overhead--"] / $this->mCalls["--profiling overhead--"];
-		
+
+		$total = $this->mCollated["-total"];
+		$overhead = $this->mCollated["-overhead-internal"] / $profileCount;
+		$this->mCalls["-overhead-total"] = $profileCount;
+
 		# Output
 		foreach ( $this->mCollated as $fname => $elapsed ) {
 			$calls = $this->mCalls[$fname];
 			# Adjust for overhead
-			if ( $fname != "--profiling overhead--" ) {
+			if ( $fname[0] != "-" ) {
 				$elapsed -= $overhead * $calls;
 			}
 			
@@ -125,5 +124,6 @@ class Profiler
 }
 
 $wgProfiler = new Profiler();
+$wgProfiler->profileIn( "-total" );
 
 ?>

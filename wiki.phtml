@@ -50,6 +50,7 @@ wfProfileOut();
 if ( -1 == $wgTitle->getNamespace() ) {
 	wfSpecialPage();
 } else if ( "" != $search ) {
+	include_once( "$IP/SearchEngine.php" );
 	if($go) {
 	
 		wfGo ($search);

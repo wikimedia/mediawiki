@@ -356,11 +356,14 @@ class Skin {
 		global $wgUser, $wgOut, $wgLang;
 		$fname =  "Skin::doAfterContent";
 		wfProfileIn( $fname );
+		wfProfileIn( "$fname-1" );
 
 		$s = "\n</div><br clear=all>\n";
-
 		$s .= "\n<div id='footer'>";
 		$s .= "<table width='98%' border=0 cellspacing=0><tr>";
+		
+		wfProfileOut( "$fname-1" );
+		wfProfileIn( "$fname-2" );
 
 		$qb = $this->qbSetting();
 		$shove = ($qb != 0);
@@ -370,6 +373,8 @@ class Skin {
 		if ( $shove && $left ) { # Left
 			$s .= $this->getQuickbarCompensator();
 		}
+		wfProfileOut( "$fname-2" );
+		wfProfileIn( "$fname-3" );
 		$l = $wgLang->isRTL() ? "right" : "left";
 		$s .= "<td class='bottom' align='$l' valign='top'>";
 
@@ -385,8 +390,11 @@ class Skin {
 			$s .= $this->getQuickbarCompensator();
 		}
 		$s .= "</tr></table>\n</div>\n</div>\n";
-
+		
+		wfProfileOut( "$fname-3" );
+		wfProfileIn( "$fname-4" );
 		if ( 0 != $qb ) { $s .= $this->quickBar(); }
+		wfProfileOut( "$fname-4" );
 		wfProfileOut( $fname );
 		return $s;
 	}
@@ -1139,7 +1147,10 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 	# otherwise the cache won't get updated properly.  See LINKCACHE.DOC.
 	#
 	function makeLink( $title, $text = "", $query = "", $trail = "" ) {
-		return $this->makeLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+		wfProfileIn( "Skin::makeLink" );
+		$result = $this->makeLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+		wfProfileOut( "Skin::makeLink" );
+		return $result;
 	}
 
 	function makeKnownLink( $title, $text = "", $query = "", $trail = "" ) {
@@ -1158,8 +1169,6 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 	function makeLinkObj( &$nt, $text= "", $query = "", $trail = "" )
 	{
 		global $wgOut, $wgUser;
-		$fname = "Skin::makeLinkObj";
-		wfProfileIn( $fname );
 		if ( $nt->isExternal() ) {
 			$u = $nt->getFullURL();
 			if ( "" == $text ) { $text = $nt->getPrefixedText(); }
@@ -1207,7 +1216,6 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 				}
 			}
 		}
-		wfProfileOut( $fname );
 		return $retVal;
 	}
 
