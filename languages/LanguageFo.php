@@ -223,6 +223,7 @@ require_once( 'LanguageUtf8.php');
 'mw_math_modern' => "Tilmælt nýtíðarkagara",
 'mw_math_mathml' => 'MathML if possible (experimental)',
 
+'linktrail' => '/^([á|ð|í|ó|ú|ý|æ|ø|a-z]+)(.*)$/sD',
 );
 class LanguageFo extends LanguageUtf8 {
 
