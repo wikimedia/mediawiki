@@ -29,6 +29,8 @@ class Sanitizer {
 	 * Cleans up HTML, removes dangerous tags and attributes, and
 	 * removes HTML comments
 	 * @access private
+	 * @param string $text
+	 * @return string
 	 */
 	function removeHTMLtags( $text ) {
 		global $wgUseTidy, $wgUserHtml;
@@ -149,6 +151,8 @@ class Sanitizer {
 	 * trailing spaces and one of the newlines.
 	 * 
 	 * @access private
+	 * @param string $text
+	 * @return string
 	 */
 	function removeHTMLcomments( $text ) {
 		$fname='Parser::removeHTMLcomments';
@@ -322,7 +326,10 @@ class Sanitizer {
 			array( 'Sanitizer', 'normalizeCharReferencesCallback' ),
 			$text );
 	}
-	
+	/**
+	 * @param string $matches
+	 * @return string
+	 */
 	function normalizeCharReferencesCallback( $matches ) {
 		$ret = null;
 		if( $matches[1] != '' ) {
@@ -346,6 +353,7 @@ class Sanitizer {
 	 * return the named entity reference as is. Otherwise, returns
 	 * HTML-escaped text of pseudo-entity source (eg &amp;foo;)
 	 *
+	 * @param string $name
 	 * @return string
 	 */
 	function normalizeEntity( $name ) {
