@@ -174,10 +174,9 @@ class LinksUpdate {
 	}
 
 	/**
-	 * Old inefficient update function
-	 * Used for rebuilding the link table
-	 * @todo Only used by ./maintenance/refreshLinks.inc probably need to be replaced
-	 * @deprecated
+	  * Link update which clears the previous entries and inserts new ones
+	  * May be slower or faster depending on level of link contention and write speed of DB
+	  * Also useful where link table corruption needs to be repaired, e.g. in refreshLinks.php
 	 */
 	function doDumbUpdate() {
 		global $wgLinkCache, $wgDBtransactions, $wgUseCategoryMagic;
