@@ -207,8 +207,9 @@ class MessageCache
 	}
 
 	function get( $key, $useDB, $forcontent=true ) {
+		global $wgContLanguageCode;
 		if($forcontent) {
-			global $wgContLang, $wgContLanguageCode;
+			global $wgContLang;
 			$lang = $wgContLang;
 			$langcode = $wgContLanguageCode;
 		}
@@ -224,8 +225,9 @@ class MessageCache
 
 		$message = false;
 		if ( !$this->mDisable && $useDB ) {
-			$title = $lang->ucfirst( $key )."/$langcode";
-
+			$title = $lang->ucfirst( $key );
+			if($langcode!=$wgContLanguageCode)
+				$title.="/$langcode";
 
 			# Try the cache
 			if ( $this->mUseCache && $this->mCache && array_key_exists( $title, $this->mCache ) ) {

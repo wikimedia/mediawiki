@@ -41,8 +41,12 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 		if(!is_object($lang)) {
 			die ("class $langclass not defined. perhaps you need to include the file $langclass.php in $wgContLangClass.php?");
 		}
+		if($v==$wgContLanguageCode)
+			$suffix='';
+		else
+			$suffix="/$v";
 		foreach ($sortedArray as $key => $msg) {
-			$messages[$key."/$v"] = $lang->getMessage($key);
+			$messages[$key.$suffix] = $lang->getMessage($key);
 		}
 	}	
 
