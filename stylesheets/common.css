@@ -183,3 +183,10 @@ div.townBox dl dd {
     margin: 0.1em 0 0 1.1em;
     background-color: #f3f3f3;
 }
+/* use this instead of #toc for page content */
+.toccolours { 
+    border:1px solid #aaaaaa;
+    background-color:#f9f9f9;
+    padding:5px;
+    font-size: 95%;
+}
