@@ -27,6 +27,22 @@ function wfSpecialPreferences()
 	}
 }
 
+/* private */ function validateInt( &$val, $min=0, $max=0x7fffffff ) {
+	$val = intval($val);
+	$val = min($val, $max);
+	$val = max($val, $min);
+	return $val;
+}
+
+/* private */ function validateIntOrNull( &$val, $min=0, $max=0x7fffffff ) {
+	$val = trim($val);
+	if($val === "") {
+		return $val;
+	} else {
+		return validateInt( $val, $min, $max );
+	}
+}
+
 /* private */ function savePreferences()
 {
 	global $wgUser, $wgLang, $wgDeferredUpdateList;
@@ -54,14 +70,14 @@ function wfSpecialPreferences()
 	$wgUser->setOption( "quickbar", $wpQuickbar );
 	$wgUser->setOption( "skin", $wpSkin );
 	$wgUser->setOption( "math", $wpMath );
-	$wgUser->setOption( "searchlimit", $wpSearch );
-	$wgUser->setOption( "contextlines", $wpSearchLines );
-	$wgUser->setOption( "contextchars", $wpSearchChars );
-	$wgUser->setOption( "rclimit", $wpRecent );
-	$wgUser->setOption( "rows", $wpRows );
-	$wgUser->setOption( "cols", $wpCols );
-	$wgUser->setOption( "stubthreshold", $wpStubs );
-	$wgUser->setOption( "timecorrection", $wpHourDiff );
+	$wgUser->setOption( "searchlimit", validateIntOrNull( $wpSearch ) );
+	$wgUser->setOption( "contextlines", validateIntOrNull( $wpSearchLines ) );
+	$wgUser->setOption( "contextchars", validateIntOrNull( $wpSearchChars ) );
+	$wgUser->setOption( "rclimit", validateIntOrNull( $wpRecent ) );
+	$wgUser->setOption( "rows", validateInt( $wpRows, 4, 1000 ) );
+	$wgUser->setOption( "cols", validateInt( $wpCols, 4, 1000 ) );
+	$wgUser->setOption( "stubthreshold", validateIntOrNull( $wpStubs ) );
+	$wgUser->setOption( "timecorrection", validateIntOrNull( $wpHourDiff, -12, 14 ) );
 
 	if ( $wpEmailFlag ) { $wgUser->setOption( "disablemail", 1 ); }
 	else { $wgUser->setOption( "disablemail", 0 ); }
@@ -175,8 +191,8 @@ method=\"post\"><table border=\"1\"><tr><td valign=top nowrap><b>$qb:</b><br>\n"
 	for ( $i = 0; $i < count( $qbs ); ++$i ) {
 		if ( $i == $wpQuickbar ) { $checked = " checked"; }
 		else { $checked = ""; }
-		$wgOut->addHTML( "<input type=radio name=\"wpQuickbar\"
-value=\"$i\"$checked> {$qbs[$i]}<br>\n" );
+		$wgOut->addHTML( "<label><input type=radio name=\"wpQuickbar\"
+value=\"$i\"$checked> {$qbs[$i]}</label><br>\n" );
 	}
 
 	# Fields for changing password
@@ -186,9 +202,9 @@ value=\"$i\"$checked> {$qbs[$i]}<br>\n" );
 	$wpRetype = wfEscapeHTML( $wpRetype );
 
 	$wgOut->addHTML( "</td><td vaign=top nowrap><b>$cp:</b><br>
-$opw: <input type=password name=\"wpOldpass\" value=\"$wpOldpass\" size=20><br>
-$npw: <input type=password name=\"wpNewpass\" value=\"$wpNewpass\" size=20><br>
-$rpw: <input type=password name=\"wpRetype\" value=\"$wpRetype\" size=20><br>
+<label>$opw: <input type=password name=\"wpOldpass\" value=\"$wpOldpass\" size=20></label><br>
+<label>$npw: <input type=password name=\"wpNewpass\" value=\"$wpNewpass\" size=20></label><br>
+<label>$rpw: <input type=password name=\"wpRetype\" value=\"$wpRetype\" size=20></label><br>
 </td></tr>\n" );
 
 	# Skin setting
@@ -197,8 +213,8 @@ $rpw: <input type=password name=\"wpRetype\" value=\"$wpRetype\" size=20><br>
 	for ( $i = 0; $i < count( $skins ); ++$i ) {
 		if ( $i == $wpSkin ) { $checked = " checked"; }
 		else { $checked = ""; }
-		$wgOut->addHTML( "<input type=radio name=\"wpSkin\"
-value=\"$i\"$checked> {$skins[$i]}<br>\n" );
+		$wgOut->addHTML( "<label><input type=radio name=\"wpSkin\"
+value=\"$i\"$checked> {$skins[$i]}</label><br>\n" );
 	}
 
 	# Various checkbox options
@@ -210,8 +226,8 @@ value=\"$i\"$checked> {$skins[$i]}<br>\n" );
 		} else {
 			$checked = "";
 		}
-		$wgOut->addHTML( "<input type=checkbox value=\"1\" "
-		  . "name=\"wpOp$tname\"$checked>$ttext<br>\n" );
+		$wgOut->addHTML( "<label><input type=checkbox value=\"1\" "
+		  . "name=\"wpOp$tname\"$checked>$ttext</label><br>\n" );
 	}
 	$wgOut->addHTML( "</td>" );
 
@@ -221,8 +237,8 @@ value=\"$i\"$checked> {$skins[$i]}<br>\n" );
 	for ( $i = 0; $i < count( $mathopts ); ++$i ) {
 		if ( $i == $wpMath ) { $checked = " checked"; }
 		else { $checked = ""; }
-		$wgOut->addHTML( "<input type=radio name=\"wpMath\"
-value=\"$i\"$checked> {$mathopts[$i]}<br>\n" );
+		$wgOut->addHTML( "<label><input type=radio name=\"wpMath\"
+value=\"$i\"$checked> {$mathopts[$i]}</label><br>\n" );
 	}
 
 	$wgOut->addHTML( "</td></tr><tr>" );
@@ -232,11 +248,11 @@ value=\"$i\"$checked> {$mathopts[$i]}<br>\n" );
 	$nowlocal = $wgLang->time( $now = wfTimestampNow(), true );
 	$nowserver = $wgLang->time( $now, false );
 	$wgOut->addHTML( "<td valign=top nowrap><b>$tbs:</b><br>
-$tbr: <input type=text name=\"wpRows\" value=\"{$wpRows}\" size=6><br>
-$tbc: <input type=text name=\"wpCols\" value=\"{$wpCols}\" size=6><br><br>
+<label>$tbr: <input type=text name=\"wpRows\" value=\"{$wpRows}\" size=6></label><br>
+<label>$tbc: <input type=text name=\"wpCols\" value=\"{$wpCols}\" size=6></label><br><br>
 <b>$tzServerTime:</b> $nowserver<br />
 <b>$ltz:</b> $nowlocal<br />
-$tzo*: <input type=text name=\"wpHourDiff\" value=\"{$wpHourDiff}\" size=6><br />
+<label>$tzo*: <input type=text name=\"wpHourDiff\" value=\"{$wpHourDiff}\" size=6></label><br />
 <input type=\"button\" value=\"$tzGuess\" onClick=\"javascript:guessTimezone()\" />
 </td>" );
 
@@ -248,15 +264,15 @@ $tzo*: <input type=text name=\"wpHourDiff\" value=\"{$wpHourDiff}\" size=6><br /
 	else { $emfc = ""; }
 
 	$wgOut->addHTML( "<td valign=top nowrap>
-$yem: <input type=text name=\"wpEmail\" value=\"{$wpEmail}\" size=20><br>
-<input type=checkbox $emfc value=\"1\" name=\"wpEmailFlag\"> $emf<br>
-$ynn: <input type=text name=\"wpNick\" value=\"{$wpNick}\" size=12><br>
-$rcc: <input type=text name=\"wpRecent\" value=\"$wpRecent\" size=6><br>
-$stt: <input type=text name=\"wpStubs\" value=\"$wpStubs\" size=6><br>
+<label>$yem: <input type=text name=\"wpEmail\" value=\"{$wpEmail}\" size=20></label><br>
+<label><input type=checkbox $emfc value=\"1\" name=\"wpEmailFlag\"> $emf</label><br>
+<label>$ynn: <input type=text name=\"wpNick\" value=\"{$wpNick}\" size=12></label><br>
+<label>$rcc: <input type=text name=\"wpRecent\" value=\"$wpRecent\" size=6></label><br>
+<label>$stt: <input type=text name=\"wpStubs\" value=\"$wpStubs\" size=6></label><br>
 <strong>{$srh}:</strong><br>
-$rpp: <input type=text name=\"wpSearch\" value=\"$wpSearch\" size=6><br>
-$scl: <input type=text name=\"wpSearchLines\" value=\"$wpSearchLines\" size=6><br>
-$scc: <input type=text name=\"wpSearchChars\" value=\"$wpSearchChars\" size=6></td>
+<label>$rpp: <input type=text name=\"wpSearch\" value=\"$wpSearch\" size=6></label><br>
+<label>$scl: <input type=text name=\"wpSearchLines\" value=\"$wpSearchLines\" size=6></label><br>
+<label>$scc: <input type=text name=\"wpSearchChars\" value=\"$wpSearchChars\" size=6></label></td>
 </tr><tr>
 <td align=center><input type=submit name=\"wpSaveprefs\" value=\"$svp\"></td>
 <td align=center><input type=submit name=\"wpReset\" value=\"$rsp\"></td>
