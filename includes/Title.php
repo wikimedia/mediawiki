@@ -117,11 +117,6 @@ class Title {
 
 	function getInterwikiLink( $key )
 	{	
-		# Performance note: It would probably be a good idea to 
-		# get/set/fetch the entire $title_interwiki_cache with memcache 
-		# here, reducing some overhead for the repeated memcache accesses. 
-		# Popular pages often has many interwiki links anyways.
-
 		global $wgMemc, $wgDBname, $title_interwiki_cache;
 		$k = "$wgDBname:interwiki:$key";
 
@@ -129,8 +124,10 @@ class Title {
 			return $title_interwiki_cache[$k]->iw_url;
 
 		$s = $wgMemc->get( $k ); 
-		if( $s !== false ) return $s->iw_url;
-		
+		if( $s ) { 
+			$title_interwiki_cache[$k] = $s;
+			return $s->iw_url;
+		}
 		$dkey = wfStrencode( $key );
 		$query = "SELECT iw_url FROM interwiki WHERE iw_prefix='$dkey'";
 		$res = wfQuery( $query, DB_READ, "Title::getInterwikiLink" );
@@ -142,7 +139,7 @@ class Title {
 			$s->iw_url = "";
 		}
 		$wgMemc->set( $k, $s );
-		$title_interwiki_cache[$k] = $s;		
+		$title_interwiki_cache[$k] = $s;
 		return $s->iw_url;
 	}
 
