@@ -1,3 +1,7 @@
+-- This file should be phased out.
+-- It's useless importing dumps that already have indexes in their definitions.
+--
+
 -- SQL to add non-unique indexes to Wikipedia database tables.
 -- This is read and executed by the install script; you should
 -- never have to run it by itself.
@@ -26,18 +30,6 @@ ALTER TABLE old
   ADD INDEX name_title_timestamp (old_namespace,old_title,inverse_timestamp),
   ADD INDEX user_timestamp (old_user,inverse_timestamp),
   ADD INDEX usertext_timestamp (old_user_text,inverse_timestamp);
-
-ALTER TABLE links
-  ADD INDEX l_from (l_from),
-  ADD INDEX l_to (l_to);
-
-ALTER TABLE brokenlinks
-  ADD INDEX bl_from (bl_from),
-  ADD INDEX bl_to (bl_to);
-
-ALTER TABLE imagelinks
-  ADD INDEX il_from (il_from(10)),
-  ADD INDEX il_to (il_to(10));
 
 ALTER TABLE ipblocks
   ADD INDEX ipb_address (ipb_address),

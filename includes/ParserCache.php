@@ -44,7 +44,7 @@ class ParserCache
 	function clearLinksTo( $pid ){
 		$pid = intval( $pid );
 		wfQuery("DELETE parsercache FROM parsercache,links ".
-			"WHERE pc_title=links.l_from AND l_to={$pid}", DB_WRITE);
+			"WHERE pc_pageid=links.l_from AND l_to={$pid}", DB_WRITE);
 		wfQuery("DELETE FROM parsercache WHERE pc_pageid='{$pid}'", DB_WRITE);
 	}
 

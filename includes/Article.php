@@ -843,11 +843,11 @@ class Article {
 			wfPurgeSquidServers($urlArr);
 
 			/* prepare the list of urls to purge */
-			$sql = "SELECT l_from FROM links WHERE l_to={$id}" ;
+			$sql = "SELECT cur_namespace,cur_title FROM links,cur WHERE l_to={$id} and l_from=cur_id" ;
 			$res = wfQuery ( $sql, DB_READ ) ;
 			while ( $BL = wfFetchObject ( $res ) )
 			{
-				$tobj = Title::newFromDBkey( $BL->l_from) ; 
+				$tobj = Title::MakeTitle( $BL->cur_namespace, $BL->cur_title ) ; 
 				$blurlArr[] = $tobj->getInternalURL();
 			}
 			wfFreeResult ( $res ) ;
@@ -899,18 +899,15 @@ class Article {
 			$res = wfQuery( $sql, DB_READ, $fname );
 
 			$sql = "INSERT INTO brokenlinks (bl_from,bl_to) VALUES ";
-            		$now = wfTimestampNow();
+			$now = wfTimestampNow();
 			$sql2 = "UPDATE cur SET cur_touched='{$now}' WHERE cur_id IN (";
 			$first = true;
 
 			while ( $s = wfFetchObject( $res ) ) {
-				$nt = Title::newFromDBkey( $s->l_from );
-				$lid = $nt->getArticleID();
-
 				if ( ! $first ) { $sql .= ","; $sql2 .= ","; }
 				$first = false;
-				$sql .= "({$lid},'{$t}')";
-				$sql2 .= "{$lid}";
+				$sql .= "({$s->l_from},'{$t}')";
+				$sql2 .= "{$s->l_from}";
 			}
 			$sql2 .= ")";
 			if ( ! $first ) {
@@ -922,10 +919,10 @@ class Article {
 			$sql = "DELETE FROM links WHERE l_to={$id}";
 			wfQuery( $sql, DB_WRITE, $fname );
 
-			$sql = "DELETE FROM links WHERE l_from='{$t}'";
+			$sql = "DELETE FROM links WHERE l_from={$id}";
 			wfQuery( $sql, DB_WRITE, $fname );
 
-			$sql = "DELETE FROM imagelinks WHERE il_from='{$t}'";
+			$sql = "DELETE FROM imagelinks WHERE il_from={$d}";
 			wfQuery( $sql, DB_WRITE, $fname );
 
 			$sql = "DELETE FROM brokenlinks WHERE bl_from={$id}";

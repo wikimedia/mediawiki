@@ -16,7 +16,7 @@ class DeadendPagesPage extends PageQueryPage {
     
     function getSQL( $offset, $limit ) {
 	return "SELECT cur_title " . 
-	  "FROM cur LEFT JOIN links ON cur_title = l_from " .
+	  "FROM cur LEFT JOIN links ON cur_id = l_from " .
 	  "WHERE l_from IS NULL " .
 	  "AND cur_namespace = 0 " .
 	  "ORDER BY cur_title " . 

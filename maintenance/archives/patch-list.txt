@@ -163,3 +163,8 @@ patch-rc-newindex.sql
 * 2004-02-14: Adds the ipb_expiry field to ipblocks
 patch-ipb_expiry.sql
 
+
+* 2004-03-11: Recreate links tables to avoid duplicating titles
+everywhere. **Rebuild your links after this with refreshLinks.php**
+
+patch-linktables.sql

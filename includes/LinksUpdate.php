@@ -38,13 +38,13 @@ class LinksUpdate {
 		if ( $wgLinkCache->incrementalSetup( LINKCACHE_GOOD, $del, $add ) ) {
 			# Delete where necessary
 			if ( count( $del ) ) {
-				$sql = "DELETE FROM links WHERE l_from='{$this->mTitleEnc}' AND l_to IN(".
+				$sql = "DELETE FROM links WHERE l_from={$this->mId} AND l_to IN(".
 					implode( ",", $del ) . ")";
 				wfQuery( $sql, DB_WRITE, $fname );
 			}
 		} else {
 			# Delete everything
-			$sql = "DELETE FROM links WHERE l_from='{$this->mTitleEnc}'";
+			$sql = "DELETE FROM links WHERE l_from={$this->mId}";
 			wfQuery( $sql, DB_WRITE, $fname );
 			
 			# Get the addition list
@@ -61,7 +61,7 @@ class LinksUpdate {
 				if ( ! $first ) { $sql .= ","; }
 				$first = false;
 
-				$sql .= "('{$this->mTitleEnc}',{$lid})";
+				$sql .= "({$this->mId},{$lid})";
 			}
 		}
 		if ( "" != $sql ) { 
@@ -106,7 +106,7 @@ class LinksUpdate {
 
 		#------------------------------------------------------------------------------
 		# Image links
-		$sql = "DELETE FROM imagelinks WHERE il_from='{$this->mTitleEnc}'";
+		$sql = "DELETE FROM imagelinks WHERE il_from='{$this->mId}'";
 		wfQuery( $sql, DB_WRITE, $fname );
 		
 		# Get addition list
@@ -128,7 +128,7 @@ class LinksUpdate {
 				if ( ! $first ) { $sql .= ","; }
 				$first = false;
 
-				$sql .= "('{$this->mTitleEnc}','{$iname}')";
+				$sql .= "({$this->mId},'{$iname}')";
 			}
 		}
 		if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
@@ -156,7 +156,7 @@ class LinksUpdate {
 			wfQuery( $sql, DB_WRITE, $fname );
 		}
 		
-		$sql = "DELETE FROM links WHERE l_from='{$this->mTitleEnc}'";
+		$sql = "DELETE FROM links WHERE l_from={$this->mId}";
 		wfQuery( $sql, DB_WRITE, $fname );
 
 		$a = $wgLinkCache->getGoodLinks();
@@ -168,7 +168,7 @@ class LinksUpdate {
 				if ( ! $first ) { $sql .= ","; }
 				$first = false;
 
-				$sql .= "('{$this->mTitleEnc}',{$lid})";
+				$sql .= "({$this->mId},{$lid})";
 			}
 		}
 		if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
@@ -191,7 +191,7 @@ class LinksUpdate {
 		}
 		if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
 		
-		$sql = "DELETE FROM imagelinks WHERE il_from='{$this->mTitleEnc}'";
+		$sql = "DELETE FROM imagelinks WHERE il_from={$this->mId}";
 		wfQuery( $sql, DB_WRITE, $fname );
 
 		$a = $wgLinkCache->getImageLinks();
@@ -204,7 +204,7 @@ class LinksUpdate {
 				if ( ! $first ) { $sql .= ","; }
 				$first = false;
 
-				$sql .= "('{$this->mTitleEnc}','{$iname}')";
+				$sql .= "({$this->mId},'{$iname}')";
 			}
 		}
 		if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
@@ -234,9 +234,8 @@ class LinksUpdate {
 		while ( $row = wfFetchObject( $res ) ) {
 			if ( ! $first ) { $sql .= ","; $sql2 .= ","; }
 			$first = false;
-			$nl = wfStrencode( Title::nameOf( $row->bl_from ) );
 
-			$sql .= "('{$nl}',{$this->mId})";
+			$sql .= "({$row->bl_from},{$this->mId})";
 			$sql2 .= $row->bl_from;
 		}
 		$sql2 .= ")";
