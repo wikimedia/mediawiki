@@ -958,7 +958,8 @@ class Parser
 
 		wfProfileIn( "$fname-setup" );
 		static $tc = FALSE;
-		if ( !$tc ) { $tc = Title::legalChars() . "#"; }
+		# the % is needed to support urlencoded titles as well
+		if ( !$tc ) { $tc = Title::legalChars() . "#%"; }
 		$sk =& $this->mOptions->getSkin();
 
 		# Match a link having the form [[namespace:link|alternate]]trail
@@ -988,6 +989,8 @@ class Parser
 
 		if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 			$text = $m[2];
+			# fix up urlencoded title texts
+			if(preg_match("/%/", $m[1] )) $m[1] = urldecode($m[1]);
 			$trail = $m[3];
 		} else { # Invalid form; output directly
 			$s .= $prefix . "[[" . $line ;
