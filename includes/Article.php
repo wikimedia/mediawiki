@@ -69,7 +69,7 @@ class Article {
 		$this->mTouched = '19700101000000';
 		$this->mForUpdate = false;
 		$this->mIsRedirect = false;
-		$this->mRevIdFetched = false;
+		$this->mRevIdFetched = 0;
 	}
 
 	/**
@@ -646,8 +646,12 @@ class Article {
 		if ( !is_null( $diff ) ) {
 			require_once( 'DifferenceEngine.php' );
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+			
 			$de = new DifferenceEngine( $oldid, $diff, $rcid );
+			// DifferenceEngine directly fetched the revision:
+			$this->mRevIdFetched = $de->mNewid;
 			$de->showDiffPage();
+
 			if( $diff == 0 ) {
 				# Run view updates for current revision only
 				$this->viewUpdates();
