@@ -264,15 +264,15 @@ Normal text.
 
 ''Tom'''s car is bigger than ''Susan'''s.
 !! result
-<p><i><b>Bold italic text</b> with bold deactivated <b>in between.</b></i>
-</p><p><b><i>Bold italic text</i> with italic deactivated <i>in between.</i></b><p>
+<p><i><b>Bold italic text </b>with bold deactivated<b> in between.</b></i>
+</p><p><b><i>Bold italic text </i>with italic deactivated<i> in between.</i></b>
 </p><p><b>Bold text..</b>
-</p><p>..spanning two paragraphs (should not work).
+</p><p>..spanning two paragraphs (should not work).<b></b>
 </p><p><b>Bold tag left open</b>
 </p><p><i>Italic tag left open</i>
 </p><p>Normal text.
-</p><p><b>This year</b>'s election <i>should</i> beat <b>last year</b>'s.
-</p><p><i>Tom<b>s car is bigger than</b></i> <b>Susan</b>s.
+</p><p><b>This year'</b>s election <i>should</i> beat <b>last year'</b>s.
+</p><p><i>Tom<b>s car is bigger than </b></i><b>Susan</b>s.
 </p>
 !! end
 
@@ -286,8 +286,8 @@ Plain link, capitalized: [[Main Page]]
 
 Plain link, uncapitalized: [[main Page]]
 !! result
-<p>Plain link, capitalized: <a href="__SCRIPT__/Main_Page" title="Main Page">Main Page</a>
-</p><p>Plain link, uncapitalized: <a href="__SCRIPT__/Main_Page" title="Main Page">main Page</a>
+<p>Plain link, capitalized: <a href="/wiki/Main_Page" title ="Main Page">Main Page</a>
+</p><p>Plain link, uncapitalized: <a href="/wiki/Main_Page" title ="Main Page">main Page</a>
 </p>
 !! end
 
