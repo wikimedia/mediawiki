@@ -633,8 +633,9 @@ function doTableStuff ( $t )
 {
   $t = explode ( "\n" , $t ) ;
   $td = array () ; # Is currently a td tag open?
-  $tr = array () ; # Is currently a tr tag open?
   $ltd = array () ; # Was it TD or TH?
+  $tr = array () ; # Is currently a tr tag open?
+  $ltr = array () ; # tr attributes
   foreach ( $t AS $k => $x )
     {
       $x = rtrim ( $x ) ;
@@ -645,6 +646,7 @@ function doTableStuff ( $t )
 	  array_push ( $td , false ) ;
 	  array_push ( $ltd , "" ) ;
 	  array_push ( $tr , false ) ;
+	  array_push ( $ltr , "" ) ;
 	}
       else if ( count ( $td ) == 0 ) { } # Don't do any of the following
       else if ( "|}" == substr ( $x , 0 , 2 ) )
@@ -653,26 +655,36 @@ function doTableStuff ( $t )
           $l = array_pop ( $ltd ) ;
           if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
 	  if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+          array_pop ( $ltr ) ;
 	  $t[$k] = $z ;
 	}
-      else if ( "|_" == substr ( $x , 0 , 2 ) ) # Caption
+/*      else if ( "|_" == substr ( $x , 0 , 2 ) ) # Caption
         { 
         $z = trim ( substr ( $x , 2 ) ) ;
         $t[$k] = "<caption>{$z}</caption>\n" ;
-        }
+        }*/
       else if ( "|-" == substr ( $x , 0 , 2 ) ) # Allows for |---------------
 	{
+          $x = substr ( $x , 1 ) ;
+          while ( $x != "" && substr ( $x , 0 , 1 ) == '-' ) $x = substr ( $x , 1 ) ;
           $z = "" ;
           $l = array_pop ( $ltd ) ;
           if ( array_pop ( $tr ) ) $z = "</tr>" . $z ;
 	  if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+          array_pop ( $ltr ) ;
 	  $t[$k] = $z ;
           array_push ( $tr , false ) ;
 	  array_push ( $td , false ) ;
           array_push ( $ltd , "" ) ;
+          array_push ( $ltr , $this->fixTableTags ( $x ) ) ;
 	}
-      else if ( "|" == $fc || "!" == $fc )
+      else if ( "|" == $fc || "!" == $fc || "|+" == substr ( $x , 0 , 2 ) ) # Caption
 	{
+          if ( "|+" == substr ( $x , 0 , 2 ) )
+              {
+              $fc = "+" ;
+              $x = substr ( $x , 1 ) ;
+              }
           $after = substr ( $x , 1 ) ;
           if ( $fc == "!" ) $after = str_replace ( "!!" , "||" , $after ) ;
           $after = explode ( "||" , $after ) ;
@@ -680,13 +692,16 @@ function doTableStuff ( $t )
           foreach ( $after AS $theline )
              {
 	  $z = "" ;
-          if ( !array_pop ( $tr ) ) $z = "<tr>\n" ;
+          $tra = array_pop ( $ltr ) ;
+          if ( !array_pop ( $tr ) ) $z = "<tr {$tra}>\n" ;
           array_push ( $tr , true ) ;
+          array_push ( $ltr , "" ) ;
 
           $l = array_pop ( $ltd ) ;
 	  if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
           if ( $fc == "|" ) $l = "TD" ;
           else if ( $fc == "!" ) $l = "TH" ;
+          else if ( $fc == "+" ) $l = "CAPTION" ;
           else $l = "" ;
           array_push ( $ltd , $l ) ;
 	  $y = explode ( "|" , $theline , 2 ) ;
@@ -707,9 +722,9 @@ $t[] = "</table>" ;
 }
 
   $t = implode ( "\n" , $t ) ;
+#		$t = $this->removeHTMLtags( $t );
   return $t ;
 }
-
 
 	# Well, OK, it's actually about 14 passes.  But since all the
 	# hard lifting is done inside PHP's regex code, it probably
@@ -1259,8 +1274,7 @@ $t[] = "</table>" ;
 		$htmlsingle = array_merge( $tabletags, $htmlsingle );
 		$htmlelements = array_merge( $htmlsingle, $htmlpairs );
 
-             
-		$htmlattrs = $this->getHTMLattrs ();
+                $htmlattrs = $this->getHTMLattrs () ;
 
 		# Remove HTML comments
 		$text = preg_replace( "/<!--.*-->/sU", "", $text );
