@@ -1322,8 +1322,6 @@ class Parser
 				}
 			}
 
-			$text = $wgContLang->convert($text);			
-
 			if( ( $nt->getPrefixedText() === $this->mTitle->getPrefixedText() ) &&
 			    ( $nt->getFragment() === '' ) ) {
 				# Self-links are handled specially; generally de-link and change to bold.
