@@ -96,7 +96,7 @@ class QueryPage {
 						$dbw->addQuotes( $row->type ) . "," .
 						$dbw->addQuotes( $row->namespace ) . "," .
 						$dbw->addQuotes( $row->title ) . "," .
-						$dbw->addQuotes( $row->value ) . ")"
+						$dbw->addQuotes( $row->value ) . ")";
 				}
 
 				# Save results into the querycache table on the master
