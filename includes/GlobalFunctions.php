@@ -10,22 +10,16 @@ include_once( "$IP/DatabaseFunctions.php" );
 include_once( "$IP/UpdateClasses.php" );
 include_once( "$IP/LogPage.php" );
 
-# PHP 4.1+ has array_key_exists, PHP 4.0.6 has key_exists instead, and earlier
-# versions of PHP have neither. So we roll our own. Note that this
-# function will return false even for keys that exist but whose associated 
-# value is NULL.
-#
-if ( phpversion() == "4.0.6" ) {
-	function array_key_exists( $k, $a ) {
-		return key_exists( $k, $a );
-	}
-} else if (phpversion() < "4.1") {
-	function array_key_exists( $k, $a ) {
-		return isset($a[$k]);
-	}
-}
+/*
+ * Compatibility functions
+ */
+
+# PHP <4.3.x is not actively supported; 4.1.x and 4.2.x might or might not work.
+# <4.1.x will not work, as we use a number of features introduced in 4.1.0
+# such as the new autoglobals.
 
 if( !function_exists('iconv') ) {
+	# iconv support is not in the default configuration and so may not be present.
 	# Assume will only ever use utf-8 and iso-8859-1.
 	# This will *not* work in all circumstances.
 	function iconv( $from, $to, $string ) {
