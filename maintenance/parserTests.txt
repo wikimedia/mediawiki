@@ -540,3 +540,57 @@ Common list
 </li></ul>
 !! end
 
+!! test
+Numbered list
+!! input
+#Numbered list
+#item 2
+# item 3
+!! result
+<ol><li>Numbered list
+</li><li>item 2
+</li><li> item 3
+</li></ol>
+!! end
+
+!! test
+Mixed list
+!! input
+*Mixed list
+*# with numbers
+** and bullets
+*# and numbers
+*bullets again
+**bullet level 2
+***bullet level 3
+***#Number on level 4
+**bullet level 2
+**#Number on level 3
+**#Number on level 3
+*#number level 2
+*Level 1
+!! result
+<ul><li>Mixed list
+<ol><li> with numbers
+</li></ol>
+<ul><li> and bullets
+</li></ul>
+<ol><li> and numbers
+</li></ol>
+</li><li>bullets again
+<ul><li>bullet level 2
+<ul><li>bullet level 3
+<ol><li>Number on level 4
+</li></ol>
+</li></ul>
+</li><li>bullet level 2
+<ol><li>Number on level 3
+</li><li>Number on level 3
+</li></ol>
+</li></ul>
+<ol><li>number level 2
+</li></ol>
+</li><li>Level 1
+</li></ul>
+!! end
+
