@@ -667,7 +667,7 @@ if( count( $errs ) ) {
 		</ul>
 	</dd>
 	<dt>
-		MediaWiki can include a basic license notice, icon, and machine-reable
+		MediaWiki can include a basic license notice, icon, and machine-readable
 		copyright metadata if your wiki's content is to be licensed under
 		the GNU FDL or a Creative Commons license. If you're not sure, leave
 		it at "none".
