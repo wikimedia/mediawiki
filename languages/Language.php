@@ -1877,6 +1877,10 @@ class Language {
 	function getMagic( &$mw )
 	{
 		$raw =& $this->getMagicWords(); 
+		if( !isset( $raw[$mw->mld] ) ) {
+			# Fall back to English if local list is incomplete
+			$raw =& Language::getMagicWords();
+		}
         $rawEntry = $raw[$mw->mId];
 		$mw->mCaseSensitive = $rawEntry[0];
 		$mw->mSynonyms = array_slice( $rawEntry, 1 );
