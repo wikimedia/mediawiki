@@ -108,13 +108,13 @@ function wfCreativeCommonsRdf($article) {
 	dcElement('identifier', dcReallyFullUrl($article->mTitle));
 	dcElement('date', dcDate($article->getTimestamp()));
 
-        $last_editor = $article->getUser();
-        
-        if ($last_editor == 0) {
-	    dcPerson('creator', 0);
+	$last_editor = $article->getUser();
+
+	if ($last_editor == 0) {
+		dcPerson('creator', 0);
 	} else {
-	    dcPerson('creator', $last_editor, $article->getUserText(),
-		     User::whoIsReal($last_editor));
+		dcPerson('creator', $last_editor, $article->getUserText(),
+			User::whoIsReal($last_editor));
 	}
 
 	$contributors = $article->getContributors();
@@ -218,9 +218,9 @@ function wfCreativeCommonsRdf($article) {
 	if ($id == 0) {
 		dcElement($name, wfMsg("anonymous"));
 	} else if ( !empty($user_real_name) ) {
-	        dcElement($name, $user_real_name);
+		dcElement($name, $user_real_name);
 	} else {
-	        # XXX: This shouldn't happen.
+		# XXX: This shouldn't happen.
 		if( empty( $user_name ) ) {
 			$user_name = User::whoIs($id);
 		}
@@ -260,19 +260,24 @@ function wfCreativeCommonsRdf($article) {
 /* private */ function getKnownLicenses() {
 	
 	$ccLicenses = array('by', 'by-nd', 'by-nd-nc', 'by-nc', 
-	                    'by-nc-sa', 'by-sa', 'nd', 'nd-nc',
-	                    'nc', 'nc-sa', 'sa');
-	
+	                     'by-nc-sa', 'by-sa');
+	$ccVersions = array('1.0', '2.0');
 	$knownLicenses = array();
 	
-	foreach ($ccLicenses as $license) {
-		$lurl = "http://creativecommons.org/licenses/{$license}/1.0/";
-		$knownLicenses[$lurl] = explode('-', $license);
-		$knownLicenses[$lurl][] = 're';
-		$knownLicenses[$lurl][] = 'di';
-		$knownLicenses[$lurl][] = 'no';
-		if (!in_array('nd', $knownLicenses[$lurl])) {
-			$knownLicenses[$lurl][] = 'de';
+	foreach ($ccVersions as $version) {
+		foreach ($ccLicenses as $license) {
+			if( $version == '2.0' && substr( $license, 0, 2) != 'by' ) {
+				# 2.0 dropped the non-attribs licenses
+				continue;
+			}
+			$lurl = "http://creativecommons.org/licenses/{$license}/{$version}/";
+			$knownLicenses[$lurl] = explode('-', $license);
+			$knownLicenses[$lurl][] = 're';
+			$knownLicenses[$lurl][] = 'di';
+			$knownLicenses[$lurl][] = 'no';
+			if (!in_array('nd', $knownLicenses[$lurl])) {
+				$knownLicenses[$lurl][] = 'de';
+			}
 		}
 	}
 	
