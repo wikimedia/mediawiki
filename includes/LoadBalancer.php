@@ -1,6 +1,8 @@
 <?php
 # Database load balancing object
 
+require_once( "Database.php" );
+
 # Valid database indexes
 # Operation-based indexes
 define( "DB_READ", -1 );     # Read from the slave (or only server)
