@@ -63,26 +63,6 @@ require_once( "LanguageUtf8.php" );
 	"2001-01-15"
 );
 
-/* private */ $wgUserTogglesDa = array(
-	"hover"		=> "Vis svævende tekst over wikihenvisninger",
-	"underline" => "Understreg henvisninger",
-	"highlightbroken" => "Brug røde henvisninger til tomme sider",
-	"justify"	=> "Justér afsnit",
-	"hideminor" => "Skjul mindre ændringer i seneste ændringer listen",
-	"usenewrc" => "Udvidet seneste ændringer liste<br>(ikke for alle browsere)",
-	"numberheadings" => "Automatisk nummerering af overskrifter",
-	"showtoolbar" => "Vis værktøjslinje til redigering",
-	"editondblclick" => "Redigér sider med dobbeltklik (JavaScript)",
-	"editsection"=>"Redigér afsnit ved hjælp af [redigér]-henvisning",
-	"editsectiononrightclick"=>"Redigér afsnit ved at højreklikke<br> på afsnittets titel (JavaScript)",
- 	"showtoc"=>"Vis indholdsfortegnelse<br>(for artikler med mere end tre afsnit)",
-	"rememberpassword" => "Husk adgangskode til næste besøg",
-	"editwidth" => "Redigeringsboksen har fuld bredde",
-	"watchdefault" => "Overvåg nye og ændrede artikler",
-	"minordefault" => "Markér som standard alle ændringer som mindre",
-	"previewontop" => "Vis forhåndsvisning før redigeringsboksen",
-	"nocache" => "Husk ikke siderne til næste besøg"
-);
 
 /* private */ $wgBookstoreListDa = array(
 	"Bibliotek.dk" => "http://bibliotek.dk/vis.php?base=dfa&origin=kommando&field1=ccl&term1=is=$1&element=L&start=1&step=10",
@@ -166,6 +146,26 @@ require_once( "LanguageUtf8.php" );
 
 
 /* private */ $wgAllMessagesDa = array(
+# User Toggles
+"tog-hover"		=> "Vis svævende tekst over wikihenvisninger",
+"tog-underline" => "Understreg henvisninger",
+"tog-highlightbroken" => "Brug røde henvisninger til tomme sider",
+"tog-justify"	=> "Justér afsnit",
+"tog-hideminor" => "Skjul mindre ændringer i seneste ændringer listen",
+"tog-usenewrc" => "Udvidet seneste ændringer liste<br>(ikke for alle browsere)",
+"tog-numberheadings" => "Automatisk nummerering af overskrifter",
+"tog-showtoolbar" => "Vis værktøjslinje til redigering",
+"tog-editondblclick" => "Redigér sider med dobbeltklik (JavaScript)",
+"tog-editsection"=>"Redigér afsnit ved hjælp af [redigér]-henvisning",
+"tog-editsectiononrightclick"=>"Redigér afsnit ved at højreklikke<br> på afsnittets titel (JavaScript)",
+"tog-showtoc"=>"Vis indholdsfortegnelse<br>(for artikler med mere end tre afsnit)",
+"tog-rememberpassword" => "Husk adgangskode til næste besøg",
+"tog-editwidth" => "Redigeringsboksen har fuld bredde",
+"tog-watchdefault" => "Overvåg nye og ændrede artikler",
+"tog-minordefault" => "Markér som standard alle ændringer som mindre",
+"tog-previewontop" => "Vis forhåndsvisning før redigeringsboksen",
+"tog-nocache" => "Husk ikke siderne til næste besøg",
+
 # Dates
 
 'sunday' => 'søndag',
@@ -1166,11 +1166,6 @@ class LanguageDa extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsDa;
 		return $wgDateFormatsDa;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesDa;
-		return $wgUserTogglesDa;
 	}
 
 	# Inherit userAdjust()

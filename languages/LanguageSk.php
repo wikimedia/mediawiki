@@ -39,23 +39,6 @@ require_once("LanguageUtf8.php");
  "myskin" => "MySkin"
 );
 
-/* private */ $wgUserTogglesSk = array(
-	"hover"		=> "Zobrazuj text nad linkami do wiki",
-	"underline" => "Podčiarkuj linky",
-	"highlightbroken" => "Neexistujúce linky zobrazuj červenou.",
-	"justify"	=> "Zarovnávaj odstavce",
-	"hideminor" => "V posledných úpravách neukazuj drobné úpravy",
-	"usenewrc" => "Špeciálne zobrazenie posledných úprav (vyžaduje JavaScript)",
-	"numberheadings" => "Automaticky čísluj odstavce",
-	"showtoolbar" => "Show edit toolbar",
-	"rememberpassword" => "Pamätaj si heslo aj nabudúce",
-	"editwidth" => "Maximálna šírka editovacieho okna",
-	"editondblclick" => "Edituj stránky po dvojkliku (JavaScript)",
-	"watchdefault" => "Upozorňuj na nové a novu upravené stránky",
-	"minordefault" => "Označ všetky zmeny ako drobné",
-	"previewontop" => "Zobrazuj ukážku pred editovacím oknom, a nie až za ním"
-
-);
 
 
 
@@ -112,6 +95,23 @@ require_once("LanguageUtf8.php");
 );
 
 /* private */ $wgAllMessagesSk = array(
+
+# User Toggles
+
+"tog-hover"		=> "Zobrazuj text nad linkami do wiki",
+"tog-underline" => "Podčiarkuj linky",
+"tog-highlightbroken" => "Neexistujúce linky zobrazuj červenou.",
+"tog-justify"	=> "Zarovnávaj odstavce",
+"tog-hideminor" => "V posledných úpravách neukazuj drobné úpravy",
+"tog-usenewrc" => "Špeciálne zobrazenie posledných úprav (vyžaduje JavaScript)",
+"tog-numberheadings" => "Automaticky čísluj odstavce",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-rememberpassword" => "Pamätaj si heslo aj nabudúce",
+"tog-editwidth" => "Maximálna šírka editovacieho okna",
+"tog-editondblclick" => "Edituj stránky po dvojkliku (JavaScript)",
+"tog-watchdefault" => "Upozorňuj na nové a novu upravené stránky",
+"tog-minordefault" => "Označ všetky zmeny ako drobné",
+"tog-previewontop" => "Zobrazuj ukážku pred editovacím oknom, a nie až za ním",
 
 # Dates
 #
@@ -932,11 +932,6 @@ class LanguageSk extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesSk;
 		return $wgSkinNamesSk;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesSk;
-		return $wgUserTogglesSk;
 	}
 
 	function getValidSpecialPages()

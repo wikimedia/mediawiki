@@ -99,26 +99,6 @@ if($wgMetaNamespace === FALSE)
 	"2001-01-15"
 );
 
-/* private */ $wgUserTogglesIs = array(
-	"hover"		=> "Sýna hjálpartexta á wiki hlekkjum",
-	"underline" => "Undirstrika hlekki",
-	"highlightbroken" => "Sýna brotna hlekki <a href=\"\" class=\"new\">svona</a> (annars: svona<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "Jafna málsgreinar",
-	"hideminor" => "Fela minniháttar breytingar",
-	"usenewrc" => "Endurbætt nýjar tengingar (ekki fyrir alla vafra)",
-	"numberheadings" => "Númera fyrirsagnir sjálfkrafa",
-	"editondblclick" => "Breyta síðu ef tvísmellt er á hlekkinn (JavaScript)",
-	"editsection"=>"Leyfa breytingar á hluta síðna með [edit] hlekkjum",
-	"editsectiononrightclick"=>"Leyfa breytingar á hluta síðna með því að  hægrismella á titla (JavaScript)",
-	"showtoc"=>"Sýna efnisyfirlit",
-	"rememberpassword" => "Muna lykilorð",
-	"editwidth" => "Innsláttarsvæði hefur fulla breidd",
-	"watchdefault" => "Bæta síðum sem þú breytir við eftirlitslista",
-	"minordefault" => "Láta breytingar vera sjálfgefnar sem minniháttar",
-	"previewontop" => "Setja prufuhnapp fyrir framan breytingahnapp",
-	"nocache" => "Slökkva á flýtivistun síðna"
-);
-
 /* private */ $wgBookstoreListIs = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
 	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
@@ -188,6 +168,26 @@ if($wgMetaNamespace === FALSE)
 # hyphen (-). If you need more characters, you may be able to change
 # the regex in MagicWord::initRegex
 $wgAllMessagesIs = array(
+# User Toggles
+
+"tog-hover"		=> "Sýna hjálpartexta á wiki hlekkjum",
+"tog-underline" => "Undirstrika hlekki",
+"tog-highlightbroken" => "Sýna brotna hlekki <a href=\"\" class=\"new\">svona</a> (annars: svona<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	=> "Jafna málsgreinar",
+"tog-hideminor" => "Fela minniháttar breytingar",
+"tog-usenewrc" => "Endurbætt nýjar tengingar (ekki fyrir alla vafra)",
+"tog-numberheadings" => "Númera fyrirsagnir sjálfkrafa",
+"tog-editondblclick" => "Breyta síðu ef tvísmellt er á hlekkinn (JavaScript)",
+"tog-editsection"=>"Leyfa breytingar á hluta síðna með [edit] hlekkjum",
+"tog-editsectiononrightclick"=>"Leyfa breytingar á hluta síðna með því að  hægrismella á titla (JavaScript)",
+"tog-showtoc"=>"Sýna efnisyfirlit",
+"tog-rememberpassword" => "Muna lykilorð",
+"tog-editwidth" => "Innsláttarsvæði hefur fulla breidd",
+"tog-watchdefault" => "Bæta síðum sem þú breytir við eftirlitslista",
+"tog-minordefault" => "Láta breytingar vera sjálfgefnar sem minniháttar",
+"tog-previewontop" => "Setja prufuhnapp fyrir framan breytingahnapp",
+"tog-nocache" => "Slökkva á flýtivistun síðna",
+
 # Dates
 
 'sunday' => 'sunnudagur',
@@ -1187,11 +1187,6 @@ class LanguageIs extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsIs;
 		return $wgDateFormatsIs;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesIs;
-		return $wgUserTogglesIs;
 	}
 
 	function userAdjust( $ts )

@@ -50,28 +50,6 @@ require_once( "LanguageUtf8.php" );
 	"2001-01-15"
 );
 
-/* private */ $wgUserTogglesWa = array(
-	"hover"		=> "Racsegnes cwand on passe so les loyéns",
-	"underline" => "Sorlignî les loyéns",
-	"highlightbroken" => "Håyner les vudes loyéns 
-	<a href=\"\" class=\"new\">come çouchal</a><br> &nbsp;&nbsp;&nbsp; 
-	(oudonbén: come çouchal<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "Djustifyî les hagnons",
-	"hideminor" => "Èn nén moster les <i>dierins candjmints</i> mineurs", 
-	"usenewrc" => "Ramidrés <i>dierins candjmints</i> (nén tos les betchteus)",
-	"numberheadings" => "Limerotaedje otomatike des tites",
-	"editondblclick" => "Candjî les pådjes avou on dobe-clitch (JavaScript)",
-	"editsection" => "Eployî les loyéns «[candjî]» po candjî rén k'&nbsp;ene seccion",
-	"editsectiononrightclick" => "Candjî les seccions avou on dobe-clitch sol tite (JavaScript)",
-	"showtoc" => "Mostrer l'&nbsp;tåvlea d'&nbsp;ådvins<br>(po ls årtikes avou pus di 3 seccions)",
-	"rememberpassword" => "Rimimbrer li scret inte les sessions",
-	"editwidth" => "Li boesse d'&nbsp;aspougnaedje prind tote li lårdjeu",
-	"watchdefault" => "Shuve les årtikes ki dj'&nbsp;fwai ou ki dj'&nbsp;candje",
-	"minordefault" => "Prémete mes candjmints come mineurs",
-	"previewontop" => "Prévey l'&nbsp;årtike å dzeu del boesse d'&nbsp;aspougnaedje",
-	"nocache" => "Èn nén eployî d'&nbsp;muchete pol håynaedje des pådjes"
-);
-
 /* private */ $wgBookstoreListWa = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
 	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
@@ -139,6 +117,25 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesWa = array(
+# User Toggles
+
+"tog-hover"		=> "Racsegnes cwand on passe so les loyéns",
+"tog-underline" => "Sorlignî les loyéns",
+"tog-highlightbroken" => "Håyner les vudes loyéns <a href=\"\" class=\"new\">come çouchal</a><br> &nbsp;&nbsp;&nbsp; (oudonbén: come çouchal<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	=> "Djustifyî les hagnons",
+"tog-hideminor" => "Èn nén moster les <i>dierins candjmints</i> mineurs", 
+"tog-usenewrc" => "Ramidrés <i>dierins candjmints</i> (nén tos les betchteus)",
+"tog-numberheadings" => "Limerotaedje otomatike des tites",
+"tog-editondblclick" => "Candjî les pådjes avou on dobe-clitch (JavaScript)",
+"tog-editsection" => "Eployî les loyéns «[candjî]» po candjî rén k'&nbsp;ene seccion",
+"tog-editsectiononrightclick" => "Candjî les seccions avou on dobe-clitch sol tite (JavaScript)",
+"tog-showtoc" => "Mostrer l'&nbsp;tåvlea d'&nbsp;ådvins<br>(po ls årtikes avou pus di 3 seccions)",
+"tog-rememberpassword" => "Rimimbrer li scret inte les sessions",
+"tog-editwidth" => "Li boesse d'&nbsp;aspougnaedje prind tote li lårdjeu",
+"tog-watchdefault" => "Shuve les årtikes ki dj'&nbsp;fwai ou ki dj'&nbsp;candje",
+"tog-minordefault" => "Prémete mes candjmints come mineurs",
+"tog-previewontop" => "Prévey l'&nbsp;årtike å dzeu del boesse d'&nbsp;aspougnaedje",
+"tog-nocache" => "Èn nén eployî d'&nbsp;muchete pol håynaedje des pådjes",
 # Dates
 'sunday' => "dimegne",
 'monday' => "londi",
@@ -1217,11 +1214,6 @@ class LanguageWa extends LanguageUtf8 {
 		return $wgDateFormatsWa;
 	}
 	
-	function getUserToggles() {
-		global $wgUserTogglesWa;
-		return $wgUserTogglesWa;
-	}
-
 	# Inherit userAdjust()
 
 	###

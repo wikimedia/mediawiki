@@ -51,28 +51,6 @@ require_once("LanguageUtf8.php");
 	"2001 Ianuarie 15"
 );
 
-/* private */ $wgUserTogglesRo = array(
-	"hover"		=> "Arată info deasupra legăturilor",
-	"underline" => "Subliniază legăturile",
-	"highlightbroken" => "Formatează legăturile inexistente <a href=\"\" class=\"new\">în felul acesta</a> (alternativa este aşa<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "Aliniază paragrafele",
-	"hideminor" => "Ascunde schimbările minore în pagina de schimbări recente",
-	"usenewrc" => "Îmbunătăţeşte structura paginii de schimbări minore<br>(nu merge în toate browserele)",
-	"numberheadings" => "Auto-numerotează titlurile",
-	"showtoolbar" => "Show edit toolbar",
-	"editondblclick" => "Editează paginile cu dublu clic (JavaScript)",
-        "editsection" => "Permite editarea secţiunilor folosind legături [editează] pe pagină",
-	"editsectiononrightclick"=>"Permite editarea secţiunilor la apăsarea<br>butonului din dreapta al mouse-ului pe titlu<br>(necesită JavaScript)",
-        "showtoc" => "Arată cuprinsul paginilor<br>(pentru pagini cu cel puţin trei titluri)",
-	"rememberpassword" => "Păstrează parola între sesiuni",
-	"editwidth" => "Lăţime maximă pentru caseta de editare",
-	"watchdefault" => "Urmăreşte articolele pe care le creezi sau le editezi",
-	"minordefault" => "Marchează implicit toate editările ca minore",
-	"previewontop" => "Arată pagina după caseta de editare, nu înainte",
-        "nocache" => "Nu folosi cache (conexiunea merge mai greu,<br>dar sunt afişate toate modificările paginilor)"
-	
-);
-
 /* private */ $wgBookstoreListRo = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
 	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
@@ -165,6 +143,27 @@ require_once("LanguageUtf8.php");
 );
 
 /* private */ $wgAllMessagesRo = array(
+
+# User Toggles
+
+"tog-hover"		=> "Arată info deasupra legăturilor",
+"tog-underline" => "Subliniază legăturile",
+"tog-highlightbroken" => "Formatează legăturile inexistente <a href=\"\" class=\"new\">în felul acesta</a> (alternativa este aşa<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	=> "Aliniază paragrafele",
+"tog-hideminor" => "Ascunde schimbările minore în pagina de schimbări recente",
+"tog-usenewrc" => "Îmbunătăţeşte structura paginii de schimbări minore<br>(nu merge în toate browserele)",
+"tog-numberheadings" => "Auto-numerotează titlurile",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editondblclick" => "Editează paginile cu dublu clic (JavaScript)",
+"tog-editsection" => "Permite editarea secţiunilor folosind legături [editează] pe pagină",
+"tog-editsectiononrightclick"=>"Permite editarea secţiunilor la apăsarea<br>butonului din dreapta al mouse-ului pe titlu<br>(necesită JavaScript)",
+"tog-showtoc" => "Arată cuprinsul paginilor<br>(pentru pagini cu cel puţin trei titluri)",
+"tog-rememberpassword" => "Păstrează parola între sesiuni",
+"tog-editwidth" => "Lăţime maximă pentru caseta de editare",
+"tog-watchdefault" => "Urmăreşte articolele pe care le creezi sau le editezi",
+"tog-minordefault" => "Marchează implicit toate editările ca minore",
+"tog-previewontop" => "Arată pagina după caseta de editare, nu înainte",
+"tog-nocache" => "Nu folosi cache (conexiunea merge mai greu,<br>dar sunt afişate toate modificările paginilor)",
 
 # Dates
 #
@@ -1095,11 +1094,6 @@ class LanguageRo extends LanguageUtf8 {
                 global $wgDateFormatsRo;
                 return $wgDateFormatsRo;
         }
-
-	function getUserToggles() {
-		global $wgUserTogglesRo;
-		return $wgUserTogglesRo;
-	}
 
 	function timeanddate( $ts, $adj = false )
 	{

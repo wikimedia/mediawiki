@@ -41,23 +41,6 @@
 );
 
 
-/* private */ $wgUserTogglesAf = array(
-	"hover"		=> "Wys drywende inligting oor wiki skakels.",
-	"underline" => "Onderstreep skakels.",
-	"highlightbroken" => "Wys gebroke skakels <a href=\"\" class=\"new\">so</a> of so<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "Justeer paragrawe.",
-	"hideminor" => "Moenie klein wysigings in die nuwe wysigingslys wys nie.",
-	"usenewrc" => "Verbeterde nuwe wysigingslys (vir moderne blaaiers).",
-	"numberheadings" => "Automatiese nommer opskrifte.",
-	"showtoolbar" => "Show edit toolbar",
-	"rememberpassword" => "Onthou wagwoord oor sessies.",
-	"editwidth" => "Wysigingsboks met volle wydte.",
-	"editondblclick" => "Wysig blaaie met dubbelkliek (JavaScript).",
-	"watchdefault" => "Lys nuwe en gewysigde bladsye.",
-	"minordefault" => "Merk alle wysigings automaties as klein by verstek.",
-	"previewontop" => "Wys voorskou bo wysigingsboks."
-	
-);
 
 /* private */ $wgBookstoreListAf = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -118,6 +101,23 @@
 );
 
 /* private */ $wgAllMessagesAf = array(
+# User Toggles
+
+"tog-hover"		=> "Wys drywende inligting oor wiki skakels.",
+"tog-underline" => "Onderstreep skakels.",
+"tog-highlightbroken" => "Wys gebroke skakels <a href=\"\" class=\"new\">so</a> of so<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	=> "Justeer paragrawe.",
+"tog-hideminor" => "Moenie klein wysigings in die nuwe wysigingslys wys nie.",
+"tog-usenewrc" => "Verbeterde nuwe wysigingslys (vir moderne blaaiers).",
+"tog-numberheadings" => "Automatiese nommer opskrifte.",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-rememberpassword" => "Onthou wagwoord oor sessies.",
+"tog-editwidth" => "Wysigingsboks met volle wydte.",
+"tog-editondblclick" => "Wysig blaaie met dubbelkliek (JavaScript).",
+"tog-watchdefault" => "Lys nuwe en gewysigde bladsye.",
+"tog-minordefault" => "Merk alle wysigings automaties as klein by verstek.",
+"tog-previewontop" => "Wys voorskou bo wysigingsboks.",
+	
 # Dates
 'sunday' => 'Sondag',
 'monday' => 'Maandag',
@@ -876,11 +876,6 @@ class LanguageAf extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesAf;
 		return $wgSkinNamesAf;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesAf;
-		return $wgUserTogglesAf;
 	}
 
 	function getValidSpecialPages()

@@ -40,26 +40,6 @@ require_once( "LanguageUtf8.php" );
 );
 
 
-/* private */ $wgUserTogglesOc = array(
-	"hover"  => "Mostrar info-botiòlas sus ligams wiki",
-	"underline" => "Ligams solinhats",
-	"highlightbroken" => "Ligams sus los subjèctes non creats aparéisson en rog",
-	"justify" => "Paragrafes justificats",
-	"hideminor" => "Amagar las <i>Cambiadas recentas</i> minoras",
-	"usenewrc" => "Cambiadas recentas melhorats<br> (non per tots los navigaires)",
-	"numberheadings" => "Numerotacion automatica de los títols",
-	"showtoolbar" => "Show edit toolbar",
-	"editondblclick" => "Editar paginas amb un doble clic (JavaScript)",
-	"editsection"	=> "Éditer une section via les liens [éditer]", //Looxix (Enable section editing via [edit] links)
-	"editsectiononrightclick"	=> "Éditer une section en cliquant à droite<br> sur le titre de la section", // Looxix 
-	"showtoc"	=> "Afficher la table des matières<br> (pour les articles ayant plus de 3 sections)",
-	"rememberpassword" => "Se souvenir de mon mot de passe (cookie)",
-	"editwidth" => "La fenêtre d'édition s'affiche en pleine largeur",
-	"watchdefault" => "Suivre les articles que je crée ou modifie",
-	"minordefault" => "Mes modifications sont considérées<br> comme mineures par défaut",
-	"previewontop" => "La prévisualisation s'affiche au<br> dessus de la boite de rédaction",
-	"nocache" => "Désactiver le cache des pages" // Looxix "Disable page caching"
-);
 
 /* private */ $wgBookstoreListOc = array(
 	"Amazon.fr" => "http://www.amazon.fr/exec/obidos/ISBN=$1"
@@ -118,6 +98,27 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesOc = array(
+
+# User Toggles
+
+"tog-hover"  => "Mostrar info-botiòlas sus ligams wiki",
+"tog-underline" => "Ligams solinhats",
+"tog-highlightbroken" => "Ligams sus los subjèctes non creats aparéisson en rog",
+"tog-justify" => "Paragrafes justificats",
+"tog-hideminor" => "Amagar las <i>Cambiadas recentas</i> minoras",
+"tog-usenewrc" => "Cambiadas recentas melhorats<br> (non per tots los navigaires)",
+"tog-numberheadings" => "Numerotacion automatica de los títols",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editondblclick" => "Editar paginas amb un doble clic (JavaScript)",
+"tog-editsection"	=> "Éditer une section via les liens [éditer]", //Looxix (Enable section editing via [edit] links)
+"tog-editsectiononrightclick"	=> "Éditer une section en cliquant à droite<br> sur le titre de la section", // Looxix 
+"tog-showtoc"	=> "Afficher la table des matières<br> (pour les articles ayant plus de 3 sections)",
+"tog-rememberpassword" => "Se souvenir de mon mot de passe (cookie)",
+"tog-editwidth" => "La fenêtre d'édition s'affiche en pleine largeur",
+"tog-watchdefault" => "Suivre les articles que je crée ou modifie",
+"tog-minordefault" => "Mes modifications sont considérées<br> comme mineures par défaut",
+"tog-previewontop" => "La prévisualisation s'affiche au<br> dessus de la boite de rédaction",
+"tog-nocache" => "Désactiver le cache des pages", // Looxix "Disable page caching"
 
 # Dates
 #
@@ -969,12 +970,6 @@ class LanguageOc extends LanguageUtf8
 	{
 		global $wgSkinNamesOc;
 		return $wgSkinNamesOc;
-	}
-
-	function getUserToggles()
-	{
-		global $wgUserTogglesOc;
-		return $wgUserTogglesOc;
 	}
 
 	// Inherit userAdjust()

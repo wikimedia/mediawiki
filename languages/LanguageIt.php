@@ -45,26 +45,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgUserTogglesIt = array(
-	"hover"		=> "Mostra etichetta sui wiki-links",
-	"underline" => "Sottolinea links",
-	"highlightbroken" => "Evidenzia i links che puntano ad<br>articoli ancora da scrivere",
-	"justify"	=> "Paragrafo: giustificato",
-	"hideminor" => "Nascondi le modifiche minori<br>nella pagina \"Modifiche recenti\"",
-	"usenewrc" => "Enhanced recent changes (not for all browsers)",
-	"numberheadings" => "Auto-numerazione dei<br>titoli di paragrafo",
-	"showtoolbar" => "Show edit toolbar",
-	"editondblclick" => "Doppio click per modificare l'articolo<br>(richiede JavaScript)",
-	"editsection"=>"Enable section editing via [edit] links",
-	"editsectiononrightclick"=>"Enable section editing by right clicking<br> on section titles (JavaScript)",
-	"showtoc"=>"Show table of contents<br>(for articles with more than 3 headings)",
-	"rememberpassword" => "Ricorda la password<br>(non limitare a una sessione<br>- richiede uso di cookies)",
-	"editwidth" => "Casella di edizione ampliata<br>alla massima larghezza",
-	"watchdefault" => "Notifica articoli nuovi e modificati",
-	"minordefault" => "Indica ogni modifica come minore<br>(solo come predefinito)",
-	"previewontop" => "Show preview before edit box and not after it",
-	"nocache" => "Disable page caching"
-);
 
 /* These should be localized... any Italian online bookstores take ISBN searches? */
 /* private */ $wgBookstoreListIt = array(
@@ -129,6 +109,26 @@
 );
 
 /* private */ $wgAllMessagesIt = array(
+# User Toggles
+
+"tog-hover"		=> "Mostra etichetta sui wiki-links",
+"tog-underline" => "Sottolinea links",
+"tog-highlightbroken" => "Evidenzia i links che puntano ad<br>articoli ancora da scrivere",
+"tog-justify"	=> "Paragrafo: giustificato",
+"tog-hideminor" => "Nascondi le modifiche minori<br>nella pagina \"Modifiche recenti\"",
+"tog-usenewrc" => "Enhanced recent changes (not for all browsers)",
+"tog-numberheadings" => "Auto-numerazione dei<br>titoli di paragrafo",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editondblclick" => "Doppio click per modificare l'articolo<br>(richiede JavaScript)",
+"tog-editsection"=>"Enable section editing via [edit] links",
+"tog-editsectiononrightclick"=>"Enable section editing by right clicking<br> on section titles (JavaScript)",
+"tog-showtoc"=>"Show table of contents<br>(for articles with more than 3 headings)",
+"tog-rememberpassword" => "Ricorda la password<br>(non limitare a una sessione<br>- richiede uso di cookies)",
+"tog-editwidth" => "Casella di edizione ampliata<br>alla massima larghezza",
+"tog-watchdefault" => "Notifica articoli nuovi e modificati",
+"tog-minordefault" => "Indica ogni modifica come minore<br>(solo come predefinito)",
+"tog-previewontop" => "Show preview before edit box and not after it",
+"tog-nocache" => "Disable page caching",
 # dates
 'sunday' => 'Domenica',
 'monday' => 'Lunedì',
@@ -841,11 +841,6 @@ class LanguageIt extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesIt;
 		return $wgSkinNamesIt;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesIt;
-		return $wgUserTogglesIt;
 	}
 
 	function getLanguageNames() {

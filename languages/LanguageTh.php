@@ -46,27 +46,6 @@
 	"2001-01-15"
 );
 
-/* private */ $wgUserTogglesTh = array(
-	"hover"		=> "แสดง hoverbox เหนือลิงก์",
-	"underline" => "ขีดเส้นใต้ลิงก์",
-	"highlightbroken" => "จัดลิงก์ที่ไม่มี <a href=\"\" class=\"new\">เป็น
-ดังนี้</a> (หรือ เป็นดังนี้<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "จัดย่อหน้าให้เรียบร้อย",
-	"hideminor" => "ไม่แสดงการแก้ไขย่อยใน recent changes",
-	"usenewrc" => "Enhanced recent changes (ไม่สามารถใช้ได้กับทุกเว็บบราวเซอร์)",
-	"numberheadings" => "ใส่ตัวเลขหน้าหัวข้อโดยอัตโนมัติ",
-	"showtoolbar" => "Show edit toolbar",
-	"editondblclick" => "แก้ไขหน้าโดยใช้ double click (ผ่าน JavaScript)",
-	"editsection"=>"สามารถแก้ไขเฉพาะส่วนโดยใช้ลิงก์ [แก้ไข]",
-	"editsectiononrightclick"=>"สามารถแก้ไขเฉพาะส่วนโดยใช้ right click<br> บนชื่อส่วนย่อย (ผ่าน JavaScript)",
-	"showtoc"=>"แสดงสารบัญ<br>(สำหรับบทความที่มีมากกว่า 3 หัวข้อ)",
-	"rememberpassword" => "จำ password ระหว่าง session",
-	"editwidth" => "กล่องสำหรับการแก้ไขกว้างเต็มหน้าจอ",
-	"watchdefault" => "นำหน้าที่แก้ไขไปใส่ watchlist",
-	"minordefault" => "กำหนด default ให้การแก้ไขทุกครั้งเป็นการแก้ไขย่อย",
-	"previewontop" => "แสดง preview ก่อนกล่องสำหรับการแก้ไข",
-	"nocache" => "ไม่นำหน้าต่าง ๆ มาใส่ใน cache"
-);
 
 
 # All special pages have to be listed here: a description of ""
@@ -130,6 +109,29 @@
 # the regex in MagicWord::initRegex
 
 /* private */ $wgAllMessagesTh = array(
+
+# User Toggles
+#
+
+"tog-hover"		=> "แสดง hoverbox เหนือลิงก์",
+"tog-underline" => "ขีดเส้นใต้ลิงก์",
+"tog-highlightbroken" => "จัดลิงก์ที่ไม่มี <a href=\"\" class=\"new\">เป็น ดังนี้</a> (หรือ เป็นดังนี้<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	=> "จัดย่อหน้าให้เรียบร้อย",
+"tog-hideminor" => "ไม่แสดงการแก้ไขย่อยใน recent changes",
+"tog-usenewrc" => "Enhanced recent changes (ไม่สามารถใช้ได้กับทุกเว็บบราวเซอร์)",
+"tog-numberheadings" => "ใส่ตัวเลขหน้าหัวข้อโดยอัตโนมัติ",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editondblclick" => "แก้ไขหน้าโดยใช้ double click (ผ่าน JavaScript)",
+"tog-editsection"=>"สามารถแก้ไขเฉพาะส่วนโดยใช้ลิงก์ [แก้ไข]",
+"tog-editsectiononrightclick"=>"สามารถแก้ไขเฉพาะส่วนโดยใช้ right click<br> บนชื่อส่วนย่อย (ผ่าน JavaScript)",
+"tog-showtoc"=>"แสดงสารบัญ<br>(สำหรับบทความที่มีมากกว่า 3 หัวข้อ)",
+"tog-rememberpassword" => "จำ password ระหว่าง session",
+"tog-editwidth" => "กล่องสำหรับการแก้ไขกว้างเต็มหน้าจอ",
+"tog-watchdefault" => "นำหน้าที่แก้ไขไปใส่ watchlist",
+"tog-minordefault" => "กำหนด default ให้การแก้ไขทุกครั้งเป็นการแก้ไขย่อย",
+"tog-previewontop" => "แสดง preview ก่อนกล่องสำหรับการแก้ไข",
+"tog-nocache" => "ไม่นำหน้าต่าง ๆ มาใส่ใน cache",
+
 
 # Dates
 #
@@ -1133,11 +1135,6 @@ class LanguageTh extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsTh;
 		return $wgDateFormatsTh;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesTh;
-		return $wgUserTogglesTh;
 	}
 
 	function getValidSpecialPages()

@@ -51,26 +51,6 @@ require_once( "LanguageUtf8.php" );
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgUserTogglesNl = array(
- "hover"  => "Wikilinks in zwevend tekstvak tonen",
- "underline" => "Links onderstrepen",
- "highlightbroken" => "Links naar lege pagina's laten oplichten",
- "justify" => "Paragrafen uitvullen",
- "hideminor" => "Kleine wijzigingen verbergen in recente wijzigingen",
- "usenewrc" => "Gebruik de uitgebreide Recente Wijzigingen-pagina (niet op alle browsers mogelijk)",
- "numberheadings" => "Koppen automatisch nummeren",
-	"showtoolbar" => "Show edit toolbar",
-"editondblclick" => "Dubbelklikken levert bewerkingspagina (vereist JavaScript)",
- "editsection" => "Maak het bewerken van deelpagina's mogelijk",
- "editsectionondblclick" => "Edit deelpagina's met rechtermuisklik (vereist JavaScript)",
- "showtoc" => "Geef een inhoudsopgave (van pagina's met minstens 3 tussenkoppen)",
- "rememberpassword" => "Wachtwoord onthouden",
- "editwidth" => "Bewerkingsveld over volle breedte",
- "watchdefault" => "Artikelen die u wijzigt automatisch volgen",
- "minordefault" => "Maak 'kleine' veranderingen mijn standaard",
- "previewontop" => "Toon controlepagina boven bewerkingsveld",
- "nocache" => "Gebruik geen caching"
-);
 
 
 # All special pages have to be listed here: a description of ""
@@ -126,6 +106,27 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesNl = array(
+# User Toggles
+
+"tog-hover"  => "Wikilinks in zwevend tekstvak tonen",
+"tog-underline" => "Links onderstrepen",
+"tog-highlightbroken" => "Links naar lege pagina's laten oplichten",
+"tog-justify" => "Paragrafen uitvullen",
+"tog-hideminor" => "Kleine wijzigingen verbergen in recente wijzigingen",
+"tog-usenewrc" => "Gebruik de uitgebreide Recente Wijzigingen-pagina (niet op alle browsers mogelijk)",
+"tog-numberheadings" => "Koppen automatisch nummeren",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editondblclick" => "Dubbelklikken levert bewerkingspagina (vereist JavaScript)",
+"tog-editsection" => "Maak het bewerken van deelpagina's mogelijk",
+"tog-editsectionondblclick" => "Edit deelpagina's met rechtermuisklik (vereist JavaScript)",
+"tog-showtoc" => "Geef een inhoudsopgave (van pagina's met minstens 3 tussenkoppen)",
+"tog-rememberpassword" => "Wachtwoord onthouden",
+"tog-editwidth" => "Bewerkingsveld over volle breedte",
+"tog-watchdefault" => "Artikelen die u wijzigt automatisch volgen",
+"tog-minordefault" => "Maak 'kleine' veranderingen mijn standaard",
+"tog-previewontop" => "Toon controlepagina boven bewerkingsveld",
+"tog-nocache" => "Gebruik geen caching",
+
 # Dates
 'sunday' => 'zondag',
 'monday' => 'maandag',
@@ -888,11 +889,6 @@ class LanguageNl extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesNl;
 		return $wgSkinNamesNl;
-	}
-	
-	function getUserToggles() {
-		global $wgUserTogglesNl;
-		return $wgUserTogglesNl;
 	}
 	
 	# Inherit userAdjust()

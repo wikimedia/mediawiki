@@ -56,22 +56,6 @@ require_once( "LanguageUtf8.php" );
 );
 
 
-/* private */ $wgUserTogglesSl = array(
-	"hover"		   => "Prikaži lebdečo škatlo nad wikijevimi povezavami",
-	"underline"        => "Podčrtane povezave",
-	"highlightbroken"  => "Oblikuj prekinjene povezave <a href=\"\" class=\"new\">kot</a> (druga možnost: kot<a href=\"\" class=\"internal\">?</a>).",
-	"justify"	   => "Poravnaj odstavke",
-	"hideminor"        => "Skrij manjše popravke v trenutnih spremembah",
-	"usenewrc"         => "Izbolšane trenutne spremembe (ni za vse brskljalnike)",
-	"numberheadings"   => "Samodejno oštevilči poglavja",
-	"showtoolbar" => "Show edit toolbar",
-	"rememberpassword" => "Zapomni si geslo v vseh urejevanjih",
-	"editwidth"        => "Urejevalna škatla ima celo širino",
-	"editondblclick"   => "Urejuj strani z dvojnih klikom (JavaScript)",
-	"watchdefault"     => "Opazuj nove in spremenjene članke",
-	"minordefault"     => "Po privzetem označi vsa urejanja kot manjša",
-	"previewontop"     => "Prikaži predogled pred urejevalno škatlo in ne za njo"
-);
 
 /* private */ $wgBookstoreListSl = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -132,6 +116,23 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesSl = array(
+# User Toggles
+
+"tog-hover"		   => "Prikaži lebdečo škatlo nad wikijevimi povezavami",
+"tog-underline"        => "Podčrtane povezave",
+"tog-highlightbroken"  => "Oblikuj prekinjene povezave <a href=\"\" class=\"new\">kot</a> (druga možnost: kot<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	   => "Poravnaj odstavke",
+"tog-hideminor"        => "Skrij manjše popravke v trenutnih spremembah",
+"tog-usenewrc"         => "Izbolšane trenutne spremembe (ni za vse brskljalnike)",
+"tog-numberheadings"   => "Samodejno oštevilči poglavja",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-rememberpassword" => "Zapomni si geslo v vseh urejevanjih",
+"tog-editwidth"        => "Urejevalna škatla ima celo širino",
+"tog-editondblclick"   => "Urejuj strani z dvojnih klikom (JavaScript)",
+"tog-watchdefault"     => "Opazuj nove in spremenjene članke",
+"tog-minordefault"     => "Po privzetem označi vsa urejanja kot manjša",
+"tog-previewontop"     => "Prikaži predogled pred urejevalno škatlo in ne za njo",
+
 # Dates
 'sunday' => 'nedelja',
 'monday' => 'ponedeljek',
@@ -935,11 +936,6 @@ class LanguageSl extends LanguageUtf8 {
  function getDateFormats() {
   global $wgDateFormatsSl;
   return $wgDateFormatsSl;
- }
-
- function getUserToggles() {
-  global $wgUserTogglesSl;
-  return $wgUserTogglesSl;
  }
 
  function getValidSpecialPages()

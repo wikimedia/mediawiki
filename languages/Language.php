@@ -105,25 +105,24 @@ $wgValidationTypesEn = array (
 );
 
 /* private */ $wgUserTogglesEn = array(
-	'hover'		=> 'Show hoverbox over wiki links',
-	'underline' => 'Underline links',
-	'highlightbroken' => 'Format broken links <a href="" class="new">like
-this</a> (alternative: like this<a href="" class="internal">?</a>).',
-	'justify'	=> 'Justify paragraphs',
-	'hideminor' => 'Hide minor edits in recent changes',
-	'usenewrc' => 'Enhanced recent changes (not for all browsers)',
-	'numberheadings' => 'Auto-number headings',
-	'showtoolbar'=>'Show edit toolbar',
-	'editondblclick' => 'Edit pages on double click (JavaScript)',
-	'editsection'=>'Enable section editing via [edit] links',
-	'editsectiononrightclick'=>'Enable section editing by right clicking<br /> on section titles (JavaScript)',
-	'showtoc'=>'Show table of contents<br />(for pages with more than 3 headings)',
-	'rememberpassword' => 'Remember password across sessions',
-	'editwidth' => 'Edit box has full width',
-	'watchdefault' => 'Add pages you edit to your watchlist',
-	'minordefault' => 'Mark all edits minor by default',
-	'previewontop' => 'Show preview before edit box and not after it',
-	'nocache' => 'Disable page caching'
+	'hover',
+	'underline',
+	'highlightbroken',
+	'justify',
+	'hideminor',
+	'usenewrc',
+	'numberheadings',
+	'showtoolbar',
+	'editondblclick',
+	'editsection',
+	'editsectiononrightclick',
+	'showtoc',
+	'rememberpassword',
+	'editwidth',
+	'watchdefault',
+	'minordefault',
+	'previewontop',
+	'nocache',
 );
 
 /* private */ $wgBookstoreListEn = array(
@@ -221,6 +220,25 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 
 
 /* private */ $wgAllMessagesEn = array(
+# User preference toggles
+'tog-hover'		=> 'Show hoverbox over wiki links',
+'tog-underline' => 'Underline links',
+'tog-highlightbroken' => 'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
+'tog-justify'	=> 'Justify paragraphs',
+'tog-hideminor' => 'Hide minor edits in recent changes',
+'tog-usenewrc' => 'Enhanced recent changes (not for all browsers)',
+'tog-numberheadings' => 'Auto-number headings',
+'tog-showtoolbar'=>'Show edit toolbar',
+'tog-editondblclick' => 'Edit pages on double click (JavaScript)',
+'tog-editsection'=>'Enable section editing via [edit] links',
+'tog-editsectiononrightclick'=>'Enable section editing by right clicking<br /> on section titles (JavaScript)',
+'tog-showtoc'=>'Show table of contents<br />(for pages with more than 3 headings)',
+'tog-rememberpassword' => 'Remember password across sessions',
+'tog-editwidth' => 'Edit box has full width',
+'tog-watchdefault' => 'Add pages you edit to your watchlist',
+'tog-minordefault' => 'Mark all edits minor by default',
+'tog-previewontop' => 'Show preview before edit box and not after it',
+'tog-nocache' => 'Disable page caching',
 
 # dates
 'sunday' => 'Sunday',
@@ -1531,7 +1549,7 @@ class Language {
 
 	function getUserToggle( $tog ) {
 		$togs =& $this->getUserToggles();
-		return $togs[$tog];
+		return wfMsg("tog-".$tog);
 	}
 
 	function getLanguageNames() {

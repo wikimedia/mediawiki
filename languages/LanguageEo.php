@@ -49,26 +49,6 @@ $wgEditEncoding		= "x";
 );
 
 
-/* private */ $wgUserTogglesEo = array(
-	"hover"		=> "Montru helpilon super viki-ligiloj",
-	"underline" => "Substreku ligilojn",
-	"highlightbroken" => "Ruĝigu ligilojn al neekzistantaj paĝoj",
-	"justify"	=> "Alkadrigu liniojn",
-	"hideminor" => "Kaŝu malgrandajn redaktetojn ĉe <i>Lastaj ŝanĝoj</i>",
-	"usenewrc"  => "Novstila Lastaj Ŝanĝoj (bezonas JavaSkripton)",
-	"numberheadings" => "Aŭtomate numeru sekciojn",
-	"showtoolbar" => "Show edit toolbar",
-	"editondblclick" => "Redaktu per duobla alklako (JavaScript)",
-	"editsection" => "Montru [redaktu]-ligiloj por sekcioj",
-	"editsectiononrightclick" => "Redaktu sekciojn per dekstra musklako",
-	"showtoc" => "Montru liston de enhavoj",
-	"rememberpassword" => "Memoru mian pasvorton",
-	"editwidth" => "Redaktilo estu plenlarĝa",
-	"watchdefault" => "Priatentu paĝojn de vi redaktintajn",
-	"minordefault" => "Marku ĉiujn redaktojn malgrandaj",
-	"previewontop" => "Montru antaŭrigardon antaŭ redaktilo",
-	"altencoding" => "Montru supersignojn X-sisteme" # FIXME: forpreni cxi tiun; estas cimoplena
-);
 
 # Se eble, trovu Esperantajn libroservoj traserĉeblaj laŭ ISBN
 # $wgBookstoreListEo = ..
@@ -131,6 +111,25 @@ $wgEditEncoding		= "x";
 );
 
 /* private */ $wgAllMessagesEo = array(
+# User toggles
+"tog-hover"		=> "Montru helpilon super viki-ligiloj",
+"tog-underline" => "Substreku ligilojn",
+"tog-highlightbroken" => "Ruĝigu ligilojn al neekzistantaj paĝoj",
+"tog-justify"	=> "Alkadrigu liniojn",
+"tog-hideminor" => "Kaŝu malgrandajn redaktetojn ĉe <i>Lastaj ŝanĝoj</i>",
+"tog-usenewrc"  => "Novstila Lastaj Ŝanĝoj (bezonas JavaSkripton)",
+"tog-numberheadings" => "Aŭtomate numeru sekciojn",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editondblclick" => "Redaktu per duobla alklako (JavaScript)",
+"tog-editsection" => "Montru [redaktu]-ligiloj por sekcioj",
+"tog-editsectiononrightclick" => "Redaktu sekciojn per dekstra musklako",
+"tog-showtoc" => "Montru liston de enhavoj",
+"tog-rememberpassword" => "Memoru mian pasvorton",
+"tog-editwidth" => "Redaktilo estu plenlarĝa",
+"tog-watchdefault" => "Priatentu paĝojn de vi redaktintajn",
+"tog-minordefault" => "Marku ĉiujn redaktojn malgrandaj",
+"tog-previewontop" => "Montru antaŭrigardon antaŭ redaktilo",
+"tog-altencoding" => "Montru supersignojn X-sisteme", # FIXME: forpreni cxi tiun; estas cimoplena
 # Dates
 
 'sunday' => "dimanĉo",
@@ -1044,11 +1043,6 @@ class LanguageEo extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesEo;
 		return $wgSkinNamesEo;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesEo;
-		return $wgUserTogglesEo;
 	}
 
 	# Heredu userAdjust()

@@ -47,26 +47,6 @@ require_once( "LanguageUtf8.php" );
 );
 
 
-/* private */ $wgUserTogglesJa = array(
-	"hover" => "ウィキリンクにツールチップを表示する",
-	"underline" => "リンクにアンダーラインをつける",
-	"highlightbroken" => "未作成のページへのリンクをハイライトする",
-	"justify" => "段落を均等割り付けする",
-	"hideminor" => "最近更新したページから細部の編集を隠す",
-	"usenewrc" => "最近更新したページを拡張する (全てのブラウザで使えません)",
-	"numberheadings" => "見出しに番号を振る",
-	"showtoolbar" => "編集ボタンを表示する",
-	"editondblclick" => "ダブルクリックで編集する (JavaScript)",
-	"editsection" => "セクション編集を有効にする",
-	"editsectiononrightclick" => "セクションタイトルの右クリックでセクション編集を行えるようにする (JavaScript)",
-	"showtoc" => "目次を表示する (4つ以上の見出しがあるページ)",
-	"rememberpassword" => "セッションを越えてパスワードを記憶する",
-	"editwidth" => "テキストボックスを横幅いっぱいに表示する",
-	"watchdefault" => "編集した記事をウォッチリストに追加する",
-	"minordefault" => "細部の編集をデフォルトでチェックする",
-	"previewontop" => "プレビューをテキストボックスの前に配置する",
-	"nocache" => "ページをキャッシュしない"
-);
 
 /* private */ $wgWeekdayAbbreviationsJa = array(
 	"日", "月", "火", "水", "木", "金", "土"
@@ -127,6 +107,26 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesJa = array(
+# User Toggles
+
+"tog-hover" => "ウィキリンクにツールチップを表示する",
+"tog-underline" => "リンクにアンダーラインをつける",
+"tog-highlightbroken" => "未作成のページへのリンクをハイライトする",
+"tog-justify" => "段落を均等割り付けする",
+"tog-hideminor" => "最近更新したページから細部の編集を隠す",
+"tog-usenewrc" => "最近更新したページを拡張する (全てのブラウザで使えません)",
+"tog-numberheadings" => "見出しに番号を振る",
+"tog-showtoolbar" => "編集ボタンを表示する",
+"tog-editondblclick" => "ダブルクリックで編集する (JavaScript)",
+"tog-editsection" => "セクション編集を有効にする",
+"tog-editsectiononrightclick" => "セクションタイトルの右クリックでセクション編集を行えるようにする (JavaScript)",
+"tog-showtoc" => "目次を表示する (4つ以上の見出しがあるページ)",
+"tog-rememberpassword" => "セッションを越えてパスワードを記憶する",
+"tog-editwidth" => "テキストボックスを横幅いっぱいに表示する",
+"tog-watchdefault" => "編集した記事をウォッチリストに追加する",
+"tog-minordefault" => "細部の編集をデフォルトでチェックする",
+"tog-previewontop" => "プレビューをテキストボックスの前に配置する",
+"tog-nocache" => "ページをキャッシュしない",
 # Dates
 
 'sunday' => "日曜日",
@@ -970,11 +970,6 @@ class LanguageJa extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesJa;
 		return $wgSkinNamesJa;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesJa;
-		return $wgUserTogglesJa;
 	}
 
 	# Inherit default userAdjust()

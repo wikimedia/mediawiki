@@ -50,27 +50,6 @@
 	"15 Januari 2001", # "2001 Januari 15"
 );
 
-/* private */ $wgUserTogglesMs = array(
-	"hover"		=> "Papar hoverbox atas pautan", #"Show hoverbox over links",
-	"underline" => "Pautan bergaris", #"Underline links",
-	"highlightbroken" => "Pautan bertanda ke topik kosong",
-        #TODO: <a href=\"\" class=\"new\">like this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>)
-	"justify"	=> "Justifikasikan perenggan", #"Justify paragraphs",
-	"hideminor" => "Sembunyi perubahan minor dalam perubahan terkini", #"Hide minor edits in recent changes",
-	"usenewrc" => "Peningkatan terbaru (bukan untuk semua pelayar)",
-	"numberheadings" => "Auto-number headings",
-	"showtoolbar" => "Show edit toolbar",
-	"editsection"=>"Papar pautan untuk sunting seksyen individu",
-	"showtoc"=>"Papar jadual kandungan bagi rencana melebihi 3 tajuk",# "Show table of contents for articles with more than 3 headings",
-
-	"rememberpassword" => "Ingat kata laluan bagi setiap sessi", #"Remember password across sessions",
-	"editwidth" => "Kotak sunting telah lebar", #"Edit box has full width",
-	"editondblclick" => "Sunting halaman dengan klik berganda (JavaScript)", #"Edit pages on double click (JavaScript)"
-	"watchdefault" => "Tambah halaman yang anda sunting pada senarai perhati",# "Add pages you edit to your watchlist",
-	"minordefault" => "Tanda semua suntingan ringkas secara ingkar",# "Mark all edits minor by default"
-	"previewontop" => "Papar pratonton sebelum kotak sunting dan bukan selepasnya", #Show preview before edit box and not after it",
-	"nocache" => "Matikan simpanan laman"
-);
 
 /* private */ $wgBookstoreListMs = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -132,6 +111,27 @@
 );
 
 /* private */ $wgAllMessagesMs = array(
+
+# User Toggles
+
+"tog-hover"		=> "Papar hoverbox atas pautan", #"Show hoverbox over links",
+"tog-underline" => "Pautan bergaris", #"Underline links",
+"tog-highlightbroken" => "Pautan bertanda ke topik kosong",
+#TODO: <a href=\"\" class=\"new\">like this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>)
+"tog-justify"	=> "Justifikasikan perenggan", #"Justify paragraphs",
+"tog-hideminor" => "Sembunyi perubahan minor dalam perubahan terkini", #"Hide minor edits in recent changes",
+"tog-usenewrc" => "Peningkatan terbaru (bukan untuk semua pelayar)",
+"tog-numberheadings" => "Auto-number headings",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editsection"=>"Papar pautan untuk sunting seksyen individu",
+"tog-showtoc"=>"Papar jadual kandungan bagi rencana melebihi 3 tajuk",# "Show table of contents for articles with more than 3 headings",
+"tog-rememberpassword" => "Ingat kata laluan bagi setiap sessi", #"Remember password across sessions",
+"tog-editwidth" => "Kotak sunting telah lebar", #"Edit box has full width",
+"tog-editondblclick" => "Sunting halaman dengan klik berganda (JavaScript)", #"Edit pages on double click (JavaScript)"
+"tog-watchdefault" => "Tambah halaman yang anda sunting pada senarai perhati",# "Add pages you edit to your watchlist",
+"tog-minordefault" => "Tanda semua suntingan ringkas secara ingkar",# "Mark all edits minor by default"
+"tog-previewontop" => "Papar pratonton sebelum kotak sunting dan bukan selepasnya", #Show preview before edit box and not after it",
+"tog-nocache" => "Matikan simpanan laman",
 
 # Dates
 
@@ -1025,11 +1025,6 @@ class LanguageMs extends LanguageUtf8 {
 	function getDateFormats() {
 		global $wgDateFormatsMs;
 		return $wgDateFormatsMs;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesMs;
-		return $wgUserTogglesMs;
 	}
 
 	function getValidSpecialPages()

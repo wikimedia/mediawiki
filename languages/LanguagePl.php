@@ -57,26 +57,7 @@ if( $wgMetaNamespace == "Wikipedia" ) {
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgUserTogglesPl = array(
-        "hover" => "Pokazuj okienko podpowiedzi ponad linkami",
-        "underline" => "Podkreślenie linków",
-        "highlightbroken" => "<a href=\"\" class=\"new\">Podświetl</a> linki pustych stron (alternatywa: znak zapytania<a href=\"\" class=\"internal\">?</a>).",
-        "justify" => "Wyrównuj tekst artykułu w kolumnie",
-        "hideminor" => "Ukryj drobne zmiany w \"Ostatnich zmianach\"",
-        "usenewrc" => "Konsolidacja ostatnich zmian (JavaScript)",
-        "numberheadings" => "Automatyczna numeracja nagłówków",
-	"showtoolbar" => "Show edit toolbar",
-        "editondblclick" => "Podwójne kliknięcie rozpoczyna edycję (JavaScript)",
-                "editsection" => "Możliwość edycji poszczególnych sekcji strony",
-                "editsectiononrightclick" => "Kliknięcie prawym klawiszem na tytule sekcji<br>rozpoczyna jej edycję (JavaScript)",
-                "showtoc" =>  "Spis treści (na stronach zawierających więcej niż 3 nagłówki)",
-        "rememberpassword" => "Pamiętaj hasło między sesjami",
-        "editwidth" => "Obszar edycji o pełnej szerokości",
-        "watchdefault" => "Obserwuj strony, które będę edytować",
-        "minordefault" => "Wszystkie zmiany zaznaczaj domyślnie jako drobne",
-        "previewontop" => "Pokazuj podgląd przed oknem edycji",
-                "nocache" => "Wyłącz pamięć podręczną"
-);
+
 
 /* private */ $wgBookstoreListPl = array(
         "AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -138,6 +119,27 @@ if( $wgMetaNamespace == "Wikipedia" ) {
 );
 
 /* private */ $wgAllMessagesPl = array(
+# User Toggles
+
+"tog-hover" => "Pokazuj okienko podpowiedzi ponad linkami",
+"tog-underline" => "Podkreślenie linków",
+"tog-highlightbroken" => "<a href=\"\" class=\"new\">Podświetl</a> linki pustych stron (alternatywa: znak zapytania<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify" => "Wyrównuj tekst artykułu w kolumnie",
+"tog-hideminor" => "Ukryj drobne zmiany w \"Ostatnich zmianach\"",
+"tog-usenewrc" => "Konsolidacja ostatnich zmian (JavaScript)",
+"tog-numberheadings" => "Automatyczna numeracja nagłówków",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-editondblclick" => "Podwójne kliknięcie rozpoczyna edycję (JavaScript)",
+"tog-editsection" => "Możliwość edycji poszczególnych sekcji strony",
+"tog-editsectiononrightclick" => "Kliknięcie prawym klawiszem na tytule sekcji<br>rozpoczyna jej edycję (JavaScript)",
+"tog-showtoc" =>  "Spis treści (na stronach zawierających więcej niż 3 nagłówki)",
+"tog-rememberpassword" => "Pamiętaj hasło między sesjami",
+"tog-editwidth" => "Obszar edycji o pełnej szerokości",
+"tog-watchdefault" => "Obserwuj strony, które będę edytować",
+"tog-minordefault" => "Wszystkie zmiany zaznaczaj domyślnie jako drobne",
+"tog-previewontop" => "Pokazuj podgląd przed oknem edycji",
+"tog-nocache" => "Wyłącz pamięć podręczną",
+
 # Dates
 'sunday' => "niedziela",
 'monday' => "poniedziałek",
@@ -1102,11 +1104,6 @@ class LanguagePl extends LanguageUtf8 {
         function getSkinNames() {
                 global $wgSkinNamesPl;
                 return $wgSkinNamesPl;
-        }
-
-        function getUserToggles() {
-                global $wgUserTogglesPl;
-                return $wgUserTogglesPl;
         }
 
         function getMonthNameGen( $key )

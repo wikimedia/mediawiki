@@ -77,28 +77,6 @@ define( "MW_MATH_MATHML", 5 );
 	"2001-01-15"
 );
 
-/* private */ $wgUserTogglesSv = array(
-        "hover"            => "Svävande text över wikilänkar",
-        "underline"        => "Understryk länkar",
-        "highlightbroken"  => "Formatera trasiga länkar <a href=\"\" class=\"new\">så här</a>
-(alternativt: så här<a href=\"\" class=\"internal\">?</a>).",
-        "justify"          => "Justera indrag",
-        "hideminor"        => "Göm mindre redigeringar vid senaste ändring",
-	"usenewrc"         => "Avancerad 'Senaste ändringar'",
-        "numberheadings"   => "Automatisk numrering av överskrifter",
-	"showtoolbar"      => "Visa redigeringverktygsrad",
-        "rememberpassword" => "Kom ihåg lösenord till nästa besök",
-        "editwidth"        => "Redigeringsboxen har full bredd",
-        "editondblclick"   => "Redigera sidor med dubbelklick (JavaScript)",
-	"editsection"      => "Visa [edit]-länkar för att redigera sektioner",
-	"editsectiononrightclick" => "Högerklick på rubriker redigerar sektioner",
-	"showtoc"          => "Visa automatisk innehållsförteckning (på sidor med mer än 3 sektioner)",
-        "watchdefault"     => "Övervaka nya och ändrade artiklar",
-        "minordefault"     => "Markera som standard alla ändringer som mindre",
-	"previewontop"     => "Visa förhandsgranskning före textfältet istället för efter",
-	"nocache"          => "Slå av cachning av sidor"
-);
-
 /* private */ $wgBookstoreListSv = array(
         "AddALL"         => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
         "PriceSCAN"      => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
@@ -165,6 +143,27 @@ $wgValidSpecialPagesSv = array(
 );
 
 /* private */ $wgAllMessagesSv = array(
+// User Toggles
+
+"tog-hover"            => "Svävande text över wikilänkar",
+"tog-underline"        => "Understryk länkar",
+"tog-highlightbroken"  => "Formatera trasiga länkar <a href=\"\" class=\"new\">så här</a> (alternativt: så här<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"          => "Justera indrag",
+"tog-hideminor"        => "Göm mindre redigeringar vid senaste ändring",
+"tog-usenewrc"         => "Avancerad 'Senaste ändringar'",
+"tog-numberheadings"   => "Automatisk numrering av överskrifter",
+"tog-showtoolbar"      => "Visa redigeringverktygsrad",
+"tog-rememberpassword" => "Kom ihåg lösenord till nästa besök",
+"tog-editwidth"        => "Redigeringsboxen har full bredd",
+"tog-editondblclick"   => "Redigera sidor med dubbelklick (JavaScript)",
+"tog-editsection"      => "Visa [edit]-länkar för att redigera sektioner",
+"tog-editsectiononrightclick" => "Högerklick på rubriker redigerar sektioner",
+"tog-showtoc"          => "Visa automatisk innehållsförteckning (på sidor med mer än 3 sektioner)",
+"tog-watchdefault"     => "Övervaka nya och ändrade artiklar",
+"tog-minordefault"     => "Markera som standard alla ändringer som mindre",
+"tog-previewontop"     => "Visa förhandsgranskning före textfältet istället för efter",
+"tog-nocache"          => "Slå av cachning av sidor",
+
 // Dates
 
 'sunday' => "söndag",
@@ -1092,11 +1091,6 @@ class LanguageSv extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesSv;
 		return $wgSkinNamesSv;
-	}
-	
-	function getUserToggles() {
-		global $wgUserTogglesSv;
-		return $wgUserTogglesSv;
 	}
 	
 	# Inherit userAdjust()

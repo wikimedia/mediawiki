@@ -50,40 +50,6 @@ require_once( "LanguageUtf8.php" );
 );
 
 
-/* private */ $wgUserTogglesZh = array(
-	"hover"		=> "滑过Wiki链接时显示注释",
-/* "Show hoverbox over wiki links",*/
-	"underline" => "下划链接",
-/* "Underline links", */
-	"highlightbroken" => "毁坏链接格式<a href=\"\" class=\"new\">像这样</a> (或者像这个<a href=\"\" class=\"internal\">?</a>)",
-/* "Format broken links <a href=\"\" class=\"new\">like 
-this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
-	"justify"	=> "段落对齐",
-/* "Justify paragraphs", */
-	"hideminor" => "最近更改中隐藏细微修改",
-/* "Hide minor edits in recent changes", */
-	"usenewrc" => "最近更改增强（只适用部分浏览器）",
-/* "Enhanced recent changes (not for all browsers)", */
-	"numberheadings" => "标题自动编号",
-	"showtoolbar" => "Show edit toolbar",
-/* "Auto-number headings", */
-   "editondblclick" => "双击页面编辑(JavaScript)",
-                 "editsection"=>"允许通过点击[编辑]链接编辑段落",
- 	         "editsectiononrightclick"=>"允许右击标题编辑段落(JavaScript)",
- 	         "showtoc"=>"显示目录<br>(针对一页超过3个标题的文章)",
-	"rememberpassword" => "下次登陆记住密码",
-/* "Remember password across sessions", */
-	"editwidth" => "编辑栏位宽度",
-/* "Edit box has full width", */
-	"editondblclick" => "双击编辑页面（Javascript）",
-/* "Edit pages on double click (JavaScript)", */
-	"watchdefault" => "监视新的以及更改过的文章",
-/* "Watch new and modified articles", */
-	"minordefault" => "细微编辑为默认设置",
-/* "Mark all edits minor by default", */
-	"previewontop" => "在编辑框上方显示预览"
-/* "Show preview before edit box and not after it" */
-);
 
 /* private */ $wgBookstoreListZh = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -158,6 +124,28 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
 );
 
 /* private */ $wgAllMessagesZh = array(
+# User Toggles
+
+"tog-hover"		=> "滑过Wiki链接时显示注释", /* "Show hoverbox over wiki links",*/
+"tog-underline" => "下划链接", /* "Underline links", */
+/* "Format broken links <a href=\"\" class=\"new\">like this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).", */
+"tog-highlightbroken" => "毁坏链接格式<a href=\"\" class=\"new\">像这样</a> (或者像这个<a href=\"\" class=\"internal\">?</a>)",
+"tog-justify"	=> "段落对齐", /* "Justify paragraphs", */
+"tog-hideminor" => "最近更改中隐藏细微修改", /* "Hide minor edits in recent changes", */
+"tog-usenewrc" => "最近更改增强（只适用部分浏览器）", /* "Enhanced recent changes (not for all browsers)", */
+"tog-numberheadings" => "标题自动编号",
+"tog-showtoolbar" => "Show edit toolbar", /* "Auto-number headings", */
+"tog-editondblclick" => "双击页面编辑(JavaScript)",
+"tog-editsection"=>"允许通过点击[编辑]链接编辑段落",
+"tog-editsectiononrightclick"=>"允许右击标题编辑段落(JavaScript)",
+"tog-showtoc"=>"显示目录<br>(针对一页超过3个标题的文章)",
+"tog-rememberpassword" => "下次登陆记住密码", /* "Remember password across sessions", */
+"tog-editwidth" => "编辑栏位宽度", /* "Edit box has full width", */
+"tog-editondblclick" => "双击编辑页面（Javascript）", /* "Edit pages on double click (JavaScript)", */
+"tog-watchdefault" => "监视新的以及更改过的文章", /* "Watch new and modified articles", */
+"tog-minordefault" => "细微编辑为默认设置", /* "Mark all edits minor by default", */
+"tog-previewontop" => "在编辑框上方显示预览", /* "Show preview before edit box and not after it" */
+
 # Dates
 
 'sunday' => "星期日",
@@ -1006,11 +994,6 @@ class LanguageZh extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesZh;
 		return $wgSkinNamesZh;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesZh;
-		return $wgUserTogglesZh;
 	}
 
 # The date and time functions can be tweaked if need be

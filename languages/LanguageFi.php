@@ -45,23 +45,6 @@
  "myskin" => "MySkin" 
 );
 
-/* private */ $wgUserTogglesFi = array(
-	"hover"		=> "Näytä vinkki wiki-linkkien päällä",
-	"underline" => "Alleviivaa linkit",
-	"highlightbroken" => "Näytä linkit puuttuville <a href=\"\" class=\"new\">näin </a> (vaitoehtoisesti näin: <a href=\"\" class=\"internal\">?</a>).",
-	"justify"	=> "Tasaa kappaleet",
-	"hideminor" => "Piilota pienet muutokset tuoreimpien muutosten listasta",
-	"usenewrc" => "Kehittynyt tuoreet muutokset (ei kaikille selaimille)",
-	"numberheadings" => "Numeroi otsikot",
-	"showtoolbar" => "Show edit toolbar",
-	"rememberpassword" => "Älä kysy salasanaa jos sama yhteys",
-	"editwidth" => "Muokkausruutu käyttää koko ikkunanleveyttä",
-	"editondblclick" => "Muokkaa sivuja kaksoisklikkauksella (JavaScript)",
-	"watchdefault" => "Vahdi luomiani ja muokkaamiani sivuja",
-	"minordefault" => "Muutokseni ovat pieniä ellen muuta sano",
-	"previewontop" => "Näytä esikatselu ennen muokkausruutua, eikä jälkeen"
-	
-);
 
 
 /* private */ $wgValidSpecialPagesFi = array(
@@ -112,6 +95,22 @@
 
 
 /* private */ $wgAllMessagesFi = array(
+# User Toggles
+
+"tog-hover"		=> "Näytä vinkki wiki-linkkien päällä",
+"tog-underline" => "Alleviivaa linkit",
+"tog-highlightbroken" => "Näytä linkit puuttuville <a href=\"\" class=\"new\">näin </a> (vaitoehtoisesti näin: <a href=\"\" class=\"internal\">?</a>).",
+"tog-justify"	=> "Tasaa kappaleet",
+"tog-hideminor" => "Piilota pienet muutokset tuoreimpien muutosten listasta",
+"tog-usenewrc" => "Kehittynyt tuoreet muutokset (ei kaikille selaimille)",
+"tog-numberheadings" => "Numeroi otsikot",
+"tog-showtoolbar" => "Show edit toolbar",
+"tog-rememberpassword" => "Älä kysy salasanaa jos sama yhteys",
+"tog-editwidth" => "Muokkausruutu käyttää koko ikkunanleveyttä",
+"tog-editondblclick" => "Muokkaa sivuja kaksoisklikkauksella (JavaScript)",
+"tog-watchdefault" => "Vahdi luomiani ja muokkaamiani sivuja",
+"tog-minordefault" => "Muutokseni ovat pieniä ellen muuta sano",
+"tog-previewontop" => "Näytä esikatselu ennen muokkausruutua, eikä jälkeen",
 # Dates
 'sunday' => 'sunnuntai',
 'monday' => 'maanantai',
@@ -864,11 +863,6 @@ class LanguageFi extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesFi;
 		return $wgSkinNamesFi;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesFi;
-		return $wgUserTogglesFi;
 	}
 
 	# Inherit userAdjust()

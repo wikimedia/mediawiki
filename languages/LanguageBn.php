@@ -48,25 +48,6 @@
   "2001 January 15"
 );
 
-/* private */ $wgUserTogglesBn = array(
-  "hover"   => "Show hoverbox over wiki links",
-  "underline" => "Underline links",
-  "highlightbroken" => "Format broken links <a href=\"\" class=\"new\">like
-this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
-  "justify" => "Justify paragraphs",
-  "hideminor" => "Hide minor edits in recent changes",
-  "usenewrc" => "Enhanced recent changes (not for all browsers)",
-  "numberheadings" => "Auto-number headings",
-  "editsection"=>"Show links for editing individual sections",
-  "showtoc"=>"Show table of contents for articles with more than 3 headings",
-  "rememberpassword" => "Remember password across sessions",
-  "editwidth" => "Edit box has full width",
-  "editondblclick" => "Edit pages on double click (JavaScript)",
-  "watchdefault" => "Add pages you edit to your watchlist",
-  "minordefault" => "Mark all edits minor by default",
-  "previewontop" => "Show preview before edit box and not after it",
-  "nocache" => "Disable page caching"
-);
 
 /* private */ $wgBookstoreListBn = array(
   "AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
@@ -130,6 +111,23 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 );
 
 /* private */ $wgAllMessagesBn = array(
+# User Toggles
+"tog-hover"   => "Show hoverbox over wiki links",
+"tog-underline" => "Underline links",
+"tog-highlightbroken" => "Format broken links <a href=\"\" class=\"new\">like this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
+"tog-justify" => "Justify paragraphs",
+"tog-hideminor" => "Hide minor edits in recent changes",
+"tog-usenewrc" => "Enhanced recent changes (not for all browsers)",
+"tog-numberheadings" => "Auto-number headings",
+"tog-editsection"=>"Show links for editing individual sections",
+"tog-showtoc"=>"Show table of contents for articles with more than 3 headings",
+"tog-rememberpassword" => "Remember password across sessions",
+"tog-editwidth" => "Edit box has full width",
+"tog-editondblclick" => "Edit pages on double click (JavaScript)",
+"tog-watchdefault" => "Add pages you edit to your watchlist",
+"tog-minordefault" => "Mark all edits minor by default",
+"tog-previewontop" => "Show preview before edit box and not after it",
+"tog-nocache" => "Disable page caching",
 # Dates
 
 'sunday' => "রবিবার",

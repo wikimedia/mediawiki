@@ -29,20 +29,6 @@ require_once( "LanguageUtf8.php" );
 	"Standard", "Nostalgia", "Cologne Blue"
 );
 
-/* private */ $wgUserTogglesSc = array(
-	"hover"		=> "Mostra etichetta sui wiki-links",
-	"underline" => "Sottolinea links",
-	"highlightbroken" => "Evidenzia i links che puntano ad articoli ancora da scrivere",
-	"justify"	=> "Paragrafo: giustificato",
-	"hideminor" => "Nascondi le modifiche minori nella pagina \"Modifiche recenti\"",
-	"numberheadings" => "Auto-numerazione dei titoli di paragrafo",
-	"rememberpassword" => "Ricorda la password (non limitare a una sessione - richiede uso di cookies)",
-	"editwidth" => "Casella di edizione ampliata alla massima larghezza",
-	"editondblclick" => "Doppio click per modificare l'articolo (richiede JavaScript)",
-	"watchdefault" => "Notifica articoli nuovi e modificati",
-	"minordefault" => "Indica ogni modifica come minore (solo come predefinito)"
-	
-);
 
 /* These should be localized... any Italian online bookstores take ISBN searches? */
 /* private */ $wgBookstoreListSc = array(
@@ -105,6 +91,19 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesSc = array(
+# User Toggles
+
+"tog-hover"		=> "Mostra etichetta sui wiki-links",
+"tog-underline" => "Sottolinea links",
+"tog-highlightbroken" => "Evidenzia i links che puntano ad articoli ancora da scrivere",
+"tog-justify"	=> "Paragrafo: giustificato",
+"tog-hideminor" => "Nascondi le modifiche minori nella pagina \"Modifiche recenti\"",
+"tog-numberheadings" => "Auto-numerazione dei titoli di paragrafo",
+"tog-rememberpassword" => "Ricorda la password (non limitare a una sessione - richiede uso di cookies)",
+"tog-editwidth" => "Casella di edizione ampliata alla massima larghezza",
+"tog-editondblclick" => "Doppio click per modificare l'articolo (richiede JavaScript)",
+"tog-watchdefault" => "Notifica articoli nuovi e modificati",
+"tog-minordefault" => "Indica ogni modifica come minore (solo come predefinito)",
 
 # Dates
 #
@@ -826,11 +825,6 @@ class LanguageSc extends LanguageUtf8 {
 	function getSkinNames() {
 		global $wgSkinNamesSc;
 		return $wgSkinNamesSc;
-	}
-
-	function getUserToggles() {
-		global $wgUserTogglesSc;
-		return $wgUserTogglesSc;
 	}
 
 	function getLanguageNames() {
