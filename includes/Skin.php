@@ -1976,7 +1976,7 @@ class Skin {
 
 	function recentChangesLineOld( &$rc, $watched = false )
 	{
-		global $wgTitle, $wgLang, $wgUser;
+		global $wgTitle, $wgLang, $wgUser, $wgRCSeconds;
 
 		# Extract DB fields into local scope
 		extract( $rc->mAttribs );
@@ -2035,7 +2035,7 @@ class Skin {
 		}
 
 		# Timestamp
-		$s .= "; " . $wgLang->time( $rc_timestamp, true ) . " . . ";
+		$s .= "; " . $wgLang->time( $rc_timestamp, true, $wgRCSeconds ) . " . . ";
 
 		# User link (or contributions for unregistered users)
 		if ( 0 == $rc_user ) {
@@ -2081,7 +2081,7 @@ class Skin {
 #	function recentChangesLineNew( $ts, $u, $ut, $ns, $ttl, $c, $isminor, $isnew, $watched = false, $oldid = 0 , $diffid = 0 )
 	function recentChangesLineNew( &$baseRC, $watched = false )
 	{
-		global $wgTitle, $wgLang, $wgUser;
+		global $wgTitle, $wgLang, $wgUser, $wgRCSeconds;
 
 		# Create a specialised object
 		$rc = RCCacheEntry::newFromParent( $baseRC ) ;
@@ -2110,7 +2110,7 @@ class Skin {
 			$clink = $this->makeKnownLinkObj( $rc->getTitle(), "" ) ;
 		}
 		
-		$time = $wgLang->time( $rc_timestamp, true );
+		$time = $wgLang->time( $rc_timestamp, true, $wgRCSeconds );
 		$rc->watched = $watched ;
 		$rc->link = $clink ;
 		$rc->timestamp = $time;

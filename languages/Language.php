@@ -1706,11 +1706,14 @@ class Language {
 		}
 	}
 
-	function time( $ts, $adj = false )
+	function time( $ts, $adj = false, $seconds = false )
 	{
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
+		if ( $seconds ) { 
+			$t .= ":" . substr( $ts, 12, 2 );
+		}
 		return $this->formatNum( $t );
 	}
 

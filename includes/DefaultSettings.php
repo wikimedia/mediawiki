@@ -290,4 +290,6 @@ if( !isset( $wgCommandLineMode ) ) {
 	$wgCommandLineMode = false;
 }
 
+# Show seconds in Recent Changes
+$wgRCSeconds = false
 ?>
