@@ -875,51 +875,41 @@ class OutputPage {
 			
 			# Construct search and replace arrays
 			wfProfileIn( "$fname-construct" );
-			$search = $replace = array();
+			global $outputReplace;
+			$outputReplace = array();
 			foreach ( $namespaces as $key => $ns ) {
 				$pdbk = $pdbks[$key];
-				$search[] = $tmpLinks[0][$key];
+				$searchkey = $tmpLinks[0][$key];
 				$title = $titles[$key];
 				if ( empty( $colours[$pdbk] ) ) {
 					$wgLinkCache->addBadLink( $pdbk );
 					$colours[$pdbk] = 0;
-					$replace[] = $sk->makeBrokenLinkObj( $title, $texts[$key], $queries[$key] );
+					$outputReplace[$searchkey] = $sk->makeBrokenLinkObj( $title, $texts[$key], $queries[$key] );
 				} elseif ( $colours[$pdbk] == 1 ) {
-					$replace[] = $sk->makeKnownLinkObj( $title, $texts[$key], $queries[$key] );
+					$outputReplace[$searchkey] = $sk->makeKnownLinkObj( $title, $texts[$key], $queries[$key] );
 				} elseif ( $colours[$pdbk] == 2 ) {
-					$replace[] = $sk->makeStubLinkObj( $title, $texts[$key], $queries[$key] );
+					$outputReplace[$searchkey] = $sk->makeStubLinkObj( $title, $texts[$key], $queries[$key] );
 				}
 			}
 			wfProfileOut( "$fname-construct" );
+
 			# Do the thing
 			wfProfileIn( "$fname-replace" );
 			
-			# Dirrrty hack
-			$arr = explode ( "<!--LINK" , $this->mBodytext ) ;
-			$tarr = array() ;
-			foreach ( $arr AS $k => $v )
-				{
-				$t = explode ( "-->" , $v , 2 ) ;
-				$tarr[$k] = $t[0]  ;
-				}
-			while ( count ( $search ) > 0 )
-				{
-				$s = array_pop ( $search ) ;
-				$r = array_pop ( $replace ) ;
-				$s = substr ( $s , 8 , strlen ( $s ) - 11 ) ;
-				$k = array_search ( $s , $tarr ) ;
-				if ( $k === false ) continue ;
-				$arr[$k] = substr_replace ( $arr[$k] , $r , 0 , strlen ( $s ) + 3 ) ;
-				unset ( $tarr[$k] ) ;
-				}
-			$this->mBodytext = implode ( "" , $arr ) ;
-			
-#			$this->mBodytext = str_replace( $search, $replace, $this->mBodytext );
+			$this->mBodytext = preg_replace_callback(
+				'/(<!--LINK .*? .*? .*? .*?-->)/',
+				"outputReplaceMatches",
+				$this->mBodytext);
 			wfProfileOut( "$fname-replace" );
 		}
 		wfProfileOut( $fname );
 		return $colours;
 	}
+}
+
+function &outputReplaceMatches($matches) {
+	global $outputReplace;
+	return $outputReplace[$matches[1]];
 }
 
 }
