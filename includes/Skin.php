@@ -451,6 +451,7 @@ class Skin {
 		return $s;
 	}
 
+	
 	function getCategoryLinks () {
 		global $wgOut, $wgTitle, $wgUser, $wgParser;
 		global $wgUseCategoryMagic, $wgUseCategoryBrowser, $wgLang;
@@ -544,7 +545,10 @@ class Skin {
 		$action = $wgRequest->getText( 'action' );
 
 		$s = $this->printableLink();
-	        $s .= $this->disclaimerLink(); # may be empty
+		$disclaimer = $this->disclaimerLink(); # may be empty
+		if( $disclaimer ) {
+			$s .= ' | ' . $disclaimer;
+		}
 
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->getNamespace() == Namespace::getImage() ) {
@@ -976,12 +980,12 @@ class Skin {
 
 
 	function disclaimerLink() {
-	        $disclaimers = wfMsg( 'disclaimers' );
-	        if ($disclaimers == '-') {
-		    return "";
+		$disclaimers = wfMsg( 'disclaimers' );
+		if ($disclaimers == '-') {
+			return "";
 		} else {
-		    return $this->makeKnownLink( wfMsgForContent( 'disclaimerpage' ),
-						 $disclaimers );
+			return $this->makeKnownLink( wfMsgForContent( 'disclaimerpage' ),
+			                             $disclaimers );
 		}
 	}
 
