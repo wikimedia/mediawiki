@@ -1,12 +1,12 @@
 <?php
 /**
- *
+ * Hold things related to displaying and saving user preferences.
  * @package MediaWiki
  * @subpackage SpecialPage
  */
 
 /**
- *
+ * Entry point that create the "Preferences" object
  */
 function wfSpecialPreferences() {
 	global $wgRequest;
@@ -16,7 +16,8 @@ function wfSpecialPreferences() {
 }
 
 /**
- *
+ * Preferences form handling
+ * This object will show the preferences form and can save it as well.
  * @package MediaWiki
  * @subpackage SpecialPage
  */
@@ -26,6 +27,10 @@ class PreferencesForm {
 	var $mSearch, $mRecent, $mHourDiff, $mSearchLines, $mSearchChars, $mAction;
 	var $mReset, $mPosted, $mToggles, $mSearchNs, $mRealName;
 
+	/**
+	 * Constructor
+	 * Load some values
+	 */
 	function PreferencesForm( &$request ) {	
 		global $wgLang, $wgAllowRealName;
 		
@@ -81,7 +86,7 @@ class PreferencesForm {
 		global $wgUser, $wgOut, $wgUseDynamicDates;
 		
 		if ( 0 == $wgUser->getID() ) {
-			$wgOut->errorpage( "prefsnologin", "prefsnologintext" );
+			$wgOut->errorpage( 'prefsnologin', 'prefsnologintext' );
 			return;
 		}
 		if ( wfReadOnly() ) {
@@ -90,38 +95,45 @@ class PreferencesForm {
 		}
 		if ( $this->mReset ) {
 			$this->resetPrefs();
-			$this->mainPrefsForm( wfMsg( "prefsreset" ) );
+			$this->mainPrefsForm( wfMsg( 'prefsreset' ) );
 		} else if ( $this->mSaveprefs ) {
 			$this->savePreferences();
 		} else {
 			$this->resetPrefs();
-			$this->mainPrefsForm( "" );
+			$this->mainPrefsForm( '' );
 		}
 	}
 
-	/* private */ function validateInt( &$val, $min=0, $max=0x7fffffff ) {
+	/**
+	 * @access private
+	 */
+	function validateInt( &$val, $min=0, $max=0x7fffffff ) {
 		$val = intval($val);
 		$val = min($val, $max);
 		$val = max($val, $min);
 		return $val;
 	}
 
-	/* private */ function validateIntOrNull( &$val, $min=0, $max=0x7fffffff ) {
+	/**
+	 * @access private
+	 */
+	function validateIntOrNull( &$val, $min=0, $max=0x7fffffff ) {
 		$val = trim($val);
-		if($val === "") {
+		if($val === '') {
 			return $val;
 		} else {
 			return $this->validateInt( $val, $min, $max );
 		}
 	}
 
-	/* private */ function validateTimeZone( $s )
-	{
-		
-		if ( $s !== "" ) {
-			if ( strpos( $s, ":" ) ) {
+	/**
+	 * @access private
+	 */
+	function validateTimeZone( $s ) {
+		if ( $s !== '' ) {
+			if ( strpos( $s, ':' ) ) {
 				# HH:MM
-				$array = explode( ":" , $s );
+				$array = explode( ':' , $s );
 				$hour = intval( $array[0] );
 				$minute = intval( $array[1] );
 			} else {
@@ -138,44 +150,46 @@ class PreferencesForm {
 		return $s;
 	}
 
-	/* private */ function savePreferences()
-	{
+	/**
+	 * @access private
+	 */
+	function savePreferences() {
 		global $wgUser, $wgLang, $wgDeferredUpdateList, $wgOut;
 
-		if ( "" != $this->mNewpass ) {
+		if ( '' != $this->mNewpass ) {
 			if ( $this->mNewpass != $this->mRetypePass ) {
-				$this->mainPrefsForm( wfMsg( "badretype" ) );			
+				$this->mainPrefsForm( wfMsg( 'badretype' ) );			
 				return;
 			}
 
 			if (!$wgUser->checkPassword( $this->mOldpass )) {
-				$this->mainPrefsForm( wfMsg( "wrongpassword" ) );
+				$this->mainPrefsForm( wfMsg( 'wrongpassword' ) );
 				return;
 			}
 			$wgUser->setPassword( $this->mNewpass );
 		}
 		$wgUser->setEmail( $this->mUserEmail );
 		$wgUser->setRealName( $this->mRealName );
-		$wgUser->setOption( "nickname", $this->mNick );
-		$wgUser->setOption( "quickbar", $this->mQuickbar );
-		$wgUser->setOption( "skin", $this->mSkin );
-		$wgUser->setOption( "math", $this->mMath );
-		$wgUser->setOption( "date", $this->mDate );
-		$wgUser->setOption( "searchlimit", $this->validateIntOrNull( $this->mSearch ) );
-		$wgUser->setOption( "contextlines", $this->validateIntOrNull( $this->mSearchLines ) );
-		$wgUser->setOption( "contextchars", $this->validateIntOrNull( $this->mSearchChars ) );
-		$wgUser->setOption( "rclimit", $this->validateIntOrNull( $this->mRecent ) );
-		$wgUser->setOption( "rows", $this->validateInt( $this->mRows, 4, 1000 ) );
-		$wgUser->setOption( "cols", $this->validateInt( $this->mCols, 4, 1000 ) );
-		$wgUser->setOption( "stubthreshold", $this->validateIntOrNull( $this->mStubs ) );
-		$wgUser->setOption( "timecorrection", $this->validateTimeZone( $this->mHourDiff, -12, 14 ) );
+		$wgUser->setOption( 'nickname', $this->mNick );
+		$wgUser->setOption( 'quickbar', $this->mQuickbar );
+		$wgUser->setOption( 'skin', $this->mSkin );
+		$wgUser->setOption( 'math', $this->mMath );
+		$wgUser->setOption( 'date', $this->mDate );
+		$wgUser->setOption( 'searchlimit', $this->validateIntOrNull( $this->mSearch ) );
+		$wgUser->setOption( 'contextlines', $this->validateIntOrNull( $this->mSearchLines ) );
+		$wgUser->setOption( 'contextchars', $this->validateIntOrNull( $this->mSearchChars ) );
+		$wgUser->setOption( 'rclimit', $this->validateIntOrNull( $this->mRecent ) );
+		$wgUser->setOption( 'rows', $this->validateInt( $this->mRows, 4, 1000 ) );
+		$wgUser->setOption( 'cols', $this->validateInt( $this->mCols, 4, 1000 ) );
+		$wgUser->setOption( 'stubthreshold', $this->validateIntOrNull( $this->mStubs ) );
+		$wgUser->setOption( 'timecorrection', $this->validateTimeZone( $this->mHourDiff, -12, 14 ) );
 
 		# Set search namespace options
 		foreach( $this->mSearchNs as $i => $value ) {
 			$wgUser->setOption( "searchNs{$i}", $value );
 		}
 		
-		$wgUser->setOption( "disablemail", $this->mEmailFlag );
+		$wgUser->setOption( 'disablemail', $this->mEmailFlag );
 
 		# Set user toggles
 		foreach ( $this->mToggles as $tname => $tvalue ) {
@@ -186,69 +200,72 @@ class PreferencesForm {
 		array_push( $wgDeferredUpdateList, $up );
 		$wgOut->setParserOptions( ParserOptions::newFromUser( $wgUser ) );
 		$po = ParserOptions::newFromUser( $wgUser );
-		$this->mainPrefsForm( wfMsg( "savedprefs" ) );
+		$this->mainPrefsForm( wfMsg( 'savedprefs' ) );
 	}
 
-	/* private */ function resetPrefs()
-	{
+	/**
+	 * @access private
+	 */ function resetPrefs() {
 		global $wgUser, $wgLang, $wgAllowRealName;
 
-		$this->mOldpass = $this->mNewpass = $this->mRetypePass = "";
+		$this->mOldpass = $this->mNewpass = $this->mRetypePass = '';
 		$this->mUserEmail = $wgUser->getEmail();
 	        $this->mRealName = ($wgAllowRealName) ? $wgUser->getRealName() : '';
-		if ( 1 == $wgUser->getOption( "disablemail" ) ) { $this->mEmailFlag = 1; }
+		if ( 1 == $wgUser->getOption( 'disablemail' ) ) { $this->mEmailFlag = 1; }
 		else { $this->mEmailFlag = 0; }
-		$this->mNick = $wgUser->getOption( "nickname" );
+		$this->mNick = $wgUser->getOption( 'nickname' );
 
-		$this->mQuickbar = $wgUser->getOption( "quickbar" );
-		$this->mSkin = $wgUser->getOption( "skin" );
-		$this->mMath = $wgUser->getOption( "math" );
-		$this->mDate = $wgUser->getOption( "date" );
-		$this->mRows = $wgUser->getOption( "rows" );
-		$this->mCols = $wgUser->getOption( "cols" );
-		$this->mStubs = $wgUser->getOption( "stubthreshold" );
-		$this->mHourDiff = $wgUser->getOption( "timecorrection" );
-		$this->mSearch = $wgUser->getOption( "searchlimit" );
-		$this->mSearchLines = $wgUser->getOption( "contextlines" );
-		$this->mSearchChars = $wgUser->getOption( "contextchars" );
-		$this->mRecent = $wgUser->getOption( "rclimit" );
+		$this->mQuickbar = $wgUser->getOption( 'quickbar' );
+		$this->mSkin = $wgUser->getOption( 'skin' );
+		$this->mMath = $wgUser->getOption( 'math' );
+		$this->mDate = $wgUser->getOption( 'date' );
+		$this->mRows = $wgUser->getOption( 'rows' );
+		$this->mCols = $wgUser->getOption( 'cols' );
+		$this->mStubs = $wgUser->getOption( 'stubthreshold' );
+		$this->mHourDiff = $wgUser->getOption( 'timecorrection' );
+		$this->mSearch = $wgUser->getOption( 'searchlimit' );
+		$this->mSearchLines = $wgUser->getOption( 'contextlines' );
+		$this->mSearchChars = $wgUser->getOption( 'contextchars' );
+		$this->mRecent = $wgUser->getOption( 'rclimit' );
 
 		$togs = $wgLang->getUserToggles();
 		foreach ( $togs as $tname ) {
-			$ttext = wfMsg("tog-".$tname);
+			$ttext = wfMsg('tog-'.$tname);
 			$this->mToggles[$tname] = $wgUser->getOption( $tname );
 		}
 
 		$namespaces = $wgLang->getNamespaces();
 		foreach ( $namespaces as $i => $namespace ) {
 			if ( $i >= 0 ) {
-				$this->mSearchNs[$i] = $wgUser->getOption( "searchNs$i" );
+				$this->mSearchNs[$i] = $wgUser->getOption( 'searchNs'.$i );
 			}
 		}
 	}
 
-	/* private */ function namespacesCheckboxes()
-	{
+	/**
+	 * @access private
+	 */
+	function namespacesCheckboxes() {
 		global $wgLang, $wgUser;
 		
 		# Determine namespace checkboxes
 		$namespaces = $wgLang->getNamespaces();
-		$r1 = "";
+		$r1 = '';
 
 		foreach ( $namespaces as $i => $name ) {
 			# Skip special or anything similar
 			if ( $i >= 0 ) {
-				$checked = "";
+				$checked = '';
 				if ( $this->mSearchNs[$i] ) {
 					$checked = ' checked="checked"';
 				}
-				$name = str_replace( "_", " ", $namespaces[$i] );
-				if ( "" == $name ) { 
-					$name = wfMsg( "blanknamespace" ); 
+				$name = str_replace( '_', ' ', $namespaces[$i] );
+				if ( '' == $name ) { 
+					$name = wfMsg( 'blanknamespace' ); 
 				}
 
 				if ( 0 != $i ) { 
-					$r1 .= " "; 
+					$r1 .= ' '; 
 				}
 				$r1 .= "<label><input type='checkbox' value=\"1\" name=\"" .
 				  "wpNs$i\"{$checked} />{$name}</label>\n";
@@ -268,28 +285,30 @@ class PreferencesForm {
 		if ( 1 == $wgUser->getOption( $tname ) ) {
 			$checked = ' checked="checked"';
 		} else {
-			$checked = "";
+			$checked = '';
 		}		
 		return "<div><input type='checkbox' value=\"1\" "
 		  . "id=\"$tname\" name=\"wpOp$tname\"$checked /><label for=\"$tname\">$ttext</label></div>\n";
 	}
 
-	/* private */ function mainPrefsForm( $err )
-	{
+	/**
+	 * @access private
+	 */
+	function mainPrefsForm( $err ) {
 		global $wgUser, $wgOut, $wgLang, $wgUseDynamicDates, $wgValidSkinNames;
 	        global $wgAllowRealName;
 	    
-		$wgOut->setPageTitle( wfMsg( "preferences" ) );
+		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
-		$wgOut->setRobotpolicy( "noindex,nofollow" );
+		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
-		if ( "" != $err ) {
+		if ( '' != $err ) {
 			$wgOut->addHTML( "<p class='error'>" . htmlspecialchars( $err ) . "</p>\n" );
 		}
 		$uname = $wgUser->getName();
 		$uid = $wgUser->getID();
 
-		$wgOut->addWikiText( wfMsg( "prefslogintext", $uname, $uid ) );
+		$wgOut->addWikiText( wfMsg( 'prefslogintext', $uname, $uid ) );
 		$wgOut->addWikiText( wfMsg('clearyourcache'));
 
 		$qbs = $wgLang->getQuickbarSettings();
@@ -298,39 +317,39 @@ class PreferencesForm {
 		$dateopts = $wgLang->getDateFormats();
 		$togs = $wgLang->getUserToggles();
 
-		$titleObj = Title::makeTitle( NS_SPECIAL, "Preferences" );
+		$titleObj = Title::makeTitle( NS_SPECIAL, 'Preferences' );
 		$action = $titleObj->escapeLocalURL();
 
-		$qb = wfMsg( "qbsettings" );
-		$cp = wfMsg( "changepassword" );
-		$sk = wfMsg( "skin" );
-		$math = wfMsg( "math" );
-		$dateFormat = wfMsg("dateformat");
-		$opw = wfMsg( "oldpassword" );
-		$npw = wfMsg( "newpassword" );
-		$rpw = wfMsg( "retypenew" );
-		$svp = wfMsg( "saveprefs" );
-		$rsp = wfMsg( "resetprefs" );
-		$tbs = wfMsg( "textboxsize" );
-		$tbr = wfMsg( "rows" );
-		$tbc = wfMsg( "columns" );
-		$ltz = wfMsg( "localtime" );
-		$timezone = wfMsg( "timezonelegend" );
-		$tzt = wfMsg( "timezonetext" );
-		$tzo = wfMsg( "timezoneoffset" );
-		$tzGuess = wfMsg( "guesstimezone" );
-		$tzServerTime = wfMsg( "servertime" );
-		$yem = wfMsg( "youremail" );
-	        $yrn = ($wgAllowRealName) ? wfMsg( "yourrealname" ) : '';
-		$emf = wfMsg( "emailflag" );
-		$ynn = wfMsg( "yournick" );
-		$stt = wfMsg ( "stubthreshold" ) ;
-		$srh = wfMsg( "searchresultshead" );
-		$rpp = wfMsg( "resultsperpage" );
-		$scl = wfMsg( "contextlines" );
-		$scc = wfMsg( "contextchars" );
-		$rcc = wfMsg( "recentchangescount" );
-		$dsn = wfMsg( "defaultns" );
+		$qb = wfMsg( 'qbsettings' );
+		$cp = wfMsg( 'changepassword' );
+		$sk = wfMsg( 'skin' );
+		$math = wfMsg( 'math' );
+		$dateFormat = wfMsg('dateformat');
+		$opw = wfMsg( 'oldpassword' );
+		$npw = wfMsg( 'newpassword' );
+		$rpw = wfMsg( 'retypenew' );
+		$svp = wfMsg( 'saveprefs' );
+		$rsp = wfMsg( 'resetprefs' );
+		$tbs = wfMsg( 'textboxsize' );
+		$tbr = wfMsg( 'rows' );
+		$tbc = wfMsg( 'columns' );
+		$ltz = wfMsg( 'localtime' );
+		$timezone = wfMsg( 'timezonelegend' );
+		$tzt = wfMsg( 'timezonetext' );
+		$tzo = wfMsg( 'timezoneoffset' );
+		$tzGuess = wfMsg( 'guesstimezone' );
+		$tzServerTime = wfMsg( 'servertime' );
+		$yem = wfMsg( 'youremail' );
+	        $yrn = ($wgAllowRealName) ? wfMsg( 'yourrealname' ) : '';
+		$emf = wfMsg( 'emailflag' );
+		$ynn = wfMsg( 'yournick' );
+		$stt = wfMsg ( 'stubthreshold' ) ;
+		$srh = wfMsg( 'searchresultshead' );
+		$rpp = wfMsg( 'resultsperpage' );
+		$scl = wfMsg( 'contextlines' );
+		$scc = wfMsg( 'contextchars' );
+		$rcc = wfMsg( 'recentchangescount' );
+		$dsn = wfMsg( 'defaultns' );
 
 		$wgOut->addHTML( "<form id=\"preferences\" name=\"preferences\" action=\"$action\"
 	method=\"post\">" );
@@ -342,7 +361,7 @@ class PreferencesForm {
 		$this->mRealName = htmlspecialchars( $this->mRealName );
 		$this->mNick = htmlspecialchars( $this->mNick );
 		if ( $this->mEmailFlag ) { $emfc = 'checked="checked"'; }
-		else { $emfc = ""; }
+		else { $emfc = ''; }
 
 		$ps = $this->namespacesCheckboxes();
 
@@ -393,7 +412,7 @@ class PreferencesForm {
 			if ( $skinkey == $this->mSkin ) { 
 				$checked = ' checked="checked"'; 
 			} else { 
-				$checked = ""; 
+				$checked = ''; 
 			}
 			if ( isset( $skinNames[$skinkey] ) ) {
 				$sn = $skinNames[$skinkey];
