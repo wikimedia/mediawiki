@@ -465,13 +465,14 @@ class OutputPage {
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
+		$this->mRedirect = "";
 
 		$this->mBodytext = "";
 		$this->addHTML( "<p>" . wfMsg( $msg ) . "</p>\n" );
 		$this->returnToMain( false );
 
 		$this->output();
-		wfAbruptExit();
+		wfErrorExit();
 	}
 
 	function sysopRequired()
@@ -534,6 +535,7 @@ class OutputPage {
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
+		$this->mRedirect = "";
 
 		if ( $wgCommandLineMode ) {
 			$msg = wfMsgNoDB( "dberrortextcl" );
@@ -548,7 +550,7 @@ class OutputPage {
 
 		if ( $wgCommandLineMode || !is_object( $wgUser )) {
 			print "$msg\n";
-			wfAbruptExit();
+			wfErrorExit();
 		}
 		$sk = $wgUser->getSkin();
 		$shlink = $sk->makeKnownLink( wfMsgNoDB( "searchhelppage" ),
@@ -556,7 +558,7 @@ class OutputPage {
 		$msg = str_replace( "$5", $shlink, $msg );
 		$this->mBodytext = $msg;
 		$this->output();
-		wfAbruptExit();
+		wfErrorExit();
 	}
 
 	function readOnlyPage( $source = null, $protected = false )
@@ -595,10 +597,11 @@ class OutputPage {
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
+		$this->mRedirect = "";
 
 		$this->mBodytext = $message;
 		$this->output();
-		wfAbruptExit();
+		wfErrorExit();
 	}
 
 	function unexpectedValueError( $name, $val )

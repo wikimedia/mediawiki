@@ -50,8 +50,7 @@ $wgTitle = Title::newFromText( "Update script" );
 #
 print "Checking database for necessary updates...\n";
 
-$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname, 
-	1, false, true, false);
+$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname, 1 );
 if ( !$wgDatabase->isOpen() ) {
 	print "Unable to connect to database: " . $wgDatabase->lastError() . "\n";
 	exit();

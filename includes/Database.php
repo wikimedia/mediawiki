@@ -22,43 +22,61 @@ class Database {
 # Variables
 #------------------------------------------------------------------------------	
 	/* private */ var $mLastQuery = "";
-	/* private */ var $mBufferResults = true;
-	/* private */ var $mIgnoreErrors = false;
 	
 	/* private */ var $mServer, $mUser, $mPassword, $mConn, $mDBname;
-	/* private */ var $mOut, $mDebug, $mOpened = false;
+	/* private */ var $mOut, $mOpened = false;
 	
 	/* private */ var $mFailFunction; 
 	/* private */ var $mTablePrefix;
+	/* private */ var $mFlags;
+	/* private */ var $mTrxLevel = 0;
 
 #------------------------------------------------------------------------------
 # Accessors
 #------------------------------------------------------------------------------
-	# Set functions
-	# These set a variable and return the previous state
+	# These optionally set a variable and return the previous state
 	
 	# Fail function, takes a Database as a parameter
 	# Set to false for default, 1 for ignore errors
-	function setFailFunction( $function ) { return wfSetVar( $this->mFailFunction, $function ); }
+	function failFunction( $function = NULL ) { 
+		return wfSetVar( $this->mFailFunction, $function ); 
+	}
 	
 	# Output page, used for reporting errors
 	# FALSE means discard output
-	function &setOutputPage( &$out ) { $this->mOut =& $out; }
+	function &setOutputPage( &$out ) { 
+		$this->mOut =& $out; 
+	}
 	
 	# Boolean, controls output of large amounts of debug information 
-	function setDebug( $debug ) { return wfSetVar( $this->mDebug, $debug ); }
+	function debug( $debug = NULL ) { 
+		return wfSetBit( $this->mFlags, DBO_DEBUG, $debug ); 
+	}
 	
 	# Turns buffering of SQL result sets on (true) or off (false). Default is
 	# "on" and it should not be changed without good reasons. 
-	function setBufferResults( $buffer ) { return wfSetVar( $this->mBufferResults, $buffer ); }
+	function bufferResults( $buffer = NULL ) {
+		if ( is_null( $buffer ) ) {
+			return !(bool)( $this->mFlags & DBO_NOBUFFER );
+		} else {
+			return !wfSetBit( $this->mFlags, DBO_NOBUFFER, !$buffer ); 
+		}
+	}
 
 	# Turns on (false) or off (true) the automatic generation and sending
 	# of a "we're sorry, but there has been a database error" page on
 	# database errors. Default is on (false). When turned off, the
 	# code should use wfLastErrno() and wfLastError() to handle the
 	# situation as appropriate.
-	function setIgnoreErrors( $ignoreErrors ) { return wfSetVar( $this->mIgnoreErrors, $ignoreErrors ); }
+	function ignoreErrors( $ignoreErrors = NULL ) { 
+		return wfSetBit( $this->mFlags, DBO_IGNORE, $ignoreErrors ); 
+	}
 	
+	# The current depth of nested transactions
+	function trxLevel( $level = NULL ) {
+		return wfSetVar( $this->mTrxLevel, $level );
+	}
+
 	# Get functions
 	
 	function lastQuery() { return $this->mLastQuery; }
@@ -69,10 +87,9 @@ class Database {
 #------------------------------------------------------------------------------
 
 	function Database( $server = false, $user = false, $password = false, $dbName = false, 
-		$failFunction = false, $debug = false, $bufferResults = true, $ignoreErrors = false,
-		$tablePrefix = 'get from global' )
+		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
 	{
-		global $wgOut, $wgDBprefix;
+		global $wgOut, $wgDBprefix, $wgCommandLineMode;
 		# Can't get a reference if it hasn't been set yet
 		if ( !isset( $wgOut ) ) {
 			$wgOut = NULL;
@@ -80,9 +97,16 @@ class Database {
 		$this->mOut =& $wgOut;
 
 		$this->mFailFunction = $failFunction;
-		$this->mIgnoreErrors = $ignoreErrors;
-		$this->mDebug = $debug;
-		$this->mBufferResults = $bufferResults;
+		$this->mFlags = $flags;
+		
+		if ( $this->mFlags & DBO_DEFAULT ) {
+			if ( $wgCommandLineMode ) {
+				$this->mFlags &= ~DBO_TRX;
+			} else {
+				$this->mFlags |= DBO_TRX;
+			}
+		}
+
 		if ( $tablePrefix == 'get from global' ) {
 			$this->mTablePrefix = $wgDBprefix;
 		} else {
@@ -95,10 +119,9 @@ class Database {
 	}
 	
 	/* static */ function newFromParams( $server, $user, $password, $dbName, 
-		$failFunction = false, $debug = false, $bufferResults = true, $ignoreErrors = false )
+		$failFunction = false, $flags = 0 )
 	{
-		return new Database( $server, $user, $password, $dbName, $failFunction, $debug, 
-		  $bufferResults, $ignoreErrors );
+		return new Database( $server, $user, $password, $dbName, $failFunction, $flags );
 	}
 	
 	# Usually aborts on failure
@@ -146,11 +169,15 @@ class Database {
 	}
 	
 	# Closes a database connection, if it is open
+	# Commits any open transactions
 	# Returns success, true if already closed
 	function close()
 	{
 		$this->mOpened = false;
 		if ( $this->mConn ) {
+			if ( $this->trxLevel() ) {
+				$this->immediateCommit();
+			}
 			return mysql_close( $this->mConn );
 		} else {
 			return true;
@@ -184,7 +211,7 @@ class Database {
 		
 		$this->mLastQuery = $sql;
 		
-		if ( $this->mDebug ) {
+		if ( $this->debug() ) {
 			$sqlx = substr( $sql, 0, 500 );
 			$sqlx = wordwrap(strtr($sqlx,"\t\n","  "));
 			wfDebug( "SQL: $sqlx\n" );
@@ -196,26 +223,37 @@ class Database {
 			$commentedSql = $sql;
 		}
 		
-		if( $this->mBufferResults ) {
-			$ret = mysql_query( $commentedSql, $this->mConn );
-		} else {
-			$ret = mysql_unbuffered_query( $commentedSql, $this->mConn );
-		}
-	
-		if ( false === $ret ) {
-			$this->reportQueryError( mysql_error(), mysql_errno(), $sql, $fname, $tempIgnore );
+		# If DBO_TRX is set, start a transaction
+		if ( ( $this->mFlags & DBO_TRX ) && !$this->trxLevel() && $sql != 'BEGIN' ) {
+			$this->begin();
 		}
 		
+		# Do the query and handle errors
+		$ret = $this->doQuery( $commentedSql );
+		if ( false === $ret ) {
+			$this->reportQueryError( $this->lastError(), $this->lastErrno(), $sql, $fname, $tempIgnore );
+		}
+				
 		if ( $wgProfiling ) {
 			wfProfileOut( $profName );
 		}
 		return $ret;
 	}
 	
+	# The DBMS-dependent part of query()
+	function doQuery( $sql ) {
+		if( $this->bufferResults() ) {
+			$ret = mysql_query( $sql, $this->mConn );
+		} else {
+			$ret = mysql_unbuffered_query( $sql, $this->mConn );
+		}	
+		return $ret;
+	}
+
 	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
 		global $wgCommandLineMode, $wgFullyInitialised;
 		# Ignore errors during error handling to avoid infinite recursion
-		$ignore = $this->setIgnoreErrors( true );
+		$ignore = $this->ignoreErrors( true );
 
 		if( $ignore || $tempIgnore ) {
 			wfDebug("SQL ERROR (ignored): " . $error . "\n");
@@ -237,7 +275,7 @@ class Database {
 				$this->mOut->databaseError( $fname, $sql, $error, $errno ); 				
 			}
 		}
-		$this->setIgnoreErrors( $ignore );
+		$this->ignoreErrors( $ignore );
 	}
 
 	function freeResult( $res ) {
@@ -470,10 +508,9 @@ class Database {
 	function tableExists( $table )
 	{
 		$table = $this->tableName( $table );
-		$old = $this->mIgnoreErrors;
-		$this->mIgnoreErrors = true;
+		$old = $this->ignoreErrors( true );
 		$res = $this->query( "SELECT 1 FROM $table LIMIT 1" );
-		$this->mIgnoreErrors = $old;
+		$this->ignoreErrors( $old );
 		if( $res ) {
 			$this->freeResult( $res );
 			return true;
@@ -521,6 +558,11 @@ class Database {
 	# If errors are explicitly ignored, returns success
 	function insert( $table, $a, $fname = "Database::insert", $options = array() )
 	{
+		# No rows to insert, easy just return now
+		if ( !count( $a ) ) {
+			return true;
+		}
+
 		$table = $this->tableName( $table );
 		if ( !is_array( $options ) ) {
 			$options = array( $options );
@@ -532,7 +574,7 @@ class Database {
 			$multi = false;
 			$keys = array_keys( $a );
 		}
-		
+
 		$sql = 'INSERT ' . implode( ' ', $options ) . 
 			" INTO $table (" . implode( ',', $keys ) . ') VALUES ';
 
@@ -784,7 +826,7 @@ class Database {
 		$this->query( "BEGIN", $myFname );
 		$args = func_get_args();
 		$function = array_shift( $args );
-		$oldIgnore = $dbw->setIgnoreErrors( true );
+		$oldIgnore = $dbw->ignoreErrors( true );
 		$tries = DEADLOCK_TRIES;
 		if ( is_array( $function ) ) {
 			$fname = $function[0];
@@ -806,7 +848,7 @@ class Database {
 				}
 			}
 		} while( $dbw->wasDeadlock && --$tries > 0 );
-		$this->setIgnoreErrors( $oldIgnore );
+		$this->ignoreErrors( $oldIgnore );
 		if ( $tries <= 0 ) {
 			$this->query( "ROLLBACK", $myFname );
 			$this->reportQueryError( $error, $errno, $sql, $fname );
@@ -851,6 +893,43 @@ class Database {
 			return array( false, false );
 		}
 	}
+
+	# Begin a transaction, or if a transaction has already started, continue it
+	function begin( $fname = 'Database::begin' ) {
+		if ( !$this->mTrxLevel ) {
+			$this->immediateBegin( $fname );
+		} else {
+			$this->mTrxLevel++;
+		}
+	}
+
+	# End a transaction, or decrement the nest level if transactions are nested
+	function commit( $fname = 'Database::commit' ) {
+		if ( $this->mTrxLevel ) {
+			$this->mTrxLevel--;
+		}
+		if ( !$this->mTrxLevel ) {
+			$this->immediateCommit( $fname );
+		}
+	}
+
+	# Rollback a transaction
+	function rollback( $fname = 'Database::rollback' ) {
+		$this->query( 'ROLLBACK', $fname );
+		$this->mTrxLevel = 0;
+	}
+
+	# Begin a transaction, committing any previously open transaction
+	function immediateBegin( $fname = 'Database::immediateBegin' ) {
+		$this->query( 'BEGIN', $fname );
+		$this->mTrxLevel = 1;
+	}
+	
+	# Commit transaction, if one is open
+	function immediateCommit( $fname = 'Database::immediateCommit' ) {
+		$this->query( 'COMMIT', $fname );
+		$this->mTrxLevel = 0;
+	}
 } 
 
 class DatabaseMysql extends Database {
@@ -887,7 +966,7 @@ function wfEmergencyAbort( &$conn, $error ) {
 				$search = $_REQUEST['search'];
 				echo wfMsgNoDB( "searchdisabled" );
 				echo wfMsgNoDB( "googlesearch", htmlspecialchars( $search ), $wgInputEncoding );
-				wfAbruptExit();
+				wfErrorExit();
 			} else {
 				$t = Title::newFromText( wfMsgNoDB( "mainpage" ) );
 			}
@@ -907,7 +986,7 @@ function wfEmergencyAbort( &$conn, $error ) {
 	}
 	
 	echo $text;
-	wfAbruptExit();
+	wfErrorExit();
 }
 
 function wfLimitResult( $limit, $offset ) {

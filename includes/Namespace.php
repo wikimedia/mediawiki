@@ -4,29 +4,7 @@
 # "magic" behaviors of them based on index.  The textual
 # names of the namespaces are handled by Language.php.
 
-# Virtual namespaces; these don't appear in the page database:
-define("NS_MEDIA", -2);
-define("NS_SPECIAL", -1);
-
-# Real namespaces:
-define("NS_MAIN", 0);
-define("NS_TALK", 1);
-define("NS_USER", 2);
-define("NS_USER_TALK", 3);
-define("NS_WP", 4);
-define("NS_WIKIPEDIA", 4);
-define("NS_WP_TALK", 5);
-define("NS_WIKIPEDIA_TALK", 5);
-define("NS_IMAGE", 6);
-define("NS_IMAGE_TALK", 7);
-define("NS_MEDIAWIKI", 8);
-define("NS_MEDIAWIKI_TALK", 9);
-define("NS_TEMPLATE", 10);
-define("NS_TEMPLATE_TALK", 11);
-define("NS_HELP", 12);
-define("NS_HELP_TALK", 13);
-define("NS_CATEGORY", 14);
-define("NS_CATEGORY_TALK", 15);
+# Definitions of the NS_ constants are in Defines.php
 
 # These are synonyms for the names given in the language file
 # Users and translators should not change them

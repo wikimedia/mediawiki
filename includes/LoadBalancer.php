@@ -29,7 +29,7 @@ define( "MASTER_WAIT_TIMEOUT", 15 ); # Time to wait for a slave to synchronise
 class LoadBalancer {
 	/* private */ var $mServers, $mConnections, $mLoads;
 	/* private */ var $mFailFunction;
-	/* private */ var $mForce, $mReadIndex, $mLastConn;
+	/* private */ var $mForce, $mReadIndex, $mLastIndex;
 	/* private */ var $mWaitForFile, $mWaitForPos;
 
 	function LoadBalancer()
@@ -39,7 +39,7 @@ class LoadBalancer {
 		$this->mFailFunction = false;
 		$this->mReadIndex = -1;
 		$this->mForce = -1;
-		$this->mLastConn = false;
+		$this->mLastIndex = -1;
 	}
 
 	function newFromParams( $servers, $failFunction = false )
@@ -57,7 +57,7 @@ class LoadBalancer {
 		$this->mWriteIndex = -1;
 		$this->mForce = -1;
 		$this->mConnections = array();
-		$this->mLastConn = false;
+		$this->mLastIndex = 1;
 		$this->mLoads = array();
 		$this->mWaitForFile = false;
 		$this->mWaitForPos = false;
@@ -92,13 +92,14 @@ class LoadBalancer {
 		return $i;
 	}
 
-	function &getReader()
+	function getReaderIndex()
 	{
+		$i = false;
 		if ( $this->mForce >= 0 ) {
-			$conn =& $this->getConnection( $this->mForce );
+			$i = $this->mForce;
 		} else {
 			if ( $this->mReadIndex >= 0 ) {
-				$conn =& $this->getConnection( $this->mReadIndex );
+				$i = $this->mReadIndex;
 			} else {
 				# $loads is $this->mLoads except with elements knocked out if they
 				# don't work
@@ -109,6 +110,8 @@ class LoadBalancer {
 						wfDebug( "Using reader #$i: {$this->mServers[$i]['host']}\n" );
 
 						$conn =& $this->getConnection( $i );
+						$this->mConnections[$i] =& $conn;
+
 						if ( !$conn->isOpen() ) {
 							unset( $loads[$i] );
 						}
@@ -116,14 +119,12 @@ class LoadBalancer {
 				} while ( $i !== false && !$conn->isOpen() );
 				if ( $conn->isOpen() ) {
 					$this->mReadIndex = $i;
+				} else {
+					$i = false;
 				}
 			}
 		}
-		if ( $conn === false || !$conn->isOpen() ) {
-			$this->reportConnectionError( $conn );
-			$conn = false;
-		}
-		return $conn;
+		return $i;
 	}
 
 	# Set the master wait position
@@ -142,7 +143,10 @@ class LoadBalancer {
 		$this->mWaitForPos = $pos;
 
 		if ( $this->mReadIndex > 0 ) {
-			$this->doWait( $this->mReadIndex );
+			if ( !$this->doWait( $this->mReadIndex ) ) {
+				# Use master instead
+				$this->mReadIndex = 0;
+			}
 		} 
 	}
 
@@ -156,7 +160,7 @@ class LoadBalancer {
 			list( $file, $pos ) = explode( ' ', $memcPos );
 			# If the saved position is later than the requested position, return now
 			if ( $file == $this->mWaitForFile && $this->mWaitForPos <= $pos ) {
-				return;
+				return true;
 			}
 		}
 
@@ -166,16 +170,16 @@ class LoadBalancer {
 
 		if ( $result == -1 || is_null( $result ) ) {
 			# Timed out waiting for slave, use master instead
-			# This is not the ideal solution. If there are a large number of slaves, a slow
-			# replicated write query will cause the master to be swamped with reads. However
-			# that's a relatively graceful failure mode, so it will do for now.
 			wfDebug( "Timed out waiting for slave #$index pos {$this->mWaitForFile} {$this->mWaitForPos}\n" );
-			$this->mReadIndex = 0;
+			$retVal = false;
 		} else {
+			$retVal = true;
 			wfDebug( "Done\n" );
 		}
+		return $retVal;
 	}		
 
+	# Get a connection by index
 	function &getConnection( $i, $fail = false )
 	{
 		/*
@@ -191,37 +195,55 @@ class LoadBalancer {
 		}*/
 
 		# Operation-based index
-		# Note, getReader() and getWriter() will re-enter this function
-		if ( $i == DB_SLAVE ) {
-			$this->mLastConn =& $this->getReader();
+		if ( $i == DB_SLAVE ) {	
+			# Note: re-entrant
+			$i = $this->getReaderIndex();
 		} elseif ( $i == DB_MASTER ) {
-			$this->mLastConn =& $this->getWriter();
+			$i = $this->getWriterIndex();
 		} elseif ( $i == DB_LAST ) {
-			# Just use $this->mLastConn, which should already be set
-			if ( $this->mLastConn === false ) {
+			# Just use $this->mLastIndex, which should already be set
+			$i = $this->mLastIndex;
+			if ( $i === -1 ) {
 				# Oh dear, not set, best to use the writer for safety
-				$this->mLastConn =& $this->getWriter();
+				$i = $this->getWriterIndex();
 			}
-		} else {
-			# Explicit index
-			if ( !array_key_exists( $i, $this->mConnections ) || !$this->mConnections[$i]->isOpen() ) {
-				$this->mConnections[$i] = $this->makeConnection( $this->mServers[$i] );
-				if ( $i != 0 && $this->mWaitForFile ) {
-					$this->doWait( $i );
+		} 
+		# Now we have an explicit index into the servers array
+		if ( !$this->isOpen( $i ) ) {
+			$this->mConnections[$i] = $this->makeConnection( $this->mServers[$i] );
+			
+			if ( $i != 0 && $this->mWaitForFile ) {
+				if ( !$this->doWait( $i ) ) {
+					# Error waiting for this slave, use master instead
+					$this->mReadIndex = 0;
+					$i = 0;
+					if ( !$this->isOpen( 0 ) ) {
+						$this->mConnections[0] = $this->makeConnection( $this->mServers[0] );
+					}
+					wfDebug( "Failed over to {$this->mConnections[0]->mServer}\n" );
 				}
 			}
-			if ( !$this->mConnections[$i]->isOpen() ) {
-				wfDebug( "Failed to connect to database $i at {$this->mServers[$i]['host']}\n" );
-				if ( $fail ) {
-					$this->reportConnectionError( $this->mConnections[$i] );
-				}
-				$this->mConnections[$i] = false;
-			}
-			$this->mLastConn =& $this->mConnections[$i];
 		}
-		return $this->mLastConn;
+		if ( !$this->isOpen( $i ) ) {
+			wfDebug( "Failed to connect to database $i at {$this->mServers[$i]['host']}\n" );
+			if ( $fail ) {
+				$this->reportConnectionError( $this->mConnections[$i] );
+			}
+			$this->mConnections[$i] = false;
+		}
+		$this->mLastIndex = $i;
+
+		return $this->mConnections[$i];
 	}
 
+	/* private */ function isOpen( $index ) {
+		if ( array_key_exists( $index, $this->mConnections ) && $this->mConnections[$index]->isOpen() ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	/* private */ function makeConnection( &$server ) {
 			extract( $server );
 			# Get class for this database type
@@ -231,7 +253,7 @@ class LoadBalancer {
 			}
 
 			# Create object
-			return new $class( $host, $user, $password, $dbname, 1 );
+			return new $class( $host, $user, $password, $dbname, 1, $flags );
 	}
 	
 	function reportConnectionError( &$conn )
@@ -247,14 +269,9 @@ class LoadBalancer {
 		$conn->reportConnectionError();
 	}
 	
-	function &getWriter()
+	function getWriterIndex()
 	{
-		$c =& $this->getConnection( 0 );
-		if ( $c === false || !$c->isOpen() ) {
-			$this->reportConnectionError( $c );
-			$c = false;
-		}
-		return $c;
+		return 0;
 	}
 
 	function force( $i )
@@ -298,6 +315,23 @@ class LoadBalancer {
 	function loadMasterPos() {
 		if ( isset( $_SESSION['master_log_file'] ) && isset( $_SESSION['master_pos'] ) ) {
 			$this->waitFor( $_SESSION['master_log_file'], $_SESSION['master_pos'] );
+		}
+	}
+
+	# Close all open connections
+	function closeAll() {
+		foreach( $this->mConnections as $i => $conn ) {
+			if ( $this->isOpen( $i ) ) {
+				$conn->close();
+			}
+		}
+	}
+
+	function commitAll() {
+		foreach( $this->mConnections as $i => $conn ) {
+			if ( $this->isOpen( $i ) ) {
+				$conn->immediateCommit();
+			}
 		}
 	}
 }

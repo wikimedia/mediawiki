@@ -18,17 +18,15 @@ class DatabasePgsql extends Database {
 	var $mInsertId = NULL;
 
 	function DatabasePgsql($server = false, $user = false, $password = false, $dbName = false, 
-		$failFunction = false, $debug = false, $bufferResults = true, $ignoreErrors = false)
+		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
 	{
-		Database::Database( $server, $user, $password, $dbName, $failFunction, $debug, 
-		  $bufferResults, $ignoreErrors );
+		Database::Database( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
 	}
 
-	/* static */ function newFromParams( $server, $user, $password, $dbName, 
-		$failFunction = false, $debug = false, $bufferResults = true, $ignoreErrors = false )
+	/* static */ function newFromParams( $server = false, $user = false, $password = false, $dbName = false, 
+		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
 	{
-		return new DatabasePgsql( $server, $user, $password, $dbName, $failFunction, $debug, 
-		  $bufferResults, $ignoreErrors );
+		return new DatabasePgsql( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
 	}
 
 	# Usually aborts on failure
@@ -74,53 +72,10 @@ class DatabasePgsql extends Database {
 		}
 	}
 	
-	# Usually aborts on failure
-	# If errors are explicitly ignored, returns success
-	function query( $sql, $fname = "", $tempIgnore = false )
-	{
-		global $wgProfiling;
-		
-		if ( $wgProfiling ) {
-			# generalizeSQL will probably cut down the query to reasonable
-			# logging size most of the time. The substr is really just a sanity check.
-			$profName = "query: " . substr( Database::generalizeSQL( $sql ), 0, 255 ); 
-			wfProfileIn( $profName );
-		}
-		
-		$this->mLastQuery = $sql;
-		
-		if ( $this->mDebug ) {
-			$sqlx = substr( $sql, 0, 500 );
-			$sqlx = wordwrap(strtr($sqlx,"\t\n","  "));
-			wfDebug( "SQL: $sqlx\n" );
-		}
-
-		$ret = pg_query( $this->mConn , $sql);
-		$this->mLastResult = $ret;
-		if ( false == $ret ) {
-			// Ignore errors during error handling to prevent infinite recursion
-			$ignore = $this->setIgnoreErrors( true );
-			$error = pg_last_error( $this->mConn );
-			// TODO FIXME : no error number function in postgre
-			// $errno = mysql_errno( $this->mConn );
-			if( $ignore || $tempIgnore ) {
-				wfDebug("SQL ERROR (ignored): " . $error . "\n");
-			} else {
-				wfDebug("SQL ERROR: " . $error . "\n");
-				if ( $this->mOut ) {
-					// this calls wfAbruptExit()
-					$this->mOut->databaseError( $fname, $sql, $error, 0 ); 				
-				}
-			}
-			$this->setIgnoreErrors( $ignore );
-		}
-		
-		if ( $wgProfiling ) {
-			wfProfileOut( $profName );
-		}
-		return $ret;
+	function doQuery( $sql ) {
+		return pg_query( $this->mConn , $sql);
 	}
-	
+		
 	function queryIgnore( $sql, $fname = "" ) {
 		return $this->query( $sql, $fname, true );
 	}
@@ -168,6 +123,8 @@ class DatabasePgsql extends Database {
 
 	function dataSeek( $res, $row ) { return pg_result_seek( $res, $row ); }
 	function lastError() { return pg_last_error(); }
+	function lastErrno() { return 1; }
+
 	function affectedRows() { 
 		return pg_affected_rows( $this->mLastResult ); 
 	}
@@ -215,14 +172,14 @@ class DatabasePgsql extends Database {
 		# IGNORE is performed using single-row inserts, ignoring errors in each
 		if ( in_array( 'IGNORE', $options ) ) {
 			# FIXME: need some way to distiguish between key collision and other types of error
-			$oldIgnore = $this->setIgnoreErrors( true );
+			$oldIgnore = $this->ignoreErrors( true );
 			if ( !is_array( reset( $a ) ) ) {
 				$a = array( $a );
 			}
 			foreach ( $a as $row ) {
 				parent::insertArray( $table, $row, $fname, array() );
 			}
-			$this->setIgnoreErrors( $oldIgnore );
+			$this->ignoreErrors( $oldIgnore );
 			$retVal = true;
 		} else {
 			$retVal = parent::insertArray( $table, $a, $fname, array() );

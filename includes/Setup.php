@@ -72,7 +72,7 @@ global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
 global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
 global $wgMsgCacheExpiry, $wgCommandLineMode;
 global $wgBlockCache, $wgParserCache, $wgParser, $wgDBConnections;
-global $wgLoadBalancer, $wgDBservers;
+global $wgLoadBalancer, $wgDBservers, $wgDebugDumpSql;
 global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype;
 global $wgFullyInitialised;
 
@@ -157,7 +157,8 @@ if ( !$wgDBservers ) {
 		'password' => $wgDBpassword,
 		'dbname' => $wgDBname,
 		'type' => $wgDBtype,
-		'load' => 1
+		'load' => 1,
+		'flags' => ($wgDebugDumpSql ? DBO_DEBUG : 0) | DBO_DEFAULT
 	));
 }
 $wgLoadBalancer = LoadBalancer::newFromParams( $wgDBservers );

@@ -11,6 +11,7 @@ if(!file_exists("LocalSettings.php")) {
 }
 
 define( "MEDIAWIKI", true );
+require_once( "./includes/Defines.php" );
 require_once( "./LocalSettings.php" );
 require_once( "includes/Setup.php" );
 
@@ -54,8 +55,6 @@ if ( !is_null( $wgTitle ) && !$wgTitle->userCanRead() ) {
 	exit;
 }
 
-$db =& wfGetDB( DB_MASTER );
-
 if ( $search = $wgRequest->getText( 'search' ) ) {
 	$wgTitle = Title::makeTitle( NS_SPECIAL, "Search" );
 	if( $wgRequest->getVal( 'fulltext' ) || !is_null( $wgRequest->getVal( 'offset' ) ) ) {
@@ -97,7 +96,6 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		$wgArticle = new Article( $wgTitle );
 	}
 
-	$db->query("BEGIN");
 	switch( $action ) {
 		case "view":
 			$wgOut->setSquidMaxage( $wgSquidMaxage );
@@ -168,17 +166,23 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		default:
 			$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
 	}
-	$db->query("COMMIT");
+}
+
+# Deferred updates aren't really deferred anymore. It's important to report errors to the
+# user, and that means doing this before OutputPage::output(). Note that for page saves, 
+# the client will wait until the script exits anyway before following the redirect.
+foreach ( $wgDeferredUpdateList as $up ) {
+	$up->doUpdate();
 }
 
 $wgLoadBalancer->saveMasterPos();
+
+# Now commit any transactions, so that unreported errors after output() don't roll back the whole thing
+$wgLoadBalancer->commitAll();
+
 $wgOut->output();
 
-foreach ( $wgDeferredUpdateList as $up ) {
-	$db->query("BEGIN");
-	$up->doUpdate();
-	$db->query("COMMIT");
-}
 logProfilingData();
+$wgLoadBalancer->closeAll();
 wfDebug( "Request ended normally\n" );
 ?>

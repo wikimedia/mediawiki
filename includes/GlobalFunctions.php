@@ -219,8 +219,13 @@ function wfUtf8ToHTML($string) {
 
 function wfDebug( $text, $logonly = false )
 {
-	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly;
+	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly, $wgDebugRawPage;
 
+	# Check for raw action using $_GET not $wgRequest, since the latter might not be initialised yet
+	if ( isset( $_GET['action'] ) && $_GET['action'] == 'raw' && !$wgDebugRawPage ) {
+		return;
+	}
+	
 	if ( isset( $wgOut ) && $wgDebugComments && !$logonly ) {
 		$wgOut->debug( $text );
 	}
@@ -240,7 +245,7 @@ function wfLogDBError( $text ) {
 
 function logProfilingData()
 {
-	global $wgRequestTime, $wgDebugLogFile;
+	global $wgRequestTime, $wgDebugLogFile, $wgDebugRawPage, $wgRequest;
 	global $wgProfiling, $wgProfileStack, $wgProfileLimit, $wgUser;
 	$now = wfTime();
 
@@ -263,7 +268,7 @@ function logProfilingData()
 		$log = sprintf( "%s\t%04.3f\t%s\n",
 		  gmdate( 'YmdHis' ), $elapsed,
 		  urldecode( $_SERVER['REQUEST_URI'] . $forward ) );
-		if ( '' != $wgDebugLogFile ) {
+		if ( '' != $wgDebugLogFile && ( $wgRequest->getVal('action') != 'raw' || $wgDebugRawPage ) ) {
 			error_log( $log . $prof, 3, $wgDebugLogFile );
 		}
 	}
@@ -360,7 +365,9 @@ function wfGo( $s )
 }
 
 # Just like exit() but makes a note of it.
-function wfAbruptExit(){
+# Commits open transactions except if the error parameter is set
+function wfAbruptExit( $error = false ){
+	global $wgLoadBalancer;
 	static $called = false;
 	if ( $called ){
 		exit();
@@ -377,7 +384,14 @@ function wfAbruptExit(){
 	} else { 
 		wfDebug('WARNING: Abrupt exit\n');
 	}
+	if ( !$error ) {
+		$wgLoadBalancer->closeAll();
+	}
 	exit();
+}
+
+function wfErrorExit() {
+	wfAbruptExit( true );
 }
 
 function wfDebugDieBacktrace( $msg = '' ) {
@@ -773,11 +787,17 @@ function wfSetVar( &$dest, $source )
 	return $temp;
 }
 
-# Sets dest to a reference to source and returns the original dest
-# Pity that doesn't work in PHP
-function &wfSetRef( &$dest, &$source )
-{
-	die( "You can't rebind a variable in the caller's scope" );
+# As for wfSetVar except setting a bit
+function wfSetBit( &$dest, $bit, $state = true ) {
+	$temp = (bool)($dest & $bit );
+	if ( !is_null( $state ) ) {
+		if ( $state ) {
+			$dest |= $bit;
+		} else {
+			$dest &= ~$bit;
+		}
+	}
+	return $temp;
 }
 
 # This function takes two arrays as input, and returns a CGI-style string, e.g.

@@ -14,6 +14,10 @@ function refreshLinks( $start ) {
 
 	# Don't generate TeX PNGs (lack of a sensible current directory causes errors anyway)
 	$wgUser->setOption("math", 3);
+	
+	# Turn on link cache in skin
+	$sk =& $wgUser->getSkin();
+	$sk->postParseLinkColour( false );
 
 	for ($id = $start; $id <= $end; $id++) {
 		if ( !($id % REPORTING_INTERVAL) ) {
