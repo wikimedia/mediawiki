@@ -91,13 +91,13 @@ function wfLocalUrl( $a, $q = '' )
 			$a = $wgScript;
 		} else {
 			$a = "{$wgScript}?{$q}";
-		}	
+		}
 	} else if ( '' == $q ) {
 		$a = str_replace( "$1", $a, $wgArticlePath );
 	} else if ($wgScript != '' ) {
-		$a = "{$wgScript}?title={$a}&{$q}";	
+		$a = "{$wgScript}?title={$a}&{$q}";
 	} else { //XXX hackish solution for toplevel wikis
-		$a = "/{$a}?{$q}";	
+		$a = "/{$a}?{$q}";
 	}
 	return $a;
 }
@@ -191,7 +191,7 @@ function wfUtf8Entity( $matches ) {
 	} else {
 		$length = 1;
 	}
-	
+
 	if ( $length != strlen( $char ) ) {
 		return '';
 	}
@@ -226,7 +226,7 @@ function wfDebug( $text, $logonly = false )
 	if ( isset( $_GET['action'] ) && $_GET['action'] == 'raw' && !$wgDebugRawPage ) {
 		return;
 	}
-	
+
 	if ( isset( $wgOut ) && $wgDebugComments && !$logonly ) {
 		$wgOut->debug( $text );
 	}
@@ -288,6 +288,9 @@ $wgReplacementKeys = array( "$1", "$2", "$3", "$4", "$5", "$6", "$7", "$8", "$9"
 
 # Get a message from anywhere
 function wfMsg( $key ) {
+	global $wgRequest;
+	if ( $wgRequest->getVal( 'debugmsg' ) )
+		return $key;
 	$args = func_get_args();
 	if ( count( $args ) ) {
 		array_shift( $args );
@@ -382,7 +385,7 @@ function wfAbruptExit( $error = false ){
 			$line = $bt[$i]['line'];
 			wfDebug("WARNING: Abrupt exit in $file at line $line\n");
 		}
-	} else { 
+	} else {
 		wfDebug('WARNING: Abrupt exit\n');
 	}
 	if ( !$error ) {
@@ -415,7 +418,7 @@ function wfDebugDieBacktrace( $msg = '' ) {
 			}
 			if( !empty( $call['class'] ) ) $msg .= $call['class'] . '::';
 			$msg .= $call['function'] . "()";
-			
+
 			if ( $wgCommandLineMode ) {
 				$msg .= "\n";
 			} else {
@@ -441,13 +444,13 @@ function wfNumberOfArticles()
 
 	if ( -1 != $wgNumberOfArticles ) return;
 	$dbr =& wfGetDB( DB_SLAVE );
-	$s = $dbr->getArray( 'site_stats', 
+	$s = $dbr->getArray( 'site_stats',
 		array( 'ss_total_views', 'ss_total_edits', 'ss_good_articles' ),
 		array( 'ss_row_id' => 1 ), $fname
 	);
 
-	if ( $s === false ) { 
-		return; 
+	if ( $s === false ) {
+		return;
 	} else {
 		$wgTotalViews = $s->ss_total_views;
 		$wgTotalEdits = $s->ss_total_edits;
@@ -489,7 +492,7 @@ function wfImageDir( $fname )
 	if ( ! is_dir( $dest ) ) { mkdir( $dest, 0777 ); }
 	$dest .= '/' . substr( $hash, 0, 2 );
 	if ( ! is_dir( $dest ) ) { mkdir( $dest, 0777 ); }
-	
+
 	umask( $oldumask );
 	return $dest;
 }
@@ -505,7 +508,7 @@ function wfImageArchiveDir( $fname , $subdir='archive')
 
 	$hash = md5( $fname );
 	$oldumask = umask(0);
-	
+
 	# Suppress warning messages here; if the file itself can't
 	# be written we'll worry about it then.
 	$archive = "{$wgUploadDirectory}/{$subdir}";
@@ -522,21 +525,21 @@ function wfImageArchiveDir( $fname , $subdir='archive')
 function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source = "" )
 {
 	global $wgUser, $wgLang, $wgTitle, $wgOut, $wgDeferredUpdateList;
-	global $wgUseCopyrightUpload; 
-	
+	global $wgUseCopyrightUpload;
+
 	$fname = 'wfRecordUpload';
 	$dbw =& wfGetDB( DB_MASTER );
-	
+
 	# img_name must be unique
 	if ( !$dbw->indexUnique( 'image', 'img_name' ) ) {
 		wfDebugDieBacktrace( 'Database schema not up to date, please run maintenance/archives/patch-image_name_unique.sql' );
 	}
-			
+
 
 	$now = wfTimestampNow();
 	$won = wfInvertTimestamp( $now );
 	$size = IntVal( $size );
-	
+
 	if ( $wgUseCopyrightUpload )
 	  {
 		$textdesc = '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n" .
@@ -549,9 +552,9 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 	$won = wfInvertTimestamp( $now );
 
 	# Test to see if the row exists using INSERT IGNORE
-	# This avoids race conditions by locking the row until the commit, and also 
+	# This avoids race conditions by locking the row until the commit, and also
 	# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
-	$dbw->insert( 'image', 
+	$dbw->insert( 'image',
 		array(
 			'img_name' => $name,
 			'img_size'=> $size,
@@ -566,11 +569,11 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 	if ( $dbw->affectedRows() ) {
 		# Successfully inserted, this is a new image
 		$id = $descTitle->getArticleID();
-		
+
 		if ( $id == 0 ) {
 			$seqVal = $dbw->nextSequenceValue( 'cur_cur_id_seq' );
-			$dbw->insertArray( 'cur', 
-				array( 
+			$dbw->insertArray( 'cur',
+				array(
 					'cur_id' => $seqVal,
 					'cur_namespace' => NS_IMAGE,
 					'cur_title' => $name,
@@ -585,9 +588,9 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 				), $fname
 			);
 			$id = $dbw->insertId() or 0; # We should throw an error instead
-			
+
 			RecentChange::notifyNew( $now, $descTitle, 0, $wgUser, $desc );
-			
+
 			$u = new SearchUpdate( $id, $name, $desc );
 			$u->doUpdate();
 		}
@@ -609,9 +612,9 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 				'oi_user_text' => $s->img_user_text
 			), $fname
 		);
-		
+
 		# Update the current image row
-		$dbw->updateArray( 'image', 
+		$dbw->updateArray( 'image',
 			array( /* SET */
 				'img_size' => $size,
 				'img_timestamp' => wfTimestampNow(),
@@ -622,7 +625,7 @@ function wfRecordUpload( $name, $oldver, $size, $desc, $copyStatus = "", $source
 				'img_name' => $name
 			), $fname
 		);
-		
+
 		# Invalidate the cache for the description page
 		$descTitle->invalidateCache();
 	}
@@ -715,7 +718,7 @@ function wfClientAcceptsGzip() {
 # Yay, more global functions!
 function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
 	global $wgUser, $wgRequest;
-	
+
 	$limit = $wgRequest->getInt( 'limit', 0 );
 	if( $limit < 0 ) $limit = 0;
 	if( ( $limit == 0 ) && ( $optionname != '' ) ) {
@@ -723,29 +726,29 @@ function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
 	}
 	if( $limit <= 0 ) $limit = $deflimit;
 	if( $limit > 5000 ) $limit = 5000; # We have *some* limits...
-	
+
 	$offset = $wgRequest->getInt( 'offset', 0 );
 	if( $offset < 0 ) $offset = 0;
 
 	return array( $limit, $offset );
 }
 
-# Escapes the given text so that it may be output using addWikiText() 
-# without any linking, formatting, etc. making its way through. This 
+# Escapes the given text so that it may be output using addWikiText()
+# without any linking, formatting, etc. making its way through. This
 # is achieved by substituting certain characters with HTML entities.
 # As required by the callers, <nowiki> is not used. It currently does
 # not filter out characters which have special meaning only at the
 # start of a line, such as "*".
 function wfEscapeWikiText( $text )
 {
-	$text = str_replace( 
+	$text = str_replace(
 		array( '[',		'|',	  "'",	   'ISBN '	  , '://'	  , "\n=" ),
 		array( '&#91;', '&#124;', '&#39;', 'ISBN&#32;', '&#58;//' , "\n&#61;" ),
 		htmlspecialchars($text) );
 	return $text;
 }
 
-function wfQuotedPrintable( $string, $charset = '' ) 
+function wfQuotedPrintable( $string, $charset = '' )
 {
 	# Probably incomplete; see RFC 2045
 	if( empty( $charset ) ) {
@@ -803,7 +806,7 @@ function wfSetBit( &$dest, $bit, $state = true ) {
 # This function takes two arrays as input, and returns a CGI-style string, e.g.
 # "days=7&limit=100". Options in the first array override options in the second.
 # Options set to "" will not be output.
-function wfArrayToCGI( $array1, $array2 = NULL ) 
+function wfArrayToCGI( $array1, $array2 = NULL )
 {
 	if ( !is_null( $array2 ) ) {
 		$array1 = $array1 + $array2;
@@ -833,7 +836,7 @@ function wfEscapeShellArg( )
 	$first = true;
 	$retVal = '';
 	foreach ( $args as $arg ) {
-		if ( !$first ) { 
+		if ( !$first ) {
 			$retVal .= ' ';
 		} else {
 			$first = false;
@@ -848,15 +851,15 @@ function wfEscapeShellArg( )
 	return $retVal;
 }
 
-# wfMerge attempts to merge differences between three texts. 
+# wfMerge attempts to merge differences between three texts.
 # Returns true for a clean merge and false for failure or a conflict.
 
 function wfMerge( $old, $mine, $yours, &$result ){
 	global $wgDiff3;
 
-	# This check may also protect against code injection in 
+	# This check may also protect against code injection in
 	# case of broken installations.
-	if(! file_exists( $wgDiff3 ) ){ 
+	if(! file_exists( $wgDiff3 ) ){
 		return false;
 	}
 
@@ -865,9 +868,9 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	$oldtextFile = fopen( $oldtextName = tempnam( $td, 'merge-old-' ), 'w' );
 	$mytextFile = fopen( $mytextName = tempnam( $td, 'merge-mine-' ), 'w' );
 	$yourtextFile = fopen( $yourtextName = tempnam( $td, 'merge-your-' ), 'w' );
-			
-	fwrite( $oldtextFile, $old ); fclose( $oldtextFile ); 
-	fwrite( $mytextFile, $mine ); fclose( $mytextFile ); 
+
+	fwrite( $oldtextFile, $old ); fclose( $oldtextFile );
+	fwrite( $mytextFile, $mine ); fclose( $mytextFile );
 	fwrite( $yourtextFile, $yours ); fclose( $yourtextFile );
 
 	# Check for a conflict
@@ -885,7 +888,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 	pclose( $handle );
 
 	# Merge differences
-	$cmd = wfEscapeShellArg( $wgDiff3 ) . ' -a -e --merge ' . 
+	$cmd = wfEscapeShellArg( $wgDiff3 ) . ' -a -e --merge ' .
 	  wfEscapeShellArg( $mytextName, $oldtextName, $yourtextName );
 	$handle = popen( $cmd, 'r' );
 	$result = '';
@@ -919,7 +922,7 @@ function wfHttpError( $code, $label, $desc ) {
 	header( "HTTP/1.0 $code $label" );
 	header( "Status: $code $label" );
 	$wgOut->sendCacheControl();
-	
+
 	# Don't send content if it's a HEAD request.
 	if( $_SERVER['REQUEST_METHOD'] == 'HEAD' ) {
 		header( 'Content-type: text/plain' );
@@ -933,11 +936,11 @@ function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 	if( !$accept ) {
 		return array( $def => 1 );
 	}
-	
+
 	$prefs = array();
-	
+
 	$parts = explode( ',', $accept );
-	
+
 	foreach( $parts as $part ) {
 		# FIXME: doesn't deal with params like 'text/html; level=1'
 		@list( $value, $qpart ) = explode( ';', $part );
@@ -947,7 +950,7 @@ function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 			$prefs[$value] = $match[1];
 		}
 	}
-	
+
 	return $prefs;
 }
 
@@ -970,7 +973,7 @@ function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 # XXX: generalize to negotiate other stuff
 function wfNegotiateType( $cprefs, $sprefs ) {
 	$combine = array();
-	
+
 	foreach( array_keys($sprefs) as $type ) {
 		$parts = explode( '/', $type );
 		if( $parts[1] != '*' ) {
@@ -980,7 +983,7 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 			}
 		}
 	}
-	
+
 	foreach( array_keys( $cprefs ) as $type ) {
 		$parts = explode( '/', $type );
 		if( $parts[1] != '*' && !array_key_exists( $type, $sprefs ) ) {
@@ -990,26 +993,26 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 			}
 		}
 	}
-	
+
 	$bestq = 0;
 	$besttype = NULL;
-	
+
 	foreach( array_keys( $combine ) as $type ) {
 		if( $combine[$type] > $bestq ) {
 			$besttype = $type;
 			$bestq = $combine[$type];
 		}
 	}
-	
+
 	return $besttype;
 }
 
 # Array lookup
-# Returns an array where the values in the first array are replaced by the 
+# Returns an array where the values in the first array are replaced by the
 # values in the second array with the corresponding keys
 function wfArrayLookup( $a, $b )
 {
-	return array_flip( array_intersect( array_flip( $a ), array_keys( $b ) ) ); 
+	return array_flip( array_intersect( array_flip( $a ), array_keys( $b ) ) );
 }
 
 # Since Windows is so different to any of the other popular OSes, it seems appropriate
@@ -1107,7 +1110,7 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 		break;
 	default:
 		return;
-	}	
+	}
 }
 
 ?>
