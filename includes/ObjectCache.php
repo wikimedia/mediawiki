@@ -31,7 +31,7 @@ class /* abstract */ BagOStuff {
 	var $debugmode;
 	
 	function BagOStuff() {
-		set_debug( false );
+		$this->set_debug( false );
 	}
 	
 	function set_debug($bool) {
@@ -54,6 +54,16 @@ class /* abstract */ BagOStuff {
 	function delete($key, $time=0) {
 		/* stub */
 		return false;
+	}
+	
+	function lock($key, $timeout = 0) {
+		/* stub */
+		return true;
+	}
+
+	function unlock($key) {
+		/* stub */
+		return true;
 	}
 	
 	/* *** Emulated functions *** */
@@ -93,27 +103,36 @@ class /* abstract */ BagOStuff {
 	}
 	
 	function incr($key, $value=1) {
-		$value = intval($value);
-		if($value < 0) $value = 0;
-		if( ($n = $this->get($key)) !== false ) {
-			$this->set($key, $n+$value); // exptime?
-			return $n+$value;
-		} else {
+		if ( !$this->lock($key) ) {
 			return false;
 		}
+		$value = intval($value);
+		if($value < 0) $value = 0;
+
+		$n = false;
+		if( ($n = $this->get($key)) !== false ) {
+			$n += $value;
+			$this->set($key, $n); // exptime?
+		}
+		$this->unlock($key);
+		return $n;
 	}
 	
 	function decr($key, $value=1) {
+		if ( !$this->lock($key) ) {
+			return false;
+		}
 		$value = intval($value);
 		if($value < 0) $value = 0;
+
+		$m = false;
 		if( ($n = $this->get($key)) !== false ) {
 			$m = $n - $value;
 			if($m < 0) $m = 0;
 			$this->set($key, $m); // exptime?
-			return $m;
-		} else {
-			return false;
 		}
+		$this->unlock($key);
+		return $m;
 	}
 	
 	function _debug($text) {
@@ -312,4 +331,29 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 	}
 }
 
+class TurckBagOStuff extends BagOStuff {
+	function get($key) {
+		return mmcache_get( $key );
+	}
+
+	function set($key, $value, $exptime=0) {
+		mmcache_put( $key, $value, $exptime );
+		return true;
+	}
+	
+	function delete($key, $time=0) {
+		mmcache_rm( $key );
+		return true;
+	}
+
+	function lock($key, $waitTimeout = 0 ) {
+		mmcache_lock( $key );
+		return true;
+	}
+
+	function unlock($key) {
+		mmcache_unlock( $key );
+		return true;
+	}
+}	
 ?>
