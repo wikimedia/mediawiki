@@ -1677,16 +1677,23 @@ class Parser
 	 */
 	function getVariableValue( $index ) {
 		global $wgContLang, $wgSitename, $wgServer;
-
+		
+		/**
+		 * Some of these require message or data lookups and can be
+		 * expensive to check many times.
+		 */
+		static $varCache = array();
+		if( isset( $varCache[$index] ) ) return $varCache[$index];
+		
 		switch ( $index ) {
 			case MAG_CURRENTMONTH:
-				return $wgContLang->formatNum( date( 'm' ) );
+				return $varCache[$index] = $wgContLang->formatNum( date( 'm' ) );
 			case MAG_CURRENTMONTHNAME:
-				return $wgContLang->getMonthName( date('n') );
+				return $varCache[$index] = $wgContLang->getMonthName( date('n') );
 			case MAG_CURRENTMONTHNAMEGEN:
-				return $wgContLang->getMonthNameGen( date('n') );
+				return $varCache[$index] = $wgContLang->getMonthNameGen( date('n') );
 			case MAG_CURRENTDAY:
-				return $wgContLang->formatNum( date('j') );
+				return $varCache[$index] = $wgContLang->formatNum( date('j') );
 			case MAG_PAGENAME:
 				return $this->mTitle->getText();
 			case MAG_PAGENAMEE:
@@ -1695,13 +1702,13 @@ class Parser
 				# return Namespace::getCanonicalName($this->mTitle->getNamespace());
 				return $wgContLang->getNsText($this->mTitle->getNamespace()); # Patch by Dori
 			case MAG_CURRENTDAYNAME:
-				return $wgContLang->getWeekdayName( date('w')+1 );
+				return $varCache[$index] = $wgContLang->getWeekdayName( date('w')+1 );
 			case MAG_CURRENTYEAR:
-				return $wgContLang->formatNum( date( 'Y' ) );
+				return $varCache[$index] = $wgContLang->formatNum( date( 'Y' ) );
 			case MAG_CURRENTTIME:
-				return $wgContLang->time( wfTimestampNow(), false );
+				return $varCache[$index] = $wgContLang->time( wfTimestampNow(), false );
 			case MAG_NUMBEROFARTICLES:
-				return $wgContLang->formatNum( wfNumberOfArticles() );
+				return $varCache[$index] = $wgContLang->formatNum( wfNumberOfArticles() );
 			case MAG_SITENAME:
 				return $wgSitename;
 			case MAG_SERVER:
@@ -1746,8 +1753,9 @@ class Parser
 		global $wgLang, $wgScript, $wgArticlePath;
 
 		# Prevent too big inclusions
-		if(strlen($text)> MAX_INCLUDE_SIZE)
-		return $text;
+		if( strlen( $text ) > MAX_INCLUDE_SIZE ) {
+			return $text;
+		}
 
 		$fname = 'Parser::replaceVariables';
 		wfProfileIn( $fname );
@@ -2084,6 +2092,7 @@ class Parser
 
 		# Empties the template path
 		$this->mTemplatePath = array();
+		
 		if ( !$found ) {
 			return $matches[0];
 		} else {
