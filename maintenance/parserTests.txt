@@ -301,6 +301,28 @@ Definition list with wikilink containing colon
 
 !! end
 
+# At Brion's and JeLuF's insistence... :)
+!! test
+Definition list with wikilink containing colon
+!! input
+;  news:alt.wikipedia.rox: This isn't even a real newsgroup!
+!! result
+<dl><dt>  <a href="news:alt.wikipedia.rox" class='external'>news:alt.wikipedia.rox</a></dt><dd> This isn't even a real newsgroup!
+</dd></dl>
+
+!! end
+
+!! test
+Malformed definition list with colon
+!! input
+;  news:alt.wikipedia.rox -- don't crash or enter an infinite loop
+!! result
+<dl><dt>  <a href="news:alt.wikipedia.rox" class='external'>news:alt.wikipedia.rox</a> -- don't crash or enter an infinite loop
+</dt></dl>
+
+!! end
+
+
 ###
 ### External links
 ###
