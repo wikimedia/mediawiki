@@ -33,10 +33,10 @@
     top:2.2em; */
     width: 100%;
     float: right;
-    margin: 2.3em 0 0 -13.2em;
+    margin: 2.1em 0 0 -12.2em;
 }
 #portal-column-content #content {
-    margin: 0 0 0 13.2em;
+    margin: 0 0 0 12.2em;
 /*    position: relative;
     z-index:1;*/
 }
@@ -64,7 +64,7 @@ body {
 
 /* scale back up to a sane default */
 #visual-portal-wrapper {
-    font-size:119%
+    font-size:123%
 }
 
 /* general styles */
@@ -85,7 +85,7 @@ img {
     vertical-align: middle;
 }
 p {
-    margin: 0.5em 0em 1em 0em;
+    margin: 0.4em 0em 0.7em 0em;
     line-height: 1.5em;
 }
 p a {
@@ -121,7 +121,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
     margin: 0;
     padding-top: 0.5em;
-    padding-bottom: 1px;
+    padding-bottom: 0.17em;
    /* border-bottom: 1px solid #2f6fab;*/
     border-bottom: 1px solid #aaaaaa;
 
@@ -145,13 +145,13 @@ h2 {
 }
 
 h3 {
-    font-size: 140%;
+    font-size: 132%;
     border-bottom: none;
     font-weight: bold;
 }
 
 h4 {
-    font-size: 120%;
+    font-size: 116%;
     border-bottom: none;
     font-weight: bold;
 }
@@ -172,21 +172,21 @@ h6 {
 ul { 
     line-height: 1.2em;
     list-style-type: square;
-    margin: 0.2em 0 0 1.5em;
+    margin: 0.3em 0 0 1.5em;
     padding:0;
     list-style-image: url("davinci/bullet.gif");
 }
 
 ol {
     line-height: 1.2em;
-    margin: 0.3em 0 0 2em;
+    margin: 0.3em 0 0 1.5em;
     padding:0;
 }
 ul a, ol a {
     text-decoration: none;
 }
 li {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.4em;
 }
 dt {
     font-weight: bold;    
@@ -279,14 +279,15 @@ pre {
 /*
 ** the main content area
 */
-/*
-#bodyContent #subtitle {
-    font-size: 100%;
-    line-height: 1.2em;
-    font-weight: normal;
-}
-*/
+
 #documentSubtitle {
+    font-size: 84%;
+    line-height: 1.2em;
+    margin: -1.6em 0 0.6em 1em;
+    color: #7d7d7d;
+}
+
+#siteSubtitle {
     display: none;    
 }
 
@@ -312,11 +313,11 @@ pre {
 
 
 .documentContent {
-    font-size: 110%;
+    font-size: 105%;
     padding: 0em 1em 2em 1em !important;
     background: White;
     border: 1px solid  #74ae0b;
-    border-top:3px solid #cde2a7;
+    border-top:2px solid #cde2a7;
     border-style: solid;
     margin:0;
     line-height: 1.5em;
@@ -365,6 +366,8 @@ pre {
     padding: 0;
 }
 
+/* the auto-generated edit comments */
+#autocomment { color: gray; }
 
 
 
@@ -389,7 +392,7 @@ pre {
     margin: 0 0 1em 0em;
     float: none;
     padding: 0;
-    width: 13.3em !important;
+    width: 13.5em !important;
     overflow: hidden;
 }
 .portlet h4 {
@@ -398,7 +401,7 @@ pre {
     white-space: nowrap;
 }
 .portlet h5 { 
-    background: #ffae2e;
+    background: #ffb938;
     border: 1px solid #2f6fab;
     border-style: solid solid none solid;
     padding: 0em 1em 0em 1em;
@@ -463,13 +466,13 @@ pre {
 }
 
 .portlet ul {
-    list-style-type: square
+    list-style-type: square;
     list-style-image: url("davinci/bullet.gif");
-    font-size:105%;
+    font-size:107%;
 }
 .portlet li {
     line-height: 1.3em;
-    font-size:107%;
+    font-size:106%;
     margin: 0 0 0.3em 0.2em;
     padding:0;
     line-height: 1em;
@@ -589,11 +592,11 @@ input.searchButton {
 /* this is the ul contained in the portlet */
 
 #portal-personaltools {
-    background-color: #ffae2e;
+    background-color: #ffb938;
 /*    border-bottom-color: #2f6fab;*/
-    border: 0px solid #ffb506;
+    border: none;
     line-height: 1.4em;
-    color: Black;
+    color: #2f6fab;
     padding: 0em 3em 0 3em;
     margin: 0;
     text-align: right;
@@ -603,7 +606,7 @@ input.searchButton {
 }
 
 #portal-personaltools .portalNotLoggedIn {
-    color: Black;
+    color: #2f6fab;
     padding: 0;
     background: transparent;
     background-image: none;
@@ -612,21 +615,20 @@ input.searchButton {
 #portal-personaltools li {
     padding:0;
     display: inline;
-    color: Black;
+    color: #2f6fab;
     margin-left: 1em;
     line-height: 1.2em;
 }
 #portal-personaltools li a {
     text-decoration: none;
 /*    color: #436976;*/
-    color: Black;
+    color: #005896;
     padding-bottom: 0.2em;
 }
 #portal-personaltools li a:hover {
     text-decoration: none;
 /*    color: #436976;*/
-    background-color: White;
-    color: Black;
+    background-color: #ffcd6b;
     padding-bottom: 0.2em;
 }
 
@@ -646,8 +648,8 @@ li#personaltools-login{
     position:absolute;
     /*top:2.5em;
     left:0px;*/
-    top: 2.1em;
-    left: 14.1em;
+    top: 2em;
+    left: 13.3em;
     margin:0 0 0 0;
     white-space:nowrap !important;
     width:auto;
@@ -672,23 +674,23 @@ li#personaltools-login{
     border-color: #74ae0b;
     border-width: 1px; 
     border-style: solid solid none solid;
-    color: #578308;
+    color: #446b00;
     height: auto;
     margin-right: 0.3em;
-    padding: 0 0.9em 0.2em 0.9em;
+    padding: 0 0.9em 0.1em 0.9em;
     text-decoration: none;
     text-transform: lowercase;
 }
 #portlet-contentViews .selected a {
     background-color: #cde2a7;
     border-bottom: none;
-    padding: 0 0.9em 0.2em 0.9em !important;
+    padding: 0 0.9em 0.1em 0.9em !important;
   /*  border-bottom: #cde2a7 1px solid;*/
-    color: #578308;
+    color: #446b00;
 }
 #portlet-contentViews li a:hover {
     background-color: #cde2a7;
-    color: #578308;
+    color: #446b00;
 }
 
 /* offsets to distinguish the tab groups
@@ -714,12 +716,12 @@ li#contentaction-watch {
 
 
 #portal-footer {
-    background-color: #ffae2e;
+    background-color: #ffb938;
     border-top: 1px solid #2f6fab;
     border-bottom: 1px solid #2f6fab;
     float: none;
     margin: 0.3em 0em 1em 0em;
-    padding: 0.3em 0em 1em 0em;
+    padding: 0.4em 0em 1em 0em;
     text-align: center;
 }
 
@@ -752,7 +754,6 @@ a.new{ color:#ba0000; text-decoration:none; }
     border:1px solid #aaaaaa;
     background-color:#f9f9f9;
     padding:5px;
-    font-size:105%;
 }
 
 /* images */
@@ -844,6 +845,7 @@ html*.external{
     background-repeat: no-repeat;
     padding: 1px 0px 1px 16px;
 }*/
+
 .urlexpansion {
     display: none;
 }

@@ -1,29 +1,16 @@
-
-#visual-portal-wrapper {
-    font-size:118%
-}
-body {
-    font-size: xx-small;
-}
+/* IE5.5/win- only fixes */
 
 /* slightly smaller top margin for the content area */
-#portlet-contentViews {
-  /*  margin:2.1em 0 0 15.7em;*/
-    top: 2em;
-    left: 14em;
-}
 
-
-#portal-column-content {
-    width: 100%;
-    float: right;
-    margin: 2.1em 0 0 -13.4em;
+#portlet-contentViews li a,
+#portlet-contentViews .selected a,
+#portlet-contentViews li a:hover {
+    padding-bottom: 0.2em;
 }
 
 #portal-personaltools {
     padding-bottom: 0.1em;
 }
-
 
 body {
     font-size: xx-small;

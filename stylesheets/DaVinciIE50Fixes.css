@@ -31,8 +31,9 @@ table.listing td.top {
     background: none;
     padding: 0;
 }
-#personaltools-userpage,
-#personaltools-login {
+li#personaltools-userpage,
+li#personaltools-login,
+li#personaltools-logout {
     background: none;
     padding-left: none;
 }
@@ -44,9 +45,11 @@ table.listing td.top {
     overflow: hidden;
 }
 
-.contentViews {
-    margin-top:-1px;
-    height:1%;
+#portal-column-one {
+    position: absolute;
+    z-index:0;
+    overflow: visible;
+    top: 0px;
 }
 
 textarea {
@@ -55,48 +58,39 @@ textarea {
 
 
 #portal-column-content {
-    /*width: 83% !important;*/
-    float: right !important;
-    margin: 0 0 0 -13.2em !important;
-    margin-left: -13.2em !important;
+    margin: 2.8em 0 0 -12.2em !important;
 }
 #portal-column-content #content {
-    margin: 2.4em 0 0 13.2em !important;
-    /*position: relative;*/
-/*    z-index:1;*/
+    margin-left: 12.2em;    
+    position: relative;
+    z-index: 1;
 }
+/* slightly smaller top margin for the content area */
+
 
 #portlet-contentViews {
-    position:absolute;
-    top: 1.6em;
-    left: 15.8em;
-   /* margin: 1.9em 0 0 15.7em;*/
-    margin: 0;
-    white-space: nowrap !important;
-    /*width: 400px !important;*/
-    width: 70% !important;
-    height: 1.5em;
-    padding-bottom: 0.3em;
+    top: 1.4em;
+    left: 11.8em;
+    background: transparent;
+    width: 76% !important;
 }
+                                                                                                                                                                       
 #portlet-contentViews ul {
-    margin-left: 0;
+    display: block;
+    float: left;
+}
+#portlet-contentViews li {
+    display: block;
+    float: left;
 }
 #portlet-contentViews li a {
-    height: 1.5em;
-    margin-right: 0.3em;
-    padding: 0 0.9em 0px 0.9em !important;
+    display: block;
+    float: left;
+    padding-bottom: 0.2em;
 }
-#portlet-contentViews .selected a {
-    padding: 0 0.9em 0px 0.9em !important;
-}
-/* offsets to distinguish the tab groups
-IE5.5/6.0 is too dumb for this, hides the right tabs
-*/
-li#contentaction-talk {
-    margin-right: 1.6em;
-}
-li#contentaction-watch {
-    margin-left: 1.6em;
+#portlet-contentViews .selected a,
+#portlet-contentViews li a:hover {
+    padding-bottom: 0.2em;
 }
 
 #portlet-personal {
@@ -122,20 +116,20 @@ li#contentaction-watch {
 }
 
 
-#portal-column-one {
-    position: absolute;
-    overflow: hidden;
-    top: 0px;
-}
-
 #portal-footer {
-    margin: 0 0 0 15.8em;
+    margin: 0 0 0 15em;
 }
 
 /* padding fixes */
 #content {
     padding: 0 0 1em 0em;
     margin: 0;
+}
+.urlexpansion {
+    display: none !important;
+}
+#documentSubtitle {
+    margin: -1em 0 0.6em 1em;
 }
 
 /*div{ border:1px solid Red !important;}*/
