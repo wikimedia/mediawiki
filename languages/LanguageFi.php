@@ -18,7 +18,7 @@
 	2	=> "Käyttäjä",
 	3	=> "Keskustelu_käyttäjästä",
 	4	=> $wgMetaNamespace,
-	5	=> "{$wgMetaNamespace}-keskustelu", 
+	5	=> FALSE,  # Set in constructor
 	6	=> "Kuva",
 	7	=> "Keskustelu_kuvasta",
 	8	=> "MediaWiki",
@@ -833,6 +833,10 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 require_once( "LanguageUtf8.php" );
 
 class LanguageFi extends LanguageUtf8 {
+	function LanguageFi() {
+		global $wgNamespaceNamesFi, $wgMetaNamespace;
+		$wgNamespaceNamesFi[NS_WP_TALK] = 'Keskustelu_' . $this->convertGrammar( $wgMetaNamespace, 'elative' );
+	}
 
 	function getNamespaces() {
 		global $wgNamespaceNamesFi;
