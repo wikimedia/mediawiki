@@ -80,7 +80,7 @@ header( "Content-type: text/html; charset=utf-8" );
  
  <b><a href="http://www.mediawiki.org/">MediaWiki</a></b> is
  Copyright (C) 2001-2004 by Magnus Manske, Brion Vibber, Lee Daniel Crocker,
- Tim Starling, Erik M&ouml;ller, and others.</p>
+ Tim Starling, Erik M&ouml;ller, Gabriel Wicke and others.</p>
  
  <ul>
  <li><a href="../README">Readme</a></li>
@@ -317,7 +317,7 @@ if( $conf->License == "gfdl" ) {
 	$conf->RightsUrl = "http://www.gnu.org/copyleft/fdl.html";
 	$conf->RightsText = "GNU Free Documentation License 1.2";
 	$conf->RightsCode = "gfdl";
-	$conf->RightsIcon = "{$conf->ScriptPath}/stylesheets/images/gnu-fdl.png";
+	$conf->RightsIcon = '$wgStylePath."/images/gnu-fdl.png"';
 } elseif( $conf->License == "none" ) {
 	$conf->RightsUrl = $conf->RightsText = $conf->RightsCode = $conf->RightsIcon = "";
 } else {
