@@ -518,10 +518,13 @@ class Database {
 		if ( is_array( $vars ) ) {
 			$vars = implode( ',', $vars );
 		}
-		if ($table!='')
+		if( is_array( $table ) ) {
+			$from = ' FROM ' . implode( ',', array_map( array( &$this, 'tableName' ), $table ) );
+		} elseif ($table!='') {
 			$from = ' FROM ' .$this->tableName( $table );
-		else
+		} else {
 			$from = '';
+		}
 
 		list( $useIndex, $tailOpts ) = $this->makeSelectOptions( $options );
 		
