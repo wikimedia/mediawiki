@@ -354,7 +354,6 @@ class EditPage {
 				$previewhead.="<h2>" . wfMsg( "previewconflict" ) .
 				  "</h2>\n";
 			}
-			$previewtext = wfUnescapeHTML( $this->textbox1 );
 
 			$parserOptions = ParserOptions::newFromUser( $wgUser );
 			$parserOptions->setUseCategoryMagic( false );
@@ -368,7 +367,7 @@ class EditPage {
 				} else if(preg_match("/\\.js$/", $wgTitle->getText() ) ) {
 					$previewtext = wfMsg('userjspreview');
 				}
-				$parserOutput = $wgParser->parse( $previewtext , $wgTitle, $parserOptions );
+				$parserOutput = $wgParser->parse( $this->textbox1 , $wgTitle, $parserOptions );
 				$wgOut->addHTML( $parserOutput->mText );
 			} else {
 				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $previewtext ) ."\n\n",
