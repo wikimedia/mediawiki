@@ -307,7 +307,6 @@ $wgExtraSubtitle	= '';
 $wgSiteSupportPage	= ''; # A page where you users can receive donations
 
 $wgReadOnlyFile         = "{$wgUploadDirectory}/lock_yBgMBwiR";
-
 $wgUseData = false ;
 
 # The debug log file should be not be publicly accessible if it is
@@ -666,7 +665,7 @@ $wgMaxTocLevel = 999;
 $wgUseGeoMode = false;
 
 # Validation for print or other production versions
-$wgUseValidation = false;
+$wgUseValidation = true;
 
 # Use external C++ diff engine (module wikidiff from the
 # extensions package)
