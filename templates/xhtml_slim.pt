@@ -2,8 +2,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${lang}" lang="${lang}">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=${charset}" />
-
+    <meta http-equiv="Content-Type" content="${mimetype}; charset=${charset}" />
+	${headlinks}
     <title tal:content="title">Exciting xhtml slimfast</title>
 
     <style type="text/css" media="screen">

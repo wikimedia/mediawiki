@@ -62,7 +62,7 @@
 		function outputPage( &$out ) {
 			global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgOut;
 			global $wgScriptPath, $wgStyleSheetPath, $wgLanguageCode, $wgUseNewInterlanguage;
-			global $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
+			global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages, $wgRequest;
 
 			$this->thispage = $wgTitle->getPrefixedDbKey();
 			$this->loggedin = $wgUser->getID() != 0;
@@ -81,7 +81,9 @@
 			$tpl->setRef( "title", &$this->titletxt ); // ?
 			$tpl->setRef( "thispage", &$this->thispage );
 			$tpl->set( "subtitle", $out->getSubtitle() );
-			$tpl->setRef( 'charset', $wgOutputEncoding);
+			$tpl->setRef( 'mimetype', $wgMimeType );
+			$tpl->setRef( 'charset', $wgOutputEncoding );
+			$tpl->set( 'headlinks', $out->getHeadLinks() );
 			$tpl->setRef( 'skinname', $this->skinname );
 			$tpl->setRef( "loggedin", &$this->loggedin );
 			/* XXX currently unused, might get useful later

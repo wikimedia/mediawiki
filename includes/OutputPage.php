@@ -602,6 +602,27 @@ class OutputPage {
 		$ret .= "<html $xmlbits lang=\"$wgLanguageCode\" $rtl>\n";
 		$ret .= "<head>\n<title>{$this->mHTMLtitle}</title>\n";
 		array_push( $this->mMetatags, array( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" ) );
+		$ret .= $this->getHeadLinks();
+		global $wgStyleSheetPath;
+		if( $this->isPrintable() ) {
+			$media = "";
+		} else {
+			$media = "media='print'";
+		}
+		$printsheet = htmlspecialchars( "$wgStyleSheetPath/wikiprintable.css" );
+		$ret .= "<link rel='stylesheet' type='text/css' $media href='$printsheet' />\n";
+
+		$sk = $wgUser->getSkin();
+		$ret .= $sk->getHeadScripts();
+		$ret .= $sk->getUserStyles();
+
+		$ret .= "</head>\n";
+		return $ret;
+	}
+	
+	function getHeadLinks() {
+		global $wgRequest;
+		$ret = "";
 		foreach ( $this->mMetatags as $tag ) {
 			if ( 0 == strcasecmp( "http:", substr( $tag[0], 0, 5 ) ) ) {
 				$a = "http-equiv";
@@ -631,20 +652,6 @@ class OutputPage {
 			$link = $wgRequest->escapeAppendQuery( "feed=rss" );
 			$ret .= "<link rel='alternate' type='application/rss+xml' title='RSS' href='$link' />\n";
 		}
-		global $wgStyleSheetPath;
-		if( $this->isPrintable() ) {
-			$media = "";
-		} else {
-			$media = "media='print'";
-		}
-		$printsheet = htmlspecialchars( "$wgStyleSheetPath/wikiprintable.css" );
-		$ret .= "<link rel='stylesheet' type='text/css' $media href='$printsheet' />\n";
-
-		$sk = $wgUser->getSkin();
-		$ret .= $sk->getHeadScripts();
-		$ret .= $sk->getUserStyles();
-
-		$ret .= "</head>\n";
 		return $ret;
 	}
 }
