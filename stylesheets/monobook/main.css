@@ -103,7 +103,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1 { font-size: 188%; }
 h2 { font-size: 150%; }
-h3, h4, h5, h6 { 
+h3, h4, h5, h6 {
     border-bottom: none;
     font-weight: bold;
 }
@@ -112,7 +112,7 @@ h4 { font-size: 116%; }
 h5 { font-size: 100%; }
 h6 { font-size: 80%;  }
 
-ul { 
+ul {
     line-height: 1.5em;
     list-style-type: square;
     margin: 0.3em 0 0 1.5em;
@@ -126,8 +126,8 @@ ol {
     list-style-image: none;
 }
 li { margin-bottom: 0.1em; }
-dt { 
-    font-weight: bold; 
+dt {
+    font-weight: bold;
     margin-bottom: 0.1em;
 }
 dl{
@@ -157,7 +157,7 @@ form {
 }
 
 textarea {
-    border: 1px solid #2f6fab;  
+    border: 1px solid #2f6fab;
     color: Black;
     background-color: white;
     width: 100%;
@@ -168,7 +168,7 @@ textarea {
 @media All {
     head:first-child+body input {
         visibility: visible;
-        border: 1px solid #2f6fab;  
+        border: 1px solid #2f6fab;
         color: Black;
         background-color: white;
         vertical-align: middle;
@@ -185,7 +185,7 @@ input.historysubmit {
 input[type="radio"],
 input[type="checkbox"] { border:none; }
 select {
-    border: 1px solid #2f6fab;  
+    border: 1px solid #2f6fab;
     color: Black;
     vertical-align: top;
 }
@@ -296,7 +296,7 @@ table.small { font-size: 100% }
 ** content styles
 */
 
-#toc { 
+#toc {
     /*border:1px solid #2f6fab;*/
     border:1px solid #aaaaaa;
     background-color:#f9f9f9;
@@ -307,29 +307,29 @@ table.small { font-size: 100% }
 #toc .tocline { margin-bottom: 0px; }
 #toc p { margin: 0 }
 #toc .toctoggle { font-size: 94%; }
-#toc .editsection { 
-    margin-top: 0.7em; 
+#toc .editsection {
+    margin-top: 0.7em;
     font-size: 94%;
 }
 
 /* images */
 div.floatright, table.floatright {
     clear: right;
-    float: right; 
+    float: right;
     margin: 0;
     position: relative;
     border: 0.5em solid White;
     border-width: 0.5em 0 0.8em 1.4em;
 }
-div.floatright p { font-style: italic; } 
+div.floatright p { font-style: italic; }
 div.floatleft, table.floatleft {
-    float: left; 
+    float: left;
     margin: 0.3em 0.5em 0.5em 0;
     position: relative;
     border: 0.5em solid White;
     border-width: 0.5em 1.4em 0.8em 0;
 }
-div.floatleft p { font-style: italic; } 
+div.floatleft p { font-style: italic; }
 /* thumbnails */
 div.thumb {
     margin-bottom: 0.5em;
@@ -350,7 +350,7 @@ div.thumb div a img {
 div.thumb div div.thumbcaption {
     border: none;
     text-align: left;
-    line-height: 1.4;
+    line-height: 1.4em;
     padding: 0.3em 0 0.1em 0;
 }
 div.magnify {
@@ -390,13 +390,13 @@ span.texhtml { font-family: serif; }
 */
 /* table standards */
 table.rimage {
-    float:right; 
+    float:right;
     position:relative;
-    margin-left:1em; 
+    margin-left:1em;
     margin-bottom:1em;
     text-align:center;
 }
-.toccolours { 
+.toccolours {
     border:1px solid #aaaaaa;
     background-color:#f9f9f9;
     padding:5px;
@@ -415,7 +415,7 @@ div.townBox {
 }
 div.townBox dl {
     padding: 0;
-    margin: 0 0 0.3em 0; 
+    margin: 0 0 0.3em 0;
     font-size: 96%;
 }
 div.townBox dl dt {
@@ -439,13 +439,13 @@ div.townBox dl dd {
 /* Page history styling */
 /* the auto-generated edit comments */
 .autocomment { color: gray; }
-#pagehistory span.user { 
+#pagehistory span.user {
     margin-left: 1.4em;
     margin-right: 0.4em;
 }
 #pagehistory span.minor { font-weight: bold; }
 #pagehistory li { border: 1px solid White; }
-#pagehistory li.selected { 
+#pagehistory li.selected {
     background-color:#f9f9f9;
     border:1px dashed #aaaaaa;
 }
@@ -455,11 +455,11 @@ div.townBox dl dd {
 table.diff { background:white; }
 td.diff-otitle { background:#ffffff; }
 td.diff-ntitle { background:#ffffff; }
-td.diff-addedline { 
+td.diff-addedline {
     background:#ccffcc;
     font-size: smaller;
 }
-td.diff-deletedline { 
+td.diff-deletedline {
     background:#ffffaa;
     font-size: smaller;
 }
@@ -469,9 +469,9 @@ td.diff-context {
 }
 span.diffchange { color: red; }
 
-/* 
+/*
 ** keep the whitespace in front of the ^=, hides rule from konqueror
-** this is css3, the validator doesn't like it when validating as css2 
+** this is css3, the validator doesn't like it when validating as css2
 */
 #bodyContent a[href ^="http://"],
 #bodyContent a[href ^="gopher://"] {
@@ -536,7 +536,7 @@ special external link styling */
     font-weight: normal;
     white-space: nowrap;
 }
-.portlet h5 { 
+.portlet h5 {
     background: transparent;
     padding: 0em 1em 0em 0.5em;
     text-transform: lowercase;
@@ -546,7 +546,7 @@ special external link styling */
     font-weight: normal;
     white-space: nowrap;
 }
-.portlet h6 { 
+.portlet h6 {
     background: #ffae2e;
     border: 1px solid #2f6fab;
     border-style: solid solid none solid;
@@ -565,9 +565,9 @@ special external link styling */
     border: 1px solid #aaaaaa;
     padding: 0 0.8em 0.3em 0.5em;
 }
-.portlet h1, 
-.portlet h2, 
-.portlet h3, 
+.portlet h1,
+.portlet h2,
+.portlet h3,
 .portlet h4 {
     margin: 0;
     padding: 0;
@@ -584,8 +584,8 @@ special external link styling */
     margin-bottom: 0;
 }
 
-/* 
-** Logo properties 
+/*
+** Logo properties
 */
 
 #p-logo {
@@ -623,7 +623,7 @@ special external link styling */
 #p-search {
     position:relative;
     z-index:3;
-}    
+}
 #p-search .pBody {
     text-align: center;
 }
@@ -633,10 +633,10 @@ input.searchButton {
     font-size: 95%;
     cursor: pointer;
     background-color: White;
-    border: 1px solid #2f6fab;  
+    border: 1px solid #2f6fab;
 }
 #searchInput {
-    border: 1px solid #2f6fab;  
+    border: 1px solid #2f6fab;
     width:10.9em;
     margin: 0 0 0 0;
     font-size: 95%;
@@ -645,7 +645,7 @@ input.searchButton {
     padding: 0.5em 0.4em 0.4em 0.4em;
 }
 
-/* 
+/*
 ** the personal toolbar
 */
 
@@ -723,7 +723,7 @@ li#pt-login {
 }
 
 /*
-** the page-related actions- page/talk, edit etc 
+** the page-related actions- page/talk, edit etc
 */
 #p-cactions {
     position:absolute;
@@ -777,7 +777,7 @@ li#pt-login {
 #p-cactions h5 { display: none; }
 #p-cactions li.istalk { margin-right: 0; }
 #p-cactions li.istalk a { padding-right: 0.5em; }
-#p-cactions #ca-addsection a { 
+#p-cactions #ca-addsection a {
     padding-left: 0.4em;
     padding-right: 0.4em;
 }
@@ -828,13 +828,13 @@ head:first-child+body #footer li { white-space: nowrap; }
 }
 
 /* js pref toc */
-#preftoc { 
+#preftoc {
     float: left;
     margin: 1em 1em 1em 1em;
     width: 13em;
 }
 #preftoc li { border: 1px solid White; }
-#preftoc li.selected { 
+#preftoc li.selected {
     background-color:#f9f9f9;
     border:1px dashed #aaaaaa;
 }
@@ -843,20 +843,20 @@ head:first-child+body #footer li { white-space: nowrap; }
     display: block;
     color: #0014a6;
 }
-#prefcontrol { 
+#prefcontrol {
     clear: both;
     float: left;
     margin-top: 1em;
 }
-div.prefsectiontip { 
+div.prefsectiontip {
     font-size: 95%;
     margin-top: 1em;
 }
 fieldset.operaprefsection { margin-left: 15em }
 
-/* 
+/*
 ** IE/Mac fixes, hope to find a validating way to move this
-** to a separate stylesheet. This would work but doesn't validate: 
+** to a separate stylesheet. This would work but doesn't validate:
 ** @import("IEMacFixes.css");
 */
 /* tabs: border on the a, not the div */
