@@ -43,13 +43,17 @@ class Block
 	}
 
 	# Get a ban from the DB, with either the given address or the given username
-	function load( $address, $user = 0, $killExpired = true ) 
+	function load( $address = "", $user = 0, $killExpired = true ) 
 	{
 		$fname = 'Block::load';
 		$ret = false;
 		$killed = false;
 		
-		if ( 0 == $user ) {
+		if ( 0 == $user && $address=="" ) {
+			$sql = "SELECT * from ipblocks";
+		} elseif ($address=="") {
+			$sql = "SELECT * FROM ipblocks WHERE ipb_user={$user}";
+		} elseif ($user=="") {
 			$sql = "SELECT * FROM ipblocks WHERE ipb_address='" . wfStrencode( $address ) . "'";
 		} else {
 			$sql = "SELECT * FROM ipblocks WHERE (ipb_address='" . wfStrencode( $address ) . 
