@@ -12,7 +12,6 @@
 }
 #bodyContent center, /* the full-size images are in center tags */
 #bodyContent pre {
-    width: 100%;
     overflow: auto;
 }
 
