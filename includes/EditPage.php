@@ -247,8 +247,10 @@ class EditPage {
 
 		if( wfReadOnly() ) {
 			$wgOut->addHTML( "<strong>" .
-				wfMsg( "readonlywarning" ) .
-				"</strong>" );
+			wfMsg( "readonlywarning" ) .
+			"</strong>" );
+		} else if ( $isCssJsSubpage ) {
+			$wgOut->addHTML( wfMsg( "usercssjsyoucanpreview" ));
 		}
 		if( $this->mTitle->isProtected() ) {
 			$wgOut->addHTML( "<strong>" . wfMsg( "protectedpagewarning" ) .
