@@ -61,6 +61,7 @@ if($wgMetaNamespace === FALSE)
 	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
 	"highlightbroken" => 1, "stubthreshold" => 0,
 	"previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, "showtoc"=>1,
+	"showtoolbar"=>1,
 	"date" => 0
 );
 
@@ -97,6 +98,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"hideminor" => "Hide minor edits in recent changes",
 	"usenewrc" => "Enhanced recent changes (not for all browsers)",
 	"numberheadings" => "Auto-number headings",
+	"showtoolbar"=>"Show edit box toolbar",
 	"editondblclick" => "Edit pages on double click (JavaScript)",
 	"editsection"=>"Enable section editing via [edit] links",
 	"editsectiononrightclick"=>"Enable section editing by right clicking<br> on section titles (JavaScript)",
@@ -289,7 +291,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
     MAG_START                => array( 0,    "__START__"              ),
     MAG_CURRENTMONTH         => array( 1,    "{{CURRENTMONTH}}"       ),
     MAG_CURRENTMONTHNAME     => array( 1,    "{{CURRENTMONTHNAME}}"   ),
-    MAG_CURRENTDAY           => array( 1,    "{{CURRENTDAY}}"         ),   
+    MAG_CURRENTDAY           => array( 1,    "{{CURRENTDAY}}"         ),
     MAG_CURRENTDAYNAME       => array( 1,    "{{CURRENTDAYNAME}}"     ),
     MAG_CURRENTYEAR          => array( 1,    "{{CURRENTYEAR}}"        ),
     MAG_CURRENTTIME          => array( 1,    "{{CURRENTTIME}}"        ),
@@ -300,7 +302,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
     MAG_MSGNW                => array( 0,    "{{MSGNW:$1}}"           ),
 	MAG_END                  => array( 0,    "__END__"                )
 );
-	
+
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
 # is the right thing for some of them (such as the "targeted" ones).
@@ -357,7 +359,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 #-------------------------------------------------------------------
 # Default messages
 #-------------------------------------------------------------------
-# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and 
+# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
 # hyphen (-). If you need more characters, you may be able to change
 # the regex in MagicWord::initRegex
 
@@ -582,6 +584,26 @@ You should log in and change your password now.",
 registered for \"$1\".
 Please log in again after you receive it.",
 
+# Edit page toolbar
+"bold_sample"=>"Bold text",
+"bold_tip"=>"Bold text",
+"italic_sample"=>"Italic text",
+"italic_tip"=>"Italic text",
+"link_sample"=>"Link title",
+"link_tip"=>"Internal link",
+"extlink_sample"=>"http://www.example.com link title",
+"extlink_tip"=>"External link (remember http:// prefix)",
+"headline_sample"=>"Headline text",
+"headline_tip"=>"Level 2 headline",
+"math_sample"=>"Insert formula here",
+"math_tip"=>"Mathematical formula (LaTeX)",
+"image_sample"=>"Example.jpg",
+"image_tip"=>"Embedded image",
+"media_sample"=>"Example.mp3",
+"media_tip"=>"Media file link",
+"sig_tip"=>"Your signature with timestamp",
+"hr_tip"=>"Horizontal line (use sparingly)",
+
 # Edit pages
 #
 "summary"		=> "Summary",
@@ -594,14 +616,14 @@ Please log in again after you receive it.",
 "blockedtitle"	=> "User is blocked",
 "blockedtext"	=> "Your user name or IP address has been blocked by $1.
 The reason given is this:<br>''$2''<p>You may contact $1 or one of the other
-[[$wgMetaNamespace:Administrators|administrators]] to discuss the block. 
+[[$wgMetaNamespace:Administrators|administrators]] to discuss the block.
 
-Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]]. 
+Note that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]].
 
 Your IP address is $3. Please include this address in any queries you make.
 
 ==Note to AOL users==
-Due to continuing acts of vandalism by one particular AOL user, Wikipedia often blocks AOL proxies. Unfortunately, a single proxy server may be used by a large number of AOL users, and hence innocent AOL users are often inadvertently blocked. We apologise for any inconvenience caused. 
+Due to continuing acts of vandalism by one particular AOL user, Wikipedia often blocks AOL proxies. Unfortunately, a single proxy server may be used by a large number of AOL users, and hence innocent AOL users are often inadvertently blocked. We apologise for any inconvenience caused.
 
 If this happens to you, please email an administrator, using an AOL email address. Be sure to include the IP address given above.
 ",
