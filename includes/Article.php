@@ -466,6 +466,8 @@ class Article {
 		} else {
 			$s = str_replace( "$1", $wgTitle->getPrefixedText(),
 			  wfMsg( "editing" ) );
+
+			if($section!="") { $s.=wfMsg("sectionedit");}
 			$wgOut->setPageTitle( $s );
 			if ( $oldid ) {
 				$this->setOldSubtitle();

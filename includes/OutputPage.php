@@ -1214,6 +1214,7 @@ class OutputPage {
 		$nh=$wgUser->getOption( "numberheadings" );
 		$st=$wgUser->getOption( "showtoc" );
 		$es=$wgUser->getID() && $wgUser->getOption( "editsection" );
+		if($wgTitle->getPrefixedText()==wfMsg("mainpage")) {$st=0;}
 
 		$sk=$wgUser->getSkin();
 		preg_match_all("/<H([1-6])(.*?>)(.*?)<\/H[1-6]>/i",$text,$matches);
@@ -1270,6 +1271,9 @@ class OutputPage {
 			if($st) {
 				$toc.=$sk->tocLine($anchor,$tocline);
 			}
+			if($es && !isset($wpPreview)) {
+				$head[$c].=$sk->editSectionLink($c+1);
+			}
 			$head[$c].="<H".$level.$matches[2][$c]
 			 ."<a name=\"".$anchor."\">"
 			 .$headline
@@ -1295,12 +1299,13 @@ class OutputPage {
 		
 		$blocks=preg_split("/<H[1-6].*?>.*?<\/H[1-6]>/i",$text);
 		$i=0;
-		foreach($blocks as $block) {			
-			$full.=$block;
-			if($es && $c>0 && !isset($wpPreview)) {
-				$full.=$sk->editSectionLink($i);
+
+		foreach($blocks as $block) {
+			if($es && !isset($wpPreview) && $c>0 && $i==0) {
+				$full.=$sk->editSectionLink(0);				
 			}
 
+			$full.=$block;
 			$full.=$head[$i];
 			$i++;
 		}
