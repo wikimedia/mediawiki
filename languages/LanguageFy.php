@@ -26,13 +26,17 @@ if($wgMetaNamespace === FALSE)
 	7	=> "Ofbyld_oerlis",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_oerlis",
-	10  => "Template",
-	11  => "Template_talk"
+	10  => "Berjocht",
+	11  => "Berjocht_oerlis",
+            12  => "Hulp",
+            13  => "Hulp_oerlis",
+            14  => "Kategorie",
+            15  => "Kategorie_oerlis"
 
 ) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsFy = array(
-	"Ut", "Lofts fêst", "Rjochts fêst", "Lofsts sweevjend"
+	"Ut", "Lofts fêst", "Rjochts fêst", "Lofts sweevjend"
 );
 
 /* private */ $wgSkinNamesFy = array(
@@ -1192,3 +1196,4 @@ class LanguageFy extends LanguageUtf8 {
 }
 
 ?>
+
