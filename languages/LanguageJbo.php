@@ -98,12 +98,12 @@ $wgValidationTypesJbo = array (
  "editsection"=>"galfi pa paprypau",
  "editsectiononrightclick"=>"galfi lo paprypau ta'i lonu <br> pritu catke le cmetcita be le paprypau to DJAvaskript toi",
  "showtoc"=>"jarco le selvau cartu<br>be ro pagbu su'ocimei ci'arvelski",
- "rememberpassword" => "morji le sivyvla entre sessıes",
- "editwidth" => "Caixa de ediÁ„o com largura completa",
+ "rememberpassword" => "morji le sivyvla entre sess√µes",
+ "editwidth" => "Caixa de edi√ß√£o com largura completa",
  "watchdefault" => "Observa artigos novos e modificados",
- "minordefault" => "Marca todas as ediÁıes como secund·rias, por padr„o",
- "previewontop" => "Mostrar Previs„o antes da caixa de ediÁ„o ao invÈs de ser apÛs",
- "nocache" => "Desabilitar caching de p·gina"
+ "minordefault" => "Marca todas as edi√ß√µes como secund√°rias, por padr√£o",
+ "previewontop" => "Mostrar Previs√£o antes da caixa de edi√ß√£o ao inv√©s de ser ap√≥s",
+ "nocache" => "Desabilitar caching de p√°gina"
 );
 
 /* private */ $wgBookstoreListJbo = array(
@@ -204,7 +204,7 @@ $wgValidationTypesJbo = array (
  "Recentchangeslinked" => "pu zi se galfi",
  "Movepage"  => "muvgau le papri",
  "Booksources" => "bartu ke cukta krasi",
- #"Categories" => "Categorias de P·ginas",
+ #"Categories" => "Categorias de P√°ginas",
  "Export" => "barfu'i tetai la me XML",
 );
 
@@ -1288,9 +1288,9 @@ cu sarcu lo nu do muvgau lo papri",
 .i .e'o ko cuxna lo drata cmene",
 "talkexists" => "le sevzi papri cu muvdu .iku'i le tavla papri na muvdu .iki'ubo lo papri poi se cmene di'u puzi zasti .i .e'o ko macnu mixygau fi xai",
 "movedto"  => "muvdu",
-"movetalk"  => "Mover p·gina  \"talk\" tambÈm, se aplic·vel.",
+"movetalk"  => "Mover p√°gina  \"talk\" tamb√©m, se aplic√°vel.",
 "talkpagemoved" => "le tavla papri cu snada muvdu",
-"talkpagenotmoved" => "A p·gina talk correspondente  <strong>n„o</strong> foi movida.",
+"talkpagenotmoved" => "A p√°gina talk correspondente  <strong>n√£o</strong> foi movida.",
 '1movedto2'		=> "$1 moved to $2",
 '1movedto2_redir' => '$1 moved to $2 over redirect',
 
