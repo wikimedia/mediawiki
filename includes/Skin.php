@@ -1774,7 +1774,8 @@ class Skin {
 			$alt = preg_replace( '/\.(.+?)^/', '', $img->getName() );
 		}
 		$alt = preg_replace( '/<[^>]*>/', '', $alt );
-		$alt = htmlspecialchars( $alt );
+		$alt = preg_replace('/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/', '&amp;', $alt);
+		$alt = str_replace( array('<', '>', '"'), array('&lt;', '&gt;', '&quot;'), $alt );
 
 		$u = $nt->escapeLocalURL();
 		if ( $url == '' )
@@ -1802,7 +1803,8 @@ class Skin {
 
 		#$label = htmlspecialchars( $label );
 		$alt = preg_replace( '/<[^>]*>/', '', $label);
-		$alt = htmlspecialchars( $alt );
+		$alt = preg_replace('/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/', '&amp;', $alt);
+		$alt = str_replace( array('<', '>', '"'), array('&lt;', '&gt;', '&quot;'), $alt );
 
 		$width = $height = 0;
 		if ( $img->exists() )
