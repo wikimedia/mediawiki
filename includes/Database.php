@@ -308,13 +308,15 @@ class Database {
 	
 	function tableExists( $table )
 	{
-		$old = $this->mIgnoreErrors;
+		$old = $this->setIgnoreErrors( true );
 		$res = $this->query( "SELECT 1 FROM $table LIMIT 1" );
-		$this->mIgnoreErrors = $old;
+		$this->setIgnoreErrors( $old );
 		if( $res ) {
 			$this->freeResult( $res );
 			return true;
 		} else {
+			# Clear error flag
+			wfLastError();
 			return false;
 		}
 	}
