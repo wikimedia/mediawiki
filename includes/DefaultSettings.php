@@ -7,7 +7,7 @@
 # like $wgScriptPath, you must also localize everything that
 # depends on it.
 
-$wgVersion			= '1.3.0beta4';
+$wgVersion			= '1.3.0+';
 
 $wgSitename         = 'MediaWiki'; # Please customize!
 $wgMetaNamespace    = FALSE; # will be same as you set $wgSitename
@@ -292,7 +292,7 @@ $wgCompressRevisions = false;
 
 # This is the list of preferred extensions for uploading files. Uploading
 # files with extensions not in this list will trigger a warning.
-$wgFileExtensions = array( 'png', 'jpg', 'jpeg', 'ogg' );
+$wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg', 'ogg' );
 
 # Files with these extensions will never be allowed as uploads.
 $wgFileBlacklist = array(
