@@ -2669,7 +2669,9 @@ class ParserOptions
 	# Get user options
 	function initialiseFromUser( &$userInput ) {
 		global $wgUseTeX, $wgUseCategoryMagic, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
-
+		
+		$fname = "ParserOptions::initialiseFromUser";
+		wfProfileIn( $fname );
 		if ( !$userInput ) {
 			$user = new User;
 			$user->setLoaded( true );
@@ -2682,12 +2684,15 @@ class ParserOptions
 		$this->mUseDynamicDates = $wgUseDynamicDates;
 		$this->mInterwikiMagic = $wgInterwikiMagic;
 		$this->mAllowExternalImages = $wgAllowExternalImages;
+		wfProfileIn( "$fname-skin" );
 		$this->mSkin =& $user->getSkin();
+		wfProfileOut( "$fname-skin" );
 		$this->mDateFormat = $user->getOption( 'date' );
 		$this->mEditSection = $user->getOption( 'editsection' );
 		$this->mEditSectionOnRightClick = $user->getOption( 'editsectiononrightclick' );
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
 		$this->mShowToc = $user->getOption( 'showtoc' );
+		wfProfileOut( $fname );
 	}
 
 
