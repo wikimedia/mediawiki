@@ -156,15 +156,15 @@ class SqlQueryForm {
 						$o = $y->$x ;
 						if ( $x == "cur_title" or $x == "old_title" or $x == "rc_title") {
 							$namespace = 0;
-							if( $x == "cur_title" ) $namespace = $y->cur_namespace;
-							if( $x == "old_title" ) $namespace = $y->old_namespace;
-							if( $x == "rc_title" ) $namespace = $y->rc_namespace;
-							if( $namespace ) $o = $wgContLang->getNsText( $namespace ) . ":" . $o;
-							$o = "<a href=\"" . wfLocalUrlE($o) . "\" class='internal'>" .
+							if( $x == "cur_title" && isset( $y->cur_namespace ) ) $namespace = $y->cur_namespace;
+							if( $x == "old_title" && isset( $y->old_namespace ) ) $namespace = $y->old_namespace;
+							if( $x == "rc_title" && isset( $y->rc_namespace ) ) $namespace = $y->rc_namespace;
+							$title =& Title::makeTitle( $namespace, $o );
+							$o = "<a href=\"" . $title->escapeLocalUrl() . "\" class='internal'>" .
 							  htmlspecialchars( $y->$x ) . "</a>" ;
-							} else {
+						} else {
 							$o = htmlspecialchars( $o );
-							}
+						}
 						$r .= "<td>" . $o . "</td>\n";
 					}
 					$r .= "</tr>\n";
