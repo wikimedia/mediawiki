@@ -396,8 +396,13 @@ class PreferencesForm {
 		<div><label>$yl: <select name=\"wpUserLanguage\" />\n");
 
         foreach($wgLanguageNames as $code => $name) {
-            $sel = ($code == $this->mUserLanguage)? "selected" : "";
-            $wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
+           global $IP;
+            /* only add languages that have a file */
+           $langfile="$IP/languages/Language".str_replace('-', '_', ucfirst($code)).".php";
+           if(file_exists($langfile)) {
+               $sel = ($code == $this->mUserLanguage)? "selected" : "";
+               $wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
+           }
         }
         $wgOut->addHtml("</label></div>\n" );
 
