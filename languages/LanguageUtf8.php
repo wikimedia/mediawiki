@@ -53,11 +53,23 @@ class LanguageUtf8 extends Language {
 	function stripForSearch( $string ) {
 		# MySQL fulltext index doesn't grok utf-8, so we
 		# need to fold cases and convert to hex
-		global $wikiLowerChars;
-		return preg_replace(
-		  "/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-		  "'U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
-		  $string );
+
+		# In Language:: it just returns lowercase, maybe
+		# all strtolower on stripped output or argument
+		# should be removed and all stripForSearch
+		# methods adjusted to that.
+		if (function_exists('mb_strtolower')) {
+			return preg_replace(
+	        	    "/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
+			    "'U8' . bin2hex( $1 )",
+          		    mb_strtolower($string) );
+		} else {
+		  global $wikiLowerChars;
+		  return preg_replace(
+		      "/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
+		      "'U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
+		      $string );
+		}
 	}
 
 	function fallback8bitEncoding() {
