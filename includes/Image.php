@@ -11,6 +11,7 @@ class Image
 		$url,		# Image URL
 		$title,		# Title object for this image. Initialized when needed.
 		$fileExists,	# does the image file exist on disk?
+		$fromSharedDirectory, # load this image from $wgSharedUploadDirectory	
 		$historyLine,	# Number of line to return by nextHistoryLine()
 		$historyRes,	# result of the query for the image's history
 		$width,		# \
@@ -23,17 +24,42 @@ class Image
 
 	function Image( $name )
 	{
-		global $wgUploadDirectory;
+		global $wgUploadDirectory,
+		       $wgUseSharedUploads, $wgSharedUploadDirectory, 
+		       $wgHashedSharedUploadDirectory;
 
 		$this->name      = $name;
 		$this->title     = Title::makeTitle( Namespace::getImage(), $this->name );
-		//$this->imagePath = wfImagePath( $name );
+		$this->fromSharedDirectory = false;
 		$hash 		 = md5( $this->title->getDBkey() );
-		$this->imagePath = $wgUploadDirectory . "/" . $hash{0} . "/" .substr( $hash, 0, 2 ) . "/{$name}";
-
+		$this->imagePath = $wgUploadDirectory . "/" . $hash{0} . "/" .substr( $hash, 0, 2 ) . "/{$name}";		
 		$this->url       = $this->wfImageUrl( $name );
+		
+		$this->fileExists = file_exists( $this->imagePath );
+		
+		# If the file is not found, and a shared upload directory 
+		# like the Wikimedia Commons is used, look for it there.
+		if (!$this->fileExists && $wgUseSharedUploads) {
+			
+			if($wgHashedSharedUploadDirectory) {				
+				$hash = md5( $this->title->getDBkey() );
+				$this->imagePath = $wgSharedUploadDirectory . '/' . $hash{0} . '/' .
+					substr( $hash, 0, 2 ) . "/{$name}";
+			} else {
+				$this->imagePath = $wgSharedUploadDirectory . '/' . $name;
+			}
+			$this->fileExists = file_exists( $this->imagePath);
+			$this->fromSharedDirectory = true;
+			#wfDebug ("File from shared directory: ".$this->imagePath."\n");
+		}		
+		if($this->fileExists) {
+			$this->url       = $this->wfImageUrl( $name, $this->fromSharedDirectory );
+		} else {
+			$this->url='';
+		}
+		
 
-		if ( $this->fileExists = file_exists( $this->imagePath ) ) // Sic!, "=" is intended
+		if ( $this->fileExists ) 
 		{
 			@$gis = getimagesize( $this->imagePath );
 			if( $gis !== false ) {
@@ -93,13 +119,25 @@ class Image
 		return $this->title->escapeLocalURL();
 	}
 
-	function wfImageUrl( $name )
+	function wfImageUrl( $name, $fromSharedDirectory = false )
 	{
-		global $wgUploadPath;
-		$hash = md5( $name );
-
-        	$url = "{$wgUploadPath}/" . $hash{0} . "/" .
-              	substr( $hash, 0, 2 ) . "/{$name}";
+		global $wgUploadPath,
+		       $wgHashedSharedUploadDirectory,
+		       $wgSharedUploadPath;
+		if($fromSharedDirectory) {
+			$hash = $wgHashedSharedUploadDirectory;
+			$path = $wgSharedUploadPath;
+		} else {
+			$hash = true;
+			$path = $wgUploadPath;
+		}			
+		if ( $hash ) {
+			$hash = md5( $name );
+        		$url = "{$path}/" . $hash{0} . "/" .
+              		substr( $hash, 0, 2 ) . "/{$name}";
+		} else {
+			$url = "{$path}/{$name}";
+		}
         	return wfUrlencode( $url );
 	}
 
@@ -109,15 +147,29 @@ class Image
 		return $this->fileExists;
 	}
 
-	function thumbUrl( $width, $subdir="thumb" ) {
-		global $wgUploadPath;
-
+	function thumbUrl( $width, $subdir='thumb') {
+		global $wgUploadPath,
+		       $wgSharedUploadPath,$wgSharedUploadDirectory,
+		       $wgHashedSharedUploadDirectory;
 		$name = $this->thumbName( $width );
-		$hash = md5( $name );
-		$url = "{$wgUploadPath}/{$subdir}/" . $hash{0} . "/" . substr( $hash, 0, 2 ) . "/{$name}";
+		if($this->fromSharedDirectory) {
+			$hashdir = $wgHashedSharedUploadDirectory;
+			$path = $wgSharedUploadPath;
+		} else {
+			$hashdir = true;
+			$path = $wgUploadPath;
+		}
+		if ($hashdir) {
+			$hash = md5( $name );
+			$url = "{$path}/{$subdir}/" . $hash{0} . "/" . 
+				substr( $hash, 0, 2 ) . "/{$name}";
+		} else {
+			$url = "{$path}/{$subdir}/{$name}";
+		}
 
 		return wfUrlencode($url);
 	}
+
 
 	function thumbName( $width ) {
 		return $width."px-".$this->name;
@@ -130,7 +182,6 @@ class Image
 	// The thumbnail is stored on disk and is only computed if the thumbnail
 	// file does not exist OR if it is older than the image.
 	function createThumb( $width ) {
-		global $wgUploadDirectory;
 		global $wgImageMagickConvertCommand;
 		global $wgUseImageMagick;
 		global $wgUseSquid, $wgInternalServer;
@@ -138,8 +189,8 @@ class Image
 		$width = IntVal( $width );
 
 		$thumbName = $this->thumbName( $width );
-		$thumbPath = wfImageThumbDir( $thumbName )."/".$thumbName;
-		$thumbUrl  = $this->thumbUrl( $width );
+ 		$thumbPath = wfImageThumbDir( $thumbName, 'thumb', $this->fromSharedDirectory ).'/'.$thumbName;
+ 		$thumbUrl  = $this->thumbUrl( $width );
 
 		if ( ! $this->exists() )
 		{
