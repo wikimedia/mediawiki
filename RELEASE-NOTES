@@ -454,6 +454,7 @@ pages for purposes of page relevancy ranking.
 * Support for manually converting article title to different Chinese
   variants (for zh)
 * (bug 1488, bug 1744) Fix encoding for preferences, dates in Latin-1 mode
+* (bug 1042) Fix UTF-8 case conversion for PHP <4.3 with mbstring extension
 
 
 === Caveats ===

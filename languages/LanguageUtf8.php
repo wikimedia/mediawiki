@@ -11,7 +11,7 @@ global $wgDBname, $wgMemc;
 $wgInputEncoding    = "UTF-8";
 $wgOutputEncoding	= "UTF-8";
 
-if (function_exists('mb_internal_encoding')) {
+if( function_exists( 'mb_strtoupper' ) ) {
 	mb_internal_encoding('UTF-8');
 } else {
 	# Hack our own case conversion routines
