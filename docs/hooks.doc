@@ -276,6 +276,18 @@ $user: the user _doing_ the block (not the one being blocked)
 $block: the Block object that was saved
 $user: the user who did the block (not the one being blocked)
 
+'EmailUser': before sending email from one user to another
+$to: address of receiving user
+$from: address of sending user
+$subject: subject of the mail
+$text: text of the mail
+
+'EmailUserComplete': after sending email from one user to another
+$to: address of receiving user
+$from: address of sending user
+$subject: subject of the mail
+$text: text of the mail
+
 'UnknownAction': An unknown "action" has occured (useful for defining
 		 your own actions)
 $action: action name

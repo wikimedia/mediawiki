@@ -137,17 +137,21 @@ class EmailUserForm {
 		global $wgOut, $wgUser, $wgLang, $wgOutputEncoding;
 	    
 		$from = wfQuotedPrintable( $wgUser->getName() ) . " <" . $wgUser->getEmail() . ">";
+		$subject = wfQuotedPrintable( $this->subject );
 		
-		$mailResult = userMailer( $this->mAddress, $from, wfQuotedPrintable( $this->subject ), $this->text );
-
-		if (! $mailResult)
-		{
-			$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
-			$encTarget = wfUrlencode( $this->target );
-			$wgOut->redirect( $titleObj->getFullURL( "target={$encTarget}&action=success" ) );
+		if (wfRunHooks('EmailUser', $this->mAddress, $from, $subject, $this->text)) {
+			
+			$mailResult = userMailer( $this->mAddress, $from, $subject, $this->text );
+			
+			if (!$mailResult) {
+				$titleObj = Title::makeTitle( NS_SPECIAL, "Emailuser" );
+				$encTarget = wfUrlencode( $this->target );
+				$wgOut->redirect( $titleObj->getFullURL( "target={$encTarget}&action=success" ) );
+				wfRunHooks('EmailUserComplete', $this->mAddress, $from, $subject, $this->text);
+			} else {
+			  $wgOut->addHTML( wfMsg( "usermailererror" ) . $mailResult);
+			}
 		}
-		else
-			$wgOut->addHTML( wfMsg( "usermailererror" ) . $mailResult);
 	}
 
 	function showSuccess() {

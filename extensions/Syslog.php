@@ -88,6 +88,10 @@ if (defined('MEDIAWIKI')) {
 		return true;
 	}
 
+	function syslogEmailUser(&$to, &$from, &$subject, &$text) {
+		syslog(LOG_INFO, "Email sent from '$from' to '$to' with subject '$subject'");
+	}
+	
 	# Setup -- called once environment is configured
 	
 	function setupSyslog() {
@@ -103,6 +107,7 @@ if (defined('MEDIAWIKI')) {
 		$wgHooks['ArticleProtectComplete'][] = 'syslogArticleProtect';
 		$wgHooks['ArticleDeleteComplete'][] = 'syslogArticleDelete';
 		$wgHooks['ArticleSaveComplete'][] = 'syslogArticleSave';
+		$wgHooks['EmailUserComplete'][] = 'syslogEmailUser';
 		
 		return true;
 	}
