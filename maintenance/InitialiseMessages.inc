@@ -10,12 +10,14 @@
  * @subpackage Maintenance
  */
 
-
+require_once('languages/Names.php');
 
 function initialiseMessages( $overwrite = false, $messageArray = false ) {
 	global $wgContLang, $wgContLanguageCode;
 	global $wgContLangClass, $wgAllMessagesEn;
 	global $wgDisableLangConversion;
+	global $wgForceUIMsgAsContentMsg;
+	global $wgLanguageNames;
 	global $IP;
 
 	# overwrite language conversion	option so that all variants 
@@ -48,6 +50,20 @@ function initialiseMessages( $overwrite = false, $messageArray = false ) {
 			$suffix="/$v";
 		foreach ($sortedArray as $key => $msg) {
 			$messages[$key.$suffix] = $lang->getMessage($key);
+		}
+	}
+
+    /*
+	  initialize all messages in $wgForceUIMsgAsContentMsg for all
+	  languages in Names.php
+    */
+	if( is_array( $wgForceUIMsgAsContentMsg ) ) {
+		foreach( $wgForceUIMsgAsContentMsg as $uikey ) {
+			foreach( $wgLanguageNames as $code => $name) {
+				if( $code == $wgContLanguageCode )
+					continue;
+				$messages[$uikey. '/' . $code] = $wgContLang->getMessage($uikey);
+			}
 		}
 	}
 
