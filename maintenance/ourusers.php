@@ -5,19 +5,19 @@ $wikisql_pass = `wikisql_pass`;
 
 $hosts = array( 
 	'localhost',
-	'207.142.131.226'
-	'207.142.131.227'
-	'207.142.131.228'
-	'207.142.131.229'
-	'207.142.131.230'
-	'207.142.131.231'
-	'207.142.131.232'
-	'207.142.131.233'
-	'207.142.131.234'
-	'207.142.131.237'
-	'207.142.131.238'
-	'207.142.131.239'
-	'207.142.131.243'
+	'207.142.131.226',
+	'207.142.131.227',
+	'207.142.131.228',
+	'207.142.131.229',
+	'207.142.131.230',
+	'207.142.131.231',
+	'207.142.131.232',
+	'207.142.131.233',
+	'207.142.131.234',
+	'207.142.131.237',
+	'207.142.131.238',
+	'207.142.131.239',
+	'207.142.131.243',
 	'207.142.131.244'
 );
 
@@ -37,7 +37,7 @@ foreach( $hosts as $host ) {
 	}
 	print "\n-- wikisql\n\n";
 	foreach ( $databases as $db ) {
-		print <<<EOS
+/*print <<<EOS
 GRANT SELECT ON `$db`.`old` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
 GRANT SELECT ON `$db`.`imagelinks` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
 GRANT SELECT ON `$db`.`image` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
@@ -52,7 +52,8 @@ GRANT SELECT ON `$db`.`oldimage` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pa
 GRANT SELECT ON `$db`.`recentchanges` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
 GRANT SELECT ON `$db`.`math` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
 GRANT SELECT ON `$db`.`brokenlinks` TO 'wikisql'@'$host' IDENTIFIED BY '$wikisql_pass';
-EOS;
+
+EOS;*/
 	}
 	
 	print "\n-- wikiadmin\n\n";
@@ -61,6 +62,7 @@ EOS;
 	foreach ( $databases as $db ) {
 		print "GRANT ALL PRIVILEGES ON '$db'.* TO wikiadmin@'$host' IDENTIFIED BY '$wikiadmin_pass';\n";
 	}
+	print "\n";
 }
 
 
