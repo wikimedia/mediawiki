@@ -412,6 +412,10 @@ class UndeleteForm {
 				$userLink = $sk->makeKnownLinkObj(
 					Title::makeTitle( NS_USER, $row->ar_user_text ),
 					$userLink );
+			} else {
+				$userLink = $sk->makeKnownLinkObj(
+					Title::makeTitle( NS_SPECIAL, 'Contributions' ),
+					$userLink, 'target=' . $row->ar_user_text );
 			}
 			$comment = $sk->commentBlock( $row->ar_comment );
 			$wgOut->addHTML( "<li>$checkBox $pageLink . . $userLink $comment</li>\n" );
