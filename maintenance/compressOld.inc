@@ -32,6 +32,7 @@ function compressOldPages( $start = 0 ) {
 }
 
 function compressPage( $row ) {
+	$fname = 'compressPage';
 	if( false !== strpos( $row->old_flags, "gzip" ) ) {
 		print "Already compressed row {$row->old_id}?\n";
 		return false;
@@ -47,7 +48,7 @@ function compressPage( $row ) {
 			'old_id' => $row->old_id
 		), $fname, 'LIMIT 1'
 	);
-	return $res;
+	return true;
 }
 
 ?>
