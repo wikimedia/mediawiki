@@ -48,7 +48,10 @@ body { font-size: xx-small; }
     background: none;
     padding: 0;
 }
+#p-personal ul { float: right }
+#p-personal li { float: left }
 li#pt-userpage,
+li#pt-anonuserpage,
 li#pt-login,
 li#pt-logout {
     background: none;
