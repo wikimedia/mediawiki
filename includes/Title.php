@@ -1197,6 +1197,9 @@ class Title {
 	# will get the parents and grand-parents
 	function getAllParentCategories(&$stack)
 	{
+		global $wgUser;
+		$sk =& $wgUser->getSkin() ;
+
 		# getting parents
 		$parents = $this->getParentCategories( );
 				
@@ -1205,10 +1208,13 @@ class Title {
 			# create a title object for the parent
 			$tpar = Title::newFromID($parent->cur_id);
 			
-			$stack[$tpar->getText()] = $this->getText();
 			if(isset($stack[$this->getText()]))
 			{
+				$stack[$tpar->getText()] = $sk->makeLink( $this->getPrefixedDBkey(), $this->getText() );
 				$stack[$tpar->getText()] .= " &gt; ".$stack[$this->getText()];
+			} else {
+				# don't make a link for current page
+				$stack[$tpar->getText()] = $this->getText();
 			}
 			
 			unset( $stack[$this->getText()] );
