@@ -339,12 +339,13 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 
 		$id = $wgUser->blockedBy();
 		$reason = $wgUser->blockedFor();
+		$ip = getenv( "REMOTE_ADDR" );
 
 		$name = User::whoIs( $id );
 		$link = "[[" . $wgLang->getNsText( Namespace::getUser() ) .
 		  ":{$name}|{$name}]]";
 
-		$wgOut->addWikiText( wfMsg( "blockedtext", $link, $reason ) );
+		$wgOut->addWikiText( wfMsg( "blockedtext", $link, $reason, $ip ) );
 		$wgOut->returnToMain( false );
 	}
 
