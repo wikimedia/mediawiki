@@ -31,13 +31,13 @@ function getCategories ()
 {
   global $wgOut , $wgTitle , $wgUseCategoryMagic , $wgUser , $wgParser ;
   if ( !isset ( $wgUseCategoryMagic ) || !$wgUseCategoryMagic ) return "" ;
-  if ( count ( $wgParser->mCategoryLinks ) == 0 ) return "" ;
+  if ( count ( $wgOut->mCategoryLinks ) == 0 ) return "" ;
   if ( !$wgOut->isArticle() ) return "" ;
   $sk = $wgUser->getSkin() ;
   $s = "" ;
   $s .=  "\n<br>\n";
   $s .= $sk->makeKnownLink ( "Special:Categories" , "Categories" , "article=".$wgTitle->getDBkey() ) ;
-  $t = implode ( " | " , $wgParser->mCategoryLinks ) ;
+  $t = implode ( " | " , $wgOut->mCategoryLinks ) ;
   if ( $t != "" ) $s .= " : " ;
   $s .= $t ;
   return $s ;
