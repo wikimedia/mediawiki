@@ -118,7 +118,7 @@ class User {
 
 		if ( $fBlock ) {
 			$this->mBlockedby = $wgRangeBlockUser;
-			$this->mBlockReason = $wgRangeBlockReason;
+			$this->mBlockreason = $wgRangeBlockReason;
 			return;
 		}
 
