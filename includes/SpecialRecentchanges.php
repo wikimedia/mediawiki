@@ -61,9 +61,9 @@ function wfSpecialRecentchanges( $par )
 	$now = wfTimestampNow();
 	$cutoff_unixtime = time() - ( $days * 86400 );
 	$cutoff_unixtime = $cutoff_unixtime - ($cutoff_unixtime % 86400);
-	$cutoff = wfUnix2Timestamp( $cutoff_unixtime );
-	if(preg_match('/^[0-9]{14}$/', $from) and $from > $cutoff) {
-		$cutoff = $from;
+	$cutoff = $dbr->timestamp( $cutoff_unixtime );
+	if(preg_match('/^[0-9]{14}$/', $from) and $from > wfTimestamp(TS_MW,$cutoff)) {
+		$cutoff = $dbr->timestamp($from);
 	} else {
 		unset($from);
 	}
