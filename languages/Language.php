@@ -1782,6 +1782,11 @@ class Language {
 			return $ellipsis . $string;
 		}
 	}
+	
+	# Get a regex fragment for a single whitespace character
+	function getWhiteCharRegex() {
+		return '[\\s\\xa0_]';
+	}
 }
 
 # This should fail gracefully if there's not a localization available

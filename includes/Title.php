@@ -663,6 +663,7 @@ class Title {
 	/* private */ function secureAndSplit()
 	{
 		global $wgLang, $wgLocalInterwiki, $wgCapitalLinks;
+		global $wgInputEncoding;
 		$fname = "Title::secureAndSplit";
  		wfProfileIn( $fname );
 		
@@ -681,7 +682,8 @@ class Title {
 
 		# Clean up whitespace
 		#
-		$t = preg_replace( "/[\\s_]+/", "_", $this->mDbkeyform );
+		$white = $wgLang->getWhiteCharRegex();
+		$t = preg_replace( "/$white+/", "_", $this->mDbkeyform );
 		$t = preg_replace( '/^_*(.*?)_*$/', '$1', $t );
 
 		if ( "" == $t ) {

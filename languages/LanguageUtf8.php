@@ -109,6 +109,11 @@ class LanguageUtf8 extends Language {
 			return $ellipsis . $string;
 		}
 	}
+
+	# Get a regex fragment for a single whitespace character
+	function getWhiteCharRegex() {
+		return '(\\xc2\\xa0|[\\s_])';
+	}
 }
 
 } # ifdef MEDIAWIKI
