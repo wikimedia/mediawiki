@@ -76,7 +76,14 @@ class Block
 			$sql = "SELECT * FROM $ipblocks WHERE ipb_user={$user} $options";
 		} elseif ($user=="") {
 			$sql = "SELECT * FROM $ipblocks WHERE ipb_address='" . $db->strencode( $address ) . "' $options";
+		} elseif ( $options=='' ) {
+			# If there are no optiones (e.g. FOR UPDATE), use a UNION
+			# so that the query can make efficient use of indices
+			$sql = "SELECT * FROM $ipblocks WHERE ipb_address='" . $db->strencode( $address ) .
+				"' UNION SELECT * FROM $ipblocks WHERE ipb_user={$user}";
 		} else {
+			# If there are options, a UNION can not be used, use one
+			# SELECT instead. Will do a full table scan.
 			$sql = "SELECT * FROM $ipblocks WHERE (ipb_address='" . $db->strencode( $address ) . 
 				"' OR ipb_user={$user}) $options";
 		}
