@@ -7,6 +7,10 @@ unset( $IP );
 ini_set( "allow_url_fopen", 0 ); # For security...
 include_once( "./LocalSettings.php" );
 
+if( $wgSitename == "MediaWiki" ) {
+	die( "You must set the site name in \$wgSitename before installation.\n\n" );
+}
+
 # Windows requires ';' as separator, ':' for Unix
 $sep = strchr( $include_path = ini_get( "include_path" ), ";" ) ? ";" : ":";
 ini_set( "include_path", "$IP$sep$include_path" );
