@@ -439,7 +439,7 @@ class OutputPage {
 	function databaseError( $fname )
 	{
 		global $wgUser, $wgCommandLineMode;
-		
+
 		$this->setPageTitle( wfMsgNoDB( "databaseerror" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleRelated( false );
@@ -455,7 +455,7 @@ class OutputPage {
 		$msg = str_replace( "$3", wfLastErrno(), $msg );
 		$msg = str_replace( "$4", htmlspecialchars( wfLastError() ), $msg );
 		
-		if ( $wgCommandLineMode ) {
+		if ( $wgCommandLineMode || !is_object( $wgUser )) {
 			print "$msg\n";
 			wfAbruptExit();
 		}
@@ -463,7 +463,6 @@ class OutputPage {
 		$shlink = $sk->makeKnownLink( wfMsgNoDB( "searchhelppage" ),
 		  wfMsgNoDB( "searchingwikipedia" ) );
 		$msg = str_replace( "$5", $shlink, $msg );
-
 		$this->mBodytext = $msg;
 		$this->output();
 		wfAbruptExit();
@@ -1257,7 +1256,7 @@ $t[] = "</table>" ;
 
 	/* private */ function replaceVariables( $text )
 	{
-		global $wgLang;
+		global $wgLang, $wgCurOut;
 		$fname = "OutputPage::replaceVariables";
 		wfProfileIn( $fname );
 
@@ -1287,6 +1286,7 @@ $t[] = "</table>" ;
 
 		# "Variables" with an additional parameter e.g. {{MSG:wikipedia}}
 		# The callbacks are at the bottom of this file
+		$wgCurOut = $this;
 		$mw =& MagicWord::get( MAG_MSG );
 		$text = $mw->substituteCallback( $text, "wfReplaceMsgVar" );
 		if( $mw->getWasModified() ) { $this->mContainsNewMagic++; }
@@ -1713,15 +1713,21 @@ $t[] = "</table>" ;
 # Necessary because replaceVariables is called after removeHTMLtags, 
 # and message text can come from any user
 function wfReplaceMsgVar( $matches ) {
-	global $wgOut;
-	$text = $wgOut->removeHTMLtags( wfMsg( $matches[1] ) );
+	global $wgCurOut, $wgLinkCache;
+	$text = $wgCurOut->removeHTMLtags( wfMsg( $matches[1] ) );
+	$wgLinkCache->suspend();
+	$text = $wgCurOut->replaceInternalLinks( $text );
+	$wgLinkCache->resume();
+	$wgLinkCache->addLinkObj( Title::makeTitle( NS_MEDIAWIKI, $matches[1] ) );
 	return $text;
 }
 
 # Effective <nowiki></nowiki>
 # Not real <nowiki> because this is called after nowiki sections are processed
 function wfReplaceMsgnwVar( $matches ) {
+	global $wgCurOut, $wgLinkCache;
 	$text = wfEscapeWikiText( wfMsg( $matches[1] ) );
+	$wgLinkCache->addLinkObj( Title::makeTitle( NS_MEDIAWIKI, $matches[1] ) );
 	return $text;
 }
 
