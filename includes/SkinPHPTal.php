@@ -590,25 +590,25 @@ class SkinPHPTal extends Skin {
 		$diff = $wgRequest->getVal( 'diff' );
 		// XXX: remove htmlspecialchars when tal:attributes works with i18n:attributes
 		$nav_urls = array();
-		$nav_urls['mainpage'] = array('href' => htmlspecialchars( $this->makeI18nUrl('mainpage')));
-		$nav_urls['randompage'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Randompage')));
-		$nav_urls['recentchanges'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchanges')));
-		$nav_urls['currentevents'] = (wfMsg('currentevents') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('currentevents'))) : false;
-		$nav_urls['portal'] = (wfMsg('portal') != '-') ? array('href' => htmlspecialchars( $this->makeI18nUrl('portal-url'))) : false;
-		$nav_urls['bugreports'] = array('href' => htmlspecialchars( $this->makeI18nUrl('bugreportspage')));
-		// $nav_urls['sitesupport'] = array('href' => htmlspecialchars( $this->makeI18nUrl('sitesupportpage')));
-		$nav_urls['sitesupport'] = array('href' => htmlspecialchars( $wgSiteSupportPage));
-		$nav_urls['help'] = array('href' => htmlspecialchars( $this->makeI18nUrl('helppage')));
+		$nav_urls['mainpage'] = array('href' => $this->makeI18nUrl('mainpage'));
+		$nav_urls['randompage'] = array('href' => $this->makeSpecialUrl('Randompage'));
+		$nav_urls['recentchanges'] = array('href' => $this->makeSpecialUrl('Recentchanges'));
+		$nav_urls['currentevents'] = (wfMsg('currentevents') != '-') ? array('href' => $this->makeI18nUrl('currentevents')) : false;
+		$nav_urls['portal'] = (wfMsg('portal') != '-') ? array('href' => $this->makeI18nUrl('portal-url')) : false;
+		$nav_urls['bugreports'] = array('href' => $this->makeI18nUrl('bugreportspage'));
+		// $nav_urls['sitesupport'] = array('href' => $this->makeI18nUrl('sitesupportpage'));
+		$nav_urls['sitesupport'] = array('href' => $wgSiteSupportPage);
+		$nav_urls['help'] = array('href' => $this->makeI18nUrl('helppage'));
 		if( $this->loggedin && !$wgDisableUploads ) {
-			$nav_urls['upload'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Upload')));
+			$nav_urls['upload'] = array('href' => $this->makeSpecialUrl('Upload'));
 		} else {
 			$nav_urls['upload'] = false;
 		}
-		$nav_urls['specialpages'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Specialpages')));
+		$nav_urls['specialpages'] = array('href' => $this->makeSpecialUrl('Specialpages'));
 
 		if( $wgTitle->getNamespace() != NS_SPECIAL) {
-		$nav_urls['whatlinkshere'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Whatlinkshere', 'target='.urlencode( $this->thispage ))));
-		$nav_urls['recentchangeslinked'] = array('href' => htmlspecialchars( $this->makeSpecialUrl('Recentchangeslinked', 'target='.urlencode( $this->thispage ))));
+		$nav_urls['whatlinkshere'] = array('href' => $this->makeSpecialUrl('Whatlinkshere', 'target='.urlencode( $this->thispage)));
+		$nav_urls['recentchangeslinked'] = array('href' => $this->makeSpecialUrl('Recentchangeslinked', 'target='.urlencode( $this->thispage)));
 		}
 
 		if( $wgTitle->getNamespace() == NS_USER || $wgTitle->getNamespace() == NS_USER_TALK ) {
@@ -621,7 +621,7 @@ class SkinPHPTal extends Skin {
 
 		if($id || $ip) { # both anons and non-anons have contri list
 			$nav_urls['contributions'] = array(
-				'href' => htmlspecialchars( $this->makeSpecialUrl('Contributions', "target=" . $wgTitle->getPartialURL() ) )
+				'href' => $this->makeSpecialUrl('Contributions', "target=" . $wgTitle->getPartialURL() )
 			);
 		} else {
 			$nav_urls['contributions'] = false;
@@ -630,7 +630,7 @@ class SkinPHPTal extends Skin {
 		if ( 0 != $wgUser->getID() ) { # show only to signed in users
 			if($id) {	# can only email non-anons
 				$nav_urls['emailuser'] = array(
-					'href' => htmlspecialchars( $this->makeSpecialUrl('Emailuser', "target=" . $wgTitle->getPartialURL() ) )
+					'href' => $this->makeSpecialUrl('Emailuser', "target=" . $wgTitle->getPartialURL() )
 				);
 			}
 		}
