@@ -69,7 +69,7 @@ wfProfileIn( $fname.'-memcached' );
 global $wgUser, $wgLang, $wgOut, $wgTitle;
 global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
 global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
-global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
+global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages, $wgSecondaryMessageDB;
 global $wgMsgCacheExpiry, $wgDBname, $wgCommandLineMode;
 global $wgBlockCache, $wgParserCache, $wgParser, $wgDBConnections;
 global $wgLoadBalancer, $wgDBservers, $wgDBloads, $wgDBuser, $wgDBpassword;
@@ -180,7 +180,7 @@ if( $wgUseLatin1 && $wgLanguageCode != 'en' ) {
 wfProfileOut( $fname.'-language' );
 wfProfileIn( $fname.'-MessageCache' );
 
-$wgMessageCache->initialise( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname );
+$wgMessageCache->initialise( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgDBname, $wgSecondaryMessageDB );
 
 wfProfileOut( $fname.'-MessageCache' );
 wfProfileIn( $fname.'-OutputPage' );

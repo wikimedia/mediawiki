@@ -122,6 +122,7 @@ $wgInterwikiExpiry = 10800; # Expiry time for cache of interwiki table
 # This will increase load times by 25-60% unless memcached is installed
 $wgUseDatabaseMessages = true;
 $wgMsgCacheExpiry	= 86400;
+$wgSecondaryMessageDB = false; # DB to fall back on if the message isn't in the main DB
 
 $wgExtraSubtitle	= '';
 $wgSiteSupportPage	= '';

@@ -11,11 +11,11 @@ class MessageCache
 {
 	var $mCache, $mUseCache, $mDisable, $mExpiry;
 	var $mMemcKey, $mKeys, $mParserOptions, $mParser;
-	var $mExtensionMessages;
+	var $mExtensionMessages, $mSecondaryDB;
 
 	var $mInitialised = false;
 
-	function initialise( &$memCached, $useDB, $expiry, $memcPrefix ) {
+	function initialise( &$memCached, $useDB, $expiry, $memcPrefix, $secondaryDB = false) {
 		$this->mUseCache = !is_null( $memCached );
 		$this->mMemc = &$memCached;
 		$this->mDisable = !$useDB;
@@ -26,6 +26,7 @@ class MessageCache
 		$this->mInitialised = true;
 		$this->mParserOptions = ParserOptions::newFromUser( $u=NULL );
 		$this->mParser = new Parser;
+		$this->mSecondaryDB = $secondaryDB;
 		
 		$this->load();
 	}
@@ -86,17 +87,26 @@ class MessageCache
 	# Loads all cacheable messages from the database
 	function loadFromDB()
 	{
-	        global $wgLoadBalancer;
-	        $fname = "MessageCache::loadFromDB";
+		global $wgLoadBalancer;
+		$fname = "MessageCache::loadFromDB";
 		$wgLoadBalancer->force(-1);
+		$this->mCache = array();
+		if ( $this->mSecondaryDB ) {
+			# Load from fallback
+			$sql = "SELECT cur_title,cur_text FROM {$this->mSecondaryDB}.cur WHERE cur_is_redirect=0 AND cur_namespace=" . NS_MEDIAWIKI;
+			$res = wfQuery( $sql, DB_READ, $fname );
+			$this->mCache = array();
+			for ( $row = wfFetchObject( $res ); $row; $row = wfFetchObject( $res ) ) {
+				$this->mCache[$row->cur_title] = $row->cur_text;
+			}
+		}
 		$sql = "SELECT cur_title,cur_text FROM cur WHERE cur_is_redirect=0 AND cur_namespace=" . NS_MEDIAWIKI;
 		$res = wfQuery( $sql, DB_READ, $fname );
-		$wgLoadBalancer->force(0);
-		$this->mCache = array();
 		for ( $row = wfFetchObject( $res ); $row; $row = wfFetchObject( $res ) ) {
 			$this->mCache[$row->cur_title] = $row->cur_text;
 		}
 
+		$wgLoadBalancer->force(0);
 		wfFreeResult( $res );
 	}
 	
