@@ -375,5 +375,5 @@ $wgContributingCandidates = array();
 $wgVolunteerCandidates = array();
 $wgGPGCommand = "gpg";
 $wgGPGRecipient = "boardvote";
-
+$wgGPGHomedir = false;
 ?>
