@@ -103,7 +103,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 		case "rollback":
 		case "protect":
 		case "unprotect":
-			$wgArticle->unprotect();
+			$wgArticle->$action();
 			break;
 		case "print":
 			$wgArticle->view();
@@ -131,7 +131,7 @@ if ( $search = $wgRequest->getText( 'search' ) ) {
 			}
 			include_once( "EditPage.php" );
 			$editor = new EditPage( $wgArticle );
-			$editor->submit();
+			$editor->$action();
 			break;
 		case "history":
 			if ($_SERVER["REQUEST_URI"] == $wgTitle->getInternalURL('action=history')) {
