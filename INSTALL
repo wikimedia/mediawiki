@@ -14,13 +14,6 @@ Required software:
 * A MySQL server. 4.0.x is preferred, but 3.2.x should
   work as well.
 
-WARNING: MySQL 4.1 and later have introduced several
-incompatibilities with old client software (such as most
-available PHP installations). You may have problems with
-a mixed configuration. For details, please see:
-
-  http://dev.mysql.com/doc/mysql/en/Old_client.html
-
 MediaWiki is developed and tested mainly on Unix/Linux
 platforms, but should work on Windows as well.
 
@@ -80,12 +73,7 @@ provide enough information to work with, and preferably be aware
 of what you're doing!) and keep track of major changes to the
 software, including performance improvements and security patches.
 
-http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce
-  (low traffic, announcements only)
+http://mail.wikipedia.org/mailman/listinfo/mediawiki-l (site admin support)
 
-http://mail.wikipedia.org/mailman/listinfo/mediawiki-l
-  (announcements and site admin support)
-
-http://mail.wikipedia.org/mailman/listinfo/wikitech-l
-  (development)
+http://mail.wikipedia.org/mailman/listinfo/wikitech-l (development)
 
