@@ -1,4 +1,4 @@
-<?
+<?php
 
 # Creating a new empty database; either this or the conversion
 # script from the old format needs to be run, but not both.

@@ -1,4 +1,4 @@
-<?
+<?php
 global $IP;
 include_once( "LanguageUtf8.php" );
 

@@ -1,4 +1,4 @@
-<?
+<?php
 
 # The names of the namespaces can be set here, but the numbers
 # are magical, so don't change or move them!  The Namespace class

@@ -1,4 +1,4 @@
-<?
+<?php
 # See title.doc
 
 /* private static */ $title_interwiki_cache = array();

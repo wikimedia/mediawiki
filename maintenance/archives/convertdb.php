@@ -1,4 +1,4 @@
-<?
+<?php
 
 print "This script is obsolete!";
 print "It is retained in the source here in case some of its

@@ -1,4 +1,4 @@
-<?
+<?php
 
 # Message cache
 # Performs various useful MediaWiki namespace-related functions

@@ -1,4 +1,4 @@
-<?
+<?php
 include_once( "FulltextStoplist.php" );
 include_once( "CacheManager.php" );
 

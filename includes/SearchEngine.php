@@ -1,4 +1,4 @@
-<?
+<?php
 # See search.doc
 
 class SearchEngine {

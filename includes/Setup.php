@@ -1,4 +1,4 @@
-<?
+<?php
 # The main wiki script and things like database
 # conversion and maintenance scripts all share a
 # common setup of including lots of classes and

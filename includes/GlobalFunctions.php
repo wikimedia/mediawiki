@@ -1,4 +1,4 @@
-<?
+<?php
 # Global functions used everywhere
 
 $wgNumberOfArticles = -1; # Unset

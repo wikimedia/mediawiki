@@ -1,4 +1,4 @@
-<?
+<?php
 # Local settings work like this: the file LocalSettings.sample
 # should be copied to LocalSettings.php in the source directory
 # and edited for your local file system settings and software

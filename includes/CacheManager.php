@@ -1,4 +1,4 @@
-<?
+<?php
 
 # Handles talking to the file cache, putting stuff in and taking it back out.
 # Mostly called from Article.php, also from DatabaseFunctions.php for the

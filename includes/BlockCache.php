@@ -1,4 +1,4 @@
-<?
+<?php
 
 # Object for fast lookup of IP blocks
 # Represents a memcached value, and in some sense, the entire ipblocks table

@@ -1,4 +1,4 @@
-<?
+<?php
 
 function wfSpecialExport( $page = "" ) {
 	global $wgOut, $wgLang;

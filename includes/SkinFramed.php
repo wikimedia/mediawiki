@@ -1,4 +1,4 @@
-<?
+<?php
 # See skin.doc
 
 class SkinFramed extends Skin {

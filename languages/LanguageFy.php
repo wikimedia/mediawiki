@@ -1,4 +1,4 @@
-<?
+<?php
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"

@@ -1,4 +1,4 @@
-<?
+<?php
 # Class to simplify the use of log pages
 
 class LogPage {

@@ -1,4 +1,4 @@
-<?
+<?php
 # Database load balancing object
 
 class LoadBalancer {

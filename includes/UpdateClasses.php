@@ -1,4 +1,4 @@
-<?
+<?php
 # See deferred.doc
 include_once( "UserUpdate.php" );
 include_once( "ViewCountUpdate.php" );

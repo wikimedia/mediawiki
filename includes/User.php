@@ -1,4 +1,4 @@
-<?
+<?php
 # See user.doc
 
 include_once( "WatchedItem.php" );

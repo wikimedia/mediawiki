@@ -1,4 +1,4 @@
-<?
+<?php
 
 # FIXME: use $wgSitename, $wgMetaNamespace instead of hard-coded Wikipedia
 

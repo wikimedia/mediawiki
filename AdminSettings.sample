@@ -1,4 +1,4 @@
-<?
+<?php
 # This file should be copied to AdminSettings.php, and modified
 # to reflect local settings.  Unlike LocalSettings.php, it is
 # not copied to the installation directory for security reasons;

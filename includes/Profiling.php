@@ -1,4 +1,4 @@
-<?
+<?php
 # This file is only included if profiling is enabled
 function wfProfileIn( $functionname )
 {

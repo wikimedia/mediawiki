@@ -1,4 +1,4 @@
-<?
+<?php
 include_once( "LinksUpdate.php" );
 
 function wfSpecialMovepage()

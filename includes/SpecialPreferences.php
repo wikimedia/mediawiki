@@ -1,4 +1,5 @@
-<?
+<?php
+
 function wfSpecialPreferences()
 {
 	global $wgUser, $wgOut, $wgUseDynamicDates, $action;

@@ -1,4 +1,4 @@
-<?
+<?php
 
 function wfSpecialAllpages( $par=NULL )
 {

@@ -1,4 +1,4 @@
-<?
+<?php
 # Convert watchlists to new format
 
 global $IP;

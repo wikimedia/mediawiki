@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*
 	This file gets included if $wgSessionsInMemcache is set in the config.

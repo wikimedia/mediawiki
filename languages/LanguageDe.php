@@ -1,4 +1,4 @@
-<?
+<?php
 # See Language.php for notes.
 
 if($wgMetaNamespace === FALSE)

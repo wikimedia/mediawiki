@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*
 	Special handling for image description pages

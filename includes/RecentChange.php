@@ -1,4 +1,4 @@
-<?
+<?php
 # Utility class for creating new RC entries
 
 define( "RC_EDIT", 0);
