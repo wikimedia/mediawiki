@@ -787,7 +787,7 @@ function aField( &$conf, $field, $text, $type = "", $value = "" ) {
 		$xtype = "";
 	}
 	
-	if( $id == "" ) $id = $field;
+	if(!(isset($id)) or ($id == "") ) $id = $field;
 	$nolabel = ($type == "radio") || ($type == "hidden");
 	if( $nolabel ) {
 		echo "\t\t<label>";
