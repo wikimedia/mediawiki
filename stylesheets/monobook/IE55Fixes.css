@@ -45,6 +45,9 @@ body {
 #portlet-contentViews li a:hover {
     padding-bottom: 0.1em;
 }
+#portlet-contentViews li a:hover {
+    padding-bottom: 0.5em;
+}
 #portlet-contentViews li a {
     z-index: 0 !important;
 }
