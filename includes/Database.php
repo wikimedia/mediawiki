@@ -1121,7 +1121,7 @@ class Database {
 	}
 
 	/**
-	 * @return string Always return 'LOW_PRIORITY'
+	 * @return string Returns the text of the low priority option if it is supported, or a blank string otherwise
 	 */
 	function lowPriorityOption() {
 		return 'LOW_PRIORITY';
