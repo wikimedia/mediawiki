@@ -885,6 +885,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 # Miscellaneous special pages
 #
 'orphans'		=> 'Orphaned pages',
+'geo'		=> 'GEO coordinates',
 'lonelypages'	=> 'Orphaned pages',
 'unusedimages'	=> 'Unused images',
 'popularpages'	=> 'Popular pages',
