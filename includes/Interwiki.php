@@ -22,7 +22,6 @@
 	"CmWiki" => "http://www.ourpla.net/cgi-bin/wiki.pl?$1",
 	"CreationMatters" => "http://www.ourpla.net/cgi-bin/wiki.pl?$1",
 	"DejaNews" => "http://www.deja.com/=dnc/getdoc.xp?AN=$1",
-	"DeWikiPedia" => "http://www.wikipedia.de/wiki.cgi?$1",
 	"Dictionary" => "http://www.dict.org/bin/Dict?Database=*&Form=Dict1&Strategy=*&Query=$1",
 	"DiveIntoOsx" => "http://diveintoosx.org/$1",
 	"DocBook" => "http://docbook.org/wiki/moin.cgi/$1",
@@ -57,7 +56,7 @@
 	"MbTest" => "http://www.usemod.com/cgi-bin/mbtest.pl?$1",
 	"MeatBall" => "http://www.usemod.com/cgi-bin/mb.pl?$1",
 	"MetaWiki" => "http://sunir.org/apps/meta.pl?$1",
-	"MetaWikiPedia" => "http://meta.wikipedia.com/wiki/$1",
+	"MetaWikiPedia" => "http://meta.wikipedia.org/wiki/$1",
 	"MoinMoin" => "http://purl.net/wiki/moin/$1",
 	"MuWeb" => "http://www.dunstable.com/scripts/MuWebWeb?$1",
 	"NetVillage" => "http://www.netbros.com/?$1",
@@ -92,7 +91,8 @@
 	"WebSeitzWiki" => "http://webseitz.fluxent.com/wiki/$1",
 	"Why" => "http://clublet.com/c/c/why?$1",
 	"Wiki" => "http://c2.com/cgi/wiki?$1",
-	"WikiPedia" => "http://www.wikipedia.com/wiki/$1",
+	"WikiPedia" => "http://www.wikipedia.org/wiki/$1",
+	"Wiktionary" => "http://wiktionary.org/wiki/$1",
 	"WikiWorld" => "http://WikiWorld.com/wiki/index.php/$1",
 	"YpsiEyeball" => "http://sknkwrks.dyndns.org:1957/writewiki/wiki.pl?$1",
 	"ZWiki" => "http://www.zwiki.org/$1",
@@ -110,17 +110,21 @@
 
 	# Wikipedia-specific stuff:
 	# Special cases
-	"w"		=> "http://www.wikipedia.org/wiki/$1",
+	"w"		=> "http://www.wikipedia.org/wiki/$1", # DEPRECATED
 	"m"		=> "http://meta.wikipedia.org/wiki/$1",
 	"meta"		=> "http://meta.wikipedia.org/wiki/$1",
 	"sep11"		=> "http://sep11.wikipedia.org/wiki/$1",
 	"simple"=> "http://simple.wikipedia.com/wiki.cgi?$1",
-	"wiktionary"	=> "http://wiktionary.wikipedia.org/wiki/$1",
+	"wiktionary"	=> "http://wiktionary.org/wiki/$1",
+	
+	# These may not be recommended, may change...
 	"PageHistory" => "http://www.wikipedia.org/w/wiki.phtml?title=$1&action=history",
 	"UserContributions" => "http://www.wikipedia.org/w/wiki.phtml?title=Special:Contributions&target=$1",
-	"BackLinks" => "http://www.wikipedia.org/w/wiki.phtml?title=Special:Whatlinkshere&target=$1",
+	"BackLinks" => "http://www.wikipedia.org/w/wiki.phtml?title=Special:Whatlinkshere&target=$1"
+	);
 
 	# ISO 639 2-letter language codes
+$WikiPediaLanguages = array(
 	"aa"    => "http://aa.wikipedia.com/wiki.cgi?$1",
 	"ab"    => "http://ab.wikipedia.com/wiki.cgi?$1",
 	"af"    => "http://af.wikipedia.com/wiki.cgi?$1",
@@ -254,6 +258,13 @@
 	"yo"    => "http://yo.wikipedia.com/wiki.cgi?$1",
 	"za"    => "http://za.wikipedia.com/wiki.cgi?$1",
 	"zh"	=> "http://zh.wikipedia.org/wiki/$1",
-	"zu"    => "http://zu.wikipedia.com/wiki.cgi?$1"
+	"zu"    => "http://zu.wikipedia.com/wiki.cgi?$1",
+	"nds"	=> "http://nds.wikipedia.org/wiki.cgi?$1"
 );
+foreach($WikiPediaLanguages as $code => $url) {
+	$wgValidInterwikis[ucfirst($code) . "WikiPedia"] = $url;
+	# If you're not Wikipedia, comment out next line!
+	$wgValidInterwikis[$code] = $url;
+}
+
 ?>
