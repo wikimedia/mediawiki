@@ -393,6 +393,7 @@ If upgrading from an older release, see the file UPGRADE;
 * Run UTF-8 validation on old text in Recentchanges RSS diffs
 * (bug 1642) fix a mime type typo in img_auth.php
 * Automated interwiki redirects only for local interwikis
+* Respect read-only mode on block removals
 
 === Caveats ===
 

@@ -187,6 +187,9 @@ class Block
 	function delete() 
 	{
 		$fname = 'Block::delete';
+		if (wfReadOnly()) {
+			return;
+		}
 		$dbw =& wfGetDB( DB_MASTER );
 
 		if ( $this->mAddress == '' ) {
