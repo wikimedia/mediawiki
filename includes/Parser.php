@@ -1383,7 +1383,7 @@ class Parser
 		$fname = 'Parser::maybeDoSubpageLink';
 		wfProfileIn( $fname );
 		# Look at the first character
-		if( $target{0} == '/' ) {
+		if( $target != '' && $target{0} == '/' ) {
 			# / at end means we don't want the slash to be shown
 			if(substr($target,-1,1)=='/') {
 				$target=substr($target,1,-1);
