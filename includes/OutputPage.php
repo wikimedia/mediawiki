@@ -348,7 +348,7 @@ class OutputPage {
 	 */
 	function output() {
 		global $wgUser, $wgLang, $wgDebugComments, $wgCookieExpiration;
-		global $wgInputEncoding, $wgOutputEncoding, $wgLanguageCode;
+		global $wgInputEncoding, $wgOutputEncoding, $wgContLanguageCode;
 		global $wgDebugRedirects, $wgMimeType, $wgProfiler;
 		if( $this->mDoNothing ){
 			return;
@@ -395,7 +395,7 @@ class OutputPage {
 		$sk->postParseLinkColour( false );
 
 		header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
-		header( 'Content-language: '.$wgLanguageCode );
+		header( 'Content-language: '.$wgContLanguageCode );
 
 		$exp = time() + $wgCookieExpiration;
 		foreach( $this->mCookies as $name => $val ) {
