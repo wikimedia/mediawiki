@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include("LanguageUtf8.php");
 $wgInputEncoding	= "utf-8";
 $wgOutputEncoding	= "utf-8";
