@@ -53,7 +53,7 @@ copyfile( ".", "redirect.phtml", $IP );
 copyfile( ".", "texvc.phtml", $IP );
 
 copydirectory( "./includes", $IP );
-copydirectory( "./stylesheets", $wgStyleSheetsDirectory );
+copydirectory( "./stylesheets", $wgStyleSheetDirectory );
 
 copyfile( "./images", "wiki.png", $wgUploadDirectory );
 copyfile( "./languages", "Language.php", $IP );
