@@ -1215,6 +1215,8 @@ class Parser
 					}
 					if ( !$found ) {
 						# we couldn't find the end of this imageLink, so output it raw
+						#but don't ignore what might be perfectly normal links in the text we've examined
+						$text = $this->replaceInternalLinks($text);
 						$s .= $prefix . '[[' . $link . '|' . $text;
 						# note: no $trail, because without an end, there *is* no trail
 						continue;
