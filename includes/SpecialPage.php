@@ -9,6 +9,7 @@ $wgSpecialPages = array(
 	"Upload"		=> new SpecialPage( "Upload" ),
 	"Imagelist"		=> new SpecialPage( "Imagelist" ),
 	"Listusers"		=> new SpecialPage( "Listusers" ),
+	"Listadmins"	=> new SpecialPage( "Listadmins" ),
 	"Statistics"	=> new SpecialPage( "Statistics" ),
 	"Randompage"	=> new SpecialPage( "Randompage" ),
 	"Lonelypages"	=> new SpecialPage( "Lonelypages" ),
