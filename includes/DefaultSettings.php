@@ -968,6 +968,11 @@ $wgNoFollowLinks = true;
  */
 $wgDisabledActions = array();
 
+/**
+ * Disable redirects to special pages and interwiki redirects, which use a 302 and have no "redirected from" link
+ */
+$wgDisableHardRedirects = false;
+
 
 /**
  * Use http.dnsbl.sorbs.net to check for open proxies
