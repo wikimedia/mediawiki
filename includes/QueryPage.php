@@ -131,7 +131,7 @@ class QueryPage {
 				$this->feedUrl() );
 			$feed->outHeader();
 			
-			$sql = $this->getSQL( 0, 50 );
+			$sql = $this->getSQL() . $this->getOrderLimit( 0, 50 );
 			$res = wfQuery( $sql, DB_READ, "QueryPage::doFeed" );
 			while( $obj = wfFetchObject( $res ) ) {
 				$item = $this->feedResult( $obj );
