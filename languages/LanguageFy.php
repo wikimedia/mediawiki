@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
@@ -18,8 +18,8 @@ if($wgMetaNamespace === FALSE)
 	-1	=> "Wiki",
 	0	=> "",
 	1	=> "Oerlis",
-	2	=> "Brûker",
-	3	=> "Brûker_oerlis",
+	2	=> "Meidogger",
+	3	=> "Meidogger_oerlis",
 	4	=> $wgMetaNamespace,
 	5	=> $wgMetaNamespace . "_oerlis",
 	6	=> "Ofbyld",
@@ -30,8 +30,8 @@ if($wgMetaNamespace === FALSE)
 	11  => "Berjocht_oerlis",
             12  => "Hulp",
             13  => "Hulp_oerlis",
-            14  => "Kategorie",
-            15  => "Kategorie_oerlis"
+            14  => "Kategory",
+            15  => "Kategory_oerlis"
 
 ) + $wgNamespaceNamesEn;
 
@@ -1058,6 +1058,8 @@ class LanguageFy extends LanguageUtf8 {
 		foreach ( $wgNamespaceNamesFy as $i => $n ) {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
+		if ( 0 == strcasecmp( "Brûker", $text ) ) return 2; 
+		if ( 0 == strcasecmp( "Brûker_oerlis", $text ) ) return 3;
 		if ( 0 == strcasecmp( "Special", $text ) ) return -1;
 		return false;
 	}
