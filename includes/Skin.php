@@ -87,7 +87,7 @@ class Skin {
 
 	function getUserStyles()
 	{
-		$s = "<style type='text/css' media='screen'><!--\n";
+		$s = "<style type='text/css' media='screen,projection'><!--\n";
 		$s .= $this->doGetUserStyles();
 		$s .= "//--></style>\n";
 		return $s;
