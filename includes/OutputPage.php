@@ -17,7 +17,8 @@ class OutputPage {
 	var $mIsArticleRelated;
 	var $mParserOptions;
 	var $mShowFeedLinks = false;
-
+	var $mEnableClientCache = true;
+	
 	function OutputPage()
 	{
 		$this->mHeaders = $this->mCookies = $this->mMetatags =
@@ -180,11 +181,16 @@ class OutputPage {
 		$this->mSquidMaxage = $maxage;
 	}
 	
+	# Use enableClientCache(false) to force it to send nocache headers
+	function enableClientCache( $state ) {
+		return wfSetVar( $this->mEnableClientCache, $state );
+	}
+	
 	function sendCacheControl() {
 		global $wgUseSquid, $wgUseESI;
 		# FIXME: This header may cause trouble with some versions of Internet Explorer
 		header( "Vary: Accept-Encoding, Cookie" );
-		if( $this->mLastModified != "" ) {
+		if( $this->mEnableClientCache && $this->mLastModified != "" ) {
 			if( $wgUseSquid && ! isset( $_COOKIE[ini_get( "session.name") ] ) && 
 			  ! $this->isPrintable() ) 
 			{
@@ -217,10 +223,12 @@ class OutputPage {
 			header( "Last-modified: {$this->mLastModified}" );
 		} else {
 			wfDebug( "** no caching **\n", false );
+
+			# In general, the absence of a last modified header should be enough to prevent
+			# the client from using its cache. We send a few other things just to make sure.
 			header( "Expires: -1" );
-			header( "Cache-Control: no-cache" );
+			header( "Cache-Control: no-cache, no-store, max-age=0, must-revalidate" );
 			header( "Pragma: no-cache" );
-			header( "Last-modified: " . gmdate( "D, j M Y H:i:s" ) . " GMT" );
 		}
 	}
 	
@@ -368,6 +376,7 @@ class OutputPage {
 		$this->setPageTitle( wfMsg( $title ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleRelated( false );
+		$this->enableClientCache( false );
 
 		$this->mBodytext = "";
 		$this->addHTML( "<p>" . wfMsg( $msg ) . "\n" );
@@ -436,6 +445,7 @@ class OutputPage {
 		$this->setPageTitle( wfMsgNoDB( "databaseerror" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleRelated( false );
+		$this->enableClientCache( false );
 
 		if ( $wgCommandLineMode ) {
 			$msg = wfMsgNoDB( "dberrortextcl" );
@@ -493,6 +503,7 @@ class OutputPage {
 		$this->setPageTitle( wfMsg( "internalerror" ) );
 		$this->setRobotpolicy( "noindex,nofollow" );
 		$this->setArticleRelated( false );
+		$this->enableClientCache( false );
 
 		$this->mBodytext = $message;
 		$this->output();
