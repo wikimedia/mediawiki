@@ -282,6 +282,8 @@ class SkinTemplate extends Skin {
 				} else {
 					$tpl->set('viewcount', false);
 				}
+			} else {
+				$tpl->set('viewcount', false);
 			}
 			$tpl->set('lastmod', $this->lastModified());
 			$tpl->set('copyright',$this->getCopyright());
