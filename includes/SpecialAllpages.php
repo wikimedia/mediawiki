@@ -41,7 +41,7 @@ function namespaceForm ( $namespace = 0, $from = "" )
 
 	$frombox = '<input type="text" size="20" name="from" value="'
 	            . htmlspecialchars ( $from ) . '"/>';
-	$submitbutton = '<input type="submit" value="' . wfMsg( 'go' ) . '" />';
+	$submitbutton = '<input type="submit" value="' . wfMsg( 'allpagessubmit' ) . '" />';
 
 	$out = "<div class='namespaceselector'><form method='get' action='{$wgScript}'>";
 	$out .= '<input type="hidden" name="title" value="'.$t->getPrefixedText().'" />';
