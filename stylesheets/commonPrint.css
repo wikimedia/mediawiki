@@ -222,3 +222,5 @@ div.townBox dl dd {
     margin: 0.1em 0 0 1.1em;
     background-color: #f3f3f3;
 }
+
+#siteNotice { display: none; }
