@@ -410,7 +410,7 @@ class WikiImporter {
 		case "comment":
 			$this->workRevision->setComment( $this->appenddata );
 			break;
-		default;
+		default:
 			$this->debug( "Bad append: {$this->appendfield}" );
 		}
 		$this->appendfield = "";

@@ -198,7 +198,7 @@ if($wgMetaNamespace === FALSE)
 'sep' => 'sep', 
 'oct' => 'okt', 
 'nov' => 'nov', 
-'dec' => 'des'
+'dec' => 'des',
 
 # Bits of text used by many pages:
 'categories'              => 'Kategoriar',
