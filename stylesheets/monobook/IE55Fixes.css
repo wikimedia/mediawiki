@@ -66,3 +66,4 @@ body {
     padding:0;
     margin:0;
 }
+#catlinks { z-index: 4; }

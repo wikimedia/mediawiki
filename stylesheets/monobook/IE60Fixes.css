@@ -37,21 +37,8 @@
     background: url(external.png) center right no-repeat;
     padding-right: 13px;
 }
-
-
-/* height on everything... */
-#toc,
-#content p,
-div.comment,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.description,
-.portalMessage {
-    height: 1%;    
+#bodyContent {
+    width: 98%;
 }
 
 div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
