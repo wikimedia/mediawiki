@@ -741,7 +741,8 @@ containing all of the search terms will appear in the result).",
 Search in namespaces :<br />
 $1<br />
 $2 List redirects &nbsp; Search for $3 $9",
-"searchdisabled" => "<p>Sorry! Full text search has been disabled temporarily, for performance reasons. In the meantime, you can use the Google search below, which may be out of date.</p>",
+"searchdisabled" => '<p style="margin: 1.5em 2em 1em">{{SITENAME}} search is disabled for performance reasons. You can search via Google in the meantime.
+<span style="font-size: 89%; display: block; margin-left: .2em">Note that their indexes of {{SITENAME}} content may be out of date.</span></p>',
 'googlesearch' => "
 <!-- SiteSearch Google -->
 <FORM method=GET action=\"http://www.google.com/search\">
