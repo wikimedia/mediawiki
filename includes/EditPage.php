@@ -280,8 +280,10 @@ class EditPage {
 
 		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedURL(),
 		  wfMsg( "cancel" ) );
-		$edithelp = $sk->makeKnownLink( wfMsg( "edithelppage" ),
-		  wfMsg( "edithelp" ) );
+		$edithelpurl = $sk->makeUrl( wfMsg( "edithelppage" ));
+		$edithelp = '<a onclick="javascript:window.open('.
+		"'$edithelpurl', 'helpwindow', 'width=610,height=400,left=10,top=10'".'); return false;" href="'.$edithelpurl.'">'.
+		wfMsg( "edithelp" ).'</a>';
 		$copywarn = wfMsg( "copyrightwarning", $sk->makeKnownLink(
 		  wfMsg( "copyrightpage" ) ) );
 
