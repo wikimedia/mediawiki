@@ -120,6 +120,11 @@ if ( "" != $search ) {
 			$history = new PageHistory( $wgArticle );
 			$history->history();
 			break;
+		case "purge":
+			wfPurgeSquidServers(array($wgInternalServer.wfLocalUrl( $wgTitle->getPrefixedURL())));
+			$wgOut->setSquidMaxage( $wgSquidMaxage );
+			$wgArticle->view();
+			break;
 		default:
 			$wgOut->errorpage( "nosuchaction", "nosuchactiontext" );
 	}
