@@ -563,7 +563,7 @@ performed by sysops with  \"bureaucrat\" status.",
 "hidetoc" => "hide",
 "thisisdeleted" => "View or restore $1?",
 "restorelink" => "$1 deleted edits",
-'feedlinks' => 'Feeds:',
+'feedlinks' => 'Feed:',
 
 # Main script and global functions
 #
