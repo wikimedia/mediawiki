@@ -9,21 +9,25 @@ class LinksUpdate {
 	{
 		$this->mId = $id;
 		$this->mTitle = $title;
+		$this->mTitleEnc = wfStrencode( $title );
 	}
 
 	function doUpdate()
 	{
+		/* Update link tables with outgoing links from an updated article */
+		/* Currently this is 'dumb', removing all links and putting them back. */
+		
+		/* Relies on the 'link cache' to be filled out */
 		global $wgLinkCache, $wgDBtransactions;
 		$fname = "LinksUpdate::doUpdate";
 		wfProfileIn( $fname );
-		$t = wfStrencode( $this->mTitle );
 
 		if( $wgDBtransactions ) {
 			$sql = "BEGIN";
 			wfQuery( $sql, $fname );
 		}
 		
-		$sql = "DELETE FROM links WHERE l_from='{$t}'";
+		$sql = "DELETE FROM links WHERE l_from='{$this->mTitleEnc}'";
 		wfQuery( $sql, $fname );
 
 		$a = $wgLinkCache->getGoodLinks();
@@ -35,7 +39,7 @@ class LinksUpdate {
 				if ( ! $first ) { $sql .= ","; }
 				$first = false;
 
-				$sql .= "('{$t}',{$lid})";
+				$sql .= "('{$this->mTitleEnc}',{$lid})";
 			}
 		}
 		if ( "" != $sql ) { wfQuery( $sql, $fname ); }
@@ -76,7 +80,20 @@ class LinksUpdate {
 		}
 		if ( "" != $sql ) { wfQuery( $sql, $fname ); }
 
-		$sql = "SELECT bl_from FROM brokenlinks WHERE bl_to='{$t}'";
+		$this->fixBrokenLinks();
+
+		if( $wgDBtransactions ) {
+			$sql = "COMMIT";
+			wfQuery( $sql, $fname );
+		}
+		wfProfileOut();
+	}
+	
+	function fixBrokenLinks() {
+		/* Update any brokenlinks *to* this page */
+		/* Call for a newly created page, or just to make sure state is consistent */
+		
+		$sql = "SELECT bl_from FROM brokenlinks WHERE bl_to='{$this->mTitleEnc}'";
 		$res = wfQuery( $sql, $fname );
 		if ( 0 == wfNumRows( $res ) ) { return; }
 
@@ -96,15 +113,10 @@ class LinksUpdate {
 		wfQuery( $sql, $fname );
 		wfQuery( $sql2, $fname );
 
-		$sql = "DELETE FROM brokenlinks WHERE bl_to='{$t}'";
+		$sql = "DELETE FROM brokenlinks WHERE bl_to='{$this->mTitleEnc}'";
 		wfQuery( $sql, $fname );
-
-		if( $wgDBtransactions ) {
-			$sql = "COMMIT";
-			wfQuery( $sql, $fname );
-		}
-		wfProfileOut();
 	}
+	
 }
 
 ?>
