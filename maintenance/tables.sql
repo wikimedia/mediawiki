@@ -9,7 +9,6 @@
 -- file, please add an appropriate ALTER TABLE to update.php, 
 -- and increment the version number in Version.php.
 
-DROP TABLE IF EXISTS user;
 CREATE TABLE user (
   user_id int(5) unsigned NOT NULL auto_increment,
   user_name varchar(255) binary NOT NULL default '',
@@ -21,14 +20,12 @@ CREATE TABLE user (
   user_touched char(14) binary NOT NULL default '',
   UNIQUE KEY user_id (user_id)
 ) PACK_KEYS=1;
-	
-DROP TABLE IF EXISTS user_newtalk;
+
 CREATE TABLE user_newtalk (
   user_id int(5) NOT NULL default '0',
   user_ip varchar(40) NOT NULL default ''
 );
 
-DROP TABLE IF EXISTS cur;
 CREATE TABLE cur (
   cur_id int(8) unsigned NOT NULL auto_increment,
   cur_namespace tinyint(2) unsigned NOT NULL default '0',
@@ -49,7 +46,6 @@ CREATE TABLE cur (
   UNIQUE KEY cur_id (cur_id)
 ) PACK_KEYS=1;
 
-DROP TABLE IF EXISTS old;
 CREATE TABLE old (
   old_id int(8) unsigned NOT NULL auto_increment,
   old_namespace tinyint(2) unsigned NOT NULL default '0',
@@ -65,7 +61,6 @@ CREATE TABLE old (
   UNIQUE KEY old_id (old_id)
 ) PACK_KEYS=1;
 
-DROP TABLE IF EXISTS archive;
 CREATE TABLE archive (
   ar_namespace tinyint(2) unsigned NOT NULL default '0',
   ar_title varchar(255) binary NOT NULL default '',
@@ -78,7 +73,6 @@ CREATE TABLE archive (
   ar_flags tinyblob NOT NULL default ''
 ) PACK_KEYS=1;
 
-DROP TABLE IF EXISTS links;
 CREATE TABLE links (
   l_from varchar(255) binary NOT NULL default '',
   l_to int(8) unsigned NOT NULL default '0',
@@ -86,7 +80,6 @@ CREATE TABLE links (
   key (l_to)
 );
 
-DROP TABLE IF EXISTS brokenlinks;
 CREATE TABLE brokenlinks (
   bl_from int(8) unsigned NOT NULL default '0',
   bl_to varchar(255) binary NOT NULL default '',
@@ -94,20 +87,17 @@ CREATE TABLE brokenlinks (
   key (bl_to)
 );
 
-DROP TABLE IF EXISTS linkscc;
 CREATE TABLE linkscc (
   lcc_pageid INT UNSIGNED NOT NULL UNIQUE KEY,
   lcc_title VARCHAR(255) binary NOT NULL UNIQUE KEY,
   lcc_cacheobj MEDIUMBLOB NOT NULL
 );
 
-DROP TABLE IF EXISTS imagelinks;
 CREATE TABLE imagelinks (
   il_from varchar(255) binary NOT NULL default '',
   il_to varchar(255) binary NOT NULL default ''
 );
 
-DROP TABLE IF EXISTS site_stats;
 CREATE TABLE site_stats (
   ss_row_id int(8) unsigned NOT NULL,
   ss_total_views bigint(20) unsigned default '0',
@@ -116,12 +106,10 @@ CREATE TABLE site_stats (
   UNIQUE KEY ss_row_id (ss_row_id)
 );
 
-DROP TABLE IF EXISTS hitcounter;
 CREATE TABLE hitcounter (
   hc_id INTEGER UNSIGNED NOT NULL
 ) TYPE=HEAP MAX_ROWS=25000;
 
-DROP TABLE IF EXISTS ipblocks;
 CREATE TABLE ipblocks (
   ipb_id int(8) NOT NULL auto_increment,
   ipb_address varchar(40) binary NOT NULL default '',
@@ -134,7 +122,6 @@ CREATE TABLE ipblocks (
   UNIQUE KEY ipb_id (ipb_id)
 ) PACK_KEYS=1;
 
-DROP TABLE IF EXISTS image;
 CREATE TABLE image (
   img_name varchar(255) binary NOT NULL default '',
   img_size int(8) unsigned NOT NULL default '0',
@@ -144,7 +131,6 @@ CREATE TABLE image (
   img_timestamp char(14) binary NOT NULL default ''
 ) PACK_KEYS=1;
 
-DROP TABLE IF EXISTS oldimage;
 CREATE TABLE oldimage (
   oi_name varchar(255) binary NOT NULL default '',
   oi_archive_name varchar(255) binary NOT NULL default '',
@@ -155,7 +141,6 @@ CREATE TABLE oldimage (
   oi_timestamp char(14) binary NOT NULL default ''
 ) PACK_KEYS=1;
 
-DROP TABLE IF EXISTS recentchanges;
 CREATE TABLE recentchanges (
   rc_timestamp varchar(14) binary NOT NULL default '',
   rc_cur_time varchar(14) binary NOT NULL default '',
@@ -175,7 +160,6 @@ CREATE TABLE recentchanges (
   rc_moved_to_title varchar(255) binary NOT NULL default ''
 ) PACK_KEYS=1;
 
-DROP TABLE IF EXISTS watchlist;
 CREATE TABLE watchlist (
   wl_user int(5) unsigned NOT NULL,
   wl_namespace tinyint(2) unsigned NOT NULL default '0',
@@ -183,7 +167,6 @@ CREATE TABLE watchlist (
   UNIQUE KEY (wl_user, wl_namespace, wl_title)
 ) PACK_KEYS=1;
 
-DROP TABLE IF EXISTS math;
 CREATE TABLE math (
   math_inputhash varchar(16) NOT NULL,
   math_outputhash varchar(16) NOT NULL,
@@ -196,7 +179,6 @@ CREATE TABLE math (
 
 -- Table searchindex must be MyISAM for fulltext support
 
-DROP TABLE IF EXISTS searchindex;
 CREATE TABLE searchindex (
   si_page int(8) unsigned NOT NULL,
   si_title varchar(255) NOT NULL default '',
@@ -204,7 +186,6 @@ CREATE TABLE searchindex (
   UNIQUE KEY (si_page)
 ) PACK_KEYS=1;
 
-DROP TABLE IF EXISTS interwiki;
 CREATE TABLE interwiki (
   iw_prefix char(32) NOT NULL,
   iw_url char(127) NOT NULL,
