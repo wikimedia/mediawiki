@@ -26,7 +26,7 @@
 
 /** */
 require_once( 'commandLine.inc' );
-include_once( 'InitialiseMessages.inc' );
+require_once( 'languages/LanguageUtf8.php' );
 
 $wgTitle = Title::newFromText( 'Parser test script' );
 
@@ -159,6 +159,7 @@ class ParserTest {
 			'wgArticlePath' => '/wiki/$1',
 			'wgSitename' => 'MediaWiki',
 			'wgLanguageCode' => 'en',
+			'wgUseLatin1' => false,
 			'wgLang' => new LanguageUtf8(),
 			);
 		$this->savedGlobals = array();
