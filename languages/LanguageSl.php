@@ -899,79 +899,74 @@ V teh primerih boste morali prestaviti ali povezati stran ročno, če to želite
 #--------------------------------------------------------------------------
 
 class LanguageSl extends LanguageUtf8 {
-
-  function getDefaultUserOptions () {
-   $opt = Language::getDefaultUserOptions();
-   return $opt;
-  }
-
- function getNamespaces() {
-  global $wgNamespaceNamesSl;
-  return $wgNamespaceNamesSl;
- }
-
- function getNsText( $index ) {
-  global $wgNamespaceNamesSl;
-  return $wgNamespaceNamesSl[$index];
- }
-
- function getNsIndex( $text ) {
-  global $wgNamespaceNamesSl;
-
-  foreach ( $wgNamespaceNamesSl as $i => $n ) {
-   if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-  }
-  if( 0 == strcasecmp( "Special", $text ) ) { return -1; }
-  if( 0 == strcasecmp( "User", $text ) ) { return 2; }
-  if( 0 == strcasecmp( "Wikipedia", $text ) ) { return 4; }
-  return false;
- }
-
- function getQuickbarSettings() {
-  global $wgQuickbarSettingsSl;
-  return $wgQuickbarSettingsSl;
- }
-
- function getSkinNames() {
-  global $wgSkinNamesSl;
-  return $wgSkinNamesSl;
- }
-
- function getDateFormats() {
-  global $wgDateFormatsSl;
-  return $wgDateFormatsSl;
- }
-
- function getValidSpecialPages()
- {
-  global $wgValidSpecialPagesSl;
-  return $wgValidSpecialPagesSl;
- }
-
- function getSysopSpecialPages()
- {
-  global $wgSysopSpecialPagesSl;
-  return $wgSysopSpecialPagesSl;
- }
-
- function getDeveloperSpecialPages()
- {
-  global $wgDeveloperSpecialPagesSl;
-  return $wgDeveloperSpecialPagesSl;
- }
-
- function getMessage( $key )
- {
+	
+	function getNamespaces() {
+		global $wgNamespaceNamesSl;
+		return $wgNamespaceNamesSl;
+	}
+	
+	function getNsText( $index ) {
+		global $wgNamespaceNamesSl;
+		return $wgNamespaceNamesSl[$index];
+	}
+	
+	function getNsIndex( $text ) {
+		global $wgNamespaceNamesSl;
+		
+		foreach ( $wgNamespaceNamesSl as $i => $n ) {
+			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+		}
+		if( 0 == strcasecmp( "Special", $text ) ) { return -1; }
+		if( 0 == strcasecmp( "User", $text ) ) { return 2; }
+		if( 0 == strcasecmp( "Wikipedia", $text ) ) { return 4; }
+		return false;
+	}
+	
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsSl;
+		return $wgQuickbarSettingsSl;
+	}
+	
+	function getSkinNames() {
+		global $wgSkinNamesSl;
+		return $wgSkinNamesSl;
+	}
+	
+	function getDateFormats() {
+		global $wgDateFormatsSl;
+		return $wgDateFormatsSl;
+	}
+	
+	function getValidSpecialPages()
+	{
+		global $wgValidSpecialPagesSl;
+		return $wgValidSpecialPagesSl;
+	}
+	
+	function getSysopSpecialPages()
+	{
+		global $wgSysopSpecialPagesSl;
+		return $wgSysopSpecialPagesSl;
+	}
+	
+	function getDeveloperSpecialPages()
+	{
+		global $wgDeveloperSpecialPagesSl;
+		return $wgDeveloperSpecialPagesSl;
+	}
+	
+	function getMessage( $key )
+	{
 		global $wgAllMessagesSl;
 		if(array_key_exists($key, $wgAllMessagesSl))
 			return $wgAllMessagesSl[$key];
 		else
 			return Language::getMessage($key);
- }
-
- function fallback8bitEncoding() {
+	}
+	
+	function fallback8bitEncoding() {
 		return "iso-8859-2";
- }
+	}
 }
 
 ?>

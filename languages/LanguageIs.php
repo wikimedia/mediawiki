@@ -1123,7 +1123,7 @@ class LanguageIs extends LanguageUtf8 {
 	function getDefaultUserOptions () {
 		global $wgDefaultUserOptionsIs;
 		return $wgDefaultUserOptionsIs;
-		}
+	}
 
 	function getBookstoreList () {
 		global $wgBookstoreListIs;
@@ -1164,26 +1164,22 @@ class LanguageIs extends LanguageUtf8 {
 		return $wgDateFormatsIs;
 	}
 
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesIs;
 		return $wgValidSpecialPagesIs;
 	}
 
-	function getSysopSpecialPages()
-	{
+	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesIs;
 		return $wgSysopSpecialPagesIs;
 	}
 
-	function getDeveloperSpecialPages()
-	{
+	function getDeveloperSpecialPages() {
 		global $wgDeveloperSpecialPagesIs;
 		return $wgDeveloperSpecialPagesIs;
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesIs;
 		if( isset( $wgAllMessagesIs[$key] ) ) {
 			return $wgAllMessagesIs[$key];
@@ -1192,19 +1188,15 @@ class LanguageIs extends LanguageUtf8 {
 		}
 	}
 	
-	function getAllMessages()
-	{
+	function getAllMessages() {
 		global $wgAllMessagesIs;
 		return $wgAllMessagesIs;
 	}
 
-	function getMagicWords() 
-	{
+	function getMagicWords() {
 		global $wgMagicWordsIs;
 		return $wgMagicWordsIs;
 	}
 }
-
-# @include_once( "Language" . ucfirst( $wgLanguageCode ) . ".php" );
 
 ?>

@@ -1076,131 +1076,77 @@ Wybierz, proszę, nową nazwę.",
 );
 
 class LanguagePl extends LanguageUtf8 {
-
-        function getDefaultUserOptions () {
-                $opt = Language::getDefaultUserOptions();
-                return $opt;
-        }
 	
-        function getNamespaces() {
-                global $wgNamespaceNamesPl;
-                return $wgNamespaceNamesPl;
-        }
+	function getNamespaces() {
+		global $wgNamespaceNamesPl;
+		return $wgNamespaceNamesPl;
+	}
 
-        function getNsText( $index ) {
-                global $wgNamespaceNamesPl;
-                return $wgNamespaceNamesPl[$index];
-        }
+	function getNsText( $index ) {
+		global $wgNamespaceNamesPl;
+		return $wgNamespaceNamesPl[$index];
+	}
 
-        function getNsIndex( $text ) {
-                global $wgNamespaceNamesPl;
+	function getNsIndex( $text ) {
+		global $wgNamespaceNamesPl;
 
-                foreach ( $wgNamespaceNamesPl as $i => $n ) {
-                        if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
-                }
-                return false;
-        }
+		foreach ( $wgNamespaceNamesPl as $i => $n ) {
+			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
+		}
+		return false;
+	}
 
-        function getQuickbarSettings() {
-                global $wgQuickbarSettingsPl;
-                return $wgQuickbarSettingsPl;
-        }
+	function getQuickbarSettings() {
+		global $wgQuickbarSettingsPl;
+		return $wgQuickbarSettingsPl;
+	}
 
-        function getSkinNames() {
-                global $wgSkinNamesPl;
-                return $wgSkinNamesPl;
-        }
+	function getSkinNames() {
+		global $wgSkinNamesPl;
+		return $wgSkinNamesPl;
+	}
 
-        function getMonthNameGen( $key )
-        {
-                global $wgMonthNamesGenEn;
-                return wfMsg( $wgMonthNamesGenEn[$key-1] );
-        }
+	function getMonthNameGen( $key ) {
+		global $wgMonthNamesGenEn;
+		return wfMsg( $wgMonthNamesGenEn[$key-1] );
+	}
 
+	function date( $ts, $adj = false ) {
+		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-        function userAdjust( $ts )
-        {
-                global $wgUser;
+		$d = (0 + substr( $ts, 6, 2 )) . 
+		  " " . $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
+		  " " . substr( $ts, 0, 4 );
+		return $d;
+	}
 
-                $diff = $wgUser->getOption( "timecorrection" );
-                if ( ! $diff ) { $diff = 0; }
-                if ( 0 == $diff ) { return $ts; }
+	function getValidSpecialPages() {
+		global $wgValidSpecialPagesPl;
+		return $wgValidSpecialPagesPl;
+	}
 
-                $t = mktime( ( (int)substr( $ts, 8, 2) ) + $diff,
-                  (int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
-                  (int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
-                  (int)substr( $ts, 0, 4 ) );
-                return date( "YmdHis", $t );
-        }
+	function getSysopSpecialPages() {
+		global $wgSysopSpecialPagesPl;
+		return $wgSysopSpecialPagesPl;
+	}
 
-        function date( $ts, $adj = false )
-        {
-                if ( $adj ) { $ts = $this->userAdjust( $ts ); }
+	function getDeveloperSpecialPages() {
+		global $wgDeveloperSpecialPagesPl;
+		return $wgDeveloperSpecialPagesPl;
+	}
 
-                $d = (0 + substr( $ts, 6, 2 )) . 
-                  " " . $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-                  " " . substr( $ts, 0, 4 );
-                return $d;
-        }
+	function getMessage( $key ) {
+		global $wgAllMessagesPl;
+		if(array_key_exists($key, $wgAllMessagesPl))
+			return $wgAllMessagesPl[$key];
+		else
+			return Language::getMessage($key);
+	}
 
-        function time( $ts, $adj = false )
-        {
-                if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-                $t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-                return $t;
-        }
-
-        function timeanddate( $ts, $adj = false )
-        {
-                return $this->time( $ts, $adj ) . ", " . $this->date( $ts, $adj );
-        }
-
-        function rfc1123( $ts )
-        {
-                return date( "D, d M Y H:i:s T", $ts );
-        }
-
-        function getValidSpecialPages()
-        {
-                global $wgValidSpecialPagesPl;
-                return $wgValidSpecialPagesPl;
-        }
-
-        function getSysopSpecialPages()
-        {
-                global $wgSysopSpecialPagesPl;
-                return $wgSysopSpecialPagesPl;
-        }
-
-        function getDeveloperSpecialPages()
-        {
-                global $wgDeveloperSpecialPagesPl;
-                return $wgDeveloperSpecialPagesPl;
-        }
-
-        function getMessage( $key )
-        {
-                global $wgAllMessagesPl;
-        if(array_key_exists($key, $wgAllMessagesPl))
-                        return $wgAllMessagesPl[$key];
-                else
-                        return Language::getMessage($key);
-        }
-
-        # Inherit ucfirst() and stripForSearch() from LanguageUtf8
-
-        function checkTitleEncoding( $s ) {
-        # Check for Latin-2 backwards-compatibility URLs
-                $ishigh = preg_match( '/[\x80-\xff]/', $s);
-                $isutf = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-                '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
-        
-        if($ishigh and !$isutf)
-                return iconv( "ISO-8859-2", "UTF-8", $s );
-        
-        return $s;
-        }
+	# Check for Latin-2 backwards-compatibility URLs
+	function fallback8bitEncoding() {
+		return "iso-8859-2";
+	}
 
 }
 

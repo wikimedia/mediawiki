@@ -1324,7 +1324,7 @@ class LanguageNn extends LanguageUtf8 {
 	function getDefaultUserOptions () {
 		global $wgDefaultUserOptionsNn;
 		return $wgDefaultUserOptionsNn;
-		}
+	}
 
 	function getQuickbarSettings() {
 		global $wgQuickbarSettingsNn;

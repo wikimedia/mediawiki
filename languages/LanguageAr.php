@@ -1142,36 +1142,26 @@ class LanguageAr extends LanguageUtf8 {
 		"," => "٬"
 	);
 
-	# TODO: TRANSLATION!
-
-	# Inherit everything except...
-
-	function getNamespaces()
-	{
+	function getNamespaces() {
 		global $wgNamespaceNamesAr;
 		return $wgNamespaceNamesAr;
 	}
 
-
-	function getNsText( $index )
-	{
+	function getNsText( $index ) {
 		global $wgNamespaceNamesAr;
 		return $wgNamespaceNamesAr[$index];
 	}
 
-	function getNsIndex( $text )
-	{
+	function getNsIndex( $text ) {
 		global $wgNamespaceNamesAr;
 
-		foreach ( $wgNamespaceNamesAr as $i => $n )
-		{
+		foreach ( $wgNamespaceNamesAr as $i => $n ) {
 			if ( 0 == strcasecmp( $n, $text ) ) { return $i; }
 		}
 		return LanguageUtf8::getNsIndex( $text );
 	}
 
-	function getMonthAbbreviation( $key )
-	{
+	function getMonthAbbreviation( $key ) {
 		/* No abbreviations in Arabic */
 		return $this->getMonthName( $key );
 	}
@@ -1180,9 +1170,8 @@ class LanguageAr extends LanguageUtf8 {
 
 	function linkPrefixExtension() { return true; }
 
-	function getDefaultUserOptions () {
-		global $wgDefaultUserOptionsEn;
-		$opt = $wgDefaultUserOptionsEn;
+	function getDefaultUserOptions() {
+		$opt = parent::getDefaultUserOptions();
 
 		# Swap sidebar to right side by default
 		$opt['quickbar'] = 2;
@@ -1192,27 +1181,16 @@ class LanguageAr extends LanguageUtf8 {
 		return $opt ;
 	}
 
-	function checkTitleEncoding( $s ) {
-		global $wgInputEncoding;
-
-		# Check for non-UTF-8 URLs; assume they are windows-1256?
-	        $ishigh = preg_match( '/[\x80-\xff]/', $s);
-		$isutf = ($ishigh ? preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-                '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s ) : true );
-
-		if( $ishigh and !$isutf )
-			return iconv( "windows-1256", "utf-8", $s );
-
-		return $s;
+	function fallback8bitEncoding() {
+		return "windows-1256";
 	}
 
-	function getMessage( $key )
-	{
-                global $wgAllMessagesAr, $wgAllMessagesEn;
-                $m = $wgAllMessagesAr[$key];
+	function getMessage( $key ) {
+		global $wgAllMessagesAr, $wgAllMessagesEn;
+		$m = $wgAllMessagesAr[$key];
 
-                if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
-                else return $m;
+		if ( "" == $m ) { return $wgAllMessagesEn[$key]; }
+		else return $m;
 	}
 
 	function formatNum( $number ) {

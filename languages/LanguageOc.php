@@ -921,35 +921,25 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.", // Looxix
 
 );
 
-class LanguageOc extends LanguageUtf8
-{
+class LanguageOc extends LanguageUtf8{ 
 
-	function getDefaultUserOptions()
-	{
-                $opt = Language::getDefaultUserOptions();
-                return $opt;
+	function getBookstoreList () {
+		global $wgBookstoreListOc ;
+		return $wgBookstoreListOc ;
 	}
 
-        function getBookstoreList () {
-                global $wgBookstoreListOc ;
-                return $wgBookstoreListOc ;
-        }
-
-	function getNamespaces()
-	{
+	function getNamespaces() {
 		global $wgNamespaceNamesOc;
 		return $wgNamespaceNamesOc;
 	}
 
 
-	function getNsText( $index )
-	{
+	function getNsText( $index ) {
 		global $wgNamespaceNamesOc;
 		return $wgNamespaceNamesOc[$index];
 	}
 
-	function getNsIndex( $text ) 
-	{
+	function getNsIndex( $text ) {
 		global $wgNamespaceNamesOc;
 
 		foreach ( $wgNamespaceNamesOc as $i => $n ) 
@@ -961,27 +951,19 @@ class LanguageOc extends LanguageUtf8
 		return false;
 	}
 
-	function specialPage( $name ) 
-	{
-		return $this->getNsText( Namespace::getSpecial() ) . ":" . $name;
-	}
-
-	function getQuickbarSettings() 
-	{
+	function getQuickbarSettings() {
 		global $wgQuickbarSettingsOc;
 		return $wgQuickbarSettingsOc;
 	}
 
-	function getSkinNames()
-	{
+	function getSkinNames() {
 		global $wgSkinNamesOc;
 		return $wgSkinNamesOc;
 	}
 
 	// Inherit userAdjust()
 
-	function date( $ts, $adj = false )
-	{
+	function date( $ts, $adj = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
 		$d = (0 + substr( $ts, 6, 2 )) . " " .
@@ -990,39 +972,26 @@ class LanguageOc extends LanguageUtf8
 		return $d;
 	}
 
-	function time( $ts, $adj = false )
-	{
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$t = substr( $ts, 8, 2 ) . ":" . substr( $ts, 10, 2 );
-		return $t;
-	}
-
-	function timeanddate( $ts, $adj = false )
-	{
+	function timeanddate( $ts, $adj = false ) {
 		return $this->date( $ts, $adj ) . " à " . $this->time( $ts, $adj );
 	}
 
-	function getValidSpecialPages()
-	{
+	function getValidSpecialPages() {
 		global $wgValidSpecialPagesOc;
 		return $wgValidSpecialPagesOc;
 	}
 
-	function getSysopSpecialPages()
-	{
+	function getSysopSpecialPages() {
 		global $wgSysopSpecialPagesOc;
 		return $wgSysopSpecialPagesOc;
 	}
 
-	function getDeveloperSpecialPages()
-	{
+	function getDeveloperSpecialPages() {
 		global $wgDeveloperSpecialPagesOc;
 		return $wgDeveloperSpecialPagesOc;
 	}
 
-	function getMessage( $key )
-	{
+	function getMessage( $key ) {
 		global $wgAllMessagesOc, $wgAllMessagesEn;
 		$m = $wgAllMessagesOc[$key];
 
