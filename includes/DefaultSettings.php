@@ -665,7 +665,7 @@ $wgMaxTocLevel = 999;
 $wgUseGeoMode = false;
 
 # Validation for print or other production versions
-$wgUseValidation = true;
+$wgUseValidation = false;
 
 # Use external C++ diff engine (module wikidiff from the
 # extensions package)
