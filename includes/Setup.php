@@ -78,7 +78,6 @@ if ( function_exists( "getallheaders" ) ) {
 if ( get_magic_quotes_gpc() ) {
 	foreach ( $_REQUEST as $field => $value ) {
 		$_REQUEST[$field] = stripslashes( $value );
-		print "$field: $value -> {$_REQUEST[$field]}<br>\n";
 	}
 }
 
