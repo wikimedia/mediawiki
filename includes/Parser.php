@@ -435,7 +435,7 @@ class Parser
 				$wgTidyOpts .= ' -raw';
 			}
 
-		$text = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'.
+		$wrappedtext = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'.
 ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>'.
 '<head><title>test</title></head><body>'.$text.'</body></html>';
 		$descriptorspec = array(
@@ -445,7 +445,7 @@ class Parser
 		);
 		$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts", $descriptorspec, $pipes);
 		if (is_resource($process)) {
-			fwrite($pipes[0], $text);
+			fwrite($pipes[0], $wrappedtext);
 			fclose($pipes[0]);
 			while (!feof($pipes[1])) {
 				$cleansource .= fgets($pipes[1], 1024);
