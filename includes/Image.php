@@ -61,13 +61,15 @@ class Image
 		# If the file is not found, and a shared upload directory 
 		# like the Wikimedia Commons is used, look for it there.
 		if (!$this->fileExists && $wgUseSharedUploads) {
+			# in case we're running a capitallinks=false wiki			
+			$sharedname=ucfirst($name);
 			
 			if($wgHashedSharedUploadDirectory) {				
 				$hash = md5( $this->title->getDBkey() );
 				$this->imagePath = $wgSharedUploadDirectory . '/' . $hash{0} . '/' .
-					substr( $hash, 0, 2 ) . "/{$name}";
+					substr( $hash, 0, 2 ) . "/".$sharedname;
 			} else {
-				$this->imagePath = $wgSharedUploadDirectory . '/' . $name;
+				$this->imagePath = $wgSharedUploadDirectory . '/' . $sharedname;
 			}
 			$this->fileExists = file_exists( $this->imagePath);
 			$this->fromSharedDirectory = true;
