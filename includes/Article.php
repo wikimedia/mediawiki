@@ -569,7 +569,7 @@ class Article {
 		) {
 			$wgOut->addWikiText( wfMsg('usercssjs'));
 			$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
-		} else if( $wgEnableParserCache && intval($wgUser->getOption( "stubthreshold" )) == 0 ){
+		} else if( $wgEnableParserCache && intval($wgUser->getOption( "stubthreshold" )) == 0 && empty( $oldid ) ){
 			$wgOut->addWikiText( $text, true, $this );
 		} else {
 			$wgOut->addWikiText( $text );
