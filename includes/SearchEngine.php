@@ -402,7 +402,7 @@ class SearchEngine {
 
 	function goResult()
 	{
-		global $wgOut;
+		global $wgOut, $wgDisableTextSearch;
 		$fname = "SearchEngine::goResult";
 		
 		$search		= $_REQUEST['search'];
