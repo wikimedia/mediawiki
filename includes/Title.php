@@ -102,6 +102,10 @@ class Title {
 		$fname = 'Title::newFromText';
 		wfProfileIn( $fname );
 		
+		if( is_object( $text ) ) {
+			wfDebugDieBacktrace( 'Title::newFromText given an object' );
+		}
+		
 		/**
 		 * Wiki pages often contain multiple links to the same page.
 		 * Title normalization and parsing can become expensive on
@@ -869,6 +873,15 @@ class Title {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * Is this a talk page of some sort?
+	 * @return bool
+	 * @access public
+	 */
+	function isTalkPage() {
+		return Namespace::isTalk( $this->getNamespace() );
 	}
 
 	/**
@@ -1885,6 +1898,18 @@ class Title {
 		return $dbr->selectField( 'revision', 'rev_id',
 			'rev_page=' . IntVal( $this->getArticleId() ) .
 			' AND rev_id>' . IntVal( $revision ) . ' ORDER BY rev_id' );
+	}
+	
+	/**
+	 * Compare with another title.
+	 *
+	 * @param Title $title
+	 * @return bool
+	 */
+	function equals( &$title ) {
+		return $this->getInterwiki() == $title->getInterwiki()
+			&& $this->getNamespace() == $title->getNamespace()
+			&& $this->getDbkey() == $title->getDbkey();
 	}
 
 }

@@ -399,7 +399,7 @@ class Skin extends Linker {
 		#if( !$wgOut->isArticle() ) return '';
 
 		$t = implode ( ' | ' , $wgOut->mCategoryLinks ) ;
-		$s = $this->makeKnownLink( 'Special:Categories',
+		$s = $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Categories' ),
 			wfMsg( 'categories' ), 'article=' . urlencode( $wgTitle->getPrefixedDBkey() ) )
 			. ': ' . $t;
 
@@ -508,7 +508,7 @@ class Skin extends Linker {
 			}
 		}
 		if ( 'history' == $action || isset( $diff ) || isset( $oldid ) ) {
-			$s .= ' | ' . $this->makeKnownLink( $wgTitle->getPrefixedText(),
+			$s .= ' | ' . $this->makeKnownLinkObj( $wgTitle,
 					wfMsg( 'currentrev' ) );
 		}
 
@@ -518,9 +518,7 @@ class Skin extends Linker {
 
 			if(!(strcmp($wgTitle->getText(),$wgUser->getName()) == 0 &&
 						$wgTitle->getNamespace()==Namespace::getTalk(Namespace::getUser()))) {
-				$n =$wgUser->getName();
-				$tl = $this->makeKnownLink( $wgContLang->getNsText(
-							Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
+				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
 						wfMsg('newmessageslink') );
 				$s.= ' | <strong>'. wfMsg( 'newmessages', $tl ) . '</strong>';
 				# disable caching
@@ -633,9 +631,8 @@ class Skin extends Linker {
 			if( $wgShowIPinHeader && isset(  $_COOKIE[ini_get('session.name')] ) ) {
 				$n = $wgIP;
 
-				$tl = $this->makeKnownLink( $wgContLang->getNsText(
-				  Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
-				  $wgContLang->getNsText( Namespace::getTalk( 0 ) ) );
+				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
+				  $wgContLang->getNsText( NS_TALK ) );
 
 				$s .= $n . ' ('.$tl.')';
 			} else {
@@ -647,20 +644,20 @@ class Skin extends Linker {
 				$q = '';
 			} else { $q = "returnto={$rt}"; }
 
-			$s .= "\n<br />" . $this->makeKnownLink( $li,
-			  wfMsg( 'login' ), $q );
+			$s .= "\n<br />" . $this->makeKnownLinkObj(
+				Title::makeTitle( NS_SPECIAL, 'Userlogin' ),
+				wfMsg( 'login' ), $q );
 		} else {
 			$n = $wgUser->getName();
 			$rt = $wgTitle->getPrefixedURL();
-			$tl = $this->makeKnownLink( $wgContLang->getNsText(
-			  Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
-			  $wgContLang->getNsText( Namespace::getTalk( 0 ) ) );
+			$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
+			  $wgContLang->getNsText( NS_TALK ) );
 
 			$tl = " ({$tl})";
 
-			$s .= $this->makeKnownLink( $wgContLang->getNsText(
-			  Namespace::getUser() ) . ":{$n}", $n ) . "{$tl}<br />" .
-			  $this->makeKnownLink( $lo, wfMsg( 'logout' ),
+			$s .= $this->makeKnownLinkObj( $wgUser->getUserPage(),
+			  $n ) . "{$tl}<br />" .
+			  $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Userlogout' ), wfMsg( 'logout' ),
 			  "returnto={$rt}" ) . ' | ' .
 			  $this->specialLink( 'preferences' );
 		}
@@ -976,11 +973,9 @@ class Skin extends Linker {
 		if ( ! $wgOut->isArticleRelated() ) {
 			$s = wfMsg( 'protectedpage' );
 		} else {
-			$n = $wgTitle->getPrefixedText();
 			if ( $wgTitle->userCanEdit() ) {
 				$t = wfMsg( 'editthispage' );
 			} else {
-				#$t = wfMsg( "protectedpage" );
 				$t = wfMsg( 'viewsource' );
 			}
 			$oid = $red = '';
@@ -989,7 +984,7 @@ class Skin extends Linker {
 			if ( $oldid && ! isset( $diff ) ) {
 				$oid = '&oldid='.$oldid;
 			}
-			$s = $this->makeKnownLink( $n, $t, "action=edit{$oid}{$red}" );
+			$s = $this->makeKnownLinkObj( $wgTitle, $t, "action=edit{$oid}{$red}" );
 		}
 		return $s;
 	}
@@ -999,10 +994,9 @@ class Skin extends Linker {
 
 		$diff = $wgRequest->getVal( 'diff' );
 		if ( $wgTitle->getArticleId() && ( ! $diff ) && $wgUser->isAllowed('delete') ) {
-			$n = $wgTitle->getPrefixedText();
 			$t = wfMsg( 'deletethispage' );
 
-			$s = $this->makeKnownLink( $n, $t, 'action=delete' );
+			$s = $this->makeKnownLinkObj( $wgTitle, $t, 'action=delete' );
 		} else {
 			$s = '';
 		}
@@ -1014,8 +1008,6 @@ class Skin extends Linker {
 
 		$diff = $wgRequest->getVal( 'diff' );
 		if ( $wgTitle->getArticleId() && ( ! $diff ) && $wgUser->isAllowed('protect') ) {
-			$n = $wgTitle->getPrefixedText();
-
 			if ( $wgTitle->isProtected() ) {
 				$t = wfMsg( 'unprotectthispage' );
 				$q = 'action=unprotect';
@@ -1023,7 +1015,7 @@ class Skin extends Linker {
 				$t = wfMsg( 'protectthispage' );
 				$q = 'action=protect';
 			}
-			$s = $this->makeKnownLink( $n, $t, $q );
+			$s = $this->makeKnownLinkObj( $wgTitle, $t, $q );
 		} else {
 			$s = '';
 		}
@@ -1034,8 +1026,6 @@ class Skin extends Linker {
 		global $wgUser, $wgOut, $wgTitle;
 
 		if ( $wgOut->isArticleRelated() ) {
-			$n = $wgTitle->getPrefixedText();
-
 			if ( $wgTitle->userIsWatching() ) {
 				$t = wfMsg( 'unwatchthispage' );
 				$q = 'action=unwatch';
@@ -1043,7 +1033,7 @@ class Skin extends Linker {
 				$t = wfMsg( 'watchthispage' );
 				$q = 'action=watch';
 			}
-			$s = $this->makeKnownLink( $n, $t, $q );
+			$s = $this->makeKnownLinkObj( $wgTitle, $t, $q );
 		} else {
 			$s = wfMsg( 'notanarticle' );
 		}
@@ -1051,10 +1041,10 @@ class Skin extends Linker {
 	}
 
 	function moveThisPage() {
-		global $wgTitle, $wgContLang;
+		global $wgTitle;
 
 		if ( $wgTitle->userCanMove() ) {
-			return $this->makeKnownLink( $wgContLang->specialPage( 'Movepage' ),
+			return $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Movepage' ),
 			  wfMsg( 'movethispage' ), 'target=' . $wgTitle->getPrefixedURL() );
 		} else {
 			// no message if page is protected - would be redundant
@@ -1065,25 +1055,22 @@ class Skin extends Linker {
 	function historyLink() {
 		global $wgTitle;
 
-		$s = $this->makeKnownLink( $wgTitle->getPrefixedText(),
+		return $this->makeKnownLinkObj( $wgTitle,
 		  wfMsg( 'history' ), 'action=history' );
-		return $s;
 	}
 
 	function whatLinksHere() {
-		global $wgTitle, $wgContLang;
+		global $wgTitle;
 
-		$s = $this->makeKnownLink( $wgContLang->specialPage( 'Whatlinkshere' ),
+		return $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Whatlinkshere' ),
 		  wfMsg( 'whatlinkshere' ), 'target=' . $wgTitle->getPrefixedURL() );
-		return $s;
 	}
 
 	function userContribsLink() {
-		global $wgTitle, $wgContLang;
+		global $wgTitle;
 
-		$s = $this->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
+		return $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Contributions' ),
 		  wfMsg( 'contributions' ), 'target=' . $wgTitle->getPartialURL() );
-		return $s;
 	}
 
 	function showEmailUser( $id ) {
@@ -1098,49 +1085,31 @@ class Skin extends Linker {
 	}
 	
 	function emailUserLink() {
-		global $wgTitle, $wgContLang;
+		global $wgTitle;
 
-		$s = $this->makeKnownLink( $wgContLang->specialPage( 'Emailuser' ),
+		return $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL, 'Emailuser' ),
 		  wfMsg( 'emailuser' ), 'target=' . $wgTitle->getPartialURL() );
-		return $s;
 	}
 
 	function watchPageLinksLink() {
-		global $wgOut, $wgTitle, $wgContLang;
+		global $wgOut, $wgTitle;
 
 		if ( ! $wgOut->isArticleRelated() ) {
-			$s = '(' . wfMsg( 'notanarticle' ) . ')';
+			return '(' . wfMsg( 'notanarticle' ) . ')';
 		} else {
-			$s = $this->makeKnownLink( $wgContLang->specialPage(
+			return $this->makeKnownLinkObj( Title::makeTitle( NS_SPECIAL,
 			  'Recentchangeslinked' ), wfMsg( 'recentchangeslinked' ),
 			  'target=' . $wgTitle->getPrefixedURL() );
 		}
-		return $s;
 	}
 
 	function otherLanguages() {
-		global $wgOut, $wgContLang, $wgTitle, $wgUseNewInterlanguage;
+		global $wgOut, $wgContLang, $wgTitle;
 
 		$a = $wgOut->getLanguageLinks();
 		if ( 0 == count( $a ) ) {
-			if ( !$wgUseNewInterlanguage ) return '';
-			$ns = $wgContLang->getNsIndex ( $wgTitle->getNamespace () ) ;
-			if ( $ns != NS_MAIN AND $ns != NS_TALK ) return '' ;
-			$pn = 'Intl' ;
-			$x = 'mode=addlink&xt='.$wgTitle->getDBkey() ;
-			return $this->makeKnownLink( $wgContLang->specialPage( $pn ),
-				  wfMsg( 'intl' ) , $x );
-			}
-
-		if ( !$wgUseNewInterlanguage ) {
-			$s = wfMsg( 'otherlanguages' ) . ': ';
-		} else {
-			global $wgContLanguageCode ;
-			$x = 'mode=zoom&xt='.$wgTitle->getDBkey() ;
-			$x .= '&xl='.$wgContLanguageCode ;
-			$s =  $this->makeKnownLink( $wgContLang->specialPage( 'Intl' ),
-				  wfMsg( 'otherlanguages' ) , $x ) . ': ' ;
-			}
+			return '';
+		}
 
 		$s = wfMsg( 'otherlanguages' ) . ': ';
 		$first = true;
@@ -1150,7 +1119,7 @@ class Skin extends Linker {
 			$first = false;
 
 			$nt = Title::newFromText( $l );
-			$url = $nt->getFullURL();
+			$url = $nt->escapeFullURL();
 			$text = $wgContLang->getLanguageName( $nt->getInterwiki() );
 
 			if ( '' == $text ) { $text = $l; }
@@ -1196,42 +1165,38 @@ class Skin extends Linker {
 	}
 
 	function talkLink() {
-		global $wgContLang, $wgTitle, $wgLinkCache;
+		global $wgTitle, $wgLinkCache;
 
-		$tns = $wgTitle->getNamespace();
-		if ( -1 == $tns ) { return ''; }
+		if ( NS_SPECIAL == $wgTitle->getNamespace() ) {
+			# No discussion links for special pages
+			return '';
+		}
 
-		$pn = $wgTitle->getText();
-		$tp = wfMsg( 'talkpage' );
-		if ( Namespace::isTalk( $tns ) ) {
-			$lns = Namespace::getSubject( $tns );
-			switch($tns) {
-				case 1:
+		if( $wgTitle->isTalkPage() ) {
+			$link = $wgTitle->getSubjectPage();
+			switch( $link->getNamespace() ) {
+			case NS_MAIN:
 				$text = wfMsg('articlepage');
 				break;
-				case 3:
+			case NS_USER:
 				$text = wfMsg('userpage');
 				break;
-				case 5:
+			case NS_PROJECT:
 				$text = wfMsg('wikipediapage');
 				break;
-				case 7:
+			case NS_IMAGE:
 				$text = wfMsg('imagepage');
 				break;
-				default:
+			default:
 				$text= wfMsg('articlepage');
 			}
 		} else {
-
-			$lns = Namespace::getTalk( $tns );
-			$text=$tp;
+			$link = $wgTitle->getTalkPage();
+			$text = wfMsg( 'talkpage' );
 		}
-		$n = $wgContLang->getNsText( $lns );
-		if ( '' == $n ) { $link = $pn; }
-		else { $link = $n.':'.$pn; }
 
 		$wgLinkCache->suspend();
-		$s = $this->makeLink( $link, $text );
+		$s = $this->makeLinkObj( $link, $text );
 		$wgLinkCache->resume();
 
 		return $s;
@@ -1240,49 +1205,25 @@ class Skin extends Linker {
 	function commentLink() {
 		global $wgContLang, $wgTitle, $wgLinkCache;
 
-		$tns = $wgTitle->getNamespace();
-		if ( -1 == $tns ) { return ''; }
-
-		$lns = ( Namespace::isTalk( $tns ) ) ? $tns : Namespace::getTalk( $tns );
-
-		# assert Namespace::isTalk( $lns )
-
-		$n = $wgContLang->getNsText( $lns );
-		$pn = $wgTitle->getText();
-
-		$link = $n.':'.$pn;
-
-		$wgLinkCache->suspend();
-		$s = $this->makeKnownLink($link, wfMsg('postcomment'), 'action=edit&section=new');
-		$wgLinkCache->resume();
-
-		return $s;
+		if ( $wgTitle->getNamespace() == NS_SPECIAL ) {
+			return '';
+		}
+		return $this->makeKnownLinkObj( $wgTitle->getTalkPage(),
+			wfMsg( 'postcomment' ), 'action=edit&section=new' );
 	}
 
 	/* these are used extensively in SkinPHPTal, but also some other places */
 	/*static*/ function makeSpecialUrl( $name, $urlaction='' ) {
 		$title = Title::makeTitle( NS_SPECIAL, $name );
-		$this->checkTitle($title, $name);
 		return $title->getLocalURL( $urlaction );
 	}
-	/*static*/ function makeTalkUrl ( $name, $urlaction='' ) {
-		$title = Title::newFromText( $name );
-		$title = $title->getTalkPage();
-		$this->checkTitle($title, $name);
-		return $title->getLocalURL( $urlaction );
-	}
-	/*static*/ function makeArticleUrl ( $name, $urlaction='' ) {
-		$title = Title::newFromText( $name );
-		$this->checkTitle($title, $name);
-		$title= $title->getSubjectPage();
-		$this->checkTitle($title, $name);
-		return $title->getLocalURL( $urlaction );
-	}
+	
 	/*static*/ function makeI18nUrl ( $name, $urlaction='' ) {
 		$title = Title::newFromText( wfMsgForContent($name) );
 		$this->checkTitle($title, $name);
 		return $title->getLocalURL( $urlaction );
 	}
+	
 	/*static*/ function makeUrl ( $name, $urlaction='' ) {
 		$title = Title::newFromText( $name );
 		$this->checkTitle($title, $name);
@@ -1309,32 +1250,6 @@ class Skin extends Linker {
 	/* these return an array with the 'href' and boolean 'exists' */
 	/*static*/ function makeUrlDetails ( $name, $urlaction='' ) {
 		$title = Title::newFromText( $name );
-		$this->checkTitle($title, $name);
-		return array(
-			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->getArticleID() != 0?true:false
-		);
-	}
-	/*static*/ function makeTalkUrlDetails ( $name, $urlaction='' ) {
-		$title = Title::newFromText( $name );
-		$title = $title->getTalkPage();
-		$this->checkTitle($title, $name);
-		return array(
-			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->getArticleID() != 0?true:false
-		);
-	}
-	/*static*/ function makeArticleUrlDetails ( $name, $urlaction='' ) {
-		$title = Title::newFromText( $name );
-		$title= $title->getSubjectPage();
-		$this->checkTitle($title, $name);
-		return array(
-			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->getArticleID() != 0?true:false
-		);
-	}
-	/*static*/ function makeI18nUrlDetails ( $name, $urlaction='' ) {
-		$title = Title::newFromText( wfMsgForContent($name) );
 		$this->checkTitle($title, $name);
 		return array(
 			'href' => $title->getLocalURL( $urlaction ),

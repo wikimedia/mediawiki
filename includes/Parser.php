@@ -1108,7 +1108,10 @@ class Parser
 
 		$useLinkPrefixExtension = $wgContLang->linkPrefixExtension();
 
-		$nottalk = !Namespace::isTalk( $this->mTitle->getNamespace() );
+		if( is_null( $this->mTitle ) ) {
+			wfDebugDieBacktrace( 'nooo' );
+		}
+		$nottalk = !$this->mTitle->isTalkPage();
 
 		if ( $useLinkPrefixExtension ) {
 			if ( preg_match( $e2, $s, $m ) ) {
