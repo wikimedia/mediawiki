@@ -23,6 +23,7 @@ Changes from 1.3.5:
 * catch MySQL error 2000 during installation.
 * (bug 704) Removed misleading LocalSettings.sample
 * Fix cross site scripting bugs in SpecialIpblocklist, SpecialEmailuser
+* Fix SQL injection bugs in SpecialMaintenance
 
 
 == Version 1.3.5, 2004-09-30 ==
