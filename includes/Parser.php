@@ -42,10 +42,29 @@ define( "OT_MSG", 3 );
 # to strip HTML comments in addition to regular
 # <XML>-style tags. This should not be anything we
 # may want to use in wikisyntax
-define( "STRIP_COMMENTS", "HTMLCommentStrip" );
+define( 'STRIP_COMMENTS', 'HTMLCommentStrip' );
 
 # prefix for escaping, used in two functions at least
-define( "UNIQ_PREFIX", "NaodW29");
+define( 'UNIQ_PREFIX', 'NaodW29');
+
+
+# Constants needed for external link processing
+
+define( 'URL_PROTOCOLS', 'http|https|ftp|irc|gopher|news|mailto' );
+define( 'HTTP_PROTOCOLS', 'http|https' );
+# Everything except bracket, space, or control characters
+define( 'EXT_LINK_URL_CLASS', '[^]\\x00-\\x20\\x7F]' );
+define( 'INVERSE_EXT_LINK_URL_CLASS', '[\]\\x00-\\x20\\x7F]' );
+# Including space
+define( 'EXT_LINK_TEXT_CLASS', '[^\]\\x00-\\x1F\\x7F]' );
+define( 'EXT_IMAGE_FNAME_CLASS', '[A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]' );
+define( 'EXT_IMAGE_EXTENSIONS', 'gif|png|jpg|jpeg' );
+define( 'EXT_LINK_BRACKETED',  '/\[(('.URL_PROTOCOLS.'):'.EXT_LINK_URL_CLASS.'+) *('.EXT_LINK_TEXT_CLASS.'*?)\]/S' ); 
+define( 'EXT_IMAGE_REGEX', 
+	'/^('.HTTP_PROTOCOLS.':)'.  # Protocol
+	'('.EXT_LINK_URL_CLASS.'+)\\/'.  # Hostname and path
+	'('.EXT_IMAGE_FNAME_CLASS.'+)\\.((?i)'.EXT_IMAGE_EXTENSIONS.')$/S' # Filename
+);
 
 class Parser
 {
@@ -373,7 +392,7 @@ class Parser
 
 	# This method generates the list of subcategories and pages for a category
 	function oldCategoryMagic () {
-		global $wgLang , $wgUser ;
+		global $wgLang ;
 		$fname = 'Parser::oldCategoryMagic';
 
 		if ( !$this->mOptions->getUseCategoryMagic() ) return ; # Doesn't use categories at all
@@ -383,7 +402,7 @@ class Parser
 		$r = "<br style=\"clear:both;\"/>\n";
 
 
-		$sk =& $wgUser->getSkin() ;
+		$sk =& $this->mOptions->getSkin() ;
 
 		$articles = array() ;
 		$children = array() ;
@@ -436,7 +455,7 @@ class Parser
 
 
 	function newCategoryMagic () {
-		global $wgLang , $wgUser ;
+		global $wgLang;
 		if ( !$this->mOptions->getUseCategoryMagic() ) return ; # Doesn't use categories at all
 
 		if ( $this->mTitle->getNamespace() != NS_CATEGORY ) return '' ; # This ain't a category page
@@ -444,7 +463,7 @@ class Parser
 		$r = "<br style=\"clear:both;\"/>\n";
 
 
-		$sk =& $wgUser->getSkin() ;
+		$sk =& $this->mOptions->getSkin() ;
 
 		$articles = array() ;
 		$articles_start_char = array();
@@ -844,7 +863,7 @@ class Parser
 			$text .= $this->categoryMagic () ;
 			$this->categoryMagicDone = true ;
 		}
-
+		
 		wfProfileOut( $fname );
 		return $text;
 	}
@@ -1058,115 +1077,124 @@ class Parser
 		$fname = 'Parser::replaceExternalLinks';
 		wfProfileIn( $fname );
 
-		$text = $this->subReplaceExternalLinks( $text, 'http', true );
-		$text = $this->subReplaceExternalLinks( $text, 'https', true );
-		$text = $this->subReplaceExternalLinks( $text, 'ftp', false );
-		$text = $this->subReplaceExternalLinks( $text, 'irc', false );
-		$text = $this->subReplaceExternalLinks( $text, 'gopher', false );
-		$text = $this->subReplaceExternalLinks( $text, 'news', false );
-		$text = $this->subReplaceExternalLinks( $text, 'mailto', false );
-		wfProfileOut( $fname );
-		return $text;
-	}
-
-	# Replaces all external links with a given protocol
-	/* private */ function subReplaceExternalLinks( $s, $protocol, $autonumber ) {
-		$unique = '4jzAfzB8hNvf4sqyO9Edd8pSmk9rE2in0Tgw3';
-
-		# URL character class
-		$uc = "A-Za-z0-9_\\/~%\\-+&*#?!=()@\\x80-\\xFF";
-
-		# this is  the list of separators that should be ignored if they
-		# are the last character of an URL but that should be included
-		# if they occur within the URL, e.g. "go to www.foo.com, where .."
-		# in this case, the last comma should not become part of the URL,
-		# but in "www.foo.com/123,2342,32.htm" it should.
-		$sep = ",;\.:";
-
-		# File name character class, used for identifying images
-		$fnc = 'A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF';
-		# Recognised image extensions
-		$images = 'gif|png|jpg|jpeg';
-
-		# PLEASE NOTE: The curly braces { } are not part of the regex,
-		# they are interpreted as part of the string (used to tell PHP
-		# that the content of the string should be inserted there).
-
-		# Regexp for matching image URLs
-		$rxImageURL = "/(^|[^\\[])({$protocol}:)([{$uc}{$sep}]+)\\/([{$fnc}]+)\\." .
-		  "((?i){$images})([^{$uc}]|$)/";
-
-		# Regexp for matching non-delimited URLs
-		$rxFreeURL = "/(^|[^\\[])({$protocol}:)(([".$uc."]|[".$sep."][".$uc."])+)([^". $uc . $sep. "]|[".$sep."]|$)/";
 		$sk =& $this->mOptions->getSkin();
+		$linktrail = wfMsg('linktrail');
+		$bits = preg_split( EXT_LINK_BRACKETED, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 
-		# Replace image URLs with <img> tags, but only for HTTP and HTTPS ($autonumber=true)
-		if ( $autonumber and $this->mOptions->getAllowExternalImages() ) {
-			$s = preg_replace( $rxImageURL, '\\1' . $sk->makeImage( "{$unique}:\\3" .
-			  '/\\4.\\5', '\\4.\\5' ) . '\\6', $s );
-		}
+		$s = $this->replaceFreeExternalLinks( array_shift( $bits ) );
 
-		# Replace free URLs
-		$s = preg_replace( $rxFreeURL, '\\1' . "<a href=\"{$unique}:\\3\"" .
-		  $sk->getExternalLinkAttributes( "{$unique}:\\3", wfEscapeHTML(
-		  "{$unique}:\\3" ) ) . ">" . wfEscapeHTML( "{$unique}:\\3" ) .
-		  '</a>\\5', $s );
-		$s = str_replace( $unique, $protocol, $s );
-
-		# Search for external links with square brackets by splitting with explode()
-		$a = explode( "[{$protocol}:", " " . $s );
-		$s = array_shift( $a );
-		$s = substr( $s, 1 );
-
-		# Regexp for URL in square brackets
-		$rxWithoutText = "/^([{$uc}{$sep}]+)\\](.*)\$/sD";
-		# Regexp for URL with link text in square brackets
-		$rxWithText = "/^([{$uc}{$sep}]+)\\s+([^\\]]+)\\](.*)\$/sD";
-
-		# Now interpret each instance of [protocol:
-		foreach ( $a as $line ) {
-
-			# CASE 1: Link in square brackets, e.g.
-			# some text [http://domain.tld/some.link] more text
-			if ( preg_match( $rxWithoutText, $line, $m ) ) {
-				$link = "{$protocol}:{$m[1]}";
-				$trail = $m[2];
-				if ( $autonumber ) { $text = "[" . ++$this->mAutonumber . "]"; }
-				else { $text = wfEscapeHTML( $link ); }
+		$i = 0;
+		while ( $i<count( $bits ) ) {
+			$url = $bits[$i++];
+			$protocol = $bits[$i++];
+			$text = $bits[$i++];
+			$trail = $bits[$i++];
+			
+			# If the link text is an image URL, replace it with an <img> tag
+			# This happened by accident in the original parser, but some people used it extensively
+			$img = $this->maybeMakeImageLink( $text );
+			if ( $img !== false ) {
+				$text = $img;
 			}
 
-			# CASE 2: Link with link text and text directly following it, e.g.
-			# This is a collection of [http://domain.tld/some.link link]s
-			else if ( preg_match( $rxWithText, $line, $m ) ) {
-				$link = "{$protocol}:{$m[1]}";
-				$text = $m[2];
-				$dtrail = '';
-				$trail = $m[3];
-				if ( preg_match( wfMsg ('linktrail'), $trail, $m2 ) ) {
+			$dtrail = '';
+
+			# No link text, e.g. [http://domain.tld/some.link]
+			if ( $text == '' ) {
+				# Autonumber if allowed
+				if ( strpos( HTTP_PROTOCOLS, $protocol ) !== false ) { 
+					$text = "[" . ++$this->mAutonumber . "]";
+				} else { 
+					# Otherwise just use the URL
+					$text = wfEscapeHTML( $url ); 
+				}
+			} else {
+				# Have link text, e.g. [http://domain.tld/some.link text]s
+				# Check for trail
+				if ( preg_match( $linktrail, $trail, $m2 ) ) {
 					$dtrail = $m2[1];
 					$trail = $m2[2];
 				}
 			}
-
-			# CASE 3: Nothing matches, just output the source text
-			else {
-				$s .= "[{$protocol}:" . $line;
-				continue;
-			}
-
-			if( $link == $text || preg_match( "!$protocol://" . preg_quote( $text, "/" ) . "/?$!", $link ) ) {
+			
+			$encUrl = htmlspecialchars( $url );
+			# Bit in parentheses showing the URL for the printable version
+			if( $url == $text || preg_match( "!$protocol://" . preg_quote( $text, "/" ) . "/?$!", $url ) ) {
 				$paren = '';
 			} else {
 				# Expand the URL for printable version
-				$paren = "<span class='urlexpansion'> (<i>" . htmlspecialchars ( $link ) . "</i>)</span>";
+				$paren = "<span class='urlexpansion'> (<i>" . htmlspecialchars ( $encUrl ) . "</i>)</span>";
 			}
-			$la = $sk->getExternalLinkAttributes( $link, $text );
-			$s .= "<a href='{$link}'{$la}>{$text}</a>{$dtrail}{$paren}{$trail}";
 
+			# Process the trail (i.e. everything after this link up until start of the next link),
+			# replacing any non-bracketed links
+			$trail = $this->replaceFreeExternalLinks( $trail );
+
+			$la = $sk->getExternalLinkAttributes( $url, $text );
+			
+			# Use the encoded URL
+			# This means that users can paste URLs directly into the text
+			# Funny characters like &ouml; aren't valid in URLs anyway
+			# This was changed in August 2004
+			$s .= "<a href=\"{$url}\" {$la}>{$text}</a>{$dtrail}{$paren}{$trail}";
 		}
+
+		wfProfileOut( $fname );
 		return $s;
 	}
 
+	# Replace anything that looks like a URL with a link
+	function replaceFreeExternalLinks( $text ) {
+		$bits = preg_split( '/((?:'.URL_PROTOCOLS.'):)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+		$s = array_shift( $bits );
+		$i = 0;
+
+		# Characters which may occur in the middle of a URL, but not at the end
+		$sep = ",;\.:";
+
+		$sk =& $this->mOptions->getSkin();
+
+		while ( $i < count( $bits ) ){
+			$protocol = $bits[$i++];
+			$remainder = $bits[$i++];
+
+			if ( preg_match( '/^('.EXT_LINK_URL_CLASS.'+)(.*)$/s', $remainder, $m ) ) {
+				# Found some characters after the protocol that look promising
+				$url = $protocol . $m[1];
+				$trail = $m[2];
+				
+				# Move characters in $sep to $trail
+				$numSepChars = strspn( strrev( $url ), $sep );
+				if ( $numSepChars ) {
+					$trail = substr( $url, -$numSepChars ) . $trail;
+					$url = substr( $url, 0, -$numSepChars );
+				}
+
+				# Is this an external image?
+				$text = $this->maybeMakeImageLink( $url );
+				if ( $text === false ) {
+					# Not an image, make a link
+					$text = $sk->makeExternalLink( $url, $url );
+				}
+				$s .= $text . $trail;
+			} else {
+				$s .= $protocol . $remainder;
+			}
+		}
+		return $s;
+	}
+				
+	function maybeMakeImageLink( $url ) {
+		$sk =& $this->mOptions->getSkin();
+		$text = false;
+		if ( $this->mOptions->getAllowExternalImages() ) {
+			if ( preg_match( EXT_IMAGE_REGEX, $url ) ) {
+				# Image found
+				$text = $sk->makeImage( $url );
+			}
+		}
+		return $text;
+	}
 
 	/* private */ function replaceInternalLinks( $s ) {
 		global $wgLang, $wgLinkCache;
