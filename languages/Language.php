@@ -799,8 +799,7 @@ so you will not be able to save your edits right now. You may wish to cut-n-past
 the text into a text file and save it for later.",
 "protectedpagewarning" => "WARNING:  This page has been locked so that only
 users with sysop privileges can edit it. Be sure you are following the
-<a href='$wgScript/{{ns:4}}:Protected_page_guidelines'>protected page
-guidelines</a>.",
+[[{{ns:4}}:Protected_page_guidelines|protected page guidelines]].",
 
 # History pages
 #
@@ -887,7 +886,7 @@ border=\"0\" ALT=\"Google\"></A>
 #
 "preferences"	=> "Preferences",
 "prefsnologin" => "Not logged in",
-"prefsnologintext"	=> "You must be <a href=\"{{localurl:Special:Userlogin}}\">logged in</a>
+"prefsnologintext"	=> "You must be [[Special:Userlogin|logged in]]
 to set user preferences.",
 "prefslogintext" => "You are logged in as \"$1\".
 Your internal ID number is $2.
@@ -965,21 +964,23 @@ from server time (UTC).",
 "reupload"		=> "Re-upload",
 "reuploaddesc"	=> "Return to the upload form.",
 "uploadnologin" => "Not logged in",
-"uploadnologintext"	=> "You must be <a href=\"{{localurl:Special:Userlogin}}\">logged in</a>
+"uploadnologintext"	=> "You must be [[Special:Userlogin|logged in]]
 to upload files.",
 "uploadfile"	=> "Upload images, sounds, documents etc.",
 "uploaderror"	=> "Upload error",
 "uploadtext"	=> "<strong>STOP!</strong> Before you upload here,
-make sure to read and follow the <a href=\"{{localurle:Special:Image_use_policy}}\">image use policy</a>.
-<p>If a file with the name you are specifying already
+make sure to read and follow the [[Special:Image_use_policy|image use policy]].
+
+If a file with the name you are specifying already
 exists on the wiki, it'll be replaced without warning.
 So unless you mean to update a file, it's a good idea
 to first check if such a file exists.
-<p>To view or search previously uploaded images,
-go to the <a href=\"{{localurle:Special:Imagelist}}\">list of uploaded images</a>.
-Uploads and deletions are logged on the " .
-"<a href=\"{{localurle:Project:Upload_log}}\">upload log</a>.
-<p>Use the form below to upload new image files for use in
+
+To view or search previously uploaded images,
+go to the [[Special:Imagelist|list of uploaded images]].
+Uploads and deletions are logged on the [[Project:Upload_log|upload log]].
+
+Use the form below to upload new image files for use in
 illustrating your articles.
 On most browsers, you will see a \"Browse...\" button, which will
 bring up your operating system's standard file open dialog.
@@ -1024,7 +1025,7 @@ any copyrights.",
 "largefile"		=> "It is recommended that images not exceed 100k in size.",
 "successfulupload" => "Successful upload",
 "fileuploaded"	=> "File \"$1\" uploaded successfully.
-Please follow this link: ($2) to the description page and fill
+Please follow this link: $2 to the description page and fill
 in information about the file, such as where it came from, when it was
 created and by whom, and anything else you may know about it.",
 "uploadwarning" => "Upload warning",
@@ -1142,8 +1143,8 @@ this list should not be construed as an endorsement.",
 # Email this user
 #
 "mailnologin"	=> "No send address",
-"mailnologintext" => "You must be <a href=\"{{localurl:Special:Userlogin\">logged in</a>
-and have a valid e-mail address in your <a href=\"{{localurl:Special:Preferences}}\">preferences</a>
+"mailnologintext" => "You must be [[Special:Userlogin|logged in]]
+and have a valid e-mail address in your [[Special:Preferences|preferences]]
 to send e-mail to other users.",
 "emailuser"		=> "E-mail this user",
 "emailpage"		=> "E-mail user",
@@ -1171,13 +1172,13 @@ or has chosen not to receive e-mail from other users.",
 "watchlistsub"		=> "(for user \"$1\")",
 "nowatchlist"		=> "You have no items on your watchlist.",
 "watchnologin"		=> "Not logged in",
-"watchnologintext"	=> "You must be <a href=\"{{localurl:Special:Userlogin}}\">logged in</a>
+"watchnologintext"	=> "You must be [[Special:Userlogin|logged in]]
 to modify your watchlist.",
 "addedwatch"		=> "Added to watchlist",
-"addedwatchtext"	=> "The page \"$1\" has been added to your <a href=\"{{localurl:Special:Watchlist}}\">watchlist</a>.
+"addedwatchtext"	=> "The page \"$1\" has been added to your [[Special:Watchlist|watchlist]].
 Future changes to this page and its associated Talk page will be listed there,
-and the page will appear <b>bolded</b> in the <a href=\"{{localurl:Special:Recentchanges}}\">list of recent changes</a> to
-make it easier to pick out.</p>
+and the page will appear '''bolded''' in the [[Special:Recentchanges|list of recent changes]] to
+make it easier to pick out.
 
 <p>If you want to remove the page from your watchlist later, click \"Stop watching\" in the sidebar.",
 "removedwatch"		=> "Removed from watchlist",
@@ -1191,7 +1192,7 @@ make it easier to pick out.</p>
 "watchdetails"		=> "($1 pages watched not counting talk pages;
 $2 total pages edited since cutoff;
 $3...
-<a href='$4'>show and edit complete list</a>.)",
+[$4 show and edit complete list].)",
 "watchmethod-recent"=> "checking recent edits for watched pages",
 "watchmethod-list"	=> "checking watched pages for recent edits",
 "removechecked" 	=> "Remove checked items from watchlist",
@@ -1429,7 +1430,7 @@ proceeding.",
 In those cases, you will have to move or merge the page manually if desired.",
 "movearticle"	=> "Move page",
 "movenologin"	=> "Not logged in",
-"movenologintext" => "You must be a registered user and <a href=\"{{localurl:Special:Userlogin}}\">logged in</a>
+"movenologintext" => "You must be a registered user and [[Special:Userlogin|logged in]]
 to move a page.",
 "newtitle"		=> "To new title",
 "movepagebtn"	=> "Move page",
