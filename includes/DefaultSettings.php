@@ -662,6 +662,10 @@ $wgSquidServersNoPurge = array();
 /** Maximum number of titles to purge in any one client operation */
 $wgMaxSquidPurgeTitles = 400;
 
+/** HTCP multicast purging */
+$wgHTCPPort = 4827;
+$wgHTCPMulticastTTL = 1;
+# $wgHTCPMulticastAddress = "224.0.0.85";
 
 # Cookie settings:
 #
