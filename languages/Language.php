@@ -916,11 +916,14 @@ All times shown are server time (UTC).
 "imagereverted" => "Revert to earlier version was successful.",
 "rollback"		=> "Roll back edits",
 "rollbacklink"	=> "rollback",
-"cantrollback"	=> "Can't revert edit; last contributor is only author of this article.",
-"alreadyrolled"	=> "<b>Can't roll back last edit by $1; someone else has edited or
-rolled back the article already.</b>
+"rollbackfailed" => "Rollback failed",
+"cantrollback"	=> "Cannot revert edit; last contributor is only author of this article.",
+"alreadyrolled"	=> "Cannot rollback last edit of [[$1]]
+by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the article already. 
 
-<p>Last edit was by $2, marked \"<i>$3</i>\".",
+Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]). ",
+#   only shown if there is an edit comment
+"editcomment" => "The edit comment was: \"<i>$1</i>\".", 
 "revertpage"	=> "Reverted to last edit by $1",
 
 # Undelete

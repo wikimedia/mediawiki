@@ -1350,10 +1350,16 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 		
 		$from = str_replace( '_', ' ', wfCleanQueryVar( $from ) );
 		if( $from != $s->cur_user_text ) {
-			$wgOut->addHTML( wfMsg( "alreadyrolled",
+			$wgOut->setPageTitle(wfmsg("rollbackfailed"));
+			$wgOut->addWikiText( wfMsg( "alreadyrolled",
+				htmlspecialchars( $wgTitle->getPrefixedText()),
 				htmlspecialchars( $from ),
-				htmlspecialchars( $s->cur_user_text ),
-				htmlspecialchars( $s->cur_comment ) ) );
+				htmlspecialchars( $s->cur_user_text ) ) );
+			if($s->cur_comment != "") {
+				$wgOut->addHTML(
+					wfMsg("editcomment",
+					htmlspecialchars( $s->cur_comment ) ) );
+				}
 			return;
 		}
 		
@@ -1366,6 +1372,7 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 		$res = wfQuery( $sql );
 		if( wfNumRows( $res ) != 1 ) {
 			# Something wrong
+			$wgOut->setPageTitle(wfMsg("rollbackfailed"));
 			$wgOut->addHTML( wfMsg( "cantrollback" ) );
 			return;
 		}
