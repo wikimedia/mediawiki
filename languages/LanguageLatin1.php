@@ -197,6 +197,11 @@ class LanguageLatin1 {
 		return Language::firstChar( $s );
 	}
 	
+	function initEncoding() {
+		# Not sure if this should be handled
+		$this->lang->initEncoding();
+	}
+	
 	function setAltEncoding() {
 		# Not sure if this should be handled
 		$this->lang->setAltEncoding();
