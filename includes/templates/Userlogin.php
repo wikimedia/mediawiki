@@ -55,22 +55,22 @@ class UserloginTemplate extends QuickTemplate {
 			<td><?php $this->msg('newusersonly') ?></td>
 		</tr>
 		<tr>
-			<td align='right'><?php $this->msg('youremail') ?>:</td>
-			<td align='left'>
-				<input tabindex='7' type='text' name="wpEmail"
-					value="<?php $this->text('email') ?>" size='20' />
-			</td>
-		<?php if( $this->data['userealname'] ) { ?>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td align='right'><?php $this->msg('yourrealname') ?>:</td>
-			<td align='left'>
-				<input tabindex='8' type='text' name="wpRealName" 
-					value="<?php $this->text('realname') ?>" size='20' />
-			</td>
-		<?php } ?>
-
+			<?php if( $this->data['useemail'] ) { ?>
+				<td align='right'><?php $this->msg('youremail') ?>:</td>
+				<td align='left'>
+					<input tabindex='7' type='text' name="wpEmail"
+						value="<?php $this->text('email') ?>" size='20' />
+				</td>
+			<?php } ?>
+			<?php if( $this->data['userealname'] ) { ?>
+				</tr>
+				<tr>
+					<td align='right'><?php $this->msg('yourrealname') ?>:</td>
+					<td align='left'>
+						<input tabindex='8' type='text' name="wpRealName" 
+							value="<?php $this->text('realname') ?>" size='20' />
+					</td>
+			<?php } ?>
 			<td align='left'>
 				<input tabindex='9' type='submit' name="wpCreateaccount"
 					value="<?php $this->msg('createaccount') ?>" />
@@ -81,6 +81,7 @@ class UserloginTemplate extends QuickTemplate {
 			</td>
 		</tr>
 	<?php } ?>
+	<?php if( $this->data['useemail'] ) { ?>
 		<tr>
 			<td colspan='3'>&nbsp;</td>
 		</tr>
@@ -93,6 +94,7 @@ class UserloginTemplate extends QuickTemplate {
 				</p>
 			</td>
 		</tr>
+	<?php } ?>
 	</table>
 </form>
 <?php

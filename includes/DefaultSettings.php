@@ -158,6 +158,20 @@ $wgEmergencyContact = 'wikiadmin@' . $wgServerName;
  */
 $wgPasswordSender	= 'Wikipedia Mail <apache@' . $wgServerName . '>';
 
+/**
+ * Set to true to enable the e-mail basic features:
+ * Password reminders, etc. If sending e-mail on your
+ * server doesn't work, you might want to disable this.
+ * @global bool $wgEnableEmail
+ */
+$wgEnableEmail = true;
+
+/**
+ * Set to true to enable user-to-user e-mail.
+ * This can potentially be abused, as it's hard to track.
+ * @global bool $wgEnableUserEmail
+ */
+$wgEnableUserEmail = true;
 
 /**
  * SMTP Mode

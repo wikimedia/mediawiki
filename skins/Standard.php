@@ -251,10 +251,8 @@ class SkinStandard extends Skin {
 				if($id||$ip) {
 					$s .= $sep . $this->userContribsLink();
 				}
-				if ( 0 != $wgUser->getID() ) {
-					if($id) { # can only email real users
-						$s .= $sep . $this->emailUserLink();
-					}
+				if( $this->showEmailUser( $id ) ) {
+					$s .= $sep . $this->emailUserLink();
 				}
 			}
 			$s .= "\n<br /><hr class='sep' />";

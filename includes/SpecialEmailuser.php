@@ -11,8 +11,13 @@
 require_once('UserMailer.php');
 
 function wfSpecialEmailuser( $par ) {
-	global $wgUser, $wgOut, $wgRequest;
+	global $wgUser, $wgOut, $wgRequest, $wgEnableEmail, $wgEnableUserEmail;
 
+	if( !( $wgEnableEmail && $wgEnableUserEmail ) ) {
+		$wgOut->errorpage( "nosuchspecialpage", "nospecialpagetext" );
+		return;
+	}
+	
 	if ( 0 == $wgUser->getID() ||
 		( false === strpos( $wgUser->getEmail(), "@" ) ) ) {
 		$wgOut->errorpage( "mailnologin", "mailnologintext" );
