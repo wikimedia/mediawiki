@@ -270,3 +270,18 @@ CREATE TABLE logging (
 CREATE INDEX log_type_time ON logging USING btree (log_type, log_timestamp);
 CREATE INDEX log_user_time ON logging USING btree (log_user, log_timestamp);
 CREATE INDEX log_page_time ON logging USING btree (log_namespace, log_title, log_timestamp);
+
+
+-- HACK HACK HACK
+CREATE TABLE "group" (
+  group_id integer PRIMARY KEY,
+  group_name varchar(50) NOT NULL,
+  group_description varchar(255) NOT NULL
+);
+
+-- Relation table between user and groups
+CREATE TABLE user_groups (
+	user_id integer NOT NULL,
+	group_id integer NOT NULL,
+	PRIMARY KEY  (user_id,group_id)
+);
