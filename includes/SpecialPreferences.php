@@ -302,6 +302,7 @@ class PreferencesForm {
 		$tbr = wfMsg( "rows" );
 		$tbc = wfMsg( "columns" );
 		$ltz = wfMsg( "localtime" );
+		$timezone = wfMsg( "timezonelegend" );
 		$tzt = wfMsg( "timezonetext" );
 		$tzo = wfMsg( "timezoneoffset" );
 		$tzGuess = wfMsg( "guesstimezone" );
@@ -430,7 +431,7 @@ class PreferencesForm {
 	</fieldset>
 	
 	<fieldset>
-		<legend>$dateFormat</legend>
+		<legend>$timezone</legend>
 		<div><b>$tzServerTime:</b> $nowserver</div>
 		<div><b>$ltz:</b> $nowlocal</div>
 		<div><label>$tzo*: <input type='text' name=\"wpHourDiff\" value=\"{$this->mHourDiff}\" size='6' /></label></div>
