@@ -164,6 +164,7 @@ function wfUtf8Sequence($codepoint) {
 	return "&#$codepoint;";
 }
 
+# Converts numeric character entities to UTF-8
 function wfMungeToUtf8($string) {
 	global $wgInputEncoding; # This is debatable
 	#$string = iconv($wgInputEncoding, "UTF-8", $string);
@@ -716,11 +717,10 @@ function wfSetVar( &$dest, $source )
 }
 
 # Sets dest to a reference to source and returns the original dest
+# Pity that doesn't work in PHP
 function &wfSetRef( &$dest, &$source )
 {
-	$temp =& $dest;
-	$dest =& $source;
-	return $temp;
+	die( "You can't rebind a variable in the caller's scope" );
 }
 
 # This function takes two arrays as input, and returns a CGI-style string, e.g.
@@ -762,7 +762,7 @@ function wfEscapeShellArg( )
 			$first = false;
 		}
 
-		if (substr(php_uname(), 0, 7) == 'Windows') {
+		if ( isWindows() ) {
 			$retVal .= '"' . str_replace( '"','\"', $arg ) . '"';
 		} else {
 			$retVal .= escapeshellarg( $arg );
@@ -933,6 +933,16 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 function wfArrayLookup( $a, $b )
 {
 	return array_flip( array_intersect( array_flip( $a ), array_keys( $b ) ) ); 
+}
+
+# Since Windows is so different to any of the other popular OSes, it seems appropriate
+# to have a simple way to test for its presence
+function wfIsWindows() {
+	if (substr(php_uname(), 0, 7) == 'Windows') {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 ?>
