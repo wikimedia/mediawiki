@@ -82,7 +82,7 @@ global $wgUseOldExistenceCheck, $wgEnablePersistentLC, $wgMasterWaitTimeout;
 
 global $wgFullyInitialised;
 
-$wgIP = wfGetIP();
+if ( is_callable ( "wfGetIP" ) ) $wgIP = wfGetIP();
 $wgRequest = new WebRequest();
 
 # Useful debug output
