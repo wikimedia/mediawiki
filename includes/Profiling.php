@@ -170,7 +170,7 @@ class Profiler
 		$dbw =& wfGetDB( DB_MASTER );
 		$profiling = $dbw->tableName( 'profiling' );
 
-		$name = $dbw->strencode( $name );
+		$name = substr($dbw->strencode( $name ),0,255);
 		$sql = "UPDATE $profiling ".
 			"SET pf_count=pf_count+{$eventCount}, ".
 			"pf_time=pf_time + {$timeSum} ".
