@@ -179,13 +179,13 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "portal-url"		=> "{{ns:4}}:Portal",
 "about"			=> "Über",
 "aboutsite"      => "Über {{SITENAME}}",
-"aboutpage"		=> "{$wgMetaNamespace}:Über_{{SITENAME}}",
+"aboutpage"		=> "Project:Über_{{SITENAME}}",
 "article" => "Artikel",
 "help"			=> "Hilfe",
-"helppage"		=> "{$wgMetaNamespace}:Hilfe",
+"helppage"		=> "Project:Hilfe",
 "wikititlesuffix"       => "{{SITENAME}}",
 "bugreports"	=> "Kontakt",
-"bugreportspage" => "{$wgMetaNamespace}:Kontakt",
+"bugreportspage" => "Project:Kontakt",
 "sitesupport"   => "Spenden",
 "faq"			=> "FAQ",
 "faqpage"		=> "{{SITENAME}}:Häufig_gestellte_Fragen",
@@ -245,7 +245,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "printsubtitle" => "(Von {{SERVER}})",
 "gnunote" => "Diese Seite ist unter der <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a> verfügbar.",
 "protectedpage" => "Geschützte Seite",
-"administrators" => "{$wgMetaNamespace}:Administratoren",
+"administrators" => "Project:Administratoren",
 "sysoptitle"	=> "Sysop-Zugang notwendig",
 "sysoptext"		=> "Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit \"Sysop\"-Status durchgeführt werden. Siehe auch $1.",
 "developertitle" => "Entwickler-Zugang notwendig",
@@ -468,7 +468,7 @@ speichern können. Sichern Sie sich den Text und versuchen Sie die Änderungen
 später einzuspielen.",
 "protectedpagewarning" => "WARNUNG: Diese Seite wurde gesperrt, so dass sie nur
 Benutzer mit Sysop-Rechten bearbeitet werden kann. Beachten Sie bitte die
-<a href='$wgScriptPath/{$wgMetaNamespace}:Geschützte Seiten'>Regeln für geschützte Seiten</a>.",
+<a href='$wgScriptPath/Project:Geschützte Seiten'>Regeln für geschützte Seiten</a>.",
 
 # History pages
 #
@@ -610,8 +610,8 @@ Ihre interne ID-Nummer ist $2.",
 "recentchanges" => "Letzte Änderungen",
 "recentchangestext" => "
 Diese Seite wird beim Laden automatisch aktualisiert. Angezeigt werden Seiten, die zuletzt bearbeitet wurden, sowie die Zeit und der Name des Autors.<br>
-Falls Sie neu bei {{SITENAME}} sind, lesen Sie bitte die [[{$wgMetaNamespace}:Willkommen|Willkommensseite]] und [[{$wgMetaNamespace}:Erste Schritte|Erste Schritte]].<br>
-Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte keine Texte hinzu, die dem [[{$wgMetaNamespace}:Urheberrechte beachten|Urheberrecht]] anderer unterliegen. Dies könnte dem Projekt sonst schweren Schaden zufügen.",
+Falls Sie neu bei {{SITENAME}} sind, lesen Sie bitte die [[Project:Willkommen|Willkommensseite]] und [[Project:Erste Schritte|Erste Schritte]].<br>
+Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte keine Texte hinzu, die dem [[Project:Urheberrechte beachten|Urheberrecht]] anderer unterliegen. Dies könnte dem Projekt sonst schweren Schaden zufügen.",
 "rcloaderr"		=> "Lade Letzte Änderungen",
 "rcnote"		=> "Hier sind die letzten <b>$1</b> Änderungen der letzten <b>$2</b> Tage. (<b>N</b> - Neuer Artikel; <b>M</b> - kleine Änderung)",
 "rcnotefrom"	=> "Dies sind die Änderungen seit <b>$2</b> (bis zu <b>$1</b> gezeigt).",
@@ -673,7 +673,7 @@ Alle Zeiten sind UTC.
 "filestatus" => "Copyright-Status",
 "filesource" => "Quelle",
 "affirmation"	=> "Hiermit bestätige ich, dass ich das Copyright dieser Datei habe, und diese hiermit unter $1 veröffentliche, bzw. dass die Datei 'Public Domain' ist.",
-"copyrightpage" => "{$wgMetaNamespace}:Copyright",
+"copyrightpage" => "Project:Copyright",
 "copyrightpagename" => "{{SITENAME}} copyright",
 "uploadedfiles"	=> "Hochgeladene Dateien",
 "noaffirmation" => "Sie müssen bestätigen, dass das Hochladen der Datei keine Copyright-Verletzung darstellt.",
@@ -736,7 +736,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "maintnancepagetext"	=> "Diese Seite enthält mehrere praktische Funktionen zur täglichen Wartung von {{SITENAME}}. Einige dieser Funktionen können die Datenbank stark beanspruchen, also bitte nicht nach jeder Änderung neu laden ;-)",
 "maintenancebacklink"	=> "Zurück zur Wartungsseite",
 "disambiguations"	=> "Begriffsklärungsseiten",
-"disambiguationspage"	=> "{$wgMetaNamespace}:Begriffsklärung",
+"disambiguationspage"	=> "Project:Begriffsklärung",
 "disambiguationstext"	=> "Die folgenden Artikel verweisen auf eine <i>Seite zur Begriffsklärung</i>. Sie sollten statt dessen auf die eigentlich gemeinte Seite verweisen.<br>Eine Seite wird als Begriffsklärungsseite behandelt, wenn $1 auf sie verweist.<br>Verweise aus Namensräumen werden hier <i>nicht</i> aufgelistet.",
 "doubleredirects"	=> "Doppelte Redirects",
 "doubleredirectstext"	=> "<b>Achtung:</b> Diese Liste kann \"falsche Positive\" enthalten. Das ist dann der Fall, wenn ein Redirect außer dem Redirect-Verweis noch weiteren Text mit anderen Verweisen enthält. Letztere sollten dann entfernt werden.",
@@ -855,7 +855,7 @@ $3... <a href='$4'>komplette Liste zeigen und bearbeiten</a>.)",
 "historywarning" => "WARNUNG: Die Seite die Sie zu löschen gedenken hat
 eine Versionsgeschichte: ",
 "confirmdeletetext" => "Sie sind dabei, einen Artikel oder ein Bild und alle älteren Versionen permanent aus der Datenbank zu löschen.
-Bitte bestätigen Sie Ihre Absicht, dies zu tun, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit unseren [[{$wgMetaNamespace}:Leitlinien|Leitlinien]] handeln.",
+Bitte bestätigen Sie Ihre Absicht, dies zu tun, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit unseren [[Project:Leitlinien|Leitlinien]] handeln.",
 "confirmcheck"	=> "Ja, ich möchte den Löschvorgang fortsetzen.",
 "actioncomplete" => "Aktion beendet",
 "deletedtext"	=> "\"$1\" wurde gelöscht.
@@ -926,7 +926,7 @@ dieses Artikels erscheinen.",
 #
 "blockip"		=> "IP-Adresse blockieren",
 "blockiptext"	=> "Benutzen Sie das Formular, um eine IP-Adresse zu blockieren.
-Dies sollte nur erfolgen, um Vandalismus zu verhindern, in Übereinstimmung mit unseren [[{$wgMetaNamespace}:Leitlinien|Leitlinien]].
+Dies sollte nur erfolgen, um Vandalismus zu verhindern, in Übereinstimmung mit unseren [[Project:Leitlinien|Leitlinien]].
 Bitte tragen Sie den Grund für die Blockade ein.",
 "ipaddress"		=> "IP-Adresse",
 "ipbreason"		=> "Grund",
@@ -1123,7 +1123,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "intl"			=> "InterWikiLinks",
 "version"		=> "Version",
 "protectlogpage"	=> "Seitenschutz-Logbuch",
-"protectlogtext"	=> "Dies ist eine Liste der blockierten Seiten. Siehe [[Wikipedia:Geschützte Seiten]] für mehr Informationen.",
+"protectlogtext"	=> "Dies ist eine Liste der blockierten Seiten. Siehe [[Project:Geschützte Seiten]] für mehr Informationen.",
 "protectedarticle" => "Artikel [[$1]] geschützt",
 "unprotectedarticle" => "Artikel [[$1]] freigegeben",
 "protectsub" =>"(Sperren von \"$1\")",
