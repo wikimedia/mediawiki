@@ -3,7 +3,7 @@
 
 function wfSpecialRandompage()
 {
-	global $wgOut, $wgTitle, $wgArticle, $wgIsMySQL;
+	global $wgOut, $wgTitle, $wgArticle, $wgIsMySQL, $wgExtraRandompageSQL;
 	$fname = "wfSpecialRandompage";
 
 	wfSeedRandom();
@@ -11,9 +11,14 @@ function wfSpecialRandompage()
 	# interpolation and sprintf() can muck up with locale-specific decimal separator
 	$randstr = number_format( $rand, 12, ".", "" );
 	$use_index=$wgIsMySQL?"USE INDEX (cur_random)":"";
+	if ( $wgExtraRandompageSQL ) {
+		$extra = "AND ($wgExtraRandompageSQL)";
+	} else {
+		$extra = '';
+	}
 	$sqlget = "SELECT cur_id,cur_title
 		FROM cur $use_index
-		WHERE cur_namespace=0 AND cur_is_redirect=0
+		WHERE cur_namespace=0 AND cur_is_redirect=0 $extra
 		AND cur_random>$randstr
 		ORDER BY cur_random
 		LIMIT 1";

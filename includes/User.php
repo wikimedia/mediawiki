@@ -722,7 +722,7 @@ class User {
 	}
 
 	function isNewbie() {
-		return $this->mId > User::getMaxID() * 0.99 && !$this->isSysop() || $this->getID() == 0;
+		return $this->mId > User::getMaxID() * 0.99 && !$this->isSysop() && !$this->isBot() || $this->getID() == 0;
 	}
 }
 

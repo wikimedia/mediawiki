@@ -1440,7 +1440,7 @@ class Skin {
 	# Pass a title object, not a title string
 	function makeLinkObj( &$nt, $text= '', $query = '', $trail = '', $prefix = '' )
 	{
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgLoadBalancer;
 		if ( $nt->isExternal() ) {
 			$u = $nt->getFullURL();
 			$link = $nt->getPrefixedURL();
@@ -1467,8 +1467,9 @@ class Skin {
 			} else {
 				$threshold = $wgUser->getOption('stubthreshold') ;
 				if ( $threshold > 0 ) {
-					$res = wfQuery ( "SELECT LENGTH(cur_text) AS x, cur_namespace, cur_is_redirect FROM cur WHERE cur_id='{$aid}'", DB_READ ) ;
-
+				        $wgLoadBalancer->force(-1);
+				        $res = wfQuery ( "SELECT LENGTH(cur_text) AS x, cur_namespace, cur_is_redirect FROM cur WHERE cur_id='{$aid}'", DB_READ ) ;
+					$wgLoadBalancer->force(0);
 					if ( wfNumRows( $res ) > 0 ) {
 						$s = wfFetchObject( $res );
 						$size = $s->x;

@@ -432,7 +432,9 @@ $wgAllowUserJs = true;
 # Allow user Cascading Style Sheets (CSS)?
 $wgAllowUserCss = true;
 
+# Filter for Special:Randompage. Part of a WHERE clause
+$wgExtraRandompageSQL = false;
+
 # Allow the "info" action, very inefficient at the moment
 $wgAllowPageInfo = false;
-
 ?>

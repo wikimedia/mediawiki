@@ -307,7 +307,7 @@ class OutputPage {
 	{
 		global $wgUser, $wgLang, $wgDebugComments, $wgCookieExpiration;
 		global $wgInputEncoding, $wgOutputEncoding, $wgLanguageCode;
-		global $wgDebugRedirects, $wgMimeType;
+		global $wgDebugRedirects, $wgMimeType, $wgProfiling;
 		if( $this->mDoNothing ){
 			return;
 		}
@@ -339,6 +339,7 @@ class OutputPage {
 			} else {
 				header( "Location: {$this->mRedirect}" );
 			}
+			if ( isset( $wgProfiler ) ) { wfDebug( $wgProfiler->getOutput() ); }
 			return;
 		}
 

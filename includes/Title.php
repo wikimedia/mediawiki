@@ -244,7 +244,8 @@ class Title {
 	function getInterwikiLink( $key )
 	{	
 		global $wgMemc, $wgDBname, $wgInterwikiExpiry, $wgTitleInterwikiCache;
-
+                global $wgLoadBalancer;
+                
 		$k = "$wgDBname:interwiki:$key";
 
 		if( array_key_exists( $k, $wgTitleInterwikiCache ) )
@@ -257,9 +258,11 @@ class Title {
 			return $s->iw_url;
 		}
 		$dkey = wfStrencode( $key );
-		$query = "SELECT iw_url,iw_local FROM interwiki WHERE iw_prefix='$dkey'";
+		$wgLoadBalancer->force(-1);
+                $query = "SELECT iw_url,iw_local FROM interwiki WHERE iw_prefix='$dkey'";
 		$res = wfQuery( $query, DB_READ, "Title::getInterwikiLink" );
-		if(!$res) return "";
+		$wgLoadBalancer->force(0);
+                if(!$res) return "";
 		
 		$s = wfFetchObject( $res );
 		if(!$s) {

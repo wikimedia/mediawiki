@@ -3,9 +3,9 @@ require_once( "LinksUpdate.php" );
 
 function wfSpecialMovepage()
 {
-	global $wgUser, $wgOut, $wgRequest, $action;
+	global $wgUser, $wgOut, $wgRequest, $action, $wgOnlySysopMayMove;
 
-	if ( 0 == $wgUser->getID() or $wgUser->isBlocked() ) {
+	if ( 0 == $wgUser->getID() or $wgUser->isBlocked() or ($wgOnlySysopMayMove and $wgUser->isNewbie())) {
 		$wgOut->errorpage( "movenologin", "movenologintext" );
 		return;
 	}

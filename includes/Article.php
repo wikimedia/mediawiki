@@ -313,7 +313,7 @@ class Article {
 	# Load the revision (including cur_text) into this object
 	function loadContent( $noredir = false )
 	{
-		global $wgOut, $wgMwRedir, $wgRequest, $wgIsPg;
+		global $wgOut, $wgMwRedir, $wgRequest, $wgIsPg, $wgLoadBalancer;
 
 		# Query variables :P
 		$oldid = $wgRequest->getVal( 'oldid' );
@@ -397,11 +397,13 @@ class Article {
 			$this->mTitle->mRestrictionsLoaded = true;
 			wfFreeResult( $res );
 		} else { # oldid set, retrieve historical version
+			$wgLoadBalancer->force(-1);
 			$oldtable=$wgIsPg?'"old"':'old';
 			$sql = "SELECT old_namespace,old_title,old_text,old_timestamp,".
 				"old_user,old_user_text,old_comment,old_flags FROM old ".
 			  	"WHERE old_id={$oldid}";
 			$res = wfQuery( $sql, DB_READ, $fname );
+			$wgLoadBalancer->force(0);
 			if ( 0 == wfNumRows( $res ) ) {
 				return;
 			}
