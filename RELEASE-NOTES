@@ -2,12 +2,86 @@
 
 == Version 1.3.0pre-alpha ==
 
-Various things will be happening for 1.3.0...
-* More advanced parser
-* New schema...
-* Magic goodies!
-* Included PHPTAL 0.7.0 from http://phptal.sourceforge.net/
-* stuff
+Look & layout:
+* New default layout 'MonoBook'
+* Print stylesheet now built-in to every page
+* More or less correct XHTML 1.0 (served as text/html by default)
+
+Wiki features:
+* Image captions can now include links and other basic formatting
+* Templates have been expanded with parameters, and separated from
+  the MediaWiki: localization scheme.
+* Categories more or less work
+
+Editing:
+* Automatic merging of edit conflicts that don't directly interfere
+* Edit summaries can now include basic formatting and links
+
+Metadata and output:
+* Linked Creative Commons copyright metadata (optional)
+* RSS 2.0 feeds for Recent Changes, New Pages
+
+Optional modules:
+* WikiHiero hieroglyphic module can be added (separate download)
+* TeX now has an experimental MathML output mode (incomplete)
+
+Installation and upgrading:
+* The old install.php and update.php have been removed. In-place
+  installation introduced in 1.2 is now the standard installation
+  and upgrade method, see INSTALL for directions.
+
+Database:
+* The links table has been changed to use a cur_id for l_from.
+  The link tables must be converted on upgrade, which may entail
+  some downtime.
+
+Code and compatibility:
+* Should now run clean with error reporting set to E_ALL.
+* register_globals hack from 1.2 has been replaced with safer code
+* Bundled PHPTAL 0.7.0 from http://phptal.sourceforge.net/
+
+=== Caveats ===
+
+Some output, particularly involving user-supplied inline HTML, may not
+produce 100% valid or well-formed XHTML output. Testers are welcome to
+set $wgMimeType = "application/xhtml+xml"; to test for remaining problem
+cases, but this is not recommended on live sites. (This must be set for
+MathML to display properly in Mozilla.)
+
+
+== Version 1.2.4, 2004-04-13 ==
+
+* Fixed edit toolbar in Mozilla
+* Diff links in Contributions for 'top' edits
+* Fixed Nostalgia skin drop-down for register_globals off
+* Backported optional open proxy blocker
+* Backported $wgWhitelistRead
+* $wgCapitalLinks option to force full case sensitivity in titles
+* Cleaned up error handling when can't talk to database
+* Disabled unsafe command-line installer (remove the "die()" call to use)
+
+== Version 1.2.3, 2004-04-02 ==
+
+* Fixed an in-place install bug with non-root MySQL user
+* Fixed history diff checkboxes bug on titles with ampersands
+* Fixed printable link bug on special pages with parameters
+* Fixed bug that broke IP blocking w/o memcached
+* Turns off E_NOTICE warnings if PHP settings have them on
+  (you can grope in and turn this off if you like to debug)
+
+== Version 1.2.2, 2004-03-28 ==
+
+* Fixed an upgrade bug introduced in 1.2.1.
+* Disabled $wgUseCategoryMagic, which feature is incomplete broken
+
+== Version 1.2.1, 2004-03-27 ==
+
+Installation, compatibility, security fixlets:
+* Detect use of PHP as CGI and disable index.php/Title URLs
+* Try to auto-create math tmp & output directories if not present
+* Disable Asksql in default install ($wgAllowSysopQueries)
+* Better handling of get_magic_quotes_gpc (apostrophe problems)
+* French localisation no longer hard-codes "Wikipedia" name
 
 == Version 1.2.0 ==
 
