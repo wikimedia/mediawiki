@@ -46,17 +46,6 @@ class LanguageEl extends LanguageUtf8 {
 	function fallback8bitEncoding() {
 		return "windows-1253";
 	}
-
-        function getMessage( $key )
-        {
-                global $wgAllMessagesDe;
-                if( isset( $wgAllMessagesDe[$key] ) ) {
-                        return $wgAllMessagesDe[$key];
-                } else {
-                        return "";
-                }
-        }
-
 }
 
 ?>

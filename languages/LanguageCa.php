@@ -1005,7 +1005,11 @@ class LanguageCa extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesCa;
-		return $wgAllMessagesCa[$key];
+		if( isset( $wgAllMessagesCa[$key] ) ) {
+			return $wgAllMessagesCa[$key];
+		} else {
+			return Language::getMessage( $key );
+		}
 	}
 }
 

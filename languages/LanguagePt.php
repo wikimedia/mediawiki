@@ -1023,7 +1023,11 @@ class LanguagePt extends LanguageUtf8 {
     function getMessage( $key )
     {
         global $wgAllMessagesPt;
-        return $wgAllMessagesPt[$key];
+		if( isset( $wgAllMessagesPt[$key] ) ) {
+			return $wgAllMessagesPt[$key];
+		} else {
+			return Language::getMessage( $key );
+		}
     }
 }
 
