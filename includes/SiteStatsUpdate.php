@@ -46,5 +46,4 @@ class SiteStatsUpdate {
 		$db->query( $sql, 'SiteStatsUpdate::doUpdate' );
 	}
 }
-
 ?>
