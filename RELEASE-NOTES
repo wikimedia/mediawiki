@@ -332,7 +332,7 @@ If upgrading from an older release, see the file UPGRADE;
 * Run Unicode normalization on all input fields
 * Fix translation for allpagesformtext2 in LanguageZh_cn and LanguageZh_tw
 * Block image revert without valid login
-
+* (bug 1446) stub Bambara (bm) language file using French messages
 
 === Caveats ===
 
