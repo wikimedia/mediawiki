@@ -1015,6 +1015,11 @@ class Parser
 				}
 			}
 
+			# Replace &amp; from obsolete syntax with &.
+			# All HTML entities will be escaped by makeExternalLink()
+			# or maybeMakeImageLink()
+			$url = str_replace( '&amp;', '&', $url );
+
 			# Process the trail (i.e. everything after this link up until start of the next link),
 			# replacing any non-bracketed links
 			$trail = $this->replaceFreeExternalLinks( $trail );
