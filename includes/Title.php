@@ -898,6 +898,14 @@ class Title {
 			$this->moveToNewTitle( $nt, $newid );
 		}
 
+
+		# Fixing category links (those without piped 'alternate' names) to be sorted under the new title
+		
+		$dbw =& wfGetDB( DB_MASTER );
+		$sql = "UPDATE categorylinks SET cl_sortkey=\"" . $nt->getPrefixedText() . "\" WHERE cl_from=\"" .$this->getArticleID() . "\" AND cl_sortkey=\"" . $this->getPrefixedText() . "\"" ;
+		$dbw->query( $sql, "SpecialMovepage::doSubmit" );
+		
+
 		# Update watchlists
 		
 		$oldnamespace = $this->getNamespace() & ~1;
