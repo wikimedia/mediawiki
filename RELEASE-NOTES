@@ -170,6 +170,8 @@ If upgrading from an older release, see the file UPGRADING.
 * Fix CSS classes on minor, new, unpatrolled markers in enhanced RC
 * Set MySQL 4 boolean search back to 'and' mode by default
 * (bug 1193) Fix move-only page protection mode
+* Fix zhtable Makefile to include the traditional manual table
+
 
 === Caveats ===
 

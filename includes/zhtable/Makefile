@@ -121,7 +121,7 @@ tradphrases_4.t: alltradphrases.t
 	mv t tradphrases_4.t
 
 tradphrases.t: tradphrases.manual tradphrases_2.t tradphrases_3.t tradphrases_4.t t2s_1tomany.t
-	cat  tradphrases_2.t tradphrases_3.t tradphrases_4.t |sort | uniq > tradphrases.t tradphrases.manual
+	cat  tradphrases_2.t tradphrases_3.t tradphrases_4.t tradphrases.manual |sort | uniq > tradphrases.t
 	for i in `$(SED) 's/"\(.\).*/\1/' t2s_1tomany.t ` ; do $(GREP) $$i tradphrases.t ; done | $(DIFF) tradphrases.t - | $(GREP) '<' | $(SED) 's/< //' > t
 	mv t tradphrases.t
 
