@@ -14,8 +14,8 @@ class ShortPagesPage extends QueryPage {
 
 	function getSQL( $offset, $limit ) {
 		return "SELECT cur_title, LENGTH(cur_text) AS len FROM cur " .
-		  "WHERE cur_namespace=0 AND cur_is_redirect=0 ORDER BY " .
-		  "LENGTH(cur_text) LIMIT {$offset}, {$limit}";
+		  "WHERE cur_namespace=0 AND cur_is_redirect=0 ORDER BY len " .
+		  "LIMIT {$offset}, {$limit}";
 	}
 
 	function formatResult( $skin, $result ) {
