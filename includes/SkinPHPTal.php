@@ -71,6 +71,8 @@
 			$this->loggedin = $wgUser->getID() != 0;
 			$this->username = $wgUser->getName();
 			$this->userpage = $wgLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
+			$this->userpageurl = $this->makeUrl($this->userpage);
+			$this->userpageurle = htmlspecialchars($this->$this->userpageurl);
 			$this->titletxt = $wgTitle->getPrefixedText();
 			
 			$this->initPage( $out );
@@ -124,6 +126,8 @@
 			$tpl->set( "langname", $wgLang->getLanguageName( $wgLanguageCode ) );
 			$tpl->setRef( "username", &$this->username );
 			$tpl->setRef( "userpage", &$this->userpage);
+			$tpl->setRef( "userpageurl", &$this->userpageurl);
+			$tpl->setRef( "userpageurle", &$this->userpageurle);
 			if( $wgUser->getNewtalk() ) {
 				$usertitle = Title::newFromText( $this->userpage );
 				$usertalktitle = $usertitle->getTalkPage();
@@ -208,7 +212,7 @@
 			if ($this->loggedin) {
 				$personal_urls['userpage'] = array(
 					'text' => $this->username,
-					'href' => $this->makeUrl($this->userpage),
+					'href' => &$this->userpageurl,
 					'ttip' => wfMsg('tooltip-userpage'),
 					'akey' => wfMsg('accesskey-userpage')
 				);
