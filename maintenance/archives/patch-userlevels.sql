@@ -5,15 +5,15 @@
 
 -- Hold group name and description
 CREATE TABLE `group` (
-  `group_id` int(5) unsigned NOT NULL auto_increment,
-  `group_name` varchar(50) NOT NULL default '',
-  `group_description` varchar(255) NOT NULL default '',
-  PRIMARY KEY  (`group_id`)
-)
+  group_id int(5) unsigned NOT NULL auto_increment,
+  group_name varchar(50) NOT NULL default '',
+  group_description varchar(255) NOT NULL default '',
+  PRIMARY KEY  (group_id)
+);
 
 -- Relation table between user and groups
-CREATE TABLE `user_groups` (
-	user_id` int(5) unsigned NOT NULL default '0',
-	group_id` int(5) unsigned NOT NULL default '0',
-	PRIMARY KEY  (`user_id`,`group_id`)
-)
+CREATE TABLE user_groups (
+	user_id int(5) unsigned NOT NULL default '0',
+	group_id int(5) unsigned NOT NULL default '0',
+	PRIMARY KEY  (user_id,group_id)
+);
