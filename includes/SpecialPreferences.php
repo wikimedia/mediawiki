@@ -303,9 +303,9 @@ value=\"$i\"$checked> {$qbs[$i]}</label><br>\n" );
 	# Only count up to count($wgValidSkinNames) rather than 
 	# count($skins), to allow global disabling of experimental 
 	# skins.
-	for ( $i = 0; $i < count( $wgValidSkinNames ); ++$i ) {
+	foreach ($wgValidSkinNames as $i => $skinname ) {
 		if ( $i == $wpSkin ) { 
-			$checked = " checked"; 
+			$checked = ' checked="checked"'; 
 		} else { 
 			$checked = ""; 
 		}
