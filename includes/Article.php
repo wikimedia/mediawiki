@@ -518,11 +518,11 @@ class Article {
 	 * Get the database which should be used for reads
 	 */
 	function &getDB() {
-		if ( $this->mForUpdate ) {
+		#if ( $this->mForUpdate ) {
 			return wfGetDB( DB_MASTER );
-		} else {
-			return wfGetDB( DB_SLAVE );
-		}
+		#} else {
+		#	return wfGetDB( DB_SLAVE );
+		#}
 	}
 
 	/**
@@ -695,6 +695,7 @@ class Article {
 		$oldid = $this->getOldID();
 		$diff = $wgRequest->getVal( 'diff' );
 		$rcid = $wgRequest->getVal( 'rcid' );
+		$rdfrom = $wgRequest->getVal( 'rdfrom' );
 
 		$wgOut->setArticleFlag( true );
 		$wgOut->setRobotpolicy( 'index,follow' );
@@ -764,6 +765,11 @@ class Article {
 
 				# Can't cache redirects
 				$pcache = false;
+			} elseif ( !empty( $rdfrom ) ) {
+				$sk = $wgUser->getSkin();
+				$redir = $sk->makeExternalLink( $rdfrom, $rdfrom );
+				$s = wfMsg( 'redirectedfrom', $redir );
+				$wgOut->setSubtitle( $s );
 			}
 
 			# wrap user css and user js in pre and don't parse
@@ -991,7 +997,7 @@ class Article {
 	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' ) {
 		global $wgOut, $wgUser;
 		global $wgDBtransactions, $wgMwRedir;
-		global $wgUseSquid, $wgInternalServer;
+		global $wgUseSquid, $wgInternalServer, $wgPostCommitUpdateList;
 
 		$fname = 'Article::updateArticle';
 		$good = true;
@@ -1120,7 +1126,7 @@ class Article {
 		if ( $wgUseSquid ) {
 			$urls = array_merge( $urls, $this->mTitle->getSquidURLs() );
 			$u = new SquidUpdate( $urls );
-			$u->doUpdate();
+			array_push( $wgPostCommitUpdateList, $u );
 		}
 
 		$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor );
@@ -1149,10 +1155,10 @@ class Article {
 		# Parse the text and replace links with placeholders
 		# Do this outside the locks on the links table
 		# The existence test queries need to be FOR UPDATE
-		$oldUpdate = $wgParser->forUpdate( true );
+		#$oldUpdate = $wgParser->forUpdate( true );
 		$wgOut = new OutputPage();
 		$wgOut->addWikiText( $text );
-		$wgParser->forUpdate( $oldUpdate );
+		#$wgParser->forUpdate( $oldUpdate );
 
 		if ( !$wgUseDumbLinkUpdate ) {
 			# Move the current links back to the second register
@@ -1675,7 +1681,7 @@ class Article {
 	 */
 	function doDeleteArticle( $reason ) {
 		global $wgUser;
-		global  $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer;
+		global  $wgUseSquid, $wgDeferredUpdateList, $wgInternalServer, $wgPostCommitUpdateList;
 
 		$fname = 'Article::doDeleteArticle';
 		wfDebug( $fname."\n" );
@@ -1705,7 +1711,7 @@ class Article {
 			}
 
 			$u = new SquidUpdate( $urls );
-			array_push( $wgDeferredUpdateList, $u );
+			array_push( $wgPostCommitUpdateList, $u );
 
 		}
 
@@ -2204,7 +2210,7 @@ class Article {
 	 */
 
 	function onArticleCreate($title_obj) {
-		global $wgUseSquid, $wgDeferredUpdateList;
+		global $wgUseSquid, $wgPostCommitUpdateList;
 
 		$titles = $title_obj->getBrokenLinksTo();
 
@@ -2215,7 +2221,7 @@ class Article {
 				$urls[] = $linkTitle->getInternalURL();
 			}
 			$u = new SquidUpdate( $urls );
-			array_push( $wgDeferredUpdateList, $u );
+			array_push( $wgPostCommitUpdateList, $u );
 		}
 
 		# Clear persistent link cache
