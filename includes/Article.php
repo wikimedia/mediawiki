@@ -493,8 +493,15 @@ class Article {
 			$sql = "UPDATE recentchanges SET rc_cur_time='{$now}' " .
 			  "WHERE rc_cur_id=" . $this->getID();
 			wfQuery( $sql, DB_WRITE, $fname );
-			
+
+			global $wgEnablePersistentLC;
+			if ( $wgEnablePersistentLC ) {
+				// Purge link cache for this page
+				$pageid=$this->getID();
+				wfQuery("DELETE FROM linkscc WHERE lcc_pageid='{$pageid}'", DB_WRITE);
+			}			
 		}
+
 		if( $wgDBtransactions ) {
 			$sql = "COMMIT";
 			wfQuery( $sql, DB_WRITE );
