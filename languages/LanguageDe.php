@@ -165,22 +165,22 @@ if($wgMetaNamespace === FALSE)
 "mainpagetext"          => "Die Wiki Software wurde erfolgreich installiert.",
 "mainpagedocfooter" => "Siehe die [http://meta.wikipedia.org/wiki/MediaWiki_i18n Dokumentation zur Anpassung der Benutzeroberfläche]
 und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuch] für Hilfe zur Benutzung und Konfiguration.",
-"portal"		=> "Wikipedia-Portal",
+"portal"		=> "{{SITENAME}}-Portal",
 "portal-url"		=> "{{ns:4}}:Portal",
 "about"			=> "Über",
-"aboutwikipedia" => "Über {$wgSitename}",
-"aboutpage"		=> "{$wgMetaNamespace}:Über_{$wgSitename}",
+"aboutwikipedia" => "Über {{SITENAME}}",
+"aboutpage"		=> "Project:Über_{{SITENAME}}",
 "article" => "Artikel",
 "help"			=> "Hilfe",
-"helppage"		=> "{$wgMetaNamespace}:Hilfe",
-"wikititlesuffix"       => "{$wgSitename}",
+"helppage"		=> "Project:Hilfe",
+"wikititlesuffix"       => "{{SITENAME}}",
 "bugreports"	=> "Kontakt",
-"bugreportspage" => "{$wgMetaNamespace}:Kontakt",
+"bugreportspage" => "Project:Kontakt",
 "sitesupport"   => "Spenden",
 "faq"			=> "FAQ",
-"faqpage"		=> "{$wgSitename}:Häufig_gestellte_Fragen",
+"faqpage"		=> "Project:Häufig_gestellte_Fragen",
 "edithelp"		=> "Bearbeitungshilfe",
-"edithelppage"	=> "{$wgSitename}:Editierhilfe",
+"edithelppage"	=> "Project:Editierhilfe",
 "cancel"		=> "Abbruch",
 "qbfind"		=> "Finden",
 "qbbrowse"		=> "Blättern",
@@ -199,7 +199,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "disclaimerpage"		=> "{{ns:4}}:Lizenzbestimmungen",
 "errorpagetitle" => "Fehler",
 "returnto"		=> "Zurück zu $1.",
-"fromwikipedia"	=> "aus {$wgSitename}, der freien Wissensdatenbank",
+"fromwikipedia"	=> "aus {{SITENAME}}, der freien Wissensdatenbank",
 "whatlinkshere"	=> "Was zeigt hierhin",
 "help"			=> "Hilfe",
 "search"		=> "Suche",
@@ -235,7 +235,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "printsubtitle" => "(Von {{SERVER}})",
 "gnunote" => "Diese Seite ist unter der <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a> verfügbar.",
 "protectedpage" => "Geschützte Seite",
-"administrators" => "{$wgMetaNamespace}:Administratoren",
+"administrators" => "Project:Administratoren",
 "sysoptitle"	=> "Sysop-Zugang notwendig",
 "sysoptext"		=> "Dieser Vorgang kann aus Sicherheitsgründen nur von Benutzern mit \"Sysop\"-Status durchgeführt werden. Siehe auch $1.",
 "developertitle" => "Entwickler-Zugang notwendig",
@@ -245,7 +245,7 @@ und das [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Benutzerhandbuc
 "nbytes"		=> "$1 Byte",
 "go"			=> "Los",
 "ok"			=> "OK",
-"sitetitle"		=> "{$wgSitename}",
+"sitetitle"		=> "{{SITENAME}}",
 "sitesubtitle"	=> "Die freie Enzyklopädie",
 "pagetitle"		=> "$1 - {{SITENAME}}",
 "sitesubtitle"	=> "Die freie Wissensdatenbank",
@@ -317,7 +317,7 @@ MySQL meldete den Fehler: \"<tt>$3: $4</tt>\".\n",
 "readonly"		=> "Datenbank ist gesperrt",
 "enterlockreason" => "Bitte geben Sie einen Grund ein, warum die Datenbank
 gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
-"readonlytext"	=> "Die {$wgSitename}-Datenbank ist vorübergehend gesperrt, z.B. für Wartungsarbeiten. Bitte versuchen Sie es später noch einmal.\n",
+"readonlytext"	=> "Die {{SITENAME}}-Datenbank ist vorübergehend gesperrt, z.B. für Wartungsarbeiten. Bitte versuchen Sie es später noch einmal.\n",
 "missingarticle" => "Der Text für den Artikel \"$1\" wurde nicht in der Datenbank gefunden. Das ist wahrscheinlich ein Fehler in der Software. Bitte melden Sie dies einem Administrator, und geben sie den Artikelnamen an.",
 "internalerror" => "Interner Fehler",
 "filecopyerror" => "Konnte Datei \"$1\" nicht nach \"$2\" kopieren.",
@@ -348,7 +348,7 @@ Sie können den Quelltext dieser Seite betrachten und kopieren:",
 #
 "logouttitle"	=> "Benutzer-Abmeldung",
 "logouttext"	=> "Sie sind nun abgemeldet.
-Sie können {$wgSitename} jetzt anonym weiterbenutzen, oder sich unter dem selben oder einem anderen Benutzernamen wieder anmelden.\n",
+Sie können {{SITENAME}} jetzt anonym weiterbenutzen, oder sich unter dem selben oder einem anderen Benutzernamen wieder anmelden.\n",
 
 "welcomecreation" => "<h2>Willkommen, $1!</h2><p>Ihr Benutzerkonto wurde eingerichtet.
 Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
@@ -379,14 +379,14 @@ Vergessen Sie nicht, Ihre Einstellungen anzupassen.",
 "loginerror"	=> "Fehler bei der Anmeldung",
 "noname"		=> "Sie müssen einen Benutzernamen angeben.",
 "loginsuccesstitle" => "Anmeldung erfolgreich",
-"loginsuccess"	=> "Sie sind jetzt als \"$1\" bei {$wgSitename} angemeldet.",
+"loginsuccess"	=> "Sie sind jetzt als \"$1\" bei {{SITENAME}} angemeldet.",
 "nosuchuser"	=> "Der Benutzername \"$1\" existiert nicht.
 Überprüfen Sie die Schreibweise, oder melden Sie sich als neuer Benutzer an.",
 "wrongpassword"	=> "Das Passwort ist falsch. Bitte versuchen Sie es erneut.",
 "mailmypassword" => "Ein neues Passwort schicken",
-"passwordremindertitle" => "{$wgSitename} Passwort",
+"passwordremindertitle" => "{{SITENAME}} Passwort",
 "passwordremindertext" => "Jemand (IP-Adresse $1)
-hat um ein neues Passwort für die Anmeldung bei {$wgSitename} gebeten.
+hat um ein neues Passwort für die Anmeldung bei {{SITENAME}} gebeten.
 Das Passwort für Benutzer \"$2\" lautet nun \"$3\".
 Sie sollten sich jetzt anmelden und Ihr Passwort ändern.",
 "noemail"		=> "Benutzer \"$1\" hat keine E-Mail-Adresse angegeben.",
@@ -450,7 +450,7 @@ Wenn Sie speichern, werden alle neueren Versionen überschrieben.</strong>\n",
 "copyrightwarning" => "
 <b>Bitte <font size='+1'>kopieren Sie keine Webseiten</font>, die nicht Ihre eigenen sind, benutzen Sie <font size='+1'>keine urheberrechtlich geschützten Werke</font> ohne Erlaubnis des Copyright-Inhabers!</b>
 <p>Sie geben uns hiermit ihre Zusage, dass Sie den Text <strong>selbst verfasst</strong> haben, dass der Text Allgemeingut (<strong>public domain</strong>) ist, oder dass der <strong>Copyright-Inhaber</strong> seine <strong>Zustimmung</strong> gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der 'Diskussion:'-Seite darauf hin.
-<p><i>Bitte beachten Sie, dass alle {$wgSitename}-Beiträge automatisch unter der \"GNU Freie Dokumentationslizenz\" stehen. Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
+<p><i>Bitte beachten Sie, dass alle {{SITENAME}}-Beiträge automatisch unter der \"GNU Freie Dokumentationslizenz\" stehen. Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann drücken Sie nicht auf \"Speichern\".</i>",
 "longpagewarning" => "WARNUNG: Diese Seite ist $1KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32KB sind.
 Überlegen Sie bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.",
 "readonlywarning" => "WARNUNG: Die Datenbank wurde während dem Ändern der
@@ -459,7 +459,7 @@ speichern können. Sichern Sie sich den Text und versuchen Sie die Änderungen
 später einzuspielen.",
 "protectedpagewarning" => "WARNUNG: Diese Seite wurde gesperrt, so dass sie nur
 Benutzer mit Sysop-Rechten bearbeitet werden kann. Beachten Sie bitte die 
-<a href='$wgScriptPath/{$wgMetaNamespace}:Geschützte Seiten'>Regeln für geschützte Seiten</a>.",
+<a href='$wgScriptPath/Project:Geschützte Seiten'>Regeln für geschützte Seiten</a>.",
 
 # History pages
 #
@@ -494,9 +494,9 @@ M = Kleine Änderung",
 # Search results
 #
 "searchresults" => "Suchergebnisse",
-"searchhelppage" => "{$wgMetaNamespace}:Suche",
-"searchingwikipedia" => "{$wgSitename} durchsuchen",
-"searchresulttext" => "Für mehr Information über {$wgSitename}, siehe $1.",
+"searchhelppage" => "Project:Suche",
+"searchingwikipedia" => "{{SITENAME}} durchsuchen",
+"searchresulttext" => "Für mehr Information über {{SITENAME}}, siehe $1.",
 "searchquery"	=> "Für die Suchanfrage \"$1\"",
 "badquery"		=> "Falsche Suchanfrage",
 "badquerytext"	=> "Wir konnten Ihre Suchanfrage nicht verarbeiten.
@@ -600,8 +600,8 @@ Ihre interne ID-Nummer ist $2.",
 "recentchanges" => "Letzte Änderungen",
 "recentchangestext" => "
 Diese Seite wird beim Laden automatisch aktualisiert. Angezeigt werden Seiten, die zuletzt bearbeitet wurden, sowie die Zeit und der Name des Autors.<br>
-Falls Sie neu bei {$wgSitename} sind, lesen Sie bitte die [[{$wgMetaNamespace}:Willkommen|Willkommensseite]] und [[{$wgMetaNamespace}:Erste Schritte|Erste Schritte]].<br>
-Wenn Sie möchten, dass {$wgSitename} zu einem Erfolg wird, dann fügen Sie bitte keine Texte hinzu, die dem [[{$wgMetaNamespace}:Urheberrechte beachten|Urheberrecht]] anderer unterliegen. Dies könnte dem Projekt sonst schweren Schaden zufügen.",
+Falls Sie neu bei {{SITENAME}} sind, lesen Sie bitte die [[Project:Willkommen|Willkommensseite]] und [[Project:Erste Schritte|Erste Schritte]].<br>
+Wenn Sie möchten, dass {{SITENAME}} zu einem Erfolg wird, dann fügen Sie bitte keine Texte hinzu, die dem [[Project:Urheberrechte beachten|Urheberrecht]] anderer unterliegen. Dies könnte dem Projekt sonst schweren Schaden zufügen.",
 "rcloaderr"		=> "Lade Letzte Änderungen",
 "rcnote"		=> "Hier sind die letzten <b>$1</b> Änderungen der letzten <b>$2</b> Tage. (<b>N</b> - Neuer Artikel; <b>M</b> - kleine Änderung)",
 "rcnotefrom"	=> "Dies sind die Änderungen seit <b>$2</b> (bis zu <b>$1</b> gezeigt).",
@@ -660,8 +660,8 @@ Alle Zeiten sind UTC.
 "filestatus" => "Copyright-Status",
 "filesource" => "Quelle",
 "affirmation"	=> "Hiermit bestätige ich, dass ich das Copyright dieser Datei habe, und diese hiermit unter $1 veröffentliche, bzw. dass die Datei 'Public Domain' ist.",
-"copyrightpage" => "{$wgMetaNamespace}:Copyright",
-"copyrightpagename" => "{$wgSitename} copyright",
+"copyrightpage" => "Project:Copyright",
+"copyrightpagename" => "{{SITENAME}} copyright",
 "uploadedfiles"	=> "Hochgeladene Dateien",
 "noaffirmation" => "Sie müssen bestätigen, dass das Hochladen der Datei keine Copyright-Verletzung darstellt.",
 "ignorewarning"	=> "Warnung ignorieren und Datei trotzdem speichern.",
@@ -710,7 +710,7 @@ diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.",
 "sitestats"		=> "Seitenstatistik",
 "userstats"		=> "Benutzerstatistik",
 "sitestatstext" => "Es gibt insgesamt <b>$1</b> Seiten in der Datenbank.
-Das schliesst \"Diskussion\"-Seiten, Seiten über {$wgSitename}, extrem kurze Artikel, Weiterleitungen und andere Seiten ein, die nicht als Artikel gelten können.
+Das schliesst \"Diskussion\"-Seiten, Seiten über {{SITENAME}}, extrem kurze Artikel, Weiterleitungen und andere Seiten ein, die nicht als Artikel gelten können.
 Diese ausgenommen, gibt es <b>$2</b> Seiten, die als Artikel gelten können.<p>
 Es wurden insgesamt <b>$3</b>&times; Seiten aufgerufen, und <b>$4</b>&times; Seiten bearbeitet.
 Daraus ergeben sich <b>$5</b> Bearbeitungen pro Seite, und <b>$6</b> Betrachtungen pro Bearbeitung.",
@@ -720,10 +720,10 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 # Maintenance Page
 #
 "maintenance"		=> "Wartungsseite",
-"maintnancepagetext"	=> "Diese Seite enthält mehrere praktische Funktionen zur täglichen Wartung von {$wgSitename}. Einige dieser Funktionen können die Datenbank stark beanspruchen, also bitte nicht nach jeder Änderung neu laden ;-)",
+"maintnancepagetext"	=> "Diese Seite enthält mehrere praktische Funktionen zur täglichen Wartung von {{SITENAME}}. Einige dieser Funktionen können die Datenbank stark beanspruchen, also bitte nicht nach jeder Änderung neu laden ;-)",
 "maintenancebacklink"	=> "Zurück zur Wartungsseite",
 "disambiguations"	=> "Begriffsklärungsseiten",
-"disambiguationspage"	=> "{$wgMetaNamespace}:Begriffsklärung",
+"disambiguationspage"	=> "Project:Begriffsklärung",
 "disambiguationstext"	=> "Die folgenden Artikel verweisen auf eine <i>Seite zur Begriffsklärung</i>. Sie sollten statt dessen auf die eigentlich gemeinte Seite verweisen.<br>Eine Seite wird als Begriffsklärungsseite behandelt, wenn $1 auf sie verweist.<br>Verweise aus Namensräumen werden hier <i>nicht</i> aufgelistet.",
 "doubleredirects"	=> "Doppelte Redirects",
 "doubleredirectstext"	=> "<b>Achtung:</b> Diese Liste kann \"falsche Positive\" enthalten. Das ist dann der Fall, wenn ein Redirect außer dem Redirect-Verweis noch weiteren Text mit anderen Verweisen enthält. Letztere sollten dann entfernt werden.",
@@ -766,7 +766,7 @@ Davon haben <b>$2</b> Administrator-Rechte (siehe $3).",
 "movethispage"	=> "Artikel verschieben",
 "unusedimagestext" => "<p>Bitte beachten Sie, dass andere Wikis möglicherweise einige dieser Bilder benutzen.",
 "booksources"	=> "Buchhandlungen",
-"booksourcetext" => "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben, die Sie interessieren. {$wgSitename} ist mit keinem dieser Anbieter geschäftlich verbunden.",
+"booksourcetext" => "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben, die Sie interessieren. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.",
 "alphaindexline" => "$1 bis $2",
 
 # Email this user
@@ -842,7 +842,7 @@ $3... <a href='$4'>komplette Liste zeigen und bearbeiten</a>.)",
 "historywarning" => "WARNUNG: Die Seite die Sie zu löschen gedenken hat
 eine Versionsgeschichte: ",
 "confirmdeletetext" => "Sie sind dabei, einen Artikel oder ein Bild und alle älteren Versionen permanent aus der Datenbank zu löschen.
-Bitte bestätigen Sie Ihre Absicht, dies zu tun, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit unseren [[{$wgMetaNamespace}:Leitlinien|Leitlinien]] handeln.",
+Bitte bestätigen Sie Ihre Absicht, dies zu tun, dass Sie sich der Konsequenzen bewusst sind, und dass Sie in Übereinstimmung mit unseren [[Project:Leitlinien|Leitlinien]] handeln.",
 "confirmcheck"	=> "Ja, ich möchte den Löschvorgang fortsetzen.",
 "actioncomplete" => "Aktion beendet",
 "deletedtext"	=> "\"$1\" wurde gelöscht.
@@ -913,7 +913,7 @@ dieses Artikels erscheinen.",
 #
 "blockip"		=> "IP-Adresse blockieren",
 "blockiptext"	=> "Benutzen Sie das Formular, um eine IP-Adresse zu blockieren.
-Dies sollte nur erfolgen, um Vandalismus zu verhindern, in Übereinstimmung mit unseren [[{$wgMetaNamespace}:Leitlinien|Leitlinien]].
+Dies sollte nur erfolgen, um Vandalismus zu verhindern, in Übereinstimmung mit unseren [[Project:Leitlinien|Leitlinien]].
 Bitte tragen Sie den Grund für die Blockade ein.",
 "ipaddress"		=> "IP-Adresse",
 "ipbreason"		=> "Grund",
@@ -947,9 +947,9 @@ Bitte tragen Sie den Grund für die Blockade ein.",
 "locknoconfirm" => "Sie haben das Bestätigungsfeld nicht markiert.",
 "lockdbsuccesssub" => "Datenbank wurde erfolgreich gesperrt",
 "unlockdbsuccesssub" => "Datenbank wurde erfolgreich freigegeben",
-"lockdbsuccesstext" => "Die {$wgSitename}-Datenbank wurde gesperrt.
+"lockdbsuccesstext" => "Die {{SITENAME}}-Datenbank wurde gesperrt.
 <br>Bitte geben Sie die Datenbank wieder frei, sobald die Wartung abgeschlossen ist.",
-"unlockdbsuccesstext" => "Die {$wgSitename}-Datenbank wurde freigegeben.",
+"unlockdbsuccesstext" => "Die {{SITENAME}}-Datenbank wurde freigegeben.",
 
 # SQL query
 #
@@ -1110,7 +1110,7 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "intl"			=> "InterWikiLinks",
 "version"		=> "Version",
 "protectlogpage"	=> "Seitenschutz-Logbuch",
-"protectlogtext"	=> "Dies ist eine Liste der blockierten Seiten. Siehe [[Wikipedia:Geschützte Seiten]] für mehr Informationen.",
+"protectlogtext"	=> "Dies ist eine Liste der blockierten Seiten. Siehe [[Project:Geschützte Seiten]] für mehr Informationen.",
 "protectedarticle" => "Artikel [[$1]] geschützt",
 "unprotectedarticle" => "Artikel [[$1]] freigegeben",
 "protectsub" =>"(Sperren von \"$1\")",
@@ -1148,8 +1148,8 @@ Diskussions-Seite nicht, da schon eine mit dem neuen Titel existiert. Bitte glei
 "importhistoryconflict" => "Es existieren bereits ältere Versionen, die mit diesen kollidieren. (Möglicherweise wurde die Seite bereits vorher importiert)",
 "isbn"			=> "ISBN",
 "rfcurl"		=> "http://www.faqs.org/rfcs/rfc$1.html",
-"siteuser" => "{$wgSitename}-Benutzer $1",
-"siteusers" => "{$wgSitename}-Benutzer $1",
+"siteuser" => "{{SITENAME}}-Benutzer $1",
+"siteusers" => "{{SITENAME}}-Benutzer $1",
 'watch' => 'Beobachten',
 'unwatch' => 'nicht mehr beobachten',
 'move' => "verschieben",
