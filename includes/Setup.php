@@ -286,6 +286,7 @@ $wgContLanguageCode = $wgLanguageCode;
 $wgContLangClass = 'Language' . str_replace( '-', '_', ucfirst( $wgContLanguageCode ) );
 
 $wgContLang = setupLangObj( $wgContLangClass );
+$wgContLang->initEncoding();
 
 // set default user option from content language
 if( !$wgUser->mDataLoaded ) {

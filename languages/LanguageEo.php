@@ -1,8 +1,5 @@
 <?php
 require_once("LanguageUtf8.php");
-$wgInputEncoding	= "utf-8";
-$wgOutputEncoding	= "utf-8";
-$wgEditEncoding		= "x";
 
 # See language.doc
 
@@ -1140,13 +1137,20 @@ class LanguageEo extends LanguageUtf8 {
 		return $s;
 	}
 
+	function initEncoding() {
+		global $wgEditEncoding, $wgInputEncoding, $wgOutputEncoding;
+		$wgInputEncoding = "utf-8";
+		$wgOutputEncoding = "utf-8";
+		$wgEditEncoding = "x";
+	}
+
 	function setAltEncoding() {
 		global $wgEditEncoding, $wgInputEncoding, $wgOutputEncoding;
 		$wgInputEncoding = "utf-8";
 		$wgOutputEncoding = "x";
 		$wgEditEncoding = "";
 	}
-
+	
 }
 
 ?>

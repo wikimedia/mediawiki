@@ -2083,6 +2083,14 @@ class Language {
 		return $s[0];
 	}
 
+	function initEncoding() {
+		# Some languages may have an alternate char encoding option
+		# (Esperanto X-coding, Japanese furigana conversion, etc)
+		# If this language is used as the primary content language,
+		# an override to the defaults can be set here on startup.
+		#global $wgInputEncoding, $wgOutputEncoding, $wgEditEncoding;
+	}
+
 	function setAltEncoding() {
 		# Some languages may have an alternate char encoding option
 		# (Esperanto X-coding, Japanese furigana conversion, etc)
