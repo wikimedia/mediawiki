@@ -76,7 +76,7 @@ class QueryPage {
 		if ( $this->isExpensive() ) {
 			$type = wfStrencode( $sname );
 			$recache = $wgRequest->getBool( "recache" );
-			if( $recache ) {
+			if( $recache && !$wgMiserMode)  {
 				# Clear out any old cached data
 				$res = wfQuery( "DELETE FROM querycache WHERE qc_type='$type'", DB_WRITE, $fname );
 
