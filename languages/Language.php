@@ -637,7 +637,7 @@ You should log in and change your password now.",
 "passwordsent"	=> "A new password has been sent to the e-mail address
 registered for \"$1\".
 Please log in again after you receive it.",
-"loginend"		=> "",
+"loginend"		=> "&nbsp;",
 
 # Edit page toolbar
 "bold_sample"=>"Bold text",
@@ -841,7 +841,10 @@ See [[$wgMetaNamespace:User preferences help]] for help deciphering the options.
 "math_unknown_function"	=> "unknown function ",
 "math_lexing_error"	=> "lexing error",
 "math_syntax_error"	=> "syntax error",
-"math_image_error"	=> "PNG conversion failed",
+"math_image_error"	=> "PNG conversion failed; check for correct installation of latex, dvips, gs, and convert",
+"math_bad_tmpdir"	=> "Can't write to or create math temp directory",
+"math_bad_output"	=> "Can't write to or create math output directory",
+"math_notexvc"	=> "Missing texvc executable; please see math/README to configure.",
 "saveprefs"		=> "Save preferences",
 "resetprefs"	=> "Reset preferences",
 "oldpassword"	=> "Old password",
@@ -1381,7 +1384,8 @@ amusement.",
 
 # Thumbnails
 
-"thumbnail-more"      => "Enlarge"
+"thumbnail-more"	=> "Enlarge",
+"missingimage"		=> "<b>Missing image</b><br><i>$1</i>\n"
 
 );
 

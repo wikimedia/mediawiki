@@ -1,13 +1,25 @@
 = MediaWiki release notes =
 
-== Version 1.2.0rc1, 2004-02-27 ==
+== Version 1.2.1, 2004-03-27 ==
 
-This is a RELEASE CANDIDATE for the new production release. It is more or
-less in sync with what is running on Wikipedia right now. There may be
-some interesting bugs, it may eat all your data, and documentation may
-not be up to date. If you use this on a production site, BE CAREFUL.
+Installation, compatibility, security fixlets:
+* Detect use of PHP as CGI and disable index.php/Title URLs
+* Try to auto-create math tmp & output directories if not present
+* Disable Asksql in default install ($wgAllowSysopQueries)
+* Better handling of get_magic_quotes_gpc (apostrophe problems)
+* French localisation no longer hard-codes "Wikipedia" name
+
+== Version 1.2.0, 2004-03-24 ==
+
+This is the new production release; it is more or less in sync with what
+is running on Wikipedia right now. However this software is provided with
+NO WARRANTY of fitness for any purpose; there may be some interesting bugs,
+it may eat all your data, and documentation may not be up to date.
 
 New features in 1.2:
+* In-place web-based installation [experimental!]
+  Note that maintenance functions are not yet
+  available through the web install script.
 * Image resizing/thumbnail generation
 * Stricter upload file extension blacklist and whitelist options
 * More flexible blocking system; time period may be set
@@ -18,22 +30,36 @@ New features in 1.2:
 * Optional compression of old revision text (requires zlib support)
 * Fuzzy title search (experimental, requires memcached)
 * Page rendering cache (experimental)
-* JavaScript editing toolbar (off by default in user preferences)
+* Editing toolbar to demonstrate wiki syntax to newbies
+  (off by default in user preferences)
+* Support for authenticated SMTP outgoing e-mail (experimental)
+* It's now possible to assign sysop accounts from within the wiki.
+  An account with this ability must be labeled with the "bureaucrat"
+  privilege, such as the 'Developer' account created by the install.
 
 Fixes and tweaks:
+* Now works with register_globals off!
 * Should work out of the box on MySQL 3.2.x again. On 4.x set
   $wgEnablePersistentLC = true; to turn on the link cache table
   for a slight rendering speed boost.
+* Should work on PHP 5.0 beta (not thoroughly tested)
+* Works with short tags disabled.
+* rebuildMessages.php can now selectively update new messages, or
+  overwrite everything.
+* Some layout fixes for RTL languages.
+* Now includes arrow icons for enhanced recent changes.
 * Various bug fixes.
-* Other stuff we forgot.
-* Documentation more out of date than ever before!
 
-=== IMPORTANT BEHAVIOR CHANGES: ===
+=== Behavior changes ===
 
-* wiki.phtml and redirect.phtml are now installed as index.php and redirect.php
-  by default. If you are upgrading from an older version, you will have to
-  change $wgScript in LocalSettings.php to point to index.php and
-  redirect.php.
+* wiki.phtml and redirect.phtml are now renamed to index.php and redirect.php
+  The old names are provided too for compatibility, but make sure they don't
+  conflict if you've been putting other files in your wiki.
+* Uploaded filenames are more strictly checked than before. See bits in
+  DefaultSettings.php to tweak this behavior to your needs.
+* Database messages are now enabled by default, so the interface messages can
+  be tweaked through the wiki with a sysop account. Disable this if you
+  don't want the performance hit.
 
 === Database changes ===
 
@@ -43,7 +69,34 @@ An index was added to recentchanges table to speed up Newpages
 Expiration date field has been added to ipblocks table
 (patch-ipb_expiry.sql for manual updaters).
 
+The links tables have slightly stricter indexes. ('links' and
+'brokenlinks' are not changed on existing installations.)
 
+=== Known problems ===
+
+The version 1.1.0 LocalSettings.sample file included the setting
+$wgCategoryMagic = true; this setting is for an experimental
+feature that _does not work correctly_. If you have it left over,
+turn it off or you'll see mysterious problems with vanishing links.
+
+There may be problems with session handling on some systems. Checking
+the "remember my password" box may help as a temporary workaround.
+
+If you receive "Cannot load input file" errors when trying to get
+at the wiki after installation, make the following changes:
+
+  in LocalSettings.php change the line something like this:
+    $wgArticlePath = "/wiki/index.php/$1";
+  to:
+    $wgArticlePath = "/wiki/index.php?title=$1";
+
+  in index.php, remove these lines:
+    if( isset( $_SERVER['PATH_INFO'] ) ) {
+    	$title = substr( $_SERVER['PATH_INFO'], 1 );
+    } else {
+    	$title = $_REQUEST['title'];
+    }
+  
 == Version 1.1.0, 2003-12-08 ==
 
 This is the new production release. Any following 1.1.x releases are expected
