@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 #
 # In general you should not make customizations in these language files
 # directly, but should use the MediaWiki: special namespace to customize
@@ -333,7 +333,7 @@ this</a> (alternative: like this<a href=\"\" class=\"internal\">?</a>).",
 	"ti" => "Tigrinya",		# Tigrinya - FIXME
 	"tk" => "&#1578;&#1585;&#1603;&#1605;&#1606; / &#1058;&#1091;&#1088;&#1082;&#1084;&#1077;&#1085;",	# Turkmen
 	"tl" => "Tagalog",		# Tagalog (Filipino)
-	"tlh" => "tlhIngan-Hol"		# Klingon
+	"tlh" => "tlhIngan-Hol",	# Klingon
 	"tn" => "Setswana",		# Setswana
 	"to" => "Tonga",		# Tonga - FIXME
 	"tp" => "Toki Pona",		# Toki Pona
