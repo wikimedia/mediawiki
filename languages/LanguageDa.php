@@ -1,7 +1,8 @@
 <?php
 
-# NOTE: To turn off "Current Events" in the sidebar,
-# set "currentevents" => "-"
+#--------------------------------------------------------------------------
+# Language-specific text
+#--------------------------------------------------------------------------
 
 # The names of the namespaces can be set here, but the numbers
 # are magical, so don't change or move them!  The Namespace class
@@ -20,8 +21,12 @@
 	7	=> "Billede_diskussion",
 	8	=> "MediaWiki",
 	9	=> "MediaWiki_diskussion",
-	10  => "Template",
-	11  => "Template_talk"
+	10  => "Skabelon",
+	11  => "Skabelon_diskussion",
+	12  => "Hjælp",
+	13  => "Hjælp_diskussion",
+	14  => "Kategori",
+	15  => "Kategori_diskussion"
 
 );
 
@@ -41,11 +46,12 @@
 );
 
 /* private */ $wgMathNamesDa = array(
-	"Vis altid som PNG",
-	"HTML hvis meget simpel ellers PNG",
-	"HTML hvis muligt ellers PNG",
-	"Lad være som TeX (for tekstbrowsere)",
-    "Anbefalet til moderne browsere"
+	MW_MATH_PNG => "Vis altid som PNG",
+	MW_MATH_SIMPLE => "HTML hvis meget simpel ellers PNG",
+	MW_MATH_HTML => "HTML hvis muligt ellers PNG",
+	MW_MATH_SOURCE => "Lad være som TeX (for tekstbrowsere)",
+    MW_MATH_MODERN => "Anbefalet til moderne browsere",
+	MW_MATH_MATHML => "MathML hvis muligt",
 );
 
 /* private */ $wgDateFormatsDa = array(
@@ -120,7 +126,7 @@
 
 	"Lonelypages"	=> "Forældreløse artikler",
 	"Unusedimages"	=> "Forældreløse filer",
-#	"Popularpages"	=> "Populære artikler",
+	"Popularpages"	=> "Populære artikler",
 	"Wantedpages"	=> "Mest ønskede artikler",
 	"Shortpages"	=> "Korte artikler",
 	"Longpages"		=> "Lange artikler",
@@ -139,7 +145,7 @@
 	"Recentchangeslinked" => "",
 	"Movepage"		=> "",
 	"Booksources"	=> "Eksterne bogkilder",
-#	"Categories"	=> "Sidekategorier",
+	"Categories"	=> "Kategorier",
 	"Export"	=> "Eksportér sider i XML format",
 	"Version"	=> "Vis MediaWiki version",
 );
@@ -155,6 +161,23 @@
 	"Lockdb"		=> "Skrivebeskyt databasen",
 	"Unlockdb"		=> "Gendan skriveadgangen til databasen",
 );
+
+#-------------------------------------------------------------------
+# Default messages
+#-------------------------------------------------------------------
+# Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
+# hyphen (-). If you need more characters, you may be able to change
+# the regex in MagicWord::initRegex
+
+# NOTE: To turn off "Current Events" in the sidebar,
+# set "currentevents" => ""
+
+# NOTE: To turn off "Disclaimers" in the title links,
+# set "disclaimers" => ""
+
+# NOTE: To turn off "Community portal" in the title links,
+# set "portal" => ""
+
 
 /* private */ $wgAllMessagesDa = array(
 
