@@ -789,12 +789,11 @@ cl_sortkey" ;
 		$text = $this->doAllQuotes( $text );
 		// $text = $this->doExponent( $text );
 		$text = $this->replaceExternalLinks( $text );
+		$text = $this->doMagicLinks( $text );
 		$text = $this->replaceInternalLinks ( $text );
 		$text = $this->replaceInternalLinks ( $text );
 		//$text = $this->doTokenizedParser ( $text );
-		$text = $this->doTableStuff ( $text ) ;
-		$text = $this->magicISBN( $text );
-		$text = $this->magicRFC( $text );
+		$text = $this->doTableStuff ( $text );
 		$text = $this->formatHeadings( $text, $isMain );
 		$sk =& $this->mOptions->getSkin();
 		$text = $sk->transformContent( $text );
@@ -842,6 +841,12 @@ cl_sortkey" ;
 		$outtext = substr($outtext, 0,-1);
 		wfProfileOut( $fname );
 		return $outtext;
+	}
+	
+	/* private */ function &doMagicLinks( &$text ) {
+		$text = $this->magicISBN( $text );
+		$text = $this->magicRFC( $text );
+		return $text;
 	}
 
 	/* private */ function doQuotes( $pre, $text, $mode ) {
