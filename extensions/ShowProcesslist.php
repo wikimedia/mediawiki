@@ -4,7 +4,7 @@ $wgExtensionFunctions[] = "wfShowProcesslist";
 
 function wfShowProcesslist() {
 
-require_once( 'SpecialPage.php' );
+require_once( 'includes/SpecialPage.php' );
 
 class ShowProcesslistPage extends UnlistedSpecialPage
 {
