@@ -421,7 +421,11 @@ class Parser
 			fclose($pipes[1]);
 			$return_value = proc_close($process);
 		}
-		return preg_replace("/(^.*<body[^>]*>|<\\/body[^>]*>.*$)/s", '', $cleansource);
+		if( $cleansource == '') {
+			return $text;
+		} else {
+			return preg_replace("/(^.*<body[^>]*>|<\\/body[^>]*>.*$)/s", '', $cleansource);
+		}
 
 	}
 
