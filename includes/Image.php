@@ -671,6 +671,7 @@ function wfImageArchiveDir( $fname , $subdir='archive', $shared=false ) {
  */
 function wfGetHashPath ( $dbkey, $fromSharedDirectory = false ) {
 	global $wgHashedSharedUploadDirectory, $wgSharedUploadDirectory;
+	global $wgHashedUploadDirectory;
 	
 	$ishashed = $fromSharedDirectory ? $wgHashedSharedUploadDirectory :
 	                                   $wgHashedUploadDirectory;
