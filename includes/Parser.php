@@ -96,8 +96,8 @@ class Parser
 		$fixtags = array(
 			"/<hr *>/i" => '<hr/>',
 			"/<br *>/i" => '<br/>',
-			"/<center *>/i"=>'<p style="text-align:center;">',
-			"/<\\/center *>/i" => '</p>',
+			"/<center *>/i"=>'<div style="text-align:center;">',
+			"/<\\/center *>/i" => '</div>',
 			# Clean up spare ampersands; note that we probably ought to be
 			# more careful about named entities.
 			'/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/' => '&amp;'
