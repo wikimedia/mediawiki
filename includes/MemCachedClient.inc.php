@@ -19,7 +19,7 @@
 /**
  * version string
  */
-define("MC_VERSION", "1.0.9");
+define("MC_VERSION", "1.0.10");
 /**
  * int, buffer size used for sending and receiving
  * data from sockets
@@ -51,7 +51,7 @@ define("MC_ERR_LOADITEM_BYTES", 1012);	// _load_items bytes read larger than byt
  * @author Ryan Gilfether <ryan@gilfether.com>
  * @package MemCachedClient
  * @access public
- * @version 1.0.7
+ * @version 1.0.10
  */
 class MemCachedClient
 {
@@ -90,6 +90,22 @@ class MemCachedClient
      * @var string
      */
     var $errstr;
+    /**
+     * size of val to force compression; 0 turns off; defaults 1
+     * @ var int
+     */
+    var $compress = 1;
+    /**
+     * temp flag to turn compression on/off; defaults on
+     * @ var int
+     */
+    var $comp_active = 1;
+
+    /**
+     * array that contains parsed out buckets
+     * @ var array
+     */
+    var $bucket;
 
 
     /**
@@ -116,6 +132,7 @@ class MemCachedClient
 		{
 			$this->set_servers($options["servers"]);
 			$this->debug = $options["debug"];
+			$this->compress = $options["compress"];
 			$this->cache_sock = array();
 		}
 
@@ -550,6 +567,23 @@ class MemCachedClient
 	}
 
 
+	/**
+ 	*	temporarily sets compression on or off
+ 	*	turning it off, and then back on will result in the compression threshold going
+ 	*	back to the original setting from $options
+ 	*	@param int $setting setting of compression (0=off|1=on)
+ 	*/
+
+ 	function set_compression($setting=1) {
+ 		if ($setting != 0) {
+ 			$this->comp_active = 1;
+ 		} else {
+ 			$this->comp_active = 0;
+ 		}
+ 	}
+
+
+
 	/*
 	 * PRIVATE FUNCTIONS
 	 */
@@ -637,8 +671,6 @@ class MemCachedClient
 	 */
 	function get_sock($key)
 	{
-		$buckets = 0;
-
 		if(!$this->active)
 		{
 			$this->errno = MC_ERR_NOT_ACTIVE;
@@ -652,9 +684,9 @@ class MemCachedClient
 
 		$hv = is_array($key) ? intval($key[0]) : $this->_hashfunc($key);
 
-		if(!$buckets)
+		if(!$this->buckets)
 		{
-			$bu = $buckets = array();
+			$bu = $this->buckets = array();
 
 			foreach($this->servers as $v)
 			{
@@ -667,14 +699,14 @@ class MemCachedClient
 					$bu[] = $v;
 			}
 
-			$buckets = $bu;
+			$this->buckets = $bu;
 		}
 
 		$real_key = is_array($key) ? $key[1] : $key;
 		$tries = 0;
 		while($tries < 20)
 		{
-			$host = @$buckets[$hv % count($buckets)];
+			$host = @$this->buckets[$hv % count($this->buckets)];
 			$sock = $this->sock_to_host($host);
 
 			if(is_resource($sock))
@@ -783,7 +815,6 @@ class MemCachedClient
 		return trim($retval);
 	}
 
-
 	/**
 	 * sends the command to the server
 	 * Possible errors set are:
@@ -835,6 +866,17 @@ class MemCachedClient
 		{
 			$val = serialize($val);
 			$flags |= 1;
+		}
+
+		if (($this->compress_active) && ($this->compress > 0) && (strlen($val) > $this->compress)) {
+			$this->_debug("_set(): compressing data. size in:".strlen($val));
+			$cval=gzcompress($val);
+			$this->_debug("_set(): done compressing data. size out:".strlen($cval));
+			if ((strlen($cval) < strlen($val)) && (strlen($val) - strlen($cval) > 2048)){
+				$flags |= 2;
+				$val=$cval;
+			}
+			unset($cval);
 		}
 
 		$len = strlen($val);
@@ -1034,6 +1076,8 @@ class MemCachedClient
 
 						if(strlen($val[$sk]) != $len_array[$sk])
 							continue;
+						if(@$flags_array[$sk] & 2)
+							$val[$sk] = gzuncompress($val[$sk]);
 
 						if(@$flags_array[$sk] & 1)
 							$val[$sk] = unserialize($val[$sk]);
@@ -1078,12 +1122,7 @@ class MemCachedClient
 	 */
 	function _hashfunc($num)
 	{
-		$hash = 0;
-
-		foreach(preg_split('//', $num, -1, PREG_SPLIT_NO_EMPTY) as $v)
-		{
-			$hash = $hash * 33 + ord($v);
-		}
+		$hash = sprintf("%u",crc32($num));
 
 		return $hash;
 	}

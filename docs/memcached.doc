@@ -72,7 +72,7 @@ usage evenly), make its entry a subarray:
 
 == PHP client for memcached ==
 
-As of this writing, MediaWiki includes version 1.0.8 of the PHP
+As of this writing, MediaWiki includes version 1.0.10 of the PHP
 memcached client by Ryan Gilfether <hotrodder@rocketmail.com>.
 You'll find some documentation for it in the 'php-memcached'
 subdirectory under the present one.
@@ -88,15 +88,23 @@ disable itself fairly smoothly.
 == Keys used ==
 
 User:
-	key: $wgDBname:user:user_id:$sId
-	ex: wikidb:user:user_id:51
+	key: $wgDBname:user:id:$sId
+	ex: wikidb:user:id:51
 	stores: instance of class User
 	set in: User::loadFromSession()
-	cleared by: User::saveSettings()
+	cleared by: User::saveSettings(), UserTalkUpdate::doUpdate()
+	
+Newtalk:
+	key: $wgDBname:newtalk:ip:$ip
+	ex: wikidb:newtalk:ip:123.45.67.89
+	stores: integer, 0 or 1
+	set in: User::loadFromDatabase()
+	cleared by: User::saveSettings() # ?
+	expiry set to 30 minutes
 
 LinkCache:
-	key: $wgDBname:linkcache:title:$title
-	ex: wikidb:linkcache:title:Wikipedia:Welcome,_Newcomers!
+	key: $wgDBname:lc:title:$title
+	ex: wikidb:lc:title:Wikipedia:Welcome,_Newcomers!
 	stores: cur_id of page, or 0 if page does not exist
 	set in: LinkCache::addLink()
 	cleared by: LinkCache::clearBadLink()
