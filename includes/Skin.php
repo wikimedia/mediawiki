@@ -1733,7 +1733,7 @@ class Skin {
 		    		'<img src="'.$wgUploadPath.'/magnify-clip.png" ' .
 				'width="26" height="24" align="'.$magnifyalign.'" alt="'.$more.'" /> </a>';
 		}
-		$s .= '  <p'.$textalign.'>'.$label."</p></div>\n</div>";
+		$s .= '  <div'.$textalign.'>'.$label."</div></div>\n</div>";
 		return $s;
 	}
 
