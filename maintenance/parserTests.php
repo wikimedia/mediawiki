@@ -84,6 +84,18 @@ class ParserTest {
 			$n++;
 			if( preg_match( '/^!!\s*(\w+)/', $line, $matches ) ) {
 				$section = strtolower( $matches[1] );
+				if( $section == 'endarticle') {
+					if( !isset( $data['text'] ) ) {
+						die( "'endarticle' without 'text' at line $n\n" );
+					}
+					if( !isset( $data['article'] ) ) {
+						die( "'endarticle' without 'article' at line $n\n" );
+					}
+					$this->addArticle(rtrim($data['article']), rtrim($data['text']));
+					$data = array();
+					$section = null;
+					continue;
+				}
 				if( $section == 'end' ) {
 					if  (isset ($data['disabled'])) {
 						# disabled test
@@ -100,10 +112,14 @@ class ParserTest {
 					if( !isset( $data['result'] ) ) {
 						die( "'end' without 'result' at line $n\n" );
 					}
+					if( !isset( $data['options'] ) ) {
+						$data['options'] = '';
+					}
 					if( $this->runTest(
 						rtrim( $data['test'] ),
 						rtrim( $data['input'] ),
-						rtrim( $data['result'] ) ) ) {
+						rtrim( $data['result'] ),
+						rtrim( $data['options'] ) ) ) {
 						$success++;
 					}
 					$total++;
@@ -136,24 +152,57 @@ class ParserTest {
 	 * @param string $result Result to output
 	 * @return bool
 	 */
-	function runTest( $desc, $input, $result ) {
+	function runTest( $desc, $input, $result, $opts ) {
 		print "Running test $desc... ";
 
 		$this->setupGlobals();
 		
+		# This is ugly, but we need a way to modify the database
+		# without breaking anything. Currently it isn't possible
+		# to roll back transactions, which might help with this.
+		# -- wtm
+		static $setupDB = false;
+		if (!$setupDB && $GLOBALS['wgDBprefix'] === 'parsertest') {
+			$db =& wfGetDB( DB_MASTER );
+			if (0) {
+				# XXX CREATE TABLE ... LIKE requires MySQL 4.1
+				$tables = array('cur', 'interwiki', 'brokenlinks', 'recentchanges');
+				foreach ($tables as $tbl) {
+					$db->query('CREATE TEMPORARY TABLE ' . $GLOBALS['wgDBprefix'] . "$tbl LIKE $tbl");
+				}
+			}
+			else {
+				# HACK, sorry
+				dbsource( 'maintenance/parserTests.sql', $db );
+			}
+			$setupDB = true;
+		}
+
 		$user =& new User();
 		$options =& ParserOptions::newFromUser( $user );
 		$parser =& new Parser();
 		$title =& Title::makeTitle( NS_MAIN, 'Parser_test' );
 
-		$output =& $parser->parse( $input, $title, $options );
-		
-		$html = $output->getText();
-		# $languageLinks = $output->getLanguageLinks();
-		# $categoryLinks = $output->getCategoryLinks();
+		if (preg_match('/pst/i', $opts)) {
+			$out = $parser->preSaveTransform( $input, $title, $user, $options );
+		}
+		else if (preg_match('/msg/i', $opts)) {
+			$out = $parser->transformMsg( $input, $options );
+		}
+		else {
+			$output =& $parser->parse( $input, $title, $options );
+			$out = $output->getText();
 
-		$op = new OutputPage();
-		$op->replaceLinkHolders($html);
+			$op = new OutputPage();
+			$op->replaceLinkHolders($out);
+
+			#if (preg_match('/ill/i', $opts)) {
+			#	$out .= $output->getLanguageLinks();
+			#}
+			#if (preg_match('/cat/i', $opts)) {
+			#	$out .= $output->getCategoryLinks();
+			#}
+		}
 
 		global $wgUseTidy;
 		if ($wgUseTidy) {
@@ -166,10 +215,10 @@ class ParserTest {
 		
 		$this->teardownGlobals();
 		
-		if( rtrim($result) === rtrim($html) ) {
+		if( rtrim($result) === rtrim($out) ) {
 			return $this->showSuccess( $desc );
 		} else {
-			return $this->showFailure( $desc, $result, $html );
+			return $this->showFailure( $desc, $result, $out );
 		}
 	}
 	
@@ -189,6 +238,7 @@ class ParserTest {
 			'wgLanguageCode' => 'en',
 			'wgUseLatin1' => false,
 			'wgLang' => new LanguageUtf8(),
+			'wgDBprefix' => 'parsertest',
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
@@ -314,6 +364,19 @@ class ParserTest {
 			array( $this->termColor( 34 ) . '$1' . $this->termReset(),
 			       $this->termColor( 31 ) . '$1' . $this->termReset() ),
 			$text );
+	}
+
+	/**
+	 * Insert a temporary test article
+	 * @param $name string the title, including any prefix
+	 * @param $text string the article text
+	 * @static
+	 * @access private
+	 */
+	function addArticle($name, $text) {
+		$title = Title::newFromText( $name );
+		$art = new Article($title);
+		$art->insertNewArticle($text, '', false, false );
 	}
 }
 
