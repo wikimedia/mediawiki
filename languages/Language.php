@@ -2364,7 +2364,9 @@ class Language {
 	 * 
 	 * See LanguageGu.php for the Gujarati implementation and
 	 * LanguageIs.php for the , => . and . => , implementation.
-	 *
+	 * 
+	 * @todo check if it's viable to use localeconv() for the decimal
+	 *       seperator thing.
 	 * @access public
 	 * @param mixed $number the string to be formatted, should be an integer or
 	 *        a floating point number. 
