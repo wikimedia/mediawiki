@@ -23,6 +23,13 @@ function wfProfileClose()
 	$wgProfiler->close();
 }
 
+if( !function_exists( 'memory_get_usage' ) ) {
+	# Old PHP or --enable-memory-limit not compiled in
+	function memory_get_usage() {
+		return 0;
+	}
+}
+
 class Profiler
 {
 	var $mStack = array(), $mWorkStack = array(), $mCollated = array();
@@ -42,11 +49,12 @@ class Profiler
 		if ( $wgDebugFunctionEntry && function_exists( "wfDebug" ) ) {
 			wfDebug( str_repeat( " ", count( $this->mWorkStack ) ) . "Entering $functionname\n" );
 		}
-		array_push( $this->mWorkStack, array($functionname, count( $this->mWorkStack ), microtime() ) );
+		array_push( $this->mWorkStack, array($functionname, count( $this->mWorkStack ), microtime(), memory_get_usage() ) );
 	}
 
-	function profileOut( $functionname) 
+	function profileOut( $functionname )
 	{
+		$memory = memory_get_usage();
 		global $wgDebugProfiling, $wgDebugFunctionEntry;
 
 		if ( $wgDebugFunctionEntry && function_exists( "wfDebug" ) ) {
@@ -66,6 +74,7 @@ class Profiler
 				}
 			}
 			array_push( $bit, microtime() );
+			array_push( $bit, $memory );
 			array_push( $this->mStack, $bit );
 		}
 	}
@@ -87,10 +96,10 @@ class Profiler
 		}
 		$this->close();
 		$width = 125;
-		$format = "%-" . ($width - 28) . "s %6d %6.3f %6.3f %6.3f%%\n";
-		$titleFormat = "%-" . ($width - 28) . "s %9s %9s %9s %9s\n";
+		$format = "%-" . ($width - 34) . "s %6d %6.3f %6.3f %6.3f%% %6d\n";
+		$titleFormat = "%-" . ($width - 34) . "s %9s %9s %9s %9s %6s\n";
 		$prof = "\nProfiling data\n";
-		$prof .= sprintf( $titleFormat, "Name", "Calls", "Total", "Each", "%" );
+		$prof .= sprintf( $titleFormat, "Name", "Calls", "Total", "Each", "%", "Mem" );
 		$this->mCollated = array();
 		$this->mCalls = array();
 		
@@ -109,9 +118,11 @@ class Profiler
 			$thislevel = $entry[1];
 			$start = explode( " ", $entry[2]);
 			$start = (float)$start[0] + (float)$start[1];
-			$end = explode( " ", $entry[3]);
+			$end = explode( " ", $entry[4]);
 			$end = (float)$end[0] + (float)$end[1];
 			$elapsed = $end - $start;
+			
+			$memory = $entry[5] - $entry[3];
 			
 			if ( !array_key_exists( $fname, $this->mCollated ) ) {
 				$this->mCollated[$fname] = 0;
@@ -120,6 +131,7 @@ class Profiler
 
 			$this->mCollated[$fname] += $elapsed;
 			$this->mCalls[$fname] ++;
+			$this->mMemory[$fname] += $memory;
 		}
 
 		$total = @$this->mCollated["-total"];
@@ -135,8 +147,9 @@ class Profiler
 			}
 
 			$percent = $total ? 100. * $elapsed / $total : 0;
+			$memory = $this->mMemory[$fname];
 			$prof .= sprintf( $format, $fname, $calls, (float)($elapsed * 1000), 
-					(float)($elapsed * 1000) / $calls, $percent );
+					(float)($elapsed * 1000) / $calls, $percent, $memory );
 
 			global $wgProfileToDatabase;
 			if( $wgProfileToDatabase ) {
