@@ -1130,7 +1130,7 @@ That comes to '''$5''' average edits per page, and '''$6''' views per edit.",
 a direct URL, and so may still be listed here despite being
 in active use.</p>',
 'booksources'	=> 'Book sources',
-'categoriespagetext' => 'The following categories exists in the wiki.',
+'categoriespagetext' => 'The following categories exist in the wiki.',
 'data'	=> 'Data',
 'userlevels' => 'User levels management',
 'grouplevels' => 'Group levels management',
