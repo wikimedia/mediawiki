@@ -90,6 +90,15 @@ class ImageGallery
 			$name = $img->getName();
 			$nt = $img->getTitle();
 
+			// Not an image. Just print the name and skip.
+			if ( $nt->getNamespace() != NS_IMAGE ) {
+				$s .= '<td valign="top" width="150px" style="background-color:#F0F0F0;">' .
+					$nt->getText() . '</td>' .  (($i%4==3) ? "</tr>\n" : '');
+				$i++;
+
+				continue;
+			}
+
 			//TODO
 			//$ul = $sk->makeLink( $wgContLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
 
