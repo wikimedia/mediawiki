@@ -111,6 +111,17 @@ class Title {
 		
 		$t->mDbkeyform = str_replace( " ", "_", $s );
 		if( $t->secureAndSplit() ) {
+
+			# check that lenght of title is < cur_title size
+			$sql = "SHOW COLUMNS FROM cur LIKE \"cur_title\";";
+			$cur_title_object = wfFetchObject(wfQuery( $sql, DB_READ ));
+
+			preg_match( "/\((.*)\)/", $cur_title_object->Type, $cur_title_size);
+
+			if (strlen($t->mDbkeyform) > $cur_title_size[1] ) {
+				return NULL;
+			}
+
 			return $t;
 		} else {
 			return NULL;
@@ -630,7 +641,7 @@ class Title {
 
 		# Initial capital letter
 		if( $this->mInterwiki == "") $t = $wgLang->ucfirst( $r );
-		
+
 		# Fill fields
 		$this->mDbkeyform = $t;
 		$this->mUrlform = wfUrlencode( $t );
