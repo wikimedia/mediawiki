@@ -102,7 +102,7 @@
                 <li><a href="${nav_urls/help/href}"
                   i18n:attributes="title string:tooltip-help|default" 
                   i18n:translate="string:help">Help</a></li>
-                <li><a href="${nav_urls/sitesupport/href}"
+                <li tal:condition="nav_urls/sitesupport/href"><a href="${nav_urls/sitesupport/href}"
                   i18n:attributes="title string:tooltip-sitesupport|default" 
                   i18n:translate="string:sitesupport">Donations</a></li>
               </ul>
