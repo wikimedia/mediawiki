@@ -447,7 +447,24 @@ class UtfNormal {
 				$out .= $map[$c];
 			} else {
 				if( $c >= UTF8_HANGUL_FIRST && $c <= UTF8_HANGUL_LAST ) {
-					$out .= UtfNormal::decomposeHangul( $c );
+					# Decompose a hangul syllable into jamo;
+					# hardcoded for three-byte UTF-8 sequence.
+					# A lookup table would be slightly faster,
+					# but adds a lot of memory & disk needs.
+					#
+					$index = ( (ord( $c{0} ) & 0x0f) << 12
+					         | (ord( $c{1} ) & 0x3f) <<  6
+					         | (ord( $c{2} ) & 0x3f) )
+					       - UNICODE_HANGUL_FIRST;
+					$l = IntVal( $index / UNICODE_HANGUL_NCOUNT );
+					$v = IntVal( ($index % UNICODE_HANGUL_NCOUNT) / UNICODE_HANGUL_TCOUNT);
+					$t = $index % UNICODE_HANGUL_TCOUNT;
+					$out .= "\xe1\x84" . chr( 0x80 + $l ) . "\xe1\x85" . chr( 0xa1 + $v );
+					if( $t >= 25 ) {
+						$out .= "\xe1\x87" . chr( 0x80 + $t - 25 );
+					} elseif( $t ) {
+						$out .= "\xe1\x86" . chr( 0xa7 + $t );
+					}
 				} else {
 					$out .= $c;
 				}
@@ -456,24 +473,6 @@ class UtfNormal {
 		return $out;
 	}
 
-	/**
-	 * Decompose a Hangul syllable character into its constituent jamo.
-	 * @access private
-	 * @param int $c Unicode code point of the character
-	 * @return string a UTF-8 string containing a sequence of jamo
-	 */
-	function decomposeHangul( $c ) {
-		$codepoint = utf8ToCodepoint( $c );
-		$index = $codepoint - UNICODE_HANGUL_FIRST;
-		$l = IntVal( $index / UNICODE_HANGUL_NCOUNT );
-		$v = IntVal( ($index % UNICODE_HANGUL_NCOUNT) / UNICODE_HANGUL_TCOUNT);
-		$t = $index % UNICODE_HANGUL_TCOUNT;
-		$out = codepointToUtf8( $l + UNICODE_HANGUL_LBASE );
-		$out .= codepointToUtf8( $v + UNICODE_HANGUL_VBASE );
-		if( $t ) $out .= codepointToUtf8( $t + UNICODE_HANGUL_TBASE );
-		return $out;
-	}
-	
 	/**
 	 * Sorts combining characters into canonical order. This is the
 	 * final step in creating decomposed normal forms D and KD.
@@ -484,23 +483,15 @@ class UtfNormal {
 	function fastCombiningSort( $string ) {
 		UtfNormal::loadData();
 		global $utfCombiningClass;
-		$replacedCount = 1;
-		while( $replacedCount > 0 ) {
-			$replacedCount = 0;
-			$len = strlen( $string );
-			$out = '';
-			$lastClass = -1;
-			$lastChar = '';
-			for( $i = 0; $i < $len; $i++ ) {
-				$c = $string{$i};
-				$n = ord( $c );
-				if( $n < 0x80 ) {
-					# No combining characters in ASCII.
-					$out .= $lastChar;
-					$lastChar = $c;
-					$lastClass = 0;
-					continue;
-				} elseif( $n >= 0xf0 ) {
+		$len = strlen( $string );
+		$out = '';
+		$combiners = array();
+		$lastClass = -1;
+		for( $i = 0; $i < $len; $i++ ) {
+			$c = $string{$i};
+			$n = ord( $c );
+			if( $n >= 0x80 ) {
+				if( $n >= 0xf0 ) {
 					$c = substr( $string, $i, 4 );
 					$i += 3;
 				} elseif( $n >= 0xe0 ) {
@@ -510,31 +501,25 @@ class UtfNormal {
 					$c = substr( $string, $i, 2 );
 					$i++;
 				}
-				$class = 0;
-				if( $lastClass == -1 ) {
-					# First one
-					$lastChar = $c;
-					$class = isset( $utfCombiningClass[$c] ) ? $utfCombiningClass[$c] : 0;
-					$lastClass = $class;
+				if( isset( $utfCombiningClass[$c] ) ) {
+					$lastClass = $utfCombiningClass[$c];
+					@$combiners[$lastClass] .= $c;
 					continue;
 				}
-				if( isset( $utfCombiningClass[$c] ) ) {
-					$class = $utfCombiningClass[$c];
-					if( $lastClass > $class ) {
-						# Swap -- put this one on the stack
-						$out .= $c;
-						$replacedCount++;
-						continue;
-					}
-				}
-				$out .= $lastChar;
-				$lastChar = $c;
-				$lastClass = $class;
 			}
-			$out .= $lastChar;
-			$string = $out;
+			if( $lastClass ) {
+				ksort( $combiners );
+				$out .= implode( '', $combiners );
+				$combiners = array();
+			}
+			$out .= $c;
+			$lastClass = 0;
 		}
-		return $string;
+		if( $lastClass ) {
+			ksort( $combiners );
+			$out .= implode( '', $combiners );
+		}
+		return $out;
 	}
 
 	/**
@@ -601,25 +586,52 @@ class UtfNormal {
 				}
 				if( $n >= $x1 && $n <= $x2 ) {
 					# WARNING: Hangul code is painfully slow.
+					# I apologize for this ugly, ugly code; however
+					# performance is even more teh suck if we call
+					# out to nice clean functions. Lookup tables are
+					# marginally faster, but require a lot of space.
+					#
 					if( $c >= UTF8_HANGUL_VBASE &&
 						$c <= UTF8_HANGUL_VEND &&
 						$startChar >= UTF8_HANGUL_LBASE &&
 						$startChar <= UTF8_HANGUL_LEND ) {
 						#
-						$lIndex = utf8ToCodepoint( $startChar ) - UNICODE_HANGUL_LBASE;
-						$vIndex = utf8ToCodepoint( $c ) - UNICODE_HANGUL_VBASE;
+						#$lIndex = utf8ToCodepoint( $startChar ) - UNICODE_HANGUL_LBASE;
+						#$vIndex = utf8ToCodepoint( $c ) - UNICODE_HANGUL_VBASE;
+						$lIndex = ord( $startChar{2} ) - 0x80;
+						$vIndex = ord( $c{2}         ) - 0xa1;
+
 						$hangulPoint = UNICODE_HANGUL_FIRST +
 							UNICODE_HANGUL_TCOUNT *
 							(UNICODE_HANGUL_VCOUNT * $lIndex + $vIndex);
-						$startChar = codepointToUtf8( $hangulPoint );
+						
+						# Hardcode the limited-range UTF-8 conversion:
+						$startChar = chr( $hangulPoint >> 12 & 0x0f | 0xe0 ) .
+									 chr( $hangulPoint >>  6 & 0x3f | 0x80 ) .
+									 chr( $hangulPoint       & 0x3f | 0x80 );
 						continue;
 					} elseif( $c >= UTF8_HANGUL_TBASE &&
 							  $c <= UTF8_HANGUL_TEND &&
 							  $startChar >= UTF8_HANGUL_FIRST &&
 							  $startChar <= UTF8_HANGUL_LAST ) {
-						$tIndex = utf8ToCodepoint( $c ) - UNICODE_HANGUL_TBASE;
-						$hangulPoint = utf8ToCodepoint( $startChar ) + $tIndex;
-						$startChar = codepointToUtf8( $hangulPoint );
+						# $tIndex = utf8ToCodepoint( $c ) - UNICODE_HANGUL_TBASE;
+						$tIndex = ord( $c{2} ) - 0xa7;
+						if( $tIndex < 0 ) $tIndex = ord( $c{2} ) - 0x80 + (0x11c0 - 0x11a7);
+						
+						# Increment the code point by $tIndex, without
+						# the function overhead of decoding and recoding UTF-8
+						#
+						$tail = ord( $startChar{2} ) + $tIndex;
+						if( $tail > 0xbf ) {
+							$tail -= 0x40;
+							$mid = ord( $startChar{1} ) + 1;
+							if( $mid > 0xbf ) {
+								$startChar{0} = chr( ord( $startChar{0} ) + 1 );
+								$mid -= 0x40;
+							}
+							$startChar{1} = chr( $mid );
+						}
+						$startChar{2} = chr( $tail );
 						continue;
 					}
 				}
