@@ -38,6 +38,13 @@ $wgDBminWordLen     = 4;
 $wgDBtransactions	= false; # Set to true if using InnoDB tables
 $wgDBmysql4			= false; # Set to true to use enhanced fulltext search
 
+# memcached settings
+# See docs/memcached.doc
+#
+$wgUseMemCached     = false;
+$wgMemCachedServers = array( "127.0.0.1:11000" );
+$wgMemCachedDebug   = false;
+
 # Language settings
 #
 $wgLanguageCode     = "en";
