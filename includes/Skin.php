@@ -2250,7 +2250,7 @@ class Skin {
 
 	function recentChangesLineOld( &$rc, $watched = false )
 	{
-		global $wgTitle, $wgLang, $wgUser, $wgRCSeconds;
+		global $wgTitle, $wgLang, $wgUser, $wgRCSeconds, $wgUseRCPatrol;
 
 		# Extract DB fields into local scope
 		extract( $rc->mAttribs );
@@ -2267,7 +2267,7 @@ class Skin {
 		}
 
 		# If this edit has not yet been patrolled, make it stick out
-		$s .= ( $rc_patrolled ) ? '<li> ' : '<li class="not_patrolled"> ';
+		$s .= ( ! $wgUseRCPatrol || $rc_patrolled ) ? '<li> ' : '<li class="not_patrolled"> ';
 
 		if ( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			# Diff
