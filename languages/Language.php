@@ -1970,30 +1970,34 @@ class Language {
 		switch( $datePreference ) {
 			case 1: return "$month $day, $year";
 			case 2: return "$day $month $year";
+			case 4: return substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .substr($ts, 6, 2);
 			default: return "$year $month $day";
 		}
 	}
 
 	function time( $ts, $adj = false, $seconds = false, $timecorrection = false ) {
+		global $wgUser;
 		$ts=wfTimestamp(TS_MW,$ts);
 
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $timecorrection ); }
 
 		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
-		if ( $seconds ) {
+		if ( $seconds || $wgUser->getOption( 'date' ) == 4) {
 			$t .= ':' . substr( $ts, 12, 2 );
 		}
 		return $this->formatNum( $t );
 	}
 
 	function timeanddate( $ts, $adj = false, $format = MW_DATE_USER_FORMAT, $timecorrection = false, $dateandtime = false) {
+		global $wgUser;
 		$ts=wfTimestamp(TS_MW,$ts);
-		if ($dateandtime) {
-			$ret = $this->date( $ts, $adj, $format, $timecorrection ) . ', ' . $this->time( $ts, $adj, false, $timecorrection );
+		if ( 4 == $wgUser->getOption( 'date' ) ) {
+			return $this->date( $ts, $adj, $format, $timecorrection ) . ' ' .
+				$this->time( $ts, $adj, false, $timecorrection );
 		} else {
-			$ret = $this->time( $ts, $adj, false, $timecorrection ) . ', ' . $this->date( $ts, $adj, $format, $timecorrection );
+			return $this->time( $ts, $adj, false, $timecorrection ) . ', ' .
+				$this->date( $ts, $adj, $format, $timecorrection );
 		}
-		return $ret;
 	}
 
 	function rfc1123( $ts ) {
