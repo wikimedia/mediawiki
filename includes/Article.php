@@ -989,7 +989,7 @@ $wgLang->recodeForEdit( $wpTextbox1 ) .
 		if ( $limit === "" ) {
 	 		$log->addEntry( wfMsg( "unprotectedarticle", $wgTitle->getPrefixedText() ), "" );		
 		} else {
-			$log->addEntry( wfMsg( "protectedarticle", $wgTitle->getPrefixedText() ), "" )
+			$log->addEntry( wfMsg( "protectedarticle", $wgTitle->getPrefixedText() ), "" );
 		}
 		$wgOut->redirect( wfLocalUrl( $this->mTitle->getPrefixedURL() ) );
 	}
