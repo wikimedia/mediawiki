@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package MediaWiki
+ * @subpackage Language
+ */
+
 if( defined( 'MEDIAWIKI' ) ) {
 
 #
@@ -1847,7 +1852,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 #--------------------------------------------------------------------------
 
 class Language {
-	function Language(){
+	function Language() {
 		# Copies any missing values in the specified arrays from En to the current language
 		$fillin = array( 'wgSysopSpecialPages', 'wgValidSpecialPages', 'wgDeveloperSpecialPages' );
 		$name = get_class( $this );
@@ -1865,27 +1870,54 @@ class Language {
 			}
 		}
 	}
-
-	function getDefaultUserOptions () {
+	
+	/**
+	 * Exports the default user options as defined in
+	 * $wgDefaultUserOptionsEn, user preferences can override some of these
+	 * depending on what's in (Local|Default)Settings.php and some defines.
+	 * 
+	 * @return array
+	 */
+	function getDefaultUserOptions() {
 		global $wgDefaultUserOptionsEn ;
 		return $wgDefaultUserOptionsEn ;
 	}
-
-	function getBookstoreList () {
+	
+	/**
+	 * Exports $wgBookstoreListEn
+	 * @return array
+	 */
+	function getBookstoreList() {
 		global $wgBookstoreListEn ;
 		return $wgBookstoreListEn ;
 	}
-
+	
 	function getNamespaces() {
 		global $wgNamespaceNamesEn;
 		return $wgNamespaceNamesEn;
 	}
-
+	
+	/**
+	 * Get a namespace value by key
+	 * <code>
+	 * $mw_ns = $wgContLang->getNsText( NS_MEDIAWIKI );
+	 * echo $mw_ns; // prints 'MediaWiki'
+	 * </code>
+	 *
+	 * @param int $index the array key of the namespace to return
+	 * @return string
+	 */
 	function getNsText( $index ) {
 		global $wgNamespaceNamesEn;
 		return $wgNamespaceNamesEn[$index];
 	}
-
+	
+	/**
+	 * Get a namespace key by value
+	 *
+	 * @param string $text
+	 * @return mixed An integer if $text is a valid value otherwise false
+	 */
 	function getNsIndex( $text ) {
 		global $wgNamespaceNamesEn;
 
@@ -1895,8 +1927,13 @@ class Language {
 		return false;
 	}
 
-	# short names for language variants used for language conversion links. 
-	# so far only used by zh
+	/**
+	 * short names for language variants used for language conversion links. 
+	 * so far only used by zh
+	 *
+	 * @param string $code
+	 * @return string
+	 */
 	function getVariantname( $code ) {
 		return wfMsg( 'variantname-' . $code );
 	}
@@ -2168,7 +2205,7 @@ class Language {
 	}
 
 	function lcfirst( $s ) {
-		return strtolower( $s{0}  ). substr( $s, 1 );
+		return strtolower( $s{0} ). substr( $s, 1 );
 	}
 
 	function checkTitleEncoding( $s ) {
@@ -2190,11 +2227,16 @@ class Language {
 		# it with one to detect and convert another legacy encoding.
 		return $s;
 	}
-
+	
+	/**
+	 * Some languages have special punctuation to strip out
+	 * or characters which need to be converted for MySQL's
+	 * indexing to grok it correctly. Make such changes here.
+	 *
+	 * @param string $in
+	 * @return string
+	 */
 	function stripForSearch( $in ) {
-		# Some languages have special punctuation to strip out
-		# or characters which need to be converted for MySQL's
-		# indexing to grok it correctly. Make such changes here.
 		return strtolower( $in );
 	}
 
@@ -2204,10 +2246,15 @@ class Language {
 		return $termsArray;
 	}	
 
+	/**
+	 * Get the first character of a string. In ASCII, return
+	 * first byte of the string. UTF8 and others have to
+	 * overload this.
+	 *
+	 * @param string $s
+	 * @return string
+	 */
 	function firstChar( $s ) {
-		# Get the first character of a string. In ASCII, return
-		# first byte of the string. UTF8 and others have to
-		# overload this.
 		return $s[0];
 	}
 
@@ -2258,10 +2305,17 @@ class Language {
 		}
 	}
 
-	# For right-to-left language support
+	/**
+	 * For right-to-left language support
+	 * @return bool
+	 */
 	function isRTL() { return false; }
 
-	# To allow "foo[[bar]]" to extend the link over the whole word "foobar"
+	/**
+	 * To allow "foo[[bar]]" to extend the link over the whole word "foobar"
+	 *
+	 * @return bool
+	 */
 	function linkPrefixExtension() { return false; }
 
 
@@ -2281,16 +2335,40 @@ class Language {
 		$mw->mCaseSensitive = $rawEntry[0];
 		$mw->mSynonyms = array_slice( $rawEntry, 1 );
 	}
-
-	# Italic is unsuitable for some languages
+	
+	/** 
+	 * Italic is unsuitable for some languages
+	 *
+	 * @access public
+	 * @param string $text The text to be emphasized.
+	 */
 	function emphasize( $text ) {
 		return '<em>'.$text.'</em>';
 	}
 
-
-	# Normally we use the plain ASCII digits. Some languages such as Arabic will
-	# want to output numbers using script-appropriate characters: override this
-	# function with a translator. See LanguageAr.php for an example.
+	/**
+	 * This function enables formatting of numbers, it should only come
+	 * into effect when the $wgTranslateNumerals variable is TRUE.
+	 * 
+	 * Normally we output all numbers in plain en_US style, that is
+	 * 293,291.235 for twohundredninetythreethousand-twohundredninetyone
+	 * point twohundredthirtyfive. However this is not sutable for all
+	 * languages, some such as Pakaran want ੨੯੩,੨੯੫.੨੩੫ and others such as
+	 * Icelandic just want to use commas instead of dots, and dots instead
+	 * of commas like "293.291,235".
+	 * 
+	 * An example of this function being called:
+	 * <code>
+	 * wfMsg( 'message', $wgLang->formatNum( $num ) )
+	 * </code>
+	 * 
+	 * See LanguageGu.php for the Gujarati implementation and
+	 * LanguageIs.php for the , => . and . => , implementation.
+	 *
+	 * @access public
+	 * @param mixed $number the string to be formatted, should be an integer or
+	 *        a floating point number. 
+	 */
 	function formatNum( $number ) {
 		return $number;
 	}
@@ -2394,7 +2472,6 @@ class Language {
 	/**
 	 * A regular expression to match legal word-trailing characters
 	 * which should be merged onto a link of the form [[foo]]bar.
-	 * FIXME
 	 *
 	 * @return string
 	 * @access public
