@@ -1,4 +1,5 @@
 <?php
+
 #apd_set_pprof_trace();
 # Main wiki script; see design.doc
 #
@@ -209,6 +210,11 @@ $wgLoadBalancer->saveMasterPos();
 $wgLoadBalancer->commitAll();
 
 $wgOut->output();
+
+foreach ( $wgPostCommitUpdateList as $up ) {
+	$up->doUpdate();
+}
+
 wfProfileOut( 'main-cleanup' );
 
 logProfilingData();

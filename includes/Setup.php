@@ -21,14 +21,27 @@ global $wgProfiling, $wgProfileSampleRate, $wgIP, $wgUseSquid, $IP;
 if( !isset( $wgProfiling ) )
 	$wgProfiling = false;
 
-if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {        
-	require_once( 'Profiling.php' );
+if ( $wgProfiling and (0 == rand() % $wgProfileSampleRate ) ) {
+        require_once( 'Profiling.php' );
 } else {
-	function wfProfileIn( $fn = '' ) {}
-	function wfProfileOut( $fn = '' ) {}
-	function wfGetProfilingOutput( $s, $e ) {}
-	function wfProfileClose() {}
+        function wfProfileIn( $fn = '' ) {
+                global $hackwhere, $wgDBname;
+                $hackwhere[] = $fn;
+                if (function_exists("setproctitle"))
+                        setproctitle($fn . " [$wgDBname]");
+        }
+        function wfProfileOut( $fn = '' ) {
+                global $hackwhere, $wgDBname;
+                if (count($hackwhere))
+                        array_pop($hackwhere);
+                if (function_exists("setproctitle") && count($hackwhere))
+                        setproctitle($hackwhere[count($hackwhere)-1] . " [$wgDBname]");
+        }
+        function wfGetProfilingOutput( $s, $e ) {}
+        function wfProfileClose() {}
 }
+
+
 
 /* collect the originating ips */
 if( $wgUseSquid && isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
@@ -134,7 +147,7 @@ if( $wgUseMemCached ) {
 		}
 	}
 
-	$wgMemc = new MemCachedClientforWiki( array('persistant' => true) );
+	$wgMemc = new MemCachedClientforWiki( array('persistant' => true, 'compress_threshold' => 1500 ) );
 	$wgMemc->set_servers( $wgMemCachedServers );
 	$wgMemc->set_debug( $wgMemCachedDebug );
 
@@ -351,6 +364,8 @@ wfProfileOut( $fname.'-BlockCache' );
 wfProfileIn( $fname.'-misc2' );
 
 $wgDeferredUpdateList = array();
+$wgPostCommitUpdateList = array();
+
 $wgLinkCache = new LinkCache();
 $wgMagicWords = array();
 $wgMwRedir =& MagicWord::get( MAG_REDIRECT );
