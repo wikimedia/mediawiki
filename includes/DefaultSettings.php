@@ -341,6 +341,11 @@ $wgPartialMessageCache = false;
 # code, so that if it breaks, only zh will be affected
 $wgDisableLangConversion = true;
 
+# Whether to use zhdaemon to perform Chinese text processing
+$wgUseZhdaemon = false;
+$wgZhdaemonHost="localhost";
+$wgZhdaemonPort=2004;
+
 # Miscellaneous configuration settings
 #
 

@@ -1,20 +1,9 @@
 <?php
+require_once( "includes/ZhClient.php" );
 require_once( "LanguageZh_cn.php");
 require_once( "LanguageZh_tw.php");
 require_once( "LanguageZh_sg.php");
 require_once( "LanguageZh_hk.php");
-/* caching the conversion tables */
-$zh2TW = $wgMemc->get($key1 = "$wgDBname:zhConvert:tw");
-$zh2CN = $wgMemc->get($key2 = "$wgDBname:zhConvert:cn");
-$zh2SG = $wgMemc->get($key3 = "$wgDBname:zhConvert:sg");
-$zh2HK = $wgMemc->get($key4 = "$wgDBname:zhConvert:hk");
-if(empty($zh2TW) || empty($zh2CN) || empty($zh2SG) || empty($zh2HK)) {
-	require_once("includes/ZhConversion.php");
-	$wgMemc->set($key1, $zh2TW);
-	$wgMemc->set($key2, $zh2CN);
-	$wgMemc->set($key3, $zh2SG);
-	$wgMemc->set($key4, $zh2HK);
-}
 
 /* class that handles both Traditional and Simplified Chinese
    right now it only distinguish zh_cn and zh_tw (actuall, zh_cn and
@@ -23,9 +12,20 @@ if(empty($zh2TW) || empty($zh2CN) || empty($zh2SG) || empty($zh2HK)) {
 class LanguageZh extends LanguageZh_cn {
 	
 	var $mZhLanguageCode=false;
-	
+	var $mZhClient=false;	
 	function LanguageZh() {
+		global $wgUseZhdaemon, $wgZhdaemonHost, $wgZhdaemonPort;
+		global $wgDisableLangConversion;
+
 		$this->mZhLanguageCode = $this->getPreferredVariant();
+		if($wgUseZhdaemon) {
+			$this->mZhClient=new ZhClient($wgZhdaemonHost, $wgZhdaemonPort);
+			if(!$this->mZhClient->isconnected())
+				$this->mZhClient = false;
+		}
+		// fallback to fake client
+		if($this->mZhClient == false)
+			$this->mZhClient=new ZhClientFake();
 	}
 	
 	/* 
@@ -56,48 +56,13 @@ class LanguageZh extends LanguageZh_cn {
 	}
 	
 	
-  /* the Simplified/Traditional conversion stuff */
-
-	function zh2tw($text) {
-		global $zh2TW;
-		return strtr($text, $zh2TW);
-	}
-
-	function zh2cn($text) {
-		global $zh2CN;
-		return strtr($text, $zh2CN);
-	}
-
-	function zh2sg($text) {
-		global $zh2SG, $zh2CN;
-		return strtr(strtr($text, $zh2CN), $zh2SG);
-	}
-
-	function zh2hk($text) {
-		global $zh2HK, $zh2TW;
-		return strtr(strtr($text, $zh2TW), $zh2HK);
-	}
 	
 	function autoConvert($text, $toVariant=false) {
 		if(!$toVariant) 
 			$toVariant = $this->getPreferredVariant();
 		$fname="zhconvert";
 		wfProfileIn( $fname );
-		$t = $text;
-		switch($toVariant) {
-        case 'zh-cn':
-			$t = $this->zh2cn($text);
-			break;
-		case 'zh-tw':
-			$t = $this->zh2tw($text);
-			break;
-		case 'zh-sg':
-			$t = $this->zh2sg($text);
-			break;
-		case 'zh-hk':
-			$t = $this->zh2hk($text);
-			break;
-		}
+		$t = $this->mZhClient->convert($text, $toVariant);
 		wfProfileOut( $fname );
 		return $t;
 	}
@@ -126,6 +91,16 @@ class LanguageZh extends LanguageZh_cn {
 		case 'zh-hk': return 'zh-tw'; break;
 		}
 		return false;
+	}
+
+	// word segmentation through ZhClient
+	function stripForSearch( $string ) {
+		$fname="zhsegment";
+		wfProfileIn( $fname );
+		$t = $this->mZhClient->segment($string);
+		wfProfileOut( $fname );
+		return $t;
+
 	}
 }
 ?>
