@@ -200,6 +200,16 @@ if( version_compare( phpversion(), "5.0", "lt" ) ) {
 }
 print "</li>\n";
 
+if( ini_get( "register_globals" ) ) {
+	?>
+	<li><b class='error'>Warning:</b> <b>PHP's
+	<tt><a href="http://php.net/register_globals">register_globals</a></tt>
+	option is enabled.</b> MediaWiki will work correctly, but this setting
+	increases your exposure to potential security vulnerabilities in PHP-based
+	software running on your server. <b>You should disable it if you are able.</b></li>
+	<?php
+}
+
 if( ini_get( "safe_mode" ) ) {
 	?>
 	<li class='error'><b>Warning: PHP's
