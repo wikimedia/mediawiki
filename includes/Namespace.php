@@ -31,7 +31,7 @@ $wgCanonicalNamespaceNames = array(
 	NS_HELP             => 'Help',
 	NS_HELP_TALK        => 'Help_talk',
 	NS_CATEGORY	        => 'Category',
-	NS_CATEGORY_TALK    => 'Category_talk'
+	NS_CATEGORY_TALK    => 'Category_talk',
     
 	NS_THREAD	        => 'Thread',        // Reserved for Forum-like
 	NS_THREAD_TALK      => 'Thread_talk'    // Reserved for Forum-like
