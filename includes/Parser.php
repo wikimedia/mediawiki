@@ -6,20 +6,20 @@ if( $GLOBALS['wgUseWikiHiero'] ){
 	include_once('wikihiero.php');
 }
 
-# PHP Parser 
-# 
+# PHP Parser
+#
 # Processes wiki markup
 #
-# There are two main entry points into the Parser class: parse() and preSaveTransform(). 
+# There are two main entry points into the Parser class: parse() and preSaveTransform().
 # The parse() function produces HTML output, preSaveTransform() produces altered wiki markup.
 #
-# Globals used: 
+# Globals used:
 #    objects:   $wgLang, $wgDateFormatter, $wgLinkCache, $wgCurParser
 #
 # NOT $wgArticle, $wgUser or $wgTitle. Keep them away!
 #
 #    settings:  $wgUseTex*, $wgUseCategoryMagic*, $wgUseDynamicDates*, $wgInterwikiMagic*,
-#               $wgNamespacesWithSubpages, $wgLanguageCode, $wgAllowExternalImages*, 
+#               $wgNamespacesWithSubpages, $wgLanguageCode, $wgAllowExternalImages*,
 #               $wgLocaltimezone
 #
 #      * only within ParserOptions
@@ -29,8 +29,8 @@ if( $GLOBALS['wgUseWikiHiero'] ){
 #    Variable substitution O(N^2) attack
 #-----------------------------------------
 # Without countermeasures, it would be possible to attack the parser by saving a page
-# filled with a large number of inclusions of large pages. The size of the generated 
-# page would be proportional to the square of the input size. Hence, we limit the number 
+# filled with a large number of inclusions of large pages. The size of the generated
+# page would be proportional to the square of the input size. Hence, we limit the number
 # of inclusions of any given page, thus bringing any attack back to O(N).
 #
 
@@ -69,7 +69,7 @@ class Parser
 		$this->mStripState = array();
 		$this->mArgStack = array();
 	}
-	
+
 	# First pass--just handle <nowiki> sections, pass the rest off
 	# to internalParse() which does all the real work.
 	#
@@ -83,21 +83,21 @@ class Parser
 		if ( $clearState ) {
 			$this->clearState();
 		}
-		
+
 		$this->mOptions = $options;
 		$this->mTitle =& $title;
 		$this->mOutputType = OT_HTML;
-		
+
 		$stripState = NULL;
 		$text = $this->strip( $text, $this->mStripState );
 		$text = $this->internalParse( $text, $linestart );
 		# only once and next-to-last
 		$text = $this->unstrip( $text, $this->mStripState );
-		$text = $this->doBlockLevels( $text, $linestart );		
+		$text = $this->doBlockLevels( $text, $linestart );
 		# Clean up special characters, only run once and last
 		$fixtags = array(
 			"/<hr *>/i" => '<hr/>',
-			"/<br *>/i" => '<br/>', 
+			"/<br *>/i" => '<br/>',
 			"/<center *>/i"=>'<span style="text-align:center;">',
 			"/<\\/center *>/i" => '</span>',
 			# Clean up spare ampersands; note that we probably ought to be
@@ -105,7 +105,7 @@ class Parser
 			'/&(?!:amp;|#[Xx][0-9A-fa-f]+;|#[0-9]+;|[a-zA-Z0-9]+;)/' => '&amp;'
 		);
 		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
-		
+
 		$this->mOutput->setText( $text );
 		wfProfileOut( $fname );
 		return $this->mOutput;
@@ -116,7 +116,7 @@ class Parser
 		return dechex(mt_rand(0, 0x7fffffff)) . dechex(mt_rand(0, 0x7fffffff));
 	}
 
-	# Replaces all occurences of <$tag>content</$tag> in the text
+	# Replaces all occurrences of <$tag>content</$tag> in the text
 	# with a random marker and returns the new text. the output parameter
 	# $content will be an associative array filled with data on the form
 	# $unique_marker => content.
@@ -134,8 +134,8 @@ class Parser
 		while ( "" != $text ) {
 			$p = preg_split( "/<\\s*$tag\\s*>/i", $text, 2 );
 			$stripped .= $p[0];
-			if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) { 
-				$text = ""; 
+			if ( ( count( $p ) < 2 ) || ( "" == $p[1] ) ) {
+				$text = "";
 			} else {
 				$q = preg_split( "/<\\/\\s*$tag\\s*>/i", $p[1], 2 );
 				$marker = $rnd . sprintf("%08X", $n++);
@@ -145,7 +145,7 @@ class Parser
 			}
 		}
 		return $stripped;
-	}	
+	}
 
 	# Strips <nowiki>, <pre> and <math>
 	# Returns the text, and fills an array with data needed in unstrip()
@@ -154,7 +154,7 @@ class Parser
 	function strip( $text, &$state )
 	{
 		$render = ($this->mOutputType == OT_HTML);
-		$nowiki_content = array(); 
+		$nowiki_content = array();
 		$hiero_content = array();
 		$math_content = array();
 		$pre_content = array();
@@ -203,7 +203,7 @@ class Parser
 				$pre_content[$marker] = "<pre>$content</pre>";
 			}
 		}
-		
+
 		# Merge state with the pre-existing state, if there is one
 		if ( $state ) {
 			$state['nowiki'] = $state['nowiki'] + $nowiki_content;
@@ -211,11 +211,11 @@ class Parser
 			$state['math'] = $state['math'] + $math_content;
 			$state['pre'] = $state['pre'] + $pre_content;
 		} else {
-			$state = array( 
+			$state = array(
 			  'nowiki' => $nowiki_content,
 			  'hiero' => $hiero_content,
-			  'math' => $math_content, 
-			  'pre' => $pre_content, 
+			  'math' => $math_content,
+			  'pre' => $pre_content,
 			  'item' => $item_content
 			);
 		}
@@ -226,15 +226,15 @@ class Parser
 	{
 		# Must expand in reverse order, otherwise nested tags will be corrupted
 		$contentDict = end( $state );
-		for ( $contentDict = end( $state ); $contentDict !== false; $contentDict = prev( $state ) ) { 
+		for ( $contentDict = end( $state ); $contentDict !== false; $contentDict = prev( $state ) ) {
 			for ( $content = end( $contentDict ); $content !== false; $content = prev( $contentDict ) ) {
 				$text = str_replace( key( $contentDict ), $content, $text );
 			}
 		}
-		
+
 		return $text;
 	}
-	
+
 	# Add an item to the strip state
 	# Returns the unique tag which must be inserted into the stripped text
 	# The tag will be replaced with the original text in unstrip()
@@ -243,7 +243,7 @@ class Parser
 	{
 		$rnd = UNIQ_PREFIX . '-item' . Parser::getRandomString();
 		if ( !$state ) {
-			$state = array( 
+			$state = array(
 			  'nowiki' => array(),
 			  'hiero' => array(),
 			  'math' => array(),
@@ -254,7 +254,7 @@ class Parser
 		$state['item'][$rnd] = $text;
 		return $rnd;
 	}
-		
+
 	function categoryMagic ()
 	{
 		global $wgLang , $wgUser ;
@@ -342,7 +342,7 @@ class Parser
 	{
 		if ( trim ( $t ) == "" ) return "" ; # Saves runtime ;-)
 		$htmlattrs = $this->getHTMLattrs() ;
-	  
+
 		# Strip non-approved attributes from the tag
 		$t = preg_replace(
 			"/(\\w+)(\\s*=\\s*([^\\s\">]+|\"[^\">]*\"))?/e",
@@ -351,7 +351,7 @@ class Parser
 		# Strip javascript "expression" from stylesheets. Brute force approach:
 		# If anythin offensive is found, all attributes of the HTML tag are dropped
 
-		if( preg_match( 
+		if( preg_match(
 			"/style\\s*=.*(expression|tps*:\/\/|url\\s*\().*/is",
 			wfMungeToUtf8( $t ) ) )
 		{
@@ -391,7 +391,7 @@ class Parser
 					$t[$k] = $z ;
 				}
 				/*      else if ( "|_" == substr ( $x , 0 , 2 ) ) # Caption
-						{ 
+						{
 						$z = trim ( substr ( $x , 2 ) ) ;
 						$t[$k] = "<caption>{$z}</caption>\n" ;
 						}*/
@@ -425,7 +425,7 @@ class Parser
 					{
 						$z = "" ;
 						if ( $fc != "+" )
-						{  
+						{
 							$tra = array_pop ( $ltr ) ;
 							if ( !array_pop ( $tr ) ) $z = "<tr {$tra}>\n" ;
 							array_push ( $tr , true ) ;
@@ -484,7 +484,7 @@ class Parser
 		$text = $sk->transformContent( $text );
 
 		$text .= $this->categoryMagic () ;
-		
+
 		wfProfileOut( $fname );
 		return $text;
 	}
@@ -518,18 +518,18 @@ class Parser
 		wfProfileOut( $fname );
 		return $text;
 	}
-	
+
 	/* private */ function subReplaceExternalLinks( $s, $protocol, $autonumber )
 	{
 		$unique = "4jzAfzB8hNvf4sqyO9Edd8pSmk9rE2in0Tgw3";
 		$uc = "A-Za-z0-9_\\/~%\\-+&*#?!=()@\\x80-\\xFF";
-		
-		# this is  the list of separators that should be ignored if they 
+
+		# this is  the list of separators that should be ignored if they
 		# are the last character of an URL but that should be included
 		# if they occur within the URL, e.g. "go to www.foo.com, where .."
 		# in this case, the last comma should not become part of the URL,
 		# but in "www.foo.com/123,2342,32.htm" it should.
-		$sep = ",;\.:";   
+		$sep = ",;\.:";
 		$fnc = "A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF";
 		$images = "gif|png|jpg|jpeg";
 
@@ -538,7 +538,7 @@ class Parser
 		# that the content of the string should be inserted there).
 		$e1 = "/(^|[^\\[])({$protocol}:)([{$uc}{$sep}]+)\\/([{$fnc}]+)\\." .
 		  "((?i){$images})([^{$uc}]|$)/";
-		  
+
 		$e2 = "/(^|[^\\[])({$protocol}:)(([".$uc."]|[".$sep."][".$uc."])+)([^". $uc . $sep. "]|[".$sep."]|$)/";
 		$sk =& $this->mOptions->getSkin();
 
@@ -568,7 +568,7 @@ class Parser
 			} else if ( preg_match( $e2, $line, $m ) ) {
 				$link = "{$protocol}:{$m[1]}";
 				$text = $m[2];
-				$trail = $m[3];			
+				$trail = $m[3];
 			} else {
 				$s .= "[{$protocol}:" . $line;
 				continue;
@@ -622,7 +622,7 @@ class Parser
 		}
 		return $s;
 	}
-	
+
 	/* private */ function handle5Quotes( &$state, $token )
 	{
 		$s = "";
@@ -654,13 +654,13 @@ class Parser
 
 		$tokenizer=Tokenizer::newFromString( $str );
 		$tokenStack = array();
-		
+
 		$s="";
 		$state["em"]      = FALSE;
 		$state["strong"]  = FALSE;
 		$tagIsOpen = FALSE;
 		$threeopen = false;
-		
+
 		# The tokenizer splits the text into tokens and returns them one by one.
 		# Every call to the tokenizer returns a new token.
 		while ( $token = $tokenizer->nextToken() )
@@ -681,13 +681,13 @@ class Parser
 					array_push( $tokenStack, $token );
 					$txt="";
 					break;
-					
+
 				case "]]]":
 				case "]]":
 					# link close tag.
 					# get text from stack, glue it together, and call the code to handle a
 					# link
-					
+
 					if ( count( $tokenStack ) == 0 )
 					{
 						# stack empty. Found a ]] without an opening [[
@@ -702,16 +702,16 @@ class Parser
 							}
 							$lastToken = array_pop( $tokenStack );
 						}
-						
+
 						$txt = $linkText ."]]";
-						
+
 						if( isset( $lastToken["text"] ) ) {
 							$prefix = $lastToken["text"];
 						} else {
 							$prefix = "";
 						}
 						$nextToken = $tokenizer->previewToken();
-						if ( $nextToken["type"] == "text" ) 
+						if ( $nextToken["type"] == "text" )
 						{
 							# Preview just looks at it. Now we have to fetch it.
 							$nextToken = $tokenizer->nextToken();
@@ -719,13 +719,13 @@ class Parser
 						}
 						$txt = $this->handleInternalLink( $this->unstrip($txt,$this->mStripState), $prefix );
 
-						# did the tag start with 3 [ ?						
+						# did the tag start with 3 [ ?
 						if($threeopen) {
 							# show the first as text
 							$txt = "[".$txt;
 							$threeopen=false;
 						}
-				
+
 					}
 					$tagIsOpen = (count( $tokenStack ) != 0);
 					break;
@@ -791,7 +791,7 @@ class Parser
 					$txt = $lastToken["text"] . $txt;
 				} else {
 					$txt = $lastToken["type"] . $txt;
-				}	
+				}
 			}
 			$s .= $txt;
 		}
@@ -818,7 +818,7 @@ class Parser
 		#$e2 = "/^(.*)\\b(\\w+)\$/suD";
 		#$e2 = "/^(.*\\s)(\\S+)\$/suD";
 		static $e2 = '/^(.*\s)([a-zA-Z\x80-\xff]+)$/sD';
-		
+
 
 		# Special and Media are pseudo-namespaces; no pages actually exist in them
 		static $image = FALSE;
@@ -829,20 +829,20 @@ class Parser
 		if ( !$special ) { $special = Namespace::getSpecial(); }
 		if ( !$media ) { $media = Namespace::getMedia(); }
 		if ( !$category ) { $category = wfMsg ( "category" ) ; }
-		
+
 		$nottalk = !Namespace::isTalk( $this->mTitle->getNamespace() );
 
 		wfProfileOut( "$fname-setup" );
 		$s = "";
-		
+
 		if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 			$text = $m[2];
-			$trail = $m[3];				
+			$trail = $m[3];
 		} else { # Invalid form; output directly
 			$s .= $prefix . "[[" . $line ;
 			return $s;
 		}
-		
+
 		/* Valid link forms:
 		Foobar -- normal
 		:Foobar -- override special treatment of prefix (images, language links)
@@ -853,7 +853,7 @@ class Parser
 		$noforce = ($c != ":");
 		if( $c == "/" ) { # subpage
 			if(substr($m[1],-1,1)=="/") {                 # / at end means we don't want the slash to be shown
-				$m[1]=substr($m[1],1,strlen($m[1])-2); 
+				$m[1]=substr($m[1],1,strlen($m[1])-2);
 				$noslash=$m[1];
 			} else {
 				$noslash=substr($m[1],1);
@@ -861,7 +861,7 @@ class Parser
 			if($wgNamespacesWithSubpages[$this->mTitle->getNamespace()]) { # subpages allowed here
 				$link = $this->mTitle->getPrefixedText(). "/" . trim($noslash);
 				if( "" == $text ) {
-					$text= $m[1]; 
+					$text= $m[1];
 				} # this might be changed for ugliness reasons
 			} else {
 				$link = $noslash; # no subpage allowed, use standard link
@@ -1073,7 +1073,7 @@ class Parser
 				$uniq_prefix = UNIQ_PREFIX;
 				// XXX: use a stack for nestable elements like span, table and div
 				$openmatch = preg_match("/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<div|<pre|<tr|<td|<p|<ul|<li)/i", $t );
-				$closematch = preg_match( 
+				$closematch = preg_match(
 					"/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|".
 					"<\\/div|<hr|<\\/td|<\\/pre|<\\/p|".$uniq_prefix."-pre|<\\/li|<\\/ul)/i", $t );
 				if ( $openmatch or $closematch ) {
@@ -1092,7 +1092,7 @@ class Parser
 							$text .= $this->closeParagraph().'<pre>';
 							$this->mLastSection = 'pre';
 						}
-					} else { 
+					} else {
 						// paragraph
 						if ( '' == trim($t) ) {
 							if ( $pstack ) {
@@ -1119,7 +1119,7 @@ class Parser
 							}
 						}
 					}
-				} 
+				}
 			}
 			if ($pstack === false) {
 				$text .= $t."\n";
@@ -1133,7 +1133,7 @@ class Parser
 			$text .= "</" . $this->mLastSection . ">";
 			$this->mLastSection = "";
 		}
-		
+
 		wfProfileOut( $fname );
 		return $text;
 	}
@@ -1183,23 +1183,23 @@ class Parser
 
 		$fname = "Parser::replaceVariables";
 		wfProfileIn( $fname );
-		
+
 		$bail = false;
 		if ( !$this->mVariables ) {
 			$this->initialiseVariables();
 		}
 		$titleChars = Title::legalChars();
 		$regex = "/(\\n?){{([$titleChars]*?)(\\|.*?|)}}/s";
-		
+
 		# This function is called recursively. To keep track of arguments we need a stack:
 		array_push( $this->mArgStack, $args );
 
 		# PHP global rebinding syntax is a bit weird, need to use the GLOBALS array
 		$GLOBALS['wgCurParser'] =& $this;
 		$text = preg_replace_callback( $regex, "wfBraceSubstitution", $text );
-		
+
 		array_pop( $this->mArgStack );
-		
+
 		return $text;
 	}
 
@@ -1210,11 +1210,11 @@ class Parser
 		$found = false;
 		$nowiki = false;
 		$title = NULL;
-		
+
 		# $newline is an optional newline character before the braces
 		# $part1 is the bit before the first |, and must contain only title characters
 		# $args is a list of arguments, starting from index 0, not including $part1
-		
+
 		$newline = $matches[1];
 		$part1 = $matches[2];
 		# If the third subpattern matched anything, it will start with |
@@ -1239,7 +1239,7 @@ class Parser
 			$text = $matches[0];
 			$found = true;
 		}
-		
+
 		# MSG, MSGNW and INT
 		if ( !$found ) {
 			# Check for MSGNW:
@@ -1251,7 +1251,7 @@ class Parser
 				$mwMsg =& MagicWord::get( MAG_MSG );
 				$mwMsg->matchStartAndRemove( $part1 );
 			}
-			
+
 			# Check if it is an internal message
 			$mwInt =& MagicWord::get( MAG_INT );
 			if ( $mwInt->matchStartAndRemove( $part1 ) ) {
@@ -1261,7 +1261,7 @@ class Parser
 				}
 			}
 		}
-	
+
 		# NS
 		if ( !$found ) {
 			# Check for NS: (namespace expansion)
@@ -1279,7 +1279,7 @@ class Parser
 				}
 			}
 		}
-		
+
 		# LOCALURL and LOCALURLE
 		if ( !$found ) {
 			$mwLocal = MagicWord::get( MAG_LOCALURL );
@@ -1292,7 +1292,7 @@ class Parser
 			} else {
 				$func = '';
 			}
-			
+
 			if ( $func !== '' ) {
 				$title = Title::newFromText( $part1 );
 				if ( !is_null( $title ) ) {
@@ -1305,14 +1305,14 @@ class Parser
 				}
 			}
 		}
-		
+
 		# Internal variables
 		if ( !$found && array_key_exists( $part1, $this->mVariables ) ) {
 			$text = $this->mVariables[$part1];
 			$found = true;
 			$this->mOutput->mContainsOldMagic = true;
-		} 
-		
+		}
+
 		# Arguments input from the caller
 		$inputArgs = end( $this->mArgStack );
 		if ( !$found && array_key_exists( $part1, $inputArgs ) ) {
@@ -1332,9 +1332,9 @@ class Parser
 					if ( $articleContent !== false ) {
 						$found = true;
 						$text = $articleContent;
-						
-					} 
-				} 
+
+					}
+				}
 
 				# If the title is valid but undisplayable, make a link to it
 				if ( $this->mOutputType == OT_HTML && !$found ) {
@@ -1343,7 +1343,7 @@ class Parser
 				}
 			}
 		}
-		
+
 		# Recursive parsing, escaping and link table handling
 		# Only for HTML output
 		if ( $nowiki && $found && $this->mOutputType == OT_HTML ) {
@@ -1372,15 +1372,15 @@ class Parser
 			if ( !is_null( $title ) ) {
 				$wgLinkCache->suspend();
 			}
-			
+
 			# Run full parser on the included text
 			$text = $this->strip( $text, $this->mStripState );
 			$text = $this->internalParse( $text, (bool)$newline, $assocArgs );
-			
-			# Add the result to the strip state for re-inclusion after 
+
+			# Add the result to the strip state for re-inclusion after
 			# the rest of the processing
 			$text = $this->insertStripItem( $text, $this->mStripState );
-			
+
 			# Resume the link cache and register the inclusion as a link
 			if ( !is_null( $title ) ) {
 				$wgLinkCache->resume();
@@ -1435,7 +1435,7 @@ class Parser
 		$htmlsingle = array_merge( $tabletags, $htmlsingle );
 		$htmlelements = array_merge( $htmlsingle, $htmlpairs );
 
-                $htmlattrs = $this->getHTMLattrs () ;
+		$htmlattrs = $this->getHTMLattrs () ;
 
 		# Remove HTML comments
 		$text = preg_replace( "/<!--.*-->/sU", "", $text );
@@ -1483,7 +1483,7 @@ class Parser
 					}
 					# Strip non-approved attributes from the tag
 					$newparams = $this->fixTagAttributes($params);
-						
+
 				}
 				if ( ! $badtag ) {
 					$rest = str_replace( ">", "&gt;", $rest );
@@ -1502,8 +1502,8 @@ class Parser
 		return $text;
 	}
 
-/* 
- * 
+/*
+ *
  * This function accomplishes several tasks:
  * 1) Auto-number headings if that option is enabled
  * 2) Add an [edit] link to sections for logged in users who have enabled the option
@@ -1512,7 +1512,7 @@ class Parser
  *
  * It loops through all headlines, collects the necessary data, then splits up the
  * string and re-inserts the newly formatted headlines.
- * 
+ *
  */
 
 	/* private */ function formatHeadings( $text )
@@ -1532,7 +1532,7 @@ class Parser
 		if( $esw->matchAndRemove( $text ) ) {
 			$showEditLink = 0;
 		}
-		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML, 
+		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML,
 		# do not add TOC
 		$mw =& MagicWord::get( MAG_NOTOC );
 		if( $mw->matchAndRemove( $text ) ) {
@@ -1583,12 +1583,12 @@ class Parser
 				$prevlevel = $level;
 			}
 			$level = $matches[1][$headlineCount];
-			if( ( $doNumberHeadings || $doShowToc ) && $prevlevel && $level > $prevlevel ) { 
+			if( ( $doNumberHeadings || $doShowToc ) && $prevlevel && $level > $prevlevel ) {
 				# reset when we enter a new level
 				$sublevelCount[$level] = 0;
 				$toc .= $sk->tocIndent( $level - $prevlevel );
 				$toclevel += $level - $prevlevel;
-			} 
+			}
 			if( ( $doNumberHeadings || $doShowToc ) && $level < $prevlevel ) {
 				# reset when we step back a level
 				$sublevelCount[$level+1]=0;
@@ -1605,7 +1605,7 @@ class Parser
 							$numbering .= ".";
 						}
 						$numbering .= $sublevelCount[$i];
-						$dot = 1;					
+						$dot = 1;
 					}
 				}
 			}
@@ -1613,29 +1613,29 @@ class Parser
 			# The canonized header is a version of the header text safe to use for links
 			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
 			$canonized_headline = $this->unstrip( $headline, $this->mStripState );
-			
+
 			# strip out HTML
 			$canonized_headline = preg_replace( "/<.*?" . ">/","",$canonized_headline );
-			$tocline = trim( $canonized_headline );	
+			$tocline = trim( $canonized_headline );
 			$canonized_headline = preg_replace("/[ \\?&\\/<>\\(\\)\\[\\]=,+']+/", '_', html_entity_decode( $tocline));
 			$refer[$headlineCount] = $canonized_headline;
-			
+
 			# count how many in assoc. array so we can track dupes in anchors
 			@$refers[$canonized_headline]++;
 			$refcount[$headlineCount]=$refers[$canonized_headline];
 
 			# Prepend the number to the heading text
-			
+
 			if( $doNumberHeadings || $doShowToc ) {
 				$tocline = $numbering . " " . $tocline;
-				
+
 				# Don't number the heading if it is the only one (looks silly)
 				if( $doNumberHeadings && count( $matches[3] ) > 1) {
 					# the two are different if the line contains a link
 					$headline=$numbering . " " . $headline;
 				}
 			}
-			
+
 			# Create the anchor for linking from the TOC to the section
 			$anchor = $canonized_headline;
 			if($refcount[$headlineCount] > 1 ) {
@@ -1650,17 +1650,17 @@ class Parser
 				}
 				$head[$headlineCount] .= $sk->editSectionLink($headlineCount+1);
 			}
-				
+
 			# Add the edit section span
 			if( $rightClickHack ) {
-				$headline = $sk->editSectionScript($headlineCount+1,$headline);	
+				$headline = $sk->editSectionScript($headlineCount+1,$headline);
 			}
 
 			# give headline the correct <h#> tag
 			@$head[$headlineCount] .= "<a name=\"$anchor\"></a><h".$level.$matches[2][$headlineCount] .$headline."</h".$level.">";
-			
+
 			$headlineCount++;
-		}		
+		}
 
 		if( $doShowToc ) {
 			$toclines = $headlineCount;
@@ -1669,13 +1669,13 @@ class Parser
 		}
 
 		# split up and insert constructed headlines
-		
+
 		$blocks = preg_split( "/<H[1-6].*?" . ">.*?<\/H[1-6]>/i", $text );
 		$i = 0;
 
 		foreach( $blocks as $block ) {
 			if( $showEditLink && $headlineCount > 0 && $i == 0 && $block != "\n" ) {
-			    # This is the [edit] link that appears for the top block of text when 
+			    # This is the [edit] link that appears for the top block of text when
 				# section editing is enabled
 
 				# Disabled because it broke block formatting
@@ -1693,7 +1693,7 @@ class Parser
 			}
 			$i++;
 		}
-		
+
 		return $full;
 	}
 
@@ -1727,7 +1727,7 @@ class Parser
 			}
 			$num = str_replace( "-", "", $isbn );
 			$num = str_replace( " ", "", $num );
-		
+
 			if ( "" == $num ) {
 				$text = "ISBN $blank$x";
 			} else {
@@ -1770,7 +1770,7 @@ class Parser
 				$rfc .= $x{0};
 				$x = substr( $x, 1 );
 			}
-		
+
 			if ( "" == $rfc ) {
 				$text .= "RFC $blank$x";
 			} else {
@@ -1791,11 +1791,11 @@ class Parser
 		$this->mOptions = $options;
 		$this->mTitle =& $title;
 		$this->mOutputType = OT_WIKI;
-		
+
 		if ( $clearState ) {
 			$this->clearState();
 		}
-		
+
 		$stripState = false;
 		$pairs = array(
 			"\r\n" => "\n",
@@ -1866,16 +1866,16 @@ class Parser
 		} else {
 			$text = preg_replace( $p2, "[[\\1 ({$context})|\\1]]", $text );
 		}
-		
+
 		/*
 		$mw =& MagicWord::get( MAG_SUBST );
 		$wgCurParser = $this->fork();
 		$text = $mw->substituteCallback( $text, "wfBraceSubstitution" );
 		$this->merge( $wgCurParser );
 		*/
-		
+
 		# Trim trailing whitespace
-		# MAG_END (__END__) tag allows for trailing 
+		# MAG_END (__END__) tag allows for trailing
 		# whitespace to be deliberately included
 		$text = rtrim( $text );
 		$mw =& MagicWord::get( MAG_END );
@@ -1886,7 +1886,7 @@ class Parser
 
 	# Set up some variables which are usually set up in parse()
 	# so that an external function can call some class members with confidence
-	function startExternalParse( &$title, $options, $outputType, $clearState = true ) 
+	function startExternalParse( &$title, $options, $outputType, $clearState = true )
 	{
 		$this->mTitle =& $title;
 		$this->mOptions = $options;
@@ -1899,7 +1899,7 @@ class Parser
 	function transformMsg( $text, $options ) {
 		global $wgTitle;
 		static $executing = false;
-		
+
 		# Guard against infinite recursion
 		if ( $executing ) {
 			return $text;
@@ -1911,7 +1911,7 @@ class Parser
 		$this->mOutputType = OT_MSG;
 		$this->clearState();
 		$text = $this->replaceVariables( $text );
-		
+
 		$executing = false;
 		return $text;
 	}
@@ -1986,17 +1986,17 @@ class ParserOptions
 	function setNumberHeadings( $x ) { return wfSetVar( $this->mNumberHeadings, $x ); }
 	function setShowToc( $x ) { return wfSetVar( $this->mShowToc, $x ); }
 
-	/* static */ function newFromUser( &$user ) 
+	/* static */ function newFromUser( &$user )
 	{
 		$popts = new ParserOptions;
 		$popts->initialiseFromUser( &$user );
 		return $popts;
 	}
 
-	function initialiseFromUser( &$userInput ) 
+	function initialiseFromUser( &$userInput )
 	{
 		global $wgUseTeX, $wgUseCategoryMagic, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
-		
+
 		if ( !$userInput ) {
 			$user = new User;
 			$user->setLoaded( true );
