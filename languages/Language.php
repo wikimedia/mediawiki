@@ -39,6 +39,7 @@ define("MAG_IMG_NONE",       19);
 define("MAG_IMG_WIDTH",      20);
 define("MAG_IMG_CENTER",      21);
 define("MAG_INT", 22);
+define("MAG_FORCETOC", 23);
 
 $wgVariableIDs = array(
 	MAG_CURRENTMONTH,
@@ -372,6 +373,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 #   ID                                 CASE  SYNONYMS
     MAG_REDIRECT             => array( 0,    "#redirect"              ),
     MAG_NOTOC                => array( 0,    "__NOTOC__"              ),
+    MAG_FORCETOC             => array( 0,    "__FORCETOC__"           ),
     MAG_NOEDITSECTION        => array( 0,    "__NOEDITSECTION__"      ),
     MAG_START                => array( 0,    "__START__"              ),
     MAG_CURRENTMONTH         => array( 1,    "CURRENTMONTH"           ),

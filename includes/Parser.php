@@ -1392,13 +1392,26 @@ class Parser
 			$doShowToc = 0;
 		}
 
+		# Get all headlines for numbering them and adding funky stuff like [edit]
+		# links - this is for later, but we need the number of headlines right now
+		$numMatches = preg_match_all( "/<H([1-6])(.*?" . ">)(.*?)<\/H[1-6]>/i", $text, $matches );
+
+		# if there are fewer than 4 headlines in the article, do not show TOC
+		if( $numMatches < 4 ) {
+			$doShowToc = 0;
+		}
+
+		# if the string __FORCETOC__ (not case-sensitive) occurs in the HTML,
+		# override above conditions and always show TOC
+		$mw =& MagicWord::get( MAG_FORCETOC );
+		if ($mw->matchAndRemove( $text ) ) {
+			$doShowToc = 1;
+		}
+
+
 		# We need this to perform operations on the HTML
 		$sk =& $this->mOptions->getSkin();
 
-		# Get all headlines for numbering them and adding funky stuff like [edit]
-		# links
-		preg_match_all( "/<H([1-6])(.*?" . ">)(.*?)<\/H[1-6]>/i", $text, $matches );
-		
 		# headline counter
 		$headlineCount = 0;
 
@@ -1527,7 +1540,7 @@ class Parser
 				$full .= $sk->editSectionLink(0);
 			}
 			$full .= $block;
-			if( $doShowToc && $toclines>3 && !$i) {
+			if( $doShowToc && !$i) {
 				# Let's add a top anchor just in case we want to link to the top of the page
 				$full = "<a name=\"top\"></a>".$full.$toc;
 			}
