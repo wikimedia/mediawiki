@@ -410,7 +410,7 @@ gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",
 Sie können Wikipedia jetzt anonym weiterbenutzen, oder sich unter dem selben oder einem anderen Benutzernamen wieder anmelden.\n",
 
 "welcomecreation" => "<h2>Willkommen, $1!</h2><p>Ihr Benutzerkonto wurde eingerichtet.
-Vergessen Sie nicht, Ihre Wikipedia-Einstellungen anzupassen.",
+Vergessen Sie nicht, Ihre Wikipedia-Einstellungen anzupassen. Schauen Sie doch auf unserer [[Wikipedia:Willkommen|Willkommensseite]] vorbei!",
 
 "loginpagetitle" => "Benutzer-Anmeldung",
 "yourname"		=> "Ihr Benutzername",
