@@ -171,6 +171,18 @@ class DatabasePgsql extends Database {
 		return false;
 	}
 
+	function indexUnique ($table, $index, $fname = 'Database::indexUnique' ) {
+		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='{$table}'".
+			" AND indexdef LIKE 'CREATE UNIQUE%({$index})'";
+		$res = $this->query( $sql, $fname );
+		if ( !$res )
+			return NULL;
+		while ($row = $this->fetchObject( $res )) 
+			return true;
+		return false;
+		
+	}
+
 	function fieldInfo( $table, $field ) {
 		wfDebugDieBacktrace( 'Database::fieldInfo() error : mysql_fetch_field() not implemented for postgre' );
 		/*
