@@ -201,12 +201,9 @@ class LoginForm {
 		}
 		$u->setId( $id );
 		$u->loadFromDatabase();
-		$ep = $u->encryptPassword( $this->mPassword );
-		if ( 0 != strcmp( $ep, $u->getPassword() ) ) {
-			if ( 0 != strcmp( $ep, $u->getNewpassword() ) ) {
-				$this->mainLoginForm( wfMsg( "wrongpassword" ) );
-				return;
-			}
+		if (!$u->checkPassword( $this->mPassword )) {
+			$this->mainLoginForm( wfMsg( "wrongpassword" ) );
+			return;
 		}
 
 		# We've verified now, update the real record
