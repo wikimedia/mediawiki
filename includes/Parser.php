@@ -416,7 +416,7 @@ class Parser
 		if ( !$this->mOptions->getUseCategoryMagic() ) return ; # Doesn't use categories at all
 
 		$cns = Namespace::getCategory() ;
-		if ( $this->mTitle->getNamespace() != $cns ) return "" ; # This ain't a category page
+		if ( $this->mTitle->getNamespace() != $cns ) return '' ; # This ain't a category page
 
 		$r = "<br style=\"clear:both;\"/>\n";
 
@@ -438,18 +438,12 @@ cl_sortkey" ;
 		$res = wfQuery ( $sql, DB_READ ) ;
 		while ( $x = wfFetchObject ( $res ) )
 		{
-			$data[] = $x ;
-		}
-
-		# For all pages that link to this category
-		foreach ( $data as $x )
-		{
 			$t = $wgLang->getNsText ( $x->cur_namespace ) ;
 			if ( $t != '' ) $t .= ':' ;
 			$t .= $x->cur_title ;
 			
 			if ( $x->cur_namespace == $cns ) {
-				array_push ( $children, $sk->makeKnownLink ( $t, $x->cur_title) ) ; # Subcategory
+				array_push ( $children, $sk->makeKnownLink ( $t, str_replace( '_',' ',$x->cur_title) ) ) ; # Subcategory
 				array_push ( $children_start_char, $wgLang->firstChar( $x->cur_title ) ) ;
 			} else {
 				array_push ( $articles , $sk->makeLink ( $t ) ) ; # Page in this category
@@ -464,7 +458,7 @@ cl_sortkey" ;
 		if ( count ( $children ) > 0 )
 		{
 			# Showing subcategories
-			$r .= '<h2>' . wfMsg( "subcategories" ) . "</h2>\n"
+			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n"
 				. wfMsg( 'subcategorycount', count( $children ) );
 			if ( count ( $children ) > 20) {
 			
