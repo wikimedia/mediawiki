@@ -388,7 +388,7 @@ class SearchEngine {
 		$wgTitle = Title::newFromText( $search );
 
 		if ( 0 != $wgArticle->getID() ) {
-			$wgArticle->view();
+			$wgOut->redirect( "/wiki/" . $wgTitle->getURL() );
 			return;
 		}
 
@@ -396,7 +396,7 @@ class SearchEngine {
 		#
 		$wgTitle = Title::newFromText( strtolower( $search ) );
 		if ( 0 != $wgArticle->getID() ) {
-			$wgArticle->view();
+			$wgOut->redirect( "/wiki/" . $wgTitle->getURL() );
 			return;
 		}
 
@@ -404,7 +404,7 @@ class SearchEngine {
 		#
 		$wgTitle=Title::newFromText( ucwords( strtolower( $search ) ) );
 		if ( 0 != $wgArticle->getID() ) {
-			$wgArticle->view();
+			$wgOut->redirect( "/wiki/" . $wgTitle->getURL() );
 			return;
 		}
 
@@ -412,7 +412,7 @@ class SearchEngine {
 		#
 		$wgTitle = Title::newFromText( strtoupper( $search ) );
 		if ( 0 != $wgArticle->getID() ) {
-			$wgArticle->view();
+			$wgOut->redirect( "/wiki/" . $wgTitle->getURL() );
 			return;
 		}
 
