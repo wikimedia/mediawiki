@@ -997,7 +997,7 @@ class Parser
 			} else {
 				$noslash=substr($m[1],1);
 			}
-			if($wgNamespacesWithSubpages[$this->mTitle->getNamespace()]) { # subpages allowed here
+			if(!empty($wgNamespacesWithSubpages[$this->mTitle->getNamespace()])) { # subpages allowed here
 				$link = $this->mTitle->getPrefixedText(). "/" . trim($noslash);
 				if( "" == $text ) {
 					$text= $m[1];
