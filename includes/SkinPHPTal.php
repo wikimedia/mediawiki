@@ -294,6 +294,7 @@
 		function buildContentActionUrls () {
 			global $wgTitle, $wgUser, $wgRequest;
 			$action = $wgRequest->getText( 'action' );
+			$section = $wgRequest->getText( 'section' );
 			$oldid = $wgRequest->getVal( 'oldid' );
 			$diff = $wgRequest->getVal( 'diff' );
 			$content_actions = array();
@@ -332,13 +333,24 @@
 
 				if ( $wgTitle->userCanEdit() ) {
 					$oid = ( $oldid && ! isset( $diff ) ) ? "&oldid={$oldid}" : '';
+					$istalk = ( Namespace::isTalk( $wgTitle->getNamespace()) );
+					$istalkclass = $istalk?' istalk':'';
 					$content_actions['edit'] = array(
-						'class' => ($action == 'edit' or $action == 'submit') ? 'selected' : '',
+						'class' => ((($action == 'edit' or $action == 'submit') and $section != 'new') ? 'selected' : '').$istalkclass,
 						'text' => wfMsg('edit'),
 						'href' => $this->makeUrl($this->thispage, 'action=edit'.$oid),
 						'ttip' => wfMsg('tooltip-edit'),
 						'akey' => wfMsg('accesskey-edit')
 					);
+					if ( $istalk ) {
+						$content_actions['addsection'] = array(
+							'class' => $section == 'new'?'selected':'',
+							'text' => wfMsg('addsection'),
+							'href' => $this->makeUrl($this->thispage, 'action=edit&section=new'),
+							'ttip' => wfMsg('tooltip-addsection'),
+							'akey' => wfMsg('accesskey-addsection')
+						);
+					}
 				} else {
 				        $oid = ( $oldid && ! isset( $diff ) ) ? "&oldid={$oldid}" : '';
 					$content_actions['edit'] = array('class' => ($action == 'edit') ? 'selected' : '',

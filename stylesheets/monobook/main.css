@@ -715,6 +715,12 @@ li#pt-login {
     text-decoration: none;
 }
 #p-cactions h5 { display: none; }
+#p-cactions li.istalk { margin-right: 0; }
+#p-cactions li.istalk a { padding-right: 0.5em; }
+#p-cactions #ca-addsection a { 
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+}
 /* offsets to distinguish the tab groups */
 li#ca-talk { margin-right: 1.6em; }
 li#ca-watch { margin-left: 1.6em; }
