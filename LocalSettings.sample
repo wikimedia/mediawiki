@@ -40,12 +40,15 @@ $wgEmergencyContact = "wikiadmin@myhost.com";
 
 # MySQL settings
 #
-# You should use a user with limited rights here,
-# instead of the root account.
+# The user you specify here DOES NOT NEED TO EXIST.
+# It is created by the installation script.
+#
+# $wgDBsqluser is used for queries through the 
+# web interface.
 #
 $wgDBserver         = "localhost";
-$wgDBuser           = "wikiuser";
 $wgDBname           = "wikidb";
+$wgDBuser           = "wikiuser";
 $wgDBpassword       = "userpass";
 $wgDBsqluser        = "sqluser";
 $wgDBsqlpassword	= "sqlpass";
