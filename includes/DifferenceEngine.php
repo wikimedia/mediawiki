@@ -5,6 +5,8 @@
  * @subpackage DifferenceEngine
  */
 
+require_once( 'Revision.php' );
+
 /**
  * @todo document
  * @access public
@@ -258,79 +260,44 @@ class DifferenceEngine {
 		$fname = 'DifferenceEngine::loadText';
 
 		$dbr =& wfGetDB( DB_SLAVE );
-		if ( 0 == $this->mNewid || 0 == $this->mOldid ) {
-			/* Fetch current revision */
-			$wgOut->setArticleFlag( true );
-			$newLink = $wgTitle->escapeLocalUrl();
-			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev' ) );
-			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
-			$id = $wgTitle->getArticleID();
-
-			$s = $dbr->selectRow( array( 'page', 'revision', 'text' ),
-				array( 'old_flags', 'old_text', 'rev_user_text', 'rev_comment' ),
-				"page_id=$id AND page_id=rev_page AND rev_id=old_id", $fname );
-			if ( $s === false ) {
-				wfDebug( "Unable to load page_id $id\n" );
-				return false;
-			}
-
-			$this->mNewPage = &$wgTitle;
-			$this->mNewtext = Article::getRevisionText( $s );
-			$this->mNewUser = $s->rev_user_text;
-			$this->mNewComment = $s->rev_comment;
+		if( $this->mNewid ) {
+			$this->newRev =& Revision::newFromId( $this->mNewid );
 		} else {
-			$s = $dbr->selectRow( array( 'page', 'revision', 'text' ),
-				array( 'page_namespace','page_title','rev_timestamp', 'old_text',
-				'old_flags','rev_user_text','rev_comment' ),
-				"page_id=rev_page AND rev_id=old_id AND rev_id={$this->mNewid}",
-				$fname );
-
-			if ( $s === false ) {
-				wfDebug( "Unable to load old_id {$this->mNewid}\n" );
-				return false;
-			}
-
-			$this->mNewtext = Article::getRevisionText( $s );
-
-			$t = $wgLang->timeanddate( $s->rev_timestamp, true );
-			$this->mNewPage = Title::MakeTitle( $s->page_namespace, $s->page_title );
-			$newLink = $wgTitle->escapeLocalUrl ('oldid=' . $this->mNewid);
+			$this->newRev =& Revision::newFromTitle( $wgTitle );
+		}
+		
+		if( $this->newRev->isCurrent() ) {
+			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev' ) );
+			$this->mNewPage = $wgTitle;
+			$newLink = $this->mNewPage->escapeLocalUrl();
+			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
+		} else {
+			$this->mNewPage = $this->newRev->getTitle();
+			$newLink = $this->mNewPage->escapeLocalUrl ('oldid=' . $this->mNewid );
+			$t = $wgLang->timeanddate( $this->newRev->getTimestamp(), true );
 			$this->mPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $t ) );
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
-			$this->mNewUser = $s->rev_user_text;
-			$this->mNewComment = $s->rev_comment;
 		}
-		if ( 0 == $this->mOldid ) {
-			$s = $dbr->selectRow( 'old',
-				array( 'old_namespace','old_title','old_timestamp','old_text', 'old_flags','old_user_text','old_comment' ),
-				array( /* WHERE */
-					'old_namespace' => $this->mNewPage->getNamespace(),
-					'old_title' => $this->mNewPage->getDBkey()
-				), $fname, array( 'ORDER BY' => 'inverse_timestamp', 'USE INDEX' => 'name_title_timestamp' )
-			);
-			if ( $s === false ) {
-				wfDebug( 'Unable to load ' . $this->mNewPage->getPrefixedDBkey() . " from old\n" );
-				return false;
-			}
+		
+		if( $this->mOldid ) {
+			$this->oldRev =& Revision::newFromId( $this->mOldid );
 		} else {
-			$s = $dbr->selectRow( array( 'page', 'revision', 'text' ),
-				array( 'page_namespace','page_title','rev_timestamp','old_text','old_flags','rev_user_text','rev_comment'),
-				"page_id=rev_page AND rev_id=old_id AND rev_id={$this->mOldid}",
-				$fname
-			);
-			if ( $s === false ) {
-				wfDebug( "Unable to load old_id {$this->mOldid}\n" );
-				return false;
-			}
+			$this->oldRev =& $this->newRev->getPrevious();
 		}
-		$this->mOldPage = Title::MakeTitle( $s->page_namespace, $s->page_title );
-		$this->mOldtext = Article::getRevisionText( $s );
+			
+		$this->mOldPage = $this->oldRev->getTitle();
 
-		$t = $wgLang->timeanddate( $s->rev_timestamp, true );
-		$oldLink = $this->mOldPage->escapeLocalUrl ('oldid=' . $this->mOldid);
+		$t = $wgLang->timeanddate( $this->oldRev->getTimestamp(), true );
+		$oldLink = $this->mOldPage->escapeLocalUrl( 'oldid=' . $this->mOldid );
 		$this->mOldtitle = "<a href='$oldLink'>" . htmlspecialchars( wfMsg( 'revisionasof', $t ) ) . '</a>';
-		$this->mOldUser = $s->rev_user_text;
-		$this->mOldComment = $s->rev_comment;
+		
+		$this->mNewUser = $this->newRev->getUserText();
+		$this->mNewComment = $this->newRev->getComment();
+		$this->mNewtext = $this->newRev->getText();
+		
+		$this->mOldUser = $this->oldRev->getUserText();
+		$this->mOldComment = $this->oldRev->getComment();
+		$this->mOldtext = $this->oldRev->getText();
 
 		return true;
 	}

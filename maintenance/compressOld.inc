@@ -4,6 +4,8 @@
  * @subpackage Maintenance
  */
 
+require_once( '../includes/Revision.php' );
+
 /** */
 function compressOldPages( $start = 0 ) {
 	$fname = 'compressOldPages';
@@ -135,9 +137,9 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 						$fname,
 						'FOR UPDATE'
 					);
-					$text = Article::getRevisionText( $textRow );
+					$text = Revision::getRevisionText( $textRow );
 				} else {
-					$text = Article::getRevisionText( $revs[$i + $j] );
+					$text = Revision::getRevisionText( $revs[$i + $j] );
 				}
 
 				if ( $text === false ) {

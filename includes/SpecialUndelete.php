@@ -5,6 +5,8 @@
  * @subpackage SpecialPage
  */
 
+require_once( 'Revision.php' );
+
 /**
  *
  */
@@ -76,7 +78,7 @@ class PageArchive {
 			array( 'ar_namespace' => $this->title->getNamespace(),
 			       'ar_title' => $this->title->getDbkey(),
 			       'ar_timestamp' => $dbr->timestamp( $timestamp ) ) );
-		return Article::getRevisionText( $row, "ar_" );
+		return Revision::getRevisionText( $row, "ar_" );
 	}
 	
 	/**
@@ -96,7 +98,7 @@ class PageArchive {
 			'PageArchive::getLastRevisionText',
 			'ORDER BY ar_timestamp DESC LIMIT 1' );
 		if( $row ) {
-			return Article::getRevisionText( $row, "ar_" );
+			return Revision::getRevisionText( $row, "ar_" );
 		} else {
 			return NULL;
 		}
@@ -162,7 +164,7 @@ class PageArchive {
 			if( $restoreAll ) {
 				$max = $s->ar_timestamp;
 			}
-			$text = Article::getRevisionText( $s, "ar_" );
+			$text = Revision::getRevisionText( $s, "ar_" );
 			
 			$redirect = MagicWord::get( MAG_REDIRECT );
 			$redir = $redirect->matchStart( $text ) ? 1 : 0;

@@ -30,7 +30,7 @@ class HistoryBlob
 	# be other revisions in the same object
 	function setText() {}
 
-	# Get default text. This is called from Article::getRevisionText()
+	# Get default text. This is called from Revision::getRevisionText()
 	function getText() {}
 }
 

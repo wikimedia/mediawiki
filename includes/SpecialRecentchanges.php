@@ -10,6 +10,7 @@
  */
 require_once( 'Feed.php' );
 require_once( 'ChangesList.php' );
+require_once( 'Revision.php' );
 
 /**
  * Constructor
@@ -349,37 +350,38 @@ function rcFormatDiff( $row ) {
 		#$diff =& new DifferenceEngine( $row->rc_this_oldid, $row->rc_last_oldid, $row->rc_id );
 		#$diff->showDiffPage();
 		
+		$titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 		$dbr =& wfGetDB( DB_SLAVE );
-		if( $row->rc_this_oldid ) {
-			$newrow = $dbr->selectRow( 'old',
-				array( 'old_flags', 'old_text' ),
-				array( 'old_id' => $row->rc_this_oldid ) );
-			$newtext = Article::getRevisionText( $newrow );
+		$newrev =& Revision::newFromTitle( $titleObj, $row->rc_this_oldid );
+		if( $newrev ) {
+			$newtext = $newrev->getText();
 		} else {
-			$newrow = $dbr->selectRow( 'cur',
-				array( 'cur_text' ),
-				array( 'cur_id' => $row->rc_cur_id ) );
-			$newtext = $newrow->cur_text;
+			$diffText = "<p>Can't load revision $row->rc_this_oldid</p>";
+			wfProfileOut( $fname );
+			return $comment . $diffText;
 		}
+
 		if( $row->rc_last_oldid ) {
 			wfProfileIn( "$fname-dodiff" );
-			$oldrow = $dbr->selectRow( 'old',
-				array( 'old_flags', 'old_text' ),
-				array( 'old_id' => $row->rc_last_oldid ) );
-			$oldtext = Article::getRevisionText( $oldrow );
-			
+			$oldrev =& Revision::newFromId( $row->rc_last_oldid );
+			if( !$oldrev ) {
+				$diffText = "<p>Can't load old revision $row->rc_last_oldid</p>";
+				wfProfileOut( $fname );
+				return $comment . $diffText;
+			}
+			$oldtext = $oldrev->getText();
+				
 			global $wgFeedDiffCutoff;
 			if( strlen( $newtext ) > $wgFeedDiffCutoff ||
-			    strlen( $oldtext ) > $wgFeedDiffCutoff ) {
-			    $titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
+				strlen( $oldtext ) > $wgFeedDiffCutoff ) {
 				$diffLink = $titleObj->escapeFullUrl(
 					'diff=' . $row->rc_this_oldid .
 					'&oldid=' . $row->rc_last_oldid );
-			    $diffText = '<a href="' .
-			    	$diffLink .
-			    	'">' .
-			    	htmlspecialchars( wfMsgForContent( 'difference' ) ) .
-			    	'</a>';
+				$diffText = '<a href="' .
+					$diffLink .
+					'">' .
+					htmlspecialchars( wfMsgForContent( 'difference' ) ) .
+					'</a>';
 			} else {
 				$diffText = DifferenceEngine::getDiff( $oldtext, $newtext,
 				  wfMsg( 'revisionasof', $wgContLang->timeanddate( $row->rc_timestamp ) ),
