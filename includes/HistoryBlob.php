@@ -122,7 +122,7 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 		if ( count( $this->mItems ) == 0 ) {
 			return true;
 		}
-		if ( $this->mFast ) {
+		if ( !$this->mFast ) {
 			$this->uncompress();
 			$record = serialize( $this->mItems );
 			$size = strlen( $record );
