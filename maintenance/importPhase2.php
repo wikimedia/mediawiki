@@ -109,10 +109,10 @@ class Phase2Importer {
 		print "Importing current revision data...\n";
 		wfQuery( "INSERT INTO cur (cur_id,cur_namespace,cur_title,cur_text,cur_comment,
 			cur_user,cur_user_text,cur_timestamp,cur_restrictions,cur_counter,
-			cur_is_redirect,cur_minor_edit,cur_is_new,cur_random,cur_touched,inverse_timestamp)
+			cur_is_redirect,cur_minor_edit,cur_is_new,cur_random,cur_touched)
 			SELECT cur_id,0,cur_title,cur_text,cur_comment,
 				cur_user,cur_user_text,cur_timestamp,REPLACE(cur_restrictions,'is_',''),cur_counter,
-				cur_text like '#redirect%',cur_minor_edit,0,RAND(),NOW()+0,99999999999999-cur_timestamp
+				cur_text like '#redirect%',cur_minor_edit,0,RAND(),NOW()+0,
 			FROM {$this->olddb}.cur", DB_MASTER );
 		$n = mysql_affected_rows();
 		print "$n rows imported.\n";
@@ -124,9 +124,9 @@ class Phase2Importer {
 
 		print "Importing old revision data...\n";
 		wfQuery( "INSERT INTO old (old_id,old_namespace,old_title,old_text,old_comment,
-			old_user,old_user_text,old_timestamp,old_minor_edit,old_flags,inverse_timestamp)
+			old_user,old_user_text,old_timestamp,old_minor_edit,old_flags)
 			SELECT old_id,0,old_title,old_text,old_comment,
-				old_user,old_user_text,old_timestamp,old_minor_edit,'',99999999999999-old_timestamp
+				old_user,old_user_text,old_timestamp,old_minor_edit,''
 			FROM {$this->olddb}.old", DB_MASTER );
 		$n = mysql_affected_rows();
 		print "$n rows imported.\n";

@@ -962,8 +962,10 @@ function wfTimestampNow() {
 
 /**
  * Sorting hack for MySQL 3, which doesn't use index sorts for DESC
+ * No longer supported and nuked.
  */
 function wfInvertTimestamp( $ts ) {
+	wfDieDebugBacktrace("Inverted timestamps should be nuked away from all code\n");
 	return strtr(
 		$ts,
 		'0123456789',

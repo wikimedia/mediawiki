@@ -243,7 +243,6 @@ function importPage( $title )
 		$timestamp = wfUnix2Timestamp( time() );
 		$redirect = ( preg_match( '/^#REDIRECT/', $page->text ) ? 1 : 0 );
 		$random = mt_rand() / mt_getrandmax();
-		$inverse = wfInvertTimestamp( $timestamp );
 		
 		$revisions = array( $page );
 	} else {
@@ -258,14 +257,13 @@ function importPage( $title )
 		$timestamp = wfUnix2Timestamp( $page->ts );
 		$redirect = ( preg_match( '/^#REDIRECT/', $page->text ) ? 1 : 0 );
 		$random = mt_rand() / mt_getrandmax();
-		$inverse = wfInvertTimestamp( $timestamp );
 
 		$revisions = array();
 	}
 	$sql = "
 INSERT
-	INTO cur (cur_namespace,cur_title,cur_text,cur_comment,cur_user,cur_user_text,cur_timestamp,inverse_timestamp,cur_touched,cur_minor_edit,cur_is_redirect,cur_random) VALUES
-	($namespace,'$newtitle','$text','$comment',$userid,'$username','$timestamp','$inverse','$conversiontime',$minor,$redirect,$random);\n";
+	INTO cur (cur_namespace,cur_title,cur_text,cur_comment,cur_user,cur_user_text,cur_timestamp,cur_touched,cur_minor_edit,cur_is_redirect,cur_random) VALUES
+	($namespace,'$newtitle','$text','$comment',$userid,'$username','$timestamp','$conversiontime',$minor,$redirect,$random);\n";
 
 	# History
 	$revisions = array_merge( $revisions, fetchKeptPages( $title ) );
@@ -275,18 +273,17 @@ INSERT
 	
 	$any = false;
 	$sql .= "INSERT
-	INTO old (old_namespace,old_title,old_text,old_comment,old_user,old_user_text,old_timestamp,inverse_timestamp,old_minor_edit) VALUES\n";
+	INTO old (old_namespace,old_title,old_text,old_comment,old_user,old_user_text,old_timestamp,old_minor_edit) VALUES\n";
 	foreach( $revisions as $rev ) {
 		$text = wfStrencode( recodeText( $rev->text ) );
 		$minor = ($rev->minor ? 1 : 0);
 		list( $userid, $username ) = checkUserCache( $rev->username, $rev->host );
 		$username = wfStrencode( recodeText( $username ) );
 		$timestamp = wfUnix2Timestamp( $rev->ts );
-		$inverse = wfInvertTimestamp( $timestamp );
 		$comment = wfStrencode( recodeText( $rev->summary ) );
 		
 		if($any) $sql .= ",";
-		$sql .= "\n\t($namespace,'$newtitle','$text','$comment',$userid,'$username','$timestamp','$inverse',$minor)";
+		$sql .= "\n\t($namespace,'$newtitle','$text','$comment',$userid,'$username','$timestamp',$minor)";
 		$any = true;
 	}
 	$sql .= ";\n\n";

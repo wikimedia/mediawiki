@@ -104,7 +104,7 @@ function wfSpecialContributions( $par = '' ) {
 		rev_id,rev_timestamp,rev_comment,rev_minor_edit,rev_user_text
 		FROM $page,$revision $use_index
 		WHERE page_id=rev_page AND $condition $minorQuery " .
-	  "ORDER BY inverse_timestamp LIMIT {$querylimit}";
+	  "ORDER BY rev_timestamp DESC LIMIT {$querylimit}";
 	$res = $dbr->query( $sql, $fname );
 	$numRows = $dbr->numRows( $res );
 

@@ -34,7 +34,7 @@ function rebuildRecentChangesTablePass1()
 			'rc_this_oldid' => 0,
 			'rc_last_oldid' => 0,
 			'rc_type' => $dbw->conditional( 'cur_is_new != 0', RC_NEW, RC_EDIT ),
-		), '*', $fname, array( 'ORDER BY' => 'inverse_timestamp', 'LIMIT' => 5000 )
+		), '*', $fname, array( 'ORDER BY' => 'cur_timestamp DESC', 'LIMIT' => 5000 )
 	);
 	
 	print( "Loading from OLD table...\n" );
@@ -44,7 +44,7 @@ function rebuildRecentChangesTablePass1()
       "rc_cur_id,rc_this_oldid,rc_last_oldid,rc_type) SELECT old_timestamp,cur_timestamp," .
 	  "old_user,old_user_text,old_namespace,old_title,old_comment," .
 	  "old_minor_edit,0,0,cur_id,old_id,0,0 FROM $old,$cur " .
-	  "WHERE old_namespace=cur_namespace AND old_title=cur_title ORDER BY $old.inverse_timestamp " .
+	  "WHERE old_namespace=cur_namespace AND old_title=cur_title ORDER BY old_timestamp DESC " .
 	  "LIMIT 5000";
 	$dbw->query( $sql );
 
@@ -83,10 +83,10 @@ function rebuildRecentChangesTablePass2()
 		if( $obj->rc_cur_id != $lastCurId ) {
 			# Switch! Look up the previous last edit, if any
 			$lastCurId = IntVal( $obj->rc_cur_id );
-			$emit = wfInvertTimestamp( $obj->rc_timestamp );
+			$emit = $obj->rc_timestamp;
 			$sql2 = "SELECT old_id FROM $old,$cur " .
 				"WHERE old_namespace=cur_namespace AND old_title=cur_title AND cur_id={$lastCurId} ".
-				"AND $old.inverse_timestamp>'{$emit}' ORDER BY $old.inverse_timestamp LIMIT 1";
+				"AND old_timestamp<'{$emit}' ORDER BY old_timestamp DESC LIMIT 1";
 			$res2 = $dbw->query( $sql2 );
 			if( $row = $dbw->fetchObject( $res2 ) ) {
 				$lastOldId = IntVal( $row->old_id );

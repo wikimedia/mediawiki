@@ -69,7 +69,7 @@ class PageHistory {
 		  "rev_comment,rev_user_text,rev_timestamp,rev_minor_edit ".
 		  "FROM $revision $use_index " .
 		  "WHERE rev_page=$id " .
-		  "ORDER BY inverse_timestamp ".$db->limitResult($limitplus,$offset);
+		  "ORDER BY rev_timestamp DESC ".$db->limitResult($limitplus,$offset);
 		$res = $db->query( $sql, $fname );
 
 		$revs = $db->numRows( $res );

@@ -197,8 +197,8 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 			$page_id = $dbw->insertID();
 
 			$sql = "INSERT INTO $revision (rev_id, rev_page, rev_comment, rev_user, rev_user_text,
-							rev_timestamp, inverse_timestamp, rev_minor_edit)
-					VALUES ({$text_id}, {$page_id}, '', 0, '{$username}', '{$timestamp}', '{$invTimestamp}', 0)";
+							rev_timestamp, rev_minor_edit)
+					VALUES ({$text_id}, {$page_id}, '', 0, '{$username}', '{$timestamp}', 0)";
 			$dbw->query( $sql, $fname );
 
 		}

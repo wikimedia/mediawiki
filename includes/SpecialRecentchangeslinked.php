@@ -74,13 +74,13 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		  "rev_user_text,rev_timestamp,rev_minor_edit,page_is_new FROM $categorylinks, $revision, $page " .
 		  "WHERE rev_timestamp > '{$cutoff}' {$cmq} AND cl_from=page_id AND cl_to=$catkey " .
 			  "GROUP BY page_id,page_namespace,page_title,rev_user,rev_comment,rev_user_text," .
-		  "rev_timestamp,rev_minor_edit,page_is_new,inverse_timestamp ORDER BY inverse_timestamp LIMIT {$limit}";
+		  "rev_timestamp,rev_minor_edit,page_is_new ORDER BY rev_timestamp DESC LIMIT {$limit}";
 	} else {
 		$sql = "SELECT page_id,page_namespace,page_title,rev_user,rev_comment," .
 		  "rev_user_text,rev_timestamp,rev_minor_edit,page_is_new FROM $links, $revision, $page " .
 		  "WHERE rev_timestamp > '{$cutoff}' {$cmq} AND l_to=page_id AND l_from=$id " .
 			  "GROUP BY page_id,page_namespace,page_title,rev_user,rev_comment,rev_user_text," .
-		  "rev_timestamp,rev_minor_edit,page_is_new,inverse_timestamp ORDER BY inverse_timestamp LIMIT {$limit}";
+		  "rev_timestamp,rev_minor_edit,page_is_new ORDER BY rev_timestamp DESC LIMIT {$limit}";
 	}
 	$res = $dbr->query( $sql, $fname );
 
