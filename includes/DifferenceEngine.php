@@ -29,7 +29,7 @@ class DifferenceEngine {
 
 	/**
 	 * Constructor
-	 * @param integer $old Actual revision ID we want to show and diff with.
+	 * @param integer $old Old ID we want to show and diff with.
 	 * @param string $new Either 'prev' or 'next'. 
 	 * @param integer $rcid ??? (default 0)
 	 */
