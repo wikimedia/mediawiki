@@ -413,10 +413,36 @@ class Skin {
 			wfMsg( 'categories' ), 'article=' . urlencode( $wgTitle->getPrefixedDBkey() ) )
 			. ': ' . $t;
 
+		# optional 'dmoz-like' category browser. Will be shown under the list
+		# of categories an article belong to
 		if($wgUseCategoryBrowser) {
 			$s .= '<br/><hr/>';
-			$catstack = array();
-			$s.= $wgTitle->getAllParentCategories($catstack);
+			
+			# get a big array of the parents tree
+			$parenttree = $wgTitle->getCategorieBrowser();
+
+			# Render the array as a serie of links
+			function walkThrough ($tree) {
+				global $wgUser;
+				$sk = $wgUser->getSkin();
+				$return = '';
+				foreach($tree as $element => $parent) {
+					if(empty($parent)) {
+						# element start a new list
+						$return .= '<br />';
+					} else {
+						# grab the others elements
+						$return .= walkThrough($parent);
+					}
+					# add our current element to the list
+					$eltitle = Title::NewFromText($element);
+					# FIXME : should be makeLink() [AV]
+					$return .= $sk->makeKnownLink($element, $eltitle->getText()).' &gt; ';
+				}
+				return $return;
+			}
+			
+			$s .= walkThrough($parenttree);
 		}
 
 		return $s;

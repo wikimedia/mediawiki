@@ -1252,81 +1252,53 @@ class Title {
 	
 	# Get categories to wich belong this title and return an array of
 	# categories names.
-	function getParentCategories( ) {
+	# Return an array of parents in the form:
+	#  $parent => $currentarticle
+	function getParentCategories() {
 		global $wgLang,$wgUser;
 		
 		$titlekey = $this->getArticleId();
-		$cns = Namespace::getCategory();
 		$sk =& $wgUser->getSkin();
 		$parents = array();
 		$dbr =& wfGetDB( DB_SLAVE );
 		$cur = $dbr->tableName( 'cur' );
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 
-		# get the parents categories of this title from the database
-		$sql = "SELECT DISTINCT cur_id FROM $cur,$categorylinks
-		        WHERE cl_from='$titlekey' AND cl_to=cur_title AND cur_namespace='$cns'
-				ORDER BY cl_sortkey" ;
+		# NEW SQL
+		$sql = "SELECT * FROM categorylinks"
+		     ." WHERE cl_from='$titlekey'"
+			 ." AND cl_from <> '0'"
+			 ." ORDER BY cl_sortkey";
+		
 		$res = $dbr->query ( $sql ) ;
 		
 		if($dbr->numRows($res) > 0) {
-			while ( $x = $dbr->fetchObject ( $res ) ) $data[] = $x ;
+			while ( $x = $dbr->fetchObject ( $res ) )
+				//$data[] = Title::newFromText($wgLang->getNSText ( NS_CATEGORY ).':'.$x->cl_to);
+				$data[$wgLang->getNSText ( NS_CATEGORY ).':'.$x->cl_to] = $this->getFullText();
 			$dbr->freeResult ( $res ) ;
 		} else {
 			$data = '';
 		}
 		return $data;
 	}
-	
-	# will get the parents and grand-parents
-	# TODO : not sure what's happening when a loop happen like:
-	# 	Encyclopedia > Astronomy > Encyclopedia
-	function getAllParentCategories(&$stack) {
-		global $wgUser,$wgLang;
-		$result = '';
+
+	# Go through all parents
+	function getCategorieBrowser() {
+		$parents = $this->getParentCategories();
 		
-		# getting parents
-		$parents = $this->getParentCategories( );
-
-		if($parents == '')
-		{
-			# The current element has no more parent so we dump the stack
-			# and make a clean line of categories
-			$sk =& $wgUser->getSkin() ;
-
-			foreach ( array_reverse($stack) as $child => $parent )
+		if($parents != '') {
+			foreach($parents as $parent => $current)
 			{
-				# make a link of that parent
-				$result .= $sk->makeLink($wgLang->getNSText ( Namespace::getCategory() ).':'.$parent,$parent);
-				$result .= ' &gt; ';
-				$lastchild = $child;
+				$nt = Title::newFromText($parent);
+				$stack[$parent] = $nt->getCategorieBrowser();
 			}
-			# append the last child.
-			# TODO : We should have a last child unless there is an error in the
-			# "categorylinks" table.
-			if(isset($lastchild)) { $result .= $lastchild; }
-			
-			$result .= "<br/>\n";
-			
-			# now we can empty the stack
-			$stack = array();
-			
+			return $stack;
 		} else {
-			# look at parents of current category
-			foreach($parents as $parent)
-			{
-				# create a title object for the parent
-				$tpar = Title::newFromID($parent->cur_id);
-				# add it to the stack
-				$stack[$this->getText()] = $tpar->getText();
-				# grab its parents
-				$result .= $tpar->getAllParentCategories($stack);
-			}
+			return array();
 		}
-
-		if(isset($result)) { return $result; }
-		else { return ''; };
 	}
+	
 	
 	# Returns an associative array for selecting this title from cur
 	function curCond() {
