@@ -132,9 +132,12 @@ class ImageGallery
 			$s .= ($i%4==0) ? '<tr>' : '';
 			$thumb = $img->getThumbnail( 120, 120 );
 			$vpad = floor( ( 150 - $thumb->height ) /2 ) - 2;
-			$s .= '<td><div class="gallerybox">' .
-				'<div class="thumb" style="padding: ' . $vpad . 'px 0;">'.
-				$sk->makeKnownLinkObj( $nt, $thumb->toHtml() ) . '</div><div class="gallerytext">' .
+			$s .= '<td><div class="gallerybox">' . '<div class="thumb" style="padding: ' . $vpad . 'px 0;">';
+			
+			# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which
+			# in version 4.8.6 generated crackpot html in its absence, see:
+			# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765
+			$s .= $sk->makeKnownLinkObj( $nt, $thumb->toHtml() ) . '</div><div class="gallerytext">' . "\n" .
 				$textlink . $text . $nb .
 				'</div>';
 			$s .= "</div></td>\n";
