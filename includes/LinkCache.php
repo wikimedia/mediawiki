@@ -6,7 +6,10 @@ define ('LINKCACHE_GOOD', 0);
 define ('LINKCACHE_BAD', 1);
 define ('LINKCACHE_IMAGE', 2);
 
-class LinkCache {
+class LinkCache {	
+	// Increment $mClassVer whenever old serialized versions of this class
+	// becomes incompatible with the new version.
+	/* private */ var $mClassVer = 1; 
 
 	/* private */ var $mGoodLinks, $mBadLinks, $mActive;
 	/* private */ var $mImageLinks; 
@@ -140,7 +143,7 @@ class LinkCache {
 
 	function preFill( &$fromtitle )
 	{
-		global $wgEnablePersistentLC;
+		global $wgEnablePersistentLC, $wgCompressedPersistentLC;
 
 		$fname = "LinkCache::preFill";
 		wfProfileIn( $fname );
@@ -148,12 +151,8 @@ class LinkCache {
 		$dbkeyfrom = wfStrencode( $fromtitle->getPrefixedDBKey() );
 
 		if ( $wgEnablePersistentLC ) {
-			$res = wfQuery("SELECT lcc_cacheobj FROM linkscc WHERE lcc_title = '{$dbkeyfrom}'", 
-				DB_READ);
-			$row = wfFetchObject( $res );
-			if( $row != FALSE){
-				$cacheobj = gzuncompress( $row->lcc_cacheobj );
-				$cc = unserialize( $cacheobj );
+			$cc =& $this->getFromLinkscc( $dbkeyfrom );
+			if( $cc != FALSE ){
 				$this->mOldGoodLinks = $this->mGoodLinks = $cc->mGoodLinks;
 				$this->mOldBadLinks = $this->mBadLinks = $cc->mBadLinks;
 				$this->mPreFilled = true;
@@ -192,8 +191,12 @@ class LinkCache {
 
 		if ( $wgEnablePersistentLC ) {
 			// put fetched link data into cache
-			$serCachegz = wfStrencode( gzcompress( serialize( $this ), 3) );
-			wfQuery("REPLACE INTO linkscc VALUES({$id}, '{$dbkeyfrom}', '{$serCachegz}')", 
+			if( $wgCompressedPersistentLC and function_exists( "gzcompress" ) ) {
+				$ser = wfStrencode( gzcompress( serialize( $this ), 3 ));
+			} else {
+				$ser = wfStrencode( serialize( $this ) );
+			}
+			wfQuery("REPLACE INTO linkscc VALUES({$id}, '{$dbkeyfrom}', '{$ser}')", 
 				DB_WRITE);
 				wfDebug( "LinkCache::preFill - saved to linkscc\n" );
 		}
@@ -270,6 +273,28 @@ class LinkCache {
 		$this->mBadLinks = array();
 		$this->mImageLinks = array();
 	}
-	
+
+
+	function &getFromLinkscc( $dbkeyfrom ){
+		$res = wfQuery("SELECT lcc_cacheobj FROM linkscc WHERE lcc_title = '{$dbkeyfrom}'", 
+			DB_READ);
+		$row = wfFetchObject( $res );
+		if( $row == FALSE)
+			return false;	
+
+		$cacheobj = false;
+		if( function_exists( "gzuncompress" ) )
+			$cacheobj = @gzuncompress( $row->lcc_cacheobj );
+
+		if($cacheobj == FALSE){
+			$cacheobj = $row->lcc_cacheobj;
+		}
+		$cc = @unserialize( $cacheobj );
+		if( isset( $cc->mClassVer ) and ($cc->mClassVer == $this->mClassVer ) ){
+			return $cc;
+		} else {
+			return FALSE;
+		}
+	}
 }
 ?>
