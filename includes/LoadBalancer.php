@@ -176,7 +176,7 @@ class LoadBalancer {
 	function &getWriter()
 	{
 		$c =& $this->getConnection( 0 );
-		if ( !$c->isOpen() ) {
+		if ( $c === false || !$c->isOpen() ) {
 			reportConnectionError( $conn );
 			$c = false;
 		}
