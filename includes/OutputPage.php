@@ -1378,6 +1378,13 @@ $t[] = "</table>" ;
 			$esr=$wgUser->getID() && $wgUser->getOption( "editsectiononrightclick" );
 		}
 
+		# Inhibit editsection links if requested in the page
+		if ($es) {
+			$esw=& MagicWord::get(MAG_NOEDITSECTION);
+			if ($esw->matchAndRemove( $text )) {
+				$es=0;
+			}
+		}
 		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML, 
 		# do not add TOC
 		$mw =& MagicWord::get( MAG_NOTOC );
