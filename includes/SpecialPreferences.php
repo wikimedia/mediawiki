@@ -449,7 +449,7 @@ class PreferencesForm {
 		#
 		$wgOut->addHTML("<fieldset>");
 		foreach ( $togs as $tname => $ttext ) {
-			if( !$this->mUsedToggles[$tname] ) {
+			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
 				$wgOut->addHTML( $this->getToggle( $tname ) );
 			}
 		}
