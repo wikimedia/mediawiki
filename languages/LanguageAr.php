@@ -3,12 +3,20 @@
 include_once("Utf8Case.php");
 
 class LanguageAr extends LanguageUtf8 {
-	# Inherit everything
+	# TODO: TRANSLATION!
 
-	# TODO: right-to-left support functions...?
+	# Inherit everything except...
+
 	function isRTL() { return true; }
 
-	# There may be a partial translation; get this merged in.
+	function getDefaultUserOptions () {
+		global $wgDefaultUserOptionsEn;
+		$opt = $wgDefaultUserOptionsEn;
+
+		# Swap sidebar to right side by default
+		$opt['quickbar'] = 2;
+		return $opt ;
+	}
 
 	function checkTitleEncoding( $s ) {
 		global $wgInputEncoding;
