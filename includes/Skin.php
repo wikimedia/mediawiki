@@ -19,9 +19,10 @@ if( $wgUseSmarty ) {
 }
 if( $wgUsePHPTal ) {
     #$wgValidSkinNames[] = "PHPTal";
-    $wgValidSkinNames['davinci'] = "DaVinci";
-    $wgValidSkinNames['mono'] = "Mono";
+    #$wgValidSkinNames['davinci'] = "DaVinci";
+    #$wgValidSkinNames['mono'] = "Mono";
     $wgValidSkinNames['monobook'] = "MonoBook";
+    #$wgValidSkinNames['monobookminimal'] = "MonoBookMinimal";
 }
 
 include_once( "RecentChange.php" );
@@ -1550,7 +1551,7 @@ class Skin {
 				"  <img border=\"0\" src=\"{$url}\" alt=\"{$alt}\" />\n  </a>";
 		}
 		if ( "" != $align ) {
-			$s = "<div class=\"float{$align}\">{$s}\n</div>";
+			$s = "<div class=\"float{$align}\"><span>{$s}\n</span></div>";
 		}
 		return $prefix.$s.$postfix;
 	}
@@ -1688,7 +1689,7 @@ class Skin {
 		$magnifyalign = $wgLang->isRTL() ? "left" : "right";
 		$textalign = $wgLang->isRTL() ? " style=\"text-align:right\"" : "";
 
-		$s = "<div class=\"thumbnail-{$align}\" style=\"width:{$boxwidth}px;\">";
+		$s = "<div class=\"thumbnail-{$align}\" style=\"width:{$boxwidth}px;\"><div>";
 		if ( $thumbUrl == "" ) {
 			$s .= str_replace( "$1", $name, wfMsg("missingimage") );
 		} else {
@@ -1699,7 +1700,7 @@ class Skin {
 		    		'  <img border="0" src="'.$wgUploadPath.'/magnify-clip.png" ' .
 				'width="26" height="24" align="'.$magnifyalign.'" alt="'.$more.'" /> </a>'."\n";
 		}
-		$s .= '  <p'.$textalign.'>'.$label."</p>\n</div>";
+		$s .= '  <p'.$textalign.'>'.$label."</p>\n</div></div>";
 		return $s;
 	}
 
@@ -2276,11 +2277,11 @@ class Skin {
 		# try min-width & co when somebody gets a chance
 		$hideline = " <script type='text/javascript'>showTocToggle(\"" . addslashes( wfMsg("showtoc") ) . "\",\"" . addslashes( wfMsg("hidetoc") ) . "\")</script>";
 		return
-		"<p><table border=\"0\" id=\"toc\"><tr><td align=\"center\">\n".
+		"<table border=\"0\" id=\"toc\"><tr><td align=\"center\">\n".
 		"<b>".wfMsg("toc")."</b>" .
 		$hideline .
 		"</td></tr><tr id='tocinside'><td>\n".
-		$toc."</td></tr></table><P>\n";
+		$toc."</td></tr></table>\n";
 	}
 
 	# These two do not check for permissions: check $wgTitle->userCanEdit before calling them
