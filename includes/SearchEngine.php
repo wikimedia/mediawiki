@@ -312,7 +312,8 @@ class SearchEngine {
 		#	$this->mUsertext );
 		
 		$q = $this->mUsertext;
-		$qq = wfStrencode( $q );
+		$qq = wfStrencode( $wgLang->stripForSearch( $q ) );
+		$this->mSearchterms = preg_split( '/\s+/', $q );
 		$this->mTitlecond = " MATCH(si_title) AGAINST('$qq' IN BOOLEAN MODE)";
 		$this->mTextcond = " (MATCH(si_text) AGAINST('$qq' IN BOOLEAN MODE) AND cur_is_redirect=0)";
 	}
