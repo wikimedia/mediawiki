@@ -5,10 +5,6 @@
 #
 require_once( "CacheManager.php" );
 
-define( "DB_READ", -1 );
-define( "DB_WRITE", -2 );
-define( "DB_LAST", -3 );
-
 define( "LIST_COMMA", 0 );
 define( "LIST_AND", 1 );
 define( "LIST_SET", 2 );
@@ -143,10 +139,11 @@ class Database {
 	{
 		if ( $this->mFailFunction ) {
 			if ( !is_int( $this->mFailFunction ) ) {
-				$this->$mFailFunction( $this );
+				$ff = $this->mFailFunction;
+				$ff( $this, mysql_error() );
 			}
 		} else {
-			wfEmergencyAbort( $this );
+			wfEmergencyAbort( $this, mysql_error() );
 		}
 	}
 	
@@ -459,7 +456,7 @@ class Database {
 
 /* Standard fail function, called by default when a connection cannot be established
    Displays the file cache if possible */
-function wfEmergencyAbort( &$conn ) {
+function wfEmergencyAbort( &$conn, $error ) {
 	global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding, $wgSiteNotice, $wgOutputEncoding;
 	
 	if( !headers_sent() ) {
@@ -470,7 +467,7 @@ function wfEmergencyAbort( &$conn ) {
 		header( "Pragma: nocache" );
 	}
 	$msg = $wgSiteNotice;
-	if($msg == "") $msg = wfMsgNoDB( "noconnect" );
+	if($msg == "") $msg = wfMsgNoDB( "noconnect", $error );
 	$text = $msg;
 
 	if($wgUseFileCache) {

@@ -60,6 +60,10 @@ $wgDBconnection     = '';
 $wgDBuser           = 'wikiuser';
 $wgDBtype           = "mysql"; # "mysql" for working code and "pgsql" for development/broken code
 
+# Database load balancer
+$wgDBservers		= false; # e.g. array(0 => "larousse", 1 => "pliny")
+$wgDBloads			= false; # e.g. array(0 => 0.6, 1 => 0.4);
+
 # Sysop SQL queries
 $wgAllowSysopQueries = false; # Dangerous if not configured properly.
 $wgDBsqluser		= 'sqluser';
