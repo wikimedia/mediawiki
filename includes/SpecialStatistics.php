@@ -17,7 +17,7 @@ function wfSpecialStatistics() {
 	$dbr =& wfGetDB( DB_SLAVE );
 	extract( $dbr->tableNames( 'cur', 'site_stats', 'user', 'user_rights' ) );
 
-	$sql = "SELECT COUNT(cur_id) AS total FROM $cur";
+	$sql = "SELECT COUNT(cur_namespace) AS total FROM $cur";
 	$res = $dbr->query( $sql, $fname );
 	$row = $dbr->fetchObject( $res );
 	$total = $row->total;
