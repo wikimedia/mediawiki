@@ -62,6 +62,7 @@ class EditPage {
 	}
 
 	function importFormData( &$request ) {
+		global $wgIsMySQL, $wgIsPg;
 		# These fields need to be checked for encoding.
 		# Also remove trailing whitespace, but don't remove _initial_
 		# whitespace from the text boxes. This may be significant formatting.
@@ -70,7 +71,12 @@ class EditPage {
 		$this->summary = trim( $request->getText( "wpSummary" ) );
 
 		$this->edittime = $request->getVal( 'wpEdittime' );
-		if( !preg_match( '/^\d{14}$/', $this->edittime ) ) $this->edittime = "";
+		if ($wgIsMySQL) 
+			if( !preg_match( '/^\d{14}$/', $this->edittime )) $this->edittime = "";
+		if ($wgIsPg)
+			if ( !preg_match( '/^\d{4}-\d\d-\d\d \d\d:\d\d:\d\d$/', 
+				$this->edittime ))
+				$this->edittime = "";
 
 		$this->preview = $request->getCheck( 'wpPreview' );
 		$this->save = $request->wasPosted() && !$this->preview;
@@ -538,6 +544,7 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 	}
 
 	/* private */ function mergeChangesInto( &$text ){
+		global $wgIsPg;
 		$oldDate = $this->edittime;
 		$res = wfQuery("SELECT cur_text FROM cur WHERE cur_id=" .
 			$this->mTitle->getArticleID() . " FOR UPDATE", DB_WRITE);
@@ -546,7 +553,8 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$yourtext = $obj->cur_text;
 		$ns = $this->mTitle->getNamespace();
 		$title = wfStrencode( $this->mTitle->getDBkey() );
-		$res = wfQuery("SELECT old_text,old_flags FROM old WHERE old_namespace = $ns AND ".
+		$oldtable=$wgIsPg?'"old"':'old';
+		$res = wfQuery("SELECT old_text,old_flags FROM $oldtable WHERE old_namespace = $ns AND ".
 		  "old_title = '{$title}' AND old_timestamp = '{$oldDate}'", DB_WRITE);
 		$obj = wfFetchObject($res);
 		$oldText = Article::getRevisionText( $obj );
