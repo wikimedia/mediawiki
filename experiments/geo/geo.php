@@ -1,12 +1,57 @@
 <?
-include_once ( "geo_data.php" ) ;
+#include_once ( "geo_data.php" ) ;
 include_once ( "geo_functions.php" ) ;
+
+$geo_cache = array () ; # Evil global variable - beware!
+
+function get_raw_text ( $id )
+	{
+	global $geo_cache ;
+	
+	if ( isset ( $geo_cache[$id] ) ) # Try the cache first...
+		return $geo_cache[$id] ;
+
+	# Get the page contents. This is stupidly done through reading the URL right now
+	# It *should* be done by querying the DB through the Article class, of course
+	$filename = "http://127.0.0.1/phase3/index.php?title=Geo:{$id}&action=raw" ;
+	$handle = fopen($filename, "r");
+	$contents = '';
+	while (!feof($handle))
+		$contents .= fread($handle, 8192);
+	fclose($handle);
+
+	$geo_cache[$id] = $contents ; # Cache the result
+	return $contents ;
+	}
 
 # Global functions
 function geo_get_text ( $id )
 	{
-	global $geo_data ;
-	return $geo_data[$id] ;
+	$id = trim ( strtolower ( $id ) ) ;
+	
+	$parts = explode ( "#" , $id ) ;
+	if ( count ( $parts ) == 2 )
+		{
+		$id = array_shift ( $parts ) ;
+		$subid = array_shift ( $parts ) ;
+		}
+	else $subid = "" ;
+	
+	$ret = "\n" . get_raw_text ( $id ) ;
+	$ret = explode ( "\n==" , $ret ) ;
+	
+	if ( $subid == "" ) return $ret[0] ; # Default
+	
+	array_shift ( $ret ) ;
+	foreach ( $ret AS $s )
+		{
+		$s = explode ( "\n" , $s , 2 ) ;
+		$heading = array_shift ( $s ) ;
+		$heading = strtolower ( trim ( str_replace ( "=" , "" , $heading ) ) ) ;
+		if ( $heading == $subid ) return array_shift ( $s ) ;
+		}
+#	print "Not found : {$id}#{$subid}\n" ;
+	return "" ; # Query not found
 	}
 
 
@@ -84,7 +129,7 @@ class geo_params
 			$fs = $l['font-size'] ;
 			if ( $fs == "medium" ) $fs = $medium_font_size ;
 			if ( $fs == "" ) $fs = $medium_font_size * 8 / 10 ;
-
+			
 			$p = array() ;
 			$p[] = "text-anchor:middle" ;
 			$p[] = "fill-opacity:0.7" ;
@@ -105,10 +150,10 @@ class geo
 	var $data = array () ;
 	var $xsum , $ysum , $count ;
 	
-	function set_from_text ( $t , $id = "" )
+	function set_from_id ( $id )
 		{
 		$this->id = $id ;
-		$t = explode ( "\n!" , "\n".$t ) ;
+		$t = explode ( "\n;" , "\n".geo_get_text ( $id ) ) ;
 		$this->data = array () ;
 		foreach ( $t AS $x )
 			{
@@ -120,11 +165,6 @@ class geo
 			$value = explode ( ";" , $value ) ;
 			if ( $key != "" ) $this->data[$key] = $value ;
 			}
-		}
-	
-	function set_from_id ( $id )
-		{
-		$this->set_from_text ( geo_get_text ( $id ) , $id ) ;
 		}
 
 	function get_data ( &$params )
@@ -294,14 +334,6 @@ $svg = $g->draw ( $p ) ;
 $svg .= $p->get_svg_labels () ;
 
 $styles = "" ;
-/*
-$styles = '	<defs>
-		<style type="text/css"><![CDATA[
-			.stuff {fill:none; stroke:blue; stroke-width:2}
-   		]]></style>
-	</defs>
-' ;
-*/
 
 $viewBox = $p->get_view_box () ;
 
