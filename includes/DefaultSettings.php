@@ -780,10 +780,27 @@ $wgPasswordSalt = true;
 /** Which namespaces should support subpages?
  * See Language.php for a list of namespaces.
  */
-$wgNamespacesWithSubpages = array( -1 => 0, 0 => 0, 1 => 1,
-  2 => 1, 3 => 1, 4 => 0, 5 => 1, 6 => 0, 7 => 1, 8 => 0, 9 => 1, 10 => 0, 11 => 1);
+$wgNamespacesWithSubpages = array(
+	NS_SPECIAL => 0,
+	NS_MAIN => 0,
+	NS_TALK => 1,
+ 	NS_USER => 1,
+ 	NS_USER_TALK => 1,
+ 	NS_PROJECT => 0,
+ 	NS_PROJECT_TALK => 1,
+ 	NS_IMAGE => 0,
+ 	NS_IMAGE_TALK => 1,
+ 	NS_MEDIAWIKI => 0,
+ 	NS_MEDIAWIKI_TALK => 1,
+ 	NS_TEMPLATE => 0,
+ 	NS_TEMPLATE_TALK => 1,
+ 	NS_HELP => 0,
+ 	NS_HELP_TALK => 1,
+ 	NS_CATEGORY => 0,
+ 	NS_CATEGORY_TALK => 1
+ );
 
-$wgNamespacesToBeSearchedDefault = array( -1 => 0, 0 => 1, 1 => 0,
+$wgNamespacesToBeSearchedDefault = array( NS_SPECIAL => 0, 0 => 1, 1 => 0,
   2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0, 8 => 0, 9 => 1, 10 => 0, 11 => 1 );
 
 /** If set, a bold ugly notice will show up at the top of every page. */
