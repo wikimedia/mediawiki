@@ -203,7 +203,10 @@ include_once( "LanguageUtf8.php" );
 "printableversion" => "Version imprimable",
 "editthispage"  => "Modifier cette page",
 "deletethispage" => "Supprimer cette page",
+"undelete_short" => "Restaurer",
+"protect" => "Protéger",
 "protectthispage" => "Protéger cette page",
+"unprotect" => "Déprotéger",
 "unprotectthispage" => "Déprotéger cette page",
 "newpage"       => "Nouvelle page",
 "talkpage"      => "Page de discussion",
@@ -334,6 +337,30 @@ Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que 
 "noemail"  => "Aucune adresse électronique n'a été enregistrée pour l'utilisateur \"$1\".",
 "passwordsent" => "Un nouveau mot de passe a été envoyé à l'adresse électronique de l'utilisateur \"$1\".
 Veuillez vous identifier dès que vous l'aurez reçu.",
+
+# Edit page toolbar
+"bold_sample"=>"Texte gras",
+"bold_tip"=>"Texte gras",
+"italic_sample"=>"Texte italique",
+"italic_tip"=>"Texte italique",
+"link_sample"=>"Lien titre",
+"link_tip"=>"Lien interne",
+"extlink_sample"=>"http://www.example.com lien titre",
+"extlink_tip"=>"Lien externe (n'oubliez pas http://)",
+"headline_sample"=>"Texte de sous-titre",
+"headline_tip"=>"Sous-titre niveau 2",
+"math_sample"=>"Entrez votre formule ici",
+"math_tip"=>"Formule mathématique (LaTeX)",
+"nowiki_sample"=>"Entrez le texte non formatté ici",
+"nowiki_tip"=>"Ignorer la syntaxe wiki",
+"image_sample"=>"Exemple.jpg",
+"image_tip"=>"Image insérée",
+"media_sample"=>"Exemple.ogg",
+"media_tip"=>"Lien fichier média",
+"sig_tip"=>"Votre signature avec la date",
+"hr_tip"=>"Lien horizontale (ne pas en abuser)",
+"infobox"=>"Cliquez ce bouton pour avoir un exemple de texte",
+
 
 # Edit pages
 #
@@ -531,6 +558,7 @@ Si vous voulez que $wgSitename connaisse le succès, merci de ne pas y inclure p
 "rclistfrom"	=> "Afficher les nouvelles modifications depuis le $1.",
 # "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 dernières heures / $3 derniers jours",
 # "rclinks"  => "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours.",
+"showhideminor" => "$1 modifications mineures | $2 robots | $3 utilisateurs enregistrés",
 "rclinks"	=> "Afficher les $1 dernières modifications effectuées au cours des $2 derniers jours; $3 modifications mineures.",	// Looxix
 "rchide"  => "in $4 form; $1 modifications mineures; $2 espaces secondaires; $3 modifications multiples.", // FIXME
 "rcliu"		=> "; $1 modifications par des contributeurs connectés",
@@ -603,6 +631,7 @@ Suivez ce lien: ($2) pour accéder à la page de description, et donner des info
 "uploadwarning" => "Attention !",
 "savefile"  => "Sauvegarder le fichier",
 "uploadedimage" => " \"$1\" copié sur le serveur",
+"uploaddisabled" => "Désolé, l'envoi de fichier est désactivé.",
 
 # Image list
 #
@@ -699,6 +728,7 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 "booksources"   => "Ouvrages de référence",
 "booksourcetext" => "Voici une liste de liens vers d'autres sites qui vendent des livres neufs et d'occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. $wgSitename n'étant liée à aucune de ces sociétés, elle n'a aucunement l'intention d'en faire la promotion.",
 "alphaindexline" => "$1 à $2",
+"version" => "Version",
 
 # Email this user
 #
@@ -869,7 +899,9 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 "blocklogentry"	=> 'blocage de "$1"',
 "blocklogtext"	=> "Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.",
 "unblocklogentry"	=> 'déblocage de "$1"',
-
+"proxyblocker" => "Bloqueur de proxy",
+"proxyblockerreason" => "Votre ip a été bloquée car c'est un proxy ouvert. Merci de contacter votre fournisseur d'accès internet ou votre support technique et de l'informer de ce problème de sécurité.",
+"proxyblocksuccess" => "Terminé.\n",
 
 # Developer tools
 #
@@ -914,8 +946,10 @@ Tapez le nom de l'utilisateur dans la boite et pressez le bouton pour lui donner
 "makesysopsubmit"	=> "Donner les droits d'adminitrateur à cet utilisateur",
 "makesysopok"		=> "<b>L'utilisateur \"$1\" est maintenant administrateur</b>",
 "makesysopfail"		=> "<b>L'utilisateur \"$1\" n'a pas pu recevoir les droits d'adminitrateurs. (Avez vous entré le nom correctement?)</b>",
-"rights"			=> "Droits:",
+"rights"		=> "Droits:",
+"set_user_rights"	=> "Met les droits de l'utilisateur",
 "user_rights_set"	=> "<b>Les droits de l'utilisateur \"$1\" sont mis à jour</b>",
+"setbureaucratflag"	=> "Donne les droits bureaucrate",
 "set_rights_fail"	=> "<b>Les droits de l'utilisateur \"$1\" n'ont pas pu être mis en place. (Avez vous entré le nom correctement?)</b>",
 "makesysop"         => "Donner les droits d'adminitrateur à un utilisateur",
 
@@ -1039,17 +1073,20 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'tooltip-mycontris' => 'Liste de mes contributions',
 'tooltip-mytalk' => 'Ma page de discussion',
 'tooltip-nomove' => 'Vous n\'avez pas la permission de déplacer cette page',
+'tooltip-portal' => 'A propos de ce projet, ce que vous pouvez faire, où trouver les choses',
 'tooltip-preferences' => 'Mes préférences',
 'tooltip-preview' => 'Prévisualiser les changements, merci de l\'utiliser avant de sauvegarder! [alt-p]',
 'tooltip-protect' => 'Protéger cette page [alt-"-"]',
 'tooltip-randompage' => 'Aller à une page au hasard [alt-x]',
 'tooltip-recentchanges' => 'La liste des modifications récentes dans le wiki. [alt-r]',
 'tooltip-recentchangeslinked' => 'Modifications récentes des pages liant à cette page [alt-c]',
+'tooltip-save' => 'Sauvegarder vos modifications [alt-s]',
 'tooltip-search' => 'Rechercher dans ce wiki',
 'tooltip-sitesupport' => 'Aider {{SITENAME}}',
 'tooltip-specialpage' => 'Ceci est une page spéciale, vous ne pouvez pas l\'éditer.',
 'tooltip-specialpages' => 'Liste de toutes les pages spéciales',
 'tooltip-talk' => 'Discussion sur l\'article [alt-t]',
+'tooltip-undelete' => 'Restaurer $1 éditions supprimées de cette page [alt-d]',
 'tooltip-unwatch' => 'Retirer cette page de votre liste de suivi',
 'tooltip-upload' => 'Copier sur le serveur des fichiers [alt-u]',
 'tooltip-userpage' => 'Ma page personelle',
