@@ -579,27 +579,29 @@ Den blir automatiskt inställd efter svensk tid eller skulle man till exempel f�
 för att kunna ladda upp filer.",
 "uploadfile"            => "Ladda upp fil",
 "uploaderror"           => "Uppladdnings fel",
-"uploadtext"            => "<strong>STOPP!</strong> Innan du laddar upp här,
-så måste du ha läst och följa Wikipedias <a href=\"" .
-wfLocalUrlE( "Wikipedia:Policy om bruk av bilder" ) . "\">policy om hur 
-bilder får användas</a>.
-<p>För att visa eller söka tidigare uppladdade bilder gå till
-<a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
-"\">lista över uppladdade bilder</a>.
-Uppladdningar och borttagningar loggas i <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">uppladdnings logg</a>.
-<p>Använd formuläret nedan för att ladda upp nya filer, som 
+"uploadtext"            => "'''STOPP!''' Innan du laddar upp här,
+så måste du ha läst och följa Wikipedias
+[[Project:Policy om bruk av bilder|policy om hur bilder får användas]].
+
+För att visa eller söka tidigare uppladdade bilder gå till
+[[Special:Imagelist|lista över uppladdade bilder]].
+Uppladdningar och borttagningar loggas i
+[[Project:Upload_log|uppladdnings logg]].
+
+Använd formuläret nedan för att ladda upp nya filer, som 
 du kan illustrera dina artiklar med.
 På de flesta webbläsare kommer du att se en \"Browse...\" knapp eller en 
 \"Öppna...\" knapp, som startar ditt operativsystems dialogruta för att öppna filer. När du valt en fil kommer namnet på den filen att visas i textfältet brevid knappen. Du måste även kryssa för rutan, för att du inte gör något som strider mot upphovsrätten av filen som laddas upp.
 Tryck på \"Upload\" knappen för att ladda upp filen.
 Detta kan dröja ett tag om du har en långsam internetförbindelse.
-<p>Formaten på filerna ska helst vara JPEG för bilder, PNG för ritningar 
+
+Formaten på filerna ska helst vara JPEG för bilder, PNG för ritningar 
 och andra ikonliknande bilder och OGG för ljud.
 Var vänlig namnge filen med ett så beskrivande namn som möjligt, för att undvika förvirring.
-För att använda en fil i en artikel, skriv följande om det är en bild: <b>[[bild:filnamn.jpg]]</b> eller <b>[[bild:filnamn.png|alternativ text]]</b>
-eller <b>[[media:filnamn.ogg]]</b> om det är en ljudfil.
-<p>Kom ihåg att det här är en wiki, vilket gör att andra kan redigera eller ta bort dina uppladdningar om de tycker de inte passar i en artikel. Om du missbrukar systemet med uppladdningar kommer filen avlägsnas och du bli spärrad från att ladda upp filer i framtiden.",
+För att använda en fil i en artikel, skriv följande om det är en bild: '''<nowiki>[[bild:filnamn.jpg]]</nowiki>''' eller '''<nowiki>[[bild:filnamn.png|alternativ text]]</nowiki>'''
+eller '''<nowiki>[[media:filnamn.ogg]]</nowiki>''' om det är en ljudfil.
+
+Kom ihåg att det här är en wiki, vilket gör att andra kan redigera eller ta bort dina uppladdningar om de tycker de inte passar i en artikel. Om du missbrukar systemet med uppladdningar kommer filen avlägsnas och du bli spärrad från att ladda upp filer i framtiden.",
 "uploadlog"             => "upload log",
 "uploadlogpage"         => "Upload_log",
 "uploadlogpagetext"     => "Nedan följer en lista med de senaste uppladdade filerna.

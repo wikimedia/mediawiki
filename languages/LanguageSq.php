@@ -609,15 +609,16 @@ nga ajo e shërbyesit (UTC).",
 për të dhënë skedarë.",
 "uploadfile"	=> "Jep figura, zë, dokumente etj.",
 "uploaderror"	=> "Gabim dhënie",
-"uploadtext"	=> "<strong>NDALO!</strong> Përpara se të japësh këtu,
-lexo dhe ndiq $wgSitename's <a href=\"" .
-wfLocalUrlE( "$wgMetaNamespace:Rregullat_përdorim_figurash" ) . "\">Rregullat e përdorimit të figurave</a>.
-<p>Për të parë ose për të kërkuar figurat e dhëna më parë,
-shko tek <a href=\"" . wfLocalUrlE( "Speciale:Imagelist" ) .
-"\">lista e figurave të dhëna</a>.
-Dhëniet dhe grisjet janë të rregjistruara në <a href=\"" .
-wfLocalUrlE( "$wgMetaNamespace:Jep_rregj" ) . "\">rregjistrin e dhënies</a>.
-<p>Përdorni formularin e më poshtëm për të dhënë skedarë të figurave të reja për tu përdorur
+"uploadtext"	=> "'''NDALO!''' Përpara se të japësh këtu,
+lexo dhe ndiq {{SITENAME}}'s
+[[Project:Rregullat_përdorim_figurash|Rregullat e përdorimit të figurave]].
+
+Për të parë ose për të kërkuar figurat e dhëna më parë,
+shko tek [[Speciale:Imagelist|lista e figurave të dhëna]].
+Dhëniet dhe grisjet janë të rregjistruara në
+[[Project:Jep_rregj|rregjistrin e dhënies]].
+
+Përdorni formularin e më poshtëm për të dhënë skedarë të figurave të reja për tu përdorur
 në illustrimet e artikujve.
 Për shumicën e shfletuesve, do të shihni një \"Browse...\" buton, i cili do të
 hapi dialogun standart të skedarëve të operating system që përdorni.
@@ -625,13 +626,15 @@ Zgjedhja e një skedari do të mbushi emrin në rreshtin e tekstit, afer butonit
 Duhet të konfirmosh që nuk je duke thyer rregullat e të drejtave të kopimit duke vënë shenjën.
 Shtyp butonin \"Jep\" për të mbaruar dhënien.
 Kjo mund të zgjasi për pak kohë n.q.s. keni lidhje të ngadaltë të internet-it.
-<p>Formatet e preferuara janë JPEG për fotografi, PNG
+
+Formatet e preferuara janë JPEG për fotografi, PNG
 për vizatime dhe ikona të tjera, dhe OGG për zë dhe muzikë.
 Të lutem fut një emër përshkrues për të mos patur konfuzion më vonë.
 Për të futur një figurë në një artikull, përdor lidhjen sipas formës
-<b>[[figura:skedar.jpg]]</b> ose <b>[[figura:skedar.png|tekst përshkrues]]</b>
-ose <b>[[media:skedar.ogg]]</b> për zë.
-<p>Vini re se si me të gjitha faqet e tjera wiki, të tjerë mund të redaktojnë ose
+'''<nowiki>[[figura:skedar.jpg]]</nowiki>''' ose '''<nowiki>[[figura:skedar.png|tekst përshkrues]]</nowiki>'''
+ose '''<nowiki>[[media:skedar.ogg]]</nowiki>''' për zë.
+
+Vini re se si me të gjitha faqet e tjera wiki, të tjerë mund të redaktojnë ose
 grisin dhëniet tuaja n.q.s. mendojnë se nuk janë enciklopedike, dhe
 ti mund të bllokohesh nga dhënja n.q.s. e abuzon sistemin.",
 "uploadlog"		=> "rregjistër dhënie",

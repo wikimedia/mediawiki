@@ -619,25 +619,29 @@ $2 yw eich rhif hunaniaith mewnol.",
 i lwytho ffeiliau i fynu.",
 "uploadfile" => "Llwytho ffeil i fynu",
 "uploaderror" => "Gwall yn llwytho ffeil i fynu",
-"uploadtext" => "<strong>STOPIWCH!</strong> Cyn iddich chi llwytho lluniau yma, darllenwch a dilynwch <a href=\"" .
-wfLocalUrlE( "Wicipedia:Polisi_defnyddio_lluniau" ) . "\">polisi defnyddio lluniau</a> Wicipedia os gwelwch yn dda.
-<p>I gweld neu chwilio hen lluniau ewch i'r <a href=\"" . wfLocalUrlE( "Arbennig:Imagelist" ) .
-"\">rhestr lluniau wedi llwytho</a>.
-Mae pob llwyth a dileuo ffeil yn cael eu recordio ar y <a href=\"" .
-wfLocalUrlE( "Wicipedia:Upload_log" ) . "\">log llwytho</a>.
-<p>Defnyddwch y ffurflen isod i llwytho ffeil llun newydd i darluno eich erthyglau.
+"uploadtext" => "'''STOPIWCH!''' Cyn iddich chi llwytho lluniau yma, darllenwch a dilynwch [[Project:Polisi_defnyddio_lluniau|polisi defnyddio lluniau]] Wicipedia os gwelwch yn dda.
+
+I gweld neu chwilio hen lluniau ewch i'r
+[[Arbennig:Imagelist|rhestr lluniau wedi llwytho]].
+Mae pob llwyth a dileuo ffeil yn cael eu recordio ar y
+[[Project:Upload_log||log llwytho]].
+
+Defnyddwch y ffurflen isod i llwytho ffeil llun newydd i darluno eich erthyglau.
 Ar y mwyafrif o porwyr, fyddwch yn gweld botwm \"Pori/Browse...\" i agor y dialog agor ffeil arferol.
 Fydd dewis ffeil y llenwi enw'r ffeil yn y cae testun nesaf i'r botwm.
 Mae rhaid i chi hefyd ticio'r blaidd i addo rydych chi ddim yn torri hawlfraintiau rhywun arall trwy llwytho'r ffeil.
 Gwasgwch y botwm \"Llwytho/Upload\" i gorffen y llwyth.
 Ellith hwn cymyd dipyn o amser os mae gennych chi cysylltiad rhyngrwyd araf.
-<p>Y fformatiau gwell gennym ni yw JPEG am lluniau ffotograffiaeth, PNG
+
+Y fformatiau gwell gennym ni yw JPEG am lluniau ffotograffiaeth, PNG
 am lluniadau a delweddau iconydd eraill, ag OGG am seiniau.
 Enwch eich ffeil yn disgrifiadol i osgoi anhrefn os gwelwch yn dda.
 I cynnwys y llun mewn erthygl, defnyddwch cysylltiad yn y ffurf
-<b>[[llun:ffeil.jpg]]</b> neu <b>[[llun:ffeil.png|testun arall]]</b>
-neu <b>[[media:ffeil.ogg]]</b> am sain.
-<p>Sylwch -- fel efo tudalennau Wicipedia, ellith pobl eraill golygu neu dileu eich ffeil os ydyn nhw'n meddwl fyddynt yn helpu'r gwyddoniadur, ac ellwch chi cael eich gwaharddio os ydych chi'n sarhau'r system.",
+'''<nowiki>[[llun:ffeil.jpg]]</nowiki>''' neu
+'''<nowiki>[[llun:ffeil.png|testun arall]]</nowiki>''' neu
+'''<nowiki>[[media:ffeil.ogg]]</nowiki>''' am sain.
+
+Sylwch -- fel efo tudalennau Wicipedia, ellith pobl eraill golygu neu dileu eich ffeil os ydyn nhw'n meddwl fyddynt yn helpu'r gwyddoniadur, ac ellwch chi cael eich gwaharddio os ydych chi'n sarhau'r system.",
 "uploadlog" => "log llwytho i fynu",
 "uploadlogpage" => "log_llwytho_i_fynu",
 "uploadlogpagetext" => "Isod mae rhestr o'r llwythu ffeil diweddarach.

@@ -585,22 +585,30 @@ Veja também [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta d
 para carregar arquivos.",
 "uploadfile"    => "Carregar imagens, sons, documentos etc.",
 "uploaderror"   => "Erro ao Carregar",
-"uploadtext"    => "<strong>PARE!</strong> Antes de você carregar arquivos aqui,
-tenha certeza de ter lido e estar em acordo com a <a href=\"{{localurle:Project:Política_de_imagens}}\">política de uso de imagens da {{SITENAME}}</a>.
-<p>Para ver ou procurar imagens carregadas,
-vá �  <a href=\"{{localurle:Special:Imagelist}}\">lista de imagens carregadas</a>.
-Uploads e deleções são armazenados no <a href=\"{{localurle:Project:Upload_log}}\">log de uploads</a>.
-<p>Use o formulário a seguir para carregar arquivos de imagens para ilustrar seus artigos. Na maioria dos navegadores, você verá um botão \"Browse...\" , que trárá o diálogo padrão de abertura de arquivo padrão do seu Sistema Operacional.
+"uploadtext"    => "'''PARE!''' Antes de você carregar arquivos aqui,
+tenha certeza de ter lido e estar em acordo com a
+[[Project:Política_de_imagens|política de uso de imagens da {{SITENAME}}]].
+
+Para ver ou procurar imagens carregadas,
+vá � [[Special:Imagelist|lista de imagens carregadas]].
+Uploads e deleções são armazenados no
+[[Project:Upload_log|log de uploads]].
+
+Use o formulário a seguir para carregar arquivos de imagens para ilustrar seus artigos. Na maioria dos navegadores, você verá um botão \"Browse...\" , que trárá o diálogo padrão de abertura de arquivo padrão do seu Sistema Operacional.
 Ao escolher um arquivo, o campo de texto próximo ao botão será preenchido.
 Você tembém deve confirmar  que não está carregando nenhum arquivo protegido por Diretos Autorais.
 Pressione o botão \"Carregar\" para finalizar o upload.
 Isto pode demorar um pouco se você tem possui uma conexão lenta.
-<p>Os formatos ideais são JPEG para fotos, PNG
+
+Os formatos ideais são JPEG para fotos, PNG
 para ilustrações, e OGG para sons.
 Por favor, nomeie seus arquivos de forma descritiva para evitar confusões.
-Para incluir uma imagem em um artigo, use um link na forma <b>[[image:arquivo.jpg]]</b> ou <b>[[image:arquivo.png|texto descritivo]]</b>
-ou <b>[[media:audio.ogg]]</b> para sons.
-<p>Por favor, note que com as páginas da {{SITENAME}}, outros usuários podem modificar ou deletar seus uploads se eles acharem que isto seja útil �  {{SITENAME}}, e você possa estar bloqueado para uploads devido a abusos do sistema.",
+Para incluir uma imagem em um artigo, use um link na forma
+'''<nowiki>[[image:arquivo.jpg]]</nowiki>''' ou
+'''<nowiki>[[image:arquivo.png|texto descritivo]]</nowiki>''' ou
+'''<nowiki>[[media:audio.ogg]]</nowiki> para sons.
+
+Por favor, note que com as páginas da {{SITENAME}}, outros usuários podem modificar ou deletar seus uploads se eles acharem que isto seja útil �  {{SITENAME}}, e você possa estar bloqueado para uploads devido a abusos do sistema.",
 "uploadlog"     => "log de uploads",
 "uploadlogpage" => "Log_de_Uploads",
 "uploadlogpagetext" => "Segue uma lista dos uploads mais recentes.

@@ -620,34 +620,37 @@ Jeśli zależy Ci na dalszym rozwoju Wikipedii, nie dodawaj materiałów zastrze
 przed przesłaniem pików.",
 "uploadfile" => "Prześlij plik",
 "uploaderror" => "Błąd przesyłki",
-"uploadtext" => "<strong>STOP!</strong> Zanim prześlesz plik,
-przeczytaj <a href=\"" . wfLocalUrlE( "{{ns:4}}:Zasady_dołączania_plików" ) .
-"\">zasady dołączania plików</a> i upewnij się, że przesyłając pozostaniesz z
+"uploadtext" => "'''STOP!''' Zanim prześlesz plik,
+przeczytaj [[Project:Zasady_dołączania_plików|zasady dołączania plików]]
+i upewnij się, że przesyłając pozostaniesz z
 nimi w zgodzie.
-<p>Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki,
-przejdź do <a href=\"" . wfLocalUrlE( "Specjalna:Imagelist" ) .
-"\">listy dołączonych plików</a>.
+
+Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki,
+przejdź do [[Specjalna:Imagelist|listy dołączonych plików]].
 Wszystkie przesyłki i skasowania są odnotowane na
-specjalnych wykazach (<a href=\"" .  wfLocalUrlE( "{{ns:4}}:Dołączone" ) .
-"\">dołączone</a>, <a href=\"" . wfLocalUrlE( "{{ns:4}}:Usunięte" ) .
-"\">usunięte</a>).
-<p>By przesłać nowy plik mający zilustrować Twój artykuł skorzystaj
+specjalnych wykazach ([[Project:Dołączone|dołączone]],
+[[Project:Usunięte|usunięte]]).
+
+By przesłać nowy plik mający zilustrować Twój artykuł skorzystaj
 z poniższego formularza.
-W przypadku większości przeglądarek zobaczysz przycisk <i>Browse...</i>
-albo <i>Przeglądaj...</i>, który umożliwi Ci otworzenie standardowego
+W przypadku większości przeglądarek zobaczysz przycisk ''Browse...''
+albo ''Przeglądaj...'', który umożliwi Ci otworzenie standardowego
 okienka wyboru pliku. Wybranie pliku spowoduje umieszczenie jego nazwy
 w polu tekstowym obok przycisku.
 Musisz także zaznaczając odpowiednie pole, potwierdzić, że przesyłając
 plik nie naruszasz niczyich praw autorskich.
-Przesyłka rozpocznie się po naciśnięciu <i>Prześlij plik</i>.
+Przesyłka rozpocznie się po naciśnięciu ''Prześlij plik''.
 Może zająć kilka chwil, zwłaszcza jeśli masz wolne połączenie z internetem.
-<p>Preferowane formaty to JPEG dla zdjęć fotograficznych, PNG dla rysunków
+
+Preferowane formaty to JPEG dla zdjęć fotograficznych, PNG dla rysunków
 i obrazków o charakterze ikon oraz OGG dla dźwięków.
 Aby uniknąć nieporozumień nadawaj plikom nazwy związane z zawartością.
 Aby umieścić obrazek w artykule, użyj linku w postaci
-<b>[[grafika:obrazek.jpg]]</b> lub <b>[[grafika:obrazek.png|opcjonalny tekst]]</b>.
-Dla plików dźwiękowych link będzie miał postać <b>[[media:file.ogg]]</b>.
-<p>Pamiętaj, proszę, że tak jak w przypadku zwykłych stron Wikipedii,
+'''<nowiki>[[grafika:obrazek.jpg]]</nowiki>''' lub
+'''<nowiki>[[grafika:obrazek.png|opcjonalny tekst]]</nowiki>'''.
+Dla plików dźwiękowych link będzie miał postać '''<nowiki>[[media:file.ogg]]</nowiki>'''.
+
+Pamiętaj, proszę, że tak jak w przypadku zwykłych stron Wikipedii,
 inni użytkownicy mogą edytować lub kasować przesłane przez Ciebie pliki,
 jeśli stwierdzą, że to będzie lepiej służyć całemu projektowi.
 Twoje prawo do przesyłania może zostać Ci odebrane, jeśli nadużyjesz systemu.",

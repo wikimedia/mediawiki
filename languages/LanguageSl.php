@@ -528,15 +528,16 @@ Poglejte tudi [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta 
 .",
 "uploadfile"	        => "Naložite datoteko",
 "uploaderror"	        => "Naložite napako",
-"uploadtext"	=> "<strong>USTAVITE SE!</strong> Preden tukaj naložite,
-se prepričajte, da ste prebrali in sledili Wikipedijini <a href=\"" .
-wfLocalUrlE( "Wikipedija:Primernost_uporabe_slik" ) . "\">primernosti uporabe slik</a>.
-<p>Da pregledate ali poiščete prejšnje naložene slike,
-pojdite na <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
-"\">seznam naloženih slik</a>.
-Nalaganje in brisanje je vpisano v <a href=\"" .
-wfLocalUrlE( "Wikipedija:Dnevnik_nalaganja" ) . "\">dnevniku nalaganja</a>.
-<p>Uporabite spodnji obrazec za nalaganje novih slik za
+"uploadtext"	=> "'''USTAVITE SE!''' Preden tukaj naložite,
+se prepričajte, da ste prebrali in sledili Wikipedijini
+[[Project:Primernost_uporabe_slik|primernosti uporabe slik]].
+
+Da pregledate ali poiščete prejšnje naložene slike,
+pojdite na [[Special:Imagelist|seznam naloženih slik]].
+Nalaganje in brisanje je vpisano v
+[[Project:Dnevnik_nalaganja|dnevniku nalaganja]].
+
+Uporabite spodnji obrazec za nalaganje novih slik za
 ponazarjanje vaših člankov.
 Na večini brskljalnikov boste videli \"Preišči...\" gumb, ki vas
 bo spravil na standardno pogovorno okno odprtja datoteke vašega operacijskega sistema.
@@ -546,13 +547,16 @@ Morate tudi potrditi škatlico s čimer izjavljate,
 da z nalaganjem datoteke ne kršite nobenih avtorskih pravic.
 Pritisnite gumb \"Naloži\" za dokončanje nalaganja.
 To bo malo malce potrajalo, če imate slabšo mrežno povezavo.
-<p>Prednostni formati so JPEG za fotografske slike, PNG
+
+Prednostni formati so JPEG za fotografske slike, PNG
 za risbe in druge ikonske slike in OGG za zvoke.
 Imenujete vaše datoteke opisno, da se izognete zmešnjavi.
 Da v članek vključite sliko, uporabite povezavo oblike
-<b>[[image:datoteka.jpg]]</b> ali <b>[[image:datoteka.png|alt besedilo]]</b>
-ali <b>[[media:datoteka.ogg]]</b> za zvoke.
-<p>Vedite, da lahko znotraj Wikipedijinih strani drugi urejajo ali
+'''<nowiki>[[image:datoteka.jpg]]</nowiki>''' ali
+'''<nowiki>[[image:datoteka.png|alt besedilo]]</nowiki>''' ali
+'''<nowiki>[[media:datoteka.ogg]]</nowiki>''' za zvoke.
+
+Vedite, da lahko znotraj Wikipedijinih strani drugi urejajo ali
 pobrišejo vaše naložene slike, če menijo, da to služi enciklopediji
 in lahko vam zaprejo dostop, če izrabljate sistem.",
 "uploadlog"		=> "dnevnik nalaganja",

@@ -540,15 +540,14 @@ $2 List redirects &nbsp; Search for $3 $9",
 파일을 올릴 수 있습니다.",
 "uploadfile"	=> "파일 올리기",
 "uploaderror"	=> "올리기 오류",
-"uploadtext"	=> "<strong>잠깐!</strong> 여기 그림을 올리기 전에,
-{{SITENAME}}의 <a href=\"{{localurle:Project:Image_use_policy}}\">그림 사용 정책</a>읽고 따라 주세요.
-<p>
-이미 올라온 그림을 찾아 보려면, <a href=\"{{localurle:Special:Imagelist}}\">올라온 그림 목록</a>으로 가세요.
+"uploadtext"	=> "'''잠깐!''' 여기 그림을 올리기 전에,
+{{SITENAME}}의 [[Project:Image_use_policy|그림 사용 정책]]읽고 따라 주세요.
+
+이미 올라온 그림을 찾아 보려면, [[Special:Imagelist|올라온 그림 목록]]으로 가세요.
 # Special:Image list  특수기능:그림_목록
-그림을 올리거나 지우면 <a href=\"{{localurle:Project:올리기_기록}}\">올리기 기록</a>에 그 사실이 남습니다.
+그림을 올리거나 지우면 [[Project:올리기_기록|올리기 기록]]에 그 사실이 남습니다.
 # {{ns:4}}:올리기_기록 {{ns:4}}:올리기_기록
 
-<p>
 밑에 있는 틀을 이용해서 문서에 담을 파일을 올리세요.
 대부분의 누리그물 훑개(browser)는, 아래 \"찾아보기...\" (영문 \"Browse...\") 단추로
  자기 컴퓨터의 파일을 찾게 해 줍니다.
@@ -557,14 +556,14 @@ $2 List redirects &nbsp; Search for $3 $9",
 확인해야 합니다.
 마지막으로, \"올리기\" 단추를 누르면 올라갑니다. 누리그물 연결이 느리면, 
 시간이 걸릴 수 있습니다.
-<p>
+
 {{SITENAME}}는 사진은 JPEG형식을, 보통 그림, 아이콘은 PNG형식을, 소리는
 OGG형식을 더 좋아합니다.
 이름은 햇갈리지 않고, 내용을 잘 나타내는 것으로 지어주세요. 그림을 문서에
-담을 때에는 <b>[[image:file.jpg]]</b> 또는 <b>[[image:file.png|alt text]]</b>
-처럼, 소리를 담을 때에는<b>[[media:file.ogg]]</b>처럼 써서 고리를 걸어주면
+담을 때에는 '''<nowiki>[[image:file.jpg]]</nowiki>''' 또는 '''<nowiki>[[image:file.png|alt text]]</nowiki>'''
+처럼, 소리를 담을 때에는'''<nowiki>[[media:file.ogg]]</nowiki>'''처럼 써서 고리를 걸어주면
 됩니다.
-<p>
+
 다른 사람들이 올린 파일을 고치거나 지울 수 있다는 것을 알아두십시오.
 또한, 시스템을 남용할 때에는, 파일 올리기가 금지될 수도 있습니다.
 ",

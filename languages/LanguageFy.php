@@ -599,25 +599,29 @@ Jo Wiki-nûmer is $2.
 
 "uploadfile"	=> "Bied ôfbylden, lûden, dokuminten ensfh. oan.",
 "uploaderror"	=> "Oanbied-fout",
-"uploadtext"	=> "<strong>STOP!</strong> Lês ear't jo eat oanbiede
-de <a href=\"" . wfLocalUrlE( "$wgMetaNamespace:Ofbyld-rie" )
-. "\">regels foar ôfbyldbrûk</a> foar de $wgSitename.
-<p>Earder oanbeane ôfbylden, kinne jo fine op de <a href=\"" 
-. wfLocalUrlE( "Wiki:Imagelist" ) 
-. "\">list of oanbeane ôfbylden</a>.
-Wat oanbean en wat wiske wurdt, wurdt delskreaun yn it <a href=\"" .
-wfLocalUrlE( "$wgMetaNamespace:Oanbied-loch" ) . "\">lochboek</a>.
-<p>Om't nije ôfbylden oan te bieden, kieze jo in bestân út sa't dat
+"uploadtext"	=> "'''STOP!''' Lês ear't jo eat oanbiede
+de [[Project:Ofbyld-rie|regels foar ôfbyldbrûk]] foar de {{SITENAME}}.
+
+Earder oanbeane ôfbylden, kinne jo fine op de
+[[Project:Imagelist|list of oanbeane ôfbylden]].
+Wat oanbean en wat wiske wurdt, wurdt delskreaun yn it
+[[Project:Oanbied-loch|lochboek]].
+
+Om't nije ôfbylden oan te bieden, kieze jo in bestân út sa't dat
 normaal is foar jo blêdzjer en bestjoersysteem.
 Dan jouwe jo oan jo gjin auteursrjocht skeine troch it oanbieden.
 Mei \"Bied oan\" begjinne jo dan it oanbieden.
 Dit kin efkes duorje as jo Ynternet-ferbining net sa flug is.
-<p>Foar de bestânsforam wurdt foto's JPEG oanret, foar tekenings ensfh. PNG, en foar
+
+Foar de bestânsforam wurdt foto's JPEG oanret, foar tekenings ensfh. PNG, en foar
 lûden OGG. Brûk in dúdlike bestânsnamme, sa't in oar ek wit wat it is.
-<P>Om it ôfbyld yn in side op te nimmen, meitsje jo dêr sa'n keppeling:<br>
-<b>[[ôfbyld:jo_foto.jpg|omskriuwing]]</b> of <b>[[ôfbyld:jo_logo.png|omskriuwing]]</b>;
-en foar lûden <b>[[media:jo_lûd.ogg]]</b>.
-<p>Tink derom dat oaren bewurkje kinne wat jo oanbiede, as dat better is foar de $wgSitename,
+
+Om it ôfbyld yn in side op te nimmen, meitsje jo dêr sa'n keppeling:<br />
+'''<nowiki>[[ôfbyld:jo_foto.jpg|omskriuwing]]</nowiki>''' of
+'''<nowiki>[[ôfbyld:jo_logo.png|omskriuwing]]</nowiki>''';
+en foar lûden '''<nowiki>[[media:jo_lûd.ogg]]</nowiki>'''.
+
+Tink derom dat oaren bewurkje kinne wat jo oanbiede, as dat better is foar de $wgSitename,
 krekt's sa't dat foar siden jildt, en dat jo útsletten wurde kinne as jo misbrûk
 meitsje fan it systeem..",
 

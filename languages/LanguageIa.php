@@ -537,16 +537,17 @@ In ultra, lege iste [http://meta.wikipedia.org/wiki/Special:Recentchanges recent
 pro poter cargar files.",
 "uploadfile"	=> "Cargar file",
 "uploaderror"	=> "Error de carga",
-"uploadtext"	=> "<strong>STOP!</strong> Ante cargar files al servitor,
-prende cognoscentia del <a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">politica de Wikipedia super le uso de imagines</a>,
+"uploadtext"	=> "'''STOP!''' Ante cargar files al servitor,
+prende cognoscentia del
+[[Project:Image_use_policy|politica de Wikipedia super le uso de imagines]],
 e assecura te de respectar lo.
-<p>Pro vider o recercar imagines cargate previemente,
-vade al <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
-"\">lista de imagines cargate</a>.
-Cargas e eliminationes es registrate in le <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">registro de cargas</a>.
-<p>Usa le formulario infra pro cargar nove files de imagine pro
+
+Pro vider o recercar imagines cargate previemente,
+vade al [[Special:Imagelist|lista de imagines cargate]].
+Cargas e eliminationes es registrate in le
+[[Project:Upload_log|registro de cargas]].
+
+Usa le formulario infra pro cargar nove files de imagine pro
 illustrar tu articulos.
 In le major parte del navigatores, tu videra un button \"Browse...\",
 que facera apparer le cassa de dialogo de apertura de files
@@ -558,14 +559,17 @@ del file.
 Preme le button \"Cargar\" pro initiar le transmission.
 Le carga pote prender alcun tempore si tu connexion al Internet
 es lente.
-<p>Le formatos preferite es JPEG pro imagines photographic,
+
+Le formatos preferite es JPEG pro imagines photographic,
 PNG pro designos e altere imagines iconic, e OGG pro sonos.
 Per favor, attribue nomines descriptive a tu files pro evitar
 confusion.
 Pro includer le imagine in un articulo, usa un ligamine in
-le forma <b>[[image:file.jpg]]</b> o <b>[[image:file.png|texto alternative]]</b>
-o <b>[[media:file.ogg]]</b> pro sonos.
-<p>Nota que, justo como occurre con le paginas de Wikipedia, alteros
+le forma '''<nowiki>[[image:file.jpg]]</nowiki>''' o
+'''<nowiki>[[image:file.png|texto alternative]]</nowiki>''' o
+'''<nowiki>[[media:file.ogg]]</nowiki>''' pro sonos.
+
+Nota que, justo como occurre con le paginas de Wikipedia, alteros
 pote modificar o eliminar le files cargate si illes considera que
 isto beneficia le encyclopedia, e tu pote haber tu derecto
 de carga blocate si tu abusa del systema.",

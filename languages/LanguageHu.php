@@ -633,16 +633,16 @@ felküldeni <a href=\"" .
 to upload files.",
 "uploadfile"	=> "File felküldés",
 "uploaderror"	=> "Felküldési hiba",
-"uploadtext"	=> "<strong>ÁLLJ!</strong> Mielőtt bármit felküldesz ide
-győződj meg róla hogy elolvastad és követed a <a href=\"" .
-wfLocalUrlE( "Wikipédia:Képhasználati_irányelvek" ) . "\">képhasználati irányelveket</a>.
-<p>A régebben felküldött képek megnézéséhez vagy kereséséhez
-nézd meg a <a href=\"" . wfLocalUrlE( "Speciális:Képlista" ) .
-"\">felküldött képek listáját</a>.
-A felküldések és törlések naplója a <a href=\"" .
-wfLocalUrlE( "Wikipédia:Upload_log" ) . "\">felküldési naplóban</a>
-található.
-<p>Az alábbi űrlapot használd a cikkeidet illusztráló új kép felküldéséhez.
+"uploadtext"	=> "'''ÁLLJ!''' Mielőtt bármit felküldesz ide
+győződj meg róla hogy elolvastad és követed a
+[[Project:Képhasználati_irányelvek|képhasználati irányelveket]].
+
+A régebben felküldött képek megnézéséhez vagy kereséséhez
+nézd meg a [[Speciális:Képlista|felküldött képek listáját]].
+A felküldések és törlések naplója a
+[[Project:Upload_log|felküldési naplóban]] található.
+
+Az alábbi űrlapot használd a cikkeidet illusztráló új kép felküldéséhez.
 A legtöbb büngészőben látsz egy \"Böngészés...\" (Browse) gombot
 aminek segítségével a rendszered file-jai között keresgélhetsz.
 
@@ -651,14 +651,17 @@ Ezután be kell jelölnöd a kis pipát amivel igazolod hogy a felküldéssel
 nem sértesz meg semmilyen szerzői jogot.
 A \"Felküldés\" gombbal fejezheted be a küldést.
 Ez lassú internet kapcsolat esetén eltarthat egy kis ideig.
-<p>A javasolt formátumok JPG a fotókhoz, PNG a rajzokhoz és 
+
+A javasolt formátumok JPG a fotókhoz, PNG a rajzokhoz és 
 ikon jellegű képekhez és OGG a hanganyagokhoz.
 Kérünk arra, hogy a file-jaidnak jellemző, beszélő nevet adj hogy
 elkerüld a félreértéseket. A képet a cikkbe a 
-<b>[[kép:file.jpg]]</b> vagy <b>[[kép:file.png|leírás]]</b>
-formában használhatod és <b>[[media:file.ogg]]</b> formában 
+'''<nowiki>[[kép:file.jpg]]</nowiki>''' vagy
+'''<nowiki>[[kép:file.png|leírás]]</nowiki>'''
+formában használhatod és '''<nowiki>[[media:file.ogg]]</nowiki>''' formában 
 a hanganyagokat.
-<p>Kérünk hogy vedd figyelembe azt, hogy mint minden Wikipédia 
+
+Kérünk hogy vedd figyelembe azt, hogy mint minden Wikipédia 
 lap esetében bárki szerkesztheti vagy törölheti a felküldésedet
 ha úgy ítéli meg, hogy az hasznos a lexikonnak, vagy letiltásra
 kerülhetsz a felküldési lehetőségről ha visszaélsz a rendszerrel.",

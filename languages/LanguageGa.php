@@ -795,18 +795,20 @@ den am an innill friothála­ (UTC).",
 chun comhaid a uaslódáil.",
 "uploadfile"    => "Uaslódáil í­omhánna, fuaimeanna, doiciméid srl.",
 "uploaderror"   => "Earráid uaslódála",
-"uploadtext"    => "<strong>STOP!</strong> Roimh a uaslódálaíonn tú rud ar bith anseo,
-bí­ cinnte leigh agus géill don <a href=\"" .
-wfLocalUrlE( "Vicipéid:Polasaí­_úsáide_í­omhá" ) . "\">polasaí­ úsáide í­omhá</a> atá ag an Vicipéid.
-<p>Má bhfuil aon comhad i dtaisce fós leis an ainm céanna a bhfuil tú ag
+"uploadtext"    => "'''STOP!''' Roimh a uaslódálaíonn tú rud ar bith anseo,
+bí­ cinnte leigh agus géill don
+[[Project:Polasaí­_úsáide_í­omhá|polasaí­ úsáide í­omhá]] atá ag an Vicipéid.
+
+Má bhfuil aon comhad i dtaisce fós leis an ainm céanna a bhfuil tú ag
 tabhairt don comhad nua, cuirfear an nuachomhad in ionad an seanchomhad gan fógra.
 Mar sin, mura nuashonraí­onn tú comhad éigin, is scéal maith é cinntigh má bhfuil comhad
 leis an ainm seo ann fós.
-<p>Dul go dti an<a href=\"" . wfLocalUrlE( "Speisialta:Imagelist" ) .
-"\">liosta í­omhánna</a>chun féach ar nó chuardaigh idir í­omhánna atá uaslódáilte roimhe seo.
-Déantar liosta de uaslódála agus scriosaidh ar an <a href=\"" .
-wfLocalUrlE( "Vicipéid:Liosta_uaslódála" ) . "\">liosta uaslódála</a>.
-<p>Bain úsáid as an fhoirm anseo thí­os chun í­omháchomhaid nua a chaith in airde.
+
+Dul go dti an[[Speisialta:Imagelist|liosta í­omhánna]]chun féach ar nó chuardaigh idir í­omhánna atá uaslódáilte roimhe seo.
+Déantar liosta de uaslódála agus scriosaidh ar an
+[[Project:Liosta_uaslódála|liosta uaslódála]].
+
+Bain úsáid as an fhoirm anseo thí­os chun í­omháchomhaid nua a chaith in airde.
 Ba féidir leat na í­omhánna a úsáid i do chuid ailt.
 Ar an chuid is mó de lí­onléitheoirí­, feicfidh tú cnaipe \"siortaigh...\" no mar sin. Lé brú ar an cnaipe seo,
 gheobhaigh tú an gháthbhosca agallaimh comhadtheachta do [[córas dubhshraithe|chórais dubhshraithe]].
@@ -815,13 +817,15 @@ Ní mór duit a admháil le brú san bosca beag nach
 bhfuil tú ag sáraigh aon chóipcheart leis an caitheamh in airde seo.
 Brúigh an cnaipe \"Uaslódáil\" chun an caitheamh in airde a chrí­ochnaigh.
 Mura bhfuil nasc idirlí­n tapaidh agat, beidh roinnt ama uait chun an rud sin a dhéanamh.
-<p>Is iad na formáide inmholta ná JPEG do í­omhánna grianghrafacha, PNG
+
+Is iad na formáide inmholta ná JPEG do í­omhánna grianghrafacha, PNG
 do pictiúir tarraingthe agus léaráide, agus [[OGG]] do fuaimeanna.
 Ainmnigh do comhaid go tuairisciúil chun mearbhall a héalú.
 Chun an í­omhá a úsáid san alt, úsáid nasc mar sin:
-<b>[[í­omhá:comhad.jpg]]</b> nó <b>[[image:í­omhá.png|téacs eile]]</b>
-nó <b>[[meán:comhad.ogg]]</b> do fuaimeanna.
-<p>Tabhair faoi deara go, cosúil le leathanaigh Vicipéide, is féidir le daoine eile do suaslódálacha a
+'''<nowiki>[[í­omhá:comhad.jpg]]</nowiki>''' nó '''<nowiki>[[image:í­omhá.png|téacs eile]]</nowiki>'''
+nó '''<nowiki>[[meán:comhad.ogg]]</nowiki>''' do fuaimeanna.
+
+Tabhair faoi deara go, cosúil le leathanaigh Vicipéide, is féidir le daoine eile do suaslódálacha a
 athraigh nó a scriosadh amach, má sí­ltear go bhfuil sé i gcabhair
 don ciclipéid, agus má bhainfeá mí­-úsáid as an córas tá seans go coiscfí­ tú ón gcóras.",
 

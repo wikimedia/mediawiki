@@ -591,12 +591,11 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku \"1\" vintre aŭ \"2\" dum somer
 "uploadfile"	=> "Alŝutu dosieron",
 "uploaderror"	=> "Eraro okazis dum alŝuto",
 "uploadtext"	=> "Por okulumi aŭ serĉi jam alŝutitajn dosierojn,
-aliru la <a href=\"" . wfLocalUrl( "Special:Imagelist" ) .
-"\">liston de alŝutaĵoj</a>.
-Ĉiuj alŝutoj kaj forigoj estas registrataj en la <a href=\"" .
-wfLocalUrl( "{{ns:4}}:Loglibro de alŝutaĵoj" ) ."\">alŝuta loglibro</a>.</p>
+aliru la [[Special:Imagelist|liston de alŝutaĵoj]].
+Ĉiuj alŝutoj kaj forigoj estas registrataj en la
+[[Project:Loglibro de alŝutaĵoj|alŝuta loglibro]].
 
-<p>Uzu ĉi tiun formularon por alŝuti novajn bildojn kaj aliajn dosierojn
+Uzu ĉi tiun formularon por alŝuti novajn bildojn kaj aliajn dosierojn
 por ilustrado de viaj artikoloj.
 Ĉe kutimaj retumiloj, vi vidos ĉi-sube butonon \"Foliumi...\" aŭ simile;
 tiu malfermas la dosierelektilon de via operaciumo.
@@ -604,19 +603,20 @@ Kiam vi elektos dosieron, ĝia nomo plenigos la tekstujon apud la butono.
 Vi ankaŭ nepre devas klakjesi la skatolon por aserti, ke vi ne
 malobeas la leĝan kopirajton de aliuloj per alŝuto de la dosiero.
 Por plenumi la alŝutadon, alklaku la butono \"Alŝutu\".
-Tio ĉi eble iomete longe daŭros, se estas granda dosiero kaj se via interreta konekto malrapidas.</p>
+Tio ĉi eble iomete longe daŭros, se estas granda dosiero kaj se via interreta konekto malrapidas.
 
-<p>La dosiertipoj preferataj ĉe {{SITENAME}} estas JPEG por fotografaĵoj,
+La dosiertipoj preferataj ĉe {{SITENAME}} estas JPEG por fotografaĵoj,
 PNG por grafikaĵoj, diagramoj, ktp; kaj OGG por sonregistraĵoj.
 Bonvolu doni al via dosiero nomon informan, por eviti konfuzon.
 Por enmeti la dosieron en artikolon, skribu ligilon laŭ la formo
-<b>[[bildo:dosiero.jpg]]</b> aŭ <b>[[image:bildo.png|teksto por retumiloj negrafikaj]]</b>,
-aŭ <b>[[dosiero:dosiero.ogg]]</b> por sono.</p>
+'''<nowiki>[[dosiero:dosiero.jpg]]</nowiki>''' aŭ
+'''<nowiki>[[dosiero:bildo.png|teksto por retumiloj negrafikaj]]</nowiki>''', aŭ
+'''<nowiki>[[dosiero:dosiero.ogg]]</nowiki>''' por sono.
 
-<p>Bonvolu rimarki, ke same kiel artikoloj en la {{SITENAME}}, aliaj Vikipediistoj
+Bonvolu rimarki, ke same kiel artikoloj en la {{SITENAME}}, aliaj Vikipediistoj
 rajtas redakti, anstataŭigi, aŭ forigi viajn alŝutaĵojn se ili pensas, ke
 tio servus la enciklopedion. Se vi aĉe misuzas la sistemon, eblas ke vi estos
-forbarita.</p>",
+forbarita.",
 "uploadlog"		=> "loglibro de alŝutaĵoj",
 "uploadlogpage" => "Loglibro_de_alŝutaĵoj",
 "uploadlogpagetext" => "Jen la plej laste alŝutitaj dosieroj.

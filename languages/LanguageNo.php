@@ -589,15 +589,16 @@ siste <strong>$2</strong> dagene.",
 for å kunne laste opp filer.",
 "uploadfile"	=> "Last opp filer",
 "uploaderror"	=> "Feil under opplasting av fil",
-"uploadtext"	=> "<strong>STOPP!</strong> Før du laster opp filer her,
-vær sikker på du har lest og følger Wikipedias <a href=\"" .
-wfLocalUrlE( "Wikipedia:Retningslinjer for billedbruk" ) . "\">retningslinjer for billedbruk</a>.
-<p>For å se eller søke i bilder som tidligere er lastet opp,
-gå til <a href=\"" . wfLocalUrlE( "Spesial:Imagelist" ) .
-"\">listen over bilder</a>.
-Opplasting og slettinger er registrert i <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">loggen over opplastede filer</a>.
-<p>Bruk skjemaet nedenunder til å laste opp nye bilder som kan brukes
+"uploadtext"	=> "'''STOPP!''' Før du laster opp filer her,
+vær sikker på du har lest og følger Wikipedias
+[[Project:Retningslinjer for billedbruk|retningslinjer for billedbruk]].
+
+For å se eller søke i bilder som tidligere er lastet opp,
+gå til [[Spesial:Imagelist|listen over bilder]].
+Opplasting og slettinger er registrert i
+[[Project:Upload_log|loggen over opplastede filer]].
+
+Bruk skjemaet nedenunder til å laste opp nye bilder som kan brukes
 til å illustrere dine artikler.
 På de fleste nettlesere vil du se en \"Browse...\"-knapp eller en 
 \"Bla igjennom...\"-knapp, som vil
@@ -608,14 +609,18 @@ Du må også verifisere at du ikke bryter noens opphavsrett.
 Det gjør du ved å krysse av i boksen.
 Trykk på \"Last opp\"-knappen for å laste opp filen.
 Dette kan godt ta litt tid hvis du har en langsom internettforbindelse.
-<p>De foretrukne formatene er JPEG til fotografiske bilder, PNG
+
+De foretrukne formatene er JPEG til fotografiske bilder, PNG
 til tegninger og andre små bilder, og OGG til lyd.
 Sørg for å gi filen et beskrivende navn for å unngå 
 forvirring om innholdet.
 For å bruke bildet i en artikkel, bruk en lenke av dette slaget:
-<b>[[bilde:fil.jpg]]</b> eller <b>[[bilde:fil.png|alternativ tekst]]</b>
-eller <b>[[medium:fil.ogg]]</b> for lyd.
-<p>Legg merke til at akkurat som med Wikipedia-sider, kan andre gjerne 
+
+'''<nowiki>[[bilde:fil.jpg]]</nowiki>''' eller
+'''<nowiki>[[bilde:fil.png|alternativ tekst]]</nowiki>''' eller
+'''<nowiki>[[medium:fil.ogg]]</nowiki>''' for lyd.
+
+Legg merke til at akkurat som med Wikipedia-sider, kan andre gjerne 
 redigere eller
 slette de filene du har lastet opp, hvis de mener det hjelper encyklopedien, og
 du kan bli blokkert fra å laste opp hvis du misbruker systemet.",

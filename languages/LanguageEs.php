@@ -602,13 +602,12 @@ para subir archivos.",
 "uploadfile"	=> "Subir archivo",
 "uploaderror"	=> "Error tratando de subir",
 "uploadtext"	=> "Para ver o buscar imágenes que se hayan subido
-previamente, ve a la <a href=\"" . wfLocalUrlE( "Especial:Imagelist" ) .
-"\">lista de imágenes subidas</a>.
-Los archivos subidos y borrados son registrados en el <a href=\"" .
-wfLocalUrlE( "$wgMetaNamespace:Registro de subidas" ) . "\">registro de subidas</a>.
-Consulta también la <a href=\"" . wfLocalUrlE( "$wgMetaNamespace:Política de uso de imágenes" ) .
-"\">política de uso de imágenes</a>.
-<p>Usa el formulario siguiente para subir nuevos archivos de imágenes que
+previamente, ve a la [[Especial:Imagelist|lista de imágenes subidas]].
+Los archivos subidos y borrados son registrados en el
+[[Project:Registro de subidas|registro de subidas]].
+Consulta también la [[Project:Política de uso de imágenes|política de uso de imágenes]].
+
+Usa el formulario siguiente para subir nuevos archivos de imágenes que
 vas a usar para ilustrar tus artículos.
 En la mayoría de los navegadores, verás un botón \"Browse...\", que
 abrirá el diálogo de selección de archivos estándar de tu sistema operativo.
@@ -618,13 +617,16 @@ También debes marcar la caja afirmando que no estás
 violando ningún copyright al subir el archivo.
 Presiona el boton \"Subir\" para completar la subida.
 Esto puede tomar algún tiempo si tienes una conexión a internet lenta.
-<p>Los formatos preferidos son JPEG para imágenes fotográficas, PNG
+
+Los formatos preferidos son JPEG para imágenes fotográficas, PNG
 para dibujos y diagramas, y OGG para sonidos.
 Por favor, dale a tus archivos nombres descriptivos para evitar confusiones.
 Para incluir la imagen en un artículo, usa un enlace de la forma
-<b>[[imagen:archivo.jpg]]</b> o <b>[[imagen:archivo.png|alt text]]</b>
-o <b>[[media:archivo.ogg]]</b> para sonidos.
-<p>Por favor recuerda que, al igual que con las páginas $wgSitename, otros pueden
+'''<nowiki>[[imagen:archivo.jpg]]</nowiki>''' o
+'''<nowiki>[[imagen:archivo.png|alt text]]</nowiki>''' o
+'''<nowiki>[[media:archivo.ogg]]</nowiki>''' para sonidos.
+
+Por favor recuerda que, al igual que con las páginas $wgSitename, otros pueden
 editar o borrar los archivos que has subido si piensan que es bueno para
 la enciclopedia, y se te puede bloquear, impidiéndote subir más archivos si abusas del sistema.",
 "uploadlog"		=> "registro de subidas",

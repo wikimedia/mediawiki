@@ -488,28 +488,31 @@ Katso myös [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta di
 tallentaaksesi tiedoston.",
 "uploadfile"	=> "Tallenna tiedosto",
 "uploaderror"	=> "Tallennusvirhe",
-"uploadtext"	=> "<strong>SEIS!</strong> Ennen kuin tallennat tänne,
-tutustu ja seuraa Wikipedian <a href=\"" .
-wfLocalUrlE( "Wikipedia:Kuvien käyttösäännöt" ) . "\">kuvienkäyttösääntöihin</a>.
-<p>Näyttääksesi tai etsiäksesi aiemmin tallennettuja kuvia,
-katso <a href=\"" . wfLocalUrlE( "Erityissivut:Luettelo kuvista" ) .
-"\">luetteloa tallennetuista kuvista</a>.
-Tallennukset ja poistot kirjataan <a href=\"" .
-wfLocalUrlE( "Wikipedia:Tallennusloki" ) . "\">tallennuslokiin</a>.
-<p>Käytä allaolevaa lomaketta tallentaaksesi uusia kuvatiedostoja artikkelien
+"uploadtext"	=> "'''SEIS!''' Ennen kuin tallennat tänne,
+tutustu ja seuraa Wikipedian [[Project:Kuvien käyttösäännöt|kuvienkäyttösääntöihin]].
+
+Näyttääksesi tai etsiäksesi aiemmin tallennettuja kuvia,
+katso [[Erityissivut:Luettelo kuvista|luetteloa tallennetuista kuvista]].
+Tallennukset ja poistot kirjataan
+[[Project:Tallennusloki|tallennuslokiin]].
+
+Käytä allaolevaa lomaketta tallentaaksesi uusia kuvatiedostoja artikkelien
 kuvittamista varten.
 Useimmissa selaimissa näet \"Browse...\" tai \"Selaa...\"-painikkeen, josta aukeaa käyttöjärjestelmäsi normaali tiedostonavausikkuna.
 Valitsemalla tiedoston täydentyy tiedoston nimi painikkeen vieressä olevaan tekstikenttään.
 Sinun täytyy myös kuitata, että et riko tekijänoikeuksia tallentaessasi tiedostoa.
 Paina \"Tallenna\"-painiketta tallentaaksesi.
 Tämä voi kestää jonkin aikaa, jos sinulla on hidas Internet-yhteys.
-<p>Suositeltavimmat kuvaformaatit ovat JPEG valokuville, PNG
+
+Suositeltavimmat kuvaformaatit ovat JPEG valokuville, PNG
 piirroksille ja kuvakkeille ja OGG äänille.
 Nimeä tiedostosi kuvaavasti välttääksesi sekaannuksia.
 Liittääksesi kuvan artikkeliin käytä seuraavan muotoista linkkiä
-<b>[[Kuva:tiedosto.jpg]]</b> tai <b>[[Kuva:tiedosto.png|kuvausteksti]]</b>
-tai <b>[[media:tiedosto.ogg]]</b> äänille..
-<p>Huomaa, että Wikipedian sivuilla muut voivat muokata tai poistaa tallentamasi 
+'''<nowiki>[[Kuva:tiedosto.jpg]]</nowiki>''' tai
+'''<nowiki>[[Kuva:tiedosto.png|kuvausteksti]]</nowiki>''' tai
+'''<nowiki>[[media:tiedosto.ogg]]</nowiki>''' äänille..
+
+Huomaa, että Wikipedian sivuilla muut voivat muokata tai poistaa tallentamasi 
 tiedoston, jos he katsovat, että se ei palvele tietosanakirjan tarpeita, ja 
 sinun tallentamismahdollisuutesi voidaan estää, jos väärinkäytät järjestelmää.",
 "uploadlog"		=> "Tallennusloki",

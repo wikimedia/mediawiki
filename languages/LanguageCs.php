@@ -448,23 +448,23 @@ Také se podívejte na
 pro načtení souboru.",
 "uploadfile"	=> "Načti soubor",
 "uploaderror"	=> "Při načítání došlo k chybě",
-"uploadtext"	=> "Pro prohlížení a hledání již načtených souborů, jděte na  <a href=\"" . wfLocalUrl( "Special:Imagelist" ) .
-"\">seznam načteného</a>.
-Každé načtení a odstranění je registrováno u  <a href=\"" .
-wfLocalUrl( "Wikipedie:Načtení_log" ) ."\">Načtení_log</a>.</p>
+"uploadtext"	=> "Pro prohlížení a hledání již načtených souborů, jděte na
+[[Special:Imagelist|seznam načteného]].
+Každé načtení a odstranění je registrováno u
+[[Project:Načtení_log|Načtení_log]].
 
+Použij tento formulář pro načtení nového obrázku nebo jiných souborů jako ilustrací ke svým článkům. U běžných prohlížečů se dole objeví buton \"Procházet...\" apod; tím se otevřou adresáře tvého pevného disku, kde si vybereš svůj soubor, jehož název vyplní pole vedle butonu; musíš také potvrdit prohlášení, že neporušuješ ničí copyright. Vlastní načtení provedeš kliknutím na buton \"Načti\". Může to trvat i delší dobu, pokud je soubor velký a počítač pomalý.
 
-<p>Použij tento formulář pro načtení nového obrázku nebo jiných souborů jako ilustrací ke svým článkům. U běžných prohlížečů se dole objeví buton \"Procházet...\" apod; tím se otevřou adresáře tvého pevného disku, kde si vybereš svůj soubor, jehož název vyplní pole vedle butonu; musíš také potvrdit prohlášení, že neporušuješ ničí copyright. Vlastní načtení provedeš kliknutím na buton \"Načti\". Může to trvat i delší dobu, pokud je soubor velký a počítač pomalý.</p>
-
-<p>Wikipedie upřednostňuje formát JPEG pro fotografie,
+Wikipedie upřednostňuje formát JPEG pro fotografie,
 PNG pro grafiku, diagramy, apod.; a OGG pro zvukové nahrávky.
 Pojmenuj svůj soubor informativním způsobem, aby se vyloučila nedorozumění.
 Pro vložení obrázku do článku napiš odkaz ve formě
-<b>[[obrázek:soubor.jpg]]</b> nebo <b>[[image:obraz.png|text pro prohlížeče bez grafiky]]</b>,
-nebo <b>[[soubor:soubor.ogg]]</b> por sounds.</p>
+'''<nowiki>[[obrázek:soubor.jpg]]</nowiki>''' nebo
+'''<nowiki>[[obrázek:obraz.png|text pro prohlížeče bez grafiky]]</nowiki>''', nebo
+'''<nowiki>[[soubor:soubor.ogg]]</nowiki>''' por sounds.
 
-<p>Všimni si, že články ve Wikipedii mohou redigovat i ostatní wikipediisté. Mohou přidávat, nahrazovat, i odstraňovat, pokud to prospěje encyklopedii. Pokud někdo bude zlomyslně poškozovat soubory jiných autorů,
-může mu být zablokován přístup k redigování.</p>",
+Všimni si, že články ve Wikipedii mohou redigovat i ostatní wikipediisté. Mohou přidávat, nahrazovat, i odstraňovat, pokud to prospěje encyklopedii. Pokud někdo bude zlomyslně poškozovat soubory jiných autorů,
+může mu být zablokován přístup k redigování.",
 "uploadlog"		=> "kniha nahrávek",
 "uploadlogpage" => "kniha_nahrávek",
 "uploadlogpagetext" => "Přehled naposledy načtených souborů. Všechny časové údaje se ukazují podle časového pásma UTC.
