@@ -13,7 +13,7 @@ class LanguageZh extends LanguageUtf8 {
     var $mZhLang=false, $mZhLanguageCode=false;
 
     function LanguageZh() {
-        $this->mZhLanguageCode = $this->getPreferredLanguage();
+        $this->mZhLanguageCode = $this->getPreferredVariant();
         if($this->mZhLanguageCode == "cn") {
             $this->mZhLang = new LanguageZh_cn();
         }
@@ -27,19 +27,28 @@ class LanguageZh extends LanguageUtf8 {
        user's preference setting as well, once the language option in
        the setting pages is finalized.
     */
-    function getPreferredLanguage() {
+    function getPreferredVariant() {
+        global $wgUser;
+
         if($this->mZhLanguageCode)
             return $this->mZhLanguageCode;
-        
-        $this->mZhLanguageCode="cn";
-		$value = $_SERVER["HTTP_ACCEPT_LANGUAGE"];
-		$zh = explode("zh-", $value);
-		array_shift($zh);
-		$l = array_shift($zh);
-		if($l != NULL) {
-            $this->mZhLanguageCode = strtolower(substr($l,0,2));
-		}
-        
+
+        /* get language variant preference for logged in users */
+        if($wgUser->getID()!=0) {
+            $this->mZhLanguageCode = $wgUser->getOption('variant');
+        }
+        else { // see if it is in the http header, otherwise default to zh_cn
+            $this->mZhLanguageCode="zh-cn";
+            $value = $_SERVER["HTTP_ACCEPT_LANGUAGE"];
+            $zh = explode("zh-", $value);
+            array_shift($zh);
+            $l = array_shift($zh);
+            if($l != NULL) {
+                $this->mZhLanguageCode = "zh-".strtolower(substr($l,0,2));
+            }
+            // also set the variant option of anons
+            $wgUser->setOption('variant', $this->mZhLanguageCode);
+        }
         return $this->mZhLanguageCode;
     }
     
@@ -64,33 +73,33 @@ class LanguageZh extends LanguageUtf8 {
 		}
         
 		// determine the preferred language from the request header
-		$tolang = $this->getPreferredLanguage();
+		$tolang = $this->getPreferredVariant();
 	
 		$ltext = explode("-{", $text);
 		$lfirst = array_shift($ltext);
 		
-		if($tolang == "cn") {
+		if($tolang == "zh-cn") {
 			$text = $this->trad2simp($lfirst);
 		}
 		else {
 			$text = $this->simp2trad($lfirst);
 		}
 		
-		foreach ($ltext as $i => $txt) {
+		foreach ($ltext as $txt) {
 			$a = explode("}-", $txt);
 			$b = explode("zh-", $a{0});
 			if($b{1}==NULL) {
 				$text = $text.$b{0};
 			}
 			else {
-				foreach ($b as $j => $lang) {
-					if(substr($lang,0,2) == $tolang) {
+				foreach ($b as $lang) {
+					if(substr($lang,0,2) == substr($tolang,-2)) {
 						$text = $text.substr($lang, 2);
 						break;
 					}
 				}
 			}
-			if($tolang == "cn") {
+			if($tolang == "zh-cn") {
 				$text = $text.$this->trad2simp($a{1});
 			}
 			else {
