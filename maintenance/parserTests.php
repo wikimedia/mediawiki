@@ -43,6 +43,12 @@ class ParserTest {
 		} else {
 			$this->color = true;
 		}
+		
+		if( isset( $_SERVER['argv'] ) && in_array( '--quick', $_SERVER['argv'] ) ) {
+			$this->showDiffs = false;
+		} else {
+			$this->showDiffs = true;
+		}
 	}
 	
 	function runTestsFromFile( $filename ) {
@@ -172,9 +178,9 @@ class ParserTest {
 	
 	function showFailure( $desc, $result, $html ) {
 		print $this->termColor( '1;31' ) . 'FAILED!' . $this->termReset() . "\n";
-		#print "!! Expected:\n$result\n";
-		#print "!! Received:\n$html\n!!\n";
-		print $this->quickDiff( $result, $html );
+		if( $this->showDiffs ) {
+			print $this->quickDiff( $result, $html );
+		}
 		return false;
 	}
 	
