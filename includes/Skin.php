@@ -132,9 +132,9 @@ class Skin {
 		}
 		$s = "<style type='text/css'><!--\n";
 		$s .= "@import url(\"$wgStyleSheetPath/$sheet\");\n";
-		$s .= "@media screen {\n";
+		$s .= "/*/*/\n"; # <-- Hide the styles from Netscape 4 without hiding them from IE/Mac
 		$s .= $this->doGetUserStyles();
-		$s .= "}\n";
+		$s .= "/* */\n";
 		$s .= "//--></style>\n";
 		return $s;
 	}
