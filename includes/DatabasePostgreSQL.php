@@ -515,33 +515,6 @@ function wfStrencode( $s )
 	return pg_escape_string( $s );
 }
 
-# Use PostgreSQL timestamp without timezone data type
-function wfTimestamp2Unix( $ts ) {
-	return gmmktime( ( (int)substr( $ts, 11, 2) ),
-                  (int)substr( $ts, 14, 2 ), (int)substr( $ts, 17, 2 ),
-                  (int)substr( $ts, 5, 2 ), (int)substr( $ts, 8, 2 ),
-                  (int)substr( $ts, 0, 4 ) );
-}
-
-function wfUnix2Timestamp( $unixtime ) {
-	return gmdate( "Y-m-d H:i:s", $unixtime );
-}
-
-function wfTimestampNow() {
-	# return NOW
-	return gmdate( "Y-m-d H:i:s" );
-}
-
-# Sorting hack for MySQL 3, which doesn't use index sorts for DESC
-function wfInvertTimestamp( $ts ) {
-	$ts=preg_replace("/\D/","",$ts);
-	return strtr(
-		$ts,
-		"0123456789",
-		"9876543210"
-	);
-}
-
 function wfLimitResult( $limit, $offset ) {
         return " LIMIT $limit ".(is_numeric($offset)?" OFFSET {$offset} ":"");
 }

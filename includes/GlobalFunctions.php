@@ -972,4 +972,32 @@ function wfIsWindows() {
 	}
 }
 
+
+# Ideally we'd be using actual time fields in the db
+function wfTimestamp2Unix( $ts ) {
+	return gmmktime( ( (int)substr( $ts, 8, 2) ),
+		  (int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
+		  (int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
+		  (int)substr( $ts, 0, 4 ) );
+}
+
+function wfUnix2Timestamp( $unixtime ) {
+	return gmdate( "YmdHis", $unixtime );
+}
+
+function wfTimestampNow() {
+	# return NOW
+	return gmdate( "YmdHis" );
+}
+
+# Sorting hack for MySQL 3, which doesn't use index sorts for DESC
+function wfInvertTimestamp( $ts ) {
+	return strtr(
+		$ts,
+		"0123456789",
+		"9876543210"
+	);
+}
+
+
 ?>
