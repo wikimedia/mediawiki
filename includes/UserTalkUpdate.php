@@ -33,6 +33,7 @@ class UserTalkUpdate {
 		} else {
 			# Not ours.  If writing, mark it as modified.
 
+			$sql = false;
 			if ( 1 == $this->mAction ) {
 				$user = new User();				
 				$user->setID(User::idFromName($this->mTitle));
