@@ -146,7 +146,7 @@ function wfSpecialContributions( $par = "" )
 	# Validations
 	$val = new Validation ;
 	$val = $val->countUserValidations ( $id ) ;
-	$val = str_replace ( "$1" , $val , wfMsg ( 'val_user_validations' ) ) ;
+	$val = wfMsg ( 'val_user_validations', $val ) ;
 	$wgOut->addHTML( $val );
 }
 

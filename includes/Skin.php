@@ -1858,7 +1858,7 @@ class Skin {
 		$u = $nt->escapeLocalURL();
 		if ( $url == '' )
 		{
-			$s = str_replace( "$1", $img->getName(), wfMsg('missingimage') );
+			$s = wfMsg( 'missingimage', $img->getName() );
 			$s .= "<br>{$alt}<br>{$url}<br>\n";
 		} else {
 			$s = '<a href="'.$u.'" class="image" title="'.$alt.'">' .
@@ -1929,7 +1929,7 @@ class Skin {
 
 		$s = "<div class=\"thumb t{$align}\"><div style=\"width:{$oboxwidth}px;\">";
 		if ( $thumbUrl == '' ) {
-			$s .= str_replace( "$1", $img->getName(), wfMsg('missingimage') );
+			$s .= wfMsg( 'missingimage', $img->getName() );
 			$zoomicon = '';
 		} else {
 			$s .= '<a href="'.$u.'" class="internal" title="'.$alt.'">'.

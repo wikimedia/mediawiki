@@ -538,15 +538,12 @@ class OutputPage {
 		$this->mRedirect = "";
 
 		if ( $wgCommandLineMode ) {
-			$msg = wfMsgNoDB( "dberrortextcl" );
+			$msg = wfMsgNoDB( "dberrortextcl", htmlspecialchars( $sql ),
+						htmlspecialchars( $fname ), $errno, htmlspecialchars( $error ) );
 		} else {
-			$msg = wfMsgNoDB( "dberrortext" );
+			$msg = wfMsgNoDB( "dberrortext", htmlspecialchars( $sql ),
+						htmlspecialchars( $fname ), $errno, htmlspecialchars( $error ) );
 		}
-
-		$msg = str_replace( "$1", htmlspecialchars( $sql ), $msg );
-		$msg = str_replace( "$2", htmlspecialchars( $fname ), $msg );
-		$msg = str_replace( "$3", $errno, $msg );
-		$msg = str_replace( "$4", htmlspecialchars( $error ), $msg );
 
 		if ( $wgCommandLineMode || !is_object( $wgUser )) {
 			print "$msg\n";
