@@ -487,19 +487,19 @@ class Skin {
 			$sub = wfMsg( "fromwikipedia" ) . $wgExtraSubtitle;
 		}
 		if($wgOut->isArticle() && $wgNamespacesWithSubpages[$wgTitle->getNamespace()]) {
-			$ptext=$wgTitle->getPrefixedText();			
-			if(preg_match("/\//",$ptext)) {				
-				$sub.="</p><p class='subpages'>";	
+			$ptext=$wgTitle->getPrefixedText();
+			if(preg_match("/\//",$ptext)) {
+				$sub.="</p><p class='subpages'>";
 				$links=explode("/",$ptext);
 				$c=0;
 				$growinglink="";
 				foreach($links as $link) {
 					$c++;
-					if ($c<count($links)) {						
-						$growinglink.=$link;
-						$getlink=$this->makeLink( $growingLink, $link);						
+					if ($c<count($links)) {
+						$growinglink .= $link;
+						$getlink = $this->makeLink( $growinglink, $link );
 						if(preg_match("/class='new'/i",$getlink)) { break; } # this is a hack, but it saves time
-						if ($c>1) { 
+						if ($c>1) {
 							$sub .= " | ";
 						} else  {
 							$sub .="&lt; ";
@@ -511,7 +511,7 @@ class Skin {
 				}
 			}
 		}
-		$s = "<p class='subtitle'>{$sub}\n";		
+		$s = "<p class='subtitle'>{$sub}\n";
 		return $s;
 	}
 
@@ -1196,6 +1196,7 @@ class Skin {
 		if ($nt) {		
 			$result = $this->makeLinkObj( Title::newFromText( $title ), $text, $query, $trail );
 		} else {
+			wfDebug( "Invalid title passed to Skin::makeLink(): \"$title\"\n" );
 			$result = $text == "" ? $title : $text;
 		}	
 		
@@ -1208,6 +1209,7 @@ class Skin {
 		if ($nt) {		
 			return $this->makeKnownLinkObj( Title::newFromText( $title ), $text, $query, $trail );
 		} else {
+			wfDebug( "Invalid title passed to Skin::makeKnownLink(): \"$title\"\n" );
 			return $text == "" ? $title : $text;
 		}
 	}
@@ -1217,6 +1219,7 @@ class Skin {
 		if ($nt) {		
 			return $this->makeBrokenLinkObj( Title::newFromText( $title ), $text, $query, $trail );
 		} else {
+			wfDebug( "Invalid title passed to Skin::makeBrokenLink(): \"$title\"\n" );
 			return $text == "" ? $title : $text;
 		}
 	}
@@ -1226,6 +1229,7 @@ class Skin {
 		if ($nt) {		
 			return $this->makeStubLinkObj( Title::newFromText( $title ), $text, $query, $trail );
 		} else {
+			wfDebug( "Invalid title passed to Skin::makeStubLink(): \"$title\"\n" );
 			return $text == "" ? $title : $text;
 		}
 	}
