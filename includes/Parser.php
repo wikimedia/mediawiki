@@ -77,6 +77,8 @@ class Parser
 		$this->mIncludeCount = array();
 		$this->mStripState = array();
 		$this->mArgStack = array();
+		$this->mInPre = false;
+		$this->mInNowiki = false;
 	}
 
 	# First pass--just handle <nowiki> sections, pass the rest off
@@ -213,7 +215,8 @@ class Parser
 		$text = Parser::extractTags("nowiki", $text, $nowiki_content, $uniq_prefix);
 		foreach( $nowiki_content as $marker => $content ){
 			if( $render ){
-				$nowiki_content[$marker] = wfEscapeHTMLTagsOnly( $content );
+				# use span to mark nowiki areas, note the trailing whitespace in span to avoid collisions with other spans
+				$nowiki_content[$marker] = '<span class="nowiki">'.wfEscapeHTMLTagsOnly( $content )."</span  >";
 			} else {
 				$nowiki_content[$marker] = "<nowiki>$content</nowiki>";
 			}
@@ -1019,12 +1022,17 @@ class Parser
 		}
 		foreach ( $textLines as $oLine ) {
 			$lastPrefixLength = strlen( $lastPrefix );
-			$preCloseMatch = preg_match("/<\\/pre/i", $oLine );
 			$preOpenMatch = preg_match("/<pre/i", $oLine );
+			$preCloseMatch = preg_match("/<\\/pre/i", $oLine );
+			$nowikiOpenMatch = preg_match("/( *)<span class=\"nowiki\"/", $oLine, $nowikiOpenMatches );
+			$nowikiCloseMatch = preg_match("/<\\/span  >/", $oLine );
 			if (!$this->mInPre) {
 				$this->mInPre = !empty($preOpenMatch);
 			}
-			if ( !$this->mInPre ) {
+			if (!$this->mInNowiki) {
+				$this->mInNowiki = !empty($nowikiOpenMatch);
+			}
+			if ( !$this->mInPre && !$this->mInNowiki ) {
 				# Multiple prefixes may abut each other for nested lists.
 				$prefixLength = strspn( $oLine, "*#:;" );
 				$pref = substr( $oLine, 0, $prefixLength );
@@ -1104,8 +1112,11 @@ class Parser
 					} else {
 						$inBlockElem = true;
 					}
-				} else if ( !$inBlockElem && !$this->mInPre ) {
-					if ( " " == $t{0} and trim($t) != '' ) {
+				} else if ( 
+					!$inBlockElem && !$this->mInPre && 
+					(!$this->mInNowiki || ($nowikiOpenMatch && trim($nowikiOpenMatches[1]) == ''  ) ) ) 
+					{
+					if ( " " == $t{0} and trim($t) != '' and (!$this->mInNowiki || $nowikiOpenMatch && strlen($nowikiOpenMatches[1]) > 0 ) ) {
 						// pre
 						if ($this->mLastSection != 'pre') {
 							$paragraphStack = false;
@@ -1140,6 +1151,7 @@ class Parser
 						}
 					}
 				}
+				if($nowikiCloseMatch) $this->mInNowiki = false;
 			}
 			if ($paragraphStack === false) {
 				$output .= $t."\n";
