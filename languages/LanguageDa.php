@@ -687,8 +687,6 @@ du kan blive blokeret fra at lægge op hvis du misbruger systemet.",
 "uploadlogpage" => "Upload_log",
 "uploadlogpagetext" => "Herunder er der en liste med de filer, som er lagt 
 op senest. Alle de viste tider er serverens tid (UTC).
-<ul>
-</ul>
 ",
 "filename"		=> "Filnavn",
 "filedesc"		=> "Beskrivelse",
@@ -928,8 +926,6 @@ Se $2 for en fortegnelse over de nyeste sletninger.",
 "dellogpage"	=> "Sletningslog",
 "dellogpagetext" => "Herunder er en liste over de nyeste sletninger.
 Alle tider er serverens tid (UTC).
-<ul>
-</ul>
 ",
 "deletionlog"	=> "sletningslog",
 "reverted"		=> "Gendannet en tidligere version",
