@@ -506,29 +506,6 @@ Edrychwch mewn lle-enw:<br />
 $1<br />
 $2 Rhestrwch ail-cyfeiriadau &nbsp; Chwiliwch am $3 $9",
 "searchdisabled" => "<p>Mae'r peiriant chwilio'r holl databas wedi cael eu troi i ffwrdd i gwneud pethau'n hawddach ar y gwasanaethwr. Gobeithiwn fydd yn bosibl i troi'r peiriant ymlaen cyn bo hir, ond yn y cyfamser mae'n posibl gofyn Google:</p>",
-"googlesearch" => "
-<!--SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.co.uk/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.co.uk/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
-<INPUT type=submit name=btnG VALUE=\"Google Search\">
-<font size=-1>
-<font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio
-name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> {$wgServer} <br />
-<input type='hidden' name='ie' value='$2'>
-<input type='hidden' name='oe' value='$2'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->
-",
 "blanknamespace" => "(Prif)",
 
 

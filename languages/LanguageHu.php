@@ -532,27 +532,7 @@ végeredményben).",
 Keresés a névterekben:<br />
 $1<br />
 $2 Átirányítások listája &nbsp; Keresés:$3 $9",
-"searchdisabled" => "<p>Elnézésed kérjük, de a teljes szöveges keresés terhelési okok miatt átmenetileg nem használható. Ezidő alatt használhatod a lenti Google keresést, mely viszont lehetséges, hogy nem teljesen friss adatokkal dolgozik.</p>
-
-",
-"googlesearch" => "<!-- SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.com/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.com/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"\">
-<INPUT type=submit name=btnG VALUE=\"Google Search\">
-<font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br />
-<input type='hidden' name='ie' value='$2'>
-<input type='hidden' name='oe' value='$2'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->",
+"searchdisabled" => "<p>Elnézésed kérjük, de a teljes szöveges keresés terhelési okok miatt átmenetileg nem használható. Ezidő alatt használhatod a lenti Google keresést, mely viszont lehetséges, hogy nem teljesen friss adatokkal dolgozik.</p>",
 "blanknamespace" => "(Alap)",
 
 # Preferences page

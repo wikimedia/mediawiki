@@ -495,25 +495,6 @@ $2 Излистај преусмерења &nbsp; Тражи $3 $9",
 "searchdisabled" => "<p>Жалимо! Пуна претрага текста је привремено онемогућена, због бржег рада Википедије. Умеђувремену, можете користити Гугле претрагу испод, која може бити застарела.</p>
 
 ",
-"googlesearch" => "<!-- SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.com/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.com/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=hidden name=hl value=sr>
-<INPUT TYPE=hidden name=ie value=UTF-8>
-<INPUT TYPE=hidden name=oe value=UTF-8>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"\">
-<INPUT type=submit name=btnG VALUE=\"Гугле претрага\">
-<font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"{$wgServer}\" checked> {$wgServer} <br />
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->",
 "blanknamespace" => "(Главно)",
 
 # Preferences page

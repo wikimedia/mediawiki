@@ -495,27 +495,6 @@ shërbyesi është shumë i ngarkuar; shpresojmë ta nxjerrim prapë në gjëndj
 Gjer atëherë, mund të përdorësh google për kërkime:</p>
 
 ",
-"googlesearch" => "<!-- SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.com/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.com/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
-<INPUT type=submit name=btnG VALUE=\"Kërkim me Google\">
-<font size=-1>
-<input type=hidden name=domains value=\"{$wgServer}\"><br /><input type=radio
-name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch
-value=\"{$wgServer}\" checked> {$wgServer} <br />
-<input type='hidden' name='ie' value='$2'>
-<input type='hidden' name='oe' value='$2'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->
-",
 "blanknamespace" => "(Main)",
 
 # Preferences page

@@ -599,27 +599,6 @@ $1<br />
 $2 Wies ok Wiederleiden   Söök no $3 $9',
 'searchdisabled'    => '<p>De Vulltextsöök is wegen Överlast en Stoot deaktiveert. In disse Tied kannst du disse Google-Söök verwennen,
 de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
-'googlesearch'      => "<!-- SiteSearch Google -->
-<form method='get' action='http://www.google.com/search'>
-<table style='background-color:#ffffff'><tr><td>
-<a href='http://www.google.com/' title='Google-Söök'>
-<img src='http://www.google.com/logos/Logo_40wht.gif' border='0' alt='Google' /></a>
-
-</td>
-<td>
-<input type='text' name='q' size='31' maxlength='255' value='$1' />
-<input type='submit' name='btnG' value='Google-Söök' />
-<font size='-1'>
-
-<input type='hidden' name='domains' value='{{SERVER}}' /><br />
-<input type='radio' name='sitesearch' value='' /> WWW <input type='radio' name='sitesearch' value='{{SERVER}}' checked='checked' />{{SERVER}}<br />
-
-<input type='hidden' name='ie' value='$2' />
-<input type='hidden' name='oe' value='$2' />
-</font>
-</td></tr></table>
-</form>
-<!-- SiteSearch Google -->",
 'blanknamespace'     => '(Hööft-)',
 
 # Instellen

@@ -403,25 +403,6 @@ created and by whom, and anything else you may know about it.",
 'tagline'       => "<small>Straipsnis iš Wikipedijos, laisvosios enciklopedijos.</small>",
 #'getimagelist' => "fetching image list",
 'go' => "Rodyk",
-'googlesearch' => "
-<!-- SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.com/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.com/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
-<INPUT type=submit name=btnG VALUE=\"Google Search\">
-<font size=-1>
-<input type=hidden name=domains value=\"http://lt.wikipedia.org\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"http://lt.wikipedia.org\" checked> http://lt.wikipedia.org <br />
-<input type='hidden' name='ie' value='$2'>
-<input type='hidden' name='oe' value='$2'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->",
 #'guesstimezone' => "Fill in from browser",
 'headline_sample' => "Skyriaus Pavadinimas",
 'headline_tip' => "Skyriaus pavadinimas (2-o lygio)",
