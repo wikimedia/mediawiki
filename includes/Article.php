@@ -940,9 +940,10 @@ class Article {
 
 
 	/**
-	 * Side effects: loads last edit
+	 * Side effects: loads last edit if $edittime is NULL
 	 */
 	function getTextOfLastEditWithSectionReplacedOrAdded($section, $text, $summary = '', $edittime = NULL) {
+		$fname = 'Article::getTextOfLastEditWithSectionReplacedOrAdded';
 		if(is_null($edittime)) {
 			$this->loadLastEdit();
 			$oldtext = $this->getContent( true );
