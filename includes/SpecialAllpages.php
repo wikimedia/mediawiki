@@ -77,6 +77,13 @@ function indexShowToplevel ( $namespace = 0 )
 	$count = $dbr->selectField( 'cur', 'COUNT(*)', $where, $fname );
 	$sections = ceil( $count / $indexMaxperpage );
 
+	if ( $sections < 3 ) {
+		# If there are only two or less sections, don't even display them.
+		# Instead, display the first section directly.
+		indexShowChunk( '', $namespace );
+		return;
+	}
+
 	# We want to display $toplevelMaxperpage lines starting at $offset.
 	# NOTICE: $offset starts at 0
 	$offset = intval ( $wgRequest->getVal( 'offset' ) );
