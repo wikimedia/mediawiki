@@ -659,8 +659,12 @@ if( \$wgCommandLineMode ) {
 " . ($conf->Encoding ? "\$wgInputEncoding = \$wgOutputEncoding = \"{$conf->Encoding}\";" : "" ) . "
 
 \$wgUsePHPTal = false;
+\$wgUseSmarty = false;
 if ( \$wgUsePHPTal ) {
 	ini_set( \"include_path\", \"\$IP/PHPTAL-NP-0.7.0/libs:\" . ini_get(\"include_path\") );
+}
+if ( \$wgUseSmarty ) {
+	ini_set( \"include_path\", \"\$IP/Smarty-2.6.2/libs/:\" . ini_get(\"include_path\") );
 }
 
 ";
