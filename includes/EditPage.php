@@ -116,8 +116,7 @@ class EditPage {
 			$wgOut->addWikiText(wfmsg("newarticletext"));
 		}
 
-		$talknamespaces = array( NS_TALK, NS_WP_TALK, NS_IMAGE_TALK, NS_MEDIAWIKI_TALK );
-		if( in_array( $this->mTitle->getNamespace(), $talknamespaces ) ) {
+		if( Namespace::isTalk( $this->mTitle->getNamespace() ) ) {
 			$wgOut->addWikiText(wfmsg("talkpagetext"));
 		}
 
