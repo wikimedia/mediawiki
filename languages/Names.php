@@ -185,6 +185,7 @@
 	'tr' => 'T&uuml;rk&ccedil;e',	# Turkish
 	'ts' => 'Xitsonga',		# Tsonga
 	'tt' => 'Tatar&ccedil;a',	# Tatar
+	'tum' => 'chiTumbuka',  # Tumbuka
 	'tw' => 'Twi',			# Twi -- FIXME
 	'ty' => 'Reo M&#257;`ohi',	# Tahitian
 	'ug' => 'Oyghurque',	# Uyghur
