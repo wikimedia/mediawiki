@@ -143,7 +143,7 @@ if($wgMetaNamespace === FALSE)
     MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME', 'DAGNONAMN', 'DAGNÅNAVN'                ),
     MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR', 'ÅRNO', 'ÅRNÅ'                             ),
     MAG_CURRENTTIME          => array( 1,    'CURRENTTIME', 'TIDNO', 'TIDNÅ'                           ),
-    MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES', 'TALARTIKLAR', 'ANTALLARTIKLER'       ),
+    MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES', 'INNHALDSIDETAL', 'INNHOLDSIDETALL'   ),
     MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN', 'MÅNADNONAMNGEN', 'MÅNEDNÅNAVNGEN' ),
     MAG_PAGENAME             => array( 1,    'PAGENAME', 'SIDENAMN', 'SIDENAVN'                        ),
     MAG_PAGENAMEE            => array( 1,    'PAGENAMEE', 'SIDENAMNE', 'SIDENAVNE'                     ),
@@ -676,12 +676,12 @@ Sjå [[{{ns:12}}:Brukarinnstillingar]] for ei forklaring på dei ulike innstilli
 'uploadtext'	        => 'Denne sida kan brukast til å laste opp filer.
 
 <div style="border: 1px solid grey; background: #ddf; padding: 7px; margin: 0 auto;">
-<ul><li>For å bruke eit bilete i ei side, skriv inn ei lenkje av dette slaget: <tt>[[Fil:Eksempelbilete.jpg]]</tt> eller <tt>[[Fil:Eksempelbilete.png|bilettekst]]</tt> eller <tt>[[Filpeikar:Eksempelfil.ogg]]</tt> for lydar og andre filer. For å leggje inn eit bilete som miniatyr, skriv <tt>[[Fil:Eksempelbilete.jpg|mini|Bilettekst]]</tt>. Sjå [[{{ns:12}}:Biletsyntaks|biletesyntaks-hjelp]] for meir informasjon.<br />&nbsp;</li>
+<ul><li>For å bruke eit bilete på ei side, skriv inn ei lenkje av dette slaget: <tt>[[Fil:Eksempelbilete.jpg]]</tt> eller <tt>[[Fil:Eksempelbilete.png|bilettekst]]</tt> eller <tt>[[Filpeikar:Eksempelfil.ogg]]</tt> for lydar og andre filer. For å leggje inn eit bilete som miniatyr, skriv <tt>[[Fil:Eksempelbilete.jpg|mini|Bilettekst]]</tt>. Sjå [[{{ns:12}}:Biletsyntaks|biletesyntaks-hjelp]] for meir informasjon.<br />&nbsp;</li>
 
 <li>Om du lastar opp ei fil med same namn som ei eksisterande fil vil du få spørsmål om å bekrefte, og den eksisterande fila vil ikkje bli sletta.<br />&nbsp;</li>
 </ul>
 
-Sjå [[{{ns:12}}:Laste opp fil|hjelp for filopplasting]] for meir informasjon om korleis dette skjemaet fungerer og korleis ein bruker filer i wikisider.
+Sjå [[{{ns:12}}:Laste opp fil|hjelp for filopplasting]] for meir informasjon om korleis dette skjemaet fungerer og korleis ein bruker filer på wikisider.
 </div>
 
 <p>For å laste opp ei fil bruker du "Browse..." eller "Bla gjennom..."-knappen som
@@ -740,7 +740,7 @@ og klikk til slutt på <i>Last opp fil</i>.</p>',
 'imghistlegend'         => 'Forklaring: (no) = dette er den noverande versjonen av fila, (slett) = slett denne versjonen, (rulltb) = tilbake til denne versjonen.<br /><i>Klikk på ein dato for å sjå fila som vart opplasta då</i>.',
 'imagelinks'	        => 'Fillenkjer',
 'linkstoimage'	        => 'Dei følgjande sidene har lenkjer til dette biletet:',
-'nolinkstoimage'        => 'Det finst ikkje noka side som har lenkjer til dette biletet.',
+'nolinkstoimage'        => 'Det finst ikkje noka side med lenkje til dette biletet.',
 
 # Statistics
 #
@@ -767,13 +767,13 @@ Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den f�
 'brokenredirects'	=> 'Dårlege omdirigeringar',
 'brokenredirectstext'	=> 'Dei følgjande omdirigeringane viser til ei side som ikkje finst.',
 'selflinks'		=> 'Sider som viser til seg sjølve',
-'selflinkstext'		=> 'Dei følgjande sidene inneheld tilvisingar til seg sjølve, noko dei ikkje burde.',
+'selflinkstext'		=> 'Dei følgjande sidene inneheld tilvisingar til seg sjølve, og det bør dei ikkje.',
 'mispeelings'           => 'Sider med stavefeil',
 'mispeelingstext'       => 'Dei følgjande sidene inneheld ein av dei vanlege stavefeila som er lista på $1. Den rette stavemåten kan bli attgjeven i parentes etter feilstavinga (slik).',
 'mispeelingspage'       => 'Liste over vanlege stavefeil',
 'missinglanguagelinks'  => 'Manglande språklenkjer',
 'missinglanguagelinksbutton' => 'Finn manglande språklenkjer for',
-'missinglanguagelinkstext' => 'Desse artiklane har <i>ikkje</i> lenkjer til den same artikkelen på $1. Omdirigeringar og undersider er <i>ikkje</i> viste.',
+'missinglanguagelinkstext' => 'Desse innhaldssidene har <i>ikkje</i> lenkjer til den same sida på $1. Omdirigeringar og undersider er <i>ikkje</i> viste.',
 
 # Miscellaneous special pages
 #
@@ -1266,7 +1266,7 @@ ta[\'n-randompage\']            = new Array(\'x\',\'Vis ei tilfeldig side\');
 ta[\'n-help\']                  = new Array(\'\',\'Hjelp til å bruke alle funksjonane.\'); 
 ta[\'n-sitesupport\']           = new Array(\'\',\'Støtt oss!\'); 
 ta[\'t-whatlinkshere\']         = new Array(\'j\',\'Liste over alle wikisidene som har lenkjer hit\'); 
-ta[\'t-recentchangeslinked\']   = new Array(\'k\',\'Siste endringar i sider som har lenkjer hit\'); 
+ta[\'t-recentchangeslinked\']   = new Array(\'k\',\'Siste endringar på sider som har lenkjer hit\'); 
 ta[\'feed-rss\']                = new Array(\'\',\'RSS-mating for denne sida\'); 
 ta[\'feed-atom\']               = new Array(\'\',\'Atom-mating for denne sida\'); 
 ta[\'t-contributions\']         = new Array(\'\',\'Sjå liste over bidrag frå denne brukaren\'); 
@@ -1373,7 +1373,7 @@ class LanguageNn extends LanguageUtf8 {
 	{
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-		$d = (0 + substr( $ts, 6, 2 )) . ". " .
+		$d = (0 + substr( $ts, 6, 2 )) . '. ' .
 		  $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) . ' ' .
 		  substr( $ts, 0, 4 );
 		return $d;
@@ -1383,7 +1383,7 @@ class LanguageNn extends LanguageUtf8 {
 	{
 		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
 
-		$t = substr( $ts, 8, 4 );
+		$t = substr( $ts, 8, 2 ) . ':' . substr( $ts, 10, 2 );
 		return $t;
 	}
 
@@ -1400,7 +1400,7 @@ class LanguageNn extends LanguageUtf8 {
 		if( isset( $wgAllMessagesNn[$key] ) ) {
 			return $wgAllMessagesNn[$key];
 		} else {
-			return ""; # ??
+			return ''; # ??
 		}
 	}
 
