@@ -373,7 +373,10 @@ class Skin {
 	}
 	
 	function getCategories() {
-		return "<p class='catlinks'>" . $this->getCategoryLinks() . "</p>";
+		$catlinks=$this->getCategoryLinks();
+		if(!empty($catlinks)) {
+			return "<p class='catlinks'>{$catlinks}</p>";
+		}
 	}
 
 	function getQuickbarCompensator( $rows = 1 )
