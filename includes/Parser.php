@@ -1627,7 +1627,7 @@ class Parser
 	function preSaveTransform( $text, &$title, &$user, $options, $clearState = true )
 	{
 		$this->mOptions = $options;
-		$this->mTitle = $title;
+		$this->mTitle =& $title;
 		$this->mOutputType = OT_WIKI;
 		
 		if ( $clearState ) {
@@ -1713,7 +1713,17 @@ class Parser
 		return $text;
 	}
 
-
+	# Set up some variables which are usually set up in parse()
+	# so that an external function can call some class members with confidence
+	function startExternalParse( &$title, $options, $outputType, $clearState = true ) 
+	{
+		$this->mTitle =& $title;
+		$this->mOptions = $options;
+		$this->mOutputType = $outputType;
+		if ( $clearState ) {
+			$this->clearState();
+		}
+	}
 }
 
 class ParserOutput
