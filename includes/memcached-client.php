@@ -221,11 +221,11 @@ class memcached
     */
    function memcached ($args)
    {
-      $this->set_servers($args['servers']);
-      $this->_debug = $args['debug'];
+      $this->set_servers(@$args['servers']);
+      $this->_debug = @$args['debug'];
       $this->stats = array();
-      $this->_compress_threshold = $args['compress_threshold'];
-      $this->_persistant = isset($args['persistant']) ? $args['persistant'] : false;
+      $this->_compress_threshold = @$args['compress_threshold'];
+      $this->_persistant = array_key_exists('persistant', $args) ? (@$args['persistant']) : false;
       $this->_compress_enable = true;
       $this->_have_zlib = function_exists("gzcompress");
       
@@ -374,7 +374,7 @@ class memcached
       if (!is_resource($sock))
          return false;
          
-      $this->stats['get']++;
+      @$this->stats['get']++;
       
       $cmd = "get $key\r\n";
       if (!fwrite($sock, $cmd, strlen($cmd)))
@@ -813,7 +813,7 @@ class memcached
                   break;
                $offset += $n;
                $bneed -= $n;
-               $ret[$rkey] .= $data;
+               @$ret[$rkey] .= $data;
             }
             
             if ($offset != $len+2)
@@ -866,7 +866,7 @@ class memcached
       if (!is_resource($sock))
          return false;
          
-      $this->stats[$cmd]++;
+      @$this->stats[$cmd]++;
       
       $flags = 0;
       
