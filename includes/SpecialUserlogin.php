@@ -54,7 +54,7 @@ function wfSpecialUserlogin()
 
 	$wgOut->setPageTitle( wfMsg( "accmailtitle" ) );
 	$wgOut->setRobotpolicy( "noindex,nofollow" );
-	$wgOut->setArticleFlag( false );
+	$wgOut->setArticleRelated( false );
 
 	$wgOut->addWikiText( wfMsg( "accmailtext", $u->getName(), $u->getEmail() ) );
 	$wgOut->returnToMain( false );
@@ -250,7 +250,7 @@ function wfSpecialUserlogin()
 
 	$wgOut->setPageTitle( wfMsg( "loginsuccesstitle" ) );
 	$wgOut->setRobotpolicy( "noindex,nofollow" );
-	$wgOut->setArticleFlag( false );
+	$wgOut->setArticleRelated( false );
 	$wgOut->addHTML( $msg . "\n<p>" );
 	$wgOut->returnToMain();
 }
@@ -261,7 +261,7 @@ function userNotPrivilegedMessage()
 	
 	$wgOut->setPageTitle( wfMsg( "whitelistacctitle" ) );
 	$wgOut->setRobotpolicy( "noindex,nofollow" );
-	$wgOut->setArticleFlag( false );
+	$wgOut->setArticleRelated( false );
 
 	$wgOut->addWikiText( wfMsg( "whitelistacctext" ) );
 	
@@ -299,7 +299,7 @@ function userNotPrivilegedMessage()
 
 	$wgOut->setPageTitle( wfMsg( "userlogin" ) );
 	$wgOut->setRobotpolicy( "noindex,nofollow" );
-	$wgOut->setArticleFlag( false );
+	$wgOut->setArticleRelated( false );
 
 	if ( "" == $err ) {
                 $lp = wfMsg( "loginprompt" );

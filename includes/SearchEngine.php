@@ -154,7 +154,7 @@ class SearchEngine {
 		$wgOut->setPageTitle( wfMsg( "searchresults" ) );
 		$q = wfMsg( "searchquery", htmlspecialchars( $this->mUsertext ) );
 		$wgOut->setSubtitle( $q );
-		$wgOut->setArticleFlag( false );
+		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 
 		$sk = $wgUser->getSkin();
