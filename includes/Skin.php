@@ -1668,6 +1668,12 @@ class Skin {
 		$this->checkTitle($title, $name);	
 		return $title->getLocalURL( $urlaction ); 
 	}
+	# this can be passed the NS number as defined in Language.php
+	/*static*/ function makeNSUrl( $name, $urlaction='', $namespace=0 ) {
+		$title = Title::makeTitle( $namespace, $name );
+		$this->checkTitle($title, $name);	
+		return $title->getLocalURL( $urlaction );
+	}
 	
 	/* these return an array with the 'href' and boolean 'exists' */
 	/*static*/ function makeUrlDetails ( $name, $urlaction='' ) {
