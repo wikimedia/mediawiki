@@ -443,6 +443,11 @@ pages for purposes of page relevancy ranking.
 * User-to-user email disabled by default ($wgEnableUserEmail)
 
 
+=== 1.4.1 fixes ===
+
+* (bug 1720) fix genitive month names for uk
+
+
 === Caveats ===
 
 Some output, particularly involving user-supplied inline HTML, may not
