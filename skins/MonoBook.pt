@@ -12,14 +12,14 @@
     <script type="text/javascript" tal:attributes="src jsvarurl"></script>
     <script type="text/javascript" src="${stylepath}/common/wikibits.js"></script>
     <style tal:condition="usercss" type="text/css">/*<![CDATA[*/ ${usercss} /*]]>*/</style>
-    <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs"></script><script 
+    <script tal:condition="userjs" type="text/javascript" tal:attributes="src userjs">/**/</script><script 
       tal:condition="userjsprev" type="text/javascript">/*<![CDATA[*/${userjsprev}/*]]>*/</script>
   </head>
-  <body tal:attributes="ondblclick body-ondblclick|default; class nsclass|default">
+  <body tal:attributes="ondblclick body_ondblclick|default; class nsclass|default">
     <div id="globalWrapper">
       <div id="column-content">
 	<div id="content">
-	  <a name="top" id="contentTop"></a>
+	  <a name="top" id="contentTop"><!-- buffer for PHPTAL --></a>
 	  <div id="siteNotice" tal:condition="sitenotice" tal:content="structure sitenotice"></div>
 	  <h1 class="firstHeading" tal:content="title">Leonardo da Vinci</h1>
 	  <div id="bodyContent">
@@ -31,7 +31,7 @@
 	    ${bodytext}
 	    <div tal:condition="catlinks" id="catlinks" tal:content="structure catlinks"></div>
 	    <!-- end content -->
-	    <div class="visualClear"></div>
+	    <div class="visualClear"><!-- --></div>
 	  </div>
 	</div>
       </div>
@@ -108,11 +108,11 @@
 		  tal:attributes="href feed/href;"
 		  tal:content="feed/text">rss</a>&nbsp;</span>
 	      </li>
-	      <li id="t-contributions" tal:condition="nav_urls/contributions/href"><a href="${nav_urls/contributions/href}"
+	      <li id="t-contributions" tal:condition="nav_urls/contributions"><a href="${nav_urls/contributions/href}"
 		i18n:translate="string:contributions">Contributions</a></li>
-	      <li id="t-emailuser" tal:condition="nav_urls/emailuser/href"><a href="${nav_urls/emailuser/href}"
+	      <li id="t-emailuser" tal:condition="nav_urls/emailuser"><a href="${nav_urls/emailuser/href}"
 		i18n:translate="string:emailuser">Email this user</a></li>
-	      <li id="t-upload" tal:condition="nav_urls/upload/href"><a href="${nav_urls/upload/href}"
+	      <li id="t-upload" tal:condition="nav_urls/upload"><a href="${nav_urls/upload/href}"
 		i18n:translate="string:upload">Upload a file</a></li>
 	      <li id="t-specialpages"><a href="${nav_urls/specialpages/href}"
 		i18n:translate="string:specialpages">Special Pages</a></li>
