@@ -29,6 +29,10 @@ class LoginForm {
 	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
 	var $mLoginattempt, $mRemember, $mEmail;
 	
+	/**
+	 * Constructor
+	 * @param webrequest $request A webrequest object passed by reference
+	 */
 	function LoginForm( &$request ) {
 		global $wgLang, $wgAllowRealName, $wgEnableEmail;
 		global $wgEmailAuthentication;
@@ -206,7 +210,7 @@ class LoginForm {
 		if ( is_null( $u ) ||
 		  ( '' == $name ) ||
 		  $wgUser->isIP( $name ) ||
-		  (strpos( $name, "/" ) !== false) ||
+		  (strpos( $name, '/' ) !== false) ||
 		  (strlen( $name ) > $wgMaxNameChars) ||
                   ($wgUseLatin1 && preg_match( "/[\x80-\xA0]/", $name )) ||
 		  ucFirst($name) != $u->getName() ) 
@@ -448,6 +452,7 @@ class LoginForm {
 
 
 	/**
+	 * @param string $msg Message that will be shown on success.
 	 * @access private
 	 */
 	function successfulLogin( $msg ) {
@@ -465,8 +470,9 @@ class LoginForm {
 		$wgOut->returnToMain();
 	}
 
+	/** */
 	function userNotPrivilegedMessage() {
-		global $wgOut, $wgUser, $wgLang;
+		global $wgOut;
 		
 		$wgOut->setPageTitle( wfMsg( 'whitelistacctitle' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
@@ -515,7 +521,7 @@ class LoginForm {
 		$template->set( 'userealname', $wgAllowRealName );
 		$template->set( 'useemail', $wgEnableEmail );
 		$template->set( 'useemailauthent', $wgEmailAuthentication );
-		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) );
+		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) or $this->mRemember  );
 		
 		$wgOut->setPageTitle( wfMsg( 'userlogin' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
