@@ -148,20 +148,20 @@ class ZhClient {
 class ZhClientFake {
 	function ZhClientFake() {
 		global $wgMemc, $wgDBname;
-		$this->mZh2TW = $wgMemc->get($key1 = "$wgDBname:zhConvert:tw");
-		$this->mZh2CN = $wgMemc->get($key2 = "$wgDBname:zhConvert:cn");
-		$this->mZh2SG = $wgMemc->get($key3 = "$wgDBname:zhConvert:sg");
-		$this->mZh2HK = $wgMemc->get($key4 = "$wgDBname:zhConvert:hk");
+		$this->mZh2TW = $wgMemc->get($key1 = "$wgDBname:zhConvert:totw");
+		$this->mZh2CN = $wgMemc->get($key2 = "$wgDBname:zhConvert:tocn");
+		$this->mZh2SG = $wgMemc->get($key3 = "$wgDBname:zhConvert:tosg");
+		$this->mZh2HK = $wgMemc->get($key4 = "$wgDBname:zhConvert:tohk");
 		if(empty($this->mZh2TW) || empty($this->mZh2CN) || empty($this->mZh2SG) || empty($this->mZh2HK)) {
 			require("includes/ZhConversion.php");
 			$this->mZh2TW = $zh2TW;
 			$this->mZh2CN = $zh2CN;
 			$this->mZh2HK = $zh2HK;
 			$this->mZh2SG = $zh2SG;
-			$wgMemc->set($key1, $this->mZh2TW);
-			$wgMemc->set($key2, $this->mZh2CN);
-			$wgMemc->set($key3, $this->mZh2SG);
-			$wgMemc->set($key4, $this->mZh2HK);
+			$wgMemc->set($key1, $this->mZh2TW, 21600);
+			$wgMemc->set($key2, $this->mZh2CN, 21600);
+			$wgMemc->set($key3, $this->mZh2SG, 21600);
+			$wgMemc->set($key4, $this->mZh2HK, 21600);
 		}
 	}
 
