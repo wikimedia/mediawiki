@@ -50,6 +50,13 @@ if (isset($args[0]) && isset($args[1])) {
 	$highest = $args[1];
 }
 
+# Print welcome
+if ( $channel ) {
+	print "$channel\t";
+}
+print "Monitoring $serverName for changes from $lowest to $highest\n";
+
+
 $res = wfQuery( "SELECT MAX(rc_id) as m FROM recentchanges", DB_READ ); 
 $row = wfFetchObject( $res );
 $oldId = $row->m;
@@ -68,7 +75,9 @@ while (1) {
 		if (strstr($row->old_flags, "gzip"))
 			$oldtext = gzinflate($oldtext);
 		$szdiff = strlen($row->cur_text) - strlen($oldtext);
-		if ($szdiff >= 0)
+		if ($szdiff < -500)
+			$szdiff = "\002$szdiff\002";
+		else if ($szdiff >= 0)
 			$szdiff = "+$szdiff";
 		$ns = $wgLang->getNsText( $row->rc_namespace ) ;
 		if ( $ns ) {
@@ -84,7 +93,7 @@ while (1) {
 		$a = $title[0];
 		if ($a < 'A' || $a > 'Z')
 			$a = 'Z';
-		if ((isset($highest) && ($a > $highest)) || (isset($lowest) && $a <= $lowest))
+		if ((isset($highest) && ($a > $highest)) || (isset($lowest) && $a < $lowest))
 			continue;
 		$user = str_replace($bad, $empty, $row->rc_user_text);
 		$lastid = IntVal($row->rc_last_oldid);
