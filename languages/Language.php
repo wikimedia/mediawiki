@@ -1260,7 +1260,10 @@ Type the name of the user in the box and press the button to make the user an ad
 # Validation
 'val_clear_old' => 'Clear my other validation data for <a href="$1">this article</a>',
 'val_noop' => 'No opinion',
-'val_percent' => '<b>$1%</b> ($2 of $3 points)',
+'val_percent' => '<b>$1%</b><br>($2 of $3 points by $4 users)',
+'val_percent_single' => '<b>$1%</b><br>($2 of $3 points by one user)',
+'val_total' => 'Total',
+'val_version' => 'Version',
 'val_tab' => 'Validate',
 'val_this_version' => "<h2>This version</h2>\n",
 'val_version_of' => "<h2>Version of $1</h2>\n" ,
