@@ -10,21 +10,28 @@
 # encapsulates some of the magic-ness.
 # See Language.php for more notes.
 
-/* private */ $wgNamespaceNamesFi = array(
-	-2	=> "Media",
-	-1	=> "Toiminnot",
-	0	=> "",
-	1	=> "Keskustelu",
-	2	=> "Käyttäjä",
-	3	=> "Keskustelu_käyttäjästä",
-	4	=> $wgMetaNamespace,
-	5	=> FALSE,  # Set in constructor
-	6	=> "Kuva",
-	7	=> "Keskustelu_kuvasta",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_talk",
-	10  => "Template",
-	11  => "Template_talk"
+/**
+ * @access private
+ */
+$wgNamespaceNamesFi = array(
+	NS_MEDIA			=> 'Media',
+	NS_SPECIAL			=> 'Toiminnot',
+	NS_MAIN				=> '',
+	NS_TALK				=> 'Keskustelu',
+	NS_USER				=> 'Käyttäjä',
+	NS_USER_TALK		=> 'Keskustelu_käyttäjästä',
+	NS_WIKIPEDIA		=> $wgMetaNamespace,
+	NS_WIKIPEDIA_TALK	=> FALSE,  # Set in constructor
+	NS_IMAGE			=> 'Kuva',
+	NS_IMAGE_TALK		=> 'Keskustelu_kuvasta',
+	NS_MEDIAWIKI		=> 'MediaWiki',
+	NS_MEDIAWIKI_TALK	=> 'MediaWiki_talk',
+	NS_TEMPLATE			=> 'Template',
+	NS_TEMPLATE_TALK	=> 'Template_talk',
+	NS_HELP				=> 'Ohje',
+	NS_HELP_TALK		=> 'Keskustelu_ohjeesta',
+	NS_CATEGORY			=> 'Luokka',
+	NS_CATEGORY_TALK	=> 'Keskustelu_luokasta'
 
 ) + $wgNamespaceNamesEn;
 
