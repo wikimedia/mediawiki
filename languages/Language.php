@@ -594,11 +594,8 @@ email address to them, and it can be used to send you a new password if you forg
 Check your spelling, or use the form below to create a new user account.",
 'nosuchusershort'	=> "There is no user by the name \"$1\". Check your spelling.",
 'wrongpassword'		=> 'The password you entered is incorrect (or missing). Please try again.',
-'mailmypassword' 	=> 'Mail me a temporary password
-because I forgot my password',
-'mailmypasswordauthent'	=> 'Mail me a temporary password
-because I forgot my password or
-for authentication of my email address',
+'mailmypassword' 	=> 'Mail me a temporary password',
+'mailmypasswordauthent'	=> 'Mail me a temporary password',
 'passwordremindermailsubject' => "Email address authentication and temporary login password from {{SITENAME}}",
 'passwordremindermailbody' 	=> "Someone, probably you from IP address $1,
 requested that we send you a temporary one-time login password for {{SITENAME}}.
