@@ -21,14 +21,8 @@ include_once("Utf8Case.php");
 	7	=> "Kép_vita"
 );
 
-/* private */ $wgDefaultUserOptionsHu = array(
-	"quickbar" => 1, "underline" => 1, "hover" => 1,
-	"cols" => 80, "rows" => 25, "searchlimit" => 20,
-	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0,
-	"previewontop" => 1, "editsection"=>1, "showtoc"=>1
-);
+/* Inherit default options; make specific changes via 
+   custom getDefaultUserOptions() if needed. */
 
 /* private */ $wgQuickbarSettingsHu = array(
 	"Nincs", "Fix baloldali", "Fix jobboldali", "Lebegő baloldali"
@@ -72,12 +66,7 @@ include_once("Utf8Case.php");
 	"nocache" => "Lapok gyorstárazásának letiltása"
 );
 
-/* private */ $wgBookstoreListHu = array(
-	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
-	"PriceSCAN" => "http://www.pricescan.com/books/bookDetail.asp?isbn=$1",
-	"Barnes & Noble" => "http://shop.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1",
-	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
-);
+/* Change bookstore list through the wiki page [[hu:Wikipedia:Külső könyvinformációk]] */
 
 /* Language names should be the native names. Inherit common array from Language.php */
 
@@ -409,143 +398,148 @@ irányelvét</a>.",
 
 # History pages
 #
-"revhistory"	=> "Revision history",
-"nohistory"		=> "There is no edit history for this page.",
-"revnotfound"	=> "Revision not found",
-"revnotfoundtext" => "The old revision of the page you asked for could not be found.
-Please check the URL you used to access this page.\n",
-"loadhist"		=> "Loading page history",
-"currentrev"	=> "Current revision",
-"revisionasof"	=> "Revision as of $1",
-"cur"			=> "cur",
-"next"			=> "next",
-"last"			=> "last",
-"orig"			=> "orig",
-"histlegend"	=> "Legend: (cur) = difference with current version,
-(last) = difference with preceding version, M = minor edit",
+"revhistory"	=> "Változások története",
+"nohistory"		=> "Nincs szerkesztési történet ehhez a laphoz.",
+"revnotfound"	=> "A változat nem található",
+"revnotfoundtext" => "A lap általad kért régi változatát nem találom.
+Kérlek ellenőrizd az URL-t amivel erre a lapra jutottál.\n",
+"loadhist"		=> "Laptörténet beolvasása",
+"currentrev"	=> "Aktuális változat",
+"revisionasof"	=> "$1 változat",
+"cur"			=> "akt",
+"next"			=> "köv",
+"last"			=> "előző",
+"orig"			=> "eredeti",
+"histlegend"	=> "Jelmagyarázat: (akt) = eltérés az aktuális változattól,
+(előző) = eltérés az előző változattól, 
+Legend: (cur) = difference with current version, 
+A = Apró változtatás",
 
 # Diffs
 #
-"difference"	=> "(Difference between revisions)",
-"loadingrev"	=> "loading revision for diff",
-"lineno"		=> "Line $1:",
-"editcurrent"	=> "Edit the current version of this page",
+"difference"	=> "(Változatok közti eltérés)",
+"loadingrev"	=> "különbségképzéshez olvasom a változatokat",
+"lineno"		=> "Sor $1:",
+"editcurrent"	=> "A lap aktuális változatának szerkesztése",
 
 # Search results
 #
-"searchresults" => "Search results",
-"searchhelppage" => "Wikipedia:Searching",
-"searchingwikipedia" => "Searching Wikipedia",
-"searchresulttext" => "For more information about searching Wikipedia, see $1.",
-"searchquery"	=> "For query \"$1\"",
-"badquery"		=> "Badly formed search query",
-"badquerytext"	=> "We could not process your query.
-This is probably because you have attempted to search for a
-word fewer than three letters long, which is not yet supported.
-It could also be that you have mistyped the expression, for
-example \"fish and and scales\".
-Please try another query.",
-"matchtotals"	=> "The query \"$1\" matched $2 article titles
-and the text of $3 articles.",
-"nogomatch" => "No page with this exact title exists, trying full text search.",
-"titlematches"	=> "Article title matches",
-"notitlematches" => "No article title matches",
-"textmatches"	=> "Article text matches",
-"notextmatches"	=> "No article text matches",
-"prevn"			=> "previous $1",
-"nextn"			=> "next $1",
-"viewprevnext"	=> "View ($1) ($2) ($3).",
-"showingresults" => "Showing below <b>$1</b> results starting with #<b>$2</b>.",
-"showingresultsnum" => "Showing below <b>$3</b> results starting with #<b>$2</b>.",
-"nonefound"		=> "<strong>Note</strong>: unsuccessful searches are
-often caused by searching for common words like \"have\" and \"from\",
-which are not indexed, or by specifying more than one search term (only pages
-containing all of the search terms will appear in the result).",
-"powersearch" => "Search",
+"searchresults" => "A keresés eredménye",
+"searchhelppage" => "Wikipédia:Keresés",
+"searchingwikipedia" => "Keresés a Wikipédiában",
+"searchresulttext" => "További információkkal a keresésről $1 szolgál.",
+"searchquery"	=> "A \"$1\" kereséshez",
+"badquery"		=> "Hibás formájú keresés",
+"badquerytext"	=> "Nem tudjuk a kérésedet végrehajtani.
+Ennek oka valószínűleg az, hogy három betűnél rövidebb
+karaktersorozatra próbáltál keresni, ami jelenleg nem lehetséges.
+Lehet az is hogy elgépelted a kifejezést, például \"hal and and mérleg\".
+Kérlek próbálj másik kifejezést keresni.",
+"matchtotals"	=> "A \"$1\" keresés $2 címszót talált és
+$3 szócikk szövegét.",
+"nogomatch" => "Nincs pontosan ezzel megegyező címszó,
+próbálom a keresést a cikkek szövegében.",
+"titlematches"	=> "Címszó egyezik",
+"notitlematches" => "Nincs egyező címszó",
+"textmatches"	=> "Szócikk szövege egyezik",
+"notextmatches"	=> "Nincs szócikk szöveg egyezés",
+"prevn"			=> "előző $1",
+"nextn"			=> "következő $1",
+"viewprevnext"	=> "Nézz ($1) ($2) ($3).",
+"showingresults" => "Lent látható <b>$1</b> találat, az eleje #<b>$2</b>.",
+"showingresultsnum" => "Lent látható <b>$3</b> találat, az eleje #<b>$2</b>.",
+"nonefound"		=> "<strong>Megyjegyzés</strong>: a sikertelen keresések
+gyakori oka olyan szavak keresése (pl. \"have\" és \"from\") amiket a 
+rendszer nem indexel fel, vagy több független keresési szó szerepeltetése
+(csak minden megadott szót tartalmazó találatok jelennek meg a
+végeredményben).",
+"powersearch" => "Keresés",
 "powersearchtext" => "
-Search in namespaces :<br>
+Keresés a névterekben:<br>
 $1<br>
-$2 List redirects &nbsp; Search for $3 $9",
+$2 Átirányítások listája &nbsp; Keresés:$3 $9",
 
 
 # Preferences page
 #
-"preferences"	=> "Preferences",
-"prefsnologin" => "Not logged in",
-"prefsnologintext"	=> "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
-to set user preferences.",
-"prefslogintext" => "You are logged in as \"$1\".
-Your internal ID number is $2.",
-"prefsreset"	=> "Preferences have been reset from storage.",
-"qbsettings"	=> "Quickbar settings", 
-"changepassword" => "Change password",
+"preferences"	=> "Beálltások",
+"prefsnologin" => "Nem vagy belépve",
+"prefsnologintext"	=> "Ahhoz hogy a 
+beállításaidat rögzíthesd <a href=\"" .
+  wfLocalUrl( "Special:Userlogin" ) . "\">be kell lépned</a>.",
+"prefslogintext" => "Be vagy lépve \"$1\" néven.
+A belső azonosítód $2.",
+"prefsreset"	=> "A beállítások törlődtek a tárolóból vett értékekre.",
+"qbsettings"	=> "Gyorsmenü beállítások", 
+"changepassword" => "Jelszó változtatása",
+# látvány? bőr?!
 "skin"			=> "Skin",
-"math"			=> "Rendering math",
-"dateformat"	=> "Date format",
-"math_failure"		=> "Failed to parse",
-"math_unknown_error"	=> "unknown error",
-"math_unknown_function"	=> "unknown function ",
+"math"			=> "Képletek megjelenítése",
+"dateformat"	=> "Dátum formátuma",
+"math_failure"		=> "Értelmezés sikertelen",
+"math_unknown_error"	=> "ismertlen hiba",
+"math_unknown_function"	=> "ismeretlen függvény ",
 "math_lexing_error"	=> "lexing error",
-"math_syntax_error"	=> "syntax error",
-"saveprefs"		=> "Save preferences",
-"resetprefs"	=> "Reset preferences",
-"oldpassword"	=> "Old password",
-"newpassword"	=> "New password",
-"retypenew"		=> "Retype new password",
-"textboxsize"	=> "Textbox dimensions",
-"rows"			=> "Rows",
-"columns"		=> "Columns",
-"searchresultshead" => "Search result settings",
-"resultsperpage" => "Hits to show per page",
-"contextlines"	=> "Lines to show per hit",
+"math_syntax_error"	=> "formai hiba",
+"saveprefs"		=> "Beállítások mentése",
+"resetprefs"	=> "Beállítások törlése",
+"oldpassword"	=> "Régi jelszó",
+"newpassword"	=> "Új jelszó",
+"retypenew"		=> "Új jelszó mégegyszer",
+"textboxsize"	=> "Szövegdoboz méretei",
+"rows"			=> "Sor",
+"columns"		=> "Oszlop",
+"searchresultshead" => "Keresési eredmények beállításai",
+"resultsperpage" => "Laponként mutatott találatok száma",
+"contextlines"	=> "Találatonként mutatott sorok száma",
+# FIXME, what is that?
 "contextchars"	=> "Characters of context per line",
-"stubthreshold" => "Threshold for stub display",
-"recentchangescount" => "Number of titles in recent changes",
-"savedprefs"	=> "Your preferences have been saved.",
-"timezonetext"	=> "Enter number of hours your local time differs
-from server time (UTC).",
-"localtime"	=> "Local time display",
-"timezoneoffset" => "Offset",
-"servertime"	=> "Server time is now",
-"guesstimezone" => "Fill in from browser",
-"emailflag"		=> "Disable e-mail from other users",
-"defaultns"		=> "Search in these namespaces by default:",
+"stubthreshold" => "Csonkok kijelzésének küszöbértéke",
+"recentchangescount" => "Címszavak száma a friss változtatásokban",
+"savedprefs"	=> "A beállításaidat letároltam.",
+"timezonetext"	=> "Add meg az órák számát, amennyivel a helyi
+idő a GMT-től eltér (Magyarországon nyáron 2, télen 1).",
+"localtime"	=> "Helyi idő",
+"timezoneoffset" => "Eltérés",
+"servertime"	=> "A server ideje most",
+"guesstimezone" => "Töltse ki a böngésző",
+"emailflag"		=> "Email küldés letiltása más userektől",
+"defaultns"		=> "Alapértelmezésben az alábbi névterekben keressünk:",
 
-# Recent changes
+# Recent changes  'legutóbbi változtatások', 'friss v.'
 #
-"changes" => "changes",
-"recentchanges" => "Recent changes",
-"recentchangestext" => "Track the most recent changes to Wikipedia on this page.
-[[Wikipedia:Welcome,_newcomers|Welcome, newcomers]]!
-Please have a look at these pages: [[wikipedia:FAQ|Wikipedia FAQ]],
-[[Wikipedia:Policies and guidelines|Wikipedia policy]]
-(especially [[wikipedia:Naming conventions|naming conventions]],
-[[wikipedia:Neutral point of view|neutral point of view]]),
-and [[wikipedia:Most common Wikipedia faux pas|most common Wikipedia faux pas]].
-
-If you want to see Wikipedia succeed, it's very important that you don't add
-material restricted by others' [[wikipedia:Copyrights|copyrights]].
-The legal liability could really hurt the project, so please don't do it.
-See also the [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
-"rcloaderr"		=> "Loading recent changes",
-"rcnote"		=> "Below are the last <strong>$1</strong> changes in last <strong>$2</strong> days.",
-"rcnotefrom"	=> "Below are the changes since <b>$2</b> (up to <b>$1</b> shown).",
-"rclistfrom"	=> "Show new changes starting from $1",
+"changes" => "változtatások",
+"recentchanges" => "Friss változtatások",
+"recentchangestext" => "Ezen a lapon követheted a Wikipédián történt legutóbbi 
+változtatásokat. [[Wikipédia:Üdvözlünk,_látogató|Üdvözlünk, látogató]]!
+Légy szíves ismerkedj meg az alábbi lapokkal: [[Wikipédia:GyIK|Wikipédia GyIK]],
+[[Wikipédia:Irányelvek]] (különösen az [[Wikipédia:Elnevezési szokások|elnevezési szokásokat]],
+a [[wikipédia:Semleges nézőpont|semleges nézőpontot]]), és a
+[[wikipédia:Legelterjedtebb baklövések|legelterjedtebb baklövéseket]].
+Ha azt szeretnéd hogy a Wikipédia sikeres legyen akkor nagyon fontos, hogy 
+soha ne add hozzá mások [[wikipedia:Copyrights|jogvédett és nem felhasználható]]
+anyagait.
+A jogi problémák komolyan árthatnak a projektnek ezért kérünk arra, hogy ne tegyél
+ilyet.
+Lásd még [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
+"rcloaderr"		=> "Friss változtatások betöltése",
+"rcnote"		=> "Lentebb az utolsó <strong>$2</strong> nap <strong>$1</strong> változtatása látható.",
+"rcnotefrom"	=> "Lentebb láthatóak a <b>$2</b> óta történt változások (<b>$1</b>-ig).",
+"rclistfrom"	=> "Az új változtatások kijelzése $1 után",
 # "rclinks"		=> "Show last $1 changes in last $2 hours / last $3 days",
 # "rclinks"		=> "Show last $1 changes in last $2 days.",
-"rclinks"		=> "Show last $1 changes in last $2 days; $3 minor edits",
-"rchide"		=> "in $4 form; $1 minor edits; $2 secondary namespaces; $3 multiple edits.",
-"rcliu"			=> "; $1 edits from logged in users",
-"diff"			=> "diff",
-"hist"			=> "hist",
-"hide"			=> "hide",
-"show"			=> "show",
-"tableform"		=> "table",
-"listform"		=> "list",
-"nchanges"		=> "$1 changes",
-"minoreditletter" => "M",
-"newpageletter" => "N",
+"rclinks"		=> "Az utolsó $1 változtatás látszik az elmúlt $2 napon; $3 apró módosítással",
+"rchide"		=> "$4 formában; $1 apró módosítás; $2 másodlagos névtér; $3 többszörös módosítás.",
+"rcliu"			=> "; $1 módosítás ismert userektől",
+"diff"			=> "eltér",
+"hist"			=> "történet",
+"hide"			=> "rejt",
+"show"			=> "mutat",
+"tableform"		=> "tábla",
+"listform"		=> "lista",
+"nchanges"		=> "$1 módosítás",
+"minoreditletter" => "A",
+"newpageletter" => "Ú",
 
 # Upload
 #
@@ -620,28 +614,29 @@ created and by whom, and anything else you may know about it.",
 
 # Image list
 #
-"imagelist"		=> "Image list",
-"imagelisttext"	=> "Below is a list of $1 images sorted $2.",
-"getimagelist"	=> "fetching image list",
-"ilshowmatch"	=> "Show all images with names matching",
-"ilsubmit"		=> "Search",
-"showlast"		=> "Show last $1 images sorted $2.",
-"all"			=> "all",
-"byname"		=> "by name",
-"bydate"		=> "by date",
-"bysize"		=> "by size",
-"imgdelete"		=> "del",
-"imgdesc"		=> "desc",
-"imglegend"		=> "Legend: (desc) = show/edit image description.",
-"imghistory"	=> "Image history",
-"revertimg"		=> "rev",
-"deleteimg"		=> "del",
-"imghistlegend" => "Legend: (cur) = this is the current image, (del) = delete
-this old version, (rev) = revert to this old version.
-<br><i>Click on date to see image uploaded on that date</i>.",
-"imagelinks"	=> "Image links",
-"linkstoimage"	=> "The following pages link to this image:",
-"nolinkstoimage" => "There are no pages that link to this image.",
+"imagelist"		=> "Képlista",
+"imagelisttext"	=> "Lentebb látható $1 $2 rendezett kép.",
+"getimagelist"	=> "képlista lehívása",
+"ilshowmatch"	=> "Minden egyező nevű kép listázása",
+"ilsubmit"		=> "Keresés",
+"showlast"		=> "Az utolsó $1 kép $2.",
+"all"			=> "mind",
+"byname"		=> "név szerint",
+"bydate"		=> "dátum szerint",
+"bysize"		=> "méret szerint",
+"imgdelete"		=> "töröl",
+"imgdesc"		=> "leírás",
+"imglegend"		=> "Jelmagyarázat: (leírás) = kép leírás megtekintés/szerkesztés.",
+"imghistory"	=> "Kép története",
+"revertimg"		=> "régi",
+"deleteimg"		=> "töröl",
+"imghistlegend" => "Jelmagyarázat: (akt) = ez az aktuális kép,
+(töröl) = ezen régi változat törlése,
+(régi) = visszaállás erre a régi változatra.
+<br><i>Klikkelj a dátumra hogy megnézhesd az akkor felküldött képet</i>.",
+"imagelinks"	=> "Kép hivatkozások",
+"linkstoimage"	=> "Az alábbi lapok hivatkoznak erre a képre:",
+"nolinkstoimage" => "Erre a képre nem hivatkozik lap.",
 
 # Statistics
 #
@@ -968,15 +963,8 @@ title. Please merge them manually.",
 
 class LanguageHu extends LanguageUtf8 {
 
-	function getDefaultUserOptions () {
-		global $wgDefaultUserOptionsHu ;
-		return $wgDefaultUserOptionsHu ;
-		}
-
-	function getBookstoreList () {
-		global $wgBookstoreListHu ;
-		return $wgBookstoreListHu ;
-	}
+	/* inherit getDefaultUserOptions() */
+	/* inherit stub getBookstoreList() */
 
 	function getNamespaces() {
 		global $wgNamespaceNamesHu;
@@ -1069,20 +1057,9 @@ class LanguageHu extends LanguageUtf8 {
 			return Language::getMessage($key);
 	}
 
-	function checkTitleEncoding( $s ) {
-		global $wgInputEncoding;
-		
-		# Check for non-UTF-8 URLs; assume they are 8859-2
-	        $ishigh = preg_match( '/[\x80-\xff]/', $s);
-		$isutf = ($ishigh ? preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-                '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s ) : true );
-
-		if( $ishigh and !$isutf )
-			return iconv( "iso8859-2", "utf-8", $s );
-		
-		return $s;
+	function fallback8bitEncoding() {
+		return "iso8859-2";
 	}
-
 	
 }
 
