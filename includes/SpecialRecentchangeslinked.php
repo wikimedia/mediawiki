@@ -1,19 +1,20 @@
 <?php
 /**
- *
+ * This is to display changes made to all articles linked in an article.
  */
 
 /**
  *
  */
-require_once( "SpecialRecentchanges.php" );
+require_once( 'SpecialRecentchanges.php' );
 
 /**
- * constructor
+ * Entrypoint
+ * @param string $par parent page we will look at
  */
 function wfSpecialRecentchangeslinked( $par = NULL ) {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest;
-	$fname = "wfSpecialRecentchangeslinked";
+	$fname = 'wfSpecialRecentchangeslinked';
 
 	$days = $wgRequest->getInt( 'days' );
 	$target = $wgRequest->getText( 'target' );
@@ -25,33 +26,33 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	if( $par ) {
 		$target = $par;
 	}
-	if ( "" == $target ) {
-		$wgOut->errorpage( "notargettitle", "notargettext" );
+	if ( $target == '') {
+		$wgOut->errorpage( 'notargettitle', 'notargettext' );
 		return;
 	}
 	$nt = Title::newFromURL( $target );
 	if( !$nt ) {
-		$wgOut->errorpage( "notargettitle", "notargettext" );
+		$wgOut->errorpage( 'notargettitle', 'notargettext' );
 		return;
 	}
 	$id = $nt->getArticleId();
 	
-	$wgOut->setSubtitle( wfMsg( "rclsub", $nt->getPrefixedText() ) );
+	$wgOut->setSubtitle( wfMsg( 'rclsub', $nt->getPrefixedText() ) );
 
 	if ( ! $days ) {
-		$days = $wgUser->getOption( "rcdays" );
+		$days = $wgUser->getOption( 'rcdays' );
 		if ( ! $days ) { $days = 7; }
 	}
 	$days = (int)$days;
-	list( $limit, $offset ) = wfCheckLimits( 100, "rclimit" );
+	list( $limit, $offset ) = wfCheckLimits( 100, 'rclimit' );
 
 	$dbr =& wfGetDB( DB_SLAVE );
 	$cutoff = $dbr->timestamp( time() - ( $days * 86400 ) );
 
 	$hideminor = ($hideminor ? 1 : 0);
 	if ( $hideminor ) {
-		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchangeslinked" ),
-	  	  WfMsg( "show" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
+		$mlink = $sk->makeKnownLink( $wgLang->specialPage( 'Recentchangeslinked' ),
+	  	  WfMsg( 'show' ), 'target=' . htmlspecialchars( $nt->getPrefixedURL() ) .
 		  "&days={$days}&limit={$limit}&hideminor=0" );
 	} else {
 		$mlink = $sk->makeKnownLink( $wgLang->specialPage( "Recentchangeslinked" ),
@@ -59,8 +60,8 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		  "&days={$days}&limit={$limit}&hideminor=1" );
 	}
 	if ( $hideminor ) {
-		$cmq = "AND cur_minor_edit=0";
-	} else { $cmq = ""; }
+		$cmq = 'AND cur_minor_edit=0';
+	} else { $cmq = ''; }
 
 	extract( $dbr->tableNames( 'cur', 'links' ) );
 
@@ -79,7 +80,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
                                  "target=" . $nt->getPrefixedURL() . "&hideminor={$hideminor}",
                                  false, $mlink );
 
-	$wgOut->addHTML( "{$note}\n" );
+	$wgOut->addHTML( $note."\n" );
 
 	$s = $sk->beginRecentChangesList();
 	$count = $dbr->numRows( $res );
