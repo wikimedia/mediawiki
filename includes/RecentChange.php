@@ -249,11 +249,11 @@ class RecentChange
 	}
 	
 	/* static */ function notifyMoveToNew( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='' ) {
-		RecentChange::notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip, false );
+		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip, false );
 	}
 
 	/* static */ function notifyMoveOverRedirect( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='' ) {
-		RecentChange::notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='', true );
+		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip='', true );
 	}
 
 	# A log entry is different to an edit in that previous revisions are 
