@@ -31,3 +31,32 @@ td.top { border-bottom: 1px solid gray; }
 /* images */
 div.floatright { float:right;margin:0 0 1em 1em; }
 div.floatright p { font-style: italic; } 
+
+/* table standards */
+table.rimage {
+	float:right; 
+	width:1pt; 
+	margin-left:1em; 
+	margin-bottom:1em;
+	}
+
+table.country {
+	border-width:1;
+	border-style:solid;
+	padding:2;
+	border-spacing:0;
+	float:right;
+	width:300px;
+	}
+
+table.flag {
+	background-color:#efefef;
+	border-width:0;
+	border-spacing:0;
+	padding:2;
+	}
+
+td.flag {
+	text-align:center;
+	width:140px;
+	}
