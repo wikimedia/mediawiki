@@ -50,7 +50,7 @@ class Parser
 {
 	# Persistent:
 	var $mTagHooks;
-	
+
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState = array();
 	var $mVariables, $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
@@ -102,9 +102,9 @@ class Parser
 			$fixtags = array(
 				# french spaces, last one Guillemet-left
 				# only if there is something before the space
-				'/(.) (\\?|:|;|!|\\302\\273)/i' => '\\1&nbsp;\\2', 
+				'/(.) (\\?|:|;|!|\\302\\273)/i' => '\\1&nbsp;\\2',
 				# french spaces, Guillemet-right
-				"/(\\302\\253) /i"=>"\\1&nbsp;", 
+				"/(\\302\\253) /i"=>"\\1&nbsp;",
 				'/<hr *>/i' => '<hr />',
 				'/<br *>/i' => '<br />',
 				'/<center *>/i' => '<div class="center">',
@@ -117,10 +117,10 @@ class Parser
 		} else {
 			$fixtags = array(
 				# french spaces, last one Guillemet-left
-				'/ (\\?|:|!|\\302\\273)/i' => '&nbsp;\\1', 
+				'/ (\\?|:|!|\\302\\273)/i' => '&nbsp;\\1',
 				# french spaces, Guillemet-right
-				'/(\\302\\253) /i' => '\\1&nbsp;', 
-				'/([^> ]+(&#x30(1|3|9);)[^< ]*)/i' => '<span class="diacrit">\\1</span>', 
+				'/(\\302\\253) /i' => '\\1&nbsp;',
+				'/([^> ]+(&#x30(1|3|9);)[^< ]*)/i' => '<span class="diacrit">\\1</span>',
 				'/<center *>/i' => '<div class="center">',
 				'/<\\/center *>/i' => '</div>'
 			);
@@ -199,7 +199,7 @@ class Parser
 		$pre_content = array();
 		$comment_content = array();
 		$ext_content = array();
-		
+
 		# Replace any instances of the placeholders
 		$uniq_prefix = UNIQ_PREFIX;
 		#$text = str_replace( $uniq_prefix, wfHtmlEscapeFirst( $uniq_prefix ), $text );
@@ -266,7 +266,7 @@ class Parser
 			$state['math'] = $state['math'] + $math_content;
 			$state['pre'] = $state['pre'] + $pre_content;
 			$state['comment'] = $state['comment'] + $comment_content;
-			
+
 			foreach( $ext_content as $tag => $array ) {
 				if ( array_key_exists( $tag, $state ) ) {
 					$state[$tag] = $state[$tag] + $array;
@@ -297,7 +297,7 @@ class Parser
 
 		return $text;
 	}
-	# always call this after unstrip() to preserve the order 
+	# always call this after unstrip() to preserve the order
 	function unstripNoWiki( $text, &$state ) {
 		# Must expand in reverse order, otherwise nested tags will be corrupted
 		for ( $content = end($state['nowiki']); $content !== false; $content = prev( $state['nowiki'] ) ) {
@@ -428,7 +428,7 @@ class Parser
 		$dbr =& wfGetDB( DB_READ );
 		$cur = $dbr->tableName( 'cur' );
 		$categorylinks = $dbr->tableName( 'categorylinks' );
-		
+
 		$t = $dbr->strencode( $this->mTitle->getDBKey() );
 		$sql = "SELECT DISTINCT cur_title,cur_namespace,cl_sortkey FROM " .
 			"$cur,$categorylinks WHERE cl_to='$t' AND cl_from=cur_id ORDER BY cl_sortkey" ;
@@ -438,7 +438,7 @@ class Parser
 			$t = $ns = $wgLang->getNsText ( $x->cur_namespace ) ;
 			if ( $t != '' ) $t .= ':' ;
 			$t .= $x->cur_title ;
-			
+
 			if ( $x->cur_namespace == $cns ) {
 				$ctitle = str_replace( '_',' ',$x->cur_title );
 				array_push ( $children, $sk->makeKnownLink ( $t, $ctitle ) ) ; # Subcategory
@@ -468,22 +468,22 @@ class Parser
 			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n"
 				. wfMsg( 'subcategorycount', count( $children ) );
 			if ( count ( $children ) > 6 ) {
-			
+
 				// divide list into three equal chunks
 				$chunk = (int) (count ( $children ) / 3);
 
 				// get and display header
 				$r .= '<table width="100%"><tr valign="top">';
-			
+
 				$startChunk = 0;
 				$endChunk = $chunk;
-			
+
 				// loop through the chunks
-				for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0; 
+				for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0;
 					$chunkIndex < 3;
 					$chunkIndex++, $startChunk = $endChunk, $endChunk += $chunk + 1)
 				{
-				
+
 					$r .= '<td><ul>';
 					// output all subcategories to category
 					for ($index = $startChunk ;
@@ -496,17 +496,17 @@ class Parser
 						{
 							$r .= "</ul><h3>{$children_start_char[$index]}</h3>\n<ul>";
 						}
-				
+
 						$r .= "<li>{$children[$index]}</li>";
 					}
 					$r .= '</ul></td>';
-				
-							
+
+
 				}
 				$r .= '</tr></table>';
 			} else {
 				// for short lists of subcategories to category.
-	
+
 				$r .= "<h3>{$children_start_char[0]}</h3>\n";
 				$r .= '<ul><li>'.$children[0].'</li>';
 				for ($index = 1; $index < count($children); $index++ )
@@ -515,7 +515,7 @@ class Parser
 					{
 						$r .= "</ul><h3>{$children_start_char[$index]}</h3>\n<ul>";
 					}
-				
+
 					$r .= "<li>{$children[$index]}</li>";
 				}
 				$r .= '</ul>';
@@ -528,21 +528,21 @@ class Parser
 		# Showing articles in this category
 		if ( count ( $articles ) > 6) {
 			$ti = $this->mTitle->getText() ;
-			
+
 			// divide list into three equal chunks
 			$chunk = (int) (count ( $articles ) / 3);
-			
+
 			// get and display header
 			$r .= '<table width="100%"><tr valign="top">';
-			
+
 			// loop through the chunks
-			for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0; 
+			for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0;
 				$chunkIndex < 3;
 				$chunkIndex++, $startChunk = $endChunk, $endChunk += $chunk + 1)
 			{
-				
+
 				$r .= '<td><ul>';
-				
+
 				// output all articles in category
 				for ($index = $startChunk ;
 					$index < $endChunk && $index < count($articles);
@@ -554,18 +554,18 @@ class Parser
 					{
 						$r .= "</ul><h3>{$articles_start_char[$index]}</h3>\n<ul>";
 					}
-				
+
 					$r .= "<li>{$articles[$index]}</li>";
 				}
 				$r .= '</ul></td>';
-				
-	
+
+
 			}
 			$r .= '</tr></table>';
 		} elseif ( count ( $articles )  > 0) {
 			// for short lists of articles in categories.
 			$ti = $this->mTitle->getText() ;
-			
+
 			$r .= '<h3>'.$articles_start_char[0]."</h3>\n";
 			$r .= '<ul><li>'.$articles[0].'</li>';
 			for ($index = 1; $index < count($articles); $index++ )
@@ -574,7 +574,7 @@ class Parser
 				{
 					$r .= "</ul><h3>{$articles_start_char[$index]}</h3>\n<ul>";
 				}
-				
+
 				$r .= "<li>{$articles[$index]}</li>";
 			}
 			$r .= '</ul>';
@@ -630,7 +630,7 @@ class Parser
 		global $wgInputEncoding, $wgOutputEncoding;
 		$fname = 'Parser::tidy';
 		wfProfileIn( $fname );
-		
+
 		$cleansource = '';
 		switch(strtoupper($wgOutputEncoding)) {
 			case 'ISO-8859-1':
@@ -663,7 +663,7 @@ class Parser
 		}
 
 		wfProfileOut( $fname );
-		
+
 		if( $cleansource == '' && $text != '') {
 			wfDebug( "Tidy error detected!\n" );
 			return $text . "\n<!-- Tidy found serious XHTML errors -->\n";
@@ -676,91 +676,86 @@ class Parser
 	function doTableStuff ( $t ) {
 		$fname = 'Parser::doTableStuff';
 		wfProfileIn( $fname );
-		
+
 		$t = explode ( "\n" , $t ) ;
 		$td = array () ; # Is currently a td tag open?
-			$ltd = array () ; # Was it TD or TH?
-			$tr = array () ; # Is currently a tr tag open?
-			$ltr = array () ; # tr attributes
-			foreach ( $t AS $k => $x )
+		$ltd = array () ; # Was it TD or TH?
+		$tr = array () ; # Is currently a tr tag open?
+		$ltr = array () ; # tr attributes
+		foreach ( $t AS $k => $x )
+		{
+			$x = trim ( $x ) ;
+			$fc = substr ( $x , 0 , 1 ) ;
+			if ( '{|' == substr ( $x , 0 , 2 ) )
 			{
-				$x = trim ( $x ) ;
-				$fc = substr ( $x , 0 , 1 ) ;
-				if ( '{|' == substr ( $x , 0 , 2 ) )
+				$t[$k] = "\n<table " . $this->fixTagAttributes ( substr ( $x , 2 ) ) . '>' ;
+				array_push ( $td , false ) ;
+				array_push ( $ltd , '' ) ;
+				array_push ( $tr , false ) ;
+				array_push ( $ltr , '' ) ;
+			}
+			else if ( count ( $td ) == 0 ) { } # Don't do any of the following
+			else if ( '|}' == substr ( $x , 0 , 2 ) )
+			{
+				$z = "</table>\n" ;
+				$l = array_pop ( $ltd ) ;
+				if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
+				if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+				array_pop ( $ltr ) ;
+				$t[$k] = $z ;
+			}
+			else if ( '|-' == substr ( $x , 0 , 2 ) ) # Allows for |---------------
+			{
+				$x = substr ( $x , 1 ) ;
+				while ( $x != '' && substr ( $x , 0 , 1 ) == '-' ) $x = substr ( $x , 1 ) ;
+				$z = '' ;
+				$l = array_pop ( $ltd ) ;
+				if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
+				if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+				array_pop ( $ltr ) ;
+				$t[$k] = $z ;
+				array_push ( $tr , false ) ;
+				array_push ( $td , false ) ;
+				array_push ( $ltd , '' ) ;
+				array_push ( $ltr , $this->fixTagAttributes ( $x ) ) ;
+			}
+			else if ( '|' == $fc || '!' == $fc || '|+' == substr ( $x , 0 , 2 ) ) # Caption
+			{
+				if ( '|+' == substr ( $x , 0 , 2 ) )
 				{
-					$t[$k] = "\n<table " . $this->fixTagAttributes ( substr ( $x , 3 ) ) . '>' ;
-					array_push ( $td , false ) ;
-					array_push ( $ltd , '' ) ;
-					array_push ( $tr , false ) ;
-					array_push ( $ltr , '' ) ;
-				}
-				else if ( count ( $td ) == 0 ) { } # Don't do any of the following
-				else if ( '|}' == substr ( $x , 0 , 2 ) )
-				{
-					$z = "</table>\n" ;
-					$l = array_pop ( $ltd ) ;
-					if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
-					if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
-					array_pop ( $ltr ) ;
-					$t[$k] = $z ;
-				}
-				/*      else if ( "|_" == substr ( $x , 0 , 2 ) ) # Caption
-						{
-						$z = trim ( substr ( $x , 2 ) ) ;
-						$t[$k] = "<caption>{$z}</caption>\n" ;
-						}*/
-				else if ( '|-' == substr ( $x , 0 , 2 ) ) # Allows for |---------------
-				{
+					$fc = '+' ;
 					$x = substr ( $x , 1 ) ;
-					while ( $x != '' && substr ( $x , 0 , 1 ) == '-' ) $x = substr ( $x , 1 ) ;
-					$z = '' ;
-					$l = array_pop ( $ltd ) ;
-					if ( array_pop ( $tr ) ) $z = '</tr>' . $z ;
-					if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
-					array_pop ( $ltr ) ;
-					$t[$k] = $z ;
-					array_push ( $tr , false ) ;
-					array_push ( $td , false ) ;
-					array_push ( $ltd , '' ) ;
-					array_push ( $ltr , $this->fixTagAttributes ( $x ) ) ;
 				}
-				else if ( '|' == $fc || '!' == $fc || '|+' == substr ( $x , 0 , 2 ) ) # Caption
+				$after = substr ( $x , 1 ) ;
+				if ( $fc == '!' ) $after = str_replace ( '!!' , '||' , $after ) ;
+				$after = explode ( '||' , $after ) ;
+				$t[$k] = '' ;
+				foreach ( $after AS $theline )
 				{
-					if ( '|+' == substr ( $x , 0 , 2 ) )
+					$z = '' ;
+					if ( $fc != '+' )
 					{
-						$fc = '+' ;
-						$x = substr ( $x , 1 ) ;
+						$tra = array_pop ( $ltr ) ;
+						if ( !array_pop ( $tr ) ) $z = "<tr {$tra}>\n" ;
+						array_push ( $tr , true ) ;
+						array_push ( $ltr , '' ) ;
 					}
-					$after = substr ( $x , 1 ) ;
-					if ( $fc == '!' ) $after = str_replace ( '!!' , '||' , $after ) ;
-					$after = explode ( '||' , $after ) ;
-					$t[$k] = '' ;
-					foreach ( $after AS $theline )
-					{
-						$z = '' ;
-						if ( $fc != '+' )
-						{
-							$tra = array_pop ( $ltr ) ;
-							if ( !array_pop ( $tr ) ) $z = "<tr {$tra}>\n" ;
-							array_push ( $tr , true ) ;
-							array_push ( $ltr , '' ) ;
-						}
 
-						$l = array_pop ( $ltd ) ;
-						if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
-						if ( $fc == '|' ) $l = 'td' ;
-						else if ( $fc == '!' ) $l = 'th' ;
-						else if ( $fc == '+' ) $l = 'caption' ;
-						else $l = '' ;
-						array_push ( $ltd , $l ) ;
-						$y = explode ( '|' , $theline , 2 ) ;
-						if ( count ( $y ) == 1 ) $y = "{$z}<{$l}>{$y[0]}" ;
-						else $y = $y = "{$z}<{$l} ".$this->fixTagAttributes($y[0]).">{$y[1]}" ;
-						$t[$k] .= $y ;
-						array_push ( $td , true ) ;
-					}
+					$l = array_pop ( $ltd ) ;
+					if ( array_pop ( $td ) ) $z = "</{$l}>" . $z ;
+					if ( $fc == '|' ) $l = 'td' ;
+					else if ( $fc == '!' ) $l = 'th' ;
+					else if ( $fc == '+' ) $l = 'caption' ;
+					else $l = '' ;
+					array_push ( $ltd , $l ) ;
+					$y = explode ( '|' , $theline , 2 ) ;
+					if ( count ( $y ) == 1 ) $y = "{$z}<{$l}>{$y[0]}" ;
+					else $y = $y = "{$z}<{$l} ".$this->fixTagAttributes($y[0]).">{$y[1]}" ;
+					$t[$k] .= $y ;
+					array_push ( $td , true ) ;
 				}
 			}
+		}
 
 		# Closing open td, tr && table
 		while ( count ( $td ) > 0 )
@@ -778,13 +773,13 @@ class Parser
 
 	# Parses the text and adds the result to the strip state
 	# Returns the strip tag
-	function stripParse( $text, $newline, $args ) 
+	function stripParse( $text, $newline, $args )
 	{
 		$text = $this->strip( $text, $this->mStripState );
 		$text = $this->internalParse( $text, (bool)$newline, $args, false );
 		return $newline.$this->insertStripItem( $text, $this->mStripState );
 	}
-	
+
 	function internalParse( $text, $linestart, $args = array(), $isMain=true ) {
 		$fname = 'Parser::internalParse';
 		wfProfileIn( $fname );
@@ -820,7 +815,7 @@ class Parser
 		wfProfileOut( $fname );
 		return $text;
 	}
-	
+
 	# Parse ^^ tokens and return html
 	/* private */ function doExponent ( $text )
 	{
@@ -1054,7 +1049,7 @@ class Parser
 				}
 			}
 			wfProfileOut( $fname.'-prefixhandling' );
-			
+
 			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 				$text = $m[2];
 				# fix up urlencoded title texts
@@ -1229,7 +1224,7 @@ class Parser
 	/* private */ function doBlockLevels( $text, $linestart ) {
 		$fname = 'Parser::doBlockLevels';
 		wfProfileIn( $fname );
-		
+
 		# Parsing through the text line by line.  The main thing
 		# happening here is handling of block-level elements p, pre,
 		# and making lists from lines starting with * # : etc.
@@ -1255,7 +1250,7 @@ class Parser
 				# Multiple prefixes may abut each other for nested lists.
 				$prefixLength = strspn( $oLine, '*#:;' );
 				$pref = substr( $oLine, 0, $prefixLength );
-				
+
 				# eh?
 				$pref2 = str_replace( ';', ':', $pref );
 				$t = substr( $oLine, $prefixLength );
@@ -1324,7 +1319,7 @@ class Parser
 					$paragraphStack = false;
 					$output .= $this->closeParagraph();
 					if($preOpenMatch and !$preCloseMatch) {
-						$this->mInPre = true;	
+						$this->mInPre = true;
 					}
 					if ( $closematch  ) {
 						$inBlockElem = false;
@@ -1448,12 +1443,12 @@ class Parser
 
 		# PHP global rebinding syntax is a bit weird, need to use the GLOBALS array
 		$GLOBALS['wgCurParser'] =& $this;
-		
+
 
 		if ( $this->mOutputType == OT_HTML ) {
 			# Variable substitution
 			$text = preg_replace_callback( "/{{([$nonBraceChars]*?)}}/", 'wfVariableSubstitution', $text );
-			
+
 			# Argument substitution
 			$text = preg_replace_callback( "/(\\n?){{{([$titleChars]*?)}}}/", 'wfArgSubstitution', $text );
 		}
@@ -1483,7 +1478,7 @@ class Parser
 		$found = false;
 		$nowiki = false;
 		$noparse = false;
-		
+
 		$title = NULL;
 
 		# $newline is an optional newline character before the braces
@@ -1499,7 +1494,7 @@ class Parser
 			$args = array();
 		}
 		$argc = count( $args );
-	
+
 		# {{{}}}
 		if ( strpos( $matches[0], '{{{' ) !== false ) {
 			$text = $matches[0];
@@ -1685,7 +1680,7 @@ class Parser
 		if ( array_key_exists( $arg, $inputArgs ) ) {
 			$text = $this->stripParse( $inputArgs[$arg], $newline, array() );
 		}
-		
+
 		return $text;
 	}
 
@@ -1707,7 +1702,7 @@ class Parser
 		global $wgUseTidy, $wgUserHtml;
 		$fname = 'Parser::removeHTMLtags';
 		wfProfileIn( $fname );
-		
+
 		if( $wgUserHtml ) {
 			$htmlpairs = array( # Tags that must be closed
 				'b', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
@@ -1812,7 +1807,7 @@ class Parser
 				} else {
 					$text .= '&lt;' . str_replace( '>', '&gt;', $x);
 				}
-			}	
+			}
 		}
 		wfProfileOut( $fname );
 		return $text;
@@ -1834,7 +1829,7 @@ class Parser
 
 	/* private */ function formatHeadings( $text, $isMain=true ) {
 		global $wgInputEncoding;
-		
+
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$doShowToc = $this->mOptions->getShowToc();
 		$forceTocHere = false;
@@ -1887,7 +1882,7 @@ class Parser
 				$doShowToc = 1;
 			}
 		}
-		
+
 
 
 		# We need this to perform operations on the HTML
@@ -2075,7 +2070,7 @@ class Parser
 		wfProfileOut( $fname );
 		return $text;
 	}
-	
+
 	# Return an HTML link for the "RFC 1234" text
 	/* private */ function magicRFC( $text ) {
 		global $wgLang;
