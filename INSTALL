@@ -19,7 +19,8 @@ platforms, but should work on Windows as well.
 
 If your PHP is configured as a CGI plug-in rather than
 an Apache module you may experience problems, as this
-configuration is not well tested.
+configuration is not well tested. safe_mode is also not
+tested and unlikely to work. 
 
 Don't forget to check the RELEASE-NOTES file...
 
