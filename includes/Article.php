@@ -1040,7 +1040,7 @@ class Article {
 			$u->doUpdate();
 		}
 
-		$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $me2, $now, $summary, $revisionId );
+		$this->showArticle( $text, wfMsg( 'updated' ), $sectionanchor, $me2, $now, $summary, $lastRevision );
 		}
 		return $good;
 	}
