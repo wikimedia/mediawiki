@@ -8,6 +8,8 @@ unset( $IP );
 @ini_set( 'allow_url_fopen', 0 ); # For security...
 if( !file_exists( 'LocalSettings.php' ) ) {
 	define( 'MEDIAWIKI', true );
+	$IP = "127.0.0.1" ;
+	require_once( './includes/Defines.php' );
 	require_once( 'includes/DefaultSettings.php' ); # used for printing the version
 ?>
 <!DOCTYPE html PUBLIC "-//W3C/DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
