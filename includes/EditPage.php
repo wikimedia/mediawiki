@@ -196,7 +196,7 @@ class EditPage {
 					return;
 				else
 					$isConflict = true;
-			}			
+			}
 		}
 		# First time through: get contents, set time for conflict
 		# checking, etc.
@@ -335,7 +335,7 @@ class EditPage {
 				$previewhead.="<h2>" . wfMsg( "previewconflict" ) .
 				  "</h2>\n";
 			}
-			$previewtext = $this->textbox1;
+			$previewtext = wfUnescapeHTML( $this->textbox1 );
 
 			$parserOptions = ParserOptions::newFromUser( $wgUser );
 			$parserOptions->setUseCategoryMagic( false );
