@@ -27,18 +27,42 @@ require_once( "LanguageUtf8.php" );
 
 ) + $wgNamespaceNamesEn;
 
-/* private */ $wgWeekdayNamesHi = array(
-	"रविवार", "सोमवार", "मंगलवार", "बुधवार", "गुरुवार",
-	"शुक्रवार", "शनिवार"
-);
-
-/* private */ $wgMonthNamesHi = array(
-	"जनवरी", "फरवरी", "मार्च", "अप्रैल", "मई", "जून",
-	"जुलाई", "अगस्त", "सितम्बर", "अक्टूबर", "नवम्बर",
-	"दिसम्बर"
-);
 
 /* private */ $wgAllMessagesHi = array(
+
+# Dates
+#
+'sunday' => "रविवार",
+'monday' => "सोमवार",
+'tuesday' => "मंगलवार",
+'wednesday' => "बुधवार",
+'thursday' => "गुरुवार",
+'friday' => "शुक्रवार",
+'saturday' => "शनिवार",
+'january' => "जनवरी",
+'february' => "फरवरी",
+'march' => "मार्च",
+'april' => "अप्रैल",
+'may_long' => "मई",
+'june' => "जून",
+'july' => "जुलाई",
+'august' => "अगस्त",
+'september' => "सितम्बर",
+'october' => "अक्टूबर",
+'november' => "नवम्बर",
+'december' => "दिसम्बर",
+'jan' => "जनवरी",
+'feb' => "फरवरी",
+'mar' => "मार्च",
+'apr' => "अप्रैल",
+'may' => "मई",
+'jun' => "जून",
+'jul' => "जुलाई",
+'aug' => "अगस्त",
+'sep' => "सितम्बर",
+'oct' => "अक्टूबर",
+'nov' => "नवम्बर",
+'dec' => "दिसम्बर",
 
 # Bits of text used by many pages:
 #
@@ -153,12 +177,6 @@ class LanguageHi extends LanguageUtf8 {
 		return false;
 	}
 
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesHi;
-		return $wgMonthNamesHi[$key-1];
-	}
-	
 	function getMessage( $key )
 	{
 		global $wgAllMessagesHi;

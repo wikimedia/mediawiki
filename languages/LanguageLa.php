@@ -66,21 +66,6 @@
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesLa = array(
-	"dies Solis", "dies Lunae", "dies Martis", "dies Mercuri", "dies Iovis",
-	"dies Veneris", "dies Saturni"
-);
-
-/* private */ $wgMonthNamesLa = array(
-	"Ianuarii", "Februarii", "Martii", "Aprilis", "Maii", "Iunii",
-	"Iulii", "Augusti", "Septembri", "Octobri", "Novembri",
-	"Decembri"
-);
-
-/* private */ $wgMonthAbbreviationsLa = array(
-	"ian", "feb", "mar", "apr", "mai", "iun", "iul", "aug",
-	"sep", "oct", "nov", "dec"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -135,6 +120,40 @@
 );
 
 $wgAllMessagesLa = array(
+# Dates
+
+'sunday' => 'dies Solis',
+'monday' => 'dies Lunae',
+'tuesday' => 'dies Martis',
+'wednesday' => 'dies Mercuri',
+'thursday' => 'dies Iovis',
+'friday' => 'dies Veneris',
+'saturday' => 'dies Saturni',
+'january' => 'Ianuarii',
+'february' => 'Februarii',
+'march' => 'Martii',
+'april' => 'Aprilis',
+'may_long' => 'Maii',
+'june' => 'Iunii',
+'july' => 'Iulii',
+'august' => 'Augusti',
+'september' => 'Septembri',
+'october' => 'Octobri',
+'november' => 'Novembri',
+'december' => 'Decembri',
+'jan' => 'ian',
+'feb' => 'feb',
+'mar' => 'mar',
+'apr' => 'apr',
+'may' => 'mai',
+'jun' => 'iun',
+'jul' => 'iul',
+'aug' => 'aug',
+'sep' => 'sep',
+'oct' => 'oct',
+'nov' => 'nov',
+'dec' => 'dec',
+
 # Math
 	'mw_math_png' => "Semper vertere PNG",
 	'mw_math_simple' => "HTML si admodum simplex, alioqui PNG",
@@ -180,24 +199,6 @@ class LanguageLa extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesLa;
 		return $wgUserTogglesLa;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesLa;
-		return $wgMonthNamesLa[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsLa;
-		return $wgMonthAbbreviationsLa[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesLa;
-		return $wgWeekdayNamesLa[$key-1];
 	}
 
 	function date( $ts, $adj = false )

@@ -79,21 +79,6 @@
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesMs = array(
-	"Ahad", "Isnin", "Selasa", "Rabu", "Khamis",
-	"Jumaat", "Sabtu"
-);
-
-/* private */ $wgMonthNamesMs = array(
-	"Januari", "Februari", "Mac", "April", "Mei", "Jun",
-	"Julai", "Ogos", "September", "Oktober", "November",
-	"Disember"
-);
-
-/* private */ $wgMonthAbbreviationsMs = array(
-	"Jan", "Feb", "Mac", "Apr", "May", "Jun", "Jul", "Aug",
-	"Sep", "Okt", "Nov", "Dis"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -147,6 +132,41 @@
 );
 
 /* private */ $wgAllMessagesMs = array(
+
+# Dates
+
+'sunday' => 'Ahad',
+'monday' => 'Isnin',
+'tuesday' => 'Selasa',
+'wednesday' => 'Rabu',
+'thursday' => 'Khamis',
+'friday' => 'Jumaat',
+'saturday' => 'Sabtu',
+'january' => 'Januari',
+'february' => 'Februari',
+'march' => 'Mac',
+'april' => 'April',
+'may_long' => 'Mei',
+'june' => 'Jun',
+'july' => 'Julai',
+'august' => 'Ogos',
+'september' => 'September',
+'october' => 'Oktober',
+'november' => 'November',
+'december' => 'Disember',
+'jan' => 'Jan',
+'feb' => 'Feb',
+'mar' => 'Mac',
+'apr' => 'Apr',
+'may' => 'May',
+'jun' => 'Jun',
+'jul' => 'Jul',
+'aug' => 'Aug',
+'sep' => 'Sep',
+'oct' => 'Okt',
+'nov' => 'Nov',
+'dec' => 'Dis',
+
 
 # Bits of text used by many pages:
 #
@@ -1010,37 +1030,6 @@ class LanguageMs extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesMs;
 		return $wgUserTogglesMs;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesMs;
-		return $wgMonthNamesMs[$key-1];
-	}
-
-	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
-		global $wgMonthNamesMs;
-		return $wgMonthNamesMs[$key-1];
-	}
-
-	function getMonthRegex()
-	{
-		global $wgMonthNamesMs;
-		return implode( "|", $wgMonthNamesMs );
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsMs;
-		return $wgMonthAbbreviationsMs[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesMs;
-		return $wgWeekdayNamesMs[$key-1];
 	}
 
 	function getValidSpecialPages()
