@@ -2516,6 +2516,7 @@ class Skin {
 
 		$datetime = $wgLang->timeanddate( $timestamp, true );
 		$del = wfMsg( 'deleteimg' );
+		$delall = wfMsg( 'deleteimgcompletely' );
 		$cur = wfMsg( 'cur' );
 
 		if ( $iscur ) {
@@ -2524,9 +2525,9 @@ class Skin {
 			if ( $wgUser->isSysop() ) {
 				$link = $wgTitle->escapeLocalURL( 'image=' . $wgTitle->getPartialURL() .
 				  '&action=delete' );
-				$style = $this->getInternalLinkAttributes( $link, $del );
+				$style = $this->getInternalLinkAttributes( $link, $delall );
 
-				$dlink = '<a href="'.$link.'"'.$style.'>'.$del.'</a>';
+				$dlink = '<a href="'.$link.'"'.$style.'>'.$delall.'</a>';
 			} else {
 				$dlink = $del;
 			}
