@@ -57,21 +57,8 @@ require_once("LanguageUtf8.php");
 
 );
 
-/* private */ $wgWeekdayNamesSk = array(
-	"Nedeľa", "Pondelok", "Utorok", "Streda", "Štvrtok",
-	"Piatok", "Sobota"
-);
 
-/* private */ $wgMonthNamesSk = array(
-	"Január", "Február", "Marec", "Apríl", "Máj", "Jún",
-	"Júl", "August", "September", "Október", "November",
-	"December"
-);
 
-/* private */ $wgMonthAbbreviationsSk = array(
-	"Jan", "Feb", "Mar", "Apr", "Máj", "Jún", "Júl", "Aug",
-	"Sep", "Okt", "Nov", "Dec"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -125,6 +112,41 @@ require_once("LanguageUtf8.php");
 );
 
 /* private */ $wgAllMessagesSk = array(
+
+# Dates
+#
+
+'sunday' => 'Nedeľa',
+'monday' => 'Pondelok',
+'tuesday' => 'Utorok',
+'wednesday' => 'Streda',
+'thursday' => "Štvrtok",
+'friday' => 'Piatok',
+'saturday' => 'Sobota',
+'january' => 'Január',
+'february' => 'Február',
+'march' => 'Marec',
+'april' => 'Apríl',
+'may_long' => 'Máj',
+'june' => 'Jún',
+'july' => 'Júl',
+'august' => 'August',
+'september' => 'September',
+'october' => 'Október',
+'november' => 'November',
+'december' => 'December',
+'jan' => 'Jan',
+'feb' => 'Feb',
+'mar' => 'Mar',
+'apr' => 'Apr',
+'may' => 'Máj',
+'jun' => 'Jún',
+'jul' => 'Júl',
+'aug' => 'Aug',
+'sep' => 'Sep',
+'oct' => 'Okt',
+'nov' => 'Nov',
+'dec' => 'Dec',
 
 # Bits of text used by many pages:
 #
@@ -915,24 +937,6 @@ class LanguageSk extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesSk;
 		return $wgUserTogglesSk;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesSk;
-		return $wgMonthNamesSk[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsSk;
-		return $wgMonthAbbreviationsSk[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesSk;
-		return $wgWeekdayNamesSk[$key-1];
 	}
 
 	function getValidSpecialPages()

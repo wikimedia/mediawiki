@@ -65,21 +65,6 @@ require_once( "LanguageUtf8.php" );
 	"Amazon.fr" => "http://www.amazon.fr/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesOc = array(
-	"dimenge", "diluns", "dimarts", "dimèrcres", "dijòus",
-	"divendres", "dissabte"
-);
-
-/* private */ $wgMonthNamesOc = array(
-	"janvièir", "febrièr", "març", "abril", "mai", "junh",
-	"julhet", "agost", "setembre", "octòbre", "novembre",
-	"decembre"
-);
-
-/* private */ $wgMonthAbbreviationsOc = array(
-	"jan", "feb", "mar", "abr", "mai", "jun", "jul", "ago",
-	"set", "oct", "nov", "dec"
-);
 
 // All special pages have to be listed here: a description of ""
 // will make them not show up on the "Special Pages" page, which
@@ -133,6 +118,42 @@ require_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgAllMessagesOc = array(
+
+# Dates
+#
+
+'sunday' => 'dimenge',
+'monday' => 'diluns',
+'tuesday' => 'dimarts',
+'wednesday' => 'dimèrcres',
+'thursday' => 'dijòus',
+'friday' => 'divendres',
+'saturday' => 'dissabte',
+'january' => 'janvièir',
+'february' => 'febrièr',
+'march' => 'març',
+'april' => 'abril',
+'may_long' => 'mai',
+'june' => 'junh',
+'july' => 'julhet',
+'august' => 'agost',
+'september' => 'setembre',
+'october' => 'octòbre',
+'november' => 'novembre',
+'december' => 'decembre',
+'jan' => 'jan',
+'feb' => 'feb',
+'mar' => 'mar',
+'apr' => 'abr',
+'may' => 'mai',
+'jun' => 'jun',
+'jul' => 'jul',
+'aug' => 'ago',
+'sep' => 'set',
+'oct' => 'oct',
+'nov' => 'nov',
+'dec' => 'dec',
+
 
 # Bits of text used by many pages:
 #
@@ -954,24 +975,6 @@ class LanguageOc extends LanguageUtf8
 	{
 		global $wgUserTogglesOc;
 		return $wgUserTogglesOc;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesOc;
-		return $wgMonthNamesOc[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsOc;
-		return $wgMonthAbbreviationsOc[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesOc;
-		return $wgWeekdayNamesOc[$key-1];
 	}
 
 	// Inherit userAdjust()

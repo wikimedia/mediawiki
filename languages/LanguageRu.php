@@ -81,21 +81,6 @@ if($wgMetaNamespace === FALSE)
 /* Add a $wgBookstoreListRu to override default list of book links for ISBN links */
 
 
-/* private */ $wgWeekdayNamesRu = array(
-	"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
-	"Пятница", "Суббота"
-);
-
-/* private */ $wgMonthNamesRu = array(
-	"Январь", "Февраль", "Марг", "Апрель", "Май", "Июнь",
-	"Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
-	"Декабрь"
-);
-
-/* private */ $wgMonthAbbreviationsRu = array(
-	"Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг",
-	"Сен", "Окт", "Ноя", "Дек"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -148,6 +133,41 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgAllMessagesRu = array(
+
+# Dates
+#
+
+'sunday' => "Воскресенье",
+'monday' => "Понедельник",
+'tuesday' => "Вторник",
+'wednesday' => "Среда",
+'thursday' => "Четверг",
+'friday' => "Пятница",
+'saturday' => "Суббота",
+'january' => "Январь",
+'february' => "Февраль",
+'march' => "Марг",
+'april' => "Апрель",
+'may_long' => "Май",
+'june' => "Июнь",
+'july' => "Июль",
+'august' => "Август",
+'september' => "Сентябрь",
+'october' => "Октябрь",
+'november' => "Ноябрь",
+'december' => "Декабрь",
+'jan' => "Янв",
+'feb' => "Фев",
+'mar' => "Мар",
+'apr' => "Апр",
+'may' => "Май",
+'jun' => "Июн",
+'jul' => "Июл",
+'aug' => "Авг",
+'sep' => "Сен",
+'oct' => "Окт",
+'nov' => "Ноя",
+'dec' => "Дек",
 
 # Bits of text used by many pages:
 #
@@ -963,37 +983,6 @@ class LanguageRu extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesRu;
 		return $wgUserTogglesRu;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesRu;
-		return $wgMonthNamesRu[$key-1];
-	}
-	
-	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
-		global $wgMonthNamesRu;
-		return $wgMonthNamesRu[$key-1];
-	}
-	
-	function getMonthRegex()
-	{
-		global $wgMonthNamesRu;
-		return implode( "|", $wgMonthNamesRu );
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsRu;
-		return $wgMonthAbbreviationsRu[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesRu;
-		return $wgWeekdayNamesRu[$key-1];
 	}
 
 	function getValidSpecialPages()
