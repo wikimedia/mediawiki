@@ -45,6 +45,7 @@ $wgEditEncoding		= "";
 $wgDocType          = "-//W3C//DTD HTML 4.01 Transitional//EN";
 $wgAmericanDates = false; 	# Enable for English module to print dates
 $wgLocalInterwiki   = "w";
+$wgShowIPinHeader	= true; # For non-logged in users
 
 # Miscellaneous configuration settings
 #
@@ -53,7 +54,20 @@ $wgDebugLogFile     = "{$wgUploadDirectory}/log_dlJbnMZb";
 $wgDebugComments	= false;
 $wgReadOnly			= false;
 
-$wgCachePages		= true;	# Allow client-side caching of pages
+# Client-side caching:
+$wgCachePages       = true; # Allow client-side caching of pages
+
+# Set this to current time to invalidate all prior cached pages.
+# Affects both client- and server-side caching.
+$wgCacheEpoch = "20030516000000";
+
+# Server-side caching:
+#  This will cache static pages for non-logged-in users
+#  to reduce database traffic on public sites.
+#  Must set $wgShowIPinHeader = false
+$wgUseFileCache = false;
+$wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
+
 $wgCookieExpiration = 2592000;
 
 $wgAllowExternalImages = true;

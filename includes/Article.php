@@ -289,6 +289,7 @@ class Article {
 			$wgOut->setSubtitle( $s );
 		}
 		$wgOut->checkLastModified( $this->mTouched );
+		$this->tryFileCache();
 		$wgLinkCache->preFill( $wgTitle );
 		$wgOut->addWikiText( $text );
 
@@ -1473,6 +1474,84 @@ name=\"wpSummary\" maxlength=200 size=60><br>
 
 		return $text;
 	}
+
+
+	/* Caching functions */
+	
+    function tryFileCache() {
+		if($this->isFileCacheable()) {
+			if($this->isFileCacheGood()) {
+                wfDebug( " tryFileCache() - about to load\n" );
+				$this->loadFromFileCache();
+				exit;
+			} else {
+	            wfDebug( " tryFileCache() - starting buffer\n" );
+		        ob_start( array(&$this, 'saveToFileCache' ) );
+			}
+		} else {
+			wfDebug( " tryFileCache() - not cacheable\n" );
+		}
+	}
+
+	function isFileCacheable() {
+		global $wgUser, $wgTitle, $wgUseFileCache, $wgShowIPinHeader;
+		global $action, $oldid, $diff, $redirect, $printable;
+		return $wgUseFileCache
+			and (!$wgShowIPinHeader)
+			and ($wgUser->getId() == 0)
+			and (!$wgUser->getNewtalk())
+			and ($wgTitle->getNamespace != Namespace::getSpecial())
+			and ($action == "view")
+			and (!isset($oldid))
+			and (!isset($diff))
+			and (!isset($redirect))
+			and (!isset($printable))
+			and (!$this->mRedirectedFrom);
+			
+	}
+	
+	function fileCacheName() {
+		global $wgTitle, $wgFileCacheDirectory, $wgLang;
+		$hash = md5( $key = $wgTitle->getDbkey() );
+		if( $wgTitle->getNamespace() )
+			$key = $wgLang->getNsText( $wgTitle->getNamespace() ) . ":" . $key;
+		$key = urlencode( $key );
+		$hash1 = substr( $hash, 0, 1 );
+		$hash2 = substr( $hash, 0, 2 );
+		$fn = "{$wgFileCacheDirectory}/{$hash1}/{$hash2}/{$key}.html";
+		wfDebug( " fileCacheName() - $fn\n" );
+		return $fn;
+	}
+
+	function isFileCacheGood() {
+		global $wgUser, $wgCacheEpoch;
+		if(!file_exists( $fn = $this->fileCacheName() ) ) return false;
+		$cachetime = wfUnix2Timestamp( filemtime( $fn ) );
+		$good = ( $this->mTouched <= $cachetime ) and
+			$wgUser->validateCache( $cachetime ) and
+			($wgCacheEpoch <= $cachetime );
+        wfDebug(" isFileCacheGood() - cachetime $cachetime, good $good\n");
+		return $good;
+	}
+
+	function loadFromFileCache() {
+		wfDebug(" loadFromFileCache()\n");
+		readfile($this->fileCacheName());
+	}
+	
+	function saveToFileCache( $text ) {
+		# FIXME: assumes directories are already laid out
+        wfDebug(" saveToFileCache()\n");
+		$f = fopen( $this->fileCacheName(), "w" );
+		if($f) {
+			fwrite( $f, str_replace( "</html>",
+				"<!-- Cached " . wfTimestampNow() . " -->\n</html>",
+				$text ) );
+			fclose( $f );
+		}
+		return $text;
+	}
+
 }
 
 ?>
