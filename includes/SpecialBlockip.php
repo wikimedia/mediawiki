@@ -68,8 +68,9 @@ class IPBlockForm {
 		$scBlockExpiry = htmlspecialchars( $this->BlockExpiry );
 		$scBlockReason = htmlspecialchars( $this->BlockReason );
 
-		$blockExpiryFormOptions = join("</option><option>", split(",", $wgBlockExpiryOptions));
-		$blockExpiryFormOptions = "<option>" . $blockExpiryFormOptions . "</option>";
+		$blockExpiryFormOptions = '<option>' .
+			implode("</option>\n\t\t\t\t\t<option>", explode(',', $wgBlockExpiryOptions)) .
+			'</option>';
 
 		$token = htmlspecialchars( $wgUser->editToken() );
 		
