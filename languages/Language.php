@@ -2096,7 +2096,7 @@ class Language {
 	/* this does the real conversion to the preferred variant.
 	   see LanguageZh.php for example
 	*/
-	function autoConvert($text) {
+	function autoConvert($text, $toVariant=false) {
 		return $text;
 	}
 	
