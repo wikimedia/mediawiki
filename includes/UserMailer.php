@@ -268,6 +268,8 @@ class EmailNotification {
 			# clear $OLDID placeholder in the message template
 			$keys['$OLDID']   = '';
 		}
+		
+		$body = strtr( $body, $keys ); 
 	
 		$pagetitle = $article->mTitle;
 		if( $article->mNamespace != NS_MAIN ) {
