@@ -1,5 +1,6 @@
 <?php
-include_once( "LanguageUtf8.php" );
+require_once( "LanguageUtf8.php" );
+require_once( "LanguageZh.php" );
 
 # NOTE: To turn off "Current Events" in the sidebar,
 # set "currentevents" => "-"
@@ -939,13 +940,7 @@ wfLocalUrlE( "Wikipedia:Upload image" ) . "\">上載紀錄</a>內。
 
 );
 
-class LanguageZh_tw extends LanguageUtf8 {
-
-        function getDefaultUserOptions () {
-                $opt = Language::getDefaultUserOptions();
-                return $opt;
-        }
-
+class LanguageZh_tw extends LanguageZh {
 	function getBookstoreList () {
 		global $wgBookstoreListZh_tw ;
 		return $wgBookstoreListZh_tw ;
@@ -1024,25 +1019,6 @@ class LanguageZh_tw extends LanguageUtf8 {
 		return $wgWeekdayNamesZh_tw[$key-1];
 	}
 
-# The date and time functions can be tweaked if need be
-
-	# inherit userAdjust()
-
-	function date( $ts, $adj = false )
-	{
-		if ( $adj ) { $ts = $this->userAdjust( $ts ); }
-
-		$d = substr( $ts, 0, 4 ) . "年" .
-		  $this->getMonthAbbreviation( substr( $ts, 4, 2 ) ) .
-		  (0 + substr( $ts, 6, 2 )) . "日";
-		return $d;
-	}
-
-	function timeanddate( $ts, $adj = false )
-	{
-		return $this->time( $ts, $adj ) . " " . $this->date( $ts, $adj );
-	}
-
 	function getValidSpecialPages()
 	{
 		global $wgValidSpecialPagesZh_tw;
@@ -1065,24 +1041,12 @@ class LanguageZh_tw extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesZh_tw;
-		if($msg = $wgAllMessagesZh_tw[$key])
-			return $msg;
+		if(array_key_exists($key, $wgAllMessagesZh_tw))
+			return $wgAllMessagesZh_tw[$key];
 		else
 			return Language::getMessage( $key );
 	}
 
-	# inherit default iconv(), ucfirst(), checkTitleEncoding()
-
-	function stripForSearch( $string ) {
-		# MySQL fulltext index doesn't grok utf-8, so we
-		# need to fold cases and convert to hex
-		# we also separate characters as "words"
-		global $wikiLowerChars;
-		return preg_replace(
-		  "/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-		  "' U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
-		  $string );
-	}
 }
 
 

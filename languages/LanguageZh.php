@@ -1074,8 +1074,8 @@ class LanguageZh extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesZh;
-		if($msg = $wgAllMessagesZh[$key])
-			return $msg;
+		if(array_key_exists($key, $wgAllMessagesZh))
+			return $wgAllMessagesZh[$key];
 		else
 			return Language::getMessage( $key );
 	}
