@@ -19,6 +19,8 @@ CARELESS USE OF THIS CODE MAY RENDER YOU STERILE, GROW WEEDS IN YOUR
 YARD, AND FEED YOUR CAT TO A SEWER ALLIGATOR. DON'T SAY YOU WEREN'T
 WARNED, CAUSE WE WARNED YOU.
 
+If upgrading from an older release, see the file UPGRADING.
+
 === New features ===
 
 * 'Recentchanges Patrol' to mark new edits that haven't yet been viewed.
@@ -39,6 +41,7 @@ WARNED, CAUSE WE WARNED YOU.
   web applications forced to share a database.
 * More thorough UTF-8 input validation; fixes non-ASCII uploaded
   filenames from Safari.
+* Command-line database upgrade script.
 
 === Customizability ===
 
@@ -76,6 +79,8 @@ WARNED, CAUSE WE WARNED YOU.
 * Log pages are not automatically imported into the new log table
   at upgrade time. A script to import old text log entries is
   incomplete, but may be available by the time 1.4 finishes.
+* UI messages may be broken in Latin-1 mode in this release due to some
+  minor breakage in the language selection module.
 
 === Misc bugs fixed ===
 
