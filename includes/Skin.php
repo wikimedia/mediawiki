@@ -451,7 +451,7 @@ class Skin {
 			$s .= '<br/><hr/>';
 
 			# get a big array of the parents tree
-			$parenttree = $wgTitle->getCategorieBrowser();
+			$parenttree = $wgTitle->getParentCategoryTree();
 
 			# Render the array as a serie of links
 			function walkThrough ($tree) {

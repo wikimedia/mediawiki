@@ -1648,11 +1648,10 @@ class Title {
 		$sk =& $wgUser->getSkin();
 		$parents = array();
 		$dbr =& wfGetDB( DB_SLAVE );
-		$cur = $dbr->tableName( 'cur' );
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 
 		# NEW SQL
-		$sql = "SELECT * FROM categorylinks"
+		$sql = "SELECT * FROM $categorylinks"
 		     ." WHERE cl_from='$titlekey'"
 			 ." AND cl_from <> '0'"
 			 ." ORDER BY cl_sortkey";
@@ -1671,18 +1670,24 @@ class Title {
 	}
 
 	/**
-	 * Go through all parent categories of this Title
+	 * Get a tree of parent categories
+	 * @param array $children an array with the children in the keys, to check for circular refs
 	 * @return array
 	 * @access public
 	 */
-	function getCategorieBrowser() {
+	function getParentCategoryTree( $children = array() ) {
 		$parents = $this->getParentCategories();
 		
 		if($parents != '') {
 			foreach($parents as $parent => $current)
 			{
-				$nt = Title::newFromText($parent);
-				$stack[$parent] = $nt->getCategorieBrowser();
+				if ( array_key_exists( $parent, $children ) ) {
+					# Circular reference
+					$stack[$parent] = array();
+				} else {
+					$nt = Title::newFromText($parent);
+					$stack[$parent] = $nt->getParentCategoryTree( $children + array($parent => 1) );
+				}
 			}
 			return $stack;
 		} else {
