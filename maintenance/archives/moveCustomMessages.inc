@@ -90,11 +90,10 @@ function moveCustomMessages( $phase ) {
 		$msgRegex = "/{{msg:([$titleChars]*?)}}/";
 
 		foreach ( $targets as $partial => $dummy ) {
-			$dest = Title::makeTitle( NS_TEMPLATE, $partial );
+			$dest = Title::makeTitle( NS_MEDIAWIKI, $partial );
 			$linksTo = $dest->getLinksTo();
 			foreach( $linksTo as $source ) {
 				$pdbk = $source->getPrefixedDBkey();
-				print "$pdbk...";
 				if ( !array_key_exists( $pdbk, $completedTitles ) ) {	
 					$completedTitles[$pdbk] = 1;
 					$id = $source->getArticleID();
@@ -109,11 +108,11 @@ function moveCustomMessages( $phase ) {
 					$text = $parser->unstrip( $text, $stripState );
 					if ( $text != $row->cur_text ) {
 						wfUpdateArray( 'cur', array( 'cur_text' => $text ), array( 'cur_id' => $id ) );
-						print "modified\n";
+						print "$pdbk\n";
 					} else {
-						print "not modified\n";
+						print "($pdbk)\n";
 					}
-				}
+				} 
 			}
 		}
 	}
