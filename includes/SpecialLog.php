@@ -231,12 +231,13 @@ class LogViewer {
 	 * @param OutputPage $out where to send output
 	 */
 	function showList( &$out ) {
-		$html = "";
+		$html = "\n<ul>\n";
 		$result = $this->reader->getRows();
 		while( $s = $result->fetchObject() ) {
 			$html .= $this->logLine( $s );
 		}
 		$result->free();
+		$html .= "\n</ul>\n";
 		$out->addHTML( $html );
 	}
 	
