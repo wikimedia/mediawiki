@@ -350,7 +350,8 @@ class PreferencesForm {
 	<div><label>$npw: <input type='password' name=\"wpNewpass\" value=\"{$this->mNewpass}\" size='20' /></label></div>
 	<div><label>$rpw: <input type='password' name=\"wpRetypePass\" value=\"{$this->mRetypePass}\" size='20' /></label></div>
 	" . $this->getToggle( "rememberpassword" ) . "
-	</fieldset>\n</fieldset>\n" );
+	</fieldset>
+	<div class='prefsectiontip'>".wfMsg('prefs-help-userdata')."</div>\n</fieldset>\n" );
 
 	
 		# Quickbar setting
@@ -430,6 +431,7 @@ class PreferencesForm {
 		<div><b>$ltz:</b> $nowlocal</div>
 		<div><label>$tzo*: <input type='text' name=\"wpHourDiff\" value=\"{$this->mHourDiff}\" size='6' /></label></div>
 		<div><input type=\"button\" value=\"$tzGuess\" onClick=\"javascript:guessTimezone()\" /></div>
+		<div class='prefsectiontip'>* {$tzt}</div>
 	</fieldset>\n\n" );
 
 		$wgOut->addHTML( "
@@ -471,7 +473,6 @@ class PreferencesForm {
 		<input type='submit' name=\"wpReset\" value=\"$rsp\" />
 	</div>
 	
-	<div>* {$tzt}</div>
 	</div>
 	
 	</form>\n" );

@@ -636,6 +636,9 @@ Don't forget to change your {{SITENAME}} preferences.",
 "yournick"		=> "Your nickname (for signatures)",
 "emailforlost"	=> "Fields marked with a star (*) are optional.  Storing an email address enables people to contact you through the website without you having to reveal your 
 email address to them, and it can be used to send you a new password if you forget it.<br /><br />Your real name, if you choose to provide it, will be used for giving you attribution for your work.",
+'prefs-help-userdata' => '* <strong>Real name</strong> (optional): if you choose to provide it this will be used for giving you attribution for your work.<br/>
+* <strong>Email</strong> (optional): Enables people to contact you through the website without you having to reveal your 
+email address to them, and it can be used to send you a new password if you forget it.',
 "loginerror"	=> "Login error",
 "nocookiesnew"	=> "The user account was created, but you are not logged in. {{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them, then log in with your new username and password.",
 "nocookieslogin"	=> "{{SITENAME}} uses cookies to log in users. You have cookies disabled. Please enable them and try again.",

@@ -809,6 +809,10 @@ form #content {
     float: left;
     margin-top: 1em;
 }
+div.prefsectiontip { 
+    font-size: 95%;
+    margin-top: 1em;
+}
 fieldset.operaprefsection { margin-left: 15em }
 
 /* 
