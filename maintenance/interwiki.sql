@@ -40,7 +40,7 @@ INSERT INTO interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('HammondWiki','http://www.dairiki.org/HammondWiki/index.php3?$1',0),
 ('Haribeau','http://wiki.haribeau.de/cgi-bin/wiki.pl?$1',0),
 ('IAWiki','http://www.IAwiki.net/$1',0),
-('IMDB','http://us.imdb.com/title/tt$1/',0),
+('IMDB','http://us.imdb.com/Title?$1',0),
 ('JargonFile','http://sunir.org/apps/meta.pl?wiki=JargonFile&redirect=$1',0),
 ('JiniWiki','http://www.cdegroot.com/cgi-bin/jini?$1',0),
 ('JspWiki','http://www.ecyrd.com/JSPWiki/Wiki.jsp?page=$1',0),
