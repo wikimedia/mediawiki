@@ -1149,9 +1149,6 @@ class Parser
 		$s = array_shift( $bits );
 		$i = 0;
 
-		# Characters which may occur in the middle of a URL, but not at the end
-		$sep = ",;\.:";
-
 		$sk =& $this->mOptions->getSkin();
 
 		while ( $i < count( $bits ) ){
@@ -1163,7 +1160,13 @@ class Parser
 				$url = $protocol . $m[1];
 				$trail = $m[2];
 				
-				# Move characters in $sep to $trail
+				# Move trailing punctuation to $trail
+				$sep = ',;\.:!?';
+				# If there is no left bracket, then consider right brackets fair game too
+				if ( strpos( $url, '(' ) === false ) {
+					$sep .= ')';
+				}
+
 				$numSepChars = strspn( strrev( $url ), $sep );
 				if ( $numSepChars ) {
 					$trail = substr( $url, -$numSepChars ) . $trail;
