@@ -376,7 +376,7 @@ function do_schema_restructuring() {
 
 		echo "......Moving text from cur.\n";
 		$wgDatabase->query( "INSERT INTO $old (old_namespace, old_title, old_text, old_comment, old_user, old_user_text,
-    				old_timestamp, old_minor_edit, old_flags, rev_timestamp)
+    				old_timestamp, old_minor_edit, old_flags)
   			SELECT cur_namespace, cur_title, cur_text, cur_comment, cur_user, cur_user_text, cur_timestamp, cur_minor_edit,''
   			FROM $cur", $fname );
 
