@@ -76,16 +76,6 @@ require_once("LanguageUtf8.php");
 	"nocache" => "از کار انداختن حافظه‌ی نهانی صفحات"
 );
 
-/* private */ $wgWeekdayNamesFa = array(
-	"یک‌شنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنجشنبه",
-	"جمعه", "شنبه"
-);
-
-/* private */ $wgMonthNamesFa = array(
-	"ژانویه", "فوریه", "مارس", "آوریل", "مه", "ژوئن",
-	"ژوئیه", "اوت", "سپتامبر", "اکتبر", "نوامبر",
-	"دسامبر"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -146,6 +136,39 @@ require_once("LanguageUtf8.php");
 #-------------------------------------------------------------------
 
 /* private */ $wgAllMessagesFa = array(
+# Dates
+
+'sunday' => "یک‌شنبه",
+'monday' => "دوشنبه",
+'tuesday' => "سه‌شنبه",
+'wednesday' => "چهارشنبه",
+'thursday' => "پنجشنبه",
+'friday' => "جمعه",
+'saturday' => "شنبه",
+'january' => "ژانویه",
+'february' => "فوریه",
+'march' => "مارس",
+'april' => "آوریل",
+'may_long' => "مه",
+'june' => "ژوئن",
+'july' => "ژوئیه",
+'august' => "اوت",
+'september' => "سپتامبر",
+'october' => "اکتبر",
+'november' => "نوامبر",
+'december' => "دسامبر",
+'jan' => "ژانویه",
+'feb' => "فوریه",
+'mar' => "مارس",
+'apr' => "آوریل",
+'may' => "مه",
+'jun' => "ژوئن",
+'jul' => "ژوئیه",
+'aug' => "اوت",
+'sep' => "سپتامبر",
+'oct' => "اکتبر",
+'nov' => "نوامبر",
+'dec' => "دسامبر",
 
 # Bits of text used by many pages:
 #
@@ -1135,24 +1158,6 @@ class LanguageFa extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesFa;
 		return $wgUserTogglesFa;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesFa;
-		return $wgMonthNamesFa[$key-1];
-	}
-	
-	function getMonthAbbreviation( $key )
-	{
-		/* Persian doesn't use abbreviations for Gregorian month names */
-		return $this->getMonthName( $key );
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesFa;
-		return $wgWeekdayNamesFa[$key-1];
 	}
 
 	function getValidSpecialPages()

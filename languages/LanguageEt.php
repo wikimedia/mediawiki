@@ -65,21 +65,6 @@
 	"Amazon.com" => "http://www.amazon.com/exec/obidos/ISBN=$1"
 );
 
-/* private */ $wgWeekdayNamesEt = array(
-	"pühapäev", "esmaspäev", "teisipäev", "kolmapäev", "neljapäev",
-	"reede", "laupäev"
-);
-
-/* private */ $wgMonthNamesEt = array(
-	"jaanuar", "veebruar", "märts", "aprill", "mai", "juuni",
-	"juuli", "august", "september", "oktoober", "november",
-	"detsember"
-);
-
-/* private */ $wgMonthAbbreviationsEt = array(
-	"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
-	"Sep", "Oct", "Nov", "Dec"
-);
 
 # All special pages have to be listed here: a description of ""
 # will make them not show up on the "Special Pages" page, which
@@ -132,6 +117,40 @@
 );
 
 /* private */ $wgAllMessagesEt = array(
+# Dates
+
+'sunday' => 'pühapäev',
+'monday' => 'esmaspäev',
+'tuesday' => 'teisipäev',
+'wednesday' => 'kolmapäev',
+'thursday' => 'neljapäev',
+'friday' => 'reede',
+'saturday' => 'laupäev',
+'january' => 'jaanuar',
+'february' => 'veebruar',
+'march' => 'märts',
+'april' => 'aprill',
+'may_long' => 'mai',
+'june' => 'juuni',
+'july' => 'juuli',
+'august' => 'august',
+'september' => 'september',
+'october' => 'oktoober',
+'november' => 'november',
+'december' => 'detsember',
+'jan' => 'Jan',
+'feb' => 'Feb',
+'mar' => 'Mar',
+'apr' => 'Apr',
+'may' => 'May',
+'jun' => 'Jun',
+'jul' => 'Jul',
+'aug' => 'Aug',
+'sep' => 'Sep',
+'oct' => 'Oct',
+'nov' => 'Nov',
+'dec' => 'Dec',
+
 
 # Bits of text used by many pages:
 #
@@ -919,31 +938,6 @@ class LanguageEt extends LanguageUtf8 {
 	function getUserToggles() {
 		global $wgUserTogglesEt;
 		return $wgUserTogglesEt;
-	}
-
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesEt;
-		return $wgMonthNamesEt[$key-1];
-	}
-
-	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
-		global $wgMonthNamesEt;
-		return $wgMonthNamesEt[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsEt;
-		return $wgMonthAbbreviationsEt[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesEt;
-		return $wgWeekdayNamesEt[$key-1];
 	}
 
 	function getValidSpecialPages()
