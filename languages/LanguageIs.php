@@ -17,29 +17,71 @@ if($wgMetaNamespace === FALSE)
 	$wgMetaNamespace = str_replace( " ", "_", $wgSitename );
 
 /* private */ $wgNamespaceNamesIs = array(
-	-2	=> "Margmiðlun",
-	-1	=> "Sérstök",
-	0	=> "",
-	1	=> "Spjall",
-	2	=> "Notandi",
-	3	=> "Notendaspjall",
-	4	=> $wgMetaNamespace,
-	5	=> $wgMetaNamespace . "_talk",
-	6	=> "Mynd",
-	7	=> "Myndaspjall",
-	8	=> "MediaWiki",
-	9	=> "MediaWikispjall"
-);
+  NS_MEDIA            => 'Miðlar',
+  NS_SPECIAL          => 'Kerfissíða', # Special
+  NS_MAIN             => '',
+  NS_TALK             => 'Spall', # Talk
+  NS_USER             => 'Notandi',
+  NS_USER_TALK        => 'Notandaspjall',
+  NS_WIKIPEDIA        => $wgMetaNamespace,
+  NS_WIKIPEDIA_TALK   => $wgMetaNamespace . '_talk',
+  NS_IMAGE            => 'Mynd',
+  NS_IMAGE_TALK       => 'Myndaspjall',
+  NS_MEDIAWIKI        => 'MediaWiki',
+  NS_MEDIAWIKI_TALK   => 'MediaWikispjall',
+  NS_TEMPLATE         => 'Snið',
+  NS_TEMPLATE_TALK    => 'Sniðaspjall',
+  NS_HELP             => 'Hjálp',
+  NS_HELP_TALK        => 'Hjálparspjall',
+  NS_CATEGORY         => 'Flokkur',
+  NS_CATEGORY_TALK    => 'Flokkaspjall'
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgDefaultUserOptionsIs = array(
-	"quickbar" => 1, "underline" => 1, "hover" => 1,
-	"cols" => 80, "rows" => 25, "searchlimit" => 20,
-	"contextlines" => 5, "contextchars" => 50,
-	"skin" => 0, "math" => 1, "rcdays" => 7, "rclimit" => 50,
-	"highlightbroken" => 1, "stubthreshold" => 0,
-	"previewontop" => 1, "editsection"=>1,"editsectiononrightclick"=>0, "showtoc"=>1,
-	"date" => 0
+	"date" => 2
 );
+
+# Note to translators:
+#   Please include the English words as synonyms.  This allows people
+#   from other wikis to contribute more easily.
+#
+/* private */ $wgMagicWordsIs = array(
+#   ID                                 CASE  SYNONYMS
+  MAG_REDIRECT             => array( 0,    '#redirect', '#tilvísun' ),
+  MAG_NOTOC                => array( 0,    '__NOTOC__'              ),
+  MAG_FORCETOC             => array( 0,    '__FORCETOC__'           ),
+  MAG_TOC                  => array( 0,    '__TOC__'                ),
+  MAG_NOEDITSECTION        => array( 0,    '__NOEDITSECTION__'      ),
+  MAG_START                => array( 0,    '__START__'              ),
+  MAG_CURRENTMONTH         => array( 1,    'CURRENTMONTH'           ),
+  MAG_CURRENTMONTHNAME     => array( 1,    'CURRENTMONTHNAME'       ),
+  MAG_CURRENTDAY           => array( 1,    'CURRENTDAY'             ),
+  MAG_CURRENTDAYNAME       => array( 1,    'CURRENTDAYNAME'         ),
+  MAG_CURRENTYEAR          => array( 1,    'CURRENTYEAR'            ),
+  MAG_CURRENTTIME          => array( 1,    'CURRENTTIME'            ),
+  MAG_NUMBEROFARTICLES     => array( 1,    'NUMBEROFARTICLES'       ),
+  MAG_CURRENTMONTHNAMEGEN  => array( 1,    'CURRENTMONTHNAMEGEN'    ),
+  MAG_PAGENAME             => array( 1,    'PAGENAME'               ),
+  MAG_NAMESPACE            => array( 1,    'NAMESPACE'              ),
+  MAG_MSG                  => array( 0,    'MSG:'                   ),
+  MAG_SUBST                => array( 0,    'SUBST:'                 ),
+  MAG_MSGNW                => array( 0,    'MSGNW:'                 ),
+  MAG_END                  => array( 0,    '__END__'                ),
+  MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb'     ),
+  MAG_IMG_RIGHT            => array( 1,    'right'                  ),
+  MAG_IMG_LEFT             => array( 1,    'left'                   ),
+  MAG_IMG_NONE             => array( 1,    'none'                   ),
+  MAG_IMG_WIDTH            => array( 1,    '$1px'                   ),
+  MAG_IMG_CENTER           => array( 1,    'center', 'centre'       ),
+  MAG_IMG_FRAMED           => array( 1,    'framed', 'enframed', 'frame' ),
+  MAG_INT                  => array( 0,    'INT:'                   ),
+  MAG_SITENAME             => array( 1,    'SITENAME'               ),
+  MAG_NS                   => array( 0,    'NS:'                    ),
+  MAG_LOCALURL             => array( 0,    'LOCALURL:'              ),
+  MAG_LOCALURLE            => array( 0,    'LOCALURLE:'             ),
+  MAG_SERVER               => array( 0,    'SERVER'                 )
+);
+
 
 /* private */ $wgQuickbarSettingsIs = array(
 	"Sleppa", "Fast vinstra megin", "Fast hægra megin", "Fljótandi til vinstri"
@@ -47,14 +89,6 @@ if($wgMetaNamespace === FALSE)
 
 /* private */ $wgSkinNamesIs = array(
 	"Venjulegt", "Gamaldags", "Kölnarblátt", "Paddington", "Montparnasse"
-);
-
-/* private */ $wgMathNamesIs = array(
-	"Alltaf birta PNG mynd",
-	"HTML fyrir einfaldar jöfnur annars PNG",
-	"HTML ef hægt er, annars PNG",
-	"Sýna TeX jöfnu (fyrir textavafra)",
-	"Mælt með fyrir nýja vafra"
 );
 
 /* private */ $wgDateFormatsIs = array(
@@ -1072,6 +1106,13 @@ Don't forget to change your Wikipedia preferences.",
 'yourpasswordagain' => "Lykilorð (aftur)",
 'yourrealname' => "Fullt nafn þitt*",
 #'yourtext' => "Your text",
+# Math
+	'mw_math_png' => "Alltaf birta PNG mynd",
+	'mw_math_simple' => "HTML fyrir einfaldar jöfnur annars PNG",
+	'mw_math_html' => "HTML ef hægt er, annars PNG",
+	'mw_math_source' => "Sýna TeX jöfnu (fyrir textavafra)",
+	'mw_math_modern' => "Mælt með fyrir nýja vafra",
+	'mw_math_mathml' => 'MathML',
 );
 
 
@@ -1124,11 +1165,6 @@ class LanguageIs extends LanguageUtf8 {
 		return $wgSkinNamesIs;
 	}
 
-	function getMathNames() {
-		global $wgMathNamesIs;
-		return $wgMathNamesIs;
-	}
-	
 	function getDateFormats() {
 		global $wgDateFormatsIs;
 		return $wgDateFormatsIs;
@@ -1320,7 +1356,6 @@ class LanguageIs extends LanguageUtf8 {
 	# For right-to-left language support
 	function isRTL() { return false; }
 
-	/*
 	function getMagicWords() 
 	{
 		global $wgMagicWordsIs;
@@ -1335,10 +1370,9 @@ class LanguageIs extends LanguageUtf8 {
 		$mw->mCaseSensitive = $rawEntry[0];
 		$mw->mSynonyms = array_slice( $rawEntry, 1 );
 	}
-	*/
 }
 
-@include_once( "Language" . ucfirst( $wgLanguageCode ) . ".php" );
+# @include_once( "Language" . ucfirst( $wgLanguageCode ) . ".php" );
 
 ?>
 
