@@ -36,7 +36,7 @@ class OutputPage {
 
 	function addHeader( $name, $val ) { array_push( $this->mHeaders, "$name: $val" ) ; }
 	function addCookie( $name, $val ) { array_push( $this->mCookies, array( $name, $val ) ); }
-	function redirect( $url ) { $this->mRedirect = $url; }
+	function redirect( $url, $responsecode = '302' ) { $this->mRedirect = $url; $this->mRedirectCode = $responsecode; }
 
 	# To add an http-equiv meta tag, precede the name with "http:"
 	function addMeta( $name, $val ) { array_push( $this->mMetatags, array( $name, $val ) ); }
@@ -236,10 +236,6 @@ class OutputPage {
 		
 		$sk = $wgUser->getSkin();
 
-		$this->sendCacheControl();
-
-		header( "Content-type: text/html; charset={$wgOutputEncoding}" );
-		header( "Content-language: {$wgLanguageCode}" );
 		
 		if ( "" != $this->mRedirect ) {
 			if( substr( $this->mRedirect, 0, 4 ) != "http" ) {
@@ -247,9 +243,22 @@ class OutputPage {
 				global $wgServer;
 				$this->mRedirect = $wgServer . $this->mRedirect;
 			}
+			if( $this->mRdirectCode != '302') {
+				header("HTTP/1.1 {$this->mRedirectCode} Moved Permanently");
+				$this->mLastModified = gmdate( "D, j M Y H:i:s", wfTimestamp2Unix(
+					max( $timestamp, $wgUser->mTouched ) ) ) . " GMT";
+			}
+                        
+			$this->sendCacheControl();
+			
 			header( "Location: {$this->mRedirect}" );
 			return;
 		}
+		
+		$this->sendCacheControl();
+		
+		header( "Content-type: text/html; charset={$wgOutputEncoding}" );
+		header( "Content-language: {$wgLanguageCode}" );
 
 		$exp = time() + $wgCookieExpiration;
 		foreach( $this->mCookies as $name => $val ) {
