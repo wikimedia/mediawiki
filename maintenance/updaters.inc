@@ -165,7 +165,7 @@ function do_group_update() {
 		$wgDatabase->freeResult( $res );
 		if( $row->n ) {
 			echo "Fixing sysops group permissions... ";
-			dbsource( "maintenance/archives/patch-group-sysopfix.sql" );
+			dbsource( "maintenance/archives/patch-group-sysopfix.sql", $wgDatabase );
 			echo "ok\n";
 		} else {
 			echo "...sysop group permissions look ok.\n";
