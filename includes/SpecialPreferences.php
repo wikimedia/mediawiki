@@ -56,7 +56,28 @@ function wfSpecialPreferences()
 	}
 }
 
-
+/* private */ function validateTimeZone( $s )
+{
+	
+	if ( $s !== "" ) {
+		if ( strpos( $s, ":" ) ) {
+			# HH:MM
+			$array = explode( ":" , $s );
+			$hour = intval( $array[0] );
+			$minute = intval( $array[1] );
+		} else {
+			$minute = intval( $s * 60 );
+			$hour = intval( $minute / 60 );
+			$minute = abs( $minute ) % 60;
+		}
+		$hour = min( $hour, 15 );
+		$hour = max( $hour, -15 );
+		$minute = min( $minute, 59 );
+		$minute = max( $minute, 0 );
+		$s = sprintf( "%02d:%02d", $hour, $minute );
+	}
+	return $s;
+}
 
 /* private */ function savePreferences()
 {
@@ -93,7 +114,7 @@ function wfSpecialPreferences()
 	$wgUser->setOption( "rows", validateInt( $wpRows, 4, 1000 ) );
 	$wgUser->setOption( "cols", validateInt( $wpCols, 4, 1000 ) );
 	$wgUser->setOption( "stubthreshold", validateIntOrNull( $wpStubs ) );
-	$wgUser->setOption( "timecorrection", validateIntOrNull( $wpHourDiff, -12, 14 ) );
+	$wgUser->setOption( "timecorrection", validateTimeZone( $wpHourDiff, -12, 14 ) );
 	
 	$namespaces = $wgLang->getNamespaces();
 	# Set search namespace options

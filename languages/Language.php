@@ -1436,16 +1436,26 @@ class Language {
 	{
 		global $wgUser, $wgLocalTZoffset;
 
-		$diff = $wgUser->getOption( "timecorrection" );
-		if ( ! is_numeric( $diff ) ) {
-			$diff = isset( $wgLocalTZoffset ) ? $wgLocalTZoffset : 0;
+		$tz = $wgUser->getOption( "timecorrection" );
+		if ( $tz === "" ) {
+			$hrDiff = isset( $wgLocalTZoffset ) ? $wgLocalTZoffset : 0;
+			$minDiff = 0;		
+		} elseif ( strpos( $tz, ":" ) !== false ) {
+			$tzArray = explode( ":", $tz );
+			$hrDiff = intval($tzArray[0]);
+			$minDiff = intval($hrDiff < 0 ? -$tzArray[1] : $tzArray[1]);
+		} else {
+			$hrDiff = intval( $tz );
 		}
-		if ( 0 == $diff ) { return $ts; }
+		if ( 0 == $hrDiff && 0 == $minDiff ) { return $ts; }
 
-		$t = mktime( ( (int)substr( $ts, 8, 2) ) + $diff,
-		  (int)substr( $ts, 10, 2 ), (int)substr( $ts, 12, 2 ),
-		  (int)substr( $ts, 4, 2 ), (int)substr( $ts, 6, 2 ),
-		  (int)substr( $ts, 0, 4 ) );
+		$t = mktime( ( 
+		  (int)substr( $ts, 8, 2) ) + $hrDiff, # Hours
+		  (int)substr( $ts, 10, 2 ) + $minDiff, # Minutes
+		  (int)substr( $ts, 12, 2 ), # Seconds
+		  (int)substr( $ts, 4, 2 ), # Month
+		  (int)substr( $ts, 6, 2 ), # Day
+		  (int)substr( $ts, 0, 4 ) ); #Year
 		return date( "YmdHis", $t );
 	}
  
