@@ -111,9 +111,9 @@
 	  <h5 i18n:translate="string:toolbox">Toolbox</h5>
 	  <div class="pBody">
 	    <ul>
-	      <li id="t-whatlinkshere"><a href="${nav_urls/whatlinkshere/href}"
+	      <li id="t-whatlinkshere" tal:condition="notspecialpage"><a href="${nav_urls/whatlinkshere/href}"
 		i18n:translate="string:whatlinkshere">What links here</a></li>
-	      <li id="t-recentchangeslinked"><a href="${nav_urls/recentchangeslinked/href}"
+	      <li id="t-recentchangeslinked" tal:condition="notspecialpage"><a href="${nav_urls/recentchangeslinked/href}"
 		i18n:translate="string:recentchangeslinked">Related Changes</a></li>
 	      <li tal:condition="feeds" id="feedlinks">
 	      <span i18n:translate="string:feedlinks">Feeds:</span>

@@ -62,8 +62,8 @@
 
     <div class="portlet" id="p-tb">
       <strong><span i18n:translate="string:toolbox">Toolbox</span>:</strong>
-      <a href="${nav_urls/whatlinkshere/href}" i18n:translate="string:whatlinkshere">What links here</a>
-      <a href="${nav_urls/recentchangeslinked/href}" i18n:translate="string:recentchangeslinked">Related Changes</a>
+      <a href="${nav_urls/whatlinkshere/href}" tal:condition="notspecialpage" i18n:translate="string:whatlinkshere">What links here</a>
+      <a href="${nav_urls/recentchangeslinked/href}" tal:condition="notspecialpage" i18n:translate="string:recentchangeslinked">Related Changes</a>
       <span tal:condition="feeds" id="feedlinks">
         <span i18n:translate="string:feedlinks">Feeds:</span>
         <span tal:repeat="feed feeds"> <a tal:attributes="id string:feed-${repeat/feed/key};
