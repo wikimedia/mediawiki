@@ -536,6 +536,7 @@ class Article {
 				$wgOut->addHTML($previewhead);
 				$wgOut->addWikiText( $this->preSaveTransform( $previewtext ) ."\n\n");
 			}
+			$wgOut->addHTML( "<br clear=\"all\" />\n" );
 		}
 		$wgOut->addHTML( "
 <form id=\"editform\" name=\"editform\" method=\"post\" action=\"$action\"
