@@ -2,93 +2,45 @@
 ** IE5.0 Fix Stylesheet
 */
 
-#portal-column-content {
-    margin: 0 0 0 0 !important;
+#column-content {
+    margin: 0 !important;
     float: none;
 }
-#portal-column-content #content {
-    margin-top: 3.1em;
+#column-content #content { 
+    margin-top: 3em; 
+    height: 1%;
 }
-#portal-column-one {
+#column-one {
     position: absolute;
     overflow: visible;
     top: 0;
     left: 0;
     z-index: 3;
 }
-
-#portal-footer {
+#footer {
     margin: 0 0 0 13.6em;
 }
 
-/* IE 4&5 interpret keyword sizes one off */
-body {
-    font-size: xx-small;
-}
+/* IE 5 & 5.5 interpret keyword sizes one off */
+body { font-size: xx-small; }
 /*
 ** the edit tabs
 */
-#portlet-contentViews {
-    left: 10em;
-}
-#portlet-contentViews ul {
-    line-height: 1.3em;
-    display: block;
+#p-cactions li {
     float: left;
+    padding-top: 0;
+    padding-bottom: 0 !important;
+    height: 0.9em;
 }
-#portlet-contentViews li {
+#p-cactions li a {
     display: block;
-    float: left;
-    overflow: visible;
-    padding: 0;
-    white-space: nowrap !important;
+    padding-bottom: 0.045em;
 }
-#portlet-contentViews li.selected {
-    background-color: white;
-    padding-bottom: 0.2em;
+#p-cactions li.selected a {
+    padding-bottom: 0.17em;
 }
-#portlet-contentViews li a,
-#portlet-contentViews .selected a,
-#portlet-contentViews li a:hover {
-    padding-bottom: 0;
-    padding-top: 0 !important;
-    display: block;
-    position: static !important;
-    z-index: 3 !important;
-}
-
-/* personal toolbar */
-#portal-personaltools {
-    padding-bottom: 0;
-    background: transparent;
-}
-ul#portal-personaltools {
-    line-height: 1.1em;
-    display: block;
-    float: right;
-    margin: 0;
-}
-#portal-personaltools li {
-    display: block;
-    float: left;
-    overflow: visible;
-    padding-bottom: 0.1em;
-    margin-left: 0.5em;
-}
-#portal-personaltools li a,
-#portal-personaltools .selected a,
-#portal-personaltools li a:hover {
-    padding-bottom: 0;
-    padding-top: 0 !important;
-    display: block;
-   /* float: left;*/
-    padding-left: 0.5em !important;
-    padding-right: 0.5em !important;
-    white-space: nowrap !important;
-}
-
-#portlet-contentViews li a:hover {
-    padding-bottom: 0.5em;
+#p-cactions li a:hover {
+    padding-bottom: 0.17em;
 }
 /* 5.0 doesn't like the background icon for external links and user */
 .link-external,
@@ -96,19 +48,11 @@ ul#portal-personaltools {
     background: none;
     padding: 0;
 }
-li#personaltools-userpage,
-li#personaltools-login,
-li#personaltools-logout {
+li#pt-userpage,
+li#pt-login,
+li#pt-logout {
     background: none;
     padding-left: none;
-}
-
-div.thumbnail-none p, div.thumbnail-right p, div.thumbnail-left p {
-    position:relative;
-}
-
-textarea {
-    width: 78% !important;
 }
 .visualClear {
     width:100%;
@@ -116,7 +60,5 @@ textarea {
     padding:0;
     margin:0;
 }
-.documentFirstHeading {
-    margin-bottom: 0.3em;
-}
+.firstHeading { margin-bottom: 0.3em; }
 /*div{ border:1px solid Red !important;}*/

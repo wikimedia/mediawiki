@@ -6,17 +6,14 @@ else var version = 0;
 window.attachEvent("onload", hookit);
 function hookit() {
     fixalpha();
-    if(version == 6) {
-        var wrapper = document.getElementById('tawrapper');
-        if (!wrapper) relativeforfloats();
-    }
+    relativeforfloats();
 }
 
 // png alpha transparency fixes
 function fixalpha(){
     // bg
     if(version >= 5.5) {
-        var logoa = document.getElementById('portlet-logo').firstChild;
+        var logoa = document.getElementById('p-logo').firstChild;
         var bg = logoa.currentStyle.backgroundImage;
         if (bg.match(/\.png/i) != null){
             var mypng = bg.substring(5,bg.length-2);

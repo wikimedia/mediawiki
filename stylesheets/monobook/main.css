@@ -11,25 +11,26 @@
 ** All you guys rock :)
 */
 
-#portal-columns {
-    width: 100%;
-    margin: 0;
-}
-#portal-column-content {
+#column-content {
     width: 100%;
     float: right;
-    margin: 0 0 0 -12.2em;
+    margin: 0 0 0.6em -12.2em;
     padding:0;
 }
-#portal-column-content #content {
+#column-content #content {
     margin: 2.8em 0 0 12.2em;
+    padding: 0em 1em 1.5em 1em;
+    background: White;
+    border: 1px solid #aaaaaa;
+    border-right: none;
+    line-height: 1.5em;
+    position: relative;
+    z-index: 2;
 }
-#portal-column-one {
-    padding-top: 160px;
-}
+#column-one { padding-top: 160px; }
 /* the left column width is specified in class .portlet */
 
-/* Font size: 
+/* Font size:
 ** We take advantage of keyword scaling- browsers won't go below 9px
 ** More at http://www.w3.org/2003/07/30-font-size
 ** http://style.cleverchimp.com/font_size_intervals/altintervals.html
@@ -44,12 +45,13 @@ body {
 }
 
 /* scale back up to a sane default */
-#visual-portal-wrapper {
+#globalWrapper {
     font-size:123%;
     width: 100%;
     margin: 0;
     padding: 0;
 }
+.visualClear { clear: both; }
 
 /* general styles */
 
@@ -59,10 +61,15 @@ table {
 }
 a {
     text-decoration: none;
-    /*color: #436976;*/
     color: #005189;
-    background-color: transparent;
+    background: none;
 }
+a:visited { color: #5a3696; }
+a:active { color: Orange; }
+a:hover { text-decoration: underline; }
+a.stub,
+a.new { color:#ba0000; }
+
 img {
     border: none;
     vertical-align: middle;
@@ -71,21 +78,8 @@ p {
     margin: 0.4em 0em 0.7em 0em;
     line-height: 1.5em;
 }
-p a {
-    text-decoration: none;
-}
-p a:visited {
-    color: #5a3696;
-    background-color: transparent;
-}
-p a:active {
-    color: Red;
-    background-color: transparent;
-}
-p img {
-    border: 0;
-    margin: 0;
-}
+
+p img { margin: 0; }
 
 hr {
     height: 1px;
@@ -97,46 +91,24 @@ hr {
 
 h1, h2, h3, h4, h5, h6 {
     color: Black;
-    background-color: transparent;
-    font-family: "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
-    font-size: 100%;
+    background: none;
+    font-family: "Bitstream Vera Sans", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
     font-weight: normal;
     margin: 0;
     padding-top: 0.5em;
     padding-bottom: 0.17em;
-   /* border-bottom: 1px solid #2f6fab;*/
     border-bottom: 1px solid #aaaaaa;
-
 }
-h1 {
-    font-size: 188%;
-}
-h2 {
-    font-size: 150%;
-}
-h3 {
-    font-size: 132%;
+h1 { font-size: 188%; }
+h2 { font-size: 150%; }
+h3, h4, h5, h6 { 
     border-bottom: none;
     font-weight: bold;
 }
-h4 {
-    font-size: 116%;
-    border-bottom: none;
-    font-weight: bold;
-}
-
-h5 {
-    font-size: 100%;
-    border-bottom: none;
-    font-weight: bold;
-}
-
-h6 {
-    font-size: 80%;
-    border-bottom: none;
-    font-weight: bold;
-}
-
+h3 { font-size: 132%; }
+h4 { font-size: 116%; }
+h5 { font-size: 100%; }
+h6 { font-size: 80%;  }
 
 ul { 
     line-height: 1.5em;
@@ -150,31 +122,12 @@ ol {
     margin: 0.3em 0 0 2.2em;
     padding:0;
 }
-ul a, ol a {
-    text-decoration: none;
-}
-li {
-    margin-bottom: 0.1em;
-}
-dt {
-    font-weight: bold;    
-}
-dt a {
-    text-decoration: none;
-}
-
+li { margin-bottom: 0.1em; }
+dt { font-weight: bold; }
 dd {
     line-height: 1.5em;
     margin-bottom: 0.8em;
     margin-left: 1.6em;
-}
-dd a {
-    text-decoration: none;
-}
-
-dd.link a {
-    text-decoration: none;
-    color: Black;
 }
 
 fieldset {
@@ -188,7 +141,6 @@ legend {
     padding: 0.5em;
     font-size: 90%;
 }
-
 form {
     border: none;
     margin: 0;
@@ -215,9 +167,7 @@ textarea {
     }
 }
 input[type="radio"],
-input[type="checkbox"] {
-    border:none;
-}
+input[type="checkbox"] { border:none; }
 select {
     border: 1px solid #2f6fab;  
     color: Black;
@@ -226,7 +176,7 @@ select {
 abbr, acronym, .explain {
     border-bottom: 1px dotted Black;
     color: Black;
-    background-color: transparent;
+    background: none;
     cursor: help;
 }
 q {
@@ -237,18 +187,12 @@ blockquote {
     font-family: Times, "Times New Roman", serif;
     font-style: italic;
 }
-code {
-    color: Black;
-    background-color: #f9f9f9;
-}
+code { background-color: #f9f9f9; }
 pre {
     padding: 1em;
     border: 1px dashed #2f6fab;
     color: Black;
     background-color: #f9f9f9;
-}
-.pre a {
-    text-decoration: none;
 }
 
 
@@ -256,34 +200,21 @@ pre {
 ** the main content area
 */
 
-#documentSubtitle {
+#siteSub { display: none; }
+#contentSub {
     font-size: 84%;
     line-height: 1.2em;
     margin: 0 0 1.4em 1em;
     color: #7d7d7d;
     width: auto;
 }
-span.subpages {
-    display: block;
-}
-#siteSubtitle {
-    display: none;    
-}
+span.subpages { display: block; }
 #catlinks {
     margin: 0;
     padding: 0;
     width: 34%;
     text-align: right;
     float: right;
-}
-
-#content {
-    padding: 0 0 1em 0em;
-    margin: 0;
-}
-
-a:hover {
-    text-decoration: underline;
 }
 
 /* Some space under the headers in the content area */
@@ -294,33 +225,24 @@ a:hover {
 #bodyContent h5 {
     margin-bottom:0.8em;
 }
-.documentFirstHeading {
-    margin-bottom:0.1em;
-}
+.firstHeading { margin-bottom:0.1em; }
 
-
-#documentContent {
-    padding: 0em 1em 1.5em 1em;
-    background: White;
-    border: 1px solid #aaaaaa;
-    border-right: none;
-    margin:0;
-    line-height: 1.5em;
-    position: relative;
-    z-index: 2;
-}
-
-/* this will be the user notification thing */
-.portalMessage {
+/* user notification thing */
+.usermessage {
     background-color: #ffce7b;
     border: 1px solid #ffa500;
     color: Black;
-    font-size: 100%;
     font-weight: bold;
     margin: 2em 0em 1em 0em;
     padding: 0.5em 1em;
     vertical-align: middle;
 }
+.error {
+    color: red;
+    font-size: larger;
+}
+/* currently unused, intended to be used by a metadata box
+in the bottom-right corner of the content area */
 .documentDescription {
     /* The summary text describing the document */
     font-weight: bold;
@@ -335,25 +257,21 @@ a:hover {
     font-weight: normal;
     color: #76797c;
 }
-.documentByLine a {
-    text-decoration: none;
-}
 
 /* emulate center */
 .center {
     width: 100%;
     text-align: center;
 }
-div.center * {
+*.center * {
     margin-left: auto;
     margin-right: auto;
 }
-/*
-** mediawiki-specific styles
-*/
 
-a.stub,
-a.new { color:#ba0000; text-decoration:none; }
+
+/*
+** content styles
+*/
 
 #toc { 
     /*border:1px solid #2f6fab;*/
@@ -362,15 +280,10 @@ a.new { color:#ba0000; text-decoration:none; }
     padding:5px;
     font-size: 95%;
 }
-.tocindent {
-	margin-left: 2em;
-}
-.tocline {
-	margin-bottom: 0px;
-}
-.toctoggle, .editsection {
-	font-size: 94%;
-}
+.tocindent { margin-left: 2em; }
+.tocline { margin-bottom: 0px; }
+.toctoggle, .editsection { font-size: 94%; }
+
 /* images */
 div.floatright { 
     float: right; 
@@ -418,6 +331,15 @@ div.magnify a, div.magnify img {
     border: none !important;
     background: none !important;
 }
+
+.urlexpansion,
+.hiddenStructure {
+    display: none;
+}
+/*
+** classes for special content elements like town boxes
+** intended to be referenced directly from the wiki src
+*/
 /* table standards */
 table.rimage {
     float:right; 
@@ -436,76 +358,7 @@ div.tleft {
     margin-right:0.5em;
     border: 0.5em 1.4em 0.8em 0;
 }
-/*
-** Link rendering 
-*/
 
-.urlexpansion,
-.hiddenStructure {
-    display: none;
-}
-/*
-** Diff rendering
-*/
-table.diff {
-        background:white;
-}
-td.diff-otitle {
-        background:#ffffff;
-}
-td.diff-ntitle {
-        background:#ffffff;
-}
-td.diff-addedline {
-        background:#ccffcc;
-}
-td.diff-deletedline {
-        background:#ffffaa;
-}
-td.diff-context {
-        background:#eeeeee;
-}
-
-/* 
-** keep the whitespace in front of the ^=, hides rule from konqueror
-** this is css3, the validator doesn't like it when validating as css2 
-*/
-#bodyContent a[href ^="http://"],
-#bodyContent a[href ^="gopher://"] {
-    background: url(external.png) center right no-repeat;
-    padding-right: 13px;
-}
-#bodyContent a[href ^="https://"],
-.link-https {
-    background: transparent url("lock_icon.gif") center right no-repeat;
-    padding-right: 16px;
-}
-#bodyContent a[href ^="mailto:"],
-.link-mailto {
-    background: transparent url("mail_icon.gif") center right no-repeat;
-    padding-right: 18px;
-}
-#bodyContent a[href ^="news://"] {
-    background: transparent url("news_icon.png") center right no-repeat;
-    padding-right: 18px;
-}
-#bodyContent a[href ^="ftp://"],
-.link-ftp {
-    background: transparent url("file_icon.gif") center right no-repeat;
-    padding-right: 18px;
-}
-#bodyContent a[href ^="irc://"],
-.link-irc {
-    background: transparent url("discussionitem_icon.gif")  center right no-repeat;
-    padding-right: 18px;
-}
-.visualClear {
-    clear: both;
-}
-
-/*
-** classes for special content elements like town boxes
-*/
 div.townBox {
     position:relative;
     float:right;
@@ -523,7 +376,7 @@ div.townBox dl {
     font-size: 96%;
 }
 div.townBox dl dt {
-    background-color: transparent;
+    background: none;
     margin: 0.4em 0 0 0;
 }
 div.townBox dl dd {
@@ -532,8 +385,9 @@ div.townBox dl dd {
 }
 
 /*
-** Special content area views
+** edit views etc
 */
+
 .special li {
     line-height: 1.4em;
     margin: 0;
@@ -541,14 +395,68 @@ div.townBox dl dd {
 }
 /* the auto-generated edit comments */
 .autocomment { color: gray; }
+/*
+** Diff rendering
+*/
+table.diff {
+    background:white;
+}
+td.diff-otitle {
+    background:#ffffff;
+}
+td.diff-ntitle {
+    background:#ffffff;
+}
+td.diff-addedline {
+    background:#ccffcc;
+}
+td.diff-deletedline {
+    background:#ffffaa;
+}
+td.diff-context {
+    background:#eeeeee;
+}
 
+/* 
+** keep the whitespace in front of the ^=, hides rule from konqueror
+** this is css3, the validator doesn't like it when validating as css2 
+*/
+#bodyContent a[href ^="http://"],
+#bodyContent a[href ^="gopher://"] {
+    background: url(external.png) center right no-repeat;
+    padding-right: 13px;
+}
+#bodyContent a[href ^="https://"],
+.link-https {
+    background: url("lock_icon.gif") center right no-repeat;
+    padding-right: 16px;
+}
+#bodyContent a[href ^="mailto:"],
+.link-mailto {
+    background: url("mail_icon.gif") center right no-repeat;
+    padding-right: 18px;
+}
+#bodyContent a[href ^="news://"] {
+    background: url("news_icon.png") center right no-repeat;
+    padding-right: 18px;
+}
+#bodyContent a[href ^="ftp://"],
+.link-ftp {
+    background: url("file_icon.gif") center right no-repeat;
+    padding-right: 18px;
+}
+#bodyContent a[href ^="irc://"],
+.link-irc {
+    background: url("discussionitem_icon.gif")  center right no-repeat;
+    padding-right: 18px;
+}
 
 /*
 ** Structural Elements
 */
 
 /*
-** the portlets (elements in the quickbar)
+** general portlet styles (elements in the quickbar)
 */
 .portlet {
     border: none;
@@ -585,27 +493,12 @@ div.townBox dl dd {
     font-weight: normal;
     white-space: nowrap;
 }
-.portletBody {
+.pBody {
     font-size: 95%;
     background: White;
     border-collapse: collapse;
     border: 1px solid #aaaaaa;
-}
-.portletDetails {
-    text-align: right;
-}
-.portletMore {
-    display: block;
-    text-align: right;
-}
-.portletContent {
-    padding: 0.1em 0.8em 0.7em 0.5em;
-}
-.portletClose {
-    float: right;
-    text-transform: none;
-    border-left: 1px solid #2f6fab;
-    padding: 0em 0.2em;
+    padding: 0 0.8em 0.3em 0.5em;
 }
 .portlet h1, 
 .portlet h2, 
@@ -613,15 +506,6 @@ div.townBox dl dd {
 .portlet h4 {
     margin: 0;
     padding: 0;
-}
-.portlet .even {
-    background-color: #f7f9fa;
-}
-.portlet .odd {
-    background-color: transparent;
-}
-.portlet input {
-    font-size: 100%;
 }
 .portlet ul {
     line-height: 1.5em;
@@ -634,26 +518,12 @@ div.townBox dl dd {
     margin: 0 0 0 0;
     margin-bottom: 0;
 }
-.even {
-    background-color: #f7f9fa;
-}
-.odd {
-    background-color: transparent;
-}
-.visualHighlight {
-    background-color: #f7f9fa;
-}
-.discreet {
-    color: #76797c;
-    font-size: 80%;
-    font-weight: normal;
-}
 
 /* 
 ** Logo properties 
 */
- 
-#portlet-logo {
+
+#p-logo {
     z-index: 3;
     position:absolute; /*needed to use z-index */
     top: 0;
@@ -662,9 +532,9 @@ div.townBox dl dd {
     width: 12em;
     overflow: visible;
 }
-#portlet-logo h5 { display: none; }
-#portlet-logo a,
-#portlet-logo a:hover {
+#p-logo h5 { display: none; }
+#p-logo a,
+#p-logo a:hover {
     display: block;
     height: 155px;
     width: 12.2em;
@@ -677,23 +547,19 @@ div.townBox dl dd {
 ** the navigation portlet
 */
 
-
-#portlet-navigation {
+#p-nav {
     position:relative;
     z-index:3;
-}
-#portlet-navigation .plain {
-    white-space: nowrap;
 }
 
 /*
 ** Search portlet
 */
-#portlet-search {
+#p-search {
     position:relative;
     z-index:3;
 }    
-#portlet-search .portletBody {
+#p-search .pBody {
     text-align: center;
 }
 input.searchButton {
@@ -705,7 +571,7 @@ input.searchButton {
     border: 1px solid #2f6fab;  
 }
 
-#searchGadget {
+#searchInput {
     border: 1px solid #2f6fab;  
     width:10.9em;
     margin: 0 0 0 0;
@@ -713,7 +579,7 @@ input.searchButton {
 }
 
 
-#portlet-search .portletContent {
+#p-search .pBody {
     padding: 0.5em 0.4em 0.4em 0.4em;
 }
 
@@ -722,7 +588,7 @@ input.searchButton {
 ** the personal toolbar
 */
 
-#portlet-personal {
+#p-personal {
     width:100%;
     white-space:nowrap;
     padding:0 0 0 0;
@@ -732,37 +598,25 @@ input.searchButton {
     top:0px;
     z-index: 0;
     border: none;
-    background-color: transparent;
+    background: none;
     overflow: visible;
     line-height: 1.2em;
 }
 
-#portlet-personal h5 {
+#p-personal h5 {
     display:none;
 }
-#portlet-personal .portlet,
-#portlet-personal .portletBody,
-#portlet-personal .portletContent,
-#portlet-personal .odd{
+#p-personal .portlet,
+#p-personal .pBody {
     padding:0;
     margin:0;
     border: none;
     z-index:0;
     overflow: visible;
-    background-color: transparent;
+    background: none;
 }
-#portal-personal ul,
-#portal-personal li {
-    z-index:0;
-    border:none;
-    background-color: transparent;
-}
-
 /* this is the ul contained in the portlet */
-
-#portal-personaltools {
-/*    background-color: #fabd23;*/
-/*    border-bottom-color: #2f6fab;*/
+#p-personal ul {
     border: none;
     line-height: 1.4em;
     color: #2f6fab;
@@ -772,31 +626,25 @@ input.searchButton {
     text-transform: lowercase;
     list-style: none;
     z-index:0;
-    background-color: transparent;
+    background: none;
 }
-
-#portal-personaltools .portalNotLoggedIn {
-    color: #2f6fab;
-    padding: 0;
-    background: transparent;
-    background-image: none;
-} /* Used on all descriptions relevant to those not logged in */
- 
-#portal-personaltools li {
+#p-personal li {
+    z-index:0;
+    border:none;
     padding:0;
     display: inline;
     color: #2f6fab;
     margin-left: 1em;
     line-height: 1.2em;
-    background-color: transparent;
+    background: none;
 }
-#portal-personaltools li a {
+#p-personal li a {
     text-decoration: none;
     color: #005896;
     padding-bottom: 0.2em;
     background: none;
 }
-#portal-personaltools li a:hover {
+#p-personal li a:hover {
     background-color: White;
     padding-bottom: 0.2em;
     text-decoration: none;
@@ -804,10 +652,10 @@ input.searchButton {
 
 /* the icon in front of the user name, single quotes
 in bg url to hide it from iemac */
-li#personaltools-userpage,
-li#personaltools-anonuserpage,
-li#personaltools-login {
-    background: transparent url('user.gif') center left no-repeat;
+li#pt-userpage,
+li#pt-anonuserpage,
+li#pt-login {
+    background:  url('user.gif') center left no-repeat;
     background-repeat: no-repeat;
     padding-left: 20px;
     text-transform: none;
@@ -817,7 +665,7 @@ li#personaltools-login {
 ** the page-related actions- page/talk, edit etc 
 */
 
-#portlet-contentViews {
+#p-cactions {
     position:absolute;
     top: 1.3em;
     left: 11.5em;
@@ -826,17 +674,17 @@ li#personaltools-login {
     width: 76%;
     line-height: 1.1em;
     overflow: visible;
-    background-color: transparent;
+    background: none;
     border-collapse: collapse;
     padding-left: 1em;
     list-style: none;
     font-size: 95%;
 }
-#portlet-contentViews .hiddenStructure { display: none; }
-#portlet-contentViews ul {
+#p-cactions .hiddenStructure { display: none; }
+#p-cactions ul {
     list-style: none;
 }
-#portlet-contentViews li {
+#p-cactions li {
     display: inline;
     border: 1px solid #aaaaaa;
     border-bottom: none;
@@ -845,11 +693,11 @@ li#personaltools-login {
     overflow: visible;
     background: White;
 }
-#portlet-contentViews li.selected {
+#p-cactions li.selected {
     border-color: #fabd23;
     padding: 0 0 0.2em 0;
 }
-#portlet-contentViews li a {
+#p-cactions li a {
     background-color: White;
     color: #005189;
     border: none;
@@ -860,32 +708,23 @@ li#personaltools-login {
     z-index: 0;
     margin: 0;
 }
-#portlet-contentViews .selected a {
-    z-index: 3;
-}
-#portlet-contentViews .new a {
-    color:#ba0000;
-}
-#portlet-contentViews li a:hover {
+#p-cactions .selected a { z-index: 3; }
+#p-cactions .new a { color:#ba0000; }
+#p-cactions li a:hover {
     z-index: 3;
     text-decoration: none;
 }
-#portlet-contentViews h5 { display: none; }
-
+#p-cactions h5 { display: none; }
 /* offsets to distinguish the tab groups */
-li#contentaction-talk {
-    margin-right: 1.6em;
-}
-li#contentaction-watch {
-    margin-left: 1.6em;
-}
+li#ca-talk { margin-right: 1.6em; }
+li#ca-watch { margin-left: 1.6em; }
 
 
 /*
 ** the remaining portlets
 */
-#portlet-toolbox,
-#portlet-language {
+#p-tbx,
+#p-lang {
     position:relative;
     z-index:3;
 }
@@ -893,35 +732,33 @@ li#contentaction-watch {
 /*
 ** footer
 */
-#portal-footer {
+#footer {
     background-color: White;
     border-top: 1px solid #fabd23;
     border-bottom: 1px solid #fabd23;
-    margin: 0.3em 0em 1em 0em;
-    padding: 0.4em 0em 1em 0em;
+    margin: 0.6em 0em 1em 0em;
+    padding: 0.4em 0em 1.2em 0em;
     text-align: center;
     font-size: 90%;
 }
-#portal-footer li {
+#footer li {
     display: inline;
     margin: 0 1.3em;
 }
 /* hide from incapable browsers */
-head:first-child+body #portal-footer li {
-    white-space: nowrap;
+head:first-child+body #footer li { white-space: nowrap; }
+#f-poweredbyico, #f-copyrightico {
+    margin: 0 8px;
+    position: relative;
+    top: -2px; /* Bump it up just a tad */
 }
-#footer-poweredbyico, #footer-copyrightico {
-        margin: 0 8px;
-        position: relative;
-        top: -2px; /* Bump it up just a tad */
+#f-poweredbyico {
+    float: right;
+    height: 1%;
 }
-#footer-poweredbyico {
-        float: right;
-        height: 1%;
-}
-#footer-copyrightico {
-        float: left;
-        height: 1%;
+#f-copyrightico {
+    float: left;
+    height: 1%;
 }
 
 /* 
@@ -931,27 +768,19 @@ head:first-child+body #portal-footer li {
 */
 
 /* tabs: border on the a, not the div */
-*>html #portlet-contentViews li {
-    border:none;
-}
-*>html #portlet-contentViews li a {
+*>html #p-cactions li { border:none; }
+*>html #p-cactions li a {
     border: 1px solid #aaaaaa;
     border-bottom: none;
 }
-*>html #portlet-contentViews li.selected a {
-    border-color: #fabd23;
-}
+*>html #p-cactions li.selected a { border-color: #fabd23; }
 /* footer icons need a fixed width */
-*>html #footer-poweredbyico,
-*>html #footer-copyrightico {
-    width: 88px;
-}
+*>html #f-poweredbyico,
+*>html #f-copyrightico { width: 88px; }
 
 /* more IE fixes */
 /* fixes for broken IE float handling */
-* html #portal-column-content {
-    display: inline;
-}
+* html #column-content { display: inline; }
 
 /* float/negative margin brokenness */
 * html #bodyContent pre,
@@ -965,17 +794,13 @@ head:first-child+body #portal-footer li {
 /* more float brokenness */
 * html #bodyContent {
     display: inline;
-    overflow: auto;
+    overflow-x: auto;
     width: 100%;
 }
-* html div.editsection {
-    font-size: smaller;
-}
+* html #footer {margin-top: 0;}
+* html #column-content {margin-bottom: 0;}
+* html div.editsection { font-size: smaller; }
 
 /* debugging tool.. */
 /*div{ border:1px solid #000000;}*/
 
-.error {
-	color: red;
-	font-size: larger;
-}

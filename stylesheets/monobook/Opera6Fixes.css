@@ -1,9 +1,9 @@
 /* opera 6 fixes */
-#portal-column-one {
+#column-one {
     position: relative;
     max-width: 11.7em;
 }
-#portlet-personal {
+#p-personal {
     width: 45em;
     margin-left: 8.6em;
     right: 0;
