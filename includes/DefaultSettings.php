@@ -33,7 +33,8 @@ $wgUsePathInfo		= ( strpos( php_sapi_name(), "cgi" ) === false );
 $wgScript           = "{$wgScriptPath}/index.php";
 $wgRedirectScript   = "{$wgScriptPath}/redirect.php";
 
-$wgStyleSheetPath   = "{$wgScriptPath}/style";
+$wgStylePath   = "{$wgScriptPath}/style";
+$wgStyleSheetPath = &$wgStylePath;
 $wgStyleSheetDirectory = "{$IP}/style";
 $wgArticlePath      = "{$wgScript}?title=$1";
 $wgUploadPath       = "{$wgScriptPath}/upload";

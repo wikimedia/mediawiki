@@ -650,13 +650,13 @@ class OutputPage {
 		array_push( $this->mMetatags, array( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" ) );
 		
 		$ret .= $this->getHeadLinks();
-		global $wgStyleSheetPath;
+		global $wgStylePath;
 		if( $this->isPrintable() ) {
 			$media = "";
 		} else {
 			$media = "media='print'";
 		}
-		$printsheet = htmlspecialchars( "$wgStyleSheetPath/wikiprintable.css" );
+		$printsheet = htmlspecialchars( "$wgStylePath/wikiprintable.css" );
 		$ret .= "<link rel='stylesheet' type='text/css' $media href='$printsheet' />\n";
 
 		$sk = $wgUser->getSkin();
@@ -668,7 +668,7 @@ class OutputPage {
 	}
 	
 	function getHeadLinks() {
-		global $wgRequest, $wgStyleSheetPath;
+		global $wgRequest, $wgStylePath;
 		$ret = "";
 		foreach ( $this->mMetatags as $tag ) {
 			if ( 0 == strcasecmp( "http:", substr( $tag[0], 0, 5 ) ) ) {
@@ -703,7 +703,7 @@ class OutputPage {
 			$ret .= "<link rel='alternate' type='application/rss+xml' title='RSS' href='$link' />\n";
 		}
 		# FIXME: get these working
-		# $fix = htmlspecialchars( $wgStyleSheetPath . "/ie-png-fix.js" );
+		# $fix = htmlspecialchars( $wgStylePath . "/ie-png-fix.js" );
 		# $ret .= "<!--[if gte IE 5.5000]><script type='text/javascript' src='$fix'></script><![endif]-->";
 		return $ret;
 	}
