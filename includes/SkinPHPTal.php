@@ -429,7 +429,7 @@
 						'text' => wfMsg('watch'),
 						'href' => $this->makeUrl($this->thispage, 'action=watch'));
 					} else {
-						$content_actions['watch'] = array('class' => ($action == 'unwatch' or $action == 'watch') ? 'selected' : false,
+						$content_actions['unwatch'] = array('class' => ($action == 'unwatch' or $action == 'watch') ? 'selected' : false,
 						'text' => wfMsg('unwatch'),
 						'href' => $this->makeUrl($this->thispage, 'action=unwatch'));
 					}
