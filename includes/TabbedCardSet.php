@@ -18,7 +18,7 @@ class TabbedCardSet extends CardSet {
 
 		for ( $i=0; $i<count( $this->mLabels ); $i++ )
 		{
-			$s .= "<div class=\"usage\" id=\"area{$i}\"><div id=\"subheading{$i}\"><h2><a name=\"card{$i}\"></a>".
+			$s .= "<div class=\"usage\" id=\"area{$i}\"><div id=\"subheading{$i}\"><h2><a id=\"card{$i}\"></a>".
 				$this->mLabels[$i] . "</h2></div>" . $this->mBodies[$i] . "</div>\n\n";
 		}
 		$s .= "</div></div>\n\n<div id=\"bar\"><div id=\"p-cactions\" class=\"portlet\">\n<ul>\n";
