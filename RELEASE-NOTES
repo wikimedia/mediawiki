@@ -126,7 +126,7 @@ If upgrading from an older release, see the file UPGRADING.
 === Beta 3 fixes ===
 
 * Hide RC patrol markers when patrol is disabled or not allowed to patrol.
-
+* Fix language selection for upgraded accounts
 
 === Caveats ===
 

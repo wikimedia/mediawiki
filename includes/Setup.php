@@ -283,6 +283,11 @@ if( !$wgUser->mDataLoaded ) {
 
 // wgLanguageCode now specifically means the UI language
 $wgLanguageCode = $wgUser->getOption('language');
+if( empty( $wgLanguageCode ) ) {
+	# Quick hack for upgrades where this will be blank,
+	# and it's not handled right. Set to default.
+	$wgLanguageCode = $wgContLanguageCode;
+}
 
 $wgLangClass = 'Language'. str_replace( '-', '_', ucfirst( $wgLanguageCode ) );
 
