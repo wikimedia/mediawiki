@@ -37,7 +37,14 @@
 );
 
 /* private */ $wgSkinNamesCy = array(
-	"Safonol", "Hiraeth", "Glas Cwlen"  /* standard, nostalgia, Cologne Blue */
+	'standard' => "Safonol",
+	'nostalgia' => "Hiraeth",
+	'cologneblue' => "Glas Cwlen",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesCy = array(

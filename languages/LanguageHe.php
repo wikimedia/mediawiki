@@ -32,7 +32,14 @@ include_once("LanguageUtf8.php");
 );
 
 /* private */ $wgSkinNamesHe = array(
-	"רגיל", "נוסטלגי", "מים כחולים"
+	'standard' => "רגיל",
+	'nostalgia' => "נוסטלגי",
+	'cologneblue' => "מים כחולים",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesHe = array(

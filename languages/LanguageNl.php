@@ -29,7 +29,14 @@
 );
 
 /* private */ $wgSkinNamesNl = array(
- "Standaard", "Nostalgie", "Keuls blauw", "Paddington", "Montparnasse"
+	'standard' => "Standaard",
+	'nostalgia' => "Nostalgie",
+	'cologneblue' => "Keuls blauw",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesNl = array(

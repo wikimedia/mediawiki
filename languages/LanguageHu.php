@@ -35,7 +35,14 @@ include_once("LanguageUtf8.php");
 );
 
 /* private */ $wgSkinNamesHu = array(
-	"Alap", "Nosztalgia", "Kölni kék", "Paddington", "Montparnasse"
+	'standard' => "Alap",
+	'nostalgia' => "Nosztalgia",
+	'cologneblue' => "Kölni kék",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesHu = array(

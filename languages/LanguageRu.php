@@ -36,7 +36,14 @@ if($wgMetaNamespace === FALSE)
 );
 
 /* private */ $wgSkinNamesRu = array(
-	"Стандартное", "Ностальгия", "Кельнское Синее"
+	'standard' => "Стандартное",
+	'nostalgia' => "Ностальгия",
+	'cologneblue' => "Кельнское Синее",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesRu = array(

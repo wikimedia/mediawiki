@@ -34,7 +34,14 @@
 );
 
 /* private */ $wgSkinNamesFi = array(
-	"Perus", "Nostalgia", "Kölnin sininen"
+	'standard' => "Perus",
+	'nostalgia' => "Nostalgia",
+	'cologneblue' => "Kölnin sininen",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesFi = array(

@@ -32,7 +32,14 @@ include_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgSkinNamesJa = array(
-	"標準", "ノスタルジア", "ケルンブルー"
+	'standard' => "標準",
+	'nostalgia' => "ノスタルジア",
+	'cologneblue' => "ケルンブルー",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgUserTogglesJa = array(

@@ -36,9 +36,14 @@ include_once( "LanguageUtf8.php" );
 );
 
 /* private */ $wgSkinNamesTa = array(
-	"இயல்பான", "பசுமை நினைவு (Nostalgia)", "கொலோன் (Cologne) நீலம் Blue",
-	# These next two are not enabled yet:
-	# "பாடிங்டன் (Paddington)", "மொண்ட்பார்னாசே (Montparnasse)"
+	'standard' => "இயல்பான",
+	'nostalgia' => "பசுமை நினைவு (Nostalgia)",
+	'cologneblue' => "கொலோன் (Cologne) நீலம் Blue",
+	'smarty' => "பாடிங்டன் (Paddington)",
+	'montparnasse' => "மொண்ட்பார்னாசே (Montparnasse)",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesTa = array(

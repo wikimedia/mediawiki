@@ -37,7 +37,14 @@
 );
 
 /* private */ $wgSkinNamesBg = array(
-  "Основен", "Носталгия", "Кьолнско синьо", "Paddington", "Montparnasse"
+	'standard' => "Основен",
+	'nostalgia' => "Носталгия",
+	'cologneblue' => "Кьолнско синьо",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesBg = array(

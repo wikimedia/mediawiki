@@ -33,7 +33,14 @@
 );
 
 /* private */ $wgSkinNamesMs = array(
-	"Standard", "Nostalgia", "Cologne Blue"
+	'standard' => "Standard",
+	'nostalgia' => "Nostalgia",
+	'cologneblue' => "Cologne Blue",
+	'smarty' => "Paddington",
+	'montparnasse' => "Montparnasse",
+	'davinci' => "DaVinci",
+	'mono' => "Mono",
+	'monobook' => "MonoBook"
 );
 
 /* private */ $wgMathNamesMs = array(
