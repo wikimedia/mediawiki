@@ -28,6 +28,11 @@
 class WebRequest {
 	function WebRequest() {
 		$this->checkMagicQuotes();
+		global $wgUsePathInfo;
+		if( isset( $_SERVER['PATH_INFO'] ) && $wgUsePathInfo ) {
+			# Stuff it!
+			$_REQUEST['title'] = substr( $_SERVER['PATH_INFO'], 1 );
+		}
 		global $wgUseLatin1;
 		if( !$wgUseLatin1 ) {
 			require_once( 'normal/UtfNormal.php' );
@@ -64,7 +69,7 @@ class WebRequest {
 			if( is_array( $val ) ) {
 				$this->normalizeUnicode( $arr[$key ] );
 			} else {
-				$arr[$key] = UtfNormal::toNFC( $val );
+				$arr[$key] = UtfNormal::cleanUp( $val );
 			}
 		}
 	}
