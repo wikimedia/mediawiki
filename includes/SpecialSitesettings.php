@@ -62,6 +62,7 @@ class SiteSettingsForm extends HTMLForm {
 			$this->checkbox( 'wgUseDatabaseMessages' ) .
 			$this->checkbox( 'wgUseCategoryMagic' ) .
 			$this->checkbox( 'wgUseCategoryBrowser' ) .
+			$this->checkbox( 'wgDisableLangConversion' ).
 			$this->textbox( 'wgHitcounterUpdateFreq' ) .
 			$this->textbox( 'wgExtraSubtitle' ).
 			$this->textbox( 'wgSiteSupportPage' ) .

@@ -102,6 +102,18 @@ class LanguageZh extends LanguageZh_cn {
 		return $t;
 	}
 
+	# only convert titles having more than one character
+	function convertTitle($text) {
+		$len=0;
+		if( function_exists( 'mb_strlen' ) )
+			$len = mb_strlen($text);
+		else
+			$len = strlen($text)/3;
+		if($len>1)
+			return $this->autoConvert( $text);
+		return $text;
+	}
+
 	function getVariants() {
 		return array("zh-cn", "zh-tw", "zh-sg", "zh-hk");
 	}

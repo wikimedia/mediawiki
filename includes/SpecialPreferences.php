@@ -312,7 +312,7 @@ class PreferencesForm {
 	function mainPrefsForm( $err ) {
 		global $wgUser, $wgOut, $wgLang, $wgContLang, $wgUseDynamicDates, $wgValidSkinNames;
 		global $wgAllowRealName, $wgImageLimits;
-		global $wgLanguageNames;
+		global $wgLanguageNames, $wgDisableLangConversion;
 
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
@@ -406,28 +406,28 @@ class PreferencesForm {
 		$wgOut->addHtml("</select></label></div>\n" );
 
 		/* see if there are multiple language variants to choose from*/
-		$variants = $wgContLang->getVariants();
-		$size=sizeof($variants);
+		if(!$wgDisableLangConversion) {
+			$variants = $wgContLang->getVariants();
+			$size=sizeof($variants);
 		
-		$variantArray=array();
-		foreach($variants as $v) {
-			$v = str_replace( '_', '-', strtolower($v));
-			if($name=$wgLanguageNames[$v]) {
-				$variantArray[$v] = $name;
+			$variantArray=array();
+			foreach($variants as $v) {
+				$v = str_replace( '_', '-', strtolower($v));
+				if($name=$wgLanguageNames[$v]) {
+					$variantArray[$v] = $name;
+				}
 			}
-		}
-		$size=sizeof($variantArray);
+			$size=sizeof($variantArray);
 		
-		if(sizeof($variantArray) > 1) {
+			if(sizeof($variantArray) > 1) {
 			$wgOut->addHtml("
 				<div><label>$yv: <select name=\"wpUserVariant\">\n");
-			foreach($variantArray as $code => $name) {
-				$sel = ($code==$this->mUserVariant)? 'selected="selected"' : '';
-				$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
+				foreach($variantArray as $code => $name) {
+					$sel = ($code==$this->mUserVariant)? 'selected="selected"' : '';
+					$wgOut->addHtml("\t<option value=\"$code\" $sel>$code - $name</option>\n");
+				}
 			}
-			$wgOut->addHtml("</select></label></div>\n");
 		}
-
 		# Fields for changing password
 		#
 		$this->mOldpass = htmlspecialchars( $this->mOldpass );

@@ -313,6 +313,13 @@ $wgTranslateNumerals = true; # For Hindi and Arabic use local numerals instead
 $wgUseDatabaseMessages = true;
 $wgMsgCacheExpiry	= 86400;
 $wgPartialMessageCache = false;
+
+# Whether to enable language variant conversion. Currently only zh 
+# supports this function, to convert between Traditional and Simplified
+# Chinese. This flag is meant to isolate the (untested) conversion 
+# code, so that if it breaks, only zh will be affected
+$wgDisableLangConversion = true;
+
 # Miscellaneous configuration settings
 #
 
