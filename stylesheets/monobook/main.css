@@ -788,6 +788,7 @@ form #content {
    left: -8em;
 }
 
+/* js pref toc */
 #preftoc { 
     float: left;
     margin: 1em 1em 1em 1em;
@@ -808,6 +809,7 @@ form #content {
     float: left;
     margin-top: 1em;
 }
+fieldset.operaprefsection { margin-left: 15em }
 
 /* 
 ** IE/Mac fixes, hope to find a validating way to move this
