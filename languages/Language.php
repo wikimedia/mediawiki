@@ -459,7 +459,7 @@ $wgLanguageNamesEn =& $wgLanguageNames;
 
 # Bits of text used by many pages:
 #
-"categories" => "Page categories",
+"categories" => "Categories",
 "category" => "category",
 "category_header" => "Articles in category \"$1\"",
 "subcategories" => "Subcategories",

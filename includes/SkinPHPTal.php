@@ -88,7 +88,7 @@
 			
 			$tpl->setRef( "thispage", &$this->thispage );
 			$tpl->set( "subtitle", $out->getSubtitle() );
-			$tpl->set( 'catlinks', getCategories());
+			$tpl->set( 'catlinks', $this->getCategories());
 			if( $wgOut->isSyndicated() ) {
 				$feeds = array();
 				foreach( $wgFeedClasses as $format => $class ) {

@@ -159,12 +159,18 @@ $wgEditEncoding		= "x";
 
 # Teksteroj uzataj fare de diversaj paĝoj:
 #
+"categories" => "Kategorioj",
+"category" => "kategorio",
+"category_header" => "Artikoloj en kategorio \"$1\"",
+"subcategories" => "Subkategorioj",
+
 # Tiuj literoj, kiuj aperu kiel parto de la ligilo en formo "[[lingvo]]jn" ktp:
 "linktrail"     => "/^([a-z]+)(.*)\$/sD",
 "mainpage"		=> "Ĉefpaĝo",
 "about"			=> "Enkonduko",
 "aboutwikipedia" => "Pri {{SITENAME}}", #FIXME
 "aboutpage"		=> "{{ns:4}}:Enkonduko",
+'article'		=> "Artikolo",
 "help"			=> "Helpo",
 "helppage"		=> "{{ns:4}}:Helpo",
 "wikititlesuffix" => "{{SITENAME}}",
@@ -196,6 +202,7 @@ $wgEditEncoding		= "x";
 "search"		=> "Serĉu",
 "go"			=> "Ek",
 "history"		=> "Malnovaj versioj",
+"history_short"	=> "Historio",
 "printableversion" => "Presebla versio", 
 "editthispage"	=> "Redaktu la paĝon",
 "deletethispage" => "Forigu la paĝon",
@@ -206,6 +213,8 @@ $wgEditEncoding		= "x";
 "postcomment"   => "Afiŝu komenton",
 "articlepage"	=> "Vidu la artikolon",
 "subjectpage"	=> "Vidu la artikolon", #FIXME: ?
+"talk"			=> "Diskuto",
+"toolbox"		=> "Iloj",
 "userpage"		=> "Vidu personan paĝon",
 "wikipediapage"	=> "Vidu meta-paĝon",
 "imagepage"		=> "Vidu dosieropaĝon",
