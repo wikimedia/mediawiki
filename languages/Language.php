@@ -194,7 +194,8 @@ $wgLanguageNamesEn =& $wgLanguageNames;
     MAG_NS                   => array( 0,    'NS:'                    ),
 	MAG_LOCALURL             => array( 0,    'LOCALURL:'              ),
 	MAG_LOCALURLE            => array( 0,    'LOCALURLE:'             ),
-	MAG_SERVER               => array( 0,    'SERVER'                 )
+	MAG_SERVER               => array( 0,    'SERVER'                 ),
+	MAG_GRAMMAR              => array( 0,    'GRAMMAR:'               )
 );
 
 #-------------------------------------------------------------------
@@ -1786,10 +1787,16 @@ class Language {
 			return $ellipsis . $string;
 		}
 	}
-	
+
 	# Get a regex fragment for a single whitespace character
 	function getWhiteCharRegex() {
 		return '[\\s\\xa0_]';
+	}
+
+	# Grammatical transformations, needed for inflected languages
+	# Invoked by putting {{grammar:case|word}} in a message
+	function convertGrammar( $word, $case ) {
+		return $word;
 	}
 }
 

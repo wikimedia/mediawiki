@@ -1590,11 +1590,12 @@ cl_sortkey" ;
 		# PHP global rebinding syntax is a bit weird, need to use the GLOBALS array
 		$GLOBALS['wgCurParser'] =& $this;
 
-
-		if ( $this->mOutputType == OT_HTML ) {
+		if ( $this->mOutputType == OT_HTML || $this->mOutputType == OT_MSG ) {
 			# Variable substitution
 			$text = preg_replace_callback( "/{{([$nonBraceChars]*?)}}/", 'wfVariableSubstitution', $text );
-
+		}
+		
+		if ( $this->mOutputType == OT_HTML ) {
 			# Argument substitution
 			$text = preg_replace_callback( "/(\\n?){{{([$titleChars]*?)}}}/", 'wfArgSubstitution', $text );
 		}
@@ -1759,6 +1760,15 @@ cl_sortkey" ;
 			$text = $this->mVariables[$part1];
 			$found = true;
 			$this->mOutput->mContainsOldMagic = true;
+		}
+	
+		# GRAMMAR
+		if ( !$found && $argc == 1 ) {
+			$mwGrammar =& MagicWord::get( MAG_GRAMMAR );
+			if ( $mwGrammar->matchStartAndRemove( $part1 ) ) {
+				$text = $wgLang->convertGrammar( $args[0], $part1 );
+				$found = true;
+			}
 		}
 /*
 		# Arguments input from the caller

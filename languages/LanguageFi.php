@@ -17,8 +17,8 @@
 	1	=> "Keskustelu",
 	2	=> "Käyttäjä",
 	3	=> "Keskustelu_käyttäjästä",
-	4	=> "Wikipedia",
-	5	=> "Keskustelu_Wikipediasta",
+	4	=> $wgMetaNamespace,
+	5	=> "{$wgMetaNamespace}-keskustelu", 
 	6	=> "Kuva",
 	7	=> "Keskustelu_kuvasta",
 	8	=> "MediaWiki",
@@ -26,7 +26,7 @@
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsFi = array(
 	"Ei mitään", "Tekstin mukana, vasen", "Tekstin mukana, oikea",
@@ -140,17 +140,17 @@
 "linktrail"		=> "/^((?:ä|ö|[a-z])+)(.*)\$/sD",
 "mainpage"		=> "Etusivu",
 "about"			=> "Tietoja",
-"aboutwikipedia" => "Tietoja Wikipediasta",
-"aboutpage"		=> "Wikipedia:Tietoja",
+"aboutwikipedia" => "Tietoja {{grammar:elative|{{SITENAME}}}}",
+"aboutpage"		=> "{{ns:project}}:Tietoja",
 "help"			=> "Ohje",
-"helppage"		=> "Wikipedia:Ohje",
-"wikititlesuffix" => "Wikipedia",
+"helppage"		=> "{{ns:project}}:Ohje",
+"wikititlesuffix" => "{{ns:project}}",
 "bugreports"	=> "Bugiraportit",
-"bugreportspage" => "Wikipedia:Bugiraportit",
+"bugreportspage" => "{{ns:project}}:Bugiraportit",
 "faq"			=> "FAQ",
-"faqpage"		=> "Wikipedia:FAQ",
+"faqpage"		=> "{{ns:project}}:FAQ",
 "edithelp"		=> "Muokkausohjeet",
-"edithelppage"	=> "Wikipedia:Kuinka_sivuja_muokataan",
+"edithelppage"	=> "{{ns:project}}:Kuinka_sivuja_muokataan",
 "cancel"		=> "Keskeytä",
 "qbfind"		=> "Etsi",
 "qbbrowse"		=> "Selaa",
@@ -189,7 +189,7 @@
 "gnunote" => "Kaikki teksti on saatavilla <a class=internal href='$wgScriptPath/GNU_FDL'>GNU Free Documentation -lisenssin</a> ehdoilla.",
 "printsubtitle" => "(Lähde: http://fi.wikipedia.org)",
 "protectedpage" => "Suojattu sivu",
-"administrators" => "Wikipedia:Ylläpitäjät",
+"administrators" => "{{ns:project}}:Ylläpitäjät",
 "sysoptitle"	=> "Vaatii ylläpitäjä-oikeudet",
 "sysoptext"	=> "Tämän toiminnon voi suorittaa vain käyttäjä, jolla on \"ylläpitäjä\"-oikeudet.
 Katso $1.",
@@ -230,7 +230,7 @@ MySQL palautti virheen \"<tt>$3: $4</tt>\".",
 "nodb"			=> "Tietokantaa $1 ei voitu valita",
 "readonly"		=> "Tietokanta on lukittu",
 "enterlockreason" => "Anna syy lukitukselle sekä arvio lukituksen poistamisajankohdalle.",
-"readonlytext"	=> "Wikipedian tietokanta on tällä hetkellä lukittu.
+"readonlytext"	=> "{{grammar:genitive|{{SITENAME}}}} tietokanta on tällä hetkellä lukittu.
 Uusia artikkeleita tai muita muutoksia ei voi tehdä.
 Syynä ovat todennäköisimmin rutiininomaiset tietokannan ylläpitotoimet.
 Tietokannan lukinneen ylläpitäjän selitys:
@@ -253,8 +253,8 @@ Tietokannan lukinneen ylläpitäjän selitys:
 # Login and logout pages
 #
 "logouttitle"	=> "Käyttäjän uloskirjautuminen",
-"logouttext"	=> "Olet nyt kirjautunut ulos Wikipediasta.
-Voit jatkaa Wikipedian käyttöä nimettömänä, tai
+"logouttext"	=> "Olet nyt kirjautunut ulos {{grammar:elative|{{SITENAME}}}}.
+Voit jatkaa {{grammar:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai
 kirjautua uudelleen sisään samana tai eri käyttäjänä.\n",
 
 "welcomecreation" => "<h2>Tervetuloa, $1!</h2><p>
@@ -284,14 +284,14 @@ Käyttäjätunnuksesi on luotu.
 "loginerror"	=> "Sisäänkirjautumisvirhe",
 "noname"		=> "Et ole määritellyt kelvollista käyttäjänimeä.",
 "loginsuccesstitle" => "Sisäänkirjoittautuminen onnistui",
-"loginsuccess"	=> "Olet nyt kirjautunut Wikipediaan käyttäjänä \"$1\".",
+"loginsuccess"	=> "Olet nyt kirjautunut {{grammar:illative|{{SITENAME}}}} käyttäjänä \"$1\".",
 "nosuchuser"	=> "Käyttäjänimeä \"$1\"  ei ole olemassa.
 Tarkista kirjoititko nimen oikein, tai käytä alla olevaa lomaketta uuden käyttäjätunnuksen luomiseksi.",
 "wrongpassword"	=> "Syöttämäsi salasana ei ole oikein. Ole hyvä ja yritä uudelleen.",
 "mailmypassword" => "Lähetä minulle uusi salasana sähköpostilla",
-"passwordremindertitle" => "Salasanamuistutus Wikipediasta",
+"passwordremindertitle" => "Salasanamuistutus {{grammar:elative|{{SITENAME}}}}",
 "passwordremindertext" => "Joku (todennäköisesti sinä), IP-osoitteesta $1
-pyysi Wikipediaa lähettämään uuden salasanan.
+pyysi {{grammar:partitive|{{SITENAME}}}} lähettämään uuden salasanan.
 Salasana käyttäjälle \"$2\" on nyt \"$3\".
 Kirjaudu sisään ja vaihda heti salasanasi.",
 "noemail"		=> "Käyttäjälle \"$1\" ei ole määritelty sähköpostiosoitetta.",
@@ -308,9 +308,9 @@ sähköpostiosoitteeseen. Kirjaudu sisään uudestaan, kun olet saanut sen.",
 "blockedtitle"	=> "Pääsy käyttäjältä estetty",
 "blockedtext"	=> "$1 on estänyt pääsysi Wikpediaan joko käyttäjänimesi tai IP-osoitteesi perusteella.
 Syynä tähän on:<br>''$2''<p>Ota yhteyttä henkilöön $1 tai johonkuhun
-muuhun [[Wikipedia:ylläpitäjät|ylläpitäjään]] keskustellaksesi estosta.",
+muuhun [[{{ns:project}}:ylläpitäjät|ylläpitäjään]] keskustellaksesi estosta.",
 "newarticle"	=> "(uusi)",
-"newarticletext" => "Olet seurannut linkkiä sivulle, jota ei ole vielä olemassa.Luodaksesi sivun, kirjoita alla olevaan laatikkoon  (katso [[Wikipedia:Ohje|ohjeesta]] lisätietoja). Jos tarkoituksesi ei ole luoda uutta sivua, paina selaimesi '''back'''-painiketta.",
+"newarticletext" => "Olet seurannut linkkiä sivulle, jota ei ole vielä olemassa.Luodaksesi sivun, kirjoita alla olevaan laatikkoon  (katso [[{{ns:project}}:Ohje|ohjeesta]] lisätietoja). Jos tarkoituksesi ei ole luoda uutta sivua, paina selaimesi '''back'''-painiketta.",
 "anontalkpagetext" => "----\n''Tämä on nimettömän käyttäjän keskustelusivu. Hän ei ole joko luonut itselleen käyttäjätunnusta tai ei käytä sitä. Siksi hänet tunnistetaan nyt numeerisella [[IP-osoite|IP-osoitteella]]. Kyseinen IP-osoite voi olla useamman henkilön käytössä. Jos olet nimetön käyttäjä, ja sinusta tuntuu, että merkityksettömiä kommentteja on ohjattu sinulle, [[Erikoissivut:Sisäänkirjautuminen|luo itsellesi käyttäjätunnus tai kirjaudu sisään]] välttääksesi jatkossa sekaannukset muiden nimettömien käyttäjien kanssa.''",
 "noarticletext" => "(Tällä sivulla ei ole vielä tekstiä)",
 "updated"		=> "(Päivitetty)",
@@ -329,7 +329,7 @@ Sinun täytyy yhdistää muutoksesi olemassa olevaan tekstiin.
 "editingold"	=> "<strong>VAROITUS: Olet muokkaamassa vanhentunutta versiota tämän sivun tekstistä.
 Jos tallennat sen, kaikki tämän version jälkeen tehdyt muutokset katoavat.</strong>\n",
 "yourdiff"	=> "Eroavaisuudet",
-"copyrightwarning" => "Huomaa, että kaikki Wikipediaan tehtävät tuotokset 
+"copyrightwarning" => "Huomaa, että kaikki {{grammar:illative|{{SITENAME}}}} tehtävät tuotokset 
 katsotaan julkaistuksi GNU Free Documentation -lisenssin mukaisesti 
 (katso sivulta $1 yksityiskohtia). Jos et halua, että kirjoitustasi 
 muokataan armottomasti ja uudelleenkäytetään vapaasti, älä tallenna kirjoitustasi.<br>
@@ -437,13 +437,13 @@ välinen aikaero tunteina.",
 #
 "changes" => "muutokset",
 "recentchanges" => "Tuoreet muutokset",
-"recentchangestext" => "Tältä sivulta voi seurata tuoreita Wikipediaan tehtyjä muutoksia.
-[[Wikipedia:Tervetuloa Wikipediaan|Tervetuloa Wikipediaan!]]
-Katso seuraavia sivuja: [[Wikipedia:Kysymyksiä ja vastauksia Wikipediasta|Useimmin kysyttyjä asioita]], [[Wikipedia:Sääntöjä ja ohjeita|Wikipedian säännöt]]
-(erityisesti [[Wikipedia:Merkitsemiskäytäntöjä|Merkitsemiskäytännöt]],
-[[Wikipedia::Neutraali näkökulma|Neutraali näkökulma]]),
-ja [[Wikipedia:Aloittelijan virheitä|Aloittelijan virheitä]].
-Jos haluat nähdä Wikipedian onnistuvan, on erittäin tärkeää, että et lisää materiaalia,
+"recentchangestext" => "Tältä sivulta voi seurata tuoreita {{grammar:illative|{{SITENAME}}}} tehtyjä muutoksia.
+[[{{ns:project}}:Tervetuloa {{grammar:illative|{{SITENAME}}}}|Tervetuloa {{grammar:illative|{{SITENAME}}}}!]]
+Katso seuraavia sivuja: [[{{ns:project}}:Kysymyksiä ja vastauksia {{grammar:elative|{{SITENAME}}}}|Useimmin kysyttyjä asioita]], [[{{ns:project}}:Sääntöjä ja ohjeita|{{grammar:genitive|{{SITENAME}}}} säännöt]]
+(erityisesti [[{{ns:project}}:Merkitsemiskäytäntöjä|Merkitsemiskäytännöt]],
+[[{{ns:project}}:Neutraali näkökulma|Neutraali näkökulma]]),
+ja [[{{ns:project}}:Aloittelijan virheitä|Aloittelijan virheitä]].
+Jos haluat nähdä {{grammar:genitive|{{SITENAME}}}} onnistuvan, on erittäin tärkeää, että et lisää materiaalia,
 jonka käyttöä rajoittavat [[Wikipedia ja Tekijänoikeudet|tekijänoikeudet]].
 Oikeudelliset seuraukset voivat vahingoittaa projektia vakavasti, joten kunnioita muiden tekijänoikeuksia.
 Katso myös [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta discussion].",
@@ -478,7 +478,7 @@ tallentaaksesi tiedoston.",
 "uploadfile"	=> "Tallenna tiedosto",
 "uploaderror"	=> "Tallennusvirhe",
 "uploadtext"	=> "<strong>SEIS!</strong> Ennen kuin tallennat tänne,
-tutustu ja seuraa Wikipedian <a href=\"" .
+tutustu ja seuraa {{grammar:genitive|{{SITENAME}}}} <a href=\"" .
 wfLocalUrlE( "Wikipedia:Kuvien käyttösäännöt" ) . "\">kuvienkäyttösääntöihin</a>.
 <p>Näyttääksesi tai etsiäksesi aiemmin tallennettuja kuvia,
 katso <a href=\"" . wfLocalUrlE( "Erityissivut:Luettelo kuvista" ) .
@@ -498,7 +498,7 @@ Nimeä tiedostosi kuvaavasti välttääksesi sekaannuksia.
 Liittääksesi kuvan artikkeliin käytä seuraavan muotoista linkkiä
 <b>[[Kuva:tiedosto.jpg]]</b> tai <b>[[Kuva:tiedosto.png|kuvausteksti]]</b>
 tai <b>[[media:tiedosto.ogg]]</b> äänille..
-<p>Huomaa, että Wikipedian sivuilla muut voivat muokata tai poistaa tallentamasi 
+<p>Huomaa, että {{grammar:genitive|{{SITENAME}}}} sivuilla muut voivat muokata tai poistaa tallentamasi 
 tiedoston, jos he katsovat, että se ei palvele tietosanakirjan tarpeita, ja 
 sinun tallentamismahdollisuutesi voidaan estää, jos väärinkäytät järjestelmää.",
 "uploadlog"		=> "Tallennusloki",
@@ -512,7 +512,7 @@ Kaikki ajat näytetään palvelimen aikoina (UTC).
 "filedesc"	=> "Yhteenveto",
 "affirmation"	=> "Lupaan, että tämän tiedoston tekijänoikeuksien haltija sallii sen 
 käytön $1 lisenssin mukaisesti.",
-"copyrightpage" => "Wikipedia:Wikipedia ja tekijänoikeudet",
+"copyrightpage" => "{{ns:project}}:Wikipedia ja tekijänoikeudet",
 "copyrightpagename" => "Wikipedia ja tekijänoikeudet",
 "uploadedfiles"	=> "Tallennetut tiedostot",
 "noaffirmation" => "Vahvista, ettei lähettämäsi tiedosto riko tekijänoikeuksia.",
@@ -562,7 +562,7 @@ tämä vanha versio, (palauta) = palauta kuva tähän vanhaan versioon.
 "sitestats"		=> "Sivuston tilastoja",
 "userstats"		=> "Käyttäjätilastoja",
 "sitestatstext" => "Tietokannassa on yhteensä <b>$1</b> sivua.
-Tähän on laskettu mukaan keskustelusivut, Wikipediasta kertovat sivut,
+Tähän on laskettu mukaan keskustelusivut, {{grammar:elative|{{SITENAME}}}} kertovat sivut,
 lyhyet \"tynkäsivut\", uudelleenohjaukset sekä muita sivuja joita
 ei voi pitää kunnollisina artikkeleina. Nämä poislukien tietokannassa on
 <b>$2</b> sivua joita voidaan todennäköisesti pitää oikeina artikkeleina.<p>
@@ -579,7 +579,7 @@ Keskimäärin sivua on muokattu  <b>$5</b> kertaa, ja muokkausta kohden sivua on
 
 "maintenancebacklink"	=> "Takaisin ylläpitosivulle",
 "disambiguations"	=> "Tarkennussivu",
-"disambiguationspage"	=> "Wikipedia:Linkkejä_tarkennussivuihin",
+"disambiguationspage"	=> "{{ns:project}}:Linkkejä_tarkennussivuihin",
 "disambiguationstext"	=> "Seuraavat artikkelit linkittävät <i>tarkennussivuun</i>. Sen sijasta niiden pitäisi linkittää asianomaiseen aiheeseen.<br>Sivua kohdellaan tarkennussivuna jos siihen on linkki sivulta $1.<br>Linkkejä muihin nimiavaruuksiin <i>ei</i> ole listattu tässä.",
 "doubleredirects"	=> "Kaksinkertaiset uudelleenohjaukset",
 "doubleredirectstext"	=> "<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECT:in jälkeen on tekstiä.<br>\nJokaisella rivillä on linkit ensimmäiseen ja toiseen uudelleenohjaukseen sekä toisen uudelleenohjauksen kohteen ensimmäiseen riviin, eli yleensä \"oikeaan\" kohteeseen, johon ensimmäisen uudelleenohjauksen pitäisi osoittaa.",
@@ -675,7 +675,7 @@ Tulevaisuudessa sivuun ja sen keskustelusivuun tehtävät muutokset listataan t�
 "confirm"		=> "Vahvista",
 "confirmdelete" => "Vahvista poisto",
 "deletesub"		=> "(Poistetaan \"$1\")",
-"confirmdeletetext" => "Olet tuhoamassa pysyvästi sivun tai kuvan ja kaiken sen historian tietokannasta. Vahvista, että todella aiot tehdä näin ja että ymmärrät seuraukset, sekä että teet tämän [[Wikipedia:Policy|Wikipedian käytännön]] mukaisesti.",
+"confirmdeletetext" => "Olet tuhoamassa pysyvästi sivun tai kuvan ja kaiken sen historian tietokannasta. Vahvista, että todella aiot tehdä näin ja että ymmärrät seuraukset, sekä että teet tämän [[{{ns:project}}:Policy|{{grammar:genitive|{{SITENAME}}}} käytännön]] mukaisesti.",
 "confirmcheck"	=> "Kyllä, haluan varmasti poistaa tämän.",
 "actioncomplete" => "Toiminta suoritettu",
 "deletedtext"	=> "\"$1\" on poistettu.
@@ -710,7 +710,7 @@ ja olemassa olevaa versiota ei korvata automaattisesti.",
 "undeletebtn" => "Palauta!",
 "undeletedarticle" => "palautettiin \"$1\"",
 "undeletedtext"   => "Artikkeli [[$1]] on palautettu onnistuneesti.
-Lista viimeisimmistä poistoista ja palautuksista on sivulla [[Wikipedia:poistoloki]].",
+Lista viimeisimmistä poistoista ja palautuksista on sivulla [[{{ns:project}}:poistoloki]].",
 
 # Contributions
 #
@@ -735,7 +735,7 @@ Lista viimeisimmistä poistoista ja palautuksista on sivulla [[Wikipedia:poistol
 # Block/unblock IP
 #
 "blockip"	=> "Aseta muokkausesto",
-"blockiptext"	=> "Käytä allaolevaa lomaketta estämään kirjoitusoikeudet tietyltä IP-osoitteelta. Näin pitäisi tehdä vain vandalismin estämiseksi, ja samalla on noudatettava [[Wikipedia:Policy|Wikipedian käytäntöjä]].
+"blockiptext"	=> "Käytä allaolevaa lomaketta estämään kirjoitusoikeudet tietyltä IP-osoitteelta. Näin pitäisi tehdä vain vandalismin estämiseksi, ja samalla on noudatettava [[{{ns:project}}:Policy|{{grammar:genitive|{{SITENAME}}}} käytäntöjä]].
 Ilmoita syy alapuolella (esimerkiksi lista vandalisoiduista sivuista).",
 "ipaddress"		=> "IP-osoite",
 "ipbreason"		=> "Syy",
@@ -775,12 +775,12 @@ Ilmoita syy alapuolella (esimerkiksi lista vandalisoiduista sivuista).",
 # SQL query
 #
 "asksql"		=> "SQL-kysely",
-"asksqltext"	=> "Käytä allaolevaa lomaketta tehdäksesi suoria kyselyitä Wikipedian tietokannasta.
+"asksqltext"	=> "Käytä allaolevaa lomaketta tehdäksesi suoria kyselyitä {{grammar:genitive|{{SITENAME}}}} tietokannasta.
 Merkkijonovakioita merkitään yksinkertaisilla lainausmerkeillä ('näin').
 Kyselyt voivat usein kuormittaa palvelinta pahastikin, joten käytä tätä toimintoa säästeliäästi.",
 "sqlquery"		=> "Kirjoita kysely",
 "querybtn"		=> "Lähetä kysely",
-"selectonly"	=> "Vain Wikipedian kehittäjät voivat tehdä muita kuin \"SELECT\"-hakuja.",
+"selectonly"	=> "Vain {{grammar:genitive|{{SITENAME}}}} kehittäjät voivat tehdä muita kuin \"SELECT\"-hakuja.",
 "querysuccessful" => "Kysely onnistui",
 
 # Move page
@@ -817,6 +817,10 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 require_once( "LanguageUtf8.php" );
 
 class LanguageFi extends LanguageUtf8 {
+	/*function LanguageFi() {
+		global $wgNamespaceNamesFi, $wgMetaNamespace;
+		$wgNamespaceNamesFi[NS_WP_TALK] = 'Keskustelu_' . $this->convertGrammar( $wgMetaNamespace, 'elative' );
+	}*/
 
 	function getNamespaces() {
 		global $wgNamespaceNamesFi;
@@ -932,8 +936,38 @@ class LanguageFi extends LanguageUtf8 {
 	function getMessage( $key )
 	{
 		global $wgAllMessagesFi;
-		return $wgAllMessagesFi[$key];
+		return @$wgAllMessagesFi[$key];
 	}
 
+	# Convert from the nominative form of a noun to some other case
+	# Invoked with {{grammar:case|word}}
+	function convertGrammar( $word, $case ) {
+		# These rules are not perfect, but they are currently only used for site names so it doesn't
+		# matter if they are wrong sometimes. Just add a special case for your site name if necessary. 
+		switch ( $case ) {
+			case 'genitive':
+				$word = "{$word}n";
+				break;
+			case 'elative':
+				if ( mb_substr($word, -1) == 'y' ) {
+					$word = "{$word}stä";
+				} else {
+					$word = "{$word}sta";
+				}
+				break;
+			case 'partitive':
+				if ( mb_substr($word, -1) == 'y' ) {
+					$word = "{$word}ä";
+				} else {
+					$word = "{$word}a";
+				}
+				break;
+			case 'illative':
+				# Double the last letter and add "n"
+				# mb_substr has a compatibility function in GlobalFunctions.php
+				$word = $word . mb_substr($word,-1) . 'n';
+		}
+		return $word;
+	}
 }
 ?>
