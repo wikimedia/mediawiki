@@ -207,7 +207,7 @@ textarea {
 }
 /* hide this from ie/mac and konq2.2 */
 @media All {
-    input {
+    head:first-child+body input {
         font-family: "Bitstream Vera Sans", "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
         visibility: visible;
         border: 1px solid #2f6fab;  
@@ -422,6 +422,27 @@ table.rimage {
 .urlexpansion,
 .hiddenStructure {
     display: none;
+}
+/*
+** Diff rendering
+*/
+table.diff {
+        background:white;
+}
+td.diff-otitle {
+        background:#ffffff;
+}
+td.diff-ntitle {
+        background:#ffffff;
+}
+td.diff-addedline {
+        background:#ccffcc;
+}
+td.diff-deletedline {
+        background:#ffffaa;
+}
+td.diff-context {
+        background:#eeeeee;
 }
 
 /* 
@@ -655,6 +676,8 @@ div.townBox dl dd {
     text-align: center;
 }
 input.searchButton {
+    background-color: white;
+    border: 1px solid #2f6fab;  
     margin-top:1px;
     padding: 0 0.4em;
     font-size: 95%;
@@ -668,6 +691,7 @@ input.searchButton {
 }
 
 #searchGadget {
+    border: 1px solid #2f6fab;  
     width:11.0em;
     margin: 0 0 0 0;
     font-size: 95%;
@@ -946,21 +970,3 @@ head:first-child+body #portlet-personal {
 /* debugging tool.. */
 /*div{ border:1px solid #000000;}*/
 
-table.diff {
-        background:white;
-}
-td.diff-otitle {
-        background:#ffffff;
-}
-td.diff-ntitle {
-        background:#ffffff;
-}
-td.diff-addedline {
-        background:#ccffcc;
-}
-td.diff-deletedline {
-        background:#ffffaa;
-}
-td.diff-context {
-        background:#eeeeee;
-}
