@@ -26,7 +26,7 @@ require_once("LanguageUtf8.php");
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsSq = array(
 	"Asgjë", "Lidhur majtas", "Lidhur djathtas", "Fluturo majtas"

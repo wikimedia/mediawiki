@@ -30,7 +30,7 @@ require_once( "LanguageUtf8.php" );
 	NS_HELP_TALK        => "Hjälp_diskussion",
 	NS_CATEGORY	    => "Kategori",
 	NS_CATEGORY_TALK    => "Kategoridiskussion"
-);
+) + $wgNamespaceNamesEn;
 
 /* inherit standard defaults */
 

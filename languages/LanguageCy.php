@@ -18,7 +18,7 @@
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsCy = array(
 	"Dim", "Sefydlog chwith", "Sefydlog de", "Arnawf de"

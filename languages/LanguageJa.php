@@ -28,7 +28,7 @@ require_once( "LanguageUtf8.php" );
 	NS_HELP_TALK      => "ヘルプ‐ノート", /* Help_talk */
 	NS_CATEGORY       => "Category", /* Category */
 	NS_CATEGORY_TALK  => "Category‐ノート" /* Category_talk */
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsJa = array(
 	"なし", "左端", "右端", "ウィンドウの左上に固定"

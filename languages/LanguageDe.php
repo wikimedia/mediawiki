@@ -32,7 +32,7 @@ if($wgMetaNamespace === FALSE)
         NS_HELP_TALK        => "Hilfe_Diskussion",
         NS_CATEGORY         => "Kategorie",
         NS_CATEGORY_TALK    => "Kategorie_Diskussion"
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsDe = array(
 	"Keine", "Links, fest", "Rechts, fest", "Links, schwebend"

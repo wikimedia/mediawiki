@@ -27,7 +27,7 @@
   NS_HELP_TALK        => 'Помощ_беседа', # 13
   NS_CATEGORY         => 'Категория', # 14
   NS_CATEGORY_TALK    => 'Категория_беседа' # 15
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsBg = array(
   'Без меню', 'Неподвижно вляво', 'Неподвижно вдясно', 'Плаващо вляво'

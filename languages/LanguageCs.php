@@ -22,7 +22,7 @@
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 # Zdědit apriorní preference: wgDefaultUserOptionsEn
 

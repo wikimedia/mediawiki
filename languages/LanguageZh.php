@@ -28,7 +28,7 @@ require_once( "LanguageUtf8.php" );
 	NS_CATEGORY         => "Category",
 	NS_CATEGORY_TALK    => "Category_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsZh = array(
         "无", /* "None" */ 

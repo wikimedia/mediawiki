@@ -37,7 +37,7 @@ require_once( "LanguageUtf8.php" );
 	14  => "Kategori",
 	15  => "Kategori_diskussion"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsDa = array(
 	"Ingen", "Fast venstre", "Fast højre", "Flydende venstre"

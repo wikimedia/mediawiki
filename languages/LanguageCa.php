@@ -23,7 +23,7 @@
 	NS_HELP_TALK		=> 'Ajuda_Discussió',
 	NS_CATEGORY			=> 'Categoria',
 	NS_CATEGORY_TALK	=> 'Categoria_Discussió'
-);
+) + $wgNamespaceNamesEn;
 
 /* Note that some default options can be customized -- see
    '$wgDefaultUserOptionsEn' in Language.php */

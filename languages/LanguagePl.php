@@ -39,7 +39,7 @@ if( $wgMetaNamespace == "Wikipedia" ) {
     NS_HELP_TALK        => "Dyskusja_pomocy",
     NS_CATEGORY         => "Kategoria",
     NS_CATEGORY_TALK    => "Dyskusja_kategorii"
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsPl = array(
         "Brak", "Stały, z lewej", "Stały, z prawej", "Unoszący się, z lewej"

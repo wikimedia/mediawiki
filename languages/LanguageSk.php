@@ -21,7 +21,7 @@ require_once("LanguageUtf8.php");
 	10  => "Template",
 	11  => "Template_talk"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsSk = array(
 	"None", "Fixed left", "Fixed right", "Floating left"

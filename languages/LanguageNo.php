@@ -26,7 +26,7 @@
 	NS_HELP_TALK      => "Hjelpdiskusjon",
 	NS_CATEGORY       => "Kategori",
 	NS_CATEGORY_TALK  => "Kategoridiskusjon",
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsNo = array(
 	"Ingen", "Fast venstre", "Fast høyre", "Flytende venstre"

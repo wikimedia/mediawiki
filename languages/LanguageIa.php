@@ -24,7 +24,7 @@
 	11  => "Template_talk"
 
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsIa = array(
 	"Necun", "Fixe a sinistra", "Fixe a dextera", "Flottante a sinistra"

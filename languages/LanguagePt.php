@@ -30,7 +30,7 @@
     NS_CATEGORY		=> "Categoria",
     NS_CATEGORY_TALK	=> "Categoria_Discussão"
 
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgDefaultUserOptionsPt = array(
     "quickbar" => 1, "underline" => 1, "hover" => 1,

@@ -17,7 +17,7 @@ require_once("LanguageUtf8.php");
 	9 => "MediaWiki_talk",
 	10  => "Template",
 	11  => "Template_talk"
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgWeekdayNamesAr = array(
 	"الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس",

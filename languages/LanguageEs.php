@@ -32,7 +32,7 @@ require_once( "LanguageUtf8.php" );
 	NS_HELP_TALK      => "Ayuda_Discusión",
 	NS_CATEGORY       => "Category",
 	NS_CATEGORY_TALK  => "Category_talk",
-);
+) + $wgNamespaceNamesEn;
 
 /* private */ $wgQuickbarSettingsEs = array(
 
