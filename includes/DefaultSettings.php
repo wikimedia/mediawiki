@@ -137,6 +137,10 @@ $wgSharedUploadDirectory = "/var/www/wiki3/images";
 # accessible by all wikis, and you do not want to use the hash (path/a/aa/)
 # directory layout.
 $wgHashedSharedUploadDirectory = true;
+
+# Path on the file system where shared uploads can be found
+$wgSharedUploadDBname = "commons";
+
 # set true if the repository uses latin1 filenames
 $wgSharedLatin1=false;
 
@@ -653,12 +657,6 @@ $wgSVGConverters = array(
 	);
 $wgSVGConverter = 'ImageMagick'; # Pick one of the above
 $wgSVGConverterPath = ''; # If not in the executable PATH, specify
-
-
-# Set to a number of seconds to cache the HTML associated with an image. This 
-# is an emergency optimisation feature and will cause lots of problems. It is
-# recommended that the expiry be very short and that the users be warned.
-$wgImageHtmlCacheExpiry = 0;
 
 if( !isset( $wgCommandLineMode ) ) {
 	$wgCommandLineMode = false;

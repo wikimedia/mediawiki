@@ -268,6 +268,10 @@ class UploadForm {
 			                $this->mUploadDescription,
 			                $this->mUploadCopyStatus,
 			                $this->mUploadSource );
+
+			/* refresh image metadata cache */
+			new Image( $this->mUploadSaveName, true );
+
 			$this->showSuccess();
 		}
 	}

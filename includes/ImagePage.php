@@ -310,6 +310,9 @@ class ImagePage extends Article {
 			$article = new Article( $nt );
 			$article->doDeleteArticle( $reason ); # ignore errors
 
+			/* refresh image metadata cache */
+			new Image( $image, true );
+
 			$deleted = $image;
 		}
 
@@ -409,6 +412,10 @@ class ImagePage extends Article {
 			$wgOut->fileCopyError( "${archive}/{$oldimage}", $curfile );
 		}
 		wfRecordUpload( $name, $oldver, $size, wfMsg( "reverted" ) );
+
+		/* refresh image metadata cache */
+		new Image( $name, true );
+
 		# Squid purging
 		if ( $wgUseSquid ) {
 			$archUrl = wfImageArchiveUrl( $name );

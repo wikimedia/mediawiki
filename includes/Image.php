@@ -39,12 +39,13 @@ class Image
 	 * @param string $name name of the image, used to create a title object using Title::makeTitleSafe
 	 * @access public
 	 */
-	function Image( $name )
+	function Image( $name, $recache = false )
 	{
 		global $wgUploadDirectory,$wgHashedUploadDirectory,
 		       $wgUseSharedUploads, $wgSharedUploadDirectory, 
 		       $wgHashedSharedUploadDirectory,$wgUseLatin1,
-		       $wgSharedLatin1,$wgLang;
+		       $wgSharedLatin1,$wgLang,
+			   $wgMemc, $wgDBname;
 		
 		$this->attributesLoaded = false;
 		$this->name      = $name;
@@ -60,39 +61,91 @@ class Image
 		} else {
 			$this->imagePath = $wgUploadDirectory . '/' . $name;
 		}
-		$this->fileExists = file_exists( $this->imagePath);		
-		
-		# If the file is not found, and a shared upload directory 
-		# like the Wikimedia Commons is used, look for it there.
-		if (!$this->fileExists && $wgUseSharedUploads) {
-			# in case we're running a capitallinks=false wiki						
-			$sharedname=$wgLang->ucfirst($name);
-			$sharedtitle=$wgLang->ucfirst($this->title->getDBkey());
-			if($wgUseLatin1 && !$wgSharedLatin1) {				
-				$sharedname=utf8_encode($sharedname);
-				$sharedtitle=utf8_encode($sharedtitle);					
+
+		$n = strrpos( $name, '.' );
+		$this->extension = strtolower( $n ? substr( $name, $n + 1 ) : '' );
+		$gis = false;
+		$hashedName = md5($this->name);
+		$cacheKey = "$wgDBname:image:".$hashedName;
+		$foundCached = false;
+
+		if ( !$recache ) {
+			$cachedValues = $wgMemc->get( $cacheKey );
+
+			if (!empty($cachedValues) && is_array($cachedValues)) {
+				if ($wgUseSharedUploads && $cachedValues['fromShared']) {
+					# if this is shared file, we need to check if image
+					# in shared repository has not changed
+					$commonsCachedValues = $wgMemc->get( "$wgSharedUploadDBname:image:".$hashedName );
+					if (!empty($commonsCachedValues) && is_array($commonsCachedValues)) {
+						$this->name = $commonsCachedValues['name'];
+						$this->imagePath = $commonsCachedValues['imagePath'];
+						$this->fileExists = $commonsCachedValues['fileExists'];
+						$this->fromSharedDirectory = true;
+						$gis = $commonsCachedValues['gis'];
+						$foundCached = true;
+					}
+				}
+				else {
+					$this->name = $cachedValues['name'];
+					$this->imagePath = $cachedValues['imagePath'];
+					$this->fileExists = $cachedValues['fileExists'];
+					$this->fromSharedDirectory = false;
+					$gis = $cachedValues['gis'];
+					$foundCached = true;
+				}
 			}
+		}
+
+		if ($foundCached) {
+			$this->loadAttributesFromGis($gis);
+			$this->attributesLoaded = true;
+		} else {
+			$this->fileExists = file_exists( $this->imagePath);		
+		
+			# If the file is not found, and a shared upload directory 
+			# like the Wikimedia Commons is used, look for it there.
+			if (!$this->fileExists && $wgUseSharedUploads) {
+				# in case we're running a capitallinks=false wiki						
+				$sharedname=$wgLang->ucfirst($name);
+				$sharedtitle=$wgLang->ucfirst($this->title->getDBkey());
+				if($wgUseLatin1 && !$wgSharedLatin1) {				
+					$sharedname=utf8_encode($sharedname);
+					$sharedtitle=utf8_encode($sharedtitle);					
+				}
 			
-			if($wgHashedSharedUploadDirectory) {				
-				$hash = md5( $sharedtitle );
-				$this->imagePath = $wgSharedUploadDirectory . '/' . $hash{0} . '/' .
-					substr( $hash, 0, 2 ) . "/".$sharedname;
- 			} else {
-				$this->imagePath = $wgSharedUploadDirectory . '/' . $sharedname;
-			}			
-			$this->fileExists = file_exists( $this->imagePath);
-			$this->fromSharedDirectory = true;			
-			$name=$sharedname;
-		}		
+				if($wgHashedSharedUploadDirectory) {				
+					$hash = md5( $sharedtitle );
+					$this->imagePath = $wgSharedUploadDirectory . '/' . $hash{0} . '/' .
+						substr( $hash, 0, 2 ) . "/".$sharedname;
+	 			} else {
+					$this->imagePath = $wgSharedUploadDirectory . '/' . $sharedname;
+				}			
+				$this->fileExists = file_exists( $this->imagePath);
+				$this->fromSharedDirectory = true;			
+				$name=$sharedname;
+			}		
+
+			$cachedValues = array('name' => $this->name,
+								  'imagePath' => $this->imagePath,
+								  'fileExists' => $this->fileExists,
+								  'fromShared' => $this->fromSharedDirectory,
+								  'gis' => $this->loadAttributes());
+
+			$wgMemc->set( $cacheKey, $cachedValues, 86400 );
+
+			if ($wgUseSharedUploads && $this->fromSharedDirectory) {
+				$cachedValues['fromShared'] = false;
+				$wgMemc->set( "$wgSharedUploadDBname:image:".$hashedName, $cachedValues, 86400 );
+			}
+		}
+		
 		if($this->fileExists) {			
 			$this->url       = $this->wfImageUrl( $name, $this->fromSharedDirectory );
 		} else {
 			$this->url='';
 		}
-		
-		$n = strrpos( $name, '.' );
-		$this->extension = strtolower( $n ? substr( $name, $n + 1 ) : '' );
-		
+
 		$this->historyLine = 0;				
 	}
 
@@ -114,25 +167,31 @@ class Image
 		return $img;
 	}
 
+	function loadAttributesFromGis($gis)
+	{
+		if( $gis !== false ) {
+			$this->width = $gis[0];
+			$this->height = $gis[1];
+			$this->type = $gis[2];
+			$this->attr = $gis[3];
+			if ( isset( $gis['bits'] ) )  {
+				$this->bits = $gis['bits'];
+			} else {
+				$this->bits = 0;
+			}
+		}
+	}
+
 	function loadAttributes()
 	{
+	    $gis = false;
 		if ( $this->fileExists ) {
 			if( $this->extension == 'svg' ) {
 				@$gis = getSVGsize( $this->imagePath );
 			} else {
 				@$gis = getimagesize( $this->imagePath );
 			}
-			if( $gis !== false ) {
-				$this->width = $gis[0];
-				$this->height = $gis[1];
-				$this->type = $gis[2];
-				$this->attr = $gis[3];
-				if ( isset( $gis['bits'] ) )  {
-					$this->bits = $gis['bits'];
-				} else {
-					$this->bits = 0;
-				}
-			}
+			$this->loadAttributesFromGis($gis);
 		} else {
 			$this->width = 0;
 			$this->height = 0;
@@ -141,6 +200,7 @@ class Image
 			$this->bits = 0;
 		}
 		$this->attributesLoaded = true;
+		return $gis;
 	}
 
 	/**

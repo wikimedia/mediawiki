@@ -1724,20 +1724,12 @@ class Skin {
 	}
 
 	function makeImageLinkObj( $nt, $alt = '' ) {
-		global $wgContLang, $wgUseImageResize, $wgMemc, $wgImageHtmlCacheExpiry, $wgDBname;
+		global $wgContLang, $wgUseImageResize, $wgMemc, $wgDBname;
 		$img   = Image::newFromTitle( $nt );
 		$url   = $img->getViewURL();
 
 		$align = '';
 		$prefix = $postfix = '';
-
-		if ( $wgImageHtmlCacheExpiry ) {
-			$key = "$wgDBname:imagehtml:" . $nt->getDBkey() . ":$alt";
-			$s = $wgMemc->get( $key );
-			if ( $s ) {
-				return $s;
-			}
-		}
 
 		# Check if the alt text is of the form "options|alt text"
 		# Options are:
@@ -1853,10 +1845,6 @@ class Skin {
 			$s = str_replace("\n", ' ',$prefix.$s.$postfix);
 		}
 
-		# Cache HTML if requested
-		if ( $wgImageHtmlCacheExpiry ) {
-			$wgMemc->set( $key, $s, $wgImageHtmlCacheExpiry );
-		}
 		return $s;
 	}
 
