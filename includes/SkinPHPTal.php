@@ -60,8 +60,8 @@ class SkinPHPTal extends Skin {
 
 	function initPage( &$out ) {
 		parent::initPage( $out );
-		$this->skinname = 'davinci';
-		$this->template = 'xhtml_slim';
+		$this->skinname = 'monobook';
+		$this->template = 'MonoBook';
 	}
 
 	# initialize various variables and generate the template
@@ -75,7 +75,7 @@ class SkinPHPTal extends Skin {
 		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
 
 		$this->initPage( $out );
-		$tpl = new PHPTAL($this->template . '.pt', 'templates');
+		$tpl = new PHPTAL($this->template . '.pt', 'skins');
 
 		#if ( $wgUseDatabaseMessages ) { // uncomment this to fall back to GetText
 		$tpl->setTranslator(new MediaWiki_I18N());
