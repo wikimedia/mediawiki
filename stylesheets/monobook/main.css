@@ -396,11 +396,13 @@ div.townBox dl dd {
     margin: 0;
     padding: 0;
 }
+
+
+/* Page history styling */
 /* the auto-generated edit comments */
 .autocomment { color: gray; }
-
 #pagehistory span.hlinedesc { margin-left: 1.4em }
-#pagehistory span.min { 
+#pagehistory span.hflag { 
     margin-left: -1em;
     font-weight: bold;
 }
@@ -716,10 +718,6 @@ li#pt-login {
     z-index: 0;
     margin: 0;
 }
-#bar #p-cactions {
-    top: 8.0em;
-    left: 5em;
-}
 #p-cactions .selected a { z-index: 3; }
 #p-cactions .new a { color:#ba0000; }
 #p-cactions li a:hover {
@@ -737,9 +735,6 @@ li#pt-login {
 li#ca-talk { margin-right: 1.6em; }
 li#ca-watch { margin-left: 1.6em; }
 
-form #content {
-   left: -8em;
-}
 
 /*
 ** the remaining portlets
@@ -780,6 +775,15 @@ head:first-child+body #footer li { white-space: nowrap; }
 #f-copyrightico {
     float: left;
     height: 1%;
+}
+
+/* JeLuF's js-based preference dialog */
+#bar #p-cactions {
+    top: 8.0em;
+    left: 5em;
+}
+form #content {
+   left: -8em;
 }
 
 /* 
