@@ -135,10 +135,11 @@ foreach($referenceMessages as $index => $localized)
 {
 	if(!(isset($testMessages[$index]))) {
 		$i++;
-		print "Language$testLanguage.php is missing: $index\n";
+		print "\nLanguage$testLanguage.php is missing: $index :\n";
+		print $localized;
 	}
 }
-echo "----\n".$msg;
+echo "\n----\n".$msg;
 echo "$referenceLanguage language is complete at ".number_format((100 - $i/count($wgAllMessagesEn) * 100),2)."%\n";
 echo "$i unlocalised messages of the ".count($wgAllMessagesEn)." messages available.\n";
 print_r($time);

@@ -144,5 +144,4 @@ require_once( "Setup.php" );
 require_once( "install-utils.inc" );
 $wgTitle = Title::newFromText( "Command line script" );
 set_time_limit(0);
-
 ?>
