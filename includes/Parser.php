@@ -416,8 +416,6 @@ class Parser
 		$text = $this->replaceInternalLinks ( $text );
 		$text = $this->doTableStuff ( $text ) ;
 
-		#$text = $this->magicISBN( $text );
-		$text = $this->magicRFC( $text );
 		$text = $this->formatHeadings( $text );
 
 		$sk =& $this->mOptions->getSkin();
@@ -655,6 +653,9 @@ class Parser
 				case "":
 					# empty token
 					$txt="";
+					break;
+				case "RFC ":
+					$txt = $this->doMagicRFC( $tokenizer );
 					break;
 				case "ISBN ":
 					$txt = $this->doMagicISBN( $tokenizer );
@@ -1352,9 +1353,47 @@ class Parser
 		}
 		return $text;
 	}
-
-	/* private */ function magicRFC( $text )
+	/* private */ function doMagicRFC( &$tokenizer )
 	{
+		global $wgLang;
+
+		# Check whether next token is a text token
+		# If yes, fetch it and convert the text into a
+		# link to an RFC source
+		$token = $tokenizer->previewToken();
+		while ( $token["type"] == "" )
+		{
+			$tokenizer->nextToken();
+			$token = $tokenizer->previewToken();
+		}
+		if ( $token["type"] == "text" )
+		{
+			$token = $tokenizer->nextToken();
+			$x = $token["text"];
+			$valid = "0123456789";
+
+			$rfc = $blank = "" ;
+			while ( " " == $x{0} ) {
+				$blank .= " ";
+				$x = substr( $x, 1 );
+			}
+			while ( strstr( $valid, $x{0} ) != false ) {
+				$rfc .= $x{0};
+				$x = substr( $x, 1 );
+			}
+		
+			if ( "" == $rfc ) {
+				$text .= "RFC $blank$x";
+			} else {
+				$url = wfmsg( "rfcurl" );
+				$url = str_replace( "$1", $rfc, $url);
+				$sk =& $this->mOptions->getSkin();
+				$la = $sk->getExternalLinkAttributes( $url, "RFC {$rfc}" );
+                            	$text = "<a href='{$url}'{$la}>RFC {$rfc}</a>{$x}";
+			}
+		} else {
+			$text = "RFC ";
+		}
 		return $text;
 	}
 
