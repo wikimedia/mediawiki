@@ -29,7 +29,7 @@ unset( $IP );
 @ini_set( "allow_url_fopen", 0 ); # For security...
 
 if(!file_exists("../LocalSettings.php")) {
-        die( "You'll have to <a href='config/index.php'>set the wiki up</a> first!" );
+        die( "You'll have to <a href='../config/index.php'>set the wiki up</a> first!" );
 }
 
 define( "MEDIAWIKI", true );
@@ -313,13 +313,19 @@ function searchTitles( $pattern, $main_only ) {
 	if ( $main_only != 0 && $main_only != 1 ) {
 		return new soap_fault('Client', 'The second parameter to this service must be 0 or 1');
 	}
+	
 
-	# Query the DB
+	# Connect to the DB
 	$dbr =& wfGetDB( DB_SLAVE );
 
-	$sql = 'SELECT cur_title, cur_namespace FROM cur WHERE '
+	# Normalize the search pattern
+	$pattern = $dbr->strencode( $wgLang->stripForSearch( $pattern ) );
+
+	# Prepare the query
+
+	$sql = 'SELECT cur_id, cur_namespace, cur_title FROM cur, searchindex WHERE '
 		. ( $main_only ? 'cur_namespace=0 AND ' :'' )
-		. "cur_title like '%".$dbr->strencode($pattern)."%'";
+		. "cur_id=si_page AND MATCH(si_title) AGAINST('{$pattern}' IN BOOLEAN MODE)";
 	
 	$res = $dbr->query( $sql, $fname, true );
 
@@ -328,11 +334,11 @@ function searchTitles( $pattern, $main_only ) {
 	}
 
 	$answer = array(
-		'count' =>	1,
+		'count' =>	0,
 		'base' =>	$wgServer.$wgArticlePath,
-		'hits' =>	array()
+		'hits' =>	array(),
 	);
-	while ( $line = $dbr->fetchObject( $res ) && $answer['count'] < 200 ) {
+	while ( ($line = $dbr->fetchObject( $res )) && $answer['count'] < 200 ) {
 		$nt = Title::newFromDBkey( $wgLang->getNsText( $line->cur_namespace ) . ':' . $line->cur_title );
 		$answer['hits'][] = array(
 			'title' => $nt->getText(),
