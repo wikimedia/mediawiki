@@ -52,6 +52,11 @@ function fixalpha() {
             }
             logospan.style.top = '50%';
             logospan.style.setExpression('marginTop', '"-" + (this.offsetHeight / 2) + "px"');
+ 
+            var linkFix = logoa.appendChild(logoa.cloneNode());
+            linkFix.style.position = 'absolute';
+            linkFix.style.height = '100%';
+            linkFix.style.width = '100%';
         }
     }
 }
