@@ -38,6 +38,7 @@ class Database {
 	/* private */ var $mOut, $mDebug, $mOpened = false;
 	
 	/* private */ var $mFailFunction; 
+	/* private */ var $mLastResult;
 
 #------------------------------------------------------------------------------
 # Accessors
@@ -171,7 +172,8 @@ class Database {
 		}
 
 		$ret = pg_query( $this->mConn , $sql);
-		if ( false === $ret ) {
+		$this->mLastResult = $ret;
+		if ( false == $ret ) {
 			$error = pg_last_error( $this->mConn );
 			// TODO FIXME : no error number function in postgre
 			// $errno = mysql_errno( $this->mConn );
@@ -230,12 +232,14 @@ class Database {
 	// TODO FIXME: need to implement something here
 	function insertId() { 
 		//return mysql_insert_id( $this->mConn );
-		wfDebugDieBacktrace( "Database::insertId() error : not implemented for postgre" );
+		wfDebugDieBacktrace( "Database::insertId() error : not implemented for postgre, use sequences" );
 	}
 	function dataSeek( $res, $row ) { return pg_result_seek( $res, $row ); }
 	function lastErrno() { return $this->lastError(); }
 	function lastError() { return pg_last_error(); }
-	function affectedRows() { return pg_affected_rows( $this->mConn ); }
+	function affectedRows() { 
+		return pg_affected_rows( $this->mLastResult ); 
+	}
 	
 	# Simple UPDATE wrapper
 	# Usually aborts on failure
@@ -252,13 +256,17 @@ class Database {
 	# If errors are explicitly ignored, returns FALSE on failure
 	function get( $table, $var, $cond, $fname = "Database::get" )
 	{
-		$sql = "SELECT \"$var\" FROM \"$table\" WHERE ($cond)";
+		$from=$table?" FROM \"$table\" ":"";
+		$where=$cond?" WHERE ($cond)":"";
+
+		$sql = "SELECT $var $from $where";
+
 		$result = $this->query( $sql, DB_READ, $fname );
 	
 		$ret = "";
 		if ( pg_num_rows( $result ) > 0 ) {
-			$s = pg_fetch_object( $result );
-			$ret = $s->$var;
+			$s = pg_fetch_array( $result );
+			$ret = $s[0];
 			pg_free_result( $result );
 		}
 		return $ret;
@@ -384,7 +392,7 @@ class Database {
 	# If errors are explicitly ignored, returns success
 	function insertArray( $table, $a, $fname = "Database::insertArray" )
 	{
-		$sql1 = "INSERT INTO '$table' (";
+		$sql1 = "INSERT INTO \"$table\" (";
 		$sql2 = "VALUES (" . Database::makeList( $a );
 		$first = true;
 		foreach ( $a as $field => $value ) {
@@ -524,10 +532,16 @@ function wfTimestampNow() {
 
 # Sorting hack for MySQL 3, which doesn't use index sorts for DESC
 function wfInvertTimestamp( $ts ) {
+	$ts=preg_replace("/\D/","",$ts);
 	return strtr(
 		$ts,
 		"0123456789",
 		"9876543210"
 	);
 }
+
+function wfLimitResult( $limit, $offset ) {
+        return " LIMIT $limit ".(is_numeric($offset)?" OFFSET {$offset} ":"");
+}
+
 ?>
