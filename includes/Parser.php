@@ -417,11 +417,6 @@ class Parser
 		$text = $this->replaceVariables( $text );
 
 		# $text = preg_replace( "/(^|\n)-----*/", "\\1<hr>", $text );
-		$text = str_replace ( "<HR>", "<hr />", $text );
-		$text = str_replace ( "<br>", "<br />", $text );
-		$text = str_replace ( "<br >", "<br />", $text );
-		$text = str_replace ( '<center>', '<span style="text-align: center">', $text );
-		$text = str_replace ( '</center>', '</span>', $text );
 
 		$text = $this->doHeadings( $text );
 		
@@ -438,6 +433,13 @@ class Parser
 
 		$sk =& $this->mOptions->getSkin();
 		$text = $sk->transformContent( $text );
+		$fixtags = array(
+			"/<hr *>/i" => '<hr/>',
+			"/<br *>/i" => '<br/>', 
+			"/<center *>/i"=>'<span style="text-align:center;">',
+			"/<\\/center *>/i" => '</span>'
+		);
+		$text = preg_replace( array_keys($fixtags), array_values($fixtags), $text );
 		$text = $this->doBlockLevels( $text, $linestart );
 		$text .= $this->categoryMagic () ;
 
@@ -1272,7 +1274,7 @@ class Parser
 		$htmlpairs = array( # Tags that must be closed
 			"b", "i", "u", "font", "big", "small", "sub", "sup", "h1",
 			"h2", "h3", "h4", "h5", "h6", "cite", "code", "em", "s",
-			"strike", "strong", "tt", "var", "div", "span",
+			"strike", "strong", "tt", "var", "div", "center",
 			"blockquote", "ol", "ul", "dl", "table", "caption", "pre",
 			"ruby", "rt" , "rb" , "rp", "p"
 		);
