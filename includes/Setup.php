@@ -73,7 +73,8 @@ global $wgArticle, $wgDeferredUpdateList, $wgLinkCache;
 global $wgMemc, $wgMagicWords, $wgMwRedir, $wgDebugLogFile;
 global $wgMessageCache, $wgUseMemCached, $wgUseDatabaseMessages;
 global $wgMsgCacheExpiry, $wgDBname, $wgCommandLineMode;
-global $wgBlockCache, $wgParserCache, $wgParser;
+global $wgBlockCache, $wgParserCache, $wgParser, $wgStockPath;
+global $wgUploadPath;
 
 # Useful debug output
 if ( function_exists( "getallheaders" ) ) {
@@ -164,6 +165,10 @@ if ( $wgUseDynamicDates ) {
 
 if( !$wgCommandLineMode && ( isset( $_COOKIE[ini_get("session.name")] ) || isset( $_COOKIE["{$wgDBname}Password"] ) ) ) {
 	User::SetupSession();
+}
+
+if ( $wgStockPath === false ) {
+	$wgStockPath = $wgUploadPath;
 }
 
 $wgBlockCache = new BlockCache( true );
