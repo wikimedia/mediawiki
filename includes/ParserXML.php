@@ -83,17 +83,32 @@ class element {
 	return $ret ;
     	}
     	
+    /**
+    * Link functions
+    */
     function createInternalLink ( &$parser , $target , $display_title , $options )
     	{
+	global $wgUser ;
+	$skin = $wgUser->getSkin() ;
     	$tp = explode ( ":" , $target ) ; # tp = target parts
     	$title = "" ;     # The plain title
     	$language = "" ;  # The language/meta/etc. part
     	$namespace = "" ; # The namespace, if any
     	$subtarget = "" ; # The '#' thingy
-    	if ( count ( $tp ) == 1 ) $title = $target ; # Plain and simple case
-    	else
+
+
+	$nt = Title::newFromText ( $target ) ;
+	$fl = strtoupper ( $this->attrs["FORCEDLINK"] ) == "YES" ;
+
+    	if ( $fl || count ( $tp ) == 1 ) $title = $target ; # Plain and simple case
+    	else # There's stuff missing here...
     		{
-    		# To be implemented
+		if ( $nt->getNamespace() == NS_IMAGE )
+		   {
+		   $options[] = $display_title ;
+		   return $skin->makeImageLinkObj ( $nt , implode ( "|" , $options ) ) ;
+		   }	  
+		else $title = $target ; # Default
     		}
     	
     	if ( $language != "" ) # External link within the WikiMedia project
@@ -106,7 +121,7 @@ class element {
     		}
     	else
     		{
-    		return "{internal link}" ;
+		return $skin->makeLink ( $target , $display_title ) ;
     		}
     	}
     
@@ -435,7 +450,7 @@ class ParserXML EXTENDS Parser
 		$nowikicount = 0 ;
 		$w = new xml2php;
 		$result = $w->scanString( $text );
-		$text .= "<hr>" . $result->makeXHTML ( $this );
+		$text = $result->makeXHTML ( $this ) . "<hr>" . $text ;
 		$text .= "<hr>" . $result->myPrint();
 		
 		$this->mOutput->setText ( $text ) ;
