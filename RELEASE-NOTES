@@ -384,6 +384,7 @@ If upgrading from an older release, see the file UPGRADE;
 * (bug 65) Fix broken interwiki link encoding on Latin-1 wikis; force to UTF-8
 * (bug 563) Fix UTF-8 interwiki URL redirects via Latin-1 wikis
 * (bug 1536) Fix page info
+* Support os (Ossetic) as language code, using Russian localization base
 
 
 === Caveats ===
