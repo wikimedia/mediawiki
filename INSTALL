@@ -128,7 +128,7 @@ And for math support:
 
 7. Unpack and configure PHP. Configure with something like:
 
-  ./configure --enable-apc --enable-shmop --with-zlib --with-zlib-dir=/usr/lib --with-mysql=/usr/local/mysql --with-iconv=/usr/local/lib --with-apache=/home/lee/src/apache_1.3.26
+  ./configure --enable-apc --enable-shmop --with-zlib --with-zlib-dir=/usr/lib --with-mysql=/usr/local/mysql --with-iconv=/usr/local/lib --with-apache=/home/lee/src/apache_1.3.26 --with-readline=/lib --enable-sockets
 
 Or for Apache 2.0 module:
   ./configure --enable-shmop --with-zlib --with-zlib-dir=/usr/lib --with-mysql=/usr/local/mysql --with-iconv --with-apxs2filter=/usr/local/apache/bin/apxs
