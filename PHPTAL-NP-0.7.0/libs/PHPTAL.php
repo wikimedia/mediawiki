@@ -66,7 +66,7 @@ define('PHPTAL_VERSION', '0.7.0');
 define('PHPTAL_MARK', str_replace('.', '_', PHPTAL_VERSION) . '_');
 
 if (strtoupper(substr(PHP_OS, 0, 3)) == "WIN") {
-	define('PHPTAL_DEFAULT_CACHE_DIR', 'c:\temp\\');
+    define('PHPTAL_DEFAULT_CACHE_DIR', getenv("TMP") . "\\");
 } else {
 	define('PHPTAL_DEFAULT_CACHE_DIR', '/tmp/');
 }
