@@ -587,10 +587,10 @@ class Skin {
 		$action = $wgRequest->getText( 'action' );
 
 		$s = $this->printableLink();
-		if ( wfMsg ( 'disclaimers' ) != '-' )
+		if ( wfMsgForContent ( 'disclaimers' ) != '-' )
 			$s .= ' | ' . $this->makeKnownLink( 
 				wfMsgForContent( 'disclaimerpage' ), 
-				wfMsg( 'disclaimers' ) ) ;
+				wfMsgForContent( 'disclaimers' ) ) ;
 
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->getNamespace() == Namespace::getImage() ) {
@@ -887,7 +887,7 @@ class Skin {
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$diff = $wgRequest->getVal( 'diff' );
 
-		if ( !is_null( $oldid ) && is_null( $diff ) && wfMsg( 'history_copyright' ) !== '-' ) {
+		if ( !is_null( $oldid ) && is_null( $diff ) && wfMsgForContent( 'history_copyright' ) !== '-' ) {
 			$msg = 'history_copyright';
 		} else {
 			$msg = 'copyright';
@@ -902,7 +902,7 @@ class Skin {
 			# Give up now
 			return $out;
 		}
-		$out .= wfMsg( $msg, $link );
+		$out .= wfMsgForContent( $msg, $link );
 		return $out;
 	}
 
@@ -986,7 +986,7 @@ class Skin {
 
 		}
 		// only show watchlist link if logged in
-		if ( wfMsg ( 'currentevents' ) != '-' ) 
+		if ( wfMsgForContent ( 'currentevents' ) != '-' ) 
 			$s .= $sep . $this->makeKnownLink( wfMsgForContent( 'currentevents' ), '' ) ;
 		$s .= "\n<br /><hr class='sep' />";
 		$articleExists = $wgTitle->getArticleId();
