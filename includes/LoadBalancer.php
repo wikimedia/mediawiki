@@ -72,7 +72,8 @@ class LoadBalancer {
 		foreach ( $weights as $w ) {
 			$sum += $w;
 		}
-		$rand = mt_rand() / RAND_MAX * $sum;
+		$max = mt_getrandmax();
+		$rand = mt_rand(0, $max) / $max * $sum;
 		
 		$sum = 0;
 		foreach ( $weights as $i => $w ) {
@@ -96,8 +97,10 @@ class LoadBalancer {
 				# don't work
 				$loads = $this->mLoads;
 				do {
-					$i = pickRandom( $loads );
+					$i = $this->pickRandom( $loads );
 					if ( $i !== false ) {
+						wfDebug( "Using reader #$i: {$this->mServers[$i]}\n" );
+
 						$conn =& $this->getConnection( $i );
 						if ( !$conn->isOpen() ) {
 							unset( $loads[$i] );
