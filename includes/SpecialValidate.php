@@ -94,7 +94,38 @@ class Validation
 			{
 			$oldtime = $_POST['oldtime'] ;
 			if ( !isset ( $val["{$oldtime}"] ) ) $val["{$oldtime}"] = array () ;
-			if ( isset ( $_POST['clear_other'] ) && $_POST['clear_other'] == 1 ) # Clear all others
+			
+			# Reading postdata
+			$postrad = array () ;
+			$poscomment = array () ;
+			for ( $idx = 0 ; $idx < count ( $validationtypes) ; $idx++ )	
+				{
+				$postrad[$idx] = $_POST["rad{$idx}"] ;
+				$postcomment[$idx] = $_POST["comment{$idx}"] ;
+				}
+			
+			# Merge others into this one
+			if ( isset ( $_POST['merge_other'] ) && $_POST['merge_other'] == 1 )
+				{
+				foreach ( $val AS $time => $stuff )
+					{
+					if ( $time <> $article_time )
+						{
+						for ( $idx = 0 ; $idx < count ( $validationtypes) ; $idx++ )
+							{
+							$rad = $postrad[$idx] ;
+							if ( isset ( $stuff[$idx] ) AND $stuff[$idx]->val_value != -1 AND $rad == -1 )
+								{
+								$postrad[$idx] = $stuff[$idx]->val_value ;
+								$postcomment[$idx] = $stuff[$idx]->val_comment ;
+								}
+							}
+						}
+					}
+				}
+			
+			# Clear all others
+			if ( isset ( $_POST['clear_other'] ) && $_POST['clear_other'] == 1 )
 				{
 				$sql = "DELETE FROM validate WHERE val_title='{$article_title}' AND val_timestamp<>'{$oldtime}' AND val_user='" ;
 				$sql .= $wgUser->getID() . "'" ;
@@ -103,17 +134,18 @@ class Validation
 				$val = array () ; # So clear others
 				$val["{$oldtime}"] = $val2 ;
 				}
-	
+
 			# Delete old "votes" for this version
 			$sql = "DELETE FROM validate WHERE val_title='{$article_title}' AND val_timestamp='{$oldtime}' AND val_user='" ;
 			$sql .= $wgUser->getID() . "'" ;
 			wfQuery( $sql, DB_WRITE );
 	
+			# Incorporate changes
 			for ( $idx = 0 ; $idx < count ( $validationtypes) ; $idx++ ) # Changes
 				{
-				$comment = $_POST["comment{$idx}"] ;
+				$comment = $postcomment[$idx] ;
 				$comment_sql = str_replace ( "'" , "\'" , $comment ) ;
-				$rad = $_POST["rad{$idx}"] ;
+				$rad = $postrad[$idx] ;
 				if ( !isset ( $val["{$oldtime}"][$idx] ) ) $val["{$oldtime}"][$idx] = "" ;
 				$val["{$oldtime}"][$idx]->val_value = $rad ;
 				$val["{$oldtime}"][$idx]->val_comment = $comment ;
@@ -132,8 +164,10 @@ class Validation
 		
 		$skin = $wgUser->getSkin() ;
 		$staturl = $skin->makeSpecialURL ( "validate" , "mode=stat_page&article_title={$article_title}" ) ;
-		$html .= "<a href=\"{$staturl}\">" . wfMsg('val_stat_link_text') . "</a>" ;
+		$html .= "<a href=\"{$staturl}\">" . wfMsg('val_stat_link_text') . "</a><br>\n" ;
+		$html .= "<small>" . wfMsg('val_form_note') . "</small><br>\n" ;
 		
+		# Generating data tables
 		$tabsep = "<td width=0px style='border-left:2px solid black;'></td>" ;
 		$topstyle = "style='border-top:2px solid black'" ;
 		foreach ( $val AS $time => $stuff )
@@ -166,9 +200,12 @@ class Validation
 				$html .= "<td><input type=text name='comment{$idx}' value='{$comment}'></td>" ;
 				$html .= "</tr>\n" ;
 				}
-			$html .= "<tr><td {$topstyle} colspan=2></td><td {$topstyle} colspan=3><input type=checkbox name=clear_other value=1 checked>" ;
+			$html .= "<tr><td {$topstyle} colspan=2></td><td {$topstyle} colspan=3>" ;
+			$html .= "<input type=checkbox name=merge_other value=1 checked>" ;
+			$html .= wfMsg ( 'val_merge_old' );
+			$html .= "<br><input type=checkbox name=clear_other value=1 checked>" ;
 			$html .= wfMsg ( 'val_clear_old', $skin->makeKnownLinkObj( $article ) );
-			$html .= "</td><td {$topstyle} align=right><input type=submit name=doit value='" . wfMsg("ok") . "'></td>" ;
+			$html .= "</td><td {$topstyle} align=right valign=center><input type=submit name=doit value='" . wfMsg("ok") . "'></td>" ;
 			$html .= "<td {$topstyle} colspan=2></td></tr></table></form>\n" ;
 			}
 		return $html ;
