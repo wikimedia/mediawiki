@@ -82,12 +82,11 @@ If upgrading from an older release, see the file UPGRADING.
 * UI messages may be broken in Latin-1 mode in this release due to some
   minor breakage in the language selection module.
 
-=== Misc bugs fixed ===
+=== Misc bugs fixed in beta 1 ===
 
 * (bug 95) Templates no longer limited to 5 inclusions per page
 * New user preference for limiting the image size for images on image description
   pages
-* (bug 502) Error pages no more offer edit / talk / watch links
 * (bug 530) Allow user to preview article on first edit
 * (bug 479) [[RFC 1234]] will now make an internal link
 * (bug 511) PhpTal skins shown bogus 'What links here' etc on special pages
@@ -95,6 +94,11 @@ If upgrading from an older release, see the file UPGRADING.
 * (bug 733) Installer die if it can not write LocalSettings.php
 * (bug 705) Various special pages no more show the rss/atom feed links
 * (bug 114) use category backlinks in Special:Recentchangeslinked
+
+=== Beta 2 fixes ===
+
+* (bug 987) Reverted bogus fix for bug 502
+* (bug 992) Fix enhanced recent changes in PHP5
 
 
 === Caveats ===
