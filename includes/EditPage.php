@@ -299,16 +299,16 @@ class EditPage {
 		if ( 0 != $wgUser->getID() || $wgAllowAnonymousMinor ) {
 			$minoredithtml =
 			"<input tabindex='3' type='checkbox' value='1' name='wpMinoredit'".($this->minoredit?" checked='checked'":"").
-			" accesskey='i' id='wpMinoredit' />".
-			"<label for='wpMinoredit'>{$minor}</label>";
+			" accesskey='".wfMsg('accesskey-minoredit')."' id='wpMinoredit' />".
+			"<label for='wpMinoredit' title='".wfMsg('tooltip-minoredit')."'>{$minor}</label>";
 		}
 
 		$watchhtml = "";
 
 		if ( 0 != $wgUser->getID() ) {
 			$watchhtml = "<input tabindex='4' type='checkbox' name='wpWatchthis'".($this->watchthis?" checked='checked'":"").
-			" accesskey='w' id='wpWatchthis'  />".
-			"<label for='wpWatchthis'>{$watchthis}</label>";
+			" accesskey='".wfMsg('accesskey-watch')."' id='wpWatchthis'  />".
+			"<label for='wpWatchthis' title='".wfMsg('tooltip-watch')."'>{$watchthis}</label>";
 		}
 
 		$checkboxhtml = $minoredithtml . $watchhtml . "<br />";
@@ -364,8 +364,10 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 </textarea>
 <br />{$editsummary}
 {$checkboxhtml}
-<input tabindex='5' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"s\" />
-<input tabindex='6' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"p\" />
+<input tabindex='5' type='submit' value=\"{$save}\" name=\"wpSave\" accesskey=\"".wfMsg('accesskey-save')."\"".
+" title=\"".wfMsg('tooltip-save')."\"/>
+<input tabindex='6' type='submit' value=\"{$prev}\" name=\"wpPreview\" accesskey=\"".wfMsg('accesskey-preview')."\"".
+" title=\"".wfMsg('tooltip-preview')."\"/>
 <em>{$cancel}</em> | <em>{$edithelp}</em>
 <br /><br />{$copywarn}
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
