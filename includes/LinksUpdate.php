@@ -32,7 +32,7 @@ class LinksUpdate {
 
 		if( $wgDBtransactions ) {
 			$sql = "BEGIN";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 		}
 		
 		#------------------------------------------------------------------------------
@@ -43,12 +43,12 @@ class LinksUpdate {
 			if ( count( $del ) ) {
 				$sql = "DELETE FROM links WHERE l_from='{$this->mTitleEnc}' AND l_to IN(".
 					implode( ",", $del ) . ")";
-				wfQuery( $sql, $fname );
+				wfQuery( $sql, DB_WRITE, $fname );
 			}
 		} else {
 			# Delete everything
 			$sql = "DELETE FROM links WHERE l_from='{$this->mTitleEnc}'";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 			
 			# Get the addition list
 			$add = $wgLinkCache->getGoodLinks();
@@ -68,7 +68,7 @@ class LinksUpdate {
 			}
 		}
 		if ( "" != $sql ) { 
-			wfQuery( $sql, $fname ); 
+			wfQuery( $sql, DB_WRITE, $fname ); 
 		}
 
 		#------------------------------------------------------------------------------
@@ -79,12 +79,12 @@ class LinksUpdate {
 			if ( count( $del ) ) {
 				$sql = "DELETE FROM brokenlinks WHERE bl_from={$this->mId} AND bl_to IN('" . 	
 					implode( "','", $del ) . "')";
-				wfQuery( $sql, $fname );
+				wfQuery( $sql, DB_WRITE, $fname );
 			}
 		} else {
 			# Delete all
 			$sql = "DELETE FROM brokenlinks WHERE bl_from={$this->mId}";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 			
 			# Get addition list
 			$add = $wgLinkCache->getBadLinks();
@@ -104,13 +104,13 @@ class LinksUpdate {
 			}
 		}
 		if ( "" != $sql ) { 
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 		}
 
 		#------------------------------------------------------------------------------
 		# Image links
 		$sql = "DELETE FROM imagelinks WHERE il_from='{$this->mTitleEnc}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 		
 		# Get addition list
 		$add = $wgLinkCache->getImageLinks();
@@ -128,13 +128,13 @@ class LinksUpdate {
 				$sql .= "('{$this->mTitleEnc}','{$iname}')";
 			}
 		}
-		if ( "" != $sql ) { wfQuery( $sql, $fname ); }
+		if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
 
 		$this->fixBrokenLinks();
 
 		if( $wgDBtransactions ) {
 			$sql = "COMMIT";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 		}
 		wfProfileOut();
 	}
@@ -149,11 +149,11 @@ class LinksUpdate {
 
 		if( $wgDBtransactions ) {
 			$sql = "BEGIN";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 		}
 		
 		$sql = "DELETE FROM links WHERE l_from='{$this->mTitleEnc}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$a = $wgLinkCache->getGoodLinks();
 		$sql = "";
@@ -167,10 +167,10 @@ class LinksUpdate {
 				$sql .= "('{$this->mTitleEnc}',{$lid})";
 			}
 		}
-		if ( "" != $sql ) { wfQuery( $sql, $fname ); }
+		if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
 
 		$sql = "DELETE FROM brokenlinks WHERE bl_from={$this->mId}";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$a = $wgLinkCache->getBadLinks();
 		$sql = "";
@@ -185,10 +185,10 @@ class LinksUpdate {
 				$sql .= "({$this->mId},'{$blt}')";
 			}
 		}
-		if ( "" != $sql ) { wfQuery( $sql, $fname ); }
+		if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
 		
 		$sql = "DELETE FROM imagelinks WHERE il_from='{$this->mTitleEnc}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 
 		$a = $wgLinkCache->getImageLinks();
 		$sql = "";
@@ -203,13 +203,13 @@ class LinksUpdate {
 				$sql .= "('{$this->mTitleEnc}','{$iname}')";
 			}
 		}
-		if ( "" != $sql ) { wfQuery( $sql, $fname ); }
+		if ( "" != $sql ) { wfQuery( $sql, DB_WRITE, $fname ); }
 
 		$this->fixBrokenLinks();
 
 		if( $wgDBtransactions ) {
 			$sql = "COMMIT";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 		}
 		wfProfileOut();
 	}
@@ -219,7 +219,7 @@ class LinksUpdate {
 		/* Call for a newly created page, or just to make sure state is consistent */
 		
 		$sql = "SELECT bl_from FROM brokenlinks WHERE bl_to='{$this->mTitleEnc}'";
-		$res = wfQuery( $sql, $fname );
+		$res = wfQuery( $sql, DB_READ, $fname );
 		if ( 0 == wfNumRows( $res ) ) { return; }
 
 		$sql = "INSERT INTO links (l_from,l_to) VALUES ";
@@ -235,11 +235,11 @@ class LinksUpdate {
 			$sql2 .= $row->bl_from;
 		}
 		$sql2 .= ")";
-		wfQuery( $sql, $fname );
-		wfQuery( $sql2, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
+		wfQuery( $sql2, DB_WRITE, $fname );
 
 		$sql = "DELETE FROM brokenlinks WHERE bl_to='{$this->mTitleEnc}'";
-		wfQuery( $sql, $fname );
+		wfQuery( $sql, DB_WRITE, $fname );
 	}
 	
 }

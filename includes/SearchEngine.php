@@ -175,7 +175,7 @@ class SearchEngine {
 		  "WHERE cur_id=si_page AND {$this->mTitlecond} " .
 		  "{$searchnamespaces} {$redircond}" .
 		  "LIMIT {$offset}, {$limit}";
-		$res1 = wfQuery( $sql, $fname );
+		$res1 = wfQuery( $sql, DB_READ, $fname );
 		$num = wfNumRows($res1);
 
 		if ( $wgDisableTextSearch ) {
@@ -186,7 +186,7 @@ class SearchEngine {
 			  "WHERE cur_id=si_page AND {$this->mTextcond} " .
 			  "{$searchnamespaces} {$redircond} " .
 			  "LIMIT {$offset}, {$limit}";
-			$res2 = wfQuery( $sql, $fname );
+			$res2 = wfQuery( $sql, DB_READ, $fname );
 			$num = $num + wfNumRows($res2);
 		}
 
@@ -422,7 +422,7 @@ class SearchEngine {
 		  "WHERE cur_id=si_page AND {$this->mTitlecond} ORDER BY cur_namespace LIMIT 1";
 
 		if ( "" != $this->mTitlecond ) {
-			$res = wfQuery( $sql, $fname );
+			$res = wfQuery( $sql, DB_READ, $fname );
 		} 				
 		if ( isset( $res ) && 0 != wfNumRows( $res ) ) {
 	 		$s = wfFetchObject( $res );

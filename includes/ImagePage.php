@@ -30,7 +30,7 @@ class ImagePage extends Article {
 		$sql = "SELECT img_size,img_description,img_user," .
 		  "img_user_text,img_timestamp FROM image WHERE " .
 		  "img_name='" . wfStrencode( $this->mTitle->getDBkey() ) . "'";
-		$res = wfQuery( $sql, $fname );
+		$res = wfQuery( $sql, DB_READ, $fname );
 
 		if ( 0 == wfNumRows( $res ) ) { return; }
 
@@ -46,7 +46,7 @@ class ImagePage extends Article {
 		  "oi_user_text,oi_timestamp,oi_archive_name FROM oldimage WHERE " .
 		  "oi_name='" . wfStrencode( $this->mTitle->getDBkey() ) . "' " .
 		  "ORDER BY oi_timestamp DESC";
-		$res = wfQuery( $sql, $fname );
+		$res = wfQuery( $sql, DB_READ, $fname );
 
 		while ( $line = wfFetchObject( $res ) ) {
 			$s .= $sk->imageHistoryLine( false, $line->oi_timestamp,
@@ -65,7 +65,7 @@ class ImagePage extends Article {
 
 		$sql = "SELECT il_from FROM imagelinks WHERE il_to='" .
 		  wfStrencode( $this->mTitle->getDBkey() ) . "'";
-		$res = wfQuery( $sql, "Article::imageLinks" );
+		$res = wfQuery( $sql, DB_READ, "Article::imageLinks" );
 
 		if ( 0 == wfNumRows( $res ) ) {
 			$wgOut->addHtml( "<p>" . wfMsg( "nolinkstoimage" ) . "\n" );
@@ -137,18 +137,18 @@ class ImagePage extends Article {
 			}
 			$sql = "DELETE FROM image WHERE img_name='" .
 			  wfStrencode( $image ) . "'";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 
 			$sql = "SELECT oi_archive_name FROM oldimage WHERE oi_name='" .
 			  wfStrencode( $image ) . "'";
-			$res = wfQuery( $sql, $fname );
+			$res = wfQuery( $sql, DB_READ, $fname );
 
 			while ( $s = wfFetchObject( $res ) ) {
 				$this->doDeleteOldImage( $s->oi_archive_name );
 			}	
 			$sql = "DELETE FROM oldimage WHERE oi_name='" .
 			  wfStrencode( $image ) . "'";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 
 			# Image itself is now gone, and database is cleaned.
 			# Now we remove the image description page.
@@ -161,7 +161,7 @@ class ImagePage extends Article {
 			$this->doDeleteOldImage( $oldimage );
 			$sql = "DELETE FROM oldimage WHERE oi_archive_name='" .
 			  wfStrencode( $oldimage ) . "'";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 
 			$deleted = $oldimage;
 		} else {

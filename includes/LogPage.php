@@ -21,7 +21,7 @@ class LogPage {
 		$sql = "SELECT cur_id,cur_text,cur_timestamp FROM cur " .
 			"WHERE cur_namespace=" . Namespace::getWikipedia() . " AND " .
 			"cur_title='" . wfStrencode($this->mTitle ) . "'";
-		$res = wfQuery( $sql, "LogPage::getContent" );
+		$res = wfQuery( $sql, DB_READ, "LogPage::getContent" );
 
 		if( wfNumRows( $res ) > 0 ) {
 			$s = wfFetchObject( $res );
@@ -67,7 +67,7 @@ class LogPage {
 				wfStrencode( $this->mTitle ) . "', '" .
 				wfStrencode( $this->mContent ) . "', '" .
 				wfStrencode( $this->mComment ) . "', 'sysop', '{$won}','{$now}')";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 			$this->mId = wfInsertId();
 		} else {
 			$sql = "UPDATE cur SET cur_timestamp='{$now}', " .
@@ -76,7 +76,7 @@ class LogPage {
 			  "cur_comment='" . wfStrencode( $this->mComment ) . "', " .
 			  "cur_restrictions='sysop', inverse_timestamp='{$won}', cur_touched='{$now}' " .
 			  "WHERE cur_id={$this->mId}";
-			wfQuery( $sql, $fname );
+			wfQuery( $sql, DB_WRITE, $fname );
 		}
 		
 		# And update recentchanges
@@ -86,7 +86,7 @@ class LogPage {
                 	rc_cur_id) VALUES ('{$now}','{$now}',{$uid},'{$ut}',4,'" .
 				wfStrencode( $this->mTitle ) . "','" .
 				wfStrencode( $this->mComment ) . "',{$this->mId})";
-		        wfQuery( $sql, $fname );
+		        wfQuery( $sql, DB_WRITE, $fname );
 			}
 		return true;
 	}

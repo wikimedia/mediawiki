@@ -91,7 +91,7 @@ class LinkCache {
 		if( $id === FALSE ) {
 			$sql = "SELECT HIGH_PRIORITY cur_id FROM cur WHERE cur_namespace=" .
 			  "{$ns} AND cur_title='" . wfStrencode( $t ) . "'";
-			$res = wfQuery( $sql, "LinkCache::addLink" );
+			$res = wfQuery( $sql, DB_READ, "LinkCache::addLink" );
 
 			if ( 0 == wfNumRows( $res ) ) {
 				$id = 0;
@@ -115,7 +115,7 @@ class LinkCache {
 		$sql = "SELECT HIGH_PRIORITY cur_id,cur_namespace,cur_title
 			FROM cur,links
 			WHERE cur_id=l_to AND l_from='{$dbkeyfrom}'";
-		$res = wfQuery( $sql, "LinkCache::preFill" );
+		$res = wfQuery( $sql, DB_READ, "LinkCache::preFill" );
 		while( $s = wfFetchObject( $res ) ) {
 			$this->addGoodLink( $s->cur_id,
 				Title::makeName( $s->cur_namespace, $s->cur_title )
@@ -129,7 +129,7 @@ class LinkCache {
 		$sql = "SELECT HIGH_PRIORITY bl_to
 			FROM brokenlinks
 			WHERE bl_from='{$id}'";
-		$res = wfQuery( $sql, "LinkCache::preFill" );
+		$res = wfQuery( $sql, DB_READ, "LinkCache::preFill" );
 		while( $s = wfFetchObject( $res ) ) {
 			$this->addBadLink( $s->bl_to );
 		}

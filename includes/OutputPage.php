@@ -561,7 +561,7 @@ class OutputPage {
 		global $wgUser ;
 		$sk = $wgUser->getSkin() ;
 		$sql = "SELECT l_from FROM links WHERE l_to={$id}" ;
-		$res = wfQuery ( $sql ) ;
+		$res = wfQuery ( $sql, DB_READ ) ;
 		while ( $x = wfFetchObject ( $res ) )
 		{
 		#  $t = new Title ; 

@@ -15,7 +15,7 @@ function wfSpecialListusers()
 
 	$sql = "SELECT user_name,user_rights FROM user ORDER BY " .
 	  "user_name LIMIT {$offset}, {$limit}";
-	$res = wfQuery( $sql, "wfSpecialListusers" );
+	$res = wfQuery( $sql, DB_READ, "wfSpecialListusers" );
 
 	$sk = $wgUser->getSkin();
 	while ( $s = wfFetchObject( $res ) ) {

@@ -37,13 +37,13 @@ function indexShowToplevel()
 	$out = "";
 	
 	$sql = "SELECT COUNT(*) AS count $fromwhere";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 	$s = wfFetchObject( $res );
 	$count = $s->count;
 	$sections = ceil( $count / $indexMaxperpage );
 	
 	$sql = "SELECT cur_title $fromwhere $order LIMIT 1";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 	$s = wfFetchObject( $res );
 	$inpoint = $s->cur_title;
 	
@@ -52,7 +52,7 @@ function indexShowToplevel()
 	for( $i = 1; $i < $sections; $i++ ) {
 		$from = $i * $indexMaxperpage;
 		$sql = "SELECT cur_title $fromwhere $order LIMIT $from,2";
-		$res = wfQuery( $sql, $fname );
+		$res = wfQuery( $sql, DB_READ, $fname );
 	
 		$s = wfFetchObject( $res );
 		$outpoint = $s->cur_title;
@@ -66,7 +66,7 @@ function indexShowToplevel()
 	
 	$from = $i * $indexMaxperpage;
 	$sql = "SELECT cur_title $fromwhere $order LIMIT " . ($count-1) . ",1";
-	$res = wfQuery( $sql, $fname );
+	$res = wfQuery( $sql, DB_READ, $fname );
 	$s = wfFetchObject( $res );
 	$outpoint = $s->cur_title;
 	$out .= indexShowline( $inpoint, $outpoint );
@@ -106,7 +106,7 @@ FROM cur
 WHERE cur_namespace=0 AND cur_title >= '" . wfStrencode( $from ) . "'
 ORDER BY cur_title
 LIMIT {$indexMaxperpage}";
-	$res = wfQuery( $sql, "indexShowChunk" );
+	$res = wfQuery( $sql, DB_READ, "indexShowChunk" );
 
 	# FIXME: Dynamic column widths, backlink to main list,
 	# side links to next and previous

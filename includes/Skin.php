@@ -6,7 +6,7 @@
 # Language class has internationalized names
 #
 /* private */ $wgValidSkinNames = array(
-	"Standard", "Nostalgia", "CologneBlue", "Smarty", "Montparnasse"
+	"Standard", "Nostalgia", "CologneBlue" #, "Smarty", "Montparnasse"
 );
 
 # For some odd PHP bug, this function can't be part of a class
@@ -1140,7 +1140,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		} else {
 			$threshold = $wgUser->getOption("stubthreshold") ;
 			if ( $threshold > 0 ) {
-				$res = wfQuery ( "SELECT HIGH_PRIORITY length(cur_text) AS x, cur_namespace, cur_is_redirect FROM cur WHERE cur_id='{$aid}'" ) ;
+				$res = wfQuery ( "SELECT HIGH_PRIORITY length(cur_text) AS x, cur_namespace, cur_is_redirect FROM cur WHERE cur_id='{$aid}'", DB_READ ) ;
 
 				if ( wfNumRows( $res ) > 0 ) {
 					$s = wfFetchObject( $res );
@@ -1812,6 +1812,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 include_once( "SkinStandard.php" );
 include_once( "SkinNostalgia.php" );
 include_once( "SkinCologneBlue.php" );
-include_once( "SkinSmarty.php" );
+
+#include_once( "SkinSmarty.php" );
 
 ?>
