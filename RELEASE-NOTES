@@ -1,8 +1,12 @@
 = MediaWiki release notes =
 
-== Version 1.3.0beta5, 2004-07-22 ==
+== Version 1.3.0beta6, 2004-08-06 ==
 
-**** THIS IS A BETA AND MAY STUNT YOUR GROWTH OR KILL YOUR PETS ****
+1.3.0 final release should come up very soon; this final beta includes
+various bug fixes and a security fix affecting some PHP configurations
+(when register_globals and are allow_url_fopen both on -- it's recommended
+that you turn both *off* for security).
+
 
 Look & layout:
 * New default layout 'MonoBook'
@@ -61,6 +65,10 @@ produce 100% valid or well-formed XHTML output. Testers are welcome to
 set $wgMimeType = "application/xhtml+xml"; to test for remaining problem
 cases, but this is not recommended on live sites. (This must be set for
 MathML to display properly in Mozilla.)
+
+The new 'MonoBook' skin is not compatible with PHP 5 due to bugs in the
+underlying PHPTAL library. It will be automatically disabled when running
+on PHP5; the older look and feel will be used instead.
 
 
 == Version 1.2.6, 2004-05-24 ==
