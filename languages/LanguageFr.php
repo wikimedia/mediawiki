@@ -742,7 +742,8 @@ Les prochaines modifications de cette page et de la page discussion associée se
 "couldntremove" => "Impossible de retirer l'article '$1'...",
 "iteminvalidname" => "Problème avec l'article '$1': le nom est invalide...",
 "wlnote" => "Ci-dessous se trouve les $1 dernières modifications depuis les <b>$2</b> dernières heures.", // Looxix 
-
+"wlshowlast" => "Montrer les dernières $1 heures $2 jours $3",
+"wlsaved" => "La liste de suivi n'est remise à jour qu'une fois par heure pour alléger la charge sur le serveur.",
 
 # Delete/protect/revert
 #
@@ -927,6 +928,7 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 "movetalk"  => "Déplacer aussi la page \"discussion\", s'il y a lieu.",
 "talkpagemoved" => "La page discussion correspondante a également été déplacée.",
 "talkpagenotmoved" => "La page discussion correspondante n'a <strong>pas</strong> été déplacée.",
+"1movedto2" => "$1 déplacé vers $2",
 
 "export"	=> "Exporter des pages",
 "exporttext"	=> "Vous pouvez exporter en XML le texte et l'historique d'une page ou d'un ensemble de pages; le résultat peut alores être importé dans un autre wiki fonctionnant avec le logiciel MediaWiki, transformé ou sauvegardé pour votre usage personnel.",
@@ -935,7 +937,45 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 # Namespace 8 related
 
 "allmessages"	=> "Tous les messages",
-"allmessagestext"	=> "Ceci est la liste de tous les messages disponibles dans l'espace MediaWiki"
+"allmessagestext"	=> "Ceci est la liste de tous les messages disponibles dans l'espace MediaWiki",
+
+# Thumbnails
+
+"thumbnail-more"	=> "Agrandir",
+"missingimage"		=> "<b>Image manquante</b><br /><i>$1</i>\n",
+
+
+# tooltip help for the main actions
+'tooltip-article' => 'Voir l\'article [alt-a]',
+'tooltip-talk' => 'Discussion sur l\'article [alt-t]',
+'tooltip-edit' => 'Vous pouvez éditer cette page. Merci d\'utiliser le bouton prévisualisation avant d\'enregistrer. [alt-e]',
+'tooltip-history' => 'Versions précédentes de cette page, [alt-h]',
+'tooltip-protect' => 'Protéger cette page [alt-p]',
+'tooltip-delete' => 'Supprimer cette page [alt-d]',
+'tooltip-move' => 'Déplacer cette page [alt-m]',
+'tooltip-nomove' => 'Vous n\'avez pas la permission de déplacer cette page',
+'tooltip-watch' => 'Ajouter cette page à votre liste de suivi',
+'tooltip-unwatch' => 'Retirer cette page de votre liste de suivi',
+'tooltip-watchlist' => 'La liste de suivi est la liste des pages que vous monitorez. [alt-w]',
+'tooltip-userpage' => 'Ma page personelle',
+'tooltip-mytalk' => 'Ma page de discussion',
+'tooltip-preferences' => 'Mes préférences',
+'tooltip-mycontris' => 'Liste de mes contributions',
+'tooltip-login' => 'Vous êtes encouragés à vous identifier avant d\'éditer, ce n\'est toutefois pas nécessaire.',
+
+'tooltip-search' => 'Rechercher dans ce wiki',
+'tooltip-mainpage' => 'Aller à la page principale',
+'tooltip-randompage' => 'Aller à une page au hasard [alt-x]',
+'tooltip-currentevents' => 'Trouver des informations sur les évenements actuels',
+'tooltip-sitesupport' => 'Aider {{SITENAME}}',
+'tooltip-help' => 'L\'endroit pour découvrir.',
+'tooltip-recentchanges' => 'La liste des modifications récentes dans le wiki. [alt-r]',
+'tooltip-recentchangeslinked' => 'Modifications récentes des pages liant à cette page [alt-c]',
+'tooltip-whatlinkshere' => 'Liste de toutes les pages qui lient à ici [alt-b]',
+'tooltip-specialpages' => 'Liste de toutes les pages spéciales',
+'tooltip-upload' => 'Copier sur le serveur des fichiers [alt-u]',
+'tooltip-specialpage' => 'Ceci est une page spéciale, vous ne pouvez pas l\'éditer.',
+
 );
 
 class LanguageFr extends LanguageUtf8
