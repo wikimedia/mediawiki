@@ -29,6 +29,7 @@ function wfSpecialAllmessages() {
 		$messages[$key]['statmsg'] = wfMsgNoDb( $key );
 		$messages[$key]['msg'] = wfMsg ( $key );
 	}
+	$wgMessageCache->enableTransform();
 	wfProfileOut( "$fname-setup" );
 	
 	wfProfileIn( "$fname-output" );
