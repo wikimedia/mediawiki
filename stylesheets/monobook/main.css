@@ -123,13 +123,20 @@ ol {
     line-height: 1.5em;
     margin: 0.3em 0 0 3.2em;
     padding:0;
+    list-style-image: none;
 }
 li { margin-bottom: 0.1em; }
-dt { font-weight: bold; }
+dt { 
+    font-weight: bold; 
+    margin-bottom: 0.1em;
+}
+dl{
+    margin-bottom: 0.3em;
+}
 dd {
     line-height: 1.5em;
-    margin-bottom: 0.8em;
     margin-left: 2em;
+    margin-bottom: 0.1em;
 }
 
 fieldset {
