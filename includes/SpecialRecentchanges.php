@@ -124,7 +124,7 @@ function wfSpecialRecentchanges( $par ) {
 	  "WHERE rc_timestamp > '{$cutoff}' {$hidem} " .
 	  "ORDER BY rc_timestamp DESC LIMIT {$limit}";
 
-	$res = $dbr->query( $sql2, DB_SLAVE, $fname );
+	$res = $dbr->query( $sql2, $fname );
 	$rows = array();
 	while( $row = $dbr->fetchObject( $res ) ){
 		$rows[] = $row;

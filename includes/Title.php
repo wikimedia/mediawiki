@@ -1571,7 +1571,7 @@ class Title {
 				$sql .= "($id, $oldid)";
 			}
 
-			$dbw->query( $sql, DB_MASTER, $fname );
+			$dbw->query( $sql, $fname );
 		}
 
 		# Now, we record the link from the redirect to the new title.
