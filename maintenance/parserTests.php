@@ -46,7 +46,7 @@ class ParserTest {
 					if( $this->runTest(
 						rtrim( $data['test'] ),
 						rtrim( $data['input'] ),
-						rtrim( $data['result'] ) ) ) {
+						$this->resultTransform(rtrim( $data['result'] ) ) ) ) {
 						$success++;
 					}
 					$total++;
@@ -65,6 +65,19 @@ class ParserTest {
 			$ratio = IntVal( 100.0 * $success / $total );
 			print "\nPassed $success of $total tests ($ratio%)\n";
 		}
+	}
+
+	/**
+	 * Substitute simple variables to allow for slightly more
+	 * sophisticated tests.
+	 * @access private
+	 */
+	function resultTransform($text) {
+		$rep = array (
+			'__SCRIPT__' => $GLOBALS['wgScript']
+		);
+		$text = str_replace(array_keys($rep), array_values($rep), $text);
+		return $text;
 	}
 
 	/**
@@ -88,8 +101,17 @@ class ParserTest {
 
 		$op = new OutputPage();
 		$op->replaceLinkHolders($html);
+
+		global $wgUseTidy;
+		if ($wgUseTidy) {
+			# Using Parser here is probably theoretically
+			# wrong, because we shouldn't use Parser to
+			# validate itself, but this should be safe
+			# in practice.
+			$result = Parser::tidy($result);
+		}
 		
-		if( $result == rtrim( $html ) ) {
+		if( rtrim($result) === rtrim($html) ) {
 			return $this->showSuccess( $desc );
 		} else {
 			return $this->showFailure( $desc, $result, $html );
