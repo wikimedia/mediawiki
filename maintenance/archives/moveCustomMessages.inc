@@ -8,6 +8,8 @@ function isTemplateInitialised() {
 
 function moveCustomMessages( $phase ) {
 	global $wgUser, $wgAllMessagesEn, $wgDeferredUpdateList, $wgLang ;
+	global $targets, $template, $replaceCount;
+
 	$wgUser = new User;
 	$wgUser->setLoaded( true ); # Don't load from DB
 	$wgUser->setName( "Template namespace initialisation script" );
@@ -35,6 +37,7 @@ function moveCustomMessages( $phase ) {
 
 	# Create redirects from destination to source
 	if ( $phase == 0 || $phase == 1 ) {
+		print "Creating redirects\n";
 		foreach ( $targets as $partial => $dummy ) {
 			print "$partial...";
 			$nt = Title::makeTitle( NS_TEMPLATE, $partial );
@@ -54,7 +57,7 @@ function moveCustomMessages( $phase ) {
 
 	# Move pages
 	if ( $phase == 0 || $phase == 2 ) {
-		print "\n";
+		print "\nMoving pages...\n";
 		foreach ( $targets as $partial => $dummy ) {
 			$ot = Title::makeTitle( NS_MEDIAWIKI, $partial );
 			$nt = Title::makeTitle( NS_TEMPLATE, $partial );
@@ -75,7 +78,7 @@ function moveCustomMessages( $phase ) {
 
 	# Convert text
 	if ( $phase == 0 || $phase == 3 ) {
-		print "\n";
+		print "\nConverting text...\n";
 		
 		$parser = new Parser;
 		$options = ParserOptions::newFromUser( $wgUser );
