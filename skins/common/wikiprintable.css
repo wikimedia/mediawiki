@@ -32,11 +32,6 @@ a, a.external, a.new, a.stub {
 	margin: inherit ! important;
 }
 
-/* Show some stuff */
-.urlexpansion {
-	display: inline ! important;
-}
-
 .printfooter {
 	border-top: solid 1px black;
 	display: block ! important;

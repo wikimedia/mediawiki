@@ -11,7 +11,7 @@ div.floatleft p { font-style: italic; }
 
 
 /* Print-specific things to hide */
-.urlexpansion, .printfooter {
+.printfooter {
         display: none;
 }
 

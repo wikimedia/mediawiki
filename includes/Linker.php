@@ -647,8 +647,8 @@ class Linker {
 		  wfMsg( $key ) );
 	}
 
-	function makeExternalLink( $url, $text, $escape = true ) {
-		$style = $this->getExternalLinkAttributes( $url, $text );
+	function makeExternalLink( $url, $text, $escape = true, $linktype = '' ) {
+		$style = $this->getExternalLinkAttributes( $url, $text, 'external ' . $linktype );
 		$url = htmlspecialchars( $url );
 		if( $escape ) {
 			$text = htmlspecialchars( $text );
@@ -831,13 +831,6 @@ class Linker {
 		}
 		return "<div class=\"editsection\" style=\"float:$farside;margin-$nearside:5px;\">[".$url."]</div>";
 
-	}
-
-	/**
-	 * @access public
-	 */
-	function suppressUrlExpansion() {
-		return false;
 	}
 
 }
