@@ -106,7 +106,6 @@ function initialiseMessagesReal( $overwrite = false, $messageArray = false ) {
 	$revision = $dbr->tableName( 'revision' );
 
 	$timestamp = wfTimestampNow();
-	$invTimestamp = wfInvertTimestamp( $timestamp );
 
 	#$sql = "SELECT cur_title,cur_is_new,cur_user_text FROM $cur WHERE cur_namespace=$ns AND cur_title IN(";
 	$sql = "SELECT page_title,page_is_new,rev_user_text FROM $page, $revision WHERE
