@@ -1937,7 +1937,6 @@ class Language {
 	}
 }
 
-header("X-Human-Language: $wgLanguageCode");
 # This should fail gracefully if there's not a localization available
 @include_once( "Language" . ucfirst( $wgLanguageCode ) . ".php" );
 ?>
