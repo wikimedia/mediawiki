@@ -17,9 +17,14 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-# This script generates UniNormalData.inc from the Unicode Character Database
-# and supplementary files. 
+/**
+ * This script generates UniNormalData.inc from the Unicode Character Database
+ * and supplementary files.
+ *
+ * @package MediaWiki 
+ */
 
+/** */
 require_once 'UtfNormalUtil.php';
 
 $in = fopen("DerivedNormalizationProps.txt", "rt" );
@@ -160,9 +165,12 @@ if( $out ) {
 	$serCanon = escapeSingleString( serialize( $canonicalDecomp ) );
 	$serCheckNFC = escapeSingleString( serialize( $checkNFC ) );
 	$outdata = "<" . "?php
-# This file was automatically generated -- do not edit!
-# Run UtfNormalGenerate.php to create this file again (make clean && make)
-
+/**
+ * This file was automatically generated -- do not edit!
+ * Run UtfNormalGenerate.php to create this file again (make clean && make)
+ * @package MediaWiki
+ */
+/** */
 global \$utfCombiningClass, \$utfCanonicalComp, \$utfCanonicalDecomp;
 \$utfCombiningClass = unserialize( '$serCombining' );
 \$utfCanonicalComp = unserialize( '$serComp' );
@@ -182,9 +190,12 @@ $out = fopen("UtfNormalDataK.inc", "wt");
 if( $out ) {
 	$serCompat = escapeSingleString( serialize( $compatibilityDecomp ) );
 	$outdata = "<" . "?php
-# This file was automatically generated -- do not edit!
-# Run UtfNormalGenerate.php to create this file again (make clean && make)
-
+/**
+ * This file was automatically generated -- do not edit!
+ * Run UtfNormalGenerate.php to create this file again (make clean && make)
+ * @package MediaWiki
+ */
+/** */
 global \$utfCompatibilityDecomp;
 \$utfCompatibilityDecomp = unserialize( '$serCompat' );
 ?" . ">\n";
