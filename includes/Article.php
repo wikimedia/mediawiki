@@ -1522,7 +1522,52 @@ class Article {
 	function getTouched() {
 		return $this->mTouched;
 	}
-	
+
+	# Edit an article without doing all that other stuff
+	function quickEdit( $text, $comment = "", $minor = 0 ) {
+		global $wgUser, $wgMwRedir;
+		$fname = "Article::quickEdit";
+		wfProfileIn( $fname );
+
+		$ns = $this->mTitle->getNamespace();
+		$dbkey = $this->mTitle->getDBkey;
+		$encDbKey = wfStrencode( $dbkey );
+		$timestamp = wfTimestampNow();
+		
+		# Save to history
+		$sql = "INSERT INTO old (old_namespace,old_title,old_text,old_comment,old_user,old_user_text,old_timestamp)
+		  SELECT cur_namespace,cur_title,cur_text,cur_comment,cur_user,cur_user_text,cur_timestamp 
+		  FROM cur WHERE cur_namespace=$ns AND cur_title='$encDbKey'";
+		wfQuery( $sql, DB_WRITE );
+		
+		# Use the affected row count to determine if the article is new
+		$numRows = wfAffectedRows();
+
+		# Make an array of fields to be inserted
+		$fields = array(
+			'cur_text' => $text,
+			'cur_timestamp' => $timestamp,
+			'cur_user' => $wgUser->getID(),
+			'cur_user_text' => $wgUser->getName(),
+			'inverse_timestamp' => wfInvertTimestamp( $timestamp ),
+			'cur_comment' => $comment,
+			'cur_is_redirect' => $wgMwRedir->matchStart( $text ) ? 1 : 0,
+			'cur_minor_edit' => intval($minor),
+			'cur_touched' => $timestamp,
+		);
+
+		if ( $numRows ) {
+			# Update article
+			$fields['cur_is_new'] = 0;
+			wfUpdateArray( $fields, array( 'cur_namespace' => $ns, 'cur_title' => $dbkey ), $fname );
+		} else {
+			# Insert new article
+			$fields['cur_is_new'] = 1;
+			wfInsertArray( "cur", $fields, $fname );
+		}
+		wfProfileOut( $fname );
+	}
+
 	/* static */ function incViewCount( $id )
 	{
 		$id = intval( $id );
