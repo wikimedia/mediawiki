@@ -670,9 +670,9 @@ if( \$wgCommandLineMode ) {
 ## you should define a MySQL user with limited privileges.
 ## See MySQL docs: http://www.mysql.com/doc/en/GRANT.html
 #
-# $wgAllowSysopQueries = true;
-# $wgDBsqluser        = \"sqluser\";
-# $wgDBsqlpassword    = \"sqlpass\";
+# \$wgAllowSysopQueries = true;
+# \$wgDBsqluser        = \"sqluser\";
+# \$wgDBsqlpassword    = \"sqlpass\";
 
 \$wgDBmysql4 = \$wgEnablePersistentLC = {$conf->DBmysql4};
 
