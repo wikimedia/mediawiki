@@ -1,4 +1,5 @@
 <?
+$wgCommandLineMode = true;
 
 if ( ! is_readable( "../LocalSettings.php" ) ) {
 	print "A copy of your installation's LocalSettings.php\n" .
@@ -13,6 +14,7 @@ include_once( "../AdminSettings.php" );
 include_once( "{$IP}/Setup.php" );
 include_once( "./InitialiseMessages.inc" );
 $wgTitle = Title::newFromText( "Rebuild messages script" );
+$wgCommandLineMode = true;
 set_time_limit(0);
 
 initialiseMessages( true );

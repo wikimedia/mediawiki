@@ -37,7 +37,7 @@ function initialiseMessages( $overwrite = false) {
 		$titleObj = Title::newFromText( $key );
 		$title = $titleObj->getDBkey();
 		$dbencMsg = wfStrencode( $message );
-
+		
 		if ( $overwrite ) {
 			$sql = "DELETE FROM cur WHERE cur_namespace=$ns AND cur_title='$title'";
 			wfQuery( $sql, DB_WRITE, $fname );
@@ -45,7 +45,7 @@ function initialiseMessages( $overwrite = false) {
 		
 		$sql = "INSERT INTO cur (cur_namespace, cur_title, cur_text,
 			cur_user_text, cur_timestamp, cur_restrictions,
-			cur_is_new, inverse_timestamp) VALUES (
+			cur_is_new, inverse_timestamp, cur_touched) VALUES (
 			$ns,
 			'$title',
 			'$dbencMsg',
@@ -53,7 +53,8 @@ function initialiseMessages( $overwrite = false) {
 			'$timestamp',
 			'sysop',
 			1,
-			'$invTimestamp')";
+			'$invTimestamp',
+			'$timestamp')";
 		wfQuery( $sql, DB_WRITE, $fname );
 		$mwObj =& MagicWord::get( MAG_MSGNW );
 		$mw = $mwObj->getSynonym( 0 );
@@ -71,16 +72,19 @@ function initialiseMessages( $overwrite = false) {
 	}
 	$navText .= "</table>";
 	$navText = wfStrencode( $navText );
+
 	$title = wfMsgNoDB( "allmessages" );
 
 	if ( $overwrite ) {
 		$sql = "DELETE FROM cur WHERE cur_namespace=$ns AND cur_title='$title'";
 		wfQuery( $sql, DB_WRITE, $fname );
 	}
-
+	#print $navText;
+	#$navText = substr($navText, 0, 1000);
+	$navText = str_repeat( "*", 1000 );
 	$sql = "INSERT INTO cur (cur_namespace, cur_title, cur_text,
 		cur_user_text, cur_timestamp, cur_restrictions,
-		cur_is_new, inverse_timestamp) VALUES (
+		cur_is_new, inverse_timestamp, cur_touched) VALUES (
 		$ns,
 		'$title',
 		'$navText',
@@ -88,7 +92,8 @@ function initialiseMessages( $overwrite = false) {
 		'$timestamp',
 		'sysop',
 		1,
-		'$invTimestamp')";
+		'$invTimestamp',
+		'$timestamp')";
 	wfQuery( $sql, DB_WRITE, $fname );
 	print "done \n";
 }
