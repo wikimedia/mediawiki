@@ -82,7 +82,7 @@ $wgSqlLogFile           = "{$wgUploadDirectory}/sqllog_mFhyRe6";
 $wgLogQueries           = false;
 $wgUseBetterLinksUpdate = true;
 $wgUseCategoryMagic		= false;
-$wgEnablePersistentLC	= false; # Persistent link cache, needs the linkscc table
+$wgEnablePersistentLC	= true; # Persistent link cache, needs the linkscc table
 
 # User rights 
 $wgWhitelistEdit = false;
