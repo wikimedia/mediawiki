@@ -1,35 +1,35 @@
 <?php
 
-// NOTE: To turn off "Current Events" in the sidebar,
-// set "currentevents" => "-"
-// 
-// The names of the namespaces can be set here, but the numbers
-// are magical, so don't change or move them!  The Namespace class
-// encapsulates some of the magic-ness.
-// 
+// $Id$
 
 /* private */ $wgNamespaceNamesSv = array(
-	-2	=> "Media",
-        -1      => "Special",
-        0       => "",
-        1       => "Diskussion",
-        2       => "Användare",
-        3       => "Användare_diskussion",
-        4       => "Wikipedia",
-        5       => "Wikipedia_diskussion",
-        6       => "Bild",
-        7       => "Bild_diskussion",
-	8	=> "MediaWiki",
-	9	=> "MediaWiki_diskussion",
-	10  => "Template",
-	11  => "Template_talk"
-
+	NS_MEDIA            => "Media",
+	NS_SPECIAL          => "Special",
+	NS_MAIN	            => "",
+	NS_TALK	            => "Diskussion",
+	NS_USER             => "Användare",
+	NS_USER_TALK        => "Användardiskussion",
+	NS_WIKIPEDIA        => $wgMetaNamespace,
+	NS_WIKIPEDIA_TALK   => $wgMetaNamespace . "diskussion",
+	NS_IMAGE            => "Bild",
+	NS_IMAGE_TALK       => "Bilddiskussion",
+	NS_MEDIAWIKI        => "MediaWiki",
+	NS_MEDIAWIKI_TALK   => "MediaWiki_diskussion",
+	NS_TEMPLATE         => "Mall",
+	NS_TEMPLATE_TALK    => "Malldiskussion",
+	NS_HELP             => "Hjälp",
+	NS_HELP_TALK        => "Hjälp_diskussion",
+	NS_CATEGORY	    => "Kategori",
+	NS_CATEGORY_TALK    => "Kategoridiskussion"
 );
 
 /* inherit standard defaults */
 
 /* private */ $wgQuickbarSettingsSv = array(
-        "Ingen", "Fast vänster", "Fast höger", "Flytande vänster"
+        "Ingen",
+	"Fast vänster",
+	"Fast höger",
+	"Flytande vänster"
 );
 
 /* private */ $wgSkinNamesSv = array(
@@ -43,15 +43,40 @@
 	'monobook' => "MonoBook"
 );
 
+define( "MW_MATH_PNG",    0 );
+define( "MW_MATH_SIMPLE", 1 );
+define( "MW_MATH_HTML",   2 );
+define( "MW_MATH_SOURCE", 3 );
+define( "MW_MATH_MODERN", 4 );
+define( "MW_MATH_MATHML", 5 );
+
+/* private */ $wgMathNamesSv = array(
+	MW_MATH_PNG    => "Rendera alltid PNG",
+	MW_MATH_SIMPLE => "HTML om den är väldigt enkel, annars PNG",
+	MW_MATH_HTML   => "HTML om det är möjligt, annars PNG",
+	MW_MATH_SOURCE => "Lämna det som TeX (för textbaserade webbläddrare)",
+	MW_MATH_MODERN => "Rekommenderas för moderna webbläsare",
+	MW_MATH_MATHML => "MathML om det är möjligt (experimentellt)",
+);
+
+/* private */ $wgDateFormatsSv = array(
+	"Ingen inställning",
+	"Januari 15, 2001",
+	"15 Januari 2001",
+	"2001 Januari 15",
+	"2001-01-15"
+);
+
 /* private */ $wgUserTogglesSv = array(
         "hover"            => "Svävande text över wikilänkar",
-        "underline"        => "Understrukna länkar",
-        "highlightbroken"  => "Röda länkar till tomma sidor",
+        "underline"        => "Understryk länkar",
+        "highlightbroken"  => "Formatera trasiga länkar <a href=\"\" class=\"new\">så här</a>
+(alternativt: så här<a href=\"\" class=\"internal\">?</a>).",
         "justify"          => "Justera indrag",
-        "hideminor"        => "Göm små redigeringar vid senaste ändring",
+        "hideminor"        => "Göm mindre redigeringar vid senaste ändring",
 	"usenewrc"         => "Avancerad 'Senaste ändringar'",
         "numberheadings"   => "Automatisk numrering av överskrifter",
-	"showtoolbar" => "Show edit toolbar",
+	"showtoolbar"      => "Visa redigeringverktygsrad",
         "rememberpassword" => "Kom ihåg lösenord till nästa besök",
         "editwidth"        => "Redigeringsboxen har full bredd",
         "editondblclick"   => "Redigera sidor med dubbelklick (JavaScript)",
@@ -150,10 +175,11 @@ $wgValidSpecialPagesSv = array(
 //	
 "linktrail"             => "/^([a-zäöå]+)(.*)\$/sD",
 "mainpage"              => "Huvudsida",
+'portal'		=> 'Kollektivportal',
+'portal-url'		=> '{{ns:4}}:Kollektivportal',
 "about"                 => "Om",
-"aboutwikipedia"        => "Om Wikipedia",
-"aboutpage"             => "Wikipedia:Om",
-
+"aboutwikipedia"        => "Om {{SITENAME}}",
+"aboutpage"		=> "{{ns:4}}:Om",
 "help"                  => "Hjälp",
 "helppage"              => "Wikipedia:Hjälp",
 "wikititlesuffix"       => "Wikipedia",
@@ -186,7 +212,7 @@ $wgValidSpecialPagesSv = array(
 "editthispage"          => "Redigera den här sidan",
 "deletethispage"        => "Radera den här sidan",
 "protectthispage"       => "Skydda den här sidan",
-"unprotectthispage"     => "Ta bort skydd av denna sida",
+"unprotectthispage"     => "Ta bort skydd från den här sidan",
 "newpage"               => "Ny sida",
 "talkpage"              => "Diskussionssida",
 "postcomment"           => "Skriv ett inlägg",
@@ -197,17 +223,17 @@ $wgValidSpecialPagesSv = array(
 "imagepage"             => "Visa bildsida",
 "otherlanguages"        => "Andra språk",
 "redirectedfrom"        => "(Omdirigerad från $1)",
-"lastmodified"          => "Denna sida blev senast ändrad $1.",
-"viewcount"             => "Denna sida har visats $1 gånger.",
-"gnunote"               => "Denna sida är publicerad under <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a>.",
+"lastmodified"          => "Den här sidan blev senast ändrad $1.",
+"viewcount"             => "Den här sidan har visats $1 gånger.",
+"gnunote"               => "Den här sidan är publicerad under <a class=internal href='$wgScriptPath/GNU_FDL'>GNU FDL</a>.",
 "printsubtitle"         => "(Från http://sv.wikipedia.org)",
 "protectedpage"         => "Skyddad sida",
 "administrators"        => "Wikipedia:Administratörer",
 "sysoptitle"            => "Sysop-behörighet krävs",
-"sysoptext"             => "Denna funktion kan bara utföras av användare med \"sysop\" status.
+"sysoptext"             => "Den här funktionen kan bara utföras av användare med \"sysop\" status.
 Se $1.",
 "developertitle"        => "Utvecklarbehörighet krävs",
-"developertext"         => "Denna funktion kan bara utföras av användare med \"developer\" status.
+"developertext"         => "Den här funktionen kan bara utföras av användare med \"developer\" status.
 Se $1.",
 "nbyte"                 => " bytes",
 "go"                    => "Utför",
@@ -223,6 +249,9 @@ Se $1.",
 "hidetoc"               => "göm",
 "thisisdeleted"         => "Visa eller återställ $1?",
 "restorelink"           => "$1 raderade versioner",
+'feedlinks'             => 'Matning:',
+
+
 
 // Main script and global functions
 //
@@ -264,7 +293,7 @@ URL:en.",
 "filenotfound"          => "Kunde inte hitta filen \"$1\".",
 "unexpected"            => "Oväntat värde: \"$1\"=\"$2\".",
 "formerror"             => "Fel: Kunde inte sända formulär",
-"badarticleerror"       => "Denna funktion kan inte utföras på denna sida.",
+"badarticleerror"       => "Den här funktionen kan inte utföras på den här sidan.",
 "cannotdelete"          => "Kunde inte radera sidan, eller filen som specificerades.",
 "badtitle"              => "Felaktig titel",
 "badtitletext"          => "Den önskade sidans titel var inte tillåten, tom eller sidan
@@ -337,12 +366,12 @@ Anledning är att:<br>''$2''<p>Ta kontakt med $1 eller en av de andra
 "updated"               => "(Uppdaterad)",
 "note"                  => "<strong>Notera:</strong> ",
 "previewnote"           => "Observera att detta är en förhandsvisning, och att sidan ännu inte sparats!",
-"previewconflict"       => "Denna förhandsvisning är resultatet av den 
+"previewconflict"       => "Den här förhandsvisningen är resultatet av den 
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.",
 "editing"               => "Redigerar $1",
 "editconflict"          => "Redigeringskonflikt: $1",
-"explainconflict"       => "Någon har ändrat denna sida efter att du började att redigera den.
+"explainconflict"       => "Någon har ändrat den här sidan efter att du började att redigera den.
 Det översta text blocket innehåller den nuvarande texten.
 Dina ändringer syns i det nedersta blocket.
 Du måste infoga dina ändringar i den existerande texten.
@@ -350,7 +379,7 @@ Du måste infoga dina ändringar i den existerande texten.
 "yourtext"              => "Din text",
 "storedversion"         => "Din sparade version",
 "editingold"            => "<strong>VARNING: Du redigerar en gammal version
-av denna sida. Om du sparar den, kommer alla ändringar på denns sida föregående revison att bli överskrivna.</strong>\n",
+av den här sidan. Om du sparar den, kommer alla ändringar på denns sida föregående revison att bli överskrivna.</strong>\n",
 "yourdiff"              => "Skillnader",
 "copyrightwarning"      => "Observera att alla bidrag till Wikipedia är
 att betrakta som utgivna under GNU Free Documentation License
@@ -371,9 +400,9 @@ Försäkra dig om att du följer rekommendationerna för <a href='$wgScriptPath/$wgM
 // History pages
 //
 "revhistory"            => "Versionshistoria",
-"nohistory"             => "Det finns ingen versionshistoria för denna sida.",
+"nohistory"             => "Det finns ingen versionshistoria för den här sidan.",
 "revnotfound"           => "Versionen hittades inte",
-"revnotfoundtext"       => "Den gamla versionen av den sida du frågade efter kan inte hittas. Kontrollera den URL du använde för att nå denna sida.\n",
+"revnotfoundtext"       => "Den gamla versionen av den sida du frågade efter kan inte hittas. Kontrollera den URL du använde för att nå den här sidan.\n",
 "loadhist"              => "Läser sidans versioner",
 "currentrev"            => "Nuvarande version",
 "revisionasof"          => "Versionen från $1",
@@ -390,7 +419,7 @@ Försäkra dig om att du följer rekommendationerna för <a href='$wgScriptPath/$wgM
 "difference"            => "(Skillnad mellan versioner)",
 "loadingrev"            => "läser version för att se skillnad",
 "lineno"                => "Rad $1:",
-"editcurrent"           => "Redigera den nuvarande versionen av denna sida",
+"editcurrent"           => "Redigera den nuvarande versionen av den här sidan",
 
 // Search results
 //
@@ -462,7 +491,7 @@ Den blir automatiskt inställd efter svensk tid eller skulle man till exempel för
 // Recent changes
 //
 "recentchanges"         => "Senaste ändringarna",
-"recentchangestext"     => "Se de senaste redigerade sidorna i Wikipedia på denna sida.",
+"recentchangestext"     => "Se de senaste redigerade sidorna i Wikipedia på den här sidan.",
 "rcloaderr"             => "Läser senaste redigerade sidor",
 "rcnote"                => "Nedanför är de senaste <strong>$1</strong> ändringarna under de sista <strong>$2</strong> dagarna.",
 "rcnotefrom"            => "Nedanför är ändringarna från <b>$2</b> till <b>$1</b> visade.",
@@ -536,7 +565,7 @@ Alla tider visas efter serverns tid (UTC).
 "largefile"             => "Bilder ska helst inte vara större än 100k.",
 "successfulupload"      => "Uppladdningen lyckades",
 "fileuploaded"          => "Filen \"$1\" laddades upp korrekt.
-Följ denna länk: ($2) till beskrivningssidan och fyll i
+Följ den här länken: ($2) till beskrivningssidan och fyll i
 information om filen, som till exempel var den kommer ifrån, 
 när den skapades och vem som gjort den och allt annat du vet om den.",
 "uploadwarning"         => "Uppladdnings varning",
@@ -565,8 +594,8 @@ när den skapades och vem som gjort den och allt annat du vet om den.",
 (ta bort) = ta bort den gamla version, (återgå) = återgå till en gammal version.
 <br><i>Klicka på ett datum för att se bilden som laddades upp den dagen</i>.", //"
 "imagelinks"            => "Bildlänk",
-"linkstoimage"          => "De följande sidorna länkar till denna bild:",
-"nolinkstoimage"        => "Det finns ingen sida som länkar till denna bild.",
+"linkstoimage"          => "De följande sidorna länkar till den här bilden:",
+"nolinkstoimage"        => "Det finns ingen sida som länkar till den här bilden.",
 
 // Statistics
 //
@@ -593,7 +622,7 @@ och <b>$6</b> sidvisningar per ändring.",
 "disambiguationspage"   => "Wikipedia:Länkar till sidor med tvetydiga titlar",
 "disambiguationstext"   => "Följande artiklar länkar till en <i>sidor med tvetydliga titlar</i>. De ska länka till en sidor med en korrekt titel.<br>En sida behandlar som tvetydig om den länkar från $1. <br>Länkar från andra namngrupper är <i>inte</i> listade här.",
 "doubleredirects"       => "Dubbla omdirigeringar",
-"doubleredirectstext"   => "<b>OBS:</b> Denna lista kan innehålla falska resultat. Detta betyder normalt att det finns ytterligare text under den första #REDIRECT.<br>\n Varje rad innehåller en länk till den första och andra omdirigering och den första raden av den andra omdirigeringen ger oftast den \"riktiga\" artikeln, vilket egentligen den första omdirigeringen ska peka på.",
+"doubleredirectstext"   => "<b>OBS:</b> Den här listan kan innehålla falska resultat. Detta betyder normalt att det finns ytterligare text under den första #REDIRECT.<br>\n Varje rad innehåller en länk till den första och andra omdirigering och den första raden av den andra omdirigeringen ger oftast den \"riktiga\" artikeln, vilket egentligen den första omdirigeringen ska peka på.",
 "brokenredirects"       => "Dåliga omdirigeringar",
 "brokenredirectstext"   => "Följande länkar omdirigerar till en artikel som inte existerar.",
 "selflinks"             => "Sidor med länkar till sig själva",
@@ -681,7 +710,7 @@ och sidan kommer att markeras med <b>fet stil</b> i <a href=\"" .
   wfLocalUrl( "Special:Recentchanges" ) . "\">listan över de senaste ändringarna
 </a> för att lättare kunna hittas</p>
 
-<p>Om du vill ta bort denna sida från din övervakningslista, så klicka 
+<p>Om du vill ta bort den här sidan från din övervakningslista, så klicka 
 \"Ta bort övervakning\" ute i sidan.",
 "removedwatch"          => "Borttagen från övervakningslista",
 "removedwatchtext"      => "Sidan \"$1\" har blivit borttagen från din övervakningslista",
@@ -775,7 +804,7 @@ Fyll i anledningen till blockering nedan (till exempel vilka artiklar som klottr
 <br>Se [[Speciel:Ipblocklist|IP blockeringslistan]] för alla blockeringar.",
 "unblockip"             => "Ta bort blockering av IP-adress",
 "unblockiptext"         => "Använd nedanstående formulär för att återställa skrivrättigheten för en tidigare blockerad IP-adress.",
-"ipusubmit"             => "Ta bort blockering för denna adress",
+"ipusubmit"             => "Ta bort blockering för den här adressen",
 "ipusuccess"            => "Blockeringen för IP-adressen \"$1\" har tagits bort",
 
 "ipblocklist"           => "Lista över blockerade IP-adresser",
@@ -808,7 +837,7 @@ Bekräfta att du vill göra detta.",
 "asksql"                => "SQL-fråga",
 "asksqltext"            => "Använd nedanstående formulär för att ställa frågor direkt till Wikipedias databas.
 Använd enkla citationstecken ('så här') för att markera strängar.
-Detta belastar ofta servern hårt, så använd denna funktion med omtanke.",
+Detta belastar ofta servern hårt, så använd den här funktionen med omtanke.",
 "sqlquery"              => "Skriv fråga",
 "querybtn"              => "Skicka fråga",
 "selectonly"            => "Andra frågor än \"SELECT\" får endast utföras av Wikipedias utvecklare.",
@@ -817,7 +846,14 @@ Detta belastar ofta servern hårt, så använd denna funktion med omtanke.",
 // Move page
 //
 "movepage"              => "Flytta sida",
-"movepagetext"          => "Formuläret nedan byter namn på sidan och flyttar hela dess historia till det nya namnet. Den gamla sidan blir en omdirigeringssida till den nya. Länkar till den gamla sidan kommer inte att ändras. Om det finns en diskussionssida kommer den inte att flyttas. <b>OBS!</b> Detta kan innebära en drastisk ändring på en populär sida; var säker på att du inser konsekvenserna i förväg.",
+"movepagetext"          => "Formuläret nedan byter namn på sidan och flyttar hela dess
+ historia till det nya namnet. Den gamla sidan blir en omdirigeringssida till den nya.
+Länkar till den gamla sidan kommer inte att ändras. Om det finns en diskussionssida
+kommer den inte att flyttas.
+
+<b>OBS!</b> Detta kan innebära en drastisk ändring på en populär sida;
+var säker på att du inser konsekvenserna i förväg.",
+
 "movearticle"           => "Flytta sida",
 "movenologin"           => "Ej inloggad",
 "movenologintext"       => "Du måste vara registrerad användare och ha <a href=\"" .
@@ -828,11 +864,135 @@ för att kunna flytta en sida.",
 "pagemovedsub"          => "Sidan har flyttats",
 "pagemovedtext"         => "Sidan \"[[$1]]\" har flyttats till \"[[$2]]\".",
 "articleexists"         => "Det finns redan en sida med detta namn eller så är namnet du angett ogiltigt. Välj ett annat namn.",
-"talkexists"            => "Sidan  flyttades korrekt, men den tilhörande diskussionssidan kunde inte flyttas, eftersom det redan existerar en sida med denna nya titel. Du måste sammanfoga dem manuellt.",
+"talkexists"            => "Sidan  flyttades korrekt, men den tilhörande diskussionssidan kunde inte flyttas, eftersom det redan existerar en sida med den här nya titeln. Du måste sammanfoga dem manuellt.",
 "movedto"               => "flyttat till",
 "movetalk"              => "Flytta även diskussionssidan, om den finns.",
 "talkpagemoved"         => "Sidans diskussionssida flyttades också.",
 "talkpagenotmoved"      => "Sidans diskussionssida flyttades <strong>inte</strong>.",
+
+# Move page
+#
+"movepage"		=> "Move page",
+"movepagetext"	=> "Using the form below will rename a page, moving all
+of its history to the new name.
+The old title will become a redirect page to the new title.
+Links to the old page title will not be changed; be sure to
+[[Special:Maintenance|check]] for double or broken redirects.
+You are responsible for making sure that links continue to
+point where they are supposed to go.
+
+Note that the page will '''not''' be moved if there is already
+a page at the new title, unless it is empty or a redirect and has no
+past edit history. This means that you can rename a page back to where
+it was just renamed from if you make a mistake, and you cannot overwrite
+an existing page.
+
+<b>WARNING!</b>
+This can be a drastic and unexpected change for a popular page;
+please be sure you understand the consequences of this before
+proceeding.",
+"movepagetalktext" => "The associated talk page, if any, will be automatically moved along with it '''unless:'''
+*You are moving the page across namespaces,
+*A non-empty talk page already exists under the new name, or
+*You uncheck the box below.
+
+In those cases, you will have to move or merge the page manually if desired.",
+"movearticle"	=> "Move page",
+"movenologin"	=> "Not logged in",
+"movenologintext" => "You must be a registered user and <a href=\"{{localurl:Special:Userlogin}}\">logged in</a>
+to move a page.",
+"newtitle"		=> "To new title",
+"movepagebtn"	=> "Move page",
+"pagemovedsub"	=> "Move succeeded",
+"pagemovedtext" => "Page \"[[$1]]\" moved to \"[[$2]]\".",
+"articleexists" => "A page of that name already exists, or the
+name you have chosen is not valid.
+Please choose another name.",
+"talkexists"	=> "The page itself was moved successfully, but the
+talk page could not be moved because one already exists at the new
+title. Please merge them manually.",
+"movedto"		=> "moved to",
+"movetalk"		=> "Move \"talk\" page as well, if applicable.",
+"talkpagemoved" => "The corresponding talk page was also moved.",
+"talkpagenotmoved" => "The corresponding talk page was <strong>not</strong> moved.",
+"1movedto2"		=> "$1 moved to $2",
+
+// Export
+
+"export"		=> "Exportera sidor",
+"exporttext"	=> "Du kan exportera texten och redigeringshistoriken av en specifik
+sida eller ställa in sidor wrappade i lite XML; detta kan sedan importeras till en annan
+wiki som kör MediaWiki-programvara, konverterad, eller bara sparad som syns skull.",
+"exportcuronly"	=> "Inkludera endast nuvarande revisionen, inte hela historiken",
+
+# Namespace 8 related
+
+"allmessages"	=> "Alla systemmeddelanden",
+"allmessagestext"	=> "Detta är en lista över alla systemmeddelanden tillgängliga i Metawiki-namespacet.",
+
+# Thumbnails
+
+"thumbnail-more"	=> "Förstora",
+"missingimage"		=> "<b>Bild saknas</b><br /><i>$1</i>\n",
+
+# tooltip help for the main actions
+'tooltip-atom'	=> 'Atom feed for this page',
+'tooltip-article' => 'Visa artikel [alt-a]',
+'tooltip-talk' => 'Diskutera artikel [alt-t]',
+'tooltip-edit' => 'Du kan ändra den här sidan. Var god anvand förhandsgranskningsknappen innan du sparar. [alt-e]',
+'tooltip-addsection' => 'Lägg till en kommentar på den här sidan. [alt-+]',
+'tooltip-viewsource' => 'Den här sidan är skyddad. Du kan inte se dess källa. [alt-e]',
+'tooltip-history' => 'Tidigare versioner av den här sidan, [alt-h]',
+'tooltip-protect' => 'Skydda den här sidan [alt-=]',
+'tooltip-delete' => 'Ta bort den här sidan [alt-d]',
+'tooltip-undelete' => 'Återställ $1 borttagna ändringar till den här sidan [alt-d]',
+'tooltip-move' => 'Flytta den här sidan [alt-m]',
+'tooltip-nomove' => 'Du har inte rättighet att flytta den här sidan',
+'tooltip-watch' => 'Lägg till den här sidan till din bevakningslista [alt-w]',
+'tooltip-unwatch' => 'Ta bort den här sidan från din bevakningslista [alt-w]',
+'tooltip-watchlist' => 'Lista över sidor som du bevakar [alt-l]',
+'tooltip-userpage' => 'Min användarsida [alt-.]',
+'tooltip-anonuserpage' => 'Användarsidan för ip:et du ändrar [alt-.]',
+'tooltip-mytalk' => 'Min diskussionssida [alt-n]',
+'tooltip-anontalk' => 'Diskutera ändringar från den här ip-addressen [alt-n]',
+'tooltip-preferences' => 'Mina inställningar',
+'tooltip-mycontris' => 'Lista över mina bidrag [alt-y]',
+'tooltip-login' => 'Du är uppmuntrad att logga in, men det är inget krav. [alt-o]',
+'tooltip-logout' => 'Logga ut [alt-o]',
+'tooltip-search' => 'Sök den här wikin [alt-f]',
+'tooltip-mainpage' => 'Besöka Huvudsidan [alt-z]',
+'tooltip-portal' => 'Om projektet, vad du kan göra och vart du hittar saker och ting',
+'tooltip-randompage' => 'Ladda en slumpmässig sida [alt-x]',
+'tooltip-currentevents' => 'Hitta bakgrundsinformation till nuvarande händelser',
+'tooltip-sitesupport' => 'Stöd {{SITENAME}}',
+'tooltip-help' => 'The place to find out.',
+'tooltip-recentchanges' => 'Lista över senaste ändringar på wikin. [alt-r]',
+'tooltip-recentchangeslinked' => 'Senaste ändringar till sidor som länkar hit [alt-c]',
+'tooltip-whatlinkshere' => 'Lista alla wikisidor som länkar hit [alt-b]',
+'tooltip-specialpages' => 'Lista alla specialsidor [alt-q]',
+'tooltip-upload' => 'Ladda upp bilder och media filer [alt-u]',
+'tooltip-specialpage' => 'Detta är en specialsida, du kan inte ändra den.',
+'tooltip-minoredit' => 'Markera som en mindre ändring [alt-i]',
+'tooltip-save' => 'Spara dina ändringar changes [alt-s]',
+'tooltip-preview' => 'Förhandsgranska dina ändringar, gör detta innan du sparar! [alt-p]',
+'tooltip-contributions' => 'Visa lista över bidrag från den här änvändaren',
+'tooltip-emailuser' => 'Skicka ett mail till användaren',
+'tooltip-rss' => 'RSS-matning för den här sidan',
+'tooltip-compareselectedversions' => 'Visa skillnaden mellan de två markerade versionerna av den här sidan. [alt-v]',
+
+# Metadata
+"nodublincore" => "Dublin Core RDF metadata avstängt för på den här servern.",
+"nocreativecommons" => "Creative Commons RDF metadata avstängt på den här servern.",
+"notacceptable" => "Den här wiki-servern kan inte erbjuda data i ett format som din klient kan läsa.",
+
+# Attribution
+
+"anonymous" => "Anonym användare av $wgSitename",
+"siteuser" => "$wgSitename användare $1",
+"lastmodifiedby" => "Den här sidan var senaste ändrad $1 av $2.",
+"and" => "och",
+"othercontribs" => "Baserad på arbete utfört av $1.",
+"siteusers" => "$wgSitename användare $1"
 
 );
 
