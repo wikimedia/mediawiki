@@ -1047,19 +1047,11 @@ class Parser
 					}
 					else { $newSection = "p"; }
 
-					if ( '' == trim( $oLine ) ) {
-						if ( $this->mLastSection != 'p') {
-							$text .= $this->closeParagraph();
-							$text .= "<" . $newSection . ">";
-							$this->mLastSection = $newSection;
-						} else if ( $this->mLastSection == 'p' and '' == $oLine) {
-							$text .= '<p>';
-						}
-					} else if ( $this->mLastSection == $newSection and $newSection != 'p' ) {
+					if ( ( '' == trim( $oLine ) ) ||  ( $this->mLastSection == $newSection and $newSection != 'p' )) {
 						$text .= $this->closeParagraph();
 						$text .= "<" . $newSection . ">";
 						$this->mLastSection = $newSection;
-					}
+					} 
 				}
 				if ( $inBlockElem &&
 				  preg_match( "/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|<\\/p<\\/div)/i", $t ) ) {
