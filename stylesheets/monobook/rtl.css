@@ -175,11 +175,6 @@ li#personaltools-login {
 }
 /* IE 6 fix fixes, hide from everything else */
 i {content: "\"/*" }
-* html textarea {
-    text-align:  right;
-    margin-right: -12.2em;
-    margin-left: 0;
-}
 * html #documentContent { border-left: 1px solid #aaaaaa; }
 * html body { padding-left: 10px; }
 /* */ 
