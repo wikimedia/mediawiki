@@ -678,6 +678,13 @@ class Parser
 					# simple text with no further markup
 					$txt = $token["text"];
 					break;
+				case "blank":
+					# Text that contains blanks that have to be converted to
+					# non-breakable spaces for French.
+					# U+202F NARROW NO-BREAK SPACE might be a better choice, but
+					# browser support for Unicode spacing is poor.
+					$txt = str_replace( " ", "<u>&nbsp;</u>", $token["text"] );
+					break;
 				case "[[[":
 					# remember the tag opened with 3 [
 					$threeopen = true;

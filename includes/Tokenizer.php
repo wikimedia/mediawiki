@@ -160,6 +160,64 @@ class Tokenizer {
 							}
 							break 2;
 						}
+						break;
+					case "!": // French spacing rules have a space before exclamation
+					case "?": // and question marks. Those have to become &nbsp;
+					case ":": // And colons, Hashar says ...
+						if ( $this->preceeded( " " ) )
+						{
+							// strip blank from Token
+							$token["text"] = substr( $token["text"], 0, -1 );
+							$queueToken["type"] = "blank";
+							$queueToken["text"] = " {$ch}";
+							$this->mQueuedToken[] = $queueToken;
+							$this->mPos ++;
+							break 2; // switch + while
+						}
+						break;
+					case "0": // A space between two numbers is used to ease reading
+					case "1": // of big numbers, e.g. 1 000 000. Those spaces need
+					case "2": // to be unbreakable
+					case "3":
+					case "4":
+					case "5":
+					case "6":
+					case "7":
+					case "8":
+					case "9":
+						if (    ($this->mTextLength >= $this->mPos +2)
+						     && ($this->mText[$this->mPos+1] == " ")
+						     && ctype_digit( $this->mText[$this->mPos+2] ) )
+						{
+							$queueToken["type"] = "blank";
+							$queueToken["text"] = $ch . " ";
+							$this->mQueuedToken[] = $queueToken;
+							$this->mPos += 2;
+							break 2; // switch + while
+						}
+						break;
+					case "\302": // first byte of UTF-8 Character Guillemet-left
+						if ( $this->continues( "\253 ") ) // second byte and a blank
+						{
+							$queueToken["type"] = "blank";
+							$queueToken["text"] = "\302\253 ";
+							$this->mQueuedToken[] = $queueToken;
+							$this->mPos += 3;
+							break 2; // switch + while
+						}
+						break;
+					case "\273": //last byte of UTF-8 Character Guillemet-right
+						if ( $this->preceeded( " \302" ) )
+						{
+							$queueToken["type"] = "blank";
+							$queueToken["text"] = " \302\273";
+							$token["text"] = substr( $token["text"], 0, -2 );
+							$this->mQueuedToken[] = $queueToken;
+							$this->mPos ++;
+							break 2; // switch + while
+						}
+						break;
+
 				} /* switch */
 				$token["text"].=$ch;
 				$this->mPos ++;
@@ -185,6 +243,16 @@ class Tokenizer {
 		}
 		return true;
 	}
-		
+
+	// function preceeded
+	// checks whether the mText is preceeded by $prec at position mPos
+	/* private */ function preceeded( $prec )
+	{
+		$len = strlen( $prec );
+		// if $prec is longer than the text up to mPos, return false
+		if ( $this->mPos < $len )
+			return false;
+		return ( 0 == strcmp( $prec, substr($this->mText, $this->mPos-$len, $len) ) );
+	}
 }
 		
