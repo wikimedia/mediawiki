@@ -4,7 +4,8 @@ include_once( "WatchedItem.php" );
 
 function wfSpecialWatchlist()
 {
-	global $wgUser, $wgOut, $wgLang, $wgTitle;
+	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgMemc;
+	global $wgUseWatchlistCache, $wgWLCacheTimeout, $wgDBname;
 	global $days, $limit, $target; # From query string
 	$fname = "wfSpecialWatchlist";
 
@@ -37,6 +38,17 @@ function wfSpecialWatchlist()
 		}
 		$wgOut->addHTML( "done.\n<p>" );
 	}
+
+	if ( $wgUseWatchlistCache ) {
+		$memckey = "$wgDBname:watchlist:id:" . $wgUser->getId();
+		$cache_s = @$wgMemc->get( $memckey );
+		if( $cache_s ){
+			$wgOut->addHTML( wfMsg("wlsaved") );
+			$wgOut->addHTML( $cache_s );
+			return;
+		}
+	}
+
 
 	$sql = "SELECT COUNT(*) AS n FROM watchlist WHERE wl_user=$uid";
 	$res = wfQuery( $sql, DB_READ );
@@ -162,6 +174,10 @@ function wfSpecialWatchlist()
 
 	wfFreeResult( $res );
 	$wgOut->addHTML( $s );
+
+	if ( $wgUseWatchlistCache ) {
+		$wgMemc->set( $memckey, $s, $wgWLCacheTimeout);
+	}
 }
 
 
