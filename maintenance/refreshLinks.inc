@@ -41,6 +41,16 @@ function refreshLinks( $start ) {
 		$text = $wgArticle->getContent( true );
 		$wgLinkCache = new LinkCache;
 		$wgLinkCache->forUpdate( true );
+		
+		global $wgLinkHolders;
+		$wgLinkHolders = array(
+			'namespaces' => array(),
+			'dbkeys' => array(),
+			'queries' => array(),
+			'texts' => array(),
+			'titles' => array()
+		);
+
 
 		# Parse the text and replace links with placeholders
 		$wgOut->addWikiText( $text );
