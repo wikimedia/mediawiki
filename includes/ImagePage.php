@@ -43,7 +43,7 @@ class ImagePage extends Article {
 		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, 
 		       $wgUseImageResize, $wgRepositoryBaseUrl;
 		$this->img  = Image::newFromTitle( $this->mTitle );
-		$url  = $this->img->getViewURL();
+		$full_url  = $this->img->getViewURL();
 		$anchoropen = '';
 		$anchorclose = '';
 		if ( $wgUseImageResize ) {
@@ -71,26 +71,25 @@ class ImagePage extends Article {
 				$height = $this->img->getHeight();
 				$msg = wfMsg('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
 				if ( $width > $maxWidth && $wgUseImageResize ) {
-					$anchoropen  = "<a href=\"{$url}\">";
-					$anchorclose = "<br>{$msg}</a>";
-
-					$url = $this->img->createThumb( $maxWidth );
 					$height = floor( $height * $maxWidth / $width );
 					$width  = $maxWidth;
 				} 
 				if ( $height > $maxHeight && $wgUseImageResize ) {
-					$anchoropen  = "<a href=\"{$url}\">";
-					$anchorclose = "<br>{$msg}</a>";
-
 					$width = floor( $width * $maxHeight / $height );
 					$height = $maxHeight;
-					$url = $this->img->createThumb( $width );
 				}
-				$s = "<div class=\"fullImageLink\">" . $anchoropen .
+				if ( $width != $this->img->getWidth() || $height != $this->img->getHeight() ) {
+					$url = $this->img->createThumb( $width );
+					$anchoropen  = "<a href=\"{$full_url}\">";
+					$anchorclose = "<br>{$msg}</a>";
+				} else {
+					$url = $full_url;
+				}
+				$s = '<div class="fullImageLink">' . $anchoropen .
 				     "<img border=\"0\" src=\"{$url}\" width=\"{$width}\" height=\"{$height}\" alt=\"" .
-				     htmlspecialchars( $wgRequest->getVal( 'image' ) )."\" />" . $anchorclose . "</div>";
+				     htmlspecialchars( $wgRequest->getVal( 'image' ) ).'" />' . $anchorclose . '</div>';
 			} else {
-				$s = "<div class=\"fullMedia\">".$sk->makeMediaLink($this->img->getName(),"")."</div>";
+				$s = "<div class=\"fullMedia\">" . $sk->makeMediaLink( $this->img->getName(),'' ) . '</div>';
 			}
 			$wgOut->addHTML( $s );
 			if($this->img->fromSharedDirectory) {
