@@ -44,11 +44,12 @@ class ExternalEdit {
 			$extension="wiki"; 
 		} elseif($this->mMode=="file") {
 			$type="Edit file"; 
-			$url=$wgServer .  Image::newFromTitle( $this->mTitle )->getURL();
+			$url = Image::newFromTitle( $this->mTitle );
+			$url = $url->url; # php sucks
+			
 			$extension=substr($name, $pos);
 		}					 
-		$control=
-"
+		$control="
 [Process]
 Type=$type
 Engine=MediaWiki
@@ -58,8 +59,6 @@ Script={$wgServer}{$wgScript}
 Extension=$extension
 URL=$url";
 		echo $control;
-
-
 	}
 }
 ?>
