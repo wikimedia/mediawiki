@@ -217,6 +217,11 @@ foreach ( $wgSkinExtensionFunctions as $func ) {
 	$func();
 }
 
+if( !is_object( $wgAuth ) ) {
+	require_once( 'AuthPlugin.php' );
+	$wgAuth = new AuthPlugin();
+}
+
 if( $wgCommandLineMode ) {
 	# Used for some maintenance scripts; user session cookies can screw things up
 	# when the database is in an in-between state.
