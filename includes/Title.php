@@ -1088,11 +1088,11 @@ class Title {
 		$fname = 'MovePageForm::moveToNewTitle';
 		$comment = wfMsg( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 
-		$now = wfTimestampNow();
-		$won = wfInvertTimestamp( $now );
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
 		$dbw =& wfGetDB( DB_MASTER );
+		$now = $dbw->timestamp();
+		$won = wfInvertTimestamp( wfTimestamp(TS_MW,$now) );
 
 		# Rename cur entry
 		$dbw->updateArray( 'cur',
@@ -1107,8 +1107,9 @@ class Title {
 		
 		$wgLinkCache->clearLink( $nt->getPrefixedDBkey() );
 
-		# Insert redirct
+		# Insert redirect
 		$dbw->insertArray( 'cur', array(
+			'cur_id' => $dbw->nextSequenceValue('cur_cur_id_seq'),
 			'cur_namespace' => $this->getNamespace(),
 			'cur_title' => $this->getDBkey(),
 			'cur_comment' => $comment,
