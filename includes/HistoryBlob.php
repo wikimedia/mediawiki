@@ -122,6 +122,7 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 		if ( count( $this->mItems ) == 0 ) {
 			return true;
 		}
+		/*
 		if ( !$this->mFast ) {
 			$this->uncompress();
 			$record = serialize( $this->mItems );
@@ -136,6 +137,13 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 			}
 		} else {
 			return count( $this->mItems ) <= 10;
+		}*/
+
+		# Jamesday's idea: prevent excessive apache memory usage on decompression
+		if ( strlen( serialize( $this->mItems ) ) > $factorThreshold * 1024 ) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 }
