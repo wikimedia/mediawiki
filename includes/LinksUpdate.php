@@ -136,7 +136,7 @@ class LinksUpdate {
 			$sql = "COMMIT";
 			wfQuery( $sql, DB_WRITE, $fname );
 		}
-		wfProfileOut();
+		wfProfileOut( $fname );
 	}
 
 	function doDumbUpdate()
@@ -211,7 +211,7 @@ class LinksUpdate {
 			$sql = "COMMIT";
 			wfQuery( $sql, DB_WRITE, $fname );
 		}
-		wfProfileOut();
+		wfProfileOut( $fname );
 	}
 	
 	function fixBrokenLinks() {

@@ -36,6 +36,7 @@ class IPUnblockForm {
 
 		if ( ! $wpUnblockAddress ) { $wpUnblockAddress = $ip; }
 		$ipa = wfMsg( "ipaddress" );
+		$ipr = wfMsg( "ipbreason" );
 		$ipus = wfMsg( "ipusubmit" );
 		$action = wfLocalUrlE( $wgLang->specialPage( "Ipblocklist" ),
 		  "action=submit" );
@@ -51,6 +52,10 @@ class IPUnblockForm {
 <td align=left>
 <input tabindex=1 type=text size=20 name=\"wpUnblockAddress\" value=\"{$wpUnblockAddress}\">
 </td></tr><tr>
+<td align=right>{$ipr}:</td>
+<td align=left>
+<input tabindex=1 type=text size=40 name=\"wpUnblockReason\" value=\"{$wpUnblockReason}\">
+</td></tr><tr>
 <td>&nbsp;</td><td align=left>
 <input tabindex=2 type=submit name=\"wpBlock\" value=\"{$ipus}\">
 </td></tr></table>
@@ -61,7 +66,7 @@ class IPUnblockForm {
 	function doSubmit()
 	{
 		global $wgOut, $wgUser, $wgLang;
-		global $wpUnblockAddress;
+		global $wpUnblockAddress, $wpUnblockReason;
 
 		$block = new Block();
 		$wpUnblockAddress = trim( $wpUnblockAddress );
@@ -72,8 +77,16 @@ class IPUnblockForm {
 			$block->mAddress = $wpUnblockAddress;
 		}
 		
+		# Delete block (if it exists)
+		# We should probably check for errors rather than just declaring success
 		$block->delete();
 
+		# Make log entry
+		$log = new LogPage( wfMsg( "blocklogpage" ), wfMsg( "blocklogtext" ) );
+		$action = str_replace( "$1", $wpUnblockAddress, wfMsg( "unblocklogentry" ) );
+		$log->addEntry( $action, $wpUnblockReason );
+
+		# Report to the user
 		$success = wfLocalUrl( $wgLang->specialPage( "Ipblocklist" ),
 		  "action=success&ip=" . urlencode($wpUnblockAddress) );
 		$wgOut->redirect( $success );

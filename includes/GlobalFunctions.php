@@ -140,30 +140,6 @@ function wfDebug( $text, $logonly = false )
 	}
 }
 
-if( !isset( $wgProfiling ) )
-	$wgProfiling = false;
-$wgProfileStack = array();
-$wgProfileWorkStack = array();
-
-if( $wgProfiling ) {
-	function wfProfileIn( $functionname )
-	{
-		global $wgProfileStack, $wgProfileWorkStack;
-		array_push( $wgProfileWorkStack, "$functionname " .
-			count( $wgProfileWorkStack ) . " " . microtime() );
-	}
-
-	function wfProfileOut() {
-		global $wgProfileStack, $wgProfileWorkStack;
-		$bit = array_pop( $wgProfileWorkStack );
-		$bit .= " " . microtime();
-		array_push( $wgProfileStack, $bit );
-	}
-} else {
-	function wfProfileIn( $functionname ) { }
-	function wfProfileOut( ) { }
-}
-
 function wfReadOnly()
 {
 	global $wgReadOnlyFile;

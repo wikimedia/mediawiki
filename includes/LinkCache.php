@@ -79,13 +79,17 @@ class LinkCache {
 		if ( 0 != $id ) { return $id; }
 
 		global $wgMemc, $wgDBname;
-		wfProfileIn( "LinkCache::addLink-checkdatabase" );
+		$fname = "LinkCache::addLink-checkdatabase";
+		wfProfileIn( $fname );
 
 		$nt = Title::newFromDBkey( $title );
 		$ns = $nt->getNamespace();
 		$t = $nt->getDBkey();
 
-		if ( "" == $t ) { return 0; }
+		if ( "" == $t ) { 
+			wfProfileOut( $fname);
+			return 0; 
+		}
 
 		$id = $wgMemc->get( $key = "$wgDBname:lc:title:$title" );
 		if( $id === FALSE ) {
@@ -103,13 +107,14 @@ class LinkCache {
 		}
 		if ( 0 == $id ) { $this->addBadLink( $title ); }
 		else { $this->addGoodLink( $id, $title ); }
-		wfProfileOut();
+		wfProfileOut( $fname );
 		return $id;
 	}
 
 	function preFill( $fromtitle )
 	{
-		wfProfileIn( "LinkCache::preFill" );
+		$fname = "LinkCache::preFill";
+		wfProfileIn( $fname );
 		# Note -- $fromtitle is a Title *object*
 		$dbkeyfrom = wfStrencode( $fromtitle->getPrefixedDBKey() );
 		$sql = "SELECT HIGH_PRIORITY cur_id,cur_namespace,cur_title
@@ -138,7 +143,7 @@ class LinkCache {
 		$this->mOldGoodLinks = $this->mGoodLinks;
 		$this->mPreFilled = true;
 		
-		wfProfileOut();
+		wfProfileOut( $fname );
 	}
 
 	function getGoodAdditions() 

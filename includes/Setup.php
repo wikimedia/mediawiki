@@ -48,6 +48,18 @@ if( ! class_exists( $wgLangClass ) ) {
 }
 $wgLang = new $wgLangClass();
 
+if( !isset( $wgProfiling ) )
+	$wgProfiling = false;
+
+if ( $wgProfiling ) {
+	include_once( "$IP/Profiling.php" );
+} else {
+	function wfProfileIn( $fn ) {}
+	function wfProfileOut( $fn = "" ) {}
+	function wfGetProfilingOutput( $s, $e ) {}
+	function wfProfileClose() {}
+}
+
 $wgUser = User::loadFromSession();
 $wgDeferredUpdateList = array();
 $wgLinkCache = new LinkCache();

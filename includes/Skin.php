@@ -70,16 +70,18 @@ class Skin {
 	function initPage()
 	{
 		global $wgOut, $wgStyleSheetPath;
-		wfProfileIn( "Skin::initPage" );
+		$fname = "Skin::initPage";
+		wfProfileIn( $fname );
 
 		$wgOut->addLink( "shortcut icon", "", "/favicon.ico" );
 		if ( $wgOut->isPrintable() ) { $ss = "wikiprintable.css"; }
 		else { $ss = $this->getStylesheet(); }
 		$wgOut->addLink( "stylesheet", "", "{$wgStyleSheetPath}/{$ss}" );
-		wfProfileOut();
+		wfProfileOut( $fname );
 	}
 	
 	function outputPage( &$out ) {
+		wfProfileIn( "Skin::outputPage" );
 		$this->initPage();
 		$out->out( $out->headElement() );
 
@@ -98,9 +100,8 @@ class Skin {
 		$out->out( $out->mBodytext );
 
 		$out->out( $this->afterContent() );
-		wfProfileOut();
-
-		wfProfileOut(); # A hack - we can't report after here
+		
+		wfProfileClose();
 		$out->out( $out->reportTime() );
 
 		$out->out( "\n</body></html>" );
@@ -238,7 +239,8 @@ class Skin {
 	function doBeforeContent()
 	{
 		global $wgUser, $wgOut, $wgTitle, $wgLang;
-		wfProfileIn( "Skin::doBeforeContent" );
+		$fname = "Skin::doBeforeContent";
+		wfProfileIn( $fname );
 
 		$s = "";
 		$qb = $this->qbSetting();
@@ -290,7 +292,7 @@ class Skin {
 		$s .= $this->pageSubtitle() ;
                 $s .= getCategories(); // For some odd reason, zhis can't be a function of the object
 		$s .= "\n<p>";
-		wfProfileOut();
+		wfProfileOut( $fname );
 		return $s;
 	}
 
@@ -326,7 +328,8 @@ class Skin {
 	function doAfterContent()
 	{
 		global $wgUser, $wgOut, $wgLang;
-		wfProfileIn( "Skin::doAfterContent" );
+		$fname =  "Skin::doAfterContent";
+		wfProfileIn( $fname );
 
 		$s = "\n</div><br clear=all>\n";
 
@@ -358,7 +361,7 @@ class Skin {
 		$s .= "</tr></table>\n</div>\n</div>\n";
 
 		if ( 0 != $qb ) { $s .= $this->quickBar(); }
-		wfProfileOut();
+		wfProfileOut( $fname );
 		return $s;
 	}
 
@@ -482,7 +485,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 			if( $wgShowIPinHeader ) {
 				$n = getenv( "REMOTE_ADDR" );
 
-  				$tl = $this->makeKnownLink( $wgLang->getNsText(
+				$tl = $this->makeKnownLink( $wgLang->getNsText(
 				  Namespace::getTalk( Namespace::getUser() ) ) . ":{$n}",
 				  $wgLang->getNsText( Namespace::getTalk( 0 ) ) );
 			  
@@ -638,7 +641,9 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 	{
 		global $wgOut, $wgTitle, $wgUser, $action, $wgLang;
 		global $wpPreview;
-		wfProfileIn( "Skin::quickBar" );
+		$fname =  "Skin::quickBar";
+		wfProfileIn( $fname );
+
 		$tns=$wgTitle->getNamespace();
 
 		$s = "\n<div id='quickbar'>";
@@ -655,11 +660,10 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		
 		}
 		// only show watchlist link if logged in
-                if ( wfMsg ( "currentevents" ) != "-" ) $s .= $sep . $this->makeKnownLink( wfMsg( "currentevents" ), "" ) ;
-                $s .= "\n<br><hr class='sep'>";
+		if ( wfMsg ( "currentevents" ) != "-" ) $s .= $sep . $this->makeKnownLink( wfMsg( "currentevents" ), "" ) ;
+		$s .= "\n<br><hr class='sep'>";
 		$articleExists = $wgTitle->getArticleId();
-		if ( $wgOut->isArticle() || $action =="edit" || $action =="history" || $wpPreview) {
-						
+		if ( $wgOut->isArticle() || $action =="edit" || $action =="history" || $wpPreview) {				
 			if($wgOut->isArticle()) {
 				$s .= "<strong>" . $this->editThisPage() . "</strong>";
 			} else { # backlink to the article in edit or history mode
@@ -761,7 +765,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		  . $sep . $this->bugReportsLink();
 
 		$s .= "\n<br></div>\n";
-		wfProfileOut();
+		wfProfileOut( $fname );
 		return $s;
 	}
 
@@ -983,7 +987,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 			if ( !$wgUseNewInterlanguage ) return "";
 			$ns = $wgLang->getNsIndex ( $wgTitle->getNamespace () ) ;
 			if ( $ns != 0 AND $ns != 1 ) return "" ;
-		 	$pn = "Intl" ;
+			$pn = "Intl" ;
 			$x = "mode=addlink&xt=".$wgTitle->getDBkey() ;
 			return $this->makeKnownLink( $wgLang->specialPage( $pn ),
 				  wfMsg( "intl" ) , $x );
@@ -1100,7 +1104,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 	# a final pass through here for things like table backgrounds.
 	#
 	function transformContent( $text )
- 	{
+	{
 		return $text;
 	}
 
@@ -1578,7 +1582,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 			  "diff={$oldid}&oldid={$diffid}" ); # Finagle's law
 		}
 		if ( 0 == $u ) {
-        	$ul = $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
+		$ul = $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
 			$ut, "target=" . $ut );					
 		} else { $ul = $this->makeLink( $wgLang->getNsText(
 		  Namespace::getUser() ) . ":{$ut}", $ut ); }
@@ -1665,7 +1669,7 @@ if ( isset ( $wgUseApproval ) && $wgUseApproval )
 		}
 
 		if ( 0 == $u ) {
-        	$ul = $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
+		$ul = $this->makeKnownLink( $wgLang->specialPage( "Contributions" ),
 			$ut, "target=" . $ut );
 		} else { $ul = $this->makeLink( $wgLang->getNsText(
 		  Namespace::getUser() ) . ":{$ut}", $ut ); }
