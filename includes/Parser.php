@@ -265,7 +265,7 @@ class Parser
 		$ti = $this->mTitle->getText() ;
 		$ti = explode ( ":" , $ti , 2 ) ;
 		if ( $cat != $ti[0] ) return "" ;
-		$r = '<br style="clear:both;"/>\n';
+		$r = "<br style=\"clear:both;\"/>\n";
 
 		$articles = array() ;
 		$parents = array () ;
@@ -1026,19 +1026,18 @@ class Parser
 		if ( ! $linestart ) { $text .= array_shift( $a ); }
 		foreach ( $a as $t ) {
 			$oLine = $t;
+			$opl = strlen( $lastPref );
 			$preCloseMatch = preg_match("/<\\/pre/i", $t );
 			$preOpenMatch = preg_match("/<pre/i", $t );
 			if (!$this->mInPre) {
 				$this->mInPre = !empty($preOpenMatch);
 			}
 			if ( !$this->mInPre ) {
-				$opl = strlen( $lastPref );
 				$npl = strspn( $t, "*#:;" );
 				$pref = substr( $t, 0, $npl );
 				$pref2 = str_replace( ";", ":", $pref );
 				$t = substr( $t, $npl );
 			} else {
-				$opl = strlen( $lastPref );
 				$npl = 0;
 				$pref = $pref2 = '';
 			}
