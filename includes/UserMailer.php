@@ -352,7 +352,6 @@ class EmailNotification {
 			$keys['%24PAGEEDITOR_RAWURL'] = wfUrlencode( $name );
 			$keys['%24PAGEEDITORE']       = $pageeditorUser->getTitleKey();
 			$keys['$PAGEEDITORE']         = $pageeditorUser->getTitleKey();
-			$keys['$PAGEEDITOR']          = $pageeditorUser->getName();
 			$keys['$PAGEEDITOR']          = $name;
 		}
 		$body = strtr( $body, $keys );
