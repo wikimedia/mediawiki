@@ -412,7 +412,7 @@ $2 Listaa uudelleenohjaukset &nbsp; Etsi $3 $9",
 "preferences"	=> "Asetukset",
 "prefsnologin" => "Ei kirjauduttu sisään",
 "prefsnologintext"	=> "Sinun täytyy olla <a href=\"" .
-  wfLocalUrl( "Erityissivut:Userlogin" ) . "\">kirjautuneena sisään</a>
+  "{{localurle:Erityissivut:Userlogin}}\">kirjautuneena sisään</a>
 jotta voisit muuttaa käyttäjän asetuksia.",
 "prefslogintext" => "Olet kirjautuneena sisään käyttäjänä \"$1\".
 Sisäinen tunnistenumerosi on $2.",
@@ -487,7 +487,7 @@ Katso myös [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta di
 "reuploaddesc"	=> "Paluu tallennuslomakkeelle.",
 "uploadnologin" => "Ei sisäänkirjautumista",
 "uploadnologintext"	=> "Sinun pitää olla <a href=\"" .
-  wfLocalUrl( "Erityissivut:Userlogin" ) . "\">kirjautuneena sisään</a>
+  "{{localurle:Erityissivut:Userlogin}}\">kirjautuneena sisään</a>
 tallentaaksesi tiedoston.",
 "uploadfile"	=> "Tallenna tiedosto",
 "uploaderror"	=> "Tallennusvirhe",
@@ -647,8 +647,8 @@ tätä listaa tule pitää suosituksena tai hyväksyntänä.",
 #
 "mailnologin"	=> "Lähettäjän osoite puuttuu",
 "mailnologintext" => "Sinun pitää olla <a href=\"" .
-  wfLocalUrl( "Erityissivut:Userlogin" ) . "\">kirjautuneena sisään</a>
-ja <a href=\"" . wfLocalUrl( "Erityissivut:Preferences" ) . "\">asetuksissasi</a> pitää olla kelpoinen sähköpostiosoite jotta voit lähettä sähköpostia muille käyttäjille.",
+  "{{localurle:Erityissivut:Userlogin}}\">kirjautuneena sisään</a>
+ja <a href=\"{{localurle:Erityissivut:Preferences}}\">asetuksissasi</a> pitää olla kelpoinen sähköpostiosoite jotta voit lähettä sähköpostia muille käyttäjille.",
 "emailuser"		=> "Lähetä sähköpostia tälle käyttäjälle",
 "emailpage"		=> "Lähetä sähköpostia käyttäjälle",
 "emailpagetext"	=> "Jos tämä käyttäjä on antanut asetuksissaan kelvollisen
@@ -672,13 +672,13 @@ Omissa asetuksissasi annettu sähköpostiosoite tulee näkymään sähköpostin 
 "nowatchlist"	=> "Tarkkailulistallasi ei ole sivuja.",
 "watchnologin"	=> "Et ole kirjautunut sisään",
 "watchnologintext"	=> "Sinun pitää olla <a href=\"" .
-  wfLocalUrl( "Erityissivut:Userlogin" ) . "\">kirjautuneena sisään</a>
+  "{{localurle:Erityissivut:Userlogin}}\">kirjautuneena sisään</a>
 jotta voit muokata tarkkailulistaasi.",
 "addedwatch"	=> "Lisätty tarkkailulistalle",
 "addedwatchtext" => "Sivu \"$1\" on lisätty <a href=\"" .
-  wfLocalUrl( "Erityissivut:Watchlist" ) . "\">tarkkailulistallesi</a>.
+  "{{localurle:Erityissivut:Watchlist}}\">tarkkailulistallesi</a>.
 Tulevaisuudessa sivuun ja sen keskustelusivuun tehtävät muutokset listataan täällä, ja sivu on <b>lihavoitu</b> <a href=\"" .
-  wfLocalUrl( "Erityissivut:Recentchanges" ) . "\">viimeisimpien muutosten listassa</a>, jotta sen huomaisi helpommin.</p>
+  "{{localurle:Erityissivut:Recentchanges}}\">viimeisimpien muutosten listassa</a>, jotta sen huomaisi helpommin.</p>
   <p>Jos haluat myöhemmin poistaa sivun tarkkailulistaltasi, klikkaa \"Lopeta tarkkailu\"-linkkiä sivun reunassa.",
 "removedwatch"	=> "Poistettu tarkkailulistalta",
 "removedwatchtext" => "Sivu \"$1\" on poistettu tarkkailulistaltasi.",
@@ -818,7 +818,7 @@ ole varma, että ymmärrät seuraukset ennen kuin jatkat.",
 Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 "movearticle"	=> "Siirrä sivu",
 "movenologin"	=> "Et ole kirjautunut sisään",
-"movenologintext" => "Sinun pitää olla rekisteröitynyt käyttäjäksi ja <a href=\"" .  wfLocalUrl( "Erityissivut:Userlogin" ) . "\"> kirjautuneena sisään</a> jotta voisit siirtää sivun.",
+"movenologintext" => "Sinun pitää olla rekisteröitynyt käyttäjäksi ja <a href=\"{{localurle:Erityissivut:Userlogin}}\"> kirjautuneena sisään</a> jotta voisit siirtää sivun.",
 "newtitle"	=> "Uusi nimi sivulle",
 "movepagebtn"	=> "Siirrä sivu",
 "pagemovedsub"	=> "Siirtäminen onnistui",

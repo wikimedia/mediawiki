@@ -516,7 +516,7 @@ value=\"{$wgServer}\" checked> $wgSitename <br>
 "preferences"		=> "Ynstellings",
 "prefsnologin" 		=> "Net oanmeld",
 "prefsnologintext"	=> "Jo moatte <a href=\""
-. wfLocalUrl( "Wiki:Userlogin" ) 
+. "{{localurle:Wiki:Userlogin}}" 
 . "\">oanmeld</a> wêze om jo ynstellings te feroarjen.",
 
 "prefslogintext" 		=> "Jo binne oanmeld, $1.
@@ -590,7 +590,7 @@ Jo Wiki-nûmer is $2.
 "reuploaddesc"	=> "Werom nei oanbied-side.",
 "uploadnologin" 	=> "Net oanmelde",
 "uploadnologintext" => "Jo moatte <a href=\""
-. wfLocalUrl( "Wiki:Userlogin" ) 
+. "{{localurle:Wiki:Userlogin}}" 
 . "\">oanmeld</a> wêze om in bestân oanbieden te kinnen.",
 
 "uploadfile"	=> "Bied ôfbylden, lûden, dokuminten ensfh. oan.",
@@ -772,9 +772,9 @@ an ôfbyld makke hawwe kinne. Dan wurde se noch brûke, mar stean al in dizze li
 #
 "mailnologin"	=> "Gjin adres beskikber",
 "mailnologintext" => "Jo moatte <a href=\""
-. wfLocalUrl( "Wiki:Userlogin" ) . "\">oanmeld</a>
+. "{{localurle:Wiki:Userlogin}}\">oanmeld</a>
 wêze, en in jildich e-postadres <a href=\"" .
-  wfLocalUrl( "Wiki:Preferences" ) . "\">ynsteld</a>
+  "{{localurle:Wiki:Preferences}}\">ynsteld</a>
 hawwe, om oan oare brûkers e-post stjoere te kinnen.",
 
 "emailuser"		=> "Skriuw dizze brûker",
@@ -801,15 +801,15 @@ of hat oanjaan gjin post fan oare brûkers krije te wollen.",
 "nowatchlist"	=> "Jo hawwe gjin siden op jo folchlist.",
 "watchnologin"	=> "Not oanmeld in",
 "watchnologintext"=> "Jo moatte <a href=\""
-. wfLocalUrl( "Wiki:Userlogin" ) 
+. "{{localurle:Wiki:Userlogin}}" 
 . "\">oanmeld</a> wêze om jo folchlist te feroarjen.",
 
 "addedwatch"	=> "Oan folchlist tafoege",
 "addedwatchtext"	=> "De side \"$1\" is tafoege oan jo <a href=\"" 
-. wfLocalUrl( "Wiki:Watchlist" ) . "\">folchlist</a>.
+. "{{localurle:Wiki:Watchlist}}\">folchlist</a>.
 As dizze side sels, of de oerlisside, feroare wurd, dan komt dat dêr yn,
 en de side stiet dan ek <b>fet</b> yn de <a href=\"" .
-  wfLocalUrl( "Wiki:Recentchanges" ) . "\">Koarts feroare</a> list.
+  "{{localurle:Wiki:Recentchanges}}\">Koarts feroare</a> list.
 
 <p>As jo letter in side net mear folgje wolle, dan brûke jo \"Ferjit dizze side\".",
 "removedwatch"	=> "Net mear folgje",
@@ -1001,7 +1001,7 @@ In dizze gefallen is it oan jo hoe't jo de oerlisside werneame of ynfoegje wolle
 "movearticle"	=> "Werneam side",
 "movenologin"	=> "Net oameld",
 "movenologintext" => "Jo moatte <a href=\""
-. wfLocalUrl( "Wiki:Userlogin" ) 
+. "{{localurle:Wiki:Userlogin}}" 
 . "\">oanmeld</a> wêze om in side wer te neamen.",
 
 "newtitle"		=> "As nij titel",

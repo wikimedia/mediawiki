@@ -436,7 +436,7 @@ containing all of the search terms will appear in the result)." */,
 "prefsnologintext"	=>  "ユーザーオプションを変更するためには、
 <a href=\"{{localurle:Special:Userlogin}}\">ログイン</a>している必要があります。"
 /* "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+  "{{localurle:Special:Userlogin}}\">logged in</a>
 to set user preferences." */,
 "prefsreset"	=> "ユーザー設定は初期化されました。" /* "Preferences have been reset from storage." */,
 "qbsettings"	=> "クイックバー設定" /* "Quickbar settings" */,
@@ -555,12 +555,12 @@ to upload files.",
 
 /* <strong>STOP!</strong> Before you upload here,
 make sure to read and follow Wikipedia's <a href=\"" .
-wfLocalUrlE( "Wikipedia:Image_use_policy" ) . "\">image use policy</a>.
+"{{localurle:Wikipedia:Image_use_policy}}\">image use policy</a>.
 <p>To view or search previously uploaded images,
-go to the <a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
+go to the <a href=\"" . "{{localurle:Special:Imagelist}}" .
 "\">list of uploaded images</a>.
 Uploads and deletions are logged on the <a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload_log" ) . "\">upload log</a>.
+"{{localurle:Wikipedia:Upload_log}}\">upload log</a>.
 <p>Use the form below to upload new image files for use in
 illustrating your articles.
 On most browsers, you will see a \"Browse...\" button, which will
@@ -702,9 +702,9 @@ created and by whom, and anything else you may know about it." */,
 で指定し、
 <a href=\"{{localurle:Special:Userlogin\">ログイン</a>している必要があります。"
 /* You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+  "{{localurle:Special:Userlogin}}\">logged in</a>
 and have a valid e-mail address in your <a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">preferences</a>
+  "{{localurle:Special:Preferences}}\">preferences</a>
 to send e-mail to other users." */,
 "emailuser"		=> "このユーザーにメールを送る" /* "E-mail this user" */,
 "emailpage"		=> "メール送信ページ" /* "E-mail user" */,
@@ -739,7 +739,7 @@ or has chosen not to receive e-mail from other users." */,
 "watchnologintext"	=> "ウォッチリストを変更するためには、
 <a href=\"{{localurle:Special:Userlogin}}\">ログイン</a>している必要があります。"
 /* "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+  "{{localurle:Special:Userlogin}}\">logged in</a>
 to modify your watchlist." */,
 "addedwatch"	=> "ウォッチリストに加えました" /* "Added to watchlist" */,
 "addedwatchtext" => "ページ\"$1\" をあなたの
@@ -755,10 +755,10 @@ to modify your watchlist." */,
 \"ウォッチリストから削除\" のリンクをクリックして下さい。",
 
 /* The page \"$1\" has been added to your <a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\">watchlist</a>.
+  "{{localurle:Special:Watchlist}}\">watchlist</a>.
 Future changes to this page and its associated Talk page will be listed there,
 and the page will appear <b>bolded</b> in the <a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">list of recent changes</a> to
+  "{{localurle:Special:Recentchanges}}\">list of recent changes</a> to
 make it easier to pick out.</p>
 
 <p>If you want to remove the page from your watchlist later, click \"Stop watching\" in the sidebar." */

@@ -445,7 +445,7 @@ border=\"0\" ALT=\"Google\"></A>
 "preferences"	        => "Nastavitve",
 "prefsnologin"          => "Niste vpisani",
 "prefsnologintext"	=> "Morate biti <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">vpisani</a>
+  "{{localurle:Special:Userlogin}}\">vpisani</a>
 za ponastavljanje uporabniških nastavitev.",
 "prefslogintext"        => "Vpisani ste kot \"$1\".
 Notranja ID števka je $2.",
@@ -521,7 +521,7 @@ Poglejte tudi [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta 
 "reuploaddesc"	        => "Vrnite se v obrazec za nalaganje.",
 "uploadnologin"         => "Niste vpisani",
 "uploadnologintext"	=> "Za nalaganje datotek morate biti <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">vpisani</a>
+  "{{localurle:Special:Userlogin}}\">vpisani</a>
 .",
 "uploadfile"	        => "Naložite datoteko",
 "uploaderror"	        => "Naložite napako",
@@ -682,9 +682,9 @@ Wikipedija ne služi z nobenim od teh poslov in ta spisek ni pokazatelj njihovih
 #
 "mailnologin"	=> "Ni naslova odpošiljatelja",
 "mailnologintext" => "Morate biti <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">prijavljeni</a>
+  "{{localurle:Special:Userlogin}}\">prijavljeni</a>
 in imeti veljaven naslov e-pošte v vaših <a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">nastavitvah</a>,
+  "{{localurle:Special:Preferences}}\">nastavitvah</a>,
 da lahko pošljete pošto drugim uporabnikom.",
 "emailuser"	=> "Pošlji e-pošto temu uporabniku",
 "emailpage"	=> "Pošlji e-pošto uporabniku",
@@ -708,13 +708,13 @@ Naslov e-pošte, ki ste jo vnesli v vaših uporabniških nastavitvah, bo v
 "nowatchlist"	=> "Na vašem spisku nadzorov ni nobenega članka.",
 "watchnologin"	=> "Niste prijavljeni",
 "watchnologintext" => "Morate biti <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">prijavljeni</a>
+  "{{localurle:Special:Userlogin}}\">prijavljeni</a>
 za spremembo seznama nadzorov.",
 "addedwatch"	=> "Dodano k seznamu nadzorov",
 "addedwatchtext" => "Stran \"$1\" je dodana na vaš <a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\">seznam nadzorov</a>.
+  "{{localurle:Special:Watchlist}}\">seznam nadzorov</a>.
 Morebitne spremembe te strani in njena pripadajoča pogovorna stran bosta navedeni tam in stran bo prikazana <b>krepko</b> v <a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">seznamu trenutnih sprememb</a>, da jo boste tudi lažje izbrali.</p>
+  "{{localurle:Special:Recentchanges}}\">seznamu trenutnih sprememb</a>, da jo boste tudi lažje izbrali.</p>
 <p>Če želite kasneje odstraniti stran iz seznama nadzorov, pritisnite \"Prekini nadzor\" v stranski vrstici.",
 "removedwatch"	=> "Odstranjena iz seznama nadzorov",
 "removedwatchtext" => "Stran \"$1\" je odstranjena iz vašega seznama nadzorov.",
@@ -873,7 +873,7 @@ V teh primerih boste morali prestaviti ali povezati stran ročno, če to želite
 "movearticle"	=> "Prestavite stran",
 "movenologin"	=> "Niste vpisani",
 "movenologintext" => "Za prestavitev strani morate biti zabeležen uporabnik in <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">prijavljeni</a>.",
+  "{{localurle:Special:Userlogin}}\">prijavljeni</a>.",
 "newtitle"	=> "Na nov naslov",
 "movepagebtn"	=> "Prestavite stran",
 "pagemovedsub"	=> "Prstavitev uspela",

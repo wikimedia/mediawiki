@@ -71,7 +71,7 @@ if($wgMetaNamespace === FALSE)
   MAG_PAGENAME             => array( 1,    'PAGENAME', 'SÍÐA'       ),
   MAG_NAMESPACE            => array( 1,    'NAMESPACE', 'NAFNRÝMI'  ),
   MAG_MSG                  => array( 0,    'MSG:', 'SKILABOÐ:'                  ),
-  MAG_SUBST                => array( 0,    'SUBST:' 'INNSETJA:'                ),
+  MAG_SUBST                => array( 0,    'SUBST:', 'INNSETJA:'                ),
   MAG_MSGNW                => array( 0,    'MSGNW:'                 ),
   MAG_END                  => array( 0,    '__END__'                ),
   MAG_IMG_THUMBNAIL        => array( 1,    'thumbnail', 'thumb', 'smámynd', 'örmynd'     ),

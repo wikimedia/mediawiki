@@ -538,7 +538,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br>
 "preferences" => "Preferencje",
 "prefsnologin" => "Brak logowania",
 "prefsnologintext" => "Musisz się <a href=\"" .
-  wfLocalUrl( "Specjalna:Userlogin" ) . "\">zalogować</a>
+  "{{localurle:Specjalna:Userlogin}}\">zalogować</a>
 przez zmianą swoich preferencji.",
 "prefslogintext" => "Zalogowano Cię jako \"$1\". Twój numer identyfikacyjny to $2.
 
@@ -612,7 +612,7 @@ Jeśli zależy Ci na dalszym rozwoju Wikipedii, nie dodawaj materiałów zastrze
 "reuploaddesc" => "Wróć do formularza wysyłki.",
 "uploadnologin" => "Brak logowania",
 "uploadnologintext" => "Musisz się <a href=\"" .
-  wfLocalUrl( "Specjalna:Userlogin" ) . "\">zalogować</a>
+  "{{localurle:Specjalna:Userlogin}}\">zalogować</a>
 przed przesłaniem pików.",
 "uploadfile" => "Prześlij plik",
 "uploaderror" => "Błąd przesyłki",
@@ -804,9 +804,9 @@ a ta lista nie powinna być interpretowana jako świadectwo udziału w zyskach."
 #
 "mailnologin" => "Brak adresu",
 "mailnologintext" => "Musisz się <a href=\"" .
-  wfLocalUrl( "Specjalna:Userlogin" ) . "\">zalogować</a>
+  "{{localurle:Specjalna:Userlogin}}\">zalogować</a>
 i mieć wpisany aktualny adres e-mailowy w swoich <a href=\"" .
-  wfLocalUrl( "Specjalna:Preferences" ) . "\">preferencjach</a>,
+  "{{localurle:Specjalna:Preferences}}\">preferencjach</a>,
 aby móc wysłać e-mail do innych użytkowników.",
 "emailuser" => "Wyślij e-mail do tego użytkownika",
 "emailpage" => "Wyślij e-mail do użytkownika",
@@ -832,14 +832,14 @@ albo zadecydował, że nie chce otrzymywać e-maili od innych użytkowników.",
 "nowatchlist" => "Nie ma żadnych pozycji na liście obserwowanych przez Ciebie stron.",
 "watchnologin" => "Brak logowania",
 "watchnologintext" => "Musisz się <a href=\"" .
-  wfLocalUrl( "Specjalna:Userlogin" ) . "\">zalogować</a>
+  "{{localurle:Specjalna:Userlogin}}\">zalogować</a>
 przed modyfikacją listy obserwowanych artykułów.",
 "addedwatch" => "Dodana do listy obserwowanych",
 "addedwatchtext" => "Strona \"$1\" została dodana do Twojej <a href=\"" .
-  wfLocalUrl( "Specjalna:Watchlist" ) . "\">listy obserwowanych</a>.
+  "{{localurle:Specjalna:Watchlist}}\">listy obserwowanych</a>.
 Na tej liście znajdzie się rejestr przyszłych zmian tej strony i stowarzyszonej z nią strony Dyskusji,
 a nazwa samej strony zostanie <b>wytłuszczona</b> na <a href=\"" .
-  wfLocalUrl( "Specjalna:Recentchanges" ) . "\">liście ostatnich zmian</a> aby
+  "{{localurle:Specjalna:Recentchanges}}\">liście ostatnich zmian</a> aby
 łatwiej było Ci sam fakt zmiany zauważyć.</p>
 
 <p>Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na
@@ -1049,7 +1049,7 @@ Możesz też zrezygnować z przeniesienia dyskusji (poniższy <i>checkbox</i>)."
 "movearticle" => "Przenieś stronę",
 "movenologin" => "Brak logowania",
 "movenologintext" => "Musisz być zarejestrowanym i <a href=\"" .
-  wfLocalUrl( "Specjalna:Userlogin" ) . "\">zalogowanym</a>
+  "{{localurle:Specjalna:Userlogin}}\">zalogowanym</a>
 użytkownikiem aby móc przenieść stronę.",
 "newtitle" => "Nowy tytuł",
 "movepagebtn" => "Przenieś stronę",

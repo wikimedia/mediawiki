@@ -451,7 +451,7 @@ $2 Listar redireciones &nbsp; Recercar pro $3 $9",
 "preferences"	=> "Preferentias",
 "prefsnologin" => "Session non aperte",
 "prefsnologintext"	=> "Tu debe <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">aperir un session</a>
+  "{{localurle:Special:Userlogin}}\">aperir un session</a>
 pro definir tu preferentias.",
 "prefslogintext" => "Tu es identificate como \"$1\".
 Tu numero interne de ID es $2.",
@@ -529,7 +529,7 @@ In ultra, lege iste [http://meta.wikipedia.org/wiki/Special:Recentchanges recent
 "reuploaddesc"	=> "Retornar al formulario de carga.",
 "uploadnologin" => "Session non aperte",
 "uploadnologintext"	=> "Tu debe <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">aperir un session</a>
+  "{{localurle:Special:Userlogin}}\">aperir un session</a>
 pro poter cargar files.",
 "uploadfile"	=> "Cargar file",
 "uploaderror"	=> "Error de carga",
@@ -712,9 +712,9 @@ non debe esser interpretate como alcun appoio special.",
 #
 "mailnologin"	=> "Necun adresse de invio",
 "mailnologintext" => "Tu debe <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">aperir un session</a>
+  "{{localurle:Special:Userlogin}}\">aperir un session</a>
 e haber un adresse de e-mail valide in tu <a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">preferentias</a>
+  "{{localurle:Special:Preferences}}\">preferentias</a>
 pro inviar e-mail a altere usatores.",
 "emailuser"		=> "Inviar e-mail a iste usator",
 "emailpage"		=> "Inviar e-mail al usator",
@@ -741,14 +741,14 @@ o ha optate pro non reciper e-mail de altere usatores.",
 "nowatchlist"	=> "Tu non ha paginas sub observation.",
 "watchnologin"	=> "Session non aperte",
 "watchnologintext"	=> "Tu debe <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">aperir un session</a>
+  "{{localurle:Special:Userlogin}}\">aperir un session</a>
 pro modificar tu lista de paginas sub observation.",
 "addedwatch"	=> "Ponite sub observation",
 "addedwatchtext" => "Le pagina \"$1\" es ora in tu <a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\">lista de paginas sub observation</a>.
+  "{{localurle:Special:Watchlist}}\">lista de paginas sub observation</a>.
 Modificationes futur a iste pagina e su pagina de discussion associate essera listate la,
 e le pagina apparera <b>in nigretto</b> in le <a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">lista de modificationes recente</a> pro
+  "{{localurle:Special:Recentchanges}}\">lista de modificationes recente</a> pro
 facilitar su identification.</p>
 
 <p>Si tu vole cessar le obsevation de iste pagina posteriormente, clicca \"Cancellar observation\" in le barra de navigation.",
@@ -920,7 +920,7 @@ Il tal casos, tu debera mover o fusionar le pagina manualmente si desirate.",
 "movearticle"	=> "Mover pagina",
 "movenologin"	=> "Session non aperte",
 "movenologintext" => "Tu debe esser un usator registrate e <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">aperir un session</a>
+  "{{localurle:Special:Userlogin}}\">aperir un session</a>
 pro mover un pagina.",
 "newtitle"		=> "Al nove titulo",
 "movepagebtn"	=> "Mover pagina",

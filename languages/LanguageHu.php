@@ -538,7 +538,7 @@ border=\"0\" ALT=\"Google\"></A>
 "prefsnologin"	=> "Nem vagy belépve",
 "prefsnologintext"	=> "Ahhoz hogy a 
 beállításaidat rögzíthesd <a href=\"" .
-  wfLocalUrl( "Speciális:Belépés" ) . "\">be kell lépned</a>.",
+  "{{localurle:Speciális:Belépés}}\">be kell lépned</a>.",
 "prefslogintext" => "Be vagy lépve \"$1\" néven.
 A belső azonosítód $2.",
 "prefsreset"	=> "A beállítások törlődtek a tárolóból vett értékekre.",
@@ -625,7 +625,7 @@ Lásd még [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta dis
 "uploadnologin" => "Nincs belépve",
 "uploadnologintext"	=> "Ahhoz hogy file-okat tudj
 felküldeni <a href=\"" .
-  wfLocalUrl( "Speciális:Belépés" ) . "\">logged in</a>
+  "{{localurle:Speciális:Belépés}}\">logged in</a>
 to upload files.",
 "uploadfile"	=> "File felküldés",
 "uploaderror"	=> "Felküldési hiba",
@@ -806,9 +806,9 @@ ezt a listát semmiképpen ne tekintsd bármiféle ajánlásnak.",
 "mailnologin"	=> "Nincs feladó",
 "mailnologintext" => "Ahhoz hogy másoknak emailt küldhess
 <a href=\"" .
-  wfLocalUrl( "Speciális:Belépés" ) . "\">be kell jelentkezned</a>
+  "{{localurle:Speciális:Belépés}}\">be kell jelentkezned</a>
 és meg kell adnod egy érvényes email címet a <a href=\"" .
-  wfLocalUrl( "Speciális:Beállítások" ) . "\">beállításaidban</a>.",
+  "{{localurle:Speciális:Beállítások}}\">beállításaidban</a>.",
 "emailuser"		=> "E-mail küldése ezen felhasználónak",
 "emailpage"		=> "E-mail küldése",
 "emailpagetext"	=> "Ha ez a felhasználó megadott egy érvényes email
@@ -833,13 +833,13 @@ nem kíván másoktól leveleket kapni.",
 "nowatchlist"	=> "Nincs lap a figyelőlistádon.",
 "watchnologin"	=> "Nincs belépve",
 "watchnologintext"	=> "Ahhoz hogy figyelőlistád lehessen <a href=\"" .
-  wfLocalUrl( "Speciál:Belépés" ) . "\">be kell lépned</a>.",
+  "{{localurle:Speciál:Belépés}}\">be kell lépned</a>.",
 "addedwatch"	=> "Figyelőlistához hozzáfűzve",
 "addedwatchtext" => "A \"$1\" lapot hozzáadtam a <a href=\"" .
-  wfLocalUrl( "Speciális:Figyelőlista" ) . "\">figyelőlistádhoz</a>.
+  "{{localurle:Speciális:Figyelőlista}}\">figyelőlistádhoz</a>.
 Ezután minden a lapon vagy annak vitalapján történő változást ott fogsz
 látni, és a lap <b>vastagon</b> fog szerepelni a <a href=\"" .
-  wfLocalUrl( "Speciális:Friss_változtatások" ) . "\">friss változtatások</a> 
+  "{{localurle:Speciális:Friss_változtatások}}\">friss változtatások</a> 
 lapon, hogy könnyen észrevehető legyen.</p>
 
 <p>Ha később el akarod távolítani a lapot a figyelőlistádról, akkor ezt az
@@ -1053,7 +1053,7 @@ szerint.",
 "movearticle"	=> "Lap mozgatás",
 "movenologin"	=> "Nincs belépve",
 "movenologintext" => "Ahhoz hogy mozgass egy lapot <a href=\"" .
-  wfLocalUrl( "Speciális:Belépés" ) . "\">be kell lépned</a>.",
+  "{{localurle:Speciális:Belépés}}\">be kell lépned</a>.",
 "newtitle"		=> "Az új névre",
 "movepagebtn"	=> "Lap mozgatása",
 "pagemovedsub"	=> "Átmozgatás sikeres",

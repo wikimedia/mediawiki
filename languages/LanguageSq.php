@@ -526,7 +526,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br>
 "preferences"	=> "Preferimet",
 "prefsnologin" => "Nuk ke hyrë brënda",
 "prefsnologintext"	=> "Duhet të kesh <a href=\"" .
-  wfLocalUrl( "Speciale:Userlogin" ) . "\">hyrë brënda</a>
+  "{{localurle:Speciale:Userlogin}}\">hyrë brënda</a>
 për të vedosur preferimet e përdoruesit.",
 "prefslogintext" => "Ke hyrë si \"$1\".
 Numri yt i brëndshëm i identifikimit është $2.
@@ -601,7 +601,7 @@ nga ajo e shërbyesit (UTC).",
 "reuploaddesc"	=> "Kthehu tek formulari i dhënies.",
 "uploadnologin" => "Nuk ke hyrë brënda",
 "uploadnologintext"	=> "Duhet të kesh <a href=\"" .
-  wfLocalUrl( "Speciale:Userlogin" ) . "\">hyrë brënda</a>
+  "{{localurle:Speciale:Userlogin}}\">hyrë brënda</a>
 për të dhënë skedarë.",
 "uploadfile"	=> "Jep figura, zë, dokumente etj.",
 "uploaderror"	=> "Gabim dhënie",
@@ -775,9 +775,9 @@ kjo listë nuk duhet të shikohet si një rreklamë.",
 #
 "mailnologin"	=> "S'ka adresë dërgimi",
 "mailnologintext" => "Duhet të kesh <a href=\"" .
-  wfLocalUrl( "Speciale:Userlogin" ) . "\">hyrë brënda</a>
+  "{{localurle:Speciale:Userlogin}}\">hyrë brënda</a>
 dhe të kesh një adresë të saktë në <a href=\"" .
-  wfLocalUrl( "Speciale:Preferences" ) . "\">preferimet</a>
+  "{{localurle:Speciale:Preferences}}\">preferimet</a>
 për të dërguar një e-mail përdoruesve të tjerë.",
 "emailuser"		=> "Dërgoji e-mail këtij përdoruesi",
 "emailpage"		=> "Dërgo e-mail përdoruesve",
@@ -804,14 +804,14 @@ ose ka vendosur të mos pranojë mesazhe email-i nga përdorues të tjerë.",
 "nowatchlist"	=> "Ti nuk ke ndonjë faqe në listën mbikqyrëse.",
 "watchnologin"	=> "Nuk ke hyrë brënda",
 "watchnologintext"	=> "Duhet të kesh <a href=\"" .
-  wfLocalUrl( "Speciale:Userlogin" ) . "\">hyrë brënda</a>
+  "{{localurle:Speciale:Userlogin}}\">hyrë brënda</a>
 për të ndryshuar listën mbikqyrëse tënde.",
 "addedwatch"	=> "Shtuar tek lista mbikqyrëse",
 "addedwatchtext" => "Faqja \"$1\" është shtuar <a href=\"" .
-  wfLocalUrl( "Speciale:Watchlist" ) . "\">listës mbikqyrëse</a> tënde.
+  "{{localurle:Speciale:Watchlist}}\">listës mbikqyrëse</a> tënde.
 Ndryshimet e ardhshme të kësaj faqeje dhe faqes së diskutimit të saj do të jepen më poshtë,
 dhe emri i faqes do të duket i <b>trashë</b> në <a href=\"" .
-  wfLocalUrl( "Speciale:Recentchanges" ) . "\">listën e ndryshimeve të fundit</a> për ta
+  "{{localurle:Speciale:Recentchanges}}\">listën e ndryshimeve të fundit</a> për ta
 dalluar më kollaj.</p>
 
 <p>N.q.s. do të heqësh një faqe nga lista mbikqyrëse më vonë, shtyp \"Mos e mbikqyr\" në tabelën anësore.",
@@ -1015,7 +1015,7 @@ Në ato raste, duhet ta zhvendosësh ose perpuqësh faqen vetë n.q.s. dëshiron
 "movearticle"	=> "Zhvendose faqen",
 "movenologin"	=> "Nuk ke hyrë brënda",
 "movenologintext" => "Duhet të kesh hapur një llogari dhe të kesh <a href=\"" .
-  wfLocalUrl( "Speciale:Userlogin" ) . "\">hyrë brënda</a>
+  "{{localurle:Speciale:Userlogin}}\">hyrë brënda</a>
 për të zhvendosur një faqe.",
 "newtitle"		=> "Tek titulli i ri",
 "movepagebtn"	=> "Zhvendose faqen",

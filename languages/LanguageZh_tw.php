@@ -489,7 +489,7 @@ alt=\"Google\" align=\"middle\"></a>
 "preferences"	=> "參數設置",
 "prefsnologin" => "還未登錄",
 "prefsnologintext"	=> "您必須先<a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">登錄</a>才能設置個人參數。",
+  "{{localurle:Special:Userlogin}}\">登錄</a>才能設置個人參數。",
 "prefslogintext" => "你已經以\"$1\"的身份登錄。
 你的內部ID是$2。",
 "prefsreset"	=> "參數重新設置。",
@@ -565,17 +565,17 @@ alt=\"Google\" align=\"middle\"></a>
 "reuploaddesc"	=> "返回上載表單。",
 "uploadnologin" => "未登錄",
 "uploadnologintext"	=> "您必須先<a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">登錄</a>
+  "{{localurle:Special:Userlogin}}\">登錄</a>
 才能上載文件。",
 "uploadfile"	=> "上載文件",
 "uploaderror"	=> "上載錯誤",
 "uploadtext"	=> "<strong>停止！</strong>在您上載之前，請先閱讀並遵守維基百科<a href=\"" .
-wfLocalUrlE( "Wikipedia:Image use policy" ) . "\">圖像使用守則</a>。
+"{{localurle:Wikipedia:Image use policy}}\">圖像使用守則</a>。
 <p>如果您要查看或搜索之前上載的圖像，
-請到<a href=\"" . wfLocalUrlE( "Special:Imagelist" ) .
+請到<a href=\"" . "{{localurle:Special:Imagelist}}" .
 "\">已上載圖像列表</a>.
 所有上載與刪除行為都被記錄在<a href=\"" .
-wfLocalUrlE( "Wikipedia:Upload image" ) . "\">上載紀錄</a>內。
+"{{localurle:Wikipedia:Upload image}}\">上載紀錄</a>內。
 <p>使用下面的表單來上載用在條目內新的圖像文件。
 在絕大多數瀏覽器內，你會看到一個\"瀏覽...\"按鈕，點擊它後就會跳出一個打開文件對話框。
 選擇一個文件後文件名將出現在按鈕旁邊的文字框中。
@@ -719,9 +719,9 @@ wfLocalUrlE( "Wikipedia:Upload image" ) . "\">上載紀錄</a>內。
 #
 "mailnologin"	=> "無電郵地址",
 "mailnologintext" => "您必須先<a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">登錄</a>
+  "{{localurle:Special:Userlogin}}\">登錄</a>
 並在<a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">參數設置</a>
+  "{{localurle:Special:Preferences}}\">參數設置</a>
 中有一個有效的電子郵件地址才可以電郵其他用戶。",
 "emailuser"		=> "電子郵件該用戶",
 "emailpage"		=> "電子郵件用戶",
@@ -745,14 +745,14 @@ wfLocalUrlE( "Wikipedia:Upload image" ) . "\">上載紀錄</a>內。
 "nowatchlist"	=> "您的監視列表為空。",
 "watchnologin"	=> "未登錄",
 "watchnologintext"	=> "您必須先<a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">登錄</a>
+  "{{localurle:Special:Userlogin}}\">登錄</a>
 才能更改您的監視列表",
 "addedwatch"	=> "加入到監視列表",
 "addedwatchtext" => "本頁（“$1”）已經被加入到您的<a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\">監視列表</a>中。
+  "{{localurle:Special:Watchlist}}\">監視列表</a>中。
 未來有關它或它的對話頁的任何修改將會在本頁中列出，
 而且還會在<a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">最近更改列表</a>中
+  "{{localurle:Special:Recentchanges}}\">最近更改列表</a>中
 以<b>粗體</b>形式列出。</p>
 
 <p>如果您之後想將該頁面從監視列表中刪除，點擊導航條中的“停止監視”鏈接。",
@@ -923,7 +923,7 @@ wfLocalUrlE( "Wikipedia:Upload image" ) . "\">上載紀錄</a>內。
 "movearticle"	=> "移動頁面",
 "movenologin"	=> "未登錄",
 "movenologintext" => "您必須是一名登記用戶並且<a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">登錄</a>
+  "{{localurle:Special:Userlogin}}\">登錄</a>
 後才可移動一個頁面。",
 "newtitle"		=> "新標題",
 "movepagebtn"	=> "移動頁面",

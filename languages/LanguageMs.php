@@ -228,8 +228,8 @@
 "administrators"        => "Istimewa:Listadministrators", #"Special:Listadministrators",
 "sysoptitle"	        => "Kemasukan sysop diperlukan", #"Sysop access required",
 "sysoptext"		=> "Hanya <a href=\"" .
-  wfLocalUrl( "Istimewa:Listadministrators" ) . "\">Sistem Pentadbir</a>
-yang boleh melakukannya.", #"Only the <a href=\"" .wfLocalUrl( "Special:Listadministrators" ) . "\">administrators</a>can do that.",
+  "{{localurle:Istimewa:Listadministrators}}\">Sistem Pentadbir</a>
+yang boleh melakukannya.", #"Only the <a href=\"{{localurle:Special:Listadministrators}}\">administrators</a>can do that.",
 "developertitle"        => "Kemasukan pembangun diperlukan", # "Developer access required",
 "developertext"	        => "Tindakan/arahan yg di minta/diperlukanhanya boleh di tunjukan oleh pengguna dengan status \"developer\".
 Lihat $1.", # "The action you have requested can only be performed by users with \"developer\" status.See $1.",
@@ -476,7 +476,7 @@ $2 List redirects &nbsp; Search for $3 $9",
 "preferences"	=> "Konfigurasi", #"Preferences",
 "prefsnologin" => "Belum mendaftar masuk", #"Not logged in",
 "prefsnologintext"	=> "Anda mesti <a href=\"" .
-  wfLocalUrl( "Istimewa:Userlogin" ) . "\">mendaftar masuk</a>
+  "{{localurle:Istimewa:Userlogin}}\">mendaftar masuk</a>
 untuk tetapkan butir-butir diri anda.", #"You must be <a href=\"" .
 "prefslogintext" => "Anda telah masuk sebagai \"$1\".
 Nombor ID anda ialah $2.",
@@ -561,7 +561,7 @@ jadi sila patuhi amaran ini.",
 "reuploaddesc"	=> "Kembali ke borang muatnaik", #"Return to the upload form.",
 "uploadnologin" => "Tidak mendaftar masuk", #"Not logged in",
 "uploadnologintext"	=> "Anda mesti <a href=\"" .
-  wfLocalUrl( "Istimewa:Userlogin" ) . "\">pengguna</a>
+  "{{localurle:Istimewa:Userlogin}}\">pengguna</a>
 untuk muatnaik fail.",
 "uploadfile"	=> "Muatnaik fail", #"Upload file",
 "uploaderror"	=> "Muatnaik ralat", #"Upload error",
@@ -700,8 +700,8 @@ dan senarai ini sepatutnya tidak ditafsirkan sebagai sokongan.",
 # Email this user
 #
 "mailnologin"	=> "Tidak dibenarkan hantar alamat", #"No send address",
-"mailnologintext" => "Anda mesti <a href=\"" . wfLocalUrl( "Istimewa:Userlogin"). "\logged in</a> dan mempunyai alamat email yang sah di <a href=\"". wfLocalUrl( "Istimewa:Preferences") . "\"preferences</a> untuk menghantar email kepada pengguna lain.",
-#"You must be <a href=\"" .   wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a> and have a valid e-mail address in your <#a href=\"" .   wfLocalUrl( "Special:Preferences" ) . "\">preferences</a> to send e-mail to other users.",
+"mailnologintext" => "Anda mesti <a href=\"{{localurle:Istimewa:Userlogin}}\logged in</a> dan mempunyai alamat email yang sah di <a href=\"{{localurle:Istimewa:Preferences}}\"preferences</a> untuk menghantar email kepada pengguna lain.",
+#"You must be <a href=\"{{localurle:Special:Userlogin}}\">logged in</a> and have a valid e-mail address in your <#a href=\"{{localurle:Special:Preferences}}\">preferences</a> to send e-mail to other users.",
 
 "emailuser"		=> "E-mail pengguna ini", #"E-mail this user",
 "emailpage"		=> "E-mail pengguna", #"E-mail user",
@@ -730,14 +730,14 @@ dan senarai ini sepatutnya tidak ditafsirkan sebagai sokongan.",
 "nowatchlist"	=> "Tiada apa-apa dalam senarai pilihan.",    #"You have no items on your watchlist.",
 "watchnologin"	=> "Tidak memasuki sistem", #"Not logged in",
 "watchnologintext"	=> "Anda mesti < a href=\"".
-  wfLocalUrl( "Istimewa:Userlogin" ) ."\">mendaftar masuk<a/>
+  "{{localurle:Istimewa:Userlogin}}\">mendaftar masuk<a/>
 untuk mengubah senarai pilihan.",
 "addedwatch"	=> "Tambah ke senarai pilihan",
 "addedwatchtext" => "Halaman \"$1\" telah ditambah pada <a href=\"".
-  wfLocalUrl( "Istimewa:Watchlist") . "\">senarai pilihan</a>.
+  "{{localurle:Istimewa:Watchlist}}\">senarai pilihan</a>.
 Perubahan halaman dan gabungan halaman Perbualan pada masa akan datang
 akan disenaraikan di sini, dan halaman itu akan muncul <b>bolded</b> dalam <a href=\"".
- wfLocalUrl( "Istimewa:Recentchanges" ) . "\">senarai perubahan terkini</a>
+ "{{localurle:Istimewa:Recentchanges}}\">senarai perubahan terkini</a>
  supaya lebih mudah dibawa keluar.</p>
 
 <p>Sekiranya anda ingin menghapuskan halaman dalam senarai pilihan kemudian, klik \"Berhenti dari senarai pilihan\" pada bar disebelah.",
@@ -924,7 +924,7 @@ In those cases, you will have to move or merge the page manually if desired.",
 "movearticle"	=> "Alih halaman", #"Move page",
 "movenologin"	=> "Tidak masuk sistem", #"Not logged in",
 "movenologintext" => "Anda mesti menjadi pengguna berdaftar dan <a href=\"" .
-  wfLocalUrl( "Istimewa:Userlogin") . "\">logged in</a>
+  "{{localurle:Istimewa:Userlogin}}\">logged in</a>
 untuk mengalihkan halaman.",
 "newtitle"	=> "Tajuk baru",   #"To new title",
 "movepagebtn"	=> "Alih halaman", #"Move page",

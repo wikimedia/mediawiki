@@ -569,7 +569,7 @@ border=\"0\" ALT=\"گوگل\"></A>
 "preferences"	=> "ترجیحات",
 "prefsnologin" => "به سیستم وارد نشده‌اید",
 "prefsnologintext"	=> "برای تنظیم ترجیحات کاربر باید <a href=\"" .
-  wfLocalUrl( "ویژه:Userlogin" ) . "\">به سیستم وارد شوید</a>.",
+  "{{localurle:ویژه:Userlogin}}\">به سیستم وارد شوید</a>.",
 "prefslogintext" => "شما با نام «$1» وارد سیستم شده‌اید.
 شماره‌ی شناسایی داخلی شما $2 است.
 
@@ -643,7 +643,7 @@ border=\"0\" ALT=\"گوگل\"></A>
 "reuploaddesc"	=> "بازگشت به فرم بار کردن",
 "uploadnologin" => "به سیستم وارد نشده‌اید",
 "uploadnologintext"	=> "برای بار کردن پرونده‌ها باید <a href=\"" .
-  wfLocalUrl( "ویژه:Userlogin" ) . "\">وارد سیستم شوید</a>.",
+  "{{localurle:ویژه:Userlogin}}\">وارد سیستم شوید</a>.",
 "uploadfile"	=> "بار کردن تصاویر، اصوات، اسناد، و غیره",
 "uploaderror"	=> "خطا در بار کردن",
 "uploadtext"	=> "'''ایست!''' قبل از این که چیزی اینجا بار کنید،
@@ -821,9 +821,9 @@ They should link to the appropriate topic instead.<br>A page is treated as dismb
 #
 "mailnologin"	=> "نشانی فرستنده‌ای نیست",
 "mailnologintext" => "برای فرستادن پست الکترونیکی به کاربران دیگر باید <a href=\"" .
-  wfLocalUrl( "ویژه:Userlogin" ) . "\">به سیستم وارد شوید</a>
+  "{{localurle:ویژه:Userlogin}}\">به سیستم وارد شوید</a>
 و نشانی پست الکترونیکی معتبری در <a href=\"" .
-  wfLocalUrl( "ویژه:ترجیحات" ) . "\">ترجیحات</a>
+  "{{localurle:ویژه:ترجیحات}}\">ترجیحات</a>
 خود داشته باشید.",
 "emailuser"		=> "پست الکترونیکی به این کاربر",
 "emailpage"		=> "پست الکترونیکی به کاربر",
@@ -849,13 +849,13 @@ They should link to the appropriate topic instead.<br>A page is treated as dismb
 "nowatchlist"		=> "در فهرست تعقیبات شما هیچ موردی نیست.",
 "watchnologin"		=> "به سیستم وارد نشده‌اید",
 "watchnologintext"	=> "برای تغییر فهرست تعقیباتتان باید <a href=\"" .
-  wfLocalUrl( "ویژه:Userlogin" ) . "\">به سیستم وارد شوید</a>.",
+  "{{localurle:ویژه:Userlogin}}\">به سیستم وارد شوید</a>.",
 "addedwatch"		=> "به فهرست تعقیبات اضافه شود",
 "addedwatchtext"	=> "صفحه‌ی «$1» به <a href=\"" .
-  wfLocalUrl( "ویژه:Watchlist" ) . "\">فهرست تعقیبات</a> شما اضافه شد.
+  "{{localurle:ویژه:Watchlist}}\">فهرست تعقیبات</a> شما اضافه شد.
 تغییرات این صفحه و صفحه‌ی بحث متناظرش در آینده در اینجا فهرست خواهد شد. به‌علاوه، این صفحه، برای واضحتر دیده شدن در
 <a href=\"" .
-  wfLocalUrl( "ویژه:Recentchanges" ) . "\">فهرست تغییرات اخیر</a> to
+  "{{localurle:ویژه:Recentchanges}}\">فهرست تغییرات اخیر</a> to
 به شکل<b>سیاه</b> خواهد آمد.</p>
 
 <p>اگر بعداً می‌خواستید این صفحه از فهرست تعقیباتتان برداشته شود، روی «تعقیب متوقف شود» در نوار حاشیه کلیک کنید.",
@@ -1065,7 +1065,7 @@ In those cases, you will have to move or merge the page manually if desired.",
 "movenologin"	=> "به سیستم وارد نشده‌اید",
 "movenologintext" => "برای انتقال صفحات باید کاربر ثبت‌شده بوده و 
 <a href=\"" .
-  wfLocalUrl( "ویژه:Userlogin" ) . "\">به سیستم وارد شوید</a>.",
+  "{{localurle:ویژه:Userlogin}}\">به سیستم وارد شوید</a>.",
 "newtitle"		=> "به عنوان جدید",
 "movepagebtn"	=> "صفحه منتقل شود",
 "pagemovedsub"	=> "انتقال با موفقیت انجام شد",

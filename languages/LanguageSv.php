@@ -505,7 +505,7 @@ $2 List redirects &nbsp; Sök efter $3 $9",
 "preferences"           => "Inställningar",
 "prefsnologin"          => "Du är inte inloggad",
 "prefsnologintext"      => "Du måste vara <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">inloggad</a>
+  "{{localurle:Special:Userlogin}}\">inloggad</a>
 för att kunna ändra i inställningar.",
 "prefslogintext"        => "Du är inloggad som \"$1\".
 Ditt IP-nummer är $2.",
@@ -566,7 +566,7 @@ Den blir automatiskt inställd efter svensk tid eller skulle man till exempel f�
 "reuploaddesc"          => "Tillbaka till uppladdningsformulär.",
 "uploadnologin"         => "Inte inloggad",
 "uploadnologintext"     => "Du måste vara <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">inloggad</a>
+  "{{localurle:Special:Userlogin}}\">inloggad</a>
 för att kunna ladda upp filer.",
 "uploadfile"            => "Ladda upp fil",
 "uploaderror"           => "Uppladdnings fel",
@@ -721,9 +721,9 @@ Wikipedia har <b>inget</b> affärssamarbete med ovanstående företag och ska in
 //
 "mailnologin"           => "Ingen adress att skicka till",
 "mailnologintext"       => "Du ska vara<a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">inloggad</a>
+  "{{localurle:Special:Userlogin}}\">inloggad</a>
 och ha angivit en korrekt epost-adress i dina <a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">användarinställningar</a>
+  "{{localurle:Special:Preferences}}\">användarinställningar</a>
 för att kunna skicka e-post till andra användare.",
 "emailuser"             => "Skicka e-post till den här användaren",
 "emailpage"             => "Skicka e-post till annan användare",
@@ -749,15 +749,15 @@ valt att inte ta emot något mail från andra användare.",
 "nowatchlist"           => "Du har inga sidor upptagna på din övervakningslista.",
 "watchnologin"          => "Du är inte inloggad",
 "watchnologintext"      => "Du ska vara<a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">inloggad</a>
+  "{{localurle:Special:Userlogin}}\">inloggad</a>
 för att kunna göra ändringar på din övervakningslista.",
 "addedwatch"            => "Tillagd på övervakningslistan",
 "addedwatchtext"        => "Sidan \"$1\" har satts upp på din <a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\">övervakningslista</a>.
+  "{{localurle:Special:Watchlist}}\">övervakningslista</a>.
 Framtida ändringar av den här sidan och dess diskussionssida vill listas där, 
 
 och sidan kommer att markeras med <b>fet stil</b> i <a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">listan över de senaste ändringarna
+  "{{localurle:Special:Recentchanges}}\">listan över de senaste ändringarna
 </a> för att lättare kunna hittas</p>
 
 <p>Om du vill ta bort den här sidan från din övervakningslista, så klicka 
@@ -909,7 +909,7 @@ var säker på att du inser konsekvenserna i förväg.",
 "movearticle"           => "Flytta sida",
 "movenologin"           => "Ej inloggad",
 "movenologintext"       => "Du måste vara registrerad användare och ha <a href=\"" .
-  wfLocalUrl( "Speciel:Userlogin" ) . "\">loggat in</a>
+  "{{localurle:Speciel:Userlogin}}\">loggat in</a>
 för att kunna flytta en sida.",
 "newtitle"              => "Till ny titel",
 "movepagebtn"           => "Flytta sida",

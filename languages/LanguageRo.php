@@ -537,7 +537,7 @@ border=\"0\" ALT=\"Google\"></A>
 "preferences"	=> "Preferinţe",
 "prefsnologin" => "Neautentificat",
 "prefsnologintext"	=> "Trebuie să fiţi <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">autentificat</a>
+  "{{localurle:Special:Userlogin}}\">autentificat</a>
 pentru a vă putea salva preferinţele.",
 "prefslogintext" => "Sunteţi autentificat ca \"$1\".
 Numărul intern de identificare este $2 (nu trebuie să-l reţineţi decât dacă aveţi probleme).",
@@ -615,7 +615,7 @@ Este foarte important să nu adăugaţi în Wikipedia materiale protejate de [[d
 "reuploaddesc"	=> "Întoarcere la formularul de trimitere.",
 "uploadnologin" => "Nu sunteţi autentificat",
 "uploadnologintext"	=> "Trebuie să foţi <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">autentificat</a>
+  "{{localurle:Special:Userlogin}}\">autentificat</a>
 ca să trimiteţi fişiere.",
 "uploadfile"	=> "Trimite fişier",
 "uploaderror"	=> "Eroare la trimitere fişier",
@@ -776,9 +776,9 @@ iar lista de mai jos nu constituie nici un fel de garanţie sau validare a servi
 #
 "mailnologin"	=> "Nu există adresă de trimitere",
 "mailnologintext" => "Trebuie să fiţi <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">autentificat</a>
+  "{{localurle:Special:Userlogin}}\">autentificat</a>
 şi să aveţi o adresă validă de mail în <a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">preferinţe</a>
+  "{{localurle:Special:Preferences}}\">preferinţe</a>
 pentru a trimite mail altor utilizatori.",
 "emailuser"		=> "Trimite e-mail acestui utilizator",
 "emailpage"		=> "E-mail către utilizator",
@@ -803,13 +803,13 @@ sau a ales să nu primească e-mail de la alţi utilizatori.",
 "nowatchlist"	=> "Nu aţi ales să urmăriţi nici un articol.",
 "watchnologin"	=> "Nu sunteţi autentificat",
 "watchnologintext"	=> "Trebuie să fiţi <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">autentificat</a>
+  "{{localurle:Special:Userlogin}}\">autentificat</a>
 pentru a vă modifica lista de articole urmărite.",
 "addedwatch"	=> "Adăugată la lista de pagini urmărite",
-"addedwatchtext" => "Pagina \"$1\" a fost adăugată la lista Dvs. de <a href=\"" . wfLocalUrl( "Special:Watchlist" ) . "\">articole urmărite</a>.
+"addedwatchtext" => "Pagina \"$1\" a fost adăugată la lista Dvs. de <a href=\"{{localurle:Special:Watchlist}}\">articole urmărite</a>.
 Modificările viitoare ale acestei pagini şi a paginii asociate de discuţii
 vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b> în pagina de <a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">modificări recente</a> pentru evidenţiere.</p>
+  "{{localurle:Special:Recentchanges}}\">modificări recente</a> pentru evidenţiere.</p>
 
 <p>Dacă doriţi să eliminaţi această pagină din lista Dvs. de pagini urmărite
 în viitor, apăsaţi pe \"Nu mai urmări\" în bara de comenzi în timp ce această pagină este vizibilă.",
@@ -1025,7 +1025,7 @@ manual paginile de discuţii, dacă doriţi acest lucru.",
 "movearticle"	=> "Mută pagina",
 "movenologin"	=> "Nu sunteţi autentificat",
 "movenologintext" => "Trebuie să fiţi un utilizator înregistrat şi să vă <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">autentificaţi</a>
+  "{{localurle:Special:Userlogin}}\">autentificaţi</a>
 pentru a muta o pagină.",
 "newtitle"		=> "Titlul nou",
 "movepagebtn"	=> "Mută pagina",

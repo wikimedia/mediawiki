@@ -471,7 +471,7 @@ $2 List redirects &nbsp; Search for $3 $9",
 "preferences" => "Preferences",
 "prefsnologin" => "Not logged in",
 "prefsnologintext"  => "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+  "{{localurle:Special:Userlogin}}\">logged in</a>
 to set user preferences.",
 "prefslogintext" => "You are logged in as \"$1\".
 Your internal ID number is $2.
@@ -556,7 +556,7 @@ See also the [http://meta.wikipedia.org/wiki/Special:Recentchanges recent meta d
 "reuploaddesc"  => "Return to the upload form.",
 "uploadnologin" => "Not logged in",
 "uploadnologintext" => "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+  "{{localurle:Special:Userlogin}}\">logged in</a>
 to upload files.",
 "uploadfile"  => "Upload file",
 "uploaderror" => "Upload error",
@@ -696,9 +696,9 @@ this list should not be construed as an endorsement.",
 #
 "mailnologin" => "No send address",
 "mailnologintext" => "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+  "{{localurle:Special:Userlogin}}\">logged in</a>
 and have a valid e-mail address in your <a href=\"" .
-  wfLocalUrl( "Special:Preferences" ) . "\">preferences</a>
+  "{{localurle:Special:Preferences}}\">preferences</a>
 to send e-mail to other users.",
 "emailuser"   => "E-mail this user",
 "emailpage"   => "E-mail user",
@@ -725,14 +725,14 @@ or has chosen not to receive e-mail from other users.",
 "nowatchlist" => "You have no items on your watchlist.",
 "watchnologin"  => "Not logged in",
 "watchnologintext"  => "You must be <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+  "{{localurle:Special:Userlogin}}\">logged in</a>
 to modify your watchlist.",
 "addedwatch"  => "Added to watchlist",
 "addedwatchtext" => "The page \"$1\" has been added to your <a href=\"" .
-  wfLocalUrl( "Special:Watchlist" ) . "\">watchlist</a>.
+  "{{localurle:Special:Watchlist}}\">watchlist</a>.
 Future changes to this page and its associated Talk page will be listed there,
 and the page will appear <b>bolded</b> in the <a href=\"" .
-  wfLocalUrl( "Special:Recentchanges" ) . "\">list of recent changes</a> to
+  "{{localurle:Special:Recentchanges}}\">list of recent changes</a> to
 make it easier to pick out.</p>
 
 <p>If you want to remove the page from your watchlist later, click \"Stop watching\" in the sidebar.",
@@ -919,7 +919,7 @@ In those cases, you will have to move or merge the page manually if desired.",
 "movearticle" => "Move page",
 "movenologin" => "Not logged in",
 "movenologintext" => "You must be a registered user and <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">logged in</a>
+  "{{localurle:Special:Userlogin}}\">logged in</a>
 to move a page.",
 "newtitle"    => "To new title",
 "movepagebtn" => "Move page",

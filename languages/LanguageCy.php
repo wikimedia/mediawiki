@@ -542,7 +542,7 @@ value=\"{$wgServer}\" checked> {$wgServer} <br>
 "preferences" => "ffafraethau",
 "prefsnologin" => "Nid wedi mewngofnodi",
 "prefsnologintext" => "Rhaid i chi <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">mewngofnodi</a>
+  "{{localurle:Special:Userlogin}}\">mewngofnodi</a>
 i setio ffafraethau defnyddwr.",
 "prefslogintext"  => "Yr ydych wedi mewngofnodi fel \"$1\".
 $2 yw eich rhif hunaniaith mewnol.",
@@ -612,7 +612,7 @@ $2 yw eich rhif hunaniaith mewnol.",
 "reuploaddesc"	=> "Return to the upload form.",
 "uploadnologin" => "Nid wedi mewngofnodi",
 "uploadnologintext" => "Rhaid i chi bod wedi <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">mewngofnodi</a>
+  "{{localurle:Special:Userlogin}}\">mewngofnodi</a>
 i lwytho ffeiliau i fynu.",
 "uploadfile" => "Llwytho ffeil i fynu",
 "uploaderror" => "Gwall yn llwytho ffeil i fynu",
@@ -765,9 +765,9 @@ Does gan Wicipedia dim cysylltiad gyda unrhyw o'r masnachau, a dydy rhestr hon d
 #
 "mailnologin" => "Dim cyfeiriad i anfon",
 "mailnologintext" => "Rhaid i chi wedi <a href=\"" .
-  wfLocalUrl( "Arbennig:Mewngofnodidefnyddwr" ) . "\">mewngofnodi</a>
+  "{{localurle:Arbennig:Mewngofnodidefnyddwr}}\">mewngofnodi</a>
 a rhoi cyfeiriad e-bost dilyn yn eich <a href=\"" .
-  wfLocalUrl( "Arbennig:Ffafraethau" ) . "\">ffafraethau</a>
+  "{{localurle:Arbennig:Ffafraethau}}\">ffafraethau</a>
 i anfon e-bost i ddefnyddwyr eraill.",
 "emailuser" => "Anfon e-bost i defnyddwr hwn",
 "emailpage" => "Anfon e-bost i defnyddwr",
@@ -790,13 +790,13 @@ i anfon e-bost i ddefnyddwyr eraill.",
 "nowatchlist"  => "Does ganddoch chi ddim eitem ar eich rhestr gwylio.",
 "watchnologin"	=> "Dydych chi ddim wedi mewngofnodi",
 "watchnologintext" => "Rhaid i chi bod wedi <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">mewngofnodi</a>
+  "{{localurle:Special:Userlogin}}\">mewngofnodi</a>
 i adnewid eich rhestr gwylio.",
 "addedwatch" => "Wedi adio i'ch rhestr gwylio",
 "addedwatchtext" => "Mae tudalen \"$1\" wedi gael eu ychwanegu i eich <a href=\"" .
-  wfLocalUrl( "Arbennig:Rhestr_gwylio" ) . "\">rhestr gwylio</a>.
+  "{{localurle:Arbennig:Rhestr_gwylio}}\">rhestr gwylio</a>.
 Pan fydd y tudalen hon, a'i tudalen Sgwrs, yn newid, fyddynt yn dangos  <b>yn cryf</b> yn y <a href=\"" .
-  wfLocalUrl( "Arbennig:Newidiadau_diweddar" ) . "\">rhestr newidiadau diweddar</a>, i bod yn hawsach i gweld.</p>
+  "{{localurle:Arbennig:Newidiadau_diweddar}}\">rhestr newidiadau diweddar</a>, i bod yn hawsach i gweld.</p>
 
 <p>Os ydych chi'n eisiau cael gwared ar y tudalen yn hwyrach, cliciwch ar \"Stopiwch gwylio\" yn y bar ar y chwith.",
 "removedwatch" => "Wedi diswyddo oddiwrth y rhestr gwylio",
@@ -1003,7 +1003,7 @@ Ellith hwn bod newid sydyn a llym i tudalen poblogol; byddwch yn siwr rydych chi
 "movearticle" => "Symud tudalen",
 "movenologin" => "Nid wedi mewngofnodi",
 "movenologintext" => "Rhaid i chi bod defnyddwr cofrestredig ac wedi <a href=\"" .
-  wfLocalUrl( "Arbennig:Userlogin" ) . "\">mewngofnodi</a>
+  "{{localurle:Arbennig:Userlogin}}\">mewngofnodi</a>
 to move a page.",
 "newtitle" => "i teitl newydd",
 "movepagebtn" => "Symud tudalen",

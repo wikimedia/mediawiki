@@ -375,7 +375,7 @@ která popsala příčinu takto:<br><p>Máte právo se spojit se správcem syst�
 "preferences"	=> "Preference",
 "prefsnologin" => "Dosud nepřihlášen!",
 "prefsnologintext"	=> "Určite <a href=\"" .
-  wfLocalUrl( "Special:Userlogin" ) . "\">se přihlaste</a>
+  "{{localurle:Special:Userlogin}}\">se přihlaste</a>
 dříve než je možno měnit priority.",
 "prefslogintext" => "Přihlásil jste se \"$1\".
 Vaše interní identifikační číslo je  .",
@@ -442,7 +442,7 @@ Také se podívejte na
 "reuploaddesc"	=> "Vrať se k načtení.",
 "uploadnologin" => "Nepřihlášený",
 "uploadnologintext"	=> "Musíte mít účet a <a href=\"" .
-  wfLocalUrl( "Speciala:Userlogin" ) . "\">přihlaste se</a>
+  "{{localurle:Speciala:Userlogin}}\">přihlaste se</a>
 pro načtení souboru.",
 "uploadfile"	=> "Načti soubor",
 "uploaderror"	=> "Při načítání došlo k chybě",
@@ -580,9 +580,9 @@ Každý řádek ukazuje odkaz k prvnímu a druhému přesměrování, plus prvn�
 #
 "mailnologin"	=> "Žádná adresa k zaslání",
 "mailnologintext" => "Určitě uveď <a href=\"" .
-  wfLocalUrl( "Speciala:Userlogin" ) . "\">jméno</a>
+  "{{localurle:Speciala:Userlogin}}\">jméno</a>
 a měj platnou e-mailovou adresu ve svých <a href=\"" .
-  wfLocalUrl( "Speciala:Preferences" ) . "\">preferencích</a>
+  "{{localurle:Speciala:Preferences}}\">preferencích</a>
 abys mohl mailovat jiným wikipediistům.",
 "emailuser"		=> "Pošli mail",
 "emailpage"		=> "Pošli mail",
@@ -608,13 +608,13 @@ pošty, aby adresát mohl odpovědět.",
 "nowatchlist"	=> "Zatím jsi neuvedl žádné oblíbené stránky.",
 "watchnologin"	=> "Neuvedeno jméno",
 "watchnologintext"	=> "Nutno uvést <a href=\"" .
-  wfLocalUrl( "Speciala:Userlogin" ) . "\">jméno</a>
+  "{{localurle:Speciala:Userlogin}}\">jméno</a>
 pro aktivaci tvých oblíbených stránek.",
 "addedwatch"	=> "Přidáno k oblíbeným",
 "addedwatchtext" => "Stránka \"$1\" je přidána k tvým <a href=\"" .
-  wfLocalUrl( "Speciala:Watchlist" ) . "\">oblíbeným</a>.
+  "{{localurle:Speciala:Watchlist}}\">oblíbeným</a>.
 Budoucí změny této stránky se objeví <b>tučně</b> v  <a href=\"" .
-  wfLocalUrl( "Speciala:Recentchanges" ) . "\">seznamu Poslední Změny </a>,
+  "{{localurle:Speciala:Recentchanges}}\">seznamu Poslední Změny </a>,
 a bude počítány v seznamu tvých Oblíbených.
 
 <p>Pokud později budeš chtít odstranit stránku ze seznamu Oblíbených, klikni na \"Ignoruj stránku \" v liště nástrojů.",
@@ -739,7 +739,7 @@ Může to být drastická a nečekaná změna pro oblíbené stránky. Ujisti se
 "movearticle"	=> "Přesuň stránku",
 "movenologin"	=> "Neuvedeno přihlašovací jméno",
 "movenologintext" => "Musíš být přihlášeným uživatelem a <a href=\"" .
-  wfLocalUrl( "Speciala:Userlogin" ) . "\">uveď přihlašovací jméno</a>
+  "{{localurle:Speciala:Userlogin}}\">uveď přihlašovací jméno</a>
 abys mohl stránku přesunout.",
 "newtitle"		=> "Na nový název",
 "movepagebtn"	=> "Přesuň stránku",
