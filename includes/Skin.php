@@ -2588,6 +2588,12 @@ class Skin {
 	}
 
 	# These two do not check for permissions: check $wgTitle->userCanEdit before calling them
+	function editSectionScriptForOther( $title, $section, $head ) {
+		$ttl = Title::newFromText( $title );
+		$url = $ttl->escapeLocalURL( 'action=edit&section='.$section );
+		return '<span oncontextmenu=\'document.location="'.$url.'";return false;\'>'.$head.'</span>';
+	}
+
 	function editSectionScript( $section, $head ) {
 		global $wgTitle, $wgRequest;
 		if( $wgRequest->getInt( 'oldid' ) && ( $wgRequest->getVal( 'diff' ) != '0' ) ) {

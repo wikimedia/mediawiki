@@ -2194,7 +2194,10 @@ cl_sortkey" ;
 
 			# Add the edit section span
 			if( $rightClickHack ) {
-				$headline = $sk->editSectionScript($sectionCount+1,$headline);
+				if( $istemplate )
+					$headline = $sk->editSectionScriptForOther($templatetitle, $templatesection, $headline);
+				else
+					$headline = $sk->editSectionScript($sectionCount+1,$headline);
 			}
 
 			# give headline the correct <h#> tag
