@@ -406,10 +406,13 @@ class Parser
 	function tidy ( $text ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
 		$cleansource = '';
+		$text = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'.
+' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>'.
+'<head><title>test</title></head><body>'.$text.'</body></html>';
 		$descriptorspec = array(
 			0 => array("pipe", "r"),
 			1 => array("pipe", "w"),
-			2 => array("file", "/dev/null", "a")
+			2 => array("pipe", "w")
 		);
 		$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts", $descriptorspec, $pipes);
 		if (is_resource($process)) {
@@ -420,13 +423,19 @@ class Parser
 			}
 			fclose($pipes[1]);
 			$return_value = proc_close($process);
+			if($return_value == 2) {
+				$errors = '';
+				while (!feof($pipes[2])) {
+					$errors .= fgets($pipes[2], 1024);
+				}
+			}
+			fclose($pipes[2]);
 		}
-		if( $cleansource == '') {
-			return $text;
+		if( $cleansource == '' and !empty($errors)) {
+			return '<pre>'.htmlspecialchars($errors).'</pre>';
 		} else {
-			return preg_replace("/(^.*<body[^>]*>|<\\/body[^>]*>.*$)/s", '', $cleansource);
+			return $cleansource;
 		}
-
 	}
 
 	function doTableStuff ( $t )
@@ -1526,6 +1535,7 @@ class Parser
 	# Cleans up HTML, removes dangerous tags and attributes
 	/* private */ function removeHTMLtags( $text )
 	{
+		global $wgUseTidy;
 		$fname = "Parser::removeHTMLtags";
 		wfProfileIn( $fname );
 		$htmlpairs = array( # Tags that must be closed
@@ -1556,65 +1566,81 @@ class Parser
 
 		$bits = explode( "<", $text );
 		$text = array_shift( $bits );
-		$tagstack = array(); $tablestack = array();
+		if(!$wgUseTidy) {
+			$tagstack = array(); $tablestack = array();
+			foreach ( $bits as $x ) {
+				$prev = error_reporting( E_ALL & ~( E_NOTICE | E_WARNING ) );
+				preg_match( "/^(\\/?)(\\w+)([^>]*)(\\/{0,1}>)([^<]*)$/",
+				$x, $regs );
+				list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
+				error_reporting( $prev );
 
-		foreach ( $bits as $x ) {
-			$prev = error_reporting( E_ALL & ~( E_NOTICE | E_WARNING ) );
-			preg_match( "/^(\\/?)(\\w+)([^>]*)(\\/{0,1}>)([^<]*)$/",
-			  $x, $regs );
-			list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
-			error_reporting( $prev );
-
-			$badtag = 0 ;
-			if ( in_array( $t = strtolower( $t ), $htmlelements ) ) {
-				# Check our stack
-				if ( $slash ) {
-					# Closing a tag...
-					if ( ! in_array( $t, $htmlsingle ) &&
-					  ( $ot = array_pop( $tagstack ) ) != $t ) {
-						array_push( $tagstack, $ot );
-						$badtag = 1;
+				$badtag = 0 ;
+				if ( in_array( $t = strtolower( $t ), $htmlelements ) ) {
+					# Check our stack
+					if ( $slash ) {
+						# Closing a tag...
+						if ( ! in_array( $t, $htmlsingle ) &&
+						( count($tagstack) && $ot = array_pop( $tagstack ) ) != $t ) {
+							if(!empty($ot)) array_push( $tagstack, $ot );
+							$badtag = 1;
+						} else {
+							if ( $t == "table" ) {
+								$tagstack = array_pop( $tablestack );
+							}
+							$newparams = "";
+						}
 					} else {
-						if ( $t == "table" ) {
-							$tagstack = array_pop( $tablestack );
+						# Keep track for later
+						if ( in_array( $t, $tabletags ) &&
+						! in_array( "table", $tagstack ) ) {
+							$badtag = 1;
+						} else if ( in_array( $t, $tagstack ) &&
+						! in_array ( $t , $htmlnest ) ) {
+							$badtag = 1 ;
+						} else if ( ! in_array( $t, $htmlsingle ) ) {
+							if ( $t == "table" ) {
+								array_push( $tablestack, $tagstack );
+								$tagstack = array();
+							}
+							array_push( $tagstack, $t );
 						}
-						$newparams = "";
-					}
-				} else {
-					# Keep track for later
-					if ( in_array( $t, $tabletags ) &&
-					  ! in_array( "table", $tagstack ) ) {
-						$badtag = 1;
-					} else if ( in_array( $t, $tagstack ) &&
-					  ! in_array ( $t , $htmlnest ) ) {
-						$badtag = 1 ;
-					} else if ( ! in_array( $t, $htmlsingle ) ) {
-						if ( $t == "table" ) {
-							array_push( $tablestack, $tagstack );
-							$tagstack = array();
-						}
-						array_push( $tagstack, $t );
-					}
-					# Strip non-approved attributes from the tag
-					$newparams = $this->fixTagAttributes($params);
+						# Strip non-approved attributes from the tag
+						$newparams = $this->fixTagAttributes($params);
 
+					}
+					if ( ! $badtag ) {
+						$rest = str_replace( ">", "&gt;", $rest );
+						$text .= "<$slash$t $newparams$brace$rest";
+						continue;
+					}
 				}
-				if ( ! $badtag ) {
+				$text .= "&lt;" . str_replace( ">", "&gt;", $x);
+			}
+			# Close off any remaining tags
+			while ( $t = array_pop( $tagstack ) ) {
+				$text .= "</$t>\n";
+				if ( $t == "table" ) { $tagstack = array_pop( $tablestack ); }
+			}
+		} else {
+			# this might be possible using tidy itself
+			foreach ( $bits as $x ) {
+				preg_match( "/^(\\/?)(\\w+)([^>]*)(\\/{0,1}>)([^<]*)$/",
+				$x, $regs );
+				list( $qbar, $slash, $t, $params, $brace, $rest ) = $regs;
+				if ( in_array( $t = strtolower( $t ), $htmlelements ) ) {
+					$newparams = $this->fixTagAttributes($params);
 					$rest = str_replace( ">", "&gt;", $rest );
 					$text .= "<$slash$t $newparams$brace$rest";
-					continue;
+				} else {
+					$text .= "&lt;" . str_replace( ">", "&gt;", $x);
 				}
-			}
-			$text .= "&lt;" . str_replace( ">", "&gt;", $x);
-		}
-		# Close off any remaining tags
-		while ( $t = array_pop( $tagstack ) ) {
-			$text .= "</$t>\n";
-			if ( $t == "table" ) { $tagstack = array_pop( $tablestack ); }
+			}	
 		}
 		wfProfileOut( $fname );
 		return $text;
 	}
+
 
 /*
  *
