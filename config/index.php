@@ -237,11 +237,6 @@ $conf->IP = preg_replace( "/\\\\/","\\\\\\\\",$conf->IP );  // For Windows, \ ->
 chdir( "config" );
 print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt></li>\n";
 
-@$oldpath = ini_set( "include_path", ini_get( "include_path" ) );
-if( empty( $oldpath ) ) {
-	print "<li>Can't set <tt>include_path</tt>; new template layout will be disabled.</li>\n";
-}
-
 # $conf->ScriptPath = "/~brion/inplace";
 $conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $_SERVER["REQUEST_URI"] );
 print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</tt></li>\n";
