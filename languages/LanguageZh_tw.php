@@ -1005,30 +1005,6 @@ class LanguageZh_tw extends LanguageZh_cn {
 		return $wgUserTogglesZh_tw;
 	}
 
-	function getMonthName( $key )
-	{
-		global $wgMonthNamesZh_tw;
-		return $wgMonthNamesZh_tw[$key-1];
-	}
-
-	/* by default we just return base form */
-	function getMonthNameGen( $key )
-	{
-		global $wgMonthNamesZh_tw;
-		return $wgMonthNamesZh_tw[$key-1];
-	}
-
-	function getMonthAbbreviation( $key )
-	{
-		global $wgMonthAbbreviationsZh_tw;
-		return $wgMonthAbbreviationsZh_tw[$key-1];
-	}
-
-	function getWeekdayName( $key )
-	{
-		global $wgWeekdayNamesZh_tw;
-		return $wgWeekdayNamesZh_tw[$key-1];
-	}
 
 	function getValidSpecialPages()
 	{
