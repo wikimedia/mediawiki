@@ -567,8 +567,6 @@ class Title {
 		$s = wfUrlencode ( $s ) ;
 		
 		# Cleaning up URL to make it look nice -- is this safe?
-		$s = preg_replace( '/%3[Aa]/', ':', $s );
-		$s = preg_replace( '/%2[Ff]/', '/', $s );
 		$s = str_replace( '%28', '(', $s );
 		$s = str_replace( '%29', ')', $s );
 
