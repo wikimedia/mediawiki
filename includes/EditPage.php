@@ -114,7 +114,7 @@ class EditPage {
 		global $wgLang, $wgParser, $wgTitle;
 		global $wgAllowAnonymousMinor;
 		global $wgWhitelistEdit;
-		global $wgSpamRegex;
+		global $wgSpamRegex, $wgFilterCallback;
 
 		$sk = $wgUser->getSkin();
 		$isConflict = false;
@@ -137,13 +137,12 @@ class EditPage {
 		if ( "save" == $formtype ) {
 			# Check for spam
 			if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1 ) ) {
-					if ( $wgUser->isSysop() ) {
-						$this->spamPage();
-					} else {
-						sleep(10);
-						$wgOut->redirect( $this->mTitle->getFullURL() );
-					}
-					return;
+				$this->spamPage();
+				return;
+			}
+			if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section ) ) {
+				# Error messages or other handling should be performed by the filter function
+				return;
 			}
 			if ( $wgUser->isBlocked() ) {
 				$this->blockedIPpage();
@@ -467,7 +466,11 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 		$reason = $wgUser->blockedFor();
                 $ip = $wgIP;
 		
-                $name = User::whoIs( $id );
+		if ( is_string( $id ) ) {
+			$name = $id;
+		} else {
+	                $name = User::whoIs( $id );
+		}
 		$link = "[[" . $wgLang->getNsText( Namespace::getUser() ) .
 		  ":{$name}|{$name}]]";
 
@@ -491,13 +494,12 @@ htmlspecialchars( $wgLang->recodeForEdit( $this->textbox1 ) ) .
 
 	function spamPage()
 	{
-		global $wgOut, $wgSpamRegex;
+		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( "spamprotectiontitle" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikiText( wfMsg( "spamprotectiontext" ) );
-		$wgOut->addWikiText( "<pre>".$wgSpamRegex."</pre>" );
 		$wgOut->returnToMain( false );
 	}
 
