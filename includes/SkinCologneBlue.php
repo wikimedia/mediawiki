@@ -136,7 +136,7 @@ class SkinCologneBlue extends Skin {
 
 	function quickBar()
 	{
-		global $wgOut, $wgTitle, $wgUser, $wgLang;
+		global $wgOut, $wgTitle, $wgUser, $wgLang, $wgDisableUploads;
 
 		$tns=$wgTitle->getNamespace();
 
@@ -224,7 +224,7 @@ class SkinCologneBlue extends Skin {
 		  . $sep . $this->specialLink( "imagelist" ) 
 		  . $sep . $this->specialLink( "statistics" ) 
 		  . $sep . $this->bugReportsLink();
-		if ( 0 != $wgUser->getID() ) {
+		if ( 0 != $wgUser->getID() && !$wgDisableUploads ) {
 			$s .= $sep . $this->specialLink( "upload" );
 		}
 

@@ -675,7 +675,8 @@ class Skin {
 	function quickBar()
 	{
 		global $wgOut, $wgTitle, $wgUser, $action, $wgLang;
-		global $wpPreview;
+		global $wpPreview, $wgDisableUploads;
+	    
 		$fname =  "Skin::quickBar";
 		wfProfileIn( $fname );
 
@@ -799,7 +800,7 @@ class Skin {
 			$s .= "\n<br><hr class='sep'>";
 		} 
 		
-		if ( 0 != $wgUser->getID() ) {
+		if ( 0 != $wgUser->getID() && !$wgDisableUploads ) {
 			$s .= $this->specialLink( "upload" ) . $sep;
 		}
 		$s .= $this->specialLink( "specialpages" )
