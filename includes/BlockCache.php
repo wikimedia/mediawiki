@@ -36,15 +36,16 @@ class BlockCache
 
 	/**
 	 * Load the blocks from the database and save them to memcached
+	 *  @param bool $bFromSlave Whether to load data from slaves or master
 	 */
-	function loadFromDB() {
+	function loadFromDB( $bFromSlave = false ) {
 		global $wgUseMemCached, $wgMemc;
 		$this->mData = array();
 		# Selecting FOR UPDATE is a convenient way to serialise the memcached and DB operations,
 		# which is necessary even though we don't update the DB
-		if ( $wgUseMemCached ) {
+		if ( !$bFromSlave ) {
 			Block::enumBlocks( 'wfBlockCacheInsert', '', EB_FOR_UPDATE );
-			$wgMemc->set( $this->mMemcKey, $this->mData, 0 );
+			#$wgMemc->set( $this->mMemcKey, $this->mData, 0 );
 		} else {
 			Block::enumBlocks( 'wfBlockCacheInsert', '' );
 		}
@@ -53,18 +54,21 @@ class BlockCache
 	/**
 	 * Load the cache from memcached or, if that's not possible, from the DB
 	 */
-	function load() {
+	function load( $bFromSlave ) {
 		global $wgUseMemCached, $wgMemc;
 
 		if ( $this->mData === false) {
+			$this->loadFromDB( $bFromSlave );
+/*
+		// Memcache disabled for performance issues.
 			# Try memcached
 			if ( $wgUseMemCached ) {
 				$this->mData = $wgMemc->get( $this->mMemcKey );
 			}
 
 			if ( !is_array( $this->mData ) ) {
-				$this->loadFromDB();
-			}
+				$this->loadFromDB( $bFromSlave );
+			}*/
 		}
 	}
 
@@ -91,9 +95,10 @@ class BlockCache
 	 * Find out if a given IP address is blocked
 	 *
 	 * @param String $ip   IP address
+	 * @param bool $bFromSlave True means to load check against slave, else check against master.
 	 */
-	function get( $ip ) {
-		$this->load();
+	function get( $ip, $bFromSlave ) {
+		$this->load( $bFromSlave );
 		$ipint = ip2long( $ip );
 		$blocked = false;
 
@@ -110,6 +115,7 @@ class BlockCache
 				$ip = Block::normaliseRange( $ip );
 			}
 			$block = new Block();
+			$block->forUpdate( $bFromSlave );
 			$block->load( $ip );
 		} else {
 			$block = false;
