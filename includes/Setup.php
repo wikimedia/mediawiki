@@ -48,11 +48,6 @@ if( $wgUseSquid && isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
 	$wgIP = '127.0.0.1';
 }
 
-if ( $wgUseData ) {
-	$wgExtraNamespaces[20] = 'Data' ;
-	$wgExtraNamespaces[21] = 'Data_talk' ;
-}
-
 $fname = 'Setup.php';
 wfProfileIn( $fname );
 global $wgUseDynamicDates;

@@ -123,7 +123,6 @@ if( !$wgDisableInternalSearch && !is_null( $search ) && $search !== '' ) {
 		case 'rollback':
 		case 'protect':
 		case 'unprotect':
-		case 'validate':
 		case 'info':
 		case 'markpatrolled':
 			$wgArticle->$action();

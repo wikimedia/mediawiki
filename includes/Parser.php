@@ -679,11 +679,7 @@ class Parser
 	 * @access private
 	 */
 	function &doMagicLinks( &$text ) {
-		global $wgUseGeoMode;
 		$text = $this->magicISBN( $text );
-		if ( isset( $wgUseGeoMode ) && $wgUseGeoMode ) {
-			$text = $this->magicGEO( $text );
-		}
 		$text = $this->magicRFC( $text, 'RFC ', 'rfcurl' );
 		$text = $this->magicRFC( $text, 'PMID ', 'pubmedurl' );
 		return $text;
@@ -2481,57 +2477,6 @@ class Parser
 				$text .= '<a href="' .
 				$titleObj->escapeLocalUrl( 'isbn='.$num ) .
 					"\" class=\"internal\">ISBN $isbn</a>";
-				$text .= $x;
-			}
-		}
-		wfProfileOut( $fname );
-		return $text;
-	}
-
-	/**
-	 * Return an HTML link for the "GEO ..." text
-	 * @access private
-	 */
-	function magicGEO( $text ) {
-		global $wgLang, $wgUseGeoMode;
-		$fname = 'Parser::magicGEO';
-		wfProfileIn( $fname );
-
-		# These next five lines are only for the ~35000 U.S. Census Rambot pages...
-		$directions = array ( 'N' => 'North' , 'S' => 'South' , 'E' => 'East' , 'W' => 'West' ) ;
-		$text = preg_replace ( "/(\d+)&deg;(\d+)'(\d+)\" {$directions['N']}, (\d+)&deg;(\d+)'(\d+)\" {$directions['W']}/" , "(GEO +\$1.\$2.\$3:-\$4.\$5.\$6)" , $text ) ;
-		$text = preg_replace ( "/(\d+)&deg;(\d+)'(\d+)\" {$directions['N']}, (\d+)&deg;(\d+)'(\d+)\" {$directions['E']}/" , "(GEO +\$1.\$2.\$3:+\$4.\$5.\$6)" , $text ) ;
-		$text = preg_replace ( "/(\d+)&deg;(\d+)'(\d+)\" {$directions['S']}, (\d+)&deg;(\d+)'(\d+)\" {$directions['W']}/" , "(GEO +\$1.\$2.\$3:-\$4.\$5.\$6)" , $text ) ;
-		$text = preg_replace ( "/(\d+)&deg;(\d+)'(\d+)\" {$directions['S']}, (\d+)&deg;(\d+)'(\d+)\" {$directions['E']}/" , "(GEO +\$1.\$2.\$3:+\$4.\$5.\$6)" , $text ) ;
-
-		$a = split( 'GEO ', ' '.$text );
-		if ( count ( $a ) < 2 ) {
-			wfProfileOut( $fname );
-			return $text;
-		}
-		$text = substr( array_shift( $a ), 1);
-		$valid = '0123456789.+-:';
-
-		foreach ( $a as $x ) {
-			$geo = $blank = '' ;
-			while ( ' ' == $x{0} ) {
-				$blank .= ' ';
-				$x = substr( $x, 1 );
-			}
-			while ( strstr( $valid, $x{0} ) != false ) {
-				$geo .= $x{0};
-				$x = substr( $x, 1 );
-			}
-			$num = str_replace( '+', '', $geo );
-			$num = str_replace( ' ', '', $num );
-
-			if ( '' == $num || count ( explode ( ':' , $num , 3 ) ) < 2 ) {
-				$text .= "GEO $blank$x";
-			} else {
-				$titleObj = Title::makeTitle( NS_SPECIAL, 'Geo' );
-				$text .= '<a href="' .
-				$titleObj->escapeLocalUrl( 'coordinates='.$num ) .
-					"\" class=\"internal\">GEO $geo</a>";
 				$text .= $x;
 			}
 		}

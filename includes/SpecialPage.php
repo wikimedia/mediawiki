@@ -56,11 +56,6 @@ if( !$wgDisableCounters ) {
 	$wgSpecialPages['Popularpages'] = new SpecialPage( 'Popularpages' );
 }
 
-global $wgUseData ;
-if ( $wgUseData ) {
-	$wgSpecialPages['Data'] = new SpecialPage( 'Data' );
-}
-
 global $wgDisableInternalSearch;
 if( !$wgDisableInternalSearch ) {
 	$wgSpecialPages['Search'] = new UnlistedSpecialPage( 'Search' );
@@ -83,8 +78,6 @@ $wgSpecialPages = array_merge($wgSpecialPages, array (
 	'Recentchangeslinked' => new UnlistedSpecialPage( 'Recentchangeslinked' ),
 	'Movepage'		=> new UnlistedSpecialPage( 'Movepage' ),
 	'Blockme'       => new UnlistedSpecialPage( 'Blockme' ),
-	'Geo'           => new UnlistedSpecialPage( 'Geo' ),
-	'Validate'      => new UnlistedSpecialPage( 'Validate' ),
 	'Booksources'	=> new SpecialPage( 'Booksources' ),
 	'Categories'	=> new SpecialPage( 'Categories' ),
 	'Export'		=> new SpecialPage( 'Export' ),

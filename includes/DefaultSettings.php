@@ -393,7 +393,6 @@ $wgExtraSubtitle	= '';
 $wgSiteSupportPage	= ''; # A page where you users can receive donations
 
 $wgReadOnlyFile         = "{$wgUploadDirectory}/lock_yBgMBwiR";
-$wgUseData = false ;
 
 /**
  * The debug log file should be not be publicly accessible if it is used, as it
@@ -941,12 +940,6 @@ $wgAllowPageInfo = false;
 
 /** Maximum indent level of toc. */
 $wgMaxTocLevel = 999;
-
-/** Recognise longitude/latitude coordinates */
-$wgUseGeoMode = false;
-
-/** Validation for print or other production versions */
-$wgUseValidation = false;
 
 /** Use external C++ diff engine (module wikidiff from the extensions package) */
 $wgUseExternalDiffEngine = false;
