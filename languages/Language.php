@@ -338,21 +338,21 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'portal'		=> 'Community portal',
 'portal-url'		=> 'Project:Community Portal',
 'about'			=> 'About',
-"aboutsite"      => "About {{SITENAME}}",
-"aboutpage"		=> "Project:About",
+'aboutsite'      => 'About {{SITENAME}}',
+'aboutpage'		=> 'Project:About',
 'article' => 'Content page',
 'help'			=> 'Help',
-"helppage"		=> "Help:Contents",
-"wikititlesuffix" => "{{SITENAME}}",
-"bugreports"	=> "Bug reports",
-"bugreportspage" => "Project:Bug_reports",
+'helppage'		=> 'Help:Contents',
+'wikititlesuffix' => '{{SITENAME}}',
+'bugreports'	=> 'Bug reports',
+'bugreportspage' => 'Project:Bug_reports',
 'sitesupport'   => '-', # To enable, something like 'Donations', 
 'sitesupport-url' => 'Project:Site support',
 'faq'			=> 'FAQ',
-"faqpage"		=> "Project:FAQ",
-"edithelp"		=> "Editing help",
-"newwindow"		=> "(opens in new window)",
-"edithelppage"	=> "Help:Editing",
+'faqpage'		=> 'Project:FAQ',
+'edithelp'		=> 'Editing help',
+'newwindow'		=> '(opens in new window)',
+'edithelppage'	=> 'Help:Editing',
 'cancel'		=> 'Cancel',
 'qbfind'		=> 'Find',
 'qbbrowse'		=> 'Browse',
@@ -396,9 +396,9 @@ and the [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] f
 'edit' => 'Edit',
 'editthispage'	=> 'Edit this page',
 'delete' => 'Delete',
-"deletethispage" => "Delete this page",
-"undelete_short1" => "Undelete one edit",
-"undelete_short" => "Undelete $1 edits",
+'deletethispage' => 'Delete this page',
+'undelete_short1' => 'Undelete one edit',
+'undelete_short' => 'Undelete $1 edits',
 'protect' => 'Protect',
 'protectthispage' => 'Protect this page',
 'unprotect' => 'Unprotect',
@@ -1656,12 +1656,12 @@ article [[Train]].
 'listingcontinuesabbrev' => " cont.",
 
 # Info page
-"infosubtitle" => "Information for page",
-"numedits" => "Number of edits (article): $1",
-"numtalkedits" => "Number of edits (discussion page): $1",
-"numwatchers" => "Number of watchers: $1",
-"numauthors" => "Number of distinct authors (article): $1",
-"numtalkauthors" => "Number of distinct authors (discussion page): $1",
+'infosubtitle' => 'Information for page',
+'numedits' => 'Number of edits (article): $1',
+'numtalkedits' => 'Number of edits (discussion page): $1',
+'numwatchers' => 'Number of watchers: $1',
+'numauthors' => 'Number of distinct authors (article): $1',
+'numtalkauthors' => 'Number of distinct authors (discussion page): $1',
 
 # Math options
 'mw_math_png' => 'Always render PNG',
@@ -1905,7 +1905,7 @@ class Language {
 	}
 
 	function getUserToggle( $tog ) {
-		return wfMsg("tog-".$tog);
+		return wfMsg('tog-'.$tog);
 	}
 
 	function getLanguageNames() {
