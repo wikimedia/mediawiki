@@ -222,7 +222,7 @@ class PreferencesForm {
 			if ( $i >= 0 ) {
 				$checked = "";
 				if ( $this->mSearchNs[$i] ) {
-					$checked = " checked";
+					$checked = ' checked="checked"';
 				}
 				$name = str_replace( "_", " ", $namespaces[$i] );
 				if ( "" == $name ) { 
@@ -303,7 +303,7 @@ class PreferencesForm {
 		# Quickbar setting
 		#
 		for ( $i = 0; $i < count( $qbs ); ++$i ) {
-			if ( $i == $this->mQuickbar ) { $checked = " checked"; }
+			if ( $i == $this->mQuickbar ) { $checked = ' checked="checked"'; }
 			else { $checked = ""; }
 			$wgOut->addHTML( "<label><input type=radio name=\"wpQuickbar\"
 	value=\"$i\"$checked> {$qbs[$i]}</label><br>\n" );
@@ -328,7 +328,7 @@ class PreferencesForm {
 		# $skinNames (skins is all skin names from Language.php)
 		foreach ($wgValidSkinNames as $skinkey => $skinname ) {
 			if ( $skinkey == $this->mSkin ) { 
-				$checked = ' checked'; 
+				$checked = ' checked="checked"'; 
 			} else { 
 				$checked = ""; 
 			}
@@ -346,7 +346,7 @@ class PreferencesForm {
 		$wgOut->addHTML("<table border=0>");
 		foreach ( $togs as $tname => $ttext ) {
 			if ( 1 == $wgUser->getOption( $tname ) ) {
-				$checked = " checked";
+				$checked = ' checked="checked"';
 			} else {
 				$checked = "";
 			}		
@@ -359,7 +359,7 @@ class PreferencesForm {
 		#
 		$wgOut->addHTML( "<tr><td valign=top nowrap><b>$math:</b><br>\n" );
 		for ( $i = 0; $i < count( $mathopts ); ++$i ) {
-			if ( $i == $this->mMath ) { $checked = " checked"; }
+			if ( $i == $this->mMath ) { $checked = ' checked="checked"'; }
 			else { $checked = ""; }
 			$wgOut->addHTML( "<label><input type=radio name=\"wpMath\"
 	value=\"$i\"$checked> {$mathopts[$i]}</label><br>\n" );
@@ -372,7 +372,7 @@ class PreferencesForm {
 			$wgOut->addHTML( "<tr><td valign=top nowrap><b>$dateFormat:</b><br>" );
 			for ( $i = 0; $i < count( $dateopts ); ++$i) {
 				if ( $i == $this->mDate ) {
-					$checked = " checked";
+					$checked = ' checked="checked"';
 				} else {
 					$checked = "";
 				}
@@ -398,7 +398,7 @@ class PreferencesForm {
 		#
 		$this->mUserEmail = wfEscapeHTML( $this->mUserEmail );
 		$this->mNick = wfEscapeHTML( $this->mNick );
-		if ( $this->mEmailFlag ) { $emfc = "checked"; }
+		if ( $this->mEmailFlag ) { $emfc = 'checked="checked"'; }
 		else { $emfc = ""; }
 
 		$ps = $this->namespacesCheckboxes();
