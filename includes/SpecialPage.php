@@ -68,6 +68,23 @@ class SpecialPage
 		}
 	}
 
+	# Return categorised listable special pages
+	/* static */ function getPages() {
+		global $wgSpecialPages;
+		$pages = array(
+		  "" => array(),
+		  "sysop" => array(),
+		  "developer" => array()
+		);
+
+		foreach ( $wgSpecialPages as $name => $page ) {
+			if ( $page->isListed() ) {
+				$pages[$page->getRestriction()][$page->getName()] =& $wgSpecialPages[$name];
+			}
+		}
+		return $pages;
+	}
+
 	# Execute a special page path, which may contain slashes
 	/* static */ function executePath( &$title ) {
 		global $wgSpecialPages, $wgOut, $wgTitle;

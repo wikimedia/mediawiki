@@ -8,8 +8,7 @@ require_once ( "Feed.php" );
 
 class QueryPage {
 	# Subclasses return their name here. Make sure the name is also
-	# specified in Language.php, both in the $wgValidSpecialPagesEn
-	# variable, and as a language message param.
+	# specified in SpecialPage.php and in Language.php as a language message param.
 
 	function getName() {
 		return "";
@@ -203,9 +202,9 @@ class QueryPage {
 	
 	function feedTitle() {
 		global $wgLanguageCode, $wgSitename, $wgLang;
-		$pages = $wgLang->getValidSpecialPages();
-		$title = $pages[$this->getName()];
-		return "$wgSitename - $title [$wgLanguageCode]";
+		$page = SpecialPage::getPage( $this->getName() );
+		$desc = $page->getDescription();
+		return "$wgSitename - $desc [$wgLanguageCode]";
 	}
 	
 	function feedDesc() {
