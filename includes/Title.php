@@ -654,6 +654,17 @@ class Title {
 		if ( $query == '' ) {
 			$url = str_replace( '$1', $dbkey, $wgArticlePath );
 		} else {
+			if( preg_match( '/^(.*&|)action=([^&]*)(&(.*)|)$/', $query, $matches ) ) {
+				global $wgActionPaths;
+				$action = urldecode( $matches[2] );
+				if( isset( $wgActionPaths[$action] ) ) {
+					$query = $matches[1];
+					if( isset( $matches[4] ) ) $query .= $matches[4];
+					$url = str_replace( '$1', $dbkey, $wgActionPaths[$action] );
+					if( $query != '' ) $url .= '?' . $query;
+					return $url;
+				}
+			}
 			if ( $query == '-' ) {
 				$query = '';
 			}
