@@ -137,5 +137,9 @@ img.tex { vertical-align: middle; }
     float: left;
     margin-top: 1em;
 }
+div.prefsectiontip { 
+    font-size: 94%;
+    margin-top: 1em;
+}
 fieldset.prefsection { margin-top: 1em }
 fieldset.operaprefsection { margin-left: 15em }
