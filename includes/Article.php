@@ -850,8 +850,10 @@ class Article {
 			$res = wfQuery ( $sql, DB_READ ) ;
 			while ( $BL = wfFetchObject ( $res ) )
 			{
-				$tobj = Title::newFromDBkey( $BL->l_from) ; 
-				$blurlArr[] = $wgInternalServer.wfLocalUrl( $tobj->getPrefixedURL() );
+				$tobj = Title::newFromDBkey( $BL->l_from) ;
+				if( $tobj ) {
+					$blurlArr[] = $wgInternalServer.wfLocalUrl( $tobj->getPrefixedURL() );
+				}
 			}
 			wfFreeResult ( $res ) ;
 			$u = new SquidUpdate( $this->mTitle, $blurlArr );
@@ -908,12 +910,14 @@ class Article {
 
 			while ( $s = wfFetchObject( $res ) ) {
 				$nt = Title::newFromDBkey( $s->l_from );
-				$lid = $nt->getArticleID();
+				if( $nt ) {
+					$lid = $nt->getArticleID();
 
-				if ( ! $first ) { $sql .= ","; $sql2 .= ","; }
-				$first = false;
-				$sql .= "({$lid},'{$t}')";
-				$sql2 .= "{$lid}";
+					if ( ! $first ) { $sql .= ","; $sql2 .= ","; }
+					$first = false;
+					$sql .= "({$lid},'{$t}')";
+					$sql2 .= "{$lid}";
+				}
 			}
 			$sql2 .= ")";
 			if ( ! $first ) {
