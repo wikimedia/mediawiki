@@ -3,9 +3,14 @@
 	function wfSpecialAllmessages()
 	{
 		global $wgOut, $wgAllMessagesEn, $wgRequest, $wgMessageCache, $wgTitle;
-		$ot = $wgRequest->getText('ot');
+		
+		$fname = "wfSpecialAllMessages";
+		wfProfileIn( $fname );
+		
+		wfProfileIn( "$fname-setup");
+		$ot = $wgRequest->getText( 'ot' );
 		$mwMsg =& MagicWord::get( MAG_MSG );
-		set_time_limit(0);
+		
 		$navText = wfMsg( 'allmessagestext', $mwMsg->getSynonym( 0 ) );
 		$first = true;
 		$sortedArray = $wgAllMessagesEn;
@@ -17,6 +22,9 @@
 			$messages[$key]['statmsg'] = wfMsgNoDb( $key );
 			$messages[$key]['msg'] = wfMsg ( $key );
 		}
+		wfProfileOut( "$fname-setup" );
+		
+		wfProfileIn( "$fname-output" );
 		if ($ot == 'html') {
 			$wgOut->addHTML( '<a href="'.$wgTitle->escapeLocalUrl('ot=php').'">PHP</a> | HTML' );
 			$wgOut->addWikiText( $navText );
@@ -25,8 +33,11 @@
 			$navText .= makePhp($messages);
 			$wgOut->addHTML('PHP | <a href="'.$wgTitle->escapeLocalUrl('ot=html').'">HTML</a><pre>'.htmlspecialchars($navText).'</pre>');
 		}
-		return;
+		wfProfileOut( "$fname-output" );
+		
+		wfProfileOut( $fname );
 	}
+	
 	function makePhp($messages) {
 		global $wgLanguageCode;
 		$txt = "\n\n".'$wgAllMessages'.ucfirst($wgLanguageCode).' = array('."\n";
@@ -53,6 +64,9 @@
 
 	function makeHTMLText( $messages ) {
 		global $wgLang, $wgUser;
+		$fname = "makeHTMLText";
+		wfProfileIn( $fname );
+		
 		$sk =& $wgUser->getSkin();
 		$talk = $wgLang->getNsText( NS_TALK );
 		$mwnspace = $wgLang->getNsText( NS_MEDIAWIKI );
@@ -66,6 +80,7 @@
 			<th>Current text</th>
 		</tr>";
 		
+		wfProfileIn( "$fname-check" );
 		# This is a nasty hack to avoid doing independent existence checks
 		# without sending the links and table through the slow wiki parser.
 		$pageExists = array(
@@ -79,11 +94,13 @@
 			$pageExists[$s->cur_namespace][$s->cur_title] = true;
 		}
 		$dbr->freeResult( $res );
+		wfProfileOut( "$fname-check" );
 
+		wfProfileIn( "$fname-output" );
 		foreach( $messages as $key => $m ) {
-			$titleObj = Title::makeTitle( NS_MEDIAWIKI, $key );
-			$talkPage = Title::makeTitle( NS_MEDIAWIKI_TALK, $key );
-			$title = $titleObj->getDBkey();
+			$title = $wgLang->ucfirst( $key );
+			$titleObj =& Title::makeTitle( NS_MEDIAWIKI, $title );
+			$talkPage =& Title::makeTitle( NS_MEDIAWIKI_TALK, $title );
 
 			$colorIt = ($m['statmsg'] == $m['msg']) ? " bgcolor=\"#f0f0ff\"" : " bgcolor=\"#ffe2e2\"";
 			$message = htmlspecialchars( $m['statmsg'] );
@@ -113,7 +130,9 @@
 			</td></tr>";
 		}
 		$txt .= "</table>";
+		wfProfileOut( "$fname-output" );
 
+		wfProfileOut( $fname );
 		return $txt;
 	}
 
