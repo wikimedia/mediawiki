@@ -73,6 +73,7 @@ class Image
 			$cachedValues = $wgMemc->get( $cacheKey );
 
 			if (!empty($cachedValues) && is_array($cachedValues)) {
+				wfIncrStats( "image_cache_hit" );
 				if ($wgUseSharedUploads && $cachedValues['fromShared']) {
 					# if this is shared file, we need to check if image
 					# in shared repository has not changed
@@ -94,7 +95,11 @@ class Image
 					$gis = $cachedValues['gis'];
 					$foundCached = true;
 				}
+			} else {
+				wfIncrStats( "image_cache_miss" );
 			}
+		} else {
+			wfIncrStats( "image_cache_update" );
 		}
 
 		if ($foundCached) {

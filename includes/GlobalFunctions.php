@@ -1127,4 +1127,13 @@ function wfGetSiteNotice() {
 	return $notice;
 }
 
+
+function wfIncrStats( $key ) {
+	global $wgDBname, $wgMemc;
+	$key = "$wgDBname:stats:$key";
+	if ( is_null( $wgMemc->incr( $key ) ) ) {
+		$wgMemc->add( $key, 1 );
+	}
+}
+
 ?>
