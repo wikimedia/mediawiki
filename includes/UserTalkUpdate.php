@@ -56,7 +56,7 @@ class UserTalkUpdate {
 		$this->mTimestamp = $timestamp;
 
 		# If namespace isn't User_talk:, do nothing.
-		if ( $this->mNamespace != Namespace::getTalk(Namespace::getUser() ) ) {
+		if ( $this->mNamespace != NS_USER_TALK ) {
 			return;
 		}
 

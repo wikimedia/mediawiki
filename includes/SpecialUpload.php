@@ -97,7 +97,7 @@ class UploadForm {
 		}
 		
 		/** Various rights checks */
-		if( ( $wgUser->getID() == 0 )
+		if( ( $wgUser->isAnon() )
 			 OR $wgUser->isBlocked() ) {
 			$wgOut->errorpage( 'uploadnologin', 'uploadnologintext' );
 			return;
@@ -393,7 +393,7 @@ class UploadForm {
 		
 		$sk = $wgUser->getSkin();
 		$ilink = $sk->makeMediaLink( $this->mUploadSaveName, Image::wfImageUrl( $this->mUploadSaveName ) );
-		$dname = $wgContLang->getNsText( Namespace::getImage() ) . ':'.$this->mUploadSaveName;
+		$dname = $wgContLang->getNsText( NS_IMAGE ) . ':'.$this->mUploadSaveName;
 		$dlink = $sk->makeKnownLink( $dname, $dname );
 
 		$wgOut->addHTML( '<h2>' . wfMsg( 'successfulupload' ) . "</h2>\n" );

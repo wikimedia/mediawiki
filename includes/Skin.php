@@ -186,9 +186,11 @@ class Skin extends Linker {
 	function getHeadScripts() {
 		global $wgStylePath, $wgUser, $wgContLang, $wgAllowUserJs;
 		$r = "<script type=\"text/javascript\" src=\"{$wgStylePath}/common/wikibits.js\"></script>\n";
-		if( $wgAllowUserJs && $wgUser->getID() != 0 ) { # logged in
-			$userpage = $wgContLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
-			$userjs = htmlspecialchars($this->makeUrl($userpage.'/'.$this->getSkinName().'.js', 'action=raw&ctype=text/javascript'));
+		if( $wgAllowUserJs && $wgUser->isLoggedIn() ) {
+			$userpage = $wgUser->getUserPage();
+			$userjs = htmlspecialchars( $this->makeUrl(
+				$userpage->getPrefixedText().'/'.$this->getSkinName().'.js',
+				'action=raw&ctype=text/javascript'));
 			$r .= '<script type="text/javascript" src="'.$userjs."\"></script>\n";
 		}
 		return $r;
@@ -225,12 +227,14 @@ class Skin extends Linker {
 		$action = $wgRequest->getText('action');
 		$s = "@import \"$wgStylePath/$sheet\";\n";
 		if($wgContLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css\";\n";
-		if( $wgAllowUserCss && $wgUser->getID() != 0 ) { # logged in
+		if( $wgAllowUserCss && $wgUser->isLoggedIn() ) { # logged in
 			if($wgTitle->isCssSubpage() && $this->userCanPreview( $action ) ) {
 				$s .= $wgRequest->getText('wpTextbox1');
 			} else {
-				$userpage = $wgContLang->getNsText( Namespace::getUser() ) . ":" . $wgUser->getName();
-				$s.= '@import "'.$this->makeUrl($userpage.'/'.$this->getSkinName().'.css', 'action=raw&ctype=text/css').'";'."\n";
+				$userpage = $wgUser->getUserPage();
+				$s.= '@import "'.$this->makeUrl(
+					$userpage->getPrefixedText().'/'.$this->getSkinName().'.css',
+					'action=raw&ctype=text/css').'";'."\n";
 			}
 		}
 		$s .= $this->doGetUserStyles();
@@ -321,13 +325,11 @@ class Skin extends Linker {
 	 * two functions to make it easier to subclass.
 	 */
 	function beforeContent() {
-		global $wgUser, $wgOut;
-
 		return $this->doBeforeContent();
 	}
 
 	function doBeforeContent() {
-		global $wgUser, $wgOut, $wgTitle, $wgContLang, $wgSiteNotice;
+		global $wgOut, $wgTitle, $wgContLang, $wgSiteNotice;
 		$fname = 'Skin::doBeforeContent';
 		wfProfileIn( $fname );
 
@@ -389,7 +391,7 @@ class Skin extends Linker {
 
 	
 	function getCategoryLinks () {
-		global $wgOut, $wgTitle, $wgUser, $wgParser;
+		global $wgOut, $wgTitle, $wgParser;
 		global $wgUseCategoryMagic, $wgUseCategoryBrowser, $wgLang;
 
 		if( !$wgUseCategoryMagic ) return '' ;
@@ -413,8 +415,6 @@ class Skin extends Linker {
 
 			# Render the array as a serie of links
 			function walkThrough ($tree) {
-				global $wgUser;
-				$sk = $wgUser->getSkin();
 				$return = '';
 				foreach($tree as $element => $parent) {
 					if(empty($parent)) {
@@ -427,7 +427,7 @@ class Skin extends Linker {
 					# add our current element to the list
 					$eltitle = Title::NewFromText($element);
 					# FIXME : should be makeLink() [AV]
-					$return .= $sk->makeLink($element, $eltitle->getText()).' &gt; ';
+					$return .= $this->makeLinkObj( $eltitle, $eltitle->getText() ) . ' &gt; ';
 				}
 				return $return;
 			}
@@ -452,9 +452,6 @@ class Skin extends Linker {
 	# This gets called immediately before the </body> tag.
 	#
 	function afterContent() {
-		global $wgUser, $wgOut, $wgServer;
-		global $wgTitle, $wgLang;
-
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printFooter() . "</div>\n";
 		return $printfooter . $this->doAfterContent();
 	}
@@ -487,7 +484,7 @@ class Skin extends Linker {
 		}
 
 		if ( $wgOut->isArticleRelated() ) {
-			if ( $wgTitle->getNamespace() == Namespace::getImage() ) {
+			if ( $wgTitle->getNamespace() == NS_IMAGE ) {
 				$name = $wgTitle->getDBkey();
 				$image = new Image( $wgTitle->getDBkey() );
 				if( $image->exists() ) {
@@ -516,8 +513,7 @@ class Skin extends Linker {
 		# do not show "You have new messages" text when we are viewing our
 		# own talk page
 
-			if(!(strcmp($wgTitle->getText(),$wgUser->getName()) == 0 &&
-						$wgTitle->getNamespace()==Namespace::getTalk(Namespace::getUser()))) {
+			if( $wgTitle->equals( $wgUser->getTalkPage() ) ) {
 				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
 						wfMsg('newmessageslink') );
 				$s.= ' | <strong>'. wfMsg( 'newmessages', $tl ) . '</strong>';
@@ -627,8 +623,8 @@ class Skin extends Linker {
 		$lo = $wgContLang->specialPage( 'Userlogout' );
 
 		$s = '';
-		if ( 0 == $wgUser->getID() ) {
-			if( $wgShowIPinHeader && isset(  $_COOKIE[ini_get('session.name')] ) ) {
+		if ( $wgUser->isAnon() ) {
+			if( $wgShowIPinHeader && isset( $_COOKIE[ini_get('session.name')] ) ) {
 				$n = $wgIP;
 
 				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
@@ -728,7 +724,7 @@ class Skin extends Linker {
 		$s = '';
 		if ( $wgOut->isArticleRelated() ) {
 			$s .= '<strong>' . $this->editThisPage() . '</strong>';
-			if ( 0 != $wgUser->getID() ) {
+			if ( $wgUser->isLoggedIn() ) {
 				$s .= $sep . $this->watchThisPage();
 			}
 			$s .= $sep . $this->talkLink()
@@ -736,8 +732,8 @@ class Skin extends Linker {
 			  . $sep . $this->whatLinksHere()
 			  . $sep . $this->watchPageLinksLink();
 
-			if ( $wgTitle->getNamespace() == Namespace::getUser()
-			    || $wgTitle->getNamespace() == Namespace::getTalk(Namespace::getUser()) )
+			if ( $wgTitle->getNamespace() == NS_USER
+			    || $wgTitle->getNamespace() == NS_USER_TALK )
 
 			{
 				$id=User::idFromName($wgTitle->getText());
@@ -1077,7 +1073,7 @@ class Skin extends Linker {
 		global $wgEnableEmail, $wgEnableUserEmail, $wgUser;
 		return $wgEnableEmail &&
 		       $wgEnableUserEmail &&
-		       0 != $wgUser->getID() && # show only to signed in users
+		       $wgUser->isLoggedIn() && # show only to signed in users
 		       0 != $id; # we can only email to non-anons ..
 #		       '' != $id->getEmail() && # who must have an email address stored ..
 #		       0 != $id->getEmailauthenticationtimestamp() && # .. which is authenticated

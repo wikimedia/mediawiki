@@ -17,7 +17,7 @@ function wfSpecialMovepage() {
 	global $wgUser, $wgOut, $wgRequest, $action, $wgOnlySysopMayMove;
 
 	# check rights. We don't want newbies to move pages to prevents possible attack
-	if ( 0 == $wgUser->getID() or $wgUser->isBlocked() or ($wgOnlySysopMayMove and $wgUser->isNewbie())) {
+	if ( $wgUser->isAnon() or $wgUser->isBlocked() or ($wgOnlySysopMayMove and $wgUser->isNewbie())) {
 		$wgOut->errorpage( "movenologin", "movenologintext" );
 		return;
 	}
@@ -76,7 +76,7 @@ class MovePageForm {
 		}
 
 		$wgOut->addWikiText( wfMsg( 'movepagetext' ) );
-		if ( ! Namespace::isTalk( $ot->getNamespace() ) ) {
+		if ( !$ot->isTalkPage() ) {
 			$wgOut->addWikiText( wfMsg( 'movepagetalktext' ) );
 		}
 
@@ -108,7 +108,7 @@ class MovePageForm {
 			</td>
 		</tr>" );
 
-		if ( ! Namespace::isTalk( $ot->getNamespace() ) ) {
+		if ( ! $ot->isTalkPage() ) {
 			$wgOut->addHTML( "
 		<tr>
 			<td align='right'>
@@ -211,7 +211,7 @@ class MovePageForm {
 	}
 
 	function showSuccess() {
-		global $wgOut, $wgUser, $wgRequest, $wgRawHtml;
+		global $wgOut, $wgRequest, $wgRawHtml;
 
 		$wgOut->setPagetitle( wfMsg( 'movepage' ) );
 		$wgOut->setSubtitle( wfMsg( 'pagemovedsub' ) );
@@ -233,7 +233,7 @@ class MovePageForm {
 			$wgOut->addHTML( "\n<p><strong>" . wfMsg( 'talkexists' ) . "</strong></p>\n" );
 		} else {
 			$ot = Title::newFromURL( $oldtitle );
-			if ( ! Namespace::isTalk( $ot->getNamespace() ) ) {
+			if ( ! $ot->isTalkPage() ) {
 				$wgOut->addHTML( "\n<p>" . wfMsg( 'talkpagenotmoved', wfMsg( $talkmoved ) ) . "</p>\n" );
 			}
 		}

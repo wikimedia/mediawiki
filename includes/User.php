@@ -682,6 +682,26 @@ class User {
 	}
 
 	/**
+	 * A more legible check for non-anonymousness.
+	 * Returns true if the user is not an anonymous visitor.
+	 *
+	 * @return bool
+	 */
+	function isLoggedIn() {
+		return( $this->getID() != 0 );
+	}
+	
+	/**
+	 * A more legible check for anonymousness.
+	 * Returns true if the user is an anonymous visitor.
+	 *
+	 * @return bool
+	 */
+	function isAnon() {
+		return !$this->isLoggedIn();
+	}
+	
+	/**
 	 * Check if a user is sysop
 	 * Die with backtrace. Use User:isAllowed() instead.
 	 * @deprecated

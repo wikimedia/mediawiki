@@ -128,7 +128,7 @@ class LinksUpdate {
 		
 		# Do the insertion
 		$sql = '';
-		$image = Namespace::getImage();
+		$image = NS_IMAGE;
 		if ( 0 != count ( $add ) ) {
 			$arr = array();
 			foreach ($add as $iname => $val ) {

@@ -740,7 +740,7 @@ class Linker {
 
 		# format regular and media links - all other wiki formatting
 		# is ignored
-		$medians = $wgContLang->getNsText(Namespace::getMedia()).':';
+		$medians = $wgContLang->getNsText( NS_MEDIA ) . ':';
 		while(preg_match('/\[\[(.*?)(\|(.*?))*\]\](.*)$/',$comment,$match)) {
 			# Handle link renaming [[foo|text]] will show link as "text"
 			if( "" != $match[3] ) {
@@ -768,6 +768,24 @@ class Linker {
 		}
 		wfProfileOut( $fname );
 		return $comment;
+	}
+	
+	/**
+	 * Wrap a comment in standard punctuation and formatting if
+	 * it's non-empty, otherwise return empty string.
+	 *
+	 * @param string $comment
+	 * @param Title $title
+	 * @return string
+	 * @access public
+	 */
+	function commentBlock( $comment, $title = NULL ) {
+		if( $comment == '' ) {
+			return '';
+		} else {
+			$formatted = $this->formatComment( $comment, $title );
+			return " <em>($formatted)</em>";
+		}
 	}
 
 	/** @todo document */

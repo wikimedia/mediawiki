@@ -86,7 +86,7 @@ function wfSpecialNewimages() {
 
 		$nt = Title::newFromText( $name, NS_IMAGE );
 		$img = Image::newFromTitle( $nt );
-		$ul = $sk->makeLink( $wgContLang->getNsText( Namespace::getUser() ) . ":{$ut}", $ut );
+		$ul = $sk->makeLinkObj( Title::makeTitle( NS_USER, $ut ), $ut );
 
 		$gallery->add( $img, $ul.'<br /><i>'.$wgLang->timeanddate( $s->img_timestamp, true ).'</i><br />' );
 		
