@@ -1641,7 +1641,7 @@ cl_sortkey" ;
 		$found = false;
 		$nowiki = false;
 		$noparse = false;
-		$brokenlink = false;
+		$itcamefromthedatabase = false;
 
 		$title = NULL;
 
@@ -1780,14 +1780,13 @@ cl_sortkey" ;
 					if ( $articleContent !== false ) {
 						$found = true;
 						$text = $articleContent;
-
+						$itcamefromthedatabase = true;
 					}
 				}
 
 				# If the title is valid but undisplayable, make a link to it
 				if ( $this->mOutputType == OT_HTML && !$found ) {
 					$text = '[[' . $title->getPrefixedText() . ']]';
-					$brokenlink = true;
 					$found = true;
 				}
 			}
@@ -1839,7 +1838,7 @@ cl_sortkey" ;
 		} else {
 			# replace ==section headers==
 			# XXX this needs to go away once we have a better parser.
-			if ( $this->mOutputType != OT_WIKI && !$brokenlink ) {
+			if ( $this->mOutputType != OT_WIKI && $itcamefromthedatabase ) {
 				if( !is_null( $title ) )
 					$encodedname = base64_encode($title->getPrefixedDBkey());
 				else
