@@ -19,6 +19,7 @@ function onloadhook () {
     // don't run anything below this for non-dom browsers
     if(!(document.getElementById && document.getElementsByTagName)) return;
     histrowinit();
+    unhidetzbutton();
     tabbedprefs();
 }
 if (window.addEventListener) window.addEventListener("load",onloadhook,false);
@@ -119,7 +120,7 @@ function tabbedprefs() {
     var seci = 0;
     for(i=0;i<children.length;i++) {
         if(children[i].nodeName.indexOf('FIELDSET') != -1) {
-            children[i].id = 'prefsection-' + i;
+            children[i].id = 'prefsection-' + seci;
             children[i].className = 'prefsection';
             if(is_opera || is_khtml) children[i].className = 'prefsection operaprefsection';
             legends = children[i].getElementsByTagName('LEGEND');
@@ -150,7 +151,6 @@ function tabbedprefs() {
     }
     prefform.insertBefore(toc, children[0]);
     document.getElementById('prefsubmit').id = 'prefcontrol';
-    document.getElementById('guesstimezonebutton').style.display = 'inline';
 }
 function uncoversection() {
     oldsecid = this.parentNode.parentNode.selectedid;
@@ -182,6 +182,10 @@ function checkTimezone( tz, msg ) {
 		var junk = msg.split( '$1' );
 		document.write( junk[0] + "UTC" + tzString + junk[1] );
 	}
+}
+function unhidetzbutton() {
+    tzb = document.getElementById('guesstimezonebutton')
+    if(tzb) tzb.style.display = 'inline';
 }
 
 // in [-]HH:MM format...
