@@ -330,6 +330,14 @@ class CleanUpTest extends PHPUnit_TestCase {
 			bin2hex( $expect ),
 			bin2hex( UtfNormal::cleanUp( $text ) ) );
 	}
+
+	function testForbiddenRegression() {
+		$text   = "\xef\xbf\xbf"; # U+FFFF, illegal char
+		$expect = "\xef\xbf\xbd";
+		$this->assertEquals(
+			bin2hex( $expect ),
+			bin2hex( UtfNormal::cleanUp( $text ) ) );
+	}
 }
 
 
