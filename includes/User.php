@@ -434,10 +434,21 @@ class User {
 		if ( ! isset( $this->mSkin ) ) {
 			$skinNames = Skin::getSkinNames();
 			$s = $this->getOption( "skin" );
-			if ( "" == $s ) { $s = 0; }
+			if ( "" == $s ) { $s = 'standard'; }
 
-			if ( $s >= count( $skinNames ) ) { $sn = "SkinStandard"; }
-			else $sn = "Skin" . $skinNames[$s];
+			if ( !isset( $skinNames[$s] ) ) {
+				$fallback = array(
+					'standard' => "Standard",
+					'nostalgia' => "Nostalgia",
+					'cologneblue' => "Cologne Blue");
+				if(is_int($s) && isset( $fallback[$s]) ){
+					$sn = $fallback[$s];
+				} else {
+					$sn = "SkinStandard";
+				}
+			} else {
+				$sn = "Skin" . $skinNames[$s];
+			}
 			$this->mSkin = new $sn;
 		}
 		return $this->mSkin;

@@ -9,15 +9,17 @@ include_once( "Feed.php" );
 # Language class has internationalized names
 #
 /* private */ $wgValidSkinNames = array(
-	"Standard", "Nostalgia", "CologneBlue"
+	'standard' => "Standard", 
+	'nostalgia' => "Nostalgia",
+	'cologneblue' => "CologneBlue"
 );
 if( $wgUseSmarty ) {
-	$wgValidSkinNames[] = "Smarty";
-	$wgValidSkinNames[] = "Montparnasse";
+	$wgValidSkinNames['smarty'] = "Smarty";
+	$wgValidSkinNames['montparnasse'] = "Montparnasse";
 }
 if( $wgUsePHPTal ) {
     #$wgValidSkinNames[] = "PHPTal";
-    $wgValidSkinNames[] = "DaVinci";
+    $wgValidSkinNames['davinci'] = "DaVinci";
 }
 
 include_once( "RecentChange.php" );
