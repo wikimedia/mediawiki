@@ -152,6 +152,7 @@ If upgrading from an older release, see the file UPGRADING.
 * Fix interwiki links in edit comments
 * Fix crash on banned user visit
 * Avoid PHP warning messages when thumbnail not generated
+* (bug 1157) List unblocks correctly in Special:Log
 
 === Caveats ===
 
