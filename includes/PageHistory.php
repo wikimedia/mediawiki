@@ -197,7 +197,9 @@ class PageHistory {
 		$s .= " <span ID='ver$oid'>{$link} . . {$ul}</span>";
 
 		if ( "" != $c && "*" != $c ) {
-			$s .= " <em>(" . wfEscapeHTML($c) . ")</em>";
+
+			$c = $this->mSkin->formatcomment($c);
+			$s .= " <em>(" . $c . ")</em>";
 		}
 		$s .= "</li>\n";
 

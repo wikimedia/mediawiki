@@ -226,7 +226,7 @@ class EditPage {
 					$sectitle=preg_match("/^=+(.*?)=+/mi",
 				  	$this->textbox1,
 				  	$matches);
-					if($matches[1]) { $this->summary = "=". trim($matches[1])."= "; }
+					if($matches[1]) { $this->summary = "/* ". trim($matches[1])." */ "; }
 				}
 			}
 			$wgOut->setPageTitle( $s );
