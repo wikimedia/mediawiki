@@ -220,8 +220,12 @@ class Parser
 
 		$text = Parser::extractTags("math", $text, $math_content, $uniq_prefix);
 		foreach( $math_content as $marker => $content ){
-			if( $render && $this->mOptions->getUseTeX() ){
-				$math_content[$marker] = renderMath( $content );
+			if( $render ) {
+				if( $this->mOptions->getUseTeX() ) {
+					$math_content[$marker] = renderMath( $content );
+				} else {
+					$math_content[$marker] = "&lt;math&gt;$content&lt;math&gt;";
+				}
 			} else {
 				$math_content[$marker] = "<math>$content</math>";
 			}
@@ -1540,26 +1544,34 @@ class Parser
 	# Cleans up HTML, removes dangerous tags and attributes
 	/* private */ function removeHTMLtags( $text )
 	{
-		global $wgUseTidy;
+		global $wgUseTidy, $wgUserHtml;
 		$fname = "Parser::removeHTMLtags";
 		wfProfileIn( $fname );
-		$htmlpairs = array( # Tags that must be closed
-			"b", "del", "i", "ins", "u", "font", "big", "small", "sub", "sup", "h1",
-			"h2", "h3", "h4", "h5", "h6", "cite", "code", "em", "s",
-			"strike", "strong", "tt", "var", "div", "center",
-			"blockquote", "ol", "ul", "dl", "table", "caption", "pre",
-			"ruby", "rt" , "rb" , "rp", "p"
-		);
-		$htmlsingle = array(
-			"br", "hr", "li", "dt", "dd"
-		);
-		$htmlnest = array( # Tags that can be nested--??
-			"table", "tr", "td", "th", "div", "blockquote", "ol", "ul",
-			"dl", "font", "big", "small", "sub", "sup"
-		);
-		$tabletags = array( # Can only appear inside table
-			"td", "th", "tr"
-		);
+		
+		if( $wgUserHtml ) {
+			$htmlpairs = array( # Tags that must be closed
+				"b", "del", "i", "ins", "u", "font", "big", "small", "sub", "sup", "h1",
+				"h2", "h3", "h4", "h5", "h6", "cite", "code", "em", "s",
+				"strike", "strong", "tt", "var", "div", "center",
+				"blockquote", "ol", "ul", "dl", "table", "caption", "pre",
+				"ruby", "rt" , "rb" , "rp", "p"
+			);
+			$htmlsingle = array(
+				"br", "hr", "li", "dt", "dd"
+			);
+			$htmlnest = array( # Tags that can be nested--??
+				"table", "tr", "td", "th", "div", "blockquote", "ol", "ul",
+				"dl", "font", "big", "small", "sub", "sup"
+			);
+			$tabletags = array( # Can only appear inside table
+				"td", "th", "tr"
+			);
+		} else {
+			$htmlpairs = array();
+			$htmlsingle = array();
+			$htmlnest = array();
+			$tabletags = array();
+		}
 
 		$htmlsingle = array_merge( $tabletags, $htmlsingle );
 		$htmlelements = array_merge( $htmlsingle, $htmlpairs );

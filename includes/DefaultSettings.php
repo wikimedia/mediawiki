@@ -368,6 +368,10 @@ $wgSpamRegex = false;
 # Go button goes straight to the edit screen if the article doesn't exist
 $wgGoToEdit = false;
 
+# Allow limited user-specified HTML?
+# It will be run through a whitelist for security.
+$wgUserHtml = true;
+
 # Optional: use tidy to make sure the output is sane, switch on by setting $wgUseTidy = true;
 $wgUseTidy = false;
 $wgTidyBin = 'tidy';
