@@ -51,6 +51,10 @@ $wgSpecialPages = array(
 	'Unusedimages'      => new SpecialPage( 'Unusedimages' )
 );
 
+global $wgUseValidation ;
+if ( $wgUseValidation )
+	$wgSpecialPages['Validate'] = new SpecialPage( 'Validate' );
+
 global $wgDisableCounters;
 if( !$wgDisableCounters ) {
 	$wgSpecialPages['Popularpages'] = new SpecialPage( 'Popularpages' );
