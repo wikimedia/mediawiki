@@ -1448,6 +1448,10 @@ class ResultWrapper {
 		unset( $this->result );
 		unset( $this->db );
 	}
+
+	function seek( $row ) {
+		$this->db->dataSeek( $this->result, $row );
+	}
 }
 
 #------------------------------------------------------------------------------
