@@ -4,6 +4,10 @@ if( defined( "MEDIAWIKI" ) ) {
 $wgInputEncoding    = "UTF-8";
 $wgOutputEncoding	= "UTF-8";
 
+if (function_exists('mb_internal_encoding')) {
+	mb_internal_encoding('UTF-8');
+}
+
 $wikiUpperChars = $wgMemc->get( $key1 = "$wgDBname:utf8:upper" );
 $wikiLowerChars = $wgMemc->get( $key2 = "$wgDBname:utf8:lower" );
 
@@ -19,19 +23,27 @@ class LanguageUtf8 extends Language {
 	function ucfirst( $string ) {
 		# For most languages, this is a wrapper for ucfirst()
 		# But that doesn't work right in a UTF-8 locale
-		global $wikiUpperChars;
-		return preg_replace (
-        	"/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
-        	"strtr ( \"\$1\" , \$wikiUpperChars )",
-        	$string );
+		if (function_exists('mb_strtoupper')) {
+			return mb_strtoupper(mb_substr($string,0,1)).mb_substr($string,1);
+		} else {
+		    global $wikiUpperChars;
+		    return preg_replace (
+        	    "/^([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
+        	    "strtr ( \"\$1\" , \$wikiUpperChars )",
+        	    $string );
+		}
 	}
 	
 	function lcfirst( $string ) {
-		global $wikiLowerChars;
-		return preg_replace (
-        	"/^([A-Z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
-        	"strtr ( \"\$1\" , \$wikiLowerChars )",
-        	$string );
+		if (function_exists('mb_strtolower')) {
+			return mb_strtolower(mb_substr($string,0,1)).mb_substr($string,1);
+		} else {
+		    global $wikiLowerChars;
+		    return preg_replace (
+        	    "/^([A-Z]|[\\xc0-\\xff][\\x80-\\xbf]*)/e",
+        	    "strtr ( \"\$1\" , \$wikiLowerChars )",
+        	    $string );
+		}
 	}
 
 	function stripForSearch( $string ) {
