@@ -98,7 +98,7 @@ function indexShowline( $inpoint, $outpoint )
 		"alphaindexline",
 		$sk->makeKnownLink( $wgLang->specialPage( "Allpages" ),
 			str_replace( "_", " ", $inpoint ),
-			"from=" . wfStrencode( $inpoint ) ) . "</td><td>",
+			"from=" . wfURLencode( $inpoint ) ) . "</td><td>",
 		"</td><td align=\"left\">" .
 		str_replace( "_", " ", $outpoint )
 		);
