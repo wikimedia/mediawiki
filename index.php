@@ -1,22 +1,27 @@
 <?php
-#apd_set_pprof_trace();
 # Main wiki script; see design.doc
-#
+
 $wgRequestTime = microtime();
 
 unset( $IP );
 @ini_set( 'allow_url_fopen', 0 ); # For security...
+
+# Valid web server entry point, enable includes.
+# Please don't move this line to includes/Defines.php. This line essentially defines
+# a valid entry point. If you put it in includes/Defines.php, then any script that includes
+# it becomes an entry point, thereby defeating its purpose.
+define( 'MEDIAWIKI', true );
+require_once( './includes/Defines.php' );
+
 if( !file_exists( 'LocalSettings.php' ) ) {
-	define( 'MEDIAWIKI', true );
 	$IP = "." ;
-	require_once( './includes/Defines.php' );
 	require_once( 'includes/DefaultSettings.php' ); # used for printing the version
 ?>
 <!DOCTYPE html PUBLIC "-//W3C/DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
 	<head>
 		<title>MediaWiki <?php echo $wgVersion ?></title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 		
 		<style type='text/css' media='screen, projection'>
 			html, body {
@@ -51,13 +56,6 @@ if( !file_exists( 'LocalSettings.php' ) ) {
 	die();
 }
 
-# Valid web server entry point, enable includes.
-# Please don't move this line to includes/Defines.php. This line essentially defines
-# a valid entry point. If you put it in includes/Defines.php, then any script that includes
-# it becomes an entry point, thereby defeating its purpose.
-define( 'MEDIAWIKI', true );
-
-require_once( './includes/Defines.php' );
 require_once( './LocalSettings.php' );
 require_once( 'includes/Setup.php' );
 
