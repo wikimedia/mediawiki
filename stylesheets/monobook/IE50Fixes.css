@@ -1,0 +1,115 @@
+/*
+** IE5.0 Fix Stylesheet
+*/
+
+#portal-column-content {
+    margin: 0 0 0 0 !important;
+    float: none;
+}
+#portal-column-content #content {
+    margin-top: 3em;
+}
+#portal-column-one {
+    position: absolute;
+    overflow: visible;
+    top: 0px;
+    z-index: 3;
+}
+
+#portal-footer {
+    margin: 0 1.8em 0 15em;
+}
+
+/* IE 4&5 interpret keyword sizes one off */
+body {
+    font-size: xx-small;
+}
+/*
+** the edit tabs
+*/
+#portlet-contentViews {
+    left: 10em;
+}
+#portlet-contentViews ul {
+    line-height: 1.3em;
+    display: block;
+    float: left;
+}
+#portlet-contentViews li {
+    display: block;
+    float: left;
+    overflow: visible;
+    white-space: nowrap !important;
+}
+#portlet-contentViews li.selected {
+    background-color: white;
+    padding-bottom: 0.2em;
+}
+#portlet-contentViews li a,
+#portlet-contentViews .selected a,
+#portlet-contentViews li a:hover {
+    padding-bottom: 0;
+    padding-top: 0 !important;
+    display: block;
+    position: static !important;
+    z-index: 3 !important;
+}
+
+/* personal toolbar */
+#portal-personaltools {
+    padding-bottom: 0;
+    background: transparent;
+}
+ul#portal-personaltools {
+    line-height: 1.1em;
+    display: block;
+    float: right;
+    margin: 0;
+}
+#portal-personaltools li {
+    display: block;
+    float: left;
+    overflow: visible;
+    padding-bottom: 0.1em;
+    margin-left: 0.5em;
+}
+#portal-personaltools li a,
+#portal-personaltools .selected a,
+#portal-personaltools li a:hover {
+    padding-bottom: 0;
+    padding-top: 0 !important;
+    display: block;
+   /* float: left;*/
+    padding-left: 0.5em !important;
+    padding-right: 0.5em !important;
+    white-space: nowrap !important;
+}
+
+/* 5.0 doesn't like the background icon for external links and user */
+.link-external,
+.external {
+    background: none;
+    padding: 0;
+}
+li#personaltools-userpage,
+li#personaltools-login,
+li#personaltools-logout {
+    background: none;
+    padding-left: none;
+}
+
+textarea {
+    width: 78% !important;
+}
+#documentSubtitle {
+    margin: -1em 0 0.6em 1em;
+}
+
+
+table.listing td.top {
+    /* insane IE row bug workaround */
+    position: relative;
+    left: -1px;
+    top: -1px;
+}
+/*div{ border:1px solid Red !important;}*/
