@@ -2,9 +2,11 @@
 
 function wfSpecialAllpages( $par=NULL )
 {
-	global $indexMaxperpage, $wgRequest;
+	global $indexMaxperpage, $wgRequest, $wgLoadBalancer;
 	$indexMaxperpage = 480;
 	$from = $wgRequest->getVal( 'from' );
+	
+	$wgLoadBalancer->force(-1);
 
 	if( $par ) {
 		indexShowChunk( $par );
@@ -13,6 +15,8 @@ function wfSpecialAllpages( $par=NULL )
 	} else {
 		indexShowToplevel();
 	}
+
+	$wgLoadBalancer->force(0);
 }
 
 function indexShowToplevel()

@@ -10,13 +10,15 @@ function sns()
 function wfSpecialMaintenance( $par=NULL )
 {
 	global $wgUser, $wgOut, $wgLang, $wgTitle, $wgRequest, $wgLanguageCode;
-	global $wgMiserMode;
+	global $wgMiserMode, $wgLoadBalancer;
 
 	if ( $wgMiserMode ) {
 		$wgOut->addWikiText( wfMsg( "perfdisabled" ) );
 		return;
 	}
 	
+	$wgLoadBalancer->force(-1);
+
 	$submitmll = $wgRequest->getVal( 'submitmll' );
 	
 	if( $par )
@@ -24,13 +26,30 @@ function wfSpecialMaintenance( $par=NULL )
 	else
 		$subfunction = $wgRequest->getText( 'subfunction' );
 
-	if ( $subfunction == "disambiguations" ) return wfSpecialDisambiguations() ;
-	if ( $subfunction == "doubleredirects" ) return wfSpecialDoubleRedirects() ;
-	if ( $subfunction == "brokenredirects" ) return wfSpecialBrokenRedirects() ;
-	if ( $subfunction == "selflinks" ) return wfSpecialSelfLinks() ;
-        if ( $subfunction == "mispeelings" ) return wfSpecialMispeelings() ;
-	if ( $subfunction == "missinglanguagelinks" ) return wfSpecialMissingLanguageLinks() ;
-	if ( !is_null( $submitmll ) ) return wfSpecialMissingLanguageLinks() ;
+	$done = true;
+
+	if ( $subfunction == "disambiguations" ) {
+		wfSpecialDisambiguations() ;
+	} elseif ( $subfunction == "doubleredirects" ) {
+		wfSpecialDoubleRedirects() ;
+	} elseif ( $subfunction == "brokenredirects" ) {
+		wfSpecialBrokenRedirects() ;
+	} elseif ( $subfunction == "selflinks" ) {
+		wfSpecialSelfLinks() ;
+	} elseif ( $subfunction == "mispeelings" ) {
+		wfSpecialMispeelings() ;
+	} elseif ( $subfunction == "missinglanguagelinks" ) {
+	   wfSpecialMissingLanguageLinks() ;
+	} elseif ( !is_null( $submitmll ) ) {
+		wfSpecialMissingLanguageLinks() ;
+	} else {
+		$done = false;
+	}
+	
+	$wgLoadBalancer->force(0);
+	if ( $done ) {
+		return;
+	}
 
 	$sk = $wgUser->getSkin();
 	$ns = $wgLang->getNamespaces() ;

@@ -45,7 +45,8 @@ class Block
 	# Get a ban from the DB, with either the given address or the given username
 	function load( $address = "", $user = 0, $killExpired = true ) 
 	{
-		$fname = 'Block::load';
+		global $wgLoadBalancer;
+                $fname = 'Block::load';
 		$ret = false;
 		$killed = false;
 		
@@ -60,8 +61,10 @@ class Block
 				"' OR ipb_user={$user})";
 		}
 
-		$res = wfQuery( $sql, DB_READ, $fname );
-		if ( 0 == wfNumRows( $res ) ) {
+		$wgLoadBalancer->force(-1);
+                $res = wfQuery( $sql, DB_READ, $fname );
+		$wgLoadBalancer->force(0);
+                if ( 0 == wfNumRows( $res ) ) {
 			# User is not blocked
 			$this->clear();
 		} else {
