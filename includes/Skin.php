@@ -2533,11 +2533,11 @@ class Skin {
 	   comments. It escapes any HTML in the comment, but adds some CSS to format
 	   auto-generated comments (from section editing) and formats [[wikilinks]].
 	   
-	   The $title parameter, which is optional, must be a title OBJECT. It is
-	   used to generate a direct link to the section in the autocomment.
+	   The &$title parameter must be a title OBJECT. It is used to generate a 
+	   direct link to the section in the autocomment.
 	   Main author: Erik Moeller (moeller@scireview.de)
 	*/
-	function formatComment($comment, $title='')
+	function formatComment($comment, &$title)
 	{
 		global $wgLang;
 		$comment = htmlspecialchars( $comment );
@@ -2650,7 +2650,7 @@ class Skin {
 
 		if ( '' != $description && '*' != $description ) {
 			$sk=$wgUser->getSkin();
-			$s .= $wgLang->emphasize(' (' . $sk->formatComment($description) . ')');
+			$s .= $wgLang->emphasize(' (' . $sk->formatComment($description,$wgTitle) . ')');
 		}
 		$s .= "</li>\n";
 		return $s;
