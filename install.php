@@ -104,20 +104,20 @@ print "\n* * *\nWarning! This script will completely erase any\n" .
 $response = readconsole();
 if ( ! ( "Y" == $response{0} || "y" == $response{0} ) ) { exit(); }
 
-print "\nFor database access, we are using the data in AdminSettings.php.\n";
-print "If you get any error message, please make sure this information is correct\n";
-print "and you have the rights to create a database using the data provided.\n";
-print "(If you have already created the database, don't worry, the script will\n";
-print "simply skip that step.)\n\n";
-
-global $wgDBadminuser, $wgDBadminpassword;
+print "Please enter your root password for the database server now.\n";
+print "It is used to do the following:\n";
+print "1) Create the database\n";
+print "2) Create the users specified in AdminSettings.php and LocalSettings.php\n\n";
+print "You do not need to create any user accounts yourself!\n\n";
+print "MySQL root password (typing will be visible): ";
+$rootpw=readconsole();
 
 # Include rest of code to get things like internationalized messages.
 #
 include_once( "{$IP}/Setup.php" );
 $wgTitle = Title::newFromText( "Installation script" );
 
-$wgDatabase = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, "", 1 );
+$wgDatabase = Database::newFromParams( $wgDBserver, "root", $rootpw, "", 1 );
 if ( !$wgDatabase->isOpen() ) {
 	print "Could not connect to database on \"{$wgDBserver}\" as root.\n";
 	exit();

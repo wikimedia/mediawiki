@@ -6,11 +6,9 @@
 #
 # Developers: Do not check AdminSettings.php into CVS!
 
-# This data is used to set up the database, and for all
-# maintenance operations on it (rebuild links tables etc.).
-# You can use the root account here. If you don't, make sure 
-# that the user has the rights to create the database before 
-# running the install script, or create the database yourself.
+# This data is used for all maintenance operations.
+# The user DOES NOT NEED TO EXIST. It is created by the
+# installation script.
 
 $wgDBadminuser      = "wikiadmin";
 $wgDBadminpassword  = "adminpass";
