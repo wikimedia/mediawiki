@@ -548,7 +548,7 @@ BUG 289: literal ">"-token in URL-tail
 !! input
 http://www.example.com/<b>html</b>
 !! result
-<p><a href="http://www.example.com/" class='external free' rel="nofollow">http://www.example.com/</a><b >html</b >
+<p><a href="http://www.example.com/" class='external free' rel="nofollow">http://www.example.com/</a><b>html</b>
 </p>
 !!end
 
@@ -566,7 +566,7 @@ BUG 289: literal ">"-token in bracketed URL
 !! input
 [http://www.example.com/<b>html</b> stuff]
 !! result
-<p><a href="http://www.example.com/" class='external text' title="http://www.example.com/" rel="nofollow"><b >html</b > stuff</a>
+<p><a href="http://www.example.com/" class='external text' title="http://www.example.com/" rel="nofollow"><b>html</b> stuff</a>
 </p>
 !!end
 
@@ -662,11 +662,11 @@ Simple table
 | 3 || 4
 |}
 !! result
-<table >
-<tr >
+<table>
+<tr>
 <td> 1 </td><td> 2
 </td></tr>
-<tr >
+<tr>
 <td> 3 </td><td> 4
 </td></tr></table>
 
@@ -699,26 +699,26 @@ Multiplication table
 <table border="1" cellpadding="2">
 <caption>Multiplication table
 </caption>
-<tr >
+<tr>
 <th> &times; </th><th> 1 </th><th> 2 </th><th> 3
 </th></tr>
-<tr >
+<tr>
 <th> 1
 </th><td> 1 </td><td> 2 </td><td> 3
 </td></tr>
-<tr >
+<tr>
 <th> 2
 </th><td> 2 </td><td> 4 </td><td> 6
 </td></tr>
-<tr >
+<tr>
 <th> 3
 </th><td> 3 </td><td> 6 </td><td> 9
 </td></tr>
-<tr >
+<tr>
 <th> 4
 </th><td> 4 </td><td> 8 </td><td> 12
 </td></tr>
-<tr >
+<tr>
 <th> 5
 </th><td> 5 </td><td> 10 </td><td> 15
 </td></tr></table>
@@ -737,13 +737,13 @@ Table rowspan
 | Cell 3, row 2 
 |}
 !! result
-<table align=right border=1>
-<tr >
+<table align="right" border="1">
+<tr>
 <td> Cell 1, row 1
-</td><td rowspan=2> Cell 2, row 1 (and 2)
+</td><td rowspan="2"> Cell 2, row 1 (and 2)
 </td><td> Cell 3, row 1
 </td></tr>
-<tr >
+<tr>
 <td> Cell 1, row 2
 </td><td> Cell 3, row 2
 </td></tr></table>
@@ -764,15 +764,15 @@ Nested table
 |the original table again
 |}
 !! result
-<table border=1>
-<tr >
+<table border="1">
+<tr>
 <td> &alpha;
 </td><td>
-<table bgcolor=#ABCDEF border=2>
-<tr >
+<table bgcolor="#ABCDEF" border="2">
+<tr>
 <td>nested
 </td></tr>
-<tr >
+<tr>
 <td>table
 </td></tr></table>
 </td><td>the original table again
@@ -1194,8 +1194,8 @@ BUG 553: link with two variables in a piped link
 |[[{{{1}}}|{{{2}}}]]
 |}
 !! result
-<table >
-<tr >
+<table>
+<tr>
 <td>[[{{{1}}}|{{{2}}}]]
 </td></tr></table>
 
@@ -1304,11 +1304,11 @@ foo {{table}}
 !! result
 <p>foo 
 </p>
-<table >
-<tr >
+<table>
+<tr>
 <td> 1 </td><td> 2
 </td></tr>
-<tr >
+<tr>
 <td> 3 </td><td> 4
 </td></tr></table>
 
@@ -1322,11 +1322,11 @@ foo
 !! result
 <p>foo
 </p>
-<table >
-<tr >
+<table>
+<tr>
 <td> 1 </td><td> 2
 </td></tr>
-<tr >
+<tr>
 <td> 3 </td><td> 4
 </td></tr></table>
 
@@ -1840,6 +1840,61 @@ Namespaced link must have a title (bad fragment version)
 !! result
 <p>[[Project:#fragment]]
 </p>
+!!end
+
+
+!! test
+div with no attributes
+!! input
+<div>HTML rocks</div>
+!! result
+<div>HTML rocks</div>
+
+!! end
+
+!! test
+div with double-quoted attribute
+!! input
+<div id="rock">HTML rocks</div>
+!! result
+<div id="rock">HTML rocks</div>
+
+!! end
+
+!! test
+div with single-quoted attribute
+!! input
+<div id='rock'>HTML rocks</div>
+!! result
+<div id="rock">HTML rocks</div>
+
+!! end
+
+!! test
+div with unquoted attribute
+!! input
+<div id=rock>HTML rocks</div>
+!! result
+<div id="rock">HTML rocks</div>
+
+!! end
+
+!! test
+div with illegal double attributes
+!! input
+<div align="center" align="right">HTML rocks</div>
+!! result
+<div align="center">HTML rocks</div>
+
+!!end
+
+!! test
+DIV IN UPPERCASE
+!! input
+<DIV ALIGN="center">HTML ROCKS</DIV>
+!! result
+<div align="center">HTML ROCKS</div>
+
 !!end
 
 TODO:

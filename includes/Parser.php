@@ -546,7 +546,7 @@ class Parser
 				$indent_level = strlen( $matches[1] );
 				$t[$k] = "\n" .
 					str_repeat( '<dl><dd>', $indent_level ) .
-					'<table ' . Sanitizer::fixTagAttributes ( $matches[2] ) . '>' ;
+					'<table' . Sanitizer::fixTagAttributes ( $matches[2], 'table' ) . '>' ;
 				array_push ( $td , false ) ;
 				array_push ( $ltd , '' ) ;
 				array_push ( $tr , false ) ;
@@ -573,7 +573,7 @@ class Parser
 				array_push ( $tr , false ) ;
 				array_push ( $td , false ) ;
 				array_push ( $ltd , '' ) ;
-				array_push ( $ltr , Sanitizer::fixTagAttributes ( $x ) ) ;
+				array_push ( $ltr , Sanitizer::fixTagAttributes ( $x, 'tr' ) ) ;
 			}
 			else if ( '|' == $fc || '!' == $fc || '|+' == substr ( $x , 0 , 2 ) ) { # Caption
 				# $x is a table row
@@ -593,7 +593,7 @@ class Parser
 					if ( $fc != '+' )
 					{
 						$tra = array_pop ( $ltr ) ;
-						if ( !array_pop ( $tr ) ) $z = '<tr '.$tra.">\n" ;
+						if ( !array_pop ( $tr ) ) $z = '<tr'.$tra.">\n" ;
 						array_push ( $tr , true ) ;
 						array_push ( $ltr , '' ) ;
 					}
@@ -615,7 +615,7 @@ class Parser
 					}
 					if ( count ( $y ) == 1 )
 						$y = "{$z}<{$l}>{$y[0]}" ;
-					else $y = $y = "{$z}<{$l} ".Sanitizer::fixTagAttributes($y[0]).">{$y[1]}" ;
+					else $y = $y = "{$z}<{$l}".Sanitizer::fixTagAttributes($y[0], $l).">{$y[1]}" ;
 					$t[$k] .= $y ;
 					array_push ( $td , true ) ;
 				}
@@ -631,7 +631,7 @@ class Parser
 		}
 
 		$t = implode ( "\n" , $t ) ;
-		#		$t = $this->removeHTMLtags( $t );
+		#		$t = Sanitizer::removeHTMLtags( $t );
 		wfProfileOut( $fname );
 		return $t ;
 	}
