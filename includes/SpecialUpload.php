@@ -141,14 +141,13 @@ function saveUploadedFile()
 
 function unsaveUploadedFile()
 {
-	global $wgSavedFile, $wgUploadOldVersion;
-	global $wpSavedFile, $wpUploadOldVersion;
-	global $wgUploadDirectory, $wgOut;
-
-	$wgSavedFile = $wpSavedFile;
+	global $wpSessionKey, $wpUploadOldVersion;
+	global $wgUploadDirectory, $wgOut, $wsUploadFiles;
+	
+	$wgSavedFile = $wsUploadFiles[$wpSessionKey];
 	$wgUploadOldVersion = $wpUploadOldVersion;
 
-	if ( ! unlink( $wgSavedFile ) ) {
+	if ( ! @unlink( $wgSavedFile ) ) {
 		$wgOut->fileDeleteError( $wgSavedFile );
 		return;
 	}
@@ -171,7 +170,11 @@ function uploadWarning( $warning )
 	global $wpUploadDescription, $wpIgnoreWarning;
 	global $wpUploadSaveName, $wpUploadTempName, $wpUploadSize;
 	global $wgSavedFile, $wgUploadOldVersion;
-	global $wpSavedFile, $wpUploadOldVersion;
+	global $wpSessionKey, $wpUploadOldVersion, $wsUploadFiles;
+
+	# wgSavedFile is stored in the session not the form, for security
+	$wpSessionKey = mt_rand( 0, 0x7fffffff );
+	$wsUploadFiles[$wpSessionKey] = $wgSavedFile;
 
 	$sub = wfMsg( "uploadwarning" );
 	$wgOut->addHTML( "<h2>{$sub}</h2>\n" );
@@ -193,7 +196,7 @@ action=\"{$action}\">
 <input type=hidden name=\"wpUploadSaveName\" value=\"" . htmlspecialchars( $wpUploadSaveName ) . "\">
 <input type=hidden name=\"wpUploadTempName\" value=\"" . htmlspecialchars( $wpUploadTempName ) . "\">
 <input type=hidden name=\"wpUploadSize\" value=\"" . htmlspecialchars( $wpUploadSize ) . "\">
-<input type=hidden name=\"wpSavedFile\" value=\"" . htmlspecialchars( $wgSavedFile ) . "\">
+<input type=hidden name=\"wpSessionKey\" value=\"" . htmlspecialchars( $wpSessionKey ) . "\">
 <input type=hidden name=\"wpUploadOldVersion\" value=\"" . htmlspecialchars( $wgUploadOldVersion) . "\">
 <table border=0><tr>
 <tr><td align=right>
