@@ -53,8 +53,7 @@ class CleanUpTest extends PHPUnit_TestCase {
 			    $i == 0x000a ||
 			    $i == 0x000d ||
 			    ($i > 0x001f && $i < UNICODE_SURROGATE_FIRST) ||
-			    ($i > UNICODE_SURROGATE_LAST && $i < 0xfdd0 ) ||
-			    ($i > 0xfdef && $i < 0xfffe ) ||
+			    ($i > UNICODE_SURROGATE_LAST && $i < 0xfffe ) ||
 			    ($i > 0xffff && $i <= UNICODE_MAX ) ) {
 				if( isset( $utfCanonicalComp[$char] ) || isset( $utfCanonicalDecomp[$char] ) ) {
 				    $comp = UtfNormal::NFC( $char );
@@ -94,11 +93,14 @@ class CleanUpTest extends PHPUnit_TestCase {
 					bin2hex( $char ), 
 					bin2hex( $clean ),
 					"ASCII byte $x should be intact" );
+				if( $char != $clean ) return;
 			} else {
+				$norm = $head . UTF8_REPLACEMENT . $tail;
 				$this->assertEquals(
-					bin2hex( $head . UTF8_REPLACEMENT . $tail ),
+					bin2hex( $norm ),
 					bin2hex( $clean ),
 					"Forbidden byte $x should be rejected" );
+				if( $norm != $clean ) return;
 			}
 		}
 	}
@@ -119,21 +121,27 @@ class CleanUpTest extends PHPUnit_TestCase {
 				if( $first > 0xc1 &&
 				    $first < 0xe0 &&
 				    $second < 0xc0 ) {
+				    $norm = UtfNormal::NFC( $char );
 					$this->assertEquals(
-						bin2hex( UtfNormal::NFC( $char ) ), 
+						bin2hex( $norm ), 
 						bin2hex( $clean ),
 						"Pair $x should be intact" );
+				    if( $norm != $clean ) return;
 				} elseif( $first > 0xfd || $second > 0xbf ) {
 					# fe and ff are not legal head bytes -- expect two replacement chars
+					$norm = $head . UTF8_REPLACEMENT . UTF8_REPLACEMENT . $tail;
 					$this->assertEquals(
-						bin2hex( $head . UTF8_REPLACEMENT . UTF8_REPLACEMENT . $tail ),
+						bin2hex( $norm ),
 						bin2hex( $clean ),
 						"Forbidden pair $x should be rejected" );
+					if( $norm != $clean ) return;
 				} else {
+					$norm = $head . UTF8_REPLACEMENT . $tail;
 					$this->assertEquals(
-						bin2hex( $head . UTF8_REPLACEMENT . $tail ),
+						bin2hex( $norm ),
 						bin2hex( $clean ),
 						"Forbidden pair $x should be rejected" );
+					if( $norm != $clean ) return;
 				}
 			}
 		}
@@ -141,9 +149,9 @@ class CleanUpTest extends PHPUnit_TestCase {
 
 	function testTripleBytes() {
 		$this->doTestTripleBytes( '', '' );
-		#$this->doTestTripleBytes( 'x', '' );
-		#$this->doTestTripleBytes( '', 'x' );
-		#$this->doTestTripleBytes( 'x', 'x' );
+		$this->doTestTripleBytes( 'x', '' );
+		$this->doTestTripleBytes( '', 'x' );
+		$this->doTestTripleBytes( 'x', 'x' );
 	}
 	
 	function doTestTripleBytes( $head, $tail ) {
@@ -160,13 +168,13 @@ class CleanUpTest extends PHPUnit_TestCase {
 						$third < 0xc0 ) {
 						if( $first == 0xe0 && $second < 0xa0 ) {
 							$this->assertEquals(
-								bin2hex( UTF8_REPLACEMENT ), 
+								bin2hex( $head . UTF8_REPLACEMENT . $tail ), 
 								bin2hex( $clean ),
 								"Overlong triplet $x should be rejected" );
 						} elseif( $first == 0xed && 
 							( chr( $first ) . chr( $second ) . chr( $third ))  >= UTF8_SURROGATE_FIRST ) {
 							$this->assertEquals(
-								bin2hex( UTF8_REPLACEMENT ), 
+								bin2hex( $head . UTF8_REPLACEMENT . $tail ), 
 								bin2hex( $clean ),
 								"Surrogate triplet $x should be rejected" );
 						} else {
@@ -177,12 +185,12 @@ class CleanUpTest extends PHPUnit_TestCase {
 						}
 					} elseif( $first > 0xc1 && $first < 0xe0 && $second < 0xc0 ) {
 						$this->assertEquals(
-							bin2hex( $head . UtfNormal::NFC( chr( $first ) . chr( $second ) ) . UTF8_REPLACEMENT . $tail ),
+							bin2hex( UtfNormal::NFC( $head . chr( $first ) . chr( $second ) ) . UTF8_REPLACEMENT . $tail ),
 							bin2hex( $clean ),
 							"Valid 2-byte $x + broken tail" );
 					} elseif( $second > 0xc1 && $second < 0xe0 && $third < 0xc0 ) {
 						$this->assertEquals(
-							bin2hex( $head . UTF8_REPLACEMENT . UtfNormal::NFC( chr( $second ) . chr( $third ) ) . $tail ),
+							bin2hex( $head . UTF8_REPLACEMENT . UtfNormal::NFC( chr( $second ) . chr( $third ) . $tail ) ),
 							bin2hex( $clean ),
 							"Broken head + valid 2-byte $x" );
 					} elseif( $first > 0xfd && ( ( $second > 0xbf && $third > 0xbf ) || ($second < 0xc0 && $third < 0xc0 ) || ($second > 0xfd ) || ($third > 0xfd) ) ) {

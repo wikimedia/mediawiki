@@ -265,11 +265,12 @@ class UtfNormal {
 		# of initializing the decomposition tables by skipping out early.
 		if( !preg_match( '/[\x80-\xff]/', $string ) ) return true;
 		
-		UtfNormal::loadData();
-		global $utfCheckNFC, $utfCombiningClass;
-		
 		static $checkit = null, $tailBytes = null, $utfCheckOrCombining = null;
 		if( !isset( $checkit ) ) {
+			# Load/build some scary lookup tables...
+			UtfNormal::loadData();
+			global $utfCheckNFC, $utfCombiningClass;
+			
 			$utfCheckOrCombining = array_merge( $utfCheckNFC, $utfCombiningClass );
 
 			# Head bytes for sequences which we should do further validity checks
@@ -278,6 +279,8 @@ class UtfNormal {
 						   0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7,
 						   0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff ) ) );
 			
+			# Each UTF-8 head byte is followed by a certain
+			# number of tail bytes.
 			$tailBytes = array();
 			for( $n = 0; $n < 256; $n++ ) {
 				if( $n < 0xc0 ) {
@@ -307,13 +310,16 @@ class UtfNormal {
 			'/([\x00-\x7f]+|[\x80-\xff][\x00-\x40\x5b-\x5f\x7b-\xff]*)/',
 			$string, $matches );
 		
-		ob_start();
 		$looksNormal = true;
+		$base = 0;
+		$replace = array();
 		foreach( $matches[1] as $str ) {
+			$chunk = strlen( $str );
+			
 			if( $str{0} < "\x80" ) {
 				# ASCII chunk: guaranteed to be valid UTF-8
-				# and in normal form C, so output it quick.
-				echo $str;
+				# and in normal form C, so skip over it.
+				$base += $chunk;
 				continue;
 			}
 			
@@ -324,87 +330,136 @@ class UtfNormal {
 			# Since PHP is not the fastest language on earth, some of
 			# this code is a little ugly with inner loop optimizations.
 			
-			$len = strlen( $str ) + 1;
-			$tail = 0;
 			$head = '';
-			for( $i = 0; --$len; ++$i ) {
-				if( $tail ) {
-					if( ( $c = $str{$i} ) >= "\x80" && $c < "\xc0" ) {
-						$sequence .= $c;
-						if( --$remaining ) {
-							# Keep adding bytes...
-							continue;
-						}
-						
-						# We have come to the end of the sequence...
-						$tail = 0;
-						
-						if( isset( $checkit[$head] ) ) {
-							# Do some more detailed validity checks, for
-							# invalid characters and illegal sequences.
-							if( $head == "\xed" ) {
-								# 0xed is relatively frequent in Korean, which
-								# abuts the surrogate area, so we're doing
-								# this check separately.
-								if( $sequence >= UTF8_SURROGATE_FIRST ) {
-									echo UTF8_REPLACEMENT;
-									continue;
-								}
+			$len = $chunk + 1; # Counting down is faster. I'm *so* sorry.
+			
+			for( $i = -1; --$len; ) {
+				if( $remaining = $tailBytes[$c = $str{++$i}] ) {
+					# UTF-8 head byte!
+					$sequence = $head = $c;
+					do {
+						# Look for the defined number of tail bytes...
+						if( --$len && ( $c = $str{++$i} ) >= "\x80" && $c < "\xc0" ) {
+							# Legal tail bytes are nice.
+							$sequence .= $c;
+						} else {
+							if( 0 == $len ) {
+								# Premature end of string!
+								# Drop a replacement character into output to
+								# represent the invalid UTF-8 sequence.
+								$replace[] = array( UTF8_REPLACEMENT,
+													$base + $i + 1 - strlen( $sequence ),
+													strlen( $sequence ) );
+								$base += $chunk;
+								break 2;
 							} else {
-								$n = ord( $head );
-								if(    ($n  < 0xc2 && $sequence <= UTF8_OVERLONG_A)
-									|| ($n == 0xe0 && $sequence <= UTF8_OVERLONG_B)
-									|| ($n == 0xef && 
-										($sequence >= UTF8_FDD0 && $sequence <= UTF8_FDEF)
-										|| ($sequence == UTF8_FFFE)
-										|| ($sequence == UTF8_FFFF) )
-									|| ($n == 0xf0 && $sequence <= UTF8_OVERLONG_C)
-									|| ($n >= 0xf0 && $sequence > UTF8_MAX) ) {
-									echo UTF8_REPLACEMENT;
-									continue;
-								}
+								# Illegal tail byte; abandon the sequence.
+								$replace[] = array( UTF8_REPLACEMENT,
+													$base + $i - strlen( $sequence ),
+													strlen( $sequence ) );
+								# Back up and reprocess this byte; it may itself
+								# be a legal ASCII or UTF-8 sequence head.
+								--$i;
+								++$len;
+								continue 2;
 							}
 						}
-						
-						if( isset( $utfCheckOrCombining[$sequence] ) ) {
-							# If it's NO or MAYBE, we'll have to rip
-							# the string apart and put it back together.
-							# That's going to be mighty slow.
-							$looksNormal = false;
+					} while( --$remaining );
+
+					if( isset( $checkit[$head] ) ) {
+						# Do some more detailed validity checks, for
+						# invalid characters and illegal sequences.
+						if( $head == "\xed" ) {
+							# 0xed is relatively frequent in Korean, which
+							# abuts the surrogate area, so we're doing
+							# this check separately to speed things up.
+							
+							if( $sequence >= UTF8_SURROGATE_FIRST ) {
+								# Surrogates are legal only in UTF-16 code.
+								# They are totally forbidden here in UTF-8
+								# utopia.
+								$replace[] = array( UTF8_REPLACEMENT,
+								             $base + $i + 1 - strlen( $sequence ),
+								             strlen( $sequence ) );
+								continue;
+							}
+						} else {
+							# Slower, but rarer checks...
+							$n = ord( $head );
+							if(
+								# "Overlong sequences" are those that are syntactically
+								# correct but use more UTF-8 bytes than are necessary to
+								# encode a character. Naïve string comparisons can be
+								# tricked into failing to see a match for an ASCII
+								# character, for instance, which can be a security hole
+								# if blacklist checks are being used.
+							       ($n  < 0xc2 && $sequence <= UTF8_OVERLONG_A)
+								|| ($n == 0xe0 && $sequence <= UTF8_OVERLONG_B)
+								|| ($n == 0xf0 && $sequence <= UTF8_OVERLONG_C)
+								
+								# U+FFFE and U+FFFF are explicitly forbidden in Unicode.
+								|| ($n == 0xef && 
+									   ($sequence == UTF8_FFFE)
+									|| ($sequence == UTF8_FFFF) )
+								
+								# Unicode has been limited to 21 bits; longer
+								# sequences are not allowed.
+								|| ($n >= 0xf0 && $sequence > UTF8_MAX) ) {
+								
+								$replace[] = array( UTF8_REPLACEMENT,
+								                    $base + $i + 1 - strlen( $sequence ), 
+								                    strlen( $sequence ) );
+								continue;
+							}
 						}
-						
-						# The sequence is legal!
-						echo $sequence;
-						$head = '';
-						continue;
 					}
-					# Not a valid tail byte! DIscard the char we've been building.
-					$tail = false;
-					echo UTF8_REPLACEMENT;
-				}
-				if( $remaining = $tailBytes[$c = $str{$i}] ) {
-					$tail = 1;
-					$sequence = $head = $c;
+					
+					if( isset( $utfCheckOrCombining[$sequence] ) ) {
+						# If it's NO or MAYBE, we'll have to rip
+						# the string apart and put it back together.
+						# That's going to be mighty slow.
+						$looksNormal = false;
+					}
+					
+					# The sequence is legal!
+					$head = '';
 				} elseif( $c < "\x80" ) {
-					echo $c;
+					# ASCII byte.
 				} elseif( $c < "\xc0" ) {
-					# illegal tail bytes or head byte of overlong sequence
+					# Illegal tail bytes
 					if( $head == '' ) {
-						# Don't add if we're continuing a too-long sequence
-						echo UTF8_REPLACEMENT;
+						# Out of the blue!
+						$replace[] = array( UTF8_REPLACEMENT, $base + $i, 1 );
+					} else {
+						# Don't add if we're continuing a broken sequence;
+						# we already put a replacement character when we looked
+						# at the broken sequence.
+						$replace[] = array( '', $base + $i, 1 );
 					}
 				} else {
-					echo UTF8_REPLACEMENT;
+					# Miscellaneous freaks.
+					$replace[] = array( UTF8_REPLACEMENT, $base + $i, 1 );
 				}
 			}
-			if( $tail ) {
-				# We ended the chunk in the middle of a sequence;
-				# that's so not cool.
-				echo UTF8_REPLACEMENT;
-			}
+			$base += $chunk;
 		}
-		$string = ob_get_contents();
-		ob_end_clean();
+		if( count( $replace ) ) {
+			# There were illegal UTF-8 sequences we need to fix up.
+			$out = '';
+			$last = 0;
+			foreach( $replace as $rep ) {
+				list( $replacement, $start, $length ) = $rep;
+				if( $last < $start ) {
+					$out .= substr( $string, $last, $start - $last );
+				}
+				$out .= $replacement;
+				$last = $start + $length;
+			}
+			if( $last < strlen( $string ) ) {
+				$out .= substr( $string, $last );
+			}
+			$string = $out;
+		}
 		return $looksNormal;
 	}
 	
